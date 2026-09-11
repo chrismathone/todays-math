@@ -1,6 +1,6 @@
 # Blender 도형 실험
 
-개발 서버의 `/dev/blender`에서 4 × 3 × 2 cm 직육면체 전개도를 접고 돌려 볼 수 있다. 같은 치수의 기존 엔진 SVG, Blender 정지 렌더, 접기 애니메이션을 함께 비교한다. 현재 샘플은 이 직육면체 하나이며, 일반 도형 생성 API는 아니다.
+개발 서버의 `/dev/blender`에서 4 × 3 × 2 cm 직육면체 전개도를 접고 돌려 볼 수 있다. 같은 치수의 기존 엔진 SVG, Blender 정지 렌더, 접기 애니메이션을 함께 비교한다. `/dev/blender/stack-cubes`에는 쌓기나무 12개를 돌리고 층별로 벌려 보는 예제가 있다. 두 샘플은 개발용 설명 화면이며, 일반 도형 생성 API는 아니다.
 
 ## 생성과 검증
 
@@ -9,6 +9,8 @@ Blender 5.2.1 LTS와 PATH의 Python으로 확인했다. 저장소 루트에서 �
 ```powershell
 & 'C:\Program Files\Blender Foundation\Blender 5.2\blender.exe' --background --factory-startup --python-exit-code 1 --python scripts/blender/build_cuboid_demo.py
 node scripts/blender/verify_cuboid_demo.mjs
+& 'C:\Program Files\Blender Foundation\Blender 5.2\blender.exe' --background --factory-startup --python-exit-code 1 --python scripts/blender/build_stack_cubes.py
+node scripts/blender/verify_stack_cubes.mjs
 npm run dev
 ```
 
@@ -19,6 +21,14 @@ npm run dev
 - `public/dev/blender-assets/manifest.json`: 치수, 맞은편 면, 애니메이션 길이, 생성 버전, 파일 크기와 해시.
 
 Blender는 자산을 만드는 로컬 도구다. 브라우저는 미리 생성한 GLB를 읽는다. `@google/model-viewer`는 이 개발 페이지를 열 때만 클라이언트에서 불러오며, 운영 문제·인쇄·DB 경로에는 연결하지 않는다. 개발 페이지는 production에서 404를 반환한다. `public`에 들어 있는 실험 자산 자체는 정적 파일이다.
+
+## 쌓기나무
+
+`build_stack_cubes.py`의 높이 배열은 앞줄부터 `[[1,1,0],[2,3,1],[1,2,1]]`이다. 한 변 1cm 블록 12개이며 층별 개수는 8, 3, 1이다. 파란 화살표가 앞을 가리킨다. `Separate` 클립은 1초이며 위층으로 갈수록 6.5mm씩 더 벌려 아래에 가려진 블록을 보여 준다. 벌린 상태는 내부를 살펴보기 위한 설명 표현이다.
+
+같은 정수 좌표를 기존 `stackCubes` 엔진에 넣어 위·앞·오른쪽·겨냥도 SVG를 생성한다. 앞에서 본 높이는 왼쪽부터 2, 3, 1, 오른쪽에서 본 높이는 앞에서 뒤 순서로 1, 3, 2이다. `verify_stack_cubes.mjs`는 내보낸 GLB의 실제 위치·한 변 길이·층 분리와 SVG의 숫자·칸 배치를 독립적으로 대조한다. GLB는 41,084 bytes이며, 생성 결과는 `public/dev/blender-assets/stack-cubes/`에 있다.
+
+같은 네트워크에서는 `http://192.168.101.12:3000/dev/blender/stack-cubes`로 접속한다. `next.config.ts`의 `allowedDevOrigins`에 해당 IP를 허용해 Next 개발 리소스와 HMR 차단을 해제했다. 서버의 LAN 바인딩과 해당 주소에서 실제 3D 모델 로딩을 확인했다.
 
 ## 기존 엔진에 더할 가치
 

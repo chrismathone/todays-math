@@ -1,0 +1,130 @@
+{
+  "generator": "scripts/blender/build_stack_cubes.py",
+  "blenderVersion": "5.2.1 LTS",
+  "heightRowsFrontToBack": [
+    [
+      1,
+      1,
+      0
+    ],
+    [
+      2,
+      3,
+      1
+    ],
+    [
+      1,
+      2,
+      1
+    ]
+  ],
+  "voxels": [
+    [
+      0,
+      0,
+      0
+    ],
+    [
+      1,
+      0,
+      0
+    ],
+    [
+      0,
+      1,
+      0
+    ],
+    [
+      0,
+      1,
+      1
+    ],
+    [
+      1,
+      1,
+      0
+    ],
+    [
+      1,
+      1,
+      1
+    ],
+    [
+      1,
+      1,
+      2
+    ],
+    [
+      2,
+      1,
+      0
+    ],
+    [
+      0,
+      2,
+      0
+    ],
+    [
+      1,
+      2,
+      0
+    ],
+    [
+      1,
+      2,
+      1
+    ],
+    [
+      2,
+      2,
+      0
+    ]
+  ],
+  "unitMetres": 0.01,
+  "animation": {
+    "name": "Separate",
+    "durationSeconds": 1,
+    "extraGapPerLayerMetres": 0.006500000000000001
+  },
+  "checks": {
+    "cubeCount": 12,
+    "layerCounts": [
+      8,
+      3,
+      1
+    ],
+    "frontHeights": [
+      2,
+      3,
+      1
+    ],
+    "rightHeights": [
+      1,
+      3,
+      2
+    ],
+    "framesChecked": 31
+  },
+  "assets": {
+    "front.svg": {
+      "bytes": 1144,
+      "sha256": "35c3f0f5c4e4206281286f9e54e91d9ba6cfa70db2b20dfe8e6bd38396f403b2"
+    },
+    "iso.svg": {
+      "bytes": 2364,
+      "sha256": "461f47510c81d32998e63f8cea0e1c58872e2fc332b6d939cea0e03360dd950a"
+    },
+    "side.svg": {
+      "bytes": 1144,
+      "sha256": "4e8a21c56bb9d82d41f9e22dca838db0e927ecc7da5128bfefd14c28062a9fe9"
+    },
+    "stack-cubes.glb": {
+      "bytes": 41084,
+      "sha256": "9275df8bbcf0faee1ca24f490dc70af8af1bb5ddb612b091063ef4f706a0a7bf"
+    },
+    "top.svg": {
+      "bytes": 2464,
+      "sha256": "2a98e410ea221f1bdab7cbc5b21e83acd66c2609d3fe2c3068346a520f43aa9b"
+    }
+  }
+}
