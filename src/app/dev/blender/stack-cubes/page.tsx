@@ -25,7 +25,7 @@ const views = [
     name: "앞에서 본 모양",
     file: "front.svg",
     alt: "앞에서 본 모양. 왼쪽부터 높이가 2칸, 3칸, 1칸입니다.",
-    hint: "파란 삼각형이 가리키는 쪽에서 바라본 모양이에요.",
+    hint: "왼쪽부터 높이가 2칸, 3칸, 1칸이에요.",
   },
   {
     name: "오른쪽에서 본 모양",
@@ -47,7 +47,9 @@ export default async function StackCubesPage() {
             직육면체 전개도 실험
           </Link>
           <h1>쌓기나무</h1>
-          <p>돌려 보고, 층을 벌려 보며 숨어 있는 쌓기나무를 찾아보세요.</p>
+          <p className={styles.screenOnly}>
+            돌려 보고, 층을 벌려 보며 숨어 있는 쌓기나무를 찾아보세요.
+          </p>
         </header>
 
         <StackCubesDemo />
@@ -76,8 +78,10 @@ export default async function StackCubesPage() {
         >
           <h2 id="exact-views-title">쌓은 상태를 평면 그림으로 비교해요</h2>
           <p>
-            위의 입체 화면은 방향을 살펴보는 도구예요. 아래는 원근감 없이 칸을
-            맞춰 그린 정확한 위·앞·오른쪽 모양이에요.
+            <span className={styles.screenOnly}>
+              위의 입체 화면은 방향을 살펴보는 도구예요.{" "}
+            </span>
+            아래는 원근감 없이 칸을 맞춰 그린 정확한 위·앞·오른쪽 모양이에요.
           </p>
           <div className={styles.figureGrid}>
             {views.map((view) => (
