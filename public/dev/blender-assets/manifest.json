@@ -1,0 +1,46 @@
+{
+  "generator": "scripts/blender/build_cuboid_demo.py",
+  "blenderVersion": "5.2.1 LTS",
+  "dimensionsCm": {
+    "width": 4.0,
+    "depth": 3.0,
+    "height": 2.0
+  },
+  "oppositePairs": [
+    [1, 6],
+    [2, 4],
+    [3, 5]
+  ],
+  "animation": {
+    "name": "Fold",
+    "durationSeconds": 3
+  },
+  "geometryChecks": {
+    "framesChecked": 91,
+    "closedCorners": 8,
+    "closedEdges": 12,
+    "boundsMetres": [0.04, 0.03, 0.02]
+  },
+  "assets": {
+    "cuboid-blender.png": {
+      "bytes": 343617,
+      "sha256": "a03d097c698c496d33be0bfa0d641438ab0620c7b9355eda92df7787515af77b"
+    },
+    "cuboid-fold.glb": {
+      "bytes": 45264,
+      "sha256": "2cab0cd30e23875582a46bd241e1e543330a03486df1bd425c9b3ad5049999b4"
+    },
+    "cuboid-net.svg": {
+      "bytes": 2425,
+      "sha256": "e8faf566109208385e67d68ae90c0e357ad9122844920cb8d590dcfd152b62a8"
+    },
+    "cuboid-numbered-net.svg": {
+      "bytes": 3083,
+      "sha256": "f22d2de2ab09310688847f562e1b6dbc3a87875c01e1ec0b9cb299a96c2d61c1"
+    },
+    "cuboid.svg": {
+      "bytes": 1730,
+      "sha256": "472fd91b5ea55643e786e95401aeae61465c5b702807672d33c072a4c19ac771"
+    }
+  }
+}
