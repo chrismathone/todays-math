@@ -42,7 +42,8 @@ import { loadExamConfig } from "./examConfig";
 const DIR = process.argv[2];
 if (!DIR) throw new Error("사용: <작업폴더>");
 // 편마다 다른 것은 `exams/<examId>/exam.json` 에 있다(2026-09-12 — 둘째 편부터).
-const CFG = loadExamConfig(DIR);
+// units 는 여기서 안 쓴다 — 적재기만 필요하다(대량 이관은 초안이 먼저다).
+const CFG = loadExamConfig(DIR, { requireUnits: false });
 
 const read = (f: string): unknown =>
   JSON.parse(readFileSync(join(DIR, f), "utf-8"));
@@ -338,6 +339,41 @@ function restoreBoxMarker(stem: string, fromPdf: string, n: number): string {
       (label === "상자" ? " (라벨 없는 테두리 — 지면에 머리를 안 그린다)" : ""),
   );
   return `${stem.slice(0, m.index)}<${label}> ${stem.slice(m.index)}`;
+}
+
+// ── ㉠″ 표 후보 제안 — 대량 이관 드라이버(`batch_import.py`)가 부른다 ──────────
+//
+// `--propose-tables` 면 초안을 만들지 않고 **같은 `cellRun` 으로** 표 후보만 낸다.
+// 판정(`stripTableCells`)과 제안이 한 함수를 보므로 둘이 어긋날 수 없다
+// (2026-08-18 「세는 쪽과 고치는 쪽이 같이 눈이 먼다」).
+//
+// 🔴 칸 줄에 **항목 표지**(ㄱ. ㉠ ① ⑴ (1))가 섞이면 표가 아니라 짧은 〈보기〉일 수 있다.
+//    그건 «모름»으로 낸다 — 드라이버는 그 편을 멈추고 사람이 정한다. 표로 넣으면
+//    `crop_tables.py` 가 보기 상자의 테두리를 표라고 오려 **조용히** 지면에 나간다.
+if (process.argv.includes("--propose-tables")) {
+  const ITEM_RE =
+    /^\s*(?:[ㄱ-ㅎ]\s*[.)]|[㉠-㉿㈀-㈜]|[①-⑳]|[⑴-⒇]|\(\s*\d{1,2}\s*\)|\d{1,2}\s*[.)])/u;
+  const candidates: number[] = [];
+  const unsure: { n: number; why: string }[] = [];
+  for (const q of hwp.questions) {
+    const stem = scrub(piece.get(`${q.number}-stem`) ?? "").out;
+    const lines = stem.split("\n");
+    const run = cellRun(lines);
+    if (!run) continue;
+    const runLines = lines
+      .slice(run[0], run[1])
+      .map((l) => l.trim())
+      .filter(Boolean);
+    const marked = runLines.filter((l) => ITEM_RE.test(l)).length;
+    if (marked > 0)
+      unsure.push({
+        n: q.number,
+        why: `짧은 줄 ${runLines.length}개 중 항목 표지 ${marked}개 — 표가 아니라 보기일 수 있다`,
+      });
+    else candidates.push(q.number);
+  }
+  console.log(JSON.stringify({ candidates, unsure }));
+  process.exit(0);
 }
 
 // ── ㉢ 배점 — **정본은 PDF 쪽이다.** 근거는 본문 밖에 있다: 합이 100점이어야 한다 ──

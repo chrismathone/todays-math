@@ -8,6 +8,13 @@
     14
   ],
   "hand": [],
+  "acceptFix": [
+    {
+      "id": "6-stem",
+      "issue": "\\mathrm 이 삼킨 바",
+      "why": "원문이 \\mathrm{\\overline{OO'}} 다 — 프라임 때문에 rm-bar-whole 규칙이 못 벗긴다. 바가 OO' 전체 위에 서므로 지면은 맞다. 2026-09-12 에 이 모양 그대로 적재됐다(문6 두 자리)."
+    }
+  ],
   "units": {
     "1": {
       "section": "대푯값과 산포도",
