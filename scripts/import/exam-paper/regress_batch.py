@@ -144,6 +144,59 @@ def driver(work: pathlib.Path, blind: pathlib.Path, *args: str) -> subprocess.Co
     return r
 
 
+def negative_residue(work: pathlib.Path, blind: pathlib.Path) -> list[str]:
+    """손 고침을 빼면 7r 이 잔재로 **멈춰야** 한다 — 안 멈추면 그 규칙은 죽은 것이다."""
+    exam_id = "2025-gangdong-3-2-mid"
+    d = work.parent / "neg" / exam_id
+    shutil.rmtree(d.parent, ignore_errors=True)
+    (d / "figures").mkdir(parents=True)
+    for name in ["exam.json", "answers.json", "body.json", "source_path.txt"]:
+        shutil.copyfile(EXAMS / exam_id / name, d / name)
+    for f in (EXAMS / exam_id / "figures").iterdir():
+        shutil.copyfile(f, d / "figures" / f.name)
+    cfg = json.loads((d / "exam.json").read_text(encoding="utf-8"))
+    cfg["hand"] = []
+    (d / "exam.json").write_text(json.dumps(cfg, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+    r = sh([sys.executable, str(HERE / "batch_import.py"), "--exam-dir", str(d),
+            "--blind-root", str(blind / "neg"), "--from", "4", "--reviewed"])
+    line = next((ln for ln in r.stdout.splitlines() if exam_id in ln), "(줄 없음)")
+    if "7r" in line and "잔재" in line and "빈 분자" in line:
+        return []
+    return [f"손 고침을 뺐는데 잔재로 안 멈췄다 — «{line.strip()[:110]}»"]
+
+
+def negative_grade(work: pathlib.Path, blind: pathlib.Path) -> list[str]:
+    """틀린 답 + 과정 밖 해설은 걸리고, sol_ai 에 안 실려야 한다."""
+    exam_id, n = "2025-dongdo-3-2-mid", 2
+    p = blind / exam_id / "out" / f"q{n:02d}.json"
+    keep = p.read_text(encoding="utf-8")
+    orig = json.loads(keep)
+    wrong = "①" if orig.get("answer") != "①" else "②"
+    p.write_text(json.dumps({"answer": wrong,
+                             "solution": "코사인 법칙을 쓰면 나머지 변이 나온다.\n"
+                                         "그 값을 넣어 계산한다.\n"
+                                         f"따라서 답은 {wrong}이다."}, ensure_ascii=False), encoding="utf-8")
+    try:
+        sh([sys.executable, str(HERE / "batch_import.py"), "--exam-dir", str(work / exam_id),
+            "--blind-root", str(blind), "--from", "4", "--reviewed"])
+        flags = json.loads((work / exam_id / "solve-flags.json").read_text(encoding="utf-8"))
+        got = [f for f in flags["flags"] if f["n"] == n]
+        bad = []
+        if not got:
+            bad.append("틀린 답이 안 걸렸다")
+        else:
+            why = " ".join(got[0]["why"])
+            if "불일치" not in why:
+                bad.append(f"«불일치»로 안 걸렸다 — {why[:60]}")
+            if "과정 밖" not in why:
+                bad.append(f"«과정 밖 방법»으로 안 걸렸다 — {why[:60]}")
+        if (work / exam_id / "sol_ai" / f"q{n:02d}.json").exists():
+            bad.append("걸린 해설이 sol_ai 에 남았다")
+        return bad
+    finally:
+        p.write_text(keep, encoding="utf-8")
+
+
 def part_a(work: pathlib.Path) -> int:
     """4단계 이후 — 커밋된 중간물에서 다시 돌려 바이트를 견준다."""
     work = work / "a"
@@ -190,6 +243,14 @@ def part_a(work: pathlib.Path) -> int:
             (work / i / "solve-flags.json").exists() for i in IDS):
         print("🔴 절반 지점 줄이 없다")
         bad += 1
+    print("── ⑸ 음성 대조 — 손 고침을 빼면 잔재로 멈춰야 한다")
+    issues = negative_residue(work, blind)
+    print("   " + ("멈춘다(좋다)" if not issues else "🔴 " + " · ".join(issues)))
+    bad += len(issues)
+    print("── ⑹ 음성 대조 — 틀린 답·과정 밖 해설은 걸려야 한다")
+    issues = negative_grade(work, blind)
+    print("   " + ("걸린다(좋다)" if not issues else "🔴 " + " · ".join(issues)))
+    bad += len(issues)
     print(f"\na부 결론: {'초록' if bad == 0 else f'🔴 어긋남 {bad}건'}")
     return bad
 
@@ -233,10 +294,10 @@ def part_b(work: pathlib.Path) -> int:
 
 
 MUTATIONS = [
-    ("batch_import.py", '    Stage("5", "잔재 고침", st_fix,', '    _SKIP = Stage("5", "잔재 고침", st_fix,',
-     "5단계(잔재 고침)를 단계 표에서 뺀다"),
-    ("scan_residue.py", '    ("빈 분자", re.compile(r"\\\\frac\\s*\\{\\s*\\}"),',
-     '    ("빈 분자", re.compile(r"(?!)"),', "잔재 규칙 «빈 분자» 를 끈다"),
+    ("batch_import.py", '    Stage("5", "잔재 고침", st_fix,', '    Stage("5", "잔재 고침", lambda ex: None,',
+     "5단계(잔재 고침)를 빈 일로 만든다"),
+    ("scan_residue.py", '("빈 분자", re.compile(r"\\frac\s*\{\s*\}")', '("빈 분자", re.compile(r"(?!x)x")',
+     "잔재 규칙 «빈 분자» 를 끈다"),
     ("grade_solutions.py", "            elif got != want:", "            elif False:",
      "채점의 «기록된 정답과 일치» 를 끈다"),
 ]
