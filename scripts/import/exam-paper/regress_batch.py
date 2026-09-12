@@ -298,7 +298,7 @@ def part_b(work: pathlib.Path) -> int:
 MUTATIONS = [
     ("batch_import.py", '    Stage("5", "잔재 고침", st_fix,', '    Stage("5", "잔재 고침", lambda ex: None,',
      "5단계(잔재 고침)를 빈 일로 만든다"),
-    ("scan_residue.py", '("빈 분자", re.compile(r"\\frac\s*\{\s*\}")', '("빈 분자", re.compile(r"(?!x)x")',
+    ("scan_residue.py", r'("빈 분자", re.compile(r"\\frac\s*\{\s*\}")', r'("빈 분자", re.compile(r"(?!x)x")',
      "잔재 규칙 «빈 분자» 를 끈다"),
     ("grade_solutions.py", "            elif got != want:", "            elif False:",
      "채점의 «기록된 정답과 일치» 를 끈다"),
@@ -335,7 +335,10 @@ def part_mut(work: pathlib.Path) -> int:
                 bad += 1
         finally:
             sh(["git", "checkout", "--", f"scripts/import/exam-paper/{name}"])
-            if p.read_bytes() != before:
+            # ⚠️ 바이트로 견주면 안 된다 — autocrlf 가 되돌릴 때 줄끝을 CRLF 로 쓴다.
+            #    «되돌아왔나»는 git 이 그 파일을 깨끗하다고 보는가로 묻는다.
+            if sh(["git", "status", "--porcelain", "--",
+                   f"scripts/import/exam-paper/{name}"]).stdout.strip():
                 print(f"🔴 되돌리기가 안 됐다 — {name}")
                 bad += 1
     print(f"\n변이 결론: {'초록(변이마다 회귀가 빨개졌다)' if bad == 0 else f'🔴 {bad}건'}")
