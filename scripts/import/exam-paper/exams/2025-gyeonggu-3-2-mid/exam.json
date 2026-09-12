@@ -1,0 +1,42 @@
+{
+  "examId": "2025-gyeonggu-3-2-mid",
+  "school": "경구중",
+  "grade": "중3",
+  "subject": "수학",
+  "tables": [
+    6
+  ],
+  "hand": [
+    {
+      "id": "20",
+      "why": "원문은 sin x = CD/1 인데 변환이 바를 C 에만 씌우고 D 를 분자로 떼어 갔다 — 지면에 C 위에만 바가 서고 분수가 D/1 이 된다",
+      "from": "\\mathrm{\\overline{C}}\\frac{D}{1}",
+      "to": "\\frac{\\overline{CD}}{1}"
+    },
+    {
+      "id": "20",
+      "why": "같은 사고 — cos x = OD/1 자리",
+      "from": "\\mathrm{\\overline{O}}\\frac{D}{1}",
+      "to": "\\frac{\\overline{OD}}{1}"
+    },
+    {
+      "id": "20",
+      "why": "같은 사고 — tan x = EB/1 자리",
+      "from": "\\mathrm{\\overline{E}}\\frac{B}{1}",
+      "to": "\\frac{\\overline{EB}}{1}"
+    },
+    {
+      "id": "9-c4",
+      "why": "분자가 분수 밖으로 끌려 나와 분자 칸이 비었다 — PDF 텍스트층은 이 보기를 \\frac{3√10}{5} 로 읽는다(지면 대조 2026-09-13)",
+      "from": "3\\sqrt{10}\\frac{}{5}",
+      "to": "\\frac{3\\sqrt{10}}{5}"
+    },
+    {
+      "id": "9-c5",
+      "why": "같은 사고 — PDF 텍스트층은 \\frac{6√2}{5} 로 읽는다",
+      "from": "6\\sqrt{2}\\frac{}{5}",
+      "to": "\\frac{6\\sqrt{2}}{5}"
+    }
+  ],
+  "units": {}
+}

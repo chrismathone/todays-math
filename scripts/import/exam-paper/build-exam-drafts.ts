@@ -313,6 +313,11 @@ const BOX_MARKER_RE =
 const FIRST_ITEM_RE = new RegExp(
   "(㉠|㈀|㉮|㈎|Ⓐ" +
     "|\\(\\s*ㄱ\\s*\\)" +
+    // 괄호 친 «(가)» — 조건 상자가 흔히 이 꼴이다(2026-09-13 경산중 문5: 「(가) x축에 접한다」).
+    // 아래 맨끝 가지는 **괄호 없는** `가.`·`가)` 만 잡아서 이 꼴이 어느 가지에도 안 걸렸다.
+    // 🔴 «(가)» 는 표지이면서 **참조**이기도 하다(「(가)에서 구한 값을…」). 표지는 뒤에 공백이
+    //    오고 참조는 조사가 붙으므로 여기서 한 겹, 형제 «(나)» 로 아래에서 또 한 겹 거른다.
+    "|[(（]\\s*가\\s*[)）](?=\\s|$)" +
     "|(?<![(（])ㄱ\\s*[.)]" +
     "|(?:^|[\\n\\s])가\\s*[.)])",
 );
@@ -332,6 +337,18 @@ function restoreBoxMarker(stem: string, fromPdf: string, n: number): string {
     throw new Error(
       `[중단] 문${n}: PDF 는 상자가 있다는데 HWP 발문에서 **첫 항목을 못 찾았다** — ` +
         "손으로 보고 규칙을 고칠 것",
+    );
+  }
+  // 🔴 괄호 친 «(가)» 만은 형제를 하나 더 묻는다 — 진짜 조건 상자에는 «(나)» 가 따로 있다.
+  //    없으면 그 «(가)» 는 참조일 수 있으니 **조용히 지나가지 말고 멈춘다**(사람이 지면을 본다).
+  //    2026-09-13: 마커를 새로 쓸 때 «누가 그것을 입력으로 아는가»(2026-09-06)의 되풀이를 막는 자리.
+  if (
+    /^[(（]\s*가/.test(m[1]!) &&
+    !/[(（]\s*나\s*[)）]/.test(stem.slice(m.index + m[1]!.length))
+  ) {
+    throw new Error(
+      `[중단] 문${n}: «${m[1]!.trim()}» 뒤에 형제 «(나)» 가 없다 — 항목 표지가 아니라 ` +
+        "참조일 수 있다. 손으로 지면을 보고 정할 것",
     );
   }
   console.log(
@@ -382,14 +399,24 @@ if (process.argv.includes("--propose-tables")) {
 // 지면에는 `[총 10점]` 이라 적혀 있다 — 추출기가 **마지막 소문항 배점**을 집은 것으로
 // 보인다. 어느 쪽이 옳은지는 문항 안에서 못 가른다. 가르는 것은 **합계**다:
 //   HWP 87점 · PDF 100점.  시험지 총점은 100 이다.
-const pdfScore = new Map(
-  (pdf.questions ?? []).map((q) => [q.number, q.score ?? 0]),
+// 🔴 `?? 0` 으로 받으면 **«칸이 없다»가 «0점»이 된다** — 그러면 아래에서 그 0 이 HWP 배점을 이긴다.
+//    2026-09-13 경산중 문13: 지면의 `[3점]` 사이에 그림 조각이 끼어 텍스트층이 배점을 못 집었고,
+//    PDF 0점이 HWP 3점을 눌러 합이 97 이 됐다. 커밋된 편 전수에서 PDF 배점 칸은 130 중 129 가
+//    있고 **0점짜리 문항은 하나도 없다** — 그러니 «없음»은 없음으로 두고 HWP 로 물러난다.
+const pdfScore = new Map<number, number>(
+  (pdf.questions ?? [])
+    .filter((q) => typeof q.score === "number")
+    .map((q) => [q.number, q.score as number]),
 );
 const scoreOf = new Map<number, number>();
 let scoreSwap = 0;
 for (const q of hwp.questions) {
   const fromPdf = pdfScore.get(q.number);
-  if (fromPdf !== undefined && Math.abs(fromPdf - q.score) > 1e-6) {
+  if (fromPdf === undefined) {
+    console.log(
+      `  문${q.number} 배점: PDF 텍스트층에 칸이 없다 — HWP ${q.score}점을 쓴다`,
+    );
+  } else if (Math.abs(fromPdf - q.score) > 1e-6) {
     scoreSwap += 1;
     console.log(
       `  문${q.number} 배점: PDF ${fromPdf}점 ← HWP ${q.score}점 (PDF 를 쓴다)`,
