@@ -55,6 +55,17 @@ const RULES: Rule[] = [
     probe: "\\mathrm{\\overline{B}}D",
   },
   {
+    // 같은 사고인데 **다음 글자가 분수로 끌려간** 꼴이다: 원문 `CD/1` 이
+    // `\mathrm{\overline{C}}\frac{D}{1}` 로 온다(2026-09-13 경구중 문20 세 자리 ·
+    // 경일여중 문12 · 계성중 문19). 바는 C 에만 서고 D 는 분자가 되어,
+    // rm-bar-split(뒤가 **글자**일 때만 건다)이 못 잡는다. KaTeX 는 초록이라
+    // 렌더 검사도 못 잡는다 — 모양으로만 드러나는 부류다.
+    name: "rm-bar-frac", // \mathrm{\overline{C}}\frac{D}{1} → \frac{\overline{CD}}{1}
+    re: /\\mathrm\{\\overline\{([A-Za-z])\}\}\s*\\frac\{([A-Za-z])\}\{/g,
+    to: "\\frac{\\overline{$1$2}}{",
+    probe: "\\mathrm{\\overline{C}}\\frac{D}{1}",
+  },
+  {
     name: "rm-bar-whole", // \mathrm{\overline{BF}} → \overline{BF}
     re: /\\mathrm\{\\overline\{([A-Za-z]{2,})\}\}/g,
     to: "\\overline{$1}",
