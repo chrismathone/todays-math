@@ -169,6 +169,8 @@ def negative_grade(work: pathlib.Path, blind: pathlib.Path) -> list[str]:
     """틀린 답 + 과정 밖 해설은 걸리고, sol_ai 에 안 실려야 한다."""
     exam_id, n = "2025-dongdo-3-2-mid", 2
     p = blind / exam_id / "out" / f"q{n:02d}.json"
+    if not p.exists():
+        return ["풀이 파일이 없다(앞 단계에서 멈췄다) — 음성 대조를 못 했다"]
     keep = p.read_text(encoding="utf-8")
     orig = json.loads(keep)
     wrong = "①" if orig.get("answer") != "①" else "②"
@@ -323,7 +325,11 @@ def part_mut(work: pathlib.Path) -> int:
             print(f"🔴 변이가 파일을 안 바꿨다 — {why}")
             bad += 1
         try:
-            n = part_a(work)
+            try:
+                n = part_a(work)
+            except Exception as e:  # noqa: BLE001 — 변이가 하네스를 죽여도 그건 «빨강»이다
+                print(f"   (회귀가 예외로 죽었다: {type(e).__name__} {str(e)[:80]})")
+                n = 99
             print(f"[변이] {why} → 회귀 {'🔴 초록(가드가 아니다)' if n == 0 else f'빨강 {n}건 — 좋다'}")
             if n == 0:
                 bad += 1
