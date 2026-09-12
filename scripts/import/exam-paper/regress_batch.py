@@ -274,23 +274,33 @@ def part_b(work: pathlib.Path) -> int:
         print("[stderr]", r.stderr.strip()[:2000])
     bad = 0
     for exam_id in IDS:
-        names = OUT_03 + (OUT_4 if exam_id != "2025-gangdong-3-2-mid" else
-                          [n for n in OUT_4 if n not in ("hwp_fixed.json", "drafts.json")])
-        issues = compare(exam_id, work, names) + compare_figures(exam_id, work)
+        # 첫 판은 **0~3 단계**만 견준다(사람 결정이 아직 없어 4단계 이후는 멈추는 것이 옳다).
+        issues = compare(exam_id, work, OUT_03)
         print(f"   {exam_id}: {'같다' if not issues else '🔴 ' + ' · '.join(issues)}")
         bad += len(issues)
-    print("── 강동중: 사람이 적은 손 고침(문15 ②)을 넣고 다시 — 그러면 바이트가 같아야 한다")
-    gd = work / "2025-gangdong-3-2-mid"
-    if gd.exists():
-        cfg = json.loads((gd / "exam.json").read_text(encoding="utf-8"))
-        cfg["hand"] = json.loads((EXAMS / "2025-gangdong-3-2-mid" / "exam.json").read_text(encoding="utf-8"))["hand"]
-        (gd / "exam.json").write_text(json.dumps(cfg, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
-        r = sh([sys.executable, str(HERE / "batch_import.py"), "--exam-dir", str(gd),
-                "--blind-root", str(blind), "--reviewed"])
-        print(r.stdout.strip()[-600:])
-        issues = compare("2025-gangdong-3-2-mid", work, OUT_03 + OUT_4)
-        print(f"   2025-gangdong-3-2-mid: {'같다' if not issues else '🔴 ' + ' · '.join(issues)}")
-        bad += len(issues)
+    print("── 사람이 정한 것(hand · acceptFix)을 넣고 다시 — 그때 4단계 이후도 바이트가 같아야 한다")
+    # 새로 세운 편의 exam.json 에는 사람 결정이 없다. 동도중은 5단계(남은 결함), 강동중은 7r(빈 분자)에서
+    # 멈추는 것이 **옳은 동작**이다 — 그것을 넣어 주고 나서 견준다.
+    dirs = []
+    for exam_id in IDS:
+        d = work / exam_id
+        if not d.exists():
+            continue
+        cfg = json.loads((d / "exam.json").read_text(encoding="utf-8"))
+        want = json.loads((EXAMS / exam_id / "exam.json").read_text(encoding="utf-8"))
+        for key in ("hand", "acceptFix"):
+            if want.get(key):
+                cfg[key] = want[key]
+        (d / "exam.json").write_text(json.dumps(cfg, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+        dirs.append(str(d))
+    if dirs:
+        r = sh([sys.executable, str(HERE / "batch_import.py"), "--exam-dir", *dirs,
+                "--blind-root", str(blind), "--from", "4", "--reviewed"])
+        print(r.stdout.strip()[-900:])
+        for exam_id in IDS:
+            issues = compare(exam_id, work, OUT_03 + OUT_4) + compare_figures(exam_id, work)
+            print(f"   {exam_id}: {'같다' if not issues else '🔴 ' + ' · '.join(issues)}")
+            bad += len(issues)
     print(f"\nb부 결론: {'초록' if bad == 0 else f'🔴 어긋남 {bad}건'}")
     return bad
 
