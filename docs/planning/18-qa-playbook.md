@@ -7,7 +7,7 @@
 > 시간을 먹은 것은 어려운 판단이 아니라 **같은 함정에 여덟 번 다시 빠진 것**과,
 > **이미 있는 연장을 못 찾아 다시 만든 것**이다. 둘 다 이 문서로 막을 수 있다.
 >
-> 관련: `CLAUDE.md` Lessons Learned(사건별 서술) · `16-figure-recovery-ledger.md`(그림 잔고)
+> 관련: `20-lessons-learned.md`(사건별 서술 — 2026-09-13 `CLAUDE.md` 에서 옮김) · `16-figure-recovery-ledger.md`(그림 잔고)
 > · `08-import-ledger.md`(이관 원장). 이 문서는 그것들의 **방법 요약**이다.
 
 ---

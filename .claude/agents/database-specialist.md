@@ -97,7 +97,9 @@ while (마이그레이션 실패 || 테스트 실패) {
 
 ## 난관 극복 시 기록 규칙 (Lessons Learned)
 
-어려운 문제를 해결했을 때 **반드시** CLAUDE.md의 "Lessons Learned" 섹션에 기록합니다:
+어려운 문제를 해결했을 때 **반드시** `docs/planning/20-lessons-learned.md` **끝**에 본문을 쓰고,
+CLAUDE.md 의 「Lessons Learned — 색인」 에 한 줄(`- [YYYY-MM-DD] 제목 (키워드)`)을 더합니다
+(2026-09-13 본문을 20번 문서로 옮겼다 — CLAUDE.md 는 모든 대화가 읽으므로 짧게 둔다):
 
 **기록 트리거:**
 - 마이그레이션 충돌 해결
