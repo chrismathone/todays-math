@@ -1,0 +1,782 @@
+[
+ {
+  "id": "1-stem",
+  "text": "삼각비의 값이 옳은 것은?",
+  "spans": 0
+ },
+ {
+  "id": "1-c1",
+  "text": "$\\sin \\mathrm{A}=\\frac{2}{3}$",
+  "spans": 1
+ },
+ {
+  "id": "1-c2",
+  "text": "$\\sin \\,\\mathrm{B}=\\frac{2\\sqrt{13}}{13}$",
+  "spans": 1
+ },
+ {
+  "id": "1-c3",
+  "text": "$\\cos \\,\\mathrm{A}=\\frac{2}{3}$",
+  "spans": 1
+ },
+ {
+  "id": "1-c4",
+  "text": "$\\cos \\,\\mathrm{C}=\\frac{3\\sqrt{13}}{13}$",
+  "spans": 1
+ },
+ {
+  "id": "1-c5",
+  "text": "$\\tan \\,\\mathrm{C}=\\frac{3}{2}$",
+  "spans": 1
+ },
+ {
+  "id": "2-stem",
+  "text": "$\\sin \\,0^\\circ +\\cos \\,0^\\circ +\\tan 0^\\circ +\\tan 45^\\circ$의 값은?",
+  "spans": 1
+ },
+ {
+  "id": "2-c1",
+  "text": "$0$",
+  "spans": 1
+ },
+ {
+  "id": "2-c2",
+  "text": "$\\frac{1}{2}$",
+  "spans": 1
+ },
+ {
+  "id": "2-c3",
+  "text": "$1$",
+  "spans": 1
+ },
+ {
+  "id": "2-c4",
+  "text": "$\\frac{3}{2}$",
+  "spans": 1
+ },
+ {
+  "id": "2-c5",
+  "text": "$2$",
+  "spans": 1
+ },
+ {
+  "id": "3-stem",
+  "text": "반지름의 길이가 $1$인 사분원을 이용하여 \n$\\sin 40^\\circ -\\cos 40^\\circ +\\tan 50^\\circ$의 값은?",
+  "spans": 2
+ },
+ {
+  "id": "3-c1",
+  "text": "$1.06$",
+  "spans": 1
+ },
+ {
+  "id": "3-c2",
+  "text": "$1.32$",
+  "spans": 1
+ },
+ {
+  "id": "3-c3",
+  "text": "$1.42$",
+  "spans": 1
+ },
+ {
+  "id": "3-c4",
+  "text": "$1.55$",
+  "spans": 1
+ },
+ {
+  "id": "3-c5",
+  "text": "$2.6$",
+  "spans": 1
+ },
+ {
+  "id": "4-stem",
+  "text": "직각삼각형 $\\mathrm{ABC}$에서 $\\angle \\mathrm{A}=30^\\circ$, $\\overline{\\mathrm{A}C}=6$일 때, $\\frac{x}{y}$의 값은?",
+  "spans": 4
+ },
+ {
+  "id": "4-c1",
+  "text": "$\\sqrt{2}$",
+  "spans": 1
+ },
+ {
+  "id": "4-c2",
+  "text": "$\\sqrt{3}$",
+  "spans": 1
+ },
+ {
+  "id": "4-c3",
+  "text": "$\\sqrt{5}$",
+  "spans": 1
+ },
+ {
+  "id": "4-c4",
+  "text": "$2\\sqrt{2}$",
+  "spans": 1
+ },
+ {
+  "id": "4-c5",
+  "text": "$2\\sqrt{3}$",
+  "spans": 1
+ },
+ {
+  "id": "5-stem",
+  "text": "$\\angle \\mathrm{ADC}=\\angle BAC=90^\\circ$, $\\angle \\mathrm{ACB}=30^\\circ$, $\\angle \\,\\mathrm{CAD}=45^\\circ$이고, $\\overline{\\mathrm{B}C}=4$일 때, $\\frac{x}{y}$의 값은?",
+  "spans": 5
+ },
+ {
+  "id": "5-c1",
+  "text": "$\\frac{\\sqrt{2}}{6}$",
+  "spans": 1
+ },
+ {
+  "id": "5-c2",
+  "text": "$\\frac{\\sqrt{3}}{4}$",
+  "spans": 1
+ },
+ {
+  "id": "5-c3",
+  "text": "$\\frac{\\sqrt{6}}{4}$",
+  "spans": 1
+ },
+ {
+  "id": "5-c4",
+  "text": "$\\frac{\\sqrt{6}}{3}$",
+  "spans": 1
+ },
+ {
+  "id": "5-c5",
+  "text": "$\\frac{\\sqrt{3}}{2}$",
+  "spans": 1
+ },
+ {
+  "id": "6-stem",
+  "text": "직각삼각형 $\\mathrm{ABC}$에서 $\\sin x\\,\\times \\,\\cos y\\,\\times \\,\\tan x$의 값은?",
+  "spans": 2
+ },
+ {
+  "id": "6-c1",
+  "text": "$\\frac{27}{100}$",
+  "spans": 1
+ },
+ {
+  "id": "6-c2",
+  "text": "$\\frac{9}{25}$",
+  "spans": 1
+ },
+ {
+  "id": "6-c3",
+  "text": "$\\frac{12}{25}$",
+  "spans": 1
+ },
+ {
+  "id": "6-c4",
+  "text": "$\\frac{16}{25}$",
+  "spans": 1
+ },
+ {
+  "id": "6-c5",
+  "text": "$\\frac{64}{75}$",
+  "spans": 1
+ },
+ {
+  "id": "7-stem",
+  "text": "$\\tan \\,\\mathrm{A}=2$일 때, $\\sin \\,\\mathrm{A}\\,\\times \\,\\cos A$의 값은?\n(단, $0^\\circ <\\mathrm{A}<90^\\circ$이다.)",
+  "spans": 3
+ },
+ {
+  "id": "7-c1",
+  "text": "$\\frac{1}{5}$",
+  "spans": 1
+ },
+ {
+  "id": "7-c2",
+  "text": "$\\frac{2}{5}$",
+  "spans": 1
+ },
+ {
+  "id": "7-c3",
+  "text": "$\\frac{3}{5}$",
+  "spans": 1
+ },
+ {
+  "id": "7-c4",
+  "text": "$\\frac{2}{3}$",
+  "spans": 1
+ },
+ {
+  "id": "7-c5",
+  "text": "$\\frac{5}{6}$",
+  "spans": 1
+ },
+ {
+  "id": "8-stem",
+  "text": "삼각형의 세 내각의 크기의 비가 $1:\\,4:\\,5$이고 세 내각 중 가장 큰 각의 크기를 $\\mathrm{A}$라 할 때, $\\sin \\,\\mathrm{A}-\\cos A$의 값은?",
+  "spans": 3
+ },
+ {
+  "id": "8-c1",
+  "text": "$\\frac{1-\\sqrt{3}}{2}$",
+  "spans": 1
+ },
+ {
+  "id": "8-c2",
+  "text": "$0$",
+  "spans": 1
+ },
+ {
+  "id": "8-c3",
+  "text": "$\\frac{\\sqrt{3}-1}{2}$",
+  "spans": 1
+ },
+ {
+  "id": "8-c4",
+  "text": "$\\frac{1}{2}$",
+  "spans": 1
+ },
+ {
+  "id": "8-c5",
+  "text": "$1$",
+  "spans": 1
+ },
+ {
+  "id": "9-stem",
+  "text": "평행사변형 $\\mathrm{ABCD}$에서 $\\overline{\\mathrm{A}B}=4$, $\\overline{\\mathrm{B}C}=6$이고 $\\angle \\,\\mathrm{ABC}=60^\\circ$일 때, $\\overline{\\mathrm{A}C}$의 길이는?",
+  "spans": 5
+ },
+ {
+  "id": "9-c1",
+  "text": "$\\sqrt{7}$",
+  "spans": 1
+ },
+ {
+  "id": "9-c2",
+  "text": "$\\sqrt{13}$",
+  "spans": 1
+ },
+ {
+  "id": "9-c3",
+  "text": "$2\\sqrt{7}$",
+  "spans": 1
+ },
+ {
+  "id": "9-c4",
+  "text": "$4\\sqrt{3}$",
+  "spans": 1
+ },
+ {
+  "id": "9-c5",
+  "text": "$2\\sqrt{13}$",
+  "spans": 1
+ },
+ {
+  "id": "10-stem",
+  "text": "직각삼각형 $\\mathrm{ABC}$에서 변 $\\mathrm{B}C\\,$ 위의 한 점 $\\mathrm{D}$에서 변 $\\mathrm{A}C$에 내린 수선의 발을 $\\mathrm{E}$라고 하자. $\\angle \\,\\mathrm{BAE}=\\,x\\,^\\circ$일 때, $\\cos \\,x\\,^\\circ$의 값은?",
+  "spans": 7
+ },
+ {
+  "id": "10-c1",
+  "text": "$\\frac{\\sqrt{7}}{4}$",
+  "spans": 1
+ },
+ {
+  "id": "10-c2",
+  "text": "$\\frac{3}{4}$",
+  "spans": 1
+ },
+ {
+  "id": "10-c3",
+  "text": "$\\frac{4}{5}$",
+  "spans": 1
+ },
+ {
+  "id": "10-c4",
+  "text": "$\\frac{2\\sqrt{7}}{7}$",
+  "spans": 1
+ },
+ {
+  "id": "10-c5",
+  "text": "$\\frac{\\sqrt{7}}{3}$",
+  "spans": 1
+ },
+ {
+  "id": "11-stem",
+  "text": "삼각형 $\\mathrm{ABC}$에서 $\\angle \\,\\mathrm{B}=30^\\circ$, $\\angle \\,\\mathrm{ACB}=120^\\circ$이고 $\\overline{\\mathrm{B}C}=8$일 때, $\\frac{\\overline{\\mathrm{A}H}}{\\overline{\\mathrm{C}H}}$의 값은?",
+  "spans": 5
+ },
+ {
+  "id": "11-c1",
+  "text": "$\\sqrt{2}$",
+  "spans": 1
+ },
+ {
+  "id": "11-c2",
+  "text": "$\\sqrt{3}$",
+  "spans": 1
+ },
+ {
+  "id": "11-c3",
+  "text": "$2\\sqrt{2}$",
+  "spans": 1
+ },
+ {
+  "id": "11-c4",
+  "text": "$2\\sqrt{3}$",
+  "spans": 1
+ },
+ {
+  "id": "11-c5",
+  "text": "$3\\sqrt{2}$",
+  "spans": 1
+ },
+ {
+  "id": "12-stem",
+  "text": "평행사변형 $\\mathrm{ABCD}$의 넓이는?",
+  "spans": 1
+ },
+ {
+  "id": "12-c1",
+  "text": "$10$$\\mathrm{c}m^{2}$",
+  "spans": 2
+ },
+ {
+  "id": "12-c2",
+  "text": "$10\\sqrt{2}$$\\mathrm{c}m^{2}$",
+  "spans": 2
+ },
+ {
+  "id": "12-c3",
+  "text": "$10\\sqrt{3}$$\\mathrm{c}m^{2}$",
+  "spans": 2
+ },
+ {
+  "id": "12-c4",
+  "text": "$20$$\\mathrm{c}m^{2}$",
+  "spans": 2
+ },
+ {
+  "id": "12-c5",
+  "text": "$20\\sqrt{3}$$\\mathrm{c}m^{2}$",
+  "spans": 2
+ },
+ {
+  "id": "13-stem",
+  "text": "삼각형 $\\mathrm{ABC}$에서 $\\overline{\\mathrm{A}H}\\perp \\overline{\\mathrm{B}C}$이고 $\\overline{\\mathrm{A}B}=10$, $\\overline{\\mathrm{B}C}=12$, $\\cos \\,\\mathrm{B}=\\frac{4}{5}$일 때, $\\sin \\,\\mathrm{C}$의 값은?",
+  "spans": 6
+ },
+ {
+  "id": "13-c1",
+  "text": "$\\frac{\\sqrt{13}}{13}$",
+  "spans": 1
+ },
+ {
+  "id": "13-c2",
+  "text": "$\\frac{2\\sqrt{13}}{13}$",
+  "spans": 1
+ },
+ {
+  "id": "13-c3",
+  "text": "$\\frac{6\\sqrt{61}}{61}$",
+  "spans": 1
+ },
+ {
+  "id": "13-c4",
+  "text": "$\\frac{3\\sqrt{13}}{13}$",
+  "spans": 1
+ },
+ {
+  "id": "13-c5",
+  "text": "$\\frac{7\\sqrt{61}}{61}$",
+  "spans": 1
+ },
+ {
+  "id": "14-stem",
+  "text": "선분 $\\mathrm{B}C$의 길이는? (단, $m\\,\\parallel \\overline{\\mathrm{B}C}$)",
+  "spans": 2
+ },
+ {
+  "id": "14-c1",
+  "text": "$\\frac{3}{2}$",
+  "spans": 1
+ },
+ {
+  "id": "14-c2",
+  "text": "$\\sqrt{3}$",
+  "spans": 1
+ },
+ {
+  "id": "14-c3",
+  "text": "$\\frac{3\\sqrt{2}}{2}$",
+  "spans": 1
+ },
+ {
+  "id": "14-c4",
+  "text": "$\\frac{3\\sqrt{3}}{2}$",
+  "spans": 1
+ },
+ {
+  "id": "14-c5",
+  "text": "$3$",
+  "spans": 1
+ },
+ {
+  "id": "15-stem",
+  "text": "두 직각삼각형 $\\mathrm{ABC}$와 $\\mathrm{DBC}$에서 $\\angle \\,\\mathrm{A}=45^\\circ$, $\\angle \\,\\mathrm{DBC}=30^\\circ$이고 $\\overline{\\mathrm{C}D}=2$일 때, $\\triangle \\mathrm{DEC}$의 넓이는?",
+  "spans": 6
+ },
+ {
+  "id": "15-c1",
+  "text": "$2\\left( 2-\\sqrt{3}\\right)$",
+  "spans": 1
+ },
+ {
+  "id": "15-c2",
+  "text": "$4-\\sqrt{3}$",
+  "spans": 1
+ },
+ {
+  "id": "15-c3",
+  "text": "$2\\left( \\sqrt{3}-1\\right)$",
+  "spans": 1
+ },
+ {
+  "id": "15-c4",
+  "text": "$4\\left( \\sqrt{3}-1\\right)$",
+  "spans": 1
+ },
+ {
+  "id": "15-c5",
+  "text": "$4\\left( \\sqrt{3}+1\\right)$",
+  "spans": 1
+ },
+ {
+  "id": "16-stem",
+  "text": "가로의 길이가 $8$, 세로의 길이가 $2$인 직사각형 모양의 종이 $\\mathrm{ABCD}$를 점 $\\mathrm{D}$가 점 $\\mathrm{B}$에 오도록 잡는다. $\\triangle \\,\\mathrm{BFE}$의 넓이는?",
+  "spans": 6
+ },
+ {
+  "id": "16-c1",
+  "text": "$\\frac{\\sqrt{17}}{4}$",
+  "spans": 1
+ },
+ {
+  "id": "16-c2",
+  "text": "$\\frac{\\sqrt{17}}{2}$",
+  "spans": 1
+ },
+ {
+  "id": "16-c3",
+  "text": "$\\frac{17}{4}$",
+  "spans": 1
+ },
+ {
+  "id": "16-c4",
+  "text": "$\\frac{17}{2}$",
+  "spans": 1
+ },
+ {
+  "id": "16-c5",
+  "text": "$2\\sqrt{17}$",
+  "spans": 1
+ },
+ {
+  "id": "17-stem",
+  "text": "원 $\\mathrm{O}$에서 $\\overline{\\mathrm{A}B}\\perp \\overline{\\mathrm{O}C}$일 때, 원 $\\mathrm{O}$의 둘레의 길이는?",
+  "spans": 3
+ },
+ {
+  "id": "17-c1",
+  "text": "$\\pi$$\\mathrm{c}m$",
+  "spans": 2
+ },
+ {
+  "id": "17-c2",
+  "text": "$\\frac{5}{2}\\pi$$\\mathrm{c}m$",
+  "spans": 2
+ },
+ {
+  "id": "17-c3",
+  "text": "$3\\pi$$\\mathrm{c}m$",
+  "spans": 2
+ },
+ {
+  "id": "17-c4",
+  "text": "$\\frac{9}{2}\\pi$",
+  "spans": 1
+ },
+ {
+  "id": "17-c5",
+  "text": "$5\\pi$$\\mathrm{c}m$",
+  "spans": 2
+ },
+ {
+  "id": "18-stem",
+  "text": "$\\overline{\\mathrm{A}D}$, $\\overline{\\mathrm{B}C}$, $\\overline{\\mathrm{C}D}$는 반원 $\\mathrm{O}$의 접선이고, 세 점 $\\mathrm{A}$, $\\mathrm{B}$, $\\mathrm{E}$는 그 접점이다. 이때 사각형 $\\mathrm{ABCD}$의 넓이는?",
+  "spans": 8
+ },
+ {
+  "id": "18-c1",
+  "text": "$72$",
+  "spans": 1
+ },
+ {
+  "id": "18-c2",
+  "text": "$78$",
+  "spans": 1
+ },
+ {
+  "id": "18-c3",
+  "text": "$84$",
+  "spans": 1
+ },
+ {
+  "id": "18-c4",
+  "text": "$90$",
+  "spans": 1
+ },
+ {
+  "id": "18-c5",
+  "text": "$96$",
+  "spans": 1
+ },
+ {
+  "id": "19-stem",
+  "text": "$\\triangle \\,\\mathrm{ABC}$는 원 $\\mathrm{O}$에 외접하고 세 점 $\\mathrm{D}$, $\\mathrm{E}$, $\\mathrm{F}$는 그 접점이다. $\\triangle \\,\\mathrm{ABC}$의 넓이가 $38$$\\mathrm{c}m^{2}$일 때, 원 $\\mathrm{O}$의 넓이는?",
+  "spans": 9
+ },
+ {
+  "id": "19-c1",
+  "text": "$\\frac{9}{4}\\pi$$\\mathrm{c}m^{2}$",
+  "spans": 2
+ },
+ {
+  "id": "19-c2",
+  "text": "$4\\pi$$\\mathrm{c}m^{2}$",
+  "spans": 2
+ },
+ {
+  "id": "19-c3",
+  "text": "$\\frac{25}{4}\\pi$$\\mathrm{c}m^{2}$",
+  "spans": 2
+ },
+ {
+  "id": "19-c4",
+  "text": "$9\\pi$$\\mathrm{c}m^{2}$",
+  "spans": 2
+ },
+ {
+  "id": "19-c5",
+  "text": "$16\\pi$$\\mathrm{c}m^{2}$",
+  "spans": 2
+ },
+ {
+  "id": "20-stem",
+  "text": "어느 고분에서 출토된 원 모양 접시의 깨진 조각이다. 원래 이 접시의 둘레의 길이는?",
+  "spans": 0
+ },
+ {
+  "id": "20-c1",
+  "text": "$12\\pi$$\\mathrm{c}m$",
+  "spans": 2
+ },
+ {
+  "id": "20-c2",
+  "text": "$16\\pi$$\\mathrm{c}m$",
+  "spans": 2
+ },
+ {
+  "id": "20-c3",
+  "text": "$24\\pi$$\\mathrm{c}m$",
+  "spans": 2
+ },
+ {
+  "id": "20-c4",
+  "text": "$26\\pi$$\\mathrm{c}m$",
+  "spans": 2
+ },
+ {
+  "id": "20-c5",
+  "text": "$30\\pi$$\\mathrm{c}m$",
+  "spans": 2
+ },
+ {
+  "id": "21-stem",
+  "text": "$\\overline{\\mathrm{A}B}=\\overline{\\mathrm{A}C}$인 이등변삼각형 $\\mathrm{ABC}$가 원 $\\mathrm{O}$에 내접한다. 원 $\\mathrm{O}$의 반지름의 길이가 $5$이고, $\\overline{\\mathrm{B}C}=8$일 때, $\\overline{\\mathrm{A}B}$의 길이는?",
+  "spans": 7
+ },
+ {
+  "id": "21-c1",
+  "text": "$2$",
+  "spans": 1
+ },
+ {
+  "id": "21-c2",
+  "text": "$2\\sqrt{3}$",
+  "spans": 1
+ },
+ {
+  "id": "21-c3",
+  "text": "$2\\sqrt{5}$",
+  "spans": 1
+ },
+ {
+  "id": "21-c4",
+  "text": "$3\\sqrt{3}$",
+  "spans": 1
+ },
+ {
+  "id": "21-c5",
+  "text": "$3\\sqrt{5}$",
+  "spans": 1
+ },
+ {
+  "id": "22-stem",
+  "text": "원 $\\mathrm{O}$에서 $\\overline{\\mathrm{A}B}\\perp \\overline{\\mathrm{O}M}$, $\\overline{\\mathrm{A}C}\\perp \\overline{\\mathrm{O}N}$이고 $\\overline{\\mathrm{O}M}=\\overline{\\mathrm{O}N}$이다. $\\overline{\\mathrm{A}B}=4$, $\\angle \\,\\mathrm{BAC}=60^\\circ$일 때, 다음 중 옳지 않은 것은?\n(단, $\\mathrm{A}$, $\\mathrm{B}$, $\\mathrm{C}$는 원 $\\mathrm{O}$위의 점이다.)",
+  "spans": 10
+ },
+ {
+  "id": "22-c1",
+  "text": "$\\overline{\\mathrm{A}N}=2$",
+  "spans": 1
+ },
+ {
+  "id": "22-c2",
+  "text": "$\\overline{\\mathrm{B}C}=4$",
+  "spans": 1
+ },
+ {
+  "id": "22-c3",
+  "text": "$\\overline{AO}=\\frac{4}{3}\\sqrt{3}$",
+  "spans": 1
+ },
+ {
+  "id": "22-c4",
+  "text": "$\\angle \\,\\mathrm{ACB}=60^\\circ$",
+  "spans": 1
+ },
+ {
+  "id": "22-c5",
+  "text": "$\\triangle \\,\\mathrm{ABC}$의 넓이$=16\\sqrt{3}$",
+  "spans": 2
+ },
+ {
+  "id": "23-stem",
+  "text": "원 $\\mathrm{O}$는 직사각형 $\\mathrm{ABCD}$의 세 변과 $\\overline{\\mathrm{D}I}$에 접하고 네 점 $\\mathrm{E}$, $\\mathrm{F}$, $\\mathrm{G}$, $\\mathrm{H}$는 그 접점이다. $\\overline{\\mathrm{A}B}=4$, $\\overline{\\mathrm{A}D}=8$일 때, $\\triangle \\,\\mathrm{DIC}$의 넓이는?",
+  "spans": 10
+ },
+ {
+  "id": "23-c1",
+  "text": "$\\frac{16}{3}$",
+  "spans": 1
+ },
+ {
+  "id": "23-c2",
+  "text": "$6$",
+  "spans": 1
+ },
+ {
+  "id": "23-c3",
+  "text": "$\\frac{28}{3}$",
+  "spans": 1
+ },
+ {
+  "id": "23-c4",
+  "text": "$10$",
+  "spans": 1
+ },
+ {
+  "id": "23-c5",
+  "text": "$\\frac{32}{3}$",
+  "spans": 1
+ },
+ {
+  "id": "24-stem",
+  "text": "원 $\\mathrm{O}$에서 $\\overline{\\mathrm{A}B}\\perp \\overline{\\mathrm{O}M}$이고 $\\overline{\\mathrm{A}B}=24$, $\\overline{\\mathrm{O}M}=5$일 때, $\\overline{\\mathrm{O}A}$의 길이는?",
+  "spans": 5
+ },
+ {
+  "id": "24-c1",
+  "text": "$7$",
+  "spans": 1
+ },
+ {
+  "id": "24-c2",
+  "text": "$8$",
+  "spans": 1
+ },
+ {
+  "id": "24-c3",
+  "text": "$13$",
+  "spans": 1
+ },
+ {
+  "id": "24-c4",
+  "text": "$15$",
+  "spans": 1
+ },
+ {
+  "id": "24-c5",
+  "text": "$17$",
+  "spans": 1
+ },
+ {
+  "id": "25-stem",
+  "text": "원 $\\mathrm{O}$는 $\\triangle \\,\\mathrm{ABC}$의 내접원이고 세 점 $\\mathrm{D}$, $\\mathrm{E}$, $\\mathrm{F}$는 그 접점이다. $\\overline{\\mathrm{P}Q}$는 원 $\\mathrm{O}$의 접선이고 $\\overline{\\mathrm{A}B}=8$, $\\overline{\\mathrm{B}C}=9$, $\\overline{\\mathrm{C}A}=7$일 때, $\\triangle \\,\\mathrm{BQP}$의 둘레의 길이는?",
+  "spans": 11
+ },
+ {
+  "id": "25-c1",
+  "text": "$9$",
+  "spans": 1
+ },
+ {
+  "id": "25-c2",
+  "text": "$10$",
+  "spans": 1
+ },
+ {
+  "id": "25-c3",
+  "text": "$11$",
+  "spans": 1
+ },
+ {
+  "id": "25-c4",
+  "text": "$12$",
+  "spans": 1
+ },
+ {
+  "id": "25-c5",
+  "text": "$13$",
+  "spans": 1
+ },
+ {
+  "id": "26-stem",
+  "text": "두 점 $\\mathrm{A}$, $\\mathrm{B}$는 점 $\\mathrm{P}$에서 원 $\\mathrm{O}$에 그은 두 접선의 접점이다. $\\overline{\\mathrm{P}A}=6$, $\\angle \\,\\mathrm{APB}=60^\\circ$일 때, 색칠한 부분의 넓이는?",
+  "spans": 6
+ },
+ {
+  "id": "26-c1",
+  "text": "$4\\pi -3\\sqrt{3}$",
+  "spans": 1
+ },
+ {
+  "id": "26-c2",
+  "text": "$4\\pi -3$",
+  "spans": 1
+ },
+ {
+  "id": "26-c3",
+  "text": "$8\\pi -3\\sqrt{3}$",
+  "spans": 1
+ },
+ {
+  "id": "26-c4",
+  "text": "$8\\pi -3$",
+  "spans": 1
+ },
+ {
+  "id": "26-c5",
+  "text": "$16\\pi -3$\n  \n  \n정답\n워드:구광옥t\n오검:소재연t \n완료:조익제t",
+  "spans": 1
+ }
+]
