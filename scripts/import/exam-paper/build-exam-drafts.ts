@@ -37,8 +37,12 @@ import {
   type PastExamPaper,
 } from "../../../src/lib/import/convertPastExam";
 
+import { loadExamConfig } from "./examConfig";
+
 const DIR = process.argv[2];
 if (!DIR) throw new Error("사용: <작업폴더>");
+// 편마다 다른 것은 `exams/<examId>/exam.json` 에 있다(2026-09-12 — 둘째 편부터).
+const CFG = loadExamConfig(DIR);
 
 const read = (f: string): unknown =>
   JSON.parse(readFileSync(join(DIR, f), "utf-8"));
@@ -108,7 +112,7 @@ const SCRUBS: Scrub[] = [
  * 바꾸는 것과 남았는지 세는 것이 **같은 값 하나**(`SCHOOL_STEM`)를 본다 — 두 벌이면
  * 한쪽만 고쳐도 아무도 모른다.
  */
-const SCHOOL = "정화중";
+const SCHOOL = CFG.school;
 /** 학교를 가리키는 알맹이 (`정화중` → `정화`). */
 const SCHOOL_STEM = SCHOOL.replace(/(?:여자)?(?:중학교|고등학교|중|고)$/u, "");
 
@@ -192,6 +196,64 @@ function scrub(text: string): { out: string; hits: string[] } {
   return { out: out.replace(/[ \t]{2,}/g, " ").trim(), hits };
 }
 
+// ── ㉠′ 표 — HWP 는 표를 **한 줄에 한 칸씩** 풀어 준다 ─────────────────────────
+//
+// 동도중 문1 은 「학생 / A / B / … / 편차(점) / 4 / −5 / …」가 줄마다 하나씩 온다.
+// 우리 렌더러는 표를 모르고(DB 에 표가 0행), 풀린 칸을 그대로 두면 지면에 숫자가
+// 세로로 늘어선다. 원장님 원칙(「기출은 그림 완전 이전」)대로 표는 **원본에서 오려**
+// 그림으로 붙이고(`figures/crop_tables.py`), 여기서는 풀린 칸 줄만 걷는다.
+//
+// 🔴 **양쪽으로 본다.** `tables` 에 적은 문항에서 칸 줄을 못 찾으면 멈추고, 적지 않은
+//    문항에서 칸 줄이 보여도 멈춘다 — 한쪽만 보면 풀린 표가 조용히 지면에 나간다.
+// ⚠️ 칸의 길이는 **지면에 보이는 글자**로 잰다. `$\mathrm{A}\mathit{}$` 는 20자지만
+//    보이는 것은 `A` 하나다 — 원문 길이로 재면 LaTeX 로 싸인 칸에서 칸 줄이 끊긴다.
+const CELL_VISIBLE_MAX = 12;
+const CELL_RUN_MIN = 6;
+const TABLES = new Set(CFG.tables ?? []);
+function visibleLength(line: string): number {
+  return line.replace(/\\[a-zA-Z]+/g, "").replace(/[{}$\\\s]/g, "").length;
+}
+function cellRun(lines: string[]): [number, number] | null {
+  let best: [number, number] | null = null;
+  let start = -1;
+  for (let i = 0; i <= lines.length; i += 1) {
+    const l = (lines[i] ?? "").trim();
+    // 상자 머리(`< 보 기 >`)는 짧아도 칸이 아니다 — 걷으면 상자가 안 선다.
+    const isCell =
+      i < lines.length &&
+      l.length > 0 &&
+      visibleLength(l) <= CELL_VISIBLE_MAX &&
+      !BOX_MARKER_RE.test(l);
+    if (isCell && start < 0) start = i;
+    if (!isCell && start >= 0) {
+      if (i - start >= CELL_RUN_MIN && (!best || i - start > best[1] - best[0]))
+        best = [start, i];
+      start = -1;
+    }
+  }
+  return best;
+}
+function stripTableCells(stem: string, n: number): string {
+  const lines = stem.split("\n");
+  const run = cellRun(lines);
+  if (TABLES.has(n)) {
+    if (!run)
+      throw new Error(
+        `[중단] 문${n} 은 표 문항으로 적었는데 풀린 칸 줄을 못 찾았다`,
+      );
+    // 칸 줄이 발문 끝에 있으면 앞줄의 꼬리 공백이 남는다 — blocksToLatex 가 그것을 깎아
+    // 「발문이 바뀌었다」로 멈춘다(동도중 문14). 끝을 다듬어 넘긴다.
+    return [...lines.slice(0, run[0]), ...lines.slice(run[1])]
+      .join("\n")
+      .replace(/\s+$/u, "");
+  }
+  if (run)
+    throw new Error(
+      `[중단] 문${n} 발문에 풀린 표(짧은 줄 ${run[1] - run[0]}개)가 있는데 exam.json tables 에 없다`,
+    );
+  return stem;
+}
+
 // ── ㉡ 해설에서 정답 앞머리를 뗀다 ──────────────────────────────────────────
 /**
  * `정답 …해설…` 한 덩어리에서 앞머리를 뗀다. 경계 표시가 없으므로 **모양으로** 자른다 —
@@ -257,6 +319,10 @@ const FIRST_ITEM_RE = new RegExp(
 function restoreBoxMarker(stem: string, fromPdf: string, n: number): string {
   const found = BOX_MARKER_RE.exec(fromPdf);
   if (!found || BOX_MARKER_RE.test(stem)) return stem;
+  // 🔴 표 문항에서 PDF 가 말하는 «상자»는 **표의 테두리**다(강동중 문6·9·16·21 — PDF 텍스트층이
+  //    표 외곽선을 상자로 읽는다). 표는 원본에서 오려 그림으로 붙이므로 여기서 상자를 세우면
+  //    항목도 없는 빈 상자가 선다. 항목 표지가 **있으면** 진짜 상자이니 아래로 간다.
+  if (TABLES.has(n) && !FIRST_ITEM_RE.test(stem)) return stem;
   // PDF 가 부른 이름을 그대로 쓴다. `상자` 는 「라벨 없는 테두리」라는 뜻이고,
   // 그것을 머리 없이 그리는 일은 렌더러가 한다.
   const label = found[1]!.replace(/\s+/g, "");
@@ -310,6 +376,7 @@ const questions = hwp.questions.map((q) => {
     .map((c) => c.value ?? "")
     .join(" ");
   const scrubbed0 = scrub(piece.get(`${q.number}-stem`) ?? "");
+  scrubbed0.out = stripTableCells(scrubbed0.out, q.number);
   const hits = scrubbed0.hits;
   const stem = restoreBoxMarker(scrubbed0.out, pdfStem, q.number);
   if (hits.length > 0) {
@@ -329,8 +396,11 @@ const questions = hwp.questions.map((q) => {
     contents: { type: string; value: string }[];
   }[];
   for (let i = 1; ; i += 1) {
-    const c = piece.get(`${q.number}-c${i}`);
-    if (c === undefined) break;
+    const c0 = piece.get(`${q.number}-c${i}`);
+    if (c0 === undefined) break;
+    // 🔴 보기에도 오염이 붙어 온다 — 경산여중 문26 은 **⑤ 뒤에** 검수자 실명이 있었다.
+    //    발문만 걷으면 금지 검사에서 멈춘다(그게 옳다). 같은 걷기를 보기에도 건다.
+    const c = scrub(c0).out;
     choices.push({ number: i, contents: [{ type: "text", value: c }] });
   }
   return {
@@ -366,10 +436,10 @@ const answers: PastExamAnswer[] = hwp.questions.map((q) => {
 const paper = normalizePastExamPaper({
   questions: questions as PastExamPaper["questions"],
   meta: {
-    exam_id: "2025-jeonghwa-3-2-mid",
+    exam_id: CFG.examId,
     school: SCHOOL, // 지면에는 JH중 으로 가려져 있다(원장님 요청). 메타에만 남긴다.
-    grade: "중3",
-    subject: "수학",
+    grade: CFG.grade,
+    subject: CFG.subject,
   },
   _sourceFile: readFileSync(join(DIR, "source_path.txt"), "utf-8").trim(),
 });

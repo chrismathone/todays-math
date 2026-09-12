@@ -43,6 +43,8 @@ interface Rule {
 
 /** 사적 사용 영역 — 어떤 글꼴에서도 뜻이 없다. 아는 것만 옮기고 나머지는 막는다. */
 const SIMILAR = "\u{F0040}"; // 문12 「△BDF ▢ △AEF … 닮음비가 2:3」 → ∽
+/** 경산여중 문14 「(단, m ▢ BC)」 — 원본 지면을 렌더하니 **∥** 였다(2026-09-12). */
+const PARALLEL = "\u{F005A}";
 
 const RULES: Rule[] = [
   // ── 선분 표기: 바가 첫 글자에만 걸린 것을 두 글자 위로 올린다 ──────────────
@@ -96,6 +98,12 @@ const RULES: Rule[] = [
     probe: "\\mathrm{\\overset{\\frown}{AB}}",
   },
   // ── 사적 사용 영역 글자 ──────────────────────────────────────────────────
+  {
+    name: "∥ (평행, U+F005A)",
+    re: new RegExp(PARALLEL, "gu"),
+    to: "\\parallel ",
+    probe: "m\\," + PARALLEL + "\\overline{BC}",
+  },
   {
     // 🔴 이 글자가 ∽ 인 근거는 **본문 밖**에 있다 — 바로 다음 문장이
     //    「닮음비가 $2:3$ 이다」라고 말한다(합동이면 비가 1:1 이라 모순).
@@ -167,7 +175,7 @@ const RESIDUE: { name: string; re: RegExp; probe: string }[] = [
 ];
 
 /** 규칙으로 못 고치는 한 자리 — 원문을 보고 손으로 고친다. `from` 이 딱 하나여야 한다. */
-const HAND: { id: string; why: string; from: string; to: string }[] = [
+const HAND_JEONGHWA: { id: string; why: string; from: string; to: string }[] = [
   {
     id: "16",
     why:
@@ -179,6 +187,21 @@ const HAND: { id: string; why: string; from: string; to: string }[] = [
     to: "\\sin 60°=\\frac{9}{2\\overline{AO}},~\\overline{AO}=3\\sqrt{3}",
   },
 ];
+
+/**
+ * 손 고침은 **편마다 다르다** — `--config <exam.json>` 이 있으면 그 편의 것만 쓴다.
+ * 없으면 첫 편(정화중)의 것 — 그 편을 다시 돌릴 때 옛 동작을 지킨다.
+ * 🔴 첫 편의 문16 고침이 둘째 편의 문16 해설에 걸리면 「옛 글이 0개」로 멈춘다(동도중이 그렇다).
+ */
+const CONFIG_ARG = process.argv.indexOf("--config");
+const HAND: { id: string; why: string; from: string; to: string }[] =
+  CONFIG_ARG > 0
+    ? ((
+        JSON.parse(readFileSync(process.argv[CONFIG_ARG + 1]!, "utf-8")) as {
+          hand?: { id: string; why: string; from: string; to: string }[];
+        }
+      ).hand ?? [])
+    : HAND_JEONGHWA;
 
 function applyRules(s: string): string {
   let out = s;

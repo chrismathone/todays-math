@@ -60,6 +60,13 @@ def lines_of(page: pymupdf.Page) -> list[dict]:
 
 
 def main() -> int:
+    # 편마다 원본·출력 폴더가 다르다(2026-09-12 — 둘째 편부터). 인자가 없으면 정화중 그대로.
+    global SRC, OUT
+    args = sys.argv[1:]
+    if "--src" in args:
+        SRC = pathlib.Path(args[args.index("--src") + 1])
+    if "--out" in args:
+        OUT = pathlib.Path(args[args.index("--out") + 1])
     if not SRC.exists():
         print(f"원본이 없다: {SRC}")
         return 2
@@ -70,16 +77,25 @@ def main() -> int:
 
     # ── 어느 쪽부터 해설인가 (근거 둘)
     page_max: list[int] = []
+    page_min: list[int] = []
     page_has_answer: list[bool] = []
     for page in doc:
         nums = [int(NUM_RE.match(ln["text"]).group(1)) for ln in lines_of(page) if NUM_RE.match(ln["text"])]
         page_max.append(max(nums) if nums else 0)
+        page_min.append(min(nums) if nums else 0)
         page_has_answer.append(any("정답" in ln["text"] for ln in lines_of(page)))
+    # 🔴 **번호가 1로 되돌아가는 쪽**을 찾는다 — 그 쪽의 «최댓값»이 줄어드는지로 보면 안 된다.
+    #    정답 쪽이 1…21 을 **다 나열**하면 최댓값은 안 줄어서(강동중·경산여중 2026-09-12)
+    #    해설 시작을 못 찾고 멈췄다. 번호가 없는 쪽(표지·빈 쪽 — 경산여중 p8)은 판정에 안 쓴다.
     solution_from = None
-    for i in range(1, len(page_max)):
-        if page_max[i] and page_max[i - 1] and page_max[i] < page_max[i - 1]:
+    seen_max = 0
+    for i in range(len(page_max)):
+        if not page_max[i]:
+            continue
+        if seen_max and page_min[i] == 1:
             solution_from = i
             break
+        seen_max = max(seen_max, page_max[i])
     if solution_from is None:
         print("해설 시작 쪽을 못 찾았다 — 멈춘다(전부 문제지로 읽으면 해설 그림이 섞인다)")
         return 2
@@ -151,7 +167,8 @@ def main() -> int:
     for d in dropped:
         print(f"  [버림] p{d['page']} {d['why']} bbox={d['bbox']}")
     have = {r["number"] for r in rows}
-    print(f"그림이 안 붙은 문항: {sorted(set(range(1, 20)) - have)}")
+    last = max((m for m in page_max[:solution_from] if m), default=0)
+    print(f"그림이 안 붙은 문항: {sorted(set(range(1, last + 1)) - have)}")
     return 0
 
 

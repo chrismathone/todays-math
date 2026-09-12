@@ -1,5 +1,10 @@
 import { PrismaClient } from "@prisma/client";
 
+import { loadExamConfig } from "./examConfig";
+
+// 사용: npx tsx --env-file=.env scripts/import/exam-paper/verify-exam-load.ts <작업폴더>
+const CFG = loadExamConfig(process.argv[2] ?? "");
+
 const p = new PrismaClient();
 
 /**
@@ -21,7 +26,7 @@ function figureNote(r: {
 
 async function main(): Promise<void> {
   const rows = await p.problem.findMany({
-    where: { examId: "2025-jeonghwa-3-2-mid" },
+    where: { examId: CFG.examId },
     orderBy: { questionNumber: "asc" },
     select: {
       problemCode: true,
@@ -64,7 +69,7 @@ async function main(): Promise<void> {
 그림 있는 행 ${rows.length - noFig}/${rows.length} · 원본 파일 ${figFiles}장 · ` +
       `그림 없는 행 ${noFig}`,
   );
-  const bad = rows.filter((r) => r.school !== "정화중" || !r.sourceFile);
+  const bad = rows.filter((r) => r.school !== CFG.school || !r.sourceFile);
   console.log(
     `\n메타 빠진 행 ${bad.length} · 학년 ${[...new Set(rows.map((r) => r.unit.grade))].join(",")}`,
   );

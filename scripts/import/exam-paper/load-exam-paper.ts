@@ -30,6 +30,8 @@ import { join } from "node:path";
 import { PrismaClient } from "@prisma/client";
 
 import { mapUnitHint } from "../../../src/lib/import/mapUnit";
+
+import { loadExamConfig } from "./examConfig";
 import { syncExamMetadata } from "../../../src/lib/import/syncExamMetadata";
 import { renderMathHtml } from "../../../src/lib/math/renderMathHtml";
 
@@ -48,7 +50,9 @@ const LEDGER = join(DIR, "exam-load-ledger.json");
  * 이 편의 `Problem.examId`. **`Exam.externalExamId` 와 다르다** — 그쪽은
  * `syncExamMetadata` 가 제 규칙으로 짓는다. 여기서는 「초안이 한 편인가」 대조에만 쓴다.
  */
-const EXAM_ID = "2025-jeonghwa-3-2-mid";
+// 편마다 다른 것은 `exams/<examId>/exam.json` 에 있다(2026-09-12 — 둘째 편부터).
+const CFG = loadExamConfig(DIR);
+const EXAM_ID = CFG.examId;
 const prisma = new PrismaClient();
 
 /**
@@ -85,103 +89,9 @@ const prisma = new PrismaClient();
 const UNIT_BY_NUMBER: Record<
   number,
   { section: string; why: string; family: string }
-> = {
-  1: {
-    section: "삼각비의 뜻",
-    why: "직각삼각형에서 cos·sin 을 정의대로 읽는다(접기)",
-    family: "mid:3-2|삼각비|E01", // 🆕 접은 도형에서 삼각비 — 접기 류가 없다
-  },
-  2: {
-    section: "삼각비의 활용",
-    why: "넓이 공식 ½ab sin C",
-    family: "mid:3-2|삼각비의 활용|09", // 그림: AB=6, BC=8, ∠B=60°
-  },
-  3: {
-    section: "삼각비의 값",
-    why: "0°~90° 에서 sin·cos·tan 값의 대소",
-    family: "mid:3-2|삼각비|14", // 「가장 큰/작은 것」. 「모두 고른 것은?」은 형식 축
-  },
-  4: {
-    section: "삼각비의 값",
-    why: "반지름 1 사분원 — 단위원에서 삼각비의 값",
-    family: "mid:3-2|삼각비|12", // 그림 배치가 |12 와 같다(사분원·수선의 발·접선)
-  },
-  5: {
-    section: "삼각비의 활용",
-    why: "수선의 발과 tan 으로 높이 구하기",
-    family: "mid:3-2|삼각비의 활용|06",
-  },
-  6: {
-    section: "원의 접선",
-    why: "원에 외접하는 사각형의 접선 길이",
-    family: "mid:3-2|원과 직선|14", // AB+CD=BC+AD
-  },
-  7: {
-    section: "원주각의 활용",
-    why: "접선과 현이 이루는 각",
-    family: "mid:3-2|원주각의 활용|09", // 그림: 중심각 150° → 원주각 75° → 접현각 105°
-  },
-  8: {
-    section: "원주각의 활용",
-    why: "원에 내접하는 다각형의 대각 성질",
-    family: "mid:3-2|원주각의 활용|04", // 오각형 내접
-  },
-  9: {
-    section: "삼각비의 활용",
-    why: "삼각형에서 변의 길이 구하기",
-    family: "mid:3-2|삼각비의 활용|05", // 두 각과 한 변. |04 는 두 변과 낀각이라 다르다
-  },
-  10: {
-    section: "원주각의 활용",
-    why: "접선과 현이 이루는 각 + 호의 길이 비",
-    family: "mid:3-2|원주각의 활용|08", // |08 의 둘째 지문이 정확히 이것
-  },
-  11: {
-    section: "원의 접선",
-    why: "한 점에서 그은 두 접선",
-    family: "mid:3-2|원과 직선|07", // 그림: x=PO(√136), y=PB(10) → 236. 피타고라스가 알맹이
-  },
-  12: {
-    section: "원주각의 활용",
-    why: "접선과 현이 이루는 각 + 닮음",
-    family: "mid:3-2|원주각의 활용|E01", // 🆕 각이 아니라 넓이 — 원 안의 닮음+넓이 류가 없다
-  },
-  13: {
-    section: "원의 접선",
-    why: "두 접선과 지름",
-    family: "mid:3-2|원과 직선|09", // 「∠APB의 크기」
-  },
-  14: {
-    section: "삼각비의 활용",
-    why: "삼각형의 변 — 특수각 분해",
-    family: "mid:3-2|삼각비의 활용|05", // 문9 와 같은 류다
-  },
-  15: {
-    section: "삼각비의 활용",
-    why: "정사각형 안의 tan 값",
-    family: "mid:3-2|삼각비의 활용|E01", // 🆕 복합 도형에서 각의 삼각비
-  },
-  16: {
-    section: "원주각",
-    why: "일정한 원주각을 갖는 점의 자취",
-    family: "mid:3-2|원주각|E01", // 🆕 자취 류가 없다
-  },
-  17: {
-    section: "삼각비의 활용",
-    why: "삼각형 분해로 cos 75° 유도",
-    family: "mid:3-2|삼각비의 활용|E02", // 🆕 특수각이 아닌 삼각비를 도형으로 유도
-  },
-  18: {
-    section: "원주각",
-    why: "반원에 대한 원주각은 직각",
-    family: "mid:3-2|원주각|05", // 「이유를 설명하시오」는 형식 축이라 안 가른다
-  },
-  19: {
-    section: "원주각",
-    why: "지름에 대한 원주각으로 직각삼각형 세기",
-    family: "mid:3-2|원주각|E02", // 🆕 세는 류가 없다
-  },
-};
+> = Object.fromEntries(
+  Object.entries(CFG.units).map(([n, u]) => [Number(n), u]),
+);
 
 /**
  * 🔴 **그림은 원본에서 옮긴다 — 다시 그리지 않는다.** (원장님 확정 2026-09-06)
@@ -215,14 +125,8 @@ interface SourceFigure {
 
 // ⚠️ `import.meta.dirname` 은 tsx 가 CJS 로 옮기면 `undefined` 다(실측). 저장소 뿌리에서
 //    부르는 스크립트라 `cwd` 로 잡고, 없으면 `readSourceFigures` 가 경로째 찍고 멈춘다.
-const FIGURE_SRC_DIR = join(
-  process.cwd(),
-  "scripts",
-  "import",
-  "exam-paper",
-  "figures",
-  "source",
-);
+// 편마다 원본 그림 폴더가 따로다 — 첫 편은 `figures/source/` 한 곳을 썼다.
+const FIGURE_SRC_DIR = join(DIR, "figures");
 
 /**
  * 배포 경로의 조각. **학교를 가리키면 안 된다** — `EXAM_ID` 에는 학교 이름이 들어 있어
@@ -353,10 +257,8 @@ async function assertFamilies(
   };
 
   // ── 음성 대조: 이 검사가 «아니오» 를 낼 수 있는가 ──────────────────────
-  const [probeSection, probe] = [
-    UNIT_BY_NUMBER[2]!.section,
-    UNIT_BY_NUMBER[2]!.family,
-  ];
+  const first = Object.values(UNIT_BY_NUMBER)[0]!;
+  const [probeSection, probe] = [first.section, first.family];
   if (judge(probeSection, `${probe}0`) === null)
     throw new Error(
       "[중단] 문항류 검사가 일부러 틀린 키를 통과시킨다 — 검사가 눈이 멀었다",
@@ -462,13 +364,24 @@ async function main(): Promise<void> {
 
   // ── 단원 ────────────────────────────────────────────────────────────────
   const units = await prisma.unit.findMany({
-    where: { grade: "중3" },
+    where: { grade: CFG.grade },
     select: { id: true, grade: true, chapter: true, section: true },
   });
   const bySection = new Map(units.map((u) => [u.section, u]));
   console.log(`중3 소단원 ${units.length}개\n`);
 
   await assertFamilies(bySection);
+  {
+    // 초안 번호와 손 표가 **양쪽으로** 맞는가 — 한쪽만 보면 빠진 문항이 조용히 안 들어간다.
+    const nums = new Set(drafts.map((x) => x.questionNumber));
+    const table = new Set(Object.keys(UNIT_BY_NUMBER).map(Number));
+    const noUnit = [...nums].filter((n) => !table.has(n!));
+    const noDraft = [...table].filter((n) => !nums.has(n));
+    if (noUnit.length > 0 || noDraft.length > 0)
+      throw new Error(
+        `[중단] 초안과 소단원 표가 어긋난다 — 표에 없는 문항 ${noUnit.join(",")} · 초안에 없는 표 ${noDraft.join(",")}`,
+      );
+  }
 
   const sourceFigures = readSourceFigures();
   console.log(
@@ -481,7 +394,8 @@ async function main(): Promise<void> {
     number,
     { answer: string; solution: string; note?: string }
   >();
-  for (let n = 1; n <= 11; n += 1) {
+  // 첫 편은 `n <= 11` 로 박혀 있었다 — 객관식이 1~11 번이었기 때문이다. 편마다 다르다.
+  for (const n of drafts.map((x) => x.questionNumber!)) {
     const p = join(DIR, "sol_ai", `q${String(n).padStart(2, "0")}.json`);
     if (existsSync(p)) ai.set(n, JSON.parse(readFileSync(p, "utf-8")));
   }
@@ -501,7 +415,7 @@ async function main(): Promise<void> {
       continue;
     }
     // 손 배정 ↔ 기계 배정 대조 (기계가 틀리는 자리를 눈에 보이게 남긴다)
-    const auto = mapUnitHint(d.unitHint, units, "중3");
+    const auto = mapUnitHint(d.unitHint, units, CFG.grade);
     const autoSection =
       auto.status === "mapped"
         ? (units.find((u) => u.id === auto.unitId)?.section ?? "?")
