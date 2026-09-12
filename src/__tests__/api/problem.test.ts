@@ -908,6 +908,46 @@ describe("[S-08] GET /api/problems — 검색이 닿는 칸", () => {
     const body = await 찾기("정답에만있는값");
     expect(body.data.map((p) => p.id)).toContain(created.data.id);
   });
+
+  /**
+   * 🔴 원장님 2026-09-12 「카드에는 안 보여도 되고 **내가 검색할 수만 있으면 됨**」.
+   *    기출의 학교는 `school` 칸에만 있다 — 발문 속 학교 이름은 적재 때 바꾸고
+   *    (학교 추측 방지, 2026-09-06), 카드·지면에는 안 싣는다. 그러니 검색이 이 칸을
+   *    놓치면 **학교로 기출을 찾을 길이 통째로 없어진다.** 칸이 빠지면 여기서 빨개진다.
+   */
+  it("학교로 찾는다 — 학교 이름은 본문·코드·정답·해설 어디에도 없다", async () => {
+    // exam-wiring: 테스트 — 시험 대역(prismaTestDouble)에 픽스처를 심는다. 실 DB 가 아니고
+    //   원본 시험지(examId·sourceFile)도 없다. 만들기 API 는 `school` 을 안 받으므로
+    //   (계약이 strictObject) 대역에 바로 심는다.
+    const row = await db.problem.create({
+      data: {
+        userId: USER_TEACHER_ID,
+        unitId: MOCK_PROBLEM_WITH_FRACTION.unitId,
+        source: "past_exam",
+        difficulty: "응용",
+        problemType: "개념",
+        content: "학교 이름이 본문에 없는 기출 $1+1$",
+        answer: "2",
+        solution: null,
+        reviewStatus: "approved",
+        directUseAllowed: true,
+        school: "가나다중",
+        score: 3.5,
+      },
+    });
+    // 전제: 학교 이름이 검색이 원래 보던 칸들에 없어야 «학교 칸을 봤다»를 잠근다.
+    expect(
+      `${row.content} ${row.answer} ${row.problemCode ?? ""}`,
+    ).not.toContain("가나다");
+
+    expect((await 찾기("가나다중")).data.map((p) => p.id)).toContain(row.id);
+    // 앞부분만 쳐도 나온다(「정화」→ 정화중) — `contains` 다.
+    expect((await 찾기("가나다")).data.map((p) => p.id)).toContain(row.id);
+    // 음성 대조: 다른 학교로 찾으면 **안** 나와야 한다 — 늘 나오는 검사는 아무것도 안 지킨다.
+    expect((await 찾기("라마바중")).data.map((p) => p.id)).not.toContain(
+      row.id,
+    );
+  });
 });
 
 /**
