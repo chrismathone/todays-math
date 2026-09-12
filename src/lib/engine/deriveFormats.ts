@@ -21,6 +21,17 @@ export type StemProblem = {
   solution: string;
   familyKey: string;
   problemType: string;
+  /**
+   * **생성기가 직접 낸 오답 넷** — 있으면 `asMultipleChoice` 가 수 오답을 만들지 않고 이것을 쓴다.
+   *
+   * 고등 엔진(2026-09-13)이 처음 쓴다: 「나머지를 구하시오」의 답은 `$-x^{2}+2x+2$` 같은
+   * 식인데, 아래 `numericMistakes` 는 **정답 속 첫 수**를 흔들기 때문에 그 수가 **지수**이면
+   * `$-x^{1}+2x+2$`·`$-x^{0}+2x+2$` 를 보기로 낸다 — 이 저장소가 「지면 냄새」로 막아 온
+   * 그 모양이다(실측 2026-09-13, `expandEngineDistractors.test.ts` 가 잠근다).
+   * 초등·중등은 이 칸을 안 채우므로 동작이 한 바이트도 안 바뀐다(전후 해시 대조 —
+   * `docs/planning/tracks/high-engine-plan.md` §1-1).
+   */
+  distractors?: readonly string[];
 };
 
 export type DerivedProblem = StemProblem & {
@@ -116,6 +127,17 @@ export function asMultipleChoice(stem: StemProblem, rng: Rng): DerivedProblem {
     );
   }
   const correct = stem.answer.trim();
+  // 생성기가 오답을 직접 냈으면 그것을 쓴다 — 수 오답 경로를 타지 않는다.
+  // 넷이 아니거나 겹치면 던진다(부르는 쪽이 그 변형의 객관식을 건너뛰고 사유를 찍는다).
+  if (stem.distractors !== undefined) {
+    const given = stem.distractors.map((d) => d.trim());
+    if (given.length !== 4 || new Set([correct, ...given]).size !== 5) {
+      throw new Error(
+        `생성기가 낸 오답이 넷이 아니거나 서로·정답과 겹칩니다: ${given.join(" · ")}`,
+      );
+    }
+    return withChoices(stem, rng, correct, given);
+  }
   // 🔴 `×10`·`÷10` 은 **자릿수가 통째로 달라진다** — $657$ 의 보기에 $6570$ 이
   //    끼면 학생이 계산 없이 크기만 보고 지워 낸다. 그렇다고 버릴 수는 없다:
   //    빼고 재니 초등 69갈래·중등 54유형이 5지선다를 통째로 잃었다(실측).
@@ -175,6 +197,19 @@ export function asMultipleChoice(stem: StemProblem, rng: Rng): DerivedProblem {
       rest.splice(rest.indexOf(next), 1);
     }
   }
+  return withChoices(stem, rng, correct, distractors);
+}
+
+/**
+ * 정답과 오답 넷을 섞어 보기 다섯을 붙인다 — 수 오답 경로와 생성기 오답 경로가 **같이** 쓴다.
+ * (섞는 순서·번호 매김이 두 벌이 되면 한쪽만 고쳐도 아무도 모른다.)
+ */
+function withChoices(
+  stem: StemProblem,
+  rng: Rng,
+  correct: string,
+  distractors: readonly string[],
+): DerivedProblem {
   const options = shuffleInPlace(rng, [correct, ...distractors]);
   const lines = options.map((v, i) => `${MARKS[i]} ${v}`);
   const index = options.indexOf(correct);

@@ -9,6 +9,14 @@
  *
  * 수치는 2026-09-13 실측 리터럴이다. 추출기를 고쳐 수가 달라지면 **왜 달라졌는지** 적고
  * 갱신할 것 — 숫자만 올리면 이 가드는 장식이다.
+ *
+ * 갱신 이력:
+ *  - 148/157 → **170/177** (같은 날). 첫 판이 「유형」 라벨로 머리를 잡아 **라벨 없는 머리
+ *    42개**를 놓쳤다. 깨진머리·경계경고가 0 인 채로 조용히 모자랐다 — 그래서 아래에
+ *    「중단원 안에서 번호가 건너뛰지 않는다」를 더했다(추출기의 `gap_warnings` 와 같은 축을
+ *    커밋된 산출물에 대고 다시 묻는다).
+ *  - 난이도 표는 **검은 조각만** 센다. 첫 판은 회색(꺼진 칸)까지 세어 거의 모든 유형이
+ *    「하 … 상」을 함께 가진 것처럼 보였다. 아래 「하·상 동시」 비율 검사가 그 모양을 막는다.
  */
 import { readFileSync } from "node:fs";
 import path from "node:path";
@@ -41,11 +49,11 @@ const catalog = JSON.parse(
 /** 원장님이 확정한 첫 범위 — 이 둘만 색인이 «찼다»고 요구한다. 나머지 다섯 권은 조판이 달라 0 이다. */
 const IN_SCOPE: Record<string, { minTypes: number; majors: string[] }> = {
   공통수학1: {
-    minTypes: 140,
+    minTypes: 170,
     majors: ["다항식", "방정식과 부등식", "경우의 수", "행렬"],
   },
   공통수학2: {
-    minTypes: 150,
+    minTypes: 177,
     majors: ["도형의 방정식", "집합과 명제", "함수"],
   },
 };
@@ -94,6 +102,36 @@ describe("RPM 고등 유형 색인 — 커밋된 산출물", () => {
         expect(seen.has(key), `${book} 겹친 유형 키 ${key}`).toBe(false);
         seen.add(key);
       }
+    }
+  });
+
+  it("중단원 안에서 번호가 01 부터 건너뛰지 않는다 — 머리를 놓치면 여기서 빨개진다", () => {
+    for (const book of Object.keys(IN_SCOPE)) {
+      const byMinor = new Map<string, number[]>();
+      for (const t of catalog[book]!.types) {
+        const list = byMinor.get(t.minor!) ?? [];
+        list.push(Number(t.number));
+        byMinor.set(t.minor!, list);
+      }
+      for (const [minor, nums] of byMinor) {
+        const max = Math.max(...nums);
+        const missing = Array.from({ length: max }, (_, i) => i + 1).filter(
+          (n) => !nums.includes(n),
+        );
+        expect(missing, `${book} ${minor} 빠진 번호`).toEqual([]);
+      }
+    }
+  });
+
+  it("난이도 표는 검은 조각만 셌다 — 「하」와 「상」을 함께 가진 유형이 드물다", () => {
+    // 회색(꺼진 칸)까지 세면 「중」 문항 하나가 하·중·상을 다 남겨 거의 모든 유형이 둘을
+    // 함께 가진다(첫 판 실측). 검은 것만 세면 공통수학1 0 · 공통수학2 0 이다(2026-09-13).
+    for (const book of Object.keys(IN_SCOPE)) {
+      const ts = catalog[book]!.types;
+      const both = ts.filter((t) => "하" in t.levels && "상" in t.levels);
+      expect(both.length / ts.length, `${book} 하·상 동시 비율`).toBeLessThan(
+        0.1,
+      );
     }
   });
 

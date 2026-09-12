@@ -17,23 +17,37 @@ E: 에 있는 「RPM 수학 상·하 / 수학Ⅰ·Ⅱ」는 **2015 개정**이�
 다르고 2022 에서 새로 든 «행렬»이 없다). 이 폴더는 N드라이브라 끊길 때가 있으므로
 `.rpm-src/22/` 에 복사해 두고 읽는다(커밋되지 않는다 — 10-handoff §1.2).
 
-## 고등 지면의 유형 머리 — 글꼴로 가른다 (실측 공통수학1 p10)
+## 유형 머리 — **번호**로 잡는다 (실측 공통수학1 p10 · p28)
 
     [유형](YDVYGO14 7.8pt) [01](DINPro-Black 15.2pt) [다항식의 덧셈과 뺄셈](YDVYGO14 9.7pt)
-     ^라벨                  ^번호                     ^제목
+     ^라벨 — 없을 때가 있다 ^번호 — 늘 있다             ^제목
 
-⚠️ 라벨과 제목이 **같은 글꼴(YDVYGO14)** 이다 — 크기(7.8 vs 9.7)와 **자리(번호 오른쪽)** 로
-   가른다. 제목을 「라벨 오른쪽」으로 잡으면 라벨 자신이 제목에 딸려 온다.
-⚠️ 「유형」 낱말은 **YDVYGO13 으로도** 찍힌다(공통수학1 실측 130개) — 대표문제 상자에서
-   같은 유형을 되가리키는 표지다. 머리가 아니다. 보고에 개수만 찍는다.
+🔴 **「유형」 라벨로 머리를 잡으면 안 된다.** 첫 판이 그렇게 했고 **42개를 놓쳤다**
+   (공통수학1 22 · 공통수학2 20). 중단원의 뒤쪽 유형 머리에는 라벨이 **안 찍힌다**
+   (p28 「13 조립제법과 항등식」·「14 수의 나눗셈에서 나머지정리의 활용」). 본보기 중단원의
+   원문을 읽다가 드러났다 — 깨진머리 0 · 경계경고 0 인 채로 조용히 모자랐다.
+   번호(DINPro-Black ≥14pt 두 자리)는 머리마다 있고, 그 수가 머리 수와 **정확히 같다**
+   (공통수학1 170 = 148 + 22). 그래서 열쇠는 번호다.
 ⚠️ 큰 두 자리 숫자는 세 가지다 — 유형 번호(DINPro-Black 15pt) · 중단원 머리(DINPro-Medium
    20pt) · 대단원 머리(DIN-Bold 51pt). 글꼴 이름으로 가른다.
+⚠️ 제목은 **여러 글꼴**이다 — 한글은 YDVYGO14(「조합」 중단원만 YDVYGO13), 제목 안의 수식은
+   BTsusich-safe-input-bold 10pt(「$A^n$ 의 추정」·「방정식 $f(x, y)=0$ 이 나타내는 도형의」),
+   쉼표는 YDVYMjO13. 셋을 다 받아야 제목이 성하다. 설명글(YDVYMjO12)·쪽 참조(5.8pt)는 안 받는다.
+⚠️ 제목은 **번호 오른쪽, 같은 단 안**에서만 잡는다. 왼단 머리의 오른쪽 250pt 에는 **오른단 본문**
+   (x≈322~330)이 들어온다 — 단 경계(x=312)에서 자른다.
 
 ## 문항마다 난이도 표가 붙어 있다 — 유형의 칸을 정하는 근거
 
-    [하]·[중하]·[중]·[상중]·[상] (YDVYGO13, 문항 번호 옆)
+    문항 번호 옆에 「상중하」 세 글자가 **늘 다 찍힌다.** 난이도는 **검은 글자**(#231F20)가
+    말하고 나머지는 회색(#939598)이다. 한 칸 또는 이웃 두 칸이 검다:
+      하 · 중하 · 중 · 상중 · 상  ← 검은 조각이 곧 그 문항의 난이도
 
-유형 머리 다음부터 다음 머리 전까지의 표를 그 유형 것으로 센다(`levels`). 읽기 순서는
+🔴 **색을 안 보고 조각을 세면 틀린다.** 첫 판이 그렇게 셌다 — 「중」이 검으면 회색 「상」·「하」가
+   같이 세어져 모든 유형이 「하2 … 상2」처럼 보였다(실측: 회색 하 404 · 회색 상 344 가 섞였다).
+   원문 텍스트에는 「0126 상중하」로 세 글자가 다 나오므로 글자로는 못 가른다 — **색이 가른다.**
+   공통수학1 실측(검은 것만): 중 290 · 상중 114 · 중하 54 · 하 4 · 상 1. 대표문제에는 표가 없다.
+
+유형 머리 다음부터 다음 머리 전까지의 검은 표를 그 유형 것으로 센다(`levels`). 읽기 순서는
 **열 단위**(왼단 위→아래, 그다음 오른단 — 아래 참고)라, 표도 같은 순서로 흘려 붙인다.
 쪽이 바뀌어도 이어진다. 이 값이 6칸(연산~심화상) 배정의 **근거**다 —
 `high-engine-plan.md` §1-4.
@@ -44,8 +58,9 @@ E: 에 있는 「RPM 수학 상·하 / 수학Ⅰ·Ⅱ」는 **2015 개정**이�
     오른쪽(홀수) 쪽: [02](DIN-Medium) [항등식과 나머지정리](YDVYGO12)   ← 중단원
 
 바닥글은 y≈798(지면 높이 842) 한 줄뿐이다. 띠를 넓게 잡으면 본문 마지막 줄이 바닥글로
-잡힌다(2015 판에서 실제로 「㉠, ㉡이 일치해야 하므로」가 중단원이 됐다). 그래서 띠는 좁고,
-이름은 **표시와 같은 줄·오른쪽**에 있는 것만 받는다.
+잡힌다(2015 판에서 실제로 「㉠, ㉡이 일치해야 하므로」가 중단원이 됐다). 해설 쪽은 본문 마지막
+줄(6.8pt)이 바닥글과 **같은 y** 에 놓여 「가장 긴 이름」을 고르면 「가 나타내는 그래프의」가
+대단원이 된다. 그래서 이름은 **표시 바로 오른쪽 · 바닥글 크기(7.8pt)** 인 것만 받는다.
 
 중등판과 **같은 이어 나르기 함정**이 있다 — 왼쪽 쪽에는 중단원 표시가 없어 직전
 오른쪽 쪽의 값을 물려받는다. 중단원이 왼쪽 쪽에서 시작하면 그 쪽 유형이 앞 중단원으로
@@ -89,27 +104,29 @@ LABEL_MAX_SIZE = 9.0  # 라벨 7.8pt · 제목 9.7pt — 같은 글꼴이라 크
 FONT_LABEL_BOX = "YDVYGO13"  # 대표문제 상자의 「유형」 — 보고에만 센다
 FONT_NUM = "DINPro-Black"
 NUM_MIN_SIZE = 14.0
-# 제목 글꼴은 **하나가 아니다** — 대부분 YDVYGO14 인데 「조합」 중단원(공통수학1 p144~150)만
-# YDVYGO13 이다. 하나만 적었더니 그 열한 머리가 「제목 없음」이 됐다. 크기(≥9)가 라벨을 가른다.
-FONT_TITLE_PREFIX = "YDVYGO"
-TITLE_MIN_SIZE = 9.0
+TWO_DIGITS = re.compile(r"^\d{2}$")
+
+# 제목 조각 — (글꼴 접두, 최소 크기)
+TITLE_FONTS = (
+    ("YDVYGO", 9.0),  # 한글 제목(YDVYGO14 · 「조합」은 YDVYGO13)
+    ("BTsusich-safe-input-bold", 9.5),  # 제목 안의 수식
+    ("YDVYMjO13", 9.0),  # 제목 안의 쉼표
+)
 FONT_LEVEL = "YDVYGO13"
 LEVELS = ("하", "중하", "중", "중상", "상중", "상")
+LEVEL_ACTIVE_COLOR = 0x231F20  # 검은 조각 = 그 문항의 난이도. 회색(0x939598)은 꺼진 칸
 FONT_FOOT_NAME = "YDVYGO12"
 FONT_FOOT_MAJOR_MARK = "YDVYMjO12"  # 「Ⅰ.」
 FONT_FOOT_MINOR_MARK = "DIN-Medium"  # 「02」
 # 바닥글의 대단원 표시는 늘 「Ⅰ.」처럼 점이 붙는다. 점 없는 로마숫자는 본문(보기 Ⅰ·Ⅱ)이다.
 ROMAN = re.compile(r"^[ⅠⅡⅢⅣⅤⅥⅦⅧ]\.$")
-TWO_DIGITS = re.compile(r"^\d{2}$")
 
-COLUMN_SPAN = 250.0
-COLUMN_MID = 312.0  # 지면 폭 624 — 왼단 라벨 x≈61 · 오른단 x≈330 대
-BAND_UP = 4.0
-BAND_DOWN = 6.0
-# 제목이 두 줄로 접히는 경우까지만 — 그 아래는 대표문제 상자다.
-TITLE_BAND_DOWN = 13.0
-# 바닥글은 y≈798~799(지면 842) 한 줄 — 위아래로 좁은 창만 본다. 「바닥 48pt」로 잡았더니
-# 본문이 바닥까지 내려온 쪽에서 「이므로」·「가 나타내는 그래프의」가 대단원이 됐다.
+COLUMN_MID = 312.0  # 지면 폭 624 — 왼단 머리 번호 x≈80~98 · 오른단 x≈345~363
+# 제목 띠 — 번호 윗변 기준. 제목은 +5~+9pt, 두 줄로 접히면 둘째 줄이 ≈+20pt.
+# 쪽 참조(「▶ 개념원리 …쪽」)는 −4~−8pt, 설명글은 +26pt 아래라 둘 다 안 든다.
+TITLE_UP = 2.0
+TITLE_DOWN_FROM_BOTTOM = 6.0
+# 바닥글은 y≈798~799(지면 842) 한 줄 — 위아래로 좁은 창만 본다.
 FOOTER_TOP = 47.0  # y > H - 47
 FOOTER_BOTTOM = 39.0  # y < H - 39
 FOOTER_LINE_TOL = 4.0
@@ -160,8 +177,8 @@ def spans_of(page):
 def footer_units(spans, page_height):
     """(대단원, 중단원) — 그 쪽에 있는 것만. 없으면 None.
 
-    표시(로마숫자 또는 두 자리 번호)를 먼저 찾고, **그 표시와 같은 줄·오른쪽**에 있는
-    이름만 받는다. 이름 글꼴은 본문에도 쓰이므로 글꼴만으로는 못 가른다.
+    표시(로마숫자 또는 두 자리 번호)를 먼저 찾고, **그 표시와 같은 줄·바로 오른쪽**에 있는
+    바닥글 크기의 이름만 받는다. 이름 글꼴은 본문에도 쓰이므로 글꼴만으로는 못 가른다.
     """
     foot = [
         s
@@ -181,9 +198,6 @@ def footer_units(spans, page_height):
     if bool(majors) == bool(minors):
         return None, None
     mark = (majors or minors)[0]
-    # 해설 쪽은 본문 마지막 줄(6.8pt)이 바닥글과 **같은 y** 에 놓인다(공통수학1 p162 실측).
-    # 「가장 긴 이름」을 고르면 「가 나타내는 그래프의 」가 대단원이 된다. 이름은 표시
-    # **바로 오른쪽**(가장 가까운 것)이고 바닥글 크기(7.8pt)여야 한다.
     names = [
         s
         for s in foot
@@ -199,11 +213,26 @@ def footer_units(spans, page_height):
     return (name, None) if majors else (None, name)
 
 
+def is_header_number(s):
+    return (
+        s["font"] == FONT_NUM
+        and s["size"] >= NUM_MIN_SIZE
+        and TWO_DIGITS.match(s["text"].strip()) is not None
+    )
+
+
 def is_label(s):
     return (
         s["font"] == FONT_LABEL
         and s["size"] < LABEL_MAX_SIZE
         and s["text"].strip() == "유형"
+    )
+
+
+def is_title_piece(s):
+    return any(
+        s["font"].startswith(prefix) and s["size"] >= min_size
+        for prefix, min_size in TITLE_FONTS
     )
 
 
@@ -217,6 +246,7 @@ def extract_book(path):
     rows = []
     incomplete = []
     box_labels = 0
+    unlabeled = 0
     cur_major = None
     cur_minor = None
     # 난이도 표는 「가장 최근 유형 머리」에 붙는다 — 쪽·단을 넘어 이어진다.
@@ -224,6 +254,7 @@ def extract_book(path):
 
     for pno in range(doc.page_count):
         page = doc[pno]
+        width = page.rect.width
         spans = spans_of(page)
         major, minor = footer_units(spans, page.rect.height)
         if major:
@@ -231,7 +262,7 @@ def extract_book(path):
         if minor:
             cur_minor = minor
 
-        # 본문이 시작되기 전(차례·머리말)에는 단원 표시가 없다 — 그 구간의 「유형」은 버린다.
+        # 본문이 시작되기 전(차례·머리말)에는 단원 표시가 없다 — 그 구간의 머리는 버린다.
         in_body = cur_major is not None
 
         box_labels += sum(
@@ -244,61 +275,54 @@ def extract_book(path):
             (
                 s
                 for s in spans
-                if is_label(s)
+                if is_header_number(s)
                 or (s["font"] == FONT_LEVEL and s["text"].strip() in LEVELS)
             ),
             key=reading_key,
         )
         for ev in events:
-            if not is_label(ev):
-                if in_body and last_row is not None:
+            if not is_header_number(ev):
+                if (
+                    in_body
+                    and last_row is not None
+                    and ev["color"] == LEVEL_ACTIVE_COLOR
+                ):
                     lv = ev["text"].strip()
                     last_row["levels"][lv] = last_row["levels"].get(lv, 0) + 1
                 continue
 
-            lab = ev
-            lx0, ly0, _lx1, ly1 = lab["bbox"]
-            band = [
-                s
-                for s in spans
-                if s["bbox"][3] > ly0 - BAND_UP
-                and s["bbox"][1] < ly1 + BAND_DOWN
-                and s["bbox"][0] >= lx0
-                and s["bbox"][0] < lx0 + COLUMN_SPAN
-            ]
-            nums = sorted(
-                (
-                    s
-                    for s in band
-                    if s["font"] == FONT_NUM and s["size"] >= NUM_MIN_SIZE
-                ),
-                key=lambda s: s["bbox"][0],
-            )
-            number = "".join(s["text"].strip() for s in nums)
-            num_right = nums[-1]["bbox"][2] if nums else lx0
-
+            nx0, ny0, nx1, ny1 = ev["bbox"]
+            number = ev["text"].strip()
+            col_right = COLUMN_MID if nx0 < COLUMN_MID else width
             title_spans = [
                 s
                 for s in spans
-                if s["font"].startswith(FONT_TITLE_PREFIX)
-                and s["size"] >= TITLE_MIN_SIZE
-                and s["bbox"][3] > ly0 - BAND_UP
-                and s["bbox"][1] < ly1 + TITLE_BAND_DOWN
-                and s["bbox"][0] > num_right - 1.0
-                and s["bbox"][0] < lx0 + COLUMN_SPAN
+                if is_title_piece(s)
+                and s["bbox"][0] > nx1 - 1.0
+                and s["bbox"][0] < col_right
+                and ny0 - TITLE_UP <= s["bbox"][1] <= ny1 + TITLE_DOWN_FROM_BOTTOM
             ]
             title = join_title(title_spans)
+            has_label = any(
+                is_label(s)
+                and s["bbox"][0] < nx0
+                and s["bbox"][0] > nx0 - 40
+                and abs(s["bbox"][1] - ny0) <= 12
+                for s in spans
+            )
 
             if not in_body:
                 continue
-            if not number or not title:
+            if not has_label:
+                unlabeled += 1
+            if not title:
                 incomplete.append(
                     {
                         "page": pno + 1,
                         "major": cur_major,
                         "minor": cur_minor,
-                        "number": number or None,
-                        "title": title or None,
+                        "number": number,
+                        "title": None,
                     }
                 )
                 continue
@@ -313,7 +337,7 @@ def extract_book(path):
             rows.append(row)
             last_row = row
     doc.close()
-    return rows, incomplete, box_labels
+    return rows, incomplete, box_labels, unlabeled
 
 
 def boundary_warnings(rows):
@@ -327,11 +351,25 @@ def boundary_warnings(rows):
             except ValueError:
                 prev = r
                 continue
-            if n_now < n_prev and r["minor"] == prev["minor"]:
+            if n_now <= n_prev and r["minor"] == prev["minor"]:
                 warns.append(
                     f'p{r["page"]} {r["minor"]}: {prev["number"]} → {r["number"]} (중단원 그대로)'
                 )
         prev = r
+    return warns
+
+
+def gap_warnings(rows):
+    """중단원 안에서 번호가 **건너뛴** 자리 — 머리를 놓친 신호(첫 판이 42개를 이렇게 놓쳤다)."""
+    warns = []
+    by_minor = {}
+    for r in rows:
+        by_minor.setdefault(r["minor"], []).append(int(r["number"]))
+    for minor, nums in by_minor.items():
+        want = set(range(1, max(nums) + 1))
+        missing = sorted(want - set(nums))
+        if missing:
+            warns.append(f"{minor}: 빠진 번호 {missing}")
     return warns
 
 
@@ -362,8 +400,8 @@ def main():
         if not os.path.exists(path):
             print(f"[없음] {path}", file=sys.stderr)
             continue
-        rows, incomplete, box_labels = extract_book(path)
-        warns = boundary_warnings(rows)
+        rows, incomplete, box_labels, unlabeled = extract_book(path)
+        warns = boundary_warnings(rows) + gap_warnings(rows)
         total += len(rows)
         warn_total += len(warns)
         inc_total += len(incomplete)
@@ -388,8 +426,9 @@ def main():
         }
         lines.append(
             f"{book}: 유형 {len(rows)} · 대단원 {len(majors)} · 중단원 {len(minors)}"
-            f" · 깨진머리 {len(incomplete)} · 경계경고 {len(warns)}"
-            f" · 난이도표 없는 유형 {no_levels} · 대표문제 표지 {box_labels}"
+            f" · 깨진머리 {len(incomplete)} · 경계·빠짐 경고 {len(warns)}"
+            f" · 라벨 없는 머리 {unlabeled} · 난이도표 없는 유형 {no_levels}"
+            f" · 대표문제 표지 {box_labels}"
         )
 
     if not result:
@@ -400,18 +439,16 @@ def main():
 
     print(f"원본: {src}")
     print("\n".join(lines))
-    print(f"\n합계 유형 {total} · 깨진머리 {inc_total} · 경계경고 {warn_total}")
+    print(f"\n합계 유형 {total} · 깨진머리 {inc_total} · 경고 {warn_total}")
     for book, data in result.items():
         if data["boundary_warnings"]:
-            print(f"\n[{book} 경계경고]")
+            print(f"\n[{book} 경고]")
             for w in data["boundary_warnings"]:
                 print(f"  {w}")
         if data["incomplete"]:
             print(f"\n[{book} 깨진머리]")
             for i in data["incomplete"]:
-                print(
-                    f"  p{i['page']} {i['minor']} num={i['number']} title={i['title']}"
-                )
+                print(f"  p{i['page']} {i['minor']} num={i['number']}")
     print(f"\n색인 → {args.out}")
 
     if args.md:
@@ -423,9 +460,8 @@ def main():
             f.write(
                 "원본은 `N:\\개인\\강아\\교재자료\\RPM\\22`(원장님 2026-09-13)의 학생용 PDF 다. "
                 "책 이름이 우리 시드와 같다.\n\n"
-                "⚠️ 제목의 **수식은 빠지거나 깨진다** — 수식은 본문 글꼴이라 제목 글꼴 밴드에 안 "
-                "든다. 정본은 «과목|중단원|번호»이고 제목은 사람이 읽는 실마리다. "
-                "중등 색인도 같다(「의 …」로 시작하는 제목이 그 흔적).\n\n"
+                "⚠️ 제목 안의 수식은 교재 조판 글자 그대로라(`A^n`·`f(x, y)=0`) 우리 표기와 "
+                "다를 수 있다. 정본은 «과목|중단원|번호»이고 제목은 사람이 읽는 실마리다.\n\n"
                 "유형 뒤의 `하·중하·중·상중·상` 은 그 유형에 실린 **문항의 난이도 표 개수**다 — "
                 "6칸 배정의 근거(`high-engine-plan.md` §1-4).\n\n"
             )
