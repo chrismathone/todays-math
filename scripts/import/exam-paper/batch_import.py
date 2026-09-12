@@ -60,6 +60,10 @@ QA = REPO / "scripts" / "qa"
 # `.bin/tsx.cmd` 는 한글 경로를 셸로 넘겨야 한다 — node 로 cli.mjs 를 직접 부른다.
 TSX = ["node", str(REPO / "node_modules" / "tsx" / "dist" / "cli.mjs")]
 DEFAULT_SOURCE_ROOT = pathlib.Path("N:/개인/기출")
+# 🔴 문제지는 **저장소 밖**에 둔다 — 저장소 안에는 exams/<편>/drafts.json(정답)이 있어서
+#    풀이자가 눈을 뜬다(2026-09-13 메인이 잡았다). 기본값은 grok 워크트리의 작업 폴더다.
+DEFAULT_BLIND_ROOT = pathlib.Path(
+    "C:/Users/user/orca/workspaces/todays-math/grok-solve/scratch/grok-solve")
 MAX_ATTEMPTS = 3
 HWPX_TIMEOUT = 240
 CHILD_TIMEOUT = 900
@@ -218,8 +222,8 @@ class Exam:
         return json.loads((self.dir / "exam.json").read_text(encoding="utf-8"))
 
 
-def run(ex: Exam, cmd: list[str], timeout: int = CHILD_TIMEOUT) -> str:
-    """자식 프로세스 하나. 출력은 로그로만 간다. [중단]·남은 결함 → 보류, 그 밖의 실패 → 실패."""
+def run_raw(ex: Exam, cmd: list[str], timeout: int = CHILD_TIMEOUT) -> tuple[int, str]:
+    """자식 하나를 돌리고 (종료코드, 출력)을 **그대로** 준다 — 실패 출력을 봐야 하는 단계가 있다(5)."""
     env = dict(os.environ, PYTHONIOENCODING="utf-8", PYTHONUTF8="1")
     shown = " ".join(c if " " not in c else f'"{c}"' for c in cmd)
     ex.log(f"$ {shown}")
@@ -231,14 +235,20 @@ def run(ex: Exam, cmd: list[str], timeout: int = CHILD_TIMEOUT) -> str:
         raise Fail(f"{timeout}초 넘김")
     out = (r.stdout or "") + (("\n[stderr]\n" + r.stderr) if r.stderr.strip() else "")
     ex.log(out[-LOG_CAP:] + f"\n  → 종료 {r.returncode}")
-    if r.returncode != 0:
+    return r.returncode, out
+
+
+def run(ex: Exam, cmd: list[str], timeout: int = CHILD_TIMEOUT) -> str:
+    """자식 프로세스 하나. 출력은 로그로만 간다. [중단]·남은 결함 → 보류, 그 밖의 실패 → 실패."""
+    rc, out = run_raw(ex, cmd, timeout)
+    if rc != 0:
         first = next((ln.strip() for ln in out.splitlines()
                       if "[중단]" in ln or "남은 결함" in ln or "🔴" in ln), "")
         if first:
             raise Hold(first[:160])
         tail = [ln for ln in out.splitlines() if ln.strip()][-1:] or ["(출력 없음)"]
-        raise Fail(f"종료 {r.returncode}: {tail[0][:140]}")
-    return r.stdout or ""
+        raise Fail(f"종료 {rc}: {tail[0][:140]}")
+    return out
 
 
 # ── 1단계 감시 — 창이 뜨거나 포커스를 뺏으면 **배치 전체를** 멈춘다 (절대 규칙 9) ─────
@@ -423,9 +433,43 @@ def st_conv(ex: Exam) -> None:
 
 
 def st_fix(ex: Exam) -> None:
+    """정본이 못 되돌린 잔재를 고친다.
+
+    🔴 **남은 결함은 사람이 exam.json `acceptFix` 에 적은 자리만 넘어간다.** 그냥 멈추면 이미 넣은
+    편(동도중 문6 `\mathrm{\overline{OO'}}` — 프라임 때문에 규칙이 못 벗긴다)을 다시 못 만들고,
+    그냥 넘어가면 **새 편의 진짜 결함**이 조용히 지나간다. 그리고 «적었는데 안 나는» 쪽도 멈춘다 —
+    한쪽만 보면 받아들임이 영영 남아 다음 결함을 가린다.
+    """
+    accepted = {(a["id"], a["issue"]) for a in ex.cfg().get("acceptFix", [])}
+    seen: set[tuple[str, str]] = set()
     for a, b in (("pieces_conv", "hwp_fixed"), ("sol_conv", "sol_fixed")):
-        run(ex, TSX + [str(HERE / "fix-exam-solutions.ts"), str(ex.dir / f"{a}.json"),
-                       str(ex.dir / f"{b}.json"), "--config", str(ex.dir / "exam.json")])
+        rc, out = run_raw(ex, TSX + [str(HERE / "fix-exam-solutions.ts"), str(ex.dir / f"{a}.json"),
+                                     str(ex.dir / f"{b}.json"), "--config", str(ex.dir / "exam.json")])
+        if rc == 0:
+            continue
+        stop = next((ln.strip() for ln in out.splitlines() if "[중단]" in ln), "")
+        if stop:
+            raise Hold(stop[:160])
+        left = []
+        for ln in out.splitlines():
+            m = re.match(r"\[문(\S+)\]\s*(.+)$", ln.strip())
+            if not m:
+                continue
+            for issue in m.group(2).split(" · "):
+                key = (m.group(1), issue.strip())
+                seen.add(key)
+                if key not in accepted:
+                    left.append(f"{key[0]} {key[1]}")
+        if left:
+            raise Hold("잔재 고침에 남은 결함 — " + " · ".join(sorted(set(left))[:3])
+                       + " · 지면을 보고 exam.json hand 로 고치거나 acceptFix 에 까닭과 함께 적을 것")
+        if not seen:
+            raise Fail(f"fix-exam-solutions 가 종료 {rc} 인데 결함 줄이 없다")
+    unused = accepted - seen
+    if unused:
+        raise Hold(f"exam.json acceptFix 에 적었는데 이번엔 안 난 것 {sorted(unused)} — 지워라")
+    if accepted:
+        ex.notes.append(f"받아들인 잔재 {len(accepted)}자리")
 
 
 class NotYet(Exception):
@@ -538,7 +582,14 @@ PLAN: dict = {"first": [], "second": [], "reviewed": False}
 
 def render_brief(ex: Exam, count: int) -> str:
     rules = json.loads((HERE / "solver_rules.json").read_text(encoding="utf-8"))
-    cmds = ", ".join("`^\\circ`" if c == "circ" else f"`\\{c}`" for c in rules["allowedCommands"])
+    # 표기는 지시서 원본대로 — `^\circ` 와 호(`\overset{\frown}{AB}`)는 이름만으로 못 적는다.
+    shown = []
+    for c in rules["allowedCommands"]:
+        if c == "frown":
+            continue
+        shown.append("`^\\circ`" if c == "circ" else
+                     "호는 `\\overset{\\frown}{AB}`" if c == "overset" else f"`\\{c}`")
+    cmds = ", ".join(shown)
     rep = {
         "{{FORBIDDEN}}": " · ".join(m["name"] for m in rules["forbiddenMethods"]),
         "{{COMMANDS}}": cmds,
@@ -668,7 +719,8 @@ STAGES = [
           lambda ex: D(ex, "answers.json") + [QA / "convert-hwp-spans.py", QA / "hwpeq_unglue.py"]),
     Stage("5", "잔재 고침", st_fix, lambda ex: D(ex, "hwp_fixed.json", "sol_fixed.json"),
           lambda ex: D(ex, "pieces_conv.json", "sol_conv.json") + [HERE / "fix-exam-solutions.ts",
-                                                                    _cfg_or(ex, "hand", [])]),
+                                                                    _cfg_or(ex, "hand", []),
+                                                                    _cfg_or(ex, "acceptFix", [])]),
     Stage("3t", "표", st_tables, lambda ex: D(ex, "figures/index.json"),
           lambda ex: D(ex, "hwp_fixed.json", "answers.json", "body.json") + [
               HERE / "build-exam-drafts.ts", HERE / "figures" / "crop_tables.py",
@@ -714,3 +766,320 @@ def process(ex: Exam, start: int) -> None:
         for later in STAGES[i + 1:]:
             ex.state["done"].pop(later.key, None)
         ex.save()
+
+
+# ── 자식 명령 — 무거운 단계는 따로 도는 프로세스다(한 편이 죽어도 드라이버는 산다) ──────
+def _tc_module(name: str, rel: str):
+    import importlib.util
+    spec = importlib.util.spec_from_file_location(name, _tc(rel))
+    m = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(m)
+    return m
+
+
+def child_main(argv: list[str]) -> int:
+    kind, a, b = argv[0], argv[1], argv[2]
+    if kind == "--_child-hwpx":
+        import hwp_to_hwpx_quiet as q
+        # COM 을 부르기 **전에** 숨은 데스크톱에 붙는다. 못 붙으면 변환을 아예 안 돌린다.
+        if not q.isolate_desktop():
+            print("isolate_desktop 실패 — 변환을 안 돌린다")
+            return 3
+        out = q.to_hwpx_quiet(pathlib.Path(a), pathlib.Path(b))
+        print(f"HWPX {out.name} {out.stat().st_size}B")
+        return 0
+    if kind == "--_child-extract":
+        data = _tc_module("hwp_extract", "scripts/hwp_extract.py").parse_exam(pathlib.Path(a))
+        pathlib.Path(b).write_text(json.dumps(data, ensure_ascii=False, indent=1), encoding="utf-8")
+        print(f"문항 {data['question_count']}")
+        return 0
+    if kind == "--_child-body":
+        d = _tc_module("textlayer", "db/textlayer.py").extract(pathlib.Path(a))
+        pathlib.Path(b).write_text(json.dumps(d, ensure_ascii=False, indent=1), encoding="utf-8")
+        print(f"문항 {len(d['questions'])}")
+        return 0
+    print(f"모르는 자식 명령 {kind}")
+    return 2
+
+
+# ── 한 번에 하나 — 드라이버 둘이 동시에 돌면 한글 변환도 둘이 된다(절대 규칙 9) ─────────
+def _alive(pid: int) -> bool:
+    ctypes, wintypes, _, k = _user32()
+    h = k.OpenProcess(0x1000, False, pid)
+    if not h:
+        return False
+    try:
+        code = wintypes.DWORD()
+        return bool(k.GetExitCodeProcess(h, ctypes.byref(code))) and code.value == 259  # STILL_ACTIVE
+    finally:
+        k.CloseHandle(h)
+
+
+def take_lock(exams_dir: pathlib.Path) -> pathlib.Path:
+    p = exams_dir / ".batch.lock"
+    if p.exists():
+        try:
+            pid = int(p.read_text(encoding="utf-8").strip() or 0)
+        except ValueError:
+            pid = 0
+        if pid and pid != os.getpid() and _alive(pid):
+            raise SystemExit(f"🛑 다른 배치가 돌고 있다(pid {pid}) — 한 번에 하나(절대 규칙 9)")
+    p.write_text(str(os.getpid()), encoding="utf-8")
+    return p
+
+
+# ── 편 모으기 ────────────────────────────────────────────────────────────────
+def _grade_of_tags(stem: str) -> str:
+    tags = [t.strip() for t in TAG.findall(stem)]
+    if len(tags) < 2:
+        return "?"
+    lv = "중" if tags[0].endswith("중") else "고" if tags[0].endswith("고") else "?"
+    return lv + tags[1]
+
+
+def discover(a) -> tuple[list, list, int, list]:
+    """(pdf, hwp, meta) 목록 · 건너뛴 것(이름, 사유) · 학년이 달라 뺀 수 · HWP 만 있는 것."""
+    cache: dict = {}
+    if a.folder:
+        root = pathlib.Path(a.folder)
+        pdfs = sorted(p for p in (root / "pdf").rglob("*") if p.is_file() and p.suffix.lower() == ".pdf")
+        cache[None] = hwp_index(root / "워드")
+        idx_of = lambda pdf: cache[None]  # noqa: E731
+    else:
+        pdfs = [pathlib.Path(p) for p in a.pdf]
+
+        def idx_of(pdf):
+            wr = word_root_of(pdf)
+            if wr is None:
+                return {}
+            if wr not in cache:
+                cache[wr] = hwp_index(wr)
+            return cache[wr]
+    jobs, skips, other_grade = [], [], 0
+    for pdf in pdfs:
+        if a.grade and _grade_of_tags(unicodedata.normalize("NFC", pdf.stem)) != a.grade:
+            other_grade += 1
+            continue
+        try:
+            meta = parse_name(pdf)
+            hwp = pair_of(pdf, idx_of(pdf))
+        except Hold as h:
+            skips.append((pdf.stem, str(h)))
+            continue
+        jobs.append((pdf, hwp, meta))
+    hwp_only = []
+    if a.folder:
+        stems = {unicodedata.normalize("NFC", p.stem) for p in pdfs}
+        hwp_only = sorted(s for s in cache[None] if s not in stems and (not a.grade or _grade_of_tags(s) == a.grade))
+    return jobs, skips, other_grade, hwp_only
+
+
+def ok_line(ex: Exam) -> str:
+    cfg = ex.cfg()
+    drafts = json.loads((ex.dir / "drafts.json").read_text(encoding="utf-8"))
+    figs = json.loads((ex.dir / "figures" / "index.json").read_text(encoding="utf-8"))["figures"]
+    nt = sum(1 for f in figs if f.get("kind") == "table")
+    tail = list(ex.notes) + ([] if cfg.get("units") else ["units 비었음(분류 대기 — classify.md)"])
+    return (f"✅ {cfg['examId']} {cfg['school']} {cfg['grade']} · {len(drafts)}문항 · 그림 {len(figs) - nt}·표 {nt}"
+            + (" · " + " · ".join(tail) if tail else ""))
+
+
+def _state_of(d: pathlib.Path) -> dict:
+    p = d / "batch-state.json"
+    return json.loads(p.read_text(encoding="utf-8")) if p.exists() else {"done": {}}
+
+
+def main() -> int:
+    if len(sys.argv) > 1 and sys.argv[1].startswith("--_child-"):
+        return child_main(sys.argv[1:])
+    if hasattr(sys.stdout, "reconfigure"):
+        sys.stdout.reconfigure(encoding="utf-8")
+    ap = argparse.ArgumentParser(description="기출 편 여러 개를 한 번에 — 0~9 단계 (공유 DB 는 안 쓴다)")
+    src = ap.add_mutually_exclusive_group(required=True)
+    src.add_argument("--folder", help="N드라이브 기출 폴더 — 밑에 pdf/ 와 워드/ 가 있다")
+    src.add_argument("--pdf", nargs="+", help="완료본 PDF 경로들")
+    src.add_argument("--exam-dir", nargs="+", help="이미 세운 편 폴더(회귀·재개)")
+    ap.add_argument("--grade", help="파일 이름 [학년] 태그로 거른다 — 예: 중3")
+    ap.add_argument("--from", dest="from_stage", choices=STAGE_KEYS,
+                    help="이 단계 앞은 산출물이 있으면 끝난 것으로 본다(커밋된 중간물로 회귀할 때)")
+    ap.add_argument("--exams-dir", default=str(HERE / "exams"))
+    ap.add_argument("--blind-root", default=str(DEFAULT_BLIND_ROOT),
+                    help="풀이자 문제지 폴더 — 편마다 <examId>/problems.json · fig/ · out/ · BRIEF.md")
+    ap.add_argument("--source-root", default=str(DEFAULT_SOURCE_ROOT), help="source_path.txt 의 기준")
+    ap.add_argument("--list", action="store_true", help="계획만 찍는다 — 아무것도 안 쓴다")
+    ap.add_argument("--limit", type=int, help="이만큼만 돈다")
+    ap.add_argument("--retry-gave-up", action="store_true", help="3회 실패로 포기한 편을 다시 돈다")
+    ap.add_argument("--reviewed", action="store_true", help="앞 절반 표본 검수를 마쳤다 — 뒤 절반 문제지를 낸다")
+    ap.add_argument("--reset-solve-plan", action="store_true", help="앞·뒤 절반을 새로 가른다")
+    a = ap.parse_args()
+
+    lines: list[str] = []
+
+    def say(s: str) -> None:
+        print(s, flush=True)
+        lines.append(s)
+
+    n = {"ok": 0, "wait": 0, "hold": 0, "skip": 0, "gave": 0, "gave_now": 0}
+    blind = pathlib.Path(os.path.abspath(a.blind_root))
+    if blind == REPO or REPO in blind.parents:
+        raise SystemExit(
+            "🛑 문제지 폴더가 저장소 안이다 — 저장소에는 정답이 든 drafts.json 이 있어 풀이자가 눈을 뜬다. "
+            "--blind-root 를 저장소 밖으로 (기본값: grok 워크트리)")
+    todo: list[Exam] = []
+    if a.exam_dir:
+        dirs = [pathlib.Path(os.path.abspath(d)) for d in a.exam_dir]
+        parents = {d.parent for d in dirs}
+        if len(parents) != 1:
+            raise SystemExit("--exam-dir 는 한 폴더 밑의 편들만 받는다(절반 계획이 그 폴더에 적힌다)")
+        exams_dir = parents.pop()
+        for d in dirs:
+            cfg = json.loads((d / "exam.json").read_text(encoding="utf-8"))
+            todo.append(Exam(d, {k: cfg[k] for k in ("examId", "school", "grade", "subject")}))
+    else:
+        exams_dir = pathlib.Path(os.path.abspath(a.exams_dir))
+        root = pathlib.Path(os.path.abspath(a.source_root))
+        jobs, skips, other_grade, hwp_only = discover(a)
+        for stem, why in skips:
+            say(f"— 건너뜀 {stem} · {why}")
+            n["skip"] += 1
+        ids: dict[str, list] = {}
+        for pdf, _, meta in jobs:
+            ids.setdefault(meta["examId"], []).append(pdf)
+        for pdf, hwp, meta in jobs:
+            eid = meta["examId"]
+            d = exams_dir / eid
+            try:
+                rel = pathlib.Path(os.path.abspath(pdf)).relative_to(root).as_posix()
+            except ValueError:
+                rel = pathlib.Path(os.path.abspath(pdf)).as_posix()
+            rel = unicodedata.normalize("NFC", rel)
+            if len(ids[eid]) > 1:
+                say(f"⏸ {eid} · examId 가 겹친다 — {[p.name for p in ids[eid]]}")
+                n["hold"] += 1
+            elif (d / "exam-load-ledger.json").exists():
+                say(f"— 건너뜀 {eid} · 이미 적재(exam-load-ledger.json)")
+                n["skip"] += 1
+            elif d.exists() and not (d / "batch-state.json").exists():
+                say(f"⏸ {eid} · 편 폴더가 이미 있는데 드라이버가 세운 것이 아니다 — "
+                    "원장 없이 적재된 편일 수 있다(정화중처럼). 사람이 정할 것")
+                n["hold"] += 1
+            elif (d / "source_path.txt").exists() and \
+                    (d / "source_path.txt").read_text(encoding="utf-8").strip() != rel:
+                say(f"⏸ {eid} · 같은 examId 가 다른 원본을 가리킨다")
+                n["hold"] += 1
+            else:
+                todo.append(Exam(d, meta, pdf, hwp, rel))
+        if hwp_only:
+            say(f"— HWP 만 있고 짝 PDF 가 없는 것 {len(hwp_only)}개 — 건너뜀(목록은 .batch-last-run.txt)")
+            lines.extend(f"   HWP 만: {s}" for s in hwp_only)
+        if other_grade:
+            lines.append(f"   학년 태그가 {a.grade} 가 아니라 뺀 PDF {other_grade}개")
+    for ex in todo:
+        ex.sheet = blind / ex.dir.name
+
+    if a.list:
+        for ex in todo:
+            say(f"· {ex.dir.name} {ex.meta['school']} {ex.meta['grade']} ← {ex.pdf.name if ex.pdf else ex.dir}")
+        say(f"계획 — 할 것 {len(todo)} · 건너뜀 {n['skip']} · 보류 {n['hold']} (아무것도 안 썼다)")
+        return 0
+
+    exams_dir.mkdir(parents=True, exist_ok=True)
+    lock = take_lock(exams_dir)
+    last_run = exams_dir / ".batch-last-run.txt"
+    aborted = halfway = False
+    try:
+        # 대량 풀이는 두 번에 나눈다 — 앞 절반 채점이 끝나면 멈추고 메인이 표본을 본다.
+        plan_path = exams_dir / "solve-plan.json"
+        ids_now = sorted(ex.dir.name for ex in todo)
+        if plan_path.exists() and not a.reset_solve_plan:
+            PLAN.update(json.loads(plan_path.read_text(encoding="utf-8")))
+            known = set(PLAN["first"]) | set(PLAN["second"])
+            PLAN["second"] += [i for i in ids_now if i not in known]
+        else:
+            half = (len(ids_now) + 1) // 2
+            PLAN.update({"first": ids_now[:half], "second": ids_now[half:], "reviewed": False})
+        if a.reviewed and not PLAN["reviewed"]:
+            PLAN["reviewed"] = time.strftime("%Y-%m-%d %H:%M:%S")
+        write_json_atomic(plan_path, PLAN)
+
+        start = STAGE_KEYS.index(a.from_stage) if a.from_stage else 0
+        ran = 0
+        for ex in todo:
+            eid = ex.dir.name
+            if a.limit is not None and ran >= a.limit:
+                say(f"— 건너뜀 {eid} · --limit {a.limit}")
+                n["skip"] += 1
+                continue
+            if ex.state.get("gaveUp") and not a.retry_gave_up:
+                g = ex.state["gaveUp"]
+                say(f"⏹ {eid} · {g['stage']} — 포기(시도 {MAX_ATTEMPTS}회): {g['why']} · --retry-gave-up 로 다시")
+                n["gave"] += 1
+                continue
+            if a.retry_gave_up:
+                ex.state["gaveUp"], ex.state["attempts"] = None, {}
+            if not (ex.dir / "exam.json").exists():
+                ex.dir.mkdir(parents=True, exist_ok=True)
+                write_exam_json(ex.dir, {**ex.meta, "hand": [], "units": {}})
+            ex.save()  # 드라이버가 세운 편이라는 표시이자 «어디까지 했나»
+            ran += 1
+            ex.current = STAGES[0]
+            ex.log(f"════ 실행 시작 — {' '.join(sys.argv[1:])}")
+            try:
+                process(ex, start)
+                say(ok_line(ex))
+                n["ok"] += 1
+            except NotYet as w:
+                say(f"⏳ {eid} · {ex.current.key} {ex.current.name} — {w}")
+                n["wait"] += 1
+            except Hold as h:
+                ex.log(f"⏸ {h}")
+                say(f"⏸ {eid} · {ex.current.key} {ex.current.name} — {h}")
+                n["hold"] += 1
+            except Abort as ab:
+                ex.log(f"🛑 {ab}")
+                say(f"🛑 {eid} · {ex.current.key} {ex.current.name} — {ab} — 배치를 멈춘다")
+                n["hold"] += 1
+                aborted = True
+                break
+            except Exception as e:  # noqa: BLE001 — Fail 과 뜻밖의 예외는 횟수를 센다
+                import traceback
+                ex.log(traceback.format_exc())
+                k = ex.state["attempts"].get(ex.current.key, 0) + 1
+                ex.state["attempts"][ex.current.key] = k
+                why = str(e) if isinstance(e, Fail) else f"{type(e).__name__}: {e}"
+                if k >= MAX_ATTEMPTS:
+                    ex.state["gaveUp"] = {"stage": ex.current.key, "why": why[:160]}
+                    say(f"⏹ {eid} · {ex.current.key} {ex.current.name} — {why[:120]} "
+                        f"(시도 {k}/{MAX_ATTEMPTS} — 포기)")
+                    n["gave"] += 1
+                    n["gave_now"] += 1
+                else:
+                    say(f"⏸ {eid} · {ex.current.key} {ex.current.name} — {why[:120]} (시도 {k}/{MAX_ATTEMPTS})")
+                    n["hold"] += 1
+                ex.save()
+
+        if not aborted and not PLAN["reviewed"] and PLAN["first"]:
+            first = [exams_dir / i for i in PLAN["first"]]
+            issued = [d for d in first if "8" in _state_of(d)["done"]]
+            waiting = [d for d in first if d not in issued]
+            if issued and all(graded(d) for d in issued):
+                halfway = True
+                say(f"🔶 절반 지점 — 메인 표본 검수 후 재개 · 앞 절반 채점 끝 {len(issued)}편"
+                    + (f"(보류로 채점 전 {len(waiting)}편)" if waiting else "")
+                    + f" · 뒤 절반 {len(PLAN['second'])}편은 문제지를 안 냈다"
+                    " · 표본에 «그림에서 값을 읽는 문항»(산점도·표·그래프)을 넣을 것 · 재개: --reviewed")
+        say(f"끝 — ✅ {n['ok']} · ⏳ {n['wait']} · ⏸ {n['hold']} · 건너뜀 {n['skip']} · 포기 {n['gave']}"
+            + (f"(이번에 {n['gave_now']})" if n["gave_now"] else "")
+            + f" · 줄 전부 {last_run.as_posix()}")
+    finally:
+        last_run.write_text("\n".join(lines) + "\n", encoding="utf-8")
+        lock.unlink(missing_ok=True)
+    if aborted:
+        return 3
+    if halfway:
+        return 4
+    return 1 if n["hold"] or n["gave_now"] else 0
+
+
+if __name__ == "__main__":
+    sys.exit(main())

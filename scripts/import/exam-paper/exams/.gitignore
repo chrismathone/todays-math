@@ -1,3 +1,12 @@
 # 원본 시험지(저작물)와 HWPX 중간물은 싣지 않는다 — N드라이브에서 다시 뽑힌다.
 */src/
 */hwpx/
+
+# 드라이버(batch_import.py)가 남기는 이 컴퓨터의 상태·로그 — 산출물이 아니다.
+*/batch.log
+*/batch-state.json
+*/hwpx/child.log
+*/drafts.json.hold
+.batch.lock
+.batch-last-run.txt
+solve-plan.json

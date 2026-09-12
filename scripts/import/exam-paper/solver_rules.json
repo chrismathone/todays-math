@@ -22,7 +22,9 @@
       "probeMiss": "$\\cos x^\\circ=\\frac{1}{\\sqrt{3}}$"
     }
   ],
-  "allowedCommands": ["frac", "sqrt", "overline", "angle", "triangle", "sin", "cos", "tan", "circ", "times", "pi", "parallel", "perp"],
+  "_allowedCommandsWhy": "2026-09-13 검수에서 therefore·div·overset·frown·alpha 가 «목록 밖» 으로 8건 걸렸는데 전부 멀쩡했다. 그래서 목록을 넓히고, 목록 밖 명령은 **문지기가 아니라 경고**로만 쓴다 — 지면에서 깨지는지는 적재기의 제품 렌더러 검사가 이미 막는다.",
+  "allowedCommands": ["frac", "sqrt", "overline", "angle", "triangle", "sin", "cos", "tan", "circ", "times", "div", "cdot", "pm", "le", "ge", "neq", "pi", "parallel", "perp", "therefore", "alpha", "theta", "overset", "frown"],
+  "commandListIsWarningOnly": true,
   "sentences": { "min": 3, "max": 7, "maxJudge": 9 },
   "judgeQuestion": "옳지\\s*않은\\s*것|옳은\\s*것"
 }

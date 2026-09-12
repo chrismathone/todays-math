@@ -38,6 +38,11 @@ export interface ExamConfig {
    */
   tables?: number[];
   hand?: HandFix[];
+  /**
+   * 5단계(`fix-exam-solutions.ts`)가 **고치고도 남는다**고 신고한 자리 중 사람이 보고 받아들인 것.
+   * 대량 이관 드라이버(`batch_import.py`)만 읽는다 — 적힌 자리 말고 다른 결함이 나면 그 편을 멈춘다.
+   */
+  acceptFix?: { id: string; issue: string; why: string }[];
   /** 문항 번호 → 소단원·문항류. 초안의 번호와 **한 개도 어긋나면 적재가 멈춘다.** */
   units: Record<string, UnitAssignment>;
 }

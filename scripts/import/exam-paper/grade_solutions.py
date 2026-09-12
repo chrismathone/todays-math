@@ -16,7 +16,7 @@
 
 ## 무엇을 보나
 1. **기록된 정답과 일치**하는가 — 참은 `drafts.json` 의 `answer`(HWP 미주)다. 풀이자 쪽에는 없다.
-2. **해설 모양** — 제어문자(`\\f` 가 폼피드로 먹힌 것) · `$` 홀수 · 목록 밖 명령 · 금지 표기 ·
+2. **해설 모양** — 제어문자(`\\f` 가 폼피드로 먹힌 것) · `$` 홀수 · 금지 표기 ·
    문장 수(«옳은/옳지 않은 것» 문항은 더 길게) · 끝 문장에 «답은».
 3. **중학교 과정 밖 방법** — 금지 목록의 낱말, 그리고 이름을 안 대고 식만 쓴 **코사인 법칙 모양**.
 4. **변환 잔재** — `scan_residue.py` 의 규칙(빈 분자·빈 분모·사적 사용 영역·빈 \\mathrm{}).
@@ -82,9 +82,6 @@ def shape_issues(s: str, judge: bool = False) -> list[str]:
         out.append(f"제어문자 {ctrl}")  # \f→폼피드 같은 먹힌 역슬래시
     if s.count("$") % 2:
         out.append("$ 홀수")
-    bad = sorted(commands(s) - ALLOWED)
-    if bad:
-        out.append(f"목록 밖 명령 {bad}")
     for tok in BANNED_TOKENS:
         if tok in s:
             out.append(f"금지 표기 {tok!r}")
@@ -95,6 +92,17 @@ def shape_issues(s: str, judge: bool = False) -> list[str]:
     if lines and "답은" not in lines[-1]:
         out.append("끝 문장에 «답은» 없음")
     return out
+
+
+def warn_issues(s: str) -> list[str]:
+    """**경고만 — 문지기가 아니다.**
+
+    2026-09-13 검수에서 therefore·div·overset·frown·alpha 가 «목록 밖» 으로 8건 걸렸는데 전부
+    멀쩡했다(원장님). 지면에서 깨지는지는 적재기의 **제품 렌더러 검사**가 이미 막으므로,
+    여기서는 세어서 보여 주기만 한다 — 늘 우는 가드는 꺼진다(2026-08-20).
+    """
+    bad = sorted(commands(s) - ALLOWED)
+    return [f"목록 밖 명령 {bad} (경고 — 싣는다)"] if bad else []
 
 
 def outside_issues(s: str) -> list[str]:
@@ -112,7 +120,6 @@ def gauge() -> None:
     probes = [
         ("제어문자", "a\x0crac{1}{2}\n" * 3 + "답은 ①", False),
         ("$ 홀수", GOOD.replace("$x=-4$", "$x=-4"), False),
-        ("목록 밖 명령", GOOD.replace("\\frac{110}{5}", "\\dfrac{110}{5}"), False),
         ("금지 표기", GOOD.replace("$x=-4$", "$$x=-4$$"), False),
         ("문장", "따라서 답은 ④이다.", False),
         ("문장", eight, False),
@@ -121,6 +128,8 @@ def gauge() -> None:
     for name, probe, judge in probes:
         if not any(name in x for x in shape_issues(probe, judge)):
             raise SystemExit(f"[중단] 눈금이 안 걸린다: {name} — 판정을 거부한다")
+    if not warn_issues(GOOD.replace("\\frac{110}{5}", "\\dfrac{110}{5}")) or warn_issues(GOOD):
+        raise SystemExit("[중단] 눈금이 안 걸린다: 목록 밖 명령(경고)")
     if shape_issues(eight, judge=True):
         raise SystemExit("[중단] 보기 판정 문항의 긴 해설까지 잡는다 — 눈금이 틀린다")
     for name, rx in METHODS:
@@ -141,7 +150,7 @@ def grade(exam_dir: pathlib.Path, sheet_dir: pathlib.Path) -> dict:
     drafts = {d["questionNumber"]: d for d in
               json.loads((exam_dir / "drafts.json").read_text(encoding="utf-8"))}
     sheet = json.loads((sheet_dir / "problems.json").read_text(encoding="utf-8"))
-    passed, flags, missing = [], [], []
+    passed, flags, missing, warns = [], [], [], []
     (exam_dir / "sol_ai").mkdir(exist_ok=True)
     for p in sheet:
         n = p["n"]
@@ -176,12 +185,16 @@ def grade(exam_dir: pathlib.Path, sheet_dir: pathlib.Path) -> dict:
                 why.append("앞서 실린 sol_ai 를 치웠다")
             flags.append({"n": n, "why": why})
             continue
+        w = warn_issues(sol)
+        if w:
+            warns.append({"n": n, "warn": w})
         dst.write_text(json.dumps({"answer": got, "solution": sol}, ensure_ascii=False), encoding="utf-8")
         passed.append(n)
     (exam_dir / "solve-flags.json").write_text(
-        json.dumps({"passed": passed, "flags": flags, "missing": missing}, ensure_ascii=False, indent=1),
+        json.dumps({"passed": passed, "flags": flags, "missing": missing, "warnings": warns},
+                   ensure_ascii=False, indent=1),
         encoding="utf-8")
-    return {"passed": passed, "flags": flags, "missing": missing}
+    return {"passed": passed, "flags": flags, "missing": missing, "warnings": warns}
 
 
 def main() -> int:
@@ -189,7 +202,7 @@ def main() -> int:
         sys.stdout.reconfigure(encoding="utf-8")
     exam_dir, sheet_dir = pathlib.Path(sys.argv[1]), pathlib.Path(sys.argv[2])
     r = grade(exam_dir, sheet_dir)
-    print(f"통과 {len(r['passed'])} · 걸림 {len(r['flags'])} · 파일 없음 {len(r['missing'])}")
+    print(f"통과 {len(r['passed'])} · 걸림 {len(r['flags'])} · 경고 {len(r['warnings'])} · 파일 없음 {len(r['missing'])}")
     for f in r["flags"]:
         print(f"   문{f['n']:>2} {'; '.join(f['why'])}")
     return 1 if r["flags"] or r["missing"] else 0
