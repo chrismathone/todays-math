@@ -569,6 +569,7 @@ export default function UnifiedWorkspace({
           {opened.has("studio") && (
             <main hidden={view !== "studio"} className={s.studioContent}>
               <StudioView
+                active={view === "studio"}
                 onAdd={add}
                 onExport={() => navigate("export")}
                 importRequest={importRequest}
