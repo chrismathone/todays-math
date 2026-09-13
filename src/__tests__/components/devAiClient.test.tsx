@@ -94,6 +94,25 @@ afterEach(() => {
   localStorage.clear();
 });
 describe("development AI subscription status and task controller", () => {
+  it("notifies queue owners before aborting requests and removes unmounted listeners", async () => {
+    const h = await concurrentHarness();
+    let call!: ReturnType<typeof h.start>;
+    act(() => {
+      call = h.start();
+    });
+    const removed = vi.fn();
+    const unsubscribe = h.result.current.subscribeCancel(removed);
+    unsubscribe();
+    const owner = vi.fn(() => expect(h.pending[0].signal.aborted).toBe(false));
+    h.result.current.subscribeCancel(owner);
+    await act(async () => {
+      h.result.current.cancel();
+      await call;
+    });
+    expect(owner).toHaveBeenCalledTimes(1);
+    expect(removed).not.toHaveBeenCalled();
+    expect(h.pending[0].signal.aborted).toBe(true);
+  });
   it("allows concurrent callers and keeps older completion from clearing newer work", async () => {
     const h = await concurrentHarness();
     let first!: ReturnType<typeof h.start>;

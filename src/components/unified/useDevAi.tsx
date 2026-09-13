@@ -44,6 +44,8 @@ interface DevAiContextValue {
     signal?: AbortSignal,
   ) => Promise<DevAiResponse>;
   cancel: () => void;
+  /** Owners stop queued work synchronously before in-flight calls are aborted. */
+  subscribeCancel: (listener: () => void) => () => void;
 }
 const Context = createContext<DevAiContextValue>({
   status: null,
@@ -59,6 +61,7 @@ const Context = createContext<DevAiContextValue>({
     throw new Error("개발용 AI 연결을 확인해 주세요.");
   },
   cancel: () => {},
+  subscribeCancel: () => () => {},
 });
 export const useDevAi = () => useContext(Context);
 const STORAGE_KEY = "today-math-dev-ai-provider";
@@ -78,6 +81,13 @@ export function DevAiProvider({ children }: { children: ReactNode }) {
   const statusRequest = useRef<AbortController | null>(null);
   const activeRequests = useRef(new Map<number, AbortController>());
   const nextRequestId = useRef(0);
+  const cancelListeners = useRef(new Set<() => void>());
+  const subscribeCancel = useCallback((listener: () => void) => {
+    cancelListeners.current.add(listener);
+    return () => {
+      cancelListeners.current.delete(listener);
+    };
+  }, []);
 
   const setProvider = useCallback((next: DevAiProvider) => {
     if (activeRequests.current.size) return;
@@ -144,6 +154,7 @@ export function DevAiProvider({ children }: { children: ReactNode }) {
     };
   }, [loadStatus]);
   const cancel = useCallback(() => {
+    for (const listener of cancelListeners.current) listener();
     for (const controller of activeRequests.current.values())
       controller.abort();
   }, []);
@@ -257,6 +268,7 @@ export function DevAiProvider({ children }: { children: ReactNode }) {
       refresh,
       run,
       cancel,
+      subscribeCancel,
     }),
     [
       status,
@@ -270,6 +282,7 @@ export function DevAiProvider({ children }: { children: ReactNode }) {
       refresh,
       run,
       cancel,
+      subscribeCancel,
     ],
   );
   return <Context.Provider value={value}>{children}</Context.Provider>;
