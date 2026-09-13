@@ -1682,3 +1682,30 @@
     height: calc(100dvh - 138px);
   }
 }
+
+.primaryButton,
+.secondaryButton {
+  min-height: 44px;
+  height: 44px;
+  border-radius: 8px;
+  font-size: 14px;
+  padding: 0 16px;
+}
+.headerActions > button {
+  min-width: 160px;
+}
+.editing .pageTools button {
+  min-width: 44px;
+  height: 44px;
+}
+.editing .pageTools .preciseButton {
+  min-width: 84px;
+}
+.editing .actionBar button {
+  min-height: 44px;
+}
+@media (min-width: 761px) {
+  .outputActions > button {
+    min-width: 144px;
+  }
+}

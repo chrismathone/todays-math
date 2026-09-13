@@ -1493,3 +1493,51 @@
     padding-inline: 20px;
   }
 }
+
+.workspace {
+  --control-height: 44px;
+  --control-radius: 8px;
+}
+.workspace button:not([role="tab"]):not([role="radio"]) {
+  min-height: var(--control-height);
+}
+.primaryButton,
+.outlineButton {
+  height: var(--control-height);
+  min-width: 144px;
+  border-radius: var(--control-radius);
+  font-size: 14px;
+}
+.libraryCard > button {
+  height: auto;
+}
+.searchTrigger,
+.headerPaper {
+  min-height: 44px;
+}
+.sideHeader .sidebarToggle {
+  width: 44px;
+  height: 44px;
+  min-width: 44px;
+}
+.sideHeader .brand {
+  gap: 7px;
+}
+.sideHeader .brand > span:last-child {
+  font-size: 20px;
+}
+.sideHeader .brandMark,
+.sideHeader .brandMark svg {
+  width: 32px;
+  height: 32px;
+}
+@media (max-width: 1050px) and (min-width: 761px) {
+  .sideHeader .brand > span:last-child {
+    font-size: 18px;
+  }
+  .sideHeader .brandMark,
+  .sideHeader .brandMark svg {
+    width: 27px;
+    height: 27px;
+  }
+}

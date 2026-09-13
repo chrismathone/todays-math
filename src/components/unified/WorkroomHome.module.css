@@ -1155,3 +1155,17 @@
     padding: 14px 16px 24px;
   }
 }
+
+.primaryButton,
+.outlineButton,
+.importButton {
+  min-height: 44px;
+  height: 44px;
+  border-radius: 8px;
+  font-size: 14px;
+}
+.quickSearch button {
+  min-height: 44px;
+  height: 44px;
+  border-radius: 7px;
+}
