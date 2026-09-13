@@ -445,7 +445,8 @@
   font-weight: 600;
   white-space: nowrap;
 }
-.saveError {
+.saveError,
+.notice[data-error="true"] {
   background: #fff3ef;
   border-color: #eac9ba;
   color: #963d2a;

@@ -80,7 +80,12 @@ export default function UnifiedWorkspace({
     grade?: string;
     version: number;
   }>({ version: 0 });
-  const [notice, setNotice] = useState("");
+  const [notice, setNoticeMessage] = useState("");
+  const [noticeError, setNoticeError] = useState(false);
+  const setNotice = useCallback((message: string, error = false) => {
+    setNoticeMessage(message);
+    setNoticeError(error);
+  }, []);
   const [sidebarCollapsed, setSidebarCollapsed] = useState(false);
   const [undo, setUndo] = useState<{
     problem: StudioProblem;
@@ -113,7 +118,7 @@ export default function UnifiedWorkspace({
     if (url.href !== window.location.href)
       window.history.pushState(null, "", url);
     window.scrollTo({ top: 0, behavior: "instant" });
-  }, []);
+  }, [setNotice]);
   useEffect(() => {
     try {
       // Restore a browser-only layout preference after hydration.
@@ -156,10 +161,11 @@ export default function UnifiedWorkspace({
   useEffect(() => {
     const dialog = dialogRef.current;
     if (!dialog) return;
-    if (modal && !dialog.open) {
-      dialog.showModal();
+    if (modal) {
+      if (!dialog.open) dialog.showModal();
       if (modal === "search") queryRef.current?.focus();
       if (modal === "new") newTitleRef.current?.focus();
+      if (modal === "help") dialog.querySelector("button")?.focus();
     }
     if (!modal && dialog.open) dialog.close();
   }, [modal]);
@@ -181,7 +187,7 @@ export default function UnifiedWorkspace({
     };
     window.addEventListener("keydown", keydown);
     return () => window.removeEventListener("keydown", keydown);
-  }, [saveNow, toggleSidebar]);
+  }, [saveNow, setNotice, toggleSidebar]);
   const openBank = (filters: { q?: string; grade?: string } = {}) => {
     setBankEntry((current) => ({ ...filters, version: current.version + 1 }));
     navigate("bank");
@@ -261,7 +267,7 @@ export default function UnifiedWorkspace({
     if (!file) return;
     try {
       if (file.size > 20 * 1024 * 1024)
-        throw Error("20 MB 이하의 작업 파일을 선택해 주세요.");
+        return setNotice("20 MB 이하의 작업 파일을 선택해 주세요.", true);
       const value = JSON.parse(await file.text());
       if (importDraft(value)) {
         setUndo(null);
@@ -271,6 +277,7 @@ export default function UnifiedWorkspace({
     } catch {
       setNotice(
         "작업 파일을 읽지 못했습니다. 오늘의수학에서 내보낸 JSON 파일인지 확인해 주세요.",
+        true,
       );
     }
   }
@@ -299,7 +306,14 @@ export default function UnifiedWorkspace({
   );
   return (
     <div className={s.workspace} data-sidebar-collapsed={sidebarCollapsed}>
-      <a className={s.skipLink} href="#workspace-content">
+      <a
+        className={s.skipLink}
+        href="#workspace-content"
+        onClick={(event) => {
+          event.preventDefault();
+          document.getElementById("workspace-content")?.focus();
+        }}
+      >
         본문으로 건너뛰기
       </a>
       <input
@@ -496,8 +510,8 @@ export default function UnifiedWorkspace({
           </div>
         )}
         {notice && (
-          <div className={s.notice} role="status">
-            <Icon name="check" size={18} />
+          <div className={s.notice} data-error={noticeError} role={noticeError ? "alert" : "status"}>
+            <Icon name={noticeError ? "warning" : "check"} size={18} />
             <span>{notice}</span>
             {undo && undo.draftId === draft.id && (
               <button className={s.undoButton} onClick={undoRemove}>
