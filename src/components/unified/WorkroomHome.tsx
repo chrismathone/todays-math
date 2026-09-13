@@ -364,19 +364,6 @@ export default function WorkroomHome({
             </button>
           </section>
           <TeachingOverview onOpen={() => onNavigate("teaching")} />
-          <div className={s.helpNote}>
-            <span>
-              <Icon name="check" size={17} />
-            </span>
-            <div>
-              <strong>학년에 맞게, 원본은 안전하게</strong>
-              <p>
-                초등 가분수는 대분수로 표시합니다.
-                <br />
-                중등 이상과 저장 원문은 그대로 유지해요.
-              </p>
-            </div>
-          </div>
         </aside>
       </div>
     </main>
