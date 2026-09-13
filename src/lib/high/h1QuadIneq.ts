@@ -54,7 +54,7 @@ import {
   type Iv,
   type Rel,
 } from "./h1LinIneq";
-import { eul, ga, gwa, ira } from "./josa";
+import { eul, eun, ga, gwa, ira } from "./josa";
 import { q, qAdd, qTex, surd, surdPmTex, surdTex, type Q } from "./numbers";
 import {
   $,
@@ -2046,6 +2046,605 @@ function t17(rng: Rng): Body {
   });
 }
 
+// ───────────────────────────── 18 ─────────────────────────────
+// 이차방정식의 근의 판별과 이차부등식
+// 꼴 0 (기본·대표): x²+(k+p)x+k²+q=0 이 서로 다른 두 실근(실근) — k 의 범위 (답이 구간, 오답 넷)
+// 꼴 1 (응용): 한 방정식은 허근, 다른 방정식은 서로 다른 두 실근 — 정수 k 의 개수
+// 꼴 2 (응용): 한 방정식은 중근(→ a), 다른 방정식은 허근 — 정수 b 의 최댓값
+
+let discCache: [number, number, number][] | null = null;
+
+/** p²−3q 가 양의 제곱수 s² 인 (p, q, s) — D(k)=−3k²+2pk+p²−4q 의 근 (p±2s)/3 이 유리수. */
+function discTriples(): [number, number, number][] {
+  if (discCache) return discCache;
+  const out: [number, number, number][] = [];
+  for (let p = -4; p <= 4; p += 1)
+    for (let q0 = -6; q0 <= 6; q0 += 1) {
+      const s = isqrt(p * p - 3 * q0);
+      if (s !== null && s > 0) out.push([p, q0, s]);
+    }
+  discCache = out;
+  return out;
+}
+
+function t18(rng: Rng): Body {
+  const mode = randInt(rng, 0, 2);
+  return attempt<Body>((): Body | null => {
+    if (mode === 0) {
+      const [p, q0, s] = pickOne(rng, discTriples());
+      const strict = rng() < 0.6;
+      const lo = q(p - 2 * s, 3);
+      const hi = q(p + 2 * s, 3);
+      const iv = (a: Q, b: Q, cl: boolean): string =>
+        ivTex({ lo: { at: a, closed: cl }, hi: { at: b, closed: cl } }, "k");
+      const ans = iv(lo, hi, !strict);
+      const distractors = pickDistractors(rng, ans, [
+        iv(lo, hi, strict),
+        iv(q(p - s, 3), q(p + s, 3), !strict),
+        iv(q(-p - 2 * s, 3), q(-p + 2 * s, 3), !strict),
+        iv(q(p - 2 * s, 6), q(p + 2 * s, 6), !strict),
+        ivTex(
+          { lo: { at: lo, closed: true }, hi: { at: hi, closed: false } },
+          "k",
+        ),
+      ]);
+      if (distractors === null) return null;
+      const kx = p === 0 ? "kx" : `(k${plusConst(p)})x`;
+      const eq = `x^{2}+${kx}+k^{2}${plusConst(q0)}=0`;
+      const cond = strict ? "서로 다른 두 실근" : "실근";
+      const dRel = strict ? ">" : "\\ge ";
+      const flip = strict ? "<" : "\\le ";
+      return {
+        content: `이차방정식 $${eq}$${ga(eq)} ${cond}을 갖도록 하는 실수 $k$의 값의 범위를 구하시오.`,
+        answer: $(ans),
+        solution: [
+          `주어진 이차방정식의 판별식을 $D$라 하면 ${cond}을 가지려면 $D=${p === 0 ? "k^{2}" : `(k${plusConst(p)})^{2}`}-${q0 === 0 ? "4k^{2}" : `4(k^{2}${plusConst(q0)})`}${dRel}0$`,
+          `$${polyTex([p * p - 4 * q0, 2 * p, -3], "k")}${dRel}0$, 즉 $${polyTex([-(p * p - 4 * q0), -2 * p, 3], "k")}${flip}0$`,
+          `따라서 $${ans}$`,
+        ].join("\n"),
+        difficulty: "기본",
+        facts: { mode, p, q: q0, strict: strict ? 1 : 0 },
+        distractors,
+      };
+    }
+    if (mode === 1) {
+      const s1 = randInt(rng, 2, 5);
+      const c1 = s1 * s1;
+      const t = randInt(rng, 1, 4);
+      const r1 = -1 - t;
+      const r2 = t;
+      const c2 = t * (1 + t);
+      const ks: number[] = [];
+      for (let k = -s1 + 1; k < s1; k += 1) if (k < r1 || k > r2) ks.push(k);
+      if (ks.length < 2) return null;
+      const eq1 = `x^{2}-2kx+${c1}=0`;
+      const eq2 = `x^{2}+2kx-k+${c2}=0`;
+      return {
+        content: `이차방정식 $${eq1}$${eun(eq1)} 허근을 갖고, 이차방정식 $${eq2}$${eun(eq2)} 서로 다른 두 실근을 갖도록 하는 정수 $k$의 개수를 구하시오.`,
+        answer: numAnswer(ks.length),
+        solution: [
+          `$${eq1}$의 판별식을 $D_{1}$${ira("D_{1}")} 하면 $\\dfrac{D_{1}}{4}=k^{2}-${c1}<0$이므로 $${-s1}<k<${s1}$`,
+          `$${eq2}$의 판별식을 $D_{2}$${ira("D_{2}")} 하면 $\\dfrac{D_{2}}{4}=k^{2}+k-${c2}>0$, $(k${plusConst(-r1)})(k${plusConst(-r2)})>0$이므로 $k<${r1}$ 또는 $k>${r2}$`,
+          `두 조건을 동시에 만족시키는 정수 $k$는 ${intsText(ks)}이므로 그 개수는 $${ks.length}$이다.`,
+        ].join("\n"),
+        difficulty: "응용",
+        facts: { mode, c1, c2 },
+      };
+    }
+    const p = pickOne(rng, [1, -1, 2, -2]);
+    const a0 = nz(rng, -4, 4);
+    const q0 = 2 * p * a0 + p * p;
+    const r = randInt(rng, -3, 3);
+    const t = randInt(rng, -4, 4);
+    // 둘째: (b+r)² − 4(a0+b+t) < 0 ⇔ b² + (2r−4)b + r² − 4a0 − 4t < 0
+    const B1 = 2 * r - 4;
+    const B0 = r * r - 4 * a0 - 4 * t;
+    const rs = rootsQ(1, B1, B0);
+    if (rs === null || rs.length !== 2) return null;
+    const [lo, hi] = rs as [Q, Q];
+    const ans = qIsInt(hi) ? hi.n - 1 : qFloor(hi);
+    if (qCmp(q(ans), lo) <= 0) return null;
+    const bx = r === 0 ? "bx" : `(b${plusConst(r)})x`;
+    const eq1 = `x^{2}+2(a${plusConst(p)})x+a^{2}${plusConst(q0)}=0`;
+    const eq2 = `x^{2}-${bx}+a+b${plusConst(t)}=0`;
+    const eq2a = `x^{2}-${bx}+b${plusConst(a0 + t)}=0`;
+    const aSq = q0 === 0 ? "-a^{2}" : `-(a^{2}${plusConst(q0)})`;
+    const bSq = r === 0 ? "b^{2}" : `(b${plusConst(r)})^{2}`;
+    const b4 = a0 + t === 0 ? "4b" : `4(b${plusConst(a0 + t)})`;
+    return {
+      content: `이차방정식 $${eq1}$${eun(eq1)} 중근을 갖고, 이차방정식 $${eq2}$${eun(eq2)} 허근을 갖도록 하는 정수 $b$의 최댓값을 구하시오. (단, $a$는 실수이다.)`,
+      answer: numAnswer(ans),
+      solution: [
+        `$${eq1}$의 판별식을 $D_{1}$${ira("D_{1}")} 하면 $\\dfrac{D_{1}}{4}=(a${plusConst(p)})^{2}${aSq}=0$, 즉 $${linTex([[2 * p, "a"]], p * p - q0)}=0$이므로 $a=${a0}$`,
+        `$a=${a0}$일 때 둘째 방정식은 $${eq2a}$이고, 판별식을 $D_{2}$${ira("D_{2}")} 하면 $D_{2}=${bSq}-${b4}<0$, 즉 $${polyTex([B0, B1, 1], "b")}<0$`,
+        `$${factoredTex(1, [lo, hi]).replace(/x/g, "b")}<0$이므로 $${qTex(lo)}<b<${qTex(hi)}$`,
+        `따라서 정수 $b$의 최댓값은 $${ans}$이다.`,
+      ].join("\n"),
+      difficulty: "응용",
+      facts: { mode, p, q: q0, r, t },
+    };
+  });
+}
+
+// ───────────────────────────── 19 ─────────────────────────────
+// 이차방정식의 실근의 부호
+// 꼴 0 (기본·대표): 두 근이 모두 양수 — a 의 값의 범위 (답이 구간, 오답 넷)
+// 꼴 1 (응용): kx²+Bkx+C=0 의 두 근이 모두 음수 — k 의 최솟값
+// 꼴 2 (응용): 두 근의 부호가 다르다(양수인 근의 절댓값이 더 크다) — k 의 범위 (답이 구간, 오답 넷)
+
+function t19(rng: Rng): Body {
+  const mode = randInt(rng, 0, 2);
+  return attempt<Body>((): Body | null => {
+    if (mode === 0) {
+      const p = randInt(rng, -4, 6);
+      const sigma = pickOne(rng, [1, -1, 2, -2]);
+      const r = nz(rng, -6, 6);
+      // D ≥ 0 · 합 a+p > 0 · 곱 σa+r > 0
+      const Dco: [number, number, number] = [
+        p * p - 4 * r,
+        2 * p - 4 * sigma,
+        1,
+      ];
+      if (rootsQ(1, Dco[1], Dco[0]) === null) return null;
+      const dSol = quadSol(1, Dco[1], Dco[0], "ge");
+      const sumRay = rayIv(">", q(-p));
+      const prodRay = rayIv(sigma > 0 ? ">" : "<", q(-r, sigma));
+      const sol = ivsMeet(ivsMeet(dSol, [sumRay]), [prodRay]);
+      if (sol.length !== 1 || !sol[0]!.lo || !sol[0]!.hi) return null;
+      const s = sol[0]!;
+      if (qCmp(s.lo!.at, s.hi!.at) >= 0) return null;
+      const ans = ivTex(s, "a");
+      const noD = ivsMeet([sumRay], [prodRay]);
+      const flipAll: Iv = {
+        lo: { at: s.lo!.at, closed: !s.lo!.closed },
+        hi: { at: s.hi!.at, closed: !s.hi!.closed },
+      };
+      // 틀리기 쉬운 자리 — 판별식 조건을 빠뜨림 · 두 근의 합의 부호를 거꾸로(α+β=−(a+p))
+      const wrongSum = ivsMeet(ivsMeet(dSol, [rayIv("<", q(-p))]), [prodRay]);
+      const cands = [ivTex(flipAll, "a")];
+      for (const alt of [noD, wrongSum]) {
+        const w = alt.length === 1 ? alt[0]! : null;
+        if (w?.lo && w.hi && qCmp(w.lo.at, w.hi.at) < 0)
+          cands.push(ivTex(w, "a"));
+      }
+      cands.push(
+        ivTex(
+          { lo: { ...s.lo!, closed: true }, hi: { ...s.hi!, closed: true } },
+          "a",
+        ),
+        ivTex(
+          { lo: { ...s.lo!, closed: false }, hi: { ...s.hi!, closed: false } },
+          "a",
+        ),
+        ivTex(
+          {
+            lo: { at: q(-s.hi!.at.n, s.hi!.at.d), closed: s.hi!.closed },
+            hi: { at: q(-s.lo!.at.n, s.lo!.at.d), closed: s.lo!.closed },
+          },
+          "a",
+        ),
+      );
+      const distractors = pickDistractors(rng, ans, cands);
+      if (distractors === null) return null;
+      const ax = p === 0 ? "ax" : `(a${plusConst(p)})x`;
+      const prodT = linTex([[sigma, "a"]], r);
+      const eq = `x^{2}-${ax}${sigma > 0 ? "+" : ""}${prodT}=0`;
+      const dText =
+        dSol.length === 1 && !dSol[0]!.lo && !dSol[0]!.hi
+          ? "$a$는 모든 실수"
+          : ivsText(dSol, "a");
+      return {
+        content: `이차방정식 $${eq}$의 두 근이 모두 양수일 때, 실수 $a$의 값의 범위를 구하시오.`,
+        answer: $(ans),
+        solution: [
+          `두 근을 $\\alpha$, $\\beta$, 판별식을 $D$라 하면 두 근이 모두 양수이려면`,
+          `(i) $D=${p === 0 ? "a^{2}" : `(a${plusConst(p)})^{2}`}-4(${prodT})\\ge 0$, 즉 $${polyTex(Dco, "a")}\\ge 0$에서 ${dText}`,
+          `(ii) $\\alpha+\\beta=${p === 0 ? "a" : `a${plusConst(p)}`}>0$에서 $a>${-p}$`,
+          `(iii) $\\alpha\\beta=${prodT}>0$에서 $a${sigma > 0 ? ">" : "<"}${qTex(q(-r, sigma))}$`,
+          `(i)~(iii)에서 $${ans}$`,
+        ].join("\n"),
+        difficulty: "기본",
+        facts: { mode, p, sigma, r },
+        distractors,
+      };
+    }
+    if (mode === 1) {
+      const B = randInt(rng, 2, 5);
+      const C = randInt(rng, 1, 9);
+      const K = q(4 * C, B * B);
+      const eq = `kx^{2}+${B}kx+${C}=0`;
+      return {
+        content: `이차방정식 $${eq}$의 두 근이 모두 음수가 되도록 하는 실수 $k$의 최솟값을 구하시오.`,
+        answer: qAnswer(K),
+        solution: [
+          `두 근을 $\\alpha$, $\\beta$, 판별식을 $D$라 하면`,
+          `(i) $D=${B * B}k^{2}-${4 * C}k\\ge 0$, $k(${B * B}k-${4 * C})\\ge 0$이므로 $k<0$ 또는 $k\\ge ${qTex(K)}$ ($k\\ne 0$)`,
+          `(ii) $\\alpha+\\beta=-${B}<0$`,
+          `(iii) $\\alpha\\beta=\\dfrac{${C}}{k}>0$에서 $k>0$`,
+          `(i)~(iii)에서 $k\\ge ${qTex(K)}$이므로 실수 $k$의 최솟값은 $${qTex(K)}$이다.`,
+        ].join("\n"),
+        difficulty: "응용",
+        facts: { mode, B, C },
+      };
+    }
+    const beta = randInt(rng, 1, 4);
+    const s = randInt(rng, 1, 6);
+    const variant = randInt(rng, 0, 1);
+    const iv = (lo: number, hi: number, cl = false): string =>
+      ivTex(
+        { lo: { at: q(lo), closed: cl }, hi: { at: q(hi), closed: cl } },
+        "k",
+      );
+    const ans = variant === 0 ? iv(-s, s) : iv(-s, 0);
+    const distractors = pickDistractors(rng, ans, [
+      iv(-s, s),
+      iv(-s, s, true),
+      iv(-s, 0),
+      iv(0, s),
+      iv(-s * s, s * s),
+      iv(-s, 0, true),
+    ]);
+    if (distractors === null) return null;
+    const eq = `x^{2}${term(beta, "kx")}+k^{2}-${s * s}=0`;
+    const cond =
+      variant === 0
+        ? "두 근의 부호가 서로 다를 때"
+        : "두 근의 부호가 서로 다르고, 양수인 근의 절댓값이 음수인 근의 절댓값보다 클 때";
+    return {
+      content: `이차방정식 $${eq}$의 ${cond}, 실수 $k$의 값의 범위를 구하시오.`,
+      answer: $(ans),
+      solution: [
+        `두 근을 $\\alpha$, $\\beta$라 하면 두 근의 부호가 서로 다르려면 $\\alpha\\beta=k^{2}-${s * s}<0$이므로 $${-s}<k<${s}$`,
+        ...(variant === 0
+          ? []
+          : [
+              `양수인 근의 절댓값이 더 크려면 $\\alpha+\\beta=${term(-beta, "k", true)}>0$이므로 $k<0$`,
+            ]),
+        `따라서 $${ans}$`,
+      ].join("\n"),
+      difficulty: "응용",
+      facts: { mode, beta, s, variant },
+      distractors,
+    };
+  });
+}
+
+// ───────────────────────────── 20 ─────────────────────────────
+// 정수인 해의 조건이 주어진 연립이차부등식
+// 꼴 0 (기본·대표): 한 근이 a 인 둘째 부등식 — 정수인 해가 N개일 때 a 의 범위 (답이 구간, 오답 넷)
+// 꼴 1 (심화하): 정수인 해가 주어진 몇 개뿐일 때 a 의 범위 (답이 구간, 오답 넷)
+// 꼴 2 (심화하): |x−a|≤1 과 이차부등식 — 정수인 해의 합이 S 일 때 정수 a
+
+function t20(rng: Rng): Body {
+  const mode = randInt(rng, 0, 2);
+  return attempt<Body>((): Body | null => {
+    const band = (lo: number, hi: number, lc: boolean, hc: boolean): string =>
+      ivTex(
+        { lo: { at: q(lo), closed: lc }, hi: { at: q(hi), closed: hc } },
+        "a",
+      );
+    if (mode === 0) {
+      const [p, qq] = (distinctInts(rng, -5, 7, 2) as [number, number]).sort(
+        (x, y) => x - y,
+      );
+      const N = randInt(rng, 1, 2);
+      if (qq - p - 1 <= N) return null;
+      const fx = p - randInt(rng, 0, 3);
+      const ans = band(p + N, p + N + 1, true, false);
+      const distractors = pickDistractors(rng, ans, [
+        band(p + N, p + N + 1, false, true),
+        band(p + N, p + N + 1, true, true),
+        band(p + N, p + N + 1, false, false),
+        band(p + N - 1, p + N, true, false),
+        band(p + N + 1, p + N + 2, true, false),
+      ]);
+      if (distractors === null) return null;
+      const first = `${polyTex([p * qq, -(p + qq), 1])}<0`;
+      const ax = fx === 0 ? "ax" : `(a${plusConst(fx)})x`;
+      const second = `x^{2}-${ax}${fx === 0 ? "" : term(fx, "a")}\\le 0`;
+      const sys = casesTex([first, second]);
+      const ints = Array.from({ length: N }, (_, i) => p + 1 + i);
+      return {
+        content: `연립부등식 $${sys}$${eul(sys)} 만족시키는 정수 $x$가 오직 $${N}$개일 때, 실수 $a$의 값의 범위를 구하시오.`,
+        answer: $(ans),
+        solution: [
+          quadStep(1, -(p + qq), p * qq, "<"),
+          `$${second}$에서 $${factorParenText(fx)}(x-a)\\le 0$`,
+          `$a\\le ${fx}$이면 공통부분이 없으므로 $a>${fx}$이고, 이때 둘째 부등식의 해는 $${fx}\\le x\\le a$`,
+          `공통부분에 속하는 정수가 ${intsText(ints)}뿐이려면 $${p + N}\\le a<${p + N + 1}$`,
+          `따라서 $${ans}$`,
+        ].join("\n"),
+        difficulty: "기본",
+        facts: { mode, p, q: qq, f: fx, N },
+        distractors,
+      };
+    }
+    if (mode === 1) {
+      const [r1, r2] = (distinctInts(rng, -4, 4, 2) as [number, number]).sort(
+        (x, y) => x - y,
+      );
+      const N = randInt(rng, 2, 3);
+      const rho2 = 2 * r2 + 1;
+      const ints = Array.from({ length: N }, (_, i) => r1 - N + i);
+      const lo = r1 - N - 1;
+      const ans = band(lo, lo + 1, true, false);
+      const distractors = pickDistractors(rng, ans, [
+        band(lo, lo + 1, false, true),
+        band(lo, lo + 1, true, true),
+        band(lo, lo + 1, false, false),
+        band(lo + 1, lo + 2, true, false),
+        band(lo - 1, lo, true, false),
+      ]);
+      if (distractors === null) return null;
+      const first = `x^{2}${termIf(-(r1 + r2), "x")}>${-r1 * r2 || 0}`;
+      const second = `2x^{2}-2ax${term(-rho2, "x")}${term(rho2, "a")}<0`;
+      const sys = casesTex([first, second]);
+      const listed =
+        N === 2
+          ? `$${ints[0]}$${gwa(String(ints[0]))} $${ints[1]}$`
+          : ints.map((n) => $(n)).join(", ");
+      return {
+        content: `연립부등식 $${sys}$${eul(sys)} 만족시키는 정수 $x$가 ${listed}뿐일 때, 실수 $a$의 값의 범위를 구하시오.`,
+        answer: $(ans),
+        solution: [
+          `$${first}$에서 $${factoredTex(1, [q(r1), q(r2)])}>0$이므로 $x<${r1}$ 또는 $x>${r2}$`,
+          `$${second}$에서 $(${polyTex([-rho2, 2])})(x-a)<0$이고, $a<${qTex(q(rho2, 2))}$일 때 해는 $a<x<${qTex(q(rho2, 2))}$`,
+          `$${r2}<x<${qTex(q(rho2, 2))}$에는 정수가 없으므로, 공통부분에 속하는 정수가 ${listed}뿐이려면 $${lo}\\le a<${lo + 1}$`,
+          `따라서 $${ans}$`,
+        ].join("\n"),
+        difficulty: "심화하",
+        facts: { mode, r1, r2, N },
+        distractors,
+      };
+    }
+    const [u, v] = (distinctInts(rng, -5, 8, 2) as [number, number]).sort(
+      (x, y) => x - y,
+    );
+    if (v - u < 3) return null;
+    const a0 = randInt(rng, u + 1, v - 1);
+    const S = 3 * a0;
+    // 합이 S 가 되는 정수 a 가 하나뿐인지 — 끝에 걸치는 a 도 따져 본다
+    const sumFor = (a: number): number => {
+      let acc = 0;
+      for (let x = a - 1; x <= a + 1; x += 1) if (x >= u && x <= v) acc += x;
+      return acc;
+    };
+    const hits: number[] = [];
+    for (let a = u - 3; a <= v + 3; a += 1) {
+      const any = [a - 1, a, a + 1].some((x) => x >= u && x <= v);
+      if (any && sumFor(a) === S) hits.push(a);
+    }
+    if (hits.length !== 1 || a0 === 0) return null;
+    const qRow = `${polyTex([u * v, -(u + v), 1])}\\le 0`;
+    const sys = casesTex(["|x-a|\\le 1", qRow]);
+    return {
+      content: `연립부등식 $${sys}$${eul(sys)} 만족시키는 모든 정수 $x$의 값의 합이 $${S}$일 때, 정수 $a$의 값을 구하시오.`,
+      answer: numAnswer(a0),
+      solution: [
+        `$|x-a|\\le 1$에서 $a-1\\le x\\le a+1$`,
+        quadStep(1, -(u + v), u * v, "le"),
+        `$${u + 1}\\le a\\le ${v - 1}$이면 정수인 해는 $a-1$, $a$, $a+1$이므로 그 합은 $3a$`,
+        `$a$가 $${u - 1}$, $${u}$, $${v}$, $${v + 1}$이면 정수인 해의 합은 각각 $${u}$, $${2 * u + 1}$, $${2 * v - 1}$, $${v}$이고, 어느 것도 $${S}$${gwa(String(S))} 같지 않다. (그 밖의 $a$에서는 정수인 해가 없다.)`,
+        `따라서 $3a=${S}$에서 $a=${a0}$`,
+      ].join("\n"),
+      difficulty: "심화하",
+      facts: { mode, u, v, S },
+    };
+  });
+}
+
+// ───────────────────────────── 21 ─────────────────────────────
+// 이차방정식의 실근의 위치
+// 꼴 0 (기본·대표): x²−2kx+s²=0 의 두 근이 모두 p 보다 크다 — k 의 최솟값
+// 꼴 1 (응용): 두 근 사이에 p 가 있다 — k 의 범위 (답이 구간, 오답 넷)
+// 꼴 2 (심화하): 두 근이 모두 m₁ 과 m₂ 사이에 있다 — k 의 범위 (답이 구간, 오답 넷)
+// 꼴 3 (심화하): 두 근이 각각 (u, u+1), (w, w+1) 에 있다 — k 의 범위 (답이 구간, 오답 넷)
+
+/** 일차식 `ck+d` 가 부등호 rel 을 만족하는 k (c≠0) — 반직선. */
+function kRay(c: number, d: number, rel: Rel): Iv {
+  return rayIv(c > 0 ? rel : flipRel(rel), q(-d, c));
+}
+
+function t21(rng: Rng): Body {
+  const mode = randInt(rng, 0, 3);
+  return attempt<Body>((): Body | null => {
+    if (mode === 0) {
+      const s = randInt(rng, 2, 5);
+      const p = randInt(rng, 1, s - 1);
+      const top = q(p * p + s * s, 2 * p);
+      const eq = `x^{2}-2kx+${s * s}`;
+      return {
+        content: `이차방정식 $${eq}=0$의 두 근이 모두 $${p}$보다 클 때, 실수 $k$의 최솟값을 구하시오.`,
+        answer: numAnswer(s),
+        solution: [
+          `$f(x)=${eq}$${ira(eq)} 하자.`,
+          `(i) 판별식을 $D$라 하면 $\\dfrac{D}{4}=k^{2}-${s * s}\\ge 0$이므로 $k\\le ${-s}$ 또는 $k\\ge ${s}$`,
+          `(ii) $f(${p})=${linTex([[-2 * p, "k"]], p * p + s * s)}>0$이므로 $k<${qTex(top)}$`,
+          `(iii) 축의 방정식이 $x=k$이므로 $k>${p}$`,
+          `(i)~(iii)에서 $${s}\\le k<${qTex(top)}$이므로 실수 $k$의 최솟값은 $${s}$이다.`,
+        ].join("\n"),
+        difficulty: "기본",
+        facts: { mode, p, s },
+      };
+    }
+    if (mode === 1) {
+      const p = randInt(rng, -3, 3);
+      const al = pickOne(rng, [1, -1]);
+      const be = randInt(rng, -3, 3);
+      const gm = randInt(rng, -3, 3);
+      const de = randInt(rng, -5, 5);
+      const c = al * p + gm;
+      const d = p * p + be * p + de;
+      if (c === 0) return null;
+      const ray = kRay(c, d, "<");
+      const K = q(-d, c);
+      const relK: Rel = c > 0 ? "<" : ">";
+      const ans = ivTex(ray, "k");
+      const distractors = rayDistractors(rng, relK, K, "k");
+      if (distractors === null) return null;
+      const Bt =
+        be === 0
+          ? al > 0
+            ? "+kx"
+            : "-kx"
+          : al > 0
+            ? `+(k${plusConst(be)})x`
+            : `-(k${plusConst(-be)})x`;
+      const Ct =
+        gm === 0
+          ? plusConst(de)
+          : `${gm > 0 ? "+" : ""}${linTex([[gm, "k"]], de)}`;
+      const lhs = `x^{2}${Bt}${Ct}`;
+      return {
+        content: `이차방정식 $${lhs}=0$의 두 근 사이에 $${p}$${ga(String(p))} 있도록 하는 실수 $k$의 값의 범위를 구하시오.`,
+        answer: $(ans),
+        solution: [
+          `$f(x)=${lhs}$${ira(lhs)} 하면 $y=f(x)$의 그래프는 아래로 볼록하므로 두 근 사이에 $${p}$${ga(String(p))} 있으려면 $f(${p})<0$`,
+          `$f(${p})=${linTex([[c, "k"]], d)}<0$이므로 $${ans}$`,
+        ].join("\n"),
+        difficulty: "응용",
+        facts: { mode, p, al, be, gm, de },
+        distractors,
+      };
+    }
+    if (mode === 2) {
+      const beta = nz(rng, -4, 4);
+      const gamma = randInt(rng, -6, 6);
+      const [m1, m2] = (distinctInts(rng, -3, 4, 2) as [number, number]).sort(
+        (x, y) => x - y,
+      );
+      if (m2 - m1 < 2) return null;
+      // D/4 = k²−βk−γ ≥ 0 · f(m)=m²−2mk+βk+γ > 0 · m₁<k<m₂
+      if (rootsQ(1, -beta, -gamma) === null) return null;
+      const dSol = quadSol(1, -beta, -gamma, "ge");
+      const fAt = (m: number): Iv[] => {
+        const c = beta - 2 * m;
+        const d = m * m + gamma;
+        if (c === 0) return d > 0 ? [REAL_LINE] : [];
+        return [kRay(c, d, ">")];
+      };
+      const axis: Iv = {
+        lo: { at: q(m1), closed: false },
+        hi: { at: q(m2), closed: false },
+      };
+      const sol = ivsMeet(ivsMeet(ivsMeet(dSol, fAt(m1)), fAt(m2)), [axis]);
+      if (sol.length !== 1 || !sol[0]!.lo || !sol[0]!.hi) return null;
+      const s = sol[0]!;
+      if (qCmp(s.lo!.at, s.hi!.at) >= 0 || s.lo!.at.d > 5 || s.hi!.at.d > 5)
+        return null;
+      const ans = ivTex(s, "k");
+      const toggled: Iv = {
+        lo: { at: s.lo!.at, closed: !s.lo!.closed },
+        hi: { at: s.hi!.at, closed: !s.hi!.closed },
+      };
+      const noAxis = ivsMeet(ivsMeet(dSol, fAt(m1)), fAt(m2));
+      const noD = ivsMeet(ivsMeet(fAt(m1), fAt(m2)), [axis]);
+      const cands = [ivTex(toggled, "k")];
+      for (const alt of [noAxis, noD]) {
+        if (alt.length === 1 && alt[0]!.lo && alt[0]!.hi)
+          cands.push(ivTex(alt[0]!, "k"));
+      }
+      cands.push(
+        ivTex(
+          { lo: { ...s.lo!, closed: true }, hi: { ...s.hi!, closed: true } },
+          "k",
+        ),
+        ivTex(
+          { lo: { ...s.lo!, closed: false }, hi: { ...s.hi!, closed: false } },
+          "k",
+        ),
+      );
+      const distractors = pickDistractors(rng, ans, cands);
+      if (distractors === null) return null;
+      const lhs = `x^{2}-2kx${term(beta, "k")}${plusConst(gamma)}`;
+      // fAt 이 빈 배열이면 sol 도 비어 위에서 걸렀다 — 여기 오는 것은 반직선 또는 «늘 성립»
+      const fLine = (m: number): string => {
+        const c = beta - 2 * m;
+        const d = m * m + gamma;
+        if (c === 0)
+          return `$f(${m})=${d}>0$이므로 $k$의 값에 관계없이 성립한다`;
+        return `$f(${m})=${linTex([[c, "k"]], d)}>0$에서 $${ivTex(fAt(m)[0]!, "k")}$`;
+      };
+      const dText =
+        dSol.length === 1 && !dSol[0]!.lo && !dSol[0]!.hi
+          ? "$k$는 모든 실수"
+          : ivsText(dSol, "k");
+      return {
+        content: `이차방정식 $${lhs}=0$의 두 근이 모두 $${m1}$${gwa(String(m1))} $${m2}$ 사이에 있을 때, 실수 $k$의 값의 범위를 구하시오.`,
+        answer: $(ans),
+        solution: [
+          `$f(x)=${lhs}$${ira(lhs)} 하자.`,
+          `(i) 판별식을 $D$라 하면 $\\dfrac{D}{4}=k^{2}${term(-beta, "k")}${plusConst(-gamma)}\\ge 0$에서 ${dText}`,
+          `(ii) ${fLine(m1)}`,
+          `(iii) ${fLine(m2)}`,
+          `(iv) 축의 방정식이 $x=k$이므로 $${m1}<k<${m2}$`,
+          `(i)~(iv)에서 $${ans}$`,
+        ].join("\n"),
+        difficulty: "심화하",
+        facts: { mode, beta, gamma, m1, m2 },
+        distractors,
+      };
+    }
+    const b = nz(rng, -6, 6);
+    const c = randInt(rng, -6, 6);
+    const u = randInt(rng, -3, 1);
+    const w = u + randInt(rng, 1, 3);
+    // f(e) = k(e²+1) + be + c — 한 근이 (e₁, e₂) 에 있다 ⇔ f(e₁)f(e₂) < 0 ⇔ k 가 두 영점 사이
+    const kz = (e: number): Q => q(-(b * e + c), e * e + 1);
+    const between = (e1: number, e2: number): Iv => {
+      const [x, y] = [kz(e1), kz(e2)];
+      const [lo, hi] = qCmp(x, y) < 0 ? [x, y] : [y, x];
+      return { lo: { at: lo, closed: false }, hi: { at: hi, closed: false } };
+    };
+    const I1 = between(u, u + 1);
+    const I2 = between(w, w + 1);
+    const sol = ivsMeet([I1], [I2]);
+    if (sol.length !== 1) return null;
+    const s = sol[0]!;
+    if (qCmp(s.lo!.at, s.hi!.at) >= 0) return null;
+    // k=0 이면 이차방정식이 아니다
+    if (qCmp(s.lo!.at, q(0)) < 0 && qCmp(s.hi!.at, q(0)) > 0) return null;
+    if (s.lo!.at.d > 10 || s.hi!.at.d > 10) return null;
+    const ans = ivTex(s, "k");
+    // 틀리기 쉬운 자리 — 두 조건 가운데 하나만 · 등호를 넣음 · 부호를 거꾸로
+    const cands = [ivTex(I1, "k"), ivTex(I2, "k")];
+    cands.push(
+      ivTex(
+        { lo: { ...s.lo!, closed: true }, hi: { ...s.hi!, closed: true } },
+        "k",
+      ),
+      ivTex(
+        { lo: { ...s.lo!, closed: true }, hi: { ...s.hi!, closed: false } },
+        "k",
+      ),
+      ivTex(
+        {
+          lo: { at: q(-s.hi!.at.n, s.hi!.at.d), closed: false },
+          hi: { at: q(-s.lo!.at.n, s.lo!.at.d), closed: false },
+        },
+        "k",
+      ),
+    );
+    const distractors = pickDistractors(rng, ans, cands);
+    if (distractors === null) return null;
+    const lhs = `kx^{2}${term(b, "x")}+k${plusConst(c)}`;
+    const fval = (e: number): string => linTex([[e * e + 1, "k"]], b * e + c);
+    return {
+      content: `이차방정식 $${lhs}=0$의 두 근을 $\\alpha$, $\\beta$라 할 때, $${u}<\\alpha<${u + 1}$, $${w}<\\beta<${w + 1}$이 되도록 하는 실수 $k$의 값의 범위를 구하시오.`,
+      answer: $(ans),
+      solution: [
+        `$f(x)=${lhs}$${ira(lhs)} 하면 $y=f(x)$의 그래프가 두 구간에서 각각 $x$축과 만나야 한다.`,
+        `$f(${u})f(${u + 1})<0$에서 $(${fval(u)})(${fval(u + 1)})<0$이므로 $${ivTex(I1, "k")}$`,
+        `$f(${w})f(${w + 1})<0$에서 $(${fval(w)})(${fval(w + 1)})<0$이므로 $${ivTex(I2, "k")}$`,
+        `따라서 $${ans}$`,
+      ].join("\n"),
+      difficulty: "심화하",
+      facts: { mode, b, c, u, w },
+      distractors,
+    };
+  });
+}
+
 // ───────────────────────────── 등록 ─────────────────────────────
 
 function entry(
@@ -2097,9 +2696,11 @@ export const H1_QUAD_INEQ: HighTypeEntry[] = [
   entry("15", "절댓값 기호를 포함한 연립부등식의 풀이", SEC.연립, t15),
   entry("16", "해가 주어진 연립이차부등식", SEC.연립, t16),
   entry("17", "연립이차부등식의 활용", SEC.연립, t17),
+  entry("18", "이차방정식의 근의 판별과 이차부등식", SEC.연립, t18),
+  entry("19", "이차방정식의 실근의 부호", SEC.부호, t19),
+  entry("20", "정수인 해의 조건이 주어진 연립이차부등식", SEC.연립, t20),
+  entry("21", "이차방정식의 실근의 위치", SEC.위치, t21),
 ];
-
-const WIP = "작업 중 — h1-ineq 세션이 이어서 만든다(2026-09-13)";
 
 export const H1_QUAD_INEQ_HOLD: HighHold[] = [
   {
@@ -2107,8 +2708,4 @@ export const H1_QUAD_INEQ_HOLD: HighHold[] = [
     reason:
       "포물선·직선 그래프를 읽고 푸는 유형 — 그림이 있어야 성립한다. 물결 2 funcGraph 로 넘긴다(좌표로 때우지 않는다, 09 §4)",
   },
-  ...["18", "19", "20", "21"].map((n) => ({
-    key: `${BOOK}|${MINOR}|${n}`,
-    reason: WIP,
-  })),
 ];

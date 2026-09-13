@@ -133,7 +133,232 @@ function qPair(f: Fact): { p1: Pred; p2: Pred; crit: F[] } {
   };
 }
 
+/** `A x² + B x + C` 의 값(정확한 유리수) */
+const valF = (A: F, B: F, C: F, x: F): F =>
+  fAdd(fAdd(fMul(A, fMul(x, x)), fMul(B, x)), C);
+
+/**
+ * `A x² + B x + C = 0` 의 두 실근을 **근의 공식으로**(작은 것부터, 부동소수) — 허근이면 `null`.
+ * 제품은 근의 위치·부호를 판별식·합·곱·경곗값으로 따진다. 여기는 근을 직접 구해 본다(다른 길).
+ * 판별식의 부호만은 정확한 유리수로 가른다 — 중근에서 `−0.000…` 으로 흔들리지 않게. 근이 경계에
+ * 딱 걸리는지는 부르는 쪽이 `valF` 로 정확히 본다.
+ */
+function realRootsF(A: F, B: F, C: F): [number, number] | null {
+  const D = fSub(fMul(B, B), fMul(fr(4), fMul(A, C)));
+  if (D.n < 0) return null;
+  const [a, b, d] = [fNum(A), fNum(B), Math.sqrt(fNum(D))];
+  const r1 = (-b - d) / (2 * a);
+  const r2 = (-b + d) / (2 * a);
+  return r1 < r2 ? [r1, r2] : [r2, r1];
+}
+
+/**
+ * 조건을 만족시키는 k 의 **아래 끝** — 1/64 격자에서 처음 참인 점을 찾고, 바로 앞 칸과의 사이를
+ * 이분법으로 좁힌다. «최솟값» 을 묻는 유형에 쓴다(제품은 부등식을 풀어 끝점을 바로 쓴다).
+ */
+function lowerEdge(ok: (k: number) => boolean): number {
+  let g: number | null = null;
+  for (let n = -60 * 64; n <= 60 * 64 && g === null; n += 1)
+    if (ok(n / 64)) g = n / 64;
+  expect(g, "조건을 만족시키는 k 가 있다").not.toBeNull();
+  expect(g! > -60, "아래로 막혀 있다").toBe(true);
+  let [lo, hi] = [g! - 1 / 64, g!];
+  for (let i = 0; i < 80; i += 1) {
+    const c = (lo + hi) / 2;
+    if (ok(c)) hi = c;
+    else lo = c;
+  }
+  return hi;
+}
+
 const VERIFY: Record<string, (f: Fact) => Expect> = {
+  "18": (f) => {
+    if (f.mode === 0) {
+      const [p, q0] = [num(f, "p"), num(f, "q")];
+      // 판별식을 k 의 식으로 정리하지 않고 **그대로** 값 매긴다 — (k+p)²−4(k²+q)
+      const D = (k: F): F => {
+        const B = fAdd(k, fr(p));
+        return fSub(fMul(B, B), fMul(fr(4), fAdd(fMul(k, k), fr(q0))));
+      };
+      const r = f.strict === 1 ? ">" : "ge";
+      return { v: "k", prop: (k) => relHolds(r, D(k), fr(0)) };
+    }
+    if (f.mode === 1) {
+      const [c1, c2] = [num(f, "c1"), num(f, "c2")];
+      // 두 방정식의 판별식을 정수 k 마다 그대로 — (2k)²−4c₁ < 0 · (2k)²−4(c₂−k) > 0
+      return intsIn(
+        -60,
+        60,
+        (k) => 4 * k * k - 4 * c1 < 0 && 4 * k * k - 4 * (c2 - k) > 0,
+      ).length;
+    }
+    const [p, q0, r, t] = [num(f, "p"), num(f, "q"), num(f, "r"), num(f, "t")];
+    // a 는 첫 방정식이 중근이 되는 값 — 정수를 하나하나 대입해 찾는다
+    const as = intsIn(
+      -60,
+      60,
+      (a) => (2 * (a + p)) ** 2 - 4 * (a * a + q0) === 0,
+    );
+    expect(as, "중근이 되는 a 는 하나").toHaveLength(1);
+    const a = as[0]!;
+    const bs = intsIn(-200, 200, (b) => (b + r) ** 2 - 4 * (a + b + t) < 0);
+    expect(bs.length, "허근이 되는 정수 b 가 있다").toBeGreaterThan(0);
+    return bs[bs.length - 1]!;
+  },
+
+  "19": (f) => {
+    if (f.mode === 0) {
+      const [p, sg, r] = [num(f, "p"), num(f, "sigma"), num(f, "r")];
+      return {
+        v: "a",
+        prop: (a) => {
+          // 지면 그대로 — x² − (a+p)x + σa + r
+          const C = fAdd(fMul(fr(sg), a), fr(r));
+          if (C.n === 0) return false; // 0 이 근이면 «모두 양수» 가 아니다
+          const rs = realRootsF(fr(1), fNeg(fAdd(a, fr(p))), C);
+          return rs !== null && rs[0] > 0;
+        },
+      };
+    }
+    if (f.mode === 1) {
+      const [B, C] = [num(f, "B"), num(f, "C")];
+      const ok = (k: number): boolean => {
+        if (k === 0) return false;
+        const D = B * B * k * k - 4 * C * k;
+        if (D < 0) return false;
+        const d = Math.sqrt(D);
+        return (-B * k + d) / (2 * k) < 0 && (-B * k - d) / (2 * k) < 0;
+      };
+      expect(intsIn(-60, -1, ok), "음수 k 는 안 된다").toHaveLength(0);
+      return lowerEdge(ok);
+    }
+    const [beta, s, variant] = [num(f, "beta"), num(f, "s"), num(f, "variant")];
+    return {
+      v: "k",
+      prop: (k) => {
+        const C = fSub(fMul(k, k), fr(s * s));
+        if (C.n === 0) return false; // 0 이 근
+        const rs = realRootsF(fr(1), fMul(fr(beta), k), C);
+        if (!rs || !(rs[0] < 0 && rs[1] > 0)) return false;
+        return variant === 0 || Math.abs(rs[1]) > Math.abs(rs[0]);
+      },
+    };
+  },
+
+  "20": (f) => {
+    if (f.mode === 0) {
+      const [p, qq, fx, N] = [
+        num(f, "p"),
+        num(f, "q"),
+        num(f, "f"),
+        num(f, "N"),
+      ];
+      const first = qPred(1, -(p + qq), p * qq, 0);
+      return {
+        v: "a",
+        prop: (a) => {
+          // 둘째 줄은 지면 그대로 — x² − (a+f)x + f·a ≤ 0
+          const second: Pred = (x) =>
+            fCmp(
+              valF(fr(1), fNeg(fAdd(a, fr(fx))), fMul(fr(fx), a), x),
+              fr(0),
+            ) <= 0;
+          return intsWhere(and(first, second), -80, 80).length === N;
+        },
+      };
+    }
+    if (f.mode === 1) {
+      const [r1, r2, N] = [num(f, "r1"), num(f, "r2"), num(f, "N")];
+      const rho = 2 * r2 + 1;
+      const first = qPred(1, -(r1 + r2), r1 * r2, 1);
+      const listed = Array.from({ length: N }, (_, i) => r1 - N + i);
+      return {
+        v: "a",
+        prop: (a) => {
+          // 지면 그대로 — 2x² − 2ax − ρx + ρa < 0
+          const second: Pred = (x) =>
+            fCmp(
+              valF(fr(2), fSub(fMul(fr(-2), a), fr(rho)), fMul(fr(rho), a), x),
+              fr(0),
+            ) < 0;
+          const got = intsWhere(and(first, second), -80, 80);
+          return got.length === N && got.every((x, i) => x === listed[i]);
+        },
+      };
+    }
+    const [u, v, S] = [num(f, "u"), num(f, "v"), num(f, "S")];
+    const quad = qPred(1, -(u + v), u * v, 2);
+    const hits = intsIn(-40, 40, (a) => {
+      const xs = intsWhere(
+        and((x) => fCmp(fAbs(fSub(x, fr(a))), fr(1)) <= 0, quad),
+        -60,
+        60,
+      );
+      return xs.length > 0 && sum(xs) === S;
+    });
+    expect(hits, "합이 S 인 정수 a 는 하나").toHaveLength(1);
+    return hits[0]!;
+  },
+
+  "21": (f) => {
+    if (f.mode === 0) {
+      const [p, s] = [num(f, "p"), num(f, "s")];
+      // 작은 근(근의 공식)이 p 보다 큰 가장 작은 k
+      return lowerEdge((k) => {
+        const D = k * k - s * s;
+        return D >= 0 && k - Math.sqrt(D) > p;
+      });
+    }
+    if (f.mode === 1) {
+      const [p, al, be, gm, de] = ["p", "al", "be", "gm", "de"].map((k) =>
+        num(f, k),
+      ) as [number, number, number, number, number];
+      return {
+        v: "k",
+        prop: (k) => {
+          // 지면 그대로 — x² + (αk+β)x + γk + δ
+          const B = fAdd(fMul(fr(al), k), fr(be));
+          const C = fAdd(fMul(fr(gm), k), fr(de));
+          if (valF(fr(1), B, C, fr(p)).n === 0) return false; // p 가 근
+          const rs = realRootsF(fr(1), B, C);
+          return rs !== null && rs[0] < p && p < rs[1];
+        },
+      };
+    }
+    if (f.mode === 2) {
+      const [beta, gamma, m1, m2] = [
+        num(f, "beta"),
+        num(f, "gamma"),
+        num(f, "m1"),
+        num(f, "m2"),
+      ];
+      return {
+        v: "k",
+        prop: (k) => {
+          const B = fMul(fr(-2), k);
+          const C = fAdd(fMul(fr(beta), k), fr(gamma));
+          if ([m1, m2].some((m) => valF(fr(1), B, C, fr(m)).n === 0))
+            return false;
+          const rs = realRootsF(fr(1), B, C);
+          return rs !== null && m1 < rs[0] && rs[1] < m2;
+        },
+      };
+    }
+    const [b, c, u, w] = [num(f, "b"), num(f, "c"), num(f, "u"), num(f, "w")];
+    return {
+      v: "k",
+      prop: (k) => {
+        if (k.n === 0) return false;
+        const C = fAdd(k, fr(c));
+        if ([u, u + 1, w, w + 1].some((e) => valF(k, fr(b), C, fr(e)).n === 0))
+          return false;
+        const rs = realRootsF(k, fr(b), C);
+        if (!rs) return false;
+        return u < rs[0] && rs[0] < u + 1 && w < rs[1] && rs[1] < w + 1;
+      },
+    };
+  },
+
   "14": (f) => {
     if (f.mode === 1) {
       const lm = num(f, "lm");
@@ -710,6 +935,67 @@ const REL_GE = 3;
 const REL_LT = 0;
 
 const SHOWN: Record<string, (f: Fact) => ShownSpec> = {
+  // 18·19 는 부등식이 아니라 방정식을 준다 — 아래 `EQUATIONS` 가 좌변을 값으로 맞댄다
+  "18": (): ShownSpec => ({ env: {}, wants: [] }),
+  "19": (): ShownSpec => ({ env: {}, wants: [] }),
+  "20": (f): ShownSpec => {
+    if (f.mode === 0) {
+      const [p, qq, fx] = [num(f, "p"), num(f, "q"), num(f, "f")];
+      const a = 7;
+      return {
+        env: { a: fr(a) },
+        wants: [
+          want("(x−p)(x−q)<0", 1, -(p + qq), p * qq, 0),
+          {
+            ...want("x²−(a+f)x+fa≤0", 1, -(a + fx), fx * a, 2),
+            mustContain: "a",
+          },
+        ],
+        numbers: [num(f, "N")],
+      };
+    }
+    if (f.mode === 1) {
+      const [r1, r2, N] = [num(f, "r1"), num(f, "r2"), num(f, "N")];
+      const rho = 2 * r2 + 1;
+      const a = 1;
+      return {
+        env: { a: fr(a) },
+        wants: [
+          want("x²−(r₁+r₂)x>−r₁r₂", 1, -(r1 + r2), r1 * r2, 1),
+          {
+            ...want("2x²−2ax−ρx+ρa<0", 2, -2 * a - rho, rho * a, 0),
+            mustContain: "a",
+          },
+        ],
+        numbers: Array.from({ length: N }, (_, i) => r1 - N + i),
+      };
+    }
+    const [u, v] = [num(f, "u"), num(f, "v")];
+    const a = 3;
+    return {
+      env: { a: fr(a) },
+      wants: [
+        {
+          what: "|x−a|≤1",
+          pred: (x) => fCmp(fAbs(fSub(x, fr(a))), fr(1)) <= 0,
+          crit: [fr(a - 1), fr(a + 1)],
+          mustContain: "|",
+        },
+        want("(x−u)(x−v)≤0", 1, -(u + v), u * v, 2),
+      ],
+      numbers: [num(f, "S")],
+    };
+  },
+  "21": (f): ShownSpec => ({
+    env: {},
+    wants: [],
+    numbers:
+      f.mode === 3
+        ? [num(f, "u"), num(f, "u") + 1, num(f, "w"), num(f, "w") + 1]
+        : f.mode === 2
+          ? [num(f, "m1"), num(f, "m2")]
+          : [num(f, "p")],
+  }),
   "14": (f): ShownSpec => {
     if (f.mode === 1) {
       const [lm, lc] = [num(f, "lm"), num(f, "lc")];
@@ -1391,6 +1677,145 @@ describe("고등 공통수학1 이차부등식과 연립이차부등식 — 그�
       checked,
       "그래프 식 대조가 하나도 안 돌면 이 검사는 장식이다",
     ).toBeGreaterThan(100);
+  });
+});
+
+/** 발문의 `…=0` 방정식 — 좌변에 x 값을 넣어 facts 의 이차식과 맞댄다(문자는 env 로 매긴다). */
+function hasEquation(content: string, env: Env, fn: (x: F) => F): boolean {
+  const pts = probePoints([]).slice(0, 40);
+  return mathSpans(content)
+    .filter((s) => s.endsWith("=0"))
+    .some((s) => {
+      try {
+        const body = s.slice(0, -"=0".length);
+        return pts.every((x) => fEq(evalTex(body, { ...env, x }), fn(x)));
+      } catch {
+        return false;
+      }
+    });
+}
+
+type Equation = { what: string; fn: (x: F) => F };
+
+/** 방정식을 주는 유형(18·19·21) — 발문의 이차방정식이 facts 의 이차식과 같은가 */
+const EQUATIONS: Record<string, (f: Fact) => { env: Env; eqs: Equation[] }> = {
+  "18": (f) => {
+    if (f.mode === 0) {
+      const k = 2;
+      return {
+        env: { k: fr(k) },
+        eqs: [
+          {
+            what: "x²+(k+p)x+k²+q",
+            fn: qv(1, k + num(f, "p"), k * k + num(f, "q")),
+          },
+        ],
+      };
+    }
+    if (f.mode === 1) {
+      const k = 3;
+      return {
+        env: { k: fr(k) },
+        eqs: [
+          { what: "x²−2kx+c₁", fn: qv(1, -2 * k, num(f, "c1")) },
+          { what: "x²+2kx−k+c₂", fn: qv(1, 2 * k, -k + num(f, "c2")) },
+        ],
+      };
+    }
+    const [a, b] = [2, 5];
+    const [p, q0, r, t] = [num(f, "p"), num(f, "q"), num(f, "r"), num(f, "t")];
+    return {
+      env: { a: fr(a), b: fr(b) },
+      eqs: [
+        { what: "x²+2(a+p)x+a²+q", fn: qv(1, 2 * (a + p), a * a + q0) },
+        { what: "x²−(b+r)x+a+b+t", fn: qv(1, -(b + r), a + b + t) },
+      ],
+    };
+  },
+  "19": (f) => {
+    if (f.mode === 0) {
+      const a = 3;
+      return {
+        env: { a: fr(a) },
+        eqs: [
+          {
+            what: "x²−(a+p)x+σa+r",
+            fn: qv(1, -(a + num(f, "p")), num(f, "sigma") * a + num(f, "r")),
+          },
+        ],
+      };
+    }
+    const k = 2;
+    if (f.mode === 1) {
+      return {
+        env: { k: fr(k) },
+        eqs: [{ what: "kx²+Bkx+C", fn: qv(k, num(f, "B") * k, num(f, "C")) }],
+      };
+    }
+    const s = num(f, "s");
+    return {
+      env: { k: fr(k) },
+      eqs: [
+        {
+          what: "x²+βkx+k²−s²",
+          fn: qv(1, num(f, "beta") * k, k * k - s * s),
+        },
+      ],
+    };
+  },
+  "21": (f) => {
+    const k = 2;
+    const env = { k: fr(k) };
+    if (f.mode === 0)
+      return {
+        env,
+        eqs: [{ what: "x²−2kx+s²", fn: qv(1, -2 * k, num(f, "s") ** 2) }],
+      };
+    if (f.mode === 1) {
+      const [al, be, gm, de] = ["al", "be", "gm", "de"].map((key) =>
+        num(f, key),
+      ) as [number, number, number, number];
+      return {
+        env,
+        eqs: [{ what: "x²+(αk+β)x+γk+δ", fn: qv(1, al * k + be, gm * k + de) }],
+      };
+    }
+    if (f.mode === 2)
+      return {
+        env,
+        eqs: [
+          {
+            what: "x²−2kx+βk+γ",
+            fn: qv(1, -2 * k, num(f, "beta") * k + num(f, "gamma")),
+          },
+        ],
+      };
+    return {
+      env,
+      eqs: [{ what: "kx²+bx+k+c", fn: qv(k, num(f, "b"), k + num(f, "c")) }],
+    };
+  },
+};
+
+describe("고등 공통수학1 이차부등식과 연립이차부등식 — 방정식 식", () => {
+  it("발문의 이차방정식이 facts 의 이차식과 같다", () => {
+    let checked = 0;
+    eachProblem((p, key, number) => {
+      const spec = EQUATIONS[number];
+      if (!spec) return;
+      const { env, eqs } = spec(p.facts);
+      for (const e of eqs) {
+        expect(
+          hasEquation(p.content, env, e.fn),
+          `${key}: 발문에 ${e.what} 방정식이 없다 — ${p.content}`,
+        ).toBe(true);
+        checked += 1;
+      }
+    });
+    expect(
+      checked,
+      "방정식 대조가 하나도 안 돌면 이 검사는 장식이다",
+    ).toBeGreaterThan(150);
   });
 });
 
