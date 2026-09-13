@@ -804,6 +804,844 @@ function t04(rng: Rng): Body {
   };
 }
 
+// ───────────────────────────── 05 ─────────────────────────────
+// 수형도를 이용하는 경우의 수
+// 꼴 0 (기본·대표): 네 사람(네 숫자) 모두 자기 것이 아닌 것 — 나열해서 센다
+// 꼴 1 (응용): 한 사람은 정해진 남의 것, 나머지는 모두 자기 것이 아닌 것
+// 꼴 2 (응용): 한 사람만 자기 것 — 그 사람을 정하고 나머지를 나열
+
+const PEOPLE = ["A", "B", "C", "D", "E"] as const;
+const GOODS = ["a", "b", "c", "d", "e"] as const;
+
+/** 사람·물건 수를 세는 우리말 — 「네 사람」. 아라비아 숫자로 쓰지 않는다. */
+export const NUM_WORD: Readonly<Record<number, string>> = {
+  2: "두",
+  3: "세",
+  4: "네",
+  5: "다섯",
+  6: "여섯",
+  7: "일곱",
+  8: "여덟",
+  9: "아홉",
+  10: "열",
+};
+
+/** 0..n-1 의 순열 전부(사전식) — 수형도의 가지를 그대로 늘어놓은 것. */
+export function permutationsOf(n: number): number[][] {
+  const out: number[][] = [];
+  const cur: number[] = [];
+  const used = new Array<boolean>(n).fill(false);
+  const go = (): void => {
+    if (cur.length === n) {
+      out.push([...cur]);
+      return;
+    }
+    for (let i = 0; i < n; i += 1) {
+      if (used[i]) continue;
+      used[i] = true;
+      cur.push(i);
+      go();
+      cur.pop();
+      used[i] = false;
+    }
+  };
+  go();
+  return out;
+}
+
+/** 바꾸어 가지는 상황 — 한글 낱말 뒤 조사는 손으로 적는다(수식 뒤가 아니다). */
+const SWAP_CTX = [
+  {
+    intro: "각자 선물을 하나씩 가지고 와서 서로 바꾸어 가지기로 하였다.",
+    item: "선물",
+    brought: "가져온 선물",
+    own: "자신이 가져온 선물",
+    get: "가지",
+  },
+  {
+    intro: "각자 우산을 하나씩 맡겨 두었다가 한 개씩 임의로 찾아가려고 한다.",
+    item: "우산",
+    brought: "맡긴 우산",
+    own: "자신의 우산",
+    get: "찾아가",
+  },
+] as const;
+
+/** `(b, a, d, c)` — 사람 순서대로 가지는 물건. */
+function goodsTuple(p: readonly number[]): string {
+  return `(${p.map((i) => GOODS[i]!).join(", ")})`;
+}
+
+function t05(rng: Rng): Body {
+  const mode = randInt(rng, 0, 2);
+  if (mode === 0) {
+    const ctx = randInt(rng, 0, SWAP_CTX.length);
+    const n = 4;
+    const all = permutationsOf(n).filter((p) => p.every((v, i) => v !== i));
+    const firsts = [...new Set(all.map((p) => p[0]!))];
+    const groups = firsts.map((f) => all.filter((p) => p[0] === f));
+    const counts = groups.map((g) => g.length);
+    const ans = all.length;
+    if (ctx === SWAP_CTX.length) {
+      const digits = (p: readonly number[]): string =>
+        p.map((i) => i + 1).join("");
+      return {
+        content: `네 개의 숫자 $1$, $2$, $3$, $4$를 모두 한 번씩 사용하여 네 자리 자연수를 만들 때, 천의 자리의 숫자는 $1$이 아니고 백의 자리의 숫자는 $2$가 아니고 십의 자리의 숫자는 $3$이 아니고 일의 자리의 숫자는 $4$가 아닌 자연수의 개수를 구하시오.`,
+        answer: numAnswer(ans),
+        solution: [
+          `천의 자리의 숫자로 나누어 조건에 맞는 자연수를 모두 나열하면`,
+          ...groups.map(
+            (g, i) =>
+              `천의 자리의 숫자가 $${firsts[i]! + 1}$인 경우: $${g.map(digits).join(", ")}$의 $${g.length}$가지`,
+          ),
+          `따라서 구하는 자연수의 개수는 $${sumTex(counts)}=${ans}$`,
+        ].join("\n"),
+        difficulty: "기본",
+        facts: { mode, ctx, n },
+      };
+    }
+    const c = SWAP_CTX[ctx]!;
+    const who = PEOPLE.slice(0, n).join(", ");
+    const word = NUM_WORD[n]!;
+    const goods = GOODS.slice(0, n)
+      .map((g) => `$${g}$`)
+      .join(", ");
+    return {
+      content: `${who} ${word} 사람이 ${c.intro} ${word} 사람 모두 ${c.own}이 아닌 ${c.item}을 ${c.get}는 경우의 수를 구하시오.`,
+      answer: numAnswer(ans),
+      solution: [
+        `${who}${ga(PEOPLE[n - 1]!)} ${c.brought}을 각각 ${goods}${ira(GOODS[n - 1]!)} 하고, ${who}${ga(PEOPLE[n - 1]!)} ${c.get}는 ${c.item}을 차례로 나열하면`,
+        ...groups.map(
+          (g, i) =>
+            `A가 $${GOODS[firsts[i]!]!}$${eul(GOODS[firsts[i]!]!)} ${c.get}는 경우: $${g.map(goodsTuple).join(", ")}$의 $${g.length}$가지`,
+        ),
+        `따라서 구하는 경우의 수는 $${sumTex(counts)}=${ans}$`,
+      ].join("\n"),
+      difficulty: "기본",
+      facts: { mode, ctx, n },
+    };
+  }
+  const ctx = randInt(rng, 0, SWAP_CTX.length - 1);
+  const c = SWAP_CTX[ctx]!;
+  const n = pickOne(rng, [4, 5]);
+  const who = PEOPLE.slice(0, n).join(", ");
+  const word = NUM_WORD[n]!;
+  const goods = GOODS.slice(0, n)
+    .map((g) => `$${g}$`)
+    .join(", ");
+  const naming = `${who}${ga(PEOPLE[n - 1]!)} ${c.brought}을 각각 ${goods}${ira(GOODS[n - 1]!)} 하면`;
+  if (mode === 1) {
+    const t = randInt(rng, 1, n - 1);
+    const T = PEOPLE[t]!;
+    const all = permutationsOf(n).filter(
+      (p) => p[0] === t && p.every((v, i) => i === 0 || v !== i),
+    );
+    const seconds = [...new Set(all.map((p) => p[1]!))];
+    const groups = seconds.map((s) => all.filter((p) => p[1] === s));
+    const counts = groups.map((g) => g.length);
+    const ans = all.length;
+    const rest = PEOPLE.slice(1, n).join(", ");
+    return {
+      content: `${who} ${word} 사람이 ${c.intro} A는 ${T}${ga(T)} ${c.brought}을 ${c.get}고, 나머지 ${NUM_WORD[n - 1]!} 사람은 모두 ${c.own}이 아닌 ${c.item}을 ${c.get}는 경우의 수를 구하시오.`,
+      answer: numAnswer(ans),
+      solution: [
+        `${naming} A가 ${c.get}는 ${c.item}은 $${GOODS[t]!}$이다.`,
+        `${rest}${ga(PEOPLE[n - 1]!)} ${c.get}는 ${c.item}을 차례로 나열하면`,
+        ...groups.map(
+          (g, i) =>
+            `B가 $${GOODS[seconds[i]!]!}$${eul(GOODS[seconds[i]!]!)} ${c.get}는 경우: $${g.map((p) => goodsTuple(p.slice(1))).join(", ")}$의 $${g.length}$가지`,
+        ),
+        `따라서 구하는 경우의 수는 $${sumTex(counts)}=${ans}$`,
+      ].join("\n"),
+      difficulty: "응용",
+      facts: { mode, ctx, n, t },
+    };
+  }
+  const sub = permutationsOf(n - 1).filter((p) => p.every((v, i) => v !== i));
+  const shifted = sub.map((p) => [0, ...p.map((v) => v + 1)]);
+  const ans = n * sub.length;
+  const rest = PEOPLE.slice(1, n).join(", ");
+  return {
+    content: `${who} ${word} 사람이 ${c.intro} 이 중에서 한 사람만 ${c.own}을 ${c.get}는 경우의 수를 구하시오.`,
+    answer: numAnswer(ans),
+    solution: [
+      `${c.own}을 ${c.get}는 한 사람을 정하는 경우의 수는 $${n}$`,
+      `이를테면 A만 ${c.own}을 ${c.get}는 경우, ${naming} 나머지 ${rest}${ga(PEOPLE[n - 1]!)} ${c.get}는 ${c.item}을 차례로 나열하면`,
+      `$${shifted.map((p) => goodsTuple(p.slice(1))).join(", ")}$의 $${sub.length}$가지`,
+      `따라서 구하는 경우의 수는 $${n}\\times ${sub.length}=${ans}$`,
+    ].join("\n"),
+    difficulty: "응용",
+    facts: { mode, ctx, n },
+  };
+}
+
+// ───────────────────────────── 06 ─────────────────────────────
+// 지불 방법의 수와 지불 금액의 수
+// 꼴 0 (기본·대표): 지불하는 방법의 수 (l+1)(m+1)(n+1)−1
+// 꼴 1 (응용): 지불할 수 있는 금액의 수 — 큰 단위를 작은 단위로 바꾸어 겹침을 없앤다
+// 꼴 2 (심화하): 방법의 수와 금액의 수를 함께(a−b · a+b)
+
+/** 세 단위(작은 것부터). */
+const PAY_FAMILIES: readonly (readonly [number, number, number])[] = [
+  [10, 50, 100],
+  [50, 100, 500],
+  [1000, 5000, 10000],
+];
+/** 큰 것 = 가운데 × 2, 가운데 = 작은 것 × 5 — 작은 것이 넷 이하면 가운데와 안 겹친다. */
+const OVERLAP_FAMILIES: readonly (readonly [number, number, number])[] = [
+  [10, 50, 100],
+  [100, 500, 1000],
+];
+
+function moneyTex(v: number, cnt: number): string {
+  return v >= 1000
+    ? `$${v}$원짜리 지폐 $${cnt}$장`
+    : `$${v}$원짜리 동전 $${cnt}$개`;
+}
+
+/** 「지폐로」·「동전으로」 — 한글 낱말 뒤 조사. */
+function moneyRo(v: number): string {
+  return v >= 1000 ? "지폐로" : "동전으로";
+}
+
+function moneyUnit(v: number): string {
+  return v >= 1000 ? "장" : "개";
+}
+
+type Pay = {
+  S: number;
+  M: number;
+  L: number;
+  a: number;
+  b: number;
+  c: number;
+  kind: number;
+};
+
+function drawPay(rng: Rng, kind: number): Pay | null {
+  if (kind === 0) {
+    const [S, M, L] = pickOne(rng, OVERLAP_FAMILIES);
+    return {
+      S,
+      M,
+      L,
+      a: randInt(rng, 1, 4),
+      b: randInt(rng, 1, 3),
+      c: randInt(rng, 1, 3),
+      kind,
+    };
+  }
+  const a = randInt(rng, 4, 9);
+  const b = randInt(rng, 1, 3);
+  if (a + 5 * b < 9) return null;
+  return { S: 1000, M: 5000, L: 10000, a, b, c: randInt(rng, 1, 3), kind };
+}
+
+/** 금액의 수 · 그 앞의 풀이 줄들 · 끝줄에 쓸 셈(수식 몸통). */
+function payAmounts(p: Pay): { count: number; lines: string[]; expr: string } {
+  if (p.kind === 0) {
+    const mids = p.b + 2 * p.c;
+    const count = (mids + 1) * (p.a + 1) - 1;
+    return {
+      count,
+      lines: [
+        `$${p.L}$원짜리 ${p.L >= 1000 ? "지폐" : "동전"} $${p.c}$${moneyUnit(p.L)}${p.L >= 1000 ? "을" : "를"} $${p.M}$원짜리 동전 $${2 * p.c}$개로 바꾸어 생각하면 $${p.M}$원짜리 동전 $${mids}$개와 $${p.S}$원짜리 동전 $${p.a}$개로 지불할 수 있는 금액의 수와 같다.`,
+        `$${p.S}$원짜리 동전 $${p.a}$개로는 $${p.M}$원을 만들 수 없으므로 지불하는 금액이 서로 겹치지 않는다.`,
+      ],
+      expr: `${mids + 1}\\times ${p.a + 1}-1=${count}`,
+    };
+  }
+  const count = p.a + 5 * p.b + 10 * p.c;
+  return {
+    count,
+    lines: [
+      `$10000$원짜리 지폐 $${p.c}$장과 $5000$원짜리 지폐 $${p.b}$장을 모두 $1000$원짜리 지폐로 바꾸면 $1000$원짜리 지폐가 $${10 * p.c}+${5 * p.b}+${p.a}=${count}$장이 된다.`,
+      `$1000$원짜리 지폐가 $${p.a}$장 있으므로 $1000$원부터 $${1000 * count}$원까지 $1000$원 단위의 금액을 모두 지불할 수 있다.`,
+    ],
+    expr: `${count}`,
+  };
+}
+
+function t06(rng: Rng): Body {
+  const mode = randInt(rng, 0, 2);
+  if (mode === 0) {
+    const [S, M, L] = pickOne(rng, PAY_FAMILIES);
+    const a = randInt(rng, 1, 5);
+    const b = randInt(rng, 1, 5);
+    const c = randInt(rng, 1, 5);
+    const ans = (a + 1) * (b + 1) * (c + 1) - 1;
+    const ways = (v: number, n: number): string =>
+      `$${v}$원짜리 ${moneyRo(v)} 지불하는 방법은 $0$${moneyUnit(v)}부터 $${n}$${moneyUnit(v)}까지 $${n + 1}$가지`;
+    return {
+      content: `${moneyTex(L, c)}, ${moneyTex(M, b)}, ${moneyTex(S, a)}의 일부 또는 전부를 사용하여 지불하는 방법의 수를 구하시오. (단, $0$원을 지불하는 경우는 제외한다.)`,
+      answer: numAnswer(ans),
+      solution: [
+        ways(L, c),
+        ways(M, b),
+        ways(S, a),
+        `이때 $0$원을 지불하는 경우를 빼면 구하는 방법의 수는 $${timesTex([c + 1, b + 1, a + 1])}-1=${ans}$`,
+      ].join("\n"),
+      difficulty: "기본",
+      facts: { mode, kind: 0, s: S, m: M, l: L, a, b, c },
+    };
+  }
+  return attempt<Body>((): Body | null => {
+    const kind = randInt(rng, 0, 1);
+    const p = drawPay(rng, kind);
+    if (p === null) return null;
+    const list = `${moneyTex(p.L, p.c)}, ${moneyTex(p.M, p.b)}, ${moneyTex(p.S, p.a)}`;
+    const facts = {
+      mode,
+      kind,
+      s: p.S,
+      m: p.M,
+      l: p.L,
+      a: p.a,
+      b: p.b,
+      c: p.c,
+    };
+    if (mode === 1) {
+      const { count, lines, expr } = payAmounts(p);
+      return {
+        content: `${list}의 일부 또는 전부를 사용하여 지불할 수 있는 금액의 수를 구하시오. (단, $0$원을 지불하는 경우는 제외한다.)`,
+        answer: numAnswer(count),
+        solution: [...lines, `따라서 구하는 금액의 수는 $${expr}$`].join("\n"),
+        difficulty: "응용",
+        facts,
+      };
+    }
+    const ask = randInt(rng, 0, 1);
+    const A = (p.a + 1) * (p.b + 1) * (p.c + 1) - 1;
+    const { count: B, lines, expr: bExpr } = payAmounts(p);
+    const ans = ask === 0 ? A - B : A + B;
+    const expr = ask === 0 ? "a-b" : "a+b";
+    return {
+      content: `${list}의 일부 또는 전부를 사용하여 지불하는 방법의 수를 $a$, 지불할 수 있는 금액의 수를 $b$${ira("b")} 할 때, $${expr}$의 값을 구하시오. (단, $0$원을 지불하는 경우는 제외한다.)`,
+      answer: numAnswer(ans),
+      solution: [
+        `지불하는 방법의 수는 $a=${timesTex([p.c + 1, p.b + 1, p.a + 1])}-1=${A}$`,
+        ...lines,
+        `지불할 수 있는 금액의 수는 $b=${bExpr}$`,
+        `따라서 $${expr}=${ans}$`,
+      ].join("\n"),
+      difficulty: "심화하",
+      facts: { ...facts, ask },
+    };
+  });
+}
+
+// ───────────────────────────── 07 ─────────────────────────────
+// 도로망에서의 경우의 수 — 도로망은 「어느 두 지역 사이에 도로가 몇 개」로 글에 다 적는다
+// 꼴 0 (기본·대표): B, C 를 모두 거쳐 D 로 — 두 갈래의 곱을 더한다
+// 꼴 1 (응용): A 에서 D 로 가는 모든 길 — 네 갈래
+// 꼴 2 (응용): A 에서 B 에 갔다가 A 로 돌아오기(A 말고는 다시 안 지난다)
+
+function roadsTex(
+  edges: readonly (readonly [string, string, number])[],
+): string {
+  return edges
+    .map(([x, y, k]) => `${x}${gwa(x)} ${y}${eul(y)} 잇는 도로가 $${k}$개`)
+    .join(", ");
+}
+
+function t07(rng: Rng): Body {
+  const mode = randInt(rng, 0, 2);
+  const tail =
+    mode === 2
+      ? "(단, A 지역을 제외하고 한 번 지나간 지역은 다시 지나지 않는다.)"
+      : "(단, 한 번 지나간 지역은 다시 지나지 않는다.)";
+  if (mode === 2) {
+    const ac = randInt(rng, 1, 3);
+    const cb = randInt(rng, 1, 3);
+    const bd = randInt(rng, 1, 3);
+    const da = randInt(rng, 1, 3);
+    const cd = randInt(rng, 1, 2);
+    const x = ac * cb * bd * da;
+    const y = da * bd * cb * ac;
+    const ans = x + y;
+    const roads = roadsTex([
+      ["A", "C", ac],
+      ["C", "B", cb],
+      ["B", "D", bd],
+      ["D", "A", da],
+      ["C", "D", cd],
+    ]);
+    return {
+      content: `네 지역 A, B, C, D 사이에 ${roads} 있고, 그 밖의 두 지역을 직접 잇는 도로는 없다. A 지역에서 출발하여 B 지역에 갔다가 다시 A 지역으로 돌아오는 경우의 수를 구하시오. ${tail}`,
+      answer: numAnswer(ans),
+      solution: [
+        `A → C → B로 가면 C를 이미 지났으므로 B → D → A로 돌아와야 한다. 이 경우의 수는 $${timesTex([ac, cb, bd, da])}=${x}$`,
+        `A → D → B로 가면 D를 이미 지났으므로 B → C → A로 돌아와야 한다. 이 경우의 수는 $${timesTex([da, bd, cb, ac])}=${y}$`,
+        `A → C → D → B 또는 A → D → C → B로 가면 C, D를 모두 지났으므로 A로 돌아올 수 없다.`,
+        `따라서 구하는 경우의 수는 $${x}+${y}=${ans}$`,
+      ].join("\n"),
+      difficulty: "응용",
+      facts: { mode, ac, cb, bd, da, cd },
+    };
+  }
+  const ab = randInt(rng, 1, 3);
+  const bc = randInt(rng, 1, 3);
+  const cd = randInt(rng, 1, 3);
+  const ac = randInt(rng, 1, 2);
+  const bd = randInt(rng, 1, 2);
+  const roads = roadsTex([
+    ["A", "B", ab],
+    ["B", "C", bc],
+    ["C", "D", cd],
+    ["A", "C", ac],
+    ["B", "D", bd],
+  ]);
+  const head = `네 지역 A, B, C, D 사이에 ${roads} 있고, 그 밖의 두 지역을 직접 잇는 도로는 없다.`;
+  const abcd = ab * bc * cd;
+  const acbd = ac * bc * bd;
+  if (mode === 0) {
+    const ans = abcd + acbd;
+    return {
+      content: `${head} A 지역에서 출발하여 B, C 두 지역을 모두 거쳐 D 지역에 도착하는 경우의 수를 구하시오. ${tail}`,
+      answer: numAnswer(ans),
+      solution: [
+        `A → B → C → D로 가는 경우의 수는 $${timesTex([ab, bc, cd])}=${abcd}$`,
+        `A → C → B → D로 가는 경우의 수는 $${timesTex([ac, bc, bd])}=${acbd}$`,
+        `두 경우는 동시에 일어나지 않으므로 구하는 경우의 수는 $${abcd}+${acbd}=${ans}$`,
+      ].join("\n"),
+      difficulty: "기본",
+      facts: { mode, ab, bc, cd, ac, bd },
+    };
+  }
+  const abd = ab * bd;
+  const acd = ac * cd;
+  const ans = abd + acd + abcd + acbd;
+  return {
+    content: `${head} A 지역에서 출발하여 D 지역으로 가는 경우의 수를 구하시오. ${tail}`,
+    answer: numAnswer(ans),
+    solution: [
+      `A → B → D로 가는 경우의 수는 $${timesTex([ab, bd])}=${abd}$`,
+      `A → C → D로 가는 경우의 수는 $${timesTex([ac, cd])}=${acd}$`,
+      `A → B → C → D로 가는 경우의 수는 $${timesTex([ab, bc, cd])}=${abcd}$`,
+      `A → C → B → D로 가는 경우의 수는 $${timesTex([ac, bc, bd])}=${acbd}$`,
+      `이상에서 구하는 경우의 수는 $${sumTex([abd, acd, abcd, acbd])}=${ans}$`,
+    ].join("\n"),
+    difficulty: "응용",
+    facts: { mode, ab, bc, cd, ac, bd },
+  };
+}
+
+// ───────────────────────────── 순열 공용 ─────────────────────────────
+
+const LETTERS = ["a", "b", "c", "d", "e", "f", "g", "h"] as const;
+const BIG_PEOPLE = ["A", "B", "C", "D", "E", "F", "G", "H"] as const;
+const VOWEL_SET = new Set(["a", "e", "i", "o", "u"]);
+
+/**
+ * 문자가 모두 다른 영어 낱말 — 모음은 a·e·i·o·u(`y` 가 든 낱말은 모음인지 갈려서 뺐다).
+ * RPM 이 쓴 낱말은 쓰지 않는다(소재를 새로 짓는다).
+ */
+const WORDS = [
+  "planet",
+  "castle",
+  "garden",
+  "orange",
+  "friend",
+  "number",
+  "cousin",
+  "silver",
+  "winter",
+  "flower",
+  "bridge",
+  "master",
+  "painter",
+  "kingdom",
+  "journal",
+  "blanket",
+  "stadium",
+  "monster",
+  "chapter",
+  "cabinet",
+  "question",
+  "computer",
+  "magnetic",
+  "hospital",
+  "republic",
+] as const;
+
+type Word = {
+  w: number;
+  word: string;
+  n: number;
+  vowels: string[];
+  cons: string[];
+};
+
+function wordInfo(w: number): Word {
+  const word = WORDS[w]!;
+  const letters = [...word];
+  if (new Set(letters).size !== letters.length) {
+    throw new Error(`문자가 겹치는 낱말입니다: ${word}`);
+  }
+  return {
+    w,
+    word,
+    n: letters.length,
+    vowels: letters.filter((c) => VOWEL_SET.has(c)),
+    cons: letters.filter((c) => !VOWEL_SET.has(c)),
+  };
+}
+
+/** 조건에 맞는 낱말 하나 — 없으면 던진다(표를 줄이다 조용히 비지 않게). */
+function pickWord(rng: Rng, ok: (x: Word) => boolean): Word {
+  const pool = WORDS.map((_, i) => wordInfo(i)).filter(ok);
+  if (pool.length === 0) throw new Error("조건에 맞는 낱말이 없습니다");
+  return pickOne(rng, pool);
+}
+
+/** `$a$, $b$, $c$` */
+function mathList(xs: readonly string[]): string {
+  return xs.map((x) => `$${x}$`).join(", ");
+}
+
+/** `$a$, $b$, $c$를` — 끝 글자에 맞춘 을/를까지. */
+function mathListEul(xs: readonly string[]): string {
+  return `${mathList(xs)}${eul(xs[xs.length - 1]!)}`;
+}
+
+/** 두 자리 · 세 자리 … — 아라비아 숫자로 쓰지 않는다. */
+export function digitWord(r: number): string {
+  const w = NUM_WORD[r];
+  if (w === undefined) throw new Error(`자리 수 낱말이 없습니다: ${r}`);
+  return `${w} 자리`;
+}
+
+/** `5!=120` */
+function factEq(n: number): string {
+  return `${n}!=${fact(n)}`;
+}
+
+/** 짝이 되는 두 무리 — 한글 낱말 뒤 조사는 손으로 적는다. */
+const PAIR_GROUPS: readonly (readonly [string, string])[] = [
+  ["남학생", "여학생"],
+  ["어른", "어린이"],
+  ["선생님", "학생"],
+];
+
+const SPORT_GROUPS: readonly (readonly [string, string])[] = [
+  ["농구 선수", "배구 선수"],
+  ["남학생", "여학생"],
+  ["어른", "어린이"],
+];
+
+// ───────────────────────────── 09 ─────────────────────────────
+// 이웃하는 순열의 수
+// 꼴 0 (기본·대표): 문자 n 개 중 정한 두(세) 문자가 이웃 — 묶어서 나열 × 묶음 안
+// 꼴 1 (기본): 한 무리가 모두 이웃
+// 꼴 2 (응용): 두 무리가 각각 이웃
+// 꼴 3 (심화하): 이웃하는 경우의 수가 K 일 때 인원 · 「a와 b 또는 b와 c」(겹침 빼기)
+
+function t09(rng: Rng): Body {
+  const mode = randInt(rng, 0, 3);
+  if (mode === 0) {
+    const kind = randInt(rng, 0, 1);
+    const g = kind === 0 ? 2 : 3;
+    const n = randInt(rng, 5, 7);
+    const letters = LETTERS.slice(0, n);
+    const picks = distinctInts(rng, 0, n - 1, g)
+      .sort((x, y) => x - y)
+      .map((i) => letters[i]!);
+    const last = picks[g - 1]!;
+    const named =
+      g === 2 ? `$${picks[0]}$${gwa(picks[0]!)} $${last}$` : mathList(picks);
+    const outer = fact(n - g + 1);
+    const inner = fact(g);
+    const ans = outer * inner;
+    return {
+      content: `$${n}$개의 문자 ${mathListEul(letters)} 일렬로 나열할 때, ${named}${ga(last)} ${g === 2 ? "서로" : "모두"} 이웃하도록 나열하는 경우의 수를 구하시오.`,
+      answer: numAnswer(ans),
+      solution: [
+        `${named}${eul(last)} 한 문자로 생각하여 $${n - g + 1}$개의 문자를 일렬로 나열하는 경우의 수는 $${factEq(n - g + 1)}$`,
+        `${named}${ga(last)} 자리를 바꾸는 경우의 수는 $${factEq(g)}$`,
+        `따라서 구하는 경우의 수는 $${outer}\\times ${inner}=${ans}$`,
+      ].join("\n"),
+      difficulty: "기본",
+      facts: { mode, kind, n },
+    };
+  }
+  if (mode === 1) {
+    const grp = randInt(rng, 0, PAIR_GROUPS.length - 1);
+    const [X, Y] = PAIR_GROUPS[grp]!;
+    const m = randInt(rng, 2, 4);
+    const w = randInt(rng, 2, 4);
+    const outer = fact(m + 1);
+    const inner = fact(w);
+    const ans = outer * inner;
+    return {
+      content: `${X} $${m}$명과 ${Y} $${w}$명을 일렬로 세울 때, ${Y}끼리 이웃하도록 세우는 경우의 수를 구하시오.`,
+      answer: numAnswer(ans),
+      solution: [
+        `${Y} $${w}$명을 한 사람으로 생각하여 $${m + 1}$명을 일렬로 세우는 경우의 수는 $${factEq(m + 1)}$`,
+        `${Y} $${w}$명이 자리를 바꾸는 경우의 수는 $${factEq(w)}$`,
+        `따라서 구하는 경우의 수는 $${outer}\\times ${inner}=${ans}$`,
+      ].join("\n"),
+      difficulty: "기본",
+      facts: { mode, grp, m, w },
+    };
+  }
+  if (mode === 2) {
+    const e = randInt(rng, 1, 3);
+    const mm = randInt(rng, 2, 3);
+    const h = randInt(rng, 2, 3);
+    const a = fact(e + 2);
+    const b = fact(mm);
+    const c = fact(h);
+    const ans = a * b * c;
+    return {
+      content: `초등학생 $${e}$명, 중학생 $${mm}$명, 고등학생 $${h}$명을 일렬로 세울 때, 중학생은 중학생끼리, 고등학생은 고등학생끼리 이웃하도록 세우는 경우의 수를 구하시오.`,
+      answer: numAnswer(ans),
+      solution: [
+        `중학생 $${mm}$명을 한 사람, 고등학생 $${h}$명을 한 사람으로 생각하여 $${e + 2}$명을 일렬로 세우는 경우의 수는 $${factEq(e + 2)}$`,
+        `중학생끼리 자리를 바꾸는 경우의 수는 $${factEq(mm)}$`,
+        `고등학생끼리 자리를 바꾸는 경우의 수는 $${factEq(h)}$`,
+        `따라서 구하는 경우의 수는 $${timesTex([a, b, c])}=${ans}$`,
+      ].join("\n"),
+      difficulty: "응용",
+      facts: { mode, e, m: mm, h },
+    };
+  }
+  const kind = randInt(rng, 0, 1);
+  if (kind === 0) {
+    const g = randInt(rng, 2, 3);
+    const n = randInt(rng, 2, 8 - g);
+    const K = fact(n + 1) * fact(g);
+    return {
+      content: `고등학생 $${g}$명과 중학생 $n$명을 일렬로 세울 때, 고등학생끼리 이웃하도록 세우는 경우의 수가 $${K}$이다. 이때 자연수 $n$의 값을 구하시오.`,
+      answer: numAnswer(n),
+      solution: [
+        `고등학생 $${g}$명을 한 사람으로 생각하여 $(n+1)$명을 일렬로 세우는 경우의 수는 $(n+1)!$`,
+        `고등학생 $${g}$명이 자리를 바꾸는 경우의 수는 $${factEq(g)}$`,
+        `즉 $(n+1)!\\times ${fact(g)}=${K}$이므로 $(n+1)!=${K / fact(g)}=${n + 1}!$`,
+        `따라서 $n+1=${n + 1}$이므로 $n=${n}$`,
+      ].join("\n"),
+      difficulty: "심화하",
+      facts: { mode, kind, g, n },
+    };
+  }
+  const n = randInt(rng, 5, 7);
+  const letters = LETTERS.slice(0, n);
+  const one = fact(n - 1) * 2;
+  const both = fact(n - 2) * 2;
+  const ans = one + one - both;
+  return {
+    content: `$${n}$개의 문자 ${mathListEul(letters)} 일렬로 나열할 때, $a$와 $b$ 또는 $b$와 $c$가 서로 이웃하도록 나열하는 경우의 수를 구하시오.`,
+    answer: numAnswer(ans),
+    solution: [
+      `$a$, $b$가 이웃하도록 나열하는 경우의 수는 $${n - 1}!\\times 2!=${one}$`,
+      `$b$, $c$가 이웃하도록 나열하는 경우의 수는 $${n - 1}!\\times 2!=${one}$`,
+      `$a$, $b$와 $b$, $c$가 모두 이웃하는 경우, 즉 $abc$ 또는 $cba$가 한 묶음이 되도록 나열하는 경우의 수는 $${n - 2}!\\times 2=${both}$`,
+      `따라서 구하는 경우의 수는 $${one}+${one}-${both}=${ans}$`,
+    ].join("\n"),
+    difficulty: "심화하",
+    facts: { mode, kind, n },
+  };
+}
+
+// ───────────────────────────── 10 ─────────────────────────────
+// 이웃하지 않는 순열의 수
+// 꼴 0 (기본·대표): 한 무리를 먼저 세우고 사이사이와 양 끝에 다른 무리
+// 꼴 1 (응용): 낱말의 모음끼리 이웃하지 않게
+// 꼴 2 (심화하): A와 B는 이웃하고 C와 D는 이웃하지 않게
+// 꼴 3 (응용): 일렬로 놓인 의자에 어느 두 사람도 옆에 앉지 않게 — 빈 의자 사이에 끼우기
+
+function t10(rng: Rng): Body {
+  const mode = randInt(rng, 0, 3);
+  if (mode === 0)
+    return attempt<Body>((): Body | null => {
+      const grp = randInt(rng, 0, SPORT_GROUPS.length - 1);
+      const [X, Y] = SPORT_GROUPS[grp]!;
+      const a = randInt(rng, 2, 5);
+      const b = randInt(rng, 2, 4);
+      if (b > a + 1 || a + b > 8) return null;
+      const x = fact(a);
+      const y = nPr(a + 1, b);
+      const ans = x * y;
+      return {
+        content: `${X} $${a}$명과 ${Y} $${b}$명을 일렬로 세울 때, ${Y}끼리 이웃하지 않도록 세우는 경우의 수를 구하시오.`,
+        answer: numAnswer(ans),
+        solution: [
+          `${X} $${a}$명을 일렬로 세우는 경우의 수는 $${factEq(a)}$`,
+          `${X}의 사이사이와 양 끝의 $${a + 1}$개의 자리에 ${Y} $${b}$명을 세우는 경우의 수는 $${pTex(a + 1, b)}=${y}$`,
+          `따라서 구하는 경우의 수는 $${x}\\times ${y}=${ans}$`,
+        ].join("\n"),
+        difficulty: "기본",
+        facts: { mode, grp, a, b },
+      };
+    });
+  if (mode === 1) {
+    const W = pickWord(
+      rng,
+      (x) => x.vowels.length >= 2 && x.vowels.length <= x.cons.length + 1,
+    );
+    const c = W.cons.length;
+    const v = W.vowels.length;
+    const x = fact(c);
+    const y = nPr(c + 1, v);
+    const ans = x * y;
+    return {
+      content: `${W.word}의 $${W.n}$개의 문자를 일렬로 나열할 때, 모음끼리 이웃하지 않도록 나열하는 경우의 수를 구하시오.`,
+      answer: numAnswer(ans),
+      solution: [
+        `자음 ${mathListEul(W.cons)} 일렬로 나열하는 경우의 수는 $${factEq(c)}$`,
+        `자음의 사이사이와 양 끝의 $${c + 1}$개의 자리에 모음 ${mathListEul(W.vowels)} 나열하는 경우의 수는 $${pTex(c + 1, v)}=${y}$`,
+        `따라서 구하는 경우의 수는 $${x}\\times ${y}=${ans}$`,
+      ].join("\n"),
+      difficulty: "응용",
+      facts: { mode, w: W.w, n: W.n, v },
+    };
+  }
+  if (mode === 2) {
+    const n = randInt(rng, 6, 7);
+    const r = n - 4;
+    const who = BIG_PEOPLE.slice(0, n).join(", ");
+    const x = fact(r + 1);
+    const y = nPr(r + 2, 2);
+    const ans = x * 2 * y;
+    return {
+      content: `${who} ${NUM_WORD[n]!} 명을 일렬로 세울 때, A와 B는 이웃하고 C와 D는 이웃하지 않도록 세우는 경우의 수를 구하시오.`,
+      answer: numAnswer(ans),
+      solution: [
+        `A와 B를 한 사람으로 생각하여 C, D를 제외한 $${r + 1}$명을 일렬로 세우는 경우의 수는 $${factEq(r + 1)}$`,
+        `A와 B가 자리를 바꾸는 경우의 수는 $2!=2$`,
+        `일렬로 세운 $${r + 1}$명의 사이사이와 양 끝의 $${r + 2}$개의 자리에 C와 D를 세우는 경우의 수는 $${pTex(r + 2, 2)}=${y}$`,
+        `따라서 구하는 경우의 수는 $${timesTex([x, 2, y])}=${ans}$`,
+      ].join("\n"),
+      difficulty: "심화하",
+      facts: { mode, n },
+    };
+  }
+  return attempt<Body>((): Body | null => {
+    const k = randInt(rng, 2, 3);
+    const m = randInt(rng, k + 2, 8);
+    if (m - k + 1 < k) return null;
+    const ans = nPr(m - k + 1, k);
+    return {
+      content: `학생 $${k}$명이 일렬로 놓인 $${m}$개의 의자에 앉을 때, 어느 두 학생도 바로 옆 의자에 앉지 않도록 앉는 경우의 수를 구하시오.`,
+      answer: numAnswer(ans),
+      solution: [
+        `학생이 앉지 않는 빈 의자 $${m - k}$개를 먼저 일렬로 놓고, 그 사이사이와 양 끝의 $${m - k + 1}$개의 자리 중 $${k}$개의 자리에 학생이 앉을 의자를 하나씩 놓으면 된다.`,
+        `이때 학생 $${k}$명은 서로 다르므로 구하는 경우의 수는 $${pTex(m - k + 1, k)}=${ans}$`,
+      ].join("\n"),
+      difficulty: "응용",
+      facts: { mode, k, m },
+    };
+  });
+}
+
+// ───────────────────────────── 11 ─────────────────────────────
+// 자리에 대한 조건이 있는 순열의 수
+// 꼴 0 (기본·대표): 양 끝에 한 무리 — 양 끝을 먼저 세운다
+// 꼴 1 (응용): 두 무리가 교대로
+// 꼴 2 (응용): 모음이 모두 홀수(짝수) 번째 자리에
+// 꼴 3 (응용): 정한 두 문자 사이에 k 개의 문자
+
+function t11(rng: Rng): Body {
+  const mode = randInt(rng, 0, 3);
+  if (mode === 0)
+    return attempt<Body>((): Body | null => {
+      const grp = randInt(rng, 0, PAIR_GROUPS.length - 1);
+      const [X, Y] = PAIR_GROUPS[grp]!;
+      const a = randInt(rng, 2, 4);
+      const c = randInt(rng, 1, 4);
+      if (a + c - 2 < 2 || a + c > 7) return null;
+      const x = nPr(a, 2);
+      const y = fact(a + c - 2);
+      const ans = x * y;
+      return {
+        content: `${X} $${a}$명과 ${Y} $${c}$명을 일렬로 세울 때, 양 끝에 ${X}이 오도록 세우는 경우의 수를 구하시오.`,
+        answer: numAnswer(ans),
+        solution: [
+          `${X} $${a}$명 중 $2$명을 양 끝에 세우는 경우의 수는 $${pTex(a, 2)}=${x}$`,
+          `양 끝의 $2$명을 제외한 $${a + c - 2}$명을 일렬로 세우는 경우의 수는 $${factEq(a + c - 2)}$`,
+          `따라서 구하는 경우의 수는 $${x}\\times ${y}=${ans}$`,
+        ].join("\n"),
+        difficulty: "기본",
+        facts: { mode, grp, a, c },
+      };
+    });
+  if (mode === 1) {
+    const b = randInt(rng, 2, 4);
+    const a = b + randInt(rng, 0, 1);
+    const x = fact(a) * fact(b);
+    const lines =
+      a === b
+        ? [
+            `남학생, 여학생의 순서로 교대로 서는 경우의 수는 $${a}!\\times ${b}!=${x}$`,
+            `여학생, 남학생의 순서로 교대로 서는 경우의 수도 $${a}!\\times ${b}!=${x}$`,
+            `따라서 구하는 경우의 수는 $${x}+${x}=${2 * x}$`,
+          ]
+        : [
+            `남학생이 $${a}$명, 여학생이 $${b}$명이므로 양 끝에 남학생이 서야 한다.`,
+            `남학생 $${a}$명을 일렬로 세우는 경우의 수는 $${factEq(a)}$`,
+            `남학생의 사이사이의 $${b}$개의 자리에 여학생 $${b}$명을 세우는 경우의 수는 $${factEq(b)}$`,
+            `따라서 구하는 경우의 수는 $${fact(a)}\\times ${fact(b)}=${x}$`,
+          ];
+    const ans = a === b ? 2 * x : x;
+    return {
+      content: `남학생 $${a}$명과 여학생 $${b}$명이 일렬로 설 때, 남학생과 여학생이 교대로 서는 경우의 수를 구하시오.`,
+      answer: numAnswer(ans),
+      solution: lines.join("\n"),
+      difficulty: "응용",
+      facts: { mode, a, b },
+    };
+  }
+  if (mode === 2) {
+    const kind = randInt(rng, 0, 1);
+    const W = pickWord(rng, (x) => {
+      const slots = kind === 0 ? Math.ceil(x.n / 2) : Math.floor(x.n / 2);
+      return x.vowels.length >= 2 && x.vowels.length <= slots;
+    });
+    const slots = kind === 0 ? Math.ceil(W.n / 2) : Math.floor(W.n / 2);
+    const v = W.vowels.length;
+    const x = nPr(slots, v);
+    const y = fact(W.n - v);
+    const ans = x * y;
+    const place = kind === 0 ? "홀수" : "짝수";
+    return {
+      content: `${W.word}의 $${W.n}$개의 문자를 일렬로 나열할 때, 모음이 모두 ${place} 번째 자리에 오도록 나열하는 경우의 수를 구하시오.`,
+      answer: numAnswer(ans),
+      solution: [
+        `$${slots}$개의 ${place} 번째 자리 중 $${v}$개의 자리에 모음 ${mathListEul(W.vowels)} 나열하는 경우의 수는 $${pTex(slots, v)}=${x}$`,
+        `나머지 $${W.n - v}$개의 자리에 자음 ${mathListEul(W.cons)} 나열하는 경우의 수는 $${factEq(W.n - v)}$`,
+        `따라서 구하는 경우의 수는 $${x}\\times ${y}=${ans}$`,
+      ].join("\n"),
+      difficulty: "응용",
+      facts: { mode, kind, w: W.w, n: W.n, v },
+    };
+  }
+  return attempt<Body>((): Body | null => {
+    const W = pickWord(rng, (x) => x.n <= 7);
+    const k = randInt(rng, 1, 3);
+    if (W.n - k - 1 < 2) return null;
+    const [i, j] = distinctInts(rng, 0, W.n - 1, 2).sort((p, q) => p - q) as [
+      number,
+      number,
+    ];
+    const X = W.word[i]!;
+    const Y = W.word[j]!;
+    const x = nPr(W.n - 2, k);
+    const y = fact(W.n - k - 1);
+    const ans = x * y * 2;
+    return {
+      content: `${W.word}의 $${W.n}$개의 문자를 일렬로 나열할 때, $${X}$${gwa(X)} $${Y}$ 사이에 $${k}$개의 문자가 들어가도록 나열하는 경우의 수를 구하시오.`,
+      answer: numAnswer(ans),
+      solution: [
+        `$${X}$${gwa(X)} $${Y}$${eul(Y)} 제외한 $${W.n - 2}$개의 문자 중 $${k}$개를 택하여 $${X}$${gwa(X)} $${Y}$ 사이에 나열하는 경우의 수는 $${pTex(W.n - 2, k)}=${x}$`,
+        `$${X}$, $${Y}$${gwa(Y)} 그 사이의 $${k}$개의 문자를 한 문자로 생각하여 $${W.n - k - 1}$개의 문자를 일렬로 나열하는 경우의 수는 $${factEq(W.n - k - 1)}$`,
+        `$${X}$${gwa(X)} $${Y}$${ga(Y)} 자리를 바꾸는 경우의 수는 $2!=2$`,
+        `따라서 구하는 경우의 수는 $${timesTex([x, y, 2])}=${ans}$`,
+      ].join("\n"),
+      difficulty: "응용",
+      facts: { mode, w: W.w, n: W.n, k },
+    };
+  });
+}
+
 // ───────────────────────────── 등록 ─────────────────────────────
 
 function entry(
@@ -833,13 +1671,19 @@ export const H1_PERM: HighTypeEntry[] = [
   entry("02", "방정식과 부등식의 해의 개수", SEC.경우의수, t02),
   entry("03", "곱의 법칙", SEC.경우의수, t03),
   entry("04", "약수의 개수", SEC.경우의수, t04),
+  entry("05", "수형도를 이용하는 경우의 수", SEC.경우의수, t05),
+  entry("06", "지불 방법의 수와 지불 금액의 수", SEC.경우의수, t06),
+  entry("07", "도로망에서의 경우의 수", SEC.경우의수, t07),
+  entry("09", "이웃하는 순열의 수", SEC.순열, t09),
+  entry("10", "이웃하지 않는 순열의 수", SEC.순열, t10),
+  entry("11", "자리에 대한 조건이 있는 순열의 수", SEC.순열, t11),
 ];
 
 const WIP =
   "작업 중 — 세션 h1-count 가 이 물결 안에 채운다(병합 전에 비어야 한다)";
 
 export const H1_PERM_HOLD: HighHold[] = [
-  ...["05", "06", "07", "09", "10", "11", "12", "13", "14"].map((n) => ({
+  ...["12", "13", "14"].map((n) => ({
     key: `${BOOK}|${MINOR}|${n}`,
     reason: WIP,
   })),
