@@ -11,7 +11,7 @@
 | 등록 | **26 / 색인 27** — 경우의 수와 순열 13/14 · 조합 13/13 |
 | 보류 | **1** — 경우의 수와 순열 08 색칠하는 방법의 수(그림) |
 | 고등 시험 | **8 파일 126 시험 초록**(`highRegistry` 포함 · 착수 전 6 파일 110) |
-| tsc | 고등 파일 오류 0 (저장소 기존 오류는 Prisma 클라이언트 — 「환경」) |
+| tsc | **`npx tsc --noEmit` 오류 0**(저장소 전체) — Prisma 클라이언트를 이 워크트리에 다시 생성한 뒤(「환경」) |
 | eslint | 자기 파일 넷 0 |
 | 변이 | **perm 5/5 · comb 5/5 빨강**, 모두 겨눈 시험 하나만 빨개짐 |
 
@@ -102,7 +102,7 @@
 | `npx vitest run src/__tests__/unit/high` | **8 파일 126 시험 초록**(착수 전 6 파일 110) — `highRegistry` 포함 |
 | `highPerm.test.ts` (9) | 등록 ∪ 보류 = 색인 · 보류 까닭 · 단원 · **값(facts 로 순열·순서쌍·부분집합을 늘어놓고 셈)** · 생성기 오답 없음 · 발문 수치(대조 1500회 넘게) · 낱말 · 꼴 셋 이상 |
 | `highComb.test.ts` (7) | 등록 · 단원 · **값(12유형 × 70문항 전수 나열 — 대진표는 팀 배치를 모양으로 정규화, 반원은 단위원 유리점의 정수 좌표)** · **02 빈칸(답 식이 증명 줄의 등식을 채우고 오답 넷은 못 채움)** · 발문 수치 · 꼴 |
-| `npx tsc --noEmit` | 고등 파일 오류 0 (기존 Prisma 오류만) |
+| `npx tsc --noEmit` | **오류 0**(저장소 전체) |
 | `npx eslint` 자기 파일 4개 | 0 |
 | 미리보기 | `scratch/preview-h1Perm.html` · `preview-h1Comb.html` 각 26문항, `katex-error` 0. Playwright 로 카드 11장을 찍어 눈으로 봤다 — ₙCᵣ 왼쪽 아래 첨자 · `\text{㈎}` 빈칸 · `\dfrac` · 대진표 문장 정상 |
 
@@ -131,9 +131,11 @@ perm **5/5** · comb **5/5**. 모든 빨강이 겨눈 시험 **하나만**이다
 
 - **PowerShell 에서 커밋하면 lint-staged 가 `eslint --fix` 를 못 띄운다**(「Task failed to spawn」). Git Bash 로 커밋하면
   훅이 정상으로 돈다. 훅 우회는 안 했다.
-- `npx tsc --noEmit` 의 기존 오류는 전부 Prisma 클라이언트 타입(`Prisma.PrismaClientKnownRequestError` 없음 · `{}` 타입)이다
-  — 이 워크트리에서 `prisma generate` 가 안 된 상태로 보인다. 고등 파일(lib/high · high*.test · helpers/high*)에는 0.
-  `prisma generate` 는 node_modules 를 건드려 하지 않았다.
+- **tsc 가 처음엔 Prisma 타입 오류(`Prisma.PrismaClientKnownRequestError` 없음 · `{}` 타입)로 빨갰다** — 고등 파일과 무관.
+  START 는 「node_modules 가 없거나 모자라면 `npm ci`」였는데, 이 워크트리의 node_modules 는 **링크가 아닌 제 폴더**이고
+  시험·tsx·eslint·playwright 가 다 돌았다. 모자란 것은 **생성된 Prisma 클라이언트가 낡은 것** 하나였다. 그래서 `npm ci` 대신
+  **`npx prisma generate`**(이 워크트리 node_modules 에만 씀 · DB 안 건드림)로 다시 만들었고, 그 뒤 **tsc 오류 0**.
+  다른 워크트리도 같은 증상이면 같은 처방이다.
 
 ## 커밋 (브랜치 `chrismathone/h1-count` — main 병합·push 안 함)
 
@@ -144,8 +146,9 @@ perm **5/5** · comb **5/5**. 모든 빨강이 겨눈 시험 **하나만**이다
 | `8dbe55c1` | 경우의 수와 순열 12~14 · `highPerm.test.ts` |
 | `a863d089` | 조합 13유형 · `highComb.test.ts` |
 | `0773b243` | 변이 시험 두 개 |
-| (마지막) | perm 변이 10 교체 · 이 보고서 — `git log -1` |
+| `7d85c1f4` | perm 변이 10 교체 · 이 보고서 |
+| (마지막) | 보고서 — tsc 0(Prisma 클라이언트 재생성) 반영 — `git log -1` |
 
 미추적으로 남긴 것: `scratch/preview-h1Perm.html` · `preview-h1Comb.html`(생성물 —
 `npx tsx scripts/high/gen-cli.ts --minor "<중단원>" --per-type 2 --html …` 로 다시 만든다).
-`scratch/START-h1-count.md` 는 내가 만든 것이 아니라 손대지 않았다.
+`scratch/START-h1-count.md` 는 리드가 둔 시작 지시라 커밋하지 않았다(지시 그대로).
