@@ -41,7 +41,8 @@ Hi-fi 4안 → ① 계기판, 위치 = 메인 상단)로 확정 후 구현. **D-
 > 미적분1 → 확통 → 미적분2 → 기하 · 단답·객관만 · RPM 색인 + 기출 빈도) **재료를 다 세웠다.** 계획 SSOT 는
 > `docs/planning/tracks/high-engine-plan.md` — 이어할 때 거기부터.
 
-- **워크트리** `D:\testautocreator-phase7-high-engine` · 브랜치 `phase/7-high-engine`(main `2e558d4f` 에서).
+- **워크트리** `D:\testautocreator-phase7-high-engine` · 브랜치 `phase/7-high-engine`(main `2e558d4f` 에서) —
+  **같은 날 main 에 병합했다**(그사이 main 에 들어온 기출 이관 6커밋을 먼저 받아 충돌 없이).
 - **정본은 `N:\개인\강아\교재자료\RPM\22`(2022 개정)** — 원장님이 짚어 주셨다. E: 의 「수학 상·하」는
   2015 판이라 **쓰지 않는다.** 로컬 사본은 워크트리 `.rpm-src/22/`(gitignore, 14파일 ≈ 360MB). §1.2 에 행을 더했다.
 - 만든 것: `scripts/rpm/extract-high-type-catalog.py`(고등판 색인 추출기 — 중등판과 글꼴이 **전부** 다르다) →
