@@ -66,8 +66,8 @@ export default function WorkroomHome({
   const [dragging, setDragging] = useState(false);
   const total = data.grades.reduce((sum, g) => sum + g.count, 0);
   const gradeGroups = [
-    { prefix: "초", label: "초등", note: "기초부터 탄탄하게" },
-    { prefix: "중", label: "중등", note: "개념부터 유형까지" },
+    { prefix: "초", label: "초등" },
+    { prefix: "중", label: "중등" },
   ];
   const visibleDrafts = recent.slice(0, 4);
   return (
@@ -122,7 +122,6 @@ export default function WorkroomHome({
                 <div className={s.gradeGroup} key={group.prefix}>
                   <div>
                     <strong>{group.label}</strong>
-                    <small>{group.note}</small>
                   </div>
                   <div>
                     {data.grades
@@ -145,10 +144,6 @@ export default function WorkroomHome({
               ))}
             </div>
             <div className={s.bankFoot}>
-              <span>
-                <Icon name="check" size={15} />
-                학년 · 단원 · 난이도로 세밀하게
-              </span>
               <button onClick={() => onBank()}>
                 전체 문제은행
                 <Icon name="arrow" size={16} />
@@ -186,8 +181,7 @@ export default function WorkroomHome({
               </div>
             </div>
             <div className={s.importCopy}>
-              <span className={s.eyebrow}>가지고 있는 자료도 함께</span>
-              <h2 id="source-import-title">교재의 한 문제도, 내 시험지로.</h2>
+              <h2 id="source-import-title">내 자료에서 문제 가져오기</h2>
               <p>PDF나 이미지를 놓으면 바로 문제를 자를 수 있어요.</p>
               <div>
                 <span>문제 자르기</span>
@@ -229,7 +223,7 @@ export default function WorkroomHome({
                       <Icon name="paper" size={22} />
                     </span>
                     <span className={s.recentInfo}>
-                      <strong>
+                      <strong title={item.title || "제목 없는 시험지"}>
                         {item.title || "제목 없는 시험지"}
                         {item.id === draft.id && <i>현재 작업</i>}
                       </strong>
@@ -333,10 +327,7 @@ export default function WorkroomHome({
                 </span>
               </div>
             ) : (
-              <p className={s.draftEmptyText}>
-                문제은행과 내 자료에서 담은 문제를
-                <br />한 시험지에 모아보세요.
-              </p>
+              <p className={s.draftEmptyText}>아직 담은 문제가 없습니다.</p>
             )}
             <button
               className={s.primaryButton}

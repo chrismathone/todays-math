@@ -96,6 +96,7 @@ export default function UnifiedWorkspace({
   >();
   const dialogRef = useRef<HTMLDialogElement>(null);
   const queryRef = useRef<HTMLInputElement>(null);
+  const newTitleRef = useRef<HTMLInputElement>(null);
   const fileRef = useRef<HTMLInputElement>(null);
   const draftFileRef = useRef<HTMLInputElement>(null);
   const label = navItems.find((item) => item.id === view)!.label;
@@ -158,6 +159,7 @@ export default function UnifiedWorkspace({
     if (modal && !dialog.open) {
       dialog.showModal();
       if (modal === "search") queryRef.current?.focus();
+      if (modal === "new") newTitleRef.current?.focus();
     }
     if (!modal && dialog.open) dialog.close();
   }, [modal]);
@@ -369,6 +371,8 @@ export default function UnifiedWorkspace({
         </div>
         <button
           className={s.newButton}
+          aria-label="새 시험지 만들기"
+          title={sidebarCollapsed ? "새 시험지 만들기" : undefined}
           disabled={!hydrated}
           onClick={() => setModal("new")}
         >
@@ -376,15 +380,11 @@ export default function UnifiedWorkspace({
           <span>새 시험지 만들기</span>
         </button>
         <nav className={s.navigation} aria-label="작업실 메뉴">
-          {navItems.map((item, index) => (
+          {navItems.map((item) => (
             <div
               key={item.id}
               className={item.id === "teaching" ? s.teachingNav : ""}
             >
-              {index === 0 && <p className={s.navCaption}>작업 공간</p>}
-              {item.id === "teaching" && (
-                <p className={s.navCaption}>수업 운영</p>
-              )}
               <button
                 aria-label={item.label}
                 title={sidebarCollapsed ? item.label : undefined}
@@ -610,9 +610,16 @@ export default function UnifiedWorkspace({
                     placeholder="시험지 이름으로 찾기"
                     aria-label="저장한 시험지 검색"
                   />
+                  {libraryQuery && (
+                    <button type="button" aria-label="시험지 검색 지우기" onClick={() => setLibraryQuery("")}>
+                      <Icon name="close" size={17} />
+                    </button>
+                  )}
                 </label>
               </div>
-              {filteredDrafts.length ? (
+              {!hydrated ? (
+                <p className={s.loading} role="status">저장한 시험지를 불러오는 중입니다…</p>
+              ) : filteredDrafts.length ? (
                 <div className={s.libraryGrid}>
                   {filteredDrafts.map((item) => (
                     <article key={item.id} className={s.libraryCard}>
@@ -624,12 +631,12 @@ export default function UnifiedWorkspace({
                           {item.id === draft.id ? "현재 작업" : "저장된 시험지"}
                         </small>
                       </div>
-                      <h2>{item.title || "제목 없는 시험지"}</h2>
+                      <h2 title={item.title || "제목 없는 시험지"}>{item.title || "제목 없는 시험지"}</h2>
                       <p>
                         {item.problemCount}문항<span>·</span>
                         {formatDraftDate(item.updatedAt)}
                       </p>
-                      <button onClick={() => openSaved(item.id)}>
+                      <button aria-label={`${item.title || "제목 없는 시험지"} 이어서 편집하기`} onClick={() => openSaved(item.id)}>
                         이어서 편집하기
                         <Icon name="arrow" size={18} />
                       </button>
@@ -704,6 +711,7 @@ export default function UnifiedWorkspace({
             <label className={s.newTitle}>
               시험지 이름 <small>나중에 바꿀 수 있어요</small>
               <input
+                ref={newTitleRef}
                 value={newTitle}
                 onChange={(event) => setNewTitle(event.target.value)}
                 placeholder="오늘의 수학 학습지"
@@ -716,19 +724,19 @@ export default function UnifiedWorkspace({
                   view: "bank" as const,
                   icon: "bank" as const,
                   title: "문제은행에서 만들기",
-                  description: "학년과 단원에 맞는 문제를 골라 담으세요.",
+                  description: "학년·단원별 문제 선택",
                 },
                 {
                   view: "studio" as const,
                   icon: "crop" as const,
                   title: "내 자료로 만들기",
-                  description: "PDF·이미지에서 문제를 자르고 편집하세요.",
+                  description: "PDF·이미지에서 문제 자르기",
                 },
                 {
                   view: "export" as const,
                   icon: "paper" as const,
                   title: "빈 시험지로 시작하기",
-                  description: "제목과 배치를 정하고 천천히 구성하세요.",
+                  description: "제목과 배치부터 설정",
                 },
               ].map((item) => (
                 <button key={item.view} onClick={() => startNew(item.view)}>
@@ -786,6 +794,11 @@ export default function UnifiedWorkspace({
                     <Icon name="arrow" size={17} />
                   </button>
                 ))}
+              <button onClick={() => setModal("help")}>
+                <Icon name="help" size={20} />
+                <span>작업실 사용 안내</span>
+                <Icon name="arrow" size={17} />
+              </button>
             </div>
             <p className={s.dialogFoot}>
               Ctrl / ⌘ K 빠른 찾기<span>Esc 닫기</span>
