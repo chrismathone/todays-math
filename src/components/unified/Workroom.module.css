@@ -879,7 +879,9 @@
   width: 100%;
 }
 @media (max-height: 850px) and (min-width: 761px) {
-  .sidebar { padding-top: 16px; }
+  .sidebar {
+    padding-top: 16px;
+  }
 }
 @media (max-height: 720px) and (min-width: 761px) {
   .sideDraft {

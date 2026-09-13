@@ -105,20 +105,23 @@ export default function UnifiedWorkspace({
   const fileRef = useRef<HTMLInputElement>(null);
   const draftFileRef = useRef<HTMLInputElement>(null);
   const label = navItems.find((item) => item.id === view)!.label;
-  const navigate = useCallback((next: View) => {
-    setView(next);
-    setOpened((current) =>
-      current.has(next) ? current : new Set([...current, next]),
-    );
-    setNotice("");
-    setUndo(null);
-    setModal(null);
-    const url = new URL(window.location.href);
-    url.hash = next === "home" ? "" : next;
-    if (url.href !== window.location.href)
-      window.history.pushState(null, "", url);
-    window.scrollTo({ top: 0, behavior: "instant" });
-  }, [setNotice]);
+  const navigate = useCallback(
+    (next: View) => {
+      setView(next);
+      setOpened((current) =>
+        current.has(next) ? current : new Set([...current, next]),
+      );
+      setNotice("");
+      setUndo(null);
+      setModal(null);
+      const url = new URL(window.location.href);
+      url.hash = next === "home" ? "" : next;
+      if (url.href !== window.location.href)
+        window.history.pushState(null, "", url);
+      window.scrollTo({ top: 0, behavior: "instant" });
+    },
+    [setNotice],
+  );
   useEffect(() => {
     try {
       // Restore a browser-only layout preference after hydration.
@@ -510,7 +513,11 @@ export default function UnifiedWorkspace({
           </div>
         )}
         {notice && (
-          <div className={s.notice} data-error={noticeError} role={noticeError ? "alert" : "status"}>
+          <div
+            className={s.notice}
+            data-error={noticeError}
+            role={noticeError ? "alert" : "status"}
+          >
             <Icon name={noticeError ? "warning" : "check"} size={18} />
             <span>{notice}</span>
             {undo && undo.draftId === draft.id && (
@@ -625,14 +632,20 @@ export default function UnifiedWorkspace({
                     aria-label="저장한 시험지 검색"
                   />
                   {libraryQuery && (
-                    <button type="button" aria-label="시험지 검색 지우기" onClick={() => setLibraryQuery("")}>
+                    <button
+                      type="button"
+                      aria-label="시험지 검색 지우기"
+                      onClick={() => setLibraryQuery("")}
+                    >
                       <Icon name="close" size={17} />
                     </button>
                   )}
                 </label>
               </div>
               {!hydrated ? (
-                <p className={s.loading} role="status">저장한 시험지를 불러오는 중입니다…</p>
+                <p className={s.loading} role="status">
+                  저장한 시험지를 불러오는 중입니다…
+                </p>
               ) : filteredDrafts.length ? (
                 <div className={s.libraryGrid}>
                   {filteredDrafts.map((item) => (
@@ -645,12 +658,17 @@ export default function UnifiedWorkspace({
                           {item.id === draft.id ? "현재 작업" : "저장된 시험지"}
                         </small>
                       </div>
-                      <h2 title={item.title || "제목 없는 시험지"}>{item.title || "제목 없는 시험지"}</h2>
+                      <h2 title={item.title || "제목 없는 시험지"}>
+                        {item.title || "제목 없는 시험지"}
+                      </h2>
                       <p>
                         {item.problemCount}문항<span>·</span>
                         {formatDraftDate(item.updatedAt)}
                       </p>
-                      <button aria-label={`${item.title || "제목 없는 시험지"} 이어서 편집하기`} onClick={() => openSaved(item.id)}>
+                      <button
+                        aria-label={`${item.title || "제목 없는 시험지"} 이어서 편집하기`}
+                        onClick={() => openSaved(item.id)}
+                      >
                         이어서 편집하기
                         <Icon name="arrow" size={18} />
                       </button>
