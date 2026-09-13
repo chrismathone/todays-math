@@ -40,4 +40,5 @@ export interface BankViewProps {
 export interface StudioViewProps {
   onAdd: (problems: StudioProblem[]) => void;
   onExport: () => void;
+  importRequest?: { id: number; files: File[] };
 }

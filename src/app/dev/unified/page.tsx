@@ -2,6 +2,7 @@ import { connection } from "next/server";
 import { notFound } from "next/navigation";
 import { loadUnifiedBank } from "@/lib/unifiedPreview";
 import UnifiedWorkspace from "@/components/unified/UnifiedWorkspace";
+import LegacyUnifiedWorkspace from "@/components/unified/LegacyUnifiedWorkspace";
 import type { BankData } from "@/components/unified/types";
 import type { DesignId } from "@/components/unified/DesignConcepts";
 
@@ -37,11 +38,13 @@ export default async function UnifiedPreviewPage({
         "문제은행 연결을 확인해 주세요. 자료 제작은 바로 사용할 수 있습니다.",
     };
   }
-  return (
-    <UnifiedWorkspace
+  return design === "compare" || initialDesign !== 1 ? (
+    <LegacyUnifiedWorkspace
       initialData={initialData}
       initialDesign={initialDesign}
       initialCompare={design === "compare"}
     />
+  ) : (
+    <UnifiedWorkspace initialData={initialData} />
   );
 }

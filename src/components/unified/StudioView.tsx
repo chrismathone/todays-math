@@ -3,7 +3,7 @@
 /* Local image data must stay in the browser, bypassing the Next image optimizer. */
 /* eslint-disable @next/next/no-img-element */
 
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useEffectEvent, useRef, useState } from "react";
 import type { KeyboardEvent, PointerEvent, SVGProps } from "react";
 import type { PDFDocumentProxy, RenderTask } from "pdfjs-dist";
 import { ProblemContent } from "@/components/math/ProblemContent";
@@ -91,7 +91,12 @@ function readImage(file: File): Promise<HTMLImageElement> {
   });
 }
 
-export default function StudioView({ onAdd, onExport }: StudioViewProps) {
+export default function StudioView({
+  onAdd,
+  onExport,
+  importRequest,
+}: StudioViewProps) {
+  const handledImport = useRef<number | null>(null);
   const [sources, setSources] = useState<StudioSource[]>([]);
   const [sourceId, setSourceId] = useState("");
   const [pageNumber, setPageNumber] = useState(1);
@@ -291,6 +296,16 @@ export default function StudioView({ onAdd, onExport }: StudioViewProps) {
     }
     importLock.current = false;
   }
+
+  const importRequested = useEffectEvent((files: File[]) => {
+    void importFiles(files);
+  });
+  useEffect(() => {
+    if (!importRequest || handledImport.current === importRequest.id || busy)
+      return;
+    handledImport.current = importRequest.id;
+    importRequested(importRequest.files);
+  }, [importRequest, busy]);
 
   function loadSample() {
     if (busy) return;

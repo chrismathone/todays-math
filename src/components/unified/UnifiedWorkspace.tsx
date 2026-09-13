@@ -1,249 +1,260 @@
 "use client";
 
 import dynamic from "next/dynamic";
-import { useState } from "react";
-import { MathText } from "@/components/math/MathText";
-import UnifiedProblem from "./UnifiedProblem";
-import { displayFractions } from "./fractionDisplay";
+import { useCallback, useEffect, useRef, useState } from "react";
 import type { BankData, StudioProblem } from "./types";
-import s from "./Workspace.module.css";
-import {
-  ConceptHome,
-  DesignGallery,
-  DesignSwitcher,
-  type DesignId,
-} from "./DesignConcepts";
-
+import { useWorkspaceDrafts } from "./useWorkspaceDrafts";
+import WorkroomHome, { formatDraftDate } from "./WorkroomHome";
+import Icon, { type WorkspaceIconName } from "./WorkspaceIcon";
+import s from "./Workroom.module.css";
 const BankView = dynamic(() => import("./BankView"), {
-  loading: () => <p className={s.loading}>문제은행을 여는 중입니다…</p>,
+  loading: () => <p className={s.loading}>문제은행을 불러오는 중입니다…</p>,
 });
 const StudioView = dynamic(() => import("./StudioView"), {
   ssr: false,
-  loading: () => <p className={s.loading}>자료 작업실을 여는 중입니다…</p>,
+  loading: () => <p className={s.loading}>자료 작업실을 준비하는 중입니다…</p>,
 });
 const TeachingView = dynamic(() => import("./TeachingView"), {
   ssr: false,
+  loading: () => <p className={s.loading}>수업 정보를 확인하는 중입니다…</p>,
+});
+const WorksheetEditor = dynamic(() => import("./WorksheetEditor"), {
   loading: () => (
-    <p className={s.loading}>수업 관리 화면을 불러오는 중입니다…</p>
+    <p className={s.loading}>시험지 미리보기를 준비하는 중입니다…</p>
   ),
 });
-type View = "home" | "bank" | "studio" | "export" | "teaching";
-type IconName =
-  | "home"
-  | "bank"
-  | "crop"
-  | "paper"
-  | "arrow"
-  | "plus"
-  | "save"
-  | "print"
-  | "class"
-  | "check"
-  | "close";
-const labels: Record<View, string> = {
-  home: "오늘의 작업",
-  bank: "문제은행",
-  studio: "자료 제작",
-  export: "시험지 · 내보내기",
-  teaching: "수업 · 학생 관리",
-};
-const STORAGE_KEY = "today-math-unified-draft-v1";
-
-function Icon({ name, size = 20 }: { name: IconName; size?: number }) {
-  const paths: Record<IconName, React.ReactNode> = {
-    home: (
-      <>
-        <path d="m3 10 9-7 9 7v10H3Z" />
-        <path d="M9 20v-7h6v7" />
-      </>
-    ),
-    bank: (
-      <>
-        <rect x="3" y="4" width="5" height="16" rx="1" />
-        <rect x="10" y="4" width="5" height="16" rx="1" />
-        <path d="m18 4 3 15M4 8h3m4 0h3" />
-      </>
-    ),
-    crop: (
-      <>
-        <path d="M7 3v14h14M3 7h14v14M11 3v4m10 4h-4" />
-        <path d="m11 13 10-10" />
-      </>
-    ),
-    paper: (
-      <>
-        <path d="M5 3h10l4 4v14H5Z" />
-        <path d="M14 3v5h5M9 12h6m-6 4h6" />
-      </>
-    ),
-    arrow: <path d="M4 12h16m-6-6 6 6-6 6" />,
-    plus: <path d="M12 4v16M4 12h16" />,
-    save: (
-      <>
-        <path d="M12 3v12m-5-5 5 5 5-5M4 16v5h16v-5" />
-      </>
-    ),
-    print: (
-      <>
-        <path d="M7 8V3h10v5M7 17H3V8h18v9h-4M7 14h10v7H7Z" />
-        <path d="M17 11h1" />
-      </>
-    ),
-    class: (
-      <>
-        <circle cx="9" cy="8" r="3" />
-        <path d="M3 21v-4a6 6 0 0 1 12 0v4M16 5a3 3 0 0 1 0 6m2 3a5 5 0 0 1 3 5v2" />
-      </>
-    ),
-    check: <path d="m5 12 4 4L19 6" />,
-    close: <path d="m6 6 12 12M6 18 18 6" />,
-  };
-  return (
-    <svg
-      width={size}
-      height={size}
-      viewBox="0 0 24 24"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth="2"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-      aria-hidden="true"
-    >
-      {paths[name]}
-    </svg>
-  );
-}
-
+type View = "home" | "bank" | "studio" | "export" | "library" | "teaching";
+const navItems: {
+  id: View;
+  label: string;
+  short: string;
+  icon: WorkspaceIconName;
+}[] = [
+  { id: "home", label: "오늘의 작업", short: "홈", icon: "home" },
+  { id: "bank", label: "문제은행", short: "문제은행", icon: "bank" },
+  { id: "studio", label: "자료 제작", short: "자료 제작", icon: "crop" },
+  { id: "export", label: "시험지 · 내보내기", short: "시험지", icon: "paper" },
+  { id: "library", label: "내 시험지", short: "보관함", icon: "folder" },
+  {
+    id: "teaching",
+    label: "수업 · 학생 관리",
+    short: "수업·학생",
+    icon: "class",
+  },
+];
+const viewValid = (value: string): value is View =>
+  navItems.some((item) => item.id === value);
 export default function UnifiedWorkspace({
   initialData,
-  initialDesign = 1,
-  initialCompare = false,
 }: {
   initialData: BankData;
-  initialDesign?: DesignId;
-  initialCompare?: boolean;
 }) {
-  const [design, setDesign] = useState<DesignId>(initialDesign);
-  const [comparing, setComparing] = useState(initialCompare);
+  const {
+    draft,
+    hydrated,
+    recent,
+    saveStatus,
+    saveError,
+    setTitle,
+    setProblems: setSelected,
+    setColumns,
+    setAnswers,
+    saveNow,
+    createDraft,
+    openDraft,
+    importDraft,
+  } = useWorkspaceDrafts();
+  const {
+    title,
+    problems: selected,
+    columns,
+    answers,
+    updatedAt: savedAt,
+  } = draft;
   const [view, setView] = useState<View>("home");
-  const [studioOpened, setStudioOpened] = useState(false);
-  const [bankOpened, setBankOpened] = useState(false);
-  const [teachingOpened, setTeachingOpened] = useState(false);
-  const [homeSearch, setHomeSearch] = useState("");
+  const [opened, setOpened] = useState<Set<View>>(new Set(["home"]));
   const [bankEntry, setBankEntry] = useState<{
     q?: string;
     grade?: string;
     version: number;
   }>({ version: 0 });
-  const [selected, setSelected] = useState<StudioProblem[]>([]);
-  const [title, setTitle] = useState("오늘의 수학 학습지");
-  const [columns, setColumns] = useState(2);
-  const [answers, setAnswers] = useState(false);
   const [notice, setNotice] = useState("");
-  const [savedAt, setSavedAt] = useState("");
-  const navigate = (next: View) => {
+  const [undo, setUndo] = useState<{
+    problem: StudioProblem;
+    index: number;
+    draftId: string;
+  } | null>(null);
+  const [modal, setModal] = useState<"new" | "search" | "help" | null>(null);
+  const [newTitle, setNewTitle] = useState("");
+  const [quickQuery, setQuickQuery] = useState("");
+  const [libraryQuery, setLibraryQuery] = useState("");
+  const [importRequest, setImportRequest] = useState<
+    { id: number; files: File[] } | undefined
+  >();
+  const dialogRef = useRef<HTMLDialogElement>(null);
+  const queryRef = useRef<HTMLInputElement>(null);
+  const fileRef = useRef<HTMLInputElement>(null);
+  const draftFileRef = useRef<HTMLInputElement>(null);
+  const label = navItems.find((item) => item.id === view)!.label;
+  const navigate = useCallback((next: View) => {
     setView(next);
-    if (next === "studio") setStudioOpened(true);
-    if (next === "bank") setBankOpened(true);
-    if (next === "teaching") setTeachingOpened(true);
+    setOpened((current) =>
+      current.has(next) ? current : new Set([...current, next]),
+    );
     setNotice("");
+    setUndo(null);
+    setModal(null);
+    const url = new URL(window.location.href);
+    url.hash = next === "home" ? "" : next;
+    if (url.href !== window.location.href)
+      window.history.pushState(null, "", url);
     window.scrollTo({ top: 0, behavior: "instant" });
-  };
+  }, []);
+  useEffect(() => {
+    const sync = () => {
+      const value = window.location.hash.slice(1);
+      const next = viewValid(value) ? value : "home";
+      setView(next);
+      setOpened((current) =>
+        current.has(next) ? current : new Set([...current, next]),
+      );
+    };
+    // Synchronize the browser's navigation state, including a directly opened hash.
+     
+    sync();
+    window.addEventListener("popstate", sync);
+    window.addEventListener("hashchange", sync);
+    return () => {
+      window.removeEventListener("popstate", sync);
+      window.removeEventListener("hashchange", sync);
+    };
+  }, []);
+  useEffect(() => {
+    const dialog = dialogRef.current;
+    if (!dialog) return;
+    if (modal && !dialog.open) {
+      dialog.showModal();
+      if (modal === "search") queryRef.current?.focus();
+    }
+    if (!modal && dialog.open) dialog.close();
+  }, [modal]);
+  useEffect(() => {
+    const keydown = (event: KeyboardEvent) => {
+      if (!(event.ctrlKey || event.metaKey)) return;
+      if (event.key.toLowerCase() === "k") {
+        event.preventDefault();
+        setModal("search");
+      }
+      if (event.key.toLowerCase() === "s") {
+        event.preventDefault();
+        if (saveNow()) setNotice("이 브라우저에 작업을 저장했습니다.");
+      }
+    };
+    window.addEventListener("keydown", keydown);
+    return () => window.removeEventListener("keydown", keydown);
+  }, [saveNow]);
   const openBank = (filters: { q?: string; grade?: string } = {}) => {
     setBankEntry((current) => ({ ...filters, version: current.version + 1 }));
     navigate("bank");
   };
-  const chooseDesign = (next: DesignId) => {
-    setDesign(next);
-    setComparing(false);
-    navigate("home");
-    const url = new URL(window.location.href);
-    url.searchParams.set("design", String(next));
-    window.history.replaceState(null, "", url);
-  };
-  const compareDesigns = () => {
-    setComparing(true);
-    const url = new URL(window.location.href);
-    url.searchParams.set("design", "compare");
-    window.history.replaceState(null, "", url);
-    window.scrollTo({ top: 0, behavior: "instant" });
-  };
-  const toggle = (problem: StudioProblem) =>
+  function toggle(problem: StudioProblem) {
+    const index = selected.findIndex((p) => p.id === problem.id);
+    if (index >= 0) {
+      setUndo({ problem, index, draftId: draft.id });
+      setNotice("시험지에서 문제를 뺐습니다.");
+    }
     setSelected((current) =>
       current.some((p) => p.id === problem.id)
         ? current.filter((p) => p.id !== problem.id)
         : [...current, problem],
     );
+  }
+  function undoRemove() {
+    if (!undo || undo.draftId !== draft.id) return;
+    setSelected((current) => {
+      if (current.some((p) => p.id === undo.problem.id)) return current;
+      const next = [...current];
+      next.splice(Math.min(undo.index, next.length), 0, undo.problem);
+      return next;
+    });
+    setUndo(null);
+    setNotice("문제를 다시 담았습니다.");
+  }
   const add = (problems: StudioProblem[]) =>
     setSelected((current) => {
-      const updated = new Map(problems.map((problem) => [problem.id, problem]));
+      const updates = new Map(problems.map((p) => [p.id, p]));
       return [
-        ...current.map((problem) => updated.get(problem.id) ?? problem),
-        ...problems.filter(
-          (problem) => !current.some((old) => old.id === problem.id),
-        ),
+        ...current.map((p) => updates.get(p.id) ?? p),
+        ...problems.filter((p) => !current.some((old) => old.id === p.id)),
       ];
     });
-  const count = initialData.grades.reduce((sum, item) => sum + item.count, 0);
-  const date = new Intl.DateTimeFormat("ko-KR", {
-    month: "long",
-    day: "numeric",
-    weekday: "long",
-    timeZone: "Asia/Seoul",
-  }).format(new Date());
-
+  function move(index: number, direction: number) {
+    setSelected((current) => {
+      if (index + direction < 0 || index + direction >= current.length)
+        return current;
+      const next = [...current];
+      [next[index], next[index + direction]] = [
+        next[index + direction],
+        next[index],
+      ];
+      return next;
+    });
+  }
   function save() {
-    try {
-      const now = new Date().toISOString();
-      localStorage.setItem(
-        STORAGE_KEY,
-        JSON.stringify({
-          version: 1,
-          title,
-          problems: selected,
-          updatedAt: now,
-        }),
-      );
-      setSavedAt(now);
-      setNotice("이 브라우저에 작업을 저장했습니다.");
-    } catch {
-      setNotice(
-        "브라우저 저장 공간이 부족합니다. 작업 파일로 내려받아 보관해 주세요.",
-      );
+    setUndo(null);
+    if (saveNow()) setNotice("이 브라우저에 작업을 저장했습니다.");
+  }
+  function openSaved(id: string) {
+    if (openDraft(id)) {
+      setUndo(null);
+      navigate("export");
+      setNotice("저장한 시험지를 불러왔습니다.");
     }
   }
   function restore() {
+    if (recent.length) openSaved(recent[0].id);
+    else navigate("library");
+  }
+  function startNew(next: "bank" | "studio" | "export") {
+    if (!createDraft()) return;
+    setUndo(null);
+    if (newTitle.trim()) setTitle(newTitle.trim());
+    setNewTitle("");
+    if (next === "bank") openBank();
+    else navigate(next);
+  }
+  function receiveFiles(files: File[]) {
+    if (!files.length) return;
+    setImportRequest({ id: Date.now(), files });
+    navigate("studio");
+  }
+  async function receiveDraft(file: File | undefined) {
+    if (!file) return;
     try {
-      const raw = localStorage.getItem(STORAGE_KEY);
-      if (!raw) {
-        setNotice("이 브라우저에 저장한 작업이 아직 없습니다.");
-        return;
+      if (file.size > 20 * 1024 * 1024)
+        throw Error("20 MB 이하의 작업 파일을 선택해 주세요.");
+      const value = JSON.parse(await file.text());
+      if (importDraft(value)) {
+        setUndo(null);
+        navigate("export");
+        setNotice("작업 파일을 불러왔습니다.");
       }
-      const data = JSON.parse(raw);
-      if (
-        data.version !== 1 ||
-        typeof data.title !== "string" ||
-        !Array.isArray(data.problems) ||
-        !data.problems.every(
-          (p: StudioProblem) =>
-            typeof p.id === "string" && typeof p.content === "string",
-        )
-      )
-        throw new Error();
-      setSelected(data.problems);
-      setTitle(data.title);
-      setSavedAt(data.updatedAt);
-      setView("export");
-      setNotice("저장한 작업을 불러왔습니다.");
     } catch {
-      setNotice("저장한 작업을 읽지 못했습니다.");
+      setNotice(
+        "작업 파일을 읽지 못했습니다. 오늘의수학에서 내보낸 JSON 파일인지 확인해 주세요.",
+      );
     }
   }
   function download() {
     const url = URL.createObjectURL(
       new Blob(
-        [JSON.stringify({ version: 1, title, problems: selected }, null, 2)],
+        [
+          JSON.stringify(
+            { version: 1, title, problems: selected, columns, answers },
+            null,
+            2,
+          ),
+        ],
         { type: "application/json" },
       ),
     );
@@ -252,418 +263,218 @@ export default function UnifiedWorkspace({
     link.download = `${title.replace(/[<>:"/\\|?*]/g, "_") || "학습지"}.json`;
     link.click();
     setTimeout(() => URL.revokeObjectURL(url), 1000);
-    setNotice("문제 원문과 편집 내용을 작업 파일로 내보냈습니다.");
+    setNotice("원문과 편집 내용을 작업 파일로 내보냈습니다.");
   }
-  const move = (index: number, direction: number) =>
-    setSelected((current) => {
-      const next = [...current];
-      [next[index], next[index + direction]] = [
-        next[index + direction],
-        next[index],
-      ];
-      return next;
-    });
-
+  const filteredDrafts = recent.filter((item) =>
+    item.title.toLocaleLowerCase().includes(libraryQuery.toLocaleLowerCase()),
+  );
   return (
-    <>
-      <DesignSwitcher
-        design={design}
-        comparing={comparing}
-        onSelect={chooseDesign}
-        onCompare={compareDesigns}
+    <div className={s.workspace}>
+      <a className={s.skipLink} href="#workspace-content">
+        본문으로 건너뛰기
+      </a>
+      <input
+        ref={fileRef}
+        hidden
+        type="file"
+        accept="application/pdf,image/png,image/jpeg,image/webp,image/gif,image/bmp"
+        multiple
+        aria-label="홈에서 PDF 또는 이미지 가져오기"
+        onChange={(event) => {
+          receiveFiles(Array.from(event.target.files ?? []));
+          event.target.value = "";
+        }}
       />
-      {comparing && <DesignGallery onSelect={chooseDesign} />}
-      <div
-        className={s.workspace}
-        data-design={design}
-        data-view={view}
-        hidden={comparing}
-      >
-        <aside className={s.sidebar}>
-          <button
-            className={s.brand}
-            onClick={() => navigate("home")}
-            aria-label="오늘의수학 홈"
-          >
-            <span className={s.brandSymbol}>∑</span>
-            <span>
-              오늘의수학<small>수학 수업의 모든 작업</small>
-            </span>
-          </button>
-          <button className={s.newButton} onClick={() => navigate("bank")}>
-            <Icon name="plus" /> 문제 담기
-          </button>
-          <nav className={s.nav} aria-label="작업실 메뉴">
-            {(["home", "teaching", "bank", "studio", "export"] as View[]).map(
-              (item) => (
-                <button
-                  key={item}
-                  className={view === item ? s.navActive : ""}
-                  onClick={() => navigate(item)}
-                  aria-current={view === item ? "page" : undefined}
-                  aria-label={labels[item]}
-                >
-                  <Icon
-                    name={
-                      item === "studio"
-                        ? "crop"
-                        : item === "export"
-                          ? "paper"
-                          : item === "teaching"
-                            ? "class"
-                            : item
-                    }
-                  />
-                  <span className={s.navLabel}>{labels[item]}</span>
-                  <span className={s.mobileNavLabel}>
-                    {
-                      {
-                        home: "홈",
-                        teaching: "수업·학생",
-                        bank: "문제은행",
-                        studio: "자료 제작",
-                        export: "시험지",
-                      }[item]
-                    }
-                  </span>
-                  {item === "export" && selected.length > 0 && (
-                    <span className={s.navCount}>{selected.length}</span>
-                  )}
-                </button>
-              ),
-            )}
-          </nav>
-          <div className={s.sideBasket}>
-            <div>
-              <Icon name="paper" />
-              <strong>내 시험지</strong>
-              <span>{selected.length}</span>
+      <input
+        ref={draftFileRef}
+        hidden
+        type="file"
+        accept="application/json,.json"
+        aria-label="시험지 작업 파일 가져오기"
+        onChange={(event) => {
+          void receiveDraft(event.target.files?.[0]);
+          event.target.value = "";
+        }}
+      />
+      <aside className={s.sidebar}>
+        <button
+          className={s.brand}
+          onClick={() => navigate("home")}
+          aria-label="오늘의수학 홈"
+        >
+          <span className={s.brandMark}>
+            ∑<i />
+          </span>
+          <span>
+            오늘의수학<small>선생님의 수학 작업실</small>
+          </span>
+        </button>
+        <button
+          className={s.newButton}
+          disabled={!hydrated}
+          onClick={() => setModal("new")}
+        >
+          <Icon name="plus" />
+          <span>새 시험지 만들기</span>
+        </button>
+        <nav className={s.navigation} aria-label="작업실 메뉴">
+          {navItems.map((item, index) => (
+            <div
+              key={item.id}
+              className={item.id === "teaching" ? s.teachingNav : ""}
+            >
+              {index === 0 && <p className={s.navCaption}>작업 공간</p>}
+              {item.id === "teaching" && (
+                <p className={s.navCaption}>수업 운영</p>
+              )}
+              <button
+                aria-label={item.label}
+                aria-current={view === item.id ? "page" : undefined}
+                className={view === item.id ? s.navActive : ""}
+                onClick={() => navigate(item.id)}
+              >
+                <Icon name={item.icon} />
+                <span className={s.navLabel}>{item.label}</span>
+                <span className={s.navShort}>{item.short}</span>
+                {item.id === "export" && selected.length > 0 && (
+                  <span className={s.navCount}>{selected.length}</span>
+                )}
+                {item.id === "library" && recent.length > 0 && (
+                  <span className={s.libraryCount}>{recent.length}</span>
+                )}
+              </button>
             </div>
-            <p>
-              {selected.length
-                ? "담은 문제를 확인하고 출력하세요."
-                : "고른 문제와 잘라낸 자료를 한 시험지에 담아보세요."}
-            </p>
-            <button onClick={() => navigate("export")}>
-              {selected.length ? "시험지 이어서 만들기" : "시험지 구성하기"}
-              <Icon name="arrow" size={18} />
+          ))}
+        </nav>
+        <div className={s.sideDraft}>
+          <div>
+            <span className={s.sideDraftIcon}>
+              <Icon name="paper" size={18} />
+            </span>
+            <span>현재 시험지</span>
+            <b>{selected.length}문항</b>
+          </div>
+          <strong>{title || "제목 없는 시험지"}</strong>
+          <button onClick={() => navigate("export")}>
+            편집 이어가기
+            <Icon name="arrow" size={17} />
+          </button>
+        </div>
+        <div className={s.sidebarFooter}>
+          <button onClick={() => setModal("help")}>
+            <Icon name="help" size={19} />
+            작업실 사용 안내
+            <Icon name="chevron" size={15} />
+          </button>
+          <button
+            className={s.accountButton}
+            onClick={() => navigate("teaching")}
+          >
+            <span>수</span>
+            <span>
+              <strong>나의 수업 공간</strong>
+              <small>계정 · 반 · 학생 관리</small>
+            </span>
+            <Icon name="chevron" size={16} />
+          </button>
+        </div>
+      </aside>
+      <div className={s.main}>
+        <header className={s.topbar}>
+          <div className={s.breadcrumb}>
+            <span>작업실</span>
+            <Icon name="chevron" size={14} />
+            <strong>{label}</strong>
+          </div>
+          <button
+            className={s.searchTrigger}
+            onClick={() => setModal("search")}
+            aria-label="빠른 검색 열기"
+          >
+            <Icon name="search" size={18} />
+            <span>문제 · 작업 빠르게 찾기</span>
+            <kbd>Ctrl K</kbd>
+          </button>
+          <div className={s.headerActions}>
+            <span className={s.saveState} data-state={saveStatus} role="status">
+              <Icon
+                name={
+                  saveStatus === "error"
+                    ? "warning"
+                    : saveStatus === "saving"
+                      ? "clock"
+                      : "check"
+                }
+                size={15}
+              />
+              {!hydrated
+                ? "작업 불러오는 중"
+                : saveStatus === "saving"
+                  ? "저장 중…"
+                  : saveStatus === "error"
+                    ? "저장 확인 필요"
+                    : selected.length
+                      ? "자동 저장됨"
+                      : "작업 준비 완료"}
+            </span>
+            <button
+              className={s.headerPaper}
+              onClick={() => navigate("export")}
+              aria-label={`담은 문제 ${selected.length}`}
+            >
+              <Icon name="paper" size={18} />
+              <span>시험지</span>
+              <b>{selected.length}</b>
             </button>
           </div>
-          <div className={s.sideBottom}>
-            <span className={s.liveDot} /> 통합 작업실{" "}
-            <span className={s.devPill}>DEV</span>
-            <p>문제은행 · 자료 제작 · 수업 관리</p>
+        </header>
+        {saveError && (
+          <div className={s.saveError} role="alert">
+            <Icon name="warning" size={19} />
+            <p>{saveError}</p>
+            <button onClick={download}>작업 파일 내려받기</button>
+            <button onClick={save}>다시 저장</button>
           </div>
-        </aside>
-        <div className={s.main}>
-          <header className={s.topbar}>
-            <div className={s.breadcrumb}>
-              오늘의수학 <span>/</span>
-              <strong>{labels[view]}</strong>
-            </div>
-            <div className={s.topRight}>
-              <span className={s.date}>{date}</span>
-              <button
-                className={s.headerBasket}
-                onClick={() => navigate("export")}
-              >
-                <Icon name="paper" size={18} />
-                담은 문제 <strong>{selected.length}</strong>
+        )}
+        {notice && (
+          <div className={s.notice} role="status">
+            <Icon name="check" size={18} />
+            <span>{notice}</span>
+            {undo && undo.draftId === draft.id && (
+              <button className={s.undoButton} onClick={undoRemove}>
+                <Icon name="undo" size={16} />
+                되돌리기
               </button>
-            </div>
-          </header>
-          {notice && (
-            <div className={s.notice} role="status">
-              <Icon name="check" />
-              {notice}
-              <button aria-label="알림 닫기" onClick={() => setNotice("")}>
-                <Icon name="close" />
-              </button>
-            </div>
-          )}
-          {view === "home" && design !== 1 && (
-            <ConceptHome
-              design={design}
+            )}
+            <button
+              className={s.dismiss}
+              onClick={() => {
+                setNotice("");
+                setUndo(null);
+              }}
+              aria-label="알림 닫기"
+            >
+              <Icon name="close" size={17} />
+            </button>
+          </div>
+        )}
+        <div id="workspace-content" className={s.content} tabIndex={-1}>
+          {view === "home" && (
+            <WorkroomHome
               data={initialData}
-              selected={selected}
-              title={title}
-              columns={columns}
-              onTitle={setTitle}
-              onColumns={setColumns}
-              onToggle={toggle}
-              onNavigate={navigate}
+              draft={draft}
+              recent={recent}
+              hydrated={hydrated}
+              saveStatus={saveStatus}
+              onNew={() => setModal("new")}
               onBank={openBank}
-              onRestore={restore}
+              onImport={() => fileRef.current?.click()}
+              onFiles={receiveFiles}
+              onOpen={openSaved}
+              onNavigate={navigate}
             />
           )}
-          {view === "home" && design === 1 && (
-            <main className={s.home}>
-              <div className={s.welcome}>
-                <div>
-                  <p className={s.eyebrow}>나의 수학 작업실</p>
-                  <h1>오늘 수업을 준비해 볼까요?</h1>
-                  <p className={s.intro}>
-                    문제 찾기부터 자료 제작, 학생 관리까지 한곳에서 이어집니다.
-                  </p>
-                </div>
-                <button className={s.secondaryButton} onClick={restore}>
-                  <Icon name="save" size={18} />
-                  저장한 작업 불러오기
-                </button>
-              </div>
-
-              <div className={s.startGrid}>
-                <section
-                  className={s.searchPanel}
-                  aria-labelledby="home-bank-heading"
-                >
-                  <div className={s.panelHeading}>
-                    <span className={s.featureIcon}>
-                      <Icon name="bank" size={25} />
-                    </span>
-                    <div>
-                      <h2 id="home-bank-heading">문제은행에서 골라 담기</h2>
-                      <p>
-                        {initialData.error ? (
-                          "연결 상태를 확인해 주세요"
-                        ) : (
-                          <>
-                            <strong>{count.toLocaleString()}</strong>개의 출제
-                            가능한 문제
-                          </>
-                        )}
-                      </p>
-                    </div>
-                    <span className={s.readyBadge}>
-                      <span className={s.liveDot} />
-                      문제은행
-                    </span>
-                  </div>
-                  <form
-                    className={s.homeSearch}
-                    onSubmit={(event) => {
-                      event.preventDefault();
-                      openBank({ q: homeSearch.trim() });
-                    }}
-                  >
-                    <svg
-                      width="22"
-                      height="22"
-                      viewBox="0 0 24 24"
-                      fill="none"
-                      stroke="currentColor"
-                      strokeWidth="2"
-                      aria-hidden="true"
-                    >
-                      <circle cx="10.5" cy="10.5" r="7.5" />
-                      <path d="m16 16 5 5" />
-                    </svg>
-                    <input
-                      aria-label="문제은행 바로 검색"
-                      placeholder="문제 내용, 단원 또는 문제 번호 검색"
-                      value={homeSearch}
-                      onChange={(event) => setHomeSearch(event.target.value)}
-                    />
-                    <button type="submit">
-                      검색
-                      <Icon name="arrow" size={18} />
-                    </button>
-                  </form>
-                  <div className={s.gradeHeading}>
-                    <strong>학년으로 바로 찾기</strong>
-                    <button className={s.textButton} onClick={() => openBank()}>
-                      전체 문제 보기
-                      <Icon name="arrow" size={17} />
-                    </button>
-                  </div>
-                  <div className={s.gradeGrid}>
-                    {[...initialData.grades]
-                      .sort((a, b) => {
-                        const rank = (grade: string) =>
-                          (grade.startsWith("초")
-                            ? 0
-                            : grade.startsWith("중")
-                              ? 10
-                              : 20) + Number(grade.replace(/\D/g, ""));
-                        return rank(a.grade) - rank(b.grade);
-                      })
-                      .map(({ grade, count: gradeCount }) => (
-                        <button key={grade} onClick={() => openBank({ grade })}>
-                          <strong>{grade}</strong>
-                          <span>{gradeCount.toLocaleString()}문항</span>
-                        </button>
-                      ))}
-                  </div>
-                  {initialData.error && (
-                    <p className={s.subtle} role="status">
-                      {initialData.error}
-                    </p>
-                  )}
-                </section>
-                <section className={s.sourcePanel}>
-                  <span className={s.sourceTag}>가지고 있는 자료가 있다면</span>
-                  <div className={s.sourceHeading}>
-                    <span className={s.sourceIcon}>
-                      <Icon name="crop" size={30} />
-                    </span>
-                    <h2>
-                      내 자료를
-                      <br />새 시험지로.
-                    </h2>
-                  </div>
-                  <p>
-                    PDF와 이미지에서 필요한 문제를 자르고,
-                    <br />
-                    내용과 해설을 직접 다듬으세요.
-                  </p>
-                  <div className={s.sourceSteps}>
-                    <span>문제 자르기</span>
-                    <span>내용 편집</span>
-                    <span>내보내기</span>
-                  </div>
-                  <button onClick={() => navigate("studio")}>
-                    PDF · 이미지 가져오기
-                    <Icon name="arrow" />
-                  </button>
-                </section>
-              </div>
-
-              <div className={s.homeLower}>
-                <section
-                  className={s.currentWork}
-                  aria-labelledby="current-work-heading"
-                >
-                  <div className={s.sectionTitle}>
-                    <div>
-                      <h2 id="current-work-heading">
-                        만들고 있는 시험지 <span>{selected.length}문항</span>
-                      </h2>
-                      <p>문제은행과 내 자료에서 담은 문제를 함께 구성합니다.</p>
-                    </div>
-                    {selected.length > 0 && (
-                      <button
-                        className={s.textButton}
-                        onClick={() => navigate("export")}
-                      >
-                        전체 보기
-                        <Icon name="arrow" size={18} />
-                      </button>
-                    )}
-                  </div>
-                  {selected.length ? (
-                    <>
-                      <div className={s.draftTitle}>
-                        <Icon name="paper" />
-                        <strong>{title}</strong>
-                        <span>작성 중</span>
-                      </div>
-                      <ol className={s.draftRows}>
-                        {selected.slice(0, 3).map((problem, i) => (
-                          <li key={problem.id}>
-                            <span>{String(i + 1).padStart(2, "0")}</span>
-                            <div>
-                              <strong>
-                                {problem.section ||
-                                  problem.sourceLabel ||
-                                  "가져온 문제"}
-                              </strong>
-                              <small>
-                                {problem.grade} ·{" "}
-                                {problem.difficulty || "내 자료"}
-                              </small>
-                            </div>
-                            <button
-                              aria-label={`${i + 1}번 담은 문제 빼기`}
-                              onClick={() => toggle(problem)}
-                            >
-                              <Icon name="close" size={18} />
-                            </button>
-                          </li>
-                        ))}
-                      </ol>
-                      <div className={s.draftFooter}>
-                        <span>
-                          {selected.length > 3
-                            ? `외 ${selected.length - 3}문항`
-                            : "순서와 배치를 정하면 출력할 수 있습니다."}
-                        </span>
-                        <button
-                          className={s.primaryButton}
-                          onClick={() => navigate("export")}
-                        >
-                          시험지 완성하기
-                          <Icon name="arrow" size={18} />
-                        </button>
-                      </div>
-                    </>
-                  ) : (
-                    <div className={s.emptyDraft}>
-                      <span className={s.documentShape}>
-                        <Icon name="paper" size={38} />
-                      </span>
-                      <div>
-                        <h3>첫 문제를 담아보세요</h3>
-                        <p>
-                          필요한 문제를 고르면 여기에 모입니다.
-                          <br />
-                          시험지와 정답지를 한 번에 만들 수 있어요.
-                        </p>
-                        <button
-                          className={s.primaryButton}
-                          onClick={() => navigate("bank")}
-                        >
-                          문제 찾아보기
-                          <Icon name="arrow" size={18} />
-                        </button>
-                      </div>
-                    </div>
-                  )}
-                </section>
-                <section className={s.teachingCard}>
-                  <div className={s.sectionTitle}>
-                    <h2>내 수업 관리</h2>
-                    <Icon name="class" size={25} />
-                  </div>
-                  <p>
-                    반과 학생, 수업 진도를
-                    <br />
-                    같은 작업실에서 관리하세요.
-                  </p>
-                  <ul>
-                    <li>
-                      <span>01</span>
-                      <div>
-                        <strong>반 · 학생 관리</strong>
-                        <small>반 편성과 학생 등록</small>
-                      </div>
-                    </li>
-                    <li>
-                      <span>02</span>
-                      <div>
-                        <strong>수업 진도 확인</strong>
-                        <small>단원별 진행 상황과 다음 수업</small>
-                      </div>
-                    </li>
-                  </ul>
-                  <button
-                    className={s.secondaryButton}
-                    onClick={() => navigate("teaching")}
-                  >
-                    수업 · 학생 관리 열기
-                    <Icon name="arrow" size={18} />
-                  </button>
-                </section>
-              </div>
-              <div className={s.homeFooter}>
-                <span>
-                  <Icon name="check" size={16} /> 초등은 대분수로 · 중등 이상은
-                  원문 그대로
-                </span>
-                <span>원본을 보존하며 작업합니다.</span>
-              </div>
-            </main>
-          )}
-          {bankOpened && (
+          {opened.has("bank") && (
             <main hidden={view !== "bank"} className={s.viewContent}>
               <BankView
                 key={bankEntry.version}
@@ -675,257 +486,308 @@ export default function UnifiedWorkspace({
               />
             </main>
           )}
-          {studioOpened && (
+          {opened.has("studio") && (
             <main hidden={view !== "studio"} className={s.studioContent}>
-              <StudioView onAdd={add} onExport={() => navigate("export")} />
+              <StudioView
+                onAdd={add}
+                onExport={() => navigate("export")}
+                importRequest={importRequest}
+              />
             </main>
           )}
-          {teachingOpened && (
+          {opened.has("teaching") && (
             <div hidden={view !== "teaching"} className={s.teachingContent}>
               <TeachingView />
             </div>
           )}
-
           {view === "export" && (
-            <main className={s.exportContent}>
-              <div className={s.pageHeading}>
+            <WorksheetEditor
+              selected={selected}
+              title={title}
+              columns={columns}
+              answers={answers}
+              savedAt={savedAt}
+              setTitle={setTitle}
+              setColumns={setColumns}
+              setAnswers={setAnswers}
+              save={save}
+              restore={restore}
+              download={download}
+              toggle={toggle}
+              move={move}
+              navigate={navigate}
+            />
+          )}
+          {view === "library" && (
+            <main className={s.library}>
+              <header className={s.pageHeader}>
                 <div>
-                  <p className={s.eyebrow}>시험지 편집</p>
-                  <h1>시험지 구성하기</h1>
-                  <p>문제은행과 내 자료에서 가져온 문제를 함께 구성하세요.</p>
+                  <p>나의 수업 자료</p>
+                  <h1>내 시험지</h1>
+                  <span>
+                    저장한 작업을 이어가거나 다른 기기의 작업 파일을 불러오세요.
+                  </span>
                 </div>
-                <button
-                  className={s.secondaryButton}
-                  onClick={save}
-                  disabled={!selected.length}
-                >
-                  <Icon name="save" size={18} /> 작업 저장
-                </button>
-              </div>
-              {!selected.length ? (
-                <div className={s.emptyExport}>
-                  <div className={s.emptyIcon}>
-                    <Icon name="paper" size={42} />
-                  </div>
-                  <h2>어떤 문제로 시작할까요?</h2>
-                  <p>
-                    문제은행에서 고르거나, 내 자료에서 오려낸 문제를 담아
-                    보세요.
-                  </p>
-                  <div>
-                    <button
-                      className={s.primaryButton}
-                      onClick={() => navigate("bank")}
-                    >
-                      문제은행에서 담기 <Icon name="arrow" size={18} />
-                    </button>
-                    <button
-                      className={s.secondaryButton}
-                      onClick={() => navigate("studio")}
-                    >
-                      자료 가져오기
-                    </button>
-                  </div>
-                  <button className={s.textButton} onClick={restore}>
-                    저장한 작업 불러오기
+                <div>
+                  <button
+                    className={s.outlineButton}
+                    onClick={() => draftFileRef.current?.click()}
+                  >
+                    <Icon name="upload" size={18} />
+                    작업 파일 불러오기
+                  </button>
+                  <button
+                    className={s.primaryButton}
+                    disabled={!hydrated}
+                    onClick={() => setModal("new")}
+                  >
+                    <Icon name="plus" size={18} />새 시험지
                   </button>
                 </div>
-              ) : (
-                <div className={s.exportGrid}>
-                  <aside className={s.exportInspector}>
-                    <h2>시험지 설정</h2>
-                    <label className={s.field}>
-                      제목
-                      <input
-                        value={title}
-                        onChange={(e) => setTitle(e.target.value)}
-                        maxLength={80}
-                      />
-                    </label>
-                    <div className={s.field}>
-                      문제 배치
-                      <div className={s.segment}>
-                        {[1, 2].map((n) => (
-                          <button
-                            key={n}
-                            aria-pressed={columns === n}
-                            className={columns === n ? s.segmentActive : ""}
-                            onClick={() => setColumns(n)}
-                          >
-                            {n}단
-                          </button>
-                        ))}
+              </header>
+              <div className={s.libraryTools}>
+                <strong>
+                  저장한 시험지 <span>{recent.length}</span>
+                </strong>
+                <label>
+                  <Icon name="search" size={18} />
+                  <input
+                    value={libraryQuery}
+                    onChange={(event) => setLibraryQuery(event.target.value)}
+                    placeholder="시험지 이름으로 찾기"
+                    aria-label="저장한 시험지 검색"
+                  />
+                </label>
+              </div>
+              {filteredDrafts.length ? (
+                <div className={s.libraryGrid}>
+                  {filteredDrafts.map((item) => (
+                    <article key={item.id} className={s.libraryCard}>
+                      <div className={s.libraryCardTop}>
+                        <span>
+                          <Icon name="paper" size={24} />
+                        </span>
+                        <small>
+                          {item.id === draft.id ? "현재 작업" : "저장된 시험지"}
+                        </small>
                       </div>
-                    </div>
-                    <label className={s.checkField}>
-                      <input
-                        type="checkbox"
-                        checked={answers}
-                        onChange={(e) => setAnswers(e.target.checked)}
-                      />{" "}
-                      정답 · 해설지 포함
-                    </label>
-                    <div className={s.fractionNote}>
-                      <Icon name="check" size={16} />
+                      <h2>{item.title || "제목 없는 시험지"}</h2>
                       <p>
-                        초등 텍스트는 대분수로 표기
-                        <br />
-                        <span>중등 이상은 원문 유지</span>
+                        {item.problemCount}문항<span>·</span>
+                        {formatDraftDate(item.updatedAt)}
                       </p>
-                    </div>
-                    <div className={s.orderHeading}>
-                      <h3>문제 순서</h3>
-                      <span>{selected.length}문항</span>
-                    </div>
-                    <ol className={s.orderList}>
-                      {selected.map((p, i) => (
-                        <li key={p.id}>
-                          <span className={s.orderNumber}>
-                            {String(i + 1).padStart(2, "0")}
-                          </span>
-                          <div>
-                            <strong>
-                              {p.section || p.sourceLabel || "가져온 문제"}
-                            </strong>
-                            <small>
-                              {p.grade} · {p.difficulty || "내 자료"}
-                            </small>
-                          </div>
-                          <div className={s.orderActions}>
-                            <button
-                              disabled={i === 0}
-                              aria-label={`${i + 1}번 문제 위로`}
-                              onClick={() => move(i, -1)}
-                            >
-                              ↑
-                            </button>
-                            <button
-                              disabled={i === selected.length - 1}
-                              aria-label={`${i + 1}번 문제 아래로`}
-                              onClick={() => move(i, 1)}
-                            >
-                              ↓
-                            </button>
-                            <button
-                              aria-label={`${i + 1}번 문제 빼기`}
-                              onClick={() => toggle(p)}
-                            >
-                              ×
-                            </button>
-                          </div>
-                        </li>
-                      ))}
-                    </ol>
-                    <button
-                      className={s.addMore}
-                      onClick={() => navigate("bank")}
-                    >
-                      <Icon name="plus" size={16} /> 문제 더 담기
-                    </button>
-                    <button
-                      className={s.primaryButton}
-                      onClick={() => window.print()}
-                    >
-                      <Icon name="print" size={18} /> 인쇄 / PDF 저장
-                    </button>
-                    <button className={s.secondaryButton} onClick={download}>
-                      <Icon name="save" size={18} /> 작업 파일 내보내기
-                    </button>
-                    <p className={s.exportHint}>
-                      PDF는 인쇄 창에서 저장할 수 있습니다.
-                      <br />
-                      HWP · HWPX 변환 엔진은 연결 준비 중입니다.
-                    </p>
-                    {savedAt && (
-                      <p className={s.subtle}>
-                        이 브라우저에 저장됨 ·{" "}
-                        {new Date(savedAt).toLocaleTimeString("ko-KR", {
-                          hour: "2-digit",
-                          minute: "2-digit",
-                        })}
-                      </p>
-                    )}
-                  </aside>
-                  <div className={s.paperCanvas}>
-                    <div className={s.paperToolbar}>
-                      <span>
-                        <span className={s.liveDot} /> 실시간 미리보기
-                      </span>
-                      <span>
-                        A4 · {columns}단 · {selected.length}문항
-                      </span>
-                    </div>
-                    <article className={s.paper} data-unified-paper>
-                      <header className={s.paperHeader}>
-                        <span>TODAY’S MATH</span>
-                        <h2>{title || "오늘의 수학 학습지"}</h2>
-                        <div>
-                          <span>{selected.length}문항</span>
-                          <span>이름 __________________</span>
-                        </div>
-                      </header>
-                      <div
-                        className={s.paperProblems}
-                        style={{ columnCount: columns }}
-                      >
-                        {selected.map((problem, i) => (
-                          <section className={s.paperProblem} key={problem.id}>
-                            <strong className={s.problemNumber}>
-                              {String(i + 1).padStart(2, "0")}
-                            </strong>
-                            <UnifiedProblem problem={problem} print />
-                          </section>
-                        ))}
-                      </div>
-                      <footer className={s.paperFooter}>
-                        오늘의수학 <span>수학의 힘을, 매일 조금씩.</span>
-                      </footer>
+                      <button onClick={() => openSaved(item.id)}>
+                        이어서 편집하기
+                        <Icon name="arrow" size={18} />
+                      </button>
                     </article>
-                    {answers && (
-                      <article
-                        className={`${s.paper} ${s.answerPaper}`}
-                        data-unified-paper
-                      >
-                        <header className={s.paperHeader}>
-                          <span>ANSWERS & SOLUTIONS</span>
-                          <h2>{title} · 정답과 해설</h2>
-                        </header>
-                        <div
-                          className={s.paperProblems}
-                          style={{ columnCount: columns }}
-                        >
-                          {selected.map((p, i) => (
-                            <section className={s.answerItem} key={p.id}>
-                              <strong>{String(i + 1).padStart(2, "0")}</strong>
-                              <MathText
-                                text={displayFractions(
-                                  p.answer || "정답 미입력",
-                                  p.grade,
-                                  p.content,
-                                )}
-                              />
-                              {p.solution && (
-                                <MathText
-                                  text={displayFractions(
-                                    p.solution,
-                                    p.grade,
-                                    p.content,
-                                  )}
-                                  as="div"
-                                />
-                              )}
-                            </section>
-                          ))}
-                        </div>
-                      </article>
-                    )}
-                  </div>
+                  ))}
+                </div>
+              ) : (
+                <div className={s.libraryEmpty}>
+                  <span>
+                    <Icon name="folder" size={42} />
+                  </span>
+                  <h2>
+                    {libraryQuery
+                      ? "검색한 시험지가 없습니다"
+                      : "아직 저장한 시험지가 없어요"}
+                  </h2>
+                  <p>
+                    {libraryQuery
+                      ? "다른 이름으로 검색해 보세요."
+                      : "문제를 담거나 편집하면 작업이 자동으로 저장됩니다."}
+                  </p>
+                  <button
+                    className={s.primaryButton}
+                    onClick={() =>
+                      libraryQuery ? setLibraryQuery("") : setModal("new")
+                    }
+                  >
+                    {libraryQuery ? "검색 초기화" : "첫 시험지 만들기"}
+                    <Icon name="arrow" size={18} />
+                  </button>
                 </div>
               )}
+              <p className={s.libraryNote}>
+                <Icon name="save" size={15} />이 브라우저의 저장 공간을
+                사용합니다. 다른 기기로 옮길 때는 편집 화면에서 ‘작업 파일
+                내보내기’를 사용하세요.
+              </p>
             </main>
           )}
         </div>
       </div>
-    </>
+      <dialog
+        ref={dialogRef}
+        className={s.dialog}
+        onCancel={() => setModal(null)}
+        onClose={() => setModal(null)}
+        aria-labelledby="workspace-dialog-title"
+      >
+        <div className={s.dialogHeading}>
+          <div>
+            <span>
+              {modal === "search"
+                ? "빠른 실행"
+                : modal === "new"
+                  ? "새로운 수업 자료"
+                  : "오늘의수학 작업실"}
+            </span>
+            <h2 id="workspace-dialog-title">
+              {modal === "search"
+                ? "무엇을 찾으시나요?"
+                : modal === "new"
+                  ? "어디서부터 시작할까요?"
+                  : "수업 준비, 이렇게 이어가세요"}
+            </h2>
+          </div>
+          <button aria-label="창 닫기" onClick={() => setModal(null)}>
+            <Icon name="close" />
+          </button>
+        </div>
+        {modal === "new" && (
+          <>
+            <label className={s.newTitle}>
+              시험지 이름 <small>나중에 바꿀 수 있어요</small>
+              <input
+                value={newTitle}
+                onChange={(event) => setNewTitle(event.target.value)}
+                placeholder="오늘의 수학 학습지"
+                maxLength={80}
+              />
+            </label>
+            <div className={s.startChoices}>
+              {[
+                {
+                  view: "bank" as const,
+                  icon: "bank" as const,
+                  title: "문제은행에서 만들기",
+                  description: "학년과 단원에 맞는 문제를 골라 담으세요.",
+                },
+                {
+                  view: "studio" as const,
+                  icon: "crop" as const,
+                  title: "내 자료로 만들기",
+                  description: "PDF·이미지에서 문제를 자르고 편집하세요.",
+                },
+                {
+                  view: "export" as const,
+                  icon: "paper" as const,
+                  title: "빈 시험지로 시작하기",
+                  description: "제목과 배치를 정하고 천천히 구성하세요.",
+                },
+              ].map((item) => (
+                <button key={item.view} onClick={() => startNew(item.view)}>
+                  <span>
+                    <Icon name={item.icon} size={24} />
+                  </span>
+                  <span>
+                    <strong>{item.title}</strong>
+                    <small>{item.description}</small>
+                  </span>
+                  <Icon name="arrow" size={20} />
+                </button>
+              ))}
+            </div>
+            {saveError && (
+              <p className={s.modalError} role="alert">
+                {saveError}
+              </p>
+            )}
+            <p className={s.dialogFoot}>
+              현재 작업은 저장한 후 새 시험지를 엽니다.
+            </p>
+          </>
+        )}
+        {modal === "search" && (
+          <>
+            <form
+              className={s.commandSearch}
+              onSubmit={(event) => {
+                event.preventDefault();
+                openBank({ q: quickQuery.trim() });
+              }}
+            >
+              <Icon name="search" size={22} />
+              <input
+                ref={queryRef}
+                value={quickQuery}
+                onChange={(event) => setQuickQuery(event.target.value)}
+                aria-label="빠른 문제 검색"
+                placeholder="문제 내용, 단원, 문제 번호"
+              />
+              <button type="submit">
+                검색
+                <Icon name="arrow" size={18} />
+              </button>
+            </form>
+            <p className={s.commandCaption}>바로 이동</p>
+            <div className={s.commandLinks}>
+              {navItems
+                .filter((item) => item.id !== "home")
+                .map((item) => (
+                  <button key={item.id} onClick={() => navigate(item.id)}>
+                    <Icon name={item.icon} size={20} />
+                    <span>{item.label}</span>
+                    <Icon name="arrow" size={17} />
+                  </button>
+                ))}
+            </div>
+            <p className={s.dialogFoot}>
+              Ctrl / ⌘ K 빠른 찾기<span>Esc 닫기</span>
+            </p>
+          </>
+        )}
+        {modal === "help" && (
+          <div className={s.helpContent}>
+            <ol>
+              <li>
+                <b>01</b>
+                <div>
+                  <strong>문제은행 또는 내 자료에서 문제 담기</strong>
+                  <p>
+                    문제은행에서 학년과 단원을 고르거나, PDF·이미지에서 필요한
+                    영역을 자르세요.
+                  </p>
+                </div>
+              </li>
+              <li>
+                <b>02</b>
+                <div>
+                  <strong>시험지 순서와 배치 정하기</strong>
+                  <p>
+                    시험지 편집에서 제목, 문제 순서, 1·2단 배치와 정답지를
+                    설정하세요.
+                  </p>
+                </div>
+              </li>
+              <li>
+                <b>03</b>
+                <div>
+                  <strong>출력하고 다음 수업에 다시 사용하기</strong>
+                  <p>
+                    인쇄 또는 PDF로 저장하세요. 담은 문제와 시험지 설정은 이
+                    브라우저에 자동 저장됩니다.
+                  </p>
+                </div>
+              </li>
+            </ol>
+            <div>
+              <strong>알아두면 편리해요</strong>
+              <p>Ctrl / ⌘ K · 빠른 검색　 Ctrl / ⌘ S · 지금 저장</p>
+              <p>
+                가져온 원본 파일과 아직 담지 않은 크롭은 새로고침하면
+                사라집니다. 완성된 문제는 시험지에 담아두세요.
+              </p>
+            </div>
+            <button className={s.primaryButton} onClick={() => setModal(null)}>
+              작업실로 돌아가기
+              <Icon name="arrow" size={18} />
+            </button>
+          </div>
+        )}
+      </dialog>
+    </div>
   );
 }

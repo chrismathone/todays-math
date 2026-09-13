@@ -1,0 +1,394 @@
+"use client";
+import { useState } from "react";
+import dynamic from "next/dynamic";
+import Icon from "./WorkspaceIcon";
+import type { BankData, StudioProblem } from "./types";
+import s from "./WorkroomHome.module.css";
+const TeachingOverview = dynamic(() => import("./TeachingOverview"), {
+  ssr: false,
+  loading: () => (
+    <div className={s.teachingLoading} role="status">
+      수업 공간을 준비하고 있어요…
+    </div>
+  ),
+});
+export interface RecentWorksheet {
+  id: string;
+  title: string;
+  problemCount: number;
+  updatedAt: string;
+}
+interface Props {
+  data: BankData;
+  draft: {
+    id: string;
+    title: string;
+    problems: StudioProblem[];
+    updatedAt: string;
+  };
+  recent: RecentWorksheet[];
+  hydrated: boolean;
+  saveStatus: string;
+  onNew: () => void;
+  onBank: (filters?: { q?: string; grade?: string }) => void;
+  onImport: () => void;
+  onFiles: (files: File[]) => void;
+  onOpen: (id: string) => void;
+  onNavigate: (
+    view: "bank" | "studio" | "export" | "teaching" | "library",
+  ) => void;
+}
+export function formatDraftDate(value: string) {
+  const date = new Date(value);
+  return Number.isNaN(date.getTime())
+    ? "방금 전"
+    : new Intl.DateTimeFormat("ko-KR", {
+        month: "numeric",
+        day: "numeric",
+        hour: "2-digit",
+        minute: "2-digit",
+      }).format(date);
+}
+export default function WorkroomHome({
+  data,
+  draft,
+  recent,
+  hydrated,
+  saveStatus,
+  onNew,
+  onBank,
+  onImport,
+  onFiles,
+  onOpen,
+  onNavigate,
+}: Props) {
+  const [query, setQuery] = useState("");
+  const [dragging, setDragging] = useState(false);
+  const total = data.grades.reduce((sum, g) => sum + g.count, 0);
+  const gradeGroups = [
+    { prefix: "초", label: "초등", note: "기초부터 탄탄하게" },
+    { prefix: "중", label: "중등", note: "개념부터 유형까지" },
+  ];
+  const visibleDrafts = recent.slice(0, 4);
+  const date = new Intl.DateTimeFormat("ko-KR", {
+    month: "long",
+    day: "numeric",
+    weekday: "long",
+    timeZone: "Asia/Seoul",
+  }).format(new Date());
+  return (
+    <main className={s.home}>
+      <header className={s.welcome}>
+        <div>
+          <p>
+            {date}
+            <span>오늘도 좋은 수업을 위한 준비</span>
+          </p>
+          <h1>오늘의 작업</h1>
+          <div>필요한 문제를 찾고, 나만의 수업 자료로 완성하세요.</div>
+        </div>
+        <button
+          className={s.outlineButton}
+          onClick={() => onNavigate("library")}
+        >
+          <Icon name="folder" size={18} />내 시험지 보기
+          <Icon name="arrow" size={17} />
+        </button>
+      </header>
+      <div className={s.dashboard}>
+        <div className={s.primaryColumn}>
+          <section className={s.bankCard} aria-labelledby="quick-bank-title">
+            <div className={s.bankHeading}>
+              <div>
+                <span className={s.blueIcon}>
+                  <Icon name="bank" size={24} />
+                </span>
+                <div>
+                  <span className={s.eyebrow}>문제은행</span>
+                  <h2 id="quick-bank-title">수업에 맞는 문제를 찾아보세요</h2>
+                </div>
+              </div>
+              <span className={s.databaseCount}>
+                {data.error ? (
+                  "연결 확인 필요"
+                ) : (
+                  <>
+                    <b>{total.toLocaleString()}</b>문항
+                  </>
+                )}
+              </span>
+            </div>
+            <form
+              className={s.quickSearch}
+              role="search"
+              onSubmit={(event) => {
+                event.preventDefault();
+                onBank({ q: query.trim() });
+              }}
+            >
+              <Icon name="search" size={23} />
+              <input
+                id="workspace-home-search"
+                aria-label="문제은행 바로 검색"
+                value={query}
+                onChange={(event) => setQuery(event.target.value)}
+                placeholder="문제 내용, 단원, 문제 번호로 검색"
+              />
+              <button type="submit">
+                문제 찾기
+                <Icon name="arrow" size={18} />
+              </button>
+            </form>
+            <div className={s.gradeGroups}>
+              {gradeGroups.map((group) => (
+                <div className={s.gradeGroup} key={group.prefix}>
+                  <div>
+                    <strong>{group.label}</strong>
+                    <small>{group.note}</small>
+                  </div>
+                  <div>
+                    {data.grades
+                      .filter((g) => g.grade.startsWith(group.prefix))
+                      .sort((a, b) => a.grade.localeCompare(b.grade, "ko"))
+                      .map((g) => (
+                        <button
+                          key={g.grade}
+                          aria-label={`${g.grade} 문제 찾기`}
+                          onClick={() => onBank({ grade: g.grade })}
+                        >
+                          <strong>
+                            {g.grade.replace(group.prefix, "")}학년
+                          </strong>
+                          <Icon name="chevron" size={15} />
+                        </button>
+                      ))}
+                  </div>
+                </div>
+              ))}
+            </div>
+            <div className={s.bankFoot}>
+              <span>
+                <Icon name="check" size={15} />
+                학년 · 단원 · 난이도로 세밀하게
+              </span>
+              <button onClick={() => onBank()}>
+                전체 문제은행
+                <Icon name="arrow" size={16} />
+              </button>
+            </div>
+            {data.error && (
+              <p className={s.inlineError} role="status">
+                {data.error}
+              </p>
+            )}
+          </section>
+          <section
+            className={`${s.importCard} ${dragging ? s.dragging : ""}`}
+            onDragOver={(event) => {
+              event.preventDefault();
+              setDragging(true);
+            }}
+            onDragLeave={(event) => {
+              if (!event.currentTarget.contains(event.relatedTarget as Node))
+                setDragging(false);
+            }}
+            onDrop={(event) => {
+              event.preventDefault();
+              setDragging(false);
+              const files = Array.from(event.dataTransfer.files);
+              if (files.length) onFiles(files);
+            }}
+            aria-labelledby="source-import-title"
+          >
+            <div className={s.sourceIllustration} aria-hidden="true">
+              <span />
+              <div>
+                <Icon name="crop" size={26} />
+                <i>PDF</i>
+              </div>
+            </div>
+            <div className={s.importCopy}>
+              <span className={s.eyebrow}>가지고 있는 자료도 함께</span>
+              <h2 id="source-import-title">교재의 한 문제도, 내 시험지로.</h2>
+              <p>PDF나 이미지를 놓으면 바로 문제를 자를 수 있어요.</p>
+              <div>
+                <span>문제 자르기</span>
+                <Icon name="chevron" size={12} />
+                <span>내용 편집</span>
+                <Icon name="chevron" size={12} />
+                <span>시험지에 담기</span>
+              </div>
+            </div>
+            <button className={s.importButton} onClick={onImport}>
+              <Icon name="upload" size={18} />
+              <span>자료 가져오기</span>
+            </button>
+          </section>
+          <section
+            className={s.recentSection}
+            aria-labelledby="recent-drafts-heading"
+          >
+            <div className={s.sectionHeader}>
+              <div>
+                <Icon name="clock" size={21} />
+                <h2 id="recent-drafts-heading">최근 작업</h2>
+                <span>{recent.length}</span>
+              </div>
+              <button onClick={() => onNavigate("library")}>
+                모두 보기
+                <Icon name="chevron" size={16} />
+              </button>
+            </div>
+            {!hydrated ? (
+              <div className={s.recentEmpty} role="status">
+                저장한 시험지를 불러오고 있어요…
+              </div>
+            ) : visibleDrafts.length ? (
+              <div className={s.recentList}>
+                {visibleDrafts.map((item) => (
+                  <button key={item.id} onClick={() => onOpen(item.id)}>
+                    <span className={s.documentIcon}>
+                      <Icon name="paper" size={22} />
+                    </span>
+                    <span className={s.recentInfo}>
+                      <strong>
+                        {item.title || "제목 없는 시험지"}
+                        {item.id === draft.id && <i>현재 작업</i>}
+                      </strong>
+                      <small>
+                        {item.problemCount}문항<span>·</span>
+                        {formatDraftDate(item.updatedAt)}
+                      </small>
+                    </span>
+                    <span className={s.resume}>
+                      이어하기
+                      <Icon name="arrow" size={17} />
+                    </span>
+                  </button>
+                ))}
+              </div>
+            ) : (
+              <div className={s.recentEmpty}>
+                <span>
+                  <Icon name="folder" size={27} />
+                </span>
+                <div>
+                  <strong>첫 시험지를 만들어보세요</strong>
+                  <p>
+                    문제를 담으면 작업이 자동으로 저장되고, 여기에서 이어갈 수
+                    있어요.
+                  </p>
+                </div>
+                <button onClick={onNew}>
+                  새 시험지
+                  <Icon name="plus" size={17} />
+                </button>
+              </div>
+            )}
+            <p className={s.localNote}>
+              <Icon name="save" size={14} />이 브라우저에 보관됩니다. 다른
+              기기에서는 작업 파일을 불러오세요.
+            </p>
+          </section>
+        </div>
+        <aside className={s.secondaryColumn}>
+          <section
+            className={s.activeDraft}
+            aria-labelledby="active-draft-heading"
+          >
+            <div className={s.activeHeading}>
+              <h2 id="active-draft-heading">만들고 있는 시험지</h2>
+              <span className={s.saveBadge} data-error={saveStatus === "error"}>
+                <i />
+                {!hydrated
+                  ? "불러오는 중"
+                  : saveStatus === "saving"
+                    ? "저장 중"
+                    : saveStatus === "error"
+                      ? "저장 확인 필요"
+                      : draft.problems.length
+                        ? "자동 저장"
+                        : "준비 중"}
+              </span>
+            </div>
+            <div className={s.draftPreview}>
+              <div className={s.tinyPaper} aria-hidden="true">
+                <small>오늘의수학</small>
+                <b>수학 학습지</b>
+                <i />
+                <span>01</span>
+                <i />
+                <span>02</span>
+                <i />
+              </div>
+              <div>
+                <span className={s.draftCaption}>현재 작업</span>
+                <h3>{draft.title || "제목 없는 시험지"}</h3>
+                <strong className={s.problemTotal}>
+                  {draft.problems.length}
+                  <small> 문항</small>
+                </strong>
+              </div>
+            </div>
+            {draft.problems.length > 0 ? (
+              <div className={s.draftSources}>
+                <span>
+                  <i />
+                  문제은행{" "}
+                  <b>
+                    {
+                      draft.problems.filter(
+                        (p) => !p.sourceLabel && !p.croppedImage,
+                      ).length
+                    }
+                  </b>
+                </span>
+                <span>
+                  <i />내 자료{" "}
+                  <b>
+                    {
+                      draft.problems.filter(
+                        (p) => p.sourceLabel || p.croppedImage,
+                      ).length
+                    }
+                  </b>
+                </span>
+              </div>
+            ) : (
+              <p className={s.draftEmptyText}>
+                문제은행과 내 자료에서 담은 문제를
+                <br />한 시험지에 모아보세요.
+              </p>
+            )}
+            <button
+              className={s.primaryButton}
+              onClick={() =>
+                onNavigate(draft.problems.length ? "export" : "bank")
+              }
+            >
+              {draft.problems.length ? "시험지 편집 이어가기" : "첫 문제 담기"}
+              <Icon name="arrow" size={19} />
+            </button>
+            <button className={s.newDraftButton} onClick={onNew}>
+              <Icon name="plus" size={16} />새 시험지 만들기
+            </button>
+          </section>
+          <TeachingOverview onOpen={() => onNavigate("teaching")} />
+          <div className={s.helpNote}>
+            <span>
+              <Icon name="check" size={17} />
+            </span>
+            <div>
+              <strong>학년에 맞게, 원본은 안전하게</strong>
+              <p>
+                초등 가분수는 대분수로 표시합니다.
+                <br />
+                중등 이상과 저장 원문은 그대로 유지해요.
+              </p>
+            </div>
+          </div>
+        </aside>
+      </div>
+    </main>
+  );
+}
