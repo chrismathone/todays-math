@@ -136,6 +136,54 @@ async function recognize() {
 }
 
 describe("Studio AI review controls", () => {
+  it("stamps only a confirmed empty page and keeps grade settings outside the inspector", async () => {
+    await open();
+    respond = (request) =>
+      Promise.resolve(
+        json({
+          provider: request.provider,
+          action: request.action,
+          result: {
+            content: "",
+            answer: "",
+            solution: "",
+            warnings: [],
+            problems: [],
+          },
+        }),
+      );
+    fireEvent.click(screen.getByRole("button", { name: "페이지 자동 인식" }));
+    await screen.findByLabelText("자동 인식 완료: 문제가 없는 빈 페이지");
+    const grade = screen.getByRole("combobox", { name: "시험지 학년" });
+    expect(grade.closest("aside")).toBeNull();
+    expect(
+      screen.queryByText("자른 문제를 여기서 검수합니다"),
+    ).not.toBeInTheDocument();
+    fireEvent.change(grade, { target: { value: "고1" } });
+    const area = screen.getByRole("group", { name: "문제 자르기 영역" });
+    fireEvent.keyDown(area, { key: "ArrowRight" });
+    fireEvent.keyDown(area, { key: "Enter" });
+    expect(
+      screen.queryByLabelText("자동 인식 완료: 문제가 없는 빈 페이지"),
+    ).not.toBeInTheDocument();
+    expect(screen.getByRole("combobox", { name: "시험지 학년" })).toHaveValue(
+      "고1",
+    );
+  });
+
+  it("shows page recognition failures separately from empty pages and retries", async () => {
+    await open();
+    respond = () => Promise.resolve(json({ error: "응답 지연" }, 502));
+    fireEvent.click(screen.getByRole("button", { name: "페이지 자동 인식" }));
+    expect(await screen.findByRole("alert")).toHaveTextContent("응답 지연");
+    expect(
+      screen.queryByLabelText("자동 인식 완료: 문제가 없는 빈 페이지"),
+    ).not.toBeInTheDocument();
+    respond = normal;
+    fireEvent.click(screen.getByRole("button", { name: "이 페이지 재시도" }));
+    await screen.findByDisplayValue(recognized);
+    expect(screen.queryByRole("alert")).not.toBeInTheDocument();
+  });
   it("imports without a paid request, reviews recognized text and sends edits to the solution request", async () => {
     const { onAdd } = await open();
     expect(posts).toEqual([]);
@@ -149,9 +197,7 @@ describe("Studio AI review controls", () => {
     expect(screen.getByRole("radio", { name: "원본 이미지" })).toBeChecked();
     const content = screen.getByDisplayValue(recognized);
     fireEvent.change(content, { target: { value: "검수한 도형 문제" } });
-    fireEvent.click(
-      screen.getByRole("button", { name: "해설 생성" }),
-    );
+    fireEvent.click(screen.getByRole("button", { name: "해설 생성" }));
     await screen.findByDisplayValue("한 개를 더합니다.");
     expect(posts[1]).toMatchObject({
       action: "solution",
@@ -178,7 +224,9 @@ describe("Studio AI review controls", () => {
       String.raw`$2\frac{1}{3}$ + 1의 값을 구하세요.`,
     );
     expect(screen.getByDisplayValue(recognized)).toBeInTheDocument();
-    fireEvent.click(screen.getByRole("button", { name: "중·고등" }));
+    fireEvent.change(screen.getByRole("combobox", { name: "시험지 학년" }), {
+      target: { value: "중1" },
+    });
     expect(screen.getByTestId("math-content")).toHaveTextContent(recognized);
   });
 
@@ -194,16 +242,12 @@ describe("Studio AI review controls", () => {
     fireEvent.click(screen.getByRole("button", { name: "문제 다시 읽기" }));
     await screen.findByRole("button", { name: "AI 작업 취소" });
     const request = vi.mocked(fetch).mock.calls.at(-1)![1] as RequestInit;
-    fireEvent.click(
-      screen.getByRole("button", { name: "새로 시작" }),
-    );
+    fireEvent.click(screen.getByRole("button", { name: "새로 시작" }));
     const dialog = screen.getByRole("dialog");
     fireEvent.click(within(dialog).getByRole("button", { name: /취소/ }));
     expect(request.signal?.aborted).toBe(false);
     expect(screen.getByDisplayValue(recognized)).toBeInTheDocument();
-    fireEvent.click(
-      screen.getByRole("button", { name: "새로 시작" }),
-    );
+    fireEvent.click(screen.getByRole("button", { name: "새로 시작" }));
     fireEvent.click(
       within(screen.getByRole("dialog")).getByRole("button", {
         name: /새로 시작/,

@@ -101,7 +101,7 @@ async function mockAi(page: Page) {
   };
 }
 
-test("image file import keeps its resolution and a new source fences page recognition", async ({
+test("image file import keeps its resolution and background recognition does not switch the new source", async ({
   page,
 }) => {
   const mock = await mockAi(page);
@@ -294,7 +294,9 @@ test("mobile manual crop, compact controls, focus/panel toggles and fraction pre
   await expect(page.getByRole("textbox", { name: "문제 내용" })).toHaveValue(
     content,
   );
-  await page.getByRole("button", { name: "중·고등", exact: true }).click();
+  await page
+    .getByRole("combobox", { name: "시험지 학년", exact: true })
+    .selectOption("중1");
   await expect(page.locator("article annotation").first()).toContainText(
     String.raw`\dfrac{7}{3}`,
   );

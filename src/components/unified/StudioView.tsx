@@ -5,6 +5,8 @@
 
 import WorkspacePageHeader from "./WorkspacePageHeader";
 import StudioCropOverlay from "./StudioCropOverlay";
+import WorkProgress from "./WorkProgress";
+import StudioQueueStatus from "./StudioQueueStatus";
 import { useEffect, useEffectEvent, useRef, useState } from "react";
 import type { KeyboardEvent, PointerEvent, SVGProps } from "react";
 import type {
@@ -15,7 +17,7 @@ import type {
 import { ProblemContent } from "@/components/math/ProblemContent";
 import UnifiedProblem from "./UnifiedProblem";
 import { displayFractions } from "./fractionDisplay";
-import { useStudioAi } from "./useStudioAi";
+import { useStudioAi, type StudioAiPageTask } from "./useStudioAi";
 import { studioCropImage } from "./studioAiHelpers";
 import type { DevAiProvider } from "@/lib/dev-ai/contracts";
 import type { SchoolLevel, StudioViewProps } from "./types";
@@ -35,9 +37,60 @@ interface StudioSource {
   name: string;
   kind: "image" | "pdf" | "sample";
   pages: number;
+  grade?: string;
+  level?: SchoolLevel;
   original?: File;
   image?: HTMLImageElement | HTMLCanvasElement;
   pdf?: PDFDocumentProxy;
+}
+
+/** Background rendering owns its canvas and cancellation, independently of the viewport. */
+async function renderAiPage(
+  source: StudioSource,
+  page: number,
+  signal: AbortSignal,
+) {
+  const check = () => {
+    if (signal.aborted) throw new DOMException("작업 취소", "AbortError");
+  };
+  check();
+  const canvas = document.createElement("canvas");
+  if (source.pdf) {
+    const pdfPage = await source.pdf.getPage(page);
+    check();
+    const base = pdfPage.getViewport({ scale: 1 });
+    const viewport = pdfPage.getViewport({
+      scale: Math.min(2.5, 2200 / Math.max(base.width, base.height)),
+    });
+    canvas.width = Math.ceil(viewport.width);
+    canvas.height = Math.ceil(viewport.height);
+    const context = canvas.getContext("2d");
+    if (!context) throw new Error("지면을 불러오지 못했습니다.");
+    const task = pdfPage.render({ canvas, canvasContext: context, viewport });
+    const abort = () => task.cancel();
+    signal.addEventListener("abort", abort, { once: true });
+    try {
+      await task.promise;
+    } finally {
+      signal.removeEventListener("abort", abort);
+    }
+  } else if (source.image) {
+    canvas.width =
+      source.image instanceof HTMLImageElement
+        ? source.image.naturalWidth
+        : source.image.width;
+    canvas.height =
+      source.image instanceof HTMLImageElement
+        ? source.image.naturalHeight
+        : source.image.height;
+    const context = canvas.getContext("2d");
+    if (!context) throw new Error("지면을 불러오지 못했습니다.");
+    context.fillStyle = "#fff";
+    context.fillRect(0, 0, canvas.width, canvas.height);
+    context.drawImage(source.image, 0, 0);
+  } else throw new Error("원본 파일을 다시 불러와 주세요.");
+  check();
+  return { canvas, imageDataUrl: canvas.toDataURL("image/png") };
 }
 
 interface RenderedPage {
@@ -173,6 +226,12 @@ export default function StudioView({
   const [grade, setGrade] = useState("초5");
   const [zoom, setZoom] = useState(100);
   const [busy, setBusy] = useState(false);
+  const [importProgress, setImportProgress] = useState<{
+    done: number;
+    total: number;
+    name: string;
+    startedAt: number;
+  } | null>(null);
   const [dragOver, setDragOver] = useState(false);
   const [error, setError] = useState("");
   const [notice, setNotice] = useState("");
@@ -213,7 +272,7 @@ export default function StudioView({
       setInspectorOpen(true);
     },
   });
-  const recognizingPage = studioAi.progress?.action === "page-ocr";
+  const recognizingPage = studioAi.isPageBusy(sourceId, pageNumber);
   const unreadCrops = crops.filter(
     (crop) => !crop.content.trim() && !crop.added,
   );
@@ -226,6 +285,13 @@ export default function StudioView({
   if (!active && restartOpen) setRestartOpen(false);
 
   const currentSource = sources.find((item) => item.id === sourceId);
+  const sourceJobs = studioAi.pageJobs.filter(
+    (job) => job.sourceId === sourceId,
+  );
+  const sourceRecognizing = sourceJobs.some((job) =>
+    ["queued", "rendering", "running"].includes(job.state),
+  );
+  const currentPageJob = sourceJobs.find((job) => job.page === pageNumber);
   const editing = Boolean(currentSource && step !== "upload");
   const activeCrop = crops.find((item) => item.id === activeCropId);
   const activeCropIndex = crops.findIndex((item) => item.id === activeCropId);
@@ -398,13 +464,16 @@ export default function StudioView({
   }, [currentSource, pageNumber]);
 
   function chooseSource(id: string, page = 1) {
-    studioAi.cancel(true);
+    studioAi.cancelCrop(true);
     const next =
       (activeCrop?.sourceId === id && activeCrop.page === page
         ? activeCrop
         : undefined) ??
       crops.find((crop) => crop.sourceId === id && crop.page === page);
     setSourceId(id);
+    const source = sources.find((item) => item.id === id);
+    if (source?.grade) setGrade(source.grade);
+    if (source?.level) setLevel(source.level);
     setPageNumber(page);
     setSelection(null);
     drag.current = null;
@@ -417,17 +486,30 @@ export default function StudioView({
   async function importFiles(files: File[]) {
     const resources = session.current;
     if (!files.length || resources.importing) return;
-    studioAi.cancel(true);
+    studioAi.cancelCrop(true);
     const controller = new AbortController();
     const generation = resources.generation;
     resources.importing = controller;
     const stale = () => !mounted.current || generation !== resources.generation;
     setBusy(true);
+    const startedAt = Date.now();
+    setImportProgress({
+      done: 0,
+      total: files.length,
+      name: files[0].name,
+      startedAt,
+    });
     setError("");
     const loaded: StudioSource[] = [];
     const errors: string[] = [];
     for (const file of files) {
       if (stale()) return;
+      setImportProgress({
+        done: loaded.length + errors.length,
+        total: files.length,
+        name: file.name,
+        startedAt,
+      });
       try {
         if (file.size > 40 * 1024 * 1024)
           throw new Error("40 MB 이하 파일을 선택해 주세요.");
@@ -471,6 +553,8 @@ export default function StudioView({
             kind: "pdf",
             original: file,
             pages: pdf.numPages,
+            grade,
+            level,
             pdf,
           });
         } else if (
@@ -489,6 +573,8 @@ export default function StudioView({
             kind: "image",
             original: file,
             pages: 1,
+            grade,
+            level,
             image,
           });
         } else
@@ -512,6 +598,7 @@ export default function StudioView({
       }
       setError(errors.join("\n"));
       setBusy(false);
+      setImportProgress(null);
       resources.importing = null;
     }
   }
@@ -530,6 +617,7 @@ export default function StudioView({
       surface.current.releasePointerCapture(pointerId);
     if (fileInput.current) fileInput.current.value = "";
     setSources([]);
+    setImportProgress(null);
     setSourceId("");
     setPageNumber(1);
     setRendered(null);
@@ -588,6 +676,8 @@ export default function StudioView({
         name: "오늘의 수학 · 연습용 예제",
         kind: "sample",
         pages: 1,
+        grade,
+        level,
         image: drawStudioSample(),
       };
       setSources((previous) => [...previous, sample]);
@@ -682,7 +772,7 @@ export default function StudioView({
       !readyToCrop
     )
       return;
-    studioAi.cancel(true);
+    studioAi.cancelCrop(true);
     try {
       if (cropTool === "add-figure") {
         if (
@@ -885,7 +975,7 @@ export default function StudioView({
           : [];
       });
       const image = studioCropImage(rendered.canvas, problemRect);
-      studioAi.cancel(true);
+      studioAi.cancelCrop(true);
       setCrops((previous) =>
         previous.map((item) =>
           item.id === crop.id
@@ -930,7 +1020,7 @@ export default function StudioView({
         item.id === id || item.figures?.some((figure) => figure.id === id),
     );
     if (!crop) return;
-    studioAi.cancel(true);
+    studioAi.cancelCrop(true);
     if (crop.id === id) {
       const index = crops.indexOf(crop);
       const next = crops[index + 1] ?? crops[index - 1];
@@ -981,9 +1071,9 @@ export default function StudioView({
 
   function selectCrop(id: string) {
     const crop = crops.find((item) => item.id === id);
-    if (!crop || recognizingPage) return;
+    if (!crop || studioAi.isPageBusy(crop.sourceId, crop.page)) return;
     if (activeCropId !== id) {
-      studioAi.cancel(true);
+      studioAi.cancelCrop(true);
       if (reviewViewport.current) reviewViewport.current.scrollTop = 0;
     }
     cancelSelection();
@@ -999,7 +1089,7 @@ export default function StudioView({
   }
 
   function finishReview() {
-    if (!activeCrop || studioAi.running) return;
+    if (!activeCrop || recognizingPage || studioAi.progress) return;
     setCrops((previous) =>
       previous.map((crop) =>
         crop.id === activeCropId ? { ...crop, reviewed: true } : crop,
@@ -1010,7 +1100,7 @@ export default function StudioView({
   }
 
   function inspectPage() {
-    if (!pageCrops.length || !pageReady || studioAi.running) return;
+    if (!pageCrops.length || !pageReady || recognizingPage) return;
     setInspectedPages((previous) => ({
       ...previous,
       [pageKey]: pageSignature,
@@ -1023,17 +1113,58 @@ export default function StudioView({
     }
   }
 
-  function changeLevel(value: SchoolLevel) {
-    studioAi.cancel(true);
-    const nextGrade = value === "elementary" ? "초5" : "중1";
-    setLevel(value);
+  function changeSourceGrade(nextGrade: string) {
+    if (sourceRecognizing) return;
+    const nextLevel: SchoolLevel = STUDIO_GRADES.elementary.includes(nextGrade)
+      ? "elementary"
+      : "secondary";
+    studioAi.cancelCrop(true);
+    setLevel(nextLevel);
     setGrade(nextGrade);
-    if (activeCrop) updateCrop({ level: value, grade: nextGrade });
+    setSources((previous) =>
+      previous.map((source) =>
+        source.id === sourceId
+          ? { ...source, grade: nextGrade, level: nextLevel }
+          : source,
+      ),
+    );
+    setCrops((previous) =>
+      previous.map((crop) =>
+        crop.sourceId === sourceId
+          ? {
+              ...crop,
+              grade: nextGrade,
+              level: nextLevel,
+              added: false,
+              reviewed: false,
+              revision: (crop.revision ?? 0) + 1,
+            }
+          : crop,
+      ),
+    );
+  }
+
+  function recognizeSource(allPages = true) {
+    if (!currentSource) return;
+    const pages = allPages
+      ? Array.from({ length: currentSource.pages }, (_, index) => index + 1)
+      : [pageNumber];
+    const tasks: StudioAiPageTask[] = pages.map((page) => ({
+      sourceId: currentSource.id,
+      sourceLabel: currentSource.name,
+      page,
+      grade: currentSource.grade ?? grade,
+      level: currentSource.level ?? level,
+      load: (signal) => renderAiPage(currentSource, page, signal),
+    }));
+    void studioAi.recognizePages(tasks, {
+      force: !allPages || currentSource.pages === 1,
+    });
   }
 
   function addProblems(exportAfter = false) {
     if (!crops.length) return;
-    studioAi.cancel(true);
+    studioAi.cancelCrop(true);
     const pending = crops.filter((crop) => !crop.added);
     if (pending.length) {
       onAdd(pending.map(studioProblem));
@@ -1048,8 +1179,7 @@ export default function StudioView({
     }
   }
 
-  const selectedLevel = activeCrop?.level ?? level;
-  const selectedGrade = activeCrop?.grade ?? grade;
+  const selectedGrade = currentSource?.grade ?? grade;
 
   return (
     <section
@@ -1272,6 +1402,39 @@ export default function StudioView({
               )}
             </div>
             {currentSource ? (
+              <label
+                className={styles.sourceGrade}
+                title={
+                  sourceRecognizing
+                    ? "인식이 끝나면 시험지 전체의 학년을 변경할 수 있습니다."
+                    : "이 파일의 모든 문제에 적용"
+                }
+              >
+                <span>학년</span>
+                <select
+                  aria-label="시험지 학년"
+                  value={selectedGrade}
+                  disabled={sourceRecognizing}
+                  onChange={(event) => changeSourceGrade(event.target.value)}
+                >
+                  <optgroup label="초등">
+                    {STUDIO_GRADES.elementary.map((value) => (
+                      <option key={value} value={value}>
+                        {value}
+                      </option>
+                    ))}
+                  </optgroup>
+                  <optgroup label="중·고등">
+                    {STUDIO_GRADES.secondary.map((value) => (
+                      <option key={value} value={value}>
+                        {value}
+                      </option>
+                    ))}
+                  </optgroup>
+                </select>
+              </label>
+            ) : null}
+            {currentSource ? (
               <div className={styles.pageTools}>
                 <button
                   type="button"
@@ -1325,24 +1488,16 @@ export default function StudioView({
                   disabled={
                     !pageReady ||
                     !studioAi.available ||
-                    studioAi.running ||
+                    sourceRecognizing ||
                     busy
                   }
-                  title="현재 페이지에서 문제 영역과 문자를 인식합니다. 기존 영역은 유지합니다."
-                  onClick={() => {
-                    if (!rendered || !pageReady) return;
-                    void studioAi.recognizePage({
-                      sourceId,
-                      sourceLabel: currentSource.name,
-                      page: pageNumber,
-                      canvas: rendered.canvas,
-                      imageDataUrl: rendered.url,
-                      grade: selectedGrade,
-                      level: selectedLevel,
-                    });
-                  }}
+                  title="전체 페이지를 대기열에 넣어 최대 2쪽씩 인식합니다. 기존 영역은 유지합니다."
+                  aria-busy={sourceRecognizing}
+                  onClick={() => recognizeSource()}
                 >
-                  페이지 자동 인식
+                  {currentSource.pages > 1
+                    ? "전체 페이지 자동 인식"
+                    : "페이지 자동 인식"}
                 </button>
                 <details className={styles.aiDetails}>
                   <summary
@@ -1355,6 +1510,23 @@ export default function StudioView({
                     AI 연결
                   </summary>
                   <div>
+                    {currentSource.pages > 1 ? (
+                      <button
+                        type="button"
+                        className={styles.secondaryButton}
+                        disabled={
+                          !pageReady || recognizingPage || !studioAi.available
+                        }
+                        onClick={(event) => {
+                          recognizeSource(false);
+                          event.currentTarget
+                            .closest("details")
+                            ?.removeAttribute("open");
+                        }}
+                      >
+                        현재 {pageNumber}쪽만 다시 인식
+                      </button>
+                    ) : null}
                     <select
                       aria-label="Studio AI 도구"
                       value={studioAi.ai.provider}
@@ -1433,21 +1605,62 @@ export default function StudioView({
             )}
           </div>
 
-          {studioAi.progress || studioAi.message || studioAi.error ? (
+          {importProgress ? (
+            <WorkProgress
+              label="파일 불러오는 중"
+              detail={importProgress.name}
+              completed={importProgress.done}
+              total={importProgress.total}
+              unit="파일"
+              startedAt={importProgress.startedAt}
+            />
+          ) : null}
+          <StudioQueueStatus
+            jobs={studioAi.pageJobs}
+            startedAt={studioAi.pageProgress.startedAt ?? undefined}
+            sources={sources}
+            onCancel={() => studioAi.cancel()}
+            onRetry={() => void studioAi.retryPages()}
+            onNavigate={chooseSource}
+          />
+          {currentPageJob?.state === "error" ? (
+            <div className={styles.aiFeedback} role="alert">
+              <span>
+                {pageNumber}쪽 · {currentPageJob.error}
+              </span>
+              <button
+                type="button"
+                disabled={!studioAi.available}
+                onClick={() => recognizeSource(false)}
+              >
+                이 페이지 재시도
+              </button>
+            </div>
+          ) : null}
+          {studioAi.progress ? (
+            <WorkProgress
+              label={
+                studioAi.progress.action === "solution"
+                  ? "해설 생성 중"
+                  : studioAi.progress.action === "figures"
+                    ? "도형 인식 중"
+                    : "문자 인식 중"
+              }
+              completed={studioAi.progress.done}
+              total={studioAi.progress.total}
+              unit="문항"
+              startedAt={studioAi.progress.startedAt}
+              onCancel={() => studioAi.cancelCrop()}
+              cancelLabel="AI 작업 취소"
+            />
+          ) : null}
+          {!studioAi.progress && (studioAi.message || studioAi.error) ? (
             <div
               className={styles.aiFeedback}
               role={studioAi.error ? "alert" : "status"}
             >
-              <span>
-                {studioAi.progress
-                  ? `${studioAi.progress.action === "solution" ? "해설 생성" : studioAi.progress.action === "figures" ? "도형 인식" : "문자 인식"} · ${studioAi.progress.done} / ${studioAi.progress.total} 완료${studioAi.progress.cropId ? ` · 문제 ${crops.findIndex((crop) => crop.id === studioAi.progress!.cropId) + 1} 처리 중` : ""}`
-                  : studioAi.error || studioAi.message}
-              </span>
-              {studioAi.progress ? (
-                <button type="button" onClick={() => studioAi.cancel()}>
-                  AI 작업 취소
-                </button>
-              ) : studioAi.error ? (
+              <span>{studioAi.error || studioAi.message}</span>
+              {studioAi.error ? (
                 <button
                   type="button"
                   disabled={!studioAi.available || studioAi.running}
@@ -1459,7 +1672,7 @@ export default function StudioView({
                 <button
                   type="button"
                   aria-label="AI 결과 안내 닫기"
-                  onClick={() => studioAi.cancel(true)}
+                  onClick={() => studioAi.cancelCrop(true)}
                 >
                   ×
                 </button>
@@ -1503,7 +1716,8 @@ export default function StudioView({
                   type="button"
                   className={styles.primaryButton}
                   disabled={
-                    studioAi.running ||
+                    recognizingPage ||
+                    Boolean(studioAi.progress) ||
                     (activeCrop.reviewed &&
                       activeCropIndex === crops.length - 1)
                   }
@@ -1698,6 +1912,18 @@ export default function StudioView({
                         alt={`${currentSource.name}, ${pageNumber}쪽 원본`}
                         draggable={false}
                       />
+                      {currentPageJob?.state === "empty" &&
+                      !pageCrops.length ? (
+                        <div
+                          className={styles.emptyPageStamp}
+                          role="status"
+                          aria-label="자동 인식 완료: 문제가 없는 빈 페이지"
+                        >
+                          <span>인식 완료</span>
+                          <strong>빈 페이지</strong>
+                          <small>문제 없음</small>
+                        </div>
+                      ) : null}
                       {pageCrops.map((crop) => (
                         <StudioCropOverlay
                           key={crop.id}
@@ -1752,9 +1978,16 @@ export default function StudioView({
                   </div>
                 ) : (
                   <div className={styles.loading}>
-                    {error
-                      ? "원본을 표시할 수 없습니다."
-                      : "지면을 불러오는 중…"}
+                    {error ? (
+                      "원본을 표시할 수 없습니다."
+                    ) : (
+                      <WorkProgress
+                        key={`${sourceId}:${pageNumber}`}
+                        label="지면을 불러오는 중"
+                        variant="inline"
+                        showElapsed
+                      />
+                    )}
                   </div>
                 )}
               </div>
@@ -1824,10 +2057,7 @@ export default function StudioView({
           aria-label="자른 문제 검수"
           hidden={editing && !inspectorOpen}
         >
-          <div className={styles.inspectorTitle}>
-            <h2>문제 검수</h2>
-            <span className={styles.count}>{crops.length}</span>
-          </div>
+          <h2 className={styles.srOnly}>문제 검수</h2>
           <div className={styles.inspectorScroll}>
             {step === "crop" && currentSource ? (
               <div className={styles.cropEditTools}>
@@ -1876,49 +2106,6 @@ export default function StudioView({
                 </div>
               </div>
             ) : null}
-            <div className={styles.gradeBlock}>
-              <span className={styles.fieldLabel}>
-                {activeCrop ? "선택한 문제의 학년" : "가져올 문제의 학년"}
-              </span>
-              <div className={styles.gradeRow}>
-                <div
-                  className={styles.segmented}
-                  role="group"
-                  aria-label="학교급"
-                >
-                  <button
-                    type="button"
-                    aria-pressed={selectedLevel === "elementary"}
-                    onClick={() => changeLevel("elementary")}
-                  >
-                    초등
-                  </button>
-                  <button
-                    type="button"
-                    aria-pressed={selectedLevel === "secondary"}
-                    onClick={() => changeLevel("secondary")}
-                  >
-                    중·고등
-                  </button>
-                </div>
-                <select
-                  aria-label="학년"
-                  value={selectedGrade}
-                  onChange={(event) => {
-                    studioAi.cancel(true);
-                    setGrade(event.target.value);
-                    if (activeCrop) updateCrop({ grade: event.target.value });
-                  }}
-                >
-                  {STUDIO_GRADES[selectedLevel].map((value) => (
-                    <option key={value} value={value}>
-                      {value}
-                    </option>
-                  ))}
-                </select>
-              </div>
-            </div>
-
             {unreadCrops.length > 1 || unsolvedCrops.length > 1 ? (
               <div className={styles.aiBatch} aria-label="대기 문항 AI 처리">
                 {unreadCrops.length > 1 ? (
@@ -2213,34 +2400,7 @@ export default function StudioView({
                   출력 미리보기 <Icon name="arrow" width="16" height="16" />
                 </button>
               </div>
-            ) : (
-              <div className={styles.emptyInspector}>
-                <div>
-                  <Icon name="crop" width="28" height="28" />
-                </div>
-                <h3>자른 문제를 여기서 검수합니다</h3>
-                <p>
-                  원본에서 문제 영역을 자르면
-                  <br />
-                  이미지와 출력 방식을 확인할 수 있습니다.
-                </p>
-                <ol>
-                  <li>
-                    <span>1</span>지면에서 문제 영역 선택
-                  </li>
-                  <li>
-                    <span>2</span>원본을 보며 내용 확인
-                  </li>
-                  <li>
-                    <span>3</span>내 시험지에 담아 내보내기
-                  </li>
-                </ol>
-                <div className={styles.emptyNote}>
-                  페이지 자동 인식 또는 직접 자르기로 시작하세요. AI는 버튼을
-                  누를 때만 실행됩니다.
-                </div>
-              </div>
-            )}
+            ) : null}
           </div>
         </aside>
       </div>
@@ -2309,7 +2469,7 @@ export default function StudioView({
               <button
                 type="button"
                 className={styles.secondaryButton}
-                disabled={!pageCrops.length || !pageReady || studioAi.running}
+                disabled={!pageCrops.length || !pageReady || recognizingPage}
                 onClick={inspectPage}
               >
                 {pageNumber < currentSource.pages

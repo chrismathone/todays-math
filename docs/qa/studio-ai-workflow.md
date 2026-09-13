@@ -6,10 +6,10 @@ The original workflow references were read without modifying `F:/Mathgen`: `Step
 
 ## Behavior and ownership
 
-- Page recognition is in the existing source toolbar. Provider selection and unavailable-provider details are in its collapsed **AI 연결** control; the shared sidebar remains the status dashboard.
+- Page recognition is in the source toolbar. Multi-page sources enqueue all pages with two concurrent slots; page navigation keeps this work running. **AI 연결** also offers a current-page rerun. See [current queue verification](../studio-page-queue.md).
 - Pending OCR and pending solutions run in separate sequential queues. Batch controls appear only when that action has more than one pending crop. Progress, cancellation, error detail and retry are visible; retry resumes the failed remainder and never repeats completed items automatically.
 - Crop responses apply only to the same crop, source, page, image, grade, content, answer, solution, output mode, added state and edit revision. An edit followed by restoring the old text still changes the revision and protects the user's work.
-- Reset acceptance, import/source/page changes, crop deletion/selection changes, worksheet adding, view deactivation and unmount abort the Studio-owned signal. Late responses cannot append crops or overwrite new work. Cancelling the **새로 시작** dialog leaves the current request/work intact; accepting preserves the worksheet already managed by the parent.
+- Reset acceptance, explicit global cancel and unmount abort page recognition and queued jobs. Import/source/page changes, crop deletion/selection changes, worksheet adding and view deactivation cancel only the crop-edit request owner; background pages keep their captured source. Late crop responses cannot overwrite new edits. Cancelling the **새로 시작** dialog leaves requests intact; accepting preserves the worksheet already managed by the parent.
 - OCR leaves image output selected and clears an obsolete solution when rereading succeeds. The reread action explains this in its title. Text output is explicit and reminds users to verify diagrams and choices; original pixels remain available in the crop preview.
 - Fraction conversion uses the existing presentation helper. Editable text, stored crops and API inputs retain source fractions; elementary previews show mixed fractions and middle/high previews retain improper fractions.
 

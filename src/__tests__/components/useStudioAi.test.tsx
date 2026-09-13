@@ -1011,6 +1011,34 @@ describe("Studio background page queue", () => {
     });
   });
 
+  it("keeps a completed page owner intact when cancelling the remaining queue", async () => {
+    const reply = deferred<DevAiResponse>();
+    bridge.run
+      .mockResolvedValueOnce(pageResponse())
+      .mockReturnValue(reply.promise);
+    const tasks = [task(1), task(2)];
+    const { result } = mount([]);
+    let work!: Promise<void>;
+    await act(async () => {
+      work = result.current.recognizePages(tasks);
+    });
+    expect(result.current.pageProgress.done).toBe(1);
+    const completedSignal = tasks[0].load.mock.calls[0][0];
+    await act(async () => {
+      result.current.cancel();
+      await work;
+    });
+    expect(completedSignal.aborted).toBe(false);
+    expect(result.current.pageJobs.map((job) => job.state)).toEqual([
+      "complete",
+      "cancelled",
+    ]);
+    await act(async () => {
+      reply.resolve(pageResponse());
+    });
+    expect(result.current.crops).toHaveLength(1);
+  });
+
   it("reset fences old replies and retains physical slots until aborted I/O settles", async () => {
     const oldReplies = [deferred<DevAiResponse>(), deferred<DevAiResponse>()];
     bridge.run

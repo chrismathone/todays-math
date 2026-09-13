@@ -159,8 +159,8 @@ export function useStudioAi({
         if (pageBusy(entry.job)) {
           entry.job = { ...entry.job, state: "cancelled" };
           cancelled = true;
-        }
-        entry.controller.abort();
+          entry.controller.abort();
+        } else if (clear) entry.controller.abort();
       }
       if (clear) pages.current.clear();
       pendingDetected.current = [];
