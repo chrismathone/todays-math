@@ -2,6 +2,7 @@
 
 import { useRouter } from "next/navigation";
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
+import type { ComponentProps } from "react";
 
 import { AppChrome } from "@/components/chrome/AppChrome";
 import type {
@@ -47,7 +48,16 @@ type LoadState =
 export const MAIN_VIEW_TOGGLE_CLASS =
   "cursor-pointer bg-ink px-2.5 py-0.5 text-[15.75px] font-extrabold text-bg";
 
-export function MainScreen() {
+type MainScreenProps = {
+  /** Reuse the dashboard within a persistent workspace, without legacy chrome. */
+  embedded?: boolean;
+  onEmpty?: () => void;
+};
+
+export function MainScreen({
+  embedded = false,
+  onEmpty,
+}: MainScreenProps = {}) {
   const router = useRouter();
   // 효과의 의존에 router 를 넣지 않는다 — 시험 더블처럼 렌더마다 새 객체를 주는 라우터면
   // 대시보드를 렌더마다 다시 읽어 선택이 초기화된다. 최신 객체는 ref 로 든다.
@@ -73,7 +83,7 @@ export function MainScreen() {
         if (cancelled) return;
         // 🔴 반이 하나도 없으면 메인은 빈 표뿐이다 — S-02 대로 온보딩으로 보낸다.
         //    2026-09-07 새 계정이 로그인 직후 빈 메인에 떨어졌다(가입 경로만 온보딩이었다).
-        if (data.classes.length === 0) {
+        if (data.classes.length === 0 && !embedded) {
           routerRef.current.replace("/onboarding");
           return;
         }
@@ -95,7 +105,7 @@ export function MainScreen() {
     return () => {
       cancelled = true;
     };
-  }, [loadAttempt]);
+  }, [loadAttempt, embedded]);
 
   const rows = useMemo(() => {
     if (state.status !== "ready") return [];
@@ -177,12 +187,18 @@ export function MainScreen() {
   }, [selectedClassId, state.status, displayedUnitId, committedUnitId]);
 
   if (state.status === "loading") {
-    return <DashboardSkeleton />;
+    return embedded ? (
+      <p role="status" className="p-6 text-base">
+        수업 정보를 불러오는 중…
+      </p>
+    ) : (
+      <DashboardSkeleton />
+    );
   }
 
   if (state.status === "error") {
     return (
-      <AppChrome activeNav="main">
+      <MainFrame embedded={embedded} activeNav="main">
         <main className="px-[26px] py-6">
           <p role="alert" className="mb-3 text-[12.5px] text-g-red-text">
             {state.message}
@@ -197,12 +213,27 @@ export function MainScreen() {
             다시 불러오기
           </Button>
         </main>
-      </AppChrome>
+      </MainFrame>
+    );
+  }
+
+  if (embedded && state.classes.length === 0) {
+    return (
+      <div className="p-6">
+        <h3 className="mb-2 text-xl font-bold">첫 수업을 준비해 보세요</h3>
+        <p className="mb-5 text-base text-text-2">
+          반을 만들고 학생을 등록하면 오늘의 수업과 진도를 관리할 수 있습니다.
+        </p>
+        {onEmpty ? (
+          <Button onClick={onEmpty}>반 · 학생 관리로 이동</Button>
+        ) : null}
+      </div>
     );
   }
 
   return (
-    <AppChrome
+    <MainFrame
+      embedded={embedded}
       activeNav="main"
       remaining={remaining}
       extraNav={
@@ -273,6 +304,29 @@ export function MainScreen() {
           }}
         />
       </div>
+    </MainFrame>
+  );
+}
+
+function MainFrame({
+  embedded,
+  children,
+  extraNav,
+  ...props
+}: ComponentProps<typeof AppChrome> & { embedded: boolean }) {
+  if (embedded) {
+    return (
+      <div data-teaching-dashboard>
+        <div className="flex justify-end border-b border-divider p-4">
+          {extraNav}
+        </div>
+        {children}
+      </div>
+    );
+  }
+  return (
+    <AppChrome {...props} extraNav={extraNav}>
+      {children}
     </AppChrome>
   );
 }
