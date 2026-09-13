@@ -1486,3 +1486,10 @@
     font-size: 21px;
   }
 }
+
+@media (min-width: 761px) {
+  .topbar {
+    height: 52px;
+    padding-inline: 20px;
+  }
+}

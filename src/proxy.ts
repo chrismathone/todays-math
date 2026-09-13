@@ -18,6 +18,15 @@ import { routeAccessFor } from "@/lib/routeAccess";
 
 export const proxy = auth((req) => {
   const { pathname } = req.nextUrl;
+  // Brand assets are also used on anonymous login pages and browser tabs.
+  if (
+    (req.method === "GET" || req.method === "HEAD") &&
+    (pathname === "/favicon.ico" ||
+      pathname === "/icon.svg" ||
+      pathname === "/apple-icon.png" ||
+      pathname.startsWith("/brand/"))
+  )
+    return NextResponse.next();
   const isPublic =
     pathname.startsWith("/login") ||
     pathname.startsWith("/signup") ||

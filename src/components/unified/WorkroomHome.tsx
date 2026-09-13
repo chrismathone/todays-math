@@ -72,19 +72,7 @@ export default function WorkroomHome({
   const visibleDrafts = recent.slice(0, 4);
   return (
     <main className={s.home}>
-      <header className={s.welcome}>
-        <div>
-          <h1>오늘의 작업</h1>
-          <div>필요한 문제를 찾고, 나만의 수업 자료로 완성하세요.</div>
-        </div>
-        <button
-          className={s.outlineButton}
-          onClick={() => onNavigate("library")}
-        >
-          <Icon name="folder" size={18} />내 시험지 보기
-          <Icon name="arrow" size={17} />
-        </button>
-      </header>
+      <h1 className={s.srOnly}>오늘의 작업</h1>
       <div className={s.dashboard}>
         <div className={s.primaryColumn}>
           <section className={s.bankCard} aria-labelledby="quick-bank-title">

@@ -1673,3 +1673,12 @@
     font-size: 12px;
   }
 }
+
+@media (min-width: 761px) {
+  .editing .workspace {
+    height: calc(100dvh - 198px);
+  }
+  .focusMode.editing .workspace {
+    height: calc(100dvh - 138px);
+  }
+}
