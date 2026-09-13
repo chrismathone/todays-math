@@ -110,6 +110,7 @@ export default function UnifiedWorkspace({
 }) {
   const [view, setView] = useState<View>("home");
   const [studioOpened, setStudioOpened] = useState(false);
+  const [bankOpened, setBankOpened] = useState(false);
   const [selected, setSelected] = useState<StudioProblem[]>([]);
   const [title, setTitle] = useState("오늘의 수학 학습지");
   const [columns, setColumns] = useState(2);
@@ -119,6 +120,7 @@ export default function UnifiedWorkspace({
   const navigate = (next: View) => {
     setView(next);
     if (next === "studio") setStudioOpened(true);
+    if (next === "bank") setBankOpened(true);
     setNotice("");
   };
   const toggle = (problem: StudioProblem) =>
@@ -128,10 +130,15 @@ export default function UnifiedWorkspace({
         : [...current, problem],
     );
   const add = (problems: StudioProblem[]) =>
-    setSelected((current) => [
-      ...current,
-      ...problems.filter((p) => !current.some((old) => old.id === p.id)),
-    ]);
+    setSelected((current) => {
+      const updated = new Map(problems.map((problem) => [problem.id, problem]));
+      return [
+        ...current.map((problem) => updated.get(problem.id) ?? problem),
+        ...problems.filter(
+          (problem) => !current.some((old) => old.id === problem.id),
+        ),
+      ];
+    });
   const count = initialData.grades.reduce((sum, item) => sum + item.count, 0);
   const date = new Intl.DateTimeFormat("ko-KR", {
     month: "long",
@@ -546,8 +553,8 @@ export default function UnifiedWorkspace({
           </main>
         )}
 
-        {view === "bank" && (
-          <main className={s.viewContent}>
+        {bankOpened && (
+          <main hidden={view !== "bank"} className={s.viewContent}>
             <BankView
               initialData={initialData}
               selected={selected}
