@@ -1176,7 +1176,7 @@
   }
   .primaryColumn:has(.recentList) {
     height: max(740px, calc(100dvh - 84px));
-    grid-template-rows: auto 144px minmax(210px, 1fr);
+    grid-template-rows: auto minmax(144px, max-content) minmax(210px, 1fr);
   }
   .recentSection:has(.recentList) {
     display: flex;
@@ -1198,6 +1198,24 @@
   }
   .recentSection {
     margin-top: 0;
+  }
+}
+@media (min-width: 1051px) and (max-width: 1250px) {
+  .importCard {
+    display: grid;
+    grid-template-columns: 48px minmax(0, 1fr);
+    gap: 8px 16px;
+    padding: 16px;
+  }
+  .sourceIllustration {
+    grid-row: 1 / 3;
+    width: 48px;
+    height: 64px;
+  }
+  .importButton {
+    grid-column: 2;
+    justify-self: start;
+    margin-left: 0;
   }
 }
 .srOnly {
