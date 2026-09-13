@@ -20,6 +20,7 @@ import {
 } from "@/lib/dev-ai/contracts";
 
 export interface DevAiActivity {
+  id: number;
   action: DevAiAction;
   provider: DevAiProvider;
   state: "running" | "complete" | "error" | "cancelled";
@@ -34,6 +35,9 @@ interface DevAiContextValue {
   provider: DevAiProvider;
   setProvider: (provider: DevAiProvider) => void;
   activity: DevAiActivity | null;
+  /** Unsettled requests, including requests waiting for a server CLI slot. */
+  activities: DevAiActivity[];
+  activeCount: number;
   refresh: () => Promise<void>;
   run: (
     request: Omit<DevAiRequest, "provider">,
@@ -48,6 +52,8 @@ const Context = createContext<DevAiContextValue>({
   provider: "codex",
   setProvider: () => {},
   activity: null,
+  activities: [],
+  activeCount: 0,
   refresh: async () => {},
   run: async () => {
     throw new Error("개발용 AI 연결을 확인해 주세요.");
@@ -62,13 +68,19 @@ export function DevAiProvider({ children }: { children: ReactNode }) {
   const [statusError, setStatusError] = useState("");
   const [checking, setChecking] = useState(true);
   const [provider, updateProvider] = useState<DevAiProvider>("codex");
-  const [activity, setActivity] = useState<DevAiActivity | null>(null);
+  const [{ activities, lastActivity }, setActivities] = useState<{
+    activities: DevAiActivity[];
+    lastActivity: DevAiActivity | null;
+  }>({ activities: [], lastActivity: null });
+  const activity = activities[0] ?? lastActivity;
+  const activeCount = activities.length;
   const choiceMade = useRef(false);
   const statusRequest = useRef<AbortController | null>(null);
-  const activeRequest = useRef<AbortController | null>(null);
+  const activeRequests = useRef(new Map<number, AbortController>());
+  const nextRequestId = useRef(0);
 
   const setProvider = useCallback((next: DevAiProvider) => {
-    if (activeRequest.current) return;
+    if (activeRequests.current.size) return;
     choiceMade.current = true;
     updateProvider(next);
     try {
@@ -92,7 +104,7 @@ export function DevAiProvider({ children }: { children: ReactNode }) {
       if (controller.signal.aborted) return;
       setStatusError("");
       setStatus(next);
-      if (!choiceMade.current) {
+      if (!choiceMade.current && !activeRequests.current.size) {
         let initial = next.defaultProvider;
         try {
           const saved = localStorage.getItem(STORAGE_KEY);
@@ -122,34 +134,37 @@ export function DevAiProvider({ children }: { children: ReactNode }) {
     await loadStatus();
   }, [loadStatus]);
   useEffect(() => {
+    const requests = activeRequests.current;
     // Synchronize the external CLI status snapshot; normal state writes follow awaited I/O.
     // eslint-disable-next-line react-hooks/set-state-in-effect
     void loadStatus();
     return () => {
       statusRequest.current?.abort();
-      activeRequest.current?.abort();
+      for (const controller of requests.values()) controller.abort();
     };
   }, [loadStatus]);
-  const cancel = useCallback(() => activeRequest.current?.abort(), []);
+  const cancel = useCallback(() => {
+    for (const controller of activeRequests.current.values())
+      controller.abort();
+  }, []);
   const run = useCallback(
     async (
       request: Omit<DevAiRequest, "provider">,
       signal?: AbortSignal,
     ): Promise<DevAiResponse> => {
       if (signal?.aborted) throw new DOMException("작업 취소", "AbortError");
-      if (activeRequest.current)
-        throw new Error("진행 중인 AI 작업을 마치거나 취소해 주세요.");
       if (!status?.enabled) throw new Error("개발용 AI 연결을 확인해 주세요.");
       const selected = status.providers.find((item) => item.id === provider);
       if (!selected || !["ready", "unverified"].includes(selected.status))
         throw new Error(selected?.detail || "이 도구를 사용할 수 없습니다.");
       const controller = new AbortController();
-      activeRequest.current = controller;
+      const id = ++nextRequestId.current;
+      activeRequests.current.set(id, controller);
       const abort = () => controller.abort();
       signal?.addEventListener("abort", abort, { once: true });
       const startedAt = Date.now();
-      const base = { action: request.action, provider, startedAt };
-      setActivity({
+      const base = { id, action: request.action, provider, startedAt };
+      const running: DevAiActivity = {
         ...base,
         state: "running",
         message:
@@ -158,7 +173,17 @@ export function DevAiProvider({ children }: { children: ReactNode }) {
             : request.action === "figures"
               ? "도형 인식 중"
               : "문제 인식 중",
-      });
+      };
+      setActivities((previous) => ({
+        ...previous,
+        activities: [...previous.activities, running],
+      }));
+      const settle = (finished: DevAiActivity) => {
+        setActivities((previous) => ({
+          activities: previous.activities.filter((item) => item.id !== id),
+          lastActivity: finished,
+        }));
+      };
       try {
         const response = await fetch("/api/dev/unified/ai", {
           method: "POST",
@@ -175,7 +200,7 @@ export function DevAiProvider({ children }: { children: ReactNode }) {
           );
         if (controller.signal.aborted)
           throw new DOMException("작업 취소", "AbortError");
-        setActivity({
+        settle({
           ...base,
           state: "complete",
           finishedAt: Date.now(),
@@ -200,7 +225,7 @@ export function DevAiProvider({ children }: { children: ReactNode }) {
         return body as DevAiResponse;
       } catch (error) {
         const cancelled = controller.signal.aborted;
-        setActivity({
+        settle({
           ...base,
           state: cancelled ? "cancelled" : "error",
           finishedAt: Date.now(),
@@ -214,7 +239,7 @@ export function DevAiProvider({ children }: { children: ReactNode }) {
         throw error;
       } finally {
         signal?.removeEventListener("abort", abort);
-        if (activeRequest.current === controller) activeRequest.current = null;
+        activeRequests.current.delete(id);
       }
     },
     [provider, status],
@@ -227,6 +252,8 @@ export function DevAiProvider({ children }: { children: ReactNode }) {
       provider,
       setProvider,
       activity,
+      activities,
+      activeCount,
       refresh,
       run,
       cancel,
@@ -238,6 +265,8 @@ export function DevAiProvider({ children }: { children: ReactNode }) {
       provider,
       setProvider,
       activity,
+      activities,
+      activeCount,
       refresh,
       run,
       cancel,

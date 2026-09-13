@@ -10,6 +10,7 @@ import { discoverSubscriptionCli } from "./cli-discovery";
 import { inspectAdditionalProvider } from "./cli-metadata";
 import {
   abortError,
+  ProcessSlots,
   runCliProcess,
   SubscriptionCliError,
   subscriptionEnvironment,
@@ -27,6 +28,10 @@ import {
 } from "./cli-protocol";
 
 export { SubscriptionCliError } from "./cli-process";
+
+// Admit whole requests in arrival order before allocating files or probing auth.
+// The separate subprocess pool also bounds status probes and quarantined trees.
+const requestSlots = new ProcessSlots();
 
 const LABELS: Record<DevAiProvider, string> = {
   codex: "Codex",
@@ -237,7 +242,10 @@ export async function runSubscriptionCli(input: {
     timedOut = true;
     cancel();
   }, 180_000);
+  let release: (() => void) | undefined;
   try {
+    release = await requestSlots.acquire(deadline.signal);
+    if (deadline.signal.aborted) throw abortError();
     return await withCliTemp(async (cwd) => {
       const env = subscriptionEnvironment(process.env);
       const { executable, status } = await inspectProvider(
@@ -299,6 +307,7 @@ export async function runSubscriptionCli(input: {
       "구독 CLI 실행을 위한 로컬 환경을 준비하거나 정리하지 못했습니다.",
     );
   } finally {
+    release?.();
     clearTimeout(timer);
     input.signal?.removeEventListener("abort", cancel);
   }

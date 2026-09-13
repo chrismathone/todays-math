@@ -13,6 +13,69 @@ const executable = { command: process.execPath, prefix: [] };
 const env = subscriptionEnvironment(process.env);
 
 describe("owned subscription subprocess lifecycle", () => {
+  it("hands both permits to FIFO waiters without letting new arrivals overtake", async () => {
+    const slots = new ProcessSlots();
+    const first = await slots.acquire();
+    const second = await slots.acquire();
+    const order: number[] = [];
+    const queue = (id: number) =>
+      slots.acquire().then((release) => {
+        order.push(id);
+        return release;
+      });
+    const third = queue(3);
+    const fourth = queue(4);
+    first();
+    const fifth = queue(5);
+    const releaseThird = await third;
+    expect(order).toEqual([3]);
+    second();
+    const releaseFourth = await fourth;
+    expect(order).toEqual([3, 4]);
+    releaseThird();
+    const releaseFifth = await fifth;
+    expect(order).toEqual([3, 4, 5]);
+    releaseFourth();
+    releaseFifth();
+  });
+
+  it("returns a transferred permit when cancellation wins before the waiter resumes", async () => {
+    const slots = new ProcessSlots();
+    const first = await slots.acquire();
+    const second = await slots.acquire();
+    const controller = new AbortController();
+    const cancelled = slots
+      .acquire(controller.signal)
+      .catch((error: Error) => error);
+    const next = slots.acquire();
+    first();
+    controller.abort();
+    expect(await cancelled).toMatchObject({ code: "cancelled" });
+    const releaseNext = await next;
+    second();
+    releaseNext();
+    const releases = await Promise.all([slots.acquire(), slots.acquire()]);
+    releases.forEach((release) => release());
+  });
+
+  it("bounds queue capacity and immediately reuses a cancelled waiting entry", async () => {
+    const slots = new ProcessSlots();
+    const first = await slots.acquire();
+    const second = await slots.acquire();
+    const controller = new AbortController();
+    const cancelled = slots
+      .acquire(controller.signal)
+      .catch((error: Error) => error);
+    const queued = Array.from({ length: 7 }, () => slots.acquire());
+    await expect(slots.acquire()).rejects.toMatchObject({ code: "busy" });
+    controller.abort();
+    expect(await cancelled).toMatchObject({ code: "cancelled" });
+    queued.push(slots.acquire());
+    first();
+    for (const entry of queued) (await entry)();
+    second();
+  });
+
   it("bounds concurrent processes and removes cancelled queued requests", async () => {
     const slots = new ProcessSlots();
     const first = await slots.acquire();

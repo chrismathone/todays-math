@@ -44,6 +44,123 @@ describe("public subscription adapter boundary", () => {
     return { api, run, temp: vi.mocked(processes.withCliTemp) };
   }
 
+  it("admits two whole requests, queues FIFO, and frees admission after abort or failure", async () => {
+    const { api, run, temp } = await harness();
+    const { abortError } = await import("../../lib/dev-ai/cli-process");
+    const started: string[] = [];
+    const pending = new Map<
+      string,
+      { complete: () => void; fail: () => void }
+    >();
+    let peak = 0;
+    run.mockImplementation(async (_executable, args, options) => {
+      if (args.includes("--help"))
+        return { stdout: help, stderr: "", exitCode: 0 };
+      if (args.includes("login"))
+        return { stdout: "Logged in using ChatGPT", stderr: "", exitCode: 0 };
+      const prompt = options.input!;
+      started.push(prompt);
+      return new Promise((resolve, reject) => {
+        const cleanup = () => {
+          pending.delete(prompt);
+          options.signal?.removeEventListener("abort", abort);
+        };
+        const abort = () => {
+          cleanup();
+          reject(abortError());
+        };
+        pending.set(prompt, {
+          complete: () => {
+            cleanup();
+            resolve({
+              stdout:
+                '{"type":"item.completed","item":{"type":"agent_message","text":"4"}}\n{"type":"turn.completed"}',
+              stderr: "",
+              exitCode: 0,
+            });
+          },
+          fail: () => {
+            cleanup();
+            reject(new Error("local launch failed"));
+          },
+        });
+        peak = Math.max(peak, pending.size);
+        options.signal?.addEventListener("abort", abort, { once: true });
+        if (options.signal?.aborted) abort();
+      });
+    });
+    const request = (prompt: string, signal?: AbortSignal) =>
+      api
+        .runSubscriptionCli({ provider: "codex", prompt, signal })
+        .catch((error: Error) => error);
+    const first = request("first");
+    const second = request("second");
+    const queuedAbort = new AbortController();
+    const cancelled = request("cancelled", queuedAbort.signal);
+    const activeAbort = new AbortController();
+    const third = request("third", activeAbort.signal);
+    const fourth = request("fourth");
+    await vi.waitFor(() => expect(pending.size).toBe(2));
+    expect(started.toSorted()).toEqual(["first", "second"]);
+    expect(temp).toHaveBeenCalledTimes(2);
+    queuedAbort.abort();
+    expect(await cancelled).toMatchObject({ code: "cancelled" });
+    expect(temp).toHaveBeenCalledTimes(2);
+    pending.get("first")!.complete();
+    expect(await first).toBe("4");
+    await vi.waitFor(() => expect(started[2]).toBe("third"));
+    pending.get("second")!.fail();
+    expect(await second).toMatchObject({ code: "local-error" });
+    await vi.waitFor(() => expect(started[3]).toBe("fourth"));
+    activeAbort.abort();
+    expect(await third).toMatchObject({ code: "cancelled" });
+    const fifth = request("fifth");
+    await vi.waitFor(() => expect(started[4]).toBe("fifth"));
+    pending.get("fourth")!.complete();
+    pending.get("fifth")!.complete();
+    expect(await Promise.all([fourth, fifth])).toEqual(["4", "4"]);
+    expect(peak).toBe(2);
+    expect(pending.size).toBe(0);
+  });
+
+  it("releases admission when every queued caller cancels and a new batch arrives", async () => {
+    const { api, run } = await harness();
+    const { abortError } = await import("../../lib/dev-ai/cli-process");
+    run.mockImplementation(async (_executable, _args, options) => {
+      return new Promise((_resolve, reject) => {
+        const abort = () => reject(abortError());
+        options.signal?.addEventListener("abort", abort, { once: true });
+        if (options.signal?.aborted) abort();
+      });
+    });
+    const controllers = Array.from({ length: 5 }, () => new AbortController());
+    const calls = controllers.map((controller) =>
+      api
+        .runSubscriptionCli({
+          provider: "codex",
+          prompt: "solve",
+          signal: controller.signal,
+        })
+        .catch((error: Error) => error),
+    );
+    await vi.waitFor(() => expect(run).toHaveBeenCalledTimes(2));
+    controllers.forEach((controller) => controller.abort());
+    expect(await Promise.all(calls)).toEqual(
+      controllers.map(() => expect.objectContaining({ code: "cancelled" })),
+    );
+    expect(run).toHaveBeenCalledTimes(2);
+    // Preflight failure also returns both permits to the next callers.
+    run.mockRejectedValue(new Error("local probe failed"));
+    await Promise.all(
+      Array.from({ length: 3 }, () =>
+        expect(
+          api.runSubscriptionCli({ provider: "codex", prompt: "next" }),
+        ).rejects.toMatchObject({ code: "unverified" }),
+      ),
+    );
+    expect(run).toHaveBeenCalledTimes(5);
+  });
+
   it("sanitizes local filesystem failures in status and generation", async () => {
     const { api, temp } = await harness();
     temp.mockRejectedValueOnce(
