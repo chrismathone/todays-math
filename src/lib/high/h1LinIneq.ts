@@ -30,7 +30,7 @@ import type { Difficulty } from "@/contracts/difficulty";
 
 import type { Rng } from "../elementary/types";
 
-import { eul, gwa } from "./josa";
+import { eul, ga, gwa } from "./josa";
 import { gcd, q, qTex, type Q } from "./numbers";
 import {
   $,
@@ -44,7 +44,7 @@ import {
   randInt,
   Retry,
 } from "./pick";
-import { polyTex, term } from "./poly";
+import { linTex, polyTex, term } from "./poly";
 import type { HighHold, HighProblem, HighTypeEntry } from "./types";
 
 const GRADE = "공통수학1";
@@ -899,6 +899,429 @@ function t03(rng: Rng): Body {
   });
 }
 
+// ═════════════════════════ 문자 상수가 붙은 부등식 ═════════════════════════
+
+/**
+ * `(c·s+k)/m` 의 지면 — 분모는 양수로 돌리고 약분한다. 분모가 1 이면 분수를 안 쓴다.
+ * `\dfrac{a-2}{3}` · `3-a` · `-\dfrac{a+1}{2}`.
+ */
+function affTex(c: number, s: string, k: number, m: number): string {
+  if (m < 0) return affTex(-c, s, -k, -m);
+  const g = gcd(gcd(c, k), m);
+  const [C, K, M] = [c / g, k / g, m / g];
+  if (M === 1)
+    return C < 0 && K > 0 ? `${K}${term(C, s)}` : linTex([[C, s]], K);
+  if (C < 0 && K <= 0) return `-\\dfrac{${linTex([[-C, s]], -K)}}{${M}}`;
+  const num = C < 0 ? `${K}${term(C, s)}` : linTex([[C, s]], K);
+  return `\\dfrac{${num}}{${M}}`;
+}
+
+/** `αx±s` — 문자 상수가 붙은 한 변(`2x+a` · `b-x` · `-a`). */
+function withParam(alpha: number, sigma: 1 | -1, s: string): string {
+  if (alpha === 0) return sigma > 0 ? s : `-${s}`;
+  if (alpha < 0 && sigma > 0) return `${s}${term(alpha, "x")}`;
+  return `${polyTex([0, alpha])}${sigma > 0 ? "+" : "-"}${s}`;
+}
+
+/** 해설 한 줄 — 「$5x-a>2x-2$에서 $3x>a-2$이므로 $x>\dfrac{a-2}{3}$」. */
+function paramStep(
+  tex: string,
+  m: number,
+  rel: Rel,
+  rhs: string,
+  relX: Rel,
+  bound: string,
+): string {
+  const mid =
+    m === 1 ? "" : `$${term(m, "x", true)}${relTex(rel)}${rhs}$이므로 `;
+  return `$${tex}$에서 ${mid}$x${relTex(relX)}${bound}$`;
+}
+
+/** 등호 포함 여부만 바꾼다 — `<`↔`≤`, `>`↔`≥`. */
+function toggleRel(r: Rel): Rel {
+  if (r === "<") return "le";
+  if (r === "le") return "<";
+  return r === ">" ? "ge" : ">";
+}
+
+/**
+ * 답이 `k rel K` 인 꼴의 오답 — 등호 포함 여부 · 부등호 방향 · 둘 다 · 끝점 부호 · 끝점 하나 어긋남.
+ */
+function rayDistractors(rng: Rng, rel: Rel, K: Q, v: string): string[] | null {
+  const tex = (r: Rel, t: Q) => ivTex(rayIv(r, t), v);
+  const cands = [
+    tex(toggleRel(rel), K),
+    tex(flipRel(rel), K),
+    tex(flipRel(toggleRel(rel)), K),
+    tex(rel, q(K.n + K.d, K.d)),
+    tex(rel, q(K.n - K.d, K.d)),
+  ];
+  if (K.n !== 0) cands.splice(3, 0, tex(rel, q(-K.n, K.d)));
+  return pickDistractors(rng, tex(rel, K), cands);
+}
+
+// ───────────────────────────── 04 ─────────────────────────────
+// 연립일차부등식의 해가 주어진 경우
+// 꼴 0 (기본·대표): 한 부등식에 미정계수 a, 해가 lo<x≤b — a+b · a−b · ab
+// 꼴 1 (응용): A≤B≤C 의 양 끝에 a, b — 해가 수로 주어짐
+// 꼴 2 (응용): 두 부등식에 a, b — 해가 x=t 한 점
+
+function t04(rng: Rng): Body {
+  const mode = randInt(rng, 0, 2);
+  if (mode === 0)
+    return attempt<Body>((): Body | null => {
+      const [lo, hi] = (distinctInts(rng, -6, 7, 2) as [number, number]).sort(
+        (x, y) => x - y,
+      );
+      if (hi - lo < 2) return null;
+      const loC = rng() < 0.5;
+      const hiC = rng() < 0.5;
+      const k = pickOne(rng, [-2, -1, 1, 2, 3]);
+      const m1 = randInt(rng, 1, 4);
+      const p = k + m1;
+      const w = nz(rng, -5, 5);
+      const a = m1 * lo - k * w;
+      if (p === 0 || a === 0) return null;
+      const R = randomSide(rng, k, k * w);
+      const rel1 = lowerRel(loC);
+      // px−a rel1 kx+kw ⇔ m1·x rel1 a+kw ⇔ x rel1 (a+kw)/m1
+      const l1: Lin = {
+        tex: `${withParam(p, -1, "a")}${relTex(rel1)}${R.tex}`,
+        m: m1,
+        c: m1 * lo,
+        rel: rel1,
+        sol: rayIv(rel1, q(lo)),
+      };
+      const l2 = makeLin(rng, q(hi), upperRel(hiC));
+      const [exprId, [et, ev]] = chooseExpr(rng, [
+        ["a+b", a + hi],
+        ["a-b", a - hi],
+        ["ab", a * hi],
+      ]);
+      const sys = casesTex(rng() < 0.5 ? [l1.tex, l2.tex] : [l2.tex, l1.tex]);
+      const bt = affTex(1, "a", k * w, m1);
+      const given = `${lo}${loC ? "\\le " : "<"}x${hiC ? "\\le " : "<"}b`;
+      return {
+        content: `연립부등식 $${sys}$의 해가 $${given}$일 때, 상수 $a$, $b$에 대하여 $${et}$의 값을 구하시오.`,
+        answer: numAnswer(ev),
+        solution: [
+          paramStep(l1.tex, m1, rel1, affTex(1, "a", k * w, 1), rel1, bt),
+          linStep(l2),
+          `주어진 연립부등식의 해가 $${given}$이므로 $${bt}=${lo}$, $b=${hi}$`,
+          `따라서 $a=${a}$, $b=${hi}$이므로 $${et}=${ev}$`,
+        ].join("\n"),
+        difficulty: "기본",
+        facts: {
+          mode,
+          ...linFacts(1, l1),
+          ...linFacts(2, l2),
+          a,
+          b: hi,
+          exprId,
+        },
+      };
+    });
+  if (mode === 1)
+    return attempt<Body>((): Body | null => {
+      const [lo, hi] = (distinctInts(rng, -6, 8, 2) as [number, number]).sort(
+        (x, y) => x - y,
+      );
+      if (hi - lo < 2) return null;
+      const loC = rng() < 0.5;
+      const hiC = rng() < 0.5;
+      const lowerFirst = rng() < 0.5;
+      const t1 = lowerFirst ? lo : hi;
+      const t2 = lowerFirst ? hi : lo;
+      const rel1: Rel = (lowerFirst ? loC : hiC) ? "le" : "<";
+      const rel2: Rel = (lowerFirst ? hiC : loC) ? "le" : "<";
+      const beta = nz(rng, -3, 4);
+      const b0 = randInt(rng, -8, 8);
+      const alpha = randInt(rng, -3, 3);
+      const gamma = randInt(rng, -3, 3);
+      const m1 = alpha - beta;
+      const m2 = beta - gamma;
+      if (m1 === 0 || m2 === 0) return null;
+      if (lowerFirst ? m1 > 0 || m2 < 0 : m1 < 0 || m2 > 0) return null;
+      // A rel1 B: m1·x rel1 b0−a · B rel2 C: m2·x rel2 b−b0
+      const a = b0 - m1 * t1;
+      const b = b0 + m2 * t2;
+      if (a === 0 || b === 0 || Math.abs(a) > 25 || Math.abs(b) > 25)
+        return null;
+      const A = withParam(alpha, 1, "a");
+      const B = linX(beta, b0);
+      const C = withParam(gamma, 1, "b");
+      const relX1 = m1 > 0 ? rel1 : flipRel(rel1);
+      const relX2 = m2 > 0 ? rel2 : flipRel(rel2);
+      const left: Lin = {
+        tex: `${A}${relTex(rel1)}${B}`,
+        m: m1,
+        c: m1 * t1,
+        rel: rel1,
+        sol: rayIv(relX1, q(t1)),
+      };
+      const right: Lin = {
+        tex: `${B}${relTex(rel2)}${C}`,
+        m: m2,
+        c: m2 * t2,
+        rel: rel2,
+        sol: rayIv(relX2, q(t2)),
+      };
+      const sol = ivMeet(left.sol, right.sol)!;
+      const [exprId, [et, ev]] = chooseExpr(rng, [
+        ["a-b", a - b],
+        ["a+b", a + b],
+        ["ab", a * b],
+      ]);
+      const bt1 = affTex(-1, "a", b0, m1);
+      const bt2 = affTex(1, "b", -b0, m2);
+      const sys = casesTex([left.tex, right.tex]);
+      return {
+        content: `부등식 $${A}${relTex(rel1)}${B}${relTex(rel2)}${C}$의 해가 $${ivTex(sol)}$일 때, 상수 $a$, $b$에 대하여 $${et}$의 값을 구하시오.`,
+        answer: numAnswer(ev),
+        solution: [
+          `주어진 부등식은 연립부등식 $${sys}$${gwa(sys)} 같다.`,
+          paramStep(left.tex, m1, rel1, affTex(-1, "a", b0, 1), relX1, bt1),
+          paramStep(right.tex, m2, rel2, affTex(1, "b", -b0, 1), relX2, bt2),
+          `주어진 부등식의 해가 $${ivTex(sol)}$이므로 $${bt1}=${t1}$, $${bt2}=${t2}$`,
+          `따라서 $a=${a}$, $b=${b}$이므로 $${et}=${ev}$`,
+        ].join("\n"),
+        difficulty: "응용",
+        facts: {
+          mode,
+          ...linFacts(1, left),
+          ...linFacts(2, right),
+          a,
+          b,
+          exprId,
+        },
+      };
+    });
+  return attempt<Body>((): Body | null => {
+    const t = nz(rng, -5, 6);
+    // p1x+w1 rel1 k1x+a ⇔ m1·x rel1 a−w1 — 위로 닫힌 해 x≤t
+    const p1 = nz(rng, -3, 4);
+    const k1 = randInt(rng, -3, 3);
+    const w1 = nz(rng, -9, 9);
+    const m1 = p1 - k1;
+    // k2x+b rel2 p2x+w2 ⇔ m2·x rel2 w2−b — 아래로 닫힌 해 x≥t
+    const p2 = nz(rng, -3, 4);
+    const k2 = randInt(rng, -3, 3);
+    const w2 = nz(rng, -9, 9);
+    const m2 = k2 - p2;
+    if (m1 === 0 || m2 === 0) return null;
+    const rel1: Rel = m1 > 0 ? "le" : "ge";
+    const rel2: Rel = m2 > 0 ? "ge" : "le";
+    const a = m1 * t + w1;
+    const b = w2 - m2 * t;
+    if (a === 0 || b === 0 || Math.abs(a) > 30 || Math.abs(b) > 30) return null;
+    const l1: Lin = {
+      tex: `${polyTex([w1, p1])}${relTex(rel1)}${withParam(k1, 1, "a")}`,
+      m: m1,
+      c: m1 * t,
+      rel: rel1,
+      sol: rayIv("le", q(t)),
+    };
+    const l2: Lin = {
+      tex: `${withParam(k2, 1, "b")}${relTex(rel2)}${polyTex([w2, p2])}`,
+      m: m2,
+      c: m2 * t,
+      rel: rel2,
+      sol: rayIv("ge", q(t)),
+    };
+    const [exprId, [et, ev]] = chooseExpr(rng, [
+      ["a+b", a + b],
+      ["ab", a * b],
+      ["a-b", a - b],
+    ]);
+    const bt1 = affTex(1, "a", -w1, m1);
+    const bt2 = affTex(-1, "b", w2, m2);
+    const sys = casesTex(rng() < 0.5 ? [l1.tex, l2.tex] : [l2.tex, l1.tex]);
+    return {
+      content: `연립부등식 $${sys}$의 해가 $x=${t}$일 때, 상수 $a$, $b$에 대하여 $${et}$의 값을 구하시오.`,
+      answer: numAnswer(ev),
+      solution: [
+        paramStep(l1.tex, m1, rel1, affTex(1, "a", -w1, 1), "le", bt1),
+        paramStep(l2.tex, m2, rel2, affTex(-1, "b", w2, 1), "ge", bt2),
+        `주어진 연립부등식의 해가 $x=${t}$이므로 $${bt1}=${t}$, $${bt2}=${t}$`,
+        `따라서 $a=${a}$, $b=${b}$이므로 $${et}=${ev}$`,
+      ].join("\n"),
+      difficulty: "응용",
+      facts: { mode, ...linFacts(1, l1), ...linFacts(2, l2), a, b, t, exprId },
+    };
+  });
+}
+
+// ───────────────────────────── 05 ─────────────────────────────
+// 연립일차부등식이 해를 갖거나 갖지 않는 경우
+// 꼴 0 (기본·대표): 한 부등식에 a — 해를 갖도록 하는 정수 a 의 최댓값·최솟값
+// 꼴 1 (응용): 한 부등식에 k — 해가 없을 때 k 의 값의 범위 (답이 구간, 오답 넷)
+// 꼴 2 (응용): A<B<C 의 한 끝에 a — 해를 갖도록 하는 a 의 값의 범위 (답이 구간, 오답 넷)
+
+function t05(rng: Rng): Body {
+  const mode = randInt(rng, 0, 2);
+  if (mode === 0)
+    return attempt<Body>((): Body | null => {
+      const u = nz(rng, -3, 3);
+      const w = nz(rng, -8, 8);
+      const d = pickOne(rng, [1, 2, 3]);
+      if (d > 1 && gcd(gcd(u, w), d) !== 1) return null;
+      const closed1 = rng() < 0.5;
+      const relX1 = lowerRel(closed1);
+      const rho = u > 0 ? relX1 : flipRel(relX1);
+      const t2 = randInt(rng, -5, 6);
+      const closed2 = rng() < 0.5;
+      const l2 = makeLin(rng, q(t2), upperRel(closed2));
+      const both = closed1 && closed2;
+      // (ux+w)/d ρ a ⇔ ux ρ da−w ⇔ x relX1 (da−w)/u. 해가 있으려면 (da−w)/u < t2 (둘 다 닫히면 ≤)
+      const T = q(u * t2 + w, d);
+      const up = u > 0;
+      const ans = up
+        ? both || !qIsInt(T)
+          ? qFloor(T)
+          : T.n - 1
+        : both || !qIsInt(T)
+          ? qCeil(T)
+          : T.n + 1;
+      const aRel: Rel = up ? (both ? "le" : "<") : both ? "ge" : ">";
+      const num = linX(u, w);
+      const tex1 = `${d === 1 ? num : `\\dfrac{${num}}{${d}}`}${relTex(rho)}a`;
+      const sys = casesTex(rng() < 0.5 ? [tex1, l2.tex] : [l2.tex, tex1]);
+      const bt = affTex(d, "a", -w, u);
+      const word = up ? "최댓값" : "최솟값";
+      return {
+        content: `연립부등식 $${sys}$${ga(sys)} 해를 갖도록 하는 정수 $a$의 ${word}을 구하시오.`,
+        answer: numAnswer(ans),
+        solution: [
+          paramStep(tex1, u, rho, affTex(d, "a", -w, 1), relX1, bt),
+          linStep(l2),
+          `주어진 연립부등식이 해를 가지려면 $${bt}${both ? "\\le " : "<"}${t2}$이어야 하므로 $a${relTex(aRel)}${qTex(T)}$`,
+          `따라서 정수 $a$의 ${word}은 $${ans}$이다.`,
+        ].join("\n"),
+        difficulty: "기본",
+        facts: {
+          mode,
+          u,
+          w,
+          d,
+          r1: REL_CODE[rho],
+          ...linFacts(2, l2),
+          ask: up ? 0 : 1,
+        },
+      };
+    });
+  if (mode === 1)
+    return attempt<Body>((): Body | null => {
+      const t1 = randInt(rng, -5, 5);
+      const closed1 = rng() < 0.5;
+      const l1 = makeLin(rng, q(t1), lowerRel(closed1));
+      const p = nz(rng, -3, 4);
+      const w0 = nz(rng, -9, 9);
+      const r = randInt(rng, -3, 4);
+      const m2 = p - r;
+      if (m2 === 0) return null;
+      const s = pickOne(rng, [-4, -3, -2, -1, 1, 2, 3, 4]);
+      const closed2 = rng() < 0.5;
+      const relX2 = upperRel(closed2);
+      const rel2 = m2 > 0 ? relX2 : flipRel(relX2);
+      const Qt =
+        Math.abs(r) >= 2 && (s === r || s === -r)
+          ? `${coefPrefix(r)}(x${s === r ? "+" : "-"}k)`
+          : r === 0
+            ? term(s, "k", true)
+            : `${polyTex([0, r])}${term(s, "k")}`;
+      // px+w0 rel2 rx+sk ⇔ m2·x rel2 sk−w0 ⇔ x relX2 (sk−w0)/m2
+      const tex2 = `${polyTex([w0, p])}${relTex(rel2)}${Qt}`;
+      const both = closed1 && closed2;
+      // 해가 없으려면 (sk−w0)/m2 < t1 (둘 다 닫히면) · ≤ t1 (아니면)
+      const K = q(m2 * t1 + w0, s);
+      const base: Rel = both ? "<" : "le";
+      const relK = s * m2 > 0 ? base : flipRel(base);
+      const ans = ivTex(rayIv(relK, K), "k");
+      const distractors = rayDistractors(rng, relK, K, "k");
+      if (distractors === null) return null;
+      const bt = affTex(s, "k", -w0, m2);
+      const sys = casesTex(rng() < 0.5 ? [l1.tex, tex2] : [tex2, l1.tex]);
+      return {
+        content: `연립부등식 $${sys}$의 해가 없을 때, 실수 $k$의 값의 범위를 구하시오.`,
+        answer: $(ans),
+        solution: [
+          linStep(l1),
+          paramStep(tex2, m2, rel2, affTex(s, "k", -w0, 1), relX2, bt),
+          `주어진 연립부등식의 해가 없으려면 $${bt}${both ? "<" : "\\le "}${t1}$`,
+          `따라서 $${ans}$`,
+        ].join("\n"),
+        difficulty: "응용",
+        facts: { mode, ...linFacts(1, l1), m2, s, w0, r2: REL_CODE[rel2] },
+        distractors,
+      };
+    });
+  return attempt<Body>((): Body | null => {
+    // caseA: 왼쪽(A<B)이 위로 막힌 해, 오른쪽(B<C)이 아래로 — caseB 는 반대
+    const caseA = rng() < 0.5;
+    const t2 = randInt(rng, -5, 6);
+    const closed1 = rng() < 0.5;
+    const closed2 = rng() < 0.5;
+    const rel1: Rel = closed1 ? "le" : "<";
+    const rel2: Rel = closed2 ? "le" : "<";
+    const beta = nz(rng, -3, 4);
+    const b0 = randInt(rng, -8, 8);
+    const alpha = randInt(rng, -3, 4);
+    const sigma = pickOne(rng, [1, -1] as const);
+    const m1 = alpha - beta;
+    if (m1 === 0 || (caseA ? m1 < 0 : m1 > 0)) return null;
+    const m2 = caseA ? -randInt(rng, 1, 4) : randInt(rng, 1, 4);
+    const C = randomSide(rng, beta - m2, b0 + m2 * t2);
+    if (C.tex === "0") return null;
+    const A = withParam(alpha, sigma, "a");
+    const B = linX(beta, b0);
+    const relX1 = m1 > 0 ? rel1 : flipRel(rel1);
+    const relX2 = m2 > 0 ? rel2 : flipRel(rel2);
+    const right: Lin = {
+      tex: `${B}${relTex(rel2)}${C.tex}`,
+      m: m2,
+      c: m2 * t2,
+      rel: rel2,
+      sol: rayIv(relX2, q(t2)),
+    };
+    const leftTex = `${A}${relTex(rel1)}${B}`;
+    // 왼쪽: m1·x rel1 b0−σa → 끝점 (b0−σa)/m1. 두 경우 모두 해가 있으려면 σa < b0−m1·t2 (둘 다 닫히면 ≤)
+    const both = closed1 && closed2;
+    const T = q(b0 - m1 * t2, sigma);
+    const base: Rel = both ? "le" : "<";
+    const relA = sigma > 0 ? base : flipRel(base);
+    const ans = ivTex(rayIv(relA, T), "a");
+    const distractors = rayDistractors(rng, relA, T, "a");
+    if (distractors === null) return null;
+    const bt1 = affTex(-sigma, "a", b0, m1);
+    const need = caseA
+      ? `${bt1}${both ? "\\ge " : ">"}${t2}`
+      : `${bt1}${both ? "\\le " : "<"}${t2}`;
+    const chain = `${leftTex}${relTex(rel2)}${C.tex}`;
+    const sys = casesTex([leftTex, right.tex]);
+    return {
+      content: `부등식 $${chain}$${ga(chain)} 해를 갖도록 하는 실수 $a$의 값의 범위를 구하시오.`,
+      answer: $(ans),
+      solution: [
+        `주어진 부등식은 연립부등식 $${sys}$${gwa(sys)} 같다.`,
+        paramStep(leftTex, m1, rel1, affTex(-sigma, "a", b0, 1), relX1, bt1),
+        linStep(right),
+        `주어진 부등식이 해를 가지려면 $${need}$이어야 하므로`,
+        `$${ans}$`,
+      ].join("\n"),
+      difficulty: "응용",
+      facts: {
+        mode,
+        m1,
+        b0,
+        sigma,
+        r1: REL_CODE[rel1],
+        ...linFacts(2, right),
+      },
+      distractors,
+    };
+  });
+}
+
 // ───────────────────────────── 등록 ─────────────────────────────
 
 function entry(
@@ -927,13 +1350,13 @@ export const H1_LIN_INEQ: HighTypeEntry[] = [
   entry("01", "연립일차부등식의 풀이", SEC.연립1, t01),
   entry("02", "A<B<C의 꼴의 부등식", SEC.연립1, t02),
   entry("03", "특수한 해를 갖는 연립일차부등식", SEC.연립1, t03),
+  entry("04", "연립일차부등식의 해가 주어진 경우", SEC.연립2, t04),
+  entry("05", "연립일차부등식이 해를 갖거나 갖지 않는 경우", SEC.연립2, t05),
 ];
 
 const WIP = "작업 중 — h1-ineq 세션이 이어서 만든다(2026-09-13)";
 
 export const H1_LIN_INEQ_HOLD: HighHold[] = [
-  "04",
-  "05",
   "06",
   "07",
   "08",
