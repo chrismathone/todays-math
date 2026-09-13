@@ -1,4 +1,5 @@
 "use client";
+import { useLayoutEffect, useRef } from "react";
 import WorkspacePageHeader from "./WorkspacePageHeader";
 import { MathText } from "@/components/math/MathText";
 import UnifiedProblem from "./UnifiedProblem";
@@ -38,11 +39,34 @@ export default function WorksheetEditor({
   move,
   navigate,
 }: Props) {
+  const orderListRef = useRef<HTMLOListElement>(null);
+  const addFromBankRef = useRef<HTMLButtonElement>(null);
+  const removedIndexRef = useRef<number | null>(null);
+  const paperTitle = title || "오늘의 수학 학습지";
+
+  useLayoutEffect(() => {
+    if (removedIndexRef.current === null) return;
+    const index = Math.min(removedIndexRef.current, selected.length - 1);
+    const nextButton =
+      orderListRef.current?.children[index]?.querySelector<HTMLButtonElement>(
+        "button:last-child",
+      );
+    (nextButton || addFromBankRef.current)?.focus({ preventScroll: true });
+    removedIndexRef.current = null;
+  }, [selected]);
+
+  function removeProblem(problem: StudioProblem, index: number) {
+    // The parent still owns draft changes and undo; restore keyboard focus after
+    // the active row is removed, including the transition to an empty worksheet.
+    removedIndexRef.current = index;
+    toggle(problem);
+  }
+
   return (
     <main className={s.exportContent}>
       <WorkspacePageHeader
         title="시험지 구성하기"
-        description="문제은행과 내 자료에서 가져온 문제를 함께 구성하세요."
+        description="문제 순서와 배치를 정하고 인쇄하세요."
       >
         <button
           className={s.secondaryButton}
@@ -62,14 +86,12 @@ export default function WorksheetEditor({
       </WorkspacePageHeader>
       {!selected.length ? (
         <div className={s.emptyExport}>
-          <div className={s.emptyIcon}>
-            <Icon name="paper" size={42} />
-          </div>
-          <h2>어떤 문제로 시작할까요?</h2>
-          <p>문제은행에서 고르거나, 내 자료에서 오려낸 문제를 담아 보세요.</p>
+          <h2>시험지에 문제를 담아 주세요</h2>
+          <p>문제은행에서 고르거나 내 자료를 가져오세요.</p>
           <div>
             <button
               className={s.primaryButton}
+              ref={addFromBankRef}
               onClick={() => navigate("bank")}
             >
               문제은행에서 담기 <Icon name="arrow" size={18} />
@@ -98,8 +120,12 @@ export default function WorksheetEditor({
               />
             </label>
             <div className={s.field}>
-              문제 배치
-              <div className={s.segment}>
+              <span id="worksheet-columns-label">문제 배치</span>
+              <div
+                className={s.segment}
+                role="group"
+                aria-labelledby="worksheet-columns-label"
+              >
                 {[1, 2].map((n) => (
                   <button
                     key={n}
@@ -120,26 +146,18 @@ export default function WorksheetEditor({
               />{" "}
               정답 · 해설지 포함
             </label>
-            <div className={s.fractionNote}>
-              <Icon name="check" size={16} />
-              <p>
-                초등 텍스트는 대분수로 표기
-                <br />
-                <span>중등 이상은 원문 유지</span>
-              </p>
-            </div>
             <div className={s.orderHeading}>
               <h3>문제 순서</h3>
               <span>{selected.length}문항</span>
             </div>
-            <ol className={s.orderList}>
+            <ol className={s.orderList} ref={orderListRef}>
               {selected.map((p, i) => (
                 <li key={p.id}>
                   <span className={s.orderNumber}>
                     {String(i + 1).padStart(2, "0")}
                   </span>
                   <div>
-                    <strong>
+                    <strong title={p.section || p.sourceLabel || "가져온 문제"}>
                       {p.section || p.sourceLabel || "가져온 문제"}
                     </strong>
                     <small>
@@ -163,7 +181,7 @@ export default function WorksheetEditor({
                     </button>
                     <button
                       aria-label={`${i + 1}번 문제 빼기`}
-                      onClick={() => toggle(p)}
+                      onClick={() => removeProblem(p, i)}
                     >
                       ×
                     </button>
@@ -171,17 +189,16 @@ export default function WorksheetEditor({
                 </li>
               ))}
             </ol>
-            <button className={s.addMore} onClick={() => navigate("bank")}>
+            <button
+              className={s.addMore}
+              ref={addFromBankRef}
+              onClick={() => navigate("bank")}
+            >
               <Icon name="plus" size={16} /> 문제 더 담기
             </button>
             <button className={s.secondaryButton} onClick={download}>
               <Icon name="save" size={18} /> 작업 파일 내보내기
             </button>
-            <p className={s.exportHint}>
-              PDF는 인쇄 창에서 저장할 수 있습니다.
-              <br />
-              HWP · HWPX 변환 엔진은 연결 준비 중입니다.
-            </p>
             {savedAt && (
               <p className={s.subtle}>
                 이 브라우저에 저장됨 ·{" "}
@@ -195,73 +212,87 @@ export default function WorksheetEditor({
           <div className={s.paperCanvas}>
             <div className={s.paperToolbar}>
               <span>
-                <span className={s.liveDot} /> 실시간 미리보기
+                미리보기
+                {columns === 2 && (
+                  <span className={s.previewScrollHint}>↔ 가로 이동</span>
+                )}
               </span>
               <span>
                 A4 · {columns}단 · {selected.length}문항
               </span>
             </div>
-            <article className={s.paper} data-unified-paper>
-              <header className={s.paperHeader}>
-                <span>TODAY’S MATH</span>
-                <h2>{title || "오늘의 수학 학습지"}</h2>
-                <div>
-                  <span>{selected.length}문항</span>
-                  <span>이름 __________________</span>
-                </div>
-              </header>
-              <div className={s.paperProblems} style={{ columnCount: columns }}>
-                {selected.map((problem, i) => (
-                  <section className={s.paperProblem} key={problem.id}>
-                    <strong className={s.problemNumber}>
-                      {String(i + 1).padStart(2, "0")}
-                    </strong>
-                    <UnifiedProblem problem={problem} print />
-                  </section>
-                ))}
-              </div>
-              <footer className={s.paperFooter}>
-                오늘의수학 <span>수학의 힘을, 매일 조금씩.</span>
-              </footer>
-            </article>
-            {answers && (
-              <article
-                className={`${s.paper} ${s.answerPaper}`}
-                data-unified-paper
-              >
+            <div
+              className={s.paperViewport}
+              role="region"
+              aria-label="시험지 미리보기"
+              tabIndex={0}
+              data-columns={columns}
+            >
+              <article className={s.paper} data-unified-paper>
                 <header className={s.paperHeader}>
-                  <span>ANSWERS & SOLUTIONS</span>
-                  <h2>{title} · 정답과 해설</h2>
+                  <span>TODAY’S MATH</span>
+                  <h2>{paperTitle}</h2>
+                  <div>
+                    <span>{selected.length}문항</span>
+                    <span>이름 __________________</span>
+                  </div>
                 </header>
                 <div
                   className={s.paperProblems}
                   style={{ columnCount: columns }}
                 >
-                  {selected.map((p, i) => (
-                    <section className={s.answerItem} key={p.id}>
-                      <strong>{String(i + 1).padStart(2, "0")}</strong>
-                      <MathText
-                        text={displayFractions(
-                          p.answer || "정답 미입력",
-                          p.grade,
-                          p.content,
-                        )}
-                      />
-                      {p.solution && (
-                        <MathText
-                          text={displayFractions(
-                            p.solution,
-                            p.grade,
-                            p.content,
-                          )}
-                          as="div"
-                        />
-                      )}
+                  {selected.map((problem, i) => (
+                    <section className={s.paperProblem} key={problem.id}>
+                      <strong className={s.problemNumber}>
+                        {String(i + 1).padStart(2, "0")}
+                      </strong>
+                      <UnifiedProblem problem={problem} print />
                     </section>
                   ))}
                 </div>
+                <footer className={s.paperFooter}>
+                  오늘의수학 <span>수학의 힘을, 매일 조금씩.</span>
+                </footer>
               </article>
-            )}
+              {answers && (
+                <article
+                  className={`${s.paper} ${s.answerPaper}`}
+                  data-unified-paper
+                >
+                  <header className={s.paperHeader}>
+                    <span>ANSWERS & SOLUTIONS</span>
+                    <h2>{paperTitle} · 정답과 해설</h2>
+                  </header>
+                  <div
+                    className={s.paperProblems}
+                    style={{ columnCount: columns }}
+                  >
+                    {selected.map((p, i) => (
+                      <section className={s.answerItem} key={p.id}>
+                        <strong>{String(i + 1).padStart(2, "0")}</strong>
+                        <MathText
+                          text={displayFractions(
+                            p.answer || "정답 미입력",
+                            p.grade,
+                            p.content,
+                          )}
+                        />
+                        {p.solution && (
+                          <MathText
+                            text={displayFractions(
+                              p.solution,
+                              p.grade,
+                              p.content,
+                            )}
+                            as="div"
+                          />
+                        )}
+                      </section>
+                    ))}
+                  </div>
+                </article>
+              )}
+            </div>
           </div>
         </div>
       )}

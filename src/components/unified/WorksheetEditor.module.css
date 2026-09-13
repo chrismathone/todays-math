@@ -11,7 +11,8 @@
   justify-content: center;
   gap: 8px;
   min-height: var(--control-height, 44px);
-  padding: 0 15px;
+  height: var(--control-height, 44px);
+  padding: 0 16px;
   border-radius: var(--control-radius, 8px);
   border: 1px solid transparent;
   font-size: var(--text-body, 14px);
@@ -38,23 +39,11 @@
   background: white;
   border: 1px solid #dbe3ee;
   border-radius: 14px;
-  padding: 64px 24px;
+  padding: 32px 24px;
   display: flex;
   flex-direction: column;
   align-items: center;
   text-align: center;
-}
-.emptyIcon {
-  display: grid;
-  place-items: center;
-  width: 86px;
-  height: 94px;
-  background: #f0f4ff;
-  border: 1px solid #dce5f8;
-  border-radius: 16px;
-  color: #6483c7;
-  margin-bottom: 27px;
-  transform: rotate(-4deg);
 }
 .emptyExport h2 {
   font-size: var(--text-section, 18px);
@@ -63,16 +52,18 @@
 }
 .emptyExport > p {
   font-size: var(--text-body, 14px);
-  color: #71839d;
-  margin: 13px 0 29px;
-  line-height: 1.8;
+  color: #52617a;
+  margin: 8px 0 20px;
+  line-height: 1.5;
 }
 .emptyExport > div:last-of-type {
   display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
   gap: 10px;
 }
 .textButton {
-  color: #6d81a0;
+  color: #52617a;
   text-decoration: underline;
   text-underline-offset: 4px;
   min-height: var(--control-height, 44px);
@@ -82,17 +73,18 @@
 .exportGrid {
   display: grid;
   grid-template-columns: 292px minmax(0, 1fr);
-  gap: 24px;
+  gap: 16px;
   align-items: start;
 }
 .exportInspector {
-  padding: 23px 20px 19px;
+  padding: 16px;
+  min-width: 0;
   border: 1px solid #d8e2ef;
   border-radius: 12px;
   background: #fff;
   position: sticky;
-  top: 96px;
-  max-height: calc(100dvh - 120px);
+  top: 68px;
+  max-height: calc(100dvh - 160px);
   overflow-y: auto;
   scrollbar-width: thin;
   scrollbar-color: #ced9e9 transparent;
@@ -100,8 +92,8 @@
 .exportInspector > h2 {
   font-size: var(--text-section, 18px);
   font-weight: 750;
-  padding-bottom: 20px;
-  margin: 0 0 19px;
+  padding-bottom: 12px;
+  margin: 0 0 12px;
   border-bottom: 1px solid #e7ecf4;
 }
 .field {
@@ -109,12 +101,12 @@
   font-size: var(--text-caption, 12px);
   font-weight: 650;
   color: #506a90;
-  margin-bottom: 18px;
+  margin-bottom: 12px;
 }
 .field > input {
   display: block;
   border: 1px solid #d5dfed;
-  border-radius: 7px;
+  border-radius: 8px;
   width: 100%;
   height: 44px;
   padding: 0 11px;
@@ -147,11 +139,11 @@
   color: #3159df;
   box-shadow: 0 1px 3px #23467c09;
 }
-.checkField {
+label.checkField {
   display: flex;
   align-items: center;
   gap: 9px;
-  min-height: 35px;
+  min-height: 44px;
   font-size: var(--text-body, 14px);
   color: #415d83;
   cursor: pointer;
@@ -161,34 +153,13 @@
   height: 16px;
   accent-color: #3159df;
 }
-.fractionNote {
-  display: flex;
-  align-items: start;
-  gap: 7px;
-  margin: 14px 0 22px;
-  padding: 11px 10px;
-  border-radius: 7px;
-  background: #f0f6f3;
-  color: #4e7f6c;
-}
-.fractionNote svg {
-  margin-top: 2px;
-  flex-shrink: 0;
-}
-.fractionNote p {
-  font-size: var(--text-caption, 12px);
-  line-height: 1.8;
-}
-.fractionNote span {
-  color: #789186;
-}
 .orderHeading {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding-top: 19px;
+  padding-top: 12px;
   border-top: 1px solid #e7ecf4;
-  margin-bottom: 13px;
+  margin: 12px 0;
 }
 .orderHeading h3 {
   font-size: var(--text-section, 18px);
@@ -196,25 +167,27 @@
 }
 .orderHeading span {
   font-size: var(--text-caption, 12px);
-  color: #7c8da6;
+  color: #61748f;
 }
 .orderList {
   display: flex;
   flex-direction: column;
   gap: 7px;
-  max-height: 295px;
+  max-height: 240px;
   overflow-y: auto;
-  padding: 0 3px 0 0;
+  padding: 4px;
+  margin: 0 -4px;
   list-style: none;
   scrollbar-width: thin;
   scrollbar-color: #ccd9ed transparent;
 }
 .orderList li {
-  display: flex;
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
   align-items: center;
-  flex-wrap: wrap;
+  min-width: 0;
   column-gap: 9px;
-  padding: 11px 10px 6px;
+  padding: 8px 10px 4px;
   background: #f8faff;
   border: 1px solid #e2e8f3;
   border-radius: 7px;
@@ -228,7 +201,6 @@
 }
 .orderList li > div:first-of-type {
   min-width: 0;
-  flex: 1;
 }
 .orderList strong {
   display: block;
@@ -243,25 +215,24 @@
   display: block;
   margin-top: 3px;
   font-size: var(--text-caption, 12px);
-  color: #7f91ad;
+  color: #61748f;
 }
 .orderActions {
   display: flex;
   justify-content: end;
   gap: 2px;
-  width: 100%;
-  padding-top: 3px;
+  grid-column: 2;
 }
 .orderActions button {
   display: grid;
   place-items: center;
-  width: 33px;
+  width: 44px;
   height: var(--control-height, 44px);
   font-size: var(--text-body, 14px);
-  color: #7a8ca8;
+  color: #526b90;
   border-radius: var(--control-radius, 8px);
 }
-.orderActions button:hover {
+.orderActions button:hover:not(:disabled) {
   background: #e9effa;
   color: #3159df;
 }
@@ -274,34 +245,27 @@
   align-items: center;
   justify-content: center;
   gap: 7px;
-  width: 100%;
+  width: fit-content;
+  padding: 0 12px;
   border: 1px dashed #c5d5ed;
   border-radius: var(--control-radius, 8px);
   color: #5d7aab;
   font-size: var(--text-body, 14px);
   min-height: var(--control-height, 44px);
-  margin: 10px 0 20px;
+  margin: 12px 0 4px;
 }
-.exportInspector > .primaryButton,
 .exportInspector > .secondaryButton {
-  width: 100%;
   margin-top: 8px;
-  font-size: var(--text-body, 14px);
-}
-.exportHint {
-  font-size: var(--text-caption, 12px);
-  line-height: 1.9;
-  color: #7a8da9;
-  margin-top: 14px;
 }
 .subtle {
   font-size: var(--text-caption, 12px);
   line-height: 1.7;
-  color: #7c8ba1;
+  color: #61748f;
   margin-top: 10px;
 }
 .paperCanvas {
-  padding: 17px 22px 24px;
+  container-type: inline-size;
+  padding: 16px;
   border: 1px solid #d8e1ef;
   border-radius: 12px;
   background: #e9eef6;
@@ -323,11 +287,26 @@
   font-weight: 600;
   color: #476385;
 }
-.liveDot {
-  width: 6px;
-  height: 6px;
-  border-radius: 50%;
-  background: #4a9e89;
+.paperViewport {
+  overflow-x: auto;
+  scrollbar-color: #8a9dbb #dce4f0;
+  padding-bottom: 4px;
+}
+.previewScrollHint {
+  display: none;
+  font-weight: 400;
+}
+@container (max-width: 639px) {
+  .previewScrollHint {
+    display: inline;
+  }
+}
+.paperViewport:focus-visible {
+  outline: 3px solid #82a1ff;
+  outline-offset: 3px;
+}
+.paperViewport[data-columns="2"] .paper {
+  min-width: 640px;
 }
 .paper {
   padding: 37px 32px 25px;
@@ -343,13 +322,13 @@
   border-bottom: 2px solid #2c4262;
 }
 .paperHeader > span {
-  font-size: 8px;
+  font-size: var(--text-caption, 12px);
   letter-spacing: 1.8px;
   color: #8b9bb2;
   font-weight: 650;
 }
 .paperHeader h2 {
-  font-size: 21px;
+  font-size: var(--text-title, 24px);
   font-weight: 750;
   line-height: 1.5;
   letter-spacing: -0.5px;
@@ -360,7 +339,9 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  font-size: 10px;
+  font-size: var(--text-caption, 12px);
+  flex-wrap: wrap;
+  gap: 8px;
   color: #7b8ba4;
 }
 .paperProblems {
@@ -368,13 +349,13 @@
 }
 .paperProblem {
   break-inside: avoid;
-  font-size: 12px;
+  font-size: var(--text-body, 14px);
   line-height: 1.9;
   padding-bottom: 55px;
 }
 .problemNumber {
   display: block;
-  font-size: 13px;
+  font-size: var(--text-body, 14px);
   font-weight: 750;
   color: #30476d;
   margin-bottom: 7px;
@@ -386,11 +367,11 @@
   padding-top: 15px;
   border-top: 1px solid #e5eaf2;
   margin-top: 35px;
-  font-size: 9px;
+  font-size: var(--text-caption, 12px);
   color: #7d8ca4;
 }
 .paperFooter span {
-  font-size: 8px;
+  font-size: var(--text-caption, 12px);
   color: #97a3b6;
 }
 .answerPaper {
@@ -399,7 +380,7 @@
 }
 .answerItem {
   break-inside: avoid;
-  font-size: 11px;
+  font-size: var(--text-body, 14px);
   line-height: 1.9;
   margin-bottom: 25px;
 }
@@ -416,7 +397,6 @@
 @media (min-width: 1650px) {
   .exportGrid {
     grid-template-columns: 310px minmax(0, 1fr);
-    gap: 30px;
   }
   .paperCanvas {
     padding: 22px 32px 32px;
@@ -431,7 +411,6 @@
     margin-top: 26px;
   }
   .paperProblem {
-    font-size: 14px;
     padding-bottom: 66px;
   }
 }
@@ -439,9 +418,6 @@
   .exportGrid {
     grid-template-columns: 255px minmax(0, 1fr);
     gap: 17px;
-  }
-  .exportInspector {
-    padding: 20px 16px;
   }
   .paperCanvas {
     padding: 14px 13px 16px;
@@ -462,33 +438,14 @@
     display: grid;
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
-  .exportInspector > .secondaryButton {
-    width: auto;
-  }
   .paper {
     min-height: 790px;
     padding: 34px;
   }
 }
 @media (max-width: 760px) {
-  .exportInspector {
-    padding: 20px 18px;
-  }
   .orderList {
-    grid-template-columns: 1fr;
-    max-height: 320px;
-  }
-  .orderList li {
-    flex-wrap: nowrap;
-    padding: 10px;
-  }
-  .orderActions {
-    width: auto;
-    padding: 0;
-  }
-  .orderActions button {
-    width: 32px;
-    height: var(--control-height, 44px);
+    grid-template-columns: minmax(0, 1fr);
   }
   .paperCanvas {
     padding: 13px 9px 10px;
@@ -503,46 +460,40 @@
     padding: 25px 17px 20px;
     min-height: 600px;
   }
-  .paperHeader h2 {
-    font-size: 18px;
-  }
   .paperProblems {
     column-gap: 16px;
   }
   .paperProblem {
-    font-size: 10px;
     padding-bottom: 38px;
   }
-  .answerItem {
-    font-size: 10px;
-  }
-  .paperFooter span {
-    font-size: 7px;
+  .paperFooter {
+    flex-wrap: wrap;
+    gap: 8px;
   }
   .emptyExport {
-    padding: 44px 20px;
-  }
-  .emptyExport h2 {
-    font-size: var(--text-section, 18px);
-  }
-  .emptyExport > p {
-    font-size: var(--text-body, 14px);
-  }
-  .emptyExport > div:last-of-type {
-    flex-direction: column;
-    width: 100%;
+    padding: 24px 16px;
   }
 }
 @media print {
   .exportContent,
   .exportGrid,
-  .paperCanvas {
+  .paperCanvas,
+  .paperViewport {
     display: block;
     padding: 0;
     margin: 0;
     max-width: none;
     background: #fff;
     border: 0;
+  }
+  .paperViewport {
+    overflow: visible;
+  }
+  .paperCanvas {
+    container-type: normal;
+  }
+  .paperViewport[data-columns="2"] .paper {
+    min-width: 0;
   }
 
   .exportInspector,
@@ -561,6 +512,17 @@
   .paperHeader {
     break-after: avoid;
   }
+  .paperHeader > span {
+    font-size: 8px;
+  }
+  .paperHeader h2 {
+    font-size: 21px;
+  }
+  .paperHeader > div {
+    font-size: 10px;
+    flex-wrap: nowrap;
+    gap: 0;
+  }
   .paperProblems {
     column-gap: 10mm;
   }
@@ -572,12 +534,21 @@
   .paperProblem img {
     max-height: 95mm !important;
   }
+  .problemNumber {
+    font-size: 13px;
+  }
   .answerPaper {
     break-before: page;
     padding-top: 5mm;
   }
   .paperFooter {
     margin-top: 10mm;
+    font-size: 9px;
+    flex-wrap: nowrap;
+    gap: 0;
+  }
+  .paperFooter span {
+    font-size: 8px;
   }
   .answerItem {
     font-size: 10pt;
@@ -589,36 +560,4 @@
 @page {
   size: A4;
   margin: 14mm;
-}
-
-@media (max-width: 760px) {
-  .orderActions button {
-    width: 44px;
-    height: var(--control-height, 44px);
-  }
-}
-
-.primaryButton,
-.secondaryButton {
-  min-height: var(--control-height, 44px);
-  height: var(--control-height, 44px);
-  padding: 0 16px;
-  border-radius: var(--control-radius, 8px);
-  font-size: var(--text-body, 14px);
-}
-.emptyExport > div:last-of-type {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 10px;
-}
-.orderActions button {
-  width: 44px;
-  height: var(--control-height, 44px);
-}
-@media (max-width: 760px) {
-  .emptyExport > div:last-of-type {
-    width: auto;
-    flex-direction: row;
-  }
 }
