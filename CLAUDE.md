@@ -15,7 +15,7 @@
 | `docs/planning/06-tasks.md` | 태스크 목록 (M0~M6, 21개) — `/orchestrate`가 사용 |
 | `docs/planning/07-coding-convention.md` | 컨벤션, 도메인 용어 SSOT, Decision Log D-01~81 · **D-100~112** |
 | `docs/planning/09-figure-engine-guide.md` | **도형 SVG 엔진 사용 지침** — testchanger 호출법, elem-1(D-61),<br>재발 금지 §4. **초등·큐브 그림 작업 전 필독** |
-| `docs/planning/10-handoff.md` | **인수인계 — 이어할 때 여기부터. 맨 위 절이 최신(2026-09-13 기준 §0-V).**<br>새 컴퓨터에서 칠 명령 · **저장소 밖 의존물**(말뭉치는 다시 만들어야 한다) · 잔고 · 오늘의 함정 |
+| `docs/planning/10-handoff.md` | **인수인계 — 이어할 때 여기부터. 맨 위 절이 최신(2026-09-13 — §0-W 기출 대량 이관 · §0-V 고등 엔진).**<br>새 컴퓨터에서 칠 명령 · **저장소 밖 의존물**(말뭉치는 다시 만들어야 한다) · 잔고 · 오늘의 함정 |
 | `docs/planning/11-score-predictor.md` | **기출 예상 점수 판독기 설계 SSOT** — 실측 근거·엔진 계층<br>·backtest 결과·배점 보정기(§10). '오늘의 시험' 작업 전 필독 |
 | `docs/planning/12-discard-candidates.md` | 폐기 후보 문항 목록 (`build-discard-list.ts` 가 생성) |
 | `docs/planning/15-remaining-defects-review.md` | 적대적 리뷰 잔여 결함 해결 방안 검토 — 우선순위·원장님 결정 대기 항목 |
@@ -173,3 +173,5 @@ docker compose up -d # 로컬 PostgreSQL
 - [2026-09-06] **극단만 재는 자는 가운데를 못 본다** — 가드가 쏠림을 그리로 옮겨 놨다
 - [2026-09-13] **남의 워크트리에서 커밋하면 훅이 그 에이전트의 편집과 경주한다** — 「멈췄다」는 화면 한 줄이었다
 - [2026-09-13] **«칸이 없다»를 0점으로 채우면 합계가 유일한 그물이 된다** — 그리고 새 표지는 참조까지 잡는다
+- [2026-09-13] **Git Bash 의 grep 은 4바이트 이모지를 못 본다** — 절반 지점과 배치 중단 줄이 필터에서 사라졌다
+- [2026-09-13] **들어온 것을 세지 말고 살아남은 것을 세라** — 한 밤에 네 번 같은 실수
