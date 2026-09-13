@@ -16,6 +16,8 @@ import * as imageHelpers from "@/components/unified/studioAiHelpers";
 const bridge = vi.hoisted(() => ({
   run: vi.fn(),
   cancel: vi.fn(),
+  subscribeCancel: vi.fn(),
+  cancelListeners: new Set<() => void>(),
   enabled: true,
   status: "ready",
   activity: null as { state: "running" } | null,
@@ -28,6 +30,7 @@ vi.mock("@/components/unified/useDevAi", () => ({
     statusError: "",
     run: bridge.run,
     cancel: bridge.cancel,
+    subscribeCancel: bridge.subscribeCancel,
     status: {
       enabled: bridge.enabled,
       providers: [
@@ -94,6 +97,11 @@ beforeEach(() => {
   bridge.enabled = true;
   bridge.status = "ready";
   bridge.activity = null;
+  bridge.cancelListeners.clear();
+  bridge.subscribeCancel.mockImplementation((listener: () => void) => {
+    bridge.cancelListeners.add(listener);
+    return () => bridge.cancelListeners.delete(listener);
+  });
 });
 afterEach(() => {
   vi.restoreAllMocks();
@@ -753,10 +761,10 @@ describe("Studio background page queue", () => {
     expect(
       result.current.crops.map((item) => [item.page, item.content]),
     ).toEqual([
+      [1, "first"],
       [2, "second"],
       [3, "third"],
       [4, "fourth"],
-      [1, "first"],
     ]);
     expect(result.current.pageProgress).toMatchObject({
       done: 4,
@@ -1212,5 +1220,81 @@ describe("Studio background page queue", () => {
     expect(result.current.crops.find((item) => item.id === "a")?.content).toBe(
       "",
     );
+  });
+
+  it("global sidebar cancellation stops crop and queued page owners and unsubscribes on unmount", async () => {
+    const pending = deferred<DevAiResponse>();
+    bridge.run.mockReturnValue(pending.promise);
+    const tasks = [task(1, "pdf"), task(2, "pdf")];
+    const { result, rerender, unmount } = mount();
+    let pages!: Promise<void>;
+    let crops!: Promise<void>;
+    await act(async () => {
+      crops = result.current.processCrops("ocr", ["a"]);
+      pages = result.current.recognizePages(tasks);
+    });
+    expect(bridge.cancelListeners.size).toBe(1);
+    rerender({ contextKey: "source:1", active: true });
+    expect(bridge.cancelListeners.size).toBe(1);
+    const signals = bridge.run.mock.calls.map((call) => call[1] as AbortSignal);
+    await act(async () => {
+      for (const listener of bridge.cancelListeners) listener();
+      await Promise.all([pages, crops]);
+    });
+    expect(signals).toHaveLength(2);
+    expect(signals.every((signal) => signal.aborted)).toBe(true);
+    expect(result.current.pageJobs.map((job) => job.state)).toEqual([
+      "cancelled",
+      "cancelled",
+    ]);
+    expect(result.current.progress).toBeNull();
+    expect(result.current.running).toBe(false);
+    await act(async () => {
+      pending.resolve(pageResponse());
+    });
+    expect(tasks[1].load).not.toHaveBeenCalled();
+    expect(result.current.crops).toEqual([crop("a")]);
+    expect(bridge.cancel).not.toHaveBeenCalled();
+    unmount();
+    expect(bridge.cancelListeners.size).toBe(0);
+  });
+
+  it("orders source pages while preserving other sources and within-page reading order", async () => {
+    const value = pageResponse();
+    value.result.problems = [
+      {
+        content: "left lower",
+        answer: "",
+        bbox: { left: 100, top: 600, width: 300, height: 200 },
+      },
+      {
+        content: "right upper",
+        answer: "",
+        bbox: { left: 600, top: 100, width: 300, height: 200 },
+      },
+    ];
+    bridge.run.mockResolvedValue(value);
+    const later = { ...crop("later", "later page"), page: 3 };
+    const other = { ...crop("other", "another source"), sourceId: "other" };
+    const manual = {
+      ...crop("manual", "manual first"),
+      page: 1,
+      rect: { x: 0, y: 0, width: 0.05, height: 0.05 },
+    };
+    const { result } = mount([later, other, manual]);
+    await act(async () => {
+      await result.current.recognizePages([task(1)]);
+    });
+    expect(result.current.crops[1]).toBe(other);
+    expect(
+      result.current.crops
+        .filter((item) => item.sourceId === "source")
+        .map((item) => [item.page, item.content]),
+    ).toEqual([
+      [1, "manual first"],
+      [1, "left lower"],
+      [1, "right upper"],
+      [3, "later page"],
+    ]);
   });
 });

@@ -174,6 +174,13 @@ export function useStudioAi({
     [cancelCrop, publishPages],
   );
 
+  // A provider-wide cancel reaches queued owners before aborting requests.
+  const { subscribeCancel } = ai;
+  useEffect(
+    () => subscribeCancel(() => cancel(false)),
+    [subscribeCancel, cancel],
+  );
+
   useEffect(() => {
     // Navigation owns crop editing only; background pages keep their source.
     // eslint-disable-next-line react-hooks/set-state-in-effect
@@ -339,7 +346,17 @@ export function useStudioAi({
                 studioRectsOverlap(crop.rect, candidate.rect),
             ),
         );
-        return additions.length ? [...previous, ...additions] : previous;
+        if (!additions.length) return previous;
+        const combined = [...previous, ...additions];
+        // Order the source's pages independently of request completion, while
+        // keeping other sources in place and preserving within-page reading order.
+        const sourceCrops = combined
+          .filter((crop) => crop.sourceId === page.sourceId)
+          .sort((a, b) => a.page - b.page);
+        let sourceIndex = 0;
+        return combined.map((crop) =>
+          crop.sourceId === page.sourceId ? sourceCrops[sourceIndex++] : crop,
+        );
       });
       // Retain loaders only for retryable outcomes; completed eager single-page
       // requests must not keep their full canvas alive in queue history.
