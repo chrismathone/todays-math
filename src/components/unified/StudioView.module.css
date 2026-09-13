@@ -1401,7 +1401,7 @@
 .editing .pageTools .preciseButton {
   width: auto;
   padding: 0 9px;
-  font-size: var(--text-caption, 12px);
+  font-size: var(--text-body, 14px);
   white-space: nowrap;
 }
 .editing .pageTools label {
@@ -1678,7 +1678,7 @@
   .editing .pageTools .preciseButton {
     width: auto;
     padding-inline: 12px;
-    font-size: var(--text-caption, 12px);
+    font-size: var(--text-body, 14px);
   }
 }
 
@@ -1708,4 +1708,40 @@
 }
 .editing .actionBar button {
   min-height: var(--control-height, 44px);
+}
+
+@media (min-width: 761px) and (max-width: 1050px) {
+  .editing .workspace,
+  .focusMode.editing .workspace {
+    grid-template-columns: minmax(0, 1fr);
+    height: auto;
+    overflow: visible;
+  }
+  .editing .pageViewport {
+    height: calc(100dvh - 230px);
+    min-height: 420px;
+    flex: none;
+  }
+  .editing .inspector {
+    border-left: 0;
+    border-top: 1px solid var(--studio-line);
+  }
+  .editing .inspectorScroll {
+    max-height: 440px;
+    overflow-y: auto;
+  }
+  .editing .actionBar {
+    position: sticky;
+    bottom: 0;
+  }
+  .editing .selectionStatus {
+    display: none;
+  }
+  .editing .selectionAction {
+    flex: 1 0 100%;
+  }
+  .editing .outputActions {
+    flex: 1 0 100%;
+    justify-content: flex-end;
+  }
 }
