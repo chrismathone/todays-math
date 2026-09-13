@@ -1,5 +1,5 @@
 import "server-only";
-import type { Prisma } from "@prisma/client";
+import { Difficulty, type Prisma } from "@prisma/client";
 import { db } from "@/lib/db";
 import { problemEligibleWhere } from "@/lib/problemEligibility";
 import type { BankData } from "@/components/unified/types";
@@ -15,7 +15,9 @@ export async function loadUnifiedBank(
   );
   const grade = (params.get("grade") || "").slice(0, 20);
   const chapter = (params.get("chapter") || "").slice(0, 100);
-  const difficulty = (params.get("difficulty") || "").slice(0, 20);
+  const difficulty = Object.values(Difficulty).find(
+    (value) => value === params.get("difficulty"),
+  );
   const q = (params.get("q") || "").trim().slice(0, 120);
   const where: Prisma.ProblemWhereInput = {
     AND: [
