@@ -1219,6 +1219,9 @@ function t07(rng: Rng): Body {
     const r0 = ((n2 - m2) * w1[0] + (m1 - n1) * w2[0]) / D;
     const r1 = ((n2 - m2) * w1[1] + (m1 - n1) * w2[1]) / D;
     if (!Number.isInteger(r0) || !Number.isInteger(r1)) return null;
+    // 성분이 0 이면 합 줄이 `1+0=1`·`0+(-2)` 가 된다(`+0` 은 지면 냄새) — 그 판은 버린다.
+    // 리드 병합 검수(2026-09-13)의 넓은 훑개(씨앗 40 × 변형 6)가 찾았다 — 등록부 시험 씨앗으로는 안 밟혔다.
+    if (r0 === 0 || r1 === 0) return null;
     const v = r0 + r1;
     const C1 = col(`${coefPrefix(m1)}a`, `${coefPrefix(n1)}b`);
     const C2 = col(`${coefPrefix(m2)}a`, `${coefPrefix(n2)}b`);
