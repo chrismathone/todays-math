@@ -750,7 +750,7 @@ export default function UnifiedWorkspace({
                   view: "export" as const,
                   icon: "paper" as const,
                   title: "빈 시험지로 시작하기",
-                  description: "제목과 배치부터 설정",
+                  description: "문제는 나중에 담기",
                 },
               ].map((item) => (
                 <button key={item.view} onClick={() => startNew(item.view)}>
