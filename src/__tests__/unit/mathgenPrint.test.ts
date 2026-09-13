@@ -1,0 +1,124 @@
+import { describe, expect, it } from "vitest";
+import { packMeasured } from "@/components/unified/print/pack";
+import {
+  parsePrintMeta,
+  parsePrintOptions,
+} from "@/components/unified/print/settings";
+import { DEFAULT_PRINT_OPTIONS } from "@/components/unified/print/types";
+import {
+  columnContentWidth,
+  PRINT_MARGINS,
+} from "@/components/unified/print/geometry";
+import { A4_DIM } from "@/components/unified/print/tokens";
+
+describe("restored Mathgen options and measured pagination", () => {
+  it("matches the actual original defaults, preserving historical spacing18 rather than snapping to16", () => {
+    expect(parsePrintOptions(undefined)).toEqual({
+      template: "jeongtong",
+      color: "#1B2A4E",
+      columns: 1,
+      layoutMode: "spacing",
+      problemsPerColumn: 3,
+      spacing: 18,
+      showAnswers: false,
+      quickAnswerOnly: false,
+      showDate: true,
+      showChapter: true,
+      showDifficulty: true,
+      columnDivider: false,
+      fontPack: "system",
+      marginPreset: "normal",
+    });
+    expect(
+      parsePrintOptions({ spacing: 47 }, { columns: 2, answers: true }),
+    ).toMatchObject({ spacing: 47, columns: 2, showAnswers: true });
+  });
+  it.each([
+    { template: "fake" },
+    { columns: 3 },
+    { color: "url(https://example.com)" },
+    { spacing: -1 },
+    { showDate: "false" },
+    { fontPack: "unknown" },
+  ])("rejects malformed known formatting fields: %j", (value) => {
+    expect(() => parsePrintOptions(value)).toThrow();
+  });
+  it("validates metadata without interpreting HTML", () => {
+    expect(
+      parsePrintMeta({
+        conceptNote: "<script>example</script>",
+        totalScore: 50,
+      }).conceptNote,
+    ).toBe("<script>example</script>");
+    expect(() => parsePrintMeta({ totalScore: "100" })).toThrow();
+  });
+  it("uses actual A4 and the selected margins to determine both measured and rendered column widths", () => {
+    expect(A4_DIM.width).toBeCloseTo((210 * 96) / 25.4);
+    expect(columnContentWidth("modern", 2, "wide")).toBeCloseTo(
+      (A4_DIM.width - (44 * 96) / 25.4 - 32) / 2,
+    );
+    expect(PRINT_MARGINS.normal).toEqual({
+      top: 12,
+      bottom: 12,
+      left: 15,
+      right: 15,
+    });
+  });
+  it("packs in reading order, accounts for the first header and repacks when margins/spacing leave less room", () => {
+    const heights = [200, 200, 200, 200, 200, 200, 200];
+    const options = {
+      ...DEFAULT_PRINT_OPTIONS,
+      columns: 2 as const,
+      spacing: 20,
+    };
+    const pages = packMeasured(heights, { first: 450, cont: 700 }, options);
+    expect(pages.map((p) => p.indices)).toEqual([
+      [0, 1, 2, 3],
+      [4, 5, 6],
+    ]);
+    expect(pages[0].splitIndex).toBe(2);
+    expect(
+      packMeasured(
+        heights,
+        { first: 450, cont: 700 },
+        { ...options, spacing: 88 },
+      )[0].indices,
+    ).toEqual([0, 1]);
+  });
+  it("count mode aligns columns while reducing the count to fit the tallest question", () => {
+    const options = {
+      ...DEFAULT_PRINT_OPTIONS,
+      columns: 2 as const,
+      layoutMode: "count" as const,
+      problemsPerColumn: 3,
+    };
+    const pages = packMeasured(
+      [100, 100, 400, 100, 100, 100, 100],
+      { first: 700, cont: 700 },
+      options,
+    );
+    expect(pages[0].indices).toEqual([0, 1]);
+    expect(pages.flatMap((p) => p.indices)).toEqual([0, 1, 2, 3, 4, 5, 6]);
+  });
+  it.each(["spacing", "count"] as const)(
+    "never drops or clips an oversized crop in %s mode",
+    (layoutMode) => {
+      const pages = packMeasured(
+        [1800, 100],
+        { first: 700, cont: 900 },
+        { ...DEFAULT_PRINT_OPTIONS, layoutMode },
+      );
+      expect(pages.flatMap((p) => p.indices)).toEqual([0, 1]);
+      expect(pages[0].scales[0] * 1800).toBeCloseTo(688);
+    },
+  );
+  it("workbook stretch mode also measures tall crops instead of blindly fitting four", () => {
+    const pages = packMeasured(
+      [600, 600, 100, 100],
+      { first: 700, cont: 900 },
+      { ...DEFAULT_PRINT_OPTIONS, template: "workbook" },
+    );
+    expect(pages[0].indices).toEqual([0]);
+    expect(pages.flatMap((p) => p.indices)).toEqual([0, 1, 2, 3]);
+  });
+});

@@ -54,6 +54,81 @@ afterEach(() => {
 });
 
 describe("browser worksheet draft durability", () => {
+  it("persists the complete format and metadata without changing raw problem data", () => {
+    const { create } = memory();
+    const store = create();
+    store.hydrate();
+    store.setProblems([problem]);
+    store.setPrintOptions({
+      template: "jaseup",
+      fontPack: "gowun",
+      marginPreset: "wide",
+      spacing: 56,
+      columns: 2,
+      showAnswers: true,
+      quickAnswerOnly: true,
+      columnDivider: true,
+    });
+    store.setPrintMeta({
+      schoolName: "학교",
+      todayGoal: "분수",
+      conceptNote: String.raw`$\frac{7}{3}$`,
+      totalScore: 50,
+    });
+    expect(store.saveNow()).toBe(true);
+    const restored = create();
+    restored.hydrate();
+    expect(restored.getSnapshot().draft).toMatchObject({
+      columns: 2,
+      answers: true,
+      printOptions: {
+        template: "jaseup",
+        fontPack: "gowun",
+        marginPreset: "wide",
+        quickAnswerOnly: true,
+        columnDivider: true,
+      },
+      printMeta: { schoolName: "학교", totalScore: 50 },
+      problems: [problem],
+    });
+  });
+  it("accepts legacy v1 files and mirrors old columns/answers setters into the new format", () => {
+    const { create } = memory();
+    const store = create();
+    store.hydrate();
+    expect(store.importDraft({ ...file(), columns: 2, answers: true })).toBe(
+      true,
+    );
+    expect(store.getSnapshot().draft.printOptions).toMatchObject({
+      template: "jeongtong",
+      spacing: 18,
+      columns: 2,
+      showAnswers: true,
+    });
+    store.setColumns(1);
+    store.setAnswers(false);
+    expect(store.getSnapshot().draft.printOptions).toMatchObject({
+      columns: 1,
+      showAnswers: false,
+    });
+    expect(
+      store.importDraft({ ...file(), printOptions: { spacing: -1 } }),
+    ).toBe(false);
+  });
+  it("detects conflicting edits to formatting even when problem content has not changed", () => {
+    const { create } = memory();
+    const first = create();
+    first.hydrate();
+    first.setProblems([problem]);
+    first.saveNow();
+    const second = create();
+    second.hydrate();
+    first.setPrintOptions({ template: "modern" });
+    first.saveNow();
+    second.setPrintMeta({ schoolName: "동시 변경" });
+    expect(second.saveNow()).toBe(false);
+    expect(second.getSnapshot().saveError).toContain("다른 창");
+  });
   it("does not access storage or accept edits before hydration, and visiting never saves a blank draft", () => {
     const { storage, create } = memory();
     const store = create();

@@ -27,6 +27,8 @@ export function useWorkspaceDrafts() {
     setProblems: store.setProblems,
     setColumns: store.setColumns,
     setAnswers: store.setAnswers,
+    setPrintOptions: store.setPrintOptions,
+    setPrintMeta: store.setPrintMeta,
     saveNow: store.saveNow,
     createDraft: store.createDraft,
     openDraft: store.openDraft,

@@ -1,9 +1,14 @@
 "use client";
-import { useLayoutEffect, useRef } from "react";
+import { useLayoutEffect, useRef, useState } from "react";
 import WorkspacePageHeader from "./WorkspacePageHeader";
-import { MathText } from "@/components/math/MathText";
-import UnifiedProblem from "./UnifiedProblem";
-import { displayFractions } from "./fractionDisplay";
+import { PrintOptionsPanel } from "./print/PrintOptionsPanel";
+import { WorksheetPrint } from "./print/WorksheetPrint";
+import {
+  DEFAULT_PRINT_META,
+  DEFAULT_PRINT_OPTIONS,
+  type PrintMeta,
+  type PrintOptions,
+} from "./print/types";
 import Icon from "./WorkspaceIcon";
 import type { StudioProblem } from "./types";
 import s from "./WorksheetEditor.module.css";
@@ -13,6 +18,10 @@ interface Props {
   columns: number;
   answers: boolean;
   savedAt: string;
+  printOptions?: PrintOptions;
+  printMeta?: PrintMeta;
+  setPrintOptions?: (patch: Partial<PrintOptions>) => void;
+  setPrintMeta?: (patch: Partial<PrintMeta>) => void;
   setTitle: (value: string) => void;
   setColumns: (value: number) => void;
   setAnswers: (value: boolean) => void;
@@ -29,6 +38,10 @@ export default function WorksheetEditor({
   columns,
   answers,
   savedAt,
+  printOptions,
+  printMeta,
+  setPrintOptions,
+  setPrintMeta,
   setTitle,
   setColumns,
   setAnswers,
@@ -42,7 +55,29 @@ export default function WorksheetEditor({
   const orderListRef = useRef<HTMLOListElement>(null);
   const addFromBankRef = useRef<HTMLButtonElement>(null);
   const removedIndexRef = useRef<number | null>(null);
-  const paperTitle = title || "오늘의 수학 학습지";
+  const [tab, setTab] = useState<"settings" | "order">("settings");
+  const [printReady, setPrintReady] = useState(false);
+  // Archived concept callers still work; the live workspace persists through its draft store.
+  const [localOptions, setLocalOptions] = useState(() => ({
+    ...DEFAULT_PRINT_OPTIONS,
+    columns: columns === 1 ? (1 as const) : (2 as const),
+    showAnswers: answers,
+  }));
+  const [localMeta, setLocalMeta] = useState(() => ({ ...DEFAULT_PRINT_META }));
+  const options = printOptions ?? localOptions;
+  const meta = printMeta ?? localMeta;
+  function updateOptions(patch: Partial<PrintOptions>) {
+    if (setPrintOptions) setPrintOptions(patch);
+    else {
+      setLocalOptions((previous) => ({ ...previous, ...patch }));
+      if (patch.columns) setColumns(patch.columns);
+      if (patch.showAnswers !== undefined) setAnswers(patch.showAnswers);
+    }
+  }
+  function updateMeta(patch: Partial<PrintMeta>) {
+    if (setPrintMeta) setPrintMeta(patch);
+    else setLocalMeta((previous) => ({ ...previous, ...patch }));
+  }
 
   useLayoutEffect(() => {
     if (removedIndexRef.current === null) return;
@@ -77,7 +112,7 @@ export default function WorksheetEditor({
         </button>
         <button
           className={s.primaryButton}
-          disabled={!selected.length}
+          disabled={!selected.length || !printReady}
           onClick={() => window.print()}
         >
           <Icon name="print" size={18} />
@@ -111,84 +146,132 @@ export default function WorksheetEditor({
         <div className={s.exportGrid}>
           <aside className={s.exportInspector}>
             <h2>시험지 설정</h2>
-            <label className={s.field}>
-              제목
-              <input
-                value={title}
-                onChange={(e) => setTitle(e.target.value)}
-                maxLength={80}
-              />
-            </label>
-            <div className={s.field}>
-              <span id="worksheet-columns-label">문제 배치</span>
-              <div
-                className={s.segment}
-                role="group"
-                aria-labelledby="worksheet-columns-label"
+            <div
+              className={s.inspectorTabs}
+              role="tablist"
+              aria-label="시험지 편집 도구"
+              onKeyDown={(event) => {
+                if (
+                  !["ArrowLeft", "ArrowRight", "Home", "End"].includes(
+                    event.key,
+                  )
+                )
+                  return;
+                event.preventDefault();
+                const next =
+                  event.key === "Home"
+                    ? "settings"
+                    : event.key === "End"
+                      ? "order"
+                      : tab === "settings"
+                        ? "order"
+                        : "settings";
+                setTab(next);
+                event.currentTarget
+                  .querySelector<HTMLButtonElement>(`#worksheet-${next}-tab`)
+                  ?.focus();
+              }}
+            >
+              <button
+                role="tab"
+                id="worksheet-settings-tab"
+                aria-selected={tab === "settings"}
+                tabIndex={tab === "settings" ? 0 : -1}
+                aria-controls="worksheet-settings-panel"
+                onClick={() => setTab("settings")}
               >
-                {[1, 2].map((n) => (
-                  <button
-                    key={n}
-                    aria-pressed={columns === n}
-                    className={columns === n ? s.segmentActive : ""}
-                    onClick={() => setColumns(n)}
-                  >
-                    {n}단
-                  </button>
-                ))}
+                서식 설정
+              </button>
+              <button
+                role="tab"
+                id="worksheet-order-tab"
+                aria-selected={tab === "order"}
+                tabIndex={tab === "order" ? 0 : -1}
+                aria-controls="worksheet-order-panel"
+                onClick={() => setTab("order")}
+              >
+                문제 순서 · {selected.length}
+              </button>
+            </div>
+            <button
+              className={s.previewJump}
+              onClick={() => {
+                const preview = document.getElementById("worksheet-preview");
+                preview?.scrollIntoView({ block: "start" });
+                preview?.focus({ preventScroll: true });
+              }}
+            >
+              미리보기 보기 ↓
+            </button>
+            <div
+              id="worksheet-settings-panel"
+              role="tabpanel"
+              aria-labelledby="worksheet-settings-tab"
+              hidden={tab !== "settings"}
+              className={s.settingsPanel}
+            >
+              <PrintOptionsPanel
+                title={title}
+                setTitle={setTitle}
+                options={options}
+                meta={meta}
+                onOptions={updateOptions}
+                onMeta={updateMeta}
+              />
+            </div>
+            <div
+              id="worksheet-order-panel"
+              role="tabpanel"
+              aria-labelledby="worksheet-order-tab"
+              hidden={tab !== "order"}
+              className={s.orderPanel}
+            >
+              <div className={s.orderHeading}>
+                <h3>문제 순서</h3>
+                <span>{selected.length}문항</span>
               </div>
+              <ol className={s.orderList} ref={orderListRef}>
+                {selected.map((p, i) => (
+                  <li key={p.id}>
+                    <span className={s.orderNumber}>
+                      {String(i + 1).padStart(2, "0")}
+                    </span>
+                    <div>
+                      <strong
+                        title={p.section || p.sourceLabel || "가져온 문제"}
+                      >
+                        {p.section || p.sourceLabel || "가져온 문제"}
+                      </strong>
+                      <small>
+                        {p.grade} · {p.difficulty || "내 자료"}
+                      </small>
+                    </div>
+                    <div className={s.orderActions}>
+                      <button
+                        disabled={i === 0}
+                        aria-label={`${i + 1}번 문제 위로`}
+                        onClick={() => move(i, -1)}
+                      >
+                        ↑
+                      </button>
+                      <button
+                        disabled={i === selected.length - 1}
+                        aria-label={`${i + 1}번 문제 아래로`}
+                        onClick={() => move(i, 1)}
+                      >
+                        ↓
+                      </button>
+                      <button
+                        aria-label={`${i + 1}번 문제 빼기`}
+                        onClick={() => removeProblem(p, i)}
+                      >
+                        ×
+                      </button>
+                    </div>
+                  </li>
+                ))}
+              </ol>
             </div>
-            <label className={s.checkField}>
-              <input
-                type="checkbox"
-                checked={answers}
-                onChange={(e) => setAnswers(e.target.checked)}
-              />{" "}
-              정답 · 해설지 포함
-            </label>
-            <div className={s.orderHeading}>
-              <h3>문제 순서</h3>
-              <span>{selected.length}문항</span>
-            </div>
-            <ol className={s.orderList} ref={orderListRef}>
-              {selected.map((p, i) => (
-                <li key={p.id}>
-                  <span className={s.orderNumber}>
-                    {String(i + 1).padStart(2, "0")}
-                  </span>
-                  <div>
-                    <strong title={p.section || p.sourceLabel || "가져온 문제"}>
-                      {p.section || p.sourceLabel || "가져온 문제"}
-                    </strong>
-                    <small>
-                      {p.grade} · {p.difficulty || "내 자료"}
-                    </small>
-                  </div>
-                  <div className={s.orderActions}>
-                    <button
-                      disabled={i === 0}
-                      aria-label={`${i + 1}번 문제 위로`}
-                      onClick={() => move(i, -1)}
-                    >
-                      ↑
-                    </button>
-                    <button
-                      disabled={i === selected.length - 1}
-                      aria-label={`${i + 1}번 문제 아래로`}
-                      onClick={() => move(i, 1)}
-                    >
-                      ↓
-                    </button>
-                    <button
-                      aria-label={`${i + 1}번 문제 빼기`}
-                      onClick={() => removeProblem(p, i)}
-                    >
-                      ×
-                    </button>
-                  </div>
-                </li>
-              ))}
-            </ol>
             <button
               className={s.addMore}
               ref={addFromBankRef}
@@ -209,91 +292,13 @@ export default function WorksheetEditor({
               </p>
             )}
           </aside>
-          <div className={s.paperCanvas}>
-            <div className={s.paperToolbar}>
-              <span>
-                미리보기
-                {columns === 2 && (
-                  <span className={s.previewScrollHint}>↔ 가로 이동</span>
-                )}
-              </span>
-              <span>
-                A4 · {columns}단 · {selected.length}문항
-              </span>
-            </div>
-            <div
-              className={s.paperViewport}
-              role="region"
-              aria-label="시험지 미리보기"
-              tabIndex={0}
-              data-columns={columns}
-            >
-              <article className={s.paper} data-unified-paper>
-                <header className={s.paperHeader}>
-                  <span>TODAY’S MATH</span>
-                  <h2>{paperTitle}</h2>
-                  <div>
-                    <span>{selected.length}문항</span>
-                    <span>이름 __________________</span>
-                  </div>
-                </header>
-                <div
-                  className={s.paperProblems}
-                  style={{ columnCount: columns }}
-                >
-                  {selected.map((problem, i) => (
-                    <section className={s.paperProblem} key={problem.id}>
-                      <strong className={s.problemNumber}>
-                        {String(i + 1).padStart(2, "0")}
-                      </strong>
-                      <UnifiedProblem problem={problem} print />
-                    </section>
-                  ))}
-                </div>
-                <footer className={s.paperFooter}>
-                  오늘의수학 <span>수학의 힘을, 매일 조금씩.</span>
-                </footer>
-              </article>
-              {answers && (
-                <article
-                  className={`${s.paper} ${s.answerPaper}`}
-                  data-unified-paper
-                >
-                  <header className={s.paperHeader}>
-                    <span>ANSWERS & SOLUTIONS</span>
-                    <h2>{paperTitle} · 정답과 해설</h2>
-                  </header>
-                  <div
-                    className={s.paperProblems}
-                    style={{ columnCount: columns }}
-                  >
-                    {selected.map((p, i) => (
-                      <section className={s.answerItem} key={p.id}>
-                        <strong>{String(i + 1).padStart(2, "0")}</strong>
-                        <MathText
-                          text={displayFractions(
-                            p.answer || "정답 미입력",
-                            p.grade,
-                            p.content,
-                          )}
-                        />
-                        {p.solution && (
-                          <MathText
-                            text={displayFractions(
-                              p.solution,
-                              p.grade,
-                              p.content,
-                            )}
-                            as="div"
-                          />
-                        )}
-                      </section>
-                    ))}
-                  </div>
-                </article>
-              )}
-            </div>
-          </div>
+          <WorksheetPrint
+            selected={selected}
+            title={title}
+            options={options}
+            printMeta={meta}
+            onReady={setPrintReady}
+          />
         </div>
       )}
     </main>

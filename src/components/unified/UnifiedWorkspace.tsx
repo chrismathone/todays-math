@@ -61,6 +61,8 @@ export default function UnifiedWorkspace({
     setProblems: setSelected,
     setColumns,
     setAnswers,
+    setPrintOptions,
+    setPrintMeta,
     saveNow,
     createDraft,
     openDraft,
@@ -71,6 +73,8 @@ export default function UnifiedWorkspace({
     problems: selected,
     columns,
     answers,
+    printOptions,
+    printMeta,
     updatedAt: savedAt,
   } = draft;
   const [view, setView] = useState<View>("home");
@@ -289,7 +293,15 @@ export default function UnifiedWorkspace({
       new Blob(
         [
           JSON.stringify(
-            { version: 1, title, problems: selected, columns, answers },
+            {
+              version: 1,
+              title,
+              problems: selected,
+              columns,
+              answers,
+              printOptions,
+              printMeta,
+            },
             null,
             2,
           ),
@@ -587,6 +599,10 @@ export default function UnifiedWorkspace({
               title={title}
               columns={columns}
               answers={answers}
+              printOptions={printOptions}
+              printMeta={printMeta}
+              setPrintOptions={setPrintOptions}
+              setPrintMeta={setPrintMeta}
               savedAt={savedAt}
               setTitle={setTitle}
               setColumns={setColumns}

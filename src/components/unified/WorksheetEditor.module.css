@@ -72,7 +72,7 @@
 }
 .exportGrid {
   display: grid;
-  grid-template-columns: 292px minmax(0, 1fr);
+  grid-template-columns: 340px minmax(0, 1fr);
   gap: 16px;
   align-items: start;
 }
@@ -84,8 +84,11 @@
   background: #fff;
   position: sticky;
   top: 68px;
-  max-height: calc(100dvh - 160px);
-  overflow-y: auto;
+  height: calc(100dvh - 160px);
+  min-height: 420px;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
   scrollbar-width: thin;
   scrollbar-color: #ced9e9 transparent;
 }
@@ -173,7 +176,8 @@ label.checkField {
   display: flex;
   flex-direction: column;
   gap: 7px;
-  max-height: 240px;
+  flex: 1;
+  min-height: 0;
   overflow-y: auto;
   padding: 4px;
   margin: 0 -4px;
@@ -305,173 +309,199 @@ label.checkField {
   outline: 3px solid #82a1ff;
   outline-offset: 3px;
 }
-.paperViewport[data-columns="2"] .paper {
-  min-width: 640px;
+
+.exportInspector > h2,
+.inspectorTabs,
+.exportInspector > button,
+.exportInspector > p {
+  flex-shrink: 0;
 }
-.paper {
-  padding: 37px 32px 25px;
-  min-height: 760px;
-  border: 1px solid #d8e0eb;
-  background: #fff;
-  color: #253047;
-  box-shadow: 0 3px 10px #243d600a;
+.exportInspector > button {
+  align-self: flex-start;
 }
-.paperHeader {
-  padding-bottom: 18px;
-  margin-bottom: 25px;
-  border-bottom: 2px solid #2c4262;
-}
-.paperHeader > span {
-  font-size: var(--text-caption, 12px);
-  letter-spacing: 1.8px;
-  color: #8b9bb2;
-  font-weight: 650;
-}
-.paperHeader h2 {
-  font-size: var(--text-title, 24px);
-  font-weight: 750;
-  line-height: 1.5;
-  letter-spacing: -0.5px;
-  margin: 8px 0 16px;
-  overflow-wrap: anywhere;
-}
-.paperHeader > div {
+.inspectorTabs {
   display: flex;
-  align-items: center;
-  justify-content: space-between;
-  font-size: var(--text-caption, 12px);
-  flex-wrap: wrap;
   gap: 8px;
-  color: #7b8ba4;
+  border-bottom: 1px solid #e7ecf4;
+  padding-bottom: 12px;
+  margin-bottom: 12px;
 }
-.paperProblems {
-  column-gap: 26px;
+.inspectorTabs button,
+.choiceWrap button,
+.templateGrid button {
+  min-height: 44px;
+  border: 1px solid #d5dfed;
+  border-radius: 8px;
+  padding: 0 12px;
+  font-size: 14px;
+  color: #506a90;
 }
-.paperProblem {
-  break-inside: avoid;
-  font-size: var(--text-body, 14px);
-  line-height: 1.9;
-  padding-bottom: 55px;
+.inspectorTabs [aria-selected="true"],
+.choiceWrap [aria-pressed="true"],
+.templateGrid [aria-pressed="true"] {
+  background: #edf2ff;
+  border-color: #3159df;
+  color: #3159df;
 }
-.problemNumber {
-  display: block;
-  font-size: var(--text-body, 14px);
-  font-weight: 750;
-  color: #30476d;
-  margin-bottom: 7px;
+.settingsPanel,
+.orderPanel {
+  flex: 1;
+  min-height: 0;
 }
-.paperFooter {
+.previewJump {
+  display: none;
+}
+.settingsPanel {
+  overflow-y: auto;
+  scrollbar-width: thin;
+  padding: 0 5px 12px 0;
+}
+.orderPanel {
+  display: flex;
+  flex-direction: column;
+}
+.settingsPanel[hidden],
+.orderPanel[hidden] {
+  display: none;
+}
+.orderHeading {
+  flex-shrink: 0;
+  padding-top: 0;
+  border-top: 0;
+  margin-top: 0;
+}
+.orderList li {
+  flex-shrink: 0;
+}
+.optionGroup {
+  margin: 0 0 20px;
+  border: 0;
+  padding: 0;
+  min-width: 0;
+}
+.optionGroup legend,
+.metaDetails summary {
+  font-size: 14px;
+  font-weight: 700;
+  margin-bottom: 8px;
+}
+.metaDetails summary {
+  cursor: pointer;
+  min-height: 44px;
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  padding-top: 15px;
-  border-top: 1px solid #e5eaf2;
-  margin-top: 35px;
-  font-size: var(--text-caption, 12px);
-  color: #7d8ca4;
 }
-.paperFooter span {
-  font-size: var(--text-caption, 12px);
-  color: #97a3b6;
+.templateGrid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 6px;
 }
-.answerPaper {
-  margin-top: 23px;
-  min-height: 520px;
+.templateGrid button {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  min-height: 44px;
+  height: 44px;
+  padding: 4px;
+  line-height: 1.2;
 }
-.answerItem {
-  break-inside: avoid;
-  font-size: var(--text-body, 14px);
-  line-height: 1.9;
-  margin-bottom: 25px;
-}
-.answerItem > strong {
-  color: #315485;
-  display: block;
+.templateGrid small {
   font-size: 12px;
-  margin-bottom: 7px;
+  font-weight: 400;
 }
-.answerItem > div {
+.choiceWrap {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin: 8px 0;
+}
+.colorChoice {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+.colorChoice i {
+  display: inline-block;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+}
+.metaGrid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0 10px;
+}
+.field input,
+.field select,
+.field textarea {
+  width: 100%;
+  min-width: 0;
+  min-height: 44px;
+  border: 1px solid #d5dfed;
+  border-radius: 8px;
+  padding: 8px 10px;
   margin-top: 8px;
-  color: #5e6d84;
+  color: #243d62;
+  font-size: 14px;
+  font-weight: 400;
+  background: #fff;
 }
-@media (min-width: 1650px) {
-  .exportGrid {
-    grid-template-columns: 310px minmax(0, 1fr);
-  }
-  .paperCanvas {
-    padding: 22px 32px 32px;
-  }
-  .paper {
-    max-width: 794px;
-    min-height: 1000px;
-    margin: 0 auto;
-    padding: 48px 43px 32px;
-  }
-  .answerPaper {
-    margin-top: 26px;
-  }
-  .paperProblem {
-    padding-bottom: 66px;
-  }
+.field textarea {
+  resize: vertical;
 }
-@media (max-width: 1250px) {
-  .exportGrid {
-    grid-template-columns: 255px minmax(0, 1fr);
-    gap: 17px;
-  }
-  .paperCanvas {
-    padding: 14px 13px 16px;
-  }
-  .paper {
-    padding: 28px 21px;
-  }
+.settingsFields > .subtle {
+  margin: 0 0 14px;
+}
+.paperToolbar {
+  flex-wrap: wrap;
+}
+.paperToolbar select {
+  min-height: 44px;
+  padding: 0 8px;
+  border: 1px solid #d5dfed;
+  border-radius: 8px;
+  background: #fff;
+  font-size: 14px;
+}
+.exportContent button:focus-visible,
+.exportContent summary:focus-visible,
+.exportContent input:focus-visible,
+.exportContent select:focus-visible {
+  outline: 3px solid #82a1ff;
+  outline-offset: 2px;
 }
 @media (max-width: 1050px) {
   .exportGrid {
-    grid-template-columns: 1fr;
+    grid-template-columns: minmax(0, 1fr);
   }
   .exportInspector {
+    padding: 12px;
     position: static;
-    max-height: none;
   }
-  .orderList {
-    display: grid;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
-  .paper {
-    min-height: 790px;
-    padding: 34px;
+  .previewJump {
+    display: inline-flex;
+    align-items: center;
+    min-height: 44px;
+    border: 1px solid #d5dfed;
+    border-radius: 8px;
+    padding: 0 12px;
+    font-size: 14px;
+    color: #3159df;
+    margin-bottom: 12px;
   }
 }
 @media (max-width: 760px) {
-  .orderList {
+  .exportGrid {
     grid-template-columns: minmax(0, 1fr);
   }
+  .exportInspector {
+    position: static;
+    height: calc(100dvh - 160px);
+    min-height: 420px;
+  }
   .paperCanvas {
-    padding: 13px 9px 10px;
-    border-radius: 10px;
-  }
-  .paperToolbar {
-    font-size: var(--text-caption, 12px);
-    gap: 5px;
-    padding: 0 2px;
-  }
-  .paper {
-    padding: 25px 17px 20px;
-    min-height: 600px;
-  }
-  .paperProblems {
-    column-gap: 16px;
-  }
-  .paperProblem {
-    padding-bottom: 38px;
-  }
-  .paperFooter {
-    flex-wrap: wrap;
-    gap: 8px;
-  }
-  .emptyExport {
-    padding: 24px 16px;
+    padding: 12px;
   }
 }
 @media print {
@@ -492,72 +522,9 @@ label.checkField {
   .paperCanvas {
     container-type: normal;
   }
-  .paperViewport[data-columns="2"] .paper {
-    min-width: 0;
-  }
-
   .exportInspector,
-  .paperToolbar {
+  .paperToolbar,
+  .paperCanvas > .subtle {
     display: none !important;
   }
-  .paper {
-    padding: 0;
-    margin: 0;
-    min-height: 0;
-    width: auto;
-    max-width: none;
-    box-shadow: none;
-    border: 0;
-  }
-  .paperHeader {
-    break-after: avoid;
-  }
-  .paperHeader > span {
-    font-size: 8px;
-  }
-  .paperHeader h2 {
-    font-size: 21px;
-  }
-  .paperHeader > div {
-    font-size: 10px;
-    flex-wrap: nowrap;
-    gap: 0;
-  }
-  .paperProblems {
-    column-gap: 10mm;
-  }
-  .paperProblem {
-    font-size: 11pt;
-    padding-bottom: 18mm;
-    break-inside: avoid;
-  }
-  .paperProblem img {
-    max-height: 95mm !important;
-  }
-  .problemNumber {
-    font-size: 13px;
-  }
-  .answerPaper {
-    break-before: page;
-    padding-top: 5mm;
-  }
-  .paperFooter {
-    margin-top: 10mm;
-    font-size: 9px;
-    flex-wrap: nowrap;
-    gap: 0;
-  }
-  .paperFooter span {
-    font-size: 8px;
-  }
-  .answerItem {
-    font-size: 10pt;
-  }
-  .paper :global(.katex) {
-    font-size: 1.08em;
-  }
-}
-@page {
-  size: A4;
-  margin: 14mm;
 }
