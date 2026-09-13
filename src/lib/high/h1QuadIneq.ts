@@ -110,6 +110,9 @@ function termIf(c: number, body: string): string {
 }
 
 // ═════════════════════════ 이차식 ═════════════════════════
+// 공용 후보: 유리근 인수분해 지면 `rootFactor`·`factoredTex` — `poly.ts` 의 `factorTex`·`factorParen` 은
+//   정수근만 받는다. 근이 `\dfrac{1}{2}` 이면 분모를 계수로 올려 `(2x-1)(x+3)` 으로 쓴다(이차방정식·
+//   이차함수 모듈도 같은 지면을 쓸 것이라 리드가 병합 때 올릴 후보).
 
 function isqrt(n: number): number | null {
   if (n < 0) return null;
@@ -2195,6 +2198,9 @@ function t19(rng: Rng): Body {
       if (qCmp(s.lo!.at, s.hi!.at) >= 0) return null;
       const ans = ivTex(s, "a");
       const noD = ivsMeet([sumRay], [prodRay]);
+      // 판별식 조건이 안 걸리면(합·곱만으로 답이 나오면) (i) 이 장식이 된다 — 다시 뽑는다.
+      // (이 경우 오답 넷도 못 짓는다 — 전엔 그걸로 걸러졌다. 뜻을 드러내려고 따로 적는다.)
+      if (noD.length === 1 && ivTex(noD[0]!, "a") === ans) return null;
       const flipAll: Iv = {
         lo: { at: s.lo!.at, closed: !s.lo!.closed },
         hi: { at: s.hi!.at, closed: !s.hi!.closed },
