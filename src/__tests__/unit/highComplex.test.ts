@@ -1108,6 +1108,26 @@ describe("고등 공통수학1 복소수 — 등록", () => {
   });
 });
 
+describe("고등 공통수학1 복소수 — 지면(공용 자의 사각지대)", () => {
+  // `midPage.pageSmells` 의 「계수 1 을 적었다」는 `1x` 처럼 문자 앞만 본다 — 괄호 앞 계수 1
+  // (`-1(4+4k)`)은 못 본다. 이차방정식 미리보기에서 찾았고 같은 자를 이 모듈에도 댄다.
+  it("계수 1 을 괄호 앞에 적지 않는다", () => {
+    let n = 0;
+    eachProblem((p, key) => {
+      for (const text of [
+        p.content,
+        p.answer,
+        p.solution,
+        ...(p.distractors ?? []),
+      ]) {
+        expect(/(?<![\d.])1\(/.test(text), `${key}: ${text}`).toBe(false);
+        n += 1;
+      }
+    });
+    expect(n).toBeGreaterThan(1000);
+  });
+});
+
 describe("고등 공통수학1 복소수 — 값", () => {
   it("정답을 facts 로 다시 세운 것과 같다", () => {
     let n = 0;

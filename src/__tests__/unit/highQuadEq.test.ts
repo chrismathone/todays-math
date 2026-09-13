@@ -1480,6 +1480,27 @@ describe("고등 공통수학1 이차방정식 — 등록", () => {
   });
 });
 
+describe("고등 공통수학1 이차방정식 — 지면(공용 자의 사각지대)", () => {
+  // `midPage.pageSmells` 의 「계수 1 을 적었다」는 `1x` 처럼 **문자 앞**만 본다 — `-1(4+4k)` 처럼
+  // 괄호 앞의 계수 1 은 구조적으로 못 본다(2026-09-13 미리보기를 눈으로 보다 찾음).
+  // 공용 자는 리드 소유라 이 모듈 시험에 둔다 — 보고서의 공용 후보.
+  it("계수 1 을 괄호 앞에 적지 않는다", () => {
+    let n = 0;
+    eachProblem((p, key) => {
+      for (const text of [
+        p.content,
+        p.answer,
+        p.solution,
+        ...(p.distractors ?? []),
+      ]) {
+        expect(/(?<![\d.])1\(/.test(text), `${key}: ${text}`).toBe(false);
+        n += 1;
+      }
+    });
+    expect(n).toBeGreaterThan(1000);
+  });
+});
+
 describe("고등 공통수학1 이차방정식 — 값", () => {
   it("정답을 facts 로 다시 세운 것과 같다", () => {
     let n = 0;

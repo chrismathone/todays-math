@@ -239,7 +239,10 @@ function t01(rng: Rng): Body {
             [al, "x^{2}"],
             [be + gm, "x"],
           ])}$, $x\\odot ${paren(c)}=${linTex([[al * c + be, "x"]], gm * c)}$이므로`,
-          `주어진 등식은 $${polyTex([-gm * c, gm - al * c, al])}=${K}$, 즉 $${polyTex(fin)}=0$`,
+          // 우변이 0 이면 「…=0, 즉 …=0」 이 같은 식을 두 번 찍는다(미리보기에서 봄).
+          K === 0
+            ? `주어진 등식은 $${polyTex(fin)}=0$`
+            : `주어진 등식은 $${polyTex([-gm * c, gm - al * c, al])}=${K}$, 즉 $${polyTex(fin)}=0$`,
           `$${coef(al)}${prodTex([r1, r2])}=0$이므로 ${orList([lo, hi])}`,
           `따라서 모든 실수 $x$의 값의 ${ask === 0 ? `합은 $${sumTex([lo, hi])}` : `곱은 $${lo}\\times ${paren(hi)}`}=${value}$`,
         ].join("\n"),
@@ -1707,7 +1710,7 @@ function t14(rng: Rng): Body {
     const mid =
       d === 1
         ? ""
-        : `=\\dfrac{${k}(${w}+\\sqrt{${m}})}{(${w}-\\sqrt{${m}})(${w}+\\sqrt{${m}})}`;
+        : `=\\dfrac{${coef(k)}(${w}+\\sqrt{${m}})}{(${w}-\\sqrt{${m}})(${w}+\\sqrt{${m}})}`;
     return {
       content: `이차방정식 $x^{2}+ax+b=0$의 한 근이 $${frac}$일 때, 유리수 $a$, $b$에 대하여 $a+b$의 값을 구하시오.`,
       answer: numAnswer(a + b),
@@ -1757,7 +1760,7 @@ function t15(rng: Rng): Body {
         solution: [
           `주어진 식을 $x$에 대하여 정리하면 $x^{2}+(${lin})x${rest.startsWith("-") ? "" : "+"}${rest}$`,
           `이차방정식 $x^{2}+(${lin})x${rest.startsWith("-") ? "" : "+"}${rest}=0$의 판별식을 $D$${ira("D")} 하면 $D=(${lin})^{2}-4(${rest})=${polyTex([Dx * Dx, 2 * h, lead], "y")}+4k$`,
-          `$D$${ga("D")} $y$에 대한 완전제곱식이어야 하므로 $D=0$의 판별식을 $D_{1}$${ira("D_{1}")} 하면 $\\dfrac{D_{1}}{4}=${paren(h)}^{2}-${lead}(${Dx * Dx}+4k)=0$`,
+          `$D$${ga("D")} $y$에 대한 완전제곱식이어야 하므로 $D=0$의 판별식을 $D_{1}$${ira("D_{1}")} 하면 $\\dfrac{D_{1}}{4}=${paren(h)}^{2}-${coef(lead)}(${Dx * Dx}+4k)=0$`,
           `따라서 $k=${k}$`,
         ].join("\n"),
         difficulty: "기본",
@@ -1794,7 +1797,7 @@ function t15(rng: Rng): Body {
       answer: numAnswer(Cy),
       solution: [
         `주어진 식을 $x$에 대하여 정리하면 $${coef(A)}x^{2}+(${lin})x+${inner}$`,
-        `판별식을 $D$${ira("D")} 하면 $D=(${lin})^{2}-4\\times ${A}(${inner})=(${B * B}-${4 * A}a)y^{2}${termIf(2 * h, "y")}${plusConst(c0)}$`,
+        `판별식을 $D$${ira("D")} 하면 $D=(${lin})^{2}${A === 1 ? "-4" : `-4\\times ${A}`}(${inner})=(${B * B}-${4 * A}a)y^{2}${termIf(2 * h, "y")}${plusConst(c0)}$`,
         `$D$${ga("D")} $y$에 대한 완전제곱식이어야 하므로 $D=0$의 판별식을 $D_{1}$${ira("D_{1}")} 하면 $\\dfrac{D_{1}}{4}=${paren(h)}^{2}-(${B * B}-${4 * A}a)\\times ${paren(c0)}=0$`,
         `따라서 $a=${Cy}$`,
       ].join("\n"),
