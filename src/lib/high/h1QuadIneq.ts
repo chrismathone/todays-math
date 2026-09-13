@@ -28,6 +28,7 @@ import type { Difficulty } from "@/contracts/difficulty";
 import type { Rng } from "../elementary/types";
 
 import {
+  casesTex,
   flipRel,
   holds,
   intsInAll,
@@ -53,7 +54,7 @@ import {
   type Iv,
   type Rel,
 } from "./h1LinIneq";
-import { eul, ga, ira } from "./josa";
+import { eul, ga, gwa, ira } from "./josa";
 import { q, qAdd, qTex, surd, surdPmTex, surdTex, type Q } from "./numbers";
 import {
   $,
@@ -1589,6 +1590,462 @@ function t13(rng: Rng): Body {
   });
 }
 
+// ═════════════════════════ 연립이차부등식 ═════════════════════════
+
+/** 근 r₁, r₂(유리수)를 갖는 정수 계수 이차식 `k·(분모들)·(x−r₁)(x−r₂)` — 계수 [c, b, a]. */
+function quadFrom(k: number, r1: Q, r2: Q): [number, number, number] {
+  return [k * r1.n * r2.n, -k * (r1.n * r2.d + r2.n * r1.d), k * r1.d * r2.d];
+}
+
+/** 한 줄 이차부등식의 지면 — 반쯤은 양변에 일차식을 더해 옮겨 적는다(`2x^{2}-x\le x+3`). */
+function quadRow(rng: Rng, [c, b, a]: readonly number[], rel: Rel): string {
+  if (rng() < 0.5) return `${polyTex([c, b, a])}${relTex(rel)}0`;
+  const m = randInt(rng, -3, 3);
+  const n = randInt(rng, -6, 6);
+  return `${polyTex([c + n, b + m, a])}${relTex(rel)}${polyTex([n, m])}`;
+}
+
+// ───────────────────────────── 14 ─────────────────────────────
+// 연립이차부등식의 풀이
+// 꼴 0 (기본·대표): 이차부등식 두 개 — 정수인 해의 개수 · 합
+// 꼴 1 (응용): 일차부등식과 이차부등식 — 해를 구하시오 (답이 구간, 오답 넷)
+// 꼴 2 (응용): A≤B<C 의 꼴(이차식) — 정수인 해의 합 · 개수
+
+function t14(rng: Rng): Body {
+  const mode = randInt(rng, 0, 2);
+  return attempt<Body>((): Body | null => {
+    if (mode === 1) {
+      const [u, v] = (distinctInts(rng, -6, 6, 2) as [number, number]).sort(
+        (x, y) => x - y,
+      );
+      if (v - u < 2) return null;
+      const k = pickOne(rng, [1, 2, -1]);
+      const [c, b, a] = quadFrom(k, q(u), q(v));
+      const r = pickOne(rng, k > 0 ? UPPER : LOWER);
+      const t = randInt(rng, u + 1, v - 1);
+      const relX = pickOne(rng, ["<", ">", "le", "ge"] as const);
+      const m = pickOne(rng, [1, 2, 3, -1, -2]);
+      const La = nz(rng, -4, 5);
+      const Lb = randInt(rng, -8, 8);
+      const relL = m > 0 ? relX : flipRel(relX);
+      const linRow = `${polyTex([Lb, La])}${relTex(relL)}${polyTex([Lb + m * t, La - m])}`;
+      const qRow = quadRow(rng, [c, b, a], r);
+      const ray = rayIv(relX, q(t));
+      const band = quadSol(a, b, c, r);
+      const sol = ivsMeet([ray], band);
+      if (sol.length !== 1) return null;
+      const ans = ivTex(sol[0]!);
+      const flipAll = (iv: Iv): Iv => ({
+        lo: iv.lo && { at: iv.lo.at, closed: !iv.lo.closed },
+        hi: iv.hi && { at: iv.hi.at, closed: !iv.hi.closed },
+      });
+      const other = ivsMeet([rayIv(flipRel(relX), q(t))], band);
+      const cands = [ivTex(flipAll(sol[0]!)), ivTex(band[0]!)];
+      if (other.length === 1) cands.push(ivTex(other[0]!));
+      cands.push(ivTex(rayIv(relX, q(t))), ivTex(flipAll(band[0]!)));
+      const distractors = pickDistractors(rng, ans, cands);
+      if (distractors === null) return null;
+      const rows = rng() < 0.5 ? [linRow, qRow] : [qRow, linRow];
+      const sys = casesTex(rows);
+      const linLine =
+        m === 1
+          ? `$${linRow}$에서 $${ivTex(ray)}$`
+          : `$${linRow}$에서 $${term(m, "x", true)}${relTex(relL)}${m * t}$이므로 $${ivTex(ray)}$`;
+      return {
+        content: `연립부등식 $${sys}$${eul(sys)} 푸시오.`,
+        answer: $(ans),
+        solution: [
+          linLine,
+          quadStep(a, b, c, r, qRow),
+          `따라서 주어진 연립부등식의 해는 $${ans}$`,
+        ].join("\n"),
+        difficulty: "응용",
+        facts: {
+          mode,
+          lm: m,
+          lc: m * t,
+          lr: REL_CODE[relL],
+          a,
+          b,
+          c,
+          r: REL_CODE[r],
+        },
+        distractors,
+      };
+    }
+    const pick = (): { co: [number, number, number]; rel: Rel } => {
+      const den = pickOne(rng, [1, 1, 2]);
+      const [x1, x2] = (
+        distinctInts(rng, -6 * den, 6 * den, 2) as [number, number]
+      ).sort((x, y) => x - y);
+      const k = pickOne(rng, [1, 2, 3, -1]);
+      return {
+        co: quadFrom(k, q(x1, den), q(x2, den)),
+        rel: pickOne(rng, ["<", ">", "le", "ge"] as const),
+      };
+    };
+    const f1 = pick();
+    const f2 = pick();
+    // 꼴 2 는 A rel₁ B rel₂ C — 두 부등호가 < 또는 ≤
+    if (mode === 2) {
+      f1.rel = pickOne(rng, UPPER);
+      f2.rel = pickOne(rng, UPPER);
+    }
+    const [c1, b1, a1] = f1.co;
+    const [c2, b2, a2] = f2.co;
+    const sol = ivsMeet(
+      quadSol(a1, b1, c1, f1.rel),
+      quadSol(a2, b2, c2, f2.rel),
+    );
+    if (sol.some((iv) => !iv.lo || !iv.hi)) return null;
+    const ints = intsInAll(sol);
+    if (ints.length < 2 || ints.length > 10) return null;
+    const kind = randInt(rng, 0, 1);
+    const ans = kind === 0 ? ints.length : ints.reduce((s, x) => s + x, 0);
+    const facts = {
+      mode,
+      a1,
+      b1,
+      c1,
+      r1: REL_CODE[f1.rel],
+      a2,
+      b2,
+      c2,
+      r2: REL_CODE[f2.rel],
+      kind,
+    };
+    const tail = [
+      `두 해의 공통부분은 ${ivsText(sol)}`,
+      `따라서 정수 $x$는 ${intsText(ints)}이므로 ${kind === 0 ? `그 개수는 $${ans}$이다.` : `그 합은 $${ans}$이다.`}`,
+    ];
+    const ask = kind === 0 ? "정수 $x$의 개수를" : "모든 정수 $x$의 값의 합을";
+    if (mode === 0) {
+      const r1 = quadRow(rng, f1.co, f1.rel);
+      const r2 = quadRow(rng, f2.co, f2.rel);
+      const sys = casesTex([r1, r2]);
+      return {
+        content: `연립부등식 $${sys}$${eul(sys)} 만족시키는 ${ask} 구하시오.`,
+        answer: numAnswer(ans),
+        solution: [
+          quadStep(a1, b1, c1, f1.rel, r1),
+          quadStep(a2, b2, c2, f2.rel, r2),
+          ...tail,
+        ].join("\n"),
+        difficulty: "기본",
+        facts,
+      };
+    }
+    const B = [
+      randInt(rng, -6, 6),
+      randInt(rng, -4, 4),
+      pickOne(rng, [1, 2, -1]),
+    ];
+    const A = [B[0]! + c1, B[1]! + b1, B[2]! + a1];
+    const C = [B[0]! - c2, B[1]! - b2, B[2]! - a2];
+    const [At, Bt, Ct] = [polyTex(A), polyTex(B), polyTex(C)];
+    if (At === "0" || Ct === "0" || At === Bt || Bt === Ct) return null;
+    const left = `${At}${relTex(f1.rel)}${Bt}`;
+    const right = `${Bt}${relTex(f2.rel)}${Ct}`;
+    const chain = `${left}${relTex(f2.rel)}${Ct}`;
+    const sys = casesTex([left, right]);
+    return {
+      content: `부등식 $${chain}$${eul(chain)} 만족시키는 ${ask} 구하시오.`,
+      answer: numAnswer(ans),
+      solution: [
+        `주어진 부등식은 연립부등식 $${sys}$${gwa(sys)} 같다.`,
+        quadStep(a1, b1, c1, f1.rel, left),
+        quadStep(a2, b2, c2, f2.rel, right),
+        ...tail,
+      ].join("\n"),
+      difficulty: "응용",
+      facts,
+    };
+  });
+}
+
+// ───────────────────────────── 15 ─────────────────────────────
+// 절댓값 기호를 포함한 연립부등식의 풀이
+// 꼴 0 (기본·대표): |x−s|≤t 와 이차부등식 — 해가 a≤x≤b 일 때 b−a · a+b
+// 꼴 1 (기본): |x−s|<t 와 두 근 밖의 이차부등식 — 정수인 해의 개수
+// 꼴 2 (응용): x²−K|x|<0 과 이차부등식 — 정수인 해의 개수
+
+function t15(rng: Rng): Body {
+  const mode = randInt(rng, 0, 2);
+  return attempt<Body>((): Body | null => {
+    const [u, v] = (distinctInts(rng, -6, 6, 2) as [number, number]).sort(
+      (x, y) => x - y,
+    );
+    const k = pickOne(rng, [1, 2]);
+    const [c, b, a] = quadFrom(k, q(u), q(v));
+    const qRow = (rel: Rel): string => `${polyTex([c, b, a])}${relTex(rel)}0`;
+    if (mode === 2) {
+      const K = randInt(rng, 2, 5);
+      const r = pickOne(rng, UPPER);
+      const absSol: Iv[] = [
+        { lo: { at: q(-K), closed: false }, hi: { at: q(0), closed: false } },
+        { lo: { at: q(0), closed: false }, hi: { at: q(K), closed: false } },
+      ];
+      const sol = ivsMeet(absSol, quadSol(a, b, c, r));
+      const ints = intsInAll(sol.filter((iv) => iv.lo && iv.hi));
+      if (sol.some((iv) => !iv.lo || !iv.hi) || ints.length < 2) return null;
+      const row1 = `x^{2}-${K}|x|<0`;
+      const sys = casesTex([row1, qRow(r)]);
+      return {
+        content: `연립부등식 $${sys}$${eul(sys)} 만족시키는 정수 $x$의 개수를 구하시오.`,
+        answer: numAnswer(ints.length),
+        solution: [
+          `$${row1}$에서 $x<0$일 때 $x^{2}+${K}x<0$이므로 $${-K}<x<0$, $x\\ge 0$일 때 $x^{2}-${K}x<0$이므로 $0<x<${K}$`,
+          `즉 $${-K}<x<0$ 또는 $0<x<${K}$`,
+          quadStep(a, b, c, r),
+          `두 해의 공통부분은 ${ivsText(sol)}`,
+          `따라서 정수 $x$는 ${intsText(ints)}의 $${ints.length}$개이다.`,
+        ].join("\n"),
+        difficulty: "응용",
+        facts: { mode, K, a, b, c, r: REL_CODE[r] },
+      };
+    }
+    const s0 = randInt(rng, -4, 4);
+    const t = randInt(rng, 2, 6);
+    const ra: Rel = mode === 0 ? pickOne(rng, UPPER) : "<";
+    const closedA = ra === "le";
+    const absIv: Iv = {
+      lo: { at: q(s0 - t), closed: closedA },
+      hi: { at: q(s0 + t), closed: closedA },
+    };
+    const absRow = `|${factorTex(s0)}|${relTex(ra)}${t}`;
+    // 절댓값 안이 `x` 하나면 풀어 쓴 줄이 곧 해다(`-3<x<3이므로 -3<x<3` 되풀이 금지)
+    const absLine =
+      s0 === 0
+        ? `$${absRow}$에서 $${ivTex(absIv)}$`
+        : `$${absRow}$에서 $${-t}${relTex(ra)}${factorTex(s0)}${relTex(ra)}${t}$이므로 $${ivTex(absIv)}$`;
+    const r: Rel = mode === 0 ? pickOne(rng, UPPER) : pickOne(rng, LOWER);
+    const sol = ivsMeet([absIv], quadSol(a, b, c, r));
+    const facts = { mode, s0, t, ra: REL_CODE[ra], a, b, c, r: REL_CODE[r] };
+    const sys = casesTex(rng() < 0.5 ? [absRow, qRow(r)] : [qRow(r), absRow]);
+    if (mode === 0) {
+      if (sol.length !== 1) return null;
+      const s = sol[0]!;
+      const lo = s.lo!.at.n;
+      const hi = s.hi!.at.n;
+      if (lo >= hi) return null;
+      const [exprId, [et, ev]] = chooseExpr(rng, [
+        ["b-a", hi - lo],
+        ["a+b", lo + hi],
+      ]);
+      return {
+        content: `연립부등식 $${sys}$의 해가 $${ivLetters(s)}$일 때, $${et}$의 값을 구하시오.`,
+        answer: numAnswer(ev),
+        solution: [
+          absLine,
+          quadStep(a, b, c, r),
+          `따라서 주어진 연립부등식의 해는 $${ivTex(s)}$이므로 $a=${lo}$, $b=${hi}$`,
+          `즉 $${et}=${ev}$`,
+        ].join("\n"),
+        difficulty: "기본",
+        facts: { ...facts, exprId },
+      };
+    }
+    const ints = intsInAll(sol);
+    if (ints.length < 2) return null;
+    return {
+      content: `연립부등식 $${sys}$${eul(sys)} 만족시키는 정수 $x$의 개수를 구하시오.`,
+      answer: numAnswer(ints.length),
+      solution: [
+        absLine,
+        quadStep(a, b, c, r),
+        `두 해의 공통부분은 ${ivsText(sol)}`,
+        `따라서 정수 $x$는 ${intsText(ints)}의 $${ints.length}$개이다.`,
+      ].join("\n"),
+      difficulty: "기본",
+      facts,
+    };
+  });
+}
+
+// ───────────────────────────── 16 ─────────────────────────────
+// 해가 주어진 연립이차부등식
+// 꼴 0 (기본·대표): 한 근이 k 로 움직이는 둘째 부등식 — 해가 주어진 구간일 때 k 의 범위 (답이 구간, 오답 넷)
+// 꼴 1 (심화하): x²+βx−a<0, x²+βx+b≥0 의 해가 두 조각 — a+b · ab · a−b
+// 꼴 2 (심화하): 해를 갖지 않도록 하는 k 의 최댓값 M 과 최솟값 m — M−m
+
+function t16(rng: Rng): Body {
+  const mode = randInt(rng, 0, 2);
+  return attempt<Body>((): Body | null => {
+    if (mode === 0) {
+      const [u, v] = (distinctInts(rng, -6, 6, 2) as [number, number]).sort(
+        (x, y) => x - y,
+      );
+      if (v - u < 3) return null;
+      const side = rng() < 0.5 ? 1 : -1;
+      const w = randInt(rng, u + 1, v - 1);
+      const e = randInt(rng, -4, 4);
+      // 둘째: (x−w)(x+k+e)<0 — 움직이는 근 ρ=−k−e
+      const kx = e - w === 0 ? "kx" : `(k${plusConst(e - w)})x`;
+      const second = `x^{2}+${kx}${w === 0 ? "" : term(-w, "k")}${plusConst(-w * e)}<0`;
+      const first = `${polyTex([u * v, -(u + v), 1])}\\le 0`;
+      const given = side > 0 ? `${w}<x\\le ${v}` : `${u}\\le x<${w}`;
+      const K = q(side > 0 ? -e - v : -e - u);
+      const relK: Rel = side > 0 ? "<" : ">";
+      const ans = ivTex(rayIv(relK, K), "k");
+      const distractors = rayDistractors(rng, relK, K, "k");
+      if (distractors === null) return null;
+      return {
+        content: `연립부등식 $${casesTex([first, second])}$의 해가 $${given}$일 때, 실수 $k$의 값의 범위를 구하시오.`,
+        answer: $(ans),
+        solution: [
+          quadStep(1, -(u + v), u * v, "le"),
+          `$${second}$에서 $${factorParenText(w)}(x+k${plusConst(e)})<0$`,
+          `두 부등식의 해의 공통부분이 $${given}$이 되려면 $-k${plusConst(-e)}${side > 0 ? ">" : "<"}${side > 0 ? v : u}$`,
+          `따라서 $${ans}$`,
+        ].join("\n"),
+        difficulty: "기본",
+        facts: { mode, u, v, w, e, side },
+        distractors,
+      };
+    }
+    if (mode === 1) {
+      const h = randInt(rng, -3, 3);
+      const d1 = randInt(rng, 2, 4);
+      const d2 = randInt(rng, 1, d1 - 1);
+      const [p1, p2, q1, q2] = [h - d1, h + d1, h - d2, h + d2];
+      const beta = -2 * h;
+      const a = -p1 * p2;
+      const b = q1 * q2;
+      const [exprId, [et, ev]] = chooseExpr(rng, [
+        ["a+b", a + b],
+        ["ab", a * b],
+        ["a-b", a - b],
+      ]);
+      const rows = [
+        `x^{2}${termIf(beta, "x")}-a<0`,
+        `x^{2}${termIf(beta, "x")}+b\\ge 0`,
+      ];
+      const given = `$${p1}<x\\le ${q1}$ 또는 $${q2}\\le x<${p2}$`;
+      return {
+        content: `연립부등식 $${casesTex(rows)}$의 해가 ${given}일 때, 상수 $a$, $b$에 대하여 $${et}$의 값을 구하시오.`,
+        answer: numAnswer(ev),
+        solution: [
+          `주어진 해가 되려면 첫째 부등식의 해는 $${p1}<x<${p2}$, 둘째 부등식의 해는 $x\\le ${q1}$ 또는 $x\\ge ${q2}$이어야 한다.`,
+          `해가 $${p1}<x<${p2}$이고 $x^{2}$의 계수가 $1$인 이차부등식은 $${factoredTex(1, [q(p1), q(p2)])}<0$, 즉 $${polyTex([p1 * p2, -(p1 + p2), 1])}<0$이므로 $a=${a}$`,
+          `해가 $x\\le ${q1}$ 또는 $x\\ge ${q2}$이고 $x^{2}$의 계수가 $1$인 이차부등식은 $${factoredTex(1, [q(q1), q(q2)])}\\ge 0$, 즉 $${polyTex([q1 * q2, -(q1 + q2), 1])}\\ge 0$이므로 $b=${b}$`,
+          `따라서 $${et}=${ev}$`,
+        ].join("\n"),
+        difficulty: "심화하",
+        facts: { mode, beta, a, b, exprId },
+      };
+    }
+    const [u, v] = (distinctInts(rng, -5, 5, 2) as [number, number]).sort(
+      (x, y) => x - y,
+    );
+    if (v - u < 2) return null;
+    const al = randInt(rng, -4, 0);
+    const be = randInt(rng, 1, 5);
+    if (be - al <= v - u) return null;
+    const M = u - al;
+    const m0 = v - be;
+    const kF = (s: number): string => (s === 0 ? "k" : `(k${plusConst(s)})`);
+    const lin = al + be === 0 ? "-2kx" : `-(2k${plusConst(al + be)})x`;
+    const second = `x^{2}${lin}+${kF(al)}${kF(be)}>0`;
+    const first = quadRow(rng, [u * v, -(u + v), 1], "le");
+    const sys = casesTex([first, second]);
+    return {
+      content: `연립부등식 $${sys}$${ga(sys)} 해를 갖지 않도록 하는 실수 $k$의 최댓값을 $M$, 최솟값을 $m$${ira("m")} 할 때, $M-m$의 값을 구하시오.`,
+      answer: numAnswer(M - m0),
+      solution: [
+        quadStep(1, -(u + v), u * v, "le", first),
+        `$${second}$에서 $(x-${kF(al)})(x-${kF(be)})>0$이므로 $x<k${plusConst(al)}$ 또는 $x>k${plusConst(be)}$`,
+        `연립부등식이 해를 갖지 않으려면 $k${plusConst(al)}\\le ${u}$, $k${plusConst(be)}\\ge ${v}$`,
+        `즉 $${m0}\\le k\\le ${M}$이므로 $M=${M}$, $m=${m0}$`,
+        `따라서 $M-m=${M - m0}$`,
+      ].join("\n"),
+      difficulty: "심화하",
+      facts: { mode, u, v, al, be },
+    };
+  });
+}
+
+/** `(x-3)` · `x` — 근 w 의 인수(0 이면 x 하나). */
+function factorParenText(w: number): string {
+  return w === 0 ? "x" : `(${factorTex(w)})`;
+}
+
+// ───────────────────────────── 17 ─────────────────────────────
+// 연립이차부등식의 활용
+// 꼴 0 (기본·대표): 세 변의 길이가 n−d, n, n+d 인 둔각삼각형 — 자연수 n 의 개수
+// 꼴 1 (응용): 직사각형 화단 둘레의 길 — 길의 넓이 범위로 폭 x 의 범위 a≤x≤b 일 때 a+b
+// 꼴 2 (심화하): 가로가 세로보다 d 긴 직사각형 — 둘레·넓이 조건으로 세로의 최댓값과 최솟값의 합
+
+function t17(rng: Rng): Body {
+  const mode = randInt(rng, 0, 2);
+  return attempt<Body>((): Body | null => {
+    if (mode === 0) {
+      const d = randInt(rng, 2, 8);
+      const count = 2 * d - 1;
+      return {
+        content: `세 변의 길이가 $n-${d}$, $n$, $n+${d}$인 삼각형이 둔각삼각형이 되도록 하는 자연수 $n$의 개수를 구하시오.`,
+        answer: numAnswer(count),
+        solution: [
+          `변의 길이는 양수이므로 $n-${d}>0$, 즉 $n>${d}$`,
+          `가장 긴 변의 길이가 나머지 두 변의 길이의 합보다 작아야 하므로 $n+${d}<(n-${d})+n$, 즉 $n>${2 * d}$`,
+          `둔각삼각형이려면 $(n+${d})^{2}>n^{2}+(n-${d})^{2}$, 즉 $n^{2}-${4 * d}n<0$이므로 $0<n<${4 * d}$`,
+          `세 조건을 동시에 만족시키는 $n$의 값의 범위는 $${2 * d}<n<${4 * d}$`,
+          `따라서 자연수 $n$의 개수는 $${count}$이다.`,
+        ].join("\n"),
+        difficulty: "기본",
+        facts: { mode, d },
+      };
+    }
+    if (mode === 1) {
+      const W = randInt(rng, 4, 12);
+      const H = randInt(rng, 3, 10);
+      const [n1, n2] = (distinctInts(rng, 1, 10, 2) as [number, number]).sort(
+        (x, y) => x - y,
+      );
+      // 폭은 반 단위 — 넓이 4x²+2(W+H)x 가 정수로 떨어진다
+      const x1 = q(n1, 2);
+      const x2 = q(n2, 2);
+      const areaAt = (x: Q): number =>
+        (4 * x.n * x.n) / (x.d * x.d) + (2 * (W + H) * x.n) / x.d;
+      const S1 = areaAt(x1);
+      const S2 = areaAt(x2);
+      if (!Number.isInteger(S1) || !Number.isInteger(S2)) return null;
+      const ans = qAdd(x1, x2);
+      const m = (n: number) => `$${n}\\,\\mathrm{m}$`;
+      return {
+        content: `가로의 길이가 ${m(W)}, 세로의 길이가 ${m(H)}인 직사각형 모양의 화단의 둘레에 폭이 일정하게 $x\\,\\mathrm{m}$인 길을 만들려고 한다. 길의 넓이가 $${S1}\\,\\mathrm{m^2}$ 이상 $${S2}\\,\\mathrm{m^2}$ 이하가 되도록 하는 $x$의 값의 범위가 $a\\le x\\le b$일 때, $a+b$의 값을 구하시오.`,
+        answer: qAnswer(ans),
+        solution: [
+          `길의 넓이는 $(${W}+2x)(${H}+2x)-${W}\\times ${H}=4x^{2}+${2 * (W + H)}x$이므로`,
+          `$${S1}\\le 4x^{2}+${2 * (W + H)}x\\le ${S2}$`,
+          `$4x^{2}+${2 * (W + H)}x\\ge ${S1}$에서 $x>0$이므로 $x\\ge ${qTex(x1)}$`,
+          `$4x^{2}+${2 * (W + H)}x\\le ${S2}$에서 $x>0$이므로 $0<x\\le ${qTex(x2)}$`,
+          `따라서 $${qTex(x1)}\\le x\\le ${qTex(x2)}$이므로 $a+b=${qTex(ans)}$`,
+        ].join("\n"),
+        difficulty: "응용",
+        facts: { mode, W, H, S1, S2 },
+      };
+    }
+    const d = randInt(rng, 1, 6);
+    const lo = randInt(rng, 2, 8);
+    const hi = lo + randInt(rng, 2, 8);
+    const P = 2 * (2 * lo + d);
+    const S = hi * (hi + d);
+    return {
+      content: `가로의 길이가 세로의 길이보다 $${d}\\,\\mathrm{cm}$ 긴 직사각형이 있다. 이 직사각형의 둘레의 길이가 $${P}\\,\\mathrm{cm}$ 이상이고 넓이가 $${S}\\,\\mathrm{cm^2}$ 이하일 때, 세로의 길이의 최댓값과 최솟값의 합을 구하시오.`,
+      answer: numAnswer(lo + hi),
+      solution: [
+        `세로의 길이를 $x\\,\\mathrm{cm}$라 하면 가로의 길이는 $(x+${d})\\,\\mathrm{cm}$이므로`,
+        `둘레의 길이에서 $2(2x+${d})\\ge ${P}$, 즉 $x\\ge ${lo}$`,
+        `넓이에서 $x(x+${d})\\le ${S}$, 즉 $${polyTex([-S, d, 1])}\\le 0$, $${factoredTex(1, [q(-hi - d), q(hi)])}\\le 0$이므로 $${-hi - d}\\le x\\le ${hi}$`,
+        `$x>0$이므로 두 조건을 동시에 만족시키는 범위는 $${lo}\\le x\\le ${hi}$`,
+        `따라서 세로의 길이의 최댓값과 최솟값의 합은 $${hi}+${lo}=${lo + hi}$이다.`,
+      ].join("\n"),
+      difficulty: "심화하",
+      facts: { mode, d, P, S },
+    };
+  });
+}
+
 // ───────────────────────────── 등록 ─────────────────────────────
 
 function entry(
@@ -1636,6 +2093,10 @@ export const H1_QUAD_INEQ: HighTypeEntry[] = [
     t12,
   ),
   entry("13", "이차부등식의 활용", SEC.이차, t13),
+  entry("14", "연립이차부등식의 풀이", SEC.연립, t14),
+  entry("15", "절댓값 기호를 포함한 연립부등식의 풀이", SEC.연립, t15),
+  entry("16", "해가 주어진 연립이차부등식", SEC.연립, t16),
+  entry("17", "연립이차부등식의 활용", SEC.연립, t17),
 ];
 
 const WIP = "작업 중 — h1-ineq 세션이 이어서 만든다(2026-09-13)";
@@ -1646,7 +2107,7 @@ export const H1_QUAD_INEQ_HOLD: HighHold[] = [
     reason:
       "포물선·직선 그래프를 읽고 푸는 유형 — 그림이 있어야 성립한다. 물결 2 funcGraph 로 넘긴다(좌표로 때우지 않는다, 09 §4)",
   },
-  ...["14", "15", "16", "17", "18", "19", "20", "21"].map((n) => ({
+  ...["18", "19", "20", "21"].map((n) => ({
     key: `${BOOK}|${MINOR}|${n}`,
     reason: WIP,
   })),

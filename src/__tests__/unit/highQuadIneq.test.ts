@@ -51,6 +51,7 @@ import {
   relOf,
   type ShownSpec,
   type TIv,
+  tivEq,
   tivHas,
 } from "../helpers/highIneq";
 import { highCatalog, mathSpans } from "../helpers/highPage";
@@ -120,7 +121,165 @@ const minF = (vs: readonly F[]): F =>
 const maxF = (vs: readonly F[]): F =>
   vs.reduce((m, v) => (fCmp(v, m) > 0 ? v : m));
 
+/** 두 줄 이차부등식(`a_i x² + b_i x + c_i rel_i 0`) — facts 의 1·2 */
+function qPair(f: Fact): { p1: Pred; p2: Pred; crit: F[] } {
+  const [a1, b1, c1, a2, b2, c2] = ["a1", "b1", "c1", "a2", "b2", "c2"].map(
+    (k) => num(f, k),
+  ) as [number, number, number, number, number, number];
+  return {
+    p1: qPred(a1, b1, c1, num(f, "r1")),
+    p2: qPred(a2, b2, c2, num(f, "r2")),
+    crit: [...roots(a1, b1, c1), ...roots(a2, b2, c2)],
+  };
+}
+
 const VERIFY: Record<string, (f: Fact) => Expect> = {
+  "14": (f) => {
+    if (f.mode === 1) {
+      const lm = num(f, "lm");
+      const lc = num(f, "lc");
+      const lin: Pred = (x) =>
+        relHolds(relOf(num(f, "lr")), fMul(fr(lm), x), fr(lc));
+      const [a, b, c] = [num(f, "a"), num(f, "b"), num(f, "c")];
+      const sol = chartSolve(and(lin, qPred(a, b, c, num(f, "r"))), [
+        fr(lc, lm),
+        ...roots(a, b, c),
+      ]);
+      return { v: "x", exact: only(sol, "해는 한 구간") };
+    }
+    const { p1, p2 } = qPair(f);
+    const ints = intsWhere(and(p1, p2));
+    expect(ints.length, "해가 막혀 있다").toBeLessThan(50);
+    return f.kind === 0 ? ints.length : sum(ints);
+  },
+
+  "15": (f) => {
+    const [a, b, c] = [num(f, "a"), num(f, "b"), num(f, "c")];
+    const quad = qPred(a, b, c, num(f, "r"));
+    if (f.mode === 2) {
+      const K = fr(num(f, "K"));
+      const absP: Pred = (x) =>
+        fCmp(fSub(fMul(x, x), fMul(K, fAbs(x))), fr(0)) < 0;
+      return intsWhere(and(absP, quad)).length;
+    }
+    const s0 = fr(num(f, "s0"));
+    const t = fr(num(f, "t"));
+    const absP: Pred = (x) =>
+      relHolds(relOf(num(f, "ra")), fAbs(fSub(x, s0)), t);
+    if (f.mode === 1) return intsWhere(and(absP, quad)).length;
+    const s = only(
+      chartSolve(and(absP, quad), [
+        fSub(s0, t),
+        fAdd(s0, t),
+        ...roots(a, b, c),
+      ]),
+      "해는 한 구간",
+    );
+    const [lo, hi] = [fNum(s.lo!), fNum(s.hi!)];
+    return [hi - lo, lo + hi][num(f, "exprId")]!;
+  },
+
+  "16": (f) => {
+    if (f.mode === 0) {
+      const [u, v, w, e, side] = ["u", "v", "w", "e", "side"].map((k) =>
+        num(f, k),
+      ) as [number, number, number, number, number];
+      const first = qPred(1, -(u + v), u * v, 2);
+      const given: TIv =
+        side > 0
+          ? { lo: fr(w), loC: false, hi: fr(v), hiC: true }
+          : { lo: fr(u), loC: true, hi: fr(w), hiC: false };
+      return {
+        v: "k",
+        prop: (k) => {
+          // 지면 둘째 부등식을 전개하지 않은 값으로 — x²+(k+e−w)x−wk−we
+          const B = fAdd(k, fr(e - w));
+          const C = fSub(fMul(fr(-w), k), fr(w * e));
+          const second: Pred = (x) =>
+            fCmp(fAdd(fAdd(fMul(x, x), fMul(B, x)), C), fr(0)) < 0;
+          const rho = fSub(fNeg(k), fr(e));
+          const sol = chartSolve(and(first, second), [
+            fr(u),
+            fr(v),
+            fr(w),
+            rho,
+          ]);
+          return sol.length === 1 && tivEq(sol[0]!, given);
+        },
+      };
+    }
+    if (f.mode === 1) {
+      const [a, b] = [num(f, "a"), num(f, "b")];
+      return [a + b, a * b, a - b][num(f, "exprId")]!;
+    }
+    const [u, v, al, be] = [
+      num(f, "u"),
+      num(f, "v"),
+      num(f, "al"),
+      num(f, "be"),
+    ];
+    const first = qPred(1, -(u + v), u * v, 2);
+    const ks = intsIn(-60, 60, (k) => {
+      // 지면 그대로 — x² − (2k+α+β)x + (k+α)(k+β) > 0
+      const second = qPred(1, -(2 * k + al + be), (k + al) * (k + be), 1);
+      return (
+        chartSolve(and(first, second), [fr(u), fr(v), fr(k + al), fr(k + be)])
+          .length === 0
+      );
+    });
+    return ks[ks.length - 1]! - ks[0]!;
+  },
+
+  "17": (f) => {
+    if (f.mode === 0) {
+      const d = num(f, "d");
+      return intsIn(
+        1,
+        300,
+        (n) =>
+          n - d > 0 &&
+          n + d < n - d + n &&
+          (n + d) ** 2 > n ** 2 + (n - d) ** 2,
+      ).length;
+    }
+    if (f.mode === 1) {
+      const [W, H, S1, S2] = [
+        num(f, "W"),
+        num(f, "H"),
+        num(f, "S1"),
+        num(f, "S2"),
+      ];
+      const area = (x: F): F =>
+        fSub(
+          fMul(fAdd(fr(W), fMul(fr(2), x)), fAdd(fr(H), fMul(fr(2), x))),
+          fr(W * H),
+        );
+      const pred: Pred = (x) =>
+        fCmp(x, fr(0)) > 0 &&
+        fCmp(area(x), fr(S1)) >= 0 &&
+        fCmp(area(x), fr(S2)) <= 0;
+      const s = only(
+        chartSolve(pred, [
+          fr(0),
+          ...roots(4, 2 * (W + H), -S1),
+          ...roots(4, 2 * (W + H), -S2),
+        ]),
+        "폭은 한 구간",
+      );
+      return fNum(fAdd(s.lo!, s.hi!));
+    }
+    const [d, P, S] = [num(f, "d"), num(f, "P"), num(f, "S")];
+    const pred: Pred = (x) =>
+      fCmp(x, fr(0)) > 0 &&
+      fCmp(fMul(fr(2), fAdd(fMul(fr(2), x), fr(d))), fr(P)) >= 0 &&
+      fCmp(fMul(x, fAdd(x, fr(d))), fr(S)) <= 0;
+    const s = only(
+      chartSolve(pred, [fr(0), fr(P - 2 * d, 4), ...roots(1, d, -S)]),
+      "세로는 한 구간",
+    );
+    return fNum(fAdd(s.lo!, s.hi!));
+  },
+
   "10": (f) => {
     const [p, qE] = [num(f, "p"), num(f, "q")];
     if (f.mode === 0) {
@@ -551,6 +710,165 @@ const REL_GE = 3;
 const REL_LT = 0;
 
 const SHOWN: Record<string, (f: Fact) => ShownSpec> = {
+  "14": (f): ShownSpec => {
+    if (f.mode === 1) {
+      const [lm, lc] = [num(f, "lm"), num(f, "lc")];
+      const [a, b, c] = [num(f, "a"), num(f, "b"), num(f, "c")];
+      const crit = [fr(lc, lm), ...roots(a, b, c)];
+      return {
+        env: {},
+        wants: [
+          {
+            what: "일차부등식",
+            pred: (x) => relHolds(relOf(num(f, "lr")), fMul(fr(lm), x), fr(lc)),
+            crit,
+          },
+          { what: "이차부등식", pred: qPred(a, b, c, num(f, "r")), crit },
+        ],
+      };
+    }
+    const { p1, p2, crit } = qPair(f);
+    if (f.mode === 2)
+      return { env: {}, wants: [{ what: "A<B<C", pred: and(p1, p2), crit }] };
+    return {
+      env: {},
+      wants: [
+        { what: "첫 이차부등식", pred: p1, crit },
+        { what: "둘째 이차부등식", pred: p2, crit },
+      ],
+    };
+  },
+  "15": (f): ShownSpec => {
+    const [a, b, c] = [num(f, "a"), num(f, "b"), num(f, "c")];
+    const quad = qPred(a, b, c, num(f, "r"));
+    const qc = roots(a, b, c);
+    if (f.mode === 2) {
+      const K = num(f, "K");
+      const absP: Pred = (x) =>
+        fCmp(fSub(fMul(x, x), fMul(fr(K), fAbs(x))), fr(0)) < 0;
+      const crit = [fr(0), fr(K), fr(-K), ...qc];
+      return {
+        env: {},
+        wants: [
+          { what: "x²−K|x|<0", pred: absP, crit, mustContain: "|" },
+          { what: "이차부등식", pred: quad, crit: qc },
+        ],
+      };
+    }
+    const s0 = fr(num(f, "s0"));
+    const t = fr(num(f, "t"));
+    const absP: Pred = (x) =>
+      relHolds(relOf(num(f, "ra")), fAbs(fSub(x, s0)), t);
+    const crit = [fSub(s0, t), fAdd(s0, t), ...qc];
+    const wants = [
+      { what: "절댓값 부등식", pred: absP, crit, mustContain: "|" },
+      { what: "이차부등식", pred: quad, crit },
+    ];
+    if (f.mode !== 0) return { env: {}, wants };
+    const s = chartSolve(and(absP, quad), crit)[0]!;
+    return {
+      env: { a: s.lo!, b: s.hi! },
+      wants: [
+        ...wants,
+        {
+          what: "해 a·b 의 등호",
+          pred: and(absP, quad),
+          crit,
+          mustContain: "b",
+        },
+      ],
+    };
+  },
+  "16": (f): ShownSpec => {
+    if (f.mode === 0) {
+      const [u, v, w, e, side] = ["u", "v", "w", "e", "side"].map((k) =>
+        num(f, k),
+      ) as [number, number, number, number, number];
+      const k = 2;
+      const first = qPred(1, -(u + v), u * v, 2);
+      const given =
+        side > 0
+          ? { lo: w, hi: v, lc: false, hc: true }
+          : { lo: u, hi: w, lc: true, hc: false };
+      return {
+        env: { k: fr(k) },
+        wants: [
+          { what: "첫 이차부등식", pred: first, crit: [fr(u), fr(v)] },
+          {
+            what: "k 가 든 이차부등식",
+            pred: qPred(1, k + e - w, -w * k - w * e, 0),
+            crit: roots(1, k + e - w, -w * k - w * e),
+          },
+          {
+            what: "주어진 해",
+            pred: (x) =>
+              tivHas(
+                {
+                  lo: fr(given.lo),
+                  loC: given.lc,
+                  hi: fr(given.hi),
+                  hiC: given.hc,
+                },
+                x,
+              ),
+            crit: [fr(given.lo), fr(given.hi)],
+            mustContain: side > 0 ? "<x\\le" : "\\le x<",
+          },
+        ],
+      };
+    }
+    if (f.mode === 1) {
+      const [beta, a, b] = [num(f, "beta"), num(f, "a"), num(f, "b")];
+      const p1 = qPred(1, beta, -a, 0);
+      const p2 = qPred(1, beta, b, 3);
+      const crit = [...roots(1, beta, -a), ...roots(1, beta, b)];
+      const sol = chartSolve(and(p1, p2), crit);
+      return {
+        env: { a: fr(a), b: fr(b) },
+        wants: [
+          { what: "a 가 든 부등식", pred: p1, crit, mustContain: "a" },
+          { what: "b 가 든 부등식", pred: p2, crit, mustContain: "b" },
+          ...sol.map((s, i) => ({
+            what: `주어진 해 ${i + 1}`,
+            pred: (x: F) => tivHas(s, x),
+            crit,
+          })),
+        ],
+      };
+    }
+    const [u, v, al, be] = [
+      num(f, "u"),
+      num(f, "v"),
+      num(f, "al"),
+      num(f, "be"),
+    ];
+    const k = 1;
+    return {
+      env: { k: fr(k) },
+      wants: [
+        {
+          what: "첫 이차부등식",
+          pred: qPred(1, -(u + v), u * v, 2),
+          crit: [fr(u), fr(v)],
+        },
+        {
+          what: "k 가 든 이차부등식",
+          pred: qPred(1, -(2 * k + al + be), (k + al) * (k + be), 1),
+          crit: [fr(k + al), fr(k + be)],
+        },
+      ],
+    };
+  },
+  "17": (f): ShownSpec => ({
+    env: {},
+    wants: [],
+    numbers:
+      f.mode === 0
+        ? [num(f, "d")]
+        : f.mode === 1
+          ? [num(f, "W"), num(f, "H"), num(f, "S1"), num(f, "S2")]
+          : [num(f, "d"), num(f, "P"), num(f, "S")],
+  }),
   "10": (f): ShownSpec => {
     const [p, qE] = [num(f, "p"), num(f, "q")];
     const range = {
