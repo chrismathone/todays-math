@@ -964,3 +964,58 @@
     font-size: 12px;
   }
 }
+
+@media (max-width: 760px) {
+  .gradeGroup button {
+    justify-content: center;
+    padding: 0 7px;
+    min-width: 0;
+  }
+  .gradeGroup button strong {
+    white-space: nowrap;
+  }
+  .gradeGroup button svg {
+    display: none;
+  }
+  .importCard {
+    display: grid;
+    grid-template-columns: 48px minmax(0, 1fr);
+    gap: 16px;
+  }
+  .importButton {
+    grid-column: 2;
+    margin-left: 0;
+    width: 100%;
+  }
+  .importCopy > div {
+    white-space: nowrap;
+    gap: 4px;
+  }
+  .primaryColumn,
+  .secondaryColumn {
+    display: contents;
+  }
+  .bankCard {
+    order: 1;
+    width: 100%;
+  }
+  .activeDraft {
+    order: 2;
+    width: 100%;
+  }
+  .importCard {
+    order: 3;
+    width: 100%;
+  }
+  .recentSection {
+    order: 4;
+    width: 100%;
+  }
+  .secondaryColumn > :nth-child(2) {
+    order: 5;
+    width: 100%;
+  }
+  .helpNote {
+    order: 6;
+  }
+}
