@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useId, useMemo, useState } from "react";
+import { useEffect, useId, useMemo, useRef, useState } from "react";
 import { MathText } from "@/components/math/MathText";
 import { DIFFICULTY_LADDER } from "@/contracts/difficulty";
 import UnifiedProblem from "./UnifiedProblem";
@@ -19,7 +19,16 @@ type Filters = {
 function Icon({
   name,
 }: {
-  name: "search" | "arrow" | "chevron" | "reset" | "basket" | "check" | "plus";
+  name:
+    | "search"
+    | "arrow"
+    | "chevron"
+    | "reset"
+    | "basket"
+    | "check"
+    | "plus"
+    | "filter"
+    | "close";
 }) {
   const paths = {
     search: "m21 21-4.5-4.5M19 10.5a8.5 8.5 0 1 1-17 0 8.5 8.5 0 0 1 17 0Z",
@@ -29,6 +38,8 @@ function Icon({
     basket: "m3 8 2 12h14l2-12H3Zm5 0 4-6 4 6M9 12v4m6-4v4",
     check: "m5 12 4 4L19 6",
     plus: "M12 5v14M5 12h14",
+    filter: "M4 7h9m4 0h3M4 17h3m4 0h9M13 4v6M7 14v6",
+    close: "m6 6 12 12M6 18 18 6",
   };
   return (
     <svg
@@ -209,6 +220,8 @@ export default function BankView({
 }: BankViewProps) {
   const [search, setSearch] = useState(initialFilters?.q ?? "");
   const [basketOpen, setBasketOpen] = useState(false);
+  const [filtersOpen, setFiltersOpen] = useState(false);
+  const resultsHeading = useRef<HTMLHeadingElement>(null);
   const [request, setRequest] = useState<{ filters: Filters; version: number }>(
     {
       filters: {
@@ -246,12 +259,14 @@ export default function BankView({
     Math.ceil(data.total / Math.max(1, data.pageSize)),
   );
   const firstRow = (data.page - 1) * data.pageSize + 1;
-  const activeFilters = [
-    filters.q,
-    filters.grade,
-    filters.chapter,
-    filters.difficulty,
-  ].filter(Boolean);
+  const activeFilters = (
+    [
+      { key: "q", label: "검색어", value: filters.q },
+      { key: "grade", label: "학년", value: filters.grade },
+      { key: "chapter", label: "단원", value: filters.chapter },
+      { key: "difficulty", label: "난이도", value: filters.difficulty },
+    ] as const
+  ).filter(({ value }) => Boolean(value));
   const availableGrades = data.grades.length ? data.grades : initialData.grades;
   const selectedOnPage = data.problems.filter((problem) =>
     selectedIds.has(problem.id),
@@ -322,6 +337,18 @@ export default function BankView({
     updateFilters({ q: "", grade: "", chapter: "", difficulty: "" });
   }
 
+  function removeFilter(key: (typeof activeFilters)[number]["key"]) {
+    if (key === "q") setSearch("");
+    // A unit belongs to its grade; removing the grade also removes that unit.
+    updateFilters(key === "grade" ? { grade: "", chapter: "" } : { [key]: "" });
+  }
+
+  function goToPage(page: number) {
+    updateFilters({ page });
+    resultsHeading.current?.focus({ preventScroll: true });
+    resultsHeading.current?.scrollIntoView({ block: "start" });
+  }
+
   function togglePage() {
     data.problems.forEach((problem) => {
       if (allOnPageSelected || !selectedIds.has(problem.id)) onToggle(problem);
@@ -342,87 +369,113 @@ export default function BankView({
       <div className={styles.workspace}>
         <div className={styles.results}>
           <div className={styles.filters}>
-            <div className={styles.filterHeading}>
-              <h2>문제 검색</h2>
-              <button
-                type="button"
-                className={styles.resetButton}
-                disabled={!activeFilters.length && !search}
-                onClick={resetFilters}
+            <div className={styles.searchRow}>
+              <form
+                className={styles.searchForm}
+                role="search"
+                onSubmit={(event) => {
+                  event.preventDefault();
+                  updateFilters({ q: search.trim() });
+                }}
               >
-                <Icon name="reset" />
-                초기화
-              </button>
-            </div>
-            <form
-              className={styles.searchForm}
-              role="search"
-              onSubmit={(event) => {
-                event.preventDefault();
-                updateFilters({ q: search.trim() });
-              }}
-            >
-              <Icon name="search" />
-              <input
-                aria-label="문제 검색"
-                placeholder="문제 내용, 소단원, 문제 번호"
-                value={search}
-                onChange={(event) => setSearch(event.target.value)}
-              />
-              {search ? (
-                <button
-                  type="button"
-                  className={styles.clearSearch}
-                  aria-label="검색어 지우기"
-                  onClick={() => {
-                    setSearch("");
-                    if (filters.q) updateFilters({ q: "" });
-                  }}
-                >
-                  ×
-                </button>
-              ) : null}
-              <button className={styles.searchButton} type="submit">
-                검색
-              </button>
-            </form>
-            <div className={styles.filterLine}>
-              <span className={styles.filterLabel} id={`${headingId}-grades`}>
-                학년
-              </span>
-              <div
-                className={styles.gradePills}
-                role="group"
-                aria-labelledby={`${headingId}-grades`}
-              >
-                <button
-                  type="button"
-                  className={styles.gradePill}
-                  aria-pressed={!filters.grade}
-                  onClick={() => updateFilters({ grade: "", chapter: "" })}
-                >
-                  전체
-                </button>
-                {availableGrades.map(({ grade }) => (
+                <Icon name="search" />
+                <input
+                  aria-label="문제 검색"
+                  placeholder="문제 내용, 소단원, 문제 번호"
+                  value={search}
+                  onChange={(event) => setSearch(event.target.value)}
+                />
+                {search ? (
                   <button
-                    key={grade}
                     type="button"
-                    className={styles.gradePill}
-                    aria-pressed={filters.grade === grade}
-                    onClick={() => updateFilters({ grade, chapter: "" })}
+                    className={styles.clearSearch}
+                    aria-label="검색어 지우기"
+                    onClick={() => {
+                      setSearch("");
+                      if (filters.q) updateFilters({ q: "" });
+                    }}
                   >
-                    {grade}
+                    ×
                   </button>
-                ))}
+                ) : null}
+                <button className={styles.searchButton} type="submit">
+                  검색
+                </button>
+              </form>
+              <div className={styles.filterToolbar}>
+                <button
+                  type="button"
+                  className={styles.filterToggle}
+                  aria-expanded={filtersOpen}
+                  aria-controls={`${headingId}-filters`}
+                  onClick={() => setFiltersOpen((value) => !value)}
+                >
+                  <Icon name="filter" />
+                  {filtersOpen ? "필터 접기" : "상세 필터"}
+                  <span
+                    className={
+                      filtersOpen ? styles.chevronUp : styles.chevronDown
+                    }
+                  >
+                    <Icon name="chevron" />
+                  </span>
+                </button>
+                <button
+                  type="button"
+                  className={styles.resetButton}
+                  disabled={
+                    !activeFilters.length && !search && filters.page === 1
+                  }
+                  onClick={resetFilters}
+                >
+                  <Icon name="reset" />
+                  초기화
+                </button>
               </div>
             </div>
-            <div className={styles.selectFilters}>
+            <div
+              id={`${headingId}-filters`}
+              className={`${styles.selectFilters} ${filtersOpen ? styles.filtersOpen : ""}`}
+            >
+              <div className={styles.filterField}>
+                <label
+                  className={styles.filterLabel}
+                  htmlFor={`${headingId}-grade`}
+                >
+                  <span aria-hidden="true">01</span> 학년
+                </label>
+                <div className={styles.selectWrap}>
+                  <select
+                    id={`${headingId}-grade`}
+                    value={filters.grade}
+                    onChange={(event) =>
+                      updateFilters({ grade: event.target.value, chapter: "" })
+                    }
+                  >
+                    <option value="">전체 학년</option>
+                    {filters.grade &&
+                    !availableGrades.some(
+                      ({ grade }) => grade === filters.grade,
+                    ) ? (
+                      <option value={filters.grade}>{filters.grade}</option>
+                    ) : null}
+                    {availableGrades.map(({ grade }) => (
+                      <option key={grade} value={grade}>
+                        {grade}
+                      </option>
+                    ))}
+                  </select>
+                  <span className={styles.chevronDown}>
+                    <Icon name="chevron" />
+                  </span>
+                </div>
+              </div>
               <div className={styles.filterField}>
                 <label
                   className={styles.filterLabel}
                   htmlFor={`${headingId}-chapter`}
                 >
-                  단원
+                  <span aria-hidden="true">02</span> 단원
                 </label>
                 <div className={styles.selectWrap}>
                   <select
@@ -454,7 +507,7 @@ export default function BankView({
                   className={styles.filterLabel}
                   htmlFor={`${headingId}-difficulty`}
                 >
-                  난이도
+                  <span aria-hidden="true">03</span> 난이도
                 </label>
                 <div className={styles.selectWrap}>
                   <select
@@ -477,10 +530,31 @@ export default function BankView({
                 </div>
               </div>
             </div>
+            {activeFilters.length ? (
+              <div
+                className={styles.filterSummary}
+                role="group"
+                aria-label="적용한 검색 조건"
+              >
+                {activeFilters.map(({ key, label, value }) => (
+                  <button
+                    key={key}
+                    type="button"
+                    className={styles.filterChip}
+                    aria-label={`${label} ${value} 조건 해제${key === "grade" && filters.chapter ? " (단원도 해제)" : ""}`}
+                    onClick={() => removeFilter(key)}
+                  >
+                    <span className={styles.chipLabel}>{label}</span>
+                    <span className={styles.chipValue}>{value}</span>
+                    <Icon name="close" />
+                  </button>
+                ))}
+              </div>
+            ) : null}
           </div>
 
           <div className={styles.resultsHeader}>
-            <h2>
+            <h2 ref={resultsHeading} tabIndex={-1}>
               문제 목록{" "}
               <span role="status">
                 {loading ? (
@@ -514,15 +588,6 @@ export default function BankView({
               이 페이지 전체 담기
             </label>
           </div>
-          {activeFilters.length ? (
-            <p className={styles.filterSummary}>
-              {activeFilters.map((value, index) => (
-                <span key={`${index}-${value}`}>
-                  {index === 0 && filters.q ? `“${value}”` : value}
-                </span>
-              ))}
-            </p>
-          ) : null}
           <div className={styles.problemList} aria-busy={loading}>
             {loading ? (
               <div className={styles.loadingState} role="status">
@@ -585,7 +650,7 @@ export default function BankView({
                   type="button"
                   aria-label="이전 페이지"
                   disabled={data.page <= 1}
-                  onClick={() => updateFilters({ page: data.page - 1 })}
+                  onClick={() => goToPage(data.page - 1)}
                 >
                   <span className={styles.previousIcon}>
                     <Icon name="chevron" />
@@ -601,7 +666,7 @@ export default function BankView({
                       key={page}
                       aria-label={`${page}페이지`}
                       aria-current={data.page === page ? "page" : undefined}
-                      onClick={() => updateFilters({ page })}
+                      onClick={() => goToPage(page)}
                     >
                       {page}
                     </button>
@@ -615,7 +680,7 @@ export default function BankView({
                   type="button"
                   aria-label="다음 페이지"
                   disabled={data.page >= totalPages}
-                  onClick={() => updateFilters({ page: data.page + 1 })}
+                  onClick={() => goToPage(data.page + 1)}
                 >
                   <Icon name="chevron" />
                 </button>
@@ -663,11 +728,22 @@ export default function BankView({
             id={`${headingId}-basket-content`}
             className={styles.basketContent}
           >
-            <p className={styles.basketDescription}>
-              {selected.length
-                ? "검색 조건을 바꿔도 담은 문제는 유지됩니다."
-                : "목록에서 필요한 문제를 선택하세요."}
-            </p>
+            <div className={styles.basketIntro}>
+              <p className={styles.basketDescription}>
+                {selected.length
+                  ? "검색 조건을 바꿔도 담은 문제는 유지됩니다."
+                  : "목록에서 필요한 문제를 선택하세요."}
+              </p>
+              {selected.length ? (
+                <button
+                  type="button"
+                  className={styles.clearBasket}
+                  onClick={() => selected.forEach(onToggle)}
+                >
+                  전체 비우기
+                </button>
+              ) : null}
+            </div>
             {selected.length ? (
               <ol className={styles.basketList}>
                 {selected.map((problem, index) => (
@@ -699,7 +775,7 @@ export default function BankView({
                       aria-label={`${problem.problemCode || problem.chapter || index + 1} 문제 담기 취소`}
                       onClick={() => onToggle(problem)}
                     >
-                      ×
+                      <Icon name="close" />
                     </button>
                   </li>
                 ))}
@@ -723,10 +799,16 @@ export default function BankView({
               disabled={selected.length === 0}
               onClick={onExport}
             >
-              내보내기
+              <span>
+                <span className={styles.nextStep}>학습지로 </span>내보내기
+              </span>
               <Icon name="arrow" />
             </button>
-            <p>선택한 문제를 확인하고 인쇄합니다.</p>
+            <p>
+              {selected.length
+                ? "다음 화면에서 문제를 확인하고 인쇄하세요."
+                : "문제를 담으면 내보내기를 시작할 수 있어요."}
+            </p>
           </div>
         </aside>
       </div>
