@@ -70,20 +70,10 @@ export default function WorkroomHome({
     { prefix: "중", label: "중등", note: "개념부터 유형까지" },
   ];
   const visibleDrafts = recent.slice(0, 4);
-  const date = new Intl.DateTimeFormat("ko-KR", {
-    month: "long",
-    day: "numeric",
-    weekday: "long",
-    timeZone: "Asia/Seoul",
-  }).format(new Date());
   return (
     <main className={s.home}>
       <header className={s.welcome}>
         <div>
-          <p>
-            {date}
-            <span>오늘도 좋은 수업을 위한 준비</span>
-          </p>
           <h1>오늘의 작업</h1>
           <div>필요한 문제를 찾고, 나만의 수업 자료로 완성하세요.</div>
         </div>

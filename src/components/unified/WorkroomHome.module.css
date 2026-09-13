@@ -1019,3 +1019,118 @@
     order: 6;
   }
 }
+
+/* Work first: remove the decorative introduction and use the available width. */
+.home {
+  max-width: 1800px;
+  padding: 24px 28px 32px;
+}
+.welcome {
+  min-height: 44px;
+  margin-bottom: 20px;
+  gap: 20px;
+}
+.welcome > div {
+  display: flex;
+  align-items: baseline;
+  gap: 20px;
+  min-width: 0;
+}
+.welcome h1 {
+  font-size: 30px;
+  margin: 0;
+  flex-shrink: 0;
+}
+.welcome > div > div {
+  font-size: 14px;
+}
+.bankCard {
+  padding: 21px 24px 0;
+}
+.bankHeading {
+  margin-bottom: 18px;
+}
+.gradeGroups {
+  padding: 18px 0;
+  gap: 10px;
+}
+.bankFoot {
+  min-height: 49px;
+}
+.dashboard {
+  grid-template-columns: minmax(0, 1fr) 340px;
+  gap: 22px;
+}
+.primaryColumn,
+.secondaryColumn {
+  gap: 20px;
+}
+.importCard {
+  padding: 21px 22px;
+}
+.activeDraft {
+  padding: 20px 22px 13px;
+}
+.activeHeading {
+  margin-bottom: 18px;
+}
+.draftEmptyText {
+  margin: 18px 0 15px;
+}
+.draftSources {
+  margin: 18px 0 16px;
+  padding-top: 14px;
+}
+@media (min-width: 1600px) {
+  .dashboard {
+    grid-template-columns: minmax(0, 1fr) 360px;
+    gap: 24px;
+  }
+  .bankHeading h2 {
+    font-size: 22px;
+  }
+}
+@media (max-width: 1250px) {
+  .dashboard {
+    grid-template-columns: minmax(0, 1fr) 300px;
+    gap: 18px;
+  }
+  .welcome > div > div {
+    display: none;
+  }
+}
+@media (max-width: 1050px) and (min-width: 761px) {
+  .dashboard {
+    grid-template-columns: 1fr;
+  }
+}
+@media (max-width: 760px) {
+  .home {
+    padding: 18px 16px 24px;
+  }
+  .welcome {
+    min-height: 36px;
+    margin-bottom: 16px;
+  }
+  .welcome h1 {
+    font-size: 27px;
+  }
+  .bankCard {
+    padding: 18px 16px 0;
+  }
+  .bankHeading {
+    margin-bottom: 16px;
+  }
+  .bankHeading h2 {
+    font-size: 17px;
+  }
+  .gradeGroups {
+    padding: 17px 0;
+  }
+  .activeDraft {
+    padding: 20px;
+  }
+  .importCard {
+    padding: 20px 18px;
+  }
+}

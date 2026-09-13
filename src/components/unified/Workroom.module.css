@@ -1312,3 +1312,16 @@
     height: 44px;
   }
 }
+
+@media (min-width: 761px) {
+  .topbar {
+    height: 60px;
+    padding-inline: 28px;
+  }
+  .viewContent,
+  .studioContent,
+  .library {
+    max-width: 1800px;
+    padding: 24px 28px;
+  }
+}
