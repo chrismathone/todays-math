@@ -86,6 +86,37 @@
   background: #edf2ff;
   border-color: #a7b8e9;
 }
+.restartDialog {
+  width: min(420px, calc(100vw - 32px));
+  max-height: calc(100dvh - 32px);
+  margin: auto;
+  padding: 24px;
+  overflow: auto;
+  border: 1px solid var(--studio-line);
+  border-radius: 12px;
+  background: white;
+  color: var(--studio-ink);
+  box-shadow: 0 20px 60px #172b4d33;
+}
+.restartDialog::backdrop {
+  background: #172b4d66;
+}
+.restartDialog h2 {
+  margin: 0 0 12px;
+  font-size: var(--text-section, 18px);
+  line-height: 1.4;
+}
+.restartDialog p {
+  margin: 0;
+  color: var(--studio-muted);
+}
+.restartActions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  gap: 8px;
+  margin-top: 24px;
+}
 .hiddenInput,
 .srOnly {
   position: absolute;

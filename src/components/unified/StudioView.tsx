@@ -6,7 +6,11 @@
 import WorkspacePageHeader from "./WorkspacePageHeader";
 import { useEffect, useEffectEvent, useRef, useState } from "react";
 import type { KeyboardEvent, PointerEvent, SVGProps } from "react";
-import type { PDFDocumentProxy, RenderTask } from "pdfjs-dist";
+import type {
+  PDFDocumentLoadingTask,
+  PDFDocumentProxy,
+  RenderTask,
+} from "pdfjs-dist";
 import { ProblemContent } from "@/components/math/ProblemContent";
 import UnifiedProblem from "./UnifiedProblem";
 import { displayFractions } from "./fractionDisplay";
@@ -39,11 +43,41 @@ interface RenderedPage {
   url: string;
 }
 
+interface StudioSession {
+  generation: number;
+  importing: AbortController | null;
+  loadingPdfs: Set<PDFDocumentLoadingTask>;
+  documents: Set<PDFDocumentProxy>;
+  renderTask: RenderTask | null;
+}
+
+function releaseSession(session: StudioSession) {
+  // Fence every async continuation before releasing its browser resources.
+  session.generation += 1;
+  session.importing?.abort();
+  session.importing = null;
+  session.renderTask?.cancel();
+  session.renderTask = null;
+  for (const loading of session.loadingPdfs)
+    void loading.destroy().catch(() => {});
+  session.loadingPdfs.clear();
+  for (const pdf of session.documents) void pdf.destroy().catch(() => {});
+  session.documents.clear();
+}
+
 function Icon({
   name,
   ...props
 }: SVGProps<SVGSVGElement> & {
-  name: "upload" | "crop" | "file" | "check" | "arrow" | "plus" | "trash";
+  name:
+    | "upload"
+    | "crop"
+    | "file"
+    | "check"
+    | "arrow"
+    | "plus"
+    | "trash"
+    | "restart";
 }) {
   const paths = {
     upload: "M12 16V3m-5 5 5-5 5 5M4 15v5a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1v-5",
@@ -53,6 +87,7 @@ function Icon({
     arrow: "M4 12h16m-6-6 6 6-6 6",
     plus: "M12 5v14M5 12h14",
     trash: "M3 6h18M9 6V3h6v3M5 6l1 15h12l1-15M10 10v7M14 10v7",
+    restart: "M3 4v6h6M3 10a9 9 0 1 1 2 8",
   };
   return (
     <svg
@@ -72,22 +107,38 @@ function Icon({
   );
 }
 
-function readImage(file: File): Promise<HTMLImageElement> {
+function readImage(file: File, signal: AbortSignal): Promise<HTMLImageElement> {
   return new Promise((resolve, reject) => {
+    if (signal.aborted) {
+      reject(new DOMException("Import cancelled", "AbortError"));
+      return;
+    }
     const url = URL.createObjectURL(file);
     const image = new Image();
-    image.onload = () => {
+    const cleanup = () => {
+      image.onload = null;
+      image.onerror = null;
+      signal.removeEventListener("abort", cancel);
       URL.revokeObjectURL(url);
+    };
+    const cancel = () => {
+      cleanup();
+      image.src = "";
+      reject(new DOMException("Import cancelled", "AbortError"));
+    };
+    image.onload = () => {
+      cleanup();
       resolve(image);
     };
     image.onerror = () => {
-      URL.revokeObjectURL(url);
+      cleanup();
       reject(
         new Error(
           "이미지를 열 수 없습니다. PNG, JPG 또는 WebP 파일을 확인해 주세요.",
         ),
       );
     };
+    signal.addEventListener("abort", cancel, { once: true });
     image.src = url;
   });
 }
@@ -117,19 +168,30 @@ export default function StudioView({
   const [inspectorOpen, setInspectorOpen] = useState(true);
   const [coordinatesOpen, setCoordinatesOpen] = useState(false);
   const [focusMode, setFocusMode] = useState(false);
+  const [restartOpen, setRestartOpen] = useState(false);
   const [viewportSize, setViewportSize] = useState({ width: 0, height: 0 });
   const studio = useRef<HTMLElement>(null);
   const focusButton = useRef<HTMLButtonElement>(null);
+  const restartButton = useRef<HTMLButtonElement>(null);
+  const emptyRestartButton = useRef<HTMLButtonElement>(null);
+  const restartDialog = useRef<HTMLDialogElement>(null);
+  const cancelRestartButton = useRef<HTMLButtonElement>(null);
   const pageViewport = useRef<HTMLDivElement>(null);
   const fileInput = useRef<HTMLInputElement>(null);
   const surface = useRef<HTMLDivElement>(null);
   const drag = useRef<{ x: number; y: number; pointerId: number } | null>(null);
-  const importLock = useRef(false);
-  const pdfDocuments = useRef(new Set<PDFDocumentProxy>());
+  const session = useRef<StudioSession>({
+    generation: 0,
+    importing: null,
+    loadingPdfs: new Set(),
+    documents: new Set(),
+    renderTask: null,
+  });
   const mounted = useRef(true);
 
   // The workspace keeps inactive views mounted; leaving must release modal state.
   if (!active && focusMode) setFocusMode(false);
+  if (!active && restartOpen) setRestartOpen(false);
 
   const currentSource = sources.find((item) => item.id === sourceId);
   const editing = Boolean(currentSource && step !== "upload");
@@ -151,6 +213,15 @@ export default function StudioView({
   const validSelection = Boolean(
     readyToCrop && readyToCrop.width >= 8 && readyToCrop.height >= 8,
   );
+
+  useEffect(() => {
+    const dialog = restartDialog.current;
+    if (!dialog) return;
+    if (restartOpen && active) {
+      if (!dialog.open) dialog.showModal();
+      cancelRestartButton.current?.focus();
+    } else if (dialog.open) dialog.close();
+  }, [restartOpen, active]);
 
   useEffect(() => {
     const viewport = pageViewport.current;
@@ -207,18 +278,22 @@ export default function StudioView({
 
   useEffect(() => {
     mounted.current = true;
-    const documents = pdfDocuments.current;
+    const resources = session.current;
     return () => {
       mounted.current = false;
-      for (const pdf of documents) void pdf.destroy();
-      documents.clear();
+      releaseSession(resources);
+      // Strict Mode replays mount effects; allow the cancelled initial request to retry.
+      handledImport.current = null;
     };
   }, []);
 
   useEffect(() => {
     if (!currentSource) return;
+    const resources = session.current;
+    const generation = resources.generation;
     let cancelled = false;
     let task: RenderTask | undefined;
+    const stale = () => cancelled || generation !== resources.generation;
     async function renderPage() {
       const canvas = document.createElement("canvas");
       try {
@@ -226,7 +301,7 @@ export default function StudioView({
         if (!ctx) throw new Error("이 브라우저에서 지면을 표시할 수 없습니다.");
         if (currentSource!.pdf) {
           const page = await currentSource!.pdf.getPage(pageNumber);
-          if (cancelled) return;
+          if (stale()) return;
           const base = page.getViewport({ scale: 1 });
           const viewport = page.getViewport({
             scale: Math.min(2.5, 2200 / Math.max(base.width, base.height)),
@@ -234,6 +309,7 @@ export default function StudioView({
           canvas.width = Math.ceil(viewport.width);
           canvas.height = Math.ceil(viewport.height);
           task = page.render({ canvas, canvasContext: ctx, viewport });
+          resources.renderTask = task;
           await task.promise;
         } else if (currentSource!.image) {
           const image = currentSource!.image;
@@ -249,7 +325,7 @@ export default function StudioView({
           ctx.fillRect(0, 0, canvas.width, canvas.height);
           ctx.drawImage(image, 0, 0);
         }
-        if (!cancelled)
+        if (!stale())
           setRendered({
             sourceId: currentSource!.id,
             number: pageNumber,
@@ -257,7 +333,7 @@ export default function StudioView({
             url: canvas.toDataURL("image/png"),
           });
       } catch (cause) {
-        if (!cancelled)
+        if (!stale())
           setError(
             cause instanceof Error
               ? cause.message
@@ -269,6 +345,7 @@ export default function StudioView({
     return () => {
       cancelled = true;
       task?.cancel();
+      if (resources.renderTask === task) resources.renderTask = null;
     };
   }, [currentSource, pageNumber]);
 
@@ -282,38 +359,49 @@ export default function StudioView({
   }
 
   async function importFiles(files: File[]) {
-    if (!files.length || importLock.current) return;
-    importLock.current = true;
+    const resources = session.current;
+    if (!files.length || resources.importing) return;
+    const controller = new AbortController();
+    const generation = resources.generation;
+    resources.importing = controller;
+    const stale = () => !mounted.current || generation !== resources.generation;
     setBusy(true);
     setError("");
     const loaded: StudioSource[] = [];
     const errors: string[] = [];
     for (const file of files) {
+      if (stale()) return;
       try {
         if (file.size > 40 * 1024 * 1024)
           throw new Error("40 MB 이하 파일을 선택해 주세요.");
         const id = crypto.randomUUID();
         if (file.type === "application/pdf" || /\.pdf$/i.test(file.name)) {
           const pdfjs = await import("pdfjs-dist");
+          if (stale()) return;
           pdfjs.GlobalWorkerOptions.workerSrc = "/api/dev/unified/pdf-worker";
+          const data = await file.arrayBuffer();
+          if (stale()) return;
           const loading = pdfjs.getDocument({
-            data: await file.arrayBuffer(),
+            data,
             useSystemFonts: true,
           });
+          resources.loadingPdfs.add(loading);
           // Password-protected files fail clearly instead of opening an unseen prompt.
           const pdf = await loading.promise.catch(async (cause: unknown) => {
-            await loading.destroy();
+            if (resources.loadingPdfs.delete(loading))
+              await loading.destroy().catch(() => {});
             if (cause instanceof Error && cause.name === "PasswordException")
               throw new Error("암호를 해제한 PDF를 선택해 주세요.");
             throw new Error(
               "PDF를 열 수 없습니다. 파일과 PDF 뷰어 연결을 확인해 주세요.",
             );
           });
-          if (!mounted.current) {
-            await pdf.destroy();
-            break;
+          resources.loadingPdfs.delete(loading);
+          if (stale()) {
+            await pdf.destroy().catch(() => {});
+            return;
           }
-          pdfDocuments.current.add(pdf);
+          resources.documents.add(pdf);
           loaded.push({
             id,
             name: file.name,
@@ -326,7 +414,8 @@ export default function StudioView({
           /^image\/(png|jpeg|webp|gif|bmp)$/.test(file.type) ||
           /\.(png|jpe?g|webp|gif|bmp)$/i.test(file.name)
         ) {
-          const image = await readImage(file);
+          const image = await readImage(file, controller.signal);
+          if (stale()) return;
           if (image.naturalWidth * image.naturalHeight > 48_000_000)
             throw new Error(
               "이미지가 너무 큽니다. 4,800만 화소 이하로 줄여 주세요.",
@@ -344,12 +433,13 @@ export default function StudioView({
             "PDF, PNG, JPG, WebP, GIF, BMP 파일을 선택해 주세요.",
           );
       } catch (cause) {
+        if (stale()) return;
         errors.push(
           `${file.name}: ${cause instanceof Error ? cause.message : "파일을 열 수 없습니다."}`,
         );
       }
     }
-    if (mounted.current) {
+    if (!stale()) {
       if (loaded.length) {
         setSources((previous) => [...previous, ...loaded]);
         chooseSource(loaded[0].id);
@@ -359,8 +449,53 @@ export default function StudioView({
       }
       setError(errors.join("\n"));
       setBusy(false);
+      resources.importing = null;
     }
-    importLock.current = false;
+  }
+
+  function startOver() {
+    releaseSession(session.current);
+    // A queued external import belongs to the workspace being discarded, too.
+    if (importRequest) handledImport.current = importRequest.id;
+    const pointerId = drag.current?.pointerId;
+    drag.current = null;
+    if (
+      pointerId !== undefined &&
+      surface.current?.hasPointerCapture(pointerId)
+    )
+      surface.current.releasePointerCapture(pointerId);
+    if (fileInput.current) fileInput.current.value = "";
+    setSources([]);
+    setSourceId("");
+    setPageNumber(1);
+    setRendered(null);
+    setSelection(null);
+    setCrops([]);
+    setActiveCropId("");
+    setStep("upload");
+    setLevel("elementary");
+    setGrade("초5");
+    setZoom(100);
+    setBusy(false);
+    setDragOver(false);
+    setError("");
+    setNotice("");
+    setInspectorOpen(true);
+    setCoordinatesOpen(false);
+    setFocusMode(false);
+    setViewportSize({ width: 0, height: 0 });
+    setRestartOpen(false);
+  }
+
+  function requestStartOver() {
+    if (
+      sources.length ||
+      crops.length ||
+      selection ||
+      session.current.importing
+    )
+      setRestartOpen(true);
+    else startOver();
   }
 
   const importRequested = useEffectEvent((files: File[]) => {
@@ -588,7 +723,12 @@ export default function StudioView({
       role={focusMode ? "dialog" : undefined}
       aria-modal={focusMode || undefined}
       onKeyDown={(event) => {
-        if (!focusMode || event.key !== "Tab") return;
+        if (
+          !focusMode ||
+          event.key !== "Tab" ||
+          document.querySelector("dialog[open]")
+        )
+          return;
         const controls = Array.from(
           event.currentTarget.querySelectorAll<HTMLElement>(
             'button:not(:disabled), input:not(:disabled), select:not(:disabled), textarea:not(:disabled), [tabindex="0"]',
@@ -633,17 +773,27 @@ export default function StudioView({
               {busy ? "파일 여는 중…" : "파일 가져오기"}
             </button>
             <button
-              aria-pressed={!inspectorOpen}
+              ref={restartButton}
+              type="button"
+              onClick={requestStartOver}
+            >
+              <Icon name="restart" />
+              새로 시작
+            </button>
+            <button
+              aria-pressed={inspectorOpen}
+              aria-label={inspectorOpen ? "검수 패널 접기" : "검수 패널 열기"}
               onClick={() => setInspectorOpen((value) => !value)}
             >
-              {inspectorOpen ? "검수 패널 접기" : "검수 패널 열기"}
+              검수 패널
             </button>
             <button
               ref={focusButton}
               aria-pressed={focusMode}
+              aria-label={focusMode ? "확대 종료" : "작업 영역 확대"}
               onClick={() => setFocusMode((value) => !value)}
             >
-              {focusMode ? "확대 종료" : "작업 영역 확대"}
+              {focusMode ? "축소" : "확대"}
             </button>
           </div>
         </div>
@@ -670,6 +820,15 @@ export default function StudioView({
         >
           <Icon name="upload" />
           {busy ? "파일 여는 중…" : "파일 가져오기"}
+        </button>
+        <button
+          ref={emptyRestartButton}
+          type="button"
+          className={styles.secondaryButton}
+          onClick={requestStartOver}
+        >
+          <Icon name="restart" />
+          새로 시작
         </button>
       </WorkspacePageHeader>
 
@@ -1461,6 +1620,54 @@ export default function StudioView({
           </button>
         </div>
       </footer>
+      <dialog
+        ref={restartDialog}
+        className={styles.restartDialog}
+        aria-labelledby="studio-restart-title"
+        aria-describedby="studio-restart-description"
+        onCancel={(event) => {
+          event.preventDefault();
+          setRestartOpen(false);
+        }}
+        onClose={() => {
+          requestAnimationFrame(() => {
+            if (
+              !active ||
+              !studio.current ||
+              studio.current.closest("[hidden], [inert]") ||
+              document.querySelector("dialog[open]")
+            )
+              return;
+            (restartButton.current ?? emptyRestartButton.current)?.focus({
+              preventScroll: true,
+            });
+          });
+        }}
+      >
+        <h2 id="studio-restart-title">새로 시작할까요?</h2>
+        <p id="studio-restart-description">
+          원본과 자른 문제, 검수 내용을 지웁니다.
+          <br />
+          이미 내 시험지에 담은 문항은 유지됩니다.
+        </p>
+        <div className={styles.restartActions}>
+          <button
+            ref={cancelRestartButton}
+            type="button"
+            className={styles.secondaryButton}
+            onClick={() => setRestartOpen(false)}
+          >
+            취소
+          </button>
+          <button
+            type="button"
+            className={styles.primaryButton}
+            onClick={startOver}
+          >
+            새로 시작
+          </button>
+        </div>
+      </dialog>
     </section>
   );
 }
