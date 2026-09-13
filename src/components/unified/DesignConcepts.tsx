@@ -182,7 +182,6 @@ export function DesignGallery({
               <span className={c.miniB} />
               <span className={c.miniC} />
               <span className={c.miniD} />
-              <span className={c.miniE} />
               <span className={c.miniNumber}>0{item.id}</span>
             </button>
             <div className={c.conceptDetails}>
@@ -429,7 +428,7 @@ function EditorHome({
             <SearchIcon />
             문제 검색 · 필터<span>↗</span>
           </button>
-          <div className={c.explorerGroup}>
+          <div className={`${c.explorerGroup} ${c.gradeExplorer}`}>
             <h3>학년별 문제은행</h3>
             {[...data.grades]
               .sort((a, b) => gradeRank(a.grade) - gradeRank(b.grade))
@@ -806,14 +805,17 @@ function BoardHome({
               개의 문제에서 골라보세요.
             </p>
             <div className={c.boardGradeTags}>
-              {data.grades.slice(0, 4).map((g) => (
-                <button
-                  key={g.grade}
-                  onClick={() => onBank({ grade: g.grade })}
-                >
-                  {g.grade}
-                </button>
-              ))}
+              {[...data.grades]
+                .sort((a, b) => gradeRank(a.grade) - gradeRank(b.grade))
+                .slice(0, 4)
+                .map((g) => (
+                  <button
+                    key={g.grade}
+                    onClick={() => onBank({ grade: g.grade })}
+                  >
+                    {g.grade}
+                  </button>
+                ))}
             </div>
             <button className={c.boardDarkButton} onClick={() => onBank()}>
               문제 골라 담기

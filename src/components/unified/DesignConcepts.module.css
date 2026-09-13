@@ -2412,21 +2412,21 @@
   .explorerGroup {
     margin: 17px 0;
   }
-  .explorerGroup:first-of-type {
+  .gradeExplorer {
     display: grid;
     grid-template-columns: repeat(3, minmax(0, 1fr));
     gap: 5px;
   }
-  .explorerGroup:first-of-type h3 {
+  .gradeExplorer h3 {
     grid-column: 1/-1;
   }
-  .explorerGroup:first-of-type > button {
+  .gradeExplorer > button {
     border: 1px solid #d4dce8;
     justify-content: center;
     padding: 8px;
     gap: 5px;
   }
-  .explorerGroup:first-of-type > button > small {
+  .gradeExplorer > button > small {
     display: none;
   }
   .explorerGroup:has(.explorerProblem) {
