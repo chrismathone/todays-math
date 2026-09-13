@@ -21,6 +21,9 @@ export interface StudioCrop {
   grade: string;
   mode: "image" | "text";
   added: boolean;
+  /** Monotonic edit generation, including changes that restore the old text. */
+  revision?: number;
+  aiWarnings?: string[];
 }
 
 export const STUDIO_GRADES: Record<SchoolLevel, string[]> = {

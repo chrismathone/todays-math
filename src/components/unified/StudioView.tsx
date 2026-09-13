@@ -14,6 +14,8 @@ import type {
 import { ProblemContent } from "@/components/math/ProblemContent";
 import UnifiedProblem from "./UnifiedProblem";
 import { displayFractions } from "./fractionDisplay";
+import { useStudioAi } from "./useStudioAi";
+import type { DevAiProvider } from "@/lib/dev-ai/contracts";
 import type { SchoolLevel, StudioViewProps } from "./types";
 import {
   clamp,
@@ -188,6 +190,22 @@ export default function StudioView({
     renderTask: null,
   });
   const mounted = useRef(true);
+  const studioAi = useStudioAi({
+    crops,
+    setCrops,
+    contextKey: `${sourceId}:${pageNumber}`,
+    active,
+    onDetected: (id) => {
+      setActiveCropId(id);
+      setInspectorOpen(true);
+    },
+  });
+  const unreadCrops = crops.filter(
+    (crop) => !crop.content.trim() && !crop.added,
+  );
+  const unsolvedCrops = crops.filter(
+    (crop) => crop.content.trim() && !crop.solution.trim() && !crop.added,
+  );
 
   // The workspace keeps inactive views mounted; leaving must release modal state.
   if (!active && focusMode) setFocusMode(false);
@@ -350,6 +368,7 @@ export default function StudioView({
   }, [currentSource, pageNumber]);
 
   function chooseSource(id: string, page = 1) {
+    studioAi.cancel(true);
     setSourceId(id);
     setPageNumber(page);
     setSelection(null);
@@ -361,6 +380,7 @@ export default function StudioView({
   async function importFiles(files: File[]) {
     const resources = session.current;
     if (!files.length || resources.importing) return;
+    studioAi.cancel(true);
     const controller = new AbortController();
     const generation = resources.generation;
     resources.importing = controller;
@@ -454,6 +474,7 @@ export default function StudioView({
   }
 
   function startOver() {
+    studioAi.cancel(true);
     releaseSession(session.current);
     // A queued external import belongs to the workspace being discarded, too.
     if (importRequest) handledImport.current = importRequest.id;
@@ -576,6 +597,7 @@ export default function StudioView({
       !readyToCrop
     )
       return;
+    studioAi.cancel(true);
     try {
       const canvas = document.createElement("canvas");
       canvas.width = readyToCrop.width;
@@ -684,12 +706,20 @@ export default function StudioView({
   function updateCrop(patch: Partial<StudioCrop>) {
     setCrops((previous) =>
       previous.map((crop) =>
-        crop.id === activeCropId ? { ...crop, ...patch, added: false } : crop,
+        crop.id === activeCropId
+          ? {
+              ...crop,
+              ...patch,
+              added: false,
+              revision: (crop.revision ?? 0) + 1,
+            }
+          : crop,
       ),
     );
   }
 
   function changeLevel(value: SchoolLevel) {
+    studioAi.cancel(true);
     const nextGrade = value === "elementary" ? "초5" : "중1";
     setLevel(value);
     setGrade(nextGrade);
@@ -698,6 +728,7 @@ export default function StudioView({
 
   function addProblems(exportAfter = false) {
     if (!crops.length) return;
+    studioAi.cancel(true);
     const pending = crops.filter((crop) => !crop.added);
     if (pending.length) {
       onAdd(pending.map(studioProblem));
@@ -984,6 +1015,93 @@ export default function StudioView({
                   <option value={200}>200%</option>
                 </select>
                 <button
+                  type="button"
+                  className={`${styles.secondaryButton} ${styles.pageAiButton}`}
+                  disabled={
+                    !pageReady ||
+                    !studioAi.available ||
+                    studioAi.running ||
+                    busy
+                  }
+                  title="현재 페이지에서 문제 영역과 문자를 인식합니다. 기존 영역은 유지합니다."
+                  onClick={() => {
+                    if (!rendered || !pageReady) return;
+                    void studioAi.recognizePage({
+                      sourceId,
+                      sourceLabel: currentSource.name,
+                      page: pageNumber,
+                      canvas: rendered.canvas,
+                      imageDataUrl: rendered.url,
+                      grade: selectedGrade,
+                      level: selectedLevel,
+                    });
+                  }}
+                >
+                  페이지 자동 인식
+                </button>
+                <details className={styles.aiDetails}>
+                  <summary
+                    title={
+                      studioAi.available
+                        ? "AI 도구 선택과 연결 정보"
+                        : studioAi.unavailableReason
+                    }
+                  >
+                    AI 연결
+                  </summary>
+                  <div>
+                    <select
+                      aria-label="Studio AI 도구"
+                      value={studioAi.ai.provider}
+                      disabled={studioAi.running || studioAi.ai.checking}
+                      onChange={(event) =>
+                        studioAi.ai.setProvider(
+                          event.target.value as DevAiProvider,
+                        )
+                      }
+                    >
+                      {studioAi.ai.status?.providers.length ? (
+                        studioAi.ai.status.providers.map((provider) => (
+                          <option
+                            key={provider.id}
+                            value={provider.id}
+                            disabled={
+                              !["ready", "unverified"].includes(provider.status)
+                            }
+                          >
+                            {provider.label}
+                            {!["ready", "unverified"].includes(provider.status)
+                              ? " · 연결 필요"
+                              : provider.status === "unverified"
+                                ? " · 미확인"
+                                : ""}
+                          </option>
+                        ))
+                      ) : (
+                        <option value={studioAi.ai.provider}>
+                          AI 연결 확인
+                        </option>
+                      )}
+                    </select>
+                    {studioAi.ai.status?.providers.map((provider) => (
+                      <p key={provider.id}>
+                        <strong>{provider.label}</strong> · {provider.detail}
+                      </p>
+                    ))}
+                    {!studioAi.available ? (
+                      <p>{studioAi.unavailableReason}</p>
+                    ) : null}
+                    <button
+                      type="button"
+                      className={styles.secondaryButton}
+                      onClick={() => void studioAi.ai.refresh()}
+                      disabled={studioAi.ai.checking}
+                    >
+                      연결 다시 확인
+                    </button>
+                  </div>
+                </details>
+                <button
                   className={styles.preciseButton}
                   type="button"
                   onClick={() => {
@@ -1008,6 +1126,40 @@ export default function StudioView({
               <span className={styles.toolbarMeta}>PDF · 이미지</span>
             )}
           </div>
+
+          {studioAi.progress || studioAi.message || studioAi.error ? (
+            <div
+              className={styles.aiFeedback}
+              role={studioAi.error ? "alert" : "status"}
+            >
+              <span>
+                {studioAi.progress
+                  ? `${studioAi.progress.action === "solution" ? "해설 생성" : "문자 인식"} · ${studioAi.progress.done} / ${studioAi.progress.total} 완료${studioAi.progress.cropId ? ` · 문제 ${crops.findIndex((crop) => crop.id === studioAi.progress!.cropId) + 1} 처리 중` : ""}`
+                  : studioAi.error || studioAi.message}
+              </span>
+              {studioAi.progress ? (
+                <button type="button" onClick={() => studioAi.cancel()}>
+                  AI 작업 취소
+                </button>
+              ) : studioAi.error ? (
+                <button
+                  type="button"
+                  disabled={!studioAi.available || studioAi.running}
+                  onClick={studioAi.retry}
+                >
+                  다시 시도
+                </button>
+              ) : (
+                <button
+                  type="button"
+                  aria-label="AI 결과 안내 닫기"
+                  onClick={() => studioAi.cancel(true)}
+                >
+                  ×
+                </button>
+              )}
+            </div>
+          ) : null}
 
           {step === "review" && activeCrop ? (
             <div className={styles.reviewCanvas}>
@@ -1287,7 +1439,7 @@ export default function StudioView({
             <span>
               {sources.length
                 ? `원본 ${sources.length}개 보관 중`
-                : "원본은 서버에 전송되지 않습니다."}
+                : "파일을 열면 브라우저에서 원본을 보관합니다."}
             </span>
             <span>새로고침하면 작업 내용이 초기화됩니다.</span>
           </div>
@@ -1332,6 +1484,7 @@ export default function StudioView({
                   aria-label="학년"
                   value={selectedGrade}
                   onChange={(event) => {
+                    studioAi.cancel(true);
                     setGrade(event.target.value);
                     if (activeCrop) updateCrop({ grade: event.target.value });
                   }}
@@ -1345,6 +1498,47 @@ export default function StudioView({
               </div>
             </div>
 
+            {unreadCrops.length > 1 || unsolvedCrops.length > 1 ? (
+              <div className={styles.aiBatch} aria-label="대기 문항 AI 처리">
+                {unreadCrops.length > 1 ? (
+                  <button
+                    type="button"
+                    disabled={
+                      !unreadCrops.length ||
+                      !studioAi.available ||
+                      studioAi.running
+                    }
+                    onClick={() =>
+                      void studioAi.processCrops(
+                        "ocr",
+                        unreadCrops.map((crop) => crop.id),
+                      )
+                    }
+                  >
+                    미인식 {unreadCrops.length}개 인식
+                  </button>
+                ) : null}
+                {unsolvedCrops.length > 1 ? (
+                  <button
+                    type="button"
+                    disabled={
+                      !unsolvedCrops.length ||
+                      !studioAi.available ||
+                      studioAi.running
+                    }
+                    title="검수한 문제 내용과 원본 이미지로 해설을 차례로 생성합니다."
+                    onClick={() =>
+                      void studioAi.processCrops(
+                        "solution",
+                        unsolvedCrops.map((crop) => crop.id),
+                      )
+                    }
+                  >
+                    해설 없는 {unsolvedCrops.length}개 생성
+                  </button>
+                ) : null}
+              </div>
+            ) : null}
             {crops.length ? (
               <div className={styles.cropList} aria-label="자른 문제 목록">
                 {crops.map((crop, index) => (
@@ -1354,6 +1548,7 @@ export default function StudioView({
                     className={styles.cropItem}
                     aria-pressed={activeCropId === crop.id}
                     onClick={() => {
+                      if (activeCropId !== crop.id) studioAi.cancel(true);
                       setActiveCropId(crop.id);
                       setLevel(crop.level);
                       setGrade(crop.grade);
@@ -1393,6 +1588,7 @@ export default function StudioView({
                     className={styles.iconButton}
                     aria-label="선택한 자른 문제 삭제"
                     onClick={() => {
+                      studioAi.cancel(true);
                       setCrops((previous) =>
                         previous.filter((crop) => crop.id !== activeCropId),
                       );
@@ -1426,16 +1622,48 @@ export default function StudioView({
                   </span>
                   <span aria-hidden="true">↗</span>
                 </button>
-                <div className={styles.manualStatus}>
-                  <span className={styles.statusDot} />
-                  <div>
-                    <strong>자동 문자 인식 미연결 · 직접 검수</strong>
-                    <p>
-                      이미지 그대로 담을 수 있습니다. 텍스트로 출력하려면 문제와
-                      보기를 직접 입력하세요.
-                    </p>
-                  </div>
+                <div className={styles.aiCropActions}>
+                  <button
+                    type="button"
+                    disabled={!studioAi.available || studioAi.running}
+                    title={
+                      activeCrop.content
+                        ? "이 문제만 다시 읽습니다. 새 인식 결과를 적용하면 기존 해설은 비워집니다."
+                        : "선택한 원본 문제에서 문자를 인식합니다."
+                    }
+                    onClick={() =>
+                      void studioAi.processCrops("ocr", [activeCrop.id])
+                    }
+                  >
+                    {activeCrop.content.trim() ? "문제 다시 읽기" : "문자 인식"}
+                  </button>
+                  <button
+                    type="button"
+                    disabled={
+                      !activeCrop.content.trim() ||
+                      !studioAi.available ||
+                      studioAi.running
+                    }
+                    title="아래 문제 내용을 검수한 뒤 해설을 생성하세요."
+                    onClick={() =>
+                      void studioAi.processCrops("solution", [activeCrop.id])
+                    }
+                  >
+                    {activeCrop.solution.trim()
+                      ? "해설 다시 생성"
+                      : "해설 생성"}
+                  </button>
                 </div>
+                <p className={styles.aiHint}>
+                  내용 검수 후 해설 생성 · 도형은 원본 이미지로 보존
+                </p>
+                {activeCrop.aiWarnings?.length ? (
+                  <div className={styles.aiWarnings} role="note">
+                    {activeCrop.aiWarnings.map((warning, index) => (
+                      <p key={index}>{warning}</p>
+                    ))}
+                  </div>
+                ) : null}
                 <label className={styles.textField}>
                   <span>
                     문제 내용{" "}
@@ -1542,9 +1770,8 @@ export default function StudioView({
                   </li>
                 </ol>
                 <div className={styles.emptyNote}>
-                  자동 문자 인식은 연결되지 않았습니다.
-                  <br />
-                  자른 이미지 또는 직접 입력한 내용을 사용합니다.
+                  페이지 자동 인식 또는 직접 자르기로 시작하세요. AI는 버튼을
+                  누를 때만 실행됩니다.
                 </div>
               </div>
             )}

@@ -54,6 +54,117 @@
 .studio svg {
   flex-shrink: 0;
 }
+.studio [hidden] {
+  display: none !important;
+}
+.aiDetails select {
+  width: 100%;
+  max-width: 100%;
+  padding: 0 8px;
+  border: 1px solid var(--studio-line);
+  border-radius: 8px;
+  background: white;
+  color: var(--studio-ink);
+}
+.aiDetails {
+  position: relative;
+}
+.studio .pageTools .pageAiButton {
+  width: auto;
+  min-width: 126px;
+  padding-inline: 10px;
+}
+.studio .pageTools .aiDetails button {
+  width: auto;
+}
+.studio .pageTools .aiDetails select {
+  max-width: 100%;
+}
+.aiDetails summary {
+  display: flex;
+  align-items: center;
+  min-height: 44px;
+  padding: 0 8px;
+  border-radius: 8px;
+  color: var(--studio-muted);
+  cursor: pointer;
+  white-space: nowrap;
+}
+.aiDetails summary:focus-visible {
+  outline: 3px solid var(--studio-primary);
+}
+.aiDetails > div {
+  position: absolute;
+  z-index: 6;
+  top: 100%;
+  right: 0;
+  width: min(320px, calc(100vw - 40px));
+  padding: 12px;
+  border: 1px solid var(--studio-line);
+  border-radius: 8px;
+  background: white;
+  box-shadow: 0 4px 16px #172b4d24;
+}
+.aiDetails p {
+  margin: 0 0 8px;
+  overflow-wrap: anywhere;
+}
+.aiFeedback {
+  display: flex;
+  flex: none;
+  align-items: center;
+  gap: 8px;
+  padding: 4px 10px;
+  border-bottom: 1px solid var(--studio-line);
+  background: #edf2ff;
+  color: #2448bb;
+}
+.aiFeedback[role="alert"],
+.aiWarnings {
+  color: #87410c;
+  background: #fff6e9;
+}
+.aiFeedback > span {
+  flex: 1;
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+.aiFeedback button,
+.aiBatch button,
+.aiCropActions button {
+  padding: 6px 10px;
+  border: 1px solid var(--studio-line);
+  background: white;
+  color: #2448bb;
+}
+.aiFeedback button {
+  flex-shrink: 0;
+}
+.aiBatch,
+.aiCropActions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+.aiBatch {
+  margin-bottom: 12px;
+}
+.aiBatch button,
+.aiCropActions button {
+  flex: 1 1 auto;
+}
+.aiHint {
+  margin: 8px 0;
+  color: var(--studio-muted);
+}
+.aiWarnings {
+  padding: 8px 10px;
+  border-radius: 8px;
+}
+.aiWarnings p {
+  margin: 0;
+  overflow-wrap: anywhere;
+}
 .primaryButton,
 .secondaryButton {
   display: inline-flex;
@@ -1488,7 +1599,7 @@
     display: none;
   }
 }
-@container studio-canvas (max-width: 580px) {
+@container studio-canvas (max-width: 760px) {
   .editing .canvasToolbar {
     flex-wrap: wrap;
   }
@@ -1522,6 +1633,12 @@
     grid-column: 4;
     grid-row: 1;
     padding-inline: 9px;
+  }
+  .editing .pageTools .pageAiButton {
+    grid-column: 1 / 4;
+  }
+  .editing .pageTools .aiDetails {
+    grid-column: 4;
   }
   .editing .coordinates {
     position: absolute;
