@@ -44,6 +44,8 @@ The scoped unit suite covers authentication rejection, native input, output pars
 node node_modules/vitest/vitest.mjs run src/__tests__/unit/devAiCli.test.ts src/__tests__/unit/devAiCliProtocol.test.ts src/__tests__/unit/devAiCliProcess.test.ts
 ```
 
+Additional Grok inspection tested the documented compatibility-scanner environment switches with child-only values of `0`; the installed build still reported the same discovered hooks and MCP servers. The adapter therefore does not assume those newer documented switches provide isolation here. [Grok settings reference](https://docs.x.ai/build/settings/reference) defines `GROK_HOME` as the shared location for configuration **and authentication**, so redirecting it to an empty directory does not establish reuse of the existing login.
+
 ## Official interface references
 
 - Codex [non-interactive mode](https://learn.chatgpt.com/docs/non-interactive-mode) and [authentication](https://learn.chatgpt.com/docs/auth) describe `exec`, JSONL final messages, native login reuse, and subscription versus API-key authentication.

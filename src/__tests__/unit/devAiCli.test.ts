@@ -9,7 +9,11 @@ vi.mock("../../lib/dev-ai/cli-discovery", () => ({
 vi.mock("../../lib/dev-ai/cli-process", async (importOriginal) => {
   const actual =
     await importOriginal<typeof import("../../lib/dev-ai/cli-process")>();
-  return { ...actual, runCliProcess: vi.fn() };
+  return {
+    ...actual,
+    runCliProcess: vi.fn(),
+    withCliTemp: vi.fn(actual.withCliTemp),
+  };
 });
 vi.mock("../../lib/dev-ai/cli-metadata", () => ({
   inspectAdditionalProvider: vi.fn(),
@@ -37,8 +41,26 @@ describe("public subscription adapter boundary", () => {
     });
     const run = vi.mocked(processes.runCliProcess);
     const api = await import("../../lib/dev-ai/cli");
-    return { api, run };
+    return { api, run, temp: vi.mocked(processes.withCliTemp) };
   }
+
+  it("sanitizes local filesystem failures in status and generation", async () => {
+    const { api, temp } = await harness();
+    temp.mockRejectedValueOnce(
+      new Error("private-account-path status failure"),
+    );
+    await expect(api.getDevAiProviderStatuses()).rejects.toMatchObject({
+      code: "local-error",
+    });
+    temp.mockRejectedValueOnce(
+      new Error("private-account-path generation failure"),
+    );
+    const error = await api
+      .runSubscriptionCli({ provider: "codex", prompt: "solve" })
+      .catch((failure: Error) => failure);
+    expect(error).toMatchObject({ code: "local-error" });
+    expect((error as Error).message).not.toContain("private-account-path");
+  });
 
   it("never launches inference from a status request and deduplicates/caches probes", async () => {
     const { api, run } = await harness();

@@ -188,9 +188,17 @@ export function getDevAiProviderStatuses(): Promise<DevAiProviderStatus[]> {
     );
     statusCache = { expires: Date.now() + 10_000, values };
     return values;
-  }).finally(() => {
-    statusFlight = undefined;
-  });
+  })
+    .catch((error: unknown) => {
+      if (error instanceof SubscriptionCliError) throw error;
+      throw new SubscriptionCliError(
+        "local-error",
+        "구독 CLI 상태 확인을 위한 로컬 환경을 준비하거나 정리하지 못했습니다.",
+      );
+    })
+    .finally(() => {
+      statusFlight = undefined;
+    });
   return statusFlight;
 }
 
@@ -223,7 +231,11 @@ export async function runSubscriptionCli(input: {
   const deadline = new AbortController();
   const cancel = () => deadline.abort();
   input.signal?.addEventListener("abort", cancel, { once: true });
-  const timer = setTimeout(cancel, 180_000);
+  let timedOut = false;
+  const timer = setTimeout(() => {
+    timedOut = true;
+    cancel();
+  }, 180_000);
   try {
     return await withCliTemp(async (cwd) => {
       const env = subscriptionEnvironment(process.env);
@@ -270,6 +282,16 @@ export async function runSubscriptionCli(input: {
       return parseFinalCliText(input.provider, result.stdout);
     });
   } catch (error) {
+    if (
+      timedOut &&
+      error instanceof SubscriptionCliError &&
+      error.code === "cancelled"
+    ) {
+      throw new SubscriptionCliError(
+        "timeout",
+        "구독 CLI 요청의 전체 대기 시간이 초과되었습니다.",
+      );
+    }
     if (error instanceof SubscriptionCliError) throw error;
     throw new SubscriptionCliError(
       "local-error",
