@@ -26,13 +26,18 @@ import {
   checkAnswer,
   checkDistractors,
   checkShown,
+  type Env,
+  evalTex,
   type Expect,
   type F,
   type Fact,
   fAbs,
   fAdd,
+  fCmp,
   fDiv,
+  fEq,
   fMul,
+  fNeg,
   fNum,
   fr,
   fSub,
@@ -40,6 +45,7 @@ import {
   num,
   only,
   type Pred,
+  probePoints,
   ratRoots,
   relHolds,
   relOf,
@@ -47,7 +53,7 @@ import {
   type TIv,
   tivHas,
 } from "../helpers/highIneq";
-import { highCatalog } from "../helpers/highPage";
+import { highCatalog, mathSpans } from "../helpers/highPage";
 
 const BOOK = "공통수학1";
 const MINOR = "이차부등식과 연립이차부등식";
@@ -81,7 +87,382 @@ function centerRadius(sol: readonly TIv[]): [F, F] {
   return [fDiv(fAdd(lo, hi), fr(2)), fDiv(fSub(hi, lo), fr(2))];
 }
 
+/**
+ * 꼭짓점의 값 `C − B²/4A` — 이차식의 최솟값(A>0)·최댓값(A<0). «항상 성립 / 해를 갖는다» 를 제품처럼
+ * 판별식으로 따지지 않고 **이 값의 부호**로 본다(다른 길).
+ */
+function vtx(A: number | F, B: number | F, C: number | F): F {
+  const [a, b, c] = [A, B, C].map((v) =>
+    typeof v === "number" ? fr(v) : v,
+  ) as [F, F, F];
+  return fSub(c, fDiv(fMul(b, b), fMul(fr(4), a)));
+}
+
+/** `lo..hi` 의 정수 가운데 조건을 만족시키는 것 */
+function intsIn(lo: number, hi: number, ok: (n: number) => boolean): number[] {
+  const out: number[] = [];
+  for (let n = lo; n <= hi; n += 1) if (ok(n)) out.push(n);
+  return out;
+}
+
+/**
+ * 범위 [p, q] 의 두 끝에서의 값. 이 유형들이 묻는 것은 «위로 볼록한 식의 최솟값» 또는 «아래로 볼록한
+ * 식의 최댓값»이라 늘 두 끝 가운데 하나다(꼭짓점은 반대쪽 극값이다).
+ * ⚠️ 처음엔 꼭짓점도 넣었다가 끝점±1/1000 에서 분모가 제곱으로 불어 정확한 유리수가 넘쳤다.
+ */
+function rangeValues(A: F, B: F, C: F, p: number, qE: number): F[] {
+  const g = (x: F): F => fAdd(fAdd(fMul(A, fMul(x, x)), fMul(B, x)), C);
+  return [g(fr(p)), g(fr(qE))];
+}
+
+const minF = (vs: readonly F[]): F =>
+  vs.reduce((m, v) => (fCmp(v, m) < 0 ? v : m));
+const maxF = (vs: readonly F[]): F =>
+  vs.reduce((m, v) => (fCmp(v, m) > 0 ? v : m));
+
 const VERIFY: Record<string, (f: Fact) => Expect> = {
+  "10": (f) => {
+    const [p, qE] = [num(f, "p"), num(f, "q")];
+    if (f.mode === 0) {
+      const [h, e, s] = [num(f, "h"), num(f, "e"), num(f, "s")];
+      const r = relOf(num(f, "r"));
+      const ks = intsIn(-100, 100, (k) =>
+        relHolds(
+          r,
+          minF(rangeValues(fr(-1), fr(2 * h), fr(e + s * k), p, qE)),
+          fr(0),
+        ),
+      );
+      expect(ks[ks.length - 1], "k 가 클수록 성립").toBe(100);
+      return ks[0]!;
+    }
+    if (f.mode === 1) {
+      const [A, c] = [num(f, "A"), num(f, "c")];
+      const r = relOf(num(f, "r"));
+      return {
+        v: "a",
+        prop: (a) =>
+          relHolds(
+            r,
+            maxF(rangeValues(fr(A), a, fNeg(fMul(fr(c), a)), p, qE)),
+            fr(0),
+          ),
+      };
+    }
+    const [b1, c1, b2, c2] = [
+      num(f, "b1"),
+      num(f, "c1"),
+      num(f, "b2"),
+      num(f, "c2"),
+    ];
+    const as = intsIn(
+      -200,
+      200,
+      (a) =>
+        fCmp(
+          minF(rangeValues(fr(-2), fr(b2 - b1), fr(a + c2 - c1), p, qE)),
+          fr(0),
+        ) >= 0,
+    );
+    expect(as[as.length - 1], "a 가 클수록 성립").toBe(200);
+    return as[0]!;
+  },
+
+  "11": (f) => {
+    if (f.mode === 0) {
+      const [a, b, c0, m, n] = ["a", "b", "c0", "m", "n"].map((k) =>
+        num(f, k),
+      ) as [number, number, number, number, number];
+      const pred: Pred = (x) =>
+        relHolds(">", qv(1, -a, c0)(x), fAdd(fMul(fr(m), x), fr(n)));
+      const sol = chartSolve(pred, roots(1, -(a + m), c0 - n));
+      expect(sol, "해는 두 반직선").toHaveLength(2);
+      expect(fNum(sol[1]!.lo!), "b 는 오른쪽 반직선의 끝").toBe(b);
+      return a + b;
+    }
+    if (f.mode === 1) {
+      const [A1, b1, c1, A2, b2, c2] = ["A1", "b1", "c1", "A2", "b2", "c2"].map(
+        (k) => num(f, k),
+      ) as [number, number, number, number, number, number];
+      const pred: Pred = (x) =>
+        relHolds("<", qv(A1, b1, c1)(x), qv(A2, b2, c2)(x));
+      return {
+        v: "x",
+        exact: only(
+          chartSolve(pred, roots(A1 - A2, b1 - b2, c1 - c2)),
+          "해는 한 구간",
+        ),
+      };
+    }
+    const [a, b] = [num(f, "a"), num(f, "b")];
+    return [b - a, a + b, a * b][num(f, "exprId")]!;
+  },
+
+  "12": (f) => {
+    if (f.mode === 0) {
+      const [p, q0, s, t] = [
+        num(f, "p"),
+        num(f, "q0"),
+        num(f, "s"),
+        num(f, "t"),
+      ];
+      // m 이 조건을 만족 ⇔ x²+(m−p)x+(t−ms−q0) 의 최솟값(꼭짓점)이 양수 — 두 경계는 이분법으로
+      const ok = (m: number): boolean => {
+        const B = m - p;
+        return t - m * s - q0 - (B * B) / 4 > 0;
+      };
+      let mid: number | null = null;
+      for (let m = -60; m <= 60; m += 0.25) {
+        if (ok(m)) {
+          mid = m;
+          break;
+        }
+      }
+      expect(mid, "조건을 만족시키는 m 이 있다").not.toBeNull();
+      const edge = (inside: number, outside: number): number => {
+        let [lo, hi] = [inside, outside];
+        for (let i = 0; i < 90; i += 1) {
+          const c = (lo + hi) / 2;
+          if (ok(c)) lo = c;
+          else hi = c;
+        }
+        return (lo + hi) / 2;
+      };
+      return edge(mid!, -1000) * edge(mid!, 1000);
+    }
+    const [m, n, c1] = [num(f, "m"), num(f, "n"), num(f, "c1")];
+    if (f.mode === 1) {
+      const beta = num(f, "beta");
+      return intsIn(
+        -60,
+        60,
+        (k) => fCmp(vtx(1, k + beta - m, c1 - n), fr(0)) > 0,
+      ).length;
+    }
+    const b1 = num(f, "b1");
+    // 차 kx²+(b1−m)x+(2k+c1)−(k+n) 이 늘 음수 — 위로 볼록이고 최댓값이 음수
+    return {
+      v: "k",
+      prop: (k) =>
+        k.n < 0 && fCmp(vtx(k, fr(b1 - m), fAdd(k, fr(c1 - n))), fr(0)) < 0,
+    };
+  },
+
+  "13": (f) => {
+    if (f.mode === 0) {
+      const half = num(f, "L") / 2;
+      const S = num(f, "S");
+      const sol = only(
+        chartSolve(
+          (x) => relHolds("ge", fMul(x, fSub(fr(half), x)), fr(S)),
+          roots(1, -half, S),
+        ),
+        "가로의 길이는 한 구간",
+      );
+      return fNum(fSub(sol.hi!, sol.lo!));
+    }
+    if (f.mode === 1) {
+      const [v, h0, H] = [num(f, "v"), num(f, "h0"), num(f, "H")];
+      const sol = only(
+        chartSolve(
+          (t) => relHolds("ge", qv(-5, v, h0)(t), fr(H)),
+          roots(-5, v, h0 - H),
+        ),
+        "시간은 한 구간",
+      );
+      return fNum(fSub(sol.hi!, sol.lo!));
+    }
+    const [P, N, d, R] = [num(f, "P"), num(f, "N"), num(f, "d"), num(f, "R")];
+    const revenue = (x: F): F =>
+      fMul(fSub(fr(P), fMul(fr(100), x)), fAdd(fr(N), fMul(fr(d), x)));
+    const sol = only(
+      chartSolve(
+        (x) => relHolds("ge", revenue(x), fr(R)),
+        roots(-100 * d, P * d - 100 * N, P * N - R),
+      ),
+      "내리는 폭은 한 구간",
+    );
+    return P - 100 * fNum(sol.hi!);
+  },
+
+  "05": (f) => {
+    if (f.mode === 2) {
+      const u = num(f, "u");
+      const v = num(f, "v");
+      const s = fr(num(f, "s"));
+      const sg = fr(num(f, "sigma"));
+      const r = relOf(num(f, "rel"));
+      const g = qv(1, -(u + v), u * v);
+      // 지면 그대로 — a(x∓s)² ± b(x∓s) + c 는 f(σ(x−s))
+      return sum(intsWhere((x) => relHolds(r, g(fMul(sg, fSub(x, s))), fr(0))));
+    }
+    const sgn = num(f, "sgn");
+    const u = num(f, "u");
+    const v = num(f, "v");
+    const p = num(f, "p");
+    const qq = num(f, "q");
+    const g = qv(sgn, -sgn * (u + v), sgn * u * v);
+    const r2 = relOf(num(f, "rel2"));
+    const pred: Pred = (x) =>
+      relHolds(r2, g(fAdd(fMul(fr(p), x), fr(qq))), fr(0));
+    const s = only(
+      chartSolve(pred, [fr(u - qq, p), fr(v - qq, p)]),
+      "해는 한 구간",
+    );
+    if (f.mode === 1) return fNum(fAdd(s.lo!, s.hi!));
+    return { v: "x", exact: s };
+  },
+
+  "06": (f) => {
+    if (f.mode === 0) {
+      const [A, sg, be, gm, de] = ["A", "sigma", "beta", "gamma", "delta"].map(
+        (k) => num(f, k),
+      ) as [number, number, number, number, number];
+      // D(k) 를 세 점에서 **값으로** 매겨 이차식을 다시 짓는다(제품은 근과 계수의 관계로 바로 쓴다)
+      const Dk = (k: number): number => {
+        const B = sg * (k + be);
+        return B * B - 4 * A * (gm * k + de);
+      };
+      const [d0, d1, dm] = [Dk(0), Dk(1), Dk(-1)];
+      const a2 = (d1 + dm) / 2 - d0;
+      const a1 = (d1 - dm) / 2;
+      expect(a2, "D(k) 는 k 의 이차식").toBe(1);
+      const disc = a1 * a1 - 4 * d0;
+      expect(disc > 0, "해가 한 개가 되는 k 가 둘").toBe(true);
+      const k1 = (-a1 + Math.sqrt(disc)) / 2;
+      const k2 = (-a1 - Math.sqrt(disc)) / 2;
+      return f.kind === 0 ? k1 + k2 : k1 * k2;
+    }
+    const m = num(f, "m");
+    const c = num(f, "c");
+    const hits = intsIn(-40, 40, (k) => {
+      if (k === 0) return false;
+      const rs = ratRoots(k, 2 * m, k + c);
+      // 무리근이면 해가 넓이 있는 구간이라 한 점일 수 없다
+      if (rs === null) return false;
+      const sol = chartSolve(qPred(k, 2 * m, k + c, num(f, "r")), rs);
+      return (
+        sol.length === 1 &&
+        sol[0]!.lo !== null &&
+        sol[0]!.hi !== null &&
+        fEq(sol[0]!.lo, sol[0]!.hi)
+      );
+    });
+    expect(hits, "해가 한 개인 k 는 하나").toHaveLength(1);
+    return hits[0]!;
+  },
+
+  "07": (f) => {
+    if (f.mode === 0) {
+      const [A, B, sg] = [num(f, "A"), num(f, "B"), num(f, "sigma")];
+      const r = relOf(num(f, "r"));
+      // 해가 있다 ⇔ 최솟값(꼭짓점의 값)이 부등호를 만족시킨다
+      const as = intsIn(-300, 300, (a) =>
+        relHolds(r, vtx(A, B, sg * a), fr(0)),
+      );
+      if (sg > 0) {
+        expect(as[0], "해를 갖는 a 는 아래로 열려 있다").toBe(-300);
+        return as[as.length - 1]!;
+      }
+      expect(as[as.length - 1], "해를 갖는 a 는 위로 열려 있다").toBe(300);
+      return as[0]!;
+    }
+    const [m, b, c] = [num(f, "m"), num(f, "b"), num(f, "c")];
+    const has = (a: F): boolean => {
+      const t = fSub(a, fr(m));
+      if (t.n === 0) return c > 0;
+      if (t.n > 0) return true;
+      return fCmp(vtx(t, fMul(fr(2 * b), t), fr(c)), fr(0)) > 0;
+    };
+    // 해가 없는 a 의 모임 [p, q] 를 격자(1/8)에서 찾고, 경계 바로 바깥은 해가 있는지 본다
+    const fails: F[] = [];
+    for (let n = -200; n <= 200; n += 1)
+      if (!has(fr(n, 8))) fails.push(fr(n, 8));
+    expect(fails.length, "해가 없는 a 가 있다").toBeGreaterThan(0);
+    const p = fails[0]!;
+    const q = fails[fails.length - 1]!;
+    const eps = fr(1, 1000);
+    expect(
+      has(fSub(p, eps)) && has(fAdd(q, eps)),
+      "경계 바로 바깥은 해가 있다",
+    ).toBe(true);
+    return fNum(fAdd(p, q));
+  },
+
+  "08": (f) => {
+    if (f.mode === 0) {
+      const [B, C] = [num(f, "B"), num(f, "C")];
+      const r = relOf(num(f, "r"));
+      // 모든 x 에서 ax²+Bx+(a−C) rel 0 — 볼록한 쪽이 맞고 꼭짓점의 값이 부등호를 만족
+      const as = intsIn(
+        -100,
+        100,
+        (a) =>
+          a !== 0 &&
+          (r === "le" ? a < 0 : a > 0) &&
+          relHolds(r, vtx(a, B, a - C), fr(0)),
+      );
+      return r === "le" ? as[as.length - 1]! : as[0]!;
+    }
+    if (f.mode === 1) {
+      const [A, be, gm] = [num(f, "A"), num(f, "beta"), num(f, "gamma")];
+      const r = relOf(num(f, "r"));
+      return intsIn(-60, 60, (k) =>
+        relHolds(r, vtx(A, -2 * (k + be), gm * (k + be)), fr(0)),
+      ).length;
+    }
+    if (f.mode === 2) {
+      const [u, w] = [num(f, "u"), num(f, "w")];
+      const r = relOf(num(f, "r"));
+      return {
+        v: "a",
+        prop: (a) =>
+          a.n < 0 &&
+          relHolds(
+            r,
+            vtx(a, fMul(fr(-2), fAdd(a, fr(u))), fAdd(fMul(fr(2), a), fr(w))),
+            fr(0),
+          ),
+      };
+    }
+    const [m, c] = [num(f, "m"), num(f, "c")];
+    const ks = intsIn(-60, 60, (k) => {
+      const t = k - m;
+      if (t === 0) return c > 0;
+      return t > 0 && fCmp(vtx(t, -2 * t, c), fr(0)) > 0;
+    });
+    return ks[0]! + ks[ks.length - 1]!;
+  },
+
+  "09": (f) => {
+    if (f.mode === 0) {
+      const [p, c] = [num(f, "p"), num(f, "c")];
+      // 해가 없다 ⇔ 최솟값이 0 이상
+      return intsIn(
+        -60,
+        60,
+        (n) => fCmp(vtx(1, 2 * (n + p), c * (n + p)), fr(0)) >= 0,
+      ).length;
+    }
+    if (f.mode === 1) {
+      const b = num(f, "b");
+      const as = intsIn(
+        -30,
+        30,
+        (a) => a < 0 && fCmp(vtx(a, b - a, -b), fr(0)) <= 0,
+      );
+      expect(as, "해가 없는 a 는 하나").toHaveLength(1);
+      return as[0]!;
+    }
+    const [m, c] = [num(f, "m"), num(f, "c")];
+    const ks = intsIn(-60, 60, (k) => {
+      const t = k - m;
+      if (t === 0) return true;
+      return t < 0 && fCmp(vtx(t, 2 * t, -c), fr(0)) < 0;
+    });
+    return ks[0]! + ks[ks.length - 1]!;
+  },
+
   "02": (f) => {
     if (f.mode === 0) {
       const ints = intsWhere(
@@ -154,7 +535,254 @@ const VERIFY: Record<string, (f: Fact) => Expect> = {
   },
 };
 
+/** 문자 하나를 값에 매긴 이차부등식 `A x² + B x + C rel 0` 한 줄 */
+function want(
+  what: string,
+  A: number,
+  B: number,
+  C: number,
+  code: number,
+): ShownSpec["wants"][number] {
+  return { what, pred: qPred(A, B, C, code), crit: roots(A, B, C) };
+}
+
+const REL_GT = 1;
+const REL_GE = 3;
+const REL_LT = 0;
+
 const SHOWN: Record<string, (f: Fact) => ShownSpec> = {
+  "10": (f): ShownSpec => {
+    const [p, qE] = [num(f, "p"), num(f, "q")];
+    const range = {
+      what: "범위 p≤x≤q",
+      pred: (x: F) => fCmp(x, fr(p)) >= 0 && fCmp(x, fr(qE)) <= 0,
+      crit: [fr(p), fr(qE)],
+      mustContain: "\\le x\\le",
+    };
+    if (f.mode === 0) {
+      const k = 5;
+      const [h, e, s] = [num(f, "h"), num(f, "e"), num(f, "s")];
+      return {
+        env: { k: fr(k) },
+        wants: [range, want("−x²+2hx+e+sk", -1, 2 * h, e + s * k, num(f, "r"))],
+      };
+    }
+    if (f.mode === 1) {
+      const a = 3;
+      const [A, c] = [num(f, "A"), num(f, "c")];
+      return {
+        env: { a: fr(a) },
+        wants: [range, want("Ax²+ax−ca", A, a, -c * a, num(f, "r"))],
+      };
+    }
+    return { env: {}, wants: [range] };
+  },
+  "11": (f): ShownSpec => {
+    if (f.mode === 0) {
+      const [a, b, c0, m, n] = ["a", "b", "c0", "m", "n"].map((k) =>
+        num(f, k),
+      ) as [number, number, number, number, number];
+      const pred: Pred = (x) =>
+        relHolds(">", qv(1, -a, c0)(x), fAdd(fMul(fr(m), x), fr(n)));
+      const crit = roots(1, -(a + m), c0 - n);
+      const sol = chartSolve(pred, crit);
+      return {
+        env: { b: fr(b) },
+        wants: sol.map((s, i) => ({
+          what: `주어진 범위 ${i + 1}`,
+          pred: (x: F) => tivHas(s, x),
+          crit,
+          ...(i === 1 ? { mustContain: "b" } : {}),
+        })),
+      };
+    }
+    if (f.mode === 2) {
+      const [a, b, c0] = [num(f, "a"), num(f, "b"), num(f, "c0")];
+      const pred: Pred = (x) => relHolds(">", qv(-1, a, c0)(x), fr(b));
+      return {
+        env: {},
+        wants: [{ what: "주어진 범위", pred, crit: roots(1, -a, b - c0) }],
+      };
+    }
+    return { env: {}, wants: [] };
+  },
+  "12": (): ShownSpec => ({ env: {}, wants: [] }),
+  "13": (f): ShownSpec => ({
+    env: {},
+    wants: [],
+    numbers:
+      f.mode === 0
+        ? [num(f, "L"), num(f, "S")]
+        : f.mode === 1
+          ? [num(f, "v"), num(f, "H")]
+          : [num(f, "P"), num(f, "N"), num(f, "d"), num(f, "R")],
+  }),
+  "05": (f): ShownSpec => {
+    if (f.mode === 2) {
+      const [u, v, s, sg] = [
+        num(f, "u"),
+        num(f, "v"),
+        num(f, "s"),
+        num(f, "sigma"),
+      ];
+      const r = relOf(num(f, "rel"));
+      const g = qv(1, -(u + v), u * v);
+      const first = qPred(1, -(u + v), u * v, 2);
+      const crit = [fr(u), fr(v)];
+      return {
+        env: { a: fr(1), b: fr(-(u + v)), c: fr(u * v) },
+        wants: [
+          { what: "ax²+bx+c≤0", pred: first, crit, mustContain: "ax^{2}" },
+          { what: "주어진 해", pred: first, crit, mustContain: "\\le x" },
+          {
+            what: "a(x−s)²±b(x−s)+c",
+            pred: (x) => relHolds(r, g(fMul(fr(sg), fSub(x, fr(s)))), fr(0)),
+            crit: [fr(s + u), fr(s + v), fr(s - u), fr(s - v)],
+          },
+        ],
+      };
+    }
+    const [sgn, u, v] = [num(f, "sgn"), num(f, "u"), num(f, "v")];
+    const pred1 = qPred(sgn, -sgn * (u + v), sgn * u * v, num(f, "rel1"));
+    const crit = [fr(u), fr(v)];
+    const sol1 = chartSolve(pred1, crit);
+    const wants = sol1.map((s, i) => ({
+      what: `주어진 해 ${i + 1}`,
+      pred: sol1.length === 1 ? pred1 : (x: F) => tivHas(s, x),
+      crit,
+    }));
+    if (f.mode !== 1) return { env: {}, wants };
+    const [p, qq] = [num(f, "p"), num(f, "q")];
+    const g = qv(sgn, -sgn * (u + v), sgn * u * v);
+    const r2 = relOf(num(f, "rel2"));
+    const crit2 = [fr(u - qq, p), fr(v - qq, p)];
+    const s2 = chartSolve(
+      (x) => relHolds(r2, g(fAdd(fMul(fr(p), x), fr(qq))), fr(0)),
+      crit2,
+    )[0]!;
+    return {
+      env: { m: s2.lo!, n: s2.hi! },
+      wants: [
+        ...wants,
+        {
+          what: "해 m·n 의 등호",
+          pred: (x) => tivHas(s2, x),
+          crit: crit2,
+          mustContain: "n",
+        },
+      ],
+    };
+  },
+  "06": (f): ShownSpec => {
+    const k = 3;
+    if (f.mode === 0) {
+      const [A, sg, be, gm, de] = ["A", "sigma", "beta", "gamma", "delta"].map(
+        (key) => num(f, key),
+      ) as [number, number, number, number, number];
+      return {
+        env: { k: fr(k) },
+        wants: [
+          want(
+            "k 가 든 이차부등식",
+            A,
+            sg * (k + be),
+            gm * k + de,
+            num(f, "r"),
+          ),
+        ],
+      };
+    }
+    const [m, c] = [num(f, "m"), num(f, "c")];
+    return {
+      env: { k: fr(k) },
+      wants: [want("kx²+2mx+k+c", k, 2 * m, k + c, num(f, "r"))],
+    };
+  },
+  "07": (f): ShownSpec => {
+    if (f.mode === 0) {
+      const a = 5;
+      const [A, B, sg] = [num(f, "A"), num(f, "B"), num(f, "sigma")];
+      return {
+        env: { a: fr(a) },
+        wants: [want("Ax²+Bx±a", A, B, sg * a, num(f, "r"))],
+      };
+    }
+    const a = 7;
+    const [m, b, c] = [num(f, "m"), num(f, "b"), num(f, "c")];
+    const t = a - m;
+    return {
+      env: { a: fr(a) },
+      wants: [want("(a−m)x²+2b(a−m)x+c", t, 2 * b * t, c, REL_GT)],
+    };
+  },
+  "08": (f): ShownSpec => {
+    if (f.mode === 0) {
+      const a = -2;
+      const [B, C] = [num(f, "B"), num(f, "C")];
+      return {
+        env: { a: fr(a) },
+        wants: [want("ax²+Bx rel C−a", a, B, a - C, num(f, "r"))],
+      };
+    }
+    if (f.mode === 1) {
+      const k = 2;
+      const [A, be, gm] = [num(f, "A"), num(f, "beta"), num(f, "gamma")];
+      return {
+        env: { k: fr(k) },
+        wants: [
+          want(
+            "Ax²−2(k+β)x+γ(k+β)",
+            A,
+            -2 * (k + be),
+            gm * (k + be),
+            num(f, "r"),
+          ),
+        ],
+      };
+    }
+    if (f.mode === 2) {
+      const a = -3;
+      const [u, w] = [num(f, "u"), num(f, "w")];
+      return {
+        env: { a: fr(a) },
+        wants: [
+          want("ax²−2(a+u)x+2a+w", a, -2 * (a + u), 2 * a + w, num(f, "r")),
+        ],
+      };
+    }
+    const k = 9;
+    const [m, c] = [num(f, "m"), num(f, "c")];
+    return {
+      env: { k: fr(k) },
+      wants: [want("(k−m)x²−2(k−m)x+c", k - m, -2 * (k - m), c, REL_GT)],
+    };
+  },
+  "09": (f): ShownSpec => {
+    if (f.mode === 0) {
+      const n = 2;
+      const [p, c] = [num(f, "p"), num(f, "c")];
+      return {
+        env: { n: fr(n) },
+        wants: [want("x²+2(n+p)x+c(n+p)", 1, 2 * (n + p), c * (n + p), REL_LT)],
+      };
+    }
+    if (f.mode === 1) {
+      const a = -2;
+      const b = num(f, "b");
+      // 지면 `ax²+bx>ax+b` — 한쪽으로 모으면 ax²+(b−a)x−b>0
+      return {
+        env: { a: fr(a) },
+        wants: [want("ax²+bx>ax+b", a, b - a, -b, REL_GT)],
+      };
+    }
+    const k = 9;
+    const [m, c] = [num(f, "m"), num(f, "c")];
+    return {
+      env: { k: fr(k) },
+      wants: [want("(k−m)x²+2(k−m)x−c≥0", k - m, 2 * (k - m), -c, REL_GE)],
+    };
+  },
+
   "02": (f) => {
     if (f.mode === 0) {
       const [a, b, c] = [num(f, "a"), num(f, "b"), num(f, "c")];
@@ -308,6 +936,145 @@ const SHOWN: Record<string, (f: Fact) => ShownSpec> = {
     };
   },
 };
+
+/** 발문의 `y=…`·`f(x)=…` 식 하나 — 문자는 env 로 매기고 x 에 값을 넣어 facts 의 함수와 맞댄다. */
+type Curve = { what: string; prefix: string; fn: (x: F) => F };
+
+function hasCurve(content: string, env: Env, c: Curve): boolean {
+  const pts = probePoints([]).slice(0, 40);
+  return mathSpans(content)
+    .filter((s) => s.startsWith(c.prefix))
+    .some((s) => {
+      try {
+        const body = s.slice(c.prefix.length);
+        return pts.every((x) => fEq(evalTex(body, { ...env, x }), c.fn(x)));
+      } catch {
+        return false;
+      }
+    });
+}
+
+const line =
+  (m: number, n: number) =>
+  (x: F): F =>
+    fAdd(fMul(fr(m), x), fr(n));
+
+/** 그래프를 말로 주는 유형 — 발문의 식이 facts 의 함수와 같은가 */
+const CURVES: Record<string, (f: Fact) => { env: Env; curves: Curve[] }> = {
+  "10": (f) => {
+    if (f.mode !== 2) return { env: {}, curves: [] };
+    const a = 4;
+    const [b1, c1, b2, c2] = [
+      num(f, "b1"),
+      num(f, "c1"),
+      num(f, "b2"),
+      num(f, "c2"),
+    ];
+    return {
+      env: { a: fr(a) },
+      curves: [
+        { what: "f(x)", prefix: "f(x)=", fn: qv(1, b1, c1) },
+        { what: "g(x)", prefix: "g(x)=", fn: qv(-1, b2, a + c2) },
+      ],
+    };
+  },
+  "11": (f) => {
+    if (f.mode === 0) {
+      const [a, c0, m, n] = [
+        num(f, "a"),
+        num(f, "c0"),
+        num(f, "m"),
+        num(f, "n"),
+      ];
+      return {
+        env: { a: fr(a) },
+        curves: [
+          { what: "포물선", prefix: "y=", fn: qv(1, -a, c0) },
+          { what: "직선", prefix: "y=", fn: line(m, n) },
+        ],
+      };
+    }
+    if (f.mode === 1) {
+      const [A1, b1, c1, A2, b2, c2] = ["A1", "b1", "c1", "A2", "b2", "c2"].map(
+        (k) => num(f, k),
+      ) as [number, number, number, number, number, number];
+      return {
+        env: {},
+        curves: [
+          { what: "첫 포물선", prefix: "y=", fn: qv(A1, b1, c1) },
+          { what: "둘째 포물선", prefix: "y=", fn: qv(A2, b2, c2) },
+        ],
+      };
+    }
+    const [a, b, c0] = [num(f, "a"), num(f, "b"), num(f, "c0")];
+    return {
+      env: { a: fr(a), b: fr(b) },
+      curves: [
+        { what: "포물선", prefix: "y=", fn: qv(-1, a, c0) },
+        { what: "직선 y=b", prefix: "y=", fn: () => fr(b) },
+      ],
+    };
+  },
+  "12": (f) => {
+    if (f.mode === 0) {
+      const m = 2;
+      const [p, q0, s, t] = [
+        num(f, "p"),
+        num(f, "q0"),
+        num(f, "s"),
+        num(f, "t"),
+      ];
+      return {
+        env: { m: fr(m) },
+        curves: [
+          { what: "포물선", prefix: "y=", fn: qv(-1, p, q0) },
+          { what: "직선 m(x−s)+t", prefix: "y=", fn: line(m, t - m * s) },
+        ],
+      };
+    }
+    const [m, n, c1] = [num(f, "m"), num(f, "n"), num(f, "c1")];
+    if (f.mode === 1) {
+      const k = 2;
+      return {
+        env: { k: fr(k) },
+        curves: [
+          { what: "포물선", prefix: "y=", fn: qv(1, k + num(f, "beta"), c1) },
+          { what: "직선", prefix: "y=", fn: line(m, n) },
+        ],
+      };
+    }
+    const k = -3;
+    return {
+      env: { k: fr(k) },
+      curves: [
+        { what: "포물선", prefix: "y=", fn: qv(k, num(f, "b1"), 2 * k + c1) },
+        { what: "직선", prefix: "y=", fn: line(m, k + n) },
+      ],
+    };
+  },
+};
+
+describe("고등 공통수학1 이차부등식과 연립이차부등식 — 그래프 식", () => {
+  it("발문의 함수식이 facts 의 이차함수·직선과 같다", () => {
+    let checked = 0;
+    eachProblem((p, key, number) => {
+      const spec = CURVES[number];
+      if (!spec) return;
+      const { env, curves } = spec(p.facts);
+      for (const c of curves) {
+        expect(
+          hasCurve(p.content, env, c),
+          `${key}: 발문에 ${c.what} 식이 없다 — ${p.content}`,
+        ).toBe(true);
+        checked += 1;
+      }
+    });
+    expect(
+      checked,
+      "그래프 식 대조가 하나도 안 돌면 이 검사는 장식이다",
+    ).toBeGreaterThan(100);
+  });
+});
 
 function eachProblem(
   fn: (p: HighProblem, key: string, number: string) => void,

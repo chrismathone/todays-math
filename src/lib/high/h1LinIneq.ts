@@ -948,7 +948,12 @@ function toggleRel(r: Rel): Rel {
 /**
  * 답이 `k rel K` 인 꼴의 오답 — 등호 포함 여부 · 부등호 방향 · 둘 다 · 끝점 부호 · 끝점 하나 어긋남.
  */
-function rayDistractors(rng: Rng, rel: Rel, K: Q, v: string): string[] | null {
+export function rayDistractors(
+  rng: Rng,
+  rel: Rel,
+  K: Q,
+  v: string,
+): string[] | null {
   const tex = (r: Rel, t: Q) => ivTex(rayIv(r, t), v);
   const cands = [
     tex(toggleRel(rel), K),
@@ -1630,7 +1635,7 @@ function t07(rng: Rng): Body {
 // 꼴 3 (심화하): 해가 x<k 의 해에 포함되도록 하는 k 의 값의 범위 (답이 구간, 오답 넷)
 
 /** 유리수 정답 — 0 이면 다시 뽑는다(`numAnswer` 와 같은 까닭 — 공용 오답 경로가 0 에서 넷을 못 짓는다). */
-function qAnswer(v: Q): string {
+export function qAnswer(v: Q): string {
   if (v.n === 0) throw new Retry("정답이 0 이라 객관식 오답을 못 만든다");
   return $(qTex(v));
 }
