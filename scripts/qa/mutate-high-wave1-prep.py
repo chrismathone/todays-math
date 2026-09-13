@@ -107,8 +107,11 @@ MUTS = [
     (
         "등록부 — 중단원을 보류 하나만으로 «손댐»",
         COMB,
+        # ⚠️ 처음엔 「공통수학1|조합|01」을 넣었는데, 물결 1 에서 조합이 다 등록되자 등록·보류 겹침 가드
+        #    (`generate.ts`)가 불러오는 순간 던져 «프로브가 안 돈다»로 판정 거부됐다(2026-09-13 병합 검수).
+        #    가드가 무는 것이지 이 변이가 겨눈 자리가 아니다 — 물결 1 이 안 만지는 공통수학2 키로 옮겼다.
         "export const H1_COMB_HOLD: HighHold[] = [];",
-        'export const H1_COMB_HOLD: HighHold[] = [\n  { key: "공통수학1|조합|01", reason: "변이 시험 — 보류 하나만 넣었다" },\n];',
+        'export const H1_COMB_HOLD: HighHold[] = [\n  { key: "공통수학2|평면좌표|01", reason: "변이 시험 — 보류 하나만 넣었다" },\n];',
         PROBE_REGISTRY,
         [T_REGISTRY],
     ),

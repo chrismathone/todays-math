@@ -1156,7 +1156,8 @@ function t09(rng: Rng): Body {
   if (mode === 1)
     return attempt<Body>((): Body | null => {
       const b = randInt(rng, 1, 9);
-      const tex = `ax^{2}+${b}x>ax+${b}`;
+      // b=1 이면 `+1x` 가 된다(계수 1 은 지면 냄새) — 리드 병합 검수의 넓은 훑개가 찾았다(2026-09-13).
+      const tex = `ax^{2}+${b === 1 ? "" : b}x>ax+${b}`;
       return {
         content: `이차부등식 $${tex}$${ga(tex)} 해를 갖지 않을 때, 실수 $a$의 값을 구하시오.`,
         answer: numAnswer(-b),
