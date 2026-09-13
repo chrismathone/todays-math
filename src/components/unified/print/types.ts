@@ -1,0 +1,165 @@
+// Mathgen print options/defaults and template metadata, adapted to the unified draft schema.
+// Original: F:/Mathgen/src/stores/wizardStore.ts and components/print/types.ts.
+import type { StudioProblem } from "../types";
+import type { FontPackId } from "./fontPacks";
+export interface ProblemReview {
+  id: string;
+  variant: StudioProblem & { topic: string };
+}
+
+/** 6 신규 인쇄 템플릿. */
+export type PrintTemplate =
+  | "pyeongga" // 평가원 정밀형 — 수능·모의평가 클론
+  | "jeongtong" // 정통 내신형 — 학교 시험지 표 양식
+  | "modern" // 모던 내신형 — 학교 마케팅
+  | "workbook" // 학원 워크북 — 풀이공간 포함
+  | "jaseup" // 자습 학습지 — 개념박스 + 모눈
+  | "yuhyung"; // 유형 훈련지 — 같은 유형 반복 컴팩트
+
+/** 시험지 메타데이터. 헤더 / 푸터 / 워터마크 등에서 사용. */
+export interface PrintMeta {
+  /** 시험지 타이틀. 예: "2025학년도 1학기 중간고사" */
+  title: string;
+  /** 학교명. 예: "○○고등학교" */
+  schoolName?: string;
+  /** 학년. 예: "2학년" */
+  grade?: string;
+  /** 과목명. 예: "수학" */
+  subject: string;
+  /** 학기. 예: "1학기" */
+  semester?: string;
+  /** 시험 일시. */
+  examDate?: string;
+  /** 시험 시간. 예: "50분" */
+  examDuration?: string;
+  /** 출제자. */
+  examiner?: string;
+  /** 총점. 기본 100. */
+  totalScore?: number;
+  /** 워크북 학원명. */
+  academyName?: string;
+  /** 워크북 강사. */
+  instructorName?: string;
+  /** 자습 학습지 단원·개념 정리 (markdown 허용). */
+  conceptNote?: string;
+  /** 자습 학습지 학습 목표. */
+  todayGoal?: string;
+  /** 유형 훈련지 유형명. */
+  patternName?: string;
+  /** 유형 훈련지 핵심 전략. */
+  patternStrategy?: string;
+}
+
+/** 6 신규 template 컴포넌트가 모두 받는 공통 props. */
+export interface PrintTemplateProps {
+  /** 페이지 번호 (1-indexed). */
+  page: number;
+  /** 총 페이지. */
+  totalPages: number;
+  totalProblems?: number;
+  /** 1단/2단. workbook/jaseup 의 1단은 풀이공간 포함. */
+  columns: 1 | 2;
+  /** 시험지 메타데이터. */
+  meta: PrintMeta;
+  /** 이 페이지에 렌더할 문항. paginateProblems() 의 결과 한 페이지분. */
+  problems: ProblemReview[];
+  /** 1-indexed 시작 문항 번호. 페이지 N 의 첫 문항 번호. */
+  startingNumber: number;
+  /** PrintOptions — accentColor / showDate / showChapter 등 헤더 토글. */
+  options: PrintOptions;
+  /**
+   * 우측 컬럼 시작 인덱스 (2단). usePrintLayout 의 측정 패킹 결과. BodyContainer
+   * 가 이 값으로 좌/우 컬럼을 분할 (없으면 기존 개수 절반 fallback — 회귀 0).
+   */
+  splitIndex?: number;
+  /** Scale only a single card taller than its available page; never clip content. */
+  itemScales?: number[];
+  /**
+   * 측정 모드 — 화면 밖 측정 viewport 에서만 set. 값이 있으면 템플릿은 헤더/푸터/
+   * A4 chrome 없이 *본문만* 1단 flow 로, columnWidthPx 폭으로 렌더하고 각 문항
+   * 래퍼에 data-measure-idx 를 붙인다 (usePrintLayout 이 offsetHeight 실측).
+   */
+  measure?: { columnWidthPx: number };
+}
+
+export interface PrintOptions {
+  template: PrintTemplate;
+  /** 강조 색상 (hex). default: mathg-gen accent (#0EA5E9). */
+  color: string;
+  columns: 1 | 2;
+  /**
+   * 레이아웃 모드 (택일):
+   *  - "spacing": 세로 여백(spacing) 직접 지정 — 높이 기반 그리디 패킹.
+   *  - "count": 단별 문항 수(problemsPerColumn) 지정 — 컬럼당 정확히 N개씩 채우고
+   *    여백은 자동 균등 분배(space-evenly). 2단이면 페이지당 N*2.
+   */
+  layoutMode: "spacing" | "count";
+  /** count 모드 — 1단(컬럼)당 문항 수 (2 | 3 | 4). 2단이면 페이지당 ×2. */
+  problemsPerColumn: number;
+  /** 문항 간 세로 여백 (px). 0~150. spacing 모드에서만 사용. */
+  spacing: number;
+  /** 정답 + 해설 페이지 포함 여부. */
+  showAnswers: boolean;
+  /** showAnswers true 일 때 — 해설 생략하고 빠른 정답만. */
+  quickAnswerOnly: boolean;
+  showDate: boolean;
+  showChapter: boolean;
+  showDifficulty: boolean;
+  /** 2단 일 때 컬럼 사이 세로 구분선. 1단 이면 무시. */
+  columnDivider: boolean;
+  /** 한글 폰트 팩 (sans/serif 한 쌍). FONT_PACKS 의 id. */
+  fontPack: FontPackId;
+  /**
+   * 쪽 여백 프리셋 — 측정·미리보기·브라우저 인쇄에 같은 mm 여백 적용.
+   */
+  marginPreset: "narrow" | "normal" | "wide";
+}
+
+/**
+ * 기본 PrintOptions — Step5 첫 진입 시 사용. mathlab 의 default 값에서
+ * mathg-gen accent 색 + showChapter false (chapter 메타는 우리 데이터에서
+ * 거의 비어 있어 노이즈).
+ */
+export const DEFAULT_PRINT_OPTIONS: PrintOptions = {
+  template: "jeongtong", // 한국 학교 시험지 표 양식 — 가장 일반적
+  color: "#1B2A4E", // navy — jeongtong / modern 의 default accent
+  columns: 1, // jeongtong 기본 1단
+  layoutMode: "spacing", // 기본은 여백 직접 지정 (기존 동작 유지)
+  problemsPerColumn: 3, // count 모드 기본 — 1단당 3문항
+  spacing: 18,
+  showAnswers: false,
+  quickAnswerOnly: false,
+  showDate: true,
+  showChapter: true, // 6 신규 template 의 chapter chip 도 표시 default 권장
+  showDifficulty: true,
+  columnDivider: false,
+  fontPack: "system",
+  marginPreset: "normal", // 좌우 15mm·상하 12mm (HWP 출력 기본; 좁게/넓게 선택 가능)
+};
+
+/**
+ * 기본 시험지 메타 — Step5 정보 입력 패널의 초기값. 사용자가 입력하지 않은
+ * 필드는 빈 문자열(또는 totalScore 100)로 두고, Step5Export 의 meta useMemo 가
+ * 빈 값일 때 testTitle / gradeBadge / 오늘 날짜 등으로 폴백한다.
+ *
+ * 6 종 인쇄 템플릿(헤더)과 HWP payload(meta) 가 *동일* 한 이 값을 공유 — 고른
+ * 폼이 미리보기·HWP 에 일관 유지되도록(§내보내기 고도화). title/subject 는
+ * PrintMeta 에서 non-optional 이라 빈 문자열로 시드.
+ */
+export const DEFAULT_PRINT_META: PrintMeta = {
+  title: "",
+  subject: "수학",
+  schoolName: "",
+  grade: "",
+  semester: "",
+  examDate: "",
+  examDuration: "",
+  examiner: "",
+  totalScore: 100,
+  academyName: "",
+  instructorName: "",
+  conceptNote: "",
+  todayGoal: "",
+  patternName: "",
+  patternStrategy: "",
+};

@@ -1,5 +1,12 @@
 import type { Dispatch, SetStateAction } from "react";
 import type { StudioProblem } from "./types";
+import {
+  DEFAULT_PRINT_OPTIONS,
+  DEFAULT_PRINT_META,
+  type PrintOptions,
+  type PrintMeta,
+} from "./print/types";
+import { parsePrintOptions, parsePrintMeta } from "./print/settings";
 
 export const DRAFT_STORE_KEY = "today-math-workspace-drafts-v1";
 export const LEGACY_DRAFT_KEY = "today-math-unified-draft-v1";
@@ -12,6 +19,8 @@ export interface WorkspaceDraft {
   problems: StudioProblem[];
   columns: 1 | 2;
   answers: boolean;
+  printOptions: PrintOptions;
+  printMeta: PrintMeta;
   /** Last successful save, or an empty string for an unsaved worksheet. */
   updatedAt: string;
 }
@@ -57,8 +66,10 @@ function blankDraft(id = ""): WorkspaceDraft {
     id,
     title: DEFAULT_DRAFT_TITLE,
     problems: [],
-    columns: 2,
-    answers: false,
+    columns: DEFAULT_PRINT_OPTIONS.columns,
+    answers: DEFAULT_PRINT_OPTIONS.showAnswers,
+    printOptions: { ...DEFAULT_PRINT_OPTIONS },
+    printMeta: { ...DEFAULT_PRINT_META },
     updatedAt: "",
   };
 }
@@ -229,11 +240,17 @@ function parseProblems(value: unknown): StudioProblem[] {
 function parseImport(value: unknown): Omit<WorkspaceDraft, "id" | "updatedAt"> {
   if (!record(value) || value.version !== 1 || typeof value.title !== "string")
     throw new DraftError(INVALID_IMPORT);
+  const printOptions = parsePrintOptions(value.printOptions, {
+    columns: value.columns === 1 ? 1 : 2,
+    answers: value.answers,
+  });
   return {
     title: value.title,
     problems: parseProblems(value.problems),
-    columns: value.columns === 1 ? 1 : 2,
-    answers: typeof value.answers === "boolean" ? value.answers : false,
+    columns: printOptions.columns,
+    answers: printOptions.showAnswers,
+    printOptions,
+    printMeta: parsePrintMeta(value.printMeta),
   };
 }
 
@@ -294,6 +311,8 @@ function draftRevision(draft: WorkspaceDraft | undefined): string | undefined {
       draft.title,
       draft.columns,
       draft.answers,
+      draft.printOptions,
+      draft.printMeta,
       draft.updatedAt,
       draft.problems,
     ])
@@ -388,6 +407,8 @@ export function createWorkspaceDraftStore(
         const saved = {
           ...current,
           problems,
+          printOptions: parsePrintOptions(current.printOptions),
+          printMeta: parsePrintMeta(current.printMeta),
           updatedAt: new Date().toISOString(),
         };
         put(saved);
@@ -512,13 +533,43 @@ export function createWorkspaceDraftStore(
     setColumns: (columns: number) => {
       if (columns === 1 || columns === 2)
         edit((draft) =>
-          columns === draft.columns ? draft : { ...draft, columns },
+          columns === draft.columns
+            ? draft
+            : {
+                ...draft,
+                columns,
+                printOptions: { ...draft.printOptions, columns },
+              },
         );
     },
     setAnswers: (answers: boolean) =>
       edit((draft) =>
-        answers === draft.answers ? draft : { ...draft, answers },
+        answers === draft.answers
+          ? draft
+          : {
+              ...draft,
+              answers,
+              printOptions: { ...draft.printOptions, showAnswers: answers },
+            },
       ),
+    setPrintOptions: (patch: Partial<PrintOptions>) =>
+      edit((draft) => {
+        const printOptions = parsePrintOptions({
+          ...draft.printOptions,
+          ...patch,
+        });
+        return {
+          ...draft,
+          printOptions,
+          columns: printOptions.columns,
+          answers: printOptions.showAnswers,
+        };
+      }),
+    setPrintMeta: (patch: Partial<PrintMeta>) =>
+      edit((draft) => ({
+        ...draft,
+        printMeta: parsePrintMeta({ ...draft.printMeta, ...patch }),
+      })),
     createDraft: () => commit(blankDraft(newId())),
     openDraft: (id: string) => commit(id),
     importDraft: (value: unknown) => {
