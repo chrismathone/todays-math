@@ -8,7 +8,7 @@
   min-width: 0;
   background: #f4f6fa;
   color: var(--bank-ink);
-  font-size: 15px;
+  font-size: var(--text-body, 14px);
   line-height: 1.6;
 }
 .bank *,
@@ -22,7 +22,12 @@
   font: inherit;
 }
 .bank button {
+  height: 44px;
   min-height: 44px;
+  border-radius: 8px;
+  font-size: var(--text-body, 14px);
+  font-weight: 600;
+  line-height: 1.4;
   cursor: pointer;
 }
 .bank button:disabled {
@@ -51,7 +56,7 @@
 }
 .header h1 {
   margin: 0;
-  font-size: 32px;
+  font-size: var(--text-title, 24px);
   font-weight: 750;
   line-height: 1.3;
   letter-spacing: -0.035em;
@@ -59,7 +64,7 @@
 .subtitle {
   margin: 6px 0 0;
   color: var(--bank-muted);
-  font-size: 16px;
+  font-size: var(--text-body, 14px);
   word-break: keep-all;
 }
 .workspace {
@@ -99,7 +104,6 @@
   gap: 6px;
   padding: 8px 10px;
   border: 0;
-  border-radius: 6px;
   background: transparent;
   color: var(--bank-muted);
   white-space: nowrap;
@@ -140,7 +144,7 @@
   outline: 0;
   background: transparent;
   color: var(--bank-ink);
-  font-size: 16px;
+  font-size: var(--text-body, 14px);
 }
 .searchForm input::placeholder {
   color: var(--bank-muted);
@@ -153,10 +157,8 @@
   min-width: 72px;
   padding: 8px 18px;
   border: 0;
-  border-radius: 6px;
   background: var(--bank-primary);
   color: #fff;
-  font-weight: 700 !important;
 }
 .searchButton:hover,
 .exportButton:hover:enabled {
@@ -167,10 +169,8 @@
   width: 44px;
   padding: 0;
   border: 0;
-  border-radius: 6px;
   background: transparent;
   color: var(--bank-muted);
-  font-size: 24px !important;
 }
 .clearSearch:hover {
   background: #f3f5f9;
@@ -180,12 +180,12 @@
   align-items: center;
   gap: 7px;
   color: var(--bank-ink);
-  font-size: 13px;
+  font-size: var(--text-caption, 12px);
   font-weight: 700;
 }
 .filterLabel > span {
   color: var(--bank-muted);
-  font-size: 12px;
+  font-size: var(--text-caption, 12px);
   font-weight: 500;
   font-variant-numeric: tabular-nums;
 }
@@ -260,7 +260,7 @@
   flex-wrap: wrap;
   gap: 10px;
   margin: 0;
-  font-size: 20px;
+  font-size: var(--text-section, 18px);
   font-weight: 750;
   scroll-margin-top: 96px;
 }
@@ -271,13 +271,13 @@
 }
 .resultsHeader h2 > span {
   color: var(--bank-muted);
-  font-size: 14px;
+  font-size: var(--text-caption, 12px);
   font-weight: 500;
 }
 .resultsHeader h2 strong {
   padding-right: 4px;
   color: var(--bank-primary);
-  font-size: 20px;
+  font-size: var(--text-title, 24px);
   font-weight: 750;
   font-variant-numeric: tabular-nums;
 }
@@ -287,7 +287,7 @@ label.selectPage {
   gap: 8px;
   min-height: 44px;
   color: var(--bank-muted);
-  font-size: 14px;
+  font-size: var(--text-caption, 12px);
   cursor: pointer;
 }
 .selectPage:has(input:disabled) {
@@ -309,11 +309,8 @@ label.selectPage {
   max-width: 100%;
   padding: 8px 10px;
   border: 1px solid #c2cef2;
-  border-radius: 6px;
   background: var(--bank-selected);
   color: #2548bc;
-  font-size: 13px !important;
-  font-weight: 600 !important;
 }
 .filterChip:hover {
   border-color: var(--bank-primary);
@@ -322,10 +319,12 @@ label.selectPage {
 .chipLabel {
   flex: none;
   color: var(--bank-muted);
-  font-weight: 500;
 }
 .chipValue {
-  overflow-wrap: anywhere;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 .filterChip svg {
   flex: none;
@@ -372,7 +371,7 @@ label.rowSelect {
 }
 .rowNumber {
   color: var(--bank-ink);
-  font-size: 15px;
+  font-size: var(--text-caption, 12px);
   font-weight: 750;
   font-variant-numeric: tabular-nums;
 }
@@ -384,7 +383,7 @@ label.rowSelect {
   gap: 6px 10px;
   min-width: 0;
   color: var(--bank-muted);
-  font-size: 13px;
+  font-size: var(--text-caption, 12px);
   overflow-wrap: anywhere;
 }
 .gradeBadge {
@@ -397,12 +396,12 @@ label.rowSelect {
   border-radius: 4px;
   background: #fff;
   color: var(--bank-muted);
-  font-size: 12px;
+  font-size: var(--text-caption, 12px);
   font-weight: 600;
 }
 .problemCode {
   margin-left: auto;
-  font-size: 12px;
+  font-size: var(--text-caption, 12px);
   font-variant-numeric: tabular-nums;
 }
 .rowMain {
@@ -412,10 +411,11 @@ label.rowSelect {
 .sectionLabel {
   margin: 0 0 8px;
   color: var(--bank-muted);
-  font-size: 13px;
+  font-size: var(--text-caption, 12px);
   font-weight: 600;
   overflow-wrap: anywhere;
 }
+/* Problem, answer, and solution text retain their reading sizes and relative math scale. */
 .problemBody {
   min-width: 0;
   padding-bottom: 16px;
@@ -446,11 +446,8 @@ label.rowSelect {
   gap: 5px;
   padding: 8px 10px;
   border: 1px solid var(--bank-line);
-  border-radius: 6px;
   background: #fff;
   color: var(--bank-muted);
-  font-size: 14px !important;
-  font-weight: 600 !important;
 }
 .textButton:hover,
 .textButton[aria-expanded="true"] {
@@ -471,11 +468,8 @@ label.rowSelect {
   margin-left: auto;
   padding: 8px 14px;
   border: 1px solid var(--bank-primary);
-  border-radius: 6px;
   background: #fff;
   color: #2548bc;
-  font-size: 14px !important;
-  font-weight: 700 !important;
   white-space: nowrap;
 }
 .addButton:hover {
@@ -502,7 +496,7 @@ label.rowSelect {
 .answerLabel {
   flex: none;
   color: #2548bc;
-  font-size: 14px;
+  font-size: var(--text-caption, 12px);
   font-weight: 750;
 }
 .detail {
@@ -529,16 +523,16 @@ label.rowSelect {
 .detailMeta dt {
   flex: 0 0 64px;
   color: var(--bank-muted);
-  font-size: 13px;
+  font-size: var(--text-caption, 12px);
 }
 .detailMeta dd {
   min-width: 0;
   margin: 0;
-  font-size: 14px;
+  font-size: var(--text-caption, 12px);
 }
 .detail h4 {
   margin: 0 0 10px;
-  font-size: 15px;
+  font-size: var(--text-section, 18px);
   font-weight: 750;
 }
 .emptyState,
@@ -564,12 +558,12 @@ label.rowSelect {
   border-radius: 12px;
   background: var(--bank-selected);
   color: var(--bank-primary);
-  font-size: 24px;
+  font-size: var(--text-title, 24px);
 }
 .emptyState h3,
 .loadingState strong {
   margin: 0;
-  font-size: 20px;
+  font-size: var(--text-section, 18px);
   font-weight: 750;
 }
 .emptyState p,
@@ -586,10 +580,8 @@ label.rowSelect {
   margin-top: 24px;
   padding: 10px 16px;
   border: 1px solid var(--bank-primary);
-  border-radius: 6px;
   background: #fff;
   color: #2548bc;
-  font-weight: 650 !important;
 }
 .outlineButton:hover {
   background: var(--bank-selected);
@@ -619,7 +611,7 @@ label.rowSelect {
 .listFooter > p {
   margin: 0;
   color: var(--bank-muted);
-  font-size: 13px;
+  font-size: var(--text-caption, 12px);
   font-variant-numeric: tabular-nums;
 }
 .pagination {
@@ -636,7 +628,6 @@ label.rowSelect {
   min-width: 44px;
   padding: 8px;
   border: 1px solid var(--bank-line);
-  border-radius: 6px;
   background: #fff;
   color: var(--bank-muted);
   font-variant-numeric: tabular-nums;
@@ -649,11 +640,10 @@ label.rowSelect {
   border-color: var(--bank-primary);
   background: var(--bank-primary);
   color: #fff;
-  font-weight: 700;
 }
 .pageGap {
   color: var(--bank-muted);
-  font-size: 14px;
+  font-size: var(--text-caption, 12px);
 }
 .mobilePageNumber {
   display: none;
@@ -689,7 +679,7 @@ label.rowSelect {
 }
 .basketHeading h2 {
   margin: 0;
-  font-size: 18px;
+  font-size: var(--text-section, 18px);
   font-weight: 700;
 }
 .basketCount {
@@ -697,12 +687,12 @@ label.rowSelect {
   align-items: baseline;
   gap: 5px;
   margin-left: auto;
-  font-size: 26px;
+  font-size: var(--text-title, 24px);
   font-weight: 750;
   font-variant-numeric: tabular-nums;
 }
 .basketCount small {
-  font-size: 12px;
+  font-size: var(--text-caption, 12px);
   font-weight: 500;
 }
 .basketToggle {
@@ -718,7 +708,7 @@ label.rowSelect {
 .basketDescription {
   margin: 14px 0;
   color: var(--bank-muted);
-  font-size: 13px;
+  font-size: var(--text-caption, 12px);
   word-break: keep-all;
 }
 .basketIntro {
@@ -734,10 +724,8 @@ label.rowSelect {
   margin: -6px -8px 4px 0;
   padding: 8px;
   border: 0;
-  border-radius: 6px;
   background: transparent;
   color: var(--bank-muted);
-  font-size: 13px !important;
 }
 .clearBasket:hover {
   color: var(--bank-primary);
@@ -761,13 +749,13 @@ label.rowSelect {
 }
 .basketEmpty p {
   margin: 0;
-  font-size: 15px;
+  font-size: var(--text-body, 14px);
   font-weight: 700;
 }
 .basketEmpty > span {
   margin-top: 8px;
   color: var(--bank-muted);
-  font-size: 13px;
+  font-size: var(--text-caption, 12px);
 }
 .basketList {
   display: grid;
@@ -791,7 +779,7 @@ label.rowSelect {
   align-self: flex-start;
   padding-top: 2px;
   color: var(--bank-primary);
-  font-size: 12px;
+  font-size: var(--text-caption, 12px);
   font-weight: 700;
   font-variant-numeric: tabular-nums;
 }
@@ -802,14 +790,14 @@ label.rowSelect {
 .basketList strong {
   display: block;
   overflow-wrap: anywhere;
-  font-size: 14px;
+  font-size: var(--text-body, 14px);
   font-weight: 700;
 }
 .basketList li > div > span {
   display: block;
   margin-top: 4px;
   color: var(--bank-muted);
-  font-size: 12px;
+  font-size: var(--text-caption, 12px);
   overflow-wrap: anywhere;
 }
 .basketList button {
@@ -820,10 +808,8 @@ label.rowSelect {
   width: 44px;
   padding: 0;
   border: 1px solid var(--bank-line);
-  border-radius: 6px;
   background: #fff;
   color: var(--bank-muted);
-  font-size: 22px;
 }
 .basketList button:hover {
   background: #f3f5f9;
@@ -840,14 +826,10 @@ label.rowSelect {
   justify-content: space-between;
   gap: 12px;
   width: 100%;
-  min-height: 50px !important;
-  padding: 12px 16px;
+  padding: 0 16px;
   border: 0;
-  border-radius: 7px;
   background: var(--bank-primary);
   color: #fff;
-  font-size: 16px !important;
-  font-weight: 700 !important;
 }
 .exportButton:disabled {
   opacity: 1 !important;
@@ -857,7 +839,7 @@ label.rowSelect {
 .basketFooter > p {
   margin: 10px 0 0;
   color: var(--bank-muted);
-  font-size: 12px;
+  font-size: var(--text-caption, 12px);
   text-align: center;
   word-break: keep-all;
 }
@@ -891,15 +873,11 @@ label.rowSelect {
     background: transparent;
     color: var(--bank-ink);
   }
-  .basketHeading h2 {
-    font-size: 15px;
-  }
   .basketIcon {
     display: none;
   }
   .basketCount {
     margin-left: 0;
-    font-size: 22px;
   }
   .basketToggle {
     display: inline-flex;
@@ -908,10 +886,8 @@ label.rowSelect {
     gap: 4px;
     padding: 6px;
     border: 0;
-    border-radius: 6px;
     background: #f3f5f9;
     color: var(--bank-muted);
-    font-size: 13px !important;
   }
   .basketToggle:hover {
     background: var(--bank-selected);
@@ -969,12 +945,6 @@ label.rowSelect {
   .header {
     margin-bottom: 16px;
   }
-  .header h1 {
-    font-size: 30px;
-  }
-  .subtitle {
-    font-size: 15px;
-  }
   .filters {
     padding: 12px;
     margin-bottom: 12px;
@@ -990,19 +960,13 @@ label.rowSelect {
     gap: 6px;
     padding: 8px 10px;
     border: 1px solid var(--bank-line);
-    border-radius: 6px;
     background: #fff;
     color: var(--bank-ink);
-    font-size: 14px !important;
-    font-weight: 600 !important;
   }
   .filterToggle[aria-expanded="true"] {
     border-color: #c2cef2;
     background: var(--bank-selected);
     color: #2548bc;
-  }
-  .resetButton {
-    font-size: 14px !important;
   }
   .searchForm {
     gap: 6px;
@@ -1029,17 +993,11 @@ label.rowSelect {
     grid-template-columns: 70px minmax(0, 1fr);
     align-items: center;
   }
-  .selectWrap select {
-    font-size: 16px;
-  }
   .filterSummary {
     gap: 6px;
   }
   .resultsHeader {
     gap: 4px 12px;
-  }
-  .resultsHeader h2 {
-    font-size: 18px;
   }
   .cardHeader {
     flex-wrap: wrap;
@@ -1057,9 +1015,6 @@ label.rowSelect {
   }
   .rowActions {
     gap: 8px;
-  }
-  .textButton {
-    flex: 1;
   }
   .addButton {
     flex-basis: 100%;
@@ -1087,7 +1042,7 @@ label.rowSelect {
   .mobilePageNumber {
     display: inline;
     color: var(--bank-muted);
-    font-size: 14px;
+    font-size: var(--text-caption, 12px);
   }
   .basket {
     right: 12px;
@@ -1103,19 +1058,12 @@ label.rowSelect {
   .basketHeading {
     gap: 2px 8px;
   }
-  .basketHeading h2 {
-    font-size: 14px;
-  }
-  .basketCount {
-    font-size: 20px;
-  }
   .basketToggle {
     margin-right: auto;
     min-width: 72px;
   }
   .basket .exportButton {
-    padding: 12px;
-    font-size: 15px !important;
+    padding: 0 12px;
   }
 }
 @media (prefers-reduced-motion: reduce) {

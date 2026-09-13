@@ -11,11 +11,17 @@
   min-width: 0;
   padding: 32px;
   color: var(--ink);
-  font-size: 15px;
+  font-size: var(--text-body, 14px);
   line-height: 1.65;
 }
 
 .teaching button {
+  box-sizing: border-box;
+  min-height: 44px;
+  border-radius: 8px;
+  font-size: var(--text-body, 14px);
+  font-weight: 600;
+  line-height: 1.4;
   cursor: pointer;
 }
 .teaching button:disabled {
@@ -39,13 +45,13 @@
 .eyebrow {
   margin: 0 0 6px;
   color: #3159df;
-  font-size: 13px;
+  font-size: var(--text-caption, 12px);
   font-weight: 800;
   letter-spacing: 0.08em;
 }
 .heading h1 {
   margin: 0;
-  font-size: 32px;
+  font-size: var(--text-title, 24px);
   font-weight: 800;
   line-height: 1.3;
   letter-spacing: -0.04em;
@@ -53,7 +59,7 @@
 .heading h1 + p {
   margin: 9px 0 0;
   color: #52617a;
-  font-size: 15px;
+  font-size: var(--text-body, 14px);
 }
 .account {
   display: flex;
@@ -63,13 +69,13 @@
 }
 .account strong {
   display: block;
-  font-size: 14px;
+  font-size: var(--text-body, 14px);
   overflow-wrap: anywhere;
 }
 .account small {
   display: block;
   color: #52617a;
-  font-size: 13px;
+  font-size: var(--text-caption, 12px);
 }
 .avatar {
   display: grid;
@@ -80,24 +86,23 @@
   border-radius: 50%;
   color: #3159df;
   background: #e9efff;
-  font-size: 16px;
+  font-size: var(--text-body, 14px);
   font-weight: 800;
 }
 .tabs {
   display: flex;
+  flex-wrap: wrap;
   gap: 8px;
   margin-bottom: 28px;
   border-bottom: 1px solid #d4dce8;
 }
 .tabs button {
   position: relative;
-  min-height: 52px;
-  padding: 0 20px 14px;
+  height: 44px;
+  padding: 0 20px;
   border: 0;
   background: transparent;
   color: #52617a;
-  font-size: 15px;
-  font-weight: 700;
   white-space: nowrap;
 }
 .tabs button[aria-selected="true"] {
@@ -141,7 +146,7 @@
 }
 .authIntro h2 {
   margin: 12px 0 0;
-  font-size: 32px;
+  font-size: var(--text-section, 18px);
   font-weight: 800;
   line-height: 1.45;
   letter-spacing: -0.045em;
@@ -151,7 +156,7 @@
   margin: 18px 0 0;
   max-width: 380px;
   color: #52617a;
-  font-size: 16px;
+  font-size: var(--text-body, 14px);
   line-height: 1.85;
   word-break: keep-all;
 }
@@ -177,17 +182,17 @@
   border-radius: 9px;
   background: white;
   color: #3159df;
-  font-size: 13px;
+  font-size: var(--text-caption, 12px);
   font-weight: 800;
 }
 .featureList strong {
-  font-size: 15px;
+  font-size: var(--text-body, 14px);
   font-weight: 750;
 }
 .featureList p {
   margin: 2px 0 0;
   color: #52617a;
-  font-size: 14px;
+  font-size: var(--text-body, 14px);
 }
 .authCard {
   min-width: 0;
@@ -198,8 +203,8 @@
   box-shadow: 0 8px 28px #172b4d07;
 }
 .authModes {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
+  display: flex;
+  flex-wrap: wrap;
   gap: 4px;
   margin-bottom: 28px;
   padding: 4px;
@@ -207,13 +212,11 @@
   background: #f3f5f9;
 }
 .authModes button {
-  min-height: 44px;
+  height: 44px;
+  padding: 0 16px;
   border: 1px solid transparent;
-  border-radius: 8px;
   background: transparent;
   color: #52617a;
-  font-size: 14px;
-  font-weight: 700;
 }
 .authModes button[aria-pressed="true"] {
   border-color: #d4dce8;
@@ -223,7 +226,7 @@
 }
 .authCard h2 {
   margin: 0;
-  font-size: 32px;
+  font-size: var(--text-section, 18px);
   font-weight: 800;
   line-height: 1.4;
   letter-spacing: -0.045em;
@@ -231,7 +234,7 @@
 .authDescription {
   margin: 8px 0 24px;
   color: #52617a;
-  font-size: 14px;
+  font-size: var(--text-body, 14px);
 }
 .authForm {
   display: grid;
@@ -243,7 +246,7 @@
 }
 .field label {
   color: #172b4d;
-  font-size: 14px;
+  font-size: var(--text-caption, 12px);
   font-weight: 700;
 }
 .field input {
@@ -257,11 +260,11 @@
   background: white;
   color: #172b4d;
   font: inherit;
-  font-size: 16px;
+  font-size: var(--text-body, 14px);
 }
 .field input::placeholder {
   color: #6a7890;
-  font-size: 14px;
+  font-size: var(--text-body, 14px);
 }
 .field input[aria-invalid="true"] {
   border-color: #bb3847;
@@ -272,7 +275,7 @@
 .fieldError {
   margin: 0;
   color: #ab2638;
-  font-size: 13px;
+  font-size: var(--text-caption, 12px);
 }
 .notice {
   margin: 0;
@@ -281,7 +284,7 @@
   border-radius: 8px;
   background: #f2f5ff;
   color: #2443ab;
-  font-size: 13px;
+  font-size: var(--text-caption, 12px);
 }
 .primaryButton,
 .secondaryButton {
@@ -289,15 +292,11 @@
   align-items: center;
   justify-content: center;
   gap: 12px;
-  min-height: 48px;
-  padding: 10px 18px;
+  height: 44px;
+  padding: 0 18px;
   border: 1px solid #3159df;
-  border-radius: 9px;
   background: #3159df;
   color: #fff;
-  font-size: 15px;
-  font-weight: 700;
-  line-height: 1.5;
 }
 .primaryButton:hover {
   background: #2447c5;
@@ -313,14 +312,11 @@
 }
 .primaryButton span {
   margin-left: auto;
-  font-size: 20px;
 }
 .secondaryButton {
-  min-height: 44px;
   border-color: #d4dce8;
   background: #fff;
   color: #52617a;
-  font-size: 13px;
   white-space: nowrap;
 }
 .secondaryButton:hover {
@@ -331,7 +327,7 @@
   margin: 22px 0 0;
   color: #64738c;
   text-align: center;
-  font-size: 13px;
+  font-size: var(--text-caption, 12px);
 }
 .loading {
   display: flex;
@@ -341,7 +337,7 @@
   min-height: 220px;
   padding: 24px;
   color: #52617a;
-  font-size: 15px;
+  font-size: var(--text-body, 14px);
 }
 .loadingDot {
   width: 9px;
@@ -357,7 +353,7 @@
   background: white;
 }
 .errorPanel h2 {
-  font-size: 22px;
+  font-size: var(--text-section, 18px);
   font-weight: 800;
 }
 .errorPanel p {
@@ -373,14 +369,14 @@
 }
 .sectionHeading h2 {
   margin: 0;
-  font-size: 22px;
+  font-size: var(--text-section, 18px);
   font-weight: 800;
   letter-spacing: -0.03em;
 }
 .sectionHeading p {
   margin: 6px 0 0;
   color: #52617a;
-  font-size: 14px;
+  font-size: var(--text-body, 14px);
 }
 
 /* Scope the existing workflows to this content area; production styles stay intact. */
@@ -402,27 +398,28 @@
   border-radius: 14px;
   background: white;
 }
-.classContent :is(p, li, td, label, button),
-.lessonContent :is(p, li, td, label, button, a) {
-  font-size: max(13px, 1em);
+.classContent :is(p, li, td, button, [class*="text-[15"]),
+.lessonContent
+  :is(p, li, td, button, a, [class*="text-[13"], [class*="text-[15"]) {
+  font-size: var(--text-body, 14px);
 }
-.classContent h2 {
+.classContent :is(h2, h3) {
   border: 0;
   margin-bottom: 14px;
   padding: 0;
-  font-size: 17px;
+  font-size: var(--text-section, 18px);
   font-weight: 800;
   letter-spacing: -0.025em;
 }
 .classContent th {
   padding: 0 12px 14px;
   border-bottom: 1px solid #d4dce8;
-  font-size: 13px;
+  font-size: var(--text-caption, 12px);
   letter-spacing: 0;
 }
 .classContent td {
   padding: 10px 12px;
-  font-size: 15px;
+  font-size: var(--text-body, 14px);
   overflow-wrap: anywhere;
 }
 .classContent table {
@@ -434,10 +431,11 @@
 .classContent th:last-child {
   width: 30%;
 }
-.classContent button,
-.lessonContent button {
-  min-height: 44px;
-  border-radius: 7px;
+/* Unit selectors and lesson rows can wrap; only ordinary actions have a fixed height. */
+.classContent button:not(:where([aria-label="단원 선택"] button)),
+.lessonContent
+  button:not(:where(article > button:first-child, [aria-label$=" 완료"])) {
+  height: 44px;
 }
 .classContent input,
 .lessonContent :is(input, select) {
@@ -445,7 +443,7 @@
   padding: 10px 12px;
   border: 1px solid #a3b0c5;
   border-radius: 8px;
-  font-size: 16px;
+  font-size: var(--text-body, 14px);
 }
 .classContent form > div:first-child {
   flex-wrap: wrap;
@@ -478,7 +476,7 @@
   border-bottom: 1px solid #d4dce8;
   background: #f3f5f9;
   color: #52617a;
-  font-size: 13px;
+  font-size: var(--text-section, 18px);
 }
 .classContent [aria-label="단원 선택"] section > div {
   max-height: 340px;
@@ -486,11 +484,11 @@
 }
 .classContent [aria-label="단원 선택"] button {
   padding: 10px 12px;
-  border-radius: 0;
+  border-radius: 8px;
   white-space: normal;
   overflow-wrap: anywhere;
   text-overflow: clip;
-  line-height: 1.5;
+  line-height: 1.4;
 }
 .lessonContent {
   overflow: hidden;
@@ -499,20 +497,39 @@
   background: #fff;
 }
 .lessonContent :is(h2, h3) {
-  font-size: 15px;
+  font-size: var(--text-section, 18px);
   letter-spacing: 0;
 }
-.lessonContent [class*="text-[9"],
-.lessonContent [class*="text-[10"],
-.lessonContent [class*="text-[11"],
-.lessonContent [class*="text-[12"],
-.lessonContent th {
-  font-size: 13px;
+.classContent :is(label, small),
+.lessonContent :is(label, small, th),
+.classContent
+  :is([class*="text-[10"], [class*="text-[11"], [class*="text-[12"]):not(
+    button,
+    input,
+    select,
+    a,
+    h2,
+    h3
+  ),
+.lessonContent
+  :is(
+    [class*="text-[9"],
+    [class*="text-[10"],
+    [class*="text-[11"],
+    [class*="text-[12"],
+    [class~="text-xs"]
+  ):not(button, input, select, a, h2, h3) {
+  font-size: var(--text-caption, 12px);
   letter-spacing: 0;
+}
+.lessonContent :is([class*="text-[26"], [class~="text-2xl"]) {
+  font-size: var(--text-title, 24px);
 }
 .lessonContent a {
   min-height: 44px;
-  border-radius: 7px;
+  border-radius: 8px;
+  font-weight: 600;
+  line-height: 1.4;
 }
 .lessonContent button {
   white-space: nowrap;
@@ -521,7 +538,7 @@
   padding: 10px 16px;
   background: #3159df;
   color: white;
-  font-size: 14px;
+  font-size: var(--text-body, 14px);
 }
 .lessonContent [data-teaching-dashboard] > div:last-child {
   min-width: 0;
@@ -535,9 +552,6 @@
     grid-template-columns: minmax(0, 1fr) minmax(320px, 420px);
     gap: 28px;
     padding: 8px 0;
-  }
-  .authIntro h2 {
-    font-size: 29px;
   }
   .authCard {
     padding: 26px;
@@ -564,9 +578,6 @@
     flex-direction: column;
     gap: 18px;
   }
-  .heading h1 {
-    font-size: 32px;
-  }
   .account {
     width: 100%;
   }
@@ -587,12 +598,10 @@
   }
   .authIntro h2 {
     margin-top: 8px;
-    font-size: 28px;
   }
   .introDescription {
     margin-top: 12px;
     max-width: none;
-    font-size: 15px;
   }
   .featureList {
     display: none;
@@ -601,16 +610,12 @@
     padding: 24px;
     border-radius: 14px;
   }
-  .authCard h2 {
-    font-size: 32px;
-  }
   .tabs {
     margin-bottom: 24px;
   }
   .tabs button {
     padding-right: 12px;
     padding-left: 12px;
-    font-size: 14px;
   }
   .classContent main > div > section,
   .classContent main > section {
