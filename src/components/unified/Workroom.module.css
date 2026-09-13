@@ -540,6 +540,7 @@
   gap: 18px;
 }
 .libraryCard {
+  min-width: 0;
   padding: 22px 22px 0;
   border: 1px solid #d9e2ee;
   border-radius: 12px;
@@ -1120,7 +1121,7 @@
     width: auto;
   }
   .libraryGrid {
-    grid-template-columns: 1fr;
+    grid-template-columns: minmax(0, 1fr);
     gap: 14px;
   }
   .libraryCard {
