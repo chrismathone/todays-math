@@ -145,7 +145,15 @@ def driver(work: pathlib.Path, blind: pathlib.Path, *args: str) -> subprocess.Co
 
 
 def negative_residue(work: pathlib.Path, blind: pathlib.Path) -> list[str]:
-    """손 고침을 빼면 7r 이 잔재로 **멈춰야** 한다 — 안 멈추면 그 규칙은 죽은 것이다."""
+    """7r 잔재 훑기가 **빈 분자를 잡는가** — 규칙이 못 고치는 꼴을 일부러 심어 본다.
+
+    처음엔 «손 고침을 빼면 7r 이 멈춘다» 로 쟀다. 2026-09-13 고침기에 `bar-empty-numerator` 규칙이
+    들어가 강동중 15-c2 를 규칙이 **스스로** 고치게 되자, 손 고침을 빼도 잔재가 안 남아 이 대조는
+    **더는 실패할 수 없게** 됐다(20번 2026-08-21 「변이가 동작을 안 바꾸면 "가드가 아니다"가 거짓말이 된다」).
+    그래서 전제를 바꿨다: 음성 사본에 **바가 아닌 것 뒤의 빈 분자** `3\\frac{}{…}` 를 손 고침으로 심는다.
+    분자가 어디까지인지 모양으로 못 정해 규칙이 **일부러 안 건드리는** 꼴이고, KaTeX 는 그려 주므로
+    5단계를 지나 초안까지 간다 — 거기서 7r 이 «빈 분자» 로 멈춰야 한다.
+    """
     exam_id = "2025-gangdong-3-2-mid"
     d = work.parent / "neg" / exam_id
     shutil.rmtree(d.parent, ignore_errors=True)
@@ -155,14 +163,21 @@ def negative_residue(work: pathlib.Path, blind: pathlib.Path) -> list[str]:
     for f in (EXAMS / exam_id / "figures").iterdir():
         shutil.copyfile(f, d / "figures" / f.name)
     cfg = json.loads((d / "exam.json").read_text(encoding="utf-8"))
-    cfg["hand"] = []
+    # 15-c2 는 규칙이 이미 `\frac{\overline{AB}}{\overline{OB}}` 로 고친다 — 그 분자를 «3» 으로 바꿔
+    # 바가 아닌 것 뒤의 빈 분자를 심는다(규칙이 모양만으로는 못 고치는 꼴).
+    cfg["hand"] = [{
+        "id": "15-c2",
+        "why": "음성 대조 — 규칙이 못 고치는 빈 분자를 심는다",
+        "from": "\\frac{\\overline{AB}}{\\overline{OB}}",
+        "to": "3\\frac{}{\\overline{OB}}",
+    }]
     (d / "exam.json").write_text(json.dumps(cfg, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
     r = sh([sys.executable, str(HERE / "batch_import.py"), "--exam-dir", str(d),
             "--blind-root", str(blind / "neg"), "--from", "4", "--reviewed"])
     line = next((ln for ln in r.stdout.splitlines() if exam_id in ln), "(줄 없음)")
     if "7r" in line and "잔재" in line and "빈 분자" in line:
         return []
-    return [f"손 고침을 뺐는데 잔재로 안 멈췄다 — «{line.strip()[:110]}»"]
+    return [f"빈 분자를 심었는데 7r 이 안 멈췄다 — «{line.strip()[:110]}»"]
 
 
 def negative_grade(work: pathlib.Path, blind: pathlib.Path) -> list[str]:
