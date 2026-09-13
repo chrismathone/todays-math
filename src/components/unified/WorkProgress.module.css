@@ -84,8 +84,8 @@
   white-space: nowrap;
 }
 
-.panel .cancel,
-.inline .cancel {
+.panel button.cancel,
+.inline button.cancel {
   flex-shrink: 0;
   height: 32px;
   min-height: 32px;
