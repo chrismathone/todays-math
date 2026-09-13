@@ -1,5 +1,6 @@
 "use client";
 
+import WorkspacePageHeader from "./WorkspacePageHeader";
 import dynamic from "next/dynamic";
 import { signOut } from "next-auth/react";
 import {
@@ -146,12 +147,10 @@ export default function TeachingView() {
 
   return (
     <div className={s.teaching}>
-      <header className={s.heading}>
-        <div>
-          <p className={s.eyebrow}>TEACHING</p>
-          <h1>수업 관리</h1>
-          <p>반과 학생을 살피고, 오늘의 수업을 준비하세요.</p>
-        </div>
+      <WorkspacePageHeader
+        title="수업 관리"
+        description="반과 학생을 살피고, 오늘의 수업을 준비하세요."
+      >
         {access.status === "ready" ? (
           <div className={s.account}>
             <span className={s.avatar} aria-hidden="true">
@@ -171,7 +170,7 @@ export default function TeachingView() {
             </button>
           </div>
         ) : null}
-      </header>
+      </WorkspacePageHeader>
       {accountError ? (
         <p role="alert" className={s.fieldError}>
           {accountError}

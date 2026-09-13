@@ -1,4 +1,7 @@
 .teaching {
+  padding: var(--workspace-page-padding, 16px 20px);
+  max-width: none;
+  margin: 0;
   --ink: #172b4d;
   --blue: #3159df;
   --bg: #fff;
@@ -9,7 +12,6 @@
   --text-2: #52617a;
   --text-3: #64738c;
   min-width: 0;
-  padding: 32px;
   color: var(--ink);
   font-size: var(--text-body, 14px);
   line-height: 1.65;
@@ -35,31 +37,12 @@
   outline: 2px solid #3159df;
   outline-offset: 5px;
 }
-.heading {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 24px;
-  margin-bottom: 26px;
-}
 .eyebrow {
   margin: 0 0 6px;
   color: #3159df;
   font-size: var(--text-caption, 12px);
   font-weight: 800;
   letter-spacing: 0.08em;
-}
-.heading h1 {
-  margin: 0;
-  font-size: var(--text-title, 24px);
-  font-weight: 800;
-  line-height: 1.3;
-  letter-spacing: -0.04em;
-}
-.heading h1 + p {
-  margin: 9px 0 0;
-  color: #52617a;
-  font-size: var(--text-body, 14px);
 }
 .account {
   display: flex;
@@ -570,14 +553,6 @@
 }
 
 @media (max-width: 760px) {
-  .teaching {
-    padding: 24px 18px;
-  }
-  .heading {
-    align-items: flex-start;
-    flex-direction: column;
-    gap: 18px;
-  }
   .account {
     width: 100%;
   }
@@ -677,9 +652,6 @@
 }
 
 @media (max-width: 400px) {
-  .teaching {
-    padding: 22px 14px;
-  }
   .authCard {
     padding: 22px 18px;
   }

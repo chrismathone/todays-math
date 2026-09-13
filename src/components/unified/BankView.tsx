@@ -1,5 +1,6 @@
 "use client";
 
+import WorkspacePageHeader from "./WorkspacePageHeader";
 import { useEffect, useId, useMemo, useRef, useState } from "react";
 import { MathText } from "@/components/math/MathText";
 import { DIFFICULTY_LADDER } from "@/contracts/difficulty";
@@ -357,14 +358,11 @@ export default function BankView({
 
   return (
     <section className={styles.bank} aria-labelledby={headingId}>
-      <header className={styles.header}>
-        <div>
-          <h1 id={headingId}>문제은행</h1>
-          <p className={styles.subtitle}>
-            학년·단원별로 문제를 찾고 수업에 필요한 문항을 담으세요.
-          </p>
-        </div>
-      </header>
+      <WorkspacePageHeader
+        title="문제은행"
+        titleId={headingId}
+        description="학년·단원별로 문제를 찾고 수업에 필요한 문항을 담으세요."
+      />
 
       <div className={styles.workspace}>
         <div className={styles.results}>

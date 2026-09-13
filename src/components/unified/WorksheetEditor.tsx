@@ -1,4 +1,5 @@
 "use client";
+import WorkspacePageHeader from "./WorkspacePageHeader";
 import { MathText } from "@/components/math/MathText";
 import UnifiedProblem from "./UnifiedProblem";
 import { displayFractions } from "./fractionDisplay";
@@ -39,30 +40,26 @@ export default function WorksheetEditor({
 }: Props) {
   return (
     <main className={s.exportContent}>
-      <div className={s.pageHeading}>
-        <div>
-          <p className={s.eyebrow}>시험지 편집</p>
-          <h1>시험지 구성하기</h1>
-          <p>문제은행과 내 자료에서 가져온 문제를 함께 구성하세요.</p>
-        </div>
-        <div className={s.headingActions}>
-          <button
-            className={s.secondaryButton}
-            onClick={save}
-            disabled={!selected.length}
-          >
-            <Icon name="save" size={18} /> 작업 저장
-          </button>
-          <button
-            className={s.primaryButton}
-            disabled={!selected.length}
-            onClick={() => window.print()}
-          >
-            <Icon name="print" size={18} />
-            인쇄 / PDF 저장
-          </button>
-        </div>
-      </div>
+      <WorkspacePageHeader
+        title="시험지 구성하기"
+        description="문제은행과 내 자료에서 가져온 문제를 함께 구성하세요."
+      >
+        <button
+          className={s.secondaryButton}
+          onClick={save}
+          disabled={!selected.length}
+        >
+          <Icon name="save" size={18} /> 작업 저장
+        </button>
+        <button
+          className={s.primaryButton}
+          disabled={!selected.length}
+          onClick={() => window.print()}
+        >
+          <Icon name="print" size={18} />
+          인쇄 / PDF 저장
+        </button>
+      </WorkspacePageHeader>
       {!selected.length ? (
         <div className={s.emptyExport}>
           <div className={s.emptyIcon}>

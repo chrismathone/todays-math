@@ -1,5 +1,6 @@
 "use client";
 
+import WorkspacePageHeader from "./WorkspacePageHeader";
 import dynamic from "next/dynamic";
 import { useCallback, useEffect, useRef, useState } from "react";
 import type { BankData, StudioProblem } from "./types";
@@ -578,31 +579,25 @@ export default function UnifiedWorkspace({
           )}
           {view === "library" && (
             <main className={s.library}>
-              <header className={s.pageHeader}>
-                <div>
-                  <p>나의 수업 자료</p>
-                  <h1>내 시험지</h1>
-                  <span>
-                    저장한 작업을 이어가거나 다른 기기의 작업 파일을 불러오세요.
-                  </span>
-                </div>
-                <div>
-                  <button
-                    className={s.outlineButton}
-                    onClick={() => draftFileRef.current?.click()}
-                  >
-                    <Icon name="upload" size={18} />
-                    작업 파일 불러오기
-                  </button>
-                  <button
-                    className={s.primaryButton}
-                    disabled={!hydrated}
-                    onClick={() => setModal("new")}
-                  >
-                    <Icon name="plus" size={18} />새 시험지
-                  </button>
-                </div>
-              </header>
+              <WorkspacePageHeader
+                title="내 시험지"
+                description="저장한 작업을 이어가거나 다른 기기의 작업 파일을 불러오세요."
+              >
+                <button
+                  className={s.outlineButton}
+                  onClick={() => draftFileRef.current?.click()}
+                >
+                  <Icon name="upload" size={18} />
+                  작업 파일 불러오기
+                </button>
+                <button
+                  className={s.primaryButton}
+                  disabled={!hydrated}
+                  onClick={() => setModal("new")}
+                >
+                  <Icon name="plus" size={18} />새 시험지
+                </button>
+              </WorkspacePageHeader>
               <div className={s.libraryTools}>
                 <strong>
                   저장한 시험지 <span>{recent.length}</span>

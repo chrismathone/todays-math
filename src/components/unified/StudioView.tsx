@@ -3,6 +3,7 @@
 /* Local image data must stay in the browser, bypassing the Next image optimizer. */
 /* eslint-disable @next/next/no-img-element */
 
+import WorkspacePageHeader from "./WorkspacePageHeader";
 import { useEffect, useEffectEvent, useRef, useState } from "react";
 import type { KeyboardEvent, PointerEvent, SVGProps } from "react";
 import type { PDFDocumentProxy, RenderTask } from "pdfjs-dist";
@@ -608,32 +609,30 @@ export default function StudioView({
           </div>
         </div>
       )}
-      <header className={styles.header}>
-        <div>
-          <h1>내 자료로 만드는 문제</h1>
-          <p>자료에서 문제를 자르고, 검수한 문항을 내 시험지에 담으세요.</p>
-        </div>
-        <div className={styles.headerActions}>
-          <button
-            type="button"
-            className={styles.secondaryButton}
-            onClick={loadSample}
-            disabled={busy}
-          >
-            <Icon name="file" />
-            예제로 시작
-          </button>
-          <button
-            type="button"
-            className={styles.primaryButton}
-            onClick={() => fileInput.current?.click()}
-            disabled={busy}
-          >
-            <Icon name="upload" />
-            {busy ? "파일 여는 중…" : "파일 가져오기"}
-          </button>
-        </div>
-      </header>
+      <WorkspacePageHeader
+        title="내 자료로 만드는 문제"
+        description="자료에서 문제를 자르고, 검수한 문항을 내 시험지에 담으세요."
+        hidden={editing}
+      >
+        <button
+          type="button"
+          className={styles.secondaryButton}
+          onClick={loadSample}
+          disabled={busy}
+        >
+          <Icon name="file" />
+          예제로 시작
+        </button>
+        <button
+          type="button"
+          className={styles.primaryButton}
+          onClick={() => fileInput.current?.click()}
+          disabled={busy}
+        >
+          <Icon name="upload" />
+          {busy ? "파일 여는 중…" : "파일 가져오기"}
+        </button>
+      </WorkspacePageHeader>
 
       <input
         ref={fileInput}

@@ -1,38 +1,8 @@
 .exportContent {
-  padding: 32px;
-  max-width: 1600px;
-  margin: 0 auto;
+  padding: var(--workspace-page-padding, 16px 20px);
+  max-width: none;
+  margin: 0;
   color: #172b4d;
-}
-.pageHeading {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 20px;
-  margin-bottom: 28px;
-}
-.eyebrow {
-  font-size: var(--text-caption, 12px);
-  font-weight: 600;
-  color: #667d9f;
-  margin: 0 0 6px;
-}
-.pageHeading h1 {
-  font-size: var(--text-title, 24px);
-  line-height: 1.3;
-  font-weight: 800;
-  letter-spacing: -1px;
-  margin: 0 0 9px;
-}
-.pageHeading > div > p:last-child {
-  color: #677b97;
-  font-size: var(--text-body, 14px);
-  line-height: 1.7;
-}
-.headingActions {
-  display: flex;
-  gap: 9px;
-  flex-shrink: 0;
 }
 .primaryButton,
 .secondaryButton {
@@ -466,9 +436,6 @@
   }
 }
 @media (max-width: 1250px) {
-  .exportContent {
-    padding: 26px;
-  }
   .exportGrid {
     grid-template-columns: 255px minmax(0, 1fr);
     gap: 17px;
@@ -481,10 +448,6 @@
   }
   .paper {
     padding: 28px 21px;
-  }
-  .pageHeading {
-    align-items: start;
-    flex-direction: column;
   }
 }
 @media (max-width: 1050px) {
@@ -508,27 +471,6 @@
   }
 }
 @media (max-width: 760px) {
-  .exportContent {
-    padding: 22px 16px;
-  }
-  .pageHeading {
-    margin-bottom: 22px;
-    gap: 18px;
-  }
-  .pageHeading h1 {
-    font-size: var(--text-title, 24px);
-  }
-  .pageHeading > div > p:last-child {
-    font-size: var(--text-body, 14px);
-  }
-  .headingActions {
-    width: 100%;
-  }
-  .headingActions > button {
-    flex: 1;
-    font-size: var(--text-body, 14px);
-    padding: 0 12px;
-  }
   .exportInspector {
     padding: 20px 18px;
   }
@@ -602,7 +544,7 @@
     background: #fff;
     border: 0;
   }
-  .pageHeading,
+
   .exportInspector,
   .paperToolbar {
     display: none !important;
@@ -664,10 +606,6 @@
   border-radius: var(--control-radius, 8px);
   font-size: var(--text-body, 14px);
 }
-.headingActions {
-  display: flex;
-  flex-wrap: wrap;
-}
 .emptyExport > div:last-of-type {
   display: flex;
   flex-wrap: wrap;
@@ -679,13 +617,6 @@
   height: var(--control-height, 44px);
 }
 @media (max-width: 760px) {
-  .headingActions {
-    width: auto;
-  }
-  .headingActions > button {
-    min-width: 0;
-    font-size: var(--text-body, 14px);
-  }
   .emptyExport > div:last-of-type {
     width: auto;
     flex-direction: row;
