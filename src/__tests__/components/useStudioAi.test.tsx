@@ -10,6 +10,7 @@ import {
   type StudioCrop,
 } from "@/components/unified/studioHelpers";
 import type { DevAiResponse } from "@/lib/dev-ai/contracts";
+import * as imageHelpers from "@/components/unified/studioAiHelpers";
 
 const bridge = vi.hoisted(() => ({
   run: vi.fn(),
@@ -372,5 +373,265 @@ describe("Studio AI owner", () => {
       "page-ocr",
       "page-ocr",
     ]);
+  });
+});
+
+describe("Studio figure detection owner", () => {
+  const figureResponse = (): DevAiResponse => ({
+    ...response("figures"),
+    result: {
+      ...response("figures").result,
+      figures: [{ bbox: { left: 250, top: 250, width: 500, height: 250 } }],
+    },
+  });
+  const initial = (): StudioCrop => ({
+    ...crop("a", String.raw`$\frac{7}{3}$을 계산하세요.`),
+    rect: { x: 0.25, y: 0.125, width: 0.5, height: 0.5 },
+    answer: "검수 답",
+    solution: "검수 해설",
+    reviewed: true,
+    added: true,
+  });
+  function image() {
+    const canvas = document.createElement("canvas");
+    canvas.width = 1000;
+    canvas.height = 800;
+    vi.spyOn(HTMLCanvasElement.prototype, "getContext").mockReturnValue({
+      drawImage: vi.fn(),
+    } as unknown as CanvasRenderingContext2D);
+    vi.spyOn(HTMLCanvasElement.prototype, "toDataURL").mockReturnValue(
+      "data:image/png;base64,ZmlndXJl",
+    );
+    const decode = vi
+      .spyOn(imageHelpers, "studioImageCanvas")
+      .mockResolvedValue(canvas);
+    return { canvas, decode };
+  }
+
+  it("detects only on request, maps to page coordinates, and leaves every text field untouched", async () => {
+    const { decode } = image();
+    bridge.run.mockResolvedValue(figureResponse());
+    const original = initial();
+    const { result } = mount([original]);
+    expect(bridge.run).not.toHaveBeenCalled();
+    await act(async () => {
+      await result.current.processCrops("figures", ["a"]);
+    });
+    expect(bridge.run).toHaveBeenCalledTimes(1);
+    expect(bridge.run.mock.calls[0][0].action).toBe("figures");
+    expect(decode).toHaveBeenCalledWith(
+      original.image,
+      expect.any(AbortSignal),
+    );
+    expect(result.current.crops[0]).toMatchObject({
+      content: original.content,
+      answer: original.answer,
+      solution: original.solution,
+      reviewed: false,
+      added: false,
+      revision: 1,
+      sourceSize: { width: 2000, height: 1600 },
+      figures: [
+        {
+          rect: { x: 0.375, y: 0.25, width: 0.25, height: 0.125 },
+          image: "data:image/png;base64,ZmlndXJl",
+        },
+      ],
+    });
+  });
+
+  it("keeps reviewed and added when a repeated detection only changes warnings", async () => {
+    image();
+    bridge.run.mockResolvedValue(figureResponse());
+    const { result } = mount([initial()]);
+    await act(async () => {
+      await result.current.processCrops("figures", ["a"]);
+    });
+    const detected = result.current.crops[0];
+    act(() => {
+      result.current.setCrops([{ ...detected, reviewed: true, added: true }]);
+    });
+    await act(async () => {
+      await result.current.processCrops("figures", ["a"]);
+    });
+    expect(result.current.crops[0]).toMatchObject({
+      reviewed: true,
+      added: true,
+      revision: 1,
+    });
+    expect(result.current.crops[0].figures).toBe(detected.figures);
+  });
+
+  it("initializes an explicit empty result without decoding pixels or invalidating unchanged content", async () => {
+    const { decode } = image();
+    const value = figureResponse();
+    value.result.figures = [];
+    bridge.run.mockResolvedValue(value);
+    const { result } = mount([initial()]);
+    await act(async () => {
+      await result.current.processCrops("figures", ["a"]);
+    });
+    expect(result.current.crops[0]).toMatchObject({
+      figures: [],
+      reviewed: true,
+      added: true,
+    });
+    expect(decode).not.toHaveBeenCalled();
+  });
+
+  it.each(["figures", "rect", "reviewed"] as const)(
+    "rejects replies after manual %s edits even without a revision bump",
+    async (field) => {
+      image();
+      const pending = deferred<DevAiResponse>();
+      bridge.run.mockReturnValue(pending.promise);
+      const { result } = mount([initial()]);
+      let work!: Promise<void>;
+      act(() => {
+        work = result.current.processCrops("figures", ["a"]);
+      });
+      act(() => {
+        result.current.setCrops((items) =>
+          items.map((item) => ({
+            ...item,
+            ...(field === "figures"
+              ? {
+                  figures: [
+                    {
+                      id: "manual",
+                      rect: item.rect,
+                      image: "data:image/png;base64,bWFudWFs",
+                    },
+                  ],
+                }
+              : field === "rect"
+                ? { rect: { ...item.rect, x: 0.3 } }
+                : { reviewed: false }),
+          })),
+        );
+      });
+      const edited = result.current.crops[0];
+      await act(async () => {
+        pending.resolve(figureResponse());
+        await work;
+      });
+      expect(result.current.crops[0]).toBe(edited);
+      expect(result.current.message).toContain("수정되거나 제외된 1문항");
+    },
+  );
+
+  it("rejects a crop edit made while figure image pixels are being decoded", async () => {
+    const { canvas, decode } = image();
+    const pending = deferred<HTMLCanvasElement>();
+    decode.mockReturnValue(pending.promise);
+    bridge.run.mockResolvedValue(figureResponse());
+    const { result } = mount([initial()]);
+    let work!: Promise<void>;
+    await act(async () => {
+      work = result.current.processCrops("figures", ["a"]);
+    });
+    expect(decode).toHaveBeenCalledOnce();
+    act(() => {
+      result.current.setCrops((items) =>
+        items.map((item) => ({ ...item, revision: 1, content: "직접 수정" })),
+      );
+    });
+    await act(async () => {
+      pending.resolve(canvas);
+      await work;
+    });
+    expect(result.current.crops[0].figures).toBeUndefined();
+    expect(result.current.crops[0].content).toBe("직접 수정");
+  });
+
+  it("aborts replacement, discards its late figures and clears the old retry owner", async () => {
+    image();
+    const pending = deferred<DevAiResponse>();
+    bridge.run.mockReturnValue(pending.promise);
+    const { result, rerender } = mount([initial()]);
+    let work!: Promise<void>;
+    act(() => {
+      work = result.current.processCrops("figures", ["a"]);
+    });
+    const signal = bridge.run.mock.calls[0][1] as AbortSignal;
+    rerender({ contextKey: "replacement:1", active: true });
+    expect(signal.aborted).toBe(true);
+    await act(async () => {
+      pending.resolve(figureResponse());
+      await work;
+    });
+    act(() => {
+      result.current.retry();
+    });
+    expect(bridge.run).toHaveBeenCalledTimes(1);
+    expect(result.current.crops[0].figures).toBeUndefined();
+    expect(result.current.error).toBe("");
+  });
+
+  it("preserves existing figures on decode failure and retries the same explicit action", async () => {
+    const { canvas, decode } = image();
+    decode
+      .mockRejectedValueOnce(new Error("이미지 읽기 실패"))
+      .mockResolvedValue(canvas);
+    bridge.run.mockResolvedValue(figureResponse());
+    const original = initial();
+    original.figures = [
+      { id: "manual", rect: original.rect, image: original.image },
+    ];
+    const { result } = mount([original]);
+    await act(async () => {
+      await result.current.processCrops("figures", ["a"]);
+    });
+    expect(result.current.error).toContain("이미지 읽기 실패");
+    expect(result.current.crops[0]).toBe(original);
+    act(() => {
+      result.current.retry();
+    });
+    await waitFor(() => expect(result.current.progress).toBeNull());
+    expect(bridge.run.mock.calls.map((call) => call[0].action)).toEqual([
+      "figures",
+      "figures",
+    ]);
+    expect(result.current.crops[0].figures?.[0].id).not.toBe("manual");
+    expect(result.current.error).toBe("");
+  });
+
+  it("initializes page OCR figures in source-page coordinates, clipping to the problem and warning on outliers", async () => {
+    const { canvas, decode } = image();
+    const value = response("page-ocr");
+    value.result.problems = [
+      {
+        content: "도형 문제",
+        answer: "",
+        bbox: { left: 250, top: 125, width: 500, height: 500 },
+        figures: [
+          { bbox: { left: 0, top: 250, width: 500, height: 250 } },
+          { bbox: { left: 800, top: 800, width: 100, height: 100 } },
+        ],
+      },
+    ];
+    bridge.run.mockResolvedValue(value);
+    const { result } = mount([]);
+    await act(async () => {
+      await result.current.recognizePage({
+        sourceId: "source",
+        sourceLabel: "sheet.png",
+        page: 1,
+        canvas,
+        imageDataUrl: "data:image/png;base64,cGFnZQ==",
+        grade: "초5",
+        level: "elementary",
+      });
+    });
+    expect(decode).not.toHaveBeenCalled();
+    expect(result.current.crops[0]).toMatchObject({
+      reviewed: false,
+      sourceSize: { width: 1000, height: 800 },
+      figures: [{ rect: { x: 0.25, y: 0.25, width: 0.25, height: 0.25 } }],
+    });
+    expect(result.current.crops[0].aiWarnings?.join(" ")).toContain(
+      "1개를 제외",
+    );
+    expect(bridge.run).toHaveBeenCalledTimes(1);
   });
 });

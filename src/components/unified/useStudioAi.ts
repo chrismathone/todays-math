@@ -13,8 +13,11 @@ import { useDevAi } from "./useDevAi";
 import type { StudioCrop } from "./studioHelpers";
 import {
   studioAiRect,
+  studioAiFigures,
   studioAiSnapshotMatches,
   studioCropImage,
+  studioFiguresEqual,
+  studioImageCanvas,
   studioRectsOverlap,
 } from "./studioAiHelpers";
 
@@ -27,7 +30,7 @@ export interface StudioAiPage {
   grade: string;
   level: StudioCrop["level"];
 }
-type CropAction = "ocr" | "solution";
+type CropAction = "ocr" | "figures" | "solution";
 type Job =
   | { action: "page-ocr"; page: StudioAiPage }
   | { action: CropAction; ids: string[] };
@@ -168,6 +171,10 @@ export function useStudioAi({
             continue;
           }
           try {
+            const figures =
+              item.figures === undefined
+                ? undefined
+                : studioAiFigures(page.canvas, item.figures, rect);
             detected.push({
               id: crypto.randomUUID(),
               sourceId: page.sourceId,
@@ -175,6 +182,12 @@ export function useStudioAi({
               page: page.page,
               rect,
               image: studioCropImage(page.canvas, rect),
+              ...(figures ? { figures: figures.figures } : {}),
+              sourceSize: {
+                width: page.canvas.width,
+                height: page.canvas.height,
+              },
+              reviewed: false,
               content: item.content,
               answer: item.answer,
               solution: "",
@@ -182,7 +195,10 @@ export function useStudioAi({
               level: page.level,
               mode: "image",
               added: false,
-              aiWarnings: response.result.warnings,
+              aiWarnings: [
+                ...response.result.warnings,
+                ...(figures?.warnings ?? []),
+              ],
             });
           } catch {
             invalid++;
@@ -249,10 +265,67 @@ export function useStudioAi({
             throw new Error(
               "해설 결과가 비어 있습니다. 문제 내용을 확인하고 다시 시도해 주세요.",
             );
-          const patch =
-            job.action === "ocr"
-              ? { content: result.content, answer: result.answer, solution: "" }
-              : { answer: result.answer, solution: result.solution };
+          let patch: Partial<StudioCrop>;
+          const warnings = [...result.warnings];
+          if (job.action === "figures") {
+            if (!result.figures)
+              throw new Error(
+                "그림 영역 결과가 없습니다. 원본은 유지됩니다. 다시 시도해 주세요.",
+              );
+            patch = { figures: [] };
+            if (result.figures.length) {
+              const canvas = await studioImageCanvas(
+                snapshot.image,
+                controller.signal,
+              );
+              if (stale()) return;
+              if (
+                !studioAiSnapshotMatches(
+                  latest.current.crops.find((crop) => crop.id === snapshot.id),
+                  snapshot,
+                )
+              ) {
+                skipped++;
+                continue;
+              }
+              const detected = studioAiFigures(
+                canvas,
+                result.figures,
+                snapshot.rect,
+                snapshot.rect,
+              );
+              patch.figures = detected.figures;
+              if (!snapshot.sourceSize)
+                patch.sourceSize = {
+                  width: canvas.width / snapshot.rect.width,
+                  height: canvas.height / snapshot.rect.height,
+                };
+              warnings.push(...detected.warnings);
+            }
+            // Repeated identical detection keeps stable figure IDs and review state.
+            if (
+              studioFiguresEqual(snapshot.figures, patch.figures, false) &&
+              snapshot.figures
+            )
+              patch.figures = snapshot.figures;
+          } else {
+            patch =
+              job.action === "ocr"
+                ? {
+                    content: result.content,
+                    answer: result.answer,
+                    solution: "",
+                  }
+                : { answer: result.answer, solution: result.solution };
+          }
+          const changed =
+            (patch.content !== undefined &&
+              patch.content !== snapshot.content) ||
+            (patch.answer !== undefined && patch.answer !== snapshot.answer) ||
+            (patch.solution !== undefined &&
+              patch.solution !== snapshot.solution) ||
+            (patch.figures !== undefined &&
+              !studioFiguresEqual(patch.figures, snapshot.figures, false));
           setCrops((previous) =>
             stale()
               ? previous
@@ -261,9 +334,14 @@ export function useStudioAi({
                     ? {
                         ...crop,
                         ...patch,
-                        aiWarnings: result.warnings,
-                        added: false,
-                        revision: (crop.revision ?? 0) + 1,
+                        aiWarnings: warnings,
+                        ...(changed
+                          ? {
+                              added: false,
+                              reviewed: false,
+                              revision: (crop.revision ?? 0) + 1,
+                            }
+                          : {}),
                       }
                     : crop,
                 ),
@@ -271,7 +349,7 @@ export function useStudioAi({
           completed++;
         }
         setMessage(
-          `${job.action === "ocr" ? "문자 인식" : "해설 생성"} ${completed}문항 완료.${skipped ? ` 수정되거나 제외된 ${skipped}문항은 유지했습니다.` : ""} 원본과 결과를 확인해 주세요.`,
+          `${job.action === "ocr" ? "문자 인식" : job.action === "figures" ? "도형 인식" : "해설 생성"} ${completed}문항 완료.${skipped ? ` 수정되거나 제외된 ${skipped}문항은 유지했습니다.` : ""} 원본과 결과를 확인해 주세요.`,
         );
       }
     } catch (cause) {

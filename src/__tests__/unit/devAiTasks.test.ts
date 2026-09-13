@@ -113,4 +113,94 @@ describe("development OCR and solution task boundary", () => {
     );
     expect(prompt).toContain(JSON.stringify("$\\frac{9}{4}$"));
   });
+
+  it("accepts only an image-backed explicit figures request and requires a figures result", () => {
+    expect(
+      DevAiRequestSchema.safeParse({ ...request, action: "figures" }).success,
+    ).toBe(true);
+    expect(
+      DevAiRequestSchema.safeParse({
+        ...request,
+        action: "figures",
+        imageDataUrl: undefined,
+      }).success,
+    ).toBe(false);
+    expect(() => parseDevAiResult("{}", "figures")).toThrow("그림 영역 결과");
+    expect(
+      parseDevAiResult(
+        JSON.stringify({
+          figures: [],
+          content: "overwrite",
+          answer: "overwrite",
+          solution: "overwrite",
+        }),
+        "figures",
+      ),
+    ).toMatchObject({ figures: [], content: "", answer: "", solution: "" });
+  });
+
+  it.each([
+    { left: -1, top: 0, width: 10, height: 10 },
+    { left: 0, top: -1, width: 10, height: 10 },
+    { left: 999, top: 0, width: 2, height: 10 },
+    { left: 0, top: 999, width: 10, height: 2 },
+    { left: 0, top: 0, width: 0, height: 10 },
+    { left: 0, top: 0, width: 10, height: -1 },
+    { left: null, top: 0, width: 10, height: 10 },
+    { left: "1", top: 0, width: 10, height: 10 },
+  ])("drops invalid figure coordinates with a warning: %j", (bbox) => {
+    const valid = { bbox: { left: 750, top: 750, width: 250, height: 250 } };
+    const result = parseDevAiResult(
+      JSON.stringify({ figures: [{ bbox }, valid] }),
+      "figures",
+    );
+    expect(result.figures).toEqual([valid]);
+    expect(result.warnings.join(" ")).toContain("1개를 제외");
+  });
+
+  it("retains page-coordinate figures and raw OCR even when another optional figure is invalid", () => {
+    const figures = [
+      { bbox: { left: 400, top: 500, width: 100, height: 100 } },
+    ];
+    const content = String.raw`$\frac{9}{4}$ ① 1 ② 2`;
+    const result = parseDevAiResult(
+      JSON.stringify({
+        problems: [
+          {
+            content,
+            bbox: { left: 200, top: 300, width: 500, height: 500 },
+            figures: [
+              ...figures,
+              { bbox: { left: -2, top: 0, width: 5, height: 5 } },
+            ],
+          },
+        ],
+      }),
+      "page-ocr",
+    );
+    expect(result.problems?.[0]).toMatchObject({ content, figures });
+    expect(result.warnings).toHaveLength(1);
+  });
+
+  it("bounds figure array sizes and makes page and crop coordinate rules explicit in prompts", () => {
+    expect(() =>
+      parseDevAiResult(
+        JSON.stringify({ figures: Array(31).fill({}) }),
+        "figures",
+      ),
+    ).toThrow();
+    const base = {
+      provider: "codex" as const,
+      grade: "초5",
+      imageDataUrl: request.imageDataUrl,
+    };
+    const cropPrompt = buildDevAiPrompt({ ...base, action: "figures" });
+    expect(cropPrompt).toContain("INPUT 이미지 전체");
+    expect(cropPrompt).toContain("손글씨 풀이·낙서");
+    expect(cropPrompt).toContain("figures: []");
+    expect(cropPrompt).toContain("보기 텍스트는 제외");
+    expect(buildDevAiPrompt({ ...base, action: "page-ocr" })).toContain(
+      "부모 문제 bbox에 상대적인 좌표가 아니다",
+    );
+  });
 });
