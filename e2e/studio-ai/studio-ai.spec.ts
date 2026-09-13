@@ -329,3 +329,76 @@ test("mobile manual crop, compact controls, focus/panel toggles and fraction pre
     fullPage: true,
   });
 });
+
+test("page recognition blocks manual selection, restores it after cancel/error/success, and right click cancels only the pending rectangle", async ({
+  page,
+}) => {
+  const mock = await mockAi(page);
+  await page.goto("/");
+  await page.getByRole("button", { name: "예제로 시작", exact: true }).click();
+  const area = page.getByRole("group", { name: "문제 자르기 영역" });
+  const recognize = page.getByRole("button", { name: "페이지 자동 인식" });
+  const save = page.getByRole("button", {
+    name: "선택 영역 자르기",
+    exact: true,
+  });
+  const keyboard = page.getByRole("button", {
+    name: "키보드로 영역 지정",
+    exact: true,
+  });
+  await keyboard.click();
+  await expect(save).toBeEnabled();
+  const pending = area.getByText("선택 영역", { exact: true }).locator("..");
+  const before = await pending.getAttribute("style");
+  mock.hold();
+  await recognize.click();
+  await expect.poll(() => mock.posts.length).toBe(1);
+  await expect(area).toHaveCSS("cursor", "progress");
+  await expect(save).toBeDisabled();
+  await expect(keyboard).toBeDisabled();
+  // DOM keyboard events still reach an aria-disabled group; guard the handlers too.
+  await area.focus();
+  await page.keyboard.press("ArrowRight");
+  await page.keyboard.press("Enter");
+  const bounds = (await area.boundingBox())!;
+  await page.mouse.move(bounds.x + 20, bounds.y + 30);
+  await page.mouse.down();
+  await page.mouse.move(bounds.x + 100, bounds.y + 110);
+  await page.mouse.up();
+  await expect(pending).toHaveAttribute("style", before!);
+  await expect(
+    page.getByRole("img", { name: "검수할 자른 원본 문제" }),
+  ).toHaveCount(0);
+  await page.getByRole("button", { name: "AI 작업 취소" }).click();
+  mock.release();
+  await expect(area).toHaveCSS("cursor", "crosshair");
+  await expect(save).toBeEnabled();
+  await expect(pending).toHaveAttribute("style", before!);
+  await area.click({ button: "right", position: { x: 40, y: 50 } });
+  await expect(pending).toHaveCount(0);
+  await expect(save).toBeDisabled();
+  // Right-click while the left button is held must release the drag, even on later movement.
+  await page.mouse.move(bounds.x + 20, bounds.y + 30);
+  await page.mouse.down();
+  await page.mouse.move(bounds.x + 100, bounds.y + 110);
+  await page.mouse.click(bounds.x + 100, bounds.y + 110, { button: "right" });
+  await page.mouse.move(bounds.x + 150, bounds.y + 140);
+  await page.mouse.up();
+  await expect(pending).toHaveCount(0);
+  mock.fail();
+  await recognize.click();
+  await expect(page.getByRole("alert")).toContainText("도구 응답 지연");
+  await expect(area).toHaveCSS("cursor", "crosshair");
+  await recognize.click();
+  await expect(page.getByRole("textbox", { name: "문제 내용" })).toHaveValue(
+    content,
+  );
+  await expect(area).toHaveCSS("cursor", "crosshair");
+  await keyboard.click();
+  await area.click({ button: "right", position: { x: 40, y: 50 } });
+  await expect(pending).toHaveCount(0);
+  await expect(
+    page.getByRole("button", { name: "2문항 담기", exact: true }),
+  ).toBeEnabled();
+  expect(mock.errors).toEqual([]);
+});

@@ -552,6 +552,10 @@
   height: auto;
   pointer-events: none;
 }
+
+.pageSurface[aria-busy="true"] {
+  cursor: progress;
+}
 .rectangle,
 .savedRectangle {
   position: absolute;

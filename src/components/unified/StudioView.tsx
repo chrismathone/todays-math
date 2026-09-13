@@ -200,6 +200,7 @@ export default function StudioView({
       setInspectorOpen(true);
     },
   });
+  const recognizingPage = studioAi.progress?.action === "page-ocr";
   const unreadCrops = crops.filter(
     (crop) => !crop.content.trim() && !crop.added,
   );
@@ -398,12 +399,18 @@ export default function StudioView({
         if (file.type === "application/pdf" || /\.pdf$/i.test(file.name)) {
           const pdfjs = await import("pdfjs-dist");
           if (stale()) return;
-          pdfjs.GlobalWorkerOptions.workerSrc = "/api/dev/unified/pdf-worker";
+          pdfjs.GlobalWorkerOptions.workerSrc = `/api/dev/unified/pdf-worker?v=${pdfjs.version}`;
           const data = await file.arrayBuffer();
           if (stale()) return;
           const loading = pdfjs.getDocument({
             data,
             useSystemFonts: true,
+            cMapUrl: "/api/dev/unified/pdf-assets/cmaps/",
+            cMapPacked: true,
+            standardFontDataUrl: "/api/dev/unified/pdf-assets/standard_fonts/",
+            // Scanned exam text can be a CCITT/JBIG2 image mask, separate
+            // from the visible background. Missing WASM silently drops it.
+            wasmUrl: "/api/dev/unified/pdf-assets/wasm/",
           });
           resources.loadingPdfs.add(loading);
           // Password-protected files fail clearly instead of opening an unseen prompt.
@@ -565,7 +572,8 @@ export default function StudioView({
   }
 
   function beginCrop(event: PointerEvent<HTMLDivElement>) {
-    if (!pageReady || event.button !== 0 || !event.isPrimary) return;
+    if (recognizingPage || !pageReady || event.button !== 0 || !event.isPrimary)
+      return;
     event.preventDefault();
     event.currentTarget.focus({ preventScroll: true });
     event.currentTarget.setPointerCapture(event.pointerId);
@@ -576,20 +584,42 @@ export default function StudioView({
   }
 
   function moveCrop(event: PointerEvent<HTMLDivElement>) {
-    if (!drag.current || drag.current.pointerId !== event.pointerId) return;
+    if (
+      recognizingPage ||
+      !drag.current ||
+      drag.current.pointerId !== event.pointerId
+    )
+      return;
     setSelection(studioRectBetween(drag.current, pointAt(event)));
   }
 
   function endCrop(event: PointerEvent<HTMLDivElement>) {
-    if (!drag.current || drag.current.pointerId !== event.pointerId) return;
+    if (
+      recognizingPage ||
+      !drag.current ||
+      drag.current.pointerId !== event.pointerId
+    )
+      return;
     setSelection(studioRectBetween(drag.current, pointAt(event)));
     drag.current = null;
     if (event.currentTarget.hasPointerCapture(event.pointerId))
       event.currentTarget.releasePointerCapture(event.pointerId);
   }
 
+  function cancelSelection() {
+    const pointerId = drag.current?.pointerId;
+    drag.current = null;
+    setSelection(null);
+    if (
+      pointerId !== undefined &&
+      surface.current?.hasPointerCapture(pointerId)
+    )
+      surface.current.releasePointerCapture(pointerId);
+  }
+
   function saveCrop() {
     if (
+      recognizingPage ||
       !selection ||
       !rendered ||
       !currentSource ||
@@ -643,9 +673,10 @@ export default function StudioView({
   }
 
   function keyboardCrop(event: KeyboardEvent<HTMLDivElement>) {
+    if (recognizingPage) return;
     if (event.key === "Escape") {
-      drag.current = null;
-      setSelection(null);
+      if (selection || drag.current) event.preventDefault();
+      cancelSelection();
       return;
     }
     if (event.key === "Enter") {
@@ -688,7 +719,7 @@ export default function StudioView({
   }
 
   function adjustSelection(key: keyof StudioRect, value: number) {
-    if (!Number.isFinite(value)) return;
+    if (recognizingPage || !Number.isFinite(value)) return;
     setSelection((previous) => {
       if (!previous) return previous;
       const next = { ...previous, [key]: clamp(value / 100) };
@@ -1116,7 +1147,7 @@ export default function StudioView({
                       surface.current?.focus({ preventScroll: true }),
                     );
                   }}
-                  disabled={!pageReady}
+                  disabled={!pageReady || recognizingPage}
                   aria-label="키보드로 영역 지정"
                 >
                   영역 지정
@@ -1291,7 +1322,7 @@ export default function StudioView({
                     });
                     surface.current?.focus();
                   }}
-                  disabled={!pageReady}
+                  disabled={!pageReady || recognizingPage}
                 >
                   키보드로 영역 지정
                 </button>
@@ -1299,7 +1330,7 @@ export default function StudioView({
               <div
                 ref={pageViewport}
                 className={styles.pageViewport}
-                aria-busy={!pageReady && !error}
+                aria-busy={recognizingPage || (!pageReady && !error)}
               >
                 {pageReady && rendered ? (
                   <div
@@ -1317,13 +1348,17 @@ export default function StudioView({
                       tabIndex={0}
                       role="group"
                       aria-label="문제 자르기 영역"
+                      aria-busy={recognizingPage}
+                      aria-disabled={recognizingPage}
                       aria-describedby="studio-crop-keyboard-help"
                       onPointerDown={beginCrop}
                       onPointerMove={moveCrop}
                       onPointerUp={endCrop}
-                      onPointerCancel={() => {
-                        drag.current = null;
-                        setSelection(null);
+                      onPointerCancel={cancelSelection}
+                      onContextMenu={(event) => {
+                        if (!selection && !drag.current) return;
+                        event.preventDefault();
+                        cancelSelection();
                       }}
                       onLostPointerCapture={() => {
                         drag.current = null;
@@ -1390,8 +1425,8 @@ export default function StudioView({
                 id="studio-crop-keyboard-help"
                 className={styles.keyboardHelp}
               >
-                방향키: 이동 · Shift + 방향키: 크게 이동 · Enter: 자르기 · Esc:
-                취소
+                방향키: 이동 · Shift + 방향키: 크게 이동 · Enter: 자르기 ·
+                우클릭 / Esc: 취소
               </div>
               {selection && coordinatesOpen ? (
                 <div className={styles.coordinates}>
@@ -1408,6 +1443,7 @@ export default function StudioView({
                       <span>
                         <input
                           type="number"
+                          disabled={recognizingPage}
                           aria-label={`자르기 영역 ${label} (%)`}
                           min={0}
                           max={100}
@@ -1427,7 +1463,8 @@ export default function StudioView({
                   <button
                     type="button"
                     className={styles.textButton}
-                    onClick={() => setSelection(null)}
+                    onClick={cancelSelection}
+                    disabled={recognizingPage}
                   >
                     선택 해제
                   </button>
@@ -1784,18 +1821,24 @@ export default function StudioView({
             <>
               <div className={styles.selectionStatus}>
                 <strong>
-                  {validSelection ? "선택 영역" : "영역 선택 대기"}
+                  {recognizingPage
+                    ? "페이지 인식 중"
+                    : validSelection
+                      ? "선택 영역"
+                      : "영역 선택 대기"}
                 </strong>
                 <span>
-                  {selection && readyToCrop
-                    ? `${readyToCrop.width} × ${readyToCrop.height} px`
-                    : "원본에서 문제를 드래그하세요"}
+                  {recognizingPage
+                    ? "완료 후 영역을 선택할 수 있습니다"
+                    : selection && readyToCrop
+                      ? `${readyToCrop.width} × ${readyToCrop.height} px`
+                      : "드래그로 선택 · 우클릭으로 취소"}
                 </span>
               </div>
               <button
                 type="button"
                 className={styles.primaryButton}
-                disabled={!validSelection}
+                disabled={!validSelection || recognizingPage}
                 onClick={saveCrop}
               >
                 <Icon name="crop" />
@@ -1806,7 +1849,7 @@ export default function StudioView({
                 className={styles.coordinateToggle}
                 aria-expanded={coordinatesOpen}
                 onClick={() => setCoordinatesOpen((value) => !value)}
-                disabled={!selection}
+                disabled={!selection || recognizingPage}
               >
                 {coordinatesOpen ? "좌표 접기" : "세부 좌표"}
               </button>
