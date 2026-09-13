@@ -42,6 +42,17 @@ export type HighProblem = {
 
 export type HighTypeHandler = (rng: Rng) => HighProblem;
 
+/**
+ * 이번 물결에 못 만든 유형 — **까닭을 남긴다.** 중단원에 손을 댔으면 「등록 ∪ 보류 = 색인」이어야
+ * 한다(`highRegistry.test.ts`). 조용히 빠진 유형은 커버리지 표에서 «없는 유형»과 구별이 안 된다.
+ */
+export type HighHold = {
+  /** `과목|중단원|번호` — 색인 바이트 그대로 */
+  key: string;
+  /** 왜 못 만들었나 — 다음 사람이 할 일이 보이게(「이차함수 그래프 필요 — 물결 2 funcGraph」) */
+  reason: string;
+};
+
 /** 유형 등록 한 건 — 색인 메타 + 생성기 */
 export type HighTypeEntry = {
   /** `과목|중단원|번호` — 예: `"공통수학1|항등식과 나머지정리|03"` */

@@ -6,6 +6,9 @@
  * 여기서 더 가르는 것은 수식이 **수가 아닌 것으로 끝날 때**다:
  *
  *   · 지수로 끝남 `x^{2}` · `1000^{11}` — 「…의 제곱」으로 읽으니 받침 ㅂ → 을 · 으로 · 이 · 은 · 과
+ *   · 분수로 끝남 `\dfrac{1}{2}` — 「2분의 1」로 읽으니 **분자**의 끝소리다. ⚠️ 2026-09-13 전에는
+ *     끝 `}` 를 걷어 **분모**를 읽었다(`$\dfrac{1}{2}$를`) — 시험 쪽 자도 같이 분모를 읽어 안 보였다
+ *     (`highJosa.test.ts`)
  *   · 괄호·첨자로 끝남 `f(x)` · `(x+2)` · `a_{6}` — 괄호를 걷고 그 안의 끝 글자로 읽는다
  *   · 영문자로 끝남 — 이름으로 읽는다: 엘(l)·알(r)은 ㄹ, 엠(m)·엔(n)은 받침, 나머지는 모음
  *
@@ -26,8 +29,33 @@ const LETTER_FINAL: Record<string, "rieul" | "consonant"> = {
   n: "consonant",
 };
 
+/** `s[close]` 가 `}` 일 때 짝이 되는 `{` 의 자리 — 없으면 -1. */
+function matchingOpen(s: string, close: number): number {
+  let depth = 0;
+  for (let i = close; i >= 0; i -= 1) {
+    if (s[i] === "}") depth += 1;
+    else if (s[i] === "{") {
+      depth -= 1;
+      if (depth === 0) return i;
+    }
+  }
+  return -1;
+}
+
+/** 끝이 `\dfrac{A}{B}`·`rac{A}{B}` 면 분자 `A` — 아니면 `null`. */
+function trailingNumerator(s: string): string | null {
+  if (!s.endsWith("}")) return null;
+  const denOpen = matchingOpen(s, s.length - 1);
+  if (denOpen <= 0 || s[denOpen - 1] !== "}") return null;
+  const numOpen = matchingOpen(s, denOpen - 1);
+  if (numOpen < 0 || !/\d?frac$/.test(s.slice(0, numOpen))) return null;
+  return s.slice(numOpen + 1, denOpen - 1);
+}
+
 export function finalOf(tex: string): Final {
   let s = tex.trim();
+  const numerator = trailingNumerator(s);
+  if (numerator !== null) return finalOf(numerator);
   if (/\^\{[^{}]*\}$|\^\d$/.test(s)) return { kind: "consonant" };
   while (/[)}\]]$/.test(s)) s = s.slice(0, -1).trimEnd();
   const digits = /(\d+)$/.exec(s);

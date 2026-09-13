@@ -176,24 +176,122 @@ export function readAnswer(answer: string): number | P {
 // ───────────────────────────── 조사 ─────────────────────────────
 
 /**
- * 「(으)로」가 수식의 **읽기**와 맞나 — 제품 `josa.ro` 를 안 부르고 다시 적었다.
- * 지수로 끝나면 「제곱」(받침 ㅂ) → 으로 · 괄호·첨자는 걷고 안쪽 끝 · 수의 끝자리 0·3·6 → 으로
- * · 영문자 m·n → 으로 · 나머지 → 로.
+ * 수식을 소리 내어 읽을 때 **마지막 소리** — 제품 `josa.finalOf` 를 안 부르고 다시 적었다.
+ *
+ * - 분수 `\dfrac{a}{b}` 는 「b분의 a」 — **분자**로 들어간다. ⚠️ 2026-09-13 전의 이 자는 끝 `}` 를
+ *   걷어 분모를 읽었고, 제품도 똑같이 분모를 읽어 **둘이 같이 눈이 멀어** 있었다(`highJosa.test.ts`).
+ * - 지수로 끝나면 「제곱」(받침 ㅂ).
+ * - 괄호·중괄호는 걷고 안쪽 끝. 수는 끝자리 — 0 으로 끝나는 여러 자리 수는 십·백·천·만(받침).
+ * - 영문자는 이름: 엘·알 ㄹ · 엠·엔 받침 · 나머지 모음(허수 단위 `i` 는 「아이」).
+ * - 그 밖의 끝(명령어 기호 등)은 `null` — 판정하지 않는다(거짓 경보는 가드를 끈다).
  */
-function expectedRo(tex: string): "로" | "으로" {
-  let s = tex.trim();
-  if (/\^\{[^{}]*\}$|\^\d$/.test(s)) return "으로";
-  while (/[)}\]]$/.test(s)) s = s.slice(0, -1).trimEnd();
-  const d = /(\d)$/.exec(s);
-  if (d) return ["0", "3", "6"].includes(d[1]!) ? "으로" : "로";
-  return /[mn]$/i.test(s) ? "으로" : "로";
+export type Sound = "vowel" | "rieul" | "consonant";
+
+const DIGIT_SOUND: Record<string, Sound> = {
+  "0": "consonant",
+  "1": "rieul",
+  "2": "vowel",
+  "3": "consonant",
+  "4": "vowel",
+  "5": "vowel",
+  "6": "consonant",
+  "7": "rieul",
+  "8": "rieul",
+  "9": "vowel",
+};
+
+/** `s[open]` 이 `{` 일 때 짝 `}` 의 자리 — 없으면 -1. */
+function closeOf(s: string, open: number): number {
+  let depth = 0;
+  for (let i = open; i < s.length; i += 1) {
+    if (s[i] === "{") depth += 1;
+    else if (s[i] === "}") {
+      depth -= 1;
+      if (depth === 0) return i;
+    }
+  }
+  return -1;
+}
+
+/** 수식이 분수로 **끝나면** 그 분자 — 아니면 `null`. 바깥 분수가 먼저 걸린다. */
+function fracNumeratorAtEnd(s: string): string | null {
+  for (const m of s.matchAll(/\d?frac(?=\{)/g)) {
+    const numOpen = m.index! + m[0].length;
+    const numClose = closeOf(s, numOpen);
+    if (numClose < 0 || s[numClose + 1] !== "{") continue;
+    if (closeOf(s, numClose + 1) === s.length - 1) {
+      return s.slice(numOpen + 1, numClose);
+    }
+  }
+  return null;
+}
+
+export function lastSound(tex: string): Sound | null {
+  const s = tex.trim();
+  const numerator = fracNumeratorAtEnd(s);
+  if (numerator !== null) return lastSound(numerator);
+  if (/\^\{[^{}]*\}$|\^\d$/.test(s)) return "consonant";
+  const inner = s.replace(/[)}\]\s]+$/, "");
+  const digits = /(\d+)$/.exec(inner);
+  if (digits) {
+    const n = digits[1]!;
+    return n.length > 1 && n.endsWith("0")
+      ? "consonant"
+      : DIGIT_SOUND[n.slice(-1)]!;
+  }
+  const c = inner.slice(-1).toLowerCase();
+  if (!/[a-z]/.test(c)) return null;
+  if (c === "l" || c === "r") return "rieul";
+  return c === "m" || c === "n" ? "consonant" : "vowel";
+}
+
+/** 「(으)로」 — ㄹ 받침은 「로」다. */
+function expectedRo(tex: string): "로" | "으로" | null {
+  const sound = lastSound(tex);
+  if (sound === null) return null;
+  return sound === "consonant" ? "으로" : "로";
 }
 
 export function roMismatches(text: string): string[] {
   const out: string[] = [];
   for (const m of text.matchAll(/\$([^$]+)\$(으로|로)(?=[\s,.)]|$)/g)) {
     const want = expectedRo(m[1]!);
-    if (m[2] !== want) out.push(`$…${m[1]!.slice(-14)}$${m[2]} → ${want}`);
+    if (want !== null && m[2] !== want) {
+      out.push(`$…${m[1]!.slice(-14)}$${m[2]} → ${want}`);
+    }
+  }
+  return out;
+}
+
+/** [받침 뒤, 모음 뒤] — ㄹ 받침도 받침이다(「로」만 예외). */
+const JOSA_PAIR: Record<string, readonly [string, string]> = {
+  을: ["을", "를"],
+  를: ["을", "를"],
+  은: ["은", "는"],
+  는: ["은", "는"],
+  과: ["과", "와"],
+  와: ["과", "와"],
+  // 「이」는 뺀다 — 서술격 「$5$이다·$5$이므로」와 겹쳐 옳은 지면을 잡는다(`midPage.JOSA_PAIR` 와 같은 까닭).
+  가: ["이", "가"],
+};
+
+/**
+ * 수식 뒤 을/를 · 은/는 · 과/와 · 가 가 읽기와 맞나.
+ *
+ * 중등 `josaMismatches` 는 **수로 끝날 때만** 보고, 분수는 숫자만 든 분수만 안다(`\dfrac{\sqrt{3}}{2}` 는
+ * 분모를 읽는다). 고등은 문자·지수·허수·근호 분수로 끝나는 수식이 흔해 따로 둔다.
+ * 뒤에 한글이 이어지면(「$6$가지」) 조사가 아니므로 안 본다 — 「와의」·「과의」의 「의」만 허락한다.
+ */
+export function highJosaMismatches(text: string): string[] {
+  const out: string[] = [];
+  for (const m of text.matchAll(
+    /\$([^$]+)\$(을|를|은|는|과|와|가)(?=의|[^가-힣]|$)/g,
+  )) {
+    const sound = lastSound(m[1]!);
+    if (sound === null) continue;
+    const pair = JOSA_PAIR[m[2]!]!;
+    const want = sound === "vowel" ? pair[1] : pair[0];
+    if (m[2] !== want) out.push(`$…${m[1]!.slice(-16)}$${m[2]} → ${want}`);
   }
   return out;
 }

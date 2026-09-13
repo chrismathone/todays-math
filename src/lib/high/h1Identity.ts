@@ -45,6 +45,19 @@ import type { Rng } from "../elementary/types";
 
 import { eul, eun, ga, ira, ro } from "./josa";
 import {
+  $,
+  attempt,
+  coefPrefix,
+  distinctInts,
+  numAnswer,
+  nz,
+  pickDistractors,
+  pickOne,
+  plusConst,
+  randInt,
+  withSign,
+} from "./pick";
+import {
   add,
   divMod,
   evalAt,
@@ -85,99 +98,7 @@ type Body = {
 
 type Expr = readonly [tex: string, value: number];
 
-// ───────────────────────────── 뽑기 ─────────────────────────────
-
-function randInt(rng: Rng, lo: number, hi: number): number {
-  return lo + Math.floor(rng() * (hi - lo + 1));
-}
-
-function pickOne<T>(rng: Rng, xs: readonly T[]): T {
-  return xs[Math.floor(rng() * xs.length)]!;
-}
-
-function nz(rng: Rng, lo: number, hi: number): number {
-  for (let i = 0; i < 100; i += 1) {
-    const v = randInt(rng, lo, hi);
-    if (v !== 0) return v;
-  }
-  throw new Error("0 이 아닌 수를 못 뽑았습니다");
-}
-
-function distinctInts(
-  rng: Rng,
-  lo: number,
-  hi: number,
-  n: number,
-  opts: { nonzero?: boolean; exclude?: readonly number[] } = {},
-): number[] {
-  const pool: number[] = [];
-  for (let v = lo; v <= hi; v += 1) {
-    if (opts.nonzero && v === 0) continue;
-    if (opts.exclude?.includes(v)) continue;
-    pool.push(v);
-  }
-  if (pool.length < n) throw new Error("서로 다른 수를 뽑을 풀이 모자랍니다");
-  for (let i = pool.length - 1; i > 0; i -= 1) {
-    const j = Math.floor(rng() * (i + 1));
-    const t = pool[i]!;
-    pool[i] = pool[j]!;
-    pool[j] = t;
-  }
-  return pool.slice(0, n);
-}
-
-/** 이 판을 버리고 다시 뽑으라는 신호 — 지면을 다 만든 뒤에야 알 수 있는 조건에 쓴다. */
-class Retry extends Error {}
-
-/** 조건을 만족할 때까지 다시 뽑는다 — 못 찾으면 던진다(조용히 기본값 금지). */
-function attempt<T>(f: () => T | null, tries = 300): T {
-  for (let i = 0; i < tries; i += 1) {
-    try {
-      const v = f();
-      if (v !== null) return v;
-    } catch (e) {
-      // `Retry` 만 삼킨다. 생성기 결함(나눗셈이 안 떨어짐 등)은 그대로 올려보낸다 —
-      // 여기서 다 삼키면 결함이 «재시도 초과»로 둔갑한다.
-      if (!(e instanceof Retry)) throw e;
-    }
-  }
-  throw new Error("유형 생성 재시도 초과 — 매개변수 범위를 확인하십시오");
-}
-
 // ───────────────────────────── 지면 ─────────────────────────────
-
-const $ = (s: string | number): string => `$${s}$`;
-
-/**
- * 수 정답 — **0 이면 다시 뽑는다.**
- *
- * 공용 오답 경로(`deriveFormats.numericMistakes`)는 $0$ 에서 서로 다른 오답을 넷 못 만든다.
- * 그러면 그 변형의 객관식이 조용히 빠지고 단답형만 나간다. 값이 0 인 판은 버린다 —
- * 같은 유형의 다른 수치로 얼마든지 나온다(`highIdentity.test.ts` 가 「변형마다 객관식」을 잠근다).
- */
-function numAnswer(v: number): string {
-  if (v === 0) throw new Retry("정답이 0 이라 객관식 오답을 못 만든다");
-  return $(v);
-}
-
-/** 식 뒤에 붙는 상수항 — 0 이면 아무것도 안 쓴다(`+0` 은 지면 냄새다). */
-function plusConst(k: number): string {
-  if (k === 0) return "";
-  return k > 0 ? `+${k}` : `${k}`;
-}
-
-/** 이미 만든 식 조각을 이어 붙일 때 부호를 챙긴다. `0` 이면 버린다. */
-function withSign(s: string): string {
-  if (s === "0") return "";
-  return s.startsWith("-") ? s : `+${s}`;
-}
-
-/** 곱의 계수 — 1 과 −1 은 숫자를 안 쓴다. */
-function coefPrefix(k: number): string {
-  if (k === 1) return "";
-  if (k === -1) return "-";
-  return String(k);
-}
 
 function termIf(c: number, body: string): string {
   return c === 0 ? "" : term(c, body);
@@ -189,29 +110,6 @@ function prodTex(roots: readonly number[]): string {
     .sort((a, b) => Number(b === 0) - Number(a === 0))
     .map((r) => factorParen(r))
     .join("");
-}
-
-/** 오답 넷 — 후보에서 정답·겹침을 걸러 무작위로 넷. 모자라면 `null`(다시 뽑는다). */
-function pickDistractors(
-  rng: Rng,
-  answerBody: string,
-  candidates: readonly string[],
-): string[] | null {
-  const seen = new Set<string>([answerBody]);
-  const pool: string[] = [];
-  for (const c of candidates) {
-    if (seen.has(c)) continue;
-    seen.add(c);
-    pool.push(c);
-  }
-  if (pool.length < 4) return null;
-  for (let i = pool.length - 1; i > 0; i -= 1) {
-    const j = Math.floor(rng() * (i + 1));
-    const t = pool[i]!;
-    pool[i] = pool[j]!;
-    pool[j] = t;
-  }
-  return pool.slice(0, 4).map((d) => $(d));
 }
 
 function chooseExpr(rng: Rng, exprs: readonly Expr[]): [number, Expr] {

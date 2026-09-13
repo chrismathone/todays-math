@@ -20,12 +20,52 @@ import {
 } from "../problem/choiceCountRule";
 import { wrapDanClause } from "../problemText";
 
+import { H1_COMB, H1_COMB_HOLD } from "./h1Comb";
+import { H1_COMPLEX, H1_COMPLEX_HOLD } from "./h1Complex";
+import { H1_EQUATIONS, H1_EQUATIONS_HOLD } from "./h1Equations";
+import { H1_FACTOR, H1_FACTOR_HOLD } from "./h1Factor";
 import { H1_IDENTITY } from "./h1Identity";
-import type { HighProblem, HighTypeEntry } from "./types";
+import { H1_LIN_INEQ, H1_LIN_INEQ_HOLD } from "./h1LinIneq";
+import { H1_MATRIX, H1_MATRIX_HOLD } from "./h1Matrix";
+import { H1_PERM, H1_PERM_HOLD } from "./h1Perm";
+import { H1_POLY_OPS, H1_POLY_OPS_HOLD } from "./h1PolyOps";
+import { H1_QUAD_EQ, H1_QUAD_EQ_HOLD } from "./h1QuadEq";
+import { H1_QUAD_FUNC, H1_QUAD_FUNC_HOLD } from "./h1QuadFunc";
+import { H1_QUAD_INEQ, H1_QUAD_INEQ_HOLD } from "./h1QuadIneq";
+import type { HighHold, HighProblem, HighTypeEntry } from "./types";
 
 // 세션별 소유 모듈을 여기서만 합친다 — 병렬 세션은 자기 모듈 파일만 만진다
 // (`docs/planning/tracks/high-engine-plan.md` §2).
-const ALL: HighTypeEntry[] = [...H1_IDENTITY];
+// 물결 1 모듈 열한 개는 리드가 빈 등록부로 먼저 합쳐 두었다(2026-09-13) — 세션이 이 파일을 안 만지게.
+const ALL: HighTypeEntry[] = [
+  ...H1_IDENTITY,
+  ...H1_POLY_OPS,
+  ...H1_FACTOR,
+  ...H1_MATRIX,
+  ...H1_COMPLEX,
+  ...H1_QUAD_EQ,
+  ...H1_QUAD_FUNC,
+  ...H1_EQUATIONS,
+  ...H1_LIN_INEQ,
+  ...H1_QUAD_INEQ,
+  ...H1_PERM,
+  ...H1_COMB,
+];
+
+/** 못 만든 유형과 까닭 — 등록과 겹치면 안 된다. */
+const HOLDS: HighHold[] = [
+  ...H1_POLY_OPS_HOLD,
+  ...H1_FACTOR_HOLD,
+  ...H1_MATRIX_HOLD,
+  ...H1_COMPLEX_HOLD,
+  ...H1_QUAD_EQ_HOLD,
+  ...H1_QUAD_FUNC_HOLD,
+  ...H1_EQUATIONS_HOLD,
+  ...H1_LIN_INEQ_HOLD,
+  ...H1_QUAD_INEQ_HOLD,
+  ...H1_PERM_HOLD,
+  ...H1_COMB_HOLD,
+];
 
 const BY_KEY = new Map<string, HighTypeEntry>();
 for (const e of ALL) {
@@ -37,6 +77,17 @@ for (const e of ALL) {
 
 export function registeredHighTypes(): HighTypeEntry[] {
   return ALL;
+}
+
+for (const h of HOLDS) {
+  if (BY_KEY.has(h.key)) {
+    throw new Error(`고등 유형이 등록과 보류에 같이 있습니다: ${h.key}`);
+  }
+}
+
+/** 이번 물결에 못 만든 유형 — `highRegistry.test.ts` 가 「등록 ∪ 보류 = 색인」을 본다. */
+export function registeredHighHolds(): HighHold[] {
+  return HOLDS;
 }
 
 export function highTypesForSection(unitSection: string): HighTypeEntry[] {
