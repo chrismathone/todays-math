@@ -70,6 +70,9 @@ type Body = {
 };
 
 // ───────────────────────────── 지면 ─────────────────────────────
+// 공용 후보: qAnswer(분수 정답 — pick.ts) · termIf·symTerm(문자 계수 항)·prodTex(문자 인자판)·
+//   sqTex·vertexTex(꼭짓점 꼴) — poly.ts · extrema·extremaLine(구간 최대·최소 해설 — 이차부등식 세션과 같은 셈).
+//   `h1Equations.ts` 에도 qAnswer·termIf·prodTex 가 있다 — 리드가 병합 때 한 벌로 올린다.
 
 function chooseOne<T>(rng: Rng, xs: readonly T[]): [number, T] {
   const id = randInt(rng, 0, xs.length - 1);

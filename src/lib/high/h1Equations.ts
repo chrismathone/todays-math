@@ -34,7 +34,7 @@ import type { Difficulty } from "@/contracts/difficulty";
 import type { Rng } from "../elementary/types";
 
 import { eul, eun, ga, ira, ro } from "./josa";
-import { q, qTex, surd, surdPmTex, surdTex, type Q } from "./numbers";
+import { gcd, q, qTex, surd, surdPmTex, surdTex, type Q } from "./numbers";
 import {
   $,
   Retry,
@@ -88,6 +88,9 @@ type Body = {
 };
 
 // ───────────────────────────── 지면 ─────────────────────────────
+// 공용 후보: qAnswer(분수 정답 — pick.ts) · termIf·linTerm·prodTex(문자 계수 항·문자 인자판 — poly.ts) ·
+//   cases(연립방정식 표기 — 부등식 세션의 연립부등식도 쓴다) · pmSqrtTex·isSquare·squarefree(numbers.ts) ·
+//   wPow·wTex(ω 셈 — 복소수 세션의 i 거듭제곱과 같은 모양). 리드가 병합 때 한 벌로 올린다.
 
 function chooseOne<T>(rng: Rng, xs: readonly T[]): [number, T] {
   const id = randInt(rng, 0, xs.length - 1);
@@ -1225,7 +1228,7 @@ function t10(rng: Rng): Body {
       const quadEq = `x^{2}${term(k, "xy")}=${c}`;
       const xOfY = polyTex([n, -m], "y");
       const raw = [n * n - c, B, L];
-      const g = Math.abs(raw.reduce((x, y) => gcdInt(x, y)));
+      const g = Math.abs(raw.reduce((x, y) => gcd(x, y)));
       const sgn = L > 0 ? 1 : -1;
       const norm = raw.map((x) => (x / g) * sgn);
       return {
@@ -1272,13 +1275,6 @@ function t10(rng: Rng): Body {
       facts: { mode, p, q: qq, n },
     };
   });
-}
-
-function gcdInt(a: number, b: number): number {
-  let x = Math.abs(a);
-  let y = Math.abs(b);
-  while (y !== 0) [x, y] = [y, x % y];
-  return x;
 }
 
 // ───────────────────────────── 11 ─────────────────────────────

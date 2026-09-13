@@ -1119,6 +1119,58 @@ describe("고등 공통수학1 여러 가지 방정식 — 값", () => {
     }
   });
 
+  // 변이 「17 대표 — 음의 약수 짝을 버림」이 처음엔 초록이었다(2026-09-13). 산출물은 바뀌었는데
+  // 값 검산이 못 봤다 — 곱이 음수인 판이 통째로 사라질 뿐 남은 판의 답은 대부분 맞기 때문이다.
+  // 그래서 ⑴ 해설이 말하는 해의 목록을 격자 전수와 맞대고 ⑵ 음의 인수에서 나오는 해를 표본이
+  // 실제로 밟는지 센다(밟지 않으면 그 풀이 갈래는 검산 밖이다).
+  it("부정방정식(17)의 해설이 말하는 순서쌍은 격자 전수와 같고, 음의 약수 짝에서 나오는 해도 표본에 있다", () => {
+    let negFactor = 0;
+    let checked = 0;
+    for (const seed of SEEDS) {
+      for (let v = 0; v < VARIANTS; v += 1) {
+        const p = generateHighProblem(`${BOOK}|${MINOR}|17`, seed, v);
+        const f = p.facts;
+        if (f.mode === 2) continue;
+        const brute: [number, number][] = [];
+        if (f.mode === 0) {
+          for (let x = 1; x <= 80; x += 1)
+            for (let y = 1; y <= 80; y += 1)
+              if (x * y - f.q! * x - f.p! * y + f.p! * f.q! - f.N! === 0)
+                brute.push([x, y]);
+          if (brute.some(([x, y]) => x - f.p! < 0 || y - f.q! < 0))
+            negFactor += 1;
+        } else {
+          for (let x = -40; x <= 40; x += 1)
+            for (let y = -60; y <= 60; y += 1)
+              if (x * x - x * y + (f.c! + 1) * x - y === f.M! - f.c!)
+                brute.push([x, y]);
+        }
+        const line = p.solution
+          .split("\n")
+          .find((l) => l.startsWith("즉 순서쌍 $(x, y)$"));
+        expect(
+          line,
+          `17 해설에 순서쌍 목록이 없다: ${p.solution}`,
+        ).toBeDefined();
+        const listed = [...line!.matchAll(/\$\((-?\d+), (-?\d+)\)\$/g)]
+          .map((m) => `${m[1]},${m[2]}`)
+          .sort();
+        expect(listed, `17 해설의 해 목록 (${JSON.stringify(f)})`).toEqual(
+          brute.map(([x, y]) => `${x},${y}`).sort(),
+        );
+        checked += 1;
+      }
+    }
+    expect(
+      checked,
+      "해 목록 대조가 하나도 안 돌면 이 검사는 장식이다",
+    ).toBeGreaterThan(20);
+    expect(
+      negFactor,
+      "음의 약수 짝에서 나오는 자연수 해가 표본에 한 번도 없다",
+    ).toBeGreaterThan(0);
+  });
+
   it("생성기가 낸 오답은 정답과 값이 다르다 — 모양만 다르고 같은 값인 보기가 없다", () => {
     let checked = 0;
     eachProblem((p, key) => {
