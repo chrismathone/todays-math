@@ -124,7 +124,17 @@ CLI `scripts/high/gen-cli.ts` · 시험 `highIdentity`(값·지면·난이도·�
 - 관문: 고등 시험 7파일 **115개 초록** · `tsc` 0 · eslint 0 · 변이 6/6 빨강(`scripts/qa/mutate-high-wave1-prep.py`).
 - 물결 1 브리프 **`docs/planning/tracks/high-wave1-brief.md`** — 세션 5개(`h1-poly`·`h1-complex`·`h1-equation`·
   `h1-ineq`·`h1-count`) · 소유 모듈 · 계약 · 교육과정 범위(행렬 2×2 이하 …) · 보고 파일 규약.
-- 다음: 그 다섯을 **오르카 워크트리**로 띄우고(부모 `D:/todays-math`), 보고를 받아 리드가 검수·병합한다.
+- **띄웠다(같은 날 15시)** — 오르카 하위 워크트리 다섯, 부모 `D:/todays-math`, 모두 main `ad7c591b` 에서:
+  `C:/Users/user/orca/workspaces/todays-math/<세션>` · 브랜치 `chrismathone/<세션>`
+  (`h1-poly` · `h1-complex` · `h1-equation` · `h1-ineq` · `h1-count`). 보고는 각 워크트리 `scratch/REPORT-<세션>.md`.
+  리드가 검수·병합한다(세션은 병합·푸시 금지).
+- ⚠️ 띄우다 두 번 넘어졌다: ⑴ `worktree create` 다섯을 이어 돌리니 둘째에서 **오르카 런타임이 죽었다** —
+  워크트리는 생겼는데 에이전트가 없는 것이 섞였다. ⑵ `h1-count` 에 에이전트가 «둘»로 보여 하나를 닫았는데
+  **한 세션이 제목만 바뀐 것**이었다(Claude 가 탭 제목을 대화 주제로 바꾼다) — 다시 붙였다(`term_e64849ad…`).
+  소스 손상은 없다. 하나씩 만들고 핸들로 가를 것.
+- ⚠️ 오르카 셋업 `npm install` 이 다섯 워크트리 전부에서 **`package-lock.json` 을 고쳐 둔다**. 병합 검수 때
+  그 파일이 커밋에 끼었으면 뺀다.
+- 다음: 보고가 오면 워크트리마다 관문(고등 시험 · tsc · eslint · 변이)을 리드가 직접 확인 → main 병합 → 워크트리 정리.
   물결 1 이 다 모이면 판정기 틀 → 적재 → `SUPPORTED_GRADES` → 지면 검수(절대 규칙 6).
 
 ---
