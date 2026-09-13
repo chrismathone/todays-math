@@ -1325,3 +1325,85 @@
     padding: 24px 28px;
   }
 }
+
+.studioContent {
+  max-width: none;
+  padding: 16px;
+}
+
+.navigation button.navActive {
+  box-shadow: none;
+  background: #304362;
+}
+.sidebarToggle {
+  display: grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  flex-shrink: 0;
+  border: 1px solid #dce4ef;
+  border-radius: 7px;
+  color: #597092;
+  background: white;
+  margin-right: -8px;
+}
+.sidebarToggle:hover {
+  background: #f1f5fc;
+  color: #3159df;
+}
+@media (min-width: 761px) {
+  .workspace[data-sidebar-collapsed="true"] .sidebar {
+    width: 72px;
+    padding-inline: 10px;
+  }
+  .workspace[data-sidebar-collapsed="true"] .main {
+    margin-left: 72px;
+  }
+  .workspace[data-sidebar-collapsed="true"] .brand {
+    justify-content: center;
+    padding: 0;
+  }
+  .workspace[data-sidebar-collapsed="true"] .brand > span:last-child,
+  .workspace[data-sidebar-collapsed="true"] .newButton > span,
+  .workspace[data-sidebar-collapsed="true"] .navCaption,
+  .workspace[data-sidebar-collapsed="true"] .navLabel,
+  .workspace[data-sidebar-collapsed="true"] .sideDraft,
+  .workspace[data-sidebar-collapsed="true"] .sidebarFooter {
+    display: none;
+  }
+  .workspace[data-sidebar-collapsed="true"] .newButton {
+    margin-top: 32px;
+    margin-bottom: 22px;
+  }
+  .workspace[data-sidebar-collapsed="true"] .navigation button {
+    justify-content: center;
+    padding: 0;
+  }
+  .workspace[data-sidebar-collapsed="true"] .navigation .navCount {
+    position: absolute;
+    top: 1px;
+    right: 1px;
+    min-width: 16px;
+    height: 16px;
+    font-size: 9px;
+    padding: 0 4px;
+  }
+  .workspace[data-sidebar-collapsed="true"] .libraryCount {
+    display: none;
+  }
+  .workspace[data-sidebar-collapsed="true"] .teachingNav {
+    padding-top: 18px;
+    margin-top: 16px;
+  }
+  .workspace[data-sidebar-collapsed="true"] .viewContent {
+    --workspace-basket-left: 100px;
+  }
+}
+@media (max-width: 760px) {
+  .sidebarToggle {
+    display: none;
+  }
+  .navigation button.navActive {
+    background: #eef3ff;
+  }
+}

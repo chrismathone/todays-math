@@ -79,6 +79,7 @@ export default function UnifiedWorkspace({
     version: number;
   }>({ version: 0 });
   const [notice, setNotice] = useState("");
+  const [sidebarCollapsed, setSidebarCollapsed] = useState(false);
   const [undo, setUndo] = useState<{
     problem: StudioProblem;
     index: number;
@@ -111,6 +112,26 @@ export default function UnifiedWorkspace({
     window.scrollTo({ top: 0, behavior: "instant" });
   }, []);
   useEffect(() => {
+    try {
+      // Restore a browser-only layout preference after hydration.
+      // eslint-disable-next-line react-hooks/set-state-in-effect
+      setSidebarCollapsed(
+        localStorage.getItem("today-math-sidebar-collapsed") === "true",
+      );
+    } catch {
+      /* Layout remains usable when browser preferences are unavailable. */
+    }
+  }, []);
+  function toggleSidebar() {
+    const value = !sidebarCollapsed;
+    setSidebarCollapsed(value);
+    try {
+      localStorage.setItem("today-math-sidebar-collapsed", String(value));
+    } catch {
+      /* Optional preference. */
+    }
+  }
+  useEffect(() => {
     const sync = () => {
       const value = window.location.hash.slice(1);
       const next = viewValid(value) ? value : "home";
@@ -120,7 +141,7 @@ export default function UnifiedWorkspace({
       );
     };
     // Synchronize the browser's navigation state, including a directly opened hash.
-     
+
     sync();
     window.addEventListener("popstate", sync);
     window.addEventListener("hashchange", sync);
@@ -269,7 +290,7 @@ export default function UnifiedWorkspace({
     item.title.toLocaleLowerCase().includes(libraryQuery.toLocaleLowerCase()),
   );
   return (
-    <div className={s.workspace}>
+    <div className={s.workspace} data-sidebar-collapsed={sidebarCollapsed}>
       <a className={s.skipLink} href="#workspace-content">
         본문으로 건너뛰기
       </a>
@@ -329,6 +350,7 @@ export default function UnifiedWorkspace({
               )}
               <button
                 aria-label={item.label}
+                title={sidebarCollapsed ? item.label : undefined}
                 aria-current={view === item.id ? "page" : undefined}
                 className={view === item.id ? s.navActive : ""}
                 onClick={() => navigate(item.id)}
@@ -381,6 +403,17 @@ export default function UnifiedWorkspace({
       </aside>
       <div className={s.main}>
         <header className={s.topbar}>
+          <button
+            className={s.sidebarToggle}
+            onClick={toggleSidebar}
+            aria-label={
+              sidebarCollapsed ? "왼쪽 메뉴 펼치기" : "왼쪽 메뉴 접기"
+            }
+            title={sidebarCollapsed ? "메뉴 펼치기" : "메뉴 접기"}
+            aria-expanded={!sidebarCollapsed}
+          >
+            <Icon name="layout" />
+          </button>
           <div className={s.breadcrumb}>
             <span>작업실</span>
             <Icon name="chevron" size={14} />

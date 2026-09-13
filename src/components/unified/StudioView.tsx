@@ -112,6 +112,11 @@ export default function StudioView({
   const [dragOver, setDragOver] = useState(false);
   const [error, setError] = useState("");
   const [notice, setNotice] = useState("");
+  const [inspectorOpen, setInspectorOpen] = useState(true);
+  const [coordinatesOpen, setCoordinatesOpen] = useState(false);
+  const [focusMode, setFocusMode] = useState(false);
+  const [viewportSize, setViewportSize] = useState({ width: 0, height: 0 });
+  const pageViewport = useRef<HTMLDivElement>(null);
   const fileInput = useRef<HTMLInputElement>(null);
   const surface = useRef<HTMLDivElement>(null);
   const drag = useRef<{ x: number; y: number; pointerId: number } | null>(null);
@@ -120,6 +125,7 @@ export default function StudioView({
   const mounted = useRef(true);
 
   const currentSource = sources.find((item) => item.id === sourceId);
+  const editing = Boolean(currentSource && step !== "upload");
   const activeCrop = crops.find((item) => item.id === activeCropId);
   const pageReady = Boolean(
     rendered &&
@@ -138,6 +144,28 @@ export default function StudioView({
   const validSelection = Boolean(
     readyToCrop && readyToCrop.width >= 8 && readyToCrop.height >= 8,
   );
+
+  useEffect(() => {
+    const viewport = pageViewport.current;
+    if (!viewport) return;
+    const observer = new ResizeObserver(([entry]) =>
+      setViewportSize({
+        width: entry.contentRect.width,
+        height: entry.contentRect.height,
+      }),
+    );
+    observer.observe(viewport);
+    return () => observer.disconnect();
+  }, [editing, step, pageReady]);
+
+  useEffect(() => {
+    if (!focusMode) return;
+    const close = (event: WindowEventMap["keydown"]) => {
+      if (event.key === "Escape") setFocusMode(false);
+    };
+    window.addEventListener("keydown", close);
+    return () => window.removeEventListener("keydown", close);
+  }, [focusMode]);
 
   useEffect(() => {
     mounted.current = true;
@@ -505,14 +533,81 @@ export default function StudioView({
       );
       setNotice(`${pending.length}문항을 내 시험지에 담았습니다.`);
     }
-    if (exportAfter) onExport();
+    if (exportAfter) {
+      setFocusMode(false);
+      onExport();
+    }
   }
 
   const selectedLevel = activeCrop?.level ?? level;
   const selectedGrade = activeCrop?.grade ?? grade;
 
   return (
-    <section className={styles.studio} aria-label="문제 제작 스튜디오">
+    <section
+      className={`${styles.studio} ${editing ? styles.editing : ""} ${focusMode ? styles.focusMode : ""} ${!inspectorOpen ? styles.panelClosed : ""}`}
+      aria-label="문제 제작 스튜디오"
+      role={focusMode ? "dialog" : undefined}
+      aria-modal={focusMode || undefined}
+      onKeyDown={(event) => {
+        if (!focusMode || event.key !== "Tab") return;
+        const controls = Array.from(
+          event.currentTarget.querySelectorAll<HTMLElement>(
+            'button:not(:disabled), input:not(:disabled), select:not(:disabled), textarea:not(:disabled), [tabindex="0"]',
+          ),
+        ).filter((element) => element.getClientRects().length > 0);
+        const first = controls[0];
+        const last = controls[controls.length - 1];
+        if (event.shiftKey && document.activeElement === first) {
+          event.preventDefault();
+          last?.focus();
+        }
+        if (!event.shiftKey && document.activeElement === last) {
+          event.preventDefault();
+          first?.focus();
+        }
+      }}
+    >
+      {editing && (
+        <div className={styles.editorBar}>
+          <div className={styles.editorTabs}>
+            <h1>자료 제작</h1>
+            <button
+              aria-pressed={step === "crop"}
+              onClick={() => setStep("crop")}
+            >
+              문제 자르기
+            </button>
+            <button
+              aria-pressed={step === "review"}
+              disabled={!crops.length}
+              onClick={() => {
+                setStep("review");
+                setInspectorOpen(true);
+              }}
+            >
+              검수 · 편집 <b>{crops.length}</b>
+            </button>
+          </div>
+          <div className={styles.editorTools}>
+            <button onClick={() => fileInput.current?.click()} disabled={busy}>
+              <Icon name="upload" />
+              {busy ? "파일 여는 중…" : "파일 가져오기"}
+            </button>
+            <button
+              aria-pressed={!inspectorOpen}
+              onClick={() => setInspectorOpen((value) => !value)}
+            >
+              {inspectorOpen ? "검수 패널 접기" : "검수 패널 열기"}
+            </button>
+            <button
+              aria-pressed={focusMode}
+              onClick={() => setFocusMode((value) => !value)}
+            >
+              {focusMode ? "확대 종료" : "작업 영역 확대"}
+            </button>
+          </div>
+        </div>
+      )}
       <header className={styles.header}>
         <div>
           <h1>내 자료로 만드는 문제</h1>
@@ -609,7 +704,11 @@ export default function StudioView({
           </button>
         </div>
       ) : null}
-      <div className={styles.announcement} role="status" aria-live="polite">
+      <div
+        className={`${styles.announcement} ${editing ? styles.srOnly : ""}`}
+        role="status"
+        aria-live="polite"
+      >
         <Icon name={crops.length ? "check" : "file"} />
         <span>
           {notice || "파일을 가져오거나 예제 지면으로 자르기를 연습하세요."}
@@ -678,12 +777,30 @@ export default function StudioView({
                   value={zoom}
                   onChange={(event) => setZoom(Number(event.target.value))}
                 >
+                  <option value={0}>전체 보기</option>
                   <option value={75}>75%</option>
-                  <option value={100}>맞춤</option>
+                  <option value={100}>너비 맞춤</option>
                   <option value={125}>125%</option>
                   <option value={150}>150%</option>
                   <option value={200}>200%</option>
                 </select>
+                <button
+                  className={styles.preciseButton}
+                  type="button"
+                  onClick={() => {
+                    setSelection({
+                      x: 0.08,
+                      y: 0.15,
+                      width: 0.84,
+                      height: 0.2,
+                    });
+                    surface.current?.focus();
+                  }}
+                  disabled={!pageReady}
+                  aria-label="키보드로 영역 지정"
+                >
+                  영역 지정
+                </button>
               </div>
             ) : (
               <span className={styles.toolbarMeta}>PDF · 이미지</span>
@@ -826,13 +943,19 @@ export default function StudioView({
                 </button>
               </div>
               <div
+                ref={pageViewport}
                 className={styles.pageViewport}
                 aria-busy={!pageReady && !error}
               >
                 {pageReady && rendered ? (
                   <div
                     className={styles.pageSizer}
-                    style={{ width: `${zoom}%` }}
+                    style={{
+                      width:
+                        zoom === 0
+                          ? `${Math.max(1, Math.min(viewportSize.width - 24, ((viewportSize.height - 24) * rendered.canvas.width) / rendered.canvas.height))}px`
+                          : `${zoom}%`,
+                    }}
                   >
                     <div
                       ref={surface}
@@ -916,7 +1039,7 @@ export default function StudioView({
                 방향키: 이동 · Shift + 방향키: 크게 이동 · Enter: 자르기 · Esc:
                 취소
               </div>
-              {selection ? (
+              {selection && coordinatesOpen ? (
                 <div className={styles.coordinates}>
                   {(
                     [
@@ -968,7 +1091,11 @@ export default function StudioView({
           </div>
         </div>
 
-        <aside className={styles.inspector} aria-label="자른 문제 검수">
+        <aside
+          className={styles.inspector}
+          aria-label="자른 문제 검수"
+          hidden={editing && !inspectorOpen}
+        >
           <div className={styles.inspectorTitle}>
             <h2>문제 검수</h2>
             <span className={styles.count}>{crops.length}</span>
@@ -1243,6 +1370,15 @@ export default function StudioView({
               >
                 <Icon name="crop" />
                 선택 영역 자르기
+              </button>
+              <button
+                type="button"
+                className={styles.coordinateToggle}
+                aria-expanded={coordinatesOpen}
+                onClick={() => setCoordinatesOpen((value) => !value)}
+                disabled={!selection}
+              >
+                {coordinatesOpen ? "좌표 접기" : "세부 좌표"}
               </button>
             </>
           ) : (
