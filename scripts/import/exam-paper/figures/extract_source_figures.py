@@ -87,20 +87,30 @@ def main() -> int:
     # 🔴 **번호가 1로 되돌아가는 쪽**을 찾는다 — 그 쪽의 «최댓값»이 줄어드는지로 보면 안 된다.
     #    정답 쪽이 1…21 을 **다 나열**하면 최댓값은 안 줄어서(강동중·경산여중 2026-09-12)
     #    해설 시작을 못 찾고 멈췄다. 번호가 없는 쪽(표지·빈 쪽 — 경산여중 p8)은 판정에 안 쓴다.
+    # 🔴 근거 둘을 **함께** 쓴다 — 먼저 번호로 고르고 나중에 «정답»으로 확인하면, 번호가
+    #    엉뚱한 쪽을 집었을 때 그 확인이 **다음 후보로 못 넘어가고** 편 전체가 멈춘다.
+    #    2026-09-13 대구동중: 문제지 p2 의 조건 상자 항목 「1. 2. 3.」(x=63·크기 11)이
+    #    문항 번호(x=57·375·크기 9)로 읽혀 min=1 이 됐다. 진짜 해설은 p5 다.
+    #    전수 대조(처리한 12편): 해설 시작 쪽은 **언제나** «정답»을 갖고 있고, 번호 규칙은
+    #    그중 11편에서 같은 쪽을 고른다 — 둘을 함께 걸면 11편은 그대로고 대구동중만 고쳐진다.
     solution_from = None
     seen_max = 0
+    restarts: list[int] = []
     for i in range(len(page_max)):
         if not page_max[i]:
             continue
         if seen_max and page_min[i] == 1:
-            solution_from = i
-            break
+            restarts.append(i)
+            if page_has_answer[i]:
+                solution_from = i
+                break
         seen_max = max(seen_max, page_max[i])
     if solution_from is None:
-        print("해설 시작 쪽을 못 찾았다 — 멈춘다(전부 문제지로 읽으면 해설 그림이 섞인다)")
-        return 2
-    if not page_has_answer[solution_from]:
-        print(f"p{solution_from + 1} 이 해설 시작인 줄 알았는데 «정답»이 없다 — 멈춘다")
+        why = ""
+        if restarts:
+            why = (f" · 번호는 p{[i + 1 for i in restarts]} 에서 되돌아갔지만 그 쪽에 «정답»이 없다"
+                   f" («정답»이 있는 쪽: {[i + 1 for i, a in enumerate(page_has_answer) if a] or '없음'})")
+        print("해설 시작 쪽을 못 찾았다 — 멈춘다(전부 문제지로 읽으면 해설 그림이 섞인다)" + why)
         return 2
     print(f"문제지 p1~p{solution_from} · 해설 p{solution_from + 1}~p{doc.page_count}")
 

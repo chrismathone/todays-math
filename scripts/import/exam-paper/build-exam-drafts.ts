@@ -42,7 +42,8 @@ import { loadExamConfig } from "./examConfig";
 const DIR = process.argv[2];
 if (!DIR) throw new Error("사용: <작업폴더>");
 // 편마다 다른 것은 `exams/<examId>/exam.json` 에 있다(2026-09-12 — 둘째 편부터).
-const CFG = loadExamConfig(DIR);
+// units 는 여기서 안 쓴다 — 적재기만 필요하다(대량 이관은 초안이 먼저다).
+const CFG = loadExamConfig(DIR, { requireUnits: false });
 
 const read = (f: string): unknown =>
   JSON.parse(readFileSync(join(DIR, f), "utf-8"));
@@ -312,7 +313,16 @@ const BOX_MARKER_RE =
 const FIRST_ITEM_RE = new RegExp(
   "(㉠|㈀|㉮|㈎|Ⓐ" +
     "|\\(\\s*ㄱ\\s*\\)" +
+    // 괄호 친 «(가)» — 조건 상자가 흔히 이 꼴이다(2026-09-13 경산중 문5: 「(가) x축에 접한다」).
+    // 아래 맨끝 가지는 **괄호 없는** `가.`·`가)` 만 잡아서 이 꼴이 어느 가지에도 안 걸렸다.
+    // 🔴 «(가)» 는 표지이면서 **참조**이기도 하다(「(가)에서 구한 값을…」). 표지는 뒤에 공백이
+    //    오고 참조는 조사가 붙으므로 여기서 한 겹, 형제 «(나)» 로 아래에서 또 한 겹 거른다.
+    "|[(（]\\s*가\\s*[)）](?=\\s|$)" +
     "|(?<![(（])ㄱ\\s*[.)]" +
+    // 글머리 «•» — 서술형 조건 상자가 이 꼴이다(2026-09-13 경일여중 문18·19·21·22).
+    // 전수 census: 표지를 못 찾은 16문항의 줄머리에서 «•» 는 4번 나오고 **본문 산문에는
+    // 한 번도 안 나온다** — 그래서 이 글자는 표지로만 쓰인다(손으로 고른 것이 아니라 세어서 골랐다).
+    "|(?:^|\\n)\\s*•" +
     "|(?:^|[\\n\\s])가\\s*[.)])",
 );
 
@@ -333,11 +343,58 @@ function restoreBoxMarker(stem: string, fromPdf: string, n: number): string {
         "손으로 보고 규칙을 고칠 것",
     );
   }
+  // 🔴 괄호 친 «(가)» 만은 형제를 하나 더 묻는다 — 진짜 조건 상자에는 «(나)» 가 따로 있다.
+  //    없으면 그 «(가)» 는 참조일 수 있으니 **조용히 지나가지 말고 멈춘다**(사람이 지면을 본다).
+  //    2026-09-13: 마커를 새로 쓸 때 «누가 그것을 입력으로 아는가»(2026-09-06)의 되풀이를 막는 자리.
+  if (
+    /^[(（]\s*가/.test(m[1]!) &&
+    !/[(（]\s*나\s*[)）]/.test(stem.slice(m.index + m[1]!.length))
+  ) {
+    throw new Error(
+      `[중단] 문${n}: «${m[1]!.trim()}» 뒤에 형제 «(나)» 가 없다 — 항목 표지가 아니라 ` +
+        "참조일 수 있다. 손으로 지면을 보고 정할 것",
+    );
+  }
   console.log(
     `  문${n} 상자 복원: 첫 항목 «${m[1].trim()}» 앞에 <${label}> 를 넣는다` +
       (label === "상자" ? " (라벨 없는 테두리 — 지면에 머리를 안 그린다)" : ""),
   );
   return `${stem.slice(0, m.index)}<${label}> ${stem.slice(m.index)}`;
+}
+
+// ── ㉠″ 표 후보 제안 — 대량 이관 드라이버(`batch_import.py`)가 부른다 ──────────
+//
+// `--propose-tables` 면 초안을 만들지 않고 **같은 `cellRun` 으로** 표 후보만 낸다.
+// 판정(`stripTableCells`)과 제안이 한 함수를 보므로 둘이 어긋날 수 없다
+// (2026-08-18 「세는 쪽과 고치는 쪽이 같이 눈이 먼다」).
+//
+// 🔴 칸 줄에 **항목 표지**(ㄱ. ㉠ ① ⑴ (1))가 섞이면 표가 아니라 짧은 〈보기〉일 수 있다.
+//    그건 «모름»으로 낸다 — 드라이버는 그 편을 멈추고 사람이 정한다. 표로 넣으면
+//    `crop_tables.py` 가 보기 상자의 테두리를 표라고 오려 **조용히** 지면에 나간다.
+if (process.argv.includes("--propose-tables")) {
+  const ITEM_RE =
+    /^\s*(?:[ㄱ-ㅎ]\s*[.)]|[㉠-㉿㈀-㈜]|[①-⑳]|[⑴-⒇]|\(\s*\d{1,2}\s*\)|\d{1,2}\s*[.)])/u;
+  const candidates: number[] = [];
+  const unsure: { n: number; why: string }[] = [];
+  for (const q of hwp.questions) {
+    const stem = scrub(piece.get(`${q.number}-stem`) ?? "").out;
+    const lines = stem.split("\n");
+    const run = cellRun(lines);
+    if (!run) continue;
+    const runLines = lines
+      .slice(run[0], run[1])
+      .map((l) => l.trim())
+      .filter(Boolean);
+    const marked = runLines.filter((l) => ITEM_RE.test(l)).length;
+    if (marked > 0)
+      unsure.push({
+        n: q.number,
+        why: `짧은 줄 ${runLines.length}개 중 항목 표지 ${marked}개 — 표가 아니라 보기일 수 있다`,
+      });
+    else candidates.push(q.number);
+  }
+  console.log(JSON.stringify({ candidates, unsure }));
+  process.exit(0);
 }
 
 // ── ㉢ 배점 — **정본은 PDF 쪽이다.** 근거는 본문 밖에 있다: 합이 100점이어야 한다 ──
@@ -346,14 +403,24 @@ function restoreBoxMarker(stem: string, fromPdf: string, n: number): string {
 // 지면에는 `[총 10점]` 이라 적혀 있다 — 추출기가 **마지막 소문항 배점**을 집은 것으로
 // 보인다. 어느 쪽이 옳은지는 문항 안에서 못 가른다. 가르는 것은 **합계**다:
 //   HWP 87점 · PDF 100점.  시험지 총점은 100 이다.
-const pdfScore = new Map(
-  (pdf.questions ?? []).map((q) => [q.number, q.score ?? 0]),
+// 🔴 `?? 0` 으로 받으면 **«칸이 없다»가 «0점»이 된다** — 그러면 아래에서 그 0 이 HWP 배점을 이긴다.
+//    2026-09-13 경산중 문13: 지면의 `[3점]` 사이에 그림 조각이 끼어 텍스트층이 배점을 못 집었고,
+//    PDF 0점이 HWP 3점을 눌러 합이 97 이 됐다. 커밋된 편 전수에서 PDF 배점 칸은 130 중 129 가
+//    있고 **0점짜리 문항은 하나도 없다** — 그러니 «없음»은 없음으로 두고 HWP 로 물러난다.
+const pdfScore = new Map<number, number>(
+  (pdf.questions ?? [])
+    .filter((q) => typeof q.score === "number")
+    .map((q) => [q.number, q.score as number]),
 );
 const scoreOf = new Map<number, number>();
 let scoreSwap = 0;
 for (const q of hwp.questions) {
   const fromPdf = pdfScore.get(q.number);
-  if (fromPdf !== undefined && Math.abs(fromPdf - q.score) > 1e-6) {
+  if (fromPdf === undefined) {
+    console.log(
+      `  문${q.number} 배점: PDF 텍스트층에 칸이 없다 — HWP ${q.score}점을 쓴다`,
+    );
+  } else if (Math.abs(fromPdf - q.score) > 1e-6) {
     scoreSwap += 1;
     console.log(
       `  문${q.number} 배점: PDF ${fromPdf}점 ← HWP ${q.score}점 (PDF 를 쓴다)`,

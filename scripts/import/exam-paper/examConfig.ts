@@ -38,20 +38,33 @@ export interface ExamConfig {
    */
   tables?: number[];
   hand?: HandFix[];
+  /**
+   * 5단계(`fix-exam-solutions.ts`)가 **고치고도 남는다**고 신고한 자리 중 사람이 보고 받아들인 것.
+   * 대량 이관 드라이버(`batch_import.py`)만 읽는다 — 적힌 자리 말고 다른 결함이 나면 그 편을 멈춘다.
+   */
+  acceptFix?: { id: string; issue: string; why: string }[];
   /** 문항 번호 → 소단원·문항류. 초안의 번호와 **한 개도 어긋나면 적재가 멈춘다.** */
   units: Record<string, UnitAssignment>;
 }
 
-export function loadExamConfig(dir: string): ExamConfig {
+/**
+ * `requireUnits` — 소단원·문항류 표는 **적재기**만 쓴다. 초안 빌더는 표가 비어 있어도
+ * 돌아야 한다(대량 이관 드라이버 `batch_import.py` 가 7단계 초안을 먼저 만들고, 그 초안으로
+ * 분류용 표를 낸 뒤에야 사람·모델이 units 를 채운다 — 2026-09-13).
+ */
+export function loadExamConfig(
+  dir: string,
+  { requireUnits = true }: { requireUnits?: boolean } = {},
+): ExamConfig {
   const p = join(dir, "exam.json");
   if (!existsSync(p))
     throw new Error(`[중단] 편 설정이 없다: ${p} — 편마다 exam.json 을 둔다`);
   const c = JSON.parse(readFileSync(p, "utf-8")) as ExamConfig;
   for (const k of ["examId", "school", "grade", "subject"] as const)
     if (!c[k]) throw new Error(`[중단] exam.json 에 ${k} 가 없다`);
-  if (!c.units || Object.keys(c.units).length === 0)
+  if (requireUnits && (!c.units || Object.keys(c.units).length === 0))
     throw new Error("[중단] exam.json 에 units(소단원·문항류 표)가 없다");
-  for (const [n, u] of Object.entries(c.units))
+  for (const [n, u] of Object.entries(c.units ?? {}))
     if (!u.section || !u.family || !u.why)
       throw new Error(
         `[중단] exam.json units.${n} 에 section·family·why 중 빈 것이 있다`,
