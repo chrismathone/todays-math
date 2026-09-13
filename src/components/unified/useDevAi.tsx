@@ -153,7 +153,11 @@ export function DevAiProvider({ children }: { children: ReactNode }) {
         ...base,
         state: "running",
         message:
-          request.action === "solution" ? "해설 생성 중" : "문제 인식 중",
+          request.action === "solution"
+            ? "해설 생성 중"
+            : request.action === "figures"
+              ? "도형 인식 중"
+              : "문제 인식 중",
       });
       try {
         const response = await fetch("/api/dev/unified/ai", {
@@ -176,7 +180,11 @@ export function DevAiProvider({ children }: { children: ReactNode }) {
           state: "complete",
           finishedAt: Date.now(),
           message:
-            request.action === "solution" ? "해설 생성 완료" : "문제 인식 완료",
+            request.action === "solution"
+              ? "해설 생성 완료"
+              : request.action === "figures"
+                ? "도형 인식 완료"
+                : "문제 인식 완료",
         });
         setStatus(
           (previous) =>

@@ -62,6 +62,9 @@ async function mockAi(page: Page) {
             answer: String.raw`$\frac{10}{3}$`,
             solution: "1을 더해서 구합니다.",
             warnings: ["그림과 보기를 원본과 확인하세요."],
+            figures: [
+              { bbox: { left: 200, top: 200, width: 300, height: 400 } },
+            ],
             problems: [
               {
                 content,
@@ -72,6 +75,9 @@ async function mockAi(page: Page) {
                 content: "직사각형의 넓이를 구하세요.",
                 answer: "40",
                 bbox: { left: 80, top: 350, width: 840, height: 260 },
+                figures: [
+                  { bbox: { left: 200, top: 420, width: 220, height: 100 } },
+                ],
               },
             ],
           },
@@ -393,7 +399,7 @@ test("page recognition blocks manual selection, restores it after cancel/error/s
   await expect(page.getByRole("textbox", { name: "문제 내용" })).toHaveValue(
     content,
   );
-  await expect(area).toHaveCSS("cursor", "crosshair");
+  await expect(area).toHaveCSS("cursor", "default");
   await keyboard.click();
   await area.click({ button: "right", position: { x: 40, y: 50 } });
   await expect(pending).toHaveCount(0);
@@ -401,4 +407,127 @@ test("page recognition blocks manual selection, restores it after cancel/error/s
     page.getByRole("button", { name: "2문항 담기", exact: true }),
   ).toBeEnabled();
   expect(mock.errors).toEqual([]);
+});
+
+test("problem and inner figure review edits source pixels, supports sequential review and keeps figures in text export", async ({
+  page,
+}, testInfo) => {
+  const mock = await mockAi(page);
+  await page.setViewportSize({ width: 1440, height: 923 });
+  await page.goto("/");
+  await page.getByRole("button", { name: "예제로 시작", exact: true }).click();
+  await page
+    .getByRole("combobox", { name: "원본 확대 비율" })
+    .selectOption("0");
+  await page.getByRole("button", { name: "페이지 자동 인식" }).click();
+  const area = page.getByRole("group", { name: "문제 자르기 영역" });
+  const problems = area.locator('[data-crop-kind="problem"]');
+  const figures = area.locator('[data-crop-kind="figure"]');
+  await expect(problems).toHaveCount(2);
+  await expect(figures).toHaveCount(1);
+  const problem = problems.nth(1);
+  await problem.click({ position: { x: 12, y: 30 } });
+  await expect(problem).toHaveAttribute("aria-pressed", "true");
+  const imageBefore = await page
+    .getByRole("img", { name: "검수할 자른 원본 문제" })
+    .getAttribute("src");
+  const rectBefore = await problem.getAttribute("style");
+  const bounds = (await problem.boundingBox())!;
+  await page.mouse.move(bounds.x + 15, bounds.y + 35);
+  await page.mouse.down();
+  await page.mouse.move(bounds.x + 23, bounds.y + 43);
+  await page.mouse.up();
+  await expect(problem).not.toHaveAttribute("style", rectBefore!);
+  await expect(
+    page.getByRole("img", { name: "검수할 자른 원본 문제" }),
+  ).not.toHaveAttribute("src", imageBefore!);
+  // Cancelling a second drag preserves the last committed image and rectangle.
+  const committedRect = await problem.getAttribute("style");
+  const movedBounds = (await problem.boundingBox())!;
+  await page.mouse.move(movedBounds.x + 15, movedBounds.y + 35);
+  await page.mouse.down();
+  await page.mouse.move(movedBounds.x + 30, movedBounds.y + 45);
+  await page.mouse.click(movedBounds.x + 30, movedBounds.y + 45, {
+    button: "right",
+  });
+  await page.mouse.up();
+  await expect(problem).toHaveAttribute("style", committedRect!);
+  const figure = figures.first();
+  await figure.click();
+  const handle = figure.locator('[data-corner="se"]');
+  const handleBounds = (await handle.boundingBox())!;
+  await page.mouse.move(
+    handleBounds.x + handleBounds.width / 2,
+    handleBounds.y + handleBounds.height / 2,
+  );
+  await page.mouse.down();
+  await page.mouse.move(
+    movedBounds.x + movedBounds.width + 35,
+    movedBounds.y + movedBounds.height + 35,
+  );
+  await page.mouse.up();
+  const resized = (await figure.boundingBox())!;
+  const parent = (await problem.boundingBox())!;
+  expect(resized.x + resized.width).toBeLessThanOrEqual(
+    parent.x + parent.width + 1,
+  );
+  expect(resized.y + resized.height).toBeLessThanOrEqual(
+    parent.y + parent.height + 1,
+  );
+  await page.getByRole("button", { name: "도형 추가", exact: true }).click();
+  await area.focus();
+  await page.keyboard.press("ArrowRight");
+  await page.keyboard.press("Enter");
+  await expect(figures).toHaveCount(2);
+  await expect(problems).toHaveCount(2);
+  await page.getByRole("button", { name: "도형 2 삭제", exact: true }).click();
+  await expect(figures).toHaveCount(1);
+  await page
+    .getByRole("button", { name: "그림 다시 찾기", exact: true })
+    .click();
+  await expect.poll(() => mock.posts.at(-1)?.action).toBe("figures");
+  await expect(figures).toHaveCount(1);
+  await expect(page.getByRole("textbox", { name: "문제 내용" })).toHaveValue(
+    "직사각형의 넓이를 구하세요.",
+  );
+  await page.screenshot({
+    path: testInfo.outputPath("studio-box-review.png"),
+    fullPage: true,
+  });
+  await page
+    .getByRole("button", { name: "영역 확인 · 문항 검수", exact: true })
+    .click();
+  const nav = page.getByLabel("문항 검수 이동");
+  await expect(nav).toContainText("문제 1 / 2");
+  await expect(
+    page.getByRole("button", { name: "이전 문제 검수" }),
+  ).toBeDisabled();
+  await page
+    .getByRole("button", { name: "검수 완료 · 다음", exact: true })
+    .click();
+  await expect(nav).toContainText("문제 2 / 2");
+  await expect(nav).toContainText("1문항 검수 완료");
+  await expect(
+    page.getByRole("button", { name: "다음 문제 검수" }),
+  ).toBeDisabled();
+  await page.getByRole("radio", { name: "입력한 텍스트" }).check();
+  await page.getByRole("button", { name: "검수 완료", exact: true }).click();
+  await expect(nav).toContainText("2문항 검수 완료");
+  await page
+    .getByRole("textbox", { name: "문제 내용" })
+    .fill("도형을 보고 넓이를 구하세요.");
+  await expect(nav).toContainText("1문항 검수 완료");
+  await page.getByRole("button", { name: "2문항 담기", exact: true }).click();
+  const added = JSON.parse(
+    (await page.getByLabel("시험지 담은 문제").textContent()) ?? "[]",
+  );
+  expect(added[1].figureUrls).toHaveLength(1);
+  expect(added[1].figureUrls[0]).toMatch(/^data:image\/png;base64,/);
+  expect(added[1].content).toBe("도형을 보고 넓이를 구하세요.");
+  expect(added[1].croppedImage).toBeUndefined();
+  expect(mock.errors).toEqual([]);
+  await page.screenshot({
+    path: testInfo.outputPath("studio-sequential-review.png"),
+    fullPage: true,
+  });
 });

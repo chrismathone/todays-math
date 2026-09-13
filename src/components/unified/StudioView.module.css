@@ -556,8 +556,12 @@
 .pageSurface[aria-busy="true"] {
   cursor: progress;
 }
-.rectangle,
-.savedRectangle {
+.pageSurface[data-tool="select"]:not([aria-busy="true"]),
+.pageSurface[data-tool="delete"]:not([aria-busy="true"]) {
+  cursor: default;
+  touch-action: pan-y;
+}
+.rectangle {
   position: absolute;
   pointer-events: none;
 }
@@ -565,10 +569,9 @@
   border: 3px solid var(--studio-primary);
   background: #3159df0d;
   box-shadow: 0 0 0 9999px #172b4d40;
-  z-index: 2;
+  z-index: 6;
 }
-.rectangle > span,
-.savedRectangle > span {
+.rectangle > span {
   position: absolute;
   left: 10px;
   top: 8px;
@@ -604,12 +607,6 @@
 .rectangle > i:nth-child(4) {
   left: -5px;
   bottom: -5px;
-}
-.savedRectangle {
-  border: 2px dashed #526fa7;
-}
-.savedRectangle > span {
-  background: #52617a;
 }
 .loading {
   display: grid;
@@ -678,6 +675,165 @@
   min-height: 0;
   padding: 18px 24px;
   overflow: auto;
+}
+.reviewNavigation {
+  display: flex;
+  align-items: center;
+  flex: none;
+  gap: 8px;
+  padding: 6px 10px;
+  border-bottom: 1px solid var(--studio-line);
+  background: white;
+  font-size: var(--text-body, 14px);
+}
+.reviewNavigation > button:first-child,
+.reviewNavigation > button:nth-child(3) {
+  width: 44px;
+  padding: 0;
+  flex: none;
+}
+.reviewNavigation strong {
+  white-space: nowrap;
+}
+.reviewNavigation strong > span {
+  color: var(--studio-muted);
+  font-weight: 400;
+}
+.reviewProgress {
+  margin-left: auto;
+  color: var(--studio-muted);
+}
+.reviewNavigation > button:last-child {
+  margin-left: auto;
+  white-space: nowrap;
+}
+.cropEditTools {
+  padding-bottom: 12px;
+  margin-bottom: 12px;
+  border-bottom: 1px solid var(--studio-line);
+}
+.cropEditHeading {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  font-size: var(--text-body, 14px);
+}
+.cropEditHeading > span,
+.cropLegend {
+  color: var(--studio-muted);
+  font-size: var(--text-caption, 12px);
+}
+.cropToolButtons {
+  display: flex;
+  gap: 4px;
+  margin-top: 8px;
+}
+.cropToolButtons > button {
+  flex: 1;
+  height: var(--control-height, 44px);
+  padding: 0 6px;
+  border: 1px solid var(--studio-line);
+  border-radius: var(--control-radius, 8px);
+  background: white;
+  color: var(--studio-ink);
+  white-space: nowrap;
+  font-size: var(--text-body, 14px);
+}
+.cropToolButtons > button[aria-pressed="true"] {
+  background: #eaf0ff;
+  border-color: #8eaaff;
+  color: #2448bb;
+  font-weight: 700;
+}
+.cropToolButtons > button:hover:not(:disabled) {
+  background: #f1f5ff;
+  border-color: #a0b4dc;
+}
+.cropLegend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 8px;
+}
+.cropLegend > span::before {
+  content: "";
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  margin-right: 4px;
+  border: 1px solid #0ea5e9;
+  background: #0ea5e918;
+}
+.cropLegend > span:nth-child(2)::before {
+  border-color: #ea580c;
+  background: #ea580c18;
+}
+.cropLegend small {
+  margin-left: auto;
+  font-size: inherit;
+}
+.figureReview {
+  border-block: 1px solid var(--studio-line);
+  padding: 8px 0 12px;
+  margin-bottom: 12px;
+}
+.figureReview .textButton {
+  padding: 0 8px;
+  white-space: nowrap;
+}
+.figureList {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+.figureList > div {
+  display: flex;
+  align-items: center;
+  border: 1px solid #fed7aa;
+  border-radius: var(--control-radius, 8px);
+  overflow: hidden;
+}
+.figureList button {
+  height: var(--control-height, 44px);
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  background: #fffaf5;
+  padding: 0 8px;
+  color: #9a3412;
+  border: 0;
+  font-size: var(--text-body, 14px);
+}
+.figureList button:hover,
+.figureList button[aria-pressed="true"] {
+  background: #ffedd5;
+}
+.figureList button:last-child {
+  min-width: 44px;
+  justify-content: center;
+}
+.figureList img {
+  width: 32px;
+  height: 32px;
+  object-fit: contain;
+  background: white;
+}
+.figureEmpty {
+  color: var(--studio-muted);
+  font-size: var(--text-caption, 12px);
+}
+@container studio-canvas (max-width: 560px) {
+  .reviewProgress {
+    display: none;
+  }
+  .reviewNavigation {
+    gap: 6px;
+    padding-inline: 6px;
+  }
+  .reviewNavigation > button:last-child {
+    padding-inline: 10px;
+  }
 }
 .reviewHeading {
   display: flex;
@@ -1687,8 +1843,7 @@
     max-height: 440px;
   }
   .editing .actionBar {
-    position: sticky;
-    bottom: 0;
+    position: static;
     flex-wrap: wrap;
   }
   .editing .selectionAction {
