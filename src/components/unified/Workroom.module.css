@@ -1272,3 +1272,27 @@
     display: none !important;
   }
 }
+
+/* The shared views also serve the archived concepts; shell insets belong here. */
+.viewContent {
+  --workspace-basket-left: 272px;
+}
+.teachingContent {
+  padding: 0;
+  max-width: 1600px;
+  margin: 0 auto;
+}
+@media (max-width: 1050px) and (min-width: 761px) {
+  .viewContent {
+    --workspace-basket-left: 238px;
+  }
+}
+@media (max-width: 760px) {
+  .viewContent {
+    --workspace-basket-left: 16px;
+    --workspace-bottom-inset: 77px;
+  }
+  .teachingContent {
+    padding: 0;
+  }
+}

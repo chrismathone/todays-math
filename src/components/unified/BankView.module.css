@@ -874,7 +874,7 @@ label.rowSelect {
     top: auto;
     right: 32px;
     bottom: 16px;
-    left: 272px;
+    left: var(--workspace-basket-left, 272px);
     display: grid;
     grid-template-columns: minmax(0, 1fr) 160px;
     gap: 0 16px;
@@ -961,7 +961,7 @@ label.rowSelect {
 }
 @media (max-width: 900px) {
   .basket {
-    left: 16px;
+    left: var(--workspace-basket-left, 16px);
     right: 16px;
   }
 }
@@ -1091,7 +1091,10 @@ label.rowSelect {
   }
   .basket {
     right: 12px;
-    bottom: max(12px, env(safe-area-inset-bottom));
+    bottom: calc(
+      max(12px, env(safe-area-inset-bottom)) +
+        var(--workspace-bottom-inset, 0px)
+    );
     left: 12px;
     grid-template-columns: minmax(0, 1fr) 124px;
     gap: 0 12px;
