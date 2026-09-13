@@ -26,11 +26,6 @@
   font-size: 12px;
   color: #b6c9e7;
 }
-.mode > span {
-  display: block;
-  margin-top: 2px;
-  color: #a1b4d1;
-}
 .provider {
   min-width: 0;
   font-size: 12px;
@@ -82,13 +77,6 @@
 .connection[data-ready="true"] > span {
   background: #68ccad;
 }
-.detail {
-  font-size: 12px;
-  color: #b6c9e7;
-  line-height: 1.6;
-  overflow-wrap: anywhere;
-  margin: 5px 0 0;
-}
 .activity {
   display: flex;
   justify-content: space-between;
@@ -112,17 +100,6 @@
 }
 .activity[data-state="error"] strong {
   color: #ffc3b9;
-}
-.action {
-  margin-top: 10px;
-  min-height: 44px;
-  width: 100%;
-  background: #263d5d;
-  border: 1px solid #4c6386;
-  color: #d8e6ff;
-}
-.action:hover {
-  background: #324c71;
 }
 .collapsed {
   margin-top: 16px;

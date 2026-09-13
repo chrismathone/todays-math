@@ -7,11 +7,24 @@ export function rejectDevAiRequest(request: Request): Response | null {
   const url = new URL(request.url);
   if (!["localhost", "127.0.0.1", "[::1]"].includes(url.hostname))
     return new Response(null, { status: 403, headers: DEV_AI_HEADERS });
-  if (request.headers.get("host") && request.headers.get("host") !== url.host)
+  // Next normalizes a loopback request URL to localhost. Validate the actual
+  // Host independently, then compare browser Origin with that exact host.
+  const host = request.headers.get("host") ?? url.host;
+  let incoming: URL;
+  try {
+    incoming = new URL(`${url.protocol}//${host}`);
+  } catch {
+    return new Response(null, { status: 403, headers: DEV_AI_HEADERS });
+  }
+  if (
+    !["localhost", "127.0.0.1", "[::1]"].includes(incoming.hostname) ||
+    incoming.host !== host ||
+    incoming.port !== url.port
+  )
     return new Response(null, { status: 403, headers: DEV_AI_HEADERS });
   const origin = request.headers.get("origin");
   if (
-    (origin && origin !== url.origin) ||
+    (origin && origin !== incoming.origin) ||
     request.headers.get("sec-fetch-site") === "cross-site" ||
     (request.method === "POST" && !origin)
   )

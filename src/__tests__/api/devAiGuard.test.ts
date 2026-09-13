@@ -66,4 +66,22 @@ describe("local subscription AI request guard", () => {
       ),
     ).rejects.toThrow();
   });
+  it("accepts Next's normalized loopback URL but still requires the exact browser origin", () => {
+    vi.stubEnv("NODE_ENV", "development");
+    const request = (host: string, origin: string) =>
+      new Request("http://localhost:3000/api/dev/unified/ai", {
+        method: "POST",
+        headers: { host, origin },
+      });
+    expect(
+      rejectDevAiRequest(request("127.0.0.1:3000", "http://127.0.0.1:3000")),
+    ).toBeNull();
+    for (const [host, origin] of [
+      ["127.0.0.1:3000", "http://localhost:3000"],
+      ["127.0.0.1:4000", "http://127.0.0.1:4000"],
+      ["external.test", "http://external.test"],
+      ["external.test@localhost:3000", "http://localhost:3000"],
+    ])
+      expect(rejectDevAiRequest(request(host, origin))?.status).toBe(403);
+  });
 });
