@@ -31,6 +31,7 @@ export interface BankData {
 
 export interface BankViewProps {
   initialData: BankData;
+  initialFilters?: { q?: string; grade?: string };
   selected: StudioProblem[];
   onToggle: (problem: StudioProblem) => void;
   onExport: () => void;
