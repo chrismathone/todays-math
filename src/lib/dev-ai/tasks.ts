@@ -2,6 +2,7 @@ import { z } from "zod";
 import { repairJsonString } from "@/lib/ai/jsonRepair";
 import {
   DEV_AI_PROVIDERS,
+  type DevAiFigure,
   type DevAiRequest,
   type DevAiResult,
 } from "./contracts";
@@ -14,7 +15,7 @@ const image = z
 export const DevAiRequestSchema = z
   .object({
     provider: z.enum(DEV_AI_PROVIDERS),
-    action: z.enum(["ocr", "page-ocr", "solution"]),
+    action: z.enum(["ocr", "page-ocr", "figures", "solution"]),
     imageDataUrl: image.optional(),
     content: z.string().max(40000).optional(),
     grade: z.string().trim().min(1).max(40),
@@ -45,8 +46,17 @@ const COMMON = `당신은 한국 수학 교재의 문항 인식과 해설 작성
 판독할 수 없는 문자는 추측하지 말고 [판독 불가]로 표시하고 warnings에 간단히 이유를 쓴다.
 출력의 content, answer, solution은 문자열, warnings는 문자열 배열이다. 코드펜스와 인사말은 쓰지 않는다.`;
 
+const FIGURES = `figures에는 실제 인쇄된 도형·그래프·표·삽화만 본문·보기 글자와 분리해서 담는다. 도형 내부의 눈금·기호·치수·범례는 포함하고 문제 본문과 보기 텍스트는 제외한다.
+없는 그림을 만들거나 추측하지 않는다. 손글씨 풀이·낙서·동그라미 표시는 그림이 아니다. 해당 그림이 없으면 반드시 figures: []를 출력한다.
+각 그림의 bbox는 left/top 시작점과 width/height 크기이며 모든 값은 0~1000, left+width와 top+height는 1000 이하여야 한다.`;
+
 export function buildDevAiPrompt(request: DevAiRequest): string {
   const context = `대상 학년: ${JSON.stringify(request.grade)}`;
+  if (request.action === "figures")
+    return `${COMMON}\n${context}\n${FIGURES}
+첨부된 단일 문제 이미지에서 내부 그림 영역만 찾는다. 문자를 다시 인식하거나 정답·해설을 작성하지 않는다.
+bbox는 첨부 INPUT 이미지 전체의 왼쪽 위 (0,0), 오른쪽 아래 (1000,1000) 기준이다.
+출력 형식: {"content":"","answer":"","solution":"","warnings":[],"figures":[{"bbox":{"left":100,"top":300,"width":400,"height":200}}]}`;
   if (request.action === "solution")
     return `${COMMON}\n${context}
 검수된 문항 내용을 기준으로 직접 풀어 정답과 해설을 작성한다. 첨부 이미지는 도형·표 확인용이다.
@@ -61,7 +71,9 @@ export function buildDevAiPrompt(request: DevAiRequest): string {
 머리말·페이지 번호·순수 정답표는 문제로 만들지 않는다. 2단 지면은 왼쪽 단 위에서 아래, 오른쪽 단 위에서 아래 순서다. 한 문제의 소문항은 하나의 영역으로 묶는다.
 bbox는 전체 이미지의 왼쪽 위를 (0,0), 오른쪽 아래를 (1000,1000)으로 하는 좌표다. left/top은 시작점, width/height는 크기다. 문제 번호와 도형도 포함하고 옆 문제는 포함하지 않는다.
 정답이 지면에 인쇄된 경우만 answer에 옮긴다. 인쇄되지 않았다면 빈 문자열이다. problems는 최대 30개다.
-출력 형식: {"content":"","answer":"","solution":"","warnings":[],"problems":[{"content":"문제와 보기","answer":"","bbox":{"left":50,"top":100,"width":400,"height":200}}]}`;
+${FIGURES}
+각 문제의 figures bbox도 원본 페이지 전체 좌표다. 부모 문제 bbox에 상대적인 좌표가 아니다. 해당 문제 영역 안의 그림만 포함한다.
+출력 형식: {"content":"","answer":"","solution":"","warnings":[],"problems":[{"content":"문제와 보기","answer":"","bbox":{"left":50,"top":100,"width":400,"height":200},"figures":[]}]}`;
   return `${COMMON}\n${context}
 첨부 이미지는 잘라낸 단일 문제다. 가운데 문제의 본문·모든 보기·조건을 그대로 옮긴다. 가장자리에 잘린 다른 문제는 제외한다. 절대로 풀지 않는다.
 원문에 정답이 인쇄된 경우에만 answer에 옮긴다. 그렇지 않으면 빈 문자열이다. solution은 항상 빈 문자열이다.
@@ -77,9 +89,12 @@ const BboxSchema = z
     height: z.number().positive().max(1000),
   })
   .refine(
-    (b) => b.left + b.width <= 1001 && b.top + b.height <= 1001,
+    (b) => b.left + b.width <= 1000 && b.top + b.height <= 1000,
     "크롭 영역이 지면을 벗어납니다.",
   );
+const FigureSchema = z.object({ bbox: BboxSchema });
+// Validate entries separately so a bad optional figure never discards good OCR.
+const FiguresSchema = z.array(z.unknown()).max(30).optional();
 const ResultSchema = z.object({
   content: text.default(""),
   answer: text.default(""),
@@ -91,10 +106,12 @@ const ResultSchema = z.object({
         content: text.min(1),
         answer: text.default(""),
         bbox: BboxSchema,
+        figures: FiguresSchema,
       }),
     )
     .max(30)
     .optional(),
+  figures: FiguresSchema,
 });
 export function parseDevAiResult(
   raw: string,
@@ -102,29 +119,72 @@ export function parseDevAiResult(
 ): DevAiResult {
   let result: DevAiResult;
   try {
-    result = ResultSchema.parse(JSON.parse(repairJsonString(raw)));
+    const parsed = ResultSchema.parse(JSON.parse(repairJsonString(raw)));
+    const warnings = [...parsed.warnings];
+    const figures = (
+      values: unknown[] | undefined,
+    ): DevAiFigure[] | undefined => {
+      if (!values) return undefined;
+      const valid = values.flatMap((value) => {
+        const checked = FigureSchema.safeParse(value);
+        return checked.success ? [checked.data] : [];
+      });
+      if (valid.length !== values.length)
+        warnings.push(
+          `잘못되거나 이미지 밖인 그림 영역 ${values.length - valid.length}개를 제외했습니다.`,
+        );
+      return valid;
+    };
+    result = {
+      ...parsed,
+      figures: figures(parsed.figures),
+      problems: parsed.problems?.map(({ figures: rawFigures, ...problem }) => ({
+        ...problem,
+        ...(rawFigures === undefined ? {} : { figures: figures(rawFigures) }),
+      })),
+      warnings,
+    };
   } catch {
     throw new Error(
       "AI 응답 형식을 읽지 못했습니다. 원본은 유지됩니다. 다시 시도해 주세요.",
     );
+  }
+  if (action === "figures") {
+    if (!result.figures)
+      throw new Error(
+        "그림 영역 결과를 받지 못했습니다. 원본은 유지됩니다. 다시 시도해 주세요.",
+      );
+    return {
+      ...result,
+      content: "",
+      answer: "",
+      solution: "",
+      problems: undefined,
+    };
   }
   if (action === "page-ocr") {
     if (!result.problems?.length)
       throw new Error(
         "페이지에서 문제를 찾지 못했습니다. 문제 영역을 직접 잘라 다시 인식해 주세요.",
       );
-    return { ...result, content: "", answer: "", solution: "" };
+    return {
+      ...result,
+      content: "",
+      answer: "",
+      solution: "",
+      figures: undefined,
+    };
   }
   if (action === "ocr") {
     if (!result.content.trim())
       throw new Error(
         "문제 내용을 읽지 못했습니다. 잘라낸 영역을 확인해 주세요.",
       );
-    return { ...result, solution: "", problems: undefined };
+    return { ...result, solution: "", problems: undefined, figures: undefined };
   }
   if (!result.answer.trim() || !result.solution.trim())
     throw new Error(
       "완성된 정답·해설을 받지 못했습니다. 문제 내용을 확인하고 다시 시도해 주세요.",
     );
-  return { ...result, content: "", problems: undefined };
+  return { ...result, content: "", problems: undefined, figures: undefined };
 }

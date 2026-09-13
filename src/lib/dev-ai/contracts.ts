@@ -6,7 +6,7 @@ export const DEV_AI_PROVIDERS = [
   "grok",
 ] as const;
 export type DevAiProvider = (typeof DEV_AI_PROVIDERS)[number];
-export type DevAiAction = "ocr" | "page-ocr" | "solution";
+export type DevAiAction = "ocr" | "page-ocr" | "figures" | "solution";
 export interface DevAiProviderStatus {
   id: DevAiProvider;
   label: string;
@@ -33,11 +33,17 @@ export interface DevAiRequest {
   content?: string;
   grade: string;
 }
+export interface DevAiFigure {
+  /** Coordinates in the INPUT image, normalized to 0–1000. */
+  bbox: { left: number; top: number; width: number; height: number };
+}
 export interface DevAiRecognizedProblem {
   content: string;
   answer: string;
   /** Coordinates in the source image, normalized to 0–1000. */
   bbox: { left: number; top: number; width: number; height: number };
+  /** Source PAGE coordinates, never relative to this problem's bbox. */
+  figures?: DevAiFigure[];
 }
 export interface DevAiResult {
   content: string;
@@ -45,6 +51,8 @@ export interface DevAiResult {
   solution: string;
   warnings: string[];
   problems?: DevAiRecognizedProblem[];
+  /** Independent figure detection in the supplied input image. */
+  figures?: DevAiFigure[];
 }
 export interface DevAiResponse {
   provider: DevAiProvider;

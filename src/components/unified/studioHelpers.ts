@@ -7,6 +7,13 @@ export interface StudioRect {
   height: number;
 }
 
+export interface StudioFigure {
+  id: string;
+  /** Source PAGE coordinates normalized to 0–1, bounded by the problem. */
+  rect: StudioRect;
+  image: string;
+}
+
 export interface StudioCrop {
   id: string;
   sourceId: string;
@@ -14,6 +21,12 @@ export interface StudioCrop {
   page: number;
   rect: StudioRect;
   image: string;
+  figures?: StudioFigure[];
+  reviewed?: boolean;
+  /** Original page canvas pixel dimensions, when available. */
+  sourceSize?: { width: number; height: number };
+  /** Measured original page width; omit when physical dimensions are unknown. */
+  sourceWidthMm?: number;
   content: string;
   answer: string;
   solution: string;
@@ -71,6 +84,13 @@ export function studioPixelRect(
 
 export function studioProblem(crop: StudioCrop): StudioProblem {
   const useText = crop.mode === "text" && Boolean(crop.content.trim());
+  const figures = useText ? (crop.figures ?? []) : [];
+  const sourceSize = crop.sourceSize;
+  const hasSourceSize =
+    sourceSize &&
+    [sourceSize.width, sourceSize.height].every(
+      (value) => Number.isFinite(value) && value > 0,
+    );
   return {
     id: crop.id,
     content: useText ? crop.content.trim() : "",
@@ -81,10 +101,22 @@ export function studioProblem(crop: StudioCrop): StudioProblem {
     section: "",
     difficulty: "",
     problemCode: "",
-    figureUrls: [],
+    figureUrls: figures.map((figure) => figure.image),
     figureSvg: null,
-    figureDims: [],
-    figureSourceMm: [],
+    figureDims: hasSourceSize
+      ? figures.flatMap((figure) => {
+          const pixels = studioPixelRect(
+            figure.rect,
+            sourceSize.width,
+            sourceSize.height,
+          );
+          return [pixels.width, pixels.height];
+        })
+      : [],
+    figureSourceMm:
+      Number.isFinite(crop.sourceWidthMm) && crop.sourceWidthMm! > 0
+        ? figures.map((figure) => figure.rect.width * crop.sourceWidthMm!)
+        : [],
     croppedImage: useText ? undefined : crop.image,
     sourceLabel: `${crop.sourceLabel} · ${crop.page}쪽`,
   };
