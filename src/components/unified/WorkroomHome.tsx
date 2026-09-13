@@ -69,7 +69,7 @@ export default function WorkroomHome({
     { prefix: "초", label: "초등" },
     { prefix: "중", label: "중등" },
   ];
-  const visibleDrafts = recent.slice(0, 4);
+  const visibleDrafts = recent.slice(0, 8);
   return (
     <main className={s.home}>
       <h1 className={s.srOnly}>오늘의 작업</h1>
@@ -182,14 +182,7 @@ export default function WorkroomHome({
             </div>
             <div className={s.importCopy}>
               <h2 id="source-import-title">내 자료에서 문제 가져오기</h2>
-              <p>PDF나 이미지를 놓으면 바로 문제를 자를 수 있어요.</p>
-              <div>
-                <span>문제 자르기</span>
-                <Icon name="chevron" size={12} />
-                <span>내용 편집</span>
-                <Icon name="chevron" size={12} />
-                <span>시험지에 담기</span>
-              </div>
+              <p>이 영역에 PDF나 이미지를 끌어 놓으세요.</p>
             </div>
             <button className={s.importButton} onClick={onImport}>
               <Icon name="upload" size={18} />
@@ -216,7 +209,12 @@ export default function WorkroomHome({
                 저장한 시험지를 불러오고 있어요…
               </div>
             ) : visibleDrafts.length ? (
-              <div className={s.recentList}>
+              <div
+                className={s.recentList}
+                role="region"
+                aria-label="최근 시험지 목록"
+                tabIndex={0}
+              >
                 {visibleDrafts.map((item) => (
                   <button key={item.id} onClick={() => onOpen(item.id)}>
                     <span className={s.documentIcon}>

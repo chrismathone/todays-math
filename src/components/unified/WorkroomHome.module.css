@@ -174,7 +174,7 @@
 }
 .gradeGroup {
   display: grid;
-  grid-template-columns: 130px 1fr;
+  grid-template-columns: 48px minmax(0, 1fr);
   gap: 12px;
   align-items: center;
 }
@@ -192,7 +192,8 @@
   color: #738098;
 }
 .gradeGroup > div:last-child {
-  display: flex;
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
   gap: 8px;
 }
 .gradeGroup button {
@@ -201,8 +202,7 @@
   align-items: center;
   gap: 8px;
   min-height: var(--control-height, 44px);
-  flex: 1;
-  max-width: 160px;
+  min-width: 0;
   padding: 0 13px;
   border: 1px solid #dce4ef;
   border-radius: var(--control-radius, 8px);
@@ -248,6 +248,7 @@
   color: #a34131;
 }
 .importCard {
+  position: relative;
   display: flex;
   align-items: center;
   gap: 20px;
@@ -345,7 +346,19 @@
 .importButton:hover {
   border-color: #3159df;
 }
+.importButton::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 14px;
+  cursor: pointer;
+}
+.importCard:hover,
+.importCard:focus-within {
+  border-color: #3159df;
+}
 .recentSection {
+  min-width: 0;
   margin-top: 4px;
 }
 .sectionHeader,
@@ -377,8 +390,16 @@
 .recentList {
   border: 1px solid #dce3ed;
   border-radius: 12px;
-  overflow: hidden;
+  max-height: 252px;
+  overflow-y: auto;
+  overscroll-behavior-y: contain;
+  scrollbar-width: thin;
+  scrollbar-color: #8c9bb5 transparent;
   background: white;
+}
+.recentList:focus-visible {
+  outline: 3px solid #82a1ff;
+  outline-offset: 3px;
 }
 .recentList > button {
   display: flex;
@@ -734,7 +755,7 @@
     display: none;
   }
   .gradeGroup {
-    grid-template-columns: 84px 1fr;
+    grid-template-columns: 40px minmax(0, 1fr);
   }
   .gradeGroup small {
     display: none;
@@ -1137,7 +1158,47 @@
 
 .home {
   max-width: none;
-  padding: 16px 20px 28px;
+  padding: 16px 20px;
+}
+
+/* Give spare desktop height to the file drop target, while the search and
+   recent-work controls keep their natural size. Short screens scroll normally. */
+@media (min-width: 1051px) {
+  .dashboard {
+    align-items: stretch;
+    min-height: calc(100dvh - 84px);
+  }
+  .primaryColumn {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    grid-template-rows: auto minmax(144px, 1fr) auto;
+    gap: 16px;
+  }
+  .primaryColumn:has(.recentList) {
+    height: max(740px, calc(100dvh - 84px));
+    grid-template-rows: auto 144px minmax(210px, 1fr);
+  }
+  .recentSection:has(.recentList) {
+    display: flex;
+    flex-direction: column;
+  }
+  .recentList {
+    flex: 1;
+    min-height: 0;
+    height: 0;
+    max-height: none;
+  }
+  .importCard {
+    padding: 24px;
+    border: 1px dashed #9eafd5;
+    background: #eef3ff;
+  }
+  .importCopy h2 {
+    margin-top: 0;
+  }
+  .recentSection {
+    margin-top: 0;
+  }
 }
 .srOnly {
   position: absolute;
