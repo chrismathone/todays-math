@@ -3,7 +3,7 @@
   --studio-ink: #172b4d;
   --studio-muted: #52617a;
   --studio-line: #d4dce8;
-  container-type: inline-size;
+  container: studio / inline-size;
   min-width: 0;
   color: var(--studio-ink);
   background: #f3f5f9;
@@ -60,10 +60,11 @@
   align-items: center;
   justify-content: center;
   gap: 8px;
-  padding: 10px 16px;
+  height: var(--control-height, 44px);
+  padding: 0 16px;
   border: 1px solid var(--studio-line);
   border-radius: var(--control-radius, 8px);
-  font-weight: 600 !important;
+  font-weight: 600;
   line-height: 1.4;
   white-space: nowrap;
 }
@@ -269,6 +270,7 @@
   display: flex;
   align-items: center;
   gap: 5px;
+  white-space: nowrap;
 }
 .pageTools select {
   background: white;
@@ -326,9 +328,6 @@
   margin: 0 0 20px;
   color: var(--studio-muted);
   font-size: var(--text-body, 14px);
-}
-.uploadArea .primaryButton {
-  min-width: 210px;
 }
 .fileHint {
   display: block;
@@ -863,7 +862,7 @@
   border: 0;
   color: #2448bb;
   text-align: left;
-  font-size: var(--text-body, 14px) !important;
+  font-size: var(--text-body, 14px);
 }
 .sourceLink > span:nth-child(2) {
   overflow: hidden;
@@ -998,14 +997,13 @@
   border: 1px solid #b8c8f7;
   border-radius: 6px;
   color: #2448bb;
-  font-weight: 650 !important;
+  font-weight: 600;
 }
 .previewButton:hover {
   background: #dfe8ff;
 }
 .actionBar {
-  position: sticky;
-  bottom: 0;
+  position: static;
   z-index: 5;
   display: flex;
   align-items: center;
@@ -1246,18 +1244,13 @@
     min-width: 0;
   }
 }
-@media (prefers-reduced-motion: reduce) {
-  .studio button {
-    transition: none;
-  }
-}
-
-/* Editing prioritizes the document: two compact toolbars and a full-height canvas. */
+/* Keep document controls responsive to the canvas after either sidebar changes. */
 .editorBar {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 12px;
+  flex-wrap: wrap;
+  gap: 8px 12px;
   margin-bottom: 8px;
   min-height: 44px;
 }
@@ -1265,29 +1258,34 @@
 .editorTools {
   display: flex;
   align-items: center;
+  flex-wrap: wrap;
   gap: 6px;
 }
 .editorTabs h1 {
+  margin: 0 16px 0 0;
   font-size: var(--text-title, 24px);
   font-weight: 750;
-  margin-right: 16px;
   white-space: nowrap;
 }
-.editorTabs button {
+.editorTabs button,
+.editorTools button {
   display: flex;
   align-items: center;
-  gap: 7px;
-  padding: 0 13px;
+  gap: 6px;
+  height: var(--control-height, 44px);
+  padding: 0 11px;
   border: 1px solid transparent;
   border-radius: var(--control-radius, 8px);
   font-size: var(--text-body, 14px);
-  color: #687c98;
+  white-space: nowrap;
+  color: #486286;
+  background: white;
 }
-.editorTabs button[aria-pressed="true"] {
+.editorTabs button[aria-pressed="true"],
+.editorTools button[aria-pressed="true"] {
   background: #e7edfb;
   border-color: #cbd8f3;
   color: #3159df;
-  font-weight: 600;
 }
 .editorTabs b {
   font-size: var(--text-caption, 12px);
@@ -1296,23 +1294,8 @@
   background: #e1e8f7;
 }
 .editorTools button {
-  display: flex;
-  align-items: center;
-  gap: 6px;
-  font-size: var(--text-body, 14px);
-  padding: 0 11px;
-  border: 1px solid #d4deed;
-  border-radius: var(--control-radius, 8px);
-  color: #486286;
-  background: white;
-  white-space: nowrap;
+  border-color: #d4deed;
 }
-.editorTools button[aria-pressed="true"] {
-  color: #3159df;
-  border-color: #8ca8e9;
-  background: #eef3ff;
-}
-
 .editing > .workflow,
 .editing .cropHint,
 .editing .keyboardHelp,
@@ -1321,52 +1304,56 @@
 }
 .editing .workspace {
   grid-template-columns: minmax(0, 1fr) 320px;
-  height: calc(100dvh - 206px);
-  min-height: 400px;
+  height: calc(100dvh - 198px);
+  min-height: 240px;
   max-height: none;
   border-radius: 9px 9px 0 0;
   overflow: hidden;
 }
 .editing .canvasColumn {
+  container: studio-canvas / inline-size;
   min-height: 0;
   position: relative;
 }
 .editing .canvasToolbar {
+  flex: none;
   flex-wrap: nowrap;
   gap: 8px;
   padding: 6px 10px;
 }
 .editing .sourcePicker {
   flex: 1 1 160px;
+  max-width: 300px;
+  min-width: 100px;
 }
 .editing .sourcePicker > svg {
   display: none;
 }
 .editing .sourcePicker select {
-  font-size: var(--text-caption, 12px);
+  font-size: var(--text-body, 14px);
   padding-left: 9px;
 }
 .editing .pageTools {
-  gap: 4px;
-  margin-left: 0;
+  flex: 1 0 auto;
+  justify-content: flex-end;
+  width: auto;
+  margin-left: auto;
+  gap: 6px;
 }
 .editing .pageTools select {
   padding: 5px;
-  max-width: 93px;
-  font-size: var(--text-caption, 12px);
+  max-width: 116px;
+  font-size: var(--text-body, 14px);
 }
 .editing .pageTools button {
-  width: 36px;
-  font-size: var(--text-body, 14px);
+  flex: none;
+  width: 44px;
+  height: var(--control-height, 44px);
 }
 .editing .pageTools .preciseButton {
   width: auto;
-  padding: 0 9px;
-  font-size: var(--text-body, 14px);
+  padding-inline: 12px;
   white-space: nowrap;
-}
-.editing .pageTools label {
-  font-size: var(--text-caption, 12px);
 }
 .editing .pageTools .divider {
   margin: 0 2px;
@@ -1378,24 +1365,19 @@
   max-height: none;
   padding: 12px;
 }
-.editing .pageSizer {
-  margin-inline: auto;
-}
 .editing .inspector {
   min-height: 0;
   border-top: 0;
-  border-left: 1px solid #d4deed;
+  border-left: 1px solid var(--studio-line);
 }
 .editing .inspectorTitle {
+  flex: none;
   min-height: 56px;
   padding: 10px 16px;
 }
 .editing .inspectorScroll {
   overflow: auto;
   padding: 16px;
-}
-.editing .inspectorTitle h2 {
-  font-size: var(--text-section, 18px);
 }
 .editing .gradeBlock {
   padding-bottom: 15px;
@@ -1426,34 +1408,28 @@
   gap: 10px;
 }
 .editing .actionBar button {
-  min-height: var(--control-height, 44px);
-  font-size: var(--text-body, 14px);
+  height: var(--control-height, 44px);
   padding-inline: 13px;
 }
-.editing .selectionStatus strong {
-  font-size: var(--text-caption, 12px);
-}
+.editing .selectionStatus strong,
 .editing .selectionStatus > span {
   font-size: var(--text-caption, 12px);
 }
 .coordinateToggle {
   padding: 0 10px;
-  font-size: var(--text-body, 14px);
   color: #687e9f;
   white-space: nowrap;
   flex-shrink: 0;
 }
+/* Coordinates occupy their own row so footer actions cannot cover the inputs. */
 .editing .coordinates {
-  position: absolute;
-  left: 12px;
-  right: 12px;
-  bottom: 12px;
-  z-index: 4;
-  padding: 14px;
-  border: 1px solid #c3d2ea;
-  border-radius: 10px;
-  background: #fff;
-  box-shadow: 0 7px 30px #16325826;
+  flex: none;
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr)) auto;
+  gap: 10px;
+  padding: 12px;
+  max-height: 45dvh;
+  overflow: auto;
 }
 .editing.panelClosed .workspace {
   grid-template-columns: minmax(0, 1fr);
@@ -1470,218 +1446,86 @@
   height: calc(100dvh - 138px);
   min-height: 0;
 }
-@media (max-width: 1250px) and (min-width: 761px) {
+@container studio (max-width: 980px) {
   .editorTabs h1 {
     display: none;
   }
   .editing .workspace {
     grid-template-columns: minmax(0, 1fr) 290px;
   }
-  .editorTools button {
-    padding-inline: 8px;
-  }
-  .editing .canvasToolbar {
-    flex-wrap: wrap;
-  }
-  .editing .sourcePicker {
-    flex-basis: 100%;
-  }
-  .editing .pageTools {
-    margin-left: auto;
-  }
-  .editing.panelClosed .canvasToolbar,
-  .focusMode.editing .canvasToolbar {
-    flex-wrap: nowrap;
-  }
-  .editing.panelClosed .sourcePicker,
-  .focusMode.editing .sourcePicker {
-    flex-basis: 160px;
-  }
-}
-@media (max-width: 760px) {
-  .editorBar {
-    flex-wrap: wrap;
-    gap: 8px;
-    margin-bottom: 10px;
-  }
-  .editorTabs h1 {
-    display: none;
-  }
-  .editorTabs {
-    flex: 1;
-  }
-  .editorTabs button {
-    flex: 1;
-    justify-content: center;
-    font-size: var(--text-body, 14px);
-    padding-inline: 10px;
-  }
-  .editorTools {
-    width: 100%;
-    gap: 6px;
-  }
-  .editorTools button {
-    flex: 1;
-    justify-content: center;
-    padding: 0 7px;
-    font-size: var(--text-body, 14px);
-  }
-  .editorTools button svg {
-    display: none;
-  }
-  .editing .workspace {
-    height: auto;
-    display: flex;
-    flex-direction: column;
-    min-height: 0;
-    overflow: visible;
-  }
-  .editing .canvasColumn {
-    min-height: 0;
-  }
-  .editing .pageViewport {
-    height: calc(100dvh - 386px);
-    min-height: 320px;
-    flex: none;
-  }
-  .editing .canvasToolbar {
-    flex-wrap: wrap;
-  }
-  .editing .sourcePicker {
-    flex-basis: 100%;
-  }
-  .editing .pageTools {
-    justify-content: space-between;
-    flex: 1;
-  }
-  .editing .inspector {
-    border-left: 0;
-    border-top: 1px solid #d4deed;
-  }
-  .editing .inspectorScroll {
-    max-height: 600px;
-  }
-  .editing .actionBar {
-    position: sticky;
-    bottom: calc(77px + env(safe-area-inset-bottom));
-    flex-wrap: wrap;
-    padding: 8px;
-  }
-  .editing .selectionAction {
-    flex: 1 0 100%;
-    min-width: 0;
-    gap: 6px;
-  }
   .editing .selectionStatus {
     display: none;
   }
-  .editing .selectionAction > .primaryButton {
-    flex: 1;
-  }
-  .editing .actionBar button {
-    padding-inline: 9px;
-  }
-  .editing .outputActions {
-    flex: 1 0 100%;
-    min-width: 0;
-    justify-content: end;
-  }
-  .editing .outputActions button {
-    flex: 1;
-  }
-  .editing .coordinates {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
-  .editing .coordinates > button {
-    grid-column: 1/-1;
-  }
-  .focusMode {
-    padding: 10px;
-  }
-  .focusMode.editing .workspace {
-    height: auto;
-  }
-  .focusMode.editing .pageViewport {
-    height: calc(100dvh - 270px);
-    min-height: 200px;
-  }
-  .focusMode.editing .actionBar {
-    bottom: 0;
-  }
 }
-
-@media (min-width: 761px) {
-  .editing .canvasToolbar,
-  .editing.panelClosed .canvasToolbar,
-  .focusMode.editing .canvasToolbar {
-    flex-wrap: nowrap;
+@container studio-canvas (max-width: 580px) {
+  .editing .canvasToolbar {
+    flex-wrap: wrap;
   }
-  .editing .sourcePicker,
-  .editing.panelClosed .sourcePicker,
-  .focusMode.editing .sourcePicker {
-    flex: 0 1 260px;
-    max-width: 300px;
-    min-width: 100px;
+  .editing .sourcePicker {
+    flex-basis: 100%;
+    max-width: none;
   }
   .editing .pageTools {
-    flex: 1 0 auto;
-    justify-content: flex-end;
-    margin-left: auto;
-    gap: 7px;
+    flex: 1 1 100%;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    margin-left: 0;
   }
-  .editing .pageTools select {
-    font-size: var(--text-body, 14px);
-    max-width: 116px;
+}
+@container studio-canvas (max-width: 400px) {
+  .editing .canvasToolbar {
+    display: grid;
+    grid-template-columns: 44px minmax(72px, 1fr) 44px minmax(84px, 1fr);
+    gap: 6px;
   }
-  .editing .pageTools button {
-    width: 40px;
+  .editing .sourcePicker {
+    grid-column: 1 / 4;
+  }
+  .editing .pageTools {
+    display: contents;
+  }
+  .editing .pageTools .divider {
+    display: none;
   }
   .editing .pageTools .preciseButton {
-    width: auto;
-    padding-inline: 12px;
-    font-size: var(--text-body, 14px);
+    grid-column: 4;
+    grid-row: 1;
+    padding-inline: 9px;
+  }
+  .editing .coordinates {
+    position: absolute;
+    left: 8px;
+    right: 8px;
+    bottom: 8px;
+    z-index: 4;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    max-height: 70%;
+    border: 1px solid var(--studio-line);
+    border-radius: 8px;
+    box-shadow: 0 4px 16px #172b4d24;
+  }
+  .editing .coordinates > label {
+    flex-direction: row;
+    align-items: center;
+    white-space: nowrap;
+    font-size: var(--text-caption, 12px);
+  }
+  .editing .coordinates label > span {
+    min-width: 0;
+  }
+  .editing .coordinates > button {
+    grid-column: 1 / -1;
+    justify-self: end;
   }
 }
-
-@media (min-width: 761px) {
+@container studio (max-width: 800px) {
   .editing .workspace {
-    height: calc(100dvh - 198px);
-  }
-  .focusMode.editing .workspace {
-    height: calc(100dvh - 138px);
-  }
-}
-
-.primaryButton,
-.secondaryButton {
-  min-height: var(--control-height, 44px);
-  height: var(--control-height, 44px);
-  border-radius: var(--control-radius, 8px);
-  font-size: var(--text-body, 14px);
-  padding: 0 16px;
-}
-.editing .pageTools button {
-  min-width: 44px;
-  height: var(--control-height, 44px);
-}
-.editing .pageTools .preciseButton {
-  min-width: 84px;
-}
-.editing .actionBar button {
-  min-height: var(--control-height, 44px);
-}
-
-@media (min-width: 761px) and (max-width: 1050px) {
-  .editing .workspace,
-  .focusMode.editing .workspace {
     grid-template-columns: minmax(0, 1fr);
     height: auto;
     overflow: visible;
   }
-  .editing .pageViewport {
-    height: calc(100dvh - 230px);
-    min-height: 420px;
-    flex: none;
+  .editing .canvasColumn {
+    height: clamp(320px, calc(100dvh - 260px), 740px);
   }
   .editing .inspector {
     border-left: 0;
@@ -1689,20 +1533,70 @@
   }
   .editing .inspectorScroll {
     max-height: 440px;
-    overflow-y: auto;
   }
   .editing .actionBar {
     position: sticky;
     bottom: 0;
-  }
-  .editing .selectionStatus {
-    display: none;
+    flex-wrap: wrap;
   }
   .editing .selectionAction {
     flex: 1 0 100%;
+    min-width: 0;
+    justify-content: flex-start;
+    gap: 8px;
   }
   .editing .outputActions {
     flex: 1 0 100%;
+    min-width: 0;
     justify-content: flex-end;
+  }
+  .editing .outputActions button {
+    flex: none;
+  }
+  .focusMode.editing .canvasColumn {
+    height: clamp(280px, calc(100dvh - 200px), 740px);
+  }
+}
+@container studio (max-width: 650px) {
+  .editorBar {
+    margin-bottom: 10px;
+  }
+  .editorTools {
+    width: 100%;
+  }
+  .editorTools button {
+    padding-inline: 9px;
+  }
+  .editorTools button svg {
+    display: none;
+  }
+  .editing .canvasColumn {
+    height: clamp(300px, calc(100dvh - 320px), 680px);
+  }
+}
+@media (max-width: 760px) {
+  .editing .canvasColumn {
+    height: max(280px, calc(100dvh - 450px));
+  }
+  .editing .actionBar {
+    bottom: calc(77px + env(safe-area-inset-bottom));
+    padding: 8px;
+  }
+  .editing .actionBar button {
+    padding-inline: 9px;
+  }
+  .focusMode {
+    padding: 10px;
+  }
+  .focusMode.editing .canvasColumn {
+    height: max(280px, calc(100dvh - 260px));
+  }
+  .focusMode.editing .actionBar {
+    bottom: 0;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .studio button {
+    transition: none;
   }
 }

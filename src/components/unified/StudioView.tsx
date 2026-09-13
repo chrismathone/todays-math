@@ -96,7 +96,8 @@ export default function StudioView({
   onAdd,
   onExport,
   importRequest,
-}: StudioViewProps) {
+  active = true,
+}: StudioViewProps & { active?: boolean }) {
   const handledImport = useRef<number | null>(null);
   const [sources, setSources] = useState<StudioSource[]>([]);
   const [sourceId, setSourceId] = useState("");
@@ -117,6 +118,8 @@ export default function StudioView({
   const [coordinatesOpen, setCoordinatesOpen] = useState(false);
   const [focusMode, setFocusMode] = useState(false);
   const [viewportSize, setViewportSize] = useState({ width: 0, height: 0 });
+  const studio = useRef<HTMLElement>(null);
+  const focusButton = useRef<HTMLButtonElement>(null);
   const pageViewport = useRef<HTMLDivElement>(null);
   const fileInput = useRef<HTMLInputElement>(null);
   const surface = useRef<HTMLDivElement>(null);
@@ -124,6 +127,9 @@ export default function StudioView({
   const importLock = useRef(false);
   const pdfDocuments = useRef(new Set<PDFDocumentProxy>());
   const mounted = useRef(true);
+
+  // The workspace keeps inactive views mounted; leaving must release modal state.
+  if (!active && focusMode) setFocusMode(false);
 
   const currentSource = sources.find((item) => item.id === sourceId);
   const editing = Boolean(currentSource && step !== "upload");
@@ -161,11 +167,42 @@ export default function StudioView({
 
   useEffect(() => {
     if (!focusMode) return;
+    const background: { element: HTMLElement; inert: boolean }[] = [];
+    let branch = studio.current;
+    while (branch?.parentElement) {
+      for (const sibling of branch.parentElement.children) {
+        if (
+          sibling instanceof HTMLElement &&
+          !(sibling instanceof HTMLDialogElement) &&
+          sibling !== branch
+        ) {
+          background.push({ element: sibling, inert: sibling.inert });
+          sibling.inert = true;
+        }
+      }
+      branch = branch.parentElement;
+      if (branch === document.body) break;
+    }
+    const overflow = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+    const trigger = focusButton.current;
+    trigger?.focus({ preventScroll: true });
     const close = (event: WindowEventMap["keydown"]) => {
-      if (event.key === "Escape") setFocusMode(false);
+      if (
+        event.key === "Escape" &&
+        !event.defaultPrevented &&
+        !document.querySelector("dialog[open]")
+      )
+        setFocusMode(false);
     };
     window.addEventListener("keydown", close);
-    return () => window.removeEventListener("keydown", close);
+    return () => {
+      window.removeEventListener("keydown", close);
+      document.body.style.overflow = overflow;
+      for (const { element, inert } of background) element.inert = inert;
+      if (trigger?.isConnected && !trigger.closest("[hidden]"))
+        trigger.focus({ preventScroll: true });
+    };
   }, [focusMode]);
 
   useEffect(() => {
@@ -545,6 +582,7 @@ export default function StudioView({
 
   return (
     <section
+      ref={studio}
       className={`${styles.studio} ${editing ? styles.editing : ""} ${focusMode ? styles.focusMode : ""} ${!inspectorOpen ? styles.panelClosed : ""}`}
       aria-label="문제 제작 스튜디오"
       role={focusMode ? "dialog" : undefined}
@@ -601,6 +639,7 @@ export default function StudioView({
               {inspectorOpen ? "검수 패널 접기" : "검수 패널 열기"}
             </button>
             <button
+              ref={focusButton}
               aria-pressed={focusMode}
               onClick={() => setFocusMode((value) => !value)}
             >
@@ -638,6 +677,7 @@ export default function StudioView({
         ref={fileInput}
         className={styles.hiddenInput}
         type="file"
+        tabIndex={-1}
         aria-label="PDF 또는 이미지 파일 가져오기"
         accept="application/pdf,image/png,image/jpeg,image/webp,image/gif,image/bmp,.pdf,.png,.jpg,.jpeg,.webp,.gif,.bmp"
         multiple
@@ -722,6 +762,7 @@ export default function StudioView({
               {sources.length ? (
                 <select
                   aria-label="원본 파일"
+                  title={currentSource?.name}
                   value={sourceId}
                   onChange={(event) => chooseSource(event.target.value)}
                 >
@@ -787,13 +828,16 @@ export default function StudioView({
                   className={styles.preciseButton}
                   type="button"
                   onClick={() => {
+                    setStep("crop");
                     setSelection({
                       x: 0.08,
                       y: 0.15,
                       width: 0.84,
                       height: 0.2,
                     });
-                    surface.current?.focus();
+                    requestAnimationFrame(() =>
+                      surface.current?.focus({ preventScroll: true }),
+                    );
                   }}
                   disabled={!pageReady}
                   aria-label="키보드로 영역 지정"
@@ -1212,6 +1256,7 @@ export default function StudioView({
                 <button
                   type="button"
                   className={styles.sourceLink}
+                  title={`${activeCrop.sourceLabel} · ${activeCrop.page}쪽`}
                   onClick={() =>
                     chooseSource(activeCrop.sourceId, activeCrop.page)
                   }
