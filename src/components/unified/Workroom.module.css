@@ -1296,3 +1296,19 @@
     padding: 0;
   }
 }
+
+@media (max-width: 760px) {
+  .newButton,
+  .searchTrigger,
+  .headerPaper {
+    min-height: 44px;
+    height: 44px;
+  }
+  .searchTrigger {
+    width: 44px;
+  }
+  .dialogHeading > button {
+    width: 44px;
+    height: 44px;
+  }
+}
