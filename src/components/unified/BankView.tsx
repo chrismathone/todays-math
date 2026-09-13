@@ -66,18 +66,18 @@ function ProblemRow({
     <article
       className={`${styles.problemRow} ${selected ? styles.selectedRow : ""}`}
     >
-      <div className={styles.rowSelect}>
-        <input
-          type="checkbox"
-          checked={selected}
-          onChange={() => onToggle(problem)}
-          aria-label={`${number}번 문제 담기`}
-        />
-        <span className={styles.rowNumber}>
-          {String(number).padStart(2, "0")}
-        </span>
-      </div>
-      <div className={styles.rowMain}>
+      <div className={styles.cardHeader}>
+        <label className={styles.rowSelect}>
+          <input
+            type="checkbox"
+            checked={selected}
+            onChange={() => onToggle(problem)}
+            aria-label={`${number}번 문제 ${selected ? "담기 취소" : "담기"}`}
+          />
+          <span className={styles.rowNumber}>
+            문제 {String(number).padStart(2, "0")}
+          </span>
+        </label>
         <div className={styles.problemMeta}>
           {problem.grade ? (
             <span className={styles.gradeBadge}>{problem.grade}</span>
@@ -90,6 +90,11 @@ function ProblemRow({
             <span className={styles.problemCode}>{problem.problemCode}</span>
           ) : null}
         </div>
+      </div>
+      <div className={styles.rowMain}>
+        {problem.section ? (
+          <p className={styles.sectionLabel}>{problem.section}</p>
+        ) : null}
         <div className={styles.problemBody}>
           <UnifiedProblem problem={problem} />
         </div>
@@ -103,7 +108,6 @@ function ProblemRow({
           >
             {answerVisible ? "정답 닫기" : "정답 보기"}
           </button>
-          <span className={styles.actionDivider} aria-hidden="true" />
           <button
             type="button"
             className={styles.textButton}
@@ -124,7 +128,7 @@ function ProblemRow({
             onClick={() => onToggle(problem)}
           >
             <Icon name={selected ? "check" : "plus"} />
-            {selected ? "담았어요" : "문제 담기"}
+            {selected ? "담기 완료" : "문제 담기"}
           </button>
         </div>
         {answerVisible ? (
@@ -198,21 +202,26 @@ function pageNumbers(
 
 export default function BankView({
   initialData,
+  initialFilters,
   selected,
   onToggle,
   onExport,
 }: BankViewProps) {
-  const [search, setSearch] = useState("");
+  const [search, setSearch] = useState(initialFilters?.q ?? "");
+  const [basketOpen, setBasketOpen] = useState(false);
   const [request, setRequest] = useState<{ filters: Filters; version: number }>(
     {
       filters: {
-        q: "",
-        grade: "",
+        q: initialFilters?.q?.trim() ?? "",
+        grade: initialFilters?.grade ?? "",
         chapter: "",
         difficulty: "",
-        page: initialData.page,
+        page:
+          initialFilters?.q?.trim() || initialFilters?.grade
+            ? 1
+            : initialData.page,
       },
-      version: 0,
+      version: initialFilters?.q?.trim() || initialFilters?.grade ? 1 : 0,
     },
   );
   const [response, setResponse] = useState<{
@@ -252,7 +261,7 @@ export default function BankView({
   const headingId = useId();
 
   useEffect(() => {
-    // The server-provided first page is already ready; only user actions fetch.
+    // Reuse the server page unless dashboard entry filters need a fresh request.
     if (request.version === 0) return;
     const controller = new AbortController();
     const params = new URLSearchParams({
@@ -323,155 +332,153 @@ export default function BankView({
     <section className={styles.bank} aria-labelledby={headingId}>
       <header className={styles.header}>
         <div>
-          <p className={styles.eyebrow}>QUESTION BANK</p>
-          <h1 id={headingId}>
-            수업에 맞는 문제를,
-            <br className={styles.mobileBreak} /> 한곳에서.
-          </h1>
+          <h1 id={headingId}>문제은행</h1>
           <p className={styles.subtitle}>
-            학년과 단원을 고르고, 필요한 문제만 담아보세요.
+            학년·단원별로 문제를 찾고 수업에 필요한 문항을 담으세요.
           </p>
-        </div>
-        <div className={styles.headerNote}>
-          <span className={styles.noteLine} />
-          오늘의 수업을 위한
-          <br />
-          <strong>나만의 문제 모음</strong>
         </div>
       </header>
 
-      <div className={styles.filters}>
-        <form
-          className={styles.searchForm}
-          role="search"
-          onSubmit={(event) => {
-            event.preventDefault();
-            updateFilters({ q: search.trim() });
-          }}
-        >
-          <Icon name="search" />
-          <input
-            aria-label="문제 검색"
-            placeholder="문제 내용, 소단원 또는 문제 번호 검색"
-            value={search}
-            onChange={(event) => setSearch(event.target.value)}
-          />
-          {search ? (
-            <button
-              type="button"
-              className={styles.clearSearch}
-              aria-label="검색어 지우기"
-              onClick={() => {
-                setSearch("");
-                if (filters.q) updateFilters({ q: "" });
-              }}
-            >
-              ×
-            </button>
-          ) : null}
-          <button className={styles.searchButton} type="submit">
-            검색
-          </button>
-        </form>
-        <div className={styles.filterLine}>
-          <span className={styles.filterLabel} id={`${headingId}-grades`}>
-            학년
-          </span>
-          <div
-            className={styles.gradePills}
-            role="group"
-            aria-labelledby={`${headingId}-grades`}
-          >
-            <button
-              type="button"
-              className={styles.gradePill}
-              aria-pressed={!filters.grade}
-              onClick={() => updateFilters({ grade: "", chapter: "" })}
-            >
-              전체
-            </button>
-            {availableGrades.map(({ grade }) => (
-              <button
-                key={grade}
-                type="button"
-                className={styles.gradePill}
-                aria-pressed={filters.grade === grade}
-                onClick={() => updateFilters({ grade, chapter: "" })}
-              >
-                {grade}
-              </button>
-            ))}
-          </div>
-        </div>
-        <div className={`${styles.filterLine} ${styles.lastFilterLine}`}>
-          <label
-            className={styles.filterLabel}
-            htmlFor={`${headingId}-chapter`}
-          >
-            단원
-          </label>
-          <div className={styles.selectWrap}>
-            <select
-              id={`${headingId}-chapter`}
-              value={filters.chapter}
-              disabled={loading}
-              onChange={(event) =>
-                updateFilters({ chapter: event.target.value })
-              }
-            >
-              <option value="">전체 단원</option>
-              {filters.chapter && !data.chapters.includes(filters.chapter) ? (
-                <option value={filters.chapter}>{filters.chapter}</option>
-              ) : null}
-              {data.chapters.map((chapter) => (
-                <option key={chapter} value={chapter}>
-                  {chapter}
-                </option>
-              ))}
-            </select>
-            <span className={styles.chevronDown}>
-              <Icon name="chevron" />
-            </span>
-          </div>
-          <label
-            className={styles.difficultyLabel}
-            htmlFor={`${headingId}-difficulty`}
-          >
-            난이도
-          </label>
-          <div className={`${styles.selectWrap} ${styles.difficultySelect}`}>
-            <select
-              id={`${headingId}-difficulty`}
-              value={filters.difficulty}
-              onChange={(event) =>
-                updateFilters({ difficulty: event.target.value })
-              }
-            >
-              <option value="">전체 난이도</option>
-              {DIFFICULTY_LADDER.map((difficulty) => (
-                <option key={difficulty} value={difficulty}>
-                  {difficulty}
-                </option>
-              ))}
-            </select>
-            <span className={styles.chevronDown}>
-              <Icon name="chevron" />
-            </span>
-          </div>
-          <button
-            type="button"
-            className={styles.resetButton}
-            disabled={!activeFilters.length && !search}
-            onClick={resetFilters}
-          >
-            <Icon name="reset" />
-            초기화
-          </button>
-        </div>
-      </div>
-
       <div className={styles.workspace}>
         <div className={styles.results}>
+          <div className={styles.filters}>
+            <div className={styles.filterHeading}>
+              <h2>문제 검색</h2>
+              <button
+                type="button"
+                className={styles.resetButton}
+                disabled={!activeFilters.length && !search}
+                onClick={resetFilters}
+              >
+                <Icon name="reset" />
+                초기화
+              </button>
+            </div>
+            <form
+              className={styles.searchForm}
+              role="search"
+              onSubmit={(event) => {
+                event.preventDefault();
+                updateFilters({ q: search.trim() });
+              }}
+            >
+              <Icon name="search" />
+              <input
+                aria-label="문제 검색"
+                placeholder="문제 내용, 소단원, 문제 번호"
+                value={search}
+                onChange={(event) => setSearch(event.target.value)}
+              />
+              {search ? (
+                <button
+                  type="button"
+                  className={styles.clearSearch}
+                  aria-label="검색어 지우기"
+                  onClick={() => {
+                    setSearch("");
+                    if (filters.q) updateFilters({ q: "" });
+                  }}
+                >
+                  ×
+                </button>
+              ) : null}
+              <button className={styles.searchButton} type="submit">
+                검색
+              </button>
+            </form>
+            <div className={styles.filterLine}>
+              <span className={styles.filterLabel} id={`${headingId}-grades`}>
+                학년
+              </span>
+              <div
+                className={styles.gradePills}
+                role="group"
+                aria-labelledby={`${headingId}-grades`}
+              >
+                <button
+                  type="button"
+                  className={styles.gradePill}
+                  aria-pressed={!filters.grade}
+                  onClick={() => updateFilters({ grade: "", chapter: "" })}
+                >
+                  전체
+                </button>
+                {availableGrades.map(({ grade }) => (
+                  <button
+                    key={grade}
+                    type="button"
+                    className={styles.gradePill}
+                    aria-pressed={filters.grade === grade}
+                    onClick={() => updateFilters({ grade, chapter: "" })}
+                  >
+                    {grade}
+                  </button>
+                ))}
+              </div>
+            </div>
+            <div className={styles.selectFilters}>
+              <div className={styles.filterField}>
+                <label
+                  className={styles.filterLabel}
+                  htmlFor={`${headingId}-chapter`}
+                >
+                  단원
+                </label>
+                <div className={styles.selectWrap}>
+                  <select
+                    id={`${headingId}-chapter`}
+                    value={filters.chapter}
+                    disabled={loading}
+                    onChange={(event) =>
+                      updateFilters({ chapter: event.target.value })
+                    }
+                  >
+                    <option value="">전체 단원</option>
+                    {filters.chapter &&
+                    !data.chapters.includes(filters.chapter) ? (
+                      <option value={filters.chapter}>{filters.chapter}</option>
+                    ) : null}
+                    {data.chapters.map((chapter) => (
+                      <option key={chapter} value={chapter}>
+                        {chapter}
+                      </option>
+                    ))}
+                  </select>
+                  <span className={styles.chevronDown}>
+                    <Icon name="chevron" />
+                  </span>
+                </div>
+              </div>
+              <div className={styles.filterField}>
+                <label
+                  className={styles.filterLabel}
+                  htmlFor={`${headingId}-difficulty`}
+                >
+                  난이도
+                </label>
+                <div className={styles.selectWrap}>
+                  <select
+                    id={`${headingId}-difficulty`}
+                    value={filters.difficulty}
+                    onChange={(event) =>
+                      updateFilters({ difficulty: event.target.value })
+                    }
+                  >
+                    <option value="">전체 난이도</option>
+                    {DIFFICULTY_LADDER.map((difficulty) => (
+                      <option key={difficulty} value={difficulty}>
+                        {difficulty}
+                      </option>
+                    ))}
+                  </select>
+                  <span className={styles.chevronDown}>
+                    <Icon name="chevron" />
+                  </span>
+                </div>
+              </div>
+            </div>
+          </div>
+
           <div className={styles.resultsHeader}>
             <h2>
               문제 목록{" "}
@@ -504,7 +511,7 @@ export default function BankView({
                 }
                 onChange={togglePage}
               />
-              이 페이지 선택
+              이 페이지 전체 담기
             </label>
           </div>
           {activeFilters.length ? (
@@ -584,6 +591,9 @@ export default function BankView({
                     <Icon name="chevron" />
                   </span>
                 </button>
+                <span className={styles.mobilePageNumber}>
+                  {data.page} / {totalPages} 페이지
+                </span>
                 {pageNumbers(data.page, totalPages).map((page) =>
                   typeof page === "number" ? (
                     <button
@@ -614,66 +624,99 @@ export default function BankView({
           ) : null}
         </div>
 
-        <aside className={styles.basket} aria-label="담은 문제">
+        <aside
+          className={`${styles.basket} ${basketOpen ? styles.basketOpen : ""}`}
+          aria-label="담은 문제"
+        >
           <div className={styles.basketHeading}>
             <span className={styles.basketIcon}>
               <Icon name="basket" />
             </span>
             <h2>담은 문제</h2>
-            <span className={styles.basketCount} aria-live="polite">
+            <span
+              className={styles.basketCount}
+              role="status"
+              aria-label={`담은 문제 ${selected.length}문항`}
+            >
               {selected.length.toLocaleString("ko-KR")}
+              <small>문항</small>
             </span>
-          </div>
-          <p className={styles.basketDescription}>
-            {selected.length
-              ? "선택한 문제로 수업 자료를 완성하세요."
-              : "수업에 필요한 문제를 하나씩 모아보세요."}
-          </p>
-          {selected.length ? (
-            <ol className={styles.basketList}>
-              {selected.map((problem, index) => (
-                <li key={problem.id}>
-                  <span className={styles.basketNumber}>
-                    {String(index + 1).padStart(2, "0")}
-                  </span>
-                  <div>
-                    <strong>{problem.chapter || "단원 미지정"}</strong>
-                    <span>
-                      {[problem.grade, problem.difficulty]
-                        .filter(Boolean)
-                        .join(" · ") ||
-                        problem.problemCode ||
-                        "선택한 문제"}
-                    </span>
-                  </div>
-                  <button
-                    type="button"
-                    aria-label={`${problem.problemCode || problem.chapter || index + 1} 문제 담기 취소`}
-                    onClick={() => onToggle(problem)}
-                  >
-                    ×
-                  </button>
-                </li>
-              ))}
-            </ol>
-          ) : (
-            <div className={styles.basketEmpty}>
-              <span className={styles.emptySheets} aria-hidden="true">
-                <span />
-                <span />
-                <Icon name="plus" />
+            <button
+              type="button"
+              className={styles.basketToggle}
+              aria-expanded={basketOpen}
+              aria-controls={`${headingId}-basket-content`}
+              aria-label={
+                basketOpen ? "담은 문제 목록 닫기" : "담은 문제 목록 보기"
+              }
+              onClick={() => setBasketOpen((value) => !value)}
+            >
+              {basketOpen ? "닫기" : "목록"}
+              <span
+                className={basketOpen ? styles.chevronDown : styles.chevronUp}
+              >
+                <Icon name="chevron" />
               </span>
-              <p>아직 담은 문제가 없어요</p>
-              <span>목록에서 + 문제 담기를 눌러주세요.</span>
-            </div>
-          )}
+            </button>
+          </div>
+          <div
+            id={`${headingId}-basket-content`}
+            className={styles.basketContent}
+          >
+            <p className={styles.basketDescription}>
+              {selected.length
+                ? "검색 조건을 바꿔도 담은 문제는 유지됩니다."
+                : "목록에서 필요한 문제를 선택하세요."}
+            </p>
+            {selected.length ? (
+              <ol className={styles.basketList}>
+                {selected.map((problem, index) => (
+                  <li key={problem.id}>
+                    <span className={styles.basketNumber}>
+                      {String(index + 1).padStart(2, "0")}
+                    </span>
+                    <div>
+                      <strong
+                        title={
+                          problem.section || problem.chapter || "단원 미지정"
+                        }
+                      >
+                        {problem.section || problem.chapter || "단원 미지정"}
+                      </strong>
+                      <span>
+                        {[problem.grade, problem.difficulty]
+                          .filter(Boolean)
+                          .join(" · ") ||
+                          problem.problemCode ||
+                          "선택한 문제"}
+                      </span>
+                      {problem.problemCode ? (
+                        <span>{problem.problemCode}</span>
+                      ) : null}
+                    </div>
+                    <button
+                      type="button"
+                      aria-label={`${problem.problemCode || problem.chapter || index + 1} 문제 담기 취소`}
+                      onClick={() => onToggle(problem)}
+                    >
+                      ×
+                    </button>
+                  </li>
+                ))}
+              </ol>
+            ) : (
+              <div className={styles.basketEmpty}>
+                <Icon name="basket" />
+                <p>담은 문제가 없습니다</p>
+                <span>
+                  문제의 ‘문제 담기’를 누르면
+                  <br />
+                  여기에서 모아 볼 수 있습니다.
+                </span>
+              </div>
+            )}
+          </div>
           <div className={styles.basketFooter}>
-            <div>
-              <span>선택한 문제</span>
-              <strong>
-                {selected.length.toLocaleString("ko-KR")} <small>문항</small>
-              </strong>
-            </div>
             <button
               type="button"
               className={styles.exportButton}
@@ -683,7 +726,7 @@ export default function BankView({
               내보내기
               <Icon name="arrow" />
             </button>
-            <p>문제를 확인하고 인쇄할 수 있어요.</p>
+            <p>선택한 문제를 확인하고 인쇄합니다.</p>
           </div>
         </aside>
       </div>
