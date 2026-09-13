@@ -500,9 +500,8 @@ export default function StudioView({ onAdd, onExport }: StudioViewProps) {
     <section className={styles.studio} aria-label="문제 제작 스튜디오">
       <header className={styles.header}>
         <div>
-          <div className={styles.eyebrow}>SOURCE TO WORKSHEET</div>
           <h1>내 자료로 만드는 문제</h1>
-          <p>원본을 가져오고, 필요한 문제만 골라 담으세요.</p>
+          <p>자료에서 문제를 자르고, 검수한 문항을 내 시험지에 담으세요.</p>
         </div>
         <div className={styles.headerActions}>
           <button
@@ -553,19 +552,33 @@ export default function StudioView({ onAdd, onExport }: StudioViewProps) {
               key={key}
               type="button"
               aria-current={step === key ? "step" : undefined}
+              data-complete={
+                (key === "upload" && sources.length > 0) ||
+                (key === "crop" && crops.length > 0) ||
+                (key === "review" && crops.length > 0 && pendingCount === 0)
+              }
               disabled={
                 (key === "crop" && !currentSource) ||
                 (key === "review" && !crops.length)
               }
               onClick={() => setStep(key)}
             >
-              <span>{String(index + 1).padStart(2, "0")}</span>
+              <span className={styles.stepNumber}>
+                {(key === "upload" && sources.length > 0) ||
+                (key === "crop" && crops.length > 0) ||
+                (key === "review" && crops.length > 0 && pendingCount === 0) ? (
+                  <Icon name="check" />
+                ) : (
+                  index + 1
+                )}
+              </span>
               {label}
             </button>
           ))}
         </nav>
         <span className={styles.localBadge}>
-          <span />이 브라우저에서만 작업
+          <Icon name="file" />
+          로컬 작업
         </span>
       </div>
 
@@ -582,7 +595,10 @@ export default function StudioView({ onAdd, onExport }: StudioViewProps) {
         </div>
       ) : null}
       <div className={styles.announcement} role="status" aria-live="polite">
-        {notice}
+        <Icon name={crops.length ? "check" : "file"} />
+        <span>
+          {notice || "파일을 가져오거나 예제 지면으로 자르기를 연습하세요."}
+        </span>
       </div>
 
       <div className={styles.workspace}>
@@ -735,29 +751,14 @@ export default function StudioView({ onAdd, onExport }: StudioViewProps) {
               }}
             >
               <div className={styles.uploadIllustration} aria-hidden="true">
-                <div className={styles.backPaper} />
-                <div className={styles.frontPaper}>
-                  <span>오늘의 수학</span>
-                  <i />
-                  <i />
-                  <div className={styles.miniCrop}>x + 3 = 7</div>
-                  <i />
-                </div>
-                <div className={styles.uploadCircle}>
-                  <Icon name="upload" width="22" height="22" />
-                </div>
+                <Icon name="upload" width="32" height="32" />
               </div>
               <div className={styles.uploadCopy}>
-                <span className={styles.eyebrow}>나의 첫 번째 원본</span>
-                <h2>
-                  한 장의 자료에서
-                  <br />
-                  새로운 수업이 시작됩니다.
-                </h2>
+                <h2>문제로 만들 자료를 가져오세요</h2>
                 <p>
                   PDF나 이미지를 여기에 놓아 주세요.
                   <br />
-                  필요한 문제만 잘라 나만의 시험지로 만들 수 있어요.
+                  문제와 도형을 원본 그대로 잘라 사용할 수 있습니다.
                 </p>
               </div>
               <button
@@ -792,7 +793,7 @@ export default function StudioView({ onAdd, onExport }: StudioViewProps) {
             <>
               <div className={styles.cropHint}>
                 <Icon name="crop" />
-                <span>문제와 보기가 모두 들어오도록 드래그하세요.</span>
+                <span>문제·보기·도형을 포함해 영역을 드래그하세요.</span>
                 <button
                   type="button"
                   onClick={() => {
@@ -893,29 +894,12 @@ export default function StudioView({ onAdd, onExport }: StudioViewProps) {
                   </div>
                 )}
               </div>
-              <div className={styles.cropBar}>
-                <div>
-                  <span className={styles.cropBarLabel}>
-                    {selection && readyToCrop
-                      ? `${readyToCrop.width} × ${readyToCrop.height} px`
-                      : "영역을 선택해 주세요"}
-                  </span>
-                  <span
-                    id="studio-crop-keyboard-help"
-                    className={styles.keyboardHelp}
-                  >
-                    방향키: 이동 · Enter: 자르기 · Esc: 취소
-                  </span>
-                </div>
-                <button
-                  type="button"
-                  className={styles.primaryButton}
-                  disabled={!validSelection}
-                  onClick={saveCrop}
-                >
-                  <Icon name="crop" />
-                  선택 영역 자르기
-                </button>
+              <div
+                id="studio-crop-keyboard-help"
+                className={styles.keyboardHelp}
+              >
+                방향키: 이동 · Shift + 방향키: 크게 이동 · Enter: 자르기 · Esc:
+                취소
               </div>
               {selection ? (
                 <div className={styles.coordinates}>
@@ -1044,7 +1028,7 @@ export default function StudioView({ onAdd, onExport }: StudioViewProps) {
                     {crop.added ? (
                       <span className={styles.addedBadge}>담음</span>
                     ) : (
-                      <span className={styles.draftDot} aria-label="검수 중" />
+                      <span className={styles.draftBadge}>검수 중</span>
                     )}
                   </button>
                 ))}
@@ -1100,17 +1084,19 @@ export default function StudioView({ onAdd, onExport }: StudioViewProps) {
                 <div className={styles.manualStatus}>
                   <span className={styles.statusDot} />
                   <div>
-                    <strong>직접 입력 · 검수</strong>
+                    <strong>자동 문자 인식 미연결 · 직접 검수</strong>
                     <p>
-                      자동 문자 인식은 아직 연결되지 않았어요.
-                      <br />
-                      이미지 그대로 담거나 내용을 직접 입력하세요.
+                      이미지 그대로 담을 수 있습니다. 텍스트로 출력하려면 문제와
+                      보기를 직접 입력하세요.
                     </p>
                   </div>
                 </div>
                 <label className={styles.textField}>
                   <span>
-                    문제 내용 <small>선택</small>
+                    문제 내용{" "}
+                    <small>
+                      {activeCrop.mode === "text" ? "텍스트 출력" : "선택"}
+                    </small>
                   </span>
                   <textarea
                     value={activeCrop.content}
@@ -1126,39 +1112,35 @@ export default function StudioView({ onAdd, onExport }: StudioViewProps) {
                     }
                   />
                 </label>
-                {activeCrop.content.trim() ? (
-                  <fieldset className={styles.outputMode}>
-                    <legend>시험지에 사용할 내용</legend>
-                    <label>
-                      <input
-                        type="radio"
-                        name="studio-output-mode"
-                        checked={activeCrop.mode === "image"}
-                        onChange={() => updateCrop({ mode: "image" })}
-                      />
-                      <span>원본 이미지</span>
-                    </label>
-                    <label>
-                      <input
-                        type="radio"
-                        name="studio-output-mode"
-                        checked={activeCrop.mode === "text"}
-                        onChange={() => updateCrop({ mode: "text" })}
-                      />
-                      <span>입력한 텍스트</span>
-                    </label>
-                    <p>
-                      {activeCrop.mode === "image"
-                        ? "입력한 문제 내용은 보관하고, 원본 이미지만 출력해요."
-                        : "입력한 문제 내용만 출력해요. 원본 속 도형과 보기도 확인해 주세요."}
-                    </p>
-                  </fieldset>
-                ) : (
-                  <div className={styles.imageMode}>
-                    <Icon name="check" width="14" height="14" />
-                    문제 전체를 원본 이미지로 담습니다.
-                  </div>
-                )}
+                <fieldset className={styles.outputMode}>
+                  <legend>시험지에 사용할 내용</legend>
+                  <label>
+                    <input
+                      type="radio"
+                      name="studio-output-mode"
+                      checked={activeCrop.mode === "image"}
+                      onChange={() => updateCrop({ mode: "image" })}
+                    />
+                    <span>원본 이미지</span>
+                  </label>
+                  <label>
+                    <input
+                      type="radio"
+                      name="studio-output-mode"
+                      checked={activeCrop.mode === "text"}
+                      disabled={!activeCrop.content.trim()}
+                      onChange={() => updateCrop({ mode: "text" })}
+                    />
+                    <span>입력한 텍스트</span>
+                  </label>
+                  <p>
+                    {!activeCrop.content.trim()
+                      ? "문제 내용을 입력하면 텍스트 출력을 선택할 수 있습니다."
+                      : activeCrop.mode === "image"
+                        ? "원본 이미지를 출력합니다. 입력한 내용은 편집기에 보관됩니다."
+                        : "입력한 텍스트를 출력합니다. 원본의 도형과 보기가 빠지지 않았는지 확인하세요."}
+                  </p>
+                </fieldset>
                 <label className={styles.textField}>
                   <span>
                     정답 <small>선택</small>
@@ -1197,11 +1179,11 @@ export default function StudioView({ onAdd, onExport }: StudioViewProps) {
                 <div>
                   <Icon name="crop" width="28" height="28" />
                 </div>
-                <h3>첫 문제를 골라 볼까요?</h3>
+                <h3>자른 문제를 여기서 검수합니다</h3>
                 <p>
                   원본에서 문제 영역을 자르면
                   <br />
-                  이곳에서 내용을 검수할 수 있어요.
+                  이미지와 출력 방식을 확인할 수 있습니다.
                 </p>
                 <ol>
                   <li>
@@ -1215,45 +1197,75 @@ export default function StudioView({ onAdd, onExport }: StudioViewProps) {
                   </li>
                 </ol>
                 <div className={styles.emptyNote}>
-                  자동 문자 인식은 아직 연결되지 않았어요.
+                  자동 문자 인식은 연결되지 않았습니다.
                   <br />
                   자른 이미지 또는 직접 입력한 내용을 사용합니다.
                 </div>
               </div>
             )}
           </div>
-          <footer className={styles.inspectorFooter}>
-            <div>
-              <span>내 시험지에 담을 문제</span>
-              <strong>
-                {pendingCount}
-                <small>문항</small>
-              </strong>
-            </div>
-            <button
-              type="button"
-              className={styles.primaryButton}
-              disabled={!pendingCount}
-              onClick={() => addProblems()}
-            >
-              <Icon name="plus" />
-              {pendingCount
-                ? `${pendingCount}문항 담기`
-                : crops.length
-                  ? "모두 담았습니다"
-                  : "문제를 먼저 잘라 주세요"}
-            </button>
-            <button
-              type="button"
-              className={styles.secondaryButton}
-              disabled={!crops.length}
-              onClick={() => addProblems(true)}
-            >
-              담고 내보내기 <Icon name="arrow" width="16" height="16" />
-            </button>
-          </footer>
         </aside>
       </div>
+      <footer className={styles.actionBar} aria-label="문제 제작 주요 작업">
+        <div className={styles.selectionAction}>
+          {step === "crop" && currentSource ? (
+            <>
+              <div className={styles.selectionStatus}>
+                <strong>
+                  {validSelection ? "선택 영역" : "영역 선택 대기"}
+                </strong>
+                <span>
+                  {selection && readyToCrop
+                    ? `${readyToCrop.width} × ${readyToCrop.height} px`
+                    : "원본에서 문제를 드래그하세요"}
+                </span>
+              </div>
+              <button
+                type="button"
+                className={styles.primaryButton}
+                disabled={!validSelection}
+                onClick={saveCrop}
+              >
+                <Icon name="crop" />
+                선택 영역 자르기
+              </button>
+            </>
+          ) : (
+            <div className={styles.selectionStatus}>
+              <strong>자른 문제 {crops.length}문항</strong>
+              <span>
+                {crops.length
+                  ? `${crops.length - pendingCount}문항 담음 · ${pendingCount}문항 검수 중`
+                  : "원본을 가져와 첫 문제를 선택하세요"}
+              </span>
+            </div>
+          )}
+        </div>
+        <div className={styles.outputActions}>
+          <button
+            type="button"
+            className={styles.secondaryButton}
+            disabled={!pendingCount}
+            onClick={() => addProblems()}
+          >
+            <Icon name="plus" />
+            {pendingCount
+              ? `${pendingCount}문항 담기`
+              : crops.length
+                ? "모두 담았습니다"
+                : "시험지에 담기"}
+          </button>
+          <button
+            type="button"
+            className={styles.primaryButton}
+            disabled={!crops.length}
+            onClick={() => addProblems(true)}
+          >
+            {pendingCount ? "담고 내보내기" : "내보내기"}{" "}
+            <Icon name="arrow" width="18" height="18" />
+          </button>
+        </div>
+      </footer>
     </section>
   );
 }
