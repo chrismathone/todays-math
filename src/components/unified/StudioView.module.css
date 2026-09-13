@@ -1479,6 +1479,8 @@
   padding: 0 10px;
   font-size: var(--text-body, 14px);
   color: #687e9f;
+  white-space: nowrap;
+  flex-shrink: 0;
 }
 .editing .coordinates {
   position: absolute;
@@ -1605,7 +1607,8 @@
     padding: 8px;
   }
   .editing .selectionAction {
-    flex: 1;
+    flex: 1 0 100%;
+    min-width: 0;
     gap: 6px;
   }
   .editing .selectionStatus {
@@ -1618,7 +1621,8 @@
     padding-inline: 9px;
   }
   .editing .outputActions {
-    flex: 1;
+    flex: 1 0 100%;
+    min-width: 0;
     justify-content: end;
   }
   .editing .outputActions button {
