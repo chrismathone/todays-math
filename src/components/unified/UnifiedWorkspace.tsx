@@ -8,6 +8,8 @@ import { useWorkspaceDrafts } from "./useWorkspaceDrafts";
 import WorkroomHome, { formatDraftDate } from "./WorkroomHome";
 import Icon, { type WorkspaceIconName } from "./WorkspaceIcon";
 import TodayMathMark from "@/components/brand/TodayMathMark";
+import { DevAiProvider } from "./useDevAi";
+import DevAiStatusPanel from "./DevAiStatusPanel";
 import s from "./Workroom.module.css";
 const BankView = dynamic(() => import("./BankView"), {
   loading: () => <p className={s.loading}>문제은행을 불러오는 중입니다…</p>,
@@ -51,6 +53,13 @@ export default function UnifiedWorkspace({
 }: {
   initialData: BankData;
 }) {
+  return (
+    <DevAiProvider>
+      <UnifiedWorkspaceContent initialData={initialData} />
+    </DevAiProvider>
+  );
+}
+function UnifiedWorkspaceContent({ initialData }: { initialData: BankData }) {
   const {
     draft,
     hydrated,
@@ -448,6 +457,10 @@ export default function UnifiedWorkspace({
             <Icon name="arrow" size={17} />
           </button>
         </div>
+        <DevAiStatusPanel
+          collapsed={sidebarCollapsed}
+          onExpand={toggleSidebar}
+        />
         <div className={s.sidebarFooter}>
           <button onClick={() => setModal("help")}>
             <Icon name="help" size={19} />
