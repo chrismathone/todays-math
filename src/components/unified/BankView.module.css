@@ -2,10 +2,11 @@
   --bank-ink: #172b4d;
   --bank-muted: #52617a;
   --bank-primary: #3159df;
-  --bank-line: #d4dce8;
+  --bank-line: #dce3ed;
   --bank-selected: #edf2ff;
   width: 100%;
   min-width: 0;
+  background: #f4f6fa;
   color: var(--bank-ink);
   font-size: 15px;
   line-height: 1.6;
@@ -46,7 +47,7 @@
   cursor: default;
 }
 .header {
-  margin: 0 0 28px;
+  margin: 0 0 20px;
 }
 .header h1 {
   margin: 0;
@@ -56,14 +57,14 @@
   letter-spacing: -0.035em;
 }
 .subtitle {
-  margin: 10px 0 0;
+  margin: 6px 0 0;
   color: var(--bank-muted);
   font-size: 16px;
   word-break: keep-all;
 }
 .workspace {
   display: grid;
-  grid-template-columns: minmax(0, 1fr) 296px;
+  grid-template-columns: minmax(0, 1fr) 288px;
   gap: 24px;
   align-items: start;
 }
@@ -71,23 +72,25 @@
   min-width: 0;
 }
 .filters {
-  padding: 20px 24px 24px;
-  margin-bottom: 28px;
+  padding: 16px;
+  margin-bottom: 16px;
   background: #fff;
   border: 1px solid var(--bank-line);
   border-radius: 12px;
 }
-.filterHeading {
+.searchRow {
   display: flex;
-  justify-content: space-between;
   align-items: center;
   gap: 12px;
-  margin-bottom: 12px;
 }
-.filterHeading h2 {
-  margin: 0;
-  font-size: 18px;
-  font-weight: 750;
+.filterToolbar {
+  display: flex;
+  flex: none;
+  align-items: center;
+  justify-content: space-between;
+}
+.filterToggle {
+  display: none;
 }
 .resetButton {
   display: inline-flex;
@@ -107,10 +110,12 @@
 }
 .searchForm {
   display: flex;
+  flex: 1;
   align-items: center;
-  gap: 10px;
-  min-height: 56px;
-  padding: 5px 5px 5px 16px;
+  gap: 8px;
+  min-width: 0;
+  min-height: 52px;
+  padding: 3px 3px 3px 12px;
   border: 1px solid #aab8cd;
   border-radius: 8px;
   background: #fff;
@@ -170,50 +175,32 @@
 .clearSearch:hover {
   background: #f3f5f9;
 }
-.filterLine {
-  display: grid;
-  gap: 10px;
-  margin-top: 20px;
-}
 .filterLabel {
+  display: flex;
+  align-items: center;
+  gap: 7px;
   color: var(--bank-ink);
-  font-size: 14px;
+  font-size: 13px;
   font-weight: 700;
 }
-.gradePills {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 8px;
-}
-.gradePill {
-  min-width: 56px;
-  padding: 8px 14px;
-  border: 1px solid var(--bank-line);
-  border-radius: 6px;
-  background: #fff;
+.filterLabel > span {
   color: var(--bank-muted);
-  font-weight: 600 !important;
-}
-.gradePill:hover {
-  border-color: #7c91bd;
-  background: #f3f5f9;
-}
-.gradePill[aria-pressed="true"] {
-  border-color: var(--bank-primary);
-  background: var(--bank-selected);
-  color: #2548bc;
-  box-shadow: inset 0 0 0 1px var(--bank-primary);
-  font-weight: 750 !important;
+  font-size: 12px;
+  font-weight: 500;
+  font-variant-numeric: tabular-nums;
 }
 .selectFilters {
   display: grid;
-  grid-template-columns: minmax(0, 1fr) minmax(150px, 0.55fr);
-  gap: 16px;
-  margin-top: 20px;
+  grid-template-columns: minmax(120px, 0.8fr) minmax(0, 1.5fr) minmax(
+      120px,
+      0.8fr
+    );
+  gap: 12px;
+  margin-top: 12px;
 }
 .filterField {
   display: grid;
-  gap: 8px;
+  gap: 6px;
   min-width: 0;
 }
 .selectWrap {
@@ -225,9 +212,9 @@
 .selectWrap select {
   width: 100%;
   min-width: 0;
-  min-height: 48px;
+  min-height: 44px;
   appearance: none;
-  padding: 10px 36px 10px 12px;
+  padding: 8px 36px 8px 12px;
   border: 1px solid var(--bank-line);
   border-radius: 6px;
   background: #fff;
@@ -265,7 +252,7 @@
   justify-content: space-between;
   flex-wrap: wrap;
   gap: 8px 16px;
-  margin-bottom: 14px;
+  margin-bottom: 8px;
 }
 .resultsHeader h2 {
   display: flex;
@@ -275,6 +262,12 @@
   margin: 0;
   font-size: 20px;
   font-weight: 750;
+  scroll-margin-top: 96px;
+}
+.resultsHeader h2:focus-visible {
+  outline: 2px solid var(--bank-primary);
+  outline-offset: 4px;
+  border-radius: 4px;
 }
 .resultsHeader h2 > span {
   color: var(--bank-muted);
@@ -304,22 +297,44 @@ label.selectPage {
   display: flex;
   flex-wrap: wrap;
   gap: 8px;
-  margin: 0 0 16px;
+  margin-top: 12px;
+  padding-top: 12px;
+  border-top: 1px solid var(--bank-line);
 }
-.filterSummary span {
+.filterChip {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  min-width: 0;
   max-width: 100%;
-  overflow-wrap: anywhere;
-  padding: 5px 10px;
+  padding: 8px 10px;
   border: 1px solid #c2cef2;
   border-radius: 6px;
   background: var(--bank-selected);
   color: #2548bc;
-  font-size: 13px;
-  font-weight: 600;
+  font-size: 13px !important;
+  font-weight: 600 !important;
+}
+.filterChip:hover {
+  border-color: var(--bank-primary);
+  background: #e1e9ff;
+}
+.chipLabel {
+  flex: none;
+  color: var(--bank-muted);
+  font-weight: 500;
+}
+.chipValue {
+  overflow-wrap: anywhere;
+}
+.filterChip svg {
+  flex: none;
+  width: 14px;
+  height: 14px;
 }
 .problemList {
   display: grid;
-  gap: 16px;
+  gap: 12px;
   min-width: 0;
 }
 .problemRow {
@@ -338,7 +353,7 @@ label.selectPage {
   align-items: center;
   gap: 16px;
   min-width: 0;
-  padding: 10px 24px;
+  padding: 6px 20px;
   border-bottom: 1px solid var(--bank-line);
   border-radius: 9px 9px 0 0;
   background: #f8f9fc;
@@ -392,10 +407,10 @@ label.rowSelect {
 }
 .rowMain {
   min-width: 0;
-  padding: 22px 24px 16px;
+  padding: 16px 20px 14px;
 }
 .sectionLabel {
-  margin: 0 0 12px;
+  margin: 0 0 8px;
   color: var(--bank-muted);
   font-size: 13px;
   font-weight: 600;
@@ -403,10 +418,10 @@ label.rowSelect {
 }
 .problemBody {
   min-width: 0;
-  padding-bottom: 22px;
+  padding-bottom: 16px;
   color: var(--bank-ink);
   font-size: 16px;
-  line-height: 1.9;
+  line-height: 1.8;
   overflow-wrap: anywhere;
   overflow-x: auto;
 }
@@ -421,7 +436,7 @@ label.rowSelect {
   align-items: center;
   flex-wrap: wrap;
   gap: 8px;
-  padding-top: 14px;
+  padding-top: 12px;
   border-top: 1px solid #e4e9f1;
 }
 .textButton {
@@ -645,11 +660,11 @@ label.rowSelect {
 }
 .basket {
   position: sticky;
-  top: 24px;
+  top: 96px;
   display: flex;
   flex-direction: column;
   min-width: 0;
-  max-height: calc(100dvh - 48px);
+  max-height: calc(100dvh - 120px);
   border: 1px solid #b8c6dd;
   border-radius: 12px;
   background: #fff;
@@ -660,7 +675,7 @@ label.rowSelect {
   align-items: center;
   flex-wrap: wrap;
   gap: 8px;
-  padding: 20px;
+  padding: 16px 20px;
   border-radius: 11px 11px 0 0;
   background: var(--bank-ink);
   color: #fff;
@@ -701,18 +716,40 @@ label.rowSelect {
   scrollbar-width: thin;
 }
 .basketDescription {
-  margin: 18px 0;
+  margin: 14px 0;
   color: var(--bank-muted);
   font-size: 13px;
   word-break: keep-all;
+}
+.basketIntro {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: flex-end;
+}
+.basketIntro > p {
+  width: 100%;
+}
+.clearBasket {
+  margin: -6px -8px 4px 0;
+  padding: 8px;
+  border: 0;
+  border-radius: 6px;
+  background: transparent;
+  color: var(--bank-muted);
+  font-size: 13px !important;
+}
+.clearBasket:hover {
+  color: var(--bank-primary);
+  background: var(--bank-selected);
 }
 .basketEmpty {
   display: flex;
   align-items: center;
   justify-content: center;
   flex-direction: column;
-  min-height: 210px;
-  padding: 24px 0;
+  min-height: 168px;
+  padding: 20px 0;
   border-top: 1px solid var(--bank-line);
   text-align: center;
 }
@@ -744,7 +781,7 @@ label.rowSelect {
   align-items: center;
   gap: 10px;
   min-width: 0;
-  padding: 16px 0;
+  padding: 12px 0;
   border-bottom: 1px solid var(--bank-line);
 }
 .basketList li:last-child {
@@ -776,6 +813,9 @@ label.rowSelect {
   overflow-wrap: anywhere;
 }
 .basketList button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
   flex: none;
   width: 44px;
   padding: 0;
@@ -791,7 +831,7 @@ label.rowSelect {
 }
 .basketFooter {
   flex: none;
-  padding: 20px;
+  padding: 16px 20px;
   border-top: 1px solid var(--bank-line);
 }
 .exportButton {
@@ -819,6 +859,7 @@ label.rowSelect {
   color: var(--bank-muted);
   font-size: 12px;
   text-align: center;
+  word-break: keep-all;
 }
 @media (max-width: 1180px) {
   .bank {
@@ -831,7 +872,7 @@ label.rowSelect {
     position: fixed;
     z-index: 30;
     top: auto;
-    right: 24px;
+    right: 32px;
     bottom: 16px;
     left: 272px;
     display: grid;
@@ -904,6 +945,19 @@ label.rowSelect {
   .basketEmpty {
     min-height: 160px;
   }
+  .basketIntro {
+    gap: 8px;
+  }
+  .basketIntro > p {
+    flex: 1;
+    width: auto;
+  }
+  .clearBasket {
+    margin: 0;
+  }
+  .nextStep {
+    display: none;
+  }
 }
 @media (max-width: 900px) {
   .basket {
@@ -913,7 +967,7 @@ label.rowSelect {
 }
 @media (max-width: 620px) {
   .header {
-    margin-bottom: 24px;
+    margin-bottom: 16px;
   }
   .header h1 {
     font-size: 30px;
@@ -922,8 +976,33 @@ label.rowSelect {
     font-size: 15px;
   }
   .filters {
-    padding: 14px 16px 20px;
-    margin-bottom: 24px;
+    padding: 12px;
+    margin-bottom: 12px;
+  }
+  .searchRow {
+    display: grid;
+    gap: 8px;
+  }
+  .filterToggle {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    padding: 8px 10px;
+    border: 1px solid var(--bank-line);
+    border-radius: 6px;
+    background: #fff;
+    color: var(--bank-ink);
+    font-size: 14px !important;
+    font-weight: 600 !important;
+  }
+  .filterToggle[aria-expanded="true"] {
+    border-color: #c2cef2;
+    background: var(--bank-selected);
+    color: #2548bc;
+  }
+  .resetButton {
+    font-size: 14px !important;
   }
   .searchForm {
     gap: 6px;
@@ -937,15 +1016,24 @@ label.rowSelect {
     padding-inline: 12px;
   }
   .selectFilters {
+    display: none;
     grid-template-columns: minmax(0, 1fr);
-    gap: 16px;
+    gap: 10px;
+    padding-top: 12px;
+    border-top: 1px solid var(--bank-line);
   }
-  .gradePills {
+  .selectFilters.filtersOpen {
+    display: grid;
+  }
+  .filterField {
+    grid-template-columns: 70px minmax(0, 1fr);
+    align-items: center;
+  }
+  .selectWrap select {
+    font-size: 16px;
+  }
+  .filterSummary {
     gap: 6px;
-  }
-  .gradePill {
-    min-width: 54px;
-    padding-inline: 12px;
   }
   .resultsHeader {
     gap: 4px 12px;
@@ -956,7 +1044,7 @@ label.rowSelect {
   .cardHeader {
     flex-wrap: wrap;
     gap: 0 12px;
-    padding: 8px 16px 14px;
+    padding: 6px 16px 12px;
   }
   .rowSelect {
     width: 100%;
@@ -965,7 +1053,7 @@ label.rowSelect {
     gap: 6px 8px;
   }
   .rowMain {
-    padding: 18px 16px 16px;
+    padding: 16px;
   }
   .rowActions {
     gap: 8px;
@@ -1020,6 +1108,7 @@ label.rowSelect {
   }
   .basketToggle {
     margin-right: auto;
+    min-width: 72px;
   }
   .basket .exportButton {
     padding: 12px;
