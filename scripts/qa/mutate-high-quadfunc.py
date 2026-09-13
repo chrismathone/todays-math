@@ -150,6 +150,9 @@ def uncommitted(rel: str) -> bool:
 
 
 def run(target: str, minor: str, tests: list[str], muts: list, argv: list[str]) -> int:
+    # 윈도 콘솔 기본 인코딩(cp949)은 «—» 를 못 찍어 --list 가 죽는다 — 출력만 UTF-8 로.
+    if hasattr(sys.stdout, "reconfigure"):
+        sys.stdout.reconfigure(encoding="utf-8", errors="replace")  # type: ignore[attr-defined]
     if argv and argv[0] == "--list":
         for i, (name, _o, _n, want) in enumerate(muts):
             print(f"  [{i}] {name}   (겨눔: {want})")
