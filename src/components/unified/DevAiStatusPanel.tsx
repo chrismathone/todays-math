@@ -23,7 +23,7 @@ export default function DevAiStatusPanel({
 }) {
   const ai = useDevAi();
   const [now, setNow] = useState(0);
-  const running = ai.activity?.state === "running";
+  const running = ai.activeCount > 0;
   useEffect(() => {
     if (!running) return;
     const timer = setInterval(() => setNow(Date.now()), 1000);
@@ -44,7 +44,7 @@ export default function DevAiStatusPanel({
       <button
         className={s.collapsed}
         onClick={onExpand}
-        title={`개발용 AI · ${selected?.label ?? "연결 확인 중"}`}
+        title={`개발용 AI · ${selected?.label ?? "연결 확인 중"}${running ? ` · ${ai.activeCount}개 진행 중` : ""}`}
         aria-label="개발용 AI 상태판 펼치기"
         data-running={running}
       >
@@ -108,7 +108,11 @@ export default function DevAiStatusPanel({
           role="status"
           data-state={ai.activity.state}
         >
-          <strong title={ai.activity.message}>{ai.activity.message}</strong>
+          <strong title={ai.activity.message}>
+            {ai.activeCount > 1
+              ? `AI 작업 ${ai.activeCount}개 진행 중`
+              : ai.activity.message}
+          </strong>
           <span>{elapsed}초</span>
         </div>
       )}

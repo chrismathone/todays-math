@@ -56,7 +56,7 @@ describe("development OCR and solution task boundary", () => {
   it("rejects malformed, empty, and out-of-page recognition instead of applying it", () => {
     expect(() => parseDevAiResult("not json", "ocr")).toThrow();
     expect(() => parseDevAiResult('{"content":""}', "ocr")).toThrow();
-    expect(() => parseDevAiResult('{"problems":[]}', "page-ocr")).toThrow();
+    expect(() => parseDevAiResult("{}", "page-ocr")).toThrow();
     expect(() =>
       parseDevAiResult(
         JSON.stringify({
@@ -71,6 +71,42 @@ describe("development OCR and solution task boundary", () => {
       ),
     ).toThrow();
   });
+  it("accepts explicit empty page results without inventing questions or solutions", () => {
+    const result = parseDevAiResult(
+      JSON.stringify({
+        problems: [],
+        content: "표지",
+        answer: "unrequested",
+        solution: "unrequested",
+        warnings: ["표지 페이지"],
+      }),
+      "page-ocr",
+    );
+    expect(result).toMatchObject({
+      problems: [],
+      content: "",
+      answer: "",
+      solution: "",
+      warnings: ["표지 페이지"],
+    });
+    const prompt = buildDevAiPrompt({
+      provider: "codex",
+      action: "page-ocr",
+      grade: "초5",
+      imageDataUrl: request.imageDataUrl,
+    });
+    expect(prompt).toContain("표지·빈 페이지");
+    expect(prompt).toContain("반드시 problems: []");
+    expect(prompt).toContain("없는 문제를 만들거나 추측하지 않는다");
+  });
+  it.each([undefined, null, "", {}, [null], [{}], ["question"]])(
+    "rejects missing or malformed page results instead of treating them as empty: %j",
+    (problems) => {
+      expect(() =>
+        parseDevAiResult(JSON.stringify({ problems }), "page-ocr"),
+      ).toThrow();
+    },
+  );
   it("retains all recognized source regions without inserting model-generated solutions", () => {
     const problems = [
       {
