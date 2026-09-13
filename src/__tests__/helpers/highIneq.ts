@@ -14,7 +14,9 @@
  * 부등호 번호표(`REL`)는 제품 `REL_CODE` 와 **같은 값을 여기 다시 적었다** — 제품이 번호를 바꾸면
  * 여기와 갈라져 시험이 빨개진다.
  */
-import { readValues } from "./highAnswer";
+import { expect } from "vitest";
+
+import { readAnswerValues, readValues } from "./highAnswer";
 import { mathSpans } from "./highPage";
 
 // ───────────────────────────── 유리수 ─────────────────────────────
@@ -649,6 +651,125 @@ export function ivVsProp(
 }
 
 /** 발문 수식 속의 수 전부(부호 없이) — 문장제가 facts 의 수치를 보여 주나 볼 때. */
+// ───────────────────────────── 두 시험이 같이 쓰는 대조 ─────────────────────────────
+
+export type Fact = Record<string, number>;
+
+export function num(f: Fact, k: string): number {
+  const v = f[k];
+  if (v === undefined)
+    throw new Error(`facts 에 ${k} 가 없다: ${JSON.stringify(f)}`);
+  return v;
+}
+
+export const and =
+  (...ps: Pred[]): Pred =>
+  (x) =>
+    ps.every((p) => p(x));
+
+export function only(sol: readonly TIv[], what: string): TIv {
+  expect(sol, what).toHaveLength(1);
+  return sol[0]!;
+}
+
+/** 정답의 기대 — 수, 또는 구간(조건으로 · 정확한 구간으로). */
+export type IvExpect =
+  { v: string; prop: Pred; crit?: F[] } | { v: string; exact: TIv };
+export type Expect = number | IvExpect;
+
+/** 지면의 정답을 읽어 기대와 맞댄다 — 수는 `highAnswer.readAnswerValues`, 구간은 `readIv`. */
+export function checkAnswer(answer: string, want: Expect, where: string): void {
+  if (typeof want === "number") {
+    const got = readAnswerValues(answer);
+    expect(got.length, where).toBe(1);
+    // ⚠️ 읽개의 부호 뒤집기는 허수부에 `-0` 을 남긴다 — `toBe(0)` 은 `Object.is` 라 거짓으로 빨개진다
+    expect(Math.abs(got[0]!.im), where).toBe(0);
+    expect(Math.abs(got[0]!.re - want), `${where} (기대 ${want})`).toBeLessThan(
+      1e-9,
+    );
+  } else if ("exact" in want) {
+    expect(
+      tivEq(readIv(answer, want.v), want.exact),
+      `${where} (기대 ${tivText(want.exact)})`,
+    ).toBe(true);
+  } else {
+    expect(
+      ivVsProp(readIv(answer, want.v), want.prop, want.crit),
+      where,
+    ).toBeNull();
+  }
+}
+
+/**
+ * 발문이 보여 줘야 하는 조건 하나. `mustContain` 이 있으면 그 글자가 든 수식에서만 찾는다 —
+ * 같은 조건을 두 수식(부등식과 「해가 a<x<b」)이 같이 말할 때 하나가 빠져도 초록이 안 되게.
+ */
+export type Want = {
+  what: string;
+  pred: Pred;
+  crit: F[];
+  mustContain?: string;
+};
+export type ShownSpec = { env: Env; wants: Want[]; numbers?: number[] };
+
+/** 발문 대조 — 돈 검사 수를 돌려준다(장식 방지 카운트). */
+export function checkShown(
+  content: string,
+  spec: ShownSpec,
+  where: string,
+): number {
+  let checked = 0;
+  const shown = shownPreds(content, spec.env);
+  for (const w of spec.wants) {
+    const pool = w.mustContain
+      ? shown.filter((s) => s.tex.includes(w.mustContain!))
+      : shown;
+    expect(
+      hasShown(pool, w.pred, probePoints(w.crit)),
+      `${where}: 발문에 ${w.what} 가 없다 — ${content}`,
+    ).toBe(true);
+    checked += 1;
+  }
+  const inSpans = new Set(spanNumbers(content));
+  for (const n of spec.numbers ?? []) {
+    expect(
+      inSpans.has(Math.abs(n)),
+      `${where}: 발문 수식에 ${n} 이 없다 — ${content}`,
+    ).toBe(true);
+    checked += 1;
+  }
+  return checked;
+}
+
+/** 생성기가 낸 오답 넷 — 정답이 구간이면 구간으로, 수면 수로 읽어 모두 정답과 다른지 본다. */
+export function checkDistractors(
+  answer: string,
+  ds: readonly string[],
+  where: string,
+): void {
+  expect(ds, where).toHaveLength(4);
+  if (/\\le|\\ge|<|>|=/.test(answer)) {
+    const v = /[a-z]/.exec(answer.replace(/\\[a-zA-Z]+/g, ""))![0];
+    const ans = readIv(answer, v);
+    for (const d of ds) {
+      expect(
+        tivEq(readIv(d, v), ans),
+        `${where}: 오답 ${d} 가 정답 ${answer} 과 같은 집합`,
+      ).toBe(false);
+    }
+    return;
+  }
+  const [a] = readAnswerValues(answer);
+  for (const d of ds) {
+    const got = readAnswerValues(d);
+    expect(got.length, `${where}: 오답 ${d}`).toBe(1);
+    expect(
+      Math.abs(got[0]!.re - a!.re) > 1e-9,
+      `${where}: 오답 ${d} 가 정답과 같은 값`,
+    ).toBe(true);
+  }
+}
+
 export function spanNumbers(content: string): number[] {
   return mathSpans(content).flatMap((s) =>
     [...s.matchAll(/\d+(?:\.\d+)?/g)].map((m) => Number(m[0])),
