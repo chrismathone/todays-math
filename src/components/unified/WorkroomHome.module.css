@@ -14,7 +14,7 @@
 .welcome p {
   margin: 0 0 9px;
   color: #526680;
-  font-size: 13px;
+  font-size: var(--text-body, 14px);
   font-weight: 550;
 }
 .welcome p span {
@@ -24,27 +24,27 @@
 }
 .welcome h1 {
   margin: 0 0 9px;
-  font-size: 32px;
+  font-size: var(--text-title, 24px);
   line-height: 1.3;
   letter-spacing: -1.2px;
   font-weight: 800;
 }
 .welcome > div > div {
   color: #586c84;
-  font-size: 15px;
+  font-size: var(--text-body, 14px);
   line-height: 1.6;
 }
 .outlineButton {
   display: inline-flex;
   align-items: center;
   gap: 9px;
-  min-height: 44px;
+  min-height: var(--control-height, 44px);
   padding: 0 16px;
   border: 1px solid #d5dfea;
-  border-radius: 9px;
+  border-radius: var(--control-radius, 8px);
   background: white;
-  font-size: 13px;
-  font-weight: 650;
+  font-size: var(--text-body, 14px);
+  font-weight: 600;
   white-space: nowrap;
 }
 .outlineButton:hover {
@@ -94,19 +94,19 @@
   flex-shrink: 0;
 }
 .eyebrow {
-  font-size: 12px;
+  font-size: var(--text-caption, 12px);
   color: #596f8e;
   font-weight: 650;
 }
 .bankHeading h2 {
-  font-size: 20px;
+  font-size: var(--text-section, 18px);
   line-height: 1.45;
   letter-spacing: -0.6px;
   font-weight: 750;
   margin: 3px 0 0;
 }
 .databaseCount {
-  font-size: 12px;
+  font-size: var(--text-caption, 12px);
   padding: 6px 9px;
   border: 1px solid #e0e6f1;
   border-radius: 6px;
@@ -115,7 +115,7 @@
 }
 .databaseCount b {
   color: #3159df;
-  font-size: 13px;
+  font-size: var(--text-body, 14px);
   margin-right: 4px;
 }
 .quickSearch {
@@ -142,7 +142,7 @@
   border: 0;
   outline: 0;
   padding: 0 11px;
-  font-size: 14px;
+  font-size: var(--text-body, 14px);
   color: #172b4d;
   background: transparent;
 }
@@ -150,17 +150,17 @@
   color: #78879d;
 }
 .quickSearch button {
-  height: 44px;
+  height: var(--control-height, 44px);
   display: flex;
   align-items: center;
   gap: 10px;
   padding: 0 17px;
   border: 0;
-  border-radius: 6px;
+  border-radius: var(--control-radius, 8px);
   background: #3159df;
   color: white;
-  font-weight: 650;
-  font-size: 14px;
+  font-weight: 600;
+  font-size: var(--text-body, 14px);
   white-space: nowrap;
 }
 .quickSearch button:hover,
@@ -184,11 +184,11 @@
   gap: 3px;
 }
 .gradeGroup strong {
-  font-size: 14px;
+  font-size: var(--text-body, 14px);
   font-weight: 700;
 }
 .gradeGroup small {
-  font-size: 12px;
+  font-size: var(--text-caption, 12px);
   color: #738098;
 }
 .gradeGroup > div:last-child {
@@ -200,12 +200,12 @@
   justify-content: space-between;
   align-items: center;
   gap: 8px;
-  min-height: 44px;
+  min-height: var(--control-height, 44px);
   flex: 1;
   max-width: 160px;
   padding: 0 13px;
   border: 1px solid #dce4ef;
-  border-radius: 7px;
+  border-radius: var(--control-radius, 8px);
   background: #f8faff;
   color: #2b4365;
 }
@@ -225,7 +225,7 @@
   min-height: 54px;
   border-top: 1px solid #edf0f5;
   color: #697a91;
-  font-size: 12px;
+  font-size: var(--text-caption, 12px);
 }
 .bankFoot > span {
   display: flex;
@@ -237,14 +237,14 @@
   display: flex;
   align-items: center;
   gap: 7px;
-  min-height: 44px;
-  font-size: 12px;
-  font-weight: 650;
+  min-height: var(--control-height, 44px);
+  font-size: var(--text-body, 14px);
+  font-weight: 600;
   color: #45618c;
 }
 .inlineError {
   margin: 0 0 16px;
-  font-size: 13px;
+  font-size: var(--text-body, 14px);
   color: #a34131;
 }
 .importCard {
@@ -307,13 +307,13 @@
 }
 .importCopy h2 {
   margin: 5px 0 7px;
-  font-size: 19px;
+  font-size: var(--text-section, 18px);
   font-weight: 750;
   letter-spacing: -0.55px;
   line-height: 1.4;
 }
 .importCopy p {
-  font-size: 12px;
+  font-size: var(--text-caption, 12px);
   color: #576c90;
   line-height: 1.7;
   margin: 0;
@@ -323,7 +323,7 @@
   gap: 6px;
   align-items: center;
   margin-top: 11px;
-  font-size: 11px;
+  font-size: var(--text-caption, 12px);
   font-weight: 550;
   color: #496697;
 }
@@ -333,12 +333,12 @@
   align-items: center;
   justify-content: center;
   padding: 0 14px;
-  min-height: 44px;
+  min-height: var(--control-height, 44px);
   border: 1px solid #b7c9ed;
-  border-radius: 8px;
+  border-radius: var(--control-radius, 8px);
   color: #2c50b3;
-  font-size: 13px;
-  font-weight: 700;
+  font-size: var(--text-body, 14px);
+  font-weight: 600;
   background: white;
   white-space: nowrap;
 }
@@ -359,7 +359,7 @@
   margin-bottom: 11px;
 }
 .sectionHeader h2 {
-  font-size: 18px;
+  font-size: var(--text-section, 18px);
   font-weight: 750;
   letter-spacing: -0.4px;
 }
@@ -367,7 +367,7 @@
   color: #5d7397;
 }
 .sectionHeader > div > span {
-  font-size: 12px;
+  font-size: var(--text-caption, 12px);
   font-weight: 700;
   padding: 3px 7px;
   background: #e7ecf6;
@@ -414,14 +414,14 @@
   min-width: 0;
 }
 .recentInfo strong {
-  font-size: 14px;
+  font-size: var(--text-body, 14px);
   font-weight: 650;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
 }
 .recentInfo i {
-  font-size: 10px;
+  font-size: var(--text-caption, 12px);
   font-style: normal;
   font-weight: 600;
   margin-left: 9px;
@@ -432,7 +432,7 @@
   vertical-align: 1px;
 }
 .recentInfo small {
-  font-size: 12px;
+  font-size: var(--text-caption, 12px);
   color: #748198;
 }
 .recentInfo small span {
@@ -442,7 +442,7 @@
   display: flex;
   align-items: center;
   gap: 10px;
-  font-size: 12px;
+  font-size: var(--text-caption, 12px);
   color: #597499;
 }
 .recentEmpty {
@@ -461,12 +461,12 @@
   flex: 1;
 }
 .recentEmpty strong {
-  font-size: 14px;
+  font-size: var(--text-body, 14px);
   font-weight: 650;
 }
 .recentEmpty p {
   margin: 6px 0 0;
-  font-size: 12px;
+  font-size: var(--text-caption, 12px);
   color: #6d7f96;
   line-height: 1.7;
 }
@@ -475,9 +475,9 @@
   gap: 7px;
   align-items: center;
   white-space: nowrap;
-  font-size: 12px;
-  font-weight: 650;
-  min-height: 44px;
+  font-size: var(--text-body, 14px);
+  font-weight: 600;
+  min-height: var(--control-height, 44px);
   color: #3159df;
 }
 .localNote {
@@ -485,7 +485,7 @@
   gap: 6px;
   align-items: center;
   margin: 13px 0 0;
-  font-size: 11px;
+  font-size: var(--text-caption, 12px);
   color: #6f7f97;
   line-height: 1.65;
 }
@@ -508,7 +508,7 @@
   margin-bottom: 24px;
 }
 .activeHeading h2 {
-  font-size: 16px;
+  font-size: var(--text-section, 18px);
   font-weight: 750;
   letter-spacing: -0.5px;
 }
@@ -516,7 +516,7 @@
   display: flex;
   gap: 4px;
   align-items: center;
-  font-size: 10px;
+  font-size: var(--text-caption, 12px);
   color: #35816b;
   white-space: nowrap;
 }
@@ -574,12 +574,12 @@
   min-width: 0;
 }
 .draftCaption {
-  font-size: 11px;
+  font-size: var(--text-caption, 12px);
   color: #6a7d9b;
 }
 .draftPreview h3 {
   margin: 6px 0 9px;
-  font-size: 15px;
+  font-size: var(--text-section, 18px);
   font-weight: 700;
   line-height: 1.55;
   overflow-wrap: anywhere;
@@ -589,19 +589,19 @@
   overflow: hidden;
 }
 .problemTotal {
-  font-size: 32px;
+  font-size: var(--text-title, 24px);
   font-weight: 750;
   letter-spacing: -1px;
   line-height: 1.2;
 }
 .problemTotal small {
-  font-size: 13px;
+  font-size: var(--text-body, 14px);
   color: #687a93;
   font-weight: 500;
   letter-spacing: 0;
 }
 .draftEmptyText {
-  font-size: 12px;
+  font-size: var(--text-caption, 12px);
   color: #6e7e96;
   line-height: 1.85;
   margin: 23px 0 18px;
@@ -612,7 +612,7 @@
   margin: 23px 0 20px;
   padding-top: 17px;
   border-top: 1px solid #edf0f5;
-  font-size: 12px;
+  font-size: var(--text-caption, 12px);
   color: #687b96;
 }
 .draftSources span {
@@ -638,13 +638,13 @@
   justify-content: space-between;
   gap: 10px;
   width: 100%;
-  min-height: 47px;
+  min-height: var(--control-height, 44px);
   padding: 0 15px;
-  border-radius: 8px;
+  border-radius: var(--control-radius, 8px);
   background: #3159df;
   color: white;
-  font-size: 14px;
-  font-weight: 650;
+  font-size: var(--text-body, 14px);
+  font-weight: 600;
 }
 .newDraftButton {
   display: flex;
@@ -652,9 +652,9 @@
   justify-content: center;
   gap: 6px;
   width: 100%;
-  min-height: 44px;
+  min-height: var(--control-height, 44px);
   margin-top: 4px;
-  font-size: 12px;
+  font-size: var(--text-body, 14px);
   color: #647897;
 }
 .newDraftButton:hover {
@@ -676,12 +676,12 @@
   flex-shrink: 0;
 }
 .helpNote strong {
-  font-size: 12px;
+  font-size: var(--text-caption, 12px);
   font-weight: 650;
   color: #536b62;
 }
 .helpNote p {
-  font-size: 11px;
+  font-size: var(--text-caption, 12px);
   line-height: 1.85;
   color: #74837d;
   margin: 5px 0 0;
@@ -691,7 +691,7 @@
   border-radius: 14px;
   padding: 26px 22px;
   background: white;
-  font-size: 13px;
+  font-size: var(--text-body, 14px);
   color: #697d97;
 }
 @media (min-width: 1600px) {
@@ -699,7 +699,7 @@
     padding: 40px;
   }
   .bankHeading h2 {
-    font-size: 22px;
+    font-size: var(--text-section, 18px);
   }
   .bankCard {
     padding: 28px 28px 0;
@@ -713,7 +713,7 @@
     gap: 28px;
   }
   .importCopy p {
-    font-size: 13px;
+    font-size: var(--text-body, 14px);
   }
 }
 @media (max-width: 1250px) {
@@ -728,7 +728,7 @@
     gap: 9px;
   }
   .bankHeading h2 {
-    font-size: 18px;
+    font-size: var(--text-section, 18px);
   }
   .databaseCount {
     display: none;
@@ -750,7 +750,7 @@
     margin-left: 80px;
   }
   .importCopy h2 {
-    font-size: 18px;
+    font-size: var(--text-section, 18px);
   }
   .recentEmpty {
     flex-wrap: wrap;
@@ -792,11 +792,11 @@
     margin-bottom: 23px;
   }
   .welcome h1 {
-    font-size: 28px;
+    font-size: var(--text-title, 24px);
     margin-bottom: 7px;
   }
   .welcome p {
-    font-size: 12px;
+    font-size: var(--text-caption, 12px);
     margin-bottom: 8px;
   }
   .welcome p span,
@@ -804,7 +804,7 @@
     display: none;
   }
   .welcome > div > div {
-    font-size: 13px;
+    font-size: var(--text-body, 14px);
   }
   .dashboard {
     display: flex;
@@ -830,11 +830,11 @@
     height: 42px;
   }
   .bankHeading h2 {
-    font-size: 17px;
+    font-size: var(--text-section, 18px);
     letter-spacing: -0.7px;
   }
   .eyebrow {
-    font-size: 11px;
+    font-size: var(--text-caption, 12px);
   }
   .quickSearch {
     padding-left: 11px;
@@ -844,14 +844,14 @@
     width: 19px;
   }
   .quickSearch input {
-    font-size: 12px;
+    font-size: var(--text-caption, 12px);
     padding: 0 8px;
   }
   .quickSearch input::placeholder {
-    font-size: 11px;
+    font-size: var(--text-caption, 12px);
   }
   .quickSearch button {
-    font-size: 12px;
+    font-size: var(--text-body, 14px);
     padding: 0 12px;
   }
   .quickSearch button svg {
@@ -872,15 +872,15 @@
     padding: 0 10px;
   }
   .gradeGroup strong {
-    font-size: 13px;
+    font-size: var(--text-body, 14px);
   }
   .bankFoot {
     gap: 4px;
     min-height: 52px;
-    font-size: 10px;
+    font-size: var(--text-caption, 12px);
   }
   .bankFoot button {
-    font-size: 11px;
+    font-size: var(--text-body, 14px);
     gap: 5px;
   }
   .importCard {
@@ -892,13 +892,13 @@
     height: 67px;
   }
   .importCopy h2 {
-    font-size: 17px;
+    font-size: var(--text-section, 18px);
   }
   .importCopy p {
-    font-size: 11px;
+    font-size: var(--text-caption, 12px);
   }
   .importCopy > div {
-    font-size: 10px;
+    font-size: var(--text-caption, 12px);
     margin-top: 9px;
   }
   .importButton {
@@ -923,7 +923,7 @@
     gap: 10px;
   }
   .recentInfo strong {
-    font-size: 13px;
+    font-size: var(--text-body, 14px);
   }
   .recentInfo i {
     display: none;
@@ -933,7 +933,7 @@
     gap: 0;
   }
   .localNote {
-    font-size: 10px;
+    font-size: var(--text-caption, 12px);
     align-items: start;
   }
   .localNote svg {
@@ -943,25 +943,25 @@
     padding: 22px;
   }
   .activeHeading h2 {
-    font-size: 18px;
+    font-size: var(--text-section, 18px);
   }
   .saveBadge {
-    font-size: 11px;
+    font-size: var(--text-caption, 12px);
   }
   .draftPreview {
     gap: 25px;
   }
   .draftPreview h3 {
-    font-size: 16px;
+    font-size: var(--text-section, 18px);
   }
   .draftEmptyText br {
     display: none;
   }
   .draftEmptyText {
-    font-size: 13px;
+    font-size: var(--text-body, 14px);
   }
   .helpNote p {
-    font-size: 12px;
+    font-size: var(--text-caption, 12px);
   }
 }
 
@@ -1037,12 +1037,12 @@
   min-width: 0;
 }
 .welcome h1 {
-  font-size: 30px;
+  font-size: var(--text-title, 24px);
   margin: 0;
   flex-shrink: 0;
 }
 .welcome > div > div {
-  font-size: 14px;
+  font-size: var(--text-body, 14px);
 }
 .bankCard {
   padding: 21px 24px 0;
@@ -1087,7 +1087,7 @@
     gap: 24px;
   }
   .bankHeading h2 {
-    font-size: 22px;
+    font-size: var(--text-section, 18px);
   }
 }
 @media (max-width: 1250px) {
@@ -1113,7 +1113,7 @@
     margin-bottom: 16px;
   }
   .welcome h1 {
-    font-size: 27px;
+    font-size: var(--text-title, 24px);
   }
   .bankCard {
     padding: 18px 16px 0;
@@ -1122,7 +1122,7 @@
     margin-bottom: 16px;
   }
   .bankHeading h2 {
-    font-size: 17px;
+    font-size: var(--text-section, 18px);
   }
   .gradeGroups {
     padding: 17px 0;
@@ -1159,13 +1159,13 @@
 .primaryButton,
 .outlineButton,
 .importButton {
-  min-height: 44px;
-  height: 44px;
-  border-radius: 8px;
-  font-size: 14px;
+  min-height: var(--control-height, 44px);
+  height: var(--control-height, 44px);
+  border-radius: var(--control-radius, 8px);
+  font-size: var(--text-body, 14px);
 }
 .quickSearch button {
-  min-height: 44px;
-  height: 44px;
-  border-radius: 7px;
+  min-height: var(--control-height, 44px);
+  height: var(--control-height, 44px);
+  border-radius: var(--control-radius, 8px);
 }
