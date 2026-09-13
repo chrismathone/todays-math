@@ -571,7 +571,9 @@ export function intsWhere(pred: Pred, lo = -300, hi = 300): number[] {
 
 // ───────────────────────────── 정답 읽기 ─────────────────────────────
 
-const REL_SPLIT = /(\\leq?|\\geq?|<|>|=)(?![a-zA-Z])/;
+// ⚠️ 뒤따르는 글자를 막는 것은 **명령어**만이다(`\le` 가 `\left` 를 집지 않게). 처음엔 `<`·`>` 까지
+//    막아 `-2<y<6` 을 못 갈랐다 — 부등호 바로 뒤에 변수가 오는 것은 정상이다.
+const REL_SPLIT = /(\\leq?(?![a-zA-Z])|\\geq?(?![a-zA-Z])|<|>|=)/;
 
 function relName(tok: string): RelName {
   if (tok.startsWith("\\le")) return "le";
