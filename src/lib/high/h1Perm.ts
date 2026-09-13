@@ -1492,7 +1492,7 @@ function t10(rng: Rng): Body {
         `따라서 구하는 경우의 수는 $${x}\\times ${y}=${ans}$`,
       ].join("\n"),
       difficulty: "응용",
-      facts: { mode, w: W.w, n: W.n, v },
+      facts: { mode, wi: W.w, n: W.n, v },
     };
   }
   if (mode === 2) {
@@ -1611,7 +1611,7 @@ function t11(rng: Rng): Body {
         `따라서 구하는 경우의 수는 $${x}\\times ${y}=${ans}$`,
       ].join("\n"),
       difficulty: "응용",
-      facts: { mode, kind, w: W.w, n: W.n, v },
+      facts: { mode, kind, wi: W.w, n: W.n, v },
     };
   }
   return attempt<Body>((): Body | null => {
@@ -1637,7 +1637,395 @@ function t11(rng: Rng): Body {
         `따라서 구하는 경우의 수는 $${timesTex([x, y, 2])}=${ans}$`,
       ].join("\n"),
       difficulty: "응용",
-      facts: { mode, w: W.w, n: W.n, k },
+      facts: { mode, wi: W.w, n: W.n, k },
+    };
+  });
+}
+
+// ───────────────────────────── 12 ─────────────────────────────
+// ‘적어도’의 조건이 있는 순열의 수 — (전체) − (그렇지 않은 경우)
+// 꼴 0 (기본·대표): 적어도 한쪽 끝에 모음 — 양 끝 모두 자음을 뺀다
+// 꼴 1 (응용): 두 자리를 뽑을 때 적어도 한 명은 남학생
+// 꼴 2 (응용): 정한 두 문자 사이에 적어도 한 문자 — 이웃하는 경우를 뺀다
+// 꼴 3 (심화하): 적어도 두 모음이 이웃 · 경우의 수가 K 일 때 짝수의 개수
+
+/** 두 자리 이름 · 둘째 자리의 (으)로 꼴 — 한글 낱말 뒤 조사는 손으로 적는다. */
+const ROLE_PAIRS: readonly (readonly [string, string, string])[] = [
+  ["회장", "부회장", "부회장으로"],
+  ["반장", "부반장", "부반장으로"],
+  ["대표", "부대표", "부대표로"],
+];
+
+function t12(rng: Rng): Body {
+  const mode = randInt(rng, 0, 3);
+  if (mode === 0) {
+    const W = pickWord(rng, (x) => x.cons.length >= 2);
+    const c = W.cons.length;
+    const total = fact(W.n);
+    const both = nPr(c, 2) * fact(W.n - 2);
+    const ans = total - both;
+    return {
+      content: `${W.word}의 $${W.n}$개의 문자를 일렬로 나열할 때, 적어도 한쪽 끝에 모음이 오도록 나열하는 경우의 수를 구하시오.`,
+      answer: numAnswer(ans),
+      solution: [
+        `$${W.n}$개의 문자를 일렬로 나열하는 경우의 수는 $${factEq(W.n)}$`,
+        `양 끝에 모두 자음이 오도록 나열하는 경우의 수는 $${pTex(c, 2)}\\times ${W.n - 2}!=${both}$`,
+        `따라서 구하는 경우의 수는 $${total}-${both}=${ans}$`,
+      ].join("\n"),
+      difficulty: "기본",
+      facts: { mode, wi: W.w, n: W.n, v: W.vowels.length },
+    };
+  }
+  if (mode === 1) {
+    const role = randInt(rng, 0, ROLE_PAIRS.length - 1);
+    const [R1, R2, R2ro] = ROLE_PAIRS[role]!;
+    const b = randInt(rng, 2, 6);
+    const g = randInt(rng, 2, 6);
+    const total = nPr(b + g, 2);
+    const none = nPr(g, 2);
+    const ans = total - none;
+    return {
+      content: `남학생 $${b}$명과 여학생 $${g}$명 중에서 ${R1} $1$명, ${R2} $1$명을 뽑을 때, ${R1}, ${R2} 중에서 적어도 한 명은 남학생이 뽑히는 경우의 수를 구하시오.`,
+      answer: numAnswer(ans),
+      solution: [
+        `$${b + g}$명의 학생 중에서 ${R1} $1$명, ${R2} $1$명을 뽑는 경우의 수는 $${pTex(b + g, 2)}=${total}$`,
+        `${R1}, ${R2ro} 모두 여학생이 뽑히는 경우의 수는 $${pTex(g, 2)}=${none}$`,
+        `따라서 구하는 경우의 수는 $${total}-${none}=${ans}$`,
+      ].join("\n"),
+      difficulty: "응용",
+      facts: { mode, role, b, g },
+    };
+  }
+  if (mode === 2) {
+    const n = randInt(rng, 5, 7);
+    const letters = LETTERS.slice(0, n);
+    const [i, j] = distinctInts(rng, 0, n - 1, 2).sort((p, q) => p - q) as [
+      number,
+      number,
+    ];
+    const X = letters[i]!;
+    const Y = letters[j]!;
+    const total = fact(n);
+    const adj = fact(n - 1) * 2;
+    const ans = total - adj;
+    return {
+      content: `$${n}$개의 문자 ${mathListEul(letters)} 일렬로 나열할 때, $${X}$${gwa(X)} $${Y}$ 사이에 적어도 한 개의 문자가 오도록 나열하는 경우의 수를 구하시오.`,
+      answer: numAnswer(ans),
+      solution: [
+        `$${n}$개의 문자를 일렬로 나열하는 경우의 수는 $${factEq(n)}$`,
+        `$${X}$${gwa(X)} $${Y}$${ga(Y)} 이웃하도록 나열하는 경우의 수는 $${n - 1}!\\times 2!=${adj}$`,
+        `따라서 구하는 경우의 수는 $${total}-${adj}=${ans}$`,
+      ].join("\n"),
+      difficulty: "응용",
+      facts: { mode, n },
+    };
+  }
+  const kind = randInt(rng, 0, 1);
+  if (kind === 0) {
+    const W = pickWord(
+      rng,
+      (x) => x.vowels.length >= 2 && x.vowels.length <= x.cons.length + 1,
+    );
+    const c = W.cons.length;
+    const v = W.vowels.length;
+    const total = fact(W.n);
+    const none = fact(c) * nPr(c + 1, v);
+    const ans = total - none;
+    return {
+      content: `${W.word}의 $${W.n}$개의 문자를 일렬로 나열할 때, 적어도 두 개의 모음이 이웃하도록 나열하는 경우의 수를 구하시오.`,
+      answer: numAnswer(ans),
+      solution: [
+        `$${W.n}$개의 문자를 일렬로 나열하는 경우의 수는 $${factEq(W.n)}$`,
+        `모음 ${mathList(W.vowels)} 중 어느 두 모음도 이웃하지 않도록 나열하는 경우의 수는 자음을 먼저 나열하고 그 사이사이와 양 끝에 모음을 나열하므로 $${c}!\\times ${pTex(c + 1, v)}=${none}$`,
+        `따라서 구하는 경우의 수는 $${total}-${none}=${ans}$`,
+      ].join("\n"),
+      difficulty: "심화하",
+      facts: { mode, kind, wi: W.w, n: W.n, v },
+    };
+  }
+  return attempt<Body>((): Body | null => {
+    const n = randInt(rng, 5, 7);
+    const e = randInt(rng, 1, 4);
+    const o = n - e;
+    if (o < 2 || o > 5) return null;
+    const K = fact(n) - nPr(o, 2) * fact(n - 2);
+    const f = fact(n - 2);
+    return {
+      content: `서로 다른 한 자리 자연수 $${n}$개를 일렬로 나열할 때, 적어도 한쪽 끝에 짝수가 오도록 나열하는 경우의 수가 $${K}$이다. 이때 이 $${n}$개의 자연수 중 짝수의 개수를 구하시오.`,
+      answer: numAnswer(e),
+      solution: [
+        `$${n}$개의 자연수를 일렬로 나열하는 경우의 수는 $${factEq(n)}$`,
+        `홀수의 개수를 $k$${ira("k")} 하면 양 끝에 모두 홀수가 오도록 나열하는 경우의 수는 $${pTex("k", 2)}\\times ${n - 2}!=${f}k(k-1)$`,
+        `즉 $${fact(n)}-${f}k(k-1)=${K}$이므로 $k(k-1)=${o * (o - 1)}=${o}\\times ${o - 1}$`,
+        `$k$는 자연수이므로 $k=${o}$`,
+        `따라서 짝수의 개수는 $${n}-${o}=${e}$`,
+      ].join("\n"),
+      difficulty: "심화하",
+      facts: { mode, kind, n, e },
+    };
+  });
+}
+
+// ───────────────────────────── 13 ─────────────────────────────
+// 순열을 이용한 자연수의 개수 — 맨 앞자리에는 0 이 올 수 없다
+// 꼴 0 (기본·대표): 0 을 포함한 숫자로 만든 짝수 — 일의 자리 0 과 0 이 아닌 짝수로 나누기
+// 꼴 1 (기본): 5 의 배수 — 일의 자리 0 · 5
+// 꼴 2 (응용): 맨 앞자리와 일의 자리가 모두 홀수
+// 꼴 3 (심화하): 3 의 배수(세 수의 합) · 만들 수 있는 모든 수의 합
+
+function zeroToK(k: number): number[] {
+  return Array.from({ length: k + 1 }, (_, i) => i);
+}
+
+function t13(rng: Rng): Body {
+  const mode = randInt(rng, 0, 3);
+  if (mode <= 2) {
+    const k = mode === 1 ? randInt(rng, 5, 6) : randInt(rng, 4, 6);
+    const r = randInt(rng, 3, 4);
+    const head = `$${k + 1}$개의 숫자 ${listTex(zeroToK(k))} 중에서 서로 다른 $${r}$개의 숫자를 사용하여 ${digitWord(r)} 자연수를 만들 때,`;
+    if (mode === 0) {
+      const evens = zeroToK(k).filter((d) => d > 0 && d % 2 === 0);
+      const E = evens.length;
+      const x = nPr(k, r - 1);
+      const y = E * (k - 1) * nPr(k - 1, r - 2);
+      const ans = x + y;
+      return {
+        content: `${head} 짝수의 개수를 구하시오.`,
+        answer: numAnswer(ans),
+        solution: [
+          `일의 자리의 숫자가 $0$인 경우, 나머지 $${r - 1}$개의 자리에 $0$을 제외한 $${k}$개의 숫자 중 $${r - 1}$개를 나열하므로 $${pTex(k, r - 1)}=${x}$`,
+          `일의 자리의 숫자가 ${listTex(evens)} 중 하나인 경우, 맨 앞자리에는 $0$과 일의 자리의 숫자를 제외한 $${k - 1}$개의 숫자가 올 수 있고 나머지 $${r - 2}$개의 자리에는 남은 $${k - 1}$개의 숫자 중 $${r - 2}$개를 나열하므로 $${timesTex([E, k - 1, pTex(k - 1, r - 2)])}=${y}$`,
+          `따라서 구하는 짝수의 개수는 $${x}+${y}=${ans}$`,
+        ].join("\n"),
+        difficulty: "기본",
+        facts: { mode, k, r },
+      };
+    }
+    if (mode === 1) {
+      const x = nPr(k, r - 1);
+      const y = (k - 1) * nPr(k - 1, r - 2);
+      const ans = x + y;
+      return {
+        content: `${head} $5$의 배수의 개수를 구하시오.`,
+        answer: numAnswer(ans),
+        solution: [
+          `$5$의 배수는 일의 자리의 숫자가 $0$ 또는 $5$이다.`,
+          `일의 자리의 숫자가 $0$인 경우, 나머지 $${r - 1}$개의 자리에 $0$을 제외한 $${k}$개의 숫자 중 $${r - 1}$개를 나열하므로 $${pTex(k, r - 1)}=${x}$`,
+          `일의 자리의 숫자가 $5$인 경우, 맨 앞자리에는 $0$과 $5$를 제외한 $${k - 1}$개의 숫자가 올 수 있고 나머지 $${r - 2}$개의 자리에는 남은 $${k - 1}$개의 숫자 중 $${r - 2}$개를 나열하므로 $${k - 1}\\times ${pTex(k - 1, r - 2)}=${y}$`,
+          `따라서 구하는 $5$의 배수의 개수는 $${x}+${y}=${ans}$`,
+        ].join("\n"),
+        difficulty: "기본",
+        facts: { mode, k, r },
+      };
+    }
+    const odds = zeroToK(k).filter((d) => d % 2 === 1);
+    const o = odds.length;
+    const x = nPr(o, 2);
+    const y = nPr(k - 1, r - 2);
+    const ans = x * y;
+    return {
+      content: `${head} 맨 앞자리의 숫자와 일의 자리의 숫자가 모두 홀수인 자연수의 개수를 구하시오.`,
+      answer: numAnswer(ans),
+      solution: [
+        `맨 앞자리와 일의 자리에 홀수 ${listTex(odds)} 중 서로 다른 $2$개를 나열하는 경우의 수는 $${pTex(o, 2)}=${x}$`,
+        `나머지 $${r - 2}$개의 자리에 남은 $${k - 1}$개의 숫자 중 $${r - 2}$개를 나열하는 경우의 수는 $${pTex(k - 1, r - 2)}=${y}$`,
+        `따라서 구하는 자연수의 개수는 $${x}\\times ${y}=${ans}$`,
+      ].join("\n"),
+      difficulty: "응용",
+      facts: { mode, k, r },
+    };
+  }
+  const kind = randInt(rng, 0, 1);
+  if (kind === 0) {
+    const k = randInt(rng, 5, 6);
+    const ds = Array.from({ length: k }, (_, i) => i + 1);
+    const triples: number[][] = [];
+    for (let i = 1; i <= k; i += 1)
+      for (let j = i + 1; j <= k; j += 1)
+        for (let l = j + 1; l <= k; l += 1)
+          if ((i + j + l) % 3 === 0) triples.push([i, j, l]);
+    const T = triples.length;
+    const ans = T * 6;
+    return {
+      content: `$${k}$개의 숫자 ${listTex(ds)} 중에서 서로 다른 $3$개의 숫자를 사용하여 만들 수 있는 세 자리 자연수 중 $3$의 배수의 개수를 구하시오.`,
+      answer: numAnswer(ans),
+      solution: [
+        `$3$의 배수는 각 자리의 숫자의 합이 $3$의 배수이다.`,
+        `서로 다른 $3$개의 숫자의 합이 $3$의 배수인 경우는 $${tuplesTex(triples)}$의 $${T}$가지`,
+        `이 각각에 대하여 세 숫자를 일렬로 나열하는 경우의 수는 $3!=6$이므로 구하는 개수는 $${T}\\times 6=${ans}$`,
+      ].join("\n"),
+      difficulty: "심화하",
+      facts: { mode, kind, k },
+    };
+  }
+  const [k, r] = pickOne(rng, [
+    [4, 2],
+    [5, 2],
+    [6, 2],
+    [4, 3],
+    [6, 3],
+  ] as const);
+  const ds = Array.from({ length: k }, (_, i) => i + 1);
+  const m = nPr(k - 1, r - 1);
+  const half = (k * (k + 1)) / 2;
+  const S = half * m;
+  const ans = r === 3 ? S * 111 : S * 11;
+  return {
+    content: `$${k}$개의 숫자 ${listTex(ds)} 중에서 서로 다른 $${r}$개의 숫자를 사용하여 만들 수 있는 ${digitWord(r)} 자연수를 모두 더한 값을 구하시오.`,
+    answer: numAnswer(ans),
+    solution: [
+      `어느 한 자리의 숫자를 정하면 나머지 $${r - 1}$개의 자리에 남은 $${k - 1}$개의 숫자 중 $${r - 1}$개를 나열하는 경우의 수는 $${pTex(k - 1, r - 1)}=${m}$이므로 각 자리에는 $1$부터 $${k}$까지의 숫자가 각각 $${m}$번씩 온다.`,
+      `따라서 각 자리의 숫자의 합은 $(1+2+\\cdots+${k})\\times ${m}=${half}\\times ${m}=${S}$`,
+      r === 3
+        ? `구하는 합은 $${S}\\times 100+${S}\\times 10+${S}=${ans}$`
+        : `구하는 합은 $${S}\\times 10+${S}=${ans}$`,
+    ].join("\n"),
+    difficulty: "심화하",
+    facts: { mode, kind, k, r },
+  };
+}
+
+// ───────────────────────────── 14 ─────────────────────────────
+// 사전식 배열에 의한 경우의 수 — 앞자리부터 정해 나가며 덩어리째 센다
+// 꼴 0 (기본·대표): 0 을 포함한 숫자로 만든 네 자리 수 중 T 보다 큰 수
+// 꼴 1 (응용): 낱말의 문자를 사전식으로 늘어놓을 때 주어진 문자열은 몇 번째
+// 꼴 2 (심화하): 숫자를 모두 한 번씩 써서 만든 수를 작은 것부터 늘어놓을 때 m 번째 수
+
+/** 문자열의 사전식 순위(1부터) · 풀이 줄 · 더한 덩어리들. */
+function lexRank(target: readonly string[]): {
+  rank: number;
+  lines: string[];
+  parts: number[];
+} {
+  const n = target.length;
+  const remaining = [...target].sort();
+  const lines: string[] = [];
+  const parts: number[] = [];
+  let rank = 1;
+  for (let i = 0; i < n; i += 1) {
+    const cur = target[i]!;
+    const smaller = remaining.filter((c) => c < cur);
+    const m = n - 1 - i;
+    if (smaller.length > 0) {
+      const prefix = target.slice(0, i).join("");
+      const starts = smaller.map((c) => `${prefix}${c}`);
+      const lastStart = starts[starts.length - 1]!;
+      const block = smaller.length * fact(m);
+      lines.push(
+        smaller.length === 1
+          ? `${lastStart}${ro(lastStart)} 시작하는 문자열의 개수는 $${factEq(m)}$`
+          : `${starts.join(", ")}${ro(lastStart)} 시작하는 문자열의 개수는 각각 $${factEq(m)}$이므로 $${smaller.length}\\times ${fact(m)}=${block}$`,
+      );
+      parts.push(block);
+      rank += block;
+    }
+    remaining.splice(remaining.indexOf(cur), 1);
+  }
+  return { rank, lines, parts };
+}
+
+function t14(rng: Rng): Body {
+  const mode = randInt(rng, 0, 2);
+  if (mode === 0) {
+    const k = randInt(rng, 5, 7);
+    const a = randInt(rng, 2, k - 1);
+    const b = pickOne(
+      rng,
+      zeroToK(k).filter((d) => d !== a),
+    );
+    const T = 1000 * a + 100 * b;
+    const bigger = zeroToK(k).filter((d) => d > a);
+    const ss = zeroToK(k).filter((d) => d >= b && d !== a);
+    const x = bigger.length * nPr(k, 3);
+    const y = ss.length * nPr(k - 1, 2);
+    const ans = x + y;
+    return {
+      content: `$${k + 1}$개의 숫자 ${listTex(zeroToK(k))} 중에서 서로 다른 $4$개의 숫자를 사용하여 네 자리 자연수를 만들 때, $${T}$보다 큰 수의 개수를 구하시오.`,
+      answer: numAnswer(ans),
+      solution: [
+        `천의 자리의 숫자가 $${a}$보다 큰 경우, 천의 자리에 ${listTex(bigger)}의 $${bigger.length}$가지가 오고 나머지 자리에 남은 $${k}$개의 숫자 중 $3$개를 나열하므로 $${bigger.length}\\times ${pTex(k, 3)}=${x}$`,
+        `천의 자리의 숫자가 $${a}$이고 백의 자리의 숫자가 $${b}$ 이상인 경우, 백의 자리에 ${listTex(ss)}의 $${ss.length}$가지가 오고 나머지 자리에 남은 $${k - 1}$개의 숫자 중 $2$개를 나열하므로 $${ss.length}\\times ${pTex(k - 1, 2)}=${y}$`,
+        `따라서 구하는 자연수의 개수는 $${x}+${y}=${ans}$`,
+      ].join("\n"),
+      difficulty: "기본",
+      facts: { mode, k, a, b },
+    };
+  }
+  if (mode === 1)
+    return attempt<Body>((): Body | null => {
+      const W = pickWord(rng, (x) => x.n === 6);
+      const idx = distinctInts(rng, 0, W.n - 1, W.n);
+      const target = idx.map((i) => W.word[i]!);
+      const { rank, lines, parts } = lexRank(target);
+      if (rank < 20 || rank > fact(W.n) - 20 || lines.length > 5) return null;
+      const t = target.join("");
+      const code = Number(idx.join(""));
+      return {
+        content: `${W.word}의 $${W.n}$개의 문자를 모두 한 번씩 사용하여 만든 문자열을 사전식으로 배열할 때, ${t}${eun(t)} 몇 번째에 오는지 구하시오.`,
+        answer: numAnswer(rank),
+        solution: [
+          `알파벳 순서로 앞자리부터 차례로 정해 나가면`,
+          ...lines,
+          `따라서 ${t}${eun(t)} $${sumTex(parts)}+1=${rank}$번째에 온다.`,
+        ].join("\n"),
+        difficulty: "응용",
+        facts: { mode, wi: W.w, n: W.n, code },
+      };
+    });
+  return attempt<Body>((): Body | null => {
+    const k = randInt(rng, 4, 5);
+    const total = k * fact(k);
+    const m = randInt(rng, 10, total - 10);
+    let prefix: number[] = [];
+    let remaining = zeroToK(k);
+    let cum = 0;
+    const lines: string[] = [];
+    while (remaining.length > 3) {
+      const rest = remaining.length - 1;
+      const cands = remaining.filter((d) => !(prefix.length === 0 && d === 0));
+      const block = fact(rest);
+      const skipped: number[] = [];
+      let chosen: number | null = null;
+      for (const d of cands) {
+        if (cum + block < m) {
+          skipped.push(d);
+          cum += block;
+        } else {
+          chosen = d;
+          break;
+        }
+      }
+      if (chosen === null) return null;
+      if (skipped.length > 0) {
+        const boxes = "\\square".repeat(rest);
+        const forms = skipped.map((d) => `${prefix.join("")}${d}${boxes}`);
+        lines.push(
+          skipped.length === 1
+            ? `$${forms[0]}$ 꼴의 자연수의 개수는 $${factEq(rest)}$`
+            : `$${forms.join(", ")}$ 꼴의 자연수의 개수는 각각 $${factEq(rest)}$이므로 $${skipped.length}\\times ${fact(rest)}=${skipped.length * block}$`,
+        );
+      }
+      prefix = [...prefix, chosen];
+      remaining = remaining.filter((d) => d !== chosen);
+    }
+    const tails = permutationsOf(remaining.length).map((p) =>
+      p.map((i) => remaining[i]!),
+    );
+    const nums = tails.map((t) => Number([...prefix, ...t].join("")));
+    const need = m - cum;
+    const ans = nums[need - 1];
+    if (ans === undefined || lines.length === 0) return null;
+    const shown = nums.slice(0, need).join(", ");
+    return {
+      content: `$${k + 1}$개의 숫자 ${listTex(zeroToK(k))}${eul(String(k))} 모두 한 번씩 사용하여 만들 수 있는 ${digitWord(k + 1)} 자연수를 크기가 작은 것부터 차례대로 나열할 때, $${m}$번째에 오는 수를 구하시오.`,
+      answer: numAnswer(ans),
+      solution: [
+        ...lines,
+        `여기까지 모두 $${cum}$개이고, $${prefix.join("")}${"\\square".repeat(remaining.length)}$ 꼴의 수를 작은 것부터 나열하면 $${shown}${need < nums.length ? ", \\cdots" : ""}$`,
+        `따라서 $${m}$번째에 오는 수는 $${ans}$`,
+      ].join("\n"),
+      difficulty: "심화하",
+      facts: { mode, k, m },
     };
   });
 }
@@ -1677,16 +2065,12 @@ export const H1_PERM: HighTypeEntry[] = [
   entry("09", "이웃하는 순열의 수", SEC.순열, t09),
   entry("10", "이웃하지 않는 순열의 수", SEC.순열, t10),
   entry("11", "자리에 대한 조건이 있는 순열의 수", SEC.순열, t11),
+  entry("12", "적어도 의 조건이 있는 순열의 수", SEC.순열, t12),
+  entry("13", "순열을 이용한 자연수의 개수", SEC.순열, t13),
+  entry("14", "사전식 배열에 의한 경우의 수", SEC.순열, t14),
 ];
 
-const WIP =
-  "작업 중 — 세션 h1-count 가 이 물결 안에 채운다(병합 전에 비어야 한다)";
-
 export const H1_PERM_HOLD: HighHold[] = [
-  ...["12", "13", "14"].map((n) => ({
-    key: `${BOOK}|${MINOR}|${n}`,
-    reason: WIP,
-  })),
   {
     key: `${BOOK}|${MINOR}|08`,
     reason:
