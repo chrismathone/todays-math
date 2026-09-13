@@ -1,7 +1,7 @@
 "use client";
 
 import { signIn } from "next-auth/react";
-import { useRef, useState, type FormEvent } from "react";
+import { useEffect, useRef, useState, type FormEvent } from "react";
 import {
   CREDENTIALS_ERROR,
   fieldErrorsFromResponse,
@@ -22,7 +22,17 @@ export function TeachingAuthPanel({
   const [notice, setNotice] = useState("");
   const [pending, setPending] = useState(false);
   const submitting = useRef(false);
+  const formRef = useRef<HTMLFormElement>(null);
   const isSignup = mode === "signup";
+
+  useEffect(() => {
+    // Wait until pending inputs are enabled before moving to the first error.
+    if (!pending && Object.keys(errors).length) {
+      formRef.current
+        ?.querySelector<HTMLInputElement>('input[aria-invalid="true"]')
+        ?.focus();
+    }
+  }, [errors, pending]);
 
   async function submit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
@@ -175,6 +185,7 @@ export function TeachingAuthPanel({
             : "로그인하고 내 수업을 이어가세요."}
         </p>
         <form
+          ref={formRef}
           method="post"
           noValidate
           onSubmit={(event) => void submit(event)}

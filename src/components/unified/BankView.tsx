@@ -222,6 +222,9 @@ export default function BankView({
   const [search, setSearch] = useState(initialFilters?.q ?? "");
   const [basketOpen, setBasketOpen] = useState(false);
   const [filtersOpen, setFiltersOpen] = useState(false);
+  const searchInput = useRef<HTMLInputElement>(null);
+  const basketToggle = useRef<HTMLButtonElement>(null);
+  const basketHeading = useRef<HTMLHeadingElement>(null);
   const resultsHeading = useRef<HTMLHeadingElement>(null);
   const [request, setRequest] = useState<{ filters: Filters; version: number }>(
     {
@@ -342,6 +345,7 @@ export default function BankView({
     if (key === "q") setSearch("");
     // A unit belongs to its grade; removing the grade also removes that unit.
     updateFilters(key === "grade" ? { grade: "", chapter: "" } : { [key]: "" });
+    resultsHeading.current?.focus({ preventScroll: true });
   }
 
   function goToPage(page: number) {
@@ -378,6 +382,7 @@ export default function BankView({
               >
                 <Icon name="search" />
                 <input
+                  ref={searchInput}
                   aria-label="문제 검색"
                   placeholder="문제 내용, 소단원, 문제 번호"
                   value={search}
@@ -391,6 +396,7 @@ export default function BankView({
                     onClick={() => {
                       setSearch("");
                       if (filters.q) updateFilters({ q: "" });
+                      searchInput.current?.focus();
                     }}
                   >
                     ×
@@ -690,12 +696,21 @@ export default function BankView({
         <aside
           className={`${styles.basket} ${basketOpen ? styles.basketOpen : ""}`}
           aria-label="담은 문제"
+          onKeyDown={(event) => {
+            if (event.key === "Escape" && basketOpen) {
+              event.preventDefault();
+              setBasketOpen(false);
+              basketToggle.current?.focus();
+            }
+          }}
         >
           <div className={styles.basketHeading}>
             <span className={styles.basketIcon}>
               <Icon name="basket" />
             </span>
-            <h2>담은 문제</h2>
+            <h2 ref={basketHeading} tabIndex={-1}>
+              담은 문제
+            </h2>
             <span
               className={styles.basketCount}
               role="status"
@@ -705,6 +720,7 @@ export default function BankView({
               <small>문항</small>
             </span>
             <button
+              ref={basketToggle}
               type="button"
               className={styles.basketToggle}
               aria-expanded={basketOpen}
@@ -736,7 +752,10 @@ export default function BankView({
                 <button
                   type="button"
                   className={styles.clearBasket}
-                  onClick={() => selected.forEach(onToggle)}
+                  onClick={() => {
+                    basketHeading.current?.focus({ preventScroll: true });
+                    selected.forEach(onToggle);
+                  }}
                 >
                   전체 비우기
                 </button>
@@ -771,7 +790,16 @@ export default function BankView({
                     <button
                       type="button"
                       aria-label={`${problem.problemCode || problem.chapter || index + 1} 문제 담기 취소`}
-                      onClick={() => onToggle(problem)}
+                      onClick={(event) => {
+                        const row = event.currentTarget.closest("li");
+                        const next =
+                          row?.nextElementSibling?.querySelector("button") ||
+                          row?.previousElementSibling?.querySelector("button");
+                        (next || basketHeading.current)?.focus({
+                          preventScroll: true,
+                        });
+                        onToggle(problem);
+                      }}
                     >
                       <Icon name="close" />
                     </button>
@@ -797,15 +825,13 @@ export default function BankView({
               disabled={selected.length === 0}
               onClick={onExport}
             >
-              <span>
-                <span className={styles.nextStep}>학습지로 </span>내보내기
-              </span>
+              <span>시험지 편집</span>
               <Icon name="arrow" />
             </button>
             <p>
               {selected.length
-                ? "다음 화면에서 문제를 확인하고 인쇄하세요."
-                : "문제를 담으면 내보내기를 시작할 수 있어요."}
+                ? "문제 순서와 배치를 정한 뒤 인쇄하세요."
+                : "문제를 담으면 시험지 편집을 시작할 수 있어요."}
             </p>
           </div>
         </aside>

@@ -8,7 +8,7 @@
   --surface: #fff;
   --side: #edf2ff;
   --divider: #d4dce8;
-  --control: #a3b0c5;
+  --control: #7c8da7;
   --text-2: #52617a;
   --text-3: #64738c;
   min-width: 0;
@@ -29,7 +29,7 @@
 .teaching button:disabled {
   cursor: not-allowed;
 }
-.teaching :is(button, input, a):focus-visible {
+.teaching :is(button, input, select, a):focus-visible {
   outline: 3px solid #3159df;
   outline-offset: 3px;
 }
@@ -76,7 +76,7 @@
   display: flex;
   flex-wrap: wrap;
   gap: 8px;
-  margin-bottom: 28px;
+  margin-bottom: 16px;
   border-bottom: 1px solid #d4dce8;
 }
 .tabs button {
@@ -107,11 +107,10 @@
 .authLayout {
   display: grid;
   grid-template-columns: minmax(0, 1fr) minmax(340px, 450px);
-  align-items: center;
-  gap: clamp(28px, 5vw, 80px);
+  align-items: start;
+  gap: clamp(24px, 4vw, 56px);
   max-width: 1100px;
-  margin: 18px auto;
-  padding: 24px 12px;
+  margin: 0;
 }
 .authIntro {
   max-width: 470px;
@@ -179,7 +178,7 @@
 }
 .authCard {
   min-width: 0;
-  padding: 32px;
+  padding: 24px;
   border: 1px solid #d4dce8;
   border-radius: 20px;
   background: #fff;
@@ -189,7 +188,7 @@
   display: flex;
   flex-wrap: wrap;
   gap: 4px;
-  margin-bottom: 28px;
+  margin-bottom: 20px;
   padding: 4px;
   border-radius: 10px;
   background: #f3f5f9;
@@ -215,13 +214,13 @@
   letter-spacing: -0.045em;
 }
 .authDescription {
-  margin: 8px 0 24px;
+  margin: 8px 0 20px;
   color: #52617a;
   font-size: var(--text-body, 14px);
 }
 .authForm {
   display: grid;
-  gap: 20px;
+  gap: 16px;
 }
 .field {
   display: grid;
@@ -238,7 +237,7 @@
   height: 48px;
   min-width: 0;
   padding: 0 14px;
-  border: 1px solid #a3b0c5;
+  border: 1px solid var(--control);
   border-radius: 9px;
   background: white;
   color: #172b4d;
@@ -246,7 +245,7 @@
   font-size: var(--text-body, 14px);
 }
 .field input::placeholder {
-  color: #6a7890;
+  color: #64738c;
   font-size: var(--text-body, 14px);
 }
 .field input[aria-invalid="true"] {
@@ -290,11 +289,9 @@
   color: #52617a;
 }
 .authForm .primaryButton {
-  width: 100%;
+  justify-self: start;
+  max-width: 100%;
   margin-top: 4px;
-}
-.primaryButton span {
-  margin-left: auto;
 }
 .secondaryButton {
   border-color: #d4dce8;
@@ -307,7 +304,7 @@
   color: #172b4d;
 }
 .authFootnote {
-  margin: 22px 0 0;
+  margin: 16px 0 0;
   color: #64738c;
   text-align: center;
   font-size: var(--text-caption, 12px);
@@ -348,7 +345,7 @@
   align-items: center;
   justify-content: space-between;
   gap: 16px;
-  margin-bottom: 22px;
+  margin-bottom: 16px;
 }
 .sectionHeading h2 {
   margin: 0;
@@ -409,6 +406,8 @@
   table-layout: fixed;
 }
 .classContent table button {
+  width: fit-content;
+  max-width: 100%;
   padding: 10px 12px;
 }
 .classContent th:last-child {
@@ -424,7 +423,7 @@
 .lessonContent :is(input, select) {
   min-height: 48px;
   padding: 10px 12px;
-  border: 1px solid #a3b0c5;
+  border: 1px solid var(--control);
   border-radius: 8px;
   font-size: var(--text-body, 14px);
 }
@@ -479,6 +478,19 @@
   border-radius: 14px;
   background: #fff;
 }
+.lessonContent article,
+.lessonContent div:has(> button[aria-label$=" 완료"]) {
+  box-shadow: none;
+}
+.lessonContent article > :last-child {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  justify-self: start;
+  width: fit-content;
+  max-width: 100%;
+  padding-inline: 16px;
+}
 .lessonContent :is(h2, h3) {
   font-size: var(--text-section, 18px);
   letter-spacing: 0;
@@ -532,12 +544,17 @@
 
 @media (max-width: 1100px) {
   .authLayout {
-    grid-template-columns: minmax(0, 1fr) minmax(320px, 420px);
-    gap: 28px;
-    padding: 8px 0;
+    grid-template-columns: minmax(0, 1fr);
+    max-width: 480px;
+    gap: 24px;
   }
-  .authCard {
-    padding: 26px;
+  .authIntro {
+    order: 1;
+    max-width: none;
+  }
+  .introIcon,
+  .featureList {
+    display: none;
   }
   .classContent main > div {
     grid-template-columns: minmax(0, 1fr);
@@ -550,6 +567,28 @@
     border-left: 0;
     border-top: 1px solid #d4dce8;
   }
+  .lessonContent article,
+  .lessonContent div:has(> button[aria-label$=" 완료"]) {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 14px;
+    padding: 16px;
+  }
+  .lessonContent article > button:first-child,
+  .lessonContent button[aria-label$=" 완료"] {
+    grid-template-columns: 24px minmax(0, 1fr);
+    gap: 12px;
+    padding: 0;
+  }
+  .lessonContent article > button:first-child [aria-label="진도 단계"],
+  .lessonContent button[aria-label$=" 완료"] [aria-label="진도 단계"] {
+    grid-column: 2;
+    width: 100%;
+  }
+  .lessonContent article > button:first-child span,
+  .lessonContent button[aria-label$=" 완료"] span {
+    white-space: normal;
+    overflow-wrap: anywhere;
+  }
 }
 
 @media (max-width: 760px) {
@@ -559,18 +598,6 @@
   .account .secondaryButton {
     margin-left: auto;
   }
-  .authLayout {
-    grid-template-columns: minmax(0, 1fr);
-    max-width: 480px;
-    gap: 26px;
-    margin: 0 auto;
-  }
-  .authIntro {
-    max-width: none;
-  }
-  .introIcon {
-    display: none;
-  }
   .authIntro h2 {
     margin-top: 8px;
   }
@@ -578,15 +605,9 @@
     margin-top: 12px;
     max-width: none;
   }
-  .featureList {
-    display: none;
-  }
   .authCard {
     padding: 24px;
     border-radius: 14px;
-  }
-  .tabs {
-    margin-bottom: 24px;
   }
   .tabs button {
     padding-right: 12px;
@@ -613,35 +634,10 @@
     flex-basis: 120px;
   }
   .classContent form[aria-label="반 추가"] button {
-    flex-basis: 100%;
+    flex: none;
   }
   .lessonContent [data-teaching-dashboard] > div:last-child > div {
     overflow-x: auto;
-  }
-  .lessonContent article,
-  .lessonContent div:has(> button[aria-label$=" 완료"]) {
-    grid-template-columns: minmax(0, 1fr);
-    gap: 14px;
-    padding: 16px;
-  }
-  .lessonContent article > button:first-child,
-  .lessonContent button[aria-label$=" 완료"] {
-    grid-template-columns: 24px minmax(0, 1fr);
-    gap: 12px;
-    padding: 0;
-  }
-  .lessonContent article > button:first-child [aria-label="진도 단계"],
-  .lessonContent button[aria-label$=" 완료"] [aria-label="진도 단계"] {
-    grid-column: 2;
-    width: 100%;
-  }
-  .lessonContent article > button:first-child span,
-  .lessonContent button[aria-label$=" 완료"] span {
-    white-space: normal;
-    overflow-wrap: anywhere;
-  }
-  .lessonContent article > :last-child {
-    width: 100%;
   }
   .lessonContent table {
     min-width: 660px;

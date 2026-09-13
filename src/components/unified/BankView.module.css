@@ -3,6 +3,7 @@
   --bank-muted: #52617a;
   --bank-primary: #3159df;
   --bank-line: #dce3ed;
+  --bank-control: #7c8da7;
   --bank-selected: #edf2ff;
   width: 100%;
   min-width: 0;
@@ -36,7 +37,8 @@
 }
 .bank button:focus-visible,
 .bank input:focus-visible,
-.bank select:focus-visible {
+.bank select:focus-visible,
+.basketHeading h2:focus-visible {
   outline: 3px solid var(--bank-primary);
   outline-offset: 3px;
 }
@@ -104,7 +106,7 @@
   min-width: 0;
   min-height: 52px;
   padding: 3px 3px 3px 12px;
-  border: 1px solid #aab8cd;
+  border: 1px solid var(--bank-control);
   border-radius: 8px;
   background: #fff;
   color: var(--bank-muted);
@@ -199,7 +201,7 @@
   min-height: 44px;
   appearance: none;
   padding: 8px 36px 8px 12px;
-  border: 1px solid var(--bank-line);
+  border: 1px solid var(--bank-control);
   border-radius: 6px;
   background: #fff;
   color: var(--bank-ink);
@@ -448,7 +450,6 @@ label.rowSelect {
   align-items: center;
   justify-content: center;
   gap: 6px;
-  min-width: 116px;
   margin-left: auto;
   padding: 8px 14px;
   border: 1px solid var(--bank-primary);
@@ -807,9 +808,10 @@ label.rowSelect {
 .exportButton {
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: center;
   gap: 12px;
-  width: 100%;
+  width: fit-content;
+  max-width: 100%;
   padding: 0 16px;
   border: 0;
   background: var(--bank-primary);
@@ -824,7 +826,6 @@ label.rowSelect {
   margin: 10px 0 0;
   color: var(--bank-muted);
   font-size: var(--text-caption, 12px);
-  text-align: center;
   word-break: keep-all;
 }
 @media (max-width: 1180px) {
@@ -842,7 +843,7 @@ label.rowSelect {
     bottom: 16px;
     left: var(--workspace-basket-left, 272px);
     display: grid;
-    grid-template-columns: minmax(0, 1fr) 160px;
+    grid-template-columns: minmax(0, 1fr) auto;
     gap: 0 16px;
     max-height: calc(100dvh - 100px);
     padding: 12px 16px;
@@ -914,9 +915,6 @@ label.rowSelect {
   }
   .clearBasket {
     margin: 0;
-  }
-  .nextStep {
-    display: none;
   }
 }
 @media (max-width: 900px) {
@@ -998,7 +996,6 @@ label.rowSelect {
     gap: 8px;
   }
   .addButton {
-    flex-basis: 100%;
     margin-left: 0;
   }
   .detailMeta {
@@ -1032,7 +1029,6 @@ label.rowSelect {
         var(--workspace-bottom-inset, 0px)
     );
     left: 12px;
-    grid-template-columns: minmax(0, 1fr) 124px;
     gap: 0 12px;
     padding: 12px;
   }
