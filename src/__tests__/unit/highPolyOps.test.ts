@@ -262,8 +262,9 @@ class Shown {
   eq(lhs: string, v: number): void {
     this.checked += 1;
     const got = this.eqs.get(lhs) ?? [];
+    // 1e-6 — 07 은 기대값을 Durand–Kerner 근에서 다시 내는데, 중근 근처에서는 1e-8 까지 흔들린다
     expect(
-      got.some((g) => Math.abs(g - v) < 1e-9 * Math.max(1, Math.abs(v))),
+      got.some((g) => Math.abs(g - v) < 1e-6 * Math.max(1, Math.abs(v))),
       `${this.where}: 발문에 ${lhs}=${v} 가 없다 (${JSON.stringify(got)})`,
     ).toBe(true);
   }
