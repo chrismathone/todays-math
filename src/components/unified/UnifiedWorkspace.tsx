@@ -715,7 +715,6 @@ export default function UnifiedWorkspace({
         ref={dialogRef}
         className={s.dialog}
         onCancel={() => setModal(null)}
-        onClose={() => setModal(null)}
         aria-labelledby="workspace-dialog-title"
       >
         <div className={s.dialogHeading}>
