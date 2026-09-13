@@ -1,6 +1,7 @@
 "use client";
 import { useCallback, useLayoutEffect, useRef, useState } from "react";
 import WorkspacePageHeader from "./WorkspacePageHeader";
+import WorkProgress from "./WorkProgress";
 import { PrintOptionsPanel } from "./print/PrintOptionsPanel";
 import { WorksheetPrint } from "./print/WorksheetPrint";
 import {
@@ -130,10 +131,17 @@ export default function WorksheetEditor({
         <button
           className={s.primaryButton}
           disabled={!selected.length || !printReady}
+          aria-busy={selected.length > 0 && !printReady}
           onClick={() => window.print()}
         >
-          <Icon name="print" size={18} />
-          인쇄 / PDF 저장
+          {selected.length > 0 && !printReady ? (
+            <WorkProgress variant="inline" label="인쇄 준비 중…" />
+          ) : (
+            <>
+              <Icon name="print" size={18} />
+              인쇄 / PDF 저장
+            </>
+          )}
         </button>
       </WorkspacePageHeader>
       {!selected.length ? (

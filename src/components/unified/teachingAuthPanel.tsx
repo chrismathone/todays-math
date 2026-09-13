@@ -1,6 +1,7 @@
 "use client";
 
 import { signIn } from "next-auth/react";
+import WorkProgress from "./WorkProgress";
 import { useEffect, useRef, useState, type FormEvent } from "react";
 import {
   CREDENTIALS_ERROR,
@@ -242,11 +243,13 @@ export function TeachingAuthPanel({
             </p>
           ) : null}
           <button type="submit" className={s.primaryButton} disabled={pending}>
-            {pending
-              ? "계정을 확인하는 중…"
-              : isSignup
-                ? "가입하고 수업 시작하기"
-                : "로그인하고 계속하기"}
+            {pending ? (
+              <WorkProgress variant="inline" label="계정을 확인하는 중…" />
+            ) : isSignup ? (
+              "가입하고 수업 시작하기"
+            ) : (
+              "로그인하고 계속하기"
+            )}
             <span aria-hidden="true">→</span>
           </button>
         </form>

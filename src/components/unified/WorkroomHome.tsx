@@ -2,15 +2,12 @@
 import { useState } from "react";
 import dynamic from "next/dynamic";
 import Icon from "./WorkspaceIcon";
+import WorkProgress from "./WorkProgress";
 import type { BankData, StudioProblem } from "./types";
 import s from "./WorkroomHome.module.css";
 const TeachingOverview = dynamic(() => import("./TeachingOverview"), {
   ssr: false,
-  loading: () => (
-    <div className={s.teachingLoading} role="status">
-      수업 공간을 준비하고 있어요…
-    </div>
-  ),
+  loading: () => <WorkProgress label="수업 공간을 준비하고 있어요…" />,
 });
 export interface RecentWorksheet {
   id: string;
@@ -205,8 +202,8 @@ export default function WorkroomHome({
               </button>
             </div>
             {!hydrated ? (
-              <div className={s.recentEmpty} role="status">
-                저장한 시험지를 불러오고 있어요…
+              <div className={s.recentLoading}>
+                <WorkProgress label="저장한 시험지를 불러오고 있어요…" />
               </div>
             ) : visibleDrafts.length ? (
               <div
@@ -269,16 +266,21 @@ export default function WorkroomHome({
             <div className={s.activeHeading}>
               <h2 id="active-draft-heading">만들고 있는 시험지</h2>
               <span className={s.saveBadge} data-error={saveStatus === "error"}>
-                <i />
-                {!hydrated
-                  ? "불러오는 중"
-                  : saveStatus === "saving"
-                    ? "저장 중"
-                    : saveStatus === "error"
+                {!hydrated || saveStatus === "saving" ? (
+                  <WorkProgress
+                    variant="inline"
+                    label={!hydrated ? "불러오는 중" : "저장 중"}
+                  />
+                ) : (
+                  <>
+                    <i />
+                    {saveStatus === "error"
                       ? "저장 확인 필요"
                       : draft.problems.length
                         ? "자동 저장"
                         : "준비 중"}
+                  </>
+                )}
               </span>
             </div>
             <div className={s.draftPreview}>

@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useId, useState } from "react";
+import WorkProgress from "./WorkProgress";
 import s from "./TeachingOverview.module.css";
 
 type ClassSummary = {
@@ -152,10 +153,7 @@ export default function TeachingOverview({ onOpen }: { onOpen: () => void }) {
       </header>
 
       {access.status === "loading" ? (
-        <div className={s.loading} role="status">
-          <span className={s.loadingDot} aria-hidden="true" />
-          로그인 정보를 확인하고 있어요.
-        </div>
+        <WorkProgress label="로그인 정보를 확인하고 있어요." />
       ) : access.status === "anonymous" ? (
         <>
           <div className={s.invitation}>
