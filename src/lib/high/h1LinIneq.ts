@@ -41,6 +41,7 @@ import {
   numAnswer,
   pickDistractors,
   pickOne,
+  plusConst,
   randInt,
   Retry,
 } from "./pick";
@@ -1782,6 +1783,439 @@ function t08(rng: Rng): Body {
   });
 }
 
+// ───────────────────────────── 09 ─────────────────────────────
+// 절댓값 기호가 두 개인 부등식
+// 꼴 0 (기본·대표): s₁|x−z₁|+s₂|x−z₂|<d — 정수인 해의 합 · 개수
+// 꼴 1 (응용): |p₁x+q₁|+s|p₂x+q₂|≤d — 해의 최댓값과 최솟값의 합
+// 꼴 2 (심화하): |p₁x+q₁|−s|p₂x+q₂|>cx+d — 정수인 해의 개수
+
+/** `s|px+q|` (p>0) */
+type AbsTerm = { s: number; p: number; q: number };
+
+function absSumTex(terms: readonly AbsTerm[]): string {
+  return terms
+    .map((t, i) => {
+      const body = `|${linX(t.p, t.q)}|`;
+      if (i === 0) return `${coefPrefix(t.s)}${body}`;
+      const k = Math.abs(t.s);
+      return `${t.s > 0 ? "+" : "-"}${k === 1 ? "" : k}${body}`;
+    })
+    .join("");
+}
+
+/**
+ * `s₁|p₁x+q₁|+s₂|p₂x+q₂| rel cx+d` — 두 경계로 나눈 세 범위에서 절댓값을 벗겨 푼다.
+ * 한 범위에서 x 가 지워지면(계수 0) 상수끼리 비교한다.
+ */
+function solveAbsSum(
+  terms: readonly AbsTerm[],
+  c: number,
+  d: number,
+  rel: Rel,
+): { lines: string[]; sol: Iv[] } | null {
+  const [zA, zB] = terms.map((t) => q(-t.q, t.p)).sort(qCmp) as [Q, Q];
+  if (qCmp(zA, zB) === 0) return null;
+  const regions: { iv: Iv; head: string; probe: Q }[] = [
+    {
+      iv: { lo: null, hi: { at: zA, closed: false } },
+      head: `$x<${qTex(zA)}$일 때`,
+      probe: q(zA.n - zA.d, zA.d),
+    },
+    {
+      iv: { lo: { at: zA, closed: true }, hi: { at: zB, closed: false } },
+      head: `$${qTex(zA)}\\le x<${qTex(zB)}$일 때`,
+      probe: q(zA.n * zB.d + zB.n * zA.d, 2 * zA.d * zB.d),
+    },
+    {
+      iv: { lo: { at: zB, closed: true }, hi: null },
+      head: `$x\\ge ${qTex(zB)}$일 때`,
+      probe: q(zB.n + zB.d, zB.d),
+    },
+  ];
+  const tags = ["(i)", "(ii)", "(iii)"];
+  const rhs = polyTex([d, c]);
+  const lines: string[] = [];
+  const got: Iv[] = [];
+  regions.forEach((rg, i) => {
+    // 이 범위에서 절댓값 안의 부호 — 경계가 아닌 한 점으로 정한다
+    const ks = terms.map(
+      (t) => t.s * Math.sign(t.p * rg.probe.n + t.q * rg.probe.d),
+    );
+    const body = terms
+      .map((t, j) => {
+        const k = ks[j]!;
+        // 절댓값 안이 `x` 하나뿐이면 괄호 없이 계수를 합쳐 쓴다(`-(x)` 가 아니라 `-x`)
+        if (t.q === 0) return term(k * t.p, "x", j === 0);
+        const inner = `(${polyTex([t.q, t.p])})`;
+        if (j === 0) return `${coefPrefix(k)}${inner}`;
+        return `${k > 0 ? "+" : "-"}${Math.abs(k) === 1 ? "" : Math.abs(k)}${inner}`;
+      })
+      .join("");
+    const m = terms.reduce((acc, t, j) => acc + ks[j]! * t.p, 0) - c;
+    const K = terms.reduce((acc, t, j) => acc + ks[j]! * t.q, 0);
+    let text: string;
+    if (m === 0) {
+      const ok = holds(rel, Math.sign(K - d));
+      text = `$${K}${relTex(rel)}${d}$이므로 ${ok ? `이 범위에서 해는 $${ivTex(rg.iv)}$` : "이 범위에서 해는 없다."}`;
+      if (ok) got.push(rg.iv);
+    } else {
+      const ray = rayIv(m > 0 ? rel : flipRel(rel), q(d - K, m));
+      const meet = ivMeet(ray, rg.iv);
+      text = `$${ivTex(ray)}$이므로 ${meet ? `이 범위에서 해는 $${ivTex(meet)}$` : "이 범위에서 해는 없다."}`;
+      if (meet) got.push(meet);
+    }
+    lines.push(
+      `${tags[i]} ${rg.head}, $${body}${relTex(rel)}${rhs}$에서 ${text}`,
+    );
+  });
+  return { lines, sol: ivUnion(got) };
+}
+
+function t09(rng: Rng): Body {
+  const mode = randInt(rng, 0, 2);
+  return attempt<Body>((): Body | null => {
+    let terms: AbsTerm[];
+    let c = 0;
+    let d: number;
+    let rel: Rel;
+    if (mode === 0) {
+      const [z1, z2] = distinctInts(rng, -4, 4, 2) as [number, number];
+      terms = [
+        { s: randInt(rng, 1, 3), p: 1, q: -z1 },
+        { s: randInt(rng, 1, 3), p: 1, q: -z2 },
+      ];
+      d = randInt(rng, 3, 14);
+      rel = pickOne(rng, UPPER);
+    } else if (mode === 1) {
+      terms = [
+        { s: 1, p: pickOne(rng, [1, 2]), q: nz(rng, -5, 5) },
+        { s: randInt(rng, 1, 2), p: pickOne(rng, [1, 2]), q: nz(rng, -5, 5) },
+      ];
+      d = randInt(rng, 3, 14);
+      rel = "le";
+    } else {
+      terms = [
+        { s: 1, p: pickOne(rng, [1, 2]), q: nz(rng, -5, 5) },
+        { s: -randInt(rng, 2, 4), p: 1, q: nz(rng, -5, 5) },
+      ];
+      c = randInt(rng, -2, 2);
+      d = randInt(rng, -6, 6);
+      rel = pickOne(rng, LOWER);
+      if (c === 0 && d === 0) return null;
+    }
+    if (terms.some((t) => gcd(t.p, t.q) !== 1)) return null;
+    const res = solveAbsSum(terms, c, d, rel);
+    if (!res) return null;
+    const { lines, sol } = res;
+    if (sol.length !== 1 || !sol[0]!.lo || !sol[0]!.hi) return null;
+    const s = sol[0]!;
+    if (s.lo!.at.d > 5 || s.hi!.at.d > 5) return null;
+    const tex = `${absSumTex(terms)}${relTex(rel)}${polyTex([d, c])}`;
+    const union = `(i), (ii), (iii)에서 주어진 부등식의 해는 $${ivTex(s)}$`;
+    const facts = {
+      mode,
+      p1: terms[0]!.p,
+      q1: terms[0]!.q,
+      s1: terms[0]!.s,
+      p2: terms[1]!.p,
+      q2: terms[1]!.q,
+      s2: terms[1]!.s,
+      c,
+      d,
+      r: REL_CODE[rel],
+    };
+    if (mode === 1) {
+      if (!s.lo!.closed || !s.hi!.closed) return null;
+      const v = qAdd(s.lo!.at, s.hi!.at);
+      return {
+        content: `부등식 $${tex}$${eul(tex)} 만족시키는 실수 $x$의 최댓값과 최솟값의 합을 구하시오.`,
+        answer: qAnswer(v),
+        solution: [
+          ...lines,
+          union,
+          `따라서 최댓값은 $${qTex(s.hi!.at)}$, 최솟값은 $${qTex(s.lo!.at)}$이므로 구하는 합은 $${qTex(v)}$이다.`,
+        ].join("\n"),
+        difficulty: "응용",
+        facts,
+      };
+    }
+    const ints = intsIn(s);
+    if (ints.length < 1 || ints.length > 9) return null;
+    const kind = mode === 2 ? 1 : randInt(rng, 0, 1);
+    const ans = kind === 0 ? ints.reduce((x, y) => x + y, 0) : ints.length;
+    return {
+      content: `부등식 $${tex}$${eul(tex)} 만족시키는 ${kind === 0 ? "모든 정수 $x$의 값의 합을" : "정수 $x$의 개수를"} 구하시오.`,
+      answer: numAnswer(ans),
+      solution: [
+        ...lines,
+        union,
+        `따라서 정수 $x$는 ${intsText(ints)}이므로 ${kind === 0 ? `구하는 합은 $${ans}$이다.` : `그 개수는 $${ans}$이다.`}`,
+      ].join("\n"),
+      difficulty: mode === 0 ? "기본" : "심화하",
+      facts: { ...facts, kind },
+    };
+  });
+}
+
+// ───────────────────────────── 10 ─────────────────────────────
+// 절댓값 기호를 포함한 부등식의 해가 없거나 무수히 많은 경우
+// 꼴 0 (기본·대표): |px+q| ≤ αk+β 의 해가 없도록 하는 양의 정수 k 의 개수
+// 꼴 1 (응용): |px+q|+c > a 의 해가 모든 실수 — a 의 값의 범위 (답이 구간, 오답 넷)
+// 꼴 2 (기본): |px+q| ≤ k+m 의 해가 존재하도록 — k 의 값의 범위 (답이 구간, 오답 넷)
+
+function t10(rng: Rng): Body {
+  const mode = randInt(rng, 0, 2);
+  return attempt<Body>((): Body | null => {
+    const p = pickOne(rng, [1, 2, 3]);
+    const qq = nz(rng, -6, 6);
+    if (gcd(p, qq) !== 1) return null;
+    const A = `|${linX(p, qq)}|`;
+    const nonneg = `모든 실수 $x$에 대하여 $${A}\\ge 0$이므로`;
+    if (mode === 0) {
+      const n = randInt(rng, 1, 5);
+      const den = randInt(rng, 1, 5);
+      if (gcd(n, den) !== 1) return null;
+      const beta = -randInt(rng, 3, 15);
+      const rel = pickOne(rng, UPPER);
+      // 해가 없으려면 우변 < 0 (≤ 일 때) · 우변 ≤ 0 (< 일 때). 우변 = 0 ⇔ k = K
+      const K = q(-beta * den, n);
+      const count =
+        rel === "le" ? (qIsInt(K) ? K.n - 1 : qFloor(K)) : qFloor(K);
+      if (count < 2 || count > 40) return null;
+      const alpha = den === 1 ? `${coefPrefix(n)}k` : `\\dfrac{${n}}{${den}}k`;
+      const rhs = `${alpha}${plusConst(beta)}`;
+      const ks = Array.from({ length: count }, (_, i) => i + 1);
+      const strictRel = rel === "le" ? "<" : "\\le ";
+      return {
+        content: `부등식 $${A}${relTex(rel)}${rhs}$의 해가 존재하지 않도록 하는 양의 정수 $k$의 개수를 구하시오.`,
+        answer: numAnswer(count),
+        solution: [
+          `${nonneg} 주어진 부등식의 해가 존재하지 않으려면 $${rhs}${strictRel}0$`,
+          `즉 $k${strictRel}${qTex(K)}$`,
+          `따라서 양의 정수 $k$는 ${intsText(ks)}의 $${count}$개이다.`,
+        ].join("\n"),
+        difficulty: "기본",
+        facts: { mode, p, q: qq, n, den, beta, r: REL_CODE[rel] },
+      };
+    }
+    if (mode === 1) {
+      const c = nz(rng, -6, 8);
+      const rel = pickOne(rng, LOWER);
+      // |px+q| rel a−c 가 모든 x 에서 ⇔ a−c < 0 (>) · a−c ≤ 0 (≥)
+      const relA: Rel = rel === ">" ? "<" : "le";
+      const ans = ivTex(rayIv(relA, q(c)), "a");
+      const distractors = rayDistractors(rng, relA, q(c), "a");
+      if (distractors === null) return null;
+      const tex = `${A}${plusConst(c)}${relTex(rel)}a`;
+      return {
+        content: `부등식 $${tex}$의 해가 모든 실수가 되도록 하는 실수 $a$의 값의 범위를 구하시오.`,
+        answer: $(ans),
+        solution: [
+          `$${tex}$에서 $${A}${relTex(rel)}a${plusConst(-c)}$`,
+          `${nonneg} 이 부등식이 모든 실수 $x$에 대하여 성립하려면 $a${plusConst(-c)}${relTex(relA)}0$`,
+          `따라서 $${ans}$`,
+        ].join("\n"),
+        difficulty: "응용",
+        facts: { mode, p, q: qq, c, r: REL_CODE[rel] },
+        distractors,
+      };
+    }
+    const m = nz(rng, -6, 6);
+    const rel = pickOne(rng, UPPER);
+    // |px+q| rel k+m 이 해를 가지려면 k+m ≥ 0 (≤) · k+m > 0 (<)
+    const relK: Rel = rel === "le" ? "ge" : ">";
+    const ans = ivTex(rayIv(relK, q(-m)), "k");
+    const distractors = rayDistractors(rng, relK, q(-m), "k");
+    if (distractors === null) return null;
+    return {
+      content: `부등식 $${A}${relTex(rel)}k${plusConst(m)}$의 해가 존재하도록 하는 실수 $k$의 값의 범위를 구하시오.`,
+      answer: $(ans),
+      solution: [
+        `${nonneg} 주어진 부등식의 해가 존재하려면 $k${plusConst(m)}${relTex(relK)}0$`,
+        `따라서 $${ans}$`,
+      ].join("\n"),
+      difficulty: "기본",
+      facts: { mode, p, q: qq, m, r: REL_CODE[rel] },
+      distractors,
+    };
+  });
+}
+
+// ───────────────────────────── 11 ─────────────────────────────
+// 정수인 해의 개수가 주어진 연립일차부등식
+// 꼴 0 (기본·대표): 정수인 해가 N개 — a 의 값의 범위 (답이 구간, 오답 넷)
+// 꼴 1 (심화하): 정수인 해가 t−1, t 뿐 — a 의 값의 범위 (답이 구간, 오답 넷)
+// 꼴 2 (응용): 정수인 해가 N개일 때 a 의 최솟값(최댓값)
+
+function t11(rng: Rng): Body {
+  const mode = randInt(rng, 0, 2);
+  return attempt<Body>((): Body | null => {
+    const H = randInt(rng, -4, 6);
+    const hiC = rng() < 0.5;
+    const l2 = makeLin(rng, q(H), upperRel(hiC));
+    const T = hiC ? H : H - 1;
+    const N = mode === 1 ? 2 : randInt(rng, 2, 5);
+    const k = pickOne(rng, [-2, -1, 1, 2, 3]);
+    const m1 = randInt(rng, 1, 3);
+    const p = k + m1;
+    const w = nz(rng, -5, 5);
+    if (p === 0) return null;
+    const loC = rng() < 0.5;
+    const rel1 = lowerRel(loC);
+    const R = randomSide(rng, k, k * w);
+    const tex1 = `${withParam(p, -1, "a")}${relTex(rel1)}${R.tex}`;
+    // x rel1 L, L=(a+kw)/m1.  x>L : T−N ≤ L < T−N+1 · x≥L : T−N < L ≤ T−N+1
+    const aLo = m1 * (T - N) - k * w;
+    const aHi = m1 * (T - N + 1) - k * w;
+    const band = (lo: number, hi: number, lc: boolean, hc: boolean): Iv => ({
+      lo: { at: q(lo), closed: lc },
+      hi: { at: q(hi), closed: hc },
+    });
+    const aIv = band(aLo, aHi, !loC, loC);
+    const ints = Array.from({ length: N }, (_, i) => T - N + 1 + i);
+    const bt = affTex(1, "a", k * w, m1);
+    const sys = casesTex(rng() < 0.5 ? [tex1, l2.tex] : [l2.tex, tex1]);
+    const head = [
+      paramStep(tex1, m1, rel1, affTex(1, "a", k * w, 1), rel1, bt),
+      linStep(l2),
+      `정수 $x$가 ${intsText(ints)}이어야 하므로 $${T - N}${loC ? "<" : "\\le "}${bt}${loC ? "\\le " : "<"}${T - N + 1}$`,
+    ];
+    const facts = {
+      mode,
+      m1,
+      kw: k * w,
+      r1: REL_CODE[rel1],
+      ...linFacts(2, l2),
+      N,
+      T,
+    };
+    if (mode === 2) {
+      const ans = loC ? aHi : aLo;
+      const word = loC ? "최댓값" : "최솟값";
+      return {
+        content: `연립부등식 $${sys}$${eul(sys)} 만족시키는 정수 $x$가 $${N}$개일 때, 실수 $a$의 ${word}을 구하시오.`,
+        answer: numAnswer(ans),
+        solution: [
+          ...head,
+          `즉 $${ivTex(aIv, "a")}$이므로 실수 $a$의 ${word}은 $${ans}$이다.`,
+        ].join("\n"),
+        difficulty: "응용",
+        facts: { ...facts, ask: loC ? 1 : 0 },
+      };
+    }
+    const ans = ivTex(aIv, "a");
+    const distractors = pickDistractors(rng, ans, [
+      ivTex(band(aLo, aHi, loC, !loC), "a"),
+      ivTex(band(aLo, aHi, true, true), "a"),
+      ivTex(band(aLo, aHi, false, false), "a"),
+      ivTex(band(aLo - m1, aHi - m1, !loC, loC), "a"),
+      ivTex(band(aLo + m1, aHi + m1, !loC, loC), "a"),
+    ]);
+    if (distractors === null) return null;
+    const cond =
+      mode === 1
+        ? `정수 $x$가 $${T - 1}$${gwa(String(T - 1))} $${T}$뿐일 때`
+        : `정수 $x$가 $${N}$개일 때`;
+    return {
+      content: `연립부등식 $${sys}$${eul(sys)} 만족시키는 ${cond}, 실수 $a$의 값의 범위를 구하시오.`,
+      answer: $(ans),
+      solution: [...head, `따라서 $${ans}$`].join("\n"),
+      difficulty: mode === 0 ? "기본" : "심화하",
+      facts,
+      distractors,
+    };
+  });
+}
+
+// ───────────────────────────── 12 ─────────────────────────────
+// 연립일차부등식의 활용 - 과부족
+// 꼴 0 (기본·대표): 의자 — 의자의 개수의 최댓값과 최솟값의 합 · 학생 수의 최댓값
+// 꼴 1 (심화하): 사탕 — 마지막 한 명이 m₁개 이상 m₂개 미만 — 사탕의 개수
+// 꼴 2 (응용): 승합차 — 최소 몇 대
+
+function t12(rng: Rng): Body {
+  const mode = randInt(rng, 0, 2);
+  if (mode === 1)
+    return attempt<Body>((): Body | null => {
+      const x0 = randInt(rng, 3, 12);
+      const p = randInt(rng, 2, 5);
+      const qq = p + randInt(rng, 2, 4);
+      const m1 = randInt(rng, 1, qq - 2);
+      const m2 = randInt(rng, m1 + 1, qq);
+      // q(x0−1)+m1 ≤ p·x0+r < q(x0−1)+m2
+      const rLo = qq * (x0 - 1) + m1 - p * x0;
+      const rHi = qq * (x0 - 1) + m2 - 1 - p * x0;
+      if (rHi < 1) return null;
+      const r = randInt(rng, Math.max(1, rLo), rHi);
+      const fits: number[] = [];
+      for (let x = 1; x <= 100; x += 1) {
+        const v = p * x + r;
+        if (qq * (x - 1) + m1 <= v && v < qq * (x - 1) + m2) fits.push(x);
+      }
+      if (fits.length !== 1) return null;
+      const candies = p * x0 + r;
+      return {
+        content: `학생들에게 사탕을 나누어 주는데 한 학생에게 $${p}$개씩 나누어 주면 $${r}$개가 남고, $${qq}$개씩 나누어 주면 마지막 한 학생은 $${m1}$개 이상 $${m2}$개 미만을 받는다. 이때 사탕의 개수를 구하시오.`,
+        answer: numAnswer(candies),
+        solution: [
+          `학생 수를 $x$라 하면 사탕의 개수는 $(${p}x+${r})$개이므로`,
+          `$${qq}(x-1)+${m1}\\le ${p}x+${r}<${qq}(x-1)+${m2}$`,
+          `왼쪽 부등식에서 $x\\le ${qTex(q(r + qq - m1, qq - p))}$, 오른쪽 부등식에서 $x>${qTex(q(r + qq - m2, qq - p))}$`,
+          `이때 $x$는 자연수이므로 $x=${x0}$`,
+          `따라서 사탕의 개수는 $${p}\\times ${x0}+${r}=${candies}$이다.`,
+        ].join("\n"),
+        difficulty: "심화하",
+        facts: { mode, p, q: qq, r, m1, m2 },
+      };
+    });
+  return attempt<Body>((): Body | null => {
+    const p = randInt(rng, 2, 6);
+    const qq = p + randInt(rng, 1, 3);
+    const r = randInt(rng, 1, 12);
+    const s = randInt(rng, 1, 4);
+    // q(x−s−1)+1 ≤ px+r ≤ q(x−s)
+    const L = q(r + qq * s, qq - p);
+    const U = q(r + qq * (s + 1) - 1, qq - p);
+    const lo = minInt({ lo: { at: L, closed: true }, hi: null });
+    const hi = maxInt({ lo: null, hi: { at: U, closed: true } });
+    if (lo < s + 1 || hi - lo < 1 || hi > 60) return null;
+    const chair = mode === 0;
+    const unit = chair ? "개" : "대";
+    const thing = chair ? "의자" : "승합차";
+    const kind = chair ? randInt(rng, 0, 1) : 2;
+    const ans = kind === 0 ? lo + hi : kind === 1 ? p * hi + r : lo;
+    const setup = chair
+      ? `어느 반 학생들이 긴 의자에 앉으려고 한다. 한 의자에 $${p}$명씩 앉으면 $${r}$명이 앉지 못하고, $${qq}$명씩 앉으면 의자가 $${s}$개 남는다.`
+      : `어느 회사에서 워크숍을 가는데 승합차 한 대에 $${p}$명씩 타면 $${r}$명이 타지 못하고, $${qq}$명씩 타면 승합차가 $${s}$대 남는다.`;
+    const ask =
+      kind === 0
+        ? "이때 의자의 개수의 최댓값과 최솟값의 합을 구하시오."
+        : kind === 1
+          ? "이때 학생 수의 최댓값을 구하시오."
+          : "이때 승합차는 최소 몇 대인지 구하시오.";
+    const last =
+      kind === 0
+        ? `따라서 의자의 개수의 최댓값은 $${hi}$, 최솟값은 $${lo}$이므로 구하는 합은 $${ans}$이다.`
+        : kind === 1
+          ? `따라서 학생 수의 최댓값은 $${p}\\times ${hi}+${r}=${ans}$이다.`
+          : `따라서 승합차는 최소 $${ans}$대이다.`;
+    return {
+      content: `${setup} ${ask}`,
+      answer: numAnswer(ans),
+      solution: [
+        `${thing}의 수를 $x$라 하면 사람은 $(${p}x+${r})$명이다.`,
+        `$${qq}$명씩 ${chair ? "앉으면" : "타면"} ${thing}가 $${s}$${unit} 남으므로 마지막 ${thing}에는 $1$명 이상 $${qq}$명 이하가 ${chair ? "앉는다" : "탄다"}. 즉`,
+        `$${qq}(x-${s + 1})+1\\le ${p}x+${r}\\le ${qq}(x-${s})$`,
+        `왼쪽 부등식에서 $x\\le ${qTex(U)}$, 오른쪽 부등식에서 $x\\ge ${qTex(L)}$`,
+        `이때 $x$는 자연수이므로 $${lo}\\le x\\le ${hi}$`,
+        last,
+      ].join("\n"),
+      difficulty: chair ? "기본" : "응용",
+      facts: { mode, p, q: qq, r, s, ask: kind },
+    };
+  });
+}
+
 // ───────────────────────────── 등록 ─────────────────────────────
 
 function entry(
@@ -1815,10 +2249,16 @@ export const H1_LIN_INEQ: HighTypeEntry[] = [
   entry("06", "연립일차부등식의 활용", SEC.연립2, t06),
   entry("07", ", |ax+b|<c|ax+b|>c의 꼴의 부등식", SEC.절댓값, t07),
   entry("08", "|ax+b|<cx+d의 꼴의 부등식", SEC.절댓값, t08),
+  entry("09", "절댓값 기호가 두 개인 부등식", SEC.절댓값, t09),
+  entry(
+    "10",
+    "절댓값 기호를 포함한 부등식의 해가 없거나 무수히 많은 경우",
+    SEC.절댓값,
+    t10,
+  ),
+  entry("11", "정수인 해의 개수가 주어진 연립일차부등식", SEC.연립2, t11),
+  entry("12", "연립일차부등식의 활용 - 과부족", SEC.연립2, t12),
 ];
 
-const WIP = "작업 중 — h1-ineq 세션이 이어서 만든다(2026-09-13)";
-
-export const H1_LIN_INEQ_HOLD: HighHold[] = ["09", "10", "11", "12"].map(
-  (n) => ({ key: `${BOOK}|${MINOR}|${n}`, reason: WIP }),
-);
+/** 이 중단원은 색인 12유형을 다 등록했다 — 보류 없음. */
+export const H1_LIN_INEQ_HOLD: HighHold[] = [];

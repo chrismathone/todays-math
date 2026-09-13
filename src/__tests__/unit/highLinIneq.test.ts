@@ -22,11 +22,15 @@ import {
 } from "../../lib/high/generate";
 import { H1_LIN_INEQ, H1_LIN_INEQ_HOLD } from "../../lib/high/h1LinIneq";
 import type { HighProblem } from "../../lib/high/types";
-import { readAnswerValues } from "../helpers/highAnswer";
 import {
+  and,
   chartSolve,
-  type Env,
+  checkAnswer,
+  checkDistractors,
+  checkShown,
+  type Expect,
   type F,
+  type Fact,
   fAbs,
   fAdd,
   fCmp,
@@ -37,20 +41,17 @@ import {
   fNum,
   fr,
   fSub,
-  hasShown,
   intsWhere,
-  ivVsProp,
+  num,
+  only,
   type Pred,
-  probePoints,
-  readIv,
   relHolds,
   relOf,
-  shownPreds,
-  spanNumbers,
+  type ShownSpec,
   type TIv,
-  tivEq,
   tivHas,
   tivText,
+  type Want,
 } from "../helpers/highIneq";
 import { highCatalog } from "../helpers/highPage";
 
@@ -60,15 +61,6 @@ const SEEDS = [20260913, 1, 7777, 424242, 99991];
 const VARIANTS = 14;
 
 const catalogRows = highCatalog(BOOK).filter((t) => t.minor === MINOR);
-
-type Fact = Record<string, number>;
-
-function num(f: Fact, k: string): number {
-  const v = f[k];
-  if (v === undefined)
-    throw new Error(`facts 에 ${k} 가 없다: ${JSON.stringify(f)}`);
-  return v;
-}
 
 /** facts 의 `m_i·x rel_i c_i` */
 function lin(f: Fact, i: number): Pred {
@@ -80,11 +72,6 @@ function lin(f: Fact, i: number): Pred {
 
 const linCrit = (f: Fact, i: number): F => fr(num(f, `c${i}`), num(f, `m${i}`));
 
-const and =
-  (...ps: Pred[]): Pred =>
-  (x) =>
-    ps.every((p) => p(x));
-
 /** 두 일차부등식의 연립 — 부호표로 푼다. */
 function sys2(f: Fact): { pred: Pred; crit: F[]; sol: TIv[] } {
   const pred = and(lin(f, 1), lin(f, 2));
@@ -92,19 +79,82 @@ function sys2(f: Fact): { pred: Pred; crit: F[]; sol: TIv[] } {
   return { pred, crit, sol: chartSolve(pred, crit) };
 }
 
-function only(sol: readonly TIv[], what: string): TIv {
-  expect(sol, what).toHaveLength(1);
-  return sol[0]!;
-}
-
 const exists = (pred: Pred, crit: readonly F[]): boolean =>
   chartSolve(pred, crit).length > 0;
 
 const sum = (ns: readonly number[]): number => ns.reduce((s, n) => s + n, 0);
 
-type IvExpect =
-  { v: string; prop: Pred; crit?: F[] } | { v: string; exact: TIv };
-type Expect = number | IvExpect;
+/** 08 — `|px+q| rel cx+d` 와 참·거짓이 바뀔 수 있는 점(절댓값 안이 0 · 두 조각의 직선이 만나는 점). */
+function absLin(f: Fact): { pred: Pred; crit: F[] } {
+  const p = fr(num(f, "p"));
+  const qq = fr(num(f, "q"));
+  const c = fr(num(f, "c"));
+  const d = fr(num(f, "d"));
+  const r = relOf(num(f, "r"));
+  const pred: Pred = (x) =>
+    relHolds(r, fAbs(fAdd(fMul(p, x), qq)), fAdd(fMul(c, x), d));
+  const crit = [fDiv(fNeg(qq), p)];
+  if (!fEq(p, c)) crit.push(fDiv(fSub(d, qq), fSub(p, c)));
+  if (!fEq(fNeg(p), c)) crit.push(fDiv(fAdd(d, qq), fNeg(fAdd(p, c))));
+  return { pred, crit };
+}
+
+/** 09 — `s₁|p₁x+q₁|+s₂|p₂x+q₂| rel cx+d` 와 임계점(두 경계 · 네 부호 조합의 직선 근). */
+function absSum(f: Fact): { pred: Pred; crit: F[] } {
+  const T = [1, 2].map((i) => ({
+    s: num(f, `s${i}`),
+    p: num(f, `p${i}`),
+    q: num(f, `q${i}`),
+  }));
+  const c = num(f, "c");
+  const d = num(f, "d");
+  const r = relOf(num(f, "r"));
+  const pred: Pred = (x) =>
+    relHolds(
+      r,
+      T.reduce(
+        (acc, t) =>
+          fAdd(acc, fMul(fr(t.s), fAbs(fAdd(fMul(fr(t.p), x), fr(t.q))))),
+        fr(0),
+      ),
+      fAdd(fMul(fr(c), x), fr(d)),
+    );
+  const crit: F[] = T.map((t) => fr(-t.q, t.p));
+  for (const s1 of [1, -1]) {
+    for (const s2 of [1, -1]) {
+      const m = s1 * T[0]!.s * T[0]!.p + s2 * T[1]!.s * T[1]!.p - c;
+      if (m !== 0)
+        crit.push(fr(d - s1 * T[0]!.s * T[0]!.q - s2 * T[1]!.s * T[1]!.q, m));
+    }
+  }
+  return { pred, crit };
+}
+
+/** 10 — `|px+q|` 와 `|px+q| = 값` 이 되는 점 */
+function absOf(f: Fact): { at: (x: F) => F; crit: (v: F) => F[] } {
+  const p = fr(num(f, "p"));
+  const qq = fr(num(f, "q"));
+  return {
+    at: (x) => fAbs(fAdd(fMul(p, x), qq)),
+    crit: (v) => [
+      fDiv(fSub(v, qq), p),
+      fDiv(fSub(fNeg(v), qq), p),
+      fDiv(fNeg(qq), p),
+    ],
+  };
+}
+
+/** 11 — a 가 주어졌을 때 연립부등식을 만족시키는 정수의 개수 */
+function intCount(f: Fact, a: F): number {
+  const m1 = fr(num(f, "m1"));
+  const c1 = fAdd(a, fr(num(f, "kw")));
+  const r1 = relOf(num(f, "r1"));
+  return intsWhere(
+    and((x) => relHolds(r1, fMul(m1, x), c1), lin(f, 2)),
+    -60,
+    60,
+  ).length;
+}
 
 /** 정답 **값**을 facts 로 다시 세운다 — 수면 수, 범위면 «조건» 또는 정확한 구간. */
 const VERIFY: Record<string, (f: Fact) => Expect> = {
@@ -150,7 +200,7 @@ const VERIFY: Record<string, (f: Fact) => Expect> = {
 
   "03": (f) => {
     const s = only(sys2(f).sol, "해는 한 점");
-    expect(s.lo !== null && s.hi !== null && tivText(s), "해는 한 점").toBe(
+    expect(tivText(s), "해는 한 점").toBe(
       tivText({ lo: s.lo, loC: true, hi: s.lo, hiC: true }),
     );
     return { v: "x", exact: s };
@@ -225,6 +275,7 @@ const VERIFY: Record<string, (f: Fact) => Expect> = {
       },
     };
   },
+
   "06": (f) => {
     if (f.mode === 0) {
       const W = fr(num(f, "W"));
@@ -299,8 +350,8 @@ const VERIFY: Record<string, (f: Fact) => Expect> = {
       const count = (a: number): number =>
         intsWhere(
           (x) => {
-            const d = fAbs(fSub(x, s));
-            return relHolds(r1, m, d) && relHolds(r2, d, fr(a));
+            const dist = fAbs(fSub(x, s));
+            return relHolds(r1, m, dist) && relHolds(r2, dist, fr(a));
           },
           -200,
           200,
@@ -339,6 +390,7 @@ const VERIFY: Record<string, (f: Fact) => Expect> = {
     const hi = fNum(s.hi!);
     return [hi - lo, lo + hi, lo * hi][num(f, "exprId")]!;
   },
+
   "08": (f) => {
     const { pred, crit } = absLin(f);
     const sol = chartSolve(pred, crit);
@@ -375,32 +427,113 @@ const VERIFY: Record<string, (f: Fact) => Expect> = {
       prop: (k) => (s.hiC ? fCmp(s.hi!, k) < 0 : fCmp(s.hi!, k) <= 0),
     };
   },
+
+  "09": (f) => {
+    const { pred, crit } = absSum(f);
+    if (f.mode === 1) {
+      const s = only(chartSolve(pred, crit), "해는 한 구간");
+      expect(s.loC && s.hiC, "양 끝이 닫혀 있어야 최댓·최솟값이 있다").toBe(
+        true,
+      );
+      return fNum(fAdd(s.lo!, s.hi!));
+    }
+    const ints = intsWhere(pred);
+    expect(ints.length, "해가 막혀 있어야 한다").toBeLessThan(50);
+    return f.kind === 0 ? sum(ints) : ints.length;
+  },
+
+  "10": (f) => {
+    const r = relOf(num(f, "r"));
+    const abs = absOf(f);
+    if (f.mode === 0) {
+      const alpha = fr(num(f, "n"), num(f, "den"));
+      const beta = fr(num(f, "beta"));
+      const none = (k: number): boolean => {
+        const rhs = fAdd(fMul(alpha, fr(k)), beta);
+        return !exists((x) => relHolds(r, abs.at(x), rhs), abs.crit(rhs));
+      };
+      const ks: number[] = [];
+      for (let k = 1; k <= 200; k += 1) if (none(k)) ks.push(k);
+      expect(none(200), "큰 k 에서는 해가 있어야 한다").toBe(false);
+      return ks.length;
+    }
+    if (f.mode === 1) {
+      const c = fr(num(f, "c"));
+      return {
+        v: "a",
+        prop: (a) => {
+          const sol = chartSolve(
+            (x) => relHolds(r, fAdd(abs.at(x), c), a),
+            abs.crit(fSub(a, c)),
+          );
+          return sol.length === 1 && sol[0]!.lo === null && sol[0]!.hi === null;
+        },
+      };
+    }
+    const m = fr(num(f, "m"));
+    return {
+      v: "k",
+      prop: (k) => {
+        const rhs = fAdd(k, m);
+        return exists((x) => relHolds(r, abs.at(x), rhs), abs.crit(rhs));
+      },
+    };
+  },
+
+  "11": (f) => {
+    const N = num(f, "N");
+    const prop: Pred = (a) => intCount(f, a) === N;
+    if (f.mode !== 2) return { v: "a", prop };
+    // 조건을 만족시키는 a 의 격자(1/4) 가운데 가장 작은(큰) 값 — 끝점이 격자에 걸리는지는 ±ε 로 본다
+    const hits: F[] = [];
+    for (let n = -200; n <= 200; n += 1) {
+      const a = fr(n, 4);
+      if (prop(a)) hits.push(a);
+    }
+    expect(hits.length, "조건을 만족시키는 a 가 있다").toBeGreaterThan(0);
+    const eps = fr(1, 1000);
+    if (f.ask === 0) {
+      expect(prop(fSub(hits[0]!, eps)), "최솟값 바로 아래는 안 된다").toBe(
+        false,
+      );
+      return fNum(hits[0]!);
+    }
+    const top = hits[hits.length - 1]!;
+    expect(prop(fAdd(top, eps)), "최댓값 바로 위는 안 된다").toBe(false);
+    return fNum(top);
+  },
+
+  "12": (f) => {
+    const p = num(f, "p");
+    const qq = num(f, "q");
+    const r = num(f, "r");
+    if (f.mode === 1) {
+      const xs: number[] = [];
+      for (let x = 1; x <= 200; x += 1) {
+        // 앞의 x−1 명은 q 개씩, 마지막 한 명이 받는 개수
+        const last = p * x + r - qq * (x - 1);
+        if (last >= num(f, "m1") && last < num(f, "m2")) xs.push(x);
+      }
+      expect(xs, "학생 수가 하나로 정해져야 한다").toHaveLength(1);
+      return p * xs[0]! + r;
+    }
+    const s = num(f, "s");
+    const xs: number[] = [];
+    for (let x = s + 1; x <= 300; x += 1) {
+      // 쓴 의자(차)는 x−s 개 — 사람이 그 안에 다 앉되 마지막 것이 비지 않는다
+      const people = p * x + r;
+      const used = x - s;
+      if (people > qq * (used - 1) && people <= qq * used) xs.push(x);
+    }
+    expect(xs.length, "가능한 개수가 있다").toBeGreaterThan(0);
+    if (f.ask === 2) return xs[0]!;
+    return f.ask === 0
+      ? xs[0]! + xs[xs.length - 1]!
+      : p * xs[xs.length - 1]! + r;
+  },
 };
 
-/** 08 — `|px+q| rel cx+d` 와 참·거짓이 바뀔 수 있는 점(절댓값 안이 0 · 두 조각의 직선이 만나는 점). */
-function absLin(f: Fact): { pred: Pred; crit: F[] } {
-  const p = fr(num(f, "p"));
-  const qq = fr(num(f, "q"));
-  const c = fr(num(f, "c"));
-  const d = fr(num(f, "d"));
-  const r = relOf(num(f, "r"));
-  const pred: Pred = (x) =>
-    relHolds(r, fAbs(fAdd(fMul(p, x), qq)), fAdd(fMul(c, x), d));
-  const crit = [fDiv(fNeg(qq), p)];
-  if (!fEq(p, c)) crit.push(fDiv(fSub(d, qq), fSub(p, c)));
-  if (!fEq(fNeg(p), c)) crit.push(fDiv(fAdd(d, qq), fNeg(fAdd(p, c))));
-  return { pred, crit };
-}
-
-/**
- * 발문이 보여 줘야 하는 조건 하나. `mustContain` 이 있으면 그 글자가 든 수식에서만 찾는다 —
- * 같은 조건을 두 수식(부등식과 「해가 a<x<b」)이 같이 말할 때 하나가 빠져도 초록이 안 되게.
- */
-type Want = { what: string; pred: Pred; crit: F[]; mustContain?: string };
-
 /** 발문이 **보여 줘야 하는** 부등식 — facts 로 시험이 따로 만든다. 문자 상수는 `env` 로 매긴다. */
-type ShownSpec = { env: Env; wants: Want[]; numbers?: number[] };
-
 const SHOWN: Record<string, (f: Fact) => ShownSpec> = {
   "01": (f) => {
     const { pred, crit, sol } = sys2(f);
@@ -412,7 +545,10 @@ const SHOWN: Record<string, (f: Fact) => ShownSpec> = {
     const s = sol[0]!;
     return {
       env: { a: s.lo!, b: s.hi! },
-      wants: [...wants, { what: "해 a·b 의 등호", pred, crit }],
+      wants: [
+        ...wants,
+        { what: "해 a·b 의 등호", pred, crit, mustContain: "b" },
+      ],
     };
   },
   "02": (f) => {
@@ -422,7 +558,10 @@ const SHOWN: Record<string, (f: Fact) => ShownSpec> = {
     const s = sol[0]!;
     return {
       env: { a: s.lo!, b: s.hi! },
-      wants: [...wants, { what: "해 a·b 의 등호", pred, crit }],
+      wants: [
+        ...wants,
+        { what: "해 a·b 의 등호", pred, crit, mustContain: "b" },
+      ],
     };
   },
   "03": (f) => {
@@ -439,7 +578,7 @@ const SHOWN: Record<string, (f: Fact) => ShownSpec> = {
   },
   "04": (f) => {
     const { pred, crit } = sys2(f);
-    const env: Env = { a: fr(num(f, "a")), b: fr(num(f, "b")) };
+    const env = { a: fr(num(f, "a")), b: fr(num(f, "b")) };
     if (f.mode === 1)
       return { env, wants: [{ what: "A≤B≤C · 주어진 해", pred, crit }] };
     return {
@@ -504,24 +643,19 @@ const SHOWN: Record<string, (f: Fact) => ShownSpec> = {
     };
   },
   "06": (f) => {
-    if (f.mode === 0)
-      return {
-        env: {},
-        wants: [],
-        numbers: ["p", "W", "lowP", "highP"].map((k) => num(f, k)),
-      };
-    if (f.mode === 1)
-      return { env: {}, wants: [], numbers: [num(f, "S1"), num(f, "S2")] };
-    return {
-      env: {},
-      wants: [],
-      numbers: ["a1", "a2", "b1", "b2", "N", "SP", "SQ"].map((k) => num(f, k)),
-    };
+    const keys =
+      f.mode === 0
+        ? ["p", "W", "lowP", "highP"]
+        : f.mode === 1
+          ? ["S1", "S2"]
+          : ["a1", "a2", "b1", "b2", "N", "SP", "SQ"];
+    return { env: {}, wants: [], numbers: keys.map((k) => num(f, k)) };
   },
   "07": (f) => {
     if (f.mode === 3) {
       const m = fr(num(f, "m"));
       const s = fr(num(f, "s"));
+      const r1 = relOf(num(f, "r1"));
       const r2 = relOf(num(f, "r2"));
       const a = fr(num(f, "a"));
       return {
@@ -530,8 +664,8 @@ const SHOWN: Record<string, (f: Fact) => ShownSpec> = {
           {
             what: "m<|x−s|<a",
             pred: (x) => {
-              const d = fAbs(fSub(x, s));
-              return relHolds(relOf(num(f, "r1")), m, d) && relHolds(r2, d, a);
+              const dist = fAbs(fSub(x, s));
+              return relHolds(r1, m, dist) && relHolds(r2, dist, a);
             },
             crit: [fSub(s, a), fAdd(s, a), fSub(s, m), fAdd(s, m)],
           },
@@ -615,6 +749,73 @@ const SHOWN: Record<string, (f: Fact) => ShownSpec> = {
     }
     return { env: {}, wants };
   },
+  "09": (f) => {
+    const { pred, crit } = absSum(f);
+    return {
+      env: {},
+      wants: [{ what: "절댓값 두 개 부등식", pred, crit, mustContain: "|" }],
+    };
+  },
+  "10": (f) => {
+    const r = relOf(num(f, "r"));
+    const abs = absOf(f);
+    const seven = fr(7);
+    let rhs: F;
+    let env: Record<string, F>;
+    let pred: Pred;
+    if (f.mode === 0) {
+      env = { k: seven };
+      rhs = fAdd(
+        fMul(fr(num(f, "n"), num(f, "den")), seven),
+        fr(num(f, "beta")),
+      );
+      pred = (x) => relHolds(r, abs.at(x), rhs);
+    } else if (f.mode === 1) {
+      env = { a: seven };
+      const c = fr(num(f, "c"));
+      rhs = fSub(seven, c);
+      pred = (x) => relHolds(r, fAdd(abs.at(x), c), seven);
+    } else {
+      env = { k: seven };
+      rhs = fAdd(seven, fr(num(f, "m")));
+      pred = (x) => relHolds(r, abs.at(x), rhs);
+    }
+    return {
+      env,
+      wants: [
+        { what: "절댓값 부등식", pred, crit: abs.crit(rhs), mustContain: "|" },
+      ],
+    };
+  },
+  "11": (f) => {
+    const two = fr(2);
+    const m1 = fr(num(f, "m1"));
+    const c1 = fAdd(two, fr(num(f, "kw")));
+    const r1 = relOf(num(f, "r1"));
+    const crit = [fDiv(c1, m1), linCrit(f, 2)];
+    const T = num(f, "T");
+    return {
+      env: { a: two },
+      wants: [
+        {
+          what: "a 가 든 부등식",
+          pred: (x) => relHolds(r1, fMul(m1, x), c1),
+          crit,
+          mustContain: "a",
+        },
+        { what: "둘째 부등식", pred: lin(f, 2), crit },
+      ],
+      numbers: f.mode === 1 ? [T - 1, T] : [num(f, "N")],
+    };
+  },
+  "12": (f) => ({
+    env: {},
+    wants: [],
+    numbers: (f.mode === 1
+      ? ["p", "q", "r", "m1", "m2"]
+      : ["p", "q", "r", "s"]
+    ).map((k) => num(f, k)),
+  }),
 };
 
 function eachProblem(
@@ -646,9 +847,6 @@ describe("고등 공통수학1 연립일차부등식 — 등록", () => {
       expect(e.grade).toBe(BOOK);
       expect(e.key).toBe(`${BOOK}|${MINOR}|${e.rpmType}`);
     }
-    for (const h of H1_LIN_INEQ_HOLD) {
-      expect(h.key.startsWith(`${BOOK}|${MINOR}|`), h.key).toBe(true);
-    }
   });
 
   it("유형의 단원은 교육과정 시드에 실제로 있는 이름이다", () => {
@@ -676,28 +874,11 @@ describe("고등 공통수학1 연립일차부등식 — 값", () => {
     eachProblem((p, key, number) => {
       const verify = VERIFY[number];
       expect(verify, `${number}: 검산식이 없다`).toBeDefined();
-      const want = verify!(p.facts);
-      const where = `${key} ${JSON.stringify(p.facts)} — ${p.answer}`;
-      if (typeof want === "number") {
-        const got = readAnswerValues(p.answer);
-        expect(got.length, where).toBe(1);
-        // ⚠️ 읽개의 부호 뒤집기는 허수부에 `-0` 을 남긴다 — `toBe(0)` 은 `Object.is` 라 거짓으로 빨개진다
-        expect(Math.abs(got[0]!.im), where).toBe(0);
-        expect(
-          Math.abs(got[0]!.re - want),
-          `${where} (기대 ${want})`,
-        ).toBeLessThan(1e-9);
-      } else if ("exact" in want) {
-        expect(
-          tivEq(readIv(p.answer, want.v), want.exact),
-          `${where} (기대 ${tivText(want.exact)})`,
-        ).toBe(true);
-      } else {
-        expect(
-          ivVsProp(readIv(p.answer, want.v), want.prop, want.crit),
-          where,
-        ).toBeNull();
-      }
+      checkAnswer(
+        p.answer,
+        verify!(p.facts),
+        `${key} ${JSON.stringify(p.facts)} — ${p.answer}`,
+      );
     });
   });
 
@@ -706,51 +887,22 @@ describe("고등 공통수학1 연립일차부등식 — 값", () => {
     eachProblem((p, key, number) => {
       const spec = SHOWN[number];
       expect(spec, `${number}: 지면 대조가 없다`).toBeDefined();
-      const { env, wants, numbers = [] } = spec!(p.facts);
-      const shown = shownPreds(p.content, env);
-      for (const w of wants) {
-        const pool = w.mustContain
-          ? shown.filter((s) => s.tex.includes(w.mustContain!))
-          : shown;
-        expect(
-          hasShown(pool, w.pred, probePoints(w.crit)),
-          `${key}: 발문에 ${w.what} 가 없다 — ${p.content}`,
-        ).toBe(true);
-        checked += 1;
-      }
-      const inSpans = new Set(spanNumbers(p.content));
-      for (const n of numbers) {
-        expect(
-          inSpans.has(Math.abs(n)),
-          `${key}: 발문 수식에 ${n} 이 없다 — ${p.content}`,
-        ).toBe(true);
-        checked += 1;
-      }
+      checked += checkShown(p.content, spec!(p.facts), key);
     });
     expect(
       checked,
       "지면 대조가 하나도 안 돌면 이 검사는 장식이다",
-    ).toBeGreaterThan(500);
+    ).toBeGreaterThan(1000);
   });
 });
 
 describe("고등 공통수학1 연립일차부등식 — 오답", () => {
-  it("구간 정답의 오답 넷은 모두 읽히는 구간이고, 정답과 다른 집합이다", () => {
+  it("생성기가 낸 오답 넷은 모두 읽히고, 정답과 다르다", () => {
     let seen = 0;
     eachProblem((p, key) => {
       if (!p.distractors) return;
       seen += 1;
-      // 변수 글자 — `\le` 의 `l` 을 집지 않게 명령어를 먼저 걷는다
-      const v = /[a-z]/.exec(p.answer.replace(/\\[a-zA-Z]+/g, ""))![0];
-      const ans = readIv(p.answer, v);
-      expect(p.distractors, key).toHaveLength(4);
-      for (const d of p.distractors) {
-        const iv = readIv(d, v);
-        expect(
-          tivEq(iv, ans),
-          `${key}: 오답 ${d} 가 정답 ${p.answer} 과 같은 집합`,
-        ).toBe(false);
-      }
+      checkDistractors(p.answer, p.distractors, key);
     });
     expect(
       seen,

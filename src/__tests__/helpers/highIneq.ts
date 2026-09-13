@@ -102,7 +102,9 @@ type Node =
   | { t: "pow"; a: Node; e: number }
   | { t: "bin"; op: "+" | "-" | "*" | "/"; a: Node; b: Node };
 
-export type Env = Readonly<Record<string, F>>;
+// 값이 `undefined` 인 칸을 받는다 — 갈래마다 다른 문자를 매기면 TS 가 `{ a?: undefined }` 로 합쳐
+// 넘긴다. 매겨지지 않은 문자를 **읽는** 순간에는 `evalNode` 가 던진다(조용히 0 을 넣지 않는다).
+export type Env = Readonly<Record<string, F | undefined>>;
 
 function tokenize(src: string): Tok[] {
   const out: Tok[] = [];
