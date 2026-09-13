@@ -12,6 +12,7 @@ import {
 } from "react";
 import type { UnitNode } from "@/lib/units/groupUnits";
 import { TeachingAuthPanel } from "./teachingAuthPanel";
+import WorkProgress from "./WorkProgress";
 import s from "./TeachingView.module.css";
 
 const ClassManage = dynamic(
@@ -166,7 +167,11 @@ export default function TeachingView() {
               disabled={signingOut}
               onClick={() => void logout()}
             >
-              {signingOut ? "로그아웃 중…" : "로그아웃"}
+              {signingOut ? (
+                <WorkProgress variant="inline" label="로그아웃 중…" />
+              ) : (
+                "로그아웃"
+              )}
             </button>
           </div>
         ) : null}
@@ -267,10 +272,5 @@ export default function TeachingView() {
 }
 
 function Loading({ message }: { message: string }) {
-  return (
-    <div className={s.loading} role="status">
-      <span className={s.loadingDot} aria-hidden="true" />
-      {message}
-    </div>
-  );
+  return <WorkProgress label={message} />;
 }

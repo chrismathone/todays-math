@@ -1,6 +1,7 @@
 "use client";
 
 import WorkspacePageHeader from "./WorkspacePageHeader";
+import WorkProgress from "./WorkProgress";
 import { useEffect, useId, useMemo, useRef, useState } from "react";
 import { MathText } from "@/components/math/MathText";
 import { DIFFICULTY_LADDER } from "@/contracts/difficulty";
@@ -594,11 +595,11 @@ export default function BankView({
           </div>
           <div className={styles.problemList} aria-busy={loading}>
             {loading ? (
-              <div className={styles.loadingState} role="status">
-                <span className={styles.loader} />
-                <strong>문제를 찾고 있어요</strong>
-                <p>선택한 조건에 맞는 문제를 불러옵니다.</p>
-              </div>
+              <WorkProgress
+                key={request.version}
+                label="문제를 찾고 있어요"
+                detail="선택한 조건에 맞는 문제를 불러옵니다."
+              />
             ) : error ? (
               <div className={styles.emptyState} role="alert">
                 <span className={styles.stateIcon}>!</span>

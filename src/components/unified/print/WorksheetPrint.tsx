@@ -2,6 +2,7 @@ import { useEffect, useMemo, useRef, useState } from "react";
 import { A4_DIM } from "./tokens";
 import type { StudioProblem } from "../types";
 import { AnswerPage } from "./AnswerPage";
+import WorkProgress from "../WorkProgress";
 import { TEMPLATE_COMPONENTS } from "./templateComponents";
 import { useMeasuredPages } from "./useMeasuredPages";
 import type { PrintMeta, PrintOptions, ProblemReview } from "./types";
@@ -113,13 +114,19 @@ export function WorksheetPrint({
           </select>
         </label>
       </div>
-      {!ready && (
-        <p className={editor.subtle} role="status">
-          {questions.layoutError || answers.layoutError
-            ? "시험지 정보가 한 쪽보다 깁니다. 개념 정리나 제목을 줄여 주세요."
-            : "글꼴과 그림을 불러오고 페이지를 구성하고 있습니다…"}
-        </p>
-      )}
+      {!ready ? (
+        questions.layoutError || answers.layoutError ? (
+          <p className={editor.subtle} role="alert">
+            시험지 정보가 한 쪽보다 깁니다. 개념 정리나 제목을 줄여 주세요.
+          </p>
+        ) : (
+          <WorkProgress
+            className={editor.printProgress}
+            label="시험지 미리보기를 준비하고 있어요"
+            detail="글꼴과 그림을 불러오고 페이지를 구성하고 있습니다…"
+          />
+        )
+      ) : null}
       {(questions.fontError || answers.fontError) && (
         <p className={editor.subtle} role="status">
           선택한 웹 글꼴을 불러오지 못해 대체 글꼴로 표시합니다. 네트워크를

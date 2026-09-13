@@ -707,13 +707,8 @@
   color: #74837d;
   margin: 5px 0 0;
 }
-.teachingLoading {
-  border: 1px solid #dce3ed;
-  border-radius: 14px;
-  padding: 26px 22px;
-  background: white;
-  font-size: var(--text-body, 14px);
-  color: #697d97;
+.recentLoading {
+  padding: 16px 20px;
 }
 @media (min-width: 1600px) {
   .home {

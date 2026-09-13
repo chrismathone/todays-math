@@ -412,9 +412,7 @@
   outline: none;
 }
 .loading {
-  padding: 48px 32px;
-  color: #6d7e99;
-  font-size: var(--text-body, 14px);
+  margin: 24px 32px;
 }
 .notice,
 .saveError {

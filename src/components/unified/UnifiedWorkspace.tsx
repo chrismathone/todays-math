@@ -1,6 +1,7 @@
 "use client";
 
 import WorkspacePageHeader from "./WorkspacePageHeader";
+import WorkProgress from "./WorkProgress";
 import dynamic from "next/dynamic";
 import { useCallback, useEffect, useRef, useState } from "react";
 import type { BankData, StudioProblem } from "./types";
@@ -12,19 +13,34 @@ import { DevAiProvider } from "./useDevAi";
 import DevAiStatusPanel from "./DevAiStatusPanel";
 import s from "./Workroom.module.css";
 const BankView = dynamic(() => import("./BankView"), {
-  loading: () => <p className={s.loading}>문제은행을 불러오는 중입니다…</p>,
+  loading: () => (
+    <WorkProgress className={s.loading} label="문제은행을 불러오는 중입니다…" />
+  ),
 });
 const StudioView = dynamic(() => import("./StudioView"), {
   ssr: false,
-  loading: () => <p className={s.loading}>자료 작업실을 준비하는 중입니다…</p>,
+  loading: () => (
+    <WorkProgress
+      className={s.loading}
+      label="자료 작업실을 준비하는 중입니다…"
+    />
+  ),
 });
 const TeachingView = dynamic(() => import("./TeachingView"), {
   ssr: false,
-  loading: () => <p className={s.loading}>수업 정보를 확인하는 중입니다…</p>,
+  loading: () => (
+    <WorkProgress
+      className={s.loading}
+      label="수업 정보를 확인하는 중입니다…"
+    />
+  ),
 });
 const WorksheetEditor = dynamic(() => import("./WorksheetEditor"), {
   loading: () => (
-    <p className={s.loading}>시험지 미리보기를 준비하는 중입니다…</p>
+    <WorkProgress
+      className={s.loading}
+      label="시험지 미리보기를 준비하는 중입니다…"
+    />
   ),
 });
 type View = "home" | "bank" | "studio" | "export" | "library" | "teaching";
@@ -497,26 +513,27 @@ function UnifiedWorkspaceContent({ initialData }: { initialData: BankData }) {
             <kbd>Ctrl K</kbd>
           </button>
           <div className={s.headerActions}>
-            <span className={s.saveState} data-state={saveStatus} role="status">
-              <Icon
-                name={
-                  saveStatus === "error"
-                    ? "warning"
-                    : saveStatus === "saving"
-                      ? "clock"
-                      : "check"
-                }
-                size={15}
-              />
-              {!hydrated
-                ? "작업 불러오는 중"
-                : saveStatus === "saving"
-                  ? "저장 중…"
-                  : saveStatus === "error"
-                    ? "저장 확인 필요"
-                    : selected.length
-                      ? "자동 저장됨"
-                      : "작업 준비 완료"}
+            <span className={s.saveState} data-state={saveStatus}>
+              {!hydrated || saveStatus === "saving" ? (
+                <WorkProgress
+                  variant="inline"
+                  label={!hydrated ? "작업 불러오는 중" : "저장 중…"}
+                />
+              ) : (
+                <>
+                  <Icon
+                    name={saveStatus === "error" ? "warning" : "check"}
+                    size={15}
+                  />
+                  <span role="status">
+                    {saveStatus === "error"
+                      ? "저장 확인 필요"
+                      : selected.length
+                        ? "자동 저장됨"
+                        : "작업 준비 완료"}
+                  </span>
+                </>
+              )}
             </span>
             <button
               className={s.headerPaper}
@@ -673,9 +690,10 @@ function UnifiedWorkspaceContent({ initialData }: { initialData: BankData }) {
                 </label>
               </div>
               {!hydrated ? (
-                <p className={s.loading} role="status">
-                  저장한 시험지를 불러오는 중입니다…
-                </p>
+                <WorkProgress
+                  className={s.loading}
+                  label="저장한 시험지를 불러오는 중입니다…"
+                />
               ) : filteredDrafts.length ? (
                 <div className={s.libraryGrid}>
                   {filteredDrafts.map((item) => (
