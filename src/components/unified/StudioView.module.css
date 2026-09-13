@@ -1640,3 +1640,36 @@
     bottom: 0;
   }
 }
+
+@media (min-width: 761px) {
+  .editing .canvasToolbar,
+  .editing.panelClosed .canvasToolbar,
+  .focusMode.editing .canvasToolbar {
+    flex-wrap: nowrap;
+  }
+  .editing .sourcePicker,
+  .editing.panelClosed .sourcePicker,
+  .focusMode.editing .sourcePicker {
+    flex: 0 1 260px;
+    max-width: 300px;
+    min-width: 100px;
+  }
+  .editing .pageTools {
+    flex: 1 0 auto;
+    justify-content: flex-end;
+    margin-left: auto;
+    gap: 7px;
+  }
+  .editing .pageTools select {
+    font-size: 13px;
+    max-width: 116px;
+  }
+  .editing .pageTools button {
+    width: 40px;
+  }
+  .editing .pageTools .preciseButton {
+    width: auto;
+    padding-inline: 12px;
+    font-size: 12px;
+  }
+}

@@ -6,6 +6,7 @@ import type { BankData, StudioProblem } from "./types";
 import { useWorkspaceDrafts } from "./useWorkspaceDrafts";
 import WorkroomHome, { formatDraftDate } from "./WorkroomHome";
 import Icon, { type WorkspaceIconName } from "./WorkspaceIcon";
+import TodayMathMark from "@/components/brand/TodayMathMark";
 import s from "./Workroom.module.css";
 const BankView = dynamic(() => import("./BankView"), {
   loading: () => <p className={s.loading}>문제은행을 불러오는 중입니다…</p>,
@@ -122,7 +123,7 @@ export default function UnifiedWorkspace({
       /* Layout remains usable when browser preferences are unavailable. */
     }
   }, []);
-  function toggleSidebar() {
+  const toggleSidebar = useCallback(() => {
     const value = !sidebarCollapsed;
     setSidebarCollapsed(value);
     try {
@@ -130,7 +131,7 @@ export default function UnifiedWorkspace({
     } catch {
       /* Optional preference. */
     }
-  }
+  }, [sidebarCollapsed]);
   useEffect(() => {
     const sync = () => {
       const value = window.location.hash.slice(1);
@@ -162,6 +163,10 @@ export default function UnifiedWorkspace({
   useEffect(() => {
     const keydown = (event: KeyboardEvent) => {
       if (!(event.ctrlKey || event.metaKey)) return;
+      if (event.key === "\\") {
+        event.preventDefault();
+        toggleSidebar();
+      }
       if (event.key.toLowerCase() === "k") {
         event.preventDefault();
         setModal("search");
@@ -173,7 +178,7 @@ export default function UnifiedWorkspace({
     };
     window.addEventListener("keydown", keydown);
     return () => window.removeEventListener("keydown", keydown);
-  }, [saveNow]);
+  }, [saveNow, toggleSidebar]);
   const openBank = (filters: { q?: string; grade?: string } = {}) => {
     setBankEntry((current) => ({ ...filters, version: current.version + 1 }));
     navigate("bank");
@@ -318,18 +323,49 @@ export default function UnifiedWorkspace({
         }}
       />
       <aside className={s.sidebar}>
-        <button
-          className={s.brand}
-          onClick={() => navigate("home")}
-          aria-label="오늘의수학 홈"
-        >
-          <span className={s.brandMark}>
-            ∑<i />
-          </span>
-          <span>
-            오늘의수학<small>선생님의 수학 작업실</small>
-          </span>
-        </button>
+        <div className={s.sideHeader}>
+          <button
+            className={s.brand}
+            onClick={() => navigate("home")}
+            aria-label="오늘의수학 홈"
+          >
+            <span className={s.brandMark}>
+              <TodayMathMark size={36} inverse />
+            </span>
+            <span>오늘의수학</span>
+          </button>
+          <button
+            className={s.sidebarToggle}
+            onClick={toggleSidebar}
+            aria-label={
+              sidebarCollapsed ? "왼쪽 메뉴 펼치기" : "왼쪽 메뉴 접기"
+            }
+            title={
+              sidebarCollapsed ? "메뉴 펼치기 (Ctrl+\\)" : "메뉴 접기 (Ctrl+\\)"
+            }
+            aria-expanded={!sidebarCollapsed}
+          >
+            <svg
+              viewBox="0 0 24 24"
+              width="19"
+              height="19"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="1.7"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              aria-hidden="true"
+            >
+              <path
+                d={
+                  sidebarCollapsed
+                    ? "m5 6 6 6-6 6m7-12 6 6-6 6"
+                    : "m19 6-6 6 6 6m-7-12-6 6 6 6"
+                }
+              />
+            </svg>
+          </button>
+        </div>
         <button
           className={s.newButton}
           disabled={!hydrated}
@@ -403,17 +439,6 @@ export default function UnifiedWorkspace({
       </aside>
       <div className={s.main}>
         <header className={s.topbar}>
-          <button
-            className={s.sidebarToggle}
-            onClick={toggleSidebar}
-            aria-label={
-              sidebarCollapsed ? "왼쪽 메뉴 펼치기" : "왼쪽 메뉴 접기"
-            }
-            title={sidebarCollapsed ? "메뉴 펼치기" : "메뉴 접기"}
-            aria-expanded={!sidebarCollapsed}
-          >
-            <Icon name="layout" />
-          </button>
           <div className={s.breadcrumb}>
             <span>작업실</span>
             <Icon name="chevron" size={14} />

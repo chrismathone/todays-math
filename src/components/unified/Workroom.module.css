@@ -1407,3 +1407,82 @@
     background: #eef3ff;
   }
 }
+
+.brandMark {
+  width: 36px;
+  flex-shrink: 0;
+}
+.brandMark svg {
+  display: block;
+  width: 36px;
+  height: 36px;
+}
+@media (max-width: 760px) {
+  .brandMark,
+  .brandMark svg {
+    width: 31px;
+    height: 31px;
+  }
+}
+
+.sideHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 4px;
+  min-height: 44px;
+}
+.sideHeader .brand {
+  width: auto;
+  padding: 0;
+  gap: 8px;
+}
+.sideHeader .brand > span:last-child {
+  font-size: 22px;
+  letter-spacing: -0.8px;
+  white-space: nowrap;
+}
+.sideHeader .sidebarToggle {
+  display: grid;
+  width: 36px;
+  height: 40px;
+  border: 0;
+  margin: 0;
+  color: #8fa4c7;
+  background: transparent;
+  border-radius: 6px;
+}
+.sideHeader .sidebarToggle:hover {
+  background: #2a3d59;
+  color: white;
+}
+@media (min-width: 761px) {
+  .workspace[data-sidebar-collapsed="true"] .sideHeader {
+    justify-content: center;
+  }
+  .workspace[data-sidebar-collapsed="true"] .sideHeader .brand {
+    display: none;
+  }
+  .workspace[data-sidebar-collapsed="true"] .sideHeader .sidebarToggle {
+    width: 44px;
+    height: 44px;
+  }
+}
+@media (max-width: 1050px) and (min-width: 761px) {
+  .sideHeader .brand > span:last-child {
+    font-size: 19px;
+  }
+  .sideHeader .brandMark,
+  .sideHeader .brandMark svg {
+    width: 30px;
+    height: 30px;
+  }
+}
+@media (max-width: 760px) {
+  .sideHeader .sidebarToggle {
+    display: none;
+  }
+  .sideHeader .brand > span:last-child {
+    font-size: 21px;
+  }
+}
