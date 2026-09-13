@@ -137,6 +137,7 @@ export function WorksheetPrint({
         ref={viewport}
         role="region"
         aria-label="시험지 미리보기"
+        aria-busy={!ready}
         tabIndex={0}
       >
         <div

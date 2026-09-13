@@ -58,6 +58,7 @@ describe("original Mathgen template adapters", () => {
       expect(html).toContain("검증 시험지");
       expect(html).toContain("검증 학교");
       expect(html).toContain("2026-09-14");
+      expect(html).not.toContain("2025 · 1ST SEMESTER · MIDTERM");
       expect(html).toContain(crop);
       expect(html).toContain('data-measure-idx="0"');
     },

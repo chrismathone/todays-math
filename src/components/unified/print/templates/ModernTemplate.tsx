@@ -133,7 +133,7 @@ export function ModernTemplate({
                   marginBottom: 4,
                 }}
               >
-                {meta.semester ?? "2025 · 1ST SEMESTER · MIDTERM"}
+                {meta.semester || meta.title}
               </div>
               <div
                 style={{

@@ -1,5 +1,5 @@
 "use client";
-import { useLayoutEffect, useRef, useState } from "react";
+import { useCallback, useLayoutEffect, useRef, useState } from "react";
 import WorkspacePageHeader from "./WorkspacePageHeader";
 import { PrintOptionsPanel } from "./print/PrintOptionsPanel";
 import { WorksheetPrint } from "./print/WorksheetPrint";
@@ -56,7 +56,6 @@ export default function WorksheetEditor({
   const addFromBankRef = useRef<HTMLButtonElement>(null);
   const removedIndexRef = useRef<number | null>(null);
   const [tab, setTab] = useState<"settings" | "order">("settings");
-  const [printReady, setPrintReady] = useState(false);
   // Archived concept callers still work; the live workspace persists through its draft store.
   const [localOptions, setLocalOptions] = useState(() => ({
     ...DEFAULT_PRINT_OPTIONS,
@@ -66,6 +65,24 @@ export default function WorksheetEditor({
   const [localMeta, setLocalMeta] = useState(() => ({ ...DEFAULT_PRINT_META }));
   const options = printOptions ?? localOptions;
   const meta = printMeta ?? localMeta;
+  const [prepared, setPrepared] = useState<{
+    selected: StudioProblem[];
+    title: string;
+    options: PrintOptions;
+    meta: PrintMeta;
+  } | null>(null);
+  // Readiness belongs to this exact draft. A previous layout must not leave
+  // print enabled during the first render after a formatting or content change.
+  const printReady =
+    prepared?.selected === selected &&
+    prepared.title === title &&
+    prepared.options === options &&
+    prepared.meta === meta;
+  const setPrintReady = useCallback(
+    (ready: boolean) =>
+      setPrepared(ready ? { selected, title, options, meta } : null),
+    [selected, title, options, meta],
+  );
   function updateOptions(patch: Partial<PrintOptions>) {
     if (setPrintOptions) setPrintOptions(patch);
     else {
