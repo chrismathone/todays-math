@@ -22,4 +22,9 @@ describe("unified elementary fraction display", () => {
     const converted = displayFractions("$\\frac{9}{4}$", "초5");
     expect(displayFractions(converted, "초5")).toBe(converted);
   });
+  it("preserves a fraction raised to a power so grouping cannot change", () => {
+    expect(displayFractions("$\\frac{9}{4}^{2}$", "초5")).toBe(
+      "$\\frac{9}{4}^{2}$",
+    );
+  });
 });

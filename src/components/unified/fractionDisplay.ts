@@ -19,6 +19,7 @@ export function displayFractions(
     ) => {
       // Adjacent terms, powers and nested fractions need their original grouping.
       const before = source.slice(0, offset);
+      if (/^\s*[\^_]/.test(source.slice(offset + full.length))) return full;
       if (/[\d\w}\]]\s*$/.test(before) || /(?:\^|_)\{?$/.test(before))
         return full;
       const open = before.lastIndexOf("{");
