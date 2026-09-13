@@ -15,6 +15,7 @@ import {
   subscriptionEnvironment,
   withCliTemp,
   type CliExecutable,
+  type CliEnvironment,
 } from "./cli-process";
 import {
   buildSubscriptionInvocation,
@@ -73,7 +74,7 @@ function providerStatus(
 async function inspectProvider(
   id: DevAiProvider,
   cwd: string,
-  env: NodeJS.ProcessEnv,
+  env: CliEnvironment,
   signal?: AbortSignal,
 ): Promise<{ status: DevAiProviderStatus; executable?: CliExecutable }> {
   const executable = await discoverSubscriptionCli(id, env);

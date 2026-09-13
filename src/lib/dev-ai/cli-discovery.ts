@@ -2,12 +2,16 @@ import { access, stat } from "node:fs/promises";
 import { constants } from "node:fs";
 import path from "node:path";
 import type { DevAiProvider } from "./contracts";
-import { envValue, type CliExecutable } from "./cli-process";
+import {
+  envValue,
+  type CliEnvironment,
+  type CliExecutable,
+} from "./cli-process";
 
 /** Resolve npm shims to their installed JS/native bin; never execute .cmd/.ps1. */
 export function executableCandidates(
   provider: DevAiProvider,
-  env: NodeJS.ProcessEnv,
+  env: CliEnvironment,
   platform: NodeJS.Platform = process.platform,
 ): CliExecutable[] {
   const p = platform === "win32" ? path.win32 : path.posix;
@@ -79,7 +83,7 @@ export function executableCandidates(
 
 export async function discoverSubscriptionCli(
   provider: DevAiProvider,
-  env: NodeJS.ProcessEnv,
+  env: CliEnvironment,
 ): Promise<CliExecutable | undefined> {
   for (const candidate of executableCandidates(provider, env)) {
     try {

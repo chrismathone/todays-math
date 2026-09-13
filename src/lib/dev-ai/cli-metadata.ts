@@ -6,6 +6,7 @@ import {
   runCliProcess,
   SubscriptionCliError,
   type CliExecutable,
+  type CliEnvironment,
 } from "./cli-process";
 
 type Finding = Pick<DevAiProviderStatus, "status" | "detail">;
@@ -84,7 +85,7 @@ export async function inspectAdditionalProvider(
   provider: "grok" | "antigravity",
   executable: CliExecutable,
   cwd: string,
-  env: NodeJS.ProcessEnv,
+  env: CliEnvironment,
   signal?: AbortSignal,
 ): Promise<Finding> {
   try {

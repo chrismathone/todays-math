@@ -44,3 +44,13 @@ Codex 기본 로그인과 Orca에서 선택한 계정이 다르면 `DEV_AI_CODEX
 2026-09-14 KST 실제 dev API에서 예제의 `125 + 348`, `72 ÷ 8`을 두 제공자로 인식하고, 각각 `473`, `9`의 정답과 풀이를 받았다. Claude 페이지 인식은 예제 3문항과 각 영역 좌표를 반환했다. 시험 응답과 화면 캡처는 Git에서 제외되는 `.qa-artifacts/workroom-hifi/`에 보관한다.
 
 요청 크기, 출처·개발 모드 제한, 인증 구분, API 키 제외, 최종 응답 검증, 프로세스 취소와 정리, 클라이언트 요청 중복 방지를 테스트한다. 구현 및 공식 CLI 근거는 [어댑터 문서](dev-subscription-ai-adapters.md), 서식 복원 범위는 [Mathgen 서식 문서](mathgen-format-restoration.md)를 참고한다.
+
+### 통합 화면 검증
+
+- 관련 14개 파일의 129개 테스트 통과. CLI 환경 타입을 Next의 앱 환경 타입과 분리한 뒤 어댑터 21개 테스트와 ESLint를 다시 통과했다.
+- 실제 Next dev 화면에서 Claude 페이지 인식 → 첫 문항 OCR 재실행 → 해설 생성 → 3문항 담기 → 정답·해설 포함 시험지 미리보기를 확인했다. 원본 이미지 3개와 생성된 정답·해설이 보존됐고 브라우저 오류가 없었다.
+- 1440×923, 1366×768, 1024×600, 820×900에서 대기·실행·완료 상태 각각 가로 넘침과 왼쪽 메뉴의 세로 스크롤이 없었다. 기본 상태판은 142px, 낮은 화면에서는 92px이고, 낮은 화면의 실행·완료 상태는 중복 연결 행을 숨겨 97px로 유지한다.
+- 독립된 Studio 브라우저 검증 3개에서 실제 PNG 가져오기, 실패 후 재시도, 원본 전환·초기화 중 지연 응답, 390px 모바일 및 분수 표시를 확인했다. 상세 기록은 [Studio 검증 문서](qa/studio-ai-workflow.md)에 있다.
+- `npm run build` 통과: TypeScript 검사와 64개 정적 페이지 생성 완료. 기존 `dev/tier-bench/g4` 파일 추적 경고 2개와 Prisma 설정의 폐기 예정 안내는 남아 있다.
+
+실제 통합 검증 기록은 `ai-studio-real.json`, 화면은 `ai-studio-recognized.png`, `ai-studio-solved.png`, `ai-studio-export.png`에 있다. 모두 `.qa-artifacts/workroom-hifi/` 아래에 보관하며 실제 사용자 브라우저의 저장 상태를 변경하지 않았다.

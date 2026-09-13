@@ -8,6 +8,10 @@ export interface CliExecutable {
   prefix: string[];
 }
 
+// Child environments are sparse dictionaries. Next's required application
+// NODE_ENV declaration does not apply to an isolated external CLI.
+export type CliEnvironment = Record<string, string | undefined>;
+
 export class SubscriptionCliError extends Error {
   constructor(
     public readonly code: string,
@@ -32,9 +36,9 @@ const ENV_ALLOW =
   /^(PATH|PATHEXT|SYSTEMROOT|WINDIR|SYSTEMDRIVE|COMSPEC|TEMP|TMP|TMPDIR|HOME|USERPROFILE|HOMEDRIVE|HOMEPATH|APPDATA|LOCALAPPDATA|PROGRAMDATA|PROGRAMFILES|PROGRAMFILES\(X86\)|COMMONPROGRAMFILES|LANG|LC_ALL|LC_CTYPE|CODEX_HOME|CLAUDE_CONFIG_DIR|XDG_CONFIG_HOME|XDG_DATA_HOME|XDG_RUNTIME_DIR|DBUS_SESSION_BUS_ADDRESS)$/i;
 
 export function subscriptionEnvironment(
-  source: NodeJS.ProcessEnv,
-): NodeJS.ProcessEnv {
-  const env: NodeJS.ProcessEnv = {};
+  source: CliEnvironment,
+): CliEnvironment {
+  const env: CliEnvironment = {};
   for (const [key, value] of Object.entries(source)) {
     if (ENV_ALLOW.test(key) && value !== undefined) env[key] = value;
   }
@@ -57,7 +61,7 @@ export function subscriptionEnvironment(
 }
 
 export function envValue(
-  env: NodeJS.ProcessEnv,
+  env: CliEnvironment,
   name: string,
 ): string | undefined {
   return Object.entries(env).find(
@@ -126,7 +130,7 @@ export function treeKillInvocation(
   };
 }
 
-async function killTree(pid: number, env: NodeJS.ProcessEnv): Promise<void> {
+async function killTree(pid: number, env: CliEnvironment): Promise<void> {
   if (process.platform !== "win32") {
     try {
       process.kill(-pid, "SIGKILL");
@@ -144,7 +148,7 @@ async function killTree(pid: number, env: NodeJS.ProcessEnv): Promise<void> {
       shell: false,
       windowsHide: true,
       stdio: "ignore",
-      env,
+      env: env as NodeJS.ProcessEnv,
     });
     const timer = setTimeout(() => {
       killer.kill();
@@ -173,7 +177,7 @@ export async function runCliProcess(
   args: string[],
   options: {
     cwd: string;
-    env: NodeJS.ProcessEnv;
+    env: CliEnvironment;
     input?: string;
     signal?: AbortSignal;
     timeoutMs?: number;
@@ -187,7 +191,7 @@ export async function runCliProcess(
     return await new Promise<CliProcessResult>((resolve, reject) => {
       const child = spawn(executable.command, [...executable.prefix, ...args], {
         cwd: options.cwd,
-        env: options.env,
+        env: options.env as NodeJS.ProcessEnv,
         shell: false,
         windowsHide: true,
         detached: process.platform !== "win32",

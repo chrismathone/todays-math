@@ -126,6 +126,9 @@
   .mode {
     display: none;
   }
+  .panel:has(.activity) .connection {
+    display: none;
+  }
 }
 @media print {
   .panel,
