@@ -318,9 +318,12 @@ export async function collectHwpxLayout(
         }
         flush();
       }
-      const bodyNode = page.querySelector<HTMLElement>(
-        ".measure-body, [data-hwpx-body]",
-      );
+      // A right solving area is page artwork beside one text column, not a
+      // second equal-width problem column. Its SVG/borders are collected above.
+      const bodyNode =
+        page.querySelector<HTMLElement>(
+          "[data-solving-layout] > [data-question-column]",
+        ) ?? page.querySelector<HTMLElement>(".measure-body, [data-hwpx-body]");
       let body: HwpxPage["body"];
       if (bodyNode) {
         const s = getComputedStyle(bodyNode),
