@@ -35,6 +35,15 @@
   cursor: default;
   opacity: 0.55;
 }
+/* 범위 고르개의 칸은 **표의 행**이지 낱개 단추가 아니다. 위 `.bank button` 의 8px 이
+   행마다 걸려 고른 칸이 잘린 알약처럼 보였고(원장님 2026-09-14 「선택된 곳에 쓸데없는
+   라운드 처리하지말것」), 초점 테두리까지 같이 둥글어졌다.
+   `UnitRangePicker` 를 고치지 않는 이유: 그 컴포넌트는 확인테스트·문제은행 등 넷이
+   나눠 쓰는데 라운드를 씌운 것은 **여기의 뭉뚱그린 규칙**이다. 깨뜨린 쪽에서 덮는다.
+   머리글의 「범위 전체로」·「범위 접기」는 role="group" 밖이라 8px 을 그대로 쓴다. */
+.rangePanel [role="group"] button {
+  border-radius: 0;
+}
 .bank button:focus-visible,
 .bank input:focus-visible,
 .bank select:focus-visible,
@@ -280,18 +289,16 @@
   padding-top: 12px;
   border-top: 1px solid var(--bank-line);
 }
+/* 범위 값은 아래 「적용한 검색 조건」 칩이 맡는다 — 머리글에도 적으면 같은 글자가
+   한 화면에 두 번 나온다(원장님 2026-09-14 「범위가 3중으로 나옴」). 글자를 빼면
+   단추를 오른쪽으로 밀어 주던 span 이 없어지므로 여기서 직접 오른쪽에 붙인다. */
 .rangeHeader {
   display: flex;
   flex-wrap: wrap;
   align-items: center;
+  justify-content: flex-end;
   gap: 4px 8px;
   margin-bottom: 8px;
-}
-.rangeHeader > span {
-  flex: 1 1 160px;
-  min-width: 0;
-  overflow-wrap: anywhere;
-  font-weight: 600;
 }
 .rangeDescription {
   margin: 8px 0 0;
@@ -397,6 +404,10 @@ label.selectPage {
   width: 14px;
   height: 14px;
 }
+/* 열 수는 여기서 정하지 않는다 — 카드 폭이 `tokens.ts` 의 PROBLEM_CARD_WIDTH 라서
+   BankView 가 `PROBLEM_GRID_STYLE` 로 실어 준다(그 값을 여기 또 적으면 옛 문제은행과
+   두 벌이 된다). 여기 열 선언이 아예 없던 것이 문항 하나를 전폭 한 줄로 만든
+   원인이었다 — 2026-09-14. */
 .problemList {
   display: grid;
   gap: 12px;

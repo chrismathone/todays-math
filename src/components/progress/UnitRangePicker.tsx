@@ -74,6 +74,20 @@ export function UnitRangePicker({
   /** 그 학년/대단원에 범위에 걸친 소단원이 하나라도 있는가. */
   const groupTouched = (predicate: (unit: UnitNode) => boolean) =>
     units.some((unit) => predicate(unit) && inRange(unit));
+  /**
+   * 그 무리가 **범위의 시작이나 끝을 품고 있는가.**
+   *
+   * 소단원 열은 «열려 있는 대단원» 것만 보여 준다. 그래서 범위가 대단원을 넘으면
+   * 진한 칸이 한쪽 끝만 보이고, 「초3 전체」를 골라도 **소단원 하나만 고른 것처럼**
+   * 읽힌다(원장님 2026-09-14: 「선택상으로는 초3 전범위인데 소단원 1개 선택한
+   * 것처럼 보임」). 양끝이 든 무리를 같이 진하게 칠해, 어느 열을 보고 있든 범위의
+   * 처음과 끝이 드러나게 한다.
+   */
+  const groupHoldsEdge = (predicate: (unit: UnitNode) => boolean) =>
+    units.some(
+      (unit) =>
+        predicate(unit) && (unit.id === startUnitId || unit.id === endUnitId),
+    );
 
   /**
    * **학년·대단원 열을 누르면 그 무리 전체가 범위가 된다**
@@ -198,6 +212,7 @@ export function UnitRangePicker({
               key={grade}
               label={grade}
               selected={tree.grade === grade}
+              edge={groupHoldsEdge((unit) => unit.grade === grade)}
               inRange={groupTouched((unit) => unit.grade === grade)}
               onClick={() =>
                 pickGroup(
@@ -214,6 +229,9 @@ export function UnitRangePicker({
               key={chapter}
               label={chapter}
               selected={tree.chapter === chapter}
+              edge={groupHoldsEdge(
+                (unit) => unit.grade === tree.grade && unit.chapter === chapter,
+              )}
               inRange={groupTouched(
                 (unit) => unit.grade === tree.grade && unit.chapter === chapter,
               )}

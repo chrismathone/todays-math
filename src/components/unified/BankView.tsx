@@ -22,7 +22,26 @@ import type {
   BankViewProps,
   StudioProblem,
 } from "./types";
+import { PROBLEM_CARD_WIDTH } from "@/components/print/tokens";
 import styles from "./BankView.module.css";
+
+/**
+ * 문제 목록 격자 — **카드 폭을 지면 한 단으로 박고 «열 수만» 바뀐다.**
+ *
+ * 원장님 지시 2026-08-19: 「문제 공간은 고정시켜 … 창 크기에 따라서 그냥 3열 4열
+ * 이렇게만 바뀌면 되고」. 옛 문제은행(`ProblemBank`)이 쓰는 관용구와 **같은 상수**를
+ * 쓴다 — 414px 을 CSS 에 따로 적으면 두 화면이 조용히 갈라진다(`tokens.ts` 머리말).
+ *
+ * 종전에는 `.problemList` 가 `display:grid` 라고만 하고 열을 한 번도 선언하지 않아
+ * 문항 하나가 **1,600px 짜리 한 줄**이 됐다. 그러면 그림은 `mx-auto` 로 그 한가운데
+ * 뜨고 보기는 2열로 갈라져 ①과 ② 가 800px 떨어진다(원장님 2026-09-14
+ * 「너무 많이 공간 축소를 해버렸는데」).
+ *
+ * 너무 좁은 창에서는 `min(100%, …)` 가 1단으로 떨어뜨린다 — 가로 스크롤 대신이다.
+ */
+const PROBLEM_GRID_STYLE = {
+  gridTemplateColumns: `repeat(auto-fill, min(100%, ${PROBLEM_CARD_WIDTH}))`,
+} as const;
 
 type Filters = {
   q: string;
@@ -789,9 +808,13 @@ export default function BankView({
                   className={styles.rangePanel}
                 >
                   <div className={styles.rangeHeader}>
-                    <span>
-                      {rangeSummary?.text || "시작 소단원을 고르세요"}
-                    </span>
+                    {/*
+                      범위 값을 여기 적지 않는다 — 아래 「적용한 검색 조건」 칩이 똑같은
+                      글자를 갖고 있어 한 화면에 두 번 나왔다(원장님 2026-09-14
+                      「범위가 3중으로 나옴」). 안내문(「시작 소단원을 고르세요」)도
+                      고르개가 제 오른쪽 위에 이미 쓰므로 여기서 되풀이하지 않는다.
+                      머리글은 단추만 맡고, 값은 칩 한 곳에서만 읽힌다.
+                    */}
                     {filters.unitFrom ? (
                       <button
                         type="button"
@@ -892,7 +915,20 @@ export default function BankView({
               이 페이지 전체 담기
             </label>
           </div>
-          <div className={styles.problemList} aria-busy={loading}>
+          <div
+            className={styles.problemList}
+            /*
+              로딩·오류·「없어요」는 **칸 하나짜리 안내**라 격자를 안 씌운다 — 씌우면
+              그 안내가 카드 폭(414px)으로 잘려 한 귀퉁이에 몰린다. 문항이 실제로
+              있을 때만 다단이 된다.
+            */
+            style={
+              !loading && !error && data.problems.length > 0
+                ? PROBLEM_GRID_STYLE
+                : undefined
+            }
+            aria-busy={loading}
+          >
             {loading ? (
               <WorkProgress
                 key={request.version}

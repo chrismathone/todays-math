@@ -297,6 +297,78 @@ describe("unified bank uses real ProblemBank filters", () => {
     await settled();
     expect(lastQuery()).toEqual({ page: "1" });
   });
+
+  /**
+   * 🔴 목록을 **카드 폭 고정 다단**으로 둔다 (원장님 확정 2026-09-14).
+   *
+   * 종전에는 `.problemList` 가 열을 한 번도 선언하지 않아 문항 하나가 전폭 한 줄이
+   * 됐고, 그 안에서 그림이 화면 한가운데 뜨고 보기가 양 끝으로 갈라졌다.
+   * 폭 값은 `tokens.ts` 의 PROBLEM_CARD_WIDTH 하나에서만 온다.
+   */
+  it("문항 목록을 고정 폭 카드로 늘어놓는다 — 전폭 한 줄이 아니다", () => {
+    mount();
+    const list = document.querySelector("[aria-busy]") as HTMLElement;
+    expect(list.style.gridTemplateColumns).toContain("repeat(auto-fill");
+    // 좁은 창에서 1단으로 떨어지는 가드까지 함께 잠근다(가로 스크롤 대신).
+    expect(list.style.gridTemplateColumns).toContain("min(100%");
+  });
+
+  it("빈 목록에는 격자를 씌우지 않는다 — 안내가 카드 폭으로 잘린다", () => {
+    mount({ ...initialData, problems: [], total: 0 });
+    const list = document.querySelector("[aria-busy]") as HTMLElement;
+    expect(list.style.gridTemplateColumns).toBe("");
+  });
+
+  /**
+   * 🔴 범위 글자가 세 군데 나왔다 (원장님 2026-09-14 「범위가 3중으로 나옴」).
+   *
+   * 셋 중 둘은 **제 몫이 있다**: 필터 바의 「범위」 칸은 옆의 학년·난이도 칸처럼
+   * «지금 고른 값»을 보여 주는 컨트롤이고, 아래 칩은 «적용한 조건»이라 접었을 때도
+   * 남는다. 순수한 군더더기는 **펼친 패널 머리글** 하나뿐이었고 그것만 없앴다.
+   *
+   * 그래서 「한 곳」이 아니라 **「패널 안에는 없다」**가 지킬 것이다. 총 개수도 함께
+   * 박는다 — 머리글을 되살리면 둘 다 빨개진다.
+   */
+  it("범위 값을 펼친 패널에서 되풀이하지 않는다 — 필터 칸과 칩 두 곳뿐", async () => {
+    mount();
+    fireEvent.click(screen.getByRole("button", { name: "범위" }));
+    const picker = screen.getByRole("group", { name: "문제은행 단원 범위" });
+    fireEvent.click(within(picker).getByRole("button", { name: "중2" }));
+    await settled();
+
+    const panel = picker.closest("[id$='-range-panel']") as HTMLElement;
+    expect(within(panel).queryAllByText(/단항식 ~ 다항식/)).toHaveLength(0);
+    // 값이 사라진 것은 아니다 — 컨트롤과 칩에 그대로 있다.
+    expect(screen.getAllByText(/단항식 ~ 다항식/)).toHaveLength(2);
+    expect(
+      screen.getByRole("button", { name: "범위 단항식 ~ 다항식 조건 해제" }),
+    ).toBeInTheDocument();
+  });
+
+  /**
+   * 🔴 범위의 **시작·끝이 든 무리**도 진하게 (원장님 확정 2026-09-14).
+   *
+   * 소단원 열은 «열려 있는 대단원» 것만 보여 주므로, 범위가 대단원을 넘으면 진한 칸이
+   * 한쪽 끝만 보이고 「그 학년 전체」가 소단원 하나처럼 읽혔다.
+   */
+  it("범위의 시작·끝이 든 학년·대단원을 진하게 칠한다", async () => {
+    mount();
+    fireEvent.click(screen.getByRole("button", { name: "범위" }));
+    const picker = screen.getByRole("group", { name: "문제은행 단원 범위" });
+    fireEvent.click(within(picker).getByRole("button", { name: "중2" }));
+    await settled();
+    // 중2 전체(단항식~다항식)가 범위다 — 그 학년과 대단원이 양끝을 품고 있다.
+    expect(within(picker).getByRole("button", { name: "중2" })).toHaveClass(
+      "bg-g-blue",
+    );
+    expect(
+      within(picker).getByRole("button", { name: "식의 계산" }),
+    ).toHaveClass("bg-g-blue");
+    // 범위 밖 학년은 진해지지 않는다 — 「전부 진하다」로 통과하지 못하게 막는다.
+    expect(within(picker).getByRole("button", { name: "중1" })).not.toHaveClass(
+      "bg-g-blue",
+    );
+  });
 });
 
 describe("inspection rows cannot be added", () => {
