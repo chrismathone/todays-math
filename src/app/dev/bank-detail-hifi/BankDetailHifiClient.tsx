@@ -26,7 +26,8 @@ import { LENGTH_SAMPLES, type LengthKey } from "./fixtures";
  *  · §3.2 굵기 3단(400/700/900), 숫자는 tabular-nums
  *  · §8.6 단추는 `ui/Button` 의 네 갈래(primary·ink·secondary·ghost), 최소 44×44
  *
- * 픽스처는 Wire 시안 것을 **그대로 가져다 쓴다** — 두 벌이 되면 시안끼리 갈린다.
+ * 픽스처는 **이 폴더의 `./fixtures`** 를 쓴다 — 풀이 길이(짧은·중간·긴)가 이 단계의
+ * 축이라 Wire 것과 목적이 다르다. 길이는 지어내지 않고 실제 문제은행에서 떠 왔다.
  */
 
 /** Wire 와 같은 갈래 넷. 자리 규칙도 같다: 담기가 맨 앞, 검수는 왼쪽(판단)·변형은 작업. */
