@@ -54,6 +54,43 @@ afterEach(() => {
 });
 
 describe("browser worksheet draft durability", () => {
+  it.each(["blank", "ruled", "chalkboard"] as const)(
+    "preserves %s solving area through saving and column changes",
+    (solvingArea) => {
+      const { create } = memory();
+      const store = create();
+      store.hydrate();
+      store.setProblems([problem]);
+      store.setPrintOptions({ solvingArea });
+      store.setColumns(2);
+      expect(store.saveNow()).toBe(true);
+      const restored = create();
+      restored.hydrate();
+      restored.setColumns(1);
+      expect(restored.getSnapshot().draft.printOptions.solvingArea).toBe(
+        solvingArea,
+      );
+      expect(restored.getSnapshot().draft.problems).toEqual([problem]);
+    },
+  );
+
+  it("defaults old drafts to no right area and rejects invalid styles without losing the draft", () => {
+    const store = memory().create();
+    store.hydrate();
+    expect(
+      store.importDraft({ ...file(), printOptions: { spacing: 26 } }),
+    ).toBe(true);
+    expect(store.getSnapshot().draft.printOptions).toMatchObject({
+      solvingArea: "off",
+      spacing: 26,
+    });
+    const before = store.getSnapshot().draft;
+    expect(
+      store.importDraft({ ...file(), printOptions: { solvingArea: "grid" } }),
+    ).toBe(false);
+    expect(store.getSnapshot().draft).toEqual(before);
+  });
+
   it("persists the complete format and metadata without changing raw problem data", () => {
     const { create } = memory();
     const store = create();

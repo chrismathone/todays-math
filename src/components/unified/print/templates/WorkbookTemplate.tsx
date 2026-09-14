@@ -26,6 +26,8 @@ export function WorkbookTemplate({
   const isFirstPage = page === 1;
   const fs = bodyFontSize("workbook", columns);
   const gap = Math.max(0, options.spacing);
+  const embeddedSolvingArea =
+    columns === 1 && (!options.solvingArea || options.solvingArea === "off");
 
   const renderItem = (p: ProblemReview, i: number) => {
     const num = startingNumber + i;
@@ -37,7 +39,7 @@ export function WorkbookTemplate({
           ...scaledItemStyle(options, itemScales?.[i]),
           // 1단: 카드가 flex: 1 로 균등 stretch → 풀이공간 자동 확장
           flex: columns === 1 ? 1 : undefined,
-          display: columns === 1 ? "grid" : "block",
+          display: embeddedSolvingArea ? "grid" : "block",
           gridTemplateColumns: "1.3fr 1fr",
           gap: 16,
           border: `1px solid ${PAPER_COLORS.ink15}`,
@@ -75,7 +77,7 @@ export function WorkbookTemplate({
           <ProblemBody problem={p.variant} fontSize={fs} options={options} />
         </div>
         {/* 풀이공간 — 1단에서만 (카드 flex:1 → grid stretch → 자연 확장) */}
-        {columns === 1 && (
+        {embeddedSolvingArea && (
           <div
             style={{
               borderLeft: `1px dashed ${PAPER_COLORS.ink30}`,
@@ -264,6 +266,7 @@ export function WorkbookTemplate({
       {isFirstPage && <ExamDetails meta={meta} options={options} />}
 
       <BodyContainer
+        solvingArea={options.solvingArea}
         columns={columns}
         gap={gap}
         columnRule={options.columnDivider ? PAPER_COLORS.ink15 : null}

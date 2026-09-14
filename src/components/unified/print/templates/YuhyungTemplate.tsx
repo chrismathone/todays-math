@@ -202,6 +202,7 @@ export function YuhyungTemplate({
       {isFirstPage && <ExamDetails meta={meta} options={options} />}
 
       <BodyContainer
+        solvingArea={options.solvingArea}
         columns={columns}
         gap={gap}
         columnGap={22}

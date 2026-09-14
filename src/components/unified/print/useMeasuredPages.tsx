@@ -32,6 +32,7 @@ export function useMeasuredPages(
   const host = useRef<HTMLDivElement>(null);
   const [measured, setMeasured] = useState<{
     key: string;
+    contentKey: string;
     heights: number[];
     avail: { first: number; cont: number };
     fontError: boolean;
@@ -39,6 +40,12 @@ export function useMeasuredPages(
   const key = useMemo(
     () => JSON.stringify([problems, options, meta, answer]),
     [problems, options, meta, answer],
+  );
+  // Metadata changes must update existing headers immediately without unmounting
+  // every sheet. Content/format changes still require a fresh set of pages.
+  const contentKey = useMemo(
+    () => JSON.stringify([problems, options, answer]),
+    [problems, options, answer],
   );
   const font = getFontPack(options.fontPack);
   const fontStyle = useMemo(
@@ -56,6 +63,7 @@ export function useMeasuredPages(
     answer ? "jeongtong" : options.template,
     options.columns,
     options.marginPreset,
+    answer ? "off" : options.solvingArea,
   );
 
   useEffect(() => {
@@ -73,20 +81,30 @@ export function useMeasuredPages(
         ),
         (item) => item.getBoundingClientRect().height,
       );
-      const first =
-        root
-          .querySelector<HTMLElement>(
-            '[data-measure-probe="first"] .measure-body',
-          )
-          ?.getBoundingClientRect().height ?? 0;
-      const cont =
-        root
-          .querySelector<HTMLElement>(
-            '[data-measure-probe="cont"] .measure-body',
-          )
-          ?.getBoundingClientRect().height ?? 0;
+      const availableHeight = (page: "first" | "cont") => {
+        const body = root.querySelector<HTMLElement>(
+          `[data-measure-probe="${page}"] .measure-body`,
+        );
+        if (!body) return 0;
+        const style = getComputedStyle(body);
+        // Bounding rectangles include template padding (e.g. pyeongga's 16px
+        // below the questions), which is not available to question content.
+        return (
+          body.getBoundingClientRect().height -
+          (parseFloat(style.paddingTop) || 0) -
+          (parseFloat(style.paddingBottom) || 0)
+        );
+      };
+      const first = availableHeight("first");
+      const cont = availableHeight("cont");
       setMeasured((previous) => {
-        const next = { key, heights, avail: { first, cont }, fontError };
+        const next = {
+          key,
+          contentKey,
+          heights,
+          avail: { first, cont },
+          fontError,
+        };
         return previous && JSON.stringify(previous) === JSON.stringify(next)
           ? previous
           : next;
@@ -129,14 +147,14 @@ export function useMeasuredPages(
       observer?.disconnect();
       cancelAnimationFrame(scheduled);
     };
-  }, [key, options.fontPack]);
+  }, [key, contentKey, options.fontPack]);
 
   const ready = measured?.key === key;
   const layoutError =
     ready && (measured.avail.first < 40 || measured.avail.cont < 40);
   const pages = useMemo(
     () =>
-      ready && !layoutError
+      measured?.contentKey === contentKey && !layoutError
         ? packMeasured(
             measured.heights,
             measured.avail,
@@ -145,12 +163,12 @@ export function useMeasuredPages(
               : options,
           )
         : [],
-    [ready, layoutError, measured, options, answer],
+    [contentKey, layoutError, measured, options, answer],
   );
   const base = {
     columns: options.columns,
     meta,
-    options,
+    options: answer ? { ...options, solvingArea: "off" as const } : options,
     startingNumber: 1,
     totalPages: 2,
     totalProblems: problems.length,

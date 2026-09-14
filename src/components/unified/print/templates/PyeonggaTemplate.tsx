@@ -178,6 +178,7 @@ export function PyeonggaTemplate({
       {isFirstPage && <ExamDetails meta={meta} options={options} />}
 
       <BodyContainer
+        solvingArea={options.solvingArea}
         columns={columns}
         gap={gap}
         columnRule={options.columnDivider ? PAPER_COLORS.ink15 : null}

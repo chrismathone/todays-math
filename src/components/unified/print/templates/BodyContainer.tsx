@@ -15,6 +15,9 @@
 
 import React from "react";
 import { PAPER_COLORS } from "../tokens";
+import { SOLVING_AREA_LAYOUT } from "../geometry";
+import type { PrintOptions } from "../types";
+import { SolvingArea } from "./SolvingArea";
 
 interface BodyContainerProps {
   children: React.ReactNode;
@@ -33,6 +36,7 @@ interface BodyContainerProps {
   distribute?: boolean;
   /** 2단일 때 가운데 세로선. `null` 이면 안 그림. CSS 색상 문자열. */
   columnRule?: string | null;
+  solvingArea?: PrintOptions["solvingArea"];
   /**
    * 2단 우측 컬럼 시작 인덱스. usePrintLayout 의 측정 패킹이 정한 분할점.
    * 없으면 children 개수 절반 (Math.ceil(n/2)) — 기존 동작 (회귀 0).
@@ -48,6 +52,7 @@ export function BodyContainer({
   gap = 16,
   columnGap = 26,
   columnRule = null,
+  solvingArea = "off",
   splitIndex,
   distribute,
   className,
@@ -71,6 +76,38 @@ export function BodyContainer({
           <div style={{ flex: "1 1 0", minHeight: 0 }}>{child}</div>
         ))
       : nodes;
+
+  if (columns === 1 && solvingArea !== "off") {
+    return (
+      <div
+        className={mergedClass}
+        data-solving-layout
+        style={{
+          flex: 1,
+          minHeight: 0,
+          minWidth: 0,
+          display: "grid",
+          gridTemplateColumns: `minmax(0, ${SOLVING_AREA_LAYOUT.questionRatio}fr) minmax(0, ${1 - SOLVING_AREA_LAYOUT.questionRatio}fr)`,
+          columnGap: SOLVING_AREA_LAYOUT.gap,
+          ...style,
+        }}
+      >
+        <div
+          data-question-column
+          style={{
+            display: "flex",
+            flexDirection: "column",
+            gap: colGap,
+            minWidth: 0,
+            minHeight: 0,
+          }}
+        >
+          {wrapSlots(children)}
+        </div>
+        <SolvingArea style={solvingArea} />
+      </div>
+    );
+  }
 
   // 2단 + count: 좌우 *같은 행* 문항 정렬 → 2D 그리드 (row 트랙 하나가 좌우 셀
   // 높이 공유 → 같은 행 문항이 같은 y). N등분 = repeat(N, minmax(0,1fr)) 로 *균등*
@@ -111,11 +148,13 @@ export function BodyContainer({
         ))}
         {hasRule && (
           <div
+            data-column-divider
             style={{
               gridColumn: 2,
               gridRow: "1 / -1",
               width: 1,
-              background: columnRule || PAPER_COLORS.ink08,
+              borderLeft: `1px solid ${columnRule || PAPER_COLORS.ink08}`,
+              boxSizing: "border-box",
             }}
           />
         )}
@@ -160,9 +199,11 @@ export function BodyContainer({
         <div style={colStyle}>{wrapSlots(items.slice(0, split))}</div>
         {columnRule !== null && (
           <div
+            data-column-divider
             style={{
               width: 1,
-              background: columnRule || PAPER_COLORS.ink08,
+              borderLeft: `1px solid ${columnRule || PAPER_COLORS.ink08}`,
+              boxSizing: "border-box",
             }}
           />
         )}

@@ -28,6 +28,8 @@ export function JaseupTemplate({
   const isFirstPage = page === 1;
   const fs = bodyFontSize("jaseup", columns);
   const gap = Math.max(0, options.spacing);
+  const embeddedSolvingArea =
+    columns === 1 && (!options.solvingArea || options.solvingArea === "off");
 
   const renderItem = (p: ProblemReview, i: number) => {
     const num = startingNumber + i;
@@ -38,7 +40,7 @@ export function JaseupTemplate({
         style={{
           ...scaledItemStyle(options, itemScales?.[i]),
           flex: columns === 1 ? 1 : undefined,
-          display: columns === 1 ? "grid" : "block",
+          display: embeddedSolvingArea ? "grid" : "block",
           gridTemplateColumns: "1.15fr 1fr",
           gap: 14,
           paddingBottom: 14,
@@ -102,7 +104,7 @@ export function JaseupTemplate({
           </div>
         </div>
         {/* 모눈 풀이공간 — 1단만 */}
-        {columns === 1 && (
+        {embeddedSolvingArea && (
           <div
             style={{
               backgroundImage: `linear-gradient(${PAPER_COLORS.ink08} 1px, transparent 1px), linear-gradient(90deg, ${PAPER_COLORS.ink08} 1px, transparent 1px)`,
@@ -282,6 +284,7 @@ export function JaseupTemplate({
       {isFirstPage && <ExamDetails meta={meta} options={options} />}
 
       <BodyContainer
+        solvingArea={options.solvingArea}
         columns={columns}
         gap={gap}
         columnRule={options.columnDivider ? PAPER_COLORS.ink15 : null}
