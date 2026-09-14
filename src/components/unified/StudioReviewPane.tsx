@@ -11,11 +11,11 @@ import {
 } from "./studioHelpers";
 import StudioPageEmpty from "./StudioPageEmpty";
 import { SourceEditorDisplay } from "@/components/math/editor/SourceEditorDisplay";
-import { blocksToMarkdown } from "@/lib/mathgen/blocksToMarkdown";
+import { repositionScore } from "./nativeProblemLayout";
 import {
-  repositionScore,
-  stripLeadingProblemNumber,
-} from "./nativeProblemLayout";
+  editedScoreMetadata,
+  studioReviewContent,
+} from "./studioReviewContent";
 import StudioDiagramCropEditor from "./StudioDiagramCropEditor";
 import { MathTextEditor } from "@/components/math/editor/MathTextEditor";
 import type { StudioAiPageJob } from "./useStudioAi";
@@ -148,6 +148,10 @@ function ReviewCard({
   });
   const [draftNumber, setDraftNumber] = useState(String(number));
   const [draftTopic, setDraftTopic] = useState(crop.ocr?.topic ?? "");
+  const editableContent = useMemo(
+    () => studioReviewContent({ content: crop.content, ocr: crop.ocr }),
+    [crop.content, crop.ocr],
+  );
   const validNumber =
     Number.isInteger(Number(draftNumber)) &&
     Number(draftNumber) > 0 &&
@@ -158,7 +162,7 @@ function ReviewCard({
     if (busy) return;
     props.onSelect(crop.id);
     setDraft({
-      content: crop.content,
+      content: editableContent,
       answer: crop.answer,
       solution: crop.solution,
       questionType: crop.questionType,
@@ -170,6 +174,7 @@ function ReviewCard({
   };
   const saveEdit = () => {
     if (!validNumber) return;
+    const contentChanged = draft.content !== editableContent;
     const metadata = crop.ocr ?? {
       number,
       blocks: [],
@@ -182,13 +187,14 @@ function ReviewCard({
       contentEdited: true,
     };
     update({
-      ...(draft.content !== crop.content ? { content: draft.content } : {}),
+      ...(contentChanged ? { content: draft.content } : {}),
       answer: draft.answer,
       solution: draft.solution,
       questionType: draft.questionType,
       figures: draftFigures,
       ocr: {
         ...metadata,
+        ...(contentChanged ? editedScoreMetadata(draft.content) : {}),
         number: Number(draftNumber),
         topic: draftTopic.trim() || undefined,
       },
@@ -268,25 +274,13 @@ function ReviewCard({
     props.onSelect(crop.id);
     props.onUpdate(crop.id, patch);
   };
-  const readContent = useMemo(() => {
-    const content =
-      crop.ocr && !crop.ocr.contentEdited
-        ? blocksToMarkdown(
-            crop.ocr.blocks,
-            crop.ocr.choiceGroups,
-            crop.ocr.subQuestions,
-          )
-        : crop.content;
-    return repositionScore(
-      stripLeadingProblemNumber(
-        // The visual editor escapes literal Markdown brackets when serializing.
-        content.replace(/\\\[(\s*\d+(?:\.\d+)?\s*점\s*)\\\]/g, "[$1]"),
-        crop.ocr?.number,
-      ),
-      crop.ocr?.printedScore ?? crop.ocr?.score,
-      showScores,
-    );
-  }, [crop.content, crop.ocr, showScores]);
+  const readContent = useMemo(
+    () =>
+      showScores
+        ? editableContent
+        : repositionScore(editableContent, undefined, false),
+    [editableContent, showScores],
+  );
   return (
     <article
       className={styles.card}

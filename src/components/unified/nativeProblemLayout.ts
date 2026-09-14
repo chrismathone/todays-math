@@ -48,8 +48,10 @@ export const repositionScore = (
   // 그림/보기 박스 내부를 공백으로 가린 뒤 마지막 발문 위치를 찾는다.
   // 빈 줄 유무와 무관하며 SVG의 좌표·라벨이나 소문항 배점에 끼어들지 않는다.
   const main = lines.slice(0, bodyEnd).join("\n");
+  // CommonMark allows lazy continuation lines without another ">". They are
+  // still inside the condition box until a blank line ends that paragraph.
   const masked = main.replace(
-    /<svg\b[\s\S]*?<\/svg>|<table\b[\s\S]*?<\/table>|<blockquote\b[\s\S]*?<\/blockquote>|\[(?:그림\s*|원본표)\d+\]|!\[[^\]]*\]\([^\n]*?\)|^\s*>[^\n]*|^\s*\|[^\n]*/gim,
+    /<svg\b[\s\S]*?<\/svg>|<table\b[\s\S]*?<\/table>|<blockquote\b[\s\S]*?<\/blockquote>|\[(?:그림\s*|원본표)\d+\]|!\[[^\]]*\]\([^\n]*?\)|^[ \t]*>[^\n]*(?:\n(?![ \t]*\n)[^\n]*)*|^[ \t]*\|[^\n]*/gim,
     (value) => value.replace(/[^\n]/g, " "),
   );
   const end = masked.trimEnd().length;
