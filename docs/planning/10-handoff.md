@@ -250,6 +250,14 @@ CLI `scripts/high/gen-cli.ts` · 시험 `highIdentity`(값·지면·난이도·�
 - 새 워크트리 절차: `npx prisma generate` 전에는 `tsc` 가 779줄(전부 `scripts/` 의 DB 형)이다 — 브리프 절차에 한 줄.
 - 색인 제목의 추출 자국(`최대.c1최소` · `( 1 )` · `, xy에 대한 …` · `- 다각형의 개수 꼭짓점`) — 계약대로 바이트 그대로 썼다.
   적재 전에 추출기를 고칠지 판단.
+- **정리 (2026-09-14)** — 물결 1 세션 워크트리 다섯을 닫고 가지도 지웠다(`chrismathone/h1-*`, 전부 main 에 병합된 뒤).
+  커밋 안 된 것 가운데 남긴 것은 **행렬 렌더 증거 10장**뿐이다(`docs/planning/tracks/high-wave1-reports/shots-matrix/`) —
+  미리보기 HTML·나머지 스크린샷·훑개 스크립트는 `gen-cli` 로 다시 만든다. 보고서 다섯은 이미 저장소에 있다.
+  ⚠️ 기출 트랙 워크트리 **`exam-batch`**(기출 두 편 폴더가 미커밋) · **`grok-solve`**(풀이 결과 13MB · 지운 파일 149개가
+  미커밋)는 **건드리지 않았다** — 그 트랙 세션이 정리할 것. 닫으면 그 미커밋이 사라진다.
+  ⚠️ `orca worktree rm` 은 미커밋이 있으면 거부하고(`--force` 필요), 연달아 부르면 런타임이 끊긴다(어제에 이어 또) —
+  하나씩 부르고 `git worktree list`·폴더 존재로 확인할 것. 지워진 뒤 git 쪽에 `prunable` 이 남으면 `git worktree prune`.
+  main 은 origin 보다 앞서 있다 — **푸시는 안 했다**(원장님 결정 대기).
 
 ---
 
