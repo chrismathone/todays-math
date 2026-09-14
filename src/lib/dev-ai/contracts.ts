@@ -1,3 +1,4 @@
+import type { MathgenProblemData } from "@/lib/mathgen/contracts";
 /** Shared, browser-safe contract for the local development AI bridge. */
 export const DEV_AI_PROVIDERS = [
   "codex",
@@ -34,6 +35,8 @@ export interface DevAiRequest {
   action: DevAiAction;
   imageDataUrl?: string;
   content?: string;
+  /** Source-native OCR; used for topic and answer-choice checks. */
+  ocr?: MathgenProblemData;
   /** Optional existing figure for figure-redraw; untrusted input, at most 500000 characters. */
   svg?: string;
   /** Untrusted source filename; trimmed, 1–255 characters, no control characters. */
@@ -63,6 +66,8 @@ export interface DevAiFigure {
   bbox: { left: number; top: number; width: number; height: number };
 }
 export interface DevAiRecognizedProblem {
+  number?: number;
+  ocr?: MathgenProblemData;
   content: string;
   answer: string;
   /** Printed type/answer-choice evidence only; omitted when ambiguous. */
@@ -73,6 +78,10 @@ export interface DevAiRecognizedProblem {
   figures?: DevAiFigure[];
 }
 export interface DevAiResult {
+  ocr?: MathgenProblemData;
+  /** Page detection only: isolated OCR is queued after these crops are inserted. */
+  detectionOnly?: boolean;
+  upsideDown?: boolean;
   content: string;
   answer: string;
   solution: string;

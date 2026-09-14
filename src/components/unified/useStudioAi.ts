@@ -164,6 +164,7 @@ export function useStudioAi({
     { id: string; key: string; signal: AbortSignal }[]
   >([]);
   const pendingFigureCrops = useRef<string[]>([]);
+  const pendingOcrCrops = useRef<{ id: string; signal: AbortSignal }[]>([]);
   const latest = useRef({ crops, contextKey, active, onDetected });
   useLayoutEffect(() => {
     latest.current = { crops, contextKey, active, onDetected };
@@ -180,6 +181,19 @@ export function useStudioAi({
     }
     const figureCrops = pendingFigureCrops.current.splice(0);
     if (figureCrops.length) void figureAi.run(figureCrops);
+    // Crop jobs enter the same FIFO only after insertion commits. Waiting for
+    // children inside a running page slot could deadlock two active pages.
+    const ocrCrops = pendingOcrCrops.current
+      .splice(0)
+      .filter(
+        (job) =>
+          !job.signal.aborted && crops.some((crop) => crop.id === job.id),
+      );
+    if (ocrCrops.length)
+      void processCrops(
+        "ocr",
+        ocrCrops.map((job) => job.id),
+      );
   });
 
   const publishPages = useCallback(() => {
@@ -438,6 +452,22 @@ export function useStudioAi({
             },
             reviewed: false,
             content: item.content,
+            ...(item.ocr
+              ? { ocr: item.ocr }
+              : item.number
+                ? {
+                    ocr: {
+                      number: item.number,
+                      blocks: [],
+                      choiceGroups: [],
+                      subQuestions: [],
+                      confidence: "low" as const,
+                      choicesLayout: "auto" as const,
+                      bodyMissing: true,
+                      choicesMissing: false,
+                    },
+                  }
+                : {}),
             answer: item.answer,
             ...questionTypePatch(item as CropQuestionType),
             solution: "",
@@ -464,7 +494,16 @@ export function useStudioAi({
           key: entry.job.key,
           signal: controller.signal,
         });
-      pendingFigureCrops.current.push(...detected.map((crop) => crop.id));
+      if (response.result.detectionOnly) {
+        pendingOcrCrops.current.push(
+          ...detected.map((crop) => ({
+            id: crop.id,
+            signal: controller.signal,
+          })),
+        );
+      } else {
+        pendingFigureCrops.current.push(...detected.map((crop) => crop.id));
+      }
       setCrops((previous) => {
         if (stale()) return previous;
         const additions = detected.filter(
@@ -586,6 +625,7 @@ export function useStudioAi({
           action: job.action,
           imageDataUrl: snapshot.image,
           content: snapshot.content,
+          ...(snapshot.ocr ? { ocr: snapshot.ocr } : {}),
           grade: snapshot.grade,
           sourceName: snapshot.sourceLabel,
         },
@@ -650,6 +690,12 @@ export function useStudioAi({
           entry.job.action === "ocr"
             ? {
                 content: result.content,
+                ocr: result.ocr
+                  ? {
+                      ...result.ocr,
+                      number: snapshot.ocr?.number ?? result.ocr.number,
+                    }
+                  : undefined,
                 ...(!snapshot.modeManual ? { mode: "text" as const } : {}),
                 ...questionTypePatch(result as CropQuestionType),
                 answer: result.answer,
@@ -685,6 +731,8 @@ export function useStudioAi({
           };
       }
       const changed =
+        (job.action === "ocr" &&
+          JSON.stringify(patch.ocr) !== JSON.stringify(snapshot.ocr)) ||
         (patch.mode !== undefined && patch.mode !== snapshot.mode) ||
         (patch.questionType !== undefined &&
           patch.questionType !== (snapshot as CropQuestionType).questionType) ||
@@ -709,7 +757,10 @@ export function useStudioAi({
         entry,
         expected: { ...snapshot, ...appliedPatch },
       });
-      if (job.action === "ocr" || job.action === "figures")
+      if (
+        (job.action === "ocr" && !patch.ocr?.bodyMissing) ||
+        job.action === "figures"
+      )
         pendingFigureCrops.current.push(snapshot.id);
       setCrops((previous) =>
         stale()
@@ -822,6 +873,34 @@ export function useStudioAi({
     ]);
   }
 
+  const restorePageJobs = useCallback(
+    (completed: StudioAiPageJob[]) => {
+      let changed = false;
+      for (const job of completed) {
+        if (
+          !job ||
+          (job.state !== "complete" && job.state !== "empty") ||
+          typeof job.sourceId !== "string" ||
+          !job.sourceId ||
+          !Number.isInteger(job.page) ||
+          job.page < 1
+        )
+          continue;
+        const key = pageKey(job.sourceId, job.page);
+        // Never overwrite a live owner or enqueue work while hydrating a session.
+        if (pages.current.has(key)) continue;
+        pages.current.set(key, {
+          job: { ...job, key },
+          controller: new AbortController(),
+          promise: Promise.resolve(),
+        });
+        changed = true;
+      }
+      if (changed) publishPages();
+    },
+    [publishPages],
+  );
+
   return {
     ai,
     available,
@@ -831,6 +910,7 @@ export function useStudioAi({
     cropJobs,
     figureAi,
     pageJobs,
+    restorePageJobs,
     pageProgress,
     message,
     error,

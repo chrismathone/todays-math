@@ -1,8 +1,10 @@
 import type { UnitEntity } from "@/contracts/unit.contract";
+import type { MathgenProblemData } from "@/lib/mathgen/contracts";
 
 export type SchoolLevel = "elementary" | "secondary";
 
 export interface StudioProblem {
+  ocr?: MathgenProblemData;
   questionType?: "multiple-choice" | "short-answer" | "descriptive";
   id: string;
   content: string;

@@ -108,6 +108,35 @@ afterEach(() => {
 });
 
 describe("Studio AI owner", () => {
+  it("carries native metadata through rereading, solution input and worksheet conversion", async () => {
+    const ocr = {
+      number: 19,
+      blocks: [{ type: "text" as const, value: "원본 문항", rows: [] }],
+      choiceGroups: [],
+      subQuestions: [],
+      score: 4,
+      labelType: "서답형",
+      topic: "확률",
+      confidence: "high" as const,
+      choicesLayout: "auto" as const,
+      bodyMissing: false,
+      choicesMissing: false,
+    };
+    bridge.run.mockResolvedValue({
+      ...response(),
+      result: { ...response().result, ocr },
+    });
+    const { result } = mount();
+    await act(async () => {
+      await result.current.processCrops("ocr", ["a"]);
+    });
+    expect(result.current.crops[0].ocr).toEqual(ocr);
+    expect(studioProblem(result.current.crops[0]).ocr).toEqual(ocr);
+    await act(async () => {
+      await result.current.processCrops("solution", ["a"]);
+    });
+    expect(bridge.run.mock.calls.at(-1)?.[0].ocr).toEqual(ocr);
+  });
   it("preserves an explicit original-image output choice after rereading", async () => {
     bridge.run.mockResolvedValue(response());
     const { result } = mount([{ ...crop("a"), modeManual: true }]);
@@ -1105,6 +1134,96 @@ describe("Studio background page queue", () => {
     vi.spyOn(HTMLCanvasElement.prototype, "toDataURL").mockReturnValue(
       "data:image/png;base64,crop-pixels",
     );
+  });
+
+  it("OCRs detected crops independently and retries only the failed crop", async () => {
+    let cropCalls = 0;
+    bridge.run.mockImplementation(async (request) => {
+      if (request.action === "page-ocr")
+        return {
+          ...pageResponse(""),
+          result: {
+            content: "",
+            answer: "",
+            solution: "",
+            warnings: [],
+            detectionOnly: true,
+            problems: [
+              {
+                number: 19,
+                content: "",
+                answer: "",
+                bbox: { left: 50, top: 100, width: 400, height: 250 },
+              },
+              {
+                number: 20,
+                content: "",
+                answer: "",
+                bbox: { left: 550, top: 100, width: 400, height: 250 },
+              },
+            ],
+          },
+        };
+      cropCalls++;
+      if (cropCalls === 2) throw new Error("isolated OCR failure");
+      return {
+        ...response("ocr"),
+        result: {
+          content: "다음을 계산하시오. $1+2$",
+          answer: "",
+          solution: "",
+          warnings: [],
+          ocr: {
+            ...request.ocr,
+            blocks: [
+              { type: "text", value: "다음을 계산하시오. $1+2$", rows: [] },
+            ],
+            confidence: "high",
+            bodyMissing: false,
+          },
+        },
+      };
+    });
+    const { result } = mount([]);
+    await act(async () => {
+      await result.current.recognizePages([task(1)]);
+    });
+    await waitFor(() =>
+      expect(result.current.cropJobs.map((job) => job.state)).toEqual([
+        "complete",
+        "error",
+      ]),
+    );
+    expect(result.current.crops).toHaveLength(2);
+    expect(result.current.crops[0].ocr?.number).toBe(19);
+    expect(result.current.crops[1].content).toBe("");
+    expect(result.current.crops[1].image).toContain("crop-pixels");
+    await act(async () => {
+      await result.current.retry();
+    });
+    expect(cropCalls).toBe(3);
+    expect(result.current.crops[1].ocr?.number).toBe(20);
+    expect(
+      bridge.run.mock.calls.filter((call) => call[0].action === "page-ocr"),
+    ).toHaveLength(1);
+  });
+
+  it("restores only settled page stamps without dispatching AI", async () => {
+    const { result } = mount([]);
+    await act(async () => {
+      result.current.restorePageJobs([
+        { key: "stale", sourceId: "source", page: 1, state: "empty" },
+        { key: "source:2", sourceId: "source", page: 2, state: "complete" },
+        { key: "source:3", sourceId: "source", page: 3, state: "running" },
+        { key: "source:4", sourceId: "source", page: 4, state: "error" },
+      ]);
+    });
+    expect(result.current.pageJobs.map((job) => [job.key, job.state])).toEqual([
+      ["source:1", "empty"],
+      ["source:2", "complete"],
+    ]);
+    expect(bridge.run).not.toHaveBeenCalled();
+    expect(result.current.running).toBe(false);
   });
 
   it("applies per-problem classification while retaining page grade metadata and source name", async () => {

@@ -21,6 +21,7 @@ export interface StudioFigure {
 }
 
 export interface StudioCrop {
+  ocr?: import("@/lib/mathgen/contracts").MathgenProblemData;
   id: string;
   sourceId: string;
   sourceLabel: string;
@@ -108,6 +109,7 @@ export function studioProblem(crop: StudioCrop): StudioProblem {
     );
   return {
     id: crop.id,
+    ...(crop.ocr ? { ocr: crop.ocr } : {}),
     ...(crop.questionType ? { questionType: crop.questionType } : {}),
     content: useText ? crop.content.trim() : "",
     answer: crop.answer.trim(),

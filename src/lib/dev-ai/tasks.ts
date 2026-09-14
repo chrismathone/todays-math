@@ -1,4 +1,31 @@
 import { z } from "zod";
+import { recoverJson } from "@/lib/mathgen/ocrJsonRecovery";
+import {
+  MathgenProblemDataSchema,
+  NativeOcrItemSchema,
+  nativeFromMetadata,
+  nativeQuestionType,
+  normalizeNativeOcr,
+} from "@/lib/mathgen/ocr";
+import {
+  buildMathgenDetectionPrompt,
+  buildMathgenOcrPrompt,
+  buildMathgenSolutionPrompt,
+  DATA_RULE,
+} from "@/lib/mathgen/prompts";
+import {
+  isEssayResult,
+  mergeMissingPassages,
+  parseMarkdownTable,
+  recoverTableInto,
+  tableRecoveryNeeded,
+  TRANSCRIBE_PROMPT,
+  TRANSCRIBE_TABLE_PROMPT,
+} from "@/lib/mathgen/ocrRecovery";
+import { CLEANUP_SYSTEM } from "@/lib/mathgen/sourcePrompts";
+import { validateSolution } from "@/lib/mathgen/solutionValidator";
+import { resolveMCAnswer } from "@/lib/mathgen/answers";
+import { blocksToMarkdown } from "@/lib/mathgen/blocksToMarkdown";
 import { repairJsonString } from "@/lib/ai/jsonRepair";
 import {
   normalizeMathgenAnswer,
@@ -27,6 +54,7 @@ export const DevAiRequestSchema = z
     action: z.enum(["ocr", "page-ocr", "figures", "figure-redraw", "solution"]),
     imageDataUrl: image.optional(),
     content: z.string().max(40000).optional(),
+    ocr: MathgenProblemDataSchema.optional(),
     svg: z.string().max(MAX_AI_SVG_CHARS).optional(),
     sourceName: z
       .string()
@@ -97,13 +125,11 @@ export function buildDevAiPrompt(request: DevAiRequest): string {
 bbox는 첨부 INPUT 이미지 전체의 왼쪽 위 (0,0), 오른쪽 아래 (1000,1000) 기준이다.
 출력 형식: {"content":"","answer":"","solution":"","warnings":[],"figures":[{"bbox":{"left":100,"top":300,"width":400,"height":200}}]}`;
   if (request.action === "solution")
-    return `${COMMON}\n${context}
-검수된 문항 내용을 기준으로 직접 풀어 정답과 해설을 작성한다. 첨부 이미지는 도형·표 확인용이다.
-해당 학년 교육과정 안에서 가장 간결하고 완결된 풀이 하나만 쓴다. 검산은 내부에서 하고, 재시도·혼잣말·정답 대조를 출력하지 않는다.
-쉬운 문제 1~3단계, 보통 3~6단계, 어려운 문제 10단계 이내로 실제 줄바꿈한다. 정보가 부족하면 답을 추측하지 말고 answer를 ?로 쓰고 warnings에 이유를 쓴다.
-객관식 정답은 해당 보기 번호, 주관식은 최종 값과 필요한 단위로 쓴다. 여러 소문항은 번호별 답을 구분한다.
-출력 형식: {"content":"","answer":"정답","solution":"풀이","warnings":[]}
-<problem-data>${JSON.stringify(request.content)}</problem-data>`;
+    return buildMathgenSolutionPrompt(
+      request.grade,
+      request.content ?? "",
+      request.ocr?.topic,
+    );
   if (request.action === "page-ocr") {
     // Escape tag delimiters so an untrusted filename cannot close its data block.
     const sourceName = JSON.stringify(request.sourceName ?? null)
@@ -119,14 +145,17 @@ ${FIGURES}
 각 문제의 figures bbox도 원본 페이지 전체 좌표다. 부모 문제 bbox에 상대적인 좌표가 아니다. 해당 문제 영역 안의 그림만 포함한다.
 questionType은 각 problems 문항 안에 선택적으로 넣는다. 최상위에는 넣지 않는다.
 출력 형식: {"content":"","answer":"","solution":"","warnings":[],"detectedGrade":null,"problems":[{"content":"문제와 보기","answer":"","bbox":{"left":50,"top":100,"width":400,"height":200},"figures":[]}]}
-<source-name-data>${sourceName}</source-name-data>`;
+<source-name-data>${sourceName}</source-name-data>
+${buildMathgenDetectionPrompt()}
+학년 metadata: detectedGrade and warnings follow the preceding grade-detection contract; questionType belongs to each problem only.`;
   }
   return `${COMMON}\n${context}\n${QUESTION_TYPE}
 첨부 이미지는 잘라낸 단일 문제다. 가운데 문제의 본문·모든 보기·조건을 그대로 옮긴다. 가장자리에 잘린 다른 문제는 제외한다. 절대로 풀지 않는다.
 원문에 정답이 인쇄된 경우에만 answer에 옮긴다. 그렇지 않으면 빈 문자열이다. solution은 항상 빈 문자열이다.
 ${FIGURES}
 figures의 bbox는 잘라낸 INPUT 이미지 전체의 왼쪽 위 (0,0), 오른쪽 아래 (1000,1000) 기준이다. 원본 페이지 좌표가 아니다.
-출력 형식: {"content":"문제와 보기","answer":"","solution":"","warnings":[],"figures":[]}`;
+출력 형식: {"content":"문제와 보기","answer":"","solution":"","warnings":[],"figures":[]}
+${buildMathgenOcrPrompt(QUESTION_TYPE)}`;
 }
 
 const text = z.string().max(60000);
@@ -165,6 +194,9 @@ const DetectedGradeSchema: z.ZodType<DevAiDetectedGrade> = z
   })
   .strict();
 const ResultSchema = z.object({
+  ocr: MathgenProblemDataSchema.optional(),
+  detectionOnly: z.boolean().optional(),
+  upsideDown: z.boolean().optional(),
   content: text.default(""),
   answer: text.default(""),
   solution: text.default(""),
@@ -176,7 +208,9 @@ const ResultSchema = z.object({
   problems: z
     .array(
       z.object({
-        content: text.refine((value) => value.trim().length > 0),
+        number: z.number().int().positive().max(10000).optional(),
+        ocr: MathgenProblemDataSchema.optional(),
+        content: text.default(""),
         answer: text.default(""),
         questionType: z.unknown().optional(),
         bbox: BboxSchema,
@@ -257,8 +291,46 @@ export function parseDevAiResult(
     try {
       json = JSON.parse(repairJsonString(raw));
     } catch {
-      throw new DevAiParseError("json", action);
+      json = recoverJson(raw);
+      if (json === undefined) throw new DevAiParseError("json", action);
     }
+  }
+  // Native source envelope is authoritative; never drop its structure into a
+  // generic string result. Legacy bridge responses remain readable.
+  if (action === "ocr" && json && typeof json === "object" && "items" in json) {
+    const native = z
+      .object({
+        items: z.array(NativeOcrItemSchema).min(1).max(30),
+        upsideDown: z.boolean().optional(),
+      })
+      .safeParse(json);
+    if (!native.success)
+      throw new DevAiParseError("schema", action, native.error.issues);
+    const item = native.data.items[0];
+    const normalized = normalizeNativeOcr(item);
+    const type = nativeQuestionType(normalized.ocr);
+    const boxes = item.images.length ? item.images : item.figures;
+    json = {
+      ...normalized,
+      answer: item.answer ?? "",
+      solution: "",
+      ...(type ? { questionType: type } : {}),
+      upsideDown: native.data.upsideDown,
+      figures: boxes.map(({ box: [top, left, bottom, right] }) => ({
+        bbox: { left, top, width: right - left, height: bottom - top },
+      })),
+      warnings: [
+        ...normalized.warnings,
+        ...(native.data.items.length > 1
+          ? [
+              "크롭 안에서 여러 문항이 인식되었습니다. 중심 문항과 영역을 확인해 주세요.",
+            ]
+          : []),
+        ...(native.data.upsideDown
+          ? ["원본이 180도 뒤집혀 있습니다. 원본 방향을 확인해 주세요."]
+          : []),
+      ],
+    };
   }
   const checkedResult = ResultSchema.safeParse(json);
   if (!checkedResult.success)
@@ -363,6 +435,11 @@ export function parseDevAiResult(
       throw new Error(
         "페이지 인식 결과를 받지 못했습니다. 원본은 유지됩니다. 다시 시도해 주세요.",
       );
+    if (
+      !result.detectionOnly &&
+      result.problems.some((problem) => !problem.content.trim())
+    )
+      throw new DevAiParseError("schema", action);
     return {
       ...result,
       content: "",
@@ -389,4 +466,131 @@ export function parseDevAiResult(
       "완성된 정답·해설을 받지 못했습니다. 문제 내용을 확인하고 다시 시도해 주세요.",
     );
   return { ...result, content: "", problems: undefined, figures: undefined };
+}
+
+function parseAuxiliaryText(
+  raw: string,
+  field: "content" | "solution",
+): string {
+  let json: unknown;
+  try {
+    json = JSON.parse(raw);
+  } catch {
+    json = recoverJson(raw);
+  }
+  const result = z.object({ [field]: z.string().max(60000) }).safeParse(json);
+  if (!result.success) throw new Error("보강 응답의 텍스트를 읽지 못했습니다.");
+  return result.data[field];
+}
+
+/** Shared workflow; callers supply the development CLI or production API transport.
+ * Recovery/cleanup use that same provider and image; no hidden provider fallback.
+ */
+export async function executeMathgenTask(
+  request: DevAiRequest,
+  invoke: (prompt: string) => Promise<string>,
+): Promise<DevAiResult> {
+  const prompt = buildDevAiPrompt(request);
+  let result = parseDevAiResult(await invoke(prompt), request.action);
+  if (request.action === "ocr" && result.ocr) {
+    const items = [nativeFromMetadata(result.ocr)];
+    const supplement = async (instruction: string) =>
+      parseAuxiliaryText(
+        await invoke(
+          `${instruction}\n최종 전송 형식은 JSON 객체 {"content":"전사 내용"} 하나다. 위 순수 텍스트 지시는 JSON content 내부에 적용한다.\n${DATA_RULE}`,
+        ),
+        "content",
+      );
+    const recover = async (work: () => Promise<void>) => {
+      try {
+        await work();
+      } catch (error) {
+        if (
+          error &&
+          typeof error === "object" &&
+          "name" in error &&
+          error.name === "AbortError"
+        )
+          throw error;
+        result.warnings.push(
+          "추가 전사 보강을 완료하지 못했습니다. 인식한 원본 결과는 유지됩니다.",
+        );
+      }
+    };
+    if (isEssayResult(items))
+      await recover(async () => {
+        mergeMissingPassages(items, await supplement(TRANSCRIBE_PROMPT));
+      });
+    if (tableRecoveryNeeded(items))
+      await recover(async () => {
+        recoverTableInto(
+          items,
+          parseMarkdownTable(await supplement(TRANSCRIBE_TABLE_PROMPT)),
+        );
+      });
+    const normalized = normalizeNativeOcr(items[0]);
+    result = {
+      ...result,
+      content: normalized.content,
+      ocr: normalized.ocr,
+      warnings: [...new Set([...result.warnings, ...normalized.warnings])],
+    };
+  }
+  if (request.action !== "solution") return result;
+
+  // The source validates each solution, cleans presentation defects, then
+  // regenerates once for remaining warnings. Persist the second result with
+  // warnings rather than marking a heuristic judgment as mathematical proof.
+  for (let attempt = 0; attempt < 2; attempt++) {
+    const choices = request.ocr?.choiceGroups.map((choice) =>
+      blocksToMarkdown(choice.contents),
+    );
+    result.answer = resolveMCAnswer(result.answer, choices);
+    let checks = validateSolution({
+      problemText: request.content ?? "",
+      solutionText: result.solution,
+    });
+    if (
+      checks.some(
+        (check) =>
+          check.rule === "trial-and-error" || check.rule === "too-long",
+      )
+    ) {
+      try {
+        const cleaned = normalizeMathgenText(
+          parseAuxiliaryText(
+            await invoke(
+              `${CLEANUP_SYSTEM}\n최종 출력은 JSON {"solution":"정리한 풀이"} 하나다. answer 필드를 쓰지 않는다.\n${DATA_RULE}\n<solution-data>${JSON.stringify(result.solution).replace(/</g, "\\u003c").replace(/>/g, "\\u003e")}</solution-data>`,
+            ),
+            "solution",
+          ),
+        );
+        if (cleaned.length >= 20) result.solution = cleaned;
+        checks = validateSolution({
+          problemText: request.content ?? "",
+          solutionText: result.solution,
+        });
+      } catch (error) {
+        if (
+          error &&
+          typeof error === "object" &&
+          "name" in error &&
+          error.name === "AbortError"
+        )
+          throw error;
+        // Source best-effort policy: keep original, then try one regeneration.
+      }
+    }
+    if (!checks.length || attempt === 1) {
+      result.warnings = [
+        ...new Set([
+          ...result.warnings,
+          ...checks.map((check) => `${check.summary} ${check.detail}`),
+        ]),
+      ];
+      return result;
+    }
+    result = parseDevAiResult(await invoke(prompt), "solution");
+  }
+  return result;
 }

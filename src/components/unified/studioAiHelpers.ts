@@ -237,6 +237,7 @@ export function studioAiSnapshotMatches(
     current.sourceWidthMm === snapshot.sourceWidthMm &&
     (current.revision ?? 0) === (snapshot.revision ?? 0) &&
     current.content === snapshot.content &&
+    current.ocr === snapshot.ocr &&
     current.answer === snapshot.answer &&
     current.solution === snapshot.solution &&
     current.grade === snapshot.grade &&
