@@ -277,12 +277,16 @@ export function BankDetailHifiClient() {
    * **긴 풀이에서만** 값이 드러난다. 짧은 것만 보고 고르면 고른 뒤에 뒤집힌다.
    */
   const [length, setLength] = useState<LengthKey>("long");
+  /**
+   * 그림 유무는 **길이와 다른 축**이다 (원장님 2026-09-14 「그림있을때 없을때 모두
+   * 해봐」). 섞어 두면 ③ 이 좋아 보인 것이 길이 때문인지 그림 때문인지 못 가른다.
+   */
+  const [figure, setFigure] = useState(true);
   /** 검수 대기면 승인·반려가 더 서서 동작 줄이 가장 붐빈다 — ⑤ 를 볼 때 필요하다. */
   const [pending, setPending] = useState(false);
   const sample = LENGTH_SAMPLES.find((item) => item.key === length)!;
-  const problem = pending
-    ? { ...sample.problem, reviewStatus: "pending" }
-    : sample.problem;
+  const base = figure ? sample.withFigure : sample.problem;
+  const problem = pending ? { ...base, reviewStatus: "pending" } : base;
 
   return (
     <main className="mx-auto max-w-[860px] px-8 py-6 text-ink">
@@ -314,9 +318,30 @@ export function BankDetailHifiClient() {
             aria-pressed={item.key === length}
             onClick={() => setLength(item.key)}
           >
-            {item.label} {item.chars.toLocaleString("ko-KR")}자
+            {item.label}{" "}
+            {(figure ? item.figChars : item.chars).toLocaleString("ko-KR")}자
           </Button>
         ))}
+      </div>
+      <div className="mt-2 flex flex-wrap items-center gap-2 border border-divider px-5 py-4">
+        <span className={`${MICRO} flex-none text-text-2`}>그림</span>
+        <Button
+          variant={figure ? "ink" : "secondary"}
+          aria-pressed={figure}
+          onClick={() => setFigure(true)}
+        >
+          있음
+        </Button>
+        <Button
+          variant={figure ? "secondary" : "ink"}
+          aria-pressed={!figure}
+          onClick={() => setFigure(false)}
+        >
+          없음
+        </Button>
+        {figure ? (
+          <span className="text-[11.5px] text-text-2">{sample.figNote}</span>
+        ) : null}
         <Button
           variant={pending ? "ink" : "secondary"}
           className="ml-auto"
@@ -327,10 +352,16 @@ export function BankDetailHifiClient() {
         </Button>
       </div>
       <p className="mt-2 text-[11.5px] leading-[1.7] text-text-3">
-        길이는 <strong className="text-ink">실제 문제은행에서 떠 온 값</strong>
-        입니다 — 짧은 103자(초4 뒤집기) · 중간 292자(초3 곱셈) · 긴 1,028자(중3
-        삼각비, 소문항 넷짜리 서술형). 「검수 대기로 보기」를 켜면 승인·반려
-        단추가 더 서서 동작 줄이 가장 붐비는 경우가 됩니다.
+        길이도 그림도{" "}
+        <strong className="text-ink">실제 문제은행에서 떠 온 것</strong>
+        입니다. 그림 없음은 103 · 292 · 1,028자, 그림 있음은 79 · 242 ·
+        1,028자입니다 —{" "}
+        <strong className="text-ink">짧은·중간의 그림 판은 다른 문항</strong>
+        이라 길이가 조금 다릅니다(그 길이대에서 그림이 붙은 실물을 골랐고,
+        맞추려고 지어내지 않았습니다).{" "}
+        <strong className="text-ink">긴 것만 같은 문항</strong>에 원본 스캔을
+        붙인 것이라 그림 유무만 놓고 견주는 순수 비교가 됩니다. 「검수 대기로
+        보기」를 켜면 승인·반려가 더 서서 동작 줄이 가장 붐빕니다.
       </p>
 
       <ol className="mt-6 grid gap-3">

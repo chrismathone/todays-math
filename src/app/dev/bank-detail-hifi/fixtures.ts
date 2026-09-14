@@ -96,10 +96,104 @@ const LONG: BankProblem = {
   reviewStatus: "approved",
 };
 
+/* ────────────────────────────────────────────────────────────────────────────
+ * 「그림 있을 때」 — 원장님 2026-09-14 「그림있을때 없을때 모두 해봐」.
+ *
+ * 🔴 **그림 파일이 `public/` 에 실제로 있는 것만 골랐다.** 경로만 베껴 오면 시안에
+ *    깨진 그림이 뜨는데, 그러면 「그림이 있을 때」를 판단하는 데 최악이다.
+ *    (탐침에서 디스크 존재를 확인했다 — 후보 184행 전량 실재.)
+ *
+ * ⚠️ 짧은·중간의 그림 판은 **다른 문항**이다(103↔79자, 292↔242자). 그 길이대에서
+ *    그림이 붙은 실물이 따로 있어서다 — 길이를 맞추려고 지어내지 않았다. 화면에
+ *    두 숫자를 함께 적어 둔다. **긴 것만 같은 문항에 원본 그림을 붙인 것**이라
+ *    그림 유무만 놓고 견주는 순수 비교가 된다.
+ * ──────────────────────────────────────────────────────────────────────────── */
+
+/** 초5 · 79자 · **도형 엔진 SVG**. 배지가 `[초] [도] [단]` 으로 선다. */
+const FIG_SHORT: BankProblem = {
+  ...BASE,
+  id: "hifi-fig-short",
+  problemCode: "E50903-A07-016",
+  grade: "초5",
+  chapter: "2-3 합동과 대칭",
+  section: "2-3-3 선대칭도형과 그 성질 알아보기",
+  difficulty: "응용",
+  content: String.raw`점선을 대칭축으로 하는 선대칭도형을 완성하려고 합니다. 완성한 도형의 색칠된 칸 수를 구하시오.`,
+  answer: String.raw`$10$`,
+  solution: String.raw`지금 색칠된 칸은 $5$칸이고, 그중 대칭축에서 떨어진 $5$칸은 반대쪽에도 하나씩 필요합니다. 따라서 $5+5=10$이므로 $10$칸입니다.`,
+  figureSvg: `<svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><rect x="10" y="10" width="16" height="16" rx="0" fill="#e2b48a" stroke="#111111" stroke-width="0.9" /><rect x="26" y="10" width="16" height="16" rx="0" fill="#ffffff" stroke="#111111" stroke-width="0.9" /><rect x="42" y="10" width="16" height="16" rx="0" fill="#ffffff" stroke="#111111" stroke-width="0.9" /><rect x="58" y="10" width="16" height="16" rx="0" fill="#ffffff" stroke="#111111" stroke-width="0.9" /><rect x="74" y="10" width="16" height="16" rx="0" fill="#ffffff" stroke="#111111" stroke-width="0.9" /><rect x="10" y="26" width="16" height="16" rx="0" fill="#e2b48a" stroke="#111111" stroke-width="0.9" /><rect x="26" y="26" width="16" height="16" rx="0" fill="#ffffff" stroke="#111111" stroke-width="0.9" /><rect x="42" y="26" width="16" height="16" rx="0" fill="#ffffff" stroke="#111111" stroke-width="0.9" /><rect x="58" y="26" width="16" height="16" rx="0" fill="#ffffff" stroke="#111111" stroke-width="0.9" /><rect x="74" y="26" width="16" height="16" rx="0" fill="#ffffff" stroke="#111111" stroke-width="0.9" /><rect x="10" y="42" width="16" height="16" rx="0" fill="#e2b48a" stroke="#111111" stroke-width="0.9" /><rect x="26" y="42" width="16" height="16" rx="0" fill="#ffffff" stroke="#111111" stroke-width="0.9" /><rect x="42" y="42" width="16" height="16" rx="0" fill="#ffffff" stroke="#111111" stroke-width="0.9" /><rect x="58" y="42" width="16" height="16" rx="0" fill="#ffffff" stroke="#111111" stroke-width="0.9" /><rect x="74" y="42" width="16" height="16" rx="0" fill="#ffffff" stroke="#111111" stroke-width="0.9" /><rect x="10" y="58" width="16" height="16" rx="0" fill="#e2b48a" stroke="#111111" stroke-width="0.9" /><rect x="26" y="58" width="16" height="16" rx="0" fill="#ffffff" stroke="#111111" stroke-width="0.9" /><rect x="42" y="58" width="16" height="16" rx="0" fill="#ffffff" stroke="#111111" stroke-width="0.9" /><rect x="58" y="58" width="16" height="16" rx="0" fill="#ffffff" stroke="#111111" stroke-width="0.9" /><rect x="74" y="58" width="16" height="16" rx="0" fill="#ffffff" stroke="#111111" stroke-width="0.9" /><rect x="10" y="74" width="16" height="16" rx="0" fill="#ffffff" stroke="#111111" stroke-width="0.9" /><rect x="26" y="74" width="16" height="16" rx="0" fill="#e2b48a" stroke="#111111" stroke-width="0.9" /><rect x="42" y="74" width="16" height="16" rx="0" fill="#ffffff" stroke="#111111" stroke-width="0.9" /><rect x="58" y="74" width="16" height="16" rx="0" fill="#ffffff" stroke="#111111" stroke-width="0.9" /><rect x="74" y="74" width="16" height="16" rx="0" fill="#ffffff" stroke="#111111" stroke-width="0.9" /><line x1="50" y1="8" x2="50" y2="92" stroke="#111111" stroke-width="1.2" stroke-dasharray="5 4" /></svg>`,
+  source: "manual",
+  familyKey: "elem:초5|2-3-3 선대칭도형과 그 성질 알아보기|03",
+  problemType: "활용",
+  questionTypeRaw: "단답형",
+  questionType: "short-answer",
+  reviewStatus: "approved",
+};
+
+/** 중3 · 242자 · **스캔 2장**. 그림이 여럿일 때 줄이 어떻게 접히는지 드러난다. */
+const FIG_MID: BankProblem = {
+  ...BASE,
+  id: "hifi-fig-mid",
+  problemCode: "J30603-A14-001",
+  grade: "중3",
+  chapter: "6. 원의 성질",
+  section: "원주각",
+  difficulty: "응용",
+  content: String.raw`원 위에 같은 간격으로 점을 나타내려고 한다. 다음 물음에 답하시오. ⑴ 그림과 같이 원 위에 같은 간격으로 $4$개의 점을 나타냈을 때, 세 개의 점을 선택하여 만들 수 있는 직각삼각형의 개수를 구하시오.
+⑵ 그림과 같이 원 위에 같은 간격으로 $10$개의 점을 나타냈을 때, 세 개의 점을 선택하여 만들 수 있는 직각삼각형의 개수를 구하시오.`,
+  answer: String.raw`⑴ $4$ ⑵ $40$`,
+  solution: String.raw`⑴ 원 위의 점이 $4$개이므로 지름은 $2$개를 만들 수 있다.지름을 빗변으로 하고 나머지 $2$개의 점 중 $1$개의 점을 선택하여 삼각형을 만들면 직각삼각형이다.따라서 직각삼각형의 개수는$2\times 2=4$⑵ 원 위의 점이 $10$개이므로 지름은 $5$개를 만들 수 있다.지름을 빗변으로 하고 나머지 $8$개의 점 중 $1$개의 점을 선택하여 삼각형을 만들면 직각삼각형이다.따라서 직각삼각형의 개수는$5\times 8=40$`,
+  figureUrls: [
+    "/figures/exam/20479007a0/q19-2.png",
+    "/figures/exam/20479007a0/q19.png",
+  ],
+  figureDims: [1024, 943, 1024, 1003],
+  figureSourceMm: [73.4, 67.64],
+  source: "past_exam",
+  familyKey: "mid:3-2|원주각|E02",
+  problemType: "서술형",
+  questionTypeRaw: "서술형",
+  questionType: "descriptive",
+  reviewStatus: "approved",
+};
+
+/** 긴 것은 **같은 문항**에 원본 스캔을 붙인 것이다 — 그림 유무만 갈리는 순수 비교. */
+const FIG_LONG: BankProblem = {
+  ...LONG,
+  id: "hifi-fig-long",
+  figureUrls: ["/figures/exam/20479007a0/q17.png"],
+  figureDims: [598, 1024],
+  figureSourceMm: [70.39],
+};
+
 export const LENGTH_SAMPLES = [
-  { key: "short" as const, label: "짧은 풀이", chars: 103, problem: SHORT },
-  { key: "mid" as const, label: "중간 풀이", chars: 292, problem: MID },
-  { key: "long" as const, label: "긴 풀이", chars: 1028, problem: LONG },
+  {
+    key: "short" as const,
+    label: "짧은 풀이",
+    chars: 103,
+    figChars: 79,
+    problem: SHORT,
+    withFigure: FIG_SHORT,
+    figNote: "초5 선대칭 · 도형 엔진 SVG",
+  },
+  {
+    key: "mid" as const,
+    label: "중간 풀이",
+    chars: 292,
+    figChars: 242,
+    problem: MID,
+    withFigure: FIG_MID,
+    figNote: "중3 원주각 · 스캔 2장",
+  },
+  {
+    key: "long" as const,
+    label: "긴 풀이",
+    chars: 1028,
+    figChars: 1028,
+    problem: LONG,
+    withFigure: FIG_LONG,
+    figNote: "같은 문항에 원본 스캔 1장",
+  },
 ];
 
 export type LengthKey = (typeof LENGTH_SAMPLES)[number]["key"];
