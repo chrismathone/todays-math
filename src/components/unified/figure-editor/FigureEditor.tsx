@@ -3,6 +3,7 @@
 import { useEffect, useLayoutEffect, useMemo, useRef, useState } from "react";
 import { createPortal } from "react-dom";
 import { ModalShell, Btn } from "./editorUi";
+import styles from "./StudioFigureEditor.module.css";
 import type { StudioFigureEditorProps } from "./types";
 import { initialFigureSource, createFigureSaveResult } from "./figureDocument";
 import {
@@ -727,12 +728,11 @@ export function FigureEditor({
     <ModalShell
       onClose={busy && !redrawing ? () => {} : close}
       aria-label={`도형 ${index + 1} 편집기`}
-      className="w-[96vw] max-w-[1550px] h-[90vh]"
     >
       <style>{`#figure-editor-canvas > svg { width:100% !important; height:100% !important; max-width:none !important; max-height:none !important; margin:0 !important; display:block; }
       #figure-editor-canvas [data-object-id] { cursor:inherit; }`}</style>
-      <header className="px-5 py-3 border-b border-control flex items-center gap-3">
-        <span className="rounded bg-orange-100 text-orange-800 px-2 py-1 text-xs font-semibold">
+      <header className={styles.header}>
+        <span className="rounded bg-[var(--figure-accent-soft)] text-[var(--figure-accent-ink)] px-2 py-1 text-xs font-semibold">
           도형 {index + 1}
         </span>
         <h2 className="text-lg font-semibold">도형 편집</h2>
@@ -789,9 +789,9 @@ export function FigureEditor({
           {error}
         </p>
       )}
-      <div className="flex-1 min-h-0 flex overflow-x-auto">
+      <div className={styles.body}>
         {showSourcePanel && (
-          <aside className="w-[25%] min-w-[210px] max-w-[360px] p-4 border-r border-control overflow-auto bg-side">
+          <aside className={styles.source}>
             <h3 className="text-sm font-semibold mb-3">분리한 원본</h3>
             {original ? (
               <img
@@ -838,8 +838,8 @@ export function FigureEditor({
               원본을 흐리게 겹쳐 보기
             </label>
             {sourceOverlay && original && (
-              <div className="mt-3 rounded-lg border border-orange-200 bg-orange-50/70 p-3">
-                <label className="block text-xs font-medium text-orange-900">
+              <div className="mt-3 rounded-lg border border-[var(--figure-accent-line)] bg-[var(--figure-accent-soft)] p-3">
+                <label className="block text-xs font-medium text-[var(--figure-accent-ink)]">
                   <span className="flex items-center justify-between">
                     <span>원본 크기</span>
                     <output>{Math.round(sourceOverlayScale * 100)}%</output>
@@ -854,15 +854,15 @@ export function FigureEditor({
                     onChange={(e) =>
                       setSourceOverlayScale(Number(e.target.value))
                     }
-                    className="mt-2 w-full accent-orange-600"
+                    className="mt-2 w-full accent-[var(--figure-primary)]"
                   />
                 </label>
-                <div className="mt-1 flex justify-between text-[11px] text-orange-700">
+                <div className="mt-1 flex justify-between text-[11px] text-[var(--figure-accent-ink)]">
                   <span>작게</span>
                   <button
                     type="button"
                     onClick={() => setSourceOverlayScale(1)}
-                    className="rounded px-1.5 py-0.5 hover:bg-orange-100"
+                    className="rounded px-1.5 py-0.5 hover:bg-[var(--figure-accent-soft)]"
                   >
                     100%로 복원
                   </button>
@@ -872,9 +872,9 @@ export function FigureEditor({
             )}
           </aside>
         )}
-        <div className="flex-1 min-w-[360px] flex flex-col overflow-y-auto bg-slate-100">
+        <div className={styles.workspace}>
           <div
-            className="flex flex-wrap gap-1 p-2 border-b border-control bg-white"
+            className={`${styles.toolbar} flex flex-wrap gap-1 p-2 border-b bg-white`}
             role="toolbar"
             aria-label="도형 편집 도구"
           >
@@ -890,7 +890,7 @@ export function FigureEditor({
                   if (t.id !== "select" && t.id !== "pan") setSelected(null);
                 }}
                 disabled={busy}
-                className={`px-2 py-1.5 text-xs rounded ${tool === t.id ? "bg-orange-100 text-orange-800 ring-1 ring-orange-300" : "hover:bg-side"}`}
+                className={`px-2 py-1.5 text-xs rounded ${tool === t.id ? "bg-[var(--figure-accent-soft)] text-[var(--figure-accent-ink)] ring-1 ring-[var(--figure-accent-line)]" : "hover:bg-side"}`}
               >
                 <span aria-hidden="true" className="text-base mr-1">
                   {t.glyph}
@@ -908,7 +908,7 @@ export function FigureEditor({
                 setAddingFunction(true);
               }}
               disabled={busy}
-              className="px-2 py-1.5 text-xs rounded hover:bg-orange-50"
+              className="px-2 py-1.5 text-xs rounded hover:bg-[var(--figure-accent-soft)]"
             >
               ƒ 함수
             </button>
@@ -964,7 +964,7 @@ export function FigureEditor({
               </div>
             </details>
           </div>
-          <div className="px-3 py-2 flex items-center gap-2 text-xs bg-white border-b border-control">
+          <div className={styles.viewControls}>
             <button
               type="button"
               aria-label="도형 축소"
@@ -994,13 +994,13 @@ export function FigureEditor({
               type="button"
               aria-pressed={showNumbers}
               onClick={() => setShowNumbers((value) => !value)}
-              className="ml-2 rounded border border-orange-200 px-2 py-1 text-orange-800 whitespace-nowrap"
+              className="ml-2 rounded border border-[var(--figure-accent-line)] px-2 py-1 text-[var(--figure-accent-ink)] whitespace-nowrap"
             >
               {showNumbers ? "번호 숨기기" : "번호 보이기"}
             </button>
-            <span className="ml-auto text-muted">
+            <span className={styles.toolHint}>
               {tool === "select"
-                ? "끌어서 이동 · 주황색 점으로 모양 조절 · 선 끝점은 Shift로 수평·수직·45° 고정"
+                ? "끌어서 이동 · 파란색 점으로 모양 조절 · 선 끝점은 Shift로 수평·수직·45° 고정"
                 : tool === "pan"
                   ? "드래그로 화면 이동 · Ctrl+휠로 확대/축소"
                   : tool === "text"
@@ -1012,7 +1012,7 @@ export function FigureEditor({
           </div>
           <div
             ref={viewport}
-            className="flex-1 min-h-[180px] overflow-auto p-6"
+            className={styles.viewport}
             style={{ cursor: tool === "pan" ? "grab" : undefined }}
             onPointerDownCapture={(e) => {
               if ((tool === "pan" || spaceDown.current) && e.button === 0) {
@@ -1049,7 +1049,7 @@ export function FigureEditor({
               ref={surface}
               tabIndex={0}
               aria-label="도형 편집 캔버스"
-              className="outline-none"
+              className={styles.surface}
               onPointerMove={move}
               onPointerUp={up}
               onPointerCancel={() => {
@@ -1062,7 +1062,6 @@ export function FigureEditor({
               style={{
                 width: `${fittedWidth * zoom}px`,
                 aspectRatio: String(ratio),
-                margin: "0 auto",
                 position: "relative",
                 transform: `translate(${panOffset.x}px, ${panOffset.y}px)`,
                 touchAction: "none",
@@ -1132,7 +1131,9 @@ export function FigureEditor({
                         x2={item.targetX}
                         y2={item.targetY}
                         stroke={
-                          selectedIds.includes(item.id) ? "#f97316" : "#808080"
+                          selectedIds.includes(item.id)
+                            ? "var(--figure-primary)"
+                            : "#94a3b8"
                         }
                         strokeWidth={selectedIds.includes(item.id) ? 1.5 : 1}
                         strokeDasharray="3 4"
@@ -1166,10 +1167,10 @@ export function FigureEditor({
                           r={10}
                           fill={
                             selectedIds.includes(item.id)
-                              ? "#ea580c"
-                              : "#fff7ed"
+                              ? "var(--figure-primary)"
+                              : "var(--figure-accent-soft)"
                           }
-                          stroke="#fb923c"
+                          stroke="var(--figure-accent-line)"
                         />
                         <text
                           x={item.x}
@@ -1180,7 +1181,7 @@ export function FigureEditor({
                             font: "600 11px Arial, sans-serif",
                             fill: selectedIds.includes(item.id)
                               ? "#fff"
-                              : "#9a3412",
+                              : "var(--figure-accent-ink)",
                             stroke: "none",
                           }}
                         >
@@ -1203,10 +1204,7 @@ export function FigureEditor({
               )}
             </div>
           </div>
-          <section
-            className="shrink-0 border-t border-control bg-white px-3 py-2"
-            aria-label="도형 요소 목록"
-          >
+          <section className={styles.objectList} aria-label="도형 요소 목록">
             <div className="mb-1.5 flex items-center gap-2 text-xs">
               <h3 className="font-semibold">요소 목록</h3>
               <span className="text-muted">
@@ -1215,7 +1213,10 @@ export function FigureEditor({
                   ? `${selectedIds.length}개 선택`
                   : "Shift+클릭으로 여러 요소 선택"}
               </span>
-              <span role="status" className="ml-auto text-orange-800">
+              <span
+                role="status"
+                className="ml-auto text-[var(--figure-accent-ink)]"
+              >
                 {clipboardNotice}
               </span>
             </div>
@@ -1233,10 +1234,10 @@ export function FigureEditor({
                     );
                     setTool("select");
                   }}
-                  className={`flex items-center gap-1.5 rounded-md border py-1 pl-1 pr-2 text-xs ${selectedIds.includes(o.id) ? "border-orange-300 bg-orange-50 text-orange-900" : "border-control bg-slate-50 hover:border-orange-200"}`}
+                  className={`flex items-center gap-1.5 rounded-md border py-1 pl-1 pr-2 text-xs ${selectedIds.includes(o.id) ? "border-[var(--figure-accent-line)] bg-[var(--figure-accent-soft)] text-[var(--figure-accent-ink)]" : "border-control bg-slate-50 hover:border-[var(--figure-accent-line)]"}`}
                 >
                   <span
-                    className={`grid h-5 min-w-5 place-items-center rounded text-[11px] font-semibold ${selectedIds.includes(o.id) ? "bg-orange-600 text-white" : "bg-white text-orange-800"}`}
+                    className={`grid h-5 min-w-5 place-items-center rounded text-[11px] font-semibold ${selectedIds.includes(o.id) ? "bg-[var(--figure-primary)] text-white" : "bg-white text-[var(--figure-accent-ink)]"}`}
                   >
                     {n + 1}
                   </span>
@@ -1253,7 +1254,7 @@ export function FigureEditor({
           </section>
         </div>
         <aside
-          className="w-[300px] shrink-0 border-l border-control bg-white flex flex-col overflow-hidden"
+          className={styles.properties}
           onPointerDownCapture={() => {
             if (document.activeElement === surface.current)
               surface.current?.blur();
@@ -1299,10 +1300,10 @@ export function FigureEditor({
                     }
                   />
                 )}
-                <p className="rounded bg-orange-50 p-2 leading-relaxed text-orange-800">
+                <p className="rounded bg-[var(--figure-accent-soft)] p-2 leading-relaxed text-[var(--figure-accent-ink)]">
                   {current.type === "text"
                     ? "글자를 끌어서 옮기세요. 더블클릭하면 내용을 바꿀 수 있습니다."
-                    : "주황색 조절점을 끌어 모양을 바꾸세요. 선이나 테두리를 끌면 통째로 이동합니다."}
+                    : "파란색 조절점을 끌어 모양을 바꾸세요. 선이나 테두리를 끌면 통째로 이동합니다."}
                 </p>
                 {current.type === "text" && (
                   <div>
@@ -1401,7 +1402,7 @@ export function FigureEditor({
                             : "stroke-width"]: e.target.value,
                         });
                     }}
-                    className="mt-2 w-full accent-orange-600"
+                    className="mt-2 w-full accent-[var(--figure-primary)]"
                   />
                 </label>
                 {current.type !== "text" && (
