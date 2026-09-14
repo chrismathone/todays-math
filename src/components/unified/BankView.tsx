@@ -256,6 +256,11 @@ function ProblemRow({
         <div className={styles.problemBody}>
           <UnifiedProblem problem={problem} />
         </div>
+        {ineligibleReason ? (
+          <p id={`${id}-eligibility`} className={styles.ineligibleReason}>
+            {ineligibleReason}
+          </p>
+        ) : null}
         <div className={styles.rowActions}>
           {/* 🔴 정답·풀이·정보를 **한 창에서** 본다 — 카드를 펼치던 두 단추를 하나로
               합쳤다(05 §8.6 확정 2026-09-14). 카드 표면이 아니라 **진짜 단추**로 연다:
@@ -285,11 +290,6 @@ function ProblemRow({
             {selected ? "담기 완료" : addDisabled ? "담기 불가" : "문제 담기"}
           </button>
         </div>
-        {ineligibleReason ? (
-          <p id={`${id}-eligibility`} className={styles.ineligibleReason}>
-            {ineligibleReason}
-          </p>
-        ) : null}
       </div>
     </article>
   );
@@ -356,7 +356,7 @@ function DetailModal({
         role="dialog"
         aria-modal="true"
         aria-label={`${problem.problemCode || "문항"} 상세`}
-        className="m-0 flex max-h-[86vh] w-full max-w-[980px] flex-col overflow-hidden border border-divider bg-surface p-0 text-ink"
+        className={`${styles.detailDialog} m-0 flex max-h-[86vh] w-full max-w-[980px] flex-col overflow-hidden border border-divider bg-surface p-0 text-ink`}
       >
         <header className={styles.cardHeader}>
           <span className={styles.provenance}>

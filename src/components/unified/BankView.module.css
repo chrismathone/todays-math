@@ -414,6 +414,8 @@ label.selectPage {
   min-width: 0;
 }
 .problemRow {
+  display: flex;
+  flex-direction: column;
   min-width: 0;
   border: 1px solid var(--bank-line);
   border-radius: 10px;
@@ -489,7 +491,7 @@ label.rowSelect {
   font-size: var(--text-caption, 12px);
 }
 .ineligibleReason {
-  margin: 10px 0 0;
+  margin: 0 0 10px;
   color: #8b3c23;
   font-size: var(--text-caption, 12px);
 }
@@ -499,8 +501,22 @@ label.rowSelect {
   font-variant-numeric: tabular-nums;
 }
 .rowMain {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
   min-width: 0;
   padding: 16px 20px 14px;
+}
+.rowMain > .rowActions {
+  margin-top: auto;
+}
+.detailDialog {
+  position: relative;
+  inset: auto;
+}
+.detailDialog > header,
+.detailDialog > footer {
+  flex: none;
 }
 .sectionLabel {
   margin: 0 0 8px;
