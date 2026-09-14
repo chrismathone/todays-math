@@ -31,7 +31,27 @@ export interface DevAiRequest {
   action: DevAiAction;
   imageDataUrl?: string;
   content?: string;
+  /** Untrusted source filename; trimmed, 1–255 characters, no control characters. */
+  sourceName?: string;
   grade: string;
+}
+export interface DevAiDetectedGrade {
+  grade:
+    | "초1"
+    | "초2"
+    | "초3"
+    | "초4"
+    | "초5"
+    | "초6"
+    | "중1"
+    | "중2"
+    | "중3"
+    | "고1"
+    | "고2"
+    | "고3";
+  /** High requires explicit, conflict-free source evidence. */
+  confidence: "high" | "medium" | "low";
+  evidence: string;
 }
 export interface DevAiFigure {
   /** Coordinates in the INPUT image, normalized to 0–1000. */
@@ -50,6 +70,8 @@ export interface DevAiResult {
   answer: string;
   solution: string;
   warnings: string[];
+  /** Page OCR only; independent of the user's requested target grade. */
+  detectedGrade?: DevAiDetectedGrade;
   problems?: DevAiRecognizedProblem[];
   /** Independent figure detection in the supplied input image. */
   figures?: DevAiFigure[];
