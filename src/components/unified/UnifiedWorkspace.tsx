@@ -230,6 +230,10 @@ function UnifiedWorkspaceContent({ initialData }: { initialData: BankData }) {
   };
   function toggle(problem: StudioProblem) {
     const index = selected.findIndex((p) => p.id === problem.id);
+    if (index < 0 && problem.eligible === false) {
+      setNotice(problem.ineligibleReason || "출제할 수 없는 문항입니다.");
+      return;
+    }
     if (index >= 0) {
       setUndo({ problem, index, draftId: draft.id });
       setNotice("시험지에서 문제를 뺐습니다.");
@@ -241,7 +245,8 @@ function UnifiedWorkspaceContent({ initialData }: { initialData: BankData }) {
     );
   }
   function undoRemove() {
-    if (!undo || undo.draftId !== draft.id) return;
+    if (!undo || undo.draftId !== draft.id || undo.problem.eligible === false)
+      return;
     setSelected((current) => {
       if (current.some((p) => p.id === undo.problem.id)) return current;
       const next = [...current];
@@ -253,6 +258,7 @@ function UnifiedWorkspaceContent({ initialData }: { initialData: BankData }) {
   }
   const add = (problems: StudioProblem[]) =>
     setSelected((current) => {
+      problems = problems.filter((problem) => problem.eligible !== false);
       const updates = new Map(problems.map((p) => [p.id, p]));
       return [
         ...current.map((p) => updates.get(p.id) ?? p),

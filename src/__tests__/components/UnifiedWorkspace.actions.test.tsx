@@ -32,7 +32,23 @@ vi.mock("@/components/unified/DevAiStatusPanel", () => ({
   default: () => null,
 }));
 vi.mock("@/components/unified/BankView", () => ({
-  default: () => <h2>문제은행 열림</h2>,
+  default: ({ onToggle }: { onToggle: (problem: object) => void }) => (
+    <>
+      <h2>문제은행 열림</h2>
+      <button
+        onClick={() =>
+          onToggle({
+            id: "locked",
+            content: "출제 잠금",
+            eligible: false,
+            ineligibleReason: "출제가 잠긴 문항입니다.",
+          })
+        }
+      >
+        잠긴 문제 담기 검증
+      </button>
+    </>
+  ),
 }));
 vi.mock("@/components/unified/StudioView", () => ({
   default: ({
@@ -79,6 +95,20 @@ function seed() {
 }
 
 describe("workspace action wiring", () => {
+  it("rejects ineligible bank rows at the workspace selection boundary", async () => {
+    render(<UnifiedWorkspace initialData={initialData} />);
+    fireEvent.click(
+      await screen.findByRole("button", { name: /문제은행에서 담기/ }),
+    );
+    fireEvent.click(
+      await screen.findByRole("button", { name: "잠긴 문제 담기 검증" }),
+    );
+    expect(await screen.findByText("출제가 잠긴 문항입니다.")).toBeVisible();
+    fireEvent.click(screen.getByRole("button", { name: "시험지 · 내보내기" }));
+    expect(
+      await screen.findByRole("button", { name: /문제은행에서 담기/ }),
+    ).toBeVisible();
+  });
   it("opens the bank from the empty worksheet", async () => {
     render(<UnifiedWorkspace initialData={initialData} />);
     fireEvent.click(
