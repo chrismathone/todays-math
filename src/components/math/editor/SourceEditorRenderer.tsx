@@ -596,7 +596,7 @@ const MarkdownRenderer: React.FC<MarkdownRendererProps> = ({
   const figureAction = (index: number | undefined) => index === undefined ? {} : ({
     "data-figure-index": index,
     ...(onFigureClick && isFigureEditable?.(index) !== false ? { role: "button", tabIndex: 0, title: `그림 ${index + 1} 편집`,
-      "aria-label": `그림 ${index + 1} 편집`,
+      "aria-label": `그림 ${index + 1} 편집${diagramSvgs?.[index]?.label || imageCrops?.[index]?.label ? `: ${diagramSvgs?.[index]?.label || imageCrops?.[index]?.label}` : ""}`,
       onClick: () => onFigureClick(index),
       onKeyDown: (event: React.KeyboardEvent) => {
         if (event.key === "Enter" || event.key === " ") { event.preventDefault(); onFigureClick(index); }
@@ -650,7 +650,7 @@ const MarkdownRenderer: React.FC<MarkdownRendererProps> = ({
       const phId = String(nextPlaceholderId++);
       svgFigureIndices.set(phId, dIdx);
       svgPlaceholders.set(phId, normalizeInlineSvgs(svg));
-      figureBoxes.set(phId, item.box); // Stage 1c 위치 배치용 (없으면 undefined)
+      figureBoxes.set(phId, figures?.[dIdx]?.box ?? item.box);
 
       // If the placeholder sits inside a `>` blockquote line, render as
       // inline span instead of a block div (keeps the SVG inside the box).
@@ -699,7 +699,7 @@ const MarkdownRenderer: React.FC<MarkdownRendererProps> = ({
         const im = imageCrops[idx];
         if (!im?.src) return match;
         inlinedImageIndices.add(idx);
-        figureBoxes.set(`img-${idx}`, im.box); // Stage 1c 위치 배치용
+        figureBoxes.set(`img-${idx}`, figures?.[idx]?.box ?? im.box);
         // alt 텍스트 escape
         const altRaw = im.label ?? `도형 ${idx + 1}`;
         const alt = altRaw.replace(/"/g, "&quot;");
@@ -717,7 +717,8 @@ const MarkdownRenderer: React.FC<MarkdownRendererProps> = ({
   // inline svg 도형(마커·box 없던 것)도 위치 획득. figureBoxes(Phase A 크롭 box)를
   // figures[] 권위값으로 덮어씀. figures 없으면 Phase A 크롭 box 만으로 동작.
   if (figures && figures.length > 0) {
-    assignBoxesByReadingOrder(svgReplacedContent, figures as ReadonlyArray<{ box: FigBox }>, figureBoxes);
+    const indexed = new Set([...svgFigureIndices.values(), ...inlinedImageIndices]);
+    assignBoxesByReadingOrder(svgReplacedContent, figures.filter((_figure, index) => !indexed.has(index)) as ReadonlyArray<{ box: FigBox }>, figureBoxes);
   }
 
   // Stage 1c (Phase A): 위치 기반 행 배치. 인접한 figure placeholder 들의 full-page

@@ -5,6 +5,7 @@ import { useEffect, useLayoutEffect, useRef, useState } from "react";
 import { renderToStaticMarkup } from "react-dom/server";
 import { EditorContent, useEditor } from "@tiptap/react";
 import { InputRule, Node } from "@tiptap/core";
+import { closeHistory } from "@tiptap/pm/history";
 import StarterKit from "@tiptap/starter-kit";
 import { TableKit } from "@tiptap/extension-table";
 import { MathfieldElement, convertAsciiMathToLatex } from "mathlive";
@@ -13,6 +14,7 @@ import MarkdownRenderer, { type MarkdownRendererProps } from "./SourceEditorRend
 import { renderKatexSafe } from "./katexRender";
 import { documentMarkdown, prepareVisualDocument } from "./visualDocument";
 import { attachCompactMathKeyboard } from "./compactMathKeyboard";
+import { SourceEditorFigures } from "./SourceEditorFigures";
 
 MathfieldElement.fontsDirectory = null;
 MathfieldElement.soundsDirectory = null;
@@ -248,9 +250,20 @@ export function SourceMathTextEditor(props: SourceMathTextEditorProps) {
           if (firstNode.attrs.grow) { dom.style.flex = `${firstNode.attrs.grow} 1 0`; dom.style.minWidth = "0"; }
           dom.dataset.figureIndex = String(firstNode.attrs.index ?? "");
           dom.contentEditable = "false";
-          const index = node.attrs.index as number | null;
+          let index = node.attrs.index as number | null;
           const paint = () => {
             const current = latest.current;
+            index = node.attrs.index as number | null;
+            dom.dataset.figureIndex = String(index ?? "");
+            if (index !== null && current.onFigureClick && current.isFigureEditable?.(index) !== false) {
+              dom.tabIndex = 0;
+              dom.setAttribute("role", "button");
+              const label = current.diagramSvgs?.[index]?.label ?? current.imageCrops?.[index]?.label;
+              dom.setAttribute("aria-label", `그림 ${index + 1} 편집${label ? `: ${label}` : ""}`);
+              dom.title = "클릭해서 그림 수정";
+            } else {
+              for (const name of ["tabindex", "role", "aria-label", "title"]) dom.removeAttribute(name);
+            }
             const svg = index !== null ? current.diagramSvgs?.[index]?.svg : node.attrs.svg;
             const src = index !== null ? current.imageCrops?.[index]?.src : node.attrs.src;
             if (svg) dom.innerHTML = svg;
@@ -262,12 +275,6 @@ export function SourceMathTextEditor(props: SourceMathTextEditorProps) {
             } else dom.textContent = index === null ? "그림" : `그림 ${index + 1}`;
           };
           const open = () => { if (index !== null && latest.current.isFigureEditable?.(index) !== false) latest.current.onFigureClick?.(index); };
-          if (index !== null && latest.current.onFigureClick && latest.current.isFigureEditable?.(index) !== false) {
-            dom.tabIndex = 0;
-            dom.setAttribute("role", "button");
-            dom.setAttribute("aria-label", `그림 ${index + 1} 편집`);
-            dom.title = "클릭해서 그림 수정";
-          }
           dom.addEventListener("click", open);
           dom.addEventListener("keydown", (rawEvent) => {
             const event = rawEvent as KeyboardEvent;
@@ -329,6 +336,7 @@ export function SourceMathTextEditor(props: SourceMathTextEditorProps) {
     if (editor && props.value !== lastEmitted.current) {
       lastEmitted.current = props.value;
       editor.commands.setContent(toHtml(), { emitUpdate: false });
+      editor.view.dispatch(closeHistory(editor.state.tr));
     }
   }, [editor, props.value]);
 
@@ -336,12 +344,12 @@ export function SourceMathTextEditor(props: SourceMathTextEditorProps) {
     if (!editor) return;
     const tr = editor.state.tr;
     editor.state.doc.descendants((node, position) => {
-      if (node.type.name === "visualFigure") {
+      if (node.type.name === "visualFigure" || node.type.name === "visualInlineFigure") {
         tr.setNodeMarkup(position, undefined, { ...node.attrs, refresh: Number(node.attrs.refresh) + 1 });
       }
     });
     if (tr.docChanged) editor.view.dispatch(tr.setMeta("addToHistory", false).setMeta("preventUpdate", true));
-  }, [editor, props.diagramSvgs, props.imageCrops]);
+  }, [editor, props.diagramSvgs, props.imageCrops, props.isFigureEditable, props.onFigureClick]);
 
   useEffect(() => () => hideMathLiveUi(), []);
 
@@ -355,7 +363,10 @@ export function SourceMathTextEditor(props: SourceMathTextEditorProps) {
   };
   const toggleSource = () => {
     activeMath.current?.blur();
-    if (sourceMode && editor) editor.commands.setContent(toHtml(), { emitUpdate: false });
+    if (sourceMode && editor) {
+      editor.commands.setContent(toHtml(), { emitUpdate: false });
+      editor.view.dispatch(closeHistory(editor.state.tr));
+    }
     setSourceMode((value) => !value);
   };
 
@@ -372,6 +383,7 @@ export function SourceMathTextEditor(props: SourceMathTextEditorProps) {
     {sourceMode
       ? <textarea className="visual-source-input" aria-label={`${props["aria-label"] ?? "문제 본문"} (Markdown + LaTeX)`} value={props.value} onChange={(event) => props.onChange(event.target.value)} />
       : <EditorContent editor={editor} />}
+    <div className="source-editor-display"><SourceEditorFigures {...props} /></div>
     <p className="visual-editor-help">글은 바로 입력하고, 수식과 그림은 클릭해서 고치세요. 분수는 위아래 칸에 숫자를 입력하면 됩니다.</p>
   </div>;
 }
