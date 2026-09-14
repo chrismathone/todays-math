@@ -1,5 +1,9 @@
 import { z } from "zod";
 import { repairJsonString } from "@/lib/ai/jsonRepair";
+import {
+  normalizeMathgenAnswer,
+  normalizeMathgenText,
+} from "@/lib/math/normalizeMathgenText";
 import { validDevAiSvg } from "./svg";
 import { buildFigureSpecPrompt } from "./figure-prompt";
 import {
@@ -246,11 +250,12 @@ export function parseDevAiResult(
 ): DevAiResult {
   let json: unknown;
   try {
-    json = JSON.parse(repairJsonString(raw));
+    // Valid JSON already distinguishes escaped math commands from whitespace.
+    // Repair-first turns ordinary `\nnext` / `\ttext` into literal commands.
+    json = JSON.parse(raw);
   } catch {
-    // A repair must not prevent an already valid original JSON response.
     try {
-      json = JSON.parse(raw);
+      json = JSON.parse(repairJsonString(raw));
     } catch {
       throw new DevAiParseError("json", action);
     }
@@ -301,6 +306,9 @@ export function parseDevAiResult(
   };
   const result: DevAiResult = {
     ...parsed,
+    content: normalizeMathgenText(parsed.content),
+    answer: normalizeMathgenAnswer(parsed.answer),
+    solution: normalizeMathgenText(parsed.solution),
     ...(detectedGrade === undefined ? {} : { detectedGrade }),
     figures: figures(parsed.figures),
     problems: parsed.problems?.map(
@@ -308,6 +316,8 @@ export function parseDevAiResult(
         const type = action === "page-ocr" ? questionType(rawType) : undefined;
         return {
           ...problem,
+          content: normalizeMathgenText(problem.content),
+          answer: normalizeMathgenAnswer(problem.answer),
           ...(type === undefined ? {} : { questionType: type }),
           ...(rawFigures === undefined ? {} : { figures: figures(rawFigures) }),
         };
