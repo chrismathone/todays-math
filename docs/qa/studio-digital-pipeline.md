@@ -66,3 +66,24 @@ Further source and verification details:
 [actual figure engine](studio-figure-engine.md),
 [worksheet controls and saved actions](studio-worksheet-controls.md),
 [earlier queue/review work](studio-review-redesign.md).
+
+## Final main integration
+
+All four parallel sessions were merged into `main`. The final `npm run build`
+completed successfully, including Prisma generation, TypeScript, and all 64
+static pages. Existing build warnings remain; this is not a claim that the
+historical renderer goldens pass. The development server was restarted after
+the build; `/dev/unified` and `/api/dev/unified/ai` both returned HTTP 200.
+The provider status endpoint reports subscription CLI readiness; actual model
+execution was verified with Claude as described above.
+
+The merged bank UI and shared-query integration passed another 31 focused tests.
+Actual Next browser checks against the real database exercised type, source,
+figure, solution, review-state and exact-code filters, including resets. All
+requests returned HTTP 200, with no browser JavaScript errors or document-level
+horizontal overflow at 1440, 1024 and 390 pixels. Search width is capped at 400px.
+See [bank query parity](studio-bank-query-parity.md) and
+[bank UI parity](unified-bank-filter-parity.md) for scope and earlier checks.
+
+Completed worker resources and clean merged worktrees were removed, preserving
+their branches. No production deployment or remote push was performed.
