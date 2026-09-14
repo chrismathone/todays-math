@@ -1165,6 +1165,14 @@ export function useStudioAi({
     cropJobs,
     figureAi,
     pageJobs,
+    forgetPage: (sourceId: string, page: number) => {
+      const key = pageKey(sourceId, page);
+      const entry = pages.current.get(key);
+      if (entry && pageBusy(entry.job)) return false;
+      pages.current.delete(key);
+      publishPages();
+      return true;
+    },
     restorePageJobs,
     pageProgress,
     message,

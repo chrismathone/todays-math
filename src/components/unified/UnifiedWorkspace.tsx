@@ -6,6 +6,7 @@ import SavedWorksheetActions from "./SavedWorksheetActions";
 import dynamic from "next/dynamic";
 import { useCallback, useEffect, useRef, useState } from "react";
 import type { BankData, StudioProblem } from "./types";
+import type { StudioCrop } from "./studioHelpers";
 import { useWorkspaceDrafts } from "./useWorkspaceDrafts";
 import WorkroomHome, { formatDraftDate } from "./WorkroomHome";
 import Icon, { type WorkspaceIconName } from "./WorkspaceIcon";
@@ -67,16 +68,28 @@ const viewValid = (value: string): value is View =>
   navItems.some((item) => item.id === value);
 export default function UnifiedWorkspace({
   initialData,
+  storageScope,
 }: {
   initialData: BankData;
+  storageScope?: string;
 }) {
   return (
     <DevAiProvider>
-      <UnifiedWorkspaceContent initialData={initialData} />
+      <UnifiedWorkspaceContent
+        key={storageScope ?? "development"}
+        initialData={initialData}
+        storageScope={storageScope}
+      />
     </DevAiProvider>
   );
 }
-function UnifiedWorkspaceContent({ initialData }: { initialData: BankData }) {
+function UnifiedWorkspaceContent({
+  initialData,
+  storageScope,
+}: {
+  initialData: BankData;
+  storageScope?: string;
+}) {
   const {
     draft,
     hydrated,
@@ -95,7 +108,7 @@ function UnifiedWorkspaceContent({ initialData }: { initialData: BankData }) {
     renameDraft,
     deleteDraft,
     importDraft,
-  } = useWorkspaceDrafts();
+  } = useWorkspaceDrafts(storageScope);
   const {
     title,
     problems: selected,
@@ -107,6 +120,10 @@ function UnifiedWorkspaceContent({ initialData }: { initialData: BankData }) {
   } = draft;
   const [view, setView] = useState<View>("home");
   const [studioReviewRequest, setStudioReviewRequest] = useState(0);
+  const [studioRestoreRequest, setStudioRestoreRequest] = useState<{
+    id: number;
+    crops: StudioCrop[];
+  }>();
   const [opened, setOpened] = useState<Set<View>>(new Set(["home"]));
   const [bankEntry, setBankEntry] = useState<{
     q?: string;
@@ -626,6 +643,8 @@ function UnifiedWorkspaceContent({ initialData }: { initialData: BankData }) {
                 onExport={() => navigate("export")}
                 importRequest={importRequest}
                 reviewRequest={studioReviewRequest}
+                restoreRequest={studioRestoreRequest}
+                storageScope={storageScope}
               />
             </main>
           )}
@@ -655,6 +674,14 @@ function UnifiedWorkspaceContent({ initialData }: { initialData: BankData }) {
               move={move}
               navigate={navigate}
               onImportFiles={() => fileRef.current?.click()}
+              onEditSource={(problem) => {
+                if (!problem.studioCrop) return;
+                setStudioRestoreRequest({
+                  id: Date.now(),
+                  crops: [problem.studioCrop],
+                });
+                navigate("studio");
+              }}
               onBackToReview={() => {
                 setStudioReviewRequest((request) => request + 1);
                 navigate("studio");

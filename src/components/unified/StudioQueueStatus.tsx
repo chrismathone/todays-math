@@ -16,6 +16,8 @@ interface PageJob {
     | "error"
     | "cancelled";
   error?: string;
+  warnings?: string[];
+  textLayerWarning?: { summary: string; detail: string };
 }
 
 const labels: Record<PageJob["state"], string> = {
@@ -79,6 +81,26 @@ export default function StudioQueueStatus({
           ) : null}
         </div>
       )}
+      {jobs
+        .filter((job) => job.textLayerWarning || job.warnings?.length)
+        .map((job) => (
+          <div
+            key={`warning:${job.key}`}
+            className={styles.aiWarnings}
+            role="status"
+          >
+            {job.textLayerWarning && (
+              <p title={job.textLayerWarning.detail}>
+                {job.page}쪽 · {job.textLayerWarning.summary}
+              </p>
+            )}
+            {job.warnings?.map((warning, index) => (
+              <p key={index}>
+                {job.page}쪽 · {warning}
+              </p>
+            ))}
+          </div>
+        ))}
       <details className={styles.queueDetails}>
         <summary>
           쪽별 진행 <span aria-hidden="true">⌄</span>

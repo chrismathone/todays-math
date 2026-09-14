@@ -1,5 +1,6 @@
 import type { StudioCrop } from "./studioHelpers";
 import type { SchoolLevel } from "./types";
+import type { StudioAiPageJob } from "./useStudioAi";
 
 export interface StoredStudioSource {
   id: string;
@@ -9,6 +10,7 @@ export interface StoredStudioSource {
   grade?: string;
   level?: SchoolLevel;
   gradeManual?: boolean;
+  pageRotations?: Record<number, number>;
 }
 
 export interface StudioSessionData {
@@ -21,6 +23,7 @@ export interface StudioSessionData {
   step: "upload" | "crop" | "review";
   grade: string;
   level: SchoolLevel;
+  completedPages?: StudioAiPageJob[];
 }
 
 interface Envelope {
@@ -35,12 +38,16 @@ const CONFLICT =
 
 /** 원본 Blob은 한 번만 저장하고 검수 상태는 별도로 갱신한다. */
 export class StudioSessionStore {
+  constructor(private readonly scope?: string) {}
   private revision = 0;
   private tail: Promise<unknown> = Promise.resolve();
 
   private open(): Promise<IDBDatabase> {
     return new Promise((resolve, reject) => {
-      const request = indexedDB.open(DB_NAME, 1);
+      const request = indexedDB.open(
+        this.scope ? `${DB_NAME}:${encodeURIComponent(this.scope)}` : DB_NAME,
+        1,
+      );
       request.onupgradeneeded = () => {
         request.result.createObjectStore("session");
         request.result.createObjectStore("originals");

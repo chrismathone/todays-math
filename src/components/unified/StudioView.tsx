@@ -32,6 +32,7 @@ import type {
 import { useStudioAi, type StudioAiPageTask } from "./useStudioAi";
 import { studioCropImage, studioImageCanvas } from "./studioAiHelpers";
 import type { DevAiProvider } from "@/lib/dev-ai/contracts";
+import { getStudioEndpoints } from "@/lib/studio-ai/endpoints";
 import type { SchoolLevel, StudioViewProps } from "./types";
 import {
   clamp,
@@ -55,6 +56,7 @@ interface StudioSource {
   grade?: string;
   level?: SchoolLevel;
   gradeManual?: boolean;
+  pageRotations?: Record<number, number>;
   original?: File;
   image?: HTMLImageElement | HTMLCanvasElement;
   pdf?: PDFDocumentProxy;
@@ -65,14 +67,25 @@ async function renderAiPage(
   source: StudioSource,
   page: number,
   signal: AbortSignal,
+  extraRotation = 0,
 ) {
   const check = () => {
     if (signal.aborted) throw new DOMException("작업 취소", "AbortError");
   };
   check();
   const canvas = document.createElement("canvas");
+  let referenceText: string | undefined;
   if (source.pdf) {
     const pdfPage = await source.pdf.getPage(page);
+    check();
+    try {
+      const text = await pdfPage.getTextContent();
+      referenceText = text.items
+        .flatMap((item) => ("str" in item ? [item.str] : []))
+        .join(" ");
+    } catch {
+      /* A scanned/image-only PDF has no usable text reference. */
+    }
     check();
     const base = pdfPage.getViewport({ scale: 1 });
     const viewport = pdfPage.getViewport({
@@ -106,7 +119,30 @@ async function renderAiPage(
     context.drawImage(source.image, 0, 0);
   } else throw new Error("원본 파일을 다시 불러와 주세요.");
   check();
-  return { canvas, imageDataUrl: canvas.toDataURL("image/png") };
+  const result = rotatePageCanvas(
+    canvas,
+    (source.pageRotations?.[page] ?? 0) + extraRotation,
+  );
+  return {
+    canvas: result,
+    imageDataUrl: result.toDataURL("image/png"),
+    referenceText,
+  };
+}
+
+function rotatePageCanvas(canvas: HTMLCanvasElement, angle: number) {
+  const rotation = ((angle % 360) + 360) % 360;
+  if (!rotation) return canvas;
+  const rotated = document.createElement("canvas");
+  const sideways = rotation === 90 || rotation === 270;
+  rotated.width = sideways ? canvas.height : canvas.width;
+  rotated.height = sideways ? canvas.width : canvas.height;
+  const ctx = rotated.getContext("2d");
+  if (!ctx) throw new Error("페이지를 회전할 수 없습니다.");
+  ctx.translate(rotated.width / 2, rotated.height / 2);
+  ctx.rotate((rotation * Math.PI) / 180);
+  ctx.drawImage(canvas, -canvas.width / 2, -canvas.height / 2);
+  return rotated;
 }
 
 interface RenderedPage {
@@ -223,10 +259,12 @@ export default function StudioView({
   active = true,
   reviewRequest = 0,
   restoreRequest,
+  storageScope,
 }: StudioViewProps & {
   active?: boolean;
   reviewRequest?: number;
   restoreRequest?: { id: number; crops: StudioCrop[] };
+  storageScope?: string;
 }) {
   const handledReview = useRef(reviewRequest);
   const handledRestore = useRef<number | null>(null);
@@ -261,7 +299,7 @@ export default function StudioView({
     () => typeof indexedDB !== "undefined",
   );
   const busy = importingBusy || restoring;
-  const [sessionStore] = useState(() => new StudioSessionStore());
+  const [sessionStore] = useState(() => new StudioSessionStore(storageScope));
   const storageReady = useRef(false);
   const storageEpoch = useRef(0);
   const [sessionSave, setSessionSave] = useState(() =>
@@ -314,6 +352,28 @@ export default function StudioView({
     setCrops,
     contextKey: `${sourceId}:${pageNumber}`,
     active,
+    onRotatePage: (id, page, delta) => {
+      setSources((previous) =>
+        previous.map((source) =>
+          source.id === id
+            ? {
+                ...source,
+                pageRotations: {
+                  ...source.pageRotations,
+                  [page]: ((source.pageRotations?.[page] ?? 0) + delta) % 360,
+                },
+              }
+            : source,
+        ),
+      );
+      setInspectedPages((previous) => {
+        const next = { ...previous };
+        delete next[`${id}:${page}`];
+        return next;
+      });
+      setSelection(null);
+      setNotice(`${page}쪽의 뒤집힌 방향을 바로잡고 다시 인식합니다.`);
+    },
     onDetected: (id) => {
       setActiveCropId(id);
       setSelectedBoxId(id);
@@ -551,12 +611,16 @@ export default function StudioView({
           ctx.fillRect(0, 0, canvas.width, canvas.height);
           ctx.drawImage(image, 0, 0);
         }
+        const pageCanvas = rotatePageCanvas(
+          canvas,
+          currentSource!.pageRotations?.[pageNumber] ?? 0,
+        );
         if (!stale())
           setRendered({
             sourceId: currentSource!.id,
             number: pageNumber,
-            canvas,
-            url: canvas.toDataURL("image/png"),
+            canvas: pageCanvas,
+            url: pageCanvas.toDataURL("image/png"),
           });
       } catch (cause) {
         if (!stale())
@@ -592,6 +656,47 @@ export default function StudioView({
     setSelectedBoxId(next?.id ?? "");
     setError("");
     setStep((previous) => (previous === "review" ? "review" : "crop"));
+  }
+
+  function rotateCurrentPage() {
+    if (!currentSource || !pageReady || busy || studioAi.running) return;
+    if (
+      pageCrops.length &&
+      !window.confirm(
+        "현재 페이지의 문제 영역과 인식 내용을 지우고 90도 회전할까요? 시험지에 이미 담은 문제는 유지됩니다.",
+      )
+    )
+      return;
+    if (!studioAi.forgetPage(sourceId, pageNumber)) return;
+    setCrops((previous) =>
+      previous.filter(
+        (crop) => crop.sourceId !== sourceId || crop.page !== pageNumber,
+      ),
+    );
+    setSources((previous) =>
+      previous.map((source) =>
+        source.id === sourceId
+          ? {
+              ...source,
+              pageRotations: {
+                ...source.pageRotations,
+                [pageNumber]:
+                  ((source.pageRotations?.[pageNumber] ?? 0) + 90) % 360,
+              },
+            }
+          : source,
+      ),
+    );
+    setInspectedPages((previous) => {
+      const next = { ...previous };
+      delete next[`${sourceId}:${pageNumber}`];
+      return next;
+    });
+    setActiveCropId("");
+    setSelectedBoxId("");
+    setSelection(null);
+    setStep("crop");
+    setNotice(`${pageNumber}쪽을 시계 방향으로 90도 회전했습니다.`);
   }
 
   async function importFiles(files: File[], restored?: StudioSessionData) {
@@ -633,18 +738,19 @@ export default function StudioView({
         if (file.type === "application/pdf" || /\.pdf$/i.test(file.name)) {
           const pdfjs = await import("pdfjs-dist");
           if (stale()) return;
-          pdfjs.GlobalWorkerOptions.workerSrc = `/api/dev/unified/pdf-worker?v=${pdfjs.version}`;
+          const endpoints = getStudioEndpoints();
+          pdfjs.GlobalWorkerOptions.workerSrc = `${endpoints.pdfWorker}?v=${pdfjs.version}`;
           const data = await file.arrayBuffer();
           if (stale()) return;
           const loading = pdfjs.getDocument({
             data,
             useSystemFonts: true,
-            cMapUrl: "/api/dev/unified/pdf-assets/cmaps/",
+            cMapUrl: `${endpoints.pdfAssets}cmaps/`,
             cMapPacked: true,
-            standardFontDataUrl: "/api/dev/unified/pdf-assets/standard_fonts/",
+            standardFontDataUrl: `${endpoints.pdfAssets}standard_fonts/`,
             // Scanned exam text can be a CCITT/JBIG2 image mask, separate
             // from the visible background. Missing WASM silently drops it.
-            wasmUrl: "/api/dev/unified/pdf-assets/wasm/",
+            wasmUrl: `${endpoints.pdfAssets}wasm/`,
           });
           resources.loadingPdfs.add(loading);
           // Password-protected files fail clearly instead of opening an unseen prompt.
@@ -736,6 +842,7 @@ export default function StudioView({
         setGrade(restored.grade);
         setLevel(restored.level);
         setStep(restored.step);
+        studioAi.restorePageJobs(restored.completedPages ?? []);
         setNotice("이전 자료 제작 작업을 복원했습니다.");
       }
       setError(errors.join("\n"));
@@ -792,7 +899,7 @@ export default function StudioView({
   const sessionData = useMemo<StudioSessionData>(
     () => ({
       sources: sources.map(
-        ({ id, name, kind, pages, grade, level, gradeManual }) => ({
+        ({
           id,
           name,
           kind,
@@ -800,6 +907,16 @@ export default function StudioView({
           grade,
           level,
           gradeManual,
+          pageRotations,
+        }) => ({
+          id,
+          name,
+          kind,
+          pages,
+          grade,
+          level,
+          gradeManual,
+          pageRotations,
         }),
       ),
       crops,
@@ -810,6 +927,9 @@ export default function StudioView({
       step,
       grade,
       level,
+      completedPages: studioAi.pageJobs.filter(
+        (job) => job.state === "complete" || job.state === "empty",
+      ),
     }),
     [
       sources,
@@ -821,6 +941,7 @@ export default function StudioView({
       step,
       grade,
       level,
+      studioAi.pageJobs,
     ],
   );
   const sessionStatus =
@@ -1509,6 +1630,7 @@ export default function StudioView({
               added: false,
               reviewed: false,
               ...patch,
+              ...(patch.content !== undefined ? { ocr: undefined } : {}),
               ...(patch.mode !== undefined ? { modeManual: true } : {}),
               revision: (crop.revision ?? 0) + 1,
             }
@@ -1617,7 +1739,8 @@ export default function StudioView({
         ? (currentSource.grade ?? "미지정")
         : "미지정",
       level: currentSource.level ?? level,
-      load: (signal) => renderAiPage(currentSource, page, signal),
+      load: (signal, extraRotation = 0) =>
+        renderAiPage(currentSource, page, signal, extraRotation),
     }));
     void studioAi.recognizePages(tasks, {
       force: !allPages || currentSource.pages === 1,
@@ -1845,7 +1968,7 @@ export default function StudioView({
               }
               disabled={
                 (key === "crop" && !currentSource) ||
-                (key === "review" && (!crops.length || studioAi.running))
+                (key === "review" && !crops.length)
               }
               onClick={() => setStep(key)}
             >
@@ -1987,6 +2110,15 @@ export default function StudioView({
                   다음 쪽
                 </button>
                 <span className={styles.divider} />
+                <button
+                  type="button"
+                  className={styles.pageNavigationButton}
+                  aria-label="현재 페이지 90도 회전"
+                  onClick={rotateCurrentPage}
+                  disabled={!pageReady || busy || studioAi.running}
+                >
+                  회전
+                </button>
                 {step === "crop" && (
                   <select
                     aria-label="원본 확대 비율"

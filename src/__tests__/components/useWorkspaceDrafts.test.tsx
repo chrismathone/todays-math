@@ -37,6 +37,36 @@ afterEach(() => {
 });
 
 describe("useWorkspaceDrafts browser lifecycle", () => {
+  it("isolates signed-in owners and does not adopt the unscoped development worksheet", () => {
+    localStorage.setItem(
+      LEGACY_DRAFT_KEY,
+      JSON.stringify({
+        version: 1,
+        title: "개발 작업",
+        problems: [problem("dev")],
+        columns: 1,
+        answers: false,
+      }),
+    );
+    const first = renderHook(() => useWorkspaceDrafts("owner-a"));
+    expect(first.result.current.draft.problems).toEqual([]);
+    act(() => {
+      first.result.current.setTitle("첫 계정 작업");
+      first.result.current.setProblems([problem("a")]);
+    });
+    act(() => first.result.current.saveNow());
+    first.unmount();
+    const second = renderHook(() => useWorkspaceDrafts("owner-b"));
+    expect(second.result.current.draft.problems).toEqual([]);
+    second.unmount();
+    const restored = renderHook(() => useWorkspaceDrafts("owner-a"));
+    expect(restored.result.current.draft.title).toBe("첫 계정 작업");
+    expect(
+      restored.result.current.draft.problems.map((item) => item.id),
+    ).toEqual(["a"]);
+    expect(localStorage.getItem(DRAFT_STORE_KEY)).toBeNull();
+  });
+
   it("renders a deterministic SSR snapshot without touching browser storage", () => {
     const get = vi.spyOn(Storage.prototype, "getItem");
     const set = vi.spyOn(Storage.prototype, "setItem");

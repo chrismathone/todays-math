@@ -31,7 +31,31 @@ const nextConfig: NextConfig = {
    *    MathJax 조판이 들어온 2026-08-28 04:30 부터 이랬는데, 그때 이미 배포가
    *    다른 이유(타입 오류)로 빨개서 아무도 여기까지 못 왔다.
    */
-  serverExternalPackages: ["mathjax-full"],
+  serverExternalPackages: [
+    "mathjax-full",
+    "puppeteer-core",
+    "@sparticuz/chromium-min",
+  ],
+  // Assets read by Node/Python at runtime must travel with production route bundles.
+  outputFileTracingIncludes: {
+    "/api/studio/pdf-worker": [
+      "./node_modules/pdfjs-dist/build/pdf.worker.min.mjs",
+    ],
+    "/api/studio/pdf-assets/**": [
+      "./node_modules/pdfjs-dist/cmaps/**/*",
+      "./node_modules/pdfjs-dist/standard_fonts/**/*",
+      "./node_modules/pdfjs-dist/wasm/**/*",
+    ],
+    "/api/studio/ai": [
+      "./scripts/figure/*.py",
+      "./vendor/figure-engine/**/*.py",
+    ],
+    "/api/exports/hwpx": [
+      "./scripts/hwpx/*.py",
+      "./vendor/hwpx/**/*.py",
+      "./vendor/hwpx/template/**/*",
+    ],
+  },
 
   experimental: {
     // 배럴(barrel) 재수출 패키지를 실제 참조하는 하위 모듈로 바꿔 준다.
