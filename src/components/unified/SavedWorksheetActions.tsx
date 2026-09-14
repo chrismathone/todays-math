@@ -12,7 +12,7 @@ export default function SavedWorksheetActions({
   title: string;
   current: boolean;
   error: string | null;
-  onEdit: () => void;
+  onEdit?: () => void;
   onRename: (title: string) => boolean;
   onDelete: () => boolean;
 }) {
@@ -31,9 +31,11 @@ export default function SavedWorksheetActions({
         >
           이름 변경
         </button>
-        <button type="button" aria-label={`${title} 편집`} onClick={onEdit}>
-          편집
-        </button>
+        {onEdit && (
+          <button type="button" aria-label={`${title} 편집`} onClick={onEdit}>
+            편집
+          </button>
+        )}
         <button
           type="button"
           aria-label={`${title} 삭제`}

@@ -1,0 +1,558 @@
+import {
+  lazy,
+  Suspense,
+  useEffect,
+  useState,
+  type ComponentType,
+  type ReactNode,
+} from "react";
+import {
+  act,
+  fireEvent,
+  render,
+  screen,
+  waitFor,
+  within,
+} from "@testing-library/react";
+import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
+import UnifiedWorkspace from "@/components/unified/UnifiedWorkspace";
+import {
+  WORKSPACE_MENUS,
+  type WorkspaceMenu,
+} from "@/contracts/accountAccess.contract";
+import {
+  createWorkspaceDraftStore,
+  DRAFT_STORE_KEY,
+} from "@/components/unified/draftStore";
+
+const mocks = vi.hoisted(() => ({
+  replace: vi.fn(),
+  studioMount: vi.fn(),
+  bankMount: vi.fn(),
+  teachingMount: vi.fn(),
+  overviewMount: vi.fn(),
+}));
+const router = { replace: mocks.replace };
+vi.mock("next/navigation", () => ({ useRouter: () => router }));
+vi.mock("next/dynamic", () => ({
+  default: (loader: () => Promise<{ default: ComponentType }>) => {
+    const Component = lazy(loader);
+    return function Dynamic(props: object) {
+      return (
+        <Suspense fallback={null}>
+          <Component {...props} />
+        </Suspense>
+      );
+    };
+  },
+}));
+vi.mock("@/components/unified/useDevAi", () => ({
+  DevAiProvider: ({
+    children,
+    enabled,
+  }: {
+    children: ReactNode;
+    enabled: boolean;
+  }) => (
+    <div data-testid="ai-provider" data-enabled={enabled}>
+      {children}
+    </div>
+  ),
+}));
+vi.mock("@/components/unified/DevAiStatusPanel", () => ({
+  default: () => <button>AI 연결 설정</button>,
+}));
+vi.mock("@/components/unified/BankView", () => ({
+  default: function BankProbe({
+    onExport,
+    canExport,
+  }: {
+    onExport: () => void;
+    canExport: boolean;
+  }) {
+    useEffect(() => {
+      mocks.bankMount();
+    }, []);
+    return (
+      <>
+        <h2>은행 패널</h2>
+        <button onClick={onExport}>내보내기 우회 검증</button>
+        <span data-testid="bank-export-access">{String(canExport)}</span>
+      </>
+    );
+  },
+}));
+vi.mock("@/components/unified/StudioView", () => ({
+  default: function StudioProbe({ canExport }: { canExport: boolean }) {
+    const [value, setValue] = useState("");
+    useEffect(() => {
+      mocks.studioMount();
+    }, []);
+    return (
+      <>
+        <h2>자료 패널</h2>
+        <input
+          aria-label="진행 중인 자료"
+          value={value}
+          onChange={(event) => setValue(event.target.value)}
+        />
+        <span data-testid="studio-export-access">{String(canExport)}</span>
+      </>
+    );
+  },
+}));
+vi.mock("@/components/unified/TeachingView", () => ({
+  default: function TeachingProbe() {
+    useEffect(() => {
+      mocks.teachingMount();
+    }, []);
+    return <h2>수업 패널</h2>;
+  },
+}));
+vi.mock("@/components/unified/TeachingOverview", () => ({
+  default: function OverviewProbe() {
+    useEffect(() => {
+      mocks.overviewMount();
+    }, []);
+    return <h2>수업 요약</h2>;
+  },
+}));
+vi.mock("@/components/unified/print/WorksheetPrint", () => ({
+  WorksheetPrint: () => <p>인쇄 미리보기</p>,
+}));
+
+const initialData = {
+  problems: [],
+  total: 0,
+  page: 1,
+  pageSize: 20,
+  grades: [],
+  chapters: [],
+};
+const user = { name: "김선생", email: "teacher@example.com" };
+const fetchMock = vi.fn<typeof fetch>();
+const response = (menus: WorkspaceMenu[], extra = {}) =>
+  new Response(
+    JSON.stringify({
+      data: {
+        id: "teacher-one",
+        ...user,
+        role: "director",
+        isAdmin: false,
+        approvalStatus: "approved",
+        menus,
+        ...extra,
+      },
+    }),
+    { status: 200 },
+  );
+function nav() {
+  return within(screen.getByRole("navigation", { name: "작업실 메뉴" }));
+}
+function nextCheck() {
+  vi.spyOn(Date, "now").mockReturnValue(Date.now() + 2000);
+}
+
+beforeEach(() => {
+  vi.clearAllMocks();
+  localStorage.clear();
+  window.history.replaceState(null, "", "/");
+  vi.spyOn(window, "scrollTo").mockImplementation(() => {});
+  Object.defineProperties(HTMLDialogElement.prototype, {
+    showModal: {
+      configurable: true,
+      value: function (this: HTMLDialogElement) {
+        this.setAttribute("open", "");
+      },
+    },
+    close: {
+      configurable: true,
+      value: function (this: HTMLDialogElement) {
+        this.removeAttribute("open");
+      },
+    },
+  });
+  fetchMock
+    .mockReset()
+    .mockImplementation(async () => new Response(null, { status: 503 }));
+  vi.stubGlobal("fetch", fetchMock);
+});
+afterEach(() => {
+  vi.restoreAllMocks();
+  vi.unstubAllGlobals();
+});
+
+describe("per-account workspace menu access", () => {
+  it("keeps all development menus and shortcuts when access is omitted", async () => {
+    render(<UnifiedWorkspace initialData={initialData} />);
+    for (const menu of WORKSPACE_MENUS)
+      expect(
+        nav().getByRole("button", { name: menu.label }),
+      ).toBeInTheDocument();
+    expect(
+      screen.getByRole("textbox", { name: "문제은행 바로 검색" }),
+    ).toBeInTheDocument();
+    expect(
+      await screen.findByRole("heading", { name: "수업 요약" }),
+    ).toBeInTheDocument();
+    expect(
+      screen.getByRole("button", { name: "AI 연결 설정" }),
+    ).toBeInTheDocument();
+    expect(fetchMock).not.toHaveBeenCalled();
+  });
+
+  it("hides disabled navigation, home cards, search, create choices and AI controls", () => {
+    render(
+      <UnifiedWorkspace
+        initialData={initialData}
+        allowedMenus={["home", "library"]}
+      />,
+    );
+    expect(nav().getAllByRole("button")).toHaveLength(2);
+    expect(
+      screen.queryByRole("textbox", { name: "문제은행 바로 검색" }),
+    ).not.toBeInTheDocument();
+    expect(
+      screen.queryByRole("button", { name: "자료 가져오기" }),
+    ).not.toBeInTheDocument();
+    expect(
+      screen.queryByRole("button", { name: "새 시험지 만들기" }),
+    ).not.toBeInTheDocument();
+    expect(
+      screen.queryByRole("button", { name: "AI 연결 설정" }),
+    ).not.toBeInTheDocument();
+    expect(screen.queryByText("나의 수업 공간")).not.toBeInTheDocument();
+    expect(screen.getByTestId("ai-provider")).toHaveAttribute(
+      "data-enabled",
+      "false",
+    );
+    fireEvent.click(screen.getByRole("button", { name: "빠른 검색 열기" }));
+    const dialog = within(screen.getByRole("dialog"));
+    expect(
+      dialog.queryByRole("textbox", { name: "빠른 문제 검색" }),
+    ).not.toBeInTheDocument();
+    expect(dialog.getByRole("button", { name: "내 시험지" })).toBeVisible();
+    expect(
+      dialog.queryByRole("button", { name: "문제은행" }),
+    ).not.toBeInTheDocument();
+    expect(mocks.bankMount).not.toHaveBeenCalled();
+    expect(mocks.studioMount).not.toHaveBeenCalled();
+    expect(mocks.teachingMount).not.toHaveBeenCalled();
+    expect(mocks.overviewMount).not.toHaveBeenCalled();
+  });
+
+  it("rejects direct hash, history and browser-storage attempts and chooses the first allowed menu", async () => {
+    window.history.replaceState(null, "", "/#studio");
+    localStorage.setItem("today-math-workspace-view", "studio");
+    localStorage.setItem(
+      "today-math-allowed-menus",
+      JSON.stringify(["studio"]),
+    );
+    render(
+      <UnifiedWorkspace
+        initialData={initialData}
+        allowedMenus={["bank", "library"]}
+      />,
+    );
+    expect(
+      await screen.findByRole("heading", { name: "은행 패널" }),
+    ).toBeVisible();
+    expect(window.location.hash).toBe("#bank");
+    for (const event of ["popstate", "hashchange"]) {
+      act(() => {
+        window.history.pushState(null, "", "/#teaching");
+        window.dispatchEvent(new Event(event));
+      });
+      expect(window.location.hash).toBe("#bank");
+    }
+    fireEvent.click(screen.getByRole("button", { name: "내보내기 우회 검증" }));
+    expect(window.location.hash).toBe("#bank");
+    expect(screen.getByTestId("bank-export-access")).toHaveTextContent("false");
+    expect(mocks.studioMount).not.toHaveBeenCalled();
+    expect(mocks.teachingMount).not.toHaveBeenCalled();
+  });
+
+  it("shows only the access notice and account actions when every menu is disabled", () => {
+    render(
+      <UnifiedWorkspace
+        initialData={initialData}
+        allowedMenus={[]}
+        currentUser={user}
+      />,
+    );
+    expect(
+      screen.getByRole("heading", { name: "사용할 수 있는 메뉴가 없습니다" }),
+    ).toBeVisible();
+    expect(nav().queryAllByRole("button")).toHaveLength(0);
+    expect(screen.getByRole("button", { name: "로그아웃" })).toBeVisible();
+    expect(screen.getByText(user.email)).toBeVisible();
+    expect(
+      screen.queryByRole("button", { name: "빠른 검색 열기" }),
+    ).not.toBeInTheDocument();
+    expect(
+      screen.queryByRole("button", { name: "새 시험지 만들기" }),
+    ).not.toBeInTheDocument();
+    expect(
+      screen.queryByLabelText("시험지 작업 파일 가져오기"),
+    ).not.toBeInTheDocument();
+    fireEvent.keyDown(window, { key: "k", ctrlKey: true });
+    expect(screen.queryByRole("dialog")).not.toBeInTheDocument();
+    expect(mocks.bankMount).not.toHaveBeenCalled();
+    expect(mocks.overviewMount).not.toHaveBeenCalled();
+  });
+
+  it("shows the admin link only for explicit admin identity, including zero-menu admins", () => {
+    const { rerender } = render(
+      <UnifiedWorkspace
+        initialData={initialData}
+        allowedMenus={[]}
+        currentUser={user}
+      />,
+    );
+    expect(
+      screen.queryByRole("link", { name: "관리자" }),
+    ).not.toBeInTheDocument();
+    rerender(
+      <UnifiedWorkspace
+        initialData={initialData}
+        allowedMenus={[]}
+        currentUser={{ ...user, isAdmin: true }}
+      />,
+    );
+    expect(screen.getByRole("link", { name: "관리자" })).toHaveAttribute(
+      "href",
+      "/admin",
+    );
+  });
+
+  it("filters new worksheet choices and editor links to permitted destinations", async () => {
+    render(
+      <UnifiedWorkspace initialData={initialData} allowedMenus={["export"]} />,
+    );
+    expect(
+      await screen.findByRole("heading", { name: "시험지 구성하기" }),
+    ).toBeVisible();
+    expect(
+      screen.queryByRole("button", { name: "문제은행에서 담기" }),
+    ).not.toBeInTheDocument();
+    expect(
+      screen.queryByRole("button", { name: "자료 가져오기" }),
+    ).not.toBeInTheDocument();
+    expect(
+      screen.queryByRole("button", { name: "이전 검토 단계" }),
+    ).not.toBeInTheDocument();
+    fireEvent.click(screen.getByRole("button", { name: "새 시험지 만들기" }));
+    const dialog = within(screen.getByRole("dialog"));
+    expect(
+      dialog.getByRole("button", { name: /빈 시험지로 시작하기/ }),
+    ).toBeVisible();
+    expect(
+      dialog.queryByRole("button", { name: /문제은행에서 만들기/ }),
+    ).not.toBeInTheDocument();
+    expect(
+      dialog.queryByRole("button", { name: /내 자료로 만들기/ }),
+    ).not.toBeInTheDocument();
+  });
+
+  it("ignores a pending worksheet file read after export access is revoked", async () => {
+    const { rerender } = render(
+      <UnifiedWorkspace initialData={initialData} allowedMenus={["export"]} />,
+    );
+    await screen.findByRole("button", { name: "저장한 작업 불러오기" });
+    let finishRead: ((value: string) => void) | undefined;
+    const file = new File(["pending"], "worksheet.json", {
+      type: "application/json",
+    });
+    Object.defineProperty(file, "text", {
+      value: () =>
+        new Promise<string>((resolve) => {
+          finishRead = resolve;
+        }),
+    });
+    fireEvent.change(screen.getByLabelText("시험지 작업 파일 가져오기"), {
+      target: { files: [file] },
+    });
+    rerender(
+      <UnifiedWorkspace initialData={initialData} allowedMenus={["library"]} />,
+    );
+    await act(async () =>
+      finishRead!(
+        JSON.stringify({
+          version: 1,
+          title: "권한 없는 가져오기",
+          problems: [{ id: "p1", content: "1+1" }],
+          columns: 1,
+          answers: false,
+        }),
+      ),
+    );
+    expect(window.location.hash).toBe("#library");
+    expect(screen.queryByText("권한 없는 가져오기")).not.toBeInTheDocument();
+    expect(
+      screen.queryByRole("button", { name: "작업 파일 불러오기" }),
+    ).not.toBeInTheDocument();
+    expect(localStorage.getItem(DRAFT_STORE_KEY) ?? "").not.toContain(
+      "권한 없는 가져오기",
+    );
+  });
+
+  it("keeps saved worksheets readable without exposing their disabled editor", async () => {
+    const store = createWorkspaceDraftStore();
+    store.hydrate();
+    store.importDraft({
+      version: 1,
+      title: "보관 중인 시험지",
+      problems: [{ id: "p1", content: "1+1" }],
+      columns: 1,
+      answers: false,
+    });
+    render(
+      <UnifiedWorkspace initialData={initialData} allowedMenus={["library"]} />,
+    );
+    expect(
+      await screen.findByRole("heading", { name: "보관 중인 시험지" }),
+    ).toBeVisible();
+    expect(
+      screen.queryByRole("button", { name: "보관 중인 시험지 편집" }),
+    ).not.toBeInTheDocument();
+    expect(
+      screen.getByRole("button", { name: "보관 중인 시험지 이름 변경" }),
+    ).toBeVisible();
+    expect(window.location.hash).toBe("#library");
+  });
+
+  it("updates access on focus, unmounts revoked panels and retains the current scoped draft", async () => {
+    const store = createWorkspaceDraftStore(() => ({
+      getItem: (key) => localStorage.getItem(`${key}:teacher-one`),
+      setItem: (key, value) =>
+        localStorage.setItem(`${key}:teacher-one`, value),
+    }));
+    store.hydrate();
+    store.importDraft({
+      version: 1,
+      title: "초기 시험지",
+      problems: [{ id: "p1", content: "1+1" }],
+      columns: 1,
+      answers: false,
+    });
+    fetchMock.mockImplementation(async () => response(["export", "studio"]));
+    render(
+      <UnifiedWorkspace
+        initialData={initialData}
+        currentUser={user}
+        storageScope="teacher-one"
+        allowedMenus={["export", "studio"]}
+      />,
+    );
+    const title = await screen.findByRole("textbox", { name: "제목" });
+    fireEvent.change(title, { target: { value: "권한 변경 중인 시험지" } });
+    fireEvent.click(nav().getByRole("button", { name: "자료 제작" }));
+    expect(
+      await screen.findByRole("heading", { name: "자료 패널" }),
+    ).toBeVisible();
+    nextCheck();
+    fetchMock.mockImplementation(async () => response([], { isAdmin: true }));
+    fireEvent.focus(window);
+    await waitFor(() => expect(nav().queryAllByRole("button")).toHaveLength(0));
+    expect(
+      screen.getByRole("heading", { name: "사용할 수 있는 메뉴가 없습니다" }),
+    ).toBeVisible();
+    expect(
+      screen.queryByRole("heading", { name: "자료 패널", hidden: true }),
+    ).not.toBeInTheDocument();
+    expect(screen.getByRole("link", { name: "관리자" })).toHaveAttribute(
+      "href",
+      "/admin",
+    );
+    expect(screen.getByTestId("ai-provider")).toHaveAttribute(
+      "data-enabled",
+      "false",
+    );
+    nextCheck();
+    fetchMock.mockImplementation(async () => response(["export"]));
+    fireEvent.focus(window);
+    expect(
+      await screen.findByDisplayValue("권한 변경 중인 시험지"),
+    ).toBeVisible();
+    await waitFor(() =>
+      expect(localStorage.getItem(`${DRAFT_STORE_KEY}:teacher-one`)).toContain(
+        "권한 변경 중인 시험지",
+      ),
+    );
+  });
+
+  it("checks access every 30 seconds without remounting a still-allowed studio", async () => {
+    const interval = vi.spyOn(window, "setInterval");
+    const clear = vi.spyOn(window, "clearInterval");
+    fetchMock.mockImplementation(async () => response(["studio"]));
+    const { unmount } = render(
+      <UnifiedWorkspace
+        initialData={initialData}
+        currentUser={user}
+        storageScope="teacher-one"
+        allowedMenus={["studio"]}
+      />,
+    );
+    const field = await screen.findByRole("textbox", {
+      name: "진행 중인 자료",
+    });
+    fireEvent.change(field, { target: { value: "검토 중인 크롭" } });
+    await waitFor(() => expect(fetchMock).toHaveBeenCalledOnce());
+    expect(interval).toHaveBeenCalledWith(expect.any(Function), 30_000);
+    const accessInterval = interval.mock.calls.findIndex(
+      ([, delay]) => delay === 30_000,
+    );
+    const tick = interval.mock.calls[accessInterval][0];
+    const intervalId = interval.mock.results[accessInterval].value;
+    nextCheck();
+    fetchMock.mockImplementation(async () => response(["studio", "teaching"]));
+    act(() => tick(undefined));
+    await waitFor(() =>
+      expect(
+        nav().getByRole("button", { name: "수업 · 학생 관리" }),
+      ).toBeInTheDocument(),
+    );
+    expect(screen.getByDisplayValue("검토 중인 크롭")).toBeVisible();
+    expect(mocks.studioMount).toHaveBeenCalledOnce();
+    expect(mocks.teachingMount).not.toHaveBeenCalled();
+    expect(fetchMock).toHaveBeenLastCalledWith(
+      "/api/account/access",
+      expect.objectContaining({
+        cache: "no-store",
+        signal: expect.any(AbortSignal),
+      }),
+    );
+    unmount();
+    expect(clear).toHaveBeenCalledWith(intervalId);
+  });
+
+  it.each([
+    [401, undefined, "/login"],
+    [403, undefined, "/approval-pending"],
+    [200, "pending", "/approval-pending"],
+    [200, "rejected", "/approval-pending"],
+  ])(
+    "withdraws features and redirects denied access (%s / %s)",
+    async (status, approvalStatus, destination) => {
+      fetchMock.mockImplementation(async () =>
+        status === 200
+          ? response(["bank"], { approvalStatus })
+          : new Response(null, { status }),
+      );
+      render(
+        <UnifiedWorkspace
+          initialData={initialData}
+          currentUser={user}
+          allowedMenus={["home"]}
+        />,
+      );
+      await waitFor(() =>
+        expect(mocks.replace).toHaveBeenCalledWith(destination),
+      );
+      expect(nav().queryAllByRole("button")).toHaveLength(0);
+      expect(
+        screen.getByRole("button", { name: "로그아웃" }),
+      ).toBeInTheDocument();
+    },
+  );
+});

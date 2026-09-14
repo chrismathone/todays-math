@@ -4,7 +4,11 @@ import { useFormStatus } from "react-dom";
 import { signOutAction } from "@/app/actions/auth";
 import s from "./WorkspaceAccount.module.css";
 
-export type WorkspaceIdentity = { name: string; email: string };
+export type WorkspaceIdentity = {
+  name: string;
+  email: string;
+  isAdmin?: boolean;
+};
 
 function SignOutButton() {
   const { pending } = useFormStatus();
@@ -26,6 +30,7 @@ export default function WorkspaceAccount({
         <strong>{user.name || "선생님"}</strong>
         <span title={user.email}>{user.email}</span>
       </div>
+      {user.isAdmin === true && <a href="/admin">관리자</a>}
       <form action={signOutAction}>
         <SignOutButton />
       </form>

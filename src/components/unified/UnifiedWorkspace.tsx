@@ -4,7 +4,12 @@ import WorkspacePageHeader from "./WorkspacePageHeader";
 import WorkProgress from "./WorkProgress";
 import SavedWorksheetActions from "./SavedWorksheetActions";
 import dynamic from "next/dynamic";
-import { useCallback, useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useMemo, useRef, useState } from "react";
+import {
+  WORKSPACE_MENUS,
+  type WorkspaceMenu,
+} from "@/contracts/accountAccess.contract";
+import { useWorkspaceAccess } from "./useWorkspaceAccess";
 import type { BankData, StudioProblem } from "./types";
 import type { StudioCrop } from "./studioHelpers";
 import { useWorkspaceDrafts } from "./useWorkspaceDrafts";
@@ -46,7 +51,7 @@ const WorksheetEditor = dynamic(() => import("./WorksheetEditor"), {
     />
   ),
 });
-type View = "home" | "bank" | "studio" | "export" | "library" | "teaching";
+type View = WorkspaceMenu;
 const navItems: {
   id: View;
   label: string;
@@ -66,23 +71,27 @@ const navItems: {
   },
 ];
 const viewValid = (value: string): value is View =>
-  navItems.some((item) => item.id === value);
+  WORKSPACE_MENUS.some((item) => item.id === value);
 export default function UnifiedWorkspace({
   initialData,
   storageScope,
   currentUser,
+  allowedMenus,
 }: {
   initialData: BankData;
   storageScope?: string;
   currentUser?: WorkspaceIdentity;
+  allowedMenus?: WorkspaceMenu[];
 }) {
+  const access = useWorkspaceAccess(currentUser, allowedMenus, storageScope);
   return (
-    <DevAiProvider>
+    <DevAiProvider enabled={access.allowedMenus.includes("studio")}>
       <UnifiedWorkspaceContent
         key={storageScope ?? "development"}
         initialData={initialData}
         storageScope={storageScope}
-        currentUser={currentUser}
+        currentUser={access.currentUser}
+        allowedMenus={access.allowedMenus}
       />
     </DevAiProvider>
   );
@@ -91,11 +100,30 @@ function UnifiedWorkspaceContent({
   initialData,
   storageScope,
   currentUser,
+  allowedMenus,
 }: {
   initialData: BankData;
   storageScope?: string;
   currentUser?: WorkspaceIdentity;
+  allowedMenus: WorkspaceMenu[];
 }) {
+  const menuKey = allowedMenus.join(",");
+  const enabledMenus = useMemo(
+    () => new Set(menuKey.split(",").filter(viewValid)),
+    [menuKey],
+  );
+  const can = useCallback(
+    (menu: View) => enabledMenus.has(menu),
+    [enabledMenus],
+  );
+  const availableNav = navItems.filter((item) => can(item.id));
+  const defaultView = [...enabledMenus][0] ?? null;
+  const hasMenus = enabledMenus.size > 0;
+  const canCreate = can("bank") || can("studio") || can("export");
+  const permissionsRef = useRef(enabledMenus);
+  useEffect(() => {
+    permissionsRef.current = enabledMenus;
+  }, [enabledMenus]);
   const {
     draft,
     hydrated,
@@ -124,13 +152,17 @@ function UnifiedWorkspaceContent({
     printMeta,
     updatedAt: savedAt,
   } = draft;
-  const [view, setView] = useState<View>("home");
+  const [requestedView, setView] = useState<View | null>(defaultView);
+  const view =
+    requestedView && can(requestedView) ? requestedView : defaultView;
   const [studioReviewRequest, setStudioReviewRequest] = useState(0);
   const [studioRestoreRequest, setStudioRestoreRequest] = useState<{
     id: number;
     crops: StudioCrop[];
   }>();
-  const [opened, setOpened] = useState<Set<View>>(new Set(["home"]));
+  const [opened, setOpened] = useState<Set<View>>(
+    () => new Set(defaultView ? [defaultView] : []),
+  );
   const [bankEntry, setBankEntry] = useState<{
     q?: string;
     grade?: string;
@@ -160,9 +192,11 @@ function UnifiedWorkspaceContent({
   const newTitleRef = useRef<HTMLInputElement>(null);
   const fileRef = useRef<HTMLInputElement>(null);
   const draftFileRef = useRef<HTMLInputElement>(null);
-  const label = navItems.find((item) => item.id === view)!.label;
+  const label =
+    navItems.find((item) => item.id === view)?.label ?? "메뉴 이용 안내";
   const navigate = useCallback(
     (next: View) => {
+      if (!can(next)) return;
       setView(next);
       setOpened((current) =>
         current.has(next) ? current : new Set([...current, next]),
@@ -176,7 +210,7 @@ function UnifiedWorkspaceContent({
         window.history.pushState(null, "", url);
       window.scrollTo({ top: 0, behavior: "instant" });
     },
-    [setNotice],
+    [can, setNotice, setModal],
   );
   useEffect(() => {
     try {
@@ -200,12 +234,16 @@ function UnifiedWorkspaceContent({
   }, [sidebarCollapsed]);
   useEffect(() => {
     const sync = () => {
-      const value = window.location.hash.slice(1);
-      const next = viewValid(value) ? value : "home";
+      const value = window.location.hash.slice(1) || "home";
+      const next = viewValid(value) && can(value) ? value : defaultView;
       setView(next);
-      setOpened((current) =>
-        current.has(next) ? current : new Set([...current, next]),
+      setOpened(
+        (current) => new Set([...current, ...(next ? [next] : [])].filter(can)),
       );
+      const url = new URL(window.location.href);
+      url.hash = next && next !== "home" ? next : "";
+      if (url.href !== window.location.href)
+        window.history.replaceState(null, "", url);
     };
     // Synchronize the browser's navigation state, including a directly opened hash.
 
@@ -216,7 +254,14 @@ function UnifiedWorkspaceContent({
       window.removeEventListener("popstate", sync);
       window.removeEventListener("hashchange", sync);
     };
-  }, []);
+  }, [can, defaultView]);
+  useEffect(() => {
+    // Close controls immediately after the corresponding permission is revoked.
+    // eslint-disable-next-line react-hooks/set-state-in-effect
+    setModal((current) =>
+      !hasMenus || (current === "new" && !canCreate) ? null : current,
+    );
+  }, [hasMenus, canCreate]);
   useEffect(() => {
     const dialog = dialogRef.current;
     if (!dialog) return;
@@ -235,19 +280,20 @@ function UnifiedWorkspaceContent({
         event.preventDefault();
         toggleSidebar();
       }
-      if (event.key.toLowerCase() === "k") {
+      if (event.key.toLowerCase() === "k" && hasMenus) {
         event.preventDefault();
         setModal("search");
       }
-      if (event.key.toLowerCase() === "s") {
+      if (event.key.toLowerCase() === "s" && canCreate) {
         event.preventDefault();
         if (saveNow()) setNotice("이 브라우저에 작업을 저장했습니다.");
       }
     };
     window.addEventListener("keydown", keydown);
     return () => window.removeEventListener("keydown", keydown);
-  }, [saveNow, setNotice, toggleSidebar]);
+  }, [saveNow, setNotice, toggleSidebar, hasMenus, canCreate]);
   const openBank = (filters: { q?: string; grade?: string } = {}) => {
+    if (!can("bank")) return;
     setBankEntry((current) => ({ ...filters, version: current.version + 1 }));
     navigate("bank");
   };
@@ -305,6 +351,7 @@ function UnifiedWorkspaceContent({
     if (saveNow()) setNotice("이 브라우저에 작업을 저장했습니다.");
   }
   function openSaved(id: string) {
+    if (!can("export")) return;
     if (openDraft(id)) {
       setUndo(null);
       navigate("export");
@@ -316,6 +363,7 @@ function UnifiedWorkspaceContent({
     else draftFileRef.current?.click();
   }
   function startNew(next: "bank" | "studio" | "export") {
+    if (!can(next)) return;
     if (!createDraft()) return;
     setUndo(null);
     if (newTitle.trim()) setTitle(newTitle.trim());
@@ -324,16 +372,17 @@ function UnifiedWorkspaceContent({
     else navigate(next);
   }
   function receiveFiles(files: File[]) {
-    if (!files.length) return;
+    if (!can("studio") || !files.length) return;
     setImportRequest({ id: Date.now(), files });
     navigate("studio");
   }
   async function receiveDraft(file: File | undefined) {
-    if (!file) return;
+    if (!can("export") || !file) return;
     try {
       if (file.size > 20 * 1024 * 1024)
         return setNotice("20 MB 이하의 작업 파일을 선택해 주세요.", true);
       const value = JSON.parse(await file.text());
+      if (!permissionsRef.current.has("export")) return;
       if (importDraft(value)) {
         setUndo(null);
         navigate("export");
@@ -347,6 +396,7 @@ function UnifiedWorkspaceContent({
     }
   }
   function download() {
+    if (!can("export")) return;
     const url = URL.createObjectURL(
       new Blob(
         [
@@ -382,6 +432,7 @@ function UnifiedWorkspaceContent({
       className={s.workspace}
       data-sidebar-collapsed={sidebarCollapsed}
       data-authenticated={Boolean(currentUser)}
+      data-menu-count={availableNav.length}
     >
       <a
         className={s.skipLink}
@@ -393,35 +444,42 @@ function UnifiedWorkspaceContent({
       >
         본문으로 건너뛰기
       </a>
-      <input
-        ref={fileRef}
-        hidden
-        type="file"
-        accept="application/pdf,image/png,image/jpeg,image/webp,image/gif,image/bmp"
-        multiple
-        aria-label="홈에서 PDF 또는 이미지 가져오기"
-        onChange={(event) => {
-          receiveFiles(Array.from(event.target.files ?? []));
-          event.target.value = "";
-        }}
-      />
-      <input
-        ref={draftFileRef}
-        hidden
-        type="file"
-        accept="application/json,.json"
-        aria-label="시험지 작업 파일 가져오기"
-        onChange={(event) => {
-          void receiveDraft(event.target.files?.[0]);
-          event.target.value = "";
-        }}
-      />
+      {can("studio") && (
+        <input
+          ref={fileRef}
+          hidden
+          type="file"
+          accept="application/pdf,image/png,image/jpeg,image/webp,image/gif,image/bmp"
+          multiple
+          aria-label="홈에서 PDF 또는 이미지 가져오기"
+          onChange={(event) => {
+            receiveFiles(Array.from(event.target.files ?? []));
+            event.target.value = "";
+          }}
+        />
+      )}
+      {can("export") && (
+        <input
+          ref={draftFileRef}
+          hidden
+          type="file"
+          accept="application/json,.json"
+          aria-label="시험지 작업 파일 가져오기"
+          onChange={(event) => {
+            void receiveDraft(event.target.files?.[0]);
+            event.target.value = "";
+          }}
+        />
+      )}
       <aside className={s.sidebar}>
         <div className={s.sideHeader}>
           <button
             className={s.brand}
-            onClick={() => navigate("home")}
-            aria-label="오늘의수학 홈"
+            onClick={() => defaultView && navigate(defaultView)}
+            aria-label={
+              defaultView === "home" ? "오늘의수학 홈" : "오늘의수학 작업실"
+            }
+            disabled={!hasMenus}
           >
             <span className={s.brandMark}>
               <TodayMathMark size={36} inverse />
@@ -460,18 +518,20 @@ function UnifiedWorkspaceContent({
             </svg>
           </button>
         </div>
-        <button
-          className={s.newButton}
-          aria-label="새 시험지 만들기"
-          title={sidebarCollapsed ? "새 시험지 만들기" : undefined}
-          disabled={!hydrated}
-          onClick={() => setModal("new")}
-        >
-          <Icon name="plus" />
-          <span>새 시험지 만들기</span>
-        </button>
+        {canCreate && (
+          <button
+            className={s.newButton}
+            aria-label="새 시험지 만들기"
+            title={sidebarCollapsed ? "새 시험지 만들기" : undefined}
+            disabled={!hydrated}
+            onClick={() => setModal("new")}
+          >
+            <Icon name="plus" />
+            <span>새 시험지 만들기</span>
+          </button>
+        )}
         <nav className={s.navigation} aria-label="작업실 메뉴">
-          {navItems.map((item) => (
+          {availableNav.map((item) => (
             <div
               key={item.id}
               className={item.id === "teaching" ? s.teachingNav : ""}
@@ -496,42 +556,50 @@ function UnifiedWorkspaceContent({
             </div>
           ))}
         </nav>
-        <div className={s.sideDraft}>
-          <div>
-            <span className={s.sideDraftIcon}>
-              <Icon name="paper" size={18} />
-            </span>
-            <span>현재 시험지</span>
-            <b>{selected.length}문항</b>
+        {can("export") && (
+          <div className={s.sideDraft}>
+            <div>
+              <span className={s.sideDraftIcon}>
+                <Icon name="paper" size={18} />
+              </span>
+              <span>현재 시험지</span>
+              <b>{selected.length}문항</b>
+            </div>
+            <strong>{title || "제목 없는 시험지"}</strong>
+            <button onClick={() => navigate("export")}>
+              편집 이어가기
+              <Icon name="arrow" size={17} />
+            </button>
           </div>
-          <strong>{title || "제목 없는 시험지"}</strong>
-          <button onClick={() => navigate("export")}>
-            편집 이어가기
-            <Icon name="arrow" size={17} />
-          </button>
-        </div>
-        <DevAiStatusPanel
-          collapsed={sidebarCollapsed}
-          onExpand={toggleSidebar}
-        />
-        <div className={s.sidebarFooter}>
-          <button onClick={() => setModal("help")}>
-            <Icon name="help" size={19} />
-            작업실 사용 안내
-            <Icon name="chevron" size={15} />
-          </button>
-          <button
-            className={s.accountButton}
-            onClick={() => navigate("teaching")}
-          >
-            <span>수</span>
-            <span>
-              <strong>나의 수업 공간</strong>
-              <small>계정 · 반 · 학생 관리</small>
-            </span>
-            <Icon name="chevron" size={16} />
-          </button>
-        </div>
+        )}
+        {can("studio") && (
+          <DevAiStatusPanel
+            collapsed={sidebarCollapsed}
+            onExpand={toggleSidebar}
+          />
+        )}
+        {hasMenus && (
+          <div className={s.sidebarFooter}>
+            <button onClick={() => setModal("help")}>
+              <Icon name="help" size={19} />
+              작업실 사용 안내
+              <Icon name="chevron" size={15} />
+            </button>
+            {can("teaching") && (
+              <button
+                className={s.accountButton}
+                onClick={() => navigate("teaching")}
+              >
+                <span>수</span>
+                <span>
+                  <strong>나의 수업 공간</strong>
+                  <small>계정 · 반 · 학생 관리</small>
+                </span>
+                <Icon name="chevron" size={16} />
+              </button>
+            )}
+          </div>
+        )}
       </aside>
       <div className={s.main}>
         <header className={s.topbar}>
@@ -540,47 +608,53 @@ function UnifiedWorkspaceContent({
             <Icon name="chevron" size={14} />
             <strong>{label}</strong>
           </div>
-          <button
-            className={s.searchTrigger}
-            onClick={() => setModal("search")}
-            aria-label="빠른 검색 열기"
-          >
-            <Icon name="search" size={18} />
-            <span>문제 · 작업 빠르게 찾기</span>
-            <kbd>Ctrl K</kbd>
-          </button>
-          <div className={s.headerActions}>
-            <span className={s.saveState} data-state={saveStatus}>
-              {!hydrated || saveStatus === "saving" ? (
-                <WorkProgress
-                  variant="inline"
-                  label={!hydrated ? "작업 불러오는 중" : "저장 중…"}
-                />
-              ) : (
-                <>
-                  <Icon
-                    name={saveStatus === "error" ? "warning" : "check"}
-                    size={15}
-                  />
-                  <span role="status">
-                    {saveStatus === "error"
-                      ? "저장 확인 필요"
-                      : selected.length
-                        ? "자동 저장됨"
-                        : "작업 준비 완료"}
-                  </span>
-                </>
-              )}
-            </span>
+          {hasMenus && (
             <button
-              className={s.headerPaper}
-              onClick={() => navigate("export")}
-              aria-label={`담은 문제 ${selected.length}`}
+              className={s.searchTrigger}
+              onClick={() => setModal("search")}
+              aria-label="빠른 검색 열기"
             >
-              <Icon name="paper" size={18} />
-              <span>시험지</span>
-              <b>{selected.length}</b>
+              <Icon name="search" size={18} />
+              <span>문제 · 작업 빠르게 찾기</span>
+              <kbd>Ctrl K</kbd>
             </button>
+          )}
+          <div className={s.headerActions}>
+            {canCreate && (
+              <span className={s.saveState} data-state={saveStatus}>
+                {!hydrated || saveStatus === "saving" ? (
+                  <WorkProgress
+                    variant="inline"
+                    label={!hydrated ? "작업 불러오는 중" : "저장 중…"}
+                  />
+                ) : (
+                  <>
+                    <Icon
+                      name={saveStatus === "error" ? "warning" : "check"}
+                      size={15}
+                    />
+                    <span role="status">
+                      {saveStatus === "error"
+                        ? "저장 확인 필요"
+                        : selected.length
+                          ? "자동 저장됨"
+                          : "작업 준비 완료"}
+                    </span>
+                  </>
+                )}
+              </span>
+            )}
+            {can("export") && (
+              <button
+                className={s.headerPaper}
+                onClick={() => navigate("export")}
+                aria-label={`담은 문제 ${selected.length}`}
+              >
+                <Icon name="paper" size={18} />
+                <span>시험지</span>
+                <b>{selected.length}</b>
+              </button>
+            )}
           </div>
           {currentUser && (
             <div className={s.accountSlot}>
@@ -589,15 +663,17 @@ function UnifiedWorkspaceContent({
           )}
         </header>
         <div className={s.notifications}>
-          {saveError && (
+          {canCreate && saveError && (
             <div className={s.saveError} role="alert">
               <Icon name="warning" size={19} />
               <p>{saveError}</p>
-              <button onClick={download}>작업 파일 내려받기</button>
+              {can("export") && (
+                <button onClick={download}>작업 파일 내려받기</button>
+              )}
               <button onClick={save}>다시 저장</button>
             </div>
           )}
-          {notice && (
+          {hasMenus && notice && (
             <div
               className={s.notice}
               data-error={noticeError}
@@ -625,6 +701,15 @@ function UnifiedWorkspaceContent({
           )}
         </div>
         <div id="workspace-content" className={s.content} tabIndex={-1}>
+          {!hasMenus && (
+            <main className={s.noMenus}>
+              <h1>사용할 수 있는 메뉴가 없습니다</h1>
+              <p>
+                관리자에게 메뉴 이용 권한을 요청해 주세요. 권한이 변경되면 이
+                화면에 자동으로 반영됩니다.
+              </p>
+            </main>
+          )}
           {view === "home" && (
             <WorkroomHome
               data={initialData}
@@ -632,6 +717,7 @@ function UnifiedWorkspaceContent({
               recent={recent}
               hydrated={hydrated}
               saveStatus={saveStatus}
+              allowedMenus={allowedMenus}
               onNew={() => setModal("new")}
               onBank={openBank}
               onImport={() => fileRef.current?.click()}
@@ -640,7 +726,7 @@ function UnifiedWorkspaceContent({
               onNavigate={navigate}
             />
           )}
-          {opened.has("bank") && (
+          {can("bank") && (opened.has("bank") || view === "bank") && (
             <main hidden={view !== "bank"} className={s.viewContent}>
               <BankView
                 key={bankEntry.version}
@@ -649,15 +735,18 @@ function UnifiedWorkspaceContent({
                 selected={selected}
                 onToggle={toggle}
                 onExport={() => navigate("export")}
+                canExport={can("export")}
+                canUseAi={can("studio")}
               />
             </main>
           )}
-          {opened.has("studio") && (
+          {can("studio") && (opened.has("studio") || view === "studio") && (
             <main hidden={view !== "studio"} className={s.studioContent}>
               <StudioView
                 active={view === "studio"}
                 onAdd={add}
                 onExport={() => navigate("export")}
+                canExport={can("export")}
                 importRequest={importRequest}
                 reviewRequest={studioReviewRequest}
                 restoreRequest={studioRestoreRequest}
@@ -665,11 +754,12 @@ function UnifiedWorkspaceContent({
               />
             </main>
           )}
-          {opened.has("teaching") && (
-            <div hidden={view !== "teaching"} className={s.teachingContent}>
-              <TeachingView />
-            </div>
-          )}
+          {can("teaching") &&
+            (opened.has("teaching") || view === "teaching") && (
+              <div hidden={view !== "teaching"} className={s.teachingContent}>
+                <TeachingView />
+              </div>
+            )}
           {view === "export" && (
             <WorksheetEditor
               selected={selected}
@@ -690,19 +780,31 @@ function UnifiedWorkspaceContent({
               toggle={toggle}
               move={move}
               navigate={navigate}
-              onImportFiles={() => fileRef.current?.click()}
-              onEditSource={(problem) => {
-                if (!problem.studioCrop) return;
-                setStudioRestoreRequest({
-                  id: Date.now(),
-                  crops: [problem.studioCrop],
-                });
-                navigate("studio");
-              }}
-              onBackToReview={() => {
-                setStudioReviewRequest((request) => request + 1);
-                navigate("studio");
-              }}
+              allowedMenus={allowedMenus}
+              onImportFiles={
+                can("studio") ? () => fileRef.current?.click() : undefined
+              }
+              onEditSource={
+                can("studio")
+                  ? (problem) => {
+                      if (!can("studio") || !problem.studioCrop) return;
+                      setStudioRestoreRequest({
+                        id: Date.now(),
+                        crops: [problem.studioCrop],
+                      });
+                      navigate("studio");
+                    }
+                  : undefined
+              }
+              onBackToReview={
+                can("studio")
+                  ? () => {
+                      if (!can("studio")) return;
+                      setStudioReviewRequest((request) => request + 1);
+                      navigate("studio");
+                    }
+                  : undefined
+              }
             />
           )}
           {view === "library" && (
@@ -711,20 +813,24 @@ function UnifiedWorkspaceContent({
                 title="내 시험지"
                 description="저장한 작업을 이어가거나 다른 기기의 작업 파일을 불러오세요."
               >
-                <button
-                  className={s.outlineButton}
-                  onClick={() => draftFileRef.current?.click()}
-                >
-                  <Icon name="upload" size={18} />
-                  작업 파일 불러오기
-                </button>
-                <button
-                  className={s.primaryButton}
-                  disabled={!hydrated}
-                  onClick={() => setModal("new")}
-                >
-                  <Icon name="plus" size={18} />새 시험지
-                </button>
+                {can("export") && (
+                  <button
+                    className={s.outlineButton}
+                    onClick={() => draftFileRef.current?.click()}
+                  >
+                    <Icon name="upload" size={18} />
+                    작업 파일 불러오기
+                  </button>
+                )}
+                {canCreate && (
+                  <button
+                    className={s.primaryButton}
+                    disabled={!hydrated}
+                    onClick={() => setModal("new")}
+                  >
+                    <Icon name="plus" size={18} />새 시험지
+                  </button>
+                )}
               </WorkspacePageHeader>
               <div className={s.libraryTools}>
                 <strong>
@@ -777,7 +883,9 @@ function UnifiedWorkspaceContent({
                         title={item.title || "제목 없는 시험지"}
                         current={item.id === draft.id}
                         error={saveError}
-                        onEdit={() => openSaved(item.id)}
+                        onEdit={
+                          can("export") ? () => openSaved(item.id) : undefined
+                        }
                         onRename={(name) => {
                           const saved = renameDraft(item.id, name);
                           if (saved) setNotice("시험지 이름을 변경했습니다.");
@@ -810,15 +918,17 @@ function UnifiedWorkspaceContent({
                       ? "다른 이름으로 검색해 보세요."
                       : "문제를 담거나 편집하면 작업이 자동으로 저장됩니다."}
                   </p>
-                  <button
-                    className={s.primaryButton}
-                    onClick={() =>
-                      libraryQuery ? setLibraryQuery("") : setModal("new")
-                    }
-                  >
-                    {libraryQuery ? "검색 초기화" : "첫 시험지 만들기"}
-                    <Icon name="arrow" size={18} />
-                  </button>
+                  {(libraryQuery || canCreate) && (
+                    <button
+                      className={s.primaryButton}
+                      onClick={() =>
+                        libraryQuery ? setLibraryQuery("") : setModal("new")
+                      }
+                    >
+                      {libraryQuery ? "검색 초기화" : "첫 시험지 만들기"}
+                      <Icon name="arrow" size={18} />
+                    </button>
+                  )}
                 </div>
               )}
               <p className={s.libraryNote}>
@@ -857,7 +967,7 @@ function UnifiedWorkspaceContent({
             <Icon name="close" />
           </button>
         </div>
-        {modal === "new" && (
+        {modal === "new" && canCreate && (
           <>
             <label className={s.newTitle}>
               시험지 이름 <small>나중에 바꿀 수 있어요</small>
@@ -889,18 +999,20 @@ function UnifiedWorkspaceContent({
                   title: "빈 시험지로 시작하기",
                   description: "문제는 나중에 담기",
                 },
-              ].map((item) => (
-                <button key={item.view} onClick={() => startNew(item.view)}>
-                  <span>
-                    <Icon name={item.icon} size={24} />
-                  </span>
-                  <span>
-                    <strong>{item.title}</strong>
-                    <small>{item.description}</small>
-                  </span>
-                  <Icon name="arrow" size={20} />
-                </button>
-              ))}
+              ]
+                .filter((item) => can(item.view))
+                .map((item) => (
+                  <button key={item.view} onClick={() => startNew(item.view)}>
+                    <span>
+                      <Icon name={item.icon} size={24} />
+                    </span>
+                    <span>
+                      <strong>{item.title}</strong>
+                      <small>{item.description}</small>
+                    </span>
+                    <Icon name="arrow" size={20} />
+                  </button>
+                ))}
             </div>
             {saveError && (
               <p className={s.modalError} role="alert">
@@ -912,31 +1024,33 @@ function UnifiedWorkspaceContent({
             </p>
           </>
         )}
-        {modal === "search" && (
+        {modal === "search" && hasMenus && (
           <>
-            <form
-              className={s.commandSearch}
-              onSubmit={(event) => {
-                event.preventDefault();
-                openBank({ q: quickQuery.trim() });
-              }}
-            >
-              <Icon name="search" size={22} />
-              <input
-                ref={queryRef}
-                value={quickQuery}
-                onChange={(event) => setQuickQuery(event.target.value)}
-                aria-label="빠른 문제 검색"
-                placeholder="문제 내용, 단원, 문제 번호"
-              />
-              <button type="submit">
-                검색
-                <Icon name="arrow" size={18} />
-              </button>
-            </form>
+            {can("bank") && (
+              <form
+                className={s.commandSearch}
+                onSubmit={(event) => {
+                  event.preventDefault();
+                  openBank({ q: quickQuery.trim() });
+                }}
+              >
+                <Icon name="search" size={22} />
+                <input
+                  ref={queryRef}
+                  value={quickQuery}
+                  onChange={(event) => setQuickQuery(event.target.value)}
+                  aria-label="빠른 문제 검색"
+                  placeholder="문제 내용, 단원, 문제 번호"
+                />
+                <button type="submit">
+                  검색
+                  <Icon name="arrow" size={18} />
+                </button>
+              </form>
+            )}
             <p className={s.commandCaption}>바로 이동</p>
             <div className={s.commandLinks}>
-              {navItems
+              {availableNav
                 .filter((item) => item.id !== "home")
                 .map((item) => (
                   <button key={item.id} onClick={() => navigate(item.id)}>

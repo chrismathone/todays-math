@@ -602,6 +602,49 @@ describe("inspection rows cannot be added", () => {
 describe("상세 모달이 변형까지 맡는다", () => {
   const origin: BankProblem = { ...problem, id: ORIGIN_ID };
 
+  it("hides export and AI transformation when those menus are disabled", () => {
+    render(
+      <BankView
+        initialData={{ ...initialData, problems: [origin] }}
+        selected={[origin]}
+        onToggle={vi.fn()}
+        onExport={vi.fn()}
+        canExport={false}
+        canUseAi={false}
+      />,
+    );
+    expect(
+      screen.queryByRole("button", { name: "시험지 편집" }),
+    ).not.toBeInTheDocument();
+    fireEvent.click(screen.getByRole("button", { name: "문제 상세" }));
+    expect(
+      within(screen.getByRole("dialog")).queryByRole("button", {
+        name: "변형",
+      }),
+    ).not.toBeInTheDocument();
+    expect(transformCalls).toHaveLength(0);
+  });
+
+  it("unmounts an open AI panel when studio access is revoked", async () => {
+    const props = {
+      initialData: { ...initialData, problems: [origin] },
+      selected: [],
+      onToggle: vi.fn(),
+      onExport: vi.fn(),
+    };
+    const { rerender } = render(<BankView {...props} canUseAi />);
+    fireEvent.click(screen.getByRole("button", { name: "문제 상세" }));
+    fireEvent.click(
+      within(screen.getByRole("dialog")).getByRole("button", { name: "변형" }),
+    );
+    expect(await screen.findByRole("region", { name: "변형" })).toBeVisible();
+    rerender(<BankView {...props} canUseAi={false} />);
+    expect(
+      screen.queryByRole("region", { name: "변형", hidden: true }),
+    ).not.toBeInTheDocument();
+    expect(transformCalls).toHaveLength(0);
+  });
+
   it("변형은 목록 카드에 없고 상세 모달에만 있다", () => {
     mount({ ...initialData, problems: [origin] });
     const row = screen.getByText(origin.content).closest("article")!;

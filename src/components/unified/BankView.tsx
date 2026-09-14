@@ -309,6 +309,7 @@ function DetailModal({
   onClose,
   onReviewStatusChange,
   onTransformAdopted,
+  canUseAi,
   selected,
   onToggle,
   busy,
@@ -326,6 +327,7 @@ function DetailModal({
    *    행을 준다.
    */
   onTransformAdopted: () => void;
+  canUseAi: boolean;
   /**
    * 담기는 **모달 바닥의 주 행동**이다 (05 §8.6 확정 — 「담기(primary, **맨 앞**)」).
    * 상세에서 모든 것을 처리하는 자리라, 읽고 나서 담으려고 카드로 되돌아가면 안 된다.
@@ -470,7 +472,7 @@ function DetailModal({
 
               ⚠️ 지연 청크로 연다(`ProblemTransformPanelLazy`) — 옛 카드와 같은 이유로
                  계약(zod)과 `problemApi` 가 첫 화면 청크에 딸려 들어오지 않게 한다. */}
-          {showTransform ? (
+          {canUseAi && showTransform ? (
             <ProblemTransformPanel
               origin={problem}
               onAdopted={(created) => {
@@ -505,14 +507,16 @@ function DetailModal({
             <Icon name={selected ? "check" : "plus"} />
             {selected ? "담기 완료" : addDisabled ? "담기 불가" : "문제 담기"}
           </button>
-          <button
-            type="button"
-            className={styles.textButton}
-            aria-expanded={showTransform}
-            onClick={() => setShowTransform((current) => !current)}
-          >
-            {showTransform ? "변형 닫기" : "변형"}
-          </button>
+          {canUseAi && (
+            <button
+              type="button"
+              className={styles.textButton}
+              aria-expanded={showTransform}
+              onClick={() => setShowTransform((current) => !current)}
+            >
+              {showTransform ? "변형 닫기" : "변형"}
+            </button>
+          )}
           {problem.reviewStatus === "pending" ? (
             <>
               <button
@@ -570,7 +574,9 @@ export default function BankView({
   selected,
   onToggle,
   onExport,
-}: BankViewProps) {
+  canExport = true,
+  canUseAi = true,
+}: BankViewProps & { canExport?: boolean; canUseAi?: boolean }) {
   const [search, setSearch] = useState(initialFilters?.q ?? "");
   const [basketOpen, setBasketOpen] = useState(false);
   const [filtersOpen, setFiltersOpen] = useState(false);
@@ -1303,6 +1309,7 @@ export default function BankView({
               onClose={() => setDetail(null)}
               onReviewStatusChange={handleReviewStatusChange}
               onTransformAdopted={refresh}
+              canUseAi={canUseAi}
             />
           ) : null}
           {!loading && !error && data.problems.length > 0 ? (
@@ -1481,22 +1488,24 @@ export default function BankView({
               </div>
             )}
           </div>
-          <div className={styles.basketFooter}>
-            <button
-              type="button"
-              className={styles.exportButton}
-              disabled={selected.length === 0}
-              onClick={onExport}
-            >
-              <span>시험지 편집</span>
-              <Icon name="arrow" />
-            </button>
-            <p>
-              {selected.length
-                ? "문제 순서와 배치를 정한 뒤 인쇄하세요."
-                : "문제를 담으면 시험지 편집을 시작할 수 있어요."}
-            </p>
-          </div>
+          {canExport && (
+            <div className={styles.basketFooter}>
+              <button
+                type="button"
+                className={styles.exportButton}
+                disabled={selected.length === 0}
+                onClick={onExport}
+              >
+                <span>시험지 편집</span>
+                <Icon name="arrow" />
+              </button>
+              <p>
+                {selected.length
+                  ? "문제 순서와 배치를 정한 뒤 인쇄하세요."
+                  : "문제를 담으면 시험지 편집을 시작할 수 있어요."}
+              </p>
+            </div>
+          )}
         </aside>
       </div>
     </section>

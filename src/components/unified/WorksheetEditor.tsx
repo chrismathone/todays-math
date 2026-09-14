@@ -12,8 +12,13 @@ import {
 } from "./print/types";
 import Icon from "./WorkspaceIcon";
 import type { StudioProblem } from "./types";
+import {
+  WORKSPACE_MENUS,
+  type WorkspaceMenu,
+} from "@/contracts/accountAccess.contract";
 import s from "./WorksheetEditor.module.css";
 interface Props {
+  allowedMenus?: WorkspaceMenu[];
   selected: StudioProblem[];
   title: string;
   columns: number;
@@ -58,7 +63,9 @@ export default function WorksheetEditor({
   onBackToReview,
   onImportFiles,
   onEditSource,
+  allowedMenus = WORKSPACE_MENUS.map((menu) => menu.id),
 }: Props) {
+  const can = (menu: WorkspaceMenu) => allowedMenus.includes(menu);
   const editorRef = useRef<HTMLElement>(null);
   const [exportProgress, setExportProgress] = useState("");
   const [exportError, setExportError] = useState("");
@@ -162,7 +169,7 @@ export default function WorksheetEditor({
         title="시험지 구성하기"
         description="문제 순서와 배치를 정하고 인쇄하세요."
       >
-        {onBackToReview && (
+        {can("studio") && onBackToReview && (
           <button className={s.secondaryButton} onClick={onBackToReview}>
             <span aria-hidden="true">←</span> 이전 검토 단계
           </button>
@@ -228,21 +235,29 @@ export default function WorksheetEditor({
       {!selected.length ? (
         <div className={s.emptyExport}>
           <h2>시험지에 문제를 담아 주세요</h2>
-          <p>문제은행에서 고르거나 내 자료를 가져오세요.</p>
+          <p>
+            {can("bank") || can("studio")
+              ? "문제은행에서 고르거나 내 자료를 가져오세요."
+              : "저장한 작업 파일을 불러와 시험지를 편집할 수 있어요."}
+          </p>
           <div>
-            <button
-              className={s.primaryButton}
-              ref={addFromBankRef}
-              onClick={() => navigate("bank")}
-            >
-              문제은행에서 담기 <Icon name="arrow" size={18} />
-            </button>
-            <button
-              className={s.secondaryButton}
-              onClick={onImportFiles ?? (() => navigate("studio"))}
-            >
-              자료 가져오기
-            </button>
+            {can("bank") && (
+              <button
+                className={s.primaryButton}
+                ref={addFromBankRef}
+                onClick={() => navigate("bank")}
+              >
+                문제은행에서 담기 <Icon name="arrow" size={18} />
+              </button>
+            )}
+            {can("studio") && (
+              <button
+                className={s.secondaryButton}
+                onClick={onImportFiles ?? (() => navigate("studio"))}
+              >
+                자료 가져오기
+              </button>
+            )}
           </div>
           <button className={s.textButton} onClick={restore}>
             저장한 작업 불러오기
@@ -353,7 +368,7 @@ export default function WorksheetEditor({
                       </small>
                     </div>
                     <div className={s.orderActions}>
-                      {p.studioCrop && onEditSource && (
+                      {can("studio") && p.studioCrop && onEditSource && (
                         <button
                           className={s.secondaryButton}
                           aria-label={`${i + 1}번 원본 편집`}
@@ -388,13 +403,15 @@ export default function WorksheetEditor({
               </ol>
             </div>
             <div className={s.bottomActions}>
-              <button
-                className={s.addMore}
-                ref={addFromBankRef}
-                onClick={() => navigate("bank")}
-              >
-                <Icon name="plus" size={16} /> 문제 더 담기
-              </button>
+              {can("bank") && (
+                <button
+                  className={s.addMore}
+                  ref={addFromBankRef}
+                  onClick={() => navigate("bank")}
+                >
+                  <Icon name="plus" size={16} /> 문제 더 담기
+                </button>
+              )}
               <button className={s.secondaryButton} onClick={download}>
                 <Icon name="save" size={18} /> 작업 파일 내보내기
               </button>

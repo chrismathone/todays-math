@@ -119,12 +119,12 @@ afterEach(() => {
   Reflect.deleteProperty(HTMLDialogElement.prototype, "showModal");
   Reflect.deleteProperty(HTMLDialogElement.prototype, "close");
 });
-async function open() {
+async function open(canExport = true) {
   const onAdd = vi.fn();
   const onExport = vi.fn();
   const view = render(
     <DevAiProvider>
-      <StudioView onAdd={onAdd} onExport={onExport} />
+      <StudioView onAdd={onAdd} onExport={onExport} canExport={canExport} />
     </DevAiProvider>,
   );
   fireEvent.click(screen.getByRole("button", { name: "예제로 시작" }));
@@ -148,6 +148,24 @@ async function recognize() {
 }
 
 describe("Studio AI review controls", () => {
+  it("keeps source review available while hiding disabled export actions", async () => {
+    const { onAdd, onExport } = await open(false);
+    fireEvent.click(screen.getByRole("button", { name: "페이지 자동 인식" }));
+    await waitFor(() =>
+      expect(
+        screen.getByRole("button", { name: "다음: OCR · 디지털화" }),
+      ).toBeEnabled(),
+    );
+    fireEvent.click(
+      screen.getByRole("button", { name: /^OCR · 디지털화 \d+$/ }),
+    );
+    expect(
+      screen.queryByRole("button", { name: /담고 내보내기|^내보내기$/ }),
+    ).not.toBeInTheDocument();
+    fireEvent.click(screen.getByRole("button", { name: "1문항 담기" }));
+    expect(onAdd).toHaveBeenCalledOnce();
+    expect(onExport).not.toHaveBeenCalled();
+  });
   it("stamps only a confirmed empty page and keeps grade settings outside the inspector", async () => {
     await open();
     respond = (request) =>
@@ -187,7 +205,9 @@ describe("Studio AI review controls", () => {
     await open();
     respond = () => Promise.resolve(json({ error: "응답 지연" }, 502));
     fireEvent.click(screen.getByRole("button", { name: "페이지 자동 인식" }));
-    fireEvent.click(await screen.findByRole("button", { name: /작업 진행 상세/ }));
+    fireEvent.click(
+      await screen.findByRole("button", { name: /작업 진행 상세/ }),
+    );
     expect(await screen.findByRole("alert")).toHaveTextContent("응답 지연");
     expect(
       screen.queryByLabelText("자동 인식 완료: 문제가 없는 빈 페이지"),
@@ -305,7 +325,9 @@ describe("Studio AI review controls", () => {
         finish = resolve;
       });
     fireEvent.click(screen.getByRole("button", { name: "다시 인식" }));
-    fireEvent.click(await screen.findByRole("button", { name: /작업 진행 상세/ }));
+    fireEvent.click(
+      await screen.findByRole("button", { name: /작업 진행 상세/ }),
+    );
     await screen.findByRole("button", { name: "AI 작업 취소" });
     const request = vi.mocked(fetch).mock.calls.at(-1)![1] as RequestInit;
     fireEvent.click(screen.getByRole("button", { name: "새로 시작" }));
@@ -369,7 +391,9 @@ describe("Studio AI review controls", () => {
     fireEvent.click(
       screen.getByRole("button", { name: "다음: OCR · 디지털화" }),
     );
-    fireEvent.click(await screen.findByRole("button", { name: /작업 진행 상세/ }));
+    fireEvent.click(
+      await screen.findByRole("button", { name: /작업 진행 상세/ }),
+    );
     expect(
       await screen.findByRole("button", { name: /실패 \d+개 다시 생성/ }),
     ).toBeInTheDocument();
