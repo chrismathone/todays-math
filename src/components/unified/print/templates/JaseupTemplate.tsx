@@ -8,7 +8,7 @@ import type { ProblemReview } from "../types";
 import { bodyFontSize } from "../geometry";
 import { PAPER_COLORS, A4_DIM } from "../tokens";
 import { BodyContainer } from "./BodyContainer";
-import { QuestionNumber } from "./ProblemMeta";
+import { ProblemHeader } from "./ProblemMeta";
 import { ProblemBody } from "./ProblemBody";
 import type { PrintTemplateProps } from "../types";
 import { ExamDetails } from "../ExamDetails";
@@ -50,23 +50,12 @@ export function JaseupTemplate({
         }}
       >
         <div>
-          <div
-            style={{ display: "flex", alignItems: "baseline", marginBottom: 6 }}
-          >
-            <QuestionNumber template="jaseup" num={num} accent={accent} />
-            {options.showChapter && p.variant.topic && (
-              <span
-                style={{
-                  fontFamily: "var(--paper-font-sans)",
-                  fontSize: 10,
-                  color: PAPER_COLORS.ink50,
-                  letterSpacing: "0.08em",
-                }}
-              >
-                · {p.variant.topic}
-              </span>
-            )}
-          </div>
+          <ProblemHeader
+            num={num}
+            problem={p.variant}
+            options={options}
+            accent={accent}
+          />
           <ProblemBody problem={p.variant} fontSize={fs} options={options} />
           {/* 정답 기록 칸 */}
           <div

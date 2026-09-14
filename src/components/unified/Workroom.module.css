@@ -414,12 +414,27 @@
 .loading {
   margin: 24px 32px;
 }
+.notifications {
+  position: fixed;
+  z-index: 60;
+  top: 72px;
+  right: 20px;
+  width: min(560px, calc(100vw - 40px));
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  pointer-events: none;
+}
+.notifications > * {
+  pointer-events: auto;
+  box-shadow: 0 6px 24px #243d6026;
+}
 .notice,
 .saveError {
   display: flex;
   align-items: center;
   gap: 9px;
-  margin: 16px 32px -8px;
+  margin: 0;
   padding: 4px 10px 4px 15px;
   min-height: 46px;
   background: #eaf2ff;
@@ -1138,7 +1153,7 @@
   }
   .notice,
   .saveError {
-    margin: 12px 16px 0;
+    margin: 0;
     font-size: var(--text-caption, 12px);
     flex-wrap: wrap;
     gap: 5px;

@@ -9,6 +9,74 @@ import {
 
 describe("original Mathgen template adapters", () => {
   it.each(Object.keys(TEMPLATE_COMPONENTS) as PrintTemplate[])(
+    "%s keeps number and optional metadata together above the body in both render modes",
+    (template) => {
+      const Template = TEMPLATE_COMPONENTS[template];
+      for (const measure of [undefined, { columnWidthPx: 310 }]) {
+        for (const [showChapter, showDifficulty] of [
+          [true, true],
+          [true, false],
+          [false, true],
+          [false, false],
+        ]) {
+          const html = renderToStaticMarkup(
+            <Template
+              page={1}
+              totalPages={1}
+              totalProblems={1}
+              columns={2}
+              startingNumber={7}
+              meta={DEFAULT_PRINT_META}
+              measure={measure}
+              options={{
+                ...DEFAULT_PRINT_OPTIONS,
+                template,
+                showChapter,
+                showDifficulty,
+              }}
+              problems={[
+                {
+                  id: "header",
+                  variant: {
+                    id: "header",
+                    content: "본문은 다음 줄에서 시작한다.",
+                    answer: "",
+                    solution: "",
+                    grade: "중1",
+                    chapter: "단원",
+                    topic: "단원 메타",
+                    section: "",
+                    difficulty: "난이도 메타",
+                    problemCode: "",
+                    figureUrls: [],
+                    figureSvg: null,
+                    figureDims: [],
+                    figureSourceMm: [],
+                  },
+                },
+              ]}
+            />,
+          );
+          const doc = new DOMParser().parseFromString(html, "text/html");
+          const header = doc.querySelector("[data-problem-header]");
+          expect(header).not.toBeNull();
+          expect(header?.textContent).toContain("7");
+          expect(header?.textContent?.includes("단원 메타")).toBe(showChapter);
+          expect(header?.textContent?.includes("난이도 메타")).toBe(
+            showDifficulty,
+          );
+          expect(header?.textContent).not.toContain("본문은");
+          const body = doc.querySelector("[data-problem-body]");
+          expect(body?.textContent).toContain("본문은 다음 줄에서 시작한다.");
+          expect(body?.textContent).not.toContain("메타");
+          expect(header?.compareDocumentPosition(body!)).toBe(
+            Node.DOCUMENT_POSITION_FOLLOWING,
+          );
+        }
+      }
+    },
+  );
+  it.each(Object.keys(TEMPLATE_COMPONENTS) as PrintTemplate[])(
     "renders %s with real metadata and the unchanged crop",
     (template) => {
       const Template = TEMPLATE_COMPONENTS[template];

@@ -880,6 +880,31 @@ export function splitBoxSegments(raw: string): ContentSegment[] {
     return [{ kind: "text", text: raw }];
 
   const text = normalizeBoxMarkers(raw);
+  // Saved native Markdown already supplies an exact box boundary. Parse that
+  // quoted region on its own so quote prefixes cannot become item text, and a
+  // following question/score cannot be swallowed by the final condition item.
+  // Verify the marker on a math-masked copy, but read line boundaries from the
+  // source: masking a multiline equation also masks its quote prefixes/newlines.
+  const quotedBoxes =
+    /^[ \t]*>[ \t]*<(보기|조건|상자)>([^\n]*)(?:\n[ \t]*>[^\n]*)*/gm;
+  const quoteProbe = maskMathInPlace(text);
+  for (const quoted of text.matchAll(quotedBoxes)) {
+    const start = quoted.index!;
+    if (
+      quoteProbe[start + quoted[0].indexOf("<")] !== "<" ||
+      PARTICLE_AFTER_MARKER.test(quoted[2])
+    )
+      continue;
+    const end = start + quoted[0].length;
+    const contents = text.slice(start, end).replace(/^[ \t]*>[ \t]?/gm, "");
+    return [
+      ...splitBoxSegments(text.slice(0, start)),
+      ...splitBoxSegments(contents),
+      ...splitBoxSegments(text.slice(end)),
+    ].filter(
+      (segment) => segment.kind !== "text" || segment.text.trim() !== "",
+    );
+  }
   const markers = findMarkers(text);
   if (markers.length === 0) {
     // 마커가 없어도 발문이 조건·나열을 예고하고 항목이 있으면 상자로 그린다.

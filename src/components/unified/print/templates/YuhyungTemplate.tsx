@@ -6,7 +6,7 @@ import type { ProblemReview } from "../types";
 import { bodyFontSize } from "../geometry";
 import { PAPER_COLORS, A4_DIM } from "../tokens";
 import { BodyContainer } from "./BodyContainer";
-import { QuestionNumber } from "./ProblemMeta";
+import { ProblemHeader } from "./ProblemMeta";
 import { ProblemBody } from "./ProblemBody";
 import type { PrintTemplateProps } from "../types";
 import { ExamDetails } from "../ExamDetails";
@@ -41,23 +41,12 @@ export function YuhyungTemplate({
           paddingBottom: 4,
         }}
       >
-        <div
-          style={{ display: "flex", alignItems: "baseline", marginBottom: 4 }}
-        >
-          <QuestionNumber template="yuhyung" num={num} accent={accent} />
-          {options.showChapter && p.variant.topic && (
-            <span
-              style={{
-                fontFamily: "var(--paper-font-sans)",
-                fontSize: 9,
-                color: PAPER_COLORS.ink50,
-                letterSpacing: "0.08em",
-              }}
-            >
-              {p.variant.topic}
-            </span>
-          )}
-        </div>
+        <ProblemHeader
+          num={num}
+          problem={p.variant}
+          options={options}
+          accent={accent}
+        />
         <ProblemBody problem={p.variant} fontSize={fs} options={options} />
       </div>
     );
