@@ -7,6 +7,32 @@ import {
 } from "@/components/unified/print/types";
 
 describe("Mathgen print spacing presets", () => {
+  it("defaults score hiding ON and offers a reversible checkbox", () => {
+    const onOptions = vi.fn();
+    const props = {
+      title: "시험지",
+      setTitle: vi.fn(),
+      meta: DEFAULT_PRINT_META,
+      onMeta: vi.fn(),
+      onOptions,
+      options: { ...DEFAULT_PRINT_OPTIONS },
+    };
+    const { rerender } = render(<PrintOptionsPanel {...props} />);
+    const toggle = screen.getByRole("checkbox", { name: "배점 숨기기" });
+    expect(toggle).toBeChecked();
+    fireEvent.click(toggle);
+    expect(onOptions).toHaveBeenLastCalledWith({ hideScores: false });
+    rerender(
+      <PrintOptionsPanel
+        {...props}
+        options={{ ...props.options, hideScores: false }}
+      />,
+    );
+    expect(toggle).not.toBeChecked();
+    fireEvent.click(toggle);
+    expect(onOptions).toHaveBeenLastCalledWith({ hideScores: true });
+  });
+
   it("offers the optional right solving area only for one column and names the two-column divider", () => {
     const onOptions = vi.fn();
     const props = {

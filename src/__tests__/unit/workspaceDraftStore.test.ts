@@ -54,6 +54,30 @@ afterEach(() => {
 });
 
 describe("browser worksheet draft durability", () => {
+  it("defaults legacy scores to hidden and persists explicit OFF without changing content", () => {
+    const { create } = memory();
+    const store = create();
+    store.hydrate();
+    expect(
+      store.importDraft({ ...file(), printOptions: { spacing: 26 } }),
+    ).toBe(true);
+    expect(store.getSnapshot().draft.printOptions.hideScores).toBe(true);
+    store.setPrintOptions({ hideScores: false });
+    expect(store.saveNow()).toBe(true);
+    const restored = create();
+    restored.hydrate();
+    expect(restored.getSnapshot().draft.printOptions.hideScores).toBe(false);
+    expect(restored.getSnapshot().draft.problems).toEqual([problem]);
+    const before = restored.getSnapshot().draft;
+    expect(
+      restored.importDraft({
+        ...file(),
+        printOptions: { hideScores: "false" },
+      }),
+    ).toBe(false);
+    expect(restored.getSnapshot().draft).toEqual(before);
+  });
+
   it.each(["blank", "ruled", "chalkboard"] as const)(
     "preserves %s solving area through saving and column changes",
     (solvingArea) => {

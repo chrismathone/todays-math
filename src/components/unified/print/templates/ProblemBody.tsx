@@ -6,6 +6,7 @@ export function ProblemBody({
   problem,
   fontSize = 13,
   compact,
+  options,
 }: {
   problem: ProblemReview["variant"];
   fontSize?: number;
@@ -21,7 +22,11 @@ export function ProblemBody({
         overflowWrap: "anywhere",
       }}
     >
-      <UnifiedProblem problem={problem} print />
+      <UnifiedProblem
+        problem={problem}
+        print
+        hideScores={options.hideScores !== false}
+      />
     </div>
   );
 }
