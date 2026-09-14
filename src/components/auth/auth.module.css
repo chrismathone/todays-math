@@ -538,7 +538,7 @@ button.submit {
   }
 }
 @media (prefers-reduced-motion: reduce) {
-  .submit,
+  button.submit,
   .input {
     transition: none;
   }
