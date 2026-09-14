@@ -89,6 +89,41 @@ const initialData: BankData = {
   units,
 };
 const requests: URLSearchParams[] = [];
+const reviewCalls: { url: string; body: { reviewStatus: string } }[] = [];
+/**
+ * 승격 응답은 `{ data: <완전한 ProblemEntity> }` 다(`problemResponseSchema`).
+ * 손으로 지어내지 않고 계약이 요구하는 필드를 그대로 채운다 — 하나라도 빠지면
+ * 파싱이 실패해 시험이 «성공»이 아니라 «실패»를 재게 된다.
+ */
+/**
+ * 🔴 **UUID 여야 한다.** 계약(`problemSchema.id`)이 uuid 를 요구하므로 `"blocked"` 같은
+ *    이름을 쓰면 `updateReviewStatus` 가 파싱에서 던지고, 화면의 catch 가 그것을 삼켜
+ *    「요청은 갔는데 아무것도 안 바뀌는」 조용한 실패가 된다 — 그러면 이 시험은
+ *    성공 경로가 아니라 그 실패를 재게 된다(2026-09-14 에 실제로 그랬다).
+ *    행과 응답이 **같은 상수**를 써야 갱신의 id 대조도 맞는다.
+ */
+const BLOCKED_ID = "00000000-0000-4000-8000-0000000000bb";
+const PROBLEM_ENTITY = {
+  id: BLOCKED_ID,
+  problemCode: "J30501-A01-025",
+  userId: null,
+  unitId: "00000000-0000-4000-8000-000000000001",
+  source: "manual",
+  originProblemId: null,
+  familyKey: null,
+  difficulty: "기본",
+  problemType: "계산",
+  content: "검수 대기 문항",
+  answer: "1",
+  solution: "풀이",
+  reviewStatus: "approved",
+  directUseAllowed: true,
+  pool: "shared",
+  figureUrls: [],
+  figureSvg: null,
+  createdAt: "2026-05-01T09:00:00Z",
+  updatedAt: "2026-05-01T09:00:00Z",
+};
 const scrollIntoViewDescriptor = Object.getOwnPropertyDescriptor(
   HTMLElement.prototype,
   "scrollIntoView",
@@ -96,13 +131,31 @@ const scrollIntoViewDescriptor = Object.getOwnPropertyDescriptor(
 
 beforeEach(() => {
   requests.length = 0;
+  // ⚠️ 이것도 비운다 — 안 비우면 시험들 사이에 호출이 쌓여 개수 단언이 실행 순서에
+  //    따라 통과하기도 한다. 우연히 통과한 초록은 그물이 아니다.
+  reviewCalls.length = 0;
   Object.defineProperty(HTMLElement.prototype, "scrollIntoView", {
     configurable: true,
     value: vi.fn(),
   });
   vi.stubGlobal(
     "fetch",
-    vi.fn(async (url: string) => {
+    vi.fn(async (url: string, init?: RequestInit) => {
+      // 🔴 검수 승격은 **전용 엔드포인트**다(`PATCH …/review-status`). 대역이 method 를
+      //    안 보면 그 요청도 은행 목록을 받아 `problemResponseSchema` 가 거부하고,
+      //    시험이 «성공 경로»가 아니라 «실패 경로»를 재게 된다.
+      if (init?.method === "PATCH" && url.includes("/review-status")) {
+        reviewCalls.push({
+          url,
+          body: JSON.parse(String(init.body)) as { reviewStatus: string },
+        });
+        return Response.json({
+          data: {
+            ...PROBLEM_ENTITY,
+            reviewStatus: JSON.parse(String(init.body)).reviewStatus,
+          },
+        });
+      }
       const params = new URL(url, "http://localhost").searchParams;
       requests.push(params);
       return Response.json({
@@ -400,7 +453,7 @@ describe("inspection rows cannot be added", () => {
   // 배지 근거(`familyKey`·`originProblemId`)를 주석이 다시 깎아 낸다.
   const blocked: BankProblem = {
     ...problem,
-    id: "blocked",
+    id: BLOCKED_ID,
     content: "검수 대기 문항",
     reviewStatus: "pending",
     eligible: false,
@@ -423,7 +476,48 @@ describe("inspection rows cannot be added", () => {
     expect(onToggle).toHaveBeenCalledExactlyOnceWith(problem);
     const row = screen.getByText(blocked.content).closest("article")!;
     fireEvent.click(within(row).getByRole("button", { name: "문제 상세" }));
-    expect(within(row).getByText("풀이", { selector: "h4" })).toBeVisible();
+    // 상세는 **카드를 펼치지 않고 모달**로 연다(05 §8.6 확정 2026-09-14, Hi-fi ③).
+    // 지키려는 뜻은 그대로다 — 담을 수 없는 행이라도 상세는 읽혀야 한다.
+    const dialog = screen.getByRole("dialog");
+    expect(within(dialog).getByText("풀이", { selector: "h4" })).toBeVisible();
+  });
+
+  /**
+   * 🔴 검수 승인·반려가 **실제로 서버에 간다** (D-22 — 승격은 사람이 누른다).
+   *
+   * 2026-09-14 까지 통합 화면에는 이 수단이 **아예 없었다.** 옛 화면에만 있었고,
+   * 그래서 `pending` 으로 들어온 문항은 이 화면에서 영영 승격되지 못했다.
+   * 「단추가 보인다」가 아니라 **「요청이 나가고 그 행이 바뀐다」**를 잰다 — 눌러도
+   * 아무 일 없는 단추는 D-30 이 막는 것과 같은 거짓말이다.
+   */
+  it("검수 대기 문항을 모달에서 승인하면 서버에 알리고 그 행을 갱신한다", async () => {
+    mount({ ...initialData, problems: [blocked] });
+    const row = screen.getByText(blocked.content).closest("article")!;
+    fireEvent.click(within(row).getByRole("button", { name: "문제 상세" }));
+    const dialog = screen.getByRole("dialog");
+    fireEvent.click(within(dialog).getByRole("button", { name: "승인" }));
+
+    await waitFor(() => expect(reviewCalls).toHaveLength(1));
+    expect(reviewCalls[0]!.url).toContain(`/api/problems/${blocked.id}/`);
+    expect(reviewCalls[0]!.body.reviewStatus).toBe("approved");
+    // 승인된 뒤에는 승인·반려가 사라진다 — 이미 승인된 것에 다시 누를 일이 없다.
+    await waitFor(() =>
+      expect(
+        within(screen.getByRole("dialog")).queryByRole("button", {
+          name: "승인",
+        }),
+      ).not.toBeInTheDocument(),
+    );
+  });
+
+  it("승인 단추는 검수 대기일 때만 선다", () => {
+    mount();
+    const row = screen.getByText(problem.content).closest("article")!;
+    fireEvent.click(within(row).getByRole("button", { name: "문제 상세" }));
+    const dialog = screen.getByRole("dialog");
+    expect(
+      within(dialog).queryByRole("button", { name: "승인" }),
+    ).not.toBeInTheDocument();
   });
 
   it("disables bulk adding when no eligible row exists", () => {
