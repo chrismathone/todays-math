@@ -1,0 +1,5 @@
+{
+  "extends": "../../../tsconfig.json",
+  "compilerOptions": { "incremental": false },
+  "include": ["../../../src/components/math/editor/**/*.ts", "../../../src/components/math/editor/**/*.tsx", "fixture.tsx", "vite.config.mts"]
+}
