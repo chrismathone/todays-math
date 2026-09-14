@@ -46,8 +46,9 @@
   margin: 16px 24px;
   padding: 16px;
   color: #963025;
-  background: #fff0eb;
-  border-left: 3px solid #ad3428;
+  background: #fbf0ec;
+  border: 1px solid #ebd1c9;
+  border-radius: 6px;
   font-size: 14px;
 }
 .experience {
@@ -249,14 +250,14 @@ button.visibility {
   overflow-wrap: anywhere;
 }
 .alert {
-  background: #fff0eb;
+  background: #fbf0ec;
   color: #963025;
-  border-left: 3px solid #ad3428;
+  border: 1px solid #ebd1c9;
 }
 .success {
-  background: #d7ebe1;
+  background: #edf4ef;
   color: #204b3c;
-  border-left: 3px solid #376b56;
+  border: 1px solid #cadbce;
 }
 button.submit {
   display: flex;

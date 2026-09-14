@@ -9,6 +9,11 @@ and mint, using the existing open-book-plus mark and local Pretendard typography
 The public pages introduce the actual import, review and worksheet workflow.
 They do not introduce pricing, testimonials, usage statistics or social login.
 
+User direction: do not use a colored left-edge accent on alerts, notices or
+cards. Use restrained text, a quiet background and an even thin outline when
+grouping is needed. Auth errors, signup confirmation and the no-JavaScript
+notice follow this rule.
+
 Official references inspected on 2026-09-14, including desktop screenshots:
 
 - [Mathflat](https://www.mathflat.com/): a teacher-centered opening message and
