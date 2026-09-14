@@ -202,13 +202,13 @@ test("wide rendered review, scoped solution retry, edit guards and restart", asy
   await first
     .getByRole("textbox", { name: "문제 내용" })
     .fill("검수한 문제 내용");
+  await expect(first.getByRole("button", { name: "해설 생성", exact: true })).toBeDisabled();
+  await first.getByRole("button", { name: "저장", exact: true }).click();
   mock.fail();
   await first.getByRole("button", { name: "해설 생성", exact: true }).click();
   await expect(first.getByRole("alert")).toContainText("도구 응답 지연");
   await first.getByRole("button", { name: "다시 시도", exact: true }).click();
-  await expect(first.getByRole("textbox", { name: "풀이" })).toHaveValue(
-    "1을 더해서 구합니다.",
-  );
+  await expect(first).toContainText("1을 더해서 구합니다.");
   expect(mock.posts.at(-1)).toMatchObject({
     action: "solution",
     content: "검수한 문제 내용",
@@ -223,16 +223,16 @@ test("wide rendered review, scoped solution retry, edit guards and restart", asy
   await expect(
     first.getByRole("button", { name: "취소", exact: true }),
   ).toBeVisible();
-  await first
-    .getByRole("textbox", { name: "문제 내용" })
-    .fill("요청 중 직접 수정");
-  mock.release();
+  await expect(first.getByRole("button", { name: "내용 수정", exact: true })).toBeDisabled();
+  await first.getByRole("button", { name: "취소", exact: true }).click();
   await expect(
     first.getByRole("button", { name: "취소", exact: true }),
   ).not.toBeVisible();
-  await expect(first.getByRole("textbox", { name: "문제 내용" })).toHaveValue(
-    "요청 중 직접 수정",
-  );
+  await first.getByRole("button", { name: "내용 수정", exact: true }).click();
+  await first.getByRole("textbox", { name: "문제 내용" }).fill("요청 취소 후 직접 수정");
+  await first.getByRole("button", { name: "저장", exact: true }).click();
+  mock.release();
+  await expect(first).toContainText("요청 취소 후 직접 수정");
   await page.screenshot({
     path: testInfo.outputPath("wide-rendered-review.png"),
     fullPage: true,
@@ -341,7 +341,7 @@ test("problem OCR continues through selecting another problem and crop/review na
   expect(mock.errors).toEqual([]);
 });
 
-test("manual mobile crop and consistent fraction rendering without horizontal overflow", async ({
+test("manual mobile crop and source fraction rendering without horizontal overflow", async ({
   page,
 }, testInfo) => {
   const mock = await mockAi(page);
@@ -360,11 +360,11 @@ test("manual mobile crop and consistent fraction rendering without horizontal ov
     .getByRole("button", { name: "문자 인식", exact: true })
     .click();
   await expect(card(page, 1).locator("annotation").first()).toContainText(
-    String.raw`2\dfrac{1}{3}`,
+    String.raw`2\frac{1}{3}`,
   );
   await page.getByRole("combobox", { name: "시험지 학년" }).selectOption("중1");
   await expect(card(page, 1).locator("annotation").first()).toContainText(
-    String.raw`\dfrac{7}{3}`,
+    String.raw`2\frac{1}{3}`,
   );
   expect(
     await page.evaluate(
@@ -401,7 +401,7 @@ test("recognized figure is visible beside rendered text and exported with text m
   await review(page);
   const second = card(page, 2);
   await expect(
-    second.getByRole("img", { name: "문제 2 도형 1", exact: true }),
+    second.getByRole("button", { name: /^그림 1 편집/ }),
   ).toBeVisible();
   await expect(second.getByText("도형 1 · SVG 도형")).toBeVisible();
   await second
@@ -412,7 +412,7 @@ test("recognized figure is visible beside rendered text and exported with text m
     .getByRole("textbox", { name: "문제 내용" })
     .fill("도형을 보고 넓이를 구하세요.");
   await second
-    .getByRole("button", { name: "이 문제 검수 완료", exact: true })
+    .getByRole("button", { name: "저장", exact: true })
     .click();
   await page.getByRole("button", { name: "2문항 담기", exact: true }).click();
   const added = JSON.parse(

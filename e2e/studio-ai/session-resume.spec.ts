@@ -190,6 +190,7 @@ test("보관한 문제 크롭을 독립 원본으로 다시 열어 편집하고 
   await card
     .getByRole("textbox", { name: "문제 내용" })
     .fill("보관함에서 재편집한 문제 $1+1$");
+  await card.getByRole("button", { name: "저장", exact: true }).click();
   await expect(
     page.getByRole("status", { name: "자료 제작 저장 상태" }),
   ).toHaveText("저장됨");
@@ -272,6 +273,7 @@ test("원본·OCR 수정·검수 위치를 새로고침 뒤 복원하고 새로 
   await card
     .getByRole("textbox", { name: "문제 내용" })
     .fill("검수한 원문 $2+3$의 값은?");
+  await card.getByRole("button", { name: "저장", exact: true }).click();
   await expect(
     page.getByRole("status", { name: "자료 제작 저장 상태" }),
   ).toHaveText("저장됨");
