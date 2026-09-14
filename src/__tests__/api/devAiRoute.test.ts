@@ -1,4 +1,5 @@
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
+vi.mock("server-only", () => ({}));
 vi.mock("@/lib/dev-ai/cli", () => ({
   getDevAiProviderStatuses: vi.fn(),
   runSubscriptionCli: vi.fn(),
@@ -130,7 +131,14 @@ describe("subscription AI HTTP integration", () => {
   it("runs figure redraw through the existing subscription bridge and cancellation signal", async () => {
     const svg =
       '<svg viewBox="0 0 100 100"><circle cx="50" cy="50" r="20"/></svg>';
-    vi.mocked(runSubscriptionCli).mockResolvedValue(JSON.stringify({ svg }));
+    const spec = {
+      version: 2,
+      points: { O: [50, 50] },
+      circles: { c: { center: "O", radius: 20 } },
+    };
+    vi.mocked(runSubscriptionCli)
+      .mockResolvedValueOnce(JSON.stringify({ spec }))
+      .mockResolvedValueOnce(JSON.stringify({ passed: true, issues: [] }));
     const response = await POST(
       request({
         ...input,
@@ -142,7 +150,9 @@ describe("subscription AI HTTP integration", () => {
     );
     expect(response.status).toBe(200);
     expect((await response.json()).result).toMatchObject({
-      svg,
+      spec,
+      engine: "todays-math-python",
+      svg: expect.stringContaining("<circle"),
       content: "",
       answer: "",
       solution: "",
@@ -155,7 +165,7 @@ describe("subscription AI HTTP integration", () => {
         signal: expect.any(AbortSignal),
       }),
     );
-    expect(runSubscriptionCli).toHaveBeenCalledTimes(1);
+    expect(runSubscriptionCli).toHaveBeenCalledTimes(2);
   });
 
   it("does not retry or switch providers on invalid model output or CLI failure", async () => {

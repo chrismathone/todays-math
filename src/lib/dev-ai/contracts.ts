@@ -81,11 +81,23 @@ export interface DevAiResult {
   questionType?: DevAiQuestionType;
   /** Figure redraw only; must still be sanitized by the browser before applying. */
   svg?: string;
+  /** Figure redraw only: validated input to the local deterministic Python renderer. */
+  spec?: DevAiFigureSpec;
+  engine?: "todays-math-python";
+  figureReview?: {
+    /** Original image versus validated spec/SVG, not a second raster image. */
+    mode: "source-image-and-spec";
+    passed: boolean;
+    issues: string[];
+  };
   /** Page OCR only; independent of the user's requested target grade. */
   detectedGrade?: DevAiDetectedGrade;
   problems?: DevAiRecognizedProblem[];
   /** Figure detection or crop OCR, in the supplied INPUT image coordinates. */
   figures?: DevAiFigure[];
+}
+export interface DevAiFigureSpec extends Record<string, unknown> {
+  version: 2 | "elem-1" | "graph-1";
 }
 export interface DevAiResponse {
   provider: DevAiProvider;
