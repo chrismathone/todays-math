@@ -1,5 +1,5 @@
 /**
- * Mathgen's AI sanitizeText/sanitizeAnswer stage, shared by intake and rendering.
+ * Mathgen's AI sanitizeText/sanitizeAnswer stage, used by intake.
  * Keep source notation here; sizing, geometry labels and Hangul extraction belong
  * to textPreprocess. Repairs require structural evidence, not English keywords.
  */
@@ -102,13 +102,18 @@ function mapSpans(
       : text.slice(i, i + 2);
     const close = open === "\\[" ? "\\]" : open === "\\(" ? "\\)" : open;
     let end = text.indexOf(close, i + open.length);
-    while (
-      end >= 0 &&
-      (escaped(text, end) || (open === "$" && text[end + 1] === "$"))
-    ) {
+    // Once inside inline math, the next unescaped dollar closes that span.
+    // In $A$$B$, the following dollar belongs to B; skipping A's closer sends
+    // B's LaTeX into prose and protectLooseLatex adds dollars on every pass.
+    while (end >= 0 && escaped(text, end)) {
       end = text.indexOf(close, end + close.length);
     }
     if (end < 0) {
+      // An unmatched display opener is ambiguous source, not loose prose.
+      // Keep its tail literal instead of inventing another pair of dollars.
+      // The evidence-based prose/display repair has already run above.
+      if (open === "$$")
+        return out + prose(text.slice(plainStart, i)) + text.slice(i);
       i += open.length;
       continue;
     }
