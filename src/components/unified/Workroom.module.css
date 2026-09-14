@@ -331,6 +331,39 @@
   white-space: nowrap;
   font-size: var(--text-body, 14px);
 }
+.accountSlot {
+  min-width: 0;
+}
+.workspace[data-authenticated="true"] .topbar {
+  display: grid;
+  grid-template-columns: auto minmax(44px, 1fr) auto auto;
+  gap: 16px;
+}
+@media (max-width: 1320px) {
+  .workspace[data-authenticated="true"] .searchTrigger {
+    width: 44px;
+    justify-content: center;
+    padding: 0;
+  }
+  .workspace[data-authenticated="true"] .searchTrigger span,
+  .workspace[data-authenticated="true"] .searchTrigger kbd,
+  .workspace[data-authenticated="true"] .saveState {
+    display: none;
+  }
+}
+@media (max-width: 760px) {
+  .workspace[data-authenticated="true"] .topbar {
+    grid-template-columns: minmax(0, 1fr) 44px auto;
+    gap: 0 12px;
+    height: auto;
+    padding-block: 4px;
+  }
+  .workspace[data-authenticated="true"] .accountSlot {
+    grid-column: 1 / -1;
+    padding-top: 4px;
+    border-top: 1px solid #e4e9f1;
+  }
+}
 .breadcrumb > span,
 .breadcrumb > svg {
   color: var(--muted, #596c86);

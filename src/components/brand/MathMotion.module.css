@@ -1,0 +1,32 @@
+.motion {
+  margin: 0;
+  width: 100%;
+  overflow: hidden;
+  border-radius: 12px;
+  background: #f7f5ef;
+  color: #172b4d;
+}
+.motion video {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 1;
+  object-fit: contain;
+}
+.motion video:focus-visible {
+  outline: 3px solid #efd57a;
+  outline-offset: -4px;
+}
+.motion figcaption {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  padding: 14px 18px;
+  border-top: 1px solid #dadbd5;
+  font-size: 12px;
+}
+.motion figcaption span:first-child {
+  font-weight: 650;
+}

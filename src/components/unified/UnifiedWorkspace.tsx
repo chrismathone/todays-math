@@ -14,6 +14,7 @@ import TodayMathMark from "@/components/brand/TodayMathMark";
 import { DevAiProvider } from "./useDevAi";
 import DevAiStatusPanel from "./DevAiStatusPanel";
 import s from "./Workroom.module.css";
+import WorkspaceAccount, { type WorkspaceIdentity } from "./WorkspaceAccount";
 const BankView = dynamic(() => import("./BankView"), {
   loading: () => (
     <WorkProgress className={s.loading} label="문제은행을 불러오는 중입니다…" />
@@ -69,9 +70,11 @@ const viewValid = (value: string): value is View =>
 export default function UnifiedWorkspace({
   initialData,
   storageScope,
+  currentUser,
 }: {
   initialData: BankData;
   storageScope?: string;
+  currentUser?: WorkspaceIdentity;
 }) {
   return (
     <DevAiProvider>
@@ -79,6 +82,7 @@ export default function UnifiedWorkspace({
         key={storageScope ?? "development"}
         initialData={initialData}
         storageScope={storageScope}
+        currentUser={currentUser}
       />
     </DevAiProvider>
   );
@@ -86,9 +90,11 @@ export default function UnifiedWorkspace({
 function UnifiedWorkspaceContent({
   initialData,
   storageScope,
+  currentUser,
 }: {
   initialData: BankData;
   storageScope?: string;
+  currentUser?: WorkspaceIdentity;
 }) {
   const {
     draft,
@@ -372,7 +378,11 @@ function UnifiedWorkspaceContent({
     item.title.toLocaleLowerCase().includes(libraryQuery.toLocaleLowerCase()),
   );
   return (
-    <div className={s.workspace} data-sidebar-collapsed={sidebarCollapsed}>
+    <div
+      className={s.workspace}
+      data-sidebar-collapsed={sidebarCollapsed}
+      data-authenticated={Boolean(currentUser)}
+    >
       <a
         className={s.skipLink}
         href="#workspace-content"
@@ -572,6 +582,11 @@ function UnifiedWorkspaceContent({
               <b>{selected.length}</b>
             </button>
           </div>
+          {currentUser && (
+            <div className={s.accountSlot}>
+              <WorkspaceAccount user={currentUser} />
+            </div>
+          )}
         </header>
         <div className={s.notifications}>
           {saveError && (

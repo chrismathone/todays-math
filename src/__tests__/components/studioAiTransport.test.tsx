@@ -108,29 +108,32 @@ describe("Studio transport selection", () => {
       action: "solution",
     });
   });
-  it("forces /studio onto API even in dev and ignores a stored CLI provider", async () => {
-    window.history.replaceState(null, "", "/studio");
-    localStorage.setItem("today-math-dev-ai-provider", "codex");
-    const fetcher = vi.fn().mockResolvedValue(Response.json(api));
-    vi.stubGlobal("fetch", fetcher);
-    render(
-      <DevAiProvider>
-        <Controls />
-      </DevAiProvider>,
-    );
-    await screen.findByRole("option", { name: "원본 기본 모델" });
-    expect(screen.queryByLabelText("AI 연결 방식")).toBeNull();
-    fireEvent.click(screen.getByText("CLI 요청"));
-    await waitFor(() => expect(fetcher).toHaveBeenCalledTimes(1));
-    expect(fetcher.mock.calls[0][0]).toBe("/api/studio/ai");
-    expect(getStudioEndpoints()).toMatchObject({
-      problems: "/api/studio/problems",
-      overview: "/api/studio/overview",
-      teaching: "/api/studio/teaching",
-      pdfWorker: "/api/studio/pdf-worker",
-      pdfAssets: "/api/studio/pdf-assets/",
-    });
-  });
+  it.each(["/studio", "/"])(
+    "forces authenticated %s onto API even in dev and ignores a stored CLI provider",
+    async (pathname) => {
+      window.history.replaceState(null, "", pathname);
+      localStorage.setItem("today-math-dev-ai-provider", "codex");
+      const fetcher = vi.fn().mockResolvedValue(Response.json(api));
+      vi.stubGlobal("fetch", fetcher);
+      render(
+        <DevAiProvider>
+          <Controls />
+        </DevAiProvider>,
+      );
+      await screen.findByRole("option", { name: "원본 기본 모델" });
+      expect(screen.queryByLabelText("AI 연결 방식")).toBeNull();
+      fireEvent.click(screen.getByText("CLI 요청"));
+      await waitFor(() => expect(fetcher).toHaveBeenCalledTimes(1));
+      expect(fetcher.mock.calls[0][0]).toBe("/api/studio/ai");
+      expect(getStudioEndpoints()).toMatchObject({
+        problems: "/api/studio/problems",
+        overview: "/api/studio/overview",
+        teaching: "/api/studio/teaching",
+        pdfWorker: "/api/studio/pdf-worker",
+        pdfAssets: "/api/studio/pdf-assets/",
+      });
+    },
+  );
   it("uses production endpoints irrespective of pathname in a production build", () => {
     vi.stubEnv("NODE_ENV", "production");
     expect(getStudioEndpoints("/dev/unified").ai).toBe("/api/studio/ai");

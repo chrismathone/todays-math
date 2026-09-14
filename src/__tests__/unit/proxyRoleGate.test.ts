@@ -79,6 +79,27 @@ describe("관문은 하나다", () => {
 });
 
 describe("역할 게이트 관문", () => {
+  it("opens only the landing reads to anonymous visitors and retains protected destinations", async () => {
+    session.mockReturnValue(null);
+    expect((await run("GET", "/")).status).toBe(200);
+    expect((await run("HEAD", "/")).status).toBe(200);
+    for (const [method, path] of [
+      ["POST", "/"],
+      ["GET", "/studio"],
+      ["GET", "/classes"],
+    ]) {
+      const response = await run(method, path);
+      const location = new URL(response.headers.get("location")!);
+      expect(response.status).toBe(307);
+      expect(location.pathname).toBe("/login");
+      expect(location.searchParams.get("callbackUrl")).toBe(path);
+    }
+  });
+  it("keeps the signed-in reviewer at the review console when visiting the new main", async () => {
+    session.mockReturnValue({ user: { id: "u2", role: "reviewer" } });
+    const response = await run("GET", "/");
+    expect(new URL(response.headers.get("location")!).pathname).toBe("/review");
+  });
   it.each([
     "/favicon.ico",
     "/icon.svg",

@@ -1,0 +1,45 @@
+.account {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 12px;
+  min-width: 0;
+  color: #172b4d;
+}
+.identity {
+  display: grid;
+  min-width: 0;
+  max-width: 200px;
+  line-height: 1.4;
+}
+.identity strong {
+  font-size: 13px;
+  font-weight: 650;
+}
+.identity span,
+.identity strong {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+.identity span {
+  color: #596c86;
+  font-size: 12px;
+}
+.account form {
+  flex: none;
+}
+.account button {
+  min-height: 44px;
+  padding: 0 10px;
+  border: 1px solid #c4cee0;
+  background: #fff;
+  color: #405573;
+  cursor: pointer;
+  white-space: nowrap;
+}
+.account button:hover:not(:disabled) {
+  border-color: #3159df;
+  color: #3159df;
+  background: #f3f6ff;
+}

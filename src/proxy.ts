@@ -28,6 +28,7 @@ export const proxy = auth((req) => {
   )
     return NextResponse.next();
   const isPublic =
+    ((req.method === "GET" || req.method === "HEAD") && pathname === "/") ||
     pathname.startsWith("/login") ||
     pathname.startsWith("/signup") ||
     pathname.startsWith("/api/") ||
