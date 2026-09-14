@@ -234,7 +234,8 @@ CLI `scripts/high/gen-cli.ts` · 시험 `highIdentity`(값·지면·난이도·�
 **리드가 올릴 공용 일** (세션들이 공용 파일을 못 고쳐 피해 간 자리):
 - 🔴 **렌더 — 행렬**: 문장 속 `pmatrix` 가 블록으로 떨어져 문장이 끊긴다(`textPreprocess.ts` `MULTILINE_ENV` 추정) ·
   행렬 곱 `AB` 가 도형 라벨 규칙(`ROMAN_LABEL_RE`)에 걸려 정자로 나온다. 둘 다 지면 모양이라 D-07 · 인쇄 검수(절대 규칙 6) —
-  고등 행렬이 종이에 처음 나가는 자리다. 증거 스크린샷은 `h1-poly` 워크트리 `scratch/shot-matrix-*.png`.
+  고등 행렬이 종이에 처음 나가는 자리다. 증거 스크린샷 10장은 워크트리를 닫으면서 저장소로 옮겼다 —
+  `docs/planning/tracks/high-wave1-reports/shots-matrix/`(README 에 무엇이 보이는지 적어 두었다).
 - 🟠 **조사 규칙과 자가 같이 틀리는 자리**(세 보고서가 따로 찾았다): 괄호 끝 지수 `(x^{2}-xy+y^{2})` · 근호 안 지수
   `\sqrt{(a-b)^{2}}` · 단위 `\mathrm{m}`(「미터」인데 「엠」으로 읽음) · `\end{cases}` 뒤(`s` 를 읽음) · 계승 `5!`·
   절댓값 `|x-1|` 로 끝나는 수식(던짐).
