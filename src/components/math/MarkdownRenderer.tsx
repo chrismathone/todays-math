@@ -38,7 +38,10 @@ import ReactMarkdown, { type Components } from "react-markdown";
 import type { PluggableList } from "unified";
 import rehypeKatex from "rehype-katex";
 import remarkMath from "remark-math";
-import { remarkNativeContent } from "./remarkNativeContent";
+import {
+  remarkEmptyBlockquotes,
+  remarkNativeContent,
+} from "./remarkNativeContent";
 import { figureWidthStyle } from "@/lib/figurePrintSize";
 
 import { applyHardBreaks } from "@/lib/math/hardBreaks";
@@ -55,11 +58,13 @@ export interface MarkdownRendererProps {
   inline?: boolean;
   /** Numbered source figures are replaced in-place, including inside choices. */
   nativeFigures?: ReadonlyArray<{ src: string; sourceMm?: number }>;
+  /** Decorate a native anchor using its original zero-based source index. */
+  renderNativeFigure?: (index: number, image: ReactNode) => ReactNode;
   emphasizeNegation?: boolean;
 }
 
 /** 렌더마다 새 배열을 넘기면 react-markdown 이 프로세서를 새로 조립한다. */
-const REMARK_PLUGINS = [remarkMath];
+const REMARK_PLUGINS = [remarkMath, remarkEmptyBlockquotes];
 /**
  * ⚠️ **옵션을 반드시 넘긴다.** 안 넘기면 `trust` 가 없어 KaTeX 가 `\htmlClass` 를
  * 거부하는데, 예외가 아니라 **붉은 날문자**(`color:#cc0000`)로 그린다.
@@ -276,6 +281,7 @@ export const MarkdownRenderer = memo(function MarkdownRenderer({
   className = "",
   inline = false,
   nativeFigures,
+  renderNativeFigure,
   emphasizeNegation = false,
 }: MarkdownRendererProps) {
   const processed = preprocess(content ?? "");
@@ -292,7 +298,7 @@ export const MarkdownRenderer = memo(function MarkdownRenderer({
             ? nativeFigures[Number(index[1]) - 1]
             : undefined;
           // Data URLs stay image resources; never insert editable SVG markup as HTML.
-          return (
+          const image = (
             // eslint-disable-next-line @next/next/no-img-element
             <img
               src={figure?.src ?? src}
@@ -301,6 +307,9 @@ export const MarkdownRenderer = memo(function MarkdownRenderer({
               style={figureWidthStyle(figure?.sourceMm)}
             />
           );
+          return figure && renderNativeFigure
+            ? renderNativeFigure(Number(index![1]) - 1, image)
+            : image;
         },
       }
     : components;
