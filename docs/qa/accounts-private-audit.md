@@ -17,6 +17,9 @@ Activity records distinguish observed UI requests from confirmed server changes.
 - 23 proxy/AI route cases and 26 workspace-entry/loading/resource cases passed after integration.
 - 25 administrator component/page-gate cases passed in main. The isolated browser suite passed 9 cases across 320, 390 and 1440 pixel widths; see [administrator UI evidence](admin-accounts-ui.md).
 - The requested administrator account was provisioned through `scripts/admin/bootstrap-admin.cjs` with credentials supplied on stdin. Its actual localhost login, administrator account list, private document list and audit list returned successfully. Desktop/mobile pages were inspected with no browser page errors. No test users or synthetic private materials were written to the shared database.
+- Private worksheet/extraction integration passes 103 focused client tests; the merged client/API subset passes 64 tests. See [private persistence evidence](private-cloud-persistence.md) for coverage and the separately reproduced, pre-existing Studio AI test failures.
+- The actual application passed an intercepted browser workflow: JSON worksheet import and acknowledged save, rename and reopening the active worksheet, restore in a fresh browser context with only authentication cookies, source-image restoration, extraction deletion and reload, and a 390-pixel layout check. All private API writes were intercepted in memory and AI POST requests were blocked. No browser page errors or mobile horizontal overflow occurred.
+- `npm run build` passed after the final cloud merge, including Prisma client generation, the optimized Next.js bundle and TypeScript validation. The four completed Orca worktrees were merged into main and removed; their branches were preserved.
 
 The script accepts a single JSON line containing `email`, `password` and optional `name`; credentials are never embedded in the script or committed. It records a bootstrap event and preserves an existing account's identity.
 
