@@ -42,7 +42,7 @@ export async function fieldErrorsFromResponse(
     ]);
   const parsed = errorResponseSchema.safeParse(json);
   if (!parsed.success) {
-    return { email: "요청을 처리할 수 없습니다." };
+    return { form: "요청을 처리할 수 없습니다. 잠시 후 다시 시도해 주세요." };
   }
 
   const { code, message, details } = parsed.data.error;
@@ -63,5 +63,5 @@ export async function fieldErrorsFromResponse(
     }
   }
 
-  return { email: message };
+  return { form: message };
 }

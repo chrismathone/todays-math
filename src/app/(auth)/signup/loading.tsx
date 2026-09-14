@@ -1,4 +1,4 @@
-import { AuthFormSkeleton } from "@/components/ui/PageSkeletons";
+import { AuthLoading } from "@/components/auth/AuthLoading";
 
 /**
  * 가입은 로그인보다 칸이 하나 많다(이름). 무리 전체에 걸린
@@ -6,5 +6,5 @@ import { AuthFormSkeleton } from "@/components/ui/PageSkeletons";
  * 폼이 뜨는 순간 한 칸이 튄다.
  */
 export default function Loading() {
-  return <AuthFormSkeleton fields={3} />;
+  return <AuthLoading fields={3} />;
 }
