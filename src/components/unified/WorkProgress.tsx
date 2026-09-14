@@ -14,6 +14,7 @@ export interface WorkProgressProps {
   cancelLabel?: string;
   variant?: "panel" | "inline";
   showElapsed?: boolean;
+  showCount?: boolean;
   className?: string;
 }
 
@@ -78,6 +79,7 @@ export default function WorkProgress({
   cancelLabel = "취소",
   variant = "panel",
   showElapsed = variant === "panel",
+  showCount = true,
   className,
 }: WorkProgressProps) {
   const count =
@@ -117,7 +119,9 @@ export default function WorkProgress({
           </span>
         ) : null}
       </span>
-      {countLabel ? <span className={s.count}>{countLabel}</span> : null}
+      {showCount && countLabel ? (
+        <span className={s.count}>{countLabel}</span>
+      ) : null}
       {variant === "panel" || showElapsed ? (
         <Timing key={start} startedAt={start} showElapsed={showElapsed} />
       ) : null}

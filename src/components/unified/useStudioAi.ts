@@ -22,6 +22,7 @@ import {
 } from "./studioAiHelpers";
 
 import { StudioAiQueue } from "./studioAiQueue";
+import type { DevAiDetectedGrade } from "@/lib/dev-ai/contracts";
 
 export interface StudioAiPage {
   sourceId: string;
@@ -56,6 +57,7 @@ export interface StudioAiPageJob {
     | "cancelled";
   startedAt?: number;
   error?: string;
+  detectedGrade?: DevAiDetectedGrade;
 }
 
 export interface StudioAiPageProgress {
@@ -260,6 +262,7 @@ export function useStudioAi({
           action: "page-ocr",
           imageDataUrl: page.imageDataUrl,
           grade: page.grade,
+          sourceName: page.sourceLabel,
         },
         controller.signal,
       );
@@ -269,6 +272,7 @@ export function useStudioAi({
         throw new Error(
           "문제 인식 결과를 확인하지 못했습니다. 다시 시도해 주세요.",
         );
+      update({ detectedGrade: response.result.detectedGrade });
       if (!recognized.length) {
         entry.task = undefined;
         update({ state: "empty" });

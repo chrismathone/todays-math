@@ -58,10 +58,11 @@ export default function StudioQueueStatus({
       {busy ? (
         <WorkProgress
           label="페이지 자동 인식"
-          detail={`${running}쪽 처리 중 · ${queued}쪽 대기${failed ? ` · ${failed}쪽 실패` : ""}`}
+          detail={`${completed}/${jobs.length}쪽 처리 중 · ${queued ? `대기 중 ${queued}쪽` : "대기 중 페이지 없음"}${failed ? ` · 실패 ${failed}쪽` : ""}`}
           completed={completed}
           total={jobs.length}
           unit="쪽"
+          showCount={false}
           startedAt={startedAt}
           onCancel={onCancel}
           cancelLabel="AI 작업 취소"
