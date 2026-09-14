@@ -4,7 +4,15 @@ import { getStudioEndpoints } from "@/lib/studio-ai/endpoints";
 
 import WorkspacePageHeader from "./WorkspacePageHeader";
 import WorkProgress from "./WorkProgress";
-import { useEffect, useId, useMemo, useRef, useState } from "react";
+import {
+  useCallback,
+  useEffect,
+  useId,
+  useMemo,
+  useRef,
+  useState,
+} from "react";
+import { updateReviewStatus } from "@/lib/problem/problemApi";
 import { MathText } from "@/components/math/MathText";
 import { DIFFICULTY_LADDER } from "@/contracts/difficulty";
 import { UnitRangePicker } from "@/components/progress/UnitRangePicker";
@@ -147,14 +155,15 @@ function ProblemRow({
   number,
   selected,
   onToggle,
+  onOpenDetail,
 }: {
   problem: BankProblem;
   number: number;
   selected: boolean;
   onToggle: (problem: StudioProblem) => void;
+  /** 상세는 **카드를 펼치지 않고 모달로** 연다 (05 §8.6 확정 2026-09-14, Hi-fi ③). */
+  onOpenDetail: (problem: BankProblem) => void;
 }) {
-  const [expanded, setExpanded] = useState(false);
-  const [answerVisible, setAnswerVisible] = useState(false);
   const id = useId();
   const addDisabled = problem.eligible === false && !selected;
   const ineligibleReason =
@@ -247,24 +256,16 @@ function ProblemRow({
           <UnifiedProblem problem={problem} />
         </div>
         <div className={styles.rowActions}>
+          {/* 🔴 정답·풀이·정보를 **한 창에서** 본다 — 카드를 펼치던 두 단추를 하나로
+              합쳤다(05 §8.6 확정 2026-09-14). 카드 표면이 아니라 **진짜 단추**로 연다:
+              `<article onClick>` 은 D-30 위반이고 `lint:affordance` 가 막는다. */}
           <button
             type="button"
             className={styles.textButton}
-            aria-expanded={answerVisible}
-            aria-controls={`${id}-answer`}
-            onClick={() => setAnswerVisible((value) => !value)}
+            onClick={() => onOpenDetail(problem)}
           >
-            {answerVisible ? "정답 닫기" : "정답 보기"}
-          </button>
-          <button
-            type="button"
-            className={styles.textButton}
-            aria-expanded={expanded}
-            aria-controls={`${id}-detail`}
-            onClick={() => setExpanded((value) => !value)}
-          >
-            {expanded ? "상세 접기" : "문제 상세"}
-            <span className={expanded ? styles.chevronUp : styles.chevronDown}>
+            문제 상세
+            <span className={styles.chevronDown}>
               <Icon name="chevron" />
             </span>
           </button>
@@ -288,24 +289,91 @@ function ProblemRow({
             {ineligibleReason}
           </p>
         ) : null}
-        {answerVisible ? (
-          <div id={`${id}-answer`} className={styles.answer}>
-            <span className={styles.answerLabel}>정답</span>
-            <MathText
-              text={
-                problem.answer
-                  ? displayFractions(
-                      problem.answer,
-                      problem.grade,
-                      problem.content,
-                    )
-                  : "등록된 정답이 없습니다."
-              }
-            />
+      </div>
+    </article>
+  );
+}
+
+/**
+ * 문항 상세 — **전체 상세 모달, 2열** (05 §8.6 확정 2026-09-14 · Wire Ⓑ + Hi-fi ③).
+ *
+ * 왼쪽은 문제를 **지면 한 단 폭**(`PROBLEM_CARD_WIDTH`)으로 고정한다. 그 폭이 지면과
+ * 같아야 「같은 문제는 같은 뷰」가 지켜진다 — 넓게 늘리면 그림이 한가운데 뜨고 보기가
+ * 양 끝으로 갈라진다(2026-09-14 목록에서 겪은 그 자리).
+ *
+ * ⚠️ 색은 토큰만 쓴다(§2.2.1). 기능색은 **검수 상태에만** — 난이도·유형은 무채색(§2.2).
+ */
+function DetailModal({
+  problem,
+  onClose,
+  onReviewStatusChange,
+  busy,
+}: {
+  problem: BankProblem;
+  onClose: () => void;
+  onReviewStatusChange: (id: string, next: "approved" | "rejected") => void;
+  busy: boolean;
+}) {
+  return (
+    <div
+      className="fixed inset-0 z-[100] flex items-center justify-center bg-ink/40 p-4"
+      onPointerDown={(event) => {
+        if (event.target === event.currentTarget) onClose();
+      }}
+    >
+      <dialog
+        open
+        role="dialog"
+        aria-modal="true"
+        aria-label={`${problem.problemCode || "문항"} 상세`}
+        className="m-0 flex max-h-[86vh] w-full max-w-[980px] flex-col overflow-hidden border border-divider bg-surface p-0 text-ink"
+      >
+        <header className={styles.cardHeader}>
+          <span className={styles.provenance}>
+            {provenanceBadges({
+              ...problem,
+              source: problem.source ?? "",
+              questionType: problem.questionTypeRaw,
+            }).map((badge) => (
+              <abbr
+                key={badge.axis}
+                title={badge.name}
+                data-provenance={badge.kind}
+                data-provenance-axis={badge.axis}
+                className={`${BADGE_CHIP} ${badge.className}`}
+              >
+                {badge.text}
+              </abbr>
+            ))}
+          </span>
+          <div className={styles.problemMeta}>
+            {problem.grade ? (
+              <span className={styles.gradeBadge}>{problem.grade}</span>
+            ) : null}
+            <span>{problem.chapter || "단원 미지정"}</span>
+            {problem.problemType ? <span>{problem.problemType}</span> : null}
+            {problem.difficulty ? (
+              <span className={styles.difficultyBadge}>
+                {problem.difficulty}
+              </span>
+            ) : null}
+            <span className={styles.problemCode}>
+              {problem.problemCode || problem.id}
+            </span>
           </div>
-        ) : null}
-        {expanded ? (
-          <div id={`${id}-detail`} className={styles.detail}>
+          <button type="button" className={styles.textButton} onClick={onClose}>
+            닫기
+          </button>
+        </header>
+
+        <div className="grid min-h-0 flex-1 grid-cols-[auto_minmax(0,1fr)] gap-8 overflow-y-auto p-5">
+          <div
+            className={styles.problemBody}
+            style={{ width: PROBLEM_CARD_WIDTH }}
+          >
+            <UnifiedProblem problem={problem} />
+          </div>
+          <div className="min-w-0">
             <dl className={styles.detailMeta}>
               <div>
                 <dt>소단원</dt>
@@ -320,27 +388,73 @@ function ProblemRow({
                 </dd>
               </div>
               <div>
-                <dt>문제 번호</dt>
-                <dd>{problem.problemCode || problem.id}</dd>
+                <dt>검수</dt>
+                <dd>
+                  {REVIEW_STATUS_LABEL[
+                    problem.reviewStatus as keyof typeof REVIEW_STATUS_LABEL
+                  ] || "미정"}
+                </dd>
               </div>
             </dl>
-            <h4>풀이</h4>
-            <MathText
-              as="div"
-              text={
-                problem.solution
-                  ? displayFractions(
-                      problem.solution,
-                      problem.grade,
-                      problem.content,
-                    )
-                  : "등록된 풀이가 없습니다."
-              }
-            />
+            <div className={styles.answer}>
+              <span className={styles.answerLabel}>정답</span>
+              <MathText
+                text={
+                  problem.answer
+                    ? displayFractions(
+                        problem.answer,
+                        problem.grade,
+                        problem.content,
+                      )
+                    : "등록된 정답이 없습니다."
+                }
+              />
+            </div>
+            <div className={styles.detail}>
+              <h4>풀이</h4>
+              <MathText
+                as="div"
+                text={
+                  problem.solution
+                    ? displayFractions(
+                        problem.solution,
+                        problem.grade,
+                        problem.content,
+                      )
+                    : "등록된 풀이가 없습니다."
+                }
+              />
+            </div>
           </div>
+        </div>
+
+        {/* 검수 대기일 때만 승인·반려가 선다 — 이미 승인된 것에 「승인」을 다시 누를 일이
+            없다(옛 카드와 같은 규칙). D-22: 승격은 사람이 누른다. */}
+        {problem.reviewStatus === "pending" ? (
+          <footer
+            className={styles.rowActions}
+            style={{ padding: "12px 20px" }}
+          >
+            <button
+              type="button"
+              className={styles.textButton}
+              disabled={busy}
+              onClick={() => onReviewStatusChange(problem.id, "approved")}
+            >
+              승인
+            </button>
+            <button
+              type="button"
+              className={styles.textButton}
+              disabled={busy}
+              onClick={() => onReviewStatusChange(problem.id, "rejected")}
+            >
+              반려
+            </button>
+          </footer>
         ) : null}
-      </div>
-    </article>
+      </dialog>
+    </div>
   );
 }
 
@@ -463,6 +577,52 @@ export default function BankView({
   const allOnPageSelected =
     eligibleOnPage.length > 0 && selectedOnPage === eligibleOnPage.length;
   const headingId = useId();
+  /** 상세 모달에 띄운 문항 (05 §8.6 확정 — 카드를 펼치지 않는다). */
+  const [detail, setDetail] = useState<BankProblem | null>(null);
+  const [reviewBusy, setReviewBusy] = useState(false);
+
+  /**
+   * 검수 승인·반려 — D-22 「승격은 사람이 누른다」. 옛 문제은행과 **같은 규칙**으로
+   * 목록을 맞춘다(`ProblemBank.handleReviewStatusChange`): 바뀐 값을 그 행에 갈아 끼우고,
+   * 모달의 내용도 같이 바꾼다. 여기서는 필터 이탈 판정을 하지 않는다 — 그 판정은
+   * 서버 질의와 같은 규칙이어야 하는데(`matchesFilters`) 이 화면엔 아직 그 자가 없다.
+   * 대신 **다음 조회에서 자연히 빠진다**.
+   */
+  const handleReviewStatusChange = useCallback(
+    async (id: string, next: "approved" | "rejected") => {
+      setReviewBusy(true);
+      try {
+        const { data: updated } = await updateReviewStatus(id, next);
+        setResponse((current) => ({
+          ...current,
+          data: {
+            ...current.data,
+            problems: current.data.problems.map((row) =>
+              row.id === id
+                ? { ...row, reviewStatus: updated.reviewStatus }
+                : row,
+            ),
+          },
+        }));
+        setDetail((current) =>
+          current && current.id === id
+            ? { ...current, reviewStatus: updated.reviewStatus }
+            : current,
+        );
+      } catch (caught) {
+        setResponse((current) => ({
+          ...current,
+          error:
+            caught instanceof Error
+              ? caught.message
+              : "검수 상태를 바꾸지 못했습니다.",
+        }));
+      } finally {
+        setReviewBusy(false);
+      }
+    },
+    [],
+  );
 
   useEffect(() => {
     // Reuse the server page unless dashboard entry filters need a fresh request.
@@ -482,9 +642,12 @@ export default function BankView({
 
     async function loadProblems() {
       try {
-        const result = await fetch(`${getStudioEndpoints().problems}?${params}`, {
-          signal: controller.signal,
-        });
+        const result = await fetch(
+          `${getStudioEndpoints().problems}?${params}`,
+          {
+            signal: controller.signal,
+          },
+        );
         const payload: BankData = await result.json();
         if (!result.ok || payload.error)
           throw new Error(
@@ -1023,10 +1186,19 @@ export default function BankView({
                   number={firstRow + index}
                   selected={selectedIds.has(problem.id)}
                   onToggle={onToggle}
+                  onOpenDetail={setDetail}
                 />
               ))
             )}
           </div>
+          {detail ? (
+            <DetailModal
+              problem={detail}
+              busy={reviewBusy}
+              onClose={() => setDetail(null)}
+              onReviewStatusChange={handleReviewStatusChange}
+            />
+          ) : null}
           {!loading && !error && data.problems.length > 0 ? (
             <div className={styles.listFooter}>
               <p>
