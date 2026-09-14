@@ -92,7 +92,7 @@ const ASSET_FILTERS = [
  *
  * 면색(`bg-src-*`)은 `provenanceBadges` 가 붙인다 — 색 규칙을 여기 옮겨 적지 않는다.
  */
-const BADGE_CHIP = [
+export const BADGE_CHIP = [
   "inline-flex items-center justify-center",
   "min-w-[1.35rem] h-[1.35rem] px-[0.3rem] rounded-full",
   "border border-ink",

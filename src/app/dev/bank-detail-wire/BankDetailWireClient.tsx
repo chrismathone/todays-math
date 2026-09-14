@@ -210,14 +210,8 @@ function Variant({
       <h2 style={{ fontSize: 15, fontWeight: 900 }}>
         {no} {title}
       </h2>
-      <p
-        style={{
-          margin: "6px 0 12px",
-          fontSize: 12.5,
-          lineHeight: 1.7,
-          color: "#52617a",
-        }}
-      >
+      {/* §2.2.1 — 컴포넌트는 hex 를 직접 쓰지 않는다. 토큰 클래스로 옮겼다. */}
+      <p className="m-0 mb-3 mt-1.5 text-[12.5px] leading-[1.7] text-text-2">
         {note}
       </p>
       {children}
@@ -244,14 +238,9 @@ export function BankDetailWireClient() {
         <strong>담기 · 상세 · 변형 · 승인/반려</strong> 넷을 답니다 — 지금 통합
         화면에는 변형과 승인/반려가 없습니다.
       </p>
-      <p
-        style={{
-          margin: "8px 0 0",
-          fontSize: 12.5,
-          lineHeight: 1.8,
-          color: "#8b3c23",
-        }}
-      >
+      {/* §2.2.1 — 컴포넌트는 hex 를 직접 쓰지 않는다. 경고 역할이므로 기능색 Red 의
+          «글자색» 토큰을 쓴다(§2.2 — 면색이 아니라 글자색). */}
+      <p className="m-0 mt-2 text-[12.5px] leading-[1.8] text-g-red-text">
         ⚠️ 「카드를 아무 데나 눌러서 연다」는 절대 규칙 8(D-30)에 걸립니다 —
         `scanAffordance` 가 <code>&lt;article onClick&gt;</code> 을 막습니다.
         그래서 여는 것은 언제나 <strong>진짜 단추</strong>입니다(Ⓑ·Ⓒ 는 「문제
@@ -275,7 +264,7 @@ export function BankDetailWireClient() {
               />
               {popover === problem.id ? (
                 <div
-                  className={styles.detail}
+                  className={`${styles.detail} border border-divider bg-surface`}
                   style={{
                     position: "absolute",
                     left: 12,
@@ -284,11 +273,7 @@ export function BankDetailWireClient() {
                     zIndex: 5,
                     maxHeight: 320,
                     overflowY: "auto",
-                    background: "#fff",
-                    border: "1px solid #c2cef2",
-                    borderRadius: 10,
                     padding: 16,
-                    boxShadow: "0 12px 28px #172b4d26",
                   }}
                 >
                   <DetailBody problem={problem} />
@@ -313,6 +298,7 @@ export function BankDetailWireClient() {
         </div>
         {modal ? (
           <div
+            className="bg-ink/40"
             style={{
               position: "fixed",
               inset: 0,
@@ -320,7 +306,6 @@ export function BankDetailWireClient() {
               display: "flex",
               alignItems: "center",
               justifyContent: "center",
-              background: "#00000066",
               padding: 16,
             }}
             onPointerDown={(event) => {
@@ -332,15 +317,13 @@ export function BankDetailWireClient() {
               role="dialog"
               aria-modal="true"
               aria-label="문제 상세"
+              className="border border-divider bg-surface"
               style={{
                 position: "static",
                 margin: 0,
                 maxHeight: "86vh",
                 width: "min(720px, 100%)",
                 overflowY: "auto",
-                border: "1px solid #dce3ed",
-                borderRadius: 12,
-                background: "#fff",
                 padding: 20,
               }}
             >
@@ -460,9 +443,13 @@ export function BankDetailWireClient() {
           <ol style={{ display: "grid", gap: 8, listStyle: "none", margin: 0 }}>
             {WIRE_PROBLEMS.map((problem, index) => (
               <li key={problem.id}>
+                {/* 고른 행의 테두리는 기능색 Blue(「지금 보고 있는 것」, §2.2) 토큰이다.
+                    종전 `#3159df` 는 팔레트에 아예 없는 값이었다(진짜 Blue 는 #2064B3). */}
                 <button
                   type="button"
-                  className={styles.textButton}
+                  className={`${styles.textButton} ${
+                    split.id === problem.id ? "border-g-blue" : ""
+                  }`}
                   aria-pressed={split.id === problem.id}
                   style={{
                     width: "100%",
@@ -470,8 +457,6 @@ export function BankDetailWireClient() {
                     justifyContent: "flex-start",
                     textAlign: "left",
                     padding: "10px 12px",
-                    borderColor:
-                      split.id === problem.id ? "#3159df" : undefined,
                   }}
                   onClick={() => setSplit(problem)}
                 >
