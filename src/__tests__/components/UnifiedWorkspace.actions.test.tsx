@@ -1,0 +1,203 @@
+import { lazy, Suspense, type ComponentType, type ReactNode } from "react";
+import {
+  fireEvent,
+  render,
+  screen,
+  waitFor,
+  within,
+} from "@testing-library/react";
+import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
+import UnifiedWorkspace from "@/components/unified/UnifiedWorkspace";
+import {
+  createWorkspaceDraftStore,
+  DRAFT_STORE_KEY,
+} from "@/components/unified/draftStore";
+
+vi.mock("next/dynamic", () => ({
+  default: (loader: () => Promise<{ default: ComponentType }>) => {
+    const Component = lazy(loader);
+    return function Dynamic(props: object) {
+      return (
+        <Suspense fallback={null}>
+          <Component {...props} />
+        </Suspense>
+      );
+    };
+  },
+}));
+vi.mock("@/components/unified/useDevAi", () => ({
+  DevAiProvider: ({ children }: { children: ReactNode }) => children,
+}));
+vi.mock("@/components/unified/DevAiStatusPanel", () => ({
+  default: () => null,
+}));
+vi.mock("@/components/unified/BankView", () => ({
+  default: () => <h2>문제은행 열림</h2>,
+}));
+vi.mock("@/components/unified/StudioView", () => ({
+  default: ({
+    reviewRequest,
+    importRequest,
+  }: {
+    reviewRequest: number;
+    importRequest?: { files: File[] };
+  }) => (
+    <p>
+      자료 작업실 열림: 검토 {reviewRequest} · 파일{" "}
+      {importRequest?.files.length ?? 0}
+    </p>
+  ),
+}));
+vi.mock("@/components/unified/print/WorksheetPrint", () => ({
+  WorksheetPrint: () => <p>시험지 미리보기</p>,
+}));
+const initialData = {
+  problems: [],
+  total: 0,
+  page: 1,
+  pageSize: 20,
+  grades: [],
+  chapters: [],
+};
+beforeEach(() => {
+  localStorage.clear();
+  window.history.replaceState(null, "", "/#export");
+  vi.spyOn(window, "scrollTo").mockImplementation(() => {});
+});
+afterEach(() => vi.restoreAllMocks());
+function seed() {
+  const store = createWorkspaceDraftStore();
+  store.hydrate();
+  store.importDraft({
+    version: 1,
+    title: "저장한 시험지",
+    problems: [{ id: "p1", content: "1+1" }],
+    columns: 1,
+    answers: false,
+  });
+  return store.getSnapshot().draft.id;
+}
+
+describe("workspace action wiring", () => {
+  it("opens the bank from the empty worksheet", async () => {
+    render(<UnifiedWorkspace initialData={initialData} />);
+    fireEvent.click(
+      await screen.findByRole("button", { name: /문제은행에서 담기/ }),
+    );
+    expect(
+      await screen.findByRole("heading", { name: "문제은행 열림" }),
+    ).toBeVisible();
+    expect(location.hash).toBe("#bank");
+  });
+  it("opens the source picker and delivers the chosen files to Studio", async () => {
+    const click = vi.spyOn(HTMLInputElement.prototype, "click");
+    render(<UnifiedWorkspace initialData={initialData} />);
+    fireEvent.click(
+      await screen.findByRole("button", { name: "자료 가져오기" }),
+    );
+    expect(click).toHaveBeenCalledOnce();
+    const input = click.mock.instances[0] as HTMLInputElement;
+    expect(input.accept).toMatch(/pdf/);
+    fireEvent.change(input, {
+      target: {
+        files: [new File(["fixture"], "page.png", { type: "image/png" })],
+      },
+    });
+    expect(
+      await screen.findByText("자료 작업실 열림: 검토 0 · 파일 1"),
+    ).toBeVisible();
+    expect(location.hash).toBe("#studio");
+  });
+  it("opens a JSON picker when there is no saved work and imports the selected worksheet", async () => {
+    const click = vi.spyOn(HTMLInputElement.prototype, "click");
+    render(<UnifiedWorkspace initialData={initialData} />);
+    fireEvent.click(
+      await screen.findByRole("button", { name: "저장한 작업 불러오기" }),
+    );
+    expect(click).toHaveBeenCalledOnce();
+    const input = click.mock.instances[0] as HTMLInputElement;
+    expect(input.accept).toMatch(/json/);
+    const value = {
+      version: 1,
+      title: "파일로 가져온 시험지",
+      problems: [{ id: "p1", content: "1+1" }],
+      columns: 1,
+      answers: false,
+    };
+    const file = new File([JSON.stringify(value)], "worksheet.json", {
+      type: "application/json",
+    });
+    Object.defineProperty(file, "text", {
+      value: async () => JSON.stringify(value),
+    });
+    fireEvent.change(input, { target: { files: [file] } });
+    expect(
+      await screen.findByDisplayValue("파일로 가져온 시험지"),
+    ).toBeVisible();
+  });
+  it("restores a saved worksheet and requests the review step on each back action", async () => {
+    seed();
+    const store = createWorkspaceDraftStore();
+    store.hydrate();
+    store.createDraft();
+    render(<UnifiedWorkspace initialData={initialData} />);
+    fireEvent.click(
+      await screen.findByRole("button", { name: "저장한 작업 불러오기" }),
+    );
+    expect(await screen.findByDisplayValue("저장한 시험지")).toBeVisible();
+    fireEvent.click(screen.getByRole("button", { name: "이전 검토 단계" }));
+    expect(
+      await screen.findByText("자료 작업실 열림: 검토 1 · 파일 0"),
+    ).toBeVisible();
+    fireEvent.click(screen.getByRole("button", { name: "시험지 · 내보내기" }));
+    fireEvent.click(
+      await screen.findByRole("button", { name: "이전 검토 단계" }),
+    );
+    expect(
+      await screen.findByText("자료 작업실 열림: 검토 2 · 파일 0"),
+    ).toBeVisible();
+  });
+  it("renames, edits and confirms deletion using the visible library card buttons", async () => {
+    const id = seed();
+    window.history.replaceState(null, "", "/#library");
+    render(<UnifiedWorkspace initialData={initialData} />);
+    const rename = await screen.findByRole("button", {
+      name: "저장한 시험지 이름 변경",
+    });
+    const card = rename.closest("article")!;
+    fireEvent.click(rename);
+    fireEvent.change(
+      within(card).getByRole("textbox", { name: "새 시험지 이름" }),
+      { target: { value: "이름 바꾼 시험지" } },
+    );
+    fireEvent.click(within(card).getByRole("button", { name: "이름 저장" }));
+    expect(
+      within(card).getByRole("heading", { name: "이름 바꾼 시험지" }),
+    ).toBeVisible();
+    expect(
+      JSON.parse(localStorage.getItem(DRAFT_STORE_KEY)!).drafts.find(
+        (draft: { id: string }) => draft.id === id,
+      ).title,
+    ).toBe("이름 바꾼 시험지");
+    fireEvent.click(
+      within(card).getByRole("button", { name: "이름 바꾼 시험지 편집" }),
+    );
+    expect(await screen.findByDisplayValue("이름 바꾼 시험지")).toBeVisible();
+    fireEvent.click(screen.getByRole("button", { name: "내 시험지" }));
+    fireEvent.click(
+      await screen.findByRole("button", { name: "이름 바꾼 시험지 삭제" }),
+    );
+    expect(
+      JSON.parse(localStorage.getItem(DRAFT_STORE_KEY)!).drafts,
+    ).toHaveLength(1);
+    fireEvent.click(screen.getByRole("button", { name: "삭제 확인" }));
+    await waitFor(() =>
+      expect(
+        screen.queryByRole("heading", { name: "이름 바꾼 시험지" }),
+      ).not.toBeInTheDocument(),
+    );
+    expect(JSON.parse(localStorage.getItem(DRAFT_STORE_KEY)!).drafts).toEqual(
+      [],
+    );
+  });
+});

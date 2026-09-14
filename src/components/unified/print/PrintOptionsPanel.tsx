@@ -22,6 +22,14 @@ export function PrintOptionsPanel({
   onOptions: (patch: Partial<PrintOptions>) => void;
   onMeta: (patch: Partial<PrintMeta>) => void;
 }) {
+  // Mathgen's nearest-preset selection also represents old custom spacing
+  // values, while preserving the saved value until the user picks a preset.
+  const spacingPreset = SPACING_PRESETS.reduce((closest, preset) =>
+    Math.abs(options.spacing - preset[1]) <
+    Math.abs(options.spacing - closest[1])
+      ? preset
+      : closest,
+  );
   const field = (key: keyof PrintMeta, label: string, type = "text") => (
     <label className={s.field} key={key}>
       {label}
@@ -149,7 +157,7 @@ export function PrintOptionsPanel({
       </fieldset>
       <fieldset className={s.optionGroup}>
         <legend>강조 색상</legend>
-        <div className={s.choiceWrap}>
+        <div className={`${s.choiceWrap} ${s.colorGrid}`}>
           {[["기본 남색", DEFAULT_PRINT_OPTIONS.color], ...COLORS].map(
             ([label, color]) => (
               <button
@@ -170,7 +178,7 @@ export function PrintOptionsPanel({
       </fieldset>
       <fieldset className={s.optionGroup}>
         <legend>문제 배치</legend>
-        <div className={s.choiceWrap}>
+        <div className={`${s.choiceWrap} ${s.equalChoices}`}>
           {([1, 2] as const).map((n) => (
             <button
               key={n}
@@ -200,7 +208,7 @@ export function PrintOptionsPanel({
       </label>
       <fieldset className={s.optionGroup}>
         <legend>세로 배치</legend>
-        <div className={s.choiceWrap}>
+        <div className={`${s.choiceWrap} ${s.equalChoices}`}>
           <button
             aria-pressed={options.layoutMode === "spacing"}
             onClick={() => onOptions({ layoutMode: "spacing" })}
@@ -215,36 +223,22 @@ export function PrintOptionsPanel({
           </button>
         </div>
         {options.layoutMode === "spacing" ? (
-          <>
-            <div className={s.choiceWrap}>
-              {SPACING_PRESETS.map(([label, spacing]) => (
-                <button
-                  key={spacing}
-                  aria-pressed={options.spacing === spacing}
-                  onClick={() => onOptions({ spacing })}
-                >
-                  {label}
-                </button>
-              ))}
-            </div>
-            <label className={s.field}>
-              문항 간 여백 (px)
-              <input
-                type="number"
-                min={0}
-                max={150}
-                value={options.spacing}
-                onChange={(e) =>
-                  onOptions({
-                    spacing: Math.min(150, Math.max(0, Number(e.target.value))),
-                  })
-                }
-              />
-            </label>
-          </>
+          <div
+            className={`${s.choiceWrap} ${s.equalChoices} ${s.spacingChoices}`}
+          >
+            {SPACING_PRESETS.map(([label, spacing]) => (
+              <button
+                key={spacing}
+                aria-pressed={spacingPreset[1] === spacing}
+                onClick={() => onOptions({ spacing })}
+              >
+                {label}
+              </button>
+            ))}
+          </div>
         ) : (
           <>
-            <div className={s.choiceWrap}>
+            <div className={`${s.choiceWrap} ${s.equalChoices}`}>
               {[2, 3, 4].map((n) => (
                 <button
                   key={n}

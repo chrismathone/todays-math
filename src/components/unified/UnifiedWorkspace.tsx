@@ -2,6 +2,7 @@
 
 import WorkspacePageHeader from "./WorkspacePageHeader";
 import WorkProgress from "./WorkProgress";
+import SavedWorksheetActions from "./SavedWorksheetActions";
 import dynamic from "next/dynamic";
 import { useCallback, useEffect, useRef, useState } from "react";
 import type { BankData, StudioProblem } from "./types";
@@ -91,6 +92,8 @@ function UnifiedWorkspaceContent({ initialData }: { initialData: BankData }) {
     saveNow,
     createDraft,
     openDraft,
+    renameDraft,
+    deleteDraft,
     importDraft,
   } = useWorkspaceDrafts();
   const {
@@ -103,6 +106,7 @@ function UnifiedWorkspaceContent({ initialData }: { initialData: BankData }) {
     updatedAt: savedAt,
   } = draft;
   const [view, setView] = useState<View>("home");
+  const [studioReviewRequest, setStudioReviewRequest] = useState(0);
   const [opened, setOpened] = useState<Set<View>>(new Set(["home"]));
   const [bankEntry, setBankEntry] = useState<{
     q?: string;
@@ -280,7 +284,7 @@ function UnifiedWorkspaceContent({ initialData }: { initialData: BankData }) {
   }
   function restore() {
     if (recent.length) openSaved(recent[0].id);
-    else navigate("library");
+    else draftFileRef.current?.click();
   }
   function startNew(next: "bank" | "studio" | "export") {
     if (!createDraft()) return;
@@ -615,6 +619,7 @@ function UnifiedWorkspaceContent({ initialData }: { initialData: BankData }) {
                 onAdd={add}
                 onExport={() => navigate("export")}
                 importRequest={importRequest}
+                reviewRequest={studioReviewRequest}
               />
             </main>
           )}
@@ -643,6 +648,11 @@ function UnifiedWorkspaceContent({ initialData }: { initialData: BankData }) {
               toggle={toggle}
               move={move}
               navigate={navigate}
+              onImportFiles={() => fileRef.current?.click()}
+              onBackToReview={() => {
+                setStudioReviewRequest((request) => request + 1);
+                navigate("studio");
+              }}
             />
           )}
           {view === "library" && (
@@ -713,13 +723,25 @@ function UnifiedWorkspaceContent({ initialData }: { initialData: BankData }) {
                         {item.problemCount}문항<span>·</span>
                         {formatDraftDate(item.updatedAt)}
                       </p>
-                      <button
-                        aria-label={`${item.title || "제목 없는 시험지"} 이어서 편집하기`}
-                        onClick={() => openSaved(item.id)}
-                      >
-                        이어서 편집하기
-                        <Icon name="arrow" size={18} />
-                      </button>
+                      <SavedWorksheetActions
+                        title={item.title || "제목 없는 시험지"}
+                        current={item.id === draft.id}
+                        error={saveError}
+                        onEdit={() => openSaved(item.id)}
+                        onRename={(name) => {
+                          const saved = renameDraft(item.id, name);
+                          if (saved) setNotice("시험지 이름을 변경했습니다.");
+                          return saved;
+                        }}
+                        onDelete={() => {
+                          const removed = deleteDraft(item.id);
+                          if (removed) {
+                            setUndo(null);
+                            setNotice("시험지를 삭제했습니다.");
+                          }
+                          return removed;
+                        }}
+                      />
                     </article>
                   ))}
                 </div>

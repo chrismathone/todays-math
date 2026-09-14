@@ -64,7 +64,9 @@ export function useMeasuredPages(
     let observer: ResizeObserver | undefined;
     const measure = () => {
       const root = host.current;
-      if (cancelled || !root) return;
+      // The screen measurement host is display:none in print media. Keep the
+      // prepared pagination while printing instead of replacing it with zeros.
+      if (cancelled || !root || !root.getClientRects().length) return;
       const heights = Array.from(
         root.querySelectorAll<HTMLElement>(
           "[data-measure-items] [data-measure-idx]",

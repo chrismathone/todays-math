@@ -614,6 +614,40 @@
   border-radius: 14px;
   background: #fff;
 }
+.savedActions {
+  padding: 12px 0;
+  border-top: 1px solid #e9edf5;
+}
+.savedActionButtons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+.savedActionButtons button {
+  flex: 1;
+  min-height: 44px;
+  padding: 0 10px;
+  border: 1px solid #c4d1e4;
+  border-radius: 8px;
+  color: #3159df;
+  font-size: 14px;
+  white-space: nowrap;
+}
+.savedActions form,
+.savedActions > div + div {
+  margin-top: 12px;
+}
+.savedActions label {
+  font-size: 14px;
+}
+.savedActions input {
+  width: 100%;
+  min-height: 44px;
+  border: 1px solid #c4d1e4;
+  border-radius: 8px;
+  padding: 0 10px;
+  margin: 6px 0 10px;
+}
 .libraryEmpty > span {
   display: grid;
   place-items: center;
