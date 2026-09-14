@@ -26,6 +26,7 @@ const SubQuestionSchema = z.object({
 });
 const layout = z.enum(["auto", "1x5", "2x3", "3x2", "5x1"]);
 export const MathgenProblemDataSchema = z.object({
+  contentEdited: z.boolean().optional(),
   number: z.number().int().positive().max(10000),
   blocks,
   choiceGroups: choices,

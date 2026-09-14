@@ -25,7 +25,8 @@ export default function NativeProblem({
   /** Decorate figures in place using their original zero-based source index. */
   renderFigure?: (index: number, image: ReactNode) => ReactNode;
 }) {
-  const data = problem.ocr;
+  const metadata = problem.ocr;
+  const data = metadata?.contentEdited ? undefined : metadata;
   const placements = parseFigureDimensions(
     problem.figureUrls.length,
     problem.figureDims,
@@ -118,7 +119,7 @@ export default function NativeProblem({
   };
   const choiceGrid = (choices: ChoiceGroup[]) => {
     if (!choices.length) return null;
-    const layout = data?.choicesLayout ?? "auto";
+    const layout = metadata?.choicesLayout ?? "auto";
     const columns =
       ({ "1x5": 5, "2x3": 3, "3x2": 2, "5x1": 1 } as Record<string, number>)[
         layout
