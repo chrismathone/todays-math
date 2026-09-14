@@ -142,9 +142,7 @@ async function recognize() {
       screen.getByRole("button", { name: "다음: OCR · 디지털화" }),
     ).toBeEnabled(),
   );
-  fireEvent.click(
-    screen.getByRole("button", { name: "OCR · 디지털화로 이동" }),
-  );
+  fireEvent.click(screen.getByRole("button", { name: /^OCR · 디지털화 \d+$/ }));
   await screen.findByText(/값을 구하세요/);
   fireEvent.click(screen.getByRole("button", { name: "내용 수정" }));
 }
@@ -227,7 +225,13 @@ describe("Studio AI review controls", () => {
       ).toBeDisabled(),
     );
     expect(
-      screen.getByRole("button", { name: "OCR · 디지털화로 이동" }),
+      screen.getByRole("button", { name: /^OCR · 디지털화 \d+$/ }),
+    ).toBeDisabled();
+    expect(
+      within(screen.getByRole("navigation", { name: "제작 단계" })).getByRole(
+        "button",
+        { name: /OCR · 디지털화/ },
+      ),
     ).toBeDisabled();
     expect(screen.getByText(/남음$/)).toBeInTheDocument();
     await act(async () => {
@@ -324,6 +328,49 @@ describe("Studio AI review controls", () => {
     expect(onAdd).toHaveBeenCalledTimes(1);
   });
 
+  it("counts failed figures instead of losing them and offers a retry", async () => {
+    await open();
+    // 도형만 실패시킨다 — 실패는 처리 중·대기·완료 어디에도 안 들어가 분모에서만 사라졌었다.
+    respond = (request) =>
+      request.action === "figure-redraw"
+        ? Promise.resolve(json({ error: "도형 생성 실패" }, 502))
+        : Promise.resolve(
+            json({
+              provider: request.provider,
+              action: request.action,
+              result: {
+                content: recognized,
+                answer: "",
+                solution: "",
+                warnings: [],
+                problems: [
+                  {
+                    content: recognized,
+                    answer: "",
+                    bbox: { left: 80, top: 180, width: 840, height: 170 },
+                    figures: [
+                      {
+                        bbox: { left: 120, top: 200, width: 200, height: 160 },
+                      },
+                    ],
+                  },
+                ],
+              },
+            }),
+          );
+    fireEvent.click(screen.getByRole("button", { name: "페이지 자동 인식" }));
+    await waitFor(() =>
+      expect(
+        screen.getByRole("button", { name: "다음: OCR · 디지털화" }),
+      ).toBeEnabled(),
+    );
+    fireEvent.click(
+      screen.getByRole("button", { name: "다음: OCR · 디지털화" }),
+    );
+    expect(
+      await screen.findByRole("button", { name: /실패 \d+개 다시 생성/ }),
+    ).toBeInTheDocument();
+  });
   it("retains keyboard crop controls and allows manual image output without OCR", async () => {
     const { onAdd } = await open();
     const area = screen.getByRole("group", { name: "문제 자르기 영역" });
@@ -333,7 +380,7 @@ describe("Studio AI review controls", () => {
       screen.getByRole("img", { name: "검수할 자른 원본 문제" }),
     ).toBeInTheDocument();
     fireEvent.click(
-      screen.getByRole("button", { name: "OCR · 디지털화로 이동" }),
+      screen.getByRole("button", { name: /^OCR · 디지털화 \d+$/ }),
     );
     fireEvent.click(screen.getByRole("button", { name: "1문항 담기" }));
     expect(posts).toEqual([]);

@@ -1226,7 +1226,8 @@ export default function StudioView({
       chooseSource(sourceId, pageNumber + 1);
     } else {
       selectCrop(pageCrops[0].id);
-      setStep("review");
+      // 다른 쪽이나 도형이 아직 도는 동안에는 넘기지 않는다 — 아래 막대 단추로 넘어간다.
+      if (!studioAi.running) setStep("review");
     }
   }
 
@@ -1327,6 +1328,11 @@ export default function StudioView({
   const figurePending = figureJobs.filter((job) =>
     ["queued", "running"].includes(job.state),
   );
+  // 실패는 어느 칸에도 안 들어가 분모에서만 사라졌다(2+2+0 인데 총 5) — 따로 센다.
+  const failedFigures = figureJobs.filter((job) => job.state === "error");
+  const doneFigures = figureJobs.filter(
+    (job) => job.state === "complete",
+  ).length;
   const digitalCount = crops.filter(
     (crop) =>
       crop.content.trim() && (crop.figures ?? []).every((figure) => figure.svg),
@@ -1395,7 +1401,12 @@ export default function StudioView({
             </button>
             <button
               aria-pressed={step === "review"}
-              disabled={!crops.length}
+              disabled={!crops.length || studioAi.running}
+              title={
+                studioAi.running
+                  ? "자동 인식과 도형 생성이 모두 끝나면 넘어갈 수 있습니다."
+                  : undefined
+              }
               onClick={() => {
                 setStep("review");
                 setInspectorOpen(true);
@@ -1506,7 +1517,7 @@ export default function StudioView({
               }
               disabled={
                 (key === "crop" && !currentSource) ||
-                (key === "review" && !crops.length)
+                (key === "review" && (!crops.length || studioAi.running))
               }
               onClick={() => setStep(key)}
             >
@@ -1820,20 +1831,36 @@ export default function StudioView({
               </button>
             </div>
           )}
-          {figurePending.length > 0 && (
+          {figurePending.length > 0 ? (
             <WorkProgress
               label="SVG 도형 생성 중"
-              detail={`${figurePending.filter((job) => job.state === "running").length}개 처리 중 · ${figurePending.filter((job) => job.state === "queued").length}개 대기`}
-              completed={
-                figureJobs.filter((job) => job.state === "complete").length
-              }
+              detail={`${figurePending.filter((job) => job.state === "running").length}개 처리 중 · ${figurePending.filter((job) => job.state === "queued").length}개 대기${failedFigures.length ? ` · 실패 ${failedFigures.length}개` : ""}`}
+              completed={doneFigures}
               total={figureJobs.length}
               unit="도형"
               startedAt={figurePending.find((job) => job.startedAt)?.startedAt}
               onCancel={() => studioAi.figureAi.cancel()}
               cancelLabel="도형 생성 취소"
             />
-          )}
+          ) : failedFigures.length ? (
+            <div className={styles.queueSummary} role="status">
+              <strong>
+                도형 {doneFigures} / {figureJobs.length} 완료 · 실패{" "}
+                {failedFigures.length}개
+              </strong>
+              <button
+                type="button"
+                disabled={!studioAi.available || studioAi.running}
+                onClick={() =>
+                  void studioAi.figureAi.run([
+                    ...new Set(failedFigures.map((job) => job.cropId)),
+                  ])
+                }
+              >
+                실패 {failedFigures.length}개 다시 생성
+              </button>
+            </div>
+          ) : null}
           {currentPageJob?.state === "error" ? (
             <div className={styles.aiFeedback} role="alert">
               <span>
@@ -2480,19 +2507,6 @@ export default function StudioView({
                 <div className={styles.cropPreview}>
                   <img src={activeCrop.image} alt="검수할 자른 원본 문제" />
                 </div>
-                <button
-                  type="button"
-                  className={styles.previewButton}
-                  disabled={studioAi.running}
-                  title={
-                    studioAi.running
-                      ? "자동 인식과 도형 생성이 모두 끝나면 넘어갈 수 있습니다."
-                      : undefined
-                  }
-                  onClick={() => setStep("review")}
-                >
-                  OCR · 디지털화로 이동 <Icon name="arrow" />
-                </button>
               </div>
             ) : currentSource ? (
               <StudioPageEmpty
