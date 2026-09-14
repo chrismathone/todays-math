@@ -1,6 +1,36 @@
 import type { Root, RootContent, Text } from "mdast";
 
-/** Native OCR additions only; bank markdown keeps its existing parser and DOM. */
+/** Only prose containers can be empty; math, breaks, rules, cells and media carry intent. */
+function isEmptyQuoteContent(node: RootContent): boolean {
+  if (node.type === "text") return node.value.trim() === "";
+  if (
+    node.type === "blockquote" ||
+    node.type === "paragraph" ||
+    node.type === "emphasis" ||
+    node.type === "strong"
+  )
+    return node.children.every((child) => isEmptyQuoteContent(child));
+  return false;
+}
+
+/** Empty OCR quotes also reach the legacy saved-Markdown path. */
+export function remarkEmptyBlockquotes() {
+  return (tree: Root) => {
+    const visit = (parent: { children: RootContent[] }) => {
+      parent.children = parent.children.filter((node) => {
+        if ("children" in node) visit(node as { children: RootContent[] });
+        // OCR can emit a bare `>`; reparsing a serialized condition box can also
+        // leave one before the rebuilt box. Do not give that empty AST a border.
+        // Never infer emptiness from rendered text: an answer rule, phantom math,
+        // blank table cell or image can be meaningful without visible words.
+        return node.type !== "blockquote" || !isEmptyQuoteContent(node);
+      });
+    };
+    visit(tree);
+  };
+}
+
+/** Native OCR figure anchors and negation emphasis only. */
 export function remarkNativeContent(options: {
   figureCount: number;
   emphasizeNegation: boolean;
