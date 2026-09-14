@@ -1,5 +1,53 @@
 # Studio digital pipeline — 2026-09-14
 
+## Source UI parity correction
+
+The engine/export checks below did **not** establish UI parity. The previous
+review screen still substituted a raw Markdown/LaTeX form and separate large
+figure panels for the source's in-card visual editing. This pass restores the
+actual source editor and its renderer/helper graph, rather than treating those
+substitutes as a completed migration.
+
+- `components/math/editor/SourceMathTextEditor.tsx` is the original TipTap/MathLive
+  editor, with its source reader, keyboard, math tokens, tables, condition boxes,
+  choice layout and figure geometry. The public wrapper loads it only in the
+  browser. Raw LaTeX remains lossless on opening; visible math uses the source's
+  fraction/geometry typography. Optional source-code editing remains secondary.
+- Review displays figures at their body/choice/table anchors. Unanchored figures
+  appear once through the shared source fallback. Figure clicks and keyboard
+  activation open the original editor; compact controls replace duplicated large
+  figure panels. Removing figures or shrinking crops remaps surviving anchors.
+- Body, answer, solution, number, topic and figure changes are staged together.
+  Save commits the draft; Cancel restores it, including diagram edits and recrops.
+  OCR metadata and choice layout survive manual changes, reload and worksheet
+  transfer. Native blocks are invalidated only when their body is actually edited.
+- Figure editing uses the Studio navy/blue palette, a bounded 740px desktop modal
+  and a fitted canvas. Original-region editing opens locally within review.
+  Score visibility is display-only; confidence and missing-content warnings remain.
+- Page/OCR/SVG progress occupies one stable 44px row with counts and a warning
+  badge. Hover, click or keyboard opens anchored detail in a top-layer popover;
+  long warnings cannot wrap the main row or move the workspace. Page details remain
+  beside their trigger. Empty quote artifacts are removed while real boxes remain.
+
+Validation after integration: **67 tests across 10 focused files passed**;
+**17 Studio browser cases passed** (16 in the combined run plus the corrected
+source-fraction selector rerun). The source editor's **10 real-browser groups**
+also passed again after the typography guard, including actual MathLive entry,
+fraction numerator/denominator navigation, undo/redo, tables, inline figures,
+orphan figures, and lossless open/source-mode roundtrips. Worker browser checks
+add six review transaction groups, ten drawing checks and seven crop checks.
+Scoped ESLint has zero errors and five inherited source warnings; D-30 passes.
+The production build passed TypeScript and page generation. An actual Next
+production server passed login hydration, anonymous API rejection and closed CLI
+checks. An authenticated production editor smoke was not run: automatic approval
+review rejected launching the server with a synthetic test authentication secret.
+No paid model inference or deployment was performed during this UI pass.
+
+Current evidence is archived under `.qa-artifacts/studio-ui-parity/`. The source
+comparison inventory is `scripts/qa/math-text-editor/port-report.json`; its initial
+line counts describe the worker port, while coordinator verification records the
+final integration. Prior engine/export evidence below remains historical.
+
 ## Current source-led integration (`D:/mathg-gen`)
 
 The source for this completion pass is the actual running `D:/mathg-gen` tree.

@@ -1,138 +1,154 @@
 {
-  "taskId": "task_2a1e463ed8c6",
-  "initialCommit": "a88a23fa",
-  "sourceReadOnly": true,
-  "sourceComparison": [
-    {
-      "source": "D:\\mathg-gen\\src\\components\\math\\MathTextEditor.tsx",
-      "target": "src\\components\\math\\editor\\SourceMathTextEditor.tsx",
-      "sourceSha256": "a351f11ee9c26b20244c9f97af3a3f6527f9b6fe5f926531ca9e5673cec0a1a1",
-      "sourceLines": 342,
-      "targetLines": 389,
-      "unchangedSourceLines": 293,
-      "identical": false
-    },
-    {
-      "source": "D:\\mathg-gen\\src\\components\\math\\MarkdownRenderer.tsx",
-      "target": "src\\components\\math\\editor\\SourceEditorRenderer.tsx",
-      "sourceSha256": "df3b082cee25b01e51fb19a8844efb2c9f9c57b4b721d49b21c8fb877d16330f",
-      "sourceLines": 1160,
-      "targetLines": 1179,
-      "unchangedSourceLines": 1136,
-      "identical": false
-    },
-    {
-      "source": "D:\\mathg-gen\\src\\lib\\visualDocument.ts",
-      "target": "src\\components\\math\\editor\\visualDocument.ts",
-      "sourceSha256": "10b7dc21afa839074c08b98f727862a7de911e685b32e6b91e459b3946a2145b",
-      "sourceLines": 84,
-      "targetLines": 92,
-      "unchangedSourceLines": 77,
-      "identical": false
-    },
-    {
-      "source": "D:\\mathg-gen\\src\\lib\\compactMathKeyboard.ts",
-      "target": "src\\components\\math\\editor\\compactMathKeyboard.ts",
-      "sourceSha256": "7129e5a4ef55959d46bec34471e99034203cc7f31aa6e34d6d63456ed364959a",
-      "sourceLines": 102,
-      "targetLines": 102,
-      "unchangedSourceLines": 101,
-      "identical": false
-    },
-    {
-      "source": "D:\\mathg-gen\\src\\lib\\katexRender.ts",
-      "target": "src\\components\\math\\editor\\katexRender.ts",
-      "sourceSha256": "5594c1ea918ddf29da1e1a4abe77b60ff5077bcf0ef68190f26b8960b11d226a",
-      "sourceLines": 88,
-      "targetLines": 92,
-      "unchangedSourceLines": 86,
-      "identical": false
-    },
-    {
-      "source": "D:\\mathg-gen\\src\\lib\\boxGrid.ts",
-      "target": "src\\components\\math\\editor\\boxGrid.ts",
-      "sourceSha256": "8af42b671881a1bf4fd6e00198a24a2faa254e92b01d0c014efd4b21c7a092cb",
-      "sourceLines": 71,
-      "targetLines": 71,
-      "unchangedSourceLines": 71,
-      "identical": true
-    },
-    {
-      "source": "D:\\mathg-gen\\src\\lib\\textPreprocess.ts",
-      "target": "src\\components\\math\\editor\\textPreprocess.ts",
-      "sourceSha256": "01b3798782223be3d3ad761623760af4bc0143a428505c0e419933aa09bf54a6",
-      "sourceLines": 1026,
-      "targetLines": 1026,
-      "unchangedSourceLines": 1025,
-      "identical": false
-    },
-    {
-      "source": "D:\\mathg-gen\\src\\lib\\measurementUnits.ts",
-      "target": "src\\components\\math\\editor\\measurementUnits.ts",
-      "sourceSha256": "1f21d581f8de47d6ec588a9a39e6b6ef739377d9efa2442a8ae980a71a6c1846",
-      "sourceLines": 26,
-      "targetLines": 26,
-      "unchangedSourceLines": 26,
-      "identical": true
-    },
-    {
-      "source": "D:\\mathg-gen\\src\\lib\\mathSegments.ts",
-      "target": "src\\components\\math\\editor\\mathSegments.ts",
-      "sourceSha256": "f7d71d165c1b847a893a7d0d57e1ebdb0de2ca552aadbe0a8132a5a33d09dc0e",
-      "sourceLines": 34,
-      "targetLines": 34,
-      "unchangedSourceLines": 34,
-      "identical": true
-    },
-    {
-      "source": "D:\\mathg-gen\\src\\lib\\figureLayout.ts",
-      "target": "src\\components\\math\\editor\\figureLayout.ts",
-      "sourceSha256": "626d49556c8113b4455029c368bf2e673e4dae74aec347e45e84e40708a99a21",
-      "sourceLines": 233,
-      "targetLines": 234,
-      "unchangedSourceLines": 231,
-      "identical": false
-    }
-  ],
-  "adaptations": [
-    "Next SSR-safe lazy client entry; separate source reader API with same indexed figure props and optional isFigureEditable predicate.",
-    "Source TipTap document schema, actual MathLive node views, compact keyboard, serializer, complete 1160-line source renderer and its direct helper graph retained.",
-    "Raw formula tokens and inline SVG source retained independently from KaTeX display normalization; empty slots render as boxes.",
-    "Source-specific CSS scoped to .source-math-editor including body portal keyboard; orange accents changed to navy-blue.",
-    "Inline figure nodes, figure rows, indexed geometry, redraw without document emission/history changes, passive redraw locks and original-index orphan fallback.",
-    "Source defects fixed: first fraction placeholder focus, dropped leading prose, lost math-only condition rows, blank quotes, literal Markdown punctuation, and source-edit history grouping."
-  ],
-  "validation": {
-    "browser": {
-      "passed": 10,
-      "results": [
-        "Initial source-mode roundtrip preserves the exact input.",
-        "Direct typing serializes conditions, choices, table math and figure anchors; undo/redo restore text.",
-        "Figure callback, redraw-only prop update and document history remain independent.",
-        "Click activates a real MathLive field; physical keyboard entry is saved.",
-        "Fraction template exposes separate numerator/denominator fields; compact keypad and physical keys enter 3/4.",
-        "Real table-cell edit, optional source edit, visual reload and parent save preserve the document structure.",
-        "Source read/edit share figure-row geometry and keyboard callback; empty condition quotes disappear and literal Markdown punctuation survives.",
-        "Choice figures remain inline and indexed, leading question prose is retained, and math-only condition lines are editable.",
-        "Marker-free figures appear exactly once in read and edit, retain callback indexes, honor edit locks, and never add stored markers on open.",
-        "Controlled value replacement works under React StrictMode with no browser errors."
-      ],
-      "errors": []
-    },
-    "focusedTypeScript": "passed",
-    "eslint": "passed with five inherited warnings: four source img optimization warnings and unused boxGrid parameter",
-    "affordanceGuard": "passed",
-    "privatePrismaGeneration": "passed, local code generation only",
-    "integratedNextBuild": "coordinator-owned"
-  },
-  "commands": {
-    "fixture": "node node_modules/vite/bin/vite.js --config scripts/qa/math-text-editor/vite.config.mts",
-    "browser": "node scripts/qa/math-text-editor/verify.mjs",
-    "types": "node node_modules/typescript/bin/tsc --project scripts/qa/math-text-editor/tsconfig.json --pretty false"
-  },
-  "remaining": [
-    "Integration into ReviewPane and full Next build belong to coordinator/consumer worker.",
-    "Opening and source-mode toggling retain exact input; actual visual edits canonicalize Markdown spacing and table separators, as the source serializer does.",
-    "Source SVG/image rendering uses source browser DOM behavior; only the local no-network fixture was exercised in this worker."
-  ]
+    "taskId":  "task_2a1e463ed8c6",
+    "initialCommit":  "a88a23fa",
+    "sourceReadOnly":  true,
+    "sourceComparison":  [
+                             {
+                                 "source":  "D:\\mathg-gen\\src\\components\\math\\MathTextEditor.tsx",
+                                 "target":  "src\\components\\math\\editor\\SourceMathTextEditor.tsx",
+                                 "sourceSha256":  "a351f11ee9c26b20244c9f97af3a3f6527f9b6fe5f926531ca9e5673cec0a1a1",
+                                 "sourceLines":  342,
+                                 "targetLines":  389,
+                                 "unchangedSourceLines":  293,
+                                 "identical":  false
+                             },
+                             {
+                                 "source":  "D:\\mathg-gen\\src\\components\\math\\MarkdownRenderer.tsx",
+                                 "target":  "src\\components\\math\\editor\\SourceEditorRenderer.tsx",
+                                 "sourceSha256":  "df3b082cee25b01e51fb19a8844efb2c9f9c57b4b721d49b21c8fb877d16330f",
+                                 "sourceLines":  1160,
+                                 "targetLines":  1179,
+                                 "unchangedSourceLines":  1136,
+                                 "identical":  false
+                             },
+                             {
+                                 "source":  "D:\\mathg-gen\\src\\lib\\visualDocument.ts",
+                                 "target":  "src\\components\\math\\editor\\visualDocument.ts",
+                                 "sourceSha256":  "10b7dc21afa839074c08b98f727862a7de911e685b32e6b91e459b3946a2145b",
+                                 "sourceLines":  84,
+                                 "targetLines":  92,
+                                 "unchangedSourceLines":  77,
+                                 "identical":  false
+                             },
+                             {
+                                 "source":  "D:\\mathg-gen\\src\\lib\\compactMathKeyboard.ts",
+                                 "target":  "src\\components\\math\\editor\\compactMathKeyboard.ts",
+                                 "sourceSha256":  "7129e5a4ef55959d46bec34471e99034203cc7f31aa6e34d6d63456ed364959a",
+                                 "sourceLines":  102,
+                                 "targetLines":  102,
+                                 "unchangedSourceLines":  101,
+                                 "identical":  false
+                             },
+                             {
+                                 "source":  "D:\\mathg-gen\\src\\lib\\katexRender.ts",
+                                 "target":  "src\\components\\math\\editor\\katexRender.ts",
+                                 "sourceSha256":  "5594c1ea918ddf29da1e1a4abe77b60ff5077bcf0ef68190f26b8960b11d226a",
+                                 "sourceLines":  88,
+                                 "targetLines":  92,
+                                 "unchangedSourceLines":  86,
+                                 "identical":  false
+                             },
+                             {
+                                 "source":  "D:\\mathg-gen\\src\\lib\\boxGrid.ts",
+                                 "target":  "src\\components\\math\\editor\\boxGrid.ts",
+                                 "sourceSha256":  "8af42b671881a1bf4fd6e00198a24a2faa254e92b01d0c014efd4b21c7a092cb",
+                                 "sourceLines":  71,
+                                 "targetLines":  71,
+                                 "unchangedSourceLines":  71,
+                                 "identical":  true
+                             },
+                             {
+                                 "source":  "D:\\mathg-gen\\src\\lib\\textPreprocess.ts",
+                                 "target":  "src\\components\\math\\editor\\textPreprocess.ts",
+                                 "sourceSha256":  "01b3798782223be3d3ad761623760af4bc0143a428505c0e419933aa09bf54a6",
+                                 "sourceLines":  1026,
+                                 "targetLines":  1026,
+                                 "unchangedSourceLines":  1025,
+                                 "identical":  false
+                             },
+                             {
+                                 "source":  "D:\\mathg-gen\\src\\lib\\measurementUnits.ts",
+                                 "target":  "src\\components\\math\\editor\\measurementUnits.ts",
+                                 "sourceSha256":  "1f21d581f8de47d6ec588a9a39e6b6ef739377d9efa2442a8ae980a71a6c1846",
+                                 "sourceLines":  26,
+                                 "targetLines":  26,
+                                 "unchangedSourceLines":  26,
+                                 "identical":  true
+                             },
+                             {
+                                 "source":  "D:\\mathg-gen\\src\\lib\\mathSegments.ts",
+                                 "target":  "src\\components\\math\\editor\\mathSegments.ts",
+                                 "sourceSha256":  "f7d71d165c1b847a893a7d0d57e1ebdb0de2ca552aadbe0a8132a5a33d09dc0e",
+                                 "sourceLines":  34,
+                                 "targetLines":  34,
+                                 "unchangedSourceLines":  34,
+                                 "identical":  true
+                             },
+                             {
+                                 "source":  "D:\\mathg-gen\\src\\lib\\figureLayout.ts",
+                                 "target":  "src\\components\\math\\editor\\figureLayout.ts",
+                                 "sourceSha256":  "626d49556c8113b4455029c368bf2e673e4dae74aec347e45e84e40708a99a21",
+                                 "sourceLines":  233,
+                                 "targetLines":  234,
+                                 "unchangedSourceLines":  231,
+                                 "identical":  false
+                             }
+                         ],
+    "adaptations":  [
+                        "Next SSR-safe lazy client entry; separate source reader API with same indexed figure props and optional isFigureEditable predicate.",
+                        "Source TipTap document schema, actual MathLive node views, compact keyboard, serializer, complete 1160-line source renderer and its direct helper graph retained.",
+                        "Raw formula tokens and inline SVG source retained independently from KaTeX display normalization; empty slots render as boxes.",
+                        "Source-specific CSS scoped to .source-math-editor including body portal keyboard; orange accents changed to navy-blue.",
+                        "Inline figure nodes, figure rows, indexed geometry, redraw without document emission/history changes, passive redraw locks and original-index orphan fallback.",
+                        "Source defects fixed: first fraction placeholder focus, dropped leading prose, lost math-only condition rows, blank quotes, literal Markdown punctuation, and source-edit history grouping."
+                    ],
+    "validation":  {
+                       "browser":  {
+                                       "passed":  10,
+                                       "results":  [
+                                                       "Initial source-mode roundtrip preserves the exact input.",
+                                                       "Direct typing serializes conditions, choices, table math and figure anchors; undo/redo restore text.",
+                                                       "Figure callback, redraw-only prop update and document history remain independent.",
+                                                       "Click activates a real MathLive field; physical keyboard entry is saved.",
+                                                       "Fraction template exposes separate numerator/denominator fields; compact keypad and physical keys enter 3/4.",
+                                                       "Real table-cell edit, optional source edit, visual reload and parent save preserve the document structure.",
+                                                       "Source read/edit share figure-row geometry and keyboard callback; empty condition quotes disappear and literal Markdown punctuation survives.",
+                                                       "Choice figures remain inline and indexed, leading question prose is retained, and math-only condition lines are editable.",
+                                                       "Marker-free figures appear exactly once in read and edit, retain callback indexes, honor edit locks, and never add stored markers on open.",
+                                                       "Controlled value replacement works under React StrictMode with no browser errors."
+                                                   ],
+                                       "errors":  [
+
+                                                  ]
+                                   },
+                       "focusedTypeScript":  "passed",
+                       "eslint":  "passed with five inherited warnings: four source img optimization warnings and unused boxGrid parameter",
+                       "affordanceGuard":  "passed",
+                       "privatePrismaGeneration":  "passed, local code generation only",
+                       "integratedNextBuild":  "coordinator-owned"
+                   },
+    "commands":  {
+                     "fixture":  "node node_modules/vite/bin/vite.js --config scripts/qa/math-text-editor/vite.config.mts",
+                     "browser":  "node scripts/qa/math-text-editor/verify.mjs",
+                     "types":  "node node_modules/typescript/bin/tsc --project scripts/qa/math-text-editor/tsconfig.json --pretty false"
+                 },
+    "remaining":  [
+                      "Actual visual edits canonicalize Markdown spacing and table separators as the source serializer does.",
+                      "Paid model inference and deployment were not exercised in this UI pass."
+                  ],
+    "coordinatorVerification":  {
+                                    "integratedCodeCommit":  "559658b0",
+                                    "sourceBrowserGroups":  10,
+                                    "studioBrowserCases":  17,
+                                    "focusedUnitTests":  67,
+                                    "productionBuild":  "passed, including full TypeScript",
+                                    "publicProductionSmoke":  "passed: login hydration, anonymous API 401, production CLI 404",
+                                    "authenticatedProductionSmoke":  "not run; automatic approval review rejected synthetic test authentication server launch",
+                                    "adjustments":  [
+                                                        "Render-only source math normalization preserves raw editor tokens",
+                                                        "ReviewPane integrated with explicit staged Save/Cancel and recrop",
+                                                        "Source metadata, figure identity and progress detail anchoring verified"
+                                                    ],
+                                    "evidence":  ".qa-artifacts/studio-ui-parity/"
+                                }
 }
