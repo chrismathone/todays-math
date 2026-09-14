@@ -1,0 +1,85 @@
+{
+  "testedAt": "2026-09-14T02:15:48.075Z",
+  "elapsedMs": 15840,
+  "sourceSha256": "606ca405069d478909dee43cc45077b2b3dd68fbb8bf0bdbedc3e837672d5b9f",
+  "sourceUnchanged": true,
+  "provider": "claude",
+  "content": "",
+  "answer": "",
+  "solution": "",
+  "warnings": [],
+  "svg": "<svg viewBox=\"0 0 504.273 385.382\" xmlns=\"http://www.w3.org/2000/svg\">\n  <rect width=\"504.273\" height=\"385.382\" fill=\"#ffffff\" />\n  <g>\n    <line x1=\"61.208\" y1=\"32.653\" x2=\"61.208\" y2=\"347.653\" stroke=\"#111111\" stroke-width=\"1.9\" />\n    <line x1=\"61.208\" y1=\"347.653\" x2=\"476.208\" y2=\"347.653\" stroke=\"#111111\" stroke-width=\"1.9\" />\n    <line x1=\"476.208\" y1=\"347.653\" x2=\"61.208\" y2=\"32.653\" stroke=\"#111111\" stroke-width=\"1.9\" />\n  </g>\n  <g>\n    <path d=\"M 61.208 335.553 L 73.308 335.553 L 73.308 347.653\" fill=\"none\" stroke=\"#111111\" stroke-width=\"0.72\" />\n  </g>\n  <g>\n    <text x=\"57.208\" y=\"24.029\" font-family=\"Cambria Math, HancomEQN, Times New Roman, serif\" font-size=\"16.8\" text-anchor=\"middle\" fill=\"#111111\" data-px=\"61.208\" data-py=\"32.653\" data-mj=\"A\"><tspan font-style=\"normal\">A</tspan></text>\n    <text x=\"49.208\" y=\"373.029\" font-family=\"Cambria Math, HancomEQN, Times New Roman, serif\" font-size=\"16.8\" text-anchor=\"middle\" fill=\"#111111\" data-px=\"61.208\" data-py=\"347.653\" data-mj=\"B\"><tspan font-style=\"normal\">B</tspan></text>\n    <text x=\"486.208\" y=\"373.029\" font-family=\"Cambria Math, HancomEQN, Times New Roman, serif\" font-size=\"16.8\" text-anchor=\"middle\" fill=\"#111111\" data-px=\"476.208\" data-py=\"347.653\" data-mj=\"C\"><tspan font-style=\"normal\">C</tspan></text>\n    <text x=\"17.208\" y=\"198.029\" font-family=\"Cambria Math, HancomEQN, Times New Roman, serif\" font-size=\"16.8\" text-anchor=\"middle\" fill=\"#111111\" data-px=\"17.208\" data-py=\"192.653\" data-mj=\"3\"><tspan font-style=\"normal\">3</tspan></text>\n  </g>\n</svg>",
+  "spec": {
+    "version": 2,
+    "points": {
+      "A": [
+        110,
+        68
+      ],
+      "B": [
+        110,
+        383
+      ],
+      "C": [
+        525,
+        383
+      ],
+      "value3": [
+        66,
+        228
+      ]
+    },
+    "segments": {
+      "AB": [
+        "A",
+        "B"
+      ],
+      "BC": [
+        "B",
+        "C"
+      ],
+      "CA": [
+        "C",
+        "A"
+      ]
+    },
+    "angles": {
+      "rightB": {
+        "vertex": "B",
+        "points": [
+          "A",
+          "C"
+        ],
+        "right": true
+      }
+    },
+    "labels": {
+      "A": {
+        "text": "A",
+        "dx": -4,
+        "dy": -14
+      },
+      "B": {
+        "text": "B",
+        "dx": -12,
+        "dy": 20
+      },
+      "C": {
+        "text": "C",
+        "dx": 10,
+        "dy": 20
+      },
+      "value3": {
+        "text": "3",
+        "dx": 0,
+        "dy": 0
+      }
+    }
+  },
+  "engine": "todays-math-python",
+  "figureReview": {
+    "mode": "source-image-and-spec",
+    "passed": true,
+    "issues": []
+  }
+}

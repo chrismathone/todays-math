@@ -63,7 +63,10 @@ def main() -> None:
         return
 
     try:
-        if isinstance(spec, dict) and spec.get("version") == "elem-1":
+        if isinstance(spec, dict) and spec.get("version") == "graph-1":
+            from graph_scene import render_graph
+            svg = render_graph(spec)
+        elif isinstance(spec, dict) and spec.get("version") == "elem-1":
             svg = render_elementary(spec)
         else:
             svg = render_figure_spec(spec)

@@ -1,4 +1,5 @@
 import { getDevAiProviderStatuses, runSubscriptionCli } from "@/lib/dev-ai/cli";
+import { redrawDevAiFigure } from "@/lib/dev-ai/figure-engine";
 import {
   DEV_AI_PROVIDERS,
   type DevAiProvider,
@@ -86,19 +87,25 @@ export async function POST(request: Request) {
     );
   }
   try {
-    const raw = await runSubscriptionCli({
-      provider: input.provider,
-      prompt: buildDevAiPrompt(input),
-      imageDataUrl: input.imageDataUrl,
-      signal: request.signal,
-    });
+    const result =
+      input.action === "figure-redraw"
+        ? await redrawDevAiFigure(input, request.signal)
+        : parseDevAiResult(
+            await runSubscriptionCli({
+              provider: input.provider,
+              prompt: buildDevAiPrompt(input),
+              imageDataUrl: input.imageDataUrl,
+              signal: request.signal,
+            }),
+            input.action,
+          );
     if (request.signal.aborted)
       return new Response(null, { status: 499, headers });
     return Response.json(
       {
         provider: input.provider,
         action: input.action,
-        result: parseDevAiResult(raw, input.action),
+        result,
       },
       { headers },
     );

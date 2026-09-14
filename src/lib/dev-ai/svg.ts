@@ -45,6 +45,10 @@ function validText(value: string): boolean {
 }
 
 function validAttribute(name: string, value: string): boolean {
+  // The local Python renderer carries inert original label text for MathJax and
+  // editing. LaTeX backslashes/XML entities here cannot act as URL or CSS.
+  if (name === "data-mj" || name === "data-label")
+    return validText(value) && !/[\u0000-\u001f]/.test(value);
   // Restrict attributes to literal/static values; no encoded URL/CSS payloads.
   if (/&|[\\\u0000-\u001f]/.test(value)) return false;
   const lower = name.toLowerCase();

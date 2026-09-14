@@ -41,6 +41,10 @@ const SCRIPT_PATH = path.join(
 );
 
 export interface RenderFigureOptions {
+  /** Cancel an owned local render when its HTTP request/figure queue is cancelled. */
+  signal?: AbortSignal;
+  /** Redraw must repair an invalid spec rather than discard printed dimensions. */
+  strict?: boolean;
   /**
    * 라벨을 MathJax 로 조판할까. 기본 `true` — **지면에 나가는 것은 늘 조판본**이다.
    *
@@ -81,6 +85,8 @@ export async function renderFigureSpec(
   spec: unknown,
   options: RenderFigureOptions = {},
 ): Promise<RenderFigureResult> {
+  if (options.signal?.aborted)
+    return { ok: false, error: "도형 생성이 취소되었습니다" };
   if (spec === null || typeof spec !== "object") {
     return { ok: false, error: "도형 스펙이 없습니다" };
   }
@@ -96,6 +102,7 @@ export async function renderFigureSpec(
       return dropped.length > 0
         ? { ...result, droppedDimensions: dropped }
         : result;
+    if (options.strict || options.signal?.aborted) return result;
     const hit = NO_ROOM.exec(result.error);
     if (!hit) return result;
     const name = hit[1]!;
@@ -117,10 +124,16 @@ async function renderOnce(
   const typeset = options.typeset !== false;
 
   return new Promise<RenderFigureResult>((resolve) => {
+    if (options.signal?.aborted) {
+      resolve({ ok: false, error: "도형 생성이 취소되었습니다" });
+      return;
+    }
     let settled = false;
     const finish = (result: RenderFigureResult) => {
       if (settled) return;
       settled = true;
+      clearTimeout(timer);
+      options.signal?.removeEventListener("abort", cancel);
       resolve(result);
     };
 
@@ -129,20 +142,33 @@ async function renderOnce(
     const child = spawn(/*turbopackIgnore: true*/ PYTHON_BIN, [SCRIPT_PATH], {
       // 한글 라벨이 Windows 기본 코드페이지에서 깨진다 — 파이썬 쪽도 UTF-8 로 못 박는다.
       env: { ...process.env, PYTHONIOENCODING: "utf-8" },
+      windowsHide: true,
       stdio: ["pipe", "pipe", "pipe"],
     });
 
+    const cancel = () => {
+      child.kill();
+      finish({ ok: false, error: "도형 생성이 취소되었습니다" });
+    };
     const timer = setTimeout(() => {
       child.kill();
       finish({ ok: false, error: "도형 생성이 시간 안에 끝나지 않았습니다" });
     }, RENDER_TIMEOUT_MS);
+    options.signal?.addEventListener("abort", cancel, { once: true });
+    if (options.signal?.aborted) cancel();
 
     let out = "";
     let truncated = false;
     child.stdout.setEncoding("utf-8");
     child.stdout.on("data", (chunk: string) => {
-      if (out.length > MAX_OUTPUT_BYTES) {
+      if (settled) return;
+      if (
+        Buffer.byteLength(out, "utf-8") + Buffer.byteLength(chunk, "utf-8") >
+        MAX_OUTPUT_BYTES
+      ) {
         truncated = true;
+        child.kill();
+        finish({ ok: false, error: "도형이 너무 큽니다" });
         return;
       }
       out += chunk;
@@ -160,6 +186,7 @@ async function renderOnce(
 
     child.on("close", () => {
       clearTimeout(timer);
+      if (settled) return;
       if (truncated) {
         return finish({ ok: false, error: "도형이 너무 큽니다" });
       }
