@@ -26,14 +26,16 @@ function Fixture() {
   const [clicked, setClicked] = useState(-1);
   const [saved, setSaved] = useState("");
   const [showRead, setShowRead] = useState(false);
+  const [canEditFigure, setCanEditFigure] = useState(true);
   return <main style={{ maxWidth: 850, margin: "24px auto", fontFamily: "sans-serif" }}>
-    <MathTextEditor value={value} onChange={setValue} figures={figures} onFigureClick={setClicked} choicesLayout="2x3" aria-label="문제 본문" />
+    <MathTextEditor value={value} onChange={setValue} figures={figures} onFigureClick={setClicked} isFigureEditable={() => canEditFigure} choicesLayout="2x3" aria-label="문제 본문" />
     <button onClick={() => setSaved(value)}>저장</button>
     <button onClick={() => setFigures([{ svg: svg("Redrawn") }])}>그림 새로 그리기</button>
     <button onClick={() => setValue(initial)}>외부 값 복원</button>
     <button onClick={() => { setFigures([{ svg: svg("Left"), box: [0, 0, 200, 400] }, { svg: svg("Right"), box: [0, 450, 200, 850] }]); }}>두 그림 배치</button>
     <button onClick={() => setShowRead(!showRead)}>읽기 화면 확인</button>
-    {showRead && <section data-testid="read"><SourceEditorDisplay value={value} figures={figures} onFigureClick={setClicked} choicesLayout="2x3" /></section>}
+    <button onClick={() => setCanEditFigure(!canEditFigure)}>그림 편집 잠금</button>
+    {showRead && <section data-testid="read"><SourceEditorDisplay value={value} figures={figures} onFigureClick={setClicked} isFigureEditable={() => canEditFigure} choicesLayout="2x3" /></section>}
     <output data-testid="clicked">{clicked}</output>
     <pre data-testid="value">{value}</pre>
     <pre data-testid="saved">{saved}</pre>

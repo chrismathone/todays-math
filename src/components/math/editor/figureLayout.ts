@@ -134,8 +134,8 @@ interface PMatch {
  *
  * 전제: figures[] 와 placeholder 가 같은 reading order (모델이 시각 순서대로 emit,
  * placeholder 도 본문 순서대로 등장). count 가 달라도 min 까지만 안전 매칭 →
- * 나머지는 box 없음(스택 fallback). 기존 Map 값(Phase A 크롭 box)을 덮어쓴다
- * (figures[] 가 권위 소스).
+ * 나머지는 box 없음(스택 fallback). Indexed marker boxes are authoritative;
+ * infer positions only for unindexed inline SVG placeholders.
  */
 export const assignBoxesByReadingOrder = (
   content: string,
@@ -147,6 +147,7 @@ export const assignBoxesByReadingOrder = (
   let k = 0;
   while (k < figures.length && (m = PLACEHOLDER_RE.exec(content)) !== null) {
     const key = m[1] ?? m[2];
+    if (out.has(key)) continue;
     const fig = figures[k];
     if (fig && isValidBox(fig.box)) out.set(key, fig.box);
     k++;
