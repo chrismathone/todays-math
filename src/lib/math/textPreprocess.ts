@@ -20,6 +20,11 @@
  * 뽑는다 — `![alt](url "50% center")` 패턴.
  */
 
+import {
+  LATEX_WRAP_TRIGGER_SOURCE,
+  normalizeMathgenText,
+} from "./normalizeMathgenText";
+
 /** HTML entity 디코딩. */
 export const decodeHtmlEntities = (text: string): string =>
   text
@@ -1113,20 +1118,7 @@ export const extractHangulFromMath = (content: string): string => {
  * `new RegExp(LATEX_WRAP_TRIGGER_SOURCE, "g")` 로 인스턴스화해서 `.match()` 로
  * 사용. `\b` 종료 경계로 `\bigcup` 같은 부분 매치를 막는다.
  */
-export const LATEX_WRAP_TRIGGER_SOURCE =
-  "\\\\(?:displaystyle|textstyle|scriptstyle|d?frac|tfrac|cfrac|sqrt|left|right|" +
-  "bigg?[lrm]?|Bigg?[lrm]?|d?binom|tbinom|sum|prod|coprod|int|iint|iiint|oint|" +
-  "lim|limsup|liminf|cdot|times|div|pm|mp|cdots|ldots|dots|vdots|ddots|dot|vec|" +
-  "ast|star|bigstar|backsim|because|therefore|big|hline|mid|middle|not|" +
-  "parallel|perp|rightarrow|Rightarrow|leftrightarrow|Leftrightarrow|to|" +
-  "widehat|widetilde|hat|tilde|bar|overline|underline|overrightarrow|" +
-  "overleftarrow|overset|underset|overbrace|underbrace|" +
-  "stackrel|begin|end|over|atop|max|min|log|ln|exp|sin|cos|tan|sec|csc|cot|" +
-  "partial|nabla|alpha|beta|gamma|delta|epsilon|zeta|eta|theta|iota|kappa|" +
-  "lambda|mu|nu|xi|rho|sigma|tau|upsilon|phi|chi|psi|omega|Gamma|Delta|Theta|" +
-  "Lambda|Xi|Pi|Sigma|Phi|Psi|Omega|infty|cup|cap|subset|supset|subseteq|" +
-  "supseteq|notin|in|neq|leq|geq|approx|equiv|cong|sim|angle|triangle|square|circ|" +
-  "prime|varnothing|mathrm|mathbf|mathbb|mathcal|mathfrak|text|boxed|phantom|operatorname)\\b";
+export { LATEX_WRAP_TRIGGER_SOURCE } from "./normalizeMathgenText";
 
 /**
  * 수식 정규화 — KaTeX 입력 전 안전 변환.
@@ -1144,9 +1136,7 @@ export const LATEX_WRAP_TRIGGER_SOURCE =
  *     해서 괄호 높이가 내용에 맞게 늘어난다.
  */
 export const preprocessMathText = (content: string): string => {
-  let out = content
-    .replace(/\\\(([\s\S]*?)\\\)/g, (_m, p1: string) => `$${p1}$`)
-    .replace(/\\\[([\s\S]*?)\\\]/g, (_m, p1: string) => `$$${p1}$$`);
+  let out = normalizeMathgenText(content);
 
   for (let i = 0; i < 5; i++) {
     const next = out.replace(
@@ -1256,7 +1246,9 @@ export const preprocessMathText = (content: string): string => {
   };
   const firstLooseLatexCommand = (value: string): number => {
     const wordCommand = value.search(new RegExp(LATEX_WRAP_TRIGGER_SOURCE));
-    const symbolCommand = value.search(/\\[{},.;:!%#$&_ |\\]/u);
+    // `15\.` is the problem parser's escaped Markdown list leader. Treating
+    // that period as a LaTeX command creates `$\displaystyle 15\.$` errors.
+    const symbolCommand = value.search(/(?<!\\)\\[{},;:!%#$&_ |]/u);
     if (wordCommand < 0) return symbolCommand;
     if (symbolCommand < 0) return wordCommand;
     return Math.min(wordCommand, symbolCommand);
