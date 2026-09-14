@@ -197,6 +197,13 @@ export async function loadUnifiedBank(
       problemType: true,
       questionType: true,
       familyKey: true,
+      /**
+       * 🔴 출처 배지가 **[변] AI 변형과 [문] 문제집을 가르는 유일한 값**이다
+       * (`provenance.ts` `classifyOrigin`). 안 뽑으면 변형본이 조용히 문제집으로
+       * 붙는다 — 에러가 안 난다. 2026-09-14 까지 이 화면에 배지가 아예 없어서
+       * 그 누락이 드러나지 않았다.
+       */
+      originProblemId: true,
       pool: true,
       directUseAllowed: true,
       unit: { select: { grade: true, chapter: true, section: true } },
@@ -215,28 +222,31 @@ export async function loadUnifiedBank(
     );
   return {
     problems: rows.map(
-      ({
-        unit,
-        pool,
-        directUseAllowed,
-        familyKey,
-        questionType,
-        ...problem
-      }) => {
+      ({ unit, pool, directUseAllowed, questionType, ...problem }) => {
+        // 🔴 `familyKey` 를 **구조분해로 빼내지 않는다.** 빼내면 형식 판정에만 쓰이고
+        //    돌려주는 객체에서 사라져, 화면이 출처 배지를 그릴 근거를 잃는다 —
+        //    그러면 엔진 문항이 전부 `[?] 미분류`로 나오는데 **에러가 안 난다**
+        //    (`problem.contract.ts` 가 경고해 둔 그 자리, 2026-09-14 실제로 발생).
         const ineligibleReason = problemIneligibleReason({
           ...problem,
           pool,
           directUseAllowed,
         });
         const derivedType =
-          questionTypes[
-            classifyFormat({ ...problem, familyKey, questionType })
-          ];
+          questionTypes[classifyFormat({ ...problem, questionType })];
         return {
           ...problem,
           ...unit,
           solution: problem.solution ?? "",
           problemCode: problem.problemCode ?? "",
+          /**
+           * 🔴 **원본 형식 값을 따로 실어 보낸다.** 아래에서 `questionType` 을 영문
+           *    파생값(`short-answer` …)으로 덮어쓰는데, `classifyFormat` 은 한글
+           *    (`단답형`·`서술형`)과 견준다. 화면이 그 덮어쓴 값으로 형식 배지를 다시
+           *    판정하면 두 한글 가지에 하나도 안 걸려 **서버는 `descriptive` 인데
+           *    화면은 `[?형식]`** 이 된다 — 규칙이 두 벌로 갈리는 자리다.
+           */
+          questionTypeRaw: questionType ?? null,
           ...(derivedType ? { questionType: derivedType } : {}),
           eligible: ineligibleReason === null,
           ineligibleReason,

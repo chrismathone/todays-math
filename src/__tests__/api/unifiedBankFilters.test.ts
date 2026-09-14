@@ -4,6 +4,7 @@ import { loadUnifiedBank, UnifiedBankQueryError } from "@/lib/unifiedPreview";
 import { GET } from "@/app/api/dev/unified/problems/route";
 import { MOCK_UNITS, USER_TEACHER_ID } from "@/mocks/data";
 import { MISSING_ANSWER } from "@/lib/missingAnswer";
+import { provenanceBadges } from "@/lib/problem/provenance";
 vi.mock("server-only", () => ({}));
 
 // The shared in-memory Prisma double evaluates the real WHERE clauses. Supply
@@ -83,6 +84,70 @@ async function plant(patch: Record<string, unknown> = {}) {
 }
 const query = (values: Record<string, string> = {}) =>
   new URLSearchParams({ q: marker, ...values });
+
+/**
+ * 🔴 **출처 배지가 판정할 근거가 행에 실려 나오는가** (2026-09-14).
+ *
+ * 통합 화면은 `familyKey` 를 변환부에서 꺼내 쓰고 **돌려놓지 않았고**,
+ * `originProblemId` 는 아예 안 뽑았다. 그래서 배지를 그리려 해도 엔진 문항이 전부
+ * `[?] 미분류`가 되고 AI 변형본이 `[문] 문제집`으로 잘못 붙는데 **에러가 안 났다**
+ * (`problem.contract.ts` 가 경고해 둔 그 자리).
+ *
+ * 그래서 「필드가 있나」가 아니라 **「배지가 제대로 서나」**를 잰다 — 값을 실어 보내도
+ * 판정이 틀리면 고친 것이 아니다. 행을 고르는 데도 뜻이 있다: 엔진 문항은 `familyKey`
+ * 덕에 원본 형식값이 없어도 같은 답이 나와 **변이를 못 잡는다.** 형식 축은 엔진 표지가
+ * 없는 서술형으로 재야 `questionTypeRaw` 배선이 끊긴 것을 잡는다.
+ */
+describe("bank rows carry the evidence the origin badges judge from", () => {
+  const axis = (
+    row: Awaited<ReturnType<typeof loadUnifiedBank>>["problems"][number],
+    want: "origin" | "format",
+  ) =>
+    provenanceBadges({
+      ...row,
+      source: row.source ?? "",
+      questionType: row.questionTypeRaw,
+    }).find((badge) => badge.axis === want)?.text;
+
+  it("엔진 표지를 실어 보내 [초] 로 세운다 — 미분류로 떨어지지 않는다", async () => {
+    const engine = await plant({
+      source: "manual",
+      familyKey: "elem:초3|1-1-1 받아올림이 없는|연산",
+    });
+    const rows = (await loadUnifiedBank(query())).problems;
+    const row = rows.find((problem) => problem.id === engine.id)!;
+    expect(row.familyKey).toBe("elem:초3|1-1-1 받아올림이 없는|연산");
+    expect(axis(row, "origin")).toBe("초");
+  });
+
+  it("원본 형식을 따로 실어 보낸다 — 덮어쓴 값으로 다시 판정하면 [서]가 [?형식]이 된다", async () => {
+    const written = await plant({
+      source: "manual",
+      familyKey: null,
+      questionType: "서술형",
+    });
+    const rows = (await loadUnifiedBank(query())).problems;
+    const row = rows.find((problem) => problem.id === written.id)!;
+    expect(row.questionTypeRaw).toBe("서술형");
+    expect(axis(row, "format")).toBe("서");
+  });
+
+  it("originProblemId 로 [변] AI 변형과 [문] 문제집을 가른다", async () => {
+    const origin = await plant({ source: "manual" });
+    const transformed = await plant({
+      source: "transformed",
+      originProblemId: origin.id,
+    });
+    const workbook = await plant({
+      source: "transformed",
+      originProblemId: null,
+    });
+    const rows = (await loadUnifiedBank(query())).problems;
+    const find = (id: string) => rows.find((problem) => problem.id === id)!;
+    expect(axis(find(transformed.id), "origin")).toBe("변");
+    expect(axis(find(workbook.id), "origin")).toBe("문");
+  });
+});
 describe("unified bank shares real filters without widening issuance", () => {
   it("keeps default issuance eligibility while explicit state inspection remains shared-only", async () => {
     const good = await plant();

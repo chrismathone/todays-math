@@ -7,7 +7,11 @@ import {
 } from "@testing-library/react";
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 import BankView from "@/components/unified/BankView";
-import type { BankData, StudioProblem } from "@/components/unified/types";
+import type {
+  BankData,
+  BankProblem,
+  StudioProblem,
+} from "@/components/unified/types";
 import { PROBLEM_FILTER_OPTIONS } from "@/components/problem/labels";
 import { problemFilterQuerySchema } from "@/contracts/problem.contract";
 import { DIFFICULTY_LADDER } from "@/contracts/difficulty";
@@ -48,7 +52,13 @@ const units = [
     orderIndex: 4,
   },
 ];
-const problem: StudioProblem = {
+// 목록에 들어가는 행은 `BankProblem` 이다 — 출처 배지의 판정 근거(`familyKey`·
+// `originProblemId`)를 반드시 실어야 한다(types.ts 의 경고).
+const problem: BankProblem = {
+  familyKey: "elem:초3|1-1-1|연산",
+  originProblemId: null,
+  questionTypeRaw: "단답형",
+  source: "manual",
   id: "eligible",
   content: "서버에서 찾은 문항",
   answer: "1",
@@ -313,6 +323,20 @@ describe("unified bank uses real ProblemBank filters", () => {
     expect(list.style.gridTemplateColumns).toContain("min(100%");
   });
 
+  /**
+   * 🔴 출처 배지가 **화면에 선다** (원장님 2026-09-14 「각종 라벨이 어디갔지?」).
+   *
+   * 근거를 API 가 실어 보내는 것(`unifiedBankFilters.test.ts`)과 카드가 그것을 그리는
+   * 것은 **다른 일**이다. 둘 다 재지 않으면 한쪽만 고치고 「했다」가 된다.
+   * 픽스처는 `familyKey: "elem:…"` 이라 출처는 `[초]`, 보기 없는 주관식 +
+   * `questionTypeRaw: "단답형"` 이라 형식은 `[단]` 이 맞다.
+   */
+  it("카드에 출처·형식 배지를 그린다 — 판정은 provenance 하나가 한다", () => {
+    mount();
+    expect(screen.getByText("초")).toBeInTheDocument();
+    expect(screen.getByText("단")).toBeInTheDocument();
+  });
+
   it("빈 목록에는 격자를 씌우지 않는다 — 안내가 카드 폭으로 잘린다", () => {
     mount({ ...initialData, problems: [], total: 0 });
     const list = document.querySelector("[aria-busy]") as HTMLElement;
@@ -372,7 +396,9 @@ describe("unified bank uses real ProblemBank filters", () => {
 });
 
 describe("inspection rows cannot be added", () => {
-  const blocked: StudioProblem = {
+  // 목록 행이므로 `BankProblem` 이다 — `StudioProblem` 으로 적으면 스프레드로 들어온
+  // 배지 근거(`familyKey`·`originProblemId`)를 주석이 다시 깎아 낸다.
+  const blocked: BankProblem = {
     ...problem,
     id: "blocked",
     content: "검수 대기 문항",
