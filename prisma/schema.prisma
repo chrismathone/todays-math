@@ -121,6 +121,14 @@ enum UserRole {
   @@map("user_role")
 }
 
+enum AccountApproval {
+  pending
+  approved
+  rejected
+
+  @@map("account_approval")
+}
+
 // ─────────────────────────────────────────────
 // FEAT-0: 사용자 (강사) — 04 §2.1
 // ─────────────────────────────────────────────
@@ -152,11 +160,69 @@ model User {
 
   /// 계정 역할. 기본값은 director — 기본값이 reviewer 면 기존 계정이 조용히 권한을 잃는다.
   role            UserRole           @default(director)
+  isAdmin         Boolean            @default(false) @map("is_admin")
+  /// Existing accounts retain access; the signup API explicitly creates pending accounts.
+  approvalStatus  AccountApproval    @default(approved) @map("approval_status")
+  disabledMenus   String[]           @default([]) @map("disabled_menus")
+  workspaceDocuments WorkspaceDocument[]
+  workspaceAssets    WorkspaceAsset[]
+  auditEvents        AccountAuditLog[] @relation("auditSubject")
+  auditActions       AccountAuditLog[] @relation("auditActor")
   reportsFiled    ProblemReport[]    @relation("reporter")
   reportsResolved ProblemReport[]    @relation("resolver")
   reviewLogs      ProblemReviewLog[] @relation("reviewer")
 
   @@map("user")
+}
+
+/// Private worksheets and extraction sessions; all reads and writes include userId.
+model WorkspaceDocument {
+  userId    String   @map("user_id") @db.Uuid
+  id        String   @db.VarChar(100)
+  kind      String   @db.VarChar(20)
+  title     String   @db.VarChar(200)
+  payload   Json     @db.JsonB
+  problemCount Int  @default(0) @map("problem_count")
+  revision  Int      @default(1)
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@id([userId, id])
+  @@index([userId, kind, updatedAt])
+  @@map("workspace_document")
+}
+
+/// Original files are kept private; their download endpoint requires the owner session.
+model WorkspaceAsset {
+  userId    String   @map("user_id") @db.Uuid
+  id        String   @db.VarChar(100)
+  name      String   @db.VarChar(255)
+  mimeType  String   @map("mime_type") @db.VarChar(100)
+  bytes     Bytes
+  size      Int      @default(0)
+  createdAt DateTime @default(now()) @map("created_at")
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@id([userId, id])
+  @@map("workspace_asset")
+}
+
+model AccountAuditLog {
+  id        String   @id @default(uuid()) @db.Uuid
+  userId    String?  @map("user_id") @db.Uuid
+  actorId   String?  @map("actor_id") @db.Uuid
+  action    String   @db.VarChar(100)
+  outcome   String   @db.VarChar(20)
+  details   Json     @default("{}") @db.JsonB
+  eventId   String?  @unique @map("event_id") @db.VarChar(120)
+  createdAt DateTime @default(now()) @map("created_at")
+  user User? @relation("auditSubject", fields: [userId], references: [id], onDelete: SetNull)
+  actor User? @relation("auditActor", fields: [actorId], references: [id], onDelete: SetNull)
+
+  @@index([userId, createdAt])
+  @@index([actorId, createdAt])
+  @@map("account_audit_log")
 }
 
 // ─────────────────────────────────────────────

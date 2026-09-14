@@ -22,7 +22,7 @@ export type SessionUser = {
 /** 현재 요청의 로그인 사용자를 반환한다. 미인증이면 null. */
 export async function getSessionUser(): Promise<SessionUser | null> {
   const session = await auth();
-  if (!session?.user?.id) {
+  if (!session?.user?.id || session.user.approvalStatus !== "approved") {
     return null;
   }
 

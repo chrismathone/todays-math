@@ -2,12 +2,24 @@ import UnifiedWorkspace from "./UnifiedWorkspace";
 import type { BankData } from "./types";
 import type { SessionUser } from "@/lib/session";
 import { loadUnifiedBank } from "@/lib/unifiedPreview";
+import { getAccountAccess } from "@/lib/accountAccess";
+import ActivityReporter from "@/components/account/ActivityReporter";
 
 /** Shared authenticated entry for the main page and existing /studio links. */
 export default async function WorkspacePage({ user }: { user: SessionUser }) {
+  const account = await getAccountAccess();
   let initialData: BankData;
   try {
-    initialData = await loadUnifiedBank();
+    initialData = account?.menus.includes("bank")
+      ? await loadUnifiedBank()
+      : {
+          problems: [],
+          total: 0,
+          page: 1,
+          pageSize: 12,
+          grades: [],
+          chapters: [],
+        };
   } catch {
     initialData = {
       problems: [],
@@ -21,11 +33,19 @@ export default async function WorkspacePage({ user }: { user: SessionUser }) {
     };
   }
   return (
-    <UnifiedWorkspace
-      key={user.id}
-      initialData={initialData}
-      storageScope={user.id}
-      currentUser={user}
-    />
+    <>
+      <ActivityReporter userId={user.id} />
+      <UnifiedWorkspace
+        key={user.id}
+        initialData={initialData}
+        storageScope={user.id}
+        currentUser={{ ...user, isAdmin: account?.isAdmin ?? false }}
+        allowedMenus={
+          account?.role === "reviewer" && !account.isAdmin
+            ? []
+            : (account?.menus ?? [])
+        }
+      />
+    </>
   );
 }

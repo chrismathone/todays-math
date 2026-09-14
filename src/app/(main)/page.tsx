@@ -3,7 +3,7 @@ import { redirect } from "next/navigation";
 import LandingPage from "@/components/landing/LandingPage";
 import MathMotion from "@/components/brand/MathMotion";
 import WorkspacePage from "@/components/unified/WorkspacePage";
-import { auth } from "@/lib/auth";
+import { getAccountAccess } from "@/lib/accountAccess";
 
 export const metadata = {
   title: "오늘의수학 · 선생님의 수학 작업실",
@@ -13,8 +13,8 @@ export const metadata = {
 
 export default async function MainPage() {
   await connection();
-  const session = await auth();
-  if (!session?.user?.id) {
+  const account = await getAccountAccess();
+  if (!account) {
     return (
       <LandingPage
         heroImageSrc="/brand/workroom-hero.webp"
@@ -22,14 +22,12 @@ export default async function MainPage() {
       />
     );
   }
-  if (session.user.role === "reviewer") redirect("/review");
-  return (
-    <WorkspacePage
-      user={{
-        id: session.user.id,
-        name: session.user.name ?? "",
-        email: session.user.email ?? "",
-      }}
-    />
-  );
+  if (account.approvalStatus !== "approved") redirect("/approval-pending");
+  if (
+    account.role === "reviewer" &&
+    !account.isAdmin &&
+    account.menus.includes("bank")
+  )
+    redirect("/review");
+  return <WorkspacePage user={account} />;
 }

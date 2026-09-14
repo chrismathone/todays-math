@@ -18,6 +18,7 @@ import {
 import { jsonError, jsonOk, validationError } from "@/lib/apiResponse";
 import { db } from "@/lib/db";
 import { isPrismaErrorCode } from "@/lib/prismaErrors";
+import { recordAudit } from "@/lib/audit";
 
 /** bcrypt salt rounds — 보안/성능 균형의 관행값. */
 const BCRYPT_SALT_ROUNDS = 10;
@@ -40,7 +41,13 @@ export async function POST(request: NextRequest) {
   let user;
   try {
     user = await db.user.create({
-      data: { email, name, passwordHash },
+      data: {
+        email,
+        name,
+        passwordHash,
+        approvalStatus: "pending",
+        isAdmin: false,
+      },
     });
   } catch (error) {
     // findUnique와 create 사이의 동시 가입도 기존 가입과 같은 응답으로 수렴시킨다.
@@ -50,6 +57,12 @@ export async function POST(request: NextRequest) {
     throw error;
   }
 
+  await recordAudit({
+    userId: user.id,
+    actorId: user.id,
+    action: "auth.signup",
+    outcome: "success",
+  });
   return jsonOk(
     authSignupResponseSchema,
     {

@@ -16,7 +16,13 @@ export default async function SignupPage({
   const [query, session] = await Promise.all([searchParams, auth()]);
   const destination = normalizeCallbackUrl(query.callbackUrl);
   if (session?.user?.id)
-    redirect(session.user.role === "reviewer" ? "/review" : destination);
+    redirect(
+      session.user.approvalStatus !== "approved"
+        ? "/approval-pending"
+        : session.user.role === "reviewer" && !session.user.isAdmin
+          ? "/review"
+          : destination,
+    );
   return (
     <AuthExperience>
       <SignupForm callbackUrl={destination} />

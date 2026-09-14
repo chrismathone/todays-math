@@ -27,6 +27,12 @@ import Credentials from "next-auth/providers/credentials";
 import { authLoginRequestSchema } from "@/contracts/auth.contract";
 import type { UserRole } from "@/contracts/problemReport.contract";
 import { db } from "@/lib/db";
+import {
+  ALL_WORKSPACE_MENUS,
+  type ApprovalStatus,
+  type WorkspaceMenu,
+} from "@/contracts/accountAccess.contract";
+import { recordAudit } from "@/lib/audit";
 
 export const { handlers, auth, signIn, signOut } = NextAuth({
   session: { strategy: "jwt" },
@@ -59,10 +65,22 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
 
         const isValidPassword = await compare(password, user.passwordHash);
         if (!isValidPassword) {
+          await recordAudit({
+            userId: user.id,
+            action: "auth.login",
+            outcome: "failed",
+          });
           return null;
         }
 
-        // 역할을 여기서 실어 보낸다 — 미들웨어가 DB 를 안 읽고 판정할 수 있게.
+        await recordAudit({
+          userId: user.id,
+          actorId: user.id,
+          action: "auth.login",
+          outcome: "success",
+        });
+
+        // The JWT callback below refreshes access from the current database row.
         return {
           id: user.id,
           email: user.email,
@@ -76,14 +94,45 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
     async jwt({ token, user }) {
       if (user) {
         token.id = user.id;
-        token.role = user.role;
       }
+      const id = typeof token.id === "string" ? token.id : token.sub;
+      if (!id) return null;
+      // Authorization changes must apply to existing sessions, not only a future login.
+      // Claims submitted by useSession().update are never trusted here.
+      const current = await db.user.findUnique({
+        where: { id },
+        select: {
+          id: true,
+          name: true,
+          email: true,
+          role: true,
+          isAdmin: true,
+          approvalStatus: true,
+          disabledMenus: true,
+          deletedAt: true,
+        },
+      });
+      if (!current || current.deletedAt) return null;
+      token.id = current.id;
+      token.name = current.name;
+      token.email = current.email;
+      token.role = current.role;
+      token.isAdmin = current.isAdmin;
+      token.approvalStatus = current.approvalStatus;
+      token.menus = current.isAdmin
+        ? ALL_WORKSPACE_MENUS
+        : ALL_WORKSPACE_MENUS.filter(
+            (menu) => !current.disabledMenus.includes(menu),
+          );
       return token;
     },
     async session({ session, token }) {
       if (session.user && typeof token.id === "string") {
         session.user.id = token.id;
         session.user.role = token.role === "reviewer" ? "reviewer" : "director";
+        session.user.isAdmin = token.isAdmin === true;
+        session.user.approvalStatus = token.approvalStatus ?? "pending";
+        session.user.menus = token.menus ?? [];
       }
       return session;
     },
@@ -97,6 +146,9 @@ declare module "next-auth" {
     user: {
       id: string;
       role: UserRole;
+      isAdmin: boolean;
+      approvalStatus: ApprovalStatus;
+      menus: WorkspaceMenu[];
     } & DefaultSession["user"];
   }
   interface User {
@@ -107,7 +159,10 @@ declare module "next-auth" {
 declare module "next-auth/jwt" {
   interface JWT {
     id?: string;
-    /** 로그인 시점의 역할 사본. «참»은 DB 의 user.role 이다 — 바꾸면 재로그인해야 한다. */
+    /** Authorization is refreshed from the database for every session read. */
     role?: UserRole;
+    isAdmin?: boolean;
+    approvalStatus?: ApprovalStatus;
+    menus?: WorkspaceMenu[];
   }
 }

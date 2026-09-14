@@ -73,7 +73,13 @@ const Context = createContext<DevAiContextValue>({
 export const useDevAi = () => useContext(Context);
 const STORAGE_KEY = "today-math-dev-ai-provider";
 
-export function DevAiProvider({ children }: { children: ReactNode }) {
+export function DevAiProvider({
+  children,
+  enabled = true,
+}: {
+  children: ReactNode;
+  enabled?: boolean;
+}) {
   const [status, setStatus] = useState<DevAiStatus | null>(null);
   const [statusError, setStatusError] = useState("");
   const [checking, setChecking] = useState(true);
@@ -133,6 +139,10 @@ export function DevAiProvider({ children }: { children: ReactNode }) {
   }, [preferredMode]);
   const loadStatus = useCallback(async () => {
     statusRequest.current?.abort();
+    if (!enabled) {
+      setChecking(false);
+      return;
+    }
     const controller = new AbortController();
     statusRequest.current = controller;
     try {
@@ -174,7 +184,7 @@ export function DevAiProvider({ children }: { children: ReactNode }) {
         setChecking(false);
       }
     }
-  }, [endpoint]);
+  }, [endpoint, enabled]);
   const refresh = useCallback(async () => {
     setChecking(true);
     await loadStatus();
@@ -200,6 +210,7 @@ export function DevAiProvider({ children }: { children: ReactNode }) {
       signal?: AbortSignal,
     ): Promise<DevAiResponse> => {
       if (signal?.aborted) throw new DOMException("작업 취소", "AbortError");
+      if (!enabled) throw new Error("자료 제작 메뉴를 사용할 권한이 없습니다.");
       if (!status?.enabled) throw new Error("개발용 AI 연결을 확인해 주세요.");
       const selected = status.providers.find((item) => item.id === provider);
       if (!selected || !["ready", "unverified"].includes(selected.status))
@@ -300,7 +311,7 @@ export function DevAiProvider({ children }: { children: ReactNode }) {
         activeRequests.current.delete(id);
       }
     },
-    [provider, status, endpoint, mode],
+    [provider, status, endpoint, mode, enabled],
   );
   const value = useMemo(
     () => ({

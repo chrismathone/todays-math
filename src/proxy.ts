@@ -15,8 +15,11 @@ import { NextResponse } from "next/server";
 import { auth } from "@/lib/auth";
 import { requestedCallbackUrl } from "@/lib/callbackUrl";
 import { routeAccessFor } from "@/lib/routeAccess";
+import { accountRouteAllowed } from "@/lib/accountRouteAccess";
+import { recordAudit } from "@/lib/audit";
+import type { AccountAccess } from "@/contracts/accountAccess.contract";
 
-export const proxy = auth((req) => {
+export const proxy = auth(async (req) => {
   const { pathname } = req.nextUrl;
   // Brand assets are also used on anonymous login pages and browser tabs.
   if (
@@ -35,7 +38,7 @@ export const proxy = auth((req) => {
     pathname.startsWith("/dev/") ||
     pathname === "/favicon.ico";
 
-  if (!req.auth && !isPublic) {
+  if (!req.auth?.user?.id && !isPublic) {
     const login = new URL("/login", req.nextUrl);
     login.searchParams.set(
       "callbackUrl",
@@ -52,7 +55,59 @@ export const proxy = auth((req) => {
    *    이 기능이 나가기 전에 발급된 토큰은 전부 원장 것이다.
    *    반대로 읽으면 배포 순간 **원장이 자기 서비스에서 잠긴다.**
    */
-  if (req.auth) {
+  if (req.auth?.user?.id) {
+    const user = req.auth.user;
+    const account: AccountAccess = {
+      id: user.id,
+      name: user.name ?? "",
+      email: user.email ?? "",
+      role: user.role,
+      isAdmin: user.isAdmin === true,
+      approvalStatus: user.approvalStatus ?? "pending",
+      menus: user.menus ?? [],
+    };
+    const allowed = accountRouteAllowed(account, req.method, pathname);
+    // Record requested/denied operations without query strings, credentials or bodies.
+    if (
+      !pathname.startsWith("/api/auth/") &&
+      !pathname.startsWith("/api/account/") &&
+      (pathname.startsWith("/api/") || !pathname.includes("."))
+    )
+      await recordAudit({
+        userId: user.id,
+        actorId: user.id,
+        action: "request",
+        outcome: allowed ? "requested" : "denied",
+        details: { method: req.method, path: pathname },
+      });
+    if (!allowed) {
+      if (pathname.startsWith("/api/"))
+        return NextResponse.json(
+          {
+            error: {
+              code: "FORBIDDEN",
+              message:
+                account.approvalStatus !== "approved"
+                  ? "관리자의 가입 승인이 필요합니다."
+                  : "사용 권한이 없는 메뉴입니다.",
+            },
+          },
+          { status: 403 },
+        );
+      return NextResponse.redirect(
+        new URL(
+          account.approvalStatus !== "approved" ? "/approval-pending" : "/",
+          req.nextUrl,
+        ),
+      );
+    }
+    if (
+      account.isAdmin ||
+      pathname === "/approval-pending" ||
+      pathname.startsWith("/api/account/") ||
+      (pathname === "/" && !account.menus.includes("bank"))
+    )
+      return NextResponse.next();
     const role = req.auth.user?.role === "reviewer" ? "reviewer" : "director";
     if (routeAccessFor(role, req.method, pathname) === "deny") {
       if (pathname.startsWith("/api/")) {

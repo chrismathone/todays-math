@@ -162,13 +162,13 @@ export function AuthForm({ mode, callbackUrl }: AuthFormProps) {
         </h1>
         <p>
           {isSignup
-            ? "계정을 만들고, 첫 학습지부터 시작해 보세요."
+            ? "가입을 신청하면 관리자 승인 후 작업실을 사용할 수 있어요."
             : "오늘의 수업 준비, 이어서 시작해 볼까요?"}
         </p>
       </div>
       {created ? (
         <p role="status" className={styles.success}>
-          계정이 만들어졌어요. 이제 로그인만 하면 돼요.
+          가입 신청이 접수됐어요. 로그인 후 승인 상태를 확인할 수 있어요.
         </p>
       ) : null}
       {alert ? (
