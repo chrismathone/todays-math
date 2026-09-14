@@ -18,9 +18,12 @@ import type { StudioProblem } from "./types";
 export default function NativeProblem({
   problem,
   print,
+  renderFigure,
 }: {
   problem: StudioProblem;
   print: boolean;
+  /** Decorate figures in place using their original zero-based source index. */
+  renderFigure?: (index: number, image: ReactNode) => ReactNode;
 }) {
   const data = problem.ocr;
   const placements = parseFigureDimensions(
@@ -31,6 +34,7 @@ export default function NativeProblem({
   );
   const figures = problem.figureUrls.map((src, index) => ({
     src,
+    index,
     sourceMm: placements[index]?.sourceMm,
   }));
   const used = new Set<number>();
@@ -43,6 +47,7 @@ export default function NativeProblem({
     <MarkdownRenderer
       content={markFigures(text)}
       nativeFigures={figures}
+      renderNativeFigure={renderFigure}
       emphasizeNegation={emphasizeNegation}
     />
   );
@@ -189,16 +194,22 @@ export default function NativeProblem({
         )}
       {body}
       {figures
-        .filter((_, index) => !used.has(index))
-        .map((figure) => (
-          <img
-            key={figure.src}
-            src={figure.src}
-            alt="문항 그림"
-            className="mx-auto my-2 block h-auto max-w-full mix-blend-multiply"
-            style={figureWidthStyle(figure.sourceMm)}
-          />
-        ))}
+        .filter((figure) => !used.has(figure.index))
+        .map((figure) => {
+          const image = (
+            <img
+              src={figure.src}
+              alt="문항 그림"
+              className="mx-auto my-2 block h-auto max-w-full mix-blend-multiply"
+              style={figureWidthStyle(figure.sourceMm)}
+            />
+          );
+          return (
+            <Fragment key={figure.index}>
+              {renderFigure ? renderFigure(figure.index, image) : image}
+            </Fragment>
+          );
+        })}
       {choices}
       {subQuestions}
     </div>
