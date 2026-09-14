@@ -1,0 +1,15 @@
+import { chromium } from "@playwright/test";
+const out = "C:/Users/user/AppData/Local/Temp/claude/D--todays-math/5013f6aa-4795-4e1c-950b-5f6ca7aa5266/scratchpad";
+const b = await chromium.launch();
+const p = await b.newPage({ viewport: { width: 1280, height: 1400 } });
+const errs = [];
+p.on("pageerror", (e) => errs.push(String(e)));
+await p.goto("http://localhost:3007/dev/print-paper", { waitUntil: "networkidle" });
+await p.evaluate(() => document.fonts.ready);
+const t = await p.evaluate(() => document.body.innerText);
+const slot = t.match(/[○🔴]\s*\d+\/\d+[^\n]*/g) ?? [];
+console.log("자리 보고:");
+for (const s of slot) console.log("  " + s);
+console.log("오류:", errs.length ? errs.join(" | ") : "없음");
+await p.screenshot({ path: `${out}/print-paper.png`, fullPage: false });
+await b.close();

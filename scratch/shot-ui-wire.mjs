@@ -1,0 +1,21 @@
+import { chromium } from "@playwright/test";
+const out = "C:/Users/user/AppData/Local/Temp/claude/D--todays-math/5013f6aa-4795-4e1c-950b-5f6ca7aa5266/scratchpad";
+const browser = await chromium.launch();
+const page = await browser.newPage({ viewport: { width: 1280, height: 1000 } });
+const errs = [];
+page.on("console", (m) => { if (m.type() === "error") errs.push(m.text()); });
+page.on("pageerror", (e) => errs.push("pageerror: " + String(e)));
+await page.goto("http://localhost:3007/dev/ui-wire", { waitUntil: "networkidle" });
+const head = await page.textContent("header p:nth-of-type(2)");
+console.log("실데이터 줄:", head?.trim().replace(/\s+/g, " "));
+const cases = await page.$$eval("h3", (ns) => ns.map((n) => n.textContent?.trim()));
+console.log("안 개수:", cases.length);
+console.log(cases.join(" | "));
+await page.screenshot({ path: `${out}/ui-wire-full.png`, fullPage: true });
+// 1024 폭으로 바꿔 헤더 4안을 다시
+await page.click('button:has-text("1024px")');
+await page.screenshot({ path: `${out}/ui-wire-1024.png`, fullPage: false });
+const headerH = await page.$$eval("section header", (hs) => hs.map((h) => Math.round(h.getBoundingClientRect().height)));
+console.log("헤더 안들의 높이(px):", headerH.join(" · "));
+console.log("콘솔 오류:", errs.length ? errs.slice(0, 5).join(" || ") : "없음");
+await browser.close();
