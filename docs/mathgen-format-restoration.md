@@ -1,5 +1,35 @@
 # Mathgen formatting restoration
 
+## Completion against the live `D:/mathg-gen` source — 2026-09-14
+
+The earlier formatting audit below used `F:/Mathgen`. The subsequent integration
+compared the actual current `D:/mathg-gen` runtime and added the missing native
+OCR block contracts, structured problem output, source editing provenance, HWPX
+writer/templates, and Chromium PDF export. The six existing template designs and
+measured pagination remain in use.
+
+Typed OCR blocks preserve tables, anchored choice figures, subquestions, answer
+lines, negation emphasis and printed scores. A stored `studioCrop` snapshot keeps
+source image, geometry, edited figure SVG/spec and review information detached from
+the live crop. Manual content changes invalidate stale OCR blocks before output.
+
+`HWPX 내보내기` collects the actual measured page layout, converts formulas to native
+equation objects and uses the source Python writer without desktop HWP/COM.
+`PDF 내려받기` renders the same A4 document in headless Chromium. Local Chrome/Edge
+is discovered automatically; `PDF_CHROMIUM_EXECUTABLE` can override its path.
+The export endpoints require today-math authentication in production and accept
+anonymous loopback development requests only under the development guard.
+
+The output worker verified **40 focused tests**, real browser HWPX/PDF downloads,
+all generated HWPX XML and five rendered PDF pages. Actual HWP desktop opening and
+physical printing are still pending in the existing `/dev/print-check` ledger.
+No source writes, database writes, deployment or paid model inference were used.
+For AI transport, source restoration and active/dormant source scope, see
+[current pipeline integration](qa/studio-digital-pipeline.md) and
+[AI configuration](dev-subscription-ai.md).
+
+## Earlier formatting-only record
+
 ## Source audit and the original gap
 
 Read the actual, read-only `F:/Mathgen` files: `src/components/print/PrintOptionsPanel.tsx`, `types.ts`, `tokens.ts`, all six `templates/*Template.tsx`, `BodyContainer.tsx`, `ProblemMeta.tsx`, `ProblemBody.tsx`, `PrintAnswerKeyPage.tsx`, `src/components/wizard/Step5Export.tsx`, `src/stores/wizardStore.ts`, `src/hooks/usePrintLayout.tsx`, `src/lib/printGeometry.ts`, `printPack.ts`, `printLayout.ts`, `printFontPacks.ts`, and the font links in `index.html`.
@@ -8,23 +38,23 @@ Before this change, unified `WorksheetEditor` offered a title, 1/2 columns, comb
 
 ## Preserved and restored parity
 
-| Original capability | Restored behavior |
-| --- | --- |
-| Six templates | Actual template source ports in `src/components/unified/print/templates`: 평가원 `pyeongga`, 정통 `jeongtong`, 모던 `modern`, 워크북 `workbook`, 자습 `jaseup`, 유형 `yuhyung`; retains their header/table designs, numbering, scratch space, self-study grid/concept box, and type-sheet design. |
-| Defaults | Exact original: `jeongtong`, `#1B2A4E`, 1 column, spacing mode, spacing **18px**, count 3/column, date/chapter/difficulty true, answers/quick answers/divider false, system font, normal margins. Old drafts retain their previous columns/answers. |
-| Fonts | Original five serif/sans pairs: system, Nanum, Noto, Gowun, Pretendard + Nanum. Selected Google fonts load through real stylesheets and `FontFaceSet.load` before measuring; Pretendard uses the existing app-local font variable. Failure is shown, with measured fallback output. |
-| Accents | All eight original chips plus a selectable original navy default. Color reaches template accents, question numbers, metadata and answer headers. |
-| Page margins | Exact original mm presets: narrow top/bottom 10, left/right 12; normal top/bottom 12, left/right 15; wide top18/bottom15/left22/right22. Applies to all six templates and answer pages in measurement, preview and print. |
-| Columns/divider | 1/2 columns and a functioning optional divider, with the same column geometry in measurement and output. |
-| Vertical layout | Original 4/16/32/56/88px presets; retains legacy intermediate values and the actual 18px default, also editable from 0–150px. Count mode offers 2/3/4 per column and aligned equal-height slots; measured content can reduce the count to avoid overflow. |
-| Metadata | Title, school/institution, grade, subject, semester, exam date/duration, examiner and total score. Workbook academy/instructor; self-study goal/Markdown concept note; type name/strategy. All exposed fields have printed destinations, including a shared metadata line for fields individual original headers omitted. |
-| Visibility | Date, chapter and difficulty independently affect rendered output. |
-| Answers | Include answers/solutions or quick answers only; both paginate from measured rendered content, preserve question numbering and use the same original math/figure display pipeline. |
-| Reset | Restores original formatting defaults without deleting questions or metadata. |
-| Preview/print | Fixed physical A4 sheets, responsive width-fit default plus 50/65/85/100/125% preview zoom, measured page counts, identical template DOM for preview and browser print/PDF. Fonts and images finish loading before print is enabled. Inspector/preview stack at 1050px and below with a direct preview button; manual zoom remains available. |
-| Ordering | Full-height independent settings/order panels. Order list grows with the available inspector flex area, with no max-height clamp. Removal restores keyboard focus; tabs support arrows, Home/End and roving tabindex. |
-| Draft durability | Additive v1 `printOptions`/`printMeta`, validated on import and persistence; legacy JSON and browser envelopes remain readable; existing columns/answers are mirrored; formatting-only conflicts are detected. JSON download includes complete formatting. |
-| Raw problem data | Adapter keeps text, answer, solution, source crop, SVG, image URLs and geometry unchanged. Rendering still uses `UnifiedProblem`/`MathText`/`displayFractions`: elementary mixed fractions are display-only; middle/high text remains raw. |
+| Original capability | Restored behavior                                                                                                                                                                                                                                                                                                                             |
+| ------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Six templates       | Actual template source ports in `src/components/unified/print/templates`: 평가원 `pyeongga`, 정통 `jeongtong`, 모던 `modern`, 워크북 `workbook`, 자습 `jaseup`, 유형 `yuhyung`; retains their header/table designs, numbering, scratch space, self-study grid/concept box, and type-sheet design.                                             |
+| Defaults            | Exact original: `jeongtong`, `#1B2A4E`, 1 column, spacing mode, spacing **18px**, count 3/column, date/chapter/difficulty true, answers/quick answers/divider false, system font, normal margins. Old drafts retain their previous columns/answers.                                                                                           |
+| Fonts               | Original five serif/sans pairs: system, Nanum, Noto, Gowun, Pretendard + Nanum. Selected Google fonts load through real stylesheets and `FontFaceSet.load` before measuring; Pretendard uses the existing app-local font variable. Failure is shown, with measured fallback output.                                                           |
+| Accents             | All eight original chips plus a selectable original navy default. Color reaches template accents, question numbers, metadata and answer headers.                                                                                                                                                                                              |
+| Page margins        | Exact original mm presets: narrow top/bottom 10, left/right 12; normal top/bottom 12, left/right 15; wide top18/bottom15/left22/right22. Applies to all six templates and answer pages in measurement, preview and print.                                                                                                                     |
+| Columns/divider     | 1/2 columns and a functioning optional divider, with the same column geometry in measurement and output.                                                                                                                                                                                                                                      |
+| Vertical layout     | Original 4/16/32/56/88px presets; retains legacy intermediate values and the actual 18px default, also editable from 0–150px. Count mode offers 2/3/4 per column and aligned equal-height slots; measured content can reduce the count to avoid overflow.                                                                                     |
+| Metadata            | Title, school/institution, grade, subject, semester, exam date/duration, examiner and total score. Workbook academy/instructor; self-study goal/Markdown concept note; type name/strategy. All exposed fields have printed destinations, including a shared metadata line for fields individual original headers omitted.                     |
+| Visibility          | Date, chapter and difficulty independently affect rendered output.                                                                                                                                                                                                                                                                            |
+| Answers             | Include answers/solutions or quick answers only; both paginate from measured rendered content, preserve question numbering and use the same original math/figure display pipeline.                                                                                                                                                            |
+| Reset               | Restores original formatting defaults without deleting questions or metadata.                                                                                                                                                                                                                                                                 |
+| Preview/print       | Fixed physical A4 sheets, responsive width-fit default plus 50/65/85/100/125% preview zoom, measured page counts, identical template DOM for preview and browser print/PDF. Fonts and images finish loading before print is enabled. Inspector/preview stack at 1050px and below with a direct preview button; manual zoom remains available. |
+| Ordering            | Full-height independent settings/order panels. Order list grows with the available inspector flex area, with no max-height clamp. Removal restores keyboard focus; tabs support arrows, Home/End and roving tabindex.                                                                                                                         |
+| Draft durability    | Additive v1 `printOptions`/`printMeta`, validated on import and persistence; legacy JSON and browser envelopes remain readable; existing columns/answers are mirrored; formatting-only conflicts are detected. JSON download includes complete formatting.                                                                                    |
+| Raw problem data    | Adapter keeps text, answer, solution, source crop, SVG, image URLs and geometry unchanged. Rendering still uses `UnifiedProblem`/`MathText`/`displayFractions`: elementary mixed fractions are display-only; middle/high text remains raw.                                                                                                    |
 
 ## Deliberate adaptations and remaining integration boundaries
 

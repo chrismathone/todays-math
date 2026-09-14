@@ -29,5 +29,10 @@ export default async function StudioPage() {
         "문제은행 연결을 확인해 주세요. 자료 제작은 바로 사용할 수 있습니다.",
     };
   }
-  return <UnifiedWorkspace initialData={initialData} />;
+  return (
+    <UnifiedWorkspace
+      initialData={initialData}
+      storageScope={access.user!.id}
+    />
+  );
 }

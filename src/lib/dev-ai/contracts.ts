@@ -105,7 +105,7 @@ export interface DevAiResult {
   engine?: "todays-math-python";
   figureReview?: {
     /** Original image versus validated spec/SVG, not a second raster image. */
-    mode: "source-image-and-spec";
+    mode: "source-image-and-spec" | "source-and-rendered-images";
     passed: boolean;
     issues: string[];
   };

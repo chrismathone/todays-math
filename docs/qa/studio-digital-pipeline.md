@@ -1,5 +1,59 @@
 # Studio digital pipeline — 2026-09-14
 
+## Current source-led integration (`D:/mathg-gen`)
+
+The source for this completion pass is the actual running `D:/mathg-gen` tree.
+The earlier records below describe the previous partial port and its evidence.
+
+- Development offers subscription CLI and server model API explicitly; authenticated
+  `/studio` is API-only, including its PDF assets and bank/teaching endpoints.
+  Both transports execute the same multi-stage OCR/solution pipeline.
+- Page recognition detects boxes first, then independently recognizes crops.
+  Native blocks, table/choice layout, subquestions, printed scores and confidence
+  are retained. Missing-body/choice repair and math/solution validation came from
+  the live source. A warning-driven solution regeneration is bounded to one retry.
+- Majority upside-down crop votes rotate a page once by 180 degrees and retry.
+  Manual rotation, extracted PDF reference text and text-omission warnings survive
+  session restoration. Failed or pending jobs are not silently reissued on reload.
+- Original file Blobs, crops, figures, review position and completed page results
+  persist in IndexedDB. Production storage is scoped by signed-in account; revision
+  checks prevent stale tabs from overwriting/resetting newer work. Saved worksheets
+  include detached crop/figure provenance and can reopen their source for editing.
+- Figure review now receives an actual original/reconstruction image pair after
+  MathJax typesetting. Deterministic SVG validation and bounded repair remain in
+  the chain; human review and original crop fallback remain available.
+- Native problem rendering connects structured tables/choices/subquestions to
+  preview. Native HWPX exports editable text and equations using the original Python
+  writer/templates. Server PDF uses the same measured A4 preview and headless Chromium.
+
+Current integration checks: Studio Playwright **14 passed** (including actual PNG
+Blob restoration, cross-tab conflicts, source reopen, automatic/manual rotation),
+and **36 passed** across figure image comparison, real Python geometry, production
+AI route and export route tests. The generated 1840×960 comparison PNG was visually
+inspected at `.qa-artifacts/mathgen-integration/figure-comparison.png`.
+Provider calls in this completion pass use deterministic substitutes: no paid API
+inference, production deployment, shared DB mutation or original-repository write.
+Native desktop HWP and physical printing remain pending in `/dev/print-check`.
+
+The combined migration regression run covered **568 tests across 36 files**;
+the two stale route/review expectations were updated and their 15-test suites
+passed again. The production build passed TypeScript and generated **74 pages**.
+Actual Next production smoke, using an isolated local test session and an unreachable
+test DB URL, verified anonymous rejection, the closed CLI endpoint, authenticated API
+status, all four PDF asset kinds, API-only UI, and sample cropping at 1440/390 pixels.
+Actual Next development smoke verified CLI/API selection and the same sample UI.
+Both runs made **zero AI POSTs**, reported **zero browser JavaScript errors** and
+had no document-level horizontal overflow. Their screenshots/reports are under
+`.qa-artifacts/mathgen-integration/`. Existing tier-bench tracing warnings and the
+Prisma config deprecation warning are unchanged.
+
+Source scope: the live source currently enables digitization only. Its variant
+dialog is a dormant/mock flow, and DOCX is disabled; this migration does not present
+those as functioning generators. Existing today-math Auth.js, bank and worksheet
+storage remain the host integration; dormant source Supabase auth is not duplicated.
+
+## Earlier digital port record
+
 The crop stage now leads to `OCR · 디지털화`. Taking its next action recognizes
 missing text and redraws missing diagrams, while page/crop OCR also schedules
 newly recognized diagrams automatically. Completed OCR defaults to digital text
@@ -54,10 +108,11 @@ repository fixtures. Root's actual-browser evidence is under
 
 ## Limits recorded rather than hidden
 
-The source check compares one native source image to spec/SVG, not Mathgen's
-rendered-image pair. Human visual review remains necessary. Provider failure or
-unrenderable figures retain their original crops. Running jobs do not resume
-after browser close/reload; exported worksheets and their SVG images do persist.
+At that earlier stage the source check compared one image to spec/SVG. The current
+integration above replaces this with rendered-image comparison and persistent source
+sessions. Human visual review remains necessary. Provider failure or unrenderable
+figures retain their original crops. Running jobs do not automatically resume after
+browser close/reload; completed results and originals do persist.
 The old historical renderer-golden mismatch is unchanged: direct before/after
 comparison of all 20 current corpus hashes matched without changing goldens.
 

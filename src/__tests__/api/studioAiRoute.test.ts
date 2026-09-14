@@ -1,6 +1,11 @@
 // @vitest-environment node
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 vi.mock("server-only", () => ({}));
+vi.mock("@/lib/dev-ai/figure-comparison", () => ({
+  buildFigureComparisonImage: vi.fn(
+    async () => "data:image/png;base64,Y29tcGFyaXNvbg==",
+  ),
+}));
 vi.mock("@/lib/session", () => ({ getSessionUser: vi.fn() }));
 vi.mock("@/lib/auth", () => ({ auth: vi.fn() }));
 vi.mock("@/lib/studio-ai/api", async (original) => ({

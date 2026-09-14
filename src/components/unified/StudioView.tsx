@@ -31,7 +31,7 @@ import type {
 } from "pdfjs-dist";
 import { useStudioAi, type StudioAiPageTask } from "./useStudioAi";
 import { studioCropImage, studioImageCanvas } from "./studioAiHelpers";
-import type { DevAiProvider } from "@/lib/dev-ai/contracts";
+import type { StudioAiProvider } from "@/lib/dev-ai/contracts";
 import { getStudioEndpoints } from "@/lib/studio-ai/endpoints";
 import type { SchoolLevel, StudioViewProps } from "./types";
 import {
@@ -2184,7 +2184,7 @@ export default function StudioView({
                       disabled={studioAi.running || studioAi.ai.checking}
                       onChange={(event) =>
                         studioAi.ai.setProvider(
-                          event.target.value as DevAiProvider,
+                          event.target.value as StudioAiProvider,
                         )
                       }
                     >

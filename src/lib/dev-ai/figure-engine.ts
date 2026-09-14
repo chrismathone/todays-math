@@ -11,6 +11,7 @@ import {
 } from "./figure-prompt";
 import { parseFigureSpecResult } from "./figure-spec";
 import { validDevAiSvg } from "./svg";
+import { buildFigureComparisonImage } from "./figure-comparison";
 
 const slots = new ProcessSlots();
 const ReviewSchema = z.object({
@@ -116,6 +117,12 @@ export async function redrawDevAiFigure(
         throw new Error(
           "도형 엔진의 정적 SVG 안전 검사를 통과하지 못했습니다. 원본은 유지됩니다.",
         );
+      const comparison = await buildFigureComparisonImage(
+        request.imageDataUrl,
+        rendered.svg,
+        deadline.signal,
+      );
+      check();
       const review = parseReview(
         await invoke({
           phase: "review",
@@ -124,7 +131,7 @@ export async function redrawDevAiFigure(
             generated.spec,
             rendered.svg,
           ),
-          imageDataUrl: request.imageDataUrl,
+          imageDataUrl: comparison,
           signal: deadline.signal,
         }),
       );
@@ -150,7 +157,7 @@ export async function redrawDevAiFigure(
         svg: rendered.svg,
         spec: generated.spec,
         engine: "todays-math-python",
-        figureReview: { mode: "source-image-and-spec", ...review },
+        figureReview: { mode: "source-and-rendered-images", ...review },
       };
     }
     throw new Error("도형 재작도에 실패했습니다. 원본은 유지됩니다.");

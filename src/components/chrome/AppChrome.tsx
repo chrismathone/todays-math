@@ -28,7 +28,7 @@ type AppChromeProps = {
   extraNav?: React.ReactNode;
   /** 현재 열려 있는 제품 탭. 기본은 '오늘의 수학'. */
   tab?: Tab;
-  activeNav?: "main" | "classes" | "problems";
+  activeNav?: "main" | "classes" | "problems" | "studio";
 };
 
 const WORDMARK = "text-[28.5px] font-black tracking-[-0.5px]";
@@ -117,6 +117,7 @@ export function AppChrome({
               ["main", "/", "메인"],
               ["classes", "/classes", "반"],
               ["problems", "/problems", "문제은행"],
+              ["studio", "/studio", "자료 제작"],
             ] as const
           ).map(([key, href, label]) => (
             <Link
