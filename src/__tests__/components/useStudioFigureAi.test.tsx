@@ -15,7 +15,16 @@ const svg =
 const response = (): DevAiResponse => ({
   provider: "claude",
   action: "figure-redraw",
-  result: { content: "", answer: "", solution: "", warnings: [], svg },
+  result: {
+    content: "",
+    answer: "",
+    solution: "",
+    warnings: [],
+    svg,
+    spec: { version: 2 },
+    engine: "todays-math-python",
+    figureReview: { mode: "source-image-and-spec", passed: true, issues: [] },
+  },
 });
 function deferred() {
   let resolve!: (value: DevAiResponse) => void;
@@ -78,7 +87,12 @@ describe("Studio automatic SVG ownership", () => {
       await result.current.run(["a"]);
     });
     const rendered = result.current.crops[0];
-    expect(rendered.figures?.[0]).toMatchObject({ originalImage: "raster-a" });
+    expect(rendered.figures?.[0]).toMatchObject({
+      originalImage: "raster-a",
+      engine: "todays-math-python",
+      spec: { version: 2 },
+      figureReview: { passed: true },
+    });
     expect(rendered.figures?.[0].svg).toContain("<path");
     expect(studioProblem(rendered).figureUrls[0]).toMatch(
       /^data:image\/svg\+xml/,

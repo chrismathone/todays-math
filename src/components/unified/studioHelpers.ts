@@ -1,3 +1,4 @@
+import type { DevAiResult } from "@/lib/dev-ai/contracts";
 import type { SchoolLevel, StudioProblem } from "./types";
 
 export interface StudioRect {
@@ -14,6 +15,9 @@ export interface StudioFigure {
   image: string;
   originalImage?: string;
   svg?: string;
+  spec?: DevAiResult["spec"];
+  engine?: DevAiResult["engine"];
+  figureReview?: DevAiResult["figureReview"];
 }
 
 export interface StudioCrop {

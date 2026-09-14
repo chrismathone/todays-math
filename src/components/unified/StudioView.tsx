@@ -1078,6 +1078,9 @@ export default function StudioView({
                       image: studioCropImage(rendered.canvas, bounded),
                       originalImage: undefined,
                       svg: undefined,
+                      spec: undefined,
+                      engine: undefined,
+                      figureReview: undefined,
                     }),
               },
             ]
@@ -2502,10 +2505,21 @@ export default function StudioView({
                         ...crop,
                         figures: crop.figures?.map((figure) =>
                           figure.id === editedFigure.id
-                            ? { ...figure, svg, image: dataUrl, originalImage }
+                            ? {
+                                ...figure,
+                                svg,
+                                image: dataUrl,
+                                originalImage,
+                                spec: undefined,
+                                engine: undefined,
+                                figureReview: undefined,
+                              }
                             : figure,
                         ),
-                        mode: crop.content.trim() ? "text" : crop.mode,
+                        mode:
+                          crop.content.trim() && !crop.modeManual
+                            ? "text"
+                            : crop.mode,
                         added: false,
                         reviewed: false,
                         revision: (crop.revision ?? 0) + 1,

@@ -179,6 +179,9 @@ export function useStudioFigureAi({
                             ...f,
                             svg,
                             image,
+                            spec: response.result.spec,
+                            engine: response.result.engine,
+                            figureReview: response.result.figureReview,
                             originalImage: f.originalImage ?? figure.image,
                           }
                         : f,

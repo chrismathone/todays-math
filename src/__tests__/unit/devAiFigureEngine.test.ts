@@ -145,13 +145,16 @@ describe("real local Python subscription figure pipeline", () => {
       prompt.includes("<rendered-spec-data>")
         ? JSON.stringify({
             passed: false,
-            issues: ["인쇄된 점 D를 원본과 비교해 주세요."],
+            issues: ["인쇄된 점 D를 원본과 비교해 주세요.\nnext label"],
           })
         : JSON.stringify({ spec: triangle }),
     );
     const result = await redrawDevAiFigure(input);
     expect(run).toHaveBeenCalledTimes(6);
     expect(result.figureReview?.passed).toBe(false);
+    expect(result.figureReview?.issues[0]).toBe(
+      "인쇄된 점 D를 원본과 비교해 주세요.\nnext label",
+    );
     expect(result.warnings.join(" ")).toContain("인쇄된 점 D");
     expect(validDevAiSvg(result.svg!)).toBe(true);
   });

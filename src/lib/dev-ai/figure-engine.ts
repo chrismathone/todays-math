@@ -22,7 +22,13 @@ const ReviewSchema = z.object({
 function parseReview(raw: string) {
   try {
     if (raw.length > 16000) throw new Error();
-    const review = ReviewSchema.parse(JSON.parse(repairJsonString(raw)));
+    let json: unknown;
+    try {
+      json = JSON.parse(raw);
+    } catch {
+      json = JSON.parse(repairJsonString(raw));
+    }
+    const review = ReviewSchema.parse(json);
     // Contradictory output never silently converts a reported mismatch to pass.
     return { ...review, passed: review.passed && review.issues.length === 0 };
   } catch {
