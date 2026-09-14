@@ -44,7 +44,7 @@ export interface WorkspaceDraftSnapshot {
   draft: WorkspaceDraft;
   hydrated: boolean;
   recent: DraftSummary[];
-  saveStatus: "loading" | "saved" | "saving" | "error";
+  saveStatus: "loading" | "saved" | "saving" | "error" | "disabled";
   saveError: string | null;
 }
 
@@ -358,7 +358,9 @@ function parseProblems(value: unknown): StudioProblem[] {
   });
 }
 
-function parseImport(value: unknown): Omit<WorkspaceDraft, "id" | "updatedAt"> {
+export function parseImport(
+  value: unknown,
+): Omit<WorkspaceDraft, "id" | "updatedAt"> {
   if (!record(value) || value.version !== 1 || typeof value.title !== "string")
     throw new DraftError(INVALID_IMPORT);
   const printOptions = parsePrintOptions(value.printOptions, {
@@ -375,7 +377,7 @@ function parseImport(value: unknown): Omit<WorkspaceDraft, "id" | "updatedAt"> {
   };
 }
 
-function parseEnvelope(raw: string): DraftEnvelope {
+export function parseEnvelope(raw: string): DraftEnvelope {
   try {
     const value: unknown = JSON.parse(raw);
     if (
@@ -729,6 +731,14 @@ export function createWorkspaceDraftStore(
       return commit(undefined, { id, title: trimmed });
     },
     deleteDraft: (id: string) => commit(undefined, { id, remove: true }),
+    /** Cloud library deletion already succeeded; discard only that editor's pending copy. */
+    forgetDeletedDraft: (id: string) => {
+      if (snapshot.draft.id === id) {
+        cancelTimer();
+        dirty = false;
+      }
+      return commit(undefined, { id, remove: true });
+    },
     importDraft: (value: unknown) => {
       if (!snapshot.hydrated) return false;
       try {
