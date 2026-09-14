@@ -34,6 +34,7 @@ interface Props {
   navigate: (view: "bank" | "studio") => void;
   onBackToReview?: () => void;
   onImportFiles?: () => void;
+  onEditSource?: (problem: StudioProblem) => void;
 }
 export default function WorksheetEditor({
   selected,
@@ -56,7 +57,12 @@ export default function WorksheetEditor({
   navigate,
   onBackToReview,
   onImportFiles,
+  onEditSource,
 }: Props) {
+  const editorRef = useRef<HTMLElement>(null);
+  const [exportProgress, setExportProgress] = useState("");
+  const [exportError, setExportError] = useState("");
+  const [exporting, setExporting] = useState(false);
   const orderListRef = useRef<HTMLOListElement>(null);
   const addFromBankRef = useRef<HTMLButtonElement>(null);
   const removedIndexRef = useRef<number | null>(null);
@@ -119,8 +125,39 @@ export default function WorksheetEditor({
     toggle(problem);
   }
 
+  async function exportDocument(kind: "hwpx" | "pdf") {
+    const document = editorRef.current?.querySelector<HTMLElement>(
+      "[data-mathgen-document]",
+    );
+    if (!document || !printReady || exporting) return;
+    setExporting(true);
+    setExportError("");
+    setExportProgress(`${kind.toUpperCase()} 문서를 준비하고 있습니다…`);
+    try {
+      const { exportPreviewHwpx, downloadExport } =
+        await import("@/lib/export/hwpxClient");
+      const blob =
+        kind === "hwpx"
+          ? await exportPreviewHwpx(document, title, (current, total) =>
+              setExportProgress(`HWPX 문서 구성 ${current}/${total}쪽…`),
+            )
+          : await (
+              await import("@/lib/export/pdfClient")
+            ).exportPreviewPdf(document, title);
+      downloadExport(blob, `${title || "시험지"}.${kind}`);
+      setExportProgress(`${kind.toUpperCase()} 파일을 내려받았습니다.`);
+    } catch (error) {
+      setExportProgress("");
+      setExportError(
+        error instanceof Error ? error.message : "파일 생성에 실패했습니다.",
+      );
+    } finally {
+      setExporting(false);
+    }
+  }
+
   return (
-    <main className={s.exportContent}>
+    <main className={s.exportContent} ref={editorRef}>
       <WorkspacePageHeader
         title="시험지 구성하기"
         description="문제 순서와 배치를 정하고 인쇄하세요."
@@ -139,7 +176,7 @@ export default function WorksheetEditor({
         </button>
         <button
           className={s.primaryButton}
-          disabled={!selected.length || !printReady}
+          disabled={!selected.length || !printReady || exporting}
           aria-busy={selected.length > 0 && !printReady}
           onClick={() => window.print()}
         >
@@ -152,7 +189,27 @@ export default function WorksheetEditor({
             </>
           )}
         </button>
+        <button
+          className={s.secondaryButton}
+          disabled={!selected.length || !printReady || exporting}
+          onClick={() => void exportDocument("hwpx")}
+        >
+          HWPX 내보내기
+        </button>
+        <button
+          className={s.secondaryButton}
+          disabled={!selected.length || !printReady || exporting}
+          onClick={() => void exportDocument("pdf")}
+        >
+          PDF 내려받기
+        </button>
       </WorkspacePageHeader>
+      {exportProgress && (
+        <p role="status" aria-live="polite">
+          {exportProgress}
+        </p>
+      )}
+      {exportError && <p role="alert">{exportError}</p>}
       {!selected.length ? (
         <div className={s.emptyExport}>
           <h2>시험지에 문제를 담아 주세요</h2>
@@ -281,6 +338,15 @@ export default function WorksheetEditor({
                       </small>
                     </div>
                     <div className={s.orderActions}>
+                      {p.studioCrop && onEditSource && (
+                        <button
+                          className={s.secondaryButton}
+                          aria-label={`${i + 1}번 원본 편집`}
+                          onClick={() => onEditSource(p)}
+                        >
+                          원본 편집
+                        </button>
+                      )}
                       <button
                         disabled={i === 0}
                         aria-label={`${i + 1}번 문제 위로`}

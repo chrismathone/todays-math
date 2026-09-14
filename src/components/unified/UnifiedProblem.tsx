@@ -2,6 +2,7 @@
 import { ProblemContent } from "@/components/math/ProblemContent";
 import { displayFractions } from "./fractionDisplay";
 import type { StudioProblem } from "./types";
+import NativeProblem from "./NativeProblem";
 
 export default function UnifiedProblem({
   problem,
@@ -23,6 +24,8 @@ export default function UnifiedProblem({
         }}
       />
     );
+  if (problem.ocr || problem.studioCrop)
+    return <NativeProblem problem={problem} print={print} />;
   return (
     <ProblemContent
       content={displayFractions(problem.content, problem.grade)}

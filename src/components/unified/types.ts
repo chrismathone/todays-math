@@ -1,10 +1,13 @@
 import type { UnitEntity } from "@/contracts/unit.contract";
 import type { MathgenProblemData } from "@/lib/mathgen/contracts";
+import type { StudioCrop } from "./studioHelpers";
 
 export type SchoolLevel = "elementary" | "secondary";
 
 export interface StudioProblem {
   ocr?: MathgenProblemData;
+  /** Full, nonrecursive source/edit snapshot; printable URLs remain derived output. */
+  studioCrop?: StudioCrop;
   questionType?: "multiple-choice" | "short-answer" | "descriptive";
   id: string;
   content: string;

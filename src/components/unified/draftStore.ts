@@ -1,5 +1,7 @@
 import type { Dispatch, SetStateAction } from "react";
 import type { StudioProblem } from "./types";
+import type { StudioCrop } from "./studioHelpers";
+import { MathgenProblemDataSchema } from "@/lib/mathgen/ocr";
 import {
   DEFAULT_PRINT_OPTIONS,
   DEFAULT_PRINT_META,
@@ -171,6 +173,111 @@ function validSvg(value: string): boolean {
   });
 }
 
+function parseStudioCrop(value: unknown): StudioCrop {
+  if (!record(value)) throw new DraftError(INVALID_IMPORT);
+  if (
+    value.ocr !== undefined &&
+    !MathgenProblemDataSchema.safeParse(value.ocr).success
+  )
+    throw new DraftError(INVALID_IMPORT);
+  for (const key of [
+    "id",
+    "sourceId",
+    "sourceLabel",
+    "content",
+    "answer",
+    "solution",
+    "grade",
+  ]) {
+    if (typeof value[key] !== "string") throw new DraftError(INVALID_IMPORT);
+  }
+  if (
+    !value.id ||
+    !value.sourceId ||
+    !Number.isInteger(value.page) ||
+    (value.page as number) < 1 ||
+    !["text", "image"].includes(value.mode as string) ||
+    !["elementary", "secondary"].includes(value.level as string) ||
+    typeof value.added !== "boolean" ||
+    typeof value.image !== "string" ||
+    !validImageUrl(value.image)
+  )
+    throw new DraftError(INVALID_IMPORT);
+  const rect = (box: unknown) =>
+    record(box) &&
+    ["x", "y", "width", "height"].every(
+      (key) =>
+        typeof box[key] === "number" &&
+        Number.isFinite(box[key]) &&
+        box[key] >= 0 &&
+        box[key] <= 1,
+    ) &&
+    (box.width as number) > 0 &&
+    (box.height as number) > 0;
+  if (!rect(value.rect)) throw new DraftError(INVALID_IMPORT);
+  for (const key of ["reviewed", "modeManual"])
+    if (value[key] !== undefined && typeof value[key] !== "boolean")
+      throw new DraftError(INVALID_IMPORT);
+  const sourceSize = value.sourceSize;
+  if (
+    sourceSize !== undefined &&
+    (!record(sourceSize) ||
+      !["width", "height"].every(
+        (key) =>
+          typeof sourceSize[key] === "number" &&
+          Number.isFinite(sourceSize[key]) &&
+          sourceSize[key] > 0,
+      ))
+  )
+    throw new DraftError(INVALID_IMPORT);
+  if (
+    value.sourceWidthMm !== undefined &&
+    (typeof value.sourceWidthMm !== "number" ||
+      !Number.isFinite(value.sourceWidthMm) ||
+      value.sourceWidthMm <= 0)
+  )
+    throw new DraftError(INVALID_IMPORT);
+  if (value.figures !== undefined) {
+    if (!Array.isArray(value.figures)) throw new DraftError(INVALID_IMPORT);
+    for (const figure of value.figures) {
+      if (
+        !record(figure) ||
+        typeof figure.id !== "string" ||
+        !rect(figure.rect) ||
+        typeof figure.image !== "string" ||
+        !validImageUrl(figure.image)
+      )
+        throw new DraftError(INVALID_IMPORT);
+      if (
+        figure.originalImage !== undefined &&
+        (typeof figure.originalImage !== "string" ||
+          !validImageUrl(figure.originalImage))
+      )
+        throw new DraftError(INVALID_IMPORT);
+      if (
+        figure.svg !== undefined &&
+        (typeof figure.svg !== "string" || !validSvg(figure.svg))
+      )
+        throw new DraftError(INVALID_IMPORT);
+      if (figure.spec !== undefined && !record(figure.spec))
+        throw new DraftError(INVALID_IMPORT);
+      if (figure.engine !== undefined && figure.engine !== "todays-math-python")
+        throw new DraftError(INVALID_IMPORT);
+      if (
+        figure.figureReview !== undefined &&
+        (!record(figure.figureReview) ||
+          typeof figure.figureReview.passed !== "boolean" ||
+          !Array.isArray(figure.figureReview.issues) ||
+          !figure.figureReview.issues.every(
+            (item: unknown) => typeof item === "string",
+          ))
+      )
+        throw new DraftError(INVALID_IMPORT);
+    }
+  }
+  return value as unknown as StudioCrop;
+}
+
 function parseProblems(value: unknown): StudioProblem[] {
   if (!Array.isArray(value)) throw new DraftError(INVALID_IMPORT);
   const ids = new Set<string>();
@@ -185,6 +292,13 @@ function parseProblems(value: unknown): StudioProblem[] {
       throw new DraftError(INVALID_IMPORT);
     ids.add(problem.id);
     const normalized: Record<string, unknown> = { ...problem };
+    if (
+      problem.ocr !== undefined &&
+      !MathgenProblemDataSchema.safeParse(problem.ocr).success
+    )
+      throw new DraftError(INVALID_IMPORT);
+    if (problem.studioCrop !== undefined)
+      normalized.studioCrop = parseStudioCrop(problem.studioCrop);
     if (
       problem.questionType !== undefined &&
       !["multiple-choice", "short-answer", "descriptive"].includes(

@@ -109,7 +109,8 @@ export function studioProblem(crop: StudioCrop): StudioProblem {
     );
   return {
     id: crop.id,
-    ...(crop.ocr ? { ocr: crop.ocr } : {}),
+    ...(crop.ocr ? { ocr: structuredClone(crop.ocr) } : {}),
+    studioCrop: structuredClone(crop),
     ...(crop.questionType ? { questionType: crop.questionType } : {}),
     content: useText ? crop.content.trim() : "",
     answer: crop.answer.trim(),
