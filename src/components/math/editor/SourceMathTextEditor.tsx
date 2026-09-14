@@ -15,6 +15,7 @@ import { renderKatexSafe } from "./katexRender";
 import { documentMarkdown, prepareVisualDocument } from "./visualDocument";
 import { attachCompactMathKeyboard } from "./compactMathKeyboard";
 import { SourceEditorFigures } from "./SourceEditorFigures";
+import { paintSourceFigure } from "./sourceFigurePresentation";
 
 MathfieldElement.fontsDirectory = null;
 MathfieldElement.soundsDirectory = null;
@@ -203,6 +204,8 @@ const figureAttributes = (element: HTMLElement) => ({
   src: element.dataset.src ?? "",
   label: element.dataset.label ?? "그림",
   grow: element.dataset.figureGrow ?? null,
+  align: element.dataset.figureAlign ?? "center",
+  maxWidth: element.dataset.figureMaxWidth ?? "",
 });
 
 export interface SourceMathTextEditorProps extends Omit<MarkdownRendererProps, "content"> {
@@ -228,32 +231,30 @@ export function SourceMathTextEditor(props: SourceMathTextEditorProps) {
 
   const visualFigure = Node.create({
         name: "visualFigure", group: "block", atom: true,
-        addAttributes: () => ({ index: { default: null }, svg: { default: "" }, src: { default: "" }, label: { default: "그림" }, refresh: { default: 0 }, grow: { default: null } }),
+        addAttributes: () => ({ index: { default: null }, svg: { default: "" }, src: { default: "" }, label: { default: "그림" }, refresh: { default: 0 }, grow: { default: null }, align: { default: "center" }, maxWidth: { default: "" } }),
         parseHTML: () => [{
           tag: '[data-visual-figure="true"]',
-          getAttrs: (element) => {
-            const data = (element as HTMLElement).dataset;
-            return {
-              index: data.figureIndex === undefined ? null : Number(data.figureIndex),
-              svg: decodeURIComponent(data.editorSvg ?? ""),
-              src: data.src ?? "",
-              label: data.label ?? "그림",
-              grow: data.figureGrow ?? null,
-            };
-          },
+          getAttrs: (element) => figureAttributes(element as HTMLElement),
         }],
         renderHTML: () => ["div", { "data-visual-figure": "true" }],
         addNodeView: () => ({ node: firstNode }) => {
           let node = firstNode;
-          const dom = document.createElement(firstNode.type.name === "visualInlineFigure" ? "span" : "div");
-          dom.className = "visual-figure";
-          if (firstNode.attrs.grow) { dom.style.flex = `${firstNode.attrs.grow} 1 0`; dom.style.minWidth = "0"; }
+          const layout = document.createElement(firstNode.type.name === "visualInlineFigure" ? "span" : "div");
+          layout.className = "visual-figure-layout";
+          if (firstNode.attrs.grow) { layout.style.flex = `${firstNode.attrs.grow} 1 0`; layout.style.minWidth = "0"; }
+          const dom = document.createElement("span");
+          dom.className = "visual-figure source-figure-frame";
+          layout.append(dom);
           dom.dataset.figureIndex = String(firstNode.attrs.index ?? "");
           dom.contentEditable = "false";
           let index = node.attrs.index as number | null;
+          let cancelPaint: (() => void) | undefined;
           const paint = () => {
+            cancelPaint?.();
             const current = latest.current;
             index = node.attrs.index as number | null;
+            layout.dataset.figureAlign = index !== null ? current.diagramSvgs?.[index]?.align ?? node.attrs.align : node.attrs.align;
+            layout.style.maxWidth = node.attrs.maxWidth;
             dom.dataset.figureIndex = String(index ?? "");
             if (index !== null && current.onFigureClick && current.isFigureEditable?.(index) !== false) {
               dom.tabIndex = 0;
@@ -266,8 +267,9 @@ export function SourceMathTextEditor(props: SourceMathTextEditorProps) {
             }
             const svg = index !== null ? current.diagramSvgs?.[index]?.svg : node.attrs.svg;
             const src = index !== null ? current.imageCrops?.[index]?.src : node.attrs.src;
-            if (svg) dom.innerHTML = svg;
+            if (svg) cancelPaint = paintSourceFigure(dom, svg);
             else if (src) {
+              dom.style.removeProperty("--source-figure-width");
               const image = document.createElement("img");
               image.src = src;
               image.alt = node.attrs.label;
@@ -282,7 +284,7 @@ export function SourceMathTextEditor(props: SourceMathTextEditorProps) {
           });
           paint();
           return {
-            dom,
+            dom: layout,
             stopEvent: () => true,
             ignoreMutation: () => true,
             update: (next) => {
@@ -291,6 +293,7 @@ export function SourceMathTextEditor(props: SourceMathTextEditorProps) {
               paint();
               return true;
             },
+            destroy: () => cancelPaint?.(),
           };
         },
       });

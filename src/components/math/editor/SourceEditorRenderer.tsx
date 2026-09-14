@@ -9,6 +9,7 @@ import { parseImageTitle, preprocessMathText, wrapBareConditionBoxes } from "./t
 import { renderKatexSafe } from "./katexRender";
 import { splitMathSegments } from "./mathSegments";
 import { groupFigureRows, assignBoxesByReadingOrder, type FigBox } from "./figureLayout";
+import { SourceFigureSvg } from "./SourceFigureSvg";
 
 /**
  * Korean math content renderer.
@@ -638,7 +639,7 @@ const MarkdownRenderer: React.FC<MarkdownRendererProps> = ({
           ? " diagram-align-center"
           : align === "right"
             ? " diagram-align-right"
-            : "";
+            : align === "left" ? " diagram-align-left" : "";
       const sizeStyle = SIZE_STYLE[item.size ?? "full"] ?? SIZE_STYLE.full;
 
       // [그림N] SVGs use the same placeholder mechanism as the inline
@@ -658,7 +659,7 @@ const MarkdownRenderer: React.FC<MarkdownRendererProps> = ({
       const lastNewline = before.lastIndexOf("\n");
       const currentLine = before.substring(lastNewline + 1);
       const inBlockquote = currentLine.trimStart().startsWith(">");
-      if (inBlockquote || /[①②③④⑤]/.test(currentLine)) {
+      if (inBlockquote || /[①②③④⑤]|\|/.test(currentLine)) {
         return `<span data-svg-id="${phId}" data-svg-inline="bq${alignClass ? " " + alignClass.trim() : ""}"></span>`;
       }
       return `\n\n<div data-svg-id="${phId}" data-svg-classes="diagram-svg-inline${alignClass}" data-svg-style="${sizeStyle}"></div>\n\n`;
@@ -889,12 +890,15 @@ const MarkdownRenderer: React.FC<MarkdownRendererProps> = ({
                 : baseStyle;
               return (
                 <div
-                  {...figureAction(svgFigureIndices.get(svgId))}
-                  data-editor-svg={editorTokens ? encodeURIComponent(originalSvgs.get(svgId) ?? svgHtml) : undefined}
+                  data-source-figure-layout
                   className={classes}
                   style={Object.keys(style).length ? (style as React.CSSProperties) : undefined}
-                  dangerouslySetInnerHTML={{ __html: svgHtml }}
-                />
+                >
+                  <SourceFigureSvg source={svgHtml}
+                    {...figureAction(svgFigureIndices.get(svgId))}
+                    data-editor-svg={editorTokens ? encodeURIComponent(originalSvgs.get(svgId) ?? diagramSvgs?.[svgFigureIndices.get(svgId)!]?.svg ?? svgHtml) : undefined}
+                  />
+                </div>
               );
             }
             const katexId =
@@ -924,11 +928,14 @@ const MarkdownRenderer: React.FC<MarkdownRendererProps> = ({
                 : "diagram-svg-inline";
               return (
                 <span
-                  {...figureAction(svgFigureIndices.get(svgId))}
-                  data-editor-svg={editorTokens ? encodeURIComponent(originalSvgs.get(svgId) ?? svgPlaceholders.get(svgId)!) : undefined}
+                  data-source-figure-layout
                   className={cls}
-                  dangerouslySetInnerHTML={{ __html: svgPlaceholders.get(svgId)! }}
-                />
+                >
+                  <SourceFigureSvg source={svgPlaceholders.get(svgId)!}
+                    {...figureAction(svgFigureIndices.get(svgId))}
+                    data-editor-svg={editorTokens ? encodeURIComponent(originalSvgs.get(svgId) ?? diagramSvgs?.[svgFigureIndices.get(svgId)!]?.svg ?? svgPlaceholders.get(svgId)!) : undefined}
+                  />
+                </span>
               );
             }
             const katexId =

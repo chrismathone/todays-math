@@ -11,13 +11,16 @@ export function prepareVisualDocument(html: string): string {
     const inline = !!element.closest(".choice, td, th") || (element.tagName === "IMG" && !!element.closest("p"));
     const figure = doc.createElement(inline ? "span" : "div");
     figure.dataset.visualFigure = inline ? "inline" : "true";
-    if (element.style.flexGrow) figure.dataset.figureGrow = element.style.flexGrow;
+    const layout = element.parentElement?.hasAttribute("data-source-figure-layout") ? element.parentElement : element;
+    if (layout.style.flexGrow) figure.dataset.figureGrow = layout.style.flexGrow;
+    figure.dataset.figureAlign = layout.classList.contains("diagram-align-left") ? "left" : layout.classList.contains("diagram-align-right") ? "right" : "center";
+    if (layout.style.maxWidth) figure.dataset.figureMaxWidth = layout.style.maxWidth;
     for (const name of ["data-figure-index", "data-editor-svg"]) {
       if (element.hasAttribute(name)) figure.setAttribute(name, element.getAttribute(name)!);
     }
     figure.dataset.src = element.getAttribute("src") ?? "";
     figure.dataset.label = element.getAttribute("alt") ?? "그림";
-    element.replaceWith(figure);
+    layout.replaceWith(figure);
   }
   for (const box of doc.querySelectorAll<HTMLElement>("[data-condition-box]")) {
     const children = [...box.children];

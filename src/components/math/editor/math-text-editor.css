@@ -187,8 +187,8 @@
   border: 2px solid transparent;
   border-radius: 8px;
 }
-.source-math-editor .visual-figure:hover,
-.source-math-editor .visual-figure:focus-visible,
+.source-math-editor .visual-figure[role="button"]:hover,
+.source-math-editor .visual-figure[role="button"]:focus-visible,
 .source-math-editor .prose [data-figure-index][role="button"]:hover,
 .source-math-editor .prose [data-figure-index][role="button"]:focus-visible {
   border-color: #2563eb;
@@ -216,3 +216,43 @@
 
 .source-math-editor .visual-math[role="button"], .source-math-editor .visual-figure[role="button"] { cursor: pointer; }
 .source-math-editor .source-editor-figures { padding: 10px 16px; }
+
+/* Layout cells keep mathgen's alignment/box shares; only the painted frame is interactive. */
+.source-math-editor [data-source-figure-layout] { line-height: 0; }
+.source-math-editor .prose div[data-source-figure-layout] { display: block; width: 100%; text-align: center; margin-inline: auto; }
+.source-math-editor .prose [data-source-figure-layout].diagram-align-left { text-align: left; margin-left: 0; margin-right: auto; }
+.source-math-editor .prose [data-source-figure-layout].diagram-align-right { text-align: right; margin-left: auto; margin-right: 0; }
+.source-math-editor .visual-figure-layout { display: block; max-width: 100%; margin: 10px auto; line-height: 0; text-align: center; }
+.source-math-editor .visual-figure-layout[data-figure-align="left"] { text-align: left; margin-left: 0; }
+.source-math-editor .visual-figure-layout[data-figure-align="right"] { text-align: right; margin-right: 0; }
+.source-math-editor .visual-figure-layout:is(span) { display: inline-block; vertical-align: middle; margin: 0; }
+.source-math-editor .figure-row > .visual-figure-layout { margin: 0; }
+.source-math-editor .source-figure-frame {
+  display: inline-block;
+  box-sizing: content-box;
+  width: var(--source-figure-width, fit-content);
+  max-width: calc(100% - 14px);
+  height: auto;
+  margin: 0;
+  padding: 5px;
+  border: 2px solid transparent;
+  border-radius: 8px;
+  background: transparent;
+  vertical-align: middle;
+  line-height: 0;
+}
+.source-math-editor .source-figure-frame > svg {
+  display: block;
+  width: 100%;
+  max-width: 100%;
+  height: auto;
+  max-height: none;
+  margin: 0;
+}
+.source-math-editor :is(td, th) .source-figure-frame { max-width: min(80px, calc(100% - 14px)); }
+.source-math-editor .source-figure-frame[role="button"]:is(:hover, :focus-visible) {
+  border-color: #2563eb;
+  background: #eff6ff;
+  outline: none;
+  box-shadow: 0 0 0 3px rgb(37 99 235 / 18%);
+}
