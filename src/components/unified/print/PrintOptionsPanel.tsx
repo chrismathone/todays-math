@@ -6,6 +6,7 @@ import {
   type PrintOptions,
 } from "./types";
 import s from "../WorksheetEditor.module.css";
+import panel from "./PrintOptionsPanel.module.css";
 
 export function PrintOptionsPanel({
   title,
@@ -70,7 +71,12 @@ export function PrintOptionsPanel({
     </label>
   );
   return (
-    <div className={s.settingsFields}>
+    <div
+      className={`${s.settingsFields} ${panel.fields}`}
+      onFocusCapture={(event) =>
+        event.target.scrollIntoView?.({ block: "nearest", inline: "nearest" })
+      }
+    >
       <p className={s.subtle}>
         설정은 미리보기와 인쇄 · PDF에 함께 적용됩니다.
       </p>
@@ -189,7 +195,27 @@ export function PrintOptionsPanel({
             </button>
           ))}
         </div>
-        {options.columns === 2 && toggle("columnDivider", "컬럼 사이 구분선")}
+        {options.columns === 2 ? (
+          toggle("columnDivider", "단 사이 구분선")
+        ) : (
+          <label className={s.field}>
+            오른쪽 풀이 공간
+            <select
+              value={options.solvingArea ?? "off"}
+              onChange={(event) =>
+                onOptions({
+                  solvingArea: event.target
+                    .value as PrintOptions["solvingArea"],
+                })
+              }
+            >
+              <option value="off">사용 안 함</option>
+              <option value="blank">빈 공간</option>
+              <option value="ruled">공책 줄</option>
+              <option value="chalkboard">칠판</option>
+            </select>
+          </label>
+        )}
       </fieldset>
       <label className={s.field}>
         쪽 여백

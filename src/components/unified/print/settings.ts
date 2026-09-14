@@ -53,6 +53,7 @@ export function parsePrintOptions(
     problemsPerColumn: [2, 3, 4],
     fontPack: ["system", "nanum", "noto", "gowun", "pretendard"],
     marginPreset: ["narrow", "normal", "wide"],
+    solvingArea: ["off", "blank", "ruled", "chalkboard"],
   };
   for (const key of Object.keys(options) as (keyof PrintOptions)[]) {
     const next = value[key];

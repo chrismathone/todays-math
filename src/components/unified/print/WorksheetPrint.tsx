@@ -174,7 +174,10 @@ export function WorksheetPrint({
           </select>
         </label>
       </div>
-      {!ready ? (
+      {!ready &&
+      (!questions.pages.length ||
+        questions.layoutError ||
+        answers.layoutError) ? (
         questions.layoutError || answers.layoutError ? (
           <p className={editor.subtle} role="alert">
             시험지 정보가 한 쪽보다 깁니다. 개념 정리나 제목을 줄여 주세요.
@@ -294,7 +297,7 @@ export function WorksheetPrint({
                 totalProblems={problems.length}
                 columns={options.columns}
                 meta={meta}
-                options={options}
+                options={{ ...options, solvingArea: "off" }}
                 problems={page.indices.map((index) => problems[index])}
                 startingNumber={page.indices[0] + 1}
                 splitIndex={page.splitIndex}

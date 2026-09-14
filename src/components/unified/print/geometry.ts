@@ -12,6 +12,9 @@ import type { PrintTemplate } from "./types";
 import { A4_DIM } from "./tokens";
 import type { PrintOptions } from "./types";
 
+/** Shared by actual page bodies and the hidden question measurement viewport. */
+export const SOLVING_AREA_LAYOUT = { gap: 20, questionRatio: 0.6 } as const;
+
 /** Fix the pre-zoom width: auto width would reflow/re-enlarge tall crops in count slots. */
 export function scaledItemStyle(options: PrintOptions, scale = 1) {
   return scale < 1
@@ -21,6 +24,7 @@ export function scaledItemStyle(options: PrintOptions, scale = 1) {
           options.template,
           options.columns,
           options.marginPreset,
+          options.solvingArea,
         ),
       }
     : undefined;
@@ -121,6 +125,7 @@ export function columnContentWidth(
   template: PrintTemplate,
   columns: 1 | 2,
   marginPreset?: keyof typeof PRINT_MARGINS,
+  solvingArea: PrintOptions["solvingArea"] = "off",
 ): number {
   const g = TEMPLATE_GEOMETRY[template];
   const bodyWidth =
@@ -131,7 +136,11 @@ export function columnContentWidth(
           96) /
         25.4
       : 2 * g.padX);
-  if (columns === 1) return bodyWidth;
+  if (columns === 1)
+    return solvingArea === "off"
+      ? bodyWidth
+      : (bodyWidth - SOLVING_AREA_LAYOUT.gap) *
+          SOLVING_AREA_LAYOUT.questionRatio;
   return (bodyWidth - g.columnGap) / 2;
 }
 

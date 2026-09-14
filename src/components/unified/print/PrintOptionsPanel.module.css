@@ -1,0 +1,13 @@
+/* Draw focus inside text controls so sidebar scroll clipping cannot cut it off. */
+.fields.fields input:focus-visible,
+.fields.fields select:focus-visible,
+.fields.fields textarea:focus-visible {
+  outline: 3px solid #82a1ff;
+  outline-offset: -3px;
+}
+
+.fields input,
+.fields select,
+.fields textarea {
+  scroll-margin-block: 8px;
+}

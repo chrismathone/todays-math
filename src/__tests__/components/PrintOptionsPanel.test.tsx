@@ -7,6 +7,36 @@ import {
 } from "@/components/unified/print/types";
 
 describe("Mathgen print spacing presets", () => {
+  it("offers the optional right solving area only for one column and names the two-column divider", () => {
+    const onOptions = vi.fn();
+    const props = {
+      title: "시험지",
+      setTitle: vi.fn(),
+      meta: DEFAULT_PRINT_META,
+      onMeta: vi.fn(),
+      onOptions,
+      options: { ...DEFAULT_PRINT_OPTIONS },
+    };
+    const view = render(<PrintOptionsPanel {...props} />);
+    const area = screen.getByRole("combobox", { name: "오른쪽 풀이 공간" });
+    expect(area).toHaveValue("off");
+    for (const value of ["blank", "ruled", "chalkboard", "off"]) {
+      fireEvent.change(area, { target: { value } });
+      expect(onOptions).toHaveBeenLastCalledWith({ solvingArea: value });
+    }
+    view.rerender(
+      <PrintOptionsPanel
+        {...props}
+        options={{ ...props.options, columns: 2 }}
+      />,
+    );
+    expect(
+      screen.queryByRole("combobox", { name: "오른쪽 풀이 공간" }),
+    ).toBeNull();
+    fireEvent.click(screen.getByRole("checkbox", { name: "단 사이 구분선" }));
+    expect(onOptions).toHaveBeenLastCalledWith({ columnDivider: true });
+  });
+
   it("represents legacy spacing with the nearest preset without rewriting it on render", () => {
     const onOptions = vi.fn();
     render(
