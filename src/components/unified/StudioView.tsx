@@ -9,12 +9,17 @@ import WorkProgress from "./WorkProgress";
 import StudioQueueStatus from "./StudioQueueStatus";
 import StudioReviewPane from "./StudioReviewPane";
 import StudioPageEmpty from "./StudioPageEmpty";
+import {
+  StudioSessionStore,
+  type StudioSessionData,
+} from "./studioSessionStore";
 import { resolveStudioGrade, studioGradeLevel } from "./studioGrade";
 import {
   lazy,
   Suspense,
   useEffect,
   useEffectEvent,
+  useMemo,
   useRef,
   useState,
 } from "react";
@@ -25,7 +30,7 @@ import type {
   RenderTask,
 } from "pdfjs-dist";
 import { useStudioAi, type StudioAiPageTask } from "./useStudioAi";
-import { studioCropImage } from "./studioAiHelpers";
+import { studioCropImage, studioImageCanvas } from "./studioAiHelpers";
 import type { DevAiProvider } from "@/lib/dev-ai/contracts";
 import type { SchoolLevel, StudioViewProps } from "./types";
 import {
@@ -217,8 +222,14 @@ export default function StudioView({
   importRequest,
   active = true,
   reviewRequest = 0,
-}: StudioViewProps & { active?: boolean; reviewRequest?: number }) {
+  restoreRequest,
+}: StudioViewProps & {
+  active?: boolean;
+  reviewRequest?: number;
+  restoreRequest?: { id: number; crops: StudioCrop[] };
+}) {
   const handledReview = useRef(reviewRequest);
+  const handledRestore = useRef<number | null>(null);
   const handledImport = useRef<number | null>(null);
   const [sources, setSources] = useState<StudioSource[]>([]);
   const [sourceId, setSourceId] = useState("");
@@ -245,7 +256,20 @@ export default function StudioView({
   const [level, setLevel] = useState<SchoolLevel>("secondary");
   const [grade, setGrade] = useState("미지정");
   const [zoom, setZoom] = useState(100);
-  const [busy, setBusy] = useState(false);
+  const [importingBusy, setBusy] = useState(false);
+  const [restoring, setRestoring] = useState(
+    () => typeof indexedDB !== "undefined",
+  );
+  const busy = importingBusy || restoring;
+  const [sessionStore] = useState(() => new StudioSessionStore());
+  const storageReady = useRef(false);
+  const storageEpoch = useRef(0);
+  const [sessionSave, setSessionSave] = useState(() =>
+    restoring ? "불러오는 중" : "저장소 사용 불가",
+  );
+  const [savedSessionData, setSavedSessionData] =
+    useState<StudioSessionData | null>(null);
+  const [storageVersion, setStorageVersion] = useState(0);
   const [importProgress, setImportProgress] = useState<{
     done: number;
     total: number;
@@ -570,9 +594,9 @@ export default function StudioView({
     setStep((previous) => (previous === "review" ? "review" : "crop"));
   }
 
-  async function importFiles(files: File[]) {
+  async function importFiles(files: File[], restored?: StudioSessionData) {
     const resources = session.current;
-    if (!files.length || resources.importing) return;
+    if ((!files.length && !restored) || resources.importing) return;
     const controller = new AbortController();
     const generation = resources.generation;
     resources.importing = controller;
@@ -582,13 +606,18 @@ export default function StudioView({
     setImportProgress({
       done: 0,
       total: files.length,
-      name: files[0].name,
+      name: files[0]?.name ?? "이전 작업",
       startedAt,
     });
     setError("");
-    const loaded: StudioSource[] = [];
+    const loaded: StudioSource[] = (restored?.sources ?? [])
+      .filter((source) => source.kind === "sample")
+      .map((source) => ({ ...source, image: drawStudioSample() }));
+    const restoredFiles = restored?.sources.filter(
+      (source) => source.kind !== "sample",
+    );
     const errors: string[] = [];
-    for (const file of files) {
+    for (const [fileIndex, file] of files.entries()) {
       if (stale()) return;
       setImportProgress({
         done: loaded.length + errors.length,
@@ -599,7 +628,8 @@ export default function StudioView({
       try {
         if (file.size > 40 * 1024 * 1024)
           throw new Error("40 MB 이하 파일을 선택해 주세요.");
-        const id = crypto.randomUUID();
+        const savedSource = restoredFiles?.[fileIndex];
+        const id = savedSource?.id ?? crypto.randomUUID();
         if (file.type === "application/pdf" || /\.pdf$/i.test(file.name)) {
           const pdfjs = await import("pdfjs-dist");
           if (stale()) return;
@@ -634,6 +664,7 @@ export default function StudioView({
           }
           resources.documents.add(pdf);
           loaded.push({
+            ...savedSource,
             id,
             name: file.name,
             kind: "pdf",
@@ -652,6 +683,7 @@ export default function StudioView({
               "이미지가 너무 큽니다. 4,800만 화소 이하로 줄여 주세요.",
             );
           loaded.push({
+            ...savedSource,
             id,
             name: file.name,
             kind: "image",
@@ -671,12 +703,40 @@ export default function StudioView({
       }
     }
     if (!stale()) {
+      if (restored && errors.length) {
+        releaseSession(resources);
+        resources.importing = null;
+        setBusy(false);
+        setImportProgress(null);
+        throw new Error(
+          `이전 원본을 복원하지 못했습니다. 저장된 작업은 유지됩니다. ${errors.join(" ")}`,
+        );
+      }
       if (loaded.length) {
-        setSources((previous) => [...previous, ...loaded]);
-        chooseSource(loaded[0].id);
+        const ordered = restored
+          ? restored.sources.map((source) =>
+              loaded.find((item) => item.id === source.id)!,
+            )
+          : loaded;
+        setSources((previous) =>
+          restored ? ordered : [...previous, ...ordered],
+        );
+        if (!restored) chooseSource(loaded[0].id);
         setNotice(
           `원본 ${loaded.length}개를 열었습니다. 문제 영역을 드래그해 주세요.`,
         );
+      }
+      if (restored) {
+        setCrops(restored.crops);
+        setSourceId(restored.sourceId);
+        setPageNumber(restored.pageNumber);
+        setActiveCropId(restored.activeCropId);
+        setSelectedBoxId(restored.activeCropId);
+        setInspectedPages(restored.inspectedPages);
+        setGrade(restored.grade);
+        setLevel(restored.level);
+        setStep(restored.step);
+        setNotice("이전 자료 제작 작업을 복원했습니다.");
       }
       setError(errors.join("\n"));
       setBusy(false);
@@ -685,7 +745,174 @@ export default function StudioView({
     }
   }
 
+  const restoreSaved = useEffectEvent(
+    async (data: StudioSessionData, originals: Map<string, Blob>) => {
+      const files = data.sources
+        .filter((source) => source.kind !== "sample")
+        .map(
+          (source) =>
+            new File([originals.get(source.id)!], source.name, {
+              type: originals.get(source.id)!.type,
+            }),
+        );
+      await importFiles(files, data);
+    },
+  );
+  useEffect(() => {
+    let cancelled = false;
+    const epoch = storageEpoch.current;
+    if (typeof indexedDB === "undefined") return;
+    void (async () => {
+      try {
+        const saved = await sessionStore.load();
+        if (cancelled || epoch !== storageEpoch.current) return;
+        if (saved?.data.sources.length)
+          await restoreSaved(saved.data, saved.originals);
+        if (cancelled || epoch !== storageEpoch.current) return;
+        storageReady.current = true;
+        setSessionSave("저장됨");
+      } catch (cause) {
+        if (!cancelled && epoch === storageEpoch.current) {
+          setSessionSave("복원 실패");
+          setError(
+            cause instanceof Error
+              ? cause.message
+              : "저장된 자료를 불러오지 못했습니다.",
+          );
+        }
+      } finally {
+        if (!cancelled && epoch === storageEpoch.current) setRestoring(false);
+      }
+    })();
+    return () => {
+      cancelled = true;
+    };
+  }, [sessionStore]);
+
+  const sessionData = useMemo<StudioSessionData>(
+    () => ({
+      sources: sources.map(
+        ({ id, name, kind, pages, grade, level, gradeManual }) => ({
+          id,
+          name,
+          kind,
+          pages,
+          grade,
+          level,
+          gradeManual,
+        }),
+      ),
+      crops,
+      sourceId,
+      pageNumber,
+      activeCropId,
+      inspectedPages,
+      step,
+      grade,
+      level,
+    }),
+    [
+      sources,
+      crops,
+      sourceId,
+      pageNumber,
+      activeCropId,
+      inspectedPages,
+      step,
+      grade,
+      level,
+    ],
+  );
+  const sessionStatus =
+    sessionSave === "저장됨" &&
+    sources.length &&
+    savedSessionData !== sessionData
+      ? "저장 중"
+      : sessionSave;
+
+  useEffect(() => {
+    if (!storageReady.current || restoring || importingBusy) return;
+    const epoch = storageEpoch.current;
+    let disposed = false;
+    let started = false;
+    const originals = new Map(
+      sources
+        .filter((source) => source.original)
+        .map((source) => [source.id, source.original!]),
+    );
+    const save = () => {
+      if (started || epoch !== storageEpoch.current) return;
+      started = true;
+      void sessionStore
+        .save(sessionData, originals)
+        .then(() => {
+          if (!disposed && epoch === storageEpoch.current) {
+            setSavedSessionData(sessionData);
+            setSessionSave("저장됨");
+          }
+        })
+        .catch((cause: unknown) => {
+          if (!disposed && epoch === storageEpoch.current) {
+            setSessionSave("저장 실패");
+            setError(
+              cause instanceof Error
+                ? cause.message
+                : "자료 저장 공간을 확인해 주세요.",
+            );
+          }
+        });
+    };
+    const timer = window.setTimeout(save, 400);
+    window.addEventListener("pagehide", save);
+    return () => {
+      disposed = true;
+      window.clearTimeout(timer);
+      window.removeEventListener("pagehide", save);
+    };
+  }, [
+    sources,
+    sessionData,
+    restoring,
+    importingBusy,
+    sessionStore,
+    storageVersion,
+  ]);
+
+  useEffect(() => {
+    if (sessionStatus !== "저장 중" && sessionStatus !== "저장 실패") return;
+    const warn = (event: BeforeUnloadEvent) => {
+      event.preventDefault();
+      event.returnValue = "";
+    };
+    window.addEventListener("beforeunload", warn);
+    return () => window.removeEventListener("beforeunload", warn);
+  }, [sessionStatus]);
+
   function startOver() {
+    storageEpoch.current += 1;
+    const epoch = storageEpoch.current;
+    storageReady.current = false;
+    setRestoring(false);
+    setSessionSave("저장 중");
+    void sessionStore
+      .clear()
+      .then(() => {
+        if (epoch === storageEpoch.current) {
+          storageReady.current = true;
+          setStorageVersion((version) => version + 1);
+          setSessionSave("저장됨");
+        }
+      })
+      .catch((cause: unknown) => {
+        if (epoch === storageEpoch.current) {
+          setSessionSave("저장 실패");
+          setError(
+            cause instanceof Error
+              ? cause.message
+              : "이전 자료 삭제를 완료하지 못했습니다.",
+          );
+        }
+      });
     studioAi.cancel(true);
     releaseSession(session.current);
     // A queued external import belongs to the workspace being discarded, too.
@@ -745,6 +972,112 @@ export default function StudioView({
     handledImport.current = importRequest.id;
     importRequested(importRequest.files);
   }, [importRequest, busy]);
+
+  const reopenRequested = useEffectEvent(async (snapshots: StudioCrop[]) => {
+    const generation = session.current.generation;
+    setBusy(true);
+    setError("");
+    try {
+      const restoredCrops: StudioCrop[] = [];
+      const restoredSources: StudioSource[] = [];
+      for (const snapshot of snapshots) {
+        const existing = crops.find((crop) => crop.id === snapshot.id);
+        if (existing) {
+          restoredCrops.push(existing);
+          continue;
+        }
+        if (sources.some((source) => source.id === snapshot.sourceId)) {
+          restoredCrops.push({ ...structuredClone(snapshot), added: false });
+          continue;
+        }
+        // A portable worksheet contains the original problem crop, not the full PDF.
+        const canvas = await studioImageCanvas(snapshot.image);
+        const blob = await new Promise<Blob>((resolve, reject) =>
+          canvas.toBlob(
+            (value) =>
+              value
+                ? resolve(value)
+                : reject(new Error("저장된 원본 이미지를 읽지 못했습니다.")),
+            "image/png",
+          ),
+        );
+        if (!mounted.current || generation !== session.current.generation)
+          return;
+        const id = crypto.randomUUID();
+        const name = `${snapshot.sourceLabel} · ${snapshot.page}쪽 문제`;
+        const rect = snapshot.rect;
+        const restored: StudioCrop = {
+          ...structuredClone(snapshot),
+          sourceId: id,
+          sourceLabel: name,
+          page: 1,
+          rect: { x: 0, y: 0, width: 1, height: 1 },
+          added: false,
+          sourceSize: { width: canvas.width, height: canvas.height },
+          sourceWidthMm: snapshot.sourceWidthMm
+            ? snapshot.sourceWidthMm * rect.width
+            : undefined,
+          figures: snapshot.figures?.map((figure) => ({
+            ...figure,
+            rect: {
+              x: clamp((figure.rect.x - rect.x) / rect.width),
+              y: clamp((figure.rect.y - rect.y) / rect.height),
+              width: clamp(figure.rect.width / rect.width),
+              height: clamp(figure.rect.height / rect.height),
+            },
+          })),
+        };
+        restoredSources.push({
+          id,
+          name,
+          kind: "image",
+          pages: 1,
+          grade: snapshot.grade,
+          level: snapshot.level,
+          gradeManual: true,
+          image: canvas,
+          original: new File([blob], `${name}.png`, { type: "image/png" }),
+        });
+        restoredCrops.push(restored);
+      }
+      if (!mounted.current || generation !== session.current.generation) return;
+      setSources((previous) => [...previous, ...restoredSources]);
+      setCrops((previous) => [
+        ...previous,
+        ...restoredCrops.filter(
+          (crop) => !previous.some((item) => item.id === crop.id),
+        ),
+      ]);
+      const first = restoredCrops[0];
+      if (first) {
+        setSourceId(first.sourceId);
+        setPageNumber(first.page);
+        setActiveCropId(first.id);
+        setSelectedBoxId(first.id);
+        setGrade(first.grade);
+        setLevel(first.level);
+        setStep("review");
+        setInspectorOpen(true);
+        setNotice("저장한 문제의 원본과 검수 내용을 열었습니다.");
+      }
+    } catch (cause) {
+      if (mounted.current && generation === session.current.generation)
+        setError(
+          cause instanceof Error
+            ? cause.message
+            : "저장한 문제를 열지 못했습니다.",
+        );
+    } finally {
+      if (mounted.current && generation === session.current.generation)
+        setBusy(false);
+    }
+  });
+  useEffect(() => {
+    if (!restoreRequest || handledRestore.current === restoreRequest.id || busy)
+      return;
+    handledRestore.current = restoreRequest.id;
+    void reopenRequested(restoreRequest.crops);
+  }, [restoreRequest, busy]);
 
   function loadSample() {
     if (busy) return;
@@ -1401,12 +1734,7 @@ export default function StudioView({
             </button>
             <button
               aria-pressed={step === "review"}
-              disabled={!crops.length || studioAi.running}
-              title={
-                studioAi.running
-                  ? "자동 인식과 도형 생성이 모두 끝나면 넘어갈 수 있습니다."
-                  : undefined
-              }
+              disabled={!crops.length}
               onClick={() => {
                 setStep("review");
                 setInspectorOpen(true);
@@ -2593,6 +2921,9 @@ export default function StudioView({
         </Suspense>
       )}
       <footer className={styles.actionBar} aria-label="문제 제작 주요 작업">
+        <span role="status" aria-label="자료 제작 저장 상태">
+          {sessionStatus}
+        </span>
         <div className={styles.selectionAction}>
           {step === "crop" &&
           currentSource &&

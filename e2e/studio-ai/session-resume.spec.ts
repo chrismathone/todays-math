@@ -1,0 +1,169 @@
+import { expect, test } from "@playwright/test";
+
+test("원본·OCR 수정·검수 위치를 새로고침 뒤 복원하고 새로 시작하면 제거한다", async ({
+  page,
+}) => {
+  let calls = 0;
+  await page.route("**/api/dev/unified/ai", async (route) => {
+    if (route.request().method() === "GET") {
+      await route.fulfill({
+        json: {
+          enabled: true,
+          mode: "subscription-cli",
+          defaultProvider: "codex",
+          providers: [
+            {
+              id: "codex",
+              label: "Codex",
+              status: "ready",
+              detail: "연결됨",
+              image: true,
+            },
+          ],
+        },
+      });
+      return;
+    }
+    calls++;
+    const input = route.request().postDataJSON();
+    await route.fulfill({
+      json: {
+        action: input.action,
+        provider: input.provider,
+        result: {
+          content: "",
+          answer: "",
+          solution: "",
+          warnings: [],
+          problems: [
+            {
+              content: "$2+3$의 값을 구하시오.",
+              answer: "5",
+              questionType: "short-answer",
+              bbox: { left: 80, top: 180, width: 840, height: 145 },
+              figures: [],
+            },
+          ],
+        },
+      },
+    });
+  });
+  await page.goto("/");
+  await page.getByRole("button", { name: "예제로 시작", exact: true }).click();
+  await page
+    .getByRole("button", { name: "페이지 자동 인식", exact: true })
+    .click();
+  await expect(
+    page.getByRole("button", { name: /^OCR · 디지털화 1/ }),
+  ).toBeEnabled();
+  await page.getByRole("button", { name: /^OCR · 디지털화 1/ }).click();
+  const card = page.getByRole("article", {
+    name: "문제 1 인식 결과",
+    exact: true,
+  });
+  await card.getByRole("button", { name: "내용 수정", exact: true }).click();
+  await card
+    .getByRole("textbox", { name: "문제 내용" })
+    .fill("검수한 원문 $2+3$의 값은?");
+  await expect(
+    page.getByRole("status", { name: "자료 제작 저장 상태" }),
+  ).toHaveText("저장됨");
+  await page.reload();
+  await expect(card).toContainText("검수한 원문");
+  await expect(card).toContainText("5");
+  expect(calls).toBe(1);
+  await page.getByRole("button", { name: "새로 시작", exact: true }).click();
+  await page
+    .getByRole("dialog")
+    .getByRole("button", { name: "새로 시작", exact: true })
+    .click();
+  await expect(
+    page.getByRole("status", { name: "자료 제작 저장 상태" }),
+  ).toHaveText("저장됨");
+  await page.reload();
+  await expect(
+    page.getByRole("button", { name: "예제로 시작", exact: true }),
+  ).toBeVisible();
+  await expect(card).toHaveCount(0);
+  expect(calls).toBe(1);
+});
+
+test("파일 원본 Blob을 복원하며 다른 창의 최신 학년을 덮어쓰지 않는다", async ({
+  page,
+  context,
+}) => {
+  await context.route("**/api/dev/unified/ai", (route) =>
+    route.fulfill({
+      json: {
+        enabled: false,
+        mode: "subscription-cli",
+        defaultProvider: "codex",
+        providers: [],
+      },
+    }),
+  );
+  await page.goto("/");
+  await expect(
+    page.getByRole("button", { name: "예제로 시작", exact: true }),
+  ).toBeEnabled();
+  const png = await page.evaluate(() => {
+    const canvas = document.createElement("canvas");
+    canvas.width = 480;
+    canvas.height = 640;
+    const ctx = canvas.getContext("2d")!;
+    ctx.fillStyle = "white";
+    ctx.fillRect(0, 0, 480, 640);
+    ctx.fillStyle = "black";
+    ctx.font = "24px sans-serif";
+    ctx.fillText("SOURCE 123", 40, 80);
+    return canvas.toDataURL("image/png").split(",")[1];
+  });
+  await page.getByLabel("PDF 또는 이미지 파일 가져오기").setInputFiles({
+    name: "saved-source.png",
+    mimeType: "image/png",
+    buffer: Buffer.from(png, "base64"),
+  });
+  const image = page.getByRole("img", {
+    name: "saved-source.png, 1쪽 원본",
+    exact: true,
+  });
+  await expect(image).toBeVisible();
+  await expect(
+    page.getByRole("status", { name: "자료 제작 저장 상태" }),
+  ).toHaveText("저장됨");
+  const second = await context.newPage();
+  await second.goto("/");
+  await expect(
+    second.getByRole("img", {
+      name: "saved-source.png, 1쪽 원본",
+      exact: true,
+    }),
+  ).toBeVisible();
+  await expect(
+    second.getByRole("status", { name: "자료 제작 저장 상태" }),
+  ).toHaveText("저장됨");
+  await page.getByRole("combobox", { name: "시험지 학년" }).selectOption("중2");
+  await expect(
+    page.getByRole("status", { name: "자료 제작 저장 상태" }),
+  ).toHaveText("저장됨");
+  await second
+    .getByRole("combobox", { name: "시험지 학년" })
+    .selectOption("초4");
+  await expect(
+    second.getByRole("status", { name: "자료 제작 저장 상태" }),
+  ).toHaveText("저장 실패");
+  await expect(
+    second.getByText(/다른 창에서 자료 제작 작업이 변경/),
+  ).toBeVisible();
+  second.on("dialog", (dialog) => dialog.accept());
+  await second.reload();
+  await expect(
+    second.getByRole("combobox", { name: "시험지 학년" }),
+  ).toHaveValue("중2");
+  await expect(
+    second.getByRole("img", {
+      name: "saved-source.png, 1쪽 원본",
+      exact: true,
+    }),
+  ).toBeVisible();
+});
