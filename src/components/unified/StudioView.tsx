@@ -9,6 +9,7 @@ import WorkProgress from "./WorkProgress";
 import StudioQueueStatus from "./StudioQueueStatus";
 import StudioProgressStrip from "./StudioProgressStrip";
 import { applyStudioCropEdit } from "./studioCropEdit";
+import { retainStudioFigures } from "./studioFigureReferences";
 import StudioReviewPane from "./StudioReviewPane";
 import StudioPageEmpty from "./StudioPageEmpty";
 import {
@@ -1561,7 +1562,7 @@ export default function StudioView({
                 ...item,
                 rect: problemRect,
                 image,
-                figures,
+                ...retainStudioFigures(item, figures),
                 sourceSize: {
                   width: rendered.canvas.width,
                   height: rendered.canvas.height,
@@ -1617,7 +1618,10 @@ export default function StudioView({
           item.id === crop.id
             ? {
                 ...item,
-                figures: item.figures?.filter((figure) => figure.id !== id),
+                ...retainStudioFigures(
+                  item,
+                  (item.figures ?? []).filter((figure) => figure.id !== id),
+                ),
                 added: false,
                 reviewed: false,
                 revision: (item.revision ?? 0) + 1,
