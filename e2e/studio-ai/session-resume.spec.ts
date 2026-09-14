@@ -67,7 +67,7 @@ test("뒤집힌 페이지는 한 번만 자동 회전하며 재인식 완료 상
     .click();
   await expect.poll(() => ocrCount).toBe(2);
   await expect(
-    page.getByText("인식 1 / 1쪽 완료", { exact: true }),
+    page.getByRole("button", { name: /작업 진행 상세 · 페이지 1\/1/ }),
   ).toBeVisible();
   expect(pageImages).toHaveLength(2);
   expect(pageImages[0]).not.toBe(pageImages[1]);
@@ -80,7 +80,7 @@ test("뒤집힌 페이지는 한 번만 자동 회전하며 재인식 완료 상
     page.getByRole("article", { name: "문제 1 인식 결과", exact: true }),
   ).toContainText("방향을 확인한 문제");
   await expect(
-    page.getByText("인식 1 / 1쪽 완료", { exact: true }),
+    page.getByRole("button", { name: /작업 진행 상세 · 페이지 1\/1/ }),
   ).toBeVisible();
   expect(ocrCount).toBe(2);
   expect(pageImages).toHaveLength(2);
