@@ -124,6 +124,39 @@ const PROBLEM_ENTITY = {
   createdAt: "2026-05-01T09:00:00Z",
   updatedAt: "2026-05-01T09:00:00Z",
 };
+/**
+ * 변형의 원본이 되는 행 — **UUID 여야 한다.** `problemTransformRequestSchema.originProblemId`
+ * 가 uuid 라, `"eligible"` 같은 이름을 쓰면 `transformProblems` 가 **브라우저에서** 파싱에
+ * 실패해 패널이 오류 문구를 띄운다. 그러면 이 시험은 성공 경로가 아니라 그 실패를 재게 된다
+ * (2026-09-14 에 승인 시험이 같은 함정에 빠졌다).
+ */
+const ORIGIN_ID = "00000000-0000-4000-8000-0000000000aa";
+/**
+ * 변형 후보 — `transformCandidateSchema` 가 strictObject 라 **한 키도 빠질 수 없다.**
+ * `verified: true` 라야 채택할 수 있고, 그래야 「채택분 저장」까지 가는 경로가 열린다.
+ */
+const TRANSFORM_CANDIDATE = {
+  content: "변형된 문항",
+  answer: "2",
+  solution: "변형 풀이",
+  verified: true,
+  originalAnswerRecomputed: "1",
+  figureSpec: null,
+  figureSvg: null,
+  figureError: null,
+};
+const transformCalls: { url: string; body: { originProblemId?: string } }[] =
+  [];
+/**
+ * 대역이 돌려줄 목록 행 — **`mount()` 에 넘긴 것과 같게 둔다.**
+ *
+ * 🔴 종전에는 대역이 무엇을 물어도 `initialData` 를 돌려줬다. 그래서 쪽을 넘기거나
+ *    필터를 바꾸는 **순간 화면의 행이 «처음 픽스처»로 갈아 끼워졌고**, 그 뒤의 동작은
+ *    시험이 마운트한 행이 아니라 엉뚱한 행에 걸렸다. 변형에서 그것이 드러났다 —
+ *    `id: "eligible"` 로 요청이 나가 계약(uuid)이 **브라우저에서** 거부했고, 시험은
+ *    성공 경로가 아니라 그 실패를 재고 있었다(2026-09-14).
+ */
+let servedProblems: BankProblem[] = [problem];
 const scrollIntoViewDescriptor = Object.getOwnPropertyDescriptor(
   HTMLElement.prototype,
   "scrollIntoView",
@@ -134,6 +167,8 @@ beforeEach(() => {
   // ⚠️ 이것도 비운다 — 안 비우면 시험들 사이에 호출이 쌓여 개수 단언이 실행 순서에
   //    따라 통과하기도 한다. 우연히 통과한 초록은 그물이 아니다.
   reviewCalls.length = 0;
+  transformCalls.length = 0;
+  servedProblems = [problem];
   Object.defineProperty(HTMLElement.prototype, "scrollIntoView", {
     configurable: true,
     value: vi.fn(),
@@ -156,10 +191,29 @@ beforeEach(() => {
           },
         });
       }
+      // 🔴 변형은 **POST 두 자리**다(후보 뽑기 · 채택 저장). 대역이 이 둘을 안 가르면
+      //    그 요청도 은행 목록을 받아 계약이 거부하고, 시험이 «성공»이 아니라
+      //    «실패 경로»를 재게 된다 — 검수 승격에서 이미 한 번 겪은 자리다.
+      if (init?.method === "POST" && url.includes("/api/problems/transform")) {
+        transformCalls.push({ url, body: JSON.parse(String(init.body)) });
+        // 채택분은 서버가 **pending 으로** 넣는다(요청이 정하지 않는다 — 계약 §채택).
+        if (url.endsWith("/adopt"))
+          return Response.json({
+            data: [{ ...PROBLEM_ENTITY, reviewStatus: "pending" }],
+          });
+        return Response.json({
+          data: [TRANSFORM_CANDIDATE],
+          meta: {
+            figureRequired: false,
+            originProblemCode: PROBLEM_ENTITY.problemCode,
+          },
+        });
+      }
       const params = new URL(url, "http://localhost").searchParams;
       requests.push(params);
       return Response.json({
         ...initialData,
+        problems: servedProblems,
         page: Number(params.get("page")),
       });
     }),
@@ -533,5 +587,75 @@ describe("inspection rows cannot be added", () => {
     expect(remove).toBeEnabled();
     fireEvent.click(remove);
     expect(onToggle).toHaveBeenCalledExactlyOnceWith(blocked);
+  });
+});
+
+/**
+ * 🔴 **상세 모달에서 모든 걸 처리한다** (원장님 2026-09-14 「변형 버튼도 없고 말이야.
+ *    상세 화면에서 모든걸 처리하는게 어떨지」 · 05 §8.6 확정).
+ *
+ * 2026-09-14 까지 통합 화면에는 변형이 **아예 없었다** — 옛 카드(`ProblemCard`)에만
+ * 있었다. 여기서 재는 것은 「단추가 보인다」가 아니라 **「패널이 열리고, 채택이 서버에
+ * 가고, 목록이 다시 온다」**이다. 눌러도 아무 일 없는 단추는 D-30 이 막는 것과 같은
+ * 거짓말이고, 이 화면은 바로 그 실패를 한 번 겪었다.
+ */
+describe("상세 모달이 변형까지 맡는다", () => {
+  const origin: BankProblem = { ...problem, id: ORIGIN_ID };
+
+  it("변형은 목록 카드에 없고 상세 모달에만 있다", () => {
+    mount({ ...initialData, problems: [origin] });
+    const row = screen.getByText(origin.content).closest("article")!;
+    expect(
+      within(row).queryByRole("button", { name: "변형" }),
+    ).not.toBeInTheDocument();
+
+    fireEvent.click(within(row).getByRole("button", { name: "문제 상세" }));
+    expect(
+      within(screen.getByRole("dialog")).getByRole("button", { name: "변형" }),
+    ).toBeVisible();
+  });
+
+  /** 05 §8.6 은 바닥을 「담기(primary, **맨 앞**) · 변형 · 승인·반려」로 적었다. */
+  it("상세 모달 바닥에서 바로 담는다 — 담으려고 카드로 되돌아가지 않는다", () => {
+    const onToggle = mount({ ...initialData, problems: [origin] });
+    fireEvent.click(screen.getByRole("button", { name: "문제 상세" }));
+    fireEvent.click(
+      within(screen.getByRole("dialog")).getByRole("button", {
+        name: "문제 담기",
+      }),
+    );
+    expect(onToggle).toHaveBeenCalledExactlyOnceWith(origin);
+  });
+
+  it("변형 채택분을 저장하면 보고 있던 쪽 그대로 목록을 다시 불러온다", async () => {
+    // 쪽을 넘긴 뒤에도 **같은 행**이 서 있어야 한다 — 아니면 엉뚱한 행에 변형이 걸린다.
+    servedProblems = [origin];
+    mount({ ...initialData, problems: [origin] });
+    fireEvent.click(screen.getByRole("button", { name: "다음 페이지" }));
+    await settled();
+    expect(lastQuery()).toEqual({ page: "2" });
+    const before = requests.length;
+
+    fireEvent.click(screen.getByRole("button", { name: "문제 상세" }));
+    fireEvent.click(
+      within(screen.getByRole("dialog")).getByRole("button", { name: "변형" }),
+    );
+    // 지연 청크(`ProblemTransformPanelLazy`)라 바로 서지 않는다.
+    const panel = await screen.findByRole("region", { name: "변형" });
+    fireEvent.click(within(panel).getByRole("button", { name: "변형하기" }));
+    await within(panel).findByText(/변형 결과/);
+    fireEvent.click(within(panel).getByRole("button", { name: "채택분 저장" }));
+
+    await waitFor(() => expect(requests).toHaveLength(before + 1));
+    // 변형·채택이 **정말 서버에 갔다** — 원본 열쇠까지 같이 잠근다.
+    expect(transformCalls).toHaveLength(2);
+    expect(transformCalls[0]!.body.originProblemId).toBe(ORIGIN_ID);
+    expect(transformCalls[1]!.url).toContain("/transform/adopt");
+    // 🔴 쪽이 1로 튀지 않는다 — `updateFilters` 로 새로고침하면 여기가 "1"이 된다.
+    expect(lastQuery()).toEqual({ page: "2" });
+    // 변형본은 pending 이라 지금 목록에 안 보일 수 있다. 그래서 **말로** 알린다.
+    expect(
+      await screen.findByText(/1건을 변형해 검수 대기로 저장했습니다/),
+    ).toBeVisible();
   });
 });

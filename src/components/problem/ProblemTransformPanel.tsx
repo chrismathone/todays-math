@@ -43,8 +43,25 @@ function isAdoptable(
   return !figureRequired || candidate.figureSvg !== null;
 }
 
+/**
+ * 원본에서 **이 패널이 실제로 쓰는 것** — `id`(변형·채택 요청의 열쇠)와 `answer`
+ * (원본 정답 표시·재현 검사 사유). 그 둘뿐이다.
+ *
+ * 🔴 **`ProblemEntity` 전체를 요구하지 않는다.** 요구하면 계약 전체를 들고 있지 않은
+ *    화면은 이 패널을 아예 못 연다 — 통합 문제은행(`BankView`)의 행은 `BankProblem`
+ *    이라 `unitId`·`createdAt`·`updatedAt` 이 **없다**(통합 API 가 안 뽑는다).
+ *    거기서 타입만 억지로 맞춰 넘기면 **컴파일은 되고 런타임에 계약 파싱이 던지는데**,
+ *    화면의 catch 가 그것을 삼켜 「눌렀는데 아무 일도 없는 단추」가 된다 — D-30 이
+ *    막는 거짓말과 같은 것이고, 2026-09-14 에 승인 시험이 실제로 그 실패를 «성공»으로
+ *    재고 있었다.
+ *
+ *    그래서 서명은 **쓰는 만큼만** 적는다. 그것이 이 패널을 열 수 있는 화면의 조건이다.
+ *    `ProblemCard` 는 그대로 `ProblemEntity` 를 넘긴다(구조적으로 만족한다).
+ */
+export type TransformOrigin = Pick<ProblemEntity, "id" | "answer">;
+
 type Props = {
-  origin: ProblemEntity;
+  origin: TransformOrigin;
   /** 채택분이 저장되면 목록 갱신을 위해 알린다. */
   onAdopted: (created: ProblemEntity[]) => void;
   onClose: () => void;
@@ -96,7 +113,9 @@ export function ProblemTransformPanel({ origin, onAdopted, onClose }: Props) {
       );
     } catch (caught) {
       // 서버가 보낸 사유를 그대로 보여 준다(problemApi.failWithServerReason).
-      setError(caught instanceof Error ? caught.message : "변형에 실패했습니다");
+      setError(
+        caught instanceof Error ? caught.message : "변형에 실패했습니다",
+      );
     } finally {
       setPending(false);
     }
@@ -130,7 +149,9 @@ export function ProblemTransformPanel({ origin, onAdopted, onClose }: Props) {
       });
       onAdopted(body.data);
     } catch (caught) {
-      setError(caught instanceof Error ? caught.message : "채택에 실패했습니다");
+      setError(
+        caught instanceof Error ? caught.message : "채택에 실패했습니다",
+      );
       setPending(false);
     }
   }
@@ -161,7 +182,10 @@ export function ProblemTransformPanel({ origin, onAdopted, onClose }: Props) {
           카드에서 접혀 있어(정답·해설 토글) 결과와 견줄 수 없으므로 그것만 펼쳐 둔다. */}
       <p className="flex flex-wrap items-baseline gap-2">
         <span className={`${MICRO} text-text-2`}>원본 정답</span>
-        <MathText className="text-[12.5px] font-bold text-ink" text={origin.answer} />
+        <MathText
+          className="text-[12.5px] font-bold text-ink"
+          text={origin.answer}
+        />
       </p>
 
       {stage.name === "설정" ? (
@@ -183,9 +207,7 @@ export function ProblemTransformPanel({ origin, onAdopted, onClose }: Props) {
             <FieldSelect
               label="방식"
               value={mode}
-              onChange={(event) =>
-                setMode(event.target.value as TransformMode)
-              }
+              onChange={(event) => setMode(event.target.value as TransformMode)}
             >
               <option value="numbers">숫자만</option>
               <option value="conditions">조건까지</option>
@@ -225,8 +247,8 @@ export function ProblemTransformPanel({ origin, onAdopted, onClose }: Props) {
               role="status"
               className="mt-2 border-l-[3px] border-ink bg-surface p-3 text-[12.5px] text-ink"
             >
-              그림이 있어야 풀리는 문항입니다 — 변형본의 도형을 새로 그렸습니다. 도형까지
-              확인하고 채택해주세요.
+              그림이 있어야 풀리는 문항입니다 — 변형본의 도형을 새로 그렸습니다.
+              도형까지 확인하고 채택해주세요.
             </p>
           ) : null}
           <ol className="mt-2 space-y-2">
@@ -314,7 +336,10 @@ export function ProblemTransformPanel({ origin, onAdopted, onClose }: Props) {
       )}
 
       {error ? (
-        <p role="alert" className="mt-3 text-[12.5px] font-bold text-g-red-text">
+        <p
+          role="alert"
+          className="mt-3 text-[12.5px] font-bold text-g-red-text"
+        >
           {error}
         </p>
       ) : null}
