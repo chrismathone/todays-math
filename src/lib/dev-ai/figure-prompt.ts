@@ -33,13 +33,13 @@ Previous engine validation failed. Correct the spec using the same original figu
   }`;
 }
 
-/** Mathgen review checks adapted to the bridge's single native-image input. */
+/** The native image contains labeled original and actual reconstruction panels. */
 export function buildFigureReviewPrompt(
   request: DevAiRequest,
   spec: DevAiFigureSpec,
   svg: string,
 ): string {
-  return `Compare the attached original scanned printed math figure against the validated deterministic engine spec and actual rendered SVG supplied as data below. You have one source image and structured/vector output, NOT a raster preview of the reconstruction. Do not claim pixel comparison or certainty about final browser font/layout.
+  return `Compare the attached image's LEFT panel (1. ORIGINAL scanned printed math figure) with its RIGHT panel (2. RECONSTRUCTION, actual pixels after deterministic geometry rendering and math label typesetting). Check the rendered image for visibility, clipping, overlapping labels and shape fidelity; spec/SVG data below can corroborate endpoints but the visible reconstruction is authoritative.
 Check printed geometry/curve shape, number of objects, exact printed labels, arrowheads, solid vs dashed lines, angle marks and shading. IGNORE student handwriting and pen/pencil annotations; their removal is required. Do NOT solve the question or correct printed values.
 Explicitly count/check straight non-axis segments, including faint chords and inscribed polygon edges. Before claiming a line is missing, check whether it closely overlaps a curve; overlapping but present segments are NOT missing. Small font/spacing differences are acceptable. Respect the user's intentional correction instructions.
 Report ALL clear mismatches together, identify exact objects and corrections, maximum 6 Korean issues. Output only JSON {"passed":boolean,"issues":["specific Korean correction instructions"]}. If the representation cannot be verified, passed=false and describe the uncertainty. Never output code or a new spec.

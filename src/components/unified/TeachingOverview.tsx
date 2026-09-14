@@ -1,5 +1,7 @@
 "use client";
 
+import { getStudioEndpoints } from "@/lib/studio-ai/endpoints";
+
 import { useEffect, useId, useState } from "react";
 import WorkProgress from "./WorkProgress";
 import s from "./TeachingOverview.module.css";
@@ -89,7 +91,7 @@ export default function TeachingOverview({ onOpen }: { onOpen: () => void }) {
       timeout = window.setTimeout(() => controller?.abort(), 15_000);
       try {
         // This small endpoint resolves the session before reading any class data.
-        const response = await fetch("/api/dev/unified/overview", {
+        const response = await fetch(getStudioEndpoints().overview, {
           cache: "no-store",
           signal: controller.signal,
         });

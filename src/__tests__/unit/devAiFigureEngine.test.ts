@@ -8,9 +8,15 @@ import { parseFigureSpecResult } from "@/lib/dev-ai/figure-spec";
 import { renderFigureSpec } from "@/lib/figure/renderFigureSpec";
 import { validDevAiSvg } from "@/lib/dev-ai/svg";
 import type { DevAiRequest } from "@/lib/dev-ai/contracts";
+import { buildFigureComparisonImage } from "@/lib/dev-ai/figure-comparison";
 
 vi.mock("server-only", () => ({}));
 vi.mock("@/lib/dev-ai/cli", () => ({ runSubscriptionCli: vi.fn() }));
+vi.mock("@/lib/dev-ai/figure-comparison", () => ({
+  buildFigureComparisonImage: vi.fn(
+    async () => "data:image/png;base64,Y29tcGFyaXNvbg==",
+  ),
+}));
 const input: DevAiRequest = {
   action: "figure-redraw",
   provider: "claude",
@@ -37,7 +43,11 @@ describe("real local Python subscription figure pipeline", () => {
       solution: "",
       spec: triangle,
       engine: "todays-math-python",
-      figureReview: { mode: "source-image-and-spec", passed: true, issues: [] },
+      figureReview: {
+        mode: "source-and-rendered-images",
+        passed: true,
+        issues: [],
+      },
     });
     expect(validDevAiSvg(result.svg!)).toBe(true);
     for (const label of ["A", "B", "C", "3"])
@@ -45,15 +55,20 @@ describe("real local Python subscription figure pipeline", () => {
     expect(result.svg).not.toContain("stroke-dasharray");
     expect(input).toEqual(before);
     expect(run).toHaveBeenCalledTimes(2);
-    expect(
-      run.mock.calls.every(
-        ([args]) =>
-          args.provider === "claude" &&
-          args.imageDataUrl === before.imageDataUrl,
-      ),
-    ).toBe(true);
+    expect(run.mock.calls.every(([args]) => args.provider === "claude")).toBe(
+      true,
+    );
+    expect(run.mock.calls[0][0].imageDataUrl).toBe(before.imageDataUrl);
+    expect(run.mock.calls[1][0].imageDataUrl).toBe(
+      "data:image/png;base64,Y29tcGFyaXNvbg==",
+    );
+    expect(buildFigureComparisonImage).toHaveBeenCalledWith(
+      before.imageDataUrl,
+      result.svg,
+      expect.any(AbortSignal),
+    );
     expect(run.mock.calls[0][0].prompt).toContain("Never output SVG");
-    expect(run.mock.calls[1][0].prompt).toContain("NOT a raster preview");
+    expect(run.mock.calls[1][0].prompt).toContain("actual pixels");
   });
 
   it.each([

@@ -2,7 +2,7 @@
  * FigureSpec v2 (AI 가 낸 JSON) → 검증·정제된 SVG. **서버 전용.**
  *
  * 엔진은 Python 이고 이식하지 않는다(09-figure-engine-guide.md §0). `scripts/figure/render_spec.py`
- * 를 한 번 띄워 stdin 으로 스펙을 주고 stdout 으로 JSON 한 줄을 받는다.
+ * 를 로컬에서는 직접 실행하고 Vercel에서는 서명한 내부 Python 함수로 호출한다.
  *
  * ⚠️ **SVG 는 오직 여기서만 만들어진다.** 클라이언트가 마크업을 보내는 경로는 없다 —
  *    미리보기에서 본 그림도 채택할 때 **스펙으로** 되돌아와 서버가 다시 그린다.
@@ -41,7 +41,7 @@ const SCRIPT_PATH = path.join(
 );
 
 export interface RenderFigureOptions {
-  /** Cancel an owned local render when its HTTP request/figure queue is cancelled. */
+  /** Cancel a render or internal HTTP call when its request/queue is cancelled. */
   signal?: AbortSignal;
   /** Redraw must repair an invalid spec rather than discard printed dimensions. */
   strict?: boolean;
@@ -122,6 +122,32 @@ async function renderOnce(
   options: RenderFigureOptions,
 ): Promise<RenderFigureResult> {
   const typeset = options.typeset !== false;
+  let input: string;
+  try {
+    input = JSON.stringify(typeset ? withLabelMetrics(spec) : spec);
+    if (Buffer.byteLength(input) > 64 * 1024)
+      return { ok: false, error: "도형 스펙이 너무 큽니다" };
+    // Delayed server-only import retains direct Node/CLI use of the local engine.
+    if (
+      process.env.STUDIO_ENGINE_URL ||
+      (process.env.VERCEL === "1" && process.env.VERCEL_ENV !== "development")
+    ) {
+      const { requestEngine } = await import("../mathgen-engine/transport");
+      const body = await requestEngine("figure", JSON.parse(input), {
+        signal: options.signal,
+        timeoutMs: RENDER_TIMEOUT_MS,
+      });
+      return renderedResult(body, typeset);
+    }
+  } catch (error) {
+    return {
+      ok: false,
+      error:
+        error instanceof Error && /^(도형|Python 엔진)/.test(error.message)
+          ? error.message
+          : "도형 엔진의 응답을 읽지 못했습니다",
+    };
+  }
 
   return new Promise<RenderFigureResult>((resolve) => {
     if (options.signal?.aborted) {
@@ -137,8 +163,7 @@ async function renderOnce(
       resolve(result);
     };
 
-    // 배포 추적 제외 — spawn 의 동적 경로가 프로젝트 전체를 람다에 싣는다. 람다엔 python 이
-    // 없어 어차피 error 콜백(ok:false)으로 떨어진다 — 도형 생성은 로컬 전용이다 (2026-08-21).
+    // Local/self-hosted execution; Vercel uses the separate Python function above.
     const child = spawn(/*turbopackIgnore: true*/ PYTHON_BIN, [SCRIPT_PATH], {
       // 한글 라벨이 Windows 기본 코드페이지에서 깨진다 — 파이썬 쪽도 UTF-8 로 못 박는다.
       env: { ...process.env, PYTHONIOENCODING: "utf-8" },
@@ -199,31 +224,11 @@ async function renderOnce(
           error: "도형 엔진의 응답을 읽지 못했습니다",
         });
       }
-      const body = parsed as { svg?: unknown; error?: unknown };
-      if (typeof body.svg === "string" && body.svg.length > 0) {
-        // 🔴 라벨을 **MathJax 조각**으로 바꿔 끼운다 (원장님 확정 2026-08-28).
-        //    엔진은 자리를 잡고, 조판은 MathJax 가 한다. 글꼴이 필요 없어
-        //    macOS·리눅스·어느 프린터에서도 같게 나온다.
-        if (!typeset) return finish({ ok: true, svg: body.svg });
-        const laid = substituteLabels(body.svg);
-        if (laid.unresolved.length > 0) {
-          // ⚠️ `kept`(한글처럼 조판할 수 없는 글)는 **여기 안 온다.** 그건 정상이라
-          //    시끄러우면 이 경고 자체가 꺼진다 — 늘 우는 가드는 꺼진다(2026-08-20).
-          //    여기 오는 것은 자리를 못 읽었거나 안전 검사에 걸린 **결함**뿐이다.
-          console.warn(
-            `[도형] 조판이 실패한 라벨 ${laid.unresolved.length}개:`,
-            laid.unresolved.slice(0, 5).join(" · "),
-          );
-        }
-        return finish({ ok: true, svg: laid.svg });
+      try {
+        finish(renderedResult(parsed, typeset));
+      } catch {
+        finish({ ok: false, error: "도형 엔진의 응답을 읽지 못했습니다" });
       }
-      finish({
-        ok: false,
-        error:
-          typeof body.error === "string" && body.error
-            ? body.error
-            : "도형을 그리지 못했습니다",
-      });
     });
 
     child.stdin.on("error", () => {
@@ -232,9 +237,34 @@ async function renderOnce(
     // 엔진이 라벨 상자를 알아야 자리를 잡는다 — MathJax 가 잰 값을 실어 보낸다.
     // 대조용(`typeset:false`)에서는 **치수도 안 싣는다.** 안 그러면 「옛 글자·새 배치」라는
     // 어디에도 없던 제3의 지면이 되어, 견주는 뜻이 사라진다.
-    child.stdin.end(
-      JSON.stringify(typeset ? withLabelMetrics(spec) : spec),
-      "utf-8",
-    );
+    child.stdin.end(input, "utf-8");
   });
+}
+
+/** Both transports retain the same MathJax substitution and engine error semantics. */
+function renderedResult(parsed: unknown, typeset: boolean): RenderFigureResult {
+  const body =
+    parsed && typeof parsed === "object"
+      ? (parsed as { svg?: unknown; error?: unknown })
+      : {};
+  if (typeof body.svg === "string" && body.svg.length > 0) {
+    if (!typeset) return { ok: true, svg: body.svg };
+    // Engine places labels; MathJax supplies the same print glyphs on every host.
+    const laid = substituteLabels(body.svg);
+    if (laid.unresolved.length > 0) {
+      // Kept Korean text is normal; only placement/safety defects are reported.
+      console.warn(
+        `[도형] 조판이 실패한 라벨 ${laid.unresolved.length}개:`,
+        laid.unresolved.slice(0, 5).join(" · "),
+      );
+    }
+    return { ok: true, svg: laid.svg };
+  }
+  return {
+    ok: false,
+    error:
+      typeof body.error === "string" && body.error
+        ? body.error
+        : "도형을 그리지 못했습니다",
+  };
 }

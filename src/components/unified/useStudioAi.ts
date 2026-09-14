@@ -24,6 +24,11 @@ import {
 
 import { StudioAiQueue } from "./studioAiQueue";
 import type { DevAiDetectedGrade } from "@/lib/dev-ai/contracts";
+import {
+  assembleOcrText,
+  validateOcrAgainstTextLayer,
+  type TextLayerWarning,
+} from "@/lib/mathgen/textLayerValidator";
 
 export interface StudioAiPage {
   sourceId: string;
@@ -33,6 +38,7 @@ export interface StudioAiPage {
   imageDataUrl: string;
   grade: string;
   level: StudioCrop["level"];
+  referenceText?: string;
 }
 
 export interface StudioAiPageTask extends Omit<
@@ -41,7 +47,8 @@ export interface StudioAiPageTask extends Omit<
 > {
   load: (
     signal: AbortSignal,
-  ) => Promise<Pick<StudioAiPage, "canvas" | "imageDataUrl">>;
+    extraRotation?: number,
+  ) => Promise<Pick<StudioAiPage, "canvas" | "imageDataUrl" | "referenceText">>;
 }
 
 export interface StudioAiPageJob {
@@ -59,6 +66,9 @@ export interface StudioAiPageJob {
   startedAt?: number;
   error?: string;
   detectedGrade?: DevAiDetectedGrade;
+  rotationAutoRetried?: boolean;
+  textLayerWarning?: TextLayerWarning;
+  warnings?: string[];
 }
 
 export interface StudioAiPageProgress {
@@ -83,6 +93,8 @@ interface CropEntry {
   controller: AbortController;
   promise: Promise<void>;
   skipped?: boolean;
+  upsideDown?: boolean;
+  expected?: StudioCrop;
 }
 // Kept structural while the protocol and Studio helpers roll out together.
 interface CropQuestionType {
@@ -115,6 +127,9 @@ interface PageEntry {
   task?: StudioAiPageTask;
   controller: AbortController;
   promise: Promise<void>;
+  extraRotation?: number;
+  referenceText?: string;
+  ocrWave?: Map<string, StudioCrop>;
 }
 const pageKey = (sourceId: string, page: number) => `${sourceId}:${page}`;
 const cropKey = (cropId: string, action: CropAction) =>
@@ -132,12 +147,14 @@ export function useStudioAi({
   contextKey,
   active,
   onDetected,
+  onRotatePage,
 }: {
   crops: StudioCrop[];
   setCrops: Dispatch<SetStateAction<StudioCrop[]>>;
   contextKey: string;
   active: boolean;
   onDetected: (id: string) => void;
+  onRotatePage?: (sourceId: string, page: number, delta: number) => void;
 }) {
   const ai = useDevAi();
   const [queue] = useState(() => new StudioAiQueue());
@@ -164,9 +181,75 @@ export function useStudioAi({
     { id: string; key: string; signal: AbortSignal }[]
   >([]);
   const pendingFigureCrops = useRef<string[]>([]);
-  const latest = useRef({ crops, contextKey, active, onDetected });
+  const pendingOcrCrops = useRef<{ id: string; signal: AbortSignal }[]>([]);
+  const pendingRotations = useRef<
+    { entry: PageEntry; owned: Map<string, StudioCrop> }[]
+  >([]);
+  const latest = useRef({
+    crops,
+    contextKey,
+    active,
+    onDetected,
+    onRotatePage,
+  });
   useLayoutEffect(() => {
-    latest.current = { crops, contextKey, active, onDetected };
+    latest.current = { crops, contextKey, active, onDetected, onRotatePage };
+    for (const { entry, owned } of pendingRotations.current.splice(0)) {
+      if (
+        entry.controller.signal.aborted ||
+        pages.current.get(entry.job.key) !== entry
+      )
+        continue;
+      if (
+        crops.some(
+          (crop) =>
+            owned.has(crop.id) ||
+            (crop.sourceId === entry.job.sourceId &&
+              crop.page === entry.job.page),
+        )
+      ) {
+        setCrops((previous) => [
+          ...previous,
+          ...[...owned.values()].filter(
+            (crop) => !previous.some((current) => current.id === crop.id),
+          ),
+        ]);
+        entry.job = {
+          ...entry.job,
+          state: "complete",
+          warnings: [
+            "수정한 문항을 보존하기 위해 자동 회전을 중단했습니다. 원본 방향을 확인해 주세요.",
+          ],
+        };
+        entry.task = undefined;
+        publishPages();
+        continue;
+      }
+      try {
+        latest.current.onRotatePage?.(entry.job.sourceId, entry.job.page, 180);
+        entry.extraRotation = (entry.extraRotation ?? 0) + 180;
+        if (entry.task)
+          entry.promise = queue.enqueue(entry.controller.signal, () =>
+            executePage(entry, entry.task!),
+          );
+      } catch (cause) {
+        setCrops((previous) => [
+          ...previous,
+          ...[...owned.values()].filter(
+            (crop) => !previous.some((current) => current.id === crop.id),
+          ),
+        ]);
+        entry.job = {
+          ...entry.job,
+          state: "error",
+          error:
+            cause instanceof Error
+              ? cause.message
+              : "원본 회전에 실패했습니다.",
+        };
+        publishPages();
+      }
+    }
     // Notify only after insertion commits, so a concurrent manual crop cannot
     // leave selection pointing at a duplicate that the state updater rejected.
     for (const detection of pendingDetected.current.splice(0)) {
@@ -180,6 +263,19 @@ export function useStudioAi({
     }
     const figureCrops = pendingFigureCrops.current.splice(0);
     if (figureCrops.length) void figureAi.run(figureCrops);
+    // Crop jobs enter the same FIFO only after insertion commits. Waiting for
+    // children inside a running page slot could deadlock two active pages.
+    const ocrCrops = pendingOcrCrops.current
+      .splice(0)
+      .filter(
+        (job) =>
+          !job.signal.aborted && crops.some((crop) => crop.id === job.id),
+      );
+    if (ocrCrops.length)
+      void processCrops(
+        "ocr",
+        ocrCrops.map((job) => job.id),
+      );
   });
 
   const publishPages = useCallback(() => {
@@ -254,6 +350,19 @@ export function useStudioAi({
     (clear = false) => {
       cancelFigures(undefined, undefined, clear);
       pendingFigureCrops.current = [];
+      pendingOcrCrops.current = [];
+      if (!clear && pendingRotations.current.length) {
+        const retained = pendingRotations.current.flatMap(({ owned }) => [
+          ...owned.values(),
+        ]);
+        setCrops((previous) => [
+          ...previous,
+          ...retained.filter(
+            (crop) => !previous.some((current) => current.id === crop.id),
+          ),
+        ]);
+      }
+      pendingRotations.current = [];
       let cancelled = false;
       for (const entry of pages.current.values()) {
         if (pageBusy(entry.job)) {
@@ -271,7 +380,7 @@ export function useStudioAi({
           "AI 작업을 취소했습니다. 완료된 결과와 직접 수정한 내용은 유지됩니다.",
         );
     },
-    [cancelCrop, publishPages, cancelFigures],
+    [cancelCrop, publishPages, cancelFigures, setCrops],
   );
 
   // A provider-wide cancel reaches queued owners before aborting requests.
@@ -312,7 +421,8 @@ export function useStudioAi({
     }
     // Removal cancels owners; selection, source navigation and tabs do not.
     if (changed) publishCrops();
-  }, [crops, publishCrops]);
+    settlePageOcr();
+  });
 
   useEffect(() => {
     mounted.current = true;
@@ -364,6 +474,134 @@ export function useStudioAi({
   );
   const error = cropJobs.find((job) => job.state === "error")?.error ?? "";
 
+  // Crop requests release their FIFO slots before this commit-time aggregation.
+  // The source uses strict majority orientation votes, excluding failed crops.
+  function settlePageOcr() {
+    for (const entry of pages.current.values()) {
+      const owned = entry.ocrWave;
+      if (!owned || entry.controller.signal.aborted || !pageBusy(entry.job))
+        continue;
+      const current = latest.current.crops.filter(
+        (crop) =>
+          crop.sourceId === entry.job.sourceId && crop.page === entry.job.page,
+      );
+      const jobs = [...owned.keys()].flatMap((id) => {
+        const job = cropEntries.current.get(cropKey(id, "ocr"));
+        return job ? [job] : [];
+      });
+      if (
+        jobs.some((item) => cropBusy(item.job)) ||
+        [...owned.keys()].some(
+          (id) =>
+            current.some((crop) => crop.id === id) &&
+            !cropEntries.current.has(cropKey(id, "ocr")),
+        )
+      )
+        continue;
+      entry.ocrWave = undefined;
+      const votes = jobs.flatMap((item) =>
+        item.job.state === "complete" && typeof item.upsideDown === "boolean"
+          ? [item.upsideDown]
+          : [],
+      );
+      const upsideDown =
+        votes.length > 0 && votes.filter(Boolean).length * 2 > votes.length;
+      const expected = new Map(
+        [...owned].map(([id, original]) => [
+          id,
+          cropEntries.current.get(cropKey(id, "ocr"))?.expected ?? original,
+        ]),
+      );
+      const unchanged = (items: StudioCrop[]) =>
+        items.filter(
+          (crop) =>
+            crop.sourceId === entry.job.sourceId &&
+            crop.page === entry.job.page,
+        ).length === expected.size &&
+        [...expected].every(([id, snapshot]) =>
+          cropSnapshotMatches(
+            items.find((crop) => crop.id === id),
+            snapshot,
+          ),
+        );
+      const cancelled = jobs.some((item) => item.job.state === "cancelled");
+      if (
+        upsideDown &&
+        !entry.job.rotationAutoRetried &&
+        entry.task &&
+        latest.current.onRotatePage &&
+        !cancelled &&
+        unchanged(latest.current.crops)
+      ) {
+        entry.job = {
+          ...entry.job,
+          state: "queued",
+          rotationAutoRetried: true,
+          textLayerWarning: undefined,
+        };
+        for (const [key, cropEntry] of cropEntries.current) {
+          if (!owned.has(cropEntry.job.cropId)) continue;
+          cropEntry.controller.abort();
+          cropEntries.current.delete(key);
+          cropWave.current.keys.delete(key);
+        }
+        for (const id of owned.keys()) cancelFigures(id);
+        pendingCropApplications.current =
+          pendingCropApplications.current.filter(
+            (item) => !owned.has(item.expected.id),
+          );
+        pendingFigureCrops.current = pendingFigureCrops.current.filter(
+          (id) => !owned.has(id),
+        );
+        pendingRotations.current.push({ entry, owned: expected });
+        setCrops((previous) =>
+          unchanged(previous) && !entry.controller.signal.aborted
+            ? previous.filter((crop) => !owned.has(crop.id))
+            : previous,
+        );
+        publishCrops();
+        publishPages();
+        continue;
+      }
+      const textLayerWarning =
+        validateOcrAgainstTextLayer(
+          assembleOcrText(
+            current.map((crop) => ({
+              text: crop.content,
+              answer: crop.answer,
+            })),
+          ),
+          entry.referenceText ?? "",
+        ) ?? undefined;
+      entry.job = {
+        ...entry.job,
+        state: "complete",
+        textLayerWarning,
+        ...(upsideDown
+          ? {
+              warnings: [
+                entry.job.rotationAutoRetried
+                  ? "자동 회전 후에도 원본 방향 확인이 필요합니다. 추가 자동 인식은 하지 않습니다."
+                  : latest.current.onRotatePage
+                    ? "수정한 문항을 보존하기 위해 자동 회전을 하지 않았습니다. 원본 방향을 확인해 주세요."
+                    : "원본이 180도 뒤집혀 있습니다. 원본 방향을 확인해 주세요.",
+              ],
+            }
+          : {}),
+      };
+      entry.task = undefined;
+      pendingFigureCrops.current.push(
+        ...jobs
+          .filter(
+            (item) =>
+              item.job.state === "complete" && !item.expected?.ocr?.bodyMissing,
+          )
+          .map((item) => item.job.cropId),
+      );
+      publishPages();
+    }
+  }
+
   async function executePage(entry: PageEntry, task: StudioAiPageTask) {
     const { controller } = entry;
     const stale = () =>
@@ -377,9 +615,12 @@ export function useStudioAi({
     };
     try {
       update({ state: "rendering", startedAt: Date.now() });
-      const loaded = await task.load(controller.signal);
+      const loaded = entry.extraRotation
+        ? await task.load(controller.signal, entry.extraRotation)
+        : await task.load(controller.signal);
       if (stale()) return;
       const page = { ...task, ...loaded };
+      entry.referenceText = page.referenceText;
       update({ state: "running" });
       const response = await ai.run(
         {
@@ -438,6 +679,22 @@ export function useStudioAi({
             },
             reviewed: false,
             content: item.content,
+            ...(item.ocr
+              ? { ocr: item.ocr }
+              : item.number
+                ? {
+                    ocr: {
+                      number: item.number,
+                      blocks: [],
+                      choiceGroups: [],
+                      subQuestions: [],
+                      confidence: "low" as const,
+                      choicesLayout: "auto" as const,
+                      bodyMissing: true,
+                      choicesMissing: false,
+                    },
+                  }
+                : {}),
             answer: item.answer,
             ...questionTypePatch(item as CropQuestionType),
             solution: "",
@@ -464,7 +721,17 @@ export function useStudioAi({
           key: entry.job.key,
           signal: controller.signal,
         });
-      pendingFigureCrops.current.push(...detected.map((crop) => crop.id));
+      if (response.result.detectionOnly) {
+        entry.ocrWave = new Map(detected.map((crop) => [crop.id, crop]));
+        pendingOcrCrops.current.push(
+          ...detected.map((crop) => ({
+            id: crop.id,
+            signal: controller.signal,
+          })),
+        );
+      } else {
+        pendingFigureCrops.current.push(...detected.map((crop) => crop.id));
+      }
       setCrops((previous) => {
         if (stale()) return previous;
         const additions = detected.filter(
@@ -490,8 +757,22 @@ export function useStudioAi({
       });
       // Retain loaders only for retryable outcomes; completed eager single-page
       // requests must not keep their full canvas alive in queue history.
-      entry.task = undefined;
-      update({ state: "complete" });
+      if (!response.result.detectionOnly) {
+        entry.task = undefined;
+        update({
+          state: "complete",
+          textLayerWarning:
+            validateOcrAgainstTextLayer(
+              assembleOcrText(
+                detected.map((crop) => ({
+                  text: crop.content,
+                  answer: crop.answer,
+                })),
+              ),
+              page.referenceText ?? "",
+            ) ?? undefined,
+        });
+      }
     } catch (cause) {
       if (stale()) return;
       if (cause instanceof Error && cause.name === "AbortError")
@@ -525,8 +806,14 @@ export function useStudioAi({
         sourceId: snapshot.sourceId,
         page: snapshot.page,
         state: "queued",
+        ...(previous?.job.rotationAutoRetried
+          ? { rotationAutoRetried: true }
+          : {}),
       },
       task: snapshot,
+      ...(previous?.task === task
+        ? { extraRotation: previous.extraRotation }
+        : {}),
       controller: new AbortController(),
       promise: Promise.resolve(),
     };
@@ -586,6 +873,7 @@ export function useStudioAi({
           action: job.action,
           imageDataUrl: snapshot.image,
           content: snapshot.content,
+          ...(snapshot.ocr ? { ocr: snapshot.ocr } : {}),
           grade: snapshot.grade,
           sourceName: snapshot.sourceLabel,
         },
@@ -650,6 +938,12 @@ export function useStudioAi({
           entry.job.action === "ocr"
             ? {
                 content: result.content,
+                ocr: result.ocr
+                  ? {
+                      ...result.ocr,
+                      number: snapshot.ocr?.number ?? result.ocr.number,
+                    }
+                  : undefined,
                 ...(!snapshot.modeManual ? { mode: "text" as const } : {}),
                 ...questionTypePatch(result as CropQuestionType),
                 answer: result.answer,
@@ -685,6 +979,8 @@ export function useStudioAi({
           };
       }
       const changed =
+        (job.action === "ocr" &&
+          JSON.stringify(patch.ocr) !== JSON.stringify(snapshot.ocr)) ||
         (patch.mode !== undefined && patch.mode !== snapshot.mode) ||
         (patch.questionType !== undefined &&
           patch.questionType !== (snapshot as CropQuestionType).questionType) ||
@@ -709,7 +1005,17 @@ export function useStudioAi({
         entry,
         expected: { ...snapshot, ...appliedPatch },
       });
-      if (job.action === "ocr" || job.action === "figures")
+      entry.expected = { ...snapshot, ...appliedPatch };
+      if (job.action === "ocr") entry.upsideDown = result.upsideDown;
+      const pageOwner = pages.current.get(
+        pageKey(snapshot.sourceId, snapshot.page),
+      );
+      if (
+        (job.action === "ocr" &&
+          !patch.ocr?.bodyMissing &&
+          !pageOwner?.ocrWave?.has(snapshot.id)) ||
+        job.action === "figures"
+      )
         pendingFigureCrops.current.push(snapshot.id);
       setCrops((previous) =>
         stale()
@@ -822,6 +1128,34 @@ export function useStudioAi({
     ]);
   }
 
+  const restorePageJobs = useCallback(
+    (completed: StudioAiPageJob[]) => {
+      let changed = false;
+      for (const job of completed) {
+        if (
+          !job ||
+          (job.state !== "complete" && job.state !== "empty") ||
+          typeof job.sourceId !== "string" ||
+          !job.sourceId ||
+          !Number.isInteger(job.page) ||
+          job.page < 1
+        )
+          continue;
+        const key = pageKey(job.sourceId, job.page);
+        // Never overwrite a live owner or enqueue work while hydrating a session.
+        if (pages.current.has(key)) continue;
+        pages.current.set(key, {
+          job: { ...job, key },
+          controller: new AbortController(),
+          promise: Promise.resolve(),
+        });
+        changed = true;
+      }
+      if (changed) publishPages();
+    },
+    [publishPages],
+  );
+
   return {
     ai,
     available,
@@ -831,6 +1165,15 @@ export function useStudioAi({
     cropJobs,
     figureAi,
     pageJobs,
+    forgetPage: (sourceId: string, page: number) => {
+      const key = pageKey(sourceId, page);
+      const entry = pages.current.get(key);
+      if (entry && pageBusy(entry.job)) return false;
+      pages.current.delete(key);
+      publishPages();
+      return true;
+    },
+    restorePageJobs,
     pageProgress,
     message,
     error,
@@ -854,7 +1197,26 @@ export function useStudioAi({
     recognizePage: (page: StudioAiPage) => {
       const { canvas, imageDataUrl, ...metadata } = page;
       return enqueuePage(
-        { ...metadata, load: async () => ({ canvas, imageDataUrl }) },
+        {
+          ...metadata,
+          load: async (signal, extraRotation = 0) => {
+            if (signal.aborted)
+              throw new DOMException("cancelled", "AbortError");
+            if (!extraRotation) return { canvas, imageDataUrl };
+            const rotated = document.createElement("canvas");
+            rotated.width = canvas.width;
+            rotated.height = canvas.height;
+            const context = rotated.getContext("2d");
+            if (!context) throw new Error("원본을 회전할 수 없습니다.");
+            context.translate(rotated.width / 2, rotated.height / 2);
+            context.rotate((extraRotation * Math.PI) / 180);
+            context.drawImage(canvas, -canvas.width / 2, -canvas.height / 2);
+            return {
+              canvas: rotated,
+              imageDataUrl: rotated.toDataURL("image/png"),
+            };
+          },
+        },
         true,
       );
     },

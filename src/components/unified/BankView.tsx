@@ -1,5 +1,7 @@
 "use client";
 
+import { getStudioEndpoints } from "@/lib/studio-ai/endpoints";
+
 import WorkspacePageHeader from "./WorkspacePageHeader";
 import WorkProgress from "./WorkProgress";
 import { useEffect, useId, useMemo, useRef, useState } from "react";
@@ -480,7 +482,7 @@ export default function BankView({
 
     async function loadProblems() {
       try {
-        const result = await fetch(`/api/dev/unified/problems?${params}`, {
+        const result = await fetch(`${getStudioEndpoints().problems}?${params}`, {
           signal: controller.signal,
         });
         const payload: BankData = await result.json();

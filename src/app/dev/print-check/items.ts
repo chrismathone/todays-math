@@ -81,6 +81,24 @@ export const SPECIMEN_ITEM_IDS = [
 
 export const ITEMS: PrintCheckItem[] = [
   {
+    id: "studio-native-hwpx-pdf",
+    title: "가져온 문제의 원본 구조와 HWPX·PDF 출력",
+    changed:
+      "typed OCR의 표·번호·배점·보기 열 수·소문항·그림 위치를 학습지에 보존하고, 현재 미리보기에서 편집 가능한 HWPX와 서버 PDF를 내려받는다.",
+    look: "제안: 브라우저 인쇄·PDF·HWPX를 같은 100% A4 배율로 비교한다. 표와 그림이 빠지거나 겹치지 않고, 배점은 발문 끝에 한 번, 부정어는 굵은 밑줄로 나오며, 소문항 풀이 여백과 보기 열 수가 미리보기와 같아야 한다.",
+    lookFromSource: false,
+    evidence: [
+      "src/components/unified/NativeProblem.tsx",
+      "src/lib/export/hwpxLayout.ts",
+      "src/lib/export/pdfServer.ts",
+      "e2e/worksheet-figure/exports.spec.ts",
+    ],
+    status: "대기",
+    needs:
+      "직접 가져온 문제에 표·선택지별 그림·3.0점 배점·소문항을 포함한 학습지",
+    changedOn: "2026-09-14",
+  },
+  {
     id: "figure-raster-300dpi",
     title: "그림 1,344장을 **300dpi 재크롭본**으로 바꿨다",
     changed:

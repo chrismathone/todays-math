@@ -38,6 +38,8 @@ import ReactMarkdown, { type Components } from "react-markdown";
 import type { PluggableList } from "unified";
 import rehypeKatex from "rehype-katex";
 import remarkMath from "remark-math";
+import { remarkNativeContent } from "./remarkNativeContent";
+import { figureWidthStyle } from "@/lib/figurePrintSize";
 
 import { applyHardBreaks } from "@/lib/math/hardBreaks";
 import { UI_KATEX_OPTIONS } from "@/lib/math/katexRender";
@@ -51,6 +53,9 @@ export interface MarkdownRendererProps {
   className?: string;
   /** 인라인 문맥이면 문단 대신 span 으로 렌더한다 (인쇄 정답란 등). */
   inline?: boolean;
+  /** Numbered source figures are replaced in-place, including inside choices. */
+  nativeFigures?: ReadonlyArray<{ src: string; sourceMm?: number }>;
+  emphasizeNegation?: boolean;
 }
 
 /** 렌더마다 새 배열을 넘기면 react-markdown 이 프로세서를 새로 조립한다. */
@@ -270,8 +275,35 @@ export const MarkdownRenderer = memo(function MarkdownRenderer({
   content,
   className = "",
   inline = false,
+  nativeFigures,
+  emphasizeNegation = false,
 }: MarkdownRendererProps) {
   const processed = preprocess(content ?? "");
+  const components = inline ? INLINE_COMPONENTS : BLOCK_COMPONENTS;
+  const nativeComponents: Components = nativeFigures
+    ? {
+        ...components,
+        img: ({ src, alt }) => {
+          const index =
+            typeof src === "string"
+              ? /^#mathgen-figure-(\d+)$/.exec(src)
+              : null;
+          const figure = index
+            ? nativeFigures[Number(index[1]) - 1]
+            : undefined;
+          // Data URLs stay image resources; never insert editable SVG markup as HTML.
+          return (
+            // eslint-disable-next-line @next/next/no-img-element
+            <img
+              src={figure?.src ?? src}
+              alt={alt ?? "문항 그림"}
+              className="mx-auto block h-auto max-w-full mix-blend-multiply"
+              style={figureWidthStyle(figure?.sourceMm)}
+            />
+          );
+        },
+      }
+    : components;
 
   return (
     <div
@@ -279,9 +311,22 @@ export const MarkdownRenderer = memo(function MarkdownRenderer({
       style={inline ? INLINE_STYLE : undefined}
     >
       <ReactMarkdown
-        remarkPlugins={REMARK_PLUGINS}
+        remarkPlugins={
+          nativeFigures || emphasizeNegation
+            ? [
+                ...REMARK_PLUGINS,
+                [
+                  remarkNativeContent,
+                  {
+                    figureCount: nativeFigures?.length ?? 0,
+                    emphasizeNegation,
+                  },
+                ],
+              ]
+            : REMARK_PLUGINS
+        }
         rehypePlugins={REHYPE_PLUGINS}
-        components={inline ? INLINE_COMPONENTS : BLOCK_COMPONENTS}
+        components={nativeComponents}
       >
         {processed}
       </ReactMarkdown>

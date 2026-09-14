@@ -1,0 +1,114 @@
+// @vitest-environment node
+import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
+vi.mock("server-only", () => ({}));
+vi.mock("@/lib/session", () => ({ getSessionUser: vi.fn() }));
+vi.mock("@/lib/auth", () => ({ auth: vi.fn() }));
+vi.mock("@/lib/unifiedPreview", () => ({
+  loadUnifiedBank: vi.fn(),
+  UnifiedBankQueryError: class extends Error {},
+}));
+vi.mock("@/lib/db", () => ({
+  db: {
+    class: { count: vi.fn(), findMany: vi.fn() },
+    student: { count: vi.fn() },
+    unit: { findMany: vi.fn() },
+  },
+}));
+import { getSessionUser } from "@/lib/session";
+import { auth } from "@/lib/auth";
+import { db } from "@/lib/db";
+import { loadUnifiedBank } from "@/lib/unifiedPreview";
+import { GET as bank } from "@/app/api/studio/problems/route";
+import { GET as overview } from "@/app/api/studio/overview/route";
+import { GET as teaching } from "@/app/api/studio/teaching/route";
+import { GET as worker } from "@/app/api/studio/pdf-worker/route";
+import { GET as asset } from "@/app/api/studio/pdf-assets/[kind]/[filename]/route";
+const request = (path: string) =>
+  new Request(`https://math.example/api/studio/${path}`);
+beforeEach(() => {
+  vi.clearAllMocks();
+  vi.stubEnv("NODE_ENV", "production");
+  vi.mocked(getSessionUser).mockResolvedValue({
+    id: "owner-17",
+    name: "Teacher",
+    email: "teacher@example.test",
+  });
+  vi.mocked(auth as () => Promise<unknown>).mockResolvedValue({
+    user: { id: "owner-17", role: "director" },
+  });
+  vi.mocked(db.class.count).mockResolvedValue(2);
+  vi.mocked(db.student.count).mockResolvedValue(3);
+  vi.mocked(db.class.findMany).mockResolvedValue([]);
+  vi.mocked(db.unit.findMany).mockResolvedValue([]);
+  vi.mocked(loadUnifiedBank).mockResolvedValue({
+    problems: [],
+    total: 0,
+    page: 1,
+    pageSize: 12,
+    grades: [],
+    chapters: [],
+  });
+});
+afterEach(() => vi.unstubAllEnvs());
+describe("production workspace resources", () => {
+  it("guards bank, teaching, overview and PDF resources before loading anything", async () => {
+    vi.mocked(getSessionUser).mockResolvedValue(null);
+    for (const get of [bank, overview, teaching, worker])
+      expect((await get(request("test"))).status).toBe(401);
+    expect(
+      (
+        await asset(request("pdf-assets/wasm/jbig2.wasm"), {
+          params: Promise.resolve({ kind: "wasm", filename: "jbig2.wasm" }),
+        })
+      ).status,
+    ).toBe(401);
+    expect(loadUnifiedBank).not.toHaveBeenCalled();
+    expect(db.class.count).not.toHaveBeenCalled();
+    expect(db.unit.findMany).not.toHaveBeenCalled();
+  });
+  it("preserves bank filters and scopes teaching overview to the authenticated owner", async () => {
+    expect((await bank(request("problems?grade=7&page=2"))).status).toBe(200);
+    expect(vi.mocked(loadUnifiedBank).mock.calls[0][0]?.get("page")).toBe("2");
+    expect((await overview(request("overview"))).status).toBe(200);
+    expect(db.class.count).toHaveBeenCalledWith({
+      where: { userId: "owner-17" },
+    });
+    expect(db.student.count).toHaveBeenCalledWith({
+      where: { class: { userId: "owner-17" } },
+    });
+    expect(db.class.findMany).toHaveBeenCalledWith(
+      expect.objectContaining({ where: { userId: "owner-17" }, take: 3 }),
+    );
+    expect((await teaching(request("teaching"))).status).toBe(200);
+  });
+  it("serves the installed PDF worker and actual WASM bytes in production", async () => {
+    const script = await worker(request("pdf-worker"));
+    expect(script.status).toBe(200);
+    expect(script.headers.get("content-type")).toContain("javascript");
+    expect((await script.text()).length).toBeGreaterThan(10000);
+    const wasm = await asset(request("pdf-assets/wasm/jbig2.wasm"), {
+      params: Promise.resolve({ kind: "wasm", filename: "jbig2.wasm" }),
+    });
+    expect(wasm.status).toBe(200);
+    expect(wasm.headers.get("content-type")).toBe("application/wasm");
+    expect(wasm.headers.get("cache-control")).toContain("no-store");
+    expect([...new Uint8Array(await wasm.arrayBuffer()).slice(0, 4)]).toEqual([
+      0, 97, 115, 109,
+    ]);
+  });
+  it.each([
+    "../package.json",
+    "C:secret.wasm",
+    "jbig2.wasm%00",
+    "jbig2.wasm/other",
+    "jbig2.wasm\n",
+  ])("rejects invalid PDF asset name %s", async (filename) => {
+    expect(
+      (
+        await asset(request("pdf-assets/wasm/test"), {
+          params: Promise.resolve({ kind: "wasm", filename }),
+        })
+      ).status,
+    ).toBe(404);
+  });
+});

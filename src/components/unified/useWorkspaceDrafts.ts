@@ -4,8 +4,24 @@ import { useEffect, useState, useSyncExternalStore } from "react";
 import { createWorkspaceDraftStore } from "./draftStore";
 
 /** Hydration-gated browser drafts shared by all views of one workspace. */
-export function useWorkspaceDrafts() {
-  const [store] = useState(createWorkspaceDraftStore);
+export function useWorkspaceDrafts(storageScope?: string) {
+  const [store] = useState(() =>
+    createWorkspaceDraftStore(
+      storageScope
+        ? () => ({
+            getItem: (key: string) =>
+              window.localStorage.getItem(
+                `${key}:${encodeURIComponent(storageScope)}`,
+              ),
+            setItem: (key: string, value: string) =>
+              window.localStorage.setItem(
+                `${key}:${encodeURIComponent(storageScope)}`,
+                value,
+              ),
+          })
+        : undefined,
+    ),
+  );
   const snapshot = useSyncExternalStore(
     store.subscribe,
     store.getSnapshot,

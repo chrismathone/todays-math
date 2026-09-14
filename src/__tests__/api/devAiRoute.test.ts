@@ -1,5 +1,10 @@
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 vi.mock("server-only", () => ({}));
+vi.mock("@/lib/dev-ai/figure-comparison", () => ({
+  buildFigureComparisonImage: vi.fn(
+    async () => "data:image/png;base64,Y29tcGFyaXNvbg==",
+  ),
+}));
 vi.mock("@/lib/dev-ai/cli", () => ({
   getDevAiProviderStatuses: vi.fn(),
   runSubscriptionCli: vi.fn(),

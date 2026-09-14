@@ -1,5 +1,7 @@
 "use client";
 
+import { getStudioEndpoints } from "@/lib/studio-ai/endpoints";
+
 import WorkspacePageHeader from "./WorkspacePageHeader";
 import dynamic from "next/dynamic";
 import { signOut } from "next-auth/react";
@@ -59,7 +61,7 @@ export default function TeachingView() {
     try {
       // This endpoint checks the server session before reading any curriculum data.
       // Child components cannot request classes/students until this succeeds.
-      const response = await fetch("/api/dev/unified/teaching", {
+      const response = await fetch(getStudioEndpoints().teaching, {
         cache: "no-store",
       });
       if (version !== requestVersion.current) return;

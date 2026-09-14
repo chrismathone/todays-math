@@ -9,6 +9,9 @@ import {
 import type { StudioProblem } from "../../src/components/unified/types";
 import "../../src/app/globals.css";
 import "katex/dist/katex.min.css";
+import { collectHwpxLayout } from "../../src/lib/export/hwpxLayout";
+
+Object.assign(window, { collectHwpxLayout });
 
 const noop = () => {};
 const svg =
@@ -30,7 +33,65 @@ const problems: StudioProblem[] = Array.from({ length: 8 }, (_, index) => ({
 }));
 function Harness() {
   const params = new URLSearchParams(location.search);
-  const [selected, setSelected] = useState(problems);
+  const [selected, setSelected] = useState(() =>
+    params.has("native")
+      ? problems.map((problem, index) =>
+          index
+            ? problem
+            : ({
+                ...problem,
+                content: "4. 옳지 않은 것은? [그림1]",
+                figureUrls: [
+                  "data:image/svg+xml," +
+                    encodeURIComponent(
+                      '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 50"><path d="M5 45L50 5L95 45Z" fill="none" stroke="black"/><text x="45" y="47" font-size="12">A</text></svg>',
+                    ),
+                  "data:image/svg+xml," +
+                    encodeURIComponent(
+                      '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 50"><circle cx="50" cy="25" r="20" fill="none" stroke="black"/></svg>',
+                    ),
+                ],
+                figureDims: [100, 50, 100, 50],
+                figureSourceMm: [25, 20],
+                ocr: {
+                  number: 4,
+                  blocks: [
+                    {
+                      type: "text",
+                      value: "4. 옳지 않은 것은? [그림1]",
+                      rows: [],
+                    },
+                    {
+                      type: "table",
+                      value: "",
+                      rows: [
+                        ["항목", "값"],
+                        ["A", "\\frac{9}{4}"],
+                      ],
+                    },
+                  ],
+                  choiceGroups: [1, 2, 3, 4, 5].map((number) => ({
+                    number,
+                    contents: [
+                      {
+                        type: "text",
+                        value: number === 2 ? "[그림2]" : String(number),
+                        rows: [],
+                      },
+                    ],
+                  })),
+                  subQuestions: [],
+                  confidence: "high",
+                  score: 3,
+                  printedScore: "3.0",
+                  choicesLayout: "3x2",
+                  bodyMissing: false,
+                  choicesMissing: false,
+                },
+              } as StudioProblem),
+        )
+      : problems,
+  );
   const [review, setReview] = useState(false);
   const [options, setOptions] = useState({
     ...DEFAULT_PRINT_OPTIONS,

@@ -202,7 +202,7 @@ describe("Studio AI review controls", () => {
     );
     expect(screen.queryByRole("alert")).not.toBeInTheDocument();
   });
-  it("locks both doors to OCR while a crop job is still running", async () => {
+  it("keeps review navigation available while guarding the next action during a crop job", async () => {
     await open();
     fireEvent.click(screen.getByRole("button", { name: "페이지 자동 인식" }));
     await waitFor(() =>
@@ -218,7 +218,7 @@ describe("Studio AI review controls", () => {
     // 쪽이 아니라 문항 작업을 돌린다. 옛 조건(recognizingPage)은 쪽만 보므로 이 자리라야
     // 관문을 빼면 시험이 빨개진다 — 쪽 작업으로 쓴 첫 판은 변이 시험에서 그대로 통과했다.
     fireEvent.click(screen.getByRole("button", { name: "그림 다시 찾기" }));
-    // 자른 문제가 이미 있는데도, 아직 도는 작업이 있으면 두 문 모두 잠겨야 한다.
+    // 다음 일괄 실행은 기다리되 기존 결과를 보는 검수 탭은 열어 둔다.
     await waitFor(() =>
       expect(
         screen.getByRole("button", { name: "다음: OCR · 디지털화" }),
@@ -226,13 +226,13 @@ describe("Studio AI review controls", () => {
     );
     expect(
       screen.getByRole("button", { name: /^OCR · 디지털화 \d+$/ }),
-    ).toBeDisabled();
+    ).toBeEnabled();
     expect(
       within(screen.getByRole("navigation", { name: "제작 단계" })).getByRole(
         "button",
         { name: /OCR · 디지털화/ },
       ),
-    ).toBeDisabled();
+    ).toBeEnabled();
     expect(screen.getByText(/남음$/)).toBeInTheDocument();
     await act(async () => {
       release?.();

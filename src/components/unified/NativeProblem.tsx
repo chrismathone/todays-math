@@ -1,0 +1,206 @@
+/* eslint-disable @next/next/no-img-element -- source-local figure resources */
+import { Fragment, type ReactNode } from "react";
+import { MarkdownRenderer } from "@/components/math/MarkdownRenderer";
+import { blocksToMarkdown } from "@/lib/mathgen/blocksToMarkdown";
+import type { ContentBlock, ChoiceGroup } from "@/lib/mathgen/contracts";
+import { parseProblemContent } from "@/lib/problem/parseProblemContent";
+import { CHOICE_MARKS } from "@/lib/math/circledNumber";
+import { fitsTwoColumns } from "@/lib/math/displayWidth";
+import { figureWidthStyle, parseFigureDimensions } from "@/lib/figurePrintSize";
+import { displayFractions } from "./fractionDisplay";
+import {
+  repositionScore,
+  stripLeadingProblemNumber,
+} from "./nativeProblemLayout";
+import type { StudioProblem } from "./types";
+
+/** Typed source content shares the existing math renderer and target physical sizing policy. */
+export default function NativeProblem({
+  problem,
+  print,
+}: {
+  problem: StudioProblem;
+  print: boolean;
+}) {
+  const data = problem.ocr;
+  const placements = parseFigureDimensions(
+    problem.figureUrls.length,
+    problem.figureDims,
+    problem.figureSourceMm,
+    problem.figureUrls,
+  );
+  const figures = problem.figureUrls.map((src, index) => ({
+    src,
+    sourceMm: placements[index]?.sourceMm,
+  }));
+  const used = new Set<number>();
+  const markFigures = (text: string) => {
+    for (const match of text.matchAll(/\[그림\s*(\d+)\]/g))
+      used.add(Number(match[1]) - 1);
+    return displayFractions(text, problem.grade, problem.content);
+  };
+  const markdown = (text: string, emphasizeNegation = false) => (
+    <MarkdownRenderer
+      content={markFigures(text)}
+      nativeFigures={figures}
+      emphasizeNegation={emphasizeNegation}
+    />
+  );
+
+  const renderBlocks = (
+    blocks: ContentBlock[],
+    transform: (text: string) => string = (text) => text,
+    emphasize = false,
+  ): ReactNode => {
+    const tables: string[][][] = [];
+    // Keep source normalization across text/equation boundaries; native tables remain real cells.
+    const serialized = blocksToMarkdown(
+      blocks.map((block) => {
+        if (block.type !== "table") return block;
+        tables.push(block.rows);
+        return {
+          type: "text",
+          value: `\n\n[원본표${tables.length}]\n\n`,
+          rows: [],
+        };
+      }),
+    );
+    return transform(serialized)
+      .split(/(\[원본표\d+\])/)
+      .map((part, index) => {
+        const table = /^\[원본표(\d+)\]$/.exec(part);
+        if (!table)
+          return part.trim() ? (
+            <Fragment key={index}>{markdown(part, emphasize)}</Fragment>
+          ) : null;
+        const rows = tables[Number(table[1]) - 1];
+        if (!rows) return markdown(part);
+        return (
+          <table
+            key={index}
+            data-native-table
+            style={{
+              borderCollapse: "collapse",
+              width: "100%",
+              margin: "8px 0",
+            }}
+          >
+            <tbody>
+              {rows.map((row, r) => (
+                <tr key={r}>
+                  {row.map((cell, c) => (
+                    <td
+                      key={c}
+                      style={{
+                        border: "1px solid #888888",
+                        padding: "3px 6px",
+                        textAlign: "center",
+                      }}
+                    >
+                      {markdown(
+                        /[\\^_{}]/.test(cell) && !cell.includes("$")
+                          ? `$${cell}$`
+                          : cell,
+                      )}
+                    </td>
+                  ))}
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        );
+      });
+  };
+  const choiceGrid = (choices: ChoiceGroup[]) => {
+    if (!choices.length) return null;
+    const layout = data?.choicesLayout ?? "auto";
+    const columns =
+      ({ "1x5": 5, "2x3": 3, "3x2": 2, "5x1": 1 } as Record<string, number>)[
+        layout
+      ] ??
+      (fitsTwoColumns(
+        choices.map((choice) => blocksToMarkdown(choice.contents)),
+      )
+        ? 2
+        : 1);
+    return (
+      <div
+        data-native-choices={layout}
+        className="mt-3 grid gap-x-4 gap-y-2"
+        style={{ gridTemplateColumns: `repeat(${columns}, minmax(0, 1fr))` }}
+      >
+        {choices.map((choice) => (
+          <div
+            key={choice.number}
+            data-native-choice={choice.number}
+            className="flex items-start gap-1.5"
+          >
+            <span>
+              {CHOICE_MARKS[choice.number - 1] ?? `(${choice.number})`}
+            </span>
+            <div className="min-w-0 flex-1 [&_p]:my-0">
+              {renderBlocks(choice.contents, (text) =>
+                text.replace(/^[①-⑳]\s*/, ""),
+              )}
+            </div>
+          </div>
+        ))}
+      </div>
+    );
+  };
+  const score = data?.printedScore ?? data?.score;
+  const nativeBody = data
+    ? renderBlocks(
+        data.blocks,
+        (text) =>
+          repositionScore(stripLeadingProblemNumber(text, data.number), score),
+        true,
+      )
+    : null;
+  const fallback = !data ? parseProblemContent(problem.content) : null;
+  const body = data ? nativeBody : markdown(fallback!.question, true);
+  const choices = data
+    ? choiceGrid(data.choiceGroups)
+    : choiceGrid(
+        fallback!.choices.map((value, index) => ({
+          number: index + 1,
+          contents: [{ type: "text", value, rows: [] }],
+        })),
+      );
+  const subQuestions = data?.subQuestions.map((sub) => (
+    <div key={sub.number} data-native-subquestion={sub.number}>
+      {renderBlocks(
+        sub.contents,
+        (text) =>
+          `(${sub.number}) ${repositionScore(text.replace(/^\s*\(\d+\)\s*/, ""), sub.printedScore ?? sub.score)}`,
+        true,
+      )}
+      {choiceGrid(sub.choices ?? [])}
+      {print && !sub.choices?.length && (
+        <div data-native-solve-space aria-hidden style={{ height: 60 }} />
+      )}
+    </div>
+  ));
+  return (
+    <div data-native-problem>
+      {data?.labelType &&
+        !blocksToMarkdown(data.blocks).includes(data.labelType) && (
+          <span className="text-sm font-semibold">[{data.labelType}]</span>
+        )}
+      {body}
+      {figures
+        .filter((_, index) => !used.has(index))
+        .map((figure) => (
+          <img
+            key={figure.src}
+            src={figure.src}
+            alt="문항 그림"
+            className="mx-auto my-2 block h-auto max-w-full mix-blend-multiply"
+            style={figureWidthStyle(figure.sourceMm)}
+          />
+        ))}
+      {choices}
+      {subQuestions}
+    </div>
+  );
+}

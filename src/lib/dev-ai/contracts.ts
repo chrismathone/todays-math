@@ -1,3 +1,4 @@
+import type { MathgenProblemData } from "@/lib/mathgen/contracts";
 /** Shared, browser-safe contract for the local development AI bridge. */
 export const DEV_AI_PROVIDERS = [
   "codex",
@@ -6,12 +7,22 @@ export const DEV_AI_PROVIDERS = [
   "grok",
 ] as const;
 export type DevAiProvider = (typeof DEV_AI_PROVIDERS)[number];
+export const STUDIO_API_PROVIDERS = [
+  "auto",
+  "gemini",
+  "deepseek",
+  "anthropic",
+  "openai",
+] as const;
+export type StudioApiProvider = (typeof STUDIO_API_PROVIDERS)[number];
+export type StudioAiProvider = DevAiProvider | StudioApiProvider;
+export type StudioAiMode = "subscription-cli" | "model-api";
 export type DevAiAction =
   "ocr" | "page-ocr" | "figures" | "figure-redraw" | "solution";
 export type DevAiQuestionType =
   "multiple-choice" | "short-answer" | "descriptive";
 export interface DevAiProviderStatus {
-  id: DevAiProvider;
+  id: StudioAiProvider;
   label: string;
   status:
     | "ready"
@@ -25,8 +36,8 @@ export interface DevAiProviderStatus {
 }
 export interface DevAiStatus {
   enabled: boolean;
-  mode: "subscription-cli";
-  defaultProvider: DevAiProvider;
+  mode: StudioAiMode;
+  defaultProvider: StudioAiProvider;
   providers: DevAiProviderStatus[];
 }
 export interface DevAiRequest {
@@ -34,6 +45,8 @@ export interface DevAiRequest {
   action: DevAiAction;
   imageDataUrl?: string;
   content?: string;
+  /** Source-native OCR; used for topic and answer-choice checks. */
+  ocr?: MathgenProblemData;
   /** Optional existing figure for figure-redraw; untrusted input, at most 500000 characters. */
   svg?: string;
   /** Untrusted source filename; trimmed, 1–255 characters, no control characters. */
@@ -63,6 +76,8 @@ export interface DevAiFigure {
   bbox: { left: number; top: number; width: number; height: number };
 }
 export interface DevAiRecognizedProblem {
+  number?: number;
+  ocr?: MathgenProblemData;
   content: string;
   answer: string;
   /** Printed type/answer-choice evidence only; omitted when ambiguous. */
@@ -73,6 +88,10 @@ export interface DevAiRecognizedProblem {
   figures?: DevAiFigure[];
 }
 export interface DevAiResult {
+  ocr?: MathgenProblemData;
+  /** Page detection only: isolated OCR is queued after these crops are inserted. */
+  detectionOnly?: boolean;
+  upsideDown?: boolean;
   content: string;
   answer: string;
   solution: string;
@@ -86,7 +105,7 @@ export interface DevAiResult {
   engine?: "todays-math-python";
   figureReview?: {
     /** Original image versus validated spec/SVG, not a second raster image. */
-    mode: "source-image-and-spec";
+    mode: "source-image-and-spec" | "source-and-rendered-images";
     passed: boolean;
     issues: string[];
   };
@@ -100,7 +119,8 @@ export interface DevAiFigureSpec extends Record<string, unknown> {
   version: 2 | "elem-1" | "graph-1";
 }
 export interface DevAiResponse {
-  provider: DevAiProvider;
+  provider: StudioAiProvider;
+  model?: string;
   action: DevAiAction;
   result: DevAiResult;
 }
