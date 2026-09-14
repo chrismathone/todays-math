@@ -61,7 +61,7 @@ export function FigureSelectionOverlay({
           })
           .join(" ")}
         fill="none"
-        stroke="#f97316"
+        stroke="var(--figure-primary)"
         strokeWidth={1 / selection.scale}
         strokeDasharray={`${4 / selection.scale} ${3 / selection.scale}`}
       />
@@ -77,7 +77,7 @@ export function FigureSelectionOverlay({
                   y1={a.y}
                   x2={z.x}
                   y2={z.y}
-                  stroke="#fb923c"
+                  stroke="var(--figure-accent-line)"
                   strokeWidth={1 / selection.scale}
                   strokeDasharray={`${3 / selection.scale} ${3 / selection.scale}`}
                 />
@@ -95,8 +95,8 @@ export function FigureSelectionOverlay({
             cx={p.x}
             cy={p.y}
             r={radius}
-            fill={h.control ? "#ffedd5" : "white"}
-            stroke="#ea580c"
+            fill={h.control ? "var(--figure-accent-soft)" : "white"}
+            stroke="var(--figure-primary)"
             strokeWidth={2 / selection.scale}
             style={{
               pointerEvents: busy ? "none" : "all",

@@ -4,6 +4,7 @@ import {
   type ButtonHTMLAttributes,
   type HTMLAttributes,
 } from "react";
+import styles from "./StudioFigureEditor.module.css";
 
 /** Local modal adapter for the Mathgen editor; restores focus and confines Tab. */
 export function ModalShell({
@@ -66,7 +67,7 @@ export function ModalShell({
   }, []);
   return (
     <div
-      className="fixed inset-0 z-[100] flex items-center justify-center bg-black/40 p-2"
+      className={styles.backdrop}
       onPointerDown={(event) => {
         if (event.target === event.currentTarget) onClose();
       }}
@@ -78,7 +79,7 @@ export function ModalShell({
         role="dialog"
         aria-modal="true"
         tabIndex={-1}
-        className={`relative m-0 max-h-none flex flex-col overflow-hidden rounded-xl border border-divider bg-surface text-ink shadow-xl outline-none ${className}`}
+        className={`${styles.dialog} ${className}`}
       >
         {children}
       </dialog>
@@ -95,7 +96,7 @@ export function Btn({
     <button
       type="button"
       {...props}
-      className={`rounded-md border px-3 py-2 text-sm font-semibold disabled:cursor-not-allowed disabled:opacity-40 ${kind === "accent" ? "border-ink bg-ink text-white" : "border-control bg-surface text-ink hover:bg-side"} ${className}`}
+      className={`${styles.button} ${kind === "accent" ? styles.primary : ""} ${className}`}
     />
   );
 }

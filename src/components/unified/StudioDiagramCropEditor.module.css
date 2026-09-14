@@ -1,0 +1,70 @@
+.dialog {
+  width: min(920px, 100%);
+}
+.header,
+.footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 12px;
+  padding: 12px 18px;
+  flex: none;
+}
+.header {
+  border-bottom: 1px solid var(--divider);
+}
+.header h2 {
+  font-size: 16px;
+  font-weight: 600;
+}
+.header p,
+.footer p,
+.header output {
+  font-size: 12px;
+  color: var(--text-2);
+}
+.workspace {
+  display: flex;
+  flex: 1;
+  min-height: 0;
+  overflow: auto;
+  padding: 16px;
+  background: var(--side);
+}
+.page {
+  position: relative;
+  width: fit-content;
+  max-width: 100%;
+  margin: auto;
+}
+.page > img {
+  display: block;
+  max-width: 100%;
+  max-height: min(560px, calc(86dvh - 160px));
+  width: auto;
+  height: auto;
+  user-select: none;
+}
+.page [data-crop-kind="figure"] {
+  --crop-edge: var(--figure-primary);
+  --crop-ink: var(--figure-accent-ink);
+  background: #3159df0d;
+}
+/* This single-figure editor offers move/resize only, as in the source overlay. */
+.page [data-crop-kind="figure"] > button {
+  display: none;
+}
+.footer {
+  border-top: 1px solid var(--divider);
+}
+.footer > div {
+  display: flex;
+  gap: 8px;
+  margin-left: auto;
+}
+.error {
+  padding: 8px 18px;
+  color: #a62d1b;
+  font-size: 13px;
+}

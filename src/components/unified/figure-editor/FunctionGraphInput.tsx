@@ -103,7 +103,7 @@ export function FunctionGraphInput({
         />
       )}
       {result.error && (
-        <p role="status" className="text-orange-800">
+        <p role="status" className="text-[var(--figure-accent-ink)]">
           {result.error}
         </p>
       )}
@@ -117,7 +117,7 @@ export function FunctionGraphInput({
         type="button"
         disabled={!result.value}
         onClick={() => result.value && onApply(config, result.value)}
-        className="w-full rounded bg-orange-600 py-2 text-white disabled:opacity-40"
+        className="w-full rounded bg-[var(--figure-primary)] py-2 text-white disabled:opacity-40"
       >
         {editing ? "함수식 적용" : "그림에 함수 추가"}
       </button>
