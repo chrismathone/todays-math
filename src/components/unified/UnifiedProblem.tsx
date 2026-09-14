@@ -1,0 +1,36 @@
+/* eslint-disable @next/next/no-img-element -- browser-local crops are data URLs */
+import { ProblemContent } from "@/components/math/ProblemContent";
+import { displayFractions } from "./fractionDisplay";
+import type { StudioProblem } from "./types";
+
+export default function UnifiedProblem({
+  problem,
+  print = false,
+}: {
+  problem: StudioProblem;
+  print?: boolean;
+}) {
+  if (problem.croppedImage)
+    return (
+      <img
+        src={problem.croppedImage}
+        alt={problem.content || "원본에서 오려낸 문제"}
+        style={{
+          maxWidth: "100%",
+          height: "auto",
+          maxHeight: print ? undefined : 420,
+          objectFit: "contain",
+        }}
+      />
+    );
+  return (
+    <ProblemContent
+      content={displayFractions(problem.content, problem.grade)}
+      figureUrls={problem.figureUrls}
+      figureSvg={problem.figureSvg}
+      figureDims={problem.figureDims}
+      figureSourceMm={problem.figureSourceMm}
+      deferFigures={!print}
+    />
+  );
+}

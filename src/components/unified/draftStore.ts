@@ -1,0 +1,633 @@
+import type { Dispatch, SetStateAction } from "react";
+import type { StudioProblem } from "./types";
+import {
+  DEFAULT_PRINT_OPTIONS,
+  DEFAULT_PRINT_META,
+  type PrintOptions,
+  type PrintMeta,
+} from "./print/types";
+import { parsePrintOptions, parsePrintMeta } from "./print/settings";
+
+export const DRAFT_STORE_KEY = "today-math-workspace-drafts-v1";
+export const LEGACY_DRAFT_KEY = "today-math-unified-draft-v1";
+export const DEFAULT_DRAFT_TITLE = "오늘의 수학 학습지";
+const AUTOSAVE_MS = 600;
+
+export interface WorkspaceDraft {
+  id: string;
+  title: string;
+  problems: StudioProblem[];
+  columns: 1 | 2;
+  answers: boolean;
+  printOptions: PrintOptions;
+  printMeta: PrintMeta;
+  /** Last successful save, or an empty string for an unsaved worksheet. */
+  updatedAt: string;
+}
+
+export interface DraftSummary {
+  id: string;
+  title: string;
+  problemCount: number;
+  updatedAt: string;
+}
+
+interface DraftEnvelope {
+  version: 1;
+  activeId: string | null;
+  drafts: WorkspaceDraft[];
+}
+
+export interface WorkspaceDraftSnapshot {
+  draft: WorkspaceDraft;
+  hydrated: boolean;
+  recent: DraftSummary[];
+  saveStatus: "loading" | "saved" | "saving" | "error";
+  saveError: string | null;
+}
+
+type StorageAccess = () => Pick<Storage, "getItem" | "setItem">;
+
+class DraftError extends Error {}
+
+const INVALID_IMPORT =
+  "작업 파일 형식이나 문제 내용이 올바르지 않습니다. 버전 1 JSON 파일을 확인해 주세요.";
+const INVALID_STORE =
+  "저장된 작업을 읽지 못했습니다. 기존 데이터는 덮어쓰지 않았습니다. 브라우저 데이터를 지우지 말고 작업 파일을 백업해 주세요.";
+const CONFLICT =
+  "다른 창에서 저장된 작업이 변경되었습니다. 현재 작업을 파일로 내려받은 뒤 새로고침해 주세요.";
+
+function record(value: unknown): value is Record<string, unknown> {
+  return value !== null && typeof value === "object" && !Array.isArray(value);
+}
+
+function blankDraft(id = ""): WorkspaceDraft {
+  return {
+    id,
+    title: DEFAULT_DRAFT_TITLE,
+    problems: [],
+    columns: DEFAULT_PRINT_OPTIONS.columns,
+    answers: DEFAULT_PRINT_OPTIONS.showAnswers,
+    printOptions: { ...DEFAULT_PRINT_OPTIONS },
+    printMeta: { ...DEFAULT_PRINT_META },
+    updatedAt: "",
+  };
+}
+
+function newId(): string {
+  return (
+    globalThis.crypto?.randomUUID?.() ??
+    `draft-${Date.now()}-${Math.random().toString(36).slice(2)}`
+  );
+}
+
+function validImageUrl(value: string): boolean {
+  // Images may be browser-local crops, site paths, or remote figure assets.
+  return (
+    !/[\u0000-\u001f\u007f]/.test(value) &&
+    (/^data:image\/(?:png|jpe?g|webp|gif|avif|bmp|svg\+xml)[;,]/i.test(value) ||
+      /^(?:https?:\/\/|blob:|\/|\.\.?\/)/i.test(value) ||
+      /^[^:\s]+\.(?:svg|png|jpe?g|webp|gif|avif|bmp)(?:[?#].*)?$/i.test(value))
+  );
+}
+
+const SVG_TAGS = new Set([
+  "svg",
+  "g",
+  "path",
+  "line",
+  "polyline",
+  "polygon",
+  "circle",
+  "ellipse",
+  "rect",
+  "text",
+  "tspan",
+  "title",
+  "desc",
+  "defs",
+  "use",
+  "symbol",
+  "clipPath",
+  "mask",
+  "marker",
+  "pattern",
+  "linearGradient",
+  "radialGradient",
+  "stop",
+  "image",
+]);
+
+function validSvg(value: string): boolean {
+  if (!value) return true;
+  if (typeof DOMParser === "undefined" || /<!DOCTYPE|<!ENTITY/i.test(value))
+    return false;
+  // Validate, never reserialize: original mathematical paths and labels stay byte-for-byte intact.
+  const parser = new DOMParser();
+  const xml = parser.parseFromString(value, "image/svg+xml");
+  if (
+    xml.querySelector("parsererror") ||
+    xml.documentElement.localName !== "svg"
+  )
+    return false;
+  // The renderer inserts HTML. Check that interpretation too (SVG title/CDATA can parse differently).
+  const html = parser.parseFromString(value, "text/html").body;
+  if (html.children.length !== 1 || html.firstElementChild?.tagName !== "svg")
+    return false;
+  return [
+    ...Array.from(xml.querySelectorAll("*")),
+    ...Array.from(html.querySelectorAll("*")),
+  ].every((element) => {
+    if (
+      !SVG_TAGS.has(element.tagName) ||
+      (element.namespaceURI &&
+        element.namespaceURI !== "http://www.w3.org/2000/svg")
+    )
+      return false;
+    return Array.from(element.attributes).every((attribute) => {
+      const name = attribute.localName.toLowerCase();
+      const content = attribute.value.trim();
+      if (name.startsWith("on") || name === "base") return false;
+      if (name === "href")
+        return (
+          /^#[\w:.-]+$/.test(content) ||
+          (element.tagName === "image" && validImageUrl(content))
+        );
+      // Block active CSS and external references, including escaped/comment-obfuscated CSS.
+      if (
+        (name === "style" && /[\\@]|\/\*/.test(content)) ||
+        /expression\s*\(|javascript\s*:|behavior\s*:|-moz-binding/i.test(
+          content,
+        )
+      )
+        return false;
+      const withoutLocalUrls = content.replace(
+        /url\(\s*['"]?#[\w:.-]+['"]?\s*\)/gi,
+        "",
+      );
+      if (/url\s*\(/i.test(withoutLocalUrls)) return false;
+      return true;
+    });
+  });
+}
+
+function parseProblems(value: unknown): StudioProblem[] {
+  if (!Array.isArray(value)) throw new DraftError(INVALID_IMPORT);
+  const ids = new Set<string>();
+  return value.map((problem: unknown) => {
+    if (
+      !record(problem) ||
+      typeof problem.id !== "string" ||
+      !problem.id.trim() ||
+      ids.has(problem.id) ||
+      typeof problem.content !== "string"
+    )
+      throw new DraftError(INVALID_IMPORT);
+    ids.add(problem.id);
+    const normalized: Record<string, unknown> = { ...problem };
+    if (
+      problem.questionType !== undefined &&
+      !["multiple-choice", "short-answer", "descriptive"].includes(
+        problem.questionType as string,
+      )
+    )
+      throw new DraftError(INVALID_IMPORT);
+    for (const key of [
+      "answer",
+      "solution",
+      "grade",
+      "chapter",
+      "section",
+      "difficulty",
+      "problemCode",
+    ]) {
+      if (problem[key] !== undefined && typeof problem[key] !== "string")
+        throw new DraftError(INVALID_IMPORT);
+      normalized[key] = problem[key] ?? "";
+    }
+    for (const key of ["croppedImage", "sourceLabel"]) {
+      if (problem[key] !== undefined && typeof problem[key] !== "string")
+        throw new DraftError(INVALID_IMPORT);
+    }
+    if (problem.croppedImage && !validImageUrl(problem.croppedImage as string))
+      throw new DraftError(INVALID_IMPORT);
+    const urls = problem.figureUrls === undefined ? [] : problem.figureUrls;
+    if (
+      !Array.isArray(urls) ||
+      !urls.every(
+        (url: unknown) => typeof url === "string" && validImageUrl(url),
+      )
+    )
+      throw new DraftError(INVALID_IMPORT);
+    normalized.figureUrls = urls;
+    for (const key of ["figureDims", "figureSourceMm"]) {
+      const numbers = problem[key] === undefined ? [] : problem[key];
+      if (
+        !Array.isArray(numbers) ||
+        !numbers.every(
+          (number: unknown) =>
+            typeof number === "number" &&
+            Number.isFinite(number) &&
+            number >= 0,
+        )
+      )
+        throw new DraftError(INVALID_IMPORT);
+      normalized[key] = numbers;
+    }
+    if (
+      problem.figureSvg != null &&
+      (typeof problem.figureSvg !== "string" || !validSvg(problem.figureSvg))
+    )
+      throw new DraftError(INVALID_IMPORT);
+    normalized.figureSvg = problem.figureSvg ?? null;
+    return normalized as unknown as StudioProblem;
+  });
+}
+
+function parseImport(value: unknown): Omit<WorkspaceDraft, "id" | "updatedAt"> {
+  if (!record(value) || value.version !== 1 || typeof value.title !== "string")
+    throw new DraftError(INVALID_IMPORT);
+  const printOptions = parsePrintOptions(value.printOptions, {
+    columns: value.columns === 1 ? 1 : 2,
+    answers: value.answers,
+  });
+  return {
+    title: value.title,
+    problems: parseProblems(value.problems),
+    columns: printOptions.columns,
+    answers: printOptions.showAnswers,
+    printOptions,
+    printMeta: parsePrintMeta(value.printMeta),
+  };
+}
+
+function parseEnvelope(raw: string): DraftEnvelope {
+  try {
+    const value: unknown = JSON.parse(raw);
+    if (
+      !record(value) ||
+      value.version !== 1 ||
+      !Array.isArray(value.drafts) ||
+      (value.activeId !== null && typeof value.activeId !== "string")
+    )
+      throw new Error();
+    const ids = new Set<string>();
+    const drafts = value.drafts.map((draft: unknown) => {
+      if (
+        !record(draft) ||
+        typeof draft.id !== "string" ||
+        !draft.id ||
+        ids.has(draft.id) ||
+        typeof draft.updatedAt !== "string" ||
+        !Number.isFinite(Date.parse(draft.updatedAt)) ||
+        (draft.columns !== 1 && draft.columns !== 2) ||
+        typeof draft.answers !== "boolean"
+      )
+        throw new Error();
+      ids.add(draft.id);
+      return {
+        ...parseImport({ ...draft, version: 1 }),
+        id: draft.id,
+        updatedAt: draft.updatedAt,
+      };
+    });
+    if (value.activeId !== null && !ids.has(value.activeId)) throw new Error();
+    return { version: 1, activeId: value.activeId, drafts };
+  } catch {
+    throw new DraftError(INVALID_STORE);
+  }
+}
+
+function summaries(envelope: DraftEnvelope): DraftSummary[] {
+  return envelope.drafts
+    .map(({ id, title, problems, updatedAt }) => ({
+      id,
+      title,
+      problemCount: problems.length,
+      updatedAt,
+    }))
+    .sort((a, b) => Date.parse(b.updatedAt) - Date.parse(a.updatedAt));
+}
+
+function draftRevision(draft: WorkspaceDraft | undefined): string | undefined {
+  // Field order differs between a new draft and a decoded draft; compare their data, not that order.
+  return (
+    draft &&
+    JSON.stringify([
+      draft.id,
+      draft.title,
+      draft.columns,
+      draft.answers,
+      draft.printOptions,
+      draft.printMeta,
+      draft.updatedAt,
+      draft.problems,
+    ])
+  );
+}
+
+function errorMessage(error: unknown): string {
+  if (error instanceof DraftError) return error.message;
+  if (
+    record(error) &&
+    (error.name === "QuotaExceededError" ||
+      error.name === "NS_ERROR_DOM_QUOTA_REACHED")
+  ) {
+    return "브라우저 저장 공간이 부족해 저장하지 못했습니다. 현재 작업은 화면에 유지됩니다. 작업 파일을 내려받아 보관한 뒤 저장 공간을 확보해 주세요.";
+  }
+  return "브라우저 저장소에 접근하지 못했습니다. 현재 작업을 파일로 내려받아 보관하고 브라우저의 저장 권한을 확인해 주세요.";
+}
+
+/** A per-hook session; browser access starts only at hydrate(), never during SSR. */
+export function createWorkspaceDraftStore(
+  storageAccess: StorageAccess = () => window.localStorage,
+) {
+  const initial: WorkspaceDraftSnapshot = {
+    draft: blankDraft(),
+    hydrated: false,
+    recent: [],
+    saveStatus: "loading",
+    saveError: null,
+  };
+  let snapshot = initial;
+  let known: DraftEnvelope = { version: 1, activeId: null, drafts: [] };
+  let dirty = false;
+  let recoveryBlocked = false;
+  let recoveryError: unknown;
+  let timer: ReturnType<typeof setTimeout> | undefined;
+  const listeners = new Set<() => void>();
+
+  const publish = (patch: Partial<WorkspaceDraftSnapshot>) => {
+    snapshot = { ...snapshot, ...patch };
+    listeners.forEach((listener) => listener());
+  };
+  const fail = (error: unknown) => {
+    publish({ saveStatus: "error", saveError: errorMessage(error) });
+    return false;
+  };
+  const cancelTimer = () => {
+    clearTimeout(timer);
+    timer = undefined;
+  };
+
+  // Save outgoing edits and the active selection together in one localStorage write.
+  // A quota failure leaves both the durable envelope and the current editor untouched.
+  const commit = (
+    target?: WorkspaceDraft | string,
+    mutation?: { id: string; title?: string; remove?: boolean },
+  ) => {
+    if (!snapshot.hydrated) return false;
+    cancelTimer();
+    if (recoveryBlocked) return fail(recoveryError);
+    try {
+      const storage = storageAccess();
+      const raw = storage.getItem(DRAFT_STORE_KEY);
+      const fresh: DraftEnvelope =
+        raw === null
+          ? { version: 1, activeId: null, drafts: [] }
+          : parseEnvelope(raw);
+      let nextDraft = snapshot.draft;
+      if (typeof target === "string") {
+        const found = fresh.drafts.find((draft) => draft.id === target);
+        if (!found)
+          throw new DraftError(
+            "선택한 작업을 찾지 못했습니다. 최근 작업 목록을 새로고침해 주세요.",
+          );
+        nextDraft = found;
+      } else if (target) nextDraft = target;
+
+      const current = snapshot.draft;
+      if (mutation) {
+        const expected = known.drafts.find((draft) => draft.id === mutation.id);
+        const actual = fresh.drafts.find((draft) => draft.id === mutation.id);
+        if (!actual || draftRevision(expected) !== draftRevision(actual))
+          throw new DraftError(CONFLICT);
+        if (mutation.remove && mutation.id === current.id && dirty)
+          throw new DraftError(
+            "현재 작업에 저장하지 못한 변경이 있습니다. 작업을 저장하거나 파일로 내보낸 뒤 삭제해 주세요.",
+          );
+      }
+      const previous = known.drafts.find((draft) => draft.id === current.id);
+      const latest = fresh.drafts.find((draft) => draft.id === current.id);
+      if (dirty && draftRevision(previous) !== draftRevision(latest))
+        throw new DraftError(CONFLICT);
+      if (!dirty && target === undefined && previous) {
+        if (!latest) throw new DraftError(CONFLICT);
+        nextDraft = latest;
+      }
+      const drafts = [...fresh.drafts];
+      const put = (draft: WorkspaceDraft) => {
+        const index = drafts.findIndex((item) => item.id === draft.id);
+        if (index === -1) drafts.push(draft);
+        else drafts[index] = draft;
+      };
+      if (dirty) {
+        // Typed callers still may carry malformed runtime data; do not persist an unreadable store.
+        const problems = parseProblems(current.problems);
+        const saved = {
+          ...current,
+          problems,
+          printOptions: parsePrintOptions(current.printOptions),
+          printMeta: parsePrintMeta(current.printMeta),
+          updatedAt: new Date().toISOString(),
+        };
+        put(saved);
+        if (nextDraft.id === current.id) nextDraft = saved;
+      }
+      if (
+        target &&
+        typeof target !== "string" &&
+        (target.problems.length || target.updatedAt)
+      ) {
+        nextDraft = { ...target, updatedAt: new Date().toISOString() };
+        put(nextDraft);
+      }
+      if (mutation) {
+        const index = drafts.findIndex((draft) => draft.id === mutation.id);
+        if (mutation.remove) {
+          drafts.splice(index, 1);
+          if (nextDraft.id === mutation.id) nextDraft = blankDraft(newId());
+        } else {
+          const renamed = {
+            ...drafts[index],
+            title: mutation.title!,
+            updatedAt: new Date().toISOString(),
+          };
+          drafts[index] = renamed;
+          if (nextDraft.id === mutation.id) nextDraft = renamed;
+        }
+      }
+      const activeId = drafts.some((draft) => draft.id === nextDraft.id)
+        ? nextDraft.id
+        : null;
+      const next: DraftEnvelope = { version: 1, activeId, drafts };
+      // Merely visiting or creating an untouched blank worksheet does not save a phantom draft.
+      if (
+        mutation ||
+        dirty ||
+        (target !== undefined && (raw !== null || drafts.length > 0))
+      ) {
+        storage.setItem(DRAFT_STORE_KEY, JSON.stringify(next));
+      }
+      known = next;
+      dirty = false;
+      publish({
+        draft: nextDraft,
+        recent: summaries(next),
+        saveStatus: "saved",
+        saveError: null,
+      });
+      return true;
+    } catch (error) {
+      return fail(error);
+    }
+  };
+
+  const saveNow = () => commit();
+  const edit = (change: (draft: WorkspaceDraft) => WorkspaceDraft) => {
+    if (!snapshot.hydrated) return;
+    const next = change(snapshot.draft);
+    if (next === snapshot.draft) return;
+    dirty = true;
+    cancelTimer();
+    publish({ draft: next, saveStatus: recoveryBlocked ? "error" : "saving" });
+    timer = setTimeout(saveNow, AUTOSAVE_MS);
+  };
+
+  const hydrate = () => {
+    if (snapshot.hydrated) return;
+    let recovered = blankDraft(newId());
+    try {
+      const storage = storageAccess();
+      const raw = storage.getItem(DRAFT_STORE_KEY);
+      if (raw !== null) {
+        known = parseEnvelope(raw);
+        recovered =
+          known.drafts.find((draft) => draft.id === known.activeId) ??
+          recovered;
+      } else {
+        const legacy = storage.getItem(LEGACY_DRAFT_KEY);
+        if (legacy !== null) {
+          try {
+            const value: unknown = JSON.parse(legacy);
+            recovered = {
+              ...recovered,
+              ...parseImport(value),
+              updatedAt:
+                record(value) &&
+                typeof value.updatedAt === "string" &&
+                Number.isFinite(Date.parse(value.updatedAt))
+                  ? value.updatedAt
+                  : new Date().toISOString(),
+            };
+          } catch {
+            throw new DraftError(INVALID_STORE);
+          }
+          // The source key is deliberately preserved, including when migration cannot fit.
+          dirty = true;
+        }
+      }
+      publish({
+        draft: recovered,
+        hydrated: true,
+        recent: summaries(known),
+        saveStatus: dirty ? "saving" : "saved",
+      });
+      if (dirty) saveNow();
+    } catch (error) {
+      recoveryBlocked = true;
+      recoveryError = error;
+      publish({ draft: recovered, hydrated: true });
+      fail(error);
+    }
+  };
+
+  const setProblems: Dispatch<SetStateAction<StudioProblem[]>> = (value) =>
+    edit((draft) => {
+      const problems =
+        typeof value === "function" ? value(draft.problems) : value;
+      return problems === draft.problems ? draft : { ...draft, problems };
+    });
+
+  return {
+    getSnapshot: () => snapshot,
+    getServerSnapshot: () => initial,
+    subscribe: (listener: () => void) => {
+      listeners.add(listener);
+      return () => {
+        listeners.delete(listener);
+      };
+    },
+    hydrate,
+    saveNow,
+    flush: () => {
+      if (dirty) saveNow();
+    },
+    setTitle: (title: string) =>
+      edit((draft) => (title === draft.title ? draft : { ...draft, title })),
+    setProblems,
+    setColumns: (columns: number) => {
+      if (columns === 1 || columns === 2)
+        edit((draft) =>
+          columns === draft.columns
+            ? draft
+            : {
+                ...draft,
+                columns,
+                printOptions: { ...draft.printOptions, columns },
+              },
+        );
+    },
+    setAnswers: (answers: boolean) =>
+      edit((draft) =>
+        answers === draft.answers
+          ? draft
+          : {
+              ...draft,
+              answers,
+              printOptions: { ...draft.printOptions, showAnswers: answers },
+            },
+      ),
+    setPrintOptions: (patch: Partial<PrintOptions>) =>
+      edit((draft) => {
+        const printOptions = parsePrintOptions({
+          ...draft.printOptions,
+          ...patch,
+        });
+        return {
+          ...draft,
+          printOptions,
+          columns: printOptions.columns,
+          answers: printOptions.showAnswers,
+        };
+      }),
+    setPrintMeta: (patch: Partial<PrintMeta>) =>
+      edit((draft) => ({
+        ...draft,
+        printMeta: parsePrintMeta({ ...draft.printMeta, ...patch }),
+      })),
+    createDraft: () => commit(blankDraft(newId())),
+    openDraft: (id: string) => commit(id),
+    renameDraft: (id: string, title: string) => {
+      const trimmed = title.trim();
+      if (!trimmed || trimmed.length > 80)
+        return fail(new DraftError("시험지 이름을 1~80자로 입력해 주세요."));
+      return commit(undefined, { id, title: trimmed });
+    },
+    deleteDraft: (id: string) => commit(undefined, { id, remove: true }),
+    importDraft: (value: unknown) => {
+      if (!snapshot.hydrated) return false;
+      try {
+        // Detach from the caller so later mutations cannot change a saved/imported worksheet.
+        const imported = parseImport(JSON.parse(JSON.stringify(value)));
+        return commit({
+          ...imported,
+          id: newId(),
+          updatedAt: new Date().toISOString(),
+        });
+      } catch {
+        return fail(new DraftError(INVALID_IMPORT));
+      }
+    },
+  };
+}

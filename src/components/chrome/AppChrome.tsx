@@ -1,4 +1,5 @@
 import Link from "next/link";
+import TodayMathMark from "@/components/brand/TodayMathMark";
 
 import { AccountBadge } from "@/components/chrome/AccountBadge";
 import { formatMastheadDate } from "@/lib/main/pipeline";
@@ -75,8 +76,9 @@ export function AppChrome({
           <Link
             href="/"
             aria-current={tab === "math" ? "page" : undefined}
-            className={`${WORDMARK} ${tab === "math" ? "text-ink" : "text-text-3"}`}
+            className={`${WORDMARK} inline-flex items-center gap-2 ${tab === "math" ? "text-ink" : "text-text-3"}`}
           >
+            <TodayMathMark size={32} />
             오늘의수학
           </Link>
           <span

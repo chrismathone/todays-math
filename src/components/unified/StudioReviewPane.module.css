@@ -1,0 +1,248 @@
+.comparison {
+  --control-height: 34px;
+  display: grid;
+  grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
+  flex: 1;
+  min-height: 0;
+  overflow: hidden;
+  background: #f5f7fa;
+}
+.original,
+.results {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  min-height: 0;
+}
+.original {
+  border-right: 1px solid #d8e0eb;
+}
+.comparison header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  min-height: 44px;
+  padding: 6px 14px;
+  flex: none;
+  font-size: 14px;
+}
+.comparison header span {
+  font-size: 12px;
+  color: #64748b;
+}
+.originalScroll,
+.resultScroll {
+  flex: 1;
+  min-height: 0;
+  overflow: auto;
+  overscroll-behavior: contain;
+  padding: 12px;
+}
+.originalScroll {
+  background: #e7ebf1;
+}
+.originalScroll > img {
+  display: block;
+  width: 100%;
+  height: auto;
+  box-shadow: 0 1px 6px #12234018;
+}
+.card {
+  padding: 18px;
+  background: white;
+  border: 1px solid #d8e0eb;
+  border-radius: 8px;
+  margin-bottom: 12px;
+  font-size: 14px;
+}
+.card[data-selected="true"] {
+  border-color: #8197cd;
+}
+.cardHeading,
+.figureHeading,
+.actions,
+.cardFooter,
+.figures figcaption {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+.cardHeading {
+  margin-bottom: 16px;
+}
+.cardHeading > span {
+  font-size: 12px;
+  color: #576781;
+}
+.actions {
+  margin-left: auto;
+}
+.comparison button,
+.comparison select {
+  height: 34px;
+  border: 1px solid #d4deeb;
+  border-radius: 8px;
+  background: white;
+  color: #284f93;
+  padding: 0 10px;
+  cursor: pointer;
+  font-size: 13px;
+  white-space: nowrap;
+}
+.comparison button:disabled {
+  opacity: 0.5;
+  cursor: default;
+}
+.comparison button:focus-visible,
+.comparison select:focus-visible {
+  outline: 2px solid #3059d9;
+  outline-offset: 2px;
+}
+.comparison .number {
+  color: #172b49;
+  font-weight: 700;
+  border: 0;
+  padding: 0;
+}
+.comparison .confirmed {
+  color: #15856a;
+}
+.content {
+  line-height: 1.85;
+  overflow-wrap: anywhere;
+}
+.content :global(.katex-display) {
+  overflow-x: auto;
+  overflow-y: hidden;
+  padding-block: 4px;
+}
+.figures {
+  margin-top: 18px;
+  border-top: 1px solid #e4e9f0;
+  padding-top: 12px;
+}
+.figureHeading {
+  justify-content: space-between;
+  font-size: 13px;
+}
+.figures figure {
+  margin: 14px 0 0;
+}
+.figures img {
+  display: block;
+  max-width: 100%;
+  max-height: 380px;
+  width: auto;
+  height: auto;
+  margin: 12px auto;
+}
+.figures figcaption {
+  font-size: 12px;
+  color: #61708a;
+}
+.figures figcaption span {
+  margin-right: auto;
+}
+.figures details {
+  margin-top: 8px;
+  font-size: 12px;
+}
+.figures summary {
+  cursor: pointer;
+}
+.muted {
+  color: #718099;
+  font-size: 13px;
+  line-height: 1.6;
+  margin: 10px 0;
+}
+.warning,
+.error {
+  padding: 10px;
+  background: #fff6e7;
+  color: #865015;
+  border-radius: 6px;
+  font-size: 13px;
+}
+.error button {
+  margin-left: 10px;
+}
+.editor {
+  display: grid;
+  gap: 12px;
+  margin: 16px 0;
+  padding: 14px;
+  background: #f5f7fa;
+  border-radius: 8px;
+}
+.editor label {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  font-size: 13px;
+}
+.editor textarea,
+.editor input {
+  width: 100%;
+  box-sizing: border-box;
+  border: 1px solid #bacbe3;
+  border-radius: 6px;
+  padding: 10px;
+  font: inherit;
+  background: white;
+  color: #17345b;
+}
+.editor textarea {
+  resize: vertical;
+  min-height: 100px;
+}
+.answer {
+  margin-top: 16px;
+  padding-top: 12px;
+  border-top: 1px solid #e4e9f0;
+  line-height: 1.8;
+}
+.answer > strong {
+  display: block;
+  margin-bottom: 6px;
+}
+.cardFooter {
+  margin-top: 18px;
+  border-top: 1px solid #e4e9f0;
+  padding-top: 12px;
+}
+.cardFooter label {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-right: auto;
+  font-size: 12px;
+}
+@container studio (max-width:800px) {
+  .comparison {
+    grid-template-columns: minmax(0, 1fr);
+    overflow: visible;
+  }
+  .originalScroll {
+    max-height: 38dvh;
+    flex: none;
+  }
+  .original {
+    min-height: 200px;
+    border-right: 0;
+  }
+  .resultScroll {
+    overflow: visible;
+  }
+  .results {
+    min-height: fit-content;
+  }
+  .comparison header {
+    flex-wrap: wrap;
+  }
+  .card {
+    padding: 12px;
+  }
+}

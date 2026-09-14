@@ -1,0 +1,270 @@
+.card {
+  box-sizing: border-box;
+  width: 100%;
+  min-width: 0;
+  padding: 20px;
+  color: #172b4d;
+  background: #fff;
+  border: 1px solid #dce3ed;
+  border-radius: 18px;
+  box-shadow: 0 4px 16px rgb(23 43 77 / 3%);
+  font-size: var(--text-body, 14px);
+  line-height: 1.55;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.header h2 {
+  margin: 0;
+  font-size: var(--text-section, 18px);
+  font-weight: 750;
+  line-height: 1.4;
+  letter-spacing: -0.5px;
+}
+
+.status {
+  flex-shrink: 0;
+  color: #52617a;
+  font-size: var(--text-caption, 12px);
+  font-weight: 550;
+}
+
+.owner {
+  margin: 6px 0 16px;
+  color: #52617a;
+  font-size: var(--text-caption, 12px);
+  overflow-wrap: anywhere;
+}
+
+.totals {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  margin: 0;
+  padding: 10px 0;
+  background: #f5f7fc;
+  border: 1px solid #dce3ed;
+  border-radius: 12px;
+}
+
+.totals > div {
+  padding: 0 16px;
+  min-width: 0;
+}
+
+.totals > div + div {
+  border-left: 1px solid #dce3ed;
+}
+
+.totals dt {
+  color: #52617a;
+  font-size: var(--text-caption, 12px);
+  font-weight: 550;
+}
+
+.totals dd {
+  margin: 2px 0 0;
+  overflow-wrap: anywhere;
+  font-size: var(--text-title, 24px);
+  font-weight: 750;
+  line-height: 1.3;
+  font-variant-numeric: tabular-nums;
+}
+
+.totals dd span {
+  margin-left: 4px;
+  color: #52617a;
+  font-size: var(--text-caption, 12px);
+  font-weight: 500;
+}
+
+.classes {
+  margin: 18px 0 16px;
+}
+
+.listLabel {
+  margin: 0 0 4px;
+  color: #52617a;
+  font-size: var(--text-caption, 12px);
+  font-weight: 550;
+}
+
+.classList {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.classRow {
+  display: flex;
+  align-items: flex-start;
+  gap: 11px;
+  padding: 10px 0;
+}
+
+.classRow + .classRow {
+  border-top: 1px solid #dce3ed;
+}
+
+.avatar,
+.invitationIcon {
+  display: grid;
+  flex-shrink: 0;
+  place-items: center;
+  width: 38px;
+  height: 38px;
+  color: #3159df;
+  background: #edf1ff;
+  border: 1px solid #dce3ed;
+  border-radius: 12px;
+  font-size: var(--text-caption, 12px);
+  font-weight: 750;
+}
+
+.classInfo {
+  flex: 1;
+  min-width: 0;
+}
+
+.classHeading {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.classHeading strong {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-size: var(--text-body, 14px);
+  font-weight: 700;
+}
+
+.classHeading > span {
+  flex-shrink: 0;
+  color: #52617a;
+  font-size: var(--text-caption, 12px);
+  font-variant-numeric: tabular-nums;
+}
+
+.progress {
+  margin: 1px 0 0;
+  overflow: hidden;
+  color: #172b4d;
+  font-size: var(--text-caption, 12px);
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.invitation {
+  margin: 22px 0;
+}
+
+.invitationIcon {
+  width: 44px;
+  height: 44px;
+  margin-bottom: 14px;
+}
+
+.invitationIcon svg {
+  width: 25px;
+  height: 25px;
+}
+
+.invitation h3,
+.empty h3 {
+  margin: 0 0 6px;
+  font-size: var(--text-section, 18px);
+  font-weight: 700;
+}
+
+.invitation p,
+.empty p,
+.error p {
+  margin: 0;
+  color: #52617a;
+  font-size: var(--text-body, 14px);
+  line-height: 1.65;
+  word-break: keep-all;
+  overflow-wrap: anywhere;
+}
+
+.empty {
+  margin: 20px 0;
+}
+
+.error {
+  display: grid;
+  gap: 20px;
+  margin-top: 22px;
+}
+
+.primaryButton,
+.secondaryButton {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  box-sizing: border-box;
+  width: fit-content;
+  max-width: 100%;
+  height: 44px;
+  min-height: 44px;
+  padding: 0 12px;
+  border: 1px solid #3159df;
+  border-radius: 8px;
+  color: #fff;
+  background: #3159df;
+  font: inherit;
+  font-size: var(--text-body, 14px);
+  font-weight: 600;
+  line-height: 1.4;
+  cursor: pointer;
+}
+
+.primaryButton svg {
+  flex-shrink: 0;
+}
+
+.primaryButton:hover {
+  border-color: #264ac7;
+  background: #264ac7;
+}
+
+.secondaryButton {
+  color: #172b4d;
+  background: #fff;
+  border-color: #dce3ed;
+}
+
+.secondaryButton:hover {
+  background: #f5f7fc;
+  border-color: #52617a;
+}
+
+.primaryButton:focus-visible,
+.secondaryButton:focus-visible {
+  outline: 3px solid #3159df;
+  outline-offset: 3px;
+}
+
+.loading {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  min-height: 170px;
+  color: #52617a;
+}
+
+.loadingDot {
+  flex-shrink: 0;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #3159df;
+}

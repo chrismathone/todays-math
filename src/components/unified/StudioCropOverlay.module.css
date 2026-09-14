@@ -1,0 +1,124 @@
+.overlay {
+  --crop-edge: #2588c3;
+  --crop-ink: #155b88;
+  position: absolute;
+  box-sizing: border-box;
+  z-index: 2;
+  border: 1px solid var(--crop-edge);
+  border-radius: 2px;
+  background: rgb(14 165 233 / 5%);
+  cursor: move;
+  touch-action: none;
+  user-select: none;
+}
+
+.problem {
+  --crop-edge: #2588c3;
+}
+
+.figure {
+  --crop-edge: #e57924;
+  --crop-ink: #9b4610;
+  z-index: 4;
+  background: rgb(249 115 22 / 5%);
+}
+
+.selected {
+  z-index: 3;
+  border-width: 2px;
+  box-shadow: 0 0 0 1px rgb(255 255 255 / 85%);
+}
+
+.figure.selected {
+  z-index: 5;
+}
+
+.overlay:focus-visible {
+  outline: 2px solid var(--crop-ink);
+  outline-offset: 3px;
+}
+
+.overlay[data-dragging] {
+  cursor: grabbing;
+}
+
+.overlay[role="button"][data-tool="delete"] {
+  cursor: pointer;
+}
+
+.overlay[data-tool="delete"]:hover {
+  border-color: #c53535;
+  background: rgb(220 38 38 / 8%);
+}
+
+.label {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: max-content;
+  padding: 1px 5px;
+  border-radius: 0 0 3px 0;
+  background: rgb(255 255 255 / 96%);
+  color: var(--crop-ink);
+  font-family: inherit;
+  font-size: var(--text-caption, 12px);
+  font-weight: 600;
+  line-height: 1.4;
+  white-space: nowrap;
+  pointer-events: none;
+}
+
+.selected .label {
+  top: -1px;
+  left: -1px;
+}
+
+.handle {
+  position: absolute;
+  z-index: 1;
+  width: 12px;
+  height: 12px;
+  box-sizing: border-box;
+  border: 2px solid var(--crop-edge);
+  border-radius: 3px;
+  background: #fff;
+  touch-action: none;
+}
+.deleteButton {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  width: 26px;
+  height: 26px;
+  border: 1px solid #cad6e5;
+  border-radius: 6px;
+  background: white;
+  color: #9c3030;
+  cursor: pointer;
+  font-size: 18px;
+  line-height: 1;
+}
+
+.nw {
+  top: -7px;
+  left: -7px;
+  cursor: nwse-resize;
+}
+
+.ne {
+  top: -7px;
+  right: -7px;
+  cursor: nesw-resize;
+}
+
+.sw {
+  bottom: -7px;
+  left: -7px;
+  cursor: nesw-resize;
+}
+
+.se {
+  bottom: -7px;
+  right: -7px;
+  cursor: nwse-resize;
+}

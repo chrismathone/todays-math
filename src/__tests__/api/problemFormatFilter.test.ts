@@ -241,6 +241,16 @@ describe("[형식 필터] GET /api/problems?format", () => {
     expect(blinded.length).toBeGreaterThan(0);
   });
 
+  it("형식 판정 후에도 페이지가 겹치거나 두 번 건너뛰지 않는다", async () => {
+    const all = await listWithFormat("descriptive");
+    expect(all.data.length).toBeGreaterThan(1);
+    const response = await get(
+      "http://localhost/api/problems?format=descriptive&page=2&pageSize=1",
+    );
+    const page = problemListResponseSchema.parse(await response.json());
+    expect(page.data.map((row) => row.id)).toEqual([all.data[1].id]);
+    expect(page.meta.total).toBe(all.meta.total);
+  });
   it("형식을 안 걸면 아무것도 안 거른다", async () => {
     const all = await listAll();
     const res = await get("http://localhost/api/problems?pageSize=100");

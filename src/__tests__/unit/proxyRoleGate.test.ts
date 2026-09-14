@@ -79,6 +79,26 @@ describe("관문은 하나다", () => {
 });
 
 describe("역할 게이트 관문", () => {
+  it.each([
+    "/favicon.ico",
+    "/icon.svg",
+    "/apple-icon.png",
+    "/brand/today-math-mark.svg",
+  ])("로그인 전과 검수 계정 모두 브랜드 이미지 %s를 읽는다", async (asset) => {
+    for (const identity of [null, { user: { id: "u2", role: "reviewer" } }]) {
+      session.mockReturnValue(identity);
+      for (const method of ["GET", "HEAD"]) {
+        const res = await run(method, asset);
+        expect(res.status).toBe(200);
+        expect(res.headers.get("location")).toBeNull();
+      }
+    }
+  });
+  it("브랜드 공개 경로가 변경 요청이나 비슷한 보호 경로를 열지 않는다", async () => {
+    session.mockReturnValue({ user: { id: "u2", role: "reviewer" } });
+    expect((await run("POST", "/brand/today-math-mark.svg")).status).toBe(307);
+    expect((await run("GET", "/brand-admin")).status).toBe(307);
+  });
   it("로그인 안 했으면 여기서 판정하지 않는다 — 각 라우트가 401 을 낸다", async () => {
     session.mockReturnValue(null);
     const res = await run("GET", "/api/tests");

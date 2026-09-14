@@ -1,0 +1,658 @@
+.teaching {
+  padding: var(--workspace-page-padding, 16px 20px);
+  max-width: none;
+  margin: 0;
+  --ink: #172b4d;
+  --blue: #3159df;
+  --bg: #fff;
+  --surface: #fff;
+  --side: #edf2ff;
+  --divider: #d4dce8;
+  --control: #7c8da7;
+  --text-2: #52617a;
+  --text-3: #64738c;
+  min-width: 0;
+  color: var(--ink);
+  font-size: var(--text-body, 14px);
+  line-height: 1.65;
+}
+
+.teaching button {
+  box-sizing: border-box;
+  min-height: 44px;
+  border-radius: 8px;
+  font-size: var(--text-body, 14px);
+  font-weight: 600;
+  line-height: 1.4;
+  cursor: pointer;
+}
+.teaching button:disabled {
+  cursor: not-allowed;
+}
+.teaching :is(button, input, select, a):focus-visible {
+  outline: 3px solid #3159df;
+  outline-offset: 3px;
+}
+.teaching [role="tabpanel"]:focus-visible {
+  outline: 2px solid #3159df;
+  outline-offset: 5px;
+}
+.eyebrow {
+  margin: 0 0 6px;
+  color: #3159df;
+  font-size: var(--text-caption, 12px);
+  font-weight: 800;
+  letter-spacing: 0.08em;
+}
+.account {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  min-width: 0;
+}
+.account strong {
+  display: block;
+  font-size: var(--text-body, 14px);
+  overflow-wrap: anywhere;
+}
+.account small {
+  display: block;
+  color: #52617a;
+  font-size: var(--text-caption, 12px);
+}
+.avatar {
+  display: grid;
+  place-items: center;
+  flex-shrink: 0;
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  color: #3159df;
+  background: #e9efff;
+  font-size: var(--text-body, 14px);
+  font-weight: 800;
+}
+.tabs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 16px;
+  border-bottom: 1px solid #d4dce8;
+}
+.tabs button {
+  position: relative;
+  height: 44px;
+  padding: 0 20px;
+  border: 0;
+  background: transparent;
+  color: #52617a;
+  white-space: nowrap;
+}
+.tabs button[aria-selected="true"] {
+  color: #3159df;
+}
+.tabs button[aria-selected="true"]::after {
+  position: absolute;
+  right: 16px;
+  bottom: -1px;
+  left: 16px;
+  height: 3px;
+  border-radius: 3px 3px 0 0;
+  background: #3159df;
+  content: "";
+}
+.tabs button:hover {
+  color: #3159df;
+}
+.authLayout {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(340px, 450px);
+  align-items: start;
+  gap: clamp(24px, 4vw, 56px);
+  max-width: 1100px;
+  margin: 0;
+}
+.authIntro {
+  max-width: 470px;
+}
+.introIcon {
+  display: grid;
+  place-items: center;
+  width: 60px;
+  height: 60px;
+  margin-bottom: 24px;
+  border: 1px solid #cedafb;
+  border-radius: 18px;
+  color: #3159df;
+  background: #eaf0ff;
+}
+.authIntro h2 {
+  margin: 12px 0 0;
+  font-size: var(--text-section, 18px);
+  font-weight: 800;
+  line-height: 1.45;
+  letter-spacing: -0.045em;
+  text-wrap: balance;
+}
+.introDescription {
+  margin: 18px 0 0;
+  max-width: 380px;
+  color: #52617a;
+  font-size: var(--text-body, 14px);
+  line-height: 1.85;
+  word-break: keep-all;
+}
+.featureList {
+  display: grid;
+  gap: 20px;
+  margin: 32px 0 0;
+  padding: 0;
+  list-style: none;
+}
+.featureList li {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+}
+.featureList li > span {
+  display: grid;
+  place-items: center;
+  flex-shrink: 0;
+  width: 32px;
+  height: 32px;
+  border: 1px solid #d4dce8;
+  border-radius: 9px;
+  background: white;
+  color: #3159df;
+  font-size: var(--text-caption, 12px);
+  font-weight: 800;
+}
+.featureList strong {
+  font-size: var(--text-body, 14px);
+  font-weight: 750;
+}
+.featureList p {
+  margin: 2px 0 0;
+  color: #52617a;
+  font-size: var(--text-body, 14px);
+}
+.authCard {
+  min-width: 0;
+  padding: 24px;
+  border: 1px solid #d4dce8;
+  border-radius: 20px;
+  background: #fff;
+  box-shadow: 0 8px 28px #172b4d07;
+}
+.authModes {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+  margin-bottom: 20px;
+  padding: 4px;
+  border-radius: 10px;
+  background: #f3f5f9;
+}
+.authModes button {
+  height: 44px;
+  padding: 0 16px;
+  border: 1px solid transparent;
+  background: transparent;
+  color: #52617a;
+}
+.authModes button[aria-pressed="true"] {
+  border-color: #d4dce8;
+  background: #fff;
+  color: #3159df;
+  box-shadow: 0 1px 3px #172b4d08;
+}
+.authCard h2 {
+  margin: 0;
+  font-size: var(--text-section, 18px);
+  font-weight: 800;
+  line-height: 1.4;
+  letter-spacing: -0.045em;
+}
+.authDescription {
+  margin: 8px 0 20px;
+  color: #52617a;
+  font-size: var(--text-body, 14px);
+}
+.authForm {
+  display: grid;
+  gap: 16px;
+}
+.field {
+  display: grid;
+  gap: 8px;
+}
+.field label {
+  color: #172b4d;
+  font-size: var(--text-caption, 12px);
+  font-weight: 700;
+}
+.field input {
+  box-sizing: border-box;
+  width: 100%;
+  height: 48px;
+  min-width: 0;
+  padding: 0 14px;
+  border: 1px solid var(--control);
+  border-radius: 9px;
+  background: white;
+  color: #172b4d;
+  font: inherit;
+  font-size: var(--text-body, 14px);
+}
+.field input::placeholder {
+  color: #64738c;
+  font-size: var(--text-body, 14px);
+}
+.field input[aria-invalid="true"] {
+  border-color: #bb3847;
+}
+.field input:disabled {
+  background: #f3f5f9;
+}
+.fieldError {
+  margin: 0;
+  color: #ab2638;
+  font-size: var(--text-caption, 12px);
+}
+.notice {
+  margin: 0;
+  padding: 12px;
+  border: 1px solid #ccd8fc;
+  border-radius: 8px;
+  background: #f2f5ff;
+  color: #2443ab;
+  font-size: var(--text-caption, 12px);
+}
+.primaryButton,
+.secondaryButton {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  height: 44px;
+  padding: 0 18px;
+  border: 1px solid #3159df;
+  background: #3159df;
+  color: #fff;
+}
+.primaryButton:hover {
+  background: #2447c5;
+}
+.primaryButton:disabled {
+  border-color: #d4dce8;
+  background: #e8edf6;
+  color: #52617a;
+}
+.authForm .primaryButton {
+  justify-self: start;
+  max-width: 100%;
+  margin-top: 4px;
+}
+.secondaryButton {
+  border-color: #d4dce8;
+  background: #fff;
+  color: #52617a;
+  white-space: nowrap;
+}
+.secondaryButton:hover {
+  background: #f3f5f9;
+  color: #172b4d;
+}
+.authFootnote {
+  margin: 16px 0 0;
+  color: #64738c;
+  text-align: center;
+  font-size: var(--text-caption, 12px);
+}
+.loading {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 12px;
+  min-height: 220px;
+  padding: 24px;
+  color: #52617a;
+  font-size: var(--text-body, 14px);
+}
+.loadingDot {
+  width: 9px;
+  height: 9px;
+  flex-shrink: 0;
+  border-radius: 50%;
+  background: #3159df;
+}
+.errorPanel {
+  padding: 32px;
+  border: 1px solid #d4dce8;
+  border-radius: 16px;
+  background: white;
+}
+.errorPanel h2 {
+  font-size: var(--text-section, 18px);
+  font-weight: 800;
+}
+.errorPanel p {
+  margin: 12px 0 20px;
+  color: #52617a;
+}
+.sectionHeading {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 16px;
+}
+.sectionHeading h2 {
+  margin: 0;
+  font-size: var(--text-section, 18px);
+  font-weight: 800;
+  letter-spacing: -0.03em;
+}
+.sectionHeading p {
+  margin: 6px 0 0;
+  color: #52617a;
+  font-size: var(--text-body, 14px);
+}
+
+/* Scope the existing workflows to this content area; production styles stay intact. */
+.classContent,
+.lessonContent {
+  min-width: 0;
+}
+.classContent main {
+  padding: 0;
+}
+.classContent main > div {
+  gap: 24px;
+}
+.classContent main > div > section,
+.classContent main > section {
+  min-width: 0;
+  padding: 24px;
+  border: 1px solid #d4dce8;
+  border-radius: 14px;
+  background: white;
+}
+.classContent :is(p, li, td, button, [class*="text-[15"]),
+.lessonContent
+  :is(p, li, td, button, a, [class*="text-[13"], [class*="text-[15"]) {
+  font-size: var(--text-body, 14px);
+}
+.classContent :is(h2, h3) {
+  border: 0;
+  margin-bottom: 14px;
+  padding: 0;
+  font-size: var(--text-section, 18px);
+  font-weight: 800;
+  letter-spacing: -0.025em;
+}
+.classContent th {
+  padding: 0 12px 14px;
+  border-bottom: 1px solid #d4dce8;
+  font-size: var(--text-caption, 12px);
+  letter-spacing: 0;
+}
+.classContent td {
+  padding: 10px 12px;
+  font-size: var(--text-body, 14px);
+  overflow-wrap: anywhere;
+}
+.classContent table {
+  table-layout: fixed;
+}
+.classContent table button {
+  width: fit-content;
+  max-width: 100%;
+  padding: 10px 12px;
+}
+.classContent th:last-child {
+  width: 30%;
+}
+/* Unit selectors and lesson rows can wrap; only ordinary actions have a fixed height. */
+.classContent button:not(:where([aria-label="단원 선택"] button)),
+.lessonContent
+  button:not(:where(article > button:first-child, [aria-label$=" 완료"])) {
+  height: 44px;
+}
+.classContent input,
+.lessonContent :is(input, select) {
+  min-height: 48px;
+  padding: 10px 12px;
+  border: 1px solid var(--control);
+  border-radius: 8px;
+  font-size: var(--text-body, 14px);
+}
+.classContent form > div:first-child {
+  flex-wrap: wrap;
+}
+.classContent form input[aria-label="반 이름"] {
+  flex-basis: 140px;
+}
+.classContent form input[aria-label="학년"] {
+  max-width: 100px;
+}
+.classContent form button {
+  min-width: 76px;
+}
+.classContent button[aria-current="true"] {
+  background: #3159df;
+  color: white;
+  box-shadow: none;
+}
+.classContent button[aria-pressed="true"]:not([aria-current="true"]) {
+  background: #edf2ff;
+  color: #3159df;
+}
+.classContent [aria-label="단원 선택"] {
+  overflow: hidden;
+  border-radius: 10px;
+}
+.classContent [aria-label="단원 선택"] h2 {
+  margin: 0;
+  padding: 12px;
+  border-bottom: 1px solid #d4dce8;
+  background: #f3f5f9;
+  color: #52617a;
+  font-size: var(--text-section, 18px);
+}
+.classContent [aria-label="단원 선택"] section > div {
+  max-height: 340px;
+  overflow-y: auto;
+}
+.classContent [aria-label="단원 선택"] button {
+  padding: 10px 12px;
+  border-radius: 8px;
+  white-space: normal;
+  overflow-wrap: anywhere;
+  text-overflow: clip;
+  line-height: 1.4;
+}
+.lessonContent {
+  overflow: hidden;
+  border: 1px solid #d4dce8;
+  border-radius: 14px;
+  background: #fff;
+}
+.lessonContent article,
+.lessonContent div:has(> button[aria-label$=" 완료"]) {
+  box-shadow: none;
+}
+.lessonContent article > :last-child {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  justify-self: start;
+  width: fit-content;
+  max-width: 100%;
+  padding-inline: 16px;
+}
+.lessonContent :is(h2, h3) {
+  font-size: var(--text-section, 18px);
+  letter-spacing: 0;
+}
+.classContent :is(label, small),
+.lessonContent :is(label, small, th),
+.classContent
+  :is([class*="text-[10"], [class*="text-[11"], [class*="text-[12"]):not(
+    button,
+    input,
+    select,
+    a,
+    h2,
+    h3
+  ),
+.lessonContent
+  :is(
+    [class*="text-[9"],
+    [class*="text-[10"],
+    [class*="text-[11"],
+    [class*="text-[12"],
+    [class~="text-xs"]
+  ):not(button, input, select, a, h2, h3) {
+  font-size: var(--text-caption, 12px);
+  letter-spacing: 0;
+}
+.lessonContent :is([class*="text-[26"], [class~="text-2xl"]) {
+  font-size: var(--text-title, 24px);
+}
+.lessonContent a {
+  min-height: 44px;
+  border-radius: 8px;
+  font-weight: 600;
+  line-height: 1.4;
+}
+.lessonContent button {
+  white-space: nowrap;
+}
+.lessonContent [data-teaching-dashboard] > div:first-child button {
+  padding: 10px 16px;
+  background: #3159df;
+  color: white;
+  font-size: var(--text-body, 14px);
+}
+.lessonContent [data-teaching-dashboard] > div:last-child {
+  min-width: 0;
+}
+.lessonContent aside {
+  border-left: 1px solid #d4dce8;
+}
+
+@media (max-width: 1100px) {
+  .authLayout {
+    grid-template-columns: minmax(0, 1fr);
+    max-width: 480px;
+    gap: 24px;
+  }
+  .authIntro {
+    order: 1;
+    max-width: none;
+  }
+  .introIcon,
+  .featureList {
+    display: none;
+  }
+  .classContent main > div {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .lessonContent [data-teaching-dashboard] > div:last-child {
+    flex-direction: column;
+  }
+  .lessonContent aside {
+    width: 100%;
+    border-left: 0;
+    border-top: 1px solid #d4dce8;
+  }
+  .lessonContent article,
+  .lessonContent div:has(> button[aria-label$=" 완료"]) {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 14px;
+    padding: 16px;
+  }
+  .lessonContent article > button:first-child,
+  .lessonContent button[aria-label$=" 완료"] {
+    grid-template-columns: 24px minmax(0, 1fr);
+    gap: 12px;
+    padding: 0;
+  }
+  .lessonContent article > button:first-child [aria-label="진도 단계"],
+  .lessonContent button[aria-label$=" 완료"] [aria-label="진도 단계"] {
+    grid-column: 2;
+    width: 100%;
+  }
+  .lessonContent article > button:first-child span,
+  .lessonContent button[aria-label$=" 완료"] span {
+    white-space: normal;
+    overflow-wrap: anywhere;
+  }
+}
+
+@media (max-width: 760px) {
+  .account {
+    width: 100%;
+  }
+  .account .secondaryButton {
+    margin-left: auto;
+  }
+  .authIntro h2 {
+    margin-top: 8px;
+  }
+  .introDescription {
+    margin-top: 12px;
+    max-width: none;
+  }
+  .authCard {
+    padding: 24px;
+    border-radius: 14px;
+  }
+  .tabs button {
+    padding-right: 12px;
+    padding-left: 12px;
+  }
+  .classContent main > div > section,
+  .classContent main > section {
+    padding: 18px;
+  }
+  .classContent td {
+    padding: 8px 4px;
+  }
+  .classContent [aria-label="단원 선택"] {
+    grid-template-columns: 1fr;
+  }
+  .classContent [aria-label="단원 선택"] section {
+    border-right: 0;
+    border-bottom: 1px solid #d4dce8;
+  }
+  .classContent [aria-label="단원 선택"] section > div {
+    max-height: 210px;
+  }
+  .classContent input[aria-label="반 이름"] {
+    flex-basis: 120px;
+  }
+  .classContent form[aria-label="반 추가"] button {
+    flex: none;
+  }
+  .lessonContent [data-teaching-dashboard] > div:last-child > div {
+    overflow-x: auto;
+  }
+  .lessonContent table {
+    min-width: 660px;
+  }
+  .errorPanel {
+    padding: 24px;
+  }
+}
+
+@media (max-width: 400px) {
+  .authCard {
+    padding: 22px 18px;
+  }
+  .classContent main > div > section,
+  .classContent main > section {
+    padding: 16px;
+  }
+}
