@@ -762,6 +762,48 @@ describe("Studio figure detection owner", () => {
     return { canvas, decode };
   }
 
+  it("extracts figures during the same single-crop OCR request and preserves edited figures on reread", async () => {
+    image();
+    bridge.run.mockResolvedValue({ ...figureResponse(), action: "ocr" });
+    const { result } = mount([initial()]);
+    await act(async () => {
+      await result.current.processCrops("ocr", ["a"]);
+    });
+    expect(bridge.run).toHaveBeenCalledTimes(1);
+    expect(result.current.crops[0].figures).toHaveLength(1);
+    const figure = result.current.crops[0].figures![0];
+    expect(figure.rect).toEqual({
+      x: 0.375,
+      y: 0.25,
+      width: 0.25,
+      height: 0.125,
+    });
+    await act(async () => {
+      result.current.setCrops((previous) =>
+        previous.map((crop) => ({
+          ...crop,
+          figures: [
+            {
+              ...figure,
+              image: "data:image/svg+xml,edited",
+              originalImage: figure.image,
+              svg: "<svg/>",
+            },
+          ],
+          revision: 2,
+        })),
+      );
+    });
+    await act(async () => {
+      await result.current.processCrops("ocr", ["a"]);
+    });
+    expect(result.current.crops[0].figures![0]).toMatchObject({
+      svg: "<svg/>",
+      image: "data:image/svg+xml,edited",
+      originalImage: figure.image,
+    });
+  });
+
   it("detects only on request, maps to page coordinates, and leaves every text field untouched", async () => {
     const { decode } = image();
     bridge.run.mockResolvedValue(figureResponse());

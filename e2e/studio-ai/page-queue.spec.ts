@@ -97,6 +97,14 @@ test("all pages use two background slots, preserve navigation, stamp empty pages
           answer: "",
           solution: "",
           warnings: [],
+          detectedGrade:
+            pageNumber === 1
+              ? {
+                  grade: "고1",
+                  confidence: "high",
+                  evidence: "표지 고등학교 1학년",
+                }
+              : undefined,
           problems:
             pageNumber === 1
               ? []
@@ -132,13 +140,15 @@ test("all pages use two background slots, preserve navigation, stamp empty pages
     pageImages.push((await image.getAttribute("src"))!);
   }
   await pageSelect.selectOption("1");
-  await page.getByRole("combobox", { name: "시험지 학년" }).selectOption("고1");
+  await expect(page.getByRole("combobox", { name: "시험지 학년" })).toHaveValue(
+    "auto",
+  );
   await page
     .getByRole("button", { name: "전체 페이지 자동 인식", exact: true })
     .click();
   await expect.poll(() => requests.length).toBe(2);
   await expect(page.getByLabel("페이지 인식 현황")).toContainText(
-    "2쪽 처리 중 · 4쪽 대기",
+    "0/6쪽 처리 중 · 대기 중 4쪽",
   );
   await expect(
     page.getByRole("progressbar", { name: "페이지 자동 인식" }),
@@ -169,9 +179,12 @@ test("all pages use two background slots, preserve navigation, stamp empty pages
   await expect(page.getByLabel("페이지 인식 현황")).toContainText(
     "인식 6 / 6쪽 완료",
   );
+  await expect(
+    page.getByRole("option", { name: "고1 (자동 인식)", exact: true }),
+  ).toHaveCount(1);
   expect(peak).toBe(2);
   expect(requests).toHaveLength(6);
-  expect(requests.every((request) => request.grade === "고1")).toBe(true);
+  expect(requests.every((request) => request.grade === "미지정")).toBe(true);
   await page
     .getByRole("button", { name: "전체 페이지 자동 인식", exact: true })
     .click();
@@ -181,9 +194,9 @@ test("all pages use two background slots, preserve navigation, stamp empty pages
   expect(requests).toHaveLength(6);
   await page.getByRole("combobox", { name: "시험지 학년" }).selectOption("중2");
   await pageSelect.selectOption("3");
-  await expect(page.getByRole("textbox", { name: "문제 내용" })).toHaveValue(
-    "3쪽 문제",
-  );
+  await expect(
+    page.getByRole("img", { name: "검수할 자른 원본 문제" }),
+  ).toBeVisible();
   await page.getByRole("button", { name: "5문항 담기", exact: true }).click();
   const problems = JSON.parse(
     (await page.getByLabel("시험지 담은 문제").textContent())!,

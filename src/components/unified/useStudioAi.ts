@@ -644,6 +644,33 @@ export function useStudioAi({
               }
             : { answer: result.answer, solution: result.solution };
       }
+      // The OCR response also carries figures from the same crop. Existing
+      // manual/edited figures stay intact; explicit figure detection replaces them.
+      if (
+        job.action === "ocr" &&
+        result.figures?.length &&
+        !snapshot.figures?.length
+      ) {
+        const canvas = await studioImageCanvas(
+          snapshot.image,
+          controller.signal,
+        );
+        if (stale()) return;
+        if (!matches()) return skip();
+        const detected = studioAiFigures(
+          canvas,
+          result.figures,
+          snapshot.rect,
+          snapshot.rect,
+        );
+        patch.figures = detected.figures;
+        warnings.push(...detected.warnings);
+        if (!snapshot.sourceSize)
+          patch.sourceSize = {
+            width: canvas.width / snapshot.rect.width,
+            height: canvas.height / snapshot.rect.height,
+          };
+      }
       const changed =
         (patch.questionType !== undefined &&
           patch.questionType !== (snapshot as CropQuestionType).questionType) ||

@@ -183,7 +183,9 @@ export function DevAiProvider({ children }: { children: ReactNode }) {
             ? "해설 생성 중"
             : request.action === "figures"
               ? "도형 인식 중"
-              : "문제 인식 중",
+              : request.action === "figure-redraw"
+                ? "도형 다시 그리는 중"
+                : "문제 인식 중",
       };
       setActivities((previous) => ({
         ...previous,
@@ -220,7 +222,9 @@ export function DevAiProvider({ children }: { children: ReactNode }) {
               ? "해설 생성 완료"
               : request.action === "figures"
                 ? "도형 인식 완료"
-                : "문제 인식 완료",
+                : request.action === "figure-redraw"
+                  ? "도형 그리기 완료"
+                  : "문제 인식 완료",
         });
         setStatus(
           (previous) =>

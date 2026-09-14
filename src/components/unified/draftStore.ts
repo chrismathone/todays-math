@@ -185,6 +185,13 @@ function parseProblems(value: unknown): StudioProblem[] {
       throw new DraftError(INVALID_IMPORT);
     ids.add(problem.id);
     const normalized: Record<string, unknown> = { ...problem };
+    if (
+      problem.questionType !== undefined &&
+      !["multiple-choice", "short-answer", "descriptive"].includes(
+        problem.questionType as string,
+      )
+    )
+      throw new DraftError(INVALID_IMPORT);
     for (const key of [
       "answer",
       "solution",

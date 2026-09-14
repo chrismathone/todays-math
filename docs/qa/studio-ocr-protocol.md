@@ -7,9 +7,10 @@ the old generic parse message do not establish a timeout or an escaping defect.
 
 The existing saved page-6 source render was inspected and passed directly to the
 existing subscription bridge, without calling the running development server.
-Raw responses and replay scripts remain exclusively in ignored local
-`.qa-artifacts/ocr-protocol/`; no private exam transcription or credentials are
-included here or in the test fixtures.
+Raw responses and replay scripts were written exclusively to the worker's ignored
+local `.qa-artifacts/ocr-protocol/`. That completed, merged worker worktree was
+removed during session cleanup; its private artifacts were not committed.
+No private exam transcription or credentials are included here or in the fixtures.
 
 | Local invocation                        | Result                                                                     |
 | --------------------------------------- | -------------------------------------------------------------------------- |
@@ -61,6 +62,8 @@ Validation: 249 tests passed across `devAiTasks`, `devAiResponseValidation`,
 formatting and `git diff --check` passed. No build, server restart, browser state
 mutation, paid API request, push, or additional worker was used.
 
-Root integration owns UI consumption of question types/crop figures and applying
-sanitized redraw output. A future recurrence can identify the failing parse
-stage from the new safe diagnostic; the original historical cause is still open.
+Root integration now consumes question types/crop figures and applies sanitized
+redraw output through the Mathgen figure editor. See the
+[integration verification](studio-review-redesign.md). A future recurrence can
+identify the failing parse stage from the new safe diagnostic; the original
+historical cause is still open.

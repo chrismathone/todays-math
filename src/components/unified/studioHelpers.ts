@@ -12,6 +12,8 @@ export interface StudioFigure {
   /** Source PAGE coordinates normalized to 0–1, bounded by the problem. */
   rect: StudioRect;
   image: string;
+  originalImage?: string;
+  svg?: string;
 }
 
 export interface StudioCrop {
@@ -37,7 +39,14 @@ export interface StudioCrop {
   /** Monotonic edit generation, including changes that restore the old text. */
   revision?: number;
   aiWarnings?: string[];
+  questionType?: "multiple-choice" | "short-answer" | "descriptive";
 }
+
+export const STUDIO_QUESTION_TYPES = {
+  "multiple-choice": "객관식",
+  "short-answer": "단답형",
+  descriptive: "서술형",
+} as const;
 
 export const STUDIO_GRADES: Record<SchoolLevel, string[]> = {
   elementary: ["초1", "초2", "초3", "초4", "초5", "초6"],
@@ -93,6 +102,7 @@ export function studioProblem(crop: StudioCrop): StudioProblem {
     );
   return {
     id: crop.id,
+    ...(crop.questionType ? { questionType: crop.questionType } : {}),
     content: useText ? crop.content.trim() : "",
     answer: crop.answer.trim(),
     solution: crop.solution.trim(),

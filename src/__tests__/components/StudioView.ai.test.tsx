@@ -34,6 +34,11 @@ function normal(request: DevAiRequest) {
         answer: String.raw`$\frac{10}{3}$`,
         solution: "한 개를 더합니다.",
         warnings: [],
+        detectedGrade: {
+          grade: "초5",
+          confidence: "high",
+          evidence: "예제 초등학교 5학년",
+        },
         problems: [
           {
             content: recognized,
@@ -132,7 +137,12 @@ async function open() {
 }
 async function recognize() {
   fireEvent.click(screen.getByRole("button", { name: "페이지 자동 인식" }));
-  await screen.findByDisplayValue(recognized);
+  await screen.findByRole("button", { name: "1문항 담기" });
+  fireEvent.click(
+    screen.getByRole("button", { name: "문자·도형 검수로 이동" }),
+  );
+  await screen.findByText(/값을 구하세요/);
+  fireEvent.click(screen.getByRole("button", { name: "내용 수정" }));
 }
 
 describe("Studio AI review controls", () => {
@@ -180,8 +190,10 @@ describe("Studio AI review controls", () => {
       screen.queryByLabelText("자동 인식 완료: 문제가 없는 빈 페이지"),
     ).not.toBeInTheDocument();
     respond = normal;
-    fireEvent.click(screen.getByRole("button", { name: "이 페이지 재시도" }));
-    await screen.findByDisplayValue(recognized);
+    fireEvent.click(
+      screen.getAllByRole("button", { name: "이 페이지 재시도" })[0],
+    );
+    await screen.findByRole("button", { name: "1문항 담기" });
     expect(screen.queryByRole("alert")).not.toBeInTheDocument();
   });
   it("imports without a paid request, reviews recognized text and sends edits to the solution request", async () => {
@@ -194,7 +206,9 @@ describe("Studio AI review controls", () => {
     expect(screen.getByText(/Claude CLI에서 로그인/)).toBeInTheDocument();
     await recognize();
     expect(posts.map((post) => post.action)).toEqual(["page-ocr"]);
-    expect(screen.getByRole("radio", { name: "원본 이미지" })).toBeChecked();
+    expect(
+      screen.getByRole("combobox", { name: "문제 1 출력 방식" }),
+    ).toHaveValue("image");
     const content = screen.getByDisplayValue(recognized);
     fireEvent.change(content, { target: { value: "검수한 도형 문제" } });
     fireEvent.click(screen.getByRole("button", { name: "해설 생성" }));
@@ -218,8 +232,10 @@ describe("Studio AI review controls", () => {
   it("keeps editable raw fractions and applies mixed fractions only in elementary previews", async () => {
     await open();
     await recognize();
-    fireEvent.click(screen.getByRole("radio", { name: "입력한 텍스트" }));
-    fireEvent.click(screen.getByRole("button", { name: "출력 미리보기" }));
+    fireEvent.change(
+      screen.getByRole("combobox", { name: "문제 1 출력 방식" }),
+      { target: { value: "text" } },
+    );
     expect(screen.getByTestId("math-content")).toHaveTextContent(
       String.raw`$2\frac{1}{3}$ + 1의 값을 구하세요.`,
     );
@@ -239,7 +255,7 @@ describe("Studio AI review controls", () => {
       new Promise((resolve) => {
         finish = resolve;
       });
-    fireEvent.click(screen.getByRole("button", { name: "문제 다시 읽기" }));
+    fireEvent.click(screen.getByRole("button", { name: "다시 인식" }));
     await screen.findByRole("button", { name: "AI 작업 취소" });
     const request = vi.mocked(fetch).mock.calls.at(-1)![1] as RequestInit;
     fireEvent.click(screen.getByRole("button", { name: "새로 시작" }));

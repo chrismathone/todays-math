@@ -7,16 +7,23 @@ import WorkspacePageHeader from "./WorkspacePageHeader";
 import StudioCropOverlay from "./StudioCropOverlay";
 import WorkProgress from "./WorkProgress";
 import StudioQueueStatus from "./StudioQueueStatus";
-import { useEffect, useEffectEvent, useRef, useState } from "react";
+import StudioReviewPane from "./StudioReviewPane";
+import StudioPageEmpty from "./StudioPageEmpty";
+import { resolveStudioGrade, studioGradeLevel } from "./studioGrade";
+import {
+  lazy,
+  Suspense,
+  useEffect,
+  useEffectEvent,
+  useRef,
+  useState,
+} from "react";
 import type { KeyboardEvent, PointerEvent, SVGProps } from "react";
 import type {
   PDFDocumentLoadingTask,
   PDFDocumentProxy,
   RenderTask,
 } from "pdfjs-dist";
-import { ProblemContent } from "@/components/math/ProblemContent";
-import UnifiedProblem from "./UnifiedProblem";
-import { displayFractions } from "./fractionDisplay";
 import { useStudioAi, type StudioAiPageTask } from "./useStudioAi";
 import { studioCropImage } from "./studioAiHelpers";
 import type { DevAiProvider } from "@/lib/dev-ai/contracts";
@@ -25,12 +32,15 @@ import {
   clamp,
   drawStudioSample,
   STUDIO_GRADES,
+  STUDIO_QUESTION_TYPES,
   studioPixelRect,
   studioProblem,
   studioRectBetween,
 } from "./studioHelpers";
-import type { StudioCrop, StudioRect } from "./studioHelpers";
+import type { StudioCrop, StudioRect, StudioFigure } from "./studioHelpers";
 import styles from "./StudioView.module.css";
+
+const StudioFigureEditor = lazy(() => import("./figure-editor"));
 
 interface StudioSource {
   id: string;
@@ -39,6 +49,7 @@ interface StudioSource {
   pages: number;
   grade?: string;
   level?: SchoolLevel;
+  gradeManual?: boolean;
   original?: File;
   image?: HTMLImageElement | HTMLCanvasElement;
   pdf?: PDFDocumentProxy;
@@ -222,8 +233,8 @@ export default function StudioView({
     {},
   );
   const [step, setStep] = useState<"upload" | "crop" | "review">("upload");
-  const [level, setLevel] = useState<SchoolLevel>("elementary");
-  const [grade, setGrade] = useState("초5");
+  const [level, setLevel] = useState<SchoolLevel>("secondary");
+  const [grade, setGrade] = useState("미지정");
   const [zoom, setZoom] = useState(100);
   const [busy, setBusy] = useState(false);
   const [importProgress, setImportProgress] = useState<{
@@ -239,6 +250,13 @@ export default function StudioView({
   const [coordinatesOpen, setCoordinatesOpen] = useState(false);
   const [focusMode, setFocusMode] = useState(false);
   const [restartOpen, setRestartOpen] = useState(false);
+  const [figureEditor, setFigureEditor] = useState<{
+    cropId: string;
+    figureId: string;
+  } | null>(null);
+  function openFigureEditor(crop: StudioCrop, figure: StudioFigure) {
+    setFigureEditor({ cropId: crop.id, figureId: figure.id });
+  }
   const [viewportSize, setViewportSize] = useState({ width: 0, height: 0 });
   const studio = useRef<HTMLElement>(null);
   const focusButton = useRef<HTMLButtonElement>(null);
@@ -247,7 +265,6 @@ export default function StudioView({
   const restartDialog = useRef<HTMLDialogElement>(null);
   const cancelRestartButton = useRef<HTMLButtonElement>(null);
   const pageViewport = useRef<HTMLDivElement>(null);
-  const reviewViewport = useRef<HTMLDivElement>(null);
   const fileInput = useRef<HTMLInputElement>(null);
   const surface = useRef<HTMLDivElement>(null);
   const drag = useRef<{ x: number; y: number; pointerId: number } | null>(null);
@@ -294,6 +311,10 @@ export default function StudioView({
   const currentPageJob = sourceJobs.find((job) => job.page === pageNumber);
   const editing = Boolean(currentSource && step !== "upload");
   const activeCrop = crops.find((item) => item.id === activeCropId);
+  const figureCrop = crops.find((crop) => crop.id === figureEditor?.cropId);
+  const editedFigure = figureCrop?.figures?.find(
+    (figure) => figure.id === figureEditor?.figureId,
+  );
   const activeCropIndex = crops.findIndex((item) => item.id === activeCropId);
   const pageCrops = crops.filter(
     (crop) => crop.sourceId === sourceId && crop.page === pageNumber,
@@ -327,6 +348,64 @@ export default function StudioView({
   const validSelection = Boolean(
     readyToCrop && readyToCrop.width >= 8 && readyToCrop.height >= 8,
   );
+
+  const reconcileGrades = useEffectEvent(() => {
+    const decisions = new Map(
+      sources.flatMap((source) => {
+        const jobs = studioAi.pageJobs.filter(
+          (job) => job.sourceId === source.id,
+        );
+        if (
+          source.gradeManual ||
+          !jobs.length ||
+          jobs.some((job) =>
+            ["queued", "rendering", "running"].includes(job.state),
+          )
+        )
+          return [];
+        return [[source.id, resolveStudioGrade(source, jobs)] as const];
+      }),
+    );
+    if (!decisions.size) return;
+    setSources((previous) =>
+      previous.map((source) => {
+        const result = decisions.get(source.id);
+        return result && source.grade !== result.grade
+          ? {
+              ...source,
+              grade: result.grade,
+              level: studioGradeLevel(result.grade),
+            }
+          : source;
+      }),
+    );
+    setCrops((previous) =>
+      previous.map((crop) => {
+        const result = decisions.get(crop.sourceId);
+        const nextGrade = result?.grade ?? "미지정";
+        return result && crop.grade !== nextGrade
+          ? {
+              ...crop,
+              grade: nextGrade,
+              level: studioGradeLevel(result.grade),
+              added: false,
+              reviewed: false,
+              revision: (crop.revision ?? 0) + 1,
+            }
+          : crop;
+      }),
+    );
+    const selected = decisions.get(sourceId);
+    if (selected) {
+      setGrade(selected.grade ?? "미지정");
+      setLevel(studioGradeLevel(selected.grade));
+    }
+  });
+  useEffect(() => {
+    // Reconcile the completed external AI queue into the file and its existing crops.
+    // eslint-disable-next-line react-hooks/set-state-in-effect
+    reconcileGrades();
+  }, [studioAi.pageJobs]);
 
   useEffect(() => {
     const dialog = restartDialog.current;
@@ -464,7 +543,6 @@ export default function StudioView({
   }, [currentSource, pageNumber]);
 
   function chooseSource(id: string, page = 1) {
-    studioAi.cancelCrop(true);
     const next =
       (activeCrop?.sourceId === id && activeCrop.page === page
         ? activeCrop
@@ -472,21 +550,20 @@ export default function StudioView({
       crops.find((crop) => crop.sourceId === id && crop.page === page);
     setSourceId(id);
     const source = sources.find((item) => item.id === id);
-    if (source?.grade) setGrade(source.grade);
-    if (source?.level) setLevel(source.level);
+    setGrade(source?.grade ?? "미지정");
+    setLevel(source?.level ?? "secondary");
     setPageNumber(page);
     setSelection(null);
     drag.current = null;
     setActiveCropId(next?.id ?? "");
     setSelectedBoxId(next?.id ?? "");
     setError("");
-    setStep("crop");
+    setStep((previous) => (previous === "review" ? "review" : "crop"));
   }
 
   async function importFiles(files: File[]) {
     const resources = session.current;
     if (!files.length || resources.importing) return;
-    studioAi.cancelCrop(true);
     const controller = new AbortController();
     const generation = resources.generation;
     resources.importing = controller;
@@ -553,8 +630,6 @@ export default function StudioView({
             kind: "pdf",
             original: file,
             pages: pdf.numPages,
-            grade,
-            level,
             pdf,
           });
         } else if (
@@ -573,8 +648,6 @@ export default function StudioView({
             kind: "image",
             original: file,
             pages: 1,
-            grade,
-            level,
             image,
           });
         } else
@@ -628,8 +701,8 @@ export default function StudioView({
     setCropTool("add-problem");
     setInspectedPages({});
     setStep("upload");
-    setLevel("elementary");
-    setGrade("초5");
+    setLevel("secondary");
+    setGrade("미지정");
     setZoom(100);
     setBusy(false);
     setDragOver(false);
@@ -640,6 +713,7 @@ export default function StudioView({
     setFocusMode(false);
     setViewportSize({ width: 0, height: 0 });
     setRestartOpen(false);
+    setFigureEditor(null);
   }
 
   function requestStartOver() {
@@ -676,8 +750,6 @@ export default function StudioView({
         name: "오늘의 수학 · 연습용 예제",
         kind: "sample",
         pages: 1,
-        grade,
-        level,
         image: drawStudioSample(),
       };
       setSources((previous) => [...previous, sample]);
@@ -745,10 +817,29 @@ export default function StudioView({
       drag.current.pointerId !== event.pointerId
     )
       return;
-    setSelection(studioRectBetween(drag.current, pointAt(event)));
+    const next = studioRectBetween(drag.current, pointAt(event));
     drag.current = null;
     if (event.currentTarget.hasPointerCapture(event.pointerId))
       event.currentTarget.releasePointerCapture(event.pointerId);
+    if (
+      next.width < 0.005 &&
+      next.height < 0.005 &&
+      cropTool === "add-problem"
+    ) {
+      const crop = pageCrops.find(
+        (crop) =>
+          next.x >= crop.rect.x &&
+          next.x <= crop.rect.x + crop.rect.width &&
+          next.y >= crop.rect.y &&
+          next.y <= crop.rect.y + crop.rect.height,
+      );
+      if (crop) {
+        selectBox(crop.id);
+        setCropTool("select");
+        return;
+      }
+    }
+    saveCrop(next);
   }
 
   function cancelSelection() {
@@ -762,17 +853,21 @@ export default function StudioView({
       surface.current.releasePointerCapture(pointerId);
   }
 
-  function saveCrop() {
+  function saveCrop(rect: StudioRect | null = selection) {
+    const pixels =
+      rect && rendered
+        ? studioPixelRect(rect, rendered.canvas.width, rendered.canvas.height)
+        : null;
     if (
       recognizingPage ||
-      !selection ||
+      !rect ||
       !rendered ||
       !currentSource ||
-      !validSelection ||
-      !readyToCrop
+      !pixels ||
+      pixels.width < 8 ||
+      pixels.height < 8
     )
       return;
-    studioAi.cancelCrop(true);
     try {
       if (cropTool === "add-figure") {
         if (
@@ -783,26 +878,25 @@ export default function StudioView({
           return;
         const figure = {
           id: crypto.randomUUID(),
-          rect: { ...selection },
-          image: studioCropImage(rendered.canvas, selection),
+          rect: { ...rect },
+          image: studioCropImage(rendered.canvas, rect),
         };
         updateCrop({ figures: [...(activeCrop.figures ?? []), figure] });
         setSelectedBoxId(figure.id);
         setSelection(null);
-        setCropTool("select");
         return;
       }
       const canvas = document.createElement("canvas");
-      canvas.width = readyToCrop.width;
-      canvas.height = readyToCrop.height;
+      canvas.width = pixels.width;
+      canvas.height = pixels.height;
       const ctx = canvas.getContext("2d");
       if (!ctx) throw new Error("문제 이미지를 만들 수 없습니다.");
       ctx.drawImage(
         rendered.canvas,
-        readyToCrop.x,
-        readyToCrop.y,
-        readyToCrop.width,
-        readyToCrop.height,
+        pixels.x,
+        pixels.y,
+        pixels.width,
+        pixels.height,
         0,
         0,
         canvas.width,
@@ -813,7 +907,7 @@ export default function StudioView({
         sourceId,
         sourceLabel: currentSource.name,
         page: pageNumber,
-        rect: { ...selection },
+        rect: { ...rect },
         image: canvas.toDataURL("image/png"),
         content: "",
         answer: "",
@@ -969,13 +1063,18 @@ export default function StudioView({
               {
                 ...figure,
                 rect: bounded,
-                image: studioCropImage(rendered.canvas, bounded),
+                ...(JSON.stringify(bounded) === JSON.stringify(figure.rect)
+                  ? {}
+                  : {
+                      image: studioCropImage(rendered.canvas, bounded),
+                      originalImage: undefined,
+                      svg: undefined,
+                    }),
               },
             ]
           : [];
       });
       const image = studioCropImage(rendered.canvas, problemRect);
-      studioAi.cancelCrop(true);
       setCrops((previous) =>
         previous.map((item) =>
           item.id === crop.id
@@ -1020,7 +1119,6 @@ export default function StudioView({
         item.id === id || item.figures?.some((figure) => figure.id === id),
     );
     if (!crop) return;
-    studioAi.cancelCrop(true);
     if (crop.id === id) {
       const index = crops.indexOf(crop);
       const next = crops[index + 1] ?? crops[index - 1];
@@ -1054,14 +1152,18 @@ export default function StudioView({
   }
 
   function updateCrop(patch: Partial<StudioCrop>) {
+    updateCropById(activeCropId, patch);
+  }
+
+  function updateCropById(id: string, patch: Partial<StudioCrop>) {
     setCrops((previous) =>
       previous.map((crop) =>
-        crop.id === activeCropId
+        crop.id === id
           ? {
               ...crop,
-              ...patch,
               added: false,
               reviewed: false,
+              ...patch,
               revision: (crop.revision ?? 0) + 1,
             }
           : crop,
@@ -1072,10 +1174,6 @@ export default function StudioView({
   function selectCrop(id: string) {
     const crop = crops.find((item) => item.id === id);
     if (!crop || studioAi.isPageBusy(crop.sourceId, crop.page)) return;
-    if (activeCropId !== id) {
-      studioAi.cancelCrop(true);
-      if (reviewViewport.current) reviewViewport.current.scrollTop = 0;
-    }
     cancelSelection();
     setActiveCropId(id);
     setSelectedBoxId(id);
@@ -1089,7 +1187,8 @@ export default function StudioView({
   }
 
   function finishReview() {
-    if (!activeCrop || recognizingPage || studioAi.progress) return;
+    if (!activeCrop || recognizingPage || studioAi.isCropBusy?.(activeCrop.id))
+      return;
     setCrops((previous) =>
       previous.map((crop) =>
         crop.id === activeCropId ? { ...crop, reviewed: true } : crop,
@@ -1113,27 +1212,36 @@ export default function StudioView({
     }
   }
 
-  function changeSourceGrade(nextGrade: string) {
-    if (sourceRecognizing) return;
-    const nextLevel: SchoolLevel = STUDIO_GRADES.elementary.includes(nextGrade)
-      ? "elementary"
-      : "secondary";
-    studioAi.cancelCrop(true);
+  function changeSourceGrade(value: string) {
+    if (!currentSource || sourceRecognizing) return;
+    const manual = value !== "auto";
+    const nextGrade = manual
+      ? value
+      : resolveStudioGrade(
+          { ...currentSource, gradeManual: false, grade: undefined },
+          sourceJobs,
+        ).grade;
+    const nextLevel = studioGradeLevel(nextGrade);
     setLevel(nextLevel);
-    setGrade(nextGrade);
+    setGrade(nextGrade ?? "미지정");
     setSources((previous) =>
       previous.map((source) =>
         source.id === sourceId
-          ? { ...source, grade: nextGrade, level: nextLevel }
+          ? {
+              ...source,
+              grade: nextGrade,
+              level: nextLevel,
+              gradeManual: manual,
+            }
           : source,
       ),
     );
     setCrops((previous) =>
       previous.map((crop) =>
-        crop.sourceId === sourceId
+        crop.sourceId === sourceId && crop.grade !== (nextGrade ?? "미지정")
           ? {
               ...crop,
-              grade: nextGrade,
+              grade: nextGrade ?? "미지정",
               level: nextLevel,
               added: false,
               reviewed: false,
@@ -1153,7 +1261,9 @@ export default function StudioView({
       sourceId: currentSource.id,
       sourceLabel: currentSource.name,
       page,
-      grade: currentSource.grade ?? grade,
+      grade: currentSource.gradeManual
+        ? (currentSource.grade ?? "미지정")
+        : "미지정",
       level: currentSource.level ?? level,
       load: (signal) => renderAiPage(currentSource, page, signal),
     }));
@@ -1164,7 +1274,6 @@ export default function StudioView({
 
   function addProblems(exportAfter = false) {
     if (!crops.length) return;
-    studioAi.cancelCrop(true);
     const pending = crops.filter((crop) => !crop.added);
     if (pending.length) {
       onAdd(pending.map(studioProblem));
@@ -1179,12 +1288,17 @@ export default function StudioView({
     }
   }
 
-  const selectedGrade = currentSource?.grade ?? grade;
+  const detectedGrade = currentSource
+    ? resolveStudioGrade(currentSource, sourceJobs)
+    : undefined;
+  const selectedGrade = currentSource?.gradeManual
+    ? currentSource.grade
+    : "auto";
 
   return (
     <section
       ref={studio}
-      className={`${styles.studio} ${editing ? styles.editing : ""} ${focusMode ? styles.focusMode : ""} ${!inspectorOpen ? styles.panelClosed : ""}`}
+      className={`${styles.studio} ${editing ? styles.editing : ""} ${focusMode ? styles.focusMode : ""} ${!inspectorOpen ? styles.panelClosed : ""} ${step === "review" ? styles.reviewMode : ""}`}
       aria-label="문제 제작 스튜디오"
       role={focusMode ? "dialog" : undefined}
       aria-modal={focusMode || undefined}
@@ -1230,7 +1344,7 @@ export default function StudioView({
                 setInspectorOpen(true);
               }}
             >
-              검수 · 편집 <b>{crops.length}</b>
+              문자·도형 검수 <b>{crops.length}</b>
             </button>
           </div>
           <div className={styles.editorTools}>
@@ -1246,13 +1360,15 @@ export default function StudioView({
               <Icon name="restart" />
               새로 시작
             </button>
-            <button
-              aria-pressed={inspectorOpen}
-              aria-label={inspectorOpen ? "검수 패널 접기" : "검수 패널 열기"}
-              onClick={() => setInspectorOpen((value) => !value)}
-            >
-              검수 패널
-            </button>
+            {step === "crop" && (
+              <button
+                aria-pressed={inspectorOpen}
+                aria-label={inspectorOpen ? "검수 패널 접기" : "검수 패널 열기"}
+                onClick={() => setInspectorOpen((value) => !value)}
+              >
+                검수 패널
+              </button>
+            )}
             <button
               ref={focusButton}
               aria-pressed={focusMode}
@@ -1404,11 +1520,7 @@ export default function StudioView({
             {currentSource ? (
               <label
                 className={styles.sourceGrade}
-                title={
-                  sourceRecognizing
-                    ? "인식이 끝나면 시험지 전체의 학년을 변경할 수 있습니다."
-                    : "이 파일의 모든 문제에 적용"
-                }
+                title={detectedGrade?.evidence ?? "이 파일의 모든 문제에 적용"}
               >
                 <span>학년</span>
                 <select
@@ -1417,6 +1529,13 @@ export default function StudioView({
                   disabled={sourceRecognizing}
                   onChange={(event) => changeSourceGrade(event.target.value)}
                 >
+                  <option value="auto">
+                    {detectedGrade?.grade
+                      ? `${detectedGrade.grade} (자동 인식)`
+                      : detectedGrade?.needsReview
+                        ? "학년 확인 필요"
+                        : "자동 인식"}
+                  </option>
                   <optgroup label="초등">
                     {STUDIO_GRADES.elementary.map((value) => (
                       <option key={value} value={value}>
@@ -1438,11 +1557,12 @@ export default function StudioView({
               <div className={styles.pageTools}>
                 <button
                   type="button"
+                  className={styles.pageNavigationButton}
                   aria-label="이전 페이지"
                   disabled={pageNumber <= 1}
                   onClick={() => chooseSource(sourceId, pageNumber - 1)}
                 >
-                  ‹
+                  이전 쪽
                 </button>
                 <label>
                   <span className={styles.srOnly}>페이지</span>
@@ -1463,25 +1583,28 @@ export default function StudioView({
                 </label>
                 <button
                   type="button"
+                  className={styles.pageNavigationButton}
                   aria-label="다음 페이지"
                   disabled={pageNumber >= currentSource.pages}
                   onClick={() => chooseSource(sourceId, pageNumber + 1)}
                 >
-                  ›
+                  다음 쪽
                 </button>
                 <span className={styles.divider} />
-                <select
-                  aria-label="원본 확대 비율"
-                  value={zoom}
-                  onChange={(event) => setZoom(Number(event.target.value))}
-                >
-                  <option value={0}>전체 보기</option>
-                  <option value={75}>75%</option>
-                  <option value={100}>너비 맞춤</option>
-                  <option value={125}>125%</option>
-                  <option value={150}>150%</option>
-                  <option value={200}>200%</option>
-                </select>
+                {step === "crop" && (
+                  <select
+                    aria-label="원본 확대 비율"
+                    value={zoom}
+                    onChange={(event) => setZoom(Number(event.target.value))}
+                  >
+                    <option value={0}>전체 보기</option>
+                    <option value={75}>75%</option>
+                    <option value={100}>너비 맞춤</option>
+                    <option value={125}>125%</option>
+                    <option value={150}>150%</option>
+                    <option value={200}>200%</option>
+                  </select>
+                )}
                 <button
                   type="button"
                   className={`${styles.secondaryButton} ${styles.pageAiButton}`}
@@ -1578,27 +1701,29 @@ export default function StudioView({
                     </button>
                   </div>
                 </details>
-                <button
-                  className={styles.preciseButton}
-                  type="button"
-                  onClick={() => {
-                    setStep("crop");
-                    setCropTool("add-problem");
-                    setSelection({
-                      x: 0.08,
-                      y: 0.15,
-                      width: 0.84,
-                      height: 0.2,
-                    });
-                    requestAnimationFrame(() =>
-                      surface.current?.focus({ preventScroll: true }),
-                    );
-                  }}
-                  disabled={!pageReady || recognizingPage}
-                  aria-label="키보드로 영역 지정"
-                >
-                  영역 지정
-                </button>
+                {step === "crop" && (
+                  <button
+                    className={styles.preciseButton}
+                    type="button"
+                    onClick={() => {
+                      setStep("crop");
+                      setCropTool("add-problem");
+                      setSelection({
+                        x: 0.08,
+                        y: 0.15,
+                        width: 0.84,
+                        height: 0.2,
+                      });
+                      requestAnimationFrame(() =>
+                        surface.current?.focus({ preventScroll: true }),
+                      );
+                    }}
+                    disabled={!pageReady || recognizingPage}
+                    aria-label="키보드로 영역 지정"
+                  >
+                    영역 지정
+                  </button>
+                )}
               </div>
             ) : (
               <span className={styles.toolbarMeta}>PDF · 이미지</span>
@@ -1680,109 +1805,82 @@ export default function StudioView({
             </div>
           ) : null}
 
-          {step === "review" && activeCrop ? (
+          {step === "review" ? (
             <>
-              <div
-                className={styles.reviewNavigation}
-                aria-label="문항 검수 이동"
-              >
-                <button
-                  type="button"
-                  className={styles.secondaryButton}
-                  aria-label="이전 문제 검수"
-                  disabled={activeCropIndex <= 0 || recognizingPage}
-                  onClick={() => selectCrop(crops[activeCropIndex - 1].id)}
+              {activeCrop && (
+                <div
+                  className={styles.reviewNavigation}
+                  aria-label="문항 검수 이동"
                 >
-                  ‹
-                </button>
-                <strong>
-                  문제 {activeCropIndex + 1} <span>/ {crops.length}</span>
-                </strong>
-                <button
-                  type="button"
-                  className={styles.secondaryButton}
-                  aria-label="다음 문제 검수"
-                  disabled={
-                    activeCropIndex >= crops.length - 1 || recognizingPage
-                  }
-                  onClick={() => selectCrop(crops[activeCropIndex + 1].id)}
-                >
-                  ›
-                </button>
-                <span className={styles.reviewProgress}>
-                  {reviewedCount}문항 검수 완료
-                </span>
-                <button
-                  type="button"
-                  className={styles.primaryButton}
-                  disabled={
-                    recognizingPage ||
-                    Boolean(studioAi.progress) ||
-                    (activeCrop.reviewed &&
-                      activeCropIndex === crops.length - 1)
-                  }
-                  onClick={finishReview}
-                >
-                  {activeCropIndex < crops.length - 1
-                    ? "검수 완료 · 다음"
-                    : activeCrop.reviewed
-                      ? "검수 완료됨"
-                      : "검수 완료"}
-                </button>
-              </div>
-              <div ref={reviewViewport} className={styles.reviewCanvas}>
-                <div className={styles.reviewHeading}>
-                  <span>출력 미리보기</span>
-                  <span>
-                    {activeCrop.mode === "text" && activeCrop.content.trim()
-                      ? "입력한 텍스트"
-                      : "원본 이미지"}
+                  <button
+                    type="button"
+                    className={styles.secondaryButton}
+                    aria-label="이전 문제 검수"
+                    disabled={activeCropIndex <= 0 || recognizingPage}
+                    onClick={() => selectCrop(crops[activeCropIndex - 1].id)}
+                  >
+                    이전 문제
+                  </button>
+                  <strong>
+                    문제 {activeCropIndex + 1} <span>/ {crops.length}</span>
+                  </strong>
+                  <button
+                    type="button"
+                    className={styles.secondaryButton}
+                    aria-label="다음 문제 검수"
+                    disabled={
+                      activeCropIndex >= crops.length - 1 || recognizingPage
+                    }
+                    onClick={() => selectCrop(crops[activeCropIndex + 1].id)}
+                  >
+                    다음 문제
+                  </button>
+                  <span className={styles.reviewProgress}>
+                    {reviewedCount}문항 검수 완료
                   </span>
+                  <button
+                    type="button"
+                    className={styles.primaryButton}
+                    disabled={
+                      recognizingPage ||
+                      studioAi.isCropBusy?.(activeCrop.id) ||
+                      (activeCrop.reviewed &&
+                        activeCropIndex === crops.length - 1)
+                    }
+                    onClick={finishReview}
+                  >
+                    {activeCropIndex < crops.length - 1
+                      ? "검수 완료 · 다음"
+                      : activeCrop.reviewed
+                        ? "검수 완료됨"
+                        : "검수 완료"}
+                  </button>
                 </div>
-                <article className={styles.reviewPaper}>
-                  <div className={styles.paperHeading}>
-                    <span>오늘의 수학</span>
-                    <span>{activeCrop.grade} · 직접 가져온 문제</span>
-                  </div>
-                  <div className={styles.problemNumber}>
-                    {String(
-                      crops.findIndex((crop) => crop.id === activeCropId) + 1,
-                    ).padStart(2, "0")}
-                  </div>
-                  <UnifiedProblem problem={studioProblem(activeCrop)} />
-                  {activeCrop.answer.trim() ? (
-                    <div className={styles.reviewAnswer}>
-                      <strong>정답</strong>
-                      <ProblemContent
-                        content={displayFractions(
-                          activeCrop.answer,
-                          activeCrop.grade,
-                        )}
-                      />
-                    </div>
-                  ) : null}
-                  {activeCrop.solution.trim() ? (
-                    <div className={styles.reviewAnswer}>
-                      <strong>풀이</strong>
-                      <ProblemContent
-                        content={displayFractions(
-                          activeCrop.solution,
-                          activeCrop.grade,
-                        )}
-                      />
-                    </div>
-                  ) : null}
-                </article>
-                <button
-                  type="button"
-                  className={styles.textButton}
-                  onClick={() =>
-                    chooseSource(activeCrop.sourceId, activeCrop.page)
-                  }
-                >
-                  원본으로 돌아가 더 자르기 <Icon name="arrow" />
-                </button>
-              </div>
+              )}
+              <StudioReviewPane
+                crops={pageCrops}
+                allCrops={crops}
+                activeId={activeCropId}
+                original={pageReady ? rendered?.url : undefined}
+                page={pageNumber}
+                pageJob={currentPageJob}
+                jobs={studioAi.cropJobs ?? []}
+                available={studioAi.available}
+                onSelect={selectCrop}
+                onUpdate={updateCropById}
+                onRun={(action, ids) => void studioAi.processCrops(action, ids)}
+                onCancel={(id, action) => studioAi.cancelCropJob(id, action)}
+                onRetry={(id, action) => void studioAi.retryCrop(id, action)}
+                onCrop={(crop, figure) => {
+                  if (crop) selectCrop(crop.id);
+                  setStep("crop");
+                  setInspectorOpen(true);
+                  setCropTool(crop ? "select" : "add-problem");
+                  if (figure) setSelectedBoxId(figure.id);
+                }}
+                onEditFigure={openFigureEditor}
+                onRetryPage={() => recognizeSource(false)}
+              />
             </>
           ) : step === "upload" || !currentSource ? (
             <div
@@ -1929,7 +2027,7 @@ export default function StudioView({
                           key={crop.id}
                           id={crop.id}
                           rect={crop.rect}
-                          label={`문제 ${crops.indexOf(crop) + 1}`}
+                          label={`문제 ${crops.indexOf(crop) + 1}${crop.questionType ? ` · ${STUDIO_QUESTION_TYPES[crop.questionType]}` : ""}`}
                           kind="problem"
                           selected={selectedBoxId === crop.id}
                           disabled={recognizingPage}
@@ -2055,7 +2153,7 @@ export default function StudioView({
         <aside
           className={styles.inspector}
           aria-label="자른 문제 검수"
-          hidden={editing && !inspectorOpen}
+          hidden={step === "review" || (editing && !inspectorOpen)}
         >
           <h2 className={styles.srOnly}>문제 검수</h2>
           <div className={styles.inspectorScroll}>
@@ -2111,11 +2209,7 @@ export default function StudioView({
                 {unreadCrops.length > 1 ? (
                   <button
                     type="button"
-                    disabled={
-                      !unreadCrops.length ||
-                      !studioAi.available ||
-                      studioAi.running
-                    }
+                    disabled={!unreadCrops.length || !studioAi.available}
                     onClick={() =>
                       void studioAi.processCrops(
                         "ocr",
@@ -2129,11 +2223,7 @@ export default function StudioView({
                 {unsolvedCrops.length > 1 ? (
                   <button
                     type="button"
-                    disabled={
-                      !unsolvedCrops.length ||
-                      !studioAi.available ||
-                      studioAi.running
-                    }
+                    disabled={!unsolvedCrops.length || !studioAi.available}
                     title="검수한 문제 내용과 원본 이미지로 해설을 차례로 생성합니다."
                     onClick={() =>
                       void studioAi.processCrops(
@@ -2155,7 +2245,7 @@ export default function StudioView({
                     type="button"
                     className={styles.cropItem}
                     aria-pressed={activeCropId === crop.id}
-                    disabled={recognizingPage}
+                    disabled={studioAi.isPageBusy(crop.sourceId, crop.page)}
                     onClick={() => selectCrop(crop.id)}
                   >
                     <img src={crop.image} alt="" />
@@ -2168,7 +2258,16 @@ export default function StudioView({
                           : "이미지"}
                       </small>
                     </span>
-                    {crop.added ? (
+                    {studioAi.isCropBusy?.(crop.id) ? (
+                      <span className={styles.draftBadge}>
+                        {studioAi.cropJobs?.some(
+                          (job) =>
+                            job.cropId === crop.id && job.state === "running",
+                        )
+                          ? "인식 중"
+                          : "대기 중"}
+                      </span>
+                    ) : crop.added ? (
                       <span className={styles.addedBadge}>담음</span>
                     ) : crop.reviewed ? (
                       <span className={styles.addedBadge}>검수 완료</span>
@@ -2208,7 +2307,10 @@ export default function StudioView({
                     <button
                       type="button"
                       className={styles.textButton}
-                      disabled={studioAi.running || !studioAi.available}
+                      disabled={
+                        studioAi.isCropBusy?.(activeCrop.id) ||
+                        !studioAi.available
+                      }
                       onClick={() =>
                         void studioAi.processCrops("figures", [activeCropId])
                       }
@@ -2258,152 +2360,111 @@ export default function StudioView({
                     </span>
                   )}
                 </div>
+                <label className={styles.compactType}>
+                  문제 유형
+                  <select
+                    value={activeCrop.questionType ?? ""}
+                    onChange={(event) =>
+                      updateCrop({
+                        questionType: (event.target.value ||
+                          undefined) as StudioCrop["questionType"],
+                      })
+                    }
+                  >
+                    <option value="">유형 미확인</option>
+                    {Object.entries(STUDIO_QUESTION_TYPES).map(
+                      ([value, label]) => (
+                        <option key={value} value={value}>
+                          {label}
+                        </option>
+                      ),
+                    )}
+                  </select>
+                </label>
                 <div className={styles.cropPreview}>
                   <img src={activeCrop.image} alt="검수할 자른 원본 문제" />
                 </div>
                 <button
                   type="button"
-                  className={styles.sourceLink}
-                  title={`${activeCrop.sourceLabel} · ${activeCrop.page}쪽`}
-                  onClick={() =>
-                    chooseSource(activeCrop.sourceId, activeCrop.page)
-                  }
-                >
-                  <Icon name="file" width="13" height="13" />
-                  <span>
-                    {activeCrop.sourceLabel} · {activeCrop.page}쪽
-                  </span>
-                  <span aria-hidden="true">↗</span>
-                </button>
-                <div className={styles.aiCropActions}>
-                  <button
-                    type="button"
-                    disabled={!studioAi.available || studioAi.running}
-                    title={
-                      activeCrop.content
-                        ? "이 문제만 다시 읽습니다. 새 인식 결과를 적용하면 기존 해설은 비워집니다."
-                        : "선택한 원본 문제에서 문자를 인식합니다."
-                    }
-                    onClick={() =>
-                      void studioAi.processCrops("ocr", [activeCrop.id])
-                    }
-                  >
-                    {activeCrop.content.trim() ? "문제 다시 읽기" : "문자 인식"}
-                  </button>
-                  <button
-                    type="button"
-                    disabled={
-                      !activeCrop.content.trim() ||
-                      !studioAi.available ||
-                      studioAi.running
-                    }
-                    title="아래 문제 내용을 검수한 뒤 해설을 생성하세요."
-                    onClick={() =>
-                      void studioAi.processCrops("solution", [activeCrop.id])
-                    }
-                  >
-                    {activeCrop.solution.trim()
-                      ? "해설 다시 생성"
-                      : "해설 생성"}
-                  </button>
-                </div>
-                <p className={styles.aiHint}>
-                  내용 검수 후 해설 생성 · 도형은 원본 이미지로 보존
-                </p>
-                {activeCrop.aiWarnings?.length ? (
-                  <div className={styles.aiWarnings} role="note">
-                    {activeCrop.aiWarnings.map((warning, index) => (
-                      <p key={index}>{warning}</p>
-                    ))}
-                  </div>
-                ) : null}
-                <label className={styles.textField}>
-                  <span>
-                    문제 내용{" "}
-                    <small>
-                      {activeCrop.mode === "text" ? "텍스트 출력" : "선택"}
-                    </small>
-                  </span>
-                  <textarea
-                    value={activeCrop.content}
-                    rows={5}
-                    placeholder="원본을 보며 문제와 보기를 입력하세요. 수식은 $x + 1$처럼 쓸 수 있어요."
-                    onChange={(event) =>
-                      updateCrop({
-                        content: event.target.value,
-                        ...(!event.target.value.trim()
-                          ? { mode: "image" as const }
-                          : {}),
-                      })
-                    }
-                  />
-                </label>
-                <fieldset className={styles.outputMode}>
-                  <legend>시험지에 사용할 내용</legend>
-                  <label>
-                    <input
-                      type="radio"
-                      name="studio-output-mode"
-                      checked={activeCrop.mode === "image"}
-                      onChange={() => updateCrop({ mode: "image" })}
-                    />
-                    <span>원본 이미지</span>
-                  </label>
-                  <label>
-                    <input
-                      type="radio"
-                      name="studio-output-mode"
-                      checked={activeCrop.mode === "text"}
-                      disabled={!activeCrop.content.trim()}
-                      onChange={() => updateCrop({ mode: "text" })}
-                    />
-                    <span>입력한 텍스트</span>
-                  </label>
-                  <p>
-                    {!activeCrop.content.trim()
-                      ? "문제 내용을 입력하면 텍스트 출력을 선택할 수 있습니다."
-                      : activeCrop.mode === "image"
-                        ? "원본 이미지를 출력합니다. 입력한 내용은 편집기에 보관됩니다."
-                        : "입력한 텍스트를 출력합니다. 원본의 도형과 보기가 빠지지 않았는지 확인하세요."}
-                  </p>
-                </fieldset>
-                <label className={styles.textField}>
-                  <span>
-                    정답 <small>선택</small>
-                  </span>
-                  <input
-                    value={activeCrop.answer}
-                    placeholder="정답을 입력하세요"
-                    onChange={(event) =>
-                      updateCrop({ answer: event.target.value })
-                    }
-                  />
-                </label>
-                <label className={styles.textField}>
-                  <span>
-                    풀이 <small>선택</small>
-                  </span>
-                  <textarea
-                    value={activeCrop.solution}
-                    rows={3}
-                    placeholder="풀이 과정을 입력하세요"
-                    onChange={(event) =>
-                      updateCrop({ solution: event.target.value })
-                    }
-                  />
-                </label>
-                <button
-                  type="button"
                   className={styles.previewButton}
                   onClick={() => setStep("review")}
                 >
-                  출력 미리보기 <Icon name="arrow" width="16" height="16" />
+                  문자·도형 검수로 이동 <Icon name="arrow" />
                 </button>
               </div>
+            ) : currentSource ? (
+              <StudioPageEmpty
+                job={currentPageJob}
+                page={pageNumber}
+                onAdd={() => chooseTool("add-problem")}
+                onRetry={() => recognizeSource(false)}
+                canRetry={studioAi.available}
+              />
             ) : null}
           </div>
         </aside>
       </div>
+      {active && figureCrop && editedFigure && (
+        <Suspense
+          fallback={
+            <WorkProgress label="도형 편집기 여는 중" variant="inline" />
+          }
+        >
+          <StudioFigureEditor
+            image={editedFigure.image}
+            originalImage={editedFigure.originalImage}
+            initialSvg={editedFigure.svg}
+            index={figureCrop.figures!.indexOf(editedFigure)}
+            onClose={() => setFigureEditor(null)}
+            onSave={({ svg, dataUrl, originalImage }) => {
+              setCrops((previous) =>
+                previous.map((crop) =>
+                  crop.id === figureCrop.id
+                    ? {
+                        ...crop,
+                        figures: crop.figures?.map((figure) =>
+                          figure.id === editedFigure.id
+                            ? { ...figure, svg, image: dataUrl, originalImage }
+                            : figure,
+                        ),
+                        mode: crop.content.trim() ? "text" : crop.mode,
+                        added: false,
+                        reviewed: false,
+                        revision: (crop.revision ?? 0) + 1,
+                      }
+                    : crop,
+                ),
+              );
+            }}
+            onRedraw={
+              studioAi.available
+                ? async ({ originalImage, svg, instructions, signal }) => {
+                    const response = await studioAi.ai.run(
+                      {
+                        action: "figure-redraw",
+                        imageDataUrl: originalImage,
+                        svg,
+                        content:
+                          instructions.trim() ||
+                          "원본의 인쇄된 도형을 정확하게 다시 그려 주세요. 손글씨와 채점 표시는 제외하고 수학 기호와 조건을 보존하세요.",
+                        grade: figureCrop.grade,
+                      },
+                      signal,
+                    );
+                    if (!response.result.svg)
+                      throw new Error(
+                        "도형 응답이 비어 있습니다. 다시 시도해 주세요.",
+                      );
+                    return {
+                      svg: response.result.svg,
+                      warnings: response.result.warnings,
+                    };
+                  }
+                : undefined
+            }
+          />
+        </Suspense>
+      )}
       <footer className={styles.actionBar} aria-label="문제 제작 주요 작업">
         <div className={styles.selectionAction}>
           {step === "crop" &&
@@ -2428,14 +2489,14 @@ export default function StudioView({
                     ? "완료 후 영역을 선택할 수 있습니다"
                     : selection && readyToCrop
                       ? `${readyToCrop.width} × ${readyToCrop.height} px`
-                      : "드래그로 선택 · 우클릭으로 취소"}
+                      : "드래그하면 추가 · 우클릭으로 취소"}
                 </span>
               </div>
               <button
                 type="button"
                 className={styles.primaryButton}
                 disabled={!validSelection || recognizingPage}
-                onClick={saveCrop}
+                onClick={() => saveCrop()}
               >
                 <Icon name="crop" />
                 {cropTool === "add-figure"

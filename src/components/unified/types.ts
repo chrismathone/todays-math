@@ -1,6 +1,7 @@
 export type SchoolLevel = "elementary" | "secondary";
 
 export interface StudioProblem {
+  questionType?: "multiple-choice" | "short-answer" | "descriptive";
   id: string;
   content: string;
   answer: string;

@@ -293,6 +293,20 @@ export default function StudioCropOverlay({
       onBlur={cancelDrag}
     >
       <span className={styles.label}>{label}</span>
+      {selected && !disabled && tool === "select" && (
+        <button
+          type="button"
+          className={styles.deleteButton}
+          aria-label={`${label} 영역 삭제`}
+          onPointerDown={(event) => event.stopPropagation()}
+          onClick={(event) => {
+            event.stopPropagation();
+            onDelete(id);
+          }}
+        >
+          ×
+        </button>
+      )}
       {selected && !disabled && tool === "select"
         ? CORNERS.map((corner) => (
             <span
