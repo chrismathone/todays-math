@@ -11,18 +11,19 @@ import {
   type ReactNode,
 } from "react";
 import {
-  DEV_AI_PROVIDERS,
   type DevAiAction,
-  type DevAiProvider,
+  type StudioAiProvider,
+  type StudioAiMode,
   type DevAiRequest,
   type DevAiResponse,
   type DevAiStatus,
 } from "@/lib/dev-ai/contracts";
+import { getStudioEndpoints } from "@/lib/studio-ai/endpoints";
 
 export interface DevAiActivity {
   id: number;
   action: DevAiAction;
-  provider: DevAiProvider;
+  provider: StudioAiProvider;
   state: "running" | "complete" | "error" | "cancelled";
   startedAt: number;
   finishedAt?: number;
@@ -32,8 +33,11 @@ interface DevAiContextValue {
   status: DevAiStatus | null;
   statusError: string;
   checking: boolean;
-  provider: DevAiProvider;
-  setProvider: (provider: DevAiProvider) => void;
+  provider: StudioAiProvider;
+  setProvider: (provider: StudioAiProvider) => void;
+  mode: StudioAiMode;
+  canChooseMode: boolean;
+  setMode: (mode: StudioAiMode) => void;
   activity: DevAiActivity | null;
   /** Unsettled requests, including requests waiting for a server CLI slot. */
   activities: DevAiActivity[];
@@ -53,6 +57,9 @@ const Context = createContext<DevAiContextValue>({
   checking: false,
   provider: "codex",
   setProvider: () => {},
+  mode: "subscription-cli",
+  canChooseMode: false,
+  setMode: () => {},
   activity: null,
   activities: [],
   activeCount: 0,
@@ -70,7 +77,14 @@ export function DevAiProvider({ children }: { children: ReactNode }) {
   const [status, setStatus] = useState<DevAiStatus | null>(null);
   const [statusError, setStatusError] = useState("");
   const [checking, setChecking] = useState(true);
-  const [provider, updateProvider] = useState<DevAiProvider>("codex");
+  const [provider, updateProvider] = useState<StudioAiProvider>(
+    process.env.NODE_ENV === "production" ? "auto" : "codex",
+  );
+  const [preferredMode, updateMode] = useState<StudioAiMode>(
+    process.env.NODE_ENV === "production" ? "model-api" : "subscription-cli",
+  );
+  const mode = status?.mode ?? preferredMode;
+  const canChooseMode = !checking && !getStudioEndpoints().production;
   const [{ activities, lastActivity }, setActivities] = useState<{
     activities: DevAiActivity[];
     lastActivity: DevAiActivity | null;
@@ -89,22 +103,40 @@ export function DevAiProvider({ children }: { children: ReactNode }) {
     };
   }, []);
 
-  const setProvider = useCallback((next: DevAiProvider) => {
-    if (activeRequests.current.size) return;
-    choiceMade.current = true;
-    updateProvider(next);
-    try {
-      localStorage.setItem(STORAGE_KEY, next);
-    } catch {
-      /* Browser storage is optional. */
-    }
+  const setProvider = useCallback(
+    (next: StudioAiProvider) => {
+      if (activeRequests.current.size) return;
+      choiceMade.current = true;
+      updateProvider(next);
+      try {
+        localStorage.setItem(`${STORAGE_KEY}-${mode}`, next);
+      } catch {
+        /* Browser storage is optional. */
+      }
+    },
+    [mode],
+  );
+  const setMode = useCallback((next: StudioAiMode) => {
+    if (activeRequests.current.size || getStudioEndpoints().production) return;
+    statusRequest.current?.abort();
+    choiceMade.current = false;
+    setStatus(null);
+    setChecking(true);
+    updateProvider(next === "model-api" ? "auto" : "codex");
+    updateMode(next);
   }, []);
+  const endpoint = useCallback(() => {
+    const endpoints = getStudioEndpoints();
+    return endpoints.production || preferredMode === "subscription-cli"
+      ? endpoints.ai
+      : `${endpoints.ai}?mode=model-api`;
+  }, [preferredMode]);
   const loadStatus = useCallback(async () => {
     statusRequest.current?.abort();
     const controller = new AbortController();
     statusRequest.current = controller;
     try {
-      const response = await fetch("/api/dev/unified/ai", {
+      const response = await fetch(endpoint(), {
         cache: "no-store",
         signal: controller.signal,
       });
@@ -117,9 +149,13 @@ export function DevAiProvider({ children }: { children: ReactNode }) {
       if (!choiceMade.current && !activeRequests.current.size) {
         let initial = next.defaultProvider;
         try {
-          const saved = localStorage.getItem(STORAGE_KEY);
-          if (DEV_AI_PROVIDERS.includes(saved as DevAiProvider)) {
-            initial = saved as DevAiProvider;
+          const saved =
+            localStorage.getItem(`${STORAGE_KEY}-${next.mode}`) ??
+            (next.mode === "subscription-cli"
+              ? localStorage.getItem(STORAGE_KEY)
+              : null);
+          if (next.providers.some((item) => item.id === saved)) {
+            initial = saved as StudioAiProvider;
             choiceMade.current = true;
           }
         } catch {
@@ -138,7 +174,7 @@ export function DevAiProvider({ children }: { children: ReactNode }) {
         setChecking(false);
       }
     }
-  }, []);
+  }, [endpoint]);
   const refresh = useCallback(async () => {
     setChecking(true);
     await loadStatus();
@@ -198,7 +234,7 @@ export function DevAiProvider({ children }: { children: ReactNode }) {
         }));
       };
       try {
-        const response = await fetch("/api/dev/unified/ai", {
+        const response = await fetch(endpoint(), {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({ ...request, provider }),
@@ -232,7 +268,14 @@ export function DevAiProvider({ children }: { children: ReactNode }) {
               ...previous,
               providers: previous.providers.map((item) =>
                 item.id === provider
-                  ? { ...item, status: "ready", detail: "구독 CLI 응답 확인" }
+                  ? {
+                      ...item,
+                      status: "ready",
+                      detail:
+                        mode === "model-api"
+                          ? "모델 API 응답 확인"
+                          : "구독 CLI 응답 확인",
+                    }
                   : item,
               ),
             },
@@ -257,7 +300,7 @@ export function DevAiProvider({ children }: { children: ReactNode }) {
         activeRequests.current.delete(id);
       }
     },
-    [provider, status],
+    [provider, status, endpoint, mode],
   );
   const value = useMemo(
     () => ({
@@ -266,6 +309,9 @@ export function DevAiProvider({ children }: { children: ReactNode }) {
       checking,
       provider,
       setProvider,
+      mode,
+      canChooseMode,
+      setMode,
       activity,
       activities,
       activeCount,
@@ -280,6 +326,9 @@ export function DevAiProvider({ children }: { children: ReactNode }) {
       checking,
       provider,
       setProvider,
+      mode,
+      canChooseMode,
+      setMode,
       activity,
       activities,
       activeCount,

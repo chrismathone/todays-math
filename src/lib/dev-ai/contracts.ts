@@ -7,12 +7,22 @@ export const DEV_AI_PROVIDERS = [
   "grok",
 ] as const;
 export type DevAiProvider = (typeof DEV_AI_PROVIDERS)[number];
+export const STUDIO_API_PROVIDERS = [
+  "auto",
+  "gemini",
+  "deepseek",
+  "anthropic",
+  "openai",
+] as const;
+export type StudioApiProvider = (typeof STUDIO_API_PROVIDERS)[number];
+export type StudioAiProvider = DevAiProvider | StudioApiProvider;
+export type StudioAiMode = "subscription-cli" | "model-api";
 export type DevAiAction =
   "ocr" | "page-ocr" | "figures" | "figure-redraw" | "solution";
 export type DevAiQuestionType =
   "multiple-choice" | "short-answer" | "descriptive";
 export interface DevAiProviderStatus {
-  id: DevAiProvider;
+  id: StudioAiProvider;
   label: string;
   status:
     | "ready"
@@ -26,8 +36,8 @@ export interface DevAiProviderStatus {
 }
 export interface DevAiStatus {
   enabled: boolean;
-  mode: "subscription-cli";
-  defaultProvider: DevAiProvider;
+  mode: StudioAiMode;
+  defaultProvider: StudioAiProvider;
   providers: DevAiProviderStatus[];
 }
 export interface DevAiRequest {
@@ -109,7 +119,8 @@ export interface DevAiFigureSpec extends Record<string, unknown> {
   version: 2 | "elem-1" | "graph-1";
 }
 export interface DevAiResponse {
-  provider: DevAiProvider;
+  provider: StudioAiProvider;
+  model?: string;
   action: DevAiAction;
   result: DevAiResult;
 }

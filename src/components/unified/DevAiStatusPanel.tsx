@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import type { DevAiProvider } from "@/lib/dev-ai/contracts";
+import type { StudioAiProvider, StudioAiMode } from "@/lib/dev-ai/contracts";
 import { useDevAi } from "./useDevAi";
 import Icon from "./WorkspaceIcon";
 import s from "./DevAiStatusPanel.module.css";
@@ -29,7 +29,6 @@ export default function DevAiStatusPanel({
     const timer = setInterval(() => setNow(Date.now()), 1000);
     return () => clearInterval(timer);
   }, [running]);
-  if (ai.status && !ai.status.enabled) return null;
   const selected = ai.status?.providers.find((item) => item.id === ai.provider);
   const elapsed = ai.activity
     ? Math.max(
@@ -44,32 +43,48 @@ export default function DevAiStatusPanel({
       <button
         className={s.collapsed}
         onClick={onExpand}
-        title={`개발용 AI · ${selected?.label ?? "연결 확인 중"}${running ? ` · ${ai.activeCount}개 진행 중` : ""}`}
-        aria-label="개발용 AI 상태판 펼치기"
+        title={`AI · ${selected?.label ?? "연결 확인 중"}${running ? ` · ${ai.activeCount}개 진행 중` : ""}`}
+        aria-label="AI 상태판 펼치기"
         data-running={running}
       >
         AI
       </button>
     );
   return (
-    <section
-      className={s.panel}
-      aria-label="개발용 AI 상태판"
-      data-dev-ai-panel
-    >
+    <section className={s.panel} aria-label="AI 상태판" data-dev-ai-panel>
       <div className={s.heading}>
         <strong>AI 작업 연결</strong>
-        <span>DEV</span>
+        <span>{ai.mode === "model-api" ? "API" : "CLI"}</span>
       </div>
-      <p className={s.mode}>구독 CLI · API 키 미사용</p>
+      {ai.canChooseMode ? (
+        <label className={s.provider}>
+          <select
+            aria-label="AI 연결 방식"
+            value={ai.mode}
+            disabled={running}
+            onChange={(event) => ai.setMode(event.target.value as StudioAiMode)}
+          >
+            <option value="subscription-cli">구독 CLI</option>
+            <option value="model-api">서버 모델 API</option>
+          </select>
+        </label>
+      ) : (
+        <p className={s.mode}>
+          {ai.mode === "model-api"
+            ? "서버 모델 API"
+            : "구독 CLI · API 키 미사용"}
+        </p>
+      )}
       <div className={s.controls}>
         <label className={s.provider}>
           <select
-            aria-label="개발용 AI 도구"
+            aria-label={
+              ai.mode === "subscription-cli" ? "개발용 AI 도구" : "AI 도구"
+            }
             value={ai.provider}
             disabled={!ai.status || running}
             onChange={(event) =>
-              ai.setProvider(event.target.value as DevAiProvider)
+              ai.setProvider(event.target.value as StudioAiProvider)
             }
           >
             {ai.status?.providers.map((item) => (
@@ -102,6 +117,9 @@ export default function DevAiStatusPanel({
             ? STATUS_LABELS[selected.status]
             : "연결 확인 필요"}
       </div>
+      {ai.mode === "model-api" && selected?.detail && (
+        <p className={s.mode}>{selected.detail}</p>
+      )}
       {ai.activity && (
         <div
           className={s.activity}

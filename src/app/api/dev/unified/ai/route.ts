@@ -1,15 +1,12 @@
-import { getDevAiProviderStatuses, runSubscriptionCli } from "@/lib/dev-ai/cli";
-import { redrawDevAiFigure } from "@/lib/dev-ai/figure-engine";
+import { getDevAiProviderStatuses } from "@/lib/dev-ai/cli";
+import { executeStudioTask } from "@/lib/studio-ai/execute";
+import { studioApiPost, studioApiStatus } from "@/lib/studio-ai/handler";
 import {
   DEV_AI_PROVIDERS,
   type DevAiProvider,
   type DevAiStatus,
 } from "@/lib/dev-ai/contracts";
-import {
-  buildDevAiPrompt,
-  DevAiRequestSchema,
-  parseDevAiResult,
-} from "@/lib/dev-ai/tasks";
+import { DevAiRequestSchema } from "@/lib/dev-ai/tasks";
 import {
   DEV_AI_HEADERS as headers,
   readDevAiBody,
@@ -20,6 +17,8 @@ const enabled = () => process.env.DEV_AI_MODE === "subscription-cli";
 export async function GET(request: Request) {
   const rejected = rejectDevAiRequest(request);
   if (rejected) return rejected;
+  if (new URL(request.url).searchParams.get("mode") === "model-api")
+    return studioApiStatus();
   try {
     const active = enabled();
     const providers = active ? await getDevAiProviderStatuses() : [];
@@ -51,6 +50,8 @@ export async function GET(request: Request) {
 export async function POST(request: Request) {
   const rejected = rejectDevAiRequest(request);
   if (rejected) return rejected;
+  if (new URL(request.url).searchParams.get("mode") === "model-api")
+    return studioApiPost(request, "local-development");
   if (!enabled())
     return Response.json(
       { error: "개발용 구독 AI 연결이 꺼져 있습니다." },
@@ -87,18 +88,11 @@ export async function POST(request: Request) {
     );
   }
   try {
-    const result =
-      input.action === "figure-redraw"
-        ? await redrawDevAiFigure(input, request.signal)
-        : parseDevAiResult(
-            await runSubscriptionCli({
-              provider: input.provider,
-              prompt: buildDevAiPrompt(input),
-              imageDataUrl: input.imageDataUrl,
-              signal: request.signal,
-            }),
-            input.action,
-          );
+    const { result } = await executeStudioTask(
+      input,
+      { mode: "subscription-cli" },
+      request.signal,
+    );
     if (request.signal.aborted)
       return new Response(null, { status: 499, headers });
     return Response.json(

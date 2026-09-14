@@ -3,7 +3,6 @@ import { z } from "zod";
 import { renderFigureSpec } from "@/lib/figure/renderFigureSpec";
 import { withLabelMetrics } from "@/lib/figure/mathjaxSubstitute";
 import { repairJsonString } from "@/lib/ai/jsonRepair";
-import { runSubscriptionCli } from "./cli";
 import { abortError, ProcessSlots } from "./cli-process";
 import type { DevAiFigureSpec, DevAiRequest, DevAiResult } from "./contracts";
 import {
@@ -36,15 +35,29 @@ function parseReview(raw: string) {
   }
 }
 
-/** Subscription vision -> validated Python geometry -> source/spec review.
- * No provider switch, paid API, model SVG fallback, or source-image mutation.
- */
+export type FigureInference = (input: {
+  prompt: string;
+  imageDataUrl: string;
+  signal: AbortSignal;
+  phase: "generate" | "review";
+}) => Promise<string>;
+
+/** Inject inference while retaining validated local geometry and source review. */
 export async function redrawDevAiFigure(
   request: DevAiRequest,
   signal?: AbortSignal,
+  inference?: FigureInference,
 ): Promise<DevAiResult> {
   if (request.action !== "figure-redraw" || !request.imageDataUrl)
     throw new Error("재작도할 원본 도형 이미지가 필요합니다.");
+  if (!inference && process.env.NODE_ENV === "production")
+    throw new Error("운영 환경에서는 서버 API 연결이 필요합니다.");
+  const invoke: FigureInference =
+    inference ??
+    (async (input) => {
+      const { runSubscriptionCli } = await import("./cli");
+      return runSubscriptionCli({ ...input, provider: request.provider });
+    });
   const deadline = new AbortController();
   const cancel = () => deadline.abort();
   signal?.addEventListener("abort", cancel, { once: true });
@@ -63,8 +76,8 @@ export async function redrawDevAiFigure(
     let repair: { spec: DevAiFigureSpec; error: string } | undefined;
     for (let attempt = 0; attempt < 3; attempt++) {
       check();
-      const raw = await runSubscriptionCli({
-        provider: request.provider,
+      const raw = await invoke({
+        phase: "generate",
         prompt: buildFigureSpecPrompt(request, repair),
         imageDataUrl: request.imageDataUrl,
         signal: deadline.signal,
@@ -104,8 +117,8 @@ export async function redrawDevAiFigure(
           "도형 엔진의 정적 SVG 안전 검사를 통과하지 못했습니다. 원본은 유지됩니다.",
         );
       const review = parseReview(
-        await runSubscriptionCli({
-          provider: request.provider,
+        await invoke({
+          phase: "review",
           prompt: buildFigureReviewPrompt(
             request,
             generated.spec,
