@@ -73,7 +73,11 @@ function deferred<T>() {
   });
   return { promise, resolve, reject };
 }
-function mount(initial = [crop("a")], onDetected = vi.fn()) {
+function mount(
+  initial = [crop("a")],
+  onDetected = vi.fn(),
+  onRotatePage?: (sourceId: string, page: number, delta: number) => void,
+) {
   return renderHook(
     ({ contextKey, active }) => {
       const [crops, setCrops] = useState(initial);
@@ -83,6 +87,7 @@ function mount(initial = [crop("a")], onDetected = vi.fn()) {
         contextKey,
         active,
         onDetected,
+        onRotatePage,
       });
       return { ...studio, crops, setCrops };
     },
@@ -1134,6 +1139,188 @@ describe("Studio background page queue", () => {
     vi.spyOn(HTMLCanvasElement.prototype, "toDataURL").mockReturnValue(
       "data:image/png;base64,crop-pixels",
     );
+  });
+
+  const detection = (count = 3): DevAiResponse => ({
+    ...pageResponse(""),
+    result: {
+      ...pageResponse("").result,
+      detectionOnly: true,
+      problems: Array.from({ length: count }, (_, i) => ({
+        number: i + 1,
+        content: "",
+        answer: "",
+        bbox: { left: 50, top: 50 + i * 300, width: 800, height: 200 },
+      })),
+    },
+  });
+
+  it("uses a crop majority to rotate and retry a page exactly once before figure work", async () => {
+    let ocrCalls = 0;
+    bridge.run.mockImplementation(async (request) => {
+      if (request.action === "page-ocr") return detection();
+      ocrCalls++;
+      return {
+        ...response(),
+        result: { ...response().result, upsideDown: ocrCalls !== 3 },
+      };
+    });
+    const rotate = vi.fn();
+    const input = task(1);
+    const { result } = mount([], vi.fn(), rotate);
+    await act(async () => {
+      await result.current.recognizePages([input]);
+    });
+    await waitFor(() =>
+      expect(result.current.pageJobs[0]?.state).toBe("complete"),
+    );
+    expect(rotate).toHaveBeenCalledExactlyOnceWith("source", 1, 180);
+    expect(input.load).toHaveBeenCalledTimes(2);
+    expect(input.load.mock.calls[1]).toEqual([expect.any(AbortSignal), 180]);
+    expect(ocrCalls).toBe(6);
+    expect(result.current.crops).toHaveLength(3);
+    expect(result.current.cropJobs).toHaveLength(3);
+    expect(result.current.pageJobs[0]).toMatchObject({
+      rotationAutoRetried: true,
+    });
+    expect(result.current.pageJobs[0].warnings?.join(" ")).toContain(
+      "추가 자동 인식은 하지 않습니다",
+    );
+  });
+
+  it("preserves a manual edit and declines page rotation when the last crop completes late", async () => {
+    const last = deferred<DevAiResponse>();
+    let calls = 0;
+    bridge.run.mockImplementation(async (request) => {
+      if (request.action === "page-ocr") return detection(2);
+      if (++calls === 2) return last.promise;
+      return {
+        ...response(),
+        result: { ...response().result, upsideDown: true },
+      };
+    });
+    const rotate = vi.fn();
+    const { result } = mount([], vi.fn(), rotate);
+    await act(async () => {
+      await result.current.recognizePages([task(1)]);
+    });
+    await waitFor(() =>
+      expect(result.current.cropJobs[0]?.state).toBe("complete"),
+    );
+    await act(async () => {
+      result.current.setCrops((items) =>
+        items.map((item, i) =>
+          i === 0
+            ? {
+                ...item,
+                content: "직접 수정한 내용",
+                revision: (item.revision ?? 0) + 1,
+              }
+            : item,
+        ),
+      );
+      last.resolve({
+        ...response(),
+        result: { ...response().result, upsideDown: true },
+      });
+    });
+    await waitFor(() =>
+      expect(result.current.pageJobs[0]?.state).toBe("complete"),
+    );
+    expect(rotate).not.toHaveBeenCalled();
+    expect(result.current.crops[0].content).toBe("직접 수정한 내용");
+    expect(result.current.crops).toHaveLength(2);
+    expect(result.current.pageJobs[0].warnings?.join(" ")).toContain(
+      "수정한 문항",
+    );
+  });
+
+  it("cancels a pending orientation vote without rotating or accepting its late OCR", async () => {
+    const late = deferred<DevAiResponse>();
+    bridge.run.mockImplementation(async (request) =>
+      request.action === "page-ocr" ? detection(1) : late.promise,
+    );
+    const rotate = vi.fn();
+    const input = task(1);
+    const { result } = mount([], vi.fn(), rotate);
+    await act(async () => {
+      await result.current.recognizePages([input]);
+    });
+    await waitFor(() =>
+      expect(result.current.cropJobs[0]?.state).toBe("running"),
+    );
+    await act(async () => {
+      result.current.cancel();
+      late.resolve({
+        ...response(),
+        result: { ...response().result, upsideDown: true },
+      });
+    });
+    expect(result.current.pageJobs[0].state).toBe("cancelled");
+    expect(result.current.cropJobs[0].state).toBe("cancelled");
+    expect(result.current.crops[0].content).toBe("");
+    expect(rotate).not.toHaveBeenCalled();
+    expect(input.load).toHaveBeenCalledTimes(1);
+  });
+
+  it("restores completed crop results if committing source rotation fails", async () => {
+    bridge.run.mockImplementation(async (request) =>
+      request.action === "page-ocr"
+        ? detection(1)
+        : { ...response(), result: { ...response().result, upsideDown: true } },
+    );
+    const input = task(1);
+    const rotate = vi.fn(() => {
+      throw new Error("source rotation failed");
+    });
+    const { result } = mount([], vi.fn(), rotate);
+    await act(async () => {
+      await result.current.recognizePages([input]);
+    });
+    await waitFor(() =>
+      expect(result.current.pageJobs[0]?.state).toBe("error"),
+    );
+    expect(result.current.crops).toHaveLength(1);
+    expect(result.current.crops[0].content).toBe(response().result.content);
+    expect(input.load).toHaveBeenCalledTimes(1);
+    expect(bridge.run).toHaveBeenCalledTimes(2);
+  });
+
+  it("settles two crop-first pages without holding FIFO slots for their children", async () => {
+    bridge.run.mockImplementation(async (request) =>
+      request.action === "page-ocr" ? detection(1) : response(),
+    );
+    const { result } = mount([]);
+    await act(async () => {
+      await result.current.recognizePages([task(1), task(2)]);
+    });
+    await waitFor(() => expect(result.current.pageProgress.done).toBe(2));
+    expect(result.current.running).toBe(false);
+    expect(result.current.cropJobs).toHaveLength(2);
+    expect(bridge.run).toHaveBeenCalledTimes(4);
+  });
+
+  it("compares the settled page text layer without invalidating recognized crops", async () => {
+    bridge.run.mockImplementation(async (request) =>
+      request.action === "page-ocr" ? detection(1) : response(),
+    );
+    const input = {
+      ...task(1),
+      referenceText:
+        "사과 바나나 포도 복숭아 자두 배추 무청 감자 고구마 당근 수박 참외 225 135",
+    };
+    const { result } = mount([]);
+    await act(async () => {
+      await result.current.recognizePages([input]);
+    });
+    await waitFor(() =>
+      expect(result.current.pageJobs[0]?.textLayerWarning?.rule).toBe(
+        "text-layer-mismatch",
+      ),
+    );
+    expect(result.current.pageJobs[0].state).toBe("complete");
+    expect(result.current.crops[0].content).toBe(response().result.content);
+    expect(bridge.run).toHaveBeenCalledTimes(2);
   });
 
   it("OCRs detected crops independently and retries only the failed crop", async () => {
