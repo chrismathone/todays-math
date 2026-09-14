@@ -1,0 +1,1 @@
+{"answer": "②", "solution": "정사각형의 한 변을 $6$이라 하면 점 $A$에서 그은 접선 중 하나는 $\\overline{AB}=6$이다.\n반원과의 접점을 $F$라 하면 $\\overline{AF}=6$이다.\n점 $E$에서 그은 두 접선의 길이가 같으므로 $\\overline{EF}=\\overline{EC}=t$라 하면 $\\overline{AE}=6+t$, $\\overline{DE}=6-t$이다.\n직각삼각형 $ADE$에서 $6^{2}+(6-t)^{2}=(6+t)^{2}$이다.\n$36-12t=12t$이므로 $t=\\frac{3}{2}$이다.\n따라서 답은 ②이다.\n"}

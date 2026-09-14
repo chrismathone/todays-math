@@ -1,0 +1,562 @@
+[
+ {
+  "id": "1-stem",
+  "text": "삼각비의 계산 중 옳지 않은 것은?",
+  "spans": 0
+ },
+ {
+  "id": "1-c1",
+  "text": "$\\mathrm{\\sin }45°\\times \\tan 60°=\\frac{\\sqrt{6}}{2}$",
+  "spans": 1
+ },
+ {
+  "id": "1-c2",
+  "text": "$\\cos 45°-\\sin 30°=\\frac{\\sqrt{2}-1}{2}$",
+  "spans": 1
+ },
+ {
+  "id": "1-c3",
+  "text": "$\\mathrm{\\sin }60°\\times \\cos 60°\\times \\tan 60°=\\frac{3}{4}$",
+  "spans": 1
+ },
+ {
+  "id": "1-c4",
+  "text": "$\\mathrm{\\tan }60°-\\sin 30°\\times \\cos 45°=\\sqrt{3}-\\frac{\\sqrt{2}}{4}$",
+  "spans": 1
+ },
+ {
+  "id": "1-c5",
+  "text": "$\\mathrm{\\cos }30°(\\sin 60°+\\cos 60°+\\tan 45°)=\\frac{3+\\sqrt{3}}{4}$",
+  "spans": 1
+ },
+ {
+  "id": "2-stem",
+  "text": "$\\mathrm{\\cos }30°\\times \\sin 60°+\\tan 30°\\times \\tan 60°+\\sin 45°\\times \\sin 90°$의 값은?",
+  "spans": 1
+ },
+ {
+  "id": "2-c1",
+  "text": "$\\frac{5+\\sqrt{2}}{4}$",
+  "spans": 1
+ },
+ {
+  "id": "2-c2",
+  "text": "$\\frac{7+\\sqrt{2}}{4}$",
+  "spans": 1
+ },
+ {
+  "id": "2-c3",
+  "text": "$\\frac{7+2\\sqrt{2}}{4}$",
+  "spans": 1
+ },
+ {
+  "id": "2-c4",
+  "text": "$\\frac{5+\\sqrt{2}}{2}$",
+  "spans": 1
+ },
+ {
+  "id": "2-c5",
+  "text": "$\\frac{5+\\sqrt{2}}{3\\,}$",
+  "spans": 1
+ },
+ {
+  "id": "3-stem",
+  "text": "그림과 같이 $\\angle \\,C=90°$인 직각삼각형 $\\mathrm{ABC}$에서 $\\overline{AB}$$=20$, $\\angle \\mathrm{A}=48°$일 때, $\\overline{BC}\\,$의 길이는? (단, $\\sin 48°=0.7431$, $\\cos 48°=0.6691$, $\\tan 48°=1.1106$으로 계산한다.)",
+  "spans": 9
+ },
+ {
+  "id": "3-c1",
+  "text": "$7.431$",
+  "spans": 1
+ },
+ {
+  "id": "3-c2",
+  "text": "$13.382$",
+  "spans": 1
+ },
+ {
+  "id": "3-c3",
+  "text": "$13.482$",
+  "spans": 1
+ },
+ {
+  "id": "3-c4",
+  "text": "$14.862$",
+  "spans": 1
+ },
+ {
+  "id": "3-c5",
+  "text": "$18.537$",
+  "spans": 1
+ },
+ {
+  "id": "4-stem",
+  "text": "$\\angle \\mathrm{A}=90°$인 직각삼각형 $\\mathrm{ABC}$에서 $\\overline{BC}=10$, $\\angle \\mathrm{C}=20°$ 일 때, $\\overline{AC}$의 길이는? \n각도\n$\\sin$\n$\\cos$\n$\\tan$\n$20°$\n$0.3420$\n$0.9397$\n$0.3640$\n$21°$\n$0.3584$\n$0.9336$\n$0.3839$\n$22°$\n$0.3746$\n$0.9272$\n$0.4040$",
+  "spans": 20
+ },
+ {
+  "id": "4-c1",
+  "text": "$0.09397$",
+  "spans": 1
+ },
+ {
+  "id": "4-c2",
+  "text": "$0.9397$",
+  "spans": 1
+ },
+ {
+  "id": "4-c3",
+  "text": "$9.397$",
+  "spans": 1
+ },
+ {
+  "id": "4-c4",
+  "text": "$3.420$",
+  "spans": 1
+ },
+ {
+  "id": "4-c5",
+  "text": "$3.640$",
+  "spans": 1
+ },
+ {
+  "id": "5-stem",
+  "text": "$\\sin A=\\frac{5}{13}$일 때, $\\frac{\\cos A\\times \\,\\tan A}{12\\tan A-4\\cos A}$의 값은?",
+  "spans": 2
+ },
+ {
+  "id": "5-c1",
+  "text": "$\\sqrt{2}$",
+  "spans": 1
+ },
+ {
+  "id": "5-c2",
+  "text": "$\\frac{5}{17}$",
+  "spans": 1
+ },
+ {
+  "id": "5-c3",
+  "text": "$\\frac{7}{17}$",
+  "spans": 1
+ },
+ {
+  "id": "5-c4",
+  "text": "$\\frac{7}{5}$",
+  "spans": 1
+ },
+ {
+  "id": "5-c5",
+  "text": "$\\frac{17}{5}$",
+  "spans": 1
+ },
+ {
+  "id": "6-stem",
+  "text": "그림과 같이 $\\angle \\mathrm{A}=120°$, $\\overline{AB}=10\\,cm$$,~\\overline{BC}=16\\,cm$인 평행사변형 $\\mathrm{ABCD}$의 넓이와 같은 정삼각형의 한 변의 길이는?",
+  "spans": 4
+ },
+ {
+  "id": "6-c1",
+  "text": "$\\sqrt{19}$",
+  "spans": 1
+ },
+ {
+  "id": "6-c2",
+  "text": "$\\frac{\\sqrt{19}}{2}$",
+  "spans": 1
+ },
+ {
+  "id": "6-c3",
+  "text": "$\\frac{\\sqrt{19}}{3}$",
+  "spans": 1
+ },
+ {
+  "id": "6-c4",
+  "text": "$\\frac{3\\sqrt{11}}{2}$",
+  "spans": 1
+ },
+ {
+  "id": "6-c5",
+  "text": "$8\\sqrt{5}$",
+  "spans": 1
+ },
+ {
+  "id": "7-stem",
+  "text": "그림과 같이 직각삼각형 $\\mathrm{ABC}$에서 $\\angle \\mathrm{ADB}=30°$, $\\angle \\mathrm{ACD}=15°$, $\\overline{CD}$$=5$일 때, $\\tan 75°$의 값은?",
+  "spans": 6
+ },
+ {
+  "id": "7-c1",
+  "text": "$2$",
+  "spans": 1
+ },
+ {
+  "id": "7-c2",
+  "text": "$1+\\sqrt{3}$",
+  "spans": 1
+ },
+ {
+  "id": "7-c3",
+  "text": "$1-\\sqrt{3}$",
+  "spans": 1
+ },
+ {
+  "id": "7-c4",
+  "text": "$2+\\sqrt{3}$",
+  "spans": 1
+ },
+ {
+  "id": "7-c5",
+  "text": "$2-\\sqrt{3}$",
+  "spans": 1
+ },
+ {
+  "id": "8-stem",
+  "text": "그림과 같이 간격이 $30\\,\\mathrm{m}$인 두 건물이 있다. 낮은 건물의 옥상에서 높은 건물을 올려다본 각의 크기가 $60°$이고, 내려다본 각의 크기가 $45°$일 때, 높은 건물의 높이는?",
+  "spans": 3
+ },
+ {
+  "id": "8-c1",
+  "text": "$(30+30\\sqrt{3})\\,\\mathrm{m}$",
+  "spans": 1
+ },
+ {
+  "id": "8-c2",
+  "text": "$(30+25\\sqrt{3})\\,\\mathrm{m}$",
+  "spans": 1
+ },
+ {
+  "id": "8-c3",
+  "text": "$(9+15\\sqrt{3})\\,\\mathrm{m}$",
+  "spans": 1
+ },
+ {
+  "id": "8-c4",
+  "text": "$(20+30\\sqrt{3})\\,\\mathrm{m}$",
+  "spans": 1
+ },
+ {
+  "id": "8-c5",
+  "text": "$(30+30\\sqrt{2})\\,\\mathrm{m}$",
+  "spans": 1
+ },
+ {
+  "id": "9-stem",
+  "text": "그림과 같이 $\\angle \\mathrm{ADC}=\\angle \\mathrm{BAC}=90°$,$~\\angle \\mathrm{ABC}=60°$, $\\angle \\mathrm{ACD}=30°$,$~\\overline{AB}=6$일 때, $\\overline{AD}$의 길이는?",
+  "spans": 5
+ },
+ {
+  "id": "9-c1",
+  "text": "$3\\sqrt{2}$",
+  "spans": 1
+ },
+ {
+  "id": "9-c2",
+  "text": "$3\\sqrt{3}$",
+  "spans": 1
+ },
+ {
+  "id": "9-c3",
+  "text": "$6\\sqrt{2}$",
+  "spans": 1
+ },
+ {
+  "id": "9-c4",
+  "text": "$6\\sqrt{3}$",
+  "spans": 1
+ },
+ {
+  "id": "9-c5",
+  "text": "$12\\sqrt{3}$",
+  "spans": 1
+ },
+ {
+  "id": "10-stem",
+  "text": "세 내각의 크기의 비가 $1:2:3$인 삼각형이 있다. 세 내각 중 크기가 두 번째로 작은 각의 크기를 $\\angle \\mathrm{A}$라 할 때, $\\sin A+\\cos A+\\tan A$의 값은?",
+  "spans": 3
+ },
+ {
+  "id": "10-c1",
+  "text": "$\\frac{3\\sqrt{3}-1}{2}$",
+  "spans": 1
+ },
+ {
+  "id": "10-c2",
+  "text": "$\\frac{3\\sqrt{3}+1}{2}$",
+  "spans": 1
+ },
+ {
+  "id": "10-c3",
+  "text": "$\\frac{2\\sqrt{3}+1}{2}$",
+  "spans": 1
+ },
+ {
+  "id": "10-c4",
+  "text": "$\\frac{3\\sqrt{3}+1}{3}$",
+  "spans": 1
+ },
+ {
+  "id": "10-c5",
+  "text": "$\\frac{2\\sqrt{3}+1}{3}$",
+  "spans": 1
+ },
+ {
+  "id": "11-stem",
+  "text": "그림은 지면 위의 $\\mathrm{100}\\,m$ 높이에 있는 지점 $\\mathrm{A}$에서 바다로 나가는 배를 내려다본 것이다. 배가 처음 위치한 곳은 $\\mathrm{B}$이고 $\\mathrm{A}$에서 내려다본 각의 크기를 재었더니 $60°$이었다. $5$분 후 배의 위치는 $\\mathrm{D}$이고, 같은 지점 $\\mathrm{A}$에서 배를 내려다본 각의 크기를 재었더니 $30°$이었다. 이 배가 $1$분 동안 이동한 평균 거리는?",
+  "spans": 10
+ },
+ {
+  "id": "11-c1",
+  "text": "$\\frac{\\mathrm{40\\sqrt{3}}}{3}\\,m$",
+  "spans": 1
+ },
+ {
+  "id": "11-c2",
+  "text": "$\\frac{\\mathrm{80\\sqrt{3}}}{3}\\,m$",
+  "spans": 1
+ },
+ {
+  "id": "11-c3",
+  "text": "$\\mathrm{40}\\sqrt{3}\\,m$",
+  "spans": 1
+ },
+ {
+  "id": "11-c4",
+  "text": "$\\frac{\\mathrm{160\\sqrt{3}}}{3}\\,m$",
+  "spans": 1
+ },
+ {
+  "id": "11-c5",
+  "text": "$\\frac{\\mathrm{200\\sqrt{3}}}{3}\\,m$",
+  "spans": 1
+ },
+ {
+  "id": "12-stem",
+  "text": "다음 중 옳지 않은 것은?",
+  "spans": 0
+ },
+ {
+  "id": "12-c1",
+  "text": "중심각의 크기와 현의 길이는 정비례한다.",
+  "spans": 0
+ },
+ {
+  "id": "12-c2",
+  "text": "원의 중심에서 현에 내린 수선은 그 원을 이등분한다.",
+  "spans": 0
+ },
+ {
+  "id": "12-c3",
+  "text": "한 원에서 중심으로부터 같은 거리에 있는 두 현의 길이는 같다.",
+  "spans": 0
+ },
+ {
+  "id": "12-c4",
+  "text": "합동인 두 원에서 중심에서 같은 거리에 있는 현의 길이는 서로 같다.",
+  "spans": 0
+ },
+ {
+  "id": "12-c5",
+  "text": "한 원 또는 합동인 두 원에서 길이가 같은 두 호에 대한 중심각의 크기는 서로 같다.",
+  "spans": 0
+ },
+ {
+  "id": "13-stem",
+  "text": "그림과 같이 두 직선 $\\mathrm{P}C,~PE$와 $\\overline{AB}$는 원 $O\\,$의 접선이고, 세 점 $\\mathrm{C},~D,~E$는 접점이다. $\\overline{PA}$$=10,~\\overline{PB}$$=11,~\\overline{PE}$$=13$일 때, $\\overline{AB}$의 길이는?",
+  "spans": 9
+ },
+ {
+  "id": "13-c1",
+  "text": "$3$",
+  "spans": 1
+ },
+ {
+  "id": "13-c2",
+  "text": "$4$",
+  "spans": 1
+ },
+ {
+  "id": "13-c3",
+  "text": "$5$",
+  "spans": 1
+ },
+ {
+  "id": "13-c4",
+  "text": "$6$",
+  "spans": 1
+ },
+ {
+  "id": "13-c5",
+  "text": "$7$",
+  "spans": 1
+ },
+ {
+  "id": "14-stem",
+  "text": "그림과 같이 원 $O\\,$는 $\\angle \\mathrm{A}=90°$인 직각삼각형 $\\mathrm{ABC}$의 내접원이고, 세 점 $\\mathrm{D},~E,~F$는 접점이다. $\\overline{BE}=2\\,cm$$,~\\overline{CE}=3\\,cm$일 때, 원 $O\\,$의 반지름의 길이는?",
+  "spans": 7
+ },
+ {
+  "id": "14-c1",
+  "text": "$\\mathrm{1}cm$",
+  "spans": 1
+ },
+ {
+  "id": "14-c2",
+  "text": "$\\mathrm{\\sqrt{2\\,}}\\,cm$",
+  "spans": 1
+ },
+ {
+  "id": "14-c3",
+  "text": "$\\mathrm{\\sqrt{3}}\\,cm$",
+  "spans": 1
+ },
+ {
+  "id": "14-c4",
+  "text": "$\\mathrm{2}\\,cm$",
+  "spans": 1
+ },
+ {
+  "id": "14-c5",
+  "text": "$\\mathrm{2}\\sqrt{2}\\,cm$",
+  "spans": 1
+ },
+ {
+  "id": "15-stem",
+  "text": "그림과 같이 원 $O\\,$의 반지름의 길이가 $\\mathrm{6}\\,cm$이고 $\\overline{PO}=2\\,cm$일 때, $\\overline{CD}$의 길이는?",
+  "spans": 4
+ },
+ {
+  "id": "15-c1",
+  "text": "$\\mathrm{2}\\sqrt{2}\\,cm$",
+  "spans": 1
+ },
+ {
+  "id": "15-c2",
+  "text": "$\\mathrm{4}\\sqrt{2}\\,cm$",
+  "spans": 1
+ },
+ {
+  "id": "15-c3",
+  "text": "$\\mathrm{4}\\sqrt{3}\\,cm$",
+  "spans": 1
+ },
+ {
+  "id": "15-c4",
+  "text": "$\\mathrm{8}\\sqrt{2}\\,cm$",
+  "spans": 1
+ },
+ {
+  "id": "15-c5",
+  "text": "$\\mathrm{8}\\sqrt{3}\\,cm$",
+  "spans": 1
+ },
+ {
+  "id": "16-stem",
+  "text": "그림과 같이 $\\mathrm{□}ABCD$가 원 $O\\,$에 외접한다. $\\angle \\mathrm{B}=90^\\circ$$,~\\overline{AB}$$\\mathrm{=}6\\,cm,~\\overline{AC}$$\\mathrm{=}10\\,cm$$,~\\overline{AD}$$\\mathrm{=}5\\,cm$일 때, $\\overline{CD}$의 길이는?",
+  "spans": 9
+ },
+ {
+  "id": "16-c1",
+  "text": "$\\mathrm{4}\\,cm$",
+  "spans": 1
+ },
+ {
+  "id": "16-c2",
+  "text": "$\\mathrm{6}\\,cm$",
+  "spans": 1
+ },
+ {
+  "id": "16-c3",
+  "text": "$\\mathrm{7}\\,cm$",
+  "spans": 1
+ },
+ {
+  "id": "16-c4",
+  "text": "$\\mathrm{8}\\,cm$",
+  "spans": 1
+ },
+ {
+  "id": "16-c5",
+  "text": "$\\mathrm{10}\\,cm$",
+  "spans": 1
+ },
+ {
+  "id": "17-stem",
+  "text": "그림과 같이 원 $P\\,$는 반지름의 길이가 $20$인 반원 $O\\,$에 내접하고, 원 $Q\\,$는 반원 $O\\,$와 원 $P\\,$에 접하고 있다. 이때 원 $Q\\,$의 반지름의 길이는?",
+  "spans": 7
+ },
+ {
+  "id": "17-c1",
+  "text": "$3$",
+  "spans": 1
+ },
+ {
+  "id": "17-c2",
+  "text": "$2\\sqrt{3}$",
+  "spans": 1
+ },
+ {
+  "id": "17-c3",
+  "text": "$4$",
+  "spans": 1
+ },
+ {
+  "id": "17-c4",
+  "text": "$2\\sqrt{5}$",
+  "spans": 1
+ },
+ {
+  "id": "17-c5",
+  "text": "$5$",
+  "spans": 1
+ },
+ {
+  "id": "18-stem",
+  "text": "그림과 같이 중심각의 크기가 $120°$인 부채꼴 $\\mathrm{OGC}$는 직사각형 $\\mathrm{ABCD}$의 두 변 $\\mathrm{A}D,~CD$와 점 $\\mathrm{H},~C$에서 접한다. 또한, 변 $\\mathrm{A}B$ 위에 점 $\\mathrm{G}$가 있고 부채꼴의 중심 $\\mathrm{O}$는 $\\overline{BC}$ 위에 있다. $\\overline{EF}$가 점 $\\mathrm{I}$에서 부채꼴 $\\mathrm{OGC}$와 접할 때, $\\triangle GBO$의 둘레의 길이와 $\\triangle DEF$의 둘레의 길이의 합은?",
+  "spans": 14
+ },
+ {
+  "id": "18-c1",
+  "text": "$2+\\sqrt{3}$",
+  "spans": 1
+ },
+ {
+  "id": "18-c2",
+  "text": "$3+\\sqrt{3}$",
+  "spans": 1
+ },
+ {
+  "id": "18-c3",
+  "text": "$5+\\sqrt{3}$",
+  "spans": 1
+ },
+ {
+  "id": "18-c4",
+  "text": "$7+\\sqrt{3}$",
+  "spans": 1
+ },
+ {
+  "id": "18-c5",
+  "text": "$7+2\\sqrt{3}$",
+  "spans": 1
+ },
+ {
+  "id": "19-stem",
+  "text": "[서술형 $1$] 그림과 같이 한 모서리의 길이가 $3$인 정육면체의 한 꼭짓점 $\\mathrm{D}$에서 $\\overline{BH}$에 내린 수선의 발을 $\\mathrm{N}$이라고 하자. $\\angle \\mathrm{NDH}=x°$라고 할 때, $x°$의 삼각비의 값을 구하시오. (풀이과정을 반드시 적으시오.)",
+  "spans": 7
+ },
+ {
+  "id": "20-stem",
+  "text": "[서술형 $2$] 취미가 자전거 라이딩인 민수가 지난 주말 화왕산 둘레길에서 그림과 같은 표지판을 보았다. 경사도가 $12%$라는 뜻은 수평거리 $\\mathrm{100}\\,m$ 이동할 때 높이가 $\\mathrm{12}\\,m$ 높아진다는 뜻이다. 경사도가 $30%$인 언덕길이 있다고 하자. 이 도로가 수평면과 이루는 경사각을 $A$라고 할 때, 삼각비의 표를 이용하여 $A$의 값이 몇 도 정도인지 구하고, 그 과정을 서술하시오. (풀이과정을 반드시 적으시오.) \n각도\n$\\mathrm{\\sin }$\n$\\mathrm{\\cos }$\n$\\mathrm{\\tan }$\n$15°$\n$0.2588$\n$0.9659$\n$0.2679$\n$16°$\n$0.2756$\n$0.9613$\n$0.2867$\n$17°$\n$0.2924$\n$0.9563$\n$0.3057$\n$18°$\n$0.3090$\n$0.9511$\n$0.3249$\n$19°$\n$0.3256$\n$0.9455$\n$0.3443$\n$20°$\n$0.3420$\n$0.9397$\n$0.3640$",
+  "spans": 34
+ },
+ {
+  "id": "21-stem",
+  "text": "[서술형 $3$] 그림과 같이 $\\angle \\mathrm{ABC}=90°,$ $\\angle \\mathrm{CAB}=30°$, $\\overline{BC}=4$, $\\overline{AE}=\\overline{BE}$이고, $\\mathrm{□}DEBF$는 직사각형이다. 이때 $\\overline{GD}$의 길이를 구하시오. (풀이과정을 반드시 적으시오.)",
+  "spans": 7
+ },
+ {
+  "id": "22-stem",
+  "text": "[서술형 $4$] 그림과 같이 중심 $\\mathrm{O}$가 같은 두 원이 있다. 큰 원 위의 점 $\\mathrm{E}$에 대하여 $\\overline{OE}$ 위의 점 $\\mathrm{A}$는 작은 원 위의 점이다. 점 $\\mathrm{A}$에서의 접선과 큰 원과의 교점을 각각 $\\mathrm{B},~C$라 하고, 작은 원과 $\\overline{OB}$의 교점을 $\\mathrm{D}$라고 하자. $\\overline{OA}$$=\\overline{AE}$이고, $\\overline{OE}=8\\,cm$일 때, $\\triangle ABD$의 넓이를 구하시오. (풀이과정을 반드시 적으시오.) \n  \n  \n정답\n워드:채준한t\n오검:박미애t\n완료:구혜윤t",
+  "spans": 13
+ }
+]
