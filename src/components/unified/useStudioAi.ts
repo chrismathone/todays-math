@@ -70,10 +70,38 @@ export interface StudioAiPageProgress {
 }
 
 type CropAction = "ocr" | "figures" | "solution";
-interface CropJob {
+export interface StudioAiCropJob {
+  cropId: string;
   action: CropAction;
-  ids: string[];
+  state: "queued" | "running" | "complete" | "error" | "cancelled";
+  startedAt?: number;
+  error?: string;
 }
+interface CropEntry {
+  job: StudioAiCropJob;
+  controller: AbortController;
+  promise: Promise<void>;
+  skipped?: boolean;
+}
+// Kept structural while the protocol and Studio helpers roll out together.
+interface CropQuestionType {
+  questionType?: "multiple-choice" | "short-answer" | "descriptive";
+}
+function questionTypePatch(value: CropQuestionType): CropQuestionType {
+  const { questionType } = value;
+  return questionType === "multiple-choice" ||
+    questionType === "short-answer" ||
+    questionType === "descriptive"
+    ? { questionType }
+    : {};
+}
+const cropSnapshotMatches = (
+  current: StudioCrop | undefined,
+  snapshot: StudioCrop,
+) =>
+  studioAiSnapshotMatches(current, snapshot) &&
+  (current as CropQuestionType | undefined)?.questionType ===
+    (snapshot as CropQuestionType).questionType;
 interface Progress {
   action: CropAction | "page-ocr";
   done: number;
@@ -88,6 +116,10 @@ interface PageEntry {
   promise: Promise<void>;
 }
 const pageKey = (sourceId: string, page: number) => `${sourceId}:${page}`;
+const cropKey = (cropId: string, action: CropAction) =>
+  JSON.stringify([cropId, action]);
+const cropBusy = (job: StudioAiCropJob) =>
+  job.state === "queued" || job.state === "running";
 const pageBusy = (job: StudioAiPageJob) =>
   job.state === "queued" ||
   job.state === "rendering" ||
@@ -109,12 +141,15 @@ export function useStudioAi({
   const ai = useDevAi();
   const [queue] = useState(() => new StudioAiQueue());
   const [progress, setProgress] = useState<Progress | null>(null);
+  const [cropJobs, setCropJobs] = useState<StudioAiCropJob[]>([]);
   const [pageJobs, setPageJobs] = useState<StudioAiPageJob[]>([]);
   const [message, setMessage] = useState("");
-  const [error, setError] = useState("");
   const pages = useRef(new Map<string, PageEntry>());
-  const owned = useRef<AbortController | null>(null);
-  const retryJob = useRef<CropJob | null>(null);
+  const cropEntries = useRef(new Map<string, CropEntry>());
+  const cropWave = useRef({ keys: new Set<string>(), startedAt: 0 });
+  const pendingCropApplications = useRef<
+    { entry: CropEntry; expected: StudioCrop }[]
+  >([]);
   const mounted = useRef(true);
   const pendingDetected = useRef<
     { id: string; key: string; signal: AbortSignal }[]
@@ -140,19 +175,68 @@ export function useStudioAi({
       setPageJobs(Array.from(pages.current.values(), (entry) => entry.job));
   }, []);
 
-  const cancelCrop = useCallback((clear = false) => {
-    const running = owned.current;
-    owned.current = null;
-    running?.abort();
-    retryJob.current = null;
-    setProgress(null);
-    setError("");
-    if (clear) setMessage("");
-    else if (running)
-      setMessage(
-        "AI 작업을 취소했습니다. 완료된 결과와 직접 수정한 내용은 유지됩니다.",
-      );
+  const publishCrops = useCallback(() => {
+    if (!mounted.current) return;
+    setCropJobs(Array.from(cropEntries.current.values(), (entry) => entry.job));
+    const wave = Array.from(cropWave.current.keys).flatMap((key) => {
+      const entry = cropEntries.current.get(key);
+      return entry ? [entry.job] : [];
+    });
+    const current =
+      wave.find((job) => job.state === "running") ?? wave.find(cropBusy);
+    setProgress(
+      current
+        ? {
+            action: current.action,
+            cropId: current.cropId,
+            done: wave.filter((job) => !cropBusy(job)).length,
+            total: wave.length,
+            startedAt: cropWave.current.startedAt,
+          }
+        : null,
+    );
   }, []);
+
+  const cancelCropJob = useCallback(
+    (id: string, action?: CropAction) => {
+      for (const entry of cropEntries.current.values()) {
+        if (
+          entry.job.cropId === id &&
+          (!action || entry.job.action === action) &&
+          cropBusy(entry.job)
+        ) {
+          entry.job = { ...entry.job, state: "cancelled" };
+          entry.controller.abort();
+        }
+      }
+      publishCrops();
+    },
+    [publishCrops],
+  );
+
+  const cancelCrop = useCallback(
+    (clear = false) => {
+      let cancelled = false;
+      for (const entry of cropEntries.current.values()) {
+        if (cropBusy(entry.job)) {
+          entry.job = { ...entry.job, state: "cancelled" };
+          cancelled = true;
+          entry.controller.abort();
+        } else if (clear) entry.controller.abort();
+      }
+      if (clear) {
+        cropEntries.current.clear();
+        cropWave.current.keys.clear();
+        pendingCropApplications.current = [];
+        setMessage("");
+      } else if (cancelled)
+        setMessage(
+          "AI 작업을 취소했습니다. 완료된 결과와 직접 수정한 내용은 유지됩니다.",
+        );
+      publishCrops();
+    },
+    [publishCrops],
+  );
 
   const cancel = useCallback(
     (clear = false) => {
@@ -183,20 +267,48 @@ export function useStudioAi({
     [subscribeCancel, cancel],
   );
 
-  useEffect(() => {
-    // Navigation owns crop editing only; background pages keep their source.
-    // eslint-disable-next-line react-hooks/set-state-in-effect
-    cancelCrop(true);
-  }, [contextKey, active, cancelCrop]);
+  useLayoutEffect(() => {
+    const ids = new Set(crops.map((crop) => crop.id));
+    let changed = false;
+    // A manual edit may be batched with the AI state updater before latest is
+    // refreshed. Report the updater's rejected result as cancelled after commit.
+    for (const { entry, expected } of pendingCropApplications.current.splice(
+      0,
+    )) {
+      if (
+        entry.job.state === "complete" &&
+        cropEntries.current.get(cropKey(entry.job.cropId, entry.job.action)) ===
+          entry &&
+        !cropSnapshotMatches(
+          crops.find((crop) => crop.id === expected.id),
+          expected,
+        )
+      ) {
+        entry.job = { ...entry.job, state: "cancelled" };
+        entry.skipped = true;
+        changed = true;
+      }
+    }
+    for (const entry of cropEntries.current.values()) {
+      if (!ids.has(entry.job.cropId) && cropBusy(entry.job)) {
+        entry.job = { ...entry.job, state: "cancelled" };
+        entry.controller.abort();
+        changed = true;
+      }
+    }
+    // Removal cancels owners; selection, source navigation and tabs do not.
+    if (changed) publishCrops();
+  }, [crops, publishCrops]);
 
   useEffect(() => {
     mounted.current = true;
     const entries = pages.current;
+    const crops = cropEntries.current;
     return () => {
       mounted.current = false;
-      owned.current?.abort();
-      owned.current = null;
-      retryJob.current = null;
+      for (const entry of crops.values()) entry.controller.abort();
+      crops.clear();
+      pendingCropApplications.current = [];
       for (const entry of entries.values()) entry.controller.abort();
       entries.clear();
       pendingDetected.current = [];
@@ -237,8 +349,9 @@ export function useStudioAi({
       );
   }
   const running = Boolean(
-    progress || pageProgress.queued || pageProgress.running,
+    cropJobs.some(cropBusy) || pageProgress.queued || pageProgress.running,
   );
+  const error = cropJobs.find((job) => job.state === "error")?.error ?? "";
 
   async function executePage(entry: PageEntry, task: StudioAiPageTask) {
     const { controller } = entry;
@@ -315,6 +428,7 @@ export function useStudioAi({
             reviewed: false,
             content: item.content,
             answer: item.answer,
+            ...questionTypePatch(item as CropQuestionType),
             solution: "",
             grade: page.grade,
             level: page.level,
@@ -427,191 +541,242 @@ export function useStudioAi({
     );
   }
 
-  async function execute(job: CropJob) {
-    if (
-      owned.current ||
-      !mounted.current ||
-      !latest.current.active ||
-      !available
-    )
-      return;
-    const controller = new AbortController();
-    owned.current = controller;
-    retryJob.current = null;
-    const origin = latest.current.contextKey;
+  async function executeCrop(entry: CropEntry, snapshot: StudioCrop) {
+    const { controller, job } = entry;
     const stale = () =>
       controller.signal.aborted ||
       !mounted.current ||
-      !latest.current.active ||
-      latest.current.contextKey !== origin;
-    const snapshots = job.ids
-      .map((id) => latest.current.crops.find((crop) => crop.id === id))
-      .filter((crop): crop is StudioCrop => Boolean(crop));
-    const total = snapshots.length;
-    const startedAt = Date.now();
-    setError("");
-    setMessage("");
-    setProgress({ action: job.action, done: 0, total, startedAt });
-    let completed = 0;
-    let skipped = 0;
-    return queue.enqueue(controller.signal, async () => {
-      try {
-        for (const snapshot of snapshots) {
-          if (stale()) return;
-          if (
-            !studioAiSnapshotMatches(
-              latest.current.crops.find((crop) => crop.id === snapshot.id),
-              snapshot,
-            )
-          ) {
-            skipped++;
-            continue;
-          }
-          if (job.action === "solution" && !snapshot.content.trim()) {
-            skipped++;
-            continue;
-          }
-          setProgress({
-            action: job.action,
-            done: completed + skipped,
-            total,
-            cropId: snapshot.id,
-            startedAt,
-          });
-          const response = await ai.run(
-            {
-              action: job.action,
-              imageDataUrl: snapshot.image,
-              content: snapshot.content,
-              grade: snapshot.grade,
-            },
+      cropEntries.current.get(cropKey(job.cropId, job.action)) !== entry;
+    const update = (patch: Partial<StudioAiCropJob>) => {
+      if (stale()) return;
+      entry.job = { ...entry.job, ...patch };
+      publishCrops();
+    };
+    const matches = () =>
+      cropSnapshotMatches(
+        latest.current.crops.find((crop) => crop.id === snapshot.id),
+        snapshot,
+      );
+    const skip = () => {
+      entry.skipped = true;
+      update({ state: "cancelled" });
+    };
+    try {
+      if (stale()) return;
+      if (!matches()) return skip();
+      if (job.action === "solution" && !snapshot.content.trim())
+        throw new Error(
+          "문제 내용을 먼저 입력하거나 문자 인식을 실행해 주세요.",
+        );
+      update({ state: "running", startedAt: Date.now() });
+      const response = await ai.run(
+        {
+          action: job.action,
+          imageDataUrl: snapshot.image,
+          content: snapshot.content,
+          grade: snapshot.grade,
+          sourceName: snapshot.sourceLabel,
+        },
+        controller.signal,
+      );
+      if (stale()) return;
+      if (!matches()) return skip();
+      const result = response.result;
+      if (entry.job.action === "ocr" && !result.content.trim())
+        throw new Error(
+          "문자 인식 결과가 비어 있습니다. 원본 영역을 확인하고 다시 시도해 주세요.",
+        );
+      if (entry.job.action === "solution" && !result.solution.trim())
+        throw new Error(
+          "해설 결과가 비어 있습니다. 문제 내용을 확인하고 다시 시도해 주세요.",
+        );
+      let patch: Partial<StudioCrop> & CropQuestionType;
+      const warnings = [...result.warnings];
+      if (entry.job.action === "figures") {
+        if (!result.figures)
+          throw new Error(
+            "그림 영역 결과가 없습니다. 원본은 유지됩니다. 다시 시도해 주세요.",
+          );
+        patch = { figures: [] };
+        if (result.figures.length) {
+          const canvas = await studioImageCanvas(
+            snapshot.image,
             controller.signal,
           );
           if (stale()) return;
           if (
-            !studioAiSnapshotMatches(
+            !cropSnapshotMatches(
               latest.current.crops.find((crop) => crop.id === snapshot.id),
               snapshot,
             )
           ) {
-            skipped++;
-            continue;
+            skip();
+            return;
           }
-          const result = response.result;
-          if (job.action === "ocr" && !result.content.trim())
-            throw new Error(
-              "문자 인식 결과가 비어 있습니다. 원본 영역을 확인하고 다시 시도해 주세요.",
-            );
-          if (job.action === "solution" && !result.solution.trim())
-            throw new Error(
-              "해설 결과가 비어 있습니다. 문제 내용을 확인하고 다시 시도해 주세요.",
-            );
-          let patch: Partial<StudioCrop>;
-          const warnings = [...result.warnings];
-          if (job.action === "figures") {
-            if (!result.figures)
-              throw new Error(
-                "그림 영역 결과가 없습니다. 원본은 유지됩니다. 다시 시도해 주세요.",
-              );
-            patch = { figures: [] };
-            if (result.figures.length) {
-              const canvas = await studioImageCanvas(
-                snapshot.image,
-                controller.signal,
-              );
-              if (stale()) return;
-              if (
-                !studioAiSnapshotMatches(
-                  latest.current.crops.find((crop) => crop.id === snapshot.id),
-                  snapshot,
-                )
-              ) {
-                skipped++;
-                continue;
+          const detected = studioAiFigures(
+            canvas,
+            result.figures,
+            snapshot.rect,
+            snapshot.rect,
+          );
+          patch.figures = detected.figures;
+          if (!snapshot.sourceSize)
+            patch.sourceSize = {
+              width: canvas.width / snapshot.rect.width,
+              height: canvas.height / snapshot.rect.height,
+            };
+          warnings.push(...detected.warnings);
+        }
+        // Repeated identical detection keeps stable figure IDs and review state.
+        if (
+          studioFiguresEqual(snapshot.figures, patch.figures, false) &&
+          snapshot.figures
+        )
+          patch.figures = snapshot.figures;
+      } else {
+        patch =
+          entry.job.action === "ocr"
+            ? {
+                content: result.content,
+                ...questionTypePatch(result as CropQuestionType),
+                answer: result.answer,
+                solution: "",
               }
-              const detected = studioAiFigures(
-                canvas,
-                result.figures,
-                snapshot.rect,
-                snapshot.rect,
-              );
-              patch.figures = detected.figures;
-              if (!snapshot.sourceSize)
-                patch.sourceSize = {
-                  width: canvas.width / snapshot.rect.width,
-                  height: canvas.height / snapshot.rect.height,
-                };
-              warnings.push(...detected.warnings);
-            }
-            // Repeated identical detection keeps stable figure IDs and review state.
-            if (
-              studioFiguresEqual(snapshot.figures, patch.figures, false) &&
-              snapshot.figures
-            )
-              patch.figures = snapshot.figures;
-          } else {
-            patch =
-              job.action === "ocr"
-                ? {
-                    content: result.content,
-                    answer: result.answer,
-                    solution: "",
-                  }
-                : { answer: result.answer, solution: result.solution };
-          }
-          const changed =
-            (patch.content !== undefined &&
-              patch.content !== snapshot.content) ||
-            (patch.answer !== undefined && patch.answer !== snapshot.answer) ||
-            (patch.solution !== undefined &&
-              patch.solution !== snapshot.solution) ||
-            (patch.figures !== undefined &&
-              !studioFiguresEqual(patch.figures, snapshot.figures, false));
-          setCrops((previous) =>
-            stale()
-              ? previous
-              : previous.map((crop) =>
-                  studioAiSnapshotMatches(crop, snapshot)
-                    ? {
-                        ...crop,
-                        ...patch,
-                        aiWarnings: warnings,
-                        ...(changed
-                          ? {
-                              added: false,
-                              reviewed: false,
-                              revision: (crop.revision ?? 0) + 1,
-                            }
-                          : {}),
-                      }
-                    : crop,
-                ),
-          );
-          completed++;
-        }
-        setMessage(
-          `${job.action === "ocr" ? "문자 인식" : job.action === "figures" ? "도형 인식" : "해설 생성"} ${completed}문항 완료.${skipped ? ` 수정되거나 제외된 ${skipped}문항은 유지했습니다.` : ""} 원본과 결과를 확인해 주세요.`,
-        );
-      } catch (cause) {
-        if (stale()) return;
-        if (cause instanceof Error && cause.name === "AbortError")
-          setMessage("AI 작업이 취소되었습니다. 완료된 결과는 유지됩니다.");
-        else {
-          retryJob.current = {
-            ...job,
-            ids: snapshots.slice(completed + skipped).map((crop) => crop.id),
-          };
-          setError(
-            `${completed ? `${completed}문항 완료 후 중단 · ` : ""}${cause instanceof Error ? cause.message : "AI 처리에 실패했습니다."}`,
-          );
-        }
-      } finally {
-        if (owned.current === controller) {
-          owned.current = null;
-          if (mounted.current) setProgress(null);
-        }
+            : { answer: result.answer, solution: result.solution };
       }
+      const changed =
+        (patch.questionType !== undefined &&
+          patch.questionType !== (snapshot as CropQuestionType).questionType) ||
+        (patch.content !== undefined && patch.content !== snapshot.content) ||
+        (patch.answer !== undefined && patch.answer !== snapshot.answer) ||
+        (patch.solution !== undefined &&
+          patch.solution !== snapshot.solution) ||
+        (patch.figures !== undefined &&
+          !studioFiguresEqual(patch.figures, snapshot.figures, false));
+      const appliedPatch = {
+        ...patch,
+        aiWarnings: warnings,
+        ...(changed
+          ? {
+              added: false,
+              reviewed: false,
+              revision: (snapshot.revision ?? 0) + 1,
+            }
+          : {}),
+      };
+      pendingCropApplications.current.push({
+        entry,
+        expected: { ...snapshot, ...appliedPatch },
+      });
+      setCrops((previous) =>
+        stale()
+          ? previous
+          : previous.map((crop) =>
+              cropSnapshotMatches(crop, snapshot)
+                ? {
+                    ...crop,
+                    ...appliedPatch,
+                    ...(patch.figures &&
+                    crop.figures &&
+                    studioFiguresEqual(patch.figures, crop.figures, false)
+                      ? { figures: crop.figures }
+                      : {}),
+                  }
+                : crop,
+            ),
+      );
+      update({ state: "complete" });
+    } catch (cause) {
+      if (stale()) return;
+      if (cause instanceof Error && cause.name === "AbortError")
+        update({ state: "cancelled" });
+      else
+        update({
+          state: "error",
+          error:
+            cause instanceof Error ? cause.message : "AI 처리에 실패했습니다.",
+        });
+    }
+  }
+
+  function enqueueCrop(id: string, action: CropAction): CropEntry | undefined {
+    if (!mounted.current || !available) return;
+    const key = cropKey(id, action);
+    const previous = cropEntries.current.get(key);
+    if (previous && cropBusy(previous.job)) return previous;
+    const crop = latest.current.crops.find((item) => item.id === id);
+    if (!crop) return;
+    // Every request keeps the content, image and edit generation from enqueue.
+    // A retry captures fresh input, but a waiting job cannot adopt manual edits.
+    const snapshot = {
+      ...crop,
+      rect: { ...crop.rect },
+      figures: crop.figures?.map((figure) => ({
+        ...figure,
+        rect: { ...figure.rect },
+      })),
+      sourceSize: crop.sourceSize ? { ...crop.sourceSize } : undefined,
+    };
+    const entry: CropEntry = {
+      job: { cropId: id, action, state: "queued" },
+      controller: new AbortController(),
+      promise: Promise.resolve(),
+    };
+    cropEntries.current.set(key, entry);
+    cropWave.current.keys.add(key);
+    publishCrops();
+    entry.promise = queue.enqueue(entry.controller.signal, () =>
+      executeCrop(entry, snapshot),
+    );
+    return entry;
+  }
+
+  async function processCrops(action: CropAction, ids: string[]) {
+    if (
+      !Array.from(cropEntries.current.values()).some((entry) =>
+        cropBusy(entry.job),
+      )
+    ) {
+      cropWave.current = { keys: new Set(), startedAt: Date.now() };
+      setMessage("");
+    }
+    const entries = [...new Set(ids)].flatMap((id) => {
+      const entry = enqueueCrop(id, action);
+      return entry ? [entry] : [];
     });
+    await Promise.all(entries.map((entry) => entry.promise));
+    if (
+      !mounted.current ||
+      !entries.length ||
+      entries.every(
+        (entry) =>
+          entry.controller.signal.aborted ||
+          cropEntries.current.get(cropKey(entry.job.cropId, action)) !== entry,
+      )
+    )
+      return;
+    const completed = entries.filter(
+      (entry) => entry.job.state === "complete",
+    ).length;
+    const skipped = entries.filter((entry) => entry.skipped).length;
+    setMessage(
+      `${action === "ocr" ? "문자 인식" : action === "figures" ? "도형 인식" : "해설 생성"} ${completed}문항 완료.${skipped ? ` 수정되거나 제외된 ${skipped}문항은 유지했습니다.` : ""} 원본과 결과를 확인해 주세요.`,
+    );
+  }
+
+  async function retryCrop(id: string, action: CropAction) {
+    if (cropEntries.current.get(cropKey(id, action))?.job.state === "error")
+      await processCrops(action, [id]);
+  }
+
+  async function retry() {
+    const failed = Array.from(cropEntries.current.values()).filter(
+      (entry) => entry.job.state === "error",
+    );
+    await Promise.all([
+      ...failed.map((entry) => retryCrop(entry.job.cropId, entry.job.action)),
+      retryPages(),
+    ]);
   }
 
   return {
@@ -620,12 +785,22 @@ export function useStudioAi({
     unavailableReason,
     running,
     progress,
+    cropJobs,
     pageJobs,
     pageProgress,
     message,
     error,
     cancel,
     cancelCrop,
+    cancelCropJob,
+    retryCrop,
+    isCropBusy: (id: string, action?: CropAction) =>
+      cropJobs.some(
+        (job) =>
+          job.cropId === id &&
+          (!action || job.action === action) &&
+          cropBusy(job),
+      ),
     recognizePages,
     retryPages,
     isPageBusy: (sourceId: string, page: number) =>
@@ -639,11 +814,8 @@ export function useStudioAi({
         true,
       );
     },
-    processCrops: (action: CropAction, ids: string[]) =>
-      execute({ action, ids }),
-    retry: () => {
-      if (retryJob.current) void execute(retryJob.current);
-      else void retryPages();
-    },
+    processCrops,
+    runCrops: processCrops,
+    retry,
   };
 }

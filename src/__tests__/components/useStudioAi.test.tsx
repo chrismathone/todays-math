@@ -139,6 +139,7 @@ describe("Studio AI owner", () => {
         content: "수정한 문제",
         imageDataUrl: crop("a").image,
         grade: "초5",
+        sourceName: "sheet.png",
       },
       expect.any(AbortSignal),
     );
@@ -147,6 +148,102 @@ describe("Studio AI owner", () => {
       solution: "풀이 결과",
       mode: "image",
     });
+  });
+
+  it("applies optional OCR classification and retains the original image and edited figures", async () => {
+    const value = response();
+    Object.assign(value.result, { questionType: "multiple-choice" });
+    bridge.run.mockResolvedValueOnce(value).mockResolvedValue(response());
+    const original = {
+      ...crop("a"),
+      questionType: "short-answer" as const,
+      figures: [
+        {
+          id: "edited-figure",
+          rect: crop("a").rect,
+          image: "data:image/png;base64,edited",
+          originalImage: "data:image/png;base64,original",
+          svg: '<svg><path d="M0 0L1 1"/></svg>',
+        },
+      ],
+    };
+    const { result } = mount([original]);
+    await act(async () => {
+      await result.current.processCrops("ocr", ["a"]);
+    });
+    expect(result.current.crops[0]).toMatchObject({
+      questionType: "multiple-choice",
+      image: original.image,
+    });
+    expect(result.current.crops[0].figures).toBe(original.figures);
+    await act(async () => {
+      await result.current.processCrops("ocr", ["a"]);
+    });
+    expect(result.current.crops[0]).toMatchObject({
+      questionType: "multiple-choice",
+    });
+    expect(result.current.crops[0].figures).toBe(original.figures);
+  });
+
+  it("protects manual question-type changes without a revision bump", async () => {
+    const pending = deferred<DevAiResponse>();
+    bridge.run.mockReturnValue(pending.promise);
+    const initial = { ...crop("a"), questionType: "short-answer" as const };
+    const { result } = mount([initial]);
+    let work!: Promise<void>;
+    act(() => {
+      work = result.current.processCrops("ocr", ["a"]);
+    });
+    act(() => {
+      result.current.setCrops((items) =>
+        items.map((item) => ({
+          ...item,
+          questionType: "descriptive" as const,
+        })),
+      );
+    });
+    const value = response();
+    Object.assign(value.result, { questionType: "multiple-choice" });
+    await act(async () => {
+      pending.resolve(value);
+      await work;
+    });
+    expect(result.current.crops[0]).toMatchObject({
+      content: "",
+      questionType: "descriptive",
+    });
+    expect(result.current.cropJobs[0].state).toBe("cancelled");
+  });
+
+  it("keeps a missing solution input retryable without blocking valid queued jobs", async () => {
+    bridge.run.mockResolvedValue(response("solution"));
+    const { result } = mount([crop("a"), crop("b", "valid")]);
+    await act(async () => {
+      await result.current.processCrops("solution", ["a", "b"]);
+    });
+    expect(bridge.run).toHaveBeenCalledTimes(1);
+    expect(result.current.cropJobs.map((job) => job.state)).toEqual([
+      "error",
+      "complete",
+    ]);
+    expect(result.current.cropJobs[0].error).toContain("문제 내용을 먼저");
+    act(() => {
+      result.current.setCrops((items) =>
+        items.map((item) =>
+          item.id === "a"
+            ? { ...item, content: "new input", revision: 1 }
+            : item,
+        ),
+      );
+    });
+    await act(async () => {
+      await result.current.retryCrop("a", "solution");
+    });
+    expect(bridge.run).toHaveBeenCalledTimes(2);
+    expect(bridge.run.mock.calls[1][0].content).toBe("new input");
+    expect(
+      result.current.cropJobs.every((job) => job.state === "complete"),
+    ).toBe(true);
   });
 
   it.each(["content", "answer", "solution"] as const)(
@@ -182,50 +279,67 @@ describe("Studio AI owner", () => {
     },
   );
 
-  it("runs a batch sequentially and stops its remaining queue on cancel", async () => {
-    const first = deferred<DevAiResponse>();
-    const second = deferred<DevAiResponse>();
-    bridge.run
-      .mockReturnValueOnce(first.promise)
-      .mockReturnValueOnce(second.promise);
-    const { result } = mount([crop("a"), crop("b"), crop("c")]);
+  it("runs two crop jobs at once and cancels active and waiting work independently of completed items", async () => {
+    const replies = Array.from({ length: 3 }, () => deferred<DevAiResponse>());
+    bridge.run.mockImplementation(
+      () => replies[bridge.run.mock.calls.length - 1].promise,
+    );
+    const { result } = mount([crop("a"), crop("b"), crop("c"), crop("d")]);
     let work!: Promise<void>;
     act(() => {
-      work = result.current.processCrops("ocr", ["a", "b", "c"]);
+      work = result.current.processCrops("ocr", ["a", "b", "c", "d"]);
     });
     const startedAt = result.current.progress?.startedAt;
-    expect(startedAt).toEqual(expect.any(Number));
-    expect(bridge.run).toHaveBeenCalledTimes(1);
+    expect(bridge.run).toHaveBeenCalledTimes(2);
+    expect(result.current.cropJobs.map((job) => job.state)).toEqual([
+      "running",
+      "running",
+      "queued",
+      "queued",
+    ]);
     await act(async () => {
-      first.resolve(response());
+      replies[0].resolve(response());
     });
-    await waitFor(() => expect(bridge.run).toHaveBeenCalledTimes(2));
+    expect(bridge.run).toHaveBeenCalledTimes(3);
     expect(result.current.progress).toMatchObject({
       done: 1,
-      total: 3,
+      total: 4,
       cropId: "b",
       startedAt,
     });
-    const ownedSignal = bridge.run.mock.calls[1][1] as AbortSignal;
-    act(() => {
-      result.current.cancel();
-    });
-    expect(ownedSignal.aborted).toBe(true);
+    const signals = bridge.run.mock.calls.map((call) => call[1] as AbortSignal);
     await act(async () => {
-      second.resolve(response());
+      result.current.cancel();
       await work;
     });
-    expect(bridge.run).toHaveBeenCalledTimes(2);
+    expect(signals.map((signal) => signal.aborted)).toEqual([
+      false,
+      true,
+      true,
+    ]);
+    expect(result.current.cropJobs.map((job) => job.state)).toEqual([
+      "complete",
+      "cancelled",
+      "cancelled",
+      "cancelled",
+    ]);
+    await act(async () => {
+      replies[1].resolve(response());
+      replies[2].resolve(response());
+    });
+    expect(bridge.run).toHaveBeenCalledTimes(3);
     expect(result.current.crops.map((item) => Boolean(item.content))).toEqual([
       true,
       false,
       false,
+      false,
     ]);
+    expect(result.current.running).toBe(false);
     expect(bridge.cancel).not.toHaveBeenCalled();
   });
 
   it.each(["source:2", "another:1"])(
-    "aborts page/source changes and rejects a late response for %s",
+    "preserves background crop work after page/source navigation to %s",
     async (contextKey) => {
       const pending = deferred<DevAiResponse>();
       bridge.run.mockReturnValue(pending.promise);
@@ -236,17 +350,17 @@ describe("Studio AI owner", () => {
       });
       const signal = bridge.run.mock.calls[0][1] as AbortSignal;
       rerender({ contextKey, active: true });
-      expect(signal.aborted).toBe(true);
+      expect(signal.aborted).toBe(false);
       await act(async () => {
         pending.resolve(response());
         await work;
       });
-      expect(result.current.crops[0].content).toBe("");
+      expect(result.current.crops[0].content).toBe(response().result.content);
       expect(result.current.progress).toBeNull();
     },
   );
 
-  it("aborts when the mounted Studio becomes inactive", async () => {
+  it("continues when the mounted Studio becomes inactive", async () => {
     const pending = deferred<DevAiResponse>();
     bridge.run.mockReturnValue(pending.promise);
     const { result, rerender } = mount();
@@ -256,12 +370,12 @@ describe("Studio AI owner", () => {
     });
     const signal = bridge.run.mock.calls[0][1] as AbortSignal;
     rerender({ contextKey: "source:1", active: false });
-    expect(signal.aborted).toBe(true);
+    expect(signal.aborted).toBe(false);
     await act(async () => {
       pending.resolve(response());
       await work;
     });
-    expect(result.current.crops[0].content).toBe("");
+    expect(result.current.crops[0].content).toBe(response().result.content);
   });
 
   it("does not recreate a removed crop after a late response", async () => {
@@ -283,7 +397,7 @@ describe("Studio AI owner", () => {
     expect(result.current.crops).toEqual([]);
   });
 
-  it("preserves completed batch items and retries only the failed remainder", async () => {
+  it("preserves completed batch items and retries only failed jobs", async () => {
     bridge.run
       .mockResolvedValueOnce(response())
       .mockRejectedValueOnce(new Error("CLI 응답 실패"))
@@ -292,7 +406,11 @@ describe("Studio AI owner", () => {
     await act(async () => {
       await result.current.processCrops("ocr", ["a", "b"]);
     });
-    expect(result.current.error).toContain("1문항 완료 후 중단");
+    expect(result.current.error).toBe("CLI 응답 실패");
+    expect(result.current.cropJobs.map((job) => job.state)).toEqual([
+      "complete",
+      "error",
+    ]);
     act(() => {
       result.current.retry();
     });
@@ -300,6 +418,228 @@ describe("Studio AI owner", () => {
     expect(bridge.run).toHaveBeenCalledTimes(3);
     expect(bridge.run.mock.calls[2][0].imageDataUrl).toBe(crop("b").image);
     expect(result.current.crops.every((item) => item.content)).toBe(true);
+  });
+
+  it("dedupes by crop/action and cancels one action without cancelling its sibling", async () => {
+    const ocr = deferred<DevAiResponse>();
+    const figures = deferred<DevAiResponse>();
+    bridge.run
+      .mockReturnValueOnce(ocr.promise)
+      .mockReturnValueOnce(figures.promise);
+    const { result } = mount([crop("a", "original"), crop("b", "another")]);
+    let first!: Promise<void>;
+    let duplicate!: Promise<void>;
+    let second!: Promise<void>;
+    let waiting!: Promise<void>;
+    act(() => {
+      first = result.current.processCrops("ocr", ["a", "a"]);
+      duplicate = result.current.runCrops("ocr", ["a"]);
+      second = result.current.processCrops("figures", ["a"]);
+      waiting = result.current.processCrops("solution", ["b"]);
+    });
+    expect(bridge.run).toHaveBeenCalledTimes(2);
+    expect(result.current.cropJobs).toHaveLength(3);
+    expect(result.current.isCropBusy("a")).toBe(true);
+    expect(result.current.isCropBusy("a", "solution")).toBe(false);
+    expect(result.current.isCropBusy("b", "solution")).toBe(true);
+    const signals = bridge.run.mock.calls.map((call) => call[1] as AbortSignal);
+    await act(async () => {
+      result.current.cancelCropJob("a", "ocr");
+      result.current.cancelCropJob("b");
+      await Promise.all([first, duplicate, waiting]);
+    });
+    expect(signals.map((signal) => signal.aborted)).toEqual([true, false]);
+    expect(result.current.isCropBusy("a")).toBe(true);
+    expect(result.current.isCropBusy("a", "ocr")).toBe(false);
+    expect(result.current.isCropBusy("b")).toBe(false);
+    await act(async () => {
+      figures.resolve({
+        ...response("figures"),
+        result: { ...response("figures").result, figures: [] },
+      });
+      ocr.resolve(response());
+      await second;
+      await result.current.retryCrop("a", "ocr");
+      await result.current.retry();
+    });
+    expect(bridge.run).toHaveBeenCalledTimes(2);
+    expect(result.current.cropJobs.map((job) => job.state)).toEqual([
+      "cancelled",
+      "complete",
+      "cancelled",
+    ]);
+    expect(result.current.crops[0]).toMatchObject({
+      content: "original",
+      figures: [],
+    });
+  });
+
+  it("drains after independent errors and retries only the selected failure with fresh content", async () => {
+    bridge.run
+      .mockRejectedValueOnce(new Error("first failed"))
+      .mockRejectedValueOnce(new Error("second failed"))
+      .mockResolvedValue(response("solution"));
+    const { result } = mount([crop("a", "A"), crop("b", "B"), crop("c", "C")]);
+    await act(async () => {
+      await result.current.processCrops("solution", ["a", "b", "c"]);
+    });
+    expect(
+      result.current.cropJobs.map((job) => [job.state, job.error]),
+    ).toEqual([
+      ["error", "first failed"],
+      ["error", "second failed"],
+      ["complete", undefined],
+    ]);
+    const successful = result.current.crops[2];
+    act(() => {
+      result.current.setCrops((items) =>
+        items.map((item) =>
+          item.id === "b"
+            ? { ...item, content: "corrected B", grade: "중2", revision: 1 }
+            : item,
+        ),
+      );
+    });
+    await act(async () => {
+      await result.current.retryCrop("b", "solution");
+      await result.current.retryCrop("c", "solution");
+      await result.current.retryCrop("missing", "ocr");
+    });
+    expect(bridge.run).toHaveBeenCalledTimes(4);
+    expect(bridge.run.mock.calls[3][0]).toMatchObject({
+      action: "solution",
+      content: "corrected B",
+      grade: "중2",
+    });
+    expect(result.current.cropJobs[0]).toMatchObject({
+      state: "error",
+      error: "first failed",
+    });
+    expect(result.current.cropJobs[1]).toMatchObject({ state: "complete" });
+    expect(result.current.cropJobs[1].error).toBeUndefined();
+    expect(result.current.crops[2]).toBe(successful);
+    await act(async () => {
+      await result.current.retry();
+    });
+    expect(bridge.run).toHaveBeenCalledTimes(5);
+    expect(bridge.run.mock.calls[4][0].content).toBe("A");
+    expect(
+      result.current.cropJobs.every((job) => job.state === "complete"),
+    ).toBe(true);
+    expect(result.current.error).toBe("");
+  });
+
+  it("cancels deleted running and queued crops without disturbing surviving work", async () => {
+    const replies = [deferred<DevAiResponse>(), deferred<DevAiResponse>()];
+    bridge.run
+      .mockReturnValueOnce(replies[0].promise)
+      .mockReturnValueOnce(replies[1].promise);
+    const { result } = mount([crop("a"), crop("b"), crop("c")]);
+    let work!: Promise<void>;
+    act(() => {
+      work = result.current.processCrops("ocr", ["a", "b", "c"]);
+    });
+    const signals = bridge.run.mock.calls.map((call) => call[1] as AbortSignal);
+    act(() => {
+      result.current.setCrops((items) =>
+        items.filter((item) => item.id === "b"),
+      );
+    });
+    expect(signals.map((signal) => signal.aborted)).toEqual([true, false]);
+    expect(result.current.cropJobs.map((job) => job.state)).toEqual([
+      "cancelled",
+      "running",
+      "cancelled",
+    ]);
+    await act(async () => {
+      replies[1].resolve(response());
+      await work;
+      replies[0].resolve(response());
+    });
+    expect(bridge.run).toHaveBeenCalledTimes(2);
+    expect(result.current.crops).toHaveLength(1);
+    expect(result.current.crops[0]).toMatchObject({
+      id: "b",
+      content: response().result.content,
+    });
+  });
+
+  it("rejects manual updates batched with a response and reports the result as cancelled", async () => {
+    const pending = deferred<DevAiResponse>();
+    bridge.run.mockReturnValue(pending.promise);
+    const { result } = mount();
+    let work!: Promise<void>;
+    act(() => {
+      work = result.current.processCrops("ocr", ["a"]);
+    });
+    await act(async () => {
+      result.current.setCrops((items) =>
+        items.map((item) => ({ ...item, content: "manual", revision: 1 })),
+      );
+      pending.resolve(response());
+      await work;
+    });
+    expect(result.current.crops[0].content).toBe("manual");
+    expect(result.current.cropJobs[0].state).toBe("cancelled");
+    expect(result.current.running).toBe(false);
+  });
+
+  it("fences reset crop owners and keeps physical slots occupied until their I/O settles", async () => {
+    const oldReplies = [deferred<DevAiResponse>(), deferred<DevAiResponse>()];
+    bridge.run
+      .mockReturnValueOnce(oldReplies[0].promise)
+      .mockReturnValueOnce(oldReplies[1].promise)
+      .mockResolvedValue(response());
+    const { result } = mount([crop("a"), crop("b"), crop("c")]);
+    let oldWork!: Promise<void>;
+    let newWork!: Promise<void>;
+    act(() => {
+      oldWork = result.current.processCrops("ocr", ["a", "b", "c"]);
+    });
+    await act(async () => {
+      result.current.cancel(true);
+      newWork = result.current.processCrops("ocr", ["a"]);
+      await oldWork;
+    });
+    expect(result.current.cropJobs).toEqual([
+      { cropId: "a", action: "ocr", state: "queued" },
+    ]);
+    expect(bridge.run).toHaveBeenCalledTimes(2);
+    await act(async () => {
+      oldReplies[1].reject(new Error("stale failure"));
+      await newWork;
+    });
+    expect(result.current.cropJobs[0].state).toBe("complete");
+    const applied = result.current.crops[0];
+    await act(async () => {
+      oldReplies[0].resolve({
+        ...response(),
+        result: { ...response().result, content: "stale" },
+      });
+    });
+    expect(result.current.crops[0]).toBe(applied);
+    expect(result.current.error).toBe("");
+    expect(bridge.run).toHaveBeenCalledTimes(3);
+  });
+
+  it("aborts every crop owner on unmount and never dispatches queued crops", async () => {
+    const pending = deferred<DevAiResponse>();
+    bridge.run.mockReturnValue(pending.promise);
+    const { result, unmount } = mount([crop("a"), crop("b"), crop("c")]);
+    let work!: Promise<void>;
+    act(() => {
+      work = result.current.processCrops("ocr", ["a", "b", "c"]);
+    });
+    const signals = bridge.run.mock.calls.map((call) => call[1] as AbortSignal);
+    unmount();
+    expect(signals).toHaveLength(2);
+    expect(signals.every((signal) => signal.aborted)).toBe(true);
+    await work;
+    await act(async () => {
+      pending.resolve(response());
+    });
+    expect(bridge.run).toHaveBeenCalledTimes(2);
+    expect(bridge.cancelListeners.size).toBe(0);
   });
 
   it.each(["login-required", "not-installed", "unsupported", "error"])(
@@ -558,7 +898,7 @@ describe("Studio figure detection owner", () => {
     expect(result.current.crops[0].content).toBe("직접 수정");
   });
 
-  it("aborts replacement, discards its late figures and clears the old retry owner", async () => {
+  it("explicit reset aborts replacement, discards its late figures and clears retry history", async () => {
     image();
     const pending = deferred<DevAiResponse>();
     bridge.run.mockReturnValue(pending.promise);
@@ -568,6 +908,9 @@ describe("Studio figure detection owner", () => {
       work = result.current.processCrops("figures", ["a"]);
     });
     const signal = bridge.run.mock.calls[0][1] as AbortSignal;
+    act(() => {
+      result.current.cancel(true);
+    });
     rerender({ contextKey: "replacement:1", active: true });
     expect(signal.aborted).toBe(true);
     await act(async () => {
@@ -689,6 +1032,33 @@ describe("Studio background page queue", () => {
     } as unknown as CanvasRenderingContext2D);
     vi.spyOn(HTMLCanvasElement.prototype, "toDataURL").mockReturnValue(
       "data:image/png;base64,crop-pixels",
+    );
+  });
+
+  it("applies per-problem classification while retaining page grade metadata and source name", async () => {
+    const value = pageResponse();
+    Object.assign(value.result.problems![0], { questionType: "descriptive" });
+    value.result.detectedGrade = {
+      grade: "초5",
+      confidence: "high",
+      evidence: "source title",
+    };
+    bridge.run.mockResolvedValue(value);
+    const { result } = mount([]);
+    await act(async () => {
+      await result.current.recognizePages([task(1)]);
+    });
+    expect(bridge.run.mock.calls[0][0]).toMatchObject({
+      sourceName: "source.pdf",
+      grade: "초5",
+    });
+    expect(result.current.crops[0]).toMatchObject({
+      questionType: "descriptive",
+      grade: "초5",
+      level: "elementary",
+    });
+    expect(result.current.pageJobs[0].detectedGrade).toEqual(
+      value.result.detectedGrade,
     );
   });
 
@@ -1139,6 +1509,96 @@ describe("Studio background page queue", () => {
       replies[1].resolve(pageResponse());
       await pages;
     });
+    expect(result.current.running).toBe(false);
+  });
+
+  it("queues three deduped crop jobs behind pages, appends FIFO work, and survives navigation", async () => {
+    const replies = Array.from({ length: 6 }, () => deferred<DevAiResponse>());
+    bridge.run.mockImplementation(
+      () => replies[bridge.run.mock.calls.length - 1].promise,
+    );
+    const tasks = [task(1, "pdf"), task(2, "pdf"), task(3, "pdf")];
+    const { result, rerender } = mount([
+      crop("a"),
+      crop("b", "problem B"),
+      crop("c", "problem C"),
+    ]);
+    let pages!: Promise<void>;
+    let appendedPage!: Promise<void>;
+    let a!: Promise<void>;
+    let b!: Promise<void>;
+    let c!: Promise<void>;
+    let duplicate!: Promise<void>;
+    await act(async () => {
+      pages = result.current.recognizePages(tasks.slice(0, 2));
+      a = result.current.processCrops("ocr", ["a"]);
+      b = result.current.processCrops("solution", ["b"]);
+      c = result.current.processCrops("figures", ["c"]);
+      duplicate = result.current.processCrops("ocr", ["a"]);
+      appendedPage = result.current.recognizePages([tasks[2]]);
+    });
+    expect(bridge.run).toHaveBeenCalledTimes(2);
+    expect(result.current.cropJobs).toEqual([
+      { cropId: "a", action: "ocr", state: "queued" },
+      { cropId: "b", action: "solution", state: "queued" },
+      { cropId: "c", action: "figures", state: "queued" },
+    ]);
+    rerender({ contextKey: "other-source:9", active: false });
+    expect(
+      bridge.run.mock.calls.every((call) => !(call[1] as AbortSignal).aborted),
+    ).toBe(true);
+    await act(async () => {
+      replies[1].resolve(pageResponse());
+    });
+    expect(bridge.run.mock.calls.map((call) => call[0].action)).toEqual([
+      "page-ocr",
+      "page-ocr",
+      "ocr",
+    ]);
+    expect(result.current.cropJobs[0]).toMatchObject({
+      state: "running",
+      startedAt: expect.any(Number),
+    });
+    await act(async () => {
+      replies[0].resolve(pageResponse());
+      await pages;
+    });
+    expect(bridge.run.mock.calls[3][0]).toMatchObject({
+      action: "solution",
+      content: "problem B",
+    });
+    expect(tasks[2].load).not.toHaveBeenCalled();
+    await act(async () => {
+      replies[3].resolve(response("solution"));
+      await b;
+    });
+    expect(bridge.run.mock.calls[4][0].action).toBe("figures");
+    expect(tasks[2].load).not.toHaveBeenCalled();
+    await act(async () => {
+      replies[2].resolve(response());
+      await Promise.all([a, duplicate]);
+    });
+    expect(tasks[2].load).toHaveBeenCalledOnce();
+    expect(bridge.run.mock.calls[5][0].action).toBe("page-ocr");
+    await act(async () => {
+      replies[4].resolve({
+        ...response("figures"),
+        result: { ...response("figures").result, figures: [] },
+      });
+      replies[5].resolve(pageResponse());
+      await Promise.all([c, appendedPage]);
+    });
+    expect(bridge.run).toHaveBeenCalledTimes(6);
+    expect(
+      result.current.cropJobs.every((job) => job.state === "complete"),
+    ).toBe(true);
+    expect(result.current.crops.find((item) => item.id === "a")?.content).toBe(
+      response().result.content,
+    );
+    expect(result.current.crops.find((item) => item.id === "b")?.solution).toBe(
+      response("solution").result.solution,
+    );
+    expect(result.current.pageProgress.done).toBe(3);
     expect(result.current.running).toBe(false);
   });
 
