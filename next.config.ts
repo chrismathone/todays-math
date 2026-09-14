@@ -10,6 +10,22 @@ const nextConfig: NextConfig = {
   allowedDevOrigins: ["192.168.101.32", "192.168.101.12"],
 
   /**
+   * **브라우저 콘솔을 터미널로 넘기지 않는다** (원장님 2026-09-14 「이 반복 콘솔
+   * 안뜨게 못하나? dev라도」).
+   *
+   * Next 16 의 기본값은 `"warn"` 이라 **경고와 오류가 이미 터미널로 넘어온다**
+   * (설치본 타입 `browserDebugInfoInTerminal: "warn"`). 개발 중 HMR·웹소켓 재연결
+   * 경고가 되풀이되면 그 줄들이 터미널을 덮어 **정작 봐야 할 서버 로그를 가린다.**
+   *
+   * ⚠️ 이것은 **터미널로 넘어오는 것만** 끈다 — 브라우저 개발자 도구의 콘솔은
+   *    그대로다(그건 Next 의 dev 오버레이와 브라우저가 찍는 것이라 설정 밖이다).
+   * ⚠️ 키 이름을 옮겨 적지 말 것: `experimental.browserDebugInfoInTerminal` 은
+   *    같은 판에서 **@deprecated** 이고, 없는 키를 적으면 Next 는 **조용히 무시한다**
+   *    (실패가 침묵하는 계측기가 된다).
+   */
+  logging: { browserToTerminal: false },
+
+  /**
    * **번들에 넣지 않고 런타임에 `require` 하는 패키지.**
    *
    * `mathjax-full` 은 자기 판 번호를 이렇게 읽는다
