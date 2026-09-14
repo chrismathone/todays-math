@@ -1,5 +1,5 @@
-import { AuthFormSkeleton } from "@/components/ui/PageSkeletons";
+import { AuthLoading } from "@/components/auth/AuthLoading";
 
 export default function Loading() {
-  return <AuthFormSkeleton />;
+  return <AuthLoading />;
 }

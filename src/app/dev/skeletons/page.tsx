@@ -1,6 +1,7 @@
 import { notFound } from "next/navigation";
 import { connection } from "next/server";
 
+import { AuthLoading } from "@/components/auth/AuthLoading";
 import {
   AuthFormSkeleton,
   ClassManageSkeleton,
@@ -9,6 +10,7 @@ import {
   DashboardSkeleton,
   ExamDetailSkeleton,
   ExamListSkeleton,
+  LandingSkeleton,
   OnboardingSkeleton,
   PrintPreviewSkeleton,
   ProblemBankSkeleton,
@@ -22,6 +24,7 @@ import {
   TestReviewSkeleton,
   TestSetupFieldsSkeleton,
   TestSetupSkeleton,
+  WorkroomHomeSkeleton,
 } from "@/components/ui/PageSkeletons";
 
 /**
@@ -29,43 +32,45 @@ import {
  *
  * 왜 있나: 스켈레톤은 **화면이 느릴 때만** 보인다. 그래서 원장님이 실물로
  * 보시려면 느려지기를 기다려야 하고, 그러면 **모양을 확정할 수가 없다.**
- * 절대 규칙 1(D-07)은 형태를 정하는 작업에 원장님 확정을 요구한다 —
- * 이 화면은 그 확정을 받기 위해 스무 자리를 한 장에 늘어놓는다.
+ * 절대 규칙 1(D-07)은 형태를 정하는 작업에 원장님 확정을 요구한다.
  *
- * 이 저장소가 2026-08-19 에 값을 치른 자리이기도 하다 — 「ASCII 로 고른 것은
- * 확정이 아니다. 형태를 정하는 결정은 **실물로** 한 번 더 물어라.」
- *
- * ⚠️ 다른 `/dev` 화면과 같은 가드를 쓴다. **`force-static` 을 쓰면 안 된다** —
- *    빌드 시점에 구워지면 나중에 플래그를 꺼도 구워진 쪽이 나간다
- *    (`dev/print-check` 주석에 같은 사고가 기록돼 있다).
+ * ⚠️ 다른 `/dev` 화면과 같은 가드를 쓴다. **`force-static` 을 쓰면 안 된다.**
  */
 
 const MICRO = "text-[10px] font-extrabold tracking-[1.2px]";
 
 type Piece = {
-  /** 화면에 적는 이름 */
   name: string;
-  /** 어디서 쓰는가 — 고칠 때 여기부터 연다 */
   where: string;
-  /** 라우트 로딩인가(`loading.tsx`), 화면 안 자리인가 */
   kind: "라우트" | "화면 안";
   node: React.ReactNode;
 };
 
 /**
  * ⚠️ 목록을 손으로 적는다. `PageSkeletons.tsx` 에 자리를 더하고 여기 안 적으면
- *    **그 자리는 이 시안에서 구조적으로 0이 된다** — 원장님이 못 보신다.
- *    아래 시험이 「내보낸 것과 여기 적은 것의 수가 같은가」를 잠근다.
+ *    **그 자리는 이 시안에서 구조적으로 0이 된다.**
  */
 const PIECES: Piece[] = [
   {
-    name: "메인 — 전체",
-    where: "(main)/loading.tsx · MainScreen",
+    name: "작업실 — 홈",
+    where: "(main)/loading.tsx · studio/loading.tsx",
     kind: "라우트",
+    node: <WorkroomHomeSkeleton />,
+  },
+  {
+    name: "소개 화면",
+    where: "LandingPage (비로그인 `/` 의 완성 화면)",
+    kind: "화면 안",
+    node: <LandingSkeleton />,
+  },
+  {
+    name: "수업 계기판 — 전체",
+    where: "MainScreen (embedded 가 아닐 때)",
+    kind: "화면 안",
     node: <DashboardSkeleton />,
   },
   {
-    name: "메인 — 오늘의 확인테스트 줄",
+    name: "수업 계기판 — 오늘의 확인테스트 줄",
     where: "DailyReviewSection",
     kind: "화면 안",
     node: <DailyReviewSkeleton />,
@@ -167,14 +172,14 @@ const PIECES: Piece[] = [
     node: <ReviewConsoleSkeleton />,
   },
   {
-    name: "로그인 (칸 2)",
-    where: "(auth)/loading.tsx",
+    name: "로그인 (칸 2 · 편집 패널 포함)",
+    where: "(auth)/loading.tsx · login/loading.tsx",
     kind: "라우트",
-    node: <AuthFormSkeleton />,
+    node: <AuthLoading />,
   },
   {
-    name: "가입 (칸 3 — 이름이 하나 더 있다)",
-    where: "(auth)/signup/loading.tsx",
+    name: "가입 폼만 (칸 3)",
+    where: "signup/loading.tsx · AuthFormSkeleton",
     kind: "라우트",
     node: <AuthFormSkeleton fields={3} />,
   },
@@ -205,14 +210,13 @@ export default async function SkeletonsPage() {
           로딩 스켈레톤 시안
         </h1>
         <p className="mt-2 text-[13px] leading-[1.8] text-text-2">
-          스켈레톤은 <b>화면이 느릴 때만</b> 보인다. 그래서 실물로 보시려면
-          느려지기를 기다려야 하고, 그러면 모양을 정할 수가 없다. 이 화면은 그
-          스무 자리를 한 장에 늘어놓은 것이다. 고칠 자리는 각 칸에 적어 두었다.
+          스켈레톤은 <b>화면이 느릴 때만</b> 보인다. 이 화면은 그 자리를 한 장에
+          늘어놓은 것이다. 고칠 자리는 각 칸에 적어 두었다.
         </p>
         <p className="mt-2 text-[13px] leading-[1.8] text-text-2">
-          색은 새로 들이지 않았다 — 이미 「기다리는 칸」 뜻으로 쓰는 토큰 (
-          <code className="bg-side px-1 text-[12px]">--seg-empty</code>)을 쓴다.
-          움직임을 줄이라고 설정한 사람에게는 씻김이 꺼지고 칸만 남는다.
+          작업실 자리는 paper/navy/cobalt/mint 를 쓰고, 알림·카드에 색 왼쪽 띠를
+          두지 않는다. 움직임을 줄이라고 설정한 사람에게는 씻김이 꺼지고 칸만
+          남는다.
         </p>
       </header>
 
@@ -241,7 +245,7 @@ export default async function SkeletonsPage() {
               <span className={`${MICRO} text-faint`}>{p.kind}</span>
               <code className="ml-auto text-[11px] text-text-3">{p.where}</code>
             </div>
-            <div className="mt-3 border border-divider bg-canvas p-4">
+            <div className="mt-3 overflow-auto border border-divider bg-canvas p-4">
               {p.node}
             </div>
           </section>
