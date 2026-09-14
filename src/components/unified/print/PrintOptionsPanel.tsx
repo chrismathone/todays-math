@@ -56,6 +56,7 @@ export function PrintOptionsPanel({
       | "showDate"
       | "showChapter"
       | "showDifficulty"
+      | "hideScores"
       | "columnDivider"
       | "showAnswers"
       | "quickAnswerOnly",
@@ -287,6 +288,8 @@ export function PrintOptionsPanel({
         {toggle("showDate", "날짜 표시")}
         {toggle("showChapter", "문항 단원명")}
         {toggle("showDifficulty", "난이도 라벨")}
+        {toggle("hideScores", "배점 숨기기")}
+        <p className={s.subtle}>이미지에 포함된 배점은 그대로 남습니다.</p>
       </fieldset>
       <fieldset className={s.optionGroup}>
         <legend>정답 · 해설</legend>

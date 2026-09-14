@@ -11,6 +11,7 @@ test("actual worksheet preview exports native HWPX and a matching PDF without de
   browser,
 }, testInfo) => {
   await page.goto("/?native");
+  await page.getByRole("checkbox", { name: "배점 숨기기" }).uncheck();
   await expect(
     page.getByRole("button", { name: "HWPX 내보내기" }),
   ).toBeEnabled();

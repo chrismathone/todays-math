@@ -13,15 +13,18 @@ import {
   stripLeadingProblemNumber,
 } from "./nativeProblemLayout";
 import type { StudioProblem } from "./types";
+import { hideQuestionScores } from "./questionScoreDisplay";
 
 /** Typed source content shares the existing math renderer and target physical sizing policy. */
 export default function NativeProblem({
   problem,
   print,
   renderFigure,
+  hideScores = false,
 }: {
   problem: StudioProblem;
   print: boolean;
+  hideScores?: boolean;
   /** Decorate figures in place using their original zero-based source index. */
   renderFigure?: (index: number, image: ReactNode) => ReactNode;
 }) {
@@ -159,12 +162,23 @@ export default function NativeProblem({
     ? renderBlocks(
         data.blocks,
         (text) =>
-          repositionScore(stripLeadingProblemNumber(text, data.number), score),
+          repositionScore(
+            stripLeadingProblemNumber(text, data.number),
+            score,
+            !hideScores,
+          ),
         true,
       )
     : null;
   const fallback = !data ? parseProblemContent(problem.content) : null;
-  const body = data ? nativeBody : markdown(fallback!.question, true);
+  const body = data
+    ? nativeBody
+    : markdown(
+        hideScores
+          ? hideQuestionScores(fallback!.question)
+          : fallback!.question,
+        true,
+      );
   const choices = data
     ? choiceGrid(data.choiceGroups)
     : choiceGrid(
@@ -178,7 +192,7 @@ export default function NativeProblem({
       {renderBlocks(
         sub.contents,
         (text) =>
-          `(${sub.number}) ${repositionScore(text.replace(/^\s*\(\d+\)\s*/, ""), sub.printedScore ?? sub.score)}`,
+          `(${sub.number}) ${repositionScore(text.replace(/^\s*\(\d+\)\s*/, ""), sub.printedScore ?? sub.score, !hideScores)}`,
         true,
       )}
       {choiceGrid(sub.choices ?? [])}

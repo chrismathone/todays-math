@@ -1,4 +1,8 @@
 // Ported from mathg-gen src/lib/problemAdapter.ts; render-only, source data stays unchanged.
+import {
+  hideQuestionScores,
+  replaceQuestionScores,
+} from "./questionScoreDisplay";
 export const stripLeadingProblemNumber = (
   text: string,
   num?: number,
@@ -10,8 +14,6 @@ export const stripLeadingProblemNumber = (
 
 // 보기 ① 또는 소문항 (1)/(가) 줄 시작 — 본문(발문+박스) 영역의 경계.
 const CHOICE_OR_SUB_LINE = /^\s*(?:[①-⑳]|\(\s*(?:\d{1,2}|[가-힣])\s*\)\s)/;
-const SCORE_TAG_G = /\s*\[\s*\d+(?:\.\d+)?\s*점\s*\]\s*/g;
-const SCORE_TAG_ONE = /\[\s*(\d+(?:\.\d+)?)\s*점\s*\]/;
 
 /**
  * 배점 [N점] 을 *발문 끝*(첫 보기/박스 직전)으로 통일 — 엔진 _parse_question 의 배점 캡처·재배치
@@ -26,28 +28,29 @@ export const repositionScore = (
   visible = true,
 ): string => {
   if (!question) return question;
+  if (!visible) return hideQuestionScores(question);
   const lines = question.split("\n");
   let bodyEnd = lines.findIndex((l) => CHOICE_OR_SUB_LINE.test(l));
   if (bodyEnd < 0) bodyEnd = lines.length;
   let extracted: string | undefined;
-  for (let i = 0; i < bodyEnd; i++) {
-    const m = lines[i].match(SCORE_TAG_ONE);
-    if (m && extracted === undefined) extracted = m[1];
-    lines[i] = lines[i].replace(SCORE_TAG_G, " ").replace(/[ \t]+$/, "");
-  }
+  const main = replaceQuestionScores(
+    lines.slice(0, bodyEnd).join("\n"),
+    (score) => {
+      extracted ??= score;
+      return " ";
+    },
+  ).replace(/[ \t]+$/gm, "");
   const score =
     scoreField != null &&
     /^\d+(?:\.\d+)?$/.test(String(scoreField).trim()) &&
     Number(scoreField) > 0
       ? String(scoreField).trim()
       : extracted;
-  const body = lines.join("\n");
-  if (!visible) return body.replace(/\[\s*\d+(?:\.\d+)?\s*점\s*\]/g, "");
+  const body = [main, ...lines.slice(bodyEnd)].join("\n");
   if (!score || !(Number(score) > 0)) return body;
   const tag = ` [${score}점]`;
   // 그림/보기 박스 내부를 공백으로 가린 뒤 마지막 발문 위치를 찾는다.
   // 빈 줄 유무와 무관하며 SVG의 좌표·라벨이나 소문항 배점에 끼어들지 않는다.
-  const main = lines.slice(0, bodyEnd).join("\n");
   // CommonMark allows lazy continuation lines without another ">". They are
   // still inside the condition box until a blank line ends that paragraph.
   const masked = main.replace(

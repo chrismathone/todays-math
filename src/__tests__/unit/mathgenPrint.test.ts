@@ -25,6 +25,7 @@ describe("restored Mathgen options and measured pagination", () => {
       showDate: true,
       showChapter: true,
       showDifficulty: true,
+      hideScores: true,
       columnDivider: false,
       solvingArea: "off",
       fontPack: "system",
