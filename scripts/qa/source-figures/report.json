@@ -1,0 +1,31 @@
+{
+  "date": "2026-09-14",
+  "implementationCommit": "dbe95af03b572a353fb253105c4f60915c7516f9",
+  "fixture": "Actual SourceEditorDisplay and MathTextEditor with StudioReviewPane.module.css loaded after the editor stylesheet.",
+  "commands": {
+    "server": "node node_modules/vite/bin/vite.js --config scripts/qa/source-figures/vite.config.mts",
+    "browser": "node scripts/qa/source-figures/verify.mjs",
+    "unit": "vitest run src/__tests__/unit/sourceFigurePresentation.test.ts src/__tests__/components/StudioReviewFigure.test.tsx",
+    "types": "tsc --noEmit --incremental false"
+  },
+  "outputDirectory": ".qa-artifacts/source-figures",
+  "evidence": [
+    "evidence/before.json",
+    "evidence/after.json",
+    "evidence/interactions.json",
+    "evidence/indexed-read-edit.png",
+    "evidence/narrow-row.png"
+  ],
+  "before": "Standalone and indexed read actions measured 1154px and 1186px around a 240px SVG. SVG labels displayed literal dollar delimiters.",
+  "after": "Read and edit frames measure 254x374px around a 240x360px SVG, including 5px padding and 2px borders. Shared MathJax label preparation displays negative numbers as paths.",
+  "checks": {
+    "browser": "passed: default centering, explicit left/right alignment, row shares, choices, tables, 390px layout, no page errors",
+    "interactions": "passed: 30 click/Enter/Space callbacks, redraw updates, original viewport and path preservation, source-mode roundtrips",
+    "unit": "20 tests passed",
+    "types": "passed",
+    "eslint": "changed TypeScript/TSX passed with four pre-existing native-image warnings in SourceEditorRenderer",
+    "affordance": "changed UI/CSS passed"
+  },
+  "reference": "Read-only comparison with D:/mathg-gen/src/components/math/MarkdownRenderer.tsx and D:/mathg-gen/src/styles/globals.css.",
+  "scope": "Local browser fixtures and reused dependencies; no application API, database, paid AI, or live-user-browser operations. Display preparation preserves the editable SVG source."
+}
