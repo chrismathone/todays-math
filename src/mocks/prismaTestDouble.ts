@@ -1307,7 +1307,13 @@ const prismaModels = {
         problemCode: data.problemCode ?? assignProblemCode(data.unitId),
         questionType: data.questionType ?? null,
         originProblemId: data.originProblemId ?? null,
-        familyKey: null,
+        /**
+         * 🔴 **넣은 값을 그대로 둔다.** 종전에는 `...data` 뒤에서 `null` 을 무조건
+         *    덮어써, 시험이 `familyKey` 를 심어도 항상 사라졌다 — 이웃 두 줄과 달랐고,
+         *    이 대역 머리말의 「넣은 값이 그대로 나와야 판정을 잰다」와도 어긋났다.
+         *    그래서 출처 배지(`[초]`·`[중]`) 판정을 **아예 잴 수 없었다**(2026-09-14).
+         */
+        familyKey: data.familyKey ?? null,
         reviewStatus: data.reviewStatus ?? "pending",
         directUseAllowed: data.directUseAllowed ?? true,
         pool: data.pool ?? "shared",
@@ -1351,7 +1357,9 @@ const prismaModels = {
           problemCode: item.problemCode ?? assignProblemCode(item.unitId),
           questionType: item.questionType ?? null,
           originProblemId: item.originProblemId ?? null,
-          familyKey: null,
+          /** 단건 `create` 와 **같은 규칙**이다 — 한쪽만 고치면 대량 경로로 심는
+              시험에서 출처 배지 판정을 여전히 못 잰다(2026-09-14). */
+          familyKey: item.familyKey ?? null,
           reviewStatus: item.reviewStatus ?? "pending",
           directUseAllowed: item.directUseAllowed ?? true,
           pool: item.pool ?? "shared",

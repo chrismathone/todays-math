@@ -452,6 +452,14 @@ label.rowSelect {
   font-weight: 750;
   font-variant-numeric: tabular-nums;
 }
+/* 출처·그림·형식 배지 줄. 겉모습(동그라미·흰 글씨·면색)은 Tailwind `BADGE_CHIP` 이
+   정하고 여기서는 **놓는 자리**만 잡는다 — 두 벌로 적으면 옛 카드와 갈린다. */
+.provenance {
+  display: flex;
+  flex: none;
+  flex-wrap: wrap;
+  gap: 4px;
+}
 .problemMeta {
   display: flex;
   flex: 1;

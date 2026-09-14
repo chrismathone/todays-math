@@ -1,7 +1,11 @@
 import { act, fireEvent, render, screen } from "@testing-library/react";
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 import BankView from "@/components/unified/BankView";
-import type { BankData, StudioProblem } from "@/components/unified/types";
+import type {
+  BankData,
+  BankProblem,
+  StudioProblem,
+} from "@/components/unified/types";
 
 vi.mock("@/components/unified/UnifiedProblem", () => ({
   default: ({ problem }: { problem: StudioProblem }) => (
@@ -17,7 +21,10 @@ const initialData: BankData = {
   grades: [{ grade: "중1", count: 100 }],
   chapters: [],
 };
-const problem = (content: string): StudioProblem => ({
+const problem = (content: string): BankProblem => ({
+  familyKey: null,
+  originProblemId: null,
+  questionTypeRaw: null,
   id: content,
   content,
   answer: "1",

@@ -14,6 +14,7 @@ import {
   SOURCE_OPTIONS,
   splitProblemFilterValue,
 } from "@/components/problem/labels";
+import { provenanceBadges } from "@/lib/problem/provenance";
 import UnifiedProblem from "./UnifiedProblem";
 import { displayFractions } from "./fractionDisplay";
 import type {
@@ -80,6 +81,22 @@ const ASSET_FILTERS = [
   { key: "hasSolution", label: "해설" },
   { key: "hasAnswer", label: "정답" },
 ] as const;
+
+/**
+ * 출처·그림·형식 배지의 겉모습 — 옛 카드(`ProblemCard`)와 **같은 규격**을 쓴다
+ * (원장님 지시 2026-08-27 「동그라미에 **흰색 글씨**에 **검정 테두리**. **배경색만**
+ * 라벨에 따라 다르게」). 한 글자(`초`·`변`)는 동그라미가 되고 여러 글자(`SVG`·`?형식`)는
+ * 알약으로 늘어나므로 폭을 고정하지 않는다.
+ *
+ * 면색(`bg-src-*`)은 `provenanceBadges` 가 붙인다 — 색 규칙을 여기 옮겨 적지 않는다.
+ */
+const BADGE_CHIP = [
+  "inline-flex items-center justify-center",
+  "min-w-[1.35rem] h-[1.35rem] px-[0.3rem] rounded-full",
+  "border border-ink",
+  "text-[10px] font-extrabold leading-none text-white no-underline",
+  "print:hidden",
+].join(" ");
 
 function Icon({
   name,
@@ -167,11 +184,41 @@ function ProblemRow({
             문제 {String(number).padStart(2, "0")}
           </span>
         </label>
+        {/* 🔴 출처·그림·형식 배지 (원장님 2026-09-14 「원래 문제은행에서는 각종 라벨이
+            있었는데 어디갔지?」). 옛 카드(`ProblemCard`)에는 있었고 이 화면에만 없었다 —
+            05 §8.6 은 S-08 이 「같은 ProblemCard」를 쓴다고 적어 두었는데 이쪽이 제 머리를
+            새로 그리면서 축이 통째로 빠졌다.
+
+            판정은 `provenanceBadges` **하나**가 한다 — 여기서 조건을 다시 쓰지 않는다.
+            ⚠️ `questionType` 이 아니라 **`questionTypeRaw`** 를 먹인다. 서버가 앞의 것을
+               영문 파생값으로 덮어쓰는데 판정기는 한글과 견주므로, 덮어쓴 값을 주면
+               서버는 `[서]` 인데 화면만 `[?형식]` 이 된다.
+            ⚠️ 누르는 것이 아니다 — 손가락 커서·hover 금지(D-30). `abbr` 인 이유는 색을
+               못 보는 사람이 `title` 로 풀어 읽을 수 있어야 하기 때문이다(05 §5). */}
+        <span className={styles.provenance}>
+          {provenanceBadges({
+            ...problem,
+            source: problem.source ?? "",
+            questionType: problem.questionTypeRaw,
+          }).map((badge) => (
+            <abbr
+              key={badge.axis}
+              title={badge.name}
+              data-provenance={badge.kind}
+              data-provenance-axis={badge.axis}
+              className={`${BADGE_CHIP} ${badge.className}`}
+            >
+              {badge.text}
+            </abbr>
+          ))}
+        </span>
         <div className={styles.problemMeta}>
           {problem.grade ? (
             <span className={styles.gradeBadge}>{problem.grade}</span>
           ) : null}
           <span>{problem.chapter || "단원 미지정"}</span>
+          {/* 옛 카드의 마이크로 라벨 셋(난이도·**유형**·검수) 중 유형만 빠져 있었다. */}
+          {problem.problemType ? <span>{problem.problemType}</span> : null}
           {problem.difficulty ? (
             <span className={styles.difficultyBadge}>{problem.difficulty}</span>
           ) : null}
