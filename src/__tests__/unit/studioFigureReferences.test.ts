@@ -12,7 +12,19 @@ it("deleting a figure preserves identity in body, native tables, choices and sub
     rect: { x: 0, y: 0, width: 1, height: 1 },
   }));
   const block = { type: "text" as const, value: "[그림3]", rows: [] };
-  const crop = {
+  const crop: StudioCrop = {
+    id: "crop",
+    sourceId: "source",
+    sourceLabel: "원본",
+    page: 1,
+    rect: { x: 0, y: 0, width: 1, height: 1 },
+    image: "data:image/png;base64,AA==",
+    answer: "",
+    solution: "",
+    level: "secondary",
+    grade: "중3",
+    mode: "text",
+    added: false,
     content: "처음 [그림1] 다음 [그림2] 마지막 [그림3] 없는 참조 [그림9]",
     figures,
     ocr: {
@@ -31,7 +43,7 @@ it("deleting a figure preserves identity in body, native tables, choices and sub
       bodyMissing: false,
       choicesMissing: false,
     },
-  } as StudioCrop;
+  };
   const next = retainStudioFigures(crop, [figures[1], figures[2]]);
   expect(next.content).toBe(
     "처음  다음 [그림1] 마지막 [그림2] 없는 참조 [그림9]",
