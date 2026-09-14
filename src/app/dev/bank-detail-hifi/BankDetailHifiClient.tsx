@@ -11,7 +11,7 @@ import UnifiedProblem from "@/components/unified/UnifiedProblem";
 import type { BankProblem } from "@/components/unified/types";
 import { provenanceBadges } from "@/lib/problem/provenance";
 
-import { WIRE_PROBLEMS } from "../bank-detail-wire/fixtures";
+import { LENGTH_SAMPLES, type LengthKey } from "./fixtures";
 
 /**
  * 문제은행 **전체 상세 모달** Hi-fi 시안 5안 (D-07, 05 §0-3 ② Hi-fi 단계).
@@ -271,8 +271,17 @@ const VARIANTS: { no: string; skin: Skin; title: string; note: string }[] = [
 
 export function BankDetailHifiClient() {
   const [open, setOpen] = useState<Skin | null>(null);
-  const problem = WIRE_PROBLEMS[0]!;
-  const pending = WIRE_PROBLEMS[2]!;
+  /**
+   * 풀이 길이가 이 다섯 안을 가르는 축이다 (원장님 2026-09-14) — ③ 2열과 ⑤ 바닥 고정은
+   * **긴 풀이에서만** 값이 드러난다. 짧은 것만 보고 고르면 고른 뒤에 뒤집힌다.
+   */
+  const [length, setLength] = useState<LengthKey>("long");
+  /** 검수 대기면 승인·반려가 더 서서 동작 줄이 가장 붐빈다 — ⑤ 를 볼 때 필요하다. */
+  const [pending, setPending] = useState(false);
+  const sample = LENGTH_SAMPLES.find((item) => item.key === length)!;
+  const problem = pending
+    ? { ...sample.problem, reviewStatus: "pending" }
+    : sample.problem;
 
   return (
     <main className="mx-auto max-w-[860px] px-8 py-6 text-ink">
@@ -293,6 +302,34 @@ export function BankDetailHifiClient() {
         입니다. 첫 문항은 기출이라 <code>[기]</code>, 둘째는 초등 엔진이라{" "}
         <code>[초]</code> 가 섭니다. 검수 상태만 기능색을 쓰고 난이도·유형은
         무채색입니다 (§2.2).
+      </p>
+
+      <div className="mt-5 flex flex-wrap items-center gap-2 border border-divider px-5 py-4">
+        <span className={`${MICRO} flex-none text-text-2`}>풀이 길이</span>
+        {LENGTH_SAMPLES.map((item) => (
+          <Button
+            key={item.key}
+            variant={item.key === length ? "ink" : "secondary"}
+            aria-pressed={item.key === length}
+            onClick={() => setLength(item.key)}
+          >
+            {item.label} {item.chars.toLocaleString("ko-KR")}자
+          </Button>
+        ))}
+        <Button
+          variant={pending ? "ink" : "secondary"}
+          className="ml-auto"
+          aria-pressed={pending}
+          onClick={() => setPending((value) => !value)}
+        >
+          검수 대기로 보기
+        </Button>
+      </div>
+      <p className="mt-2 text-[11.5px] leading-[1.7] text-text-3">
+        길이는 <strong className="text-ink">실제 문제은행에서 떠 온 값</strong>
+        입니다 — 짧은 103자(초4 뒤집기) · 중간 292자(초3 곱셈) · 긴 1,028자(중3
+        삼각비, 소문항 넷짜리 서술형). 「검수 대기로 보기」를 켜면 승인·반려
+        단추가 더 서서 동작 줄이 가장 붐비는 경우가 됩니다.
       </p>
 
       <ol className="mt-6 grid gap-3">
@@ -316,14 +353,9 @@ export function BankDetailHifiClient() {
         ))}
       </ol>
 
-      <p className="mt-6 text-[11.5px] leading-[1.7] text-text-3">
-        ⑤ 를 볼 때는 검수 대기 문항(승인·반려 단추가 서는 자리)으로 열립니다 —
-        동작 줄이 가장 붐비는 경우라야 바닥 고정의 값을 판단하실 수 있습니다.
-      </p>
-
       {open ? (
         <DetailModal
-          problem={open === "stickyFoot" ? pending : problem}
+          problem={problem}
           skin={open}
           onClose={() => setOpen(null)}
         />
