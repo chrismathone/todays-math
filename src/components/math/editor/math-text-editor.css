@@ -19,21 +19,21 @@
 .source-math-editor .visual-figure:is(span) { display: inline-block; vertical-align: middle; }
 .source-math-editor .choice .visual-figure { max-width: 100%; margin: 0; }
 .source-math-editor .visual-document td .visual-figure { max-width: 80px; }
-.source-math-editor.source-editor-display { line-height: 1.8; color: #111827; }
-.source-math-editor.source-editor-display [data-condition-box] { border: 1px solid #cbd5e1; background: #f8fafc; border-radius: 8px; padding: 10px 18px; margin: 12px 0; width: fit-content; max-width: 100%; }
-.source-math-editor.source-editor-display [data-condition-box] .grid { display: grid; gap: 3px 24px; }
-.source-math-editor.source-editor-display [data-condition-box="2"] .grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-.source-math-editor.source-editor-display [data-condition-box="3"] .grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
-.source-math-editor.source-editor-display p { margin: 6px 0; }
-.source-math-editor.source-editor-display .diagram-svg-inline { display: inline-block; width: min(360px, 100%); vertical-align: middle; }
-.source-math-editor.source-editor-display .diagram-svg-inline svg { display: block; max-width: 100%; height: auto; max-height: 360px; }
-.source-math-editor.source-editor-display .figure-row > .diagram-svg-inline { width: auto; min-width: 0; }
-.source-math-editor.source-editor-display [data-figure-index][role="button"] { cursor: pointer; }
-.source-math-editor.source-editor-display [data-figure-index][role="button"]:hover, .source-math-editor.source-editor-display [data-figure-index][role="button"]:focus-visible { outline: 2px solid #2563eb; outline-offset: 2px; }
-.source-math-editor.source-editor-display .katex-block-wrap { text-align: center; overflow-x: auto; margin: 10px 0; }
-.source-math-editor.source-editor-display table { border-collapse: collapse; max-width: 100%; margin: 8px 0; font-size: .92em; table-layout: auto; }
-.source-math-editor.source-editor-display th, .source-math-editor.source-editor-display td { border: 1px solid #cbd5e1; padding: 6px 10px; vertical-align: middle; }
-.source-math-editor.source-editor-display th { background: #f1f5f9; text-align: center; }
+.source-math-editor.source-editor-display, .source-math-editor .source-editor-display { line-height: 1.8; color: #111827; }
+:is(.source-math-editor.source-editor-display, .source-math-editor .source-editor-display) [data-condition-box] { border: 1px solid #cbd5e1; background: #f8fafc; border-radius: 8px; padding: 10px 18px; margin: 12px 0; width: fit-content; max-width: 100%; }
+:is(.source-math-editor.source-editor-display, .source-math-editor .source-editor-display) [data-condition-box] .grid { display: grid; gap: 3px 24px; }
+:is(.source-math-editor.source-editor-display, .source-math-editor .source-editor-display) [data-condition-box="2"] .grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+:is(.source-math-editor.source-editor-display, .source-math-editor .source-editor-display) [data-condition-box="3"] .grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+:is(.source-math-editor.source-editor-display, .source-math-editor .source-editor-display) p { margin: 6px 0; }
+:is(.source-math-editor.source-editor-display, .source-math-editor .source-editor-display) .diagram-svg-inline { display: inline-block; width: min(360px, 100%); vertical-align: middle; }
+:is(.source-math-editor.source-editor-display, .source-math-editor .source-editor-display) .diagram-svg-inline svg { display: block; max-width: 100%; height: auto; max-height: 360px; }
+:is(.source-math-editor.source-editor-display, .source-math-editor .source-editor-display) .figure-row > .diagram-svg-inline { width: auto; min-width: 0; }
+:is(.source-math-editor.source-editor-display, .source-math-editor .source-editor-display) [data-figure-index][role="button"] { cursor: pointer; }
+:is(.source-math-editor.source-editor-display, .source-math-editor .source-editor-display) [data-figure-index][role="button"]:hover, :is(.source-math-editor.source-editor-display, .source-math-editor .source-editor-display) [data-figure-index][role="button"]:focus-visible { outline: 2px solid #2563eb; outline-offset: 2px; }
+:is(.source-math-editor.source-editor-display, .source-math-editor .source-editor-display) .katex-block-wrap { text-align: center; overflow-x: auto; margin: 10px 0; }
+:is(.source-math-editor.source-editor-display, .source-math-editor .source-editor-display) table { border-collapse: collapse; max-width: 100%; margin: 8px 0; font-size: .92em; table-layout: auto; }
+:is(.source-math-editor.source-editor-display, .source-math-editor .source-editor-display) th, :is(.source-math-editor.source-editor-display, .source-math-editor .source-editor-display) td { border: 1px solid #cbd5e1; padding: 6px 10px; vertical-align: middle; }
+:is(.source-math-editor.source-editor-display, .source-math-editor .source-editor-display) th { background: #f1f5f9; text-align: center; }
 @media (max-width: 520px) { .source-math-editor .figure-row { flex-direction: column; align-items: center; } }
 .source-math-editor .choice-row {
   display: grid;
@@ -127,7 +127,6 @@
   padding: 1px 3px;
   border: 1px solid transparent;
   border-radius: 4px;
-  cursor: pointer;
   vertical-align: middle;
 }
 .source-math-editor .visual-math[data-math-display="true"] {
@@ -187,7 +186,6 @@
   padding: 5px;
   border: 2px solid transparent;
   border-radius: 8px;
-  cursor: pointer;
 }
 .source-math-editor .visual-figure:hover,
 .source-math-editor .visual-figure:focus-visible,
@@ -215,3 +213,6 @@
   background: #f8fafc;
 }
 .source-math-editor .visual-condition p { margin: 3px 0; }
+
+.source-math-editor .visual-math[role="button"], .source-math-editor .visual-figure[role="button"] { cursor: pointer; }
+.source-math-editor .source-editor-figures { padding: 10px 16px; }
