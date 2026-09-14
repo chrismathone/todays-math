@@ -1,3 +1,5 @@
+import type { UnitEntity } from "@/contracts/unit.contract";
+
 export type SchoolLevel = "elementary" | "secondary";
 
 export interface StudioProblem {
@@ -18,15 +20,26 @@ export interface StudioProblem {
   /** Whole-problem image from a local crop; used when text has not been transcribed. */
   croppedImage?: string;
   sourceLabel?: string;
+  /** Bank inspection can include shared rows that cannot be issued. */
+  eligible?: boolean;
+  ineligibleReason?: string | null;
+  reviewStatus?: string;
+  problemType?: string;
+}
+
+export interface BankProblem extends StudioProblem {
+  source?: string;
 }
 
 export interface BankData {
-  problems: StudioProblem[];
+  problems: BankProblem[];
   total: number;
   page: number;
   pageSize: number;
   grades: { grade: string; count: number }[];
   chapters: string[];
+  /** Full curriculum for the same range picker used by ProblemBank. */
+  units?: UnitEntity[];
   error?: string;
 }
 
