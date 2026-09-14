@@ -1,0 +1,12 @@
+@font-face {
+  font-family: "AdminHarnessPretendard";
+  src: url("/fonts/PretendardVariable.woff2") format("woff2");
+  font-weight: 45 920;
+  font-display: swap;
+}
+:root {
+  --font-pretendard: "AdminHarnessPretendard";
+}
+body {
+  margin: 0;
+}

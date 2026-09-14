@@ -1,0 +1,238 @@
+.shell {
+  min-height: 100svh;
+  display: flex;
+  flex-direction: column;
+  color: #172b4d;
+  background: #f7f5ef;
+  font-family: var(--font-pretendard), sans-serif;
+  line-height: 1.6;
+}
+.shell * {
+  box-sizing: border-box;
+}
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 24px 48px;
+}
+.brand {
+  font-size: 24px;
+  font-weight: 850;
+  letter-spacing: -1px;
+}
+.headerLabel {
+  font-size: 12px;
+  color: #59677d;
+}
+.main {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 24px 24px 40px;
+}
+.card {
+  width: min(520px, 100%);
+  padding: 40px 44px 32px;
+  background: #fff;
+  border: 1px solid #dadfdc;
+  border-radius: 12px;
+  box-shadow: 0 12px 36px #172b4d05;
+}
+.emblem {
+  display: grid;
+  place-items: center;
+  width: 56px;
+  height: 56px;
+  background: #edf1ff;
+  color: #3159df;
+  border: 1px solid #d6def6;
+  border-radius: 50%;
+  margin-bottom: 24px;
+  font-size: 26px;
+}
+.emblem svg {
+  width: 40px;
+  height: 40px;
+}
+.eyebrow {
+  color: #627088;
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 1.6px;
+  margin: 0 0 15px;
+}
+.status {
+  display: inline-flex;
+  background: #f6edce;
+  color: #755615;
+  padding: 4px 8px;
+  font-size: 11px;
+  font-weight: 700;
+  border-radius: 4px;
+}
+.rejected {
+  background: #f6e9e5;
+  color: #923e32;
+}
+.card h1 {
+  margin: 16px 0;
+  font-size: clamp(26px, 4vw, 32px);
+  font-weight: 800;
+  line-height: 1.4;
+  letter-spacing: -1.4px;
+}
+.description {
+  color: #59677d;
+  font-size: 13px;
+  line-height: 1.9;
+  margin: 0 0 24px;
+  word-break: keep-all;
+}
+.identity {
+  padding: 16px 18px;
+  border: 1px solid #dfe3eb;
+  border-radius: 6px;
+  background: #f8f9fc;
+  overflow-wrap: anywhere;
+}
+.identity > span {
+  display: block;
+  color: #59677d;
+  font-size: 10px;
+  margin-bottom: 7px;
+}
+.identity strong {
+  font-size: 13px;
+}
+.identity p {
+  margin: 2px 0 0;
+  color: #59677d;
+  font-size: 12px;
+}
+.steps {
+  list-style: none;
+  display: grid;
+  gap: 16px;
+  padding: 0;
+  margin: 24px 0;
+}
+.steps li {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+}
+.steps li > span {
+  display: grid;
+  place-items: center;
+  flex-shrink: 0;
+  width: 26px;
+  height: 26px;
+  color: #59677d;
+  border: 1px solid #b3becf;
+  border-radius: 50%;
+  font-size: 11px;
+}
+.steps li[aria-current] > span {
+  border-color: #3159df;
+  background: #3159df;
+  color: white;
+}
+.steps strong {
+  font-size: 12px;
+  font-weight: 700;
+}
+.steps p {
+  color: #59677d;
+  font-size: 11px;
+  margin: 1px 0 0;
+}
+.actions {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 8px;
+  margin-top: 24px;
+}
+button.primary,
+button.secondary {
+  min-height: 46px;
+  width: 100%;
+  padding: 10px 14px;
+  border: 1px solid #3159df;
+  border-radius: 6px;
+  background: #3159df;
+  color: #fff;
+  font: inherit;
+  font-size: 12px;
+  font-weight: 700;
+  cursor: pointer;
+}
+.secondary {
+  background: #fff;
+  border-color: #8d99ab;
+  color: #172b4d;
+}
+.primary:disabled,
+.secondary:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+}
+.shell button:focus-visible {
+  outline: 3px solid #3159df;
+  outline-offset: 3px;
+}
+.footnote {
+  color: #637088;
+  font-size: 10px;
+  margin: 20px 0 0;
+}
+.error,
+.notice {
+  padding: 12px;
+  margin: 16px 0 0;
+  border: 1px solid #cbd5ed;
+  border-radius: 6px;
+  color: #31519a;
+  background: #f0f4ff;
+  font-size: 12px;
+}
+.error {
+  background: #fcf2ee;
+  color: #933b2e;
+  border-color: #e5c7bc;
+}
+.footer {
+  padding: 0 20px 24px;
+  color: #637088;
+  font-size: 10px;
+  text-align: center;
+}
+@media (max-width: 600px) {
+  .header {
+    padding: 22px 20px;
+  }
+  .brand {
+    font-size: 22px;
+  }
+  .headerLabel {
+    font-size: 10px;
+  }
+  .main {
+    padding: 10px 16px 28px;
+    align-items: flex-start;
+  }
+  .card {
+    padding: 28px 22px 24px;
+  }
+  .actions {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .description {
+    font-size: 12px;
+  }
+  .footnote {
+    font-size: 10px;
+  }
+}
