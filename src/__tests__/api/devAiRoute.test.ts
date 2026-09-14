@@ -79,6 +79,85 @@ describe("subscription AI HTTP integration", () => {
       }),
     );
   });
+  it("returns parse-stage field diagnostics without leaking source values", async () => {
+    vi.mocked(runSubscriptionCli).mockResolvedValue(
+      JSON.stringify({
+        problems: [
+          {
+            content: "PRIVATE_SOURCE",
+            bbox: { left: 0, top: 0, width: "PRIVATE_VALUE", height: 100 },
+          },
+        ],
+      }),
+    );
+    const response = await POST(
+      request({
+        ...input,
+        action: "page-ocr",
+        imageDataUrl: "data:image/png;base64,YWJj",
+      }),
+    );
+    expect(response.status).toBe(502);
+    const body = await response.json();
+    expect(body.error).toContain("problems[0].bbox.width: invalid_type");
+    expect(JSON.stringify(body)).not.toContain("PRIVATE_");
+    expect(runSubscriptionCli).toHaveBeenCalledTimes(1);
+  });
+
+  it("returns every problem when a literal tab needs JSON escaping", async () => {
+    const bbox = { left: 10, top: 10, width: 300, height: 300 };
+    const problems = [
+      { content: "합성\t문항", bbox },
+      { content: "둘째 합성 문항", bbox },
+    ];
+    vi.mocked(runSubscriptionCli).mockResolvedValue(
+      JSON.stringify({ problems }).replace(/\\t/g, "\t"),
+    );
+    const response = await POST(
+      request({
+        ...input,
+        action: "page-ocr",
+        imageDataUrl: "data:image/png;base64,YWJj",
+      }),
+    );
+    expect(response.status).toBe(200);
+    expect((await response.json()).result.problems).toEqual(
+      problems.map((problem) => ({ ...problem, answer: "" })),
+    );
+    expect(runSubscriptionCli).toHaveBeenCalledTimes(1);
+  });
+
+  it("runs figure redraw through the existing subscription bridge and cancellation signal", async () => {
+    const svg =
+      '<svg viewBox="0 0 100 100"><circle cx="50" cy="50" r="20"/></svg>';
+    vi.mocked(runSubscriptionCli).mockResolvedValue(JSON.stringify({ svg }));
+    const response = await POST(
+      request({
+        ...input,
+        action: "figure-redraw",
+        imageDataUrl: "data:image/png;base64,YWJj",
+        svg,
+        content: "원을 또렷하게",
+      }),
+    );
+    expect(response.status).toBe(200);
+    expect((await response.json()).result).toMatchObject({
+      svg,
+      content: "",
+      answer: "",
+      solution: "",
+    });
+    expect(runSubscriptionCli).toHaveBeenCalledWith(
+      expect.objectContaining({
+        provider: "claude",
+        imageDataUrl: "data:image/png;base64,YWJj",
+        prompt: expect.stringContaining("원을 또렷하게"),
+        signal: expect.any(AbortSignal),
+      }),
+    );
+    expect(runSubscriptionCli).toHaveBeenCalledTimes(1);
+  });
+
   it("does not retry or switch providers on invalid model output or CLI failure", async () => {
     vi.mocked(runSubscriptionCli).mockResolvedValue("not a JSON result");
     expect((await POST(request())).status).toBe(502);
