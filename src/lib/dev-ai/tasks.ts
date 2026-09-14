@@ -25,6 +25,7 @@ import {
 import { CLEANUP_SYSTEM } from "@/lib/mathgen/sourcePrompts";
 import { validateSolution } from "@/lib/mathgen/solutionValidator";
 import { resolveMCAnswer } from "@/lib/mathgen/answers";
+import { parseProblemContent } from "@/lib/problem/parseProblemContent";
 import { blocksToMarkdown } from "@/lib/mathgen/blocksToMarkdown";
 import { repairJsonString } from "@/lib/ai/jsonRepair";
 import {
@@ -542,9 +543,11 @@ export async function executeMathgenTask(
   // regenerates once for remaining warnings. Persist the second result with
   // warnings rather than marking a heuristic judgment as mathematical proof.
   for (let attempt = 0; attempt < 2; attempt++) {
-    const choices = request.ocr?.choiceGroups.map((choice) =>
-      blocksToMarkdown(choice.contents),
-    );
+    const choices = request.ocr?.contentEdited
+      ? parseProblemContent(request.content ?? "").choices
+      : request.ocr?.choiceGroups.map((choice) =>
+          blocksToMarkdown(choice.contents),
+        );
     result.answer = resolveMCAnswer(result.answer, choices);
     let checks = validateSolution({
       problemText: request.content ?? "",

@@ -141,6 +141,37 @@ describe("source Mathgen OCR and solution workflow", () => {
     expect(invoke).toHaveBeenCalledTimes(2);
   });
 
+  it("matches solution answers against visually edited choices", async () => {
+    const ocr = parseDevAiResult(
+      JSON.stringify({ items: [native()] }),
+      "ocr",
+    ).ocr!;
+    const invoke = vi
+      .fn()
+      .mockResolvedValue(
+        JSON.stringify({
+          answer: "7",
+          solution: "주어진 식을 계산하면 $3+4=7$이므로 정답은 7이다.",
+        }),
+      );
+    const result = await executeMathgenTask(
+      {
+        ...request,
+        action: "solution",
+        content: "합을 구하시오.\n\n① $5$\n② $6$\n③ $7$\n④ $8$\n⑤ $9$",
+        ocr: {
+          ...ocr,
+          contentEdited: true,
+          blocks: [],
+          choiceGroups: [],
+          subQuestions: [],
+        },
+      },
+      invoke,
+    );
+    expect(result.answer).toBe("③");
+  });
+
   it("uses the original grade defenses and native crop prompt", () => {
     const prompt = buildDevAiPrompt({
       ...request,
