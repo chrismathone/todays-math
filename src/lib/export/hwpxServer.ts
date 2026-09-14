@@ -78,11 +78,28 @@ export const HwpxPayloadSchema = z
 export type HwpxPayload = z.infer<typeof HwpxPayloadSchema>;
 const MAX_OUTPUT = 48 * 1024 * 1024;
 
-/** Run the source XML writer without files, network or desktop automation. */
-export function buildHwpxParts(
+/** Run the source XML writer locally or through the signed internal Python function. */
+export async function buildHwpxParts(
   payload: HwpxPayload,
   signal?: AbortSignal,
 ): Promise<Record<string, string>> {
+  if (signal?.aborted) throw new Error("내보내기가 취소되었습니다.");
+  if (
+    process.env.STUDIO_ENGINE_URL ||
+    (process.env.VERCEL === "1" && process.env.VERCEL_ENV !== "development")
+  ) {
+    // Local Node scripts and Playwright import this module without Next's marker.
+    const { requestEngine } = await import("../mathgen-engine/transport");
+    const parts = await requestEngine("hwpx", payload, {
+      signal,
+      timeoutMs: 30000,
+    });
+    if (!validParts(parts))
+      throw new Error(
+        "HWPX 문서를 만들지 못했습니다. 내용과 그림을 확인해 주세요.",
+      );
+    return parts;
+  }
   return new Promise((resolve, reject) => {
     if (signal?.aborted) {
       reject(new Error("내보내기가 취소되었습니다."));
@@ -152,15 +169,7 @@ export function buildHwpxParts(
         const parts: unknown = JSON.parse(
           Buffer.concat(chunks).toString("utf8"),
         );
-        if (
-          code !== 0 ||
-          !parts ||
-          typeof parts !== "object" ||
-          !("mimetype" in parts) ||
-          parts.mimetype !== "application/hwp+zip" ||
-          !Object.values(parts).every((part) => typeof part === "string")
-        )
-          throw new Error();
+        if (code !== 0 || !validParts(parts)) throw new Error();
         finish(undefined, parts as Record<string, string>);
       } catch {
         finish(
@@ -172,4 +181,15 @@ export function buildHwpxParts(
     });
     child.stdin.end(JSON.stringify(payload));
   });
+}
+
+function validParts(parts: unknown): parts is Record<string, string> {
+  return (
+    !!parts &&
+    typeof parts === "object" &&
+    !Array.isArray(parts) &&
+    "mimetype" in parts &&
+    parts.mimetype === "application/hwp+zip" &&
+    Object.values(parts).every((part) => typeof part === "string")
+  );
 }
