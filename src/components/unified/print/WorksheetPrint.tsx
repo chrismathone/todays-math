@@ -28,6 +28,7 @@ export function WorksheetPrint({
   const [fitScale, setFitScale] = useState(0.85);
   const [viewportWidth, setViewportWidth] = useState(0);
   const [pageIndex, setPageIndex] = useState(0);
+  const [dismissedNotice, setDismissedNotice] = useState("");
   const visiblePage = useRef(0);
   const viewport = useRef<HTMLDivElement>(null);
   useEffect(() => {
@@ -122,9 +123,19 @@ export function WorksheetPrint({
   const scaled =
     questions.pages.some((page) => page.scales.some((scale) => scale < 1)) ||
     answers.pages.some((page) => page.scales.some((scale) => scale < 1));
+  const notice = [
+    questions.fontError || answers.fontError
+      ? "선택한 웹 글꼴을 불러오지 못해 대체 글꼴로 표시합니다. 네트워크를 확인하거나 시스템 글꼴을 선택해 주세요."
+      : "",
+    scaled
+      ? "한 쪽보다 긴 문제는 내용이 잘리지 않도록 해당 문제만 축소했습니다."
+      : "",
+  ]
+    .filter(Boolean)
+    .join("\n");
 
   return (
-    <div className={editor.paperCanvas}>
+    <div className={`${editor.paperCanvas} ${s.previewContainer}`}>
       <div className={editor.paperToolbar}>
         <span>
           미리보기 · A4 · {options.columns}단 · {selected.length}문항 · {total}
@@ -190,16 +201,17 @@ export function WorksheetPrint({
           />
         )
       ) : null}
-      {(questions.fontError || answers.fontError) && (
-        <p className={editor.subtle} role="status">
-          선택한 웹 글꼴을 불러오지 못해 대체 글꼴로 표시합니다. 네트워크를
-          확인하거나 시스템 글꼴을 선택해 주세요.
-        </p>
-      )}
-      {scaled && (
-        <p className={editor.subtle} role="status">
-          한 쪽보다 긴 문제는 내용이 잘리지 않도록 해당 문제만 축소했습니다.
-        </p>
+      {notice && notice !== dismissedNotice && (
+        <div className={s.previewNotice}>
+          <p role="status">{notice}</p>
+          <button
+            type="button"
+            aria-label="미리보기 안내 닫기"
+            onClick={() => setDismissedNotice(notice)}
+          >
+            <span aria-hidden="true">×</span>
+          </button>
+        </div>
       )}
       <div
         className={editor.paperViewport}

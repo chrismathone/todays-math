@@ -90,7 +90,17 @@ function Harness() {
                 },
               } as StudioProblem),
         )
-      : problems,
+      : params.has("oversize")
+        ? [
+            {
+              ...problems[0],
+              content:
+                "다음 조건을 읽고 식의 값을 구하시오. 주어진 두 수의 합과 차를 이용하여 계산 과정을 설명하시오. ".repeat(
+                  70,
+                ),
+            },
+          ]
+        : problems,
   );
   const [review, setReview] = useState(false);
   const [options, setOptions] = useState({
