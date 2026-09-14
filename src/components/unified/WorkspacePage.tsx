@@ -32,18 +32,16 @@ export default async function WorkspacePage({ user }: { user: SessionUser }) {
     };
   }
   return (
-    <>
-      <UnifiedWorkspace
-        key={user.id}
-        initialData={initialData}
-        storageScope={user.id}
-        currentUser={{ ...user, isAdmin: account?.isAdmin ?? false }}
-        allowedMenus={
-          account?.role === "reviewer" && !account.isAdmin
-            ? []
-            : (account?.menus ?? [])
-        }
-      />
-    </>
+    <UnifiedWorkspace
+      key={user.id}
+      initialData={initialData}
+      storageScope={user.id}
+      currentUser={{ ...user, isAdmin: account?.isAdmin ?? false }}
+      allowedMenus={
+        account?.role === "reviewer" && !account.isAdmin
+          ? []
+          : (account?.menus ?? [])
+      }
+    />
   );
 }

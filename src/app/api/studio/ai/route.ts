@@ -29,7 +29,7 @@ export async function POST(request: Request) {
       actorId: owner,
       action: "ai.execute",
       outcome: response.ok ? "success" : "failed",
-      details: { status: response.status },
+      details: { httpStatus: response.status },
     });
     return response;
   } catch {
@@ -39,7 +39,7 @@ export async function POST(request: Request) {
         actorId: owner,
         action: "ai.execute",
         outcome: "failed",
-        details: { status: 503 },
+        details: { httpStatus: 503 },
       });
     return Response.json(
       { error: "AI 연결을 확인하지 못했습니다." },

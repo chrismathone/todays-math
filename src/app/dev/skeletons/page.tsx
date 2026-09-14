@@ -2,6 +2,7 @@ import { notFound } from "next/navigation";
 import { connection } from "next/server";
 
 import { AuthLoading } from "@/components/auth/AuthLoading";
+import AccountLoading from "@/components/account/AccountLoading";
 import {
   AuthFormSkeleton,
   ClassManageSkeleton,
@@ -51,6 +52,24 @@ type Piece = {
  *    **그 자리는 이 시안에서 구조적으로 0이 된다.**
  */
 const PIECES: Piece[] = [
+  {
+    name: "관리자 계정 관리",
+    where: "admin/loading.tsx",
+    kind: "라우트",
+    node: <AccountLoading />,
+  },
+  {
+    name: "사용자 자료와 활동 기록",
+    where: "admin/users/[id]/loading.tsx",
+    kind: "라우트",
+    node: <AccountLoading detail />,
+  },
+  {
+    name: "가입 승인 확인",
+    where: "approval-pending/loading.tsx",
+    kind: "라우트",
+    node: <AccountLoading pending />,
+  },
   {
     name: "작업실 — 홈",
     where: "(main)/loading.tsx · studio/loading.tsx",
@@ -203,7 +222,7 @@ export default async function SkeletonsPage() {
   const routes = PIECES.filter((p) => p.kind === "라우트").length;
 
   return (
-    <main className="mx-auto max-w-[980px] px-6 py-8">
+    <main className="mx-auto w-full max-w-[1600px] px-4 py-8 sm:px-6">
       <header className="mb-6">
         <span className={`${MICRO} text-faint`}>절대 규칙 1 · D-07</span>
         <h1 className="mt-1 text-[24px] font-black tracking-tight">
@@ -235,17 +254,23 @@ export default async function SkeletonsPage() {
         </div>
       </section>
 
-      <div className="grid gap-8">
+      <div className="grid min-w-0 grid-cols-1 gap-8">
         {PIECES.map((p) => (
-          <section key={p.name}>
-            <div className="flex items-baseline gap-3 border-b border-divider pb-1">
+          <section key={p.name} className="min-w-0">
+            <div className="flex flex-wrap items-baseline gap-3 border-b border-divider pb-1">
               <h2 className="text-[15px] font-black tracking-tight">
                 {p.name}
               </h2>
               <span className={`${MICRO} text-faint`}>{p.kind}</span>
-              <code className="ml-auto text-[11px] text-text-3">{p.where}</code>
+              <code className="break-all text-[11px] text-text-3 sm:ml-auto">
+                {p.where}
+              </code>
             </div>
-            <div className="mt-3 overflow-auto border border-divider bg-canvas p-4">
+            <div
+              data-skeleton-preview={p.name}
+              style={{ contain: "layout paint" }}
+              className="relative mt-3 overflow-auto border border-divider bg-canvas"
+            >
               {p.node}
             </div>
           </section>
@@ -254,5 +279,3 @@ export default async function SkeletonsPage() {
     </main>
   );
 }
-
-export { PIECES as SKELETON_PIECES };

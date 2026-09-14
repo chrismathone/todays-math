@@ -212,6 +212,7 @@ const ACTION_LABELS: Record<string, string> = {
   "material.renamed": "자료 제목 변경",
   "admin.account_view": "관리자 계정 열람",
   "admin.bootstrap": "관리자 계정 설정",
+  "account.admin_bootstrap": "관리자 계정 설정",
   "ai.execute": "AI 작업 실행",
   "admin.material_view": "관리자 자료 열람",
   request: "서비스 요청",
@@ -338,7 +339,7 @@ function Audit({ userId }: { userId: string }) {
                   <time dateTime={entry.createdAt}>
                     {new Intl.DateTimeFormat("ko-KR", {
                       dateStyle: "medium",
-                      timeStyle: "short",
+                      timeStyle: "medium",
                       timeZone: "Asia/Seoul",
                     }).format(new Date(entry.createdAt))}
                   </time>

@@ -162,7 +162,7 @@ model User {
   role            UserRole           @default(director)
   isAdmin         Boolean            @default(false) @map("is_admin")
   /// Existing accounts retain access; the signup API explicitly creates pending accounts.
-  approvalStatus  AccountApproval    @default(approved) @map("approval_status")
+  approvalStatus  AccountApproval    @default(pending) @map("approval_status")
   disabledMenus   String[]           @default([]) @map("disabled_menus")
   workspaceDocuments WorkspaceDocument[]
   workspaceAssets    WorkspaceAsset[]

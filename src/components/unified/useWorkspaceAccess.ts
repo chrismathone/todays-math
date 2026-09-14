@@ -62,8 +62,16 @@ export function useWorkspaceAccess(
         if (access.approvalStatus !== "approved")
           return deny("/approval-pending");
         if (!Array.isArray(access.menus)) return;
-        const menus = [...new Set(access.menus)].filter((menu) =>
-          ALL_MENUS.includes(menu),
+        if (
+          access.role === "reviewer" &&
+          !access.isAdmin &&
+          access.menus.includes("bank")
+        )
+          return deny("/review");
+        const menus = [...new Set(access.menus)].filter(
+          (menu) =>
+            ALL_MENUS.includes(menu) &&
+            (access.isAdmin || access.role !== "reviewer"),
         );
         const user = {
           name: access.name,

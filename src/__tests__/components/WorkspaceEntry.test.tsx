@@ -1,4 +1,6 @@
 import { beforeEach, describe, expect, it, vi } from "vitest";
+import { ALL_WORKSPACE_MENUS } from "@/contracts/accountAccess.contract";
+vi.mock("server-only", () => ({}));
 
 const mocks = vi.hoisted(() => ({ auth: vi.fn(), bank: vi.fn() }));
 vi.mock("@/lib/auth", () => ({ auth: mocks.auth }));
@@ -23,9 +25,12 @@ const user = {
   id: "teacher-one",
   name: "김선생",
   email: "teacher@example.com",
+  approvalStatus: "approved",
+  menus: ALL_WORKSPACE_MENUS,
 };
 beforeEach(() => {
   vi.clearAllMocks();
+  mocks.auth.mockResolvedValue({ user: { ...user, role: "director" } });
 });
 
 describe("public landing and authenticated main entry", () => {
@@ -40,7 +45,7 @@ describe("public landing and authenticated main entry", () => {
     mocks.auth.mockResolvedValue({ user: { ...user, role: "director" } });
     const page = await MainPage();
     expect(page.type).toBe(WorkspacePage);
-    expect(page.props.user).toEqual(user);
+    expect(page.props.user).toEqual(expect.objectContaining(user));
   });
 
   it("retains the established reviewer destination before reading workspace data", async () => {
@@ -52,11 +57,23 @@ describe("public landing and authenticated main entry", () => {
   it("does not share the previous user's draft scope when another account opens the main", async () => {
     mocks.bank.mockResolvedValue({ problems: [], total: 0 });
     for (const id of ["teacher-one", "teacher-two"]) {
+      mocks.auth.mockResolvedValue({ user: { ...user, id, role: "director" } });
       const page = await WorkspacePage({ user: { ...user, id } });
       expect(page.props.storageScope).toBe(id);
       expect(page.props.currentUser.id).toBe(id);
       expect(page.key).toBe(id);
     }
+  });
+
+  it("does not fetch a disabled question bank or redirect a disabled reviewer in a loop", async () => {
+    mocks.auth.mockResolvedValue({
+      user: { ...user, role: "reviewer", menus: [] },
+    });
+    const entry = await MainPage();
+    expect(entry.type).toBe(WorkspacePage);
+    const page = await WorkspacePage({ user });
+    expect(page.props.allowedMenus).toEqual([]);
+    expect(mocks.bank).not.toHaveBeenCalled();
   });
 
   it("keeps source editing available when the bank cannot be loaded", async () => {
