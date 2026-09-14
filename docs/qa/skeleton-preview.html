@@ -1,0 +1,215 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Skeleton preview — isolated</title>
+    <style>
+      body {
+        margin: 0;
+        background: #e8eaee;
+        color: #172b4d;
+        font-family: Pretendard, "Malgun Gothic", sans-serif;
+      }
+      .sr-only {
+        position: absolute;
+        width: 1px;
+        height: 1px;
+        overflow: hidden;
+        clip: rect(0 0 0 0);
+        white-space: nowrap;
+      }
+      .frame {
+        margin: 24px auto;
+        max-width: 1440px;
+        background: #fff;
+        border: 1px solid #d4dce8;
+      }
+      .caption {
+        padding: 12px 16px;
+        font-size: 13px;
+        font-weight: 700;
+        background: #f4f6fa;
+        border-bottom: 1px solid #d4dce8;
+      }
+      .skeleton {
+        display: block;
+        overflow: hidden;
+        color: transparent;
+        background-color: #e1e1de;
+        background-image: linear-gradient(
+          100deg,
+          transparent 18%,
+          rgb(255 255 255 / 72%) 43%,
+          transparent 68%
+        );
+        background-repeat: no-repeat;
+        background-size: 240% 100%;
+        animation: skeleton-wash 1.8s ease-in-out 120ms infinite both;
+      }
+      @keyframes skeleton-wash {
+        from {
+          background-position: 120% 0;
+        }
+        to {
+          background-position: -120% 0;
+        }
+      }
+      @media (prefers-reduced-motion: reduce) {
+        .skeleton {
+          animation: none;
+          background-image: none;
+        }
+      }
+    </style>
+    <link rel="stylesheet" href="../../src/components/ui/skeleton.module.css" />
+  </head>
+  <body>
+    <p class="caption">
+      Isolated skeleton preview. No app server, accounts, or database.
+    </p>
+    <section class="frame" aria-label="작업실 홈">
+      <div class="caption">WorkroomHomeSkeleton — 1440 / 390</div>
+      <div class="workroom" aria-busy="true">
+        <span class="sr-only" role="status" aria-label="작업실을 불러오는 중"
+          >작업실을 불러오는 중</span
+        >
+        <aside class="sidebar" aria-hidden="true">
+          <div class="brand">
+            <span>오늘의수학<small>TEACHER’S WORKROOM</small></span>
+          </div>
+          <div class="sidebarCta"></div>
+          <div class="nav">
+            <div class="navItem"></div>
+            <div class="navItem"></div>
+            <div class="navItem"></div>
+            <div class="navItem"></div>
+            <div class="navItem"></div>
+            <div class="navItem"></div>
+          </div>
+          <div class="sideCard"></div>
+          <div class="sideFoot"></div>
+        </aside>
+        <div class="main">
+          <header class="topbar" aria-hidden="true">
+            <div class="crumb">
+              <span>작업실</span><span>›</span><strong>오늘의 작업</strong>
+            </div>
+            <div class="search skeleton"></div>
+            <div class="topActions">
+              <span class="skeleton" style="height: 16px; width: 64px"></span>
+              <span class="skeleton" style="height: 36px; width: 44px"></span>
+            </div>
+          </header>
+          <div class="home">
+            <div class="stack">
+              <section class="card" aria-hidden="true">
+                <div class="cardHead">
+                  <span class="icon"></span>
+                  <span class="skeleton" style="height: 16px; width: 180px"></span>
+                </div>
+                <div class="searchField skeleton"></div>
+                <div class="grades">
+                  <div class="gradeRow">
+                    <span class="skeleton" style="height: 16px"></span>
+                    <div class="chip"></div>
+                    <div class="chip"></div>
+                    <div class="chip"></div>
+                    <div class="chip"></div>
+                  </div>
+                  <div class="gradeRow">
+                    <span class="skeleton" style="height: 16px"></span>
+                    <div class="chip"></div>
+                    <div class="chip"></div>
+                    <div class="chip"></div>
+                    <div class="chip"></div>
+                  </div>
+                </div>
+              </section>
+              <section class="import" aria-hidden="true">
+                <div class="importMark"></div>
+                <span class="skeleton" style="height: 16px; width: 200px"></span>
+              </section>
+              <section class="card" aria-hidden="true">
+                <div class="recentRow">
+                  <span class="skeleton" style="height: 32px; width: 32px"></span>
+                  <span class="skeleton" style="height: 12px"></span>
+                  <span class="skeleton" style="height: 12px"></span>
+                </div>
+                <div class="recentRow">
+                  <span class="skeleton" style="height: 32px; width: 32px"></span>
+                  <span class="skeleton" style="height: 12px"></span>
+                  <span class="skeleton" style="height: 12px"></span>
+                </div>
+              </section>
+            </div>
+            <aside class="stack" aria-hidden="true">
+              <section class="card">
+                <div class="draftPreview">
+                  <div class="tinyPaper"></div>
+                  <span class="skeleton" style="height: 20px"></span>
+                </div>
+              </section>
+              <p class="helpNote">자료를 고르고 다듬어 학습지를 만듭니다.</p>
+            </aside>
+          </div>
+        </div>
+        <div class="mobileNav" aria-hidden="true">
+          <span></span><span></span><span></span><span></span><span></span
+          ><span></span>
+        </div>
+      </div>
+    </section>
+    <section class="frame" aria-label="소개 화면">
+      <div class="caption">LandingSkeleton</div>
+      <div class="landing" aria-busy="true">
+        <span class="sr-only" role="status" aria-label="소개 화면을 불러오는 중"
+          >소개 화면을 불러오는 중</span
+        >
+        <header class="landingHeader">
+          <a class="landingBrand" href="/">오늘의수학</a>
+          <nav class="landingNav" aria-label="서비스 소개">
+            <a href="#how-it-works">이용 방법</a>
+            <a href="#our-workroom">우리의 작업실</a>
+            <a href="#questions">자주 묻는 질문</a>
+          </nav>
+          <div class="landingActions">
+            <a href="/login">로그인</a>
+            <a class="landingCta" href="/signup">시작하기</a>
+          </div>
+        </header>
+        <section class="hero">
+          <div class="heroCopy">
+            <h1>좋은 수업의 시작,<br />선생님의 작업실에서.</h1>
+            <p>
+              자료를 가져오고 다듬어 나만의 학습지를 만드는 수학 선생님의
+              작업실입니다.
+            </p>
+          </div>
+          <div class="heroArt" aria-hidden="true"></div>
+        </section>
+      </div>
+    </section>
+    <section class="frame" aria-label="계정">
+      <div class="caption">AuthFormSkeleton — login 2 fields</div>
+      <div class="authPanel" role="status" aria-label="계정 화면을 불러오는 중">
+        <p class="authEyebrow">WELCOME BACK</p>
+        <h1>다시 만나 반가워요</h1>
+        <p class="authLead">오늘의 수업 준비, 이어서 시작해 볼까요?</p>
+        <div class="authField">
+          <span class="skeleton" style="height: 10px; width: 48px"></span>
+          <div class="authInput skeleton"></div>
+        </div>
+        <div class="authField">
+          <span class="skeleton" style="height: 10px; width: 48px"></span>
+          <div class="authInput skeleton"></div>
+        </div>
+        <div class="authSubmit skeleton"></div>
+        <p class="authSwitch">
+          <span>오늘의수학이 처음인가요?</span>
+          <a href="/signup">회원가입</a>
+        </p>
+      </div>
+    </section>
+  </body>
+</html>
