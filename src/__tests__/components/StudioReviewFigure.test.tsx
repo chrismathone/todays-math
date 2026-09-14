@@ -88,7 +88,7 @@ describe("Studio review figure activation", () => {
       }
       expect(onEditFigure).toHaveBeenLastCalledWith(crop, figure);
       await user.click(
-        screen.getByRole("button", { name: "그림 편집", exact: true }),
+        screen.getByRole("button", { name: "그림 편집" }),
       );
       expect(onEditFigure).toHaveBeenCalledTimes(2);
       expect(onEditFigure).toHaveBeenLastCalledWith(crop, figure);
@@ -106,11 +106,11 @@ describe("Studio review figure activation", () => {
       screen.queryByRole("button", { name: /^그림 1 편집/ }),
     ).not.toBeInTheDocument();
     await user.click(
-      screen.getByRole("img", { name: "문제 1 도형 1", exact: true }),
+      screen.getByRole("img", { name: "문제 1 도형 1" }),
     );
     expect(onEditFigure).not.toHaveBeenCalled();
     await user.click(
-      screen.getByRole("button", { name: "그림 편집", exact: true }),
+      screen.getByRole("button", { name: "그림 편집" }),
     );
     expect(onEditFigure).toHaveBeenCalledOnce();
   });
@@ -125,7 +125,7 @@ describe("Studio review figure activation", () => {
     ).not.toBeInTheDocument();
     expect(screen.getByRole("button", { name: "내용 수정" })).toBeDisabled();
     expect(
-      screen.getByRole("button", { name: "그림 편집", exact: true }),
+      screen.getByRole("button", { name: "그림 편집" }),
     ).toBeDisabled();
     await user.click(preview);
     expect(onEditFigure).not.toHaveBeenCalled();

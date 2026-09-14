@@ -100,7 +100,7 @@ describe("Studio source review drafts", () => {
     await user.type(screen.getByLabelText("정답"), "3");
     await user.type(screen.getByLabelText("토픽"), "함수");
     await user.click(
-      screen.getByRole("button", { name: "그림 편집", exact: true }),
+      screen.getByRole("button", { name: "그림 편집" }),
     );
     act(() =>
       onEditFigure.mock.calls[0][2]?.({
@@ -109,14 +109,14 @@ describe("Studio source review drafts", () => {
         svg: "changed",
       }),
     );
-    await user.click(screen.getByRole("button", { name: "취소", exact: true }));
+    await user.click(screen.getByRole("button", { name: "취소" }));
     expect(onUpdate).not.toHaveBeenCalled();
     await user.click(screen.getByRole("button", { name: "내용 수정" }));
     expect(screen.getByLabelText("문제 내용")).toHaveValue("원래 문제");
     expect(screen.getByLabelText("정답")).toHaveValue("2");
     expect(screen.getByLabelText("토픽")).toHaveValue("");
     await user.click(
-      screen.getByRole("button", { name: "그림 편집", exact: true }),
+      screen.getByRole("button", { name: "그림 편집" }),
     );
     expect(onEditFigure.mock.calls[1][1]).toEqual(sourceFigure);
   });
@@ -135,12 +135,12 @@ describe("Studio source review drafts", () => {
       await user.type(screen.getByLabelText(label), value);
     }
     await user.click(
-      screen.getByRole("button", { name: "그림 편집", exact: true }),
+      screen.getByRole("button", { name: "그림 편집" }),
     );
     const nextFigure = { ...sourceFigure, image: "changed", svg: "changed" };
     act(() => onEditFigure.mock.calls[0][2]?.(nextFigure));
     expect(onUpdate).not.toHaveBeenCalled();
-    await user.click(screen.getByRole("button", { name: "저장", exact: true }));
+    await user.click(screen.getByRole("button", { name: "저장" }));
     expect(onUpdate).toHaveBeenCalledOnce();
     expect(onUpdate).toHaveBeenCalledWith(
       crop.id,
