@@ -75,6 +75,8 @@ export interface SubQuestion {
 
 /** Source-native OCR survives edits/storage alongside its derived Markdown. */
 export interface MathgenProblemData {
+  /** Manual Markdown supersedes native blocks, while source metadata remains. */
+  contentEdited?: boolean;
   number: number;
   blocks: ContentBlock[];
   choiceGroups: ChoiceGroup[];
