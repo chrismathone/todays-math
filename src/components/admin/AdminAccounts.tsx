@@ -1,0 +1,379 @@
+"use client";
+
+import Link from "next/link";
+import { useEffect, useState, type FormEvent } from "react";
+import type {
+  AdminAccountsResponse,
+  ManagedAccount,
+} from "@/contracts/accountAccess.contract";
+import AccountReview, {
+  AccountStatus,
+  accountDate,
+  STATUS_LABELS,
+} from "./AccountReview";
+import AdminHeader from "./AdminHeader";
+import {
+  AccountRequestError,
+  accountRequest,
+  requestMessage,
+} from "./accountRequests";
+import s from "./admin.module.css";
+
+type Filter = "all" | keyof typeof STATUS_LABELS;
+const FILTERS: { id: Filter; label: string }[] = [
+  { id: "all", label: "전체 계정" },
+  ...Object.entries(STATUS_LABELS).map(([id, label]) => ({
+    id: id as Filter,
+    label,
+  })),
+];
+
+export default function AdminAccounts({
+  identity,
+}: {
+  identity: { name: string; email: string };
+}) {
+  const [search, setSearch] = useState("");
+  const [query, setQuery] = useState({
+    q: "",
+    status: "all" as Filter,
+    page: 1,
+  });
+  const [revision, setRevision] = useState(0);
+  const [result, setResult] = useState<AdminAccountsResponse | null>(null);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
+  const [authError, setAuthError] = useState(false);
+  const [selected, setSelected] = useState<ManagedAccount | null>(null);
+  const [locked, setLocked] = useState(false);
+
+  useEffect(() => {
+    const controller = new AbortController();
+    const params = new URLSearchParams({
+      ...query,
+      page: String(query.page),
+      pageSize: "25",
+    });
+    accountRequest<AdminAccountsResponse>(`/api/admin/users?${params}`, {
+      signal: controller.signal,
+    })
+      .then((data) => {
+        if (controller.signal.aborted) return;
+        const lastPage = Math.max(
+          1,
+          Math.ceil(data.meta.total / data.meta.pageSize),
+        );
+        if (query.page > lastPage) {
+          setQuery((current) => ({ ...current, page: lastPage }));
+          return;
+        }
+        setResult(data);
+        setLoading(false);
+      })
+      .catch((cause) => {
+        if (controller.signal.aborted) return;
+        setError(requestMessage(cause));
+        setAuthError(
+          cause instanceof AccountRequestError &&
+            [401, 403].includes(cause.status),
+        );
+        setLoading(false);
+      });
+    return () => controller.abort();
+  }, [query, revision]);
+
+  useEffect(() => {
+    if (!locked) return;
+    const preventLeave = (event: BeforeUnloadEvent) => {
+      event.preventDefault();
+    };
+    window.addEventListener("beforeunload", preventLeave);
+    return () => window.removeEventListener("beforeunload", preventLeave);
+  }, [locked]);
+
+  function reload() {
+    setLoading(true);
+    setError(null);
+    setAuthError(false);
+    setRevision((value) => value + 1);
+  }
+
+  function changeQuery(next: typeof query) {
+    setLoading(true);
+    setError(null);
+    setAuthError(false);
+    setQuery(next);
+  }
+
+  function submitSearch(event: FormEvent<HTMLFormElement>) {
+    event.preventDefault();
+    changeQuery({ ...query, q: search.trim(), page: 1 });
+  }
+
+  const pages = result
+    ? Math.max(1, Math.ceil(result.meta.total / result.meta.pageSize))
+    : 1;
+
+  return (
+    <div className={s.shell}>
+      <a className={s.skipLink} href="#admin-main">
+        계정 관리로 바로가기
+      </a>
+      <AdminHeader identity={identity} />
+      <main className={s.main} id="admin-main">
+        <div className={s.titleRow}>
+          <div>
+            <p className={s.eyebrow}>WORKSPACE ADMINISTRATION</p>
+            <h1>계정 관리</h1>
+            <p className={s.subtitle}>
+              가입 요청을 검토하고, 선생님에게 필요한 메뉴를 열어주세요.
+            </p>
+          </div>
+          <button
+            className={s.secondary}
+            type="button"
+            onClick={reload}
+            disabled={loading}
+          >
+            목록 새로고침
+          </button>
+        </div>
+        <div className={s.workspace}>
+          <section className={s.directory} aria-labelledby="directory-title">
+            <div className={s.directoryHeading}>
+              <h2 id="directory-title">가입 계정</h2>
+              <span>
+                {result
+                  ? `${result.meta.counts.all.toLocaleString("ko-KR")}개 계정`
+                  : "계정 목록"}
+              </span>
+            </div>
+            <div className={s.filters} role="group" aria-label="승인 상태 필터">
+              {FILTERS.map((filter) => (
+                <button
+                  type="button"
+                  key={filter.id}
+                  aria-label={`${filter.label} ${result ? `${result.meta.counts[filter.id]}개` : "불러오는 중"}`}
+                  aria-pressed={query.status === filter.id}
+                  onClick={() =>
+                    changeQuery({ ...query, status: filter.id, page: 1 })
+                  }
+                >
+                  {filter.label}
+                  <span>
+                    {result
+                      ? result.meta.counts[filter.id].toLocaleString("ko-KR")
+                      : "—"}
+                  </span>
+                </button>
+              ))}
+            </div>
+            <form className={s.search} onSubmit={submitSearch} role="search">
+              <label htmlFor="account-search" className={s.srOnly}>
+                이름 또는 이메일 검색
+              </label>
+              <input
+                id="account-search"
+                type="search"
+                placeholder="이름 또는 이메일로 검색"
+                value={search}
+                onChange={(event) => setSearch(event.target.value)}
+                maxLength={200}
+              />
+              <button className={s.secondary} type="submit">
+                검색
+              </button>
+            </form>
+            {query.q ? (
+              <div className={s.querySummary}>
+                <span>“{query.q}” 검색 결과</span>
+                <button
+                  className={s.quiet}
+                  type="button"
+                  onClick={() => {
+                    setSearch("");
+                    changeQuery({ ...query, q: "", page: 1 });
+                  }}
+                >
+                  검색 초기화
+                </button>
+              </div>
+            ) : null}
+            <div aria-busy={loading} className={s.results}>
+              {loading ? (
+                <div className={s.empty} role="status">
+                  <span className={s.loadingDot} aria-hidden="true" />
+                  <strong>계정 목록을 불러오는 중입니다.</strong>
+                  <p>잠시만 기다려 주세요.</p>
+                </div>
+              ) : error ? (
+                <div className={s.empty} role="alert">
+                  <strong>계정 목록을 불러오지 못했습니다.</strong>
+                  <p>{error}</p>
+                  {authError ? (
+                    <a className={s.textLink} href="/admin">
+                      로그인 상태 다시 확인
+                    </a>
+                  ) : (
+                    <button
+                      className={s.secondary}
+                      type="button"
+                      onClick={reload}
+                    >
+                      다시 시도
+                    </button>
+                  )}
+                </div>
+              ) : result?.data.length ? (
+                <>
+                  <div className={s.tableWrap}>
+                    <table className={s.table}>
+                      <caption className={s.srOnly}>
+                        가입 계정 목록. 계정 검토 버튼으로 메뉴 권한과 승인
+                        상태를 확인할 수 있습니다.
+                      </caption>
+                      <thead>
+                        <tr>
+                          <th scope="col">계정</th>
+                          <th scope="col">상태</th>
+                          <th scope="col" className={s.dateCell}>
+                            가입일
+                          </th>
+                          <th scope="col">
+                            <span className={s.srOnly}>검토</span>
+                          </th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        {result.data.map((account) => (
+                          <tr
+                            key={account.id}
+                            data-selected={selected?.id === account.id}
+                          >
+                            <td className={s.accountCell}>
+                              <Link
+                                className={s.accountLink}
+                                href={`/admin/users/${encodeURIComponent(account.id)}`}
+                              >
+                                {account.name || "이름 미등록"}
+                              </Link>
+                              <span>{account.email}</span>
+                            </td>
+                            <td>
+                              <AccountStatus account={account} />
+                            </td>
+                            <td className={s.dateCell}>
+                              {accountDate(account.createdAt)}
+                            </td>
+                            <td>
+                              <button
+                                type="button"
+                                className={s.reviewButton}
+                                aria-label={`${account.name || account.email} 계정 검토`}
+                                aria-pressed={selected?.id === account.id}
+                                aria-controls="account-detail"
+                                disabled={locked}
+                                onClick={() => setSelected(account)}
+                              >
+                                {selected?.id === account.id
+                                  ? "선택됨"
+                                  : "검토"}
+                              </button>
+                            </td>
+                          </tr>
+                        ))}
+                      </tbody>
+                    </table>
+                  </div>
+                  <nav className={s.pagination} aria-label="계정 목록 페이지">
+                    <span>
+                      총 {result.meta.total.toLocaleString("ko-KR")}개 중{" "}
+                      {(query.page - 1) * result.meta.pageSize + 1}–
+                      {Math.min(
+                        query.page * result.meta.pageSize,
+                        result.meta.total,
+                      )}
+                    </span>
+                    <div>
+                      <button
+                        className={s.secondary}
+                        type="button"
+                        aria-label="이전 페이지"
+                        disabled={query.page <= 1}
+                        onClick={() =>
+                          changeQuery({ ...query, page: query.page - 1 })
+                        }
+                      >
+                        이전
+                      </button>
+                      <span aria-live="polite">
+                        {query.page} / {pages}
+                      </span>
+                      <button
+                        className={s.secondary}
+                        type="button"
+                        aria-label="다음 페이지"
+                        disabled={query.page >= pages}
+                        onClick={() =>
+                          changeQuery({ ...query, page: query.page + 1 })
+                        }
+                      >
+                        다음
+                      </button>
+                    </div>
+                  </nav>
+                </>
+              ) : (
+                <div className={s.empty} role="status">
+                  <strong>
+                    {query.q
+                      ? "검색 결과가 없습니다."
+                      : query.status === "pending"
+                        ? "대기 중인 가입 요청이 없습니다."
+                        : "표시할 계정이 없습니다."}
+                  </strong>
+                  <p>
+                    {query.q
+                      ? "이름이나 이메일을 확인하거나 검색어를 바꿔보세요."
+                      : "다른 승인 상태를 선택하거나 목록을 새로고침해 주세요."}
+                  </p>
+                </div>
+              )}
+            </div>
+          </section>
+          <div id="account-detail" className={s.detailSlot}>
+            {selected ? (
+              <AccountReview
+                key={selected.id}
+                account={selected}
+                onLockChange={setLocked}
+                onUpdate={(account) => {
+                  setSelected(account);
+                  reload();
+                }}
+              />
+            ) : (
+              <section className={s.reviewPlaceholder}>
+                <span className={s.placeholderMark} aria-hidden="true">
+                  ↗
+                </span>
+                <h2>검토할 계정을 선택하세요</h2>
+                <p>
+                  승인 상태와 사용 가능한 메뉴를
+                  <br />
+                  이곳에서 함께 확인할 수 있습니다.
+                </p>
+                <span className={s.placeholderFoot}>
+                  계정 목록에서 ‘검토’를 눌러주세요.
+                </span>
+              </section>
+            )}
+          </div>
+        </div>
+        <p className={s.footerNote}>
+          관리자 전용 · 메뉴 변경은 저장한 뒤 적용됩니다.
+        </p>
+      </main>
+    </div>
+  );
+}

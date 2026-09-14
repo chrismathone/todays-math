@@ -1,0 +1,221 @@
+"use client";
+
+import { useState } from "react";
+import { ProblemContent } from "@/components/math/ProblemContent";
+import { MathText } from "@/components/math/MathText";
+import { accountDate } from "./AccountReview";
+import { objectValue, stringValue, type DocumentDetail } from "./documentTypes";
+import s from "./admin.module.css";
+import d from "./detail.module.css";
+
+// Private images use the admin asset read route, never another account's session route.
+function imageSource(value: unknown, userId: string): string | undefined {
+  const source = stringValue(value);
+  if (/^data:image\/(png|jpeg|webp|gif|svg\+xml)[;,]/i.test(source))
+    return source;
+  if (
+    source.startsWith(`/api/admin/users/${encodeURIComponent(userId)}/assets/`)
+  )
+    return source;
+  if (source.startsWith("/api/library/assets/"))
+    return source.replace(
+      "/api/library/assets/",
+      `/api/admin/users/${encodeURIComponent(userId)}/assets/`,
+    );
+  if (/^\/figures\/[\w/.,%() -]+$/.test(source)) return source;
+  return undefined;
+}
+
+function PreviewImage({ src, label }: { src: string; label: string }) {
+  const [failed, setFailed] = useState(false);
+  return failed ? (
+    <p className={d.imageError}>
+      {label} 이미지를 불러오지 못했습니다. 자료를 다시 열어 주세요.
+    </p>
+  ) : (
+    // User-owned images must retain the authenticated request and are not optimizer inputs.
+    // eslint-disable-next-line @next/next/no-img-element
+    <img src={src} alt={label} loading="lazy" onError={() => setFailed(true)} />
+  );
+}
+
+function ProblemPreview({
+  value,
+  index,
+  userId,
+  extraction,
+}: {
+  value: unknown;
+  index: number;
+  userId: string;
+  extraction: boolean;
+}) {
+  const problem = objectValue(value);
+  const content = stringValue(problem.content);
+  const cropped = imageSource(
+    extraction ? problem.image : problem.croppedImage,
+    userId,
+  );
+  const rawFigures = Array.isArray(problem.figureUrls)
+    ? problem.figureUrls
+    : [];
+  const figures = rawFigures.flatMap((figure) => {
+    const src = imageSource(figure, userId);
+    return src ? [src] : [];
+  });
+  if (extraction && Array.isArray(problem.figures)) {
+    for (const figure of problem.figures) {
+      const src = imageSource(objectValue(figure).image, userId);
+      if (src) figures.push(src);
+    }
+  }
+  // SVG is rendered as an image, not injected HTML from a private document payload.
+  const svg = stringValue(problem.figureSvg);
+  if (svg)
+    figures.push(`data:image/svg+xml;charset=utf-8,${encodeURIComponent(svg)}`);
+  const answer = stringValue(problem.answer);
+  const solution = stringValue(problem.solution);
+  return (
+    <li className={d.problem}>
+      <h3>
+        문항 {index + 1}{" "}
+        <span>
+          {[
+            stringValue(problem.grade),
+            stringValue(problem.sourceLabel),
+            extraction && typeof problem.page === "number"
+              ? `${problem.page}쪽`
+              : "",
+          ]
+            .filter(Boolean)
+            .join(" · ")}
+        </span>
+      </h3>
+      {cropped ? (
+        <PreviewImage src={cropped} label={`문항 ${index + 1} 원본`} />
+      ) : null}
+      {content ? (
+        <ProblemContent content={content} className={d.problemText} />
+      ) : !cropped ? (
+        <p className={d.emptyPreview}>
+          저장된 본문이나 미리보기 이미지가 없습니다.
+        </p>
+      ) : null}
+      {figures.map((src, figureIndex) => (
+        <PreviewImage
+          key={`${figureIndex}:${src.slice(0, 80)}`}
+          src={src}
+          label={`문항 ${index + 1} 그림 ${figureIndex + 1}`}
+        />
+      ))}
+      {answer || solution ? (
+        <div className={d.answer}>
+          {answer ? (
+            <>
+              <h4>정답</h4>
+              <MathText text={answer} as="div" />
+            </>
+          ) : null}
+          {solution ? (
+            <>
+              <h4>해설</h4>
+              <MathText text={solution} as="div" />
+            </>
+          ) : null}
+        </div>
+      ) : null}
+    </li>
+  );
+}
+
+export default function AdminDocumentPreview({
+  document,
+  userId,
+}: {
+  document: DocumentDetail;
+  userId: string;
+}) {
+  const [visibleCount, setVisibleCount] = useState(20);
+  const payload = objectValue(document.payload);
+  const data = objectValue(payload.data);
+  const extraction = document.kind === "extraction";
+  const candidates = extraction ? data.crops : payload.problems;
+  const problems: unknown[] = Array.isArray(candidates) ? candidates : [];
+  const assets = objectValue(payload.assets);
+  const sources = (Array.isArray(data.sources) ? data.sources : []).flatMap(
+    (value) => {
+      const source = objectValue(value);
+      const asset = stringValue(assets[stringValue(source.id)]);
+      return /^[a-f0-9]{64}$/i.test(asset)
+        ? [
+            {
+              name: stringValue(source.name) || "원본 자료",
+              asset,
+              kind: source.kind === "pdf" ? "PDF" : "이미지",
+            },
+          ]
+        : [];
+    },
+  );
+
+  return (
+    <article>
+      <header className={d.previewHeading}>
+        <span className={d.kind}>
+          {extraction ? "추출 자료" : "시험지"} · 읽기 전용
+        </span>
+        <h2>{document.title || "제목 없는 자료"}</h2>
+        <p>
+          {problems.length}문항 · 버전 {document.revision} · 수정{" "}
+          {accountDate(document.updatedAt)}
+        </p>
+      </header>
+      <div className={d.previewBody}>
+        {sources.length ? (
+          <section className={d.sources}>
+            <h3>원본 자료</h3>
+            <ul>
+              {sources.map((source) => (
+                <li key={source.asset}>
+                  <a
+                    href={`/api/admin/users/${encodeURIComponent(userId)}/assets/${source.asset}`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    {source.name} · {source.kind} <span>새 탭에서 열기 ↗</span>
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </section>
+        ) : null}
+        {problems.length ? (
+          <ol className={d.problems}>
+            {problems.slice(0, visibleCount).map((problem, index) => (
+              <ProblemPreview
+                key={index}
+                value={problem}
+                index={index}
+                userId={userId}
+                extraction={extraction}
+              />
+            ))}
+          </ol>
+        ) : (
+          <p className={d.emptyPreview}>이 자료에 저장된 문항이 없습니다.</p>
+        )}
+        {visibleCount < problems.length ? (
+          <div className={d.more}>
+            <button
+              className={s.secondary}
+              type="button"
+              onClick={() => setVisibleCount((count) => count + 20)}
+            >
+              다음 문항 보기 ({visibleCount} / {problems.length})
+            </button>
+          </div>
+        ) : null}
+      </div>
+    </article>
+  );
+}
