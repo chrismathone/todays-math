@@ -171,11 +171,11 @@ async function detect(page: Page) {
     .getByRole("button", { name: "페이지 자동 인식", exact: true })
     .click();
   await expect(
-    page.getByRole("button", { name: "2문항 담기", exact: true }),
+    page.getByRole("button", { name: "다음: OCR · 디지털화", exact: true }),
   ).toBeEnabled();
 }
 async function review(page: Page) {
-  await page.getByRole("button", { name: /^문자·도형 검수 \d/ }).click();
+  await page.getByRole("button", { name: /^OCR · 디지털화 \d/ }).click();
   await expect(page.getByLabel("원본과 인식 결과 비교")).toBeVisible();
 }
 const card = (page: Page, number: number) =>
@@ -403,7 +403,7 @@ test("recognized figure is visible beside rendered text and exported with text m
   await expect(
     second.getByRole("img", { name: "문제 2 도형 1", exact: true }),
   ).toBeVisible();
-  await expect(second.getByText("도형 1 · 원본에서 분리됨")).toBeVisible();
+  await expect(second.getByText("도형 1 · SVG 도형")).toBeVisible();
   await second
     .getByRole("combobox", { name: "문제 2 출력 방식" })
     .selectOption("text");
@@ -426,6 +426,41 @@ test("recognized figure is visible beside rendered text and exported with text m
     path: testInfo.outputPath("figure-review.png"),
     fullPage: true,
   });
+});
+
+test("crop next stage digitizes text and diagrams before exporting without output-mode setup", async ({
+  page,
+}) => {
+  const mock = await mockAi(page);
+  await sample(page);
+  await page
+    .getByRole("button", { name: "키보드로 영역 지정", exact: true })
+    .click();
+  await page.getByRole("group", { name: "문제 자르기 영역" }).press("Enter");
+  expect(mock.posts).toHaveLength(0);
+  await expect(
+    page.getByRole("button", { name: "담고 내보내기", exact: true }),
+  ).toHaveCount(0);
+  await page
+    .getByRole("button", { name: "다음: OCR · 디지털화", exact: true })
+    .click();
+  const first = card(page, 1);
+  await expect(first.getByText("도형 1 · SVG 도형")).toBeVisible();
+  await expect(
+    first.getByRole("combobox", { name: "문제 1 출력 방식" }),
+  ).toHaveValue("text");
+  expect(mock.posts.map((post) => post.action)).toEqual([
+    "ocr",
+    "figure-redraw",
+  ]);
+  await page.getByRole("button", { name: "1문항 담기", exact: true }).click();
+  const [problem] = JSON.parse(
+    (await page.getByLabel("시험지 담은 문제").textContent())!,
+  );
+  expect(problem.croppedImage).toBeUndefined();
+  expect(problem.content).toBe(content);
+  expect(problem.figureUrls[0]).toMatch(/^data:image\/svg\+xml/);
+  expect(mock.errors).toEqual([]);
 });
 
 test("Mathgen figure editor redraw, manual geometry, save and reopen through Studio", async ({
@@ -471,7 +506,7 @@ test("Mathgen figure editor redraw, manual geometry, save and reopen through Stu
   });
   await editor.getByRole("button", { name: "도형 적용", exact: true }).click();
   await expect(editor).not.toBeVisible();
-  await expect(second.getByText("도형 1 · 편집한 그림")).toBeVisible();
+  await expect(second.getByText("도형 1 · SVG 도형")).toBeVisible();
   await expect(
     second.getByRole("combobox", { name: "문제 2 출력 방식" }),
   ).toHaveValue("text");

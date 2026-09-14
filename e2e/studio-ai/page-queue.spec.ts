@@ -197,6 +197,7 @@ test("all pages use two background slots, preserve navigation, stamp empty pages
   await expect(
     page.getByRole("img", { name: "검수할 자른 원본 문제" }),
   ).toBeVisible();
+  await page.getByRole("button", { name: /^OCR · 디지털화 \d/ }).click();
   await page.getByRole("button", { name: "5문항 담기", exact: true }).click();
   const problems = JSON.parse(
     (await page.getByLabel("시험지 담은 문제").textContent())!,
@@ -205,6 +206,7 @@ test("all pages use two background slots, preserve navigation, stamp empty pages
   expect(
     problems.every((problem: { grade: string }) => problem.grade === "중2"),
   ).toBe(true);
+  await page.getByRole("button", { name: "문제 자르기", exact: true }).click();
   expect(
     await page
       .getByRole("button", { name: "문제 추가", exact: true })

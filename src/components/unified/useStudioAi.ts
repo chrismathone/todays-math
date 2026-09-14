@@ -10,6 +10,7 @@ import {
   type SetStateAction,
 } from "react";
 import { useDevAi } from "./useDevAi";
+import { useStudioFigureAi } from "./useStudioFigureAi";
 import type { StudioCrop } from "./studioHelpers";
 import {
   studioAiRect,
@@ -144,6 +145,14 @@ export function useStudioAi({
   const [cropJobs, setCropJobs] = useState<StudioAiCropJob[]>([]);
   const [pageJobs, setPageJobs] = useState<StudioAiPageJob[]>([]);
   const [message, setMessage] = useState("");
+  const provider = ai.status?.providers.find((item) => item.id === ai.provider);
+  const available = Boolean(
+    ai.status?.enabled &&
+    provider &&
+    ["ready", "unverified"].includes(provider.status),
+  );
+  const figureAi = useStudioFigureAi({ crops, setCrops, queue, ai, available });
+  const cancelFigures = figureAi.cancel;
   const pages = useRef(new Map<string, PageEntry>());
   const cropEntries = useRef(new Map<string, CropEntry>());
   const cropWave = useRef({ keys: new Set<string>(), startedAt: 0 });
@@ -154,6 +163,7 @@ export function useStudioAi({
   const pendingDetected = useRef<
     { id: string; key: string; signal: AbortSignal }[]
   >([]);
+  const pendingFigureCrops = useRef<string[]>([]);
   const latest = useRef({ crops, contextKey, active, onDetected });
   useLayoutEffect(() => {
     latest.current = { crops, contextKey, active, onDetected };
@@ -168,6 +178,8 @@ export function useStudioAi({
       )
         onDetected(detection.id);
     }
+    const figureCrops = pendingFigureCrops.current.splice(0);
+    if (figureCrops.length) void figureAi.run(figureCrops);
   });
 
   const publishPages = useCallback(() => {
@@ -240,6 +252,8 @@ export function useStudioAi({
 
   const cancel = useCallback(
     (clear = false) => {
+      cancelFigures(undefined, undefined, clear);
+      pendingFigureCrops.current = [];
       let cancelled = false;
       for (const entry of pages.current.values()) {
         if (pageBusy(entry.job)) {
@@ -257,7 +271,7 @@ export function useStudioAi({
           "AI 작업을 취소했습니다. 완료된 결과와 직접 수정한 내용은 유지됩니다.",
         );
     },
-    [cancelCrop, publishPages],
+    [cancelCrop, publishPages, cancelFigures],
   );
 
   // A provider-wide cancel reaches queued owners before aborting requests.
@@ -315,12 +329,6 @@ export function useStudioAi({
     };
   }, []);
 
-  const provider = ai.status?.providers.find((item) => item.id === ai.provider);
-  const available = Boolean(
-    ai.status?.enabled &&
-    provider &&
-    ["ready", "unverified"].includes(provider.status),
-  );
   const unavailableReason =
     ai.statusError ||
     (ai.checking
@@ -349,7 +357,10 @@ export function useStudioAi({
       );
   }
   const running = Boolean(
-    cropJobs.some(cropBusy) || pageProgress.queued || pageProgress.running,
+    cropJobs.some(cropBusy) ||
+    figureAi.running ||
+    pageProgress.queued ||
+    pageProgress.running,
   );
   const error = cropJobs.find((job) => job.state === "error")?.error ?? "";
 
@@ -432,7 +443,7 @@ export function useStudioAi({
             solution: "",
             grade: page.grade,
             level: page.level,
-            mode: "image",
+            mode: item.content.trim() ? "text" : "image",
             added: false,
             aiWarnings: [
               ...response.result.warnings,
@@ -453,6 +464,7 @@ export function useStudioAi({
           key: entry.job.key,
           signal: controller.signal,
         });
+      pendingFigureCrops.current.push(...detected.map((crop) => crop.id));
       setCrops((previous) => {
         if (stale()) return previous;
         const additions = detected.filter(
@@ -638,6 +650,7 @@ export function useStudioAi({
           entry.job.action === "ocr"
             ? {
                 content: result.content,
+                ...(!snapshot.modeManual ? { mode: "text" as const } : {}),
                 ...questionTypePatch(result as CropQuestionType),
                 answer: result.answer,
                 solution: "",
@@ -672,6 +685,7 @@ export function useStudioAi({
           };
       }
       const changed =
+        (patch.mode !== undefined && patch.mode !== snapshot.mode) ||
         (patch.questionType !== undefined &&
           patch.questionType !== (snapshot as CropQuestionType).questionType) ||
         (patch.content !== undefined && patch.content !== snapshot.content) ||
@@ -695,6 +709,8 @@ export function useStudioAi({
         entry,
         expected: { ...snapshot, ...appliedPatch },
       });
+      if (job.action === "ocr" || job.action === "figures")
+        pendingFigureCrops.current.push(snapshot.id);
       setCrops((previous) =>
         stale()
           ? previous
@@ -813,6 +829,7 @@ export function useStudioAi({
     running,
     progress,
     cropJobs,
+    figureAi,
     pageJobs,
     pageProgress,
     message,

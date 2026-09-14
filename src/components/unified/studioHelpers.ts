@@ -35,6 +35,8 @@ export interface StudioCrop {
   level: SchoolLevel;
   grade: string;
   mode: "image" | "text";
+  /** Explicit output choice takes precedence over later automatic OCR. */
+  modeManual?: boolean;
   added: boolean;
   /** Monotonic edit generation, including changes that restore the old text. */
   revision?: number;

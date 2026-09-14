@@ -2163,3 +2163,22 @@
     transition: none;
   }
 }
+.digitalBar {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+  padding: 8px 12px;
+  border-bottom: 1px solid #d4deeb;
+  font-size: 13px;
+  background: #f7faff;
+}
+.digitalBar span {
+  flex: 1;
+  color: #5c708e;
+  font-size: 12px;
+}
+.digitalBar button {
+  min-height: 34px;
+  height: 34px;
+}

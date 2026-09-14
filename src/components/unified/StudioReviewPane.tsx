@@ -11,6 +11,7 @@ import {
 } from "./studioHelpers";
 import StudioPageEmpty from "./StudioPageEmpty";
 import type { StudioAiPageJob } from "./useStudioAi";
+import type { StudioFigureJob } from "./useStudioFigureAi";
 import WorkProgress from "./WorkProgress";
 import styles from "./StudioReviewPane.module.css";
 
@@ -30,6 +31,7 @@ interface Props {
   page: number;
   pageJob?: StudioAiPageJob;
   jobs: ReviewCropJob[];
+  figureJobs: StudioFigureJob[];
   available: boolean;
   onSelect: (id: string) => void;
   onUpdate: (id: string, patch: Partial<StudioCrop>) => void;
@@ -39,6 +41,8 @@ interface Props {
   onCrop: (crop?: StudioCrop, figure?: StudioFigure) => void;
   onEditFigure: (crop: StudioCrop, figure: StudioFigure) => void;
   onRetryPage: () => void;
+  onRenderFigure: (cropId: string, figureId: string) => void;
+  onCancelFigure: (cropId: string, figureId: string) => void;
 }
 
 export default function StudioReviewPane(props: Props) {
@@ -75,7 +79,7 @@ export default function StudioReviewPane(props: Props) {
       </section>
       <section className={styles.results} aria-label="문자·도형 인식 결과">
         <header>
-          <strong>문자·도형 인식 결과</strong>
+          <strong>디지털화 결과 · 수식·도형 검수</strong>
           <span>
             {props.crops.length}문항 ·{" "}
             {props.crops.filter((c) => c.reviewed).length}문항 검수 완료
@@ -104,7 +108,10 @@ export default function StudioReviewPane(props: Props) {
 function ReviewCard({ crop, ...props }: Props & { crop: StudioCrop }) {
   const [editing, setEditing] = useState(false);
   const jobs = props.jobs.filter((job) => job.cropId === crop.id);
-  const busy = jobs.some((job) => ["queued", "running"].includes(job.state));
+  const figureJobs = props.figureJobs.filter((job) => job.cropId === crop.id);
+  const busy =
+    jobs.some((job) => ["queued", "running"].includes(job.state)) ||
+    figureJobs.some((job) => ["queued", "running"].includes(job.state));
   const activeJob = jobs.find((job) =>
     ["queued", "running"].includes(job.state),
   );
@@ -202,41 +209,77 @@ function ReviewCard({ crop, ...props }: Props & { crop: StudioCrop }) {
           </button>
         </div>
         {crop.figures?.length ? (
-          crop.figures.map((figure, index) => (
-            <figure key={figure.id}>
-              <img
-                src={figure.image}
-                alt={`문제 ${number} 도형 ${index + 1}`}
-              />
-              <figcaption>
-                <span>
-                  도형 {index + 1} ·{" "}
-                  {figure.svg ? "편집한 그림" : "원본에서 분리됨"}
-                </span>
-                <button
-                  type="button"
-                  onClick={() => props.onCrop(crop, figure)}
-                >
-                  영역 수정
-                </button>
-                <button
-                  type="button"
-                  onClick={() => props.onEditFigure(crop, figure)}
-                >
-                  그림 편집
-                </button>
-              </figcaption>
-              {figure.originalImage && figure.svg && (
-                <details>
-                  <summary>원본 그림 비교</summary>
-                  <img
-                    src={figure.originalImage}
-                    alt={`도형 ${index + 1} 원본`}
+          crop.figures.map((figure, index) => {
+            const job = figureJobs.find((job) => job.figureId === figure.id);
+            const drawing = job && ["queued", "running"].includes(job.state);
+            return (
+              <figure key={figure.id}>
+                {drawing && (
+                  <WorkProgress
+                    label={
+                      job.state === "queued"
+                        ? "SVG 생성 대기 중"
+                        : (job.stage ?? "SVG 생성 중")
+                    }
+                    variant="inline"
+                    startedAt={job.startedAt}
+                    onCancel={() => props.onCancelFigure(crop.id, figure.id)}
+                    cancelLabel="이 도형 취소"
                   />
-                </details>
-              )}
-            </figure>
-          ))
+                )}
+                {job?.state === "error" && (
+                  <p className={styles.warning} role="alert">
+                    {job.error}
+                  </p>
+                )}
+                <img
+                  src={figure.image}
+                  alt={`문제 ${number} 도형 ${index + 1}`}
+                />
+                <figcaption>
+                  <span>
+                    도형 {index + 1} ·{" "}
+                    {figure.svg
+                      ? "SVG 도형"
+                      : drawing
+                        ? "원본 · SVG 생성 중"
+                        : "원본 크롭 · SVG 미생성"}
+                  </span>
+                  {!figure.svg && (
+                    <button
+                      type="button"
+                      disabled={!props.available || busy}
+                      onClick={() => props.onRenderFigure(crop.id, figure.id)}
+                    >
+                      {job?.state === "error" ? "SVG 다시 시도" : "SVG 생성"}
+                    </button>
+                  )}
+                  <button
+                    type="button"
+                    onClick={() => props.onCrop(crop, figure)}
+                  >
+                    영역 수정
+                  </button>
+                  <button
+                    type="button"
+                    disabled={Boolean(drawing)}
+                    onClick={() => props.onEditFigure(crop, figure)}
+                  >
+                    그림 편집
+                  </button>
+                </figcaption>
+                {figure.originalImage && figure.svg && (
+                  <details>
+                    <summary>원본 그림 비교</summary>
+                    <img
+                      src={figure.originalImage}
+                      alt={`도형 ${index + 1} 원본`}
+                    />
+                  </details>
+                )}
+              </figure>
+            );
+          })
         ) : (
           <p className={styles.muted}>
             분리된 도형이 없습니다. 원본에 그림이 있다면 다시 찾거나 크롭에서

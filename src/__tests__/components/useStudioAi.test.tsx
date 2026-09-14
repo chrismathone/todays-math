@@ -108,6 +108,18 @@ afterEach(() => {
 });
 
 describe("Studio AI owner", () => {
+  it("preserves an explicit original-image output choice after rereading", async () => {
+    bridge.run.mockResolvedValue(response());
+    const { result } = mount([{ ...crop("a"), modeManual: true }]);
+    await act(async () => {
+      await result.current.processCrops("ocr", ["a"]);
+    });
+    expect(result.current.crops[0].content).toBe(response().result.content);
+    expect(result.current.crops[0].mode).toBe("image");
+    expect(studioProblem(result.current.crops[0]).croppedImage).toBe(
+      crop("a").image,
+    );
+  });
   it("never dispatches on mount and retains source pixels/fractions after explicit OCR", async () => {
     bridge.run.mockResolvedValue(response());
     const { result } = mount();
@@ -117,12 +129,13 @@ describe("Studio AI owner", () => {
     });
     expect(result.current.crops[0]).toMatchObject({
       image: crop("a").image,
-      mode: "image",
+      mode: "text",
       content: response().result.content,
       aiWarnings: response().result.warnings,
     });
-    expect(studioProblem(result.current.crops[0]).croppedImage).toBe(
-      crop("a").image,
+    expect(studioProblem(result.current.crops[0]).croppedImage).toBeUndefined();
+    expect(studioProblem(result.current.crops[0]).content).toBe(
+      response().result.content,
     );
     expect(result.current.crops[0].answer).toBe(String.raw`$\frac{7}{3}$`);
   });
@@ -716,7 +729,7 @@ describe("Studio AI owner", () => {
     expect(result.current.crops[0]).toMatchObject({
       content: "도형 문제",
       grade: "중1",
-      mode: "image",
+      mode: "text",
       solution: "",
     });
     await act(async () => {
@@ -769,7 +782,11 @@ describe("Studio figure detection owner", () => {
     await act(async () => {
       await result.current.processCrops("ocr", ["a"]);
     });
-    expect(bridge.run).toHaveBeenCalledTimes(1);
+    expect(
+      bridge.run.mock.calls.filter(
+        (call) => call[0].action !== "figure-redraw",
+      ),
+    ).toHaveLength(1);
     expect(result.current.crops[0].figures).toHaveLength(1);
     const figure = result.current.crops[0].figures![0];
     expect(figure.rect).toEqual({
@@ -813,7 +830,11 @@ describe("Studio figure detection owner", () => {
     await act(async () => {
       await result.current.processCrops("figures", ["a"]);
     });
-    expect(bridge.run).toHaveBeenCalledTimes(1);
+    expect(
+      bridge.run.mock.calls.filter(
+        (call) => call[0].action !== "figure-redraw",
+      ),
+    ).toHaveLength(1);
     expect(bridge.run.mock.calls[0][0].action).toBe("figures");
     expect(decode).toHaveBeenCalledWith(
       original.image,
@@ -962,7 +983,11 @@ describe("Studio figure detection owner", () => {
     act(() => {
       result.current.retry();
     });
-    expect(bridge.run).toHaveBeenCalledTimes(1);
+    expect(
+      bridge.run.mock.calls.filter(
+        (call) => call[0].action !== "figure-redraw",
+      ),
+    ).toHaveLength(1);
     expect(result.current.crops[0].figures).toBeUndefined();
     expect(result.current.error).toBe("");
   });
@@ -987,10 +1012,11 @@ describe("Studio figure detection owner", () => {
       result.current.retry();
     });
     await waitFor(() => expect(result.current.progress).toBeNull());
-    expect(bridge.run.mock.calls.map((call) => call[0].action)).toEqual([
-      "figures",
-      "figures",
-    ]);
+    expect(
+      bridge.run.mock.calls
+        .filter((call) => call[0].action !== "figure-redraw")
+        .map((call) => call[0].action),
+    ).toEqual(["figures", "figures"]);
     expect(result.current.crops[0].figures?.[0].id).not.toBe("manual");
     expect(result.current.error).toBe("");
   });
@@ -1031,7 +1057,11 @@ describe("Studio figure detection owner", () => {
     expect(result.current.crops[0].aiWarnings?.join(" ")).toContain(
       "1개를 제외",
     );
-    expect(bridge.run).toHaveBeenCalledTimes(1);
+    expect(
+      bridge.run.mock.calls.filter(
+        (call) => call[0].action !== "figure-redraw",
+      ),
+    ).toHaveLength(1);
   });
 });
 
@@ -1148,7 +1178,11 @@ describe("Studio background page queue", () => {
     await act(async () => {
       loads[1].resolve(pixels(2));
     });
-    expect(bridge.run).toHaveBeenCalledTimes(1);
+    expect(
+      bridge.run.mock.calls.filter(
+        (call) => call[0].action !== "figure-redraw",
+      ),
+    ).toHaveLength(1);
     expect(result.current.pageJobs.map((job) => job.state)).toEqual([
       "rendering",
       "running",
@@ -1407,7 +1441,11 @@ describe("Studio background page queue", () => {
       reply.resolve(pageResponse());
     });
     expect(result.current.crops).toEqual([]);
-    expect(bridge.run).toHaveBeenCalledTimes(1);
+    expect(
+      bridge.run.mock.calls.filter(
+        (call) => call[0].action !== "figure-redraw",
+      ),
+    ).toHaveLength(1);
     expect(bridge.cancel).not.toHaveBeenCalled();
     act(() => {
       result.current.cancel(true);
@@ -1592,11 +1630,11 @@ describe("Studio background page queue", () => {
     await act(async () => {
       replies[1].resolve(pageResponse());
     });
-    expect(bridge.run.mock.calls.map((call) => call[0].action)).toEqual([
-      "page-ocr",
-      "page-ocr",
-      "ocr",
-    ]);
+    expect(
+      bridge.run.mock.calls
+        .filter((call) => call[0].action !== "figure-redraw")
+        .map((call) => call[0].action),
+    ).toEqual(["page-ocr", "page-ocr", "ocr"]);
     expect(result.current.cropJobs[0]).toMatchObject({
       state: "running",
       startedAt: expect.any(Number),
@@ -1742,11 +1780,11 @@ describe("Studio background page queue", () => {
       await pages;
       result.current.retry();
     });
-    expect(bridge.run.mock.calls.map((call) => call[0].action)).toEqual([
-      "page-ocr",
-      "page-ocr",
-      "page-ocr",
-    ]);
+    expect(
+      bridge.run.mock.calls
+        .filter((call) => call[0].action !== "figure-redraw")
+        .map((call) => call[0].action),
+    ).toEqual(["page-ocr", "page-ocr", "page-ocr"]);
     expect(result.current.crops.find((item) => item.id === "a")?.content).toBe(
       "",
     );

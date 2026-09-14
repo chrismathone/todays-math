@@ -216,7 +216,9 @@ export default function StudioView({
   onExport,
   importRequest,
   active = true,
-}: StudioViewProps & { active?: boolean }) {
+  reviewRequest = 0,
+}: StudioViewProps & { active?: boolean; reviewRequest?: number }) {
+  const handledReview = useRef(reviewRequest);
   const handledImport = useRef<number | null>(null);
   const [sources, setSources] = useState<StudioSource[]>([]);
   const [sourceId, setSourceId] = useState("");
@@ -233,6 +235,13 @@ export default function StudioView({
     {},
   );
   const [step, setStep] = useState<"upload" | "crop" | "review">("upload");
+  useEffect(() => {
+    if (reviewRequest > 0 && handledReview.current !== reviewRequest) {
+      handledReview.current = reviewRequest;
+      // The parent explicitly requests return to the preserved review step.
+      setStep("review");
+    }
+  }, [reviewRequest]);
   const [level, setLevel] = useState<SchoolLevel>("secondary");
   const [grade, setGrade] = useState("미지정");
   const [zoom, setZoom] = useState(100);
@@ -1164,6 +1173,7 @@ export default function StudioView({
               added: false,
               reviewed: false,
               ...patch,
+              ...(patch.mode !== undefined ? { modeManual: true } : {}),
               revision: (crop.revision ?? 0) + 1,
             }
           : crop,
@@ -1187,7 +1197,12 @@ export default function StudioView({
   }
 
   function finishReview() {
-    if (!activeCrop || recognizingPage || studioAi.isCropBusy?.(activeCrop.id))
+    if (
+      !activeCrop ||
+      recognizingPage ||
+      studioAi.isCropBusy?.(activeCrop.id) ||
+      studioAi.figureAi?.isBusy(activeCrop.id)
+    )
       return;
     setCrops((previous) =>
       previous.map((crop) =>
@@ -1273,7 +1288,7 @@ export default function StudioView({
   }
 
   function addProblems(exportAfter = false) {
-    if (!crops.length) return;
+    if (!crops.length || studioAi.running) return;
     const pending = crops.filter((crop) => !crop.added);
     if (pending.length) {
       onAdd(pending.map(studioProblem));
@@ -1287,6 +1302,32 @@ export default function StudioView({
       onExport();
     }
   }
+
+  function digitizeAll() {
+    setStep("review");
+    setCrops((previous) =>
+      previous.map((crop) =>
+        crop.content.trim() && !crop.modeManual && crop.mode !== "text"
+          ? { ...crop, mode: "text", added: false, reviewed: false }
+          : crop,
+      ),
+    );
+    void studioAi.processCrops(
+      "ocr",
+      crops.filter((crop) => !crop.content.trim()).map((crop) => crop.id),
+    );
+    void studioAi.figureAi.run(
+      crops.filter((crop) => crop.content.trim()).map((crop) => crop.id),
+    );
+  }
+  const figureJobs = studioAi.figureAi?.jobs ?? [];
+  const figurePending = figureJobs.filter((job) =>
+    ["queued", "running"].includes(job.state),
+  );
+  const digitalCount = crops.filter(
+    (crop) =>
+      crop.content.trim() && (crop.figures ?? []).every((figure) => figure.svg),
+  ).length;
 
   const detectedGrade = currentSource
     ? resolveStudioGrade(currentSource, sourceJobs)
@@ -1344,7 +1385,7 @@ export default function StudioView({
                 setInspectorOpen(true);
               }}
             >
-              문자·도형 검수 <b>{crops.length}</b>
+              OCR · 디지털화 <b>{crops.length}</b>
             </button>
           </div>
           <div className={styles.editorTools}>
@@ -1435,7 +1476,7 @@ export default function StudioView({
             [
               ["upload", "원본 가져오기"],
               ["crop", "문제 자르기"],
-              ["review", "검수하고 담기"],
+              ["review", "OCR · 디지털화"],
             ] as const
           ).map(([key, label], index) => (
             <button
@@ -1748,6 +1789,35 @@ export default function StudioView({
             onRetry={() => void studioAi.retryPages()}
             onNavigate={chooseSource}
           />
+          {step === "review" && (
+            <div className={styles.digitalBar} aria-label="OCR 디지털화 단계">
+              <strong>
+                디지털화 {digitalCount}/{crops.length}문항
+              </strong>
+              <span>문자 인식 → 수식 후보정 → SVG 도형 → 검수</span>
+              <button
+                type="button"
+                disabled={!studioAi.available || !crops.length}
+                onClick={digitizeAll}
+              >
+                전체 디지털화
+              </button>
+            </div>
+          )}
+          {figurePending.length > 0 && (
+            <WorkProgress
+              label="SVG 도형 생성 중"
+              detail={`${figurePending.filter((job) => job.state === "running").length}개 처리 중 · ${figurePending.filter((job) => job.state === "queued").length}개 대기`}
+              completed={
+                figureJobs.filter((job) => job.state === "complete").length
+              }
+              total={figureJobs.length}
+              unit="도형"
+              startedAt={figurePending.find((job) => job.startedAt)?.startedAt}
+              onCancel={() => studioAi.figureAi.cancel()}
+              cancelLabel="도형 생성 취소"
+            />
+          )}
           {currentPageJob?.state === "error" ? (
             <div className={styles.aiFeedback} role="alert">
               <span>
@@ -1844,6 +1914,7 @@ export default function StudioView({
                     disabled={
                       recognizingPage ||
                       studioAi.isCropBusy?.(activeCrop.id) ||
+                      studioAi.figureAi?.isBusy(activeCrop.id) ||
                       (activeCrop.reviewed &&
                         activeCropIndex === crops.length - 1)
                     }
@@ -1865,6 +1936,7 @@ export default function StudioView({
                 page={pageNumber}
                 pageJob={currentPageJob}
                 jobs={studioAi.cropJobs ?? []}
+                figureJobs={figureJobs}
                 available={studioAi.available}
                 onSelect={selectCrop}
                 onUpdate={updateCropById}
@@ -1880,6 +1952,12 @@ export default function StudioView({
                 }}
                 onEditFigure={openFigureEditor}
                 onRetryPage={() => recognizeSource(false)}
+                onRenderFigure={(cropId, figureId) =>
+                  void studioAi.figureAi.run([cropId], figureId)
+                }
+                onCancelFigure={(cropId, figureId) =>
+                  studioAi.figureAi.cancel(cropId, figureId)
+                }
               />
             </>
           ) : step === "upload" || !currentSource ? (
@@ -2389,7 +2467,7 @@ export default function StudioView({
                   className={styles.previewButton}
                   onClick={() => setStep("review")}
                 >
-                  문자·도형 검수로 이동 <Icon name="arrow" />
+                  OCR · 디지털화로 이동 <Icon name="arrow" />
                 </button>
               </div>
             ) : currentSource ? (
@@ -2550,28 +2628,41 @@ export default function StudioView({
           )}
         </div>
         <div className={styles.outputActions}>
-          <button
-            type="button"
-            className={styles.secondaryButton}
-            disabled={!pendingCount}
-            onClick={() => addProblems()}
-          >
-            <Icon name="plus" />
-            {pendingCount
-              ? `${pendingCount}문항 담기`
-              : crops.length
-                ? "모두 담았습니다"
-                : "시험지에 담기"}
-          </button>
-          <button
-            type="button"
-            className={styles.primaryButton}
-            disabled={!crops.length}
-            onClick={() => addProblems(true)}
-          >
-            {pendingCount ? "담고 내보내기" : "내보내기"}{" "}
-            <Icon name="arrow" width="18" height="18" />
-          </button>
+          {step === "crop" ? (
+            <button
+              type="button"
+              className={styles.primaryButton}
+              disabled={!crops.length || recognizingPage}
+              onClick={digitizeAll}
+            >
+              다음: OCR · 디지털화 <Icon name="arrow" />
+            </button>
+          ) : (
+            <>
+              <button
+                type="button"
+                className={styles.secondaryButton}
+                disabled={!pendingCount || studioAi.running}
+                onClick={() => addProblems()}
+              >
+                <Icon name="plus" />
+                {pendingCount
+                  ? `${pendingCount}문항 담기`
+                  : crops.length
+                    ? "모두 담았습니다"
+                    : "시험지에 담기"}
+              </button>
+              <button
+                type="button"
+                className={styles.primaryButton}
+                disabled={!crops.length || studioAi.running}
+                onClick={() => addProblems(true)}
+              >
+                {pendingCount ? "담고 내보내기" : "내보내기"}{" "}
+                <Icon name="arrow" width="18" height="18" />
+              </button>
+            </>
+          )}
         </div>
       </footer>
       <dialog

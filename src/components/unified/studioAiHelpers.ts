@@ -200,6 +200,8 @@ export function studioFiguresEqual(
       return (
         (!includeIds || figure.id === other.id) &&
         figure.image === other.image &&
+        figure.svg === other.svg &&
+        figure.originalImage === other.originalImage &&
         rectMatches(figure.rect, other.rect)
       );
     })
@@ -239,6 +241,7 @@ export function studioAiSnapshotMatches(
     current.solution === snapshot.solution &&
     current.grade === snapshot.grade &&
     current.mode === snapshot.mode &&
+    current.modeManual === snapshot.modeManual &&
     current.added === snapshot.added,
   );
 }

@@ -137,9 +137,13 @@ async function open() {
 }
 async function recognize() {
   fireEvent.click(screen.getByRole("button", { name: "페이지 자동 인식" }));
-  await screen.findByRole("button", { name: "1문항 담기" });
+  await waitFor(() =>
+    expect(
+      screen.getByRole("button", { name: "다음: OCR · 디지털화" }),
+    ).toBeEnabled(),
+  );
   fireEvent.click(
-    screen.getByRole("button", { name: "문자·도형 검수로 이동" }),
+    screen.getByRole("button", { name: "OCR · 디지털화로 이동" }),
   );
   await screen.findByText(/값을 구하세요/);
   fireEvent.click(screen.getByRole("button", { name: "내용 수정" }));
@@ -193,7 +197,11 @@ describe("Studio AI review controls", () => {
     fireEvent.click(
       screen.getAllByRole("button", { name: "이 페이지 재시도" })[0],
     );
-    await screen.findByRole("button", { name: "1문항 담기" });
+    await waitFor(() =>
+      expect(
+        screen.getByRole("button", { name: "다음: OCR · 디지털화" }),
+      ).toBeEnabled(),
+    );
     expect(screen.queryByRole("alert")).not.toBeInTheDocument();
   });
   it("imports without a paid request, reviews recognized text and sends edits to the solution request", async () => {
@@ -208,7 +216,7 @@ describe("Studio AI review controls", () => {
     expect(posts.map((post) => post.action)).toEqual(["page-ocr"]);
     expect(
       screen.getByRole("combobox", { name: "문제 1 출력 방식" }),
-    ).toHaveValue("image");
+    ).toHaveValue("text");
     const content = screen.getByDisplayValue(recognized);
     fireEvent.change(content, { target: { value: "검수한 도형 문제" } });
     fireEvent.click(screen.getByRole("button", { name: "해설 생성" }));
@@ -222,8 +230,8 @@ describe("Studio AI review controls", () => {
     fireEvent.click(screen.getByRole("button", { name: "1문항 담기" }));
     expect(onAdd).toHaveBeenCalledWith([
       expect.objectContaining({
-        croppedImage: "data:image/png;base64,c291cmNl",
-        content: "",
+        croppedImage: undefined,
+        content: "검수한 도형 문제",
         solution: "한 개를 더합니다.",
       }),
     ]);
@@ -288,6 +296,9 @@ describe("Studio AI review controls", () => {
     expect(
       screen.getByRole("img", { name: "검수할 자른 원본 문제" }),
     ).toBeInTheDocument();
+    fireEvent.click(
+      screen.getByRole("button", { name: "OCR · 디지털화로 이동" }),
+    );
     fireEvent.click(screen.getByRole("button", { name: "1문항 담기" }));
     expect(posts).toEqual([]);
     expect(onAdd).toHaveBeenCalledWith([
