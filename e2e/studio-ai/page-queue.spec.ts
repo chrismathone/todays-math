@@ -147,12 +147,14 @@ test("all pages use two background slots, preserve navigation, stamp empty pages
     .getByRole("button", { name: "전체 페이지 자동 인식", exact: true })
     .click();
   await expect.poll(() => requests.length).toBe(2);
+  await page.getByRole("button", { name: /작업 진행 상세/ }).click();
   await expect(page.getByLabel("페이지 인식 현황")).toContainText(
     "0/6쪽 처리 중 · 대기 중 4쪽",
   );
   await expect(
     page.getByRole("progressbar", { name: "페이지 자동 인식" }),
   ).toHaveAttribute("aria-valuenow", "0");
+  await page.keyboard.press("Escape");
   await pageSelect.selectOption("6");
   await expect(
     page.getByRole("img", { name: "six-page-exam.pdf, 6쪽 원본", exact: true }),
@@ -176,9 +178,11 @@ test("all pages use two background slots, preserve navigation, stamp empty pages
     await expect.poll(() => requests.length).toBeGreaterThan(i);
     requests[i].finish();
   }
+  await page.getByRole("button", { name: /작업 진행 상세/ }).click();
   await expect(page.getByLabel("페이지 인식 현황")).toContainText(
     "인식 6 / 6쪽 완료",
   );
+  await page.keyboard.press("Escape");
   await expect(
     page.getByRole("option", { name: "고1 (자동 인식)", exact: true }),
   ).toHaveCount(1);
@@ -188,9 +192,11 @@ test("all pages use two background slots, preserve navigation, stamp empty pages
   await page
     .getByRole("button", { name: "전체 페이지 자동 인식", exact: true })
     .click();
+  await page.getByRole("button", { name: /작업 진행 상세/ }).click();
   await expect(page.getByLabel("페이지 인식 현황")).toContainText(
     "인식 6 / 6쪽 완료",
   );
+  await page.keyboard.press("Escape");
   expect(requests).toHaveLength(6);
   await page.getByRole("combobox", { name: "시험지 학년" }).selectOption("중2");
   await pageSelect.selectOption("3");
