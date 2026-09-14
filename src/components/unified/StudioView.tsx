@@ -7,6 +7,8 @@ import WorkspacePageHeader from "./WorkspacePageHeader";
 import StudioCropOverlay from "./StudioCropOverlay";
 import WorkProgress from "./WorkProgress";
 import StudioQueueStatus from "./StudioQueueStatus";
+import StudioProgressStrip from "./StudioProgressStrip";
+import { applyStudioCropEdit } from "./studioCropEdit";
 import StudioReviewPane from "./StudioReviewPane";
 import StudioPageEmpty from "./StudioPageEmpty";
 import {
@@ -324,9 +326,20 @@ export default function StudioView({
   const [figureEditor, setFigureEditor] = useState<{
     cropId: string;
     figureId: string;
+    draftFigure?: StudioFigure;
+    onApply?: (next: StudioFigure) => void;
   } | null>(null);
-  function openFigureEditor(crop: StudioCrop, figure: StudioFigure) {
-    setFigureEditor({ cropId: crop.id, figureId: figure.id });
+  function openFigureEditor(
+    crop: StudioCrop,
+    figure: StudioFigure,
+    onApply?: (next: StudioFigure) => void,
+  ) {
+    setFigureEditor({
+      cropId: crop.id,
+      figureId: figure.id,
+      draftFigure: onApply ? figure : undefined,
+      onApply,
+    });
   }
   const [viewportSize, setViewportSize] = useState({ width: 0, height: 0 });
   const studio = useRef<HTMLElement>(null);
@@ -405,9 +418,9 @@ export default function StudioView({
   const editing = Boolean(currentSource && step !== "upload");
   const activeCrop = crops.find((item) => item.id === activeCropId);
   const figureCrop = crops.find((crop) => crop.id === figureEditor?.cropId);
-  const editedFigure = figureCrop?.figures?.find(
-    (figure) => figure.id === figureEditor?.figureId,
-  );
+  const editedFigure =
+    figureEditor?.draftFigure ??
+    figureCrop?.figures?.find((figure) => figure.id === figureEditor?.figureId);
   const activeCropIndex = crops.findIndex((item) => item.id === activeCropId);
   const pageCrops = crops.filter(
     (crop) => crop.sourceId === sourceId && crop.page === pageNumber,
@@ -1624,17 +1637,7 @@ export default function StudioView({
   function updateCropById(id: string, patch: Partial<StudioCrop>) {
     setCrops((previous) =>
       previous.map((crop) =>
-        crop.id === id
-          ? {
-              ...crop,
-              added: false,
-              reviewed: false,
-              ...patch,
-              ...(patch.content !== undefined ? { ocr: undefined } : {}),
-              ...(patch.mode !== undefined ? { modeManual: true } : {}),
-              revision: (crop.revision ?? 0) + 1,
-            }
-          : crop,
+        crop.id === id ? applyStudioCropEdit(crop, patch) : crop,
       ),
     );
   }
@@ -2268,14 +2271,175 @@ export default function StudioView({
               startedAt={importProgress.startedAt}
             />
           ) : null}
-          <StudioQueueStatus
-            jobs={studioAi.pageJobs}
-            startedAt={studioAi.pageProgress.startedAt ?? undefined}
-            sources={sources}
-            onCancel={() => studioAi.cancel()}
-            onRetry={() => void studioAi.retryPages()}
-            onNavigate={chooseSource}
-          />
+          <StudioProgressStrip
+            hasFeedback={!!studioAi.message || !!studioAi.error}
+            summaries={[
+              ...(studioAi.pageJobs.length
+                ? [
+                    {
+                      id: "pages",
+                      label: "페이지",
+                      done: studioAi.pageJobs.filter(
+                        (job) =>
+                          job.state === "complete" || job.state === "empty",
+                      ).length,
+                      total: studioAi.pageJobs.length,
+                      active: studioAi.pageJobs.some((job) =>
+                        ["queued", "rendering", "running"].includes(job.state),
+                      ),
+                    },
+                  ]
+                : []),
+              ...(studioAi.progress
+                ? [
+                    {
+                      id: "crops",
+                      label:
+                        studioAi.progress.action === "solution"
+                          ? "해설"
+                          : studioAi.progress.action === "figures"
+                            ? "도형 인식"
+                            : "문자",
+                      done: studioAi.progress.done,
+                      total: studioAi.progress.total,
+                      active: true,
+                    },
+                  ]
+                : []),
+              ...(figureJobs.length
+                ? [
+                    {
+                      id: "figures",
+                      label: "도형",
+                      done: doneFigures,
+                      total: figureJobs.length,
+                      active: figurePending.length > 0,
+                    },
+                  ]
+                : []),
+            ]}
+            warningCount={
+              studioAi.pageJobs.reduce(
+                (count, job) =>
+                  count +
+                  (job.warnings?.length ?? 0) +
+                  Number(!!job.textLayerWarning) +
+                  Number(job.state === "error"),
+                0,
+              ) +
+              failedFigures.length +
+              Number(!!studioAi.error)
+            }
+          >
+            <StudioQueueStatus
+              jobs={studioAi.pageJobs}
+              startedAt={studioAi.pageProgress.startedAt ?? undefined}
+              sources={sources}
+              onCancel={() => studioAi.cancel()}
+              onRetry={() => void studioAi.retryPages()}
+              onNavigate={chooseSource}
+            />
+            {figurePending.length > 0 ? (
+              <WorkProgress
+                label="SVG 도형 생성 중"
+                detail={`${figurePending.filter((job) => job.state === "running").length}개 처리 중 · ${figurePending.filter((job) => job.state === "queued").length}개 대기${failedFigures.length ? ` · 실패 ${failedFigures.length}개` : ""}`}
+                completed={doneFigures}
+                total={figureJobs.length}
+                unit="도형"
+                startedAt={
+                  figurePending.find((job) => job.startedAt)?.startedAt
+                }
+                onCancel={() => studioAi.figureAi.cancel()}
+                cancelLabel="도형 생성 취소"
+              />
+            ) : failedFigures.length ? (
+              <div className={styles.queueSummary} role="status">
+                <strong>
+                  도형 {doneFigures} / {figureJobs.length} 완료 · 실패{" "}
+                  {failedFigures.length}개
+                </strong>
+                <button
+                  type="button"
+                  disabled={!studioAi.available || studioAi.running}
+                  onClick={() =>
+                    void studioAi.figureAi.run([
+                      ...new Set(failedFigures.map((job) => job.cropId)),
+                    ])
+                  }
+                >
+                  실패 {failedFigures.length}개 다시 생성
+                </button>
+              </div>
+            ) : figureJobs.length ? (
+              <div className={styles.queueSummary} role="status">
+                <strong>
+                  도형 {doneFigures} / {figureJobs.length} 완료
+                </strong>
+                {figureJobs.some((job) => job.state === "cancelled") ? (
+                  <span>
+                    취소한 도형은 그림 편집에서 다시 생성할 수 있습니다.
+                  </span>
+                ) : null}
+              </div>
+            ) : null}
+            {currentPageJob?.state === "error" ? (
+              <div className={styles.aiFeedback} role="alert">
+                <span>
+                  {pageNumber}쪽 · {currentPageJob.error}
+                </span>
+                <button
+                  type="button"
+                  disabled={!studioAi.available}
+                  onClick={() => recognizeSource(false)}
+                >
+                  이 페이지 재시도
+                </button>
+              </div>
+            ) : null}
+            {studioAi.progress ? (
+              <WorkProgress
+                label={
+                  studioAi.progress.action === "solution"
+                    ? "해설 생성 중"
+                    : studioAi.progress.action === "figures"
+                      ? "도형 인식 중"
+                      : "문자 인식 중"
+                }
+                completed={studioAi.progress.done}
+                total={studioAi.progress.total}
+                unit="문항"
+                startedAt={studioAi.progress.startedAt}
+                onCancel={() => studioAi.cancelCrop()}
+                cancelLabel="AI 작업 취소"
+              />
+            ) : null}
+            {!studioAi.progress && (studioAi.message || studioAi.error) ? (
+              <div
+                className={styles.aiFeedback}
+                role={studioAi.error ? "alert" : "status"}
+              >
+                <span>{studioAi.error || studioAi.message}</span>
+                {studioAi.error ? (
+                  <button
+                    type="button"
+                    disabled={!studioAi.available || studioAi.running}
+                    onClick={studioAi.retry}
+                  >
+                    다시 시도
+                  </button>
+                ) : (
+                  <button
+                    type="button"
+                    aria-label="AI 결과 안내 닫기"
+                    onClick={() => studioAi.cancelCrop(true)}
+                  >
+                    ×
+                  </button>
+                )}
+              </div>
+            ) : null}
+          </StudioProgressStrip>
+
           {step === "review" && (
             <div className={styles.digitalBar} aria-label="OCR 디지털화 단계">
               <strong>
@@ -2291,92 +2455,6 @@ export default function StudioView({
               </button>
             </div>
           )}
-          {figurePending.length > 0 ? (
-            <WorkProgress
-              label="SVG 도형 생성 중"
-              detail={`${figurePending.filter((job) => job.state === "running").length}개 처리 중 · ${figurePending.filter((job) => job.state === "queued").length}개 대기${failedFigures.length ? ` · 실패 ${failedFigures.length}개` : ""}`}
-              completed={doneFigures}
-              total={figureJobs.length}
-              unit="도형"
-              startedAt={figurePending.find((job) => job.startedAt)?.startedAt}
-              onCancel={() => studioAi.figureAi.cancel()}
-              cancelLabel="도형 생성 취소"
-            />
-          ) : failedFigures.length ? (
-            <div className={styles.queueSummary} role="status">
-              <strong>
-                도형 {doneFigures} / {figureJobs.length} 완료 · 실패{" "}
-                {failedFigures.length}개
-              </strong>
-              <button
-                type="button"
-                disabled={!studioAi.available || studioAi.running}
-                onClick={() =>
-                  void studioAi.figureAi.run([
-                    ...new Set(failedFigures.map((job) => job.cropId)),
-                  ])
-                }
-              >
-                실패 {failedFigures.length}개 다시 생성
-              </button>
-            </div>
-          ) : null}
-          {currentPageJob?.state === "error" ? (
-            <div className={styles.aiFeedback} role="alert">
-              <span>
-                {pageNumber}쪽 · {currentPageJob.error}
-              </span>
-              <button
-                type="button"
-                disabled={!studioAi.available}
-                onClick={() => recognizeSource(false)}
-              >
-                이 페이지 재시도
-              </button>
-            </div>
-          ) : null}
-          {studioAi.progress ? (
-            <WorkProgress
-              label={
-                studioAi.progress.action === "solution"
-                  ? "해설 생성 중"
-                  : studioAi.progress.action === "figures"
-                    ? "도형 인식 중"
-                    : "문자 인식 중"
-              }
-              completed={studioAi.progress.done}
-              total={studioAi.progress.total}
-              unit="문항"
-              startedAt={studioAi.progress.startedAt}
-              onCancel={() => studioAi.cancelCrop()}
-              cancelLabel="AI 작업 취소"
-            />
-          ) : null}
-          {!studioAi.progress && (studioAi.message || studioAi.error) ? (
-            <div
-              className={styles.aiFeedback}
-              role={studioAi.error ? "alert" : "status"}
-            >
-              <span>{studioAi.error || studioAi.message}</span>
-              {studioAi.error ? (
-                <button
-                  type="button"
-                  disabled={!studioAi.available || studioAi.running}
-                  onClick={studioAi.retry}
-                >
-                  다시 시도
-                </button>
-              ) : (
-                <button
-                  type="button"
-                  aria-label="AI 결과 안내 닫기"
-                  onClick={() => studioAi.cancelCrop(true)}
-                >
-                  ×
-                </button>
-              )}
-            </div>
-          ) : null}
 
           {step === "review" ? (
             <>
@@ -2990,9 +3068,23 @@ export default function StudioView({
             image={editedFigure.image}
             originalImage={editedFigure.originalImage}
             initialSvg={editedFigure.svg}
-            index={figureCrop.figures!.indexOf(editedFigure)}
+            index={figureCrop.figures!.findIndex(
+              (figure) => figure.id === editedFigure.id,
+            )}
             onClose={() => setFigureEditor(null)}
             onSave={({ svg, dataUrl, originalImage }) => {
+              if (figureEditor?.onApply) {
+                figureEditor.onApply({
+                  ...editedFigure,
+                  svg,
+                  image: dataUrl,
+                  originalImage,
+                  spec: undefined,
+                  engine: undefined,
+                  figureReview: undefined,
+                });
+                return;
+              }
               setCrops((previous) =>
                 previous.map((crop) =>
                   crop.id === figureCrop.id

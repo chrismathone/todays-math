@@ -187,6 +187,7 @@ describe("Studio AI review controls", () => {
     await open();
     respond = () => Promise.resolve(json({ error: "응답 지연" }, 502));
     fireEvent.click(screen.getByRole("button", { name: "페이지 자동 인식" }));
+    fireEvent.click(await screen.findByRole("button", { name: /작업 진행 상세/ }));
     expect(await screen.findByRole("alert")).toHaveTextContent("응답 지연");
     expect(
       screen.queryByLabelText("자동 인식 완료: 문제가 없는 빈 페이지"),
@@ -304,6 +305,7 @@ describe("Studio AI review controls", () => {
         finish = resolve;
       });
     fireEvent.click(screen.getByRole("button", { name: "다시 인식" }));
+    fireEvent.click(await screen.findByRole("button", { name: /작업 진행 상세/ }));
     await screen.findByRole("button", { name: "AI 작업 취소" });
     const request = vi.mocked(fetch).mock.calls.at(-1)![1] as RequestInit;
     fireEvent.click(screen.getByRole("button", { name: "새로 시작" }));
@@ -367,6 +369,7 @@ describe("Studio AI review controls", () => {
     fireEvent.click(
       screen.getByRole("button", { name: "다음: OCR · 디지털화" }),
     );
+    fireEvent.click(await screen.findByRole("button", { name: /작업 진행 상세/ }));
     expect(
       await screen.findByRole("button", { name: /실패 \d+개 다시 생성/ }),
     ).toBeInTheDocument();
