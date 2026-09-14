@@ -1272,3 +1272,14 @@
     padding-top: 12px;
   }
 }
+
+.dashboard[data-single-column="true"] {
+  grid-template-columns: minmax(0, 1fr);
+}
+.accessNotice {
+  padding: 24px;
+  background: #fff;
+  border: 1px solid #dce3ed;
+  border-radius: 12px;
+  color: #596c86;
+}

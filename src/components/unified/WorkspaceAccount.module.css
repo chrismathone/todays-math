@@ -29,7 +29,11 @@
 .account form {
   flex: none;
 }
-.account button {
+.account button,
+.account a {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
   min-height: 44px;
   padding: 0 10px;
   border: 1px solid #c4cee0;
@@ -37,9 +41,27 @@
   color: #405573;
   cursor: pointer;
   white-space: nowrap;
+  text-decoration: none;
+  border-radius: var(--control-radius, 8px);
 }
-.account button:hover:not(:disabled) {
+.account button:hover:not(:disabled),
+.account a:hover {
   border-color: #3159df;
   color: #3159df;
   background: #f3f6ff;
+}
+
+@media (max-width: 760px) {
+  .account {
+    gap: 8px;
+  }
+  .identity {
+    flex: 1;
+    max-width: none;
+  }
+  .account a,
+  .account button {
+    padding-inline: 8px;
+    font-size: 12px;
+  }
 }

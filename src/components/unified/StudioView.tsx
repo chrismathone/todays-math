@@ -263,7 +263,9 @@ export default function StudioView({
   reviewRequest = 0,
   restoreRequest,
   storageScope,
+  canExport = true,
 }: StudioViewProps & {
+  canExport?: boolean;
   active?: boolean;
   reviewRequest?: number;
   restoreRequest?: { id: number; crops: StudioCrop[] };
@@ -1755,6 +1757,7 @@ export default function StudioView({
   }
 
   function addProblems(exportAfter = false) {
+    if (exportAfter && !canExport) return;
     if (!crops.length || studioAi.running) return;
     const pending = crops.filter((crop) => !crop.added);
     if (pending.length) {
@@ -3270,15 +3273,17 @@ export default function StudioView({
                     ? "모두 담았습니다"
                     : "시험지에 담기"}
               </button>
-              <button
-                type="button"
-                className={styles.primaryButton}
-                disabled={!crops.length || studioAi.running}
-                onClick={() => addProblems(true)}
-              >
-                {pendingCount ? "담고 내보내기" : "내보내기"}{" "}
-                <Icon name="arrow" width="18" height="18" />
-              </button>
+              {canExport && (
+                <button
+                  type="button"
+                  className={styles.primaryButton}
+                  disabled={!crops.length || studioAi.running}
+                  onClick={() => addProblems(true)}
+                >
+                  {pendingCount ? "담고 내보내기" : "내보내기"}{" "}
+                  <Icon name="arrow" width="18" height="18" />
+                </button>
+              )}
             </>
           )}
         </div>

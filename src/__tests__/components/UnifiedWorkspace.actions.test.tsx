@@ -13,6 +13,9 @@ import {
   DRAFT_STORE_KEY,
 } from "@/components/unified/draftStore";
 
+const router = vi.hoisted(() => ({ replace: vi.fn() }));
+vi.mock("next/navigation", () => ({ useRouter: () => router }));
+
 vi.mock("next/dynamic", () => ({
   default: (loader: () => Promise<{ default: ComponentType }>) => {
     const Component = lazy(loader);
