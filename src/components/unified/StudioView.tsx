@@ -263,6 +263,8 @@ export default function StudioView({
   reviewRequest = 0,
   restoreRequest,
   storageScope,
+  documentId,
+  onDocumentChange,
   canExport = true,
 }: StudioViewProps & {
   canExport?: boolean;
@@ -270,6 +272,8 @@ export default function StudioView({
   reviewRequest?: number;
   restoreRequest?: { id: number; crops: StudioCrop[] };
   storageScope?: string;
+  documentId?: string;
+  onDocumentChange?: (id?: string) => void;
 }) {
   const handledReview = useRef(reviewRequest);
   const handledRestore = useRef<number | null>(null);
@@ -301,10 +305,17 @@ export default function StudioView({
   const [zoom, setZoom] = useState(100);
   const [importingBusy, setBusy] = useState(false);
   const [restoring, setRestoring] = useState(
-    () => typeof indexedDB !== "undefined",
+    () => Boolean(storageScope) || typeof indexedDB !== "undefined",
   );
   const busy = importingBusy || restoring;
-  const [sessionStore] = useState(() => new StudioSessionStore(storageScope));
+  const [sessionStore] = useState(
+    () => new StudioSessionStore(storageScope, documentId),
+  );
+  const reportDocument = useEffectEvent(() =>
+    onDocumentChange?.(sessionStore.documentId),
+  );
+  const latestSave = useRef<(() => void) | undefined>(undefined);
+  const [loadAttempt, setLoadAttempt] = useState(0);
   const storageReady = useRef(false);
   const storageEpoch = useRef(0);
   const [sessionSave, setSessionSave] = useState(() =>
@@ -884,7 +895,7 @@ export default function StudioView({
   useEffect(() => {
     let cancelled = false;
     const epoch = storageEpoch.current;
-    if (typeof indexedDB === "undefined") return;
+    if (!storageScope && typeof indexedDB === "undefined") return;
     void (async () => {
       try {
         const saved = await sessionStore.load();
@@ -894,6 +905,7 @@ export default function StudioView({
         if (cancelled || epoch !== storageEpoch.current) return;
         storageReady.current = true;
         setSessionSave("저장됨");
+        reportDocument();
       } catch (cause) {
         if (!cancelled && epoch === storageEpoch.current) {
           setSessionSave("복원 실패");
@@ -910,7 +922,7 @@ export default function StudioView({
     return () => {
       cancelled = true;
     };
-  }, [sessionStore]);
+  }, [sessionStore, storageScope, loadAttempt]);
 
   const sessionData = useMemo<StudioSessionData>(
     () => ({
@@ -986,6 +998,7 @@ export default function StudioView({
           if (!disposed && epoch === storageEpoch.current) {
             setSavedSessionData(sessionData);
             setSessionSave("저장됨");
+            reportDocument();
           }
         })
         .catch((cause: unknown) => {
@@ -999,6 +1012,7 @@ export default function StudioView({
           }
         });
     };
+    latestSave.current = save;
     const timer = window.setTimeout(save, 400);
     window.addEventListener("pagehide", save);
     return () => {
@@ -1016,6 +1030,14 @@ export default function StudioView({
   ]);
 
   useEffect(() => {
+    sessionStore.retain();
+    return () => {
+      latestSave.current?.();
+      sessionStore.release();
+    };
+  }, [sessionStore]);
+
+  useEffect(() => {
     if (sessionStatus !== "저장 중" && sessionStatus !== "저장 실패") return;
     const warn = (event: BeforeUnloadEvent) => {
       event.preventDefault();
@@ -1025,14 +1047,41 @@ export default function StudioView({
     return () => window.removeEventListener("beforeunload", warn);
   }, [sessionStatus]);
 
-  function startOver() {
+  async function startOver() {
+    if (storageScope) {
+      storageEpoch.current += 1;
+      storageReady.current = false;
+      setRestoring(true);
+      setSessionSave("저장 중");
+      try {
+        await sessionStore.save(
+          sessionData,
+          new Map(
+            sources
+              .filter((source) => source.original)
+              .map((source) => [source.id, source.original!]),
+          ),
+        );
+        await sessionStore.clear();
+        onDocumentChange?.(sessionStore.documentId);
+      } catch (cause) {
+        storageReady.current = true;
+        setRestoring(false);
+        setSessionSave("저장 실패");
+        setError(
+          cause instanceof Error
+            ? cause.message
+            : "자료를 저장하지 못했습니다. 다시 시도해 주세요.",
+        );
+        return;
+      }
+    }
     storageEpoch.current += 1;
     const epoch = storageEpoch.current;
     storageReady.current = false;
     setRestoring(false);
     setSessionSave("저장 중");
-    void sessionStore
-      .clear()
+    void (storageScope ? Promise.resolve() : sessionStore.clear())
       .then(() => {
         if (epoch === storageEpoch.current) {
           storageReady.current = true;
@@ -3153,8 +3202,27 @@ export default function StudioView({
       )}
       <footer className={styles.actionBar} aria-label="문제 제작 주요 작업">
         <span role="status" aria-label="자료 제작 저장 상태">
-          {sessionStatus}
+          {storageScope && sessionStatus === "저장됨"
+            ? sources.length
+              ? "계정에 저장됨"
+              : "작업 준비 완료"
+            : sessionStatus}
         </span>
+        {storageScope &&
+          (sessionStatus === "저장 실패" || sessionStatus === "복원 실패") && (
+            <button
+              onClick={() => {
+                if (storageReady.current)
+                  setStorageVersion((version) => version + 1);
+                else {
+                  setRestoring(true);
+                  setLoadAttempt((attempt) => attempt + 1);
+                }
+              }}
+            >
+              다시 시도
+            </button>
+          )}
         <div className={styles.selectionAction}>
           {step === "crop" &&
           currentSource &&

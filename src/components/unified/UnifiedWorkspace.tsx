@@ -3,6 +3,9 @@
 import WorkspacePageHeader from "./WorkspacePageHeader";
 import WorkProgress from "./WorkProgress";
 import SavedWorksheetActions from "./SavedWorksheetActions";
+import PrivateLibrary from "./PrivateLibrary";
+import cloudStyles from "./PrivateLibrary.module.css";
+import { forgetPrivateExtraction } from "./privateStudioSessionStore";
 import dynamic from "next/dynamic";
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import {
@@ -142,7 +145,11 @@ function UnifiedWorkspaceContent({
     renameDraft,
     deleteDraft,
     importDraft,
-  } = useWorkspaceDrafts(storageScope);
+    forgetPrivateDraft,
+  } = useWorkspaceDrafts(
+    storageScope,
+    can("library") || can("studio") || can("export"),
+  );
   const {
     title,
     problems: selected,
@@ -156,6 +163,10 @@ function UnifiedWorkspaceContent({
   const view =
     requestedView && can(requestedView) ? requestedView : defaultView;
   const [studioReviewRequest, setStudioReviewRequest] = useState(0);
+  const [extraction, setExtraction] = useState<{
+    id?: string;
+    version: number;
+  }>({ version: 0 });
   const [studioRestoreRequest, setStudioRestoreRequest] = useState<{
     id: number;
     crops: StudioCrop[];
@@ -241,6 +252,19 @@ function UnifiedWorkspaceContent({
         (current) => new Set([...current, ...(next ? [next] : [])].filter(can)),
       );
       const url = new URL(window.location.href);
+      const documentId = url.searchParams.get("extraction");
+      if (
+        storageScope &&
+        documentId &&
+        /^[A-Za-z0-9_-]{1,100}$/.test(documentId) &&
+        can("studio")
+      ) {
+        setExtraction((current) =>
+          current.id === documentId
+            ? current
+            : { id: documentId, version: current.version + 1 },
+        );
+      }
       url.hash = next && next !== "home" ? next : "";
       if (url.href !== window.location.href)
         window.history.replaceState(null, "", url);
@@ -254,7 +278,7 @@ function UnifiedWorkspaceContent({
       window.removeEventListener("popstate", sync);
       window.removeEventListener("hashchange", sync);
     };
-  }, [can, defaultView]);
+  }, [can, defaultView, storageScope]);
   useEffect(() => {
     // Close controls immediately after the corresponding permission is revoked.
     // eslint-disable-next-line react-hooks/set-state-in-effect
@@ -286,12 +310,19 @@ function UnifiedWorkspaceContent({
       }
       if (event.key.toLowerCase() === "s" && canCreate) {
         event.preventDefault();
-        if (saveNow()) setNotice("이 브라우저에 작업을 저장했습니다.");
+        void Promise.resolve(saveNow()).then((saved) => {
+          if (saved)
+            setNotice(
+              storageScope
+                ? "내 계정에 작업을 저장했습니다."
+                : "이 브라우저에 작업을 저장했습니다.",
+            );
+        });
       }
     };
     window.addEventListener("keydown", keydown);
     return () => window.removeEventListener("keydown", keydown);
-  }, [saveNow, setNotice, toggleSidebar, hasMenus, canCreate]);
+  }, [saveNow, setNotice, toggleSidebar, hasMenus, canCreate, storageScope]);
   const openBank = (filters: { q?: string; grade?: string } = {}) => {
     if (!can("bank")) return;
     setBankEntry((current) => ({ ...filters, version: current.version + 1 }));
@@ -346,13 +377,18 @@ function UnifiedWorkspaceContent({
       return next;
     });
   }
-  function save() {
+  async function save() {
     setUndo(null);
-    if (saveNow()) setNotice("이 브라우저에 작업을 저장했습니다.");
+    if (await saveNow())
+      setNotice(
+        storageScope
+          ? "내 계정에 작업을 저장했습니다."
+          : "이 브라우저에 작업을 저장했습니다.",
+      );
   }
-  function openSaved(id: string) {
+  async function openSaved(id: string) {
     if (!can("export")) return;
-    if (openDraft(id)) {
+    if (await openDraft(id)) {
       setUndo(null);
       navigate("export");
       setNotice("저장한 시험지를 불러왔습니다.");
@@ -362,9 +398,9 @@ function UnifiedWorkspaceContent({
     if (recent.length) openSaved(recent[0].id);
     else draftFileRef.current?.click();
   }
-  function startNew(next: "bank" | "studio" | "export") {
+  async function startNew(next: "bank" | "studio" | "export") {
     if (!can(next)) return;
-    if (!createDraft()) return;
+    if (!(await createDraft())) return;
     setUndo(null);
     if (newTitle.trim()) setTitle(newTitle.trim());
     setNewTitle("");
@@ -383,7 +419,7 @@ function UnifiedWorkspaceContent({
         return setNotice("20 MB 이하의 작업 파일을 선택해 주세요.", true);
       const value = JSON.parse(await file.text());
       if (!permissionsRef.current.has("export")) return;
-      if (importDraft(value)) {
+      if (await importDraft(value)) {
         setUndo(null);
         navigate("export");
         setNotice("작업 파일을 불러왔습니다.");
@@ -634,11 +670,15 @@ function UnifiedWorkspaceContent({
                       size={15}
                     />
                     <span role="status">
-                      {saveStatus === "error"
-                        ? "저장 확인 필요"
-                        : selected.length
-                          ? "자동 저장됨"
-                          : "작업 준비 완료"}
+                      {saveStatus === "disabled"
+                        ? "계정 저장 권한 없음"
+                        : saveStatus === "error"
+                          ? "저장 확인 필요"
+                          : selected.length
+                            ? storageScope
+                              ? "계정에 저장됨"
+                              : "자동 저장됨"
+                            : "작업 준비 완료"}
                     </span>
                   </>
                 )}
@@ -664,7 +704,10 @@ function UnifiedWorkspaceContent({
         </header>
         <div className={s.notifications}>
           {canCreate && saveError && (
-            <div className={s.saveError} role="alert">
+            <div
+              className={storageScope ? cloudStyles.cloudError : s.saveError}
+              role="alert"
+            >
               <Icon name="warning" size={19} />
               <p>{saveError}</p>
               {can("export") && (
@@ -717,6 +760,7 @@ function UnifiedWorkspaceContent({
               recent={recent}
               hydrated={hydrated}
               saveStatus={saveStatus}
+              cloudStorage={Boolean(storageScope)}
               allowedMenus={allowedMenus}
               onNew={() => setModal("new")}
               onBank={openBank}
@@ -743,6 +787,7 @@ function UnifiedWorkspaceContent({
           {can("studio") && (opened.has("studio") || view === "studio") && (
             <main hidden={view !== "studio"} className={s.studioContent}>
               <StudioView
+                key={`${storageScope ?? "preview"}:${extraction.version}`}
                 active={view === "studio"}
                 onAdd={add}
                 onExport={() => navigate("export")}
@@ -751,6 +796,14 @@ function UnifiedWorkspaceContent({
                 reviewRequest={studioReviewRequest}
                 restoreRequest={studioRestoreRequest}
                 storageScope={storageScope}
+                documentId={extraction.id}
+                onDocumentChange={(id) => {
+                  if (!storageScope) return;
+                  const url = new URL(window.location.href);
+                  if (id) url.searchParams.set("extraction", id);
+                  else url.searchParams.delete("extraction");
+                  window.history.replaceState(null, "", url);
+                }}
               />
             </main>
           )}
@@ -771,6 +824,17 @@ function UnifiedWorkspaceContent({
               setPrintOptions={setPrintOptions}
               setPrintMeta={setPrintMeta}
               savedAt={savedAt}
+              cloudSaveStatus={
+                storageScope
+                  ? saveStatus === "saved"
+                    ? savedAt
+                      ? "계정에 저장됨"
+                      : "작업 준비 완료"
+                    : saveStatus === "error"
+                      ? "계정 저장 실패 · 다시 저장해 주세요"
+                      : "계정에 저장 중…"
+                  : undefined
+              }
               setTitle={setTitle}
               setColumns={setColumns}
               setAnswers={setAnswers}
@@ -807,7 +871,48 @@ function UnifiedWorkspaceContent({
               }
             />
           )}
-          {view === "library" && (
+          {view === "library" && storageScope && (
+            <PrivateLibrary
+              storageScope={storageScope}
+              canExport={can("export")}
+              canStudio={can("studio")}
+              onOpenDraft={openSaved}
+              onOpenExtraction={(id) => {
+                if (!can("studio")) return;
+                setExtraction((current) => ({
+                  id,
+                  version: current.version + 1,
+                }));
+                const url = new URL(window.location.href);
+                url.searchParams.set("extraction", id);
+                window.history.replaceState(null, "", url);
+                navigate("studio");
+              }}
+              onImport={
+                can("export") ? () => draftFileRef.current?.click() : undefined
+              }
+              onNew={canCreate ? () => setModal("new") : undefined}
+              onDeleted={async (item) => {
+                if (item.kind === "draft") {
+                  forgetPrivateDraft(item.id);
+                  return;
+                }
+                await forgetPrivateExtraction(storageScope, item.id);
+                const url = new URL(window.location.href);
+                if (
+                  url.searchParams.get("extraction") === item.id ||
+                  extraction.id === item.id
+                ) {
+                  url.searchParams.delete("extraction");
+                  window.history.replaceState(null, "", url);
+                  setExtraction((current) => ({
+                    version: current.version + 1,
+                  }));
+                }
+              }}
+            />
+          )}
+          {view === "library" && !storageScope && (
             <main className={s.library}>
               <WorkspacePageHeader
                 title="내 시험지"
@@ -1098,8 +1203,9 @@ function UnifiedWorkspaceContent({
                 <div>
                   <strong>출력하고 다음 수업에 다시 사용하기</strong>
                   <p>
-                    인쇄 또는 PDF로 저장하세요. 담은 문제와 시험지 설정은 이
-                    브라우저에 자동 저장됩니다.
+                    {storageScope
+                      ? "인쇄 또는 PDF로 저장하세요. 담은 문제와 시험지 설정은 내 계정에 자동 저장됩니다."
+                      : "인쇄 또는 PDF로 저장하세요. 담은 문제와 시험지 설정은 이 브라우저에 자동 저장됩니다."}
                   </p>
                 </div>
               </li>
@@ -1108,8 +1214,9 @@ function UnifiedWorkspaceContent({
               <strong>알아두면 편리해요</strong>
               <p>Ctrl / ⌘ K · 빠른 검색　 Ctrl / ⌘ S · 지금 저장</p>
               <p>
-                가져온 원본 파일과 아직 담지 않은 크롭은 새로고침하면
-                사라집니다. 완성된 문제는 시험지에 담아두세요.
+                {storageScope
+                  ? "가져온 원본과 추출한 문제도 내 시험지에 저장됩니다. 저장 상태를 확인한 뒤 다른 기기에서 이어서 작업하세요."
+                  : "자료 제작 작업은 이 브라우저에 저장됩니다. 다른 기기로 옮길 시험지는 작업 파일로 내보내세요."}
               </p>
             </div>
             <button className={s.primaryButton} onClick={() => setModal(null)}>

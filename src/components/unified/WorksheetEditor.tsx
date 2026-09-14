@@ -18,6 +18,7 @@ import {
 } from "@/contracts/accountAccess.contract";
 import s from "./WorksheetEditor.module.css";
 interface Props {
+  cloudSaveStatus?: string;
   allowedMenus?: WorkspaceMenu[];
   selected: StudioProblem[];
   title: string;
@@ -47,6 +48,7 @@ export default function WorksheetEditor({
   columns,
   answers,
   savedAt,
+  cloudSaveStatus,
   printOptions,
   printMeta,
   setPrintOptions,
@@ -416,14 +418,18 @@ export default function WorksheetEditor({
                 <Icon name="save" size={18} /> 작업 파일 내보내기
               </button>
             </div>
-            {savedAt && (
-              <p className={s.subtle}>
-                이 브라우저에 저장됨 ·{" "}
-                {new Date(savedAt).toLocaleTimeString("ko-KR", {
-                  hour: "2-digit",
-                  minute: "2-digit",
-                })}
-              </p>
+            {cloudSaveStatus ? (
+              <p role="status">{cloudSaveStatus}</p>
+            ) : (
+              savedAt && (
+                <p className={s.subtle}>
+                  이 브라우저에 저장됨 ·{" "}
+                  {new Date(savedAt).toLocaleTimeString("ko-KR", {
+                    hour: "2-digit",
+                    minute: "2-digit",
+                  })}
+                </p>
+              )
             )}
           </aside>
           <WorksheetPrint

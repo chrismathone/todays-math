@@ -1,6 +1,7 @@
 import type { StudioCrop } from "./studioHelpers";
 import type { SchoolLevel } from "./types";
 import type { StudioAiPageJob } from "./useStudioAi";
+import { PrivateStudioSessionStore } from "./privateStudioSessionStore";
 
 export interface StoredStudioSource {
   id: string;
@@ -37,7 +38,7 @@ const CONFLICT =
   "다른 창에서 자료 제작 작업이 변경되었습니다. 현재 작업을 확인한 뒤 새로고침해 주세요.";
 
 /** 원본 Blob은 한 번만 저장하고 검수 상태는 별도로 갱신한다. */
-export class StudioSessionStore {
+export class LocalStudioSessionStore {
   constructor(private readonly scope?: string) {}
   private revision = 0;
   private tail: Promise<unknown> = Promise.resolve();
@@ -222,5 +223,37 @@ export class StudioSessionStore {
       });
     this.tail = pending;
     return pending;
+  }
+}
+
+/** Unscoped developer previews keep their original IndexedDB-only semantics. */
+export class StudioSessionStore {
+  private readonly store: LocalStudioSessionStore | PrivateStudioSessionStore;
+  constructor(scope?: string, documentId?: string) {
+    this.store = scope
+      ? new PrivateStudioSessionStore(scope, documentId, () =>
+          new LocalStudioSessionStore(scope).load(),
+        )
+      : new LocalStudioSessionStore();
+  }
+  load() {
+    return this.store.load();
+  }
+  save(data: StudioSessionData, originals: Map<string, Blob>) {
+    return this.store.save(data, originals);
+  }
+  clear() {
+    return this.store.clear();
+  }
+  retain() {
+    if (this.store instanceof PrivateStudioSessionStore) this.store.retain();
+  }
+  release() {
+    if (this.store instanceof PrivateStudioSessionStore) this.store.release();
+  }
+  get documentId() {
+    return this.store instanceof PrivateStudioSessionStore
+      ? this.store.documentId
+      : undefined;
   }
 }

@@ -8,6 +8,7 @@ import {
 } from "@/components/unified/draftStore";
 import { useWorkspaceDrafts } from "@/components/unified/useWorkspaceDrafts";
 import type { StudioProblem } from "@/components/unified/types";
+import { privateServer } from "../fixtures/privateCloud";
 
 const problem = (id: string): StudioProblem => ({
   id,
@@ -32,12 +33,15 @@ beforeEach(() => {
 afterEach(() => {
   cleanup();
   vi.restoreAllMocks();
+  vi.unstubAllGlobals();
   vi.clearAllTimers();
   vi.useRealTimers();
 });
 
 describe("useWorkspaceDrafts browser lifecycle", () => {
-  it("isolates signed-in owners and does not adopt the unscoped development worksheet", () => {
+  it("isolates signed-in cloud owners and does not adopt the unscoped development worksheet", async () => {
+    const server = privateServer();
+    vi.stubGlobal("fetch", server.transport);
     localStorage.setItem(
       LEGACY_DRAFT_KEY,
       JSON.stringify({
@@ -49,22 +53,49 @@ describe("useWorkspaceDrafts browser lifecycle", () => {
       }),
     );
     const first = renderHook(() => useWorkspaceDrafts("owner-a"));
+    await act(async () => {
+      await vi.advanceTimersByTimeAsync(0);
+    });
     expect(first.result.current.draft.problems).toEqual([]);
     act(() => {
       first.result.current.setTitle("첫 계정 작업");
       first.result.current.setProblems([problem("a")]);
     });
-    act(() => first.result.current.saveNow());
+    await act(async () => {
+      await first.result.current.saveNow();
+    });
     first.unmount();
+    server.switchAccount("owner-b");
     const second = renderHook(() => useWorkspaceDrafts("owner-b"));
+    await act(async () => {
+      await vi.advanceTimersByTimeAsync(0);
+    });
     expect(second.result.current.draft.problems).toEqual([]);
     second.unmount();
+    server.switchAccount("owner-a");
     const restored = renderHook(() => useWorkspaceDrafts("owner-a"));
+    await act(async () => {
+      await vi.advanceTimersByTimeAsync(0);
+    });
     expect(restored.result.current.draft.title).toBe("첫 계정 작업");
     expect(
       restored.result.current.draft.problems.map((item) => item.id),
     ).toEqual(["a"]);
     expect(localStorage.getItem(DRAFT_STORE_KEY)).toBeNull();
+  });
+
+  it("does not access cloud documents or account caches when private menus are disabled", () => {
+    const fetch = vi.fn();
+    vi.stubGlobal("fetch", fetch);
+    localStorage.setItem(`${DRAFT_STORE_KEY}:owner-a`, "preserved");
+    const hook = renderHook(() => useWorkspaceDrafts("owner-a", false));
+    expect(hook.result.current.saveStatus).toBe("disabled");
+    expect(hook.result.current.draft.problems).toEqual([]);
+    expect(hook.result.current.saveNow()).toBe(false);
+    expect(fetch).not.toHaveBeenCalled();
+    expect(localStorage.getItem(`${DRAFT_STORE_KEY}:owner-a`)).toBe(
+      "preserved",
+    );
   });
 
   it("renders a deterministic SSR snapshot without touching browser storage", () => {

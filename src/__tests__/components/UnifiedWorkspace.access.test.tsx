@@ -24,6 +24,7 @@ import {
   createWorkspaceDraftStore,
   DRAFT_STORE_KEY,
 } from "@/components/unified/draftStore";
+import { privateServer } from "../fixtures/privateCloud";
 
 const mocks = vi.hoisted(() => ({
   replace: vi.fn(),
@@ -83,7 +84,13 @@ vi.mock("@/components/unified/BankView", () => ({
   },
 }));
 vi.mock("@/components/unified/StudioView", () => ({
-  default: function StudioProbe({ canExport }: { canExport: boolean }) {
+  default: function StudioProbe({
+    canExport,
+    documentId,
+  }: {
+    canExport: boolean;
+    documentId?: string;
+  }) {
     const [value, setValue] = useState("");
     useEffect(() => {
       mocks.studioMount();
@@ -97,6 +104,7 @@ vi.mock("@/components/unified/StudioView", () => ({
           onChange={(event) => setValue(event.target.value)}
         />
         <span data-testid="studio-export-access">{String(canExport)}</span>
+        <span data-testid="studio-document-id">{documentId ?? ""}</span>
       </>
     );
   },
@@ -175,7 +183,13 @@ beforeEach(() => {
   fetchMock
     .mockReset()
     .mockImplementation(async () => new Response(null, { status: 503 }));
-  vi.stubGlobal("fetch", fetchMock);
+  const cloud = privateServer();
+  cloud.switchAccount("teacher-one");
+  vi.stubGlobal("fetch", (url: RequestInfo | URL, init?: RequestInit) =>
+    String(url).startsWith("/api/library/")
+      ? cloud.transport(url, init)
+      : fetchMock(url, init),
+  );
 });
 afterEach(() => {
   vi.restoreAllMocks();
@@ -183,6 +197,41 @@ afterEach(() => {
 });
 
 describe("per-account workspace menu access", () => {
+  it("restores a stable extraction query after fresh login and ignores it without studio access", async () => {
+    window.history.replaceState(
+      null,
+      "",
+      "/?extraction=saved-extraction#studio",
+    );
+    fetchMock.mockImplementation(async () => response(["studio", "library"]));
+    const view = render(
+      <UnifiedWorkspace
+        initialData={initialData}
+        currentUser={user}
+        storageScope="teacher-one"
+        allowedMenus={["studio", "library"]}
+      />,
+    );
+    expect(await screen.findByTestId("studio-document-id")).toHaveTextContent(
+      "saved-extraction",
+    );
+    view.unmount();
+    mocks.studioMount.mockClear();
+    fetchMock.mockImplementation(async () => response(["library"]));
+    render(
+      <UnifiedWorkspace
+        initialData={initialData}
+        currentUser={user}
+        storageScope="teacher-one"
+        allowedMenus={["library"]}
+      />,
+    );
+    expect(
+      await screen.findByRole("heading", { name: "내 시험지" }),
+    ).toBeVisible();
+    expect(mocks.studioMount).not.toHaveBeenCalled();
+    expect(window.location.hash).toBe("#library");
+  });
   it("keeps all development menus and shortcuts when access is omitted", async () => {
     render(<UnifiedWorkspace initialData={initialData} />);
     for (const menu of WORKSPACE_MENUS)
@@ -475,9 +524,9 @@ describe("per-account workspace menu access", () => {
       await screen.findByDisplayValue("권한 변경 중인 시험지"),
     ).toBeVisible();
     await waitFor(() =>
-      expect(localStorage.getItem(`${DRAFT_STORE_KEY}:teacher-one`)).toContain(
-        "권한 변경 중인 시험지",
-      ),
+      expect(
+        localStorage.getItem(`${DRAFT_STORE_KEY}:cloud:teacher-one`),
+      ).toContain("권한 변경 중인 시험지"),
     );
   });
 

@@ -20,6 +20,7 @@ export interface RecentWorksheet {
   updatedAt: string;
 }
 interface Props {
+  cloudStorage?: boolean;
   allowedMenus?: WorkspaceMenu[];
   data: BankData;
   draft: {
@@ -57,6 +58,7 @@ export default function WorkroomHome({
   recent,
   hydrated,
   saveStatus,
+  cloudStorage = false,
   onNew,
   onBank,
   onImport,
@@ -300,8 +302,10 @@ export default function WorkroomHome({
                   </div>
                 )}
                 <p className={s.localNote}>
-                  <Icon name="save" size={14} />이 브라우저에 보관됩니다. 다른
-                  기기에서는 작업 파일을 불러오세요.
+                  <Icon name="save" size={14} />
+                  {cloudStorage
+                    ? "내 계정에 보관됩니다. 다른 기기에서도 로그인해 이어서 작업하세요."
+                    : "이 브라우저에 보관됩니다. 다른 기기에서는 작업 파일을 불러오세요."}
                 </p>
               </section>
             )}
