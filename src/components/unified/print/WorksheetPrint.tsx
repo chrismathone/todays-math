@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useRef, useState } from "react";
+import { useEffect, useLayoutEffect, useMemo, useRef, useState } from "react";
 import { A4_DIM } from "./tokens";
 import type { StudioProblem } from "../types";
 import { AnswerPage } from "./AnswerPage";
@@ -26,14 +26,19 @@ export function WorksheetPrint({
 }) {
   const [zoom, setZoom] = useState<number | "fit">("fit");
   const [fitScale, setFitScale] = useState(0.85);
+  const [viewportWidth, setViewportWidth] = useState(0);
+  const [pageIndex, setPageIndex] = useState(0);
+  const visiblePage = useRef(0);
   const viewport = useRef<HTMLDivElement>(null);
   useEffect(() => {
     const element = viewport.current;
     if (!element) return;
-    const resize = () =>
+    const resize = () => {
+      setViewportWidth(element.clientWidth);
       setFitScale(
         Math.min(1, Math.max(0.1, (element.clientWidth - 2) / A4_DIM.width)),
       );
+    };
     resize();
     const observer = new ResizeObserver(resize);
     observer.observe(element);
@@ -85,6 +90,35 @@ export function WorksheetPrint({
     return () => onReady(false);
   }, [ready, onReady]);
   const total = questions.pages.length + answers.pages.length;
+  const scale = zoom === "fit" ? fitScale : zoom;
+  const currentPage = Math.min(pageIndex, Math.max(0, total - 1));
+  function scrollToPage(index: number) {
+    const element = viewport.current;
+    const page = element?.querySelectorAll<HTMLElement>("[data-unified-paper]")[
+      index
+    ];
+    if (!element || !page) return;
+    element.scrollTo({
+      left:
+        element.scrollLeft +
+        page.getBoundingClientRect().left -
+        element.getBoundingClientRect().left,
+      top: 0,
+      behavior: "instant",
+    });
+  }
+  function goToPage(index: number) {
+    const next = Math.max(0, Math.min(index, total - 1));
+    visiblePage.current = next;
+    setPageIndex(next);
+    scrollToPage(next);
+  }
+  // Keep the same sheet in view when zoom, available width or pagination changes.
+  // Native scrolling updates the ref without forcing scroll position on every render.
+  useLayoutEffect(() => {
+    if (!ready) return;
+    scrollToPage(Math.min(visiblePage.current, Math.max(0, total - 1)));
+  }, [scale, viewportWidth, total, ready]);
   const scaled =
     questions.pages.some((page) => page.scales.some((scale) => scale < 1)) ||
     answers.pages.some((page) => page.scales.some((scale) => scale < 1));
@@ -96,6 +130,32 @@ export function WorksheetPrint({
           미리보기 · A4 · {options.columns}단 · {selected.length}문항 · {total}
           쪽
         </span>
+        <nav
+          className={editor.pageNavigation}
+          aria-label="미리보기 페이지 이동"
+        >
+          <button
+            type="button"
+            aria-label="이전 페이지"
+            aria-controls="worksheet-preview"
+            disabled={currentPage === 0 || !total}
+            onClick={() => goToPage(currentPage - 1)}
+          >
+            ← 이전
+          </button>
+          <span role="status" aria-live="polite" aria-atomic="true">
+            {total ? currentPage + 1 : 0} / {total}쪽
+          </span>
+          <button
+            type="button"
+            aria-label="다음 페이지"
+            aria-controls="worksheet-preview"
+            disabled={!total || currentPage >= total - 1}
+            onClick={() => goToPage(currentPage + 1)}
+          >
+            다음 →
+          </button>
+        </nav>
         <label>
           확대{" "}
           <select
@@ -146,13 +206,55 @@ export function WorksheetPrint({
         aria-label="시험지 미리보기"
         aria-busy={!ready}
         tabIndex={0}
+        onKeyDown={(event) => {
+          if (
+            event.target !== event.currentTarget ||
+            event.altKey ||
+            event.ctrlKey ||
+            event.metaKey
+          )
+            return;
+          const index =
+            event.key === "ArrowLeft"
+              ? currentPage - 1
+              : event.key === "ArrowRight"
+                ? currentPage + 1
+                : event.key === "Home"
+                  ? 0
+                  : event.key === "End"
+                    ? total - 1
+                    : null;
+          if (index === null) return;
+          event.preventDefault();
+          goToPage(index);
+        }}
+        onScroll={(event) => {
+          if (!ready || !total) return;
+          const element = event.currentTarget;
+          const left = element.getBoundingClientRect().left;
+          const pages = [
+            ...element.querySelectorAll<HTMLElement>("[data-unified-paper]"),
+          ];
+          let closest = 0;
+          let distance = Infinity;
+          pages.forEach((page, index) => {
+            const next = Math.abs(page.getBoundingClientRect().left - left);
+            if (next < distance) {
+              closest = index;
+              distance = next;
+            }
+          });
+          visiblePage.current = closest;
+          setPageIndex(closest);
+        }}
       >
         <div
           className={s.document}
           style={
             {
               ...questions.fontStyle,
-              "--preview-scale": zoom === "fit" ? fitScale : zoom,
+              "--preview-scale": scale,
+              "--preview-trailing-space": `${Math.max(0, viewportWidth - A4_DIM.width * scale)}px`,
             } as React.CSSProperties
           }
           data-mathgen-document

@@ -1,6 +1,20 @@
 import { editFigureObject, figureObjects } from "./figureSvgEditing";
 
 type FigureObject = ReturnType<typeof figureObjects>[number];
+/** Project onto the nearest horizontal, vertical or 45-degree direction. */
+export function snapFigurePoint(
+  anchor: { x: number; y: number },
+  pointer: { x: number; y: number },
+) {
+  const dx = pointer.x - anchor.x,
+    dy = pointer.y - anchor.y;
+  const angle = Math.round(Math.atan2(dy, dx) / (Math.PI / 4)) * (Math.PI / 4);
+  const x = Math.cos(angle),
+    y = Math.sin(angle);
+  const distance = dx * x + dy * y;
+  return { x: anchor.x + distance * x, y: anchor.y + distance * y };
+}
+
 export interface FigureHandle {
   key: string;
   x: number;

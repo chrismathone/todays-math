@@ -32,6 +32,8 @@ interface Props {
   toggle: (problem: StudioProblem) => void;
   move: (index: number, direction: number) => void;
   navigate: (view: "bank" | "studio") => void;
+  onBackToReview?: () => void;
+  onImportFiles?: () => void;
 }
 export default function WorksheetEditor({
   selected,
@@ -52,6 +54,8 @@ export default function WorksheetEditor({
   toggle,
   move,
   navigate,
+  onBackToReview,
+  onImportFiles,
 }: Props) {
   const orderListRef = useRef<HTMLOListElement>(null);
   const addFromBankRef = useRef<HTMLButtonElement>(null);
@@ -121,6 +125,11 @@ export default function WorksheetEditor({
         title="시험지 구성하기"
         description="문제 순서와 배치를 정하고 인쇄하세요."
       >
+        {onBackToReview && (
+          <button className={s.secondaryButton} onClick={onBackToReview}>
+            <span aria-hidden="true">←</span> 이전 검토 단계
+          </button>
+        )}
         <button
           className={s.secondaryButton}
           onClick={save}
@@ -158,7 +167,7 @@ export default function WorksheetEditor({
             </button>
             <button
               className={s.secondaryButton}
-              onClick={() => navigate("studio")}
+              onClick={onImportFiles ?? (() => navigate("studio"))}
             >
               자료 가져오기
             </button>

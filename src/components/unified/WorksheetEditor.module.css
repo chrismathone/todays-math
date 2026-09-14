@@ -299,6 +299,39 @@ label.checkField {
   scrollbar-color: #8a9dbb #dce4f0;
   padding-bottom: 4px;
 }
+.pageNavigation {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: #243d62;
+}
+.pageNavigation > span {
+  white-space: nowrap;
+  min-width: 64px;
+  text-align: center;
+  font-variant-numeric: tabular-nums;
+}
+.pageNavigation button {
+  min-height: 44px;
+  padding: 0 12px;
+  border: 1px solid #c4d1e4;
+  border-radius: 8px;
+  background: white;
+  color: #3159df;
+  white-space: nowrap;
+}
+.pageNavigation button:disabled {
+  opacity: 0.45;
+  cursor: default;
+}
+@media screen {
+  .paperViewport {
+    max-height: max(320px, calc(100dvh - 260px));
+    overflow: auto;
+    overscroll-behavior-x: contain;
+    scroll-snap-type: x proximity;
+  }
+}
 .previewScrollHint {
   display: none;
   font-weight: 400;
@@ -418,6 +451,29 @@ label.checkField {
   flex-wrap: wrap;
   gap: 6px;
   margin: 8px 0;
+}
+.choiceWrap.equalChoices {
+  display: grid;
+  grid-auto-flow: column;
+  grid-auto-columns: minmax(0, 1fr);
+}
+.equalChoices button {
+  min-width: 0;
+  padding: 0 4px;
+}
+.spacingChoices button {
+  padding: 0 2px;
+  font-size: 12px;
+}
+.choiceWrap.colorGrid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+.colorGrid .colorChoice {
+  min-width: 0;
+  padding: 0 4px;
+  justify-content: center;
+  font-size: 12px;
 }
 .colorChoice {
   display: inline-flex;

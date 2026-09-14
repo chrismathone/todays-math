@@ -32,6 +32,8 @@ export function useWorkspaceDrafts() {
     saveNow: store.saveNow,
     createDraft: store.createDraft,
     openDraft: store.openDraft,
+    renameDraft: store.renameDraft,
+    deleteDraft: store.deleteDraft,
     importDraft: store.importDraft,
   };
 }

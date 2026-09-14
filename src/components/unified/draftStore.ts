@@ -372,7 +372,10 @@ export function createWorkspaceDraftStore(
 
   // Save outgoing edits and the active selection together in one localStorage write.
   // A quota failure leaves both the durable envelope and the current editor untouched.
-  const commit = (target?: WorkspaceDraft | string) => {
+  const commit = (
+    target?: WorkspaceDraft | string,
+    mutation?: { id: string; title?: string; remove?: boolean },
+  ) => {
     if (!snapshot.hydrated) return false;
     cancelTimer();
     if (recoveryBlocked) return fail(recoveryError);
@@ -394,6 +397,16 @@ export function createWorkspaceDraftStore(
       } else if (target) nextDraft = target;
 
       const current = snapshot.draft;
+      if (mutation) {
+        const expected = known.drafts.find((draft) => draft.id === mutation.id);
+        const actual = fresh.drafts.find((draft) => draft.id === mutation.id);
+        if (!actual || draftRevision(expected) !== draftRevision(actual))
+          throw new DraftError(CONFLICT);
+        if (mutation.remove && mutation.id === current.id && dirty)
+          throw new DraftError(
+            "현재 작업에 저장하지 못한 변경이 있습니다. 작업을 저장하거나 파일로 내보낸 뒤 삭제해 주세요.",
+          );
+      }
       const previous = known.drafts.find((draft) => draft.id === current.id);
       const latest = fresh.drafts.find((draft) => draft.id === current.id);
       if (dirty && draftRevision(previous) !== draftRevision(latest))
@@ -429,12 +442,28 @@ export function createWorkspaceDraftStore(
         nextDraft = { ...target, updatedAt: new Date().toISOString() };
         put(nextDraft);
       }
+      if (mutation) {
+        const index = drafts.findIndex((draft) => draft.id === mutation.id);
+        if (mutation.remove) {
+          drafts.splice(index, 1);
+          if (nextDraft.id === mutation.id) nextDraft = blankDraft(newId());
+        } else {
+          const renamed = {
+            ...drafts[index],
+            title: mutation.title!,
+            updatedAt: new Date().toISOString(),
+          };
+          drafts[index] = renamed;
+          if (nextDraft.id === mutation.id) nextDraft = renamed;
+        }
+      }
       const activeId = drafts.some((draft) => draft.id === nextDraft.id)
         ? nextDraft.id
         : null;
       const next: DraftEnvelope = { version: 1, activeId, drafts };
       // Merely visiting or creating an untouched blank worksheet does not save a phantom draft.
       if (
+        mutation ||
         dirty ||
         (target !== undefined && (raw !== null || drafts.length > 0))
       ) {
@@ -579,6 +608,13 @@ export function createWorkspaceDraftStore(
       })),
     createDraft: () => commit(blankDraft(newId())),
     openDraft: (id: string) => commit(id),
+    renameDraft: (id: string, title: string) => {
+      const trimmed = title.trim();
+      if (!trimmed || trimmed.length > 80)
+        return fail(new DraftError("시험지 이름을 1~80자로 입력해 주세요."));
+      return commit(undefined, { id, title: trimmed });
+    },
+    deleteDraft: (id: string) => commit(undefined, { id, remove: true }),
     importDraft: (value: unknown) => {
       if (!snapshot.hydrated) return false;
       try {

@@ -26,6 +26,7 @@ import {
   figureHandles,
   hitFigureObject,
   moveFigureHandle,
+  snapFigurePoint,
 } from "./figureHandles";
 import {
   FigureLabelInput,
@@ -182,6 +183,8 @@ export function FigureEditor({
     handle?: string;
     bounds?: DOMRect;
     moved?: boolean;
+    pointer?: { clientX: number; clientY: number };
+    snapAnchor?: { x: number; y: number };
   } | null>(null);
   const original =
     originalImage ??
@@ -460,7 +463,7 @@ export function FigureEditor({
       clearTimeout(timer);
     };
   }, [svg]);
-  const point = (e: React.PointerEvent, inverse: DOMMatrix) =>
+  const point = (e: { clientX: number; clientY: number }, inverse: DOMMatrix) =>
     new DOMPoint(e.clientX, e.clientY).matrixTransform(inverse);
   const down = (e: React.PointerEvent) => {
     if (busy || e.button !== 0) return;
@@ -522,7 +525,16 @@ export function FigureEditor({
       setTool("select");
       return;
     } else {
-      drag.current = { original: svg, start, inverse, transform: "" };
+      drag.current = {
+        original: svg,
+        start,
+        inverse,
+        transform: "",
+        snapAnchor:
+          tool === "line" || tool === "arrow"
+            ? { x: e.clientX, y: e.clientY }
+            : undefined,
+      };
     }
     e.preventDefault();
     surface.current?.setPointerCapture(e.pointerId);
@@ -544,15 +556,40 @@ export function FigureEditor({
       handle,
       transform: current?.attrs.transform ?? "",
       bounds: selection.bounds,
+      // Snap in screen coordinates so rotated/transformed imported lines obey
+      // the same visible directions as newly drawn lines.
+      snapAnchor:
+        current?.type === "line" && (handle === "start" || handle === "end")
+          ? new DOMPoint(
+              Number(current.attrs[handle === "start" ? "x2" : "x1"]) || 0,
+              Number(current.attrs[handle === "start" ? "y2" : "y1"]) || 0,
+            ).matrixTransform(matrix)
+          : undefined,
     };
     e.preventDefault();
     e.stopPropagation();
     surface.current?.setPointerCapture(e.pointerId);
   };
-  const move = (e: React.PointerEvent) => {
+  const move = (e: { clientX: number; clientY: number; shiftKey: boolean }) => {
     const d = drag.current;
     if (!d) return;
-    const to = point(e, d.inverse);
+    if (d.snapAnchor && !d.id) {
+      // Adding the first object can resize the fitted canvas (the object list
+      // gains a row). Resolve the live transform so release follows the pointer.
+      const matrix = canvas.current?.querySelector("svg")?.getScreenCTM();
+      if (matrix) {
+        d.inverse = matrix.inverse();
+        d.snapAnchor = d.start.matrixTransform(matrix);
+      }
+    }
+    d.pointer = { clientX: e.clientX, clientY: e.clientY };
+    const snapped =
+      e.shiftKey && d.snapAnchor
+        ? snapFigurePoint(d.snapAnchor, { x: e.clientX, y: e.clientY })
+        : null;
+    const to = snapped
+      ? new DOMPoint(snapped.x, snapped.y).matrixTransform(d.inverse)
+      : point(e, d.inverse);
     if (Math.hypot(to.x - d.start.x, to.y - d.start.y) < 0.5 && !d.moved)
       return;
     d.moved = true;
@@ -609,7 +646,9 @@ export function FigureEditor({
     liveSvg.current = next;
     setSvg(next);
   };
-  const up = () => {
+  const up = (event: React.PointerEvent) => {
+    if (drag.current?.moved && drag.current.pointer)
+      move({ ...drag.current.pointer, shiftKey: event.shiftKey });
     const d = drag.current;
     drag.current = null;
     if (d?.moved && d.original !== liveSvg.current) {
@@ -620,6 +659,22 @@ export function FigureEditor({
       setTool("select");
     }
   };
+  useEffect(() => {
+    const modifier = (event: KeyboardEvent | Event) => {
+      if (!drag.current?.pointer) return;
+      if (event.type !== "blur" && (event as KeyboardEvent).key !== "Shift")
+        return;
+      move({ ...drag.current.pointer, shiftKey: event.type === "keydown" });
+    };
+    window.addEventListener("keydown", modifier);
+    window.addEventListener("keyup", modifier);
+    window.addEventListener("blur", modifier);
+    return () => {
+      window.removeEventListener("keydown", modifier);
+      window.removeEventListener("keyup", modifier);
+      window.removeEventListener("blur", modifier);
+    };
+  });
   const regenerate = async () => {
     if (!original || busy || !onRedraw) return;
     const controller = new AbortController();
@@ -898,6 +953,9 @@ export function FigureEditor({
                   {modKey()}+A 전체 선택 · {modKey()}+D 복제
                 </div>
                 <div>Shift+클릭 여러 요소 선택</div>
+                <div>
+                  선분·화살표 그리기 / 끝점 조절: Shift로 수평·수직·45° 고정
+                </div>
                 <div>방향키 미세 이동 · Shift로 10배</div>
                 <div>Delete 삭제 · Esc 선택 해제</div>
                 <p className="mt-1 text-muted">
@@ -942,12 +1000,14 @@ export function FigureEditor({
             </button>
             <span className="ml-auto text-muted">
               {tool === "select"
-                ? "끌어서 이동 · 주황색 점으로 모양 조절 · Shift로 방향 고정"
+                ? "끌어서 이동 · 주황색 점으로 모양 조절 · 선 끝점은 Shift로 수평·수직·45° 고정"
                 : tool === "pan"
                   ? "드래그로 화면 이동 · Ctrl+휠로 확대/축소"
                   : tool === "text"
                     ? "우측에서 글자를 정한 뒤 캔버스를 클릭하세요"
-                    : "캔버스에서 드래그해 그리세요"}
+                    : tool === "line" || tool === "arrow"
+                      ? "드래그해 그리기 · Shift로 수평·수직·45° 고정 · 놓으면 자유 이동"
+                      : "캔버스에서 드래그해 그리세요"}
             </span>
           </div>
           <div
