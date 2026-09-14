@@ -67,6 +67,14 @@ export const proxy = auth(async (req) => {
       menus: user.menus ?? [],
     };
     const allowed = accountRouteAllowed(account, req.method, pathname);
+    const bypassLegacy =
+      account.isAdmin ||
+      pathname === "/approval-pending" ||
+      pathname.startsWith("/api/account/") ||
+      (pathname === "/" && !account.menus.includes("bank"));
+    const role = user.role === "reviewer" ? "reviewer" : "director";
+    const legacyDenied =
+      !bypassLegacy && routeAccessFor(role, req.method, pathname) === "deny";
     // Record requested/denied operations without query strings, credentials or bodies.
     if (
       !pathname.startsWith("/api/auth/") &&
@@ -77,7 +85,7 @@ export const proxy = auth(async (req) => {
         userId: user.id,
         actorId: user.id,
         action: "request",
-        outcome: allowed ? "requested" : "denied",
+        outcome: allowed && !legacyDenied ? "requested" : "denied",
         details: { method: req.method, path: pathname },
       });
     if (!allowed) {
@@ -101,15 +109,7 @@ export const proxy = auth(async (req) => {
         ),
       );
     }
-    if (
-      account.isAdmin ||
-      pathname === "/approval-pending" ||
-      pathname.startsWith("/api/account/") ||
-      (pathname === "/" && !account.menus.includes("bank"))
-    )
-      return NextResponse.next();
-    const role = req.auth.user?.role === "reviewer" ? "reviewer" : "director";
-    if (routeAccessFor(role, req.method, pathname) === "deny") {
+    if (legacyDenied) {
       if (pathname.startsWith("/api/")) {
         // 화면용 리다이렉트를 API 에 주면 fetch 가 HTML 을 파싱하다 죽는다.
         return NextResponse.json(

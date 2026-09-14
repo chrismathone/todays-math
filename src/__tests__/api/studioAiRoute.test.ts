@@ -1,6 +1,7 @@
 // @vitest-environment node
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 vi.mock("server-only", () => ({}));
+vi.mock("@/lib/audit", () => ({ recordAudit: vi.fn() }));
 vi.mock("@/lib/dev-ai/figure-comparison", () => ({
   buildFigureComparisonImage: vi.fn(
     async () => "data:image/png;base64,Y29tcGFyaXNvbg==",

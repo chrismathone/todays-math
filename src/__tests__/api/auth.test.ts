@@ -13,6 +13,7 @@
 import { NextRequest } from "next/server";
 import { Prisma } from "@prisma/client";
 import { describe, expect, it, vi } from "vitest";
+vi.mock("server-only", () => ({}));
 
 import { POST as signup } from "@/app/api/auth/signup/route";
 
@@ -35,6 +36,7 @@ type MockDbUser = {
 
 vi.mock("@/lib/db", () => ({
   db: {
+    accountAuditLog: { create: vi.fn().mockResolvedValue({}) },
     user: {
       findUnique: vi.fn(
         async ({
@@ -91,6 +93,12 @@ describe("[T1.1] POST /api/auth/signup", () => {
     expect(res.status).toBe(201);
     const body = authSignupResponseSchema.parse(await res.json());
     expect(body.data.email).toBe("new-teacher@example.com");
+    expect(db.user.create).toHaveBeenCalledWith({
+      data: expect.objectContaining({
+        approvalStatus: "pending",
+        isAdmin: false,
+      }),
+    });
   });
 
   it("응답 본문에 비밀번호(해시 포함)가 노출되지 않는다", async () => {

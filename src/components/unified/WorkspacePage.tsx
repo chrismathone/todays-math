@@ -3,7 +3,6 @@ import type { BankData } from "./types";
 import type { SessionUser } from "@/lib/session";
 import { loadUnifiedBank } from "@/lib/unifiedPreview";
 import { getAccountAccess } from "@/lib/accountAccess";
-import ActivityReporter from "@/components/account/ActivityReporter";
 
 /** Shared authenticated entry for the main page and existing /studio links. */
 export default async function WorkspacePage({ user }: { user: SessionUser }) {
@@ -34,7 +33,6 @@ export default async function WorkspacePage({ user }: { user: SessionUser }) {
   }
   return (
     <>
-      <ActivityReporter userId={user.id} />
       <UnifiedWorkspace
         key={user.id}
         initialData={initialData}

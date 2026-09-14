@@ -43,7 +43,9 @@ describe.each([
   });
 
   it("redirects an authenticated director to the callback destination", async () => {
-    auth.mockResolvedValue({ user: { id: "director", role: "director" } });
+    auth.mockResolvedValue({
+      user: { id: "director", role: "director", approvalStatus: "approved" },
+    });
     await expect(
       Page({
         searchParams: Promise.resolve({
@@ -54,14 +56,18 @@ describe.each([
   });
 
   it("redirects an authenticated reviewer to review", async () => {
-    auth.mockResolvedValue({ user: { id: "reviewer", role: "reviewer" } });
+    auth.mockResolvedValue({
+      user: { id: "reviewer", role: "reviewer", approvalStatus: "approved" },
+    });
     await expect(
       Page({ searchParams: Promise.resolve({ callbackUrl: "/tests/new" }) }),
     ).rejects.toThrow("redirect:/review");
   });
 
   it("normalizes unsafe destinations before redirecting an authenticated user", async () => {
-    auth.mockResolvedValue({ user: { id: "director", role: "director" } });
+    auth.mockResolvedValue({
+      user: { id: "director", role: "director", approvalStatus: "approved" },
+    });
     await expect(
       Page({
         searchParams: Promise.resolve({ callbackUrl: "https://evil.example" }),

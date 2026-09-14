@@ -6,7 +6,7 @@ import {
   accountUpdateSchema,
   ALL_WORKSPACE_MENUS,
 } from "@/contracts/accountAccess.contract";
-import { auditData } from "@/lib/audit";
+import { auditData, recordAudit } from "@/lib/audit";
 
 type Context = { params: Promise<{ id: string }> };
 const failure = (message: string, status: number) =>
@@ -34,6 +34,13 @@ export async function GET(request: Request, context: Context) {
     where: { id, deletedAt: null },
     select: managedAccountSelect,
   });
+  if (user)
+    await recordAudit({
+      userId: id,
+      actorId: access.account!.id,
+      action: "admin.account_view",
+      outcome: "success",
+    });
   return user
     ? Response.json(
         { data: managedAccount(user) },

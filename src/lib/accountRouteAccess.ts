@@ -39,7 +39,10 @@ export function accountRouteAllowed(
   )
     return any("studio");
   if (path === "/api/studio/overview") return any("home", "teaching");
-  if (under(path, "/api/problems/transform"))
+  if (
+    under(path, "/api/problems/transform") ||
+    path === "/api/problems/generate"
+  )
     return any("bank") && any("studio");
   if (
     under(path, "/api/studio/teaching") ||

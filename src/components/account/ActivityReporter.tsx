@@ -1,5 +1,6 @@
 "use client";
 import { useEffect } from "react";
+import { usePathname } from "next/navigation";
 type EventRow = {
   id: string;
   action: "click" | "change" | "submit" | "navigate" | "print";
@@ -9,6 +10,10 @@ type EventRow = {
 
 /** Records actions and field labels only. Never reads input values or form payloads. */
 export default function ActivityReporter({ userId }: { userId: string }) {
+  const pathname = usePathname();
+  useEffect(() => {
+    window.dispatchEvent(new Event("account:navigate"));
+  }, [pathname]);
   useEffect(() => {
     const queue: EventRow[] = [];
     let timer: ReturnType<typeof setTimeout> | undefined;
@@ -83,7 +88,7 @@ export default function ActivityReporter({ userId }: { userId: string }) {
     const hide = () => {
       clearTimeout(timer);
       for (let offset = 0; offset < queue.length; offset += 50)
-        navigator.sendBeacon(
+        navigator.sendBeacon?.(
           "/api/account/activity",
           new Blob(
             [
@@ -102,6 +107,7 @@ export default function ActivityReporter({ userId }: { userId: string }) {
     document.addEventListener("submit", submit, true);
     window.addEventListener("hashchange", navigate);
     window.addEventListener("popstate", navigate);
+    window.addEventListener("account:navigate", navigate);
     window.addEventListener("beforeprint", print);
     window.addEventListener("pagehide", hide);
     return () => {
@@ -112,6 +118,7 @@ export default function ActivityReporter({ userId }: { userId: string }) {
       document.removeEventListener("submit", submit, true);
       window.removeEventListener("hashchange", navigate);
       window.removeEventListener("popstate", navigate);
+      window.removeEventListener("account:navigate", navigate);
       window.removeEventListener("beforeprint", print);
       window.removeEventListener("pagehide", hide);
     };

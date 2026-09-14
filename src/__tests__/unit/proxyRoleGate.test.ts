@@ -32,6 +32,8 @@ vi.mock("@/lib/auth", () => ({
     handler(Object.assign(request, { auth: session() })),
 }));
 
+vi.mock("@/lib/audit", () => ({ recordAudit: vi.fn() }));
+import { ALL_WORKSPACE_MENUS } from "@/contracts/accountAccess.contract";
 import { proxy } from "@/proxy";
 
 function req(method: string, path: string) {
@@ -96,7 +98,14 @@ describe("역할 게이트 관문", () => {
     }
   });
   it("keeps the signed-in reviewer at the review console when visiting the new main", async () => {
-    session.mockReturnValue({ user: { id: "u2", role: "reviewer" } });
+    session.mockReturnValue({
+      user: {
+        id: "u2",
+        role: "reviewer",
+        approvalStatus: "approved",
+        menus: ALL_WORKSPACE_MENUS,
+      },
+    });
     const response = await run("GET", "/");
     expect(new URL(response.headers.get("location")!).pathname).toBe("/review");
   });
@@ -106,7 +115,17 @@ describe("역할 게이트 관문", () => {
     "/apple-icon.png",
     "/brand/today-math-mark.svg",
   ])("로그인 전과 검수 계정 모두 브랜드 이미지 %s를 읽는다", async (asset) => {
-    for (const identity of [null, { user: { id: "u2", role: "reviewer" } }]) {
+    for (const identity of [
+      null,
+      {
+        user: {
+          id: "u2",
+          role: "reviewer",
+          approvalStatus: "approved",
+          menus: ALL_WORKSPACE_MENUS,
+        },
+      },
+    ]) {
       session.mockReturnValue(identity);
       for (const method of ["GET", "HEAD"]) {
         const res = await run(method, asset);
@@ -116,7 +135,14 @@ describe("역할 게이트 관문", () => {
     }
   });
   it("브랜드 공개 경로가 변경 요청이나 비슷한 보호 경로를 열지 않는다", async () => {
-    session.mockReturnValue({ user: { id: "u2", role: "reviewer" } });
+    session.mockReturnValue({
+      user: {
+        id: "u2",
+        role: "reviewer",
+        approvalStatus: "approved",
+        menus: ALL_WORKSPACE_MENUS,
+      },
+    });
     expect((await run("POST", "/brand/today-math-mark.svg")).status).toBe(307);
     expect((await run("GET", "/brand-admin")).status).toBe(307);
   });
@@ -128,19 +154,39 @@ describe("역할 게이트 관문", () => {
   });
 
   it("원장은 지나간다", async () => {
-    session.mockReturnValue({ user: { id: "u1", role: "director" } });
+    session.mockReturnValue({
+      user: {
+        id: "u1",
+        role: "director",
+        approvalStatus: "approved",
+        menus: ALL_WORKSPACE_MENUS,
+      },
+    });
     const res = await run("POST", "/api/tests/generate");
     expect(res.status).toBe(200);
   });
 
   it("🔴 role 이 없는 토큰은 원장이다 — 기존 로그인이 잠기면 안 된다", async () => {
-    session.mockReturnValue({ user: { id: "u1" } });
+    session.mockReturnValue({
+      user: {
+        id: "u1",
+        approvalStatus: "approved",
+        menus: ALL_WORKSPACE_MENUS,
+      },
+    });
     const res = await run("POST", "/api/tests/generate");
     expect(res.status).toBe(200);
   });
 
   it("🔴 검수 계정이 원장 API 를 부르면 403 **JSON** 이다", async () => {
-    session.mockReturnValue({ user: { id: "u2", role: "reviewer" } });
+    session.mockReturnValue({
+      user: {
+        id: "u2",
+        role: "reviewer",
+        approvalStatus: "approved",
+        menus: ALL_WORKSPACE_MENUS,
+      },
+    });
     const res = await run("POST", "/api/tests/generate");
     expect(res.status).toBe(403);
     expect(res.headers.get("content-type")).toContain("application/json");
@@ -149,14 +195,28 @@ describe("역할 게이트 관문", () => {
   });
 
   it("🔴 검수 계정이 원장 화면에 들어가면 검수 콘솔로 되돌린다", async () => {
-    session.mockReturnValue({ user: { id: "u2", role: "reviewer" } });
+    session.mockReturnValue({
+      user: {
+        id: "u2",
+        role: "reviewer",
+        approvalStatus: "approved",
+        menus: ALL_WORKSPACE_MENUS,
+      },
+    });
     const res = await run("GET", "/classes");
     expect(res.status).toBe(307);
     expect(new URL(res.headers.get("location") ?? "").pathname).toBe("/review");
   });
 
   it("검수 계정도 검수에 필요한 것은 지나간다", async () => {
-    session.mockReturnValue({ user: { id: "u2", role: "reviewer" } });
+    session.mockReturnValue({
+      user: {
+        id: "u2",
+        role: "reviewer",
+        approvalStatus: "approved",
+        menus: ALL_WORKSPACE_MENUS,
+      },
+    });
     for (const [m, p] of [
       ["GET", "/review"],
       ["GET", "/api/problems"],
@@ -169,7 +229,14 @@ describe("역할 게이트 관문", () => {
   });
 
   it("되돌릴 때 원래 질의 문자열을 끌고 가지 않는다", async () => {
-    session.mockReturnValue({ user: { id: "u2", role: "reviewer" } });
+    session.mockReturnValue({
+      user: {
+        id: "u2",
+        role: "reviewer",
+        approvalStatus: "approved",
+        menus: ALL_WORKSPACE_MENUS,
+      },
+    });
     const res = await run("GET", "/tests/new?classId=c1&grade=3");
     expect(new URL(res.headers.get("location") ?? "").search).toBe("");
   });
