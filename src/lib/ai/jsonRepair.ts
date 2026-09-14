@@ -118,6 +118,12 @@ function escapeInsideStrings(text: string): string {
     if (ch === "\r") {
       continue; // "\r\n"의 \r은 버리고 다음 "\n"만 \n으로 남긴다.
     }
+    if (ch.charCodeAt(0) < 0x20) {
+      // Literal tabs and other control characters invalidate JSON strings too.
+      // Escape them without deleting source text or changing the JSON structure.
+      result += `\\u${ch.charCodeAt(0).toString(16).padStart(4, "0")}`;
+      continue;
+    }
     result += ch;
   }
 
