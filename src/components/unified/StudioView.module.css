@@ -1460,22 +1460,6 @@
   color: var(--studio-muted);
   font-size: var(--text-body, 14px);
 }
-.previewButton {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 8px;
-  width: 100%;
-  padding: 10px 12px;
-  background: #edf2ff;
-  border: 1px solid #b8c8f7;
-  border-radius: 6px;
-  color: #2448bb;
-  font-weight: 600;
-}
-.previewButton:hover {
-  background: #dfe8ff;
-}
 .actionBar {
   position: static;
   z-index: 5;
