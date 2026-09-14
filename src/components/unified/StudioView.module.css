@@ -351,6 +351,13 @@
   background: #2445bb;
   border-color: #2445bb;
 }
+/* 남은 일은 버튼 밖에 적는다 — 버튼 안에 넣으면 공유 상자의 nowrap 이 풀려 화살표가 내려간다. */
+.buttonHint {
+  color: var(--studio-muted);
+  font-size: var(--text-body, 14px);
+  font-weight: 600;
+  white-space: nowrap;
+}
 .secondaryButton {
   background: white;
   color: var(--studio-ink);
@@ -1211,7 +1218,8 @@
   display: flex;
   flex-direction: column;
   gap: 8px;
-  max-height: 210px;
+  /* 화면이 길면 목록이 그만큼 늘어난다 — 210px 고정이던 때는 아래가 비어 있었다. */
+  max-height: clamp(210px, 38vh, 560px);
   padding: 3px;
   margin: 14px -3px;
   overflow: auto;

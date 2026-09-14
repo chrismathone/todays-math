@@ -204,6 +204,42 @@ describe("Studio AI review controls", () => {
     );
     expect(screen.queryByRole("alert")).not.toBeInTheDocument();
   });
+  it("locks both doors to OCR while a crop job is still running", async () => {
+    await open();
+    fireEvent.click(screen.getByRole("button", { name: "페이지 자동 인식" }));
+    await waitFor(() =>
+      expect(
+        screen.getByRole("button", { name: "다음: OCR · 디지털화" }),
+      ).toBeEnabled(),
+    );
+    let release: (() => void) | undefined;
+    respond = (request) =>
+      new Promise<Response>((resolve) => {
+        release = () => resolve(normal(request));
+      });
+    // 쪽이 아니라 문항 작업을 돌린다. 옛 조건(recognizingPage)은 쪽만 보므로 이 자리라야
+    // 관문을 빼면 시험이 빨개진다 — 쪽 작업으로 쓴 첫 판은 변이 시험에서 그대로 통과했다.
+    fireEvent.click(screen.getByRole("button", { name: "그림 다시 찾기" }));
+    // 자른 문제가 이미 있는데도, 아직 도는 작업이 있으면 두 문 모두 잠겨야 한다.
+    await waitFor(() =>
+      expect(
+        screen.getByRole("button", { name: "다음: OCR · 디지털화" }),
+      ).toBeDisabled(),
+    );
+    expect(
+      screen.getByRole("button", { name: "OCR · 디지털화로 이동" }),
+    ).toBeDisabled();
+    expect(screen.getByText(/남음$/)).toBeInTheDocument();
+    await act(async () => {
+      release?.();
+    });
+    await waitFor(() =>
+      expect(
+        screen.getByRole("button", { name: "다음: OCR · 디지털화" }),
+      ).toBeEnabled(),
+    );
+    expect(screen.queryByText(/남음$/)).not.toBeInTheDocument();
+  });
   it("imports without a paid request, reviews recognized text and sends edits to the solution request", async () => {
     const { onAdd } = await open();
     expect(posts).toEqual([]);

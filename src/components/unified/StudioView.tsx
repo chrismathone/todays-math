@@ -1331,6 +1331,19 @@ export default function StudioView({
     (crop) =>
       crop.content.trim() && (crop.figures ?? []).every((figure) => figure.svg),
   ).length;
+  // 다음 단계로 넘어가기 전에 남은 일. 실패·취소는 studioAi.running 에 없으므로 여기서 멈추지 않는다.
+  const busyPages =
+    studioAi.pageProgress.queued + studioAi.pageProgress.running;
+  const busyCrops = (studioAi.cropJobs ?? []).filter((job) =>
+    ["queued", "running"].includes(job.state),
+  ).length;
+  const remainingLabel = [
+    busyPages ? `${busyPages}쪽` : "",
+    busyCrops ? `문항 ${busyCrops}개` : "",
+    figurePending.length ? `도형 ${figurePending.length}개` : "",
+  ]
+    .filter(Boolean)
+    .join(" · ");
 
   const detectedGrade = currentSource
     ? resolveStudioGrade(currentSource, sourceJobs)
@@ -2348,6 +2361,8 @@ export default function StudioView({
                           ? "인식 중"
                           : "대기 중"}
                       </span>
+                    ) : figurePending.some((job) => job.cropId === crop.id) ? (
+                      <span className={styles.draftBadge}>도형 생성 중</span>
                     ) : crop.added ? (
                       <span className={styles.addedBadge}>담음</span>
                     ) : crop.reviewed ? (
@@ -2468,6 +2483,12 @@ export default function StudioView({
                 <button
                   type="button"
                   className={styles.previewButton}
+                  disabled={studioAi.running}
+                  title={
+                    studioAi.running
+                      ? "자동 인식과 도형 생성이 모두 끝나면 넘어갈 수 있습니다."
+                      : undefined
+                  }
                   onClick={() => setStep("review")}
                 >
                   OCR · 디지털화로 이동 <Icon name="arrow" />
@@ -2643,14 +2664,24 @@ export default function StudioView({
         </div>
         <div className={styles.outputActions}>
           {step === "crop" ? (
-            <button
-              type="button"
-              className={styles.primaryButton}
-              disabled={!crops.length || recognizingPage}
-              onClick={digitizeAll}
-            >
-              다음: OCR · 디지털화 <Icon name="arrow" />
-            </button>
+            <>
+              {studioAi.running && remainingLabel ? (
+                <span className={styles.buttonHint}>{remainingLabel} 남음</span>
+              ) : null}
+              <button
+                type="button"
+                className={styles.primaryButton}
+                disabled={!crops.length || recognizingPage || studioAi.running}
+                title={
+                  studioAi.running
+                    ? "자동 인식과 도형 생성이 모두 끝나면 넘어갈 수 있습니다."
+                    : undefined
+                }
+                onClick={digitizeAll}
+              >
+                다음: OCR · 디지털화 <Icon name="arrow" />
+              </button>
+            </>
           ) : (
             <>
               <button
