@@ -47,6 +47,14 @@ had no document-level horizontal overflow. Their screenshots/reports are under
 `.qa-artifacts/mathgen-integration/`. Existing tier-bench tracing warnings and the
 Prisma config deprecation warning are unchanged.
 
+Final engine/export integration added a signed Vercel Python function while retaining
+local subprocess execution. **17 HTTP integration tests and 4 Python process tests**
+verified actual SVG/HWPX output, signature rejection/expiry, cancellation and bounded
+requests/results. **11 worksheet browser tests passed** after integration, including
+actual HWPX/PDF downloads, figure editor controls, pagination and mobile layout. Combined
+with Studio's 14 browser tests, the two focused browser suites cover **25 passing cases**.
+Deployment configuration is documented in [AI setup](../dev-subscription-ai.md).
+
 Source scope: the live source currently enables digitization only. Its variant
 dialog is a dormant/mock flow, and DOCX is disabled; this migration does not present
 those as functioning generators. Existing today-math Auth.js, bank and worksheet
