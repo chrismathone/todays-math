@@ -11,7 +11,6 @@ import { ProblemBody } from "./ProblemBody";
 import { ProblemHeader } from "./ProblemMeta";
 
 import type { PrintTemplateProps } from "../types";
-import { ExamDetails } from "../ExamDetails";
 
 // Preserve the school-table template; raw math/figures use the shared unified renderer.
 const tdLabel = (w?: number): CSSProperties => ({
@@ -149,7 +148,9 @@ export function JeongtongTemplate({
                 <td style={tdLabel(60)}>학 년</td>
                 <td style={tdVal(50)}>{meta.grade ?? "2"}</td>
                 <td style={tdLabel(70)}>과 목</td>
-                <td style={tdVal(undefined, true)}>{meta.subject}</td>
+                <td style={tdVal(undefined, true)}>
+                  {[meta.subject, meta.semester].filter(Boolean).join(" · ")}
+                </td>
               </tr>
               <tr style={{ height: 32 }}>
                 <td style={tdLabel()}>일 시</td>
@@ -251,8 +252,6 @@ export function JeongtongTemplate({
       )}
 
       {/* 본문 */}
-      {isFirstPage && <ExamDetails meta={meta} options={options} />}
-
       <BodyContainer
         solvingArea={options.solvingArea}
         columns={columns}

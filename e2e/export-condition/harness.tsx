@@ -55,6 +55,8 @@ const selected = [
 ];
 function Harness() {
   const params = new URLSearchParams(location.search);
+  const [title, setTitle] = useState("조건 상자 검증");
+  const [meta, setMeta] = useState({ ...DEFAULT_PRINT_META });
   const [notice, setNotice] = useState("");
   const [options, setOptions] = useState<PrintOptions>({
     ...DEFAULT_PRINT_OPTIONS,
@@ -82,14 +84,15 @@ function Harness() {
       </div>
       <WorksheetEditor
         selected={selected}
-        title="조건 상자 검증"
+        title={title}
         columns={options.columns}
         answers={false}
         savedAt=""
         printOptions={options}
-        printMeta={DEFAULT_PRINT_META}
+        printMeta={meta}
+        setPrintMeta={(patch) => setMeta((old) => ({ ...old, ...patch }))}
         setPrintOptions={(patch) => setOptions((old) => ({ ...old, ...patch }))}
-        setTitle={noop}
+        setTitle={setTitle}
         setColumns={noop}
         setAnswers={noop}
         save={() => setNotice("검증용 저장 알림입니다.")}
