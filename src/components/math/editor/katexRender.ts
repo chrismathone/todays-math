@@ -19,7 +19,7 @@
  * 함정(§2-17) 을 구조적으로 차단.
  */
 import katex from "katex";
-import { cleanMalformedLatex } from "./textPreprocess";
+import { applyMathInnerNormalization } from "./textPreprocess";
 
 const KATEX_METRIC_WARN_RE = /No character metrics for/;
 
@@ -75,7 +75,10 @@ export const renderKatexSafe = (tex: string, displayMode: boolean): string => {
       .replace(/\\([dt]?frac)\s*\{([^{}]*)\}\s*\{([^{}]*)\}/g,
         (_match, command: string, numerator: string, denominator: string) =>
           `\\${command}{${numerator.trim() ? numerator : "\\square"}}{${denominator.trim() ? denominator : "\\square"}}`);
-    const base = cleanMalformedLatex(placeholders).replace(/(?<!\\)\$/g, "");
+    // Normalize the visible math without changing the editor's raw LaTeX token.
+    // This preserves the source's full-size fractions and geometry typography
+    // while opening a document remains a lossless operation.
+    const base = applyMathInnerNormalization(placeholders).replace(/(?<!\\)\$/g, "");
     let html = tryRender(base, displayMode);
     if (!html.includes("katex-error")) return html;
     // 2차 — 공격적 정리 후 재시도.

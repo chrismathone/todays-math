@@ -359,12 +359,12 @@ test("manual mobile crop and source fraction rendering without horizontal overfl
   await card(page, 1)
     .getByRole("button", { name: "문자 인식", exact: true })
     .click();
-  await expect(card(page, 1).locator("annotation").first()).toContainText(
-    String.raw`2\frac{1}{3}`,
+  await expect(card(page, 1).locator(".katex").first()).toHaveAttribute(
+    "data-export-tex", /2%5Cfrac%7B1%7D%7B3%7D/,
   );
   await page.getByRole("combobox", { name: "시험지 학년" }).selectOption("중1");
-  await expect(card(page, 1).locator("annotation").first()).toContainText(
-    String.raw`2\frac{1}{3}`,
+  await expect(card(page, 1).locator(".katex").first()).toHaveAttribute(
+    "data-export-tex", /2%5Cfrac%7B1%7D%7B3%7D/,
   );
   expect(
     await page.evaluate(
