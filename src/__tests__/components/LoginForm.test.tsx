@@ -5,7 +5,13 @@
  * 대응 계약: src/contracts/auth.contract.ts
  * 디자인: docs/planning/05-design-system.md §8.6 S-01
  */
-import { render, screen, waitFor } from "@testing-library/react";
+import {
+  act,
+  fireEvent,
+  render,
+  screen,
+  waitFor,
+} from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { renderToString } from "react-dom/server";
 import { beforeEach, describe, expect, it, vi } from "vitest";
@@ -14,6 +20,8 @@ import { LoginForm } from "@/components/auth/LoginForm";
 import { SignupForm } from "@/components/auth/SignupForm";
 import { normalizeCallbackUrl, requestedCallbackUrl } from "@/lib/callbackUrl";
 import { MOCK_EXISTING_SIGNUP_EMAIL } from "@/mocks/data";
+import { http, HttpResponse } from "msw";
+import { server } from "@/mocks/server";
 
 const signIn = vi.hoisted(() => vi.fn());
 const push = vi.hoisted(() => vi.fn());
@@ -99,7 +107,7 @@ describe("[T1.2] LoginForm", () => {
   it("가입 전환 링크가 /signup 을 가리킨다", () => {
     render(<LoginForm />);
 
-    expect(screen.getByRole("link", { name: "가입" })).toHaveAttribute(
+    expect(screen.getByRole("link", { name: "회원가입" })).toHaveAttribute(
       "href",
       "/signup",
     );
@@ -113,7 +121,10 @@ describe("[T1.2] LoginForm", () => {
     expect(
       screen.queryByRole("button", { name: /구글/ }),
     ).not.toBeInTheDocument();
-    expect(screen.getAllByRole("button")).toHaveLength(1);
+    expect(screen.getAllByRole("button")).toHaveLength(2);
+    expect(
+      screen.getByRole("button", { name: "비밀번호 보기" }),
+    ).toBeInTheDocument();
   });
 
   it("잘못된 이메일은 검증 에러를 보여 주고 제출하지 않는다", async () => {
@@ -224,7 +235,7 @@ describe("[T1.2] SignupForm", () => {
     );
   });
 
-  it("가입 성공 후 credentials 로그인하고 /onboarding 으로 이동한다", async () => {
+  it("가입 성공 후 credentials 로그인하고 / 로 이동한다", async () => {
     const user = userEvent.setup();
     signIn.mockResolvedValue({
       ok: true,
@@ -237,7 +248,7 @@ describe("[T1.2] SignupForm", () => {
     await user.type(screen.getByLabelText("이메일"), "new-teacher@example.com");
     await user.type(screen.getByLabelText("비밀번호"), "password123");
     await user.type(screen.getByLabelText("이름"), "김원장");
-    await user.click(screen.getByRole("button", { name: "가입" }));
+    await user.click(screen.getByRole("button", { name: "가입하고 시작하기" }));
 
     await waitFor(() => {
       expect(signIn).toHaveBeenCalledWith(
@@ -248,7 +259,7 @@ describe("[T1.2] SignupForm", () => {
           redirect: false,
         }),
       );
-      expect(push).toHaveBeenCalledWith("/onboarding");
+      expect(push).toHaveBeenCalledWith("/");
     });
   });
 
@@ -262,7 +273,7 @@ describe("[T1.2] SignupForm", () => {
     );
     await user.type(screen.getByLabelText("비밀번호"), "password123");
     await user.type(screen.getByLabelText("이름"), "김원장");
-    await user.click(screen.getByRole("button", { name: "가입" }));
+    await user.click(screen.getByRole("button", { name: "가입하고 시작하기" }));
 
     expect(
       await screen.findByText("이미 가입된 이메일입니다."),
@@ -277,9 +288,231 @@ describe("[T1.2] SignupForm", () => {
 
     await user.type(screen.getByLabelText("이메일"), "new-teacher@example.com");
     await user.type(screen.getByLabelText("비밀번호"), "password123");
-    await user.click(screen.getByRole("button", { name: "가입" }));
+    await user.click(screen.getByRole("button", { name: "가입하고 시작하기" }));
 
     expect(await screen.findByText("이름을 입력해주세요.")).toBeInTheDocument();
+    expect(signIn).not.toHaveBeenCalled();
+  });
+});
+
+describe("auth recovery and accessibility", () => {
+  beforeEach(() => {
+    signIn.mockReset();
+    push.mockReset();
+    refresh.mockReset();
+  });
+
+  async function fillCredentials() {
+    const user = userEvent.setup();
+    await user.type(screen.getByLabelText("이메일"), "auth-qa@example.com");
+    await user.type(screen.getByLabelText("비밀번호"), "password123");
+    if (screen.queryByLabelText("이름"))
+      await user.type(screen.getByLabelText("이름"), "김선생");
+    return user;
+  }
+
+  it.each(["login", "signup"] as const)(
+    "%s SSR uses POST and disables submission until hydration",
+    (mode) => {
+      const container = document.createElement("div");
+      container.innerHTML = renderToString(
+        mode === "signup" ? <SignupForm /> : <LoginForm />,
+      );
+      expect(container.querySelector("form")).toHaveAttribute("method", "post");
+      expect(container.querySelector('button[type="submit"]')).toBeDisabled();
+      expect(container.querySelector('input[name="password"]')).toHaveAttribute(
+        "type",
+        "password",
+      );
+    },
+  );
+
+  it("preserves callback query and hash in both account-switch links", () => {
+    const callbackUrl = "/tests/new?classId=a#draft";
+    const { unmount } = render(<LoginForm callbackUrl={callbackUrl} />);
+    const signup = new URL(
+      screen.getByRole("link", { name: "회원가입" }).getAttribute("href")!,
+      "http://localhost",
+    );
+    expect(signup.pathname).toBe("/signup");
+    expect(signup.searchParams.get("callbackUrl")).toBe(callbackUrl);
+    unmount();
+    render(<SignupForm callbackUrl={callbackUrl} />);
+    const login = new URL(
+      screen.getByRole("link", { name: "로그인" }).getAttribute("href")!,
+      "http://localhost",
+    );
+    expect(login.pathname).toBe("/login");
+    expect(login.searchParams.get("callbackUrl")).toBe(callbackUrl);
+  });
+
+  it("uses a safe root for malicious callback links and signup completion", async () => {
+    signIn.mockResolvedValue({ ok: true });
+    render(<SignupForm callbackUrl="https://evil.example/password" />);
+    const user = await fillCredentials();
+    expect(screen.getByRole("link", { name: "로그인" })).toHaveAttribute(
+      "href",
+      "/login",
+    );
+    await user.click(screen.getByRole("button", { name: "가입하고 시작하기" }));
+    await waitFor(() => expect(push).toHaveBeenCalledWith("/"));
+  });
+
+  it("reveals the password through a keyboard-accessible non-submit button", async () => {
+    render(<LoginForm />);
+    const user = userEvent.setup();
+    await user.tab();
+    expect(screen.getByLabelText("이메일")).toHaveFocus();
+    await user.tab();
+    expect(screen.getByLabelText("비밀번호")).toHaveFocus();
+    await user.tab();
+    expect(screen.getByRole("button", { name: "비밀번호 보기" })).toHaveFocus();
+    await user.keyboard(" ");
+    expect(screen.getByLabelText("비밀번호")).toHaveAttribute("type", "text");
+    expect(
+      screen.getByRole("button", { name: "비밀번호 숨기기" }),
+    ).toHaveAttribute("aria-pressed", "true");
+    await user.keyboard(" ");
+    expect(screen.getByLabelText("비밀번호")).toHaveAttribute(
+      "type",
+      "password",
+    );
+    expect(signIn).not.toHaveBeenCalled();
+  });
+
+  it("focuses invalid fields and exposes field errors to assistive technology", async () => {
+    render(<SignupForm />);
+    fireEvent.submit(
+      screen
+        .getByRole("button", { name: "가입하고 시작하기" })
+        .closest("form")!,
+    );
+    await screen.findByRole("alert");
+    const email = screen.getByLabelText("이메일");
+    expect(email).toHaveAttribute("aria-invalid", "true");
+    expect(email).toHaveAccessibleDescription(
+      "이메일 형식이 올바르지 않습니다.",
+    );
+    expect(email).toHaveFocus();
+    expect(signIn).not.toHaveBeenCalled();
+  });
+
+  it("keeps a synchronous submission lock through pending sign-in and navigation", async () => {
+    let resolveSignIn!: (value: { ok: boolean }) => void;
+    signIn.mockImplementation(
+      () =>
+        new Promise((resolve) => {
+          resolveSignIn = resolve;
+        }),
+    );
+    render(<LoginForm />);
+    await fillCredentials();
+    const form = screen
+      .getByRole("button", { name: "로그인" })
+      .closest("form")!;
+    fireEvent.submit(form);
+    fireEvent.submit(form);
+    await waitFor(() => expect(signIn).toHaveBeenCalledTimes(1));
+    expect(screen.getByRole("button", { name: "로그인 중…" })).toBeDisabled();
+    await act(async () => {
+      resolveSignIn({ ok: true });
+    });
+    expect(
+      screen.getByRole("button", { name: "작업실로 이동 중…" }),
+    ).toBeDisabled();
+    fireEvent.submit(form);
+    expect(signIn).toHaveBeenCalledTimes(1);
+  });
+
+  it("catches a rejected sign-in, shows a form alert, and allows retry", async () => {
+    signIn
+      .mockRejectedValueOnce(new Error("network offline"))
+      .mockResolvedValueOnce({ ok: true });
+    render(<LoginForm />);
+    const user = await fillCredentials();
+    await user.click(screen.getByRole("button", { name: "로그인" }));
+    expect(await screen.findByRole("alert")).toHaveTextContent(
+      "연결이 원활하지 않아요",
+    );
+    await user.click(screen.getByRole("button", { name: "로그인" }));
+    await waitFor(() => expect(push).toHaveBeenCalledWith("/"));
+    expect(signIn).toHaveBeenCalledTimes(2);
+  });
+
+  it.each(["credentials", "network"])(
+    "retries only login after signup succeeds but %s sign-in fails",
+    async (failure) => {
+      const signup = vi.fn();
+      server.use(
+        http.post("/api/auth/signup", () => {
+          signup();
+          return HttpResponse.json({ data: {} }, { status: 201 });
+        }),
+      );
+      if (failure === "network")
+        signIn.mockRejectedValueOnce(new Error("offline"));
+      else
+        signIn.mockResolvedValueOnce({ ok: true, error: "CredentialsSignin" });
+      signIn.mockResolvedValueOnce({ ok: true });
+      const callbackUrl = "/tests/new?classId=abc#draft";
+      render(<SignupForm callbackUrl={callbackUrl} />);
+      const user = await fillCredentials();
+      await user.click(
+        screen.getByRole("button", { name: "가입하고 시작하기" }),
+      );
+      expect(await screen.findByRole("alert")).toHaveTextContent(
+        "가입은 완료됐지만 로그인하지 못했어요",
+      );
+      expect(screen.getByRole("status")).toHaveTextContent(
+        "계정이 만들어졌어요",
+      );
+      expect(screen.getByLabelText("이메일")).toHaveAttribute("readonly");
+      expect(screen.getByLabelText("비밀번호")).toHaveAttribute(
+        "autocomplete",
+        "current-password",
+      );
+      await user.click(screen.getByRole("button", { name: "다시 로그인" }));
+      await waitFor(() => expect(push).toHaveBeenCalledWith(callbackUrl));
+      expect(signup).toHaveBeenCalledTimes(1);
+      expect(signIn).toHaveBeenCalledTimes(2);
+    },
+  );
+
+  it("catches signup transport and malformed server failures without leaking technical details", async () => {
+    server.use(http.post("/api/auth/signup", () => HttpResponse.error()));
+    render(<SignupForm />);
+    const user = await fillCredentials();
+    await user.click(screen.getByRole("button", { name: "가입하고 시작하기" }));
+    expect(await screen.findByRole("alert")).toHaveTextContent(
+      "연결이 원활하지 않아요",
+    );
+    server.use(
+      http.post(
+        "/api/auth/signup",
+        () => new HttpResponse("invalid upstream", { status: 502 }),
+      ),
+    );
+    await user.click(screen.getByRole("button", { name: "가입하고 시작하기" }));
+    await waitFor(() =>
+      expect(screen.getByRole("alert")).toHaveTextContent(
+        "요청을 처리할 수 없습니다",
+      ),
+    );
+    expect(screen.getByLabelText("이메일")).not.toHaveAttribute("aria-invalid");
+    expect(signIn).not.toHaveBeenCalled();
+  });
+
+  it("rejects signup passwords over the existing UTF-8 bcrypt limit", async () => {
+    render(<SignupForm />);
+    const user = await fillCredentials();
+    await user.clear(screen.getByLabelText("비밀번호"));
+    await user.type(screen.getByLabelText("비밀번호"), "가".repeat(25));
+    await user.click(screen.getByRole("button", { name: "가입하고 시작하기" }));
+    expect(
+      await screen.findByText(
+        "비밀번호는 UTF-8 기준 72바이트를 초과할 수 없습니다.",
+      ),
+    ).toBeInTheDocument();
     expect(signIn).not.toHaveBeenCalled();
   });
 });
