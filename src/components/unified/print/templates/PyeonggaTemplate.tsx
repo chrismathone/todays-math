@@ -7,7 +7,7 @@ import type { ProblemReview } from "../types";
 import { bodyFontSize } from "../geometry";
 import { PAPER_COLORS, A4_DIM } from "../tokens";
 import { BodyContainer } from "./BodyContainer";
-import { QuestionNumber } from "./ProblemMeta";
+import { ProblemHeader } from "./ProblemMeta";
 import { ProblemBody } from "./ProblemBody";
 import type { PrintTemplateProps } from "../types";
 import { ExamDetails } from "../ExamDetails";
@@ -40,15 +40,12 @@ export function PyeonggaTemplate({
         }}
       >
         {/* 배점은 ProblemBody.repositionScore 가 발문 끝에 통일(§45) — 번호 행엔 표시 X. */}
-        <div
-          style={{ display: "flex", alignItems: "baseline", marginBottom: 6 }}
-        >
-          <QuestionNumber
-            template="pyeongga"
-            num={num}
-            accent={options.color}
-          />
-        </div>
+        <ProblemHeader
+          num={num}
+          problem={p.variant}
+          options={options}
+          accent={options.color}
+        />
         <ProblemBody problem={p.variant} fontSize={fs} options={options} />
       </div>
     );

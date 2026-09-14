@@ -7,7 +7,7 @@ import type { ProblemReview } from "../types";
 import { bodyFontSize } from "../geometry";
 import { PAPER_COLORS, A4_DIM } from "../tokens";
 import { BodyContainer } from "./BodyContainer";
-import { QuestionNumber } from "./ProblemMeta";
+import { ProblemHeader } from "./ProblemMeta";
 import { ProblemBody } from "./ProblemBody";
 import type { PrintTemplateProps } from "../types";
 import { ExamDetails } from "../ExamDetails";
@@ -42,31 +42,12 @@ export function ModernTemplate({
           paddingBottom: 4,
         }}
       >
-        <div
-          style={{
-            display: "flex",
-            alignItems: "baseline",
-            gap: 6,
-            marginBottom: 6,
-          }}
-        >
-          <QuestionNumber template="modern" num={num} accent={accent} />
-          {options.showChapter && p.variant.topic && (
-            <span
-              style={{
-                fontSize: 10,
-                fontWeight: 700,
-                color: PAPER_COLORS.ink50,
-                fontFamily: "var(--paper-font-sans)",
-                letterSpacing: "0.08em",
-                textTransform: "uppercase",
-              }}
-            >
-              {p.variant.topic}
-            </span>
-          )}
-          {/* 배점은 ProblemBody.repositionScore 가 발문 끝에 통일(§45) — 번호 행 pill 제거. */}
-        </div>
+        <ProblemHeader
+          num={num}
+          problem={p.variant}
+          options={options}
+          accent={accent}
+        />
         <div style={{ paddingLeft: 28 }}>
           <ProblemBody problem={p.variant} fontSize={fs} options={options} />
         </div>

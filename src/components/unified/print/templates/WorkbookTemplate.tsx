@@ -6,7 +6,7 @@ import type { ProblemReview } from "../types";
 import { bodyFontSize } from "../geometry";
 import { PAPER_COLORS, A4_DIM } from "../tokens";
 import { BodyContainer } from "./BodyContainer";
-import { QuestionNumber } from "./ProblemMeta";
+import { ProblemHeader } from "./ProblemMeta";
 import { ProblemBody } from "./ProblemBody";
 import type { PrintTemplateProps } from "../types";
 import { ExamDetails } from "../ExamDetails";
@@ -48,29 +48,12 @@ export function WorkbookTemplate({
         }}
       >
         <div>
-          <div
-            style={{
-              display: "flex",
-              alignItems: "baseline",
-              gap: 8,
-              marginBottom: 6,
-            }}
-          >
-            <QuestionNumber template="workbook" num={num} accent={accent} />
-            {options.showChapter && p.variant.topic && (
-              <span
-                style={{
-                  fontFamily: "var(--paper-font-sans)",
-                  fontSize: 10,
-                  fontWeight: 700,
-                  color: PAPER_COLORS.ink50,
-                  letterSpacing: "0.1em",
-                }}
-              >
-                {p.variant.topic.toUpperCase()}
-              </span>
-            )}
-          </div>
+          <ProblemHeader
+            num={num}
+            problem={p.variant}
+            options={options}
+            accent={accent}
+          />
           {/* 배점은 ProblemBody.repositionScore 가 발문 끝에(§45) — 번호 행 표시 X. */}
           <ProblemBody problem={p.variant} fontSize={fs} options={options} />
         </div>

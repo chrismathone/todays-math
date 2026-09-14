@@ -81,6 +81,25 @@ export const SPECIMEN_ITEM_IDS = [
 
 export const ITEMS: PrintCheckItem[] = [
   {
+    id: "studio-export-condition-and-solve-layout",
+    title: "시험지 조건 상자·문항 머리와 오른쪽 풀이 공간",
+    changed:
+      "조건 제목만 작게 가운데에 놓고 글머리표 본문은 보통 굵기·왼쪽 정렬로 분리했다. 문항 번호와 단원·난이도는 첫 행, 본문은 다음 행에 놓는다. 1단 오른쪽 풀이 공간과 2단 구분선은 설정에 맞춰 지면과 측정에 함께 적용한다.",
+    look:
+      "〈조건〉 아래의 글머리표·이어지는 줄·수식이 굵거나 가운데 정렬되지 않고 상자 안에 남아야 한다. 번호와 메타는 같은 첫 행, 발문은 다음 행이어야 한다. 1단 풀이 공간 끔·빈칸·노트·칠판을 바꿔도 전체 폭 머리말과 좁아진 문항의 쪽 나눔이 겹치지 않아야 한다. 두 배치 방식에서 2단 구분선 켬·끔을 확인하고 미리보기·PDF·100% A4 실물의 위치와 간격을 비교한다.",
+    lookFromSource: true,
+    evidence: [
+      "src/components/math/MarkdownRenderer.tsx",
+      "src/lib/mathgen/blocksToMarkdown.ts",
+      "src/components/unified/print/templates/ProblemMeta.tsx",
+      "src/components/unified/print/templates/BodyContainer.tsx",
+      "e2e/export-condition/layout.spec.ts",
+    ],
+    status: "대기",
+    needs: "글머리표 조건 상자·긴 조건·수식을 포함한 1단/2단 학습지와 풀이 공간 네 설정",
+    changedOn: "2026-09-14",
+  },
+  {
     id: "studio-native-hwpx-pdf",
     title: "가져온 문제의 원본 구조와 HWPX·PDF 출력",
     changed:

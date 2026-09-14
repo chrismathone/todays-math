@@ -1,4 +1,4 @@
-import { fireEvent, render, screen } from "@testing-library/react";
+import { fireEvent, render, screen, waitFor } from "@testing-library/react";
 import { describe, expect, it, vi } from "vitest";
 import WorksheetEditor from "@/components/unified/WorksheetEditor";
 import type { StudioProblem } from "@/components/unified/types";
@@ -8,8 +8,17 @@ vi.mock("@/components/unified/print/PrintOptionsPanel", () => ({
 }));
 vi.mock("@/components/unified/print/WorksheetPrint", () => ({
   WorksheetPrint: ({ onReady }: { onReady: (ready: boolean) => void }) => (
-    <button onClick={() => onReady(true)}>페이지 구성 완료</button>
+    <div data-mathgen-document>
+      <button onClick={() => onReady(true)}>페이지 구성 완료</button>
+    </div>
   ),
+}));
+vi.mock("@/lib/export/hwpxClient", () => ({
+  exportPreviewHwpx: vi.fn(),
+  downloadExport: vi.fn(),
+}));
+vi.mock("@/lib/export/pdfClient", () => ({
+  exportPreviewPdf: vi.fn().mockRejectedValue(new Error("검증용 PDF 오류")),
 }));
 
 const selected: StudioProblem[] = [
@@ -47,6 +56,27 @@ const props = {
 };
 
 describe("worksheet print readiness feedback", () => {
+  it("announces export errors in a dismissible notification", async () => {
+    render(<WorksheetEditor {...props} />);
+    fireEvent.click(screen.getByRole("button", { name: "페이지 구성 완료" }));
+    fireEvent.click(screen.getByRole("button", { name: "PDF 내려받기" }));
+    await waitFor(() =>
+      expect(screen.getByRole("alert")).toHaveTextContent("검증용 PDF 오류"),
+    );
+    fireEvent.click(screen.getByRole("button", { name: "내보내기 알림 닫기" }));
+    expect(screen.queryByRole("alert")).not.toBeInTheDocument();
+  });
+  it("groups the two bottom actions in one row and keeps their actions", () => {
+    render(<WorksheetEditor {...props} />);
+    const add = screen.getByRole("button", { name: "문제 더 담기" });
+    const download = screen.getByRole("button", { name: "작업 파일 내보내기" });
+    expect(add.parentElement).toBe(download.parentElement);
+    expect(add.parentElement?.tagName).toBe("DIV");
+    fireEvent.click(add);
+    expect(props.navigate).toHaveBeenCalledWith("bank");
+    fireEvent.click(download);
+    expect(props.download).toHaveBeenCalled();
+  });
   it("keeps printing disabled until the exact current draft has been prepared", () => {
     const { rerender } = render(<WorksheetEditor {...props} />);
     expect(

@@ -16,6 +16,23 @@
 .document :global(.katex-display) {
   max-width: 100%;
 }
+.document [data-box-card] {
+  margin: 8px 0;
+  padding: 6px 10px;
+  text-align: left;
+  font-weight: 400;
+}
+.document [data-box-header] {
+  margin: 0 0 4px;
+  font-size: 0.95em;
+  line-height: 1.3;
+  text-align: center;
+  font-weight: 400;
+}
+.document [data-box-item] {
+  text-align: left;
+  font-weight: 400;
+}
 .page {
   width: 210mm;
   height: 297mm;

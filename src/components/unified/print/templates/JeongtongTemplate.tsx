@@ -8,6 +8,7 @@ import { bodyFontSize } from "../geometry";
 import { PAPER_COLORS, A4_DIM } from "../tokens";
 import { BodyContainer } from "./BodyContainer";
 import { ProblemBody } from "./ProblemBody";
+import { ProblemHeader } from "./ProblemMeta";
 
 import type { PrintTemplateProps } from "../types";
 import { ExamDetails } from "../ExamDetails";
@@ -60,7 +61,12 @@ export function JeongtongTemplate({
           breakInside: "avoid",
         }}
       >
-        <strong style={{ color: options.color }}>{num}.</strong>
+        <ProblemHeader
+          num={num}
+          problem={p.variant}
+          options={options}
+          accent={options.color}
+        />
         <ProblemBody
           problem={printProblem}
           fontSize={fs}

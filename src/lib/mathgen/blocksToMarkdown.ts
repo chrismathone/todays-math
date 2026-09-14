@@ -96,16 +96,23 @@ const boxToBlockquote = (value: string): string => {
     }
   }
   const items = v
-    .split(/\s*•\s*/)
+    .split(/\s*(?=•)/)
     .map((s) => s.trim())
     .filter(Boolean);
   const lines = items.length > 0 ? items : v ? [v] : [];
-  const body = lines.map((ln) => `> ${ln}`);
+  // Separate the label/items as paragraphs, retaining source bullets and keeping
+  // every continuation inside the quote (also consumed by score placement).
+  const body = lines.map((line) =>
+    line
+      .split(/\r?\n/)
+      .map((part) => `> ${part}`)
+      .join("\n"),
+  );
   // 보기·조건 만 라벨 헤더 보존(렌더러가 보기/조건 헤더만 인식). 상자·기타는 헤더 없음.
   if (kind === "보기" || kind === "조건") {
-    return [`> <${kind}>`, ...body].join("\n");
+    return [`> <${kind}>`, ...body].join("\n>\n");
   }
-  return body.join("\n");
+  return body.join("\n>\n");
 };
 
 /** 인라인 직렬화 (문장 내 / 보기 내) — text 는 그대로, 수식은 `$…$`. */

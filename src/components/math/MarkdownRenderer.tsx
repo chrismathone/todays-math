@@ -141,22 +141,38 @@ function textOf(node: ReactNode): string {
 const LABEL_OPEN = "〈";
 const LABEL_CLOSE = "〉";
 
-/** 헤더에서 열 수 지정자를 지운다 — 지면에는 `〈보기〉` 만 나가야 한다. */
-function stripColumnHint(node: ReactNode, label: string): ReactNode {
-  if (typeof node === "string")
-    return node.replace(BOX_HEADER_RE, `${LABEL_OPEN}${label}${LABEL_CLOSE}`);
-  if (Array.isArray(node))
-    return node.map((child) => stripColumnHint(child, label));
+/** Remove only the marker; old OCR quotes may put body lines in this paragraph. */
+function stripBoxMarker(node: ReactNode): ReactNode {
+  if (typeof node === "string") return node.replace(BOX_HEADER_RE, "");
+  if (Array.isArray(node)) return node.map(stripBoxMarker);
   if (isValidElement(node)) {
     const props = node.props as { children?: ReactNode };
     if (props.children === undefined) return node;
     return cloneElement(
       node as ReactElement<{ children?: ReactNode }>,
       undefined,
-      stripColumnHint(props.children, label),
+      stripBoxMarker(props.children),
     );
   }
   return node;
+}
+
+/** Keep KaTeX/media nodes intact while splitting old compact header paragraphs. */
+function headerBodyLines(node: ReactNode): ReactNode[] {
+  const lines: ReactNode[][] = [[]];
+  for (const child of Children.toArray(stripBoxMarker(childrenOf(node)))) {
+    if (isValidElement(child) && child.type === "br") lines.push([]);
+    else lines[lines.length - 1].push(child);
+  }
+  return lines
+    .filter((line) =>
+      line.some((child) => typeof child !== "string" || child.trim()),
+    )
+    .map((line, index) => (
+      <p key={index} className="leading-relaxed">
+        {line}
+      </p>
+    ));
 }
 
 function childrenOf(node: ReactNode): ReactNode {
@@ -180,10 +196,9 @@ function BoxQuote({ children }: { children?: ReactNode }) {
   const label = header[1]!;
   const headerless = HEADERLESS_LABELS.has(label);
   const columns = header[2] === "2" ? 2 : header[2] === "3" ? 3 : 1;
-  // 첫 문단은 **언제나 마커 줄**이다(`renderBoxSegment` 가 그렇게 싣는다).
-  // 머리 없는 상자는 그 줄을 **그리지 않을** 뿐, 항목에서 빼는 건 똑같다 —
-  // 안 빼면 `<나열1>` 이 날문자로 지면에 찍힌다(스크린샷으로 잡았다).
-  const items = blocks.slice(1);
+  // Older native serializers emitted label + contents in one paragraph. A
+  // heading is only the label; never center or bold those continuation lines.
+  const items = [...headerBodyLines(blocks[0]), ...blocks.slice(1)];
   const gridClass =
     columns === 3
       ? "grid grid-cols-1 gap-x-6 gap-y-1 md:grid-cols-3 print:grid-cols-3"
@@ -197,9 +212,9 @@ function BoxQuote({ children }: { children?: ReactNode }) {
         // 라벨은 상자 위 **가운데**다(D-108) — 한국 시험지 관행.
         <div
           data-box-header
-          className="mb-2 text-center font-semibold [&>p]:my-0"
+          className="mb-1 text-center font-normal leading-normal [&>p]:my-0"
         >
-          {stripColumnHint(childrenOf(blocks[0]), label)}
+          {`${LABEL_OPEN}${label}${LABEL_CLOSE}`}
         </div>
       )}
       {items.length > 0 ? (
@@ -208,7 +223,7 @@ function BoxQuote({ children }: { children?: ReactNode }) {
             <div
               key={index}
               data-box-item
-              className="min-w-0 break-words [&>p]:my-0"
+              className="min-w-0 break-words text-left font-normal [&>p]:my-0"
             >
               {item}
             </div>

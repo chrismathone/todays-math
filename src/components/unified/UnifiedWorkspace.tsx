@@ -573,40 +573,42 @@ function UnifiedWorkspaceContent({
             </button>
           </div>
         </header>
-        {saveError && (
-          <div className={s.saveError} role="alert">
-            <Icon name="warning" size={19} />
-            <p>{saveError}</p>
-            <button onClick={download}>작업 파일 내려받기</button>
-            <button onClick={save}>다시 저장</button>
-          </div>
-        )}
-        {notice && (
-          <div
-            className={s.notice}
-            data-error={noticeError}
-            role={noticeError ? "alert" : "status"}
-          >
-            <Icon name={noticeError ? "warning" : "check"} size={18} />
-            <span>{notice}</span>
-            {undo && undo.draftId === draft.id && (
-              <button className={s.undoButton} onClick={undoRemove}>
-                <Icon name="undo" size={16} />
-                되돌리기
-              </button>
-            )}
-            <button
-              className={s.dismiss}
-              onClick={() => {
-                setNotice("");
-                setUndo(null);
-              }}
-              aria-label="알림 닫기"
+        <div className={s.notifications}>
+          {saveError && (
+            <div className={s.saveError} role="alert">
+              <Icon name="warning" size={19} />
+              <p>{saveError}</p>
+              <button onClick={download}>작업 파일 내려받기</button>
+              <button onClick={save}>다시 저장</button>
+            </div>
+          )}
+          {notice && (
+            <div
+              className={s.notice}
+              data-error={noticeError}
+              role={noticeError ? "alert" : "status"}
             >
-              <Icon name="close" size={17} />
-            </button>
-          </div>
-        )}
+              <Icon name={noticeError ? "warning" : "check"} size={18} />
+              <span>{notice}</span>
+              {undo && undo.draftId === draft.id && (
+                <button className={s.undoButton} onClick={undoRemove}>
+                  <Icon name="undo" size={16} />
+                  되돌리기
+                </button>
+              )}
+              <button
+                className={s.dismiss}
+                onClick={() => {
+                  setNotice("");
+                  setUndo(null);
+                }}
+                aria-label="알림 닫기"
+              >
+                <Icon name="close" size={17} />
+              </button>
+            </div>
+          )}
+        </div>
         <div id="workspace-content" className={s.content} tabIndex={-1}>
           {view === "home" && (
             <WorkroomHome

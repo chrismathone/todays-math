@@ -258,8 +258,61 @@ label.checkField {
   min-height: var(--control-height, 44px);
   margin: 12px 0 4px;
 }
-.exportInspector > .secondaryButton {
-  margin-top: 8px;
+.bottomActions {
+  display: flex;
+  align-items: stretch;
+  gap: 6px;
+  flex-shrink: 0;
+  margin-top: 12px;
+}
+.exportNotification {
+  position: fixed;
+  z-index: 60;
+  right: 20px;
+  bottom: 20px;
+  max-width: min(560px, calc(100vw - 40px));
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 8px 12px 8px 16px;
+  border: 1px solid #c7d8f6;
+  border-radius: 8px;
+  background: #eaf2ff;
+  box-shadow: 0 6px 24px #243d6026;
+  color: #335680;
+  font-size: 14px;
+}
+.exportNotification[data-error="true"] {
+  background: #fff3ef;
+  border-color: #eac9ba;
+  color: #963d2a;
+}
+.exportNotification p {
+  margin: 0;
+  overflow-wrap: anywhere;
+}
+.exportNotification button {
+  display: grid;
+  place-items: center;
+  flex-shrink: 0;
+  width: 44px;
+  height: 44px;
+  border-radius: 8px;
+}
+.exportNotification button:hover {
+  background: #243d6010;
+}
+.bottomActions > button {
+  flex: 1 1 auto;
+  min-width: 0;
+  margin: 0;
+  padding: 0 6px;
+  gap: 4px;
+  font-size: 12px;
+  white-space: nowrap;
+}
+.bottomActions > button > svg {
+  flex-shrink: 0;
 }
 .subtle {
   font-size: var(--text-caption, 12px);
@@ -582,6 +635,7 @@ label.checkField {
     container-type: normal;
   }
   .exportInspector,
+  .exportNotification,
   .paperToolbar,
   .paperCanvas > .subtle {
     display: none !important;

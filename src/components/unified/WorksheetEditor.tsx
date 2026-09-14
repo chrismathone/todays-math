@@ -204,12 +204,27 @@ export default function WorksheetEditor({
           PDF 내려받기
         </button>
       </WorkspacePageHeader>
-      {exportProgress && (
-        <p role="status" aria-live="polite">
-          {exportProgress}
-        </p>
+      {(exportProgress || exportError) && (
+        <div className={s.exportNotification} data-error={Boolean(exportError)}>
+          {exportError ? (
+            <p role="alert">{exportError}</p>
+          ) : (
+            <p role="status" aria-live="polite">
+              {exportProgress}
+            </p>
+          )}
+          <button
+            type="button"
+            aria-label="내보내기 알림 닫기"
+            onClick={() => {
+              setExportProgress("");
+              setExportError("");
+            }}
+          >
+            <Icon name="close" size={17} />
+          </button>
+        </div>
       )}
-      {exportError && <p role="alert">{exportError}</p>}
       {!selected.length ? (
         <div className={s.emptyExport}>
           <h2>시험지에 문제를 담아 주세요</h2>
@@ -372,16 +387,18 @@ export default function WorksheetEditor({
                 ))}
               </ol>
             </div>
-            <button
-              className={s.addMore}
-              ref={addFromBankRef}
-              onClick={() => navigate("bank")}
-            >
-              <Icon name="plus" size={16} /> 문제 더 담기
-            </button>
-            <button className={s.secondaryButton} onClick={download}>
-              <Icon name="save" size={18} /> 작업 파일 내보내기
-            </button>
+            <div className={s.bottomActions}>
+              <button
+                className={s.addMore}
+                ref={addFromBankRef}
+                onClick={() => navigate("bank")}
+              >
+                <Icon name="plus" size={16} /> 문제 더 담기
+              </button>
+              <button className={s.secondaryButton} onClick={download}>
+                <Icon name="save" size={18} /> 작업 파일 내보내기
+              </button>
+            </div>
             {savedAt && (
               <p className={s.subtle}>
                 이 브라우저에 저장됨 ·{" "}

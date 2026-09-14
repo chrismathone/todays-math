@@ -5,7 +5,75 @@
 
 import React from "react";
 import { PAPER_COLORS } from "../tokens";
-import type { PrintTemplate } from "../types";
+import type { PrintOptions, PrintTemplate, ProblemReview } from "../types";
+
+/** One shared first row, also rendered unchanged by the measurement pass. */
+export function ProblemHeader({
+  num,
+  problem,
+  options,
+  accent = options.color,
+}: {
+  num: number;
+  problem: ProblemReview["variant"];
+  options: PrintOptions;
+  accent?: string;
+}) {
+  const topic = options.showChapter ? problem.topic : "";
+  const difficulty = options.showDifficulty ? problem.difficulty : "";
+  const metadata = [topic, difficulty].filter(Boolean).join(" · ");
+  return (
+    <div
+      data-problem-header
+      style={{
+        display: "flex",
+        alignItems: "baseline",
+        gap: 6,
+        marginBottom: 6,
+      }}
+    >
+      <span style={{ flexShrink: 0, whiteSpace: "nowrap" }}>
+        <QuestionNumber template={options.template} num={num} accent={accent} />
+      </span>
+      {metadata && (
+        <span
+          data-problem-metadata
+          title={metadata}
+          style={{
+            display: "flex",
+            alignItems: "baseline",
+            gap: 4,
+            fontFamily: "var(--paper-font-sans)",
+            fontSize: 10,
+            color: PAPER_COLORS.ink50,
+            minWidth: 0,
+            whiteSpace: "nowrap",
+            lineHeight: 1.4,
+          }}
+        >
+          {topic && (
+            <span
+              style={{
+                minWidth: 0,
+                overflow: "hidden",
+                textOverflow: "ellipsis",
+              }}
+            >
+              {topic}
+            </span>
+          )}
+          {topic && difficulty && (
+            <span aria-hidden style={{ flexShrink: 0 }}>
+              {" "}
+              ·{" "}
+            </span>
+          )}
+          {difficulty && <span style={{ flexShrink: 0 }}>{difficulty}</span>}
+        </span>
+      )}
+    </div>
+  );
+}
 
 interface QuestionNumberProps {
   template: PrintTemplate;
