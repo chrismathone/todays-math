@@ -1,0 +1,264 @@
+// @vitest-environment node
+/**
+ * ① **원장 로그인·세션이 그대로다** (브리프 `todays-concept-student-auth.md` §4 ①).
+ *
+ * 학생 갈래(D-124 ⑶)를 넣기 **전의** `src/lib/auth.ts` 에 대고 먼저 초록을 본 특성 시험이다.
+ * 학생 갈래를 넣은 뒤에도 **이 파일을 한 글자도 안 고치고** 초록이어야 한다 — 브리프가
+ * «원장 토큰의 동작은 한 줄도 바뀌면 안 된다»고 했다.
+ *
+ * 진짜 next-auth·@auth/core 를 태운다(`../helpers/authRequestContext.ts` 머리말). 원장 토큰이 쿠키에
+ * **실제로 무엇으로** 실리고, `auth()` 와 `/api/auth/session` 이 **실제로 무엇을** 돌려주는지를
+ * 칸 이름까지 견준다(`toStrictEqual` — 칸 하나가 늘어도 빨개진다. 학생 칸 `student` 가 원장
+ * 세션에 새어 들어와도 여기서 걸린다).
+ */
+import { hash } from "bcryptjs";
+import { NextRequest } from "next/server";
+import {
+  afterAll,
+  beforeAll,
+  beforeEach,
+  describe,
+  expect,
+  it,
+  vi,
+} from "vitest";
+
+const savedEnv = vi.hoisted(() => {
+  const before = {
+    AUTH_SECRET: process.env.AUTH_SECRET,
+    AUTH_URL: process.env.AUTH_URL,
+  };
+  process.env.AUTH_SECRET = "student-auth-test-secret-0123456789abcdef";
+  process.env.AUTH_URL = "http://localhost:3000";
+  return before;
+});
+
+const store = vi.hoisted(() => ({
+  users: new Map<string, Record<string, unknown>>(),
+  audits: [] as Record<string, unknown>[],
+}));
+
+vi.mock("server-only", () => ({}));
+vi.mock(
+  "next/headers",
+  async () => (await import("../helpers/authRequestContext")).nextHeadersModule,
+);
+vi.mock("next/navigation", async (orig) => ({
+  ...(await orig<object>()),
+  redirect: (await import("../helpers/authRequestContext")).redirectMock,
+}));
+vi.mock("@/lib/db", () => ({
+  db: {
+    user: {
+      findUnique: vi.fn(
+        async ({ where }: { where: { id?: string; email?: string } }) => {
+          for (const row of store.users.values()) {
+            if (where.id !== undefined && row.id === where.id) return row;
+            if (where.email !== undefined && row.email === where.email)
+              return row;
+          }
+          return null;
+        },
+      ),
+    },
+    accountAuditLog: {
+      create: vi.fn(async ({ data }: { data: Record<string, unknown> }) => {
+        store.audits.push(data);
+        return data;
+      }),
+    },
+  },
+}));
+
+import { CredentialsSignin } from "next-auth";
+
+import { ALL_WORKSPACE_MENUS } from "@/contracts/accountAccess.contract";
+import { auth, handlers, signIn } from "@/lib/auth";
+
+import {
+  assertTestAuthEnv,
+  carryJarToNextRequest,
+  cookieHeaderFor,
+  decodeSessionToken,
+  resetRequest,
+  sessionCookieFromJar,
+  TEST_ORIGIN,
+  withoutJwtClaims,
+} from "../helpers/authRequestContext";
+
+const DIRECTOR_ID = "10000000-0000-4000-8000-000000000001";
+const EMAIL = "teacher@example.test";
+const PASSWORD = "correct-horse-battery";
+let passwordHash = "";
+
+function seedDirector(overrides: Record<string, unknown> = {}) {
+  store.users.clear();
+  store.users.set(DIRECTOR_ID, {
+    id: DIRECTOR_ID,
+    email: EMAIL,
+    name: "선생님",
+    passwordHash,
+    role: "director",
+    isAdmin: false,
+    approvalStatus: "approved",
+    disabledMenus: ["studio"],
+    deletedAt: null,
+    ...overrides,
+  });
+}
+
+const MENUS_WITHOUT_STUDIO = ALL_WORKSPACE_MENUS.filter((m) => m !== "studio");
+
+beforeAll(async () => {
+  assertTestAuthEnv();
+  passwordHash = await hash(PASSWORD, 4);
+});
+beforeEach(() => {
+  store.audits.length = 0;
+  seedDirector();
+  resetRequest();
+});
+afterAll(() => {
+  for (const [k, v] of Object.entries(savedEnv)) {
+    if (v === undefined) delete process.env[k];
+    else process.env[k] = v;
+  }
+});
+
+async function signInDirector(password = PASSWORD) {
+  return signIn("credentials", { email: EMAIL, password, redirect: false });
+}
+
+describe("① 원장 로그인 — 쿠키에 실리는 토큰 모양", () => {
+  it("🔴 로그인하면 원장 토큰은 정확히 이 칸들이다 (id·sub·권한 넷 + 이름·이메일)", async () => {
+    await signInDirector();
+    const cookie = sessionCookieFromJar();
+    expect(cookie, "세션 쿠키가 안 실렸다").not.toBeNull();
+    const token = withoutJwtClaims(await decodeSessionToken(cookie!));
+    expect(token).toStrictEqual({
+      name: "선생님",
+      email: EMAIL,
+      sub: DIRECTOR_ID,
+      id: DIRECTOR_ID,
+      role: "director",
+      isAdmin: false,
+      approvalStatus: "approved",
+      menus: MENUS_WITHOUT_STUDIO,
+    });
+    expect(store.audits).toStrictEqual([
+      {
+        userId: DIRECTOR_ID,
+        actorId: DIRECTOR_ID,
+        action: "auth.login",
+        outcome: "success",
+        details: {},
+      },
+    ]);
+  });
+
+  it("틀린 비밀번호는 CredentialsSignin 으로 떨어지고 실패 감사가 남는다", async () => {
+    const error = await signInDirector("wrong-password-123").catch(
+      (e: unknown) => e,
+    );
+    expect(error).toBeInstanceOf(CredentialsSignin);
+    expect(sessionCookieFromJar()).toBeNull();
+    expect(store.audits).toStrictEqual([
+      {
+        userId: DIRECTOR_ID,
+        action: "auth.login",
+        outcome: "failed",
+        details: {},
+      },
+    ]);
+  });
+});
+
+describe("① 원장 세션 — auth() 와 /api/auth/session 이 돌려주는 모양", () => {
+  const expectedSession = (menus = MENUS_WITHOUT_STUDIO) => ({
+    user: {
+      name: "선생님",
+      email: EMAIL,
+      id: DIRECTOR_ID,
+      role: "director",
+      isAdmin: false,
+      approvalStatus: "approved",
+      menus,
+    },
+    expires: expect.any(String),
+  });
+
+  it("🔴 로그인한 쿠키로 다음 요청의 auth() — 칸이 정확히 user·expires 둘이다", async () => {
+    await signInDirector();
+    carryJarToNextRequest();
+    expect(await auth()).toStrictEqual(expectedSession());
+  });
+
+  it("🔴 /api/auth/session 도 같은 모양이다 (화면 머리 계정 구역이 읽는 자리)", async () => {
+    await signInDirector();
+    const cookie = sessionCookieFromJar()!;
+    const res = await handlers.GET(
+      new NextRequest(`${TEST_ORIGIN}/api/auth/session`, {
+        headers: { cookie: `authjs.session-token=${cookie}` },
+      }),
+    );
+    expect(res.status).toBe(200);
+    expect(await res.json()).toStrictEqual(expectedSession());
+  });
+
+  it("권한 변경(메뉴 끄기)은 다시 로그인하지 않아도 다음 요청에 반영된다", async () => {
+    await signInDirector();
+    carryJarToNextRequest();
+    seedDirector({ disabledMenus: ["studio", "bank"] });
+    expect(await auth()).toStrictEqual(
+      expectedSession(MENUS_WITHOUT_STUDIO.filter((m) => m !== "bank")),
+    );
+  });
+
+  it("검수 계정은 role 이 reviewer 로 실린다", async () => {
+    seedDirector({ role: "reviewer" });
+    resetRequest({
+      cookie: await cookieHeaderFor({
+        id: DIRECTOR_ID,
+        name: "선생님",
+        email: EMAIL,
+      }),
+    });
+    const session = await auth();
+    expect(session?.user?.role).toBe("reviewer");
+    expect(Object.keys(session ?? {}).sort()).toEqual(["expires", "user"]);
+  });
+
+  it("관리자는 꺼 둔 메뉴가 있어도 전 메뉴다", async () => {
+    seedDirector({ isAdmin: true });
+    resetRequest({ cookie: await cookieHeaderFor({ id: DIRECTOR_ID }) });
+    expect((await auth())?.user?.menus).toEqual(ALL_WORKSPACE_MENUS);
+  });
+
+  it("🔴 role 없는 옛 토큰도 DB 행으로 다시 읽어 원장으로 선다", async () => {
+    resetRequest({
+      cookie: await cookieHeaderFor({
+        sub: DIRECTOR_ID,
+        name: "선생님",
+        email: EMAIL,
+      }),
+    });
+    expect(await auth()).toStrictEqual(expectedSession());
+  });
+
+  it("🔴 탈퇴(deletedAt)한 계정은 다음 요청에서 세션이 끊기고 쿠키를 지운다", async () => {
+    await signInDirector();
+    const cookie = `authjs.session-token=${sessionCookieFromJar()}`;
+    seedDirector({ deletedAt: new Date() });
+    const res = await handlers.GET(
+      new NextRequest(`${TEST_ORIGIN}/api/auth/session`, {
+        headers: { cookie },
+      }),
+    );
+    expect(await res.json()).toBeNull();
+    expect(res.headers.get("set-cookie") ?? "").toMatch(
+      /authjs\.session-token=;/,
+    );
+    resetRequest({ cookie });
+    expect(await auth()).toBeNull();
+  });
+});

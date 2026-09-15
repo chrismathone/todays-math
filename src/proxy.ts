@@ -17,10 +17,43 @@ import { requestedCallbackUrl } from "@/lib/callbackUrl";
 import { routeAccessFor } from "@/lib/routeAccess";
 import { accountRouteAllowed } from "@/lib/accountRouteAccess";
 import { recordAudit } from "@/lib/audit";
+import {
+  anonymousLearnGate,
+  studentGateFor,
+  type LearnGate,
+} from "@/lib/studentRouteAccess";
 import type { AccountAccess } from "@/contracts/accountAccess.contract";
+
+/** 학생 관문의 판정 → 응답. 막힌 API 는 403 **JSON**(화면용 되돌림을 fetch 가 파싱하다 죽는다). */
+function learnGateResponse(gate: LearnGate, url: URL): Response {
+  if (gate.kind === "allow") return NextResponse.next();
+  if (gate.kind === "redirect")
+    return NextResponse.redirect(new URL(gate.to, url));
+  return NextResponse.json(
+    { error: { code: "FORBIDDEN", message: gate.message } },
+    { status: 403 },
+  );
+}
 
 export const proxy = auth(async (req) => {
   const { pathname } = req.nextUrl;
+  /**
+   * 🔴 학생 세션 — **원장 갈래보다 먼저** 가둔다 (D-124 ⑶ · D-125 ⑷).
+   * 학생 세션에는 `user` 가 없다(src/lib/learn/studentSession.ts). 아래로 흘러가면 «로그인 안 한
+   * 사람»으로 읽혀 `/` · `/api/**` · 공개 그림이 열린다 — 그래서 허용 목록
+   * (src/lib/studentRouteAccess.ts)으로 여기서 끝낸다. 학생 요청은 아래 줄을 하나도 타지 않는다.
+   */
+  const student = req.auth?.student;
+  if (student)
+    return learnGateResponse(
+      studentGateFor(student.mustChangePassword, req.method, pathname),
+      req.nextUrl,
+    );
+  // 로그인 안 한 사람의 /learn — 원장님 /login 이 아니라 학생 로그인으로(D-125 ⑷). /learn 밖은 null.
+  if (!req.auth?.user?.id) {
+    const learn = anonymousLearnGate(req.method, pathname);
+    if (learn) return learnGateResponse(learn, req.nextUrl);
+  }
   // Public shared figures must also load in the cookie-free PDF renderer.
   // Personal materials stay behind their /api/library authorization.
   if (

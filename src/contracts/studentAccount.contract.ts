@@ -1,0 +1,215 @@
+/**
+ * **학생 계정 계약** — 원장님이 발급한 아이디 + 숫자 4자리 (D-124 ⑶⑷ · D-125 ⑵⑶⑷, 2026-09-15).
+ *
+ * 학생 로그인은 절대 규칙 7 의 **유일한 예외**다(이메일 대신 아이디). 그래서 원장·검수 계정 규칙
+ * (`auth.contract.ts` — 이메일 · 8~72자)과 **따로** 둔다(브리프 §7). 소셜/OAuth 는 학생에게도 없다.
+ * 학생 로그인은 «오늘의 개념» 영상 시청 하나만 연다(D-123 ⑵) — 응시·성적·오답은 이 계약 밖이다.
+ *
+ * 대응 경로:
+ *   원장(발급 — D-124 ⑷ 한 명씩)
+ *     GET   /api/students/{id}/account           계정 상태 (없으면 data: null)
+ *     POST  /api/students/{id}/account           발급 — 초기 비밀번호는 **이 응답에 한 번만**
+ *     PATCH /api/students/{id}/account           끄기·켜기 (`disabledAt` 만 찍는다 — 지우지 않는다)
+ *     POST  /api/students/{id}/account/password  다시 발급 — 비밀번호만 새로
+ *   학생(D-125 ⑷ 전용 주소 — 화면은 `/learn/**`, API 는 `/api/learn/**`)
+ *     POST  /api/learn/login · /api/learn/logout · /api/learn/password
+ *     GET   /api/learn/lectures · /api/learn/lectures/{id}
+ *     POST  /api/learn/watch                      (본문은 `conceptWatchReportSchema` — 그 계약을 그대로 쓴다)
+ *
+ * ## 한 곳에 두는 것 (브리프 §2.3 — «상수 한 곳에 두고 보고에 적는다»)
+ *
+ * - 아이디 규칙 `STUDENT_LOGIN_ID_RULE` — 영문·숫자·`-`·`_`, 4~20자, 대소문자 구분 없음(소문자로 접어
+ *   저장·비교한다). 원장님이 **직접 적는다**(자동 제안 없음 — D-125 ⑵).
+ * - 비밀번호 판정은 `src/lib/concept/pinRules.ts` 의 `isPinFormat` · `isEasyPin` 을 **부른다**(다시 적지
+ *   않는다 — 브리프 §7). 발급(`initialPassword.ts`)과 변경이 같은 함수를 지난다.
+ * - 잠금 `STUDENT_LOGIN_LOCK` · 문구 `STUDENT_LOGIN_MESSAGES` — D-125 ⑶ 의 **리드 제안**이다.
+ *   원장님이 다르게 정하시면 여기만 바꾼다.
+ *
+ * ⚠️ 이 파일은 화면(클라이언트 폼 검증)에서도 읽힌다 — `node:` 모듈을 끌고 오면 안 된다
+ *    (그래서 `initialPassword.ts` 가 아니라 `pinRules.ts` 를 부른다. `studentAccountContract.test.ts` 가 잠근다).
+ */
+import { z } from "zod";
+
+import { isEasyPin, isPinFormat } from "@/lib/concept/pinRules";
+
+import { conceptLectureForStudentSchema } from "./conceptLecture.contract";
+import {
+  dataResponseSchema,
+  isoDateTimeSchema,
+  uuidSchema,
+} from "./common.contract";
+
+// ── 한 곳에 두는 규칙 ────────────────────────────────────────────
+
+const LOGIN_ID_MIN = 4;
+const LOGIN_ID_MAX = 20;
+
+/** 아이디 규칙 — 정규화(`normalizeLoginId`) **뒤의** 모양이다. */
+export const STUDENT_LOGIN_ID_RULE = {
+  minLength: LOGIN_ID_MIN,
+  maxLength: LOGIN_ID_MAX,
+  pattern: new RegExp(`^[a-z0-9_-]{${LOGIN_ID_MIN},${LOGIN_ID_MAX}}$`),
+} as const;
+
+/** 연속 실패 잠금 (D-125 ⑶ — 리드 제안) */
+export const STUDENT_LOGIN_LOCK = {
+  maxFailures: 5,
+  lockMs: 10 * 60 * 1000,
+} as const;
+
+/**
+ * 학생·원장 화면에 나가는 문구 (D-08 — 간결·사무적).
+ * 🔴 `invalid` 는 **하나다** — 없는 아이디·틀린 번호·꺼진 계정을 가르지 않는다(아이디 존재를 흘리지
+ *    않는다). `locked` 도 없는 아이디에 **똑같이** 낸다(D-125 ⑶ · 브리프 §6).
+ */
+export const STUDENT_LOGIN_MESSAGES = {
+  invalid: "아이디 또는 비밀번호가 맞지 않습니다.",
+  locked: "잠시 뒤 다시 시도하세요.",
+  loginIdTaken: "이미 쓰는 아이디입니다.",
+  accountExists: "이미 계정이 있습니다.",
+  easyPin: "쉬운 번호는 쓸 수 없습니다.",
+  samePin: "지금 번호와 다른 번호를 적어 주세요.",
+  wrongCurrentPin: "지금 비밀번호가 맞지 않습니다.",
+} as const;
+
+/** 앞뒤 공백을 걷고 소문자로 접는다 — 저장·비교·유일성 모두 이 모양으로 한다. */
+export function normalizeLoginId(raw: string): string {
+  return raw.trim().toLowerCase();
+}
+
+// ── 원자 스키마 ─────────────────────────────────────────────────
+
+export const studentLoginIdSchema = z
+  .string()
+  .transform(normalizeLoginId)
+  .pipe(
+    z.string().regex(STUDENT_LOGIN_ID_RULE.pattern, {
+      error: `아이디는 영문·숫자·-·_ ${LOGIN_ID_MIN}~${LOGIN_ID_MAX}자입니다.`,
+    }),
+  );
+
+/** 비밀번호 형식 — 네 자리 숫자(`isPinFormat`). 로그인은 이것만 본다. */
+export const studentPinSchema = z
+  .string()
+  .refine(isPinFormat, { error: "비밀번호는 숫자 4자리입니다." });
+
+/** 새로 정하는 번호 — 형식 + 쉬운 번호 제외(`isEasyPin`, 발급과 같은 규칙 — D-125 ⑶). */
+export const studentNewPinSchema = studentPinSchema.refine(
+  (pin) => !isEasyPin(pin),
+  { error: STUDENT_LOGIN_MESSAGES.easyPin },
+);
+
+// ── 학생 요청 · 응답 ────────────────────────────────────────────
+
+export const studentLoginRequestSchema = z.strictObject({
+  loginId: studentLoginIdSchema,
+  password: studentPinSchema,
+});
+export type StudentLoginRequest = z.infer<typeof studentLoginRequestSchema>;
+
+export const studentLoginResponseSchema = dataResponseSchema(
+  z.strictObject({ mustChangePassword: z.boolean() }),
+);
+
+/** 나가기 — 학생 로그인 화면으로 (원장님 `/login` 이 아니다 — D-125 ⑷) */
+export const studentLogoutResponseSchema = dataResponseSchema(
+  z.strictObject({ redirectTo: z.literal("/learn/login") }),
+);
+
+export const studentPasswordChangeRequestSchema = z
+  .strictObject({
+    currentPassword: studentPinSchema,
+    newPassword: studentNewPinSchema,
+  })
+  .refine((v) => v.currentPassword !== v.newPassword, {
+    error: STUDENT_LOGIN_MESSAGES.samePin,
+    path: ["newPassword"],
+  });
+
+export const studentPasswordChangeResponseSchema = dataResponseSchema(
+  z.strictObject({ mustChangePassword: z.literal(false) }),
+);
+
+/**
+ * 세션에 실리는 학생 — `session.student`. 🔴 **`session.user` 는 없다**(브리프 §2.1): 기존 코드는
+ * `session.user.id` 가 있으면 원장으로 믿는다. 학생은 이 칸으로만 알아본다.
+ */
+export const studentSessionSchema = z.strictObject({
+  accountId: uuidSchema,
+  studentId: uuidSchema,
+  name: z.string(),
+  mustChangePassword: z.boolean(),
+});
+export type StudentSession = z.infer<typeof studentSessionSchema>;
+
+/** 학생 목록이 차시로 묶을 때 쓰는 차시 머리 */
+export const learnUnitSchema = z.strictObject({
+  id: uuidSchema,
+  grade: z.string(),
+  chapter: z.string(),
+  section: z.string(),
+  orderIndex: z.number().int(),
+});
+export type LearnUnit = z.infer<typeof learnUnitSchema>;
+
+export const learnLectureListResponseSchema = dataResponseSchema(
+  z.strictObject({
+    units: z.array(learnUnitSchema),
+    lectures: z.array(conceptLectureForStudentSchema),
+  }),
+);
+
+export const learnLectureResponseSchema = dataResponseSchema(
+  z.strictObject({
+    unit: learnUnitSchema,
+    lecture: conceptLectureForStudentSchema,
+  }),
+);
+
+export const learnWatchResponseSchema = dataResponseSchema(
+  z.strictObject({
+    watch: z.strictObject({
+      maxSeconds: z.number().int().min(0),
+      percent: z.number().int().min(0).max(100),
+      completed: z.boolean(),
+    }),
+  }),
+);
+
+// ── 원장 — 발급 · 상태 ──────────────────────────────────────────
+
+export const studentAccountIssueRequestSchema = z.strictObject({
+  loginId: studentLoginIdSchema,
+});
+
+/** 발급·다시 발급 응답 — **초기 비밀번호가 실리는 유일한 모양**. 서버에는 해시만 남는다. */
+export const studentAccountIssueResponseSchema = dataResponseSchema(
+  z.strictObject({
+    studentId: uuidSchema,
+    loginId: z.string(),
+    initialPassword: studentPinSchema,
+    mustChangePassword: z.literal(true),
+    issuedAt: isoDateTimeSchema,
+  }),
+);
+
+/** 계정 상태 — 비밀번호·해시 칸이 **아예 없다**. */
+export const studentAccountStatusSchema = z.strictObject({
+  studentId: uuidSchema,
+  loginId: z.string(),
+  issuedAt: isoDateTimeSchema,
+  lastLoginAt: isoDateTimeSchema.nullable(),
+  passwordChangedAt: isoDateTimeSchema.nullable(),
+  disabledAt: isoDateTimeSchema.nullable(),
+  mustChangePassword: z.boolean(),
+  locked: z.boolean(),
+});
+export type StudentAccountStatus = z.infer<typeof studentAccountStatusSchema>;
+
+export const studentAccountStatusResponseSchema = dataResponseSchema(
+  studentAccountStatusSchema.nullable(),
+);
+
+export const studentAccountUpdateRequestSchema = z.strictObject({
+  disabled: z.boolean(),
+});

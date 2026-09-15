@@ -131,6 +131,15 @@ function normalize(pathname: string): string {
   return pathname;
 }
 
+/**
+ * 학생 관문(`src/lib/studentRouteAccess.ts`)도 같은 경로 문법을 쓴다 — 문법을 두 벌로 적지 않으려고
+ * 내보낸다. 이 파일의 판정에는 아무것도 더하지 않는다.
+ */
+export {
+  toPattern as compileRoutePattern,
+  normalize as normalizeRoutePathname,
+};
+
 export function routeAccessFor(
   role: UserRole,
   method: string,
