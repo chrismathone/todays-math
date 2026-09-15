@@ -22,8 +22,17 @@ import { pinDigits } from "./StudentLoginForm";
  * 🔴 윗줄 «나가기»(D-127 Q1) — 목록 화면 윗줄과 **같은 부품 · 같은 자리**(`LearnTopBar` → `POST /api/learn/logout`
  * → `/learn/login`). 다른 학생 아이디로 잘못 들어온 학생이 받은 번호를 몰라도 갇히지 않는다. 관문은 이미
  * 첫 로그인 학생에게 로그아웃을 연다(`EXIT_RULES`) — `proxy.ts` · `studentRouteAccess.ts` 는 그대로다.
+ *
+ * 🔴 D-128(원장님 답 17 ① · 18 ①) — 윗줄을 둔 뒤 그 아래 큰 로고가 «오늘의수학»을 한 번 더 세웠다 → **로고를 뺐다**
+ * (로그인 화면은 윗줄이 없어 로고 그대로). 윗줄에는 **이름만** — 반은 목록 API 가 주고 이 화면은 목록을 안 부른다.
+ * 이름은 페이지가 세션에서 읽어 넘긴다(`app/learn/password/page.tsx`) — 잘못 들어온 학생이 윗줄에서 바로 안다.
  */
-export function StudentPasswordForm() {
+export function StudentPasswordForm({
+  studentName,
+}: {
+  /** 윗줄 이름 — 세션의 학생 이름(D-128 ⑵). 없으면 «나가기»만 */
+  studentName: string | null;
+}) {
   const router = useRouter();
   const [current, setCurrent] = useState("");
   const [next, setNext] = useState("");
@@ -87,12 +96,8 @@ export function StudentPasswordForm() {
 
   return (
     <div className={s.column}>
-      <LearnTopBar student={null} />
+      <LearnTopBar student={studentName ? { name: studentName } : null} />
       <main className={s.login}>
-        <div className={s.brand}>
-          <b>오늘의수학</b>
-          <span>오늘의 개념 · 학생</span>
-        </div>
         <p className={s.kick}>처음 들어왔습니다</p>
         <h1 className={s.h}>새 비밀번호를 정하세요</h1>
         <p className={s.help}>선생님께 받은 비밀번호는 이번 한 번만 씁니다.</p>

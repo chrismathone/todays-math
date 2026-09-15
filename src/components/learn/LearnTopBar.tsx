@@ -8,11 +8,15 @@ import type { LearnStudent } from "@/contracts/studentAccount.contract";
 import { postLogout } from "./learnApi";
 import s from "./learn.module.css";
 
+/** 윗줄의 학생 — 목록 · 재생은 이름 · 반, 첫 로그인은 이름만(반은 목록 API 가 준다 — D-128 ⑵) */
+type TopBarStudent = Pick<LearnStudent, "name"> &
+  Partial<Pick<LearnStudent, "className">>;
+
 /**
- * 학생 화면 윗줄 — «오늘수학» · 이름 · 반 · 나가기 (시안 `sTop`).
+ * 학생 화면 윗줄 — «오늘의수학» · 이름 · 반 · 나가기 (시안 `sTop`).
  * 나가기는 학생 로그아웃 API(`POST /api/learn/logout`) — 원장님 로그아웃(서버 액션 → `/login`)과 따로다(D-125 ⑷).
  */
-export function LearnTopBar({ student }: { student: LearnStudent | null }) {
+export function LearnTopBar({ student }: { student: TopBarStudent | null }) {
   const router = useRouter();
   const [pending, setPending] = useState(false);
   const [failed, setFailed] = useState(false);
@@ -39,7 +43,8 @@ export function LearnTopBar({ student }: { student: LearnStudent | null }) {
         {student ? (
           <>
             <span>
-              {student.name} · {student.className}
+              {student.name}
+              {student.className ? ` · ${student.className}` : null}
             </span>
             <span aria-hidden="true">·</span>
           </>

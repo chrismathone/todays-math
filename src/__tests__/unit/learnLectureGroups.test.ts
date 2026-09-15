@@ -12,7 +12,6 @@ import type { ConceptLectureForStudent } from "@/contracts/conceptLecture.contra
 import type { LearnUnit } from "@/contracts/studentAccount.contract";
 import {
   groupLecturesByDay,
-  kstDateOf,
   nextLectureAfter,
   watchState,
 } from "@/lib/learn/lectureGroups";
@@ -126,13 +125,6 @@ describe("🔴 날짜 묶음 — 수업한 날 순, 최근이 먼저", () => {
 
   it("강의가 하나도 없으면 빈 목록", () => {
     expect(groupLecturesByDay([], [], "2026-09-15")).toStrictEqual([]);
-  });
-});
-
-describe("🔴 학원 날짜(KST) — 서버 시계의 UTC 자정이 아니다", () => {
-  it("UTC 15:00 = KST 다음날 0시", () => {
-    expect(kstDateOf(new Date("2026-09-15T14:59:59.999Z"))).toBe("2026-09-15");
-    expect(kstDateOf(new Date("2026-09-15T15:00:00.000Z"))).toBe("2026-09-16");
   });
 });
 

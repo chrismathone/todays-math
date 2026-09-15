@@ -21,21 +21,20 @@ import { planDailyReview } from "@/lib/daily/planDailyReview";
 import { db } from "@/lib/db";
 import { countEligibleProblems } from "@/lib/findEligibleProblems";
 import { isEywaOwner } from "@/lib/eywa/owner";
+import { kstDateOf } from "@/lib/kstDate";
 import { getSessionUser } from "@/lib/session";
-
-/** 「오늘」은 학원 시간(KST)이다 — 서버 시계의 UTC 자정이 아니다. */
-function kstToday(): string {
-  return new Date(Date.now() + 9 * 3_600_000).toISOString().slice(0, 10);
-}
 
 export async function GET(request: NextRequest) {
   const session = await getSessionUser();
   if (!session) return unauthorizedError();
 
   // ?day=YYYY-MM-DD — 지난 날을 되짚어 볼 때(검증·시연). 기본은 오늘(KST).
+  // 「오늘」은 학원 시간이다 — 서버 시계의 UTC 자정이 아니다(`kstDate.ts` 한 곳).
   const dayParam = new URL(request.url).searchParams.get("day");
   const day =
-    dayParam && /^\d{4}-\d{2}-\d{2}$/.test(dayParam) ? dayParam : kstToday();
+    dayParam && /^\d{4}-\d{2}-\d{2}$/.test(dayParam)
+      ? dayParam
+      : kstDateOf(new Date());
 
   // 🔴 eywa 소유자가 아니면 여기서 끝 — 아래 조회는 전부 **계정 구분이 없다**(연계 학생·
   //    마지막 동기화 기록은 학원 하나의 것). 2026-09-07 에 새 계정이 원장님 학원의 동기화

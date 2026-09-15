@@ -4,6 +4,7 @@
  */
 import type { ConceptLectureCounts } from "@/contracts/conceptAdmin.contract";
 import type { ConceptLectureStatus } from "@/contracts/conceptLecture.contract";
+import { KST_OFFSET_MS } from "@/lib/kstDate";
 
 const WEEKDAYS = ["일", "월", "화", "수", "목", "금", "토"];
 
@@ -31,7 +32,7 @@ export function formatDay(day: string): string {
 
 /** 시각(ISO) → 학원 날짜(KST) «9월 12일» */
 export function formatInstantDay(iso: string): string {
-  const kst = new Date(new Date(iso).getTime() + 9 * 3_600_000);
+  const kst = new Date(new Date(iso).getTime() + KST_OFFSET_MS);
   return `${kst.getUTCMonth() + 1}월 ${kst.getUTCDate()}일`;
 }
 

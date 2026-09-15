@@ -10,7 +10,7 @@ import {
   type StudentAccountPanel as PanelData,
   type StudentAccountStatus,
 } from "@/contracts/studentAccount.contract";
-import { lockMinutesLeft } from "@/lib/class/accountLock";
+import { lockLineNextChangeMs, lockMinutesLeft } from "@/lib/class/accountLock";
 import {
   fetchAccountPanel,
   issueAccount,
@@ -318,9 +318,20 @@ function PanelBody({
   );
 }
 
-/** 🔴 잠김 — 서버가 준 끝 시각이 지금보다 뒤일 때만(D-127 Q5). 잠금 규칙을 여기서 다시 적지 않는다 */
+/**
+ * 🔴 잠김 — 서버가 준 끝 시각이 지금보다 뒤일 때만(D-127 Q5). 잠금 규칙을 여기서 다시 적지 않는다.
+ * 칸을 열어 둔 채면 **N 이 바뀌는 순간마다** 다시 센다(D-128 ⑶ — 리드) — 잠금이 끝나면 줄이 스스로 사라진다.
+ * 칸이 선 때의 시각 하나로 세면 몇 분이 지나도 N 이 그대로이고, 끝난 잠금의 줄이 남았다(보고서 §7-19).
+ */
 function LockLine({ lockedUntil }: { lockedUntil: string | null }) {
-  const minutes = lockMinutesLeft(lockedUntil, new Date());
+  const [now, setNow] = useState(() => new Date());
+  const wait = lockLineNextChangeMs(lockedUntil, now);
+  useEffect(() => {
+    if (wait === null) return;
+    const id = setTimeout(() => setNow(new Date()), wait);
+    return () => clearTimeout(id);
+  }, [wait, now]);
+  const minutes = lockMinutesLeft(lockedUntil, now);
   if (minutes === null) return null;
   return (
     <p className={s.blocked}>

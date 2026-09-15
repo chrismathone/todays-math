@@ -1,7 +1,8 @@
 /**
  * **학생 화면 · 발급 칸 · 퇴원 막기 · 실패 행 정리(learn-screens) 가드를 하나씩 꺼 빨개지는지 본다** —
  * 브리프 `tracks/briefs/todays-concept-learn-screens.md` §3 «변이 시험: ①~⑦ 가드를 하나씩 끄면 빨개지는가»
- * + §6(D-127) ⑧ 첫 로그인 «나가기» · ⑨ 발급 칸 «잠김 — N분 뒤 풀림» · ⑩ 퇴원 학생 발급 API 409.
+ * + §6(D-127) ⑧ 첫 로그인 «나가기» · ⑨ 발급 칸 «잠김 — N분 뒤 풀림» · ⑩ 퇴원 학생 발급 API 409
+ * + D-128 ⑧b~d 첫 로그인 윗줄 이름 · 큰 로고 · ⑨f~g 잠김 줄을 N 이 바뀌는 순간 다시 셈 · ③c · ③f KST 셈은 `kstDate.ts` 한 곳.
  *
  *   npx tsx scripts/qa/mutate-learn-screens.ts          # 전량
  *   npx tsx scripts/qa/mutate-learn-screens.ts ① ⑥     # 이름 조각으로 고른다(여럿이면 어느 하나라도)
@@ -49,6 +50,8 @@ const ISSUE = T("api/studentAccountIssue.test.ts");
 const SCREENS = T("components/LearnScreens.test.tsx");
 const PANEL = T("components/StudentAccountPanel.test.tsx");
 const LOCK_T = T("unit/accountLockLine.test.ts");
+const KST_T = T("unit/kstDate.test.ts");
+const PW_PAGE = T("components/LearnPasswordPage.test.tsx");
 
 /** tsx 탐침 머리 — 모든 tsx 탐침이 이 이름들을 쓴다 */
 const PRELUDE = `
@@ -64,6 +67,7 @@ import * as pinh from "../../src/lib/learn/pinHash";
 import * as issue from "../../src/lib/learn/issueStudentAccount";
 import * as sl from "../../src/lib/concept/studentLecture";
 import * as lock from "../../src/lib/class/accountLock";
+import * as kst from "../../src/lib/kstDate";
 const W = { maxWatched: 60, completed: false, duration: 139 };
 const DONE = { maxWatched: 30, completed: true, duration: 139 };
 const ROW = { id: "acc-1", studentId: "stu-1", disabledAt: null as Date | null,
@@ -96,7 +100,7 @@ function fakeIssueDeps(withdrawn: boolean, hasAccount: boolean) {
   } as never;
 }
 const LOCK_NOW = new Date("2026-09-15T05:00:00.000Z");
-void sg; void lg; void access; void ab; void ss; void pls; void login; void mem; void pinh; void issue; void sl; void lock;
+void sg; void lg; void access; void ab; void ss; void pls; void login; void mem; void pinh; void issue; void sl; void lock; void kst;
 void W; void DONE; void ROW; void UNIT; void LECT; void DAY; void missDeps; void fakeIssueDeps; void LOCK_NOW;
 `;
 
@@ -131,6 +135,9 @@ const LOGIN_FILE = "src/lib/learn/studentLogin.ts";
 const PASSWORD_UI = "src/components/learn/StudentPasswordForm.tsx";
 const LOCK_FILE = "src/lib/class/accountLock.ts";
 const ISSUE_DEPS_FILE = "src/lib/learn/issueDeps.ts";
+const KST_FILE = "src/lib/kstDate.ts";
+const PW_PAGE_FILE = "src/app/learn/password/page.tsx";
+const DAILY_ROUTE = "src/app/api/tests/daily-review/route.ts";
 
 const ISSUED_PIN = L(
   "      setPin(result.data.initialPassword);",
@@ -267,11 +274,11 @@ const MUTATIONS: Mutation[] = [
   },
   {
     name: "③c 학원 날짜에서 KST(+9시)를 뺀다",
-    file: GROUPS_FILE,
-    from: "const KST_OFFSET_MS = 9 * 3_600_000;",
-    to: "const KST_OFFSET_MS = 0;",
-    probe: 'lg.kstDateOf(new Date("2026-09-15T15:00:00.000Z"))',
-    tests: [GROUPS],
+    file: KST_FILE,
+    from: "export const KST_OFFSET_MS = 9 * 3_600_000;",
+    to: "export const KST_OFFSET_MS = 0;",
+    probe: 'kst.kstDateOf(new Date("2026-09-15T15:00:00.000Z"))',
+    tests: [KST_T],
   },
   {
     name: "③d 묶음을 오래된 날부터 세운다 (남색 판이 가장 옛 수업)",
@@ -289,6 +296,14 @@ const MUTATIONS: Mutation[] = [
     to: "  const today = (now ?? new Date()).toISOString().slice(0, 10);",
     probe: null,
     tests: [SCREENS],
+  },
+  {
+    name: "③f 확인테스트가 «+9시간»을 다시 적는다 (셈이 두 곳 — 한쪽만 고치면 «오늘»이 갈린다, D-128 ⑷)",
+    file: DAILY_ROUTE,
+    from: "      : kstDateOf(new Date());",
+    to: "      : new Date(Date.now() + 9 * 3_600_000).toISOString().slice(0, 10);",
+    probe: null,
+    tests: [KST_T],
   },
   // ── ④ 학생 화면에 AI 고지가 없다 ──────────────────────────────────────────
   {
@@ -434,8 +449,43 @@ const MUTATIONS: Mutation[] = [
   {
     name: "⑧a 첫 로그인 화면에서 나가기를 뺀다 (잘못 들어온 학생이 갇힌다)",
     file: PASSWORD_UI,
-    from: "      <LearnTopBar student={null} />\n",
+    from: "      <LearnTopBar student={studentName ? { name: studentName } : null} />\n",
     to: "",
+    probe: null,
+    tests: [SCREENS],
+  },
+  // ── ⑧b~d 첫 로그인 윗줄 이름 · 큰 로고 (D-128 — 원장님 답 17 ① · 18 ①) ──────────────
+  {
+    name: "⑧b 첫 로그인 윗줄에서 이름을 뺀다 (잘못 들어온 학생이 못 알아본다)",
+    file: PASSWORD_UI,
+    from: "student={studentName ? { name: studentName } : null}",
+    to: "student={null}",
+    probe: null,
+    tests: [SCREENS, PW_PAGE],
+  },
+  {
+    name: "⑧c 페이지가 세션 이름을 폼에 안 넘긴다",
+    file: PW_PAGE_FILE,
+    from: "studentName={student?.name ?? null}",
+    to: "studentName={null}",
+    probe: null,
+    tests: [PW_PAGE],
+  },
+  {
+    name: "⑧d 첫 로그인 화면에 큰 로고를 되살린다 («오늘의수학»이 두 번)",
+    file: PASSWORD_UI,
+    from: L(
+      "      <main className={s.login}>",
+      "        <p className={s.kick}>처음 들어왔습니다</p>",
+    ),
+    to: L(
+      "      <main className={s.login}>",
+      "        <div className={s.brand}>",
+      "          <b>오늘의수학</b>",
+      "          <span>오늘의 개념 · 학생</span>",
+      "        </div>",
+      "        <p className={s.kick}>처음 들어왔습니다</p>",
+    ),
     probe: null,
     tests: [SCREENS],
   },
@@ -489,6 +539,23 @@ const MUTATIONS: Mutation[] = [
     ),
     probe: null,
     tests: [PANEL],
+  },
+  // ── ⑨f~g 칸을 열어 둔 채 다시 센다 (D-128 ⑶ — 리드) ──────────────────────────
+  {
+    name: "⑨f 잠김 줄이 다시 세지 않는다 (칸을 열어 둔 채 N 이 안 줄고 끝난 잠금의 줄이 남는다)",
+    file: PANEL_UI,
+    from: "    const id = setTimeout(() => setNow(new Date()), wait);",
+    to: "    const id = setTimeout(() => {}, wait);",
+    probe: null,
+    tests: [PANEL],
+  },
+  {
+    name: "⑨g 다시 셀 때를 늘 1분 뒤로 잡는다 (분 가운데에 연 칸은 최대 1분 늦다)",
+    file: LOCK_FILE,
+    from: "  return left % MINUTE_MS || MINUTE_MS;",
+    to: "  return MINUTE_MS;",
+    probe: 'lock.lockLineNextChangeMs("2026-09-15T05:05:30.000Z", LOCK_NOW)',
+    tests: [LOCK_T, PANEL],
   },
   {
     name: "⑨e 서버가 상태에 잠금 끝 시각을 안 싣는다",

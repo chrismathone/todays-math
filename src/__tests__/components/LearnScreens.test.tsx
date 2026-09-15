@@ -260,7 +260,7 @@ describe("첫 로그인 — 비밀번호 바꾸기 (/learn/password — 시안 s
   };
 
   it("🔴 세 칸 — 받은 번호가 맨 위, 새 번호 · 한 번 더. 모두 숫자 4자리", () => {
-    render(<StudentPasswordForm />);
+    render(<StudentPasswordForm studentName="이서준" />);
     expect(screen.getByText("처음 들어왔습니다")).toBeInTheDocument();
     expect(
       screen.getByRole("heading", { name: "새 비밀번호를 정하세요" }),
@@ -290,7 +290,7 @@ describe("첫 로그인 — 비밀번호 바꾸기 (/learn/password — 시안 s
 
   it("규칙 줄은 숫자 4자리 · 반복·연속 안 됨 · 두 칸이 같음 — 맞으면 표시가 선다", async () => {
     const user = userEvent.setup();
-    render(<StudentPasswordForm />);
+    render(<StudentPasswordForm studentName="이서준" />);
     const rules = within(
       screen.getByRole("list", { name: "새 비밀번호 규칙" }),
     );
@@ -313,7 +313,7 @@ describe("첫 로그인 — 비밀번호 바꾸기 (/learn/password — 시안 s
 
   it("두 칸이 다르면 · 쉬운 번호면 보내지 않는다", async () => {
     const user = userEvent.setup();
-    render(<StudentPasswordForm />);
+    render(<StudentPasswordForm studentName="이서준" />);
     await fill(user, "5809", "7314", "7315");
     await user.click(screen.getByRole("button", { name: "바꾸고 들어가기" }));
     expect(await screen.findByRole("alert")).toHaveTextContent(
@@ -337,7 +337,7 @@ describe("첫 로그인 — 비밀번호 바꾸기 (/learn/password — 시안 s
       status: 200,
       body: { data: { mustChangePassword: false } },
     };
-    render(<StudentPasswordForm />);
+    render(<StudentPasswordForm studentName="이서준" />);
     await fill(user, "5809", "7314", "7314");
     await user.click(screen.getByRole("button", { name: "바꾸고 들어가기" }));
     await waitFor(() => expect(router.replace).toHaveBeenCalledWith("/learn"));
@@ -349,7 +349,7 @@ describe("첫 로그인 — 비밀번호 바꾸기 (/learn/password — 시안 s
 
   it("🔴 받은 번호가 틀리면 · 잠기면 서버 문구 그대로 (잠금이 이 칸에도 걸린다)", async () => {
     const user = userEvent.setup();
-    render(<StudentPasswordForm />);
+    render(<StudentPasswordForm studentName="이서준" />);
     await fill(user, "0001", "7314", "7314");
     override["POST /api/learn/password"] = {
       status: 401,
@@ -399,7 +399,7 @@ describe("첫 로그인 — 비밀번호 바꾸기 (/learn/password — 시안 s
     calls = [];
 
     const user = userEvent.setup();
-    render(<StudentPasswordForm />);
+    render(<StudentPasswordForm studentName="이서준" />);
     expect(shapeOf()).toStrictEqual(listShape);
     // 같은 자리 — 윗줄이 폼보다 앞(화면 맨 위)
     const bar = screen.getByRole("banner");
@@ -417,6 +417,30 @@ describe("첫 로그인 — 비밀번호 바꾸기 (/learn/password — 시안 s
     ]);
   });
 
+  it("🔴 «오늘의수학»은 윗줄 한 번뿐 — 큰 로고를 뺐다 (D-128 ⑴ · 원장님 답 17 ①)", () => {
+    // D-127 로 윗줄(목록과 같은 부품)을 둔 뒤, 그 아래 로고가 같은 이름을 한 번 더 세우고 있었다
+    render(<StudentPasswordForm studentName="이서준" />);
+    expect(screen.getAllByText("오늘의수학")).toHaveLength(1);
+    expect(
+      within(screen.getByRole("banner")).getByText("오늘의수학"),
+    ).toBeInTheDocument();
+    expect(screen.queryByText("오늘의 개념 · 학생")).not.toBeInTheDocument();
+    expect(
+      screen.getByRole("heading", { name: "새 비밀번호를 정하세요" }),
+    ).toBeInTheDocument();
+  });
+
+  it("🔴 윗줄에 학생 이름 — 반은 이 화면이 모른다(목록 API 가 준다) (D-128 ⑵ · 원장님 답 18 ①)", () => {
+    // 다른 학생 아이디로 잘못 들어온 학생이 윗줄 이름으로 바로 안다 — 그러면 «나가기»
+    render(<StudentPasswordForm studentName="이서준" />);
+    expect(screen.getByRole("banner").textContent).toBe(
+      "오늘의수학이서준·나가기",
+    );
+    cleanup();
+    render(<StudentPasswordForm studentName={null} />);
+    expect(screen.getByRole("banner").textContent).toBe("오늘의수학나가기");
+  });
+
   it("학생 세션이 없으면(받은 번호 탓이 아닌 401) 학생 로그인으로", async () => {
     const user = userEvent.setup();
     override["POST /api/learn/password"] = {
@@ -425,7 +449,7 @@ describe("첫 로그인 — 비밀번호 바꾸기 (/learn/password — 시안 s
         error: { code: "UNAUTHORIZED", message: "로그인이 필요합니다." },
       },
     };
-    render(<StudentPasswordForm />);
+    render(<StudentPasswordForm studentName="이서준" />);
     await fill(user, "5809", "7314", "7314");
     await user.click(screen.getByRole("button", { name: "바꾸고 들어가기" }));
     await waitFor(() =>

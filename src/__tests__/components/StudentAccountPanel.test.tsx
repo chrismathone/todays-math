@@ -10,7 +10,7 @@
  * 🔴 ② 초기 비밀번호는 **응답을 받은 그 화면에만** — localStorage · sessionStorage · URL · 콘솔 어디에도 안 남고,
  *    화면을 벗어나면(다른 학생을 고르면) 사라진다.
  */
-import { render, screen, waitFor, within } from "@testing-library/react";
+import { act, render, screen, waitFor, within } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 
@@ -448,6 +448,36 @@ describe("🔴 잠김 한 줄 — «잠김 — N분 뒤 풀림» (D-127 Q5)", ()
     expect(card().queryByText(/잠김/)).not.toBeInTheDocument();
     await open(user, KIM.name);
     await card().findByText("퇴원 — 로그인 막힘");
+    expect(card().queryByText(/잠김/)).not.toBeInTheDocument();
+  });
+
+  it("🔴 칸을 열어 둔 채 시간이 가면 N 이 줄고, 잠금이 끝나면 줄이 사라진다 (D-128 ⑶ — 리드)", async () => {
+    // 이 시험만 타이머도 멈춘다 — 줄이 N 이 바뀌는 순간에 다시 세는지 본다. 입력 흉내 · findBy 가 돌도록
+    // 시계는 흐르게 둔다(shouldAdvanceTime). 이미 Date 만 멈춘 채면 설정이 안 바뀌어 먼저 푼다.
+    vi.useRealTimers();
+    vi.useFakeTimers({
+      toFake: ["Date", "setTimeout", "clearTimeout"],
+      shouldAdvanceTime: true,
+    });
+    vi.setSystemTime(NOW);
+    // 한 번에 몇 분을 넘기면 React 가 그 사이에 다시 그리지 않는다 — 실제처럼 N 이 바뀌는 순간마다 끊어 넘긴다
+    const pass = (ms: number) =>
+      act(async () => {
+        vi.advanceTimersByTime(ms);
+      });
+    panels[SEO.id] = panel(
+      status({ locked: true, lockedUntil: until(5 * 60_000 + 30_000) }),
+    );
+    const user = renderList();
+    await open(user, SEO.name);
+    expect(await card().findByText(line(6))).toBeInTheDocument();
+    await pass(30_000);
+    expect(card().getByText(line(5))).toBeInTheDocument();
+    for (const n of [4, 3, 2, 1]) {
+      await pass(60_000);
+      expect(card().getByText(line(n))).toBeInTheDocument();
+    }
+    await pass(60_000);
     expect(card().queryByText(/잠김/)).not.toBeInTheDocument();
   });
 });

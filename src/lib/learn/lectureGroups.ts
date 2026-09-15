@@ -7,18 +7,11 @@
  *   가장 최근 날로 센다(`src/lib/learn/lectureAccess.ts` 의 `progressDatesOf` — 목록·기록이 같은 행에서).
  * - 가장 최근 날의 묶음이 맨 앞(**남색 판**), 나머지는 최근 순. 같은 날 여러 차시는 교육과정 차례.
  * - 🔴 «오늘» 은 그 날이 **오늘(학원 시간 KST)** 일 때만이다 — 어제 수업이면 날짜만.
+ *   오늘 날짜는 부르는 쪽이 `kstDateOf`(`src/lib/kstDate.ts` — KST 셈은 그 한 곳)로 세어 넘긴다.
  *   요일은 달력이 정한다(`formatDayWithWeekday` — 시안의 «9월 15일 (월)» 은 틀렸다, 2026-09-15 는 화요일).
  */
 import type { ConceptLectureForStudent } from "@/contracts/conceptLecture.contract";
 import type { LearnUnit } from "@/contracts/studentAccount.contract";
-
-/** 학원 시간(KST, UTC+9) — 서머타임이 없다 */
-const KST_OFFSET_MS = 9 * 3_600_000;
-
-/** 그 시각의 학원 날짜(YYYY-MM-DD) — 서버 시계의 UTC 자정이 아니다 */
-export function kstDateOf(at: Date): string {
-  return new Date(at.getTime() + KST_OFFSET_MS).toISOString().slice(0, 10);
-}
 
 export interface UnitGroup {
   unit: LearnUnit;

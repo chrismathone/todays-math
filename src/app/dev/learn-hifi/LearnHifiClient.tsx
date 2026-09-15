@@ -316,7 +316,11 @@ export function LearnHifiClient({ options }: { options: LearnHifiOptions }) {
     <div className={s.page}>
       <PlayerFactoryContext.Provider value={player}>
         {options.screen === "login" ? <StudentLoginForm /> : null}
-        {options.screen === "password" ? <StudentPasswordForm /> : null}
+        {options.screen === "password" ? (
+          <StudentPasswordForm
+            studentName={learnHifiList(options.set).student.name}
+          />
+        ) : null}
         {options.screen === "list" ? <LectureList now={now} /> : null}
         {options.screen === "watch" ? (
           <WatchScreen lectureId={lectureId} />

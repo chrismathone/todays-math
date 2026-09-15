@@ -21,6 +21,7 @@ import type {
   ConceptUnits,
 } from "@/contracts/conceptAdmin.contract";
 import { db } from "@/lib/db";
+import { kstDateOf } from "@/lib/kstDate";
 import { isPrismaErrorCode } from "@/lib/prismaErrors";
 import { getCurrentProgress } from "@/lib/progressResolver";
 import { serializeProgress } from "@/lib/serializers";
@@ -54,11 +55,6 @@ const fail = (
   message: string,
   details?: unknown,
 ): ServiceResult<never> => ({ ok: false, status, code, message, details });
-
-/** 「오늘」은 학원 시간(KST)이다 — 서버 시계의 UTC 자정이 아니다(daily-review 와 같은 셈). */
-export function kstToday(now: Date): string {
-  return new Date(now.getTime() + 9 * 3_600_000).toISOString().slice(0, 10);
-}
 
 /** `/api/progress` · `/api/progress/advance` 와 **글자 그대로** 같은 «최신» 순서 */
 const LATEST_FIRST = [
@@ -216,7 +212,8 @@ export async function loadConceptBoard(
 
   return assembleConceptBoard({
     ...base,
-    today: kstToday(now),
+    // 「오늘」은 학원 시간(KST) — daily-review · 학생 목록과 같은 셈(`kstDate.ts` 한 곳)
+    today: kstDateOf(now),
     canEdit,
     lectures,
     views,

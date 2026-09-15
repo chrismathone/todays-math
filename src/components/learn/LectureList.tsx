@@ -7,9 +7,9 @@ import { Fragment, useEffect, useMemo, useState } from "react";
 import { formatDayWithWeekday, mmss } from "@/components/unified/conceptFormat";
 import type { ConceptLectureForStudent } from "@/contracts/conceptLecture.contract";
 import type { LearnLectureList } from "@/contracts/studentAccount.contract";
+import { kstDateOf } from "@/lib/kstDate";
 import {
   groupLecturesByDay,
-  kstDateOf,
   watchState,
   type DayGroup,
 } from "@/lib/learn/lectureGroups";
