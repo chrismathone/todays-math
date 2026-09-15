@@ -89,7 +89,7 @@ required in the PDF renderer's request allowlist.
 The runtime uses `SHARED_FIGURE_CDN_BASE_URL`, for example:
 
 ```text
-https://<intended-project>.supabase.co/storage/v1/object/public/shared-figures
+https://pqylrbowrfliicxzurex.supabase.co/storage/v1/object/public/todays-math-shared-figures
 ```
 
 The value is public configuration, not an upload credential. A Supabase secret
@@ -108,8 +108,8 @@ resumable: it checks existing public bytes and never overwrites an object.
 
 ```text
 node scripts/storage/shared-figures-cli.mjs dry-run --manifest src/config/shared-figures.manifest.json
-node scripts/storage/shared-figures-cli.mjs upload --manifest src/config/shared-figures.manifest.json --bucket shared-figures --receipt .qa-artifacts/shared-figures-upload.json
-node scripts/storage/shared-figures-cli.mjs verify --manifest src/config/shared-figures.manifest.json --bucket shared-figures --receipt .qa-artifacts/shared-figures-verification.json
+node scripts/storage/shared-figures-cli.mjs upload --manifest src/config/shared-figures.manifest.json --bucket todays-math-shared-figures --receipt .qa-artifacts/shared-figures-upload.json
+node scripts/storage/shared-figures-cli.mjs verify --manifest src/config/shared-figures.manifest.json --bucket todays-math-shared-figures --receipt .qa-artifacts/shared-figures-verification.json
 ```
 
 After every public object passes the full-byte check:
@@ -136,6 +136,29 @@ Changes to managed images require a new manifest, upload, verification receipt,
 and rollout. The build intentionally rejects an old receipt for a new asset set.
 No per-build upload or full remote rescan is performed, so deployment latency
 does not grow with a remote transfer on every push.
+
+### Mathgen storage rollout — 2026-09-15
+
+The approved target is the existing **mathgen** project
+(`pqylrbowrfliicxzurex`) and its dedicated public bucket
+`todays-math-shared-figures`. This storage choice is independent of the
+application database connection. The bucket permits image MIME types only and
+has an 8 MiB object limit. App delivery uses anonymous public reads; no upload
+secret is added to Vercel.
+
+The initial upload completed at `2026-09-15T03:38:23.727Z`: all 18,827 immutable
+objects were newly uploaded and individually read back successfully. The
+separate anonymous verification receipt is checked into
+`src/config/shared-figures.receipt.json` before the preview rollout. Use the
+[deployment/export harness](shared-figure-deployment-harness.md) to record
+actual hosted image responses and browser/PDF/HWPX results.
+
+The immediately preceding production deployment, `dpl_4qRpJwMWBDsUvD4HdDEdRPUm8HfW`
+at `f7323be6`, took 154.295 seconds from creation to ready. Its cached cloud build
+reported 21.199 seconds cloning, 46 seconds building, and 76.051 seconds deploying
+outputs. Build-cache creation/upload continued after the deployment was ready
+and is excluded from that ready duration. The Git checkout retains the original
+images; the migration therefore reduces deployment outputs, not Git clone size.
 
 ## Validation
 
