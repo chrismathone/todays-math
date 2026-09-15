@@ -7,6 +7,8 @@ export const WORKSPACE_MENUS = [
   { id: "export", label: "시험지 · 내보내기" },
   { id: "library", label: "내 시험지" },
   { id: "teaching", label: "수업 · 학생 관리" },
+  // D-124 ⑽ — «수업 · 학생 관리» 바로 아래. 강의 목록은 서비스 공용, 쓰기는 isAdmin 만(⑼).
+  { id: "concept", label: "오늘의 개념" },
 ] as const;
 export const workspaceMenuSchema = z.enum([
   "home",
@@ -15,6 +17,7 @@ export const workspaceMenuSchema = z.enum([
   "export",
   "library",
   "teaching",
+  "concept",
 ]);
 export type WorkspaceMenu = z.infer<typeof workspaceMenuSchema>;
 export const ALL_WORKSPACE_MENUS: WorkspaceMenu[] = WORKSPACE_MENUS.map(
@@ -49,7 +52,8 @@ export const accountUpdateSchema = z
     approvalStatus: approvalStatusSchema.optional(),
     menus: z
       .array(workspaceMenuSchema)
-      .max(6)
+      // 손으로 적은 6 은 메뉴가 늘면 «전부 켜기»를 거절한다 — 메뉴 목록에서 센다.
+      .max(WORKSPACE_MENUS.length)
       .refine((menus) => new Set(menus).size === menus.length)
       .optional(),
     expectedUpdatedAt: z.iso.datetime(),
