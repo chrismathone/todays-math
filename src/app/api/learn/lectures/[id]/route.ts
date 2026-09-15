@@ -52,6 +52,10 @@ export async function GET(_request: NextRequest, { params }: RouteContext) {
   const dto = toStudentLecture(lecture, view);
   if (!unit || !dto) return notFoundError("강의");
   return jsonOk(learnLectureResponseSchema, {
-    data: { unit: toLearnUnit(unit), lecture: dto },
+    data: {
+      student: scope.head,
+      unit: toLearnUnit(unit, scope.taughtOn),
+      lecture: dto,
+    },
   });
 }

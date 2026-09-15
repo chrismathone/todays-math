@@ -73,7 +73,7 @@ import * as issue from "../../src/lib/learn/issueStudentAccount";
 import * as access from "../../src/lib/learn/lectureAccess";
 import * as wr from "../../src/lib/learn/watchReport";
 const ROW = { id: "acc-1", studentId: "stu-1", disabledAt: null as Date | null,
-  mustChangePassword: false, student: { name: "이서준" } };
+  mustChangePassword: false, student: { name: "이서준", eywaWithdrawnAt: null as Date | null } };
 function loginSetup() {
   const store = mem.createMemoryLoginStore();
   store.addAccount({ id: "acc", studentId: "stu", loginId: "seo01", passwordHash: "hash:5809",
@@ -262,8 +262,9 @@ const MUTATIONS: Mutation[] = [
   {
     name: "④a 토큰을 지을 때 꺼짐(disabledAt)을 안 본다",
     file: SESSION,
-    from: "  if (!row || row.disabledAt !== null || !row.student) return null;",
-    to: "  if (!row || !row.student) return null;",
+    // learn-screens: 꺼짐 ∪ 퇴원 판정이 `studentAccountBlocked` 하나로 모였다 — 토큰 쪽이 꺼짐 칸을 안 넘기게 한다
+    from: "    disabledAt: row.disabledAt,",
+    to: "    disabledAt: null,",
     probe: {
       tsx: 'ss.studentTokenFor("acc-1", async () => ({ ...ROW, disabledAt: new Date(0) }))',
     },
@@ -281,7 +282,8 @@ const MUTATIONS: Mutation[] = [
   {
     name: "⑤ 반 소유자를 안 본다 — 남의 반 학생에게도 발급한다",
     file: ISSUE_FILE,
-    from: '  if (owner.ownerId !== directorId) return "not_owner";\n',
+    // learn-screens: 소유 판정이 퇴원 여부를 같이 돌려주게 되었다(`ownedStudent`) — 그 한 줄을 지운다
+    from: '  if (owner.ownerId !== directorId) return { failure: "not_owner" };\n',
     to: "",
     probe: {
       tsx: '(async () => { const h = issueHarness("someone-else"); const r = await issue.issueStudentAccount(h.deps, ISSUE_INPUT); return r.ok ? "issued" : r.reason; })()',
@@ -402,7 +404,8 @@ const MUTATIONS: Mutation[] = [
   {
     name: "잠금-6 꺼진 계정도 맞는 번호면 들인다",
     file: LOGIN_FILE,
-    from: "  const hash = account.disabledAt === null ? account.passwordHash : null;",
+    // learn-screens: 꺼짐 ∪ 퇴원 판정이 `studentAccountBlocked` 하나로 모였다
+    from: "  const hash = studentAccountBlocked(account) ? null : account.passwordHash;",
     to: "  const hash = account.passwordHash;",
     probe: {
       tsx: '(async () => { const t = loginSetup(); return (await t.login("off01", "5809")).ok; })()',
@@ -444,7 +447,7 @@ const MUTATIONS: Mutation[] = [
     from: "    const ownProgress = row.studentId === student.id;",
     to: "    const ownProgress = row.studentId !== null;",
     probe: {
-      tsx: '[...access.progressUnitIdsOf([{ classId: "c", studentId: "other", unitId: "u7" }], { id: "me", classId: "c" })]',
+      tsx: '[...access.progressUnitIdsOf([{ classId: "c", studentId: "other", unitId: "u7", recordedAt: new Date(0) }], { id: "me", classId: "c" })]',
     },
     tests: [ACCESS, ROUTES],
   },

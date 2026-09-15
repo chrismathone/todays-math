@@ -42,7 +42,8 @@ const trap = vi.hoisted(() => ({
     studentId: "30000000-0000-4000-8000-000000000001",
     disabledAt: null as Date | null,
     mustChangePassword: false,
-    student: { name: "이서준" },
+    // 퇴원 칸이 없으면 토큰 판정(꺼짐 ∪ 퇴원)이 닫는 쪽으로 막는다 — 아래 «⓪ 전제»가 그걸 먼저 센다
+    student: { name: "이서준", eywaWithdrawnAt: null as Date | null },
   },
 }));
 
@@ -88,6 +89,8 @@ vi.mock("@/lib/db", () => {
   );
   return { db };
 });
+
+import { auth } from "@/lib/auth";
 
 import {
   cookieHeaderFor,
@@ -299,6 +302,23 @@ function judge(anonymous: Outcome, student: Outcome): boolean {
     student.db.join() === anonymous.db.join()
   );
 }
+
+describe("⓪ 전제 — 학생 쿠키가 정말 학생 세션으로 선다 (아니면 아래 전수가 «로그인 안 함 vs 로그인 안 함»으로 헛돈다)", () => {
+  /**
+   * 🔴 2026-09-15 learn-screens: 토큰 판정에 퇴원(`eywaWithdrawnAt`)이 들어오자, 이 파일의 대역 계정 행에 그 칸이 없어
+   *    학생 토큰이 **조용히 막혔다**(닫히는 쪽). 그러자 아래 전수는 학생 요청이 전부 «로그인 안 한 사람»이 되어
+   *    초록이었다 — 변이 ②f(학생 세션에 원장 모양 user.id)가 **살아남아서야** 드러났다. 세는 쪽이 셀 수 있는지를 먼저 센다.
+   */
+  it("🔴 학생 쿠키로 auth() 를 부르면 student 가 선다", async () => {
+    resetRequest({ cookie: studentCookie });
+    trap.calls = [];
+    const session = await auth();
+    expect(
+      session?.student?.accountId,
+      "학생 세션이 안 섰다 — 대역 계정 행이 토큰 판정(꺼짐 ∪ 퇴원)을 못 지난다",
+    ).toBe(trap.account.id);
+  });
+});
 
 describe("② 학생 세션 → 기존 API 전수", () => {
   it("🔴 모든 라우트 × 내보낸 메서드 — 학생은 «로그인 안 한 사람» 이상을 못 얻는다", async () => {

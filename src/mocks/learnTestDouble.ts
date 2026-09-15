@@ -308,6 +308,40 @@ export const learnTestDouble = {
       for (const r of hits) applyData(r, data);
       return { count: hits.length };
     },
+    /** 정리(`pruneStaleMisses`)가 고르는 모양 — 정렬은 `updatedAt` 하나만 안다 */
+    async findMany({
+      where,
+      select,
+      orderBy,
+      take,
+    }: {
+      where?: Where;
+      select?: Record<string, unknown>;
+      orderBy?: Record<string, "asc" | "desc">;
+      take?: number;
+    } = {}) {
+      let rows = studentLoginMissRows.filter((r) => matches(r, where));
+      if (orderBy !== undefined) {
+        const keys = Object.keys(orderBy);
+        if (keys.length !== 1 || keys[0] !== "updatedAt")
+          throw new Error(
+            "learnTestDouble: studentLoginMiss 정렬은 updatedAt 하나만 안다",
+          );
+        const sign = orderBy.updatedAt === "desc" ? -1 : 1;
+        rows = [...rows].sort(
+          (a, b) => sign * (a.updatedAt.getTime() - b.updatedAt.getTime()),
+        );
+      }
+      if (take !== undefined) rows = rows.slice(0, take);
+      return Promise.all(rows.map((r) => project(r, select)));
+    },
+    async deleteMany({ where }: { where: Where }) {
+      const before = studentLoginMissRows.length;
+      studentLoginMissRows = studentLoginMissRows.filter(
+        (r) => !matches(r, where),
+      );
+      return { count: before - studentLoginMissRows.length };
+    },
   },
 
   conceptLecture: {
@@ -451,6 +485,22 @@ export function seedConceptLecture(
     ...input,
   };
   conceptLectureRows.push(row);
+  return row;
+}
+
+/** 없는 아이디 행을 심는다 — 정리(`pruneStaleMisses`)의 경계 시험용. 열쇠는 64자 16진이어야 한다(DB CHECK) */
+export function seedStudentLoginMiss(
+  input: Pick<StudentLoginMissRow, "keyHash"> & Partial<StudentLoginMissRow>,
+): StudentLoginMissRow {
+  if (!/^[0-9a-f]{64}$/.test(input.keyHash))
+    throw new Error("learnTestDouble: student_login_miss 열쇠는 64자 16진");
+  const row: StudentLoginMissRow = {
+    failedCount: 1,
+    lockedUntil: null,
+    updatedAt: new Date(),
+    ...input,
+  };
+  studentLoginMissRows.push(row);
   return row;
 }
 

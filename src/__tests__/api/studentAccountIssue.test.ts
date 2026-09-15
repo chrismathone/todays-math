@@ -3,11 +3,13 @@
  * 원장 — 학생 계정 발급 · 다시 발급 · 끄기 · 상태 (D-124 ⑷ · 브리프 §2.3 · §4 ⑤⑥).
  *
  *   POST  /api/students/{id}/account           발급 (아이디는 원장님이 직접 — D-125 ⑵)
- *   GET   /api/students/{id}/account           상태 (없으면 data: null)
+ *   GET   /api/students/{id}/account           발급 칸이 읽는 것 — 퇴원 여부 + 계정(없으면 null)
  *   PATCH /api/students/{id}/account           끄기·켜기 — `disabledAt` 만, 지우지 않는다
  *   POST  /api/students/{id}/account/password  다시 발급 — 비밀번호만 새로
  *
  * 🔴 ⑤ 남의 반 학생에게 발급하면 거부 · ⑥ 초기 비밀번호가 DB·로그·감사 기록 어디에도 평문으로 안 남는다.
+ * learn-screens 브리프 §1.3 이 더한 것: GET 은 계정이 없어도 **퇴원 여부**를 준다(칸이 «퇴원 — 로그인 막힘»을
+ * 그린다) · 계정 상태에 «지금 보는 원장님이 발급했나»(시안 «9월 15일 · 원장님»).
  *
  * 초기 비밀번호는 고정 난수로 뽑게 해서(`generateInitialPassword` 대역) **그 번호를 찾아 다닌다.**
  * 네 자리 숫자는 UUID·bcrypt 해시·시각 안에 우연히 들어 있을 수 있어서, 그 셋을 먼저 걷어 내고 찾는다.
@@ -41,8 +43,10 @@ import {
 } from "@/app/api/students/[id]/account/route";
 import { POST as reissueRoute } from "@/app/api/students/[id]/account/password/route";
 import {
+  STUDENT_ACCOUNT_WITHDRAWN_MESSAGES,
   STUDENT_LOGIN_MESSAGES,
   studentAccountIssueResponseSchema,
+  studentAccountPanelResponseSchema,
   studentAccountStatusResponseSchema,
 } from "@/contracts/studentAccount.contract";
 import { getSessionUser } from "@/lib/session";
@@ -130,6 +134,10 @@ const ctx = (id: string) => ({ params: Promise.resolve({ id }) });
 
 const issue = (studentId: string, loginId: string, origin?: string) =>
   issueRoute(req("POST", studentId, { loginId }, "", origin), ctx(studentId));
+const panelOf = async (studentId: string) =>
+  studentAccountPanelResponseSchema.parse(
+    await (await statusRoute(req("GET", studentId), ctx(studentId))).json(),
+  ).data;
 
 /** 네 자리 번호가 우연히 섞일 수 있는 것(UUID · bcrypt · 시각)을 걷어 낸다 */
 function scrub(text: string): string {
@@ -264,7 +272,7 @@ describe("다시 발급 · 끄기 · 상태", () => {
     );
     expect(off.status).toBe(200);
     const offBody = studentAccountStatusResponseSchema.parse(await off.json());
-    expect(offBody.data?.disabledAt).not.toBeNull();
+    expect(offBody.data.disabledAt).not.toBeNull();
     expect(learnRows.studentAccounts()).toHaveLength(1);
     expect(learnRows.studentAccounts()[0]!.disabledAt).toBeInstanceOf(Date);
     const on = await patchRoute(
@@ -272,35 +280,72 @@ describe("다시 발급 · 끄기 · 상태", () => {
       ctx(MOCK_STUDENT_1.id),
     );
     expect(
-      studentAccountStatusResponseSchema.parse(await on.json()).data
-        ?.disabledAt,
+      studentAccountStatusResponseSchema.parse(await on.json()).data.disabledAt,
     ).toBeNull();
   });
 
-  it("상태 — 계정이 없으면 data: null, 있으면 비밀번호 없는 모양", async () => {
+  it("상태 — 계정이 없으면 account: null, 있으면 비밀번호 없는 모양 (발급 칸이 읽는다)", async () => {
     const none = await statusRoute(
       req("GET", MOCK_STUDENT_1.id),
       ctx(MOCK_STUDENT_1.id),
     );
-    expect(await none.json()).toStrictEqual({ data: null });
+    expect(await none.json()).toStrictEqual({
+      data: { withdrawn: false, account: null },
+    });
+    const lockedUntil = new Date(Date.now() + 60_000);
     seedStudentAccount({
       studentId: MOCK_STUDENT_1.id,
       loginId: "seo01",
       passwordHash:
         "$2b$10$abcdefghijklmnopqrstuuWn8QbN8oZcG5d6r3pS1oPq9s7mQeYxW",
       failedCount: 5,
-      lockedUntil: new Date(Date.now() + 60_000),
+      lockedUntil,
     });
-    const res = await statusRoute(
-      req("GET", MOCK_STUDENT_1.id),
-      ctx(MOCK_STUDENT_1.id),
-    );
-    const body = studentAccountStatusResponseSchema.parse(await res.json());
-    expect(body.data).toMatchObject({
+    const panel = await panelOf(MOCK_STUDENT_1.id);
+    expect(panel.withdrawn).toBe(false);
+    // 잠금이 끝나는 시각을 그대로 준다 — 발급 칸이 «잠김 — N분 뒤 풀림»을 센다(D-127 Q5)
+    expect(panel.account).toMatchObject({
       loginId: "seo01",
       locked: true,
+      lockedUntil: lockedUntil.toISOString(),
       mustChangePassword: true,
+      issuedByViewer: false,
     });
+  });
+
+  it("잠기지 않은 계정은 lockedUntil: null", async () => {
+    await issue(MOCK_STUDENT_1.id, "seo01");
+    expect((await panelOf(MOCK_STUDENT_1.id)).account).toMatchObject({
+      locked: false,
+      lockedUntil: null,
+    });
+  });
+
+  it("발급한 사람 — 지금 보는 원장님이 발급했으면 issuedByViewer (시안 «9월 15일 · 원장님»)", async () => {
+    await issue(MOCK_STUDENT_1.id, "seo01");
+    expect((await panelOf(MOCK_STUDENT_1.id)).account?.issuedByViewer).toBe(
+      true,
+    );
+  });
+
+  it("🔴 퇴원한 학생 — 계정이 없어도 withdrawn 을 준다(칸이 «퇴원 — 로그인 막힘»을 그린다)", async () => {
+    await prismaTestDouble.student.update({
+      where: { id: MOCK_STUDENT_1.id },
+      data: { eywaWithdrawnAt: new Date() },
+    });
+    expect(await panelOf(MOCK_STUDENT_1.id)).toStrictEqual({
+      withdrawn: true,
+      account: null,
+    });
+    seedStudentAccount({
+      studentId: MOCK_STUDENT_1.id,
+      loginId: "seo01",
+      passwordHash:
+        "$2b$10$abcdefghijklmnopqrstuuWn8QbN8oZcG5d6r3pS1oPq9s7mQeYxW",
+    });
+    const panel = await panelOf(MOCK_STUDENT_1.id);
+    expect(panel.withdrawn).toBe(true);
+    expect(panel.account?.loginId).toBe("seo01");
   });
 
   it("🔴 ⑤ 남의 반 학생은 상태·끄기·다시 발급도 403", async () => {
@@ -331,6 +376,109 @@ describe("다시 발급 · 끄기 · 상태", () => {
       ).status,
     ).toBe(403);
     expect(learnRows.studentAccounts()[0]!.disabledAt).toBeNull();
+  });
+});
+
+describe("🔴 퇴원 학생에게는 발급 API 도 막는다 — 409 (D-127 · 리드 결정 · 보고서 §7-3)", () => {
+  /**
+   * 화면은 이미 퇴원 학생에게 발급 단추를 안 그린다 — 서버가 **같은 판정**(`accountBlock.ts` 의 퇴원 쪽)을 한다.
+   * 발급 · 다시 발급 · 켜기는 409, 끄기는 된다(막는 쪽으로 가는 일이다).
+   */
+  const withdraw = (studentId = MOCK_STUDENT_1.id) =>
+    prismaTestDouble.student.update({
+      where: { id: studentId },
+      data: { eywaWithdrawnAt: new Date("2026-09-14T00:00:00.000Z") },
+    });
+  const errorOf = async (res: Response) =>
+    ((await res.json()) as { error: { code: string; message: string } }).error;
+  const reissue = () =>
+    reissueRoute(
+      req("POST", MOCK_STUDENT_1.id, undefined, "/password"),
+      ctx(MOCK_STUDENT_1.id),
+    );
+  const setDisabled = (disabled: boolean) =>
+    patchRoute(
+      req("PATCH", MOCK_STUDENT_1.id, { disabled }),
+      ctx(MOCK_STUDENT_1.id),
+    );
+
+  it("발급 — 409 «퇴원한 학생은 계정을 만들 수 없습니다.» · 계정 0 · 감사 0 · 번호를 안 뽑는다", async () => {
+    await withdraw();
+    const res = await issue(MOCK_STUDENT_1.id, "seo01");
+    expect(res.status).toBe(409);
+    expect(await errorOf(res)).toMatchObject({
+      code: "CONFLICT",
+      message: STUDENT_ACCOUNT_WITHDRAWN_MESSAGES.issue,
+    });
+    expect(learnRows.studentAccounts()).toEqual([]);
+    expect(learnRows.audits()).toEqual([]);
+    expect(pins.queue).toStrictEqual([PIN, PIN2]);
+  });
+
+  it("다시 발급 · 켜기 — 409 같은 결의 문구 · 번호 · 잠금 · 꺼짐이 그대로", async () => {
+    await issue(MOCK_STUDENT_1.id, "seo01");
+    const [row] = learnRows.studentAccounts();
+    const hashBefore = row!.passwordHash;
+    const offAt = new Date("2026-09-15T02:00:00.000Z");
+    const lockedUntil = new Date(Date.now() + 5 * 60_000);
+    patchStudentAccount(row!.id, {
+      disabledAt: offAt,
+      failedCount: 5,
+      lockedUntil,
+    });
+    await withdraw();
+
+    const again = await reissue();
+    expect(again.status).toBe(409);
+    expect(await errorOf(again)).toMatchObject({
+      code: "CONFLICT",
+      message: STUDENT_ACCOUNT_WITHDRAWN_MESSAGES.reissue,
+    });
+    const on = await setDisabled(false);
+    expect(on.status).toBe(409);
+    expect(await errorOf(on)).toMatchObject({
+      code: "CONFLICT",
+      message: STUDENT_ACCOUNT_WITHDRAWN_MESSAGES.enable,
+    });
+
+    const [after] = learnRows.studentAccounts();
+    expect(after!.passwordHash).toBe(hashBefore);
+    expect(after).toMatchObject({
+      disabledAt: offAt,
+      failedCount: 5,
+      lockedUntil,
+    });
+    expect(pins.queue).toStrictEqual([PIN2]);
+    expect(learnRows.audits().map((a) => a.action)).toStrictEqual([
+      "student_account.issue",
+    ]);
+  });
+
+  it("끄기는 된다 — 퇴원 학생의 켜진 계정을 끈다", async () => {
+    await issue(MOCK_STUDENT_1.id, "seo01");
+    await withdraw();
+    const off = await setDisabled(true);
+    expect(off.status).toBe(200);
+    expect(learnRows.studentAccounts()[0]!.disabledAt).toBeInstanceOf(Date);
+    expect(learnRows.audits().map((a) => a.action)).toStrictEqual([
+      "student_account.issue",
+      "student_account.disable",
+    ]);
+  });
+
+  it("퇴원 표시가 풀리면(동기화가 지우면) 다시 발급된다 — 막음은 표시를 따른다", async () => {
+    await withdraw();
+    expect((await issue(MOCK_STUDENT_1.id, "seo01")).status).toBe(409);
+    await prismaTestDouble.student.update({
+      where: { id: MOCK_STUDENT_1.id },
+      data: { eywaWithdrawnAt: null },
+    });
+    expect((await issue(MOCK_STUDENT_1.id, "seo01")).status).toBe(201);
+  });
+
+  it("남의 반 퇴원 학생은 여전히 403 — 소유 판정이 먼저(퇴원 여부를 흘리지 않는다)", async () => {
+    await withdraw(otherStudentId);
+    expect((await issue(otherStudentId, "other01")).status).toBe(403);
   });
 });
 

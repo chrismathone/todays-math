@@ -35,6 +35,7 @@ import { isEasyPin, isPinFormat } from "@/lib/concept/pinRules";
 import { conceptLectureForStudentSchema } from "./conceptLecture.contract";
 import {
   dataResponseSchema,
+  isoDateSchema,
   isoDateTimeSchema,
   uuidSchema,
 } from "./common.contract";
@@ -70,6 +71,16 @@ export const STUDENT_LOGIN_MESSAGES = {
   easyPin: "쉬운 번호는 쓸 수 없습니다.",
   samePin: "지금 번호와 다른 번호를 적어 주세요.",
   wrongCurrentPin: "지금 비밀번호가 맞지 않습니다.",
+} as const;
+
+/**
+ * 퇴원한 학생에게 발급 API 가 내는 409 문구 (D-127 · 리드 결정 — learn-screens 보고서 §7-3).
+ * 발급 칸은 퇴원 학생에게 단추를 안 그린다 — 서버가 **같은 판정**을 한다는 표지다. 끄기는 막지 않는다.
+ */
+export const STUDENT_ACCOUNT_WITHDRAWN_MESSAGES = {
+  issue: "퇴원한 학생은 계정을 만들 수 없습니다.",
+  reissue: "퇴원한 학생은 비밀번호를 다시 발급할 수 없습니다.",
+  enable: "퇴원한 학생은 계정을 켤 수 없습니다.",
 } as const;
 
 /** 앞뒤 공백을 걷고 소문자로 접는다 — 저장·비교·유일성 모두 이 모양으로 한다. */
@@ -142,29 +153,49 @@ export const studentSessionSchema = z.strictObject({
 });
 export type StudentSession = z.infer<typeof studentSessionSchema>;
 
-/** 학생 목록이 차시로 묶을 때 쓰는 차시 머리 */
+/**
+ * 학생 목록이 차시로 묶을 때 쓰는 차시 머리.
+ * `taughtOn` = **그 학생에게 그 차시가 기록된 가장 최근 날**(반 진도 ∪ 개인 진도 — 서버의
+ * `progressDatesOf`, 열린 차시의 판정과 같은 행·같은 셈). 학생 목록은 이 날짜로 묶는다(브리프 §1.1 · 시안 `sList`).
+ */
 export const learnUnitSchema = z.strictObject({
   id: uuidSchema,
   grade: z.string(),
   chapter: z.string(),
   section: z.string(),
   orderIndex: z.number().int(),
+  taughtOn: isoDateSchema,
 });
 export type LearnUnit = z.infer<typeof learnUnitSchema>;
 
+/** 학생 화면 윗줄 — 이름 · 반(시안 `sTop` «김도윤 · 중1 A반 · 나가기») */
+export const learnStudentSchema = z.strictObject({
+  name: z.string(),
+  className: z.string(),
+});
+export type LearnStudent = z.infer<typeof learnStudentSchema>;
+
 export const learnLectureListResponseSchema = dataResponseSchema(
   z.strictObject({
+    student: learnStudentSchema,
     units: z.array(learnUnitSchema),
     lectures: z.array(conceptLectureForStudentSchema),
   }),
 );
+export type LearnLectureList = z.infer<
+  typeof learnLectureListResponseSchema
+>["data"];
 
 export const learnLectureResponseSchema = dataResponseSchema(
   z.strictObject({
+    student: learnStudentSchema,
     unit: learnUnitSchema,
     lecture: conceptLectureForStudentSchema,
   }),
 );
+export type LearnLectureDetail = z.infer<
+  typeof learnLectureResponseSchema
+>["data"];
 
 export const learnWatchResponseSchema = dataResponseSchema(
   z.strictObject({
@@ -193,21 +224,48 @@ export const studentAccountIssueResponseSchema = dataResponseSchema(
   }),
 );
 
+export type StudentAccountIssued = z.infer<
+  typeof studentAccountIssueResponseSchema
+>["data"];
+
 /** 계정 상태 — 비밀번호·해시 칸이 **아예 없다**. */
 export const studentAccountStatusSchema = z.strictObject({
   studentId: uuidSchema,
   loginId: z.string(),
   issuedAt: isoDateTimeSchema,
+  /** 발급한 사람이 **지금 보는 원장님**인가 — 발급 칸의 «9월 15일 · 원장님»(시안 `issue()`) */
+  issuedByViewer: z.boolean(),
   lastLoginAt: isoDateTimeSchema.nullable(),
   passwordChangedAt: isoDateTimeSchema.nullable(),
   disabledAt: isoDateTimeSchema.nullable(),
   mustChangePassword: z.boolean(),
   locked: z.boolean(),
+  /**
+   * 잠금이 끝나는 시각(없으면 null) — 발급 칸의 «잠김 — N분 뒤 풀림»(D-127 Q5). 화면은 «지금보다 뒤인가»만 본다.
+   * 끝난 잠금도 다음 시도 전까지는 값이 남는다(`resetExpiredLock`) — 그래서 `locked` 와 따로 준다.
+   */
+  lockedUntil: isoDateTimeSchema.nullable(),
 });
 export type StudentAccountStatus = z.infer<typeof studentAccountStatusSchema>;
 
+/** 끄기 · 켜기(PATCH) 응답 — 계정이 있을 때만 온다 */
 export const studentAccountStatusResponseSchema = dataResponseSchema(
-  studentAccountStatusSchema.nullable(),
+  studentAccountStatusSchema,
+);
+
+/**
+ * 발급 칸(원장님 «수업 · 학생 관리 › 학생»)이 읽는 모양 — `GET /api/students/{id}/account`.
+ * 계정이 없어도 **퇴원 여부**는 알아야 한다 — 퇴원한 학생은 로그인이 막히므로(D-126 ⑺) 칸은 발급 대신
+ * «퇴원 — 로그인 막힘» 한 줄을 그린다(learn-screens 브리프 §1.3).
+ */
+export const studentAccountPanelSchema = z.strictObject({
+  withdrawn: z.boolean(),
+  account: studentAccountStatusSchema.nullable(),
+});
+export type StudentAccountPanel = z.infer<typeof studentAccountPanelSchema>;
+
+export const studentAccountPanelResponseSchema = dataResponseSchema(
+  studentAccountPanelSchema,
 );
 
 export const studentAccountUpdateRequestSchema = z.strictObject({

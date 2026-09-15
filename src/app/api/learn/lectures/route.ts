@@ -6,20 +6,16 @@
  *    (`/api/learn/watch`)과 같은 함수다. 그래서 여기서 조회는 차시로만 넓게 하고 `status` 조건을 따로 걸지
  *    않는다(걸면 판정이 두 곳에 생긴다).
  * 학생에게 가는 모양은 `toStudentLecture` 한 곳(AI 고지·잡 ID·시청 확인이 없다 — D-124 ⑹).
+ * 차시마다 **수업한 날**(`taughtOn` — 목록의 날짜 묶음, learn-screens 브리프 §1.1)과 윗줄의 이름 · 반을 싣는다.
+ * 조립은 `assembleLearnList` 한 곳 — 개발용 시안 페이지(`/dev/learn-hifi`)의 픽스처도 같은 것을 부른다.
  * 대응 계약: src/contracts/studentAccount.contract.ts `learnLectureListResponseSchema`
  */
 import { learnLectureListResponseSchema } from "@/contracts/studentAccount.contract";
 import { jsonOk, unauthorizedError } from "@/lib/apiResponse";
-import { toStudentLecture } from "@/lib/concept/studentLecture";
 import { db } from "@/lib/db";
-import {
-  lectureOpenToStudent,
-  sortLecturesForStudent,
-} from "@/lib/learn/lectureAccess";
-import {
-  loadStudentLectureScope,
-  toLearnUnit,
-} from "@/lib/learn/studentLectures";
+import { assembleLearnList } from "@/lib/learn/learnList";
+import { lectureOpenToStudent } from "@/lib/learn/lectureAccess";
+import { loadStudentLectureScope } from "@/lib/learn/studentLectures";
 import { requireStudent } from "@/lib/learn/studentRequest";
 
 export async function GET() {
@@ -57,14 +53,14 @@ export async function GET() {
           },
         }),
   ]);
-  const viewOf = new Map(views.map((v) => [v.lectureId, v]));
-  const order = new Map(units.map((u) => [u.id, u.orderIndex]));
-  const lectures = sortLecturesForStudent(open, order).flatMap((l) => {
-    const dto = toStudentLecture(l, viewOf.get(l.id) ?? null);
-    return dto ? [dto] : [];
-  });
 
   return jsonOk(learnLectureListResponseSchema, {
-    data: { units: units.map(toLearnUnit), lectures },
+    data: assembleLearnList({
+      head: scope.head,
+      taughtOn: scope.taughtOn,
+      open,
+      units,
+      viewOf: new Map(views.map((v) => [v.lectureId, v])),
+    }),
   });
 }

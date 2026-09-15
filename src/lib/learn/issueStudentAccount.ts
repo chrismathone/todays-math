@@ -12,6 +12,11 @@
  *  4. 🔴 초기 비밀번호는 **해시만** 저장하고 부르는 쪽에 **한 번** 돌려준다. 감사 기록에 싣지 않는다(⑥).
  *  5. 끄기는 `disabledAt` 만 찍고 지우지 않는다(수맥 규칙). 켜면 비운다.
  *  6. 모두 `AccountAuditLog` 에 남긴다(기존 `recordAudit`) — 원장이 한 일이라 `userId`·`actorId` 가 원장이다.
+ *  7. 상태를 읽을 때 그 학생의 **퇴원 여부**를 같이 준다 — 발급 칸이 «퇴원 — 로그인 막힘»을 그린다
+ *     (learn-screens 브리프 §1.3 · D-126 ⑺). 소유 판정과 같은 한 번의 조회에서 나온다.
+ *  8. 🔴 **퇴원한 학생에게는 발급 · 다시 발급 · 켜기를 안 한다**(D-127 · 리드 결정) — 409. 끄기는 된다(막는 쪽이다).
+ *     퇴원 판정은 `accountBlock.ts` 의 `studentWithdrawn` 하나(`issueDeps.ts` 가 부른다) — 로그인을 막는 판정과 같다.
+ *     소유 판정이 먼저다 — 남의 반 학생이면 퇴원 여부와 상관없이 403(퇴원 여부를 흘리지 않는다).
  */
 import {
   normalizeLoginId,
@@ -26,6 +31,8 @@ export interface IssuedAccount {
   loginId: string;
   passwordHash: string;
   mustChangePassword: boolean;
+  /** 발급한 원장 — 그 계정이 지워지면 비워진다(SET NULL) */
+  issuedById: string | null;
   issuedAt: Date;
   passwordChangedAt: Date | null;
   lastLoginAt: Date | null;
@@ -47,8 +54,10 @@ export interface AccountAuditEntry {
 }
 
 export interface IssueDeps {
-  /** 학생의 반 소유자 — 학생이 없으면 null */
-  findStudentOwner(studentId: string): Promise<{ ownerId: string } | null>;
+  /** 학생의 반 소유자와 퇴원 여부 — 학생이 없으면 null */
+  findStudentOwner(
+    studentId: string,
+  ): Promise<{ ownerId: string; withdrawn: boolean } | null>;
   findAccountByStudent(studentId: string): Promise<IssuedAccount | null>;
   findAccountByLoginId(loginId: string): Promise<{ id: string } | null>;
   createAccount(data: {
@@ -82,23 +91,27 @@ export type IssueFailure =
   | "not_owner"
   | "account_exists"
   | "login_id_taken"
-  | "no_account";
+  | "no_account"
+  /** 규칙 8 — 퇴원 학생 발급 · 다시 발급 · 켜기 (문구가 셋이라 까닭도 셋) */
+  | "withdrawn_issue"
+  | "withdrawn_reissue"
+  | "withdrawn_enable";
 
 export type IssueResult<T> =
   { ok: true; value: T } | { ok: false; reason: IssueFailure };
 
 const fail = (reason: IssueFailure) => ({ ok: false as const, reason });
 
-/** 규칙 1 — 이 학생이 이 원장의 반에 있나 */
-async function ownershipFailure(
+/** 규칙 1 — 이 학생이 이 원장의 반에 있나. 있으면 퇴원 여부를 같이 돌려준다(규칙 7 · 8) */
+async function ownedStudent(
   deps: IssueDeps,
   directorId: string,
   studentId: string,
-): Promise<IssueFailure | null> {
+): Promise<{ failure: IssueFailure } | { failure: null; withdrawn: boolean }> {
   const owner = await deps.findStudentOwner(studentId);
-  if (!owner) return "student_not_found";
-  if (owner.ownerId !== directorId) return "not_owner";
-  return null;
+  if (!owner) return { failure: "student_not_found" };
+  if (owner.ownerId !== directorId) return { failure: "not_owner" };
+  return { failure: null, withdrawn: owner.withdrawn };
 }
 
 function auditFor(
@@ -123,12 +136,9 @@ export async function issueStudentAccount(
   deps: IssueDeps,
   input: { directorId: string; studentId: string; loginId: string },
 ): Promise<IssueResult<{ account: IssuedAccount; initialPassword: string }>> {
-  const denied = await ownershipFailure(
-    deps,
-    input.directorId,
-    input.studentId,
-  );
-  if (denied) return fail(denied);
+  const owned = await ownedStudent(deps, input.directorId, input.studentId);
+  if (owned.failure) return fail(owned.failure);
+  if (owned.withdrawn) return fail("withdrawn_issue");
 
   const loginId = normalizeLoginId(input.loginId);
   if (await deps.findAccountByStudent(input.studentId))
@@ -165,12 +175,9 @@ export async function reissueStudentPassword(
   deps: IssueDeps,
   input: { directorId: string; studentId: string },
 ): Promise<IssueResult<{ account: IssuedAccount; initialPassword: string }>> {
-  const denied = await ownershipFailure(
-    deps,
-    input.directorId,
-    input.studentId,
-  );
-  if (denied) return fail(denied);
+  const owned = await ownedStudent(deps, input.directorId, input.studentId);
+  if (owned.failure) return fail(owned.failure);
+  if (owned.withdrawn) return fail("withdrawn_reissue");
   const account = await deps.findAccountByStudent(input.studentId);
   if (!account) return fail("no_account");
 
@@ -192,12 +199,10 @@ export async function setStudentAccountDisabled(
   deps: IssueDeps,
   input: { directorId: string; studentId: string; disabled: boolean },
 ): Promise<IssueResult<IssuedAccount>> {
-  const denied = await ownershipFailure(
-    deps,
-    input.directorId,
-    input.studentId,
-  );
-  if (denied) return fail(denied);
+  const owned = await ownedStudent(deps, input.directorId, input.studentId);
+  if (owned.failure) return fail(owned.failure);
+  // 규칙 8 — 켜기만 막는다. 끄기는 막는 쪽이라 퇴원이어도 된다
+  if (owned.withdrawn && !input.disabled) return fail("withdrawn_enable");
   const account = await deps.findAccountByStudent(input.studentId);
   if (!account) return fail("no_account");
   const updated = await deps.updateAccount(account.id, {
@@ -213,33 +218,41 @@ export async function setStudentAccountDisabled(
   return { ok: true, value: updated };
 }
 
+/** 발급 칸이 읽는 것 — 그 학생의 계정(없으면 null)과 퇴원 여부(규칙 7) */
 export async function readStudentAccount(
   deps: IssueDeps,
   input: { directorId: string; studentId: string },
-): Promise<IssueResult<IssuedAccount | null>> {
-  const denied = await ownershipFailure(
-    deps,
-    input.directorId,
-    input.studentId,
-  );
-  if (denied) return fail(denied);
-  return { ok: true, value: await deps.findAccountByStudent(input.studentId) };
+): Promise<IssueResult<{ account: IssuedAccount | null; withdrawn: boolean }>> {
+  const owned = await ownedStudent(deps, input.directorId, input.studentId);
+  if (owned.failure) return fail(owned.failure);
+  return {
+    ok: true,
+    value: {
+      account: await deps.findAccountByStudent(input.studentId),
+      withdrawn: owned.withdrawn,
+    },
+  };
 }
 
-/** 원장님 화면에 가는 상태 — 비밀번호·해시 칸이 없다 */
+/** 원장님 화면에 가는 상태 — 비밀번호·해시 칸이 없다. `viewerId` = 지금 보는 원장 */
 export function toAccountStatus(
   account: IssuedAccount,
   now: Date,
+  viewerId: string,
 ): StudentAccountStatus {
   const iso = (d: Date | null) => (d ? d.toISOString() : null);
   return {
     studentId: account.studentId,
     loginId: account.loginId,
     issuedAt: account.issuedAt.toISOString(),
+    issuedByViewer:
+      account.issuedById !== null && account.issuedById === viewerId,
     lastLoginAt: iso(account.lastLoginAt),
     passwordChangedAt: iso(account.passwordChangedAt),
     disabledAt: iso(account.disabledAt),
     mustChangePassword: account.mustChangePassword,
     locked: isLocked(account, now),
+    // 발급 칸의 «잠김 — N분 뒤 풀림» — 화면이 «지금보다 뒤인가»만 본다(D-127 Q5)
+    lockedUntil: iso(account.lockedUntil),
   };
 }

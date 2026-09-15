@@ -1,0 +1,539 @@
+/*
+ * 오늘의 개념 — 학생 화면 네 장(로그인 · 첫 비밀번호 · 목록 · 재생). 05 §8.9 · D-125 ⑴ «1 작업실 그대로».
+ * 값은 시안(`docs/design/mockups/hifi-d124-todays-concept.html`)의 `.th` 학생 토큰(`--s-*`)과 `.s-*` 규칙 그대로다.
+ * 휴대폰이 먼저다 — 넓은 화면에서는 가운데 한 줄로 선다(브리프 §1.1).
+ * 🔴 D-30 — 손가락 커서·hover 는 실제로 누르는 것(링크 · 단추 · 입력)에만. 카드·판에는 없다.
+ * 🔴 왼쪽 색 막대 금지(workroom-entry 원장님 지시).
+ */
+.page {
+  --s-bg: #f4f6fa;
+  --s-card: #fff;
+  --s-line: #dde3ec;
+  --s-ctl: #b8c4d6;
+  --s-ink: #172b4d;
+  --s-muted: #596c86;
+  --s-accent: #3159df;
+  --s-accent-ink: #fff;
+  --s-today-bg: #14243d;
+  --s-today-ink: #fff;
+  --s-tag-bg: #3159df;
+  --s-tag-ink: #fff;
+  --s-done: #1d7550;
+  --s-mid: #8a5a06;
+  --s-new: #3159df;
+  --s-bad: #b42318;
+  --s-r: 14px;
+  --s-r-sm: 10px;
+  min-height: 100dvh;
+  background: var(--s-bg);
+  color: var(--s-ink);
+  font-family:
+    var(--font-pretendard),
+    Pretendard,
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    "Noto Sans KR",
+    "Malgun Gothic",
+    sans-serif;
+  font-size: 13px;
+  line-height: 1.55;
+}
+.page :is(button, input, a):focus-visible {
+  outline: 3px solid #82a1ff;
+  outline-offset: 2px;
+}
+
+/* 가운데 한 줄 — 휴대폰 폭에서는 화면 전체 */
+.column {
+  width: 100%;
+  max-width: 480px;
+  min-height: 100dvh;
+  margin: 0 auto;
+  background: var(--s-bg);
+}
+
+.visuallyHidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+}
+
+/* ── 윗줄 (sTop) ─────────────────────────────────────────── */
+.top {
+  position: sticky;
+  top: env(safe-area-inset-top, 0px);
+  z-index: 2;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  padding: 11px 14px;
+  background: var(--s-card);
+  border-bottom: 1px solid var(--s-line);
+}
+.top > b {
+  flex: none;
+  font-size: 15px;
+  font-weight: 800;
+  letter-spacing: -0.4px;
+}
+.who {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 0 4px;
+  min-width: 0;
+  font-size: 11px;
+  color: var(--s-muted);
+  text-align: right;
+}
+.who > span {
+  overflow-wrap: anywhere;
+}
+.textButton {
+  margin: -10px -8px;
+  padding: 10px 8px;
+  border: 0;
+  background: none;
+  color: inherit;
+  font: inherit;
+  cursor: pointer;
+}
+.textButton:hover {
+  color: var(--s-ink);
+  text-decoration: underline;
+}
+
+.body {
+  display: grid;
+  gap: 14px;
+  padding: 14px 14px 32px;
+}
+.h {
+  margin: 0;
+  font-size: 22px;
+  font-weight: 800;
+  letter-spacing: -0.5px;
+  line-height: 1.3;
+}
+
+/* ── 목록 (sList) ────────────────────────────────────────── */
+.today {
+  display: grid;
+  gap: 10px;
+  padding: 14px;
+  background: var(--s-today-bg);
+  color: var(--s-today-ink);
+  border-radius: var(--s-r);
+}
+.past {
+  display: grid;
+  gap: 8px;
+}
+.date {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin: 0;
+  font-size: 12px;
+  font-weight: 600;
+  opacity: 0.9;
+}
+.tag {
+  padding: 1px 7px;
+  border-radius: 999px;
+  background: var(--s-tag-bg);
+  color: var(--s-tag-ink);
+  font-size: 11px;
+  font-weight: 700;
+}
+.unit {
+  margin: -4px 0 0;
+  font-size: 17px;
+  font-weight: 700;
+  letter-spacing: -0.3px;
+  line-height: 1.35;
+  overflow-wrap: break-word;
+  word-break: keep-all;
+}
+.unit + .unit,
+.item + .unit {
+  margin-top: 4px;
+}
+.item {
+  display: grid;
+  grid-template-columns: 96px minmax(0, 1fr);
+  gap: 10px;
+  align-items: center;
+  width: 100%;
+  padding: 8px;
+  background: var(--s-card);
+  border: 1px solid var(--s-line);
+  border-radius: var(--s-r-sm);
+  color: var(--s-ink);
+  text-align: left;
+  text-decoration: none;
+}
+/* 손가락 커서는 globals.css 가 실제 링크(`a[href]`)에 준다 — 여기서 다시 적지 않는다(D-30) */
+.item:hover {
+  border-color: var(--s-ctl);
+}
+.it {
+  display: block;
+  font-size: 13px;
+  font-weight: 700;
+  line-height: 1.35;
+  overflow-wrap: anywhere;
+}
+.meta {
+  display: block;
+  margin-top: 2px;
+  font-size: 12px;
+  color: var(--s-muted);
+}
+.done {
+  color: var(--s-done);
+  font-weight: 700;
+}
+.mid {
+  color: var(--s-mid);
+  font-weight: 600;
+}
+.new {
+  color: var(--s-new);
+  font-weight: 700;
+}
+.empty,
+.line {
+  margin: 0;
+  font-size: 13px;
+  color: var(--s-muted);
+}
+
+/* ── 종이 판서 그림 — 원장님 판(ConceptView.module.css `.frame`)과 같은 모양 ─── */
+/* cqw 는 «바깥» 컨테이너를 잰다 — 그래서 크기를 재는 틀(.frame)과 cqw 를 쓰는 속(.frameIn)을 나눈다 */
+.frame {
+  container-type: inline-size;
+  position: relative;
+  aspect-ratio: 16 / 9;
+  overflow: hidden;
+  border: 1px solid #d9dcd6;
+  border-radius: 6px;
+  background: #0f1720;
+}
+.frameIn {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  align-content: start;
+  gap: 3cqw;
+  padding: 7cqw 8cqw;
+  color: #1d2126;
+  background-color: #fffefb;
+  background-image:
+    linear-gradient(#eceee9 1px, transparent 1px),
+    linear-gradient(90deg, #eceee9 1px, transparent 1px);
+  background-size: 4.2cqw 4.2cqw;
+}
+.frameTitle {
+  justify-self: start;
+  margin: 0 0 1cqw;
+  font-size: 6.4cqw;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  line-height: 1.2;
+  background: linear-gradient(transparent 62%, #ffd9cf 62%);
+  overflow-wrap: anywhere;
+}
+.frameMini {
+  border-radius: 4px;
+}
+.frameMini .frameIn {
+  padding: 9cqw 8cqw;
+}
+.frameMini .frameTitle {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3;
+  overflow: hidden;
+  font-size: 10.5cqw;
+}
+.frame iframe,
+.frameHost {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  border: 0;
+}
+
+/* ── 재생 (sPlay) ────────────────────────────────────────── */
+.back {
+  justify-self: start;
+  margin: -8px 0;
+  padding: 8px 0;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--s-muted);
+  text-decoration: none;
+}
+.back:hover {
+  color: var(--s-ink);
+}
+.player {
+  display: grid;
+}
+.player .frame {
+  border-radius: var(--s-r-sm) var(--s-r-sm) 0 0;
+}
+.bar {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 9px 10px;
+  background: var(--s-card);
+  border: 1px solid var(--s-line);
+  border-top: 0;
+  border-radius: 0 0 var(--s-r-sm) var(--s-r-sm);
+  font-size: 12px;
+  font-variant-numeric: tabular-nums;
+}
+.playButton,
+.rateButton {
+  flex: none;
+  margin: -8px 0;
+  padding: 8px 2px;
+  border: 0;
+  background: none;
+  color: var(--s-ink);
+  font: inherit;
+  font-weight: 700;
+  cursor: pointer;
+}
+.rateButton {
+  color: var(--s-muted);
+  font-weight: 400;
+}
+.playButton:disabled,
+.rateButton:disabled {
+  cursor: not-allowed;
+  color: var(--s-ctl);
+}
+.track {
+  position: relative;
+  flex: 1;
+  min-width: 0;
+  height: 16px;
+  display: flex;
+  align-items: center;
+}
+.track input[type="range"] {
+  width: 100%;
+  height: 6px;
+  margin: 0;
+  border-radius: 3px;
+  background: linear-gradient(
+    to right,
+    var(--s-accent) 0 var(--played, 0%),
+    var(--s-line) var(--played, 0%) 100%
+  );
+  appearance: none;
+  cursor: pointer;
+}
+.track input[type="range"]:disabled {
+  cursor: not-allowed;
+}
+.track input[type="range"]::-webkit-slider-thumb {
+  width: 12px;
+  height: 12px;
+  border: 0;
+  border-radius: 50%;
+  background: var(--s-accent);
+  appearance: none;
+}
+.track input[type="range"]::-moz-range-thumb {
+  width: 12px;
+  height: 12px;
+  border: 0;
+  border-radius: 50%;
+  background: var(--s-accent);
+}
+/* 본 곳 — 검은 눈금(05 §8.9) */
+.seen {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 3px;
+  margin-left: -1px;
+  border-radius: 2px;
+  background: var(--s-ink);
+  pointer-events: none;
+}
+.time {
+  flex: none;
+  white-space: nowrap;
+}
+.titleLine {
+  margin: 0;
+  font-size: 17px;
+  font-weight: 700;
+  letter-spacing: -0.3px;
+  line-height: 1.35;
+  overflow-wrap: anywhere;
+}
+.note {
+  margin: 0;
+  padding: 10px 12px;
+  border: 1px solid var(--s-line);
+  border-radius: var(--s-r-sm);
+  background: var(--s-card);
+  font-size: 12px;
+  color: var(--s-muted);
+}
+.next {
+  display: grid;
+  gap: 2px;
+  font-size: 12px;
+  color: var(--s-muted);
+  text-decoration: none;
+}
+.next b {
+  font-size: 13px;
+  color: var(--s-ink);
+  overflow-wrap: anywhere;
+}
+a.next:hover b {
+  text-decoration: underline;
+}
+.failed {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-content: center;
+  justify-items: center;
+  gap: 8px;
+  padding: 12px;
+  background: #fffefb;
+  color: var(--s-ink);
+  text-align: center;
+  font-size: 13px;
+}
+
+/* ── 로그인 · 첫 비밀번호 (sLogin · sPw) ───────────────────── */
+.login {
+  display: grid;
+  gap: 14px;
+  padding: 48px 20px 24px;
+}
+.brand {
+  display: grid;
+  gap: 2px;
+}
+.brand b {
+  font-size: 26px;
+  font-weight: 800;
+  letter-spacing: -0.8px;
+}
+.brand span {
+  font-size: 13px;
+  color: var(--s-muted);
+}
+.form {
+  display: grid;
+  gap: 10px;
+}
+.field {
+  display: grid;
+  gap: 4px;
+  font-size: 12px;
+  color: var(--s-muted);
+}
+/* 16px — iOS 는 16px 보다 작은 입력 칸을 누르면 화면을 확대한다(시안은 14px) */
+.input {
+  display: block;
+  width: 100%;
+  height: 46px;
+  padding: 12px;
+  border: 1px solid var(--s-ctl);
+  border-radius: var(--s-r-sm);
+  background: var(--s-card);
+  color: var(--s-ink);
+  font: inherit;
+  font-size: 16px;
+  letter-spacing: 0.02em;
+}
+.input:focus {
+  border-color: var(--s-accent);
+  outline: 2px solid var(--s-accent);
+  outline-offset: -1px;
+}
+.primary {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 48px;
+  border: 1px solid var(--s-accent);
+  border-radius: var(--s-r-sm);
+  background: var(--s-accent);
+  color: var(--s-accent-ink);
+  font: inherit;
+  font-size: 15px;
+  font-weight: 600;
+}
+.primary:hover:enabled {
+  background: #274bbf;
+}
+.primary:disabled {
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+.help {
+  margin: 0;
+  font-size: 12px;
+  color: var(--s-muted);
+}
+.alt {
+  justify-self: start;
+  margin: 8px 0 0;
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--s-muted);
+  text-decoration: none;
+}
+.alt:hover {
+  color: var(--s-ink);
+}
+.kick {
+  margin: 0;
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--s-new);
+}
+.rules {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px 12px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  font-size: 12px;
+  color: var(--s-muted);
+}
+.rules li::before {
+  content: "✓ ";
+}
+.rules li[data-met="true"] {
+  color: var(--s-done);
+}
+.error {
+  margin: 0;
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--s-bad);
+}

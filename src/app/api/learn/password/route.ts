@@ -23,10 +23,14 @@ import {
 } from "@/lib/apiResponse";
 import { recordAudit } from "@/lib/audit";
 import { db } from "@/lib/db";
+import { studentAccountBlocked } from "@/lib/learn/accountBlock";
 import { crossSiteError } from "@/lib/learn/accountRoutes";
 import { studentLoginDeps } from "@/lib/learn/loginDeps";
 import { hashStudentPin } from "@/lib/learn/pinHash";
-import { ACCOUNT_LOGIN_SELECT } from "@/lib/learn/prismaLoginStore";
+import {
+  ACCOUNT_LOGIN_SELECT,
+  toLoginAccount,
+} from "@/lib/learn/prismaLoginStore";
 import { verifyStudentPin } from "@/lib/learn/studentLogin";
 import { requireStudent } from "@/lib/learn/studentRequest";
 
@@ -39,11 +43,14 @@ export async function POST(request: NextRequest) {
   const parsed = studentPasswordChangeRequestSchema.safeParse(body);
   if (!parsed.success) return validationError(parsed.error);
 
-  const account = await db.studentAccount.findUnique({
+  const row = await db.studentAccount.findUnique({
     where: { id: gate.student.accountId },
     select: ACCOUNT_LOGIN_SELECT,
   });
-  if (!account || account.disabledAt !== null) return unauthorizedError();
+  if (!row) return unauthorizedError();
+  const account = toLoginAccount(row);
+  // 🔴 꺼짐 ∪ 퇴원 — 로그인·학생 토큰과 같은 판정 하나(accountBlock.ts, D-126 ⑺)
+  if (studentAccountBlocked(account)) return unauthorizedError();
 
   const who = { studentAccountId: account.id, studentId: account.studentId };
   const check = await verifyStudentPin(

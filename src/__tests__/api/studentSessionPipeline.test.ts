@@ -60,6 +60,7 @@ import { hashStudentPin } from "@/lib/learn/pinHash";
 import { getSessionUser } from "@/lib/session";
 import { authorizeStudio } from "@/lib/studio-ai/guard";
 import { MOCK_STUDENT_1 } from "@/mocks/data";
+import { prismaTestDouble } from "@/mocks/prismaTestDouble";
 import {
   cascadeDeleteStudent,
   learnRows,
@@ -207,6 +208,38 @@ describe("④ 꺼진 계정 · 지워진 학생 — 다음 요청에서 세션�
     cascadeDeleteStudent(MOCK_STUDENT_1.id);
     resetRequest({ cookie });
     expect(await auth()).toBeNull();
+  });
+
+  it("🔴 ⑥ 퇴원 처리(eywaWithdrawnAt)되면 이미 든 세션도 다음 요청에서 null 이고 쿠키를 지운다 (D-126 ⑺)", async () => {
+    await signInStudent();
+    const cookie = `authjs.session-token=${sessionCookieFromJar()}`;
+    resetRequest({ cookie });
+    expect(
+      (await auth())?.student?.accountId,
+      "퇴원 전에 세션이 서 있어야 한다",
+    ).toBe(accountId);
+    await prismaTestDouble.student.update({
+      where: { id: MOCK_STUDENT_1.id },
+      data: { eywaWithdrawnAt: new Date() },
+    });
+    const res = await sessionEndpoint(cookie);
+    expect(await res.json()).toBeNull();
+    expect(res.headers.get("set-cookie") ?? "").toMatch(
+      /authjs\.session-token=;/,
+    );
+    resetRequest({ cookie });
+    expect(await auth()).toBeNull();
+  });
+
+  it("🔴 ⑥ 퇴원한 학생은 맞는 번호로도 새로 못 들어온다 — 공급자 실패 코드는 invalid", async () => {
+    await prismaTestDouble.student.update({
+      where: { id: MOCK_STUDENT_1.id },
+      data: { eywaWithdrawnAt: new Date() },
+    });
+    const e = await signInStudent().catch((error: unknown) => error);
+    expect(e).toBeInstanceOf(CredentialsSignin);
+    expect((e as CredentialsSignin).code).toBe("invalid");
+    expect(sessionCookieFromJar()).toBeNull();
   });
 
   it("다시 켜면 새로 로그인할 수 있다 (끄기는 지우지 않는다)", async () => {

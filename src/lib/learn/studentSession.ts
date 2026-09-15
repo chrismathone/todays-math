@@ -11,8 +11,9 @@
  *
  * 1. 학생 토큰에는 `id` 가 없다. Auth.js 가 로그인 때 채워 주는 `sub`·`name`·`email`·`picture` 도
  *    **물려받지 않고** 새 객체를 짓는다(`studentTokenFor`). 학생 정보는 `student` 칸에만.
- * 2. 요청마다 학생 계정을 **다시 읽는다** — 꺼진 계정(`disabledAt`)·지워진 학생이면 `null` 을 돌려
- *    Auth.js 가 세션 쿠키를 지운다(④).
+ * 2. 요청마다 학생 계정을 **다시 읽는다** — 꺼진 계정(`disabledAt`)·퇴원한 학생(`eywaWithdrawnAt` —
+ *    D-126 ⑺)·지워진 학생이면 `null` 을 돌려 Auth.js 가 세션 쿠키를 지운다(④). 꺼짐 ∪ 퇴원 판정은
+ *    로그인·비밀번호 바꾸기와 같은 함수 하나(`accountBlock.ts`)다.
  * 3. 세션은 `user: undefined` 를 **적어서** 돌려준다(`studentSessionFrom`). 칸을 빼 두면 next-auth 의
  *    서버 쪽 `getSession` 이 `{ user: args[0].user ?? args[0].token, ...session }` 으로 **토큰 통째를
  *    `session.user` 로 씌운다**(`node_modules/next-auth/lib/index.js` 30행) — 그러면
@@ -25,6 +26,8 @@
 import { CredentialsSignin } from "@auth/core/errors";
 import type { Session } from "next-auth";
 import type { JWT } from "next-auth/jwt";
+
+import { studentAccountBlocked } from "./accountBlock";
 
 /** 학생 Credentials 공급자 id — `signIn("student", …)` · `/api/auth/callback/student` */
 export const STUDENT_PROVIDER_ID = "student";
@@ -44,17 +47,17 @@ export function isStudentToken(token: JWT): boolean {
   return typeof token.student === "object" && token.student !== null;
 }
 
-/** 토큰을 짓는 데 읽는 계정 한 줄 (`student_account` + 학생 이름) */
+/** 토큰을 짓는 데 읽는 계정 한 줄 (`student_account` + 학생 이름 · 퇴원 시각) */
 export interface StudentAccountForToken {
   id: string;
   studentId: string;
   disabledAt: Date | null;
   mustChangePassword: boolean;
-  student: { name: string } | null;
+  student: { name: string; eywaWithdrawnAt: Date | null } | null;
 }
 
 /**
- * 학생 토큰 — 계정을 다시 읽어 **새로** 짓는다. 꺼졌거나 없으면 `null`(세션을 끊는다).
+ * 학생 토큰 — 계정을 다시 읽어 **새로** 짓는다. 막혔거나(꺼짐 ∪ 퇴원) 없으면 `null`(세션을 끊는다).
  * 넘겨받은 토큰의 칸은 하나도 옮기지 않는다(머리말 1).
  */
 export async function studentTokenFor(
@@ -63,7 +66,12 @@ export async function studentTokenFor(
 ): Promise<JWT | null> {
   if (typeof accountId !== "string" || accountId === "") return null;
   const row = await load(accountId);
-  if (!row || row.disabledAt !== null || !row.student) return null;
+  if (!row || !row.student) return null;
+  const blocked = studentAccountBlocked({
+    disabledAt: row.disabledAt,
+    withdrawnAt: row.student.eywaWithdrawnAt,
+  });
+  if (blocked) return null;
   return {
     student: {
       accountId: row.id,

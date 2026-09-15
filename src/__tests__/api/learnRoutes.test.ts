@@ -63,11 +63,14 @@ import { auth } from "@/lib/auth";
 import { hashStudentPin } from "@/lib/learn/pinHash";
 import { STUDENT_MUST_CHANGE_MESSAGE } from "@/lib/studentRouteAccess";
 import {
+  MOCK_CLASS_A,
   MOCK_PROGRESS,
   MOCK_STUDENT_1,
+  MOCK_STUDENT_2,
   MOCK_STUDENT_3,
   MOCK_UNITS,
 } from "@/mocks/data";
+import { prismaTestDouble } from "@/mocks/prismaTestDouble";
 import {
   learnRows,
   patchStudentAccount,
@@ -274,6 +277,48 @@ describe("로그인 — POST /api/learn/login", () => {
   });
 });
 
+describe("🔴 ⑥ 퇴원한 학생(eywaWithdrawnAt) — 꺼진 계정과 똑같이 (D-126 ⑺)", () => {
+  const withdraw = (studentId: string) =>
+    prismaTestDouble.student.update({
+      where: { id: studentId },
+      data: { eywaWithdrawnAt: new Date() },
+    });
+
+  it("🔴 맞는 번호도 401 — 문구가 틀린 번호와 글자까지 같고, 실패 수에 든다", async () => {
+    const wrong = await login("seo01", "0001");
+    await withdraw(MOCK_STUDENT_3.id);
+    const gone = await login("park03", PIN);
+    expect(gone.res.status).toBe(401);
+    expect(gone.cookie).toBeNull();
+    expect(await gone.res.json()).toStrictEqual(await wrong.res.json());
+    expect(
+      learnRows.studentAccounts().find((a) => a.id === park03)!.failedCount,
+    ).toBe(1);
+  });
+
+  it("🔴 이미 들어와 있던 학생 — 퇴원 뒤 다음 요청의 목록·비밀번호 바꾸기는 401, 번호가 안 바뀐다", async () => {
+    const { cookie } = await login("seo01");
+    expect((await listAs(cookie)).status).toBe(200);
+    await withdraw(MOCK_STUDENT_1.id);
+    expect((await listAs(cookie)).status).toBe(401);
+    const before = learnRows
+      .studentAccounts()
+      .find((a) => a.id === seo01)!.passwordHash;
+    const res = await passwordRoute(
+      req(
+        "POST",
+        "/api/learn/password",
+        { currentPassword: PIN, newPassword: NEW_PIN },
+        cookie,
+      ),
+    );
+    expect(res.status).toBe(401);
+    expect(
+      learnRows.studentAccounts().find((a) => a.id === seo01)!.passwordHash,
+    ).toBe(before);
+  });
+});
+
 describe("나가기 — POST /api/learn/logout", () => {
   it("학생 세션을 지우고 학생 로그인으로 가라고 한다", async () => {
     const { cookie } = await login("seo01");
@@ -392,6 +437,75 @@ describe("🔴 강의 목록 — 반 진도 + 개인 진도에 있던 차시의 
       .data.lectures.map((l) => l.id);
     expect(ids).toContain(L.own3);
     expect(ids).not.toContain(L.ahead);
+  });
+
+  it("🔴 ③ 차시마다 수업한 날(taughtOn) — 반 진도 기록에서 **읽어 온** 가장 최근 날", async () => {
+    const { cookie } = await login("seo01");
+    const body = learnLectureListResponseSchema.parse(
+      await (await listAs(cookie)).json(),
+    );
+    // 기대값을 손으로 적지 않는다 — 픽스처의 반 A 반 진도에서 차시마다 가장 늦은 날
+    const latest = (unitId: string) =>
+      MOCK_PROGRESS.filter(
+        (p) =>
+          p.classId === MOCK_STUDENT_1.classId &&
+          p.studentId === null &&
+          p.unitId === unitId,
+      )
+        .map((p) => p.recordedAt)
+        .sort()
+        .at(-1);
+    expect(
+      Object.fromEntries(body.data.units.map((u) => [u.id, u.taughtOn])),
+    ).toStrictEqual({ [U_A!]: latest(U_A!), [U_B!]: latest(U_B!) });
+  });
+
+  it("🔴 ③ 내 개인 진도가 더 늦으면 그 날 · 같은 반 남의 개인 진도는 안 센다", async () => {
+    await prismaTestDouble.progress.create({
+      data: {
+        classId: MOCK_STUDENT_1.classId,
+        studentId: MOCK_STUDENT_1.id,
+        unitId: U_A!,
+        recordedAt: new Date("2026-09-15T00:00:00.000Z"),
+      },
+    });
+    await prismaTestDouble.progress.create({
+      data: {
+        classId: MOCK_STUDENT_2.classId,
+        studentId: MOCK_STUDENT_2.id,
+        unitId: U_B!,
+        recordedAt: new Date("2026-09-30T00:00:00.000Z"),
+      },
+    });
+    const { cookie } = await login("seo01");
+    const units = learnLectureListResponseSchema.parse(
+      await (await listAs(cookie)).json(),
+    ).data.units;
+    expect(units.find((u) => u.id === U_A)?.taughtOn).toBe("2026-09-15");
+    expect(units.find((u) => u.id === U_B)?.taughtOn).not.toBe("2026-09-30");
+  });
+
+  it("윗줄에 싣는 학생 — 이름 · 반 (목록 · 재생 둘 다)", async () => {
+    const { cookie } = await login("seo01");
+    const list = learnLectureListResponseSchema.parse(
+      await (await listAs(cookie)).json(),
+    );
+    expect(list.data.student).toStrictEqual({
+      name: MOCK_STUDENT_1.name,
+      className: MOCK_CLASS_A.name,
+    });
+    const detail = learnLectureResponseSchema.parse(
+      await (
+        await detailRoute(
+          req("GET", `/api/learn/lectures/${L.a0}`, undefined, cookie),
+          { params: Promise.resolve({ id: L.a0! }) },
+        )
+      ).json(),
+    );
+    expect(detail.data.student).toStrictEqual(list.data.student);
+    expect(detail.data.unit.taughtOn).toBe(
+      list.data.units.find((u) => u.id === U_A)!.taughtOn,
+    );
   });
 
   it("🔴 AI 고지·잡 ID·시청 확인은 학생에게 안 간다 (D-124 ⑹)", async () => {
