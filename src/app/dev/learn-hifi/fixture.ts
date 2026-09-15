@@ -58,12 +58,17 @@ export const LEARN_HIFI_LONGEST_UNIT = LEARN_HIFI_UNITS.reduce((a, b) =>
   b.section.length > a.section.length ? b : a,
 );
 
-/** 가장 긴 강의 제목 — 계약 한계(200자)를 꽉 채운다 */
+/**
+ * 가장 긴 강의 제목 — 계약 한계(200자)를 **꽉** 채운다. 🔴 처음엔 `slice(0, 200)` 만 해서 원문이 모자라
+ * 192자였다(실물 계측이 «200자 아님»으로 잡았다) — 모자라면 공백 없는 글로 채운다(끝 공백은 계약이 잘라 낸다).
+ */
 export const LEARN_HIFI_LONGEST_TITLE = (
   "받아올림이 두 번, 세 번 있는 세 자리 수의 덧셈을 일의 자리부터 차례로 계산하고, 받아올린 수를 윗자리에 " +
   "작게 적어 두는 까닭을 수 모형과 자릿값 표로 확인하는 개념 강의 — 세로셈 · 어림셈 · 검산까지 한 번에 " +
   "정리합니다. 자릿값 · 받아올림 · 세로셈 · 어림셈 · 검산 · 자릿값 · 받아올림 · 세로셈 · 어림셈 · 검산"
-).slice(0, CONCEPT_LECTURE_LIMITS.titleMax);
+)
+  .slice(0, CONCEPT_LECTURE_LIMITS.titleMax)
+  .padEnd(CONCEPT_LECTURE_LIMITS.titleMax, "·검산·어림");
 
 interface HifiLectureRow {
   id: string;
@@ -181,9 +186,18 @@ function stressScenario(): Scenario {
     titles.forEach((title, k) => {
       n += 1;
       lectures.push(
-        lecture(n, unit, u === 0 ? title : `${title} (이어서)`, 118 + k * 9, {
-          sortOrder: k,
-        }),
+        // 둘째 차시는 « (이어서)» 를 붙인다 — 붙여도 계약 한계(200자) 안에 들게 먼저 줄인다
+        lecture(
+          n,
+          unit,
+          u === 0
+            ? title
+            : `${title.slice(0, CONCEPT_LECTURE_LIMITS.titleMax - 6)} (이어서)`,
+          118 + k * 9,
+          {
+            sortOrder: k,
+          },
+        ),
       );
       if (k === 1) watched[uid("4c000000", n)] = 42;
     });

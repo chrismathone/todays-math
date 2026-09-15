@@ -445,6 +445,12 @@ describe("🔴 ③ 목록 (/learn — 시안 sList) — 수업한 날로 묶는�
     expect(within(all[1]!).queryByText("오늘")).not.toBeInTheDocument();
   });
 
+  it("🔴 KST 자정을 넘긴 새벽(UTC 로는 아직 9/15) — 9/15 수업은 «오늘»이 아니다", async () => {
+    await renderList({ now: new Date("2026-09-15T16:00:00.000Z") });
+    expect(daySections()[0]).toHaveAccessibleName("9월 15일 (화)");
+    expect(screen.queryByText("오늘")).not.toBeInTheDocument();
+  });
+
   it("🔴 어제 수업이면 날짜만 — «오늘» 표시가 어디에도 없다", async () => {
     await renderList({ now: new Date("2026-09-16T03:00:00.000Z") });
     expect(daySections()[0]).toHaveAccessibleName("9월 15일 (화)");
@@ -482,6 +488,8 @@ describe("🔴 ③ 목록 (/learn — 시안 sList) — 수업한 날로 묶는�
   });
 
   it("🔴 가장 큰 실데이터 — 지난 수업 20일치 · 강의 많은 날(6편) · 가장 긴 차시 이름 · 가장 긴 강의 제목이 다 선다", async () => {
+    // 픽스처가 정말 계약 한계(200자)를 채웠나 — 처음엔 192자였다(실물 계측이 잡았다)
+    expect(LEARN_HIFI_LONGEST_TITLE).toHaveLength(200);
     await renderList({ set: "stress" });
     const all = daySections();
     expect(all).toHaveLength(21);
