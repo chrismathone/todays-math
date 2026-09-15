@@ -25,13 +25,23 @@ import {
   validateTarget,
 } from "./shared-figures.mjs";
 import { transferFigures } from "./transfer.mjs";
+import { main } from "./shared-figures-cli.mjs";
 
 const cli = fileURLToPath(new URL("./shared-figures-cli.mjs", import.meta.url));
 const target = {
   supabaseUrl: "https://example.supabase.co",
   bucket: "shared-figures",
 };
-const key = "TEST_SERVICE_ROLE_SECRET";
+// Synthetic credentials only; the signature is deliberately not authentic.
+function fakeJwt(payload) {
+  return (
+    [{ alg: "HS256", typ: "JWT" }, payload]
+      .map((part) => Buffer.from(JSON.stringify(part)).toString("base64url"))
+      .join(".") + ".not-a-real-signature"
+  );
+}
+const key = fakeJwt({ role: "service_role", ref: "test-only" });
+const secretKey = "sb_secret_TEST_ONLY_not_a_real_key";
 function git(repo, ...args) {
   return execFileSync("git", ["-C", repo, ...args], {
     encoding: "utf8",
@@ -73,7 +83,13 @@ async function fixture(t) {
 function remoteStore(
   manifest,
   images,
-  { prefill = false, behavior = async () => undefined, delay = 0 } = {},
+  {
+    prefill = false,
+    behavior = async () => undefined,
+    delay = 0,
+    expectedKey = key,
+    expectedAuthorization = `Bearer ${key}`,
+  } = {},
 ) {
   const objects = new Map();
   const requests = [];
@@ -103,13 +119,14 @@ function remoteStore(
         requests,
       });
       if (overridden) return overridden;
+      const headers = new Headers(init.headers);
       if (init.method === "GET") {
         assert.equal(
-          init.headers?.Authorization,
-          undefined,
+          headers.get("Authorization"),
+          null,
           "public verification must be anonymous",
         );
-        assert.equal(init.headers?.apikey, undefined);
+        assert.equal(headers.get("apikey"), null);
         const object = objects.get(objectPath);
         return object
           ? new Response(object.bytes, {
@@ -125,8 +142,8 @@ function remoteStore(
         "only insert and public download are allowed",
       );
       assert.equal(init.headers["x-upsert"], "false");
-      assert.equal(init.headers.Authorization, `Bearer ${key}`);
-      assert.equal(init.headers.apikey, key);
+      assert.equal(headers.get("Authorization"), expectedAuthorization);
+      assert.equal(headers.get("apikey"), expectedKey);
       assert.match(init.headers["Cache-Control"], /immutable/);
       if (objects.has(objectPath))
         return new Response(JSON.stringify({ code: "ResourceAlreadyExists" }), {
@@ -347,12 +364,124 @@ test("dry-run performs zero network calls even when credentials and a target are
         throw new Error("network forbidden");
       },
     },
-    { mode: "dry-run" },
+    { mode: "dry-run", secretKey },
   );
   assert.equal(result.status, "dry-run");
   assert.equal(result.count, 3);
   assert.equal(calls, 0);
   assert.ok(!JSON.stringify(result).includes(key));
+  assert.ok(!JSON.stringify(result).includes(secretKey));
+});
+
+test("opaque secret key uploads use apikey only, verify anonymously, and resume", async (t) => {
+  const f = await fixture(t);
+  const remote = remoteStore(f.manifest, f.images, {
+    expectedKey: secretKey,
+    expectedAuthorization: null,
+  });
+  const credentials = { secretKey, serviceRoleKey: undefined };
+  const progress = [];
+  const receipt = await run(f, remote, {
+    ...credentials,
+    onProgress: (value) => progress.push(value),
+  });
+  assert.equal(receipt.uploaded, 3);
+  assert.equal(receipt.manifestSha256, manifestSha256(f.manifest));
+  assert.equal(remote.requests.filter((r) => r.method === "POST").length, 3);
+  assert.equal(remote.requests.filter((r) => r.method === "GET").length, 6);
+  assert.ok(!JSON.stringify({ receipt, progress }).includes(secretKey));
+  remote.requests.length = 0;
+  const resumed = await run(f, remote, credentials);
+  assert.equal(resumed.uploaded, 0);
+  assert.equal(resumed.reused, 3);
+  assert.equal(remote.requests.length, 3);
+  assert.ok(remote.requests.every((r) => r.method === "GET"));
+});
+
+test("key selection prefers the new variable and preserves legacy configuration", async (t) => {
+  const f = await fixture(t);
+  for (const [name, credentials, expectedKey, expectedAuthorization] of [
+    [
+      "new key takes precedence",
+      { secretKey, serviceRoleKey: key },
+      secretKey,
+      null,
+    ],
+    [
+      "new key in legacy variable",
+      { serviceRoleKey: secretKey },
+      secretKey,
+      null,
+    ],
+    [
+      "empty new variable falls back",
+      { secretKey: "", serviceRoleKey: key },
+      key,
+      `Bearer ${key}`,
+    ],
+    ["JWT in new variable", { secretKey: key }, key, `Bearer ${key}`],
+  ]) {
+    await t.test(name, async () => {
+      const remote = remoteStore(f.manifest, f.images, {
+        expectedKey,
+        expectedAuthorization,
+      });
+      assert.equal((await run(f, remote, credentials)).uploaded, 3);
+    });
+  }
+});
+
+test("public and malformed upload keys fail before any request without exposing the key", async (t) => {
+  const f = await fixture(t);
+  let calls = 0;
+  const remote = {
+    fetchImpl: async () => {
+      calls++;
+      throw new Error("network forbidden");
+    },
+  };
+  const invalidKeys = [
+    "sb_publishable_TEST_ONLY_not_a_real_key",
+    fakeJwt({ role: "anon" }),
+    fakeJwt({ role: "authenticated" }),
+    fakeJwt({}),
+    fakeJwt(null),
+    "not-a-valid-key",
+    "eyJhbGciOiJIUzI1NiJ9.invalid-json.signature",
+    "sb_secret_",
+    `${secretKey}\r\nInjected: value`,
+    ` ${secretKey}`,
+    `${secretKey}\x00`,
+    123,
+  ];
+  for (const name of ["secretKey", "serviceRoleKey"]) {
+    for (const value of invalidKeys) {
+      await assert.rejects(run(f, remote, { [name]: value }), {
+        message:
+          "Upload requires SUPABASE_SECRET_KEY (sb_secret_...) or SUPABASE_SERVICE_ROLE_KEY (service_role JWT); public keys are not allowed.",
+      });
+    }
+  }
+  assert.equal(calls, 0);
+});
+
+test("a rejected secret upload never falls back to the legacy key or leaks response details", async (t) => {
+  const f = await fixture(t);
+  const sentKeys = [];
+  const remote = remoteStore(f.manifest, f.images, {
+    behavior: async ({ init }) => {
+      if (init.method === "POST") {
+        sentKeys.push(new Headers(init.headers).get("apikey"));
+        return new Response(JSON.stringify({ message: secretKey }), {
+          status: 401,
+        });
+      }
+    },
+  });
+  await assert.rejects(run(f, remote, { secretKey, concurrency: 1 }), {
+    message: "Figure upload failed with HTTP 401.",
+  });
+  assert.deepEqual(sentKeys, [secretKey]);
 });
 
 test("upload verifies every object, binds receipt, respects concurrency, and resumes with no POSTs", async (t) => {
@@ -484,6 +613,11 @@ test("verify makes public GETs only and rejects missing/private-bucket responses
     3,
   );
   assert.ok(remote.requests.every((r) => r.method === "GET"));
+  assert.equal(
+    (await run(f, remote, { mode: "verify", secretKey, serviceRoleKey: key }))
+      .count,
+    3,
+  );
   remote.objects.clear();
   await assert.rejects(
     run(f, remote, { mode: "verify", retries: 0 }),
@@ -589,6 +723,7 @@ test("CLI defaults to offline dry-run, writes new deterministic manifests, and p
   const env = {
     ...process.env,
     SUPABASE_URL: "https://must-not-connect.invalid",
+    SUPABASE_SECRET_KEY: secretKey,
     SUPABASE_SERVICE_ROLE_KEY: key,
   };
   const invoke = (args) =>
@@ -630,10 +765,80 @@ test("CLI defaults to offline dry-run, writes new deterministic manifests, and p
       "--receipt",
       receipt,
     ],
-    { env: { ...env, SUPABASE_SERVICE_ROLE_KEY: "" }, encoding: "utf8" },
+    {
+      env: { ...env, SUPABASE_SECRET_KEY: "", SUPABASE_SERVICE_ROLE_KEY: "" },
+      encoding: "utf8",
+    },
   );
   assert.equal(missingKey.status, 1);
   assert.match(missingKey.stderr, /SUPABASE_SERVICE_ROLE_KEY/);
   assert.ok(!missingKey.stderr.includes(key));
   await assert.rejects(lstat(receipt), { code: "ENOENT" });
+});
+
+test("CLI reads new and legacy upload variables with mocked requests and sanitized receipts", async (t) => {
+  const f = await fixture(t);
+  const filename = path.join(f.repo, "manifest.json");
+  await writeFile(filename, canonicalManifest(f.manifest));
+  for (const [name, credentials, expectedKey, expectedAuthorization] of [
+    ["secret", { SUPABASE_SECRET_KEY: secretKey }, secretKey, null],
+    ["legacy", { SUPABASE_SERVICE_ROLE_KEY: key }, key, `Bearer ${key}`],
+    [
+      "precedence",
+      { SUPABASE_SECRET_KEY: secretKey, SUPABASE_SERVICE_ROLE_KEY: key },
+      secretKey,
+      null,
+    ],
+    [
+      "fallback",
+      { SUPABASE_SECRET_KEY: "", SUPABASE_SERVICE_ROLE_KEY: key },
+      key,
+      `Bearer ${key}`,
+    ],
+  ]) {
+    await t.test(name, async (t) => {
+      const remote = remoteStore(f.manifest, f.images, {
+        expectedKey,
+        expectedAuthorization,
+      });
+      t.mock.method(globalThis, "fetch", remote.fetchImpl);
+      const output = [];
+      for (const stream of [process.stdout, process.stderr]) {
+        const write = stream.write.bind(stream);
+        t.mock.method(stream, "write", (chunk, ...args) => {
+          // Capture CLI JSON only; preserve the test runner's event transport.
+          if (typeof chunk !== "string" || !chunk.startsWith("{"))
+            return write(chunk, ...args);
+          output.push(chunk);
+          return true;
+        });
+      }
+      const receipt = path.join(f.repo, `${name}.receipt.json`);
+      await main(
+        [
+          "upload",
+          "--repo",
+          f.repo,
+          "--manifest",
+          filename,
+          "--bucket",
+          target.bucket,
+          "--receipt",
+          receipt,
+        ],
+        { SUPABASE_URL: target.supabaseUrl, ...credentials },
+      );
+      const serialized = await readFile(receipt, "utf8");
+      assert.equal(JSON.parse(serialized).uploaded, 3);
+      assert.equal(
+        remote.requests.filter((r) => r.method === "POST").length,
+        3,
+      );
+      for (const value of [secretKey, key]) {
+        assert.ok(!serialized.includes(value));
+        assert.ok(output.every((line) => !line.includes(value)));
+      }
+      assert.equal(output.length, 2);
+    });
+  }
 });
