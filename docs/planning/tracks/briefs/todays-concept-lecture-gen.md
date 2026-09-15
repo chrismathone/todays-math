@@ -77,3 +77,12 @@
 
 워크트리 안 **`scratch/REPORT-01-lecture-gen.md`** 에 쓴다(터미널로 보고하지 않는다 — 한글이 깨진다).
 되살린 계약 요약 · 기존 8편과 다른 점 · 회귀 비교 결과 · 남은 일 · **리드가 정할 것**.
+
+## 7. 추가 (2026-09-15 리드) — meta.json 의 차시 칸 이름
+
+오늘의수학 쪽 이전 워크트리(`concept-port`)가 `meta.json` 을 읽는 파서를 만들고 있다. 두 쪽 이름을 맞춘다:
+
+- 칸 이름은 **`unitCode`**, 값은 오늘의수학 `Unit.problemCodePrefix`(예 `J10103` = 중1 1단원 3차시).
+  **`unitId`(uuid)가 아니다** — uuid 는 사람이 못 읽고 환경마다 다를 수 있다.
+- 지금은 **비워 둔다**(필드 생략 또는 `null`). 지어내지 않는다 — 없으면 등록 CLI 가 `--unit=<코드>` 를 요구한다.
+- 수맥 규약 칸(`lessonTitle`·`fps`·`totalFrames`·`disclosure`·`jobId`·`video_url`·`sortOrder`)은 그대로 둔다.
