@@ -16,6 +16,8 @@ jobs:
     env:
       HUSKY: "0"
       NEXT_TELEMETRY_DISABLED: "1"
+      # The hosted runner's default ~2 GB heap is too small for this project.
+      NODE_OPTIONS: "--max-old-space-size=4096"
       PRISMA_SKIP_POSTINSTALL_GENERATE: "true"
       # Schema generation needs URL values, but never connects to a database.
       DATABASE_URL: postgresql://ci:ci@127.0.0.1:1/typecheck?schema=public
