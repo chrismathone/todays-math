@@ -23,7 +23,7 @@
  */
 import { spawnSync } from "node:child_process";
 import { createHash } from "node:crypto";
-import { mkdtempSync, readFileSync, rmSync, writeFileSync } from "node:fs";
+import { readFileSync, unlinkSync, writeFileSync } from "node:fs";
 import os from "node:os";
 import path from "node:path";
 
@@ -627,6 +627,30 @@ const MUTATIONS: Mutation[] = [
 
 const md5 = (b: Buffer) => createHash("md5").update(b).digest("hex");
 
+/** 지운다 — 없으면 그만 */
+function removeFile(file: string) {
+  try {
+    unlinkSync(file);
+  } catch {
+    /* 없으면 그만 */
+  }
+}
+
+/**
+ * 임시 파일 하나 — 디렉터리를 만들지 않는다. 🔴 `rmSync` 는 경로에 한글이 있으면 노드를 메시지 없이 죽인다
+ * (`noRmSync.test.ts`) — 지우기가 `unlinkSync` 하나로 끝나게 파일로만 둔다. 옛 회차가 같은 이름을 남겼으면
+ * 먼저 지운다 — 남은 리포트를 이번 결과로 읽지 않게(새 디렉터리가 하던 일).
+ */
+let tempSeq = 0;
+function tempFile(prefix: string, ext: string): string {
+  const file = path.join(
+    os.tmpdir(),
+    `${prefix}${process.pid}-${++tempSeq}${ext}`,
+  );
+  removeFile(file);
+  return file;
+}
+
 function tsxProbe(expr: string): string | null {
   writeFileSync(
     PROBE,
@@ -641,7 +665,7 @@ function tsxProbe(expr: string): string | null {
     });
     return r.status === 0 ? r.stdout.trim() : null;
   } finally {
-    rmSync(PROBE, { force: true });
+    removeFile(PROBE);
   }
 }
 
@@ -651,8 +675,7 @@ function runTests(files: string[]): {
   failed: string[];
   readable: boolean;
 } {
-  const dir = mkdtempSync(path.join(os.tmpdir(), "mutate-learn-"));
-  const out = path.join(dir, "r.json");
+  const out = tempFile("mutate-learn-", ".json");
   try {
     const r = spawnSync(
       process.execPath,
@@ -683,7 +706,7 @@ function runTests(files: string[]): {
     );
     return { code: r.status ?? 1, failed, readable: report !== null };
   } finally {
-    rmSync(dir, { recursive: true, force: true });
+    removeFile(out);
   }
 }
 
