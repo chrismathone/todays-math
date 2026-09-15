@@ -43,7 +43,9 @@
   `passwordHash`(bcryptjs — 원장과 같은 라이브러리) · `mustChangePassword`(기본 참) · `issuedById`(→ `User`) · `issuedAt` ·
   `passwordChangedAt?` · `lastLoginAt?` · `disabledAt?`. 초기 비밀번호는 **저장하지 않는다**(해시만).
 - 🔴 `prisma migrate dev` · `migrate deploy` · `db push` · `migrate reset` 금지. `prisma migrate diff` 로 뽑는다.
-  마이그레이션 첫 줄 `-- ⚠️ 미적용 초안 (D-124) — 원장님 확인 전 적용 금지`.
+  마이그레이션 첫 줄 `-- ⚠️ 미적용 초안 (D-124) — 원장님 확인 전 적용 금지`. 적용은 리드가 원장님께 여쭌 뒤
+  `scripts/qa/apply-concept-lecture-migration.ts` 와 같은 방식(이 마이그레이션 하나만 · 드라이런 먼저)으로 한다 — 그 스크립트를 본떠 적용기를 같이 만들어 둔다.
+- 참고: `concept_lecture` · `concept_lecture_view` 는 2026-09-15 공유 DB 에 적용됐다(빈 표). 쓰지 않는다.
 
 ### 2.3 발급·로그인·비밀번호 (서버 쪽, 화면 없이)
 

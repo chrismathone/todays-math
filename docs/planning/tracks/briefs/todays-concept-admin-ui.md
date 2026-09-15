@@ -50,8 +50,8 @@
 
 - 라우트 핸들러(`/api/concept/**`) 또는 서버 액션 — 기존 관례를 따른다. 모두 세션 확인 + **반 소유 확인**(`Class.userId`) +
   쓰기는 `isAdmin` 확인. 계약은 `src/contracts/` 에 Zod 로.
-- 강의·시청 표(`concept_lecture` · `concept_lecture_view`)는 **공유 DB 에 아직 없을 수 있다**(원장님 확인 전 미적용).
-  🔴 공유 DB 에 마이그레이션을 적용하지 않는다. 시험은 모킹 + **로컬 DB**(`docker compose up -d` 가 되면)로 한다.
+- 강의·시청 표(`concept_lecture` · `concept_lecture_view`)는 **2026-09-15 공유 DB 에 적용됐다**(원장님 확인 — 빈 표).
+  🔴 그래도 공유 DB 에 **쓰지 않는다**(시험용 강의를 넣지 않는다 — 원장님 화면에 그대로 보인다). 마이그레이션 명령도 돌리지 않는다. 시험은 모킹 + **로컬 DB**(`docker compose up -d` 가 되면)로 한다.
   로컬 DB 도 없으면 E2E 는 건너뛰고 보고에 적는다 — «환경 문제»로 끝내지 말고 무엇을 못 봤는지 적는다.
 
 ## 2. 하지 말 것
