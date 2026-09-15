@@ -1,17 +1,14 @@
-import { readFileSync } from "node:fs";
-import path from "node:path";
-
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { connection } from "next/server";
 
 import {
-  TIER4_LEDGER_PATH,
   type Tier4Ledger,
   elemKey,
   judgeDeep,
   marksOf,
 } from "../../../../../scripts/qa/tier4Rules";
+import tier4Ledger from "../../../../../scripts/qa/reports/tier4-review.json";
 import { MathText } from "@/components/math/MathText";
 import { PaperProblemView } from "@/components/print/PaperProblemView";
 import { ELEM_TIERS } from "@/lib/elementary/difficulty";
@@ -63,12 +60,6 @@ const JUDGE_SEEDS = Array.from({ length: 12 }, (_, i) => i * 8117 + 3);
 /** 화면에 그릴 씨앗 후보. 원장님이 다른 수로 한 번 더 보실 수 있게. */
 const VIEW_SEEDS = [3, 8120, 16237, 24354, 20260824];
 
-function loadLedger(): Tier4Ledger {
-  return JSON.parse(
-    readFileSync(path.join(process.cwd(), TIER4_LEDGER_PATH), "utf8"),
-  ) as Tier4Ledger;
-}
-
 export default async function TierBenchG4Page({
   searchParams,
 }: {
@@ -97,7 +88,9 @@ export default async function TierBenchG4Page({
   const units =
     chapter === "전체" ? all : all.filter((u) => u.chapter === chapter);
 
-  const ledger = loadLedger();
+  // A static import lets the build include just this ledger. Resolving an
+  // imported path through process.cwd() caused the entire repo to be traced.
+  const ledger = tier4Ledger as Tier4Ledger;
 
   // 학년 전체의 분모는 **고른 대단원과 무관하게** 찍는다 — 좁혀 본 것을 전량으로
   // 읽으면 「62 중 하나」가 「지금 화면 중 하나」로 줄어든다.
