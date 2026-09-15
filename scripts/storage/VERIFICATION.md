@@ -2,7 +2,49 @@
 
 Verified on 2026-09-15 with Node 24.13.0 and Git on Windows.
 
-## Results
+## Secret-key support audit (2026-09-15)
+
+Base revision: `c3513b64`. Scope: `scripts/storage` only.
+
+Supabase's official [API key documentation](https://supabase.com/docs/guides/getting-started/api-keys)
+specifies `apikey` for opaque secret keys and distinguishes them from legacy
+`service_role` JWTs. The previous uploader read only
+`SUPABASE_SERVICE_ROLE_KEY`, sent all keys as both `apikey` and Bearer tokens,
+and accepted any nonempty header-safe string.
+
+The CLI now prefers nonempty `SUPABASE_SECRET_KEY`, falling back to the legacy
+variable only when the new value is absent/empty. Upload headers follow the
+selected key's format: opaque secret keys use `apikey` only; legacy
+`service_role` JWTs retain both headers. Public and malformed keys fail before
+any HTTP request. Authentication failures never switch credentials. Key type
+checks are local; signature/key authentication remains Supabase's responsibility.
+
+Validation:
+
+- Baseline: all 19 existing storage scenarios passed before the changes.
+- Final `node --test scripts/storage/shared-figures.test.mjs`: **32 passed,
+  0 failed/skipped** (24 top-level scenarios plus 8 subtests).
+- Coordinator-requested `node --test scripts/deploy/prepare-shared-figures.test.mjs`:
+  all **4 passed**, covering the existing deployment receipt/exclusion guards.
+- New coverage includes secret-only POST headers, legacy Bearer behavior,
+  environment-variable precedence and empty fallback, either key format in
+  either variable, public/invalid key rejection with zero requests, anonymous
+  GETs with keys supplied, resume, and credential-free CLI logs/receipts.
+- Existing manifest, Git identity, canonical bytes, MIME/size/SHA256, immutable
+  insert, duplicate handling, timeout, and retry checks all remain and pass.
+- Targeted ESLint passed for the three changed JavaScript files using the
+  installed repository configuration. Its only warning was React-version
+  detection because this worktree has no `node_modules`.
+- Prettier and `git diff --check` passed for the changed scripts and docs.
+
+Tests used synthetic keys, temporary Git fixtures, and injected/mocked fetches.
+No environment files or real credentials were read; no live Storage requests,
+cloud settings/data changes, private material edits, or branch push occurred.
+The coordinator owns merge, live upload/verification, and session cleanup after
+integration. The earlier inventory below was not rerun for this credential-only
+change.
+
+## Original migration verification results
 
 - Full offline dry-run passed against source commit
   `6897d28554fe517ec446f7a230eb6ea06e201901`.
