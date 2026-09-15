@@ -57,7 +57,10 @@ import {
   studentTokenFor,
 } from "@/lib/learn/studentSession";
 
-/** 학생 토큰을 지을 때 읽는 한 줄 — 요청마다 다시 읽는다(꺼짐·지워짐이 다음 요청에 반영된다) */
+/**
+ * 학생 토큰을 지을 때 읽는 한 줄 — 요청마다 다시 읽는다(꺼짐·퇴원·지워짐이 다음 요청에 반영된다).
+ * 퇴원(`eywaWithdrawnAt`)은 학생 행에 있다 — 막힘 판정은 `studentTokenFor` 가 한다(D-126 ⑺).
+ */
 function loadStudentAccountForToken(id: string) {
   return db.studentAccount.findUnique({
     where: { id },
@@ -66,7 +69,7 @@ function loadStudentAccountForToken(id: string) {
       studentId: true,
       disabledAt: true,
       mustChangePassword: true,
-      student: { select: { name: true } },
+      student: { select: { name: true, eywaWithdrawnAt: true } },
     },
   });
 }

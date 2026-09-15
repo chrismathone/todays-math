@@ -35,6 +35,7 @@ import { isEasyPin, isPinFormat } from "@/lib/concept/pinRules";
 import { conceptLectureForStudentSchema } from "./conceptLecture.contract";
 import {
   dataResponseSchema,
+  isoDateSchema,
   isoDateTimeSchema,
   uuidSchema,
 } from "./common.contract";
@@ -142,29 +143,49 @@ export const studentSessionSchema = z.strictObject({
 });
 export type StudentSession = z.infer<typeof studentSessionSchema>;
 
-/** 학생 목록이 차시로 묶을 때 쓰는 차시 머리 */
+/**
+ * 학생 목록이 차시로 묶을 때 쓰는 차시 머리.
+ * `taughtOn` = **그 학생에게 그 차시가 기록된 가장 최근 날**(반 진도 ∪ 개인 진도 — 서버의
+ * `progressDatesOf`, 열린 차시의 판정과 같은 행·같은 셈). 학생 목록은 이 날짜로 묶는다(브리프 §1.1 · 시안 `sList`).
+ */
 export const learnUnitSchema = z.strictObject({
   id: uuidSchema,
   grade: z.string(),
   chapter: z.string(),
   section: z.string(),
   orderIndex: z.number().int(),
+  taughtOn: isoDateSchema,
 });
 export type LearnUnit = z.infer<typeof learnUnitSchema>;
 
+/** 학생 화면 윗줄 — 이름 · 반(시안 `sTop` «김도윤 · 중1 A반 · 나가기») */
+export const learnStudentSchema = z.strictObject({
+  name: z.string(),
+  className: z.string(),
+});
+export type LearnStudent = z.infer<typeof learnStudentSchema>;
+
 export const learnLectureListResponseSchema = dataResponseSchema(
   z.strictObject({
+    student: learnStudentSchema,
     units: z.array(learnUnitSchema),
     lectures: z.array(conceptLectureForStudentSchema),
   }),
 );
+export type LearnLectureList = z.infer<
+  typeof learnLectureListResponseSchema
+>["data"];
 
 export const learnLectureResponseSchema = dataResponseSchema(
   z.strictObject({
+    student: learnStudentSchema,
     unit: learnUnitSchema,
     lecture: conceptLectureForStudentSchema,
   }),
 );
+export type LearnLectureDetail = z.infer<
+  typeof learnLectureResponseSchema
+>["data"];
 
 export const learnWatchResponseSchema = dataResponseSchema(
   z.strictObject({
@@ -193,11 +214,17 @@ export const studentAccountIssueResponseSchema = dataResponseSchema(
   }),
 );
 
+export type StudentAccountIssued = z.infer<
+  typeof studentAccountIssueResponseSchema
+>["data"];
+
 /** 계정 상태 — 비밀번호·해시 칸이 **아예 없다**. */
 export const studentAccountStatusSchema = z.strictObject({
   studentId: uuidSchema,
   loginId: z.string(),
   issuedAt: isoDateTimeSchema,
+  /** 발급한 사람이 **지금 보는 원장님**인가 — 발급 칸의 «9월 15일 · 원장님»(시안 `issue()`) */
+  issuedByViewer: z.boolean(),
   lastLoginAt: isoDateTimeSchema.nullable(),
   passwordChangedAt: isoDateTimeSchema.nullable(),
   disabledAt: isoDateTimeSchema.nullable(),
@@ -206,8 +233,24 @@ export const studentAccountStatusSchema = z.strictObject({
 });
 export type StudentAccountStatus = z.infer<typeof studentAccountStatusSchema>;
 
+/** 끄기 · 켜기(PATCH) 응답 — 계정이 있을 때만 온다 */
 export const studentAccountStatusResponseSchema = dataResponseSchema(
-  studentAccountStatusSchema.nullable(),
+  studentAccountStatusSchema,
+);
+
+/**
+ * 발급 칸(원장님 «수업 · 학생 관리 › 학생»)이 읽는 모양 — `GET /api/students/{id}/account`.
+ * 계정이 없어도 **퇴원 여부**는 알아야 한다 — 퇴원한 학생은 로그인이 막히므로(D-126 ⑺) 칸은 발급 대신
+ * «퇴원 — 로그인 막힘» 한 줄을 그린다(learn-screens 브리프 §1.3).
+ */
+export const studentAccountPanelSchema = z.strictObject({
+  withdrawn: z.boolean(),
+  account: studentAccountStatusSchema.nullable(),
+});
+export type StudentAccountPanel = z.infer<typeof studentAccountPanelSchema>;
+
+export const studentAccountPanelResponseSchema = dataResponseSchema(
+  studentAccountPanelSchema,
 );
 
 export const studentAccountUpdateRequestSchema = z.strictObject({

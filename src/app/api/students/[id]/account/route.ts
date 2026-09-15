@@ -6,6 +6,7 @@
  * 🔴 초기 비밀번호는 발급 응답에 **한 번만** 싣고(캐시 금지) 서버에는 해시만 남긴다.
  * 🔴 그 학생의 반이 이 원장 소유여야 한다 — 없으면 404, 남의 반이면 403.
  * 원장 전용이다 — 학생 세션에는 `user` 가 없어 `getSessionUser()` 가 null(401). 관문도 학생을 막는다.
+ * GET 은 발급 칸(«수업 · 학생 관리 › 학생»)이 읽는다 — 계정이 없어도 퇴원 여부를 준다(learn-screens 브리프 §1.3).
  */
 import type { NextRequest } from "next/server";
 
@@ -13,6 +14,7 @@ import { idParamSchema } from "@/contracts/common.contract";
 import {
   studentAccountIssueRequestSchema,
   studentAccountIssueResponseSchema,
+  studentAccountPanelResponseSchema,
   studentAccountStatusResponseSchema,
   studentAccountUpdateRequestSchema,
 } from "@/contracts/studentAccount.contract";
@@ -34,7 +36,7 @@ import { getSessionUser } from "@/lib/session";
 
 type RouteContext = { params: Promise<{ id: string }> };
 
-// GET — 계정 상태 (없으면 data: null)
+// GET — 발급 칸: 퇴원 여부 + 계정 상태(없으면 account: null)
 export async function GET(_request: NextRequest, { params }: RouteContext) {
   const session = await getSessionUser();
   if (!session) return unauthorizedError();
@@ -48,8 +50,14 @@ export async function GET(_request: NextRequest, { params }: RouteContext) {
     studentId: id,
   });
   if (!result.ok) return issueFailureResponse(result.reason);
-  return jsonOk(studentAccountStatusResponseSchema, {
-    data: result.value ? toAccountStatus(result.value, new Date()) : null,
+  const { account, withdrawn } = result.value;
+  return jsonOk(studentAccountPanelResponseSchema, {
+    data: {
+      withdrawn,
+      account: account
+        ? toAccountStatus(account, new Date(), session.id)
+        : null,
+    },
   });
 }
 
@@ -113,6 +121,6 @@ export async function PATCH(request: NextRequest, { params }: RouteContext) {
   });
   if (!result.ok) return issueFailureResponse(result.reason);
   return jsonOk(studentAccountStatusResponseSchema, {
-    data: toAccountStatus(result.value, new Date()),
+    data: toAccountStatus(result.value, new Date(), session.id),
   });
 }

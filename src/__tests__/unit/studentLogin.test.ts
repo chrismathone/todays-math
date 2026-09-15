@@ -3,15 +3,19 @@
  *
  * 규칙: src/lib/learn/studentLogin.ts — 저장소(`LoginStore`)를 주입받는다. 여기서는 원자 연산을
  * 그대로 흉내 내는 메모리 저장소(`src/mocks/memoryLoginStore.ts`)를 쓰고, Prisma 쪽 저장소는
- * `learnRoutes.test.ts` 가 라우트째로 본다.
+ * `learnRoutes.test.ts` · `studentLoginMissCleanup.test.ts` 가 본다.
  *
  * 🔴 브리프가 짚은 시험 넷: 잠금 5회 경계 · 10분 경계 · 성공 시 초기화 · 없는 아이디도 같은 문구.
+ * 🔴 learn-screens 브리프 §1.4 가 더한 것: ⑥ 퇴원한 학생은 꺼진 계정과 똑같이(D-126 ⑺) ·
+ *    ⑦ 없는 아이디 실패 행 정리(하루 넘은 행 · 한 번에 100행 — 리드 결정).
  */
 import { describe, expect, it } from "vitest";
 
 import { STUDENT_LOGIN_LOCK } from "@/contracts/studentAccount.contract";
+import { studentAccountBlocked } from "@/lib/learn/accountBlock";
 import {
   attemptStudentLogin,
+  STUDENT_LOGIN_MISS_CLEANUP,
   verifyStudentPin,
   type LoginAudit,
   type LoginDeps,
@@ -25,9 +29,11 @@ const PIN = "5809";
 const ACCOUNT_ID = "acc-0001";
 const STUDENT_ID = "stu-0001";
 const MIN = 60 * 1000;
+const HOUR = 60 * MIN;
 
-function setup(opts: { disabled?: boolean } = {}) {
-  const store = createMemoryLoginStore();
+function setup(opts: { disabled?: boolean; withdrawn?: boolean } = {}) {
+  let now = T0;
+  const store = createMemoryLoginStore({ now: () => now });
   store.addAccount({
     id: ACCOUNT_ID,
     studentId: STUDENT_ID,
@@ -35,8 +41,8 @@ function setup(opts: { disabled?: boolean } = {}) {
     passwordHash: `hash:${PIN}`,
     mustChangePassword: true,
     disabledAt: opts.disabled ? T0 : null,
+    withdrawnAt: opts.withdrawn ? T0 : null,
   });
-  let now = T0;
   const audits: LoginAudit[] = [];
   const realCompares: string[] = [];
   const deps: LoginDeps = {
@@ -260,5 +266,116 @@ describe("지금 번호 확인 (비밀번호 바꾸기) — 같은 잠금을 쓴
     await reasons(() => login("seo01", "0001"), 5);
     const account = store.accountById(ACCOUNT_ID)!;
     expect(await verifyStudentPin(account, PIN, deps)).toBe("locked");
+  });
+});
+
+describe("🔴 ⑥ 퇴원한 학생 — 꺼진 계정과 똑같이 군다 (D-126 ⑺)", () => {
+  it("막힘 판정은 한 함수 — 꺼짐 ∪ 퇴원", () => {
+    expect(studentAccountBlocked({ disabledAt: null, withdrawnAt: null })).toBe(
+      false,
+    );
+    expect(studentAccountBlocked({ disabledAt: T0, withdrawnAt: null })).toBe(
+      true,
+    );
+    expect(studentAccountBlocked({ disabledAt: null, withdrawnAt: T0 })).toBe(
+      true,
+    );
+    expect(studentAccountBlocked({ disabledAt: T0, withdrawnAt: T0 })).toBe(
+      true,
+    );
+  });
+
+  it("🔴 맞는 번호도 실패 — 문구는 «틀림»과 같고 실패 수에 든다", async () => {
+    const { login, store } = setup({ withdrawn: true });
+    expect(await login("seo01", PIN)).toStrictEqual({
+      ok: false,
+      reason: "invalid",
+    });
+    expect(store.accountLock(ACCOUNT_ID).failedCount).toBe(1);
+  });
+
+  it("🔴 맞는 번호를 일곱 번 넣어도 — 틀린 번호를 넣은 것과 결과 줄이 똑같다(다섯째에 잠긴다)", async () => {
+    const gone = setup({ withdrawn: true });
+    const wrong = setup();
+    expect(await reasons(() => gone.login("seo01", PIN), 7)).toStrictEqual(
+      await reasons(() => wrong.login("seo01", "0001"), 7),
+    );
+  });
+
+  it("비밀번호 바꾸기의 «지금 번호 확인»도 막는다", async () => {
+    const { deps, store } = setup({ withdrawn: true });
+    expect(
+      await verifyStudentPin(store.accountById(ACCOUNT_ID)!, PIN, deps),
+    ).toBe("invalid");
+  });
+
+  it("감사 기록의 까닭은 withdrawn — 번호 없이", async () => {
+    const { login, audits } = setup({ withdrawn: true });
+    await login("seo01", PIN);
+    expect(audits).toStrictEqual([
+      {
+        action: "student_auth.login",
+        outcome: "failed",
+        details: {
+          studentAccountId: ACCOUNT_ID,
+          studentId: STUDENT_ID,
+          reason: "withdrawn",
+        },
+      },
+    ]);
+  });
+});
+
+describe("🔴 ⑦ 없는 아이디 실패 행 정리 — 하루 넘은 행을 한 번에 100행까지 (리드 결정 · student-auth §8-1)", () => {
+  const key = (n: number) => n.toString(16).padStart(64, "0");
+  const ago = (ms: number) => new Date(T0.getTime() - ms);
+  const ghost = studentLoginMissKey("ghost-id", MISS_SECRET);
+
+  it("상수는 24시간 · 100행", () => {
+    expect(STUDENT_LOGIN_MISS_CLEANUP).toStrictEqual({
+      staleAfterMs: 24 * HOUR,
+      maxRows: 100,
+    });
+  });
+
+  it("🔴 경계 — 23시간 59분 지난 행은 남기고, 24시간 1분 지난 행은 지운다", async () => {
+    const { login, store } = setup();
+    store.seedMiss(key(1), {
+      failedCount: 3,
+      lockedUntil: null,
+      updatedAt: ago(24 * HOUR - MIN),
+    });
+    store.seedMiss(key(2), {
+      failedCount: 3,
+      lockedUntil: null,
+      updatedAt: ago(24 * HOUR + MIN),
+    });
+    await login("ghost-id", "0001");
+    expect(store.missKeys().sort()).toStrictEqual([key(1), ghost].sort());
+  });
+
+  it("🔴 한 번에 최대 100행 — 150행이 묵었으면 가장 오래된 100행만 지우고 50행이 남는다", async () => {
+    const { login, store } = setup();
+    for (let i = 1; i <= 150; i += 1)
+      store.seedMiss(key(i), {
+        failedCount: 1,
+        lockedUntil: null,
+        updatedAt: ago(2 * 24 * HOUR + i * MIN),
+      });
+    await login("ghost-id", "0001");
+    const left = store.missKeys().filter((k) => k !== ghost);
+    expect(left).toHaveLength(50);
+    // i 가 작을수록 덜 묵었다 — 남는 것은 1..50
+    expect(left.sort()).toStrictEqual(
+      Array.from({ length: 50 }, (_, i) => key(i + 1)).sort(),
+    );
+  });
+
+  it("방금 적은 없는 아이디 행과 계정 행은 안 지운다", async () => {
+    const { login, store } = setup();
+    await login("seo01", "0001");
+    await login("ghost-id", "0001");
+    expect(store.missKeys()).toStrictEqual([ghost]);
+    expect(store.accountLock(ACCOUNT_ID).failedCount).toBe(1);
   });
 });

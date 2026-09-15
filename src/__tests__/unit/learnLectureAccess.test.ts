@@ -11,19 +11,53 @@ import { describe, expect, it } from "vitest";
 
 import {
   lectureOpenToStudent,
+  progressDatesOf,
   progressUnitIdsOf,
   sortLecturesForStudent,
 } from "@/lib/learn/lectureAccess";
 
 const ME = { id: "stu-me", classId: "class-a" };
 
+/** `Progress.recordedAt` 은 `@db.Date` — Prisma 는 그 날의 UTC 자정으로 읽어 온다 */
+const on = (day: string) => new Date(`${day}T00:00:00.000Z`);
+
 const rows = [
-  { classId: "class-a", studentId: null, unitId: "u1" }, // 반 진도
-  { classId: "class-a", studentId: null, unitId: "u2" }, // 반 진도
-  { classId: "class-a", studentId: "stu-me", unitId: "u5" }, // 내 개인 진도(반보다 앞섬)
-  { classId: "class-old", studentId: "stu-me", unitId: "u9" }, // 옮기기 전 반에서 기록된 내 개인 진도
-  { classId: "class-a", studentId: "stu-other", unitId: "u7" }, // 같은 반 다른 학생의 개인 진도
-  { classId: "class-b", studentId: null, unitId: "u8" }, // 다른 반의 반 진도
+  {
+    classId: "class-a",
+    studentId: null,
+    unitId: "u1",
+    recordedAt: on("2026-09-01"),
+  }, // 반 진도
+  {
+    classId: "class-a",
+    studentId: null,
+    unitId: "u2",
+    recordedAt: on("2026-09-03"),
+  }, // 반 진도
+  {
+    classId: "class-a",
+    studentId: "stu-me",
+    unitId: "u5",
+    recordedAt: on("2026-09-05"),
+  }, // 내 개인 진도(반보다 앞섬)
+  {
+    classId: "class-old",
+    studentId: "stu-me",
+    unitId: "u9",
+    recordedAt: on("2026-08-20"),
+  }, // 옮기기 전 반에서 기록된 내 개인 진도
+  {
+    classId: "class-a",
+    studentId: "stu-other",
+    unitId: "u7",
+    recordedAt: on("2026-09-06"),
+  }, // 같은 반 다른 학생의 개인 진도
+  {
+    classId: "class-b",
+    studentId: null,
+    unitId: "u8",
+    recordedAt: on("2026-09-07"),
+  }, // 다른 반의 반 진도
 ];
 
 describe("진도에 있던 차시 — 반 진도 ∪ 개인 진도", () => {
@@ -38,6 +72,65 @@ describe("진도에 있던 차시 — 반 진도 ∪ 개인 진도", () => {
 
   it("진도가 하나도 없으면 빈 집합 — 아무 강의도 안 열린다", () => {
     expect(progressUnitIdsOf([], ME).size).toBe(0);
+  });
+});
+
+describe("🔴 ③ 차시를 수업한 날 — 목록의 날짜 묶음(브리프 §1.1)", () => {
+  it("차시마다 그 학생에게 기록된 **가장 최근** 날 — 반 진도와 개인 진도 중 늦은 쪽", () => {
+    const again = [
+      ...rows,
+      {
+        classId: "class-a",
+        studentId: null,
+        unitId: "u1",
+        recordedAt: on("2026-09-12"),
+      }, // 반이 u1 을 다시
+      {
+        classId: "class-a",
+        studentId: "stu-me",
+        unitId: "u2",
+        recordedAt: on("2026-09-15"),
+      }, // 나만 u2 를 다시
+      {
+        classId: "class-a",
+        studentId: null,
+        unitId: "u2",
+        recordedAt: on("2026-09-02"),
+      }, // 더 이른 반 진도
+    ];
+    expect(Object.fromEntries(progressDatesOf(again, ME))).toStrictEqual({
+      u1: "2026-09-12",
+      u2: "2026-09-15",
+      u5: "2026-09-05",
+      u9: "2026-08-20",
+    });
+  });
+
+  it("🔴 남의 반·남의 개인 진도의 날짜는 안 센다 — 같은 차시를 남이 더 늦게 배워도", () => {
+    const others = [
+      ...rows,
+      {
+        classId: "class-a",
+        studentId: "stu-other",
+        unitId: "u1",
+        recordedAt: on("2026-09-30"),
+      },
+      {
+        classId: "class-b",
+        studentId: null,
+        unitId: "u2",
+        recordedAt: on("2026-09-30"),
+      },
+    ];
+    const dates = progressDatesOf(others, ME);
+    expect(dates.get("u1")).toBe("2026-09-01");
+    expect(dates.get("u2")).toBe("2026-09-03");
+  });
+
+  it("열린 차시의 집합은 같은 셈의 열쇠다 — 목록과 기록의 판정이 갈라지지 않는다", () => {
+    expect([...progressUnitIdsOf(rows, ME)].sort()).toStrictEqual(
+      [...progressDatesOf(rows, ME).keys()].sort(),
+    );
   });
 });
 

@@ -19,11 +19,25 @@
  * 4. 🔴 **성공하면 0 으로.**
  * 5. 없는 아이디·꺼진 계정도 비교를 한 번 한다(`comparePin(pin, null)` — bcrypt 판은 버린 값의 해시에
  *    대 본다). 걸리는 시간으로 아이디 존재가 새지 않게.
+ * 6. 🔴 **퇴원한 학생은 꺼진 계정과 똑같이** 군다(D-126 ⑺) — 판정은 `accountBlock.ts` 의
+ *    `studentAccountBlocked` 하나(학생 토큰 · 비밀번호 바꾸기 라우트도 같은 함수를 부른다).
+ * 7. 없는 아이디 행은 쌓이기만 한다 — **없는 아이디 실패를 적을 때** `updated_at` 이 하루 넘게 지난 행을
+ *    한 번에 최대 100행 함께 지운다(따로 도는 작업 없이 — 리드 결정, `STUDENT_LOGIN_MISS_CLEANUP`).
  */
 import {
   normalizeLoginId,
   STUDENT_LOGIN_LOCK,
 } from "@/contracts/studentAccount.contract";
+
+import { studentAccountBlocked } from "./accountBlock";
+
+/** 없는 아이디 실패 행 정리 (리드 결정 2026-09-15 · student-auth §8-1) */
+export const STUDENT_LOGIN_MISS_CLEANUP = {
+  /** 이보다 오래 안 두드려진(`updated_at`) 행을 지운다 — 잠금(10분)은 한참 전에 풀린 행이다 */
+  staleAfterMs: 24 * 60 * 60 * 1000,
+  /** 한 번에 지우는 최대 행 수 — 로그인 한 번이 긴 삭제를 떠안지 않게 */
+  maxRows: 100,
+} as const;
 
 export type LockState = { failedCount: number; lockedUntil: Date | null };
 
@@ -37,6 +51,8 @@ export interface LoginAccount extends LockState {
   passwordHash: string;
   mustChangePassword: boolean;
   disabledAt: Date | null;
+  /** 그 학생의 퇴원 시각(`Student.eywaWithdrawnAt`) — 찍혀 있으면 꺼진 계정과 똑같다(규칙 6) */
+  withdrawnAt: Date | null;
 }
 
 /** 저장소 — 넷(`resetExpiredLock`·`reserveAttempt`·`lock`·`clearFailures`)은 **한 번에 끝나는** 연산이어야 한다 */
@@ -51,6 +67,8 @@ export interface LoginStore {
   lock(slot: LockSlot, until: Date): Promise<void>;
   clearFailures(slot: LockSlot): Promise<void>;
   touchLastLogin(accountId: string, now: Date): Promise<void>;
+  /** 없는 아이디 행 중 `updated_at` 이 `olderThan` 보다 이른 것을 **오래된 차례로** 최대 `maxRows` 행 지운다 */
+  pruneStaleMisses(olderThan: Date, maxRows: number): Promise<number>;
 }
 
 export interface LoginAudit {
@@ -125,15 +143,15 @@ async function guardedCheck(
 
 /**
  * 이 계정에 번호를 대 본다 — 로그인과 **비밀번호 바꾸기**(지금 번호 확인)가 같이 쓴다.
- * 🔴 꺼진 계정은 맞는 번호도 실패다. 비교는 가짜 해시에 대 보고, 실패 수는 똑같이 센다
- *    (꺼진 계정이 «없는 아이디»와 다르게 굴면 그 차이로 계정 존재가 샌다).
+ * 🔴 막힌 계정(꺼짐 ∪ 퇴원 — `studentAccountBlocked`)은 맞는 번호도 실패다. 비교는 가짜 해시에 대 보고,
+ *    실패 수는 똑같이 센다(막힌 계정이 «없는 아이디»와 다르게 굴면 그 차이로 계정 상태가 샌다).
  */
 export async function verifyStudentPin(
   account: LoginAccount,
   pin: string,
   deps: LoginDeps,
 ): Promise<PinCheck> {
-  const hash = account.disabledAt === null ? account.passwordHash : null;
+  const hash = studentAccountBlocked(account) ? null : account.passwordHash;
   return guardedCheck(
     { kind: "account", id: account.id },
     account,
@@ -141,6 +159,26 @@ export async function verifyStudentPin(
     pin,
     deps,
   );
+}
+
+/**
+ * 규칙 7 — 없는 아이디 실패 행 정리. 🔴 정리가 실패해도 로그인 응답은 그대로다: 여기서 던지면 없는
+ * 아이디에만 500 이 나서 그 차이로 아이디 존재가 샌다(규칙 1). 그래서 삼키고 까닭(오류 이름)만 남긴다.
+ */
+async function pruneStaleMisses(deps: LoginDeps): Promise<void> {
+  const olderThan = new Date(
+    deps.now().getTime() - STUDENT_LOGIN_MISS_CLEANUP.staleAfterMs,
+  );
+  try {
+    await deps.store.pruneStaleMisses(
+      olderThan,
+      STUDENT_LOGIN_MISS_CLEANUP.maxRows,
+    );
+  } catch (error) {
+    console.warn(
+      `[studentLogin] 없는 아이디 실패 행 정리 실패 — ${(error as Error).name}`,
+    );
+  }
 }
 
 export async function attemptStudentLogin(
@@ -163,6 +201,7 @@ export async function attemptStudentLogin(
       input.pin,
       deps,
     );
+    await pruneStaleMisses(deps);
     const reason = result === "locked" ? "locked" : "invalid";
     // 입력한 아이디는 적지 않는다(머리말 1)
     await deps.audit({
@@ -194,7 +233,9 @@ export async function attemptStudentLogin(
           ? "locked"
           : account.disabledAt !== null
             ? "disabled"
-            : "invalid",
+            : account.withdrawnAt !== null
+              ? "withdrawn"
+              : "invalid",
     },
   });
   return { ok: false, reason: result };

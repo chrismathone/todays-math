@@ -18,6 +18,7 @@ import {
   STUDENT_LOGIN_MESSAGES,
   studentAccountIssueRequestSchema,
   studentAccountIssueResponseSchema,
+  studentAccountPanelSchema,
   studentAccountStatusSchema,
   studentLoginIdSchema,
   studentLoginRequestSchema,
@@ -165,6 +166,7 @@ describe("응답 모양 — 초기 비밀번호는 발급 응답에 한 번만",
     expect(keys).toStrictEqual([
       "disabledAt",
       "issuedAt",
+      "issuedByViewer",
       "lastLoginAt",
       "locked",
       "loginId",
@@ -176,6 +178,11 @@ describe("응답 모양 — 초기 비밀번호는 발급 응답에 한 번만",
     expect(
       keys.filter((k) => /hash|initial|^password$|^pin$/i.test(k)),
     ).toEqual([]);
+    // 발급 칸이 읽는 모양은 퇴원 여부 + 그 상태뿐이다(learn-screens 브리프 §1.3)
+    expect(Object.keys(studentAccountPanelSchema.shape).sort()).toStrictEqual([
+      "account",
+      "withdrawn",
+    ]);
   });
 });
 

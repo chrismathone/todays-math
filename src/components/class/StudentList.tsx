@@ -1,5 +1,29 @@
+"use client";
+
+import dynamic from "next/dynamic";
+import { useState } from "react";
+
 import { Button } from "@/components/ui/Button";
+import { nameSelectionClass } from "@/components/ui/rowSelection";
 import type { ClassEntity, StudentEntity } from "@/contracts/class.contract";
+
+/**
+ * 오늘의 개념 로그인 칸 — 학생 이름을 눌렀을 때만 불러온다(계약·zod 를 반 관리 첫 화면에 싣지 않게).
+ * 한 명씩이다(D-124 ⑷ · learn-screens 브리프 §1.3).
+ */
+const StudentAccountPanel = dynamic(
+  () =>
+    import("@/components/class/StudentAccountPanel").then(
+      (module) => module.StudentAccountPanel,
+    ),
+  {
+    loading: () => (
+      <p role="status" className="mt-3 text-[12.5px] text-text-2">
+        계정 정보를 불러오는 중…
+      </p>
+    ),
+  },
+);
 
 type StudentListProps = {
   students: StudentEntity[];
@@ -14,6 +38,15 @@ export function StudentList({
   status,
   onRetry,
 }: StudentListProps) {
+  // 고른 학생은 **그 반 안에서만** 산다 — 반을 바꾸면 칸이 닫힌다(초기 비밀번호도 같이 사라진다)
+  const [picked, setPicked] = useState<{
+    classId: string;
+    studentId: string;
+  } | null>(null);
+  const pickedId =
+    picked && picked.classId === selectedClass?.id ? picked.studentId : null;
+  const pickedStudent = students.find((row) => row.id === pickedId) ?? null;
+
   return (
     <div>
       <h2
@@ -50,15 +83,35 @@ export function StudentList({
         </p>
       ) : null}
       <ul aria-label="학생" className="flex flex-col">
-        {students.map((student) => (
-          <li
-            key={student.id}
-            className="border-b border-divider py-2.5 text-[12.5px] font-bold"
-          >
-            {student.name}
-          </li>
-        ))}
+        {students.map((student) => {
+          const selected = student.id === pickedId;
+          return (
+            <li key={student.id} className="border-b border-divider">
+              {/*
+               * 이름 단추 — 누르면 그 학생의 오늘의 개념 로그인 칸이 선다(한 번 더 누르면 닫힌다).
+               * 고른 표시는 반 목록과 같은 어법(`rowSelection.ts`). ⚠️ D-30 — 행에는 손가락·hover 가 없다.
+               */}
+              <button
+                type="button"
+                aria-pressed={selected}
+                onClick={() =>
+                  setPicked(
+                    selected || !selectedClass
+                      ? null
+                      : { classId: selectedClass.id, studentId: student.id },
+                  )
+                }
+                className={`min-h-11 w-full py-2.5 text-left text-[12.5px] font-bold ${nameSelectionClass(selected)}`}
+              >
+                {student.name}
+              </button>
+            </li>
+          );
+        })}
       </ul>
+      {pickedStudent ? (
+        <StudentAccountPanel key={pickedStudent.id} student={pickedStudent} />
+      ) : null}
     </div>
   );
 }

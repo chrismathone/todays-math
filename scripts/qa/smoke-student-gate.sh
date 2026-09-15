@@ -44,7 +44,7 @@ echo "로그인 안 한 사람의 학생 주소 (D-125 ⑷):"
 check 307 GET  /learn               "학생 목록 → 학생 로그인"    /learn/login
 check 307 GET  /learn/password      "비밀번호 바꾸기 → 학생 로그인" /learn/login
 check 307 GET  /learn/watch/abc     "재생 → 학생 로그인"         /learn/login
-check 404 GET  /learn/login         "학생 로그인 화면은 관문을 지난다(화면은 아직 없다 — D-07)"
+check 200 GET  /learn/login         "학생 로그인 화면 — 관문을 지나 화면이 선다(learn-screens)"
 check 401 GET  /api/learn/lectures  "학생 API — 라우트가 401"
 check 400 POST /api/learn/login     "형식이 틀린 로그인 본문 — DB 전에 400" "" '{"loginId":"ab","password":"1"}'
 check 401 POST /api/learn/password  "학생 세션 없음 → 401" "" '{"currentPassword":"5809","newPassword":"7314"}'

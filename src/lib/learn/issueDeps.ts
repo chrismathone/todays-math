@@ -22,7 +22,12 @@ export function studentIssueDeps(): IssueDeps {
         where: { id: studentId },
         include: { class: true },
       });
-      return student ? { ownerId: student.class.userId } : null;
+      return student
+        ? {
+            ownerId: student.class.userId,
+            withdrawn: student.eywaWithdrawnAt !== null,
+          }
+        : null;
     },
     findAccountByStudent: (studentId) =>
       db.studentAccount.findUnique({ where: { studentId } }),
