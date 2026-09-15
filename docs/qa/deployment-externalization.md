@@ -58,9 +58,17 @@ without altering or fabricating the real Typecheck result:
 
 After that proof, `VERCEL_TYPECHECK_EXTERNALIZED=1` was configured for production
 only. Local builds and preview builds retain inline typechecking. The temporary
-verification check is removed after the test; the real Typecheck requirement
-remains. Build-log confirmation of the enabled switch is recorded with the next
-deployment. Evidence JSON is retained locally under `.qa-artifacts/vercel-gate-proof-*`.
+verification check was removed after the test; the real Typecheck requirement
+remains. Evidence JSON is retained locally under `.qa-artifacts/vercel-gate-proof-*`.
+
+The first [deployment with externalized typechecking](https://vercel.com/bigshols-projects/todays-math/GVeJrEcMDRqS1UTaKxeEZ26qexoA)
+used commit `a15eda7033bf3f36a94063bb04cd6063552015da`. Its build log records
+`Skipping validation of types`; the Vercel build-command interval was 35 seconds
+versus 48 seconds in the preceding cached verification build. The separate
+[GitHub Typecheck](https://github.com/chrismathone/todays-math/actions/runs/34923535780)
+passed in 105 seconds, Vercel recorded `succeeded`, and the production alias was
+assigned to that deployment. These are individual measurements, not a guarantee
+of total deployment time; output transfer, cloning, and cache work still apply.
 
 ## Shared figures
 
@@ -84,16 +92,18 @@ The runtime uses `SHARED_FIGURE_CDN_BASE_URL`, for example:
 https://<intended-project>.supabase.co/storage/v1/object/public/shared-figures
 ```
 
-The value is public configuration, not a service-role key. The service-role key
-is used only by the operator's upload process; it is unnecessary for app delivery.
+The value is public configuration, not an upload credential. A Supabase secret
+key (or legacy service-role JWT) is used only by the operator's upload process;
+it is unnecessary for app delivery.
 Use an explicit public bucket for these already shared files. Do not change a
 private user bucket's visibility.
 
 ### Upload and activate
 
 See [storage tooling](../../scripts/storage/README.md) for the command contract.
-Load the intended project's `SUPABASE_URL` and `SUPABASE_SERVICE_ROLE_KEY` into
-the upload process environment; do not commit either credential. Upload is
+Load the intended project's `SUPABASE_URL` and `SUPABASE_SECRET_KEY` (or legacy
+`SUPABASE_SERVICE_ROLE_KEY`) into the upload process environment; do not commit
+credentials. Opaque secret keys use only the `apikey` header. Upload is
 resumable: it checks existing public bytes and never overwrites an object.
 
 ```text
