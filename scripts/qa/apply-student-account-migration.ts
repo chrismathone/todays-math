@@ -4,9 +4,8 @@
  *   npx tsx scripts/qa/apply-student-account-migration.ts            # 드라이런 — 다 해 보고 ROLLBACK
  *   ALLOW_SHARED_IMPORT=1 npx tsx scripts/qa/apply-student-account-migration.ts --apply
  *
- * ⚠️ **아직 원장님 확인 전이다.** 브리프(`tracks/briefs/todays-concept-student-auth.md` §2.2)대로 리드가
- *    원장님께 여쭌 뒤에만 `--apply` 한다. 이 워크트리(student-auth)는 드라이런조차 돌리지 않았다
- *    (공유 DB 에 접속하는 일 자체를 하지 않았다).
+ * 원장님 확인 2026-09-15: 「학생 계정 표 둘을 공유 DB 에 새로 만들까요?」 → 「지금 만든다」.
+ * (만든 워크트리 student-auth 는 드라이런조차 돌리지 않았다 — 드라이런·적용은 리드가 main 에서 했다.)
  *
  * 본뜬 것: `scripts/qa/apply-concept-lecture-migration.ts` — 같은 까닭으로 `prisma migrate deploy` 를
  * 안 쓴다. 이 저장소에는 다른 트랙이 남긴 미적용 마이그레이션(`20260817120000_problem_created_at_indexes`)이
