@@ -32,6 +32,7 @@ const mocks = vi.hoisted(() => ({
   bankMount: vi.fn(),
   teachingMount: vi.fn(),
   overviewMount: vi.fn(),
+  conceptMount: vi.fn(),
 }));
 const router = { replace: mocks.replace };
 vi.mock("next/navigation", () => ({ useRouter: () => router }));
@@ -115,6 +116,14 @@ vi.mock("@/components/unified/TeachingView", () => ({
       mocks.teachingMount();
     }, []);
     return <h2>수업 패널</h2>;
+  },
+}));
+vi.mock("@/components/unified/ConceptView", () => ({
+  default: function ConceptProbe() {
+    useEffect(() => {
+      mocks.conceptMount();
+    }, []);
+    return <h2>개념 패널</h2>;
   },
 }));
 vi.mock("@/components/unified/TeachingOverview", () => ({
@@ -248,6 +257,41 @@ describe("per-account workspace menu access", () => {
       screen.getByRole("button", { name: "AI 연결 설정" }),
     ).toBeInTheDocument();
     expect(fetchMock).not.toHaveBeenCalled();
+  });
+
+  it("puts «오늘의 개념» right below «수업 · 학생 관리» and mounts it only with the concept menu (D-124 ⑽)", async () => {
+    const { unmount } = render(
+      <UnifiedWorkspace
+        initialData={initialData}
+        allowedMenus={["teaching", "concept"]}
+      />,
+    );
+    expect(
+      nav()
+        .getAllByRole("button")
+        .map((b) => b.getAttribute("aria-label")),
+    ).toEqual(["수업 · 학생 관리", "오늘의 개념"]);
+    fireEvent.click(nav().getByRole("button", { name: "오늘의 개념" }));
+    expect(
+      await screen.findByRole("heading", { name: "개념 패널" }),
+    ).toBeVisible();
+    expect(window.location.hash).toBe("#concept");
+    unmount();
+
+    mocks.conceptMount.mockClear();
+    window.history.replaceState(null, "", "/#concept");
+    render(
+      <UnifiedWorkspace
+        initialData={initialData}
+        allowedMenus={["teaching"]}
+      />,
+    );
+    expect(
+      nav().queryByRole("button", { name: "오늘의 개념" }),
+    ).not.toBeInTheDocument();
+    await screen.findByRole("heading", { name: "수업 패널" });
+    expect(mocks.conceptMount).not.toHaveBeenCalled();
+    expect(window.location.hash).toBe("#teaching");
   });
 
   it("hides disabled navigation, home cards, search, create choices and AI controls", () => {

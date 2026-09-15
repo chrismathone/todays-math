@@ -359,6 +359,36 @@ interface ActualExamScoreRow {
   updatedAt: Date;
 }
 
+/**
+ * 오늘의 개념 강의·시청 기록(D-123 ⑥′ · `/api/concept/**`). 기본은 **빈 배열**이다 — 공유 DB 도
+ * 빈 표로 적용됐다(2026-09-15). 필요한 시험이 `seedConceptLectures` · `seedConceptLectureViews` 로 채운다.
+ */
+interface ConceptLectureRow {
+  id: string;
+  unitId: string;
+  title: string;
+  videoUrl: string | null;
+  seconds: number;
+  disclosure: string | null;
+  sourceJobId: string | null;
+  sortOrder: number;
+  status: "draft" | "published" | "archived";
+  reviewedAt: Date | null;
+  publishedAt: Date | null;
+  createdById: string | null;
+  createdAt: Date;
+  updatedAt: Date;
+}
+
+interface ConceptLectureViewRow {
+  studentId: string;
+  lectureId: string;
+  maxSeconds: number;
+  percent: number;
+  completedAt: Date | null;
+  updatedAt: Date;
+}
+
 const PROBLEM_TYPES: ProblemType[] = ["계산", "개념", "활용", "서술형"];
 
 /**
@@ -560,6 +590,8 @@ let examRows: ExamRow[] = [];
 let examQuestionRows: ExamQuestionRow[] = [];
 let predictionRunRows: PredictionRunRow[] = [];
 let actualExamScoreRows: ActualExamScoreRow[] = [];
+let conceptLectureRows: ConceptLectureRow[] = [];
+let conceptLectureViewRows: ConceptLectureViewRow[] = [];
 
 /** 매 테스트 시작 전 Mock 픽스처 상태로 되돌린다 — 테스트 간 상태 오염 방지. */
 export function resetPrismaTestDouble() {
@@ -630,6 +662,10 @@ export function resetPrismaTestDouble() {
   examQuestionRows = [];
   predictionRunRows = [];
   actualExamScoreRows = [];
+  // 오늘의 개념 — 강의가 **없는 것이 정상**이다(공유 DB 도 빈 표). 시드로 채우면 «강의 없음»
+  // 빈 상태를 겨누는 시험이 분모를 잃는다.
+  conceptLectureRows = [];
+  conceptLectureViewRows = [];
 }
 resetPrismaTestDouble();
 
@@ -2093,7 +2129,119 @@ const prismaModels = {
       return actualExamScoreRows.filter((row) => matchesWhere(row, where));
     },
   },
+  /**
+   * 오늘의 개념 강의 — `/api/concept/**` 가 부르는 것만. unique(`source_job_id`)와 DB CHECK
+   * (마이그레이션 20260915150000 «손으로 더한 것»)를 흉내 낸다 — 가짜가 받아 주면 라우트의
+   * 충돌 분기(P2002 → 409)가 시험에서만 통째로 건너뛰어진다.
+   */
+  conceptLecture: {
+    async findMany({
+      where,
+      orderBy,
+      select,
+    }: {
+      where?: Record<string, unknown>;
+      orderBy?: unknown;
+      select?: Record<string, unknown>;
+    } = {}) {
+      return applySelect(
+        applyOrder(
+          conceptLectureRows.filter((row) => matchesWhere(row, where)),
+          orderBy,
+        ),
+        select,
+      );
+    },
+    async findUnique({ where }: { where: { id: string } }) {
+      return conceptLectureRows.find((row) => row.id === where.id) ?? null;
+    },
+    async create({
+      data,
+    }: {
+      data: Omit<
+        ConceptLectureRow,
+        | "id"
+        | "status"
+        | "reviewedAt"
+        | "publishedAt"
+        | "createdAt"
+        | "updatedAt"
+      >;
+    }) {
+      // Postgres unique 는 NULL 을 서로 다르게 본다 — 잡 ID 없는 강의는 몇 편이든 들어간다.
+      if (
+        data.sourceJobId !== null &&
+        conceptLectureRows.some((r) => r.sourceJobId === data.sourceJobId)
+      )
+        throw prismaKnownError(
+          "P2002",
+          "Unique constraint failed on the fields: (`source_job_id`)",
+        );
+      const now = new Date();
+      const row: ConceptLectureRow = {
+        id: randomUUID(),
+        status: "draft",
+        reviewedAt: null,
+        publishedAt: null,
+        ...data,
+        createdAt: now,
+        updatedAt: now,
+      };
+      assertConceptLectureChecks(row);
+      conceptLectureRows.push(row);
+      return row;
+    },
+    async updateMany({
+      where,
+      data,
+    }: {
+      where?: Record<string, unknown>;
+      data: Partial<Omit<ConceptLectureRow, "id" | "createdAt" | "updatedAt">>;
+    }) {
+      const hits = conceptLectureRows.filter((row) => matchesWhere(row, where));
+      const next = hits.map((row) => ({
+        ...row,
+        ...data,
+        updatedAt: new Date(),
+      }));
+      // 한 문장은 원자적이다 — CHECK 를 하나라도 어기면 아무것도 안 바꾼다.
+      next.forEach(assertConceptLectureChecks);
+      hits.forEach((row, i) => Object.assign(row, next[i]));
+      return { count: hits.length };
+    },
+  },
+  conceptLectureView: {
+    async findMany({
+      where,
+      select,
+    }: {
+      where?: Record<string, unknown>;
+      select?: Record<string, unknown>;
+    } = {}) {
+      return applySelect(
+        conceptLectureViewRows.filter((row) => matchesWhere(row, where)),
+        select,
+      );
+    },
+  },
 };
+
+/** 마이그레이션 20260915150000 의 CHECK 일곱 중 강의 표에 걸린 다섯 — 어기면 DB 처럼 던진다 */
+function assertConceptLectureChecks(row: ConceptLectureRow): void {
+  const broken =
+    row.status === "published" && row.videoUrl === null
+      ? "concept_lecture_published_has_video"
+      : row.disclosure !== null && row.disclosure.trim() === ""
+        ? "concept_lecture_disclosure_not_blank"
+        : row.sourceJobId !== null && row.sourceJobId.trim() === ""
+          ? "concept_lecture_source_job_id_not_blank"
+          : row.seconds < 0
+            ? "concept_lecture_seconds_nonnegative"
+            : row.sortOrder < 0 || row.sortOrder > 999
+              ? "concept_lecture_sort_order_range"
+              : null;
+  if (broken) throw prismaKnownError("P2004", `CHECK ${broken} 위반`);
+}
 
 /**
  * T7.14 전용 시드 헬퍼. `PredictionRun`/`ActualExamScore` 는 기본이 빈 배열이라
@@ -2110,6 +2258,57 @@ export function seedPredictionRuns(rows: PredictionRunRow[]) {
 
 export function seedActualExamScores(rows: ActualExamScoreRow[]) {
   actualExamScoreRows.push(...rows);
+}
+
+/**
+ * 오늘의 개념 강의 시드. 🔴 NOT NULL 칸(`id`·`unitId`·`title`)은 **채우지 않는다** — 빠지면
+ * 형에서 걸려야 픽스처 누락이 드러난다. 나머지는 DB 기본값(초안 · 주소 없음 · 길이 0)이다.
+ */
+export function seedConceptLectures(
+  rows: Array<
+    Pick<ConceptLectureRow, "id" | "unitId" | "title"> &
+      Partial<ConceptLectureRow>
+  >,
+) {
+  const now = new Date();
+  conceptLectureRows.push(
+    ...rows.map((row): ConceptLectureRow => ({
+      videoUrl: null,
+      seconds: 0,
+      disclosure: null,
+      sourceJobId: null,
+      sortOrder: 0,
+      status: "draft",
+      reviewedAt: null,
+      publishedAt: null,
+      createdById: null,
+      createdAt: now,
+      updatedAt: now,
+      ...row,
+    })),
+  );
+}
+
+export function seedConceptLectureViews(
+  rows: Array<
+    Pick<ConceptLectureViewRow, "studentId" | "lectureId"> &
+      Partial<ConceptLectureViewRow>
+  >,
+) {
+  conceptLectureViewRows.push(
+    ...rows.map((row): ConceptLectureViewRow => ({
+      maxSeconds: 0,
+      percent: row.completedAt ? 100 : 0,
+      completedAt: null,
+      updatedAt: new Date(),
+      ...row,
+    })),
+  );
+}
+
+/** 시험이 **저장 결과**를 직접 본다 — 응답만 보면 «응답은 맞는데 안 썼다»를 못 가른다 */
+export function conceptLectureRowsForTest(): readonly ConceptLectureRow[] {
+  return conceptLectureRows;
 }
 
 /**
@@ -2139,10 +2338,14 @@ function snapshotRows() {
     actualExamScoreRows,
     eywaSyncRunRows,
     eywaSyncLedgerRows,
+    conceptLectureRows,
+    conceptLectureViewRows,
   });
 }
 
 function restoreRows(snapshot: ReturnType<typeof snapshotRows>) {
+  conceptLectureRows = snapshot.conceptLectureRows;
+  conceptLectureViewRows = snapshot.conceptLectureViewRows;
   classRows = snapshot.classRows;
   studentRows = snapshot.studentRows;
   unitRows = snapshot.unitRows;

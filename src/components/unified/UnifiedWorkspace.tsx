@@ -54,6 +54,15 @@ const WorksheetEditor = dynamic(() => import("./WorksheetEditor"), {
     />
   ),
 });
+const ConceptView = dynamic(() => import("./ConceptView"), {
+  ssr: false,
+  loading: () => (
+    <WorkProgress
+      className={s.loading}
+      label="오늘의 개념을 불러오는 중입니다…"
+    />
+  ),
+});
 type View = WorkspaceMenu;
 const navItems: {
   id: View;
@@ -72,6 +81,8 @@ const navItems: {
     short: "수업·학생",
     icon: "class",
   },
+  // D-124 ⑽ — «수업 · 학생 관리» 바로 아래
+  { id: "concept", label: "오늘의 개념", short: "개념", icon: "play" },
 ];
 const viewValid = (value: string): value is View =>
   WORKSPACE_MENUS.some((item) => item.id === value);
@@ -813,6 +824,11 @@ function UnifiedWorkspaceContent({
                 <TeachingView />
               </div>
             )}
+          {can("concept") && (opened.has("concept") || view === "concept") && (
+            <main hidden={view !== "concept"} className={s.viewContent}>
+              <ConceptView />
+            </main>
+          )}
           {view === "export" && (
             <WorksheetEditor
               selected={selected}

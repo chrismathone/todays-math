@@ -45,6 +45,13 @@ const paths = {
       <path d="M3 21v-4a6 6 0 0 1 12 0v4M16 5a3 3 0 0 1 0 6m2 3a5 5 0 0 1 3 5v2" />
     </>
   ),
+  /** 오늘의 개념 — 강의 영상 */
+  play: (
+    <>
+      <rect x="3" y="5" width="18" height="14" rx="2" />
+      <path d="m10 9 5 3-5 3Z" />
+    </>
+  ),
   check: <path d="m5 12 4 4L19 6" />,
   close: <path d="m6 6 12 12M6 18 18 6" />,
   search: (
