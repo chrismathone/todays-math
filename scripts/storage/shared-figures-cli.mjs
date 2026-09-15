@@ -21,7 +21,9 @@ const HELP = `Shared public figure migration (Node 20+, Git; no dependencies)
 
 Optional: --repo DIRECTORY --concurrency 1..16 --retries 0..8 --timeout-ms 1..120000
 Defaults: dry-run, concurrency 4, retries 3, timeout 30000ms.
-Upload/verify require SUPABASE_URL; upload also requires SUPABASE_SERVICE_ROLE_KEY.
+Upload/verify require SUPABASE_URL; upload requires SUPABASE_SECRET_KEY
+(sb_secret_...) or legacy SUPABASE_SERVICE_ROLE_KEY (service_role JWT).
+A nonempty SUPABASE_SECRET_KEY takes precedence. Public keys cannot upload.
 The upload command is the sole remote write opt-in. Verify makes public GETs only.
 No .env loading, bucket creation, overwrite, delete, or deployment actions.
 Output files must be new .json files; existing manifests and receipts are preserved.
@@ -158,6 +160,7 @@ export async function main(argv = process.argv.slice(2), env = process.env) {
     target: remote
       ? validateTarget(env.SUPABASE_URL, options.bucket)
       : undefined,
+    secretKey: command === "upload" ? env.SUPABASE_SECRET_KEY : undefined,
     serviceRoleKey:
       command === "upload" ? env.SUPABASE_SERVICE_ROLE_KEY : undefined,
     concurrency: options.concurrency,

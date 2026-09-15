@@ -12,6 +12,33 @@ import {
 } from "./shared-figures.mjs";
 
 class RetryableError extends MigrationError {}
+function uploadAuthHeaders(secretKey, serviceRoleKey) {
+  // Prefer an explicitly configured new key; never retry with another key.
+  const key =
+    secretKey === undefined || secretKey === null || secretKey === ""
+      ? serviceRoleKey
+      : secretKey;
+  const message =
+    "Upload requires SUPABASE_SECRET_KEY (sb_secret_...) or SUPABASE_SERVICE_ROLE_KEY (service_role JWT); public keys are not allowed.";
+  ensure(
+    typeof key === "string" && key.length > 0 && !/[\s\x00-\x1f\x7f]/.test(key),
+    message,
+  );
+  // Opaque Supabase keys are API keys, not JWT bearer tokens.
+  if (/^sb_secret_[A-Za-z0-9_-]+$/.test(key)) return { apikey: key };
+
+  let role;
+  if (/^[A-Za-z0-9_-]+\.[A-Za-z0-9_-]+\.[A-Za-z0-9_-]+$/.test(key)) {
+    try {
+      role = JSON.parse(Buffer.from(key.split(".")[1], "base64url")).role;
+    } catch {
+      // Classify malformed/public keys locally without logging their contents.
+    }
+  }
+  // This checks key type only; Supabase still authenticates the signature.
+  ensure(role === "service_role", message);
+  return { apikey: key, Authorization: `Bearer ${key}` };
+}
 function limits(options) {
   const values = { concurrency: 4, retries: 3, timeoutMs: 30000, ...options };
   for (const [name, min, max] of [
@@ -143,7 +170,14 @@ async function checkPublic(fetchImpl, target, entry, timeoutMs) {
     },
   );
 }
-async function uploadObject(fetchImpl, target, key, entry, bytes, timeoutMs) {
+async function uploadObject(
+  fetchImpl,
+  target,
+  authHeaders,
+  entry,
+  bytes,
+  timeoutMs,
+) {
   const url = publicObjectUrl(target, entry.objectPath).replace(
     "/storage/v1/object/public/",
     "/storage/v1/object/",
@@ -154,8 +188,7 @@ async function uploadObject(fetchImpl, target, key, entry, bytes, timeoutMs) {
     {
       method: "POST",
       headers: {
-        Authorization: `Bearer ${key}`,
-        apikey: key,
+        ...authHeaders,
         "Content-Type": entry.mimeType,
         "Cache-Control": "public, max-age=31536000, immutable",
         "x-upsert": "false",
@@ -205,6 +238,7 @@ export async function transferFigures({
   manifest,
   target,
   mode = "dry-run",
+  secretKey,
   serviceRoleKey,
   concurrency,
   retries,
@@ -241,13 +275,10 @@ export async function transferFigures({
       totalBytes,
     };
   const normalizedTarget = validateTarget(target?.supabaseUrl, target?.bucket);
-  if (mode === "upload")
-    ensure(
-      typeof serviceRoleKey === "string" &&
-        serviceRoleKey.length > 0 &&
-        !/[\s\x00-\x1f\x7f]/.test(serviceRoleKey),
-      "Upload requires SUPABASE_SERVICE_ROLE_KEY in the environment.",
-    );
+  const authHeaders =
+    mode === "upload"
+      ? uploadAuthHeaders(secretKey, serviceRoleKey)
+      : undefined;
   let completed = 0;
   let uploaded = 0;
   let reused = 0;
@@ -271,7 +302,7 @@ export async function transferFigures({
         await uploadObject(
           fetchImpl,
           normalizedTarget,
-          serviceRoleKey,
+          authHeaders,
           entry,
           bytes,
           options.timeoutMs,

@@ -27,9 +27,10 @@ node --test scripts/storage/shared-figures.test.mjs
 ```
 
 `upload` and `verify` require `SUPABASE_URL`, a credential-free HTTPS origin.
-`upload` also requires `SUPABASE_SERVICE_ROLE_KEY`. Set these outside the command
-arguments using the operator's environment or secret manager; the CLI never
-loads `.env` files. Bucket creation/public access configuration, credentials,
+`upload` also requires `SUPABASE_SECRET_KEY` or `SUPABASE_SERVICE_ROLE_KEY`.
+Set these outside the command arguments using the operator's environment or
+secret manager; the CLI never loads `.env` files. Bucket creation/public access
+configuration, credentials,
 live execution, application routing, deployment, and rollout belong to the
 coordinator. The bucket must already exist and permit public image downloads.
 
@@ -38,6 +39,35 @@ are preserved, including when a run fails. Choose a new receipt filename when
 repeating verification. The CLI never deletes local assets, changes Git state,
 creates buckets, lists buckets, accesses the database, uploads untracked files,
 or sends PUT/DELETE requests.
+
+### Upload credentials
+
+Prefer `SUPABASE_SECRET_KEY` for the current `sb_secret_...` format. Existing
+`SUPABASE_SERVICE_ROLE_KEY` configurations with a legacy `service_role` JWT
+continue to work. A nonempty `SUPABASE_SECRET_KEY` takes precedence; an unset or
+empty value falls back to `SUPABASE_SERVICE_ROLE_KEY`. An invalid or rejected
+selected key stops the upload without trying the other key.
+
+Headers follow the selected key's format, regardless of the variable name:
+
+| Key format                             | Upload headers                       |
+| -------------------------------------- | ------------------------------------ |
+| `sb_secret_...`                        | `apikey` only                        |
+| Legacy JWT with `role: "service_role"` | `apikey` and `Authorization: Bearer` |
+
+This also supports operators who previously placed a new secret key in the
+legacy variable. Publishable keys (`sb_publishable_...`), legacy `anon` JWTs,
+user JWTs, malformed keys, and keys containing whitespace/control characters
+are rejected before any HTTP request. Local JWT decoding checks the role only;
+Supabase remains responsible for authenticating the key and signature.
+Dry-run and public verification require no key. Public GETs never include
+credentials, including during upload, and logs/receipts never include keys.
+
+Audited against Supabase's official [API key documentation](https://supabase.com/docs/guides/getting-started/api-keys)
+on 2026-09-15: secret keys are opaque, provide `service_role` access, and belong
+in `apikey`, not a JWT Bearer header. New and legacy keys can coexist. Previously
+this tool read only the legacy environment variable and sent every key in both
+headers; the format-aware selection above corrects that behavior.
 
 ## Manifest contract
 
