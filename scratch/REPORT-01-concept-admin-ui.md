@@ -18,6 +18,7 @@
 | `npm run build` | **exit 0** — 새 라우트 넷 · `/dev/concept-hifi` 가 동적(ƒ)으로 실렸다. 경고는 기존 Prisma 설정 안내 한 줄뿐(§3.5) |
 | E2E | **못 돌렸다** — 로컬 DB 가 없다(docker 명령 없음 · PostgreSQL 서비스 없음 · 5432 청취 없음). 무엇을 못 봤는지 §4 |
 | 하지 않은 것 | 공유 DB 읽기·쓰기 0 · 마이그레이션 명령 0 · 스키마 변경 0 · `src/lib/auth.ts`·`proxy.ts` 변경 0 · 학생 화면(`/learn/**`)·발급 칸 0 · 푸시 0 |
+| 커밋 | `44441e5e` 코드·시험·스크립트(27파일) · `32bc7514` 변이 하네스(서식 확정 앵커 · 측정 실패만 다시 재기) · `6987fdfa` 이 보고 + 캡처 22 · 그 다음 커밋이 이 표. 전부 pre-commit 훅(lint-staged)을 지났다. 계정 `SUN <chrismathone@gmail.com>` · **푸시 안 함** |
 
 ---
 
