@@ -128,6 +128,8 @@ export const errorCodeSchema = z.enum([
   "EYWA_SYNC_FAILED",
   "CONFLICT",
   "INTERNAL_ERROR",
+  // 학생 로그인 연속 5회 실패 잠금(D-125 ⑶) — 429. 문구는 studentAccount.contract.ts STUDENT_LOGIN_MESSAGES.locked
+  "TOO_MANY_ATTEMPTS",
 ]);
 export type ErrorCode = z.infer<typeof errorCodeSchema>;
 

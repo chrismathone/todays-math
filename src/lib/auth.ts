@@ -14,6 +14,16 @@
  *
  * 이메일 가입(POST /api/auth/signup)은 이 파일과 별개로 `src/app/api/auth/signup/route.ts`가
  * 직접 처리한다(Auth.js Credentials는 "로그인"만 담당, "가입"은 표준 흐름 밖의 커스텀 API).
+ *
+ * ## 학생 — 절대 규칙 7 의 유일한 예외 (D-124 ⑶, 2026-09-15)
+ *
+ * 학생(«오늘의 개념» 시청 전용 — D-123 ⑵)은 원장님이 발급한 **아이디 + 숫자 4자리**로 들어온다
+ * (공급자 `student`). 소셜/OAuth 는 학생에게도 없다.
+ * 🔴 학생 세션은 기존 코드에게 **«로그인 안 한 사람»**으로 보여야 한다 — 기존 API 는
+ *    `session.user.id` 만 보고 들어가므로, 학생 토큰·세션에는 `user`·`id` 를 두지 않고
+ *    `student` 칸에만 싣는다(`src/lib/learn/studentSession.ts`). `jwt`·`session` 콜백 **맨 앞**에서
+ *    학생 갈래를 끝내고, 원장 갈래는 원래 줄을 한 줄도 안 바꿨다
+ *    (`src/__tests__/api/authDirectorUnchanged.test.ts` 가 토큰·세션 모양째 잠근다).
  */
 import { compare } from "bcryptjs";
 import NextAuth, { type DefaultSession } from "next-auth";
@@ -32,7 +42,34 @@ import {
   type ApprovalStatus,
   type WorkspaceMenu,
 } from "@/contracts/accountAccess.contract";
+import {
+  studentLoginRequestSchema,
+  type StudentSession,
+} from "@/contracts/studentAccount.contract";
 import { recordAudit } from "@/lib/audit";
+import { studentLoginDeps } from "@/lib/learn/loginDeps";
+import { attemptStudentLogin } from "@/lib/learn/studentLogin";
+import {
+  isStudentToken,
+  STUDENT_PROVIDER_ID,
+  StudentLoginError,
+  studentSessionFrom,
+  studentTokenFor,
+} from "@/lib/learn/studentSession";
+
+/** 학생 토큰을 지을 때 읽는 한 줄 — 요청마다 다시 읽는다(꺼짐·지워짐이 다음 요청에 반영된다) */
+function loadStudentAccountForToken(id: string) {
+  return db.studentAccount.findUnique({
+    where: { id },
+    select: {
+      id: true,
+      studentId: true,
+      disabledAt: true,
+      mustChangePassword: true,
+      student: { select: { name: true } },
+    },
+  });
+}
 
 export const { handlers, auth, signIn, signOut } = NextAuth({
   session: { strategy: "jwt" },
@@ -89,9 +126,45 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
         };
       },
     }),
+    /**
+     * 학생 — 원장님이 발급한 아이디 + 숫자 4자리 (D-124 ⑶ · D-125 ⑶). 잠금·문구 규칙은 전부
+     * `src/lib/learn/studentLogin.ts`, 실패는 `StudentLoginError`(code `invalid`|`locked`)로 던진다.
+     * 돌려주는 사용자는 **계정 id 하나뿐** — 토큰은 `jwt` 콜백의 학생 갈래가 새로 짓는다.
+     */
+    Credentials({
+      id: STUDENT_PROVIDER_ID,
+      name: "student",
+      credentials: {
+        loginId: { label: "아이디", type: "text" },
+        password: { label: "비밀번호", type: "password" },
+      },
+      async authorize(credentials) {
+        const parsed = studentLoginRequestSchema.safeParse({
+          loginId: credentials?.loginId,
+          password: credentials?.password,
+        });
+        // 형식이 틀린 입력도 «틀림» 한 가지다 — 형식 문구는 /api/learn/login 이 먼저 낸다
+        if (!parsed.success) throw new StudentLoginError("invalid");
+        const outcome = await attemptStudentLogin(
+          { loginId: parsed.data.loginId, pin: parsed.data.password },
+          studentLoginDeps(),
+        );
+        if (!outcome.ok) throw new StudentLoginError(outcome.reason);
+        return { id: outcome.account.id };
+      },
+    }),
   ],
   callbacks: {
-    async jwt({ token, user }) {
+    async jwt({ token, user, account }) {
+      // 🔴 학생 갈래 — 여기서 끝낸다(user.id 없는 새 토큰 · 꺼짐/지워짐이면 null). 아래 원장 줄은
+      //    한 줄도 안 바꿨다(authDirectorUnchanged.test.ts).
+      if (account?.provider === STUDENT_PROVIDER_ID)
+        return studentTokenFor(user?.id, loadStudentAccountForToken);
+      if (isStudentToken(token))
+        return studentTokenFor(
+          token.student?.accountId,
+          loadStudentAccountForToken,
+        );
       if (user) {
         token.id = user.id;
       }
@@ -127,6 +200,8 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
       return token;
     },
     async session({ session, token }) {
+      // 🔴 학생 세션은 `user: undefined` 를 적어 돌려준다(studentSession.ts 머리말 3)
+      if (isStudentToken(token)) return studentSessionFrom(session, token);
       if (session.user && typeof token.id === "string") {
         session.user.id = token.id;
         session.user.role = token.role === "reviewer" ? "reviewer" : "director";
@@ -143,13 +218,19 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
 // (세션/토큰에 담긴 id는 소유권 검증의 근거가 되므로 string으로 명시한다.)
 declare module "next-auth" {
   interface Session {
-    user: {
+    /**
+     * 원장·검수 계정. 🔴 **학생 세션에는 없다**(D-124 ⑶ · studentSession.ts) — 늘 `?.` 로 읽는다.
+     * 칸이 있으면 원장이라고 믿는 자리가 많아서, 타입도 «없을 수 있다»고 말하게 두었다.
+     */
+    user?: {
       id: string;
       role: UserRole;
       isAdmin: boolean;
       approvalStatus: ApprovalStatus;
       menus: WorkspaceMenu[];
     } & DefaultSession["user"];
+    /** 학생(«오늘의 개념» 시청 전용 — D-123 ⑵). 원장 세션에는 없다. */
+    student?: StudentSession;
   }
   interface User {
     role?: UserRole;
@@ -164,5 +245,7 @@ declare module "next-auth/jwt" {
     isAdmin?: boolean;
     approvalStatus?: ApprovalStatus;
     menus?: WorkspaceMenu[];
+    /** 학생 토큰은 이 칸 **하나뿐**이다 — id·sub·role 이 없다(studentSession.ts) */
+    student?: StudentSession;
   }
 }

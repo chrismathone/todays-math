@@ -333,7 +333,8 @@ const MUTATIONS: Mutation[] = [
   // ── ⑫ D-125 ⑶ 초기 비밀번호 — 숫자 4자리에서 쉬운 번호를 뺀다 ───────────
   {
     name: "⑫ 한 숫자 반복(0000·1111…)을 쉬운 번호로 안 본다",
-    file: `${LIB}/initialPassword.ts`,
+    // 판정 본문은 2026-09-15 student-auth 가 pinRules.ts 로 떼어 냈다(initialPassword.ts 는 다시 내보냄)
+    file: `${LIB}/pinRules.ts`,
     from: "  const repeated = steps.every((s) => s === 0);",
     to: "  const repeated = false;",
     probe: 'pw.isEasyPin("1111")',
@@ -341,7 +342,7 @@ const MUTATIONS: Mutation[] = [
   },
   {
     name: "⑫′ 오름 연속(0123·1234…)을 쉬운 번호로 안 본다",
-    file: `${LIB}/initialPassword.ts`,
+    file: `${LIB}/pinRules.ts`,
     from: "  const ascending = steps.every((s) => s === 1);",
     to: "  const ascending = false;",
     probe: 'pw.isEasyPin("0123")',
@@ -349,7 +350,7 @@ const MUTATIONS: Mutation[] = [
   },
   {
     name: "⑫″ 내림 연속(9876·4321…)을 쉬운 번호로 안 본다",
-    file: `${LIB}/initialPassword.ts`,
+    file: `${LIB}/pinRules.ts`,
     from: "  const descending = steps.every((s) => s === -1);",
     to: "  const descending = false;",
     probe: 'pw.isEasyPin("9876")',

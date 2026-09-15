@@ -20,6 +20,14 @@ export default defineConfig(({ mode }) => ({
     // 렌더 자체는 정상이므로 상한만 현실화한다.
     testTimeout: 20000,
     setupFiles: ["./vitest.setup.ts"],
+    // next-auth 는 `next/server` 를 확장자 없이 import 한다(`next-auth/lib/env.js`). Node 가 직접
+    // 읽으면 「Cannot find module …/next/server」로 적재 단계에서 죽는다 — 그래서 지금까지 어떤
+    // 시험도 진짜 next-auth 를 못 태우고 `@/lib/auth` 를 통째로 모킹했다. Vite 가 이 패키지를
+    // 직접 해석하게 두면 `next/server` → `next/server.js` 로 풀린다. 이 설정이 바꾸는 것은
+    // **진짜 next-auth 를 불러오는 시험**뿐이다(모킹한 시험은 그 모듈을 아예 안 읽는다).
+    // 학생 세션의 모양은 next-auth 의 `getSession` 겹이 정한다 — 모킹하면 그 겹이 안 보인다
+    // (`src/__tests__/helpers/authRequestContext.ts` 머리말, 2026-09-15 student-auth).
+    server: { deps: { inline: ["next-auth"] } },
     include: ["src/__tests__/**/*.{test,spec}.{ts,tsx}"],
     css: false,
     coverage: {
