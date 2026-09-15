@@ -130,7 +130,15 @@ const MUTATIONS: Mutation[] = [
   {
     name: "③-이름 안 본 학생을 반 목록에서 따로 센다(퇴원 학생이 섞인다)",
     file: "src/lib/concept/adminBoard.ts",
-    from: '        pending: counted.pending.map((id) => ({ id, name: nameById.get(id) ?? "" })),',
+    // prettier 가 쪼갠 모양 그대로(커밋 훅이 서식을 확정한다 — 한 줄 앵커는 서식 뒤에 0개가 됐다)
+    from:
+      "        pending: counted.pending.map((id) => ({" +
+      NL +
+      "          id," +
+      NL +
+      '          name: nameById.get(id) ?? "",' +
+      NL +
+      "        })),",
     to:
       "        pending: roster.filter((s) => !input.views.some((v) => v.studentId === s.id && " +
       "v.lectureId === lecture.id && v.completedAt != null)).map((s) => ({ id: s.id, name: s.name })),",
@@ -197,7 +205,42 @@ function md5(b: Buffer): string {
   return createHash("md5").update(b).digest("hex");
 }
 
+/**
+ * 🔴 **측정 실패는 다시 잰다** — 2026-09-15 두 번의 실행에서 탐침(tsx)과 러너(vitest)가 메모리
+ * 부족으로 못 떠(여유 232~397MB, 다른 프로젝트의 개발 서버가 2GB 가까이 쓰는 중) 판정 거부가 났다.
+ * 같은 탐침을 손으로 돌리면 3초에 멀쩡했다. 그래서 «출력이 없다 / 빨간데 시험 이름이 없다»일 때만
+ * 몇 번 더 잰다. 판정 규칙은 그대로다 — 빨강은 여전히 **이름 댄 실패**뿐이다.
+ */
+const ATTEMPTS = 3;
+
 function probe(expr: string): string | null {
+  for (let i = 0; i < ATTEMPTS; i += 1) {
+    const out = probeOnce(expr);
+    if (out !== null) return out;
+    console.log(`        (탐침이 못 떴다 — 다시 잰다 ${i + 1}/${ATTEMPTS})`);
+  }
+  return null;
+}
+
+function runTests(files: string[]): {
+  code: number;
+  failed: string[];
+  readable: boolean;
+} {
+  let last = runTestsOnce(files);
+  for (let i = 1; i < ATTEMPTS; i += 1) {
+    const measured =
+      last.readable && (last.code === 0 || last.failed.length > 0);
+    if (measured) break;
+    console.log(
+      `        (러너가 이름 없이 끝났다 — 다시 잰다 ${i}/${ATTEMPTS - 1})`,
+    );
+    last = runTestsOnce(files);
+  }
+  return last;
+}
+
+function probeOnce(expr: string): string | null {
   writeFileSync(
     PROBE,
     `${PRELUDE}\nconsole.log(JSON.stringify((() => ${expr})()));\n`,
@@ -214,7 +257,7 @@ function probe(expr: string): string | null {
   }
 }
 
-function runTests(files: string[]): {
+function runTestsOnce(files: string[]): {
   code: number;
   failed: string[];
   readable: boolean;
