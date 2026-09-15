@@ -1,10 +1,11 @@
 {
+  "$schema": "https://openapi.vercel.sh/vercel.json",
   "regions": ["icn1"],
   "functions": {
     "api/mathgen-engine.py": {
       "maxDuration": 60,
       "includeFiles": "{scripts/figure/{render_spec.py,engine_path.py,elementary.py,elem_advanced.py,graph_scene.py,figure_assets.py,label-widths.json,assets/**},scripts/hwpx/**,vendor/figure-engine/**,vendor/hwpx/**}",
-      "excludeFiles": "{node_modules/**,.next/**,.git/**,.claude/**,.husky/**,src/**,public/**,docs/**,e2e/**,qa/**,scratch/**,prisma/**,**/__pycache__/**,**/*.pyc,.env*,scripts/!(figure|hwpx)/**,scripts/figure/{*.ts,*.mjs,*-*.py,build_*.py,svg_prune.py,enhance_guards.py,hwp-figure-index.json,figure-manifest.json,engine-catalog.json,assets/README.md},vendor/!(figure-engine|hwpx)/**}"
+      "excludeFiles": "{{.claude,.husky,src,docs,e2e,qa,scratch,prisma}/**,**/*.pyc,.env*,scripts/!(figure|hwpx)/**,scripts/figure/{*.{ts,mjs},*-*.py,build_*.py,svg_prune.py,enhance_guards.py,{hwp,figure,engine}-*.json,assets/README.md},vendor/!(figure-engine|hwpx)/**}"
     }
   },
   "crons": [

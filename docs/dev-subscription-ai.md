@@ -22,6 +22,8 @@
 
 로컬/자체 호스팅에서는 기존 Python을 직접 실행한다. Vercel에서는 `api/mathgen-engine.py`를 별도 Python 함수로 배포하고 Node API가 같은 배포의 엔진을 호출한다. `vercel.json`에 엔진·템플릿 포함 설정을 추가했으며 기존 Next 경로와 cron은 유지한다.
 
+`functions`의 `includeFiles`·`excludeFiles`는 각각 최대 256자다. 2026-09-15 배포 실패는 362자였던 제외 패턴 때문이었다. Python 빌더가 기본 제외하는 `node_modules`, `.next`, `.git`, `public`, `__pycache__`의 중복을 제거하고 패턴을 묶어 246자로 줄였다. 공식 Vercel 스키마로 이전 설정의 실패와 수정 설정의 통과를 확인했으며, 추적 파일 24,774개와 Vercel 빌더의 실제 glob 결과를 대조해 엔진 파일·도형 자산·HWPX 템플릿 포함 목록이 동일함을 검증했다. 별도 임시 폴더의 Python 도형 렌더링도 통과했다. `next build`만으로는 이 Vercel 설정 오류를 검사하지 못한다.
+
 `VERCEL=1`이고 개발 환경이 아니면 `https://VERCEL_URL/api/mathgen-engine`을 자동 선택한다. 다른 엔진 호스트를 쓸 때만 `STUDIO_ENGINE_URL`을 설정한다. Node/Python 간 요청은 서버의 `STUDIO_ENGINE_SECRET` 또는 기존 `AUTH_SECRET`으로 본문과 타임스탬프에 서명하며, 브라우저는 이 키를 받지 않는다. 별도 엔진 호스트에서는 양쪽 서명 키를 일치시킨다. Vercel 배포 보호가 켜져 있으면 `VERCEL_AUTOMATION_BYPASS_SECRET`을 설정해야 하며 이 값은 동일 배포 주소로만 전달한다.
 
 요청은 3.5 MB, 압축 응답은 4 MB로 제한한다. 도형 스펙은 64 KiB, 엔진 실행은 도형 15초/HWPX 30초로 제한한다. 취소하면 호출을 중단하며 이미 시작한 Python 작업은 자체 시간 제한 안에서 정리된다. 실제 Vercel 배포 및 과금 모델 호출은 별도 환경에서 확인해야 한다.
