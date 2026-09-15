@@ -160,6 +160,45 @@ outputs. Build-cache creation/upload continued after the deployment was ready
 and is excluded from that ready duration. The Git checkout retains the original
 images; the migration therefore reduces deployment outputs, not Git clone size.
 
+The separate anonymous verification finished at `2026-09-15T03:47:13.524Z`,
+matching all 18,827 objects and 471,962,501 canonical bytes. Preview deployment
+`dpl_JBZ3ZvnKfRovfA7kMdABrbLsZEcR` and production deployment
+`dpl_Hmrsftwyi2Pk463VuicY5vLdJ1eR` both used commit `4006341f`. Both cloud logs
+confirmed exclusion of the complete verified inventory before Next built.
+Production is `READY / PROMOTED`, and the `todays-math.vercel.app` alias was
+checked against that deployment ID.
+
+| Observed production timing | Before (`f7323be6`) | After (`4006341f`) |
+| -------------------------- | ------------------: | -----------------: |
+| Creation to ready          |           154.295 s |           95.934 s |
+| Vercel build command       |                46 s |               37 s |
+| Deploying outputs          |            76.051 s |           31.684 s |
+
+These are two observed cached deployments, not a guaranteed duration. Output
+transfer fell by about 58%; creation to ready fell by about 38%. Build-cache
+upload still runs after readiness and remains roughly 1.07 GB. The originals
+remain in Git, and 43 other public files occupy about 5.2 MB in the checkout.
+
+Acceptance evidence:
+
+- [Production Typecheck run](https://github.com/chrismathone/todays-math/actions/runs/34926853915)
+  passed for `4006341f`; the required production promotion check remains enabled.
+- `.qa-artifacts/shared-figure-live-preview/result.json` passed all eight HTTP
+  probes, two browser pixel comparisons, two HWPX images and one PDF page. The
+  protected preview used the explicitly documented loopback PDF bridge.
+- `.qa-artifacts/shared-figure-live-production/result.json` passed the same checks
+  against `https://todays-math.vercel.app` using **direct-origin** PDF requests
+  without a protection bypass. PNG/SVG bytes, SHA ETags and SVG CSP identify the
+  remote-backed route rather than remaining original static files. The existing
+  local export helpers produced a 46,774-byte PDF and 229,713-byte HWPX using
+  actual production images; this is not a test of authenticated export APIs.
+- Anonymous production `/` and `/login` returned 200; `/api/library/documents`
+  retained its 401 response. Private user data and storage were not migrated.
+- The temporary preview automation bypass was revoked and the three temporary
+  preview database/auth variables were deleted. The two public figure settings
+  remain enabled in preview and production; production Typecheck externalization
+  remains enabled. No Supabase upload credential was added to Vercel.
+
 ## Validation
 
 ```text
