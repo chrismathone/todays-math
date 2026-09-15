@@ -24,6 +24,8 @@ Validation:
 - Baseline: all 19 existing storage scenarios passed before the changes.
 - Final `node --test scripts/storage/shared-figures.test.mjs`: **32 passed,
   0 failed/skipped** (24 top-level scenarios plus 8 subtests).
+- Coordinator-requested `node --test scripts/deploy/prepare-shared-figures.test.mjs`:
+  all **4 passed**, covering the existing deployment receipt/exclusion guards.
 - New coverage includes secret-only POST headers, legacy Bearer behavior,
   environment-variable precedence and empty fallback, either key format in
   either variable, public/invalid key rejection with zero requests, anonymous
