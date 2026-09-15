@@ -1,6 +1,7 @@
 /**
  * **학생 화면 · 발급 칸 · 퇴원 막기 · 실패 행 정리(learn-screens) 가드를 하나씩 꺼 빨개지는지 본다** —
- * 브리프 `tracks/briefs/todays-concept-learn-screens.md` §3 «변이 시험: ①~⑦ 가드를 하나씩 끄면 빨개지는가».
+ * 브리프 `tracks/briefs/todays-concept-learn-screens.md` §3 «변이 시험: ①~⑦ 가드를 하나씩 끄면 빨개지는가»
+ * + §6(D-127) ⑧ 첫 로그인 «나가기» · ⑨ 발급 칸 «잠김 — N분 뒤 풀림» · ⑩ 퇴원 학생 발급 API 409.
  *
  *   npx tsx scripts/qa/mutate-learn-screens.ts          # 전량
  *   npx tsx scripts/qa/mutate-learn-screens.ts ① ⑥     # 이름 조각으로 고른다(여럿이면 어느 하나라도)
@@ -47,6 +48,7 @@ const PIPELINE = T("api/studentSessionPipeline.test.ts");
 const ISSUE = T("api/studentAccountIssue.test.ts");
 const SCREENS = T("components/LearnScreens.test.tsx");
 const PANEL = T("components/StudentAccountPanel.test.tsx");
+const LOCK_T = T("unit/accountLockLine.test.ts");
 
 /** tsx 탐침 머리 — 모든 tsx 탐침이 이 이름들을 쓴다 */
 const PRELUDE = `
@@ -61,6 +63,7 @@ import * as mem from "../../src/mocks/memoryLoginStore";
 import * as pinh from "../../src/lib/learn/pinHash";
 import * as issue from "../../src/lib/learn/issueStudentAccount";
 import * as sl from "../../src/lib/concept/studentLecture";
+import * as lock from "../../src/lib/class/accountLock";
 const W = { maxWatched: 60, completed: false, duration: 139 };
 const DONE = { maxWatched: 30, completed: true, duration: 139 };
 const ROW = { id: "acc-1", studentId: "stu-1", disabledAt: null as Date | null,
@@ -74,8 +77,27 @@ function missDeps(store: ReturnType<typeof mem.createMemoryLoginStore>, now: Dat
   return { store, now: () => now, comparePin: async () => false,
     missKey: (id: string) => pinh.studentLoginMissKey(id, "probe-secret"), audit: async () => {} };
 }
-void sg; void lg; void access; void ab; void ss; void pls; void login; void mem; void pinh; void issue; void sl;
-void W; void DONE; void ROW; void UNIT; void LECT; void DAY; void missDeps;
+/** 발급 규칙에 넣는 가짜 부품 — 이 원장(d1)의 반 학생, 퇴원 여부 · 계정 유무만 고른다 */
+function fakeIssueDeps(withdrawn: boolean, hasAccount: boolean) {
+  const acc = { id: "a1", studentId: "s1", loginId: "seo01", passwordHash: "h", mustChangePassword: false,
+    issuedById: "d1", issuedAt: new Date(0), passwordChangedAt: null, lastLoginAt: null,
+    disabledAt: new Date(0) as Date | null, failedCount: 0, lockedUntil: null as Date | null };
+  return {
+    findStudentOwner: async () => ({ ownerId: "d1", withdrawn }),
+    findAccountByStudent: async () => (hasAccount ? acc : null),
+    findAccountByLoginId: async () => null,
+    createAccount: async (d: object) => ({ ...acc, ...d }),
+    updateAccount: async (_id: string, d: object) => ({ ...acc, ...d }),
+    generatePin: () => "5809",
+    hashPin: async () => "hash",
+    now: () => new Date(0),
+    audit: async () => {},
+    isUniqueViolation: () => false,
+  } as never;
+}
+const LOCK_NOW = new Date("2026-09-15T05:00:00.000Z");
+void sg; void lg; void access; void ab; void ss; void pls; void login; void mem; void pinh; void issue; void sl; void lock;
+void W; void DONE; void ROW; void UNIT; void LECT; void DAY; void missDeps; void fakeIssueDeps; void LOCK_NOW;
 `;
 
 interface Mutation {
@@ -106,6 +128,9 @@ const BLOCK_FILE = "src/lib/learn/accountBlock.ts";
 const SESSION_FILE = "src/lib/learn/studentSession.ts";
 const STORE_FILE = "src/lib/learn/prismaLoginStore.ts";
 const LOGIN_FILE = "src/lib/learn/studentLogin.ts";
+const PASSWORD_UI = "src/components/learn/StudentPasswordForm.tsx";
+const LOCK_FILE = "src/lib/class/accountLock.ts";
+const ISSUE_DEPS_FILE = "src/lib/learn/issueDeps.ts";
 
 const ISSUED_PIN = L(
   "      setPin(result.data.initialPassword);",
@@ -338,7 +363,8 @@ const MUTATIONS: Mutation[] = [
   {
     name: "⑥a 막힘 판정이 퇴원을 안 본다",
     file: BLOCK_FILE,
-    from: "  return account.disabledAt !== null || account.withdrawnAt !== null;",
+    // D-127: 퇴원 쪽이 `studentWithdrawn` 으로 나뉘었다(발급 API 도 부른다) — 막힘 판정에서 그 부름을 뺀다
+    from: "  return account.disabledAt !== null || studentWithdrawn(account);",
     to: "  return account.disabledAt !== null;",
     probe:
       "ab.studentAccountBlocked({ disabledAt: null, withdrawnAt: new Date(0) })",
@@ -403,6 +429,132 @@ const MUTATIONS: Mutation[] = [
     to: '        orderBy: { updatedAt: "desc" },',
     probe: null,
     tests: [CLEANUP],
+  },
+  // ── ⑧ 첫 로그인 «나가기» (D-127 Q1) ─────────────────────────────────────
+  {
+    name: "⑧a 첫 로그인 화면에서 나가기를 뺀다 (잘못 들어온 학생이 갇힌다)",
+    file: PASSWORD_UI,
+    from: "      <LearnTopBar student={null} />\n",
+    to: "",
+    probe: null,
+    tests: [SCREENS],
+  },
+  // ── ⑨ 발급 칸 «잠김 — N분 뒤 풀림» (D-127 Q5) ────────────────────────────
+  {
+    name: "⑨a 끝난 잠금에도 줄이 선다 (지금보다 뒤인가를 안 본다)",
+    file: LOCK_FILE,
+    from: "  if (Number.isNaN(left) || left <= 0) return null;",
+    to: "  if (Number.isNaN(left)) return null;",
+    probe: 'lock.lockMinutesLeft("2026-09-15T04:59:59.000Z", LOCK_NOW)',
+    tests: [LOCK_T, PANEL],
+  },
+  {
+    name: "⑨b 남은 분을 내림한다 (끝 1초 전이 «0분 뒤 풀림»)",
+    file: LOCK_FILE,
+    from: "  return Math.ceil(left / MINUTE_MS);",
+    to: "  return Math.floor(left / MINUTE_MS);",
+    probe: 'lock.lockMinutesLeft("2026-09-15T05:00:01.000Z", LOCK_NOW)',
+    tests: [LOCK_T, PANEL],
+  },
+  {
+    name: "⑨c 다시 발급한 뒤에도 잠김 줄이 남는다",
+    file: PANEL_UI,
+    from: L(
+      "        ...account,",
+      "        mustChangePassword: true,",
+      "        locked: false,",
+      "        lockedUntil: null,",
+    ),
+    to: L(
+      "        ...account,",
+      "        mustChangePassword: true,",
+      "        locked: false,",
+    ),
+    probe: null,
+    tests: [PANEL],
+  },
+  {
+    name: "⑨d 끈 계정에도 잠김 줄이 선다 (꺼짐 줄이 먼저가 아니다)",
+    file: PANEL_UI,
+    from: L(
+      "        <p className={s.blocked}>계정 꺼짐 — 로그인 막힘</p>",
+      "      ) : (",
+      "        <LockLine lockedUntil={account.lockedUntil} />",
+      "      )}",
+    ),
+    to: L(
+      "        <p className={s.blocked}>계정 꺼짐 — 로그인 막힘</p>",
+      "      ) : null}",
+      "      <LockLine lockedUntil={account.lockedUntil} />",
+    ),
+    probe: null,
+    tests: [PANEL],
+  },
+  {
+    name: "⑨e 서버가 상태에 잠금 끝 시각을 안 싣는다",
+    file: ISSUE_FILE,
+    from: "    lockedUntil: iso(account.lockedUntil),",
+    to: "    lockedUntil: null,",
+    probe:
+      'issue.toAccountStatus({ id: "a", studentId: "s", loginId: "l", passwordHash: "h", mustChangePassword: false, issuedById: null, issuedAt: new Date(0), passwordChangedAt: null, lastLoginAt: null, disabledAt: null, failedCount: 5, lockedUntil: new Date(600_000) }, new Date(0), "d").lockedUntil',
+    tests: [ISSUE],
+  },
+  // ── ⑩ 퇴원 학생 발급 API 409 (D-127 · 리드 결정) ─────────────────────────
+  {
+    name: "⑩a 퇴원 학생에게도 발급한다",
+    file: ISSUE_FILE,
+    from: '  if (owned.withdrawn) return fail("withdrawn_issue");\n',
+    to: "",
+    probe:
+      '(async () => { const r = await issue.issueStudentAccount(fakeIssueDeps(true, false), { directorId: "d1", studentId: "s1", loginId: "seo01" }); return r.ok ? "issued" : r.reason; })()',
+    tests: [ISSUE],
+  },
+  {
+    name: "⑩b 퇴원 학생의 비밀번호를 다시 발급한다",
+    file: ISSUE_FILE,
+    from: '  if (owned.withdrawn) return fail("withdrawn_reissue");\n',
+    to: "",
+    probe:
+      '(async () => { const r = await issue.reissueStudentPassword(fakeIssueDeps(true, true), { directorId: "d1", studentId: "s1" }); return r.ok ? "reissued" : r.reason; })()',
+    tests: [ISSUE],
+  },
+  {
+    name: "⑩c 퇴원 학생의 계정을 켠다",
+    file: ISSUE_FILE,
+    from: '  if (owned.withdrawn && !input.disabled) return fail("withdrawn_enable");\n',
+    to: "",
+    probe:
+      '(async () => { const r = await issue.setStudentAccountDisabled(fakeIssueDeps(true, true), { directorId: "d1", studentId: "s1", disabled: false }); return r.ok ? "enabled" : r.reason; })()',
+    tests: [ISSUE],
+  },
+  {
+    name: "⑩d 퇴원 학생의 계정 끄기도 막는다 (막는 쪽까지 막는다)",
+    file: ISSUE_FILE,
+    from: '  if (owned.withdrawn && !input.disabled) return fail("withdrawn_enable");',
+    to: '  if (owned.withdrawn) return fail("withdrawn_enable");',
+    probe:
+      '(async () => { const r = await issue.setStudentAccountDisabled(fakeIssueDeps(true, true), { directorId: "d1", studentId: "s1", disabled: true }); return r.ok ? "disabled" : r.reason; })()',
+    tests: [ISSUE],
+  },
+  {
+    name: "⑩e 진짜 부품이 발급 규칙에 퇴원을 안 넘긴다",
+    file: ISSUE_DEPS_FILE,
+    from: L(
+      "            withdrawn: studentWithdrawn({",
+      "              withdrawnAt: student.eywaWithdrawnAt,",
+      "            }),",
+    ),
+    to: "            withdrawn: false,",
+    probe: null,
+    tests: [ISSUE],
+  },
+  {
+    name: "⑩f 퇴원 판정 함수가 퇴원을 모른다 (로그인 · 발급이 같이 샌다 — 판정은 한 곳)",
+    file: BLOCK_FILE,
+    from: "  return student.withdrawnAt !== null;",
+    to: "  return false;",
+    probe: "ab.studentWithdrawn({ withdrawnAt: new Date(0) })",
+    tests: [LOGIN, ISSUE],
   },
 ];
 
