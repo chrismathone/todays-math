@@ -102,6 +102,8 @@ async function open(width, query) {
   await page.waitForSelector("main", { timeout: 180_000 });
   await page.waitForFunction(() => !document.body.textContent?.includes("불러오는 중…"), null, { timeout: 60_000 });
   await page.evaluate(() => document.fonts?.ready);
+  // Next 개발 서버의 «Issues» 알약이 캡처의 왼쪽 아래를 가린다 — 계측 대상이 아니므로 숨긴다
+  await page.addStyleTag({ content: "nextjs-portal{display:none!important}" });
   return page;
 }
 
