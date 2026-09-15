@@ -13,6 +13,7 @@ import { describe, expect, it } from "vitest";
 import { authLoginRequestSchema } from "@/contracts/auth.contract";
 import {
   normalizeLoginId,
+  STUDENT_ACCOUNT_WITHDRAWN_MESSAGES,
   STUDENT_LOGIN_ID_RULE,
   STUDENT_LOGIN_LOCK,
   STUDENT_LOGIN_MESSAGES,
@@ -139,6 +140,14 @@ describe("문구 · 잠금 (D-125 ⑶ — 리드 제안)", () => {
     });
   });
 
+  it("🔴 퇴원 학생 발급 거부 — 발급 · 다시 발급 · 켜기 문구 (D-127 · 리드 결정)", () => {
+    expect(STUDENT_ACCOUNT_WITHDRAWN_MESSAGES).toStrictEqual({
+      issue: "퇴원한 학생은 계정을 만들 수 없습니다.",
+      reissue: "퇴원한 학생은 비밀번호를 다시 발급할 수 없습니다.",
+      enable: "퇴원한 학생은 계정을 켤 수 없습니다.",
+    });
+  });
+
   it("연속 5회 틀리면 10분 잠금", () => {
     expect(STUDENT_LOGIN_LOCK).toStrictEqual({
       maxFailures: 5,
@@ -169,6 +178,7 @@ describe("응답 모양 — 초기 비밀번호는 발급 응답에 한 번만",
       "issuedByViewer",
       "lastLoginAt",
       "locked",
+      "lockedUntil",
       "loginId",
       "mustChangePassword",
       "passwordChangedAt",

@@ -10,6 +10,7 @@ import {
   type StudentAccountPanel as PanelData,
   type StudentAccountStatus,
 } from "@/contracts/studentAccount.contract";
+import { lockMinutesLeft } from "@/lib/class/accountLock";
 import {
   fetchAccountPanel,
   issueAccount,
@@ -33,6 +34,8 @@ type PanelState =
  * - 만든 직후: 아이디 · 발급 날짜 · 발급한 사람 · 마지막 로그인 · «초기 비밀번호 — 지금 한 번만 보입니다» ·
  *   «비밀번호 다시 발급» · «계정 끄기». 끈 계정은 «계정 켜기»(시안에 없는 상태 — 최소한으로).
  * - 퇴원한 학생은 «퇴원 — 로그인 막힘» 한 줄(D-126 ⑺ — 서버가 로그인을 막는다). 발급하지 않는다.
+ * - 🔴 잠긴 계정(연속 5회 틀림)은 «잠김 — N분 뒤 풀림 · 비밀번호를 다시 발급하면 바로 풀립니다.» 한 줄(D-127 Q5) —
+ *   서버가 준 `lockedUntil` 이 **지금보다 뒤일 때만**(N 은 `lockMinutesLeft`). 끈 계정 · 퇴원 계정은 그쪽 줄이 먼저다.
  * - 서버가 거부한 학생(남의 반 403 · 없는 학생 404)은 칸을 안 그린다.
  *
  * 🔴 초기 비밀번호는 **이 칸의 상태에만** 산다 — localStorage · sessionStorage · URL · 로그 어디에도 안 적는다.
@@ -102,6 +105,7 @@ export function StudentAccountPanel({ student }: { student: StudentEntity }) {
         disabledAt: null,
         mustChangePassword: true,
         locked: false,
+        lockedUntil: null,
       });
     });
   }
@@ -114,7 +118,13 @@ export function StudentAccountPanel({ student }: { student: StudentEntity }) {
         return;
       }
       setPin(result.data.initialPassword);
-      setAccount({ ...account, mustChangePassword: true, locked: false });
+      // 다시 발급은 잠금도 푼다(서버가 `lockedUntil` 을 비운다) — 잠김 줄이 같이 사라진다
+      setAccount({
+        ...account,
+        mustChangePassword: true,
+        locked: false,
+        lockedUntil: null,
+      });
     });
   }
 
@@ -259,7 +269,9 @@ function PanelBody({
       <AccountFacts account={account} />
       {account.disabledAt ? (
         <p className={s.blocked}>계정 꺼짐 — 로그인 막힘</p>
-      ) : null}
+      ) : (
+        <LockLine lockedUntil={account.lockedUntil} />
+      )}
       {pin ? (
         <div className={s.once}>
           <p className={s.onceK}>초기 비밀번호 — 지금 한 번만 보입니다</p>
@@ -303,6 +315,17 @@ function PanelBody({
         )}
       </div>
     </>
+  );
+}
+
+/** 🔴 잠김 — 서버가 준 끝 시각이 지금보다 뒤일 때만(D-127 Q5). 잠금 규칙을 여기서 다시 적지 않는다 */
+function LockLine({ lockedUntil }: { lockedUntil: string | null }) {
+  const minutes = lockMinutesLeft(lockedUntil, new Date());
+  if (minutes === null) return null;
+  return (
+    <p className={s.blocked}>
+      {`잠김 — ${minutes}분 뒤 풀림 · 비밀번호를 다시 발급하면 바로 풀립니다.`}
+    </p>
   );
 }
 

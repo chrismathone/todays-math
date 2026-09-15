@@ -39,7 +39,7 @@ export interface LearnHifiOptions {
   lecture: string;
   /** 가짜 재생기의 처음 자리(초) — 없으면 이어 보기 자리 */
   at: number | null;
-  state: "before" | "issued" | "disabled" | "withdrawn";
+  state: "before" | "issued" | "disabled" | "withdrawn" | "locked";
 }
 
 declare global {
@@ -95,8 +95,33 @@ function hifiStatus(
     disabledAt: null,
     mustChangePassword: true,
     locked: false,
+    lockedUntil: null,
     ...over,
   };
+}
+
+/** 발급 칸의 서버 상태(`?state=`) — 처음 GET 이 돌려줄 계정 */
+function initialAccount(
+  studentId: string,
+  state: LearnHifiOptions["state"],
+): StudentAccountStatus | null {
+  switch (state) {
+    case "issued":
+      return hifiStatus(studentId);
+    case "disabled":
+      return hifiStatus(studentId, { disabledAt: "2026-09-15T02:00:00.000Z" });
+    case "locked":
+      // 연속 5회 틀려 잠긴 학생 — 끝은 지금부터 7분 30초 뒤(«잠김 — 8분 뒤 풀림»)
+      return hifiStatus(studentId, {
+        mustChangePassword: false,
+        lastLoginAt: "2026-09-14T09:10:00.000Z",
+        passwordChangedAt: "2026-09-14T09:11:00.000Z",
+        locked: true,
+        lockedUntil: new Date(Date.now() + 7.5 * 60_000).toISOString(),
+      });
+    default:
+      return null;
+  }
 }
 
 function installFixtureFetch(options: LearnHifiOptions) {
@@ -175,16 +200,7 @@ function installFixtureFetch(options: LearnHifiOptions) {
     if (account) {
       const studentId = account[1]!;
       if (!accounts.has(studentId))
-        accounts.set(
-          studentId,
-          options.state === "issued"
-            ? hifiStatus(studentId)
-            : options.state === "disabled"
-              ? hifiStatus(studentId, {
-                  disabledAt: "2026-09-15T02:00:00.000Z",
-                })
-              : null,
-        );
+        accounts.set(studentId, initialAccount(studentId, options.state));
       const current = accounts.get(studentId) ?? null;
       if (method === "GET")
         return json({

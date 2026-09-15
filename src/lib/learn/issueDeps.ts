@@ -12,6 +12,7 @@ import { generateInitialPassword } from "@/lib/concept/initialPassword";
 import { db } from "@/lib/db";
 import { isPrismaErrorCode } from "@/lib/prismaErrors";
 
+import { studentWithdrawn } from "./accountBlock";
 import type { IssueDeps } from "./issueStudentAccount";
 import { hashStudentPin } from "./pinHash";
 
@@ -25,7 +26,10 @@ export function studentIssueDeps(): IssueDeps {
       return student
         ? {
             ownerId: student.class.userId,
-            withdrawn: student.eywaWithdrawnAt !== null,
+            // 🔴 로그인을 막는 판정과 같은 함수(`accountBlock.ts`) — D-127
+            withdrawn: studentWithdrawn({
+              withdrawnAt: student.eywaWithdrawnAt,
+            }),
           }
         : null;
     },

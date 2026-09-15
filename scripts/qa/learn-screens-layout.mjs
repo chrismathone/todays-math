@@ -25,6 +25,10 @@ const MOCKUP = path.resolve("docs", "design", "mockups", "hifi-d124-todays-conce
 const WIDTHS = [360, 400, 768, 1366];
 const HEIGHT = { 360: 780, 400: 860, 768: 1024, 1366: 768 };
 
+/** `ONLY=password,issue-locked` — 고른 실행만(다시 찍을 캡처만). 비우면 전량. 결과는 `layout-<고른 것>.json` */
+const ONLY = (process.env.ONLY ?? "").split(",").map((s) => s.trim()).filter(Boolean);
+const wanted = (key) => ONLY.length === 0 || ONLY.includes(key);
+
 const RUNS = [
   { key: "login", query: "screen=login" },
   { key: "password", query: "screen=password" },
@@ -118,7 +122,7 @@ async function stressLongestId() {
   return id;
 }
 
-for (const run of RUNS) {
+for (const run of RUNS.filter((r) => wanted(r.key))) {
   for (const width of run.widths ?? WIDTHS) {
     const query = run.query.includes("lecture=stress-longest")
       ? run.query.replace("stress-longest", await stressLongestId())
@@ -173,7 +177,7 @@ for (const run of RUNS) {
 }
 
 // ── 원장님 발급 칸 — 두 상태 + 끈 계정 + 퇴원 (400 · 1366) ──────────────────────
-for (const width of [400, 1366]) {
+for (const width of wanted("issue") ? [400, 1366] : []) {
   const name = (s) => `issue-${s}-${width}`;
   let page = await open(width, "screen=issue");
   await page.getByRole("button", { name: "김도윤" }).click();
@@ -206,20 +210,54 @@ for (const width of [400, 1366]) {
   }
 }
 
+// ── 발급 칸 «잠김 — N분 뒤 풀림» 한 줄 (D-127 Q5) — 400 한 장 ──────────────────
+if (wanted("issue-locked")) {
+  const name = "issue-locked-400";
+  const page = await open(400, "screen=issue&state=locked");
+  await page.getByRole("button", { name: "김도윤" }).click();
+  await page.getByText(/^잠김 — \d+분 뒤 풀림/).waitFor();
+  const m = await page.evaluate(() => {
+    const line = [...document.querySelectorAll("p")].find((p) => p.textContent?.startsWith("잠김"));
+    return {
+      pageOverflowX: Math.round(document.documentElement.scrollWidth - window.innerWidth),
+      line: line?.textContent ?? null,
+      lineClipped: line ? line.scrollWidth - line.clientWidth > 1 : null,
+    };
+  });
+  await page.screenshot({ path: path.join(OUT, `${name}.png`), fullPage: true });
+  // 다시 발급하면 줄이 사라진다(찍지 않고 재기만)
+  await page.getByRole("button", { name: "비밀번호 다시 발급" }).click();
+  await page.getByText("초기 비밀번호 — 지금 한 번만 보입니다").waitFor();
+  const goneAfterReissue = (await page.getByText(/^잠김/).count()) === 0;
+  const checks = [
+    ["본문이 가로로 넘치지 않는다", m.pageOverflowX <= 1],
+    [
+      "«잠김 — N분 뒤 풀림 · …» 한 줄(시안 페이지는 7분 30초 뒤 → 8분)",
+      m.line === "잠김 — 8분 뒤 풀림 · 비밀번호를 다시 발급하면 바로 풀립니다.",
+    ],
+    ["잠김 줄이 잘리지 않는다", m.lineClipped === false],
+    ["다시 발급하면 잠김 줄이 사라진다", goneAfterReissue],
+  ];
+  for (const [label, ok] of checks) if (!ok) failures.push(`${name}: ${label}`);
+  results.push({ name, ...m, goneAfterReissue, checks: Object.fromEntries(checks) });
+  console.log(`${checks.every(([, ok]) => ok) ? "✓" : "✗"} ${name.padEnd(20)} 넘침 ${m.pageOverflowX} · «${m.line}»`);
+  await page.close();
+}
+
 // ── 시안 1안 — 휴대폰 넷 · 발급 칸 ─────────────────────────────────────────
 const mock = await browser.newPage({ viewport: { width: 1600, height: 1400 }, deviceScaleFactor: 1 });
 await mock.goto(pathToFileURL(MOCKUP).href, { waitUntil: "load" });
 await mock.waitForTimeout(500);
 const phones = { login: "#sl-1", password: "#sp-1", list: "#ls-1", watch: "#pl-1" };
-for (const [key, sel] of Object.entries(phones))
+for (const [key, sel] of Object.entries(phones).filter(([key]) => wanted(key)))
   await mock.locator(sel).locator("xpath=..").screenshot({ path: path.join(OUT, `mockup-${key}.png`) });
-await mock.locator("#is-1").screenshot({ path: path.join(OUT, "mockup-issue.png") });
+if (wanted("issue")) await mock.locator("#is-1").screenshot({ path: path.join(OUT, "mockup-issue.png") });
 await mock.close();
 
 // ── 나란히 — 왼쪽 시안 휴대폰, 오른쪽 구현(360 · 400) ──────────────────────────
 const img = (file) => `data:image/png;base64,${fs.readFileSync(path.join(OUT, file)).toString("base64")}`;
 const pair = await browser.newPage({ viewport: { width: 1800, height: 1000 }, deviceScaleFactor: 1 });
-for (const key of ["login", "password", "list", "watch"]) {
+for (const key of ["login", "password", "list", "watch"].filter(wanted)) {
   await pair.setContent(`<!doctype html><meta charset="utf-8">
 <style>body{margin:0;display:flex;gap:24px;align-items:flex-start;padding:20px;background:#e9edf3;font:14px system-ui}
 figure{margin:0;display:grid;gap:8px}figcaption{font-weight:700;color:#172b4d}img{display:block;border:1px solid #c9d2df}</style>
@@ -228,6 +266,7 @@ figure{margin:0;display:grid;gap:8px}figcaption{font-weight:700;color:#172b4d}im
 <figure><figcaption>구현 · 400</figcaption><img src="${img(`${key}-400.png`)}"></figure>`);
   await pair.screenshot({ path: path.join(OUT, `side-by-side-${key}.png`), fullPage: true });
 }
+if (wanted("issue")) {
 await pair.setContent(`<!doctype html><meta charset="utf-8">
 <style>body{margin:0;display:flex;flex-wrap:wrap;gap:24px;align-items:flex-start;padding:20px;background:#e9edf3;font:14px system-ui}
 figure{margin:0;display:grid;gap:8px}figcaption{font-weight:700;color:#172b4d}img{display:block;border:1px solid #c9d2df;max-width:860px}</style>
@@ -235,10 +274,12 @@ figure{margin:0;display:grid;gap:8px}figcaption{font-weight:700;color:#172b4d}im
 <figure><figcaption>구현 — 발급 전(400)</figcaption><img src="${img("issue-before-400.png")}"></figure>
 <figure><figcaption>구현 — 만든 직후(400)</figcaption><img src="${img("issue-issued-400.png")}"></figure>`);
 await pair.screenshot({ path: path.join(OUT, "side-by-side-issue.png"), fullPage: true });
+}
 await pair.close();
 
 await browser.close();
-fs.writeFileSync(path.join(OUT, "layout.json"), `${JSON.stringify({ base: BASE, results, failures }, null, 2)}\n`);
+const jsonName = ONLY.length ? `layout-${ONLY.join("+")}.json` : "layout.json";
+fs.writeFileSync(path.join(OUT, jsonName), `${JSON.stringify({ base: BASE, only: ONLY, results, failures }, null, 2)}\n`);
 if (failures.length) {
   console.error(`\n✗ ${failures.length}건\n${failures.join("\n")}`);
   process.exit(1);

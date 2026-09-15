@@ -46,6 +46,7 @@ const status = (
   disabledAt: null,
   mustChangePassword: true,
   locked: false,
+  lockedUntil: null,
   ...over,
 });
 const panel = (account: StudentAccountStatus | null, withdrawn = false) => ({
@@ -349,5 +350,104 @@ describe("🔴 ⑤ 끈 계정 · 퇴원 학생 · 남의 반 학생", () => {
     expect(
       screen.queryByRole("button", { name: "계정 만들기" }),
     ).not.toBeInTheDocument();
+  });
+});
+
+describe("🔴 잠김 한 줄 — «잠김 — N분 뒤 풀림» (D-127 Q5)", () => {
+  /**
+   * 서버가 준 `lockedUntil` 이 **지금보다 뒤일 때만**(서버의 `locked` 표지가 아니다 — 응답이 온 뒤 잠금이 끝났을 수 있다).
+   * 시계는 `Date` 만 멈춘다 — 입력 흉내·waitFor 가 쓰는 타이머는 진짜다.
+   */
+  const NOW = new Date("2026-09-15T05:00:00.000Z");
+  const until = (ms: number) => new Date(NOW.getTime() + ms).toISOString();
+  const line = (n: number) =>
+    `잠김 — ${n}분 뒤 풀림 · 비밀번호를 다시 발급하면 바로 풀립니다.`;
+  beforeEach(() => {
+    vi.useFakeTimers({ toFake: ["Date"] });
+    vi.setSystemTime(NOW);
+  });
+  afterEach(() => {
+    vi.useRealTimers();
+  });
+
+  it("잠금 끝 1초 전 — «1분»(올림) · 막 잠긴 계정은 «10분»", async () => {
+    panels[SEO.id] = panel(status({ locked: true, lockedUntil: until(1_000) }));
+    panels[KIM.id] = panel(
+      status({
+        studentId: KIM.id,
+        loginId: "m1a-02",
+        locked: true,
+        lockedUntil: until(10 * 60_000),
+      }),
+    );
+    const user = renderList();
+    await open(user, SEO.name);
+    expect(await card().findByText(line(1))).toBeInTheDocument();
+    await open(user, KIM.name);
+    expect(await card().findByText(line(10))).toBeInTheDocument();
+  });
+
+  it("🔴 끝난 잠금은 줄이 없다 — 서버 표지(locked)가 아니라 «lockedUntil 이 지금보다 뒤인가»만 본다", async () => {
+    panels[SEO.id] = panel(status({ locked: true, lockedUntil: until(0) }));
+    const user = renderList();
+    await open(user, SEO.name);
+    await card().findByText("m1a-01");
+    expect(card().queryByText(/잠김/)).not.toBeInTheDocument();
+  });
+
+  it("🔴 다시 발급하면 줄이 사라진다 — 다시 발급이 잠금을 푼다", async () => {
+    panels[SEO.id] = panel(
+      status({
+        mustChangePassword: false,
+        locked: true,
+        lockedUntil: until(5 * 60_000),
+      }),
+    );
+    writes[`POST /api/students/${SEO.id}/account/password`] = {
+      status: 200,
+      body: {
+        data: {
+          studentId: SEO.id,
+          loginId: "m1a-01",
+          initialPassword: PIN2,
+          mustChangePassword: true,
+          issuedAt: ISSUED_AT,
+        },
+      },
+    };
+    const user = renderList();
+    await open(user, SEO.name);
+    await card().findByText(line(5));
+    await user.click(
+      card().getByRole("button", { name: "비밀번호 다시 발급" }),
+    );
+    await card().findByText(PIN2);
+    expect(card().queryByText(/잠김/)).not.toBeInTheDocument();
+  });
+
+  it("끈 계정 · 퇴원 계정에는 안 보인다 — 그쪽 줄이 먼저", async () => {
+    panels[SEO.id] = panel(
+      status({
+        disabledAt: "2026-09-15T02:00:00.000Z",
+        locked: true,
+        lockedUntil: until(5 * 60_000),
+      }),
+    );
+    panels[KIM.id] = panel(
+      status({
+        studentId: KIM.id,
+        loginId: "m1a-02",
+        locked: true,
+        lockedUntil: until(5 * 60_000),
+      }),
+      true,
+    );
+    const user = renderList();
+    await open(user, SEO.name);
+    await card().findByText("계정 꺼짐 — 로그인 막힘");
+    expect(card().queryByText(/잠김/)).not.toBeInTheDocument();
+    await open(user, KIM.name);
+    await card().findByText("퇴원 — 로그인 막힘");
+    expect(card().queryByText(/잠김/)).not.toBeInTheDocument();
   });
 });

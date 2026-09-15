@@ -73,6 +73,16 @@ export const STUDENT_LOGIN_MESSAGES = {
   wrongCurrentPin: "지금 비밀번호가 맞지 않습니다.",
 } as const;
 
+/**
+ * 퇴원한 학생에게 발급 API 가 내는 409 문구 (D-127 · 리드 결정 — learn-screens 보고서 §7-3).
+ * 발급 칸은 퇴원 학생에게 단추를 안 그린다 — 서버가 **같은 판정**을 한다는 표지다. 끄기는 막지 않는다.
+ */
+export const STUDENT_ACCOUNT_WITHDRAWN_MESSAGES = {
+  issue: "퇴원한 학생은 계정을 만들 수 없습니다.",
+  reissue: "퇴원한 학생은 비밀번호를 다시 발급할 수 없습니다.",
+  enable: "퇴원한 학생은 계정을 켤 수 없습니다.",
+} as const;
+
 /** 앞뒤 공백을 걷고 소문자로 접는다 — 저장·비교·유일성 모두 이 모양으로 한다. */
 export function normalizeLoginId(raw: string): string {
   return raw.trim().toLowerCase();
@@ -230,6 +240,11 @@ export const studentAccountStatusSchema = z.strictObject({
   disabledAt: isoDateTimeSchema.nullable(),
   mustChangePassword: z.boolean(),
   locked: z.boolean(),
+  /**
+   * 잠금이 끝나는 시각(없으면 null) — 발급 칸의 «잠김 — N분 뒤 풀림»(D-127 Q5). 화면은 «지금보다 뒤인가»만 본다.
+   * 끝난 잠금도 다음 시도 전까지는 값이 남는다(`resetExpiredLock`) — 그래서 `locked` 와 따로 준다.
+   */
+  lockedUntil: isoDateTimeSchema.nullable(),
 });
 export type StudentAccountStatus = z.infer<typeof studentAccountStatusSchema>;
 

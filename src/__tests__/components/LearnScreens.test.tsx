@@ -12,6 +12,7 @@
  */
 import {
   act,
+  cleanup,
   fireEvent,
   render,
   screen,
@@ -379,6 +380,41 @@ describe("첫 로그인 — 비밀번호 바꾸기 (/learn/password — 시안 s
       ),
     );
     expect(router.replace).not.toHaveBeenCalled();
+  });
+
+  it("🔴 나가기 — 목록 윗줄과 같은 자리·같은 모양, 학생 로그아웃 API 를 부르고 학생 로그인으로 (D-127 Q1)", async () => {
+    // 잘못 들어온 학생(받은 번호를 모른다)이 갇히지 않는다. 모양은 목록 화면의 윗줄과 견준다 — 같은 부품이어야 한다
+    const shapeOf = () => {
+      const bar = screen.getByRole("banner");
+      return {
+        bar: bar.className,
+        brand: bar.firstElementChild?.textContent,
+        leave: within(bar).getByRole("button", { name: "나가기" }).className,
+      };
+    };
+    await renderList();
+    const listShape = shapeOf();
+    expect(listShape.bar).not.toBe("");
+    cleanup();
+    calls = [];
+
+    const user = userEvent.setup();
+    render(<StudentPasswordForm />);
+    expect(shapeOf()).toStrictEqual(listShape);
+    // 같은 자리 — 윗줄이 폼보다 앞(화면 맨 위)
+    const bar = screen.getByRole("banner");
+    expect(
+      bar.compareDocumentPosition(
+        screen.getByRole("form", { name: "비밀번호 바꾸기" }),
+      ) & Node.DOCUMENT_POSITION_FOLLOWING,
+    ).toBeTruthy();
+    await user.click(within(bar).getByRole("button", { name: "나가기" }));
+    await waitFor(() =>
+      expect(router.replace).toHaveBeenCalledWith("/learn/login"),
+    );
+    expect(calls.map((c) => `${c.method} ${c.url}`)).toStrictEqual([
+      "POST /api/learn/logout",
+    ]);
   });
 
   it("학생 세션이 없으면(받은 번호 탓이 아닌 401) 학생 로그인으로", async () => {

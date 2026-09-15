@@ -7,6 +7,7 @@ import { isEasyPin, isPinFormat } from "@/lib/concept/pinRules";
 
 import { postPasswordChange } from "./learnApi";
 import s from "./learn.module.css";
+import { LearnTopBar } from "./LearnTopBar";
 import { pinDigits } from "./StudentLoginForm";
 
 /**
@@ -17,6 +18,10 @@ import { pinDigits } from "./StudentLoginForm";
  * 규칙 줄은 D-125 ⑶(숫자 4자리)으로 바꿔 적었다 — 시안의 «8자 이상 · 영문과 숫자»는 D-125 전에 그려진 것.
  * 판정은 계약(`studentPasswordChangeRequestSchema` → `studentNewPinSchema`)과 그 계약이 부르는
  * `pinRules` 가 한다 — 여기서 규칙을 다시 적지 않는다. 받은 번호가 틀리거나 잠기면 서버 문구 그대로.
+ *
+ * 🔴 윗줄 «나가기»(D-127 Q1) — 목록 화면 윗줄과 **같은 부품 · 같은 자리**(`LearnTopBar` → `POST /api/learn/logout`
+ * → `/learn/login`). 다른 학생 아이디로 잘못 들어온 학생이 받은 번호를 몰라도 갇히지 않는다. 관문은 이미
+ * 첫 로그인 학생에게 로그아웃을 연다(`EXIT_RULES`) — `proxy.ts` · `studentRouteAccess.ts` 는 그대로다.
  */
 export function StudentPasswordForm() {
   const router = useRouter();
@@ -82,6 +87,7 @@ export function StudentPasswordForm() {
 
   return (
     <div className={s.column}>
+      <LearnTopBar student={null} />
       <main className={s.login}>
         <div className={s.brand}>
           <b>오늘의수학</b>

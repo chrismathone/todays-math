@@ -15,7 +15,7 @@ import { LearnHifiClient, type LearnHifiOptions } from "./LearnHifiClient";
  *   ?set=mockup|stress|empty                  목록 데이터(기본 시안 그대로)
  *   ?today=2026-09-16                         학원 날짜를 고정(«오늘» 표시 확인 — 기본 2026-09-15)
  *   ?lecture=l4 | <uuid> · ?at=52             재생할 강의 · 가짜 재생기의 처음 자리(초)
- *   ?state=before|issued|disabled|withdrawn   발급 칸의 서버 상태
+ *   ?state=before|issued|disabled|withdrawn|locked   발급 칸의 서버 상태(locked = 연속 5회 틀려 잠김 — D-127 Q5)
  *
  * 이웃 dev 페이지(`dev/concept-hifi` 등)와 **같은 가드**다 — 없으면 프로덕션에 프리렌더된다.
  */
@@ -54,7 +54,7 @@ export default async function LearnHifiPage({
     at: Number.isFinite(at) && flag("at") !== undefined ? at : null,
     state: pick(
       flag("state"),
-      ["before", "issued", "disabled", "withdrawn"] as const,
+      ["before", "issued", "disabled", "withdrawn", "locked"] as const,
       "before",
     ),
   };

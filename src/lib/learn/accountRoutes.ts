@@ -4,7 +4,10 @@
  */
 import "server-only";
 
-import { STUDENT_LOGIN_MESSAGES } from "@/contracts/studentAccount.contract";
+import {
+  STUDENT_ACCOUNT_WITHDRAWN_MESSAGES,
+  STUDENT_LOGIN_MESSAGES,
+} from "@/contracts/studentAccount.contract";
 import { forbiddenError, jsonError, notFoundError } from "@/lib/apiResponse";
 
 import type { IssueFailure } from "./issueStudentAccount";
@@ -22,6 +25,25 @@ export function issueFailureResponse(reason: IssueFailure): Response {
       return jsonError("CONFLICT", STUDENT_LOGIN_MESSAGES.loginIdTaken, 409);
     case "no_account":
       return notFoundError("학생 계정");
+    // 퇴원 학생 — 발급 · 다시 발급 · 켜기 (D-127 · 규칙 8)
+    case "withdrawn_issue":
+      return jsonError(
+        "CONFLICT",
+        STUDENT_ACCOUNT_WITHDRAWN_MESSAGES.issue,
+        409,
+      );
+    case "withdrawn_reissue":
+      return jsonError(
+        "CONFLICT",
+        STUDENT_ACCOUNT_WITHDRAWN_MESSAGES.reissue,
+        409,
+      );
+    case "withdrawn_enable":
+      return jsonError(
+        "CONFLICT",
+        STUDENT_ACCOUNT_WITHDRAWN_MESSAGES.enable,
+        409,
+      );
   }
 }
 
