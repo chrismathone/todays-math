@@ -1,0 +1,694 @@
+<meta charset="utf-8">
+<title>오늘의 개념 Hi-fi</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nanum+Pen+Script&family=Noto+Sans+KR:wght@400;500;700;800&family=Noto+Serif+KR:wght@600;700;900&display=swap">
+<style>
+/* 한 가지 모습으로 고정한다 — 오늘의수학 앱이 라이트 전용(05 §2.3)이라 시안도 보는 사람의 테마와 무관하게
+   앱과 같은 바탕으로 보여야 판단이 맞는다. 다크 블록을 두지 않고 모든 색을 명시한다.
+   다섯 방향의 색은 각각 근거가 있다: 1 = Workroom.module.css · 2 = 05 §2 계기판 · 3 = print/tokens.ts 지면 금색
+   · 4 = 강의 영상의 «종이 판서» · 5 = LandingPage.module.css 브랜드 색. */
+:root {
+  color-scheme: light;
+  --paper: #fafaf8;
+  --ink: #161616;
+  --ink-2: #61615e;
+  --rule: #b9b9b6;
+  --pick: #2064b3;
+  --sans: "Pretendard Variable", Pretendard, "Noto Sans KR", "Malgun Gothic", "Apple SD Gothic Neo", system-ui, sans-serif;
+  --serif: "Noto Serif KR", "Nanum Myeongjo", Batang, serif;
+  --hand: "Nanum Pen Script", "Noto Sans KR", cursive;
+  --mono: ui-monospace, "Cascadia Mono", Consolas, "D2Coding", monospace;
+}
+body { margin: 0; background: var(--paper); color: var(--ink); font-family: var(--sans); font-size: 14px; line-height: 1.55; }
+* { box-sizing: border-box; }
+[hidden] { display: none !important; }
+button, input, select, textarea { font: inherit; color: inherit; }
+:is(button, input, select, textarea, summary):focus-visible { outline: 3px solid #82a1ff; outline-offset: 2px; }
+[data-act], .tab, label.opt { cursor: pointer; }
+
+/* ── 바탕 (보는 판) ─────────────────────────────────────────── */
+.board { max-width: 1320px; margin: 0 auto; padding-inline: 24px; padding-block: 28px 64px; }
+@media (max-width: 600px) { .board { padding-inline: 16px; } }
+.head { display: grid; gap: 10px; padding-bottom: 20px; }
+.eyebrow { margin: 0; font-size: 12px; letter-spacing: .06em; color: var(--ink-2); }
+h1 { margin: 0; font-family: var(--serif); font-weight: 900; font-size: 30px; line-height: 1.25; letter-spacing: -.02em; text-wrap: balance; }
+.lede { margin: 0; max-width: 70ch; color: var(--ink-2); font-size: 15px; }
+.facts { display: flex; flex-wrap: wrap; gap: 6px 22px; margin: 4px 0 0; padding: 0; list-style: none; font-size: 13px; color: var(--ink-2); }
+.facts b { color: var(--ink); font-weight: 600; }
+.tabs { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 20; display: flex; flex-wrap: wrap; gap: 4px; padding-block: 10px; background: var(--paper); border-block: 1px solid var(--rule); }
+.tab { display: flex; gap: 8px; align-items: baseline; padding: 7px 12px; border: 1px solid transparent; border-radius: 6px; background: none; color: var(--ink-2); }
+.tab .k { font-weight: 700; color: var(--ink); font-variant-numeric: tabular-nums; }
+.tab:hover { background: #fff; }
+.tab[aria-selected="true"] { background: #fff; border-color: var(--rule); color: var(--ink); box-shadow: inset 0 -2px 0 var(--pick); }
+.panel { padding-top: 24px; display: grid; gap: 22px; }
+.thesis { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 440px); gap: 14px 44px; align-items: start; }
+.thesis h2 { margin: 0 0 6px; font-family: var(--serif); font-size: 22px; font-weight: 900; letter-spacing: -.01em; }
+.thesis p { margin: 0; max-width: 64ch; }
+.fit { display: grid; gap: 4px 12px; grid-template-columns: auto minmax(0, 1fr); margin: 0; font-size: 13px; }
+.fit dt { font-weight: 600; white-space: nowrap; }
+.fit dd { margin: 0; color: var(--ink-2); }
+@media (max-width: 900px) { .thesis { grid-template-columns: 1fr; } }
+.fig { margin: 0; display: grid; gap: 8px; min-width: 0; }
+.fig figcaption { display: flex; flex-wrap: wrap; gap: 4px 12px; font-size: 12px; color: var(--ink-2); }
+.fig figcaption b { color: var(--ink); font-weight: 600; }
+.scroll-x { overflow-x: auto; border: 1px solid var(--rule); border-radius: 10px; background: #fff; }
+.phones { display: flex; flex-wrap: wrap; gap: 20px; align-items: flex-start; }
+
+/* ── 기존 작업실 껍데기 — 다섯 안 모두 같다(바꾸지 않는 부분) ─── */
+/* 원장님 화면은 1480px 폭(모니터 1536px 기준 창)으로 그리고, 좁은 창에서는 줄여 보인다 */
+.app { width: 1480px; height: 780px; display: flex; background: #f4f6fa; color: #172b4d; font-size: 14px; line-height: 1.5; }
+@media (max-width: 1560px) { .app { zoom: .855; } }
+.app-side { width: 216px; flex: none; display: flex; flex-direction: column; gap: 10px; padding: 16px 14px; background: #14243d; color: #b9c7dd; }
+.brand { padding: 0 6px; color: #fff; font-size: 20px; font-weight: 800; letter-spacing: -.8px; line-height: 1.3; }
+.brand small { display: block; margin-top: 2px; font-size: 9px; font-weight: 400; letter-spacing: 1px; color: #8d9fbc; }
+.new-btn { display: flex; align-items: center; justify-content: center; height: 40px; border: 1px solid #5778ec; border-radius: 8px; background: #3b60df; color: #fff; font-weight: 600; font-size: 13px; }
+.nav-cap { margin: 6px 8px 0; font-size: 11px; letter-spacing: .4px; color: #8495b1; }
+.nav { display: flex; flex-direction: column; gap: 3px; }
+.nav span { display: flex; align-items: center; min-height: 38px; padding: 0 10px; border-radius: 8px; font-size: 13px; }
+.nav .on { background: #304362; color: #fff; font-weight: 600; }
+.app-main { flex: 1; min-width: 0; display: flex; flex-direction: column; }
+.app-top { flex: none; display: flex; align-items: center; justify-content: space-between; gap: 16px; height: 56px; padding: 0 24px; background: #fff; border-bottom: 1px solid #d4dce8; font-size: 13px; color: #596c86; }
+.app-top .search { width: 320px; padding: 7px 12px; border: 1px solid #d4dce8; border-radius: 8px; }
+.app-body { flex: 1; min-height: 0; overflow: auto; padding: 20px 24px; background: var(--c-bg); color: var(--c-ink); }
+
+/* ── 다섯 안이 함께 쓰는 부품 (색·형태는 아래 안별 토큰이 정한다) ─── */
+.th {
+  --c-bg: #f4f6fa; --c-card: #fff; --c-line: #d4dce8; --c-line-soft: #e6ebf2; --c-th: #f8fafc;
+  --c-ink: #172b4d; --c-muted: #596c86; --c-ctl: #b8c4d6; --c-accent: #3159df; --c-accent-ink: #fff; --c-sel: #eef2fd;
+  --c-pub-bg: #e4eafc; --c-pub-ink: #2447b8; --c-draft-bg: #fbf0d4; --c-draft-ink: #86590a; --c-none-bg: #eef1f5; --c-none-ink: #6b7a90;
+  --c-ok: #1d7550; --c-warn: #8a5a06; --c-bad: #b42318; --c-once-bg: #fbf0d4; --c-once-line: #e3c77e;
+  --r: 8px; --r-lg: 12px; --f-title: var(--sans); --w-title: 700; --f-num: var(--sans);
+  --s-bg: #f4f6fa; --s-card: #fff; --s-line: #dde3ec; --s-ctl: #b8c4d6; --s-ink: #172b4d; --s-muted: #596c86;
+  --s-accent: #3159df; --s-accent-ink: #fff; --s-today-bg: #14243d; --s-today-ink: #fff; --s-tag-bg: #3159df; --s-tag-ink: #fff;
+  --s-done: #1d7550; --s-mid: #8a5a06; --s-new: #3159df; --s-r: 14px; --s-r-sm: 10px; --s-title: var(--sans);
+}
+.btn { display: inline-flex; align-items: center; justify-content: center; gap: 6px; height: 36px; padding: 0 14px; border: 1px solid var(--c-ctl); border-radius: var(--r); background: var(--c-card); color: var(--c-ink); font-size: 13px; font-weight: 600; white-space: nowrap; }
+.btn.primary { background: var(--c-accent); border-color: var(--c-accent); color: var(--c-accent-ink); }
+.btn.quiet { border-color: transparent; background: transparent; color: var(--c-muted); }
+.btn.off { opacity: .4; }
+.btn.block { display: flex; width: 100%; }
+.link { padding: 0; border: 0; background: none; color: inherit; font-weight: 600; text-align: left; text-decoration: underline; text-decoration-color: var(--c-ctl); text-underline-offset: 3px; }
+.link:hover { text-decoration-color: currentColor; }
+.mono { font-family: var(--mono); font-size: 12px; }
+.sub { display: block; font-size: 12px; font-weight: 400; color: var(--c-muted); }
+.acts { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; }
+
+.pg-head { display: flex; align-items: flex-end; justify-content: space-between; gap: 16px; margin-bottom: 14px; }
+.pg-head h3 { margin: 0; font-family: var(--f-title); font-weight: var(--w-title); font-size: 24px; letter-spacing: -.5px; }
+.pg-head p { margin: 2px 0 0; font-size: 13px; color: var(--c-muted); }
+
+.sum { display: flex; flex-wrap: wrap; align-items: center; gap: 10px 24px; margin-bottom: 14px; padding: 12px 16px; background: var(--c-card); border: 1px solid var(--c-line); border-radius: var(--r-lg); }
+.sum-lead { display: flex; align-items: baseline; gap: 8px; }
+.sum-k, .sum-u { font-size: 13px; color: var(--c-muted); }
+.sum-n { font-family: var(--f-num); font-size: 28px; font-weight: 800; line-height: 1; font-variant-numeric: tabular-nums; }
+.sum-parts { display: flex; flex-wrap: wrap; gap: 8px; margin: 0; padding: 0; list-style: none; }
+.sum-parts li { display: flex; align-items: baseline; gap: 5px; padding: 3px 10px; border-radius: 999px; font-size: 13px; }
+.sum-parts b { font-size: 15px; font-variant-numeric: tabular-nums; }
+.p-pub { background: var(--c-pub-bg); color: var(--c-pub-ink); }
+.p-draft { background: var(--c-draft-bg); color: var(--c-draft-ink); }
+.p-none { background: var(--c-none-bg); color: var(--c-none-ink); }
+.sum-bar { display: none; }
+
+.split { display: grid; grid-template-columns: minmax(0, 1fr) 390px; gap: 14px; align-items: start; }
+.tcard { background: var(--c-card); border: 1px solid var(--c-line); border-radius: var(--r-lg); overflow: hidden; }
+table.bt { width: 100%; border-collapse: collapse; font-size: 13px; }
+.bt th { padding: 9px 12px; background: var(--c-th); border-bottom: 1px solid var(--c-line); font-size: 12px; font-weight: 600; color: var(--c-muted); text-align: left; white-space: nowrap; }
+.bt td { padding: 10px 12px; border-bottom: 1px solid var(--c-line-soft); vertical-align: middle; }
+.bt tr:last-child td { border-bottom: 0; }
+.bt tr.on td { background: var(--c-sel); }
+.cls { font-weight: 700; }
+.unit { display: block; max-width: 15em; line-height: 1.4; }
+
+.vs { display: inline-flex; align-items: center; gap: 6px; padding: 2px 9px; border-radius: 999px; font-size: 12px; font-weight: 600; white-space: nowrap; }
+.vs.k-pub { background: var(--c-pub-bg); color: var(--c-pub-ink); }
+.vs.k-draft { background: var(--c-draft-bg); color: var(--c-draft-ink); }
+.vs.k-none { background: var(--c-none-bg); color: var(--c-none-ink); font-weight: 500; }
+.vs-g { display: none; }
+.seen { display: flex; align-items: center; gap: 8px; }
+.cells { display: flex; width: 64px; height: 6px; border-radius: 3px; overflow: hidden; background: var(--c-none-bg); }
+.cells i { flex: 1; }
+.cells i.on { background: var(--c-accent); }
+.seen-t { font-size: 12px; font-variant-numeric: tabular-nums; color: var(--c-ink); white-space: nowrap; }
+
+.side { display: grid; gap: 12px; padding: 16px; background: var(--c-card); border: 1px solid var(--c-line); border-radius: var(--r-lg); }
+.side-k { margin: 0; font-size: 12px; font-weight: 600; color: var(--c-muted); }
+.side h4 { margin: 0; font-family: var(--f-title); font-weight: var(--w-title); font-size: 19px; letter-spacing: -.3px; line-height: 1.35; }
+.side-m { margin: 2px 0 0; font-size: 12px; color: var(--c-muted); }
+.lecs { margin: 0; padding: 0; list-style: none; border: 1px solid var(--c-line-soft); border-radius: var(--r); }
+.lecs li { display: grid; grid-template-columns: auto minmax(0, 1fr) auto; gap: 8px; align-items: center; padding: 8px 10px; border-bottom: 1px solid var(--c-line-soft); }
+.lecs li:last-child { border-bottom: 0; }
+.lecs li.on { background: var(--c-sel); }
+.checks { display: grid; gap: 4px; margin: 0; padding: 0; list-style: none; font-size: 13px; }
+.checks li { display: grid; grid-template-columns: 1.3em minmax(0, 1fr); gap: 4px; }
+.checks li.warn { color: var(--c-warn); font-weight: 600; }
+.checks li.bad { color: var(--c-bad); font-weight: 600; }
+.side-note { margin: 0; font-size: 12px; color: var(--c-muted); }
+.side-empty { display: grid; gap: 4px; padding: 14px; border: 1px dashed var(--c-ctl); border-radius: var(--r); font-size: 13px; }
+.side-empty span { color: var(--c-muted); }
+
+/* 영상 속 한 장면 — 제작 도구의 화풍이라 다섯 안 모두 같다 */
+/* cqw 는 «바깥» 컨테이너를 잰다 — 그래서 크기를 재는 틀(.frame)과 cqw 를 쓰는 속(.fr-in)을 나눈다 */
+.frame { container-type: inline-size; position: relative; aspect-ratio: 16 / 9; overflow: hidden; border: 1px solid #d9dcd6; border-radius: 6px; }
+.fr-in { position: absolute; inset: 0; display: grid; align-content: start; gap: 3cqw; padding: 7cqw 8cqw; color: #1d2126;
+  background-color: #fffefb; background-image: linear-gradient(#eceee9 1px, transparent 1px), linear-gradient(90deg, #eceee9 1px, transparent 1px); background-size: 4.2cqw 4.2cqw; }
+.fr-t { justify-self: start; margin: 0 0 1cqw; font-size: 6.4cqw; font-weight: 800; letter-spacing: -.02em; line-height: 1.2; background: linear-gradient(transparent 62%, #ffd9cf 62%); }
+.fr-l { margin: 0; font-family: var(--serif); font-size: 5.2cqw; font-weight: 600; line-height: 1.25; }
+.frame.mini { border-radius: 4px; }
+.frame.mini .fr-in { padding: 9cqw 8cqw; }
+.frame.mini .fr-t { font-size: 10.5cqw; }
+
+/* 발급 (수업 · 학생 관리 › 학생 — 기존 화면 안의 새 칸) */
+.iss { width: 100%; min-width: 860px; padding: 18px 22px 22px; background: var(--c-bg); color: var(--c-ink); }
+.iss-ctx { margin: 0 0 12px; font-size: 13px; color: var(--c-muted); }
+.iss-ctx b { color: var(--c-ink); }
+.iss-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; }
+.iss-card { display: grid; gap: 10px; align-content: start; padding: 16px; background: var(--c-card); border: 1px solid var(--c-line); border-radius: var(--r-lg); }
+.iss-k { margin: 0; font-size: 11px; font-weight: 600; letter-spacing: .06em; color: var(--c-muted); }
+.iss-card h5 { margin: 0; font-family: var(--f-title); font-weight: var(--w-title); font-size: 17px; }
+.fld { display: grid; gap: 4px; font-size: 12px; color: var(--c-muted); }
+.inp { display: block; height: 40px; padding: 9px 12px; border: 1px solid var(--c-ctl); border-radius: var(--r); background: var(--c-card); color: var(--c-ink); font-size: 14px; }
+.kv { display: grid; grid-template-columns: auto minmax(0, 1fr); gap: 4px 14px; margin: 0; font-size: 13px; }
+.kv dt { color: var(--c-muted); }
+.kv dd { margin: 0; }
+.once { display: grid; gap: 4px; padding: 12px 14px; background: var(--c-once-bg); border: 1px solid var(--c-once-line); border-radius: var(--r); }
+.once-k { margin: 0; font-size: 13px; font-weight: 700; }
+.once-v { font-size: 20px; letter-spacing: .08em; }
+.once-n { margin: 0; font-size: 12px; color: var(--c-muted); }
+
+/* ── 학생 휴대폰 ─────────────────────────────────────────── */
+.phone { width: 300px; max-width: 100%; flex: none; border: 9px solid #222; border-radius: 32px; background: #222; overflow: hidden; }
+.phone .scr { height: 620px; overflow: auto; }
+.s-scr { min-height: 100%; background: var(--s-bg); color: var(--s-ink); font-size: 13px; }
+.s-top { position: sticky; top: 0; z-index: 2; display: flex; justify-content: space-between; align-items: center; padding: 11px 14px; background: var(--s-card); border-bottom: 1px solid var(--s-line); }
+.s-top b { font-family: var(--s-title); font-size: 15px; font-weight: 800; letter-spacing: -.4px; }
+.s-top span { font-size: 11px; color: var(--s-muted); }
+.s-body { display: grid; gap: 14px; padding: 14px; }
+.s-h { margin: 0; font-family: var(--s-title); font-size: 22px; font-weight: 800; letter-spacing: -.5px; line-height: 1.3; }
+.s-today { display: grid; gap: 10px; padding: 14px; background: var(--s-today-bg); color: var(--s-today-ink); border-radius: var(--s-r); }
+.s-past { display: grid; gap: 8px; }
+.s-date { display: flex; align-items: center; gap: 6px; margin: 0; font-size: 12px; font-weight: 600; opacity: .9; }
+.s-tag { padding: 1px 7px; border-radius: 999px; background: var(--s-tag-bg); color: var(--s-tag-ink); font-size: 11px; font-weight: 700; }
+.s-unit { margin: -4px 0 0; font-family: var(--s-title); font-size: 17px; font-weight: 700; letter-spacing: -.3px; line-height: 1.35; }
+.s-item { display: grid; grid-template-columns: 96px minmax(0, 1fr); gap: 10px; align-items: center; width: 100%; padding: 8px; background: var(--s-card); border: 1px solid var(--s-line); border-radius: var(--s-r-sm); color: var(--s-ink); text-align: left; }
+.s-item.on { outline: 2px solid var(--s-accent); outline-offset: -1px; }
+.s-it { display: block; font-size: 13px; font-weight: 700; line-height: 1.35; }
+.s-meta { display: block; margin-top: 2px; font-size: 12px; color: var(--s-muted); }
+.s-st.done { color: var(--s-done); font-weight: 700; }
+.s-st.mid { color: var(--s-mid); font-weight: 600; }
+.s-st.new { color: var(--s-new); font-weight: 700; }
+.s-back { font-size: 13px; font-weight: 600; color: var(--s-muted); }
+.pl { display: grid; }
+.pl .frame { border-radius: var(--s-r-sm) var(--s-r-sm) 0 0; }
+.pl-bar { display: flex; align-items: center; gap: 8px; padding: 9px 10px; background: var(--s-card); border: 1px solid var(--s-line); border-top: 0; border-radius: 0 0 var(--s-r-sm) var(--s-r-sm); font-size: 12px; font-variant-numeric: tabular-nums; }
+.pl-btn { font-weight: 700; }
+.pl-trk { position: relative; flex: 1; height: 6px; border-radius: 3px; background: var(--s-line); }
+.pl-trk i { position: absolute; inset: 0 auto 0 0; border-radius: 3px; background: var(--s-accent); }
+.pl-trk em { position: absolute; top: -5px; bottom: -5px; width: 3px; margin-left: -1px; border-radius: 2px; background: var(--s-ink); }
+.pl-rate { color: var(--s-muted); }
+.s-note { margin: 0; padding: 10px 12px; border: 1px solid var(--s-line); border-radius: var(--s-r-sm); background: var(--s-card); font-size: 12px; color: var(--s-muted); }
+.s-next { display: grid; gap: 2px; font-size: 12px; color: var(--s-muted); }
+.s-next b { font-size: 13px; color: var(--s-ink); }
+.s-login { display: grid; gap: 14px; padding: 48px 20px 24px; }
+.s-brand { display: grid; gap: 2px; }
+.s-brand b { font-family: var(--s-title); font-size: 26px; font-weight: 800; letter-spacing: -.8px; }
+.s-brand span { font-size: 13px; color: var(--s-muted); }
+.s-form { display: grid; gap: 10px; }
+.s-scr .fld { color: var(--s-muted); }
+.s-scr .inp { height: 46px; padding: 12px; border-color: var(--s-ctl); border-radius: var(--s-r-sm); background: var(--s-card); color: var(--s-ink); }
+.s-scr .btn.primary { height: 48px; border-radius: var(--s-r-sm); background: var(--s-accent); border-color: var(--s-accent); color: var(--s-accent-ink); font-size: 15px; }
+.s-help { margin: 0; font-size: 12px; color: var(--s-muted); }
+.s-alt { margin: 8px 0 0; font-size: 12px; font-weight: 600; color: var(--s-muted); }
+.s-kick { margin: 0; font-size: 12px; font-weight: 700; color: var(--s-new); }
+.s-rules { display: flex; flex-wrap: wrap; gap: 4px 12px; margin: 0; padding: 0; list-style: none; font-size: 12px; color: var(--s-done); }
+.s-rules li::before { content: "✓ "; }
+
+/* ═══ 2 · 계기판 — 05 §2 확정 팔레트, 색이 뜻을 말한다 ═══ */
+.th2 {
+  --c-bg: #fff; --c-card: #fff; --c-line: #b9b9b6; --c-line-soft: #e1e1de; --c-th: #fff;
+  --c-ink: #161616; --c-muted: #61615e; --c-ctl: #8e8e8b; --c-accent: #2064b3; --c-accent-ink: #fff; --c-sel: #f1f1ef;
+  --c-pub-bg: transparent; --c-pub-ink: #08492e; --c-draft-bg: transparent; --c-draft-ink: #2064b3; --c-none-bg: #e1e1de; --c-none-ink: #767673;
+  --c-ok: #08492e; --c-warn: #996b11; --c-bad: #a62d1b; --c-once-bg: #fff; --c-once-line: #161616;
+  --r: 4px; --r-lg: 4px; --w-title: 800;
+  --s-bg: #fff; --s-card: #fff; --s-line: #e1e1de; --s-ctl: #8e8e8b; --s-ink: #161616; --s-muted: #61615e;
+  --s-accent: #2064b3; --s-today-bg: #fff; --s-today-ink: #161616; --s-tag-bg: #2064b3;
+  --s-done: #08492e; --s-mid: #996b11; --s-new: #2064b3; --s-r: 4px; --s-r-sm: 4px;
+}
+.th2 .sum { padding: 0 0 14px; border-width: 0 0 2px; border-color: #161616; border-radius: 0; }
+.th2 .sum-parts li { padding: 0; background: none; border-radius: 0; }
+.th2 .sum-parts .p-none { color: #767673; }
+.th2 .sum-bar { display: flex; flex-basis: 100%; gap: 2px; height: 12px; }
+.th2 .sum-bar i.p-pub { background: #08492e; }
+.th2 .sum-bar i.p-draft { background: #2064b3; }
+.th2 .sum-bar i.p-none { background: #e1e1de; }
+.th2 .tcard, .th2 .side, .th2 .iss-card { border-color: #161616; }
+.th2 .bt th { background: #fff; border-bottom: 2px solid #161616; color: #161616; }
+.th2 .vs { padding: 0; background: none; }
+.th2 .vs-g { display: inline-flex; gap: 2px; }
+.th2 .vs-g i { width: 10px; height: 12px; background: #e1e1de; }
+.th2 .vs.k-pub .vs-g i { background: #08492e; }
+.th2 .vs.k-draft .vs-g i:nth-child(1) { background: #08492e; }
+.th2 .vs.k-draft .vs-g i:nth-child(2) { background: #2064b3; }
+.th2 .cells { gap: 2px; width: auto; height: 12px; border-radius: 0; background: none; }
+.th2 .cells i { flex: none; width: 6px; background: #e1e1de; }
+.th2 .cells i.on { background: #08492e; }
+.th2 .once { border-width: 2px; }
+.th2 .s-today { padding: 12px 0 0; border-top: 2px solid #161616; border-radius: 0; }
+.th2 .s-item { padding: 8px 0; border-width: 0 0 1px; border-radius: 0; }
+.th2 .s-item.on { outline: none; background: #f1f1ef; }
+.th2 .s-top b, .th2 .s-brand b { letter-spacing: -1px; }
+.th2 .pl-trk { height: 8px; border-radius: 0; }
+.th2 .pl-trk i { border-radius: 0; }
+
+/* ═══ 3 · 지면 — 시험지와 한 벌 (D-119 금색 톤 · 명조) ═══ */
+.th3 {
+  --gold: #a57f00; --gold-ink: #7a5d00; --gold-band: #f5eed9;
+  --c-bg: #fff; --c-card: #fff; --c-line: #d4d4d8; --c-line-soft: #e8e8eb; --c-th: #fff;
+  --c-ink: #0e0e10; --c-muted: #6b6b72; --c-ctl: #a0a0a8; --c-accent: #0e0e10; --c-accent-ink: #fff; --c-sel: #faf6ea;
+  --c-pub-bg: transparent; --c-pub-ink: #0e0e10; --c-draft-bg: transparent; --c-draft-ink: #7a5d00; --c-none-bg: transparent; --c-none-ink: #a0a0a8;
+  --c-ok: #0e0e10; --c-warn: #7a5d00; --c-bad: #9f1f12; --c-once-bg: #f5eed9; --c-once-line: #f5eed9;
+  --r: 2px; --r-lg: 2px; --f-title: var(--serif); --w-title: 700; --f-num: var(--serif);
+  --s-bg: #fcfcf8; --s-card: #fff; --s-line: #e2e1dc; --s-ctl: #a0a0a8; --s-ink: #0e0e10; --s-muted: #6b6b72;
+  --s-accent: #0e0e10; --s-today-bg: #f5eed9; --s-today-ink: #0e0e10; --s-tag-bg: transparent; --s-tag-ink: #7a5d00;
+  --s-done: #0e0e10; --s-mid: #7a5d00; --s-new: #7a5d00; --s-r: 2px; --s-r-sm: 2px; --s-title: var(--serif);
+}
+.th3 .sum { gap: 10px 30px; padding: 12px 18px; background: var(--gold-band); border: 0; border-radius: 0; }
+.th3 .sum-n { font-size: 36px; font-weight: 900; color: var(--gold); }
+.th3 .sum-parts { gap: 18px; }
+.th3 .sum-parts li { padding: 0; background: none; border-radius: 0; color: #0e0e10; }
+.th3 .sum-parts b { font-family: var(--serif); font-size: 18px; font-weight: 900; }
+.th3 .sum-parts .p-draft b { color: var(--gold-ink); }
+.th3 .sum-parts .p-none { color: #6b6b72; }
+.th3 .tcard, .th3 .side, .th3 .iss-card { border-width: 2px 0 1px; border-color: #0e0e10 transparent #d4d4d8; }
+.th3 .bt th { font-family: var(--serif); font-size: 13px; color: #0e0e10; border-bottom: 1px solid #0e0e10; }
+.th3 .cls { font-family: var(--serif); font-size: 14px; }
+.th3 .vs { padding: 0 0 1px; background: none; border-radius: 0; border-bottom: 1.5px solid currentColor; }
+.th3 .vs.k-none { border-bottom: 0; font-weight: 400; }
+.th3 .cells { display: none; }
+.th3 .seen-t { font-family: var(--serif); font-size: 14px; font-weight: 700; }
+.th3 .once-v { color: #0e0e10; }
+.th3 .s-today { padding: 12px 14px 14px; }
+.th3 .s-tag { padding: 0; border: 0; font-family: var(--serif); font-size: 12px; font-weight: 900; }
+.th3 .s-date { font-family: var(--serif); color: var(--gold-ink); opacity: 1; }
+.th3 .s-past .s-date { padding-bottom: 4px; border-bottom: 1px solid #0e0e10; }
+.th3 .s-item { border-width: 0 0 1px; border-radius: 0; background: transparent; padding: 8px 0; }
+.th3 .s-today .s-item { background: #fff; padding: 8px; border-width: 1px; }
+.th3 .s-item.on { outline: none; background: #faf6ea; }
+.th3 .s-h { font-weight: 900; }
+.th3 .s-brand b { font-weight: 900; }
+.th3 .s-brand span { color: var(--gold-ink); font-family: var(--serif); font-weight: 700; }
+.th3 .pl-trk i { background: var(--gold); }
+
+/* ═══ 4 · 판서 — 강의 영상의 종이 판서와 한 벌 ═══ */
+.th4 {
+  --pen: #1f4fb4; --red: #c43d2b; --hl: #ffe36e;
+  --c-bg: #fbfbf9; --c-card: #fff; --c-line: #cfd3d8; --c-line-soft: #e7e9ec; --c-th: #fff;
+  --c-ink: #1b1f24; --c-muted: #5b626b; --c-ctl: #9aa1aa; --c-accent: #1b1f24; --c-accent-ink: #fff; --c-sel: #fffbe0;
+  --c-pub-bg: transparent; --c-pub-ink: #1f4fb4; --c-draft-bg: transparent; --c-draft-ink: #4a5059; --c-none-bg: transparent; --c-none-ink: #8b929b;
+  --c-ok: #1b1f24; --c-warn: #a2331f; --c-bad: #a2331f; --c-once-bg: #fff; --c-once-line: #cfd3d8;
+  --r: 3px; --r-lg: 4px;
+  --s-bg: #fdfdfb; --s-card: #fff; --s-line: #d9dde2; --s-ctl: #9aa1aa; --s-ink: #1b1f24; --s-muted: #5b626b;
+  --s-accent: #1b1f24; --s-today-bg: transparent; --s-today-ink: #1b1f24; --s-tag-bg: transparent; --s-tag-ink: #c43d2b;
+  --s-done: #c43d2b; --s-mid: #1f4fb4; --s-new: #1f4fb4; --s-r: 3px; --s-r-sm: 3px;
+}
+.th4 .app-body, .th4 .s-scr, .th4 .iss { background-color: #fdfdfb; background-image: linear-gradient(#e8edf3 1px, transparent 1px), linear-gradient(90deg, #e8edf3 1px, transparent 1px); background-size: 18px 18px; }
+.th4 .tcard, .th4 .side, .th4 .iss-card, .th4 .sum { box-shadow: 0 1px 0 #d9dde2, 0 6px 14px -10px #1b1f2440; }
+.th4 .sum-n { font-family: var(--hand); font-size: 44px; font-weight: 400; color: var(--pen); }
+.th4 .sum-parts li { padding: 0; background: none; font-size: 14px; }
+.th4 .sum-parts b { font-family: var(--hand); font-size: 26px; font-weight: 400; }
+.th4 .sum-parts .p-pub b { color: var(--pen); }
+.th4 .sum-parts .p-draft b { color: #4a5059; }
+.th4 .sum-parts .p-none b { color: var(--red); }
+.th4 .vs { padding: 0; background: none; }
+.th4 .vs.k-pub .vs-t { padding: 0 9px; border: 1.6px solid var(--pen); border-radius: 50% / 60%; }
+.th4 .vs.k-draft .vs-t { padding: 0 7px; border: 1.4px dashed #6c737c; border-radius: 3px; }
+.th4 .cells { display: none; }
+.th4 .seen-t::before { content: "✓"; margin-right: 4px; font-family: var(--hand); font-size: 20px; color: var(--red); }
+.th4 .bt tr.on td { background: #fffdf0; }
+.th4 .bt tr.on .cls { background: linear-gradient(transparent 55%, var(--hl) 55%); }
+.th4 .once { border-style: dashed; }
+.th4 .once-v { background: linear-gradient(transparent 55%, var(--hl) 55%); justify-self: start; }
+.th4 .s-today { padding: 0; }
+.th4 .s-unit { justify-self: start; background: linear-gradient(transparent 55%, var(--hl) 55%); }
+.th4 .s-tag { padding: 0; font-family: var(--hand); font-size: 20px; font-weight: 400; line-height: 1; }
+.th4 .s-st { font-family: var(--hand); font-size: 18px; font-weight: 400; }
+.th4 .s-item { box-shadow: 0 1px 0 #d9dde2; }
+.th4 .s-item.on { outline: 1.6px solid var(--pen); }
+.th4 .s-kick { font-family: var(--hand); font-size: 20px; font-weight: 400; color: var(--red); }
+.th4 .s-brand b { justify-self: start; background: linear-gradient(transparent 60%, var(--hl) 60%); }
+.th4 .pl-trk i { background: var(--pen); }
+.th4 .pl-trk em { background: var(--red); }
+.th4 .s-rules { color: var(--red); font-family: var(--hand); font-size: 18px; }
+
+/* ═══ 5 · 색면 — 작업실 첫 화면의 브랜드 색 ═══ */
+.th5 {
+  --navy: #172b4d; --butter: #efd57a; --mint: #d7ebe1;
+  --c-bg: #f7f5ef; --c-card: #fffefa; --c-line: #e4dfd2; --c-line-soft: #eeeae0; --c-th: #fffefa;
+  --c-ink: #172b4d; --c-muted: #5d6980; --c-ctl: #c4cedd; --c-accent: #3159df; --c-accent-ink: #fff; --c-sel: #fbf3d2;
+  --c-pub-bg: #d7ebe1; --c-pub-ink: #32644e; --c-draft-bg: #efd57a; --c-draft-ink: #5a4300; --c-none-bg: #eceae3; --c-none-ink: #6b7280;
+  --c-ok: #32644e; --c-warn: #6d5000; --c-bad: #a62d1b; --c-once-bg: #efd57a; --c-once-line: #efd57a;
+  --r: 10px; --r-lg: 16px; --w-title: 800;
+  --s-bg: #f7f5ef; --s-card: #fffefa; --s-line: #e8e2d4; --s-ctl: #c4cedd; --s-ink: #172b4d; --s-muted: #5d6980;
+  --s-accent: #3159df; --s-today-bg: #efd57a; --s-today-ink: #172b4d; --s-tag-bg: #172b4d; --s-tag-ink: #fff;
+  --s-done: #32644e; --s-mid: #6d5000; --s-new: #3159df; --s-r: 20px; --s-r-sm: 14px;
+}
+.th5 .sum { display: grid; grid-template-columns: 1.3fr repeat(3, 1fr); gap: 10px; padding: 0; background: none; border: 0; }
+.th5 .sum-lead { display: grid; gap: 2px; padding: 14px 16px; background: var(--navy); color: #fff; border-radius: 16px; }
+.th5 .sum-lead .sum-k, .th5 .sum-lead .sum-u { color: #c9d3e6; }
+.th5 .sum-n { font-size: 32px; }
+.th5 .sum-parts { display: contents; }
+.th5 .sum-parts li { display: grid; gap: 0; align-content: center; padding: 12px 16px; border-radius: 16px; }
+.th5 .sum-parts b { font-size: 26px; font-weight: 800; }
+.th5 .sum-parts .p-none { background: #fffefa; border: 1px solid #e4dfd2; }
+.th5 .cells { background: #eceae3; }
+.th5 .cells i.on { background: #6fb392; }
+.th5 .s-today { gap: 12px; padding: 16px; }
+.th5 .s-today .s-item { border-color: transparent; }
+.th5 .s-st.done { padding: 1px 8px; border-radius: 999px; background: var(--mint); }
+.th5 .s-item { border-radius: 14px; }
+.th5 .s-h { font-size: 24px; }
+.th5 .s-login { padding-top: 0; }
+.th5 .s-brand { margin: 0 -20px; padding: 44px 20px 22px; background: var(--butter); border-radius: 0 0 28px 28px; }
+.th5 .s-brand span { color: #3d3000; }
+.th5 .pl-trk i { background: #3159df; }
+
+/* ── 세부 질문 ───────────────────────────────────────────── */
+.qs { display: grid; gap: 14px; margin: 0; padding: 0; list-style: none; counter-reset: q; }
+.q { display: grid; gap: 10px; padding: 16px 18px; background: #fff; border: 1px solid var(--rule); border-radius: 8px; counter-increment: q; }
+.q h3 { margin: 0; font-size: 16px; }
+.q h3::before { content: counter(q) ". "; color: var(--ink-2); font-variant-numeric: tabular-nums; }
+.q > p { margin: 0; max-width: 74ch; font-size: 13px; color: var(--ink-2); }
+.opts { display: flex; flex-wrap: wrap; gap: 8px; }
+label.opt { display: flex; gap: 8px; align-items: flex-start; max-width: 440px; padding: 8px 12px 8px 10px; border: 1px solid #8e8e8b; border-radius: 6px; background: #fff; }
+label.opt:has(input:checked) { border-color: var(--ink); box-shadow: inset 0 0 0 1px var(--ink); background: #f6f6f4; }
+label.opt input { margin: 3px 0 0; accent-color: var(--ink); }
+label.opt span { display: grid; gap: 1px; }
+label.opt small { font-size: 12px; color: var(--ink-2); }
+.answer { position: sticky; bottom: 0; display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 8px 12px; align-items: center; padding: 14px 16px calc(14px + env(safe-area-inset-bottom, 0px)); background: #fff; border: 1px solid var(--ink); border-radius: 8px; }
+.answer label { grid-column: 1 / -1; font-size: 12px; font-weight: 600; color: var(--ink-2); }
+.answer textarea { width: 100%; min-height: 44px; padding: 8px 10px; border: 1px solid #8e8e8b; border-radius: 6px; background: #fafaf9; font-size: 14px; resize: none; }
+.answer button { height: 44px; padding: 0 18px; border: 1px solid var(--ink); border-radius: 6px; background: var(--ink); color: #fff; font-weight: 600; }
+#copied { grid-column: 1 / -1; min-height: 1em; font-size: 12px; color: var(--ink-2); }
+.foot { display: grid; gap: 4px; margin-top: 40px; padding-top: 16px; border-top: 1px solid var(--rule); font-size: 12px; color: var(--ink-2); }
+.foot p { margin: 0; max-width: 92ch; }
+@media (prefers-reduced-motion: reduce) { * { scroll-behavior: auto !important; } }
+</style>
+
+<div class="board">
+  <header class="head">
+    <p class="eyebrow">D-124 · Hi-fi 단계 · 2026-09-15</p>
+    <h1>오늘의 개념 — Hi-fi 5안</h1>
+    <p class="lede">고르신 구조(원장님 B · 학생 C)에 색 · 글꼴 · 형태를 입힌 다섯 방향입니다. 원장님 쪽과 학생 쪽을 다른 안으로 섞으셔도 됩니다. 반 이름을 누르면 오른쪽 차시가, 학생 목록의 강의를 누르면 옆 재생 화면이 바뀝니다.</p>
+    <ul class="facts">
+      <li>구조 — <b>D-124</b> 그대로(아이디 로그인 · 한 명씩 발급 · 앞으로 감기 막음 · 고지는 원장님만)</li>
+      <li>영상 속 장면은 제작 도구의 화풍이라 <b>다섯 안 모두 같게</b> 그렸습니다(화풍은 21번 §5-4 에서 따로)</li>
+      <li>반 12 · 강의 7편 · 학생 이름 — 예시</li>
+    </ul>
+  </header>
+
+  <nav class="tabs" role="tablist" aria-label="Hi-fi 안" id="tabs"></nav>
+  <div id="panels"></div>
+
+  <section class="panel" id="p-Q" role="tabpanel" aria-labelledby="t-Q" hidden>
+    <div class="thesis"><div><h2>세부 질문</h2><p>안을 고르시면서 함께 정해 주셔야 하는 세부입니다(05 §0-3 ④ — 세부는 추정으로 정하지 않습니다). 고르시면 맨 아래에 답 한 줄이 만들어집니다.</p></div></div>
+    <ol class="qs" id="qs"></ol>
+    <div class="answer">
+      <label for="answer">보내 주실 답</label>
+      <textarea id="answer" readonly rows="2"></textarea>
+      <button type="button" id="copy">복사</button>
+      <span id="copied" role="status"></span>
+    </div>
+  </section>
+
+  <footer class="foot">
+    <p>근거 — 1 작업실: <span class="mono">src/components/unified/Workroom.module.css</span> · 2 계기판: 05 §2 · 3 지면: <span class="mono">src/components/print/tokens.ts</span>(금색 <span class="mono">#A57F00</span>)와 D-119 · 4 판서: 강의 영상 «종이 판서 v2» · 5 색면: <span class="mono">src/components/landing/LandingPage.module.css</span>.</p>
+    <p>앱 글꼴은 Pretendard 입니다. 이 페이지는 Pretendard 가 없는 기기에서 Noto Sans KR 로 그려집니다(모양 차이는 작습니다). 왼쪽 옆 메뉴는 기존 작업실 그대로라 다섯 안 모두 같습니다.</p>
+    <p>이 파일: <span class="mono">docs/design/mockups/hifi-d124-todays-concept.html</span> · 앞 단계: <span class="mono">wire-d123-todays-concept.html</span></p>
+  </footer>
+</div>
+
+<script type="application/json" id="units-data">[["초1","1-1 9까지의 수","1-1-1 1부터 5까지의 수 알아보기","E10101"],["초1","1-1 9까지의 수","1-1-2 6부터 9까지의 수 알아보기","E10102"],["초1","1-1 9까지의 수","1-1-3 몇째인지 알아보기","E10103"],["초1","1-1 9까지의 수","1-1-4 수의 순서 알아보기","E10104"],["초1","1-1 9까지의 수","1-1-5 1만큼 더 큰 수와 1만큼 더 작은 수","E10105"],["초1","1-1 9까지의 수","1-1-6 0 알아보기","E10106"],["초1","1-1 9까지의 수","1-1-7 9까지 수의 크기 비교","E10107"],["초1","1-2 여러 가지 모양","1-2-1 여러 가지 모양 찾아보기","E10201"],["초1","1-2 여러 가지 모양","1-2-2 여러 가지 모양 알아보기","E10202"],["초1","1-2 여러 가지 모양","1-2-3 여러 가지 모양으로 만들기","E10203"],["초1","1-3 덧셈과 뺄셈","1-3-1 모으기와 가르기","E10301"],["초1","1-3 덧셈과 뺄셈","1-3-2 덧셈식으로 나타내기","E10302"],["초1","1-3 덧셈과 뺄셈","1-3-3 덧셈하기","E10303"],["초1","1-3 덧셈과 뺄셈","1-3-4 뺄셈식으로 나타내기","E10304"],["초1","1-3 덧셈과 뺄셈","1-3-5 뺄셈하기","E10305"],["초1","1-3 덧셈과 뺄셈","1-3-6 0이 있는 덧셈과 뺄셈","E10306"],["초1","1-3 덧셈과 뺄셈","1-3-7 덧셈과 뺄셈하기","E10307"],["초1","1-4 비교하기","1-4-1 길이 비교하기","E10401"],["초1","1-4 비교하기","1-4-2 무게 비교하기","E10402"],["초1","1-4 비교하기","1-4-3 넓이 비교하기","E10403"],["초1","1-4 비교하기","1-4-4 담을 수 있는 양 비교하기","E10404"],["초1","1-5 50까지의 수","1-5-1 10 알아보기","E10501"],["초1","1-5 50까지의 수","1-5-2 십몇 알아보기","E10502"],["초1","1-5 50까지의 수","1-5-3 십몇의 모으기와 가르기","E10503"],["초1","1-5 50까지의 수","1-5-4 10개씩 묶어 세기","E10504"],["초1","1-5 50까지의 수","1-5-5 50까지의 수 세기","E10505"],["초1","1-5 50까지의 수","1-5-6 50까지 수의 순서","E10506"],["초1","1-5 50까지의 수","1-5-7 50까지 수의 크기 비교","E10507"],["초1","2-1 100까지의 수","2-1-1 60, 70, 80, 90 알아보기","E10601"],["초1","2-1 100까지의 수","2-1-2 99까지의 수 알아보기","E10602"],["초1","2-1 100까지의 수","2-1-3 100까지 수의 순서","E10603"],["초1","2-1 100까지의 수","2-1-4 100까지 수의 크기 비교","E10604"],["초1","2-1 100까지의 수","2-1-5 짝수와 홀수","E10605"],["초1","2-2 덧셈과 뺄셈(1)","2-2-1 세 수의 덧셈","E10701"],["초1","2-2 덧셈과 뺄셈(1)","2-2-2 세 수의 뺄셈","E10702"],["초1","2-2 덧셈과 뺄셈(1)","2-2-3 10이 되는 더하기","E10703"],["초1","2-2 덧셈과 뺄셈(1)","2-2-4 10에서 빼기","E10704"],["초1","2-2 덧셈과 뺄셈(1)","2-2-5 10을 만들어 더하기","E10705"],["초1","2-3 모양과 시각","2-3-1 여러 가지 모양 찾아보기","E10801"],["초1","2-3 모양과 시각","2-3-2 여러 가지 모양으로 꾸미기","E10802"],["초1","2-3 모양과 시각","2-3-3 몇 시 알아보기","E10803"],["초1","2-3 모양과 시각","2-3-4 몇 시 30분 알아보기","E10804"],["초1","2-4 덧셈과 뺄셈(2)","2-4-1 10을 이용하여 모으기와 가르기","E10901"],["초1","2-4 덧셈과 뺄셈(2)","2-4-2 받아올림이 있는 (몇)+(몇)","E10902"],["초1","2-4 덧셈과 뺄셈(2)","2-4-3 여러 가지 덧셈하기","E10903"],["초1","2-4 덧셈과 뺄셈(2)","2-4-4 받아내림이 있는 (십몇)-(몇)","E10904"],["초1","2-4 덧셈과 뺄셈(2)","2-4-5 여러 가지 뺄셈하기","E10905"],["초1","2-5 규칙 찾기","2-5-1 규칙 찾기","E11001"],["초1","2-5 규칙 찾기","2-5-2 규칙 만들기","E11002"],["초1","2-5 규칙 찾기","2-5-3 수 배열에서 규칙 찾기","E11003"],["초1","2-5 규칙 찾기","2-5-4 수 배열표에서 규칙 찾기","E11004"],["초1","2-5 규칙 찾기","2-5-5 규칙을 여러 가지 방법으로 나타내기","E11005"],["초1","2-6 덧셈과 뺄셈(3)","2-6-1 (몇십)+(몇), (몇십몇)+(몇)","E11101"],["초1","2-6 덧셈과 뺄셈(3)","2-6-2 (몇십)+(몇십), (몇십몇)+(몇십몇)","E11102"],["초1","2-6 덧셈과 뺄셈(3)","2-6-3 (몇십몇)-(몇), (몇십)-(몇십)","E11103"],["초1","2-6 덧셈과 뺄셈(3)","2-6-4 (몇십몇)-(몇십몇)","E11104"],["초1","2-6 덧셈과 뺄셈(3)","2-6-5 덧셈과 뺄셈 관계 알아보기","E11105"],["초2","1-1 세 자리 수","1-1-1 백 알아보기","E20101"],["초2","1-1 세 자리 수","1-1-2 몇백 알아보기","E20102"],["초2","1-1 세 자리 수","1-1-3 세 자리 수 알아보기","E20103"],["초2","1-1 세 자리 수","1-1-4 세 자리 수의 각 자리 숫자가 나타내는 값","E20104"],["초2","1-1 세 자리 수","1-1-5 세 자리 수 뛰어 세기","E20105"],["초2","1-1 세 자리 수","1-1-6 세 자리 수의 크기 비교","E20106"],["초2","1-2 여러 가지 도형","1-2-1 원 알아보기","E20201"],["초2","1-2 여러 가지 도형","1-2-2 삼각형 알아보기","E20202"],["초2","1-2 여러 가지 도형","1-2-3 사각형 알아보기","E20203"],["초2","1-2 여러 가지 도형","1-2-4 오각형과 육각형 알아보기","E20204"],["초2","1-2 여러 가지 도형","1-2-5 칠교판으로 모양 만들기","E20205"],["초2","1-2 여러 가지 도형","1-2-6 똑같은 모양으로 쌓기","E20206"],["초2","1-2 여러 가지 도형","1-2-7 여러 가지 모양으로 쌓기","E20207"],["초2","1-3 덧셈과 뺄셈","1-3-1 받아올림이 있는 (두 자리 수)+(한 자리 수)","E20301"],["초2","1-3 덧셈과 뺄셈","1-3-2 받아올림이 한 번 있는 (두 자리 수)+(두 자리 수)","E20302"],["초2","1-3 덧셈과 뺄셈","1-3-3 받아올림이 두 번 있는 (두 자리 수)+(두 자리 수)","E20303"],["초2","1-3 덧셈과 뺄셈","1-3-4 여러 가지 방법으로 덧셈하기","E20304"],["초2","1-3 덧셈과 뺄셈","1-3-5 받아내림이 있는 (두 자리 수)-(한 자리 수)","E20305"],["초2","1-3 덧셈과 뺄셈","1-3-6 받아내림이 있는 (두 자리 수)-(두 자리 수)","E20306"],["초2","1-3 덧셈과 뺄셈","1-3-7 여러 가지 방법으로 뺄셈하기","E20307"],["초2","1-3 덧셈과 뺄셈","1-3-8 덧셈과 뺄셈의 관계를 식으로 나타내기","E20308"],["초2","1-3 덧셈과 뺄셈","1-3-9 □의 값 구하기","E20309"],["초2","1-3 덧셈과 뺄셈","1-3-10 세 수의 계산","E20310"],["초2","1-4 길이 재기","1-4-1 여러 가지 단위로 길이 재기","E20401"],["초2","1-4 길이 재기","1-4-2 1cm 알아보기","E20402"],["초2","1-4 길이 재기","1-4-3 자로 길이 재기","E20403"],["초2","1-4 길이 재기","1-4-4 길이 어림하기","E20404"],["초2","1-5 분류하기","1-5-1 분류 기준 정하기","E20501"],["초2","1-5 분류하기","1-5-2 기준에 따라 분류하기","E20502"],["초2","1-5 분류하기","1-5-3 분류하여 세어 보기","E20503"],["초2","1-5 분류하기","1-5-4 분류한 결과 말해 보기","E20504"],["초2","1-6 곱셈","1-6-1 여러 가지 방법으로 세어 보기","E20601"],["초2","1-6 곱셈","1-6-2 묶어 세어 보기","E20602"],["초2","1-6 곱셈","1-6-3 몇의 몇 배 알아보기","E20603"],["초2","1-6 곱셈","1-6-4 곱셈식 알아보기","E20604"],["초2","1-6 곱셈","1-6-5 곱셈식으로 나타내기","E20605"],["초2","2-1 네 자리 수","2-1-1 천 알아보기","E20701"],["초2","2-1 네 자리 수","2-1-2 몇천 알아보기","E20702"],["초2","2-1 네 자리 수","2-1-3 네 자리 수 알아보기","E20703"],["초2","2-1 네 자리 수","2-1-4 네 자리 수의 각 자리 숫자가 나타내는 값","E20704"],["초2","2-1 네 자리 수","2-1-5 네 자리 수 뛰어 세기","E20705"],["초2","2-1 네 자리 수","2-1-6 네 자리 수의 크기 비교","E20706"],["초2","2-2 곱셈구구","2-2-1 2단 곱셈구구","E20801"],["초2","2-2 곱셈구구","2-2-2 5단 곱셈구구","E20802"],["초2","2-2 곱셈구구","2-2-3 3단, 6단 곱셈구구","E20803"],["초2","2-2 곱셈구구","2-2-4 4단, 8단 곱셈구구","E20804"],["초2","2-2 곱셈구구","2-2-5 7단 곱셈구구","E20805"],["초2","2-2 곱셈구구","2-2-6 9단 곱셈구구","E20806"],["초2","2-2 곱셈구구","2-2-7 1단 곱셈구구와 0의 곱","E20807"],["초2","2-2 곱셈구구","2-2-8 곱셈표 만들기","E20808"],["초2","2-2 곱셈구구","2-2-9 곱셈구구의 활용","E20809"],["초2","2-3 길이 재기","2-3-1 cm보다 더 큰 단위 알아보기","E20901"],["초2","2-3 길이 재기","2-3-2 자로 길이 재고 나타내기","E20902"],["초2","2-3 길이 재기","2-3-3 길이의 합","E20903"],["초2","2-3 길이 재기","2-3-4 길이의 차","E20904"],["초2","2-3 길이 재기","2-3-5 길이 어림하고 재어 보기","E20905"],["초2","2-4 시각과 시간","2-4-1 몇 시 몇 분 알아보기 (1)","E21001"],["초2","2-4 시각과 시간","2-4-2 몇 시 몇 분 알아보기 (2)","E21002"],["초2","2-4 시각과 시간","2-4-3 여러 가지 방법으로 시각 읽기","E21003"],["초2","2-4 시각과 시간","2-4-4 1시간 알아보기","E21004"],["초2","2-4 시각과 시간","2-4-5 걸린 시간 알아보기","E21005"],["초2","2-4 시각과 시간","2-4-6 하루의 시간 알아보기","E21006"],["초2","2-4 시각과 시간","2-4-7 달력 알아보기","E21007"],["초2","2-5 표와 그래프","2-5-1 자료를 분류하여 표로 나타내기","E21101"],["초2","2-5 표와 그래프","2-5-2 자료를 조사하여 표로 나타내기","E21102"],["초2","2-5 표와 그래프","2-5-3 자료를 그래프로 나타내기","E21103"],["초2","2-5 표와 그래프","2-5-4 표와 그래프의 내용 알아보기","E21104"],["초2","2-5 표와 그래프","2-5-5 표와 그래프로 나타내기","E21105"],["초2","2-6 규칙 찾기","2-6-1 무늬에서 규칙 찾기","E21201"],["초2","2-6 규칙 찾기","2-6-2 쌓은 모양에서 규칙 찾기","E21202"],["초2","2-6 규칙 찾기","2-6-3 덧셈표에서 규칙 찾기","E21203"],["초2","2-6 규칙 찾기","2-6-4 곱셈표에서 규칙 찾기","E21204"],["초2","2-6 규칙 찾기","2-6-5 생활에서 규칙 찾기","E21205"],["초3","1-1 덧셈과 뺄셈","1-1-1 받아올림이 없는, 한 번 있는 (세 자리 수)+(세 자리 수)","E30101"],["초3","1-1 덧셈과 뺄셈","1-1-2 받아올림이 두 번, 세 번 있는 (세 자리 수)+(세 자리 수)","E30102"],["초3","1-1 덧셈과 뺄셈","1-1-3 받아내림이 없는, 한 번 있는 (세 자리 수)-(세 자리 수)","E30103"],["초3","1-1 덧셈과 뺄셈","1-1-4 받아내림이 두 번 있는 (세 자리 수)-(세 자리 수)","E30104"],["초3","1-2 평면도형","1-2-1 선분, 반직선, 직선","E30201"],["초3","1-2 평면도형","1-2-2 각, 직각 알아보기","E30202"],["초3","1-2 평면도형","1-2-3 직각삼각형 알아보기","E30203"],["초3","1-2 평면도형","1-2-4 직사각형 알아보기","E30204"],["초3","1-2 평면도형","1-2-5 정사각형 알아보기","E30205"],["초3","1-3 나눗셈","1-3-1 똑같이 나누기","E30301"],["초3","1-3 나눗셈","1-3-2 곱셈과 나눗셈의 관계","E30302"],["초3","1-3 나눗셈","1-3-3 나눗셈의 몫을 곱셈식으로 구하기","E30303"],["초3","1-3 나눗셈","1-3-4 나눗셈의 몫을 곱셈구구로 구하기","E30304"],["초3","1-4 곱셈","1-4-1 (몇십)×(몇)","E30401"],["초3","1-4 곱셈","1-4-2 올림이 없는 (몇십몇)×(몇)","E30402"],["초3","1-4 곱셈","1-4-3 십의 자리에서 올림이 있는 (몇십몇)×(몇)","E30403"],["초3","1-4 곱셈","1-4-4 일의 자리에서 올림이 있는 (몇십몇)×(몇)","E30404"],["초3","1-4 곱셈","1-4-5 십의 자리와 일의 자리에서 올림이 있는 (몇십몇)×(몇)","E30405"],["초3","1-5 길이와 시간","1-5-1 1cm보다 작은 단위","E30501"],["초3","1-5 길이와 시간","1-5-2 1m보다 큰 단위","E30502"],["초3","1-5 길이와 시간","1-5-3 길이와 거리를 어림하고 재어 보기","E30503"],["초3","1-5 길이와 시간","1-5-4 1분보다 작은 단위","E30504"],["초3","1-5 길이와 시간","1-5-5 시간의 덧셈","E30505"],["초3","1-5 길이와 시간","1-5-6 시간의 뺄셈","E30506"],["초3","1-6 분수와 소수","1-6-1 똑같이 나누기","E30601"],["초3","1-6 분수와 소수","1-6-2 분수 알아보기(1)","E30602"],["초3","1-6 분수와 소수","1-6-3 분수 알아보기(2)","E30603"],["초3","1-6 분수와 소수","1-6-4 분모가 같은 분수의 크기 비교","E30604"],["초3","1-6 분수와 소수","1-6-5 단위분수의 크기 비교","E30605"],["초3","1-6 분수와 소수","1-6-6 소수 알아보기","E30606"],["초3","1-6 분수와 소수","1-6-7 소수의 크기 비교","E30607"],["초3","2-1 곱셈","2-1-1 (세 자리 수)×(한 자리 수) (1)","E30701"],["초3","2-1 곱셈","2-1-2 (세 자리 수)×(한 자리 수) (2)","E30702"],["초3","2-1 곱셈","2-1-3 (몇십)×(몇십), (몇십몇)×(몇십), (몇)×(몇십몇)","E30703"],["초3","2-1 곱셈","2-1-4 (몇십몇)×(몇십몇)","E30704"],["초3","2-2 나눗셈","2-2-1 내림이 없는 (몇십)÷(몇), (몇십몇)÷(몇)","E30801"],["초3","2-2 나눗셈","2-2-2 내림이 있는 (몇십)÷(몇), (몇십몇)÷(몇)","E30802"],["초3","2-2 나눗셈","2-2-3 나머지가 있는 (몇십몇)÷(몇)","E30803"],["초3","2-2 나눗셈","2-2-4 (세 자리 수)÷(한 자리 수)","E30804"],["초3","2-3 원","2-3-1 원의 중심, 지름, 반지름","E30901"],["초3","2-3 원","2-3-2 원의 성질","E30902"],["초3","2-3 원","2-3-3 원 그리기","E30903"],["초3","2-4 분수","2-4-1 분수로 나타내기","E31001"],["초3","2-4 분수","2-4-2 분수만큼은 얼마인지 알아보기 (1)","E31002"],["초3","2-4 분수","2-4-3 분수만큼은 얼마인지 알아보기 (2)","E31003"],["초3","2-4 분수","2-4-4 진분수와 가분수 알아보기","E31004"],["초3","2-4 분수","2-4-5 대분수 알아보기","E31005"],["초3","2-4 분수","2-4-6 분모가 같은 분수의 크기 비교","E31006"],["초3","2-5 들이와 무게","2-5-1 들이 비교하기","E31101"],["초3","2-5 들이와 무게","2-5-2 들이의 단위","E31102"],["초3","2-5 들이와 무게","2-5-3 들이의 합과 차","E31103"],["초3","2-5 들이와 무게","2-5-4 무게 비교하기","E31104"],["초3","2-5 들이와 무게","2-5-5 무게의 단위","E31105"],["초3","2-5 들이와 무게","2-5-6 무게의 합과 차","E31106"],["초3","2-6 그림그래프","2-6-1 그림그래프 알아보기","E31201"],["초3","2-6 그림그래프","2-6-2 그림그래프로 나타내기","E31202"],["초4","1-1 큰 수","1-1-1 1000이 10개인 수 알아보기","E40101"],["초4","1-1 큰 수","1-1-2 다섯 자리 수 알아보기","E40102"],["초4","1-1 큰 수","1-1-3 10000이 몇십 개, 몇백 개, 몇천 개인 수 알아보기","E40103"],["초4","1-1 큰 수","1-1-4 억 알아보기","E40104"],["초4","1-1 큰 수","1-1-5 조 알아보기","E40105"],["초4","1-1 큰 수","1-1-6 수 뛰어서 세기","E40106"],["초4","1-1 큰 수","1-1-7 수의 크기 비교","E40107"],["초4","1-2 각도","1-2-1 각의 크기 비교하기","E40201"],["초4","1-2 각도","1-2-2 각의 크기 재기","E40202"],["초4","1-2 각도","1-2-3 각의 크기에 따라 분류하기","E40203"],["초4","1-2 각도","1-2-4 각의 크기를 어림하고 각도의 합과 차 계산하기","E40204"],["초4","1-2 각도","1-2-5 삼각형의 세 각의 크기의 합","E40205"],["초4","1-2 각도","1-2-6 사각형의 네 각의 크기의 합 알아보기","E40206"],["초4","1-3 곱셈과 나눗셈","1-3-1 (세 자리 수)×(몇십)의 계산","E40301"],["초4","1-3 곱셈과 나눗셈","1-3-2 (세 자리 수)×(두 자리 수)의 계산","E40302"],["초4","1-3 곱셈과 나눗셈","1-3-3 곱셈의 어림셈","E40303"],["초4","1-3 곱셈과 나눗셈","1-3-4 몇십으로 나누기","E40304"],["초4","1-3 곱셈과 나눗셈","1-3-5 몇십몇으로 나누기 (1)","E40305"],["초4","1-3 곱셈과 나눗셈","1-3-6 몇십몇으로 나누기 (2)","E40306"],["초4","1-3 곱셈과 나눗셈","1-3-7 나눗셈의 어림셈","E40307"],["초4","1-4 평면도형의 이동","1-4-1 점의 이동","E40401"],["초4","1-4 평면도형의 이동","1-4-2 평면도형 밀기","E40402"],["초4","1-4 평면도형의 이동","1-4-3 평면도형 뒤집기","E40403"],["초4","1-4 평면도형의 이동","1-4-4 평면도형 돌리기","E40404"],["초4","1-5 막대그래프","1-5-1 막대그래프 알아보기","E40501"],["초4","1-5 막대그래프","1-5-2 막대그래프 그리기","E40502"],["초4","1-5 막대그래프","1-5-3 막대그래프의 활용","E40503"],["초4","1-6 규칙 찾기","1-6-1 수의 배열에서 규칙 찾기","E40601"],["초4","1-6 규칙 찾기","1-6-2 도형의 배열에서 규칙 찾기","E40602"],["초4","1-6 규칙 찾기","1-6-3 계산식에서 규칙 찾기","E40603"],["초4","1-6 규칙 찾기","1-6-4 규칙적인 계산식 찾기","E40604"],["초4","1-6 규칙 찾기","1-6-5 등호(=)를 사용하여 나타내기","E40605"],["초4","2-1 분수의 덧셈과 뺄셈","2-1-1 진분수의 덧셈","E40701"],["초4","2-1 분수의 덧셈과 뺄셈","2-1-2 진분수의 뺄셈","E40702"],["초4","2-1 분수의 덧셈과 뺄셈","2-1-3 대분수의 덧셈","E40703"],["초4","2-1 분수의 덧셈과 뺄셈","2-1-4 대분수의 뺄셈","E40704"],["초4","2-2 삼각형","2-2-1 삼각형을 변의 길이에 따라 분류하기","E40801"],["초4","2-2 삼각형","2-2-2 이등변삼각형의 성질","E40802"],["초4","2-2 삼각형","2-2-3 정삼각형의 성질","E40803"],["초4","2-2 삼각형","2-2-4 삼각형을 각의 크기에 따라 분류하기","E40804"],["초4","2-2 삼각형","2-2-5 삼각형을 두 가지 기준으로 분류하기","E40805"],["초4","2-3 소수의 덧셈과 뺄셈","2-3-1 소수 두 자리 수, 세 자리 수 알아보기","E40901"],["초4","2-3 소수의 덧셈과 뺄셈","2-3-2 소수의 크기 비교하기","E40902"],["초4","2-3 소수의 덧셈과 뺄셈","2-3-3 소수 사이의 관계","E40903"],["초4","2-3 소수의 덧셈과 뺄셈","2-3-4 소수 한 자리 수의 덧셈","E40904"],["초4","2-3 소수의 덧셈과 뺄셈","2-3-5 소수 한 자리 수의 뺄셈","E40905"],["초4","2-3 소수의 덧셈과 뺄셈","2-3-6 소수 두 자리 수의 덧셈","E40906"],["초4","2-3 소수의 덧셈과 뺄셈","2-3-7 소수 두 자리 수의 뺄셈","E40907"],["초4","2-4 사각형","2-4-1 수직과 수선","E41001"],["초4","2-4 사각형","2-4-2 평행과 평행선","E41002"],["초4","2-4 사각형","2-4-3 평행선 사이의 거리","E41003"],["초4","2-4 사각형","2-4-4 사다리꼴","E41004"],["초4","2-4 사각형","2-4-5 평행사변형","E41005"],["초4","2-4 사각형","2-4-6 마름모","E41006"],["초4","2-4 사각형","2-4-7 여러 가지 사각형","E41007"],["초4","2-5 꺾은선그래프","2-5-1 꺾은선그래프 알아보기","E41101"],["초4","2-5 꺾은선그래프","2-5-2 꺾은선그래프 내용 알아보기","E41102"],["초4","2-5 꺾은선그래프","2-5-3 꺾은선그래프 그리기와 활용하기","E41103"],["초4","2-6 다각형","2-6-1 다각형","E41201"],["초4","2-6 다각형","2-6-2 정다각형","E41202"],["초4","2-6 다각형","2-6-3 대각선","E41203"],["초4","2-6 다각형","2-6-4 모양 만들기와 채우기","E41204"],["초5","1-1 자연수의 혼합 계산","1-1-1 덧셈과 뺄셈 / 곱셈과 나눗셈이 섞여 있는 식","E50101"],["초5","1-1 자연수의 혼합 계산","1-1-2 덧셈, 뺄셈, 곱셈(나눗셈)이 섞여 있는 식","E50102"],["초5","1-1 자연수의 혼합 계산","1-1-3 덧셈, 뺄셈, 곱셈, 나눗셈이 섞여 있는 식","E50103"],["초5","1-2 약수와 배수","1-2-1 약수와 배수","E50201"],["초5","1-2 약수와 배수","1-2-2 약수와 배수의 관계","E50202"],["초5","1-2 약수와 배수","1-2-3 공약수와 최대공약수","E50203"],["초5","1-2 약수와 배수","1-2-4 최대공약수 구하는 방법","E50204"],["초5","1-2 약수와 배수","1-2-5 공배수와 최소공배수","E50205"],["초5","1-2 약수와 배수","1-2-6 최소공배수 구하는 방법","E50206"],["초5","1-3 대응 관계","1-3-1 두 양 사이의 대응 관계","E50301"],["초5","1-3 대응 관계","1-3-2 대응 관계를 식으로 나타내기","E50302"],["초5","1-3 대응 관계","1-3-3 생활 속에서 대응 관계를 찾아 식으로 나타내기","E50303"],["초5","1-4 약분과 통분","1-4-1 크기가 같은 분수 알아보기","E50401"],["초5","1-4 약분과 통분","1-4-2 분수를 간단하게 나타내기","E50402"],["초5","1-4 약분과 통분","1-4-3 통분","E50403"],["초5","1-4 약분과 통분","1-4-4 분수의 크기 비교","E50404"],["초5","1-4 약분과 통분","1-4-5 분수와 소수의 크기 비교","E50405"],["초5","1-5 분수의 덧셈과 뺄셈","1-5-1 진분수의 덧셈","E50501"],["초5","1-5 분수의 덧셈과 뺄셈","1-5-2 대분수의 덧셈","E50502"],["초5","1-5 분수의 덧셈과 뺄셈","1-5-3 진분수의 뺄셈","E50503"],["초5","1-5 분수의 덧셈과 뺄셈","1-5-4 대분수의 뺄셈","E50504"],["초5","1-6 다각형의 둘레와 넓이","1-6-1 정다각형과 사각형의 둘레","E50601"],["초5","1-6 다각형의 둘레와 넓이","1-6-2 1cm², 직사각형과 정사각형의 넓이","E50602"],["초5","1-6 다각형의 둘레와 넓이","1-6-3 1cm²보다 더 큰 넓이의 단위","E50603"],["초5","1-6 다각형의 둘레와 넓이","1-6-4 평행사변형과 삼각형의 넓이","E50604"],["초5","1-6 다각형의 둘레와 넓이","1-6-5 마름모와 사다리꼴의 넓이","E50605"],["초5","2-1 수의 범위와 어림하기","2-1-1 이상과 이하 알아보기","E50701"],["초5","2-1 수의 범위와 어림하기","2-1-2 초과와 미만 알아보기","E50702"],["초5","2-1 수의 범위와 어림하기","2-1-3 수의 범위를 알고 문제 해결하기","E50703"],["초5","2-1 수의 범위와 어림하기","2-1-4 올림 알아보기","E50704"],["초5","2-1 수의 범위와 어림하기","2-1-5 버림 알아보기","E50705"],["초5","2-1 수의 범위와 어림하기","2-1-6 반올림 알아보기와 어림의 활용","E50706"],["초5","2-2 분수의 곱셈","2-2-1 (분수)×(자연수)의 계산","E50801"],["초5","2-2 분수의 곱셈","2-2-2 (자연수)×(분수)의 계산","E50802"],["초5","2-2 분수의 곱셈","2-2-3 진분수의 곱셈","E50803"],["초5","2-2 분수의 곱셈","2-2-4 여러 가지 분수의 곱셈","E50804"],["초5","2-3 합동과 대칭","2-3-1 도형의 합동 알아보기","E50901"],["초5","2-3 합동과 대칭","2-3-2 합동인 도형의 성질 알아보기","E50902"],["초5","2-3 합동과 대칭","2-3-3 선대칭도형과 그 성질 알아보기","E50903"],["초5","2-3 합동과 대칭","2-3-4 점대칭도형과 그 성질 알아보기","E50904"],["초5","2-4 소수의 곱셈","2-4-1 (1보다 작은 소수)×(자연수)의 계산","E51001"],["초5","2-4 소수의 곱셈","2-4-2 (1보다 큰 소수)×(자연수)의 계산","E51002"],["초5","2-4 소수의 곱셈","2-4-3 (자연수)×(1보다 작은 소수)의 계산","E51003"],["초5","2-4 소수의 곱셈","2-4-4 (자연수)×(1보다 큰 소수)의 계산","E51004"],["초5","2-4 소수의 곱셈","2-4-5 (1보다 작은 소수)×(1보다 작은 소수)의 계산","E51005"],["초5","2-4 소수의 곱셈","2-4-6 (1보다 큰 소수)×(1보다 큰 소수)의 계산","E51006"],["초5","2-4 소수의 곱셈","2-4-7 곱의 소수점의 위치","E51007"],["초5","2-5 직육면체","2-5-1 직사각형 6개로 둘러싸인 도형","E51101"],["초5","2-5 직육면체","2-5-2 정사각형 6개로 둘러싸인 도형","E51102"],["초5","2-5 직육면체","2-5-3 직육면체의 성질","E51103"],["초5","2-5 직육면체","2-5-4 직육면체의 겨냥도","E51104"],["초5","2-5 직육면체","2-5-5 정육면체의 전개도","E51105"],["초5","2-5 직육면체","2-5-6 직육면체의 전개도","E51106"],["초5","2-6 평균과 가능성","2-6-1 평균 알아보기","E51201"],["초5","2-6 평균과 가능성","2-6-2 평균을 이용하여 문제해결하기","E51202"],["초5","2-6 평균과 가능성","2-6-3 일이 일어날 가능성","E51203"],["초6","1-1 분수의 나눗셈","1-1-1 (자연수)÷(자연수)의 몫을 분수로 나타내기","E60101"],["초6","1-1 분수의 나눗셈","1-1-2 (분수)÷(자연수) 알아보기","E60102"],["초6","1-1 분수의 나눗셈","1-1-3 (대분수)÷(자연수) 알아보기","E60103"],["초6","1-2 각기둥과 각뿔","1-2-1 각기둥 알아보기와 각기둥의 밑면과 옆면","E60201"],["초6","1-2 각기둥과 각뿔","1-2-2 각기둥의 이름과 구성 요소","E60202"],["초6","1-2 각기둥과 각뿔","1-2-3 각기둥의 전개도","E60203"],["초6","1-2 각기둥과 각뿔","1-2-4 각뿔 알아보기와 각뿔의 밑면과 옆면","E60204"],["초6","1-2 각기둥과 각뿔","1-2-5 각뿔의 이름과 구성 요소","E60205"],["초6","1-3 소수의 나눗셈","1-3-1 (소수)÷(자연수) 알아보기","E60301"],["초6","1-3 소수의 나눗셈","1-3-2 몫이 1보다 작은 (소수)÷(자연수) 알아보기","E60302"],["초6","1-3 소수의 나눗셈","1-3-3 소수점 아래 0을 내려 계산하는 (소수)÷(자연수) 알아보기","E60303"],["초6","1-3 소수의 나눗셈","1-3-4 몫의 소수 첫째 자리에 0이 있는 (소수)÷(자연수) 알아보기","E60304"],["초6","1-3 소수의 나눗셈","1-3-5 (자연수)÷(자연수), 어림셈하여 몫의 소수점 위치 확인하기","E60305"],["초6","1-4 비와 비율","1-4-1 두 수 비교하기","E60401"],["초6","1-4 비와 비율","1-4-2 비","E60402"],["초6","1-4 비와 비율","1-4-3 비율","E60403"],["초6","1-4 비와 비율","1-4-4 비율이 사용되는 경우","E60404"],["초6","1-4 비와 비율","1-4-5 백분율","E60405"],["초6","1-4 비와 비율","1-4-6 백분율이 사용되는 경우","E60406"],["초6","1-5 여러 가지 그래프","1-5-1 띠그래프","E60501"],["초6","1-5 여러 가지 그래프","1-5-2 띠그래프로 나타내기","E60502"],["초6","1-5 여러 가지 그래프","1-5-3 원그래프","E60503"],["초6","1-5 여러 가지 그래프","1-5-4 원그래프로 나타내기","E60504"],["초6","1-5 여러 가지 그래프","1-5-5 여러 가지 그래프 비교하기","E60505"],["초6","1-6 직육면체의 겉넓이와 부피","1-6-1 직육면체의 겉넓이 구하는 방법","E60601"],["초6","1-6 직육면체의 겉넓이와 부피","1-6-2 직육면체의 부피 비교와 직육면체의 부피 구하는 방법","E60602"],["초6","1-6 직육면체의 겉넓이와 부피","1-6-3 ㎥ 알아보기","E60603"],["초6","2-1 분수의 나눗셈","2-1-1 분모가 같은 (분수)÷(분수) 알아보기","E60701"],["초6","2-1 분수의 나눗셈","2-1-2 분모가 다른 (분수)÷(분수) 알아보기","E60702"],["초6","2-1 분수의 나눗셈","2-1-3 (자연수)÷(분수) 알아보기","E60703"],["초6","2-1 분수의 나눗셈","2-1-4 (분수)÷(분수)를 (분수)×(분수)로 나타내기","E60704"],["초6","2-1 분수의 나눗셈","2-1-5 (가분수)÷(분수), (대분수)÷(분수) 알아보기","E60705"],["초6","2-2 소수의 나눗셈","2-2-1 자릿수가 같은 (소수)÷(소수) 알아보기","E60801"],["초6","2-2 소수의 나눗셈","2-2-2 자릿수가 다른 (소수)÷(소수) 알아보기","E60802"],["초6","2-2 소수의 나눗셈","2-2-3 (자연수)÷(소수) 알아보기","E60803"],["초6","2-2 소수의 나눗셈","2-2-4 몫을 반올림하여 나타내기","E60804"],["초6","2-2 소수의 나눗셈","2-2-5 나누어 주고 남는 양 알아보기","E60805"],["초6","2-3 공간과 입체","2-3-1 어느 방향에서 보았는지 알아보기","E60901"],["초6","2-3 공간과 입체","2-3-2 쌓은 모양과 쌓기나무의 개수 알아보기 (1)","E60902"],["초6","2-3 공간과 입체","2-3-3 쌓은 모양과 쌓기나무의 개수 알아보기 (2)","E60903"],["초6","2-3 공간과 입체","2-3-4 쌓은 모양과 쌓기나무의 개수 알아보기 (3)","E60904"],["초6","2-3 공간과 입체","2-3-5 쌓은 모양과 쌓기나무의 개수 알아보기 (4)","E60905"],["초6","2-3 공간과 입체","2-3-6 여러 가지 모양 만들기","E60906"],["초6","2-4 비례식과 비례배분","2-4-1 비의 성질 알아보기","E61001"],["초6","2-4 비례식과 비례배분","2-4-2 간단한 자연수의 비로 나타내기","E61002"],["초6","2-4 비례식과 비례배분","2-4-3 비례식 알아보기","E61003"],["초6","2-4 비례식과 비례배분","2-4-4 비례식의 성질 알아보기","E61004"],["초6","2-4 비례식과 비례배분","2-4-5 비례배분","E61005"],["초6","2-5 원의 둘레와 넓이","2-5-1 원주와 원주율 알아보기","E61101"],["초6","2-5 원의 둘레와 넓이","2-5-2 원주와 지름 구하기","E61102"],["초6","2-5 원의 둘레와 넓이","2-5-3 원의 넓이 어림하기","E61103"],["초6","2-5 원의 둘레와 넓이","2-5-4 원의 넓이 구하는 방법 알아보기","E61104"],["초6","2-6 원기둥, 원뿔, 구","2-6-1 원기둥 알아보기","E61201"],["초6","2-6 원기둥, 원뿔, 구","2-6-2 원기둥의 전개도 알아보기","E61202"],["초6","2-6 원기둥, 원뿔, 구","2-6-3 원뿔 알아보기","E61203"],["초6","2-6 원기둥, 원뿔, 구","2-6-4 구 알아보기와 여러 가지 모양 만들기","E61204"],["중1","1. 소인수분해","소수와 거듭제곱","J10101"],["중1","1. 소인수분해","소인수분해","J10102"],["중1","1. 소인수분해","공약수와 최대공약수","J10103"],["중1","1. 소인수분해","공배수와 최소공배수","J10104"],["중1","1. 소인수분해","최대공약수와 최소공배수의 활용","J10105"],["중1","2. 정수와 유리수","정수와 유리수","J10201"],["중1","2. 정수와 유리수","수의 대소관계","J10202"],["중1","2. 정수와 유리수","유리수의 덧셈과 뺄셈","J10203"],["중1","2. 정수와 유리수","유리수의 곱셈","J10204"],["중1","2. 정수와 유리수","유리수의 나눗셈","J10205"],["중1","3. 방정식","문자의 사용과 식의 값","J10301"],["중1","3. 방정식","일차식의 뜻Ⅰ","J10302"],["중1","3. 방정식","일차식의 뜻Ⅱ","J10303"],["중1","3. 방정식","방정식과 그 해","J10304"],["중1","3. 방정식","등식의 성질","J10305"],["중1","3. 방정식","일차방정식의 풀이","J10306"],["중1","3. 방정식","일차방정식의 활용(해의 응용)","J10307"],["중1","3. 방정식","일차방정식의 활용(수)","J10308"],["중1","3. 방정식","일차방정식의 활용(나이, 과부족, 예금)","J10309"],["중1","3. 방정식","일차방정식의 활용(증가와 감소, 원가와 정가)","J10310"],["중1","3. 방정식","일차방정식의 활용(거리, 속력, 시간)","J10311"],["중1","3. 방정식","일차방정식의 활용(도형, 농도, 일)","J10312"],["중1","3. 방정식","일차방정식의 활용(비율, 시계, 규칙)","J10313"],["중1","4. 그래프와 비례","순서쌍과 좌표평면(기본)","J10401"],["중1","4. 그래프와 비례","순서쌍과 좌표평면(응용)","J10402"],["중1","4. 그래프와 비례","그래프의 이해","J10403"],["중1","4. 그래프와 비례","정비례 관계 y=ax의 그래프","J10404"],["중1","4. 그래프와 비례","반비례 관계 y=a/x의 그래프","J10405"],["중1","5. 기본 도형","점, 선, 면","J10501"],["중1","5. 기본 도형","각","J10502"],["중1","5. 기본 도형","두 직선의 위치 관계","J10503"],["중1","5. 기본 도형","공간에서 평면의 위치 관계","J10504"],["중1","5. 기본 도형","평행선","J10505"],["중1","5. 기본 도형","작도","J10506"],["중1","5. 기본 도형","합동","J10507"],["중1","6. 평면도형","다각형","J10601"],["중1","6. 평면도형","삼각형의 내각과 외각","J10602"],["중1","6. 평면도형","다각형의 내각과 외각","J10603"],["중1","6. 평면도형","원과 부채꼴","J10604"],["중1","6. 평면도형","부채꼴의 호의 길이와 넓이","J10605"],["중1","7. 입체도형","다면체","J10701"],["중1","7. 입체도형","정다면체","J10702"],["중1","7. 입체도형","회전체","J10703"],["중1","7. 입체도형","기둥의 겉넓이와 부피","J10704"],["중1","7. 입체도형","뿔의 겉넓이와 부피","J10705"],["중1","7. 입체도형","구의 겉넓이와 부피","J10706"],["중1","8. 통계","대푯값","J10801"],["중1","8. 통계","줄기와 잎 그림","J10802"],["중1","8. 통계","도수분포표","J10803"],["중1","8. 통계","히스토그램","J10804"],["중1","8. 통계","도수분포다각형","J10805"],["중1","8. 통계","상대도수","J10806"],["중2","1. 수와 식","유리수와 소수","J20101"],["중2","1. 수와 식","순환소수","J20102"],["중2","1. 수와 식","순환소수의 분수 표현","J20103"],["중2","1. 수와 식","순환소수를 포함한 식의 계산","J20104"],["중2","1. 수와 식","지수법칙","J20105"],["중2","1. 수와 식","단항식의 곱셈과 나눗셈","J20106"],["중2","1. 수와 식","다항식의 덧셈과 뺄셈","J20107"],["중2","1. 수와 식","다항식의 곱셈과 나눗셈","J20108"],["중2","2. 부등식","부등식","J20201"],["중2","2. 부등식","일차부등식의 풀이","J20202"],["중2","2. 부등식","일차부등식의 응용","J20203"],["중2","2. 부등식","일차부등식의 활용(수, 평균, 정가)","J20204"],["중2","2. 부등식","일차부등식의 활용(개수, 예금액, 유리한 방법)","J20205"],["중2","2. 부등식","일차부등식의 활용(속력, 도형, 기타)","J20206"],["중2","2. 부등식","일차부등식의 활용(농도)","J20207"],["중2","3. 방정식","미지수가 2개인 연립일차방정식","J20301"],["중2","3. 방정식","연립방정식의 풀이","J20302"],["중2","3. 방정식","여러 가지 연립방정식의 풀이","J20303"],["중2","3. 방정식","연립방정식의 풀이의 응용","J20304"],["중2","3. 방정식","해가 특수한 연립방정식","J20305"],["중2","3. 방정식","연립방정식의 활용(수, 평균, 나이)","J20306"],["중2","3. 방정식","연립방정식의 활용(가격, 개수, 증감, 도형)","J20307"],["중2","3. 방정식","연립방정식의 활용(일, 속력)","J20308"],["중2","3. 방정식","연립방정식의 활용(농도, 비율, 합금)","J20309"],["중2","4. 함수","함수와 함숫값","J20401"],["중2","4. 함수","일차함수의 그래프와 절편","J20402"],["중2","4. 함수","일차함수의 그래프와 기울기","J20403"],["중2","4. 함수","일차함수의 그래프의 성질","J20404"],["중2","4. 함수","일차함수의 식 구하기","J20405"],["중2","4. 함수","일차함수의 활용(온도, 길이)","J20406"],["중2","4. 함수","일차함수의 활용(속력, 도형, 기타)","J20407"],["중2","4. 함수","일차함수와 일차방정식","J20408"],["중2","4. 함수","일차함수의 그래프와 연립방정식의 해","J20409"],["중2","5. 도형의 성질","이등변삼각형의 성질","J20501"],["중2","5. 도형의 성질","직각삼각형의 합동","J20502"],["중2","5. 도형의 성질","삼각형의 외심","J20503"],["중2","5. 도형의 성질","삼각형의 내심","J20504"],["중2","5. 도형의 성질","평행사변형의 성질","J20505"],["중2","5. 도형의 성질","평행사변형이 되는 조건","J20506"],["중2","5. 도형의 성질","직사각형, 마름모, 정사각형","J20507"],["중2","5. 도형의 성질","등변사다리꼴, 여러 가지 사각형","J20508"],["중2","5. 도형의 성질","평행선과 삼각형의 넓이","J20509"],["중2","6. 도형의 닮음","닮은 도형","J20601"],["중2","6. 도형의 닮음","삼각형의 닮음 조건","J20602"],["중2","7. 닮음의 활용","삼각형에서 평행선 사이의 선분의 길이의 비","J20701"],["중2","7. 닮음의 활용","삼각형의 각의 이등분선","J20702"],["중2","7. 닮음의 활용","평행선 사이의 선분의 길이의 비","J20703"],["중2","7. 닮음의 활용","삼각형의 두 변의 중점을 연결한 선분","J20704"],["중2","7. 닮음의 활용","삼각형의 무게중심","J20705"],["중2","7. 닮음의 활용","닮은 도형의 넓이의 비와 부피의 비","J20706"],["중2","8. 피타고라스 정리","피타고라스 정리","J20801"],["중2","8. 피타고라스 정리","피타고라스 정리의 활용","J20802"],["중2","9. 확률","경우의 수","J20901"],["중2","9. 확률","여러 가지 경우의 수","J20902"],["중2","9. 확률","확률의 뜻과 성질","J20903"],["중2","9. 확률","확률의 계산","J20904"],["중3","1. 실수와 그 계산","제곱근의 뜻과 성질","J30101"],["중3","1. 실수와 그 계산","무리수와 실수","J30102"],["중3","1. 실수와 그 계산","근호를 포함한 식의 계산","J30103"],["중3","2. 다항식의 곱셈과 인수분해","다항식의 곱셈","J30201"],["중3","2. 다항식의 곱셈과 인수분해","인수분해","J30202"],["중3","2. 다항식의 곱셈과 인수분해","인수분해의 응용","J30203"],["중3","3. 이차방정식","이차방정식의 풀이","J30301"],["중3","3. 이차방정식","이차방정식의 근의 공식과 응용","J30302"],["중3","3. 이차방정식","이차방정식의 활용","J30303"],["중3","4. 이차함수","이차함수와 그래프","J30401"],["중3","4. 이차함수","이차함수 y=ax^2+bx+c의 그래프","J30402"],["중3","4. 이차함수","이차함수의 최댓값과 최솟값","J30403"],["중3","5. 삼각비","삼각비의 뜻","J30501"],["중3","5. 삼각비","삼각비의 값","J30502"],["중3","5. 삼각비","삼각비의 활용","J30503"],["중3","6. 원의 성질","원과 현","J30601"],["중3","6. 원의 성질","원의 접선","J30602"],["중3","6. 원의 성질","원주각","J30603"],["중3","6. 원의 성질","원주각의 활용","J30604"],["중3","7. 통계","대푯값과 산포도","J30701"],["중3","7. 통계","산점도와 상관관계","J30702"],["중3","7. 통계","상자그림","J30703"],["공통수학1","1. 다항식","다항식의 덧셈과 뺄셈","HC10101"],["공통수학1","1. 다항식","다항식의 곱셈","HC10102"],["공통수학1","1. 다항식","곱셈공식","HC10103"],["공통수학1","1. 다항식","곱셈공식의 변형","HC10104"],["공통수학1","1. 다항식","다항식의 나눗셈(1)","HC10105"],["공통수학1","1. 다항식","다항식의 나눗셈(2)","HC10106"],["공통수학1","1. 다항식","항등식","HC10107"],["공통수학1","1. 다항식","다항식의 나눗셈과 항등식","HC10108"],["공통수학1","1. 다항식","나머지와 인수정리(1)","HC10109"],["공통수학1","1. 다항식","나머지와 인수정리(2)","HC10110"],["공통수학1","1. 다항식","인수분해","HC10111"],["공통수학1","1. 다항식","복잡한 식의 인수분해(1)","HC10112"],["공통수학1","1. 다항식","복잡한 식의 인수분해(2)","HC10113"],["공통수학1","2. 방정식과 부등식","복소수","HC10201"],["공통수학1","2. 방정식과 부등식","복소수의 연산","HC10202"],["공통수학1","2. 방정식과 부등식","켤레복소수의 성질","HC10203"],["공통수학1","2. 방정식과 부등식","i의 거듭제곱","HC10204"],["공통수학1","2. 방정식과 부등식","음수의 제곱근","HC10205"],["공통수학1","2. 방정식과 부등식","이차방정식","HC10206"],["공통수학1","2. 방정식과 부등식","절댓값(가우스) 기호를 포함한 방정식","HC10207"],["공통수학1","2. 방정식과 부등식","이차방정식의 판별식","HC10208"],["공통수학1","2. 방정식과 부등식","이차방정식의 근과 계수의 관계","HC10209"],["공통수학1","2. 방정식과 부등식","이차방정식의 식 구하기","HC10210"],["공통수학1","2. 방정식과 부등식","이차방정식과 이차함수의 관계","HC10211"],["공통수학1","2. 방정식과 부등식","이차함수의 최대·최소(1)","HC10212"],["공통수학1","2. 방정식과 부등식","이차함수의 최대·최소(2)","HC10213"],["공통수학1","2. 방정식과 부등식","삼차방정식과 사차방정식(1)","HC10214"],["공통수학1","2. 방정식과 부등식","삼차방정식과 사차방정식(2)","HC10215"],["공통수학1","2. 방정식과 부등식","삼차방정식의 근의 조건","HC10216"],["공통수학1","2. 방정식과 부등식","삼차방정식의 근과 계수의 관계","HC10217"],["공통수학1","2. 방정식과 부등식","허근의 성질 x³=1,x³=-1","HC10218"],["공통수학1","2. 방정식과 부등식","미지수가 2개인 연립이차방정식(1)","HC10219"],["공통수학1","2. 방정식과 부등식","미지수가 2개인 연립이차방정식(2)","HC10220"],["공통수학1","2. 방정식과 부등식","인수분해가 되지 않는 연립이차방정식","HC10221"],["공통수학1","2. 방정식과 부등식","부정방정식","HC10222"],["공통수학1","2. 방정식과 부등식","일차부등식, 연립일차부등식(1)","HC10223"],["공통수학1","2. 방정식과 부등식","연립일차부등식(2)","HC10224"],["공통수학1","2. 방정식과 부등식","절댓값 기호를 포함한 일차부등식","HC10225"],["공통수학1","2. 방정식과 부등식","이차부등식","HC10226"],["공통수학1","2. 방정식과 부등식","절댓값(가우스) 기호를 포함한 이차부등식","HC10227"],["공통수학1","2. 방정식과 부등식","이차부등식의 해의 조건","HC10228"],["공통수학1","2. 방정식과 부등식","제한된 범위에서 항상 성립하는 이차부등식","HC10229"],["공통수학1","2. 방정식과 부등식","연립이차부등식","HC10230"],["공통수학1","2. 방정식과 부등식","이차방정식의 실근의 부호","HC10231"],["공통수학1","2. 방정식과 부등식","이차방정식의 실근의 위치","HC10232"],["공통수학1","3. 경우의 수","경우의 수","HC10301"],["공통수학1","3. 경우의 수","순열","HC10302"],["공통수학1","3. 경우의 수","조합","HC10303"],["공통수학1","3. 경우의 수","조 나누기","HC10304"],["공통수학1","4. 행렬","행렬","HC10401"],["공통수학1","4. 행렬","행렬의 덧셈, 뺄셈과 실수배","HC10402"],["공통수학1","4. 행렬","행렬의 곱셈","HC10403"],["공통수학1","4. 행렬","행렬의 곱셈의 성질","HC10404"],["공통수학2","1. 도형의 방정식","두 점 사이의 거리(1)","HC20101"],["공통수학2","1. 도형의 방정식","두 점 사이의 거리(2)","HC20102"],["공통수학2","1. 도형의 방정식","선분의 내분점","HC20103"],["공통수학2","1. 도형의 방정식","삼각형의 무게중심","HC20104"],["공통수학2","1. 도형의 방정식","직선의 방정식","HC20105"],["공통수학2","1. 도형의 방정식","두 직선의 교점을 지나는 직선의 방정식","HC20106"],["공통수학2","1. 도형의 방정식","두 직선의 위치관계","HC20107"],["공통수학2","1. 도형의 방정식","점과 직선 사이의 거리","HC20108"],["공통수학2","1. 도형의 방정식","증명","HC20109"],["공통수학2","1. 도형의 방정식","원의 방정식","HC20110"],["공통수학2","1. 도형의 방정식","좌표축에 접하는 원의 방정식","HC20111"],["공통수학2","1. 도형의 방정식","자취의 방정식","HC20112"],["공통수학2","1. 도형의 방정식","두 원의 교점을 지나는 도형의 방정식","HC20113"],["공통수학2","1. 도형의 방정식","(교육과정 외) 두 원의 위치 관계","HC20114"],["공통수학2","1. 도형의 방정식","원과 직선의 위치 관계","HC20115"],["공통수학2","1. 도형의 방정식","원의 접선의 방정식(1)","HC20116"],["공통수학2","1. 도형의 방정식","원의 접선의 방정식(2)","HC20117"],["공통수학2","1. 도형의 방정식","평행이동","HC20118"],["공통수학2","1. 도형의 방정식","대칭이동","HC20119"],["공통수학2","1. 도형의 방정식","점과 직선에 대한 대칭이동","HC20120"],["공통수학2","2. 집합과 명제","집합의 뜻과 표현","HC20201"],["공통수학2","2. 집합과 명제","원소의 개수에 따른 집합의 분류","HC20202"],["공통수학2","2. 집합과 명제","집합 사이의 포함관계","HC20203"],["공통수학2","2. 집합과 명제","합집합과 교집합","HC20204"],["공통수학2","2. 집합과 명제","여집합과 차집합","HC20205"],["공통수학2","2. 집합과 명제","집합의 연산 법칙","HC20206"],["공통수학2","2. 집합과 명제","배수의 집합의 연산, 대칭차집합","HC20207"],["공통수학2","2. 집합과 명제","유한집합의 원소의 개수","HC20208"],["공통수학2","2. 집합과 명제","명제와 조건","HC20209"],["공통수학2","2. 집합과 명제","명제 p→q","HC20210"],["공통수학2","2. 집합과 명제","모든'이나 '어떤'을 포함한 명제","HC20211"],["공통수학2","2. 집합과 명제","명제의 역과 대우","HC20212"],["공통수학2","2. 집합과 명제","충분조건과 필요조건","HC20213"],["공통수학2","2. 집합과 명제","명제의 증명","HC20214"],["공통수학2","2. 집합과 명제","절대부등식","HC20215"],["공통수학2","2. 집합과 명제","산술기하평균, 코시-슈바르츠의 부등식","HC20216"],["공통수학2","3. 함수와 그래프","함수","HC20301"],["공통수학2","3. 함수와 그래프","여러 가지 함수(1)","HC20302"],["공통수학2","3. 함수와 그래프","여러 가지 함수(2)","HC20303"],["공통수학2","3. 함수와 그래프","합성함수(1)","HC20304"],["공통수학2","3. 함수와 그래프","합성함수(2)","HC20305"],["공통수학2","3. 함수와 그래프","역함수(1)","HC20306"],["공통수학2","3. 함수와 그래프","역함수(2)","HC20307"],["공통수학2","3. 함수와 그래프","유리식(1)","HC20308"],["공통수학2","3. 함수와 그래프","유리식(2)","HC20309"],["공통수학2","3. 함수와 그래프","유리함수(1)","HC20310"],["공통수학2","3. 함수와 그래프","유리함수(2)","HC20311"],["공통수학2","3. 함수와 그래프","무리식","HC20312"],["공통수학2","3. 함수와 그래프","무리함수(1)","HC20313"],["공통수학2","3. 함수와 그래프","무리함수(2)","HC20314"],["대수","1. 지수함수와 로그함수","거듭제곱근의 뜻","HAL0101"],["대수","1. 지수함수와 로그함수","거듭제곱근의 성질과 계산","HAL0102"],["대수","1. 지수함수와 로그함수","지수의 확장","HAL0103"],["대수","1. 지수함수와 로그함수","지수법칙의 응용","HAL0104"],["대수","1. 지수함수와 로그함수","로그의 뜻","HAL0105"],["대수","1. 지수함수와 로그함수","로그의 성질(1)","HAL0106"],["대수","1. 지수함수와 로그함수","로그의 성질(2)","HAL0107"],["대수","1. 지수함수와 로그함수","상용로그","HAL0108"],["대수","1. 지수함수와 로그함수","지수함수의 뜻과 그래프","HAL0109"],["대수","1. 지수함수와 로그함수","지수함수의 최대최소","HAL0110"],["대수","1. 지수함수와 로그함수","지수방정식","HAL0111"],["대수","1. 지수함수와 로그함수","지수부등식","HAL0112"],["대수","1. 지수함수와 로그함수","로그함수의 뜻과 그래프","HAL0113"],["대수","1. 지수함수와 로그함수","로그함수의 최대최소","HAL0114"],["대수","1. 지수함수와 로그함수","로그방정식","HAL0115"],["대수","1. 지수함수와 로그함수","로그부등식","HAL0116"],["대수","2. 삼각함수","일반각","HAL0201"],["대수","2. 삼각함수","호도법","HAL0202"],["대수","2. 삼각함수","삼각함수의 뜻과 부호","HAL0203"],["대수","2. 삼각함수","삼각함수 사이의 관계","HAL0204"],["대수","2. 삼각함수","삼각함수의 그래프(1)","HAL0205"],["대수","2. 삼각함수","삼각함수의 그래프(2)","HAL0206"],["대수","2. 삼각함수","삼각함수의 그래프(3)","HAL0207"],["대수","2. 삼각함수","일반각에 대한 성질","HAL0208"],["대수","2. 삼각함수","삼각함수의 최대최소","HAL0209"],["대수","2. 삼각함수","삼각방정식","HAL0210"],["대수","2. 삼각함수","삼각부등식","HAL0211"],["대수","2. 삼각함수","사인법칙과 코사인법칙","HAL0212"],["대수","2. 삼각함수","삼각형과 사각형의 넓이","HAL0213"],["대수","3. 수열","등차수열","HAL0301"],["대수","3. 수열","등차수열의 합","HAL0302"],["대수","3. 수열","등비수열","HAL0303"],["대수","3. 수열","등비수열의 합","HAL0304"],["대수","3. 수열","시그마의 뜻과 성질","HAL0305"],["대수","3. 수열","자연수의 거듭제곱의 합","HAL0306"],["대수","3. 수열","여러 가지 수열의 합","HAL0307"],["대수","3. 수열","수열의 귀납적 정의","HAL0308"],["대수","3. 수열","수학적 귀납법","HAL0309"],["미적분1","1. 함수의 극한과 연속","함수의 극한","HM10101"],["미적분1","1. 함수의 극한과 연속","함수의 좌극한과 우극한","HM10102"],["미적분1","1. 함수의 극한과 연속","함수의 극한값의 계산","HM10103"],["미적분1","1. 함수의 극한과 연속","함수의 극한의 활용","HM10104"],["미적분1","1. 함수의 극한과 연속","함수의 연속","HM10105"],["미적분1","1. 함수의 극한과 연속","연속함수의 성질","HM10106"],["미적분1","2. 미분","미분계수","HM10201"],["미적분1","2. 미분","도함수와 미분법(1)","HM10202"],["미적분1","2. 미분","도함수와 미분법(2)","HM10203"],["미적분1","2. 미분","접선의 방정식","HM10204"],["미적분1","2. 미분","롤의 정리와 평균값 정리","HM10205"],["미적분1","2. 미분","함수의 증가와 감소","HM10206"],["미적분1","2. 미분","함수의 극대와 극소","HM10207"],["미적분1","2. 미분","함수의 그래프","HM10208"],["미적분1","2. 미분","도함수의 방정식에서의 활용","HM10209"],["미적분1","2. 미분","도함수의 부등식에서의 활용","HM10210"],["미적분1","2. 미분","속도와 가속도","HM10211"],["미적분1","2. 미분","시각에 대한 변화율","HM10212"],["미적분1","3. 적분","부정적분의 뜻","HM10301"],["미적분1","3. 적분","부정적분의 계산","HM10302"],["미적분1","3. 적분","정적분의 뜻","HM10303"],["미적분1","3. 적분","정적분의 계산과 성질","HM10304"],["미적분1","3. 적분","정적분의 여러 계산","HM10305"],["미적분1","3. 적분","정적분으로 정의된 함수","HM10306"],["미적분1","3. 적분","정적분의 활용_넓이(1)","HM10307"],["미적분1","3. 적분","정적분의 활용_넓이(2)","HM10308"],["미적분1","3. 적분","정적분의 활용_넓이(3)","HM10309"],["미적분1","3. 적분","정적분의 활용_속도와 거리","HM10310"],["확률과 통계","1. 경우의 수","중복순열","HPS0101"],["확률과 통계","1. 경우의 수","같은 것이 있는 순열","HPS0102"],["확률과 통계","1. 경우의 수","중복조합","HPS0103"],["확률과 통계","1. 경우의 수","이항정리","HPS0104"],["확률과 통계","1. 경우의 수","이항계수의 성질","HPS0105"],["확률과 통계","2. 확률","시행과 사건","HPS0201"],["확률과 통계","2. 확률","확률의 뜻","HPS0202"],["확률과 통계","2. 확률","확률의 덧셈정리와 여사건의 확률","HPS0203"],["확률과 통계","2. 확률","조건부확률","HPS0204"],["확률과 통계","2. 확률","확률의 곱셈정리","HPS0205"],["확률과 통계","2. 확률","사건의 독립과 종속","HPS0206"],["확률과 통계","2. 확률","독립시행의 확률","HPS0207"],["확률과 통계","3. 통계","확률변수와 확률분포","HPS0301"],["확률과 통계","3. 통계","이산확률변수","HPS0302"],["확률과 통계","3. 통계","연속확률변수","HPS0303"],["확률과 통계","3. 통계","이항분포","HPS0304"],["확률과 통계","3. 통계","정규분포","HPS0305"],["확률과 통계","3. 통계","모평균과 표본평균","HPS0306"],["확률과 통계","3. 통계","모평균의 추정","HPS0307"],["확률과 통계","3. 통계","모비율의 추정","HPS0308"],["기하","1. 이차곡선","포물선","HGE0101"],["기하","1. 이차곡선","타원","HGE0102"],["기하","1. 이차곡선","쌍곡선","HGE0103"],["기하","1. 이차곡선","이차곡선 종합","HGE0104"],["기하","1. 이차곡선","포물선의 접선의 방정식","HGE0105"],["기하","1. 이차곡선","타원의 접선의 방정식","HGE0106"],["기하","1. 이차곡선","쌍곡선의 접선의 방정식","HGE0107"],["기하","2. 공간도형과 공간좌표","공간도형-위치관계(1)","HGE0201"],["기하","2. 공간도형과 공간좌표","공간도형-위치관계(2)","HGE0202"],["기하","2. 공간도형과 공간좌표","삼수선 정리","HGE0203"],["기하","2. 공간도형과 공간좌표","정사영","HGE0204"],["기하","2. 공간도형과 공간좌표","점의 좌표","HGE0205"],["기하","2. 공간도형과 공간좌표","두 점 사이의 거리","HGE0206"],["기하","2. 공간도형과 공간좌표","선분의 내분점","HGE0207"],["기하","2. 공간도형과 공간좌표","구의 방정식","HGE0208"],["기하","3. 벡터","벡터","HGE0301"],["기하","3. 벡터","공간벡터","HGE0302"],["기하","3. 벡터","벡터의 덧셈과 뺄셈","HGE0303"],["기하","3. 벡터","벡터의 실수배","HGE0304"],["기하","3. 벡터","공간벡터의 실수배","HGE0305"],["기하","3. 벡터","평면벡터의 성분","HGE0306"],["기하","3. 벡터","공간벡터의 성분","HGE0307"],["기하","3. 벡터","평면벡터의 내적","HGE0308"],["기하","3. 벡터","공간벡터의 내적","HGE0309"],["기하","3. 벡터","평면의 방정식","HGE0310"],["기하","3. 벡터","점과 평면 사이의 거리","HGE0311"],["기하","3. 벡터","벡터를 이용한 구의 방정식","HGE0312"],["미적분2","1. 수열의 극한","수열의 극한","HM20101"],["미적분2","1. 수열의 극한","등비수열의 극한","HM20102"],["미적분2","1. 수열의 극한","급수의 뜻과 계산","HM20103"],["미적분2","1. 수열의 극한","등비급수","HM20104"],["미적분2","2. 미분법","지수·로그함수의 극한과 무리수 e","HM20201"],["미적분2","2. 미분법","지수·로그함수의 주요극한과 미분","HM20202"],["미적분2","2. 미분법","삼각함수의 덧셈정리","HM20203"],["미적분2","2. 미분법","삼각함수의 극한과 미분","HM20204"],["미적분2","2. 미분법","몫의 미분법","HM20205"],["미적분2","2. 미분법","합성함수의 미분법","HM20206"],["미적분2","2. 미분법","여러 가지 미분법","HM20207"],["미적분2","2. 미분법","로그미분법과 이계도함수","HM20208"],["미적분2","2. 미분법","접선의 방정식","HM20209"],["미적분2","2. 미분법","함수의 극대와 극소","HM20210"],["미적분2","2. 미분법","곡선의 오목과 볼록, 함수의 그래프","HM20211"],["미적분2","2. 미분법","함수의 최대와 최소","HM20212"],["미적분2","2. 미분법","방정식과 부등식에의 활용","HM20213"],["미적분2","2. 미분법","속도와 가속도","HM20214"],["미적분2","3. 적분법","부정적분","HM20301"],["미적분2","3. 적분법","치환적분법","HM20302"],["미적분2","3. 적분법","부분적분법","HM20303"],["미적분2","3. 적분법","정적분의 계산","HM20304"],["미적분2","3. 적분법","치환/부분적분법을 이용한 정적분","HM20305"],["미적분2","3. 적분법","정적분으로 정의된 함수","HM20306"],["미적분2","3. 적분법","정적분과 급수의 합","HM20307"],["미적분2","3. 적분법","정적분과 넓이","HM20308"],["미적분2","3. 적분법","여러 가지 도형의 넓이","HM20309"],["미적분2","3. 적분법","입체도형의 부피","HM20310"],["미적분2","3. 적분법","속도와 거리","HM20311"]]</script>
+<script>
+(() => {
+  const $ = (id) => document.getElementById(id);
+  const RAW = JSON.parse($("units-data").textContent);
+  const U = RAW.map((r, i) => ({ i, grade: r[0], chapter: r[1], section: r[2], code: r[3] }));
+  const GRADES = [];
+  const BY = {};
+  for (const u of U) {
+    if (!BY[u.grade]) { BY[u.grade] = []; GRADES.push(u.grade); }
+    BY[u.grade].push(u);
+  }
+  const esc = (s) => String(s).replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
+  const mmss = (s) => `${Math.floor(s / 60)}:${String(Math.round(s) % 60).padStart(2, "0")}`;
+  const find = (g, s) => {
+    const u = (BY[g] || []).find((x) => x.section === s);
+    if (!u) throw new Error(`차시 없음: ${g} ${s}`);
+    return u.i;
+  };
+  const store = {
+    get(k) { try { return localStorage.getItem(k); } catch { return null; } },
+    set(k, v) { try { localStorage.setItem(k, v); } catch { /* 저장 못 해도 화면은 그대로 */ } },
+  };
+
+  /* ── 가정한 강의 7편 — 영상 속 장면의 수식은 실제로 맞는 값 ─── */
+  const u11 = find("중1", "소수와 거듭제곱");
+  const u12 = find("중1", "소인수분해");
+  const u13 = find("중1", "공약수와 최대공약수");
+  const u14 = find("중1", "공배수와 최소공배수");
+  const L = [
+    { id: "l1", u: u11, title: "소수와 합성수", sec: 139, st: "pub", url: 1, rev: "9월 8일", pub: "9월 8일", fr: ["2, 3, 5, 7, 11, 13, …", "약수가 2개 → 소수"] },
+    { id: "l2", u: u11, title: "거듭제곱", sec: 106, st: "pub", url: 1, rev: "9월 8일", pub: "9월 8일", fr: ["2 × 2 × 2 = 2<sup>3</sup>", "3 × 3 × 5 × 5 = 3<sup>2</sup> × 5<sup>2</sup>"] },
+    { id: "l3", u: u12, title: "소인수분해", sec: 135, st: "pub", url: 1, rev: "9월 10일", pub: "9월 10일", fr: ["60 = 2<sup>2</sup> × 3 × 5", "소인수: 2, 3, 5"] },
+    { id: "l4", u: u12, title: "약수를 빠짐없이 세는 법", sec: 127, st: "pub", url: 1, rev: "9월 10일", pub: "9월 10일", fr: ["72 = 2<sup>3</sup> × 3<sup>2</sup>", "약수의 개수 (3 + 1)(2 + 1) = 12"] },
+    { id: "l5", u: u13, title: "공약수와 최대공약수, 그리고 서로소", sec: 122, st: "pub", url: 1, rev: "9월 12일", pub: "9월 12일", fr: ["12의 약수 1, 2, 3, 4, 6, 12", "18의 약수 1, 2, 3, 6, 9, 18", "공약수 1, 2, 3, 6"] },
+    { id: "l6", u: u13, title: "최대공약수 구하기", sec: 104, st: "draft", url: 1, rev: null, fr: ["12 = 2<sup>2</sup> × 3", "18 = 2 × 3<sup>2</sup>", "최대공약수 2 × 3 = 6"] },
+    { id: "l7", u: u14, title: "공배수와 최소공배수", sec: 106, st: "draft", url: 0, rev: null, fr: ["4의 배수 4, 8, 12, 16, …", "6의 배수 6, 12, 18, …", "최소공배수 12"] },
+  ];
+  const LID = Object.fromEntries(L.map((l) => [l.id, l]));
+  const WATCH = { l1: 100, l2: 100, l3: 100, l4: 64, l5: 0 };
+  const DISC = "선생님이 검수한 AI 보충 강의입니다.";
+
+  /* ── 예시 반 12개 — 초3 반은 가장 긴 차시 이름을 물린다 ─── */
+  const longAt = Math.max(0, BY["초3"].findIndex((u) => u.section.includes("받아올림이 두 번, 세 번")));
+  const C = [
+    { id: "c1", name: "초3 A반", g: "초3", n: 14, at: longAt, day: "9월 15일" },
+    { id: "c2", name: "초6 A반", g: "초6", n: 9, at: 18, day: "9월 15일" },
+    { id: "c3", name: "중1 A반", g: "중1", n: 12, at: 2, day: "9월 15일", seen: "7/12" },
+    { id: "c4", name: "중1 B반", g: "중1", n: 10, at: 1, day: "9월 12일", seen: "6/10" },
+    { id: "c5", name: "중2 A반", g: "중2", n: 13, at: 6, day: "9월 15일" },
+    { id: "c6", name: "중2 B반", g: "중2", n: 8, at: 9, day: "9월 13일" },
+    { id: "c7", name: "중2 C반", g: "중2", n: 11, at: 25, day: "9월 12일" },
+    { id: "c8", name: "중3 A반", g: "중3", n: 6, at: 4, day: "9월 15일" },
+    { id: "c9", name: "공통수학1 A반", g: "공통수학1", n: 12, at: 10, day: "9월 15일" },
+    { id: "c10", name: "공통수학1 B반", g: "공통수학1", n: 7, at: 22, day: "9월 13일" },
+    { id: "c11", name: "대수 A반", g: "대수", n: 5, at: 6, day: "9월 12일" },
+    { id: "c12", name: "미적분1 A반", g: "미적분1", n: 4, at: 3, day: "9월 15일" },
+  ];
+  for (const c of C) {
+    const list = BY[c.g];
+    c.cur = list[c.at].i;
+    c.next = list[Math.min(c.at + 1, list.length - 1)].i;
+  }
+  const lecOf = (ui) => L.filter((l) => l.u === ui);
+  const pubOf = (ui) => lecOf(ui).filter((l) => l.st === "pub");
+  const stat = (ui) => {
+    const ls = lecOf(ui);
+    const p = ls.filter((l) => l.st === "pub").length;
+    const d = ls.filter((l) => l.st === "draft").length;
+    return { ls, p, d, key: p ? "pub" : d ? "draft" : "none" };
+  };
+  const HIST = [
+    { day: "9월 15일 (월)", ui: u13, today: true },
+    { day: "9월 12일 (금)", ui: u12 },
+    { day: "9월 10일 (수)", ui: u11 },
+  ];
+  const S = { cls: "c3", lec: {}, play: "l4" };
+
+  /* ── 부품 ─────────────────────────────────────────────── */
+  const MENUS = ["오늘의 작업", "문제은행", "자료 제작", "시험지 · 내보내기", "내 시험지", "수업 · 학생 관리", "오늘의 개념"];
+  const sidebar = (active) => `<div class="app-side"><div class="brand">오늘의수학<small>TODAY'S MATH</small></div><span class="new-btn">+ 새 시험지 만들기</span><p class="nav-cap">작업실</p><div class="nav">${MENUS.map((m) => `<span class="${m === active ? "on" : ""}">${m}</span>`).join("")}</div></div>`;
+  const frame = (l, mini) => `<div class="frame${mini ? " mini" : ""}" aria-hidden="true"><div class="fr-in"><p class="fr-t">${esc(l.title)}</p>${mini ? "" : l.fr.map((x) => `<p class="fr-l">${x}</p>`).join("")}</div></div>`;
+  const vsLabel = (s) => (s.p && s.d ? `게시 ${s.p} · 초안 ${s.d}` : s.p ? `게시 ${s.p}편` : s.d ? `초안 ${s.d}편` : "영상 없음");
+  const vsTag = (key, label) => `<span class="vs k-${key}"><span class="vs-g" aria-hidden="true"><i></i><i></i><i></i></span><span class="vs-t">${label}</span></span>`;
+  const vs = (ui) => { const s = stat(ui); return vsTag(s.key, vsLabel(s)); };
+  const seen = (v) => {
+    const [a, b] = v.split("/").map(Number);
+    return `<span class="seen"><span class="cells" aria-hidden="true">${Array.from({ length: b }, (_, i) => `<i class="${i < a ? "on" : ""}"></i>`).join("")}</span><span class="seen-t">${a}/${b}명</span></span>`;
+  };
+
+  function side() {
+    const c = C.find((x) => x.id === S.cls);
+    const ui = c.cur;
+    const u = U[ui];
+    const ls = lecOf(ui);
+    let h = `<p class="side-k">${c.name} · ${c.day} 진도</p><div><h4>${esc(u.section)}</h4><p class="side-m">${esc(u.grade)} › ${esc(u.chapter)} · <span class="mono">${u.code}</span></p></div>`;
+    if (!ls.length) {
+      return `${h}<div class="side-empty"><b>이 차시에는 강의가 없습니다.</b><span>제작 도구가 만든 meta.json 을 붙이면 초안으로 들어옵니다. 지금은 새 강의를 만들지 않습니다(D-123 ⑹).</span></div><span class="btn block">meta.json 붙여넣어 등록</span>`;
+    }
+    const sel = ls.find((l) => l.id === S.lec[ui]) || ls.find((l) => l.st === "draft") || ls[0];
+    h += `<ul class="lecs">${ls.map((l) => `<li class="${l === sel ? "on" : ""}">${vsTag(l.st, l.st === "pub" ? "게시" : "초안")}<button type="button" class="link" data-act="lec" data-u="${ui}" data-l="${l.id}">${esc(l.title)}</button><span class="sub">${mmss(l.sec)}</span></li>`).join("")}</ul>`;
+    h += frame(sel);
+    const checks = [
+      ["ok", `제목 · 길이 ${mmss(sel.sec)}`],
+      sel.url ? ["ok", "유튜브 주소"] : ["bad", "유튜브 주소 없음 — 넣어야 게시할 수 있습니다"],
+      ["ok", `AI 고지 «${DISC}»`],
+      sel.rev ? ["ok", `끝까지 봄 — ${sel.rev}`] : ["warn", "끝까지 보기 — 권장, 아직 안 봄"],
+    ];
+    h += `<ul class="checks">${checks.map(([k, t]) => `<li class="${k}"><span>${k === "ok" ? "✓" : k === "bad" ? "✗" : "!"}</span><span>${t}</span></li>`).join("")}</ul>`;
+    if (sel.st === "pub") {
+      const cs = C.find((x) => x.cur === sel.u && x.seen);
+      h += `<div class="acts"><span class="btn">게시 내리기</span><span class="sub">${sel.pub} 게시${cs ? ` · 끝까지 본 학생 ${cs.seen}명` : ""}</span></div>`;
+    } else if (sel.url) {
+      h += `<div class="acts"><span class="btn">끝까지 봤다</span><span class="btn primary">게시</span></div><p class="side-note">끝까지 보지 않아도 게시할 수 있습니다 — 권장입니다.</p>`;
+    } else {
+      h += `<div class="acts"><span class="btn primary">주소 넣기</span><span class="btn off" aria-disabled="true">게시</span></div><p class="side-note">올린 영상의 주소를 넣으면 게시할 수 있습니다.</p>`;
+    }
+    return `${h}<p class="side-note">«AI 보충 강의» 고지는 이 화면에만 보이고 학생 화면에는 없습니다.</p>`;
+  }
+
+  function admin() {
+    const set = new Set();
+    C.forEach((c) => { set.add(c.cur); set.add(c.next); });
+    const arr = [...set];
+    const p = arr.filter((i) => stat(i).p).length;
+    const d = arr.filter((i) => !stat(i).p && stat(i).d).length;
+    const n = arr.length - p - d;
+    const sum = `<section class="sum"><div class="sum-lead"><span class="sum-k">이번 주 닿는 차시</span><b class="sum-n">${arr.length}</b><span class="sum-u">개 · 반 ${C.length}개</span></div><ul class="sum-parts"><li class="p-pub"><b>${p}</b><span>게시</span></li><li class="p-draft"><b>${d}</b><span>초안만</span></li><li class="p-none"><b>${n}</b><span>영상 없음</span></li></ul><div class="sum-bar" aria-hidden="true"><i class="p-pub" style="flex:${p}"></i><i class="p-draft" style="flex:${d}"></i><i class="p-none" style="flex:${n}"></i></div></section>`;
+    const rows = C.map((c) => `<tr class="${c.id === S.cls ? "on" : ""}"><td><button type="button" class="link cls" data-act="cls" data-c="${c.id}">${c.name}</button><span class="sub">${c.n}명</span></td><td><span class="sub">${c.day}</span><span class="unit">${esc(U[c.cur].section)}</span></td><td>${vs(c.cur)}</td><td><span class="unit">${esc(U[c.next].section)}</span></td><td>${vs(c.next)}</td><td>${c.seen ? seen(c.seen) : `<span class="sub">—</span>`}</td></tr>`).join("");
+    return `<div class="app">${sidebar("오늘의 개념")}<div class="app-main"><div class="app-top"><span class="search">문제 · 시험지 찾기</span><span>원장님 계정 · 로그아웃</span></div><div class="app-body"><div class="pg-head"><div><h3>오늘의 개념</h3><p>9월 15일 (월) · 이번 주 진도에 닿는 차시와 그 강의</p></div><div class="acts"><span class="btn quiet">전체 차시 735</span><span class="btn primary">meta.json 으로 등록</span></div></div>${sum}<div class="split"><div class="tcard"><table class="bt"><thead><tr><th>반</th><th>최근 진도</th><th>강의</th><th>다음 차시</th><th>강의</th><th>끝까지 본 학생</th></tr></thead><tbody>${rows}</tbody></table></div><aside class="side">${side()}</aside></div></div></div></div>`;
+  }
+
+  function issue() {
+    return `<div class="iss"><p class="iss-ctx">수업 · 학생 관리 › 중1 A반 › <b>김도윤</b> — 기존 학생 화면 안에 새로 붙는 칸</p><div class="iss-grid"><section class="iss-card"><p class="iss-k">발급 전</p><h5>오늘의 개념 로그인</h5><p class="sub">계정 없음 — 학생은 이 계정으로 들어와 영상만 봅니다.</p><span class="fld"><span>아이디</span><span class="inp">m1a-01</span></span><div class="acts"><span class="btn primary">계정 만들기</span></div></section><section class="iss-card"><p class="iss-k">만든 직후</p><h5>오늘의 개념 로그인</h5><dl class="kv"><dt>아이디</dt><dd class="mono">m1a-01</dd><dt>발급</dt><dd>9월 15일 · 원장님</dd><dt>마지막 로그인</dt><dd>없음</dd></dl><div class="once"><p class="once-k">초기 비밀번호 — 지금 한 번만 보입니다</p><b class="once-v mono">hK4p-Qm7s</b><p class="once-n">저장하지 않아 다시 볼 수 없습니다. 학생에게 전하면 첫 로그인에서 새 비밀번호로 바꿉니다.</p></div><div class="acts"><span class="btn">비밀번호 다시 발급</span><span class="btn quiet">계정 끄기</span></div></section></div></div>`;
+  }
+
+  const who = "김도윤 · 중1 A반";
+  const sTop = () => `<div class="s-top"><b>오늘의수학</b><span>${who} · 나가기</span></div>`;
+  const stMark = (id) => {
+    const p = WATCH[id] ?? 0;
+    return p >= 100 ? `<span class="s-st done">끝까지 봄</span>` : p > 0 ? `<span class="s-st mid">${p}% 봄</span>` : `<span class="s-st new">새로</span>`;
+  };
+  const sLogin = () => `<div class="s-scr"><div class="s-login"><div class="s-brand"><b>오늘의수학</b><span>오늘의 개념 · 학생</span></div><div class="s-form"><span class="fld"><span>아이디</span><span class="inp">m1a-01</span></span><span class="fld"><span>비밀번호</span><span class="inp">••••••••</span></span><span class="btn primary block">들어가기</span></div><p class="s-help">처음이면 선생님께 받은 비밀번호로 들어온 뒤 새 비밀번호로 바꿉니다.</p><p class="s-alt">원장님 로그인 ›</p></div></div>`;
+  const sPw = () => `<div class="s-scr"><div class="s-login"><div class="s-brand"><b>오늘의수학</b><span>오늘의 개념 · 학생</span></div><p class="s-kick">처음 들어왔습니다</p><p class="s-h">새 비밀번호를 정하세요</p><p class="s-help">선생님께 받은 비밀번호는 이번 한 번만 씁니다.</p><div class="s-form"><span class="fld"><span>새 비밀번호</span><span class="inp">••••••••••</span></span><span class="fld"><span>한 번 더</span><span class="inp">••••••••••</span></span><ul class="s-rules"><li>8자 이상</li><li>영문과 숫자</li><li>두 칸이 같음</li></ul><span class="btn primary block">바꾸고 들어가기</span></div></div></div>`;
+  function sList() {
+    const item = (l) => `<button type="button" class="s-item${S.play === l.id ? " on" : ""}" data-act="play" data-l="${l.id}">${frame(l, true)}<span><b class="s-it">${esc(l.title)}</b><span class="s-meta">${mmss(l.sec)} · ${stMark(l.id)}</span></span></button>`;
+    const today = `<section class="s-today"><p class="s-date">9월 15일 (월) <span class="s-tag">오늘</span></p><p class="s-unit">${esc(U[u13].section)}</p>${pubOf(u13).map(item).join("")}</section>`;
+    const past = HIST.slice(1).map((h) => `<section class="s-past"><p class="s-date">${h.day}</p><p class="s-unit">${esc(U[h.ui].section)}</p>${pubOf(h.ui).map(item).join("")}</section>`).join("");
+    return `<div class="s-scr">${sTop()}<div class="s-body"><p class="s-h">오늘의 개념</p>${today}${past}</div></div>`;
+  }
+  function sPlay() {
+    const l = LID[S.play];
+    const p = WATCH[l.id] ?? 0;
+    const max = Math.round((l.sec * p) / 100);
+    const t = p >= 100 ? 0 : Math.max(0, max - 29);
+    const pct = (x) => Math.round((x / l.sec) * 100);
+    const note = p >= 100 ? "끝까지 본 영상입니다 — 어느 곳이든 다시 볼 수 있습니다." : p > 0 ? `앞으로 감기는 본 곳(${mmss(max)})까지만 됩니다. 뒤로 감기와 배속은 됩니다.` : "처음부터 봅니다. 앞으로 감기는 본 곳까지만 됩니다.";
+    const order = [...pubOf(u11), ...pubOf(u12), ...pubOf(u13)];
+    const nx = order[order.indexOf(l) + 1];
+    return `<div class="s-scr">${sTop()}<div class="s-body"><span class="s-back">‹ 목록</span><div class="pl">${frame(l)}<div class="pl-bar"><span class="pl-btn">재생</span><span class="pl-trk"><i style="width:${pct(t)}%"></i><em style="left:${pct(max)}%" title="본 곳"></em></span><span>${mmss(t)} / ${mmss(l.sec)}</span><span class="pl-rate">1.25×</span></div></div><div><p class="s-unit" style="margin:0">${esc(l.title)}</p><span class="s-meta">${esc(U[l.u].section)} · ${mmss(l.sec)} · ${stMark(l.id)}</span></div><p class="s-note">${note}</p>${nx ? `<div class="s-next"><span>다음 영상</span><b>${esc(nx.title)}</b></div>` : ""}</div></div>`;
+  }
+
+  /* ── 다섯 안 ──────────────────────────────────────────── */
+  const HIFI = [
+    { k: "1", name: "작업실 그대로", p: "지금 작업실(남색 옆 메뉴 · 코발트 버튼 · 흰 카드 · 둥근 알약)을 그대로 잇습니다. 새 메뉴가 원래 있던 것처럼 보이고, 학생 화면도 같은 집에서 나온 모양입니다. 오늘 볼 강의는 남색 판에 올립니다.", good: "튀지 않게 — 다른 메뉴와 한 벌입니다.", weak: "학생에게는 조금 사무적입니다. «오늘의 개념»만의 얼굴은 약합니다." },
+    { k: "2", name: "계기판", p: "05 에 확정한 «계기판» 문법입니다 — 색이 뜻을 말합니다(초록 = 끝난 단계, 파랑 = 지금 할 일, 빈 칸 = 아직). 강의마다 «등록 → 검수 → 게시» 세 칸이 차오르고, 끝까지 본 학생도 한 칸씩 셉니다. 흑백으로 복사해도 순서가 남습니다.", good: "«어디까지 왔나»가 숫자보다 길이로 먼저 읽힙니다.", weak: "지금 작업실(코발트 · 둥근 카드)과 결이 다릅니다. 학생 화면은 가장 담백합니다." },
+    { k: "3", name: "지면", p: "시험지 지면(D-119)과 한 벌입니다 — 명조 제목, 금색 톤 머리띠, 가는 먹선. 날짜 머리띠가 시험지 머리띠를 닮아 «영상과 시험지가 같은 곳에서 나왔다»가 보입니다.", good: "영상을 그날 시험지의 짝으로 보이게 할 때 — 가장 믿음직합니다.", weak: "휴대폰에서 명조는 작은 글씨가 흐려서 제목에만 씁니다. 작업실 안에서는 이 메뉴만 결이 다릅니다." },
+    { k: "4", name: "판서", p: "강의 영상의 «종이 판서»와 한 벌입니다 — 모눈종이 바탕, 파란 펜으로 게시, 빨간 펜으로 «끝까지 봄», 형광펜으로 지금 볼 차시. 손글씨는 짧은 표시에만 씁니다.", good: "학생이 공책을 펴는 느낌 — 영상과 화면이 이어집니다.", weak: "손글씨가 늘면 장난스러워집니다. 원장님 표에는 펜 표시 몇 개만 옮겼습니다." },
+    { k: "5", name: "색면", p: "작업실 첫 화면(랜딩)의 브랜드 색 — 코발트 · 남색 · 버터 · 민트 · 따뜻한 종이. 오늘 볼 것은 버터 색면, 끝까지 본 것은 민트. 모서리가 둥글고 글자가 큽니다.", good: "학생 화면을 가장 친근하게 — 초등부터 고등까지 두루 맞습니다.", weak: "원장님 표에서 색면이 많으면 산만합니다. 색이 단계를 말하는 05 §2.2 와는 다른 결입니다." },
+  ];
+  $("tabs").innerHTML = HIFI.map((h, i) => `<button class="tab" role="tab" id="t-${h.k}" aria-controls="p-${h.k}" aria-selected="${i === 0}" type="button"><span class="k">${h.k}</span>${h.name}</button>`).join("") + `<button class="tab" role="tab" id="t-Q" aria-controls="p-Q" aria-selected="false" type="button"><span class="k">?</span>세부 질문</button>`;
+  $("panels").innerHTML = HIFI.map((h, i) => `<section class="panel th th${h.k}" id="p-${h.k}" role="tabpanel" aria-labelledby="t-${h.k}"${i === 0 ? "" : " hidden"}>
+    <div class="thesis"><div><h2>${h.k} · ${h.name}</h2><p>${h.p}</p></div><dl class="fit"><dt>잘 맞는 때</dt><dd>${h.good}</dd><dt>약한 곳</dt><dd>${h.weak}</dd></dl></div>
+    <figure class="fig"><div class="scroll-x" id="a-${h.k}"></div><figcaption><b>원장님 «오늘의 개념»</b><span>반 이름을 누르면 오른쪽 차시가 바뀝니다 — 중1 A반 · 중1 B반에 강의가 있습니다</span></figcaption></figure>
+    <div class="phones">
+      <figure class="fig"><div class="phone"><div class="scr" id="sl-${h.k}"></div></div><figcaption><b>학생 로그인</b><span>아이디 + 비밀번호</span></figcaption></figure>
+      <figure class="fig"><div class="phone"><div class="scr" id="sp-${h.k}"></div></div><figcaption><b>첫 로그인</b><span>비밀번호 바꾸기</span></figcaption></figure>
+      <figure class="fig"><div class="phone"><div class="scr" id="ls-${h.k}"></div></div><figcaption><b>목록</b><span>강의를 누르면 옆이 바뀝니다</span></figcaption></figure>
+      <figure class="fig"><div class="phone"><div class="scr" id="pl-${h.k}"></div></div><figcaption><b>재생</b><span>검은 눈금 = 본 곳</span></figcaption></figure>
+    </div>
+    <figure class="fig"><div class="scroll-x iss-host" id="is-${h.k}"></div><figcaption><b>원장님 · 학생 계정 발급</b><span>«수업 · 학생 관리 › 학생» 안의 새 칸 — 한 명씩(D-124 ⑷)</span></figcaption></figure>
+  </section>`).join("");
+
+  function renderAdmin() { const html = admin(); for (const h of HIFI) $(`a-${h.k}`).innerHTML = html; }
+  function renderStudent() {
+    const list = sList();
+    const play = sPlay();
+    for (const h of HIFI) { $(`ls-${h.k}`).innerHTML = list; $(`pl-${h.k}`).innerHTML = play; }
+  }
+  const login = sLogin();
+  const pw = sPw();
+  const iss = issue();
+  for (const h of HIFI) { $(`sl-${h.k}`).innerHTML = login; $(`sp-${h.k}`).innerHTML = pw; $(`is-${h.k}`).innerHTML = iss; }
+  renderAdmin();
+  renderStudent();
+
+  /* ── 세부 질문 ─────────────────────────────────────────── */
+  const HK = HIFI.map((h) => [h.k, `${h.k} ${h.name}`]);
+  const QS = [
+    { k: "adm", s: "원장님", h: "원장님 쪽 Hi-fi", p: "고르신 안으로 구현합니다. 원장님 화면은 작업실 안에 들어간다는 점을 함께 봐 주세요.", o: HK },
+    { k: "stu", s: "학생", h: "학생 쪽 Hi-fi", p: "원장님 쪽과 달라도 됩니다. 로그인 · 비밀번호 바꾸기 · 목록 · 재생 네 장이 한 벌로 갑니다.", o: HK },
+    { k: "id", s: "아이디", h: "학생 아이디", p: "발급 칸에서 아이디를 어떻게 정할지입니다.", o: [["①", "① 원장님이 직접 적는다"], ["②", "② 반 · 번호로 자동 제안하고 고칠 수 있다", "예: m1a-07 — 시안에 그린 모양"]] },
+    { k: "pw", s: "비밀번호", h: "학생이 정하는 비밀번호 규칙", p: "첫 로그인에서 새로 정할 때의 규칙입니다. 영상만 보는 계정이지만 쉬운 비밀번호는 남이 대신 들어올 수 있습니다.", o: [["①", "① 8자 이상, 영문과 숫자", "시안에 그린 것"], ["②", "② 6자 이상"], ["③", "③ 숫자 4자리", "가장 쉽지만 가장 약합니다"]] },
+    { k: "door", s: "로그인 주소", h: "학생이 들어오는 곳", p: "", o: [["①", "① 원장님 로그인 화면에 «학생» 칸을 둔다", "주소 하나"], ["②", "② 학생 전용 주소를 따로 둔다", "원장님 화면과 섞이지 않습니다"]] },
+    { k: "scope", s: "목록", h: "학생 목록에 나오는 강의", p: "", o: [["①", "① 진도에 있던 차시만", "오늘 + 지난 수업 — 시안에 그린 것"], ["②", "② 자기 학년의 게시된 강의 전부", "진도보다 앞선 차시도 볼 수 있습니다"]] },
+    { k: "who", s: "시청 표시", h: "«끝까지 본 학생» 표시", p: "", o: [["①", "① 수만 (7/12명)", "시안에 그린 것"], ["②", "② 눌러서 안 본 학생 이름까지"]] },
+  ];
+  function renderQ() {
+    let saved = {};
+    try { saved = JSON.parse(store.get("d124-answers") || "{}"); } catch { saved = {}; }
+    $("qs").innerHTML = QS.map((q) => `<li class="q"><h3>${q.h}</h3>${q.p ? `<p>${q.p}</p>` : ""}<div class="opts">${q.o.map(([v, t, sm], k) => `<label class="opt" for="q-${q.k}-${k}"><input type="radio" id="q-${q.k}-${k}" name="${q.k}" value="${v}"${saved[q.k] === v ? " checked" : ""}><span>${t}${sm ? `<small>${sm}</small>` : ""}</span></label>`).join("")}</div></li>`).join("");
+    compose();
+  }
+  function compose() {
+    const got = {};
+    $("answer").value = QS.map((q) => {
+      const c = document.querySelector(`input[name="${q.k}"]:checked`);
+      if (c) got[q.k] = c.value;
+      return `${q.s} ${c ? c.value : "(미정)"}`;
+    }).join(" · ");
+    store.set("d124-answers", JSON.stringify(got));
+  }
+  renderQ();
+
+  /* ── 탭 · 이벤트 ──────────────────────────────────────── */
+  const TABS = [...HIFI.map((h) => h.k), "Q"];
+  function show(k) {
+    for (const t of TABS) {
+      $(`t-${t}`).setAttribute("aria-selected", String(t === k));
+      $(`p-${t}`).hidden = t !== k;
+    }
+    store.set("d124-tab", k);
+  }
+  $("tabs").addEventListener("click", (e) => { const b = e.target.closest(".tab"); if (b) show(b.id.slice(2)); });
+  $("tabs").addEventListener("keydown", (e) => {
+    if (e.key !== "ArrowRight" && e.key !== "ArrowLeft") return;
+    const cur = TABS.findIndex((t) => $(`t-${t}`).getAttribute("aria-selected") === "true");
+    const nx = TABS[(cur + (e.key === "ArrowRight" ? 1 : TABS.length - 1)) % TABS.length];
+    show(nx);
+    $(`t-${nx}`).focus();
+  });
+  document.addEventListener("click", (e) => {
+    const t = e.target.closest("[data-act]");
+    if (!t) return;
+    const act = t.dataset.act;
+    if (act === "cls") { S.cls = t.dataset.c; renderAdmin(); }
+    else if (act === "lec") { S.lec[t.dataset.u] = t.dataset.l; renderAdmin(); }
+    else if (act === "play") { S.play = t.dataset.l; renderStudent(); }
+  });
+  document.addEventListener("change", (e) => { if (e.target.type === "radio") compose(); });
+  $("copy").addEventListener("click", async () => {
+    const ta = $("answer");
+    try {
+      await navigator.clipboard.writeText(ta.value);
+      $("copied").textContent = "복사했습니다.";
+    } catch {
+      ta.focus();
+      ta.select();
+      $("copied").textContent = "선택해 두었습니다 — Ctrl+C 로 복사하세요.";
+    }
+  });
+  const last = store.get("d124-tab");
+  show(TABS.includes(last) ? last : "1");
+})();
+</script>
