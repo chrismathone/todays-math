@@ -23,8 +23,9 @@ including its existing exclusions. No separate, narrower CI config is used.
 The second command creates a temporary `.ts` source file assigning a string to
 a number, runs the **same CI command**, requires a nonzero exit and that file's
 TS2322 diagnostic, and removes the fixture in `finally`. Run the first command
-before the proof to establish that the original project passes. The workflow
-does both, so unrelated failures cannot stand in for a passing baseline.
+before the proof to establish that the original project passes. Manual workflow
+runs with the `verify_failure` input enabled do both, so unrelated failures cannot
+stand in for a passing baseline. Normal push/PR runs check the project once.
 
 CI caches npm downloads only and installs with `npm ci --include=dev`.
 Prisma postinstall generation is disabled so generation happens explicitly in
@@ -45,4 +46,7 @@ loads `next.config.ts`, which must remain safe to evaluate without services.
 
 Required-check/branch rules and Vercel deployment checks are configured separately
 by the coordinator. This workflow alone does not make a check mandatory or block
-a Vercel deployment. A hosted Actions run remains to be observed after publishing.
+a Vercel deployment. Hosted run
+[34918169862](https://github.com/chrismathone/todays-math/actions/runs/34918169862)
+passed both the complete typecheck and negative proof. See
+[rollout status](../../docs/qa/deployment-externalization.md) for activation steps.

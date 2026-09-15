@@ -4,6 +4,11 @@ on:
   push:
   pull_request:
   workflow_dispatch:
+    inputs:
+      verify_failure:
+        description: Also prove that malformed TypeScript fails (maintenance check)
+        type: boolean
+        default: false
 
 permissions:
   contents: read
@@ -38,4 +43,5 @@ jobs:
       - name: Generate types and typecheck
         run: node scripts/ci/typecheck.mjs
       - name: Verify invalid TypeScript fails
+        if: github.event_name == 'workflow_dispatch' && inputs.verify_failure
         run: node scripts/ci/verify-typecheck.mjs

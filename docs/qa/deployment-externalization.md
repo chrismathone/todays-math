@@ -10,7 +10,11 @@ alone does not make Vercel wait for its result.
 `.github/workflows/typecheck.yml` runs the stable **Typecheck** job on every push,
 pull request, and manual run. It generates Prisma and Next route types before
 checking the complete TypeScript project, with loopback placeholder database
-URLs. Its negative proof verifies that an actual malformed source file fails.
+URLs. Its optional manual negative proof verifies that an actual malformed source
+file fails. Enable `verify_failure` when manually dispatching the workflow; normal
+pushes and pull requests run the complete checker once. The hosted failure proof
+was verified before making it optional and took 49 seconds, so it is not repeated
+on every deployment.
 The first hosted run reached the default Node heap limit (~2 GB); the workflow
 now gives Node a 4 GB heap without narrowing the checked project.
 
