@@ -171,6 +171,8 @@ model User {
   reportsFiled    ProblemReport[]    @relation("reporter")
   reportsResolved ProblemReport[]    @relation("resolver")
   reviewLogs      ProblemReviewLog[] @relation("reviewer")
+  /// 오늘의 개념 강의를 만든 사람 (D-123 ⑥′) — 강의는 공용 목록이라 «소유»가 아니라 기록이다
+  conceptLecturesCreated ConceptLecture[] @relation("conceptLectureCreator")
 
   @@map("user")
 }
@@ -332,6 +334,8 @@ model Student {
   testResults      TestResult[]
   /// '오늘의 시험' 실측 내신 점수 — 보정 루프의 입력(트랙 E)
   actualExamScores ActualExamScore[]
+  /// 오늘의 개념 시청 기록 (D-123 ⑥′) — 한 강의에 한 행
+  conceptLectureViews ConceptLectureView[]
 
   @@index([classId])
   @@map("student")
@@ -361,9 +365,82 @@ model Unit {
   testRangeStart Test[]          @relation("TestRangeStartUnit")
   testRangeEnd   Test[]          @relation("TestRangeEndUnit")
   problemFamily  ProblemFamily[]
+  /// 오늘의 개념 강의 (D-123 ⑥′) — 강의가 붙는 자리는 차시다(수맥은 개념)
+  conceptLectures ConceptLecture[]
 
   @@index([grade, orderIndex])
   @@map("unit")
+}
+
+// ─────────────────────────────────────────────
+// 오늘의 개념 — 차시별 자체 제작 개념 강의 (D-123 ⑥′, 2026-09-15)
+// ⚠️ 미적용 초안 — 마이그레이션 20260915150000_concept_lecture 는 원장님 확인 전 적용 금지.
+//    계약 SSOT: src/contracts/conceptLecture.contract.ts · 계획: docs/planning/21-todays-concept.md
+// ─────────────────────────────────────────────
+
+/// 강의 상태. 초안은 학생에게 안 보인다. **게시는 사람 버튼**(게시 관문 `src/lib/concept/publishGate.ts`).
+enum ConceptLectureStatus {
+  draft
+  published
+  archived
+
+  @@map("concept_lecture_status")
+}
+
+/// 차시(`Unit`)에 붙는 개념 강의 영상 한 편. **서비스 공용 목록**(D-31 공용 풀과 같은 결) —
+/// 소유(`userId`) 칸이 없고 쓰기는 `isAdmin` 만. 종류는 영상 하나(D-123 ⑵).
+///
+/// SQL 에만 있는 것(Prisma 가 표현 못 함 — 마이그레이션 참조):
+///   게시면 주소 있음 · 공백 고지·공백 잡 ID 금지 · 길이 0 이상 · 순서 0~999
+model ConceptLecture {
+  id          String               @id @default(uuid()) @db.Uuid
+  unitId      String               @map("unit_id") @db.Uuid
+  title       String               @db.VarChar(200)
+  /// 정규 watch 주소만(`normalizeYouTubeUrl`). **초안은 비어도 된다** — 호스팅 미정(21번 §5-3)
+  videoUrl    String?              @map("video_url") @db.VarChar(200)
+  /// 영상 길이(초). 0 = 아직 모름 — 게시 관문이 막는다
+  seconds     Int                  @default(0)
+  /// AI 고지 — 도구가 만든 강의(`sourceJobId` 있음)는 게시 전에 채워야 한다.
+  /// **원장님 화면에만** 보인다(D-124 ⑹) — 학생에게 가는 모양(`conceptLectureForStudentSchema`)에 없다
+  disclosure  String?              @db.VarChar(300)
+  /// 제작 도구 잡 ID(meta.json `jobId`) — 등록 멱등 열쇠. unique 지만 NULL 은 여럿 된다(Postgres 기본)
+  sourceJobId String?              @unique @map("source_job_id") @db.VarChar(120)
+  sortOrder   Int                  @default(0) @map("sort_order")
+  status      ConceptLectureStatus @default(draft)
+  /// 원장님 끝까지 시청 확인 — **권장**이라 게시를 막지 않는다(D-124 ⑻, 게시 관문의 warnings)
+  reviewedAt  DateTime?            @map("reviewed_at")
+  publishedAt DateTime?            @map("published_at")
+  createdById String?              @map("created_by_id") @db.Uuid
+  createdAt   DateTime             @default(now()) @map("created_at")
+  updatedAt   DateTime             @updatedAt @map("updated_at")
+
+  unit      Unit                 @relation(fields: [unitId], references: [id], onDelete: Restrict)
+  createdBy User?                @relation("conceptLectureCreator", fields: [createdById], references: [id], onDelete: SetNull)
+  views     ConceptLectureView[]
+
+  @@index([unitId, status, sortOrder])
+  @@map("concept_lecture")
+}
+
+/// 학생 × 강의 시청 기록 — **한 학생 × 한 강의 = 한 행**(수맥 `learner_material_progress_uq`).
+/// 쓰는 규칙은 `mergeWatchRecord` 한 곳(뒤로 안 간다 · 한 번 완료면 완료).
+model ConceptLectureView {
+  studentId   String    @map("student_id") @db.Uuid
+  lectureId   String    @map("lecture_id") @db.Uuid
+  /// 본 최대 지점(초)
+  maxSeconds  Int       @default(0) @map("max_seconds")
+  /// 0–100
+  percent     Int       @default(0)
+  /// 처음 완료한 시각 — 한 번 찍히면 그대로
+  completedAt DateTime? @map("completed_at")
+  updatedAt   DateTime  @updatedAt @map("updated_at")
+
+  student Student        @relation(fields: [studentId], references: [id], onDelete: Cascade)
+  lecture ConceptLecture @relation(fields: [lectureId], references: [id], onDelete: Cascade)
+
+  @@id([studentId, lectureId])
+  @@index([lectureId])
+  @@map("concept_lecture_view")
 }
 
 /// **단원 안의 문항류 대장** (D-105, 2026-08-25). 문항 코드의 `A01` 자리가 여기서 나오고
