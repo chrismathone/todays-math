@@ -1,7 +1,7 @@
 # 오늘의 개념 ⑥″ — 학생 계정·로그인 뒷단 (워크트리 `student-auth`, 준비 2026-09-15)
 
-> ⏳ **아직 띄우지 않았다.** `concept-port` 를 main 에 병합한 **뒤** 그 main 에서 띄운다 —
-> 둘 다 `prisma/schema.prisma` 에 모델을 더해서, 동시에 돌리면 스키마·마이그레이션이 부딪친다.
+> ▶ 2026-09-15 `concept-port` 병합(`81e2bcbd`) 뒤 main 에서 띄웠다. `concept-admin-ui` 와 나란히 돈다 —
+> 그쪽은 스키마·인증·`proxy.ts` 를 안 건드린다. 이전 보고서: `tracks/reports/todays-concept-port.md`.
 
 리드는 `D:/todays-math` 메인 세션이다. 결정은 **D-124**(07 맨 끝), 계획은 21번 문서 §4 ⑥′.
 
@@ -99,3 +99,10 @@
   §2.4 의 시청 기록 API 와 **같은 판정 함수 하나**를 쓴다(목록과 기록이 갈라지지 않게).
 - ~~안 본 학생 이름(⑹)~~ → 원장님 화면 쪽이라 **`concept-admin-ui` 로 옮겼다**(브리프 `todays-concept-admin-ui.md` §1.3).
   이 워크트리는 학생 세션 · 계정 · `/learn` API 만.
+
+## 7. 리드가 정한 것 (2026-09-15, `concept-port` 보고 §6 에서)
+
+- **시청 %는 서버가 다시 센다** — 재생기가 보낸 %는 버리고 `maxSeconds / lecture.seconds` 로 계산해 `watchRules` 에 넣는다.
+  한 곳에서 세야 원장님 화면의 n/m 과 학생 목록의 «64% 봄»이 갈라지지 않는다. 우회 방지가 목적은 아니다(D-124 ⑸).
+- 학생 로그인 계약(아이디 · 숫자 4자리)은 원장 계정 규칙(`auth.contract.ts` 8~72자)과 **따로** 둔다. 판정은
+  `initialPassword.ts` 의 `isPinFormat` · `isEasyPin` 을 부른다 — 다시 적지 않는다.
