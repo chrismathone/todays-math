@@ -1,9 +1,11 @@
 # Deployment externalization
 
 The shared figure delivery path and separate GitHub Typecheck job are prepared.
-Production retains its inline typecheck and local figure files until the switches
-below are explicitly enabled in the intended Vercel project. Creating a workflow
-alone does not make Vercel wait for its result.
+Production now requires the GitHub Typecheck result before assigning its domain.
+The inline typecheck switch was enabled on 2026-09-15 after the live promotion
+gate proof below. Shared figures remain local until storage upload and full
+verification are complete. Creating a workflow alone does not make Vercel wait
+for its result.
 
 ## Typecheck
 
@@ -33,6 +35,32 @@ set. Ordinary local builds still check types. Existing pre-push checks remain.
 Unset the switch and redeploy to restore the inline production check.
 
 Reference: [Vercel Deployment Checks](https://vercel.com/docs/deployment-checks).
+
+### Live promotion gate proof — 2026-09-15
+
+Project `todays-math` in `bigshols-projects` is linked to
+`chrismathone/todays-math`, production branch `main`, with automatic domain
+assignment enabled. Required check `chk_fcfa7e13-1afd-4e52-8d3b-a3040666e733`
+uses GitHub's exact `Typecheck` name, targets production, and blocks deployment
+aliasing. The GitHub job result was observed as `succeeded` inside Vercel.
+
+The [verification deployment](https://vercel.com/bigshols-projects/todays-math/8VKrKQGq5dAjwoxrNUMkbxy877qE)
+rebuilt the unchanged, passing commit
+`c3513b64bc6c3fbb461cac1598a5acdfa14205d7`. A separately named temporary GitHub
+status, `Deployment gate verification`, exercised the same required-check path
+without altering or fabricating the real Typecheck result:
+
+- Pending: the build reached `READY / STAGED`, with no domain assignment.
+- Failure: Vercel recorded the failed check while `todays-math.vercel.app`
+  still pointed to the previous deployment `dpl_4VgBwRDw45ef9PS8DXFR2pLTnJH1`.
+- Success: the same verification deployment automatically received the production
+  domain, verified through the alias API at `2026-09-15T02:54:53Z`.
+
+After that proof, `VERCEL_TYPECHECK_EXTERNALIZED=1` was configured for production
+only. Local builds and preview builds retain inline typechecking. The temporary
+verification check is removed after the test; the real Typecheck requirement
+remains. Build-log confirmation of the enabled switch is recorded with the next
+deployment. Evidence JSON is retained locally under `.qa-artifacts/vercel-gate-proof-*`.
 
 ## Shared figures
 
