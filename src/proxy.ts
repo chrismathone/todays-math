@@ -21,13 +21,17 @@ import type { AccountAccess } from "@/contracts/accountAccess.contract";
 
 export const proxy = auth(async (req) => {
   const { pathname } = req.nextUrl;
-  // Brand assets are also used on anonymous login pages and browser tabs.
+  // Public shared figures must also load in the cookie-free PDF renderer.
+  // Personal materials stay behind their /api/library authorization.
   if (
     (req.method === "GET" || req.method === "HEAD") &&
     (pathname === "/favicon.ico" ||
       pathname === "/icon.svg" ||
       pathname === "/apple-icon.png" ||
-      pathname.startsWith("/brand/"))
+      pathname.startsWith("/brand/") ||
+      pathname.startsWith("/figures/") ||
+      pathname.startsWith("/figures-svg/") ||
+      pathname.startsWith("/api/shared-figures/"))
   )
     return NextResponse.next();
   const isPublic =

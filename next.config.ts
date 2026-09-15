@@ -2,6 +2,31 @@ import withBundleAnalyzer from "@next/bundle-analyzer";
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
+  // Enable only after Vercel Deployment Checks requires the GitHub Typecheck job.
+  // Local builds keep Next's typecheck, even when the deployment switch is set.
+  typescript: {
+    ignoreBuildErrors:
+      process.env.VERCEL === "1" &&
+      process.env.VERCEL_TYPECHECK_EXTERNALIZED === "1",
+  },
+  // Keep existing image URLs and same-origin PDF/canvas requests. Local public
+  // files take precedence until a verified deployment excludes those files.
+  rewrites() {
+    return {
+      beforeFiles: [],
+      afterFiles: [
+        {
+          source: "/figures/:path*",
+          destination: "/api/shared-figures/figures/:path*",
+        },
+        {
+          source: "/figures-svg/:path*",
+          destination: "/api/shared-figures/figures-svg/:path*",
+        },
+      ],
+      fallback: [],
+    };
+  },
   // Keep the development preview's mobile navigation clear of the Next.js badge.
   devIndicators: false,
   // 개발 서버(next dev)에서 LAN IP로 접속할 때 클라이언트 번들·HMR·폰트 등
@@ -54,6 +79,7 @@ const nextConfig: NextConfig = {
   ],
   // Assets read by Node/Python at runtime must travel with production route bundles.
   outputFileTracingIncludes: {
+    "/api/shared-figures/**": ["./src/config/shared-figures.manifest.json"],
     "/api/studio/pdf-worker": [
       "./node_modules/pdfjs-dist/build/pdf.worker.min.mjs",
     ],

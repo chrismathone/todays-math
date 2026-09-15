@@ -74,7 +74,7 @@ function request(
 afterEach(() => {
   vi.unstubAllEnvs();
   vi.unstubAllGlobals();
-  vi.doUnmock("@/config/shared-figures.manifest.json");
+  vi.doUnmock("@/lib/sharedFigureManifest");
   vi.resetModules();
 });
 
@@ -533,10 +533,10 @@ describe("upstream failures never deliver unverified bytes", () => {
 });
 
 describe("Next shared-figures route exports", () => {
-  it("stays off with an empty statically imported deployment manifest", async () => {
+  it("stays off with an empty deployment manifest", async () => {
     vi.stubEnv("SHARED_FIGURE_CDN_BASE_URL", baseUrl);
-    vi.doMock("@/config/shared-figures.manifest.json", () => ({
-      default: deployment(),
+    vi.doMock("@/lib/sharedFigureManifest", () => ({
+      loadSharedFigureManifest: () => deployment(),
     }));
     const fetch = vi.fn();
     vi.stubGlobal("fetch", fetch);
@@ -550,8 +550,8 @@ describe("Next shared-figures route exports", () => {
 
   it("stays off without the configured base even with an active manifest", async () => {
     vi.stubEnv("SHARED_FIGURE_CDN_BASE_URL", undefined);
-    vi.doMock("@/config/shared-figures.manifest.json", () => ({
-      default: manifest,
+    vi.doMock("@/lib/sharedFigureManifest", () => ({
+      loadSharedFigureManifest: () => manifest,
     }));
     const fetch = vi.fn();
     vi.stubGlobal("fetch", fetch);
@@ -563,8 +563,8 @@ describe("Next shared-figures route exports", () => {
 
   it("delivers mocked verified bytes through GET and HEAD when activated", async () => {
     vi.stubEnv("SHARED_FIGURE_CDN_BASE_URL", baseUrl);
-    vi.doMock("@/config/shared-figures.manifest.json", () => ({
-      default: manifest,
+    vi.doMock("@/lib/sharedFigureManifest", () => ({
+      loadSharedFigureManifest: () => manifest,
     }));
     const fetch = vi.fn().mockImplementation(() => Promise.resolve(upstream()));
     vi.stubGlobal("fetch", fetch);

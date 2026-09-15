@@ -146,6 +146,30 @@ describe("역할 게이트 관문", () => {
     expect((await run("POST", "/brand/today-math-mark.svg")).status).toBe(307);
     expect((await run("GET", "/brand-admin")).status).toBe(307);
   });
+  it("serves shared figure reads to PDF and restricted sessions, preserving private access", async () => {
+    for (const identity of [
+      null,
+      { user: { id: "pending", approvalStatus: "pending", menus: [] } },
+    ]) {
+      session.mockReturnValue(identity);
+      for (const asset of [
+        "/figures/a.png",
+        "/figures-svg/a.svg",
+        "/api/shared-figures/figures/a.png",
+      ]) {
+        for (const method of ["GET", "HEAD"]) {
+          expect((await run(method, asset)).status).toBe(200);
+        }
+      }
+    }
+    expect((await run("GET", "/api/library/assets/private-id")).status).toBe(
+      403,
+    );
+    expect(
+      (await run("POST", "/api/shared-figures/figures/a.png")).status,
+    ).toBe(403);
+    expect((await run("GET", "/figures-admin")).status).toBe(307);
+  });
   it("로그인 안 했으면 여기서 판정하지 않는다 — 각 라우트가 401 을 낸다", async () => {
     session.mockReturnValue(null);
     const res = await run("GET", "/api/tests");

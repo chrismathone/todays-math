@@ -10,12 +10,12 @@ The runtime requires both:
 
 1. `SHARED_FIGURE_CDN_BASE_URL` set to the HTTPS public bucket/base directory,
    for example `https://PROJECT.supabase.co/storage/v1/object/public/shared-figures/`.
-2. A nonempty, valid deployment manifest statically imported from
+2. A nonempty, valid deployment manifest read from the fixed traced file
    `src/config/shared-figures.manifest.json`.
 
-The checked-in placeholder has an empty `entries` object, so the new route is
-disabled until the coordinator replaces it with the verified migration manifest.
-The base URL and manifest are compiled into the handler at module initialization;
+The checked-in manifest covers 18,827 tracked public images. The base URL remains
+unset until live storage verification and deployment configuration are complete.
+The base URL and manifest are indexed into the handler at module initialization;
 restart/redeploy when changing either. The base URL contains no credentials,
 query, fragment, percent escapes, whitespace, backslashes or dot segments. Both
 forms with and without the final slash identify the same base directory.
@@ -26,9 +26,11 @@ destinations are `/api/shared-figures/figures/:path*` and
 `/api/shared-figures/figures-svg/:path*`. Using afterFiles lets existing local
 public files retain their usual behavior; absent files reach this route.
 
-The handler has no filesystem reads, directory enumeration, database access,
-remote manifest fetches or private-library imports. Its only bundled asset input
-is the static JSON manifest. No changes are needed to the headless PDF same-origin
+The handler has no directory enumeration, database access, remote manifest fetches
+or private-library imports. A small loader reads the fixed manifest only when the
+CDN base is configured. The file is explicitly traced into this route's output;
+its 18,827 entries are not compiled into JavaScript or inferred TypeScript types.
+No changes are needed to the headless PDF same-origin
 asset policy. Private `/api/library` behavior remains owned by its existing routes
 and auth policy.
 
@@ -122,7 +124,7 @@ and original paths, manifest activation, invalid configuration/manifest entries,
 traversal and encoded separators, arbitrary URL input, MIME/length/hash failures,
 non-200 statuses, redirects, timeout/network/stream errors, oversized stream
 cancellation, HEAD, ETag revalidation and both Next route exports. Tests mock the
-manifest where needed, so replacing the placeholder with the real deployment
+manifest loader where needed, so updating the real deployment
 manifest does not change their inputs.
 
 Local validation: 137 focused tests, focused ESLint, formatting and repository-wide

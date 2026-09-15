@@ -1,4 +1,4 @@
-import manifest from "@/config/shared-figures.manifest.json";
+import { loadSharedFigureManifest } from "@/lib/sharedFigureManifest";
 import {
   createSharedFigureAssetHandler,
   type SharedFigureRouteContext,
@@ -7,7 +7,9 @@ import {
 export const runtime = "nodejs";
 
 const deliverAsset = createSharedFigureAssetHandler({
-  manifest,
+  manifest: process.env.SHARED_FIGURE_CDN_BASE_URL
+    ? loadSharedFigureManifest()
+    : null,
   baseUrl: process.env.SHARED_FIGURE_CDN_BASE_URL,
 });
 
