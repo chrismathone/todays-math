@@ -81,7 +81,7 @@ export async function GET(request: NextRequest) {
   // ── 계획 갈래 — 이 계정의 소유 범위 안의 반만 ─────────────────────────────
   const ownClasses = await db.class.findMany({
     where: ownedRowsWhere(session),
-    select: { id: true },
+    select: { id: true, name: true, grade: true },
   });
   const ownClassIds = ownClasses.map((c) => c.id);
   const planRows = ownClassIds.length
@@ -267,6 +267,15 @@ export async function GET(request: NextRequest) {
       lacking: counted.filter((g) => g.poolTotal < g.neededCount),
       examOrUnread: plan.examOrUnread,
       noRange: plan.noRange,
+      // ── 화면 칸 셋(D-131) ──
+      // 섹션 문지기 — 소유 범위 안에 계획이 하나라도 있나(꺼 둔 계획도 계획이다).
+      hasPlan: planRows.length > 0,
+      delayed: plan.delayed,
+      // 오늘 대상이 한 명도 없는 **소유 범위의** 반 — 「오늘 수업 계획이 없습니다.」
+      noLessonClasses: ownClasses
+        .filter((c) => !plan.attendedClassIds.includes(c.id))
+        .map((c) => ({ id: c.id, name: c.name, grade: c.grade }))
+        .sort((a, b) => a.name.localeCompare(b.name, "ko")),
       todayTests: [...todayTestByStudent.values()],
     },
   });

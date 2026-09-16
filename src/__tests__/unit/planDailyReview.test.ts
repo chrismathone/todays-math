@@ -410,3 +410,84 @@ describe("[planDailyReview] 진도 계획으로 대상을 넓힌다", () => {
     ]);
   });
 });
+
+/**
+ * 🔴 **밀림** — 메인 «오늘의 확인테스트» 칩 「N일 밀림 M명」(D-131 · 05 §8.10).
+ *
+ * 밀림 셈은 `resolveDailyPlan` 한 곳이다(계획이 그 차시를 나가라던 날 − 실제로 나간 날).
+ * 여기서 보는 것은 «누구를 세나»다: **오늘 대상**이고 **계획이 있고** 음수인 학생만.
+ * 시험기간·미분류(D-64)는 세지 않는다 — 진도를 안 나가는 까닭이 이미 따로 표시된다.
+ */
+describe("[planDailyReview] 밀림 — 계획보다 늦은 오늘의 대상", () => {
+  const DAY = "2026-08-21";
+  // 월·수·금, 8/14(금) 시작: 8/14 u1 · 8/17 u2 · 8/19 u3 · 8/21 u4 · 8/24 u5
+  it("오늘 대상 중 계획보다 늦은 학생만 days(양수)와 함께 — 제때·앞섬·계획 없음은 없다", () => {
+    const plan = planDailyReview({
+      day: DAY,
+      students: [
+        student({ id: "s1", name: "가", lastReportDate: null }),
+        student({ id: "s2", name: "나", lastReportDate: null }),
+        student({ id: "s3", name: "다", lastReportDate: null }),
+        student({ id: "s4", name: "라", lastReportDate: null }),
+        // 계획이 없는 반 — 보고서로 들어온 대상. 밀림을 잴 계획이 없다.
+        student({ id: "s5", name: "마", classId: "c2", lastReportDate: DAY }),
+      ],
+      progressRows: [
+        row("s1", "u2", "2026-08-19"), // u2 는 8/17 몫 → 2일 밀림
+        row("s2", "u2", DAY), // 8/17 몫을 8/21 에 → 4일 밀림
+        row("s3", "u4", DAY), // 제때
+        row("s4", "u5", DAY), // 8/24 몫을 8/21 에 → 앞섬
+        row("s5", "u1", DAY, "c2"),
+      ],
+      lastReviews: [],
+      units: UNITS,
+      plans: [planRow()],
+    });
+    expect(plan.attended).toBe(5);
+    expect(
+      plan.delayed
+        .map((s) => [s.id, s.days])
+        .sort(([a], [b]) => String(a).localeCompare(String(b))),
+    ).toEqual([
+      ["s1", 2],
+      ["s2", 4],
+    ]);
+    expect(plan.delayed[0]).toMatchObject({
+      classId: "c1",
+      className: "중등M 중2",
+      grade: "중2",
+    });
+  });
+
+  it("오늘 수업이 아닌 학생은 밀려 있어도 세지 않는다 — 오늘의 칩이다", () => {
+    const plan = planDailyReview({
+      day: DAY,
+      students: [student({ id: "s1", lastReportDate: null })],
+      progressRows: [row("s1", "u1", "2026-08-19")],
+      lastReviews: [],
+      units: UNITS,
+      plans: [planRow({ weekdays: [2, 4], startDate: "2026-08-11" })],
+    });
+    expect(plan.attended).toBe(0);
+    expect(plan.delayed).toEqual([]);
+  });
+
+  it("시험기간·미분류(D-64)는 밀림으로 세지 않는다 — 까닭이 이미 따로 선다", () => {
+    const plan = planDailyReview({
+      day: DAY,
+      students: [
+        student({
+          id: "s1",
+          lastReportDate: DAY,
+          lastReportText: "수학 내신대비",
+        }),
+      ],
+      progressRows: [row("s1", "u1", "2026-08-17")],
+      lastReviews: [],
+      units: UNITS,
+      plans: [planRow()],
+    });
+    expect(plan.examOrUnread.map((s) => s.id)).toEqual(["s1"]);
+    expect(plan.delayed).toEqual([]);
+  });
+});

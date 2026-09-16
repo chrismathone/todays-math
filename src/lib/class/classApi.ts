@@ -3,6 +3,8 @@ import type {
   ProgressEntity,
   StudentEntity,
 } from "@/contracts/class.contract";
+import { planDraftBody, type PlanDraft } from "@/lib/class/planDraft";
+import { throwServerError } from "@/lib/class/serverError";
 
 /**
  * 계약 스키마를 **런타임 값으로 정적 import 하지 않는다** (성능 수리 C-1).
@@ -93,15 +95,26 @@ export async function createStudent(
   return body.data;
 }
 
+/**
+ * 반 만들기 — 계획을 같이 넣을 수 있다(`progressPlan`, D-129 · 반 만들기의 접힌 계획 칸 D-131 ⑷).
+ * 계획을 안 주면 본문에 칸이 없다(지금처럼 반만). 응답은 지금 반 모양 그대로 — 계획은 GET 으로 읽는다.
+ * 🔴 거절되면 서버 문구로 던진다(`ServerError`) — 400/422 로 가르지 않는다.
+ */
 export async function createClass(
   name: string,
   grade: string,
+  progressPlan?: PlanDraft,
 ): Promise<ClassEntity> {
   const res = await fetch("/api/classes", {
     method: "POST",
     headers: { "content-type": "application/json" },
-    body: JSON.stringify({ name, grade }),
+    body: JSON.stringify(
+      progressPlan
+        ? { name, grade, progressPlan: planDraftBody(progressPlan) }
+        : { name, grade },
+    ),
   });
+  if (!res.ok) await throwServerError(res, "요청에 실패했습니다");
   const { classResponseSchema } = await classContract();
   const body = await parseOk(res, (json) => classResponseSchema.parse(json));
   return body.data;

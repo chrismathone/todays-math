@@ -10,13 +10,15 @@
  *   PUT    /api/classes/{id}/progress-plan   — 반 계획 넣기(201)·**덮어쓰기**(200) — 반에 한 줄
  *   PATCH  /api/classes/{id}/progress-plan   — 일부 고치기 · 켜기/끄기
  *   DELETE /api/classes/{id}/progress-plan   — 지우기(그 반은 자동에서 빠진다)
+ *   POST   /api/classes/{id}/progress-plan/preview — 저장하지 않고 예정만 편다(화면 «저장 전에 결과를 본다»)
  *   GET/PUT/PATCH/DELETE /api/students/{id}/progress-plan — 학생 계획(**개별 진도 학생만** 넣고 고친다)
  *   POST   /api/classes (`progressPlan` 칸) — 반을 만들 때 계획을 같이(class.contract.ts)
  *
  * 🔴 본문이 계약을 어기면 **422** 다(`VALIDATION_ERROR`) — 차시가 없거나 개별 진도 학생이 아닌 것도 같다.
  *    경로 id 형식만 지금 관례대로 400.
  *
- * ⚠️ 화면 계약은 여기 없다 — 반 설정의 요일·계획 칸은 **D-07 시안 뒤**다(22 §4 ④).
+ * 화면(D-131 «계기판 관»)은 이 계약의 값을 그리기만 한다 — 날짜를 다시 펴지 않는다
+ * (`src/components/class/ProgressPlanSection.tsx` · `src/lib/daily/planGauge.ts`).
  */
 import { z } from "zod";
 
@@ -142,6 +144,20 @@ export const classProgressPlanResponseSchema = dataResponseSchema(
 );
 export type ClassProgressPlanResponse = z.infer<
   typeof classProgressPlanResponseSchema
+>;
+
+/**
+ * 계획 미리보기(`POST /api/classes/{id}/progress-plan/preview`) — **저장하지 않고** 그 규칙으로 편 예정.
+ *
+ * 본문은 PUT 과 같은 `progressPlanWriteRequestSchema`, `?day=` 는 GET 과 같다. 「저장하기 전에 결과를 본다」
+ * (시안 B · 22 §4 리드 결정 E) — 날짜 펴기를 서버 한 곳(`planSchedule.ts`)에 두려고 경로로 냈다.
+ * 화면이 규칙을 따로 펴면 «미리보기와 저장 뒤가 다른» 카드가 된다.
+ */
+export const progressPlanPreviewResponseSchema = dataResponseSchema(
+  z.strictObject({ schedule: planScheduleSchema }),
+);
+export type ProgressPlanPreviewResponse = z.infer<
+  typeof progressPlanPreviewResponseSchema
 >;
 
 export const studentProgressPlanResponseSchema = dataResponseSchema(

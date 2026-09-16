@@ -5,6 +5,7 @@ import { classHandlers } from "./class";
 import { metricsHandlers } from "./metrics";
 import { predictionHandlers } from "./prediction";
 import { problemHandlers } from "./problem";
+import { progressPlanHandlers } from "./progressPlan";
 import { testHandlers } from "./test";
 import { unitHandlers } from "./unit";
 
@@ -15,6 +16,7 @@ import { unitHandlers } from "./unit";
  *   - src/mocks/handlers/auth.ts     (가입 — POST /api/auth/signup)
  *   - src/mocks/handlers/class.ts    (반/학생/진도 CRUD)
  *   - src/mocks/handlers/prediction.ts ('오늘의 시험' 회차 계기판·상세 — T7.14)
+ *   - src/mocks/handlers/progressPlan.ts (반 진도 계획 읽기·넣기·미리보기 — D-129 ④)
  *   - src/mocks/handlers/problem.ts  (문제은행/AI 생성·변형 — Claude API Mock 포함)
  *   - src/mocks/handlers/test.ts     (출제/검수/교체/확정/인쇄)
  *   - src/mocks/handlers/unit.ts     (단원 목록 — S-04 확인테스트 범위)
@@ -28,6 +30,7 @@ export const handlers: HttpHandler[] = [
   ...metricsHandlers,
   ...predictionHandlers,
   ...problemHandlers,
+  ...progressPlanHandlers,
   ...testHandlers,
   ...unitHandlers,
 ];

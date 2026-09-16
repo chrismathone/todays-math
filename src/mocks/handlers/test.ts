@@ -110,6 +110,9 @@ export const testHandlers: HttpHandler[] = [
         lacking: [],
         examOrUnread: [],
         noRange: [],
+        hasPlan: false,
+        delayed: [],
+        noLessonClasses: [],
         todayTests: [],
       },
     });

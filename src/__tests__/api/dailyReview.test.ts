@@ -25,6 +25,7 @@ import { dailyReviewResponseSchema } from "@/contracts/test.contract";
 import { getSessionUser } from "@/lib/session";
 import {
   CLASS_A_ID,
+  CLASS_B_ID,
   CLASS_OTHER_ID,
   MOCK_CLASSES,
   MOCK_UNITS,
@@ -320,5 +321,99 @@ describe("[매일 자동 출제 ⑤] GET /api/tests/daily-review — 계획으�
     expect(body.data.todayTests).toEqual([
       { studentId: STUDENT_IDS[0]!, testId: made.id, status: "draft" },
     ]);
+  });
+});
+
+/**
+ * 🔴 **화면 트랙이 더한 칸 셋** — 메인 «오늘의 확인테스트»(D-131 · 05 §8.10).
+ *
+ * · `hasPlan`         소유 범위 안에 계획이 하나라도 있나 — 섹션 문지기(«계획이 있으면 누구에게나»)
+ * · `delayed`         오늘 대상 중 계획보다 늦은 학생 — 칩 「N일 밀림 M명」(규칙은 planDailyReview 단위 시험)
+ * · `noLessonClasses` 오늘 대상이 한 명도 없는 소유 범위의 반 — 「오늘 수업 계획이 없습니다.」
+ */
+describe("[D-131] GET /api/tests/daily-review — 계획 유무 · 밀림 · 오늘 수업 없는 반", () => {
+  beforeEach(async () => {
+    resetPrismaTestDouble();
+    await seed();
+    process.env.EYWA_SYNC_OWNER_EMAIL = "teacher@todaysmath.test";
+  });
+
+  /** 반 A 금요일 계획 — 6/5(금) 시작. 박지호(개별 U5@7/20)는 7/10 몫을 7/20 에 → 10일 밀림. */
+  const seedEarlyPlan = (over: Record<string, unknown> = {}) =>
+    prismaTestDouble.progressPlan.create({
+      data: {
+        classId: CLASS_A_ID,
+        studentId: null,
+        weekdays: [5],
+        unitsPerLesson: 1,
+        startUnitId: MOCK_UNITS[0]!.id,
+        startDate: new Date("2026-06-05T00:00:00Z"),
+        active: true,
+        ...over,
+      },
+    });
+
+  it("계획이 없으면 hasPlan 거짓 · delayed 빈 배열", async () => {
+    const body = dailyReviewResponseSchema.parse(await (await get()).json());
+    expect(body.data.hasPlan).toBe(false);
+    expect(body.data.delayed).toEqual([]);
+  });
+
+  it("🔴 소유 범위 안에 계획이 있으면 hasPlan 참 — eywa 소유자가 아니어도(섹션 문지기)", async () => {
+    await seedEarlyPlan();
+    process.env.EYWA_SYNC_OWNER_EMAIL = "someone-else@todaysmath.test";
+    const body = dailyReviewResponseSchema.parse(await (await get()).json());
+    expect(body.data.eywaOwner).toBe(false);
+    expect(body.data.hasPlan).toBe(true);
+  });
+
+  it("꺼 둔 계획도 계획이다 — hasPlan 참(섹션은 선다)", async () => {
+    await seedEarlyPlan({ active: false });
+    process.env.EYWA_SYNC_OWNER_EMAIL = "someone-else@todaysmath.test";
+    const body = dailyReviewResponseSchema.parse(await (await get()).json());
+    expect(body.data.hasPlan).toBe(true);
+  });
+
+  it("🔴 남의 반 계획은 hasPlan 을 켜지 않는다 — 관리자가 아니면", async () => {
+    await seedEarlyPlan({ classId: CLASS_OTHER_ID });
+    const body = dailyReviewResponseSchema.parse(await (await get()).json());
+    expect(body.data.hasPlan).toBe(false);
+  });
+
+  it("밀린 오늘의 대상이 days 와 함께 실린다 — 시험기간 학생은 빠진다", async () => {
+    await seedEarlyPlan();
+    const body = dailyReviewResponseSchema.parse(await (await get()).json());
+    expect(body.data.delayed.map((s) => [s.id, s.days])).toEqual([
+      [STUDENT_IDS[2]!, 10],
+    ]);
+    expect(body.data.examOrUnread.map((s) => s.id)).toContain(STUDENT_IDS[1]!);
+  });
+
+  it("🔴 오늘 대상이 한 명도 없는 소유 범위의 반만 noLessonClasses — 남의 반은 없다", async () => {
+    await seedEarlyPlan();
+    const body = dailyReviewResponseSchema.parse(await (await get()).json());
+    const owned = MOCK_CLASSES.filter((c) => c.id !== CLASS_A_ID);
+    expect(body.data.noLessonClasses.map((c) => c.id).sort()).toEqual(
+      owned.map((c) => c.id).sort(),
+    );
+    expect(body.data.noLessonClasses.map((c) => c.id)).not.toContain(
+      CLASS_OTHER_ID,
+    );
+    const b = body.data.noLessonClasses.find((c) => c.id === owned[0]!.id)!;
+    expect(b).toEqual({
+      id: owned[0]!.id,
+      name: owned[0]!.name,
+      grade: owned[0]!.grade,
+    });
+  });
+
+  it("계획이 있어도 오늘 수업이 아니면 그 반은 noLessonClasses — 대상이 있는 반은 없다", async () => {
+    // 반 B 월요일 계획 — 2026-08-21 은 금요일. 반 A 는 eywa 보고서로 오늘 대상이 있다.
+    await seedEarlyPlan({ classId: CLASS_B_ID, weekdays: [1] });
+    const body = dailyReviewResponseSchema.parse(await (await get()).json());
+    expect(body.data.hasPlan).toBe(true);
+    const ids = body.data.noLessonClasses.map((c) => c.id);
+    expect(ids).toContain(CLASS_B_ID);
+    expect(ids).not.toContain(CLASS_A_ID);
   });
 });

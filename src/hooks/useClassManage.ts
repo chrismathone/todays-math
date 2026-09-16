@@ -10,6 +10,8 @@ import {
   fetchStudents,
   recordProgress,
 } from "@/lib/class/classApi";
+import type { PlanDraft } from "@/lib/class/planDraft";
+import { ServerError } from "@/lib/class/serverError";
 
 type LoadStatus = "loading" | "ready" | "error";
 type Mutation = {
@@ -213,13 +215,21 @@ export function useClassManage() {
     return request;
   }
 
-  async function addClass(name: string, grade: string): Promise<boolean> {
+  async function addClass(
+    name: string,
+    grade: string,
+    progressPlan?: PlanDraft,
+  ): Promise<boolean> {
     if (!name.trim() || !grade.trim() || classPending.current) return false;
     classPending.current = true;
     const version = selectionVersion.current;
     setClassMutation({ ...idleMutation, pending: true });
     try {
-      const created = await createClass(name.trim(), grade.trim());
+      const created = await createClass(
+        name.trim(),
+        grade.trim(),
+        progressPlan,
+      );
       setClasses((prev) => [...prev, created]);
       // A delayed creation must not undo a class the user selected meanwhile.
       if (version === selectionVersion.current) selectClass(created.id);
@@ -228,11 +238,14 @@ export function useClassManage() {
         success: `${created.name} 반을 추가했습니다.`,
       });
       return true;
-    } catch {
+    } catch (error) {
       setClassMutation({
         ...idleMutation,
+        // 서버가 거절했으면 그 문구를 그대로 잇는다(계획 칸 422 · 반 칸 400 — 가르지 않는다).
         error:
-          "반을 추가하지 못했습니다. 입력 내용을 확인하고 다시 시도해 주세요.",
+          error instanceof ServerError
+            ? `반을 추가하지 못했습니다. ${error.message}`
+            : "반을 추가하지 못했습니다. 입력 내용을 확인하고 다시 시도해 주세요.",
       });
       return false;
     } finally {
