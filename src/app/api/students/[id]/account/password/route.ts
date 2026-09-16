@@ -3,7 +3,7 @@
  *
  * 새 초기 비밀번호(숫자 4자리 — D-125 ⑶)를 뽑아 해시만 저장하고 **이 응답에 한 번만** 싣는다(캐시 금지).
  * 첫 로그인 표시를 다시 세우고 잠금을 푼다 — 이미 로그인해 있던 기기는 다음 요청부터 비밀번호 바꾸기
- * 화면에만 갇힌다(관문이 요청마다 계정을 다시 읽는다). 그 학생의 반이 이 원장 소유여야 한다.
+ * 화면에만 갇힌다(관문이 요청마다 계정을 다시 읽는다). 그 학생의 반이 이 원장의 소유 범위 안이어야 한다(관리자는 넘는다 — D-130).
  * 대응 계약: src/contracts/studentAccount.contract.ts · 규칙: src/lib/learn/issueStudentAccount.ts
  */
 import type { NextRequest } from "next/server";
@@ -33,7 +33,7 @@ export async function POST(request: NextRequest, { params }: RouteContext) {
   if (!idResult.success) return validationError(idResult.error);
 
   const result = await reissueStudentPassword(studentIssueDeps(), {
-    directorId: session.id,
+    director: session,
     studentId: id,
   });
   if (!result.ok) return issueFailureResponse(result.reason);

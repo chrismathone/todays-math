@@ -363,7 +363,7 @@ const MUTATIONS: Mutation[] = [
     from: "  return { failure: null, withdrawn: owner.withdrawn };",
     to: "  return { failure: null, withdrawn: false };",
     probe:
-      '(async () => { const r = await issue.readStudentAccount({ findStudentOwner: async () => ({ ownerId: "d1", withdrawn: true }), findAccountByStudent: async () => null } as never, { directorId: "d1", studentId: "s1" }); return r.ok ? r.value.withdrawn : r.reason; })()',
+      '(async () => { const r = await issue.readStudentAccount({ findStudentOwner: async () => ({ ownerId: "d1", withdrawn: true }), findAccountByStudent: async () => null } as never, { director: { id: "d1" }, studentId: "s1" }); return r.ok ? r.value.withdrawn : r.reason; })()',
     tests: [ISSUE],
   },
   {
@@ -573,7 +573,7 @@ const MUTATIONS: Mutation[] = [
     from: '  if (owned.withdrawn) return fail("withdrawn_issue");\n',
     to: "",
     probe:
-      '(async () => { const r = await issue.issueStudentAccount(fakeIssueDeps(true, false), { directorId: "d1", studentId: "s1", loginId: "seo01" }); return r.ok ? "issued" : r.reason; })()',
+      '(async () => { const r = await issue.issueStudentAccount(fakeIssueDeps(true, false), { director: { id: "d1" }, studentId: "s1", loginId: "seo01" }); return r.ok ? "issued" : r.reason; })()',
     tests: [ISSUE],
   },
   {
@@ -582,7 +582,7 @@ const MUTATIONS: Mutation[] = [
     from: '  if (owned.withdrawn) return fail("withdrawn_reissue");\n',
     to: "",
     probe:
-      '(async () => { const r = await issue.reissueStudentPassword(fakeIssueDeps(true, true), { directorId: "d1", studentId: "s1" }); return r.ok ? "reissued" : r.reason; })()',
+      '(async () => { const r = await issue.reissueStudentPassword(fakeIssueDeps(true, true), { director: { id: "d1" }, studentId: "s1" }); return r.ok ? "reissued" : r.reason; })()',
     tests: [ISSUE],
   },
   {
@@ -591,7 +591,7 @@ const MUTATIONS: Mutation[] = [
     from: '  if (owned.withdrawn && !input.disabled) return fail("withdrawn_enable");\n',
     to: "",
     probe:
-      '(async () => { const r = await issue.setStudentAccountDisabled(fakeIssueDeps(true, true), { directorId: "d1", studentId: "s1", disabled: false }); return r.ok ? "enabled" : r.reason; })()',
+      '(async () => { const r = await issue.setStudentAccountDisabled(fakeIssueDeps(true, true), { director: { id: "d1" }, studentId: "s1", disabled: false }); return r.ok ? "enabled" : r.reason; })()',
     tests: [ISSUE],
   },
   {
@@ -600,7 +600,7 @@ const MUTATIONS: Mutation[] = [
     from: '  if (owned.withdrawn && !input.disabled) return fail("withdrawn_enable");',
     to: '  if (owned.withdrawn) return fail("withdrawn_enable");',
     probe:
-      '(async () => { const r = await issue.setStudentAccountDisabled(fakeIssueDeps(true, true), { directorId: "d1", studentId: "s1", disabled: true }); return r.ok ? "disabled" : r.reason; })()',
+      '(async () => { const r = await issue.setStudentAccountDisabled(fakeIssueDeps(true, true), { director: { id: "d1" }, studentId: "s1", disabled: true }); return r.ok ? "disabled" : r.reason; })()',
     tests: [ISSUE],
   },
   {

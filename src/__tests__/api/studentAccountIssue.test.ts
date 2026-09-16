@@ -380,6 +380,70 @@ describe("다시 발급 · 끄기 · 상태", () => {
   });
 });
 
+describe("D-130 — 관리자는 남의 반 학생에게도 발급 · 다시 발급 · 끄기 · 상태 (원장님 2026-09-16)", () => {
+  // 짝: 위 «🔴 ⑤ 남의 반 학생…» 둘이 같은 계정·같은 학생에 **관리자 표시만 없이** 403 을 본다.
+  beforeEach(() => {
+    vi.mocked(getSessionUser).mockResolvedValue({
+      id: USER_TEACHER_ID,
+      email: "teacher@example.test",
+      name: "선생님",
+      isAdmin: true,
+    });
+  });
+
+  it("남의 반 학생에게 발급하면 201 — 발급한 사람은 관리자 계정", async () => {
+    const res = await issue(otherStudentId, "other01");
+    expect(res.status).toBe(201);
+    const [account] = learnRows.studentAccounts();
+    expect(account).toMatchObject({
+      studentId: otherStudentId,
+      loginId: "other01",
+      issuedById: USER_TEACHER_ID,
+    });
+    expect((await panelOf(otherStudentId)).account?.issuedByViewer).toBe(true);
+  });
+
+  it("다시 발급·끄기도 된다 — 감사 기록의 행위자는 관리자", async () => {
+    await issue(otherStudentId, "other01");
+    expect(
+      (
+        await reissueRoute(
+          req("POST", otherStudentId, undefined, "/password"),
+          ctx(otherStudentId),
+        )
+      ).status,
+    ).toBe(200);
+    expect(
+      (
+        await patchRoute(
+          req("PATCH", otherStudentId, { disabled: true }),
+          ctx(otherStudentId),
+        )
+      ).status,
+    ).toBe(200);
+    expect(learnRows.studentAccounts()[0]!.disabledAt).not.toBeNull();
+    expect(
+      learnRows.audits().map((a) => [a.action, a.userId, a.actorId]),
+    ).toStrictEqual([
+      ["student_account.issue", USER_TEACHER_ID, USER_TEACHER_ID],
+      ["student_account.reissue", USER_TEACHER_ID, USER_TEACHER_ID],
+      ["student_account.disable", USER_TEACHER_ID, USER_TEACHER_ID],
+    ]);
+  });
+
+  it("관리자여도 없는 학생은 404 · 퇴원 학생은 409(넘는 것은 소유 울타리뿐)", async () => {
+    expect(
+      (await issue("30000000-0000-4000-8000-00000000abcd", "ghost01")).status,
+    ).toBe(404);
+    await prismaTestDouble.student.update({
+      where: { id: otherStudentId },
+      data: { eywaWithdrawnAt: new Date() },
+    });
+    expect((await issue(otherStudentId, "other01")).status).toBe(409);
+    expect(learnRows.studentAccounts()).toEqual([]);
+  });
+});
+
 describe("🔴 퇴원 학생에게는 발급 API 도 막는다 — 409 (D-127 · 리드 결정 · 보고서 §7-3)", () => {
   /**
    * 화면은 이미 퇴원 학생에게 발급 단추를 안 그린다 — 서버가 **같은 판정**(`accountBlock.ts` 의 퇴원 쪽)을 한다.

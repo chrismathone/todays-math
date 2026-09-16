@@ -5,8 +5,9 @@
  * 라우트(`/api/students/{id}/account/**`)는 세션·같은 사이트·본문 검사만 하고 여기를 부른다.
  *
  * 규칙:
- *  1. 🔴 **그 학생의 반이 발급하는 원장 소유여야 한다**(`Class.userId`) — 남의 반 학생은 거부(⑤).
- *     존재하지 않으면 404, 남의 것이면 403 — 기존 `requireOwnedStudent` 와 같은 갈래·같은 조회다.
+ *  1. 🔴 **그 학생의 반이 발급하는 원장의 소유 범위 안이어야 한다**(`Class.userId`) — 남의 반 학생은 거부(⑤).
+ *     존재하지 않으면 404, 남의 것이면 403 — 기존 `requireOwnedStudent` 와 같은 갈래·같은 판정이다.
+ *     **관리자는 넘는다**(D-130 — 원장님 2026-09-16 «발급도 관리자에게 열고»). 판정은 `ownerScope.ts` 한 곳.
  *  2. **한 명씩**(D-124 ⑷). 이미 계정이 있으면 거부 — «다시 발급»은 비밀번호만 새로.
  *  3. 아이디는 원장님이 적은 것을 정규화해 쓴다(자동 제안 없음 — D-125 ⑵). 겹치면 «이미 쓰는 아이디입니다».
  *  4. 🔴 초기 비밀번호는 **해시만** 저장하고 부르는 쪽에 **한 번** 돌려준다. 감사 기록에 싣지 않는다(⑥).
@@ -22,6 +23,8 @@ import {
   normalizeLoginId,
   type StudentAccountStatus,
 } from "@/contracts/studentAccount.contract";
+
+import { type ScopeViewer, withinOwnerScope } from "@/lib/ownerScope";
 
 import { isLocked } from "./studentLogin";
 
@@ -102,15 +105,16 @@ export type IssueResult<T> =
 
 const fail = (reason: IssueFailure) => ({ ok: false as const, reason });
 
-/** 규칙 1 — 이 학생이 이 원장의 반에 있나. 있으면 퇴원 여부를 같이 돌려준다(규칙 7 · 8) */
+/** 규칙 1 — 이 학생이 이 원장의 소유 범위 안에 있나. 있으면 퇴원 여부를 같이 돌려준다(규칙 7 · 8) */
 async function ownedStudent(
   deps: IssueDeps,
-  directorId: string,
+  director: ScopeViewer,
   studentId: string,
 ): Promise<{ failure: IssueFailure } | { failure: null; withdrawn: boolean }> {
   const owner = await deps.findStudentOwner(studentId);
   if (!owner) return { failure: "student_not_found" };
-  if (owner.ownerId !== directorId) return { failure: "not_owner" };
+  if (!withinOwnerScope(director, owner.ownerId))
+    return { failure: "not_owner" };
   return { failure: null, withdrawn: owner.withdrawn };
 }
 
@@ -134,9 +138,9 @@ function auditFor(
 
 export async function issueStudentAccount(
   deps: IssueDeps,
-  input: { directorId: string; studentId: string; loginId: string },
+  input: { director: ScopeViewer; studentId: string; loginId: string },
 ): Promise<IssueResult<{ account: IssuedAccount; initialPassword: string }>> {
-  const owned = await ownedStudent(deps, input.directorId, input.studentId);
+  const owned = await ownedStudent(deps, input.director, input.studentId);
   if (owned.failure) return fail(owned.failure);
   if (owned.withdrawn) return fail("withdrawn_issue");
 
@@ -153,7 +157,7 @@ export async function issueStudentAccount(
       studentId: input.studentId,
       loginId,
       passwordHash,
-      issuedById: input.directorId,
+      issuedById: input.director.id,
     });
   } catch (error) {
     // 확인과 만들기 사이에 같은 학생·같은 아이디가 들어왔다 — 무엇이 겹쳤는지 다시 보고 말한다
@@ -165,7 +169,7 @@ export async function issueStudentAccount(
     );
   }
   await deps.audit(
-    auditFor("student_account.issue", input.directorId, account),
+    auditFor("student_account.issue", input.director.id, account),
   );
   return { ok: true, value: { account, initialPassword } };
 }
@@ -173,9 +177,9 @@ export async function issueStudentAccount(
 /** 다시 발급 — 비밀번호만 새로. 첫 로그인 표시를 다시 세우고 잠금을 푼다 */
 export async function reissueStudentPassword(
   deps: IssueDeps,
-  input: { directorId: string; studentId: string },
+  input: { director: ScopeViewer; studentId: string },
 ): Promise<IssueResult<{ account: IssuedAccount; initialPassword: string }>> {
-  const owned = await ownedStudent(deps, input.directorId, input.studentId);
+  const owned = await ownedStudent(deps, input.director, input.studentId);
   if (owned.failure) return fail(owned.failure);
   if (owned.withdrawn) return fail("withdrawn_reissue");
   const account = await deps.findAccountByStudent(input.studentId);
@@ -189,7 +193,7 @@ export async function reissueStudentPassword(
     lockedUntil: null,
   });
   await deps.audit(
-    auditFor("student_account.reissue", input.directorId, updated),
+    auditFor("student_account.reissue", input.director.id, updated),
   );
   return { ok: true, value: { account: updated, initialPassword } };
 }
@@ -197,9 +201,9 @@ export async function reissueStudentPassword(
 /** 끄기 · 켜기 — `disabledAt` 만. 끈 계정을 다시 끄면 처음 끈 시각을 그대로 둔다 */
 export async function setStudentAccountDisabled(
   deps: IssueDeps,
-  input: { directorId: string; studentId: string; disabled: boolean },
+  input: { director: ScopeViewer; studentId: string; disabled: boolean },
 ): Promise<IssueResult<IssuedAccount>> {
-  const owned = await ownedStudent(deps, input.directorId, input.studentId);
+  const owned = await ownedStudent(deps, input.director, input.studentId);
   if (owned.failure) return fail(owned.failure);
   // 규칙 8 — 켜기만 막는다. 끄기는 막는 쪽이라 퇴원이어도 된다
   if (owned.withdrawn && !input.disabled) return fail("withdrawn_enable");
@@ -211,7 +215,7 @@ export async function setStudentAccountDisabled(
   await deps.audit(
     auditFor(
       input.disabled ? "student_account.disable" : "student_account.enable",
-      input.directorId,
+      input.director.id,
       updated,
     ),
   );
@@ -221,9 +225,9 @@ export async function setStudentAccountDisabled(
 /** 발급 칸이 읽는 것 — 그 학생의 계정(없으면 null)과 퇴원 여부(규칙 7) */
 export async function readStudentAccount(
   deps: IssueDeps,
-  input: { directorId: string; studentId: string },
+  input: { director: ScopeViewer; studentId: string },
 ): Promise<IssueResult<{ account: IssuedAccount | null; withdrawn: boolean }>> {
-  const owned = await ownedStudent(deps, input.directorId, input.studentId);
+  const owned = await ownedStudent(deps, input.director, input.studentId);
   if (owned.failure) return fail(owned.failure);
   return {
     ok: true,

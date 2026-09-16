@@ -101,7 +101,7 @@ function issueHarness(owner = "d1") {
     audit: async (e) => { audits.push(e); }, isUniqueViolation: () => false };
   return { deps, audits, created };
 }
-const ISSUE_INPUT = { directorId: "d1", studentId: "s1", loginId: "seo01" };
+const ISSUE_INPUT = { director: { id: "d1" }, studentId: "s1", loginId: "seo01" };
 void ss; void gate; void login; void mem; void pinh; void sa; void issue; void access; void wr;
 void ROW; void loginSetup; void reasons; void issueHarness; void ISSUE_INPUT;
 `;
@@ -276,11 +276,25 @@ const MUTATIONS: Mutation[] = [
   {
     name: "⑤ 반 소유자를 안 본다 — 남의 반 학생에게도 발급한다",
     file: ISSUE_FILE,
-    // learn-screens: 소유 판정이 퇴원 여부를 같이 돌려주게 되었다(`ownedStudent`) — 그 한 줄을 지운다
-    from: '  if (owner.ownerId !== directorId) return { failure: "not_owner" };\n',
+    // learn-screens: 소유 판정이 퇴원 여부를 같이 돌려주게 되었다(`ownedStudent`) — 그 판정을 지운다
+    from: L(
+      "  if (!withinOwnerScope(director, owner.ownerId))",
+      '    return { failure: "not_owner" };',
+      "",
+    ),
     to: "",
     probe: {
       tsx: '(async () => { const h = issueHarness("someone-else"); const r = await issue.issueStudentAccount(h.deps, ISSUE_INPUT); return r.ok ? "issued" : r.reason; })()',
+    },
+    tests: [ISSUE],
+  },
+  {
+    name: "⑤b 관리자도 남의 반 학생에게 발급하지 못한다 (D-130 — 원장님 2026-09-16 «발급도 관리자에게»)",
+    file: ISSUE_FILE,
+    from: "  if (!withinOwnerScope(director, owner.ownerId))",
+    to: "  if (!withinOwnerScope({ id: director.id }, owner.ownerId))",
+    probe: {
+      tsx: '(async () => { const h = issueHarness("someone-else"); const r = await issue.issueStudentAccount(h.deps, { ...ISSUE_INPUT, director: { id: "d1", isAdmin: true } }); return r.ok ? "issued" : r.reason; })()',
     },
     tests: [ISSUE],
   },
@@ -290,14 +304,14 @@ const MUTATIONS: Mutation[] = [
     file: ISSUE_FILE,
     from: L(
       "  await deps.audit(",
-      '    auditFor("student_account.issue", input.directorId, account),',
+      '    auditFor("student_account.issue", input.director.id, account),',
       "  );",
     ),
     to: L(
       "  await deps.audit({",
-      '    ...auditFor("student_account.issue", input.directorId, account),',
+      '    ...auditFor("student_account.issue", input.director.id, account),',
       "    details: {",
-      '      ...auditFor("student_account.issue", input.directorId, account).details,',
+      '      ...auditFor("student_account.issue", input.director.id, account).details,',
       "      initial: initialPassword,",
       "    },",
       "  } as AccountAuditEntry);",
