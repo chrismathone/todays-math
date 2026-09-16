@@ -189,7 +189,28 @@ export function DailyReviewSection({ units }: { units: UnitEntity[] }) {
     (sum, g) => sum + g.students.length,
     0,
   );
-  const doneStudents = autoStudents - targets.length;
+  // 검수 줄 — 자동 묶음 학생 중 시험지가 있는 학생(묶음 차례) 뒤에, **묶음 밖** 학생의 오늘 시험지
+  // (문항 부족 · 시험기간 · 오늘 대상 아님 — 아침 초안이 선 뒤 바뀐 날)를 이어 붙인다(D-133 후속).
+  const autoIds = new Set(d.auto.flatMap((g) => g.students.map((s) => s.id)));
+  const reviewEntries = [
+    ...d.auto
+      .flatMap((g) => g.students)
+      .map((s) => ({
+        id: s.id,
+        name: s.name,
+        today: testByStudent.get(s.id),
+        testId: progress.created[s.id] ?? testByStudent.get(s.id)?.testId,
+      })),
+    ...d.todayTests
+      .filter((t) => !autoIds.has(t.studentId))
+      .map((t) => ({
+        id: t.studentId,
+        name: t.studentName,
+        today: t,
+        testId: t.testId,
+      })),
+  ].filter((e): e is typeof e & { testId: string } => Boolean(e.testId));
+  const doneStudents = reviewEntries.length;
   const stale = state.stale;
 
   // 「오늘 초안 N장」 — 오늘 확인테스트 중 아직 초안인 것 + 이 화면에서 방금 만든 것.
@@ -379,29 +400,24 @@ export function DailyReviewSection({ units }: { units: UnitEntity[] }) {
           {doneStudents > 0 || Object.keys(progress.created).length > 0 ? (
             <p className="mt-2 flex flex-wrap items-center gap-x-2 gap-y-1 text-sm text-text-2">
               출제됨 {n(doneStudents)}명 — 검수:
-              {d.auto
-                .flatMap((g) => g.students)
-                .map((s) => {
-                  const today = testByStudent.get(s.id);
-                  const testId = progress.created[s.id] ?? today?.testId;
-                  if (!testId) return null;
-                  return (
-                    <span key={s.id} className="inline-flex items-center gap-1">
-                      <Link
-                        href={`/tests/${testId}`}
-                        className="inline-flex items-center underline underline-offset-2"
-                      >
-                        {s.name}
-                      </Link>
-                      {/* 아침 회차가 세운 시험지만 — 이 화면에서 방금 낸 초안은 `todayTests` 에 없다 */}
-                      {today?.autoDraft ? (
-                        <span data-auto-draft-tag className={AUTO_DRAFT_TAG}>
-                          자동 출제
-                        </span>
-                      ) : null}
-                    </span>
-                  );
-                })}
+              {reviewEntries.map(({ id, name, today, testId }) => {
+                return (
+                  <span key={id} className="inline-flex items-center gap-1">
+                    <Link
+                      href={`/tests/${testId}`}
+                      className="inline-flex items-center underline underline-offset-2"
+                    >
+                      {name}
+                    </Link>
+                    {/* 아침 회차가 세운 시험지만 — 이 화면에서 방금 낸 초안은 `todayTests` 에 없다 */}
+                    {today?.autoDraft ? (
+                      <span data-auto-draft-tag className={AUTO_DRAFT_TAG}>
+                        자동 출제
+                      </span>
+                    ) : null}
+                  </span>
+                );
+              })}
             </p>
           ) : null}
 
@@ -423,12 +439,10 @@ export function DailyReviewSection({ units }: { units: UnitEntity[] }) {
                     <span className="text-[12px] text-g-red-text">
                       문항 {n(g.poolTotal)}/{g.neededCount}
                     </span>
-                    <Link
-                      href={`/tests/new?classId=${g.students[0]!.classId}&studentId=${g.students[0]!.id}`}
-                      className="inline-flex items-center text-[12px] underline underline-offset-2"
-                    >
-                      직접 출제
-                    </Link>
+                    <DraftOrReviewLink
+                      student={g.students[0]!}
+                      today={testByStudent.get(g.students[0]!.id)}
+                    />
                   </li>
                 ))}
               </ul>
@@ -460,12 +474,10 @@ export function DailyReviewSection({ units }: { units: UnitEntity[] }) {
                         {line}
                       </span>
                     ))}
-                    <Link
-                      href={`/tests/new?classId=${s.classId}&studentId=${s.id}`}
-                      className="inline-flex items-center text-[12px] underline underline-offset-2"
-                    >
-                      직접 출제
-                    </Link>
+                    <DraftOrReviewLink
+                      student={s}
+                      today={testByStudent.get(s.id)}
+                    />
                   </li>
                 ))}
               </ul>
@@ -542,5 +554,30 @@ export function DailyReviewSection({ units }: { units: UnitEntity[] }) {
         </p>
       ) : null}
     </section>
+  );
+}
+
+/**
+ * 부족 · 시험기간 줄의 링크 — 오늘 시험지가 **이미 있으면 «검수»**(그 시험지), 없으면 «직접 출제».
+ * 아침 초안이 선 뒤 그 학생이 자동 묶음 밖으로 바뀐 날, «직접 출제»가 같은 날 두 번째 초안을 세우지 않게(D-133 후속).
+ */
+function DraftOrReviewLink({
+  student,
+  today,
+}: {
+  student: { id: string; classId: string };
+  today: { testId: string } | undefined;
+}) {
+  return (
+    <Link
+      href={
+        today
+          ? `/tests/${today.testId}`
+          : `/tests/new?classId=${student.classId}&studentId=${student.id}`
+      }
+      className="inline-flex items-center text-[12px] underline underline-offset-2"
+    >
+      {today ? "검수" : "직접 출제"}
+    </Link>
   );
 }

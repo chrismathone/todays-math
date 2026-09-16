@@ -19,7 +19,7 @@ import {
  *
  *   ?screen=classes|main          (기본 classes)
  *   ?set=hifi|stress|none         반 관리의 계획(기본 hifi — 시안 그림)
- *   ?main=hifi|stress|empty       메인 «오늘의 확인테스트»(기본 hifi)
+ *   ?main=hifi|stress|empty|outside  메인 «오늘의 확인테스트»(기본 hifi · outside = 묶음 밖 학생의 오늘 시험지, D-133 후속)
  *
  * 「오늘」은 기계 시계(KST)다 — 픽스처는 2026-09-16(수) 기준으로 짰다.
  * 이웃 dev 페이지(`dev/learn-hifi` 등)와 **같은 가드**다 — 없으면 프로덕션에 프리렌더된다.
@@ -47,7 +47,11 @@ export default async function PlanScreenHifiPage({
   const options: PlanScreenHifiOptions = {
     screen: pick(flag("screen"), ["classes", "main"] as const, "classes"),
     set: pick(flag("set"), ["hifi", "stress", "none"] as const, "hifi"),
-    mainSet: pick(flag("main"), ["hifi", "stress", "empty"] as const, "hifi"),
+    mainSet: pick(
+      flag("main"),
+      ["hifi", "stress", "empty", "outside"] as const,
+      "hifi",
+    ),
   };
   const units = onlySupportedGrades(
     CURRICULUM_UNITS.map((u) => ({

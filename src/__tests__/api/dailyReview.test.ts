@@ -321,9 +321,14 @@ describe("[매일 자동 출제 ⑤] GET /api/tests/daily-review — 계획으�
       },
     });
     const body = dailyReviewResponseSchema.parse(await (await get()).json());
+    // 검수 줄이 자동 묶음 밖 학생도 이름으로 그린다(D-133 후속) — 이름은 학생 행 그대로
+    const student = await prismaTestDouble.student.findUnique({
+      where: { id: STUDENT_IDS[0]! },
+    });
     expect(body.data.todayTests).toEqual([
       {
         studentId: STUDENT_IDS[0]!,
+        studentName: student!.name,
         testId: made.id,
         status: "draft",
         autoDraft: false,
@@ -401,6 +406,7 @@ describe("[매일 자동 출제 ⑤] GET /api/tests/daily-review — 계획으�
     expect(body.data.todayTests).toEqual([
       {
         studentId: STUDENT_IDS[0]!,
+        studentName: expect.any(String),
         testId: later.id,
         status: "draft",
         autoDraft: false,

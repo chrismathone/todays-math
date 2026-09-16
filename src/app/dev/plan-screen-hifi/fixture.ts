@@ -27,7 +27,7 @@ import type { ProgressPlanRule } from "@/lib/daily/progressPlan";
 import type { ProgressRecordLike } from "@/lib/progressResolver";
 
 export type PlanHifiSet = "hifi" | "stress" | "none";
-export type MainHifiSet = "hifi" | "stress" | "empty";
+export type MainHifiSet = "hifi" | "stress" | "empty" | "outside";
 
 export interface FixtureUnit {
   id: string;
@@ -235,12 +235,13 @@ export function mainDaily(
   // 앞 셋은 아침 회차가 세운 초안(«자동 출제» 표지 — D-133 ⑵), 뒤 둘은 손으로 낸 초안
   const draft = autoStudents.map((s, i) => ({
     studentId: s.id,
+    studentName: s.name,
     testId: uid("90000000", 700 + i),
     status: "draft" as const,
     autoDraft: i < 3,
   }));
-  if (set === "hifi")
-    return {
+  if (set === "hifi" || set === "outside") {
+    const hifi: DailyReviewResponse["data"] = {
       ...base,
       attended: 9,
       auto: [
@@ -274,6 +275,30 @@ export function mainDaily(
       ],
       todayTests: draft,
     };
+    if (set === "hifi") return hifi;
+    // outside — 아침 초안이 선 뒤 자동 묶음 밖으로 바뀐 학생(D-133 후속): 문항 부족 한서윤은 아침 초안,
+    // 시험기간 오하린은 손으로 낸 시험지. 검수 줄에 이름이 서고 두 줄의 «직접 출제»가 «검수»로 바뀐다.
+    return {
+      ...hifi,
+      todayTests: [
+        ...draft,
+        {
+          studentId: stu(6, "한서윤").id,
+          studentName: "한서윤",
+          testId: uid("90000000", 760),
+          status: "draft" as const,
+          autoDraft: true,
+        },
+        {
+          studentId: stu(8, "오하린").id,
+          studentName: "오하린",
+          testId: uid("90000000", 780),
+          status: "draft" as const,
+          autoDraft: false,
+        },
+      ],
+    };
+  }
 
   // stress — 밀림 날 여럿 · 범위 없음 · 긴 반 이름 일곱
   const longClass = (n: number) =>

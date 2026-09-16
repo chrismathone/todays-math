@@ -193,6 +193,7 @@ export async function GET(request: NextRequest) {
     string,
     {
       studentId: string;
+      studentName: string;
       testId: string;
       status: "draft" | "confirmed" | "printed";
       autoDraft: boolean;
@@ -202,6 +203,8 @@ export async function GET(request: NextRequest) {
     if (t.studentId && !todayTestByStudent.has(t.studentId))
       todayTestByStudent.set(t.studentId, {
         studentId: t.studentId,
+        // 조회가 `studentIds`(두 갈래 학생) 안에서만 돌아 이름은 늘 있다
+        studentName: studentById.get(t.studentId)?.name ?? "",
         testId: t.id,
         status: t.status as "draft" | "confirmed" | "printed",
         // «자동 출제» 표지(D-133 ⑵) — 아침 회차가 세운 시험지만. 근거는 이 칸 하나다.

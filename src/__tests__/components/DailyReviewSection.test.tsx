@@ -93,6 +93,7 @@ function richDaily(syncRanAt: string) {
       todayTests: [
         {
           studentId: STUDENT_IDS[1]!,
+          studentName: "이서연",
           testId: EXISTING_TEST_ID,
           status: "draft",
           autoDraft: false,
@@ -434,18 +435,21 @@ describe("[D-131] 오늘의 확인테스트 — 계획이 있으면 누구에게
             todayTests: [
               {
                 studentId: STUDENT_IDS[0]!,
+                studentName: "김민준",
                 testId: "90000000-0000-4000-8000-000000000701",
                 status: "draft",
                 autoDraft: false,
               },
               {
                 studentId: STUDENT_IDS[1]!,
+                studentName: "이서연",
                 testId: "90000000-0000-4000-8000-000000000702",
                 status: "confirmed",
                 autoDraft: false,
               },
               {
                 studentId: STUDENT_IDS[2]!,
+                studentName: "박도윤",
                 testId: "90000000-0000-4000-8000-000000000703",
                 status: "printed",
                 autoDraft: false,
@@ -492,6 +496,7 @@ describe("[D-133] 오늘의 확인테스트 — 검수 줄의 «자동 출제» 
         ...base,
         todayTests: todayTests.map(({ i, autoDraft, status }) => ({
           studentId: STUDENT_IDS[i]!,
+          studentName: ["김민준", "이서연", "박도윤", "최하은", "정우진"][i]!,
           testId: `90000000-0000-4000-8000-00000000080${i}`,
           status: status ?? "draft",
           autoDraft,
@@ -655,5 +660,128 @@ describe("[D-132] 오늘의 확인테스트 — 학생 줄의 담당 딱지(관�
   it("🔴 담당이 없으면(관리자 아님) 딱지가 없다 — 지금 화면 그대로", async () => {
     const row = await openExamRow(withOwner());
     expect(row.querySelector("[data-owner-tag]")).toBeNull();
+  });
+});
+
+/**
+ * 🔴 D-133 후속(원장님 2026-09-17 «추천 사항으로») — 아침 초안이 선 학생이 **자동 묶음 밖**으로 바뀐 날
+ *    (문항 부족 · 시험기간 · 오늘 대상 아님): 검수 줄에 **이름과 표지**가 서고, 그 학생 줄의 «직접 출제»는
+ *    **«검수»**(그 시험지)로 바뀐다 — 같은 날 두 번째 초안이 서지 않게.
+ */
+describe("[D-133 후속] 자동 묶음 밖 학생의 오늘 시험지 — 검수 줄 · «직접 출제» 대신 «검수»", () => {
+  const LACKING_TEST = "90000000-0000-4000-8000-000000000812";
+  const EXAM_TEST = "90000000-0000-4000-8000-000000000813";
+  const OUTSIDE_TEST = "90000000-0000-4000-8000-000000000814";
+
+  function outside() {
+    const base = richDaily(new Date().toISOString()).data;
+    return dailyReviewResponseSchema.parse({
+      data: {
+        ...base,
+        todayTests: [
+          ...base.todayTests,
+          // 문항 부족 줄의 박도윤 — 아침 초안이 섰다
+          {
+            studentId: STUDENT_IDS[2]!,
+            studentName: "박도윤",
+            testId: LACKING_TEST,
+            status: "draft",
+            autoDraft: true,
+          },
+          // 시험기간 줄의 최하은 — 손으로 낸 시험지
+          {
+            studentId: STUDENT_IDS[3]!,
+            studentName: "최하은",
+            testId: EXAM_TEST,
+            status: "draft",
+            autoDraft: false,
+          },
+          // 오늘 어느 목록에도 없는 학생 — 계획을 바꾼 날
+          {
+            studentId: STUDENT_IDS[4]!,
+            studentName: "정우진",
+            testId: OUTSIDE_TEST,
+            status: "confirmed",
+            autoDraft: true,
+          },
+        ],
+      },
+    });
+  }
+
+  async function render3() {
+    server.use(
+      http.get("/api/tests/daily-review", () => HttpResponse.json(outside())),
+    );
+    render(<DailyReviewSection units={MOCK_UNITS} />);
+    return await findSection();
+  }
+
+  const reviewLine = (section: HTMLElement) =>
+    within(section)
+      .getByText(/^출제됨 \d+명 — 검수:/)
+      .closest("p")!;
+
+  it("🔴 자동 묶음 밖 학생도 검수 줄에 이름 링크 — 아침 초안이면 «자동 출제» 표지", async () => {
+    const section = await render3();
+    const line = reviewLine(section);
+    const link = (name: string) => within(line).getByRole("link", { name });
+    expect(link("박도윤")).toHaveAttribute("href", `/tests/${LACKING_TEST}`);
+    expect(link("최하은")).toHaveAttribute("href", `/tests/${EXAM_TEST}`);
+    expect(link("정우진")).toHaveAttribute("href", `/tests/${OUTSIDE_TEST}`);
+    const tagOf = (name: string) =>
+      link(name).nextElementSibling?.hasAttribute("data-auto-draft-tag") ??
+      false;
+    expect(tagOf("박도윤")).toBe(true);
+    expect(tagOf("최하은")).toBe(false);
+    expect(tagOf("정우진")).toBe(true);
+  });
+
+  it("«출제됨 N명»은 검수 줄에 선 이름 수와 같다", async () => {
+    const section = await render3();
+    const line = reviewLine(section);
+    const names = within(line).getAllByRole("link").length;
+    expect(line).toHaveTextContent(new RegExp(`^출제됨 ${names}명 — 검수:`));
+  });
+
+  it("🔴 문항 부족 줄 — 오늘 시험지가 있으면 «직접 출제» 대신 «검수»(그 시험지)", async () => {
+    const section = await render3();
+    const row = within(section)
+      .getByText("박도윤", { selector: "span" })
+      .closest("li")!;
+    expect(within(row).queryByRole("link", { name: "직접 출제" })).toBeNull();
+    expect(within(row).getByRole("link", { name: "검수" })).toHaveAttribute(
+      "href",
+      `/tests/${LACKING_TEST}`,
+    );
+  });
+
+  it("🔴 시험기간 줄 — 오늘 시험지가 있으면 «검수», 없으면 «직접 출제» 그대로", async () => {
+    const section = await render3();
+    const user = userEvent.setup();
+    await user.click(
+      within(section).getByText("시험기간·진도 못 읽음 1명 — 자동 출제 제외"),
+    );
+    const row = within(section)
+      .getByText("최하은", { selector: "b" })
+      .closest("li")!;
+    expect(within(row).queryByRole("link", { name: "직접 출제" })).toBeNull();
+    expect(within(row).getByRole("link", { name: "검수" })).toHaveAttribute(
+      "href",
+      `/tests/${EXAM_TEST}`,
+    );
+  });
+
+  it("오늘 시험지가 없는 부족 줄은 «직접 출제» 그대로", async () => {
+    useRichHandlers();
+    render(<DailyReviewSection units={MOCK_UNITS} />);
+    const section = await findSection();
+    const row = within(section)
+      .getByText("박도윤", { selector: "span" })
+      .closest("li")!;
+    expect(
+      within(row).getByRole("link", { name: "직접 출제" }),
+    ).toBeInTheDocument();
+    expect(within(row).queryByRole("link", { name: "검수" })).toBeNull();
   });
 });

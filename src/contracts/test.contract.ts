@@ -359,6 +359,8 @@ export const dailyReviewResponseSchema = dataResponseSchema(
     todayTests: z.array(
       z.strictObject({
         studentId: uuidSchema,
+        /** 검수 줄이 **자동 묶음 밖** 학생(문항 부족 · 시험기간 · 오늘 대상 아님)도 이름으로 그린다(D-133 후속). */
+        studentName: z.string(),
         testId: uuidSchema,
         status: z.enum(["draft", "confirmed", "printed"]),
         /** 아침 자동 초안 회차가 세운 시험지인가 — 시험지 칸 `auto_draft_run_id` 가 있으면 참(D-133 ⑵).
