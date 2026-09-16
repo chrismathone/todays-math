@@ -232,10 +232,12 @@ export function mainDaily(
   const autoStudents = [1, 2, 3, 4, 5].map((n) =>
     stu(n, ["김도윤", "이서준", "박하은", "최지우", "정민재"][n - 1]!),
   );
+  // 앞 셋은 아침 회차가 세운 초안(«자동 출제» 표지 — D-133 ⑵), 뒤 둘은 손으로 낸 초안
   const draft = autoStudents.map((s, i) => ({
     studentId: s.id,
     testId: uid("90000000", 700 + i),
     status: "draft" as const,
+    autoDraft: i < 3,
   }));
   if (set === "hifi")
     return {

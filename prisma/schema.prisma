@@ -626,6 +626,13 @@ model AutoDraftRun {
   /// 까닭의 SSOT 는 `src/contracts/dailyAutoTest.contract.ts` 의 `autoDraftSkipReasonSchema`.
   skips   Json     @db.JsonB
 
+  /// 이 회차가 세운 시험지(D-133 ⑴) — `Test.autoDraftRunId` 의 역관계.
+  ///
+  /// 🔴 행은 **초안을 세우기 전에** 합계 0 으로 먼저 서고, 끝에서 합계를 고쳐 쓴다(`runAutoDraft`).
+  ///    끝난 회차는 `created + skipped = targets` 다. 중간에 끊겼으면 — 이은 시험지가 없으면 행을 지우고,
+  ///    있으면 거기까지의 합계를 적어 `created + skipped < targets` 로 남는다(보고서 plan-screen-followup ⑤-B).
+  tests   Test[]
+
   @@index([ranAt])
   @@map("auto_draft_run")
 }
@@ -902,6 +909,14 @@ model Test {
   ///      자리에 실데이터 판정이 생긴다
   ///   3. 반쪽 시험지 차단 — 확정 시 회차 청사진의 문항 수와 대조할 수 있다
   predictionRunId String?  @map("prediction_run_id") @db.Uuid
+
+  /// 아침 8시 자동 초안 회차(`AutoDraftRun`)가 세운 시험지면 그 회차 id. 손으로 낸 시험지는 NULL (D-133 ⑴).
+  ///
+  /// 메인 «오늘의 확인테스트» 검수 줄의 **«자동 출제» 표지**가 이 칸 하나만 본다(daily-review `todayTests[].autoDraft`).
+  /// 🔴 **서버 안에서만 채운다** — `generateDraftTest` 의 세 번째 인자로 `runAutoDraft` 만 넘긴다.
+  ///    요청 계약(`TestGenerateRequest`)에는 칸이 없다(strict — 넣으면 400). 밖에서 채울 수 있으면 표지가 거짓말이 된다.
+  ///    시각으로 짐작하지도 않는다 — 8시 무렵 «모두 출제»로 낸 시험지가 섞인다.
+  autoDraftRunId  String?  @map("auto_draft_run_id") @db.Uuid
   createdAt       DateTime @default(now()) @map("created_at")
 
   user           User           @relation(fields: [userId], references: [id], onDelete: Cascade)
@@ -910,6 +925,8 @@ model Test {
   rangeStartUnit Unit?          @relation("TestRangeStartUnit", fields: [rangeStartUnitId], references: [id], onDelete: Restrict)
   /// 회차가 지워져도 시험지는 남긴다 — 인쇄물이 이미 나갔을 수 있다.
   predictionRun  PredictionRun? @relation(fields: [predictionRunId], references: [id], onDelete: SetNull)
+  /// 회차 기록이 지워져도 시험지는 남긴다 — 칸만 빈다(표지가 사라질 뿐 시험지·문항은 그대로).
+  autoDraftRun   AutoDraftRun?  @relation(fields: [autoDraftRunId], references: [id], onDelete: SetNull)
   rangeEndUnit   Unit           @relation("TestRangeEndUnit", fields: [rangeEndUnitId], references: [id], onDelete: Restrict)
   testProblems   TestProblem[]
   testResults    TestResult[]
@@ -918,6 +935,7 @@ model Test {
   @@index([classId, testDate(sort: Desc)])
   @@index([studentId])
   @@index([predictionRunId])
+  @@index([autoDraftRunId])
   @@map("test")
 }
 

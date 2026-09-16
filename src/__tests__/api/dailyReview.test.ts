@@ -322,7 +322,89 @@ describe("[매일 자동 출제 ⑤] GET /api/tests/daily-review — 계획으�
     });
     const body = dailyReviewResponseSchema.parse(await (await get()).json());
     expect(body.data.todayTests).toEqual([
-      { studentId: STUDENT_IDS[0]!, testId: made.id, status: "draft" },
+      {
+        studentId: STUDENT_IDS[0]!,
+        testId: made.id,
+        status: "draft",
+        autoDraft: false,
+      },
+    ]);
+  });
+
+  /**
+   * 🔴 D-133 ⑵ — «자동 출제» 표지의 근거는 시험지 칸(`auto_draft_run_id`) **하나**다.
+   *    시각으로 짐작하지 않는다 — 8시 무렵 손으로 낸 시험지가 섞인다.
+   */
+  it("🔴 todayTests[].autoDraft — 아침 회차가 세운 시험지만 참, 손으로 낸 것은 거짓", async () => {
+    await seedPlan();
+    const run = await prismaTestDouble.autoDraftRun.create({
+      data: {
+        day: new Date(`${DAY}T00:00:00.000Z`),
+        targets: 2,
+        created: 1,
+        skipped: 1,
+        skips: [{ studentId: STUDENT_IDS[1]!, reason: "exam-or-unread" }],
+      },
+    });
+    const base = {
+      userId: "10000000-0000-4000-8000-000000000001",
+      classId: CLASS_A_ID,
+      testType: "review" as const,
+      rangeStartUnitId: MOCK_UNITS[0]!.id,
+      rangeEndUnitId: MOCK_UNITS[3]!.id,
+      status: "draft" as const,
+      modified: false,
+      testDate: new Date(`${DAY}T00:00:00.000Z`),
+    };
+    const auto = await prismaTestDouble.test.create({
+      data: { ...base, studentId: STUDENT_IDS[0]!, autoDraftRunId: run.id },
+    });
+    const manual = await prismaTestDouble.test.create({
+      data: { ...base, studentId: STUDENT_IDS[2]! },
+    });
+    const body = dailyReviewResponseSchema.parse(await (await get()).json());
+    const byTest = new Map(
+      body.data.todayTests.map((t) => [t.testId, t.autoDraft]),
+    );
+    expect(byTest.get(auto.id)).toBe(true);
+    expect(byTest.get(manual.id)).toBe(false);
+  });
+
+  it("같은 학생에 손 시험지가 더 늦게 섰으면 최신 한 건(손)의 표지를 싣는다", async () => {
+    await seedPlan();
+    const run = await prismaTestDouble.autoDraftRun.create({
+      data: {
+        day: new Date(`${DAY}T00:00:00.000Z`),
+        targets: 0,
+        created: 0,
+        skipped: 0,
+        skips: [],
+      },
+    });
+    const base = {
+      userId: "10000000-0000-4000-8000-000000000001",
+      classId: CLASS_A_ID,
+      studentId: STUDENT_IDS[0]!,
+      testType: "review" as const,
+      rangeStartUnitId: MOCK_UNITS[0]!.id,
+      rangeEndUnitId: MOCK_UNITS[3]!.id,
+      status: "draft" as const,
+      modified: false,
+      testDate: new Date(`${DAY}T00:00:00.000Z`),
+    };
+    await prismaTestDouble.test.create({
+      data: { ...base, autoDraftRunId: run.id },
+    });
+    await new Promise((resolve) => setTimeout(resolve, 5));
+    const later = await prismaTestDouble.test.create({ data: base });
+    const body = dailyReviewResponseSchema.parse(await (await get()).json());
+    expect(body.data.todayTests).toEqual([
+      {
+        studentId: STUDENT_IDS[0]!,
+        testId: later.id,
+        status: "draft",
+        autoDraft: false,
+      },
     ]);
   });
 });

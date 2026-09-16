@@ -292,6 +292,8 @@ interface TestRow {
   createdAt: Date;
   /** '오늘의 시험' 회차 연결. 일반 시험지는 null. */
   predictionRunId: string | null;
+  /** 아침 자동 초안 회차 연결(D-133). 손으로 낸 시험지는 null — FK SET NULL 은 `autoDraftRun.delete` 가 흉내 낸다. */
+  autoDraftRunId: string | null;
 }
 
 interface TestProblemRow {
@@ -571,6 +573,7 @@ function toTestRow(entity: TestEntity): TestRow {
     printedAt: entity.printedAt ? new Date(entity.printedAt) : null,
     createdAt: new Date(entity.createdAt),
     predictionRunId: null,
+    autoDraftRunId: null,
   };
 }
 
@@ -604,6 +607,7 @@ function toFixtureTestRow(): TestRow {
     testDate: new Date(`${fixture.testDate}T00:00:00.000Z`),
     printedAt: new Date(fixture.printedAt),
     predictionRunId: null,
+    autoDraftRunId: null,
     createdAt: new Date(fixture.createdAt),
   };
 }
@@ -681,6 +685,7 @@ export function resetPrismaTestDouble() {
     testDate: new Date("2026-08-12T00:00:00.000Z"),
     printedAt: new Date("2026-08-12T09:00:00.000Z"),
     predictionRunId: null,
+    autoDraftRunId: null,
     createdAt: new Date("2026-08-12T08:00:00.000Z"),
   });
   testProblemRows.push({
@@ -1372,7 +1377,13 @@ const prismaModels = {
     },
   },
 
-  /** 자동 초안 회차 기록 — 회차마다 한 줄. */
+  /**
+   * 자동 초안 회차 기록 — 회차마다 한 줄.
+   *
+   * D-133: 행을 **먼저** 만들고(합계 0) 끝에서 `update` 로 합계를 고쳐 쓴다. 중간에 끊겨 이은 시험지가 없으면 `delete`.
+   * 🔴 마이그레이션의 CHECK(`auto_draft_run_counts_nonnegative` · `auto_draft_run_skips_match`)와 FK SET NULL
+   *    (`test_auto_draft_run_id_fkey`)을 흉내 낸다 — 합계를 고쳐 쓰다 `skipped` 와 `skips` 가 어긋나면 DB 처럼 던진다.
+   */
   autoDraftRun: {
     async create({ data }: { data: Omit<AutoDraftRunRow, "id" | "ranAt"> }) {
       const row: AutoDraftRunRow = {
@@ -1380,8 +1391,33 @@ const prismaModels = {
         ranAt: new Date(),
         ...data,
       };
+      assertAutoDraftRunChecks(row);
       autoDraftRunRows.push(row);
       return row;
+    },
+    async update({
+      where,
+      data,
+    }: {
+      where: { id: string };
+      data: Partial<Omit<AutoDraftRunRow, "id" | "ranAt">>;
+    }) {
+      const row = autoDraftRunRows.find((r) => r.id === where.id);
+      if (!row) throw prismaKnownError("P2025", "record to update not found");
+      const next = { ...row, ...data };
+      assertAutoDraftRunChecks(next);
+      Object.assign(row, next);
+      return row;
+    },
+    async delete({ where }: { where: { id: string } }) {
+      const index = autoDraftRunRows.findIndex((r) => r.id === where.id);
+      if (index === -1)
+        throw prismaKnownError("P2025", "record to delete does not exist");
+      const [removed] = autoDraftRunRows.splice(index, 1);
+      // ON DELETE SET NULL — 시험지는 남고 칸만 빈다
+      for (const test of testRows)
+        if (test.autoDraftRunId === where.id) test.autoDraftRunId = null;
+      return removed!;
     },
     async findMany({
       where,
@@ -1857,8 +1893,15 @@ const prismaModels = {
         testDate: Date;
         printedAt?: Date | null;
         predictionRunId?: string | null;
+        autoDraftRunId?: string | null;
       };
     }) {
+      // 🔴 FK `test_auto_draft_run_id_fkey` — 없는 회차 id 는 DB 처럼 P2003. 안 막으면 «아무 id 나 적힌 표지»가 시험에서만 산다.
+      if (
+        data.autoDraftRunId != null &&
+        !autoDraftRunRows.some((r) => r.id === data.autoDraftRunId)
+      )
+        throw prismaKnownError("P2003", "test_auto_draft_run_id_fkey");
       const row: TestRow = {
         id: randomUUID(),
         userId: data.userId,
@@ -1872,6 +1915,7 @@ const prismaModels = {
         testDate: data.testDate,
         printedAt: data.printedAt ?? null,
         predictionRunId: data.predictionRunId ?? null,
+        autoDraftRunId: data.autoDraftRunId ?? null,
         createdAt: new Date(),
       };
       testRows.push(row);
@@ -2519,6 +2563,14 @@ function assertProgressPlanConstraints(
   } else if (others.some((o) => o.studentId === row.studentId)) {
     throw prismaKnownError("P2002", "progress_plan_student_id_key");
   }
+}
+
+/** `auto_draft_run` 의 CHECK 둘 — 마이그레이션 20260916120000 «손으로 더한 것» */
+function assertAutoDraftRunChecks(row: AutoDraftRunRow): void {
+  if (row.targets < 0 || row.created < 0 || row.skipped < 0)
+    throw new Error("auto_draft_run_counts_nonnegative");
+  if (!Array.isArray(row.skips) || row.skips.length !== row.skipped)
+    throw new Error("auto_draft_run_skips_match");
 }
 
 function assertConceptLectureChecks(row: ConceptLectureRow): void {

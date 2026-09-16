@@ -18,6 +18,9 @@ import { DailyReviewSkeleton } from "@/components/ui/PageSkeletons";
  * D-131(2026-09-16, 시안 Hi-fi 2): 계획이 있으면 **누구에게나** 선다 · 첫 줄은 짧게 「오늘 초안 N장」 ·
  * 칩 「N일 밀림 M명」·「문항 부족 N명」·「시험기간 N명」 · 오늘 대상이 없으면 「오늘 수업 계획이 없습니다.」.
  *
+ * D-133(2026-09-16, 구현 검수): 밀림 칩은 **하나** 「밀림 N명 · 최대 D일」 · 오늘 대상이 없는 반은 **수만**
+ * 「오늘 수업 계획이 없는 반 N개」 · 검수 줄에서 아침 자동으로 선 시험지의 이름 바로 뒤에 **«자동 출제»** 표지.
+ *
  * · 이미 오늘 시험이 있는 학생은 건너뛴다(`todayTests`) — 재클릭·새로고침이
  *   중복 초안을 만들지 않는다.
  * · 출제는 기존 POST /api/tests/generate 를 학생별로 부른다 — 새 경로를 만들지
@@ -42,6 +45,14 @@ interface GenerateProgress {
 }
 
 const MICRO_LABEL = "text-[10px] font-extrabold tracking-[1.2px] text-text-2";
+
+/**
+ * «자동 출제» 표지 — 05 §8.10 Hi-fi 2 표지 그대로: 흰 바탕 · 파랑(`--blue` #2064B3) 1px 테두리·글자 · 11px · 700 ·
+ * 안쪽 2px 8px · 모서리 4px. 줄높이는 시안에 없어 16px 로 박았다(검수 줄 안에서 높이가 흔들리지 않게).
+ * ⚠️ D-30: 누르는 것이 아니다 — 링크 **밖**에 두고 손가락 커서·hover 를 두지 않는다.
+ */
+const AUTO_DRAFT_TAG =
+  "inline-block shrink-0 whitespace-nowrap rounded-[4px] border border-blue bg-white px-2 py-0.5 text-[11px] leading-4 font-bold text-blue";
 const STALE_MS = 48 * 3_600_000;
 
 const n = (v: number) => v.toLocaleString("ko-KR");
@@ -176,23 +187,24 @@ export function DailyReviewSection({ units }: { units: UnitEntity[] }) {
   const stale = state.stale;
 
   // 「오늘 초안 N장」 — 오늘 확인테스트 중 아직 초안인 것 + 이 화면에서 방금 만든 것.
-  // ⚠️ 자동(아침 8시)으로 선 것과 손으로 낸 것을 가르지 않는다 — 시험 행에 그 표시가 없다(보고서 ⑤).
+  // ⚠️ 자동(아침 8시)으로 선 것과 손으로 낸 것을 **가르지 않는다** — 리드 결정 D(D-133 뒤에도 유지).
+  //    가르는 것은 검수 줄의 «자동 출제» 표지뿐이다.
   const draftCount =
     d.todayTests.filter((t) => t.status === "draft").length +
     Object.keys(progress.created).filter((id) => !testByStudent.has(id)).length;
 
-  // 칩 — 「N일 밀림 M명」(많이 밀린 날부터) · 「문항 부족 N명」 · 「시험기간 N명」 · 「범위 없음 N명」.
-  const delayedByDays = new Map<number, number>();
-  for (const s of d.delayed)
-    delayedByDays.set(s.days, (delayedByDays.get(s.days) ?? 0) + 1);
+  // 칩 — 「밀림 N명 · 최대 D일」 · 「문항 부족 N명」 · 「시험기간 N명」 · 「범위 없음 N명」.
+  // 🔴 밀림은 **칩 하나**(D-133 ⑺) — N = 밀린 학생 수, D = 가장 많이 밀린 일 수. 날마다 가르지 않는다.
   const chips = [
-    ...[...delayedByDays]
-      .sort(([a], [b]) => b - a)
-      .map(([days, count]) => ({
-        key: `delayed-${days}`,
-        label: `${n(days)}일 밀림 ${n(count)}명`,
-        warn: true,
-      })),
+    ...(d.delayed.length > 0
+      ? [
+          {
+            key: "delayed",
+            label: `밀림 ${n(d.delayed.length)}명 · 최대 ${n(Math.max(...d.delayed.map((s) => s.days)))}일`,
+            warn: true,
+          },
+        ]
+      : []),
     ...(lackingStudents > 0
       ? [
           {
@@ -339,10 +351,11 @@ export function DailyReviewSection({ units }: { units: UnitEntity[] }) {
             </ul>
           ) : null}
 
+          {/* 🔴 반 이름을 늘어놓지 않는다 — 수만(D-133 ⑻). 관리자 계정은 역할 계정의 반까지 보여 이름 줄이 길어진다.
+              반 목록은 응답(`noLessonClasses`)에 그대로 있다. */}
           {d.noLessonClasses.length > 0 ? (
             <p className="mt-2 text-sm text-text-3">
-              {d.noLessonClasses.map((c) => c.name).join(" · ")} — 오늘 수업
-              계획이 없습니다.
+              오늘 수업 계획이 없는 반 {n(d.noLessonClasses.length)}개
             </p>
           ) : null}
 
@@ -355,24 +368,32 @@ export function DailyReviewSection({ units }: { units: UnitEntity[] }) {
             </p>
           ) : null}
           {/* 링크는 `inline-flex items-center` — 작업실(`.lessonContent a`)이 링크를 44px 높이로 세워
-              flex 줄 안에서 글자만 위로 뜨고 «출제됨 N명 — 검수:» 와 높이가 어긋났다(2026-09-16 캡처). */}
+              flex 줄 안에서 글자만 위로 뜨고 «출제됨 N명 — 검수:» 와 높이가 어긋났다(2026-09-16 캡처).
+              «자동 출제» 표지(D-133 ⑵)는 **이름 바로 뒤** — 이름과 한 묶음(`inline-flex`)이라 줄이 바뀌어도 떨어지지 않는다. */}
           {doneStudents > 0 || Object.keys(progress.created).length > 0 ? (
             <p className="mt-2 flex flex-wrap items-center gap-x-2 gap-y-1 text-sm text-text-2">
               출제됨 {n(doneStudents)}명 — 검수:
               {d.auto
                 .flatMap((g) => g.students)
                 .map((s) => {
-                  const testId =
-                    progress.created[s.id] ?? testByStudent.get(s.id)?.testId;
+                  const today = testByStudent.get(s.id);
+                  const testId = progress.created[s.id] ?? today?.testId;
                   if (!testId) return null;
                   return (
-                    <Link
-                      key={s.id}
-                      href={`/tests/${testId}`}
-                      className="inline-flex items-center underline underline-offset-2"
-                    >
-                      {s.name}
-                    </Link>
+                    <span key={s.id} className="inline-flex items-center gap-1">
+                      <Link
+                        href={`/tests/${testId}`}
+                        className="inline-flex items-center underline underline-offset-2"
+                      >
+                        {s.name}
+                      </Link>
+                      {/* 아침 회차가 세운 시험지만 — 이 화면에서 방금 낸 초안은 `todayTests` 에 없다 */}
+                      {today?.autoDraft ? (
+                        <span data-auto-draft-tag className={AUTO_DRAFT_TAG}>
+                          자동 출제
+                        </span>
+                      ) : null}
+                    </span>
                   );
                 })}
             </p>

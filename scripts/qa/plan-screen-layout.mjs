@@ -7,6 +7,11 @@
  * 교육과정에서 가장 긴 차시 이름 구간(14칸), 메인 `main=stress` 는 밀림 날 여섯 · 긴 반 이름 일곱.
  *
  *   BASE=http://localhost:3218 node scripts/qa/plan-screen-layout.mjs
+ *   # D-133 후속 — 메인·반 만들기만 · 두 폭 · 다른 폴더
+ *   BASE=… OUT_DIR=scratch/plan-screen-followup ONLY=main,main-stress,main-empty,create-open WIDTHS=400,1366 node scripts/qa/plan-screen-layout.mjs
+ *
+ * D-133(검수 반영): 메인 칩은 «밀림 N명 · 최대 D일» 하나 · 수업 없는 반은 «오늘 수업 계획이 없는 반 N개» ·
+ * 검수 줄 «자동 출제» 표지(모양·자리·D-30 을 계산된 스타일로 잰다) · 반 만들기에서 열면 «수업 계획 접기».
  *
  * 대상: `/dev/plan-screen-hifi` — 제품 컴포넌트 + 픽스처(반·학생·진도·계획·확인테스트 요청만 가로챈다). **DB 에 닿지 않는다.**
  * 결과: `scratch/plan-screen/*.png` · `layout.json`. 판정이 하나라도 빨가면 종료 코드 1.
@@ -19,7 +24,11 @@ import { pathToFileURL } from "node:url";
 import { chromium } from "@playwright/test";
 
 const BASE = process.env.BASE ?? "http://localhost:3218";
-const OUT = path.resolve("scratch", "plan-screen");
+const OUT = path.resolve(
+  process.env.OUT_DIR ?? path.join("scratch", "plan-screen"),
+);
+/** 고른 실행만(쉼표) — 없으면 전량 */
+const ONLY = process.env.ONLY ? process.env.ONLY.split(",") : null;
 const MOCKUP = path.resolve(
   "docs",
   "design",
@@ -28,7 +37,9 @@ const MOCKUP = path.resolve(
 );
 
 /** 폭 — 작은 휴대폰(360) · 흔한 휴대폰(400) · 태블릿(768) · 흔한 노트북(1366) */
-const WIDTHS = [360, 400, 768, 1366];
+const WIDTHS = process.env.WIDTHS
+  ? process.env.WIDTHS.split(",").map(Number)
+  : [360, 400, 768, 1366];
 const HEIGHT = { 360: 780, 400: 860, 768: 1024, 1366: 768 };
 
 const RUNS = [
@@ -59,19 +70,40 @@ const RUNS = [
     preview: true,
     widths: [400, 1366],
   },
-  { key: "create-open", query: "screen=classes&set=hifi", create: true },
+  {
+    key: "create-open",
+    query: "screen=classes&set=hifi",
+    create: true,
+    // D-133 ⑿ — 열면 «수업 계획 접기»
+    toggle: "수업 계획 접기",
+  },
   {
     key: "main",
     query: "screen=main&main=hifi",
     main: {
       first: "오늘 초안 5장",
-      chips: ["3일 밀림 1명", "문항 부족 2명", "시험기간 1명"],
+      // D-133 ⑺ — 밀림 칩은 하나
+      chips: ["밀림 1명 · 최대 3일", "문항 부족 2명", "시험기간 1명"],
+      // D-133 ⑻ — 수만
+      classCount: "오늘 수업 계획이 없는 반 1개",
+      // D-133 ⑵ — 픽스처 앞 셋이 아침 회차 초안
+      tags: 3,
     },
   },
   {
     key: "main-stress",
     query: "screen=main&main=stress",
-    main: { first: "오늘 초안 5장" },
+    main: {
+      first: "오늘 초안 5장",
+      chips: [
+        "밀림 9명 · 최대 12일",
+        "문항 부족 2명",
+        "시험기간 1명",
+        "범위 없음 2명",
+      ],
+      classCount: "오늘 수업 계획이 없는 반 7개",
+      tags: 3,
+    },
     stress: true,
   },
   {
@@ -161,7 +193,38 @@ function measure(page) {
     const chipRows = [
       ...new Set(chips.map((c) => Math.round(c.getBoundingClientRect().top))),
     ].length;
+    // «자동 출제» 표지(D-133 ⑵) — 이름 바로 뒤 · 같은 줄 · 가운데 · 모양 · 누르는 것이 아니다
+    const tags = [...document.querySelectorAll("[data-auto-draft-tag]")].map(
+      (tag) => {
+        const s = getComputedStyle(tag);
+        const r = tag.getBoundingClientRect();
+        const link = tag.previousElementSibling;
+        const lr = link?.getBoundingClientRect();
+        return {
+          text: (tag.textContent ?? "").trim(),
+          afterLink: link?.tagName === "A",
+          name: (link?.textContent ?? "").trim(),
+          centerDiff: lr
+            ? Math.abs(r.top + r.height / 2 - (lr.top + lr.height / 2))
+            : null,
+          gap: lr ? Math.round(r.left - lr.right) : null,
+          height: Math.round(r.height),
+          look: [
+            s.backgroundColor,
+            s.borderTopWidth + " " + s.borderTopStyle + " " + s.borderTopColor,
+            s.color,
+            s.fontSize,
+            s.fontWeight,
+            s.paddingTop + " " + s.paddingRight,
+            s.borderTopLeftRadius,
+          ].join(" | "),
+          cursor: s.cursor,
+          insideControl: Boolean(tag.closest("a, button")),
+        };
+      },
+    );
     return {
+      tags,
       overflow: doc.scrollWidth - doc.clientWidth,
       clipped,
       offscreen,
@@ -195,7 +258,10 @@ async function open(width, query) {
 }
 
 for (const run of RUNS) {
-  for (const width of run.widths ?? WIDTHS) {
+  if (ONLY && !ONLY.includes(run.key)) continue;
+  for (const width of run.widths
+    ? run.widths.filter((w) => WIDTHS.includes(w))
+    : WIDTHS) {
     const { page, errors } = await open(width, run.query);
     try {
       if (run.main) {
@@ -216,6 +282,13 @@ for (const run of RUNS) {
       if (run.create) {
         const form = page.getByRole("form", { name: "반 추가" });
         await form.getByRole("button", { name: "수업 계획 넣기" }).click();
+        if (run.toggle)
+          await form
+            .getByRole("button", { name: run.toggle })
+            .waitFor({ timeout: 3000 })
+            .catch(() =>
+              fail(run.key, width, `열어도 「${run.toggle}」 단추가 없다`),
+            );
         const days = form.getByRole("group", { name: "수업 요일" });
         await days.getByRole("button", { name: "월" }).click();
         await days.getByRole("button", { name: "목" }).click();
@@ -302,11 +375,49 @@ for (const run of RUNS) {
         fail(run.key, width, `칩 ${m.chips.join(" / ")}`);
       if (run.main?.empty && !m.text?.includes(run.main.empty))
         fail(run.key, width, `「${run.main.empty}」 문구가 없다`);
+      if (run.main?.classCount && !m.text?.includes(run.main.classCount))
+        fail(run.key, width, `「${run.main.classCount}」 줄이 없다`);
+      if (run.main && /— 오늘 수업 계획이 없습니다./.test(m.text ?? ""))
+        fail(run.key, width, "반 이름을 늘어놓은 옛 줄이 남았다");
+      if (run.main?.tags !== undefined) {
+        if (m.tags.length !== run.main.tags)
+          fail(
+            run.key,
+            width,
+            `표지 ${m.tags.length}개(기대 ${run.main.tags})`,
+          );
+        const LOOK =
+          "rgb(255, 255, 255) | 1px solid rgb(32, 100, 179) | rgb(32, 100, 179) | 11px | 700 | 2px 8px | 4px";
+        for (const tag of m.tags) {
+          if (tag.text !== "자동 출제")
+            fail(run.key, width, `표지 글자 «${tag.text}»`);
+          if (!tag.afterLink)
+            fail(run.key, width, "표지가 이름 링크 바로 뒤가 아니다");
+          if (tag.insideControl)
+            fail(run.key, width, "표지가 링크·단추 안에 있다(D-30)");
+          if (tag.cursor === "pointer")
+            fail(run.key, width, "표지에 손가락 커서(D-30)");
+          if (tag.look !== LOOK) fail(run.key, width, `표지 모양 ${tag.look}`);
+          if ((tag.centerDiff ?? 99) > 1.5)
+            fail(
+              run.key,
+              width,
+              `표지가 이름과 세로 가운데가 어긋난다(${tag.centerDiff}px)`,
+            );
+        }
+      }
 
       delete row.text;
       results.push(row);
       const shot = path.join(OUT, `${run.key}-${width}.png`);
       await page.screenshot({ path: shot, fullPage: true });
+      // 메인은 섹션만 한 장 더 — 표지·칩·반 수 줄을 가까이서 본다
+      if (run.main)
+        await page
+          .getByRole("region", { name: "오늘의 확인테스트" })
+          .screenshot({
+            path: path.join(OUT, `${run.key}-section-${width}.png`),
+          });
       console.log(
         `${run.key.padEnd(16)} ${String(width).padStart(4)}  넘침 ${m.overflow} · 잘림 ${m.clipped.length} · 밖 ${m.offscreen.length}` +
           (m.gauge
@@ -314,6 +425,9 @@ for (const run of RUNS) {
             : "") +
           (m.dayButtons ? ` · 요일 ${m.dayRows}줄` : "") +
           (m.chips.length ? ` · 칩 ${m.chips.length}(${m.chipRows}줄)` : "") +
+          (m.tags.length
+            ? ` · 표지 ${m.tags.length}(높이 ${m.tags[0].height}px · 이름과 ${m.tags[0].gap}px)`
+            : "") +
           (errors.length ? ` · 콘솔 ${errors.length}` : ""),
       );
     } catch (error) {
@@ -326,7 +440,7 @@ for (const run of RUNS) {
 
 // ── 시안 Hi-fi 2 의 세 틀을 찍고 구현과 나란히 ─────────────────────
 const mockShots = {};
-for (const width of [400, 1366]) {
+for (const width of [400, 1366].filter((w) => WIDTHS.includes(w))) {
   const page = await browser.newPage({
     viewport: { width, height: HEIGHT[width] },
   });
@@ -344,6 +458,8 @@ for (const width of [400, 1366]) {
 const dataUrl = (file) =>
   `data:image/png;base64,${fs.readFileSync(file).toString("base64")}`;
 async function sideBySide(name, pairs) {
+  // 고른 실행만 돌렸으면 짝이 없는 판은 건너뛴다
+  if (pairs.some(([, file]) => !file || !fs.existsSync(file))) return;
   const page = await browser.newPage({
     viewport: { width: 1600, height: 900 },
   });

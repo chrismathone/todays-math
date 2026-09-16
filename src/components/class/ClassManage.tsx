@@ -273,7 +273,8 @@ function AddClassForm({
         aria-controls={planId}
         onClick={() => setPlanOpen((open) => !open)}
       >
-        수업 계획 넣기
+        {/* 열면 «접기»(D-133 ⑿) — 누르면 무엇이 되는지를 적는다 */}
+        {planOpen ? "수업 계획 접기" : "수업 계획 넣기"}
       </button>
       {planOpen ? (
         <div id={planId} className={planStyles.createPlan}>

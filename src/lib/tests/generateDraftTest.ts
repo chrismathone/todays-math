@@ -26,9 +26,21 @@ import type { SessionUser } from "@/lib/session";
 
 import { loadRecentProblemIds } from "./recentProblemIds";
 
+/** 서버 안에서만 넘기는 인자 — 요청 계약(`TestGenerateRequest`)에 **없다**(D-133 ⑴). */
+export interface DraftTestOrigin {
+  /**
+   * 아침 자동 초안 회차 id — `runAutoDraft` 만 넘긴다. 시험지의 `auto_draft_run_id` 에 그대로 적히고,
+   * 메인 «자동 출제» 표지가 이 칸 하나만 본다. «모두 출제»·직접 출제(`POST /api/tests/generate`)는 안 넘긴다(NULL).
+   *
+   * 🔴 요청 본문에서 옮겨 담지 말 것 — 밖에서 채울 수 있으면 표지가 거짓말이 된다. 계약은 strict 라 칸을 넣으면 400 이다.
+   */
+  autoDraftRunId?: string;
+}
+
 export async function generateDraftTest(
   session: SessionUser,
   input: TestGenerateRequest,
+  origin: DraftTestOrigin = {},
 ) {
   const owned = await requireOwnedClass(input.classId, session);
   if (!owned.ok) return owned.response;
@@ -215,6 +227,8 @@ export async function generateDraftTest(
         status: "draft",
         modified: false,
         testDate: new Date(`${input.testDate}T00:00:00.000Z`),
+        // 아침 회차가 세운 것만 값이 있다 — 손으로 낸 시험지는 NULL(D-133 ⑴)
+        autoDraftRunId: origin.autoDraftRunId ?? null,
       },
     });
 

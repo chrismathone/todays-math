@@ -501,6 +501,26 @@ describe("[D-131] 반 관리 — 카드 자리 · 반 만들기의 접힌 계획
     ).toBeInTheDocument();
   });
 
+  /** 🔴 D-133 ⑿ — 열면 글자가 «수업 계획 접기», 다시 누르면 «수업 계획 넣기». aria-expanded 는 그대로 따라간다. */
+  it("🔴 열면 「수업 계획 접기」 — 다시 누르면 접히고 「수업 계획 넣기」", async () => {
+    const user = await readyManage();
+    const toggle = classForm().getByRole("button", { name: "수업 계획 넣기" });
+
+    await user.click(toggle);
+    expect(toggle).toHaveTextContent(/^수업 계획 접기$/);
+    expect(toggle).toHaveAttribute("aria-expanded", "true");
+    expect(
+      classForm().queryByRole("button", { name: "수업 계획 넣기" }),
+    ).toBeNull();
+
+    await user.click(
+      classForm().getByRole("button", { name: "수업 계획 접기" }),
+    );
+    expect(toggle).toHaveTextContent(/^수업 계획 넣기$/);
+    expect(toggle).toHaveAttribute("aria-expanded", "false");
+    expect(classForm().queryByRole("group", { name: "수업 요일" })).toBeNull();
+  });
+
   it("접어 둔 채 만들면 계획 없이 만든다 — 요청에 progressPlan 이 없다", async () => {
     const bodies = captureCreate();
     const user = await readyManage();
