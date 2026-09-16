@@ -134,6 +134,19 @@
 그대로 둔다**(`atCurriculumEnd` 로 표시만 — 735차시를 다 나간 학생이 나오면 그때 정한다) ·
 **⑶ 요일은 `0=일 … 6=토`(JS 셈) 로 저장하고, 「월요일 먼저」는 화면이 옮겨 그린다**(계약·CHECK 에 박혀 있다).
 
+**④ 화면 병합(2026-09-16, 워크트리 `plan-screen`, 보고서 `tracks/reports/daily-auto-test-screen.md`)** —
+반 관리 **수업 계획** 카드 · **이번 주 예정 — 계기판 관**(`planGauge.ts`, 날짜는 안 편다) · 🔴 **미리보기 경로** `POST /api/classes/{id}/progress-plan/preview`
+(저장 안 함 · GET 과 같은 함수) · 반 만들기 **접힌 계획 칸** · 메인 «오늘의 확인테스트» 첫 줄 «오늘 초안 N장» · 칩 · «오늘 수업 계획이 없습니다.» ·
+daily-review 응답에 `hasPlan` · `delayed` · `noLessonClasses`. 캡처 `scratch/plan-screen/side-by-side-*.png`.
+리드 검수(main `c9f48b97`): 충돌 0 · tsc 0 · 관련 26파일 442건 통과 · `build` 통과(새 경로 `/api/classes/[id]/progress-plan/preview` · `/dev/plan-screen-hifi`) ·
+변이 앵커 plan-screen 48 · plan-api 37 · daily-plan 34 · admin-scope 39 전부 하나 · 커밋한 상태에서 고른 9개(①a ③a ④e ④f ⑤b ⑥a ⑦a ⑧a ⑨a) **9/9 빨개짐**, 원본 일치.
+**리드 결정(보고서 ⑤)**: **B** daily-review 칸 셋 그대로 · **C** 밀림은 오늘 대상 · 계획 있는 학생만 · 시험기간·미분류(D-64) 제외 그대로 ·
+**D** «오늘 초안 N장»은 A 가 정해질 때까지 초안 전부 · **E** «오늘 수업 계획이 없습니다» 반 모집단은 소유 범위 전부 그대로(D-131 문구가 «계획이 없는 반») —
+관리자 화면의 반 이름에는 D-132 담당 딱지를 붙인다 · **F** `DailyReviewSection.test` 직접 렌더로 되살림 수용(`Main.test` 는 트랙 밖 — 그대로) ·
+**G** 계획 지우기 단추 · 학생별 계획 화면은 **지금 안 만든다**(열린 질문) · **H** 작업실 CSS 접근성 이름 규칙 확장 수용 ·
+🔴 **A «자동 출제» 표지는 원장님께 여쭌다** — 시험이 자동으로 섰는지 아는 길이 없다. 권하는 길은 `Test.autoDraftRunId`(공유 DB `test` 표 ALTER — 원장님 확인) ·
+그리고 표지를 붙일 **시험지 목록 화면이 제품에 없다**(D-07) · **J** 전체 `npm run test` 는 담당 딱지 병합 뒤 한 번.
+
 ## 5. 원장님께 받은 답 · 남은 것
 
 - ✅ 수업 요일 = **반 설정에서 고른다** · 휴일 = **지금은 요일만** · 대상 = **손 등록·고등까지** ·
