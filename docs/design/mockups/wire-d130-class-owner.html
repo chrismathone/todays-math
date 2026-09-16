@@ -1,0 +1,400 @@
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>누구의 반 와이어</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nanum+Myeongjo:wght@800&family=Noto+Sans+KR:wght@400;500;700;900&display=swap">
+<style>
+/* 앱이 라이트 전용(05 §2.3)이라 시안도 보는 사람 테마와 무관하게 앱과 같은 흰 바탕으로 고정한다.
+   토큰은 wire-d129 와 같은 것을 쓴다. */
+:root {
+  color-scheme: light;
+  --paper: #fafaf8; --ink: #161616; --ink-2: #61615e;
+  --rule: #b9b9b6; --pick: #2064b3;
+  --app-bg: #f4f6fa; --app-ink: #172b4d; --app-muted: #596c86; --app-line: #d4dce8;
+  --w-fill: #efefed; --w-line: #b9b9b6; --tag: #e9edf3;
+  --sans: "Pretendard Variable", Pretendard, "Noto Sans KR", "Malgun Gothic", system-ui, sans-serif;
+  --serif: "Nanum Myeongjo", "Noto Serif KR", Batang, serif;
+}
+html, body { background: var(--paper); }
+body { margin: 0; color: var(--ink); font-family: var(--sans); font-size: 14px; line-height: 1.55; word-break: keep-all; overflow-wrap: anywhere; }
+* { box-sizing: border-box; }
+[hidden] { display: none !important; }
+button { font: inherit; color: inherit; }
+:is(button, summary):focus-visible { outline: 3px solid #82a1ff; outline-offset: 2px; }
+.tab { cursor: pointer; }
+
+.board { max-width: 1180px; margin: 0 auto; padding-inline: 24px; padding-block: 28px 72px; }
+@media (max-width: 600px) { .board { padding-inline: 16px; } }
+.head { display: grid; gap: 10px; padding-bottom: 18px; }
+.eyebrow { margin: 0; font-size: 12px; letter-spacing: .06em; color: var(--ink-2); }
+h1 { margin: 0; font-family: var(--serif); font-weight: 800; font-size: 30px; line-height: 1.25; letter-spacing: -.02em; text-wrap: balance; }
+.lede { margin: 0; max-width: 68ch; color: var(--ink-2); font-size: 15px; }
+.lede b { color: var(--ink); }
+.facts { display: flex; flex-wrap: wrap; gap: 6px 22px; margin: 4px 0 0; padding: 0; list-style: none; font-size: 13px; color: var(--ink-2); }
+.facts b { color: var(--ink); font-weight: 600; }
+
+.tabs { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 20; display: flex; flex-wrap: wrap; gap: 4px; padding-block: 10px; background: var(--paper); border-block: 1px solid var(--rule); }
+.tab { display: flex; gap: 8px; align-items: baseline; padding: 7px 12px; border: 1px solid transparent; border-radius: 6px; background: none; color: var(--ink-2); }
+.tab .k { font-weight: 700; color: var(--ink); }
+.tab:hover { background: #fff; }
+.tab[aria-selected="true"] { background: #fff; border-color: var(--rule); color: var(--ink); box-shadow: inset 0 -2px 0 var(--pick); }
+
+.panel { padding-top: 24px; display: grid; gap: 20px; }
+.thesis h2 { margin: 0 0 6px; font-family: var(--serif); font-size: 22px; font-weight: 800; letter-spacing: -.01em; }
+.thesis p { margin: 0; max-width: 66ch; color: var(--ink-2); }
+.note { margin: 0; max-width: 66ch; font-size: 13px; color: var(--ink-2); }
+.note b { color: var(--ink); }
+
+/* ── 와이어 판 — 앱 화면 두 곳(반 표 · 반 고르기)을 회색으로만 그린다 ───────── */
+.split { display: grid; grid-template-columns: minmax(0, 1.25fr) minmax(0, 1fr); gap: 14px; align-items: start; }
+@media (max-width: 820px) { .split { grid-template-columns: minmax(0, 1fr); } }
+.app { background: var(--app-bg); border: 1px solid var(--app-line); border-radius: 10px; padding: 14px; display: grid; gap: 10px; min-width: 0; }
+.appbar { display: flex; align-items: center; justify-content: space-between; gap: 12px; font-size: 12px; color: var(--app-muted); }
+.card { background: #fff; border: 1px solid var(--app-line); border-radius: 8px; padding: 12px; display: grid; gap: 10px; min-width: 0; }
+.muted { color: var(--app-muted); font-size: 12px; }
+
+/* 반 표 — ClassTable 의 뼈대(머리 굵은 밑줄 · 이름 굵게)만 옮겼다 */
+.tablewrap { overflow-x: auto; }
+table.cls { width: 100%; border-collapse: collapse; font-size: 12.5px; font-variant-numeric: tabular-nums; }
+table.cls th { border-bottom: 2.5px solid var(--ink); padding: 7px 10px; text-align: left; font-size: 10px; font-weight: 900; letter-spacing: 1.5px; color: var(--ink-2); white-space: nowrap; }
+table.cls td { border-bottom: 1px solid var(--app-line); padding: 8px 10px; color: var(--ink-2); vertical-align: baseline; }
+table.cls td.name { font-size: 15px; font-weight: 900; letter-spacing: -.3px; color: var(--ink); }
+table.cls tr.cur td.name { box-shadow: inset 3px 0 0 var(--pick); }
+table.cls tr.group td { padding-top: 14px; border-bottom: 1px solid var(--w-line); font-size: 11px; font-weight: 700; color: var(--app-ink); letter-spacing: .02em; }
+table.cls tr.group td span { font-weight: 400; color: var(--app-muted); margin-left: 6px; }
+.owner { font-size: 12px; font-weight: 400; color: var(--app-muted); letter-spacing: 0; margin-left: 8px; white-space: nowrap; }
+.owner.chip { display: inline-block; padding: 0 7px; border-radius: 4px; background: var(--tag); color: var(--app-ink); font-size: 11px; line-height: 18px; }
+.dup { outline: 1px dashed #b3541e; outline-offset: 2px; border-radius: 2px; }
+
+/* 반 고르기 — 출제 · 장바구니의 선택 상자를 펼친 모양 */
+.pick { border: 1px solid var(--w-line); border-radius: 6px; background: #fff; font-size: 13px; overflow: hidden; }
+.pick .now { display: flex; justify-content: space-between; gap: 8px; padding: 7px 10px; border-bottom: 1px solid var(--w-line); background: var(--w-fill); color: var(--ink-2); }
+.pick ul { list-style: none; margin: 0; padding: 4px 0; }
+.pick li { padding: 5px 10px; color: var(--ink); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.pick li.og { padding-top: 8px; font-size: 11px; font-weight: 700; color: var(--app-muted); }
+.pick li.in { padding-left: 22px; }
+.pick li .o { color: var(--app-muted); }
+
+.chips { display: flex; flex-wrap: wrap; gap: 6px; }
+.fchip { border: 1px solid var(--w-line); border-radius: 999px; padding: 3px 10px; font-size: 12px; background: #fff; color: var(--ink-2); white-space: nowrap; }
+.fchip.on { background: var(--app-ink); border-color: var(--app-ink); color: #fff; }
+.fchip small { opacity: .7; margin-left: 3px; }
+
+.list { margin: 0; padding-left: 18px; display: grid; gap: 6px; color: var(--ink-2); }
+.list b { color: var(--ink); }
+.ask { border-top: 1px solid var(--rule); padding-top: 18px; display: grid; gap: 10px; margin-top: 28px; }
+.ask h2 { margin: 0; font-family: var(--serif); font-size: 20px; font-weight: 800; }
+.ask ol { margin: 0; padding-left: 20px; display: grid; gap: 12px; color: var(--ink-2); }
+.ask li b { color: var(--ink); }
+.opts { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 4px; }
+.opt { border: 1px solid var(--rule); border-radius: 999px; padding: 2px 10px; font-size: 12px; background: #fff; color: var(--ink-2); }
+</style>
+
+<div class="board">
+  <header class="head">
+    <p class="eyebrow">D-130 · 관리자 범위 · Wire 5안 (2026-09-16)</p>
+    <h1>원장님 계정에서 «누구의 반»을 어떻게 가를까</h1>
+    <p class="lede">
+      원장님 계정(관리자)은 이제 <b>모든 계정의 반</b>을 봅니다. 그런데 반 표와 반 고르는 상자에는
+      반 이름과 학년만 있어서, <b>강선생 반인지 원장 계정 반인지</b>가 보이지 않습니다.
+      아래 다섯 안은 <b>지금 공유 DB 에 있는 반 7개 그대로</b>(이름 · 학년 · 계정 이름)로 그렸습니다.
+    </p>
+    <ul class="facts">
+      <li>원장님 계정의 반 <b>0개</b> — 보이는 7개가 전부 다른 계정 것</li>
+      <li>강선생 <b>3</b> · 원장 <b>1</b> · 걷기원장 · 빈손선생님 · 이어하기선생님 <b>1씩</b></li>
+      <li>관리자가 아닌 계정은 <b>자기 반만</b> 보여 이 표시가 필요 없습니다</li>
+    </ul>
+  </header>
+
+  <div class="tabs" role="tablist" aria-label="시안">
+    <button class="tab" role="tab" id="tab-a" aria-controls="panel-a" aria-selected="true" data-tab="a"><span class="k">A</span> 이름 뒤 계정 이름</button>
+    <button class="tab" role="tab" id="tab-b" aria-controls="panel-b" aria-selected="false" data-tab="b"><span class="k">B</span> 계정별로 묶기</button>
+    <button class="tab" role="tab" id="tab-c" aria-controls="panel-c" aria-selected="false" data-tab="c"><span class="k">C</span> «담당» 열</button>
+    <button class="tab" role="tab" id="tab-d" aria-controls="panel-d" aria-selected="false" data-tab="d"><span class="k">D</span> 위에 계정 거르개</button>
+    <button class="tab" role="tab" id="tab-e" aria-controls="panel-e" aria-selected="false" data-tab="e"><span class="k">E</span> 겹칠 때만</button>
+  </div>
+
+  <!-- ─────────────── A ─────────────── -->
+  <section class="panel" id="panel-a" role="tabpanel" aria-labelledby="tab-a" data-panel="a">
+    <div class="thesis">
+      <h2>A · 반 이름 뒤에 흐린 글씨로 계정 이름</h2>
+      <p>표의 모양은 그대로 두고, 반 이름 뒤에 한 칸 띄워 흐린 작은 글씨로 계정 이름을 붙입니다.
+        반 고르는 상자에도 같은 글씨가 뒤따릅니다. 가장 적게 바뀝니다.</p>
+    </div>
+    <div class="split">
+      <div class="app">
+        <div class="appbar"><span>수업 · 학생 관리 › 반 · 학생 관리</span><span>관리자</span></div>
+        <div class="card tablewrap">
+          <table class="cls">
+            <thead><tr><th>반</th><th>학년</th></tr></thead>
+            <tbody>
+              <tr class="cur"><td class="name">테스트반<span class="owner">강선생</span></td><td>중2</td></tr>
+              <tr><td class="name">중등M 초6 MS2A<span class="owner">강선생</span></td><td>초6</td></tr>
+              <tr><td class="name">초등M 초5 MS1A<span class="owner">강선생</span></td><td>초5</td></tr>
+              <tr><td class="name">테스트 B<span class="owner">원장</span></td><td>5</td></tr>
+              <tr><td class="name">걷기반<span class="owner">걷기원장</span></td><td>중2</td></tr>
+              <tr><td class="name">빈손반<span class="owner">빈손선생님</span></td><td>중1</td></tr>
+              <tr><td class="name">이어반<span class="owner">이어하기선생님</span></td><td>중2</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <div class="app">
+        <div class="appbar"><span>출제 · 장바구니 › 반 고르기</span></div>
+        <div class="pick">
+          <div class="now"><span>테스트반 <span class="o">· 강선생</span></span><span>▾</span></div>
+          <ul>
+            <li>테스트반 <span class="o">· 강선생</span></li>
+            <li>중등M 초6 MS2A <span class="o">· 강선생</span></li>
+            <li>초등M 초5 MS1A <span class="o">· 강선생</span></li>
+            <li>테스트 B <span class="o">· 원장</span></li>
+            <li>걷기반 <span class="o">· 걷기원장</span></li>
+            <li>빈손반 <span class="o">· 빈손선생님</span></li>
+            <li>이어반 <span class="o">· 이어하기선생님</span></li>
+          </ul>
+        </div>
+        <p class="muted" style="margin:0">선택 상자 안은 글자 색을 못 바꾸는 브라우저가 있어 «반 · 계정» 한 줄 글자로 둡니다.</p>
+      </div>
+    </div>
+    <ul class="list">
+      <li><b>좋은 점</b> — 표 폭·열이 그대로입니다. 메인·시험지 목록처럼 반 이름이 나오는 곳 어디에나 같은 규칙을 붙이기 쉽습니다.</li>
+      <li><b>걸리는 점</b> — 반이 많아지면 같은 계정 이름이 줄마다 되풀이됩니다. 휴대폰 폭에서는 이름이 두 줄로 꺾입니다.</li>
+    </ul>
+  </section>
+
+  <!-- ─────────────── B ─────────────── -->
+  <section class="panel" id="panel-b" role="tabpanel" aria-labelledby="tab-b" data-panel="b" hidden>
+    <div class="thesis">
+      <h2>B · 계정별로 묶고, 묶음 머리에 계정 이름</h2>
+      <p>반을 계정끼리 모읍니다. 머리 한 줄에 «강선생 · 반 3», 그 아래에 반들. 반 줄에는 계정 이름이 없습니다.
+        원장님 계정 반이 생기면 맨 위 «내 반» 묶음에 섭니다. 반 고르는 상자도 같은 묶음으로 나뉩니다.</p>
+    </div>
+    <div class="split">
+      <div class="app">
+        <div class="appbar"><span>수업 · 학생 관리 › 반 · 학생 관리</span><span>관리자</span></div>
+        <div class="card tablewrap">
+          <table class="cls">
+            <thead><tr><th>반</th><th>학년</th></tr></thead>
+            <tbody>
+              <tr class="group"><td colspan="2">강선생<span>반 3</span></td></tr>
+              <tr class="cur"><td class="name">테스트반</td><td>중2</td></tr>
+              <tr><td class="name">중등M 초6 MS2A</td><td>초6</td></tr>
+              <tr><td class="name">초등M 초5 MS1A</td><td>초5</td></tr>
+              <tr class="group"><td colspan="2">원장<span>반 1</span></td></tr>
+              <tr><td class="name">테스트 B</td><td>5</td></tr>
+              <tr class="group"><td colspan="2">걷기원장<span>반 1</span></td></tr>
+              <tr><td class="name">걷기반</td><td>중2</td></tr>
+              <tr class="group"><td colspan="2">빈손선생님<span>반 1</span></td></tr>
+              <tr><td class="name">빈손반</td><td>중1</td></tr>
+              <tr class="group"><td colspan="2">이어하기선생님<span>반 1</span></td></tr>
+              <tr><td class="name">이어반</td><td>중2</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <div class="app">
+        <div class="appbar"><span>출제 · 장바구니 › 반 고르기</span></div>
+        <div class="pick">
+          <div class="now"><span>테스트반</span><span>▾</span></div>
+          <ul>
+            <li class="og">강선생</li>
+            <li class="in">테스트반</li>
+            <li class="in">중등M 초6 MS2A</li>
+            <li class="in">초등M 초5 MS1A</li>
+            <li class="og">원장</li>
+            <li class="in">테스트 B</li>
+            <li class="og">걷기원장</li>
+            <li class="in">걷기반</li>
+            <li class="og">빈손선생님</li>
+            <li class="in">빈손반</li>
+            <li class="og">이어하기선생님</li>
+            <li class="in">이어반</li>
+          </ul>
+        </div>
+        <p class="muted" style="margin:0">닫힌 상자에는 반 이름만 보입니다 — 고른 뒤에는 누구 반인지 상자만 봐서는 모릅니다.</p>
+      </div>
+    </div>
+    <ul class="list">
+      <li><b>좋은 점</b> — 계정마다 몇 반인지 한눈에 들어옵니다. 계정 이름이 한 번씩만 나옵니다.</li>
+      <li><b>걸리는 점</b> — 반 순서가 «만든 순서»에서 «계정 → 반» 으로 바뀝니다. 한 반짜리 계정이 많으면 머리 줄이 반 줄만큼 늘어 표가 깁니다(지금 12줄).</li>
+    </ul>
+  </section>
+
+  <!-- ─────────────── C ─────────────── -->
+  <section class="panel" id="panel-c" role="tabpanel" aria-labelledby="tab-c" data-panel="c" hidden>
+    <div class="thesis">
+      <h2>C · 반 표에 «담당» 열을 하나 더</h2>
+      <p>반 · 학년 옆에 «담당» 열을 세웁니다. 표에서는 열로 읽고, 반 고르는 상자에서는 괄호로 붙입니다.
+        관리자가 아닌 계정에는 이 열이 없습니다(전부 자기 반이라).</p>
+    </div>
+    <div class="split">
+      <div class="app">
+        <div class="appbar"><span>수업 · 학생 관리 › 반 · 학생 관리</span><span>관리자</span></div>
+        <div class="card tablewrap">
+          <table class="cls">
+            <thead><tr><th>반</th><th>학년</th><th>담당</th></tr></thead>
+            <tbody>
+              <tr class="cur"><td class="name">테스트반</td><td>중2</td><td>강선생</td></tr>
+              <tr><td class="name">중등M 초6 MS2A</td><td>초6</td><td>강선생</td></tr>
+              <tr><td class="name">초등M 초5 MS1A</td><td>초5</td><td>강선생</td></tr>
+              <tr><td class="name">테스트 B</td><td>5</td><td>원장</td></tr>
+              <tr><td class="name">걷기반</td><td>중2</td><td>걷기원장</td></tr>
+              <tr><td class="name">빈손반</td><td>중1</td><td>빈손선생님</td></tr>
+              <tr><td class="name">이어반</td><td>중2</td><td>이어하기선생님</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <div class="app">
+        <div class="appbar"><span>출제 · 장바구니 › 반 고르기</span></div>
+        <div class="pick">
+          <div class="now"><span>테스트반 (강선생)</span><span>▾</span></div>
+          <ul>
+            <li>테스트반 (강선생)</li>
+            <li>중등M 초6 MS2A (강선생)</li>
+            <li>초등M 초5 MS1A (강선생)</li>
+            <li>테스트 B (원장)</li>
+            <li>걷기반 (걷기원장)</li>
+            <li>빈손반 (빈손선생님)</li>
+            <li>이어반 (이어하기선생님)</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <ul class="list">
+      <li><b>좋은 점</b> — 이름과 담당이 섞이지 않아 표로 읽기 좋습니다. 나중에 «담당»으로 줄을 세우기도 쉽습니다.</li>
+      <li><b>걸리는 점</b> — 반 표 칸(오른쪽에 학생 명단이 붙는 좁은 칸)이 열 하나만큼 좁아집니다. 표가 아닌 곳(메인 · 시험지 목록 줄)에는 따로 규칙이 필요합니다.</li>
+    </ul>
+  </section>
+
+  <!-- ─────────────── D ─────────────── -->
+  <section class="panel" id="panel-d" role="tabpanel" aria-labelledby="tab-d" data-panel="d" hidden>
+    <div class="thesis">
+      <h2>D · 반 표 위에 «누구의 반» 거르개</h2>
+      <p>표 위에 계정 이름 단추를 한 줄로 둡니다. «전체»를 누르면 A 처럼 계정 이름이 붙은 전체 목록,
+        «강선생»을 누르면 강선생 반만 — 그 계정으로 들어간 것처럼 봅니다. 고른 거르개는 반 고르는 상자에도 그대로 걸립니다.</p>
+    </div>
+    <div class="split">
+      <div class="app">
+        <div class="appbar"><span>수업 · 학생 관리 › 반 · 학생 관리</span><span>관리자</span></div>
+        <div class="chips" aria-label="누구의 반">
+          <span class="fchip">전체<small>7</small></span>
+          <span class="fchip on">강선생<small>3</small></span>
+          <span class="fchip">원장<small>1</small></span>
+          <span class="fchip">걷기원장<small>1</small></span>
+          <span class="fchip">빈손선생님<small>1</small></span>
+          <span class="fchip">이어하기선생님<small>1</small></span>
+        </div>
+        <div class="card tablewrap">
+          <table class="cls">
+            <thead><tr><th>반</th><th>학년</th></tr></thead>
+            <tbody>
+              <tr class="cur"><td class="name">테스트반</td><td>중2</td></tr>
+              <tr><td class="name">중등M 초6 MS2A</td><td>초6</td></tr>
+              <tr><td class="name">초등M 초5 MS1A</td><td>초5</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <div class="app">
+        <div class="appbar"><span>출제 · 장바구니 › 반 고르기</span><span class="muted">거르개 «강선생»</span></div>
+        <div class="pick">
+          <div class="now"><span>테스트반</span><span>▾</span></div>
+          <ul>
+            <li>테스트반</li>
+            <li>중등M 초6 MS2A</li>
+            <li>초등M 초5 MS1A</li>
+          </ul>
+        </div>
+        <p class="muted" style="margin:0">«전체»일 때는 A 안처럼 «반 · 계정»으로 나옵니다.</p>
+      </div>
+    </div>
+    <ul class="list">
+      <li><b>좋은 점</b> — 역할 계정(강선생 · 원장)을 번갈아 점검하실 때, 한 계정의 화면을 그대로 봅니다. 반이 늘어도 목록이 짧게 유지됩니다.</li>
+      <li><b>걸리는 점</b> — 거르개가 켜진 것을 잊으면 «반이 없어졌다»로 보일 수 있습니다. 계정이 많아지면 단추 줄이 길어집니다(지금 여섯).</li>
+    </ul>
+  </section>
+
+  <!-- ─────────────── E ─────────────── -->
+  <section class="panel" id="panel-e" role="tabpanel" aria-labelledby="tab-e" data-panel="e" hidden>
+    <div class="thesis">
+      <h2>E · 이름이 겹칠 때만 계정 이름</h2>
+      <p>평소에는 지금 화면 그대로 두고, <b>같은 이름의 반이 둘 이상일 때만</b> 그 반들 뒤에 계정 이름을 붙입니다.
+        지금 7개 반은 이름이 하나도 안 겹쳐서 <b>오늘은 아무것도 안 바뀝니다.</b> 아래 오른쪽은 강선생과 원장 계정에
+        둘 다 «테스트반»이 생겼을 때의 모습입니다.</p>
+    </div>
+    <div class="split">
+      <div class="app">
+        <div class="appbar"><span>오늘 — 반 7개, 겹치는 이름 없음</span><span>관리자</span></div>
+        <div class="card tablewrap">
+          <table class="cls">
+            <thead><tr><th>반</th><th>학년</th></tr></thead>
+            <tbody>
+              <tr class="cur"><td class="name">테스트반</td><td>중2</td></tr>
+              <tr><td class="name">중등M 초6 MS2A</td><td>초6</td></tr>
+              <tr><td class="name">초등M 초5 MS1A</td><td>초5</td></tr>
+              <tr><td class="name">테스트 B</td><td>5</td></tr>
+              <tr><td class="name">걷기반</td><td>중2</td></tr>
+              <tr><td class="name">빈손반</td><td>중1</td></tr>
+              <tr><td class="name">이어반</td><td>중2</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <div class="app">
+        <div class="appbar"><span>가정 — 원장 계정에도 «테스트반»이 생기면</span></div>
+        <div class="card tablewrap">
+          <table class="cls">
+            <thead><tr><th>반</th><th>학년</th></tr></thead>
+            <tbody>
+              <tr class="cur"><td class="name"><span class="dup">테스트반</span><span class="owner chip">강선생</span></td><td>중2</td></tr>
+              <tr><td class="name">중등M 초6 MS2A</td><td>초6</td></tr>
+              <tr><td class="name"><span class="dup">테스트반</span><span class="owner chip">원장</span></td><td>중2</td></tr>
+              <tr><td class="name">테스트 B</td><td>5</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p class="muted" style="margin:0">점선은 설명용입니다 — 화면에는 꼬리표만 섭니다.</p>
+      </div>
+    </div>
+    <ul class="list">
+      <li><b>좋은 점</b> — 화면이 가장 조용합니다. 헷갈릴 수 있는 순간에만 말합니다.</li>
+      <li><b>걸리는 점</b> — 이름이 달라도 «이 반이 누구 것인지»는 여전히 안 보입니다(«테스트 B»가 원장 계정 반인지 모릅니다). 반을 하나 만들거나 지우면 다른 반의 표시가 생겼다 사라집니다.</li>
+    </ul>
+  </section>
+
+  <section class="ask">
+    <h2>정할 것</h2>
+    <ol>
+      <li><b>어느 안으로 갈까요.</b> D 는 A 나 C 와 섞을 수 있습니다(거르개 + 전체일 때의 표시).
+        <div class="opts"><span class="opt">A</span><span class="opt">B</span><span class="opt">C</span><span class="opt">D</span><span class="opt">E</span><span class="opt">D + A</span><span class="opt">D + C</span></div>
+      </li>
+      <li><b>계정을 무엇으로 부를까요.</b> 계정 이름(«강선생» · «원장»)은 계정마다 직접 적은 것이라 겹칠 수 있고,
+        로그인 아이디(«test_t» · «test_o»)는 겹치지 않지만 사무적입니다.
+        <div class="opts"><span class="opt">계정 이름</span><span class="opt">로그인 아이디(@ 앞)</span><span class="opt">계정 이름, 겹치면 아이디도</span></div>
+      </li>
+      <li><b>반 이름이 나오는 곳 중 어디까지 붙일까요.</b> 시안은 반 표와 반 고르기 둘만 그렸습니다.
+        <div class="opts"><span class="opt">반 표 · 반 고르기만</span><span class="opt">+ 메인 반별 줄</span><span class="opt">+ 시험지 목록 · 오늘의 개념 판까지 전부</span></div>
+      </li>
+      <li><b>원장님 계정에 반이 생기면</b> 그 반에도 계정 이름을 붙일까요, 아니면 표시 없이 둘까요(= 표시 없는 반은 내 반).
+        <div class="opts"><span class="opt">내 반은 표시 없음</span><span class="opt">«내 반»으로 표시</span><span class="opt">모든 반에 똑같이</span></div>
+      </li>
+    </ol>
+    <p class="note">고르신 안으로 Hi-fi 4~5안을 만들어 색·글자 크기·휴대폰 폭까지 보여 드리겠습니다(05 §0-3).
+      <b>반 이름·학년·계정 이름은 2026-09-16 공유 DB 에서 읽은 그대로</b>입니다(읽기만 했습니다).</p>
+  </section>
+</div>
+
+<script>
+const tabs = [...document.querySelectorAll(".tab")];
+const panels = [...document.querySelectorAll("[data-panel]")];
+tabs.forEach((tab) => {
+  tab.addEventListener("click", () => {
+    tabs.forEach((t) => t.setAttribute("aria-selected", String(t === tab)));
+    panels.forEach((p) => {
+      p.hidden = p.dataset.panel !== tab.dataset.tab;
+    });
+  });
+});
+</script>
