@@ -163,6 +163,29 @@ describe("[planGauge] 계기판 칸 — 계획 API 의 줄을 그대로 칸으�
     ]);
   });
 
+  /**
+   * 🔴 변이 ③e 가 살아남았다(2026-09-16) — 위 시안 픽스처는 지난 칸의 예정과 실제가 **같은 이름**이라
+   *    «실제가 이긴다»를 지워도 초록이었다. 예정과 다른 차시를 기록한 지난 칸으로 가른다.
+   */
+  it("🔴 지난 칸은 실제가 이긴다 — 예정과 다른 차시를 기록했으면 실제 이름", () => {
+    const cells = gaugeCells(
+      schedule([
+        row({
+          date: "2026-09-14",
+          weekday: 1,
+          planned: [unit("다항식의 덧셈")],
+          actual: [unit("지수법칙"), unit("단항식")],
+          driftDays: 2,
+        }),
+      ]),
+      "2026-09-16",
+    );
+    expect(cells[0]).toMatchObject({
+      state: "done",
+      unitLabel: "지수법칙 · 단항식",
+    });
+  });
+
   it("지난 칸에 실제 기록이 없으면 예정 이름 — 계획대로 나간 것으로 본다(실제가 없으면 계획)", () => {
     const cells = gaugeCells(
       schedule([
