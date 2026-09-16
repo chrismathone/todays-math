@@ -410,16 +410,17 @@ const MUTATIONS: Mutation[] = [
   {
     name: "⑩c 오늘의 개념 판이 관리자도 좁힌다",
     file: CONCEPT_FILE,
-    from: "      where: ownedRowsWhere(viewer),",
-    to: "      where: { userId: viewer.id },",
+    // 반 조회가 `loadBoardClasses` 로 옮겨 갔다(D-132 담당 조인) — 조각은 거기 한 번이다
+    from: "  const where = ownedRowsWhere(viewer);",
+    to: "  const where = { userId: viewer.id };",
     probe: null,
     tests: [CONCEPT],
   },
   {
     name: "⑩d 오늘의 개념 판이 늘 넓다",
     file: CONCEPT_FILE,
-    from: "      where: ownedRowsWhere(viewer),",
-    to: "      where: {},",
+    from: "  const where = ownedRowsWhere(viewer);",
+    to: "  const where = {};",
     probe: null,
     tests: [CONCEPT],
   },
