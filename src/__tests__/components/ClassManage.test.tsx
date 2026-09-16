@@ -14,6 +14,7 @@ import { AppChrome } from "@/components/chrome/AppChrome";
 import { ClassManage } from "@/components/class/ClassManage";
 import {
   CLASS_A_ID,
+  MOCK_CLASSES,
   MOCK_CURRENT_PROGRESS_UNIT,
   MOCK_STUDENTS,
   MOCK_UNITS,
@@ -265,5 +266,72 @@ describe("[T2.3 S-07] 진도 — 다음 소단원 1클릭 · 트리 보조", () 
       expect(current).toHaveAttribute("aria-current", "true");
     });
     expect(current).toHaveClass("bg-g-blue");
+  });
+});
+
+describe("[D-132] 반 관리 — 담당(관리자 응답에만 실린다)", () => {
+  const OTHERS = MOCK_CLASSES.map((c) => ({
+    ...c,
+    owner: { name: "강선생", mine: false },
+  }));
+
+  function useOwnerHandlers() {
+    server.use(
+      http.get("/api/classes", () =>
+        HttpResponse.json({
+          data: OTHERS,
+          meta: { page: 1, pageSize: 100, total: OTHERS.length },
+        }),
+      ),
+      http.post("/api/classes", async ({ request }) => {
+        const body = (await request.json()) as { name: string; grade: string };
+        return HttpResponse.json(
+          {
+            data: {
+              ...MOCK_CLASSES[0]!,
+              id: "20000000-0000-4000-8000-00000000d132",
+              name: body.name,
+              grade: body.grade,
+              owner: { name: "관리자", mine: true },
+            },
+          },
+          { status: 201 },
+        );
+      }),
+    );
+  }
+
+  it("«진도» 칸 머리 «반 · 학년» 뒤에 담당 딱지", async () => {
+    useOwnerHandlers();
+    await readyManage();
+    const heading = screen.getByRole("heading", { name: "진도" });
+    const line = heading.nextElementSibling as HTMLElement;
+    expect(line).toHaveTextContent(/^중2 심화반 · 중2/);
+    expect(line.querySelector("[data-owner-tag]")).toHaveTextContent("강선생");
+  });
+
+  it("🔴 원장님이 새로 만든 반(내 반)은 목록 맨 위에 선다 — 새로 고치기 전에도", async () => {
+    useOwnerHandlers();
+    const { user } = await readyManage();
+    const form = within(screen.getByRole("form", { name: "반 추가" }));
+    await user.type(
+      form.getByRole("textbox", { name: "반 이름" }),
+      "목요 심화반",
+    );
+    await user.type(form.getByRole("textbox", { name: "학년" }), "중2");
+    await user.click(form.getByRole("button", { name: "반 추가" }));
+    await screen.findByRole("button", { name: /목요 심화반/ });
+    const rows = within(screen.getByRole("table")).getAllByRole("row").slice(1);
+    expect(rows[0]).toHaveTextContent("목요 심화반");
+    expect(rows[0]!.querySelector("[data-owner-tag]")).toHaveTextContent(
+      "내 반",
+    );
+  });
+
+  it("담당이 없으면(관리자 아님) «진도» 칸 머리에 딱지가 없다", async () => {
+    await readyManage();
+    const line = screen.getByRole("heading", { name: "진도" })
+      .nextElementSibling as HTMLElement;
+    expect(line.querySelector("[data-owner-tag]")).toBeNull();
   });
 });

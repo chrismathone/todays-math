@@ -78,6 +78,15 @@ const OVERVIEW_UI = "src/components/unified/TeachingOverview.tsx";
 const CONCEPT_UI = "src/components/unified/ConceptView.tsx";
 const BASKET_UI = "src/components/problem/BasketPanel.tsx";
 const SETUP_UI = "src/components/test/GenerateSetup.tsx";
+// ⑨ 두 트랙 병합 뒤 리드가 붙인 자리(보고서 ⑤-1 · ⑤-2 · ⑤-3)
+const DAILY_API = T("api/dailyReview.test.ts");
+const DAILY_UI_T = T("components/DailyReviewSection.test.tsx");
+const MANAGE_T = T("components/ClassManage.test.tsx");
+const DAILY_ROUTE = "src/app/api/tests/daily-review/route.ts";
+const DAILY_PLAN = "src/lib/daily/planDailyReview.ts";
+const DAILY_UI = "src/components/main/DailyReviewSection.tsx";
+const MANAGE_UI = "src/components/class/ClassManage.tsx";
+const MANAGE_HOOK = "src/hooks/useClassManage.ts";
 const PRINT_UI = "src/components/print/TestPrint.tsx";
 const PRINT_PAGE = "src/app/(main)/tests/[id]/print/page.tsx";
 
@@ -431,6 +440,55 @@ const MUTATIONS: Mutation[] = [
     to: "        className: `${test.class.name} · 담당`,",
     probe: null,
     tests: [PRINT],
+  },
+  // ── ⑨ 오늘의 확인테스트 한 줄 · 반 관리 진도 머리 · 새 반 자리 ─────────────
+  {
+    name: "⑨a 오늘의 확인테스트 응답이 관리자에게도 담당을 안 싣는다",
+    file: DAILY_ROUTE,
+    from: "    showsClassOwner(session) && classIds.length",
+    to: "    false && classIds.length",
+    probe: null,
+    tests: [DAILY_API],
+  },
+  {
+    name: "⑨b 오늘의 확인테스트 응답이 관리자가 아니어도 담당을 싣는다",
+    file: DAILY_ROUTE,
+    from: "    showsClassOwner(session) && classIds.length",
+    to: "    true && classIds.length",
+    probe: null,
+    tests: [DAILY_API],
+  },
+  {
+    name: "⑨c 순수 함수가 학생 줄에 담당을 안 흘린다",
+    file: DAILY_PLAN,
+    from: "      ...(st.classOwner ? { classOwner: st.classOwner } : {}),",
+    to: "",
+    probe: null,
+    tests: [DAILY_API],
+  },
+  {
+    name: "⑨d 오늘의 확인테스트 한 줄에 딱지를 안 그린다",
+    file: DAILY_UI,
+    from: "                    {s.classOwner ? <OwnerTag owner={s.classOwner} /> : null}",
+    to: "                    {null}",
+    probe: null,
+    tests: [DAILY_UI_T],
+  },
+  {
+    name: "⑨e 반 관리 «진도» 머리에 딱지를 안 그린다",
+    file: MANAGE_UI,
+    from: '              <OwnerTag owner={selectedClass.owner} className="ml-2" />',
+    to: "              <></>",
+    probe: null,
+    tests: [MANAGE_T],
+  },
+  {
+    name: "⑨f 새로 만든 내 반이 목록 끝에 붙는다",
+    file: MANAGE_HOOK,
+    from: "      setClasses((prev) => mineFirst([...prev, created], (c) => c.owner));",
+    to: "      setClasses((prev) => [...prev, created]);",
+    probe: null,
+    tests: [MANAGE_T],
   },
 ];
 

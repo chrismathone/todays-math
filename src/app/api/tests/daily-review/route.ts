@@ -29,6 +29,11 @@ import type { NextRequest } from "next/server";
 import { dailyReviewResponseSchema } from "@/contracts/test.contract";
 import { jsonOk, unauthorizedError } from "@/lib/apiResponse";
 import {
+  CLASS_OWNER_NAME,
+  showsClassOwner,
+  toClassOwner,
+} from "@/lib/class/classOwner";
+import {
   planDailyReview,
   type DailyPlanRow,
 } from "@/lib/daily/planDailyReview";
@@ -122,6 +127,20 @@ export async function GET(request: NextRequest) {
   const studentIds = students.map((s) => s.id);
   const classIds = [...new Set(students.map((s) => s.classId))];
 
+  // 담당(D-132) — 관리자에게만. 학생들의 반을 한 번에 읽는다(반마다 따로 안 읽는다).
+  // 관리자가 아니면 조회도 싣기도 없다 — 응답이 넓히기 전과 같다.
+  const ownerByClass =
+    showsClassOwner(session) && classIds.length
+      ? new Map(
+          (
+            await db.class.findMany({
+              where: { id: { in: classIds } },
+              select: { id: true, userId: true, ...CLASS_OWNER_NAME },
+            })
+          ).map((c) => [c.id, toClassOwner(session, c)]),
+        )
+      : null;
+
   const [syncRun, ownProgress, classProgress, units, reviews] =
     await Promise.all([
       eywaOwner
@@ -206,6 +225,9 @@ export async function GET(request: NextRequest) {
         ? isoDay(s.eywaLastReportDate)
         : null,
       lastReportText: s.eywaLastReportText,
+      ...(ownerByClass?.has(s.classId)
+        ? { classOwner: ownerByClass.get(s.classId)! }
+        : {}),
     })),
     progressRows: [...ownProgress, ...classProgress].map((r) => ({
       classId: r.classId,

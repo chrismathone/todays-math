@@ -285,6 +285,8 @@ const dailyGroupStudentSchema = z.strictObject({
   classId: uuidSchema,
   grade: z.string(),
   className: z.string(),
+  /** 담당(D-132) — **관리자에게만** 실린다. 관리자가 아니면 키째로 없다. */
+  classOwner: classOwnerSchema.optional(),
 });
 
 /** 같은 범위 학생 한 묶음 — 한 묶음이 시험지 한 종이다. */

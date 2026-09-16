@@ -10,6 +10,7 @@ import {
   fetchStudents,
   recordProgress,
 } from "@/lib/class/classApi";
+import { mineFirst } from "@/lib/class/classOwner";
 import type { PlanDraft } from "@/lib/class/planDraft";
 import { ServerError } from "@/lib/class/serverError";
 
@@ -230,7 +231,8 @@ export function useClassManage() {
         grade.trim(),
         progressPlan,
       );
-      setClasses((prev) => [...prev, created]);
+      // 내 반은 맨 위(D-132 ⑷) — 새로 고친 목록과 같은 자리. 담당이 없으면(관리자 아님) 지금처럼 끝에 붙는다.
+      setClasses((prev) => mineFirst([...prev, created], (c) => c.owner));
       // A delayed creation must not undo a class the user selected meanwhile.
       if (version === selectionVersion.current) selectClass(created.id);
       setClassMutation({

@@ -9,6 +9,7 @@ import { ClassTable } from "@/components/class/ClassTable";
 import { UnitTreePicker } from "@/components/progress/UnitTreePicker";
 import { Button } from "@/components/ui/Button";
 import { Input } from "@/components/ui/Input";
+import { OwnerTag } from "@/components/ui/OwnerTag";
 import { ClassManageSkeleton } from "@/components/ui/PageSkeletons";
 import { useClassManage } from "@/hooks/useClassManage";
 import { emptyPlanDraft, type PlanDraft } from "@/lib/class/planDraft";
@@ -106,6 +107,9 @@ export function ClassManage({ units }: ClassManageProps) {
         {selectedClass ? (
           <p className="mb-3 break-words text-[12.5px] font-bold text-ink">
             {selectedClass.name} · {selectedClass.grade}
+            {selectedClass.owner ? (
+              <OwnerTag owner={selectedClass.owner} className="ml-2" />
+            ) : null}
           </p>
         ) : null}
         <div className="mb-3 flex flex-wrap items-center gap-3">

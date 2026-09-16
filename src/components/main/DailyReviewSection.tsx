@@ -6,6 +6,7 @@ import { useEffect, useMemo, useState } from "react";
 import type { DailyReviewResponse } from "@/contracts/test.contract";
 import type { UnitEntity } from "@/contracts/unit.contract";
 import { loadDailyReview } from "@/lib/main/loadDailyReview";
+import { OwnerTag } from "@/components/ui/OwnerTag";
 import { DailyReviewSkeleton } from "@/components/ui/PageSkeletons";
 
 /**
@@ -353,6 +354,8 @@ export function DailyReviewSection({ units }: { units: UnitEntity[] }) {
                 .join(" · ")}
             </p>
           ) : null}
+          {/* 링크는 `inline-flex items-center` — 작업실(`.lessonContent a`)이 링크를 44px 높이로 세워
+              flex 줄 안에서 글자만 위로 뜨고 «출제됨 N명 — 검수:» 와 높이가 어긋났다(2026-09-16 캡처). */}
           {doneStudents > 0 || Object.keys(progress.created).length > 0 ? (
             <p className="mt-2 flex flex-wrap items-center gap-x-2 gap-y-1 text-sm text-text-2">
               출제됨 {n(doneStudents)}명 — 검수:
@@ -366,7 +369,7 @@ export function DailyReviewSection({ units }: { units: UnitEntity[] }) {
                     <Link
                       key={s.id}
                       href={`/tests/${testId}`}
-                      className="underline underline-offset-2"
+                      className="inline-flex items-center underline underline-offset-2"
                     >
                       {s.name}
                     </Link>
@@ -395,7 +398,7 @@ export function DailyReviewSection({ units }: { units: UnitEntity[] }) {
                     </span>
                     <Link
                       href={`/tests/new?classId=${g.students[0]!.classId}&studentId=${g.students[0]!.id}`}
-                      className="text-[12px] underline underline-offset-2"
+                      className="inline-flex items-center text-[12px] underline underline-offset-2"
                     >
                       직접 출제
                     </Link>
@@ -420,6 +423,8 @@ export function DailyReviewSection({ units }: { units: UnitEntity[] }) {
                     <span className="text-text-3">
                       {s.grade} · {s.className}
                     </span>
+                    {/* 담당(D-132 · 05 §8.11 «한 줄 목록») — 관리자 응답에만 실린다 */}
+                    {s.classOwner ? <OwnerTag owner={s.classOwner} /> : null}
                     {s.lines.map((line) => (
                       <span
                         key={line}
@@ -430,7 +435,7 @@ export function DailyReviewSection({ units }: { units: UnitEntity[] }) {
                     ))}
                     <Link
                       href={`/tests/new?classId=${s.classId}&studentId=${s.id}`}
-                      className="text-[12px] underline underline-offset-2"
+                      className="inline-flex items-center text-[12px] underline underline-offset-2"
                     >
                       직접 출제
                     </Link>

@@ -37,6 +37,7 @@ import {
   resolveDailyPlan,
   type ProgressPlanRule,
 } from "@/lib/daily/progressPlan";
+import type { ClassOwner } from "@/contracts/class.contract";
 import {
   applicableProgress,
   findLatestProgress,
@@ -57,6 +58,8 @@ export interface DailyStudent {
   /** YYYY-MM-DD — 마지막 eywa 보고서 날짜(D-64). null 이면 보고서가 없는 학생. */
   lastReportDate: string | null;
   lastReportText: string | null;
+  /** 담당(D-132) — 라우트가 관리자에게만 채운다. 없으면 응답 줄에도 키가 없다. */
+  classOwner?: ClassOwner;
 }
 
 export interface DailyProgressRow {
@@ -90,6 +93,7 @@ export interface DailyGroupStudent {
   /** 화면 표기용 학년 — 학교 학년(중2)이 있으면 그것, 없으면 반 학년. */
   grade: string;
   className: string;
+  classOwner?: ClassOwner;
 }
 
 export interface DailyGroup {
@@ -215,6 +219,7 @@ export function planDailyReview(args: {
       classId: st.classId,
       grade: gradeOf(st),
       className: st.className,
+      ...(st.classOwner ? { classOwner: st.classOwner } : {}),
     };
 
     // 🔴 D-64 가 계획보다 앞선다 — 오늘 보고서는 있는데 진도 행이 없다(시험기간·미분류).

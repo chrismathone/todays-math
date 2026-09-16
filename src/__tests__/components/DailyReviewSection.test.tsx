@@ -437,3 +437,50 @@ describe("[D-131] 오늘의 확인테스트 — 계획이 있으면 누구에게
       );
   });
 });
+
+describe("[D-132] 오늘의 확인테스트 — 학생 줄의 담당 딱지(관리자에게만 실린다)", () => {
+  function withOwner(classOwner?: { name: string; mine: boolean }) {
+    const base = richDaily(new Date().toISOString()).data;
+    return dailyReviewResponseSchema.parse({
+      data: {
+        ...base,
+        examOrUnread: base.examOrUnread.map((s) =>
+          classOwner ? { ...s, classOwner } : s,
+        ),
+      },
+    });
+  }
+
+  async function openExamRow(body: ReturnType<typeof withOwner>) {
+    server.use(
+      http.get("/api/tests/daily-review", () => HttpResponse.json(body)),
+    );
+    const user = userEvent.setup();
+    render(<DailyReviewSection units={MOCK_UNITS} />);
+    const section = await findSection();
+    await user.click(
+      await within(section).findByText(
+        "시험기간·진도 못 읽음 1명 — 자동 출제 제외",
+      ),
+    );
+    return within(section).getByText("최하은").closest("li")!;
+  }
+
+  it("관리자 응답이면 «학년 · 반» 바로 뒤에 담당 딱지 — 남의 반은 계정 이름", async () => {
+    const row = await openExamRow(withOwner({ name: "강선생", mine: false }));
+    const tag = row.querySelector("[data-owner-tag]");
+    expect(tag).toHaveAttribute("data-owner-tag", "other");
+    expect(tag).toHaveTextContent("강선생");
+    expect(tag?.previousElementSibling).toHaveTextContent("중2 · 테스트반");
+  });
+
+  it("내 반은 «내 반» 딱지", async () => {
+    const row = await openExamRow(withOwner({ name: "관리자", mine: true }));
+    expect(row.querySelector("[data-owner-tag]")).toHaveTextContent("내 반");
+  });
+
+  it("🔴 담당이 없으면(관리자 아님) 딱지가 없다 — 지금 화면 그대로", async () => {
+    const row = await openExamRow(withOwner());
+    expect(row.querySelector("[data-owner-tag]")).toBeNull();
+  });
+});

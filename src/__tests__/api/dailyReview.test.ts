@@ -29,7 +29,10 @@ import {
   CLASS_OTHER_ID,
   MOCK_CLASSES,
   MOCK_UNITS,
+  MOCK_TEACHER,
   STUDENT_IDS,
+  USER_OTHER_ID,
+  USER_TEACHER_ID,
 } from "@/mocks/data";
 import {
   prismaTestDouble,
@@ -415,5 +418,45 @@ describe("[D-131] GET /api/tests/daily-review — 계획 유무 · 밀림 · 오
     const ids = body.data.noLessonClasses.map((c) => c.id);
     expect(ids).toContain(CLASS_B_ID);
     expect(ids).not.toContain(CLASS_A_ID);
+  });
+});
+
+describe("[D-132] GET /api/tests/daily-review — 학생 줄의 담당(관리자에게만)", () => {
+  beforeEach(async () => {
+    resetPrismaTestDouble();
+    await seed();
+    process.env.EYWA_SYNC_OWNER_EMAIL = "teacher@todaysmath.test";
+  });
+
+  const asViewer = (id: string, isAdmin: boolean) =>
+    vi.mocked(getSessionUser).mockResolvedValueOnce({
+      id,
+      email: "teacher@todaysmath.test",
+      name: "테스트 강사",
+      isAdmin,
+    });
+
+  it("🔴 관리자가 아니면 넓히기 전과 같다 — classOwner 키가 없다", async () => {
+    asViewer(USER_TEACHER_ID, false);
+    const text = await (await get()).text();
+    dailyReviewResponseSchema.parse(JSON.parse(text));
+    expect(text).not.toContain('"classOwner"');
+  });
+
+  it("관리자면 시험기간 줄 · 부족 묶음 학생에 반의 담당 — 자기 반은 mine", async () => {
+    asViewer(USER_TEACHER_ID, true);
+    const body = dailyReviewResponseSchema.parse(await (await get()).json());
+    const mine = { name: MOCK_TEACHER.name, mine: true };
+    expect(body.data.examOrUnread[0]!.classOwner).toEqual(mine);
+    expect(body.data.lacking[0]!.students[0]!.classOwner).toEqual(mine);
+  });
+
+  it("관리자가 남의 반 학생을 보면 담당 계정 이름 · mine 거짓", async () => {
+    asViewer(USER_OTHER_ID, true);
+    const body = dailyReviewResponseSchema.parse(await (await get()).json());
+    expect(body.data.examOrUnread[0]!.classOwner).toEqual({
+      name: MOCK_TEACHER.name,
+      mine: false,
+    });
   });
 });
