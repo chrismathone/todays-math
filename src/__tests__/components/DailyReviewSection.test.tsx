@@ -390,6 +390,39 @@ describe("[D-131] 오늘의 확인테스트 — 계획이 있으면 누구에게
     ).toEqual(["5일 밀림 2명", "3일 밀림 1명"]);
   });
 
+  it("「오늘 초안」은 초안만 센다 — 확정·인쇄한 시험지는 빠진다", async () => {
+    server.use(
+      http.get("/api/tests/daily-review", () =>
+        HttpResponse.json(
+          planOnly({
+            todayTests: [
+              {
+                studentId: STUDENT_IDS[0]!,
+                testId: "90000000-0000-4000-8000-000000000701",
+                status: "draft",
+              },
+              {
+                studentId: STUDENT_IDS[1]!,
+                testId: "90000000-0000-4000-8000-000000000702",
+                status: "confirmed",
+              },
+              {
+                studentId: STUDENT_IDS[2]!,
+                testId: "90000000-0000-4000-8000-000000000703",
+                status: "printed",
+              },
+            ],
+          }),
+        ),
+      ),
+    );
+    render(<DailyReviewSection units={MOCK_UNITS} />);
+    const section = await findSection();
+    expect(
+      await within(section).findByText("오늘 초안 1장"),
+    ).toBeInTheDocument();
+  });
+
   it("칩은 누르는 것이 아니다 — 단추가 아니고 손가락 커서가 없다(D-30)", async () => {
     server.use(
       http.get("/api/tests/daily-review", () => HttpResponse.json(planOnly())),
