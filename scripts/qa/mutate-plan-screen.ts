@@ -17,7 +17,12 @@
  *   ⑷ 그제서야 시험이 빨개지나 — 실패한 시험 **이름**을 json 리포트에서 읽는다(2026-08-23 «도장»).
  *
  * 무리: ① 요일 순서·번호 · ② 저장 요청 모양 · ③ 계기판 칸 · ④ 미리보기(저장 안 함 · 서버 한 곳) ·
- *       ⑤ 서버 문구 그대로 · ⑥ 반 만들기의 접힌 칸 · ⑦ 메인 «오늘의 확인테스트» · ⑧ daily-review 칸 셋 · ⑨ D-30
+ *       ⑤ 서버 문구 그대로 · ⑥ 반 만들기의 접힌 칸 · ⑦ 메인 «오늘의 확인테스트» · ⑧ daily-review 칸 셋 · ⑨ D-30 ·
+ *       (D-133 검수 반영 — 브리프 `tracks/briefs/plan-screen-followup.md` §3)
+ *       ⑩ «자동 출제» 표지(두 방향 · 근거 칸 하나 · D-30) · ⑪ 회차 id 배선(단추 길 NULL · 요청으로 못 채움) ·
+ *       ⑫ 회차 행 — 먼저 세우고 끝에서 합계 · 끊긴 회차 정리
+ *
+ * D-133 에서 뜻이 바뀐 것: ⑦e(날마다 칩 차례 → «최대 D일») · ⑦h(반 이름 줄 → 반 수 줄).
  *
  * 러너는 `--maxWorkers=1` — 이 기계는 다른 오르카 세션과 메모리를 나눠 쓴다. 원복은 **바이트**로 `finally` 에서,
  * 끝나고 md5 로 대조한다. **커밋한 상태에서 돌린다** — 배경 셸이 끊기면 `finally` 가 안 돌 수 있다
@@ -49,6 +54,8 @@ const SCREEN = T("components/ProgressPlanScreen.test.tsx");
 const SECTION = T("components/DailyReviewSection.test.tsx");
 const PREVIEW = T("api/progressPlanPreview.test.ts");
 const DAILY = T("api/dailyReview.test.ts");
+const AUTO = T("api/autoDraftCron.test.ts");
+const LINK = T("api/autoDraftRunLink.test.ts");
 
 const GAUGE_FILE = "src/lib/daily/planGauge.ts";
 const DRAFT_FILE = "src/lib/class/planDraft.ts";
@@ -63,6 +70,9 @@ const MAIN_UI = "src/components/main/DailyReviewSection.tsx";
 const PREVIEW_ROUTE = "src/app/api/classes/[id]/progress-plan/preview/route.ts";
 const DAILY_ROUTE = "src/app/api/tests/daily-review/route.ts";
 const REVIEW_FILE = "src/lib/daily/planDailyReview.ts";
+const RUN_FILE = "src/lib/tests/runAutoDraft.ts";
+const GEN_FILE = "src/lib/tests/generateDraftTest.ts";
+const CONTRACT_FILE = "src/contracts/test.contract.ts";
 
 /** tsx 탐침 머리 — 모든 tsx 탐침이 이 이름들을 쓴다 */
 const PRELUDE = `
@@ -397,6 +407,14 @@ const MUTATIONS: Mutation[] = [
     probe: null,
     tests: [SCREEN],
   },
+  {
+    name: "⑥d 열어도 글자가 «수업 계획 넣기» 그대로(D-133 ⑿)",
+    file: MANAGE_UI,
+    from: '        {planOpen ? "수업 계획 접기" : "수업 계획 넣기"}',
+    to: '        {"수업 계획 넣기"}',
+    probe: null,
+    tests: [SCREEN],
+  },
 
   // ── ⑦ 메인 «오늘의 확인테스트» ─────────────────────────────────────────
   {
@@ -432,10 +450,27 @@ const MUTATIONS: Mutation[] = [
     tests: [SECTION],
   },
   {
-    name: "⑦e 밀림 칩이 적게 밀린 날부터",
+    // D-133 ⑺ — 날마다 칩(차례)이 칩 하나 «밀림 N명 · 최대 D일» 이 됐다. 이제 겨누는 것은 «최대»다.
+    name: "⑦e 밀림 칩 «최대 D일»이 가장 많이 밀린 학생이 아니라 맨 앞 학생의 일 수",
     file: MAIN_UI,
-    from: "      .sort(([a], [b]) => b - a)",
-    to: "      .sort(([a], [b]) => a - b)",
+    from: "최대 ${n(Math.max(...d.delayed.map((s) => s.days)))}일",
+    to: "최대 ${n(d.delayed[0]!.days)}일",
+    probe: null,
+    tests: [SECTION],
+  },
+  {
+    name: "⑦j 밀림 칩 N 이 밀린 학생 수가 아니라 밀린 날 가짓수(옛 날마다 칩의 셈)",
+    file: MAIN_UI,
+    from: "밀림 ${n(d.delayed.length)}명",
+    to: "밀림 ${n(new Set(d.delayed.map((s) => s.days)).size)}명",
+    probe: null,
+    tests: [SECTION],
+  },
+  {
+    name: "⑦k 밀린 학생이 없어도 밀림 칩이 선다",
+    file: MAIN_UI,
+    from: "    ...(d.delayed.length > 0",
+    to: "    ...(d.delayed.length >= 0",
     probe: null,
     tests: [SECTION],
   },
@@ -456,10 +491,19 @@ const MUTATIONS: Mutation[] = [
     tests: [SECTION],
   },
   {
-    name: "⑦h 오늘 수업 없는 반 줄이 안 선다",
+    // D-133 ⑻ — 줄이 «반 이름 — …» 에서 «오늘 수업 계획이 없는 반 N개» 로 바뀌었다(앵커는 그대로)
+    name: "⑦h 오늘 수업 없는 반 수 줄이 안 선다",
     file: MAIN_UI,
     from: "          {d.noLessonClasses.length > 0 ? (",
     to: "          {d.noLessonClasses.length < 0 ? (",
+    probe: null,
+    tests: [SECTION],
+  },
+  {
+    name: "⑦m 수업 없는 반 줄이 반 이름을 늘어놓는다(D-133 ⑻ 이전)",
+    file: MAIN_UI,
+    from: "              오늘 수업 계획이 없는 반 {n(d.noLessonClasses.length)}개",
+    to: '              {d.noLessonClasses.map((c) => c.name).join(" · ")} — 오늘 수업 계획이 없습니다.',
     probe: null,
     tests: [SECTION],
   },
@@ -530,6 +574,140 @@ const MUTATIONS: Mutation[] = [
     to: "                  className={`rounded-full border bg-white px-2.5 py-0.5 text-[12px] hover:bg-side ${",
     probe: null,
     tests: [SECTION],
+  },
+
+  // ── ⑩ «자동 출제» 표지 — 검수 줄 이름 바로 뒤(D-133 ⑵) ───────────────────
+  {
+    name: "⑩a 아침 회차가 세운 시험지에 표지가 안 선다",
+    file: MAIN_UI,
+    from: "                      {today?.autoDraft ? (",
+    to: "                      {today?.autoDraft && false ? (",
+    probe: null,
+    tests: [SECTION],
+  },
+  {
+    name: "⑩b 손으로 낸 시험지에도 표지가 선다(오늘 시험지면 다)",
+    file: MAIN_UI,
+    from: "                      {today?.autoDraft ? (",
+    to: "                      {today ? (",
+    probe: null,
+    tests: [SECTION],
+  },
+  {
+    name: "⑩c 이 화면에서 방금 «모두 출제»로 낸 초안에도 표지가 선다",
+    file: MAIN_UI,
+    from: "                      {today?.autoDraft ? (",
+    to: "                      {today?.autoDraft || progress.created[s.id] ? (",
+    probe: null,
+    tests: [SECTION],
+  },
+  {
+    name: "⑩d 표지에 손가락 커서(D-30)",
+    file: MAIN_UI,
+    from: '  "inline-block shrink-0 whitespace-nowrap rounded-[4px] border border-[#2064b3] bg-white px-2 py-0.5 text-[11px] leading-4 font-bold text-[#2064b3]";',
+    to: '  "inline-block shrink-0 whitespace-nowrap rounded-[4px] border border-[#2064b3] bg-white px-2 py-0.5 text-[11px] leading-4 font-bold text-[#2064b3] cursor-pointer";',
+    probe: null,
+    tests: [SECTION],
+  },
+  {
+    name: "⑩e daily-review 의 autoDraft 가 늘 거짓",
+    file: DAILY_ROUTE,
+    from: "        autoDraft: t.autoDraftRunId !== null,",
+    to: "        autoDraft: false,",
+    probe: null,
+    tests: [DAILY],
+  },
+  {
+    name: "⑩f daily-review 의 autoDraft 가 늘 참",
+    file: DAILY_ROUTE,
+    from: "        autoDraft: t.autoDraftRunId !== null,",
+    to: "        autoDraft: true,",
+    probe: null,
+    tests: [DAILY],
+  },
+  {
+    name: "⑩g daily-review 가 시험지 칸을 안 읽는다(select 에서 빠짐 — undefined 가 «참»이 된다)",
+    file: DAILY_ROUTE,
+    from: "    select: { id: true, studentId: true, status: true, autoDraftRunId: true },",
+    to: "    select: { id: true, studentId: true, status: true },",
+    probe: null,
+    tests: [DAILY],
+  },
+
+  // ── ⑪ 회차 id 배선 — 서버 안 인자로만(D-133 ⑴) ──────────────────────────
+  {
+    name: "⑪a 아침 회차가 초안에 회차 id 를 안 넘긴다",
+    file: RUN_FILE,
+    from: "        { autoDraftRunId: runId },",
+    to: "        {},",
+    probe: null,
+    tests: [AUTO],
+  },
+  {
+    name: "⑪b generateDraftTest 가 넘겨받은 회차 id 를 시험지에 안 적는다",
+    file: GEN_FILE,
+    from: "        autoDraftRunId: origin.autoDraftRunId ?? null,",
+    to: "        autoDraftRunId: null,",
+    probe: null,
+    tests: [LINK, AUTO],
+  },
+  {
+    name: "⑪c 단추 길이 그날 마지막 회차를 짐작해 붙인다(시각 추정 — 보고서 daily-auto-test-screen ⑤-A ⑶)",
+    file: GEN_FILE,
+    from: "        autoDraftRunId: origin.autoDraftRunId ?? null,",
+    to: '        autoDraftRunId: origin.autoDraftRunId ?? (await tx.autoDraftRun.findFirst({ orderBy: { ranAt: "desc" } }))?.id ?? null,',
+    probe: null,
+    tests: [LINK],
+  },
+  {
+    name: "⑪d 출제 요청 계약이 모르는 칸을 받는다(strict 해제 — 본문으로 칸을 들고 들어올 수 있다)",
+    file: CONTRACT_FILE,
+    from: L("export const testGenerateRequestSchema = z", "  .strictObject({"),
+    to: L("export const testGenerateRequestSchema = z", "  .looseObject({"),
+    probe: null,
+    tests: [LINK],
+  },
+
+  // ── ⑫ 회차 행 — 먼저 세우고 끝에서 합계 · 끊긴 회차(D-133 ⑴ · 보고서 ⑤-B) ─────
+  {
+    name: "⑫a 끝에서 합계를 고쳐 쓰지 않는다(회차 행이 합계 0 으로 남는다)",
+    file: RUN_FILE,
+    from: "  await db.autoDraftRun.update({ where: { id: runId }, data: totals });",
+    to: "  void totals;",
+    probe: null,
+    tests: [AUTO],
+  },
+  {
+    name: "⑫b 대상 수를 적지 않는다(targets 가 0 으로 남는다)",
+    file: RUN_FILE,
+    from: "  tally.targets = plan.attended;",
+    to: "  void plan.attended;",
+    probe: null,
+    tests: [AUTO],
+  },
+  {
+    name: "⑫c 끊긴 회차 — 이은 시험지가 없어도 행을 남긴다(«대상 0» 으로 읽힌다)",
+    file: RUN_FILE,
+    from: "  if (linked === 0) {",
+    to: "  if (linked < 0) {",
+    probe: null,
+    tests: [AUTO],
+  },
+  {
+    name: "⑫d 끊긴 회차 — 이은 시험지가 있어도 행을 지운다(SET NULL 로 표지가 사라진다)",
+    file: RUN_FILE,
+    from: "  if (linked === 0) {",
+    to: "  if (linked >= 0) {",
+    probe: null,
+    tests: [AUTO],
+  },
+  {
+    name: "⑫e 끊긴 회차 — 거기까지의 합계를 안 적는다",
+    file: RUN_FILE,
+    from: "  await db.autoDraftRun.update({ where: { id: runId }, data: totalsOf(tally) });",
+    to: "  void tally;",
+    probe: null,
+    tests: [AUTO],
   },
 ];
 

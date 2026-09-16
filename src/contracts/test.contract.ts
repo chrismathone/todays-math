@@ -361,6 +361,9 @@ export const dailyReviewResponseSchema = dataResponseSchema(
         studentId: uuidSchema,
         testId: uuidSchema,
         status: z.enum(["draft", "confirmed", "printed"]),
+        /** 아침 자동 초안 회차가 세운 시험지인가 — 시험지 칸 `auto_draft_run_id` 가 있으면 참(D-133 ⑵).
+         *  검수 줄 «자동 출제» 표지가 이것 하나만 본다. 시각으로 짐작하지 않는다. */
+        autoDraft: z.boolean(),
       }),
     ),
   }),

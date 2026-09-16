@@ -11,7 +11,7 @@
  * 만들지 않고 **기록만** 남기나 · 🔴 **확정·인쇄를 절대 안 부르나**.
  */
 import { NextRequest } from "next/server";
-import { beforeEach, describe, expect, it } from "vitest";
+import { beforeEach, describe, expect, it, vi } from "vitest";
 
 import { GET as autoDraftCron } from "@/app/api/tests/auto-draft/cron/route";
 import { autoDraftRunResponseSchema } from "@/contracts/dailyAutoTest.contract";
@@ -286,5 +286,173 @@ describe("[매일 자동 출제 ③] GET /api/tests/auto-draft/cron — 아침 8
     expect(made.every((t) => STUDENT_IDS.includes(t.studentId ?? ""))).toBe(
       true,
     );
+  });
+});
+
+/**
+ * 🔴 D-133 ⑴ — 시험지가 **어느 아침 회차로 섰는지** 안다(`test.auto_draft_run_id`).
+ *
+ * 회차 행을 **먼저** 만들고(합계 0) 그 id 로 초안을 세운 뒤, 끝에서 합계를 고쳐 쓴다.
+ * 메인 «자동 출제» 표지(daily-review `todayTests[].autoDraft`)가 이 칸 하나만 본다.
+ */
+describe("[D-133] 아침 회차 — 만든 초안마다 회차 id · 합계는 끝에서", () => {
+  interface RunRow {
+    id: string;
+    day: Date;
+    targets: number;
+    created: number;
+    skipped: number;
+    skips: { studentId: string; reason: string }[];
+  }
+  const runs = async () =>
+    (await prismaTestDouble.autoDraftRun.findMany({
+      orderBy: { ranAt: "asc" },
+    })) as RunRow[];
+  const linked = async (runId: string) =>
+    (await prismaTestDouble.test.findMany({
+      where: { autoDraftRunId: runId },
+    })) as Array<MadeTest & { id: string }>;
+
+  beforeEach(() => {
+    resetPrismaTestDouble();
+    process.env.CRON_SECRET = SECRET;
+    process.env.AUTO_DRAFT_OWNER_EMAIL = MOCK_TEACHER.email;
+  });
+
+  it("🔴 만든 초안마다 autoDraftRunId 가 그 회차 id — 회차는 한 줄", async () => {
+    await seedClassAPlan();
+    const body = autoDraftRunResponseSchema.parse(await (await call()).json());
+    const [run, ...rest] = await runs();
+    expect(rest).toEqual([]);
+    const made = (await madeOn(DAY)) as Array<
+      MadeTest & { autoDraftRunId: string | null }
+    >;
+    expect(made).toHaveLength(body.data.created);
+    expect(made.map((t) => t.autoDraftRunId)).toEqual(made.map(() => run!.id));
+  });
+
+  it("🔴 합계는 끝에서 고쳐 쓴다 — 회차 행이 응답과 같다(합계 0 으로 남지 않는다)", async () => {
+    await seedClassAPlan();
+    const body = autoDraftRunResponseSchema.parse(await (await call()).json());
+    const [run] = await runs();
+    expect(run!.day).toEqual(new Date(`${DAY}T00:00:00.000Z`));
+    expect({
+      targets: run!.targets,
+      created: run!.created,
+      skipped: run!.skipped,
+      skips: run!.skips,
+    }).toEqual({
+      targets: body.data.targets,
+      created: body.data.created,
+      skipped: body.data.skipped,
+      skips: body.data.skips,
+    });
+    expect(run!.targets).toBe(3);
+    expect(run!.created).toBe(2);
+    // 끝난 회차는 셈이 맞는다 — 대상 = 만든 수 + 건너뛴 수
+    expect(run!.created + run!.skipped).toBe(run!.targets);
+  });
+
+  it("대상이 0 인 날도 회차 한 줄 — 합계 0 · 이어진 시험지 없음", async () => {
+    await call();
+    const all = await runs();
+    expect(all).toHaveLength(1);
+    expect(all[0]).toMatchObject({
+      targets: 0,
+      created: 0,
+      skipped: 0,
+      skips: [],
+    });
+    expect(await linked(all[0]!.id)).toEqual([]);
+  });
+
+  it("🔴 건너뛴 학생엔 이 회차의 시험지가 없다 — 문항 부족 학생 · 이미 있던 시험지는 그대로", async () => {
+    await seedClassAPlan();
+    // s1 은 아침 전에 **손으로** 낸 시험지가 있다 — 회차가 그 칸을 덮으면 손 시험지에 표지가 붙는다
+    const manual = await prismaTestDouble.test.create({
+      data: {
+        userId: MOCK_TEACHER.id,
+        classId: CLASS_A_ID,
+        studentId: STUDENT_IDS[0]!,
+        testType: "review",
+        rangeStartUnitId: MOCK_UNITS[0]!.id,
+        rangeEndUnitId: MOCK_UNITS[3]!.id,
+        status: "draft",
+        testDate: new Date(`${DAY}T00:00:00.000Z`),
+      },
+    });
+    const body = autoDraftRunResponseSchema.parse(await (await call()).json());
+    expect(body.data.created).toBe(1);
+    const [run] = await runs();
+    const mine = await linked(run!.id);
+    expect(mine.map((t) => t.studentId)).toEqual([STUDENT_IDS[1]!]);
+    // 건너뛴 두 학생(already · lacking)에게는 이 회차의 시험지가 없다
+    for (const skip of body.data.skips)
+      expect(mine.map((t) => t.studentId)).not.toContain(skip.studentId);
+    const kept = (await prismaTestDouble.test.findUnique({
+      where: { id: manual.id },
+    })) as { autoDraftRunId: string | null };
+    expect(kept.autoDraftRunId).toBeNull();
+  });
+
+  it("같은 날 두 번 돌면 두 번째 회차엔 이어진 시험지가 없다 — 첫 회차 id 는 그대로", async () => {
+    await seedClassAPlan();
+    await call();
+    await call();
+    const [first, second] = await runs();
+    expect((await linked(first!.id)).length).toBe(2);
+    expect(await linked(second!.id)).toEqual([]);
+  });
+
+  /**
+   * 🔴 중간에 던지면 — 보고서 ⑤-B. 규칙 둘:
+   *   · 시험지를 **하나도** 못 이었으면 회차 행을 지운다 — 합계 0 인 줄이 남으면 «그날 대상이 없었다»로 읽힌다.
+   *   · 하나라도 이었으면 행을 남기고 **거기까지의 합계**를 적는다 — 지우면 SET NULL 로 표지가 사라진다.
+   *     끊긴 회차는 `created + skipped < targets` 로 가른다(끝난 회차는 같다).
+   * 어느 쪽이든 cron 은 지금처럼 500 이다.
+   */
+  it("🔴 초안을 세우기 전에 던지면 회차 행이 남지 않는다 — 500", async () => {
+    await seedClassAPlan();
+    const log = vi.spyOn(console, "error").mockImplementation(() => undefined);
+    const spy = vi
+      .spyOn(prismaTestDouble.progress, "findMany")
+      .mockRejectedValueOnce(new Error("db down"));
+    try {
+      expect((await call()).status).toBe(500);
+    } finally {
+      spy.mockRestore();
+      log.mockRestore();
+    }
+    expect(await runs()).toEqual([]);
+    expect(await madeOn(DAY)).toEqual([]);
+  });
+
+  it("🔴 초안을 세운 뒤 던지면 회차 행을 남기고 거기까지의 합계를 적는다 — 끊긴 회차는 created + skipped < targets", async () => {
+    await seedClassAPlan();
+    const log = vi.spyOn(console, "error").mockImplementation(() => undefined);
+    const count = prismaTestDouble.problem.count.bind(prismaTestDouble.problem);
+    let calls = 0;
+    // 묶음은 학생 수가 많은 쪽부터 돈다 — 첫 묶음(s1·s2)은 세우고, 둘째 묶음(s3)의 풀 세기에서 던진다
+    const spy = vi
+      .spyOn(prismaTestDouble.problem, "count")
+      .mockImplementation(async (args) => {
+        calls += 1;
+        if (calls === 2) throw new Error("db down");
+        return count(args);
+      });
+    try {
+      expect((await call()).status).toBe(500);
+    } finally {
+      spy.mockRestore();
+      log.mockRestore();
+    }
+    const all = await runs();
+    expect(all).toHaveLength(1);
+    const run = all[0]!;
+    expect((await linked(run.id)).length).toBe(2);
+    expect(run.targets).toBe(3);
+    expect(run.created).toBe(2);
+    expect(run.skips).toHaveLength(run.skipped);
+    expect(run.created + run.skipped).toBeLessThan(run.targets);
   });
 });

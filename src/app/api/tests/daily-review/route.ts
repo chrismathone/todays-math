@@ -187,7 +187,7 @@ export async function GET(request: NextRequest) {
       testDate: new Date(`${day}T00:00:00Z`),
     },
     orderBy: [{ createdAt: "desc" }],
-    select: { id: true, studentId: true, status: true },
+    select: { id: true, studentId: true, status: true, autoDraftRunId: true },
   });
   const todayTestByStudent = new Map<
     string,
@@ -195,6 +195,7 @@ export async function GET(request: NextRequest) {
       studentId: string;
       testId: string;
       status: "draft" | "confirmed" | "printed";
+      autoDraft: boolean;
     }
   >();
   for (const t of todayTestRows)
@@ -203,6 +204,8 @@ export async function GET(request: NextRequest) {
         studentId: t.studentId,
         testId: t.id,
         status: t.status as "draft" | "confirmed" | "printed",
+        // «자동 출제» 표지(D-133 ⑵) — 아침 회차가 세운 시험지만. 근거는 이 칸 하나다.
+        autoDraft: t.autoDraftRunId !== null,
       });
   const lastReviewByStudent = new Map<string, string | null>();
   for (const r of reviews)
