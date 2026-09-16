@@ -702,3 +702,59 @@ describe("상세 모달이 변형까지 맡는다", () => {
     ).toBeVisible();
   });
 });
+
+/**
+ * 🔴 2026-09-16 원장님 지시 — 「이거 여러행에 표시되는데 행 개수를 최대한 줄이게 한행에 배치.
+ * 전체 창 크기가 너무 작아지면 창 크기 최소화 방지 로직 짜봐」
+ *
+ * 그래서 **검색 · 필터 일곱 · 자료 셋 · 초기화가 한 묶음(한 줄)** 에 선다. 라벨 글자는 칸 자신의
+ * 문구(「전체 학년」…)가 대신하므로 화면에서 빼고 **읽는 이름으로만** 남긴다(`sr-only`) —
+ * 화면 읽기와 이 시험들이 쓰는 이름은 그대로다.
+ *
+ * 브라우저 창 자체는 웹에서 못 막는다. 대신 칸 폭을 지키고 **필터 쪽만 가로로 밀리게** 한다(CSS).
+ * ⚠️ 줄이 정말 하나인지는 jsdom 에 레이아웃이 없어 **못 잰다** — 여기서는 「한 묶음에 다 있다」와
+ * 「라벨이 눈에서 빠졌다」까지만 잠근다(20번 교훈 2026-09-15 learn-screens 와 같은 자리).
+ */
+describe("필터는 한 줄이다 — 라벨은 칸 문구로 (원장님 2026-09-16)", () => {
+  const SELECTS = ["학년", "단원", "난이도", "유형", "상태", "출처"];
+  const labelOf = (control: HTMLElement) =>
+    document.querySelector<HTMLElement>(`label[for="${control.id}"]`);
+
+  it("🔴 검색 · 필터 일곱 · 자료 셋 · 초기화가 한 묶음에 있다", async () => {
+    mount();
+    await settled();
+    const bar = within(screen.getByRole("group", { name: "검색과 필터" }));
+    expect(bar.getByRole("textbox", { name: "문제 검색" })).toBeInTheDocument();
+    for (const name of SELECTS)
+      expect(bar.getByRole("combobox", { name })).toBeInTheDocument();
+    expect(bar.getByRole("button", { name: "범위" })).toBeInTheDocument();
+    for (const name of ["그림", "해설", "정답"])
+      expect(bar.getByRole("checkbox", { name })).toBeInTheDocument();
+    expect(bar.getByRole("button", { name: "초기화" })).toBeInTheDocument();
+  });
+
+  it("🔴 라벨 글자는 화면에서 빠지고 읽는 이름으로만 남는다", async () => {
+    mount();
+    await settled();
+    for (const name of SELECTS) {
+      const control = screen.getByRole("combobox", { name });
+      expect(labelOf(control)?.className, name).toContain("sr-only");
+    }
+    expect(
+      labelOf(screen.getByRole("button", { name: "범위" }))?.className,
+    ).toContain("sr-only");
+    expect(document.querySelector("fieldset legend")?.className).toContain(
+      "sr-only",
+    );
+  });
+
+  it("검색 도움말은 칸의 설명으로만 남는다 — 줄을 차지하지 않는다", async () => {
+    mount();
+    await settled();
+    const help = "본문·문항번호·정답·해설·학교를 함께 검색합니다.";
+    expect(
+      screen.getByRole("textbox", { name: "문제 검색" }),
+    ).toHaveAccessibleDescription(help);
+    expect(screen.getByText(help).className).toContain("sr-only");
+  });
+});

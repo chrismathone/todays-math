@@ -78,18 +78,22 @@
   border: 1px solid var(--bank-line);
   border-radius: 12px;
 }
-.searchRow {
+/* 🔴 한 줄 — 검색 · 필터 일곱 · 자료 셋 · 초기화 (원장님 2026-09-16
+   「행 개수를 최대한 줄이게 한행에 배치」). 라벨 글자는 칸 문구가 대신한다(TSX 의 sr-only).
+   자리가 모자라면 **가운데 필터 묶음만 가로로 민다** — 칸은 폭을 지켜 찌그러지지 않고
+   검색칸과 초기화는 제자리에 남는다. 브라우저 창 자체의 최소 크기는 웹에서 막을 수 없어
+   「좁아지면 미는 것」이 그 자리를 대신한다. */
+.filterBar {
   display: flex;
-  flex-wrap: wrap;
   align-items: center;
   gap: 12px;
+  min-width: 0;
 }
 .filterToolbar {
   display: flex;
   flex: none;
   align-items: center;
   justify-content: space-between;
-  margin-left: auto;
 }
 .filterToggle {
   display: none;
@@ -111,8 +115,9 @@
 }
 .searchForm {
   display: flex;
-  flex: 0 1 400px;
-  width: min(100%, 400px);
+  flex: 0 1 320px;
+  width: min(100%, 320px);
+  min-width: 220px;
   max-width: 400px;
   align-items: center;
   gap: 8px;
@@ -123,12 +128,6 @@
   border-radius: 8px;
   background: #fff;
   color: var(--bank-muted);
-}
-.searchHelp {
-  margin: 6px 0 0;
-  color: var(--bank-muted);
-  font-size: var(--text-caption, 12px);
-  overflow-wrap: anywhere;
 }
 .searchForm:focus-within {
   border-color: var(--bank-primary);
@@ -194,16 +193,26 @@
   font-weight: 500;
   font-variant-numeric: tabular-nums;
 }
+/* 가로로 미는 묶음 — 칸 폭은 고정이고 모자라면 이 안에서만 밀린다 */
 .selectFilters {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(min(100%, 148px), 1fr));
-  gap: 12px;
-  margin-top: 12px;
+  display: flex;
+  flex: 1 1 auto;
+  align-items: center;
+  gap: 8px;
+  min-width: 0;
+  padding-bottom: 2px;
+  overflow-x: auto;
+  overscroll-behavior-x: contain;
+  scrollbar-width: thin;
 }
 .filterField {
-  display: grid;
-  gap: 6px;
+  flex: none;
+  width: 134px;
   min-width: 0;
+}
+/* 범위는 고른 단원 이름이 들어가 조금 넓다 */
+.rangeField {
+  width: 180px;
 }
 .selectWrap {
   display: flex;
@@ -259,28 +268,32 @@
   border-color: var(--bank-primary);
   background: var(--bank-selected);
 }
+/* 자료 있는 문제만 — 다른 결의 필터라 세로선 하나로 가른다(이름은 읽기로만 남는다) */
 .assetFilters {
-  grid-column: 1 / -1;
+  flex: none;
+  display: flex;
+  align-items: center;
   min-width: 0;
   margin: 0;
-  padding: 0;
+  padding: 0 0 0 14px;
   border: 0;
+  border-left: 1px solid var(--bank-line);
 }
 .assetFilters legend {
   padding: 0;
-  margin-bottom: 6px;
 }
 .assetFilters > div {
   display: flex;
   align-items: center;
-  flex-wrap: wrap;
-  gap: 4px 20px;
+  flex-wrap: nowrap;
+  gap: 16px;
 }
 .assetFilters label {
   display: inline-flex;
   align-items: center;
   gap: 8px;
   min-height: 44px;
+  white-space: nowrap;
   cursor: pointer;
 }
 .rangePanel {
@@ -1052,14 +1065,12 @@ label.rowSelect {
     padding: 12px;
     margin-bottom: 12px;
   }
-  .searchRow {
-    display: grid;
-    grid-template-columns: minmax(0, 1fr);
+  .filterBar {
+    flex-wrap: wrap;
     gap: 8px;
   }
   .filterToolbar {
     width: 100%;
-    margin-left: 0;
   }
   .filterToggle {
     display: inline-flex;
@@ -1087,19 +1098,27 @@ label.rowSelect {
     min-width: 60px;
     padding-inline: 12px;
   }
+  /* 휴대폰에서는 지금처럼 「상세 필터」 단추 뒤에 접어 두고, 열면 한 칸씩 세로로 쌓는다 */
   .selectFilters {
     display: none;
-    grid-template-columns: minmax(0, 1fr);
+    flex-basis: 100%;
+    flex-wrap: wrap;
     gap: 10px;
     padding-top: 12px;
+    overflow-x: visible;
     border-top: 1px solid var(--bank-line);
   }
   .selectFilters.filtersOpen {
-    display: grid;
+    display: flex;
   }
-  .filterField {
-    grid-template-columns: 70px minmax(0, 1fr);
-    align-items: center;
+  .filterField,
+  .rangeField {
+    width: 100%;
+  }
+  .assetFilters {
+    width: 100%;
+    padding-left: 0;
+    border-left: 0;
   }
   .filterSummary {
     gap: 6px;

@@ -848,7 +848,15 @@ export default function BankView({
       <div className={styles.workspace}>
         <div className={styles.results}>
           <div className={styles.filters}>
-            <div className={styles.searchRow}>
+            {/* 🔴 한 줄 — 검색 · 필터 일곱 · 자료 셋 · 초기화 (원장님 2026-09-16
+                「행 개수를 최대한 줄이게 한행에 배치」). 라벨 글자는 칸 자신의 문구
+                (「전체 학년」…)가 대신하므로 화면에서 빼고 읽는 이름으로만 남긴다.
+                좁아지면 필터 쪽만 가로로 밀린다 — 칸은 찌그러지지 않는다(module.css). */}
+            <div
+              className={styles.filterBar}
+              role="group"
+              aria-label="검색과 필터"
+            >
               <form
                 className={styles.searchForm}
                 role="search"
@@ -885,6 +893,201 @@ export default function BankView({
                   검색
                 </button>
               </form>
+              <div
+                id={`${headingId}-filters`}
+                className={`${styles.selectFilters} ${filtersOpen ? styles.filtersOpen : ""}`}
+              >
+                <div className={styles.filterField}>
+                  <label className="sr-only" htmlFor={`${headingId}-grade`}>
+                    학년
+                  </label>
+                  <div className={styles.selectWrap}>
+                    <select
+                      id={`${headingId}-grade`}
+                      value={filters.grade}
+                      onChange={(event) =>
+                        updateFilters({
+                          grade: event.target.value,
+                          chapter: "",
+                          unitFrom: "",
+                          unitTo: "",
+                        })
+                      }
+                    >
+                      <option value="">전체 학년</option>
+                      {filters.grade &&
+                      !availableGrades.some(
+                        ({ grade }) => grade === filters.grade,
+                      ) ? (
+                        <option value={filters.grade}>{filters.grade}</option>
+                      ) : null}
+                      {availableGrades.map(({ grade }) => (
+                        <option key={grade} value={grade}>
+                          {grade}
+                        </option>
+                      ))}
+                    </select>
+                    <span className={styles.chevronDown}>
+                      <Icon name="chevron" />
+                    </span>
+                  </div>
+                </div>
+                <div className={styles.filterField}>
+                  <label className="sr-only" htmlFor={`${headingId}-chapter`}>
+                    단원
+                  </label>
+                  <div className={styles.selectWrap}>
+                    <select
+                      id={`${headingId}-chapter`}
+                      value={filters.chapter}
+                      disabled={loading}
+                      onChange={(event) =>
+                        updateFilters({
+                          chapter: event.target.value,
+                          unitFrom: "",
+                          unitTo: "",
+                        })
+                      }
+                    >
+                      <option value="">전체 단원</option>
+                      {filters.chapter &&
+                      !data.chapters.includes(filters.chapter) ? (
+                        <option value={filters.chapter}>
+                          {filters.chapter}
+                        </option>
+                      ) : null}
+                      {data.chapters.map((chapter) => (
+                        <option key={chapter} value={chapter}>
+                          {chapter}
+                        </option>
+                      ))}
+                    </select>
+                    <span className={styles.chevronDown}>
+                      <Icon name="chevron" />
+                    </span>
+                  </div>
+                </div>
+                <div className={`${styles.filterField} ${styles.rangeField}`}>
+                  <label className="sr-only" htmlFor={`${headingId}-range`}>
+                    범위
+                  </label>
+                  <button
+                    id={`${headingId}-range`}
+                    type="button"
+                    className={styles.rangeButton}
+                    aria-expanded={rangeEditing}
+                    aria-controls={`${headingId}-range-panel`}
+                    disabled={units.length === 0}
+                    title={rangeSummary?.text}
+                    onClick={() => setRangeEditing((value) => !value)}
+                  >
+                    <span>{rangeSummary?.text || "단원 범위 선택"}</span>
+                    <span
+                      className={
+                        rangeEditing ? styles.chevronUp : styles.chevronDown
+                      }
+                    >
+                      <Icon name="chevron" />
+                    </span>
+                  </button>
+                </div>
+                <div className={styles.filterField}>
+                  <label
+                    className="sr-only"
+                    htmlFor={`${headingId}-difficulty`}
+                  >
+                    난이도
+                  </label>
+                  <div className={styles.selectWrap}>
+                    <select
+                      id={`${headingId}-difficulty`}
+                      value={filters.difficulty}
+                      onChange={(event) =>
+                        updateFilters({ difficulty: event.target.value })
+                      }
+                    >
+                      <option value="">전체 난이도</option>
+                      {DIFFICULTY_LADDER.map((difficulty) => (
+                        <option key={difficulty} value={difficulty}>
+                          {difficulty}
+                        </option>
+                      ))}
+                    </select>
+                    <span className={styles.chevronDown}>
+                      <Icon name="chevron" />
+                    </span>
+                  </div>
+                </div>
+                {(
+                  [
+                    {
+                      key: "problemFilter",
+                      label: "유형",
+                      empty: "전체 유형",
+                      options: PROBLEM_FILTER_OPTIONS,
+                    },
+                    {
+                      key: "reviewStatus",
+                      label: "상태",
+                      empty: "출제 가능",
+                      options: Object.entries(REVIEW_STATUS_LABEL).map(
+                        ([value, label]) => ({ value, label }),
+                      ),
+                    },
+                    {
+                      key: "source",
+                      label: "출처",
+                      empty: "전체 출처",
+                      options: SOURCE_OPTIONS.map((value) => ({
+                        value,
+                        label: SOURCE_LABEL[value],
+                      })),
+                    },
+                  ] as const
+                ).map(({ key, label, empty, options }) => (
+                  <div key={key} className={styles.filterField}>
+                    <label className="sr-only" htmlFor={`${headingId}-${key}`}>
+                      {label}
+                    </label>
+                    <div className={styles.selectWrap}>
+                      <select
+                        id={`${headingId}-${key}`}
+                        value={filters[key]}
+                        onChange={(event) =>
+                          updateFilters({ [key]: event.target.value })
+                        }
+                      >
+                        <option value="">{empty}</option>
+                        {options.map(({ value, label }) => (
+                          <option key={value} value={value}>
+                            {label}
+                          </option>
+                        ))}
+                      </select>
+                      <span className={styles.chevronDown}>
+                        <Icon name="chevron" />
+                      </span>
+                    </div>
+                  </div>
+                ))}
+                <fieldset className={styles.assetFilters}>
+                  <legend className="sr-only">자료 있는 문제만</legend>
+                  <div>
+                    {ASSET_FILTERS.map(({ key, label }) => (
+                      <label key={key}>
+                        <input
+                          type="checkbox"
+                          checked={filters[key]}
+                          onChange={(event) =>
+                            updateFilters({ [key]: event.target.checked })
+                          }
+                        />
+                        {label}
+                      </label>
+                    ))}
+                  </div>
+                </fieldset>
+              </div>
               <div className={styles.filterToolbar}>
                 <button
                   type="button"
@@ -916,268 +1119,64 @@ export default function BankView({
                 </button>
               </div>
             </div>
-            <p id={`${headingId}-search-help`} className={styles.searchHelp}>
+            {/* 도움말은 칸의 설명으로만 남는다 — 줄을 차지하지 않는다(읽기로는 그대로) */}
+            <p id={`${headingId}-search-help`} className="sr-only">
               본문·문항번호·정답·해설·학교를 함께 검색합니다.
             </p>
-            <div
-              id={`${headingId}-filters`}
-              className={`${styles.selectFilters} ${filtersOpen ? styles.filtersOpen : ""}`}
-            >
-              <div className={styles.filterField}>
-                <label
-                  className={styles.filterLabel}
-                  htmlFor={`${headingId}-grade`}
-                >
-                  학년
-                </label>
-                <div className={styles.selectWrap}>
-                  <select
-                    id={`${headingId}-grade`}
-                    value={filters.grade}
-                    onChange={(event) =>
-                      updateFilters({
-                        grade: event.target.value,
-                        chapter: "",
-                        unitFrom: "",
-                        unitTo: "",
-                      })
-                    }
-                  >
-                    <option value="">전체 학년</option>
-                    {filters.grade &&
-                    !availableGrades.some(
-                      ({ grade }) => grade === filters.grade,
-                    ) ? (
-                      <option value={filters.grade}>{filters.grade}</option>
-                    ) : null}
-                    {availableGrades.map(({ grade }) => (
-                      <option key={grade} value={grade}>
-                        {grade}
-                      </option>
-                    ))}
-                  </select>
-                  <span className={styles.chevronDown}>
-                    <Icon name="chevron" />
-                  </span>
-                </div>
-              </div>
-              <div className={styles.filterField}>
-                <label
-                  className={styles.filterLabel}
-                  htmlFor={`${headingId}-chapter`}
-                >
-                  단원
-                </label>
-                <div className={styles.selectWrap}>
-                  <select
-                    id={`${headingId}-chapter`}
-                    value={filters.chapter}
-                    disabled={loading}
-                    onChange={(event) =>
-                      updateFilters({
-                        chapter: event.target.value,
-                        unitFrom: "",
-                        unitTo: "",
-                      })
-                    }
-                  >
-                    <option value="">전체 단원</option>
-                    {filters.chapter &&
-                    !data.chapters.includes(filters.chapter) ? (
-                      <option value={filters.chapter}>{filters.chapter}</option>
-                    ) : null}
-                    {data.chapters.map((chapter) => (
-                      <option key={chapter} value={chapter}>
-                        {chapter}
-                      </option>
-                    ))}
-                  </select>
-                  <span className={styles.chevronDown}>
-                    <Icon name="chevron" />
-                  </span>
-                </div>
-              </div>
-              <div className={styles.filterField}>
-                <label
-                  className={styles.filterLabel}
-                  htmlFor={`${headingId}-range`}
-                >
-                  범위
-                </label>
-                <button
-                  id={`${headingId}-range`}
-                  type="button"
-                  className={styles.rangeButton}
-                  aria-expanded={rangeEditing}
-                  aria-controls={`${headingId}-range-panel`}
-                  disabled={units.length === 0}
-                  title={rangeSummary?.text}
-                  onClick={() => setRangeEditing((value) => !value)}
-                >
-                  <span>{rangeSummary?.text || "단원 범위 선택"}</span>
-                  <span
-                    className={
-                      rangeEditing ? styles.chevronUp : styles.chevronDown
-                    }
-                  >
-                    <Icon name="chevron" />
-                  </span>
-                </button>
-              </div>
-              <div className={styles.filterField}>
-                <label
-                  className={styles.filterLabel}
-                  htmlFor={`${headingId}-difficulty`}
-                >
-                  난이도
-                </label>
-                <div className={styles.selectWrap}>
-                  <select
-                    id={`${headingId}-difficulty`}
-                    value={filters.difficulty}
-                    onChange={(event) =>
-                      updateFilters({ difficulty: event.target.value })
-                    }
-                  >
-                    <option value="">전체 난이도</option>
-                    {DIFFICULTY_LADDER.map((difficulty) => (
-                      <option key={difficulty} value={difficulty}>
-                        {difficulty}
-                      </option>
-                    ))}
-                  </select>
-                  <span className={styles.chevronDown}>
-                    <Icon name="chevron" />
-                  </span>
-                </div>
-              </div>
-              {(
-                [
-                  {
-                    key: "problemFilter",
-                    label: "유형",
-                    empty: "전체 유형",
-                    options: PROBLEM_FILTER_OPTIONS,
-                  },
-                  {
-                    key: "reviewStatus",
-                    label: "상태",
-                    empty: "출제 가능",
-                    options: Object.entries(REVIEW_STATUS_LABEL).map(
-                      ([value, label]) => ({ value, label }),
-                    ),
-                  },
-                  {
-                    key: "source",
-                    label: "출처",
-                    empty: "전체 출처",
-                    options: SOURCE_OPTIONS.map((value) => ({
-                      value,
-                      label: SOURCE_LABEL[value],
-                    })),
-                  },
-                ] as const
-              ).map(({ key, label, empty, options }) => (
-                <div key={key} className={styles.filterField}>
-                  <label
-                    className={styles.filterLabel}
-                    htmlFor={`${headingId}-${key}`}
-                  >
-                    {label}
-                  </label>
-                  <div className={styles.selectWrap}>
-                    <select
-                      id={`${headingId}-${key}`}
-                      value={filters[key]}
-                      onChange={(event) =>
-                        updateFilters({ [key]: event.target.value })
-                      }
-                    >
-                      <option value="">{empty}</option>
-                      {options.map(({ value, label }) => (
-                        <option key={value} value={value}>
-                          {label}
-                        </option>
-                      ))}
-                    </select>
-                    <span className={styles.chevronDown}>
-                      <Icon name="chevron" />
-                    </span>
-                  </div>
-                </div>
-              ))}
-              <fieldset className={styles.assetFilters}>
-                <legend className={styles.filterLabel}>자료 있는 문제만</legend>
-                <div>
-                  {ASSET_FILTERS.map(({ key, label }) => (
-                    <label key={key}>
-                      <input
-                        type="checkbox"
-                        checked={filters[key]}
-                        onChange={(event) =>
-                          updateFilters({ [key]: event.target.checked })
-                        }
-                      />
-                      {label}
-                    </label>
-                  ))}
-                </div>
-              </fieldset>
-              {rangeEditing ? (
-                <div
-                  id={`${headingId}-range-panel`}
-                  className={styles.rangePanel}
-                >
-                  <div className={styles.rangeHeader}>
-                    {/*
+            {rangeEditing ? (
+              <div
+                id={`${headingId}-range-panel`}
+                className={styles.rangePanel}
+              >
+                <div className={styles.rangeHeader}>
+                  {/*
                       범위 값을 여기 적지 않는다 — 아래 「적용한 검색 조건」 칩이 똑같은
                       글자를 갖고 있어 한 화면에 두 번 나왔다(원장님 2026-09-14
                       「범위가 3중으로 나옴」). 안내문(「시작 소단원을 고르세요」)도
                       고르개가 제 오른쪽 위에 이미 쓰므로 여기서 되풀이하지 않는다.
                       머리글은 단추만 맡고, 값은 칩 한 곳에서만 읽힌다.
                     */}
-                    {filters.unitFrom ? (
-                      <button
-                        type="button"
-                        className={styles.resetButton}
-                        onClick={() =>
-                          updateFilters({ unitFrom: "", unitTo: "" })
-                        }
-                      >
-                        범위 전체로
-                      </button>
-                    ) : null}
+                  {filters.unitFrom ? (
                     <button
                       type="button"
                       className={styles.resetButton}
-                      onClick={() => setRangeEditing(false)}
+                      onClick={() =>
+                        updateFilters({ unitFrom: "", unitTo: "" })
+                      }
                     >
-                      범위 접기
+                      범위 전체로
                     </button>
-                  </div>
-                  <UnitRangePicker
-                    units={units}
-                    startUnitId={filters.unitFrom || null}
-                    endUnitId={filters.unitTo || null}
-                    onChange={(unitFrom, unitTo) =>
-                      updateFilters({
-                        unitFrom,
-                        unitTo,
-                        grade: "",
-                        chapter: "",
-                      })
-                    }
-                    label="문제은행 단원 범위"
-                    columnMaxHeightPx={220}
-                  />
-                  {rangeSummary ? (
-                    <p className={styles.rangeDescription}>
-                      {rangeSummary.label}
-                    </p>
                   ) : null}
+                  <button
+                    type="button"
+                    className={styles.resetButton}
+                    onClick={() => setRangeEditing(false)}
+                  >
+                    범위 접기
+                  </button>
                 </div>
-              ) : null}
-            </div>
+                <UnitRangePicker
+                  units={units}
+                  startUnitId={filters.unitFrom || null}
+                  endUnitId={filters.unitTo || null}
+                  onChange={(unitFrom, unitTo) =>
+                    updateFilters({
+                      unitFrom,
+                      unitTo,
+                      grade: "",
+                      chapter: "",
+                    })
+                  }
+                  label="문제은행 단원 범위"
+                  columnMaxHeightPx={220}
+                />
+                {rangeSummary ? (
+                  <p className={styles.rangeDescription}>
+                    {rangeSummary.label}
+                  </p>
+                ) : null}
+              </div>
+            ) : null}
             {activeFilters.length ? (
               <div
                 className={styles.filterSummary}
