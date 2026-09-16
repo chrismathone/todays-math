@@ -414,7 +414,10 @@
   width: 30%;
 }
 /* Unit selectors and lesson rows can wrap; only ordinary actions have a fixed height. */
-.classContent button:not(:where([aria-label="단원 선택"] button)),
+.classContent
+  button:not(
+    :where(:is([aria-label="단원 선택"], [aria-label="시작 차시 선택"]) button)
+  ),
 .lessonContent
   button:not(:where(article > button:first-child, [aria-label$=" 완료"])) {
   height: 44px;
@@ -448,11 +451,11 @@
   background: #edf2ff;
   color: #3159df;
 }
-.classContent [aria-label="단원 선택"] {
+.classContent :is([aria-label="단원 선택"], [aria-label="시작 차시 선택"]) {
   overflow: hidden;
   border-radius: 10px;
 }
-.classContent [aria-label="단원 선택"] h2 {
+.classContent :is([aria-label="단원 선택"], [aria-label="시작 차시 선택"]) h2 {
   margin: 0;
   padding: 12px;
   border-bottom: 1px solid #d4dce8;
@@ -460,11 +463,16 @@
   color: #52617a;
   font-size: var(--text-section, 18px);
 }
-.classContent [aria-label="단원 선택"] section > div {
+.classContent
+  :is([aria-label="단원 선택"], [aria-label="시작 차시 선택"])
+  section
+  > div {
   max-height: 340px;
   overflow-y: auto;
 }
-.classContent [aria-label="단원 선택"] button {
+.classContent
+  :is([aria-label="단원 선택"], [aria-label="시작 차시 선택"])
+  button {
   padding: 10px 12px;
   border-radius: 8px;
   white-space: normal;
@@ -620,14 +628,19 @@
   .classContent td {
     padding: 8px 4px;
   }
-  .classContent [aria-label="단원 선택"] {
+  .classContent :is([aria-label="단원 선택"], [aria-label="시작 차시 선택"]) {
     grid-template-columns: 1fr;
   }
-  .classContent [aria-label="단원 선택"] section {
+  .classContent
+    :is([aria-label="단원 선택"], [aria-label="시작 차시 선택"])
+    section {
     border-right: 0;
     border-bottom: 1px solid #d4dce8;
   }
-  .classContent [aria-label="단원 선택"] section > div {
+  .classContent
+    :is([aria-label="단원 선택"], [aria-label="시작 차시 선택"])
+    section
+    > div {
     max-height: 210px;
   }
   .classContent input[aria-label="반 이름"] {

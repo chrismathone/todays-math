@@ -1,0 +1,295 @@
+/*
+ * 반 관리 › «수업 계획» · «이번 주 예정» 카드 + 반 만들기의 접힌 계획 칸 — 시안 Hi-fi 2 «계기판 관»
+ * (`docs/design/mockups/hifi-d129-daily-auto-test.html` 2 탭 · 05 §8.10 · D-131).
+ *
+ * 색은 **작업실 토큰**(코발트 #3159df · 선 #d4dce8 · 컨트롤 #7c8da7 · 글자 #172b4d/#596c86)과
+ * **05 §2.2 기능색**(초록 #08492e · 파랑 #2064b3 · 노랑 #d1a847 · 빈 칸 #e1e1de · 경고 글자 #a62d1b)에서만.
+ * 🔴 D-30 — 손가락 커서·hover 는 단추에만. 계기판 칸·카드에는 없다.
+ * 작업실 안(`TeachingView.module.css` 의 `.classContent`)은 단추 44px · `p`/`li` 14px 를 강제한다 —
+ * 글자 크기가 시안과 달라야 하는 자리는 선택자를 한 단계 더 좁혀 이긴다(learn-screens 관례).
+ */
+
+/* ── 수업 계획 칸 ─────────────────────────────────────────── */
+.fields {
+  display: grid;
+  gap: 12px;
+  color: #172b4d;
+}
+.fields .field {
+  display: grid;
+  gap: 6px;
+  min-width: 0;
+}
+.fields .label {
+  color: #596c86;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0;
+}
+.fields .days {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+.fields .days .day {
+  display: grid;
+  place-items: center;
+  min-width: 44px;
+  height: 44px;
+  padding: 0 8px;
+  border: 1px solid #7c8da7;
+  border-radius: 8px;
+  background: #fff;
+  color: #172b4d;
+  font-size: 13px;
+  font-weight: 600;
+}
+.fields .days .day[aria-pressed="true"] {
+  border-color: #3159df;
+  background: #3159df;
+  color: #fff;
+  font-weight: 700;
+}
+.fields .pick {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  width: 100%;
+  min-height: 44px;
+  height: auto;
+  padding: 8px 12px;
+  border: 1px solid #7c8da7;
+  border-radius: 8px;
+  background: #fff;
+  color: #172b4d;
+  font-size: 14px;
+  font-weight: 400;
+  text-align: left;
+}
+.fields .pick span {
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+.fields .pick small {
+  flex-shrink: 0;
+  color: #596c86;
+  font-size: 12px;
+}
+.fields .pick .placeholder {
+  color: #596c86;
+}
+.fields .picker {
+  margin-top: 6px;
+  background: #fff;
+}
+.fields .inline {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+.fields .inline > .field {
+  flex: 1 1 140px;
+}
+.fields .control {
+  box-sizing: border-box;
+  width: 100%;
+  min-height: 44px;
+  padding: 0 12px;
+  border: 1px solid #7c8da7;
+  border-radius: 8px;
+  background: #fff;
+  color: #172b4d;
+  font: inherit;
+  font-size: 14px;
+}
+.fields .switch {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  width: 100%;
+  min-height: 44px;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: #596c86;
+  font-size: 13px;
+  font-weight: 600;
+  text-align: left;
+}
+.fields .switch .track {
+  position: relative;
+  flex-shrink: 0;
+  width: 40px;
+  height: 22px;
+  border-radius: 11px;
+  background: #7c8da7;
+}
+.fields .switch .track::after {
+  position: absolute;
+  top: 3px;
+  left: 3px;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: #fff;
+  content: "";
+}
+.fields .switch[aria-checked="true"] .track {
+  background: #3159df;
+}
+.fields .switch[aria-checked="true"] .track::after {
+  right: 3px;
+  left: auto;
+}
+
+/* ── 카드 안 단추 · 알림 ─────────────────────────────────── */
+.form {
+  display: grid;
+  gap: 12px;
+}
+.form .actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px 12px;
+}
+.primary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 40px;
+  padding: 0 16px;
+  border: 1px solid #3159df;
+  border-radius: 8px;
+  background: #3159df;
+  color: #fff;
+  font-size: 13px;
+  font-weight: 700;
+  white-space: nowrap;
+}
+.primary:hover:enabled {
+  background: #274bbf;
+}
+.primary:disabled {
+  border-color: #d4dce8;
+  background: #e8edf6;
+  color: #52617a;
+}
+.ghost {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 40px;
+  padding: 0 16px;
+  border: 1px solid #3159df;
+  border-radius: 8px;
+  background: #fff;
+  color: #3159df;
+  font-size: 13px;
+  font-weight: 700;
+  white-space: nowrap;
+}
+.plan p.status {
+  margin: 0;
+  color: #596c86;
+  font-size: 12px;
+}
+.plan p.alert {
+  margin: 0;
+  color: #a62d1b;
+  font-size: 12px;
+  font-weight: 600;
+  overflow-wrap: anywhere;
+}
+
+/* ── 반 만들기 — 「수업 계획 넣기」 한 줄 ───────────────────── */
+.more {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: #3159df;
+  font-size: 13px;
+  font-weight: 600;
+}
+.more:hover {
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+.createPlan {
+  padding: 12px 0 4px;
+  border-top: 1px solid #d4dce8;
+}
+
+/* ── 이번 주 예정 — 계기판 관 ──────────────────────────────── */
+.gauge {
+  display: grid;
+  gap: 12px;
+  color: #172b4d;
+}
+/*
+ * 수업일 한 칸씩 가로로. 칸이 모두 들어가면 한 줄(시안 그대로), 좁으면 64px 아래로 줄이지 않고 줄을 바꾼다.
+ * 칸 너비 = max(64px, (100% − 틈 합) / 칸 수) — `--cells` 는 화면이 넣는 칸 수.
+ */
+.gauge .cells {
+  display: grid;
+  grid-template-columns: repeat(
+    auto-fit,
+    minmax(
+      max(64px, calc((100% - (var(--cells) - 1) * 4px) / var(--cells))),
+      1fr
+    )
+  );
+  gap: 12px 4px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.gauge .cells .cell {
+  display: grid;
+  align-content: start;
+  gap: 6px;
+  min-width: 0;
+  font-size: 11px;
+}
+.gauge .cell .seg {
+  display: block;
+  height: 10px;
+  border-radius: 2px;
+  background: #e1e1de;
+}
+.gauge .cell[data-state="done"] .seg {
+  background: #08492e;
+}
+.gauge .cell[data-state="now"] .seg {
+  background: #2064b3;
+}
+.gauge .cell[data-state="late"] .seg {
+  background: #d1a847;
+}
+.gauge .cell .leg {
+  color: #596c86;
+  font-size: 11px;
+  line-height: 1.4;
+  overflow-wrap: anywhere;
+}
+.gauge .cell .leg b {
+  display: block;
+  color: #172b4d;
+  font-size: 12px;
+  font-weight: 700;
+}
+.gauge p.note,
+.gauge p.caption {
+  margin: 0;
+  color: #596c86;
+  font-size: 12px;
+}
+.gauge .late {
+  color: #a62d1b;
+  font-weight: 700;
+}

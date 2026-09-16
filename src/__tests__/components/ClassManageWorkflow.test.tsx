@@ -290,7 +290,7 @@ describe("class and student creation", () => {
       "새반",
     );
     await user.type(classForm().getByRole("textbox", { name: "학년" }), "중3");
-    await user.click(classForm().getByRole("button"));
+    await user.click(classForm().getByRole("button", { name: "반 추가" }));
     expect(classForm().getByRole("status")).toHaveTextContent(
       "반을 추가하는 중…",
     );
@@ -309,7 +309,7 @@ describe("class and student creation", () => {
     expect(classForm().getByRole("textbox", { name: "학년" })).toHaveValue(
       "중3",
     );
-    await user.click(classForm().getByRole("button"));
+    await user.click(classForm().getByRole("button", { name: "반 추가" }));
     expect(await screen.findByRole("button", { name: "새반" })).toHaveAttribute(
       "aria-current",
       "true",
@@ -333,7 +333,7 @@ describe("class and student creation", () => {
       "새반",
     );
     await user.type(classForm().getByRole("textbox", { name: "학년" }), "중3");
-    await user.click(classForm().getByRole("button"));
+    await user.click(classForm().getByRole("button", { name: "반 추가" }));
     await switchToB(user);
     await act(async () => pending.resolve(createdClass));
     expect(
@@ -424,7 +424,7 @@ describe("class and student creation", () => {
     );
     await user.type(classForm().getByRole("textbox", { name: "학년" }), "중2");
     await user.type(studentForm().getByRole("textbox"), "   ");
-    expect(classForm().getByRole("button")).toBeDisabled();
+    expect(classForm().getByRole("button", { name: "반 추가" })).toBeDisabled();
     expect(studentForm().getByRole("button")).toBeDisabled();
     fireEvent.submit(screen.getByRole("form", { name: "반 추가" }));
     fireEvent.submit(screen.getByRole("form", { name: "학생 등록" }));

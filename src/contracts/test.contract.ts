@@ -304,8 +304,9 @@ export const dailyReviewResponseSchema = dataResponseSchema(
   z.strictObject({
     /** 기준일(KST) — 「오늘」의 정의. */
     day: z.string().regex(/^\d{4}-\d{2}-\d{2}$/),
-    /** 이 계정이 eywa 소유자인가(`isEywaOwner`). 아니면 아래는 전부 비어 있고 화면은
-     *  이 섹션을 **그리지 않는다** — eywa 는 원장님 학원 하나의 배선이다(2026-09-07). */
+    /** 이 계정이 eywa 소유자인가(`isEywaOwner`). 아니면 eywa 갈래(연계 학생·동기화)는 비어 있다 —
+     *  eywa 는 원장님 학원 하나의 배선이다(2026-09-07). 계획 갈래는 소유 범위대로 차고, 화면은
+     *  `eywaOwner || hasPlan` 일 때만 섹션을 그린다(D-131). 동기화 줄은 소유자에게만. */
     eywaOwner: z.boolean(),
     /** 마지막 동기화 — 없으면 null(한 번도 안 돌았다). 화면 스트립이 그대로 쓴다. */
     sync: z
@@ -333,6 +334,18 @@ export const dailyReviewResponseSchema = dataResponseSchema(
     ),
     /** 범위를 못 낸 학생 — 조용히 버리지 않는다. */
     noRange: z.array(dailyGroupStudentSchema),
+    /** 이 계정의 소유 범위 안에 진도 계획이 하나라도 있나(꺼 둔 계획 포함). 화면은
+     *  `eywaOwner || hasPlan` 일 때 섹션을 그린다 — «계획이 있으면 누구에게나»(D-131). */
+    hasPlan: z.boolean(),
+    /** 오늘 대상 중 **계획보다 늦은** 학생 — `days` 는 밀린 일 수(양수). 시험기간·미분류(D-64)는
+     *  세지 않는다. 화면 칩 「N일 밀림 M명」. 셈은 `resolveDailyPlan` 한 곳이다. */
+    delayed: z.array(
+      dailyGroupStudentSchema.extend({ days: z.number().int().min(1) }),
+    ),
+    /** 오늘 대상이 **한 명도 없는** 소유 범위의 반 — 「오늘 수업 계획이 없습니다.」(D-131). */
+    noLessonClasses: z.array(
+      z.strictObject({ id: uuidSchema, name: z.string(), grade: z.string() }),
+    ),
     /** 오늘 이미 만든 학생별 확인테스트(최신 한 건) — 「모두 출제」가 이 학생을
      *  건너뛰고, 화면은 검수·인쇄 링크를 보여 준다(새로고침해도 중복 출제 없음). */
     todayTests: z.array(

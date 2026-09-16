@@ -110,12 +110,25 @@ export interface ExceptionStudent extends DailyGroupStudent {
   lines: string[];
 }
 
+export interface DelayedStudent extends DailyGroupStudent {
+  /** 계획보다 늦은 일 수(양수) — `resolveDailyPlan().driftDays` 의 부호를 뒤집은 것. */
+  days: number;
+}
+
 export interface DailyReviewPlan {
   /** 오늘 대상이 된 학생 수(분모) — 계획상 수업일이거나 오늘 보고서가 있는 학생. */
   attended: number;
   groups: DailyGroup[];
   examOrUnread: ExceptionStudent[];
   noRange: DailyGroupStudent[];
+  /**
+   * 오늘 대상 중 **계획보다 늦은** 학생 — 메인 칩 「N일 밀림 M명」(D-131).
+   * 계획이 없는 학생은 잴 수 없어 없다. 시험기간·미분류(D-64)도 뺀다 — 진도를 안 나가는 까닭이
+   * 이미 따로 선다(그 학생을 «밀림»으로도 세면 시험 철마다 칩이 부풀어 오른다).
+   */
+  delayed: DelayedStudent[];
+  /** 오늘 대상이 된 학생의 반 — 부르는 쪽이 「오늘 수업 계획이 없는 반」을 가를 때 쓴다. */
+  attendedClassIds: string[];
 }
 
 const gradeOf = (s: DailyStudent): string =>
@@ -161,6 +174,8 @@ export function planDailyReview(args: {
   const groups = new Map<string, DailyGroup>();
   const examOrUnread: ExceptionStudent[] = [];
   const noRange: DailyGroupStudent[] = [];
+  const delayed: DelayedStudent[] = [];
+  const attendedClassIds = new Set<string>();
   let attended = 0;
 
   for (const st of students) {
@@ -193,6 +208,7 @@ export function planDailyReview(args: {
     if (!reportToday && !lessonToday) continue;
 
     attended += 1;
+    attendedClassIds.add(st.classId);
     const entry: DailyGroupStudent = {
       id: st.id,
       name: st.name,
@@ -214,6 +230,10 @@ export function planDailyReview(args: {
       examOrUnread.push({ ...entry, lines });
       continue;
     }
+
+    // 밀림 — 셈은 `resolveDailyPlan` 한 곳(계획이 그 차시를 나가라던 날 − 실제로 나간 날). 음수가 밀림.
+    if (planned && planned.driftDays < 0)
+      delayed.push({ ...entry, days: -planned.driftDays });
 
     // 범위의 끝 — 계획이 수업일이라 말하면 계획이 낸 차시(그 안에 «실제가 이긴다»가 이미
     // 들어 있다), 아니면 지금까지의 현재 진도.
@@ -286,5 +306,7 @@ export function planDailyReview(args: {
       a.name.localeCompare(b.name, "ko"),
     ),
     noRange: noRange.sort((a, b) => a.name.localeCompare(b.name, "ko")),
+    delayed: delayed.sort((a, b) => a.name.localeCompare(b.name, "ko")),
+    attendedClassIds: [...attendedClassIds],
   };
 }

@@ -1,7 +1,9 @@
 ﻿"use client";
 
-import { useState, type FormEvent } from "react";
+import { useId, useState, type FormEvent } from "react";
 
+import { ProgressPlanFields } from "@/components/class/ProgressPlanFields";
+import { ProgressPlanSection } from "@/components/class/ProgressPlanSection";
 import { StudentList } from "@/components/class/StudentList";
 import { ClassTable } from "@/components/class/ClassTable";
 import { UnitTreePicker } from "@/components/progress/UnitTreePicker";
@@ -9,7 +11,11 @@ import { Button } from "@/components/ui/Button";
 import { Input } from "@/components/ui/Input";
 import { ClassManageSkeleton } from "@/components/ui/PageSkeletons";
 import { useClassManage } from "@/hooks/useClassManage";
+import { emptyPlanDraft, type PlanDraft } from "@/lib/class/planDraft";
+import { kstDateOf } from "@/lib/kstDate";
 import { findUnit, type UnitNode } from "@/lib/units/groupUnits";
+
+import planStyles from "./ProgressPlan.module.css";
 
 type ClassManageProps = {
   units: UnitNode[];
@@ -60,6 +66,7 @@ export function ClassManage({ units }: ClassManageProps) {
           <AddClassForm
             onAdd={manage.addClass}
             feedback={manage.classMutation}
+            units={units}
           />
         </section>
         <section aria-labelledby="class-students-heading">
@@ -79,6 +86,15 @@ export function ClassManage({ units }: ClassManageProps) {
           ) : null}
         </section>
       </div>
+
+      {/* 수업 계획 · 이번 주 예정 — 시안 Hi-fi 2 «계기판 관»(D-131). 반을 바꾸면 칸이 새로 선다. */}
+      {selectedClass ? (
+        <ProgressPlanSection
+          key={selectedClass.id}
+          classId={selectedClass.id}
+          units={units}
+        />
+      ) : null}
 
       <section className="mt-8" aria-labelledby="class-progress-heading">
         <h2
@@ -184,19 +200,29 @@ function Feedback({
 function AddClassForm({
   onAdd,
   feedback,
+  units,
 }: {
-  onAdd: (name: string, grade: string) => Promise<boolean>;
+  onAdd: (name: string, grade: string, plan?: PlanDraft) => Promise<boolean>;
   feedback: MutationFeedback;
+  units: UnitNode[];
 }) {
   const [name, setName] = useState("");
   const [grade, setGrade] = useState("");
+  // 🔴 계획 칸은 **접어 둔다**(D-131 ⑷) — 「수업 계획 넣기」를 눌러 연다. 접힌 채면 계획 없이 만든다.
+  const [planOpen, setPlanOpen] = useState(false);
+  const [plan, setPlan] = useState<PlanDraft>(() =>
+    emptyPlanDraft(kstDateOf(new Date())),
+  );
+  const planId = useId();
 
   async function handleSubmit(event: FormEvent) {
     event.preventDefault();
     if (feedback.pending || !name.trim() || !grade.trim()) return;
-    if (await onAdd(name, grade)) {
+    if (await onAdd(name, grade, planOpen ? plan : undefined)) {
       setName("");
       setGrade("");
+      setPlanOpen(false);
+      setPlan(emptyPlanDraft(kstDateOf(new Date())));
     }
   }
 
@@ -236,6 +262,25 @@ function AddClassForm({
           {feedback.pending ? "추가 중…" : "반 추가"}
         </Button>
       </div>
+      <button
+        type="button"
+        className={planStyles.more}
+        aria-expanded={planOpen}
+        aria-controls={planId}
+        onClick={() => setPlanOpen((open) => !open)}
+      >
+        수업 계획 넣기
+      </button>
+      {planOpen ? (
+        <div id={planId} className={planStyles.createPlan}>
+          <ProgressPlanFields
+            draft={plan}
+            onChange={setPlan}
+            units={units}
+            disabled={feedback.pending}
+          />
+        </div>
+      ) : null}
       <div className="mt-2">
         <Feedback feedback={feedback} pendingText="반을 추가하는 중…" />
       </div>
