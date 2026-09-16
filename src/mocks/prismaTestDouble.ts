@@ -1220,19 +1220,37 @@ const prismaModels = {
     },
   },
 
-  /** 진도 계획 — 라우트는 읽기만 한다(쓰기 화면은 D-07 시안 뒤). 시험이 create 로 심는다. */
+  /**
+   * 진도 계획 — 규칙 한 줄(D-129). 쓰기 API(`/api/classes/{id}/progress-plan` ·
+   * `/api/students/{id}/progress-plan`)가 넣고 고치고 지운다.
+   *
+   * 🔴 **DB 가 막는 것을 가짜도 막는다** — 안 막으면 라우트의 가드를 지워도 초록이다(변이 하네스
+   *    `mutate-plan-api.ts`). 마이그레이션 `20260916120000_progress_plan_and_auto_draft` 의:
+   *    · 부분 unique `progress_plan_class_only_key`(반 계획은 반에 하나) → P2002
+   *    · `progress_plan_student_id_key`(학생 계획은 학생에 하나) → P2002
+   *    · FK `start_unit_id`(Restrict) → P2003
+   *    · CHECK 요일 비지 않음 · 0~6 · 차시 수 1 이상 → 오류(실DB 는 P2010류 — 여기선 이름만 맞춘다)
+   */
   progressPlan: {
     async findMany({
       where,
       select,
+      orderBy,
     }: {
       where?: Record<string, unknown>;
       select?: Record<string, unknown>;
+      orderBy?: unknown;
     } = {}) {
       return applySelect(
-        progressPlanRows.filter((row) => matchesWhere(row, where)),
+        applyOrder(
+          progressPlanRows.filter((row) => matchesWhere(row, where)),
+          orderBy,
+        ),
         select,
       );
+    },
+    async findFirst({ where }: { where?: Record<string, unknown> } = {}) {
+      return progressPlanRows.find((row) => matchesWhere(row, where)) ?? null;
     },
     async create({
       data,
@@ -1249,8 +1267,33 @@ const prismaModels = {
         createdAt: now,
         updatedAt: now,
       };
+      assertProgressPlanConstraints(row, progressPlanRows);
       progressPlanRows.push(row);
       return row;
+    },
+    async update({
+      where,
+      data,
+    }: {
+      where: { id: string };
+      data: Partial<Omit<ProgressPlanRow, "id" | "createdAt" | "updatedAt">>;
+    }) {
+      const row = progressPlanRows.find((r) => r.id === where.id);
+      if (!row) throw prismaKnownError("P2025", "record to update not found");
+      const next = { ...row, ...data, updatedAt: new Date() };
+      assertProgressPlanConstraints(
+        next,
+        progressPlanRows.filter((r) => r.id !== row.id),
+      );
+      Object.assign(row, next);
+      return row;
+    },
+    async delete({ where }: { where: { id: string } }) {
+      const index = progressPlanRows.findIndex((r) => r.id === where.id);
+      if (index === -1)
+        throw prismaKnownError("P2025", "record to delete does not exist");
+      const [removed] = progressPlanRows.splice(index, 1);
+      return removed!;
     },
     async deleteMany({ where }: { where?: Record<string, unknown> } = {}) {
       const keep = progressPlanRows.filter((r) => !matchesWhere(r, where));
@@ -2388,6 +2431,27 @@ const prismaModels = {
 };
 
 /** 마이그레이션 20260915150000 의 CHECK 일곱 중 강의 표에 걸린 다섯 — 어기면 DB 처럼 던진다 */
+/** `progress_plan` 의 unique·FK·CHECK — 마이그레이션과 같은 것만(위 `progressPlan` 머리말). */
+function assertProgressPlanConstraints(
+  row: ProgressPlanRow,
+  others: readonly ProgressPlanRow[],
+): void {
+  if (row.weekdays.length < 1)
+    throw new Error("progress_plan_weekdays_not_empty");
+  if (row.weekdays.some((d) => !Number.isInteger(d) || d < 0 || d > 6))
+    throw new Error("progress_plan_weekdays_in_range");
+  if (row.unitsPerLesson < 1)
+    throw new Error("progress_plan_units_per_lesson_positive");
+  if (!unitRows.some((u) => u.id === row.startUnitId))
+    throw prismaKnownError("P2003", "progress_plan_start_unit_id_fkey");
+  if (row.studentId === null) {
+    if (others.some((o) => o.studentId === null && o.classId === row.classId))
+      throw prismaKnownError("P2002", "progress_plan_class_only_key");
+  } else if (others.some((o) => o.studentId === row.studentId)) {
+    throw prismaKnownError("P2002", "progress_plan_student_id_key");
+  }
+}
+
 function assertConceptLectureChecks(row: ConceptLectureRow): void {
   const broken =
     row.status === "published" && row.videoUrl === null
