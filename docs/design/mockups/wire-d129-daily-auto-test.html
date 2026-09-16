@@ -1,0 +1,294 @@
+<meta charset="utf-8">
+<title>진도 계획 와이어</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nanum+Myeongjo:wght@800&family=Noto+Sans+KR:wght@400;500;700&display=swap">
+<style>
+/* 앱이 라이트 전용(05 §2.3)이라 시안도 보는 사람 테마와 무관하게 앱과 같은 흰 바탕으로 고정한다.
+   토큰은 05 §2 「계기판」 팔레트와 작업실 껍데기 값 — wire-d123 과 같은 것을 쓴다. */
+:root {
+  color-scheme: light;
+  --paper: #fafaf8; --ink: #161616; --ink-2: #61615e;
+  --rule: #b9b9b6; --pick: #2064b3;
+  --app-bg: #f4f6fa; --app-ink: #172b4d; --app-muted: #596c86; --app-line: #d4dce8;
+  --w-fill: #efefed; --w-line: #b9b9b6; --late: #b3541e; --ok: #1f7a4d;
+  --sans: "Pretendard Variable", Pretendard, "Noto Sans KR", "Malgun Gothic", system-ui, sans-serif;
+  --serif: "Nanum Myeongjo", "Noto Serif KR", Batang, serif;
+}
+body { margin: 0; background: var(--paper); color: var(--ink); font-family: var(--sans); font-size: 14px; line-height: 1.55; }
+* { box-sizing: border-box; }
+[hidden] { display: none !important; }
+button { font: inherit; color: inherit; }
+:is(button, summary):focus-visible { outline: 3px solid #82a1ff; outline-offset: 2px; }
+.tab { cursor: pointer; }
+
+.board { max-width: 1180px; margin: 0 auto; padding-inline: 24px; padding-block: 28px 72px; }
+@media (max-width: 600px) { .board { padding-inline: 16px; } }
+.head { display: grid; gap: 10px; padding-bottom: 18px; }
+.eyebrow { margin: 0; font-size: 12px; letter-spacing: .06em; color: var(--ink-2); }
+h1 { margin: 0; font-family: var(--serif); font-weight: 800; font-size: 30px; line-height: 1.25; letter-spacing: -.02em; text-wrap: balance; }
+.lede { margin: 0; max-width: 68ch; color: var(--ink-2); font-size: 15px; }
+.facts { display: flex; flex-wrap: wrap; gap: 6px 22px; margin: 4px 0 0; padding: 0; list-style: none; font-size: 13px; color: var(--ink-2); }
+.facts b { color: var(--ink); font-weight: 600; }
+
+.tabs { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 20; display: flex; flex-wrap: wrap; gap: 4px; padding-block: 10px; background: var(--paper); border-block: 1px solid var(--rule); }
+.tab { display: flex; gap: 8px; align-items: baseline; padding: 7px 12px; border: 1px solid transparent; border-radius: 6px; background: none; color: var(--ink-2); }
+.tab .k { font-weight: 700; color: var(--ink); }
+.tab:hover { background: #fff; }
+.tab[aria-selected="true"] { background: #fff; border-color: var(--rule); color: var(--ink); box-shadow: inset 0 -2px 0 var(--pick); }
+
+.panel { padding-top: 24px; display: grid; gap: 20px; }
+.thesis h2 { margin: 0 0 6px; font-family: var(--serif); font-size: 22px; font-weight: 800; letter-spacing: -.01em; }
+.thesis p { margin: 0; max-width: 66ch; color: var(--ink-2); }
+.note { margin: 0; max-width: 66ch; font-size: 13px; color: var(--ink-2); }
+.note b { color: var(--ink); }
+
+/* ── 와이어 판 — 앱 화면을 회색 상자로만 그린다 ───────────────────────────── */
+.app { background: var(--app-bg); border: 1px solid var(--app-line); border-radius: 10px; padding: 14px; display: grid; gap: 12px; }
+.appbar { display: flex; align-items: center; justify-content: space-between; gap: 12px; font-size: 12px; color: var(--app-muted); }
+.card { background: #fff; border: 1px solid var(--app-line); border-radius: 8px; padding: 12px; display: grid; gap: 10px; }
+.card > h3 { margin: 0; font-size: 13px; font-weight: 700; color: var(--app-ink); }
+.row { display: flex; align-items: center; flex-wrap: wrap; gap: 8px; }
+.row.between { justify-content: space-between; }
+.box { background: var(--w-fill); border: 1px solid var(--w-line); border-radius: 5px; padding: 7px 10px; font-size: 12px; color: var(--ink-2); }
+.box.wide { flex: 1 1 200px; }
+.btn { background: #fff; border: 1px solid var(--w-line); border-radius: 5px; padding: 7px 12px; font-size: 12px; }
+.btn.pri { background: var(--pick); border-color: var(--pick); color: #fff; }
+.day { width: 34px; text-align: center; padding: 7px 0; border: 1px solid var(--w-line); border-radius: 5px; background: #fff; font-size: 12px; }
+.day.on { background: var(--pick); border-color: var(--pick); color: #fff; font-weight: 700; }
+.pill { border: 1px solid var(--w-line); border-radius: 999px; padding: 2px 9px; font-size: 11px; color: var(--ink-2); background: #fff; }
+.pill.late { border-color: var(--late); color: var(--late); }
+.pill.ok { border-color: var(--ok); color: var(--ok); }
+.muted { color: var(--app-muted); font-size: 12px; }
+.tablewrap { overflow-x: auto; }
+table.wire { border-collapse: collapse; font-size: 12px; min-width: 520px; }
+table.wire th, table.wire td { border: 1px solid var(--app-line); padding: 6px 8px; text-align: left; white-space: nowrap; }
+table.wire th { background: #fff; font-weight: 700; color: var(--app-ink); }
+table.wire td { background: #fff; color: var(--ink-2); }
+table.wire td.plan { background: var(--w-fill); }
+.list { margin: 0; padding-left: 18px; display: grid; gap: 6px; color: var(--ink-2); }
+.list b { color: var(--ink); }
+.split { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 14px; }
+@media (max-width: 760px) { .split { grid-template-columns: minmax(0, 1fr); } }
+.ask { border-top: 1px solid var(--rule); padding-top: 18px; display: grid; gap: 10px; }
+.ask h2 { margin: 0; font-family: var(--serif); font-size: 20px; font-weight: 800; }
+.ask ol { margin: 0; padding-left: 20px; display: grid; gap: 10px; color: var(--ink-2); }
+.ask li b { color: var(--ink); }
+.opts { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 4px; }
+.opt { border: 1px solid var(--rule); border-radius: 999px; padding: 2px 10px; font-size: 12px; background: #fff; color: var(--ink-2); }
+</style>
+
+<div class="board">
+  <header class="head">
+    <p class="eyebrow">D-129 · 22번 매일 자동 출제 · Wire 5안 (2026-09-16)</p>
+    <h1>진도 계획을 어디에 적고, 밀린 것을 어디서 보나</h1>
+    <p class="lede">
+      뒷단은 끝났습니다. 반의 <b>수업 요일 · 시작 차시 · 한 수업당 차시 수</b>를 적어 두면, 아침 8시에
+      그날 수업하는 학생의 시험지 초안이 섭니다. 실제 진도를 기록하시면 그것이 계획을 이기고, 남은 계획은
+      그 지점부터 다시 펴집니다. <b>남은 것은 이것을 어느 화면에 두느냐</b>입니다.
+    </p>
+    <ul class="facts">
+      <li>계획은 <b>규칙 한 줄</b> — 날짜별로 쌓지 않습니다</li>
+      <li>자동은 <b>초안까지</b> — 확정·인쇄는 원장님</li>
+      <li>밀림은 <b>일 수</b>로 잽니다</li>
+      <li>요일은 <b>월요일부터</b> 그립니다</li>
+    </ul>
+  </header>
+
+  <div class="tabs" role="tablist">
+    <button class="tab" role="tab" aria-selected="true" data-tab="a"><span class="k">A</span> 진도 판 안에 한 줄</button>
+    <button class="tab" role="tab" aria-selected="false" data-tab="b"><span class="k">B</span> 수업 계획 카드 + 이번 주 미리보기</button>
+    <button class="tab" role="tab" aria-selected="false" data-tab="c"><span class="k">C</span> 학생 명단에 밀림 표시</button>
+    <button class="tab" role="tab" aria-selected="false" data-tab="d"><span class="k">D</span> 메인 계기판이 중심</button>
+    <button class="tab" role="tab" aria-selected="false" data-tab="e"><span class="k">E</span> 달력 — 학생 × 수업일</button>
+  </div>
+
+  <section class="panel" data-panel="a">
+    <div class="thesis">
+      <h2>A · 지금 «진도» 판 아래 한 줄</h2>
+      <p>화면을 새로 만들지 않습니다. 반 관리의 «진도» 판이 지금 «어디까지 나갔나»를 보여 주는데,
+        그 아래에 «앞으로 어떻게 나가나» 한 줄을 붙입니다. 가장 적게 바뀌고, 두 가지가 한 자리에 모입니다.</p>
+    </div>
+    <div class="app">
+      <div class="appbar"><span>반 관리 › 중2 A반</span><span>수업 · 학생 관리</span></div>
+      <div class="card">
+        <h3>진도</h3>
+        <div class="row between">
+          <span class="muted">지금 — 중2 · 식의 계산 · 다항식의 곱셈</span>
+          <span class="pill late">계획보다 3일 늦음</span>
+        </div>
+        <div class="row"><span class="box wide">소단원 고르개 (지금 그대로)</span><span class="btn">저장</span></div>
+        <div class="row" style="border-top:1px dashed var(--app-line); padding-top:10px">
+          <span class="muted" style="width:100%">수업 계획</span>
+          <span class="day on">월</span><span class="day">화</span><span class="day on">수</span>
+          <span class="day">목</span><span class="day on">금</span><span class="day">토</span><span class="day">일</span>
+          <span class="box">한 수업 1차시</span>
+          <span class="box">시작 — 소인수분해</span>
+          <span class="btn">저장</span>
+        </div>
+        <p class="muted" style="margin:0">다음 수업 9월 18일(금) · 예정 — 다항식의 나눗셈</p>
+      </div>
+    </div>
+    <ul class="list">
+      <li><b>좋은 점</b> — 「지금 어디」와 「앞으로 어떻게」가 한 판에 있습니다. 새 화면이 없습니다.</li>
+      <li><b>걸리는 점</b> — 판이 길어집니다. 학생마다 다른 계획은 이 자리에 못 넣습니다(학생 줄에서 따로).</li>
+    </ul>
+  </section>
+
+  <section class="panel" data-panel="b" hidden>
+    <div class="thesis">
+      <h2>B · «수업 계획» 카드 — 옆에 이번 주 예정</h2>
+      <p>계획을 따로 한 카드로 세우고, 오른쪽에 <b>그 계획이 실제로 무엇을 낼지</b> 날짜별로 보여 줍니다.
+        요일을 누르면 오른쪽 목록이 바로 바뀝니다 — 저장하기 전에 결과를 봅니다.</p>
+    </div>
+    <div class="app">
+      <div class="appbar"><span>반 관리 › 중2 A반</span><span>수업 · 학생 관리</span></div>
+      <div class="split">
+        <div class="card">
+          <h3>수업 계획</h3>
+          <div class="row">
+            <span class="day on">월</span><span class="day">화</span><span class="day on">수</span>
+            <span class="day">목</span><span class="day on">금</span><span class="day">토</span><span class="day">일</span>
+          </div>
+          <div class="row"><span class="box wide">시작 차시 — 중2 · 식의 계산 · 단항식</span><span class="btn">고르기</span></div>
+          <div class="row"><span class="box">한 수업 1차시</span><span class="box">시작일 9월 16일</span></div>
+          <div class="row between"><span class="muted">자동 출제 켜짐</span><span class="btn">끄기</span></div>
+        </div>
+        <div class="card">
+          <h3>이번 주 예정</h3>
+          <div class="tablewrap">
+            <table class="wire">
+              <tr><th>날짜</th><th>예정 차시</th><th>실제</th></tr>
+              <tr><td>9/16 (화)</td><td class="plan">—</td><td>수업 없음</td></tr>
+              <tr><td>9/18 (금)</td><td class="plan">다항식의 나눗셈</td><td>—</td></tr>
+              <tr><td>9/21 (월)</td><td class="plan">곱셈 공식</td><td>—</td></tr>
+            </table>
+          </div>
+          <p class="muted" style="margin:0">실제 진도를 기록하시면 그 줄이 «실제»로 바뀌고, 다음 줄부터 다시 펴집니다.</p>
+        </div>
+      </div>
+    </div>
+    <ul class="list">
+      <li><b>좋은 점</b> — 저장하기 전에 결과를 봅니다. 「금요일에 무엇이 나가나」를 묻지 않아도 됩니다.</li>
+      <li><b>걸리는 점</b> — 반 관리 화면이 한 칸 늘어납니다.</li>
+    </ul>
+  </section>
+
+  <section class="panel" data-panel="c" hidden>
+    <div class="thesis">
+      <h2>C · 학생 명단이 밀림을 말한다</h2>
+      <p>계획은 반에 한 줄로 두되, <b>보는 자리는 학생 명단</b>입니다. 줄마다 계획대로인지 며칠 밀렸는지가
+        붙고, 개별 진도 학생은 그 줄에서 자기 계획을 갖습니다.</p>
+    </div>
+    <div class="app">
+      <div class="appbar"><span>반 관리 › 중2 A반</span><span>학생 7명</span></div>
+      <div class="card">
+        <h3>학생</h3>
+        <div class="row between"><span class="muted">반 계획 — 월·수·금 · 한 수업 1차시</span><span class="btn">고치기</span></div>
+        <div class="row between"><span>이서준</span><span class="pill ok">계획대로</span></div>
+        <div class="row between"><span>김도윤</span><span class="pill late">3일 늦음</span></div>
+        <div class="row between"><span>박서연 <span class="muted">개별 진도</span></span><span class="pill">따로 — 화·목</span></div>
+        <div class="row between"><span>최지호</span><span class="pill ok">계획대로</span></div>
+      </div>
+    </div>
+    <ul class="list">
+      <li><b>좋은 점</b> — 누가 밀렸는지 한눈에 봅니다. 개별 진도 학생이 자연스럽게 자리를 갖습니다.</li>
+      <li><b>걸리는 점</b> — 계획을 고치려면 한 번 더 들어갑니다(명단은 보는 자리).</li>
+    </ul>
+  </section>
+
+  <section class="panel" data-panel="d" hidden>
+    <div class="thesis">
+      <h2>D · 메인 계기판이 중심 — 계획은 뒤에</h2>
+      <p>매일 보는 것은 메인의 «오늘의 확인테스트»입니다. 아침 8시에 <b>이미 선 초안</b>과 <b>왜 안 선 학생</b>을
+        거기서 말하고, 계획 고치기는 그 줄에서 바로 들어갑니다.</p>
+    </div>
+    <div class="app">
+      <div class="appbar"><span>오늘의수학 · 메인</span><span>9월 16일 (화)</span></div>
+      <div class="card">
+        <h3>오늘의 확인테스트</h3>
+        <div class="row between">
+          <span>아침 8시에 <b>5장</b>이 섰습니다 — 계획 4명 · 보고서 1명</span>
+          <span class="btn pri">검수하러 가기</span>
+        </div>
+        <div class="row"><span class="pill late">2명 문항 부족</span><span class="pill">1명 시험기간</span><span class="pill late">1명 3일 늦음</span></div>
+        <div class="row between" style="border-top:1px dashed var(--app-line); padding-top:10px">
+          <span class="muted">중1 B반 — 계획이 없습니다</span><span class="btn">계획 넣기</span>
+        </div>
+      </div>
+    </div>
+    <ul class="list">
+      <li><b>좋은 점</b> — 매일 여는 화면에서 끝납니다. 계획이 없는 반을 먼저 알려 줍니다.</li>
+      <li><b>걸리는 점</b> — 계획을 고치는 자리는 따로 있어야 합니다(A·B 중 하나와 함께 씁니다).</li>
+    </ul>
+  </section>
+
+  <section class="panel" data-panel="e" hidden>
+    <div class="thesis">
+      <h2>E · 달력 — 학생 × 수업일 (강사 시트와 같은 결)</h2>
+      <p>한 달을 표로 펴고 칸마다 예정 차시를 적습니다. 실제 진도가 들어오면 그 칸이 실제로 바뀝니다.
+        eywa 수학 강사 시트가 쓰는 축과 같아서, 나중에 그쪽 목표를 가져올 때 자리가 이미 있습니다.</p>
+    </div>
+    <div class="app">
+      <div class="appbar"><span>반 관리 › 중2 A반 › 9월</span><span>회색 = 예정 · 흰색 = 실제</span></div>
+      <div class="card">
+        <div class="tablewrap">
+          <table class="wire">
+            <tr><th>학생</th><th>9/16 (화)</th><th>9/18 (금)</th><th>9/21 (월)</th><th>9/23 (수)</th></tr>
+            <tr><td>이서준</td><td>단항식</td><td class="plan">다항식의 나눗셈</td><td class="plan">곱셈 공식</td><td class="plan">곱셈 공식의 변형</td></tr>
+            <tr><td>김도윤</td><td>단항식</td><td class="plan">다항식의 나눗셈</td><td class="plan">곱셈 공식</td><td class="plan">곱셈 공식의 변형</td></tr>
+            <tr><td>박서연</td><td>—</td><td class="plan">일차부등식</td><td class="plan">연립방정식</td><td class="plan">연립방정식의 활용</td></tr>
+          </table>
+        </div>
+        <p class="muted" style="margin:0">칸을 누르면 그 학생의 그날 예정을 바꿉니다.</p>
+      </div>
+    </div>
+    <ul class="list">
+      <li><b>좋은 점</b> — 한 달이 한눈에 보이고, 학생마다 다른 진도가 자연스럽습니다.</li>
+      <li><b>걸리는 점</b> — <b>지금 뒷단과 어긋납니다.</b> 뒷단은 계획을 «규칙 한 줄»로 두고 날짜별로 쌓지 않습니다.
+        이 안을 고르시면 날짜별 칸을 저장하는 표가 더 필요합니다(일이 늘어납니다).</li>
+    </ul>
+  </section>
+
+  <section class="ask">
+    <h2>정할 것</h2>
+    <ol>
+      <li><b>어느 안으로 갈까요.</b> A·B·C·D 는 서로 겹치지 않아 섞을 수 있습니다(예: B + D).
+        E 는 뒷단을 늘려야 합니다.
+        <div class="opts"><span class="opt">A</span><span class="opt">B</span><span class="opt">C</span><span class="opt">D</span><span class="opt">E</span><span class="opt">B + D</span></div>
+      </li>
+      <li><b>메인의 «오늘의 확인테스트»를 누구에게 보일까요.</b> 지금은 eywa 연계 계정에만 보입니다.
+        계획으로도 학생이 들어오니 그 문지기를 풀어야 합니다.
+        <div class="opts"><span class="opt">계획이 있으면 누구에게나</span><span class="opt">지금처럼 연계 계정만</span></div>
+      </li>
+      <li><b>수업이 없는 날 그 줄의 문구.</b> 지금은 「오늘 수업 보고서가 아직 없습니다」인데,
+        이제 축이 보고서가 아니라 계획입니다.
+        <div class="opts"><span class="opt">오늘은 수업이 없습니다</span><span class="opt">오늘 수업 계획이 없습니다</span><span class="opt">지금 문구 그대로</span></div>
+      </li>
+      <li><b>밀림을 어떻게 부를까요.</b>
+        <div class="opts"><span class="opt">3일 늦음</span><span class="opt">계획보다 3일 뒤</span><span class="opt">밀림 3일</span></div>
+      </li>
+      <li><b>계획을 처음 넣는 자리.</b> 반을 만들 때 바로 물을까요, 반 관리에서 따로 넣을까요.
+        <div class="opts"><span class="opt">반 만들 때 같이</span><span class="opt">반 관리에서 따로</span></div>
+      </li>
+      <li><b>자동으로 선 초안을 어디서 볼까요.</b>
+        <div class="opts"><span class="opt">메인 «오늘의 확인테스트»에서</span><span class="opt">시험지 목록에서</span><span class="opt">둘 다</span></div>
+      </li>
+    </ol>
+    <p class="note">고르신 안으로 Hi-fi 4~5안을 만들어 색·글자까지 보여 드리겠습니다(05 §0-3).
+      <b>이 시안은 픽스처가 아니라 그림</b>입니다 — 숫자와 이름은 보기용입니다.</p>
+  </section>
+</div>
+
+<script>
+const tabs = [...document.querySelectorAll(".tab")];
+const panels = [...document.querySelectorAll("[data-panel]")];
+tabs.forEach((tab) => {
+  tab.addEventListener("click", () => {
+    tabs.forEach((t) => t.setAttribute("aria-selected", String(t === tab)));
+    panels.forEach((p) => {
+      p.hidden = p.dataset.panel !== tab.dataset.tab;
+    });
+  });
+});
+</script>
