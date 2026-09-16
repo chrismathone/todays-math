@@ -2,7 +2,7 @@
  * 반/학생/진도 계약 — FEAT-4.
  *
  * 대응 API 경로:
- *   POST   /api/classes              — 반 생성
+ *   POST   /api/classes              — 반 생성 (진도 계획을 같이 받을 수 있다 — D-129, `progressPlan`)
  *   GET    /api/classes              — 반 목록 조회 (본인 소유, 페이지네이션)
  *   GET    /api/classes/{id}         — 반 단건 조회
  *   PATCH  /api/classes/{id}         — 반 수정
@@ -35,6 +35,7 @@ import {
   paginationParamsSchema,
   uuidSchema,
 } from "./common.contract";
+import { progressPlanWriteRequestSchema } from "./dailyAutoTest.contract";
 
 // ─────────────────────────────────────────────
 // 반 (CLASS)
@@ -64,6 +65,13 @@ export const classCreateRequestSchema = z.strictObject({
   grade: classGradeSchema,
   defaultProblemCount: defaultProblemCountSchema.default(8),
   difficultyRatio: difficultyRatioSchema.default(DEFAULT_DIFFICULTY_RATIO),
+  /**
+   * 반 계획을 같이 넣는다(원장님 답 「반 만들 때 같이, 이후에 따로 관리도 가능」 — D-129).
+   * 없으면 지금처럼 반만 만든다. 이 칸이 계약을 어기면 **422 이고 반도 안 만든다**
+   * (반 칸이 틀리면 지금처럼 400). 따로 관리하는 길은 `/api/classes/{id}/progress-plan`.
+   * ⚠️ 응답은 지금 반 모양 그대로다 — 계획은 그 경로의 GET 으로 읽는다.
+   */
+  progressPlan: progressPlanWriteRequestSchema.optional(),
 });
 export type ClassCreateRequest = z.infer<typeof classCreateRequestSchema>;
 
@@ -195,6 +203,6 @@ const progressSuggestSchema = z.strictObject({
 });
 export type ProgressSuggestion = z.infer<typeof progressSuggestSchema>;
 
-export const progressSuggestResponseSchema =
-  dataResponseSchema(progressSuggestSchema);
-
+export const progressSuggestResponseSchema = dataResponseSchema(
+  progressSuggestSchema,
+);

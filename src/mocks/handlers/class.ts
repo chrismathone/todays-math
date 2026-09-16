@@ -63,6 +63,9 @@ export const classHandlers: HttpHandler[] = [
   http.post("/api/classes", async ({ request }) => {
     const parsed = classCreateRequestSchema.safeParse(await request.json());
     if (!parsed.success) return validationError(parsed.error);
+    // 계획(D-129)은 응답에 싣지 않는다 — 실제 라우트와 같은 반 모양.
+    const { progressPlan: _plan, ...fields } = parsed.data;
+    void _plan;
 
     return jsonOk(
       classResponseSchema,
@@ -70,7 +73,7 @@ export const classHandlers: HttpHandler[] = [
         data: {
           id: crypto.randomUUID(),
           userId: USER_TEACHER_ID,
-          ...parsed.data,
+          ...fields,
           createdAt: new Date().toISOString(),
           updatedAt: new Date().toISOString(),
         },

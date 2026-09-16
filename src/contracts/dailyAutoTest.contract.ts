@@ -6,6 +6,15 @@
  *
  * 대응 API 경로:
  *   GET /api/tests/auto-draft/cron — Vercel cron 전용(KST 08:00). 세션이 아니라 CRON_SECRET.
+ *   GET    /api/classes/{id}/progress-plan   — 반 계획 · 이번 주 예정 · 학생 계획들 (?day=YYYY-MM-DD)
+ *   PUT    /api/classes/{id}/progress-plan   — 반 계획 넣기(201)·**덮어쓰기**(200) — 반에 한 줄
+ *   PATCH  /api/classes/{id}/progress-plan   — 일부 고치기 · 켜기/끄기
+ *   DELETE /api/classes/{id}/progress-plan   — 지우기(그 반은 자동에서 빠진다)
+ *   GET/PUT/PATCH/DELETE /api/students/{id}/progress-plan — 학생 계획(**개별 진도 학생만** 넣고 고친다)
+ *   POST   /api/classes (`progressPlan` 칸) — 반을 만들 때 계획을 같이(class.contract.ts)
+ *
+ * 🔴 본문이 계약을 어기면 **422** 다(`VALIDATION_ERROR`) — 차시가 없거나 개별 진도 학생이 아닌 것도 같다.
+ *    경로 id 형식만 지금 관례대로 400.
  *
  * ⚠️ 화면 계약은 여기 없다 — 반 설정의 요일·계획 칸은 **D-07 시안 뒤**다(22 §4 ④).
  */
@@ -16,6 +25,7 @@ import {
   isoDateSchema,
   uuidSchema,
 } from "./common.contract";
+import { unitSchema } from "./unit.contract";
 
 // ─────────────────────────────────────────────
 // ② 진도 계획 — **규칙 한 줄**이다. 날짜별 행을 쌓지 않는다.
@@ -55,6 +65,97 @@ export const progressPlanSchema = progressPlanRuleSchema.extend({
   studentId: uuidSchema.nullable(),
 });
 export type ProgressPlanEntity = z.infer<typeof progressPlanSchema>;
+
+// ─────────────────────────────────────────────
+// ④ 계획 쓰기·읽기 API (화면은 D-07 Hi-fi 뒤)
+// ─────────────────────────────────────────────
+
+/**
+ * 계획 넣기·덮어쓰기(PUT) 본문 — 규칙 한 줄. 반인지 학생인지는 **경로**가 정한다(본문에 id 가 없다).
+ * 한 수업당 차시 수는 기본 1(22 §5 원장님 답) · 켜짐은 기본 켬.
+ */
+export const progressPlanWriteRequestSchema = progressPlanRuleSchema.extend({
+  unitsPerLesson: progressPlanRuleSchema.shape.unitsPerLesson.default(1),
+  active: progressPlanRuleSchema.shape.active.default(true),
+});
+export type ProgressPlanWriteRequest = z.infer<
+  typeof progressPlanWriteRequestSchema
+>;
+
+/** 일부 고치기(PATCH) — 켜기/끄기만 보내도 된다. 빈 본문은 막는다. */
+export const progressPlanPatchRequestSchema = progressPlanRuleSchema
+  .partial()
+  .refine((v) => Object.keys(v).length > 0, {
+    error: "수정할 값이 없습니다.",
+  });
+export type ProgressPlanPatchRequest = z.infer<
+  typeof progressPlanPatchRequestSchema
+>;
+
+export const progressPlanResponseSchema =
+  dataResponseSchema(progressPlanSchema);
+
+/** 예정·실제 차시 — 화면이 이름을 그린다(학년 › 단원 › 차시). */
+export const planUnitRefSchema = unitSchema.omit({ orderIndex: true });
+export type PlanUnitRef = z.infer<typeof planUnitRefSchema>;
+
+/**
+ * 「이번 주 예정」 한 줄 — 수업일이거나 실제로 진도가 기록된 날만 선다.
+ * 규칙: `src/lib/daily/planSchedule.ts` (예정은 **그날 아침 기준** · 밀림은 그 날짜까지의 기록 기준).
+ */
+export const planScheduleRowSchema = z.strictObject({
+  date: isoDateSchema,
+  weekday: lessonWeekdaySchema,
+  /** 계획상 그날 수업인가. 보강처럼 기록만 있는 날은 거짓. */
+  lesson: z.boolean(),
+  planned: z.array(planUnitRefSchema),
+  actual: z.array(planUnitRefSchema),
+  /** 양수 앞섬 · 음수 밀림 · 기록이 없으면 0. */
+  driftDays: z.number().int(),
+  /** 교육과정 끝에 닿아 끝 차시에 멈춰 있다. */
+  atCurriculumEnd: z.boolean(),
+});
+export type PlanScheduleRowEntity = z.infer<typeof planScheduleRowSchema>;
+
+/** 이번 주 월요일 ~ 다음 주 일요일(14일). */
+export const planScheduleSchema = z.strictObject({
+  from: isoDateSchema,
+  to: isoDateSchema,
+  rows: z.array(planScheduleRowSchema),
+});
+export type PlanScheduleEntity = z.infer<typeof planScheduleSchema>;
+
+/** GET 의 `?day=` — 없으면 오늘(KST). 지난 주·다음 주를 볼 때. */
+export const progressPlanQuerySchema = z.strictObject({
+  day: isoDateSchema.optional(),
+});
+
+export const classProgressPlanResponseSchema = dataResponseSchema(
+  z.strictObject({
+    /** 반 계획 — 없으면 null. */
+    plan: progressPlanSchema.nullable(),
+    /** 반 계획을 반 진도로 편 예정 — 계획이 없으면 null. */
+    schedule: planScheduleSchema.nullable(),
+    /** 이 반 학생들의 학생 계획 — 누가 반 계획을 덮는지 화면이 안다. */
+    studentPlans: z.array(progressPlanSchema),
+  }),
+);
+export type ClassProgressPlanResponse = z.infer<
+  typeof classProgressPlanResponseSchema
+>;
+
+export const studentProgressPlanResponseSchema = dataResponseSchema(
+  z.strictObject({
+    plan: progressPlanSchema.nullable(),
+    /** 이 학생 계획이 지금 반 계획을 덮나 — 계획이 있고 개별 진도 학생일 때만 참(`pickProgressPlan`). */
+    inEffect: z.boolean(),
+    /** 학생 계획을 그 학생의 적용 진도로 편 예정 — 덮지 않으면 null(반 계획을 보라). */
+    schedule: planScheduleSchema.nullable(),
+  }),
+);
+export type StudentProgressPlanResponse = z.infer<
+  typeof studentProgressPlanResponseSchema
+>;
 
 // ─────────────────────────────────────────────
 // ③ 자동 초안 회차 — 한 회차가 무엇을 했나
