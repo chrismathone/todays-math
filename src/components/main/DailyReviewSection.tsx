@@ -47,12 +47,18 @@ interface GenerateProgress {
 const MICRO_LABEL = "text-[10px] font-extrabold tracking-[1.2px] text-text-2";
 
 /**
- * «자동 출제» 표지 — 05 §8.10 Hi-fi 2 표지 그대로: 흰 바탕 · 파랑(`--blue` #2064B3) 1px 테두리·글자 · 11px · 700 ·
+ * «자동 출제» 표지 — 05 §8.10 Hi-fi 2 표지 그대로: 흰 바탕 · 파랑 #2064B3 1px 테두리·글자 · 11px · 700 ·
  * 안쪽 2px 8px · 모서리 4px. 줄높이는 시안에 없어 16px 로 박았다(검수 줄 안에서 높이가 흔들리지 않게).
+ *
+ * 🔴 파랑은 **리터럴**이다 — `text-blue`(`--blue`)로 쓰면 작업실(`TeachingView.module.css` `.teaching`)이 `--blue` 를
+ *    #3159DF 로 덮어 다른 파랑이 된다(2026-09-16 실물 계측이 잡았다 — RTL 은 계산된 색을 못 본다). 계기판 «오늘» 칸
+ *    (`ProgressPlan.module.css`)과 같은 §2.2 기능색 리터럴.
+ * ⚠️ 글자 11px 은 작업실 안에서 **12px** 로 그려진다 — 작업실이 `text-[9~12…]` 를 캡션 12px 바닥으로 올린다
+ *    (`.lessonContent` 규칙 · 담당 딱지 11.5px 도 같다). 작업실 크기를 따른다(D-133 ⒀ 선례) — 보고서 ⑥.
  * ⚠️ D-30: 누르는 것이 아니다 — 링크 **밖**에 두고 손가락 커서·hover 를 두지 않는다.
  */
 const AUTO_DRAFT_TAG =
-  "inline-block shrink-0 whitespace-nowrap rounded-[4px] border border-blue bg-white px-2 py-0.5 text-[11px] leading-4 font-bold text-blue";
+  "inline-block shrink-0 whitespace-nowrap rounded-[4px] border border-[#2064b3] bg-white px-2 py-0.5 text-[11px] leading-4 font-bold text-[#2064b3]";
 const STALE_MS = 48 * 3_600_000;
 
 const n = (v: number) => v.toLocaleString("ko-KR");

@@ -604,8 +604,8 @@ const MUTATIONS: Mutation[] = [
   {
     name: "⑩d 표지에 손가락 커서(D-30)",
     file: MAIN_UI,
-    from: '  "inline-block shrink-0 whitespace-nowrap rounded-[4px] border border-blue bg-white px-2 py-0.5 text-[11px] leading-4 font-bold text-blue";',
-    to: '  "inline-block shrink-0 whitespace-nowrap rounded-[4px] border border-blue bg-white px-2 py-0.5 text-[11px] leading-4 font-bold text-blue cursor-pointer";',
+    from: '  "inline-block shrink-0 whitespace-nowrap rounded-[4px] border border-[#2064b3] bg-white px-2 py-0.5 text-[11px] leading-4 font-bold text-[#2064b3]";',
+    to: '  "inline-block shrink-0 whitespace-nowrap rounded-[4px] border border-[#2064b3] bg-white px-2 py-0.5 text-[11px] leading-4 font-bold text-[#2064b3] cursor-pointer";',
     probe: null,
     tests: [SECTION],
   },

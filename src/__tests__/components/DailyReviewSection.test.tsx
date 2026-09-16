@@ -584,8 +584,9 @@ describe("[D-133] 오늘의 확인테스트 — 검수 줄의 «자동 출제» 
       expect.arrayContaining([
         "bg-white",
         "border",
-        "border-blue",
-        "text-blue",
+        // 🔴 리터럴 #2064B3 — `text-blue` 는 작업실이 --blue 를 #3159DF 로 덮는다(실물 계측)
+        "border-[#2064b3]",
+        "text-[#2064b3]",
         "text-[11px]",
         "font-bold",
         "py-0.5",

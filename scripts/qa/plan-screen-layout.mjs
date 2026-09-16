@@ -386,8 +386,10 @@ for (const run of RUNS) {
             width,
             `표지 ${m.tags.length}개(기대 ${run.main.tags})`,
           );
+        // 11px 은 작업실(.lessonContent)이 캡션 바닥 12px 로 올린다 — 작업실 크기를 따른다(보고서 ⑥).
+        // 파랑은 --blue 가 아니라 리터럴 #2064B3(rgb 32,100,179) — 작업실 --blue(#3159DF)가 아니다.
         const LOOK =
-          "rgb(255, 255, 255) | 1px solid rgb(32, 100, 179) | rgb(32, 100, 179) | 11px | 700 | 2px 8px | 4px";
+          "rgb(255, 255, 255) | 1px solid rgb(32, 100, 179) | rgb(32, 100, 179) | 12px | 700 | 2px 8px | 4px";
         for (const tag of m.tags) {
           if (tag.text !== "자동 출제")
             fail(run.key, width, `표지 글자 «${tag.text}»`);
