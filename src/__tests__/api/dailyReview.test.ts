@@ -272,6 +272,33 @@ describe("[매일 자동 출제 ⑤] GET /api/tests/daily-review — 계획으�
     expect(body.data.attended).toBe(3);
   });
 
+  /**
+   * 🔴 **반 진도를 읽는 배선**을 겨눈다. 규칙 자체는 `planDailyReview` 단위 시험이 잠그지만,
+   *    라우트가 반 행(studentId=null)을 아예 안 읽어도 그 시험은 초록이다
+   *    (변이 ⑦c 가 살아남았다 — 2026-09-16). 개별 진도를 끈 학생 하나로 배선을 본다.
+   */
+  it("개별 진도를 안 쓰는 학생은 **반 전체 진도**로 범위를 낸다", async () => {
+    await seedPlan();
+    await prismaTestDouble.student.update({
+      where: { id: STUDENT_IDS[0]! },
+      data: { useIndividualProgress: false },
+    });
+    // 반 전체 진도를 오늘 한 줄 더 적는다 — 계획(8/21 = 둘째 수업 → MOCK_UNITS[1])과 다른 자리
+    await prismaTestDouble.progress.create({
+      data: {
+        classId: CLASS_A_ID,
+        studentId: null,
+        unitId: MOCK_UNITS[5]!.id,
+        recordedAt: new Date(`${DAY}T00:00:00Z`),
+      },
+    });
+    const body = dailyReviewResponseSchema.parse(await (await get()).json());
+    const group = [...body.data.auto, ...body.data.lacking].find((g) =>
+      g.students.some((s) => s.id === STUDENT_IDS[0]!),
+    );
+    expect(group?.rangeEndUnitId).toBe(MOCK_UNITS[5]!.id);
+  });
+
   /** 🔴 오늘 이미 만든 시험은 화면이 건너뛴다 — 새로고침이 중복 초안을 만들지 않게. */
   it("오늘 이미 만든 학생별 시험이 todayTests 에 실린다", async () => {
     await seedPlan();

@@ -17,6 +17,7 @@ import { GET as autoDraftCron } from "@/app/api/tests/auto-draft/cron/route";
 import { autoDraftRunResponseSchema } from "@/contracts/dailyAutoTest.contract";
 import {
   CLASS_A_ID,
+  CLASS_OTHER_ID,
   CLASS_STARVED_ID,
   MOCK_EMPTY_PROBLEM_UNIT,
   MOCK_TEACHER,
@@ -244,10 +245,44 @@ describe("[매일 자동 출제 ③] GET /api/tests/auto-draft/cron — 아침 8
     expect(runs[1]!.skips).toHaveLength(runs[1]!.skipped);
   });
 
-  it("남의 반은 건드리지 않는다 — 소유자 계정의 반만 돈다", async () => {
+  /**
+   * 🔴 **남의 반에도 계획이 있을 때**라야 이 가드를 겨눈다. 예전 판은 소유자 반에만 계획을
+   *    두고 「만들어진 시험이 우리 학생인가」만 봤는데, 그러면 소유 필터를 통째로 꺼도
+   *    초록이었다(변이 ⑥c 가 살아남았다 — 2026-09-16).
+   */
+  it("남의 계정 반에 계획이 있어도 건드리지 않는다 — 소유자 계정의 반만 돈다", async () => {
     await seedClassAPlan();
-    await call();
+    await prismaTestDouble.progressPlan.create({
+      data: {
+        classId: CLASS_OTHER_ID,
+        studentId: null,
+        weekdays: [5],
+        unitsPerLesson: 1,
+        startUnitId: MOCK_UNITS[0]!.id,
+        startDate: new Date("2026-08-14T00:00:00Z"),
+        active: true,
+      },
+    });
+    const outsider = await prismaTestDouble.student.create({
+      data: {
+        classId: CLASS_OTHER_ID,
+        name: "남의학생",
+        schoolLevel: null,
+        schoolGrade: null,
+        eywaStudentId: null,
+        eywaWithdrawnAt: null,
+        eywaLastReportDate: null,
+        eywaLastReportText: null,
+      },
+    });
+
+    const body = autoDraftRunResponseSchema.parse(await (await call()).json());
+    // 남의 학생은 **대상으로도 세지 않는다** — 읽지도 않는 쪽이 맞다
+    expect(body.data.targets).toBe(3);
+    expect(body.data.skips.map((s) => s.studentId)).not.toContain(outsider.id);
+
     const made = await madeOn(DAY);
+    expect(made.map((t) => t.studentId)).not.toContain(outsider.id);
     expect(made.every((t) => STUDENT_IDS.includes(t.studentId ?? ""))).toBe(
       true,
     );
