@@ -36,7 +36,7 @@ export async function POST(request: NextRequest) {
 
   const { classId, studentId } = parsed.data;
 
-  const owned = await requireOwnedClass(classId, session.id);
+  const owned = await requireOwnedClass(classId, session);
   if (!owned.ok) return owned.response;
 
   let useIndividualProgress = false;
@@ -44,7 +44,7 @@ export async function POST(request: NextRequest) {
     const studentOwned = await requireOwnedStudentInClass(
       studentId,
       classId,
-      session.id,
+      session,
     );
     if (!studentOwned.ok) return studentOwned.response;
     useIndividualProgress = studentOwned.data.useIndividualProgress;

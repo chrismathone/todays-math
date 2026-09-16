@@ -1,10 +1,12 @@
 /**
- * POST/GET /api/classes — 반 생성 · 본인 소유 반 목록 조회(페이지네이션).
+ * POST/GET /api/classes — 반 생성 · 소유 범위 안의 반 목록 조회(페이지네이션).
  * 대응 계약: src/contracts/class.contract.ts
  *
  * 반을 만들 때 **진도 계획을 같이** 받는다(`progressPlan`, D-129 — 원장님 「반 만들 때 같이, 이후에 따로
  * 관리도 가능」). 계획 없이도 지금처럼 만들어진다. 계획 칸만 틀리면 422, 반 칸이 틀리면 지금처럼 400.
  * 반과 계획은 **한 트랜잭션** — 계획이 못 들어가면 반도 안 남는다(반쪽 반이 목록에 떠 있지 않게).
+ *
+ * 소유 범위(D-130 — 관리자는 모든 반): src/lib/ownerScope.ts. 만든 반은 **만든 계정의 것**이다.
  */
 import type { NextRequest } from "next/server";
 
@@ -21,6 +23,7 @@ import {
   planValidationError,
 } from "@/lib/daily/progressPlanStore";
 import { db } from "@/lib/db";
+import { ownedRowsWhere } from "@/lib/ownerScope";
 import { serializeClass } from "@/lib/serializers";
 import { getSessionUser } from "@/lib/session";
 
@@ -76,7 +79,7 @@ export async function POST(request: NextRequest) {
   );
 }
 
-// GET /api/classes — 본인 소유 반 목록(페이지네이션, 타 사용자 반 제외)
+// GET /api/classes — 소유 범위 안의 반 목록(페이지네이션, 관리자가 아니면 타 사용자 반 제외)
 export async function GET(request: NextRequest) {
   const session = await getSessionUser();
   if (!session) return unauthorizedError();
@@ -88,14 +91,15 @@ export async function GET(request: NextRequest) {
   if (!parsedParams.success) return validationError(parsedParams.error);
   const { page, pageSize } = parsedParams.data;
 
+  const where = ownedRowsWhere(session);
   const [rows, total] = await Promise.all([
     db.class.findMany({
-      where: { userId: session.id },
+      where,
       skip: (page - 1) * pageSize,
       take: pageSize,
       orderBy: { createdAt: "desc" },
     }),
-    db.class.count({ where: { userId: session.id } }),
+    db.class.count({ where }),
   ]);
 
   return jsonOk(classListResponseSchema, {

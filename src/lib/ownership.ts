@@ -1,7 +1,11 @@
 /**
- * 소유권 검증 공용 헬퍼 — "존재하지 않으면 404(NOT_FOUND), 존재하지만 로그인 사용자 소유가
- * 아니면 403(FORBIDDEN)" 패턴을 반(Class)·학생(Student)·문제(Problem)·시험지(Test) API가 공유한다.
+ * 소유권 검증 공용 헬퍼 — "존재하지 않으면 404(NOT_FOUND), 존재하지만 로그인 사용자의 **소유 범위**
+ * 밖이면 403(FORBIDDEN)" 패턴을 반(Class)·학생(Student)·문제(Problem)·시험지(Test) API가 공유한다.
  * (06-tasks.md T2.1 REFACTOR: "소유권 검증 미들웨어 패턴 통일").
+ *
+ * 🔴 **「소유」는 소유 범위다(D-130).** 관리자는 반·학생·시험지의 소유 울타리를 넘는다. 넘는지는
+ *    여기서 판단하지 않고 `ownerScope.ts` 의 `withinOwnerScope` 한 곳에 묻는다. 그래서 둘째 인자가
+ *    `userId` 문자열이 아니라 **뷰어**다 — 개인 작업물 라우트는 `personalViewer(session)` 을 넘긴다.
  *
  * MSW 목 핸들러 쪽 대응물: src/mocks/handlers/class.ts의 findClass().
  */
@@ -14,31 +18,32 @@ import type {
 
 import { db } from "@/lib/db";
 import { forbiddenError, notFoundError } from "@/lib/apiResponse";
+import { type ScopeViewer, withinOwnerScope } from "@/lib/ownerScope";
 import { isProblemAccessible } from "@/lib/problemPool";
 
 export type OwnershipResult<T> =
   { ok: true; data: T } | { ok: false; response: Response };
 
-/** 반이 존재하고, 로그인 사용자(userId) 소유인지 확인한다. */
+/** 반이 존재하고, 로그인 사용자(viewer)의 소유 범위 안인지 확인한다. */
 export async function requireOwnedClass(
   classId: string,
-  userId: string,
+  viewer: ScopeViewer,
 ): Promise<OwnershipResult<ClassRow>> {
   const cls = await db.class.findUnique({ where: { id: classId } });
   if (!cls) return { ok: false, response: notFoundError("반") };
-  if (cls.userId !== userId) {
+  if (!withinOwnerScope(viewer, cls.userId)) {
     return { ok: false, response: forbiddenError() };
   }
   return { ok: true, data: cls };
 }
 
 /**
- * 학생이 존재하고, 소속 반이 로그인 사용자(userId) 소유인지 확인한다.
+ * 학생이 존재하고, 소속 반이 로그인 사용자(viewer)의 소유 범위 안인지 확인한다.
  * Student는 userId를 직접 갖지 않으므로(04-database-design.md §2.6) 소속 Class를 경유해 검증한다.
  */
 export async function requireOwnedStudent(
   studentId: string,
-  userId: string,
+  viewer: ScopeViewer,
 ): Promise<OwnershipResult<StudentRow>> {
   // 🔴 예전에는 학생을 읽고 **그 다음에** 반을 또 읽었다(순차 2왕복). 반 소유자는
   //    조인 한 번으로 같이 온다. 이 헬퍼는 진도 조회·출제·채점 등 거의 모든 쓰기 경로가
@@ -54,7 +59,7 @@ export async function requireOwnedStudent(
   if (!student) return { ok: false, response: notFoundError("학생") };
 
   const { class: ownerClass, ...row } = student;
-  if (ownerClass.userId !== userId) {
+  if (!withinOwnerScope(viewer, ownerClass.userId)) {
     return { ok: false, response: forbiddenError() };
   }
 
@@ -69,9 +74,9 @@ export async function requireOwnedStudent(
 export async function requireOwnedStudentInClass(
   studentId: string,
   classId: string,
-  userId: string,
+  viewer: ScopeViewer,
 ): Promise<OwnershipResult<StudentRow>> {
-  const owned = await requireOwnedStudent(studentId, userId);
+  const owned = await requireOwnedStudent(studentId, viewer);
   if (!owned.ok) return owned;
   if (owned.data.classId !== classId) {
     return { ok: false, response: notFoundError("학생") };
@@ -101,14 +106,14 @@ export async function requireAccessibleProblem(
   return { ok: true, data: problem };
 }
 
-/** 시험지가 존재하고, 로그인 사용자(userId) 소유인지 확인한다. */
+/** 시험지가 존재하고, 로그인 사용자(viewer)의 소유 범위 안인지 확인한다. */
 export async function requireOwnedTest(
   testId: string,
-  userId: string,
+  viewer: ScopeViewer,
 ): Promise<OwnershipResult<TestRow>> {
   const test = await db.test.findUnique({ where: { id: testId } });
   if (!test) return { ok: false, response: notFoundError("테스트") };
-  if (test.userId !== userId) {
+  if (!withinOwnerScope(viewer, test.userId)) {
     return { ok: false, response: forbiddenError() };
   }
   return { ok: true, data: test };

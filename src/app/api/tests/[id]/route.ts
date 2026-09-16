@@ -23,7 +23,7 @@ export async function GET(_request: NextRequest, { params }: RouteContext) {
   const idResult = idParamSchema.safeParse({ id });
   if (!idResult.success) return validationError(idResult.error);
 
-  const owned = await requireOwnedTest(id, session.id);
+  const owned = await requireOwnedTest(id, session);
   if (!owned.ok) return owned.response;
 
   // 반 이름은 검수 머리말이 쓴다. 소유 확인이 이미 끝났으므로 그 시험의 반만 곧장 읽는다

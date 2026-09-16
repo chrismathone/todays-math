@@ -3,6 +3,7 @@ import { notFound, redirect } from "next/navigation";
 import { TestPrint } from "@/components/print/TestPrint";
 import { idParamSchema } from "@/contracts/common.contract";
 import { db } from "@/lib/db";
+import { ownedRowsWhere } from "@/lib/ownerScope";
 import { toPrintProblem } from "@/lib/print/toPrintProblem";
 import { getSessionUser } from "@/lib/session";
 
@@ -18,7 +19,8 @@ export default async function TestPrintPage({ params }: TestPrintPageProps) {
   if (!parsed.success) notFound();
 
   const test = await db.test.findFirst({
-    where: { id: parsed.data.id, userId: session.id },
+    // 소유 범위(D-130) — 관리자는 남의 반 시험지도 인쇄한다. 지면 모양은 그대로다.
+    where: { id: parsed.data.id, ...ownedRowsWhere(session) },
     include: {
       class: true,
       rangeEndUnit: true,

@@ -15,6 +15,7 @@ import {
 } from "@/contracts/test.contract";
 import { jsonOk, unauthorizedError, validationError } from "@/lib/apiResponse";
 import { db } from "@/lib/db";
+import { ownedRowsWhere } from "@/lib/ownerScope";
 import { resolveDefaultReviewRange } from "@/lib/generator/defaultReviewRange";
 import { resolveRange } from "@/lib/generator/resolveRange";
 import { requireOwnedClass, requireOwnedStudentInClass } from "@/lib/ownership";
@@ -51,7 +52,7 @@ export async function GET(request: NextRequest) {
   if (!parsed.success) return validationError(parsed.error);
   const { classId, studentId } = parsed.data;
 
-  const owned = await requireOwnedClass(classId, session.id);
+  const owned = await requireOwnedClass(classId, session);
   if (!owned.ok) return owned.response;
 
   let useIndividualProgress = false;
@@ -59,7 +60,7 @@ export async function GET(request: NextRequest) {
     const studentOwned = await requireOwnedStudentInClass(
       studentId,
       classId,
-      session.id,
+      session,
     );
     if (!studentOwned.ok) return studentOwned.response;
     useIndividualProgress = studentOwned.data.useIndividualProgress;
@@ -102,7 +103,7 @@ export async function GET(request: NextRequest) {
       : Promise.resolve([]),
     db.test.findMany({
       where: {
-        userId: session.id,
+        ...ownedRowsWhere(session),
         classId,
         studentId: null,
         testType: "review",
@@ -114,7 +115,7 @@ export async function GET(request: NextRequest) {
     studentId
       ? db.test.findMany({
           where: {
-            userId: session.id,
+            ...ownedRowsWhere(session),
             classId,
             studentId,
             testType: "review",

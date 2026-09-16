@@ -56,6 +56,7 @@ beforeEach(() => {
     id: "teacher",
     name: "teacher",
     email: "teacher@example.test",
+    isAdmin: false,
   });
   vi.mocked(auth as () => Promise<unknown>).mockResolvedValue({
     user: { id: "teacher", role: "director" },
@@ -82,6 +83,7 @@ describe("authenticated production AI execution", () => {
       id: "reviewer",
       name: "reviewer",
       email: "r@example.test",
+      isAdmin: false,
     });
     vi.mocked(auth as () => Promise<unknown>).mockResolvedValue({
       user: { id: "reviewer", role: "reviewer" },

@@ -10,6 +10,7 @@ import {
 import { jsonError, jsonOk, notFoundError } from "@/lib/apiResponse";
 import { db } from "@/lib/db";
 import { findEligibleProblems } from "@/lib/findEligibleProblems";
+import { ownedRowsWhere } from "@/lib/ownerScope";
 import { familyIdOf } from "@/lib/generator/familyKey";
 import { selectProblems } from "@/lib/generator/selectProblems";
 import { requireOwnedTest } from "@/lib/ownership";
@@ -40,7 +41,7 @@ export async function replaceTestProblemAtSeq(
   testId: string,
   seq: number,
 ) {
-  const owned = await requireOwnedTest(testId, session.id);
+  const owned = await requireOwnedTest(testId, session);
   if (!owned.ok) return owned.response;
   if (owned.data.status !== "draft") {
     return jsonError(
@@ -52,6 +53,7 @@ export async function replaceTestProblemAtSeq(
 
   // 두 조회는 독립이다 — 문항 목록은 testId 로, 최근 출제는 사용자·날짜로 좁힌다.
   // 시험지 소유권(`requireOwnedTest`)은 이미 위에서 통과했다.
+  // 최근 출제(D-20)의 열쇠는 **시험지 소유자**다 — 관리자가 남의 시험지를 고쳐도(D-130) 그 계정 기준.
   const today = owned.data.testDate.toISOString().slice(0, 10);
   const [items, recentFromOtherTests] = await Promise.all([
     db.testProblem.findMany({
@@ -59,7 +61,7 @@ export async function replaceTestProblemAtSeq(
       include: { problem: true },
       orderBy: { orderIndex: "asc" },
     }),
-    loadRecentProblemIds(session.id, today),
+    loadRecentProblemIds(owned.data.userId, today),
   ]);
 
   const target = items.find((item) => item.orderIndex === seq);
@@ -133,7 +135,7 @@ export async function replaceTestProblemAtSeq(
 
   const updated = await db.$transaction(async (tx) => {
     const claimed = await tx.test.updateMany({
-      where: { id: testId, userId: session.id, status: "draft" },
+      where: { id: testId, ...ownedRowsWhere(session), status: "draft" },
       data: { modified: true },
     });
     if (claimed.count === 0) return null;

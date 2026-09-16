@@ -22,7 +22,7 @@ export async function GET(_request: NextRequest, { params }: RouteContext) {
   const idResult = idParamSchema.safeParse({ id });
   if (!idResult.success) return validationError(idResult.error);
 
-  const owned = await requireOwnedTest(id, session.id);
+  const owned = await requireOwnedTest(id, session);
   if (!owned.ok) return owned.response;
 
   const rows = await db.testResult.findMany({

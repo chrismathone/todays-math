@@ -174,6 +174,22 @@ describe("private material ownership and revision control", () => {
     expect((await response.json()).data).not.toHaveProperty("userId");
     expect(response.headers.get("cache-control")).toContain("no-store");
   });
+  it("D-130 ⑶: an admin's ordinary read is still scoped to the admin's own materials", async () => {
+    login({ isAdmin: true });
+    await readDocument(
+      request(
+        "GET",
+        undefined,
+        "/api/library/documents/draft-1?userId=" + otherId,
+      ),
+      "draft-1",
+    );
+    expect(mocks.doc.findUnique).toHaveBeenCalledWith({
+      where: { userId_id: { userId, id: "draft-1" } },
+    });
+    // 남의 자료를 여는 길은 감사 기록을 남기는 관리자 점검(ownerId 지정) 하나뿐이다
+    expect(mocks.audit.create).not.toHaveBeenCalled();
+  });
   it("does not let a regular account read another user's admin resource", async () => {
     expect((await readDocument(request(), "draft-1", otherId)).status).toBe(
       403,

@@ -94,6 +94,7 @@ beforeEach(async () => {
     id: USER_TEACHER_ID,
     email: "teacher@example.test",
     name: "선생님",
+    isAdmin: false,
   });
   const classes = await prismaTestDouble.class.findMany({
     where: { userId: USER_OTHER_ID },

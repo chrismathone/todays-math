@@ -17,6 +17,12 @@ export type SessionUser = {
   id: string;
   email: string;
   name: string;
+  /**
+   * 학원 운영 데이터의 소유 울타리를 넘는 계정인가(D-130). 판정은 `ownerScope.ts` 한 곳이 한다 —
+   * 라우트가 이 값을 직접 견주지 않는다. 필수 칸이다: 세션 사용자를 만드는 자리(cron 소유자 등)가
+   * 이 값을 **빠뜨리지 못하게** 타입이 막는다.
+   */
+  isAdmin: boolean;
 };
 
 /** 현재 요청의 로그인 사용자를 반환한다. 미인증이면 null. */
@@ -30,5 +36,7 @@ export async function getSessionUser(): Promise<SessionUser | null> {
     id: session.user.id,
     email: session.user.email ?? "",
     name: session.user.name ?? "",
+    // 🔴 boolean `true` 만 관리자다 — jwt 콜백이 세션을 읽을 때마다 DB 에서 새로 싣는다(auth.ts).
+    isAdmin: session.user.isAdmin === true,
   };
 }

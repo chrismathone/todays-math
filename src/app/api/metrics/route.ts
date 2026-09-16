@@ -1,6 +1,7 @@
 /**
  * GET /api/metrics — 주간 사용 지표 요약.
  * 대응 계약: src/contracts/metrics.contract.ts
+ * 소유 범위(D-130 — 관리자는 모든 반의 시험지를 센다): src/lib/ownerScope.ts
  */
 import type { NextRequest } from "next/server";
 
@@ -15,6 +16,7 @@ import {
   resolveWeekWindow,
   weekWindowInstants,
 } from "@/lib/metrics";
+import { ownedRowsWhere } from "@/lib/ownerScope";
 import { serializeTest } from "@/lib/serializers";
 import { getSessionUser } from "@/lib/session";
 
@@ -36,7 +38,7 @@ export async function GET(request: NextRequest) {
   const printedWindow = weekWindowInstants(window);
   const rows = await db.test.findMany({
     where: {
-      userId: session.id,
+      ...ownedRowsWhere(session),
       status: "printed",
       printedAt: { gte: printedWindow.gte, lt: printedWindow.lt },
     },

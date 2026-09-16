@@ -30,14 +30,14 @@ export async function generateDraftTest(
   session: SessionUser,
   input: TestGenerateRequest,
 ) {
-  const owned = await requireOwnedClass(input.classId, session.id);
+  const owned = await requireOwnedClass(input.classId, session);
   if (!owned.ok) return owned.response;
 
   if (input.studentId) {
     const studentOwned = await requireOwnedStudentInClass(
       input.studentId,
       input.classId,
-      session.id,
+      session,
     );
     if (!studentOwned.ok) return studentOwned.response;
   }
@@ -124,9 +124,11 @@ export async function generateDraftTest(
 
   // 두 조회는 서로를 전혀 참조하지 않는다(풀은 단원, 최근 출제는 날짜로만 좁힌다).
   // 순차로 await 하면 그냥 두 왕복이 더해진다.
+  // 🔴 최근 출제(D-20)의 열쇠는 **반의 소유자**다 — 관리자가 남의 반에 낼 때(D-130) 관리자 자신의
+  //    출제로 거르면 그 반이 어제 낸 문항이 오늘 또 나간다. 관리자가 아니면 반 소유자가 곧 나다.
   const [eligible, recentProblemIds] = await Promise.all([
     findEligibleProblems({ unitIds }),
-    loadRecentProblemIds(session.id, input.testDate),
+    loadRecentProblemIds(owned.data.userId, input.testDate),
   ]);
 
   const selected = selectProblems({
@@ -202,7 +204,9 @@ export async function generateDraftTest(
     const test = await tx.test.create({
       data: {
         // 시험지는 **소유자가 있다** — 없앤 것은 문항 소유자뿐이다(D-101). 섞지 말 것.
-        userId: session.id,
+        // 🔴 소유자는 **반의 소유자**다(D-130) — 관리자가 남의 반에 내도 그 반 계정의 시험지로 남아
+        //    역할 계정 화면·기본 범위·중복 제외가 그대로 이어진다. 관리자가 아니면 반 소유자가 곧 나다.
+        userId: owned.data.userId,
         classId: input.classId,
         studentId: input.studentId ?? null,
         testType: input.testType,

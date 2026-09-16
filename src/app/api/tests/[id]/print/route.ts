@@ -13,6 +13,7 @@ import {
   validationError,
 } from "@/lib/apiResponse";
 import { db } from "@/lib/db";
+import { ownedRowsWhere } from "@/lib/ownerScope";
 import { requireOwnedTest } from "@/lib/ownership";
 import { isPrismaErrorCode } from "@/lib/prismaErrors";
 import { serializeTest } from "@/lib/serializers";
@@ -35,10 +36,10 @@ export async function POST(_request: NextRequest, { params }: RouteContext) {
   //
   //    원자성은 오히려 그대로다: `status: "confirmed"` 가 여전히 UPDATE 의 where 에 있어
   //    두 요청이 동시에 와도 하나만 성공한다(예전 updateMany 가 하던 일과 같다).
-  //    소유권이 where 에 있으므로 남의 시험지가 갱신될 여지도 없다.
+  //    소유 범위가 where 에 있으므로 범위 밖 시험지가 갱신될 여지도 없다(D-130 — 관리자는 넘는다).
   try {
     const updated = await db.test.update({
-      where: { id, userId: session.id, status: "confirmed" },
+      where: { id, ...ownedRowsWhere(session), status: "confirmed" },
       data: { status: "printed", printedAt: new Date() },
     });
     return jsonOk(testPrintResponseSchema, { data: serializeTest(updated) });
@@ -48,7 +49,7 @@ export async function POST(_request: NextRequest, { params }: RouteContext) {
 
   // 여기부터는 "왜 안 됐는가" 를 가리는 길이다. 응답은 예전과 글자 그대로 같다:
   // 없으면 404, 남의 것이면 403, 이미 인쇄됐으면 200(멱등), 그 외 상태면 409.
-  const owned = await requireOwnedTest(id, session.id);
+  const owned = await requireOwnedTest(id, session);
   if (!owned.ok) return owned.response;
 
   if (owned.data.status === "printed") {

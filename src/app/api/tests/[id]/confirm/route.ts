@@ -14,6 +14,7 @@ import {
   validationError,
 } from "@/lib/apiResponse";
 import { db } from "@/lib/db";
+import { ownedRowsWhere } from "@/lib/ownerScope";
 import { requireOwnedTest } from "@/lib/ownership";
 import { serializeTest } from "@/lib/serializers";
 import { getSessionUser } from "@/lib/session";
@@ -28,7 +29,7 @@ export async function POST(_request: NextRequest, { params }: RouteContext) {
   const idResult = idParamSchema.safeParse({ id });
   if (!idResult.success) return validationError(idResult.error);
 
-  const owned = await requireOwnedTest(id, session.id);
+  const owned = await requireOwnedTest(id, session);
   if (!owned.ok) return owned.response;
 
   if (owned.data.status !== "draft") {
@@ -36,7 +37,7 @@ export async function POST(_request: NextRequest, { params }: RouteContext) {
   }
 
   const result = await db.test.updateMany({
-    where: { id, userId: session.id, status: "draft" },
+    where: { id, ...ownedRowsWhere(session), status: "draft" },
     data: { status: "confirmed" },
   });
   if (result.count === 0) {

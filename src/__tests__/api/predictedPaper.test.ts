@@ -348,6 +348,7 @@ describe("[T7.9] PATCH /api/tests/{id}/scores — 원장 수동 배점 조정", 
       id: "10000000-0000-4000-8000-000000000009",
       email: "other@todaysmath.test",
       name: "다른 강사",
+      isAdmin: false,
     });
 
     const response = await updateScores(

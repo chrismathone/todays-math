@@ -141,6 +141,31 @@ describe("teaching overview access and query boundary", () => {
     });
   });
 
+  /**
+   * D-130 — 관리자는 작업실 개요 숫자에서 소유 울타리를 넘는다. 위 시험(관리자 아님 = 소유자로
+   * 좁힌다)과 **같은 뷰어에 표시 하나만** 다르다. 짝이 없으면 «항상 넓힌다»가 초록이다.
+   */
+  it("D-130: an admin session counts every class and student — the same owner without the flag stays scoped", async () => {
+    mocks.session.mockResolvedValue({ ...owner, isAdmin: true });
+    const response = await GET();
+    expect(response.status).toBe(200);
+    expect(mocks.classCount).toHaveBeenCalledWith({ where: {} });
+    expect(mocks.studentCount).toHaveBeenCalledWith({ where: {} });
+    expect(mocks.classes).toHaveBeenCalledWith(
+      expect.objectContaining({ where: {}, take: 3 }),
+    );
+
+    vi.clearAllMocks();
+    mocks.session.mockResolvedValue({ ...owner, isAdmin: false });
+    expect((await GET()).status).toBe(200);
+    expect(mocks.classCount).toHaveBeenCalledWith({
+      where: { userId: owner.id },
+    });
+    expect(mocks.studentCount).toHaveBeenCalledWith({
+      where: { class: { userId: owner.id } },
+    });
+  });
+
   it("uses each request's session for both totals and rows, without reusing another owner's result", async () => {
     const rows = [
       {

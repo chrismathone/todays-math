@@ -33,13 +33,13 @@ export async function GET(_request: NextRequest, { params }: RouteContext) {
   if (!idResult.success) return validationError(idResult.error);
   if (!studentIdResult.success) return validationError(studentIdResult.error);
 
-  const owned = await requireOwnedTest(id, session.id);
+  const owned = await requireOwnedTest(id, session);
   if (!owned.ok) return owned.response;
 
   const studentOwned = await requireOwnedStudentInClass(
     studentId,
     owned.data.classId,
-    session.id,
+    session,
   );
   if (!studentOwned.ok) return studentOwned.response;
 
