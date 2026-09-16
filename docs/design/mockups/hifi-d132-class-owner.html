@@ -1,0 +1,333 @@
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>누구의 반 Hi-fi</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nanum+Myeongjo:wght@800&family=Noto+Sans+KR:wght@400;500;700;900&display=swap">
+<style>
+/* 앱이 라이트 전용(05 §2.3)이라 한 가지 모습으로 고정하고 모든 색을 명시한다.
+   화면마다 실제 쓰는 토큰을 그대로 옮겼다 — 새 색을 짓지 않는다.
+     장부 결(반 · 학생 관리 표 · 메인 반별 표 · 반 고르기): src/app/globals.css
+     작업실 결(오늘의 개념 판): src/components/unified/ConceptView.module.css */
+:root {
+  color-scheme: light;
+  --paper: #fafaf8; --page-ink: #161616; --page-2: #61615e; --page-rule: #b9b9b6; --pick: #2064b3;
+  /* 장부 결 */
+  --ink: #161616; --text-2: #61615e; --text-3: #767673; --divider: #b9b9b6; --control: #8e8e8b;
+  --side: #e9e9e6; --blue: #2064b3; --green: #08492e; --yellow: #d1a847; --yellow-text: #996b11; --seg-empty: #e1e1de;
+  /* 작업실 결 */
+  --c-line: #d4dce8; --c-line-soft: #e6ebf2; --c-th: #f8fafc; --c-ink: #172b4d; --c-muted: #596c86;
+  --c-ctl: #b8c4d6; --c-sel: #eef2fd;
+  --sans: "Pretendard Variable", Pretendard, "Noto Sans KR", "Malgun Gothic", system-ui, sans-serif;
+  --serif: "Nanum Myeongjo", "Noto Serif KR", Batang, serif;
+}
+* { box-sizing: border-box; }
+html, body { background: var(--paper); }
+body { margin: 0; color: var(--page-ink); font-family: var(--sans); font-size: 14px; line-height: 1.55; word-break: keep-all; overflow-wrap: anywhere; }
+[hidden] { display: none !important; }
+button { font: inherit; color: inherit; }
+:is(button):focus-visible { outline: 3px solid #82a1ff; outline-offset: 2px; }
+.tab { cursor: pointer; }
+
+.board { max-width: 1180px; margin: 0 auto; padding-inline: 24px; padding-block: 28px 80px; }
+@media (max-width: 600px) { .board { padding-inline: 16px; } }
+.head { display: grid; gap: 10px; padding-bottom: 18px; }
+.eyebrow { margin: 0; font-size: 12px; letter-spacing: .06em; color: var(--page-2); }
+h1 { margin: 0; font-family: var(--serif); font-weight: 800; font-size: 30px; line-height: 1.25; letter-spacing: -.02em; text-wrap: balance; }
+.lede { margin: 0; max-width: 70ch; color: var(--page-2); font-size: 15px; }
+.lede b { color: var(--page-ink); }
+.facts { display: flex; flex-wrap: wrap; gap: 6px 22px; margin: 4px 0 0; padding: 0; list-style: none; font-size: 13px; color: var(--page-2); }
+.facts b { color: var(--page-ink); font-weight: 600; }
+
+.tabs { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 20; display: flex; flex-wrap: wrap; gap: 4px; padding-block: 10px; background: var(--paper); border-block: 1px solid var(--page-rule); }
+.tab { display: flex; gap: 8px; align-items: baseline; padding: 7px 12px; border: 1px solid transparent; border-radius: 6px; background: none; color: var(--page-2); }
+.tab .k { font-weight: 700; color: var(--page-ink); font-variant-numeric: tabular-nums; }
+.tab:hover { background: #fff; }
+.tab[aria-selected="true"] { background: #fff; border-color: var(--page-rule); color: var(--page-ink); box-shadow: inset 0 -2px 0 var(--pick); }
+
+.panel { padding-top: 24px; display: grid; gap: 18px; }
+.thesis h2 { margin: 0 0 6px; font-family: var(--serif); font-size: 22px; font-weight: 800; }
+.thesis p { margin: 0; max-width: 68ch; color: var(--page-2); }
+.frames { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 16px; align-items: start; }
+@media (max-width: 880px) { .frames { grid-template-columns: minmax(0, 1fr); } }
+.frame { display: grid; gap: 6px; min-width: 0; }
+.frame.wide { grid-column: 1 / -1; }
+.cap { margin: 0; font-size: 12px; color: var(--page-2); letter-spacing: .02em; }
+.screen { background: #fff; border: 1px solid var(--divider); padding: 14px 16px; min-width: 0; }
+.scroll { overflow-x: auto; }
+.list { margin: 0; padding-left: 18px; display: grid; gap: 6px; color: var(--page-2); max-width: 90ch; }
+.list b { color: var(--page-ink); }
+
+/* ── 장부 결 표 — ClassTable · LedgerTable 그대로 ──────────────────────────── */
+table.ledger { width: 100%; border-collapse: collapse; font-size: 12.5px; font-variant-numeric: tabular-nums; color: var(--ink); }
+table.ledger th { border-bottom: 2.5px solid var(--ink); padding: 8px 10px; text-align: left; font-size: 10px; font-weight: 900; letter-spacing: 1.5px; color: var(--text-2); white-space: nowrap; }
+table.ledger td { border-bottom: 1px solid var(--divider); padding: 8px 10px; color: var(--text-2); vertical-align: middle; }
+table.ledger td.name { font-size: 15px; font-weight: 900; letter-spacing: -.3px; color: var(--ink); min-height: 44px; }
+table.ledger.main td.name { font-size: 13px; }
+table.ledger td.name .sel { color: var(--blue); text-decoration: underline; text-underline-offset: 4px; }
+table.ledger td.unit { color: var(--ink); }
+.gauge { display: inline-grid; grid-template-columns: repeat(4, 14px); gap: 2px; vertical-align: middle; }
+.gauge i { height: 8px; background: var(--seg-empty); }
+.gauge i.d { background: var(--green); } .gauge i.n { background: var(--blue); }
+.act { display: inline-block; min-height: 32px; line-height: 30px; padding: 0 10px; border: 1px solid var(--control); font-size: 12px; font-weight: 700; color: var(--ink); background: #fff; white-space: nowrap; }
+
+/* 반 고르기 — GenerateSetup 의 선택 상자 */
+.field { display: grid; gap: 4px; font-size: 10px; font-weight: 800; letter-spacing: 1.2px; color: var(--text-2); max-width: 340px; }
+.select { display: flex; align-items: center; justify-content: space-between; gap: 10px; min-height: 44px; padding: 0 12px; border: 1px solid var(--control); background: #fff; font-size: 12.5px; font-weight: 700; letter-spacing: 0; color: var(--ink); }
+.select::after { content: "▾"; color: var(--text-2); font-size: 11px; }
+.options { margin: 2px 0 0; padding: 4px 0; list-style: none; border: 1px solid var(--control); background: #fff; font-size: 12.5px; font-weight: 400; letter-spacing: 0; color: var(--ink); max-width: 340px; box-shadow: 0 6px 16px rgba(22, 22, 22, .12); }
+.options li { padding: 5px 12px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.options li.on { background: #1a5fd0; color: #fff; }
+.native { margin: 4px 0 0; font-size: 11px; font-weight: 400; letter-spacing: 0; color: var(--text-3); }
+
+/* 오늘의 확인테스트 한 줄 — DailyReviewSection */
+.lines { margin: 0; padding: 0; list-style: none; display: grid; gap: 2px; font-size: 14px; color: var(--ink); }
+.lines li { display: flex; flex-wrap: wrap; align-items: baseline; gap: 4px 8px; padding: 3px 0; }
+.lines .t3 { color: var(--text-3); }
+.lines .link { color: var(--blue); text-decoration: underline; text-underline-offset: 3px; font-size: 13px; }
+
+/* ── 작업실 결 표 — ConceptView ─────────────────────────────────────────── */
+table.work { width: 100%; border-collapse: collapse; font-size: 13px; color: var(--c-ink); border: 1px solid var(--c-line); }
+table.work th { padding: 9px 12px; background: var(--c-th); border-bottom: 1px solid var(--c-line); font-size: 12px; font-weight: 600; color: var(--c-muted); text-align: left; white-space: nowrap; }
+table.work td { padding: 8px 12px; border-bottom: 1px solid var(--c-line-soft); vertical-align: middle; }
+table.work tr.on td { background: var(--c-sel); }
+table.work .cls { display: grid; gap: 1px; }
+table.work .cls strong { font-weight: 700; text-decoration: underline; text-decoration-color: var(--c-ctl); text-underline-offset: 3px; }
+table.work .sub { display: block; font-size: 12px; color: var(--c-muted); }
+table.work td.owner-w { color: var(--c-muted); font-size: 12.5px; white-space: nowrap; }
+
+/* ── 담당 칸 — 안마다 다른 곳은 여기뿐 ───────────────────────────────────── */
+.own { white-space: nowrap; }
+/* 1 · 학년과 같은 결 */
+.h1 .own { color: var(--text-2); }
+.h1 .own.mine { color: var(--ink); font-weight: 700; }
+/* 2 · 장부 되풀이표 */
+.h2 .own.ditto { color: var(--text-3); padding-left: 1.2em; }
+.h2 .own.mine { color: var(--ink); font-weight: 700; }
+.h2 tr.cut td { border-bottom: 2.5px solid var(--ink); }
+.h2 table.work tr.cut td { border-bottom: 2px solid var(--c-line); }
+/* 3 · 꼬리표 */
+.h3 .own .tag { display: inline-block; padding: 1px 7px; border-radius: 3px; background: var(--side); color: var(--ink); font-size: 11.5px; font-weight: 500; line-height: 18px; letter-spacing: 0; }
+.h3 .own.mine .tag { background: var(--ink); color: #fff; font-weight: 700; }
+.h3 table.work .own .tag { background: #eef1f5; color: var(--c-ink); }
+.h3 table.work .own.mine .tag { background: var(--c-ink); color: #fff; }
+/* 4 · 내 반 / 다른 계정 가름줄 */
+.h4 .own { color: var(--text-2); }
+.h4 tr.band td { padding: 12px 10px 4px; border-bottom: 1px solid var(--ink); font-size: 10px; font-weight: 900; letter-spacing: 1.5px; color: var(--ink); }
+.h4 tr.band td span { font-weight: 400; color: var(--text-2); letter-spacing: 0; margin-left: 6px; }
+.h4 table.work tr.band td { padding: 10px 12px 4px; border-bottom: 1px solid var(--c-line); font-size: 11px; font-weight: 700; letter-spacing: .02em; color: var(--c-ink); background: #fff; }
+.h4 table.work tr.band td span { color: var(--c-muted); font-weight: 400; }
+/* 5 · 담당 먼저 */
+.h5 .own { color: var(--text-3); font-size: 12px; }
+.h5 .own.mine { color: var(--ink); font-weight: 700; }
+
+.ask { border-top: 1px solid var(--page-rule); padding-top: 18px; display: grid; gap: 10px; margin-top: 28px; }
+.ask h2 { margin: 0; font-family: var(--serif); font-size: 20px; font-weight: 800; }
+.ask ol { margin: 0; padding-left: 20px; display: grid; gap: 12px; color: var(--page-2); }
+.ask li b { color: var(--page-ink); }
+.opts { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 4px; }
+.opt { border: 1px solid var(--page-rule); border-radius: 999px; padding: 2px 10px; font-size: 12px; background: #fff; color: var(--page-2); }
+.note { margin: 0; max-width: 70ch; font-size: 13px; color: var(--page-2); }
+.note b { color: var(--page-ink); }
+</style>
+
+<div class="board">
+  <header class="head">
+    <p class="eyebrow">D-132 · 관리자 화면의 «누구의 반» · Hi-fi 5안 (2026-09-16)</p>
+    <h1>«담당» 열을 어떤 결로 세울까</h1>
+    <p class="lede">
+      Wire 에서 고르신 대로 <b>C «담당» 열 · 계정 이름 · 반 이름이 나오는 곳 전부 · 내 반 맨 위</b>로 그렸습니다.
+      다섯 안은 <b>담당 칸의 모양만</b> 다릅니다 — 열 자리 · 글자 굵기 · 되풀이 처리 · 내 반을 나누는 선.
+      화면마다 실제 쓰는 색과 글자(장부 결 · 작업실 결)를 그대로 옮겼습니다.
+    </p>
+    <ul class="facts">
+      <li>반 · 학년 · 계정 이름 · 진도는 <b>공유 DB 에서 읽은 그대로</b></li>
+      <li>원장님 계정의 반은 지금 0개 — 맨 위 <b>«목요 심화반»은 보기용 예시</b></li>
+      <li>관리자가 아닌 계정 화면은 <b>지금과 같습니다</b>(담당 없음)</li>
+    </ul>
+  </header>
+
+  <div class="tabs" role="tablist" aria-label="Hi-fi 안">
+    <button class="tab" role="tab" aria-selected="true" data-tab="1"><span class="k">1</span> 학년과 같은 결</button>
+    <button class="tab" role="tab" aria-selected="false" data-tab="2"><span class="k">2</span> 장부 되풀이표 〃</button>
+    <button class="tab" role="tab" aria-selected="false" data-tab="3"><span class="k">3</span> 꼬리표</button>
+    <button class="tab" role="tab" aria-selected="false" data-tab="4"><span class="k">4</span> 내 반 가름줄</button>
+    <button class="tab" role="tab" aria-selected="false" data-tab="5"><span class="k">5</span> 담당 먼저</button>
+  </div>
+
+  <div id="panels"></div>
+
+  <section class="ask">
+    <h2>정할 것</h2>
+    <ol>
+      <li><b>어느 안으로 갈까요.</b>
+        <div class="opts"><span class="opt">1</span><span class="opt">2</span><span class="opt">3</span><span class="opt">4</span><span class="opt">5</span></div>
+      </li>
+      <li><b>원장님 계정 반의 담당 칸에 무엇을 적을까요.</b> 안마다 «내 반»(4안은 가름줄 머리)으로 그렸습니다.
+        <div class="opts"><span class="opt">내 반</span><span class="opt">비워 둔다</span><span class="opt">계정 이름(관리자)</span></div>
+      </li>
+      <li><b>인쇄한 시험지 머리(«테스트반 · 8문항»)에도 담당을 넣을까요.</b> «전부»는 화면으로 읽었습니다 — 종이는 학생에게 갑니다.
+        <div class="opts"><span class="opt">화면만(종이는 그대로)</span><span class="opt">종이에도</span></div>
+      </li>
+      <li><b>담당 이름이 길 때</b>(«이어하기선생님» 7자) 반 고르는 상자에서 자를까요.
+        <div class="opts"><span class="opt">자르지 않는다</span><span class="opt">6자에서 자르고 …</span></div>
+      </li>
+    </ol>
+    <p class="note">고르시면 구현합니다. 뒷단은 반 목록 응답에 <b>담당 계정 이름 · 내 반 여부</b>를 싣고, 관리자일 때만 화면이 그립니다.
+      지금 진도 계획 화면 트랙이 반 관리 화면을 고치고 있어, 그 병합 뒤에 붙입니다.</p>
+  </section>
+</div>
+
+<script>
+// 반 7개 = 2026-09-16 공유 DB(읽기만). 첫 줄 «목요 심화반»만 보기용 예시(원장님 계정 반은 지금 0개).
+const CLASSES = [
+  { name: "목요 심화반", grade: "중2", owner: null, unit: "중2 연립방정식의 풀이", day: "9월 15일", students: 6, today: "n", sample: true },
+  { name: "테스트반", grade: "중2", owner: "강선생", unit: "중2 일차부등식의 응용", day: "8월 26일", students: 1, today: "d", sel: true },
+  { name: "중등M 초6 MS2A", grade: "초6", owner: "강선생", unit: "중3 이차방정식의 근의 공식과 응용", day: "9월 14일", students: 10, today: "n" },
+  { name: "초등M 초5 MS1A", grade: "초5", owner: "강선생", unit: "중1 유리수의 덧셈과 뺄셈", day: "9월 14일", students: 7, today: "n" },
+  { name: "테스트 B", grade: "5", owner: "원장", unit: null, students: 2, today: "" },
+  { name: "걷기반", grade: "중2", owner: "걷기원장", unit: "중2 순환소수", day: "9월 7일", students: 1, today: "d" },
+  { name: "빈손반", grade: "중1", owner: "빈손선생님", unit: "중1 소인수분해", day: "9월 7일", students: 1, today: "" },
+  { name: "이어반", grade: "중2", owner: "이어하기선생님", unit: null, students: 1, today: "" },
+];
+const MINE = "내 반";
+
+const VARIANTS = [
+  { id: "1", title: "1 · 학년과 같은 결 — 담당을 학년처럼 흐린 글자로",
+    thesis: "담당 칸을 학년 칸과 똑같은 크기·색으로 둡니다. 새 모양이 하나도 없어 표가 가장 조용합니다. 내 반만 담당 글자를 진하게 «내 반».",
+    first: false, ditto: false, band: false, pick: (c) => `${c.name} (${ownerText(c)})`, line: (c) => `${c.grade} · ${c.name} · ${ownerText(c)}`,
+    good: "표의 결이 그대로입니다. 반 이름이 여전히 가장 굵어 눈이 먼저 반으로 갑니다.",
+    bad: "강선생 반 셋이 «강선생»을 세 번 되풀이합니다. 담당만 훑어보기는 어렵습니다." },
+  { id: "2", title: "2 · 장부 되풀이표 — 같은 담당은 둘째 줄부터 〃",
+    thesis: "종이 장부처럼, 바로 위 줄과 담당이 같으면 «〃»로 줄입니다. 내 반 묶음 아래에는 표 머리와 같은 굵은 선을 한 번 긋습니다.",
+    first: false, ditto: true, band: false, cut: true, pick: (c) => `${c.name} — ${ownerText(c)}`, line: (c) => `${c.grade} · ${c.name}(${ownerText(c)})`,
+    good: "담당이 바뀌는 자리가 한눈에 보입니다. 되풀이가 줄어 표가 가볍습니다.",
+    bad: "줄을 하나만 보면(메인에서 한 반을 고른 뒤) «〃»가 누구인지 위로 올라가 봐야 합니다. 반 고르는 상자에는 〃를 못 씁니다." },
+  { id: "3", title: "3 · 꼬리표 — 담당을 옅은 회색 딱지로",
+    thesis: "담당 이름을 옅은 회색 딱지에 넣습니다. 내 반은 먹색 딱지 «내 반». 한 줄 목록(오늘의 확인테스트)에서도 같은 딱지가 반 이름 뒤에 붙습니다.",
+    first: false, ditto: false, band: false, tag: true, pick: (c) => `${c.name} · ${ownerText(c)}`, line: null,
+    good: "표 · 한 줄 목록 · 개념 판 어디서나 같은 딱지라 «이건 담당»이라는 뜻이 한 가지로 읽힙니다. 내 반이 가장 빨리 찾아집니다.",
+    bad: "딱지가 줄마다 서서 표가 조금 시끄러워집니다. 앱에 이미 있는 출처 딱지(초 · 중 · 기)와 모양이 닮았습니다." },
+  { id: "4", title: "4 · 내 반 가름줄 — 표 안에 «내 반» · «다른 계정의 반» 두 머리",
+    thesis: "표 안에 가는 머리 줄 두 개로 내 반과 다른 계정의 반을 나눕니다. 담당 칸은 1안처럼 흐린 글자이고, 내 반 줄에는 담당을 비웁니다(머리가 말해 줍니다).",
+    first: false, ditto: false, band: true, pick: (c) => c.owner ? `${c.name} (${c.owner})` : c.name, line: (c) => `${c.grade} · ${c.name}${c.owner ? " · " + c.owner : ""}`,
+    good: "«내 반 맨 위»가 가장 분명합니다. 내 반 줄은 지금 화면과 똑같습니다.",
+    bad: "머리 줄 두 개만큼 표가 깁니다. 반 고르는 상자에서는 내 반에 담당이 없어 «비어 있음»으로 보일 수 있습니다." },
+  { id: "5", title: "5 · 담당 먼저 — 담당 열을 반 앞에 좁게",
+    thesis: "담당 열을 맨 앞에 좁게 세우고 반 이름을 그 뒤에 둡니다. 계정을 번갈아 점검하실 때 왼쪽 끝만 훑으면 됩니다. 상자·한 줄도 «담당 · 반» 순서.",
+    first: true, ditto: false, band: false, pick: (c) => `${ownerText(c)} · ${c.name}`, line: (c) => `${ownerText(c)} · ${c.grade} · ${c.name}`,
+    good: "누구의 반인지가 가장 먼저 읽힙니다. 담당별로 늘어선 순서와 열 순서가 맞습니다.",
+    bad: "반을 고르러 온 눈이 반 이름보다 담당을 먼저 봅니다. 휴대폰 폭에서 반 이름 자리가 가장 좁아집니다." },
+];
+
+function ownerText(c) { return c.owner ?? MINE; }
+function esc(s) { return String(s).replace(/[&<>"]/g, (ch) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" })[ch]); }
+
+function ownerCell(v, rows, i, tag = "td", workroom = false) {
+  const c = rows[i];
+  const mine = c.owner === null;
+  const cls = `own${mine ? " mine" : ""}${workroom ? " owner-w" : ""}`;
+  if (v.band && mine) return `<${tag} class="${cls}"></${tag}>`;
+  if (v.ditto && i > 0 && rows[i - 1].owner === c.owner && !mine)
+    return `<${tag} class="${cls} ditto">〃</${tag}>`;
+  if (v.tag) return `<${tag} class="${cls}"><span class="tag">${esc(ownerText(c))}</span></${tag}>`;
+  return `<${tag} class="${cls}">${esc(ownerText(c))}</${tag}>`;
+}
+
+function bandRow(v, rows, i, cols, workroom) {
+  if (!v.band) return "";
+  const firstMine = i === 0 && rows[0].owner === null;
+  const firstOther = rows[i].owner !== null && (i === 0 || rows[i - 1].owner === null);
+  if (firstMine) return `<tr class="band"><td colspan="${cols}">내 반<span>${rows.filter((r) => r.owner === null).length}</span></td></tr>`;
+  if (firstOther) return `<tr class="band"><td colspan="${cols}">다른 계정의 반<span>${rows.filter((r) => r.owner !== null).length}</span></td></tr>`;
+  return "";
+}
+const cutClass = (v, rows, i) => (v.cut && rows[i].owner === null && rows[i + 1] && rows[i + 1].owner !== null ? "cut" : "");
+
+function classTable(v) {
+  const rows = CLASSES;
+  const head = v.first ? ["담당", "반", "학년"] : ["반", "학년", "담당"];
+  const body = rows.map((c, i) => {
+    const name = `<td class="name">${c.sel ? `<span class="sel">${esc(c.name)}</span>` : esc(c.name)}</td>`;
+    const grade = `<td>${esc(c.grade)}</td>`;
+    const own = ownerCell(v, rows, i);
+    const cells = v.first ? own + name + grade : name + grade + own;
+    return bandRow(v, rows, i, 3) + `<tr class="${cutClass(v, rows, i)}">${cells}</tr>`;
+  }).join("");
+  return `<div class="scroll"><table class="ledger"><thead><tr>${head.map((h) => `<th>${h}</th>`).join("")}</tr></thead><tbody>${body}</tbody></table></div>`;
+}
+
+function gauge(today) {
+  const k = today === "d" ? ["d", "d", "d", "d"] : today === "n" ? ["d", "d", "n", ""] : ["", "", "", ""];
+  return `<span class="gauge" aria-hidden="true">${k.map((x) => `<i class="${x}"></i>`).join("")}</span>`;
+}
+
+function mainTable(v) {
+  const rows = CLASSES.slice(0, 5);
+  const head = v.first ? ["담당", "반", "현재 진도", "오늘", "내일 테스트", "작업"] : ["반", "담당", "현재 진도", "오늘", "내일 테스트", "작업"];
+  const body = rows.map((c, i) => {
+    const name = `<td class="name">${c.sel ? `<span class="sel">${esc(c.name)}</span>` : esc(c.name)}</td>`;
+    const own = ownerCell(v, rows, i);
+    const rest = `<td class="unit">${c.unit ? esc(c.unit) : "—"}</td><td>${gauge(c.today)}</td><td>${c.unit ? "직접 출제" : "다음 단원 시작"}</td><td><span class="act">${c.unit ? "진도 기록" : "시작 단원 고르기"}</span></td>`;
+    const cells = v.first ? own + name + rest : name + own + rest;
+    return bandRow(v, rows, i, 6) + `<tr class="${cutClass(v, rows, i)}">${cells}</tr>`;
+  }).join("");
+  return `<div class="scroll"><table class="ledger main"><thead><tr>${head.map((h) => `<th>${h}</th>`).join("")}</tr></thead><tbody>${body}</tbody></table></div>`;
+}
+
+function picker(v) {
+  const opts = CLASSES.map((c) => `<li class="${c.sel ? "on" : ""}">${esc(v.pick(c))}</li>`).join("");
+  const selected = CLASSES.find((c) => c.sel);
+  return `<div class="field">반<div class="select">${esc(v.pick(selected))}</div><ul class="options">${opts}</ul>
+    <p class="native">선택 상자 안은 브라우저가 그려 글자만 바꿀 수 있습니다.</p></div>`;
+}
+
+function reviewLines(v) {
+  const people = [
+    { name: "김학생", cls: CLASSES[1] },
+    { name: "걷기학생", cls: CLASSES[5] },
+  ];
+  const items = people.map((p) => {
+    const where = v.tag
+      ? `<span class="t3">${esc(p.cls.grade)} · ${esc(p.cls.name)}</span><span class="own${p.cls.owner === null ? " mine" : ""}"><span class="tag">${esc(ownerText(p.cls))}</span></span>`
+      : `<span class="t3">${esc(v.line(p.cls))}</span>`;
+    return `<li><b>${esc(p.name)}</b>${where}<span class="link">직접 출제</span></li>`;
+  }).join("");
+  return `<ul class="lines">${items}</ul>`;
+}
+
+function conceptBoard(v) {
+  const rows = [CLASSES[0], CLASSES[2], CLASSES[3], CLASSES[5]];
+  const head = v.first ? ["담당", "반", "이번 주 진도"] : ["반", "담당", "이번 주 진도"];
+  const body = rows.map((c, i) => {
+    const cls = `<td><span class="cls"><strong>${esc(c.name)}</strong><span class="sub">${c.students}명</span></span></td>`;
+    const own = ownerCell(v, rows, i, "td", true);
+    const unit = `<td>${c.unit ? `<span class="sub">${c.day}</span>${esc(c.unit.replace(/^\S+\s/, ""))}` : `<span class="sub">진도 기록 없음</span>`}</td>`;
+    const cells = v.first ? own + cls + unit : cls + own + unit;
+    return bandRow(v, rows, i, 3, true) + `<tr class="${i === 1 ? "on " : ""}${v.cut && i === 0 ? "cut" : ""}">${cells}</tr>`;
+  }).join("");
+  return `<div class="scroll"><table class="work"><thead><tr>${head.map((h) => `<th>${h}</th>`).join("")}</tr></thead><tbody>${body}</tbody></table></div>`;
+}
+
+const host = document.getElementById("panels");
+host.innerHTML = VARIANTS.map((v, k) => `
+  <section class="panel h${v.id}" data-panel="${v.id}" role="tabpanel" aria-label="${esc(v.title)}"${k === 0 ? "" : " hidden"}>
+    <div class="thesis"><h2>${esc(v.title)}</h2><p>${esc(v.thesis)}</p></div>
+    <div class="frames">
+      <div class="frame"><p class="cap">수업 · 학생 관리 › 반 · 학생 관리</p><div class="screen">${classTable(v)}</div></div>
+      <div class="frame"><p class="cap">출제 · 장바구니 › 반 고르기</p><div class="screen">${picker(v)}</div></div>
+      <div class="frame wide"><p class="cap">오늘의 작업 › 반별 표 (앞 다섯 줄)</p><div class="screen">${mainTable(v)}</div></div>
+      <div class="frame"><p class="cap">오늘의 작업 › 오늘의 확인테스트 한 줄</p><div class="screen">${reviewLines(v)}</div></div>
+      <div class="frame"><p class="cap">오늘의 개념 판 (작업실 결)</p><div class="screen">${conceptBoard(v)}</div></div>
+    </div>
+    <ul class="list"><li><b>좋은 점</b> — ${esc(v.good)}</li><li><b>걸리는 점</b> — ${esc(v.bad)}</li></ul>
+  </section>`).join("");
+
+const tabs = [...document.querySelectorAll(".tab")];
+tabs.forEach((tab) => {
+  tab.addEventListener("click", () => {
+    tabs.forEach((t) => t.setAttribute("aria-selected", String(t === tab)));
+    document.querySelectorAll("[data-panel]").forEach((p) => { p.hidden = p.dataset.panel !== tab.dataset.tab; });
+  });
+});
+</script>
