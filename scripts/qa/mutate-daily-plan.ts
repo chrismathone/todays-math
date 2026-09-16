@@ -244,7 +244,10 @@ const MUTATIONS: Mutation[] = [
   {
     name: "④b 적용 이력 판정이 개별 진도 여부를 안 본다",
     file: RESOLVER_FILE,
-    from: "  if (useIndividualProgress && studentProgress.length > 0) return studentProgress;",
+    from: L(
+      "  if (useIndividualProgress && studentProgress.length > 0)",
+      "    return studentProgress;",
+    ),
     to: "  if (studentProgress.length > 0) return studentProgress;",
     probe:
       'pr.applicableProgress({ classProgress: [ROW(null, "u5", "2026-08-21")], studentProgress: [ROW("s1", "u2", "2026-08-20")], useIndividualProgress: false }).map((r) => r.unitId)',
@@ -533,7 +536,29 @@ function runTests(files: string[]): {
 type Verdict = "RED" | "GREEN" | "HOLD" | "REFUSE";
 
 function main(): number {
-  const needles = process.argv.slice(2);
+  const needles = process.argv.slice(2).filter((a) => a !== "--anchors");
+
+  // `--anchors` — 시험을 돌리지 않고 **앵커만** 센다. 코드가 움직였을 때(prettier 재정렬 포함)
+  // 30분짜리 전량 판정을 돌리기 전에 몇 초로 확인하는 자리다.
+  if (process.argv.includes("--anchors")) {
+    let bad = 0;
+    for (const m of MUTATIONS) {
+      const text = readFileSync(m.file, "utf8");
+      const eol = text.includes("\r\n") ? "\r\n" : NL;
+      const count = text.split(m.from.split(NL).join(eol)).length - 1;
+      if (count !== 1) {
+        bad += 1;
+        console.log(`  ⛔ 앵커 ${count}개 — ${m.name}  (${m.file})`);
+      }
+    }
+    console.log(
+      bad === 0
+        ? `  앵커 ${MUTATIONS.length}개 전부 정확히 하나 ✓`
+        : `  🔴 앵커가 어긋난 변이 ${bad}개`,
+    );
+    return bad === 0 ? 0 : 1;
+  }
+
   const picked =
     needles.length > 0
       ? MUTATIONS.filter((m) => needles.some((n) => m.name.includes(n)))
