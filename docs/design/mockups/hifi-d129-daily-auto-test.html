@@ -1,0 +1,462 @@
+<meta charset="utf-8">
+<title>진도 계획 Hi-fi</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nanum+Myeongjo:wght@700;800&family=Noto+Sans+KR:wght@400;500;700&display=swap">
+<style>
+/* 앱이 라이트 전용(05 §2.3)이라 한 가지 모습으로 고정하고 모든 색을 명시한다.
+   작업실 토큰은 src/components/unified/Workroom.module.css · TeachingView.module.css,
+   기능색은 05 §2.2 「계기판」 명도 계단 — 여기서 새 색을 짓지 않는다. */
+:root {
+  color-scheme: light;
+  --page: #fbfbfa; --page-ink: #161616; --page-2: #61615e; --page-rule: #b9b9b6;
+  --ink: #172b4d; --muted: #596c86; --accent: #3159df; --divider: #d4dce8; --control: #7c8da7;
+  --app-bg: #f4f6fa; --side: #edf2ff;
+  --g-done: #08492e; --g-now: #2064b3; --g-wait: #d1a847; --g-wait-ink: #996b11;
+  --g-warn: #d96447; --g-warn-ink: #a62d1b; --g-empty: #e1e1de;
+  --sans: "Pretendard Variable", Pretendard, "Noto Sans KR", "Malgun Gothic", system-ui, sans-serif;
+  --serif: "Nanum Myeongjo", "Noto Serif KR", Batang, serif;
+}
+* { box-sizing: border-box; }
+body { margin: 0; background: var(--page); color: var(--page-ink); font-family: var(--sans); font-size: 14px; line-height: 1.55; }
+[hidden] { display: none !important; }
+button { font: inherit; color: inherit; }
+:is(button):focus-visible { outline: 3px solid #82a1ff; outline-offset: 2px; }
+.tab { cursor: pointer; }
+
+.board { max-width: 1120px; margin: 0 auto; padding-inline: 24px; padding-block: 28px 80px; }
+@media (max-width: 600px) { .board { padding-inline: 16px; } }
+.head { display: grid; gap: 10px; padding-bottom: 18px; }
+.eyebrow { margin: 0; font-size: 12px; letter-spacing: .06em; color: var(--page-2); }
+h1 { margin: 0; font-family: var(--serif); font-weight: 800; font-size: 30px; line-height: 1.25; letter-spacing: -.02em; text-wrap: balance; }
+.lede { margin: 0; max-width: 68ch; color: var(--page-2); font-size: 15px; }
+
+.tabs { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 20; display: flex; flex-wrap: wrap; gap: 4px; padding-block: 10px; background: var(--page); border-block: 1px solid var(--page-rule); }
+.tab { display: flex; gap: 8px; align-items: baseline; padding: 7px 12px; border: 1px solid transparent; border-radius: 6px; background: none; color: var(--page-2); }
+.tab .k { font-weight: 700; color: var(--page-ink); font-variant-numeric: tabular-nums; }
+.tab:hover { background: #fff; }
+.tab[aria-selected="true"] { background: #fff; border-color: var(--page-rule); color: var(--page-ink); box-shadow: inset 0 -2px 0 var(--accent); }
+
+.panel { padding-top: 24px; display: grid; gap: 18px; }
+.thesis h2 { margin: 0 0 6px; font-family: var(--serif); font-size: 22px; font-weight: 800; }
+.thesis p { margin: 0; max-width: 66ch; color: var(--page-2); }
+.frame-cap { margin: 0 0 6px; font-size: 12px; color: var(--page-2); letter-spacing: .02em; }
+
+/* ── 앱 틀 (작업실) ───────────────────────────────────────────── */
+.app { background: var(--app-bg); border: 1px solid var(--divider); border-radius: 12px; padding: 16px; color: var(--ink); }
+.crumb { font-size: 12px; color: var(--muted); margin-bottom: 10px; }
+.two { display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 6fr); gap: 14px; }
+@media (max-width: 820px) { .two { grid-template-columns: minmax(0, 1fr); } }
+.card { background: #fff; border: 1px solid var(--divider); border-radius: 10px; padding: 16px; display: grid; gap: 12px; align-content: start; }
+.card h3 { margin: 0; font-size: 15px; font-weight: 700; color: var(--ink); }
+.field { display: grid; gap: 6px; }
+.label { font-size: 12px; font-weight: 700; color: var(--muted); }
+.days { display: flex; flex-wrap: wrap; gap: 6px; }
+.day { min-width: 40px; height: 40px; display: grid; place-items: center; border: 1px solid var(--control); border-radius: 8px; background: #fff; font-size: 13px; color: var(--ink); }
+.day.on { background: var(--accent); border-color: var(--accent); color: #fff; font-weight: 700; }
+.input { display: flex; align-items: center; justify-content: space-between; gap: 8px; min-height: 44px; padding: 0 12px; border: 1px solid var(--control); border-radius: 8px; background: #fff; font-size: 14px; color: var(--ink); }
+.input small { color: var(--muted); font-size: 12px; }
+.inline { display: flex; flex-wrap: wrap; gap: 8px; }
+.inline .input { flex: 1 1 140px; }
+.switch { display: flex; align-items: center; justify-content: space-between; gap: 10px; font-size: 13px; color: var(--muted); }
+.toggle { width: 40px; height: 22px; border-radius: 11px; background: var(--accent); position: relative; }
+.toggle::after { content: ""; position: absolute; top: 3px; right: 3px; width: 16px; height: 16px; border-radius: 50%; background: #fff; }
+.btn { display: inline-flex; align-items: center; justify-content: center; min-height: 40px; padding: 0 16px; border-radius: 8px; border: 1px solid var(--accent); background: var(--accent); color: #fff; font-weight: 700; font-size: 13px; }
+.btn.ghost { background: #fff; color: var(--accent); }
+.note { margin: 0; font-size: 12px; color: var(--muted); }
+.late { color: var(--g-warn-ink); font-weight: 700; }
+
+/* 메인 한 줄 · 시험지 목록 행 */
+.strip { background: #fff; border: 1px solid var(--divider); border-radius: 10px; padding: 14px 16px; display: grid; gap: 10px; }
+.strip-top { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 10px; }
+.strip-top b { font-size: 15px; }
+.chips { display: flex; flex-wrap: wrap; gap: 6px; }
+.chip { font-size: 12px; padding: 3px 10px; border-radius: 999px; border: 1px solid var(--divider); color: var(--muted); background: #fff; }
+.chip.warn { border-color: var(--g-warn); color: var(--g-warn-ink); }
+.quiet { font-size: 13px; color: var(--muted); }
+.rows { display: grid; }
+.trow { display: grid; grid-template-columns: minmax(0, 1fr) auto auto; gap: 12px; align-items: center; padding: 10px 0; border-top: 1px solid var(--divider); font-size: 13px; }
+.trow:first-child { border-top: 0; }
+.tag { font-size: 11px; font-weight: 700; padding: 2px 8px; border-radius: 4px; }
+.frames { display: grid; gap: 14px; }
+
+/* ── 1. 작업실 그대로 — 표 미리보기 ─────────────────────────── */
+.v1 table { width: 100%; border-collapse: collapse; font-size: 13px; }
+.v1 th { text-align: left; font-size: 12px; color: var(--muted); font-weight: 700; padding: 0 0 8px; border-bottom: 1px solid var(--divider); }
+.v1 td { padding: 10px 0; border-bottom: 1px solid var(--divider); font-variant-numeric: tabular-nums; }
+.v1 td.dim { color: var(--muted); }
+.v1 .tag { background: var(--side); color: var(--accent); }
+
+/* ── 2. 계기판 관 — 수업일 세그먼트 ─────────────────────────── */
+.v2 .pipe { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 4px; }
+.v2 .seg { height: 10px; border-radius: 2px; background: var(--g-empty); }
+.v2 .seg.done { background: var(--g-done); }
+.v2 .seg.now { background: var(--g-now); }
+.v2 .seg.wait { background: var(--g-wait); }
+.v2 .legs { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 4px; font-size: 11px; color: var(--muted); }
+.v2 .legs b { display: block; color: var(--ink); font-size: 12px; font-weight: 700; }
+.v2 .tag { background: #fff; border: 1px solid var(--g-now); color: var(--g-now); }
+
+/* ── 3. 요일 띠 — 한 주 일곱 칸 ─────────────────────────────── */
+.v3 .week { display: grid; grid-template-columns: repeat(7, minmax(0, 1fr)); border: 1px solid var(--divider); border-radius: 8px; overflow: hidden; }
+.v3 .wd { min-height: 88px; padding: 8px; border-left: 1px solid var(--divider); display: grid; align-content: start; gap: 4px; font-size: 11px; color: var(--muted); }
+.v3 .wd:first-child { border-left: 0; }
+.v3 .wd b { font-size: 12px; color: var(--ink); }
+.v3 .wd.class { background: var(--side); }
+.v3 .wd.class span { color: var(--ink); font-size: 12px; font-weight: 500; line-height: 1.35; }
+.v3 .wd.today { box-shadow: inset 0 3px 0 var(--accent); }
+@media (max-width: 520px) { .v3 .wd { min-height: 70px; padding: 6px 4px; } .v3 .wd.class span { font-size: 11px; } }
+.v3 .tag { background: var(--accent); color: #fff; }
+
+/* ── 4. 목록 — 굵기 대비만 ──────────────────────────────────── */
+.v4 .list { display: grid; }
+.v4 .li { display: grid; grid-template-columns: 88px minmax(0, 1fr) auto; gap: 12px; align-items: baseline; padding: 10px 0; border-top: 1px solid var(--divider); }
+.v4 .li:first-child { border-top: 0; }
+.v4 .li .d { font-size: 12px; color: var(--muted); font-variant-numeric: tabular-nums; }
+.v4 .li .u { font-size: 15px; font-weight: 700; color: var(--ink); }
+.v4 .li .u.plan { font-weight: 400; color: var(--muted); }
+.v4 .tag { background: #fff; border: 1px solid var(--divider); color: var(--ink); }
+
+/* ── 5. 지면 결 — 명조 제목 · 잉크 · 굵은 룰 ───────────────── */
+.v5 .card { border-color: #161616; border-radius: 4px; }
+.v5 .card h3 { font-family: var(--serif); font-size: 18px; font-weight: 800; color: #161616; padding-bottom: 8px; border-bottom: 2px solid #161616; }
+.v5 .day.on { background: #161616; border-color: #161616; }
+.v5 .btn { background: #161616; border-color: #161616; }
+.v5 .btn.ghost { background: #fff; color: #161616; }
+.v5 .toggle { background: #161616; }
+.v5 .ruled { display: grid; }
+.v5 .ruled div { display: grid; grid-template-columns: 76px minmax(0, 1fr) auto; gap: 10px; padding: 9px 0; border-top: 1px solid #b9b9b6; font-size: 13px; color: #161616; }
+.v5 .ruled div:first-child { border-top: 0; }
+.v5 .ruled em { font-style: normal; font-family: var(--serif); font-weight: 700; }
+.v5 .ruled small { color: #61615e; font-size: 12px; }
+.v5 .strip { border-color: #161616; border-radius: 4px; }
+.v5 .tag { background: #161616; color: #fff; border-radius: 2px; }
+
+.ask { border-top: 1px solid var(--page-rule); margin-top: 8px; padding-top: 20px; display: grid; gap: 10px; }
+.ask h2 { margin: 0; font-family: var(--serif); font-size: 20px; font-weight: 800; }
+.ask ol { margin: 0; padding-left: 20px; display: grid; gap: 10px; color: var(--page-2); }
+.ask li b { color: var(--page-ink); }
+</style>
+
+<div class="board">
+  <header class="head">
+    <p class="eyebrow">D-129 ④ · 매일 자동 출제 · B안 Hi-fi 5안 (2026-09-16)</p>
+    <h1>수업 계획 카드와 이번 주 예정 — 다섯 가지 결</h1>
+    <p class="lede">
+      와이어 B안(수업 계획 카드 + 이번 주 예정)으로 정하신 것을 색과 글자까지 그렸습니다. 배치는 다섯 안이 같고,
+      <b>이번 주 예정을 어떤 모양으로 읽히게 하느냐</b>가 다릅니다. 안마다 세 자리를 함께 보여 드립니다 —
+      반 관리의 계획 카드, 메인의 «오늘의 확인테스트», 시험지 목록의 자동 초안 표시.
+    </p>
+  </header>
+
+  <div class="tabs" role="tablist">
+    <button class="tab" role="tab" aria-selected="true" data-tab="1"><span class="k">1</span> 작업실 그대로 · 표</button>
+    <button class="tab" role="tab" aria-selected="false" data-tab="2"><span class="k">2</span> 계기판 관</button>
+    <button class="tab" role="tab" aria-selected="false" data-tab="3"><span class="k">3</span> 요일 띠</button>
+    <button class="tab" role="tab" aria-selected="false" data-tab="4"><span class="k">4</span> 목록 · 굵기 대비</button>
+    <button class="tab" role="tab" aria-selected="false" data-tab="5"><span class="k">5</span> 지면 결</button>
+  </div>
+
+  <!-- ─────────────────────────── 1 -->
+  <section class="panel v1" data-panel="1">
+    <div class="thesis">
+      <h2>1 · 작업실 그대로 — 예정은 표</h2>
+      <p>지금 반 관리 화면과 같은 흰 카드·테두리·파랑입니다. 이번 주 예정은 날짜 · 예정 · 실제 세 칸 표로,
+        가장 익숙하고 새로 배울 것이 없습니다.</p>
+    </div>
+    <div class="frames">
+      <div>
+        <p class="frame-cap">반 관리 › 중2 A반</p>
+        <div class="app">
+          <div class="two">
+            <div class="card">
+              <h3>수업 계획</h3>
+              <div class="field"><span class="label">수업 요일</span>
+                <div class="days"><span class="day on">월</span><span class="day">화</span><span class="day on">수</span><span class="day">목</span><span class="day on">금</span><span class="day">토</span><span class="day">일</span></div>
+              </div>
+              <div class="field"><span class="label">시작 차시</span><span class="input">식의 계산 · 단항식 <small>중2</small></span></div>
+              <div class="inline">
+                <div class="field" style="flex:1 1 140px"><span class="label">한 수업</span><span class="input">1차시</span></div>
+                <div class="field" style="flex:1 1 140px"><span class="label">시작일</span><span class="input">9월 16일</span></div>
+              </div>
+              <div class="switch">자동 출제 <span class="toggle" aria-hidden="true"></span></div>
+              <div class="inline"><span class="btn">저장</span></div>
+            </div>
+            <div class="card">
+              <h3>이번 주 예정</h3>
+              <table>
+                <tr><th>날짜</th><th>예정</th><th>실제</th></tr>
+                <tr><td>9월 14일 (월)</td><td>다항식의 덧셈</td><td>다항식의 덧셈</td></tr>
+                <tr><td>9월 16일 (수)</td><td>다항식의 곱셈</td><td class="dim">—</td></tr>
+                <tr><td>9월 18일 (금)</td><td>다항식의 나눗셈</td><td class="dim">—</td></tr>
+              </table>
+              <p class="note"><span class="late">3일 밀림</span> · 실제 진도를 기록하면 그 지점부터 다시 펴집니다.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div>
+        <p class="frame-cap">메인 › 오늘의 확인테스트</p>
+        <div class="strip">
+          <div class="strip-top"><b>아침 8시에 초안 5장이 섰습니다</b><span class="btn">검수하기</span></div>
+          <div class="chips"><span class="chip warn">3일 밀림 1명</span><span class="chip warn">문항 부족 2명</span><span class="chip">시험기간 1명</span></div>
+          <p class="quiet">중1 B반 — 오늘 수업 계획이 없습니다.</p>
+        </div>
+      </div>
+      <div>
+        <p class="frame-cap">시험지 목록</p>
+        <div class="strip rows">
+          <div class="trow"><span>이서준 · 중2 확인테스트 · 다항식의 곱셈</span><span class="tag">자동 초안</span><span class="quiet">9월 16일</span></div>
+          <div class="trow"><span>김도윤 · 중2 확인테스트 · 다항식의 곱셈</span><span class="tag">자동 초안</span><span class="quiet">9월 16일</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─────────────────────────── 2 -->
+  <section class="panel v2" data-panel="2" hidden>
+    <div class="thesis">
+      <h2>2 · 계기판 관 — 수업일이 차오르는 칸</h2>
+      <p>메인 화면의 진도 게이지(05 §2.2)와 같은 문법입니다. 수업일 하나가 한 칸이고, 끝난 칸은 진한 초록, 오늘은 파랑,
+        아직은 빈 칸입니다. 밀리면 노랑 칸이 끼어듭니다 — 흑백으로 복사해도 순서가 남습니다.</p>
+    </div>
+    <div class="frames">
+      <div>
+        <p class="frame-cap">반 관리 › 중2 A반</p>
+        <div class="app">
+          <div class="two">
+            <div class="card">
+              <h3>수업 계획</h3>
+              <div class="field"><span class="label">수업 요일</span>
+                <div class="days"><span class="day on">월</span><span class="day">화</span><span class="day on">수</span><span class="day">목</span><span class="day on">금</span><span class="day">토</span><span class="day">일</span></div>
+              </div>
+              <div class="field"><span class="label">시작 차시</span><span class="input">식의 계산 · 단항식 <small>중2</small></span></div>
+              <div class="inline">
+                <div class="field" style="flex:1 1 140px"><span class="label">한 수업</span><span class="input">1차시</span></div>
+                <div class="field" style="flex:1 1 140px"><span class="label">시작일</span><span class="input">9월 16일</span></div>
+              </div>
+              <div class="switch">자동 출제 <span class="toggle" aria-hidden="true"></span></div>
+              <div class="inline"><span class="btn">저장</span></div>
+            </div>
+            <div class="card">
+              <h3>이번 주 예정</h3>
+              <div class="pipe"><span class="seg done"></span><span class="seg wait"></span><span class="seg now"></span><span class="seg"></span><span class="seg"></span></div>
+              <div class="legs">
+                <span><b>9/11 금</b>단항식</span>
+                <span><b>9/14 월</b>밀림</span>
+                <span><b>9/16 수</b>다항식의 곱셈</span>
+                <span><b>9/18 금</b>나눗셈</span>
+                <span><b>9/21 월</b>곱셈 공식</span>
+              </div>
+              <p class="note"><span class="late">3일 밀림</span> · 노랑 칸이 계획보다 늦어진 수업일입니다.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div>
+        <p class="frame-cap">메인 › 오늘의 확인테스트</p>
+        <div class="strip">
+          <div class="strip-top"><b>아침 8시에 초안 5장이 섰습니다</b><span class="btn">검수하기</span></div>
+          <div class="chips"><span class="chip warn">3일 밀림 1명</span><span class="chip warn">문항 부족 2명</span><span class="chip">시험기간 1명</span></div>
+          <p class="quiet">중1 B반 — 오늘 수업 계획이 없습니다.</p>
+        </div>
+      </div>
+      <div>
+        <p class="frame-cap">시험지 목록</p>
+        <div class="strip rows">
+          <div class="trow"><span>이서준 · 중2 확인테스트 · 다항식의 곱셈</span><span class="tag">자동 초안</span><span class="quiet">9월 16일</span></div>
+          <div class="trow"><span>김도윤 · 중2 확인테스트 · 다항식의 곱셈</span><span class="tag">자동 초안</span><span class="quiet">9월 16일</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─────────────────────────── 3 -->
+  <section class="panel v3" data-panel="3" hidden>
+    <div class="thesis">
+      <h2>3 · 요일 띠 — 한 주 일곱 칸</h2>
+      <p>한 주를 월요일부터 일곱 칸으로 펴고, 수업하는 날만 옅은 파랑으로 칠해 그날의 차시를 적습니다.
+        오늘은 위쪽 파랑 줄 하나로 표시합니다. 요일 토글과 모양이 같아 «고른 것이 곧 이 띠»로 읽힙니다.</p>
+    </div>
+    <div class="frames">
+      <div>
+        <p class="frame-cap">반 관리 › 중2 A반</p>
+        <div class="app">
+          <div class="two">
+            <div class="card">
+              <h3>수업 계획</h3>
+              <div class="field"><span class="label">수업 요일</span>
+                <div class="days"><span class="day on">월</span><span class="day">화</span><span class="day on">수</span><span class="day">목</span><span class="day on">금</span><span class="day">토</span><span class="day">일</span></div>
+              </div>
+              <div class="field"><span class="label">시작 차시</span><span class="input">식의 계산 · 단항식 <small>중2</small></span></div>
+              <div class="inline">
+                <div class="field" style="flex:1 1 140px"><span class="label">한 수업</span><span class="input">1차시</span></div>
+                <div class="field" style="flex:1 1 140px"><span class="label">시작일</span><span class="input">9월 16일</span></div>
+              </div>
+              <div class="switch">자동 출제 <span class="toggle" aria-hidden="true"></span></div>
+              <div class="inline"><span class="btn">저장</span></div>
+            </div>
+            <div class="card">
+              <h3>이번 주 예정 <span class="quiet" style="font-weight:400">9월 14일 – 20일</span></h3>
+              <div class="week">
+                <div class="wd class"><b>월 14</b><span>다항식의 덧셈</span></div>
+                <div class="wd"><b>화 15</b></div>
+                <div class="wd class today"><b>수 16</b><span>다항식의 곱셈</span></div>
+                <div class="wd"><b>목 17</b></div>
+                <div class="wd class"><b>금 18</b><span>다항식의 나눗셈</span></div>
+                <div class="wd"><b>토 19</b></div>
+                <div class="wd"><b>일 20</b></div>
+              </div>
+              <p class="note"><span class="late">3일 밀림</span> · 실제 진도를 기록하면 그 지점부터 다시 펴집니다.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div>
+        <p class="frame-cap">메인 › 오늘의 확인테스트</p>
+        <div class="strip">
+          <div class="strip-top"><b>아침 8시에 초안 5장이 섰습니다</b><span class="btn">검수하기</span></div>
+          <div class="chips"><span class="chip warn">3일 밀림 1명</span><span class="chip warn">문항 부족 2명</span><span class="chip">시험기간 1명</span></div>
+          <p class="quiet">중1 B반 — 오늘 수업 계획이 없습니다.</p>
+        </div>
+      </div>
+      <div>
+        <p class="frame-cap">시험지 목록</p>
+        <div class="strip rows">
+          <div class="trow"><span>이서준 · 중2 확인테스트 · 다항식의 곱셈</span><span class="tag">자동 초안</span><span class="quiet">9월 16일</span></div>
+          <div class="trow"><span>김도윤 · 중2 확인테스트 · 다항식의 곱셈</span><span class="tag">자동 초안</span><span class="quiet">9월 16일</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─────────────────────────── 4 -->
+  <section class="panel v4" data-panel="4" hidden>
+    <div class="thesis">
+      <h2>4 · 목록 — 굵기 대비만</h2>
+      <p>색을 거의 쓰지 않고 굵기로만 가릅니다. 이미 나간 차시는 굵게, 아직 예정인 차시는 가늘고 흐리게.
+        카드 안이 가장 조용하고, 밀림만 빨강 글자 하나로 남습니다.</p>
+    </div>
+    <div class="frames">
+      <div>
+        <p class="frame-cap">반 관리 › 중2 A반</p>
+        <div class="app">
+          <div class="two">
+            <div class="card">
+              <h3>수업 계획</h3>
+              <div class="field"><span class="label">수업 요일</span>
+                <div class="days"><span class="day on">월</span><span class="day">화</span><span class="day on">수</span><span class="day">목</span><span class="day on">금</span><span class="day">토</span><span class="day">일</span></div>
+              </div>
+              <div class="field"><span class="label">시작 차시</span><span class="input">식의 계산 · 단항식 <small>중2</small></span></div>
+              <div class="inline">
+                <div class="field" style="flex:1 1 140px"><span class="label">한 수업</span><span class="input">1차시</span></div>
+                <div class="field" style="flex:1 1 140px"><span class="label">시작일</span><span class="input">9월 16일</span></div>
+              </div>
+              <div class="switch">자동 출제 <span class="toggle" aria-hidden="true"></span></div>
+              <div class="inline"><span class="btn">저장</span></div>
+            </div>
+            <div class="card">
+              <h3>이번 주 예정</h3>
+              <div class="list">
+                <div class="li"><span class="d">9월 14일 월</span><span class="u">다항식의 덧셈</span><span class="quiet">나감</span></div>
+                <div class="li"><span class="d">9월 16일 수</span><span class="u plan">다항식의 곱셈</span><span class="late">3일 밀림</span></div>
+                <div class="li"><span class="d">9월 18일 금</span><span class="u plan">다항식의 나눗셈</span><span class="quiet">예정</span></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div>
+        <p class="frame-cap">메인 › 오늘의 확인테스트</p>
+        <div class="strip">
+          <div class="strip-top"><b>아침 8시에 초안 5장이 섰습니다</b><span class="btn">검수하기</span></div>
+          <div class="chips"><span class="chip warn">3일 밀림 1명</span><span class="chip warn">문항 부족 2명</span><span class="chip">시험기간 1명</span></div>
+          <p class="quiet">중1 B반 — 오늘 수업 계획이 없습니다.</p>
+        </div>
+      </div>
+      <div>
+        <p class="frame-cap">시험지 목록</p>
+        <div class="strip rows">
+          <div class="trow"><span>이서준 · 중2 확인테스트 · 다항식의 곱셈</span><span class="tag">자동 초안</span><span class="quiet">9월 16일</span></div>
+          <div class="trow"><span>김도윤 · 중2 확인테스트 · 다항식의 곱셈</span><span class="tag">자동 초안</span><span class="quiet">9월 16일</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─────────────────────────── 5 -->
+  <section class="panel v5" data-panel="5" hidden>
+    <div class="thesis">
+      <h2>5 · 지면 결 — 명조 제목과 잉크</h2>
+      <p>시험지 지면(05 §8.5)의 말투를 계획 카드에 옮깁니다. 명조 제목 아래 굵은 룰, 검정 잉크 버튼,
+        얇은 선으로 나눈 예정표. 오늘의수학만의 결이 가장 강하지만 작업실의 파랑과는 다른 톤이 됩니다.</p>
+    </div>
+    <div class="frames">
+      <div>
+        <p class="frame-cap">반 관리 › 중2 A반</p>
+        <div class="app">
+          <div class="two">
+            <div class="card">
+              <h3>수업 계획</h3>
+              <div class="field"><span class="label">수업 요일</span>
+                <div class="days"><span class="day on">월</span><span class="day">화</span><span class="day on">수</span><span class="day">목</span><span class="day on">금</span><span class="day">토</span><span class="day">일</span></div>
+              </div>
+              <div class="field"><span class="label">시작 차시</span><span class="input">식의 계산 · 단항식 <small>중2</small></span></div>
+              <div class="inline">
+                <div class="field" style="flex:1 1 140px"><span class="label">한 수업</span><span class="input">1차시</span></div>
+                <div class="field" style="flex:1 1 140px"><span class="label">시작일</span><span class="input">9월 16일</span></div>
+              </div>
+              <div class="switch">자동 출제 <span class="toggle" aria-hidden="true"></span></div>
+              <div class="inline"><span class="btn">저장</span></div>
+            </div>
+            <div class="card">
+              <h3>이번 주 예정</h3>
+              <div class="ruled">
+                <div><small>9/14 월</small><em>다항식의 덧셈</em><small>나감</small></div>
+                <div><small>9/16 수</small><em>다항식의 곱셈</em><span class="late">3일 밀림</span></div>
+                <div><small>9/18 금</small><em>다항식의 나눗셈</em><small>예정</small></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div>
+        <p class="frame-cap">메인 › 오늘의 확인테스트</p>
+        <div class="strip">
+          <div class="strip-top"><b>아침 8시에 초안 5장이 섰습니다</b><span class="btn">검수하기</span></div>
+          <div class="chips"><span class="chip warn">3일 밀림 1명</span><span class="chip warn">문항 부족 2명</span><span class="chip">시험기간 1명</span></div>
+          <p class="quiet">중1 B반 — 오늘 수업 계획이 없습니다.</p>
+        </div>
+      </div>
+      <div>
+        <p class="frame-cap">시험지 목록</p>
+        <div class="strip rows">
+          <div class="trow"><span>이서준 · 중2 확인테스트 · 다항식의 곱셈</span><span class="tag">자동 초안</span><span class="quiet">9월 16일</span></div>
+          <div class="trow"><span>김도윤 · 중2 확인테스트 · 다항식의 곱셈</span><span class="tag">자동 초안</span><span class="quiet">9월 16일</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="ask">
+    <h2>정할 것</h2>
+    <ol>
+      <li><b>어느 결로 갈까요.</b> 1 · 2 · 3 · 4 · 5 중 하나. 섞으셔도 됩니다(예: 1의 카드 + 3의 띠).</li>
+      <li><b>자동으로 선 시험지 표시 문구.</b> «자동 초안»으로 둘지, «8시 초안» · «계획 출제»처럼 다르게 부를지.</li>
+      <li><b>메인 줄의 첫 문장.</b> «아침 8시에 초안 5장이 섰습니다»처럼 시각을 적을지, «오늘 초안 5장»처럼 짧게 둘지.</li>
+      <li><b>반을 만들 때</b> 계획 칸을 처음부터 펼쳐 둘지, «수업 계획 넣기» 한 줄로 접어 둘지.</li>
+    </ol>
+    <p class="quiet">숫자·이름은 보기용입니다. 색은 작업실(파랑 #3159DF)과 계기판 기능색(05 §2.2)에서만 가져왔습니다.</p>
+  </section>
+</div>
+
+<script>
+const tabs = [...document.querySelectorAll(".tab")];
+const panels = [...document.querySelectorAll("[data-panel]")];
+tabs.forEach((tab) => {
+  tab.addEventListener("click", () => {
+    tabs.forEach((t) => t.setAttribute("aria-selected", String(t === tab)));
+    panels.forEach((p) => { p.hidden = p.dataset.panel !== tab.dataset.tab; });
+  });
+});
+</script>
