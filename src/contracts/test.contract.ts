@@ -320,6 +320,8 @@ export const dailyReviewResponseSchema = dataResponseSchema(
         ambiguous: z.number().int(),
       })
       .nullable(),
+    /** 오늘 **대상이 된** 학생 수(분모) — 계획상 수업일이거나 오늘 보고서가 있는 학생.
+     *  예전에는 「오늘 보고서가 있는 학생」이었다(D-129 ⑷ 로 계획 축이 붙었다). */
     attended: z.number().int().min(0),
     /** 문항이 충분한 묶음(poolTotal >= neededCount) — 「모두 출제」 대상. */
     auto: z.array(dailyReviewGroupSchema),

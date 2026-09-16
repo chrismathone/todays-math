@@ -39,6 +39,8 @@ import {
   MOCK_TEST_RESULT_FIXTURE_TEST,
   MOCK_TEST_RESULT_FIXTURE_TEST_PROBLEMS,
   MOCK_TEST_RESULT_PROBLEMS,
+  MOCK_OTHER_TEACHER,
+  MOCK_TEACHER,
   MOCK_TESTS,
   MOCK_UNITS,
   problemCodeSuffix,
@@ -94,6 +96,39 @@ interface EywaSyncRunRow {
   unresolvedLines: number;
   ambiguous: number;
   examOnly: number;
+}
+
+/** 진도 계획(D-129 ⑴) — 규칙 한 줄. studentId 가 null 이면 반 계획. */
+interface ProgressPlanRow {
+  id: string;
+  classId: string;
+  studentId: string | null;
+  weekdays: number[];
+  unitsPerLesson: number;
+  startUnitId: string;
+  startDate: Date;
+  active: boolean;
+  createdAt: Date;
+  updatedAt: Date;
+}
+
+/** 아침 8시 자동 초안 회차 기록(D-129 ⑶). */
+interface AutoDraftRunRow {
+  id: string;
+  ranAt: Date;
+  day: Date;
+  targets: number;
+  created: number;
+  skipped: number;
+  skips: unknown;
+}
+
+/** 계정 — 자동 출제가 **소유자(원장 계정)** 를 이메일로 찾는다(`resolveAutoDraftOwner`). */
+interface UserRow {
+  id: string;
+  email: string;
+  name: string;
+  deletedAt: Date | null;
 }
 
 type UnitRow = MockUnit;
@@ -576,6 +611,9 @@ let studentRows: StudentRow[] = [];
 let eywaSyncRunRows: EywaSyncRunRow[] = [];
 let eywaSyncLedgerRows: EywaSyncLedgerRow[] = [];
 let unitRows: UnitRow[] = [];
+let progressPlanRows: ProgressPlanRow[] = [];
+let autoDraftRunRows: AutoDraftRunRow[] = [];
+let userRows: UserRow[] = [];
 let progressRows: ProgressRow[] = [];
 let problemRows: ProblemRow[] = [];
 let testRows: TestRow[] = [];
@@ -600,6 +638,16 @@ export function resetPrismaTestDouble() {
   eywaSyncRunRows = [];
   eywaSyncLedgerRows = [];
   unitRows = MOCK_UNITS.map((unit) => ({ ...unit }));
+  // 진도 계획·자동 회차는 **빈 것이 정상**이다(공유 DB 도 빈 표). 시드로 채우면
+  // 「계획이 없으면 예전 그대로」를 겨누는 시험이 분모를 잃는다.
+  progressPlanRows = [];
+  autoDraftRunRows = [];
+  userRows = [MOCK_TEACHER, MOCK_OTHER_TEACHER].map((u) => ({
+    id: u.id,
+    email: u.email,
+    name: u.name,
+    deletedAt: null,
+  }));
   progressRows = MOCK_PROGRESS.map(toProgressRow);
   problemRows = [
     ...MOCK_PROBLEMS,
@@ -858,6 +906,19 @@ function matchesWhere<T extends object>(
       throw new Error(
         `prismaTestDouble: 지원하지 않는 필드 조건 '${JSON.stringify(cond)}' — 조용히 통과시키지 않는다`,
       );
+    }
+
+    /**
+     * 🔴 **날짜는 `===` 로 안 맞는다** — `new Date(x) === new Date(x)` 는 늘 거짓이다.
+     *    그래서 `where: { testDate: new Date(day) }` 같은 조회가 가짜에서 **언제나 빈 배열**
+     *    이었다. 하필 그 조회가 「오늘 이미 만든 시험」(중복 출제 막기)이라, 중복 금지를
+     *    겨누는 시험이 **가드가 없어도 초록**이 된다 — 못 세는 것을 «없다»로 읽는 자리다.
+     *    시각으로 견준다(`comparable`).
+     */
+    if (cond instanceof Date || value instanceof Date) {
+      const left = comparable(value);
+      const right = comparable(cond);
+      return left !== null && right !== null && left === right;
     }
     return value === cond;
   });
@@ -1156,6 +1217,106 @@ const prismaModels = {
       };
       eywaSyncRunRows.push(row);
       return row;
+    },
+  },
+
+  /** 진도 계획 — 라우트는 읽기만 한다(쓰기 화면은 D-07 시안 뒤). 시험이 create 로 심는다. */
+  progressPlan: {
+    async findMany({
+      where,
+      select,
+    }: {
+      where?: Record<string, unknown>;
+      select?: Record<string, unknown>;
+    } = {}) {
+      return applySelect(
+        progressPlanRows.filter((row) => matchesWhere(row, where)),
+        select,
+      );
+    },
+    async create({
+      data,
+    }: {
+      data: Omit<ProgressPlanRow, "id" | "createdAt" | "updatedAt"> &
+        Partial<Pick<ProgressPlanRow, "studentId" | "active">>;
+    }) {
+      const now = new Date();
+      const row: ProgressPlanRow = {
+        id: randomUUID(),
+        ...data,
+        studentId: data.studentId ?? null,
+        active: data.active ?? true,
+        createdAt: now,
+        updatedAt: now,
+      };
+      progressPlanRows.push(row);
+      return row;
+    },
+    async deleteMany({ where }: { where?: Record<string, unknown> } = {}) {
+      const keep = progressPlanRows.filter((r) => !matchesWhere(r, where));
+      const count = progressPlanRows.length - keep.length;
+      progressPlanRows = keep;
+      return { count };
+    },
+  },
+
+  /** 자동 초안 회차 기록 — 회차마다 한 줄. */
+  autoDraftRun: {
+    async create({ data }: { data: Omit<AutoDraftRunRow, "id" | "ranAt"> }) {
+      const row: AutoDraftRunRow = {
+        id: randomUUID(),
+        ranAt: new Date(),
+        ...data,
+      };
+      autoDraftRunRows.push(row);
+      return row;
+    },
+    async findMany({
+      where,
+      orderBy,
+    }: { where?: Record<string, unknown>; orderBy?: unknown } = {}) {
+      return applyOrder(
+        autoDraftRunRows.filter((row) => matchesWhere(row, where)),
+        orderBy,
+      );
+    },
+    async findFirst({
+      orderBy,
+    }: { orderBy?: { ranAt?: "asc" | "desc" } } = {}) {
+      const rows = [...autoDraftRunRows].sort((a, b) =>
+        orderBy?.ranAt === "desc"
+          ? b.ranAt.getTime() - a.ranAt.getTime()
+          : a.ranAt.getTime() - b.ranAt.getTime(),
+      );
+      return rows[0] ?? null;
+    },
+  },
+
+  user: {
+    async findUnique({
+      where,
+      select,
+    }: {
+      where: { id?: string; email?: string };
+      select?: Record<string, unknown>;
+    }) {
+      const row =
+        userRows.find(
+          (r) =>
+            (where.id !== undefined && r.id === where.id) ||
+            (where.email !== undefined && r.email === where.email),
+        ) ?? null;
+      return row === null ? null : (applySelect([row], select)[0] ?? null);
+    },
+    async findFirst({
+      where,
+      select,
+    }: {
+      where?: Record<string, unknown>;
+      select?: Record<string, unknown>;
+    } = {}) {
+      const row = userRows.find((r) => matchesWhere(r, where)) ?? null;
+      return row === null ? null : (applySelect([row], select)[0] ?? null);
     },
   },
 
@@ -2323,6 +2484,9 @@ function snapshotRows() {
     studentRows,
     unitRows,
     progressRows,
+    progressPlanRows,
+    autoDraftRunRows,
+    userRows,
     problemRows,
     testRows,
     testProblemRows,
@@ -2350,6 +2514,9 @@ function restoreRows(snapshot: ReturnType<typeof snapshotRows>) {
   studentRows = snapshot.studentRows;
   unitRows = snapshot.unitRows;
   progressRows = snapshot.progressRows;
+  progressPlanRows = snapshot.progressPlanRows;
+  autoDraftRunRows = snapshot.autoDraftRunRows;
+  userRows = snapshot.userRows;
   problemRows = snapshot.problemRows;
   testRows = snapshot.testRows;
   testProblemRows = snapshot.testProblemRows;

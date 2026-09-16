@@ -255,6 +255,8 @@ model Class {
   students   Student[]
   progresses Progress[]
   tests      Test[]
+  /// 진도 계획 — 반 계획 한 줄 + 개별 진도 학생의 학생 계획들(D-129 ⑴)
+  progressPlans ProgressPlan[]
 
   @@index([userId])
   @@map("class")
@@ -340,6 +342,8 @@ model Student {
   conceptLectureViews ConceptLectureView[]
   /// 오늘의 개념 학생 로그인 계정 (D-124 ⑶) — 없으면 아직 발급 전. 학생을 지우면 같이 지워진다
   studentAccount      StudentAccount?
+  /// 진도 계획 — 개별 진도 학생일 때만 반 계획을 덮는다(D-129 ⑴). 없으면 반 계획을 쓴다
+  progressPlan        ProgressPlan?
 
   @@index([classId])
   @@map("student")
@@ -368,6 +372,8 @@ model Unit {
   examQuestions  ExamQuestion[]
   testRangeStart Test[]          @relation("TestRangeStartUnit")
   testRangeEnd   Test[]          @relation("TestRangeEndUnit")
+  /// 진도 계획의 시작 차시 (D-129 ⑴)
+  progressPlanStarts ProgressPlan[] @relation("ProgressPlanStartUnit")
   problemFamily  ProblemFamily[]
   /// 오늘의 개념 강의 (D-123 ⑥′) — 강의가 붙는 자리는 차시다(수맥은 개념)
   conceptLectures ConceptLecture[]
@@ -553,6 +559,75 @@ model Progress {
   @@index([classId, recordedAt(sort: Desc)])
   @@index([studentId, recordedAt(sort: Desc)])
   @@map("progress")
+}
+
+/// 진도 **계획** — 규칙 한 줄이다 (D-129 ⑴, `docs/planning/22-daily-auto-test.md` §3).
+///
+/// 🔴 **날짜별 행을 쌓지 않는다.** 요일이 바뀌면 지난 행을 전부 고쳐 써야 하고, 그러면
+///    「무엇이 계획이고 무엇이 기록인가」가 섞인다. 규칙을 날짜로 펴는 곳은 순수 함수
+///    `src/lib/daily/progressPlan.ts` **한 곳**이다.
+///
+/// `student_id` 가 NULL 이면 **반 계획**, 값이 있으면 **그 학생 계획**이다 — `Progress` 의
+/// 반/개별 이중 구조와 같은 모양이고, 덮어쓰는 조건도 같다(`Student.use_individual_progress`
+/// 가 참일 때만 학생 계획이 반 계획을 이긴다 — `pickProgressPlan`).
+///
+/// ⚠️ 「반에 계획 하나 · 학생에 계획 하나」는 **부분 unique 인덱스**가 지킨다. Prisma 는 부분
+///    인덱스를 표현하지 못해 마이그레이션의 «손으로 더한 것» 절에 있다.
+model ProgressPlan {
+  id        String  @id @default(uuid()) @db.Uuid
+  classId   String  @map("class_id") @db.Uuid
+  /// NULL이면 반 계획, 값이 있으면 해당 학생 계획.
+  /// `@unique` 는 **학생 계획이 학생당 하나**라는 뜻이다 — Postgres 는 NULL 을 서로 다른 값으로
+  /// 보므로 반 계획 여러 줄은 이 인덱스에 걸리지 않는다. 반 계획이 반당 하나인 것은
+  /// 마이그레이션의 부분 unique 인덱스가 따로 지킨다.
+  studentId String? @unique @map("student_id") @db.Uuid
+
+  /// 수업 요일 — 0=일 … 6=토 (`Date.getUTCDay()` 와 같은 번호. 한국식 「월=1」이 아니다).
+  /// 비어 있으면 수업일이 하나도 없다 — CHECK 가 막는다.
+  weekdays       Int[]    @db.SmallInt
+  /// 한 수업당 차시 수 (기본 1)
+  unitsPerLesson Int      @default(1) @map("units_per_lesson")
+  /// 시작 차시 — 교육과정 차례(order_index, D-27)의 출발점
+  startUnitId    String   @map("start_unit_id") @db.Uuid
+  /// 시작일 — 이 날 **이후 첫 수업일**에 시작 차시를 나간다
+  startDate      DateTime @map("start_date") @db.Date
+  /// 꺼 두면 자동 대상이 아니다 — 계획을 지우지 않고 멈추는 길
+  active         Boolean  @default(true)
+
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
+
+  class     Class    @relation(fields: [classId], references: [id], onDelete: Cascade)
+  student   Student? @relation(fields: [studentId], references: [id], onDelete: Cascade)
+  /// 차시는 지우지 못하게 막는다 — 계획이 가리키는 출발점이 사라지면 계획이 말을 잃는다
+  startUnit Unit     @relation("ProgressPlanStartUnit", fields: [startUnitId], references: [id], onDelete: Restrict)
+
+  @@index([classId])
+  @@map("progress_plan")
+}
+
+/// 아침 8시 **자동 초안 회차 기록** (D-129 ⑶) — 한 회차가 무엇을 했나.
+///
+/// 표를 새로 두는 까닭: `eywa_sync_run` 은 **eywa 동기화의 칸**(받은 학생·반·미해결 줄)이고
+/// 이번 트랙은 eywa 를 쓰지 않는다(D-129 ⑸ 보류). 남의 회차 표에 뜻이 다른 수를 끼워 넣으면
+/// 화면의 「마지막 동기화」 스트립이 **안 돈 동기화를 돈 것으로** 읽는다.
+model AutoDraftRun {
+  id      String   @id @default(uuid()) @db.Uuid
+  ranAt   DateTime @default(now()) @map("ran_at")
+  /// 기준일(KST) — 「오늘」의 정의
+  day     DateTime @db.Date
+  /// 그날 대상이 된 학생 수
+  targets Int
+  /// 만든 초안 수
+  created Int
+  /// 건너뛴 수 — `skips` 의 길이와 같다
+  skipped Int
+  /// 학생별 건너뛴 까닭 — `[{ studentId, reason }]`. **조용히 빠지는 학생이 없게** 남긴다.
+  /// 까닭의 SSOT 는 `src/contracts/dailyAutoTest.contract.ts` 의 `autoDraftSkipReasonSchema`.
+  skips   Json     @db.JsonB
+
+  @@index([ranAt])
+  @@map("auto_draft_run")
 }
 
 // ─────────────────────────────────────────────

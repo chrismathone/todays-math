@@ -11,11 +11,15 @@
  * 4. 직전 확인테스트가 있는 학생은 그 끝 **다음**부터(2회차 동작) —
  *    없는 학생은 대단원 제한(D-63).
  * 5. neededCount 는 구성원 반 기본 문항 수의 최댓값.
+ * 6. **진도 계획이 있으면 보고서가 없어도 대상이다** (매일 자동 출제 ⑤, D-129 ⑷) —
+ *    손으로 등록한 학생·고등도 들어온다. 「오늘 수업했나」를 `eywaLastReportDate` 로만
+ *    재던 셈을 **계획(요일)** 으로 넓힌다.
  */
 import { describe, expect, it } from "vitest";
 
 import {
   planDailyReview,
+  type DailyPlanRow,
   type DailyStudent,
 } from "@/lib/daily/planDailyReview";
 
@@ -36,16 +40,36 @@ const student = (over: Partial<DailyStudent>): DailyStudent => ({
   defaultProblemCount: 8,
   schoolLevel: "중",
   schoolGrade: 2,
+  // eywa 연계 학생은 동기화가 늘 참으로 넣는다(`runSync.ts`) — 기존 갈래의 전제 그대로.
+  useIndividualProgress: true,
   lastReportDate: "2026-08-21",
   lastReportText: "수학 진도",
   ...over,
 });
 
-const row = (studentId: string, unitId: string, recordedAt: string) => ({
+const row = (
+  studentId: string | null,
+  unitId: string,
+  recordedAt: string,
+  classId = "c1",
+) => ({
+  classId,
   studentId,
   unitId,
   recordedAt,
   createdAt: `${recordedAt}T10:00:00Z`,
+});
+
+/** 2026-08-21 은 **금요일**이다 — 아래 계획들의 요일은 그 날을 겨눈다. */
+const planRow = (over: Partial<DailyPlanRow> = {}): DailyPlanRow => ({
+  classId: "c1",
+  studentId: null,
+  weekdays: [1, 3, 5], // 월·수·금
+  unitsPerLesson: 1,
+  startUnitId: "u1",
+  startDate: "2026-08-14", // 금 — 8/14 u1 · 8/17 u2 · 8/19 u3 · 8/21 u4
+  active: true,
+  ...over,
 });
 
 describe("[planDailyReview] 오늘의 학생별 확인테스트 계획", () => {
@@ -178,5 +202,211 @@ describe("[planDailyReview] 오늘의 학생별 확인테스트 계획", () => {
     });
     expect(plan.groups).toEqual([]);
     expect(plan.noRange.map((s) => s.id)).toEqual(["s1"]);
+  });
+});
+
+/**
+ * 🔴 매일 자동 출제 ⑤ — **계획이 있는 학생이면 전부 대상**(D-129 ⑷).
+ *
+ * 지금까지 「오늘 수업했나」는 eywa 보고서 날짜 하나였다. 그러면 손으로 등록한 학생과
+ * 고등은 **영영 자동에 못 들어온다**(고등은 eywa 차시 체계에 아예 없다). 계획(요일)이
+ * 그 자리를 대신한다 — 그리고 진도가 기록되면 **실제가 이긴다**(D-129 ⑵).
+ */
+describe("[planDailyReview] 진도 계획으로 대상을 넓힌다", () => {
+  const DAY = "2026-08-21"; // 금
+
+  it("보고서가 없어도 계획상 오늘이 수업일이면 대상이다 — 손 등록 학생·고등", () => {
+    const plan = planDailyReview({
+      day: DAY,
+      students: [
+        student({ id: "s1", lastReportDate: null, lastReportText: null }),
+      ],
+      progressRows: [],
+      lastReviews: [],
+      units: UNITS,
+      plans: [planRow()],
+    });
+    expect(plan.attended).toBe(1);
+    expect(plan.groups).toHaveLength(1);
+    expect(plan.groups[0]!.students.map((s) => s.id)).toEqual(["s1"]);
+  });
+
+  it("계획상 수업일이 아니면 대상이 아니다 — 토요일엔 아무도 안 선다", () => {
+    const plan = planDailyReview({
+      day: "2026-08-22", // 토
+      students: [
+        student({ id: "s1", lastReportDate: null, lastReportText: null }),
+      ],
+      progressRows: [],
+      lastReviews: [],
+      units: UNITS,
+      plans: [planRow()],
+    });
+    expect(plan.attended).toBe(0);
+    expect(plan.groups).toEqual([]);
+  });
+
+  it("꺼 둔 계획은 대상이 아니다", () => {
+    const plan = planDailyReview({
+      day: DAY,
+      students: [
+        student({ id: "s1", lastReportDate: null, lastReportText: null }),
+      ],
+      progressRows: [],
+      lastReviews: [],
+      units: UNITS,
+      plans: [planRow({ active: false })],
+    });
+    expect(plan.attended).toBe(0);
+  });
+
+  /**
+   * 🔴 진도 이력이 **한 줄도 없는** 새 학생이 `current-only`(한 차시짜리 범위)로 떨어지지
+   *    않는다 — 계획의 시작 차시가 「그 반이 나가기 시작한 데」 노릇을 하고, 그 위에
+   *    D-63 대단원 제한이 그대로 걸린다.
+   */
+  it("계획의 시작 차시가 «이력 첫 단원» 노릇을 한다 — D-63 대단원 제한 그대로", () => {
+    const plan = planDailyReview({
+      day: DAY,
+      students: [
+        student({ id: "s1", lastReportDate: null, lastReportText: null }),
+      ],
+      progressRows: [],
+      lastReviews: [],
+      units: UNITS,
+      plans: [planRow()], // 8/21 = 넷째 수업 → u4 (3. 방정식)
+    });
+    const g = plan.groups[0]!;
+    expect(g.rangeEndUnitId).toBe("u4");
+    expect(g.rangeStartUnitId).toBe("u3"); // 대단원 처음 — u1 까지 거슬러 가지 않는다
+    expect(g.startedFrom).toBe("chapter-start");
+  });
+
+  it("🔴 실제가 이긴다 — 오늘 진도가 기록됐으면 계획이 아니라 그 차시가 범위 끝", () => {
+    const plan = planDailyReview({
+      day: DAY,
+      students: [
+        student({ id: "s1", lastReportDate: null, lastReportText: null }),
+      ],
+      progressRows: [row("s1", "u2", DAY)],
+      lastReviews: [],
+      units: UNITS,
+      plans: [planRow()], // 계획대로면 u4
+    });
+    expect(plan.groups[0]!.rangeEndUnitId).toBe("u2");
+  });
+
+  it("학생 계획이 반 계획을 덮는다 — 개별 진도 학생만", () => {
+    const plan = planDailyReview({
+      day: DAY,
+      students: [
+        student({
+          id: "s1",
+          name: "학생가",
+          useIndividualProgress: true,
+          lastReportDate: null,
+          lastReportText: null,
+        }),
+        student({
+          id: "s2",
+          name: "학생나",
+          useIndividualProgress: false,
+          lastReportDate: null,
+          lastReportText: null,
+        }),
+      ],
+      progressRows: [],
+      lastReviews: [],
+      units: UNITS,
+      plans: [
+        planRow(),
+        // s1 전용 — 금요일만 나간다: 8/14 u1 · 8/21 u2
+        planRow({ studentId: "s1", weekdays: [5] }),
+        // s2 는 개별 진도가 아니라 이 줄이 있어도 반 계획을 쓴다
+        planRow({ studentId: "s2", weekdays: [5] }),
+      ],
+    });
+    const byStudent = new Map(
+      plan.groups.flatMap((g) => g.students.map((s) => [s.id, g] as const)),
+    );
+    expect(byStudent.get("s1")!.rangeEndUnitId).toBe("u2");
+    expect(byStudent.get("s2")!.rangeEndUnitId).toBe("u4");
+  });
+
+  it("개별 진도가 아닌 학생은 **반 진도**를 본다 — 실제가 이긴다도 반 행으로", () => {
+    const plan = planDailyReview({
+      day: DAY,
+      students: [
+        student({
+          id: "s1",
+          useIndividualProgress: false,
+          lastReportDate: null,
+          lastReportText: null,
+        }),
+      ],
+      progressRows: [row(null, "u5", DAY)], // 반 전체 진도
+      lastReviews: [],
+      units: UNITS,
+      plans: [planRow()],
+    });
+    expect(plan.groups[0]!.rangeEndUnitId).toBe("u5");
+  });
+
+  /** 🔴 D-64 가 계획보다 앞선다 — 보고서가 「내신대비」면 계획이 수업일이라도 표시만. */
+  it("보고서는 오늘인데 진도 행이 없으면 계획이 있어도 examOrUnread", () => {
+    const plan = planDailyReview({
+      day: DAY,
+      students: [student({ id: "s1", lastReportText: "수학 내신대비" })],
+      progressRows: [],
+      lastReviews: [],
+      units: UNITS,
+      plans: [planRow()],
+    });
+    expect(plan.groups).toEqual([]);
+    expect(plan.examOrUnread.map((s) => s.id)).toEqual(["s1"]);
+  });
+
+  it("계획 대상과 보고서 대상을 합쳐 센다 — 같은 학생을 두 번 세지 않는다", () => {
+    const plan = planDailyReview({
+      day: DAY,
+      students: [
+        // 계획도 있고 오늘 보고서·진도도 있다 — 한 번만 센다
+        student({ id: "s1", name: "학생가" }),
+        // 계획만 있다
+        student({ id: "s2", name: "학생나", lastReportDate: null }),
+        // 보고서만 있다(계획 밖의 반)
+        student({
+          id: "s3",
+          name: "학생다",
+          classId: "c2",
+          lastReportDate: DAY,
+        }),
+      ],
+      progressRows: [row("s1", "u4", DAY), row("s3", "u4", DAY, "c2")],
+      lastReviews: [],
+      units: UNITS,
+      plans: [planRow()],
+    });
+    expect(plan.attended).toBe(3);
+    const everyone = plan.groups.flatMap((g) => g.students.map((s) => s.id));
+    expect(everyone.sort()).toEqual(["s1", "s2", "s3"]);
+  });
+
+  it("계획이 없으면 지금 그대로다 — 보고서 날짜가 「오늘」을 가른다", () => {
+    const plan = planDailyReview({
+      day: DAY,
+      students: [
+        student({ id: "s1", lastReportDate: DAY }),
+        student({ id: "s2", name: "학생나", lastReportDate: "2026-08-20" }),
+      ],
+      progressRows: [row("s1", "u4", DAY), row("s2", "u4", "2026-08-20")],
+      lastReviews: [],
+      units: UNITS,
+      plans: [],
+    });
+    expect(plan.attended).toBe(1);
+    expect(plan.groups.flatMap((g) => g.students.map((s) => s.id))).toEqual([
+      "s1",
+    ]);
   });
 });

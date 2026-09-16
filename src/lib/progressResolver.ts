@@ -46,20 +46,31 @@ export function findLatestProgress<T extends ProgressRecordLike>(
 }
 
 /**
+ * **어느 이력이 적용되나** — 반/개별 이중 구조의 판정 그 자체.
+ *
+ * 🔴 「현재 진도」만 고르는 곳이 아니라 **이력 전체**를 쓰는 곳이 있다(확인테스트의 D-63 은
+ *    「그 반이 나가기 시작한 데」를 이력에서 찾는다). 그때 적용 이력을 따로 고르면 «현재
+ *    진도는 개별인데 시작점은 반»처럼 앞뒤가 안 맞는 범위가 나온다 — 판정은 여기 한 곳이다.
+ */
+export function applicableProgress<T extends ProgressRecordLike>({
+  classProgress,
+  studentProgress = [],
+  useIndividualProgress = false,
+}: GetCurrentProgressInput<T>): T[] {
+  if (useIndividualProgress && studentProgress.length > 0)
+    return studentProgress;
+  return classProgress;
+}
+
+/**
  * 반/개별 이중 구조를 적용해 "현재 진도" 1건을 계산한다.
  * useIndividualProgress가 true이고 개별 이력이 1건 이상이면 개별 진도의 최신 건을,
  * 그렇지 않으면 반 진도의 최신 건을 반환한다. 이력이 전혀 없으면 null(진도 미기록).
  */
-export function getCurrentProgress<T extends ProgressRecordLike>({
-  classProgress,
-  studentProgress = [],
-  useIndividualProgress = false,
-}: GetCurrentProgressInput<T>): T | null {
-  if (useIndividualProgress) {
-    const latestIndividual = findLatestProgress(studentProgress);
-    if (latestIndividual) return latestIndividual;
-  }
-  return findLatestProgress(classProgress);
+export function getCurrentProgress<T extends ProgressRecordLike>(
+  input: GetCurrentProgressInput<T>,
+): T | null {
+  return findLatestProgress(applicableProgress(input));
 }
 
 /** "다음 소단원 1클릭 진행"(D-19) — 전역 연속 order_index(D-27) 기준 다음 orderIndex. */
