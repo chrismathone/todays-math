@@ -1,28 +1,66 @@
 /**
- * GET /api/tests/daily-review — 오늘의 학생별 확인테스트 (2단계 화면, D-63·D-64).
+ * GET /api/tests/daily-review — 오늘의 학생별 확인테스트 (2단계 화면, D-63·D-64 · D-129 ⑷).
  *
  * 대응 계약: src/contracts/test.contract.ts (dailyReviewResponseSchema)
  * 계획 자체는 순수 함수 `planDailyReview` 한 곳에 있다 — 여기서는 조회와 풀 세기만.
  *
- * 무엇을 주나: 오늘(KST) 보고서가 있는 연계 학생을 「자동 / 문항 부족 / 시험기간·
- * 미분류 / 범위 못 냄」으로 갈라 준다. 문항 수는 출제 조회와 **같은 where**
- * (`eligibleProblemsWhere`)로 센다 — 갈리면 화면의 「부족 아님」이 출제에서 422 로
- * 죽는다.
+ * 무엇을 주나: 오늘(KST) **수업하는 학생**을 「자동 / 문항 부족 / 시험기간·미분류 / 범위
+ * 못 냄」으로 갈라 준다. 문항 수는 출제 조회와 **같은 where**(`eligibleProblemsWhere`)로
+ * 센다 — 갈리면 화면의 「부족 아님」이 출제에서 422 로 죽는다.
  *
- * 소유권: 연계 반은 이관 계정 소유라(«소유 이관은 수동», sync 주석) 여기서는
- * 반 소유를 묻지 않는다 — eywa 연계 자체가 단일 학원 데이터다. 세션(director)만
- * 요구한다. 출제(POST /api/tests/generate)는 기존 소유권 규칙 그대로다.
+ * ## 「오늘 수업하는 학생」의 출처가 **둘**이다 (2026-09-16 에 넓혔다 — D-129 ⑷)
+ *
+ *   ⑴ **진도 계획**(`progress_plan`) 이 그날을 수업일로 적은 학생 — 손으로 등록한 학생과
+ *      고등이 이 길로 들어온다(고등은 eywa 차시 체계에 아예 없다). 보고서를 안 기다린다.
+ *   ⑵ **eywa 보고서 날짜** — 계획이 아직 없는 반의 기존 축. 그대로 둔다. 계획을 넣기
+ *      전까지 이 화면이 비면 원장님의 오늘 일이 그날로 멈춘다.
+ *
+ * ## 소유권이 갈래마다 다르다 — 섞지 말 것
+ *
+ * eywa 갈래는 **계정 구분이 없다**(연계 학생·마지막 동기화는 학원 하나의 것). 그래서
+ * `isEywaOwner` 가 아니면 그 갈래를 통째로 안 읽는다 — 2026-09-07 에 새 계정이 원장님
+ * 학원의 동기화 상태를 그대로 봤다. 계획 갈래는 반대다: **반 소유(`Class.userId`)로
+ * 좁힌다.** 계획은 누구나 만들 수 있으므로 여기서 안 좁히면 남의 반이 섞인다.
+ * 출제(POST /api/tests/generate)는 기존 소유권 규칙 그대로다.
  */
 import type { NextRequest } from "next/server";
 
 import { dailyReviewResponseSchema } from "@/contracts/test.contract";
 import { jsonOk, unauthorizedError } from "@/lib/apiResponse";
-import { planDailyReview } from "@/lib/daily/planDailyReview";
+import {
+  planDailyReview,
+  type DailyPlanRow,
+} from "@/lib/daily/planDailyReview";
 import { db } from "@/lib/db";
 import { countEligibleProblems } from "@/lib/findEligibleProblems";
 import { isEywaOwner } from "@/lib/eywa/owner";
 import { kstDateOf } from "@/lib/kstDate";
 import { getSessionUser } from "@/lib/session";
+
+/** 두 갈래가 **같은 칸**을 읽어야 한다 — 한쪽만 빠지면 그 학생만 조용히 다르게 갈린다. */
+const STUDENT_SELECT = {
+  id: true,
+  name: true,
+  classId: true,
+  schoolLevel: true,
+  schoolGrade: true,
+  useIndividualProgress: true,
+  eywaLastReportDate: true,
+  eywaLastReportText: true,
+  class: {
+    select: { name: true, grade: true, defaultProblemCount: true },
+  },
+} as const;
+
+const PROGRESS_SELECT = {
+  classId: true,
+  studentId: true,
+  unitId: true,
+  recordedAt: true,
+  createdAt: true,
+} as const;
+
+const isoDay = (value: Date): string => value.toISOString().slice(0, 10);
 
 export async function GET(request: NextRequest) {
   const session = await getSessionUser();
@@ -36,82 +74,94 @@ export async function GET(request: NextRequest) {
       ? dayParam
       : kstDateOf(new Date());
 
-  // 🔴 eywa 소유자가 아니면 여기서 끝 — 아래 조회는 전부 **계정 구분이 없다**(연계 학생·
-  //    마지막 동기화 기록은 학원 하나의 것). 2026-09-07 에 새 계정이 원장님 학원의 동기화
-  //    상태를 그대로 봤다. 빈 응답을 주고 화면은 섹션 자체를 그리지 않는다.
-  if (!isEywaOwner(session.email)) {
-    return jsonOk(dailyReviewResponseSchema, {
-      data: {
-        day,
-        eywaOwner: false,
-        sync: null,
-        attended: 0,
-        auto: [],
-        lacking: [],
-        examOrUnread: [],
-        noRange: [],
-        todayTests: [],
-      },
-    });
-  }
+  const eywaOwner = isEywaOwner(session.email);
 
-  // 연계 학생 먼저 — 진도·직전 시험은 그 id 목록으로 좁혀 묻는다(관계 where 없이,
-  // 테스트 더블도 같은 질의를 그대로 소화한다).
-  const students = await db.student.findMany({
-    where: { eywaStudentId: { not: null }, eywaWithdrawnAt: null },
-    select: {
-      id: true,
-      name: true,
-      classId: true,
-      schoolLevel: true,
-      schoolGrade: true,
-      eywaLastReportDate: true,
-      eywaLastReportText: true,
-      class: {
-        select: { name: true, grade: true, defaultProblemCount: true },
-      },
-    },
+  // ── 계획 갈래 — 이 계정의 반만 ──────────────────────────────────────────
+  const ownClasses = await db.class.findMany({
+    where: { userId: session.id },
+    select: { id: true },
   });
-  const linkedIds = students.map((s) => s.id);
+  const ownClassIds = ownClasses.map((c) => c.id);
+  const planRows = ownClassIds.length
+    ? await db.progressPlan.findMany({
+        where: { classId: { in: ownClassIds } },
+        select: {
+          classId: true,
+          studentId: true,
+          weekdays: true,
+          unitsPerLesson: true,
+          startUnitId: true,
+          startDate: true,
+          active: true,
+        },
+      })
+    : [];
+  const planClassIds = [...new Set(planRows.map((p) => p.classId))];
 
-  const [syncRun, progressRows, units, reviews] = await Promise.all([
-    db.eywaSyncRun.findFirst({ orderBy: { ranAt: "desc" } }),
-    db.progress.findMany({
-      where: { studentId: { in: linkedIds } },
-      select: {
-        studentId: true,
-        unitId: true,
-        recordedAt: true,
-        createdAt: true,
-      },
-    }),
-    db.unit.findMany({
-      select: {
-        id: true,
-        grade: true,
-        chapter: true,
-        section: true,
-        orderIndex: true,
-      },
-    }),
-    // 직전 확인테스트 — **실제로 낸 것만**(confirmed·printed, default-range 와 같은
-    // 규칙). 학생별 최신 한 건이면 된다.
-    db.test.findMany({
-      where: {
-        studentId: { in: linkedIds },
-        testType: "review",
-        status: { in: ["confirmed", "printed"] },
-      },
-      orderBy: [{ testDate: "desc" }, { createdAt: "desc" }],
-      select: { studentId: true, rangeEndUnitId: true },
-    }),
+  const [eywaStudents, planStudents] = await Promise.all([
+    eywaOwner
+      ? db.student.findMany({
+          where: { eywaStudentId: { not: null }, eywaWithdrawnAt: null },
+          select: STUDENT_SELECT,
+        })
+      : Promise.resolve([]),
+    planClassIds.length
+      ? db.student.findMany({
+          where: { classId: { in: planClassIds }, eywaWithdrawnAt: null },
+          select: STUDENT_SELECT,
+        })
+      : Promise.resolve([]),
   ]);
+  // 두 갈래에 같이 든 학생은 **한 번만** 센다.
+  const studentById = new Map(
+    [...eywaStudents, ...planStudents].map((s) => [s.id, s]),
+  );
+  const students = [...studentById.values()];
+  const studentIds = students.map((s) => s.id);
+  const classIds = [...new Set(students.map((s) => s.classId))];
+
+  const [syncRun, ownProgress, classProgress, units, reviews] =
+    await Promise.all([
+      eywaOwner
+        ? db.eywaSyncRun.findFirst({ orderBy: { ranAt: "desc" } })
+        : Promise.resolve(null),
+      db.progress.findMany({
+        where: { studentId: { in: studentIds } },
+        select: PROGRESS_SELECT,
+      }),
+      // 반 전체 진도(studentId=null) — 개별 진도를 안 쓰는 학생이 이것을 본다.
+      // 어느 쪽이 적용되는지는 제품 함수(`applicableProgress`)가 정한다.
+      db.progress.findMany({
+        where: { classId: { in: classIds }, studentId: null },
+        select: PROGRESS_SELECT,
+      }),
+      db.unit.findMany({
+        select: {
+          id: true,
+          grade: true,
+          chapter: true,
+          section: true,
+          orderIndex: true,
+        },
+      }),
+      // 직전 확인테스트 — **실제로 낸 것만**(confirmed·printed, default-range 와 같은
+      // 규칙). 학생별 최신 한 건이면 된다.
+      db.test.findMany({
+        where: {
+          studentId: { in: studentIds },
+          testType: "review",
+          status: { in: ["confirmed", "printed"] },
+        },
+        orderBy: [{ testDate: "desc" }, { createdAt: "desc" }],
+        select: { studentId: true, rangeEndUnitId: true },
+      }),
+    ]);
 
   // 오늘 이미 만든 학생별 시험 — 「모두 출제」 재클릭이 중복 초안을 만들지 않게
   // 화면이 이 학생을 건너뛴다. draft 포함(초안도 «이미 출제됨»이다).
   const todayTestRows = await db.test.findMany({
     where: {
-      studentId: { in: linkedIds },
+      studentId: { in: studentIds },
       testType: "review",
       testDate: new Date(`${day}T00:00:00Z`),
     },
@@ -149,21 +199,19 @@ export async function GET(request: NextRequest) {
       defaultProblemCount: s.class.defaultProblemCount,
       schoolLevel: s.schoolLevel,
       schoolGrade: s.schoolGrade,
+      useIndividualProgress: s.useIndividualProgress,
       lastReportDate: s.eywaLastReportDate
-        ? s.eywaLastReportDate.toISOString().slice(0, 10)
+        ? isoDay(s.eywaLastReportDate)
         : null,
       lastReportText: s.eywaLastReportText,
     })),
-    progressRows: progressRows
-      .filter(
-        (r): r is typeof r & { studentId: string } => r.studentId !== null,
-      )
-      .map((r) => ({
-        studentId: r.studentId,
-        unitId: r.unitId,
-        recordedAt: r.recordedAt.toISOString().slice(0, 10),
-        createdAt: r.createdAt.toISOString(),
-      })),
+    progressRows: [...ownProgress, ...classProgress].map((r) => ({
+      classId: r.classId,
+      studentId: r.studentId,
+      unitId: r.unitId,
+      recordedAt: isoDay(r.recordedAt),
+      createdAt: r.createdAt.toISOString(),
+    })),
     lastReviews: [...lastReviewByStudent].map(
       ([studentId, rangeEndUnitId]) => ({
         studentId,
@@ -171,6 +219,15 @@ export async function GET(request: NextRequest) {
       }),
     ),
     units,
+    plans: planRows.map((p): DailyPlanRow => ({
+      classId: p.classId,
+      studentId: p.studentId,
+      weekdays: p.weekdays,
+      unitsPerLesson: p.unitsPerLesson,
+      startUnitId: p.startUnitId,
+      startDate: isoDay(p.startDate),
+      active: p.active,
+    })),
   });
 
   // 묶음마다 출제 자격 문항 수 — 출제와 같은 where(D-22·D-31 포함).
@@ -192,7 +249,7 @@ export async function GET(request: NextRequest) {
   return jsonOk(dailyReviewResponseSchema, {
     data: {
       day,
-      eywaOwner: true,
+      eywaOwner,
       sync: syncRun
         ? {
             ranAt: syncRun.ranAt.toISOString(),
