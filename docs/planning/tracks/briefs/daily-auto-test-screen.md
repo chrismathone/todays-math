@@ -7,6 +7,16 @@
 이 화면은 그 두 트랙의 라우트와 소유 범위 위에 선다. 그 보고서(`tracks/reports/daily-auto-test-plan-api.md` ·
 `admin-sees-all.md`)의 «리드가 정할 것»과 리드 결정을 먼저 읽어라.
 
+## 0. 리드 결정 — 두 트랙 보고서에서 (2026-09-16)
+
+- **계획 API 는 main 에 있다** — `/api/classes/[id]/progress-plan` · `/api/students/[id]/progress-plan`(한 줄 덮어쓰기) ·
+  이번 주 예정 14일 · `POST /api/classes` 가 계획을 같이 받는다. 보고서 `tracks/reports/daily-auto-test-plan-api.md`.
+- 🔴 **«저장하기 전에 결과를 본다»는 미리보기 경로로** — `POST …/progress-plan/preview`(저장 안 함)를 **이 트랙이 더한다.**
+  날짜 펴기는 서버의 `src/lib/daily/planSchedule.ts` 한 곳을 부른다. 화면에서 날짜를 다시 펴지 마라.
+- 반 만들기 응답에 계획이 없다 — 만들고 바로 이번 주 예정을 그려야 하면 응답에 칸을 더하고 `classApi.ts` 파싱도 같이 고쳐라.
+- **400/422 로 가르지 마라** — 서버가 준 문구·`details` 를 그대로 그린다.
+- 학생 계획 «끄기»는 **멈춤**이다(반 계획으로 돌아가지 않는다). 학생 계획 화면은 이 트랙 밖이다.
+
 ## 1. 만들 것
 
 1. **반 관리 › 수업 계획 카드** — 요일 토글(월요일부터 그리고 저장은 0=일) · 시작 차시 · 한 수업 N차시(기본 1) ·
