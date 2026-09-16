@@ -122,8 +122,9 @@ const MUTATIONS: Mutation[] = [
     name: "② 반 조회가 소유자(Class.userId)를 묻지 않는다",
     file: "src/lib/concept/adminService.ts",
     // 판정(관리자면 넘는다)은 `mutate-admin-scope.ts` ⑩c·d 가 뒤집는다 — 여기는 «조각을 안 쓴다»
-    from: "      where: ownedRowsWhere(viewer)," + NL,
-    to: "      where: {}," + NL,
+    // 반 조회가 `loadBoardClasses` 로 옮겨 갔다(D-132 담당 조인) — 조각은 거기 한 번이다
+    from: "  const where = ownedRowsWhere(viewer);" + NL,
+    to: "  const where = {};" + NL,
     probe: null,
     tests: [API],
   },

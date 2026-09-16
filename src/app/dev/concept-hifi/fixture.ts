@@ -10,6 +10,7 @@
  * - 표·요약·n/m 은 **제품과 같은 조립**(`assembleConceptBoard`)으로 짓는다.
  * - 영상 주소는 가짜 ID(`hifiLect00N`)다 — 캡처는 임베드를 끄고 찍는다.
  */
+import type { ClassOwner } from "@/contracts/class.contract";
 import type {
   ConceptBoard,
   ConceptUnitLectures,
@@ -279,6 +280,11 @@ const WATCHED: {
 export interface HifiOptions {
   canEdit?: boolean;
   stress?: boolean;
+  /**
+   * 반 차례(시안 순서)마다 담당 — 관리자 화면의 «누구의 반»(D-132) 캡처·시험용. 비면 담당 없음
+   * (관리자 아님). 조립(`assembleConceptBoard`)이 제품과 같이 내 반을 맨 위로 올린다.
+   */
+  owners?: readonly (ClassOwner | undefined)[];
   /** false 면 시청 기록이 하나도 없다(학생 로그인 전 — 빈 상태 문구) */
   views?: boolean;
   today?: string;
@@ -294,7 +300,13 @@ export function hifiBoard(options: HifiOptions = {}): ConceptBoard {
 
   specs.forEach((spec, ci) => {
     const classId = uid("2f000000", ci + 1);
-    classes.push({ id: classId, name: spec.name, grade: spec.grade });
+    const owner = options.owners?.[ci];
+    classes.push({
+      id: classId,
+      name: spec.name,
+      grade: spec.grade,
+      ...(owner ? { owner } : {}),
+    });
     const total = spec.students + (spec.withdrawn ?? 0);
     for (let i = 0; i < total; i += 1)
       students.push({
@@ -318,15 +330,13 @@ export function hifiBoard(options: HifiOptions = {}): ConceptBoard {
         (s) => s.classId === cls.id && s.eywaWithdrawnAt === null,
       );
       const lectureId = uid("5f000000", w.lecture);
-      roster
-        .slice(0, w.done)
-        .forEach((s) =>
-          views.push({
-            studentId: s.id,
-            lectureId,
-            completedAt: "2026-09-15T05:00:00.000Z",
-          }),
-        );
+      roster.slice(0, w.done).forEach((s) =>
+        views.push({
+          studentId: s.id,
+          lectureId,
+          completedAt: "2026-09-15T05:00:00.000Z",
+        }),
+      );
       roster
         .slice(w.done, w.done + (w.partial ?? 0))
         .forEach((s) =>

@@ -4,6 +4,8 @@ import {
   type ClassRow,
 } from "@/lib/main/pipeline";
 
+import { OwnerTag } from "@/components/ui/OwnerTag";
+
 import { ActionControl } from "./ActionControl";
 import { StageGauge } from "./StageGauge";
 
@@ -67,6 +69,8 @@ export function ClassCard({ row, index, hot, onSelect, onProgress }: Props) {
             <span className="shrink-0 text-[15px] font-black tracking-[-0.3px]">
               {row.name}
             </span>
+            {/* 담당 — 서버가 실어 보낼 때만(관리자, D-132). 반 이름 바로 뒤 */}
+            {row.owner ? <OwnerTag owner={row.owner} /> : null}
             {row.testTypeLabel ? (
               <span className="shrink-0 text-[10.5px] font-bold text-faint">
                 {row.testTypeLabel}

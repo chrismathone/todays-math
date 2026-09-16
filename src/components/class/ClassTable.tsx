@@ -1,5 +1,10 @@
+import { OwnerTag } from "@/components/ui/OwnerTag";
 import { nameSelectionClass } from "@/components/ui/rowSelection";
 import type { ClassEntity } from "@/contracts/class.contract";
+import { hasOwners } from "@/lib/class/ownerLabel";
+
+const HEAD_CLASS =
+  "border-b-[2.5px] border-ink px-2.5 py-2 text-left text-[10px] font-black tracking-[1.5px] text-text-2";
 
 type ClassTableProps = {
   classes: ClassEntity[];
@@ -12,16 +17,15 @@ export function ClassTable({
   selectedClassId,
   onSelect,
 }: ClassTableProps) {
+  // «담당» 열은 서버가 담당을 실어 보낼 때만(관리자 — D-132). 화면은 isAdmin 을 읽지 않는다.
+  const withOwner = hasOwners(classes);
   return (
     <table className="w-full border-collapse text-[12.5px] tabular-nums">
       <thead>
         <tr>
-          <th className="border-b-[2.5px] border-ink px-2.5 py-2 text-left text-[10px] font-black tracking-[1.5px] text-text-2">
-            반
-          </th>
-          <th className="border-b-[2.5px] border-ink px-2.5 py-2 text-left text-[10px] font-black tracking-[1.5px] text-text-2">
-            학년
-          </th>
+          <th className={HEAD_CLASS}>반</th>
+          <th className={HEAD_CLASS}>학년</th>
+          {withOwner ? <th className={HEAD_CLASS}>담당</th> : null}
         </tr>
       </thead>
       <tbody>
@@ -61,6 +65,11 @@ export function ClassTable({
               <td className="border-b border-divider px-2.5 py-2 text-text-2">
                 {cls.grade}
               </td>
+              {withOwner ? (
+                <td className="whitespace-nowrap border-b border-divider px-2.5 py-2">
+                  {cls.owner ? <OwnerTag owner={cls.owner} /> : null}
+                </td>
+              ) : null}
             </tr>
           );
         })}

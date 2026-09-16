@@ -29,6 +29,7 @@ import {
   testTypeSchema,
   uuidSchema,
 } from "./common.contract";
+import { classOwnerSchema } from "./class.contract";
 import { problemSchema } from "./problem.contract";
 
 // ─────────────────────────────────────────────
@@ -197,6 +198,11 @@ export const testDetailResponseSchema = dataResponseSchema(
      *    (2026-09-08 협의에서 드러났다. 첫 시안 넷 다 이 칸이 없었다.)
      */
     studentName: z.string().nullable(),
+    /**
+     * 반의 담당 — **관리자에게만** 싣는다(D-132, `classOwnerSchema`). 관리자가 아니면 키가 없다.
+     * 검토 머리 «반 · 학생» 뒤 딱지. 인쇄 지면에는 안 간다(D-132 ⑺).
+     */
+    classOwner: classOwnerSchema.optional(),
     problems: z.array(testProblemItemSchema),
   }),
 );

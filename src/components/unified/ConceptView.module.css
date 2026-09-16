@@ -213,6 +213,10 @@
 .dash {
   color: var(--c-muted);
 }
+/* 담당 칸 — 딱지 하나(D-132 Hi-fi 3). 이름이 길어도 줄을 바꾸지 않는다 */
+.ownerCell {
+  white-space: nowrap;
+}
 .emptyCell {
   padding: 18px 12px;
   color: var(--c-muted);

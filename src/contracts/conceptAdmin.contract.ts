@@ -21,6 +21,7 @@
  */
 import { z } from "zod";
 
+import { classOwnerSchema } from "./class.contract";
 import {
   CONCEPT_LECTURE_LIMITS,
   conceptLectureStatusSchema,
@@ -127,6 +128,8 @@ export const conceptBoardRowSchema = z.strictObject({
   classId: uuidSchema,
   className: z.string(),
   grade: z.string(),
+  /** 담당 — **관리자에게만**(D-132, `classOwnerSchema`). 이 칸이 있으면 표에 «담당» 열이 서고 내 반이 맨 위다 */
+  owner: classOwnerSchema.optional(),
   /** 퇴원을 뺀 반 인원 — n/m 의 m 과 같은 모집단 */
   enrolled: count,
   /** 반 진도 최신 행(`/api/progress` 와 같은 판정). 없으면 null */

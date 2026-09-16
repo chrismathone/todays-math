@@ -1,5 +1,10 @@
-import type { ClassEntity, ProgressEntity } from "@/contracts/class.contract";
+import type {
+  ClassEntity,
+  ClassOwner,
+  ProgressEntity,
+} from "@/contracts/class.contract";
 import type { TestEntity } from "@/contracts/test.contract";
+import { mineRank } from "@/lib/class/classOwner";
 
 import { unitSectionName } from "./unitLookup";
 
@@ -38,6 +43,8 @@ const STACK_SORT: Record<PipelineStage, number> = {
 export type ClassRow = {
   classId: string;
   name: string;
+  /** 담당 — 관리자에게만 실려 온다(D-132). 없으면 키째로 없다 */
+  owner?: ClassOwner;
   testTypeLabel: string | null;
   unitLabel: string;
   meta: string;
@@ -122,6 +129,7 @@ export function buildClassRows(
     return {
       classId: cls.id,
       name: cls.name,
+      ...(cls.owner ? { owner: cls.owner } : {}),
       testTypeLabel: testTypeLabel(test?.testType),
       unitLabel,
       meta: metaFor(stage, unitLabel, cls.defaultProblemCount),
@@ -131,7 +139,12 @@ export function buildClassRows(
     };
   });
 
-  return rows.sort((a, b) => STACK_SORT[a.stage] - STACK_SORT[b.stage]);
+  // 내 반이 맨 위(D-132 ⑷), 그 안팎은 단계 순서 그대로 — 담당이 없으면(관리자 아님) 단계 순서뿐이다.
+  return rows.sort(
+    (a, b) =>
+      mineRank(a.owner) - mineRank(b.owner) ||
+      STACK_SORT[a.stage] - STACK_SORT[b.stage],
+  );
 }
 
 export function remainingCount(rows: ClassRow[]): number {

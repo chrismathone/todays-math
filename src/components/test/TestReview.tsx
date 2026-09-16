@@ -4,6 +4,7 @@ import { useCallback } from "react";
 import Link from "next/link";
 
 import { Button } from "@/components/ui/Button";
+import { OwnerTag } from "@/components/ui/OwnerTag";
 import { TestReviewContentSkeleton } from "@/components/ui/PageSkeletons";
 
 import { ReviewProblemCard } from "./ReviewProblemCardLazy";
@@ -94,6 +95,10 @@ export function TestReview({ testId }: Props) {
               {state.studentName
                 ? `${state.className} · ${state.studentName}`
                 : state.className}
+              {/* 담당 — 서버가 실어 보낼 때만(관리자, D-132). 화면만 — 인쇄 지면에는 없다(⑺) */}
+              {state.classOwner ? (
+                <OwnerTag owner={state.classOwner} className="ml-2" />
+              ) : null}
             </h1>
             <p className="mt-1 text-[11.5px] text-text-2">
               {state.test.testType === "review" ? "확인테스트" : "일일테스트"} ·{" "}

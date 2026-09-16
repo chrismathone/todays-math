@@ -4,6 +4,7 @@ import dynamic from "next/dynamic";
 import { useState } from "react";
 
 import { Button } from "@/components/ui/Button";
+import { OwnerTag } from "@/components/ui/OwnerTag";
 import { nameSelectionClass } from "@/components/ui/rowSelection";
 import type { ClassEntity, StudentEntity } from "@/contracts/class.contract";
 
@@ -58,6 +59,10 @@ export function StudentList({
       {selectedClass ? (
         <p className="mb-3 break-words text-[12.5px] font-bold text-ink">
           {selectedClass.name} · {selectedClass.grade}
+          {/* 담당 — 서버가 실어 보낼 때만(관리자, D-132) */}
+          {selectedClass.owner ? (
+            <OwnerTag owner={selectedClass.owner} className="ml-2" />
+          ) : null}
         </p>
       ) : null}
       {!selectedClass ? (

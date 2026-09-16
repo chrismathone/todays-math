@@ -11,6 +11,7 @@ import { Button } from "@/components/ui/Button";
 import { Input } from "@/components/ui/Input";
 import { TestSetupFieldsSkeleton } from "@/components/ui/PageSkeletons";
 import type { UnitEntity } from "@/contracts/unit.contract";
+import { classOptionLabel, classOptionTitle } from "@/lib/class/ownerLabel";
 
 import { AiDraftReview } from "./AiDraftReview";
 import { AiGenerateProgress } from "./AiGenerateProgress";
@@ -159,14 +160,22 @@ export function GenerateSetup({ initialClassId, initialStudentId }: Props) {
         >
           <label className="grid gap-1 text-[10px] font-extrabold tracking-[1.2px] text-text-2">
             반
+            {/* 담당(관리자, D-132) — «반 이름 · 담당 6자», 전체는 `title`(닫힌 상자는 지금 고른 반) */}
             <select
               className={FIELD_CLASS}
               value={form.classId}
               onChange={(event) => form.selectClass(event.target.value)}
+              title={classOptionTitle(
+                form.classes.find((item) => item.id === form.classId),
+              )}
             >
               {form.classes.map((item) => (
-                <option key={item.id} value={item.id}>
-                  {item.name}
+                <option
+                  key={item.id}
+                  value={item.id}
+                  title={classOptionTitle(item)}
+                >
+                  {classOptionLabel(item)}
                 </option>
               ))}
             </select>

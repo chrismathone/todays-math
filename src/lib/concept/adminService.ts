@@ -20,6 +20,11 @@ import type {
   ConceptUnitLectures,
   ConceptUnits,
 } from "@/contracts/conceptAdmin.contract";
+import {
+  CLASS_OWNER_NAME,
+  showsClassOwner,
+  toClassOwner,
+} from "@/lib/class/classOwner";
 import { db } from "@/lib/db";
 import { kstDateOf } from "@/lib/kstDate";
 import { ownedRowsWhere, type ScopeViewer } from "@/lib/ownerScope";
@@ -31,6 +36,7 @@ import {
   assembleConceptBoard,
   buildConceptBoard,
   toAdminLecture,
+  type BoardClassInput,
   type BoardUnitInput,
 } from "./adminBoard";
 import { parseLectureMeta } from "./lectureMeta";
@@ -125,6 +131,37 @@ const toUnit = (
 // ─────────────────────────────────────────────
 
 /**
+ * 판에 오를 반 — 소유 범위(D-130) 안의 반. 관리자면 같은 조회에 담당을 조인한다(D-132 — 한 번에,
+ * 반마다 계정을 따로 읽지 않는다). 관리자가 아니면 조회도 응답도 넓히기 전과 같다.
+ */
+async function loadBoardClasses(
+  viewer: ScopeViewer,
+): Promise<BoardClassInput[]> {
+  const where = ownedRowsWhere(viewer);
+  if (!showsClassOwner(viewer))
+    return db.class.findMany({
+      where,
+      select: { id: true, name: true, grade: true },
+    });
+  const rows = await db.class.findMany({
+    where,
+    select: {
+      id: true,
+      name: true,
+      grade: true,
+      userId: true,
+      ...CLASS_OWNER_NAME,
+    },
+  });
+  return rows.map((row) => ({
+    id: row.id,
+    name: row.name,
+    grade: row.grade,
+    owner: toClassOwner(viewer, row),
+  }));
+}
+
+/**
  * 첫 화면 — 소유 범위 안의 반마다 최근 진도 · 다음 차시 · 그 강의 · 끝까지 본 학생.
  * 소유 범위(D-130 — 관리자는 모든 반): `ownerScope.ts`. `canEdit` 는 쓰기 표시일 뿐 범위를 안 정한다.
  */
@@ -134,10 +171,7 @@ export async function loadConceptBoard(
   now: Date,
 ): Promise<ConceptBoard> {
   const [classes, units] = await Promise.all([
-    db.class.findMany({
-      where: ownedRowsWhere(viewer),
-      select: { id: true, name: true, grade: true },
-    }),
+    loadBoardClasses(viewer),
     db.unit.findMany({ select: UNIT_SELECT, orderBy: { orderIndex: "asc" } }),
   ]);
   const classIds = classes.map((c) => c.id);
