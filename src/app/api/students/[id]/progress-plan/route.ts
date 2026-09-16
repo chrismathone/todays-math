@@ -11,7 +11,7 @@
  *
  * 학생 계획의 반은 **학생의 지금 반**이다(본문에 반 id 가 없다). 학생에 한 줄 — PUT 이 넣기·덮어쓰기.
  *
- * 🔴 소유 판정은 **임시 헬퍼**(`planOwnership.ts`) — D-130 헬퍼(`admin-sees-all`)가 오면 그리로 옮긴다.
+ * 소유 판정은 `ownership.ts` 의 404/403 헬퍼 — 관리자는 넘는다(D-130, 판정은 `ownerScope.ts` 한 곳).
  * 순서: 세션 401 → 경로 id 400 → 학생 404/403 → 본문 422 → 개별 진도 아님 422 → 계획 없음 404.
  */
 import type { Student as StudentRow } from "@prisma/client";
@@ -34,7 +34,6 @@ import {
   unauthorizedError,
   validationError,
 } from "@/lib/apiResponse";
-import { requirePlanStudent } from "@/lib/daily/planOwnership";
 import {
   checkStartUnit,
   findPlan,
@@ -49,6 +48,7 @@ import {
 } from "@/lib/daily/progressPlanStore";
 import { db } from "@/lib/db";
 import { kstDateOf } from "@/lib/kstDate";
+import { requireOwnedStudent } from "@/lib/ownership";
 import { getSessionUser } from "@/lib/session";
 
 type RouteContext = { params: Promise<{ id: string }> };
@@ -64,7 +64,7 @@ async function guard(params: RouteContext["params"]) {
   if (!idResult.success)
     return { ok: false as const, response: validationError(idResult.error) };
 
-  const owned = await requirePlanStudent(id, session);
+  const owned = await requireOwnedStudent(id, session);
   if (!owned.ok) return owned;
   return { ok: true as const, student: owned.data };
 }

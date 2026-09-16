@@ -23,16 +23,15 @@ import { NextRequest } from "next/server";
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 
 vi.mock("server-only", () => ({}));
+// 관리자 여부(D-130) — 세션의 isAdmin(`src/lib/ownerScope.ts` 가 판정). 기본은 관리자 아님.
+const sessionState = vi.hoisted(() => ({ isAdmin: false }));
 vi.mock("@/lib/session", () => ({
   getSessionUser: vi.fn(async () => ({
     id: "10000000-0000-4000-8000-000000000001",
     email: "teacher@todaysmath.test",
     name: "테스트 강사",
+    isAdmin: sessionState.isAdmin,
   })),
-}));
-// 관리자 여부(D-130) — 세션의 isAdmin. 기본은 관리자 아님.
-vi.mock("@/lib/accountAccess", () => ({
-  getAccountAccess: vi.fn(async () => null),
 }));
 
 import { POST as createClass } from "@/app/api/classes/route";
@@ -48,7 +47,6 @@ import {
   PATCH as patchStudentPlan,
   PUT as putStudentPlan,
 } from "@/app/api/students/[id]/progress-plan/route";
-import type { AccountAccess } from "@/contracts/accountAccess.contract";
 import { classResponseSchema } from "@/contracts/class.contract";
 import { errorResponseSchema } from "@/contracts/common.contract";
 import {
@@ -56,7 +54,6 @@ import {
   progressPlanResponseSchema,
   studentProgressPlanResponseSchema,
 } from "@/contracts/dailyAutoTest.contract";
-import { getAccountAccess } from "@/lib/accountAccess";
 import { db } from "@/lib/db";
 import { getSessionUser } from "@/lib/session";
 import {
@@ -65,7 +62,6 @@ import {
   MOCK_UNITS,
   NOT_FOUND_ID,
   STUDENT_IDS,
-  USER_OTHER_ID,
   USER_TEACHER_ID,
 } from "@/mocks/data";
 import { resetPrismaTestDouble } from "@/mocks/prismaTestDouble";
@@ -121,16 +117,9 @@ const delStudent = (id: string) =>
 
 const allPlans = () => db.progressPlan.findMany({});
 
-const ADMIN: AccountAccess = {
-  id: USER_TEACHER_ID,
-  name: "테스트 강사",
-  email: "teacher@todaysmath.test",
-  role: "director",
-  isAdmin: true,
-  approvalStatus: "approved",
-  menus: [],
+const asAdmin = () => {
+  sessionState.isAdmin = true;
 };
-const asAdmin = () => vi.mocked(getAccountAccess).mockResolvedValue(ADMIN);
 
 /** 진도 기록이 한 줄도 없는 새 반 — 시드 반은 진도가 있어 「예정」이 흔들린다. */
 async function freshClass(userId = USER_TEACHER_ID) {
@@ -157,8 +146,7 @@ async function individualStudent(classId: string, individual = true) {
 
 beforeEach(() => {
   resetPrismaTestDouble();
-  vi.mocked(getAccountAccess).mockReset();
-  vi.mocked(getAccountAccess).mockResolvedValue(null);
+  sessionState.isAdmin = false;
 });
 afterEach(() => {
   vi.restoreAllMocks();
@@ -328,19 +316,6 @@ describe("반 계획 — 🔴 소유 범위 (D-130: 관리자만 넘는다)", ()
     );
     expect((await delClass(CLASS_OTHER_ID)).status).toBe(200);
     expect(await allPlans()).toEqual([]);
-  });
-
-  it("관리자 확인은 **남의 반일 때만** 한다 — 자기 반에서는 세션을 다시 묻지 않는다", async () => {
-    expect((await putClass(CLASS_A_ID, RULE)).status).toBe(201);
-    expect(getAccountAccess).not.toHaveBeenCalled();
-  });
-
-  it("관리자 세션이 다른 계정의 것이면 넘지 않는다", async () => {
-    vi.mocked(getAccountAccess).mockResolvedValue({
-      ...ADMIN,
-      id: USER_OTHER_ID,
-    });
-    expect((await putClass(CLASS_OTHER_ID, RULE)).status).toBe(403);
   });
 });
 

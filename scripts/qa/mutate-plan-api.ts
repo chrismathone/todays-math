@@ -46,7 +46,6 @@ const T = (name: string) => `src/__tests__/${name}`;
 const API = T("api/progressPlan.test.ts");
 const SCHED = T("unit/planSchedule.test.ts");
 
-const OWNER_FILE = "src/lib/daily/planOwnership.ts";
 const STORE_FILE = "src/lib/daily/progressPlanStore.ts";
 const SCHED_FILE = "src/lib/daily/planSchedule.ts";
 const CLASS_PLAN_ROUTE = "src/app/api/classes/[id]/progress-plan/route.ts";
@@ -93,10 +92,10 @@ interface Mutation {
 const NL = "\n";
 const L = (...lines: string[]) => lines.join(NL);
 
-const CLASS_OWNER_LINE =
-  "  if (cls.userId === session.id || (await crossesOwnership(session)))";
-const STUDENT_OWNER_LINE =
-  "  if (ownerClass.userId === session.id || (await crossesOwnership(session)))";
+const CLASS_OWNER_CALL =
+  "  const owned = await requireOwnedClass(id, session);";
+const STUDENT_OWNER_CALL =
+  "  const owned = await requireOwnedStudent(id, session);";
 const MORNING_ANCHOR = L(
   "      actual: anchorOf(",
   "        findLatestProgress(applicable.filter((r) => r.recordedAt < date)),",
@@ -104,52 +103,37 @@ const MORNING_ANCHOR = L(
 );
 
 const MUTATIONS: Mutation[] = [
-  // ── ① 소유 판정(임시 헬퍼) — 양쪽으로 뒤집는다 ─────────────────────────────
+  // ── ① 소유 판정 — 라우트가 세션을 **그대로** 헬퍼에 넘기나. 양쪽으로 뒤집는다 ──────────
+  //    판정 자체(`ownerScope.ts`·`ownership.ts`)는 `mutate-admin-scope.ts` 가 뒤집는다.
   {
     name: "①a 반 — 관리자가 아니어도 남의 반을 넘는다 («항상 넓힌다»)",
-    file: OWNER_FILE,
-    from: CLASS_OWNER_LINE,
-    to: "  if (cls.userId === session.id || true)",
+    file: CLASS_PLAN_ROUTE,
+    from: CLASS_OWNER_CALL,
+    to: "  const owned = await requireOwnedClass(id, { ...session, isAdmin: true });",
     probe: null,
     tests: [API],
   },
   {
     name: "①b 반 — 관리자도 남의 반을 못 넘는다 («넓히지 않는다»)",
-    file: OWNER_FILE,
-    from: CLASS_OWNER_LINE,
-    to: "  if (cls.userId === session.id)",
+    file: CLASS_PLAN_ROUTE,
+    from: CLASS_OWNER_CALL,
+    to: "  const owned = await requireOwnedClass(id, { ...session, isAdmin: false });",
     probe: null,
     tests: [API],
   },
   {
     name: "①c 학생 — 관리자가 아니어도 남의 반 학생을 넘는다",
-    file: OWNER_FILE,
-    from: STUDENT_OWNER_LINE,
-    to: "  if (ownerClass.userId === session.id || true)",
+    file: STUDENT_PLAN_ROUTE,
+    from: STUDENT_OWNER_CALL,
+    to: "  const owned = await requireOwnedStudent(id, { ...session, isAdmin: true });",
     probe: null,
     tests: [API],
   },
   {
     name: "①d 학생 — 관리자도 남의 반 학생을 못 넘는다",
-    file: OWNER_FILE,
-    from: STUDENT_OWNER_LINE,
-    to: "  if (ownerClass.userId === session.id)",
-    probe: null,
-    tests: [API],
-  },
-  {
-    name: "①e 관리자 세션이 다른 계정의 것이어도 넘는다",
-    file: OWNER_FILE,
-    from: "  return account?.isAdmin === true && account.id === session.id;",
-    to: "  return account?.isAdmin === true;",
-    probe: null,
-    tests: [API],
-  },
-  {
-    name: "①f 자기 반에서도 관리자 여부를 먼저 묻는다(평소 길에 세션 조회가 붙는다)",
-    file: OWNER_FILE,
-    from: CLASS_OWNER_LINE,
-    to: "  if ((await crossesOwnership(session)) || cls.userId === session.id)",
+    file: STUDENT_PLAN_ROUTE,
+    from: STUDENT_OWNER_CALL,
+    to: "  const owned = await requireOwnedStudent(id, { ...session, isAdmin: false });",
     probe: null,
     tests: [API],
   },

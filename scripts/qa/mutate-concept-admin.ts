@@ -96,8 +96,8 @@ const MUTATIONS: Mutation[] = [
   {
     name: "①-표시 첫 화면 응답이 누구에게나 canEdit 을 준다",
     file: "src/app/api/concept/route.ts",
-    from: "loadConceptBoard(account.id, account.isAdmin, new Date())",
-    to: "loadConceptBoard(account.id, true, new Date())",
+    from: "loadConceptBoard(account, account.isAdmin, new Date())",
+    to: "loadConceptBoard(account, true, new Date())",
     probe: null,
     tests: [API],
   },
@@ -121,7 +121,8 @@ const MUTATIONS: Mutation[] = [
   {
     name: "② 반 조회가 소유자(Class.userId)를 묻지 않는다",
     file: "src/lib/concept/adminService.ts",
-    from: "      where: { userId }," + NL,
+    // 판정(관리자면 넘는다)은 `mutate-admin-scope.ts` ⑩c·d 가 뒤집는다 — 여기는 «조각을 안 쓴다»
+    from: "      where: ownedRowsWhere(viewer)," + NL,
     to: "      where: {}," + NL,
     probe: null,
     tests: [API],
