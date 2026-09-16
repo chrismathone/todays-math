@@ -1,5 +1,7 @@
 "use client";
 
+import { OwnerTag } from "@/components/ui/OwnerTag";
+import type { ClassOwner } from "@/contracts/class.contract";
 import { getStudioEndpoints } from "@/lib/studio-ai/endpoints";
 
 import { useEffect, useId, useState } from "react";
@@ -12,6 +14,8 @@ type ClassSummary = {
   grade: string;
   studentCount: number;
   currentUnit: { chapter: string; section: string } | null;
+  /** 담당 — 관리자에게만 실려 온다(D-132) */
+  owner?: ClassOwner;
 };
 type Overview = {
   user: { id: string; name: string };
@@ -33,9 +37,18 @@ function isCount(value: unknown): value is number {
   return typeof value === "number" && Number.isSafeInteger(value) && value >= 0;
 }
 
+function isClassOwner(value: unknown): value is ClassOwner {
+  return (
+    isRecord(value) &&
+    typeof value.name === "string" &&
+    typeof value.mine === "boolean"
+  );
+}
+
 function isClassSummary(value: unknown): value is ClassSummary {
   return (
     isRecord(value) &&
+    (value.owner === undefined || isClassOwner(value.owner)) &&
     typeof value.id === "string" &&
     typeof value.name === "string" &&
     typeof value.grade === "string" &&
@@ -233,7 +246,11 @@ export default function TeachingOverview({ onOpen }: { onOpen: () => void }) {
                         <strong title={`${item.name} · ${item.grade}`}>
                           {item.name}
                         </strong>
-                        <span>
+                        {/* 담당 — 서버가 실어 보낼 때만(관리자, D-132). 반 이름 바로 뒤 */}
+                        {item.owner ? (
+                          <OwnerTag owner={item.owner} tone="workroom" />
+                        ) : null}
+                        <span className={s.count}>
                           {item.studentCount.toLocaleString("ko-KR")}명
                         </span>
                       </div>

@@ -20,6 +20,11 @@ import type {
   ConceptUnitLectures,
   ConceptUnits,
 } from "@/contracts/conceptAdmin.contract";
+import {
+  CLASS_OWNER_NAME,
+  showsClassOwner,
+  toClassOwner,
+} from "@/lib/class/classOwner";
 import { db } from "@/lib/db";
 import { kstDateOf } from "@/lib/kstDate";
 import { ownedRowsWhere, type ScopeViewer } from "@/lib/ownerScope";
@@ -134,10 +139,31 @@ export async function loadConceptBoard(
   now: Date,
 ): Promise<ConceptBoard> {
   const [classes, units] = await Promise.all([
-    db.class.findMany({
-      where: ownedRowsWhere(viewer),
-      select: { id: true, name: true, grade: true },
-    }),
+    // 관리자면 같은 조회에 담당을 조인한다(D-132) — 관리자가 아니면 조회도 응답도 그대로다.
+    showsClassOwner(viewer)
+      ? db.class
+          .findMany({
+            where: ownedRowsWhere(viewer),
+            select: {
+              id: true,
+              name: true,
+              grade: true,
+              userId: true,
+              ...CLASS_OWNER_NAME,
+            },
+          })
+          .then((rows) =>
+            rows.map((row) => ({
+              id: row.id,
+              name: row.name,
+              grade: row.grade,
+              owner: toClassOwner(viewer, row),
+            })),
+          )
+      : db.class.findMany({
+          where: ownedRowsWhere(viewer),
+          select: { id: true, name: true, grade: true },
+        }),
     db.unit.findMany({ select: UNIT_SELECT, orderBy: { orderIndex: "asc" } }),
   ]);
   const classIds = classes.map((c) => c.id);

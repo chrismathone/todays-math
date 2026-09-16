@@ -21,7 +21,9 @@ import type {
   ConceptLectureAdmin,
   ConceptLectureCounts,
 } from "@/contracts/conceptAdmin.contract";
+import type { ClassOwner } from "@/contracts/class.contract";
 import type { ConceptLectureStatus } from "@/contracts/conceptLecture.contract";
+import { mineRank } from "@/lib/class/classOwner";
 import { nextOrderIndex } from "@/lib/progressResolver";
 import { gradesOf } from "@/lib/units/groupUnits";
 
@@ -71,6 +73,8 @@ export interface BoardClassInput {
   id: string;
   name: string;
   grade: string;
+  /** 담당 — 관리자에게만 실려 온다(D-132). 있으면 행에 그대로 싣고 내 반을 맨 위로 올린다 */
+  owner?: ClassOwner;
 }
 
 /** 반 학생 — **반 목록 순서**로 넘긴다(안 본 학생 이름이 이 순서로 나온다) */
@@ -142,8 +146,12 @@ export function buildConceptBoard(input: ConceptBoardInput): ConceptBoardCore {
   const rank = (grade: string) =>
     gradeRank.get(grade) ?? Number.MAX_SAFE_INTEGER;
 
+  // 내 반이 맨 위(D-132 ⑷) — 담당이 없으면(관리자 아님) 모두 같은 자리라 학년 · 이름 순서 그대로다.
   const classes = [...input.classes].sort(
-    (a, b) => rank(a.grade) - rank(b.grade) || byName.compare(a.name, b.name),
+    (a, b) =>
+      mineRank(a.owner) - mineRank(b.owner) ||
+      rank(a.grade) - rank(b.grade) ||
+      byName.compare(a.name, b.name),
   );
   const latestByClass = new Map(
     input.latestProgress.map((p) => [p.classId, p]),
@@ -163,11 +171,14 @@ export function buildConceptBoard(input: ConceptBoardInput): ConceptBoardCore {
 
     const latest = latestByClass.get(cls.id);
     const current = latest ? unitById.get(latest.unitId) : undefined;
+    // 담당은 키째로 — 관리자가 아니면 응답에 `owner` 키가 아예 없다(계약 `classOwnerSchema`).
+    const owner = cls.owner ? { owner: cls.owner } : {};
     if (!latest || !current) {
       return {
         classId: cls.id,
         className: cls.name,
         grade: cls.grade,
+        ...owner,
         enrolled,
         progress: null,
         nextUnitId: null,
@@ -215,6 +226,7 @@ export function buildConceptBoard(input: ConceptBoardInput): ConceptBoardCore {
       classId: cls.id,
       className: cls.name,
       grade: cls.grade,
+      ...owner,
       enrolled,
       progress: { unitId: current.id, recordedAt: latest.recordedAt },
       nextUnitId: next?.id ?? null,

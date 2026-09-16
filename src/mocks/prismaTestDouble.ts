@@ -1095,12 +1095,58 @@ function hydrateTestResults(
   }));
 }
 
+/**
+ * 반 → 소유 계정 조인(D-132 담당). `select: { user: { select: { name } } }` 와
+ * `include: { user: … }` 둘 다 이 한 곳이 푼다 — 계정 행이 없으면 실제 Prisma 처럼 FK 가 깨진
+ * 것이므로 조용히 null 을 내지 않고 던진다.
+ */
+const CLASS_RELATIONS = {
+  user: (row: ClassRow, spec: unknown) => {
+    const user = userRows.find((u) => u.id === row.userId);
+    if (!user)
+      throw new Error(
+        `prismaTestDouble: 반 ${row.id} 의 계정 ${row.userId} 가 없다 — 픽스처에 계정을 심어라`,
+      );
+    return applySelect(
+      [user],
+      (spec as { select?: Record<string, unknown> } | true) === true
+        ? undefined
+        : (spec as { select?: Record<string, unknown> }).select,
+    )[0];
+  },
+};
+
+/** 반 행에 `select`(투영) 또는 `include`(관계 덧붙임)를 건다. 둘 다 없으면 행 그대로. */
+function projectClassRows(
+  rows: ClassRow[],
+  select: Record<string, unknown> | undefined,
+  include: Record<string, unknown> | undefined,
+): unknown[] {
+  if (select) return applySelect(rows, select, CLASS_RELATIONS);
+  if (!include) return rows;
+  return rows.map((row) => {
+    const out: Record<string, unknown> = { ...row };
+    for (const [key, spec] of Object.entries(include)) {
+      if (spec === false || spec === undefined) continue;
+      const resolve = CLASS_RELATIONS[key as keyof typeof CLASS_RELATIONS];
+      if (!resolve)
+        throw new Error(
+          `prismaTestDouble: 지원하지 않는 관계 include '${key}' — 조용히 통과시키지 않는다`,
+        );
+      out[key] = resolve(row, spec);
+    }
+    return out;
+  });
+}
+
 const prismaModels = {
   class: {
     async create({
       data,
+      include,
     }: {
       data: Omit<ClassRow, "id" | "createdAt" | "updatedAt">;
+      include?: Record<string, unknown>;
     }) {
       const now = new Date();
       const row: ClassRow = {
@@ -1110,29 +1156,49 @@ const prismaModels = {
         updatedAt: now,
       };
       classRows.push(row);
-      return row;
+      // 형은 행 그대로 둔다 — 조인한 칸은 부르는 라우트가 Prisma 형으로 읽는다.
+      return (
+        include ? projectClassRows([row], undefined, include)[0] : row
+      ) as ClassRow;
     },
     async findMany({
       where,
       skip = 0,
       take,
+      select,
+      include,
     }: {
       where?: Record<string, unknown>;
       skip?: number;
       take?: number;
       orderBy?: unknown;
+      select?: Record<string, unknown>;
+      include?: Record<string, unknown>;
     } = {}) {
-      return paginate(
-        classRows.filter((row) => matchesWhere(row, where)),
-        skip,
-        take,
-      );
+      return projectClassRows(
+        paginate(
+          classRows.filter((row) => matchesWhere(row, where)),
+          skip,
+          take,
+        ),
+        select,
+        include,
+      ) as ClassRow[];
     },
     async count({ where }: { where?: Record<string, unknown> } = {}) {
       return classRows.filter((row) => matchesWhere(row, where)).length;
     },
-    async findUnique({ where }: { where: { id: string } }) {
-      return classRows.find((row) => row.id === where.id) ?? null;
+    async findUnique({
+      where,
+      select,
+    }: {
+      where: { id: string };
+      select?: Record<string, unknown>;
+    }) {
+      const row = classRows.find((r) => r.id === where.id);
+      return row
+        ? (projectClassRows([row], select, undefined)[0] as ClassRow)
+        : null;
     },
     async update({
       where,

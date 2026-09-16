@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 
 import type { BasketItem } from "@/contracts/basket.contract";
 import type { ClassEntity } from "@/contracts/class.contract";
+import { classOptionLabel, classOptionTitle } from "@/lib/class/ownerLabel";
 
 /**
  * **담은 문항 목록 + 시험지 만들기** — 하단 바가 펼치는 한 겹.
@@ -125,15 +126,18 @@ export function BasketPanel({
       <div className="mt-3 flex flex-wrap items-end gap-3 border-t border-divider pt-3">
         <label className="grid gap-1 text-[10px] font-extrabold tracking-[1.2px] text-text-2">
           반
+          {/* 담당(관리자, D-132) — 상자 안은 브라우저가 그려 딱지를 못 넣는다. 글자 «반 이름 · 담당 6자»,
+              전체는 마우스를 올리면(`title`). 닫힌 상자에는 지금 고른 반의 전체를 단다. */}
           <select
             value={classId}
             onChange={(e) => setClassId(e.target.value)}
+            title={classOptionTitle(classes.find((c) => c.id === classId))}
             className="min-h-11 w-[180px] border border-control bg-surface px-3 text-[12.5px] font-bold text-ink"
           >
             <option value="">선택</option>
             {classes.map((c) => (
-              <option key={c.id} value={c.id}>
-                {c.name}
+              <option key={c.id} value={c.id} title={classOptionTitle(c)}>
+                {classOptionLabel(c)}
               </option>
             ))}
           </select>

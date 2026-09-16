@@ -24,11 +24,15 @@ beforeEach(() => {
   mocks.session.mockResolvedValue(owner);
   mocks.classCount.mockResolvedValue(4);
   mocks.studentCount.mockResolvedValue(26);
+  // `userId` · `user` 는 관리자 조회만 고르는 칸(담당, D-132)이다 — 실제 DB 는 고른 칸만 주지만 모킹은
+  // 한 벌이라 둘 다 둔다. 관리자 아님 응답은 이 칸을 안 읽는다(`recentClasses.ts`).
   mocks.classes.mockResolvedValue([
     {
       id: "class-a",
       name: "중1 기본반",
       grade: "중1",
+      userId: owner.id,
+      user: { name: owner.name },
       _count: { students: 8 },
       progresses: [{ unit: currentUnit }],
     },
@@ -36,6 +40,8 @@ beforeEach(() => {
       id: "class-b",
       name: "중2 심화반",
       grade: "중2",
+      userId: owner.id,
+      user: { name: owner.name },
       _count: { students: 6 },
       progresses: [],
     },
@@ -43,6 +49,8 @@ beforeEach(() => {
       id: "class-c",
       name: "고1 시작반",
       grade: "고1",
+      userId: owner.id,
+      user: { name: owner.name },
       _count: { students: 7 },
       progresses: [],
     },

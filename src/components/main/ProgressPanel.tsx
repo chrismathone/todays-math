@@ -1,3 +1,4 @@
+import { OwnerTag } from "@/components/ui/OwnerTag";
 import type { ClassEntity } from "@/contracts/class.contract";
 import type { UnitEntity } from "@/contracts/unit.contract";
 
@@ -50,6 +51,7 @@ export function ProgressPanel({
 }: Props) {
   const lesson = unitSectionName(selectedUnitId, units);
   const { prevId, nextId } = adjacentUnitIds(selectedUnitId, units);
+  const picked = classes.find((c) => c.id === selectedClassId);
 
   // 배경이 원색 화이트가 된 뒤(2026-08-18) 회색 면이 큰 덩어리로 남아 겉돌았다
   // (원장님 지적 "여긴 여전히 회색톤인데"). 구역은 **3px 잉크 좌경계**가 이미 가르므로
@@ -70,7 +72,11 @@ export function ProgressPanel({
          *    (완료된 반도 왼쪽에서 눌러 여기로 데려올 수 있다 — `DoneSummaryRow` 참조.)
          */}
         <span aria-label="선택한 반" className="block font-bold text-ink">
-          {classes.find((c) => c.id === selectedClassId)?.name ?? "—"}
+          {picked?.name ?? "—"}
+          {/* 담당 — 서버가 실어 보낼 때만(관리자, D-132). 반 이름 바로 뒤 */}
+          {picked?.owner ? (
+            <OwnerTag owner={picked.owner} className="ml-1.5" />
+          ) : null}
         </span>
         <span
           aria-label="현재 소단원"

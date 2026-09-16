@@ -2,6 +2,7 @@
 
 import { useCallback, useEffect, useRef, useState } from "react";
 
+import type { ClassOwner } from "@/contracts/class.contract";
 import type { TestEntity, TestProblemItem } from "@/contracts/test.contract";
 
 /**
@@ -18,6 +19,8 @@ type ReadyState = {
   className: string;
   /** 학생 이름 — 반 전체 시험이면 `null`. 같은 반·날짜·유형이 학생 수만큼 있을 수 있다. */
   studentName: string | null;
+  /** 반의 담당 — 관리자에게만 실려 온다(D-132). 교체 응답에는 없으므로 이 값도 검수 맥락으로 유지한다. */
+  classOwner?: ClassOwner;
   problems: TestProblemItem[];
 };
 

@@ -130,10 +130,10 @@
   min-width: 0;
 }
 
+/* 이름 · (담당 딱지) · 인원 — 인원은 오른쪽 끝(`margin-left: auto`). 딱지가 없으면 예전 space-between 과 같은 자리다 */
 .classHeading {
   display: flex;
   align-items: baseline;
-  justify-content: space-between;
   gap: 10px;
 }
 
@@ -145,7 +145,9 @@
   font-weight: 700;
 }
 
-.classHeading > span {
+/* 인원 칸만 겨눈다 — `> span` 으로 두면 담당 딱지(<span>)까지 이 색 · 크기가 덮는다(모듈 규칙이 유틸리티를 이긴다) */
+.classHeading > .count {
+  margin-left: auto;
   flex-shrink: 0;
   color: #52617a;
   font-size: var(--text-caption, 12px);

@@ -3,7 +3,7 @@
  *
  * 대응 API 경로:
  *   POST   /api/classes              — 반 생성 (진도 계획을 같이 받을 수 있다 — D-129, `progressPlan`)
- *   GET    /api/classes              — 반 목록 조회 (본인 소유, 페이지네이션)
+ *   GET    /api/classes              — 반 목록 조회 (소유 범위, 페이지네이션 · 관리자면 담당 + 내 반 맨 위 — D-132)
  *   GET    /api/classes/{id}         — 반 단건 조회
  *   PATCH  /api/classes/{id}         — 반 수정
  *   DELETE /api/classes/{id}         — 반 삭제
@@ -87,6 +87,24 @@ export const classUpdateRequestSchema = z
   });
 export type ClassUpdateRequest = z.infer<typeof classUpdateRequestSchema>;
 
+/**
+ * **담당** — 이 반이 누구의 반인가 (D-132 · 05 §8.11, 2026-09-16).
+ *
+ * D-130 으로 관리자는 모든 계정의 반을 본다. 그래서 반 이름을 내보내는 응답에 담당을 싣는다 —
+ * 반 목록(`owner`) · 시험지 단건(`classOwner`) · 오늘의 개념 판 행(`owner`) · 작업실 개요 반(`owner`).
+ *
+ * 🔴 **관리자에게만 싣는다.** 관리자가 아니면 칸 자체가 없다(값이 비는 것이 아니라 **키가 없다**) —
+ *    응답이 넓히기 전과 글자 그대로 같고, 화면은 «칸이 있으면 그린다» 하나로 가른다(화면이
+ *    `isAdmin` 을 따로 읽지 않는다). 싣는 판정은 `src/lib/class/classOwner.ts` 한 곳.
+ */
+export const classOwnerSchema = z.strictObject({
+  /** 계정 이름 `User.name` — 로그인 아이디(이메일)가 아니다(D-132 ⑵) */
+  name: z.string(),
+  /** 보는 사람의 반인가 — 화면은 이름 대신 «내 반»(D-132 ⑹) */
+  mine: z.boolean(),
+});
+export type ClassOwner = z.infer<typeof classOwnerSchema>;
+
 const classSchema = z.strictObject({
   id: uuidSchema,
   userId: uuidSchema,
@@ -96,6 +114,8 @@ const classSchema = z.strictObject({
   difficultyRatio: difficultyRatioSchema,
   createdAt: isoDateTimeSchema,
   updatedAt: isoDateTimeSchema,
+  /** 담당 — 관리자에게만(`classOwnerSchema`). 목록은 이 칸이 있으면 **내 반이 맨 위**다 */
+  owner: classOwnerSchema.optional(),
 });
 export type ClassEntity = z.infer<typeof classSchema>;
 

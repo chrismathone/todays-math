@@ -4,6 +4,8 @@ import {
   type ClassRow,
 } from "@/lib/main/pipeline";
 
+import { OwnerTag } from "@/components/ui/OwnerTag";
+
 import { StageGauge } from "./StageGauge";
 
 type Props = {
@@ -40,7 +42,12 @@ export function DoneSummaryRow({ row, hot, onSelect }: Props) {
       >
         <span />
         <span className="min-w-0 overflow-hidden text-ellipsis whitespace-nowrap">
-          {row.name} — {row.meta}
+          {row.name}
+          {/* 담당 — 서버가 실어 보낼 때만(관리자, D-132). 반 이름 바로 뒤 */}
+          {row.owner ? (
+            <OwnerTag owner={row.owner} className="ml-1.5" />
+          ) : null}{" "}
+          — {row.meta}
         </span>
         <StageGauge stage="done" />
       </button>

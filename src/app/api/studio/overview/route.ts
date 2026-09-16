@@ -1,3 +1,4 @@
+import { loadRecentClasses } from "@/lib/class/recentClasses";
 import { db } from "@/lib/db";
 import { ownedRowsWhere, ownedStudentsWhere } from "@/lib/ownerScope";
 import { authorizeStudio } from "@/lib/studio-ai/guard";
@@ -17,24 +18,8 @@ export async function GET(request: Request) {
     const [classCount, studentCount, classes] = await Promise.all([
       db.class.count({ where: ownedRowsWhere(user) }),
       db.student.count({ where: ownedStudentsWhere(user) }),
-      db.class.findMany({
-        where: ownedRowsWhere(user),
-        orderBy: [{ createdAt: "desc" }, { id: "asc" }],
-        take: 3,
-        select: {
-          id: true,
-          name: true,
-          grade: true,
-          _count: { select: { students: true } },
-          progresses: {
-            // Class progress only, with the same latest-record order as /api/progress.
-            where: { studentId: null },
-            orderBy: [{ recordedAt: "desc" }, { createdAt: "desc" }],
-            take: 1,
-            select: { unit: { select: { chapter: true, section: true } } },
-          },
-        },
-      }),
+      // Recent three classes; an admin also gets each class owner (D-132): src/lib/class/recentClasses.ts
+      loadRecentClasses(user),
     ]);
 
     return Response.json(
@@ -43,13 +28,7 @@ export async function GET(request: Request) {
           user: { id: user.id, name: user.name },
           classCount,
           studentCount,
-          classes: classes.map((item) => ({
-            id: item.id,
-            name: item.name,
-            grade: item.grade,
-            studentCount: item._count.students,
-            currentUnit: item.progresses[0]?.unit ?? null,
-          })),
+          classes,
         },
       },
       { headers },

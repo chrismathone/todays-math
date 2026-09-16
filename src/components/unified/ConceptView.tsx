@@ -35,6 +35,9 @@ import {
   type ConceptWatch,
 } from "@/contracts/conceptAdmin.contract";
 
+import { OwnerTag } from "@/components/ui/OwnerTag";
+import { hasOwners } from "@/lib/class/ownerLabel";
+
 import ConceptUnitPanel, { type PanelNotice } from "./ConceptUnitPanel";
 import ConceptUnitTree from "./ConceptUnitTree";
 import {
@@ -214,6 +217,8 @@ export default function ConceptView({
   const selectedRow = data.rows.find((r) => r.classId === selectedId) ?? null;
   const unitById = new Map(data.units.map((u) => [u.id, u]));
   const lectureById = new Map(data.lectures.map((l) => [l.id, l]));
+  // «담당» 열은 서버가 담당을 실어 보낼 때만(관리자 — D-132). 반 바로 뒤(Hi-fi 3).
+  const withOwner = hasOwners(data.rows);
 
   // 오른쪽 판에 설 차시 — 표에서는 고른 반의 최근 진도 차시, 전체 차시에서는 고른 차시
   let panelUnit: ConceptUnit | null = null;
@@ -382,6 +387,7 @@ export default function ConceptView({
                 <thead>
                   <tr>
                     <th scope="col">반</th>
+                    {withOwner ? <th scope="col">담당</th> : null}
                     <th scope="col">최근 진도</th>
                     <th scope="col">강의</th>
                     <th scope="col">다음 차시</th>
@@ -392,7 +398,7 @@ export default function ConceptView({
                 <tbody>
                   {data.rows.length === 0 ? (
                     <tr>
-                      <td colSpan={6} className={s.emptyCell}>
+                      <td colSpan={withOwner ? 7 : 6} className={s.emptyCell}>
                         반이 없습니다. «수업 · 학생 관리»에서 반을 만들면 진도
                         차시가 여기에 나옵니다.
                       </td>
@@ -402,6 +408,7 @@ export default function ConceptView({
                     <BoardRow
                       key={row.classId}
                       row={row}
+                      withOwner={withOwner}
                       selected={row.classId === selectedId}
                       current={
                         row.progress
@@ -480,6 +487,7 @@ export default function ConceptView({
 
 function BoardRow({
   row,
+  withOwner,
   selected,
   current,
   next,
@@ -489,6 +497,8 @@ function BoardRow({
   onToggle,
 }: {
   row: ConceptBoardRow;
+  /** «담당» 열이 섰나 — 서버가 담당을 실어 보낼 때만(관리자, D-132) */
+  withOwner: boolean;
   selected: boolean;
   current: ConceptUnit | undefined;
   next: ConceptUnit | undefined;
@@ -516,6 +526,11 @@ function BoardRow({
             <span className={s.sub}>{row.enrolled}명</span>
           </button>
         </td>
+        {withOwner ? (
+          <td className={s.ownerCell}>
+            {row.owner ? <OwnerTag owner={row.owner} tone="workroom" /> : null}
+          </td>
+        ) : null}
         <td>
           {row.progress && current ? (
             <>

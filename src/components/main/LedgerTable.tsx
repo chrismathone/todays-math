@@ -1,4 +1,6 @@
+import { OwnerTag } from "@/components/ui/OwnerTag";
 import { nameSelectionClass } from "@/components/ui/rowSelection";
+import { hasOwners } from "@/lib/class/ownerLabel";
 import type { ClassRow } from "@/lib/main/pipeline";
 
 import { ActionControl } from "./ActionControl";
@@ -17,12 +19,17 @@ export function LedgerTable({
   onSelect,
   onProgress,
 }: Props) {
+  // «담당» 열은 서버가 담당을 실어 보낼 때만(관리자 — D-132). 반 바로 뒤(Hi-fi 3).
+  const withOwner = hasOwners(rows);
+  const heads = withOwner
+    ? ["반", "담당", "현재 진도", "오늘", "내일 테스트", "작업"]
+    : ["반", "현재 진도", "오늘", "내일 테스트", "작업"];
   return (
     <div className="px-6 pt-1.5">
       <table className="w-full border-collapse text-xs tabular-nums">
         <thead>
           <tr>
-            {["반", "현재 진도", "오늘", "내일 테스트", "작업"].map((h) => (
+            {heads.map((h) => (
               <th
                 key={h}
                 scope="col"
@@ -57,6 +64,11 @@ export function LedgerTable({
                   {row.name}
                 </button>
               </td>
+              {withOwner ? (
+                <td className="whitespace-nowrap border-b border-divider px-2.5 py-2.5">
+                  {row.owner ? <OwnerTag owner={row.owner} /> : null}
+                </td>
+              ) : null}
               <td className="border-b border-divider px-2.5 py-2.5">
                 {row.unitLabel}
               </td>
