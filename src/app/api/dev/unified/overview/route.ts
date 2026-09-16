@@ -1,9 +1,13 @@
 import { db } from "@/lib/db";
+import { ownedRowsWhere, ownedStudentsWhere } from "@/lib/ownerScope";
 import { getSessionUser } from "@/lib/session";
 
 const headers = { "Cache-Control": "private, no-store" };
 
-/** A bounded, read-only home summary; no curriculum or student roster download. */
+/**
+ * A bounded, read-only home summary; no curriculum or student roster download.
+ * Counts follow the owner scope (D-130 — an admin counts every class): src/lib/ownerScope.ts
+ */
 export async function GET() {
   if (process.env.NODE_ENV !== "development") {
     return new Response(null, { status: 404, headers });
@@ -19,10 +23,10 @@ export async function GET() {
     }
 
     const [classCount, studentCount, classes] = await Promise.all([
-      db.class.count({ where: { userId: user.id } }),
-      db.student.count({ where: { class: { userId: user.id } } }),
+      db.class.count({ where: ownedRowsWhere(user) }),
+      db.student.count({ where: ownedStudentsWhere(user) }),
       db.class.findMany({
-        where: { userId: user.id },
+        where: ownedRowsWhere(user),
         orderBy: [{ createdAt: "desc" }, { id: "asc" }],
         take: 3,
         select: {

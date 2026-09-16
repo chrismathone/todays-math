@@ -1,6 +1,7 @@
 /**
- * POST/GET /api/classes — 반 생성 · 본인 소유 반 목록 조회(페이지네이션).
+ * POST/GET /api/classes — 반 생성 · 소유 범위 안의 반 목록 조회(페이지네이션).
  * 대응 계약: src/contracts/class.contract.ts
+ * 소유 범위(D-130 — 관리자는 모든 반): src/lib/ownerScope.ts. 만든 반은 **만든 계정의 것**이다.
  */
 import type { NextRequest } from "next/server";
 
@@ -12,6 +13,7 @@ import {
 import { paginationParamsSchema } from "@/contracts/common.contract";
 import { jsonOk, unauthorizedError, validationError } from "@/lib/apiResponse";
 import { db } from "@/lib/db";
+import { ownedRowsWhere } from "@/lib/ownerScope";
 import { serializeClass } from "@/lib/serializers";
 import { getSessionUser } from "@/lib/session";
 
@@ -41,7 +43,7 @@ export async function POST(request: NextRequest) {
   );
 }
 
-// GET /api/classes — 본인 소유 반 목록(페이지네이션, 타 사용자 반 제외)
+// GET /api/classes — 소유 범위 안의 반 목록(페이지네이션, 관리자가 아니면 타 사용자 반 제외)
 export async function GET(request: NextRequest) {
   const session = await getSessionUser();
   if (!session) return unauthorizedError();
@@ -53,14 +55,15 @@ export async function GET(request: NextRequest) {
   if (!parsedParams.success) return validationError(parsedParams.error);
   const { page, pageSize } = parsedParams.data;
 
+  const where = ownedRowsWhere(session);
   const [rows, total] = await Promise.all([
     db.class.findMany({
-      where: { userId: session.id },
+      where,
       skip: (page - 1) * pageSize,
       take: pageSize,
       orderBy: { createdAt: "desc" },
     }),
-    db.class.count({ where: { userId: session.id } }),
+    db.class.count({ where }),
   ]);
 
   return jsonOk(classListResponseSchema, {

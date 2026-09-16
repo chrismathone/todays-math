@@ -46,6 +46,7 @@ describe("teaching bootstrap boundary", () => {
       id: "owner-id",
       email: "teacher@example.com",
       name: "선생님",
+      isAdmin: false,
     };
     vi.mocked(getSessionUser).mockResolvedValue(user);
     const response = await GET();
@@ -73,6 +74,7 @@ describe("teaching bootstrap boundary", () => {
       id: "owner-id",
       email: "",
       name: "",
+      isAdmin: false,
     });
     vi.mocked(db.unit.findMany).mockRejectedValue(
       new Error("private database details"),

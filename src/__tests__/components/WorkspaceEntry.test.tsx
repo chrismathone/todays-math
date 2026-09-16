@@ -27,6 +27,7 @@ const user = {
   email: "teacher@example.com",
   approvalStatus: "approved",
   menus: ALL_WORKSPACE_MENUS,
+  isAdmin: false,
 };
 beforeEach(() => {
   vi.clearAllMocks();

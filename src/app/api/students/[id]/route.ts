@@ -30,7 +30,7 @@ export async function PATCH(request: NextRequest, { params }: RouteContext) {
   const idResult = idParamSchema.safeParse({ id });
   if (!idResult.success) return validationError(idResult.error);
 
-  const owned = await requireOwnedStudent(id, session.id);
+  const owned = await requireOwnedStudent(id, session);
   if (!owned.ok) return owned.response;
 
   const body = await request.json().catch(() => undefined);
@@ -50,7 +50,7 @@ export async function DELETE(request: NextRequest, { params }: RouteContext) {
   const idResult = idParamSchema.safeParse({ id });
   if (!idResult.success) return validationError(idResult.error);
 
-  const owned = await requireOwnedStudent(id, session.id);
+  const owned = await requireOwnedStudent(id, session);
   if (!owned.ok) return owned.response;
 
   await db.student.delete({ where: { id } });

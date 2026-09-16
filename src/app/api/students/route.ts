@@ -25,7 +25,7 @@ export async function POST(request: NextRequest) {
   const parsed = studentCreateRequestSchema.safeParse(body);
   if (!parsed.success) return validationError(parsed.error);
 
-  const owned = await requireOwnedClass(parsed.data.classId, session.id);
+  const owned = await requireOwnedClass(parsed.data.classId, session);
   if (!owned.ok) return owned.response;
 
   const created = await db.student.create({
@@ -50,7 +50,7 @@ export async function GET(request: NextRequest) {
   );
   if (!parsed.success) return validationError(parsed.error);
 
-  const owned = await requireOwnedClass(parsed.data.classId, session.id);
+  const owned = await requireOwnedClass(parsed.data.classId, session);
   if (!owned.ok) return owned.response;
 
   const { page, pageSize, classId } = parsed.data;

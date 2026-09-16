@@ -1,9 +1,13 @@
 import { db } from "@/lib/db";
+import { ownedRowsWhere, ownedStudentsWhere } from "@/lib/ownerScope";
 import { authorizeStudio } from "@/lib/studio-ai/guard";
 
 const headers = { "Cache-Control": "private, no-store" };
 
-/** A bounded, read-only home summary; no curriculum or student roster download. */
+/**
+ * A bounded, read-only home summary; no curriculum or student roster download.
+ * Counts follow the owner scope (D-130 — an admin counts every class): src/lib/ownerScope.ts
+ */
 export async function GET(request: Request) {
   try {
     const access = await authorizeStudio(request);
@@ -11,10 +15,10 @@ export async function GET(request: Request) {
     const user = access.user!;
 
     const [classCount, studentCount, classes] = await Promise.all([
-      db.class.count({ where: { userId: user.id } }),
-      db.student.count({ where: { class: { userId: user.id } } }),
+      db.class.count({ where: ownedRowsWhere(user) }),
+      db.student.count({ where: ownedStudentsWhere(user) }),
       db.class.findMany({
-        where: { userId: user.id },
+        where: ownedRowsWhere(user),
         orderBy: [{ createdAt: "desc" }, { id: "asc" }],
         take: 3,
         select: {

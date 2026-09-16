@@ -215,6 +215,21 @@ describe("② 남의 반은 안 보인다", () => {
     const data = await board();
     expect(data.rows.map((r) => r.classId)).toEqual([CLASS_OTHER_ID]);
   });
+
+  /**
+   * D-130 — 관리자는 학원 운영 데이터(반·학생·진도)의 소유 울타리를 넘는다. 반이 0개인 계정으로
+   * 같은 요청을 **관리자 표시 하나만** 바꿔 나란히 보낸다.
+   */
+  it("D-130: 반이 없는 계정 — 관리자 아님이면 빈 판, 관리자면 모든 반", async () => {
+    const NO_CLASS = "10000000-0000-4000-8000-0000000000ad";
+    login({ id: NO_CLASS, isAdmin: false });
+    expect((await board()).rows).toEqual([]);
+
+    login({ id: NO_CLASS, isAdmin: true });
+    expect(new Set((await board()).rows.map((r) => r.classId))).toEqual(
+      new Set([CLASS_A_ID, CLASS_B_ID, CLASS_STARVED_ID, CLASS_OTHER_ID]),
+    );
+  });
 });
 
 describe("③ n/m 과 안 본 학생 이름 — 같은 모집단", () => {

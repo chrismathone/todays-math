@@ -36,7 +36,7 @@ export async function GET(request: NextRequest) {
   if (!parsed.success) return validationError(parsed.error);
 
   const { classId } = parsed.data;
-  const owned = await requireOwnedClass(classId, session.id);
+  const owned = await requireOwnedClass(classId, session);
   if (!owned.ok) return owned.response;
 
   const [rows, units] = await Promise.all([

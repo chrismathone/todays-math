@@ -22,6 +22,7 @@ import type {
 } from "@/contracts/conceptAdmin.contract";
 import { db } from "@/lib/db";
 import { kstDateOf } from "@/lib/kstDate";
+import { ownedRowsWhere, type ScopeViewer } from "@/lib/ownerScope";
 import { isPrismaErrorCode } from "@/lib/prismaErrors";
 import { getCurrentProgress } from "@/lib/progressResolver";
 import { serializeProgress } from "@/lib/serializers";
@@ -123,15 +124,18 @@ const toUnit = (
 // 읽기
 // ─────────────────────────────────────────────
 
-/** 첫 화면 — 원장님 소유 반마다 최근 진도 · 다음 차시 · 그 강의 · 끝까지 본 학생 */
+/**
+ * 첫 화면 — 소유 범위 안의 반마다 최근 진도 · 다음 차시 · 그 강의 · 끝까지 본 학생.
+ * 소유 범위(D-130 — 관리자는 모든 반): `ownerScope.ts`. `canEdit` 는 쓰기 표시일 뿐 범위를 안 정한다.
+ */
 export async function loadConceptBoard(
-  userId: string,
+  viewer: ScopeViewer,
   canEdit: boolean,
   now: Date,
 ): Promise<ConceptBoard> {
   const [classes, units] = await Promise.all([
     db.class.findMany({
-      where: { userId },
+      where: ownedRowsWhere(viewer),
       select: { id: true, name: true, grade: true },
     }),
     db.unit.findMany({ select: UNIT_SELECT, orderBy: { orderIndex: "asc" } }),

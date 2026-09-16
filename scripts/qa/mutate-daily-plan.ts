@@ -314,7 +314,8 @@ const MUTATIONS: Mutation[] = [
   {
     name: "⑥c 소유자의 반만 도는 것을 끈다 (남의 반까지 출제한다)",
     file: RUN_FILE,
-    from: "    where: { userId: owner.id },",
+    // D-130 이후 소유 범위 헬퍼를 부른다 — 관리자 쪽 두 방향은 `mutate-admin-scope.ts` ⑨ 가 본다
+    from: "    where: ownedRowsWhere(owner),",
     to: "    where: {},",
     probe: null,
     tests: [CRON],
@@ -391,7 +392,8 @@ const MUTATIONS: Mutation[] = [
   {
     name: "⑦a 계획 갈래를 계정 소유로 안 좁힌다 (남의 반 학생이 섞인다)",
     file: DAILY_ROUTE,
-    from: "    where: { userId: session.id },",
+    // D-130 이후 소유 범위 헬퍼를 부른다 — 관리자 쪽은 `mutate-admin-scope.ts` ⑦c·⑦d 가 본다
+    from: "    where: ownedRowsWhere(session),",
     to: "    where: {},",
     probe: null,
     tests: [DAILY],

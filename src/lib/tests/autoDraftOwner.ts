@@ -34,7 +34,13 @@ export async function resolveAutoDraftOwner(
 
   const user = await client.user.findUnique({
     where: { email },
-    select: { id: true, email: true, name: true, deletedAt: true },
+    select: {
+      id: true,
+      email: true,
+      name: true,
+      isAdmin: true,
+      deletedAt: true,
+    },
   });
   if (!user || user.deletedAt !== null)
     return {
@@ -44,6 +50,12 @@ export async function resolveAutoDraftOwner(
 
   return {
     ok: true,
-    owner: { id: user.id, email: user.email, name: user.name },
+    // 관리자면 전 반을 돈다(D-130 ⑸) — 판정은 `ownerScope.ts` 한 곳, 여기서는 표시만 싣는다
+    owner: {
+      id: user.id,
+      email: user.email,
+      name: user.name,
+      isAdmin: user.isAdmin === true,
+    },
   };
 }

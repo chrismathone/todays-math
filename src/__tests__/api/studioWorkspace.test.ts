@@ -32,6 +32,7 @@ beforeEach(() => {
     id: "owner-17",
     name: "Teacher",
     email: "teacher@example.test",
+    isAdmin: false,
   });
   vi.mocked(auth as () => Promise<unknown>).mockResolvedValue({
     user: { id: "owner-17", role: "director" },
@@ -80,6 +81,20 @@ describe("production workspace resources", () => {
       expect.objectContaining({ where: { userId: "owner-17" }, take: 3 }),
     );
     expect((await teaching(request("teaching"))).status).toBe(200);
+  });
+  it("D-130: an admin overview counts every class and student; the flagless owner above stays scoped", async () => {
+    vi.mocked(getSessionUser).mockResolvedValue({
+      id: "owner-17",
+      name: "Teacher",
+      email: "teacher@example.test",
+      isAdmin: true,
+    });
+    expect((await overview(request("overview"))).status).toBe(200);
+    expect(db.class.count).toHaveBeenCalledWith({ where: {} });
+    expect(db.student.count).toHaveBeenCalledWith({ where: {} });
+    expect(db.class.findMany).toHaveBeenCalledWith(
+      expect.objectContaining({ where: {}, take: 3 }),
+    );
   });
   it("serves the installed PDF worker and actual WASM bytes in production", async () => {
     const script = await worker(request("pdf-worker"));

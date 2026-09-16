@@ -36,14 +36,14 @@ export async function POST(request: NextRequest) {
   const parsed = progressRecordRequestSchema.safeParse(body);
   if (!parsed.success) return validationError(parsed.error);
 
-  const owned = await requireOwnedClass(parsed.data.classId, session.id);
+  const owned = await requireOwnedClass(parsed.data.classId, session);
   if (!owned.ok) return owned.response;
 
   if (parsed.data.studentId) {
     const studentOwned = await requireOwnedStudentInClass(
       parsed.data.studentId,
       parsed.data.classId,
-      session.id,
+      session,
     );
     if (!studentOwned.ok) return studentOwned.response;
   }
@@ -82,7 +82,7 @@ export async function GET(request: NextRequest) {
 
   const { classId, studentId } = parsed.data;
 
-  const owned = await requireOwnedClass(classId, session.id);
+  const owned = await requireOwnedClass(classId, session);
   if (!owned.ok) return owned.response;
 
   let useIndividualProgress = false;
@@ -90,7 +90,7 @@ export async function GET(request: NextRequest) {
     const studentOwned = await requireOwnedStudentInClass(
       studentId,
       classId,
-      session.id,
+      session,
     );
     if (!studentOwned.ok) return studentOwned.response;
     useIndividualProgress = studentOwned.data.useIndividualProgress;

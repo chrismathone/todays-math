@@ -31,6 +31,7 @@ import {
   type DailyPlanRow,
 } from "@/lib/daily/planDailyReview";
 import { countEligibleProblems } from "@/lib/findEligibleProblems";
+import { ownedRowsWhere } from "@/lib/ownerScope";
 import type { SessionUser } from "@/lib/session";
 import { generateDraftTest } from "@/lib/tests/generateDraftTest";
 
@@ -44,10 +45,11 @@ export async function runAutoDraft(args: {
 }): Promise<AutoDraftSummary> {
   const { day, owner } = args;
 
-  // 소유자의 반만 돈다 — 출제(`requireOwnedClass`)가 어차피 막지만, 남의 반을 **읽지도**
-  // 않는 쪽이 맞다(2026-09-07 에 새 계정이 남의 학원 상태를 그대로 본 전례).
+  // 소유자의 **소유 범위** 안의 반만 돈다 — 출제(`requireOwnedClass`)가 어차피 막지만, 범위 밖 반을
+  // **읽지도** 않는 쪽이 맞다(2026-09-07 에 새 계정이 남의 학원 상태를 그대로 본 전례).
+  // 소유자가 관리자면 전 반을 돈다(D-130 ⑸) — 시험지는 각 반 소유자의 것으로 선다(generateDraftTest).
   const ownClasses = await db.class.findMany({
-    where: { userId: owner.id },
+    where: ownedRowsWhere(owner),
     select: { id: true },
   });
   const ownClassIds = ownClasses.map((c) => c.id);

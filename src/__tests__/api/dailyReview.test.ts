@@ -101,6 +101,7 @@ describe("[2단계] GET /api/tests/daily-review — 오늘의 학생별 확인�
       id: "10000000-0000-4000-8000-000000000002",
       email: "walk@todaysmath.test",
       name: "다른 선생님",
+      isAdmin: false,
     });
     const res = await get();
     expect(res.status).toBe(200);

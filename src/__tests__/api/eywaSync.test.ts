@@ -72,6 +72,7 @@ describe("[2단계] POST /api/eywa-sync — 지금 가져오기", () => {
       id: "10000000-0000-4000-8000-000000000002",
       email: "walk@todaysmath.test",
       name: "다른 선생님",
+      isAdmin: false,
     });
     runEywaSyncMock.mockClear();
     const res = await eywaSync();

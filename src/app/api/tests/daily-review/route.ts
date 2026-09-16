@@ -19,8 +19,9 @@
  *
  * eywa 갈래는 **계정 구분이 없다**(연계 학생·마지막 동기화는 학원 하나의 것). 그래서
  * `isEywaOwner` 가 아니면 그 갈래를 통째로 안 읽는다 — 2026-09-07 에 새 계정이 원장님
- * 학원의 동기화 상태를 그대로 봤다. 계획 갈래는 반대다: **반 소유(`Class.userId`)로
- * 좁힌다.** 계획은 누구나 만들 수 있으므로 여기서 안 좁히면 남의 반이 섞인다.
+ * 학원의 동기화 상태를 그대로 봤다. 계획 갈래는 반대다: **반의 소유 범위로 좁힌다**
+ * (`ownerScope.ts` — 관리자는 모든 반, 아니면 `Class.userId` 가 나인 반, D-130). 계획은 누구나
+ * 만들 수 있으므로 여기서 안 좁히면 남의 반이 섞인다. eywa 갈래는 관리자라도 그대로다(D-130 ⑸).
  * 출제(POST /api/tests/generate)는 기존 소유권 규칙 그대로다.
  */
 import type { NextRequest } from "next/server";
@@ -35,6 +36,7 @@ import { db } from "@/lib/db";
 import { countEligibleProblems } from "@/lib/findEligibleProblems";
 import { isEywaOwner } from "@/lib/eywa/owner";
 import { kstDateOf } from "@/lib/kstDate";
+import { ownedRowsWhere } from "@/lib/ownerScope";
 import { getSessionUser } from "@/lib/session";
 
 /** 두 갈래가 **같은 칸**을 읽어야 한다 — 한쪽만 빠지면 그 학생만 조용히 다르게 갈린다. */
@@ -76,9 +78,9 @@ export async function GET(request: NextRequest) {
 
   const eywaOwner = isEywaOwner(session.email);
 
-  // ── 계획 갈래 — 이 계정의 반만 ──────────────────────────────────────────
+  // ── 계획 갈래 — 이 계정의 소유 범위 안의 반만 ─────────────────────────────
   const ownClasses = await db.class.findMany({
-    where: { userId: session.id },
+    where: ownedRowsWhere(session),
     select: { id: true },
   });
   const ownClassIds = ownClasses.map((c) => c.id);

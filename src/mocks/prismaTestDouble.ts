@@ -128,6 +128,8 @@ interface UserRow {
   id: string;
   email: string;
   name: string;
+  /** D-130 — 학원 운영 데이터의 소유 울타리를 넘는 계정인가. 픽스처 원장 둘은 아니다. */
+  isAdmin: boolean;
   deletedAt: Date | null;
 }
 
@@ -646,6 +648,7 @@ export function resetPrismaTestDouble() {
     id: u.id,
     email: u.email,
     name: u.name,
+    isAdmin: false,
     deletedAt: null,
   }));
   progressRows = MOCK_PROGRESS.map(toProgressRow);
@@ -2415,6 +2418,15 @@ export function seedPredictionRuns(rows: PredictionRunRow[]) {
   //    ⚠️ NOT NULL 컬럼(`user_id`)은 **채우지 않는다** — 없으면 그대로 터져야 픽스처
   //    누락이 드러난다. 그럴듯한 기본값을 지어넣으면 소유권 테스트가 조용히 무의미해진다.
   predictionRunRows.push(...rows.map((row) => ({ examDate: null, ...row })));
+}
+
+/**
+ * 계정 시드 — 자동 출제 소유자(`AUTO_DRAFT_OWNER_EMAIL`)처럼 **이메일로 계정을 찾는** 경로가
+ * 픽스처 원장 둘 말고 다른 계정(관리자 등)을 겨눌 때 쓴다(D-130).
+ * 🔴 `isAdmin` 은 기본값을 두지 않는다 — 빠지면 «관리자 아님»으로 조용히 읽혀 짝 시험이 한쪽만 돈다.
+ */
+export function seedUsers(rows: UserRow[]) {
+  userRows.push(...rows.map((row) => ({ ...row })));
 }
 
 export function seedActualExamScores(rows: ActualExamScoreRow[]) {

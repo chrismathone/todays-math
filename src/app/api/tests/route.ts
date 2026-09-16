@@ -1,6 +1,7 @@
 /**
- * GET /api/tests — 본인 소유 테스트 목록 (classId/studentId/status 필터, 페이지네이션).
+ * GET /api/tests — 소유 범위 안의 테스트 목록 (classId/studentId/status 필터, 페이지네이션).
  * 대응 계약: src/contracts/test.contract.ts
+ * 소유 범위(D-130 — 관리자는 모든 반의 시험지): src/lib/ownerScope.ts
  */
 import type { NextRequest } from "next/server";
 
@@ -10,6 +11,7 @@ import {
 } from "@/contracts/test.contract";
 import { jsonOk, unauthorizedError, validationError } from "@/lib/apiResponse";
 import { db } from "@/lib/db";
+import { ownedRowsWhere } from "@/lib/ownerScope";
 import { serializeTest } from "@/lib/serializers";
 import { getSessionUser } from "@/lib/session";
 
@@ -24,7 +26,7 @@ export async function GET(request: NextRequest) {
 
   const { classId, studentId, status, page, pageSize } = parsed.data;
   const where = {
-    userId: session.id,
+    ...ownedRowsWhere(session),
     ...(classId ? { classId } : {}),
     ...(studentId ? { studentId } : {}),
     ...(status ? { status } : {}),
