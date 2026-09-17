@@ -159,7 +159,9 @@ const MUTATIONS: Mutation[] = [
   {
     name: "①f 계획을 못 펴도 resolveDailyPlan 의 0을 그대로 낸다",
     file: COLLECT_FILE,
-    from: '  if (plannedRun.anchoredOn !== "progress") return { days: null, gap: "차시밖" };',
+    from:
+      '  if (plannedRun.anchoredOn !== "progress")\n' +
+      '    return { days: null, gap: "차시밖" };',
     to: "  void plannedRun;",
     probe:
       'F({ plan: RULE, progress: [{ unitId: "없는차시", recordedAt: "2026-09-07" }] }).learned',
@@ -280,7 +282,10 @@ const MUTATIONS: Mutation[] = [
   {
     name: "⑦a 심화 세 갈래가 «심화» 밴드에서 사라진다",
     file: TYPES_FILE,
-    from: '  return difficulty.startsWith("심화") ? "심화" : (difficulty as AchievementBand);',
+    from:
+      '  return difficulty.startsWith("심화")\n' +
+      '    ? "심화"\n' +
+      "    : (difficulty as AchievementBand);",
     to: "  return difficulty as AchievementBand;",
     probe:
       'F({ results: [ROUND({ items: ITEMS("u1", "심화중", 4, 2) })] }).scored.bandAccuracy',
