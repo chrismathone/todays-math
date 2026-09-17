@@ -74,6 +74,10 @@ import { POST as printTest } from "@/app/api/tests/[id]/print/route";
 import { PUT as replaceProblem } from "@/app/api/tests/[id]/problems/[seq]/route";
 import { GET as listResults } from "@/app/api/tests/[id]/results/route";
 import { GET as getTest } from "@/app/api/tests/[id]/route";
+import {
+  GET as gradeSheet,
+  POST as saveGrades,
+} from "@/app/api/tests/[id]/grade/route";
 import { POST as submitResult } from "@/app/api/tests/[id]/submit/route";
 
 import { autoDraftRunResponseSchema } from "@/contracts/dailyAutoTest.contract";
@@ -645,6 +649,40 @@ describe.each(CASES)("D-130 쓰기 — $who", ({ isAdmin }) => {
       withId(role.confirmedId),
     );
     expect(res.status).toBe(isAdmin ? 201 : 403);
+  });
+
+  /**
+   * 🔴 **채점 입력(A안)도 같은 울타리를 쓴다** — D-134 트랙 1 브리프 §1.2 «소유 범위는
+   * `ownerScope.ts` 하나만 묻는다». 라우트가 `isAdmin` 을 새로 읽으면 이 짝이 한쪽만 초록이 된다.
+   */
+  it("남의 반 시험지의 채점표를 연다", async () => {
+    const res = await gradeSheet(
+      req(`/api/tests/${role.confirmedId}/grade`, "GET"),
+      withId(role.confirmedId),
+    );
+    expect(res.status).toBe(isAdmin ? 200 : 403);
+  });
+
+  it("남의 반 시험지를 «틀린 번호만»으로 채점한다", async () => {
+    const res = await saveGrades(
+      req(`/api/tests/${role.confirmedId}/grade`, "POST", {
+        entries: [
+          {
+            studentId: role.studentId,
+            absent: false,
+            wrongProblemIds: [TEST_RESULT_PROBLEM_OBJECTIVE_WRONG_ID],
+          },
+        ],
+      }),
+      withId(role.confirmedId),
+    );
+    expect(res.status).toBe(isAdmin ? 201 : 403);
+
+    // 🔴 **막혔으면 행도 없어야 한다** — 403 을 내면서 쓰고 나가면 아무도 모른다.
+    const rows = await db.testResult.findMany({
+      where: { testId: role.confirmedId },
+    });
+    expect(rows.length).toBe(isAdmin ? 1 : 0);
   });
 });
 

@@ -142,8 +142,11 @@ export function serializeTestResult(row: TestResultRow): TestResultEntity {
     testId: row.testId,
     studentId: row.studentId,
     takenAt: row.takenAt.toISOString(),
+    // 🔴 `?? 0` 을 쓰지 않는다 — 결시의 null 을 0 으로 바꾸면 그 0이 평균·추이에 실린다(23 §4 ③).
     score: row.score,
     predictedScore: row.predictedScore,
+    gradingMode: row.gradingMode,
+    absent: row.absent,
     createdAt: row.createdAt.toISOString(),
   };
 }

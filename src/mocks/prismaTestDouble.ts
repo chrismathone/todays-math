@@ -222,8 +222,13 @@ interface TestResultRow {
   testId: string;
   studentId: string;
   takenAt: Date;
-  score: number;
-  predictedScore: number;
+  /** 채점 방식 — 칸이 없던 옛 호출은 `answers`(스키마 기본값과 같다). */
+  gradingMode: "marks" | "answers";
+  /** 🔴 결시 — 전 문항 오답과 다른 뜻. 결시면 점수가 NULL 이고 리포트·응답 행이 없다. */
+  absent: boolean;
+  /** 🔴 **NULL 을 허용한다** — 결시의 자리. `?? 0` 으로 흉내 내면 가짜가 진짜보다 너그러워진다. */
+  score: number | null;
+  predictedScore: number | null;
   createdAt: Date;
 }
 
@@ -626,6 +631,12 @@ let testRows: TestRow[] = [];
 let testProblemRows: TestProblemRow[] = [];
 let basketItemRows: BasketItemRow[] = [];
 let testResultRows: TestResultRow[] = [];
+/** 마지막으로 발급한 `takenAt` — 같은 밀리초에 두 행이 서지 않게 한 칸씩 민다. */
+let lastTakenAt = 0;
+function nextTakenAt(): Date {
+  lastTakenAt = Math.max(Date.now(), lastTakenAt + 1);
+  return new Date(lastTakenAt);
+}
 let problemAnswerRows: ProblemAnswerRow[] = [];
 let analysisReportRows: AnalysisReportRow[] = [];
 let problemReportRows: ProblemReportRow[] = [];
@@ -2091,6 +2102,14 @@ const prismaModels = {
       return { count: rows.length };
     },
   },
+  /**
+   * 🔴 **재채점 두 건이 같은 밀리초에 서지 않게 한다.**
+   *
+   * 「최신은 `takenAt` 내림차순」이 `TestResult` 의 규약인데(스키마 머리말), 시험은 두 번째
+   * 저장을 **같은 밀리초 안에** 부른다. 그러면 정렬이 동점이라 **먼저 넣은 행이 최신으로** 읽히고,
+   * 「정정이 이긴다」를 재는 시험이 조용히 뒤집힌다(2026-08-30 «동점이면 목록 순서가 정한다»).
+   * 실제 Postgres 는 요청이 초 단위로 떨어져 이 동점이 안 나므로, 가짜가 **그 시간 간격을** 흉내 낸다.
+   */
   testResult: {
     async create({
       data,
@@ -2098,8 +2117,10 @@ const prismaModels = {
       data: {
         testId: string;
         studentId: string;
-        score: number;
-        predictedScore: number;
+        score: number | null;
+        predictedScore: number | null;
+        gradingMode?: "marks" | "answers";
+        absent?: boolean;
         takenAt?: Date;
       };
     }) {
@@ -2107,7 +2128,10 @@ const prismaModels = {
         id: randomUUID(),
         testId: data.testId,
         studentId: data.studentId,
-        takenAt: data.takenAt ?? new Date(),
+        takenAt: data.takenAt ?? nextTakenAt(),
+        // 스키마 기본값을 그대로 흉내 낸다 — 안 주면 `answers` · 결시 아님.
+        gradingMode: data.gradingMode ?? "answers",
+        absent: data.absent ?? false,
         score: data.score,
         predictedScore: data.predictedScore,
         createdAt: new Date(),

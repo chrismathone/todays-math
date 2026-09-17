@@ -159,6 +159,51 @@ describe("[T4.3 S-05] 검수 — 하단 확정·인쇄", () => {
     ).not.toBeInTheDocument();
   });
 
+  /**
+   * 🔴 **채점 진입점은 여기 한 자리뿐이다** (D-134 트랙 1 · 브리프 §1.3).
+   *
+   * 초안에 보이면 「아직 나가지도 않은 시험지」를 채점하는 길이 열린다. 감추는 것만으로
+   * 끝내지 않고 서버도 같은 규칙을 든다(`lib/testResults/gradeSheet.ts` — 초안이면 422).
+   */
+  it("초안에는 «채점» 단추가 없다 — 아직 나가지 않은 시험지다", async () => {
+    await renderReview(TEST_DRAFT_ID);
+    await screen.findByRole("article", { name: "문 1" });
+
+    expect(
+      screen.queryByRole("link", { name: "채점" }),
+    ).not.toBeInTheDocument();
+    expect(
+      screen.queryByRole("button", { name: "채점" }),
+    ).not.toBeInTheDocument();
+  });
+
+  it("확정된 시험지에는 «채점» 링크가 있다", async () => {
+    await renderReview(TEST_CONFIRMED_ID);
+    await screen.findByRole("article", { name: "문 1" });
+
+    expect(screen.getByRole("link", { name: "채점" })).toHaveAttribute(
+      "href",
+      `/tests/${TEST_CONFIRMED_ID}/grade`,
+    );
+  });
+
+  it("확정을 누르면 그때 «채점» 링크가 열린다", async () => {
+    const { user } = await renderReview(TEST_DRAFT_ID);
+    await screen.findByRole("article", { name: "문 1" });
+    expect(
+      screen.queryByRole("link", { name: "채점" }),
+    ).not.toBeInTheDocument();
+
+    await user.click(screen.getByRole("button", { name: "확정" }));
+
+    await waitFor(() => {
+      expect(screen.getByRole("link", { name: "채점" })).toHaveAttribute(
+        "href",
+        `/tests/${TEST_DRAFT_ID}/grade`,
+      );
+    });
+  });
+
   it("확정을 누른 뒤에만 인쇄 링크를 연다", async () => {
     const { user } = await renderReview(TEST_DRAFT_ID);
     await screen.findByRole("article", { name: "문 1" });
