@@ -54,12 +54,55 @@ function verdict(label, ok, detail) {
 async function measure(page) {
   return page.evaluate(() => {
     const doc = document.documentElement;
-    const leaves = [...document.querySelectorAll("body *")].filter(
-      (el) => el.children.length === 0,
+    const main = document.querySelector("main");
+    /**
+     * 🔴 **재는 자리를 이 트랙이 만든 것으로 좁힌다.**
+     *
+     * 문서 전체(`documentElement`)는 390px 에서 이미 가로로 넘친다 — 그런데 그 범인은
+     * `AppChrome` 의 머리말 nav 이고 **이 트랙이 만든 것이 아니다**. 실측(2026-09-18):
+     * 손 안 댄 `/dev/chrome-check` 가 계정 없이도 **78px** 넘친다(nav 442px).
+     * 그 숫자를 이 트랙의 판정으로 삼으면 «채점 화면이 휴대폰에서 깨졌다»는 거짓 경보가 되고,
+     * 거짓 경보는 가드를 끈다(2026-08-20). 그래서 **판정은 `main`**, 문서 쪽은 **기록만** 한다.
+     */
+    const scrollBox = document.querySelector("table")?.parentElement ?? null;
+    /**
+     * 🔴 **표 안은 빼고 센다.** 표는 제 상자 안에서 가로로 스크롤하라고 만든 것이라,
+     *    문항 5~8번 칸이 화면 밖에 있는 것은 «결함»이 아니라 «스크롤»이다.
+     *    표 밖의 것이 삐져나오면 그건 진짜 결함이다.
+     */
+    const leaves = [...(main ?? document.body).querySelectorAll("*")].filter(
+      (el) => el.children.length === 0 && !scrollBox?.contains(el),
     );
     const offscreen = leaves
       .filter((el) => el.getBoundingClientRect().right > window.innerWidth + 1)
       .map((el) => (el.textContent ?? "").trim().slice(0, 40));
+
+    /**
+     * 🔴 **끝까지 밀어도 «학생»과 «상태»는 보인다** — 둘 다 고정 칸이다.
+     *    상태 칸(끝·결시)은 이 화면에서 제일 중요한 단추라, 줄마다 가로로 밀어야 닿으면
+     *    56칸을 한 화면에 담은 뜻이 없다(2026-09-18 실측으로 드러났다).
+     */
+    let pinned = null;
+    if (scrollBox) {
+      const before = scrollBox.scrollLeft;
+      scrollBox.scrollLeft = scrollBox.scrollWidth;
+      const row = document.querySelector("tbody tr");
+      const nameCell = row?.querySelector('th[scope="row"]');
+      const statusCell = row?.lastElementChild;
+      const inside = (el) => {
+        if (!el) return null;
+        const r = el.getBoundingClientRect();
+        return r.left >= -1 && r.right <= window.innerWidth + 1 && r.width > 0;
+      };
+      pinned = {
+        scrolled: Math.round(scrollBox.scrollLeft),
+        scrollable: scrollBox.scrollWidth - scrollBox.clientWidth,
+        nameVisible: inside(nameCell),
+        statusVisible: inside(statusCell),
+        statusText: (statusCell?.textContent ?? "").trim(),
+      };
+      scrollBox.scrollLeft = before;
+    }
 
     const table = document.querySelector("table");
     const cells = [...document.querySelectorAll("tbody td button[aria-label]")];
@@ -105,13 +148,21 @@ async function measure(page) {
     );
 
     return {
-      // 🔴 문서 자체가 가로로 넘치면 원장님은 표를 보려고 페이지를 밀어야 한다
+      // 🔴 이 트랙의 지면 — 채점 화면이 가로로 넘치면 원장님은 표를 보려고 페이지를 민다
+      mainOverflow: main ? main.scrollWidth - main.clientWidth : null,
+      // 기록만 — 범인은 머리말 nav 다(위 주석). 판정에 안 쓴다.
       pageOverflow: doc.scrollWidth - doc.clientWidth,
+      navWidth: document.querySelector("header nav")
+        ? Math.round(
+            document.querySelector("header nav").getBoundingClientRect().width,
+          )
+        : null,
       offscreen,
       // 표는 제 안에서 가로 스크롤을 낸다(문항이 많아지면) — 그건 정상이고, 문서가 넘치는 것과 다르다
       tableScroll: table
         ? table.parentElement.scrollWidth - table.parentElement.clientWidth
         : null,
+      pinned,
       cellCount: cells.length,
       rowCount: rows.length,
       byState,
@@ -141,6 +192,14 @@ async function open(width, query) {
     waitUntil: "networkidle",
   });
   await page.waitForSelector("tbody tr");
+  // 🔴 **계정 구역이 자리를 잡은 뒤에 잰다.** `AccountBadge` 는 세션을 받아 오기 전까지 뼈대만
+  //    그리고, 이메일이 들어오면 머리말이 90px 쯤 넓어진다. 기다리지 않으면 같은 화면이 회차마다
+  //    다른 폭으로 읽힌다 — 실제로 첫 계측에서 `partial` 만 0px 로 나왔다(2026-09-18).
+  await page
+    .waitForFunction(() => document.body.innerText.includes("로그아웃"), {
+      timeout: 15000,
+    })
+    .catch(() => {});
   return { page, errors };
 }
 
@@ -162,12 +221,12 @@ for (const run of RUNS) {
         .catch(() => {});
 
     verdict(
-      `${tag} 문서가 가로로 안 넘친다`,
-      m.pageOverflow <= 1,
-      `${m.pageOverflow}px`,
+      `${tag} 채점 지면이 가로로 안 넘친다`,
+      m.mainOverflow !== null && m.mainOverflow <= 1,
+      `main ${m.mainOverflow}px (참고 — 문서 ${m.pageOverflow}px · 머리말 nav ${m.navWidth}px: 손 안 댄 /dev/chrome-check 도 390 에서 78px 넘친다)`,
     );
     verdict(
-      `${tag} 화면 밖으로 삐져나온 것 0`,
+      `${tag} 채점 지면 밖으로 삐져나온 것 0`,
       m.offscreen.length === 0,
       m.offscreen.join(" / "),
     );
@@ -175,6 +234,16 @@ for (const run of RUNS) {
       `${tag} 56칸`,
       m.cellCount === 56 && m.rowCount === 7,
       `칸 ${m.cellCount} · 줄 ${m.rowCount}`,
+    );
+    // 🔴 끝까지 민 상태에서도 학생 이름과 «끝·결시»가 보인다
+    verdict(
+      `${tag} 끝까지 밀어도 «학생»·«상태» 칸이 보인다`,
+      m.pinned !== null &&
+        m.pinned.nameVisible === true &&
+        m.pinned.statusVisible === true,
+      m.pinned
+        ? `민 거리 ${m.pinned.scrolled}/${m.pinned.scrollable}px · 학생 ${m.pinned.nameVisible} · 상태 ${m.pinned.statusVisible} «${m.pinned.statusText}»`
+        : "표가 없다",
     );
 
     // 🔴 세 상태가 **모양으로** 갈리나 — 같은 문자열이 둘이면 눈으로 못 가른다
@@ -269,9 +338,9 @@ for (const width of WIDTHS) {
     summary.replace(/\n/g, " | "),
   );
   verdict(
-    `${tag} 문서가 가로로 안 넘친다`,
-    m.pageOverflow <= 1,
-    `${m.pageOverflow}px`,
+    `${tag} 채점 지면이 가로로 안 넘친다`,
+    m.mainOverflow !== null && m.mainOverflow <= 1,
+    `main ${m.mainOverflow}px (참고 — 문서 ${m.pageOverflow}px)`,
   );
   verdict(`${tag} 콘솔 오류·경고 0`, errors.length === 0, errors.join(" / "));
   report[tag] = { ...m, errors };

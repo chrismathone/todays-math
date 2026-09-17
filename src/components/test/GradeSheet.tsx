@@ -305,7 +305,19 @@ export function GradeSheet({ testId }: { testId: string }) {
                         {p.no}
                       </th>
                     ))}
-                    <th scope="col" className="px-3 py-2 text-center font-bold">
+                    {/*
+                      🔴 **상태 칸을 오른쪽에 고정한다** — 학생 이름 칸이 왼쪽에 고정된 것과 같은 장치다.
+
+                      실물 계측(2026-09-18, 390px): 학생 7 × 문항 8 이면 표가 478px 라
+                      휴대폰 폭에서 **154px 을 가로로 밀어야** 「끝」·「결시」에 닿았다.
+                      그 둘은 이 화면에서 **제일 중요한 단추**(그 줄이 채점됐다는 주장)이고,
+                      줄마다 밀어야 한다면 56칸을 한 화면에 담은 뜻이 없다.
+                      `scripts/qa/grading-input-layout.mjs` 가 끝까지 민 상태로 이 칸이 보이는지 잰다.
+                    */}
+                    <th
+                      scope="col"
+                      className="sticky right-0 z-10 bg-white px-3 py-2 text-center font-bold"
+                    >
                       상태
                     </th>
                   </tr>
@@ -368,7 +380,7 @@ export function GradeSheet({ testId }: { testId: string }) {
                             </td>
                           );
                         })}
-                        <td className="px-3 py-1.5">
+                        <td className="sticky right-0 z-10 bg-white px-3 py-1.5">
                           <div className="flex items-center justify-end gap-1.5">
                             {/*
                               🔴 단추가 «무엇을 굳히는지» **누르기 전에** 말한다.
