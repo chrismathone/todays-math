@@ -264,16 +264,33 @@ describe("① POST — 틀린 번호만 저장한다", () => {
     ).toHaveLength(0);
   });
 
-  it("🔴 초안 시험지는 채점을 안 받는다", async () => {
+  /**
+   * 🔴 **대상 학생을 전부 실어서 묻는다.**
+   *
+   * 처음엔 학생 하나만 보냈는데, 그러면 초안 검사를 **지워도** 「빠진 학생」 규칙이 같은 422 를 낸다 —
+   * 시험이 두 까닭을 못 가르는 **도장**이었다(변이 ⑩c 가 «판정 보류»로 잡았다, 2026-09-18).
+   * 반 A 전원(셋)을 실으면 거절할 수 있는 까닭이 **초안 하나**뿐이라 그제서야 이 규칙만 잰다.
+   */
+  it("🔴 초안 시험지는 채점을 안 받는다 — 대상 전원을 실어도", async () => {
     const res = await save(
       {
-        entries: [
-          { studentId: MOCK_STUDENT_1.id, absent: false, wrongProblemIds: [] },
-        ],
+        entries: ROSTER.map((s) => ({
+          studentId: s.id,
+          absent: false,
+          wrongProblemIds: [],
+        })),
       },
       TEST_DRAFT_ID,
     );
     expect(res.status).toBe(422);
+    const { error } = errorResponseSchema.parse(await res.json());
+    // 🔴 문구까지 본다 — 「빠진 학생」 거절과 섞이지 않게
+    expect(error.message).toBe(
+      "초안 시험지는 채점할 수 없습니다. 먼저 확정하십시오.",
+    );
+    expect(
+      await db.testResult.findMany({ where: { testId: TEST_DRAFT_ID } }),
+    ).toHaveLength(0);
   });
 
   it("재채점(정정)은 막지 않는다 — 새 행이 쌓이고 최신이 이긴다", async () => {
