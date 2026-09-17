@@ -215,11 +215,19 @@ const MUTATIONS: Mutation[] = [
     tests: [FACTORS],
   },
   {
-    name: "③b 결시가 0점으로 평균에 실린다",
+    /**
+     * 🔴 **탐침을 비교군에 건다.** 본인 회차 쪽은 `scorePercentOf(taken)` 로 들어가는데
+     * `taken` 이 이미 결시를 뺀 뒤라, 이 함수 안의 `r.absent` 갈래는 그 길에서 **죽은 줄**이다
+     * (첫 회차에 탐침을 본인 쪽에 걸었더니 «산출물이 그대로»가 나왔다 — 가드가 없는 게 아니라
+     * **재는 자리가 틀렸던 것**이다). 살아 있는 자리는 비교군이다 — 거기는 결시가 섞인
+     * 원본 회차를 그대로 넘긴다.
+     */
+    name: "③b 결시가 0점으로 평균에 실린다 (비교군)",
     file: COLLECT_FILE,
     from: "    if (r.absent || r.score === null || r.maxScore === null || r.maxScore <= 0)\n      continue;",
     to: "    if (r.maxScore === null || r.maxScore <= 0) continue;\n    if (r.score === null) {\n      full += r.maxScore;\n      continue;\n    }",
-    probe: "F({ results: ABSENT }).scored.averagePercent",
+    probe:
+      'F({ comparison: { kind: "반평균", students: [{ id: "a", progress: [], results: ABSENT }] } }).comparison',
     tests: [FACTORS],
   },
 

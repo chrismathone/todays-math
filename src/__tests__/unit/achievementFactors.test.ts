@@ -651,6 +651,64 @@ describe("비교군 — 기본값은 «미사용»", () => {
     });
   });
 
+  it("🔴 값이 없는 학생은 **평균의 분모**에서 빠진다 — 반 인원과 분모는 다를 수 있다", () => {
+    const f = collectAchievement(
+      base({
+        comparison: {
+          kind: "반평균",
+          students: [
+            {
+              id: "a",
+              progress: [{ unitId: "u1", recordedAt: "2026-09-07" }],
+              results: [round({ score: 60, maxScore: 100 })],
+            },
+            // 이 학생은 진도도 채점도 없다 — 0 으로 세면 반 평균이 절반으로 떨어진다.
+            { id: "b", progress: [], results: [] },
+          ],
+        },
+      }),
+    );
+    expect(f.comparison).toEqual({
+      kind: "반평균",
+      sampleSize: 2,
+      lessons: { value: 1, sample: 1 },
+      averagePercent: { value: 60, sample: 1 },
+    });
+  });
+
+  it("🔴 비교군에서도 결시는 평균에 안 들어간다", () => {
+    const f = collectAchievement(
+      base({
+        comparison: {
+          kind: "반평균",
+          students: [
+            {
+              id: "a",
+              progress: [],
+              results: [
+                round({
+                  testId: "t1",
+                  testDate: "2026-09-03",
+                  score: 100,
+                  maxScore: 100,
+                }),
+                round({
+                  testId: "t2",
+                  testDate: "2026-09-10",
+                  score: null,
+                  maxScore: 100,
+                  absent: true,
+                }),
+              ],
+            },
+          ],
+        },
+      }),
+    );
+    // 결시를 0점으로 실으면 50 이 된다.
+    expect(f.comparison?.averagePercent).toEqual({ value: 100, sample: 1 });
+  });
+
   it("반에 아무도 없으면 표본 0 이고 값은 null 이다 — 0 이 아니다", () => {
     const f = collectAchievement(
       base({ comparison: { kind: "반평균", students: [] } }),
