@@ -1,0 +1,347 @@
+/**
+ * 도형 편집기 «면 만들기»(트랙 4) — 면 찾기의 평면 기하.
+ *
+ * 원장님 2026-09-19 «면을 쉽게 만들 수 있어야 색칠을 할 수가 있음». 채우기 통(누른 점을 둘러싼 가장 작은 닫힌 영역)과
+ * 묶음 안쪽 채우기(선 묶음이 두른 바깥 테두리)가 이 계산을 쓴다. 화면과 무관한 순수 계산이라 DOM 없이 잰다.
+ * 넓이는 방향(시계·반시계)을 떼고 잰다 — SVG 는 y 가 아래로 자라 방향이 뒤집혀 보인다.
+ */
+import { describe, expect, it } from "vitest";
+
+import {
+  arrangeFaceCurves,
+  boundedFaces,
+  closedOutlines,
+  faceAt,
+  interiorPoint,
+  pointInRegion,
+  ringArea,
+  type FaceCurve,
+  type Point,
+} from "@/components/unified/figure-editor/figureFaceGeometry";
+
+const P = (x: number, y: number): Point => ({ x, y });
+const seg = (id: string, a: Point, b: Point): FaceCurve => ({
+  id,
+  points: [a, b],
+  closed: false,
+});
+const loop = (id: string, ...points: Point[]): FaceCurve => ({
+  id,
+  points,
+  closed: true,
+});
+const circle = (id: string, c: Point, r: number, n = 180): FaceCurve => ({
+  id,
+  closed: true,
+  points: Array.from({ length: n }, (_, k) =>
+    P(
+      c.x + r * Math.cos((2 * Math.PI * k) / n),
+      c.y + r * Math.sin((2 * Math.PI * k) / n),
+    ),
+  ),
+});
+const area = (ring: readonly Point[]) => Math.abs(ringArea(ring));
+const triangleArea = (a: Point, b: Point, c: Point) =>
+  Math.abs((b.x - a.x) * (c.y - a.y) - (c.x - a.x) * (b.y - a.y)) / 2;
+/** 상대 오차 — 원·곡선은 꺾은선으로 펴서 재므로 정확히 같지 않다. */
+const near = (value: number, expected: number, relative: number) =>
+  expect(Math.abs(value - expected) / expected).toBeLessThan(relative);
+
+// △ABC — A 위, B 왼쪽 아래, C 오른쪽 아래. D 는 BC 위(△ABD 7200 · △ADC 14400 으로 넓이가 갈린다).
+const A = P(120, 20),
+  B = P(20, 200),
+  C = P(260, 200),
+  D = P(100, 200);
+const triangle = [seg("AB", A, B), seg("BC", B, C), seg("CA", C, A)];
+
+describe("faceAt — 누른 점을 둘러싼 가장 작은 닫힌 영역", () => {
+  it("선분 세 개로 그린 삼각형 — 안을 누르면 그 삼각형", () => {
+    const face = faceAt(arrangeFaceCurves(triangle), P(120, 150));
+    expect(face).not.toBeNull();
+    expect(area(face!.outer)).toBeCloseTo(triangleArea(A, B, C), 6);
+    expect(face!.area).toBeCloseTo(21600, 6);
+    expect(face!.holes).toEqual([]);
+    expect([...face!.sourceIds].sort()).toEqual(["AB", "BC", "CA"]);
+  });
+
+  it("삼각형 안의 작은 삼각형 — AD 를 그으면 누른 쪽(△ABD·△ADC)만", () => {
+    const arrangement = arrangeFaceCurves([...triangle, seg("AD", A, D)]);
+    const left = faceAt(arrangement, P(80, 140))!;
+    expect(left.area).toBeCloseTo(triangleArea(A, B, D), 6);
+    expect(left.area).toBeCloseTo(7200, 6);
+    expect([...left.sourceIds].sort()).toEqual(["AB", "AD", "BC"]);
+    const right = faceAt(arrangement, P(160, 140))!;
+    expect(right.area).toBeCloseTo(14400, 6);
+    expect([...right.sourceIds].sort()).toEqual(["AD", "BC", "CA"]);
+  });
+
+  it("사각형 + 대각선 — 누른 쪽 삼각형만", () => {
+    const arrangement = arrangeFaceCurves([
+      loop("rect", P(40, 40), P(240, 40), P(240, 160), P(40, 160)),
+      seg("diag", P(40, 40), P(240, 160)),
+    ]);
+    const upper = faceAt(arrangement, P(200, 60))!;
+    expect(upper.area).toBeCloseTo(12000, 6);
+    expect([...upper.sourceIds].sort()).toEqual(["diag", "rect"]);
+    const lower = faceAt(arrangement, P(60, 140))!;
+    expect(lower.area).toBeCloseTo(12000, 6);
+    // 두 삼각형은 서로 다른 면이다 — 누른 점이 다른 쪽에 들지 않는다.
+    expect(pointInRegion(P(60, 140), upper.outer, upper.holes)).toBe(false);
+  });
+
+  it("원과 현 — 활꼴만(현이 원 밖으로 삐져나와도)", () => {
+    // 중심 (200,200) 반지름 100, 현 y=150. 활꼴 넓이 r²·acos(d/r) − d·√(r²−d²), d=50.
+    const arrangement = arrangeFaceCurves([
+      circle("circle", P(200, 200), 100),
+      seg("chord", P(80, 150), P(320, 150)),
+    ]);
+    const cap = 10000 * Math.acos(0.5) - 50 * Math.sqrt(7500);
+    const top = faceAt(arrangement, P(200, 120))!;
+    near(top.area, cap, 0.003);
+    expect([...top.sourceIds].sort()).toEqual(["chord", "circle"]);
+    const rest = faceAt(arrangement, P(200, 250))!;
+    near(rest.area, Math.PI * 10000 - cap, 0.003);
+  });
+
+  it("바깥을 누르면 없다 — 닫히지 않은 V 안도 없다", () => {
+    expect(faceAt(arrangeFaceCurves(triangle), P(5, 5))).toBeNull();
+    expect(
+      faceAt(
+        arrangeFaceCurves([seg("AB", A, B), seg("BC", B, C)]),
+        P(120, 150),
+      ),
+    ).toBeNull();
+    expect(faceAt(arrangeFaceCurves([]), P(0, 0))).toBeNull();
+  });
+
+  it("끝점이 조금 안 맞는 선 — 허용 오차 안이면 닫히고 밖이면 안 닫힌다", () => {
+    // CA 가 A 에 1.5 모자라게 끝난다(AI 가 반올림한 좌표에서 흔하다).
+    const loose = [
+      seg("AB", A, B),
+      seg("BC", B, C),
+      seg("CA", C, P(121.2, 20.9)),
+    ];
+    const closed = faceAt(arrangeFaceCurves(loose, 2), P(120, 150));
+    expect(closed).not.toBeNull();
+    near(closed!.area, 21600, 0.01);
+    expect(faceAt(arrangeFaceCurves(loose, 1), P(120, 150))).toBeNull();
+    expect(faceAt(arrangeFaceCurves(loose, 0), P(120, 150))).toBeNull();
+  });
+
+  it("T 자로 조금 모자란 선 — 허용 오차 안이면 선 위로 붙는다", () => {
+    // AD 가 BC 에 1.2 못 미친다. 붙으면 △ABD, 안 붙으면 매달린 선이라 삼각형 전체.
+    const short = [...triangle, seg("AD", A, P(100, 198.8))];
+    expect(faceAt(arrangeFaceCurves(short, 2), P(80, 140))!.area).toBeCloseTo(
+      7200,
+      6,
+    );
+    expect(faceAt(arrangeFaceCurves(short, 0), P(80, 140))!.area).toBeCloseTo(
+      21600,
+      6,
+    );
+  });
+
+  it("꼭짓점에서 조금 삐져나온 선 — 꼬리는 걷히고 면은 그대로", () => {
+    const extend = (id: string, a: Point, b: Point) => {
+      const length = Math.hypot(b.x - a.x, b.y - a.y);
+      const ux = (b.x - a.x) / length,
+        uy = (b.y - a.y) / length;
+      return seg(
+        id,
+        P(a.x - 5 * ux, a.y - 5 * uy),
+        P(b.x + 5 * ux, b.y + 5 * uy),
+      );
+    };
+    const face = faceAt(
+      arrangeFaceCurves([
+        extend("AB", A, B),
+        extend("BC", B, C),
+        extend("CA", C, A),
+      ]),
+      P(120, 150),
+    )!;
+    expect(face.area).toBeCloseTo(21600, 6);
+    expect(face.outer).toHaveLength(3);
+  });
+
+  it("같은 자리를 두 번 지나는 선 — 겹쳐도 면은 하나", () => {
+    const face = faceAt(
+      arrangeFaceCurves([...triangle, seg("BC2", P(60, 200), P(300, 200))]),
+      P(120, 150),
+    )!;
+    expect(face.area).toBeCloseTo(21600, 6);
+  });
+
+  it("두 원 사이를 누르면 구멍 난 면 — 안쪽 원을 누르면 안쪽 원", () => {
+    const arrangement = arrangeFaceCurves([
+      circle("outer", P(200, 200), 100),
+      circle("inner", P(200, 200), 40),
+    ]);
+    const ring = faceAt(arrangement, P(270, 200))!;
+    expect(ring.holes).toHaveLength(1);
+    near(ring.area, Math.PI * (10000 - 1600), 0.003);
+    expect([...ring.sourceIds].sort()).toEqual(["inner", "outer"]);
+    expect(pointInRegion(P(200, 200), ring.outer, ring.holes)).toBe(false);
+    const disk = faceAt(arrangement, P(200, 200))!;
+    expect(disk.holes).toEqual([]);
+    near(disk.area, Math.PI * 1600, 0.003);
+  });
+
+  it("원 안에 떨어진 삼각형 — 원 안 빈 곳의 면에는 삼각형이 구멍으로 든다", () => {
+    const arrangement = arrangeFaceCurves([
+      circle("circle", P(200, 200), 150),
+      loop("tri", P(170, 180), P(230, 180), P(200, 230)),
+    ]);
+    const face = faceAt(arrangement, P(200, 100))!;
+    expect(face.holes).toHaveLength(1);
+    near(face.area, Math.PI * 22500 - 1500, 0.003);
+    expect(faceAt(arrangement, P(200, 200))!.area).toBeCloseTo(1500, 6);
+  });
+
+  it("촘촘한 곡선(함수 그래프 1200점)도 한 점으로 뭉치지 않는다 — 포물선과 가로선 사이", () => {
+    // y = 100 + (x−240)²/100 (화면에서 꼭짓점이 위), 가로선 y=200 과 x=140·340 에서 만난다. 넓이 40000/3.
+    const parabola: FaceCurve = {
+      id: "graph",
+      closed: false,
+      points: Array.from({ length: 1201 }, (_, k) => {
+        const x = 40 + k / 3;
+        return P(x, 100 + (x - 240) ** 2 / 100);
+      }),
+    };
+    const started = performance.now();
+    const face = faceAt(
+      arrangeFaceCurves([parabola, seg("line", P(0, 200), P(480, 200))], 2),
+      P(240, 150),
+    )!;
+    expect(performance.now() - started).toBeLessThan(2000);
+    near(face.area, 40000 / 3, 0.005);
+  });
+});
+
+describe("boundedFaces — 갇힌 면 전부", () => {
+  it("삼각형 + AD 는 면 둘, 원과 현은 면 둘(둘 다 경계가 같은 두 선)", () => {
+    expect(
+      boundedFaces(arrangeFaceCurves([...triangle, seg("AD", A, D)]))
+        .map((face) => Math.round(face.area))
+        .sort((a, b) => a - b),
+    ).toEqual([7200, 14400]);
+    const caps = boundedFaces(
+      arrangeFaceCurves([
+        circle("circle", P(200, 200), 100),
+        seg("chord", P(80, 150), P(320, 150)),
+      ]),
+    );
+    expect(caps).toHaveLength(2);
+    for (const face of caps)
+      expect([...face.sourceIds].sort()).toEqual(["chord", "circle"]);
+  });
+});
+
+describe("closedOutlines — 묶음이 두른 닫힌 영역(안쪽 채우기)", () => {
+  it("세 선분이 삼각형을 이루면 테두리 하나", () => {
+    const outlines = closedOutlines(arrangeFaceCurves(triangle));
+    expect(outlines).toHaveLength(1);
+    expect(outlines[0].area).toBeCloseTo(21600, 6);
+    expect(area(outlines[0].outer)).toBeCloseTo(21600, 6);
+  });
+
+  it("삼각형 + 안쪽 선(AD) — 칸이 둘이어도 바깥 테두리 하나(삼각형 전체)", () => {
+    const outlines = closedOutlines(
+      arrangeFaceCurves([...triangle, seg("AD", A, D)]),
+    );
+    expect(outlines).toHaveLength(1);
+    expect(outlines[0].area).toBeCloseTo(21600, 6);
+  });
+
+  it("열린 꺾은선(V)은 닫힌 영역이 아니다", () => {
+    expect(
+      closedOutlines(arrangeFaceCurves([seg("AB", A, B), seg("BC", B, C)])),
+    ).toEqual([]);
+  });
+
+  it("떨어진 두 삼각형 — 테두리 둘", () => {
+    const outlines = closedOutlines(
+      arrangeFaceCurves([
+        ...triangle,
+        loop("far", P(400, 20), P(460, 20), P(430, 80)),
+      ]),
+    );
+    expect(
+      outlines.map((o) => Math.round(o.area)).sort((a, b) => a - b),
+    ).toEqual([1800, 21600]);
+  });
+
+  it("사각형 안에 따로 떨어진 원 — 바깥 사각형 하나만(원은 그 안에 든다)", () => {
+    const outlines = closedOutlines(
+      arrangeFaceCurves([
+        loop("square", P(0, 0), P(300, 0), P(300, 300), P(0, 300)),
+        circle("circle", P(150, 150), 50),
+      ]),
+    );
+    expect(outlines).toHaveLength(1);
+    expect(outlines[0].area).toBeCloseTo(90000, 6);
+  });
+
+  it("허용 오차 안의 틈이면 닫힌 것으로 본다", () => {
+    const loose = [
+      seg("AB", A, B),
+      seg("BC", B, C),
+      seg("CA", C, P(121.2, 20.9)),
+    ];
+    expect(closedOutlines(arrangeFaceCurves(loose, 2))).toHaveLength(1);
+    expect(closedOutlines(arrangeFaceCurves(loose, 0))).toEqual([]);
+  });
+});
+
+describe("interiorPoint — 면 안쪽의 한 점(무게중심이 밖일 때도)", () => {
+  it("오목한 ㄱ자 — 무게중심은 밖이지만 고른 점은 안", () => {
+    const shape = [
+      P(0, 0),
+      P(100, 0),
+      P(100, 20),
+      P(20, 20),
+      P(20, 100),
+      P(0, 100),
+    ];
+    expect(pointInRegion(P(32.2, 32.2), shape)).toBe(false);
+    expect(pointInRegion(interiorPoint(shape), shape)).toBe(true);
+  });
+
+  it("고리 — 구멍을 피해 고리 안의 점", () => {
+    const outer = circle("o", P(200, 200), 100).points;
+    const inner = circle("i", P(200, 200), 40).points;
+    const point = interiorPoint(outer, [inner]);
+    expect(pointInRegion(point, outer, [inner])).toBe(true);
+    const r = Math.hypot(point.x - 200, point.y - 200);
+    expect(r).toBeGreaterThan(40);
+    expect(r).toBeLessThan(100);
+  });
+});
+
+describe("junctions — 달라붙기 후보(교점·끝점)", () => {
+  it("엇갈린 두 선분 — 교점 하나와 끝점 넷", () => {
+    const { junctions } = arrangeFaceCurves([
+      seg("a", P(0, 0), P(100, 100)),
+      seg("b", P(0, 100), P(100, 0)),
+    ]);
+    expect(junctions).toHaveLength(5);
+    expect(junctions.some((p) => Math.hypot(p.x - 50, p.y - 50) < 1e-6)).toBe(
+      true,
+    );
+  });
+
+  it("원 위의 표본점은 후보가 아니다 — 원과 선의 교점과 선의 끝점만", () => {
+    const { junctions } = arrangeFaceCurves([
+      circle("circle", P(200, 200), 100),
+      seg("line", P(50, 190), P(350, 190)),
+    ]);
+    expect(junctions).toHaveLength(4);
+    const x = Math.sqrt(10000 - 100);
+    for (const expected of [P(200 + x, 190), P(200 - x, 190)])
+      expect(
+        junctions.some(
+          (p) => Math.hypot(p.x - expected.x, p.y - expected.y) < 0.05,
+        ),
+      ).toBe(true);
+  });
+});
