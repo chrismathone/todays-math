@@ -2987,45 +2987,47 @@ export default function StudioView({
             ) : null}
             {crops.length ? (
               <div className={styles.cropList} aria-label="자른 문제 목록">
-                {crops.map((crop, index) => (
-                  <button
-                    key={crop.id}
-                    type="button"
-                    className={styles.cropItem}
-                    aria-pressed={activeCropId === crop.id}
-                    disabled={studioAi.isPageBusy(crop.sourceId, crop.page)}
-                    onClick={() => selectCrop(crop.id)}
-                  >
-                    <img src={crop.image} alt="" />
-                    <span>
-                      <strong>문제 {String(index + 1).padStart(2, "0")}</strong>
-                      <small>
-                        {crop.page}쪽 · {crop.grade} ·{" "}
-                        {crop.mode === "text" && crop.content.trim()
-                          ? "텍스트"
-                          : "이미지"}
-                      </small>
-                    </span>
-                    {studioAi.isCropBusy?.(crop.id) ? (
-                      <span className={styles.draftBadge}>
-                        {studioAi.cropJobs?.some(
-                          (job) =>
-                            job.cropId === crop.id && job.state === "running",
-                        )
-                          ? "인식 중"
-                          : "대기 중"}
+                {crops.map((crop, index) => {
+                  const title = `문제 ${String(index + 1).padStart(2, "0")}`;
+                  const detail = `${crop.page}쪽 · ${crop.grade} · ${crop.mode === "text" && crop.content.trim() ? "텍스트" : "이미지"}`;
+                  return (
+                    <button
+                      key={crop.id}
+                      type="button"
+                      className={styles.cropItem}
+                      aria-pressed={activeCropId === crop.id}
+                      disabled={studioAi.isPageBusy(crop.sourceId, crop.page)}
+                      onClick={() => selectCrop(crop.id)}
+                    >
+                      <img src={crop.image} alt="" />
+                      {/* 좁은 목록에서는 줄바꿈 대신 말줄임 — 전체 글자는 title 로(원장님 2026-09-19). */}
+                      <span>
+                        <strong title={title}>{title}</strong>
+                        <small title={detail}>{detail}</small>
                       </span>
-                    ) : figurePending.some((job) => job.cropId === crop.id) ? (
-                      <span className={styles.draftBadge}>도형 생성 중</span>
-                    ) : crop.added ? (
-                      <span className={styles.addedBadge}>담음</span>
-                    ) : crop.reviewed ? (
-                      <span className={styles.addedBadge}>검수 완료</span>
-                    ) : (
-                      <span className={styles.draftBadge}>검수 중</span>
-                    )}
-                  </button>
-                ))}
+                      {studioAi.isCropBusy?.(crop.id) ? (
+                        <span className={styles.draftBadge}>
+                          {studioAi.cropJobs?.some(
+                            (job) =>
+                              job.cropId === crop.id && job.state === "running",
+                          )
+                            ? "인식 중"
+                            : "대기 중"}
+                        </span>
+                      ) : figurePending.some(
+                          (job) => job.cropId === crop.id,
+                        ) ? (
+                        <span className={styles.draftBadge}>도형 생성 중</span>
+                      ) : crop.added ? (
+                        <span className={styles.addedBadge}>담음</span>
+                      ) : crop.reviewed ? (
+                        <span className={styles.addedBadge}>검수 완료</span>
+                      ) : (
+                        <span className={styles.draftBadge}>검수 중</span>
+                      )}
+                    </button>
+                  );
+                })}
               </div>
             ) : null}
 

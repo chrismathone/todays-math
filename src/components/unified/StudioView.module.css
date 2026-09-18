@@ -1224,6 +1224,8 @@
   display: flex;
   align-items: center;
   gap: 10px;
+  /* 높이가 정해진 세로 목록(.editing .cropList)이 항목을 글자 높이보다 눌러 제목이 위 테두리 밖으로 밀렸다. */
+  flex-shrink: 0;
   width: 100%;
   min-height: 76px;
   padding: 10px;
@@ -1265,14 +1267,23 @@
   font-size: var(--text-body, 14px);
   color: var(--studio-muted);
 }
+.cropItem strong,
+.cropItem small {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+/* 배지는 작업실 캡션 크기 — 12px 이 작업실 글자 바닥이다. 글자 칸을 짓누르지 않게 줄어들지도 않는다. */
 .addedBadge,
 .draftBadge {
-  padding: 3px 6px;
+  flex-shrink: 0;
+  padding: 2px 5px;
   border-radius: 4px;
   background: #e7edf8;
   color: #31568f;
-  font-size: var(--text-body, 14px);
+  font-size: var(--text-caption, 12px);
   font-weight: 600;
+  line-height: 1.4;
   white-space: nowrap;
 }
 .draftBadge {

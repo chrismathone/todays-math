@@ -393,3 +393,19 @@ describe("5 · 크롭 라벨 옆 «완료» 칩", () => {
     ).toBeInTheDocument();
   });
 });
+
+describe("2 · 자른 문제 목록의 글자 넘침", () => {
+  it("제목·설명 줄은 한 줄로 말줄임하고 전체 글자는 title 로 둔다", async () => {
+    await openStudio([crop("p1", { content: "본문", mode: "text" })]);
+    const list = screen.getByLabelText("자른 문제 목록");
+    const item = within(list).getByRole("button", { name: /문제 01/ });
+    expect(within(item).getByText("문제 01")).toHaveAttribute(
+      "title",
+      "문제 01",
+    );
+    expect(within(item).getByText("1쪽 · 중2 · 텍스트")).toHaveAttribute(
+      "title",
+      "1쪽 · 중2 · 텍스트",
+    );
+  });
+});
