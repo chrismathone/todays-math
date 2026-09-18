@@ -85,7 +85,8 @@ describe("구독 CLI 모델 — 목록·기본값은 원장님 CLI 설정에서"
       JSON.stringify({ model: "opus[1m]", hooks: { secret: "x" } }),
     );
     const settings = await readCliModelSettings("claude", env());
-    expect(settings.models).toEqual(["fable", "opus", "sonnet"]);
+    // haiku 도 같은 별칭(원장님 2026-09-18 «haiku는 왜 안넣었어?»)
+    expect(settings.models).toEqual(["fable", "opus", "sonnet", "haiku"]);
     expect(settings.defaultModel).toBe("opus[1m]");
   });
 

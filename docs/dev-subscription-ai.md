@@ -43,7 +43,7 @@ DEV_AI_MODE=subscription-cli
 DEV_AI_PROVIDER=claude
 ```
 
-**모델**(원장님 2026-09-18 — 「codex도 astra, sol 이런거 그리고 claude에서도 fable, opus, sonnet」): 상태판 도구 아래 «AI 모델» 칸에서 고른다.
+**모델**(원장님 2026-09-18 — 「codex도 astra, sol 이런거 그리고 claude에서도 fable, opus, sonnet」): 상태판 도구 아래 «AI 모델» 칸에서 고른다. Claude 는 별칭 fable·opus·sonnet·haiku — 설치된 CLI 가 아는 그 가족의 최신 모델로 풀린다.
 비워 두면(«CLI 설정») **원장님 CLI 설정의 모델**을 서버가 넘긴다 — 구독 호출은 훅·MCP 를 끌어오지 않으려고 사용자 설정을 끄고
 돌기 때문에(Codex `--ignore-user-config` · Claude `--setting-sources ""`), `src/lib/dev-ai/cli-models.ts` 가 모델 칸만 읽는다:
 Codex 는 `CODEX_HOME`(없으면 `~/.codex`)의 `config.toml` 맨 위 `model`·`model_reasoning_effort` 와 `models_cache.json`(목록 표시 모델 ·

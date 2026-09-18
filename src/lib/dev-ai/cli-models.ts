@@ -25,7 +25,7 @@ export interface CliModelSettings {
   /** Codex 만: 모델별로 받는 추론 강도(`models_cache.json`). */
   efforts: Record<string, string[]>;
 }
-export const CLAUDE_MODELS = ["fable", "opus", "sonnet"] as const;
+export const CLAUDE_MODELS = ["fable", "opus", "sonnet", "haiku"] as const;
 const EFFORT = /^[a-z]{2,16}$/;
 
 async function readSmall(file: string): Promise<string> {
