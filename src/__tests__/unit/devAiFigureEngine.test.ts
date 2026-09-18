@@ -254,6 +254,19 @@ describe("real local Python subscription figure pipeline", () => {
         once: true,
       });
     });
+  // 가짜 시계에서 호출 수를 기다린다 — **시간을 밀지 않고**. vi.waitFor 는 가짜 시계를 쓰면 기다리는 동안 시계를 밀어,
+  // 그 사이의 진짜 Python 렌더가 느리면(CPU 100% — 2026-09-18) 렌더 자체 제한 시간이 먼저 울려 «생성이 시간 안에 안 끝남»으로 빨갰다.
+  // setImmediate·performance 는 가짜가 아니다(toFake 밖).
+  const untilCalled = async (count: number, limitMs = 60_000) => {
+    const started = performance.now();
+    while (run.mock.calls.length < count) {
+      if (performance.now() - started > limitMs)
+        throw new Error(
+          `추론 ${count}번을 ${limitMs}ms 안에 못 봤다(${run.mock.calls.length}번)`,
+        );
+      await new Promise((resolve) => setImmediate(resolve));
+    }
+  };
   // 동시 호출 시험은 추론을 직접 주입한다 — vitest 는 모킹한 «./cli» 를 동시에 동적 import 하면
   // 두 번째 호출에 진짜 모듈을 준다(2026-09-18 실측). 운영 경로는 모킹이 없어 무관하다.
   const inject = (request: DevAiRequest, signal?: AbortSignal) =>
@@ -315,7 +328,7 @@ describe("real local Python subscription figure pipeline", () => {
       return JSON.stringify({ spec: triangle });
     });
     const result = inject(input);
-    await vi.waitFor(() => expect(run).toHaveBeenCalledTimes(3));
+    await untilCalled(3);
     await vi.advanceTimersByTimeAsync(240_001);
     const value = await result;
     expect(value.spec).toEqual(triangle);
@@ -338,7 +351,7 @@ describe("real local Python subscription figure pipeline", () => {
         : JSON.stringify({ spec: triangle }),
     );
     const result = inject(input);
-    await vi.waitFor(() => expect(run).toHaveBeenCalledTimes(2));
+    await untilCalled(2);
     await vi.advanceTimersByTimeAsync(240_001);
     const value = await result;
     expect(value.spec).toEqual(triangle);
