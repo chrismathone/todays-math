@@ -291,11 +291,11 @@ export function DevAiProvider({
         }));
       };
       try {
-        // 되살린 작업의 그림은 blob: 이다 — 서버는 data: 만 받는다(aiImageDataUrl.ts).
-        const imageDataUrl = await aiImageDataUrl(
-          request.imageDataUrl,
-          controller.signal,
-        );
+        // 되살린 작업의 그림은 blob: 이다 — 서버는 data: 만 받는다(aiImageDataUrl.ts). blob: 일 때만 기다린다 —
+        // 늘 await 하면 모든 요청이 한 박자 늦게 나가 «요청이 곧바로 나간다»는 대기열 시험 8건이 깨졌다.
+        const imageDataUrl = request.imageDataUrl?.startsWith("blob:")
+          ? await aiImageDataUrl(request.imageDataUrl, controller.signal)
+          : request.imageDataUrl;
         const response = await fetch(endpoint(), {
           method: "POST",
           headers: { "Content-Type": "application/json" },
