@@ -109,7 +109,7 @@ export const FigureEditElementSchema = z
     n: target,
     /** 선분·원·글자·수식·함수 그래프 … (편집기 요소 목록의 이름). */
     kind: z.string().trim().min(1).max(20),
-    /** 편집기 목록의 역할 묶음(x축 · 눈금 · 점 …)이나 사용자 묶음 이름. */
+    /** 사용자가 이름 붙인 묶음(편집기 «묶음 만들기») — 역할 어림은 싣지 않는다. */
     role: z.string().trim().min(1).max(40).optional(),
     /** 글자 요소의 내용 — 수식은 `$…$` 그대로. */
     text: z.string().max(200).optional(),

@@ -3,6 +3,7 @@ import {
   figureObjects,
   prepareFigureSvg,
   readFigureSvg,
+  setFigureGroup,
 } from "@/components/unified/figure-editor/figureSvgEditing";
 import { describeFigureForEdit } from "@/components/unified/figure-editor/figureEditElements";
 import { applyFigureEdits } from "@/components/unified/figure-editor/figureEditApply";
@@ -114,14 +115,18 @@ describe("요소 목록 — 편집기 번호와 같은 번호", () => {
     ]);
   });
 
-  it("carries the role group the editor list shows", () => {
-    const dotted = prepareFigureSvg(
-      `<svg xmlns="${NS}" viewBox="0 0 200 200"><line x1="10" y1="10" x2="190" y2="10" stroke="#111"/><circle cx="50" cy="50" r="2.5" fill="#111"/></svg>`,
-    );
-    expect(describeFigureForEdit(dotted).elements[1]).toMatchObject({
-      kind: "원",
-      role: "점",
-    });
+  // 편집기 목록의 역할 어림은 직각 표시를 축 화살촉으로 읽어 직각삼각형 변을 «x축»·«y축»으로 묶는다(2026-09-19 브라우저 확인).
+  // AI 에게는 틀릴 수 있는 어림을 싣지 않고, 사용자가 이름 붙인 묶음만 싣는다.
+  it("carries only the groups the user named, not the role guess", () => {
+    expect(
+      describeFigureForEdit(source).elements.every((e) => e.role === undefined),
+    ).toBe(true);
+    const grouped = setFigureGroup(source, [ids[0], ids[1]], "밑변과 높이");
+    expect(
+      describeFigureForEdit(grouped)
+        .elements.slice(0, 3)
+        .map((e) => e.role),
+    ).toEqual(["밑변과 높이", "밑변과 높이", undefined]);
   });
 });
 
