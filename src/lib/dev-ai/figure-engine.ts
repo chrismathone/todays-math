@@ -10,6 +10,8 @@ import {
   buildFigureSpecPrompt,
 } from "./figure-prompt";
 import {
+  FigureRedrawError,
+  figureReasonError,
   parseFigureSpecResult,
   withTransparentBackground,
 } from "./figure-spec";
@@ -17,6 +19,8 @@ import { validDevAiSvg } from "./svg";
 import { buildFigureComparisonImage } from "./figure-comparison";
 
 const slots = new ProcessSlots();
+/** renderFigureSpec 이 엔진 검증 실패에 붙이는 머리 — 이것만 사양을 고쳐 다시 그릴 값이 있다. */
+const ENGINE_REJECTED = "도형을 그리지 못했습니다:";
 const ReviewSchema = z.object({
   passed: z.boolean(),
   issues: z.array(z.string().trim().min(1).max(1000)).max(6),
@@ -35,7 +39,9 @@ function parseReview(raw: string) {
     // Contradictory output never silently converts a reported mismatch to pass.
     return { ...review, passed: review.passed && review.issues.length === 0 };
   } catch {
-    throw new Error("원본 대조 응답을 읽지 못했습니다. 원본은 유지됩니다.");
+    throw new FigureRedrawError(
+      "원본 대조 응답을 읽지 못했습니다. 원본은 유지됩니다.",
+    );
   }
 }
 
@@ -61,7 +67,7 @@ export async function redrawDevAiFigure(
   inference?: FigureInference,
 ): Promise<DevAiResult> {
   if (request.action !== "figure-redraw" || !request.imageDataUrl)
-    throw new Error("재작도할 원본 도형 이미지가 필요합니다.");
+    throw new FigureRedrawError("재작도할 원본 도형 이미지가 필요합니다.");
   if (!inference && process.env.NODE_ENV === "production")
     throw new Error("운영 환경에서는 서버 API 연결이 필요합니다.");
   const invoke: FigureInference =
@@ -115,9 +121,8 @@ export async function redrawDevAiFigure(
       check();
       const generated = parseFigureSpecResult(raw);
       if (!generated.spec)
-        throw new Error(
-          generated.note ||
-            "도형 엔진으로 재현할 수 없습니다. 원본은 유지됩니다.",
+        throw figureReasonError(
+          generated.note || "도형 엔진으로 재현할 수 없습니다.",
         );
       // v2 흰 바탕 rect 가 편집기 1번 «사각형»이 됐다(2026-09-19) — 렌더·대조·저장 모두 투명 바탕 spec 으로.
       const spec = withTransparentBackground(generated.spec);
@@ -132,17 +137,17 @@ export async function redrawDevAiFigure(
       if (!rendered.ok) {
         // Only a spec validation failure earns another inference. Missing
         // Python, sanitization failure, cancellation and timeouts terminate.
-        if (
-          attempt < 2 &&
-          rendered.error.startsWith("도형을 그리지 못했습니다:")
-        ) {
+        if (attempt < 2 && rendered.error.startsWith(ENGINE_REJECTED)) {
           repair = { spec, error: rendered.error };
           continue;
         }
-        throw new Error(`${rendered.error} 원본은 유지됩니다.`);
+        // 엔진 검증 사유는 화면까지 간다. 엔진을 못 띄운 실패는 실행 파일 경로를 싣고 있어 가린다.
+        throw rendered.error.startsWith(ENGINE_REJECTED)
+          ? figureReasonError(rendered.error)
+          : new Error(`${rendered.error} 원본은 유지됩니다.`);
       }
       if (rendered.svg.length > 500000 || !validDevAiSvg(rendered.svg))
-        throw new Error(
+        throw new FigureRedrawError(
           "도형 엔진의 정적 SVG 안전 검사를 통과하지 못했습니다. 원본은 유지됩니다.",
         );
       const warnings = [...generated.warnings];
@@ -184,11 +189,13 @@ export async function redrawDevAiFigure(
         figureReview: { mode: "source-and-rendered-images", ...review },
       };
     }
-    throw new Error("도형 재작도에 실패했습니다. 원본은 유지됩니다.");
+    throw new FigureRedrawError(
+      "도형 재작도에 실패했습니다. 원본은 유지됩니다.",
+    );
   } catch (error) {
     if (timedOut) {
       if (!lastRender)
-        throw new Error(
+        throw new FigureRedrawError(
           "도형 재작도가 오래 걸려 원본을 유지했습니다. 그림 편집에서 다시 시도해 주세요.",
         );
       const issues = lastRender.issues ?? [];
