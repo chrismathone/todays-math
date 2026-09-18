@@ -72,6 +72,45 @@ const visibleFigureLabel = (value: string) => {
     : value;
 };
 
+// 원장님 2026-09-19 «도형 생성 시 사각형이 왜 생기나» — 도형 엔진 v2 는 캔버스 전체에 흰 바탕 rect 를 첫 도형으로
+// 깐다(vendor/figure-engine/core/figure_scene.py:2906). 편집기가 그것을 1번 «사각형»으로 세어 네 모서리 조절점이
+// 그림 바깥에 붙었고, fitFigureViewport 도 바탕을 경계로 재어 여백이 겹으로 들어갔다. 서버는 이제 투명으로 넘기지만
+// 이미 만든 그림에는 남아 있어 여기서 걷어 낸다. 사용자가 일부러 그린 흰 가림막을 지우지 않도록 조건을 좁게 잡는다:
+// 루트의 첫 그리는 자식 · x·y 없음 또는 0 · 흰 채움 · 선 없음 · style·transform 없음 · 원래 viewBox(0 0 W H)를 꼭 덮음.
+const NON_RENDERING = new Set(
+  "defs title desc clipPath mask marker pattern linearGradient radialGradient".split(
+    " ",
+  ),
+);
+const WHITE_FILLS = new Set(["#fff", "#ffffff", "white"]);
+function engineBackgroundRect(root: Element) {
+  const rect = [...root.children].find(
+    (node) => !NON_RENDERING.has(node.localName),
+  );
+  if (rect?.localName !== "rect") return undefined;
+  const view = root
+    .getAttribute("viewBox")
+    ?.trim()
+    .split(/[\s,]+/)
+    .map(Number);
+  const at = (name: string) => Number(rect.getAttribute(name) ?? 0);
+  const same = (a: number, b: number) => Math.abs(a - b) < 1e-3;
+  const stroke = rect.getAttribute("stroke")?.trim().toLowerCase();
+  return view?.length === 4 &&
+    view[0] === 0 &&
+    view[1] === 0 &&
+    at("x") === 0 &&
+    at("y") === 0 &&
+    same(at("width"), view[2]) &&
+    same(at("height"), view[3]) &&
+    WHITE_FILLS.has(rect.getAttribute("fill")?.trim().toLowerCase() ?? "") &&
+    (stroke === undefined || stroke === "none") &&
+    !rect.hasAttribute("style") &&
+    !rect.hasAttribute("transform")
+    ? rect
+    : undefined;
+}
+
 export function prepareFigureSvg(source?: string) {
   const doc = parse(
     source ||
@@ -137,6 +176,8 @@ export function prepareFigureSvg(source?: string) {
       if (reference && !ids.has(reference)) node.removeAttribute(attr.name);
     }
   const root = doc.documentElement;
+  // 번호를 매기기 전에, viewBox 를 채워 넣기 전에(원래 캔버스와 견준다)
+  engineBackgroundRect(root)?.remove();
   root.setAttribute("xmlns", SVG_NS);
   const viewBox = root
     .getAttribute("viewBox")
