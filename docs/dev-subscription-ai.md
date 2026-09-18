@@ -50,6 +50,11 @@ Codex 는 `CODEX_HOME`(없으면 `~/.codex`)의 `config.toml` 맨 위 `model`·`
 모델별 추론 강도), Claude 는 `CLAUDE_CONFIG_DIR`(없으면 `~/.claude`)의 `settings.json` `model`. 추론 강도는 **그 모델이 받을 때만**
 넘기고, 목록 밖 모델은 줄 서기·로그인 확인 전에 거절한다(`invalid-model`). 인증 파일은 읽지 않는다.
 
+**도형 작업의 추론 강도는 medium**(원장님 2026-09-18 «도형 AI 추론 강도 하자» — `figure-engine.ts` `FIGURE_REASONING_EFFORT`).
+사양 생성·원본 대조 모두 CLI 설정의 강도 대신 medium 을 넘긴다(Codex `-c model_reasoning_effort` — 그 모델이 받을 때만 · Claude `--effort`).
+모델 고르기는 그대로 따른다. 작업실 세션 실측(그림 1662/q08): Codex astra 사양 생성 xhigh **242초** → medium 65초 · 대조 26초 → 7~9초 ·
+Claude opus 기본 101초 → medium 32초. xhigh 로는 사양 생성 한 번이 240초 도형 예산을 넘겼다. 해설·인식은 CLI 설정 강도 그대로다.
+
 Codex 기본 로그인과 Orca에서 선택한 계정이 다르면 `DEV_AI_CODEX_HOME`에 **이미 로그인되어 있는 프로필 디렉터리의 절대 경로**를 지정한다. 계정 파일을 복사하거나 토큰을 추출할 필요가 없다. 개인 프로필 경로는 저장소에 커밋하지 않는다.
 
 개발 접속 주소는 `http://127.0.0.1:3000/dev/unified`이다. 개발 브리지는 development 모드의 loopback 접속에서만 제공되고, POST는 브라우저의 정확한 동일 출처를 요구한다. production에서는 404를 반환한다. CLI 환경 설정이 없어도 상태판에서 서버 모델 API를 선택할 수 있다.

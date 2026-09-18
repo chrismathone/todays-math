@@ -266,6 +266,18 @@ describe("safe CLI invocation", () => {
       },
     );
     expect(claude.args[claude.args.indexOf("--model") + 1]).toBe("opus[1m]");
+    expect(claude.args).not.toContain("--effort");
+    const effort = buildSubscriptionInvocation(
+      "claude",
+      "2+2",
+      undefined,
+      undefined,
+      {
+        model: "opus[1m]",
+        reasoningEffort: "medium",
+      },
+    );
+    expect(effort.args[effort.args.indexOf("--effort") + 1]).toBe("medium");
     for (const plain of [
       buildSubscriptionInvocation("codex", "2+2"),
       buildSubscriptionInvocation("claude", "2+2"),

@@ -106,10 +106,15 @@ export async function readCliModelSettings(
   };
 }
 
-/** 고른 모델 → 없으면 CLI 설정 → 없으면 인자 없음(CLI 자체 기본). 목록 밖 모델은 추론 전에 거절한다. */
+/**
+ * 고른 모델 → 없으면 CLI 설정 → 없으면 인자 없음(CLI 자체 기본). 목록 밖 모델은 추론 전에 거절한다.
+ * `effort` 는 **호출이 정한 추론 강도**(도형 = medium — `figure-engine.ts`)로 CLI 설정의 강도를 이긴다.
+ * 어느 쪽이든 그 모델이 받는 강도일 때만 넘긴다 — 안 받으면 설정 강도로 돌아가지 않고 인자를 뺀다(모델 기본).
+ */
 export function resolveCliModel(
   settings: CliModelSettings,
   requested: string | undefined,
+  effort?: string,
 ): { model?: string; reasoningEffort?: string } {
   if (
     requested !== undefined &&
@@ -121,9 +126,9 @@ export function resolveCliModel(
       "이 CLI 에서 쓸 수 없는 모델입니다. 모델 칸을 «CLI 설정»으로 두거나 목록에서 골라 주세요.",
     );
   const model = requested ?? settings.defaultModel;
-  if (!model) return {};
-  const effort = settings.reasoningEffort;
-  return effort && settings.efforts[model]?.includes(effort)
-    ? { model, reasoningEffort: effort }
+  if (!model) return effort ? { reasoningEffort: effort } : {};
+  const wanted = effort ?? settings.reasoningEffort;
+  return wanted && settings.efforts[model]?.includes(wanted)
+    ? { model, reasoningEffort: wanted }
     : { model };
 }

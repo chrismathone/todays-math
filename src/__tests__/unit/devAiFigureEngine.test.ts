@@ -184,6 +184,20 @@ describe("real local Python subscription figure pipeline", () => {
     expect(run).toHaveBeenCalledTimes(1);
   });
 
+  // 원장님 2026-09-18 «도형 AI 추론 강도 하자» — 작업실 세션 실측(그림 1662/q08): Codex astra 사양 생성 xhigh 242초 ·
+  // medium 65초 · 대조 xhigh 26초 · medium 7~9초. xhigh 로는 사양 생성 한 번이 240초 도형 예산을 넘긴다.
+  it("runs both the spec generation and the source review at medium reasoning effort", async () => {
+    run
+      .mockResolvedValueOnce(JSON.stringify({ spec: triangle }))
+      .mockResolvedValueOnce(pass);
+    await redrawDevAiFigure(input);
+    expect(run).toHaveBeenCalledTimes(2);
+    expect(run.mock.calls.map(([args]) => args.reasoningEffort)).toEqual([
+      "medium",
+      "medium",
+    ]);
+  });
+
   it("never switches provider or retries a subscription failure", async () => {
     run.mockRejectedValueOnce(new Error("구독 한도"));
     await expect(redrawDevAiFigure(input)).rejects.toThrow("구독 한도");

@@ -260,6 +260,7 @@ export function buildSubscriptionInvocation(
     args: [
       ...CLAUDE_ISOLATION_ARGS,
       ...(choice.model ? ["--model", choice.model] : []),
+      ...(choice.reasoningEffort ? ["--effort", choice.reasoningEffort] : []),
       "--print",
       "--verbose",
       "--input-format",

@@ -38,6 +38,7 @@ describe("구독 CLI 모델 — 목록·기본값은 원장님 CLI 설정에서"
             slug: "gpt-6-astra",
             visibility: "list",
             supported_reasoning_levels: [
+              { effort: "medium" },
               { effort: "high" },
               { effort: "xhigh" },
             ],
@@ -117,6 +118,19 @@ describe("구독 CLI 모델 — 목록·기본값은 원장님 CLI 설정에서"
     expect(() => resolveCliModel(settings, "gpt-reserve")).toThrow(
       /쓸 수 없는 모델/,
     );
+  });
+
+  it("호출이 정한 추론 강도(도형 = medium)가 CLI 설정의 강도를 이긴다 — 그 모델이 받을 때만", async () => {
+    await writeCodex();
+    const settings = await readCliModelSettings("codex", env());
+    expect(resolveCliModel(settings, undefined, "medium")).toEqual({
+      model: "gpt-6-astra",
+      reasoningEffort: "medium",
+    });
+    // sol 은 medium 을 받지 않는다 — 설정의 xhigh 로 돌아가지 않고 강도 인자를 빼서 모델 기본으로
+    expect(resolveCliModel(settings, "gpt-5.6-sol", "medium")).toEqual({
+      model: "gpt-5.6-sol",
+    });
   });
 
   it("요청의 모델 칸은 이름 형식만 받는다", () => {

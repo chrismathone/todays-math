@@ -264,6 +264,8 @@ export async function runSubscriptionCli(input: {
   imageDataUrl?: string;
   /** 상태판에서 고른 모델 — 없으면 원장님 CLI 설정(`cli-models.ts`). */
   model?: string;
+  /** 호출이 정한 추론 강도 — 없으면 CLI 설정의 강도(Codex 만). 도형은 medium(`figure-engine.ts`). */
+  reasoningEffort?: "low" | "medium" | "high";
   signal?: AbortSignal;
 }): Promise<string> {
   if (!DEV_AI_PROVIDERS.includes(input.provider))
@@ -284,15 +286,30 @@ export async function runSubscriptionCli(input: {
   if (input.signal?.aborted) throw abortError();
   // 목록 밖 모델은 줄 서기·로그인 확인 전에 거절한다
   const choice =
-    input.provider === "codex" || input.provider === "claude"
+    input.provider === "codex"
       ? resolveCliModel(
           await readCliModelSettings(
             input.provider,
             subscriptionEnvironment(process.env),
           ),
           input.model,
+          input.reasoningEffort,
         )
-      : {};
+      : input.provider === "claude"
+        ? {
+            ...resolveCliModel(
+              await readCliModelSettings(
+                input.provider,
+                subscriptionEnvironment(process.env),
+              ),
+              input.model,
+            ),
+            // Claude CLI 는 --effort low|medium|high|xhigh|max 를 모델과 따로 받는다(설정 파일의 강도는 읽지 않는다)
+            ...(input.reasoningEffort
+              ? { reasoningEffort: input.reasoningEffort }
+              : {}),
+          }
+        : {};
   const nativeImage =
     input.imageDataUrl === undefined
       ? undefined

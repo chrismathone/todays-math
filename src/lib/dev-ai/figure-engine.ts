@@ -36,6 +36,14 @@ function parseReview(raw: string) {
   }
 }
 
+/**
+ * 도형 작업의 추론 강도 — 생성·대조 모두 medium(원장님 2026-09-18 «도형 AI 추론 강도 하자»).
+ * 작업실 세션 실측(그림 1662/q08, 재시도 없이 1회씩): Codex astra 사양 생성 **xhigh 242초** · medium 65초 · low 53초,
+ * 대조 xhigh 26초 · medium 7~9초. Claude opus 기본 101초 · medium 32초. 출력의 약 90%가 생각이고 사양 JSON 은 약 700토큰.
+ * 원장님 CLI 설정(xhigh)을 그대로 쓰면 사양 생성 한 번이 240초 도형 예산을 넘긴다. 모델 고르기는 그대로 따른다.
+ */
+export const FIGURE_REASONING_EFFORT = "medium" as const;
+
 export type FigureInference = (input: {
   prompt: string;
   imageDataUrl: string;
@@ -61,6 +69,7 @@ export async function redrawDevAiFigure(
         ...input,
         provider: request.provider,
         model: request.model,
+        reasoningEffort: FIGURE_REASONING_EFFORT,
       });
     });
   const deadline = new AbortController();
