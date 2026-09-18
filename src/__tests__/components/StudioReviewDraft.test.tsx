@@ -15,21 +15,40 @@ import type {
 } from "@/components/unified/studioHelpers";
 
 // Source editing itself has browser coverage; these isolate the review draft transaction.
+// 본문 편집기는 그림을 누르면 편집기를 연다 — 도형 줄의 «그림 편집» 단추는 2026-09-19 에 뺐다.
 vi.mock("@/components/math/editor/MathTextEditor", () => ({
   MathTextEditor: ({
     value,
     onChange,
     "aria-label": label,
+    figures,
+    onFigureClick,
+    isFigureEditable,
   }: {
     value: string;
     onChange: (value: string) => void;
     "aria-label": string;
+    figures?: unknown[];
+    onFigureClick?: (index: number) => void;
+    isFigureEditable?: (index: number) => boolean;
   }) => (
-    <textarea
-      aria-label={label}
-      value={value}
-      onChange={(event) => onChange(event.target.value)}
-    />
+    <>
+      <textarea
+        aria-label={label}
+        value={value}
+        onChange={(event) => onChange(event.target.value)}
+      />
+      {figures?.map((_, index) => (
+        <button
+          key={index}
+          type="button"
+          disabled={isFigureEditable?.(index) === false}
+          onClick={() => onFigureClick?.(index)}
+        >
+          {`그림 ${index + 1} 편집`}
+        </button>
+      ))}
+    </>
   ),
 }));
 vi.mock("@/components/math/editor/SourceEditorDisplay", () => ({
@@ -107,7 +126,7 @@ describe("Studio source review drafts", () => {
     await user.clear(screen.getByLabelText("정답"));
     await user.type(screen.getByLabelText("정답"), "3");
     await user.type(screen.getByLabelText("토픽"), "함수");
-    await user.click(screen.getByRole("button", { name: "그림 편집" }));
+    await user.click(screen.getByRole("button", { name: "그림 1 편집" }));
     act(() =>
       onEditFigure.mock.calls[0][2]?.({
         ...sourceFigure,
@@ -121,7 +140,7 @@ describe("Studio source review drafts", () => {
     expect(screen.getByLabelText("문제 내용")).toHaveValue("원래 문제");
     expect(screen.getByLabelText("정답")).toHaveValue("2");
     expect(screen.getByLabelText("토픽")).toHaveValue("");
-    await user.click(screen.getByRole("button", { name: "그림 편집" }));
+    await user.click(screen.getByRole("button", { name: "그림 1 편집" }));
     expect(onEditFigure.mock.calls[1][1]).toEqual(sourceFigure);
   });
 
@@ -138,7 +157,7 @@ describe("Studio source review drafts", () => {
       await user.clear(screen.getByLabelText(label));
       await user.type(screen.getByLabelText(label), value);
     }
-    await user.click(screen.getByRole("button", { name: "그림 편집" }));
+    await user.click(screen.getByRole("button", { name: "그림 1 편집" }));
     const nextFigure = { ...sourceFigure, image: "changed", svg: "changed" };
     act(() => onEditFigure.mock.calls[0][2]?.(nextFigure));
     expect(onUpdate).not.toHaveBeenCalled();

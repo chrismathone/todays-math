@@ -26,6 +26,8 @@ interface Entry {
   controller: AbortController;
   promise: Promise<void>;
 }
+/** 서버(422)가 이미 «… 원본은 유지됩니다.»로 끝낸 사유 — 같은 말을 또 붙이면 겹친다(2026-09-19). */
+const KEEPS_ORIGINAL = /원본(?:은|을) 유지(?:됩니다|했습니다)\.?\s*$/;
 const busy = (job: StudioFigureJob) =>
   job.state === "queued" || job.state === "running";
 const keyOf = (cropId: string, figureId: string) =>
@@ -202,12 +204,16 @@ export function useStudioFigureAi({
       update({ state: "complete", stage: "SVG 생성 완료" });
     } catch (error) {
       if (stale()) return;
+      const message =
+        error instanceof Error ? error.message : "SVG 생성에 실패했습니다.";
       update(
         error instanceof Error && error.name === "AbortError"
           ? { state: "cancelled" }
           : {
               state: "error",
-              error: `${error instanceof Error ? error.message : "SVG 생성에 실패했습니다."} 원본 그림을 유지했습니다.`,
+              error: KEEPS_ORIGINAL.test(message)
+                ? message
+                : `${message} 원본 그림을 유지했습니다.`,
             },
       );
     }

@@ -843,16 +843,16 @@
 }
 .reviewNavigation {
   display: flex;
+  flex-wrap: wrap;
   align-items: center;
   flex: none;
-  gap: 8px;
+  gap: 6px 8px;
   padding: 6px 10px;
   border-bottom: 1px solid var(--studio-line);
   background: white;
   font-size: var(--text-body, 14px);
 }
-.reviewNavigation > button:first-child,
-.reviewNavigation > button:nth-child(3) {
+.reviewNavigation > button {
   width: auto;
   padding: 0 10px;
   white-space: nowrap;
@@ -865,12 +865,16 @@
   color: var(--studio-muted);
   font-weight: 400;
 }
-.reviewProgress {
-  margin-left: auto;
-  color: var(--studio-muted);
+/* 진행 띠(도형 N/M · 디지털화 N/M · 확인 필요 · 상세)가 이 줄의 남는 폭을 쓴다 — 좁으면 제 줄로 내려간다. */
+.reviewNavigation > [data-studio-progress] {
+  flex: 1 1 240px;
 }
-.reviewNavigation > button:last-child {
-  margin-left: auto;
+.studio .reviewNavigation > [data-studio-progress] > button {
+  border: 1px solid var(--studio-line);
+  border-radius: var(--control-radius, 8px);
+}
+.reviewProgress {
+  color: var(--studio-muted);
   white-space: nowrap;
 }
 .cropEditTools {
@@ -1224,6 +1228,8 @@
   display: flex;
   align-items: center;
   gap: 10px;
+  /* 높이가 정해진 세로 목록(.editing .cropList)이 항목을 글자 높이보다 눌러 제목이 위 테두리 밖으로 밀렸다. */
+  flex-shrink: 0;
   width: 100%;
   min-height: 76px;
   padding: 10px;
@@ -1265,14 +1271,23 @@
   font-size: var(--text-body, 14px);
   color: var(--studio-muted);
 }
+.cropItem strong,
+.cropItem small {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+/* 배지는 작업실 캡션 크기 — 12px 이 작업실 글자 바닥이다. 글자 칸을 짓누르지 않게 줄어들지도 않는다. */
 .addedBadge,
 .draftBadge {
-  padding: 3px 6px;
+  flex-shrink: 0;
+  padding: 2px 5px;
   border-radius: 4px;
   background: #e7edf8;
   color: #31568f;
-  font-size: var(--text-body, 14px);
+  font-size: var(--text-caption, 12px);
   font-weight: 600;
+  line-height: 1.4;
   white-space: nowrap;
 }
 .draftBadge {
@@ -1750,6 +1765,30 @@
 .editorTools button {
   border-color: #d4deed;
 }
+/* 검수 단계에서 제목 줄로 올라온 파일·학년·쪽 도구 — 잘라내기 단계의 파일·쪽 줄과 같은 조각이다. */
+.bandTools {
+  display: flex;
+  /* 남는 폭만 쓴다 — 파일 선택 칸이 먼저 줄어들고, 그래도 모자라면 이 묶음 안에서 꺾인다. */
+  flex: 1 1 0;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 6px 8px;
+  min-width: 0;
+}
+/* 좁아 제목 줄이 꺾여도 파일 가져오기·새로 시작·축소는 오른쪽 끝에 둔다(시안 B 의 [축소] 자리). */
+.editing.reviewMode .editorTools {
+  margin-left: auto;
+}
+.editing .bandTools .sourcePicker {
+  flex-basis: 120px;
+}
+.editing .bandTools .pageTools {
+  flex: 0 1 auto;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  min-width: 0;
+  margin-left: 0;
+}
 .editing > .workflow,
 .editing .cropHint,
 .editing .keyboardHelp,
@@ -1818,6 +1857,12 @@
 }
 .editing.reviewMode .workspace {
   grid-template-columns: minmax(0, 1fr);
+}
+/* 확대를 풀어도 — 제목 줄이 꺾인 만큼 작업 칸이 양보한다(44px 은 한 줄일 때, 위 199px 계산과 같다). */
+@container studio (min-width: 801px) {
+  .editing.reviewMode .workspace {
+    height: calc(100dvh - 155px - var(--studio-band-height, 44px));
+  }
 }
 .reviewMode .inspector {
   display: none;
@@ -1960,6 +2005,20 @@
 .focusMode.editing .workspace {
   height: calc(100dvh - 138px);
   min-height: 0;
+}
+@media (min-width: 825px) {
+  .focusMode.editing.reviewMode {
+    display: flex;
+    flex-direction: column;
+  }
+  /* 제목 줄·바닥 줄은 제 높이를 지킨다 — 좁아 제목 줄이 꺾이면 비교 칸이 그만큼 양보한다. */
+  .focusMode.editing.reviewMode > * {
+    flex: none;
+  }
+  .focusMode.editing.reviewMode > .workspace {
+    flex: 1 1 0;
+    height: auto;
+  }
 }
 @container studio (max-width: 980px) {
   .editorTabs h1 {
@@ -2151,23 +2210,4 @@
   .studio button {
     transition: none;
   }
-}
-.digitalBar {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  flex-wrap: wrap;
-  padding: 8px 12px;
-  border-bottom: 1px solid #d4deeb;
-  font-size: 13px;
-  background: #f7faff;
-}
-.digitalBar span {
-  flex: 1;
-  color: #5c708e;
-  font-size: 12px;
-}
-.digitalBar button {
-  min-height: 34px;
-  height: 34px;
 }

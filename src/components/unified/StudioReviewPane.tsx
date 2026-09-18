@@ -6,6 +6,8 @@ import { ProblemContent } from "@/components/math/ProblemContent";
 import { displayFractions } from "./fractionDisplay";
 import {
   STUDIO_QUESTION_TYPES,
+  studioFigureLabel,
+  visibleStudioWarnings,
   type StudioCrop,
   type StudioFigure,
 } from "./studioHelpers";
@@ -16,7 +18,6 @@ import {
   editedScoreMetadata,
   studioReviewContent,
 } from "./studioReviewContent";
-import StudioDiagramCropEditor from "./StudioDiagramCropEditor";
 import { MathTextEditor } from "@/components/math/editor/MathTextEditor";
 import type { StudioAiPageJob } from "./useStudioAi";
 import type { StudioFigureJob } from "./useStudioFigureAi";
@@ -136,9 +137,9 @@ function ReviewCard({
   showScores,
   ...props
 }: Props & { crop: StudioCrop; showScores: boolean }) {
-  const number =
-    crop.ocr?.number ??
-    props.allCrops.findIndex((item) => item.id === crop.id) + 1;
+  // 도형 번호는 문제 크롭 라벨과 같은 목록 차례를 쓴다 — 원본 인쇄 번호(ocr.number)와 다를 수 있다.
+  const position = props.allCrops.findIndex((item) => item.id === crop.id) + 1;
+  const number = crop.ocr?.number ?? position;
   const [editing, setEditing] = useState(false);
   const [draft, setDraft] = useState({
     content: crop.content,
@@ -157,7 +158,6 @@ function ReviewCard({
     Number(draftNumber) > 0 &&
     Number(draftNumber) <= 10000;
   const [draftFigures, setDraftFigures] = useState(crop.figures);
-  const [cropEditorIndex, setCropEditorIndex] = useState<number | null>(null);
   const startEdit = () => {
     if (busy) return;
     props.onSelect(crop.id);
@@ -230,7 +230,7 @@ function ReviewCard({
       displayedFigures?.map((figure, index) => ({
         svg: figure.svg,
         imageData: figure.image,
-        label: `문제 ${number} 도형 ${index + 1}`,
+        label: studioFigureLabel(position, index),
         box: [
           figure.rect.y * 1000,
           figure.rect.x * 1000,
@@ -238,7 +238,7 @@ function ReviewCard({
           (figure.rect.x + figure.rect.width) * 1000,
         ] as [number, number, number, number],
       })),
-    [displayedFigures, number],
+    [displayedFigures, position],
   );
   const jobs = props.jobs.filter((job) => job.cropId === crop.id);
   const figureJobs = props.figureJobs.filter((job) => job.cropId === crop.id);
@@ -250,16 +250,6 @@ function ReviewCard({
         (job) =>
           job.figureId === figure?.id &&
           ["queued", "running"].includes(job.state),
-      )
-    );
-  };
-  const canEditRenderedFigure = (index: number) => {
-    const figure = displayedFigures?.[index];
-    return (
-      canEditFigure(index) &&
-      Boolean(
-        figure?.svg ||
-        /^data:image\/svg\+xml(?:;[^,]*)?,/i.test(figure?.image ?? ""),
       )
     );
   };
@@ -374,7 +364,7 @@ function ReviewCard({
       </div>
       {activeJob && (
         <WorkProgress
-          label={`${activeJob.action === "solution" ? "해설 생성" : activeJob.action === "figures" ? "도형 인식" : "문자 인식"} ${activeJob.state === "queued" ? "대기 중" : "중"}`}
+          label={`${activeJob.action === "solution" ? "해설 생성" : activeJob.action === "figures" ? "도형 인식" : "문제 인식"} ${activeJob.state === "queued" ? "대기 중" : "중"}`}
           variant="inline"
           startedAt={activeJob.startedAt}
           onCancel={() => props.onCancel(crop.id, activeJob.action)}
@@ -429,7 +419,7 @@ function ReviewCard({
             figures={visualFigures}
             choicesLayout={crop.ocr?.choicesLayout}
             onFigureClick={openFigure}
-            isFigureEditable={canEditRenderedFigure}
+            isFigureEditable={canEditFigure}
           />
         </div>
       ) : (
@@ -453,6 +443,9 @@ function ReviewCard({
           displayedFigures.map((figure, index) => {
             const job = figureJobs.find((job) => job.figureId === figure.id);
             const drawing = job && ["queued", "running"].includes(job.state);
+            // 원장님 2026-09-19: 편집은 본문 그림을 눌러서, 영역은 잘라내기 단계에서 고친다 —
+            // 그래서 SVG 가 끝난 도형은 여기서 할 말이 없다. 빈 상자를 남기지 않는다.
+            if (figure.svg && !drawing) return null;
             return (
               <figure key={figure.id}>
                 {drawing && (
@@ -473,16 +466,14 @@ function ReviewCard({
                     {job.error}
                   </p>
                 )}
-                <figcaption>
-                  <span>
-                    도형 {index + 1} ·{" "}
-                    {figure.svg
-                      ? "SVG 도형"
-                      : drawing
+                {!figure.svg && (
+                  <figcaption>
+                    <span>
+                      {studioFigureLabel(position, index)} ·{" "}
+                      {drawing
                         ? "원본 · SVG 생성 중"
                         : "원본 크롭 · SVG 미생성"}
-                  </span>
-                  {!figure.svg && (
+                    </span>
                     <button
                       type="button"
                       disabled={!props.available || busy || editing}
@@ -490,30 +481,7 @@ function ReviewCard({
                     >
                       {job?.state === "error" ? "SVG 다시 시도" : "SVG 생성"}
                     </button>
-                  )}
-                  <button
-                    type="button"
-                    disabled={!props.original || Boolean(drawing)}
-                    onClick={() => setCropEditorIndex(index)}
-                  >
-                    영역 수정
-                  </button>
-                  <button
-                    type="button"
-                    disabled={Boolean(drawing)}
-                    onClick={() => openFigure(index)}
-                  >
-                    그림 편집
-                  </button>
-                </figcaption>
-                {figure.originalImage && figure.svg && (
-                  <details>
-                    <summary>원본 그림 비교</summary>
-                    <img
-                      src={figure.originalImage}
-                      alt={`도형 ${index + 1} 원본`}
-                    />
-                  </details>
+                  </figcaption>
                 )}
               </figure>
             );
@@ -525,7 +493,7 @@ function ReviewCard({
           </p>
         )}
       </div>
-      {crop.aiWarnings?.map((warning, index) => (
+      {visibleStudioWarnings(crop.aiWarnings).map((warning, index) => (
         <p className={styles.warning} key={index}>
           {warning}
         </p>
@@ -620,26 +588,6 @@ function ReviewCard({
           {crop.reviewed ? "검수 완료" : "이 문제 검수 완료"}
         </button>
       </div>
-      {cropEditorIndex !== null &&
-        displayedFigures?.[cropEditorIndex] &&
-        props.original && (
-          <StudioDiagramCropEditor
-            key={displayedFigures[cropEditorIndex].id}
-            original={props.original}
-            figure={displayedFigures[cropEditorIndex]}
-            index={cropEditorIndex}
-            total={displayedFigures.length}
-            bounds={crop.rect}
-            onClose={() => setCropEditorIndex(null)}
-            onSave={(next) => {
-              const figures = displayedFigures.map((figure) =>
-                figure.id === next.id ? next : figure,
-              );
-              if (editing) setDraftFigures(figures);
-              else update({ figures });
-            }}
-          />
-        )}
     </article>
   );
 }

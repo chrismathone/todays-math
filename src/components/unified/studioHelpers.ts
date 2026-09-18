@@ -63,6 +63,112 @@ export const STUDIO_GRADES: Record<SchoolLevel, string[]> = {
 export const clamp = (value: number, min = 0, max = 1) =>
   Math.min(max, Math.max(min, value));
 
+/**
+ * 도형 번호 — 원장님 2026-09-19 «도형 {문제번호}-{그 문제 안 순번}». 문제번호는 문제 크롭 라벨과 같은
+ * 자른 문제 목록 차례(`crops.indexOf(crop) + 1`)다. 문제마다 1부터 다시 세면 두 문제에 «도형 1»이 둘 붙는다.
+ */
+export function studioFigureLabel(problemNumber: number, figureIndex: number) {
+  return `도형 ${problemNumber}-${figureIndex + 1}`;
+}
+
+/** 작업(job)에는 cropId·figureId 만 있다 — 지금 목록에서 자리를 찾는다. 사라진 도형은 undefined. */
+function studioFigurePosition(
+  crops: StudioCrop[],
+  cropId: string,
+  figureId: string,
+) {
+  const problem = crops.findIndex((crop) => crop.id === cropId);
+  const figure =
+    problem < 0
+      ? -1
+      : (crops[problem].figures ?? []).findIndex(
+          (item) => item.id === figureId,
+        );
+  return figure < 0 ? undefined : { problem, figure };
+}
+
+/**
+ * «SVG 도형 생성 중» 진행 칸의 설명 줄 — 몇 번 도형을 만드는지 적는다.
+ * «도형 9-1, 11-1 생성 중 · 11개 대기», 도는 것이 없으면 «12개 대기». 실패 꼬리는 그대로.
+ */
+export function studioFigureProgressDetail(
+  crops: StudioCrop[],
+  jobs: { cropId: string; figureId: string; state: string }[],
+  failed: number,
+) {
+  const running = jobs
+    .filter((job) => job.state === "running")
+    .flatMap((job) => {
+      const position = studioFigurePosition(crops, job.cropId, job.figureId);
+      return position ? [position] : [];
+    })
+    .sort((a, b) => a.problem - b.problem || a.figure - b.figure)
+    .map(({ problem, figure }) => `${problem + 1}-${figure + 1}`);
+  const queued = jobs.filter((job) => job.state === "queued").length;
+  return [
+    running.length ? `도형 ${running.join(", ")} 생성 중` : "",
+    queued ? `${queued}개 대기` : "",
+    failed ? `실패 ${failed}개` : "",
+  ]
+    .filter(Boolean)
+    .join(" · ");
+}
+
+/** 디지털화가 끝난 문제 — 문자 인식과 그 문제 도형의 SVG 가 모두 있다. 진행 요약과 «완료» 칩이 같은 기준을 쓴다. */
+export function studioCropDigitized(crop: StudioCrop) {
+  return (
+    Boolean(crop.content.trim()) &&
+    (crop.figures ?? []).every((figure) => Boolean(figure.svg))
+  );
+}
+
+/** 숫자 끝소리에 맞는 «은/는» — 일·삼·육·칠·팔·영(십·백·천)은 받침이 있다. */
+const topicParticle = (label: string) =>
+  /[013678]$/.test(label) ? "은" : "는";
+
+/**
+ * 지우면 잃는 AI 결과가 있으면 확인 문구를, 없으면 null. 원장님 2026-09-19 «결과가 하나라도 있으면 경고» —
+ * 문제 크롭은 문자 인식 결과나 그 문제 도형 SVG 중 하나라도, 도형 크롭은 그 도형의 SVG.
+ */
+export function studioDeleteWarning(crops: StudioCrop[], id: string) {
+  const problem = crops.findIndex(
+    (crop) =>
+      crop.id === id || crop.figures?.some((figure) => figure.id === id),
+  );
+  if (problem < 0) return null;
+  const crop = crops[problem];
+  if (crop.id !== id) {
+    const index = (crop.figures ?? []).findIndex((figure) => figure.id === id);
+    if (!crop.figures?.[index]?.svg) return null;
+    const label = studioFigureLabel(problem + 1, index);
+    return `${label}${topicParticle(label)} SVG 생성이 끝났습니다. 삭제하면 생성 결과도 지워집니다. 삭제할까요?`;
+  }
+  const read = Boolean(crop.content.trim());
+  const drawn = (crop.figures ?? []).some((figure) => Boolean(figure.svg));
+  if (!read && !drawn) return null;
+  const lost =
+    read && drawn
+      ? "문자 인식과 SVG 도형 결과도"
+      : read
+        ? "문자 인식 결과도"
+        : "SVG 도형 결과도";
+  return `문제 ${problem + 1}에는 인식 결과가 있습니다. 삭제하면 ${lost} 함께 지워집니다. 삭제할까요?`;
+}
+
+/**
+ * 화면에 내지 않는 옛 AI 경고. 원장님 2026-09-19 «원본 대조 멘트는 필요 없다» — 서버는 더 안 만들지만
+ * 이미 저장된 초안에는 남아 있다. 경고를 보이거나 세는 자리는 모두 이 함수를 거친다.
+ */
+const HIDDEN_WARNING_PREFIXES = ["원본 대조 확인 필요"];
+export function visibleStudioWarnings(warnings: string[] | undefined) {
+  return (warnings ?? []).filter(
+    (warning) =>
+      !HIDDEN_WARNING_PREFIXES.some((prefix) =>
+        warning.trimStart().startsWith(prefix),
+      ),
+  );
+}
+
 export function studioRectBetween(
   start: { x: number; y: number },
   end: { x: number; y: number },

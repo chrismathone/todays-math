@@ -202,7 +202,9 @@ test("wide rendered review, scoped solution retry, edit guards and restart", asy
   await first
     .getByRole("textbox", { name: "문제 내용" })
     .fill("검수한 문제 내용");
-  await expect(first.getByRole("button", { name: "해설 생성", exact: true })).toBeDisabled();
+  await expect(
+    first.getByRole("button", { name: "해설 생성", exact: true }),
+  ).toBeDisabled();
   await first.getByRole("button", { name: "저장", exact: true }).click();
   mock.fail();
   await first.getByRole("button", { name: "해설 생성", exact: true }).click();
@@ -223,13 +225,17 @@ test("wide rendered review, scoped solution retry, edit guards and restart", asy
   await expect(
     first.getByRole("button", { name: "취소", exact: true }),
   ).toBeVisible();
-  await expect(first.getByRole("button", { name: "내용 수정", exact: true })).toBeDisabled();
+  await expect(
+    first.getByRole("button", { name: "내용 수정", exact: true }),
+  ).toBeDisabled();
   await first.getByRole("button", { name: "취소", exact: true }).click();
   await expect(
     first.getByRole("button", { name: "취소", exact: true }),
   ).not.toBeVisible();
   await first.getByRole("button", { name: "내용 수정", exact: true }).click();
-  await first.getByRole("textbox", { name: "문제 내용" }).fill("요청 취소 후 직접 수정");
+  await first
+    .getByRole("textbox", { name: "문제 내용" })
+    .fill("요청 취소 후 직접 수정");
   await first.getByRole("button", { name: "저장", exact: true }).click();
   mock.release();
   await expect(first).toContainText("요청 취소 후 직접 수정");
@@ -328,7 +334,9 @@ test("problem OCR continues through selecting another problem and crop/review na
   await expect
     .poll(() => mock.posts.filter((p) => p.action === "ocr").length)
     .toBe(2);
-  await page.getByRole("button", { name: "문제 자르기", exact: true }).click();
+  await page
+    .getByRole("button", { name: "문제&도형 잘라내기", exact: true })
+    .click();
   await review(page);
   await expect(
     card(page, 1).getByRole("button", { name: "취소", exact: true }),
@@ -360,11 +368,13 @@ test("manual mobile crop and source fraction rendering without horizontal overfl
     .getByRole("button", { name: "문자 인식", exact: true })
     .click();
   await expect(card(page, 1).locator(".katex").first()).toHaveAttribute(
-    "data-export-tex", /2%5Cd?frac%7B1%7D%7B3%7D/,
+    "data-export-tex",
+    /2%5Cd?frac%7B1%7D%7B3%7D/,
   );
   await page.getByRole("combobox", { name: "시험지 학년" }).selectOption("중1");
   await expect(card(page, 1).locator(".katex").first()).toHaveAttribute(
-    "data-export-tex", /2%5Cd?frac%7B1%7D%7B3%7D/,
+    "data-export-tex",
+    /2%5Cd?frac%7B1%7D%7B3%7D/,
   );
   expect(
     await page.evaluate(
@@ -375,7 +385,9 @@ test("manual mobile crop and source fraction rendering without horizontal overfl
     path: testInfo.outputPath("mobile-review.png"),
     fullPage: true,
   });
-  await page.getByRole("button", { name: "문제 자르기", exact: true }).click();
+  await page
+    .getByRole("button", { name: "문제&도형 잘라내기", exact: true })
+    .click();
   await page.getByRole("button", { name: "검수 패널 접기" }).click();
   await expect(
     page.getByRole("complementary", { name: "자른 문제 검수" }),
@@ -403,7 +415,9 @@ test("recognized figure is visible beside rendered text and exported with text m
   await expect(
     second.getByRole("button", { name: /^그림 1 편집/ }),
   ).toBeVisible();
-  await expect(second.getByText("도형 1 · SVG 도형")).toBeVisible();
+  // SVG 가 끝난 도형은 도형 줄에 아무것도 안 남는다(2026-09-19) — 본문 그림이 SVG 로 그려졌는지 본다.
+  await expect(second.locator('[data-figure-index="0"] svg')).toBeVisible();
+  await expect(second.getByText(/SVG 미생성/)).toHaveCount(0);
   await second
     .getByRole("combobox", { name: "문제 2 출력 방식" })
     .selectOption("text");
@@ -411,9 +425,7 @@ test("recognized figure is visible beside rendered text and exported with text m
   await second
     .getByRole("textbox", { name: "문제 내용" })
     .fill("도형을 보고 넓이를 구하세요.");
-  await second
-    .getByRole("button", { name: "저장", exact: true })
-    .click();
+  await second.getByRole("button", { name: "저장", exact: true }).click();
   await page.getByRole("button", { name: "2문항 담기", exact: true }).click();
   const added = JSON.parse(
     (await page.getByLabel("시험지 담은 문제").textContent())!,
@@ -445,7 +457,9 @@ test("crop next stage digitizes text and diagrams before exporting without outpu
     .getByRole("button", { name: "다음: OCR · 디지털화", exact: true })
     .click();
   const first = card(page, 1);
-  await expect(first.getByText("도형 1 · SVG 도형")).toBeVisible();
+  // SVG 가 끝난 도형은 도형 줄에 아무것도 안 남는다(2026-09-19) — 본문 그림이 SVG 로 그려졌는지 본다.
+  await expect(first.locator('[data-figure-index="0"] svg')).toBeVisible();
+  await expect(first.getByText(/SVG 미생성/)).toHaveCount(0);
   await expect(
     first.getByRole("combobox", { name: "문제 1 출력 방식" }),
   ).toHaveValue("text");
@@ -472,7 +486,7 @@ test("Mathgen figure editor redraw, manual geometry, save and reopen through Stu
   await detect(page);
   await review(page);
   const second = card(page, 2);
-  await second.getByRole("button", { name: "그림 편집", exact: true }).click();
+  await second.getByRole("button", { name: /^그림 1 편집/ }).click();
   const editor = page.getByRole("dialog", { name: "도형 1 편집기" });
   await expect(editor).toBeVisible({ timeout: 15000 });
   await expect(
@@ -506,11 +520,13 @@ test("Mathgen figure editor redraw, manual geometry, save and reopen through Stu
   });
   await editor.getByRole("button", { name: "도형 적용", exact: true }).click();
   await expect(editor).not.toBeVisible();
-  await expect(second.getByText("도형 1 · SVG 도형")).toBeVisible();
+  // SVG 가 끝난 도형은 도형 줄에 아무것도 안 남는다(2026-09-19) — 본문 그림이 SVG 로 그려졌는지 본다.
+  await expect(second.locator('[data-figure-index="0"] svg')).toBeVisible();
+  await expect(second.getByText(/SVG 미생성/)).toHaveCount(0);
   await expect(
     second.getByRole("combobox", { name: "문제 2 출력 방식" }),
   ).toHaveValue("text");
-  await second.getByRole("button", { name: "그림 편집", exact: true }).click();
+  await second.getByRole("button", { name: /^그림 1 편집/ }).click();
   await expect(editor.locator("#figure-editor-canvas circle")).toHaveCount(1);
   await expect(
     editor.locator("#figure-editor-canvas rect[data-object-id]"),

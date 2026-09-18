@@ -199,6 +199,33 @@ describe("Studio automatic SVG ownership", () => {
     expect(result.current.crops[0].figures?.[0].image).toBe("manual");
     expect(result.current.jobs[0].state).toBe("cancelled");
   });
+  // 2026-09-19 — 서버(422)가 재작도 실패 사유를 «… 원본은 유지됩니다.»로 끝내 보낸다. 그 뒤에 또
+  // «원본 그림을 유지했습니다.»를 붙이면 같은 말이 겹친다. 이미 그렇게 끝나면 덧붙이지 않는다.
+  it.each([
+    [
+      "도형 엔진이 그림을 해석하지 못했습니다. 원본은 유지됩니다.",
+      "도형 엔진이 그림을 해석하지 못했습니다. 원본은 유지됩니다.",
+    ],
+    [
+      "재작도가 오래 걸려 원본을 유지했습니다.",
+      "재작도가 오래 걸려 원본을 유지했습니다.",
+    ],
+    [
+      "원본 대조 응답을 읽지 못했습니다. 원본은 유지됩니다",
+      "원본 대조 응답을 읽지 못했습니다. 원본은 유지됩니다",
+    ],
+    ["engine failed", "engine failed 원본 그림을 유지했습니다."],
+  ])("does not repeat the keep-original note: %s", async (message, shown) => {
+    const run = vi.fn().mockRejectedValueOnce(new Error(message));
+    const { result } = mount([crop("a")], run);
+    await act(async () => {
+      await result.current.run(["a"]);
+    });
+    expect(result.current.jobs[0]).toMatchObject({
+      state: "error",
+      error: shown,
+    });
+  });
   it("retries only the failed figure and retains originals while failures are visible", async () => {
     const run = vi
       .fn()

@@ -51,11 +51,19 @@
   background: rgb(220 38 38 / 8%);
 }
 
-.label {
+/* 라벨과 «완료» 칩을 나란히 두는 자리 — 둘 다 포인터를 가로채지 않는다. */
+.tag {
   position: absolute;
   top: 0;
   left: 0;
+  display: flex;
+  align-items: flex-start;
+  gap: 3px;
   width: max-content;
+  pointer-events: none;
+}
+
+.label {
   padding: 1px 5px;
   border-radius: 0 0 3px 0;
   background: rgb(255 255 255 / 96%);
@@ -68,9 +76,23 @@
   pointer-events: none;
 }
 
-.selected .label {
+.selected .tag {
   top: -1px;
   left: -1px;
+}
+
+/* 작업실 «검수 완료» 배지(.addedBadge)와 같은 파랑 — 크기는 라벨과 같은 캡션 12px. */
+.doneChip {
+  padding: 1px 5px;
+  border-radius: 0 0 3px 3px;
+  background: #e7edf8;
+  color: #31568f;
+  font-family: inherit;
+  font-size: var(--text-caption, 12px);
+  font-weight: 600;
+  line-height: 1.4;
+  white-space: nowrap;
+  pointer-events: none;
 }
 
 .handle {

@@ -10,6 +10,8 @@ export interface StudioCropOverlayProps {
   rect: StudioRect;
   label: string;
   kind: "problem" | "figure";
+  /** 이 크롭의 AI 결과가 다 끝났다 — 라벨 오른쪽에 «완료» 칩을 따로 단다(원장님 2026-09-19). */
+  done?: boolean;
   selected: boolean;
   disabled: boolean;
   tool: "select" | "add-problem" | "add-figure" | "delete";
@@ -91,6 +93,7 @@ export default function StudioCropOverlay({
   rect,
   label,
   kind,
+  done = false,
   selected,
   disabled,
   tool,
@@ -237,11 +240,11 @@ export default function StudioCropOverlay({
     <div
       ref={elementRef}
       role="button"
-      aria-label={`${label} 영역`}
+      aria-label={`${label} 영역${done ? " · 완료" : ""}`}
       aria-pressed={selected}
       aria-disabled={disabled || adding}
       tabIndex={disabled || adding ? -1 : 0}
-      title={label}
+      title={done ? `${label} · 완료` : label}
       data-crop-id={id}
       data-crop-kind={kind}
       data-tool={tool}
@@ -292,7 +295,14 @@ export default function StudioCropOverlay({
       }}
       onBlur={cancelDrag}
     >
-      <span className={styles.label}>{label}</span>
+      <span className={styles.tag}>
+        <span className={styles.label}>{label}</span>
+        {done && (
+          <span className={styles.doneChip} aria-hidden="true">
+            완료
+          </span>
+        )}
+      </span>
       {selected && !disabled && tool === "select" && (
         <button
           type="button"
