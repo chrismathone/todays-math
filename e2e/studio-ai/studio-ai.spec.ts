@@ -334,7 +334,9 @@ test("problem OCR continues through selecting another problem and crop/review na
   await expect
     .poll(() => mock.posts.filter((p) => p.action === "ocr").length)
     .toBe(2);
-  await page.getByRole("button", { name: "문제 자르기", exact: true }).click();
+  await page
+    .getByRole("button", { name: "문제&도형 잘라내기", exact: true })
+    .click();
   await review(page);
   await expect(
     card(page, 1).getByRole("button", { name: "취소", exact: true }),
@@ -383,7 +385,9 @@ test("manual mobile crop and source fraction rendering without horizontal overfl
     path: testInfo.outputPath("mobile-review.png"),
     fullPage: true,
   });
-  await page.getByRole("button", { name: "문제 자르기", exact: true }).click();
+  await page
+    .getByRole("button", { name: "문제&도형 잘라내기", exact: true })
+    .click();
   await page.getByRole("button", { name: "검수 패널 접기" }).click();
   await expect(
     page.getByRole("complementary", { name: "자른 문제 검수" }),
