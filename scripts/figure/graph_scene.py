@@ -8,6 +8,9 @@ the existing identical core; local additions reject unknown/malformed fields
 instead of silently drawing a partial spec.
 """
 import math
+import re
+
+HANGUL = re.compile('[%s-%s%s-%s%s-%s]' % tuple(map(chr, (0x1100, 0x11FF, 0x3130, 0x318F, 0xAC00, 0xD7AF))))
 
 CONTRACT = {
     'version': 'graph-1',
@@ -19,8 +22,9 @@ CONTRACT = {
         'curves': 'list of {coefficients:[a,b,c,...],domain:[xmin,xmax]} for polynomial a*x^n+b*x^(n-1)+...; OR {type:"inverse",k:number,domain:[xmin,xmax]}; optional dashed:boolean',
         'segments': 'list of {from:[x,y],to:[x,y],dashed?:boolean,arrow?:boolean}; finite visible segments only',
         'polygons': 'list of {points:[[x,y],...],fill?:"#eeeeee",dashed?:boolean}; optional shading',
-        'circles': 'list of {center:[x,y],radius:number,dashed?:boolean}',
-        'labels': 'list of {at:[x,y],text:string,dx?:pixels,dy?:pixels,size?:pixels,anchor?:"start"|"middle"|"end"}; only printed labels; math can use $...$ LaTeX and is typeset as vector glyphs',
+        'circles': 'list of {center:[x,y],radius:number,dashed?:boolean}; a geometric circle in DATA units (stretches to an ellipse when x/y scales differ) — never use it for printed dots; use points',
+        'points': 'list of {at:[x,y],radius?:pixels 1..6 default 3,open?:boolean}; small printed dots at graph points (vertices, endpoints, intersections) in fixed screen pixels, filled black or open (white inside)',
+        'labels': 'list of {at:[x,y],text:string,dx?:pixels,dy?:pixels,size?:pixels,anchor?:"start"|"middle"|"end"}; only printed labels; math can use $...$ LaTeX and is typeset as vector glyphs. Korean text cannot be typeset: write a label containing Korean as plain text without $ (e.g. "x(초)")',
     },
     'example': {'version':'graph-1','xRange':[-4,4],'yRange':[-2,11],
         'curves':[{'coefficients':[-1,0,9],'domain':[-3.4,3.4]}],
@@ -37,6 +41,7 @@ def render_graph(spec):
         'segments': {'from', 'to', 'dashed', 'arrow'},
         'polygons': {'points', 'fill', 'dashed'},
         'circles': {'center', 'radius', 'dashed'},
+        'points': {'at', 'radius', 'open'},
         'labels': {'at', 'text', 'dx', 'dy', 'size', 'anchor'},
     }
     if not isinstance(spec, dict) or spec.get('version') != 'graph-1':
@@ -66,7 +71,7 @@ def render_graph(spec):
         if not isinstance(value,list) or len(value)>100 or any(not isinstance(i,dict) for i in value): raise ValueError(f'{key}는 최대 100개의 객체 목록이어야 합니다.')
         for item in value:
             if set(item) - fields[key]: raise ValueError(f'{key}에 지원하지 않는 필드가 있습니다.')
-            for flag in ('dashed', 'arrow'):
+            for flag in ('dashed', 'arrow', 'open'):
                 if flag in item and not isinstance(item[flag], bool): raise ValueError(f'{flag}는 참/거짓이어야 합니다.')
         return value
     out=[f'<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 {w:g} {h:g}" width="{w:g}" height="{h:g}">']
@@ -123,6 +128,13 @@ def render_graph(spec):
         cx,cy=screen(circle.get('center'));r=num(circle.get('radius'))
         if r<=0:raise ValueError('원의 반지름은 양수여야 합니다.')
         out.append(f'<ellipse cx="{cx:.3f}" cy="{cy:.3f}" rx="{r/(xhi-xlo)*(w-2*pad):.3f}" ry="{r/(yhi-ylo)*(h-2*pad):.3f}" fill="none" stroke="#111" stroke-width="1.7"{style(circle)}/>')
+    # 꺾인점·끝점의 인쇄된 점 — 반지름은 화면 픽셀이다. 2026-09-18 운영: 이 칸이 없어 모델이 circles(데이터
+    # 단위)로 점을 흉내 냈고, x 0~180·y 0~4 그래프에서 세로로 긴 타원이 섰다(다른 모델은 점을 빼먹었다).
+    for dot in items('points'):
+        px,py=screen(dot.get('at'));r=num(dot.get('radius',3))
+        if not 1<=r<=6:raise ValueError('점의 반지름은 1~6 픽셀이어야 합니다.')
+        fill,stroke=('#fff',' stroke="#111" stroke-width="1.4"') if dot.get('open') else ('#111','')
+        out.append(f'<circle cx="{px:.3f}" cy="{py:.3f}" r="{r:g}" fill="{fill}"{stroke}/>')
     labels=items('labels')
     if spec.get('axes',True):
         if ylo<=0<=yhi: labels=labels+[{'at':[xhi,0],'text':'x','dx':4,'dy':23}]
@@ -131,6 +143,8 @@ def render_graph(spec):
         x,y=screen(label.get('at'));x+=num(label.get('dx',0));y+=num(label.get('dy',0));size=min(48,max(10,num(label.get('size',20))))
         text=label.get('text','')
         if not isinstance(text,str) or len(text)>100:raise ValueError('그래프 라벨은 100자 이하여야 합니다.')
+        # 한글은 TeX 글꼴에 글리프가 없어 조판을 건너뛰고 원문 <text> 로 나간다 — `$x$(초)` 의 `$` 까지(2026-09-18 운영).
+        if HANGUL.search(text):text=re.sub(r'\$([^$]*)\$',r'\1',text)
         anchor=label.get('anchor','middle')
         if anchor not in ('start','middle','end'):raise ValueError('라벨 정렬 값이 올바르지 않습니다.')
         out.append(txt(x,y,text,fs=size,anc=anchor))
