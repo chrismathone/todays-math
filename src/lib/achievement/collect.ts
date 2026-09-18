@@ -28,6 +28,8 @@ import {
   type ProgressPlanRule,
 } from "@/lib/daily/progressPlan";
 
+import { rollupScores } from "@/lib/testResults/scoreRollup";
+
 import {
   type Period,
   periodEndExclusive,
@@ -83,9 +85,9 @@ export interface ScoredItem {
 /**
  * 한 회차의 채점 기록.
  *
- * 🔴 `score` 가 `nullable` 이고 `absent` 가 있는 것은 **트랙 1(`grading-input`)이 스키마에 더할
- *    모양을 미리 전제**한 것이다(브리프 §2). 지금 스키마는 `score` 가 NOT NULL 이고 `absent` 칸이
- *    없어서, 읽는 쪽(`load.ts`)이 «결시면 점수가 없다»로 옮겨 담는다. 이 층은 그 뒤만 본다.
+ * 🔴 `score` 는 **nullable** 이고 `absent` 가 따로 있다 — 트랙 1(`grading-input`, main 병합 fe5a125d)의
+ *    스키마 그대로다(결시면 `score` 가 NULL). 읽는 쪽(`load.ts`)은 **형 그대로** 넘기고, «잰 것»
+ *    (결시 아님 · 점수 있음)인지는 **`rollupScores` 한 곳**이 가른다(트랙 1 보고서 ⑤-D).
  */
 export interface ResultRow {
   testId: string;
@@ -306,9 +308,15 @@ function scorePercentOf(results: ResultRow[]): number | null {
   let earned = 0;
   let full = 0;
   for (const r of latestPerTest(results)) {
-    if (r.absent || r.score === null || r.maxScore === null || r.maxScore <= 0)
-      continue;
-    earned += r.score;
+    // 만점을 모르면 비율의 분모를 못 댄다.
+    if (r.maxScore === null || r.maxScore <= 0) continue;
+    /**
+     * 🔴 **«잰 것»은 `rollupScores` 한 곳이 정한다**(트랙 1 보고서 ⑤-D) — 결시·점수 없는 행을
+     *    여기서 다시 거르면 규칙이 두 벌이 된다. 배점 합산(Σ점수/Σ만점)은 원점수 평균과 다른 값이라
+     *    `rollupScores` 의 평균을 그대로 못 쓰고, 그래서 **행마다** 그 판정을 묻는다.
+     */
+    if (rollupScores([r]).gradedCount === 0) continue;
+    earned += r.score as number;
     full += r.maxScore;
   }
   return full > 0 ? round1((earned / full) * 100) : null;

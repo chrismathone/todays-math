@@ -20,6 +20,8 @@
  * ⑸ 🔴 **하단 한 줄은 학생이 아니라 리포트를 설명한다**(23 §7.2 Q5) — «시험 0회»·«숙제 기록 없음»처럼
  *    학생의 행동으로 읽히는 말, «칸이 아직 없다» 같은 개발 사정은 학부모 지면에 **0글자**.
  */
+import { rollupScores } from "@/lib/testResults/scoreRollup";
+
 import { isCalendarMonth, type Period } from "./period";
 import {
   ACHIEVEMENT_BANDS,
@@ -67,6 +69,18 @@ function josa(word: string, withFinal: string, withoutFinal: string): string {
   return hasFinal ? withFinal : withoutFinal;
 }
 
+/** 지면 머리의 기간 이름 — 달이면 «2026년 8월», 아니면 «8월 24일 ~ 9월 18일». */
+export function periodTitle(period: Period): string {
+  if (!isCalendarMonth(period)) return periodRange(period);
+  const [y, m] = period.from.split("-").map(Number) as [number, number];
+  return `${y}년 ${m}월`;
+}
+
+/** «8월 1일 ~ 8월 31일» */
+export function periodRange(period: Period): string {
+  return `${dateText(period.from)} ~ ${dateText(period.to)}`;
+}
+
 /** 기간을 부르는 말 — 달력 한 달이면 «이번 달»·«월말», 아니면 «이 기간». */
 function spanWord(period: Period): string {
   return isCalendarMonth(period) ? "이번 달" : "이 기간에";
@@ -109,18 +123,29 @@ export const FOLD_NOTE =
  */
 export function scoreSentence(rounds: ScoredRound[] | null): string | null {
   if (rounds === null) return null;
+  /**
+   * 🔴 «잰 것»(결시 아님 · 점수 있음)과 평균은 **`rollupScores` 한 곳**이 정한다(트랙 1 보고서 ⑤-D).
+   *    `rounds` 는 응시 회차뿐이라(결시는 `absentRounds`) `absent: false` 로 넘긴다 — 점수가 없는
+   *    응시 행은 거기서 빠진다. 만점을 모르면 «몇 점 만점»을 못 말하므로 여기서 뺀다.
+   */
   const scorable = rounds.filter(
     (r): r is ScoredRound & { score: number; maxScore: number } =>
-      r.score !== null && r.maxScore !== null && r.maxScore > 0,
+      r.maxScore !== null &&
+      r.maxScore > 0 &&
+      rollupScores([{ score: r.score, absent: false }]).gradedCount === 1,
   );
-  if (scorable.length === 0) return null;
-  const n = scorable.length;
+  const rollup = rollupScores(
+    scorable.map((r) => ({ score: r.score, absent: false })),
+  );
+  if (rollup.averageScore === null) return null;
+  const n = rollup.gradedCount;
   const maxes = new Set(scorable.map((r) => r.maxScore));
-  const sumScore = scorable.reduce((a, r) => a + r.score, 0);
   if (maxes.size === 1) {
     const max = scorable[0]!.maxScore;
-    return `시험 ${n}회, ${pointsText(max)}점 만점에 평균 ${pointsText(sumScore / n)}점입니다.`;
+    return `시험 ${n}회, ${pointsText(max)}점 만점에 평균 ${pointsText(rollup.averageScore)}점입니다.`;
   }
+  // 만점이 회차마다 다르면 평균을 지어내지 않고 **합계**로 말한다.
+  const sumScore = scorable.reduce((a, r) => a + r.score, 0);
   const sumMax = scorable.reduce((a, r) => a + r.maxScore, 0);
   return `시험 ${n}회 합계 ${pointsText(sumMax)}점 만점에 ${pointsText(sumScore)}점입니다.`;
 }
@@ -270,6 +295,34 @@ export function homeworkSentence(
 }
 
 // ─────────────────────────────────────────────
+// «이렇게 셉니다» — 근거 밑의 한 줄 (23 §2.3 — 계산 방식 안내가 이해도를 올린다)
+// ─────────────────────────────────────────────
+
+/** 난이도 — 12문항 미만인 단이 **있을 때만** 붙인다. */
+export function bandMethodNote(
+  bands: Record<AchievementBand, BandAccuracy | null> | null,
+): string | null {
+  if (bands === null) return null;
+  const held = ACHIEVEMENT_BANDS.some((b) => {
+    const v = bands[b];
+    return v !== null && !confirmed(v);
+  });
+  return held
+    ? `${MIN_UNIT_PROBLEMS}문제보다 적게 푼 단은 평가를 보류했습니다.`
+    : null;
+}
+
+/** 영상 — 완료 편수만 센다는 것과 그 끝. */
+export function lectureMethodNote(period: Period): string {
+  return isCalendarMonth(period)
+    ? "월말까지 끝까지 본 영상만 셉니다."
+    : "기간이 끝나기 전에 끝까지 본 영상만 셉니다.";
+}
+
+/** 숙제 — 분모가 «확인한 날»이라는 것. */
+export const HOMEWORK_METHOD_NOTE = "숙제를 확인한 날만 셉니다.";
+
+// ─────────────────────────────────────────────
 // 하단 한 줄 — «이번 기간 기록 현황» (23 §7.2 Q5)
 // ─────────────────────────────────────────────
 
@@ -303,6 +356,7 @@ export function coverageLine(f: AchievementFactors): string {
     inc.push(`숙제 확인 ${f.selfStudy.homework.checked}번`);
   else exc.push("숙제");
 
+  if (inc.length === 0) return "이번 리포트에 담은 기록이 없습니다.";
   const included = `이번 리포트에 담은 기록: ${inc.join(" · ")}.`;
   return exc.length === 0
     ? included

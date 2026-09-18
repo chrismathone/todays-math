@@ -32,7 +32,7 @@ import {
 } from "./collect";
 import { testMaxScore } from "./maxScore";
 import { type Period, periodEndExclusive, previousMonth } from "./period";
-import { readAbsent, readScore, RESULT_SELECT } from "./resultSelect";
+import { RESULT_SELECT } from "./resultSelect";
 
 /** 어떤 비교군을 붙이나 — 기본은 «미사용». */
 export type CompareMode = "none" | "previous" | "class";
@@ -95,11 +95,7 @@ async function loadResults(
         },
       },
     },
-    /**
-     * 🔴 **결시는 select 에 적어야 온다.** 지금 스키마에는 `absent` 칸이 없어 `RESULT_SELECT` 에도
-     *    없다 — 그래서 **지금은 결시가 늘 «응시»로 읽힌다.** 트랙 1 이 칸을 더하는 순간
-     *    `achievementResultSelect.test.ts` 의 덫이 빨개지고, 그 상수에 `absent: true` 를 더해야 한다.
-     */
+    // 🔴 **결시는 select 에 적어야 온다** — 상수에 `absent` 가 있고, 빠지면 덫 시험이 빨개진다.
     select: RESULT_SELECT,
   });
   if (rows.length === 0) return [];
@@ -121,15 +117,17 @@ async function loadResults(
   }
 
   return rows.map((r) => {
-    const absent = readAbsent(r);
     return {
       testId: r.testId,
       testDate: dateOf(r.test.testDate),
       takenAt: r.takenAt.toISOString(),
-      // 🔴 결시면 점수가 없다 — 0으로 적지 않는다.
-      score: absent ? null : readScore(r),
+      /**
+       * 🔴 **`Float?` 그대로** — 결시면 트랙 1 이 NULL 로 쓴다. `?? 0` 을 적으면 결시가 0점짜리
+       *    응시자가 된다(트랙 1 보고서 ⑤-D). «잰 것»인지는 `rollupScores` 한 곳이 가른다.
+       */
+      score: r.score,
       maxScore: testMaxScore(pointsByTest.get(r.testId) ?? []),
-      absent,
+      absent: r.absent,
       items: r.answers.map((a) => ({
         unitId: a.problem.unitId,
         difficulty: a.problem.difficulty as Difficulty,
