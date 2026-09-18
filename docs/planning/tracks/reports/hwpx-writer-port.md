@@ -107,6 +107,12 @@ mathg-gen `.checks.local` 의 한글 측정 11,644식:
 
 ## 6. 🔴 발견 — 우리 미리보기에서는 구역 위 여백이 **모든 쪽 8px**
 
+> **리드 결정 (2026-09-18) — (다).** main 병합(`1ff8c938`) 뒤 `hwpxLayout.ts` 에서 **쪽 전체를 덮는 배경**을
+> 도형으로 싣지 않는다(`el !== page` 와 같은 뜻 — mathg-gen 은 쪽 선택자가 템플릿 뿌리 자체라 원래 안 싣는다).
+> writer 는 mathg-gen 과 같은 블롭 그대로. 시험 `hwpxLayout.test.ts` 1건(고치기 전 빨강). E2E 하네스가 내려받은
+> HWPX 의 구역 위 여백 **45.3 · 45.3 · 45.3 · 45.3 · 46.3px**. 잃는 것: 자습(jaseup) 종이의 옅은 누런색(#FCFCF8)이
+> HWPX 에서 흰색이 된다. 아래는 결정 전 기록이다.
+
 E2E 하네스(`/?native`, 5쪽 — 기본 · 오른쪽 풀이 칸 두 설정)의 실제 `collectHwpxLayout` payload 를
 옛/새 writer 에 넣어 비교했다(E2E 가 내려받은 `worksheet.hwpx` 도 풀어 같은 값 확인).
 

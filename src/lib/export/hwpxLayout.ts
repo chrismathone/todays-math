@@ -159,12 +159,19 @@ export async function collectHwpxLayout(
           el.getBoundingClientRect().width > 0
         );
       };
+      // 쪽 전체를 덮는 배경은 종이 자체다. 우리 쪽 틀은 템플릿 뿌리를 감싸서(mathg-gen 은 뿌리가 곧 쪽)
+      // 뿌리의 종이색이 y=0 도형으로 실리면 writer 가 구역 위 여백을 8px 로 잡는다(hwpx-writer-port §6).
+      const coversPage = (rect: DOMRect) =>
+        rect.left <= pageRect.left + 1 &&
+        rect.top <= pageRect.top + 1 &&
+        rect.right >= pageRect.right - 1 &&
+        rect.bottom >= pageRect.bottom - 1;
       for (const el of [page, ...page.querySelectorAll<HTMLElement>("*")]) {
         if (!visible(el) || el.closest(".katex, svg")) continue;
         const rect = el.getBoundingClientRect(),
           s = getComputedStyle(el),
           background = color(s.backgroundColor);
-        if (background && el !== page)
+        if (background && el !== page && !coversPage(rect))
           decorations.push({ type: "rect", ...box(rect), color: background });
         if (s.backgroundImage.includes("linear-gradient")) {
           const gridInk = color(
