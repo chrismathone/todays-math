@@ -1,13 +1,18 @@
 // @vitest-environment node
 import { mkdir, writeFile } from "node:fs/promises";
 import path from "node:path";
-import { describe, expect, it, vi } from "vitest";
-import { buildFigureComparisonImage } from "@/lib/dev-ai/figure-comparison";
+import { afterAll, describe, expect, it, vi } from "vitest";
+import {
+  buildFigureComparisonImage,
+  closeFigureComparisonBrowser,
+} from "@/lib/dev-ai/figure-comparison";
 import { launchExportBrowser } from "@/lib/export/pdfServer";
 
 vi.mock("server-only", () => ({}));
 
 describe("actual source/rendered comparison image", () => {
+  // 결함 2: 비교 브라우저는 유휴 시간까지 살아 있으므로 시험이 끝나면 바로 닫는다
+  afterAll(() => closeFigureComparisonBrowser());
   it("rejects remote source images and unsafe SVG before opening a browser", async () => {
     await expect(
       buildFigureComparisonImage("https://example.com/source.png", "<svg/>"),

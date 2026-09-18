@@ -68,16 +68,29 @@ export async function redrawDevAiFigure(
   signal?.addEventListener("abort", cancel, { once: true });
   if (signal?.aborted) cancel();
   let timedOut = false;
-  const timer = setTimeout(() => {
-    timedOut = true;
-    cancel();
-  }, 240000);
+  // 결함 3(2026-09-18): 240초 예산은 도형 칸을 얻은 뒤부터 잰다 — 줄 서서 기다린 시간은 깎지 않는다.
+  // 기다리는 동안의 사용자 취소는 deadline 을 거쳐 acquire 를 그대로 깨운다.
+  let timer: NodeJS.Timeout | undefined;
   const check = () => {
     if (deadline.signal.aborted) throw abortError();
   };
+  // 결함 4(2026-09-18): 마지막으로 렌더에 성공한 결과 — 다음 바퀴가 제한 시간을 넘기면 버리지 않고
+  // «원본 대조 확인 필요» 경고와 함께 돌려준다. 사용자 취소는 여기에 해당하지 않는다.
+  let lastRender:
+    | {
+        svg: string;
+        spec: DevAiFigureSpec;
+        warnings: string[];
+        issues?: string[];
+      }
+    | undefined;
   let release: (() => void) | undefined;
   try {
     release = await slots.acquire(deadline.signal);
+    timer = setTimeout(() => {
+      timedOut = true;
+      cancel();
+    }, 240000);
     let repair: { spec: DevAiFigureSpec; error: string } | undefined;
     for (let attempt = 0; attempt < 3; attempt++) {
       check();
@@ -121,6 +134,9 @@ export async function redrawDevAiFigure(
         throw new Error(
           "도형 엔진의 정적 SVG 안전 검사를 통과하지 못했습니다. 원본은 유지됩니다.",
         );
+      const warnings = [...generated.warnings];
+      if (generated.note) warnings.push(generated.note);
+      lastRender = { svg: rendered.svg, spec: generated.spec, warnings };
       const comparison = await buildFigureComparisonImage(
         request.imageDataUrl,
         rendered.svg,
@@ -141,14 +157,13 @@ export async function redrawDevAiFigure(
       );
       check();
       if (!review.passed && attempt < 2) {
+        lastRender.issues = review.issues;
         repair = {
           spec: generated.spec,
           error: `원본 대조: ${review.issues.join(" / ") || "도형의 원본 일치 여부를 확인할 수 없습니다."}`,
         };
         continue;
       }
-      const warnings = [...generated.warnings];
-      if (generated.note) warnings.push(generated.note);
       if (!review.passed)
         warnings.push(
           `원본 대조 확인 필요: ${review.issues.join(" / ") || "그림 편집에서 원본과 비교해 주세요."}`,
@@ -166,10 +181,31 @@ export async function redrawDevAiFigure(
     }
     throw new Error("도형 재작도에 실패했습니다. 원본은 유지됩니다.");
   } catch (error) {
-    if (timedOut)
-      throw new Error(
-        "도형 재작도가 오래 걸려 원본을 유지했습니다. 그림 편집에서 다시 시도해 주세요.",
-      );
+    if (timedOut) {
+      if (!lastRender)
+        throw new Error(
+          "도형 재작도가 오래 걸려 원본을 유지했습니다. 그림 편집에서 다시 시도해 주세요.",
+        );
+      const issues = lastRender.issues ?? [];
+      return {
+        content: "",
+        answer: "",
+        solution: "",
+        warnings: [
+          ...lastRender.warnings,
+          `원본 대조 확인 필요: ${issues.join(" / ") || "원본 대조를 마치지 못했습니다. 그림 편집에서 원본과 비교해 주세요."}`,
+          "도형 재작도가 오래 걸려 마지막으로 그린 결과를 사용합니다.",
+        ],
+        svg: lastRender.svg,
+        spec: lastRender.spec,
+        engine: "todays-math-python",
+        figureReview: {
+          mode: "source-and-rendered-images",
+          passed: false,
+          issues,
+        },
+      };
+    }
     throw error;
   } finally {
     release?.();
