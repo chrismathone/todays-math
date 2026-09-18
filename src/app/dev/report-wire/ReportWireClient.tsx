@@ -3,8 +3,14 @@
 import { useMemo, useState } from "react";
 
 import {
+  EXAMPLE_TEACHER_NOTE,
+  exampleFactors,
+} from "@/app/dev/report-hifi/example";
+import { areaHasRecords, areaSummary } from "@/lib/achievement/reportAreas";
+import {
   bandSentence,
   driftSentence,
+  homeworkSentence,
   outOfPhrase,
   scoreSentence,
 } from "@/lib/achievement/sentences";
@@ -81,82 +87,15 @@ const H2 = "text-[14px] font-bold";
 
 // ─────────────────────────────────────────────
 // ⓑ 예시 — **지어낸 값이다.** ①만 실제 기록이고 ②③④는 예시다.
+// 🔴 팩터를 손으로 적지 않는다 — 원시 행을 지어내 `collectAchievement` 로 생성한다
+//    (Hi-fi 브리프 §1 #9 — 손으로 적은 예시는 단원 합계 35 ≠ 난이도 합계 34 였다).
 // ─────────────────────────────────────────────
 
-const EXAMPLE_NOTE =
-  "수업 중 질문이 늘었습니다. 계산 실수를 스스로 되짚는 모습이 보입니다. 응용 문제에서 식을 세우기 전에 손이 멈추는 편이라, 다음 달에는 문제를 소리 내어 읽고 조건을 적는 연습을 함께 하겠습니다.";
-
 function exampleOf(real: AchievementFactors): View {
-  const units = real.learned.units ?? [];
-  const ref = (i: number) =>
-    units[i] ?? {
-      unitId: `example-${i}`,
-      grade: real.student.classGrade,
-      chapter: "(예시 단원)",
-      section: `(예시 소단원 ${i + 1})`,
-    };
-  const bare = (i: number) => {
-    const u = ref(i);
-    return {
-      unitId: u.unitId,
-      grade: u.grade,
-      chapter: u.chapter,
-      section: u.section,
-    };
-  };
-
-  const round = (n: number, date: string, score: number) => ({
-    testId: `example-test-${n}`,
-    testDate: date,
-    takenAt: `${date}T10:00:00.000Z`,
-    score,
-    maxScore: 100,
-  });
-
   return {
     example: true,
-    teacherNote: EXAMPLE_NOTE,
-    factors: {
-      ...real,
-      scored: {
-        rounds: [
-          round(1, "2026-08-27", 75),
-          round(2, "2026-09-03", 62),
-          round(3, "2026-09-10", 88),
-        ],
-        absentRounds: [
-          {
-            testId: "example-test-4",
-            testDate: "2026-09-07",
-            takenAt: "2026-09-07T10:00:00.000Z",
-            score: null,
-            maxScore: 100,
-          },
-        ],
-        averagePercent: 75,
-        unitAccuracy: {
-          reported: [
-            { ...bare(0), correct: 13, total: 14, accuracy: 92.9 },
-            { ...bare(1), correct: 7, total: 16, accuracy: 43.8 },
-          ],
-          underSampled: [{ ...bare(2), total: 5, needed: MIN_UNIT_PROBLEMS }],
-        },
-        bandAccuracy: {
-          연산: { correct: 11, total: 12, accuracy: 91.7 },
-          기본: { correct: 12, total: 14, accuracy: 85.7 },
-          응용: { correct: 3, total: 8, accuracy: 37.5 },
-          심화: null,
-        },
-        reviewUnits: [
-          { ...bare(1), flaggedRounds: 2, problems: 16, accuracy: 43.8 },
-          { ...bare(2), flaggedRounds: 1, problems: 5, accuracy: null },
-        ],
-      },
-      selfStudy: {
-        lectures: { assigned: 6, completed: 4, averagePercent: 78 },
-        homework: null,
-      },
-    },
+    teacherNote: EXAMPLE_TEACHER_NOTE,
+    factors: exampleFactors(real),
   };
 }
 
@@ -335,11 +274,11 @@ function UnitAccuracyBlock({ view }: { view: View }) {
       ))}
       {ua.underSampled.length > 0 ? (
         <p className={NOTE}>
-          문제 수가 적어 아직 말씀드리기 어려운 단원:{" "}
+          문제 수가 적어 평가를 보류한 단원:{" "}
           {ua.underSampled
             .map((u) => `${u.section} (${u.total}문제)`)
             .join(" · ")}{" "}
-          — {MIN_UNIT_PROBLEMS}문제가 모이면 알려 드립니다.
+          — 기준 {MIN_UNIT_PROBLEMS}문제.
         </p>
       ) : null}
     </div>
@@ -371,9 +310,7 @@ function WireA({ view }: { view: View }) {
       {factors.scored.rounds !== null ? (
         <div className="flex flex-col gap-2">
           <h2 className={H2}>얼마나 맞았나</h2>
-          <p className="text-[13px]">
-            {scoreSentence(factors.scored.averagePercent)}
-          </p>
+          <p className="text-[13px]">{scoreSentence(factors.scored.rounds)}</p>
           <RoundList view={view} />
           <UnitAccuracyBlock view={view} />
           {band ? <p className="text-[13px]">{band}</p> : null}
@@ -435,7 +372,7 @@ function WireB({ view }: { view: View }) {
         ) : (
           <div className="flex flex-col gap-3">
             <p className="text-[13px]">
-              {scoreSentence(factors.scored.averagePercent)}
+              {scoreSentence(factors.scored.rounds)}
             </p>
             <RoundList view={view} />
             <UnitAccuracyBlock view={view} />
@@ -468,10 +405,16 @@ function WireB({ view }: { view: View }) {
             {factors.selfStudy.lectures.averagePercent}% 시청
           </p>
         )}
-        <Empty
-          what="숙제"
-          why="숙제를 적어 두는 칸이 아직 없습니다 — 만들지 정하는 중입니다."
-        />
+        {factors.selfStudy.homework === null ? (
+          <Empty
+            what="숙제"
+            why="숙제를 적어 두는 칸이 아직 없습니다 — 만들지 정하는 중입니다."
+          />
+        ) : (
+          <p className="text-[13px]">
+            {homeworkSentence(factors.selfStudy.homework)}
+          </p>
+        )}
       </div>
 
       <div className="flex flex-col gap-2 border-t border-divider pt-3">
@@ -531,8 +474,11 @@ function WireC({ view }: { view: View }) {
             {factors.selfStudy.lectures === null
               ? "대상 강의 0편 (기록 없음)"
               : `${factors.selfStudy.lectures.completed}/${factors.selfStudy.lectures.assigned}편`}{" "}
-            · 숙제 기록할 칸 없음 ·{" "}
-            {view.teacherNote === null ? "의견 칸 없음" : "의견 입력됨"}
+            ·{" "}
+            {factors.selfStudy.homework === null
+              ? "숙제 기록할 칸 없음"
+              : `숙제 ${factors.selfStudy.homework.missed}/${factors.selfStudy.homework.checked}번 안 해 옴`}{" "}
+            · {view.teacherNote === null ? "의견 칸 없음" : "의견 입력됨"}
           </p>
         </div>
       </div>
@@ -569,37 +515,52 @@ function WireC({ view }: { view: View }) {
 // D안 — 문장 먼저, 숫자는 그 밑에 근거로
 // ─────────────────────────────────────────────
 
+/**
+ * 🔴 **문장과 기록을 가른다**(Hi-fi 브리프 §1 #4·#5). 예전에는 평균 문장이 없으면 회차 목록을 안 그려
+ * 전부 결시인 달의 결시 내역까지 사라졌고, 난이도 문장이 없으면 숫자판도 숨었고, 영상 분기가 없었다.
+ * 이제 영역은 **기록이 있으면** 서고(`areaHasRecords`), 문장은 그 위에 얹는다(`areaSummary`).
+ */
 function WireD({ view }: { view: View }) {
   const { factors } = view;
-  const lines: { text: string; evidence: React.ReactNode }[] = [];
+  const src = { factors, teacherNote: view.teacherNote };
+  const lines: { key: string; texts: string[]; evidence: React.ReactNode }[] =
+    [];
 
-  if (factors.learned.units !== null && factors.learned.lessons !== null)
+  if (areaHasRecords(src, "learned"))
     lines.push({
-      text: `${factors.learned.units.length}개 소단원을 나갔습니다.`,
+      key: "learned",
+      texts: areaSummary(src, "learned"),
       evidence: <LearnedBlock view={view} />,
     });
 
-  const score = scoreSentence(factors.scored.averagePercent);
-  if (score)
+  if (areaHasRecords(src, "scored"))
     lines.push({
-      text: score,
+      key: "scored",
+      texts: areaSummary(src, "scored"),
       evidence: (
         <div className="flex flex-col gap-2">
           <RoundList view={view} />
           <UnitAccuracyBlock view={view} />
+          {factors.scored.bandAccuracy ? (
+            <BandBoard bands={factors.scored.bandAccuracy} />
+          ) : null}
         </div>
       ),
     });
 
-  const band = bandSentence(factors.scored.bandAccuracy);
-  if (band && factors.scored.bandAccuracy)
+  if (areaHasRecords(src, "selfStudy"))
     lines.push({
-      text: band,
-      evidence: <BandBoard bands={factors.scored.bandAccuracy} />,
+      key: "selfStudy",
+      texts: areaSummary(src, "selfStudy"),
+      evidence: null,
     });
 
-  if (view.teacherNote !== null)
-    lines.push({ text: view.teacherNote, evidence: null });
+  if (areaHasRecords(src, "note"))
+    lines.push({
+      key: "note",
+      texts: [view.teacherNote ?? ""],
+      evidence: null,
+    });
 
   const cannot: string[] = [];
   if (factors.scored.rounds === null)
@@ -618,8 +579,12 @@ function WireD({ view }: { view: View }) {
       <PaperHead view={view} />
       <div className="flex flex-col gap-4">
         {lines.map((line) => (
-          <div key={line.text} className="flex flex-col gap-2">
-            <p className="text-[15px] leading-relaxed font-bold">{line.text}</p>
+          <div key={line.key} className="flex flex-col gap-2">
+            {line.texts.map((text) => (
+              <p key={text} className="text-[15px] leading-relaxed font-bold">
+                {text}
+              </p>
+            ))}
             {line.evidence ? (
               <div className="border-l-2 border-divider pl-3">
                 {line.evidence}

@@ -132,6 +132,20 @@ export interface ReviewUnit extends UnitRef {
   accuracy: number | null;
 }
 
+/**
+ * **문제 수** — 문항 기록(`ProblemAnswer`)에서 센 맞은 수/푼 수.
+ *
+ * 🔴 «10문제 중 N문제»는 **여기서만** 말한다(Hi-fi 브리프 §1 #2). 배점 합산 비율(`averagePercent`)을
+ *    문제 수로 바꿔 말하면 시험지가 8문항인데 «10문제»가 지어지고, 배점 90·10 두 문제 중 첫째만
+ *    맞히면 «10문제 중 9문제»가 된다.
+ */
+export interface ProblemTally {
+  correct: number;
+  total: number;
+  /** 문항 기록이 **있는** 응시 회차 수 — 응시 회차 수와 다를 수 있다(문장이 그 사실을 밝힌다). */
+  rounds: number;
+}
+
 export interface ScoredFactors {
   /** 응시 회차 — **결시는 빠진다.** 채점 기록이 0건이면 `null`, 있는데 전부 결시면 빈 배열. */
   rounds: ScoredRound[] | null;
@@ -140,8 +154,13 @@ export interface ScoredFactors {
   /**
    * 평균 정답 비율(0~100) — 회차별 `score/maxScore` 를 **문항 배점 합산**으로 잰다.
    * 응시 회차가 없거나 만점을 모르면 `null`.
+   *
+   * ⚠️ 비교군(지난달·반 평균)이 견주는 값이다. **학부모에게는 이 비율을 말하지 않는다** —
+   *    점수는 점수로(`scoreSentence`), 문제 수는 `problems` 로 말한다.
    */
   averagePercent: number | null;
+  /** 문제 수 — 응시 회차의 문항 기록 합산. 문항 기록이 하나도 없으면 `null`(«0문제»가 아니다). */
+  problems: ProblemTally | null;
   /**
    * 누적 단원별 정답률 — **회차 평균이 아니라 문항 합산**이다(회차마다 문항 수가 다르다).
    * 채점 기록이 0건이면 `null`.
@@ -168,12 +187,33 @@ export interface ScoredFactors {
 // ─────────────────────────────────────────────
 
 export interface LectureFactors {
-  /** 대상 강의 편수(게시된 것). */
+  /** 대상 강의 편수 — 기간에 배운 차시의 강의 중 **기간 끝 전에 게시된 것**(§1 #8). */
   assigned: number;
-  /** 끝까지 본 편수. */
+  /** 끝까지 본 편수 — 🔴 **완료 시각 < 기간 끝 다음날 00:00 KST** 만 센다(§1 #6). 아래 경계는 없다. */
   completed: number;
-  /** 평균 시청률(0~100) — **대상 전체**에 대한 평균이다(안 본 강의는 0%로 센다). */
+  /**
+   * 평균 시청률(0~100) — **대상 전체**에 대한 평균이다(안 본 강의는 0%로 센다).
+   *
+   * ⚠️ `percent` 에는 시각이 없어 **기간으로 못 자른다** — 과거 달을 다시 뽑으면 이 값이 바뀐다.
+   *    그래서 **학부모 지면에는 쓰지 않는다**(완료 편수만 — Hi-fi 브리프 §2 규칙 8). 원장 화면에서만
+   *    «지금 기준»이라 밝히고 보인다.
+   */
   averagePercent: number;
+}
+
+/**
+ * 숙제 — 🔴 **분모는 «오늘 확인함»이 찍힌 날뿐**이다(23 §7.1).
+ *
+ * «안 해 온 학생만 찍는다»(23 §7 Q1)는 누르지 않은 학생이 전부 «했음»이라는 뜻인데, **아예 확인을
+ * 안 한 날**도 똑같이 보인다. 확인 표시가 없는 날은 분모에서 빠진다.
+ */
+export interface HomeworkFactors {
+  /** 반에서 «오늘 확인함»을 찍은 날 수(기간 안). */
+  checked: number;
+  /** 그중 이 학생이 «안 해 옴»으로 찍힌 날 수. */
+  missed: number;
+  /** 안 해 온 날(YYYY-MM-DD, 오름차순). */
+  missedDates: string[];
 }
 
 export interface SelfStudyFactors {
@@ -183,18 +223,21 @@ export interface SelfStudyFactors {
    */
   lectures: LectureFactors | null;
   /**
-   * 숙제 — 🔴 **표가 없다.** 언제나 `null` 이고, 자리만 비워 둔다(원장님 확정 대기 23 §7 Q1).
-   * 칸을 만들기 전에는 어떤 값도 지어내지 않는다.
+   * 숙제 — 🔴 **표가 아직 없다**(트랙 4). 조회(`load.ts`)는 언제나 `null` 을 넘긴다.
+   * 규칙(분모 = 확인한 날)은 순수 함수가 먼저 갖고 있고, 확인한 날이 **0이면 `null`** 이다.
    */
-  homework: null;
+  homework: HomeworkFactors | null;
 }
 
 // ─────────────────────────────────────────────
 // 비교군 — 기본값은 «미사용»
 // ─────────────────────────────────────────────
 
-/** 🔴 **전국·석차는 없다** — 표본이 없다(23 §4 ④). 우리가 댈 수 있는 것은 이 둘뿐이다. */
-export type ComparisonKind = "지난기간" | "반평균";
+/**
+ * 🔴 **전국·석차는 없다** — 표본이 없다(23 §4 ④). 우리가 댈 수 있는 것은 이 둘뿐이다.
+ * «지난달»은 **달력**이다 — 같은 일수만큼 거슬러 가지 않는다(`previousMonth`).
+ */
+export type ComparisonKind = "지난달" | "반평균";
 
 /**
  * 비교군의 값 하나 — 🔴 **값과 그 분모를 같이 낸다.**
@@ -213,7 +256,7 @@ export interface Comparison {
   kind: ComparisonKind;
   /** 🔴 **표본 수를 반드시 같이 낸다** — 반 최대 10명이라 「반 평균」은 얇다. */
   sampleSize: number;
-  /** 같은 길이 기간의 차시 수. */
+  /** 비교 기간(지난달 · 같은 기간의 반)의 차시 수. */
   lessons: ComparisonMetric;
   /** 평균 정답 비율(0~100). */
   averagePercent: ComparisonMetric;

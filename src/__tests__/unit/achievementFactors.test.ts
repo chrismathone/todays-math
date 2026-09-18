@@ -205,6 +205,7 @@ describe("② 얼마나 맞았나 — 채점 0건과 0점", () => {
     expect(f.scored.rounds).toBeNull();
     expect(f.scored.absentRounds).toBeNull();
     expect(f.scored.averagePercent).toBeNull();
+    expect(f.scored.problems).toBeNull();
     expect(f.scored.unitAccuracy).toBeNull();
     expect(f.scored.bandAccuracy).toBeNull();
     expect(f.scored.reviewUnits).toBeNull();
@@ -379,6 +380,64 @@ describe("② 합산 — 회차 평균이 아니라 문항 합산", () => {
       }),
     );
     expect(f.scored.averagePercent).toBe(54.5);
+  });
+});
+
+/**
+ * 🔴 **문제 수는 문항 기록에서만 센다** (Hi-fi 브리프 §1 #2). 배점 합산 비율을 «10문제 중 N문제»로
+ * 바꿔 말하면 시험지가 8문항인데 «10문제»가 지어지고, 배점 90·10 두 문제 중 첫째만 맞히면
+ * «10문제 중 9문제»가 된다. 문제 수는 `items` 가 말하는 것만 말한다.
+ */
+describe("② 문제 수 — 문항 기록에서 센 correct/total", () => {
+  it("🔴 배점 90·10 두 문제 중 첫째만 맞히면 «2문제 중 1문제»다 (배점 비율 90% 가 아니다)", () => {
+    const f = collectAchievement(
+      base({
+        results: [
+          round({
+            score: 90,
+            maxScore: 100,
+            items: [item("u1", "기본", true), item("u1", "응용", false)],
+          }),
+        ],
+      }),
+    );
+    expect(f.scored.problems).toEqual({ correct: 1, total: 2, rounds: 1 });
+    expect(f.scored.averagePercent).toBe(90);
+  });
+
+  it("결시·재채점 앞 행은 안 센다 — 회차마다 마지막 채점의 문항만", () => {
+    const f = collectAchievement(
+      base({
+        results: [
+          round({
+            testId: "t1",
+            takenAt: "2026-09-10T01:00:00.000Z",
+            items: items("u1", "기본", 8, 1),
+          }),
+          round({
+            testId: "t1",
+            takenAt: "2026-09-11T01:00:00.000Z",
+            items: items("u1", "기본", 8, 6),
+          }),
+          round({
+            testId: "t2",
+            testDate: "2026-09-17",
+            score: null,
+            absent: true,
+            items: items("u1", "기본", 8, 0),
+          }),
+        ],
+      }),
+    );
+    expect(f.scored.problems).toEqual({ correct: 6, total: 8, rounds: 1 });
+  });
+
+  it("🔴 채점 0건이면 null — 응시는 있는데 문항 기록이 없어도 null (0문제가 아니다)", () => {
+    expect(collectAchievement(base()).scored.problems).toBeNull();
+    expect(
+      collectAchievement(base({ results: [round({ items: [] })] })).scored
+        .problems,
+    ).toBeNull();
   });
 });
 
@@ -558,8 +617,98 @@ describe("③ 스스로 한 것 — 강의 0편과 시청률 0%", () => {
     });
   });
 
-  it("🔴 숙제는 표가 없다 — 언제나 null", () => {
+  /**
+   * 🔴 **완료 시각 < 기간 끝 다음날 00:00 KST** 만 센다 (Hi-fi 브리프 §1 #6 · §2 규칙 8).
+   * 기간 제한이 없으면 과거 리포트가 **나중 시청으로 바뀐다** — 8월 리포트를 10월에 다시 뽑으면
+   * 9월에 본 영상이 8월 «완료»로 올라간다. 아래 경계는 두지 않는다 — 예습은 수업 **전**에 본다.
+   */
+  describe("🔴 영상 완료는 기간 끝에서 자른다 — 뒤에 본 것은 안 올라간다", () => {
+    const targets = [
+      { lectureId: "l1" },
+      { lectureId: "l2" },
+      { lectureId: "l3" },
+    ];
+    const f = collectAchievement(
+      base({
+        lectures: {
+          targets,
+          views: [
+            // 9월 30일 23:59:59 KST — 9월 안
+            {
+              lectureId: "l1",
+              percent: 100,
+              completedAt: "2026-09-30T14:59:59.000Z",
+            },
+            // 10월 1일 00:00 KST — 9월이 끝난 뒤
+            {
+              lectureId: "l2",
+              percent: 100,
+              completedAt: "2026-09-30T15:00:00.000Z",
+            },
+            // 8월에 미리 본 것 — 예습이라 아래 경계는 없다
+            {
+              lectureId: "l3",
+              percent: 100,
+              completedAt: "2026-08-20T03:00:00.000Z",
+            },
+          ],
+        },
+      }),
+    );
+
+    it("기간 끝 다음 순간에 끝낸 영상은 «완료»에 안 들어간다", () => {
+      expect(f.selfStudy.lectures?.completed).toBe(2);
+    });
+
+    it("기간 전에 미리 본 영상은 «완료»다 — 아래 경계가 없다", () => {
+      expect(f.selfStudy.lectures?.assigned).toBe(3);
+    });
+  });
+});
+
+describe("③ 숙제 — 분모는 «오늘 확인함»이 찍힌 날뿐 (23 §7.1)", () => {
+  it("🔴 숙제 표가 없으면(입력 null) 언제나 null 이다", () => {
     expect(collectAchievement(base()).selfStudy.homework).toBeNull();
+    expect(
+      collectAchievement(base({ homework: null })).selfStudy.homework,
+    ).toBeNull();
+  });
+
+  it("🔴 확인한 날이 기간 안에 하나도 없으면 null 이다 — «전부 해 왔다»가 아니다", () => {
+    const f = collectAchievement(
+      base({ homework: [{ checkedOn: "2026-08-28", missed: false }] }),
+    );
+    expect(f.selfStudy.homework).toBeNull();
+  });
+
+  it("확인한 날만 센다 — 안 해 온 날과 그 날짜를 같이 낸다", () => {
+    const f = collectAchievement(
+      base({
+        homework: [
+          { checkedOn: "2026-09-02", missed: false },
+          { checkedOn: "2026-09-04", missed: true },
+          { checkedOn: "2026-09-09", missed: false },
+          { checkedOn: "2026-09-11", missed: true },
+          { checkedOn: "2026-10-01", missed: true }, // 기간 밖
+        ],
+      }),
+    );
+    expect(f.selfStudy.homework).toEqual({
+      checked: 4,
+      missed: 2,
+      missedDates: ["2026-09-04", "2026-09-11"],
+    });
+  });
+
+  it("확인한 날이 있고 안 해 온 날이 없으면 0 이다 — null 이 아니다", () => {
+    const f = collectAchievement(
+      base({ homework: [{ checkedOn: "2026-09-02", missed: false }] }),
+    );
+    expect(f.selfStudy.homework).toEqual({
+      checked: 1,
+      missed: 0,
+      missedDates: [],
+    });
   });
 });
 
@@ -596,26 +745,27 @@ describe("비교군 — 기본값은 «미사용»", () => {
     expect(f.comparison).toBeNull();
   });
 
-  it("지난 같은 길이 기간 — 표본 수 1, 그 기간의 진도만 센다", () => {
+  it("🔴 지난달(달력) — 표본 수 1, 8월 1일도 8월이다 (같은 일수로 거슬러 가면 빠진다)", () => {
     const f = collectAchievement(
       base({
         progress: [{ unitId: "u1", recordedAt: "2026-09-07" }],
         comparison: {
-          kind: "지난기간",
-          // 직전 기간은 2026-08-02 ~ 2026-08-31 (30일)
+          kind: "지난달",
+          // 9월(30일)의 지난달은 2026-08-01 ~ 2026-08-31 — 같은 일수로 거슬러 가면 08-02 부터다
           progress: [
+            { unitId: "u4", recordedAt: "2026-08-01" },
             { unitId: "u1", recordedAt: "2026-08-10" },
             { unitId: "u2", recordedAt: "2026-08-12" },
-            { unitId: "u3", recordedAt: "2026-07-31" }, // 직전 기간 밖
+            { unitId: "u3", recordedAt: "2026-07-31" }, // 지난달 밖
           ],
           results: [],
         },
       }),
     );
     expect(f.comparison).toEqual({
-      kind: "지난기간",
+      kind: "지난달",
       sampleSize: 1,
-      lessons: { value: 2, sample: 1 },
+      lessons: { value: 3, sample: 1 },
       averagePercent: { value: null, sample: 0 },
     });
   });

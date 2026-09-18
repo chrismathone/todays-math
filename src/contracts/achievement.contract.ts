@@ -130,6 +130,13 @@ export const bandAccuracySchema = z.strictObject({
   accuracy: z.number().min(0).max(100),
 });
 
+/** 🔴 문제 수는 **문항 기록에서만** — 배점 비율을 문제 수로 바꿔 말하지 않는다(Hi-fi 브리프 §1 #2). */
+export const problemTallySchema = z.strictObject({
+  correct: z.number().int().min(0),
+  total: z.number().int().min(1),
+  rounds: z.number().int().min(1),
+});
+
 export const reviewUnitSchema = achievementUnitRefSchema.extend({
   flaggedRounds: z.number().int().min(1),
   problems: z.number().int().min(0),
@@ -142,6 +149,8 @@ export const scoredFactorsSchema = z.strictObject({
   rounds: z.array(scoredRoundSchema).nullable(),
   absentRounds: z.array(scoredRoundSchema).nullable(),
   averagePercent: z.number().min(0).max(100).nullable(),
+  /** 문항 기록이 하나도 없으면 `null` — «0문제»가 아니다. */
+  problems: problemTallySchema.nullable(),
   unitAccuracy: z
     .strictObject({
       reported: z.array(unitAccuracySchema),
@@ -171,11 +180,18 @@ export const lectureFactorsSchema = z.strictObject({
   averagePercent: z.number().min(0).max(100),
 });
 
+/** 숙제 — 🔴 분모는 «오늘 확인함»이 찍힌 날뿐(23 §7.1). 확인한 날이 0이면 `null`. */
+export const homeworkFactorsSchema = z.strictObject({
+  checked: z.number().int().min(1),
+  missed: z.number().int().min(0),
+  missedDates: z.array(isoDateSchema),
+});
+
 export const selfStudyFactorsSchema = z.strictObject({
   /** 🔴 대상 강의가 0편이면 `null` — 「0편 봤다」와 다른 말이다. */
   lectures: lectureFactorsSchema.nullable(),
-  /** 🔴 숙제는 **표가 없다**(23 §3 축 12) — 언제나 `null`. 자리만 비워 둔다. */
-  homework: z.null(),
+  /** 🔴 숙제 표는 **아직 없다**(트랙 4) — 조회는 언제나 `null` 을 낸다. 모양은 순수 함수가 먼저 갖는다. */
+  homework: homeworkFactorsSchema.nullable(),
 });
 
 // ── 비교군 ─────────────────────────────────────────────────────────────
@@ -187,7 +203,8 @@ export const comparisonMetricSchema = z.strictObject({
 });
 
 export const comparisonSchema = z.strictObject({
-  kind: z.enum(["지난기간", "반평균"]),
+  /** «지난달»은 달력이다 — 같은 일수만큼 거슬러 가지 않는다. */
+  kind: z.enum(["지난달", "반평균"]),
   /** 🔴 표본 수를 반드시 같이 낸다 — 반 최대 10명이라 「반 평균」은 얇다. */
   sampleSize: z.number().int().min(0),
   lessons: comparisonMetricSchema,

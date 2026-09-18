@@ -55,14 +55,55 @@ export function withinPeriod(period: Period, day: string): boolean {
   return day >= period.from && day <= period.to;
 }
 
+// ─────────────────────────────────────────────
+// 달력 한 달 — 리포트는 월 1회 발행이다(23 §7 Q3)
+// ─────────────────────────────────────────────
+
 /**
- * **같은 길이의 직전 기간** — 비교군 ①(본인의 지난 같은 길이 기간)이 쓴다.
- * 이번 기간의 시작 **바로 앞날**에서 끝난다.
+ * 🔴 **리포트의 기간은 달력 한 달(KST 1일 ~ 말일)이고, 비교는 «지난달»이다** (Hi-fi 브리프 §2 규칙 8).
+ *
+ * 예전에는 «같은 일수만큼 거슬러 간 직전 기간»을 썼다 — 2026년 3월의 비교가 2월이 아니라
+ * **1/29~2/28** 이 되어 1월 사흘이 «지난달»에 섞였다(§1 #7). 월 1회 발행과 «최근 4주»도
+ * 다르다 — 4주 창은 1년에 13번이라 달과 어긋나 누락·중복이 난다. 그래서 같은 일수 비교는
+ * **아예 두지 않는다**(시험이 그 이름이 없음을 잠근다).
  */
-export function previousPeriod(period: Period): Period {
-  const len = periodDays(period);
-  const to = addDays(period.from, -1);
-  return { from: addDays(to, -(len - 1)), to };
+
+/** `YYYY-MM` 의 달력 한 달. */
+export function monthPeriod(month: string): Period {
+  const from = `${month}-01`;
+  const [y, m] = month.split("-").map(Number) as [number, number];
+  const next =
+    m === 12 ? `${y + 1}-01-01` : `${y}-${String(m + 1).padStart(2, "0")}-01`;
+  return { from, to: addDays(next, -1) };
+}
+
+/** 그 날짜가 속한 달(`YYYY-MM`). */
+export function monthOf(day: string): string {
+  return day.slice(0, 7);
+}
+
+/** 기간이 **달력 한 달 그대로**인가 — 문장이 «이번 달»·«월말»이라고 말해도 되나. */
+export function isCalendarMonth(period: Period): boolean {
+  const month = monthPeriod(monthOf(period.from));
+  return month.from === period.from && month.to === period.to;
+}
+
+/**
+ * **지난달** — 기간 시작일이 속한 달의 **바로 앞 달력 한 달**. 일수를 세지 않는다.
+ * 비교군 ①(본인의 지난달)이 쓴다.
+ */
+export function previousMonth(period: Period): Period {
+  return monthPeriod(monthOf(addDays(`${monthOf(period.from)}-01`, -1)));
+}
+
+/**
+ * 🔴 **기간 끝의 다음 순간** — 기간 끝 **다음날 00:00 KST** (배타 경계).
+ *
+ * 영상 완료(`completedAt`)·강의 게시(`publishedAt`)는 날짜가 아니라 **시각**이라, 기간 밖의 일을
+ * 자르려면 학원 시간으로 선을 그어야 한다(§1 #6 · #8). 8월이면 9월 1일 00:00 KST = 8/31 15:00Z.
+ */
+export function periodEndExclusive(period: Period): Date {
+  return new Date(`${addDays(period.to, 1)}T00:00:00+09:00`);
 }
 
 /** 최근 `weeks` 주 — 그 날짜가 속한 주의 월요일에서 거꾸로 센다. 끝은 `day` 그대로. */

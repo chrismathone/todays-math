@@ -34,8 +34,17 @@ import { GET as getAchievement } from "@/app/api/students/[id]/achievement/route
 import { achievementResponseSchema } from "@/contracts/achievement.contract";
 import { errorResponseSchema } from "@/contracts/common.contract";
 import { db } from "@/lib/db";
-import { CLASS_OTHER_ID, NOT_FOUND_ID, STUDENT_IDS } from "@/mocks/data";
-import { resetPrismaTestDouble } from "@/mocks/prismaTestDouble";
+import {
+  CLASS_OTHER_ID,
+  MOCK_UNITS,
+  NOT_FOUND_ID,
+  STUDENT_IDS,
+} from "@/mocks/data";
+import {
+  resetPrismaTestDouble,
+  seedConceptLectures,
+  seedConceptLectureViews,
+} from "@/mocks/prismaTestDouble";
 
 /** 반 A 학생(반 진도를 쓴다) · 반 A 개별 진도 학생. */
 const STUDENT_A = STUDENT_IDS[0]!;
@@ -178,10 +187,96 @@ describe("비교군 — 기본값은 «미사용»", () => {
     });
   });
 
-  it("compare=previous 는 지난 같은 길이 기간이다 · 표본은 본인 하나", async () => {
-    const res = await call(STUDENT_A, `${PERIOD}&compare=previous`);
+  it("🔴 compare=previous 는 **지난달(달력)**이다 · 표본은 본인 하나", async () => {
+    // 7월의 지난달은 6월 한 달 — 반 A 진도는 6/5 · 6/20 두 줄이다.
+    // 같은 일수(31일)로 거슬러 가면 5/31~6/30 이 되어 값은 같지만, 9월로 물으면 갈린다(아래).
+    const res = await call(
+      STUDENT_A,
+      "from=2026-07-01&to=2026-07-31&compare=previous",
+    );
     const { data } = achievementResponseSchema.parse(await res.json());
-    expect(data.comparison?.kind).toBe("지난기간");
+    expect(data.comparison?.kind).toBe("지난달");
     expect(data.comparison?.sampleSize).toBe(1);
+    expect(data.comparison?.lessons).toEqual({ value: 2, sample: 1 });
+  });
+
+  it("🔴 9월(30일)의 지난달은 8/1 부터다 — 8/1 진도가 지난달에 들어간다", async () => {
+    // 반 A 는 8/1 에 한 줄. 같은 일수로 거슬러 가면 8/2~8/31 이라 0 → null 이 된다.
+    const res = await call(
+      STUDENT_A,
+      "from=2026-09-01&to=2026-09-30&compare=previous",
+    );
+    const { data } = achievementResponseSchema.parse(await res.json());
+    expect(data.comparison?.lessons).toEqual({ value: 1, sample: 1 });
+  });
+});
+
+/**
+ * 🔴 **예습 영상의 대상과 셈은 기간 끝에서 자른다** (Hi-fi 브리프 §1 #6 · #8 · §2 규칙 8).
+ * 대상 = 기간에 배운 차시의 강의 중 **기간 끝 다음날 00:00 KST 전에 게시된 것** ·
+ * 셈 = **완료 시각 < 기간 끝 다음날 00:00 KST**. 지금 게시 상태로 고르거나 시청에 끝을 안 두면
+ * 과거 달의 리포트가 **뒤에 한 일로 바뀐다.**
+ */
+describe("🔴 ③ 예습 영상 — 과거 리포트가 뒤의 일로 바뀌지 않는다", () => {
+  // 반 A 가 6~8월에 나간 차시 넷(`src/mocks/data/progress.ts`)
+  const unit = (i: number) => MOCK_UNITS[i]!.id;
+  const END = new Date("2026-08-31T15:00:00.000Z"); // 9월 1일 00:00 KST
+
+  beforeEach(() => {
+    seedConceptLectures([
+      {
+        id: "a0000000-0000-4000-8000-000000000001",
+        unitId: unit(0),
+        title: "기간 안에 게시",
+        videoUrl: "https://www.youtube.com/watch?v=aaaaaaaaaaa",
+        seconds: 300,
+        status: "published",
+        publishedAt: new Date("2026-06-01T00:00:00.000Z"),
+      },
+      {
+        id: "a0000000-0000-4000-8000-000000000002",
+        unitId: unit(1),
+        title: "기간이 끝난 순간 게시",
+        videoUrl: "https://www.youtube.com/watch?v=bbbbbbbbbbb",
+        seconds: 300,
+        status: "published",
+        publishedAt: END,
+      },
+      {
+        id: "a0000000-0000-4000-8000-000000000003",
+        unitId: unit(3),
+        title: "기간 끝 1초 전 게시",
+        videoUrl: "https://www.youtube.com/watch?v=ccccccccccc",
+        seconds: 300,
+        status: "published",
+        publishedAt: new Date(END.getTime() - 1000),
+      },
+    ]);
+    seedConceptLectureViews([
+      // 기간 끝 1초 전에 완료 — 센다
+      {
+        studentId: STUDENT_A,
+        lectureId: "a0000000-0000-4000-8000-000000000001",
+        completedAt: new Date(END.getTime() - 1000),
+      },
+      // 기간이 끝난 순간 완료 — 안 센다
+      {
+        studentId: STUDENT_A,
+        lectureId: "a0000000-0000-4000-8000-000000000003",
+        completedAt: END,
+      },
+    ]);
+  });
+
+  it("🔴 대상은 기간 끝 전에 게시된 강의뿐이다 — 지금 게시 상태로 고르지 않는다", async () => {
+    const res = await call(STUDENT_A, PERIOD);
+    const { data } = achievementResponseSchema.parse(await res.json());
+    expect(data.selfStudy.lectures?.assigned).toBe(2);
+  });
+
+  it("🔴 완료는 기간 끝 전에 끝낸 것만 — 뒤에 본 것은 안 올라간다", async () => {
+    const res = await call(STUDENT_A, PERIOD);
+    const { data } = achievementResponseSchema.parse(await res.json());
+    expect(data.selfStudy.lectures?.completed).toBe(1);
   });
 });

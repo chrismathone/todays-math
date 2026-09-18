@@ -28,7 +28,12 @@ import {
   type ProgressPlanRule,
 } from "@/lib/daily/progressPlan";
 
-import { type Period, previousPeriod, withinPeriod } from "./period";
+import {
+  type Period,
+  periodEndExclusive,
+  previousMonth,
+  withinPeriod,
+} from "./period";
 import {
   ACHIEVEMENT_BANDS,
   type AchievementBand,
@@ -39,9 +44,11 @@ import {
   type Comparison,
   type ComparisonMetric,
   type CoveredUnit,
+  type HomeworkFactors,
   type LearnedFactors,
   MIN_UNIT_PROBLEMS,
   type PlanDriftGap,
+  type ProblemTally,
   type ReviewUnit,
   type ScoredFactors,
   type ScoredRound,
@@ -100,18 +107,29 @@ export interface LectureTargetRow {
 
 export interface LectureViewRow {
   lectureId: string;
-  /** 0~100 */
+  /** 0~100 — ⚠️ 시각이 없어 기간으로 못 자른다(학부모 지면에 안 쓴다). */
   percent: number;
-  /** 처음 완료한 시각 — 안 끝냈으면 `null`. */
+  /** 처음 완료한 시각(ISO) — 안 끝냈으면 `null`. **기간 끝 다음 순간 이후면 그 기간엔 «완료» 아님.** */
   completedAt: string | null;
+}
+
+/**
+ * 숙제 확인 한 번 — 반에서 **«오늘 확인함»을 찍은 날** 하나(23 §7.1). 찍지 않은 날은 행이 없다.
+ * ⚠️ 표는 아직 없다(트랙 4) — 조회는 `null` 을 넘기고, 이 모양은 예시와 시험이 쓴다.
+ */
+export interface HomeworkCheckRow {
+  /** 확인한 날 YYYY-MM-DD */
+  checkedOn: string;
+  /** 이 학생이 «안 해 옴»으로 찍혔나 */
+  missed: boolean;
 }
 
 /** 비교군 요청 — **기본값은 «미사용»** 이다(23 §4 ④). 전국·석차는 만들지 않는다. */
 export type ComparisonRequest =
   | { kind: "미사용" }
   | {
-      kind: "지난기간";
-      /** 직전 같은 길이 기간의 진도 — 여기서 다시 거른다. */
+      kind: "지난달";
+      /** 지난달(달력)의 진도 — 여기서 다시 거른다. */
       progress: ProgressRow[];
       results: ResultRow[];
     }
@@ -135,6 +153,8 @@ export interface AchievementInput {
   plan: ProgressPlanRule | null;
   results: ResultRow[];
   lectures: { targets: LectureTargetRow[]; views: LectureViewRow[] };
+  /** 숙제 확인 기록 — 🔴 **표가 없으면 `null`**(지금). 빈 배열은 «표는 있는데 확인한 날이 없다». */
+  homework?: HomeworkCheckRow[] | null;
   comparison?: ComparisonRequest;
 }
 
@@ -323,6 +343,7 @@ function scoredFactors(
       rounds: null,
       absentRounds: null,
       averagePercent: null,
+      problems: null,
       unitAccuracy: null,
       bandAccuracy: null,
       reviewUnits: null,
@@ -333,13 +354,18 @@ function scoredFactors(
   const absent = rows.filter((r) => r.absent).sort(byDate);
 
   // 🔴 결시 회차의 문항은 어떤 누적에도 안 들어간다.
+  const problemTally: ProblemTally = { correct: 0, total: 0, rounds: 0 };
   const unitTally = new Map<string, { correct: number; total: number }>();
   const bandTally = new Map<
     AchievementBand,
     { correct: number; total: number }
   >();
   for (const r of taken) {
+    if (r.items.length > 0) problemTally.rounds += 1;
     for (const it of r.items) {
+      problemTally.total += 1;
+      if (it.isCorrect) problemTally.correct += 1;
+
       const u = unitTally.get(it.unitId) ?? { correct: 0, total: 0 };
       u.total += 1;
       if (it.isCorrect) u.correct += 1;
@@ -399,6 +425,8 @@ function scoredFactors(
     rounds: taken.map(toRound),
     absentRounds: absent.map(toRound),
     averagePercent: scorePercentOf(taken),
+    // 🔴 문제 수는 **문항 기록에서만** — 배점 비율을 문제 수로 바꿔 말하지 않는다(§1 #2).
+    problems: problemTally.total > 0 ? problemTally : null,
     unitAccuracy: { reported, underSampled },
     bandAccuracy,
     reviewUnits: reviewUnitsOf(taken, unitTally, byId),
@@ -449,26 +477,60 @@ function reviewUnitsOf(
 // ─────────────────────────────────────────────
 
 function selfStudyFactors(
+  period: Period,
   lectures: AchievementInput["lectures"],
+  homework: HomeworkCheckRow[] | null,
 ): SelfStudyFactors {
+  return {
+    lectures: lectureFactors(period, lectures),
+    homework: homeworkFactors(period, homework),
+  };
+}
+
+function lectureFactors(
+  period: Period,
+  lectures: AchievementInput["lectures"],
+): SelfStudyFactors["lectures"] {
   const targets = new Set(lectures.targets.map((t) => t.lectureId));
   // 🔴 대상 강의가 0편이면 `null` — 「0편 봤다」와 다른 말이다.
-  if (targets.size === 0) return { lectures: null, homework: null };
+  if (targets.size === 0) return null;
 
   const views = lectures.views.filter((v) => targets.has(v.lectureId));
-  const completed = views.filter((v) => v.completedAt !== null).length;
+  /**
+   * 🔴 **완료 시각 < 기간 끝 다음날 00:00 KST** 만 «완료»다(§1 #6). 끝을 안 두면 8월 리포트를
+   *    10월에 다시 뽑을 때 9월에 본 영상이 8월 완료로 올라간다. **아래 경계는 두지 않는다** —
+   *    예습은 수업 전에 본다(지난달 말에 봤을 수 있다).
+   */
+  const end = periodEndExclusive(period).getTime();
+  const completed = views.filter(
+    (v) => v.completedAt !== null && new Date(v.completedAt).getTime() < end,
+  ).length;
   // 분모는 **대상 전체**다 — 본 것만으로 평균을 내면 한 편만 본 학생이 100% 가 된다.
   const sum = views.reduce((acc, v) => acc + v.percent, 0);
 
   return {
-    lectures: {
-      assigned: targets.size,
-      completed,
-      averagePercent: round1(sum / targets.size),
-    },
-    // 🔴 숙제는 표가 없다(23 §3 축 12). 자리만 비워 둔다.
-    homework: null,
+    assigned: targets.size,
+    completed,
+    averagePercent: round1(sum / targets.size),
   };
+}
+
+/**
+ * 숙제 — 🔴 **분모는 «오늘 확인함»이 찍힌 날뿐**(23 §7.1). 표가 없으면(`null`) `null` 이고,
+ * 표는 있는데 기간 안에 확인한 날이 없어도 `null` 이다 — «전부 해 왔다»가 아니다.
+ */
+function homeworkFactors(
+  period: Period,
+  rows: HomeworkCheckRow[] | null,
+): HomeworkFactors | null {
+  if (rows === null) return null;
+  const checked = rows.filter((r) => withinPeriod(period, r.checkedOn));
+  if (checked.length === 0) return null;
+  const missedDates = checked
+    .filter((r) => r.missed)
+    .map((r) => r.checkedOn)
+    .sort();
+  return { checked: checked.length, missed: missedDates.length, missedDates };
 }
 
 // ─────────────────────────────────────────────
@@ -486,10 +548,11 @@ function comparisonOf(
 ): Comparison | null {
   if (request === undefined || request.kind === "미사용") return null;
 
-  if (request.kind === "지난기간") {
-    const prev = previousPeriod(period);
+  if (request.kind === "지난달") {
+    // 🔴 **달력의 지난달** — 같은 일수만큼 거슬러 가지 않는다(§1 #7).
+    const prev = previousMonth(period);
     return {
-      kind: "지난기간",
+      kind: "지난달",
       sampleSize: 1,
       lessons: metricOf([lessonsIn(prev, request.progress)]),
       averagePercent: metricOf([
@@ -535,7 +598,11 @@ export function collectAchievement(
       input.plan,
     ),
     scored: scoredFactors(input.period, input.results, byId),
-    selfStudy: selfStudyFactors(input.lectures),
+    selfStudy: selfStudyFactors(
+      input.period,
+      input.lectures,
+      input.homework ?? null,
+    ),
     // 🔴 ④ 선생님 의견 — 칸이 없다. 태도는 숫자가 아니라 문장으로 간다(23 §2.4 ②).
     teacherNote: null,
     comparison: comparisonOf(input.period, input.comparison),

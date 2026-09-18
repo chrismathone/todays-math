@@ -9,8 +9,9 @@
  *   · 어느 계획을 쓰나 — `pickProgressPlan`(`daily/progressPlan.ts`) 한 곳
  *   · 기간 경계 — `period.ts` 한 곳
  *   · 만점 세기 — `maxScore.ts` 한 곳(채점기와 대조하는 시험이 붙어 있다)
+ *   · 결시를 읽는 법 · 채점 조회의 select — `resultSelect.ts` 한 곳(덫 시험이 붙어 있다)
  *
- * 이 파일이 **스스로 정하는 것은 하나뿐**이다: 지금 스키마에 없는 «결시»를 어떻게 읽나(아래).
+ * 이 파일이 **스스로 정하는 것**은 «기간 끝에서 무엇을 자르나»뿐이다 — 강의 대상(아래 `loadLectures`).
  */
 import "server-only";
 
@@ -30,28 +31,13 @@ import {
   type ResultRow,
 } from "./collect";
 import { testMaxScore } from "./maxScore";
-import { type Period, previousPeriod } from "./period";
+import { type Period, periodEndExclusive, previousMonth } from "./period";
+import { readAbsent, readScore, RESULT_SELECT } from "./resultSelect";
 
 /** 어떤 비교군을 붙이나 — 기본은 «미사용». */
 export type CompareMode = "none" | "previous" | "class";
 
 const dateOf = (value: Date): string => value.toISOString().slice(0, 10);
-
-/**
- * 🔴 **«결시»를 지금 스키마에서 읽는 법.**
- *
- * 트랙 1(`grading-input`)이 `TestResult.absent` 를 더하고 `score` 를 nullable 로 바꾼다.
- * 그 전까지 이 칸들은 **없다** — 그래서 있으면 읽고 없으면 «결시 아님»으로 본다.
- * 지금 `test_result` 가 0행이라 이 갈래는 비어 있고(23 §1.1), 트랙 1 이 병합되면
- * **이 파일을 고치지 않아도** 진짜 값이 들어온다. 짐작(«0점이면 결시»)은 하지 않는다 —
- * 0점은 진짜 0점일 수 있다.
- */
-function readAbsent(row: object): boolean {
-  return (row as { absent?: unknown }).absent === true;
-}
-function readScore(row: { score: unknown }): number | null {
-  return typeof row.score === "number" ? row.score : null;
-}
 
 /** 이 학생에게 **적용되는** 진도 이력(반/개별 이중 구조). */
 async function loadProgress(
@@ -109,19 +95,12 @@ async function loadResults(
         },
       },
     },
-    select: {
-      testId: true,
-      takenAt: true,
-      score: true,
-      test: { select: { testDate: true } },
-      answers: {
-        select: {
-          isCorrect: true,
-          problem: { select: { unitId: true, difficulty: true } },
-        },
-      },
-      analysisReport: { select: { recommendedUnits: true } },
-    },
+    /**
+     * 🔴 **결시는 select 에 적어야 온다.** 지금 스키마에는 `absent` 칸이 없어 `RESULT_SELECT` 에도
+     *    없다 — 그래서 **지금은 결시가 늘 «응시»로 읽힌다.** 트랙 1 이 칸을 더하는 순간
+     *    `achievementResultSelect.test.ts` 의 덫이 빨개지고, 그 상수에 `absent: true` 를 더해야 한다.
+     */
+    select: RESULT_SELECT,
   });
   if (rows.length === 0) return [];
 
@@ -196,14 +175,32 @@ async function loadPlan(
   return picked === null ? null : ruleOf(picked);
 }
 
-/** 이 기간에 나간 차시에 붙은 **게시된** 개념 강의와 그 학생의 시청 기록. */
+/**
+ * 이 기간에 나간 차시에 붙은 개념 강의 중 **기간 끝 전에 게시된 것**과 그 학생의 시청 기록.
+ *
+ * 🔴 **대상을 «지금» 게시 상태로 고르지 않는다**(Hi-fi 브리프 §1 #8). 그러면 9월에 게시한 강의가
+ *    8월 리포트의 분모에 들어가 과거 달이 **뒤의 일로 바뀐다.** 대상 = 게시 시각
+ *    `publishedAt < 기간 끝 다음날 00:00 KST`.
+ *
+ * ⚠️ **남는 구멍 둘 — 이력이 없어서 못 막는다**(보고서 잔여 · 트랙 3 «발행한 리포트를 스냅숏으로»가 막는다):
+ *    ⑴ **보관 이력이 없다.** 지금 보관(`archived`)된 강의는 과거 달에서도 빠진다 — 보관 **전** 달에는
+ *       대상이었어도. 반대로 넣으면 오래전에 내린 강의를 «안 봤다»로 세게 된다(학생 탓이 되는 쪽이 더 나쁘다).
+ *    ⑵ `publishedAt` 은 **마지막** 게시 시각이다(`lectureTransition.ts`) — 내렸다 다시 올리면 앞으로 밀려
+ *       그 사이 달에서 빠진다.
+ * 셈(완료 시각 < 기간 끝)은 순수 함수(`collect.ts`)가 한다 — 여기서는 시청 기록을 자르지 않고 넘긴다.
+ */
 async function loadLectures(
   studentId: string,
   coveredUnitIds: string[],
+  period: Period,
 ): Promise<AchievementInput["lectures"]> {
   if (coveredUnitIds.length === 0) return { targets: [], views: [] };
   const lectures = await db.conceptLecture.findMany({
-    where: { unitId: { in: coveredUnitIds }, status: "published" },
+    where: {
+      unitId: { in: coveredUnitIds },
+      status: "published",
+      publishedAt: { lt: periodEndExclusive(period) },
+    },
     select: { id: true },
   });
   if (lectures.length === 0) return { targets: [], views: [] };
@@ -231,9 +228,10 @@ async function loadComparison(
   if (mode === "none") return { kind: "미사용" };
 
   if (mode === "previous") {
-    const prev = previousPeriod(period);
+    // 🔴 **달력의 지난달** — 같은 일수만큼 거슬러 가지 않는다(Hi-fi 브리프 §1 #7).
+    const prev = previousMonth(period);
     return {
-      kind: "지난기간",
+      kind: "지난달",
       progress: await loadProgress(
         student.classId,
         student.id,
@@ -349,7 +347,9 @@ export async function loadAchievementInput(args: {
     units,
     plan,
     results,
-    lectures: await loadLectures(student.id, coveredUnitIds),
+    lectures: await loadLectures(student.id, coveredUnitIds, period),
+    // 🔴 숙제 표는 아직 없다(트랙 4) — `null` 은 «기록 없음»이다. 빈 배열로 넘기지 않는다.
+    homework: null,
     comparison: await loadComparison(compare, student, period),
   };
 }
