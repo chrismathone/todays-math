@@ -278,7 +278,9 @@ export function DevAiProvider({
               ? "도형 인식 중"
               : request.action === "figure-redraw"
                 ? "도형 다시 그리는 중"
-                : "문제 인식 중",
+                : request.action === "figure-edit"
+                  ? "도형 고치는 중"
+                  : "문제 인식 중",
       };
       setActivities((previous) => ({
         ...previous,
@@ -328,7 +330,9 @@ export function DevAiProvider({
                 ? "도형 인식 완료"
                 : request.action === "figure-redraw"
                   ? "도형 그리기 완료"
-                  : "문제 인식 완료",
+                  : request.action === "figure-edit"
+                    ? "도형 고치기 완료"
+                    : "문제 인식 완료",
         });
         setStatus(
           (previous) =>

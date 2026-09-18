@@ -7,4 +7,6 @@ export type {
   StudioFigureSaveResult,
   StudioFigureRedrawRequest,
   StudioFigureRedrawResult,
+  StudioFigureEditRequest,
+  StudioFigureEditResult,
 } from "./types";

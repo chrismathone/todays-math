@@ -13,6 +13,9 @@ import { ModalShell, Btn, formatToggleClass, isBoldWeight } from "./editorUi";
 import styles from "./StudioFigureEditor.module.css";
 import type { StudioFigureEditorProps } from "./types";
 import { initialFigureSource, createFigureSaveResult } from "./figureDocument";
+import { describeFigureForEdit } from "./figureEditElements";
+import { applyFigureEdits } from "./figureEditApply";
+import { buildFigureEditSnapshot } from "./figureEditSnapshot";
 import {
   addFigureObject,
   cleanFigureForSave,
@@ -144,10 +147,14 @@ export function FigureEditor({
   originalImage,
   initialSvg,
   index,
+  label: figureLabel,
   onSave,
   onClose,
   onRedraw,
+  onEdit,
 }: StudioFigureEditorProps) {
+  // 작업실 도형 번호(«도형 9-1») — 머리·대화상자 이름·SVG 파일 이름이 같이 쓴다(트랙 1 이 넘김, 2026-09-19).
+  const figureName = figureLabel ?? `도형 ${index + 1}`;
   const [initial] = useState(() => initialFigureSource(image, initialSvg));
   const [svg, setSvg] = useState(initial.svg);
   const [typeset, setTypeset] = useState({ source: svg, rendered: svg });
@@ -212,6 +219,13 @@ export function FigureEditor({
   const [instructions, setInstructions] = useState("");
   const [busy, setBusy] = useState(false);
   const [redrawing, setRedrawing] = useState(false);
+  // «요청대로 고치기»가 도는 중인가(단추 글자) · 마지막으로 고친 결과 한 줄
+  const [editing, setEditing] = useState(false);
+  const [editReport, setEditReport] = useState<{
+    summary: string;
+    rejected: string[];
+    warnings: string[];
+  } | null>(null);
   const redrawController = useRef<AbortController | null>(null);
   useEffect(
     () => () => {
@@ -996,6 +1010,7 @@ export function FigureEditor({
     setBusy(true);
     setRedrawing(true);
     setError("");
+    setEditReport(null);
     try {
       const result = await onRedraw({
         originalImage: original,
@@ -1021,6 +1036,59 @@ export function FigureEditor({
       }
     }
   };
+  // «요청대로 고치기»(원장님 2026-09-19) — 지금 그림을 새로 그리지 않는다. AI 가 돌려준 수정 명령만 편집기 편집 함수로
+  // 적용해 한 걸음으로 넘긴다(되돌리기 한 번). 번호는 요청을 보낼 때의 그림 기준이라, 기다리는 동안 그림이 바뀌면
+  // (면을 만들면 뒤 요소 번호가 하나씩 밀린다) 적용하지 않는다.
+  const requestEdit = async () => {
+    if (!onEdit || busy || !instructions.trim()) return;
+    const controller = new AbortController();
+    redrawController.current = controller;
+    const sent = svg;
+    setBusy(true);
+    setRedrawing(true);
+    setEditing(true);
+    setError("");
+    setEditReport(null);
+    try {
+      const root = canvas.current?.querySelector("svg");
+      const imageDataUrl = await buildFigureEditSnapshot({
+        original,
+        figureSvg: await typesetFigureSvg(cleanFigureForSave(sent)),
+        width: root?.clientWidth || viewBox[2],
+        height: root?.clientHeight || viewBox[3],
+        numbers: root ? layoutFigureNumbers(root) : [],
+      });
+      if (controller.signal.aborted) return;
+      const result = await onEdit({
+        imageDataUrl,
+        figure: describeFigureForEdit(sent),
+        instructions,
+        signal: controller.signal,
+      });
+      if (controller.signal.aborted) return;
+      if (liveSvg.current !== sent)
+        throw new Error(
+          "요청을 보낸 뒤 그림이 바뀌어 적용하지 않았습니다. 다시 요청해 주세요.",
+        );
+      const edited = applyFigureEdits(sent, result.edits);
+      commit(edited.svg);
+      if (edited.svg !== sent) setSelected(null);
+      setEditReport({
+        summary: edited.summary,
+        rejected: edited.rejected,
+        warnings: result.warnings ?? [],
+      });
+    } catch (e) {
+      if (!controller.signal.aborted) setError((e as Error).message);
+    } finally {
+      if (!controller.signal.aborted) {
+        setBusy(false);
+        setRedrawing(false);
+        setEditing(false);
+        redrawController.current = null;
+      }
+    }
+  };
   const output = async () =>
     fitFigureViewport(await typesetFigureSvg(cleanFigureForSave(svg)));
   const save = async () => {
@@ -1040,13 +1108,13 @@ export function FigureEditor({
   return createPortal(
     <ModalShell
       onClose={busy && !redrawing ? () => {} : close}
-      aria-label={`도형 ${index + 1} 편집기`}
+      aria-label={`${figureName} 편집기`}
     >
       <style>{`#figure-editor-canvas > svg { width:100% !important; height:100% !important; max-width:none !important; max-height:none !important; margin:0 !important; display:block; }
       #figure-editor-canvas [data-object-id] { cursor:inherit; }`}</style>
       <header className={styles.header}>
         <span className="rounded bg-[var(--figure-accent-soft)] text-[var(--figure-accent-ink)] px-2 py-1 text-xs font-semibold">
-          도형 {index + 1}
+          {figureName}
         </span>
         <h2 className="text-lg font-semibold">도형 편집</h2>
         <button
@@ -1057,7 +1125,7 @@ export function FigureEditor({
         >
           {showSourcePanel
             ? "원본 패널 접기"
-            : onRedraw
+            : onRedraw || onEdit
               ? "원본·AI 요청"
               : "원본 보기"}
         </button>
@@ -1074,7 +1142,7 @@ export function FigureEditor({
                 );
                 const link = document.createElement("a");
                 link.href = url;
-                link.download = `도형-${index + 1}.svg`;
+                link.download = `${figureName.replace(/\s+/g, "-")}.svg`;
                 link.click();
                 setTimeout(() => URL.revokeObjectURL(url), 1000);
               } catch (e) {
@@ -1115,7 +1183,7 @@ export function FigureEditor({
             ) : (
               <p className="text-sm text-muted">원본 크롭이 없습니다.</p>
             )}
-            {onRedraw && (
+            {(onRedraw || onEdit) && (
               <>
                 <label className="block mt-4 text-sm font-semibold">
                   AI 수정 요청
@@ -1127,18 +1195,63 @@ export function FigureEditor({
                     className="mt-2 w-full min-h-24 p-2 text-sm font-normal rounded border border-control bg-white"
                   />
                 </label>
-                <Btn
-                  kind="accent"
-                  onClick={regenerate}
-                  disabled={busy || !original || !onRedraw}
-                  className="mt-2 w-full"
-                >
-                  {busy ? "처리 중…" : "원본으로 다시 그리기"}
-                </Btn>
+                {onEdit && (
+                  <Btn
+                    kind="accent"
+                    onClick={requestEdit}
+                    disabled={busy || !instructions.trim()}
+                    className="mt-2 w-full"
+                  >
+                    {editing ? "처리 중…" : "요청대로 고치기"}
+                  </Btn>
+                )}
+                {/* 주 단추가 있으면 다시 그리기는 작은 글자 단추 — 처음 결과가 크게 틀렸을 때만(원장님 2026-09-19) */}
+                {onRedraw &&
+                  (onEdit ? (
+                    <button
+                      type="button"
+                      onClick={regenerate}
+                      disabled={busy || !original}
+                      className="mt-2 w-full rounded border border-control px-2 py-1 text-xs hover:bg-slate-50 disabled:opacity-50"
+                    >
+                      {redrawing && !editing
+                        ? "처리 중…"
+                        : "원본으로 다시 그리기"}
+                    </button>
+                  ) : (
+                    <Btn
+                      kind="accent"
+                      onClick={regenerate}
+                      disabled={busy || !original || !onRedraw}
+                      className="mt-2 w-full"
+                    >
+                      {busy ? "처리 중…" : "원본으로 다시 그리기"}
+                    </Btn>
+                  ))}
                 <p className="text-xs text-muted mt-3">
-                  다시 그리기는 현재 편집본을 바꿉니다. 되돌리기로 이전 결과를
-                  복원할 수 있습니다.
+                  {onEdit
+                    ? "요청대로 고치기는 요청한 곳만 바꿉니다. 다시 그리기는 그림 전체를 새로 그립니다. 되돌리기로 이전 그림을 복원할 수 있습니다."
+                    : "다시 그리기는 현재 편집본을 바꿉니다. 되돌리기로 이전 결과를 복원할 수 있습니다."}
                 </p>
+                {editReport && (
+                  <div
+                    role="status"
+                    aria-label="요청대로 고친 결과"
+                    className="mt-3 rounded border border-control bg-white p-2 text-xs"
+                  >
+                    <p className="font-semibold">{editReport.summary}</p>
+                    {editReport.rejected.length > 0 && (
+                      <p className="mt-1 text-g-red-text">
+                        적용 못 함 — {editReport.rejected.join(" · ")}
+                      </p>
+                    )}
+                    {editReport.warnings.length > 0 && (
+                      <p className="mt-1 text-muted">
+                        {editReport.warnings.join(" / ")}
+                      </p>
+                    )}
+                  </div>
+                )}
               </>
             )}
             <label className="flex items-center gap-2 mt-4 text-sm">

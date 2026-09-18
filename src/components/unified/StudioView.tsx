@@ -468,6 +468,10 @@ export default function StudioView({
   const editedFigure =
     figureEditor?.draftFigure ??
     figureCrop?.figures?.find((figure) => figure.id === figureEditor?.figureId);
+  const editedFigureIndex =
+    figureCrop?.figures?.findIndex(
+      (figure) => figure.id === editedFigure?.id,
+    ) ?? -1;
   const activeCropIndex = crops.findIndex((item) => item.id === activeCropId);
   const pageCrops = crops.filter(
     (crop) => crop.sourceId === sourceId && crop.page === pageNumber,
@@ -3210,8 +3214,10 @@ export default function StudioView({
             image={editedFigure.image}
             originalImage={editedFigure.originalImage}
             initialSvg={editedFigure.svg}
-            index={figureCrop.figures!.findIndex(
-              (figure) => figure.id === editedFigure.id,
+            index={editedFigureIndex}
+            label={studioFigureLabel(
+              crops.indexOf(figureCrop) + 1,
+              editedFigureIndex,
             )}
             onClose={() => setFigureEditor(null)}
             onSave={({ svg, dataUrl, originalImage }) => {
@@ -3278,6 +3284,30 @@ export default function StudioView({
                       );
                     return {
                       svg: response.result.svg,
+                      warnings: response.result.warnings,
+                    };
+                  }
+                : undefined
+            }
+            onEdit={
+              studioAi.available
+                ? async ({ imageDataUrl, figure, instructions, signal }) => {
+                    const response = await studioAi.ai.run(
+                      {
+                        action: "figure-edit",
+                        imageDataUrl,
+                        figure,
+                        content: instructions,
+                        grade: figureCrop.grade,
+                      },
+                      signal,
+                    );
+                    if (!response.result.edits?.length)
+                      throw new Error(
+                        "수정 명령을 받지 못했습니다. 다시 시도해 주세요.",
+                      );
+                    return {
+                      edits: response.result.edits,
                       warnings: response.result.warnings,
                     };
                   }
