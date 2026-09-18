@@ -16,6 +16,7 @@ import MarkdownRenderer, {
 import { renderKatexSafe } from "./katexRender";
 import { documentMarkdown, prepareVisualDocument } from "./visualDocument";
 import { attachCompactMathKeyboard } from "./compactMathKeyboard";
+import { attachHwpMathShortcuts } from "./hwpMathShortcuts";
 import { SourceEditorFigures } from "./SourceEditorFigures";
 import { paintSourceFigure } from "./sourceFigurePresentation";
 
@@ -135,6 +136,8 @@ const createMathNode = (active: {
           field.setAttribute("aria-label", "수식 입력");
           active.set(field);
           dom.replaceChildren(field);
+          // 한컴 수식 낱말 «작은 판»(트랙 8) — `root2` → √2, `a over b` → 분수.
+          attachHwpMathShortcuts(field);
           detachKeyboard = attachCompactMathKeyboard(field);
           field.addEventListener("input", () => {
             const pos = getPos();
