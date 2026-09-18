@@ -27,9 +27,13 @@ export function accountRouteAllowed(
   if (account.approvalStatus !== "approved") return false;
   if (account.isAdmin) return true;
   if (under(path, "/admin") || under(path, "/api/admin")) return false;
-  if (under(path, "/dev") || under(path, "/api/dev")) return false;
   const any = (...menus: WorkspaceMenu[]) =>
     menus.some((menu) => account.menus.includes(menu));
+  // dev 빌드의 작업실 AI 는 구독 CLI 다리로 간다(`studio-ai/endpoints.ts`) — 운영의 `/api/studio/ai` 와 같은 기능이라
+  // 같은 메뉴로 연다. 이 한 경로 · development 빌드만. 운영은 라우트가 404, loopback 밖은 403(`dev/unified/ai/guard.ts`).
+  if (process.env.NODE_ENV === "development" && path === "/api/dev/unified/ai")
+    return any("studio");
+  if (under(path, "/dev") || under(path, "/api/dev")) return false;
   if (path === "/" || path === "/studio") return true; // The shell filters its hash-based panels separately.
   if (under(path, "/api/library")) return any("library", "studio", "export");
   if (

@@ -5,6 +5,8 @@
 운영 화면은 **`/studio`**(첫 화면 `/` 포함)이며 오늘수학 로그인과 기존 역할 제한을 적용한다. 자료 제작의 PDF·문제은행·수업 자료 조회는 인증된 `/api/studio/**` 경로를 사용한다. **AI 요청의 경로는 빌드가 정한다**(원장님 2026-09-18 — 「dev 모드인데 왜 구독요금제가 아니라 서버로 되어있지?」): 운영 빌드는 `/api/studio/ai`(서버 모델 API), development 는 `/`·`/studio` 에서도 AI 요청만 구독 CLI 다리 `/api/dev/unified/ai`(`DEV_AI_MODE=subscription-cli`, 도구는 `DEV_AI_PROVIDER`)로 보낸다 — `src/lib/studio-ai/endpoints.ts` 의 `ai`. 운영에서는 `/api/dev/**` CLI 경로가 열리지 않는다(404). 작업실의 AI 상태판은 **운영 빌드에서만 연결 상태 한 줄**(모델 자동 고정)이고, 개발 모드에서는 어느 화면이든 기존 칸(도구 고르기)이다 — `getStudioEndpoints().productionBuild`.
 
 > 2026-09-14 `ce1a16d4` 가 첫 화면 `/` 를 작업실 표면으로 넣으면서, 표면 판정 하나가 데이터 경로와 AI 경로를 같이 정해 development 의 `/` 도 서버 모델 API(과금 키)로 갔다. 2026-09-18 에 두 판정을 갈랐다.
+>
+> 같은 날 관리자 아닌 계정(`test_t`)의 상태판이 «연결 확인 중»에서 멈췄다 — 계정 관문(`src/lib/accountRouteAccess.ts`)이 `/api/dev/**` 를 **관리자만** 열어 두어 403 이었다. 이 다리는 운영의 `/api/studio/ai` 와 같은 기능이라 **development 빌드에서 이 한 경로만** 같은 메뉴(`studio`)로 연다. `/dev/unified` 화면과 나머지 `/api/dev/**` 는 그대로 관리자만.
 
 ## 서버 모델 API
 

@@ -1,4 +1,4 @@
-import { describe, expect, it } from "vitest";
+import { afterEach, describe, expect, it, vi } from "vitest";
 import { accountRouteAllowed } from "@/lib/accountRouteAccess";
 import {
   ALL_WORKSPACE_MENUS,
@@ -72,6 +72,51 @@ describe("account approval and menu route policy", () => {
     expect(accountRouteAllowed({ ...account, menus: [] }, "GET", "/")).toBe(
       true,
     );
+  });
+  /**
+   * dev 빌드의 작업실 AI 는 구독 CLI 다리 `/api/dev/unified/ai` 로 간다(`studio-ai/endpoints.ts`).
+   * 관리자만 열어 두면 관리자 아닌 계정의 상태판이 «연결 확인 중»에서 403 으로 멈춘다(2026-09-18 test_t 계정).
+   * 운영의 `/api/studio/ai` 와 같은 기능이라 같은 메뉴(studio)로 연다 — **이 한 경로 · development 빌드만.**
+   */
+  describe("dev 작업실 AI 다리", () => {
+    afterEach(() => vi.unstubAllEnvs());
+    it("development 에서는 studio 메뉴가 있는 계정에 열린다", () => {
+      vi.stubEnv("NODE_ENV", "development");
+      for (const method of ["GET", "POST"])
+        expect(
+          accountRouteAllowed(account, method, "/api/dev/unified/ai"),
+        ).toBe(true);
+      expect(
+        accountRouteAllowed(
+          { ...account, menus: ["library"] },
+          "GET",
+          "/api/dev/unified/ai",
+        ),
+      ).toBe(false);
+      expect(
+        accountRouteAllowed(
+          { ...account, approvalStatus: "pending" },
+          "GET",
+          "/api/dev/unified/ai",
+        ),
+      ).toBe(false);
+    });
+    it("development 에서도 나머지 dev 경로는 관리자만", () => {
+      vi.stubEnv("NODE_ENV", "development");
+      for (const path of [
+        "/dev/unified",
+        "/api/dev/unified/problems",
+        "/api/dev/unified/overview",
+        "/api/dev/unified/ai/extra",
+      ])
+        expect(accountRouteAllowed(account, "GET", path)).toBe(false);
+    });
+    it("운영 빌드에서는 관리자만 그대로", () => {
+      vi.stubEnv("NODE_ENV", "production");
+      expect(accountRouteAllowed(account, "GET", "/api/dev/unified/ai")).toBe(
+        false,
+      );
+    });
   });
   it("requires both bank and studio for AI problem transformations", () => {
     expect(
