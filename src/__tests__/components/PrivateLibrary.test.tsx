@@ -324,4 +324,51 @@ describe("private library delete confirmation dialog", () => {
     ).toBeVisible();
     expect(screen.queryByRole("dialog")).not.toBeInTheDocument();
   });
+
+  /**
+   * 브라우저에서 잰 결함(2026-09-19): 모달 창에서 Tab 이 마지막 단추를 지나면 초점이 주소창으로
+   * 나갔다가 돌아온다 — 그때 `window` 의 focus 가 목록을 다시 읽는데, 그동안 격자를 «불러오는 중»
+   * 으로 **바꿔 끼워** 카드와 그 안의 확인 창이 통째로 사라졌다. 자동 저장이 쏘는
+   * `private-library-change` 도 같다. 뒤에서 다시 읽는 동안에는 카드를 그대로 둔다.
+   */
+  it("keeps the dialog while the list refreshes in the background", async () => {
+    let release!: () => void;
+    let hold = false;
+    let lists = 0;
+    const { open } = await seeded((transport) => async (input, init) => {
+      if (String(input).startsWith("/api/library/documents?")) {
+        lists++;
+        if (hold)
+          await new Promise<void>((resolve) => {
+            release = resolve;
+          });
+      }
+      return transport(input, init);
+    });
+    expect(lists).toBe(1);
+    const dialog = open();
+    hold = true;
+    fireEvent(window, new Event("focus"));
+    await waitFor(() => expect(release).toBeTypeOf("function"));
+    expect(
+      screen.queryByText("저장한 자료를 불러오는 중입니다…"),
+    ).not.toBeInTheDocument();
+    expect(screen.getByRole("dialog")).toBe(dialog);
+    hold = false;
+    release();
+    window.dispatchEvent(
+      new CustomEvent("private-library-change", { detail: "owner-a" }),
+    );
+    await waitFor(() => expect(lists).toBe(3));
+    await screen.findByRole("heading", { name: "오늘의 수학 학습지" });
+    expect(screen.getByRole("dialog")).toBe(dialog);
+    expect(within(dialog).getByRole("button", { name: "취소" })).toBeEnabled();
+  });
+
+  it("still shows progress when the owner presses refresh", async () => {
+    await seeded();
+    fireEvent.click(screen.getByRole("button", { name: "새로고침" }));
+    expect(screen.getByText("저장한 자료를 불러오는 중입니다…")).toBeVisible();
+    await screen.findByRole("heading", { name: "오늘의 수학 학습지" });
+  });
 });
