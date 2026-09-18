@@ -1,5 +1,5 @@
 // @vitest-environment node
-import { beforeEach, describe, expect, it, vi } from "vitest";
+import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 import type { DevAiProvider } from "../../lib/dev-ai/contracts";
 
 vi.mock("server-only", () => ({}));
@@ -39,27 +39,27 @@ vi.mock("../../lib/dev-ai/cli-models", async (importOriginal) => {
 const help =
   "--ignore-user-config --ignore-rules --ephemeral --sandbox --json --image --safe-mode --restricted --setting-sources --settings --tools --strict-mcp-config --input-format --output-format --permission-prompts --no-session-persistence";
 
+async function harness() {
+  const discovery = await import("../../lib/dev-ai/cli-discovery");
+  const processes = await import("../../lib/dev-ai/cli-process");
+  const metadata = await import("../../lib/dev-ai/cli-metadata");
+  vi.mocked(discovery.discoverSubscriptionCli).mockImplementation(
+    async (provider) => ({ command: provider, prefix: [] }),
+  );
+  vi.mocked(metadata.inspectAdditionalProvider).mockResolvedValue({
+    status: "unverified",
+    detail: "Login not verified.",
+  });
+  const run = vi.mocked(processes.runCliProcess);
+  const api = await import("../../lib/dev-ai/cli");
+  return { api, run, temp: vi.mocked(processes.withCliTemp) };
+}
+
 describe("public subscription adapter boundary", () => {
   beforeEach(() => {
     vi.resetModules();
     vi.clearAllMocks();
   });
-
-  async function harness() {
-    const discovery = await import("../../lib/dev-ai/cli-discovery");
-    const processes = await import("../../lib/dev-ai/cli-process");
-    const metadata = await import("../../lib/dev-ai/cli-metadata");
-    vi.mocked(discovery.discoverSubscriptionCli).mockImplementation(
-      async (provider) => ({ command: provider, prefix: [] }),
-    );
-    vi.mocked(metadata.inspectAdditionalProvider).mockResolvedValue({
-      status: "unverified",
-      detail: "Login not verified.",
-    });
-    const run = vi.mocked(processes.runCliProcess);
-    const api = await import("../../lib/dev-ai/cli");
-    return { api, run, temp: vi.mocked(processes.withCliTemp) };
-  }
 
   it("admits two whole requests, queues FIFO, and frees admission after abort or failure", async () => {
     const { api, run, temp } = await harness();
@@ -318,5 +318,237 @@ describe("public subscription adapter boundary", () => {
       }),
     ).rejects.toMatchObject({ code: "invalid-model" });
     expect(run).not.toHaveBeenCalled();
+  });
+});
+
+// 결함 1(2026-09-18): 생성·대조 호출마다 --help 와 auth status 프로세스를 새로 띄웠다 —
+// 확인 하나에 중앙값 3.5초. «ready» 확인만 몇 분 저장하고, CLI 본체가 비정상 종료하면 버린다.
+describe("login check cache", () => {
+  const generation = {
+    stdout:
+      '{"type":"item.completed","item":{"type":"agent_message","text":"4"}}\n{"type":"turn.completed"}',
+    stderr: "",
+    exitCode: 0,
+  };
+  const claudeAuth =
+    '{"loggedIn":true,"authMethod":"claude.ai","apiProvider":"firstParty","subscriptionType":"pro"}';
+  const isProbe = (args: string[]) =>
+    args.includes("--help") || args.includes("status");
+  const probeCount = (run: ReturnType<typeof vi.fn>) =>
+    run.mock.calls.filter(([, args]) => isProbe(args as string[])).length;
+
+  const claudeGeneration = {
+    stdout:
+      '{"type":"result","is_error":false,"subtype":"success","result":"4"}',
+    stderr: "",
+    exitCode: 0,
+  };
+
+  function loggedIn(run: Awaited<ReturnType<typeof harness>>["run"]) {
+    run.mockImplementation(async (executable, args) => {
+      if (args.includes("--help"))
+        return { stdout: help, stderr: "", exitCode: 0 };
+      if (args.includes("login"))
+        return { stdout: "Logged in using ChatGPT", stderr: "", exitCode: 0 };
+      if (args.includes("status"))
+        return { stdout: claudeAuth, stderr: "", exitCode: 0 };
+      return executable.command === "claude" ? claudeGeneration : generation;
+    });
+  }
+
+  beforeEach(() => {
+    vi.resetModules();
+    vi.clearAllMocks();
+  });
+  afterEach(() => vi.useRealTimers());
+
+  it("reuses a fresh ready check per tool and probes again after it expires", async () => {
+    vi.useFakeTimers({ toFake: ["Date"] });
+    const { api, run } = await harness();
+    loggedIn(run);
+    await api.runSubscriptionCli({ provider: "codex", prompt: "1" });
+    expect(probeCount(run)).toBe(2);
+    await api.runSubscriptionCli({ provider: "codex", prompt: "2" });
+    // 두 번째 호출은 확인 없이 CLI 본체만 띄운다
+    expect(probeCount(run)).toBe(2);
+    expect(run).toHaveBeenCalledTimes(4);
+    // 도구별 캐시 — codex 의 확인이 claude 를 대신하지 않는다
+    await api.runSubscriptionCli({ provider: "claude", prompt: "3" });
+    expect(probeCount(run)).toBe(4);
+    expect(run).toHaveBeenCalledTimes(7);
+    // 몇 분 뒤에는 다시 확인한다
+    vi.setSystemTime(Date.now() + 5 * 60_000 + 1);
+    await api.runSubscriptionCli({ provider: "codex", prompt: "4" });
+    expect(probeCount(run)).toBe(6);
+    expect(run).toHaveBeenCalledTimes(10);
+  });
+
+  it("lets a status request fill the cache so the next generation skips the probe", async () => {
+    const { api, run } = await harness();
+    loggedIn(run);
+    await api.getDevAiProviderStatuses();
+    expect(run).toHaveBeenCalledTimes(4);
+    await api.runSubscriptionCli({ provider: "claude", prompt: "1" });
+    expect(run).toHaveBeenCalledTimes(5);
+    expect(isProbe(run.mock.calls[4][1])).toBe(false);
+  });
+
+  it("drops the cache when the CLI exits abnormally and reports the reason as-is", async () => {
+    const { api, run } = await harness();
+    loggedIn(run);
+    await api.runSubscriptionCli({ provider: "codex", prompt: "1" });
+    expect(run).toHaveBeenCalledTimes(3);
+    // 로그인이 풀렸다 — 캐시 덕에 확인 없이 띄운 CLI 본체가 그 사유로 죽는다
+    run.mockResolvedValueOnce({
+      stdout: "",
+      stderr: "Error: not logged in",
+      exitCode: 1,
+    });
+    await expect(
+      api.runSubscriptionCli({ provider: "codex", prompt: "2" }),
+    ).rejects.toMatchObject({ code: "login-required" });
+    expect(run).toHaveBeenCalledTimes(4);
+    // 다음 호출은 다시 확인하고, 확인이 «로그인 필요»면 CLI 본체를 띄우지 않는다
+    run.mockImplementation(async (_executable, args) => {
+      if (args.includes("--help"))
+        return { stdout: help, stderr: "", exitCode: 0 };
+      if (args.includes("login"))
+        return { stdout: "Not logged in", stderr: "", exitCode: 0 };
+      return generation;
+    });
+    await expect(
+      api.runSubscriptionCli({ provider: "codex", prompt: "3" }),
+    ).rejects.toMatchObject({ code: "login-required" });
+    expect(run).toHaveBeenCalledTimes(6);
+    expect(probeCount(run)).toBe(4);
+  });
+
+  it("never caches a check that did not end in ready", async () => {
+    const { api, run } = await harness();
+    run.mockImplementation(async (_executable, args) => {
+      if (args.includes("--help"))
+        return { stdout: help, stderr: "", exitCode: 0 };
+      if (args.includes("login"))
+        return { stdout: "Not logged in", stderr: "", exitCode: 0 };
+      return generation;
+    });
+    await expect(
+      api.runSubscriptionCli({ provider: "codex", prompt: "1" }),
+    ).rejects.toMatchObject({ code: "login-required" });
+    // 로그인한 뒤의 다음 호출은 곧바로 확인해서 통과한다
+    loggedIn(run);
+    await expect(
+      api.runSubscriptionCli({ provider: "codex", prompt: "2" }),
+    ).resolves.toBe("4");
+    expect(probeCount(run)).toBe(4);
+    expect(run).toHaveBeenCalledTimes(5);
+  });
+});
+
+// 결함 3·5(2026-09-18): 180초 시계가 줄 서기 전에 켜졌고, CLI 본체 한 번의 대기 한도(기본 120초)가
+// 그 예산보다 짧았다 — 실측 99초짜리 성공이 한도에 가깝고, haiku «121초» 오류가 그 자리다.
+describe("request budget", () => {
+  const generation = {
+    stdout:
+      '{"type":"item.completed","item":{"type":"agent_message","text":"4"}}\n{"type":"turn.completed"}',
+    stderr: "",
+    exitCode: 0,
+  };
+  const ok = { stdout: help, stderr: "", exitCode: 0 };
+  const loggedIn = {
+    stdout: "Logged in using ChatGPT",
+    stderr: "",
+    exitCode: 0,
+  };
+
+  beforeEach(() => {
+    vi.resetModules();
+    vi.clearAllMocks();
+  });
+  afterEach(() => vi.useRealTimers());
+
+  it("gives the CLI process the remaining call budget instead of the 120 second default", async () => {
+    vi.useFakeTimers({ toFake: ["Date"] });
+    const { api, run } = await harness();
+    let captured: number | undefined;
+    run.mockImplementation(async (_executable, args, options) => {
+      if (args.includes("--help")) {
+        // 로그인 확인에 30초가 걸렸다
+        vi.setSystemTime(Date.now() + 30_000);
+        return ok;
+      }
+      if (args.includes("login")) return loggedIn;
+      captured = options.timeoutMs;
+      return generation;
+    });
+    await api.runSubscriptionCli({ provider: "codex", prompt: "1" });
+    expect(captured).toBeGreaterThanOrEqual(149_000);
+    expect(captured).toBeLessThanOrEqual(150_000);
+  });
+
+  it("starts the 180 second budget only after the request is admitted, and cancels while queued", async () => {
+    vi.useFakeTimers({ toFake: ["setTimeout", "clearTimeout", "Date"] });
+    const { api, run } = await harness();
+    const { abortError } = await import("../../lib/dev-ai/cli-process");
+    // 탐침은 «취소가 대역에 닿은 시각»에 건다 — 요청이 정착하는 자리는 임시 폴더 정리(실제 I/O)
+    // 뒤라서, 가짜 시계만 돌린 직후에 «아직 안 끝났다»를 재면 옛 코드도 초록이 된다(변이 M3b 실측).
+    const started: Array<{ timeoutMs?: number; abortedAt?: number }> = [];
+    run.mockImplementation(async (_executable, args, options) => {
+      if (args.includes("--help")) return ok;
+      if (args.includes("login")) return loggedIn;
+      return new Promise((_resolve, reject) => {
+        if (options.signal?.aborted) return reject(abortError());
+        const entry: { timeoutMs?: number; abortedAt?: number } = {
+          timeoutMs: options.timeoutMs,
+        };
+        options.signal?.addEventListener(
+          "abort",
+          () => {
+            entry.abortedAt = Date.now();
+            reject(abortError());
+          },
+          { once: true },
+        );
+        started.push(entry);
+      });
+    });
+    const controllers = Array.from({ length: 4 }, () => new AbortController());
+    const [first, second, third, queued] = controllers;
+    const request = (prompt: string, signal: AbortSignal) =>
+      api
+        .runSubscriptionCli({ provider: "codex", prompt, signal })
+        .catch((error: Error) => error);
+    try {
+      const a = request("a", first.signal);
+      const b = request("b", second.signal);
+      await vi.waitFor(() => expect(started).toHaveLength(2));
+      const c = request("c", third.signal);
+      // 줄에서 179초를 기다린다 — 아직 CLI 본체는 두 개뿐
+      await vi.advanceTimersByTimeAsync(179_000);
+      expect(started).toHaveLength(2);
+      // 줄에 선 채로 취소하면 곧바로 끝난다
+      const d = request("d", queued.signal);
+      queued.abort();
+      expect(await d).toMatchObject({ code: "cancelled" });
+      first.abort();
+      expect(await a).toMatchObject({ code: "cancelled" });
+      await vi.waitFor(() => expect(started).toHaveLength(3));
+      const admittedAt = Date.now();
+      // 승인 뒤 CLI 본체의 대기 한도는 남은 예산이다 — 줄 선 시간을 깎지 않는다
+      expect(started[2].timeoutMs).toBeGreaterThanOrEqual(175_000);
+      expect(started[2].timeoutMs).toBeLessThanOrEqual(180_000);
+      // 승인 뒤 150초 — 옛 코드는 여기서 이미 «전체 대기 시간 초과»로 끊었다
+      await vi.advanceTimersByTimeAsync(150_000);
+      expect(started[2].abortedAt).toBeUndefined();
+      await vi.advanceTimersByTimeAsync(30_001);
+      expect(await c).toMatchObject({ code: "timeout" });
+      expect(started[2].abortedAt! - admittedAt).toBeGreaterThanOrEqual(
+        179_000,
+      );
+      // 처음부터 칸을 쥔 둘째는 자기 예산 180초가 이미 끝났다
+      expect(await b).toMatchObject({ code: "timeout" });
+    } finally {
+      controllers.forEach((controller) => controller.abort());
+    }
   });
 });

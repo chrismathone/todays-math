@@ -33,6 +33,8 @@ export { SubscriptionCliError } from "./cli-process";
 // Admit whole requests in arrival order before allocating files or probing auth.
 // The separate subprocess pool also bounds status probes and quarantined trees.
 const requestSlots = new ProcessSlots();
+/** 요청 하나의 예산 — 승인된 뒤부터 잰다(결함 3). CLI 본체의 대기 한도도 여기서 나온다(결함 5). */
+const REQUEST_BUDGET_MS = 180_000;
 
 const LABELS: Record<DevAiProvider, string> = {
   codex: "Codex",
@@ -161,7 +163,45 @@ async function inspectProvider(
   }
 }
 
-// Concurrent status HTTP requests share one probe; generation always rechecks auth.
+// 결함 1(2026-09-18): 생성·대조 호출마다 --help 와 auth status 프로세스를 새로 띄웠다 —
+// 확인 하나에 중앙값 3.5초, 도형 하나에 최대 여섯 번. «ready» 확인만 도구별로 몇 분 저장한다.
+// ready 가 아닌 확인은 저장하지 않아 로그인 직후의 다음 호출이 곧바로 통과하고,
+// CLI 본체가 비정상 종료하거나 못 뜨면 그 도구의 캐시를 버려 로그인 풀림을 다음 호출이 다시 확인한다.
+const READY_CHECK_TTL_MS = 5 * 60_000;
+const readyChecks = new Map<
+  DevAiProvider,
+  { expires: number; executable: CliExecutable; status: DevAiProviderStatus }
+>();
+
+function rememberReadyCheck(
+  id: DevAiProvider,
+  finding: { status: DevAiProviderStatus; executable?: CliExecutable },
+) {
+  if (finding.executable && finding.status.status === "ready")
+    readyChecks.set(id, {
+      expires: Date.now() + READY_CHECK_TTL_MS,
+      executable: finding.executable,
+      status: { ...finding.status },
+    });
+}
+
+async function inspectProviderCached(
+  id: DevAiProvider,
+  cwd: string,
+  env: CliEnvironment,
+  signal?: AbortSignal,
+): Promise<{ status: DevAiProviderStatus; executable?: CliExecutable }> {
+  const cached = readyChecks.get(id);
+  if (cached && Date.now() < cached.expires)
+    return { executable: cached.executable, status: { ...cached.status } };
+  readyChecks.delete(id);
+  const finding = await inspectProvider(id, cwd, env, signal);
+  rememberReadyCheck(id, finding);
+  return finding;
+}
+
+// Concurrent status HTTP requests share one probe. The status board always probes fresh
+// (so «로그인한 후 새로고침» shows the truth) and refills the ready cache for generation.
 let statusFlight: Promise<DevAiProviderStatus[]> | undefined;
 let statusCache: { expires: number; values: DevAiProviderStatus[] } | undefined;
 export function getDevAiProviderStatuses(): Promise<DevAiProviderStatus[]> {
@@ -172,9 +212,11 @@ export function getDevAiProviderStatuses(): Promise<DevAiProviderStatus[]> {
     const deadline = AbortSignal.timeout(30_000);
     // allSettled keeps the temp directory alive until every owned probe stops.
     const results = await Promise.allSettled(
-      DEV_AI_PROVIDERS.map(
-        async (id) => (await inspectProvider(id, cwd, env, deadline)).status,
-      ),
+      DEV_AI_PROVIDERS.map(async (id) => {
+        const finding = await inspectProvider(id, cwd, env, deadline);
+        rememberReadyCheck(id, finding);
+        return finding.status;
+      }),
     );
     const unsafeTermination = results.find(
       (result) =>
@@ -258,18 +300,25 @@ export async function runSubscriptionCli(input: {
   const deadline = new AbortController();
   const cancel = () => deadline.abort();
   input.signal?.addEventListener("abort", cancel, { once: true });
+  // 모델 설정을 읽는 사이에 취소됐으면 리스너가 영영 안 울린다 — 줄에 선 채 CLI 를 띄우게 된다
+  if (input.signal?.aborted) cancel();
   let timedOut = false;
-  const timer = setTimeout(() => {
-    timedOut = true;
-    cancel();
-  }, 180_000);
+  // 결함 3(2026-09-18): 180초 예산은 줄에서 승인된 뒤부터 잰다 — 기다린 시간은 깎지 않는다.
+  // 기다리는 동안의 사용자 취소는 deadline 을 거쳐 acquire 를 그대로 깨운다.
+  let timer: NodeJS.Timeout | undefined;
+  let budgetEnds = 0;
   let release: (() => void) | undefined;
   try {
     release = await requestSlots.acquire(deadline.signal);
     if (deadline.signal.aborted) throw abortError();
+    budgetEnds = Date.now() + REQUEST_BUDGET_MS;
+    timer = setTimeout(() => {
+      timedOut = true;
+      cancel();
+    }, REQUEST_BUDGET_MS);
     return await withCliTemp(async (cwd) => {
       const env = subscriptionEnvironment(process.env);
-      const { executable, status } = await inspectProvider(
+      const { executable, status } = await inspectProviderCached(
         input.provider,
         cwd,
         env,
@@ -305,14 +354,21 @@ export async function runSubscriptionCli(input: {
         env,
         signal: deadline.signal,
         input: invocation.input,
+        // 결함 5(2026-09-18): CLI 본체 한 번의 대기 한도는 기본 120초가 아니라 남은 예산이다 —
+        // 실측 99초짜리 성공이 한도에 가까웠고, haiku «121초» 오류가 이 자리였다.
+        timeoutMs: Math.max(1, budgetEnds - Date.now()),
       });
       if (result.exitCode !== 0) {
+        // 비정상 종료는 로그인 풀림일 수 있다 — 저장한 확인을 버리고 사유는 그대로 알린다.
+        readyChecks.delete(input.provider);
         // Never return raw stderr: CLIs may print account identifiers or secrets.
         throw classifyCliFailure(result);
       }
       return parseFinalCliText(input.provider, result.stdout);
     });
   } catch (error) {
+    if (error instanceof SubscriptionCliError && error.code === "launch-failed")
+      readyChecks.delete(input.provider);
     if (
       timedOut &&
       error instanceof SubscriptionCliError &&

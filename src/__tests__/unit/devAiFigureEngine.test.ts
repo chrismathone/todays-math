@@ -232,6 +232,127 @@ describe("real local Python subscription figure pipeline", () => {
     await result;
   });
 
+  // 추론이 취소 신호까지 안 끝나는 대역 — 줄 서기·시간 초과 시험용
+  const pendingUntilAbort = ({ signal }: { signal?: AbortSignal }) =>
+    new Promise<string>((_resolve, reject) => {
+      if (!signal || signal.aborted) return reject(abortError());
+      signal.addEventListener("abort", () => reject(abortError()), {
+        once: true,
+      });
+    });
+  // 동시 호출 시험은 추론을 직접 주입한다 — vitest 는 모킹한 «./cli» 를 동시에 동적 import 하면
+  // 두 번째 호출에 진짜 모듈을 준다(2026-09-18 실측). 운영 경로는 모킹이 없어 무관하다.
+  const inject = (request: DevAiRequest, signal?: AbortSignal) =>
+    redrawDevAiFigure(request, signal, (call) =>
+      run({ ...call, provider: request.provider, model: request.model }),
+    );
+
+  // 결함 3(2026-09-18): 240초 시계가 도형 칸을 얻기 전에 켜져, 줄 서서 기다린 시간이 예산에서 깎였다
+  it("starts the 240 second budget only after a figure slot is granted, and cancels while queued", async () => {
+    vi.useFakeTimers({ toFake: ["setTimeout", "clearTimeout", "Date"] });
+    run.mockImplementation(pendingUntilAbort);
+    const controllers = Array.from({ length: 4 }, () => new AbortController());
+    const [first, second, third, queued] = controllers;
+    try {
+      const a = inject(input, first.signal).catch((e: Error) => e);
+      const b = inject(input, second.signal).catch((e: Error) => e);
+      await vi.waitFor(() => expect(run).toHaveBeenCalledTimes(2));
+      const c = inject(input, third.signal).catch((e: Error) => e);
+      // 줄에서 238초를 기다린다 — 아직 추론은 두 건뿐
+      await vi.advanceTimersByTimeAsync(238_000);
+      expect(run).toHaveBeenCalledTimes(2);
+      // 줄에 선 채로 취소하면 곧바로 끝난다
+      const d = inject(input, queued.signal).catch((e: Error) => e);
+      queued.abort();
+      expect(await d).toMatchObject({ code: "cancelled" });
+      expect(run).toHaveBeenCalledTimes(2);
+      first.abort();
+      expect(await a).toMatchObject({ code: "cancelled" });
+      await vi.waitFor(() => expect(run).toHaveBeenCalledTimes(3));
+      // 칸을 얻은 뒤 200초 — 옛 코드는 여기서 이미 «오래 걸려»로 끝났다
+      await vi.advanceTimersByTimeAsync(200_000);
+      let settled = false;
+      void c.then(() => (settled = true));
+      await vi.advanceTimersByTimeAsync(0);
+      expect(settled).toBe(false);
+      await vi.advanceTimersByTimeAsync(40_001);
+      expect(await c).toMatchObject({
+        message: expect.stringContaining("오래 걸려 원본을 유지"),
+      });
+      // 처음부터 칸을 쥔 둘째는 자기 예산 240초가 이미 끝났다
+      expect(await b).toMatchObject({
+        message: expect.stringContaining("오래 걸려 원본을 유지"),
+      });
+    } finally {
+      // 시험이 중간에 죽어도 도형 칸을 남기지 않는다
+      controllers.forEach((controller) => controller.abort());
+    }
+  });
+
+  // 결함 4(2026-09-18): 1바퀴 렌더가 성공하고 대조만 불합격한 뒤 2바퀴가 240초를 넘기면 전부 버렸다
+  it("returns the last successful render with a warning when the retry runs out of time", async () => {
+    vi.useFakeTimers({ toFake: ["setTimeout", "clearTimeout", "Date"] });
+    const issue = "점 D 위치를 원본과 맞춰 주세요.";
+    run.mockImplementation(async ({ prompt, signal }) => {
+      if (prompt.includes("<rendered-spec-data>"))
+        return JSON.stringify({ passed: false, issues: [issue] });
+      if (prompt.includes("<previous-spec-data>"))
+        return pendingUntilAbort({ signal });
+      return JSON.stringify({ spec: triangle });
+    });
+    const result = inject(input);
+    await vi.waitFor(() => expect(run).toHaveBeenCalledTimes(3));
+    await vi.advanceTimersByTimeAsync(240_001);
+    const value = await result;
+    expect(value.spec).toEqual(triangle);
+    expect(validDevAiSvg(value.svg!)).toBe(true);
+    expect(value.engine).toBe("todays-math-python");
+    expect(value.figureReview).toEqual({
+      mode: "source-and-rendered-images",
+      passed: false,
+      issues: [issue],
+    });
+    expect(value.warnings).toContain(`원본 대조 확인 필요: ${issue}`);
+    expect(value.warnings.join(" ")).toContain("오래 걸려");
+  });
+
+  it("returns the render with a warning when the review itself runs out of time", async () => {
+    vi.useFakeTimers({ toFake: ["setTimeout", "clearTimeout", "Date"] });
+    run.mockImplementation(async ({ prompt, signal }) =>
+      prompt.includes("<rendered-spec-data>")
+        ? pendingUntilAbort({ signal })
+        : JSON.stringify({ spec: triangle }),
+    );
+    const result = inject(input);
+    await vi.waitFor(() => expect(run).toHaveBeenCalledTimes(2));
+    await vi.advanceTimersByTimeAsync(240_001);
+    const value = await result;
+    expect(value.spec).toEqual(triangle);
+    expect(value.figureReview).toEqual({
+      mode: "source-and-rendered-images",
+      passed: false,
+      issues: [],
+    });
+    expect(
+      value.warnings.some((w) => w.startsWith("원본 대조 확인 필요: ")),
+    ).toBe(true);
+    expect(value.warnings.join(" ")).toContain("오래 걸려");
+  });
+
+  it("still keeps the original when a user cancels after a successful render", async () => {
+    const user = new AbortController();
+    run.mockImplementation(async ({ prompt, signal }) => {
+      if (prompt.includes("<rendered-spec-data>")) {
+        user.abort();
+        return pendingUntilAbort({ signal });
+      }
+      return JSON.stringify({ spec: triangle });
+    });
+    await expect(inject(input, user.signal)).rejects.toMatchObject({
+      code: "cancelled",
+    });
+  });
+
   it.each([
     { ...catalog["graph-1"].example, svg: "<svg/>" },
     { ...catalog["graph-1"].example, axes: "false" },
