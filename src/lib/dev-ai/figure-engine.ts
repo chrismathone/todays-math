@@ -84,7 +84,7 @@ export async function redrawDevAiFigure(
     if (deadline.signal.aborted) throw abortError();
   };
   // 결함 4(2026-09-18): 마지막으로 렌더에 성공한 결과 — 다음 바퀴가 제한 시간을 넘기면 버리지 않고
-  // «원본 대조 확인 필요» 경고와 함께 돌려준다. 사용자 취소는 여기에 해당하지 않는다.
+  // 시간 초과 안내와 함께 돌려준다(대조 지적은 figureReview 에만 — 2026-09-19). 사용자 취소는 여기에 해당하지 않는다.
   let lastRender:
     | {
         svg: string;
@@ -173,10 +173,8 @@ export async function redrawDevAiFigure(
         };
         continue;
       }
-      if (!review.passed)
-        warnings.push(
-          `원본 대조 확인 필요: ${review.issues.join(" / ") || "그림 편집에서 원본과 비교해 주세요."}`,
-        );
+      // 원장님 2026-09-19 «원본 대조 멘트는 생성하지 마» — 끝까지 안 맞아도 경고 문구는 싣지 않는다.
+      // 대조 결과는 figureReview 에 그대로 남는다(초안 저장 형식 — draftStore.ts 가 검사한다).
       return {
         content: "",
         answer: "",
@@ -202,7 +200,6 @@ export async function redrawDevAiFigure(
         solution: "",
         warnings: [
           ...lastRender.warnings,
-          `원본 대조 확인 필요: ${issues.join(" / ") || "원본 대조를 마치지 못했습니다. 그림 편집에서 원본과 비교해 주세요."}`,
           "도형 재작도가 오래 걸려 마지막으로 그린 결과를 사용합니다.",
         ],
         svg: lastRender.svg,

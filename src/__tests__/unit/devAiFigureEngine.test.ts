@@ -155,22 +155,42 @@ describe("real local Python subscription figure pipeline", () => {
     expect(run).toHaveBeenCalledTimes(3);
   });
 
-  it("repairs clear source review issues and retains bounded warnings after the final review", async () => {
+  // 원장님 2026-09-19 «원본 대조 멘트는 생성하지 마» — 대조와 그 결과로 두 번 다시 그리는 것은 그대로,
+  // 끝까지 안 맞았을 때 warnings 에 넣던 «원본 대조 확인 필요: …» 문구만 없앤다. figureReview 는 싣는다(저장 형식).
+  it("repairs clear source review issues twice, then keeps the review data without a source-comparison warning", async () => {
+    const issue = "인쇄된 점 D를 원본과 비교해 주세요.\nnext label";
     run.mockImplementation(async ({ prompt }) =>
       prompt.includes("<rendered-spec-data>")
-        ? JSON.stringify({
-            passed: false,
-            issues: ["인쇄된 점 D를 원본과 비교해 주세요.\nnext label"],
-          })
-        : JSON.stringify({ spec: triangle }),
+        ? JSON.stringify({ passed: false, issues: [issue] })
+        : JSON.stringify({
+            spec: triangle,
+            warnings: ["변 BC 의 길이 표시가 흐립니다."],
+          }),
     );
     const result = await redrawDevAiFigure(input);
     expect(run).toHaveBeenCalledTimes(6);
-    expect(result.figureReview?.passed).toBe(false);
-    expect(result.figureReview?.issues[0]).toBe(
-      "인쇄된 점 D를 원본과 비교해 주세요.\nnext label",
-    );
-    expect(result.warnings.join(" ")).toContain("인쇄된 점 D");
+    expect(run.mock.calls.map(([args]) => args.phase)).toEqual([
+      "generate",
+      "review",
+      "generate",
+      "review",
+      "generate",
+      "review",
+    ]);
+    // 다시 그릴 때 대조 지적을 모델에게 넘기는 것은 그대로다
+    for (const call of [2, 4])
+      expect(run.mock.calls[call][0].prompt).toContain(
+        "원본 대조: 인쇄된 점 D를 원본과 비교해 주세요.",
+      );
+    expect(result.figureReview).toEqual({
+      mode: "source-and-rendered-images",
+      passed: false,
+      issues: [issue],
+    });
+    // 모델이 스스로 낸 경고만 남는다
+    expect(result.warnings).toEqual(["변 BC 의 길이 표시가 흐립니다."]);
+    expect(result.warnings.join(" ")).not.toContain("원본 대조");
+    expect(result.warnings.join(" ")).not.toContain("인쇄된 점 D");
     expect(validDevAiSvg(result.svg!)).toBe(true);
   });
 
@@ -339,8 +359,10 @@ describe("real local Python subscription figure pipeline", () => {
       passed: false,
       issues: [issue],
     });
-    expect(value.warnings).toContain(`원본 대조 확인 필요: ${issue}`);
-    expect(value.warnings.join(" ")).toContain("오래 걸려");
+    // 원장님 2026-09-19 — 대조 멘트는 없다. 시간 초과 안내는 대조 멘트가 아니라서 남는다.
+    expect(value.warnings).toEqual([
+      "도형 재작도가 오래 걸려 마지막으로 그린 결과를 사용합니다.",
+    ]);
   });
 
   it("returns the render with a warning when the review itself runs out of time", async () => {
@@ -360,10 +382,9 @@ describe("real local Python subscription figure pipeline", () => {
       passed: false,
       issues: [],
     });
-    expect(
-      value.warnings.some((w) => w.startsWith("원본 대조 확인 필요: ")),
-    ).toBe(true);
-    expect(value.warnings.join(" ")).toContain("오래 걸려");
+    expect(value.warnings).toEqual([
+      "도형 재작도가 오래 걸려 마지막으로 그린 결과를 사용합니다.",
+    ]);
   });
 
   it("still keeps the original when a user cancels after a successful render", async () => {
