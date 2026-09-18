@@ -57,7 +57,10 @@ export interface DailyPlanResult {
   lessonIndex: number;
   /** 어디에 걸어 폈나 — 진도 기록이 있으면 `"progress"`(실제가 이긴다). */
   anchoredOn: "plan" | "progress";
-  /** 교육과정 끝에 닿아 더 못 나간다 — 끝 차시에 멈춰 있다. */
+  /**
+   * 더 못 나가는 끝에 닿아 끝 차시에 멈춰 있다 — 교육과정의 끝이거나, 부르는 쪽이 넘긴
+   * **출제할 문항이 있는 마지막 차시**(`lastTeachableUnitId`)다.
+   */
   atCurriculumEnd: boolean;
   /**
    * 밀림·앞섬(일). **양수면 앞섬 · 음수면 밀림 · 진도 기록이 없으면 0.**
@@ -172,6 +175,15 @@ export function resolveDailyPlan(args: {
   day: string;
   /** 실제 진도 — 있으면 **이것이 이긴다**. */
   actual: ActualProgress | null;
+  /**
+   * 여기까지만 걷는다 — **출제할 문항이 있는 마지막 차시**(`teachableBoundary.ts`).
+   * 차례가 전역 연속값이라(D-27) 없으면 중3 반이 고등(문항 0건)으로 걸어 들어간다.
+   * 목록 밖 값·null 이면 무시하고 교육과정 끝까지 걷는다(예전과 같다).
+   *
+   * 🔴 이미 경계 밖에 있는 반(실제 진도·시작 차시)은 **뒤로 끌지 않는다** — 그 자리에서 멈춘다.
+   *    실제가 이긴다(D-129 ⑵).
+   */
+  lastTeachableUnitId?: string | null;
 }): DailyPlanResult {
   const { rule, units, day, actual } = args;
 
@@ -184,7 +196,6 @@ export function resolveDailyPlan(args: {
   if (startIdx === undefined) return NO_LESSON;
 
   const per = Math.max(1, Math.trunc(rule.unitsPerLesson));
-  const lastIdx = sorted.length - 1;
 
   const firstLesson = nthLessonDay(weekdays, rule.startDate, 1);
   if (firstLesson === null) return NO_LESSON;
@@ -194,6 +205,18 @@ export function resolveDailyPlan(args: {
   const actualIdx = actual ? indexById.get(actual.unitId) : undefined;
   const anchoredOn: DailyPlanResult["anchoredOn"] =
     actual && actualIdx !== undefined ? "progress" : "plan";
+
+  // 걷기 상한 — 교육과정 끝, 또는 **출제할 문항이 있는 마지막 차시**(경계). 경계 밖 값은 무시한다.
+  // 이미 경계 밖에 있는 반(실제 진도·시작 차시)은 그 자리가 상한이다 — 뒤로 끌지 않는다.
+  const boundaryIdx =
+    args.lastTeachableUnitId != null
+      ? indexById.get(args.lastTeachableUnitId)
+      : undefined;
+  const reachedIdx = anchoredOn === "progress" ? actualIdx! : startIdx;
+  const lastIdx =
+    boundaryIdx === undefined
+      ? sorted.length - 1
+      : Math.max(boundaryIdx, reachedIdx);
 
   // 밀림·앞섬 — 그 차시를 「계획이 나가라던 날」과 「실제로 나간 날」의 차(일).
   let driftDays = 0;

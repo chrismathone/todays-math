@@ -44,6 +44,10 @@ const REVIEW = T("unit/planDailyReview.test.ts");
 const RESOLVER = T("unit/progressResolver.test.ts");
 const CRON = T("api/autoDraftCron.test.ts");
 const DAILY = T("api/dailyReview.test.ts");
+const CAP = T("unit/draftCapacity.test.ts");
+const BOUND = T("unit/teachableBoundary.test.ts");
+const SCHED = T("unit/planSchedule.test.ts");
+const PLAN_API = T("api/progressPlan.test.ts");
 
 const PLAN_FILE = "src/lib/daily/progressPlan.ts";
 const REVIEW_FILE = "src/lib/daily/planDailyReview.ts";
@@ -53,6 +57,10 @@ const OWNER_FILE = "src/lib/tests/autoDraftOwner.ts";
 const CRON_ROUTE = "src/app/api/tests/auto-draft/cron/route.ts";
 const DAILY_ROUTE = "src/app/api/tests/daily-review/route.ts";
 const DOUBLE_FILE = "src/mocks/prismaTestDouble.ts";
+const CAP_FILE = "src/lib/tests/draftCapacity.ts";
+const BOUND_FILE = "src/lib/daily/teachableBoundary.ts";
+const SCHED_FILE = "src/lib/daily/planSchedule.ts";
+const STORE_FILE = "src/lib/daily/progressPlanStore.ts";
 
 /** tsx 탐침 머리 — 모든 tsx 탐침이 이 이름들을 쓴다 */
 const PRELUDE = `
@@ -306,8 +314,9 @@ const MUTATIONS: Mutation[] = [
   {
     name: "⑥b 문항이 모자라도 만든다",
     file: RUN_FILE,
-    from: "    const enough = poolTotal >= group.neededCount;",
-    to: "    const enough = true;",
+    // 2026-09-18 — 문지기가 행 수(`poolTotal >= neededCount`)에서 갈래 − 최근 출제로 바뀌었다
+    from: "      if (draftCapacityOf(capacityRows, recent) < cls.defaultProblemCount) {",
+    to: "      if (false) {",
     probe: null,
     tests: [CRON],
   },
@@ -424,6 +433,105 @@ const MUTATIONS: Mutation[] = [
     to: "  const eywaOwner = true;",
     probe: null,
     tests: [DAILY],
+  },
+
+  // ── ⑨ 갈래 상한 · 문항 있는 마지막 차시 경계 (2026-09-18 시뮬레이션) ────────
+  //    보고서 docs/planning/tracks/reports/daily-auto-test-simulation.md §4 ⑴ · §3 ⑵
+  {
+    name: "⑨a 상한을 행 수로 센다 (「문항 228/15 · 자동」 → 422)",
+    file: CAP_FILE,
+    from: "  if (recentProblemIds.length === 0) return countFamilies(rows);",
+    to: "  if (recentProblemIds.length === 0) return rows.length;",
+    probe: null,
+    tests: [CAP, DAILY],
+  },
+  {
+    name: "⑨b 상한에서 최근 출제(D-20)를 안 뺀다",
+    file: CAP_FILE,
+    from: "  return countFamilies(rows.filter((row) => !recent.has(row.id)));",
+    to: "  return countFamilies(rows);",
+    probe: null,
+    tests: [CAP, CRON],
+  },
+  {
+    name: "⑨c 경계 탐색이 끝을 못 찾는다 (늘 마지막 차시)",
+    file: BOUND_FILE,
+    from: "    if (await hasProblems(suffix(mid))) lo = mid;",
+    to: "    if (true) lo = mid;",
+    probe: null,
+    tests: [BOUND, CRON],
+  },
+  {
+    name: "⑨d 계획이 경계를 무시한다 (중3 이 고등으로 걸어 들어간다)",
+    file: PLAN_FILE,
+    from: "      : Math.max(boundaryIdx, reachedIdx);",
+    to: "      : sorted.length - 1;",
+    probe: null,
+    tests: [PLAN, REVIEW],
+  },
+  {
+    name: "⑨e 경계 밖에 이미 있는 반을 뒤로 끈다 (실제가 진다)",
+    file: PLAN_FILE,
+    from: "      : Math.max(boundaryIdx, reachedIdx);",
+    to: "      : boundaryIdx;",
+    probe: null,
+    tests: [PLAN],
+  },
+  {
+    name: "⑨f planDailyReview 가 경계를 계획에 안 넘긴다",
+    file: REVIEW_FILE,
+    from: "          lastTeachableUnitId,\n        })\n      : null;",
+    to: "        })\n      : null;",
+    probe: null,
+    tests: [REVIEW],
+  },
+  {
+    name: "⑨g 예정 목록이 경계를 안 쓴다",
+    file: SCHED_FILE,
+    from: "  const lastTeachableUnitId = args.lastTeachableUnitId ?? null;",
+    to: "  const lastTeachableUnitId = null;",
+    probe: null,
+    tests: [SCHED],
+  },
+  {
+    name: "⑨h 아침 회차가 경계를 안 넘긴다 (영구 「문항 부족」)",
+    file: RUN_FILE,
+    from: "    lastTeachableUnitId,\n  });\n\n  tally.targets = plan.attended;",
+    to: "  });\n\n  tally.targets = plan.attended;",
+    probe: null,
+    tests: [CRON],
+  },
+  {
+    name: "⑨i 아침 회차가 최근 출제를 안 뺀다 (뒤 학생이 조용히 «failed»)",
+    file: RUN_FILE,
+    from: "      const recent = await loadRecentProblemIds(cls.userId, day);",
+    to: "      const recent: string[] = [];",
+    probe: null,
+    tests: [CRON],
+  },
+  {
+    name: "⑨j 화면이 행 수로 센다",
+    file: DAILY_ROUTE,
+    from: "      capacity: draftCapacityOf(await loadCapacityRows(g.unitIds)),",
+    to: "      capacity: (await loadCapacityRows(g.unitIds)).length,",
+    probe: null,
+    tests: [DAILY],
+  },
+  {
+    name: "⑨k 화면이 경계를 안 넘긴다",
+    file: DAILY_ROUTE,
+    from: "    lastTeachableUnitId: planRows.length\n      ? await loadLastTeachableUnitId(units)\n      : null,",
+    to: "    lastTeachableUnitId: null,",
+    probe: null,
+    tests: [DAILY],
+  },
+  {
+    name: "⑨l 계기판·미리보기 예정이 경계를 안 넘긴다",
+    file: STORE_FILE,
+    from: "    lastTeachableUnitId: await loadLastTeachableUnitId(units),",
+    to: "    lastTeachableUnitId: null,",
+    probe: null,
+    tests: [PLAN_API],
   },
 
   // ── ⑧ 가짜 Prisma 의 날짜 비교 — **자가 눈멂** 막기 ─────────────────────

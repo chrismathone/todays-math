@@ -149,8 +149,21 @@ export function planDailyReview(args: {
   units: readonly (ChapterAwareUnit & { id: string })[];
   /** 진도 계획(D-129 ⑴). 비면 예전처럼 보고서 날짜 하나로만 「오늘」을 가른다. */
   plans?: readonly DailyPlanRow[];
+  /**
+   * **출제할 문항이 있는 마지막 차시** — 계획이 그 너머로 범위 끝을 내지 않는다
+   * (`teachableBoundary.ts` · `resolveDailyPlan`). 없으면 예전처럼 교육과정 끝까지 걷는다.
+   */
+  lastTeachableUnitId?: string | null;
 }): DailyReviewPlan {
-  const { day, students, progressRows, lastReviews, units, plans = [] } = args;
+  const {
+    day,
+    students,
+    progressRows,
+    lastReviews,
+    units,
+    plans = [],
+    lastTeachableUnitId = null,
+  } = args;
 
   const rowsByStudent = new Map<string, ProgressRecordLike[]>();
   const rowsByClass = new Map<string, ProgressRecordLike[]>();
@@ -204,6 +217,7 @@ export function planDailyReview(args: {
           actual: current
             ? { unitId: current.unitId, recordedAt: current.recordedAt }
             : null,
+          lastTeachableUnitId,
         })
       : null;
 

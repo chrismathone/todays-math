@@ -27,6 +27,7 @@ import {
   CLASS_A_ID,
   CLASS_B_ID,
   CLASS_OTHER_ID,
+  CLASS_STARVED_ID,
   MOCK_CLASSES,
   MOCK_UNITS,
   MOCK_TEACHER,
@@ -38,6 +39,8 @@ import {
   prismaTestDouble,
   resetPrismaTestDouble,
 } from "@/mocks/prismaTestDouble";
+
+import { seedFamilies } from "../helpers/seedFamilies";
 
 const DAY = "2026-08-21";
 /** orderIndex 427 «일차부등식의 활용(농도)» — mock 문제가 **0건**인 단원(픽스처 설계). */
@@ -146,14 +149,14 @@ describe("[2단계] GET /api/tests/daily-review — 오늘의 학생별 확인�
   });
 
   /** 🔴 풀 세기 배선 — 문항 0건 단원은 «부족» 묶음으로 가고, 기준은 반 기본 문항 수다. */
-  it("문항이 모자란 묶음은 lacking — poolTotal 0, neededCount 는 반 기본값", async () => {
+  it("문항이 모자란 묶음은 lacking — capacity 0, neededCount 는 반 기본값", async () => {
     const res = await get();
     const body = dailyReviewResponseSchema.parse(await res.json());
     expect(body.data.auto).toEqual([]);
     expect(body.data.lacking).toHaveLength(1);
     const g = body.data.lacking[0]!;
     expect(g.rangeEndUnitId).toBe(EMPTY_POOL_UNIT.id);
-    expect(g.poolTotal).toBe(0);
+    expect(g.capacity).toBe(0);
     expect(g.neededCount).toBe(MOCK_CLASSES[0]!.defaultProblemCount);
     expect(g.students.map((s) => s.id)).toEqual([STUDENT_IDS[0]!]);
   });
@@ -546,5 +549,114 @@ describe("[D-132] GET /api/tests/daily-review — 학생 줄의 담당(관리자
       name: MOCK_TEACHER.name,
       mine: false,
     });
+  });
+});
+
+/**
+ * 🔴 RED → 🟢 — **「문항 N/8」은 행이 아니라 갈래** (2026-09-18 시뮬레이션 결함 ⑴).
+ *
+ * 예전 칸 `poolTotal` 은 행 수였다. 엔진 문항은 한 단원이 행 200~700 · 갈래 10~12 라 15문항 반이
+ * 「문항 228/15 · 자동」으로 보이고, 출제는 422 로 죽었다. 칸 이름을 `capacity` 로 바꾼 까닭은
+ * 같은 이름에 다른 뜻을 싣지 않으려는 것이다 — 화면 글자(「문항 N/8」)는 그대로다.
+ */
+describe("[2026-09-18] GET /api/tests/daily-review — 부족은 갈래로 가른다", () => {
+  beforeEach(async () => {
+    resetPrismaTestDouble();
+    await seed();
+    process.env.EYWA_SYNC_OWNER_EMAIL = "teacher@todaysmath.test";
+  });
+
+  it("행이 넉넉해도 갈래가 모자라면 lacking — capacity 는 갈래 수", async () => {
+    await seedFamilies(
+      EMPTY_POOL_UNIT.id,
+      Array.from({ length: 12 }, (_, i) => (i % 2 === 0 ? "A" : "B")),
+    );
+    const body = dailyReviewResponseSchema.parse(await (await get()).json());
+    expect(body.data.auto).toEqual([]);
+    expect(body.data.lacking).toHaveLength(1);
+    expect(body.data.lacking[0]!.capacity).toBe(2);
+  });
+
+  it("갈래가 넉넉하면 auto — capacity 는 갈래 수", async () => {
+    await seedFamilies(
+      EMPTY_POOL_UNIT.id,
+      Array.from({ length: 9 }, (_, i) => `K${i}`),
+    );
+    const body = dailyReviewResponseSchema.parse(await (await get()).json());
+    expect(body.data.lacking).toEqual([]);
+    expect(body.data.auto).toHaveLength(1);
+    expect(body.data.auto[0]!.capacity).toBe(9);
+  });
+});
+
+/**
+ * 🔴 RED → 🟢 — 화면도 아침 회차와 **같은 경계**를 쓴다 (2026-09-18 시뮬레이션 결함 ⑵).
+ * 대역의 마지막 차시 427 은 문항 0건이다 — 계획이 거기로 걸어 들어가지 않는다.
+ */
+describe("[2026-09-18] GET /api/tests/daily-review — 경계", () => {
+  beforeEach(async () => {
+    resetPrismaTestDouble();
+    await seed();
+    process.env.EYWA_SYNC_OWNER_EMAIL = "teacher@todaysmath.test";
+  });
+
+  it("문항 0건 차시로 범위를 내지 않고 마지막 차시로 선다", async () => {
+    const last = MOCK_UNITS.find((u) => u.orderIndex === 426)!;
+    const student = await prismaTestDouble.student.create({
+      data: {
+        classId: CLASS_STARVED_ID,
+        name: "끝반",
+        schoolLevel: null,
+        schoolGrade: null,
+        eywaStudentId: null,
+        eywaWithdrawnAt: null,
+        eywaLastReportDate: null,
+        eywaLastReportText: null,
+      },
+    });
+    await seedFamilies(
+      last.id,
+      Array.from({ length: 10 }, (_, i) => `E${i}`),
+    );
+    await prismaTestDouble.progressPlan.create({
+      data: {
+        classId: CLASS_STARVED_ID,
+        studentId: null,
+        weekdays: [5],
+        unitsPerLesson: 1,
+        startUnitId: last.id,
+        startDate: new Date("2026-08-14T00:00:00Z"),
+        active: true,
+      },
+    });
+    await prismaTestDouble.progress.create({
+      data: {
+        classId: CLASS_STARVED_ID,
+        studentId: null,
+        unitId: last.id,
+        recordedAt: new Date("2026-08-14T00:00:00Z"),
+      },
+    });
+    await prismaTestDouble.test.create({
+      data: {
+        userId: USER_TEACHER_ID,
+        classId: CLASS_STARVED_ID,
+        studentId: student.id,
+        testType: "review",
+        rangeStartUnitId: last.id,
+        rangeEndUnitId: last.id,
+        status: "confirmed",
+        modified: false,
+        testDate: new Date("2026-08-14T00:00:00.000Z"),
+      },
+    });
+
+    const body = dailyReviewResponseSchema.parse(await (await get()).json());
+    const mine = [...body.data.auto, ...body.data.lacking].find((g) =>
+      g.students.some((s) => s.id === student.id),
+    );
+    expect(mine).toBeDefined();
+    expect(mine!.rangeEndUnitId).toBe(last.id);
+    expect(body.data.auto).toContain(mine);
   });
 });

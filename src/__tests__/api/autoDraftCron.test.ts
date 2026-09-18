@@ -28,6 +28,7 @@ import {
   prismaTestDouble,
   resetPrismaTestDouble,
 } from "@/mocks/prismaTestDouble";
+import { seedFamilies } from "../helpers/seedFamilies";
 
 interface MadeTest {
   classId: string;
@@ -430,15 +431,21 @@ describe("[D-133] 아침 회차 — 만든 초안마다 회차 id · 합계는 �
   it("🔴 초안을 세운 뒤 던지면 회차 행을 남기고 거기까지의 합계를 적는다 — 끊긴 회차는 created + skipped < targets", async () => {
     await seedClassAPlan();
     const log = vi.spyOn(console, "error").mockImplementation(() => undefined);
-    const count = prismaTestDouble.problem.count.bind(prismaTestDouble.problem);
-    let calls = 0;
-    // 묶음은 학생 수가 많은 쪽부터 돈다 — 첫 묶음(s1·s2)은 세우고, 둘째 묶음(s3)의 풀 세기에서 던진다
+    const findMany = prismaTestDouble.problem.findMany.bind(
+      prismaTestDouble.problem,
+    );
+    let capacityReads = 0;
+    // 묶음은 학생 수가 많은 쪽부터 돈다 — 첫 묶음(s1·s2)은 세우고, 둘째 묶음(s3)의 **상한 읽기**에서 던진다.
+    // 상한 읽기(`loadCapacityRows`)는 갈래 판정의 세 열만 고른다 — 출제 풀 조회(본문까지)·경계 탐침(id 만)과 갈린다.
     const spy = vi
-      .spyOn(prismaTestDouble.problem, "count")
+      .spyOn(prismaTestDouble.problem, "findMany")
       .mockImplementation(async (args) => {
-        calls += 1;
-        if (calls === 2) throw new Error("db down");
-        return count(args);
+        const select = (args?.select ?? {}) as Record<string, unknown>;
+        if (select.familyKey && select.unitId && !select.content) {
+          capacityReads += 1;
+          if (capacityReads === 2) throw new Error("db down");
+        }
+        return findMany(args);
       });
     try {
       expect((await call()).status).toBe(500);
@@ -454,5 +461,142 @@ describe("[D-133] 아침 회차 — 만든 초안마다 회차 id · 합계는 �
     expect(run.created).toBe(2);
     expect(run.skips).toHaveLength(run.skipped);
     expect(run.created + run.skipped).toBeLessThan(run.targets);
+  });
+});
+
+async function starvedStudent(name: string) {
+  return prismaTestDouble.student.create({
+    data: {
+      classId: CLASS_STARVED_ID,
+      name,
+      schoolLevel: null,
+      schoolGrade: null,
+      eywaStudentId: null,
+      eywaWithdrawnAt: null,
+      eywaLastReportDate: null,
+      eywaLastReportText: null,
+    },
+  });
+}
+
+async function starvedPlan(startUnitId: string) {
+  await prismaTestDouble.progressPlan.create({
+    data: {
+      classId: CLASS_STARVED_ID,
+      studentId: null,
+      weekdays: [5],
+      unitsPerLesson: 1,
+      startUnitId,
+      startDate: new Date("2026-08-14T00:00:00Z"),
+      active: true,
+    },
+  });
+}
+
+/**
+ * 🔴 RED → 🟢 — **부족 판정은 행이 아니라 갈래** (2026-09-18 시뮬레이션 결함 ⑴).
+ *
+ * 예전 문지기는 `countEligibleProblems >= neededCount`(행)였다. 행 12 · 갈래 2 인 범위는 「부족 아님」으로
+ * 통과해 `generateDraftTest` 가 422 를 냈고, 그 학생은 `failed` 로만 남았다 — 화면이 읽지 않는 까닭이다.
+ * 실측 882 시나리오에서 실패 17,100 학생-일 중 99.8% 가 이것이었다.
+ */
+describe("[매일 자동 출제 ③] 아침 회차 — 부족은 갈래로 가른다", () => {
+  beforeEach(() => {
+    resetPrismaTestDouble();
+    process.env.CRON_SECRET = SECRET;
+    process.env.AUTO_DRAFT_OWNER_EMAIL = MOCK_TEACHER.email;
+  });
+
+  it("행은 넉넉한데 갈래가 모자라면 «lacking» 으로 적는다 — 조용한 «failed» 가 아니다", async () => {
+    const student = await starvedStudent("갈래둘");
+    await seedFamilies(
+      MOCK_EMPTY_PROBLEM_UNIT.id,
+      Array.from({ length: 12 }, (_, i) => (i % 2 === 0 ? "A" : "B")),
+    );
+    await starvedPlan(MOCK_EMPTY_PROBLEM_UNIT.id);
+
+    const body = autoDraftRunResponseSchema.parse(await (await call()).json());
+    expect(body.data.created).toBe(0);
+    expect(body.data.skips).toEqual([
+      { studentId: student.id, reason: "lacking" },
+    ]);
+    expect(await madeOn(DAY)).toEqual([]);
+  });
+
+  it("같은 회차에서 앞 학생이 쓴 문항은 뒤 학생의 상한에서 빠진다(D-20)", async () => {
+    const first = await starvedStudent("가");
+    const second = await starvedStudent("나");
+    // 갈래 10 — 한 장(8문항)을 내면 남는 갈래가 둘이다
+    await seedFamilies(
+      MOCK_EMPTY_PROBLEM_UNIT.id,
+      Array.from({ length: 10 }, (_, i) => `K${i}`),
+    );
+    await starvedPlan(MOCK_EMPTY_PROBLEM_UNIT.id);
+
+    const body = autoDraftRunResponseSchema.parse(await (await call()).json());
+    expect(body.data.created).toBe(1);
+    expect(body.data.skips).toHaveLength(1);
+    expect(body.data.skips[0]!.reason).toBe("lacking");
+    expect([first.id, second.id]).toContain(body.data.skips[0]!.studentId);
+    expect(body.data.skips.some((s) => s.reason === "failed")).toBe(false);
+  });
+});
+
+/**
+ * 🔴 RED → 🟢 — **계획이 문항 있는 마지막 차시를 넘지 않는다** (2026-09-18 시뮬레이션 결함 ⑵).
+ *
+ * 대역의 마지막 차시 427 은 문항이 0건이다(중3 → 공통수학1 의 축소판). 직전 확인테스트가 426 에서
+ * 끝났는데 계획이 427 로 걸어 들어가면 범위가 «427 하나»가 되어 **영구히 「문항 부족」** 이었다.
+ * 경계가 서면 계획은 426 에 멈추고 범위는 `current-only`(426)로 서서 초안이 선다.
+ */
+describe("[매일 자동 출제 ③] 아침 회차 — 경계", () => {
+  beforeEach(() => {
+    resetPrismaTestDouble();
+    process.env.CRON_SECRET = SECRET;
+    process.env.AUTO_DRAFT_OWNER_EMAIL = MOCK_TEACHER.email;
+  });
+
+  it("문항 0건 차시로 걸어 들어가지 않고 마지막 차시로 초안을 세운다", async () => {
+    const last = MOCK_UNITS.find((u) => u.orderIndex === 426)!;
+    const student = await starvedStudent("끝반");
+    await seedFamilies(
+      last.id,
+      Array.from({ length: 10 }, (_, i) => `E${i}`),
+    );
+    // 금요일 계획 426 시작 — 8/14 에 426, 8/21 이면 427 로 나가려 한다
+    await starvedPlan(last.id);
+    // 대역의 이 반은 8/1 에 427(문항 0건)을 진도로 적어 두었다 — 그 기록이 최신이면 «실제가 이긴다»로
+    // 뒤로 끌지 않는 것이 맞다. 여기서 재는 장면은 «8/14 에 426 까지 나갔다»이므로 그 기록을 더한다.
+    await prismaTestDouble.progress.create({
+      data: {
+        classId: CLASS_STARVED_ID,
+        studentId: null,
+        unitId: last.id,
+        recordedAt: new Date("2026-08-14T00:00:00Z"),
+      },
+    });
+    // 8/14 확인테스트가 426 에서 끝났다(확정)
+    await prismaTestDouble.test.create({
+      data: {
+        userId: MOCK_TEACHER.id,
+        classId: CLASS_STARVED_ID,
+        studentId: student.id,
+        testType: "review",
+        rangeStartUnitId: last.id,
+        rangeEndUnitId: last.id,
+        status: "confirmed",
+        modified: false,
+        testDate: new Date("2026-08-14T00:00:00.000Z"),
+      },
+    });
+
+    const body = autoDraftRunResponseSchema.parse(await (await call()).json());
+    expect(body.data.skips).toEqual([]);
+    expect(body.data.created).toBe(1);
+    const made = (await madeOn(DAY)) as Array<
+      MadeTest & { rangeEndUnitId: string }
+    >;
+    expect(made).toHaveLength(1);
+    expect(made[0]!.rangeEndUnitId).toBe(last.id);
   });
 });
