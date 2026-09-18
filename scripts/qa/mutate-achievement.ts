@@ -15,8 +15,9 @@
  *      아니라 **판정 보류**다(2026-08-23 «도장»).
  *   ⑷ 그제서야 시험이 빨개지나 — 실패한 시험 **이름**을 json 리포트에서 읽는다.
  *
- * 무리: ① null↔0 · ② 표본 문턱 · ③ 결시 제외 · ④ 주 경계 · ⑤ 합산 방식 ·
- *       ⑥ 재채점 중복 · ⑦ 난이도 밴드 · ⑧ 비교군 표본 · ⑨ 문장(지어냄) · ⑩ 만점 · ⑪ 관문
+ * 무리: ① null↔0 · ② 표본 문턱 · ③ 결시 제외 · ④ 기간 경계 · ⑤ 합산 방식 ·
+ *       ⑥ 재채점 중복 · ⑦ 난이도 밴드 · ⑧ 비교군 표본 · ⑨ 문장(지어냄) · ⑩ 만점 · ⑪ 관문 ·
+ *       ⑫ Hi-fi 결함 9건과 지면 가드(브리프 `tracks/briefs/achievement-hifi.md` §1·§2)
  *
  * 러너는 `--maxWorkers=1`. 원복은 **바이트**로 `finally` 에서, 끝나고 md5 로 대조한다.
  * **커밋한 상태에서 돌린다** — 배경 셸이 끊기면 `finally` 가 안 돌 수 있다(메모리
@@ -48,6 +49,12 @@ const PERIOD = T("unit/achievementPeriod.test.ts");
 const SENTENCES = T("unit/achievementSentences.test.ts");
 const MAXSCORE = T("unit/achievementMaxScore.test.ts");
 const API = T("api/achievement.test.ts");
+const RESULT_SEL = T("unit/achievementResultSelect.test.ts");
+const LOAD = T("unit/achievementLoad.test.ts");
+const AREAS = T("unit/achievementReportAreas.test.ts");
+const EXAMPLE_T = T("unit/achievementExample.test.ts");
+const WIRE = T("components/reportWire.test.tsx");
+const HIFI = T("components/reportHifi.test.tsx");
 
 const COLLECT_FILE = "src/lib/achievement/collect.ts";
 const TYPES_FILE = "src/lib/achievement/types.ts";
@@ -56,6 +63,11 @@ const SENTENCE_FILE = "src/lib/achievement/sentences.ts";
 const MAXSCORE_FILE = "src/lib/achievement/maxScore.ts";
 const ROUTE_FILE = "src/app/api/students/[id]/achievement/route.ts";
 const CONTRACT_FILE = "src/contracts/achievement.contract.ts";
+const SELECT_FILE = "src/lib/achievement/resultSelect.ts";
+const LOAD_FILE = "src/lib/achievement/load.ts";
+const AREAS_FILE = "src/lib/achievement/reportAreas.ts";
+const EXAMPLE_FILE = "src/app/dev/report-hifi/example.ts";
+const SHEET_FILE = "src/app/dev/report-hifi/ParentSheet.tsx";
 
 /** tsx 탐침 머리 — 시험 픽스처와 **같은 값**을 쓴다(둘이 갈리면 탐침이 딴것을 잰다). */
 const PRELUDE = `
@@ -63,7 +75,11 @@ import * as c from "../../src/lib/achievement/collect";
 import * as p from "../../src/lib/achievement/period";
 import * as s from "../../src/lib/achievement/sentences";
 import * as m from "../../src/lib/achievement/maxScore";
-const U = (n: number) => ({ unitId: "u" + n, grade: "중1", chapter: n + ". 단원", section: "소단원 " + n, orderIndex: 100 + n });
+import * as rs from "../../src/lib/achievement/resultSelect";
+import * as ra from "../../src/lib/achievement/reportAreas";
+import * as ex from "../../src/app/dev/report-hifi/example";
+import { Prisma } from "@prisma/client";
+const U =(n: number) => ({ unitId: "u" + n, grade: "중1", chapter: n + ". 단원", section: "소단원 " + n, orderIndex: 100 + n });
 const UNITS = [U(1), U(2), U(3), U(4)];
 const RULE = { weekdays: [1, 3, 5], unitsPerLesson: 1, startUnitId: "u1", startDate: "2026-09-07", active: true };
 const ITEMS = (unitId: string, difficulty: string, total: number, correct: number) =>
@@ -98,6 +114,10 @@ const REGRADED = [
 ];
 const BANDS = (over: object = {}) => ({ 연산: null, 기본: null, 응용: null, 심화: null, ...over }) as never;
 const B = (accuracy: number, total = 10) => ({ correct: Math.round((accuracy / 100) * total), total, accuracy });
+/** 진도 한 줄 — 영역이 서는지 볼 때. */
+const ONE = [{ unitId: "u1", recordedAt: "2026-09-07" }];
+const SRC = (over: object = {}) => ({ factors: F({ progress: ONE, ...over }), teacherNote: null });
+void rs; void ra; void ex; void Prisma; void SRC;
 void c; void p; void s; void m; void RULE; void F; void ABSENT; void SUMMED; void REGRADED; void BANDS; void B; void ITEMS; void ROUND;
 `;
 
@@ -134,16 +154,16 @@ const MUTATIONS: Mutation[] = [
   {
     name: "①c 채점 0건이 0점·빈 표로 나온다",
     file: COLLECT_FILE,
-    from: "      rounds: null,\n      absentRounds: null,\n      averagePercent: null,\n      unitAccuracy: null,\n      bandAccuracy: null,\n      reviewUnits: null,",
-    to: "      rounds: [],\n      absentRounds: [],\n      averagePercent: 0,\n      unitAccuracy: { reported: [], underSampled: [] },\n      bandAccuracy: null,\n      reviewUnits: [],",
+    from: "      rounds: null,\n      absentRounds: null,\n      averagePercent: null,\n      problems: null,\n      unitAccuracy: null,\n      bandAccuracy: null,\n      reviewUnits: null,",
+    to: "      rounds: [],\n      absentRounds: [],\n      averagePercent: 0,\n      problems: null,\n      unitAccuracy: { reported: [], underSampled: [] },\n      bandAccuracy: null,\n      reviewUnits: [],",
     probe: "F().scored",
     tests: [FACTORS, API],
   },
   {
     name: "①d 대상 강의 0편이 «0편 완료»로 나온다",
     file: COLLECT_FILE,
-    from: "  if (targets.size === 0) return { lectures: null, homework: null };",
-    to: "  if (targets.size === 0)\n    return {\n      lectures: { assigned: 0, completed: 0, averagePercent: 0 },\n      homework: null,\n    };",
+    from: "  if (targets.size === 0) return null;",
+    to: "  if (targets.size === 0)\n    return { assigned: 0, completed: 0, averagePercent: 0 };",
     probe: "F().selfStudy",
     tests: [FACTORS, API],
   },
@@ -222,10 +242,10 @@ const MUTATIONS: Mutation[] = [
      * **재는 자리가 틀렸던 것**이다). 살아 있는 자리는 비교군이다 — 거기는 결시가 섞인
      * 원본 회차를 그대로 넘긴다.
      */
-    name: "③b 결시가 0점으로 평균에 실린다 (비교군)",
+    name: "③b 결시가 0점으로 평균에 실린다 (비교군 · rollupScores 를 안 거치고 `?? 0`)",
     file: COLLECT_FILE,
-    from: "    if (r.absent || r.score === null || r.maxScore === null || r.maxScore <= 0)\n      continue;",
-    to: "    if (r.maxScore === null || r.maxScore <= 0) continue;\n    if (r.score === null) {\n      full += r.maxScore;\n      continue;\n    }",
+    from: "    if (rollupScores([r]).gradedCount === 0) continue;\n    earned += r.score as number;",
+    to: "    earned += r.score ?? 0;",
     probe:
       'F({ comparison: { kind: "반평균", students: [{ id: "a", progress: [], results: ABSENT }] } }).comparison',
     tests: [FACTORS],
@@ -249,20 +269,20 @@ const MUTATIONS: Mutation[] = [
     tests: [PERIOD],
   },
   {
-    name: "④c 직전 기간이 같은 길이가 아니다",
+    name: "④c(#7) 지난달이 달력이 아니라 같은 일수로 거슬러 간다",
     file: PERIOD_FILE,
-    from: "  const len = periodDays(period);\n  const to = addDays(period.from, -1);\n  return { from: addDays(to, -(len - 1)), to };",
-    to: "  const to = addDays(period.from, -1);\n  return { from: addDays(to, -6), to };",
-    probe: 'p.previousPeriod({ from: "2026-09-14", to: "2026-09-27" })',
-    tests: [PERIOD, FACTORS],
+    from: "  return monthPeriod(monthOf(addDays(`${monthOf(period.from)}-01`, -1)));",
+    to: "  const to = addDays(period.from, -1);\n  return { from: addDays(to, -(periodDays(period) - 1)), to };",
+    probe: 'p.previousMonth(p.monthPeriod("2026-03"))',
+    tests: [PERIOD, FACTORS, API],
   },
 
   // ── ⑤ 합산 방식 — 문항 합산이지 회차 평균이 아니다 ────────────────────
   {
     name: "⑤a 평균 점수가 회차 평균이 된다",
     file: COLLECT_FILE,
-    from: "    earned += r.score;\n    full += r.maxScore;",
-    to: "    earned += (r.score / r.maxScore) * 100;\n    full += 100;",
+    from: "    earned += r.score as number;\n    full += r.maxScore;",
+    to: "    earned += ((r.score as number) / r.maxScore) * 100;\n    full += 100;",
     probe:
       'F({ results: [ROUND({ testId: "t1", score: 10, maxScore: 10 }), ROUND({ testId: "t2", score: 50, maxScore: 100 })] }).scored.averagePercent',
     tests: [FACTORS],
@@ -270,8 +290,8 @@ const MUTATIONS: Mutation[] = [
   {
     name: "⑤b 단원 합산이 첫 회차만 센다",
     file: COLLECT_FILE,
-    from: "  for (const r of taken) {\n    for (const it of r.items) {",
-    to: "  for (const r of taken.slice(0, 1)) {\n    for (const it of r.items) {",
+    from: "  for (const r of taken) {\n    if (r.items.length > 0) problemTally.rounds += 1;",
+    to: "  for (const r of taken.slice(0, 1)) {\n    if (r.items.length > 0) problemTally.rounds += 1;",
     probe: "F({ results: SUMMED }).scored.unitAccuracy",
     tests: [FACTORS],
   },
@@ -341,9 +361,9 @@ const MUTATIONS: Mutation[] = [
   {
     name: "⑨a 근거가 어중간한데 문장을 지어낸다",
     file: SENTENCE_FILE,
-    from: "  if (weak !== null) return `${weak}부터 많이 어려워합니다.`;\n  return null;",
-    to: '  if (weak !== null) return `${weak}부터 많이 어려워합니다.`;\n  return "전체적으로 잘하고 있습니다.";',
-    probe: "s.bandSentence(BANDS({ 연산: B(60), 기본: B(55) }))",
+    from: "  if (solid.length === 0 && weak.length === 0) return null;",
+    to: '  if (solid.length === 0 && weak.length === 0)\n    return "전체적으로 잘하고 있습니다.";',
+    probe: "s.bandSentence(BANDS({ 연산: B(60, 12), 기본: B(55, 12) }))",
     tests: [SENTENCES],
   },
   {
@@ -357,10 +377,10 @@ const MUTATIONS: Mutation[] = [
   {
     name: "⑨c 사다리를 거꾸로 읽는다",
     file: SENTENCE_FILE,
-    from: "  let solid: AchievementBand | null = null;\n  for (const band of measured) {",
-    to: "  let solid: AchievementBand | null = null;\n  for (const band of [...measured].reverse()) {",
+    from: "  const head: AchievementBand[] = [];\n  for (const band of ACHIEVEMENT_BANDS) {",
+    to: "  const head: AchievementBand[] = [];\n  for (const band of [...ACHIEVEMENT_BANDS].reverse()) {",
     probe:
-      "s.bandSentence(BANDS({ 연산: B(95), 기본: B(88), 응용: B(40), 심화: B(20) }))",
+      "s.bandSentence(BANDS({ 연산: B(95, 12), 기본: B(88, 12), 응용: B(40, 12), 심화: B(20, 12) }))",
     tests: [SENTENCES],
   },
 
@@ -381,6 +401,153 @@ const MUTATIONS: Mutation[] = [
     probe:
       "m.testMaxScore([{ adjustedScore: 25, score: 3.5 }, { adjustedScore: 25, score: 3.5 }, { adjustedScore: 25, score: null }, { adjustedScore: 25, score: null }])",
     tests: [MAXSCORE],
+  },
+
+  // ── ⑫ Hi-fi 결함 9건 · 지면 가드 (브리프 achievement-hifi.md §1·§2) ─────────
+  {
+    name: "⑫#1a 채점 조회가 결시 칸을 안 읽는다 (select 에서 absent 가 빠진다)",
+    file: SELECT_FILE,
+    from: "  score: true,\n  absent: true,",
+    to: "  score: true,",
+    probe:
+      "rs.unreadResultFields(rs.RESULT_SELECT, Prisma.TestResultScalarFieldEnum)",
+    tests: [RESULT_SEL, LOAD],
+  },
+  {
+    name: "⑫#1b 조회가 결시의 점수 NULL 을 0 으로 채운다 (`?? 0`)",
+    file: LOAD_FILE,
+    from: "      score: r.score,",
+    to: "      score: r.score ?? 0,",
+    probe: null,
+    tests: [LOAD],
+  },
+  {
+    name: "⑫#2a 문제 수를 «10문제 중 N문제»로 지어낸다",
+    file: SENTENCE_FILE,
+    from: "  const phrase = `${outOfPhrase(problems.correct, problems.total)}를 맞혔습니다.`;",
+    to: "  const phrase = `${outOfPhrase(Math.round((problems.correct / problems.total) * 10), 10)}를 맞혔습니다.`;",
+    probe: "s.problemSentence({ correct: 1, total: 2, rounds: 1 }, 1)",
+    tests: [SENTENCES],
+  },
+  {
+    name: "⑫#2b 만점을 실제 합이 아니라 100 으로 굳힌다",
+    file: SENTENCE_FILE,
+    from: "    const max = scorable[0]!.maxScore;",
+    to: "    const max = 100;",
+    probe:
+      's.scoreSentence([{ testId: "t", testDate: "2026-08-01", takenAt: "x", score: 50, maxScore: 67 }])',
+    tests: [SENTENCES],
+  },
+  {
+    name: "⑫#3a 밴드 문턱(12문항)이 없어진다 — 심화 1문항으로 «심화까지 고르게»",
+    file: SENTENCE_FILE,
+    from: "  return value !== null && value.total >= MIN_UNIT_PROBLEMS;",
+    to: "  return value !== null && value.total > 0;",
+    probe:
+      "s.bandSentence(BANDS({ 연산: B(95, 12), 기본: B(90, 12), 응용: B(80, 12), 심화: { correct: 1, total: 1, accuracy: 100 } }))",
+    tests: [SENTENCES, HIFI],
+  },
+  {
+    name: "⑫#3b «까지»가 구간 확인 없이 붙는다",
+    file: SENTENCE_FILE,
+    from: "      : head.length >= 2 && head.length === solid.length",
+    to: "      : solid.length >= 1",
+    probe:
+      "s.bandSentence(BANDS({ 연산: B(100, 5), 기본: B(90, 12), 응용: B(40, 12) }))",
+    tests: [SENTENCES],
+  },
+  {
+    name: "⑫#4 시험 영역이 문장(평균)에 묶인다 — 전부 결시면 결시 기록까지 사라진다",
+    file: AREAS_FILE,
+    from: "      return factors.scored.rounds !== null;",
+    to: "      return factors.scored.averagePercent !== null;",
+    probe:
+      'ra.parentAreas(SRC({ results: [ROUND({ testId: "t2", score: null, absent: true })] }))',
+    tests: [AREAS, WIRE, HIFI],
+  },
+  {
+    name: "⑫#5 영상 기록이 있어도 «스스로 한 공부» 영역이 안 선다",
+    file: AREAS_FILE,
+    from: "        factors.selfStudy.lectures !== null ||\n        factors.selfStudy.homework !== null",
+    to: "        factors.selfStudy.homework !== null",
+    probe:
+      'ra.parentAreas(SRC({ lectures: { targets: [{ lectureId: "l1" }], views: [] } }))',
+    tests: [AREAS, WIRE, HIFI],
+  },
+  {
+    name: "⑫#6 영상 완료에 기간 끝이 없다 — 뒤에 본 것이 과거 달로 올라간다",
+    file: COLLECT_FILE,
+    from: "    (v) => v.completedAt !== null && new Date(v.completedAt).getTime() < end,",
+    to: "    (v) => v.completedAt !== null,",
+    probe:
+      'F({ lectures: { targets: [{ lectureId: "l1" }], views: [{ lectureId: "l1", percent: 100, completedAt: "2026-09-30T15:00:00.000Z" }] } }).selfStudy',
+    tests: [FACTORS, API, EXAMPLE_T],
+  },
+  {
+    name: "⑫#8 강의 대상을 «지금» 게시 상태로 고른다 (게시 시각 경계가 빠진다)",
+    file: LOAD_FILE,
+    from: "      publishedAt: { lt: periodEndExclusive(period) },\n",
+    to: "",
+    probe: null,
+    tests: [API],
+  },
+  {
+    name: "⑫#9 예시 팩터를 손으로 덧칠한다 (단원 합계 ≠ 난이도 합계)",
+    file: EXAMPLE_FILE,
+    from: "  return collectAchievement(exampleInput(real));",
+    to: "  const f = collectAchievement(exampleInput(real));\n  return { ...f, scored: { ...f.scored, bandAccuracy: f.scored.bandAccuracy && { ...f.scored.bandAccuracy, 심화: null } } };",
+    probe: "ex.exampleFactors(F({ progress: ONE })).scored.bandAccuracy",
+    tests: [EXAMPLE_T],
+  },
+  {
+    name: "⑫Q5 하단 한 줄이 학생 행동으로 읽힌다 («시험 0회»)",
+    file: SENTENCE_FILE,
+    from: '  else exc.push("시험");',
+    to: '  else inc.push("시험 0회");',
+    probe: "s.coverageLine(F({ progress: ONE }))",
+    tests: [SENTENCES, HIFI],
+  },
+  {
+    name: "⑫규칙7 숙제를 확인한 날이 없어도 «0번»으로 낸다 (분모 없는 0)",
+    file: COLLECT_FILE,
+    from: "  if (checked.length === 0) return null;",
+    to: "  if (checked.length === 0) return { checked: 0, missed: 0, missedDates: [] };",
+    probe:
+      'F({ homework: [{ checkedOn: "2026-08-28", missed: false }] }).selfStudy.homework',
+    tests: [FACTORS],
+  },
+  {
+    name: "⑫Q0 학부모 지면이 빈 영역까지 그린다 (있는 영역만이 아니다)",
+    file: AREAS_FILE,
+    from: "  return AREA_ORDER.filter((area) => areaHasRecords(src, area));",
+    to: "  return [...AREA_ORDER];",
+    probe: "ra.parentAreas(SRC())",
+    tests: [AREAS, HIFI],
+  },
+  {
+    name: "⑫규칙1 학년이 섞여도 대단원 앞에 학년을 안 붙인다",
+    file: AREAS_FILE,
+    from: "  const mixed = new Set(units.map((u) => u.grade)).size > 1;",
+    to: "  const mixed = false;",
+    probe:
+      'ra.groupUnits([{ unitId: "a", grade: "초5", chapter: "2. 소수", section: "s", lessons: 1 }, { unitId: "b", grade: "중1", chapter: "1. 소인수분해", section: "t", lessons: 1 }])',
+    tests: [AREAS],
+  },
+  {
+    name: "⑫규칙1 접은 사실을 지면에 안 밝힌다",
+    file: SHEET_FILE,
+    from: "            <p className={styles.method}>{FOLD_NOTE}</p>\n",
+    to: "",
+    probe: null,
+    tests: [HIFI],
+  },
+  {
+    name: "⑫규칙3·4 막대(H4)가 문턱 미만 단도 채운다 — 1문항 100% 가 굵은 막대로",
+    file: SHEET_FILE,
+    from: "        const drawn = value !== null && value.total >= MIN_UNIT_PROBLEMS;",
+    to: "        const drawn = value !== null;",
+    probe: null,
+    tests: [HIFI],
   },
 
   // ── ⑪ 관문 — 소유 범위 · 기간 · strict ────────────────────────────────

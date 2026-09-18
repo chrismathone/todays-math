@@ -198,6 +198,29 @@ describe("소단원 묶음 — 대단원별로, 이름은 줄이지 않는다", 
     ]);
   });
 
+  it("🔴 학년이 섞이면 대단원 앞에 학년을 붙인다 — 하나뿐이면 안 붙인다", () => {
+    const mixed: CoveredUnit[] = [
+      ...units,
+      {
+        unitId: "m1",
+        grade: "중1",
+        chapter: "1. 소인수분해",
+        section: "소인수분해",
+        lessons: 1,
+      },
+    ];
+    expect(groupUnits(mixed).map((g) => g.chapter)).toEqual([
+      "초5 2. 소수의 곱셈",
+      "초5 3. 합동과 대칭",
+      "중1 1. 소인수분해",
+    ]);
+    expect(foldUnits(mixed).map((g) => g.chapter)).toEqual([
+      "초5 2. 소수의 곱셈",
+      "초5 3. 합동과 대칭",
+      "중1 1. 소인수분해",
+    ]);
+  });
+
   it("접으면 «대단원 + 소단원 수 + 차시»", () => {
     expect(foldUnits(units)).toEqual([
       { chapter: "2. 소수의 곱셈", units: 3, lessons: 4 },
