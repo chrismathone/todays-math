@@ -329,7 +329,14 @@ export default function StudioView({
     total: number;
     name: string;
     startedAt: number;
+    /** 계정에 저장된 작업을 되살리는 중 — 새 파일을 여는 것과 문구가 다르다(원장님 2026-09-18). */
+    restoring?: boolean;
   } | null>(null);
+  // 들어오자마자 계정에 저장된 작업을 되살린다 — 그동안 «파일 여는 중»이면 새 파일을 여는 것처럼 보인다.
+  const busyLabel =
+    restoring || importProgress?.restoring
+      ? "이전 작업 불러오는 중…"
+      : "파일 여는 중…";
   const [dragOver, setDragOver] = useState(false);
   const [error, setError] = useState("");
   const [notice, setNotice] = useState("");
@@ -740,6 +747,7 @@ export default function StudioView({
       total: files.length,
       name: files[0]?.name ?? "이전 작업",
       startedAt,
+      restoring: Boolean(restored),
     });
     setError("");
     const loaded: StudioSource[] = (restored?.sources ?? [])
@@ -756,6 +764,7 @@ export default function StudioView({
         total: files.length,
         name: file.name,
         startedAt,
+        restoring: Boolean(restored),
       });
       try {
         if (file.size > 40 * 1024 * 1024)
@@ -1928,7 +1937,7 @@ export default function StudioView({
           <div className={styles.editorTools}>
             <button onClick={() => fileInput.current?.click()} disabled={busy}>
               <Icon name="upload" />
-              {busy ? "파일 여는 중…" : "파일 가져오기"}
+              {busy ? busyLabel : "파일 가져오기"}
             </button>
             <button
               ref={restartButton}
@@ -1979,7 +1988,7 @@ export default function StudioView({
           disabled={busy}
         >
           <Icon name="upload" />
-          {busy ? "파일 여는 중…" : "파일 가져오기"}
+          {busy ? busyLabel : "파일 가져오기"}
         </button>
         <button
           ref={emptyRestartButton}
@@ -2319,7 +2328,11 @@ export default function StudioView({
 
           {importProgress ? (
             <WorkProgress
-              label="파일 불러오는 중"
+              label={
+                importProgress.restoring
+                  ? "이전 작업 불러오는 중"
+                  : "파일 불러오는 중"
+              }
               detail={importProgress.name}
               completed={importProgress.done}
               total={importProgress.total}
@@ -2636,7 +2649,7 @@ export default function StudioView({
                 disabled={busy}
               >
                 <Icon name="plus" />
-                {busy ? "파일 여는 중…" : "내 컴퓨터에서 선택"}
+                {busy ? busyLabel : "내 컴퓨터에서 선택"}
               </button>
               <span className={styles.fileHint}>
                 PDF, JPG, PNG, WebP 등 · 파일당 최대 40 MB
@@ -2859,9 +2872,15 @@ export default function StudioView({
             <span>
               {sources.length
                 ? `원본 ${sources.length}개 보관 중`
-                : "파일을 열면 브라우저에서 원본을 보관합니다."}
+                : storageScope
+                  ? ""
+                  : "파일을 열면 브라우저에서 원본을 보관합니다."}
             </span>
-            <span>새로고침하면 작업 내용이 초기화됩니다.</span>
+            <span>
+              {storageScope
+                ? "작업은 계정에 자동 저장됩니다."
+                : "새로고침하면 작업 내용이 초기화됩니다."}
+            </span>
           </div>
         </div>
 
