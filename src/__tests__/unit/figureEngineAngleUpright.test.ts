@@ -63,7 +63,11 @@ describe("engine angle labels are typeset upright in the figure editor", () => {
   it("keeps the engine's dimension label (5 cm) upright — it never had the outer italic", async () => {
     const dimension =
       '<text x="164.95" y="254.326" font-family="Cambria Math, HancomEQN, Times New Roman, serif" font-size="16.8" text-anchor="middle" fill="#111111" paint-order="stroke fill" stroke="#ffffff" stroke-width="5.6" stroke-linejoin="round" data-mj="5 cm"><tspan font-style="normal">5 cm</tspan></text>';
-    const paper = await printed(prepareFigureSvg(svg(dimension)));
+    const prepared = prepareFigureSvg(svg(dimension));
+    // 엔진이 기울이지 않은 라벨은 다시 쓰지 않는다 — 걷는 것은 엔진이 붙인 기울임뿐이다
+    expect(texts(prepared)[0].attrs["font-style"]).toBeUndefined();
+    expect(prepared).toContain('<tspan font-style="normal">5 cm</tspan>');
+    const paper = await printed(prepared);
     expect(slanted("5 cm").length).toBeGreaterThan(0);
     expect(paper).toEqual(expect.arrayContaining(upright("5 cm")));
     expect(paper.filter((d) => slanted("5 cm").includes(d))).toEqual([]);
