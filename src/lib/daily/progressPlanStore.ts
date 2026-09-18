@@ -33,6 +33,7 @@ import {
   buildPlanSchedule,
   planScheduleWindow,
 } from "@/lib/daily/planSchedule";
+import { loadLastTeachableUnitId } from "@/lib/daily/teachableBoundary";
 import type { ProgressPlanRule } from "@/lib/daily/progressPlan";
 import { db } from "@/lib/db";
 import { isPrismaErrorCode } from "@/lib/prismaErrors";
@@ -277,6 +278,9 @@ export async function loadPlanSchedule(args: {
     useIndividualProgress: student?.useIndividualProgress ?? false,
     from,
     to,
+    // 🔴 아침 회차·오늘의 확인테스트와 **같은 경계** — 예정 목록만 공통수학1 로 걸어 들어가면
+    //    「목록과 아침 초안이 다른」 반이 된다(2026-09-18 시뮬레이션 ⑵).
+    lastTeachableUnitId: await loadLastTeachableUnitId(units),
   });
 
   const refById = new Map<string, PlanUnitRef>(

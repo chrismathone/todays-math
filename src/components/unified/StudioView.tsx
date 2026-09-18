@@ -2355,7 +2355,7 @@ export default function StudioView({
                           ? "해설"
                           : studioAi.progress.action === "figures"
                             ? "도형 인식"
-                            : "문자",
+                            : "문제",
                       done: studioAi.progress.done,
                       total: studioAi.progress.total,
                       active: true,

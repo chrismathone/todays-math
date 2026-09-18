@@ -491,3 +491,63 @@ describe("[planDailyReview] 밀림 — 계획보다 늦은 오늘의 대상", ()
     expect(plan.delayed).toEqual([]);
   });
 });
+
+/**
+ * 🔴 RED → 🟢 — 경계(`lastTeachableUnitId`)를 **계획에 그대로 넘긴다** (2026-09-18 시뮬레이션 결함 ⑵).
+ *
+ * 부르는 쪽(아침 회차 · 오늘의 확인테스트 화면)이 «문항이 있는 마지막 차시»를 넘기면, 계획이 그 너머
+ * (문항 0건 구간)로 범위 끝을 내지 않는다. 직전 확인테스트가 그 차시에서 끝났으면 범위는
+ * `current-only`(그 차시 한 개)로 서서 시험이 **계속 선다** — 예전에는 범위가 전부 «고등 안»이 되어
+ * 영구히 「문항 부족」이었다.
+ */
+describe("[planDailyReview] 경계 — 문항이 있는 마지막 차시", () => {
+  const DAY = "2026-08-21"; // 금 — 계획대로면 u4
+
+  it("경계를 주면 범위 끝이 경계 차시다", () => {
+    const plan = planDailyReview({
+      day: DAY,
+      students: [
+        student({ id: "s1", lastReportDate: null, lastReportText: null }),
+      ],
+      progressRows: [],
+      lastReviews: [],
+      units: UNITS,
+      plans: [planRow()],
+      lastTeachableUnitId: "u3",
+    });
+    expect(plan.groups).toHaveLength(1);
+    expect(plan.groups[0]!.rangeEndUnitId).toBe("u3");
+    expect(plan.groups[0]!.unitIds).not.toContain("u4");
+  });
+
+  it("직전 확인테스트가 경계에서 끝났으면 그 차시 하나로 계속 선다(영구 정지 아님)", () => {
+    const plan = planDailyReview({
+      day: DAY,
+      students: [
+        student({ id: "s1", lastReportDate: null, lastReportText: null }),
+      ],
+      progressRows: [],
+      lastReviews: [{ studentId: "s1", rangeEndUnitId: "u3" }],
+      units: UNITS,
+      plans: [planRow()],
+      lastTeachableUnitId: "u3",
+    });
+    expect(plan.noRange).toHaveLength(0);
+    expect(plan.groups[0]!.unitIds).toEqual(["u3"]);
+    expect(plan.groups[0]!.startedFrom).toBe("current-only");
+  });
+
+  it("경계를 안 주면 예전과 같다", () => {
+    const plan = planDailyReview({
+      day: DAY,
+      students: [
+        student({ id: "s1", lastReportDate: null, lastReportText: null }),
+      ],
+      progressRows: [],
+      lastReviews: [],
+      units: UNITS,
+      plans: [planRow()],
+    });
+    expect(plan.groups[0]!.rangeEndUnitId).toBe("u4");
+  });
+});

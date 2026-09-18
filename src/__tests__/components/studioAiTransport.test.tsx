@@ -108,24 +108,59 @@ describe("Studio transport selection", () => {
       action: "solution",
     });
   });
+  /**
+   * 🔴 원장님 2026-09-18 — *「dev 모드인데 왜 구독요금제가 아니라 서버로 되어있지?」*
+   * development 에서는 작업실 표면(`/`·`/studio`)에서도 **AI 요청만** 구독 CLI 다리(`/api/dev/unified/ai`)로 간다.
+   * 데이터 경로는 로그인·계정별 `/api/studio/*` 그대로다. 표면은 여전히 «연결 상태 한 줄»이다(모델 고르기 없음).
+   */
   it.each(["/studio", "/"])(
-    "forces authenticated %s onto API even in dev and ignores a stored CLI provider",
+    "dev 의 %s 는 AI 를 구독 CLI 다리로, 데이터는 /api/studio 로 — 상태판은 한 줄 그대로",
     async (pathname) => {
       window.history.replaceState(null, "", pathname);
-      localStorage.setItem("today-math-dev-ai-provider", "codex");
-      const fetcher = vi.fn().mockResolvedValue(Response.json(api));
+      const fetcher = vi
+        .fn()
+        .mockImplementation(async (_url: string, init?: RequestInit) =>
+          Response.json(
+            init?.method === "POST"
+              ? {
+                  provider: "codex",
+                  action: "solution",
+                  result: {
+                    answer: "2",
+                    solution: "1+1=2",
+                    content: "",
+                    warnings: [],
+                  },
+                }
+              : cli,
+          ),
+        );
       vi.stubGlobal("fetch", fetcher);
       render(
         <DevAiProvider>
           <Controls />
         </DevAiProvider>,
       );
-      await screen.findByRole("option", { name: "원본 기본 모델" });
+      await screen.findByText("AI 연결됨");
+      expect(fetcher.mock.calls[0][0]).toBe("/api/dev/unified/ai");
+      expect(screen.queryByRole("combobox")).toBeNull();
       expect(screen.queryByLabelText("AI 연결 방식")).toBeNull();
+      // 모드 바꾸기는 작업실 표면에서 여전히 막혀 있다 — 상태를 다시 묻지 않는다
       fireEvent.click(screen.getByText("CLI 요청"));
-      await waitFor(() => expect(fetcher).toHaveBeenCalledTimes(1));
-      expect(fetcher.mock.calls[0][0]).toBe("/api/studio/ai");
+      fireEvent.click(screen.getByText("해설 실행"));
+      await waitFor(() =>
+        expect(
+          fetcher.mock.calls.some(([, init]) => init?.method === "POST"),
+        ).toBe(true),
+      );
+      const post = fetcher.mock.calls.find(
+        ([, init]) => init?.method === "POST",
+      )!;
+      expect(post[0]).toBe("/api/dev/unified/ai");
+      expect(JSON.parse(post[1].body)).toMatchObject({ provider: "codex" });
       expect(getStudioEndpoints()).toMatchObject({
+        production: true,
+        ai: "/api/dev/unified/ai",
         problems: "/api/studio/problems",
         overview: "/api/studio/overview",
         teaching: "/api/studio/teaching",
@@ -134,8 +169,15 @@ describe("Studio transport selection", () => {
       });
     },
   );
-  it("uses production endpoints irrespective of pathname in a production build", () => {
-    vi.stubEnv("NODE_ENV", "production");
-    expect(getStudioEndpoints("/dev/unified").ai).toBe("/api/studio/ai");
-  });
+  it.each(["/", "/studio", "/dev/unified"])(
+    "운영 빌드면 %s 도 AI 는 /api/studio/ai — 개발 다리는 운영에서 안 쓴다",
+    (pathname) => {
+      vi.stubEnv("NODE_ENV", "production");
+      expect(getStudioEndpoints(pathname)).toMatchObject({
+        production: true,
+        ai: "/api/studio/ai",
+        problems: "/api/studio/problems",
+      });
+    },
+  );
 });

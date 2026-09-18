@@ -437,7 +437,7 @@ export function DailyReviewSection({ units }: { units: UnitEntity[] }) {
                     </span>
                     <span>{g.students.map((s) => s.name).join(" · ")}</span>
                     <span className="text-[12px] text-g-red-text">
-                      문항 {n(g.poolTotal)}/{g.neededCount}
+                      문항 {n(g.capacity)}/{g.neededCount}
                     </span>
                     <DraftOrReviewLink
                       student={g.students[0]!}
@@ -500,7 +500,7 @@ export function DailyReviewSection({ units }: { units: UnitEntity[] }) {
                     </span>
                     <span>{g.students.map((s) => s.name).join(" · ")}</span>
                     <span className="text-[12px] text-text-3">
-                      문항 {n(g.poolTotal)}
+                      문항 {n(g.capacity)}
                     </span>
                   </li>
                 ))}

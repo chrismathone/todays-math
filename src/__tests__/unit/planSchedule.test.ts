@@ -256,3 +256,38 @@ describe("[planSchedule] 적용 이력 — 개별 진도 학생은 개별 이력
     expect(cp).toEqual(snapshot);
   });
 });
+
+/**
+ * 🔴 RED → 🟢 — 예정 목록도 **같은 경계**를 쓴다 (2026-09-18 시뮬레이션 결함 ⑵).
+ * 목록만 경계 너머(문항 0건)로 걸어 가면 「목록에는 공통수학1 인데 아침 초안은 중3 마지막 차시」가 된다.
+ */
+describe("[planSchedule] 경계 — 문항이 있는 마지막 차시", () => {
+  // 월수금 한 차시씩: 9/14 u4 · 9/16 u5 · 9/18 u6 · 9/21 u7 …
+  it("경계를 넘는 날의 예정은 경계 차시이고 끝 표시가 붙는다", () => {
+    const rows = buildPlanSchedule({
+      rule: MWF,
+      units: UNITS,
+      classProgress: [],
+      ...WINDOW,
+      lastTeachableUnitId: "u5",
+    });
+    const fri = rows.find((r) => r.date === "2026-09-18")!;
+    expect(fri.plannedUnitIds).toEqual(["u5"]);
+    expect(fri.atCurriculumEnd).toBe(true);
+    const wed = rows.find((r) => r.date === "2026-09-16")!;
+    expect(wed.plannedUnitIds).toEqual(["u5"]);
+    expect(wed.atCurriculumEnd).toBe(false);
+  });
+
+  it("경계를 안 주면 예전과 같다", () => {
+    const rows = buildPlanSchedule({
+      rule: MWF,
+      units: UNITS,
+      classProgress: [],
+      ...WINDOW,
+    });
+    expect(rows.find((r) => r.date === "2026-09-18")!.plannedUnitIds).toEqual([
+      "u6",
+    ]);
+  });
+});

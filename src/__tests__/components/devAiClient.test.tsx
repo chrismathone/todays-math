@@ -7,7 +7,7 @@ import {
   screen,
   waitFor,
 } from "@testing-library/react";
-import { afterEach, describe, expect, it, vi } from "vitest";
+import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 import { DevAiProvider, useDevAi } from "@/components/unified/useDevAi";
 import DevAiStatusPanel from "@/components/unified/DevAiStatusPanel";
 import type { DevAiResponse } from "@/lib/dev-ai/contracts";
@@ -88,10 +88,17 @@ async function concurrentHarness({ delayAbort = false } = {}) {
     );
   return { ...hook, pending, fetcher, start, complete };
 }
+// 이 시험들은 **개발용 CLI 칸**을 잰다 — 그 칸은 개발 표면(`/dev/unified`)에만 선다.
+// jsdom 기본 경로 `/` 는 운영 표면이라 연결 상태 한 줄만 그린다(원장님 2026-09-18,
+// `devAiStatusPanelCompact.test.tsx`).
+beforeEach(() => {
+  window.history.replaceState(null, "", "/dev/unified");
+});
 afterEach(() => {
   cleanup();
   vi.unstubAllGlobals();
   localStorage.clear();
+  window.history.replaceState(null, "", "/");
 });
 describe("development AI subscription status and task controller", () => {
   it("notifies queue owners before aborting requests and removes unmounted listeners", async () => {
