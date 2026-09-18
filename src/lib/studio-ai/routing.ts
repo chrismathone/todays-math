@@ -51,6 +51,8 @@ function figureVendor(env: NodeJS.ProcessEnv): ApiVendor {
     throw new Error("서버의 AI 모델 설정을 확인해 주세요.");
   return chosen as ApiVendor;
 }
+/** 도형 모델을 쓰는 작업 — «요청대로 고치기»(figure-edit)도 재작도와 같은 모델·추론 강도를 따른다(2026-09-19). */
+const FIGURE_ACTIONS: readonly DevAiAction[] = ["figure-redraw", "figure-edit"];
 export function resolveApiModel(
   provider: StudioApiProvider,
   action: DevAiAction,
@@ -60,7 +62,7 @@ export function resolveApiModel(
     provider === "auto"
       ? action === "solution"
         ? "deepseek"
-        : action === "figure-redraw"
+        : FIGURE_ACTIONS.includes(action)
           ? figureVendor(env)
           : "gemini"
       : provider;

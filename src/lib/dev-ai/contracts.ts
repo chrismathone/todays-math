@@ -1,4 +1,8 @@
 import type { MathgenProblemData } from "@/lib/mathgen/contracts";
+import type {
+  FigureEditCommand,
+  FigureEditFigure,
+} from "./figure-edit-contract";
 /** Shared, browser-safe contract for the local development AI bridge. */
 export const DEV_AI_PROVIDERS = [
   "codex",
@@ -20,7 +24,7 @@ export type StudioApiProvider = (typeof STUDIO_API_PROVIDERS)[number];
 export type StudioAiProvider = DevAiProvider | StudioApiProvider;
 export type StudioAiMode = "subscription-cli" | "model-api";
 export type DevAiAction =
-  "ocr" | "page-ocr" | "figures" | "figure-redraw" | "solution";
+  "ocr" | "page-ocr" | "figures" | "figure-redraw" | "figure-edit" | "solution";
 export type DevAiQuestionType =
   "multiple-choice" | "short-answer" | "descriptive";
 export interface DevAiProviderStatus {
@@ -57,6 +61,8 @@ export interface DevAiRequest {
   ocr?: MathgenProblemData;
   /** Optional existing figure for figure-redraw; untrusted input, at most 500000 characters. */
   svg?: string;
+  /** figure-edit 만: 편집기 번호가 붙은 지금 그림의 요소 목록(figure-edit-contract.ts). */
+  figure?: FigureEditFigure;
   /** Untrusted source filename; trimmed, 1–255 characters, no control characters. */
   sourceName?: string;
   grade: string;
@@ -110,6 +116,8 @@ export interface DevAiResult {
   svg?: string;
   /** Figure redraw only: validated input to the local deterministic Python renderer. */
   spec?: DevAiFigureSpec;
+  /** figure-edit 만: 형식을 검사한 수정 명령 — 편집기가 번호·좌표를 다시 검사한 뒤 지금 그림에 적용한다. */
+  edits?: FigureEditCommand[];
   engine?: "todays-math-python";
   figureReview?: {
     /** Original image versus validated spec/SVG, not a second raster image. */
