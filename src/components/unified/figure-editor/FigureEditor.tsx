@@ -9,7 +9,7 @@ import {
   useState,
 } from "react";
 import { createPortal } from "react-dom";
-import { ModalShell, Btn } from "./editorUi";
+import { ModalShell, Btn, formatToggleClass, isBoldWeight } from "./editorUi";
 import styles from "./StudioFigureEditor.module.css";
 import type { StudioFigureEditorProps } from "./types";
 import { initialFigureSource, createFigureSaveResult } from "./figureDocument";
@@ -50,10 +50,21 @@ import {
 import { FigureSelectionOverlay } from "./FigureSelectionOverlay";
 import { FigureNumberLayer } from "./FigureNumberLayer";
 import { FigureObjectList } from "./FigureObjectList";
+import { FigureGroupRow } from "./FigureGroupRow";
 import { FigureCommonFormat } from "./FigureCommonFormat";
 import { NAMES } from "./figureObjectNames";
+import { FIGURE_SYMBOL_GROUPS } from "./figureSymbols";
+import { TEXT_BG_ATTR } from "./figureTextBackground";
 import { FunctionGraphInput } from "./FunctionGraphInput";
 import type { FunctionGraphConfig } from "./functionGraph";
+import {
+  blocksSizeChange,
+  isMoveHandle,
+  isShapeAttr,
+  isSizeLocked,
+  sizeLockState,
+  sizeLockValue,
+} from "./figureSizeLock";
 
 type Tool =
   | "select"
@@ -76,6 +87,9 @@ const TOOLS: { id: Tool; label: string; glyph: string }[] = [
   { id: "rect", label: "사각형", glyph: "□" },
   { id: "text", label: "글자", glyph: "T" },
 ];
+/** 도구 줄 단추의 눌림 모양 — 도구와 «전체 요소 크기 고정»이 같이 쓴다. */
+const PRESSED =
+  "bg-[var(--figure-accent-soft)] text-[var(--figure-accent-ink)] ring-1 ring-[var(--figure-accent-line)]";
 const FIELD_NAMES: Record<string, string> = {
   x: "가로 위치",
   y: "세로 위치",
@@ -151,6 +165,8 @@ export function FigureEditor({
   const [zoom, setZoom] = useState(1);
   const [panOffset, setPanOffset] = useState({ x: 0, y: 0 });
   const [label, setLabel] = useState("A");
+  // 글자 칸 특수문자 자판에서 마지막으로 연 무리 — 편집기를 연 동안 기억한다(글자를 바꿔 골라도).
+  const [symbolGroup, setSymbolGroup] = useState(FIGURE_SYMBOL_GROUPS[0].name);
   const [instructions, setInstructions] = useState("");
   const [busy, setBusy] = useState(false);
   const [redrawing, setRedrawing] = useState(false);
@@ -233,6 +249,11 @@ export function FigureEditor({
       current && !current.attrs["data-function"] ? figureHandles(current) : [],
     [current],
   );
+  const currentLocked = !!current && isSizeLocked(current);
+  // 기울임·굵게 단추의 켜짐 — 그 글자 요소의 실제 속성(조판이 읽는 것과 같은 속성).
+  const currentItalic = current?.attrs["font-style"] === "italic";
+  const currentBold = isBoldWeight(current?.attrs["font-weight"]);
+  const lockState = sizeLockState(objects);
   let currentFunction: FunctionGraphConfig | undefined;
   try {
     currentFunction = current?.attrs["data-function"]
@@ -256,7 +277,17 @@ export function FigureEditor({
     () => groupFigureObjects(objects, viewBoxKey.split(" ").map(Number)),
     [objects, viewBoxKey],
   );
+  // «묶음 만들기» 직후 오른쪽 칸의 묶음 이름 칸에 초점을 줄 묶음 key — 초점을 주면 지운다.
   const [renamingGroup, setRenamingGroup] = useState<string | null>(null);
+  const clearRenaming = useCallback(() => setRenamingGroup(null), []);
+  // 고른 요소가 한 묶음의 요소 전부와 정확히 같을 때만 — 오른쪽 칸에 묶음 이름·해제가 선다.
+  const selectedGroup = selectedIds.length
+    ? groups.find(
+        (g) =>
+          g.ids.length === selectedIds.length &&
+          g.ids.every((id) => selectedIds.includes(id)),
+      )
+    : undefined;
   // 묶음 편집은 원문(`data-group`)을 고친다 — 되돌리기·저장을 같이 탄다. 목록이 memo 라 콜백은 안 바뀌게 liveSvg 로.
   const editGroups = useCallback((edit: (source: string) => string) => {
     const current = liveSvg.current;
@@ -320,8 +351,20 @@ export function FigureEditor({
     setSelected(null);
   };
   const change = (attrs: Record<string, string>, text?: string) => {
-    if (selected) commit(editFigureObject(svg, selected, attrs, text));
+    if (!selected) return;
+    // 크기 고정 — 막힌 칸에 값이 들어와도(자동 입력 등) 크기·모양은 그대로 둔다.
+    if (current && blocksSizeChange(current, attrs)) return;
+    commit(editFigureObject(svg, selected, attrs, text));
   };
+  // 전체 요소 크기 고정 — 지금 있는 요소 전부에 한 번에(되돌리기 한 번). 일부만 고정이면 누를 때 전부 고정한다.
+  const toggleLockAll = () =>
+    commit(
+      editFigureObjects(
+        svg,
+        objects.map((o) => o.id),
+        sizeLockValue(lockState !== true),
+      ),
+    );
   const remove = () => {
     if (selectedIds.length) {
       commit(removeFigureSelection(svg, selectedIds));
@@ -628,6 +671,7 @@ export function FigureEditor({
   };
   const handleDown = (e: React.PointerEvent, handle: string) => {
     if (busy || e.button !== 0 || !selected || !selection) return;
+    if (currentLocked && !isMoveHandle(handle)) return;
     surface.current?.focus({ preventScroll: true });
     const node = canvas.current?.querySelector<SVGGraphicsElement>(
       `[data-object-id="${selected}"]`,
@@ -992,7 +1036,7 @@ export function FigureEditor({
                   if (t.id !== "select" && t.id !== "pan") setSelected(null);
                 }}
                 disabled={busy}
-                className={`px-2 py-1.5 text-xs rounded ${tool === t.id ? "bg-[var(--figure-accent-soft)] text-[var(--figure-accent-ink)] ring-1 ring-[var(--figure-accent-line)]" : "hover:bg-side"}`}
+                className={`px-2 py-1.5 text-xs rounded ${!addingFunction && tool === t.id ? PRESSED : "hover:bg-side"}`}
               >
                 <span aria-hidden="true" className="text-base mr-1">
                   {t.glyph}
@@ -1010,7 +1054,7 @@ export function FigureEditor({
                 setAddingFunction(true);
               }}
               disabled={busy}
-              className="px-2 py-1.5 text-xs rounded hover:bg-[var(--figure-accent-soft)]"
+              className={`px-2 py-1.5 text-xs rounded ${addingFunction ? PRESSED : "hover:bg-[var(--figure-accent-soft)]"}`}
             >
               ƒ 함수
             </button>
@@ -1041,6 +1085,18 @@ export function FigureEditor({
               className="px-2 text-xs disabled:opacity-40"
             >
               ↷ 다시 실행
+            </button>
+            <span className="mx-1 border-l border-control" />
+            {/* 일부만 고정이면 aria-pressed="mixed" — 눌림 모양은 전부 고정일 때만, 몇 개인지는 title 로. */}
+            <button
+              type="button"
+              aria-pressed={lockState}
+              title={`고정 ${objects.filter(isSizeLocked).length}개 / 전체 ${objects.length}개`}
+              onClick={toggleLockAll}
+              disabled={!objects.length || busy}
+              className={`px-2 py-1.5 text-xs rounded disabled:opacity-40 ${lockState === true ? PRESSED : "enabled:hover:bg-side"}`}
+            >
+              전체 요소 크기 고정 (이동만 가능)
             </button>
             <details className="relative ml-auto text-xs">
               <summary className="cursor-pointer rounded px-2 py-1.5 hover:bg-slate-100">
@@ -1226,6 +1282,7 @@ export function FigureEditor({
                   currentType={current?.type}
                   viewBox={viewBox}
                   busy={busy}
+                  sizeLocked={currentLocked}
                   onHandleDown={handleDown}
                 />
               )}
@@ -1263,8 +1320,6 @@ export function FigureEditor({
               onPick={pick}
               onPickGroup={pickGroup}
               onAssign={assignGroup}
-              renaming={renamingGroup}
-              onRenaming={setRenamingGroup}
             />
           </section>
         </div>
@@ -1297,30 +1352,46 @@ export function FigureEditor({
                     ? "내용을 정한 다음 그림에서 놓을 위치를 클릭하세요."
                     : "그림에서 수정할 요소를 선택하세요."}
             </p>
+            {selectedGroup && (
+              <FigureGroupRow
+                group={selectedGroup}
+                focus={renamingGroup === selectedGroup.key}
+                onFocused={clearRenaming}
+                onAssign={assignGroup}
+              />
+            )}
             {current ? (
               <div className="space-y-3 text-xs">
                 {currentFunction && (
-                  <FunctionGraphInput
-                    key={current.id}
-                    initial={currentFunction}
-                    editing
-                    viewBox={
-                      current.attrs["data-function-viewbox"]
-                        ?.split(" ")
-                        .map(Number) ?? viewBox
-                    }
-                    onApply={(config, result) =>
-                      change({
-                        d: result.path,
-                        "data-function": JSON.stringify(config),
-                      })
-                    }
-                  />
+                  // 함수식·범위를 바꾸면 곡선 모양이 바뀐다 — 크기 고정이면 통째로 막는다.
+                  <fieldset
+                    disabled={currentLocked}
+                    className="min-w-0 disabled:opacity-40"
+                  >
+                    <FunctionGraphInput
+                      key={current.id}
+                      initial={currentFunction}
+                      editing
+                      viewBox={
+                        current.attrs["data-function-viewbox"]
+                          ?.split(" ")
+                          .map(Number) ?? viewBox
+                      }
+                      onApply={(config, result) =>
+                        change({
+                          d: result.path,
+                          "data-function": JSON.stringify(config),
+                        })
+                      }
+                    />
+                  </fieldset>
                 )}
                 <p className="rounded bg-[var(--figure-accent-soft)] p-2 leading-relaxed text-[var(--figure-accent-ink)]">
                   {current.type === "text"
                     ? "글자를 끌어서 옮기세요. 더블클릭하면 내용을 바꿀 수 있습니다."
-                    : "파란색 조절점을 끌어 모양을 바꾸세요. 선이나 테두리를 끌면 통째로 이동합니다."}
+                    : currentLocked
+                      ? "크기가 고정되어 있습니다. 선이나 테두리를 끌면 통째로 이동합니다."
+                      : "파란색 조절점을 끌어 모양을 바꾸세요. 선이나 테두리를 끌면 통째로 이동합니다."}
                 </p>
                 {current.type === "text" && (
                   <div>
@@ -1330,6 +1401,8 @@ export function FigureEditor({
                       idPrefix="선택한 도형 글자"
                       value={current.attrs["data-mj"] ?? current.text}
                       onChange={(value) => change({}, value)}
+                      symbolGroup={symbolGroup}
+                      onSymbolGroup={setSymbolGroup}
                     />
                   </div>
                 )}
@@ -1337,13 +1410,11 @@ export function FigureEditor({
                   <div className="flex gap-2">
                     <button
                       type="button"
-                      className="border border-control rounded px-2 py-1"
+                      aria-pressed={currentItalic}
+                      className={formatToggleClass(currentItalic)}
                       onClick={() =>
                         change({
-                          "font-style":
-                            current.attrs["font-style"] === "italic"
-                              ? "normal"
-                              : "italic",
+                          "font-style": currentItalic ? "normal" : "italic",
                         })
                       }
                     >
@@ -1351,13 +1422,11 @@ export function FigureEditor({
                     </button>
                     <button
                       type="button"
-                      className="border border-control rounded px-2 py-1 font-bold"
+                      aria-pressed={currentBold}
+                      className={`${formatToggleClass(currentBold)} font-bold`}
                       onClick={() =>
                         change({
-                          "font-weight":
-                            current.attrs["font-weight"] === "bold"
-                              ? "normal"
-                              : "bold",
+                          "font-weight": currentBold ? "normal" : "bold",
                         })
                       }
                     >
@@ -1389,6 +1458,35 @@ export function FigureEditor({
                     }
                   />
                 </label>
+                {current.type === "text" && (
+                  // 글자 배경색 — 도형의 «채우기 / 채우기 없애기»와 같은 모양(원장님 2026-09-19).
+                  <>
+                    <label className="flex items-center justify-between">
+                      배경색
+                      <input
+                        type="color"
+                        aria-label="글자 배경색"
+                        value={
+                          /^#[\da-f]{6}$/i.test(
+                            current.attrs[TEXT_BG_ATTR] ?? "",
+                          )
+                            ? current.attrs[TEXT_BG_ATTR]
+                            : "#ffffff"
+                        }
+                        onChange={(e) =>
+                          change({ [TEXT_BG_ATTR]: e.target.value })
+                        }
+                      />
+                    </label>
+                    <button
+                      type="button"
+                      onClick={() => change({ [TEXT_BG_ATTR]: "" })}
+                      className="underline text-muted"
+                    >
+                      배경 없애기
+                    </button>
+                  </>
+                )}
                 <label className="block">
                   <span className="flex justify-between">
                     {current.type === "text" ? "글자 크기" : "선 두께"}
@@ -1461,6 +1559,14 @@ export function FigureEditor({
                     </button>
                   </>
                 )}
+                <label className="flex gap-2">
+                  <input
+                    type="checkbox"
+                    checked={currentLocked}
+                    onChange={(e) => change(sizeLockValue(e.target.checked))}
+                  />
+                  요소 크기 고정 (이동만 가능)
+                </label>
                 <details className="border-t border-control pt-2">
                   <summary className="cursor-pointer text-muted">
                     정밀 수치 조정
@@ -1476,6 +1582,9 @@ export function FigureEditor({
                             step={1}
                             value={Number.parseFloat(current.attrs[key]) || 0}
                             aria-label={name}
+                            disabled={
+                              currentLocked && isShapeAttr(current, key)
+                            }
                             onChange={(e) => {
                               if (
                                 e.target.value !== "" &&
@@ -1483,7 +1592,7 @@ export function FigureEditor({
                               )
                                 change({ [key]: e.target.value });
                             }}
-                            className="w-full border border-control rounded px-1 py-1 mt-1"
+                            className="w-full border border-control rounded px-1 py-1 mt-1 disabled:opacity-40"
                           />
                         </label>
                       ))}
@@ -1525,7 +1634,8 @@ export function FigureEditor({
                           <input
                             type="number"
                             value={curvePoints[index]}
-                            className="w-full border border-control rounded px-1 py-1"
+                            disabled={currentLocked}
+                            className="w-full border border-control rounded px-1 py-1 disabled:opacity-40"
                             onChange={(e) => {
                               if (e.target.value === "") return;
                               const points = [...curvePoints];
@@ -1558,6 +1668,8 @@ export function FigureEditor({
                 idPrefix="추가할 도형 글자"
                 value={label}
                 onChange={setLabel}
+                symbolGroup={symbolGroup}
+                onSymbolGroup={setSymbolGroup}
               />
             ) : selectedIds.length > 1 ? (
               <FigureCommonFormat

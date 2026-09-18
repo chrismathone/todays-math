@@ -1,4 +1,6 @@
 import type { figureObjects } from "./figureSvgEditing";
+import { TEXT_BG_ATTR } from "./figureTextBackground";
+import { formatToggleClass, isBoldWeight } from "./editorUi";
 
 type FigureObject = ReturnType<typeof figureObjects>[number];
 
@@ -34,9 +36,13 @@ export function FigureCommonFormat({
   );
   const fill = common(fillable, "fill", "none");
   const textColor = common(texts, "fill", "#111111");
+  const textBackground = common(texts, TEXT_BG_ATTR, "none");
   const size = common(texts, "font-size", "18");
-  const italic = texts.every((o) => o.attrs["font-style"] === "italic");
-  const bold = texts.every((o) => o.attrs["font-weight"] === "bold");
+  // 켜짐 · 꺼짐 · 섞임(aria-pressed="mixed") — 누르면 섞임·꺼짐은 모두 켜고, 켜짐은 모두 끈다.
+  const toggle = (on: (o: FigureObject) => boolean) =>
+    texts.every(on) ? true : texts.some(on) ? ("mixed" as const) : false;
+  const italic = toggle((o) => o.attrs["font-style"] === "italic");
+  const bold = toggle((o) => isBoldWeight(o.attrs["font-weight"]));
   const mixed = <span className="text-muted">여러 값</span>;
   return (
     <div className="space-y-4 text-xs">
@@ -121,6 +127,26 @@ export function FigureCommonFormat({
               onChange={(e) => onChange(ids(texts), { fill: e.target.value })}
             />
           </label>
+          <div className="flex items-center justify-between gap-2">
+            <label className="flex items-center gap-2">
+              <span>배경색 {textBackground === null && mixed}</span>
+              <input
+                type="color"
+                aria-label="고른 글자 배경색"
+                value={colorOf(textBackground, "#ffffff")}
+                onChange={(e) =>
+                  onChange(ids(texts), { [TEXT_BG_ATTR]: e.target.value })
+                }
+              />
+            </label>
+            <button
+              type="button"
+              onClick={() => onChange(ids(texts), { [TEXT_BG_ATTR]: "" })}
+              className="underline text-muted"
+            >
+              배경 없애기
+            </button>
+          </div>
           <label className="block">
             <span className="flex justify-between">
               글자 크기
@@ -143,10 +169,10 @@ export function FigureCommonFormat({
             <button
               type="button"
               aria-pressed={italic}
-              className="border border-control rounded px-2 py-1"
+              className={formatToggleClass(italic)}
               onClick={() =>
                 onChange(ids(texts), {
-                  "font-style": italic ? "normal" : "italic",
+                  "font-style": italic === true ? "normal" : "italic",
                 })
               }
             >
@@ -155,10 +181,10 @@ export function FigureCommonFormat({
             <button
               type="button"
               aria-pressed={bold}
-              className="border border-control rounded px-2 py-1 font-bold"
+              className={`${formatToggleClass(bold)} font-bold`}
               onClick={() =>
                 onChange(ids(texts), {
-                  "font-weight": bold ? "normal" : "bold",
+                  "font-weight": bold === true ? "normal" : "bold",
                 })
               }
             >

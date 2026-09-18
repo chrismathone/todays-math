@@ -87,6 +87,23 @@ export function ModalShell({
   );
 }
 
+/**
+ * 서식을 켜고 끄는 단추(기울임·굵게)의 모양 — 켜짐은 **반전**(원장님 2026-09-19 «기울임이 적용이 되었는데도 된 건지
+ * 안 된 건지 시각적인 게 없어. 적용되었으면 반전을 줘»). 여러 글자에 섞여 있으면 옅은 강조(반전 아님), 꺼짐은 전과 같다.
+ */
+export const formatToggleClass = (state: boolean | "mixed") =>
+  `border rounded px-2 py-1 ${
+    state === true
+      ? "border-[var(--figure-primary)] bg-[var(--figure-primary)] text-white"
+      : state === "mixed"
+        ? "border-[var(--figure-accent-line)] bg-[var(--figure-accent-soft)] text-[var(--figure-accent-ink)]"
+        : "border-control"
+  }`;
+
+/** 글자 요소가 굵은가 — 조판(`typesetFigureSvg`)과 같은 기준: `bold` 또는 600 이상. */
+export const isBoldWeight = (weight: string | undefined) =>
+  weight === "bold" || Number(weight) >= 600;
+
 export function Btn({
   kind,
   className = "",

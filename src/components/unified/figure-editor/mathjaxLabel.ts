@@ -50,7 +50,13 @@ export interface TypesetLabel {
  * 조용히 빈 지면이 나간다. 실측으로 초등 라벨 1,929자리 중 527자리(27%)가 한글이다
  * (`scripts/qa/census-figure-labels.ts`). 그 자리는 엔진이 넣어 둔 `<text>` 로 남긴다.
  */
-const CJK_RE = /[ᄀ-ᇿ぀-ヿ㄰-㆏㐀-䶿一-鿿가-힯]/;
+/**
+ * MathJax TeX 글꼴에 **없는 기호** — 글자 칸 자판(`figureSymbols.ts`)이 넣는 원문자·괄호·※ 따위. 한글과 같이
+ * 다룬다(«수식» 라벨에서는 글자 조각으로 잇는다). 안 그러면 라벨 전체가 TeX 원문으로 찍힌다(2026-09-19 실측 31자).
+ * MathJax 가 그리는 기호(□ △ ∠ ○ …)는 넣지 않는다 — 넣으면 지금 멀쩡한 라벨의 글꼴이 바뀐다.
+ */
+const TEXT_ONLY_SYMBOLS = "①-⓿㈀-㋿「」《》【】※▱●◆☆";
+const CJK_RE = new RegExp(`[ᄀ-ᇿ぀-ヿ㄰-㆏㐀-䶿一-鿿가-힯${TEXT_ONLY_SYMBOLS}]`);
 const CJK_RUN = new RegExp(`(${CJK_RE.source}+)`);
 /**
  * «수식»(`$…$`)으로 고른 라벨에 한글이 섞였을 때(원장님 2026-09-18 — `x (초)` 의 x 가 정자체였다):

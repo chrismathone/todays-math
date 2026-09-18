@@ -101,6 +101,12 @@ const chipNumbers = (name: string) =>
     .flatMap((b) => b.getAttribute("data-figure-list-number") ?? []);
 const chip = (n: number) =>
   document.querySelector<HTMLElement>(`[data-figure-list-number="${n}"]`)!;
+/** 오른쪽 칸의 묶음 줄 — 한 묶음 전부를 골랐을 때만 선다(원장님 2026-09-19 «우측에서 그룹 이름과 해제 설정»). */
+const groupRow = () => screen.queryByRole("region", { name: "묶음" });
+const buttonCounts = () =>
+  list()
+    .getAllByRole("group")
+    .map((g) => within(g).getAllByRole("button").length);
 
 describe("요소 목록 — 역할 묶음", () => {
   it("축·눈금·그래프·눈금 숫자로 묶어 보인다", () => {
@@ -230,15 +236,21 @@ describe("요소 목록 — 끌어 옮기기 · 해제 (원장님 2026-09-18)", 
     fireEvent.click(
       within(group("눈금")).getByRole("button", { name: "눈금 2개" }),
     );
-    fireEvent.click(screen.getByRole("button", { name: "눈금 묶음 해제" }));
+    fireEvent.click(
+      within(groupRow()!).getByRole("button", { name: "눈금 묶음 해제" }),
+    );
     expect(list().queryByRole("group", { name: "눈금 묶음" })).toBeNull();
     expect(groupNames().at(-1)).toBe("묶음 없음 묶음");
     expect(chipNumbers("묶음 없음")).toEqual(["5", "6"]);
     fireEvent.click(
       within(group("묶음 없음")).getByRole("button", { name: "묶음 없음 2개" }),
     );
+    // «묶음 없음»을 통째로 고르면 이름 칸 없이 «자동 묶기»만
+    expect(within(groupRow()!).queryByRole("textbox")).toBeNull();
     fireEvent.click(
-      screen.getByRole("button", { name: "묶음 없는 요소 자동 묶기" }),
+      within(groupRow()!).getByRole("button", {
+        name: "묶음 없는 요소 자동 묶기",
+      }),
     );
     expect(chipNumbers("눈금")).toEqual(["5", "6"]);
     expect(list().queryByRole("group", { name: "묶음 없음 묶음" })).toBeNull();
@@ -248,12 +260,87 @@ describe("요소 목록 — 끌어 옮기기 · 해제 (원장님 2026-09-18)", 
     fireEvent.click(
       within(group("그래프")).getByRole("button", { name: "그래프 2개" }),
     );
-    fireEvent.click(screen.getByRole("button", { name: "그래프 이름 바꾸기" }));
-    const input = screen.getByRole("textbox", { name: "그래프 묶음 이름" });
+    const input = within(groupRow()!).getByRole("textbox", {
+      name: "그래프 묶음 이름",
+    });
     fireEvent.change(input, { target: { value: "속력" } });
     fireEvent.keyDown(input, { key: "Enter" });
     expect(groupNames()[0]).toBe("속력 묶음");
     expect(chipNumbers("속력")).toEqual(["7", "8"]);
+    fireEvent.click(screen.getByRole("button", { name: /되돌리기/ }));
+    expect(groupNames()).toContain("그래프 묶음");
+  });
+  it("포커스가 빠지면 이름이 확정되고, 이름을 비우면 그대로 둔다", () => {
+    open();
+    fireEvent.click(
+      within(group("그래프")).getByRole("button", { name: "그래프 2개" }),
+    );
+    const input = within(groupRow()!).getByRole("textbox", {
+      name: "그래프 묶음 이름",
+    });
+    fireEvent.change(input, { target: { value: "  " } });
+    fireEvent.blur(input);
+    expect(groupNames()).toContain("그래프 묶음");
+    fireEvent.change(
+      within(groupRow()!).getByRole("textbox", { name: "그래프 묶음 이름" }),
+      { target: { value: "속력" } },
+    );
+    fireEvent.blur(
+      within(groupRow()!).getByRole("textbox", { name: "그래프 묶음 이름" }),
+    );
+    expect(groupNames()[0]).toBe("속력 묶음");
+  });
+});
+
+describe("요소 목록 — 고를 때 줄바꿈이 바뀌지 않는다 (원장님 2026-09-19)", () => {
+  it("묶음을 골라도 묶음 상자 안 단추 수가 그대로 — 이름·해제는 목록에 서지 않는다", () => {
+    open();
+    const before = buttonCounts();
+    for (const [name, size] of [
+      ["x축", 2],
+      ["눈금", 2],
+      ["그래프", 2],
+      ["눈금 숫자", 1],
+    ] as const) {
+      fireEvent.click(
+        within(group(name)).getByRole("button", { name: `${name} ${size}개` }),
+      );
+      expect(buttonCounts(), name).toEqual(before);
+      expect(list().queryByRole("textbox")).toBeNull();
+      expect(list().queryByText("해제")).toBeNull();
+      expect(list().queryByText("이름")).toBeNull();
+    }
+  });
+
+  it("한 묶음 전부를 고르면 오른쪽 칸에 «묶음 이름» 칸과 «묶음 해제»", () => {
+    open();
+    expect(groupRow()).toBeNull();
+    fireEvent.click(
+      within(group("눈금")).getByRole("button", { name: "눈금 2개" }),
+    );
+    const row = groupRow()!;
+    expect(within(row).getByText("묶음 이름")).toBeInTheDocument();
+    expect(
+      within(row).getByRole("textbox", { name: "눈금 묶음 이름" }),
+    ).toHaveValue("눈금");
+    expect(
+      within(row).getByRole("button", { name: "눈금 묶음 해제" }),
+    ).toHaveTextContent("묶음 해제");
+  });
+
+  it("한 묶음의 일부나 여러 묶음에 걸치면 묶음 줄이 없다", () => {
+    open();
+    fireEvent.click(chip(7));
+    expect(groupRow()).toBeNull();
+    fireEvent.click(
+      within(group("그래프")).getByRole("button", { name: "그래프 2개" }),
+    );
+    expect(groupRow()).not.toBeNull();
+    fireEvent.click(
+      within(group("눈금")).getByRole("button", { name: "눈금 2개" }),
+      { shiftKey: true },
+    );
+    expect(groupRow()).toBeNull();
   });
 });
 
