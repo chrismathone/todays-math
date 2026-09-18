@@ -463,8 +463,9 @@ describe("auth recovery and accessibility", () => {
       expect(await screen.findByRole("alert")).toHaveTextContent(
         "가입은 완료됐지만 로그인하지 못했어요",
       );
+      // 승인제(2026-09-14 df1eb904) 뒤 문구 — «계정이 만들어졌어요» 는 옛 문구
       expect(screen.getByRole("status")).toHaveTextContent(
-        "계정이 만들어졌어요",
+        "가입 신청이 접수됐어요",
       );
       expect(screen.getByLabelText("이메일")).toHaveAttribute("readonly");
       expect(screen.getByLabelText("비밀번호")).toHaveAttribute(

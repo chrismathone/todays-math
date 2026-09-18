@@ -12,7 +12,9 @@ import { describe, expect, it, vi } from "vitest";
 import { render, screen, waitFor, within } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 
-import MainPage from "@/app/(main)/page";
+// `/` 페이지는 2026-09-14(ce1a16d4) 로그인 작업실(서버 컴포넌트 · server-only)로 바뀌었다 — 반 목록 화면은
+// `MainScreen` 으로 남아 «수업 · 학생 관리»(TeachingView)가 쓴다. 페이지를 불러오면 파일째 죽어서 화면을 직접 그린다.
+import { MainScreen as MainPage } from "@/components/main/MainScreen";
 import {
   CLASS_A_ID,
   CLASS_B_ID,
