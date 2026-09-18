@@ -26,7 +26,10 @@
  * 돌린다(`/var/task` 대역). 키 매칭·글롭은 Next 가 빌드 때 쓰는 것을 그대로 쓴다
  * (`next/dist/build/collect-build-traces.js` 의 apply-include-excludes 단계 —
  * `normalizeAppPath` + picomatch `{ dot, contains }` + `next/dist/compiled/glob`).
- * 그다음 설치본을 보는 라우트와 **같은 요청**을 해서 상태·바이트가 같은지 견준다.
+ * 그다음 갈래·Content-Type 마다 대표 파일을 실제로 요청해 설치본 바이트와 견주고,
+ * 나머지 전부는 «라우트와 같은 해석으로 찾은 뿌리에 같은 크기로 있나»만 잰다.
+ * (패키지 뿌리 해석은 파일마다 같다 — 다른 것은 «그 파일이 실렸나» 하나다.
+ *  이 기계의 비동기 readFile 은 한 번에 30ms 남짓이라 198개 전부를 요청하면 20초를 넘는다.)
  *
  * ## ⚠️ 이 시험이 못 보는 것
  *
@@ -41,6 +44,7 @@ import {
   mkdtempSync,
   readdirSync,
   rmSync,
+  statSync,
 } from "node:fs";
 import { readFile } from "node:fs/promises";
 import { createRequire } from "node:module";
@@ -123,8 +127,8 @@ async function fetchAsset(cwd: string, kind: string, filename: string) {
   }
 }
 
-/** 클라이언트(`StudioView` 의 `getDocument`)가 이 라우트로 받는 세 갈래 전부. */
-const served = ["cmaps", "standard_fonts", "wasm"].flatMap((kind) =>
+/** 클라이언트(`StudioView` 의 `getDocument`)가 이 라우트로 받는 세 갈래 — 설치본 폴더의 파일 전부. */
+const installed = ["cmaps", "standard_fonts", "wasm"].flatMap((kind) =>
   readdirSync(join(installedRoot, kind)).map(
     (filename) => [kind, filename] as const,
   ),
@@ -148,6 +152,7 @@ describe("PDF assets inside the traced production function", () => {
     ["cmaps", "UniKS-UTF16-H.bcmap", "application/octet-stream"],
     ["standard_fonts", "FoxitSerif.pfb", "application/octet-stream"],
     ["standard_fonts", "LiberationSans-Regular.ttf", "font/ttf"],
+    ["wasm", "openjpeg_nowasm_fallback.js", "text/javascript; charset=utf-8"],
   ])(
     "serves %s/%s from the function root as the installed bytes",
     async (kind, filename, mime) => {
@@ -160,21 +165,24 @@ describe("PDF assets inside the traced production function", () => {
     },
   );
 
-  it(`answers every installed cmaps/standard_fonts/wasm file (${served.length}) exactly as the full install does`, async () => {
-    expect(served.length).toBeGreaterThan(100);
-    const mismatches: string[] = [];
-    for (const [kind, filename] of served) {
-      const full = await fetchAsset(ROOT, kind, filename);
-      const lambda = await fetchAsset(task, kind, filename);
-      if (
-        full.status !== lambda.status ||
-        full.type !== lambda.type ||
-        !full.bytes.equals(lambda.bytes)
-      )
-        mismatches.push(
-          `${kind}/${filename}: ${full.status} → ${lambda.status}`,
+  it(`carries every installed cmaps/standard_fonts/wasm file (${installed.length}) where the route looks for it`, () => {
+    expect(installed.length).toBeGreaterThan(100);
+    // 라우트와 같은 해석 — 함수 뿌리의 package.json 자리에서 패키지 뿌리를 찾는다
+    const lambdaRoot = dirname(
+      createRequire(join(task, "package.json")).resolve(
+        "pdfjs-dist/package.json",
+      ),
+    );
+    const missing = installed.filter(([kind, filename]) => {
+      try {
+        const inside = statSync(join(lambdaRoot, kind, filename));
+        return (
+          inside.size !== statSync(join(installedRoot, kind, filename)).size
         );
-    }
-    expect(mismatches).toEqual([]);
+      } catch {
+        return true;
+      }
+    });
+    expect(missing).toEqual([]);
   });
 });
