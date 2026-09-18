@@ -1,4 +1,5 @@
 import { useRef, useState } from "react";
+import { hwpToLatex } from "@/lib/math/hwpEquation";
 import { FIGURE_SYMBOL_GROUPS, figureSymbolInput } from "./figureSymbols";
 
 // Local adapter for Mathgen's label editor. TeX metadata is unchanged; no MathLive assets are required.
@@ -42,6 +43,15 @@ export function FigureLabelInput({
   const input = useRef<HTMLInputElement>(null);
   const update = (next: string) =>
     onChange(mode === "math" ? `$${next}$` : next);
+  /**
+   * 확정(Enter · 포커스 아웃) 때 한글(HWP) 수식 문법을 TeX 로 — `root2` → `\sqrt{2}` (트랙 8).
+   * 역슬래시가 있으면(이미 TeX · 특수문자 자판의 `\angle ` 등) 그대로 둔다.
+   */
+  const commit = () => {
+    if (mode !== "math") return;
+    const result = hwpToLatex(unwrap(value));
+    if (result.changed) update(result.latex);
+  };
   const insert = (latex: string) => {
     const plain = unwrap(value),
       start = input.current?.selectionStart ?? plain.length,
@@ -83,6 +93,10 @@ export function FigureLabelInput({
         aria-label={mode === "math" ? `${idPrefix} 수식` : idPrefix}
         value={unwrap(value)}
         onChange={(event) => update(event.target.value)}
+        onKeyDown={(event) => {
+          if (event.key === "Enter" && !event.nativeEvent.isComposing) commit();
+        }}
+        onBlur={commit}
         className="w-full rounded-lg border border-control px-3 py-2 text-sm"
         placeholder={
           mode === "math" ? "예: x^2, \\frac{1}{2}" : "예: 점 A, 길이"

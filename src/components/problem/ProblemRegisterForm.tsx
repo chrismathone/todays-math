@@ -1,12 +1,13 @@
 "use client";
 
-import { useState, type FormEvent } from "react";
+import { useState, type FocusEvent, type FormEvent } from "react";
 import { asDifficulty, DIFFICULTY_LADDER } from "@/contracts/difficulty";
 
 import { Button } from "@/components/ui/Button";
 import { Input } from "@/components/ui/Input";
 import type { ProblemCreateRequest } from "@/contracts/problem.contract";
 import type { UnitEntity } from "@/contracts/unit.contract";
+import { convertHwpMathSpans } from "@/lib/math/hwpEquation";
 import { createProblem } from "@/lib/problem/problemApi";
 
 import { FieldSelect } from "./FieldSelect";
@@ -29,10 +30,36 @@ export function ProblemRegisterForm({
   onError,
 }: Props) {
   const [pending, setPending] = useState(false);
+  const [hwpNotice, setHwpNotice] = useState<string | null>(null);
+
+  /**
+   * 한글(HWP) 수식 문법 → LaTeX. `$…$` 구간 안만, 역슬래시가 없을 때만 바꾼다
+   * (트랙 8, 원장님 결정 B). 변환 결과에는 역슬래시가 생겨 두 번 걸려도 그대로다.
+   */
+  function convertField(field: HTMLInputElement | HTMLTextAreaElement) {
+    const result = convertHwpMathSpans(field.value);
+    if (!result.changed) return;
+    field.value = result.text;
+    setHwpNotice(["한글 수식을 변환했습니다", ...result.warnings].join(" — "));
+  }
+
+  const handleMathBlur = (
+    event: FocusEvent<HTMLInputElement | HTMLTextAreaElement>,
+  ) => convertField(event.currentTarget);
 
   async function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
-    const form = new FormData(event.currentTarget);
+    const formElement = event.currentTarget;
+    // 칸을 안 떠나고 제출해도(정답 칸에서 Enter) 같은 변환을 거친다.
+    for (const name of ["content", "answer"]) {
+      const field = formElement.elements.namedItem(name);
+      if (
+        field instanceof HTMLInputElement ||
+        field instanceof HTMLTextAreaElement
+      )
+        convertField(field);
+    }
+    const form = new FormData(formElement);
     const input: ProblemCreateRequest = {
       unitId: String(form.get("unitId") ?? ""),
       source: form.get("source") === "past_exam" ? "past_exam" : "manual",
@@ -109,13 +136,19 @@ export function ProblemRegisterForm({
           name="content"
           required
           rows={3}
+          onBlur={handleMathBlur}
           className="border border-control bg-white px-3 py-2 text-[12.5px] text-ink focus:border-g-blue focus:outline focus:outline-2 focus:outline-g-blue"
         />
       </label>
       <label className="mt-3 flex flex-col gap-1 text-[10.5px] font-black tracking-[1.5px] text-text-2">
         정답
-        <Input name="answer" required />
+        <Input name="answer" required onBlur={handleMathBlur} />
       </label>
+      {hwpNotice ? (
+        <p role="status" className="mt-2 text-[10.5px] font-bold text-text-3">
+          {hwpNotice}
+        </p>
+      ) : null}
       <div className="mt-4">
         <Button type="submit" variant="ink" disabled={pending}>
           등록하기
