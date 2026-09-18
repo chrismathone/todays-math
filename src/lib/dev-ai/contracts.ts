@@ -7,6 +7,8 @@ export const DEV_AI_PROVIDERS = [
   "grok",
 ] as const;
 export type DevAiProvider = (typeof DEV_AI_PROVIDERS)[number];
+/** 구독 CLI 모델 이름 — 셸 없이 인자로만 넘기지만 형식은 좁힌다(첫 글자 영숫자 · `opus[1m]` 허용). */
+export const CLI_MODEL_ID = /^[A-Za-z0-9][A-Za-z0-9._[\]-]{0,63}$/;
 export const STUDIO_API_PROVIDERS = [
   "auto",
   "gemini",
@@ -33,6 +35,10 @@ export interface DevAiProviderStatus {
     | "error";
   detail: string;
   image: boolean;
+  /** 구독 CLI(Codex·Claude)만: 고를 수 있는 모델. */
+  models?: string[];
+  /** 구독 CLI 만: 원장님 CLI 설정의 모델(«CLI 설정» 칸이 쓰는 값) — 없으면 CLI 자체 기본. */
+  defaultModel?: string;
 }
 export interface DevAiStatus {
   enabled: boolean;
@@ -42,6 +48,8 @@ export interface DevAiStatus {
 }
 export interface DevAiRequest {
   provider: DevAiProvider;
+  /** 구독 CLI 모델 — 없으면 원장님 CLI 설정. 서버 모델 API 경로는 쓰지 않는다. */
+  model?: string;
   action: DevAiAction;
   imageDataUrl?: string;
   content?: string;

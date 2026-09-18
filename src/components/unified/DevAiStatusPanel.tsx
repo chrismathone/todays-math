@@ -176,6 +176,27 @@ export default function DevAiStatusPanel({
           <Icon name={running ? "close" : "undo"} size={17} />
         </button>
       </div>
+      {/* 원장님 2026-09-18 — 구독 CLI 모델. «CLI 설정»은 원장님 CLI 설정의 모델(서버가 넘긴다). */}
+      {ai.mode === "subscription-cli" && selected?.models?.length ? (
+        <label className={s.provider}>
+          <select
+            aria-label="AI 모델"
+            title={ai.model || `CLI 설정 (${selected.defaultModel ?? "기본"})`}
+            value={ai.model}
+            disabled={running}
+            onChange={(event) => ai.setModel(event.target.value)}
+          >
+            <option value="">
+              {`CLI 설정 (${selected.defaultModel ?? "기본"})`}
+            </option>
+            {selected.models.map((id) => (
+              <option key={id} value={id}>
+                {id}
+              </option>
+            ))}
+          </select>
+        </label>
+      ) : null}
       <div
         className={s.connection}
         data-ready={selected?.status === "ready"}

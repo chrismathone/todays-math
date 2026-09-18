@@ -107,6 +107,85 @@ describe("Studio transport selection", () => {
       provider: "auto",
       action: "solution",
     });
+    // 서버 모델 API 에는 구독 CLI 모델 칸이 없다
+    expect(screen.queryByLabelText("AI 모델")).toBeNull();
+    expect(JSON.parse(post[1].body).model).toBeUndefined();
+  });
+  /**
+   * 원장님 2026-09-18 — 구독 CLI 로 그릴 때 모델을 고른다(Codex astra·sol… · Claude fable·opus·sonnet).
+   * 도구 아래 모델 칸 · 첫 항목 «CLI 설정»(원장님 CLI 설정의 모델 — 서버가 넘긴다) · 고른 값은 브라우저에 기억.
+   */
+  it("dev 구독 CLI 는 도구 아래 모델 칸 — 기본은 «CLI 설정», 고른 모델을 보내고 다시 열어도 기억한다", async () => {
+    window.history.replaceState(null, "", "/studio");
+    const status = {
+      ...cli,
+      providers: [
+        {
+          ...cli.providers[0],
+          models: ["gpt-6-astra", "gpt-5.6-sol"],
+          defaultModel: "gpt-6-astra",
+        },
+      ],
+    };
+    const fetcher = vi
+      .fn()
+      .mockImplementation(async (_url: string, init?: RequestInit) =>
+        Response.json(
+          init?.method === "POST"
+            ? {
+                provider: "codex",
+                action: "solution",
+                result: {
+                  answer: "2",
+                  solution: "",
+                  content: "",
+                  warnings: [],
+                },
+              }
+            : status,
+        ),
+      );
+    vi.stubGlobal("fetch", fetcher);
+    const posts = () =>
+      fetcher.mock.calls
+        .filter(([, init]) => init?.method === "POST")
+        .map(([, init]) => JSON.parse(init.body));
+    const view = render(
+      <DevAiProvider>
+        <Controls />
+      </DevAiProvider>,
+    );
+    const select = (await screen.findByLabelText(
+      "AI 모델",
+    )) as HTMLSelectElement;
+    expect([...select.options].map((option) => option.text)).toEqual([
+      "CLI 설정 (gpt-6-astra)",
+      "gpt-6-astra",
+      "gpt-5.6-sol",
+    ]);
+    expect(select.value).toBe("");
+    fireEvent.click(screen.getByText("해설 실행"));
+    await waitFor(() => expect(posts()).toHaveLength(1));
+    expect(posts()[0].model).toBeUndefined();
+    await screen.findByText("해설 생성 완료");
+    fireEvent.change(select, { target: { value: "gpt-5.6-sol" } });
+    fireEvent.click(screen.getByText("해설 실행"));
+    await waitFor(() => expect(posts()).toHaveLength(2));
+    expect(posts()[1]).toMatchObject({
+      provider: "codex",
+      model: "gpt-5.6-sol",
+    });
+    view.unmount();
+    render(
+      <DevAiProvider>
+        <Controls />
+      </DevAiProvider>,
+    );
+    await waitFor(() =>
+      expect(
+        (screen.getByLabelText("AI 모델") as HTMLSelectElement).value,
+      ).toBe("gpt-5.6-sol"),
+    );
   });
   /**
    * 🔴 원장님 2026-09-18 — *「dev 모드인데 왜 구독요금제가 아니라 서버로 되어있지?」*

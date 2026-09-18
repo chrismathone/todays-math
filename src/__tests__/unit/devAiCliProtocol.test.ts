@@ -238,6 +238,43 @@ describe("safe CLI invocation", () => {
     );
     expect(claude.args[claude.args.indexOf("--tools") + 1]).toBe("");
   });
+  it("passes the resolved model (and Codex reasoning effort) only when one is given", () => {
+    const image = decodeNativeImage(png);
+    const codex = buildSubscriptionInvocation(
+      "codex",
+      "2+2",
+      image,
+      "C:\\Temp\\isolated\\input.png",
+      { model: "gpt-5.6-sol", reasoningEffort: "xhigh" },
+    );
+    const m = codex.args.indexOf("-m");
+    expect(codex.args[m + 1]).toBe("gpt-5.6-sol");
+    expect(codex.args).toContain('model_reasoning_effort="xhigh"');
+    expect(codex.args.slice(-4)).toEqual([
+      "--image",
+      "C:\\Temp\\isolated\\input.png",
+      "--",
+      "-",
+    ]);
+    const claude = buildSubscriptionInvocation(
+      "claude",
+      "2+2",
+      image,
+      undefined,
+      {
+        model: "opus[1m]",
+      },
+    );
+    expect(claude.args[claude.args.indexOf("--model") + 1]).toBe("opus[1m]");
+    for (const plain of [
+      buildSubscriptionInvocation("codex", "2+2"),
+      buildSubscriptionInvocation("claude", "2+2"),
+    ]) {
+      expect(plain.args).not.toContain("-m");
+      expect(plain.args).not.toContain("--model");
+      expect(plain.args.join(" ")).not.toContain("model_reasoning_effort");
+    }
+  });
   it("rejects URLs, unsupported files, invalid base64 and mismatched image bytes", () => {
     for (const input of [
       "https://example.test/image.png",

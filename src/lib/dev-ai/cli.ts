@@ -8,6 +8,7 @@ import {
 } from "./contracts";
 import { discoverSubscriptionCli } from "./cli-discovery";
 import { inspectAdditionalProvider } from "./cli-metadata";
+import { readCliModelSettings, resolveCliModel } from "./cli-models";
 import {
   abortError,
   ProcessSlots,
@@ -192,6 +193,13 @@ export function getDevAiProviderStatuses(): Promise<DevAiProviderStatus[]> {
             "제한 시간 내에 로컬 CLI의 구독 인증 상태를 확인하지 못했습니다.",
           ),
     );
+    // 상태판 모델 칸 — 목록과 «CLI 설정» 기본값만 싣는다(원장님 2026-09-18)
+    for (const value of values)
+      if (value.id === "codex" || value.id === "claude") {
+        const settings = await readCliModelSettings(value.id, env);
+        value.models = settings.models;
+        if (settings.defaultModel) value.defaultModel = settings.defaultModel;
+      }
     statusCache = { expires: Date.now() + 10_000, values };
     return values;
   })
@@ -212,6 +220,8 @@ export async function runSubscriptionCli(input: {
   provider: DevAiProvider;
   prompt: string;
   imageDataUrl?: string;
+  /** 상태판에서 고른 모델 — 없으면 원장님 CLI 설정(`cli-models.ts`). */
+  model?: string;
   signal?: AbortSignal;
 }): Promise<string> {
   if (!DEV_AI_PROVIDERS.includes(input.provider))
@@ -230,6 +240,17 @@ export async function runSubscriptionCli(input: {
     );
   }
   if (input.signal?.aborted) throw abortError();
+  // 목록 밖 모델은 줄 서기·로그인 확인 전에 거절한다
+  const choice =
+    input.provider === "codex" || input.provider === "claude"
+      ? resolveCliModel(
+          await readCliModelSettings(
+            input.provider,
+            subscriptionEnvironment(process.env),
+          ),
+          input.model,
+        )
+      : {};
   const nativeImage =
     input.imageDataUrl === undefined
       ? undefined
@@ -277,6 +298,7 @@ export async function runSubscriptionCli(input: {
         input.prompt,
         nativeImage,
         imagePath,
+        choice,
       );
       const result = await runCliProcess(executable, invocation.args, {
         cwd,

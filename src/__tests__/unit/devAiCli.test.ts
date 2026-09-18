@@ -18,6 +18,23 @@ vi.mock("../../lib/dev-ai/cli-process", async (importOriginal) => {
 vi.mock("../../lib/dev-ai/cli-metadata", () => ({
   inspectAdditionalProvider: vi.fn(),
 }));
+vi.mock("../../lib/dev-ai/cli-models", async (importOriginal) => {
+  const actual =
+    await importOriginal<typeof import("../../lib/dev-ai/cli-models")>();
+  return {
+    ...actual,
+    readCliModelSettings: vi.fn(async (provider: string) =>
+      provider === "codex"
+        ? {
+            models: ["gpt-6-astra", "gpt-5.6-sol"],
+            defaultModel: "gpt-6-astra",
+            reasoningEffort: "xhigh",
+            efforts: { "gpt-6-astra": ["xhigh"], "gpt-5.6-sol": ["low"] },
+          }
+        : { models: ["fable", "opus", "sonnet"], efforts: {} },
+    ),
+  };
+});
 
 const help =
   "--ignore-user-config --ignore-rules --ephemeral --sandbox --json --image --safe-mode --restricted --setting-sources --settings --tools --strict-mcp-config --input-format --output-format --permission-prompts --no-session-persistence";
@@ -197,6 +214,15 @@ describe("public subscription adapter boundary", () => {
     expect(a).toEqual(b);
     expect(a[0].status).toBe("ready");
     expect(JSON.stringify(a)).not.toContain("private@example.test");
+    // 상태판 모델 칸 — 목록과 «CLI 설정» 기본값만 싣는다
+    expect(a.find((p) => p.id === "codex")).toMatchObject({
+      models: ["gpt-6-astra", "gpt-5.6-sol"],
+      defaultModel: "gpt-6-astra",
+    });
+    expect(a.find((p) => p.id === "claude")).toMatchObject({
+      models: ["fable", "opus", "sonnet"],
+    });
+    expect(a.find((p) => p.id === "grok")?.models).toBeUndefined();
     expect(run).toHaveBeenCalledTimes(4);
     await api.getDevAiProviderStatuses();
     expect(run).toHaveBeenCalledTimes(4);
@@ -254,5 +280,43 @@ describe("public subscription adapter boundary", () => {
     ).resolves.toBe("4");
     expect(run.mock.calls[2][2].input).toBe("2+2");
     expect(run.mock.calls[2][2].cwd).not.toBe(process.cwd());
+    // 모델을 안 고르면 원장님 Codex 설정(gpt-6-astra · xhigh)을 넘긴다 — 구독 호출은 사용자 설정을 끄고 돈다
+    const args = run.mock.calls[2][1];
+    expect(args[args.indexOf("-m") + 1]).toBe("gpt-6-astra");
+    expect(args).toContain('model_reasoning_effort="xhigh"');
+  });
+
+  it("uses the chosen model and refuses one outside the CLI's list before inference", async () => {
+    const { api, run } = await harness();
+    const ok = { stdout: help, stderr: "", exitCode: 0 };
+    const login = {
+      stdout: "",
+      stderr: "Logged in using ChatGPT",
+      exitCode: 0,
+    };
+    run.mockResolvedValueOnce(ok).mockResolvedValueOnce(login);
+    run.mockResolvedValueOnce({
+      stdout:
+        '{"type":"item.completed","item":{"type":"agent_message","text":"4"}}\n{"type":"turn.completed"}',
+      stderr: "",
+      exitCode: 0,
+    });
+    await api.runSubscriptionCli({
+      provider: "codex",
+      prompt: "2+2",
+      model: "gpt-5.6-sol",
+    });
+    const args = run.mock.calls[2][1];
+    expect(args[args.indexOf("-m") + 1]).toBe("gpt-5.6-sol");
+    expect(args.join(" ")).not.toContain("model_reasoning_effort");
+    run.mockClear();
+    await expect(
+      api.runSubscriptionCli({
+        provider: "codex",
+        prompt: "2+2",
+        model: "gpt-reserve",
+      }),
+    ).rejects.toMatchObject({ code: "invalid-model" });
+    expect(run).not.toHaveBeenCalled();
   });
 });

@@ -36,6 +36,9 @@ interface DevAiContextValue {
   checking: boolean;
   provider: StudioAiProvider;
   setProvider: (provider: StudioAiProvider) => void;
+  /** 구독 CLI 모델 — "" 는 «CLI 설정»(서버가 원장님 CLI 설정의 모델을 넘긴다). */
+  model: string;
+  setModel: (model: string) => void;
   mode: StudioAiMode;
   canChooseMode: boolean;
   setMode: (mode: StudioAiMode) => void;
@@ -58,6 +61,8 @@ const Context = createContext<DevAiContextValue>({
   checking: false,
   provider: "codex",
   setProvider: () => {},
+  model: "",
+  setModel: () => {},
   mode: "subscription-cli",
   canChooseMode: false,
   setMode: () => {},
@@ -73,6 +78,7 @@ const Context = createContext<DevAiContextValue>({
 });
 export const useDevAi = () => useContext(Context);
 const STORAGE_KEY = "today-math-dev-ai-provider";
+const MODEL_STORAGE_KEY = "today-math-dev-ai-model";
 
 export function DevAiProvider({
   children,
@@ -92,6 +98,15 @@ export function DevAiProvider({
   );
   const mode = status?.mode ?? preferredMode;
   const canChooseMode = !checking && !getStudioEndpoints().production;
+  // 도구마다 고른 모델(원장님 2026-09-18). 목록에 없는 값은 «CLI 설정»으로 읽는다.
+  const [modelChoices, setModelChoices] = useState<Record<string, string>>({});
+  const models =
+    mode === "subscription-cli"
+      ? status?.providers.find((item) => item.id === provider)?.models
+      : undefined;
+  const model = models?.includes(modelChoices[provider] ?? "")
+    ? modelChoices[provider]
+    : "";
   const [{ activities, lastActivity }, setActivities] = useState<{
     activities: DevAiActivity[];
     lastActivity: DevAiActivity | null;
@@ -122,6 +137,20 @@ export function DevAiProvider({
       }
     },
     [mode],
+  );
+  const setModel = useCallback(
+    (next: string) => {
+      if (activeRequests.current.size) return;
+      setModelChoices((current) => ({ ...current, [provider]: next }));
+      try {
+        const key = `${MODEL_STORAGE_KEY}-${provider}`;
+        if (next) localStorage.setItem(key, next);
+        else localStorage.removeItem(key);
+      } catch {
+        /* Browser storage is optional. */
+      }
+    },
+    [provider],
   );
   const setMode = useCallback((next: StudioAiMode) => {
     if (activeRequests.current.size || getStudioEndpoints().production) return;
@@ -157,6 +186,19 @@ export function DevAiProvider({
       if (controller.signal.aborted) return;
       setStatusError("");
       setStatus(next);
+      if (!getStudioEndpoints().productionBuild)
+        try {
+          const saved: Record<string, string> = {};
+          for (const item of next.providers) {
+            const value = localStorage.getItem(
+              `${MODEL_STORAGE_KEY}-${item.id}`,
+            );
+            if (value && item.models?.includes(value)) saved[item.id] = value;
+          }
+          setModelChoices(saved);
+        } catch {
+          /* Browser storage is optional. */
+        }
       if (!choiceMade.current && !activeRequests.current.size) {
         let initial = next.defaultProvider;
         // 운영 빌드는 모델 고르기가 없다(원장님 2026-09-18 — 자동 고정). 예전에 저장한 고르기를
@@ -257,7 +299,13 @@ export function DevAiProvider({
         const response = await fetch(endpoint(), {
           method: "POST",
           headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ ...request, imageDataUrl, provider }),
+          // 모델은 구독 CLI 에서 고른 때만 — 비우면 서버가 원장님 CLI 설정을 쓴다
+          body: JSON.stringify({
+            ...request,
+            imageDataUrl,
+            provider,
+            ...(model ? { model } : {}),
+          }),
           signal: controller.signal,
         });
         const body = await response.json();
@@ -320,7 +368,7 @@ export function DevAiProvider({
         activeRequests.current.delete(id);
       }
     },
-    [provider, status, endpoint, mode, enabled],
+    [provider, model, status, endpoint, mode, enabled],
   );
   const value = useMemo(
     () => ({
@@ -329,6 +377,8 @@ export function DevAiProvider({
       checking,
       provider,
       setProvider,
+      model,
+      setModel,
       mode,
       canChooseMode,
       setMode,
@@ -346,6 +396,8 @@ export function DevAiProvider({
       checking,
       provider,
       setProvider,
+      model,
+      setModel,
       mode,
       canChooseMode,
       setMode,

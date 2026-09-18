@@ -35,6 +35,7 @@ import {
 import { validDevAiSvg } from "./svg";
 import { buildFigureSpecPrompt } from "./figure-prompt";
 import {
+  CLI_MODEL_ID,
   DEV_AI_PROVIDERS,
   type DevAiDetectedGrade,
   type DevAiFigure,
@@ -52,6 +53,10 @@ const image = z
 export const DevAiRequestSchema = z
   .object({
     provider: z.enum(DEV_AI_PROVIDERS),
+    model: z
+      .string()
+      .regex(CLI_MODEL_ID, "모델 이름 형식이 올바르지 않습니다.")
+      .optional(),
     action: z.enum(["ocr", "page-ocr", "figures", "figure-redraw", "solution"]),
     imageDataUrl: image.optional(),
     content: z.string().max(40000).optional(),

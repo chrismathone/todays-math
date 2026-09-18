@@ -57,7 +57,11 @@ export async function redrawDevAiFigure(
     inference ??
     (async (input) => {
       const { runSubscriptionCli } = await import("./cli");
-      return runSubscriptionCli({ ...input, provider: request.provider });
+      return runSubscriptionCli({
+        ...input,
+        provider: request.provider,
+        model: request.model,
+      });
     });
   const deadline = new AbortController();
   const cancel = () => deadline.abort();

@@ -201,10 +201,16 @@ export function buildSubscriptionInvocation(
   prompt: string,
   image?: NativeImage,
   imagePath?: string,
+  /** `resolveCliModel` 이 확정한 값 — 없으면 CLI 자체 기본 모델. */
+  choice: { model?: string; reasoningEffort?: string } = {},
 ): { args: string[]; input: string } {
   if (provider === "codex") {
     const args = [
       "exec",
+      ...(choice.model ? ["-m", choice.model] : []),
+      ...(choice.reasoningEffort
+        ? ["-c", `model_reasoning_effort="${choice.reasoningEffort}"`]
+        : []),
       "--ignore-user-config",
       "--ignore-rules",
       "--skip-git-repo-check",
@@ -253,6 +259,7 @@ export function buildSubscriptionInvocation(
   return {
     args: [
       ...CLAUDE_ISOLATION_ARGS,
+      ...(choice.model ? ["--model", choice.model] : []),
       "--print",
       "--verbose",
       "--input-format",

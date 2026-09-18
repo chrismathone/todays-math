@@ -28,6 +28,7 @@ export async function executeStudioTask(
         signal.throwIfAborted();
         return runSubscriptionCli({
           provider: request.provider,
+          model: request.model,
           prompt,
           imageDataUrl: request.imageDataUrl,
           signal,

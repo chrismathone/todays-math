@@ -43,6 +43,13 @@ DEV_AI_MODE=subscription-cli
 DEV_AI_PROVIDER=claude
 ```
 
+**모델**(원장님 2026-09-18 — 「codex도 astra, sol 이런거 그리고 claude에서도 fable, opus, sonnet」): 상태판 도구 아래 «AI 모델» 칸에서 고른다.
+비워 두면(«CLI 설정») **원장님 CLI 설정의 모델**을 서버가 넘긴다 — 구독 호출은 훅·MCP 를 끌어오지 않으려고 사용자 설정을 끄고
+돌기 때문에(Codex `--ignore-user-config` · Claude `--setting-sources ""`), `src/lib/dev-ai/cli-models.ts` 가 모델 칸만 읽는다:
+Codex 는 `CODEX_HOME`(없으면 `~/.codex`)의 `config.toml` 맨 위 `model`·`model_reasoning_effort` 와 `models_cache.json`(목록 표시 모델 ·
+모델별 추론 강도), Claude 는 `CLAUDE_CONFIG_DIR`(없으면 `~/.claude`)의 `settings.json` `model`. 추론 강도는 **그 모델이 받을 때만**
+넘기고, 목록 밖 모델은 줄 서기·로그인 확인 전에 거절한다(`invalid-model`). 인증 파일은 읽지 않는다.
+
 Codex 기본 로그인과 Orca에서 선택한 계정이 다르면 `DEV_AI_CODEX_HOME`에 **이미 로그인되어 있는 프로필 디렉터리의 절대 경로**를 지정한다. 계정 파일을 복사하거나 토큰을 추출할 필요가 없다. 개인 프로필 경로는 저장소에 커밋하지 않는다.
 
 개발 접속 주소는 `http://127.0.0.1:3000/dev/unified`이다. 개발 브리지는 development 모드의 loopback 접속에서만 제공되고, POST는 브라우저의 정확한 동일 출처를 요구한다. production에서는 404를 반환한다. CLI 환경 설정이 없어도 상태판에서 서버 모델 API를 선택할 수 있다.
