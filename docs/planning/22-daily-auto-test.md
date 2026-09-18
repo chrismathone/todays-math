@@ -199,3 +199,9 @@ daily-review 응답에 `hasPlan` · `delayed` · `noLessonClasses`. 캡처 `scra
 🔴 `D:\todays-math\.env` 에 **`EYWA_TRANSPORT=db` · `EYWA_DATABASE_URL`(eywa DB) · `EYWA_TENANT_ID` 가 아직 살아 있다.**
 연계 계획서는 「env 를 지우고 api 로 고정」이라고 적어 두었다(`tracks/plan-eywa-link.md:197-198`).
 로컬 기준이고 **Vercel 운영 env 는 확인 안 함**. eywa 연계를 보류한 동안에는 **동기화를 켜지 않는다.**
+
+🔴 **그런데 켜져 있었다 — 2026-09-18 에 껐다.** 이 절을 적은 뒤에도 `vercel.json` 의 eywa cron(매일 07:30 KST)이
+그대로 남아 **운영에서 매일 돌았다** — 공유 DB `eywa_sync_run` 34행(마지막 2026-09-17 22:30Z), eywa 진도 행이 계속 들어왔다
+(D-134 세션이 성취 리포트 실데이터를 세다가 발견). 원장님 2026-09-18 *「ewya 동기화 꺼」* → cron 한 줄을 뺐고,
+`src/__tests__/unit/vercelCrons.test.ts` 가 **다시 조용히 켜지는 것**을 막는다. 이미 들어온 eywa 진도 행은 **지우지 않았다**
+(그 행들을 어떻게 할지는 원장님이 정하실 일). 사람용 「지금 가져오기」(POST /api/eywa-sync)는 누를 때만 돈다.
