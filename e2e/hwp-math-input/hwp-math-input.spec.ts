@@ -183,6 +183,12 @@ test("작업실 수식 칸 — 한컴 낱말 작은 판", async ({ page }, testI
 
   const results: Array<Case & { got: string; pass: boolean }> = [];
   for (const c of [...CONVERTS, ...KEEPS]) {
+    // 칸 끝에서 → 를 치면 칸이 닫힌다(작업실 원래 동작) — 다음 사례를 위해 다시 연다.
+    if ((await field.count()) === 0)
+      await body
+        .getByRole("button", { name: "수식 편집", exact: true })
+        .first()
+        .click();
     await field.focus();
     await page.keyboard.press("Control+a");
     await page.keyboard.press("Backspace");
@@ -190,7 +196,10 @@ test("작업실 수식 칸 — 한컴 낱말 작은 판", async ({ page }, testI
       .poll(() => field.evaluate((el) => (el as HTMLInputElement).value))
       .toBe("");
     await typeSeq(page, c.keys);
-    const got = await field.evaluate((el) => (el as HTMLInputElement).value);
+    const got =
+      (await field.count()) === 0
+        ? "(칸이 닫혔다)"
+        : await field.evaluate((el) => (el as HTMLInputElement).value);
     results.push({ ...c, got, pass: norm(got) === norm(c.want) });
   }
   // 친 값 전부를 남긴다 — 초록이어도 «무엇이 찍혔나»를 사람이 볼 수 있게.
