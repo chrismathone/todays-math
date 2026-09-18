@@ -1,4 +1,5 @@
 import { useRef, useState } from "react";
+import { FIGURE_SYMBOL_GROUPS, figureSymbolInput } from "./figureSymbols";
 
 // Local adapter for Mathgen's label editor. TeX metadata is unchanged; no MathLive assets are required.
 const MATH_TEMPLATES = [
@@ -22,11 +23,19 @@ export function FigureLabelInput({
   value,
   onChange,
   idPrefix,
+  symbolGroup,
+  onSymbolGroup,
 }: {
   value: string;
   onChange: (value: string) => void;
   idPrefix: string;
+  /** 특수문자 자판에서 연 무리 — 편집기가 들고 있어 다른 글자를 골라도 기억한다. */
+  symbolGroup: string;
+  onSymbolGroup: (name: string) => void;
 }) {
+  const group =
+    FIGURE_SYMBOL_GROUPS.find((g) => g.name === symbolGroup) ??
+    FIGURE_SYMBOL_GROUPS[0];
   const [mode, setMode] = useState<"text" | "math">(() =>
     isFigureMathLabel(value) ? "math" : "text",
   );
@@ -80,6 +89,45 @@ export function FigureLabelInput({
         }
         spellCheck={false}
       />
+      {/* 특수문자 자판 — 휴대폰 자판의 기호 쪽처럼 무리 탭 + 문자 격자. 누르면 입력칸의 커서 자리에 넣는다
+          (누를 때 입력칸 초점·선택을 뺏지 않는다). 모양은 «일반 글자 | 수식» 전환과 수식 도구 단추의 것. */}
+      <div className="space-y-1.5">
+        <div
+          className="flex flex-wrap gap-0.5 rounded-lg bg-side p-1"
+          role="group"
+          aria-label={`${idPrefix} 특수문자 무리`}
+        >
+          {FIGURE_SYMBOL_GROUPS.map((option) => (
+            <button
+              key={option.name}
+              type="button"
+              aria-pressed={option.name === group.name}
+              onMouseDown={(event) => event.preventDefault()}
+              onClick={() => onSymbolGroup(option.name)}
+              className={`rounded-md px-2 py-1.5 text-xs font-medium ${option.name === group.name ? "bg-surface text-ink shadow-sm" : "text-muted"}`}
+            >
+              {option.name}
+            </button>
+          ))}
+        </div>
+        <div
+          className="grid grid-cols-6 gap-1"
+          role="group"
+          aria-label={`${idPrefix} 특수문자`}
+        >
+          {group.symbols.map((symbol) => (
+            <button
+              key={symbol}
+              type="button"
+              onMouseDown={(event) => event.preventDefault()}
+              onClick={() => insert(figureSymbolInput(symbol, mode))}
+              className="rounded border border-control bg-surface py-1 text-base leading-6"
+            >
+              {symbol}
+            </button>
+          ))}
+        </div>
+      </div>
       {mode === "math" && (
         <>
           <div

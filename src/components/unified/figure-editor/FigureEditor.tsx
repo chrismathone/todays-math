@@ -52,6 +52,7 @@ import { FigureNumberLayer } from "./FigureNumberLayer";
 import { FigureObjectList } from "./FigureObjectList";
 import { FigureCommonFormat } from "./FigureCommonFormat";
 import { NAMES } from "./figureObjectNames";
+import { FIGURE_SYMBOL_GROUPS } from "./figureSymbols";
 import { FunctionGraphInput } from "./FunctionGraphInput";
 import type { FunctionGraphConfig } from "./functionGraph";
 import {
@@ -162,6 +163,8 @@ export function FigureEditor({
   const [zoom, setZoom] = useState(1);
   const [panOffset, setPanOffset] = useState({ x: 0, y: 0 });
   const [label, setLabel] = useState("A");
+  // 글자 칸 특수문자 자판에서 마지막으로 연 무리 — 편집기를 연 동안 기억한다(글자를 바꿔 골라도).
+  const [symbolGroup, setSymbolGroup] = useState(FIGURE_SYMBOL_GROUPS[0].name);
   const [instructions, setInstructions] = useState("");
   const [busy, setBusy] = useState(false);
   const [redrawing, setRedrawing] = useState(false);
@@ -1377,6 +1380,8 @@ export function FigureEditor({
                       idPrefix="선택한 도형 글자"
                       value={current.attrs["data-mj"] ?? current.text}
                       onChange={(value) => change({}, value)}
+                      symbolGroup={symbolGroup}
+                      onSymbolGroup={setSymbolGroup}
                     />
                   </div>
                 )}
@@ -1617,6 +1622,8 @@ export function FigureEditor({
                 idPrefix="추가할 도형 글자"
                 value={label}
                 onChange={setLabel}
+                symbolGroup={symbolGroup}
+                onSymbolGroup={setSymbolGroup}
               />
             ) : selectedIds.length > 1 ? (
               <FigureCommonFormat
