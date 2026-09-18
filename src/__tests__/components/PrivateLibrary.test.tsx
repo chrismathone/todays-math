@@ -5,13 +5,31 @@ import {
   waitFor,
   within,
 } from "@testing-library/react";
-import { afterEach, describe, expect, it, vi } from "vitest";
+import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 import PrivateLibrary from "@/components/unified/PrivateLibrary";
 import { PrivateCloudClient } from "@/components/unified/privateCloudClient";
 import { privateServer, sessionData } from "../fixtures/privateCloud";
 
+// jsdom 은 `showModal()` 이 없다 — 작업실 시험(`UnifiedWorkspace.access`)과 같은 대역.
+const showModal = vi.fn(function (this: HTMLDialogElement) {
+  this.setAttribute("open", "");
+});
+beforeEach(() => {
+  showModal.mockClear();
+  Object.defineProperties(HTMLDialogElement.prototype, {
+    showModal: { configurable: true, value: showModal },
+    close: {
+      configurable: true,
+      value: function (this: HTMLDialogElement) {
+        this.removeAttribute("open");
+      },
+    },
+  });
+});
 afterEach(() => {
   vi.unstubAllGlobals();
+  Reflect.deleteProperty(HTMLDialogElement.prototype, "showModal");
+  Reflect.deleteProperty(HTMLDialogElement.prototype, "close");
 });
 const article = (title: string) =>
   within(
@@ -143,5 +161,169 @@ describe("private library", () => {
     server.fail(0);
     fireEvent.click(screen.getByRole("button", { name: "새로고침" }));
     expect(await screen.findByText("아직 저장한 자료가 없어요")).toBeVisible();
+  });
+});
+
+/**
+ * 2026-09-19 원장님 «내 시험지 삭제 시에 카드가 늘어나지 말고 덧씌우기 같은 이중창 같은 형식으로».
+ * 확인 문구가 카드 **안에** 펼쳐지면 카드가 길어져 옆 카드와 높이가 어긋났다. 이제는 작업실의
+ * `<dialog>` 를 `showModal()` 로 띄운다 — 카드 높이가 그대로인 것은 브라우저에서 잰다(jsdom 은
+ * 배치를 안 한다). 여기서는 «문구가 카드 밖 모달에만 있는가»와 닫기·초점·잠금·오류를 지킨다.
+ */
+describe("private library delete confirmation dialog", () => {
+  async function seeded(transport?: typeof fetch) {
+    const server = privateServer();
+    const client = new PrivateCloudClient("owner-a", server.transport);
+    await client.save(
+      "worksheet",
+      "draft",
+      "오늘의 수학 학습지",
+      { problems: [] },
+      null,
+    );
+    vi.stubGlobal("fetch", transport ?? server.transport);
+    const deleted = vi.fn();
+    render(
+      <PrivateLibrary
+        storageScope="owner-a"
+        canExport
+        canStudio
+        onOpenDraft={vi.fn()}
+        onOpenExtraction={vi.fn()}
+        onDeleted={deleted}
+      />,
+    );
+    await screen.findByRole("heading", { name: "오늘의 수학 학습지" });
+    const card = screen
+      .getByRole("heading", { name: "오늘의 수학 학습지", level: 2 })
+      .closest("article")!;
+    const trigger = within(card).getByRole("button", {
+      name: "오늘의 수학 학습지 삭제",
+    });
+    await waitFor(() => expect(trigger).toBeEnabled());
+    const open = () => {
+      trigger.focus();
+      fireEvent.click(trigger);
+      return screen.getByRole("dialog", {
+        name: "‘오늘의 수학 학습지’ 자료를 삭제할까요?",
+      });
+    };
+    return { server, card, trigger, open, deleted };
+  }
+
+  it("opens a modal dialog instead of expanding the card", async () => {
+    const { card, open } = await seeded();
+    const dialog = open();
+    expect(showModal).toHaveBeenCalledTimes(1);
+    expect(dialog).toHaveAttribute("open");
+    expect(card.contains(dialog)).toBe(false);
+    expect(within(card).queryByText(/삭제할까요/)).not.toBeInTheDocument();
+    expect(
+      within(card).queryByRole("button", { name: "삭제 확인" }),
+    ).not.toBeInTheDocument();
+    expect(within(dialog).getByRole("button", { name: "취소" })).toHaveFocus();
+    expect(
+      within(dialog).getByRole("button", { name: "삭제 확인" }),
+    ).toBeEnabled();
+  });
+
+  it("closes on cancel, Esc and backdrop and returns focus to the delete button", async () => {
+    const { server, trigger, open } = await seeded();
+    fireEvent.click(within(open()).getByRole("button", { name: "취소" }));
+    expect(screen.queryByRole("dialog")).not.toBeInTheDocument();
+    expect(trigger).toHaveFocus();
+
+    const escape = new Event("cancel", { cancelable: true });
+    fireEvent(open(), escape);
+    expect(escape.defaultPrevented).toBe(true);
+    expect(screen.queryByRole("dialog")).not.toBeInTheDocument();
+    expect(trigger).toHaveFocus();
+
+    const dialog = open();
+    vi.spyOn(dialog, "getBoundingClientRect").mockReturnValue({
+      x: 300,
+      y: 200,
+      left: 300,
+      top: 200,
+      right: 870,
+      bottom: 420,
+      width: 570,
+      height: 220,
+      toJSON: () => ({}),
+    });
+    fireEvent.pointerDown(dialog, { clientX: 40, clientY: 40 });
+    fireEvent.click(dialog, { clientX: 40, clientY: 40 });
+    expect(screen.queryByRole("dialog")).not.toBeInTheDocument();
+    expect(trigger).toHaveFocus();
+    expect(server.documents.has("owner-a:worksheet")).toBe(true);
+  });
+
+  it("calls the existing delete, locks the dialog while pending and shows progress inside it", async () => {
+    let release!: () => void;
+    const gate = new Promise<void>((resolve) => {
+      release = resolve;
+    });
+    const serverRef: { transport?: typeof fetch } = {};
+    const { server, card, open, deleted } = await seeded(
+      async (input, init) => {
+        if (init?.method === "DELETE") await gate;
+        return serverRef.transport!(input, init);
+      },
+    );
+    serverRef.transport = server.transport;
+    const dialog = open();
+    fireEvent.click(within(dialog).getByRole("button", { name: "삭제 확인" }));
+    expect(await within(dialog).findByRole("status")).toHaveTextContent(
+      "처리 중…",
+    );
+    expect(within(card).queryByRole("status")).not.toBeInTheDocument();
+    expect(
+      within(dialog).getByRole("button", { name: "삭제 확인" }),
+    ).toBeDisabled();
+    expect(within(dialog).getByRole("button", { name: "취소" })).toBeDisabled();
+    // 처리 중에는 Esc 로도 닫지 않는다 — 결과(오류)를 볼 자리를 남긴다.
+    fireEvent(dialog, new Event("cancel", { cancelable: true }));
+    expect(screen.getByRole("dialog")).toBe(dialog);
+    release();
+    await waitFor(() =>
+      expect(
+        screen.queryByRole("heading", { name: "오늘의 수학 학습지" }),
+      ).not.toBeInTheDocument(),
+    );
+    expect(screen.queryByRole("dialog")).not.toBeInTheDocument();
+    expect(deleted).toHaveBeenCalledWith(
+      expect.objectContaining({ id: "worksheet" }),
+    );
+    expect(server.documents.has("owner-a:worksheet")).toBe(false);
+  });
+
+  it("keeps the dialog open and shows the failure inside it", async () => {
+    const { server, card, open } = await seeded();
+    const client = new PrivateCloudClient("owner-a", server.transport);
+    await client.rename("worksheet", "다른 기기 변경", 1);
+    const dialog = open();
+    fireEvent.click(within(dialog).getByRole("button", { name: "삭제 확인" }));
+    expect(await within(dialog).findByRole("alert")).toHaveTextContent(
+      "다른 창이나 기기",
+    );
+    expect(screen.getByRole("dialog")).toBe(dialog);
+    expect(within(card).queryByRole("alert")).not.toBeInTheDocument();
+    expect(
+      within(dialog).getByRole("button", { name: "삭제 확인" }),
+    ).toBeEnabled();
+    expect(server.documents.has("owner-a:worksheet")).toBe(true);
+  });
+
+  it("leaves rename inline in the card", async () => {
+    const { card } = await seeded();
+    fireEvent.click(
+      within(card).getByRole("button", {
+        name: "오늘의 수학 학습지 이름 변경",
+      }),
+    );
+    expect(
+      within(card).getByRole("textbox", { name: "새 자료 이름" }),
+    ).toBeVisible();
+    expect(screen.queryByRole("dialog")).not.toBeInTheDocument();
   });
 });

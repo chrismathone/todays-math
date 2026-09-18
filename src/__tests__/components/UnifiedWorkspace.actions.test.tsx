@@ -82,8 +82,27 @@ beforeEach(() => {
   localStorage.clear();
   window.history.replaceState(null, "", "/#export");
   vi.spyOn(window, "scrollTo").mockImplementation(() => {});
+  // jsdom 은 `showModal()` 이 없다 — 저장한 시험지 삭제 확인이 모달 창이다(2026-09-19).
+  Object.defineProperties(HTMLDialogElement.prototype, {
+    showModal: {
+      configurable: true,
+      value: function (this: HTMLDialogElement) {
+        this.setAttribute("open", "");
+      },
+    },
+    close: {
+      configurable: true,
+      value: function (this: HTMLDialogElement) {
+        this.removeAttribute("open");
+      },
+    },
+  });
 });
-afterEach(() => vi.restoreAllMocks());
+afterEach(() => {
+  vi.restoreAllMocks();
+  Reflect.deleteProperty(HTMLDialogElement.prototype, "showModal");
+  Reflect.deleteProperty(HTMLDialogElement.prototype, "close");
+});
 function seed() {
   const store = createWorkspaceDraftStore();
   store.hydrate();
@@ -223,7 +242,10 @@ describe("workspace action wiring", () => {
     expect(
       JSON.parse(localStorage.getItem(DRAFT_STORE_KEY)!).drafts,
     ).toHaveLength(1);
-    fireEvent.click(screen.getByRole("button", { name: "삭제 확인" }));
+    const confirm = screen.getByRole("dialog", {
+      name: "‘이름 바꾼 시험지’ 시험지를 삭제할까요?",
+    });
+    fireEvent.click(within(confirm).getByRole("button", { name: "삭제 확인" }));
     await waitFor(() =>
       expect(
         screen.queryByRole("heading", { name: "이름 바꾼 시험지" }),
