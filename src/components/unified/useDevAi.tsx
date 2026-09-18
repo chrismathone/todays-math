@@ -158,19 +158,22 @@ export function DevAiProvider({
       setStatus(next);
       if (!choiceMade.current && !activeRequests.current.size) {
         let initial = next.defaultProvider;
-        try {
-          const saved =
-            localStorage.getItem(`${STORAGE_KEY}-${next.mode}`) ??
-            (next.mode === "subscription-cli"
-              ? localStorage.getItem(STORAGE_KEY)
-              : null);
-          if (next.providers.some((item) => item.id === saved)) {
-            initial = saved as StudioAiProvider;
-            choiceMade.current = true;
+        // 운영 빌드는 모델 고르기가 없다(원장님 2026-09-18 — 자동 고정). 예전에 저장한 고르기를
+        // 복원하면 바꿀 길 없이 그 모델에 묶인다 — 개발 모드(고르기가 있는 기존 칸)에서만 복원한다.
+        if (!getStudioEndpoints().productionBuild)
+          try {
+            const saved =
+              localStorage.getItem(`${STORAGE_KEY}-${next.mode}`) ??
+              (next.mode === "subscription-cli"
+                ? localStorage.getItem(STORAGE_KEY)
+                : null);
+            if (next.providers.some((item) => item.id === saved)) {
+              initial = saved as StudioAiProvider;
+              choiceMade.current = true;
+            }
+          } catch {
+            /* Browser storage is optional. */
           }
-        } catch {
-          /* Browser storage is optional. */
-        }
         updateProvider(initial);
       }
     } catch (error) {

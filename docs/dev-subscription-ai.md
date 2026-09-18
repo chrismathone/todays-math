@@ -2,7 +2,9 @@
 
 `/dev/unified`의 자료 제작은 **구독 CLI / 서버 모델 API**를 선택한다. CLI를 선택하면 기존 Claude/Codex 구독 로그인을 사용하고, API를 선택하면 서버 환경변수의 모델 키를 사용한다. 실행 방식 변경은 사용자가 직접 선택하며, CLI 실패를 API 호출로 자동 전환하지 않는다.
 
-운영 화면은 **`/studio`**이며 오늘수학 로그인과 기존 역할 제한을 적용한다. 이 경로는 development에서도 API만 사용한다. 운영에서는 `/api/dev/**` CLI 경로가 열리지 않는다. 자료 제작의 PDF·문제은행·수업 자료 조회도 인증된 `/api/studio/**` 경로를 사용한다.
+운영 화면은 **`/studio`**(첫 화면 `/` 포함)이며 오늘수학 로그인과 기존 역할 제한을 적용한다. 자료 제작의 PDF·문제은행·수업 자료 조회는 인증된 `/api/studio/**` 경로를 사용한다. **AI 요청의 경로는 빌드가 정한다**(원장님 2026-09-18 — 「dev 모드인데 왜 구독요금제가 아니라 서버로 되어있지?」): 운영 빌드는 `/api/studio/ai`(서버 모델 API), development 는 `/`·`/studio` 에서도 AI 요청만 구독 CLI 다리 `/api/dev/unified/ai`(`DEV_AI_MODE=subscription-cli`, 도구는 `DEV_AI_PROVIDER`)로 보낸다 — `src/lib/studio-ai/endpoints.ts` 의 `ai`. 운영에서는 `/api/dev/**` CLI 경로가 열리지 않는다(404). 작업실의 AI 상태판은 **운영 빌드에서만 연결 상태 한 줄**(모델 자동 고정)이고, 개발 모드에서는 어느 화면이든 기존 칸(도구 고르기)이다 — `getStudioEndpoints().productionBuild`.
+
+> 2026-09-14 `ce1a16d4` 가 첫 화면 `/` 를 작업실 표면으로 넣으면서, 표면 판정 하나가 데이터 경로와 AI 경로를 같이 정해 development 의 `/` 도 서버 모델 API(과금 키)로 갔다. 2026-09-18 에 두 판정을 갈랐다.
 
 ## 서버 모델 API
 
@@ -21,6 +23,8 @@
 ## 운영 도형·HWPX 엔진
 
 로컬/자체 호스팅에서는 기존 Python을 직접 실행한다. Vercel에서는 `api/mathgen-engine.py`를 별도 Python 함수로 배포하고 Node API가 같은 배포의 엔진을 호출한다. `vercel.json`에 엔진·템플릿 포함 설정을 추가했으며 기존 Next 경로와 cron은 유지한다.
+
+🔴 **배포 보호(2026-09-18 실측)** — `STUDIO_ENGINE_URL` 이 없으면 Node API 는 엔진을 **배포 고유 주소**(`https://$VERCEL_URL`)로 부르는데, 그 주소는 Vercel 배포 보호가 막는다(«Protected deployment» 401). 우회 비밀값(`VERCEL_AUTOMATION_BYPASS_SECRET`)은 9/15 에 회수했다. 그래서 운영의 SVG 도형 생성이 전부 502 «AI 결과를 처리하지 못했습니다»로 떨어졌다(HWPX 내보내기도 같은 길). 운영 환경변수 `STUDIO_ENGINE_URL=https://todays-math.vercel.app`(Production 만)로 엔진을 운영 도메인으로 부른다 — 엔진은 HMAC 서명(`STUDIO_ENGINE_SECRET`·`AUTH_SECRET`)으로 따로 잠겨 있어 서명 없는 요청은 스스로 401 이다.
 
 `functions`의 `includeFiles`·`excludeFiles`는 각각 최대 256자다. 2026-09-15 배포 실패는 362자였던 제외 패턴 때문이었다. Python 빌더가 기본 제외하는 `node_modules`, `.next`, `.git`, `public`, `__pycache__`의 중복을 제거하고 패턴을 묶어 246자로 줄였다. 공식 Vercel 스키마로 이전 설정의 실패와 수정 설정의 통과를 확인했으며, 추적 파일 24,774개와 Vercel 빌더의 실제 glob 결과를 대조해 엔진 파일·도형 자산·HWPX 템플릿 포함 목록이 동일함을 검증했다. 별도 임시 폴더의 Python 도형 렌더링도 통과했다. `next build`만으로는 이 Vercel 설정 오류를 검사하지 못한다.
 

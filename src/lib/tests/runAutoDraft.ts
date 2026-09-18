@@ -44,10 +44,12 @@ import {
   planDailyReview,
   type DailyPlanRow,
 } from "@/lib/daily/planDailyReview";
-import { countEligibleProblems } from "@/lib/findEligibleProblems";
+import { loadLastTeachableUnitId } from "@/lib/daily/teachableBoundary";
 import { ownedRowsWhere } from "@/lib/ownerScope";
 import type { SessionUser } from "@/lib/session";
+import { draftCapacityOf, loadCapacityRows } from "@/lib/tests/draftCapacity";
 import { generateDraftTest } from "@/lib/tests/generateDraftTest";
+import { loadRecentProblemIds } from "@/lib/tests/recentProblemIds";
 
 const isoDay = (value: Date): string => value.toISOString().slice(0, 10);
 const dayDate = (day: string): Date => new Date(`${day}T00:00:00.000Z`);
@@ -131,7 +133,13 @@ async function draftAll(args: {
           eywaLastReportDate: true,
           eywaLastReportText: true,
           class: {
-            select: { name: true, grade: true, defaultProblemCount: true },
+            select: {
+              name: true,
+              grade: true,
+              defaultProblemCount: true,
+              // 최근 출제(D-20)의 열쇠 — 출제(`generateDraftTest`)와 같이 **반 소유자**다(D-130).
+              userId: true,
+            },
           },
         },
       })
@@ -192,6 +200,10 @@ async function draftAll(args: {
     }),
   ]);
 
+  // 🔴 계획이 **출제할 문항이 있는 마지막 차시**를 넘지 않게 한다(2026-09-18 시뮬레이션 ⑵) —
+  //    없으면 중3 반이 고등(문항 0건)으로 걸어 들어가 영구히 「문항 부족」이 된다.
+  const lastTeachableUnitId = await loadLastTeachableUnitId(units);
+
   const lastReviewByStudent = new Map<string, string | null>();
   for (const r of reviews)
     if (r.studentId && !lastReviewByStudent.has(r.studentId))
@@ -242,6 +254,7 @@ async function draftAll(args: {
       startDate: isoDay(p.startDate),
       active: p.active,
     })),
+    lastTeachableUnitId,
   });
 
   tally.targets = plan.attended;
@@ -257,19 +270,25 @@ async function draftAll(args: {
     })),
   );
 
+  const classOfStudent = new Map(students.map((s) => [s.id, s.class]));
+
   for (const group of plan.groups) {
-    // 출제 자격 문항 수 — 출제 조회와 **같은 where**(D-22·D-31 포함). 갈리면 화면의
-    // 「부족 아님」이 출제에서 422 로 죽는다.
-    const poolTotal = await countEligibleProblems({ unitIds: group.unitIds });
-    const enough = poolTotal >= group.neededCount;
+    // 출제 자격 후보 — 출제 조회와 **같은 where**(D-22·D-31 포함). 묶음마다 한 번 읽는다.
+    const capacityRows = await loadCapacityRows(group.unitIds);
 
     for (const st of group.students) {
       if (alreadyToday.has(st.id)) {
         tally.skips.push({ studentId: st.id, reason: "already" });
         continue;
       }
-      if (!enough) {
-        // 🔴 만들지 말고 **기록만** 남긴다 — 화면이 「직접 출제」로 안내한다(D-64 와 같은 결).
+      // 🔴 부족은 **행이 아니라 갈래**로, 그리고 **그때까지의 최근 출제를 빼고** 가른다
+      //    (2026-09-18 시뮬레이션 ⑴). 예전의 행 수 문지기는 「부족 아님」이라 해 놓고 출제가
+      //    422 를 내 `failed` 로만 남았다. 최근 출제는 출제와 같은 함수·같은 열쇠(반 소유자)로
+      //    학생마다 다시 읽는다 — 같은 회차에서 앞 학생이 쓴 문항이 이미 DB 에 있다.
+      const cls = classOfStudent.get(st.id)!;
+      const recent = await loadRecentProblemIds(cls.userId, day);
+      if (draftCapacityOf(capacityRows, recent) < cls.defaultProblemCount) {
+        // 만들지 말고 **기록만** 남긴다 — 화면이 「직접 출제」로 안내한다(D-64 와 같은 결).
         tally.skips.push({ studentId: st.id, reason: "lacking" });
         continue;
       }

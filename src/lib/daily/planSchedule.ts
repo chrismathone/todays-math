@@ -77,8 +77,14 @@ export function buildPlanSchedule(args: {
   /** YYYY-MM-DD, 양끝 포함 */
   from: string;
   to: string;
+  /**
+   * **출제할 문항이 있는 마지막 차시** — 아침 회차와 같은 경계를 써야 「목록에는 공통수학1 인데
+   * 아침 초안은 중3 마지막 차시」가 안 된다(`teachableBoundary.ts`).
+   */
+  lastTeachableUnitId?: string | null;
 }): PlanScheduleRow[] {
   const { rule, units, from, to } = args;
+  const lastTeachableUnitId = args.lastTeachableUnitId ?? null;
 
   const applicable = applicableProgress({
     classProgress: [...args.classProgress],
@@ -101,6 +107,7 @@ export function buildPlanSchedule(args: {
       actual: anchorOf(
         findLatestProgress(applicable.filter((r) => r.recordedAt < date)),
       ),
+      lastTeachableUnitId,
     });
 
     const recordedToday = applicable
@@ -117,6 +124,7 @@ export function buildPlanSchedule(args: {
       actual: anchorOf(
         findLatestProgress(applicable.filter((r) => r.recordedAt <= date)),
       ),
+      lastTeachableUnitId,
     });
 
     rows.push({

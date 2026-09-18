@@ -16,7 +16,7 @@ export default function ProgressFixture() {
         <StudioProgressStrip
           summaries={[
             { id: "pages", label: "페이지", done: 3, total: 5, active: true },
-            { id: "text", label: "문자", done: 6, total: 21, active: true },
+            { id: "text", label: "문제", done: 6, total: 21, active: true },
             { id: "figures", label: "도형", done: 0, total: 1, active: true },
           ]}
           warningCount={warning ? 1 : 0}

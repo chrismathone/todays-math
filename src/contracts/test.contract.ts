@@ -303,8 +303,16 @@ export const dailyReviewGroupSchema = z.strictObject({
   unitCount: z.number().int().min(1),
   /** 이 묶음에 필요한 문항 수(구성원 반 기본값의 최댓값) — 부족 판정 기준. */
   neededCount: z.number().int().min(1),
-  /** 출제 자격 문항 수 — 출제 조회와 같은 where 로 센다(eligibleProblemsWhere). */
-  poolTotal: z.number().int().min(0),
+  /**
+   * **이 범위로 한 시험지에 낼 수 있는 문항 수** — 출제 자격 후보(`eligibleProblemsWhere`)의 **갈래 수**
+   * (D-105 · `src/lib/tests/draftCapacity.ts`). 화면의 「문항 N/8」이 이것이다.
+   *
+   * 🔴 예전 칸 `poolTotal` 은 **행 수**였다. 엔진 문항은 한 단원이 행 200~700 · 갈래 10~12 라
+   *    15문항 반이 「문항 228/15 · 자동」으로 보이고 출제는 422 로 죽었다(2026-09-18 시뮬레이션).
+   *    뜻이 바뀌어 이름도 바꿨다 — 같은 이름에 다른 뜻을 싣지 않는다.
+   * ⚠️ 학생과 무관한 **범위의 상한**이다 — 최근 출제(D-20)는 빼지 않는다(아침 회차는 학생마다 뺀다).
+   */
+  capacity: z.number().int().min(0),
   students: z.array(dailyGroupStudentSchema).min(1),
 });
 
@@ -332,7 +340,7 @@ export const dailyReviewResponseSchema = dataResponseSchema(
     /** 오늘 **대상이 된** 학생 수(분모) — 계획상 수업일이거나 오늘 보고서가 있는 학생.
      *  예전에는 「오늘 보고서가 있는 학생」이었다(D-129 ⑷ 로 계획 축이 붙었다). */
     attended: z.number().int().min(0),
-    /** 문항이 충분한 묶음(poolTotal >= neededCount) — 「모두 출제」 대상. */
+    /** 문항이 충분한 묶음(capacity >= neededCount) — 「모두 출제」 대상. */
     auto: z.array(dailyReviewGroupSchema),
     /** 문항 부족 묶음 — 자동에서 뺀다. 화면이 사유와 함께 보여 준다. */
     lacking: z.array(dailyReviewGroupSchema),

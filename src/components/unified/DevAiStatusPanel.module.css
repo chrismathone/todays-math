@@ -136,3 +136,41 @@
     display: none;
   }
 }
+
+/* 운영 작업실 — 연결 상태만(원장님 2026-09-18) */
+.panel[data-compact] .connection {
+  margin-top: 0;
+}
+.connection[data-state="error"] > span {
+  background: #ef8a7a;
+}
+.retry {
+  margin-left: auto;
+  padding: 2px 8px;
+  border: 1px solid #4c6386;
+  border-radius: 6px;
+  background: #263d5d;
+  color: #d8e6ff;
+  font: inherit;
+  font-size: 12px;
+}
+.retry:hover {
+  background: #324c71;
+}
+.retry:disabled {
+  opacity: 0.6;
+}
+.cancel {
+  display: grid;
+  place-items: center;
+  width: 24px;
+  height: 24px;
+  flex-shrink: 0;
+  border: 1px solid #4c6386;
+  border-radius: 6px;
+  background: #263d5d;
+  color: #d8e6ff;
+}
+.cancel:hover {
+  background: #324c71;
+}

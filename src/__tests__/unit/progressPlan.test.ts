@@ -281,3 +281,82 @@ describe("[progressPlan] 학생 계획이 반 계획을 덮는다", () => {
     ).toBeNull();
   });
 });
+
+/**
+ * 🔴 RED → 🟢 — **출제할 문항이 있는 마지막 차시를 넘지 않는다** (2026-09-18 시뮬레이션 결함 ⑵).
+ *
+ * 차례가 전역 연속값(D-27)이라 중3 반의 계획이 공통수학1(문항 0건)로 걸어 들어가 **영구히 「문항 부족」**
+ * 이었다. 부르는 쪽이 경계(`lastTeachableUnitId`)를 넘기면 계획은 거기서 멈추고, 교육과정 끝과
+ * 같은 표시(`atCurriculumEnd`)를 낸다 — D-129 리드 결정 ⑵ «끝에 닿으면 표시만»의 연장.
+ */
+describe("[progressPlan] 경계 — 문항이 있는 마지막 차시", () => {
+  const at = (
+    day: string,
+    lastTeachableUnitId: string | null | undefined,
+    over: Partial<ProgressPlanRule> = {},
+    actual: { unitId: string; recordedAt: string } | null = null,
+  ) =>
+    resolveDailyPlan({
+      rule: plan(over),
+      units: UNITS,
+      day,
+      actual,
+      lastTeachableUnitId,
+    });
+
+  it("경계를 넘어야 하는 날에는 경계 차시에 멈추고 끝 표시를 낸다", () => {
+    // 월수금 한 차시씩: 9/7 u1 · 9/9 u2 · 9/11 u3 · 9/14 u4 · 9/16 u5 · 9/18 u6
+    const r = at("2026-09-18", "u5");
+    expect(r.lessonToday).toBe(true);
+    expect(r.endUnitId).toBe("u5");
+    expect(r.unitIds).toEqual(["u5"]);
+    expect(r.atCurriculumEnd).toBe(true);
+  });
+
+  it("경계에 막 닿은 날은 아직 끝이 아니다", () => {
+    const r = at("2026-09-16", "u5");
+    expect(r.endUnitId).toBe("u5");
+    expect(r.atCurriculumEnd).toBe(false);
+  });
+
+  it("경계가 없으면(undefined·null) 예전과 같다", () => {
+    expect(at("2026-09-18", undefined).endUnitId).toBe("u6");
+    expect(at("2026-09-18", null).endUnitId).toBe("u6");
+    expect(at("2026-09-18", null).atCurriculumEnd).toBe(false);
+  });
+
+  it("목록 밖 경계는 무시한다 — 조용히 첫 차시로 읽지 않는다", () => {
+    const r = at("2026-09-18", "nope");
+    expect(r.endUnitId).toBe("u6");
+    expect(r.atCurriculumEnd).toBe(false);
+  });
+
+  it("한 수업 두 차시여도 경계를 넘지 않는다", () => {
+    // 9/7 u1-u2 · 9/9 u3-u4 · 9/11 이면 u5-u6 인데 경계 u5
+    const r = at("2026-09-11", "u5", { unitsPerLesson: 2 });
+    expect(r.endUnitId).toBe("u5");
+    expect(r.atCurriculumEnd).toBe(true);
+  });
+
+  it("🔴 실제 진도가 이미 경계 밖이면 **뒤로 끌지 않는다** — 그 자리에서 멈춘다", () => {
+    const r = at(
+      "2026-09-16",
+      "u5",
+      {},
+      { unitId: "u7", recordedAt: "2026-09-14" },
+    );
+    expect(r.anchoredOn).toBe("progress");
+    expect(r.endUnitId).toBe("u7");
+    expect(r.atCurriculumEnd).toBe(true);
+  });
+
+  it("시작 차시가 경계 밖이어도 뒤로 끌지 않는다", () => {
+    const r = at("2026-09-07", "u2", { startUnitId: "u4" });
+    expect(r.endUnitId).toBe("u4");
+    expect(r.atCurriculumEnd).toBe(false);
+    expect(at("2026-09-09", "u2", { startUnitId: "u4" }).endUnitId).toBe("u4");
+    expect(at("2026-09-09", "u2", { startUnitId: "u4" }).atCurriculumEnd).toBe(
+      true,
+    );
+  });
+});

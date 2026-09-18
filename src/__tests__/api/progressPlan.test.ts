@@ -689,3 +689,21 @@ describe("POST /api/classes — 반을 만들 때 계획을 **같이** 받는다
     ).toBe(400);
   });
 });
+
+/**
+ * 🔴 RED → 🟢 — 계기판·미리보기의 예정도 아침 회차와 **같은 경계**를 쓴다 (2026-09-18 시뮬레이션 결함 ⑵).
+ * 대역의 마지막 차시 427(U(14))은 문항 0건이다 — 예정이 거기로 걸어 들어가지 않는다.
+ */
+describe("GET /api/classes/{id}/progress-plan — 경계", () => {
+  it("문항이 있는 마지막 차시(426)를 넘는 날의 예정은 426 이고 끝 표시가 붙는다", async () => {
+    const cls = await freshClass();
+    // 월수금 425 시작: 9/7 425 · 9/9 426 · 9/11 이면 427(문항 0건)
+    await putClass(cls.id, { ...RULE, startUnitId: U(12).id });
+    const { schedule } = classProgressPlanResponseSchema.parse(
+      await (await getClass(cls.id, "?day=2026-09-09")).json(),
+    ).data;
+    const fri = schedule!.rows.find((r) => r.date === "2026-09-11")!;
+    expect(fri.planned.map((u) => u.id)).toEqual([U(13).id]);
+    expect(fri.atCurriculumEnd).toBe(true);
+  });
+});

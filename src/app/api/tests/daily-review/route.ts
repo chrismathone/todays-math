@@ -38,11 +38,12 @@ import {
   type DailyPlanRow,
 } from "@/lib/daily/planDailyReview";
 import { db } from "@/lib/db";
-import { countEligibleProblems } from "@/lib/findEligibleProblems";
 import { isEywaOwner } from "@/lib/eywa/owner";
 import { kstDateOf } from "@/lib/kstDate";
 import { ownedRowsWhere } from "@/lib/ownerScope";
 import { getSessionUser } from "@/lib/session";
+import { draftCapacityOf, loadCapacityRows } from "@/lib/tests/draftCapacity";
+import { loadLastTeachableUnitId } from "@/lib/daily/teachableBoundary";
 
 /** 두 갈래가 **같은 칸**을 읽어야 한다 — 한쪽만 빠지면 그 학생만 조용히 다르게 갈린다. */
 const STUDENT_SELECT = {
@@ -249,6 +250,11 @@ export async function GET(request: NextRequest) {
       }),
     ),
     units,
+    // 🔴 아침 회차와 **같은 경계** — 계획이 출제할 문항이 있는 마지막 차시를 넘지 않는다
+    //    (2026-09-18 시뮬레이션 ⑵). 계획이 없으면 경계가 쓸 데가 없어 묻지 않는다.
+    lastTeachableUnitId: planRows.length
+      ? await loadLastTeachableUnitId(units)
+      : null,
     plans: planRows.map((p): DailyPlanRow => ({
       classId: p.classId,
       studentId: p.studentId,
@@ -260,7 +266,8 @@ export async function GET(request: NextRequest) {
     })),
   });
 
-  // 묶음마다 출제 자격 문항 수 — 출제와 같은 where(D-22·D-31 포함).
+  // 묶음마다 **낼 수 있는 문항 수**(갈래) — 출제와 같은 where(D-22·D-31 포함). 행으로 세면
+  // 「부족 아님」이라 해 놓고 출제가 422 로 죽는다(2026-09-18 시뮬레이션 ⑴).
   const counted = await Promise.all(
     plan.groups.map(async (g) => ({
       key: g.key,
@@ -269,9 +276,7 @@ export async function GET(request: NextRequest) {
       startedFrom: g.startedFrom,
       unitCount: g.unitIds.length,
       neededCount: g.neededCount,
-      poolTotal: await countEligibleProblems({
-        unitIds: g.unitIds,
-      }),
+      capacity: draftCapacityOf(await loadCapacityRows(g.unitIds)),
       students: g.students,
     })),
   );
@@ -291,8 +296,8 @@ export async function GET(request: NextRequest) {
           }
         : null,
       attended: plan.attended,
-      auto: counted.filter((g) => g.poolTotal >= g.neededCount),
-      lacking: counted.filter((g) => g.poolTotal < g.neededCount),
+      auto: counted.filter((g) => g.capacity >= g.neededCount),
+      lacking: counted.filter((g) => g.capacity < g.neededCount),
       examOrUnread: plan.examOrUnread,
       noRange: plan.noRange,
       // ── 화면 칸 셋(D-131) ──
