@@ -21,6 +21,8 @@ export interface FigureHandle {
   y: number;
   label: string;
   control?: boolean;
+  /** 노란 점(모양 조절 — 평행사변형 기울이기 · 삼각형 꼭짓점). figureShapeAdjust */
+  adjust?: boolean;
 }
 type Segment = { command: string; values: number[] };
 

@@ -52,7 +52,29 @@ import { FigureNumberLayer } from "./FigureNumberLayer";
 import { FigureObjectList } from "./FigureObjectList";
 import { FigureGroupRow } from "./FigureGroupRow";
 import { FigureCommonFormat } from "./FigureCommonFormat";
-import { NAMES } from "./figureObjectNames";
+import { objectName } from "./figureObjectNames";
+import { FigurePolygonDraft } from "./FigurePolygonDraft";
+import type { Point } from "./figureFaceGeometry";
+import {
+  DEFAULT_FACE_FILL,
+  isFaceObject,
+  nearestSnap,
+  polygonToolCloses,
+} from "./figureFaceSources";
+import {
+  addFigureTriangle,
+  addPolygonFace,
+  bucketFill,
+  clearInnerFill,
+  innerFillState,
+  isTiedFace,
+  movableIds,
+  moveShapeHandle,
+  polygonSnapCandidates,
+  setInnerFill,
+  shapeHandles,
+  syncFigureFaces,
+} from "./figureFaceEditing";
 import { FIGURE_SYMBOL_GROUPS } from "./figureSymbols";
 import { TEXT_BG_ATTR } from "./figureTextBackground";
 import { FunctionGraphInput } from "./FunctionGraphInput";
@@ -75,7 +97,10 @@ type Tool =
   | "circle"
   | "ellipse"
   | "rect"
-  | "text";
+  | "triangle"
+  | "polygon"
+  | "text"
+  | "fill";
 const TOOLS: { id: Tool; label: string; glyph: string }[] = [
   { id: "select", label: "선택·이동", glyph: "↖" },
   { id: "pan", label: "화면 이동", glyph: "✋" },
@@ -85,8 +110,16 @@ const TOOLS: { id: Tool; label: string; glyph: string }[] = [
   { id: "circle", label: "원", glyph: "○" },
   { id: "ellipse", label: "타원", glyph: "⬭" },
   { id: "rect", label: "사각형", glyph: "□" },
+  // 원장님 2026-09-19 «삼각형도 추가해 주고» · «면을 쉽게 만들 수 있어야 색칠을 할 수가 있음»
+  { id: "triangle", label: "삼각형", glyph: "△" },
+  { id: "polygon", label: "다각형", glyph: "⬠" },
   { id: "text", label: "글자", glyph: "T" },
+  { id: "fill", label: "채우기", glyph: "▧" },
 ];
+/** 다각형 도구가 선의 끝점·꼭짓점·교점에 달라붙는 거리(화면 px) */
+const SNAP_PX = 8;
+/** 노란 점이 직사각형·이등변·직각에 붙는 거리(화면 px) */
+const ADJUST_SNAP_PX = 6;
 /** 도구 줄 단추의 눌림 모양 — 도구와 «전체 요소 크기 고정»이 같이 쓴다. */
 const PRESSED =
   "bg-[var(--figure-accent-soft)] text-[var(--figure-accent-ink)] ring-1 ring-[var(--figure-accent-line)]";
@@ -165,6 +198,15 @@ export function FigureEditor({
   const [zoom, setZoom] = useState(1);
   const [panOffset, setPanOffset] = useState({ x: 0, y: 0 });
   const [label, setLabel] = useState("A");
+  // 채우기 통·다각형 도구가 칠할 색 — 편집기를 연 동안 기억한다.
+  const [faceColor, setFaceColor] = useState(DEFAULT_FACE_FILL);
+  // 다각형 도구가 그리는 중인 점들 · 마우스 자리(달라붙었나) · 화면 px/도형 단위
+  const [draft, setDraft] = useState<{
+    points: Point[];
+    hover: Point | null;
+    snapped: boolean;
+    scale: number;
+  } | null>(null);
   // 글자 칸 특수문자 자판에서 마지막으로 연 무리 — 편집기를 연 동안 기억한다(글자를 바꿔 골라도).
   const [symbolGroup, setSymbolGroup] = useState(FIGURE_SYMBOL_GROUPS[0].name);
   const [instructions, setInstructions] = useState("");
@@ -238,17 +280,25 @@ export function FigureEditor({
     canvas?: string;
     /** 이번 걸음에 화면에서 고친 요소 — 번호 지시선을 이것만 옮긴다. */
     ids?: string[];
+    /** 조절점을 끄는 요소의 화면 px / 요소 단위 — 노란 점이 붙는 거리를 화면 px 로 잰다. */
+    scale?: number;
   } | null>(null);
   const original =
     originalImage ??
     (!/^data:image\/svg|^\s*<svg/i.test(image) ? image : undefined);
   const objects = useMemo(() => figureObjects(svg), [svg]);
   const current = objects.find((o) => o.id === selected);
+  // 선을 따라가는 면(채우기 통·안쪽 채우기)은 조절점이 없다 — 모양은 선이 정한다.
+  const currentTied = !!current && isTiedFace(current);
+  const currentFace = !!current && isFaceObject(current);
   const handles = useMemo(
     () =>
-      current && !current.attrs["data-function"] ? figureHandles(current) : [],
+      current && !current.attrs["data-function"] && !isTiedFace(current)
+        ? (shapeHandles(current) ?? figureHandles(current))
+        : [],
     [current],
   );
+  const currentAdjustable = handles.some((h) => h.adjust);
   const currentLocked = !!current && isSizeLocked(current);
   // 기울임·굵게 단추의 켜짐 — 그 글자 요소의 실제 속성(조판이 읽는 것과 같은 속성).
   const currentItalic = current?.attrs["font-style"] === "italic";
@@ -325,7 +375,9 @@ export function FigureEditor({
     120,
     Math.min(available.width, available.height * ratio),
   );
-  const commit = (next: string) => {
+  const commit = (source: string) => {
+    // 선이 바뀌었으면 그 선을 따라가는 면도 같은 한 걸음에(되돌리기 한 번에 같이 돌아간다).
+    const next = syncFigureFaces(source).svg;
     if (next === svg) return;
     setHistory((h) => ({ past: [...h.past.slice(-59), svg], future: [] }));
     setSvg(next);
@@ -371,6 +423,37 @@ export function FigureEditor({
       setSelected(null);
     }
   };
+  // 묶음 안쪽 채우기 — 여럿을 고르면 오른쪽 공통 서식 칸에 «안쪽 채우기» 줄.
+  const innerFill = useMemo(
+    () =>
+      selectedIds.length > 1 ? innerFillState(svg, selectedIds) : undefined,
+    [svg, selectedIds],
+  );
+  // 다각형 도구가 달라붙을 점 — 선의 끝점·꼭짓점·교점(그림이 바뀔 때만 다시 잰다).
+  const snapPoints = useMemo(
+    () => (tool === "polygon" ? polygonSnapCandidates(svg) : []),
+    [tool, svg],
+  );
+  /** 그리던 다각형을 닫는다 — 겹친 점(두 번 누르기)은 하나로, 세 점이 안 되면 그대로 둔다. */
+  const finishPolygon = (points: Point[]) => {
+    const unique = points.filter(
+      (p, i) =>
+        i === 0 ||
+        Math.hypot(p.x - points[i - 1].x, p.y - points[i - 1].y) > 1e-6,
+    );
+    if (
+      unique.length > 3 &&
+      Math.hypot(
+        unique[0].x - unique.at(-1)!.x,
+        unique[0].y - unique.at(-1)!.y,
+      ) < 1e-6
+    )
+      unique.pop();
+    if (unique.length < 3) return;
+    const result = addPolygonFace(svg, unique, faceColor);
+    commit(result.svg);
+    setDraft(null);
+  };
   const paste = (source: string, duplicate = false) => {
     try {
       const count =
@@ -398,7 +481,7 @@ export function FigureEditor({
     if (!root || !matrix) return;
     const origin = new DOMPoint(0, 0).matrixTransform(matrix),
       delta = new DOMPoint(dx, dy).matrixTransform(matrix);
-    const updates = selectedIds.flatMap((id) => {
+    const updates = movableIds(svg, selectedIds).flatMap((id) => {
       const node = root.querySelector<SVGGraphicsElement>(
         `[data-object-id="${id}"]`,
       );
@@ -492,6 +575,20 @@ export function FigureEditor({
         }
         // C/X/V는 브라우저의 clipboard 이벤트에서 처리해 OS 클립보드와 호환한다.
         return;
+      }
+      // 그리던 다각형 — Enter 로 닫고 Esc 로 버린다(Esc 가 편집기를 닫거나 도구를 풀지 않게).
+      if (tool === "polygon" && draft) {
+        if (e.key === "Escape") {
+          e.preventDefault();
+          e.stopPropagation();
+          setDraft(null);
+          return;
+        }
+        if (e.key === "Enter") {
+          e.preventDefault();
+          finishPolygon(draft.points);
+          return;
+        }
       }
       if (e.key === "Escape" && (selectedIds.length || tool !== "select")) {
         e.preventDefault();
@@ -621,6 +718,15 @@ export function FigureEditor({
       }
       if (!id || !selectedIds.includes(id)) setSelected(id ?? null);
       if (!target) return;
+      // 선을 따라가는 면은 골라지기만 한다 — 옮기면 선에서 떨어진다(선을 옮기면 따라온다).
+      if (
+        isTiedFace({
+          attrs: { "data-face": target.getAttribute("data-face") ?? "" },
+        })
+      ) {
+        e.preventDefault();
+        return;
+      }
       drag.current = {
         original: svg,
         start,
@@ -629,30 +735,55 @@ export function FigureEditor({
         transform: target.getAttribute("transform") ?? "",
       };
       if (id && selectedIds.includes(id) && selectedIds.length > 1) {
-        drag.current.multiple = selectedIds.flatMap((objectId) => {
-          const node = root.querySelector<SVGGraphicsElement>(
-            `[data-object-id="${objectId}"]`,
-          );
-          const parent = (
-            node?.parentElement as unknown as SVGGraphicsElement
-          )?.getScreenCTM();
-          if (!node || !parent) return [];
-          const inverse = parent.inverse();
-          return [
-            {
-              id: objectId,
-              inverse,
-              start: point(e, inverse),
-              transform: node.getAttribute("transform") ?? "",
-            },
-          ];
-        });
+        drag.current.multiple = movableIds(svg, selectedIds).flatMap(
+          (objectId) => {
+            const node = root.querySelector<SVGGraphicsElement>(
+              `[data-object-id="${objectId}"]`,
+            );
+            const parent = (
+              node?.parentElement as unknown as SVGGraphicsElement
+            )?.getScreenCTM();
+            if (!node || !parent) return [];
+            const inverse = parent.inverse();
+            return [
+              {
+                id: objectId,
+                inverse,
+                start: point(e, inverse),
+                transform: node.getAttribute("transform") ?? "",
+              },
+            ];
+          },
+        );
       }
     } else if (tool === "text") {
       const result = addFigureObject(svg, "text", start, start, label);
       commit(result.svg);
       setSelected(result.id);
       setTool("select");
+      return;
+    } else if (tool === "fill") {
+      // 채우기 통 — 누른 칸에 면(선 뒤에), 칠한 면이면 색만. 칸이 없으면 안내만 하고 아무것도 안 만든다.
+      const result = bucketFill(svg, { x: start.x, y: start.y }, faceColor);
+      setClipboardNotice(result.notice ?? "");
+      if (!result.notice) commit(result.svg);
+      e.preventDefault();
+      return;
+    } else if (tool === "polygon") {
+      // 다각형(면) — 점을 차례로. 선의 끝점·꼭짓점·교점에 달라붙고, 첫 점을 다시 누르면 닫는다.
+      const scale = Math.hypot(matrix.a, matrix.b) || 1;
+      const raw = { x: start.x, y: start.y };
+      const at = nearestSnap(raw, snapPoints, SNAP_PX / scale) ?? raw;
+      if (draft && polygonToolCloses(draft.points, at, SNAP_PX / scale))
+        finishPolygon(draft.points);
+      else
+        setDraft({
+          points: [...(draft?.points ?? []), { x: at.x, y: at.y }],
+          hover: null,
+          snapped: false,
+          scale,
+        });
+      e.preventDefault();
       return;
     } else {
       drag.current = {
@@ -687,6 +818,7 @@ export function FigureEditor({
       handle,
       transform: current?.attrs.transform ?? "",
       bounds: selection.bounds,
+      scale: Math.hypot(matrix.a, matrix.b) || 1,
       // Snap in screen coordinates so rotated/transformed imported lines obey
       // the same visible directions as newly drawn lines.
       snapAnchor:
@@ -703,7 +835,27 @@ export function FigureEditor({
   };
   const move = (e: { clientX: number; clientY: number; shiftKey: boolean }) => {
     const d = drag.current;
-    if (!d) return;
+    if (!d) {
+      // 그리던 다각형 — 마지막 점에서 마우스까지 잇고, 달라붙을 점 근처면 그 점을 보여 준다.
+      const matrix =
+        tool === "polygon" && draft
+          ? canvas.current?.querySelector("svg")?.getScreenCTM()
+          : null;
+      if (draft && matrix) {
+        const raw = point(e, matrix.inverse());
+        const at = nearestSnap(
+          { x: raw.x, y: raw.y },
+          snapPoints,
+          SNAP_PX / draft.scale,
+        );
+        setDraft({
+          ...draft,
+          hover: at ?? { x: raw.x, y: raw.y },
+          snapped: !!at,
+        });
+      }
+      return;
+    }
     if (d.snapAnchor && !d.id) {
       // Adding the first object can resize the fitted canvas (the object list
       // gains a row). Resolve the live transform so release follows the pointer.
@@ -763,7 +915,15 @@ export function FigureEditor({
         transform: `${d.transform} translate(${opposite[0]} ${opposite[1]}) scale(${sx} ${sy}) translate(${-opposite[0]} ${-opposite[1]})`,
       });
     } else if (d.id && d.handle)
-      next = moveFigureHandle(d.original, d.id, d.handle, to);
+      // 노란 점·평행사변형·삼각형의 모서리는 모양 계산으로, 나머지(사각형 모서리 포함)는 예전 조절점 그대로.
+      next =
+        moveShapeHandle(
+          d.original,
+          d.id,
+          d.handle,
+          to,
+          ADJUST_SNAP_PX / (d.scale ?? 1),
+        ) ?? moveFigureHandle(d.original, d.id, d.handle, to);
     else if (d.id) {
       let dx = to.x - d.start.x,
         dy = to.y - d.start.y;
@@ -775,11 +935,18 @@ export function FigureEditor({
         transform: `translate(${dx} ${dy}) ${d.transform}`,
       });
     } else {
-      const added = addFigureObject(d.original, tool, d.start, to, label);
+      const added =
+        tool === "triangle"
+          ? addFigureTriangle(d.original, d.start, to)
+          : addFigureObject(d.original, tool, d.start, to, label);
       next = added.svg;
       ids = [added.id];
       setSelected(added.id);
     }
+    // 옮긴 선을 경계로 쓰는 면도 이 걸음에 같이 — 화면도 그 면까지 고친다.
+    const synced = syncFigureFaces(next, ids);
+    next = synced.svg;
+    ids = [...ids, ...synced.changed];
     const root = canvas.current?.querySelector("svg");
     if (root) previewFigureObjects(root, next, ids);
     d.ids = ids;
@@ -1033,6 +1200,7 @@ export function FigureEditor({
                 onClick={() => {
                   setAddingFunction(false);
                   setTool(t.id);
+                  setDraft(null);
                   if (t.id !== "select" && t.id !== "pan") setSelected(null);
                 }}
                 disabled={busy}
@@ -1165,7 +1333,11 @@ export function FigureEditor({
                     ? "우측에서 글자를 정한 뒤 캔버스를 클릭하세요"
                     : tool === "line" || tool === "arrow"
                       ? "드래그해 그리기 · Shift로 수평·수직·45° 고정 · 놓으면 자유 이동"
-                      : "캔버스에서 드래그해 그리세요"}
+                      : tool === "fill"
+                        ? "선으로 둘러싸인 곳을 누르면 면을 칠합니다 · 칠한 면을 누르면 색을 바꿉니다"
+                        : tool === "polygon"
+                          ? "점을 차례로 찍기 · 첫 점·두 번 누르기·Enter로 닫기 · Esc로 취소"
+                          : "캔버스에서 드래그해 그리세요"}
             </span>
           </div>
           <div
@@ -1242,6 +1414,10 @@ export function FigureEditor({
                 }}
                 onPointerDown={down}
                 onDoubleClick={() => {
+                  if (tool === "polygon" && draft) {
+                    finishPolygon(draft.points);
+                    return;
+                  }
                   if (current?.type === "text") {
                     const input = document.querySelector<
                       HTMLInputElement | HTMLElement
@@ -1282,8 +1458,19 @@ export function FigureEditor({
                   currentType={current?.type}
                   viewBox={viewBox}
                   busy={busy}
-                  sizeLocked={currentLocked}
+                  // 선을 따라가는 면은 크기 조절점도 없다(모양은 선이 정한다).
+                  sizeLocked={currentLocked || currentTied}
                   onHandleDown={handleDown}
+                />
+              )}
+              {tool === "polygon" && draft && (
+                <FigurePolygonDraft
+                  viewBox={viewBox}
+                  points={draft.points}
+                  hover={draft.hover}
+                  snapped={draft.snapped}
+                  scale={draft.scale}
+                  fill={faceColor}
                 />
               )}
             </div>
@@ -1338,10 +1525,14 @@ export function FigureEditor({
               {selectedIds.length > 1
                 ? `${selectedIds.length}개 요소 선택`
                 : current
-                  ? `${objects.indexOf(current) + 1} · ${NAMES[current.type] ?? current.type} 편집`
+                  ? `${objects.indexOf(current) + 1} · ${objectName(current)} 편집`
                   : tool === "text"
                     ? "새 글자"
-                    : "상세 편집"}
+                    : tool === "fill"
+                      ? "채우기"
+                      : tool === "polygon"
+                        ? "다각형(면)"
+                        : "상세 편집"}
             </h3>
             <p className="mb-3 text-xs text-muted">
               {selectedIds.length > 1
@@ -1350,7 +1541,11 @@ export function FigureEditor({
                   ? "선택한 요소의 모양과 표시를 바꿉니다."
                   : tool === "text"
                     ? "내용을 정한 다음 그림에서 놓을 위치를 클릭하세요."
-                    : "그림에서 수정할 요소를 선택하세요."}
+                    : tool === "fill"
+                      ? "선으로 둘러싸인 곳을 누르면 그 안이 면으로 칠해집니다. 칠한 면을 누르면 이 색으로 바뀝니다."
+                      : tool === "polygon"
+                        ? "점을 차례로 찍어 면을 만듭니다. 첫 점을 다시 누르거나 두 번 누르기·Enter 로 닫고, Esc 로 취소합니다. 선의 끝점·꼭짓점·교점에 달라붙습니다."
+                        : "그림에서 수정할 요소를 선택하세요."}
             </p>
             {selectedGroup && (
               <FigureGroupRow
@@ -1389,9 +1584,13 @@ export function FigureEditor({
                 <p className="rounded bg-[var(--figure-accent-soft)] p-2 leading-relaxed text-[var(--figure-accent-ink)]">
                   {current.type === "text"
                     ? "글자를 끌어서 옮기세요. 더블클릭하면 내용을 바꿀 수 있습니다."
-                    : currentLocked
-                      ? "크기가 고정되어 있습니다. 선이나 테두리를 끌면 통째로 이동합니다."
-                      : "파란색 조절점을 끌어 모양을 바꾸세요. 선이나 테두리를 끌면 통째로 이동합니다."}
+                    : currentTied
+                      ? "면은 둘러싼 선을 따라갑니다. 선을 옮기면 같이 바뀝니다."
+                      : currentLocked
+                        ? "크기가 고정되어 있습니다. 선이나 테두리를 끌면 통째로 이동합니다."
+                        : currentAdjustable
+                          ? "파란색 조절점으로 크기를, 노란 점으로 모양을 바꾸세요. 선이나 테두리를 끌면 통째로 이동합니다."
+                          : "파란색 조절점을 끌어 모양을 바꾸세요. 선이나 테두리를 끌면 통째로 이동합니다."}
                 </p>
                 {current.type === "text" && (
                   <div>
@@ -1434,30 +1633,33 @@ export function FigureEditor({
                     </button>
                   </div>
                 )}
-                <label className="flex items-center justify-between">
-                  {current.type === "text" ? "글자 색" : "선 색"}
-                  <input
-                    type="color"
-                    aria-label="도형 선 색"
-                    value={
-                      /^#[\da-f]{6}$/i.test(
-                        current.attrs[
-                          current.type === "text" ? "fill" : "stroke"
-                        ] ?? "",
-                      )
-                        ? current.attrs[
+                {/* 면은 선이 없다 — 선 색·선 두께·점선 칸을 두지 않는다. */}
+                {!currentFace && (
+                  <label className="flex items-center justify-between">
+                    {current.type === "text" ? "글자 색" : "선 색"}
+                    <input
+                      type="color"
+                      aria-label="도형 선 색"
+                      value={
+                        /^#[\da-f]{6}$/i.test(
+                          current.attrs[
                             current.type === "text" ? "fill" : "stroke"
-                          ]
-                        : "#111111"
-                    }
-                    onChange={(e) =>
-                      change({
-                        [current.type === "text" ? "fill" : "stroke"]:
-                          e.target.value,
-                      })
-                    }
-                  />
-                </label>
+                          ] ?? "",
+                        )
+                          ? current.attrs[
+                              current.type === "text" ? "fill" : "stroke"
+                            ]
+                          : "#111111"
+                      }
+                      onChange={(e) =>
+                        change({
+                          [current.type === "text" ? "fill" : "stroke"]:
+                            e.target.value,
+                        })
+                      }
+                    />
+                  </label>
+                )}
                 {current.type === "text" && (
                   // 글자 배경색 — 도형의 «채우기 / 채우기 없애기»와 같은 모양(원장님 2026-09-19).
                   <>
@@ -1487,56 +1689,62 @@ export function FigureEditor({
                     </button>
                   </>
                 )}
-                <label className="block">
-                  <span className="flex justify-between">
-                    {current.type === "text" ? "글자 크기" : "선 두께"}
-                    <output>
-                      {parseFloat(
+                {!currentFace && (
+                  <label className="block">
+                    <span className="flex justify-between">
+                      {current.type === "text" ? "글자 크기" : "선 두께"}
+                      <output>
+                        {parseFloat(
+                          current.attrs[
+                            current.type === "text"
+                              ? "font-size"
+                              : "stroke-width"
+                          ] ?? (current.type === "text" ? "18" : "1.5"),
+                        )}
+                      </output>
+                    </span>
+                    <input
+                      type="range"
+                      min={current.type === "text" ? 6 : 0.2}
+                      max={current.type === "text" ? 100 : 20}
+                      step={0.2}
+                      aria-label="도형 선 두께 또는 글자 크기"
+                      value={parseFloat(
                         current.attrs[
                           current.type === "text" ? "font-size" : "stroke-width"
                         ] ?? (current.type === "text" ? "18" : "1.5"),
                       )}
-                    </output>
-                  </span>
-                  <input
-                    type="range"
-                    min={current.type === "text" ? 6 : 0.2}
-                    max={current.type === "text" ? 100 : 20}
-                    step={0.2}
-                    aria-label="도형 선 두께 또는 글자 크기"
-                    value={parseFloat(
-                      current.attrs[
-                        current.type === "text" ? "font-size" : "stroke-width"
-                      ] ?? (current.type === "text" ? "18" : "1.5"),
-                    )}
-                    onChange={(e) => {
-                      if (+e.target.value > 0)
-                        change({
-                          [current.type === "text"
-                            ? "font-size"
-                            : "stroke-width"]: e.target.value,
-                        });
-                    }}
-                    className="mt-2 w-full accent-[var(--figure-primary)]"
-                  />
-                </label>
+                      onChange={(e) => {
+                        if (+e.target.value > 0)
+                          change({
+                            [current.type === "text"
+                              ? "font-size"
+                              : "stroke-width"]: e.target.value,
+                          });
+                      }}
+                      className="mt-2 w-full accent-[var(--figure-primary)]"
+                    />
+                  </label>
+                )}
                 {current.type !== "text" && (
                   <>
-                    <label className="flex gap-2">
-                      <input
-                        type="checkbox"
-                        checked={
-                          !!current.attrs["stroke-dasharray"] &&
-                          current.attrs["stroke-dasharray"] !== "none"
-                        }
-                        onChange={(e) =>
-                          change({
-                            "stroke-dasharray": e.target.checked ? "5 4" : "",
-                          })
-                        }
-                      />
-                      점선
-                    </label>
+                    {!currentFace && (
+                      <label className="flex gap-2">
+                        <input
+                          type="checkbox"
+                          checked={
+                            !!current.attrs["stroke-dasharray"] &&
+                            current.attrs["stroke-dasharray"] !== "none"
+                          }
+                          onChange={(e) =>
+                            change({
+                              "stroke-dasharray": e.target.checked ? "5 4" : "",
+                            })
+                          }
+                        />
+                        점선
+                      </label>
+                    )}
                     <label className="flex items-center justify-between">
                       채우기
                       <input
@@ -1550,13 +1758,24 @@ export function FigureEditor({
                         onChange={(e) => change({ fill: e.target.value })}
                       />
                     </label>
-                    <button
-                      type="button"
-                      onClick={() => change({ fill: "none" })}
-                      className="underline text-muted"
-                    >
-                      채우기 없애기
-                    </button>
+                    {currentFace ? (
+                      // 채우기를 없앤 면은 보이지 않는 번호만 남는다 — 면은 지운다.
+                      <button
+                        type="button"
+                        onClick={remove}
+                        className="underline text-muted"
+                      >
+                        면 지우기
+                      </button>
+                    ) : (
+                      <button
+                        type="button"
+                        onClick={() => change({ fill: "none" })}
+                        className="underline text-muted"
+                      >
+                        채우기 없애기
+                      </button>
+                    )}
                   </>
                 )}
                 <label className="flex gap-2">
@@ -1671,11 +1890,29 @@ export function FigureEditor({
                 symbolGroup={symbolGroup}
                 onSymbolGroup={setSymbolGroup}
               />
+            ) : tool === "fill" || tool === "polygon" ? (
+              <label className="flex items-center justify-between text-xs">
+                면 채우기 색
+                <input
+                  type="color"
+                  aria-label="면 채우기 색"
+                  value={faceColor}
+                  onChange={(e) => setFaceColor(e.target.value)}
+                />
+              </label>
             ) : selectedIds.length > 1 ? (
               <FigureCommonFormat
                 objects={objects.filter((o) => selectedIds.includes(o.id))}
                 onChange={(ids, attrs) =>
                   commit(editFigureObjects(svg, ids, attrs))
+                }
+                innerFill={
+                  innerFill && {
+                    ...innerFill,
+                    onFill: (color) =>
+                      commit(setInnerFill(svg, selectedIds, color)),
+                    onClear: () => commit(clearInnerFill(svg, selectedIds)),
+                  }
                 }
               />
             ) : (

@@ -1,5 +1,5 @@
 import type { figureObjects } from "./figureSvgEditing";
-import { NAMES } from "./figureObjectNames";
+import { objectName } from "./figureObjectNames";
 
 type FigureObject = ReturnType<typeof figureObjects>[number];
 
@@ -286,7 +286,7 @@ export function groupFigureObjects(
         ? "함수 그래프"
         : object.type === "text"
           ? "글자"
-          : (NAMES[object.type] ?? object.type));
+          : objectName(object));
     const key = `${role.has(object.id) ? "role" : "type"}:${name}`;
     const group = auto.get(key);
     if (group) group.ids.push(object.id);

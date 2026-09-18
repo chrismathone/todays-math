@@ -97,6 +97,19 @@ export const applyMatrix = (m: Matrix, p: Point): Point => ({
   x: m[0] * p.x + m[2] * p.y + m[4],
   y: m[1] * p.x + m[3] * p.y + m[5],
 });
+/** 역행렬 — 납작한(행렬식 0) 변환이면 null. */
+export function invertMatrix(m: Matrix): Matrix | null {
+  const det = m[0] * m[3] - m[1] * m[2];
+  if (!det || !Number.isFinite(det)) return null;
+  return [
+    m[3] / det,
+    -m[1] / det,
+    -m[2] / det,
+    m[0] / det,
+    (m[2] * m[5] - m[3] * m[4]) / det,
+    (m[1] * m[4] - m[0] * m[5]) / det,
+  ];
+}
 
 /** transform 값 → 행렬. 적힌 차례대로 곱한다(뒤의 것이 먼저 적용된다). 모르는 함수는 건너뛴다. */
 export function parseTransform(value?: string | null): Matrix {
@@ -748,13 +761,29 @@ export function recomputeFace(
   members: readonly FaceSourceObject[],
   tolerance = FACE_TOLERANCE,
 ): { d: string; seed?: string } | null {
+  // 면의 경로·씨앗은 면이 든 좌표계(조상 변환 — 붙여넣은 묶음 안)로 적는다. 계산은 문서 좌표에서.
+  const frame = face.parentMatrix;
+  const back = frame ? invertMatrix(frame) : null;
+  if (frame && !back) return null;
+  const local = (p: Point) => (back ? applyMatrix(back, p) : p);
+  const pathOf = (regions: FaceRegion[]) =>
+    facePathData(
+      regions.map((region) => ({
+        ...region,
+        outer: region.outer.map(local),
+        holes: region.holes.map((hole) => hole.map(local)),
+      })),
+    );
   const arrangement = arrangeFaceCurves(faceCurves(members), tolerance);
   const seedText = face.attrs[FACE_SEED_ATTR];
   if (seedText === undefined) {
     const regions = closedOutlines(arrangement);
-    return regions.length ? { d: facePathData(regions) } : null;
+    return regions.length ? { d: pathOf(regions) } : null;
   }
-  const [x = NaN, y = NaN] = numbers(seedText);
+  const [sx = NaN, sy = NaN] = numbers(seedText);
+  const { x, y } = frame
+    ? applyMatrix(frame, { x: sx, y: sy })
+    : { x: sx, y: sy };
   const seed = { x, y };
   const faces = boundedFaces(arrangement);
   if (!faces.length) return null;
@@ -773,9 +802,11 @@ export function recomputeFace(
         jaccard(b.sourceIds, keys) - jaccard(a.sourceIds, keys) ||
         reach(a) - reach(b),
     )[0];
-  const next = around ? seed : interiorPoint(chosen.outer, chosen.holes);
+  const next = around
+    ? { x: sx, y: sy }
+    : local(interiorPoint(chosen.outer, chosen.holes));
   return {
-    d: facePathData([chosen]),
+    d: pathOf([chosen]),
     seed: `${round(next.x)} ${round(next.y)}`,
   };
 }
