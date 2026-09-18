@@ -96,17 +96,34 @@ interface Token {
   value: string;
 }
 
+/**
+ * 정본 `_TOKEN_RE` 와 같은 순서의 갈래. 묶음 번호가 곧 종류다 — 이름 붙은 묶음은
+ * tsconfig target(ES2017)이 못 받는다. 공백 갈래(`\s+`)가 줄바꿈까지 먼저 먹으므로
+ * 마지막 `.` 에 `s` 깃발이 없어도 빠지는 글자가 없다.
+ */
+const TOKEN_KINDS: readonly (Kind | "space")[] = [
+  "space",
+  "lit",
+  "word",
+  "num",
+  "brace",
+  "script",
+  "tilde",
+  "tick",
+  "sep",
+  "other",
+];
 const TOKEN_RE =
-  /(?<space>\s+)|(?<lit>"[^"]*")|(?<word>[A-Za-z][A-Za-z0-9]*)|(?<num>[0-9]+(?:\.[0-9]+)?)|(?<brace>[{}])|(?<script>[\^_])|(?<tilde>~)|(?<tick>`)|(?<sep>[#&])|(?<other>.)/gsu;
+  /(\s+)|("[^"]*")|([A-Za-z][A-Za-z0-9]*)|([0-9]+(?:\.[0-9]+)?)|([{}])|([\^_])|(~)|(`)|([#&])|(.)/gu;
 
 function tokenize(source: string): Token[] {
   const tokens: Token[] = [];
   for (const match of source.matchAll(TOKEN_RE)) {
-    const groups = match.groups!;
-    if (groups.space !== undefined) continue;
-    const kind = (Object.keys(groups) as (Kind | "space")[]).find(
-      (name) => name !== "space" && groups[name] !== undefined,
-    ) as Kind;
+    const kind =
+      TOKEN_KINDS[
+        match.findIndex((group, at) => at > 0 && group !== undefined) - 1
+      ];
+    if (kind === undefined || kind === "space") continue;
     tokens.push({ kind, value: match[0] });
   }
   return tokens;
