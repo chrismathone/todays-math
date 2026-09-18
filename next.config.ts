@@ -83,7 +83,11 @@ const nextConfig: NextConfig = {
     "/api/studio/pdf-worker": [
       "./node_modules/pdfjs-dist/build/pdf.worker.min.mjs",
     ],
+    // package.json 은 라우트가 패키지 뿌리를 찾는 열쇠다 — 빠지면 자산이 다 실려도 세 갈래가
+    // 전부 500 이다(2026-09-19 운영 «Cannot find module 'pdfjs-dist/package.json'»).
+    // 시험: src/__tests__/api/studioPdfAssetsLambda.test.ts
     "/api/studio/pdf-assets/**": [
+      "./node_modules/pdfjs-dist/package.json",
       "./node_modules/pdfjs-dist/cmaps/**/*",
       "./node_modules/pdfjs-dist/standard_fonts/**/*",
       "./node_modules/pdfjs-dist/wasm/**/*",
