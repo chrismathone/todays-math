@@ -30,9 +30,11 @@ const loop = (id: string, ...points: Point[]): FaceCurve => ({
   points,
   closed: true,
 });
+/** 원은 표본점뿐 — 진짜 꼭짓점이 없다(figureFaceSources 가 원을 펴서 넘기는 모양과 같다). */
 const circle = (id: string, c: Point, r: number, n = 180): FaceCurve => ({
   id,
   closed: true,
+  corners: [],
   points: Array.from({ length: n }, (_, k) =>
     P(
       c.x + r * Math.cos((2 * Math.PI * k) / n),
@@ -130,11 +132,14 @@ describe("faceAt — 누른 점을 둘러싼 가장 작은 닫힌 영역", () =>
 
   it("T 자로 조금 모자란 선 — 허용 오차 안이면 선 위로 붙는다", () => {
     // AD 가 BC 에 1.2 못 미친다. 붙으면 △ABD, 안 붙으면 매달린 선이라 삼각형 전체.
+    // 붙을 때는 AD 가 가던 방향으로 늘인다 — D ≈ (99.87, 200). 그은 선이 곧게 남아 면 가장자리가 선 밑에 숨는다.
     const short = [...triangle, seg("AD", A, P(100, 198.8))];
-    expect(faceAt(arrangeFaceCurves(short, 2), P(80, 140))!.area).toBeCloseTo(
-      7200,
-      6,
-    );
+    const snapped = faceAt(arrangeFaceCurves(short, 2), P(80, 140))!;
+    near(snapped.area, 7200, 0.005);
+    const D2 = snapped.outer.find(
+      (p) => Math.abs(p.y - 200) < 1e-6 && p.x > 90,
+    )!;
+    expect(D2.x).toBeCloseTo(100 - 1.2 * (20 / 178.8), 6);
     const whole = faceAt(arrangeFaceCurves(short, 0), P(80, 140))!;
     expect(whole.area).toBeCloseTo(21600, 6);
     // 매달린 AD 는 걷힌다 — 면 테두리에 안으로 찌른 가시(A→D→A)가 남지 않는다.
@@ -150,6 +155,88 @@ describe("faceAt — 누른 점을 둘러싼 가장 작은 닫힌 영역", () =>
     expect(face.area).toBeCloseTo(21600, 6);
     expect(face.holes).toEqual([]);
     expect(face.sourceIds).not.toContain("stray");
+  });
+
+  it("두 선의 끝이 만난 자리가 원에 조금 못 미치면 — 함께 원 위로 붙는다", () => {
+    // 현 y=80 과 반지름이 (245,80) 에서 만나는데 원(중심 (160,120) 반지름 95)은 x≈246.17 — 1.17 모자란다.
+    // 끝점끼리 먼저 붙고 멈추면 활꼴이 옆 칸으로 새어 한 면이 된다(눈 확인 2026-09-19).
+    const arrangement = arrangeFaceCurves(
+      [
+        circle("circle", P(160, 120), 95),
+        seg("chord", P(75, 80), P(245, 80)),
+        seg("radius", P(160, 120), P(245, 80)),
+      ],
+      2,
+    );
+    const d = 40,
+      r = 95;
+    near(
+      faceAt(arrangement, P(160, 50))!.area,
+      r * r * Math.acos(d / r) - d * Math.sqrt(r * r - d * d),
+      0.01,
+    );
+  });
+
+  it("늘여도 안 닿는 끝점(원에 스치는 방향) — 원의 표본점이 아니라 원 위 가장 가까운 점으로", () => {
+    // 표본점 (0,−100) 이 1.41 거리에 있지만 원 위 가장 가까운 점은 (1,−100) 쪽이다.
+    const { junctions } = arrangeFaceCurves(
+      [
+        circle("circle", P(0, 0), 100),
+        seg("tangent", P(-60, -101), P(1, -101)),
+      ],
+      2,
+    );
+    expect(
+      junctions.some(
+        (p) => Math.abs(p.x - 1) < 0.05 && Math.abs(p.y + 100) < 0.05,
+      ),
+    ).toBe(true);
+  });
+
+  it("늘일 곳이 둘이면 끝 선분이 긴 선을 곧게 둔다 — 짧은 선이 따라 기운다", () => {
+    // 긴 가로선과 짧은 빗선이 (95,50) 에서 만나고 세로선 x=96 에 1 모자란다.
+    const { junctions } = arrangeFaceCurves(
+      [
+        seg("wall", P(96, 0), P(96, 100)),
+        seg("long", P(0, 50), P(95, 50)),
+        seg("short", P(85, 40), P(95, 50)),
+      ],
+      2,
+    );
+    expect(
+      junctions.some(
+        (p) => Math.abs(p.x - 96) < 1e-6 && Math.abs(p.y - 50) < 1e-6,
+      ),
+    ).toBe(true);
+  });
+
+  it("촘촘한 곡선의 끝점은 제 곡선의 이웃 표본점으로 끌려가지 않는다", () => {
+    // 포물선 y = 60 + (x−240)²/120 이 x축(y=330) 위 (60,330)·(420,330) 에서 끝난다. 표본 간격이 허용 오차보다 좁다.
+    const parabola: FaceCurve = {
+      id: "graph",
+      closed: false,
+      points: Array.from({ length: 1201 }, (_, k) => {
+        const x = 60 + (k * 360) / 1200;
+        return P(x, 60 + (x - 240) ** 2 / 120);
+      }),
+    };
+    const face = faceAt(
+      arrangeFaceCurves(
+        [
+          seg("xaxis", P(30, 330), P(450, 330)),
+          seg("yaxis", P(240, 350), P(240, 20)),
+          parabola,
+          seg("line", P(40, 240), P(440, 240)),
+        ],
+        2,
+      ),
+      P(300, 300),
+    );
+    expect(face).not.toBeNull();
+    // x=240 · y=240 · y=330 · 오른쪽 가지 x = 240 + √(120(y−60)) 가 두른 칸
+    const exact =
+      Math.sqrt(120) * (2 / 3) * (Math.pow(270, 1.5) - Math.pow(180, 1.5));
+    near(face!.area, exact, 0.01);
   });
 
   it("꼭짓점에서 조금 삐져나온 선 — 꼬리는 걷히고 면은 그대로", () => {

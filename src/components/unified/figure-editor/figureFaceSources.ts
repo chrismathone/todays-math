@@ -60,6 +60,8 @@ interface Piece {
   closed: boolean;
   /** 달라붙기 후보 — 명령의 끝점·꼭짓점(곡선 표본은 아니다) */
   vertices: Point[];
+  /** points 중 진짜 꼭짓점의 차례 — 없으면 모든 점(선분·꺾은선·다각형·사각형) */
+  corners?: number[];
 }
 
 const IDENTITY: Matrix = [1, 0, 0, 1, 0, 0];
@@ -310,11 +312,17 @@ function pathPieces(d: string, step: number): Piece[] | null {
     command = "";
   const to = (end: Point, samples: Point[] = []) => {
     if (!piece) {
-      piece = { points: [current], closed: false, vertices: [current] };
+      piece = {
+        points: [current],
+        closed: false,
+        vertices: [current],
+        corners: [0],
+      };
       pieces.push(piece);
     }
     piece.points.push(...samples, end);
     piece.vertices.push(end);
+    piece.corners!.push(piece.points.length - 1);
     current = end;
   };
   const reflect = (c: Point) => ({
@@ -339,8 +347,12 @@ function pathPieces(d: string, step: number): Piece[] | null {
         if (
           closing.points.length > 1 &&
           distance(last, closing.points[0]) < 1e-9
-        )
+        ) {
           closing.points.pop();
+          closing.corners = closing.corners?.filter(
+            (i) => i < closing.points.length,
+          );
+        }
         closing.closed = true;
       }
       piece = null;
@@ -354,7 +366,12 @@ function pathPieces(d: string, step: number): Piece[] | null {
       if (!v) return null;
       current = at(v[0], v[1]);
       start = current;
-      piece = { points: [current], closed: false, vertices: [current] };
+      piece = {
+        points: [current],
+        closed: false,
+        vertices: [current],
+        corners: [0],
+      };
       pieces.push(piece);
       command = relative ? "l" : "L";
       control = null;
@@ -467,7 +484,7 @@ function localPieces(o: FaceSourceObject, step: number): Piece[] {
             `V ${y + ry} ${corner} ${x + rx} ${y} Z`,
           step,
         ) ?? [];
-      return rounded ? [{ ...rounded, vertices: [] }] : [];
+      return rounded ? [{ ...rounded, vertices: [], corners: [] }] : [];
     }
     const corners = [
       { x, y },
@@ -486,6 +503,7 @@ function localPieces(o: FaceSourceObject, step: number): Piece[] {
         points: ellipsePoints(n("cx"), n("cy"), rx, ry, step),
         closed: true,
         vertices: [],
+        corners: [],
       },
     ];
   }
@@ -508,6 +526,7 @@ export function objectCurves(
     id: o.id,
     closed: piece.closed,
     points: piece.points.map((p) => applyMatrix(matrix, p)),
+    ...(piece.corners ? { corners: piece.corners } : {}),
   }));
 }
 

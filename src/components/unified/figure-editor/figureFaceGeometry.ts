@@ -4,7 +4,7 @@
  * 화면·DOM 과 무관한 순수 계산이다. 곡선(원·타원·호·곡선·함수 그래프)은 부르는 쪽이 꺾은선으로 펴서 넘긴다(figureFaceSources).
  *
  * 차례
- *  ① 열린 선의 끝점을 허용 오차 안의 다른 꼭짓점(먼저)·선 위(다음)로 옮긴다 — 조금 안 맞는 끝점, T 자로 모자란 선.
+ *  ① 열린 선의 끝점을 허용 오차 안의 다른 선의 꼭짓점(먼저)·선 위(다음)로 옮긴다 — 조금 안 맞는 끝점, T 자로 모자란 선.
  *     열린 끝점만 옮긴다. 모든 점을 오차로 합치면 촘촘한 곡선(함수 그래프 1200점)이 사슬처럼 한 점으로 뭉친다.
  *  ② 선분끼리 만나거나 닿는 곳에서 자른다 — 겹친 선은 서로의 끝점에서 잘려 같은 변이 된다.
  *  ③ 같은 자리(아주 작은 오차)의 점을 하나로, 같은 두 점을 잇는 변을 하나로(어느 선들이 냈는지는 모아 둔다).
@@ -23,6 +23,11 @@ export interface FaceCurve {
   id: string;
   points: readonly Point[];
   closed: boolean;
+  /**
+   * 진짜 꼭짓점(명령 끝점·다각형 꼭짓점)의 차례 — 없으면 모든 점. 원·곡선의 표본점은 꼭짓점이 아니다:
+   * 끝점 붙이기가 꼭짓점을 먼저 찾을 때 표본점으로 끌려가면 선이 허용 오차만큼 기운다(현이 원의 표본점에 붙어 활꼴이 4% 어긋났다).
+   */
+  corners?: readonly number[];
 }
 
 /** 찾은 면 — 바깥 고리와 구멍들. 넓이는 구멍을 뺀 값, sourceIds 는 경계를 이루는 요소(바깥·구멍 모두). */
@@ -131,47 +136,119 @@ function closestOnSegment(p: Point, a: Point, b: Point) {
   return { x: a.x + t * dx, y: a.y + t * dy, t };
 }
 
-/** ① 열린 선의 끝점 붙이기 — 꼭짓점이 먼저, 없으면 선 위. 제 선의 이웃 점·이웃 변에는 붙지 않는다. */
+/** 반직선 p + s·u (0 ≤ s ≤ max) 가 선분 a–b 에 닿는 s — 안 닿으면 null. */
+function rayHit(p: Point, u: Point, a: Point, b: Point, max: number) {
+  const ex = b.x - a.x,
+    ey = b.y - a.y,
+    wx = a.x - p.x,
+    wy = a.y - p.y;
+  const denominator = u.x * ey - u.y * ex;
+  if (Math.abs(denominator) < 1e-12) return null;
+  const s = (wx * ey - wy * ex) / denominator,
+    t = (wx * u.y - wy * u.x) / denominator;
+  return s >= 0 && s <= max && t >= 0 && t <= 1 ? s : null;
+}
+
+/**
+ * ① 열린 선의 끝점 붙이기. 서로 허용 오차 안의 열린 끝점은 한 무리로 묶어 함께 옮긴다. 옮길 곳은 차례대로
+ *   ⓐ 가던 방향으로 늘여 허용 오차 안에서 닿는 **다른 선** — 끝 선분이 긴 선부터(그 선은 곧게 남아 면 가장자리가 그은 선 밑에 숨는다)
+ *   ⓑ 무리 가운데에서 가장 가까운 다른 선의 진짜 꼭짓점 ⓒ 다른 선 위의 가장 가까운 점 ⓓ (둘 이상이면) 무리의 가운데.
+ * - 제 선에는 붙지 않는다 — 촘촘한 곡선(표본 간격 < 허용 오차)의 끝점이 제 이웃 표본점으로 끌려가 x축에서 떨어졌다.
+ *   제 선의 양 끝이 가까우면(거의 닫힌 꺾은선) 두 끝이 한 무리가 되어 닫힌다.
+ * - 끝점끼리만 붙고 멈추지 않는다 — 현과 반지름이 원에 조금 못 미친 한 점에서 만나면 둘이 함께 원 위로 간다.
+ */
 function snapOpenEnds(
-  curves: { points: Point[]; closed: boolean }[],
+  curves: { points: Point[]; closed: boolean; corners?: readonly number[] }[],
   tolerance: number,
 ) {
-  curves.forEach((curve, c) => {
-    if (curve.closed) return;
-    const last = curve.points.length - 1;
-    for (const end of [0, last]) {
-      const p = curve.points[end];
-      let best: Point | null = null,
-        bestDistance = tolerance;
-      curves.forEach((other, k) =>
-        other.points.forEach((q, i) => {
-          if (k === c && Math.abs(i - end) <= 1) return;
-          const d = distance(p, q);
-          if (d <= bestDistance) {
-            best = q;
-            bestDistance = d;
-          }
-        }),
-      );
-      if (!best)
-        curves.forEach((other, k) => {
-          const n = other.points.length,
-            count = other.closed ? n : n - 1;
-          for (let i = 0; i < count; i++) {
-            const j = (i + 1) % n;
-            if (k === c && (i === end || j === end)) continue;
-            const q = closestOnSegment(p, other.points[i], other.points[j]);
-            const d = distance(p, q);
-            if (d <= bestDistance) {
-              best = { x: q.x, y: q.y };
-              bestDistance = d;
-            }
-          }
-        });
-      if (best)
-        curve.points[end] = { x: (best as Point).x, y: (best as Point).y };
+  const ends = curves.flatMap((curve, c) =>
+    curve.closed
+      ? []
+      : [
+          { c, i: 0 },
+          { c, i: curve.points.length - 1 },
+        ],
+  );
+  const at = (end: { c: number; i: number }) => curves[end.c].points[end.i];
+  const parent = ends.map((_, k) => k);
+  const find = (k: number): number =>
+    parent[k] === k ? k : (parent[k] = find(parent[k]));
+  for (let a = 0; a < ends.length; a++)
+    for (let b = a + 1; b < ends.length; b++)
+      if (distance(at(ends[a]), at(ends[b])) <= tolerance)
+        parent[find(a)] = find(b);
+  const groups = new Map<number, { c: number; i: number }[]>();
+  ends.forEach((end, k) =>
+    groups.set(find(k), [...(groups.get(find(k)) ?? []), end]),
+  );
+  for (const members of groups.values()) {
+    const center = {
+      x: members.reduce((sum, m) => sum + at(m).x, 0) / members.length,
+      y: members.reduce((sum, m) => sum + at(m).y, 0) / members.length,
+    };
+    const own = new Set(members.map((m) => m.c));
+    let target: Point | null = null,
+      best = tolerance;
+    const segmentsOf = (visit: (a: Point, b: Point) => void) =>
+      curves.forEach((other, k) => {
+        if (own.has(k)) return;
+        const n = other.points.length,
+          count = other.closed ? n : n - 1;
+        for (let i = 0; i < count; i++)
+          visit(other.points[i], other.points[(i + 1) % n]);
+      });
+    const directions = members
+      .map((m) => {
+        const p = at(m),
+          previous = curves[m.c].points[m.i === 0 ? 1 : m.i - 1];
+        const length = distance(p, previous);
+        return {
+          p,
+          length,
+          u: {
+            x: (p.x - previous.x) / length,
+            y: (p.y - previous.y) / length,
+          },
+        };
+      })
+      .filter((d) => d.length > 0)
+      .sort((a, b) => b.length - a.length);
+    for (const { p, u } of directions) {
+      let hit = Infinity;
+      segmentsOf((a, b) => {
+        const s = rayHit(p, u, a, b, tolerance);
+        if (s !== null && s < hit) hit = s;
+      });
+      if (hit <= tolerance) {
+        target = { x: p.x + u.x * hit, y: p.y + u.y * hit };
+        break;
+      }
     }
-  });
+    if (!target)
+      curves.forEach((other, k) => {
+        if (own.has(k)) return;
+        for (const q of other.corners?.map((i) => other.points[i]) ??
+          other.points) {
+          const d = distance(center, q);
+          if (d <= best) {
+            target = q;
+            best = d;
+          }
+        }
+      });
+    if (!target)
+      segmentsOf((a, b) => {
+        const q = closestOnSegment(center, a, b);
+        const d = distance(center, q);
+        if (d <= best) {
+          target = { x: q.x, y: q.y };
+          best = d;
+        }
+      });
+    const to: Point | null = target ?? (members.length > 1 ? center : null);
+    if (to)
+      for (const m of members) curves[m.c].points[m.i] = { x: to.x, y: to.y };
+  }
 }
 
 /** ② 두 선분이 닿거나 엇갈리는 자리를 양쪽에 자를 자리(0~1)로 적는다. 평행하게 겹치면 서로의 끝점이 닿음으로 잡힌다. */
@@ -215,13 +292,19 @@ export function arrangeFaceCurves(
   tolerance = 0,
 ): FaceArrangement {
   const lines = curves
-    .map((curve) => ({
-      id: curve.id,
-      closed: curve.closed,
-      points: curve.points
+    .map((curve) => {
+      const points = curve.points
         .filter((p) => Number.isFinite(p.x) && Number.isFinite(p.y))
-        .map((p) => ({ x: p.x, y: p.y })),
-    }))
+        .map((p) => ({ x: p.x, y: p.y }));
+      return {
+        id: curve.id,
+        closed: curve.closed,
+        points,
+        // 걸러 낸 점이 있으면 차례가 어긋나므로 모든 점을 꼭짓점으로 본다.
+        corners:
+          points.length === curve.points.length ? curve.corners : undefined,
+      };
+    })
     .filter((curve) => curve.points.length >= 2);
   let extent = 1;
   for (const curve of lines)
