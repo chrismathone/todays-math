@@ -15,6 +15,7 @@ import {
   parseFigureSpecResult,
   withTransparentBackground,
 } from "./figure-spec";
+import { MAX_DROPPED, repairFigureSpec } from "./figure-repair";
 import { validDevAiSvg } from "./svg";
 import { buildFigureComparisonImage } from "./figure-comparison";
 
@@ -125,15 +126,38 @@ export async function redrawDevAiFigure(
           generated.note || "도형 엔진으로 재현할 수 없습니다.",
         );
       // v2 흰 바탕 rect 가 편집기 1번 «사각형»이 됐다(2026-09-19) — 렌더·대조·저장 모두 투명 바탕 spec 으로.
-      const spec = withTransparentBackground(generated.spec);
+      let spec = withTransparentBackground(generated.spec);
       // Pass MathJax metrics to the authoritative geometry engine, but keep its
       // text labels editable. The Studio's existing typesetter owns final glyphs.
-      const rendered = await renderFigureSpec(withLabelMetrics(spec), {
-        typeset: false,
-        strict: true,
-        signal: deadline.signal,
-      });
+      const render = (value: DevAiFigureSpec) =>
+        renderFigureSpec(withLabelMetrics(value), {
+          typeset: false,
+          strict: true,
+          signal: deadline.signal,
+        });
+      let rendered = await render(spec);
       check();
+      // 25(2026-09-19 운영 로그): 치수 하나·라벨 하나·직각 표시 하나 때문에 그림 전체를 버렸다.
+      // 기계적으로 고쳐지는 사유는 AI 를 다시 부르기 전에 고쳐 바로 다시 그리고, 사유가 가리키는 요소 빼기는
+      // 마지막 시도에서만 한다(figure-repair.ts). 고친 그림도 아래 원본 대조를 거친다.
+      const repaired: string[] = [];
+      for (
+        let step = 0, dropped = 0;
+        !rendered.ok && rendered.error.startsWith(ENGINE_REJECTED) && step < 8;
+        step++
+      ) {
+        const fix = repairFigureSpec(
+          spec,
+          rendered.error,
+          attempt === 2 && dropped < MAX_DROPPED,
+        );
+        if (!fix) break;
+        if (fix.dropped) dropped++;
+        if (fix.warning) repaired.push(fix.warning);
+        spec = fix.spec;
+        rendered = await render(spec);
+        check();
+      }
       if (!rendered.ok) {
         // Only a spec validation failure earns another inference. Missing
         // Python, sanitization failure, cancellation and timeouts terminate.
@@ -152,6 +176,7 @@ export async function redrawDevAiFigure(
         );
       const warnings = [...generated.warnings];
       if (generated.note) warnings.push(generated.note);
+      warnings.push(...repaired);
       lastRender = { svg: rendered.svg, spec, warnings };
       const comparison = await buildFigureComparisonImage(
         request.imageDataUrl,

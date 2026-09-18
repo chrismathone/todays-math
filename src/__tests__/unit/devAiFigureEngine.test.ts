@@ -134,7 +134,8 @@ describe("real local Python subscription figure pipeline", () => {
 
   it("repairs a Python-rejected right angle using the original source and real diagnostic", async () => {
     const bad = structuredClone(triangle);
-    bad.points.C = [290, 160];
+    // 65.4° — 90° 에서 15° 넘게 빗나가 서버가 표시를 빼지 않고 모델에게 기하를 고치게 한다(figure-repair.ts)
+    bad.points.C = [290, 100];
     run
       .mockResolvedValueOnce(JSON.stringify({ spec: bad }))
       .mockResolvedValueOnce(JSON.stringify({ spec: triangle }))
