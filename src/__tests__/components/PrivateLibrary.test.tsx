@@ -82,6 +82,10 @@ describe("private library", () => {
     fireEvent.click(
       article("추출 원본").getByRole("button", { name: "추출 원본 이름 변경" }),
     );
+    // 추출 자료는 이름을 200자까지 — 시험지(80자)와 다르다. 창으로 옮겨도 그대로.
+    expect(
+      screen.getByRole("textbox", { name: "새 자료 이름" }),
+    ).toHaveAttribute("maxLength", "200");
     fireEvent.change(screen.getByRole("textbox", { name: "새 자료 이름" }), {
       target: { value: "바꾼 원본" },
     });
@@ -312,17 +316,144 @@ describe("private library delete confirmation dialog", () => {
     expect(server.documents.has("owner-a:worksheet")).toBe(true);
   });
 
-  it("leaves rename inline in the card", async () => {
-    const { card } = await seeded();
-    fireEvent.click(
+  /**
+   * 2026-09-19 원장님 결정(리드 추가 지시) — «이름 변경»도 삭제와 같은 겹쳐 뜨는 창으로.
+   * 창 안에 지금의 입력칸(라벨 «새 자료 이름», 시험지 80자·추출 자료 200자)과 [취소][이름 저장].
+   */
+  describe("rename dialog", () => {
+    const renameTrigger = (card: HTMLElement) =>
       within(card).getByRole("button", {
         name: "오늘의 수학 학습지 이름 변경",
-      }),
-    );
-    expect(
-      within(card).getByRole("textbox", { name: "새 자료 이름" }),
-    ).toBeVisible();
-    expect(screen.queryByRole("dialog")).not.toBeInTheDocument();
+      });
+    const openRename = (card: HTMLElement) => {
+      const trigger = renameTrigger(card);
+      trigger.focus();
+      fireEvent.click(trigger);
+      return screen.getByRole("dialog", { name: "이름 변경" });
+    };
+
+    it("opens a modal with the current name selected instead of expanding the card", async () => {
+      const { card } = await seeded();
+      const dialog = openRename(card);
+      expect(showModal).toHaveBeenCalledTimes(1);
+      expect(card.contains(dialog)).toBe(false);
+      expect(within(card).queryByRole("textbox")).not.toBeInTheDocument();
+      const input = within(dialog).getByRole("textbox", {
+        name: "새 자료 이름",
+      }) as HTMLInputElement;
+      expect(input).toHaveValue("오늘의 수학 학습지");
+      expect(input).toHaveAttribute("maxLength", "80");
+      expect(input).toHaveFocus();
+      expect([input.selectionStart, input.selectionEnd]).toEqual([
+        0,
+        "오늘의 수학 학습지".length,
+      ]);
+      expect(
+        within(dialog)
+          .getAllByRole("button")
+          .map((button) => button.textContent),
+      ).toEqual(["취소", "이름 저장"]);
+    });
+
+    it("locks save for a blank name", async () => {
+      const { server, card } = await seeded();
+      const dialog = openRename(card);
+      fireEvent.change(within(dialog).getByRole("textbox"), {
+        target: { value: "  " },
+      });
+      expect(
+        within(dialog).getByRole("button", { name: "이름 저장" }),
+      ).toBeDisabled();
+      fireEvent.submit(within(dialog).getByRole("textbox"));
+      expect(server.documents.get("owner-a:worksheet")?.title).toBe(
+        "오늘의 수학 학습지",
+      );
+    });
+
+    it("saves on Enter, locks while pending and closes on success", async () => {
+      let release!: () => void;
+      const gate = new Promise<void>((resolve) => {
+        release = resolve;
+      });
+      const { server, card } = await seeded(
+        (transport) => async (input, init) => {
+          if (init?.method === "PATCH") await gate;
+          return transport(input, init);
+        },
+      );
+      const dialog = openRename(card);
+      const input = within(dialog).getByRole("textbox");
+      fireEvent.change(input, { target: { value: "  1학기 기말  " } });
+      fireEvent.submit(input);
+      expect(await within(dialog).findByRole("status")).toHaveTextContent(
+        "처리 중…",
+      );
+      expect(within(card).queryByRole("status")).not.toBeInTheDocument();
+      expect(
+        within(dialog).getByRole("button", { name: "이름 저장" }),
+      ).toBeDisabled();
+      expect(
+        within(dialog).getByRole("button", { name: "취소" }),
+      ).toBeDisabled();
+      fireEvent(dialog, new Event("cancel", { cancelable: true }));
+      expect(screen.getByRole("dialog")).toBe(dialog);
+      release();
+      await screen.findByRole("heading", { name: "1학기 기말", level: 2 });
+      expect(screen.queryByRole("dialog")).not.toBeInTheDocument();
+      expect(server.documents.get("owner-a:worksheet")?.title).toBe(
+        "1학기 기말",
+      );
+    });
+
+    it("keeps the dialog open and shows the failure inside it", async () => {
+      const { server, card } = await seeded();
+      const client = new PrivateCloudClient("owner-a", server.transport);
+      await client.rename("worksheet", "다른 기기 변경", 1);
+      const dialog = openRename(card);
+      fireEvent.click(
+        within(dialog).getByRole("button", { name: "이름 저장" }),
+      );
+      expect(await within(dialog).findByRole("alert")).toHaveTextContent(
+        "다른 창이나 기기",
+      );
+      expect(screen.getByRole("dialog")).toBe(dialog);
+      expect(within(card).queryByRole("alert")).not.toBeInTheDocument();
+    });
+
+    it("closes on cancel, Esc and backdrop and returns focus to the rename button", async () => {
+      const { server, card } = await seeded();
+      fireEvent.click(
+        within(openRename(card)).getByRole("button", { name: "취소" }),
+      );
+      expect(screen.queryByRole("dialog")).not.toBeInTheDocument();
+      expect(renameTrigger(card)).toHaveFocus();
+
+      const escape = new Event("cancel", { cancelable: true });
+      fireEvent(openRename(card), escape);
+      expect(escape.defaultPrevented).toBe(true);
+      expect(screen.queryByRole("dialog")).not.toBeInTheDocument();
+      expect(renameTrigger(card)).toHaveFocus();
+
+      const dialog = openRename(card);
+      vi.spyOn(dialog, "getBoundingClientRect").mockReturnValue({
+        x: 300,
+        y: 200,
+        left: 300,
+        top: 200,
+        right: 870,
+        bottom: 420,
+        width: 570,
+        height: 220,
+        toJSON: () => ({}),
+      });
+      fireEvent.pointerDown(dialog, { clientX: 40, clientY: 40 });
+      fireEvent.click(dialog, { clientX: 40, clientY: 40 });
+      expect(screen.queryByRole("dialog")).not.toBeInTheDocument();
+      expect(renameTrigger(card)).toHaveFocus();
+      expect(server.documents.get("owner-a:worksheet")?.title).toBe(
+        "오늘의 수학 학습지",
+      );
+    });
   });
 
   /**

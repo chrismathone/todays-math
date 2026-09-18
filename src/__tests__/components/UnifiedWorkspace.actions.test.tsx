@@ -218,11 +218,19 @@ describe("workspace action wiring", () => {
     });
     const card = rename.closest("article")!;
     fireEvent.click(rename);
+    // 이름 변경도 겹쳐 뜨는 창이다(2026-09-19) — 카드 안에는 입력칸이 없다.
+    expect(within(card).queryByRole("textbox")).not.toBeInTheDocument();
+    const renameDialog = screen.getByRole("dialog", { name: "이름 변경" });
     fireEvent.change(
-      within(card).getByRole("textbox", { name: "새 시험지 이름" }),
+      within(renameDialog).getByRole("textbox", { name: "새 시험지 이름" }),
       { target: { value: "이름 바꾼 시험지" } },
     );
-    fireEvent.click(within(card).getByRole("button", { name: "이름 저장" }));
+    fireEvent.click(
+      within(renameDialog).getByRole("button", { name: "이름 저장" }),
+    );
+    expect(
+      screen.queryByRole("dialog", { name: "이름 변경" }),
+    ).not.toBeInTheDocument();
     expect(
       within(card).getByRole("heading", { name: "이름 바꾼 시험지" }),
     ).toBeVisible();
