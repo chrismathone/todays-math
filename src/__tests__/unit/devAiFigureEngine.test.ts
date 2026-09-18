@@ -434,6 +434,123 @@ describe("real local Python subscription figure pipeline", () => {
   );
 });
 
+// 원장님 2026-09-19 «충분히 우리 엔진으로 그릴 수 있을 것 같은데» — 사각형 관계 개념도를 모델이 두 번 «지원 엔진으로
+// 표현할 수 없다»며 spec:null 로 포기했다(운영 로그). graph-1(axes:false)의 다각형·화살표 선분·한글 일반 글자로 그려진다.
+// 이 사양은 원본(사다리꼴 → ㉠ → 평행사변형 → ㉡ → 직사각형, ㉢ → 마름모 → ㉤ → 정사각형, ㉣)을 손으로 옮긴 것이다.
+const CONCEPT_MAP = {
+  version: "graph-1",
+  xRange: [0, 100],
+  yRange: [0, 60],
+  width: 600,
+  height: 360,
+  axes: false,
+  polygons: [
+    {
+      points: [
+        [4, 38],
+        [26, 38],
+        [21, 52],
+        [9, 52],
+      ],
+    },
+    {
+      points: [
+        [37, 38],
+        [59, 38],
+        [63, 52],
+        [41, 52],
+      ],
+    },
+    {
+      points: [
+        [74, 38],
+        [96, 38],
+        [96, 52],
+        [74, 52],
+      ],
+    },
+    {
+      points: [
+        [50, 4],
+        [60, 12],
+        [50, 20],
+        [40, 12],
+      ],
+    },
+    {
+      points: [
+        [78, 4],
+        [92, 4],
+        [92, 18],
+        [78, 18],
+      ],
+    },
+  ],
+  segments: [
+    { from: [27, 45], to: [36, 45], arrow: true },
+    { from: [63, 45], to: [73, 45], arrow: true },
+    { from: [50, 37], to: [50, 21], arrow: true },
+    { from: [85, 37], to: [85, 19], arrow: true },
+    { from: [61, 11], to: [77, 11], arrow: true },
+  ],
+  labels: [
+    { at: [15, 45], text: "사다리꼴", size: 15, dy: 5 },
+    { at: [50, 45], text: "평행사변형", size: 15, dy: 5 },
+    { at: [85, 45], text: "직사각형", size: 15, dy: 5 },
+    { at: [50, 12], text: "마름모", size: 15, dy: 5 },
+    { at: [85, 11], text: "정사각형", size: 15, dy: 5 },
+    { at: [31.5, 45], text: "㉠", dy: -12 },
+    { at: [68, 45], text: "㉡", dy: -12 },
+    { at: [50, 29], text: "㉢", dx: 16, dy: 5 },
+    { at: [85, 28], text: "㉣", dx: 16, dy: 5 },
+    { at: [69, 11], text: "㉤", dy: -12 },
+  ],
+};
+
+describe("concept maps and flowcharts are drawn, not refused", () => {
+  it("draws the quadrilateral concept map through the whole redraw pipeline", async () => {
+    run
+      .mockResolvedValueOnce(JSON.stringify({ spec: CONCEPT_MAP }))
+      .mockResolvedValueOnce(pass);
+    const result = await redrawDevAiFigure(input);
+    expect(validDevAiSvg(result.svg!)).toBe(true);
+    for (const text of [
+      "사다리꼴",
+      "평행사변형",
+      "직사각형",
+      "마름모",
+      "정사각형",
+      "㉠",
+      "㉡",
+      "㉢",
+      "㉣",
+      "㉤",
+    ])
+      expect(result.svg).toContain(`>${text}<`);
+    // 상자 다섯 + 화살촉 다섯, 화살 줄기 다섯
+    expect((result.svg!.match(/<polygon\b/g) ?? []).length).toBe(10);
+    expect((result.svg!.match(/<line\b/g) ?? []).length).toBe(5);
+  });
+
+  it("tells the model to draw concept maps with graph-1 and to refuse only non-geometric images", async () => {
+    run
+      .mockResolvedValueOnce(JSON.stringify({ spec: triangle }))
+      .mockResolvedValueOnce(pass);
+    await redrawDevAiFigure(input);
+    const prompt = run.mock.calls[0][0].prompt;
+    expect(prompt).toMatch(/concept maps?, flowcharts? and relation diagrams/i);
+    for (const part of [
+      "axes:false",
+      "polygons",
+      "arrow:true",
+      "plain-text labels",
+      "without $",
+    ])
+      expect(prompt).toContain(part);
+    expect(prompt).toMatch(/spec:null ONLY/);
+  });
+});
+
 // 원장님 2026-09-19 «도형 생성 시 사각형이 왜 생기나» — v2 엔진은 흰 바탕 rect 를 첫 도형으로 깐다
 // (vendor/figure-engine/core/figure_scene.py:2906). 편집기가 그것을 1번 «사각형»으로 셌다. 엔진 기본값(white)은
 // 지면·DB 그림 바이트가 걸려 그대로 두고, 작업실 재작도만 투명으로 넘긴다.
