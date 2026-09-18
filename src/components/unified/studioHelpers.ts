@@ -63,6 +63,20 @@ export const STUDIO_GRADES: Record<SchoolLevel, string[]> = {
 export const clamp = (value: number, min = 0, max = 1) =>
   Math.min(max, Math.max(min, value));
 
+/**
+ * 화면에 내지 않는 옛 AI 경고. 원장님 2026-09-19 «원본 대조 멘트는 필요 없다» — 서버는 더 안 만들지만
+ * 이미 저장된 초안에는 남아 있다. 경고를 보이거나 세는 자리는 모두 이 함수를 거친다.
+ */
+const HIDDEN_WARNING_PREFIXES = ["원본 대조 확인 필요"];
+export function visibleStudioWarnings(warnings: string[] | undefined) {
+  return (warnings ?? []).filter(
+    (warning) =>
+      !HIDDEN_WARNING_PREFIXES.some((prefix) =>
+        warning.trimStart().startsWith(prefix),
+      ),
+  );
+}
+
 export function studioRectBetween(
   start: { x: number; y: number },
   end: { x: number; y: number },

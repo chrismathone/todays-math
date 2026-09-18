@@ -87,11 +87,6 @@ describe("Studio review figure activation", () => {
         await user.keyboard(activation === "Enter" ? "{Enter}" : activation);
       }
       expect(onEditFigure).toHaveBeenLastCalledWith(crop, figure);
-      await user.click(
-        screen.getByRole("button", { name: "그림 편집" }),
-      );
-      expect(onEditFigure).toHaveBeenCalledTimes(2);
-      expect(onEditFigure).toHaveBeenLastCalledWith(crop, figure);
     },
   );
 
@@ -100,22 +95,46 @@ describe("Studio review figure activation", () => {
     expect(screen.getByRole("button", { name: /^그림 1 편집/ })).toBeEnabled();
   });
 
-  it("keeps raster and source comparison images passive while retaining the edit action", async () => {
-    const { user, onEditFigure } = setup({ svg: undefined, image: raster });
+  // 원장님 2026-09-19 «그림 누르면 수정 가능하니 필요 없다» — 도형 줄의 단추 셋을 뺐다.
+  // «그림 편집» 단추가 열어 주던 래스터 그림도 이제 그림 자체를 눌러 연다.
+  it("opens a raster figure from the figure itself — the separate edit action is gone", async () => {
+    const { user, onEditFigure, crop, figure } = setup({
+      svg: undefined,
+      image: raster,
+    });
+    const preview = screen.getByRole("button", { name: /^그림 1 편집/ });
+    expect(preview).toHaveAttribute("src", raster);
+    await user.click(preview);
+    expect(onEditFigure).toHaveBeenCalledWith(crop, {
+      ...figure,
+      svg: undefined,
+      image: raster,
+    });
     expect(
-      screen.queryByRole("button", { name: /^그림 1 편집/ }),
+      screen.queryByRole("button", { name: "그림 편집" }),
     ).not.toBeInTheDocument();
-    await user.click(
-      screen.getByRole("img", { name: "문제 1 도형 1" }),
-    );
-    expect(onEditFigure).not.toHaveBeenCalled();
-    await user.click(
-      screen.getByRole("button", { name: "그림 편집" }),
-    );
-    expect(onEditFigure).toHaveBeenCalledOnce();
+    expect(
+      screen.queryByRole("button", { name: "영역 수정" }),
+    ).not.toBeInTheDocument();
+    // SVG 가 없는 도형은 캡션과 «SVG 생성»을 남긴다.
+    expect(screen.getByText(/원본 크롭 · SVG 미생성/)).toBeInTheDocument();
+    expect(screen.getByRole("button", { name: "SVG 생성" })).toBeEnabled();
   });
 
-  it("disables diagram and edit activation during redraw and leaves the source preview passive", async () => {
+  it("draws nothing under the body for a finished SVG figure", () => {
+    setup();
+    expect(
+      screen.queryByRole("button", { name: "그림 편집" }),
+    ).not.toBeInTheDocument();
+    expect(
+      screen.queryByRole("button", { name: "영역 수정" }),
+    ).not.toBeInTheDocument();
+    expect(screen.queryByText("원본 그림 비교")).not.toBeInTheDocument();
+    expect(screen.queryByText(/SVG 도형$/)).not.toBeInTheDocument();
+    expect(document.querySelectorAll("article figure")).toHaveLength(0);
+  });
+
+  it("disables diagram activation during redraw and keeps the per-figure cancel", async () => {
     const { user, onEditFigure } = setup({}, true);
     const preview = document.querySelector(
       '[data-figure-index="0"]',
@@ -125,11 +144,25 @@ describe("Studio review figure activation", () => {
     ).not.toBeInTheDocument();
     expect(screen.getByRole("button", { name: "내용 수정" })).toBeDisabled();
     expect(
-      screen.getByRole("button", { name: "그림 편집" }),
-    ).toBeDisabled();
+      screen.queryByRole("button", { name: "그림 편집" }),
+    ).not.toBeInTheDocument();
+    expect(
+      screen.getByRole("button", { name: "이 도형 취소" }),
+    ).toBeInTheDocument();
     await user.click(preview);
     expect(onEditFigure).not.toHaveBeenCalled();
-    expect(screen.getByAltText("도형 1 원본").closest("button")).toBeNull();
+    expect(screen.queryByAltText(/^도형 .* 원본$/)).not.toBeInTheDocument();
+  });
+
+  it("hides old «원본 대조 확인 필요» notes saved in a draft, keeping other warnings", () => {
+    setup({}, false, {
+      aiWarnings: [
+        "원본 대조 확인 필요: 각의 크기가 다릅니다.",
+        "보기 5번을 확인해 주세요.",
+      ],
+    });
+    expect(screen.queryByText(/원본 대조/)).not.toBeInTheDocument();
+    expect(screen.getByText("보기 5번을 확인해 주세요.")).toBeInTheDocument();
   });
 
   it("renders a body figure at its source anchor before following conditions, without a repeated preview", () => {
@@ -190,7 +223,11 @@ describe("Studio review figure activation", () => {
       1,
     );
     expect(screen.getByAltText("문제 1 도형 2")).toHaveAttribute("src", raster);
-    expect(screen.getByAltText("문제 1 도형 2").closest("button")).toBeNull();
+    // 편집 단추가 빠져 래스터 그림도 그림 자체가 편집을 연다.
+    expect(screen.getByAltText("문제 1 도형 2")).toHaveAttribute(
+      "role",
+      "button",
+    );
   });
 
   it("retains separated figures when recognition has not supplied text yet", () => {
