@@ -111,19 +111,38 @@ describe("Studio transport selection", () => {
   /**
    * 🔴 원장님 2026-09-18 — *「dev 모드인데 왜 구독요금제가 아니라 서버로 되어있지?」*
    * development 에서는 작업실 표면(`/`·`/studio`)에서도 **AI 요청만** 구독 CLI 다리(`/api/dev/unified/ai`)로 간다.
-   * 데이터 경로는 로그인·계정별 `/api/studio/*` 그대로다. 표면은 여전히 «연결 상태 한 줄»이다(모델 고르기 없음).
+   * 데이터 경로는 로그인·계정별 `/api/studio/*` 그대로다.
+   * 🔴 상태판은 **개발 모드면 기존 칸 그대로**다 — 원장님 같은 날 «작업실 AI칸은 dev 모드일때는 기존처럼,
+   * production에서만 최소화». 도구 고르기가 있고, 예전에 저장한 도구도 복원한다.
    */
   it.each(["/studio", "/"])(
-    "dev 의 %s 는 AI 를 구독 CLI 다리로, 데이터는 /api/studio 로 — 상태판은 한 줄 그대로",
+    "dev 의 %s 는 AI 를 구독 CLI 다리로, 데이터는 /api/studio 로 — 상태판은 기존 칸, 저장한 도구 복원",
     async (pathname) => {
       window.history.replaceState(null, "", pathname);
+      localStorage.setItem(
+        "today-math-dev-ai-provider-subscription-cli",
+        "claude",
+      );
+      const cliTwo = {
+        ...cli,
+        providers: [
+          ...cli.providers,
+          {
+            id: "claude",
+            label: "Claude",
+            status: "ready",
+            image: true,
+            detail: "connected",
+          },
+        ],
+      };
       const fetcher = vi
         .fn()
         .mockImplementation(async (_url: string, init?: RequestInit) =>
           Response.json(
             init?.method === "POST"
               ? {
-                  provider: "codex",
+                  provider: "claude",
                   action: "solution",
                   result: {
                     answer: "2",
@@ -132,7 +151,7 @@ describe("Studio transport selection", () => {
                     warnings: [],
                   },
                 }
-              : cli,
+              : cliTwo,
           ),
         );
       vi.stubGlobal("fetch", fetcher);
@@ -141,9 +160,13 @@ describe("Studio transport selection", () => {
           <Controls />
         </DevAiProvider>,
       );
-      await screen.findByText("AI 연결됨");
+      // 기존 칸 — 제목과 도구 고르기가 있다(최소화된 한 줄이 아니다)
+      await screen.findByText("AI 작업 연결");
+      await screen.findByRole("option", { name: "Claude" });
+      expect(screen.getByLabelText("개발용 AI 도구")).toBeTruthy();
+      expect(screen.queryByText("AI 연결됨")).toBeNull();
       expect(fetcher.mock.calls[0][0]).toBe("/api/dev/unified/ai");
-      expect(screen.queryByRole("combobox")).toBeNull();
+      // 작업실 표면이라 연결 방식(CLI/API) 바꾸기는 기존처럼 없다
       expect(screen.queryByLabelText("AI 연결 방식")).toBeNull();
       // 모드 바꾸기는 작업실 표면에서 여전히 막혀 있다 — 상태를 다시 묻지 않는다
       fireEvent.click(screen.getByText("CLI 요청"));
@@ -157,9 +180,10 @@ describe("Studio transport selection", () => {
         ([, init]) => init?.method === "POST",
       )!;
       expect(post[0]).toBe("/api/dev/unified/ai");
-      expect(JSON.parse(post[1].body)).toMatchObject({ provider: "codex" });
+      expect(JSON.parse(post[1].body)).toMatchObject({ provider: "claude" });
       expect(getStudioEndpoints()).toMatchObject({
         production: true,
+        productionBuild: false,
         ai: "/api/dev/unified/ai",
         problems: "/api/studio/problems",
         overview: "/api/studio/overview",
@@ -175,6 +199,7 @@ describe("Studio transport selection", () => {
       vi.stubEnv("NODE_ENV", "production");
       expect(getStudioEndpoints(pathname)).toMatchObject({
         production: true,
+        productionBuild: true,
         ai: "/api/studio/ai",
         problems: "/api/studio/problems",
       });

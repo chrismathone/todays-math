@@ -158,9 +158,9 @@ export function DevAiProvider({
       setStatus(next);
       if (!choiceMade.current && !activeRequests.current.size) {
         let initial = next.defaultProvider;
-        // 운영 작업실은 모델 고르기가 없다(원장님 2026-09-18 — 자동 고정). 예전에 저장한 고르기를
-        // 복원하면 바꿀 길 없이 그 모델에 묶인다 — 개발 표면에서만 복원한다.
-        if (!getStudioEndpoints().production)
+        // 운영 빌드는 모델 고르기가 없다(원장님 2026-09-18 — 자동 고정). 예전에 저장한 고르기를
+        // 복원하면 바꿀 길 없이 그 모델에 묶인다 — 개발 모드(고르기가 있는 기존 칸)에서만 복원한다.
+        if (!getStudioEndpoints().productionBuild)
           try {
             const saved =
               localStorage.getItem(`${STORAGE_KEY}-${next.mode}`) ??
