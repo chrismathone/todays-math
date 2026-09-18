@@ -1,6 +1,7 @@
 import type { figureObjects } from "./figureSvgEditing";
 import { TEXT_BG_ATTR } from "./figureTextBackground";
 import { formatToggleClass, isBoldWeight } from "./editorUi";
+import { DEFAULT_FACE_FILL } from "./figureFaceSources";
 
 type FigureObject = ReturnType<typeof figureObjects>[number];
 
@@ -14,15 +15,30 @@ const colorOf = (value: string | null, fallback: string) =>
   value && HEX.test(value) ? value : fallback;
 
 /**
+ * 묶음 안쪽 채우기 — 고른 선들이 닫힌 영역을 이루면 그 안에 면을 선 뒤에 만든다(선을 옮기면 따라간다).
+ * 원장님 2026-09-19 «그룹화했을 때 내부에 색을 넣을 수 있는 기능». 닫히지 않으면 흐리게 두고 이유를 적는다.
+ */
+export interface InnerFill {
+  ok: boolean;
+  reason?: string;
+  /** 이미 있는 면의 색 — 있으면 켜짐 */
+  color?: string;
+  onFill: (color: string) => void;
+  onClear: () => void;
+}
+
+/**
  * 여러 요소를 고르면(묶음 이름을 눌러도) 공통 서식을 한 번에 바꾼다 — 원장님 2026-09-18 «묶음 선택 후 공통 서식 수정가능하게».
  * 선·도형과 글자는 서식이 달라 칸을 나눈다. 값이 갈리면 «여러 값»이라 적고, 바꾸면 고른 요소 모두에 같은 값이 들어간다.
  */
 export function FigureCommonFormat({
   objects,
   onChange,
+  innerFill,
 }: {
   objects: FigureObject[];
   onChange: (ids: string[], attrs: Record<string, string>) => void;
+  innerFill?: InnerFill;
 }) {
   const shapes = objects.filter((o) => o.type !== "text");
   const texts = objects.filter((o) => o.type === "text");
@@ -113,6 +129,7 @@ export function FigureCommonFormat({
               </button>
             </div>
           )}
+          {innerFill && <InnerFillRow {...innerFill} />}
         </section>
       )}
       {texts.length > 0 && (
@@ -193,6 +210,47 @@ export function FigureCommonFormat({
           </div>
         </section>
       )}
+    </div>
+  );
+}
+
+/** «안쪽 채우기 [■] / 채우기 없애기» — 도형의 «채우기 / 채우기 없애기»와 같은 모양. 켜기 단추는 지금 색으로 켠다. */
+function InnerFillRow({ ok, reason, color, onFill, onClear }: InnerFill) {
+  const on = color !== undefined;
+  const usable = ok || on;
+  return (
+    <div className="space-y-1">
+      <div
+        className={`flex items-center justify-between gap-2 ${usable ? "" : "opacity-40"}`}
+      >
+        <div className="flex items-center gap-2">
+          <button
+            type="button"
+            aria-pressed={on}
+            disabled={!usable}
+            onClick={() => (on ? onClear() : onFill(DEFAULT_FACE_FILL))}
+            className={formatToggleClass(on)}
+          >
+            안쪽 채우기
+          </button>
+          <input
+            type="color"
+            aria-label="고른 선 안쪽 채우기 색"
+            disabled={!usable}
+            value={colorOf(color ?? null, DEFAULT_FACE_FILL)}
+            onChange={(e) => onFill(e.target.value)}
+          />
+        </div>
+        <button
+          type="button"
+          disabled={!on}
+          onClick={onClear}
+          className="underline text-muted disabled:opacity-40"
+        >
+          채우기 없애기
+        </button>
+      </div>
+      {!ok && reason && <p className="text-muted">{reason}</p>}
     </div>
   );
 }

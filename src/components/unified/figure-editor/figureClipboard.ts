@@ -54,6 +54,21 @@ export function pasteFigureSelection(svg: string, source: string, offset = 12) {
       if (value !== attr.value) node.setAttribute(attr.name, value);
     }
   }
+  // 면이 따라가는 선의 열쇠(id) — 같이 붙여넣은 선이면 새 이름으로, 하나라도 없으면 따라가지 않는 면으로
+  // (옛 열쇠를 두면 붙여넣은 면이 원래 그림의 선을 따라간다).
+  for (const node of root.querySelectorAll("[data-face]")) {
+    const keys = (node.getAttribute("data-face") ?? "")
+      .split(/\s+/)
+      .filter(Boolean);
+    if (!keys.length) continue;
+    const renamed = keys.map((key) => references.get(key));
+    if (renamed.every(Boolean))
+      node.setAttribute("data-face", renamed.join(" "));
+    else {
+      node.setAttribute("data-face", "");
+      node.removeAttribute("data-face-seed");
+    }
+  }
   const ids = nodes.map((node) => {
     const id = `obj-${crypto.randomUUID()}`;
     node.setAttribute("data-object-id", id);

@@ -2,6 +2,10 @@ import type { PointerEvent } from "react";
 import type { FigureHandle } from "./figureHandles";
 import { isMoveHandle } from "./figureSizeLock";
 
+/** 노란 조절점 — 파워포인트의 모양 조절점처럼 노랑(원장님 참고 그림 2026-09-19). 흰 바탕에서 보이게 테두리는 짙은 황토. */
+const ADJUST_FILL = "#ffd400";
+const ADJUST_STROKE = "#8a6d00";
+
 export function FigureSelectionOverlay({
   selection,
   handles: allHandles,
@@ -32,7 +36,7 @@ export function FigureSelectionOverlay({
     [b.x + b.width, b.y + b.height],
     [b.x, b.y + b.height],
   ];
-  const controls = handles.length
+  const controls: FigureHandle[] = handles.length
     ? handles
     : currentType !== "text" && !sizeLocked
       ? corners.map(([x, y], i) => ({
@@ -102,8 +106,14 @@ export function FigureSelectionOverlay({
             cx={p.x}
             cy={p.y}
             r={radius}
-            fill={h.control ? "var(--figure-accent-soft)" : "white"}
-            stroke="var(--figure-primary)"
+            fill={
+              h.adjust
+                ? ADJUST_FILL
+                : h.control
+                  ? "var(--figure-accent-soft)"
+                  : "white"
+            }
+            stroke={h.adjust ? ADJUST_STROKE : "var(--figure-primary)"}
             strokeWidth={2 / selection.scale}
             style={{
               pointerEvents: busy ? "none" : "all",

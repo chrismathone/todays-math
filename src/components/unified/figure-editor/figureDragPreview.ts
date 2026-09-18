@@ -35,6 +35,9 @@ export function previewFigureObjects(
       for (const attr of next.attributes)
         if (live.getAttribute(attr.name) !== attr.value)
           live.setAttribute(attr.name, attr.value);
+    } else if (live.localName !== "g") {
+      // 노란 점으로 사각형을 기울이면 같은 번호의 다각형으로 바뀐다 — 요소째 갈아 끼운다.
+      live.replaceWith(root.ownerDocument.importNode(next, true));
     } else {
       // 조판한 라벨(<g>)은 자리만 옮긴다 — 라벨은 끌어 옮기기만 한다.
       const transform = next.getAttribute("transform");

@@ -1,7 +1,7 @@
 import { memo, useRef, useState, type DragEvent } from "react";
 import type { figureObjects } from "./figureSvgEditing";
 import { figureLabelSummary, isFigureMathLabel } from "./FigureLabelInput";
-import { NAMES } from "./figureObjectNames";
+import { objectName } from "./figureObjectNames";
 import type { FigureObjectGroup } from "./figureObjectGroups";
 
 type FigureObject = ReturnType<typeof figureObjects>[number];
@@ -11,7 +11,7 @@ const listLabel = (o: FigureObject) =>
     ? "함수 그래프"
     : o.type === "text"
       ? `${isFigureMathLabel(o.attrs["data-mj"] ?? o.text) ? "수식" : "글자"} ${figureLabelSummary(o.attrs["data-mj"] ?? o.text)}`
-      : (NAMES[o.type] ?? o.type);
+      : objectName(o);
 const groupsKey = (groups: FigureObjectGroup[]) =>
   groups.map((g) => `${g.key}:${g.ids.join(",")}`).join("|");
 const LOOSE: FigureObjectGroup = {
