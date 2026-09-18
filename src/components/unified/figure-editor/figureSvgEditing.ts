@@ -111,6 +111,31 @@ function engineBackgroundRect(root: Element) {
     : undefined;
 }
 
+// 원장님 2026-09-19 «각도가 자꾸 기울어지는데, 기울어지지 않게 해.» — 엔진은 각도 라벨의 바깥 <text> 에
+// font-style="italic" 을 걸고 조각(<tspan>)마다 기울임을 따로 적는다(숫자·° 는 font-style="normal" —
+// figure_scene.py:2867, label_markup.py). 편집기 조판은 바깥 표시만 보고 \mathit 으로 **숫자까지** 기울였다.
+// 조각이 정자를 적어 둔 엔진 라벨(흰 테두리 paint-order 가 있는 각도·치수 라벨)이면 바깥 기울임을 걷는다 —
+// 조판이 기본 규칙(한 글자 소문자·그리스 문자만 기울임, 숫자·단위·대문자는 정자)을 따른다.
+// 걷을 때 조각의 font-style="normal" 도 지운다(바깥이 정자라 같은 뜻이다). 그러면 한 번 걷힌 라벨은 다시
+// 이 조건에 안 걸려, 사용자가 «기울임» 단추로 켠 기울임은 저장·다시 열기를 지나도 그대로 남는다.
+function uprightEngineAngleLabel(text: SVGElement) {
+  if (
+    text.getAttribute("font-style") !== "italic" ||
+    !text.hasAttribute("paint-order")
+  )
+    return;
+  const upright = [...text.children].filter(
+    (piece) =>
+      piece.localName === "tspan" &&
+      piece.getAttribute("font-style") === "normal",
+  );
+  if (!upright.length) return;
+  for (const piece of upright) piece.removeAttribute("font-style");
+  text.setAttribute("font-style", "normal");
+  // 이 수정 전에 저장된 초안은 prepare 가 style 에도 italic 을 옮겨 적어 두었다
+  text.style.removeProperty("font-style");
+}
+
 export function prepareFigureSvg(source?: string) {
   const doc = parse(
     source ||
@@ -206,6 +231,7 @@ export function prepareFigureSvg(source?: string) {
       node.setAttribute("data-object-id", `obj-${index++}`);
       if (node.localName === "text") {
         const text = node as SVGElement;
+        uprightEngineAngleLabel(text);
         for (const [property, fallback] of [
           ["font-style", "normal"],
           ["font-family", "Times New Roman, serif"],
