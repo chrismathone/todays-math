@@ -393,7 +393,7 @@ function pathPieces(d: string, step: number): Piece[] | null {
       const v = read(upper === "C" ? 6 : 4);
       if (!v) return null;
       const rest = upper === "C" ? v.slice(2) : v;
-      const c1 =
+      const c1: Point =
         upper === "C"
           ? at(v[0], v[1])
           : control && /[CS]/.test(previous)
@@ -406,7 +406,7 @@ function pathPieces(d: string, step: number): Piece[] | null {
     } else if (upper === "Q" || upper === "T") {
       const v = read(upper === "Q" ? 4 : 2);
       if (!v) return null;
-      const q =
+      const q: Point =
         upper === "Q"
           ? at(v[0], v[1])
           : control && /[QT]/.test(previous)
