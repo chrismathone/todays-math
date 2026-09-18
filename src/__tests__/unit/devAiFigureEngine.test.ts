@@ -398,6 +398,47 @@ describe("real local Python subscription figure pipeline", () => {
     ]);
   });
 
+  // 리드 결정 2026-09-19: 운영 처리기(handler.ts)의 240초는 요청 시작부터, 도형 쪽 240초는 칸을 얻은 뒤부터라
+  // 처리기가 먼저 끊어 504 가 됐다 — 결함 4(마지막 렌더 돌려주기)가 운영에서 닿지 않았다.
+  // 도형 쪽 마감 = min(칸을 얻은 뒤 240초, 처리기 끝 시각 − 10초).
+  it.each([
+    ["the handler leaves 100 s", 100_000, 90_000],
+    ["the handler leaves 400 s", 400_000, 240_000],
+  ])(
+    "stops before the handler when %s, still returning the last render",
+    async (_name, left, stopsAt) => {
+      vi.useFakeTimers({ toFake: ["setTimeout", "clearTimeout", "Date"] });
+      run.mockImplementation(async ({ prompt, signal }) => {
+        if (prompt.includes("<rendered-spec-data>"))
+          return JSON.stringify({ passed: false, issues: ["점 D"] });
+        if (prompt.includes("<previous-spec-data>"))
+          return pendingUntilAbort({ signal });
+        return JSON.stringify({ spec: triangle });
+      });
+      const result = redrawDevAiFigure(
+        input,
+        undefined,
+        (call) =>
+          run({ ...call, provider: input.provider, model: input.model }),
+        Date.now() + left,
+      );
+      await untilCalled(3);
+      let settled = false;
+      void result.then(() => (settled = true));
+      await vi.advanceTimersByTimeAsync(stopsAt - 1_000);
+      expect(settled).toBe(false);
+      await vi.advanceTimersByTimeAsync(1_001);
+      // 시계를 더 밀지 않고 기다린다 — 밀면 240초 시계가 울려 고치기 전에도 초록이 된다
+      const waited = performance.now();
+      while (!settled && performance.now() - waited < 5_000)
+        await new Promise((resolve) => setImmediate(resolve));
+      expect(settled).toBe(true);
+      expect((await result).warnings).toEqual([
+        "도형 재작도가 오래 걸려 마지막으로 그린 결과를 사용합니다.",
+      ]);
+    },
+  );
+
   it("still keeps the original when a user cancels after a successful render", async () => {
     const user = new AbortController();
     run.mockImplementation(async ({ prompt, signal }) => {

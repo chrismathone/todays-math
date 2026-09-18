@@ -61,11 +61,23 @@ export type FigureInference = (input: {
   phase: "generate" | "review";
 }) => Promise<string>;
 
-/** Inject inference while retaining validated local geometry and source review. */
+/** 도형 한 장의 예산 — 칸을 얻은 뒤부터 잰다(결함 3, 2026-09-18). */
+export const FIGURE_BUDGET_MS = 240_000;
+/**
+ * 처리기(handler.ts)가 끊기 전에 도형 쪽이 먼저 멈출 여유(리드 결정 2026-09-19). 처리기의 240초는 요청 시작부터라
+ * 처리기가 먼저 끊으면 timedOut 이 안 서서 결함 4(마지막 렌더 돌려주기)가 운영에서 닿지 않고 504 가 됐다.
+ */
+export const HANDLER_MARGIN_MS = 10_000;
+
+/**
+ * Inject inference while retaining validated local geometry and source review.
+ * `deadlineAt` 은 부르는 처리기의 끝 시각(ms) — 주면 마감이 min(칸을 얻은 뒤 240초, 끝 시각 − 10초)이 된다.
+ */
 export async function redrawDevAiFigure(
   request: DevAiRequest,
   signal?: AbortSignal,
   inference?: FigureInference,
+  deadlineAt?: number,
 ): Promise<DevAiResult> {
   if (request.action !== "figure-redraw" || !request.imageDataUrl)
     throw new FigureRedrawError("재작도할 원본 도형 이미지가 필요합니다.");
@@ -106,10 +118,20 @@ export async function redrawDevAiFigure(
   let release: (() => void) | undefined;
   try {
     release = await slots.acquire(deadline.signal);
-    timer = setTimeout(() => {
-      timedOut = true;
-      cancel();
-    }, 240000);
+    // 줄 서서 기다린 시간은 깎지 않는다 — 다만 처리기 한도 안에서
+    const budget = Math.min(
+      FIGURE_BUDGET_MS,
+      deadlineAt === undefined
+        ? Infinity
+        : deadlineAt - HANDLER_MARGIN_MS - Date.now(),
+    );
+    timer = setTimeout(
+      () => {
+        timedOut = true;
+        cancel();
+      },
+      Math.max(0, budget),
+    );
     let repair: { spec: DevAiFigureSpec; error: string } | undefined;
     for (let attempt = 0; attempt < 3; attempt++) {
       check();

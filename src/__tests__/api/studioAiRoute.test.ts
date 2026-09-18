@@ -308,6 +308,50 @@ describe("figure redraw reasons reach the screen", () => {
     expect(runModelApi).toHaveBeenCalledTimes(3);
   });
 
+  // 리드 결정 2026-09-19 — 처리기의 240초는 요청 시작부터, 도형 쪽 240초는 칸을 얻은 뒤부터라 처리기가 먼저 끊어
+  // 504 가 됐다(«마지막으로 그린 결과» 길이 운영에서 닿지 않았다). 도형 쪽이 처리기 끝 10초 전에 먼저 멈춘다.
+  // AbortSignal.timeout 은 가짜 시계 밖이라 여기서는 옛 504 가 아니라 «240초까지 안 끝남»으로 빨갛다.
+  it("returns the last render before the handler's own 240 s limit", async () => {
+    vi.useFakeTimers({ toFake: ["setTimeout", "clearTimeout", "Date"] });
+    try {
+      vi.mocked(runModelApi).mockImplementation(async ({ prompt, signal }) => {
+        if (prompt.includes("<rendered-spec-data>"))
+          return JSON.stringify({ passed: false, issues: ["점 D"] });
+        if (prompt.includes("<previous-spec-data>"))
+          return new Promise<string>((_resolve, reject) =>
+            signal.addEventListener("abort", () => reject(signal.reason), {
+              once: true,
+            }),
+          );
+        return JSON.stringify({ spec: catalog.v2_example });
+      });
+      const waitReal = async (done: () => boolean, limitMs: number) => {
+        const started = performance.now();
+        while (!done() && performance.now() - started < limitMs)
+          await new Promise((resolve) => setImmediate(resolve));
+      };
+      const pending = POST(request(figure));
+      await waitReal(
+        () => vi.mocked(runModelApi).mock.calls.length >= 3,
+        40_000,
+      );
+      let settled = false;
+      void pending.then(() => (settled = true));
+      await vi.advanceTimersByTimeAsync(229_000);
+      expect(settled).toBe(false);
+      await vi.advanceTimersByTimeAsync(1_001);
+      await waitReal(() => settled, 5_000);
+      expect(settled).toBe(true);
+      const response = await pending;
+      expect(response.status).toBe(200);
+      expect((await response.json()).result.warnings).toEqual([
+        "도형 재작도가 오래 걸려 마지막으로 그린 결과를 사용합니다.",
+      ]);
+    } finally {
+      vi.useRealTimers();
+    }
+  }, 60_000);
+
   it("still hides failures it did not write", async () => {
     vi.mocked(runModelApi).mockRejectedValueOnce(
       new Error("upstream body with sk-live-secret"),

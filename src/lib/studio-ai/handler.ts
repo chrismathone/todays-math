@@ -30,6 +30,8 @@ export async function studioApiPost(request: Request, owner: string) {
   active++;
   activeUsers.set(owner, (activeUsers.get(owner) ?? 0) + 1);
   const timeout = AbortSignal.timeout(240_000);
+  // 도형 재작도가 이 한도보다 먼저 멈춰 «마지막으로 그린 결과»를 돌려줄 수 있게 끝 시각을 넘긴다(2026-09-19)
+  const deadlineAt = Date.now() + 240_000;
   const signal = AbortSignal.any([request.signal, timeout]);
   let action: string | undefined;
   try {
@@ -55,6 +57,7 @@ export async function studioApiPost(request: Request, owner: string) {
       input,
       { mode: "model-api", provider },
       signal,
+      deadlineAt,
     );
     signal.throwIfAborted();
     return Response.json(
