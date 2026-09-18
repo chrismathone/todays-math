@@ -1,0 +1,234 @@
+/**
+ * 리포트의 **네 영역** — 원장 화면과 학부모 A4 가 같이 부르는 한 원천 (D-134 ⑻ · Hi-fi 브리프 §0).
+ *
+ * ## 🔴 기록이 영역을 세운다 — 문장이 아니다
+ *
+ * Wire D 는 «평균 문장이 없으면 회차 목록도 안 그린다»였다. 그래서 **전부 결시인 달에는 결시 내역까지
+ * 증발**했고(§1 #4), 난이도 문장이 없으면 숫자판도 숨었다. 문장은 기록 **위에 얹는 것**이지 기록을
+ * 여는 열쇠가 아니다 — 영역이 서는지는 `areaHasRecords` 가, 무슨 말을 하는지는 `areaSummary` 가 따로 정한다.
+ *
+ * ## 두 산출물
+ *
+ *   · **원장 화면** — 네 영역을 **늘 같은 순서·같은 자리**. 빈 영역은 «무엇이 · 왜 · 어떻게»(`directorGaps`)
+ *   · **학부모 A4** — 순서를 지키되 **있는 영역만**(`parentAreas`). 빈 사유는 **0글자** — 대신 맨 아래
+ *     한 줄(`coverageLine`)이 «담은 기록 · 담지 않은 기록»을 이름으로 적는다.
+ */
+import {
+  bandSentence,
+  driftSentence,
+  homeworkSentence,
+  learnedSentence,
+  lectureSentence,
+  problemSentence,
+  scoreSentence,
+} from "./sentences";
+import type { AchievementFactors, CoveredUnit, PlanDriftGap } from "./types";
+
+/** 리포트 한 벌의 원천 — 🔴 선생님 의견은 **칸이 아직 없어서** 팩터 밖에 있다(트랙 3). */
+export interface ReportSource {
+  factors: AchievementFactors;
+  teacherNote: string | null;
+}
+
+export const AREA_ORDER = ["learned", "scored", "selfStudy", "note"] as const;
+export type AreaKey = (typeof AREA_ORDER)[number];
+
+/** 영역 이름 — 원장 화면과 학부모 지면이 **같은 이름**을 쓴다. */
+export const AREA_TITLE: Record<AreaKey, string> = {
+  learned: "배운 것",
+  scored: "시험",
+  selfStudy: "스스로 한 공부",
+  note: "선생님 의견",
+};
+
+/** 이 영역에 **기록이 있나** — 문장을 만들 수 있는지와 상관없다. */
+export function areaHasRecords(src: ReportSource, area: AreaKey): boolean {
+  const { factors } = src;
+  switch (area) {
+    case "learned":
+      return factors.learned.units !== null;
+    case "scored":
+      // 채점 기록이 1건이라도 있으면 선다 — **전부 결시여도** 결시 기록이 있다.
+      return factors.scored.rounds !== null;
+    case "selfStudy":
+      return (
+        factors.selfStudy.lectures !== null ||
+        factors.selfStudy.homework !== null
+      );
+    case "note":
+      return src.teacherNote !== null && src.teacherNote.trim() !== "";
+  }
+}
+
+/**
+ * 영역의 **요약 문장** — 만들 수 없는 문장은 빠진다. 🔴 빈 배열이어도 기록은 그린다.
+ * 문장은 전부 `sentences.ts` 에서 온다 — 여기서 새로 짓지 않는다.
+ */
+export function areaSummary(src: ReportSource, area: AreaKey): string[] {
+  const { factors } = src;
+  const lines: (string | null)[] =
+    area === "learned"
+      ? [
+          learnedSentence(factors.learned, factors.period),
+          driftSentence(factors.learned.planDriftDays),
+        ]
+      : area === "scored"
+        ? [
+            scoreSentence(factors.scored.rounds),
+            problemSentence(
+              factors.scored.problems,
+              factors.scored.rounds?.length ?? 0,
+            ),
+            bandSentence(factors.scored.bandAccuracy),
+          ]
+        : area === "selfStudy"
+          ? [
+              lectureSentence(factors.selfStudy.lectures, factors.period),
+              homeworkSentence(factors.selfStudy.homework),
+            ]
+          : [];
+  return lines.filter((s): s is string => s !== null);
+}
+
+/** 학부모 지면에 그릴 영역 — **순서 고정 · 있는 것만**. */
+export function parentAreas(src: ReportSource): AreaKey[] {
+  return AREA_ORDER.filter((area) => areaHasRecords(src, area));
+}
+
+// ─────────────────────────────────────────────
+// 원장 화면에만 — 빈 자리의 «무엇이 · 왜 · 어떻게»
+// ─────────────────────────────────────────────
+
+export interface DirectorGap {
+  area: AreaKey;
+  what: string;
+  why: string;
+  how: string;
+}
+
+const DRIFT_WHY: Record<PlanDriftGap, string> = {
+  계획없음: "이 반에 진도 계획이 없습니다.",
+  계획꺼짐: "진도 계획이 꺼져 있습니다.",
+  진도없음: "이 달 진도가 없어 계획과 견줄 수 없습니다.",
+  차시밖: "마지막 진도가 계획의 차시 목록 밖입니다.",
+};
+
+/**
+ * 🔴 **원장 화면에만** 쓰는 빈 사유. 학부모 지면은 이 함수를 부르지 않는다 — 개발 사정
+ * («칸이 아직 없다»·«채점 화면이 생기면»)은 학부모 지면에 0글자다(23 §7.2 Q5).
+ */
+export function directorGaps(src: ReportSource): DirectorGap[] {
+  const { factors } = src;
+  const gaps: DirectorGap[] = [];
+
+  if (factors.learned.units === null)
+    gaps.push({
+      area: "learned",
+      what: "진도",
+      why: "이 달 진도 기록이 없습니다.",
+      how: "반 화면에서 진도를 입력하면 소단원 이름이 들어갑니다.",
+    });
+  else if (factors.learned.planDriftGap !== null)
+    gaps.push({
+      area: "learned",
+      what: "계획 대비 진도",
+      why: DRIFT_WHY[factors.learned.planDriftGap],
+      how: "반 관리 › 수업 계획을 넣으면 «계획보다 N일 늦습니다»를 말할 수 있습니다.",
+    });
+
+  if (factors.scored.rounds === null)
+    gaps.push({
+      area: "scored",
+      what: "시험 점수",
+      why: "이 달 채점 기록이 0건입니다.",
+      how: "채점을 입력하면 회차 점수 · 문제 수 · 난이도별 결과가 들어갑니다(채점 입력 화면은 트랙 1).",
+    });
+
+  if (factors.selfStudy.lectures === null)
+    gaps.push({
+      area: "selfStudy",
+      what: "예습 영상",
+      why: "이 달 배운 차시에 월말까지 게시된 강의가 없습니다.",
+      how: "오늘의 개념에서 강의를 게시하면 «N편 중 M편»이 들어갑니다.",
+    });
+
+  if (factors.selfStudy.homework === null)
+    gaps.push({
+      area: "selfStudy",
+      what: "숙제",
+      why: "숙제 확인 기록이 없습니다 — 기록하는 칸이 아직 없습니다.",
+      how: "숙제 확인(트랙 4)에서 «오늘 확인함»을 찍은 날만 셉니다.",
+    });
+
+  if (src.teacherNote === null || src.teacherNote.trim() === "")
+    gaps.push({
+      area: "note",
+      what: "선생님 의견",
+      why: "쓰는 칸이 아직 없습니다.",
+      how: "리포트 발행 화면(트랙 3)에서 직접 씁니다. 태도는 점수가 아니라 문장으로 씁니다.",
+    });
+
+  return gaps;
+}
+
+// ─────────────────────────────────────────────
+// 소단원 묶음 — 대단원별로, 이름은 줄이지 않는다 (§2 규칙 1)
+// ─────────────────────────────────────────────
+
+export interface ChapterGroup {
+  /** 대단원 이름 — 🔴 학년이 둘 이상 섞이면 앞에 학년을 붙인다(«중1 1. 소인수분해»). */
+  chapter: string;
+  /** 소단원 이름 — **말줄임 없이.** 두 번 이상 나간 것은 «(N차시)» 를 붙인다. */
+  sections: string[];
+}
+
+/**
+ * 대단원 이름 — 학년이 **하나뿐이면** 그대로, 섞이면 학년을 앞에 붙인다. 초5 반이 8월 끝에 중1
+ * «1. 소인수분해»로 넘어가면 학년 없이는 «2-6» 뒤에 «1.»이 서서 순서가 틀린 것처럼 읽힌다(실데이터).
+ */
+function chapterLabeler(units: CoveredUnit[]): (u: CoveredUnit) => string {
+  const mixed = new Set(units.map((u) => u.grade)).size > 1;
+  return (u) => (mixed && u.grade ? `${u.grade} ${u.chapter}` : u.chapter);
+}
+
+/** 대단원(학년 + 대단원 이름)별로 묶는다 — 교육과정 차례(들어온 순서)를 지킨다. */
+export function groupUnits(units: CoveredUnit[]): ChapterGroup[] {
+  const label = chapterLabeler(units);
+  const groups = new Map<string, ChapterGroup>();
+  for (const u of units) {
+    const key = `${u.grade}::${u.chapter}`;
+    const group = groups.get(key) ?? { chapter: label(u), sections: [] };
+    group.sections.push(
+      u.lessons > 1 ? `${u.section} (${u.lessons}차시)` : u.section,
+    );
+    groups.set(key, group);
+  }
+  return [...groups.values()];
+}
+
+export interface FoldedChapter {
+  chapter: string;
+  units: number;
+  lessons: number;
+}
+
+/**
+ * **접은 모양** — 대단원 + 소단원 수 + 차시. A4 한 장을 넘칠 때만 쓴다(넘침은 지면이 재서 정한다).
+ * 접었으면 지면에 `FOLD_NOTE` 로 **요약했다는 사실**을 밝힌다.
+ */
+export function foldUnits(units: CoveredUnit[]): FoldedChapter[] {
+  const label = chapterLabeler(units);
+  const groups = new Map<string, FoldedChapter>();
+  for (const u of units) {
+    const key = `${u.grade}::${u.chapter}`;
+    const group = groups.get(key) ?? {
+      chapter: label(u),
+      units: 0,
+      lessons: 0,
+    };
+    group.units += 1;
+    group.lessons += u.lessons;
+    groups.set(key, group);
+  }
+  return [...groups.values()];
+}
