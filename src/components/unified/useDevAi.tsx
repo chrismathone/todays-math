@@ -18,6 +18,7 @@ import {
   type DevAiResponse,
   type DevAiStatus,
 } from "@/lib/dev-ai/contracts";
+import { aiImageDataUrl } from "./aiImageDataUrl";
 import { getStudioEndpoints } from "@/lib/studio-ai/endpoints";
 
 export interface DevAiActivity {
@@ -248,10 +249,15 @@ export function DevAiProvider({
         }));
       };
       try {
+        // 되살린 작업의 그림은 blob: 이다 — 서버는 data: 만 받는다(aiImageDataUrl.ts).
+        const imageDataUrl = await aiImageDataUrl(
+          request.imageDataUrl,
+          controller.signal,
+        );
         const response = await fetch(endpoint(), {
           method: "POST",
           headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ ...request, provider }),
+          body: JSON.stringify({ ...request, imageDataUrl, provider }),
           signal: controller.signal,
         });
         const body = await response.json();
