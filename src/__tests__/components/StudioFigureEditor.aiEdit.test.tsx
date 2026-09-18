@@ -124,13 +124,9 @@ describe("요청대로 고치기", () => {
   });
 
   it("sends the numbered element list, one composed image and the request text", async () => {
-    const onEdit = vi.fn(
-      async (
-        _request: StudioFigureEditRequest,
-      ): Promise<StudioFigureEditResult> => ({
-        edits: [{ op: "delete", target: 1 }],
-      }),
-    );
+    const onEdit = vi.fn<
+      (request: StudioFigureEditRequest) => Promise<StudioFigureEditResult>
+    >(async () => ({ edits: [{ op: "delete", target: 1 }] }));
     editor({ onEdit });
     ask("1번 선을 지워 주세요");
     fireEvent.click(screen.getByRole("button", { name: "요청대로 고치기" }));
