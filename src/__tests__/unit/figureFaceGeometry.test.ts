@@ -135,10 +135,21 @@ describe("faceAt — 누른 점을 둘러싼 가장 작은 닫힌 영역", () =>
       7200,
       6,
     );
-    expect(faceAt(arrangeFaceCurves(short, 0), P(80, 140))!.area).toBeCloseTo(
-      21600,
-      6,
-    );
+    const whole = faceAt(arrangeFaceCurves(short, 0), P(80, 140))!;
+    expect(whole.area).toBeCloseTo(21600, 6);
+    // 매달린 AD 는 걷힌다 — 면 테두리에 안으로 찌른 가시(A→D→A)가 남지 않는다.
+    expect(whole.outer).toHaveLength(3);
+    expect(whole.sourceIds).not.toContain("AD");
+  });
+
+  it("면 안에 떨어진 선분 — 구멍이 아니다(넓이 0 고리를 구멍으로 달지 않는다)", () => {
+    const face = faceAt(
+      arrangeFaceCurves([...triangle, seg("stray", P(100, 150), P(140, 150))]),
+      P(120, 100),
+    )!;
+    expect(face.area).toBeCloseTo(21600, 6);
+    expect(face.holes).toEqual([]);
+    expect(face.sourceIds).not.toContain("stray");
   });
 
   it("꼭짓점에서 조금 삐져나온 선 — 꼬리는 걷히고 면은 그대로", () => {
