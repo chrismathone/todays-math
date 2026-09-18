@@ -111,6 +111,31 @@ describe("engine background rect in the figure editor", () => {
       "a fitted image whose viewBox moved",
       engine(ENGINE_BACKGROUND, "-12.67 -12.67 341.99 272.66"),
     ],
+    // 조건을 하나씩만 어기는 표본 — 둘을 한꺼번에 어기면 하나를 꺼도 다른 하나가 지켜 줘 변이가 안 문다
+    [
+      "a rect shifted right only",
+      engine(`<rect x="1" width="${W}" height="${H}" fill="#fff"/>`),
+    ],
+    [
+      "a rect shifted down only",
+      engine(`<rect y="1" width="${W}" height="${H}" fill="#fff"/>`),
+    ],
+    [
+      "a narrower rect",
+      engine(`<rect width="${W - 1}" height="${H}" fill="#fff"/>`),
+    ],
+    [
+      "a shorter rect",
+      engine(`<rect width="${W}" height="${H - 1}" fill="#fff"/>`),
+    ],
+    [
+      "a canvas whose origin is not 0 0",
+      engine(ENGINE_BACKGROUND, `-10 0 ${W} ${H}`),
+    ],
+    [
+      "a canvas whose top is not 0",
+      engine(ENGINE_BACKGROUND, `0 -10 ${W} ${H}`),
+    ],
     [
       "a white rect drawn over other shapes",
       `<svg viewBox="0 0 ${W} ${H}" xmlns="http://www.w3.org/2000/svg"><line x1="0" y1="0" x2="10" y2="10" stroke="#111111"/><rect width="${W}" height="${H}" fill="#ffffff"/></svg>`,
