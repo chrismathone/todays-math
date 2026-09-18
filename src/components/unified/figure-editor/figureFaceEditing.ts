@@ -19,6 +19,7 @@ import {
   drawsBoundary,
   FACE_ATTR,
   FACE_SEED_ATTR,
+  faceArea,
   faceAttrs,
   faceInsertBefore,
   faceKeys,
@@ -134,6 +135,18 @@ function insertFace(
     ? doc.querySelector(`[${OBJECT}="${before}"]`)
     : null;
   while (anchor && anchor.parentElement !== root) anchor = anchor.parentElement;
+  // 넓은 면이 뒤 — 새 면보다 좁은 기존 면이 있으면 그 앞에. 큰 면(△ABC)을 나중에 칠해도 작은 면(△ABD)을 덮지 않는다.
+  const area = faceArea({ id: "", type: tag, attrs });
+  for (const child of root.children) {
+    if (child === anchor) break;
+    if (
+      child.hasAttribute(FACE_ATTR) &&
+      faceArea(sourceOf(child, root)) < area
+    ) {
+      anchor = child;
+      break;
+    }
+  }
   const face = doc.createElementNS(SVG_NS, tag);
   for (const [key, value] of Object.entries(attrs))
     face.setAttribute(key, value);

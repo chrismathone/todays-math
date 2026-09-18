@@ -652,6 +652,10 @@ function ringsArea(rings: Point[][]) {
   }, 0);
 }
 
+/** 면 요소의 넓이(홀짝, 문서 단위²) — 면을 쌓는 차례를 정한다(넓은 면이 뒤). */
+export const faceArea = (o: FaceSourceObject) =>
+  Math.abs(ringsArea(faceRings(o)));
+
 /** 같은 칸인가 — 넓이가 2% 안이고 칸 안쪽 점이 면 안에 든다. */
 function sameRegion(rings: Point[][], region: FaceRegion) {
   const area = ringsArea(rings);

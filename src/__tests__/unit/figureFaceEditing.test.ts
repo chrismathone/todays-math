@@ -130,6 +130,40 @@ describe("bucketFill — 채우기 통", () => {
     expect(kinds).toEqual(["g", "face", "g", "g"]);
   });
 
+  it("큰 면을 나중에 만들어도 작은 면을 덮지 않는다 — 면은 넓은 것이 뒤(문서 차례로 앞)", () => {
+    // 브라우저 확인에서 찾았다: △ABD 를 칠한 뒤 △ABC 안쪽 채우기를 켜면 큰 면이 위에 쌓여 △ABD 가 사라졌다.
+    const svg = svgOf(TRIANGLE + line(120, 20, 100, 200));
+    const small = bucketFill(svg, { x: 80, y: 140 }, "#aaaaaa").svg;
+    const lineIds = figureObjects(small)
+      .filter((o) => o.type === "line")
+      .map((o) => o.id);
+    const both = setInnerFill(small, lineIds, "#d5e8f0");
+    const fills = faces(both).map((face) => face.getAttribute("fill"));
+    expect(fills).toEqual(["#d5e8f0", "#aaaaaa"]);
+    expect(order(both)).toEqual([
+      "face",
+      "face",
+      "line",
+      "line",
+      "line",
+      "line",
+    ]);
+    // 작은 것을 나중에 칠하면 그대로 위
+    const later = bucketFill(
+      setInnerFill(
+        svg,
+        figureObjects(svg).map((o) => o.id),
+        "#d5e8f0",
+      ),
+      { x: 80, y: 140 },
+      "#aaaaaa",
+    ).svg;
+    expect(faces(later).map((face) => face.getAttribute("fill"))).toEqual([
+      "#d5e8f0",
+      "#aaaaaa",
+    ]);
+  });
+
   it("허용 오차는 그림 크기에 맞춘다(viewBox 긴 변의 0.4%)", () => {
     expect(faceTolerance(svgOf("", "0 0 480 360"))).toBeCloseTo(1.92, 6);
     expect(faceTolerance(svgOf("", "0 0 100 250"))).toBeCloseTo(1, 6);
