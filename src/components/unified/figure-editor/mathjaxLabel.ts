@@ -51,6 +51,21 @@ export interface TypesetLabel {
  * (`scripts/qa/census-figure-labels.ts`). 그 자리는 엔진이 넣어 둔 `<text>` 로 남긴다.
  */
 const CJK_RE = /[ᄀ-ᇿ぀-ヿ㄰-㆏㐀-䶿一-鿿가-힯]/;
+const CJK_RUN = new RegExp(`(${CJK_RE.source}+)`);
+/**
+ * «수식»(`$…$`)으로 고른 라벨에 한글이 섞였을 때(원장님 2026-09-18 — `x (초)` 의 x 가 정자체였다):
+ * 한글 조각은 엔진 글자와 같은 글꼴의 `<text>` 로 두고, 나머지는 조판해 옆으로 잇는다.
+ * 한글 글꼴은 글자가 1em 네모에 앉는다 — 폭 1em. 위아래 높이는 상자(선택·테두리)용 근사다.
+ */
+const CJK_ADVANCE_EM = 1;
+const CJK_ASCENT_EM = 0.86;
+const CJK_DESCENT_EM = 0.14;
+/** `toTex` 가 빈칸을 옮기는 `\,`(3mu = 1/6 em) 과 같은 폭. 조각 경계의 빈칸에 쓴다. */
+const THIN_SPACE_EM = 1 / 6;
+const isMathLabel = (label: string) => {
+  const text = label.trim();
+  return text.length >= 2 && text.startsWith("$") && text.endsWith("$");
+};
 
 let adaptor: ReturnType<typeof liteAdaptor> | null = null;
 let doc: ReturnType<typeof mathjax.document> | null = null;
@@ -121,12 +136,18 @@ export function typesetLabel(
   bold = false,
   italic = false,
 ): TypesetLabel | null {
-  if (CJK_RE.test(label)) return null;
+  const mixed = CJK_RE.test(label);
+  if (mixed && !isMathLabel(label)) return null;
   const key = `${bold ? "1" : "0"}${italic ? "1" : "0"}${label}`;
   if (cache.has(key)) return cache.get(key) ?? null;
   if (cache.size >= 1000) cache.clear();
   let result: TypesetLabel | null = null;
   try {
+    if (mixed) {
+      result = typesetMixedLabel(label, bold, italic);
+      cache.set(key, result);
+      return result;
+    }
     ensure();
     const plain =
       italic && !label.trim().startsWith("$")
@@ -163,6 +184,62 @@ export function typesetLabel(
   }
   cache.set(key, result);
   return result;
+}
+
+/**
+ * 한글이 섞인 «수식» 라벨 — 한글 조각은 `<text>`, 나머지는 조각마다 조판해 한 줄로 잇는다.
+ * 좌표는 `TypesetLabel.inner` 와 같다(원점 = 밑선 왼쪽, 1 em = 1000). `<text>` 는 MathJax 의
+ * 뒤집힌(`scale(1,-1)`) 조각 **밖에** 둔다 — 안에 두면 지면에 거꾸로 찍힌다(위 `<text>` 가드의 사고).
+ * 한 조각이라도 조판을 못 하면 `null` — 부르는 쪽이 옛 `<text>` 로 물러선다.
+ */
+function typesetMixedLabel(
+  label: string,
+  bold: boolean,
+  italic: boolean,
+): TypesetLabel | null {
+  const pieces: string[] = [];
+  let x = 0;
+  let ascentEm = 0;
+  let descentEm = 0;
+  const parts = label.trim().slice(1, -1).split(CJK_RUN);
+  for (const [index, part] of parts.entries()) {
+    if (!part) continue;
+    if (index % 2 === 1) {
+      pieces.push(
+        `<text x="${x.toFixed(1)}" y="0" font-size="${EM_UNITS}" font-family="Batang, serif"` +
+          `${bold ? ' font-weight="700"' : ""}${italic ? ' font-style="italic"' : ""}` +
+          ` stroke="currentColor" fill="currentColor" stroke-width="0">` +
+          `${escapeText(part)}</text>`,
+      );
+      x += [...part].length * CJK_ADVANCE_EM * EM_UNITS;
+      ascentEm = Math.max(ascentEm, CJK_ASCENT_EM);
+      descentEm = Math.max(descentEm, CJK_DESCENT_EM);
+      continue;
+    }
+    const core = part.trim();
+    x += (part.length - part.trimStart().length) * THIN_SPACE_EM * EM_UNITS;
+    if (core) {
+      const laid = typesetLabel(`$${core}$`, bold, italic);
+      if (!laid) return null;
+      pieces.push(
+        `<g transform="translate(${x.toFixed(1)} 0)">${laid.inner}</g>`,
+      );
+      x += laid.widthEm * EM_UNITS;
+      ascentEm = Math.max(ascentEm, laid.ascentEm);
+      descentEm = Math.max(descentEm, laid.descentEm);
+    }
+    if (core)
+      x += (part.length - part.trimEnd().length) * THIN_SPACE_EM * EM_UNITS;
+  }
+  if (!pieces.length) return null;
+  return { inner: pieces.join(""), widthEm: x / EM_UNITS, ascentEm, descentEm };
+}
+
+function escapeText(value: string): string {
+  return value
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;");
 }
 
 /**
@@ -221,9 +298,10 @@ export function placeLabel(
   const y = opts.centerY ? yIn + centerShiftEm() * fontSize : yIn;
   // MathJax 조각 안의 `stroke/fill="currentColor" stroke-width="0"` 을 우리 칠로 바꾼다.
   // 그대로 두면 색이 상속되지 않고 `stroke-width="0"` 이 halo 를 눌러 버린다.
+  // 한글이 섞인 라벨은 조각이 여럿이라 **전부** 바꾼다(첫 조각만 칠하면 나머지가 검정·무테두리).
   const repaint = (paint: string) =>
     laid.inner.replace(
-      /stroke="currentColor"\s+fill="currentColor"\s+stroke-width="0"/,
+      /stroke="currentColor"\s+fill="currentColor"\s+stroke-width="0"/g,
       paint,
     );
   const glyphs = repaint(`fill="${color}" stroke="none"`);
