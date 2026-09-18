@@ -171,7 +171,7 @@ describe("private library", () => {
  * 배치를 안 한다). 여기서는 «문구가 카드 밖 모달에만 있는가»와 닫기·초점·잠금·오류를 지킨다.
  */
 describe("private library delete confirmation dialog", () => {
-  async function seeded(transport?: typeof fetch) {
+  async function seeded(wrap?: (transport: typeof fetch) => typeof fetch) {
     const server = privateServer();
     const client = new PrivateCloudClient("owner-a", server.transport);
     await client.save(
@@ -181,7 +181,7 @@ describe("private library delete confirmation dialog", () => {
       { problems: [] },
       null,
     );
-    vi.stubGlobal("fetch", transport ?? server.transport);
+    vi.stubGlobal("fetch", wrap ? wrap(server.transport) : server.transport);
     const deleted = vi.fn();
     render(
       <PrivateLibrary
@@ -263,14 +263,12 @@ describe("private library delete confirmation dialog", () => {
     const gate = new Promise<void>((resolve) => {
       release = resolve;
     });
-    const serverRef: { transport?: typeof fetch } = {};
     const { server, card, open, deleted } = await seeded(
-      async (input, init) => {
+      (transport) => async (input, init) => {
         if (init?.method === "DELETE") await gate;
-        return serverRef.transport!(input, init);
+        return transport(input, init);
       },
     );
-    serverRef.transport = server.transport;
     const dialog = open();
     fireEvent.click(within(dialog).getByRole("button", { name: "삭제 확인" }));
     expect(await within(dialog).findByRole("status")).toHaveTextContent(

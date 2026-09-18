@@ -868,6 +868,14 @@
   margin-top: 16px;
   border-radius: 8px;
 }
+/* 확인 창(ConfirmDialog)의 단추 줄 — 자료 작업실 «새로 시작할까요?» 창과 같은 배치. */
+.dialogActions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  gap: 8px;
+  margin-top: 24px;
+}
 .commandSearch {
   display: flex;
   align-items: center;

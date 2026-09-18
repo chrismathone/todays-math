@@ -1,7 +1,8 @@
 "use client";
 
-import { useCallback, useEffect, useMemo, useState } from "react";
+import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import type { PrivateDocumentSummary } from "@/contracts/privateWorkspace.contract";
+import ConfirmDialog from "./ConfirmDialog";
 import { PrivateCloudClient, cloudError } from "./privateCloudClient";
 import WorkspacePageHeader from "./WorkspacePageHeader";
 import { formatDraftDate } from "./WorkroomHome";
@@ -166,6 +167,9 @@ function LibraryItem({
   const [name, setName] = useState(item.title);
   const [busy, setBusy] = useState(false);
   const [error, setError] = useState("");
+  const deleteButton = useRef<HTMLButtonElement>(null);
+  // 삭제 확인은 겹쳐 뜨는 창이다 — 그동안의 처리 중·오류는 창 안에 보이고 카드에는 안 붙는다.
+  const confirming = action === "delete";
   const perform = async (work: () => Promise<void>) => {
     setBusy(true);
     setError("");
@@ -209,9 +213,13 @@ function LibraryItem({
           이름 변경
         </button>
         <button
+          ref={deleteButton}
           aria-label={`${item.title} 삭제`}
           disabled={busy}
-          onClick={() => setAction("delete")}
+          onClick={() => {
+            setError("");
+            setAction("delete");
+          }}
         >
           삭제
         </button>
@@ -251,30 +259,28 @@ function LibraryItem({
           </div>
         </form>
       )}
-      {action === "delete" && (
-        <div>
-          <p>‘{item.title}’ 자료를 삭제할까요?</p>
-          <div className={s.actions}>
-            <button
-              disabled={busy}
-              onClick={() =>
-                void perform(async () => {
-                  await client.remove(item.id, item.revision);
-                  await onDeleted();
-                  onChanged();
-                })
-              }
-            >
-              삭제 확인
-            </button>
-            <button disabled={busy} onClick={() => setAction(null)}>
-              취소
-            </button>
-          </div>
-        </div>
+      {confirming && (
+        <ConfirmDialog
+          title={`‘${item.title}’ 자료를 삭제할까요?`}
+          confirmLabel="삭제 확인"
+          busy={busy}
+          error={error}
+          returnFocus={deleteButton}
+          onConfirm={() =>
+            void perform(async () => {
+              await client.remove(item.id, item.revision);
+              await onDeleted();
+              onChanged();
+            })
+          }
+          onCancel={() => {
+            setAction(null);
+            setError("");
+          }}
+        />
       )}
-      {busy && <small role="status">처리 중…</small>}
-      {error && (
+      {busy && !confirming && <small role="status">처리 중…</small>}
+      {error && !confirming && (
         <p className={s.error} role="alert">
           {error}
         </p>
