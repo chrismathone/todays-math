@@ -163,6 +163,23 @@ export function TestReview({ testId }: Props) {
               인쇄
             </Link>
           )}
+          {/*
+            채점 진입점 — **이 한 자리뿐**이다 (D-134 트랙 1 · 브리프 §1.3).
+
+            🔴 **초안에는 안 보인다.** 아직 나가지 않은 시험지라 채점할 것이 없다. 감추는 것으로
+               끝내지 않고 서버도 같은 규칙을 든다(`lib/testResults/gradeSheet.ts` — 초안이면 422).
+               화면만 막으면 경로가 열린 채로 남아 「확정 전에 이미 본 시험」이 생긴다.
+            ⚠️ 메인 «오늘의 확인테스트» 줄에는 붙이지 않았다 — 지난주에 크게 고친 자리다(D-133).
+               붙일 자리 제안은 보고서 ⑤.
+          */}
+          {draft ? null : (
+            <Link
+              href={`/tests/${testId}/grade`}
+              className="inline-flex min-h-11 min-w-[44px] items-center justify-center px-3 text-[12.5px] font-bold text-ink underline-offset-2 hover:underline focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-g-blue"
+            >
+              채점
+            </Link>
+          )}
         </div>
       </footer>
     </div>

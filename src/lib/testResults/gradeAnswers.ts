@@ -74,6 +74,19 @@ function round2(value: number): number {
   return Math.round(value * 100) / 100;
 }
 
+/**
+ * 이 문항의 **배점** — 조정 배점(`TestProblem.score`) → 원본 배점(`Problem.score`) → 균등 배분.
+ *
+ * 🔴 **한 곳에 둔다.** 「틀린 번호만」 채점(`gradeMarks`)도 같은 규칙을 써야 한다 —
+ *    두 곳이 갈리면 **같은 시험지를 어떻게 채점했느냐에 따라 점수가 달라진다.**
+ */
+export function maxPointsOf(
+  problem: Pick<GradingProblem, "score" | "adjustedScore">,
+  equalShare: number,
+): number {
+  return problem.adjustedScore ?? problem.score ?? equalShare;
+}
+
 export function gradeAnswers(
   answers: AnswerInput[],
   problems: GradingProblem[],
@@ -88,7 +101,7 @@ export function gradeAnswers(
     }
     // 조정 배점(TestProblem.score)이 있으면 그것이 이 시험지의 배점이다(11 §10.2-4).
     // 원본 Problem.score 는 학습 코퍼스용이라 시험지 만점을 100으로 맞추지 못한다.
-    const maxPoints = problem.adjustedScore ?? problem.score ?? equalShare;
+    const maxPoints = maxPointsOf(problem, equalShare);
 
     let isCorrect = false;
     let pointsEarned = 0;

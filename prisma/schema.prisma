@@ -76,6 +76,20 @@ enum TestStatus {
   @@map("test_status")
 }
 
+/// 채점 방식 — 한 채점 기록이 **어떻게 들어왔는가**. D-134 트랙 1(19 §5′ A안).
+///
+/// 🔴 두 방식이 담는 것이 다르다. 가르지 않으면 서로를 오염시킨다 —
+///    `marks` 는 `ProblemAnswer.selectedChoice`·`essayScore` 가 **전부 NULL** 인데,
+///    기존 채점 규칙은 그 둘이 NULL 이면 **미답 → 오답 0점**으로 읽는다.
+enum GradingMode {
+  /// 원장님이 **틀린 번호만** 표시했다(`POST /api/tests/{id}/grade`). 정오만 참이고 응답은 없다.
+  marks
+  /// 응답을 **전량 전사**해 자동 채점했다(기존 `POST /api/tests/{id}/submit`). 기본값.
+  answers
+
+  @@map("grading_mode")
+}
+
 /// 문제 풀 — D-31. 기본 shared. private는 소유자만 조회.
 enum ProblemPool {
   shared
@@ -1012,18 +1026,33 @@ model BasketItem {
 /// 시험 응시 결과 — 한 학생이 한 시험지(Test)를 푼 1회 채점 기록.
 /// 같은 (testId, studentId) 재응시/재채점을 막지 않는다(재시험·정정 입력 허용) — 최신값은
 /// takenAt 내림차순 조회로 가른다.
+///
+/// 🔴 **「아직 안 봄」은 이 표에 행이 없는 것이다** (D-134 트랙 1).
+///    시험지 대상 학생인데 `TestResult` 행이 없으면 **미채점**이다 — 0점도, 만점도, 결시도 아니다.
+///    그래서 집계는 «대상 학생 수»가 아니라 «행 수»를 분모로 삼아야 하고, 없는 행을
+///    0 으로 채우면 안 된다(23 §4 ② · 20번 «칸이 없다»를 0점으로 채우면).
 model TestResult {
-  id             String   @id @default(uuid()) @db.Uuid
-  testId         String   @map("test_id") @db.Uuid
-  studentId      String   @map("student_id") @db.Uuid
+  id             String      @id @default(uuid()) @db.Uuid
+  testId         String      @map("test_id") @db.Uuid
+  studentId      String      @map("student_id") @db.Uuid
   /// 응시(채점 입력) 일시 — 별도 입력이 없으면 서버 처리 시각
-  takenAt        DateTime @default(now()) @map("taken_at")
-  /// 자동 채점 총점
-  score          Float
+  takenAt        DateTime    @default(now()) @map("taken_at")
+  /// 이 기록이 어떻게 들어왔나 — 기본 `answers`(기존 `/submit` 의 뜻을 안 바꾼다).
+  gradingMode    GradingMode @default(answers) @map("grading_mode")
+  /// 🔴 **결시** — 시험을 안 봤다. 칸을 전부 ✕ 로 찍은 것(전 문항 오답)과 **다른 뜻**이다.
+  ///    결시면 `score`·`predictedScore` 가 NULL 이고 `AnalysisReport` 를 만들지 않으며
+  ///    `ProblemAnswer` 도 만들지 않는다 — 전 문항 오답으로 남기면 난이도 분포가 거짓이 된다.
+  absent         Boolean     @default(false)
+  /// 자동 채점 총점.
+  /// 🔴 **NULL 을 허용한다** — 결시를 `0` 으로 적으면 그 0이 평균·추이·리포트에 **진짜 0점처럼**
+  ///    실린다(23 §4 ③). 읽는 쪽은 `score ?? 0` 을 쓰면 안 된다 — 없는 값은 집계에서 빠진다
+  ///    (`src/lib/testResults/scoreRollup.ts`).
+  score          Float?
   /// 판독기 계산값 — src/lib/predictor/predictStudentScore.ts (v0, 잠정) 산출물.
   /// ⚠️ 진짜 능력 추정 엔진(11-score-predictor.md §1-B)이 아직 없어 잠정 추정치다.
-  predictedScore Float    @map("predicted_score")
-  createdAt      DateTime @default(now()) @map("created_at")
+  /// 🔴 `score` 와 같은 까닭으로 NULL 을 허용한다 — 결시에는 예상 점수가 없다.
+  predictedScore Float?      @map("predicted_score")
+  createdAt      DateTime    @default(now()) @map("created_at")
 
   test           Test            @relation(fields: [testId], references: [id], onDelete: Cascade)
   student        Student         @relation(fields: [studentId], references: [id], onDelete: Cascade)

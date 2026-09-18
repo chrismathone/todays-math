@@ -5,13 +5,16 @@
  * → 답: **상태 한 줄 + 작업 중일 때만 진행 한 줄(✕ 취소) + 오류일 때만 «다시 확인»** ·
  *   운영에서는 모델을 **자동(원본 기본 모델)으로 고정**.
  *
+ * 🔴 **운영 빌드에서만** 최소화한다 — 원장님 같은 날 «작업실 AI칸은 dev 모드일때는 기존처럼, production에서만 최소화».
+ *    개발 모드의 기존 칸은 `studioAiTransport.test.tsx` 가 잠근다.
+ *
  * 무엇을 잠그나
- * 1. 운영 표면(`/`·`/studio`)에는 연결 방식·모델 고르기·다시 확인 아이콘·설명 줄이 없다 — 상태 한 줄뿐.
+ * 1. 운영 빌드의 작업실(`/`·`/studio`)에는 연결 방식·모델 고르기·다시 확인 아이콘·설명 줄이 없다 — 상태 한 줄뿐.
  * 2. 상태 문구: ready «AI 연결됨» · 서버가 키만 확인(unverified) «AI 연결 확인 전» · 오류 «AI 연결 오류»
  *    — 오류일 때만 «다시 확인» 단추가 서고, 누르면 상태를 다시 묻는다.
  * 3. 진행 줄은 **작업이 도는 동안만** 선다(✕ 로 취소). 끝나면 사라진다.
  * 4. 🔴 고르기가 없어졌으니 **예전에 저장한 모델을 복원하지 않는다** — 바꿀 길 없이 남으면 안 된다.
- * 5. 개발 표면(`/dev/unified`)은 지금 칸 그대로(기존 `studioAiTransport.test.tsx`).
+ * 5. 개발 모드는 어느 화면이든 기존 칸 그대로(`studioAiTransport.test.tsx`).
  */
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 import {
@@ -74,7 +77,7 @@ const mount = () =>
 
 beforeEach(() => {
   localStorage.clear();
-  vi.stubEnv("NODE_ENV", "development");
+  vi.stubEnv("NODE_ENV", "production");
   window.history.replaceState(null, "", "/studio");
 });
 afterEach(() => {

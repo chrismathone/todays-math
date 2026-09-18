@@ -149,14 +149,18 @@ describe("[T7.1] POST /api/tests/{id}/submit — 자동 채점 + 예상 점수 �
     const body = testResultSubmitResponseSchema.parse(await res.json());
 
     // 10(객관식 정답) + 0(객관식 오답) + 60(서술형 75/100 × 배점80) = 70
-    expect(body.data.testResult.score).toBe(70);
+    const score = body.data.testResult.score;
+    expect(score).toBe(70);
     expect(body.data.testResult.testId).toBe(TEST_RESULT_FIXTURE_TEST_ID);
     expect(body.data.testResult.studentId).toBe(STUDENT_A);
 
+    // 🔴 이 경로의 **뜻이 안 바뀌었다** — 세 상태 칸이 생겼어도 `/submit` 은 여전히
+    //    「응답을 전량 전사해 자동 채점」이고 결시가 아니다(D-134 트랙 1).
+    expect(body.data.testResult.gradingMode).toBe("answers");
+    expect(body.data.testResult.absent).toBe(false);
+
     // 판독기(v0) 호출 확인 — 유일한 오답이 hard 난이도라 위로 보정되어 score보다 커야 한다.
-    expect(body.data.testResult.predictedScore).toBeGreaterThan(
-      body.data.testResult.score,
-    );
+    expect(body.data.testResult.predictedScore).toBeGreaterThan(score!);
     expect(body.data.testResult.predictedScore).toBe(75);
 
     // 분석 리포트 — 단원별 성적 + 난이도 분포 + 복습 추천.

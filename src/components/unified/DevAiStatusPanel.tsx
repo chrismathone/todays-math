@@ -51,9 +51,9 @@ export default function DevAiStatusPanel({
         AI
       </button>
     );
-  // 운영 작업실은 연결 상태만(원장님 2026-09-18) — 방식·모델 고르기·설명 줄은 개발 표면에만 둔다.
-  // 모델은 자동(원본 기본 모델)으로 고정이다(`useDevAi` 가 운영에서 저장된 고르기를 복원하지 않는다).
-  if (getStudioEndpoints().production) {
+  // 운영 빌드는 연결 상태만(원장님 2026-09-18) — 개발 모드는 어느 화면이든 기존 칸 그대로.
+  // 모델은 자동(원본 기본 모델)으로 고정이다(`useDevAi` 가 운영 빌드에서 저장된 고르기를 복원하지 않는다).
+  if (getStudioEndpoints().productionBuild) {
     const state: "ready" | "pending" | "error" =
       ai.statusError ||
       (!ai.checking &&
