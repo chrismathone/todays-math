@@ -16,7 +16,7 @@ const STYLE_PROPERTIES = new Set(
   ),
 );
 const METADATA =
-  /^data-(?:mj|function|function-viewbox|mathgen-clipboard|label|anchor|halo|x|y|base|px|py|fs|w|a|d)$/;
+  /^data-(?:mj|function|function-viewbox|mathgen-clipboard|label|anchor|halo|x|y|base|px|py|fs|w|a|d|group)$/;
 const safeValue = (value: string) =>
   !/[\\<>@\u0000-\u001f]/.test(value) &&
   !/(?:javascript|vbscript|data|https?|file)\s*:|\/\*|expression\s*\(/i.test(
@@ -195,6 +195,36 @@ export function editFigureObject(
     el.textContent = visibleFigureLabel(text);
     el.setAttribute("data-mj", text);
   }
+  return serializeFigureSvg(doc);
+}
+
+/**
+ * 사용자가 만든 묶음 — 요소마다 `data-group` 에 이름을 적는다. 원문에 남아 되돌리기·저장·다시 열기를 같이 탄다.
+ * 이름이 비면 묶음에서 뺀다.
+ */
+export function setFigureGroup(
+  svg: string,
+  ids: readonly string[],
+  name: string,
+) {
+  const doc = parse(svg);
+  const wanted = new Set(ids);
+  for (const node of doc.querySelectorAll("[data-object-id]"))
+    if (wanted.has(node.getAttribute("data-object-id")!)) {
+      if (name) node.setAttribute("data-group", name);
+      else node.removeAttribute("data-group");
+    }
+  return serializeFigureSvg(doc);
+}
+
+/** 묶음 이름 바꾸기 — 새 이름이 비면 묶음을 푼다. */
+export function renameFigureGroup(svg: string, from: string, to: string) {
+  const doc = parse(svg);
+  for (const node of doc.querySelectorAll("[data-group]"))
+    if (node.getAttribute("data-group") === from) {
+      if (to) node.setAttribute("data-group", to);
+      else node.removeAttribute("data-group");
+    }
   return serializeFigureSvg(doc);
 }
 

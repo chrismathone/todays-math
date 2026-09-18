@@ -20,7 +20,10 @@ import {
   figureObjects,
   prepareFigureSvg,
   fitFigureViewport,
+  renameFigureGroup,
+  setFigureGroup,
 } from "./figureSvgEditing";
+import { groupFigureObjects } from "./figureObjectGroups";
 import {
   copyFigureSelection,
   pasteFigureSelection,
@@ -42,7 +45,8 @@ import { isTextInputEvent } from "./keyboard";
 import { layoutFigureNumbers, type FigureNumber } from "./figureObjectNumbers";
 import { FigureSelectionOverlay } from "./FigureSelectionOverlay";
 import { FigureNumberLayer } from "./FigureNumberLayer";
-import { FigureObjectList, NAMES } from "./FigureObjectList";
+import { FigureObjectList } from "./FigureObjectList";
+import { NAMES } from "./figureObjectNames";
 import { FunctionGraphInput } from "./FunctionGraphInput";
 import type { FunctionGraphConfig } from "./functionGraph";
 
@@ -240,6 +244,52 @@ export function FigureEditor({
     .trim()
     .split(/[\s,]+/)
     .map(Number) ?? [0, 0, 480, 360];
+  const viewBoxKey = viewBox.join(" ");
+  const groups = useMemo(
+    () => groupFigureObjects(objects, viewBoxKey.split(" ").map(Number)),
+    [objects, viewBoxKey],
+  );
+  const [renamingGroup, setRenamingGroup] = useState<string | null>(null);
+  // 묶음 편집은 원문(`data-group`)을 고친다 — 되돌리기·저장을 같이 탄다. 목록이 memo 라 콜백은 안 바뀌게 liveSvg 로.
+  const editGroups = useCallback((edit: (source: string) => string) => {
+    const current = liveSvg.current;
+    const next = edit(current);
+    if (next === current) return;
+    setHistory((h) => ({ past: [...h.past.slice(-59), current], future: [] }));
+    liveSvg.current = next;
+    setSvg(next);
+  }, []);
+  const renameGroup = useCallback(
+    (from: string, to: string) =>
+      editGroups((source) => renameFigureGroup(source, from, to)),
+    [editGroups],
+  );
+  const selectedRef = useRef(selectedIds);
+  useLayoutEffect(() => {
+    selectedRef.current = selectedIds;
+  }, [selectedIds]);
+  const addToGroup = useCallback(
+    (name: string) =>
+      editGroups((source) => setFigureGroup(source, selectedRef.current, name)),
+    [editGroups],
+  );
+  const makeGroup = () => {
+    const names = new Set(groups.filter((g) => g.custom).map((g) => g.name));
+    let n = names.size + 1;
+    while (names.has(`묶음 ${n}`)) n++;
+    editGroups((source) => setFigureGroup(source, selectedIds, `묶음 ${n}`));
+    setRenamingGroup(`묶음 ${n}`);
+  };
+  const pickGroup = useCallback((ids: string[], additive: boolean) => {
+    setSelectedIds((previous) =>
+      !additive
+        ? ids
+        : ids.every((id) => previous.includes(id))
+          ? previous.filter((id) => !ids.includes(id))
+          : [...previous, ...ids.filter((id) => !previous.includes(id))],
+    );
+    setTool("select");
+  }, []);
   const ratio = viewBox[2] / viewBox[3] || 4 / 3;
   const fittedWidth = Math.max(
     120,
@@ -1185,11 +1235,26 @@ export function FigureEditor({
               >
                 {clipboardNotice}
               </span>
+              <button
+                type="button"
+                title="선택한 요소를 새 묶음으로 — 이름을 붙일 수 있습니다"
+                onClick={makeGroup}
+                disabled={!selectedIds.length || busy}
+                className="rounded border border-[var(--figure-accent-line)] px-2 py-0.5 text-[var(--figure-accent-ink)] disabled:opacity-40"
+              >
+                묶음 만들기
+              </button>
             </div>
             <FigureObjectList
               objects={objects}
+              groups={groups}
               selectedIds={selectedIds}
               onPick={pick}
+              onPickGroup={pickGroup}
+              onAddToGroup={addToGroup}
+              onRenameGroup={renameGroup}
+              renaming={renamingGroup}
+              onRenaming={setRenamingGroup}
             />
           </section>
         </div>
