@@ -1,4 +1,5 @@
-import { useState } from "react";
+import { useRef, useState } from "react";
+import ConfirmDialog from "./ConfirmDialog";
 import s from "./Workroom.module.css";
 
 export default function SavedWorksheetActions({
@@ -18,10 +19,13 @@ export default function SavedWorksheetActions({
 }) {
   const [action, setAction] = useState<"rename" | "delete" | null>(null);
   const [name, setName] = useState(title);
+  const renameButton = useRef<HTMLButtonElement>(null);
+  const deleteButton = useRef<HTMLButtonElement>(null);
   return (
     <div className={s.savedActions}>
       <div className={s.savedActionButtons}>
         <button
+          ref={renameButton}
           type="button"
           aria-label={`${title} 이름 변경`}
           onClick={() => {
@@ -37,6 +41,7 @@ export default function SavedWorksheetActions({
           </button>
         )}
         <button
+          ref={deleteButton}
           type="button"
           aria-label={`${title} 삭제`}
           onClick={() => setAction("delete")}
@@ -44,58 +49,42 @@ export default function SavedWorksheetActions({
           삭제
         </button>
       </div>
+      {/* 이름 변경·삭제 확인은 카드 안에 펼치지 않고 겹쳐 뜨는 창으로 — 카드 높이가 변하지 않는다(2026-09-19). */}
       {action === "rename" && (
-        <form
-          onSubmit={(event) => {
-            event.preventDefault();
+        <ConfirmDialog
+          title="이름 변경"
+          field={{
+            label: "새 시험지 이름",
+            value: name,
+            maxLength: 80,
+            onChange: setName,
+          }}
+          confirmLabel="이름 저장"
+          error={error}
+          returnFocus={renameButton}
+          onConfirm={() => {
             if (onRename(name)) setAction(null);
           }}
-        >
-          <label>
-            새 시험지 이름
-            <input
-              aria-label="새 시험지 이름"
-              value={name}
-              onChange={(event) => setName(event.target.value)}
-              maxLength={80}
-              required
-              autoFocus
-            />
-          </label>
-          <div className={s.savedActionButtons}>
-            <button type="submit" disabled={!name.trim()}>
-              이름 저장
-            </button>
-            <button type="button" onClick={() => setAction(null)}>
-              취소
-            </button>
-          </div>
-        </form>
+          onCancel={() => setAction(null)}
+        />
       )}
       {action === "delete" && (
-        <div>
-          <p>
-            ‘{title}’ 시험지를 삭제할까요?
-            {current
-              ? " 현재 작업을 닫고 빈 시험지로 돌아갑니다."
-              : " 저장된 시험지와 담은 문제가 삭제됩니다."}
-          </p>
-          <div className={s.savedActionButtons}>
-            <button
-              type="button"
-              onClick={() => {
-                if (onDelete()) setAction(null);
-              }}
-            >
-              삭제 확인
-            </button>
-            <button type="button" onClick={() => setAction(null)}>
-              취소
-            </button>
-          </div>
-        </div>
+        <ConfirmDialog
+          title={`‘${title}’ 시험지를 삭제할까요?`}
+          description={
+            current
+              ? "현재 작업을 닫고 빈 시험지로 돌아갑니다."
+              : "저장된 시험지와 담은 문제가 삭제됩니다."
+          }
+          confirmLabel="삭제 확인"
+          error={error}
+          returnFocus={deleteButton}
+          onConfirm={() => {
+            if (onDelete()) setAction(null);
+          }}
+          onCancel={() => setAction(null)}
+        />
       )}
-      {action && error && <p role="alert">{error}</p>}
     </div>
   );
 }

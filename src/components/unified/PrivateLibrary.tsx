@@ -1,7 +1,8 @@
 "use client";
 
-import { useCallback, useEffect, useMemo, useState } from "react";
+import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import type { PrivateDocumentSummary } from "@/contracts/privateWorkspace.contract";
+import ConfirmDialog from "./ConfirmDialog";
 import { PrivateCloudClient, cloudError } from "./privateCloudClient";
 import WorkspacePageHeader from "./WorkspacePageHeader";
 import { formatDraftDate } from "./WorkroomHome";
@@ -35,26 +36,32 @@ export default function PrivateLibrary({
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
   const [query, setQuery] = useState("");
-  const refresh = useCallback(async () => {
-    setLoading(true);
-    try {
-      setItems(await client.list());
-      setError("");
-    } catch (cause) {
-      setError(cloudError(cause));
-    } finally {
-      setLoading(false);
-    }
-  }, [client]);
+  // `quiet` — 창 초점 복귀·자동 저장 알림으로 **뒤에서** 다시 읽을 때는 격자를 «불러오는 중»으로
+  // 바꿔 끼우지 않는다. 바꿔 끼우면 카드가 다시 만들어져 열려 있던 삭제 확인 창이 사라진다 —
+  // 모달 창에서 Tab 이 주소창으로 나갔다 돌아오기만 해도 그랬다(2026-09-19 브라우저 측정).
+  const refresh = useCallback(
+    async (quiet = false) => {
+      if (!quiet) setLoading(true);
+      try {
+        setItems(await client.list());
+        setError("");
+      } catch (cause) {
+        setError(cloudError(cause));
+      } finally {
+        if (!quiet) setLoading(false);
+      }
+    },
+    [client],
+  );
   useEffect(() => {
     // This effect starts the account's remote library subscription.
     // eslint-disable-next-line react-hooks/set-state-in-effect
     void refresh();
     const changed = (event: Event) => {
-      if ((event as CustomEvent).detail === storageScope) void refresh();
+      if ((event as CustomEvent).detail === storageScope) void refresh(true);
     };
     const focused = () => {
-      void refresh();
+      void refresh(true);
     };
     window.addEventListener("private-library-change", changed);
     window.addEventListener("focus", focused);
@@ -166,6 +173,15 @@ function LibraryItem({
   const [name, setName] = useState(item.title);
   const [busy, setBusy] = useState(false);
   const [error, setError] = useState("");
+  const renameButton = useRef<HTMLButtonElement>(null);
+  const deleteButton = useRef<HTMLButtonElement>(null);
+  // 이름 변경·삭제 확인은 겹쳐 뜨는 창이다 — 그동안의 처리 중·오류는 창 안에 보이고 카드에는
+  // 안 붙는다(카드 높이 불변). 카드에 남는 것은 «열기»의 처리 중·오류뿐이다.
+  const dialogOpen = action !== null;
+  const closeDialog = () => {
+    setAction(null);
+    setError("");
+  };
   const perform = async (work: () => Promise<void>) => {
     setBusy(true);
     setError("");
@@ -199,82 +215,71 @@ function LibraryItem({
           </button>
         )}
         <button
+          ref={renameButton}
           aria-label={`${item.title} 이름 변경`}
           disabled={busy}
           onClick={() => {
             setName(item.title);
+            setError("");
             setAction("rename");
           }}
         >
           이름 변경
         </button>
         <button
+          ref={deleteButton}
           aria-label={`${item.title} 삭제`}
           disabled={busy}
-          onClick={() => setAction("delete")}
+          onClick={() => {
+            setError("");
+            setAction("delete");
+          }}
         >
           삭제
         </button>
       </div>
       {action === "rename" && (
-        <form
-          onSubmit={(event) => {
-            event.preventDefault();
+        <ConfirmDialog
+          title="이름 변경"
+          field={{
+            label: "새 자료 이름",
+            value: name,
+            maxLength: item.kind === "draft" ? 80 : 200,
+            onChange: setName,
+          }}
+          confirmLabel="이름 저장"
+          busy={busy}
+          error={error}
+          returnFocus={renameButton}
+          onConfirm={() =>
             void perform(async () => {
               onChanged(
                 await client.rename(item.id, name.trim(), item.revision),
               );
-            });
-          }}
-        >
-          <label>
-            새 자료 이름
-            <input
-              value={name}
-              onChange={(event) => setName(event.target.value)}
-              maxLength={item.kind === "draft" ? 80 : 200}
-              required
-              autoFocus
-            />
-          </label>
-          <div className={s.actions}>
-            <button disabled={busy || !name.trim()} type="submit">
-              이름 저장
-            </button>
-            <button
-              disabled={busy}
-              type="button"
-              onClick={() => setAction(null)}
-            >
-              취소
-            </button>
-          </div>
-        </form>
+            })
+          }
+          onCancel={closeDialog}
+        />
       )}
       {action === "delete" && (
-        <div>
-          <p>‘{item.title}’ 자료를 삭제할까요?</p>
-          <div className={s.actions}>
-            <button
-              disabled={busy}
-              onClick={() =>
-                void perform(async () => {
-                  await client.remove(item.id, item.revision);
-                  await onDeleted();
-                  onChanged();
-                })
-              }
-            >
-              삭제 확인
-            </button>
-            <button disabled={busy} onClick={() => setAction(null)}>
-              취소
-            </button>
-          </div>
-        </div>
+        <ConfirmDialog
+          title={`‘${item.title}’ 자료를 삭제할까요?`}
+          confirmLabel="삭제 확인"
+          busy={busy}
+          error={error}
+          returnFocus={deleteButton}
+          onConfirm={() =>
+            void perform(async () => {
+              await client.remove(item.id, item.revision);
+              await onDeleted();
+              onChanged();
+            })
+          }
+          onCancel={closeDialog}
+        />
       )}
-      {busy && <small role="status">처리 중…</small>}
-      {error && (
+      {busy && !dialogOpen && <small role="status">처리 중…</small>}
+      {error && !dialogOpen && (
         <p className={s.error} role="alert">
           {error}
         </p>
