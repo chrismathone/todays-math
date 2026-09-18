@@ -114,6 +114,47 @@ export function studioFigureProgressDetail(
     .join(" · ");
 }
 
+/** 디지털화가 끝난 문제 — 문자 인식과 그 문제 도형의 SVG 가 모두 있다. 진행 요약과 «완료» 칩이 같은 기준을 쓴다. */
+export function studioCropDigitized(crop: StudioCrop) {
+  return (
+    Boolean(crop.content.trim()) &&
+    (crop.figures ?? []).every((figure) => Boolean(figure.svg))
+  );
+}
+
+/** 숫자 끝소리에 맞는 «은/는» — 일·삼·육·칠·팔·영(십·백·천)은 받침이 있다. */
+const topicParticle = (label: string) =>
+  /[013678]$/.test(label) ? "은" : "는";
+
+/**
+ * 지우면 잃는 AI 결과가 있으면 확인 문구를, 없으면 null. 원장님 2026-09-19 «결과가 하나라도 있으면 경고» —
+ * 문제 크롭은 문자 인식 결과나 그 문제 도형 SVG 중 하나라도, 도형 크롭은 그 도형의 SVG.
+ */
+export function studioDeleteWarning(crops: StudioCrop[], id: string) {
+  const problem = crops.findIndex(
+    (crop) =>
+      crop.id === id || crop.figures?.some((figure) => figure.id === id),
+  );
+  if (problem < 0) return null;
+  const crop = crops[problem];
+  if (crop.id !== id) {
+    const index = (crop.figures ?? []).findIndex((figure) => figure.id === id);
+    if (!crop.figures?.[index]?.svg) return null;
+    const label = studioFigureLabel(problem + 1, index);
+    return `${label}${topicParticle(label)} SVG 생성이 끝났습니다. 삭제하면 생성 결과도 지워집니다. 삭제할까요?`;
+  }
+  const read = Boolean(crop.content.trim());
+  const drawn = (crop.figures ?? []).some((figure) => Boolean(figure.svg));
+  if (!read && !drawn) return null;
+  const lost =
+    read && drawn
+      ? "문자 인식과 SVG 도형 결과도"
+      : read
+        ? "문자 인식 결과도"
+        : "SVG 도형 결과도";
+  return `문제 ${problem + 1}에는 인식 결과가 있습니다. 삭제하면 ${lost} 함께 지워집니다. 삭제할까요?`;
+}
+
 /**
  * 화면에 내지 않는 옛 AI 경고. 원장님 2026-09-19 «원본 대조 멘트는 필요 없다» — 서버는 더 안 만들지만
  * 이미 저장된 초안에는 남아 있다. 경고를 보이거나 세는 자리는 모두 이 함수를 거친다.

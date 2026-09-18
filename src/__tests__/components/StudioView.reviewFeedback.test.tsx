@@ -241,3 +241,155 @@ describe("3 · 도형 번호 «문제번호-순번»", () => {
     ).toBeInTheDocument();
   });
 });
+
+describe("4 · 결과가 있는 크롭을 지우면 경고", () => {
+  const readProblem = () =>
+    crop("p1", {
+      content: "넓이를 구하시오.",
+      mode: "text",
+      figures: [figure("a", { svg })],
+    });
+  const problemMessage =
+    "문제 1에는 인식 결과가 있습니다. 삭제하면 문자 인식과 SVG 도형 결과도 함께 지워집니다. 삭제할까요?";
+  const figureMessage =
+    "도형 1-1은 SVG 생성이 끝났습니다. 삭제하면 생성 결과도 지워집니다. 삭제할까요?";
+  const problemBox = () =>
+    screen.getByRole("button", { name: /^문제 1 영역( · 완료)?$/ });
+  const figureBox = () =>
+    screen.getByRole("button", { name: /^도형 1-1 영역( · 완료)?$/ });
+
+  // 삭제 길은 모두 deleteBox 로 모인다 — 길마다 같은 확인을 거치는지 본다.
+  const paths: [string, () => void, string][] = [
+    [
+      "검사 칸 휴지통",
+      () =>
+        fireEvent.click(
+          screen.getByRole("button", { name: "선택한 자른 문제 삭제" }),
+        ),
+      problemMessage,
+    ],
+    [
+      "페이지 위 × 단추",
+      () =>
+        fireEvent.click(
+          within(problemBox()).getByRole("button", { name: /영역 삭제$/ }),
+        ),
+      problemMessage,
+    ],
+    [
+      "Delete 키",
+      () => fireEvent.keyDown(problemBox(), { key: "Delete" }),
+      problemMessage,
+    ],
+    [
+      "Backspace 키",
+      () => fireEvent.keyDown(problemBox(), { key: "Backspace" }),
+      problemMessage,
+    ],
+    [
+      "지우기 도구로 누르기",
+      () => {
+        fireEvent.click(screen.getByRole("button", { name: "삭제" }));
+        fireEvent.click(problemBox());
+      },
+      problemMessage,
+    ],
+    [
+      "검사 칸 도형 ×",
+      () =>
+        fireEvent.click(screen.getByRole("button", { name: "도형 1-1 삭제" })),
+      figureMessage,
+    ],
+    [
+      "도형 크롭 Delete 키",
+      () => fireEvent.keyDown(figureBox(), { key: "Delete" }),
+      figureMessage,
+    ],
+  ];
+
+  it.each(paths)(
+    "%s — 취소하면 아무것도 안 바뀐다",
+    async (_, remove, message) => {
+      const confirm = vi.spyOn(window, "confirm").mockReturnValue(false);
+      await openStudio([readProblem()]);
+      await screen.findByRole("button", { name: /^도형 1-1 영역/ });
+      // 되살린 작업은 «문제 추가» 도구로 열린다 — 페이지 위 영역을 다루려면 «선택»으로 바꾼다.
+      fireEvent.click(screen.getByRole("button", { name: "선택" }));
+      remove();
+      expect(confirm).toHaveBeenCalledWith(message);
+      expect(problemBox()).toHaveAttribute("aria-pressed", "true");
+      expect(figureBox()).toBeInTheDocument();
+      expect(
+        screen.getByRole("heading", { name: "문제 01" }),
+      ).toBeInTheDocument();
+    },
+  );
+
+  it("확인하면 지운다", async () => {
+    vi.spyOn(window, "confirm").mockReturnValue(true);
+    await openStudio([readProblem()]);
+    await screen.findByRole("button", { name: /^도형 1-1 영역/ });
+    fireEvent.click(screen.getByRole("button", { name: "도형 1-1 삭제" }));
+    expect(
+      screen.queryByRole("button", { name: /^도형 1-1 영역/ }),
+    ).not.toBeInTheDocument();
+    fireEvent.click(
+      screen.getByRole("button", { name: "선택한 자른 문제 삭제" }),
+    );
+    expect(
+      screen.queryByRole("button", { name: /^문제 1 영역/ }),
+    ).not.toBeInTheDocument();
+  });
+
+  it("결과가 없으면 묻지 않고 지운다", async () => {
+    const confirm = vi.spyOn(window, "confirm");
+    await openStudio([crop("p1", { figures: [figure("a")] })]);
+    fireEvent.click(
+      await screen.findByRole("button", { name: "도형 1-1 삭제" }),
+    );
+    fireEvent.click(
+      screen.getByRole("button", { name: "선택한 자른 문제 삭제" }),
+    );
+    expect(confirm).not.toHaveBeenCalled();
+    expect(
+      screen.queryByRole("button", { name: /^문제 1 영역/ }),
+    ).not.toBeInTheDocument();
+  });
+});
+
+describe("5 · 크롭 라벨 옆 «완료» 칩", () => {
+  it("다 끝난 문제·도형 크롭에만 칩을 달고 접근성 이름에도 넣는다", async () => {
+    await openStudio([
+      crop("done", {
+        content: "본문",
+        mode: "text",
+        figures: [figure("a", { svg })],
+      }),
+      crop("half", {
+        rect: { x: 0.1, y: 0.5, width: 0.8, height: 0.3 },
+        content: "본문",
+        mode: "text",
+        figures: [
+          figure("b", {
+            svg,
+            rect: { x: 0.2, y: 0.55, width: 0.1, height: 0.05 },
+          }),
+          figure("c", { rect: { x: 0.5, y: 0.55, width: 0.1, height: 0.05 } }),
+        ],
+      }),
+    ]);
+    const done = await screen.findByRole("button", {
+      name: "문제 1 영역 · 완료",
+    });
+    expect(within(done).getByText("완료")).toBeInTheDocument();
+    // 문자 인식은 끝났지만 도형 하나가 SVG 가 없다 — 문제는 덜 끝났다.
+    const half = screen.getByRole("button", { name: "문제 2 영역" });
+    expect(within(half).queryByText("완료")).not.toBeInTheDocument();
+    expect(
+      screen.getByRole("button", { name: "도형 2-1 영역 · 완료" }),
+    ).toBeInTheDocument();
+    expect(
+      screen.getByRole("button", { name: "도형 2-2 영역" }),
+    ).toBeInTheDocument();
+  });
+});

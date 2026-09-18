@@ -51,7 +51,9 @@ function setup(overrides: Partial<StudioCropOverlayProps> = {}) {
     </div>
   );
   const rendered = render(view());
-  const overlay = screen.getByRole("button", { name: "문제 1 영역" });
+  const overlay = screen.getByRole("button", {
+    name: /^문제 1 영역( · 완료)?$/,
+  });
   const page = screen.getByTestId("page");
   vi.spyOn(page, "getBoundingClientRect").mockReturnValue({
     width: 1000,
@@ -355,4 +357,14 @@ describe("StudioCropOverlay", () => {
       expect(test.onCommit).not.toHaveBeenCalled();
     },
   );
+
+  it("shows a separate «완료» chip beside the label and names it, without taking pointer input", () => {
+    const { overlay } = setup({ done: true });
+    const chip = screen.getByText("완료");
+    const label = screen.getByText("문제 1");
+    expect(chip).not.toBe(label);
+    expect(label).not.toHaveTextContent("완료");
+    expect(overlay).toHaveAccessibleName("문제 1 영역 · 완료");
+    expect(chip).toHaveAttribute("aria-hidden", "true");
+  });
 });

@@ -42,6 +42,8 @@ import {
   drawStudioSample,
   STUDIO_GRADES,
   STUDIO_QUESTION_TYPES,
+  studioCropDigitized,
+  studioDeleteWarning,
   studioFigureLabel,
   studioFigureProgressDetail,
   studioPixelRect,
@@ -1661,6 +1663,10 @@ export default function StudioView({
         item.id === id || item.figures?.some((figure) => figure.id === id),
     );
     if (!crop) return;
+    // 모든 삭제 길(페이지 위 ×·Delete 키·지우기 도구·검사 칸 휴지통·도형 ×)이 여기로 모인다.
+    // 취소하면 선택 상태까지 그대로 둔다 — 그래서 무엇이든 바꾸기 전에 묻는다.
+    const warning = studioDeleteWarning(crops, id);
+    if (warning && !window.confirm(warning)) return;
     if (crop.id === id) {
       const index = crops.indexOf(crop);
       const next = crops[index + 1] ?? crops[index - 1];
@@ -1859,10 +1865,7 @@ export default function StudioView({
   const doneFigures = figureJobs.filter(
     (job) => job.state === "complete",
   ).length;
-  const digitalCount = crops.filter(
-    (crop) =>
-      crop.content.trim() && (crop.figures ?? []).every((figure) => figure.svg),
-  ).length;
+  const digitalCount = crops.filter(studioCropDigitized).length;
   // 다음 단계로 넘어가기 전에 남은 일. 실패·취소는 studioAi.running 에 없으므로 여기서 멈추지 않는다.
   const busyPages =
     studioAi.pageProgress.queued + studioAi.pageProgress.running;
@@ -2763,6 +2766,7 @@ export default function StudioView({
                           rect={crop.rect}
                           label={`문제 ${crops.indexOf(crop) + 1}${crop.questionType ? ` · ${STUDIO_QUESTION_TYPES[crop.questionType]}` : ""}`}
                           kind="problem"
+                          done={studioCropDigitized(crop)}
                           selected={selectedBoxId === crop.id}
                           disabled={recognizingPage}
                           tool={cropTool}
@@ -2783,6 +2787,7 @@ export default function StudioView({
                               index,
                             )}
                             kind="figure"
+                            done={Boolean(figure.svg)}
                             selected={selectedBoxId === figure.id}
                             disabled={recognizingPage}
                             tool={cropTool}

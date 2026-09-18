@@ -1,5 +1,7 @@
 import { describe, expect, it } from "vitest";
 import {
+  studioCropDigitized,
+  studioDeleteWarning,
   studioFigureLabel,
   studioFigureProgressDetail,
   visibleStudioWarnings,
@@ -100,5 +102,65 @@ describe("3 · 도형 번호 «문제번호-순번»", () => {
         0,
       ),
     ).toBe("1개 대기");
+  });
+});
+
+describe("4 · 결과가 있는 크롭 삭제 경고", () => {
+  const withSvg = (item: StudioCrop, ...ids: string[]) => ({
+    ...item,
+    figures: item.figures?.map((figure) =>
+      ids.includes(figure.id) ? { ...figure, svg: "<svg/>" } : figure,
+    ),
+  });
+  it("결과가 없으면 묻지 않는다", () => {
+    const crops = [crop("p1", ["a"])];
+    expect(studioDeleteWarning(crops, "p1")).toBeNull();
+    expect(studioDeleteWarning(crops, "a")).toBeNull();
+    expect(studioDeleteWarning(crops, "missing")).toBeNull();
+  });
+  it("문제 크롭은 문자 인식이나 그 문제 도형 SVG 하나라도 있으면 묻는다", () => {
+    const read = { ...crop("p1", ["a"]), content: "넓이를 구하시오." };
+    expect(studioDeleteWarning([crop("p0"), read], "p1")).toBe(
+      "문제 2에는 인식 결과가 있습니다. 삭제하면 문자 인식 결과도 함께 지워집니다. 삭제할까요?",
+    );
+    expect(
+      studioDeleteWarning([withSvg(crop("p1", ["a", "b"]), "b")], "p1"),
+    ).toBe(
+      "문제 1에는 인식 결과가 있습니다. 삭제하면 SVG 도형 결과도 함께 지워집니다. 삭제할까요?",
+    );
+    expect(studioDeleteWarning([withSvg(read, "a")], "p1")).toBe(
+      "문제 1에는 인식 결과가 있습니다. 삭제하면 문자 인식과 SVG 도형 결과도 함께 지워집니다. 삭제할까요?",
+    );
+    expect(
+      studioDeleteWarning([{ ...crop("p1"), content: "  \n " }], "p1"),
+    ).toBeNull();
+  });
+  it("도형 크롭은 그 도형에 SVG 가 있을 때만 묻고, 번호에 맞는 조사를 쓴다", () => {
+    const crops = [withSvg(crop("p1", ["a", "b"]), "a", "b")];
+    expect(studioDeleteWarning(crops, "a")).toBe(
+      "도형 1-1은 SVG 생성이 끝났습니다. 삭제하면 생성 결과도 지워집니다. 삭제할까요?",
+    );
+    expect(studioDeleteWarning(crops, "b")).toBe(
+      "도형 1-2는 SVG 생성이 끝났습니다. 삭제하면 생성 결과도 지워집니다. 삭제할까요?",
+    );
+    // 문제에 문자 인식이 있어도 SVG 없는 도형 하나를 지우는 것은 묻지 않는다.
+    expect(
+      studioDeleteWarning([{ ...crop("p1", ["a"]), content: "본문" }], "a"),
+    ).toBeNull();
+  });
+});
+
+describe("5 · 완료 기준", () => {
+  it("문자 인식 + 그 문제 도형 SVG 전부일 때만 끝난 문제", () => {
+    const read = { ...crop("p1", ["a", "b"]), content: "본문" };
+    expect(studioCropDigitized(read)).toBe(false);
+    expect(
+      studioCropDigitized({
+        ...read,
+        figures: read.figures!.map((figure) => ({ ...figure, svg: "<svg/>" })),
+      }),
+    ).toBe(true);
+    expect(studioCropDigitized({ ...crop("p1"), content: "본문" })).toBe(true);
+    expect(studioCropDigitized(crop("p1"))).toBe(false);
   });
 });
