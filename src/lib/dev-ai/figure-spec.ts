@@ -4,6 +4,30 @@ import type { DevAiFigureSpec } from "./contracts";
 
 export const MAX_FIGURE_SPEC_BYTES = 64 * 1024;
 
+/**
+ * 화면까지 보여도 되는 도형 재작도 사유(원장님 2026-09-19 — 운영에서 사유가 «AI 결과를 처리하지 못했습니다»(502)에
+ * 가려져 왜 안 됐는지 몰랐다). 우리가 쓴 한국어 문장, 길이를 자른 모델 note, 엔진 검증 사유만 싣는다.
+ * 상류 원문·키·내부 경로(파이썬 실행 파일 등)는 싣지 않는다 — 그런 실패는 일반 Error 로 남아 처리기가 가린다.
+ */
+export class FigureRedrawError extends Error {
+  readonly status = 422;
+  constructor(message: string) {
+    super(message);
+    this.name = "FigureRedrawError";
+  }
+}
+/** 오류 칸 한 줄에 들어가는 길이. */
+export const FIGURE_REASON_MAX = 240;
+/** 길이를 모르는 사유(모델 note·엔진 사유)를 한 줄로 자르고 «원본은 유지됩니다.»를 붙인다. */
+export function figureReasonError(reason: string) {
+  const tail = " 원본은 유지됩니다.";
+  const text = reason.replace(/\s+/g, " ").trim();
+  const room = FIGURE_REASON_MAX - tail.length;
+  return new FigureRedrawError(
+    (text.length > room ? `${text.slice(0, room - 1)}…` : text) + tail,
+  );
+}
+
 // Detailed geometry is validated by Python, the authoritative schema. This
 // boundary only bounds transport/recursion and distinguishes a spec from SVG.
 const FigureSpecEnvelope = z.object({
@@ -27,7 +51,7 @@ export function parseFigureSpecResult(raw: string): {
   warnings: string[];
 } {
   const invalid = () =>
-    new Error(
+    new FigureRedrawError(
       "도형 스펙 응답을 읽지 못했습니다. 원본은 유지됩니다. 다시 시도해 주세요.",
     );
   if (new TextEncoder().encode(raw).length > 128 * 1024) throw invalid();
@@ -62,4 +86,29 @@ export function parseFigureSpecResult(raw: string): {
     }
   }
   return parsed.data;
+}
+
+/**
+ * 작업실 재작도의 v2 바탕을 투명으로 고정한다(원장님 2026-09-19 «도형 생성 시 사각형이 왜 생기나»).
+ * v2 엔진은 바탕이 white(기본값)면 캔버스 전체에 흰 rect 를 첫 도형으로 깔고
+ * (vendor/figure-engine/core/figure_scene.py:2906), 도형 편집기가 그것을 1번 «사각형»으로 셌다.
+ * 엔진 기본값은 지면·DB 그림 바이트가 걸려 그대로 둔다 — 여기서 넘기는 spec 만 바꾸고, 저장도 이 spec 으로 한다.
+ * canvas.background 가 있으면 같이 맞춘다(둘이 다르면 엔진이 «background conflicts with canvas.background»로 던진다).
+ * graph-1·elem-1 에는 바탕 rect 가 없어 손대지 않는다.
+ */
+export function withTransparentBackground(
+  spec: DevAiFigureSpec,
+): DevAiFigureSpec {
+  if (spec.version !== 2) return spec;
+  const { canvas } = spec;
+  return {
+    ...spec,
+    background: "transparent",
+    ...(canvas &&
+    typeof canvas === "object" &&
+    !Array.isArray(canvas) &&
+    "background" in canvas
+      ? { canvas: { ...canvas, background: "transparent" } }
+      : {}),
+  };
 }

@@ -4,8 +4,12 @@ import catalog from "../../../scripts/figure/engine-catalog.json";
 import { runSubscriptionCli } from "@/lib/dev-ai/cli";
 import { abortError } from "@/lib/dev-ai/cli-process";
 import { redrawDevAiFigure } from "@/lib/dev-ai/figure-engine";
-import { parseFigureSpecResult } from "@/lib/dev-ai/figure-spec";
+import {
+  parseFigureSpecResult,
+  withTransparentBackground,
+} from "@/lib/dev-ai/figure-spec";
 import { renderFigureSpec } from "@/lib/figure/renderFigureSpec";
+import { withLabelMetrics } from "@/lib/figure/mathjaxSubstitute";
 import { validDevAiSvg } from "@/lib/dev-ai/svg";
 import type { DevAiRequest } from "@/lib/dev-ai/contracts";
 import { buildFigureComparisonImage } from "@/lib/dev-ai/figure-comparison";
@@ -27,6 +31,8 @@ const input: DevAiRequest = {
 const triangle = catalog.v2_example;
 const pass = JSON.stringify({ passed: true, issues: [] });
 const run = vi.mocked(runSubscriptionCli);
+// 작업실 재작도는 v2 바탕을 투명으로 고정해 저장한다(2026-09-19 — 흰 바탕 rect 가 편집기 1번 «사각형»이 됐다)
+const transparent = (spec: object) => ({ ...spec, background: "transparent" });
 beforeEach(() => vi.clearAllMocks());
 afterEach(() => vi.useRealTimers());
 
@@ -128,13 +134,14 @@ describe("real local Python subscription figure pipeline", () => {
 
   it("repairs a Python-rejected right angle using the original source and real diagnostic", async () => {
     const bad = structuredClone(triangle);
-    bad.points.C = [290, 160];
+    // 65.4° — 90° 에서 15° 넘게 빗나가 서버가 표시를 빼지 않고 모델에게 기하를 고치게 한다(figure-repair.ts)
+    bad.points.C = [290, 100];
     run
       .mockResolvedValueOnce(JSON.stringify({ spec: bad }))
       .mockResolvedValueOnce(JSON.stringify({ spec: triangle }))
       .mockResolvedValueOnce(pass);
     const result = await redrawDevAiFigure(input);
-    expect(result.spec).toEqual(triangle);
+    expect(result.spec).toEqual(transparent(triangle));
     expect(run).toHaveBeenCalledTimes(3);
     expect(run.mock.calls[1][0].prompt).toContain("<previous-spec-data>");
     expect(run.mock.calls[1][0].prompt).toContain("perpendicular");
@@ -155,22 +162,46 @@ describe("real local Python subscription figure pipeline", () => {
     expect(run).toHaveBeenCalledTimes(3);
   });
 
-  it("repairs clear source review issues and retains bounded warnings after the final review", async () => {
+  // 원장님 2026-09-19 «원본 대조 멘트는 생성하지 마» — 대조와 그 결과로 두 번 다시 그리는 것은 그대로,
+  // 끝까지 안 맞았을 때 warnings 에 넣던 «원본 대조 확인 필요: …» 문구만 없앤다. figureReview 는 싣는다(저장 형식).
+  it("repairs clear source review issues twice, then keeps the review data without a source-comparison warning", async () => {
+    const issue = "인쇄된 점 D를 원본과 비교해 주세요.\nnext label";
     run.mockImplementation(async ({ prompt }) =>
       prompt.includes("<rendered-spec-data>")
-        ? JSON.stringify({
-            passed: false,
-            issues: ["인쇄된 점 D를 원본과 비교해 주세요.\nnext label"],
-          })
-        : JSON.stringify({ spec: triangle }),
+        ? JSON.stringify({ passed: false, issues: [issue] })
+        : JSON.stringify({
+            spec: triangle,
+            warnings: ["변 BC 의 길이 표시가 흐립니다."],
+          }),
     );
     const result = await redrawDevAiFigure(input);
     expect(run).toHaveBeenCalledTimes(6);
-    expect(result.figureReview?.passed).toBe(false);
-    expect(result.figureReview?.issues[0]).toBe(
-      "인쇄된 점 D를 원본과 비교해 주세요.\nnext label",
-    );
-    expect(result.warnings.join(" ")).toContain("인쇄된 점 D");
+    expect(
+      run.mock.calls.map(([args]) =>
+        args.prompt.includes("<rendered-spec-data>") ? "review" : "generate",
+      ),
+    ).toEqual([
+      "generate",
+      "review",
+      "generate",
+      "review",
+      "generate",
+      "review",
+    ]);
+    // 다시 그릴 때 대조 지적을 모델에게 넘기는 것은 그대로다
+    for (const call of [2, 4])
+      expect(run.mock.calls[call][0].prompt).toContain(
+        "원본 대조: 인쇄된 점 D를 원본과 비교해 주세요.",
+      );
+    expect(result.figureReview).toEqual({
+      mode: "source-and-rendered-images",
+      passed: false,
+      issues: [issue],
+    });
+    // 모델이 스스로 낸 경고만 남는다
+    expect(result.warnings).toEqual(["변 BC 의 길이 표시가 흐립니다."]);
+    expect(result.warnings.join(" ")).not.toContain("원본 대조");
+    expect(result.warnings.join(" ")).not.toContain("인쇄된 점 D");
     expect(validDevAiSvg(result.svg!)).toBe(true);
   });
 
@@ -331,7 +362,7 @@ describe("real local Python subscription figure pipeline", () => {
     await untilCalled(3);
     await vi.advanceTimersByTimeAsync(240_001);
     const value = await result;
-    expect(value.spec).toEqual(triangle);
+    expect(value.spec).toEqual(transparent(triangle));
     expect(validDevAiSvg(value.svg!)).toBe(true);
     expect(value.engine).toBe("todays-math-python");
     expect(value.figureReview).toEqual({
@@ -339,8 +370,10 @@ describe("real local Python subscription figure pipeline", () => {
       passed: false,
       issues: [issue],
     });
-    expect(value.warnings).toContain(`원본 대조 확인 필요: ${issue}`);
-    expect(value.warnings.join(" ")).toContain("오래 걸려");
+    // 원장님 2026-09-19 — 대조 멘트는 없다. 시간 초과 안내는 대조 멘트가 아니라서 남는다.
+    expect(value.warnings).toEqual([
+      "도형 재작도가 오래 걸려 마지막으로 그린 결과를 사용합니다.",
+    ]);
   });
 
   it("returns the render with a warning when the review itself runs out of time", async () => {
@@ -354,17 +387,57 @@ describe("real local Python subscription figure pipeline", () => {
     await untilCalled(2);
     await vi.advanceTimersByTimeAsync(240_001);
     const value = await result;
-    expect(value.spec).toEqual(triangle);
+    expect(value.spec).toEqual(transparent(triangle));
     expect(value.figureReview).toEqual({
       mode: "source-and-rendered-images",
       passed: false,
       issues: [],
     });
-    expect(
-      value.warnings.some((w) => w.startsWith("원본 대조 확인 필요: ")),
-    ).toBe(true);
-    expect(value.warnings.join(" ")).toContain("오래 걸려");
+    expect(value.warnings).toEqual([
+      "도형 재작도가 오래 걸려 마지막으로 그린 결과를 사용합니다.",
+    ]);
   });
+
+  // 리드 결정 2026-09-19: 운영 처리기(handler.ts)의 240초는 요청 시작부터, 도형 쪽 240초는 칸을 얻은 뒤부터라
+  // 처리기가 먼저 끊어 504 가 됐다 — 결함 4(마지막 렌더 돌려주기)가 운영에서 닿지 않았다.
+  // 도형 쪽 마감 = min(칸을 얻은 뒤 240초, 처리기 끝 시각 − 10초).
+  it.each([
+    ["the handler leaves 100 s", 100_000, 90_000],
+    ["the handler leaves 400 s", 400_000, 240_000],
+  ])(
+    "stops before the handler when %s, still returning the last render",
+    async (_name, left, stopsAt) => {
+      vi.useFakeTimers({ toFake: ["setTimeout", "clearTimeout", "Date"] });
+      run.mockImplementation(async ({ prompt, signal }) => {
+        if (prompt.includes("<rendered-spec-data>"))
+          return JSON.stringify({ passed: false, issues: ["점 D"] });
+        if (prompt.includes("<previous-spec-data>"))
+          return pendingUntilAbort({ signal });
+        return JSON.stringify({ spec: triangle });
+      });
+      const result = redrawDevAiFigure(
+        input,
+        undefined,
+        (call) =>
+          run({ ...call, provider: input.provider, model: input.model }),
+        Date.now() + left,
+      );
+      await untilCalled(3);
+      let settled = false;
+      void result.then(() => (settled = true));
+      await vi.advanceTimersByTimeAsync(stopsAt - 1_000);
+      expect(settled).toBe(false);
+      await vi.advanceTimersByTimeAsync(1_001);
+      // 시계를 더 밀지 않고 기다린다 — 밀면 240초 시계가 울려 고치기 전에도 초록이 된다
+      const waited = performance.now();
+      while (!settled && performance.now() - waited < 5_000)
+        await new Promise((resolve) => setImmediate(resolve));
+      expect(settled).toBe(true);
+      expect((await result).warnings).toEqual([
+        "도형 재작도가 오래 걸려 마지막으로 그린 결과를 사용합니다.",
+      ]);
+    },
+  );
 
   it("still keeps the original when a user cancels after a successful render", async () => {
     const user = new AbortController();
@@ -401,6 +474,208 @@ describe("real local Python subscription figure pipeline", () => {
       expect(result.ok).toBe(false);
     },
   );
+});
+
+// 원장님 2026-09-19 «충분히 우리 엔진으로 그릴 수 있을 것 같은데» — 사각형 관계 개념도를 모델이 두 번 «지원 엔진으로
+// 표현할 수 없다»며 spec:null 로 포기했다(운영 로그). graph-1(axes:false)의 다각형·화살표 선분·한글 일반 글자로 그려진다.
+// 이 사양은 원본(사다리꼴 → ㉠ → 평행사변형 → ㉡ → 직사각형, ㉢ → 마름모 → ㉤ → 정사각형, ㉣)을 손으로 옮긴 것이다.
+const CONCEPT_MAP = {
+  version: "graph-1",
+  xRange: [0, 100],
+  yRange: [0, 60],
+  width: 600,
+  height: 360,
+  axes: false,
+  polygons: [
+    {
+      points: [
+        [4, 38],
+        [26, 38],
+        [21, 52],
+        [9, 52],
+      ],
+    },
+    {
+      points: [
+        [37, 38],
+        [59, 38],
+        [63, 52],
+        [41, 52],
+      ],
+    },
+    {
+      points: [
+        [74, 38],
+        [96, 38],
+        [96, 52],
+        [74, 52],
+      ],
+    },
+    {
+      points: [
+        [50, 4],
+        [60, 12],
+        [50, 20],
+        [40, 12],
+      ],
+    },
+    {
+      points: [
+        [78, 4],
+        [92, 4],
+        [92, 18],
+        [78, 18],
+      ],
+    },
+  ],
+  segments: [
+    { from: [27, 45], to: [36, 45], arrow: true },
+    { from: [63, 45], to: [73, 45], arrow: true },
+    { from: [50, 37], to: [50, 21], arrow: true },
+    { from: [85, 37], to: [85, 19], arrow: true },
+    { from: [61, 11], to: [77, 11], arrow: true },
+  ],
+  labels: [
+    { at: [15, 45], text: "사다리꼴", size: 15, dy: 5 },
+    { at: [50, 45], text: "평행사변형", size: 15, dy: 5 },
+    { at: [85, 45], text: "직사각형", size: 15, dy: 5 },
+    { at: [50, 12], text: "마름모", size: 15, dy: 5 },
+    { at: [85, 11], text: "정사각형", size: 15, dy: 5 },
+    { at: [31.5, 45], text: "㉠", dy: -12 },
+    { at: [68, 45], text: "㉡", dy: -12 },
+    { at: [50, 29], text: "㉢", dx: 16, dy: 5 },
+    { at: [85, 28], text: "㉣", dx: 16, dy: 5 },
+    { at: [69, 11], text: "㉤", dy: -12 },
+  ],
+};
+
+describe("concept maps and flowcharts are drawn, not refused", () => {
+  it("draws the quadrilateral concept map through the whole redraw pipeline", async () => {
+    run
+      .mockResolvedValueOnce(JSON.stringify({ spec: CONCEPT_MAP }))
+      .mockResolvedValueOnce(pass);
+    const result = await redrawDevAiFigure(input);
+    expect(validDevAiSvg(result.svg!)).toBe(true);
+    for (const text of [
+      "사다리꼴",
+      "평행사변형",
+      "직사각형",
+      "마름모",
+      "정사각형",
+      "㉠",
+      "㉡",
+      "㉢",
+      "㉣",
+      "㉤",
+    ])
+      expect(result.svg).toContain(`>${text}<`);
+    // 상자 다섯 + 화살촉 다섯, 화살 줄기 다섯
+    expect((result.svg!.match(/<polygon\b/g) ?? []).length).toBe(10);
+    expect((result.svg!.match(/<line\b/g) ?? []).length).toBe(5);
+  });
+
+  it("tells the model to draw concept maps with graph-1 and to refuse only non-geometric images", async () => {
+    run
+      .mockResolvedValueOnce(JSON.stringify({ spec: triangle }))
+      .mockResolvedValueOnce(pass);
+    await redrawDevAiFigure(input);
+    const prompt = run.mock.calls[0][0].prompt;
+    expect(prompt).toMatch(/concept maps?, flowcharts? and relation diagrams/i);
+    for (const part of [
+      "axes:false",
+      "polygons",
+      "arrow:true",
+      "plain-text labels",
+      "without $",
+    ])
+      expect(prompt).toContain(part);
+    expect(prompt).toMatch(/spec:null ONLY/);
+  });
+});
+
+// 원장님 2026-09-19 «도형 생성 시 사각형이 왜 생기나» — v2 엔진은 흰 바탕 rect 를 첫 도형으로 깐다
+// (vendor/figure-engine/core/figure_scene.py:2906). 편집기가 그것을 1번 «사각형»으로 셌다. 엔진 기본값(white)은
+// 지면·DB 그림 바이트가 걸려 그대로 두고, 작업실 재작도만 투명으로 넘긴다.
+describe("studio redraw renders v2 on a transparent canvas", () => {
+  const rects = (svg?: string) => (svg?.match(/<rect\b/g) ?? []).length;
+  const canvas = { width: 340, height: 250 };
+
+  it("the engine default still paints a white background rect", async () => {
+    const rendered = await renderFigureSpec(withLabelMetrics(triangle), {
+      typeset: false,
+      strict: true,
+    });
+    expect(rendered.ok && rects(rendered.svg)).toBe(1);
+  });
+
+  it.each([
+    ["no background", triangle],
+    ["a white background", { ...triangle, background: "white" }],
+    [
+      "a white canvas background",
+      { ...triangle, canvas: { ...canvas, background: "white" } },
+    ],
+    [
+      "both backgrounds",
+      {
+        ...triangle,
+        background: "white",
+        canvas: { ...canvas, background: "white" },
+      },
+    ],
+    ["an array canvas", { ...triangle, canvas: [340, 250] }],
+  ])(
+    "renders a v2 spec with %s transparently and stores that spec",
+    async (_name, spec) => {
+      run
+        .mockResolvedValueOnce(JSON.stringify({ spec }))
+        .mockResolvedValueOnce(pass);
+      const result = await redrawDevAiFigure(input);
+      // 배경 충돌(«background conflicts with canvas.background»)로 다시 그리지 않았다
+      expect(run).toHaveBeenCalledTimes(2);
+      expect(rects(result.svg)).toBe(0);
+      expect(result.spec).toMatchObject({ background: "transparent" });
+      const stored = (result.spec as { canvas?: unknown }).canvas;
+      if (stored && !Array.isArray(stored))
+        expect(stored).toMatchObject({ background: "transparent" });
+      // 대조 단계도 저장될 spec 을 본다
+      expect(run.mock.calls[1][0].prompt).toContain(
+        '"background":"transparent"',
+      );
+      // 저장된 spec 을 다시 그려도 같은 그림이다
+      const again = await renderFigureSpec(withLabelMetrics(result.spec!), {
+        typeset: false,
+        strict: true,
+      });
+      expect(again).toMatchObject({ ok: true, svg: result.svg });
+    },
+  );
+
+  it.each([
+    ["graph-1", catalog["graph-1"].example],
+    ["elem-1", { version: "elem-1", kind: "cuboid", w: 4, d: 3, h: 2 }],
+  ])("leaves %s specs as the model wrote them", async (_name, spec) => {
+    run
+      .mockResolvedValueOnce(JSON.stringify({ spec }))
+      .mockResolvedValueOnce(pass);
+    const result = await redrawDevAiFigure(input);
+    expect(result.spec).toEqual(spec);
+  });
+
+  it("does not mutate the parsed model spec", () => {
+    const spec = {
+      version: 2 as const,
+      background: "white",
+      canvas: { ...canvas, background: "white" },
+    };
+    const before = structuredClone(spec);
+    expect(withTransparentBackground(spec)).toEqual({
+      version: 2,
+      background: "transparent",
+      canvas: { ...canvas, background: "transparent" },
+    });
+    expect(spec).toEqual(before);
+  });
 });
 
 describe("figure spec transport boundary", () => {

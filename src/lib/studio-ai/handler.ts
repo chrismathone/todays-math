@@ -1,6 +1,7 @@
 import "server-only";
 import { z } from "zod";
 import { STUDIO_API_PROVIDERS } from "@/lib/dev-ai/contracts";
+import { FigureRedrawError } from "@/lib/dev-ai/figure-spec";
 import { DevAiRequestSchema } from "@/lib/dev-ai/tasks";
 import { getModelApiStatus, StudioApiError } from "./api";
 import { executeStudioTask } from "./execute";
@@ -29,6 +30,8 @@ export async function studioApiPost(request: Request, owner: string) {
   active++;
   activeUsers.set(owner, (activeUsers.get(owner) ?? 0) + 1);
   const timeout = AbortSignal.timeout(240_000);
+  // 도형 재작도가 이 한도보다 먼저 멈춰 «마지막으로 그린 결과»를 돌려줄 수 있게 끝 시각을 넘긴다(2026-09-19)
+  const deadlineAt = Date.now() + 240_000;
   const signal = AbortSignal.any([request.signal, timeout]);
   let action: string | undefined;
   try {
@@ -54,6 +57,7 @@ export async function studioApiPost(request: Request, owner: string) {
       input,
       { mode: "model-api", provider },
       signal,
+      deadlineAt,
     );
     signal.throwIfAborted();
     return Response.json(
@@ -77,6 +81,13 @@ export async function studioApiPost(request: Request, owner: string) {
           ? error.message.slice(0, 300)
           : "unknown",
     );
+    // 2026-09-19 도형 재작도의 사유(모델 note·엔진 검증 사유 — 잘라 둔 것)가 이 502 에 가려져 원장님이
+    // 왜 안 됐는지 몰랐다. FigureRedrawError 는 우리가 화면용으로 쓴 문장만 싣는다(figure-spec.ts).
+    if (error instanceof FigureRedrawError)
+      return Response.json(
+        { error: error.message },
+        { status: error.status, headers },
+      );
     return Response.json(
       {
         error:

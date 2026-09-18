@@ -251,3 +251,113 @@ describe("authenticated production AI execution", () => {
     await expect(stalled).rejects.toThrow();
   });
 });
+
+// 원장님 2026-09-19 — 도형 다시 그리기가 왜 안 됐는지 «AI 결과를 처리하지 못했습니다»(502)에 가려졌다.
+// 운영 로그에는 모델의 사유(«사각형 관계 다이어그램은 … 표현할 수 없습니다»)와 엔진 검증 사유가 있었다.
+describe("figure redraw reasons reach the screen", () => {
+  const figure = {
+    provider: "auto",
+    action: "figure-redraw",
+    grade: "중3",
+    content: "원본 도형 재작도",
+    imageDataUrl: "data:image/png;base64,YWJj",
+  };
+  const generic =
+    "AI 결과를 처리하지 못했습니다. 입력과 모델 설정을 확인해 주세요.";
+
+  it("shows the model's own reason when it declines to draw", async () => {
+    const note = "사진이라 기하 요소로 옮길 수 없습니다.";
+    vi.mocked(runModelApi).mockResolvedValueOnce(
+      JSON.stringify({ spec: null, note }),
+    );
+    const response = await POST(request(figure));
+    expect(response.status).toBe(422);
+    expect(await response.json()).toEqual({
+      error: `${note} 원본은 유지됩니다.`,
+    });
+  });
+
+  it("clips a long reason to one line", async () => {
+    vi.mocked(runModelApi).mockResolvedValueOnce(
+      JSON.stringify({ spec: null, note: "가나다라마\n".repeat(160) }),
+    );
+    const response = await POST(request(figure));
+    expect(response.status).toBe(422);
+    const { error } = await response.json();
+    expect(error.length).toBeLessThanOrEqual(240);
+    expect(error).not.toContain("\n");
+    expect(error).toMatch(/… 원본은 유지됩니다\.$/);
+  });
+
+  it("shows the engine's validation reason when the repairs run out", async () => {
+    vi.mocked(runModelApi).mockResolvedValue(
+      JSON.stringify({
+        spec: {
+          version: 2,
+          points: { A: [0, 0] },
+          segments: { AB: ["A", "missing"] },
+        },
+      }),
+    );
+    const response = await POST(request(figure));
+    expect(response.status).toBe(422);
+    const { error } = await response.json();
+    expect(error).toMatch(
+      /^도형을 그리지 못했습니다: .*missing.* 원본은 유지됩니다\.$/,
+    );
+    expect(runModelApi).toHaveBeenCalledTimes(3);
+  });
+
+  // 리드 결정 2026-09-19 — 처리기의 240초는 요청 시작부터, 도형 쪽 240초는 칸을 얻은 뒤부터라 처리기가 먼저 끊어
+  // 504 가 됐다(«마지막으로 그린 결과» 길이 운영에서 닿지 않았다). 도형 쪽이 처리기 끝 10초 전에 먼저 멈춘다.
+  // AbortSignal.timeout 은 가짜 시계 밖이라 여기서는 옛 504 가 아니라 «240초까지 안 끝남»으로 빨갛다.
+  it("returns the last render before the handler's own 240 s limit", async () => {
+    vi.useFakeTimers({ toFake: ["setTimeout", "clearTimeout", "Date"] });
+    try {
+      vi.mocked(runModelApi).mockImplementation(async ({ prompt, signal }) => {
+        if (prompt.includes("<rendered-spec-data>"))
+          return JSON.stringify({ passed: false, issues: ["점 D"] });
+        if (prompt.includes("<previous-spec-data>"))
+          return new Promise<string>((_resolve, reject) =>
+            signal.addEventListener("abort", () => reject(signal.reason), {
+              once: true,
+            }),
+          );
+        return JSON.stringify({ spec: catalog.v2_example });
+      });
+      const waitReal = async (done: () => boolean, limitMs: number) => {
+        const started = performance.now();
+        while (!done() && performance.now() - started < limitMs)
+          await new Promise((resolve) => setImmediate(resolve));
+      };
+      const pending = POST(request(figure));
+      await waitReal(
+        () => vi.mocked(runModelApi).mock.calls.length >= 3,
+        40_000,
+      );
+      let settled = false;
+      void pending.then(() => (settled = true));
+      await vi.advanceTimersByTimeAsync(229_000);
+      expect(settled).toBe(false);
+      await vi.advanceTimersByTimeAsync(1_001);
+      await waitReal(() => settled, 5_000);
+      expect(settled).toBe(true);
+      const response = await pending;
+      expect(response.status).toBe(200);
+      expect((await response.json()).result.warnings).toEqual([
+        "도형 재작도가 오래 걸려 마지막으로 그린 결과를 사용합니다.",
+      ]);
+    } finally {
+      vi.useRealTimers();
+    }
+  }, 60_000);
+
+  it("still hides failures it did not write", async () => {
+    vi.mocked(runModelApi).mockRejectedValueOnce(
+      new Error("upstream body with sk-live-secret"),
+    );
+    const response = await POST(request(figure));
+    expect(response.status).toBe(502);
+    expect(await response.json()).toEqual({ error: generic });
+  });
+});

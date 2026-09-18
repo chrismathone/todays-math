@@ -72,6 +72,70 @@ const visibleFigureLabel = (value: string) => {
     : value;
 };
 
+// 원장님 2026-09-19 «도형 생성 시 사각형이 왜 생기나» — 도형 엔진 v2 는 캔버스 전체에 흰 바탕 rect 를 첫 도형으로
+// 깐다(vendor/figure-engine/core/figure_scene.py:2906). 편집기가 그것을 1번 «사각형»으로 세어 네 모서리 조절점이
+// 그림 바깥에 붙었고, fitFigureViewport 도 바탕을 경계로 재어 여백이 겹으로 들어갔다. 서버는 이제 투명으로 넘기지만
+// 이미 만든 그림에는 남아 있어 여기서 걷어 낸다. 사용자가 일부러 그린 흰 가림막을 지우지 않도록 조건을 좁게 잡는다:
+// 루트의 첫 그리는 자식 · x·y 없음 또는 0 · 흰 채움 · 선 없음 · style·transform 없음 · 원래 viewBox(0 0 W H)를 꼭 덮음.
+const NON_RENDERING = new Set(
+  "defs title desc clipPath mask marker pattern linearGradient radialGradient".split(
+    " ",
+  ),
+);
+const WHITE_FILLS = new Set(["#fff", "#ffffff", "white"]);
+function engineBackgroundRect(root: Element) {
+  const rect = [...root.children].find(
+    (node) => !NON_RENDERING.has(node.localName),
+  );
+  if (rect?.localName !== "rect") return undefined;
+  const view = root
+    .getAttribute("viewBox")
+    ?.trim()
+    .split(/[\s,]+/)
+    .map(Number);
+  const at = (name: string) => Number(rect.getAttribute(name) ?? 0);
+  const same = (a: number, b: number) => Math.abs(a - b) < 1e-3;
+  const stroke = rect.getAttribute("stroke")?.trim().toLowerCase();
+  return view?.length === 4 &&
+    view[0] === 0 &&
+    view[1] === 0 &&
+    at("x") === 0 &&
+    at("y") === 0 &&
+    same(at("width"), view[2]) &&
+    same(at("height"), view[3]) &&
+    WHITE_FILLS.has(rect.getAttribute("fill")?.trim().toLowerCase() ?? "") &&
+    (stroke === undefined || stroke === "none") &&
+    !rect.hasAttribute("style") &&
+    !rect.hasAttribute("transform")
+    ? rect
+    : undefined;
+}
+
+// 원장님 2026-09-19 «각도가 자꾸 기울어지는데, 기울어지지 않게 해.» — 엔진은 각도 라벨의 바깥 <text> 에
+// font-style="italic" 을 걸고 조각(<tspan>)마다 기울임을 따로 적는다(숫자·° 는 font-style="normal" —
+// figure_scene.py:2867, label_markup.py). 편집기 조판은 바깥 표시만 보고 \mathit 으로 **숫자까지** 기울였다.
+// 조각이 정자를 적어 둔 엔진 라벨(흰 테두리 paint-order 가 있는 각도·치수 라벨)이면 바깥 기울임을 걷는다 —
+// 조판이 기본 규칙(한 글자 소문자·그리스 문자만 기울임, 숫자·단위·대문자는 정자)을 따른다.
+// 걷을 때 조각의 font-style="normal" 도 지운다(바깥이 정자라 같은 뜻이다). 그러면 한 번 걷힌 라벨은 다시
+// 이 조건에 안 걸려, 사용자가 «기울임» 단추로 켠 기울임은 저장·다시 열기를 지나도 그대로 남는다.
+function uprightEngineAngleLabel(text: SVGElement) {
+  if (
+    text.getAttribute("font-style") !== "italic" ||
+    !text.hasAttribute("paint-order")
+  )
+    return;
+  const upright = [...text.children].filter(
+    (piece) =>
+      piece.localName === "tspan" &&
+      piece.getAttribute("font-style") === "normal",
+  );
+  if (!upright.length) return;
+  for (const piece of upright) piece.removeAttribute("font-style");
+  text.setAttribute("font-style", "normal");
+  // 이 수정 전에 저장된 초안은 prepare 가 style 에도 italic 을 옮겨 적어 두었다
+  text.style.removeProperty("font-style");
+}
+
 export function prepareFigureSvg(source?: string) {
   const doc = parse(
     source ||
@@ -137,6 +201,8 @@ export function prepareFigureSvg(source?: string) {
       if (reference && !ids.has(reference)) node.removeAttribute(attr.name);
     }
   const root = doc.documentElement;
+  // 번호를 매기기 전에, viewBox 를 채워 넣기 전에(원래 캔버스와 견준다)
+  engineBackgroundRect(root)?.remove();
   root.setAttribute("xmlns", SVG_NS);
   const viewBox = root
     .getAttribute("viewBox")
@@ -165,6 +231,7 @@ export function prepareFigureSvg(source?: string) {
       node.setAttribute("data-object-id", `obj-${index++}`);
       if (node.localName === "text") {
         const text = node as SVGElement;
+        uprightEngineAngleLabel(text);
         for (const [property, fallback] of [
           ["font-style", "normal"],
           ["font-family", "Times New Roman, serif"],

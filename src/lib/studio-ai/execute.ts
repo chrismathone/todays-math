@@ -12,6 +12,8 @@ export async function executeStudioTask(
     | { mode: "subscription-cli" }
     | { mode: "model-api"; provider: StudioApiProvider },
   signal: AbortSignal,
+  /** 처리기의 끝 시각(ms) — 도형 재작도가 그보다 먼저 멈춰 마지막 렌더를 돌려줄 수 있게 넘긴다. */
+  deadlineAt?: number,
 ) {
   signal.throwIfAborted();
   if (transport.mode === "subscription-cli") {
@@ -21,7 +23,9 @@ export async function executeStudioTask(
         403,
       );
     if (request.action === "figure-redraw")
-      return { result: await redrawDevAiFigure(request, signal) };
+      return {
+        result: await redrawDevAiFigure(request, signal, undefined, deadlineAt),
+      };
     const { runSubscriptionCli } = await import("@/lib/dev-ai/cli");
     return {
       result: await executeMathgenTask(request, (prompt) => {
@@ -77,6 +81,7 @@ export async function executeStudioTask(
             );
           }
         },
+        deadlineAt,
       ),
     };
   return {
