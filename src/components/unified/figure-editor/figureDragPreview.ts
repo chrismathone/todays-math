@@ -4,6 +4,8 @@
  * (원장님 2026-09-18 «부드럽게 움직여지지않고 프레임이 엄청 끊기네»).
  * 원문 문자열은 전과 같은 함수로 계산한다(되돌리기·저장과 같은 길) — 여기서는 그 결과를 화면에 옮기기만 한다.
  */
+import { readFigureSvg } from "./figureSvgEditing";
+
 const PREVIEW = "data-drag-preview";
 
 export function previewFigureObjects(
@@ -11,7 +13,8 @@ export function previewFigureObjects(
   source: string,
   ids: readonly string[],
 ) {
-  const doc = new DOMParser().parseFromString(source, "image/svg+xml");
+  // 같은 원문을 요소 목록도 곧 읽는다 — 기억해 둔 문서를 같이 쓴다(여기서는 읽기만 한다).
+  const doc = readFigureSvg(source);
   // 새로 그리는 요소는 걸음마다 아이디가 새로 난다 — 앞 걸음의 것을 걷고 다시 붙인다.
   for (const stale of root.querySelectorAll(`[${PREVIEW}]`)) stale.remove();
   for (const id of ids) {

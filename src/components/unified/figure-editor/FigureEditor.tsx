@@ -42,7 +42,11 @@ import {
 } from "./figureHandles";
 import { FigureLabelInput } from "./FigureLabelInput";
 import { isTextInputEvent } from "./keyboard";
-import { layoutFigureNumbers, type FigureNumber } from "./figureObjectNumbers";
+import {
+  layoutFigureNumbers,
+  retargetFigureNumbers,
+  type FigureNumber,
+} from "./figureObjectNumbers";
 import { FigureSelectionOverlay } from "./FigureSelectionOverlay";
 import { FigureNumberLayer } from "./FigureNumberLayer";
 import { FigureObjectList } from "./FigureObjectList";
@@ -216,6 +220,8 @@ export function FigureEditor({
     snapAnchor?: { x: number; y: number };
     /** 끌기 전 캔버스 — 놓거나 취소하면 이것으로 되돌린 뒤 React 에 넘긴다. */
     canvas?: string;
+    /** 이번 걸음에 화면에서 고친 요소 — 번호 지시선을 이것만 옮긴다. */
+    ids?: string[];
   } | null>(null);
   const original =
     originalImage ??
@@ -370,8 +376,19 @@ export function FigureEditor({
   };
   useLayoutEffect(() => {
     const root = canvas.current?.querySelector("svg");
-    setObjectNumbers(root && showNumbers ? layoutFigureNumbers(root) : []);
-  }, [svg, displaySvg, zoom, available, showNumbers]);
+    if (!root || !showNumbers) {
+      setObjectNumbers((previous) => (previous.length ? [] : previous));
+      return;
+    }
+    // 끄는 동안은 끄는 요소의 지시선만 옮기고, 놓으면(frozenCanvas 가 풀리면) 번호를 다시 배치한다 — 걸음마다
+    // 요소 전부를 다시 재면(getBoundingClientRect·getTotalLength·getScreenCTM) 느린 PC 에서 한 걸음이 한참 걸린다.
+    const ids = frozenCanvas !== null ? drag.current?.ids : undefined;
+    if (ids)
+      setObjectNumbers((previous) =>
+        retargetFigureNumbers(root, previous, ids),
+      );
+    else setObjectNumbers(layoutFigureNumbers(root));
+  }, [svg, displaySvg, zoom, available, showNumbers, frozenCanvas]);
   useLayoutEffect(() => {
     const node = viewport.current;
     if (!node) return;
@@ -721,6 +738,7 @@ export function FigureEditor({
     }
     const root = canvas.current?.querySelector("svg");
     if (root) previewFigureObjects(root, next, ids);
+    d.ids = ids;
     liveSvg.current = next;
     setSvg(next);
   };

@@ -33,6 +33,23 @@ vi.mock(
   },
 );
 
+// 번호 배치를 세려고 — 끄는 동안은 전부 재배치(layoutFigureNumbers)하지 않고 끄는 요소의 지시선만(retargetFigureNumbers) 옮긴다.
+vi.mock(
+  "@/components/unified/figure-editor/figureObjectNumbers",
+  async (importOriginal) => {
+    const actual =
+      await importOriginal<
+        typeof import("@/components/unified/figure-editor/figureObjectNumbers")
+      >();
+    return {
+      ...actual,
+      layoutFigureNumbers: vi.fn(actual.layoutFigureNumbers),
+      retargetFigureNumbers: vi.fn(actual.retargetFigureNumbers),
+    };
+  },
+);
+import * as figureNumbers from "@/components/unified/figure-editor/figureObjectNumbers";
+
 const crop = "data:image/png;base64,b3JpZ2luYWw=";
 const figure = `<svg xmlns="${SVG_NS}" viewBox="0 0 480 360"><line x1="20" y1="30" x2="80" y2="90" stroke="#111111"/><line x1="100" y1="30" x2="160" y2="90" stroke="#111111"/><text x="200" y="100" font-size="18" data-mj="$y(\\mathrm{m/sec})$">y(\\mathrm{m/sec})</text></svg>`;
 const identity = {
@@ -169,6 +186,19 @@ describe("도형 편집기 — 끄는 동안", () => {
     expect(canvas().querySelector("line")!.hasAttribute("transform")).toBe(
       false,
     );
+  });
+  it("번호는 끄는 요소의 지시선만 옮기고, 놓은 뒤 한 번 다시 배치한다", async () => {
+    await openTypeset();
+    const layout = vi.mocked(figureNumbers.layoutFigureNumbers);
+    const retarget = vi.mocked(figureNumbers.retargetFigureNumbers);
+    layout.mockClear();
+    retarget.mockClear();
+    dragFirstLine([60, 70, 80]);
+    expect(layout).not.toHaveBeenCalled();
+    expect(retarget).toHaveBeenCalledTimes(3);
+    for (const call of retarget.mock.calls) expect(call[2]).toEqual(["obj-0"]);
+    fireEvent.pointerUp(surface());
+    expect(layout).toHaveBeenCalledTimes(1);
   });
   it("새로 그리는 선은 한 개만 보인다 — 걸음마다 쌓이지 않는다", async () => {
     await openTypeset();

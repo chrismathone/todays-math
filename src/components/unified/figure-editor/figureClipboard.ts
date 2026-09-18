@@ -1,4 +1,5 @@
 import {
+  editableFigureDoc,
   prepareFigureSvg,
   serializeFigureSvg,
   SVG_NS,
@@ -88,7 +89,8 @@ export function transformFigureSelection(
   svg: string,
   updates: { id: string; transform: string }[],
 ) {
-  const doc = parse(svg),
+  // 여럿을 끄는 걸음마다 부른다 — 기억해 둔 문서의 복사본을 고친다(읽기 전용 원본은 건드리지 않는다).
+  const doc = editableFigureDoc(svg),
     transforms = new Map(updates.map((item) => [item.id, item.transform]));
   for (const node of doc.querySelectorAll("[data-object-id]")) {
     const value = transforms.get(node.getAttribute("data-object-id")!);

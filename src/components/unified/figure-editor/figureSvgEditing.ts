@@ -44,6 +44,27 @@ const parse = (svg: string) => {
 };
 export const serializeFigureSvg = (doc: Document) =>
   new XMLSerializer().serializeToString(doc.documentElement);
+
+// 끄는 걸음마다 같은 원문을 서너 번 읽는다(원본 편집·미리보기·요소 목록 — 조절점이면 넷). 최근 것을 기억해 두고,
+// 읽기만 할 때는 그대로, 고칠 때는 복사본을 준다. 복사가 새로 읽기보다 약 4배 빠르다(mathg-gen 68ff2aa 실측
+// 0.053ms vs 0.241ms). 배포 React · CPU 8배에서 90걸음에 50ms 넘는 프레임이 선 19·조절점 14 였다(2026-09-18).
+const recent = new Map<string, Document>();
+/** 읽기 전용 — 돌려받은 문서를 고치면 같은 원문을 읽는 다른 곳이 깨진다. 고칠 때는 editableFigureDoc. */
+export function readFigureSvg(svg: string): Document {
+  let doc = recent.get(svg);
+  if (doc) {
+    recent.delete(svg);
+    recent.set(svg, doc);
+    return doc;
+  }
+  doc = parse(svg);
+  recent.set(svg, doc);
+  if (recent.size > 8) recent.delete(recent.keys().next().value!);
+  return doc;
+}
+/** 고쳐도 되는 복사본 — 기억해 둔 문서를 통째로 복사한다. */
+export const editableFigureDoc = (svg: string) =>
+  readFigureSvg(svg).cloneNode(true) as Document;
 const visibleFigureLabel = (value: string) => {
   const trimmed = value.trim();
   return trimmed.length >= 2 && trimmed.startsWith("$") && trimmed.endsWith("$")
@@ -163,12 +184,16 @@ export function prepareFigureSvg(source?: string) {
 }
 
 export function figureObjects(svg: string) {
-  return [...parse(svg).querySelectorAll("[data-object-id]")].map((el) => ({
-    id: el.getAttribute("data-object-id")!,
-    type: el.localName,
-    text: el.textContent ?? "",
-    attrs: Object.fromEntries([...el.attributes].map((a) => [a.name, a.value])),
-  }));
+  return [...readFigureSvg(svg).querySelectorAll("[data-object-id]")].map(
+    (el) => ({
+      id: el.getAttribute("data-object-id")!,
+      type: el.localName,
+      text: el.textContent ?? "",
+      attrs: Object.fromEntries(
+        [...el.attributes].map((a) => [a.name, a.value]),
+      ),
+    }),
+  );
 }
 
 export function editFigureObject(
@@ -177,7 +202,7 @@ export function editFigureObject(
   attrs: Record<string, string>,
   text?: string,
 ) {
-  const doc = parse(svg);
+  const doc = editableFigureDoc(svg);
   const el = [...doc.querySelectorAll("[data-object-id]")].find(
     (n) => n.getAttribute("data-object-id") === id,
   );
@@ -209,7 +234,7 @@ export function setFigureGroup(
   ids: readonly string[],
   name: string | null,
 ) {
-  const doc = parse(svg);
+  const doc = editableFigureDoc(svg);
   const wanted = new Set(ids);
   for (const node of doc.querySelectorAll("[data-object-id]"))
     if (wanted.has(node.getAttribute("data-object-id")!)) {
@@ -225,7 +250,7 @@ export function editFigureObjects(
   ids: readonly string[],
   attrs: Record<string, string>,
 ) {
-  const doc = parse(svg);
+  const doc = editableFigureDoc(svg);
   const wanted = new Set(ids);
   for (const el of doc.querySelectorAll("[data-object-id]")) {
     if (!wanted.has(el.getAttribute("data-object-id")!)) continue;
@@ -243,7 +268,7 @@ export function editFigureObjects(
 }
 
 export function removeFigureObject(svg: string, id: string) {
-  const doc = parse(svg);
+  const doc = editableFigureDoc(svg);
   [...doc.querySelectorAll("[data-object-id]")]
     .find((n) => n.getAttribute("data-object-id") === id)
     ?.remove();
@@ -257,7 +282,7 @@ export function addFigureObject(
   to: { x: number; y: number },
   label = "A",
 ) {
-  const doc = parse(svg);
+  const doc = editableFigureDoc(svg);
   const tag = type === "arrow" ? "line" : type === "curve" ? "path" : type;
   const el = doc.createElementNS(SVG_NS, tag);
   const id = `obj-${crypto.randomUUID()}`;

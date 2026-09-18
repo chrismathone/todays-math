@@ -10,13 +10,17 @@
  *
  * SSR 안전: `navigator` 없으면 false (Windows 가정).
  */
+// 세션 중에는 바뀌지 않는다 — 도형 편집기처럼 끄는 걸음마다 다시 그리는 화면이 렌더마다 여덟 번 부르니
+// 한 번만 검사한다(2026-09-18, 배포 · 걸음당 navigator.platform 읽기 16회 실측).
+let mac: boolean | undefined;
 export const isMac = (): boolean => {
   if (typeof navigator === "undefined") return false;
   // `navigator.platform` 은 deprecated 지만 `userAgentData` 가 아직 모든
   // 브라우저 지원 X — userAgent 와 platform 둘 다 체크.
-  const platform = navigator.platform || "";
-  const ua = navigator.userAgent || "";
-  return /Mac|iPhone|iPad|iPod/i.test(platform) || /Mac OS X/i.test(ua);
+  mac ??=
+    /Mac|iPhone|iPad|iPod/i.test(navigator.platform || "") ||
+    /Mac OS X/i.test(navigator.userAgent || "");
+  return mac;
 };
 
 /**
