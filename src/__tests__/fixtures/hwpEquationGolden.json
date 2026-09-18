@@ -1,0 +1,616 @@
+{
+  "_source": "2026-09-19 리드 실험(scratchpad/hwp-eq-probe) — py-in.json 을 파이썬으로 돌린 산출. wrapper = scripts/qa/convert-hwp-spans.py 의 convert()(겉포장+hwpeq_unglue+정본), canonOnly = F:/시험지변환기/core/hwpeq_to_latex.py 단독.",
+  "_md5": {
+    "hwpeq_to_latex.py": "a5b114fc2f8d3786ca81d46cd9d845a0",
+    "convert-hwp-spans.py": "61eca925a5129ab8676a8076f93ae35b",
+    "hwpeq_unglue.py": "130ffa779f4807fc3ff35adf28e0c63e",
+    "hwp-vocab.json": "57893c57dadd745db7cd2613ccdef32d"
+  },
+  "_note": "손으로 고치지 마라. 정본이나 겉포장이 바뀌면 파이썬으로 다시 뽑고 _md5 를 갈아라. 기대값은 wrapper 다.",
+  "rows": [
+    {
+      "input": "root2",
+      "wrapper": "\\sqrt{2}",
+      "canonOnly": "root2"
+    },
+    {
+      "input": "root 2",
+      "wrapper": "\\sqrt{2}",
+      "canonOnly": "\\sqrt[2]{}"
+    },
+    {
+      "input": "root2+1",
+      "wrapper": "\\sqrt{2}+1",
+      "canonOnly": "root2+1"
+    },
+    {
+      "input": "root 2 +1",
+      "wrapper": "\\sqrt{2}+1",
+      "canonOnly": "\\sqrt[2]{+}1"
+    },
+    {
+      "input": "root x+1",
+      "wrapper": "\\sqrt{x}+1",
+      "canonOnly": "\\sqrt[x]{+}1"
+    },
+    {
+      "input": "root {x+1}",
+      "wrapper": "\\sqrt{x+1}",
+      "canonOnly": "\\sqrt[x+1]{}"
+    },
+    {
+      "input": "3root3",
+      "wrapper": "3\\sqrt{3}",
+      "canonOnly": "3root3"
+    },
+    {
+      "input": "root12",
+      "wrapper": "\\sqrt{12}",
+      "canonOnly": "root12"
+    },
+    {
+      "input": "sqrt2",
+      "wrapper": "\\sqrt{2}",
+      "canonOnly": "sqrt2"
+    },
+    {
+      "input": "root 3 of 8",
+      "wrapper": "\\sqrt[3]{8}",
+      "canonOnly": "\\sqrt[3]{8}"
+    },
+    {
+      "input": "root {3} of {8}",
+      "wrapper": "\\sqrt[3]{8}",
+      "canonOnly": "\\sqrt[3]{8}"
+    },
+    {
+      "input": "Root2",
+      "wrapper": "Root2",
+      "canonOnly": "Root2"
+    },
+    {
+      "input": "ROOT2",
+      "wrapper": "\\sqrt{2}",
+      "canonOnly": "ROOT2"
+    },
+    {
+      "input": "rootx",
+      "wrapper": "\\sqrt{x}",
+      "canonOnly": "rootx"
+    },
+    {
+      "input": "2root3 over 3",
+      "wrapper": "2\\frac{\\sqrt{3}}{3}",
+      "canonOnly": "2\\frac{root3}{3}"
+    },
+    {
+      "input": "{2root3} over 3",
+      "wrapper": "\\frac{2\\sqrt{3}}{3}",
+      "canonOnly": "\\frac{2root3}{3}"
+    },
+    {
+      "input": "a over b",
+      "wrapper": "\\frac{a}{b}",
+      "canonOnly": "\\frac{a}{b}"
+    },
+    {
+      "input": "aoverb",
+      "wrapper": "\\frac{a}{b}",
+      "canonOnly": "aoverb"
+    },
+    {
+      "input": "1 over 2",
+      "wrapper": "\\frac{1}{2}",
+      "canonOnly": "\\frac{1}{2}"
+    },
+    {
+      "input": "{a+b} over 2",
+      "wrapper": "\\frac{a+b}{2}",
+      "canonOnly": "\\frac{a+b}{2}"
+    },
+    {
+      "input": "{x+1} over {x-1} +1",
+      "wrapper": "\\frac{x+1}{x-1}+1",
+      "canonOnly": "\\frac{x+1}{x-1}+1"
+    },
+    {
+      "input": "x+1 over 2",
+      "wrapper": "x+\\frac{1}{2}",
+      "canonOnly": "x+\\frac{1}{2}"
+    },
+    {
+      "input": "1over5x",
+      "wrapper": "\\frac{1}{5}x",
+      "canonOnly": "1over5x"
+    },
+    {
+      "input": "a Over b",
+      "wrapper": "\\frac{a}{b}",
+      "canonOnly": "\\frac{a}{b}"
+    },
+    {
+      "input": "x^2",
+      "wrapper": "x^{2}",
+      "canonOnly": "x^{2}"
+    },
+    {
+      "input": "x^2+1",
+      "wrapper": "x^{2}+1",
+      "canonOnly": "x^{2}+1"
+    },
+    {
+      "input": "x^{2}+1",
+      "wrapper": "x^{2}+1",
+      "canonOnly": "x^{2}+1"
+    },
+    {
+      "input": "x^n+1",
+      "wrapper": "x^{n}+1",
+      "canonOnly": "x^{n}+1"
+    },
+    {
+      "input": "a_{n+1}",
+      "wrapper": "a_{n+1}",
+      "canonOnly": "a_{n+1}"
+    },
+    {
+      "input": "2 TIMES 3",
+      "wrapper": "2\\times 3",
+      "canonOnly": "2\\times 3"
+    },
+    {
+      "input": "2 times 3",
+      "wrapper": "2\\times 3",
+      "canonOnly": "2\\times 3"
+    },
+    {
+      "input": "2TIMES3",
+      "wrapper": "2\\times 3",
+      "canonOnly": "2\\times 3"
+    },
+    {
+      "input": "2 Times 3",
+      "wrapper": "2\\times 3",
+      "canonOnly": "2\\times 3"
+    },
+    {
+      "input": "30DEG",
+      "wrapper": "30^\\circ",
+      "canonOnly": "30^\\circ"
+    },
+    {
+      "input": "30 DEG",
+      "wrapper": "30^\\circ",
+      "canonOnly": "30^\\circ"
+    },
+    {
+      "input": "30deg",
+      "wrapper": "30^\\circ",
+      "canonOnly": "30^\\circ"
+    },
+    {
+      "input": "angle ABC",
+      "wrapper": "\\angle ABC",
+      "canonOnly": "\\angle ABC"
+    },
+    {
+      "input": "ANGLE ABC",
+      "wrapper": "\\angle ABC",
+      "canonOnly": "\\angle ABC"
+    },
+    {
+      "input": "angleABC",
+      "wrapper": "\\angle ABC",
+      "canonOnly": "angleABC"
+    },
+    {
+      "input": "a+-b",
+      "wrapper": "a+-b",
+      "canonOnly": "a+-b"
+    },
+    {
+      "input": "a +- b",
+      "wrapper": "a+-b",
+      "canonOnly": "a+-b"
+    },
+    {
+      "input": "x<=3",
+      "wrapper": "x\\leq 3",
+      "canonOnly": "x<=3"
+    },
+    {
+      "input": "x>=3",
+      "wrapper": "x\\geq 3",
+      "canonOnly": "x>=3"
+    },
+    {
+      "input": "x!=3",
+      "wrapper": "x\\neq 3",
+      "canonOnly": "x!=3"
+    },
+    {
+      "input": "x le 3",
+      "wrapper": "x\\leq 3",
+      "canonOnly": "xle3"
+    },
+    {
+      "input": "x LEQ 3",
+      "wrapper": "x\\leq 3",
+      "canonOnly": "x\\leq 3"
+    },
+    {
+      "input": "2pi",
+      "wrapper": "2\\pi",
+      "canonOnly": "2\\pi"
+    },
+    {
+      "input": "2 pi",
+      "wrapper": "2\\pi",
+      "canonOnly": "2\\pi"
+    },
+    {
+      "input": "theta",
+      "wrapper": "\\theta",
+      "canonOnly": "\\theta"
+    },
+    {
+      "input": "Theta",
+      "wrapper": "\\Theta",
+      "canonOnly": "\\Theta"
+    },
+    {
+      "input": "PI",
+      "wrapper": "\\pi",
+      "canonOnly": "\\pi"
+    },
+    {
+      "input": "a cdot b",
+      "wrapper": "a\\cdot b",
+      "canonOnly": "a\\cdot b"
+    },
+    {
+      "input": "triangle ABC",
+      "wrapper": "\\triangle ABC",
+      "canonOnly": "\\triangle ABC"
+    },
+    {
+      "input": "x->0",
+      "wrapper": "x->0",
+      "canonOnly": "x->0"
+    },
+    {
+      "input": "n rarrow INF",
+      "wrapper": "n\\to \\infty",
+      "canonOnly": "n\\Rightarrow \\infty"
+    },
+    {
+      "input": "A CUP B",
+      "wrapper": "A\\cup B",
+      "canonOnly": "A\\cup B"
+    },
+    {
+      "input": "because",
+      "wrapper": "\\because",
+      "canonOnly": "\\because"
+    },
+    {
+      "input": "bar AB",
+      "wrapper": "\\overline{AB}",
+      "canonOnly": "\\overline{AB}"
+    },
+    {
+      "input": "barAB",
+      "wrapper": "\\overline{A}B",
+      "canonOnly": "barAB"
+    },
+    {
+      "input": "BAR AB",
+      "wrapper": "\\overline{AB}",
+      "canonOnly": "\\overline{AB}"
+    },
+    {
+      "input": "bar AB=3",
+      "wrapper": "\\overline{AB}=3",
+      "canonOnly": "\\overline{AB}=3"
+    },
+    {
+      "input": "bar {AB} =3",
+      "wrapper": "\\overline{AB}=3",
+      "canonOnly": "\\overline{AB}=3"
+    },
+    {
+      "input": "rm bar AB",
+      "wrapper": "\\mathrm{\\overline{AB}}",
+      "canonOnly": "\\mathrm{\\overline{AB}}"
+    },
+    {
+      "input": "overline AB",
+      "wrapper": "\\frac{}{l}\\in eAB",
+      "canonOnly": "overlineAB"
+    },
+    {
+      "input": "overline {AB}",
+      "wrapper": "\\overline{AB}",
+      "canonOnly": "overlineAB"
+    },
+    {
+      "input": "LEFT ( x+1 RIGHT )",
+      "wrapper": "\\left( x+1\\right)",
+      "canonOnly": "\\left( x+1\\right)"
+    },
+    {
+      "input": "LEFT | x RIGHT |",
+      "wrapper": "\\left| x\\right|",
+      "canonOnly": "\\left| x\\right|"
+    },
+    {
+      "input": "it x",
+      "wrapper": "\\mathit{x}",
+      "canonOnly": "\\mathit{x}"
+    },
+    {
+      "input": "rm A",
+      "wrapper": "\\mathrm{A}",
+      "canonOnly": "\\mathrm{A}"
+    },
+    {
+      "input": "rm ABC",
+      "wrapper": "\\mathrm{ABC}",
+      "canonOnly": "\\mathrm{ABC}"
+    },
+    {
+      "input": "3 rm cm",
+      "wrapper": "3\\mathrm{cm}",
+      "canonOnly": "3\\mathrm{cm}"
+    },
+    {
+      "input": "sum from {k=1} to {n} k",
+      "wrapper": "\\sum _{k=1}^{n}k",
+      "canonOnly": "\\sum _{k=1}^{n}k"
+    },
+    {
+      "input": "sum _{k=1} ^{n} a_k",
+      "wrapper": "\\sum _{k=1}^{n}a_{k}",
+      "canonOnly": "\\sum _{k=1}^{n}a_{k}"
+    },
+    {
+      "input": "int from 0 to 1 x dx",
+      "wrapper": "\\int _{0}^{1}xdx",
+      "canonOnly": "\\int _{0}^{1}xdx"
+    },
+    {
+      "input": "int _{0} ^{1} x dx",
+      "wrapper": "\\int _{0}^{1}xdx",
+      "canonOnly": "\\int _{0}^{1}xdx"
+    },
+    {
+      "input": "lim from {x->0} f(x)",
+      "wrapper": "\\lim _{x->0}f(x)",
+      "canonOnly": "\\lim _{x->0}f(x)"
+    },
+    {
+      "input": "lim _{x -> 0} f(x)",
+      "wrapper": "\\lim _{x->0}f(x)",
+      "canonOnly": "\\lim _{x->0}f(x)"
+    },
+    {
+      "input": "lim _{n rarrow INF} a_n",
+      "wrapper": "\\lim _{n\\to \\infty }a_{n}",
+      "canonOnly": "\\lim _{n\\Rightarrow \\infty }a_{n}"
+    },
+    {
+      "input": "log _2 8",
+      "wrapper": "\\log _{2}8",
+      "canonOnly": "\\log _{2}8"
+    },
+    {
+      "input": "log2",
+      "wrapper": "\\log 2",
+      "canonOnly": "log2"
+    },
+    {
+      "input": "limit",
+      "wrapper": "\\lim \\mathit{}",
+      "canonOnly": "limit"
+    },
+    {
+      "input": "x in A",
+      "wrapper": "x\\in A",
+      "canonOnly": "x\\in A"
+    },
+    {
+      "input": "INF",
+      "wrapper": "\\infty",
+      "canonOnly": "\\infty"
+    },
+    {
+      "input": "inf",
+      "wrapper": "\\infty",
+      "canonOnly": "\\infty"
+    },
+    {
+      "input": "sintheta",
+      "wrapper": "\\sin \\theta",
+      "canonOnly": "sintheta"
+    },
+    {
+      "input": "age",
+      "wrapper": "a\\geq ",
+      "canonOnly": "age"
+    },
+    {
+      "input": "term",
+      "wrapper": "te\\mathrm{}",
+      "canonOnly": "term"
+    },
+    {
+      "input": "digit",
+      "wrapper": "digit",
+      "canonOnly": "digit"
+    },
+    {
+      "input": "CGE",
+      "wrapper": "CGE",
+      "canonOnly": "CGE"
+    },
+    {
+      "input": "angle GEF",
+      "wrapper": "\\angle GEF",
+      "canonOnly": "\\angle GEF"
+    },
+    {
+      "input": "photo",
+      "wrapper": "photo",
+      "canonOnly": "photo"
+    },
+    {
+      "input": "2 to 3",
+      "wrapper": "2^{3}",
+      "canonOnly": "2^{3}"
+    },
+    {
+      "input": "x ~ y",
+      "wrapper": "x~y",
+      "canonOnly": "x~y"
+    },
+    {
+      "input": "3`cm",
+      "wrapper": "3\\,cm",
+      "canonOnly": "3\\,cm"
+    },
+    {
+      "input": "x = {-b +- root {b^2 -4ac}} over {2a}",
+      "wrapper": "x=\\frac{-b+-\\sqrt{b^{2}-4ac}}{2a}",
+      "canonOnly": "x=-b+-\\frac{\\sqrt[b^{2}-4ac]{}}{2a}"
+    },
+    {
+      "input": "cases{x+1 & (x>=0) # -x & (x<0)}",
+      "wrapper": "\\begin{cases} x+1 & (x\\geq 0) \\\\ -x & (x<0) \\end{cases}",
+      "canonOnly": "\\begin{cases} x+1 & (x>=0) \\\\ -x & (x<0) \\end{cases}"
+    },
+    {
+      "input": "LEFT ( matrix{1 & 2 # 3 & 4} RIGHT )",
+      "wrapper": "\\left( \\begin{matrix} 1 & 2 \\\\ 3 & 4 \\end{matrix}\\right)",
+      "canonOnly": "\\left( \\begin{matrix} 1 & 2 \\\\ 3 & 4 \\end{matrix}\\right)"
+    },
+    {
+      "input": "3 + BOX = 5",
+      "wrapper": "3+\\square =5",
+      "canonOnly": "3+BOX=5"
+    },
+    {
+      "input": "vec AB",
+      "wrapper": "\\vec{AB}",
+      "canonOnly": "\\vec{AB}"
+    },
+    {
+      "input": "a dot b",
+      "wrapper": "a\\dot{b}",
+      "canonOnly": "a\\dot{b}"
+    },
+    {
+      "input": "1, 2, CDOTS, n",
+      "wrapper": "1,2,\\cdots ,n",
+      "canonOnly": "1,2,\\cdots ,n"
+    },
+    {
+      "input": "therefore x=1",
+      "wrapper": "\\therefore x=1",
+      "canonOnly": "\\therefore x=1"
+    },
+    {
+      "input": "f prime (x)",
+      "wrapper": "f\\prime (x)",
+      "canonOnly": "f\\prime (x)"
+    },
+    {
+      "input": "f'(x)",
+      "wrapper": "f'(x)",
+      "canonOnly": "f'(x)"
+    },
+    {
+      "input": "sum _{k=1} ^{n} k ^{2}",
+      "wrapper": "\\sum _{k=1}^{n}k^{2}",
+      "canonOnly": "\\sum _{k=1}^{n}k^{2}"
+    },
+    {
+      "input": "6 DIVIDE 2",
+      "wrapper": "6\\div 2",
+      "canonOnly": "6DIVIDE2"
+    },
+    {
+      "input": "6 div 2",
+      "wrapper": "6\\div 2",
+      "canonOnly": "6\\div 2"
+    },
+    {
+      "input": "l bot m",
+      "wrapper": "l\\perp m",
+      "canonOnly": "l\\perp m"
+    },
+    {
+      "input": "l // m",
+      "wrapper": "l//m",
+      "canonOnly": "l//m"
+    },
+    {
+      "input": "triangle ABC sim triangle DEF",
+      "wrapper": "\\triangle ABCsim\\triangle DEF",
+      "canonOnly": "\\triangle ABCsim\\triangle DEF"
+    },
+    {
+      "input": "triangle ABC == triangle DEF",
+      "wrapper": "\\triangle ABC=\\triangle DEF",
+      "canonOnly": "\\triangle ABC==\\triangle DEF"
+    },
+    {
+      "input": "a equiv b",
+      "wrapper": "a\\equiv b",
+      "canonOnly": "a\\equiv b"
+    },
+    {
+      "input": "alpha + beta",
+      "wrapper": "\\alpha +\\beta",
+      "canonOnly": "\\alpha +\\beta"
+    },
+    {
+      "input": "\"넓이\" = 3 rm cm ^2",
+      "wrapper": "\\text{넓이}=3\\mathrm{cm}^{2}",
+      "canonOnly": "\\text{넓이}=3\\mathrm{cm}^{2}"
+    }
+  ],
+  "latexInputs": [
+    {
+      "input": "\\frac{1}{2}",
+      "wrapperDamage": "\\frac12"
+    },
+    {
+      "input": "\\sqrt{2}",
+      "wrapperDamage": "\\\\sqrt{2}"
+    },
+    {
+      "input": "\\overline{AB}",
+      "wrapperDamage": "\\frac{\\}{l}\\in eAB"
+    },
+    {
+      "input": "\\angle ABC = 30^{\\circ}",
+      "wrapperDamage": "\\\\angle ABC=30^{\\\\circ }"
+    },
+    {
+      "input": "x \\le 3",
+      "wrapperDamage": "x\\le3"
+    },
+    {
+      "input": "2 \\times 3",
+      "wrapperDamage": "2\\\\times 3"
+    },
+    {
+      "input": "x^{2}+1",
+      "wrapperDamage": "x^{2}+1"
+    },
+    {
+      "input": "\\frac{1}{2} over 3",
+      "wrapperDamage": "\\frac1\\frac{2}{3}"
+    }
+  ]
+}
