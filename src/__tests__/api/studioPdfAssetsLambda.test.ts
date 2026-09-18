@@ -43,10 +43,9 @@ import {
   mkdirSync,
   mkdtempSync,
   readdirSync,
-  rmSync,
   statSync,
 } from "node:fs";
-import { readFile } from "node:fs/promises";
+import { readFile, rm } from "node:fs/promises";
 import { createRequire } from "node:module";
 import { tmpdir } from "node:os";
 import { dirname, join, resolve } from "node:path";
@@ -106,8 +105,9 @@ beforeAll(() => {
       copyFileSync(join(ROOT, file), join(task, file));
     }
 });
-afterAll(() => {
-  if (task) rmSync(task, { recursive: true, force: true });
+// rmSync 는 금지다(noRmSync.test.ts — 한글 경로에서 노드가 조용히 죽는다)
+afterAll(async () => {
+  if (task) await rm(task, { recursive: true, force: true });
 });
 
 const request = new Request("https://math.example/api/studio/pdf-assets");
