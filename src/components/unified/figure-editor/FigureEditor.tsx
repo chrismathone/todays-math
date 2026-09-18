@@ -50,6 +50,7 @@ import {
 import { FigureSelectionOverlay } from "./FigureSelectionOverlay";
 import { FigureNumberLayer } from "./FigureNumberLayer";
 import { FigureObjectList } from "./FigureObjectList";
+import { FigureGroupRow } from "./FigureGroupRow";
 import { FigureCommonFormat } from "./FigureCommonFormat";
 import { NAMES } from "./figureObjectNames";
 import { FIGURE_SYMBOL_GROUPS } from "./figureSymbols";
@@ -272,7 +273,17 @@ export function FigureEditor({
     () => groupFigureObjects(objects, viewBoxKey.split(" ").map(Number)),
     [objects, viewBoxKey],
   );
+  // «묶음 만들기» 직후 오른쪽 칸의 묶음 이름 칸에 초점을 줄 묶음 key — 초점을 주면 지운다.
   const [renamingGroup, setRenamingGroup] = useState<string | null>(null);
+  const clearRenaming = useCallback(() => setRenamingGroup(null), []);
+  // 고른 요소가 한 묶음의 요소 전부와 정확히 같을 때만 — 오른쪽 칸에 묶음 이름·해제가 선다.
+  const selectedGroup = selectedIds.length
+    ? groups.find(
+        (g) =>
+          g.ids.length === selectedIds.length &&
+          g.ids.every((id) => selectedIds.includes(id)),
+      )
+    : undefined;
   // 묶음 편집은 원문(`data-group`)을 고친다 — 되돌리기·저장을 같이 탄다. 목록이 memo 라 콜백은 안 바뀌게 liveSvg 로.
   const editGroups = useCallback((edit: (source: string) => string) => {
     const current = liveSvg.current;
@@ -1305,8 +1316,6 @@ export function FigureEditor({
               onPick={pick}
               onPickGroup={pickGroup}
               onAssign={assignGroup}
-              renaming={renamingGroup}
-              onRenaming={setRenamingGroup}
             />
           </section>
         </div>
@@ -1339,6 +1348,14 @@ export function FigureEditor({
                     ? "내용을 정한 다음 그림에서 놓을 위치를 클릭하세요."
                     : "그림에서 수정할 요소를 선택하세요."}
             </p>
+            {selectedGroup && (
+              <FigureGroupRow
+                group={selectedGroup}
+                focus={renamingGroup === selectedGroup.key}
+                onFocused={clearRenaming}
+                onAssign={assignGroup}
+              />
+            )}
             {current ? (
               <div className="space-y-3 text-xs">
                 {currentFunction && (
