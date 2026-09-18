@@ -314,6 +314,50 @@ describe("다각형 면 · 삼각형 · 노란 점", () => {
   });
 });
 
+describe("트랙 2 «엔진 흰 바탕 rect 걷기»와 맞물림", () => {
+  // prepareFigureSvg 는 «루트 첫 그리는 자식 · 흰 채움 · 선 없음 · 전면 크기» rect 를 엔진 바탕으로 보고 지운다.
+  // 면은 첫 잉크 앞(루트 첫 자식이 되기 쉽다)에 들어가고 흰색으로 칠할 수도 있다 — 그래도 지워지면 안 된다.
+  const frame = `<rect x="0" y="0" width="480" height="360" stroke="#111111" stroke-width="1.8" fill="none"/>`;
+
+  it("테두리 안을 흰색으로 채운 전면 크기 면(path)은 다시 열어도 남는다", () => {
+    const filled = bucketFill(svgOf(frame), { x: 240, y: 180 }, "#ffffff");
+    const root = doc(filled.svg).documentElement;
+    const first = [...root.children][0];
+    expect(first.hasAttribute(FACE_ATTR)).toBe(true);
+    expect(first.getAttribute("fill")).toBe("#ffffff");
+    expect(first.getAttribute("stroke")).toBe("none");
+    expect(areaOf(first.getAttribute("d")!)).toBeCloseTo(480 * 360, 6);
+    const reopened = prepareFigureSvg(cleanFigureForSave(filled.svg));
+    expect(faces(reopened)).toHaveLength(1);
+    expect(order(reopened)).toEqual(["face", "rect"]);
+  });
+
+  it("다각형 도구로 캔버스 전체를 흰색으로 덮은 면(polygon)도, 흰 사각형을 기울인 평행사변형도 남는다", () => {
+    const whole = addPolygonFace(
+      svgOf(""),
+      [
+        { x: 0, y: 0 },
+        { x: 480, y: 0 },
+        { x: 480, y: 360 },
+        { x: 0, y: 360 },
+      ],
+      "#ffffff",
+    ).svg;
+    expect(faces(prepareFigureSvg(cleanFigureForSave(whole)))).toHaveLength(1);
+    // 흰 사각형(선 있음)을 노란 점으로 기울이면 polygon — rect 가 아니므로 규칙 밖
+    const white = svgOf(
+      `<rect x="0" y="0" width="480" height="360" fill="#ffffff" stroke="#111111"/>`,
+    );
+    const [rect] = figureObjects(white);
+    const skewed = moveShapeHandle(white, rect.id, "adjust", { x: 250, y: 0 })!;
+    expect(
+      figureObjects(prepareFigureSvg(cleanFigureForSave(skewed))).map(
+        (o) => o.type,
+      ),
+    ).toEqual(["polygon"]);
+  });
+});
+
 describe("저장·다시 열기 · 붙여넣기", () => {
   it("면·모양 표지는 저장하고 다시 열어도 남는다", () => {
     const filled = bucketFill(svgOf(TRIANGLE), { x: 120, y: 150 }).svg;
