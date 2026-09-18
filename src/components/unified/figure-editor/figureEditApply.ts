@@ -13,6 +13,8 @@ import {
 import { transformFigureSelection } from "./figureClipboard";
 import { moveFigureHandle } from "./figureHandles";
 import { blocksSizeChange, isMoveHandle, isSizeLocked } from "./figureSizeLock";
+import { isTiedFace } from "./figureFaceEditing";
+import { SHAPE_ATTR } from "./figureShapeAdjust";
 import { figureLabelSummary, isFigureMathLabel } from "./FigureLabelInput";
 import {
   describeFigureForEdit,
@@ -74,6 +76,9 @@ function reject(reason: string): never {
  * (지우기 · 옮기기 · 조절점 · 서식 · 요소 더하기). 명령에 없는 요소는 건드리지 않는다.
  * - 번호는 **요청을 보낼 때의 그림** 기준이다 — 앞 명령이 요소를 지워도 뒤 명령의 «3번»은 처음 그림의 3번이다.
  * - 크기 고정(트랙 3) 요소는 옮기기·서식만 받고 모양 바꾸기는 거절한다.
+ * - 선을 따라가는 면(트랙 4)은 스스로 옮기지 않는다 — 선을 고치면 편집기 `commit` 의 `syncFigureFaces` 가 따라오게 한다.
+ *   삼각형·평행사변형(`data-shape`)은 꼭짓점 하나만 옮기지 않는다(노란 점이 모양을 지킨다).
+ * - 표지 속성(크기 고정 · 면 · 글자 배경 · 모양)은 건드리지 않는다 — 명령이 바꾸는 속성만 고친다.
  * - 좌표는 그림 좌표(루트 viewBox)이고 그림 둘레 1/4 까지만 받는다.
  */
 export function applyFigureEdits(
@@ -184,7 +189,10 @@ export function applyFigureEdits(
         svg: removeFigureObject(current, id),
         text: `${label} 삭제`,
       };
+    const tied = isTiedFace(object);
+    const following = "선을 따라가는 면은 선을 옮기면 따라옵니다";
     if (command.op === "move") {
+      if (tied) reject(following);
       if (Math.abs(command.dx) > width || Math.abs(command.dy) > height)
         reject("옮기는 거리가 그림보다 큽니다");
       if (!command.dx && !command.dy) reject("옮길 거리가 없습니다");
@@ -248,6 +256,9 @@ export function applyFigureEdits(
       };
     }
     // point — 꼭짓점·끝점 옮기기
+    if (tied) reject(following);
+    if (object.attrs[SHAPE_ATTR])
+      reject("모양을 지키는 도형이라 꼭짓점을 따로 옮기지 않았습니다");
     if (!inside(command)) reject("좌표가 그림 밖입니다");
     const vertices = figureEditVertices(object);
     if (!vertices.length) reject("옮길 꼭짓점이 없습니다");

@@ -7,7 +7,7 @@ import {
 import { figureObjects, readFigureSvg } from "./figureSvgEditing";
 import { figureHandles } from "./figureHandles";
 import { groupFigureObjects } from "./figureObjectGroups";
-import { NAMES } from "./figureObjectNames";
+import { objectName } from "./figureObjectNames";
 import { isFigureMathLabel } from "./FigureLabelInput";
 import { isSizeLocked } from "./figureSizeLock";
 import {
@@ -20,7 +20,7 @@ import {
 
 type FigureObject = ReturnType<typeof figureObjects>[number];
 
-/** 요소 목록의 이름 — 편집기 목록(FigureObjectList)과 같은 말. */
+/** 요소 목록의 이름 — 편집기 목록(FigureObjectList)과 같은 말(면 · 삼각형 · 평행사변형 포함). */
 export const figureEditKind = (o: FigureObject) =>
   o.attrs["data-function"]
     ? "함수 그래프"
@@ -28,7 +28,7 @@ export const figureEditKind = (o: FigureObject) =>
       ? isFigureMathLabel(o.attrs["data-mj"] ?? o.text)
         ? "수식"
         : "글자"
-      : (NAMES[o.type] ?? o.type);
+      : objectName(o);
 
 const first = (value: string | undefined) => {
   const number = Number.parseFloat(value?.trim().split(/[\s,]+/)[0] ?? "");

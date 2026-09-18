@@ -7,6 +7,10 @@ import {
 import { describeFigureForEdit } from "@/components/unified/figure-editor/figureEditElements";
 import { applyFigureEdits } from "@/components/unified/figure-editor/figureEditApply";
 import { FigureEditFigureSchema } from "@/lib/dev-ai/figure-edit-contract";
+import {
+  addFigureTriangle,
+  bucketFill,
+} from "@/components/unified/figure-editor/figureFaceEditing";
 
 /**
  * «요청대로 고치기»(원장님 2026-09-19) — AI 가 돌려준 수정 명령을 **지금 그림에** 편집기의 기존 편집 함수로 적용한다.
@@ -365,5 +369,77 @@ describe("검증 — 적용 못 한 명령은 이유와 함께", () => {
     expect(result.summary).toBe(
       "1번 선분 삭제 · 글자 A 위로 이동 · 글자 H 추가",
     );
+  });
+});
+
+// 트랙 4(면 만들기, 2026-09-19): 면은 선 뒤(문서 앞)에 들어가 뒤 요소 번호를 민다 · 선을 따라가는 면은 스스로 옮기지 않는다
+// · 삼각형·평행사변형(data-shape)은 노란 점으로 모양을 지킨다. 명령 적용이 표지 속성을 지우지 않는다(리드 2026-09-19).
+describe("면 · 모양 · 표지 속성", () => {
+  const withFace = bucketFill(
+    prepareFigureSvg(
+      `<svg xmlns="${NS}" viewBox="0 0 480 360"><line x1="120" y1="20" x2="20" y2="200" stroke="#111111" stroke-width="1.8"/><line x1="20" y1="200" x2="260" y2="200" stroke="#111111" stroke-width="1.8"/><line x1="260" y1="200" x2="120" y2="20" stroke="#111111" stroke-width="1.8" data-size-locked="true"/><text x="300" y="40" font-size="18" data-mj="A" data-text-bg="#ffff00">A</text></svg>`,
+    ),
+    { x: 130, y: 150 },
+  ).svg;
+  const withShape = addFigureTriangle(
+    withFace,
+    { x: 300, y: 220 },
+    { x: 400, y: 320 },
+  ).svg;
+  const objects = figureObjects(withShape);
+  const n = (predicate: (o: (typeof objects)[number]) => boolean) =>
+    objects.findIndex(predicate) + 1;
+  const face = n((o) => o.attrs["data-face"] !== undefined);
+  const shape = n((o) => o.attrs["data-shape"] === "triangle");
+  const locked = n((o) => o.attrs["data-size-locked"] === "true");
+  const label = n((o) => o.type === "text");
+
+  it("names faces and shapes like the editor list", () => {
+    const kinds = describeFigureForEdit(withShape).elements.map((e) => e.kind);
+    // 면은 선 뒤 — 문서 앞이라 1번이다
+    expect(face).toBe(1);
+    expect(kinds[face - 1]).toBe("면");
+    expect(kinds[shape - 1]).toBe("삼각형");
+  });
+
+  it("does not move a face that follows its lines, nor bend a kept shape", () => {
+    const result = applyFigureEdits(withShape, [
+      { op: "move", target: face, dx: 10, dy: 0 },
+      { op: "point", target: face, vertex: 1, x: 10, y: 10 },
+      { op: "point", target: shape, vertex: 1, x: 310, y: 230 },
+    ]);
+    expect(result.svg).toBe(withShape);
+    expect(result.rejected).toEqual([
+      `${face}번 면: 선을 따라가는 면은 선을 옮기면 따라옵니다`,
+      `${face}번 면: 선을 따라가는 면은 선을 옮기면 따라옵니다`,
+      `${shape}번 삼각형: 모양을 지키는 도형이라 꼭짓점을 따로 옮기지 않았습니다`,
+    ]);
+  });
+
+  it("keeps size lock, face, text background and shape marks through every edit", () => {
+    const result = applyFigureEdits(withShape, [
+      { op: "style", target: face, fill: "#ffcccc" },
+      { op: "move", target: locked, dx: 0, dy: 4 },
+      { op: "style", target: locked, width: 2.5 },
+      { op: "text", target: label, text: "B" },
+      { op: "move", target: label, dx: 3, dy: 0 },
+      { op: "move", target: shape, dx: -5, dy: 0 },
+      { op: "style", target: shape, dashed: true },
+    ]);
+    expect(result.rejected).toEqual([]);
+    const after = figureObjects(result.svg);
+    const byId = new Map(after.map((o) => [o.id, o]));
+    const keep = (index: number, name: string) =>
+      expect(
+        byId.get(objects[index - 1].id)?.attrs[name],
+        `${index}번 ${name}`,
+      ).toBe(objects[index - 1].attrs[name]);
+    keep(face, "data-face");
+    keep(face, "data-face-seed");
+    keep(locked, "data-size-locked");
+    keep(locked, "id");
+    keep(label, "data-text-bg");
+    keep(shape, "data-shape");
+    expect(byId.get(objects[face - 1].id)?.attrs.fill).toBe("#ffcccc");
   });
 });
