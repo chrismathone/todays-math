@@ -97,8 +97,10 @@ export default function StudioProgressStrip({
       ref={root}
       className={s.strip}
       data-studio-progress
-      onPointerEnter={(event) => {
-        if (event.pointerType === "touch") return;
+      // 들어온 사건(pointerenter)이 아니라 움직임으로 연다 — 검수 단계에서 띠가 탭 자리로 올라오면
+      // 마우스를 안 움직여도 pointerover 가 들어와 상세 창이 저절로 열렸다(2026-09-19).
+      onPointerMove={(event) => {
+        if (event.pointerType === "touch" || hovering.current) return;
         hovering.current = true;
         setOpen(true);
       }}

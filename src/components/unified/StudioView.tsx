@@ -26,7 +26,12 @@ import {
   useRef,
   useState,
 } from "react";
-import type { KeyboardEvent, PointerEvent, SVGProps } from "react";
+import type {
+  CSSProperties,
+  KeyboardEvent,
+  PointerEvent,
+  SVGProps,
+} from "react";
 import type {
   PDFDocumentLoadingTask,
   PDFDocumentProxy,
@@ -374,6 +379,8 @@ export default function StudioView({
   const restartDialog = useRef<HTMLDialogElement>(null);
   const cancelRestartButton = useRef<HTMLButtonElement>(null);
   const pageViewport = useRef<HTMLDivElement>(null);
+  const band = useRef<HTMLDivElement>(null);
+  const [bandHeight, setBandHeight] = useState(0);
   const fileInput = useRef<HTMLInputElement>(null);
   const surface = useRef<HTMLDivElement>(null);
   const drag = useRef<{ x: number; y: number; pointerId: number } | null>(null);
@@ -441,6 +448,21 @@ export default function StudioView({
   );
   const currentPageJob = sourceJobs.find((job) => job.page === pageNumber);
   const editing = Boolean(currentSource && step !== "upload");
+  // 원장님 2026-09-19 시안 B «검수는 확대로» — 검수 화면에 들어서는 순간에만 확대한다. 들어선 뒤 «축소»·Esc 는
+  // 그 뜻대로 두고(매 렌더마다 다시 켜지 않는다), 잘라내기로 돌아가면 들어오기 전 상태로 돌린다.
+  const reviewShown = active && editing && step === "review";
+  const [reviewFocus, setReviewFocus] = useState({
+    shown: false,
+    before: false,
+  });
+  if (reviewShown !== reviewFocus.shown) {
+    setReviewFocus({
+      shown: reviewShown,
+      before: reviewShown ? focusMode : reviewFocus.before,
+    });
+    if (reviewShown) setFocusMode(true);
+    else if (active && step === "crop") setFocusMode(reviewFocus.before);
+  }
   const activeCrop = crops.find((item) => item.id === activeCropId);
   const figureCrop = crops.find((crop) => crop.id === figureEditor?.cropId);
   const editedFigure =
@@ -559,6 +581,17 @@ export default function StudioView({
     observer.observe(viewport);
     return () => observer.disconnect();
   }, [editing, step, pageReady]);
+
+  // 검수 단계는 제목 줄에 파일·쪽 도구가 올라와 좁으면 꺾인다 — 작업 칸 높이가 그 실제 높이를 빼도록 알린다.
+  useEffect(() => {
+    const element = band.current;
+    if (!element) return;
+    const observer = new ResizeObserver(() =>
+      setBandHeight(element.offsetHeight),
+    );
+    observer.observe(element);
+    return () => observer.disconnect();
+  }, [editing]);
 
   useEffect(() => {
     if (!focusMode) return;
@@ -1886,12 +1919,438 @@ export default function StudioView({
   const selectedGrade = currentSource?.gradeManual
     ? currentSource.grade
     : "auto";
+  // 시안 B — 검수 단계는 파일·학년·쪽 도구를 제목 줄로 올리고, 진행 띠는 문제 이동 줄에 넣는다.
+  const bandTools = editing && step === "review";
+  const sourceToolbar = (
+    <div className={bandTools ? styles.bandTools : styles.canvasToolbar}>
+      <div className={styles.sourcePicker}>
+        <Icon name="file" />
+        {sources.length ? (
+          <select
+            aria-label="원본 파일"
+            title={currentSource?.name}
+            value={sourceId}
+            onChange={(event) => chooseSource(event.target.value)}
+          >
+            {sources.map((source) => (
+              <option key={source.id} value={source.id}>
+                {source.name}
+              </option>
+            ))}
+          </select>
+        ) : (
+          <span>원본 지면</span>
+        )}
+      </div>
+      {currentSource ? (
+        <label
+          className={styles.sourceGrade}
+          title={detectedGrade?.evidence ?? "이 파일의 모든 문제에 적용"}
+        >
+          <span>학년</span>
+          <select
+            aria-label="시험지 학년"
+            value={selectedGrade}
+            disabled={sourceRecognizing}
+            onChange={(event) => changeSourceGrade(event.target.value)}
+          >
+            <option value="auto">
+              {detectedGrade?.grade
+                ? `${detectedGrade.grade} (자동 인식)`
+                : detectedGrade?.needsReview
+                  ? "학년 확인 필요"
+                  : "자동 인식"}
+            </option>
+            <optgroup label="초등">
+              {STUDIO_GRADES.elementary.map((value) => (
+                <option key={value} value={value}>
+                  {value}
+                </option>
+              ))}
+            </optgroup>
+            <optgroup label="중·고등">
+              {STUDIO_GRADES.secondary.map((value) => (
+                <option key={value} value={value}>
+                  {value}
+                </option>
+              ))}
+            </optgroup>
+          </select>
+        </label>
+      ) : null}
+      {currentSource ? (
+        <div className={styles.pageTools}>
+          <button
+            type="button"
+            className={styles.pageNavigationButton}
+            aria-label="이전 페이지"
+            disabled={pageNumber <= 1}
+            onClick={() => chooseSource(sourceId, pageNumber - 1)}
+          >
+            이전 쪽
+          </button>
+          <label>
+            <span className={styles.srOnly}>페이지</span>
+            <select
+              aria-label="페이지 선택"
+              value={pageNumber}
+              onChange={(event) =>
+                chooseSource(sourceId, Number(event.target.value))
+              }
+            >
+              {Array.from({ length: currentSource.pages }, (_, index) => (
+                <option key={index + 1} value={index + 1}>
+                  {index + 1}
+                </option>
+              ))}
+            </select>
+            <span>/ {currentSource.pages}</span>
+          </label>
+          <button
+            type="button"
+            className={styles.pageNavigationButton}
+            aria-label="다음 페이지"
+            disabled={pageNumber >= currentSource.pages}
+            onClick={() => chooseSource(sourceId, pageNumber + 1)}
+          >
+            다음 쪽
+          </button>
+          <span className={styles.divider} />
+          <button
+            type="button"
+            className={styles.pageNavigationButton}
+            aria-label="현재 페이지 90도 회전"
+            onClick={rotateCurrentPage}
+            disabled={!pageReady || busy || studioAi.running}
+          >
+            회전
+          </button>
+          {step === "crop" && (
+            <select
+              aria-label="원본 확대 비율"
+              value={zoom}
+              onChange={(event) => setZoom(Number(event.target.value))}
+            >
+              <option value={0}>전체 보기</option>
+              <option value={75}>75%</option>
+              <option value={100}>너비 맞춤</option>
+              <option value={125}>125%</option>
+              <option value={150}>150%</option>
+              <option value={200}>200%</option>
+            </select>
+          )}
+          <button
+            type="button"
+            className={`${styles.secondaryButton} ${styles.pageAiButton}`}
+            disabled={
+              !pageReady || !studioAi.available || sourceRecognizing || busy
+            }
+            title="전체 페이지를 대기열에 넣어 최대 2쪽씩 인식합니다. 기존 영역은 유지합니다."
+            aria-busy={sourceRecognizing}
+            onClick={() => recognizeSource()}
+          >
+            {currentSource.pages > 1
+              ? "전체 페이지 자동 인식"
+              : "페이지 자동 인식"}
+          </button>
+          <details className={styles.aiDetails}>
+            <summary
+              title={
+                studioAi.available
+                  ? "AI 도구 선택과 연결 정보"
+                  : studioAi.unavailableReason
+              }
+            >
+              AI 연결
+            </summary>
+            <div>
+              {currentSource.pages > 1 ? (
+                <button
+                  type="button"
+                  className={styles.secondaryButton}
+                  disabled={
+                    !pageReady || recognizingPage || !studioAi.available
+                  }
+                  onClick={(event) => {
+                    recognizeSource(false);
+                    event.currentTarget
+                      .closest("details")
+                      ?.removeAttribute("open");
+                  }}
+                >
+                  현재 {pageNumber}쪽만 다시 인식
+                </button>
+              ) : null}
+              <select
+                aria-label="Studio AI 도구"
+                value={studioAi.ai.provider}
+                disabled={studioAi.running || studioAi.ai.checking}
+                onChange={(event) =>
+                  studioAi.ai.setProvider(
+                    event.target.value as StudioAiProvider,
+                  )
+                }
+              >
+                {studioAi.ai.status?.providers.length ? (
+                  studioAi.ai.status.providers.map((provider) => (
+                    <option
+                      key={provider.id}
+                      value={provider.id}
+                      disabled={
+                        !["ready", "unverified"].includes(provider.status)
+                      }
+                    >
+                      {provider.label}
+                      {!["ready", "unverified"].includes(provider.status)
+                        ? " · 연결 필요"
+                        : provider.status === "unverified"
+                          ? " · 미확인"
+                          : ""}
+                    </option>
+                  ))
+                ) : (
+                  <option value={studioAi.ai.provider}>AI 연결 확인</option>
+                )}
+              </select>
+              {studioAi.ai.status?.providers.map((provider) => (
+                <p key={provider.id}>
+                  <strong>{provider.label}</strong> · {provider.detail}
+                </p>
+              ))}
+              {!studioAi.available ? <p>{studioAi.unavailableReason}</p> : null}
+              <button
+                type="button"
+                className={styles.secondaryButton}
+                onClick={() => void studioAi.ai.refresh()}
+                disabled={studioAi.ai.checking}
+              >
+                연결 다시 확인
+              </button>
+            </div>
+          </details>
+          {step === "crop" && (
+            <button
+              className={styles.preciseButton}
+              type="button"
+              onClick={() => {
+                setStep("crop");
+                setCropTool("add-problem");
+                setSelection({
+                  x: 0.08,
+                  y: 0.15,
+                  width: 0.84,
+                  height: 0.2,
+                });
+                requestAnimationFrame(() =>
+                  surface.current?.focus({ preventScroll: true }),
+                );
+              }}
+              disabled={!pageReady || recognizingPage}
+              aria-label="키보드로 영역 지정"
+            >
+              영역 지정
+            </button>
+          )}
+        </div>
+      ) : (
+        <span className={styles.toolbarMeta}>PDF · 이미지</span>
+      )}
+    </div>
+  );
+  const progressStrip = (
+    <StudioProgressStrip
+      hasFeedback={!!studioAi.message || !!studioAi.error}
+      summaries={[
+        ...(studioAi.pageJobs.length
+          ? [
+              {
+                id: "pages",
+                label: "페이지",
+                done: studioAi.pageJobs.filter(
+                  (job) => job.state === "complete" || job.state === "empty",
+                ).length,
+                total: studioAi.pageJobs.length,
+                active: studioAi.pageJobs.some((job) =>
+                  ["queued", "rendering", "running"].includes(job.state),
+                ),
+              },
+            ]
+          : []),
+        ...(studioAi.progress
+          ? [
+              {
+                id: "crops",
+                label:
+                  studioAi.progress.action === "solution"
+                    ? "해설"
+                    : studioAi.progress.action === "figures"
+                      ? "도형 인식"
+                      : "문제",
+                done: studioAi.progress.done,
+                total: studioAi.progress.total,
+                active: true,
+              },
+            ]
+          : []),
+        ...(figureJobs.length
+          ? [
+              {
+                id: "figures",
+                label: "도형",
+                done: doneFigures,
+                total: figureJobs.length,
+                active: figurePending.length > 0,
+              },
+            ]
+          : []),
+        // 검수 줄의 진행 요약 «도형 N/M · 디지털화 N/M» — 옛 디지털화 줄의 셈을 여기로 옮겼다.
+        ...(step === "review" && crops.length
+          ? [
+              {
+                id: "digital",
+                label: "디지털화",
+                done: digitalCount,
+                total: crops.length,
+                active: false,
+              },
+            ]
+          : []),
+      ]}
+      warningCount={
+        studioAi.pageJobs.reduce(
+          (count, job) =>
+            count +
+            (job.warnings?.length ?? 0) +
+            Number(!!job.textLayerWarning) +
+            Number(job.state === "error"),
+          0,
+        ) +
+        failedFigures.length +
+        Number(!!studioAi.error)
+      }
+    >
+      <StudioQueueStatus
+        jobs={studioAi.pageJobs}
+        startedAt={studioAi.pageProgress.startedAt ?? undefined}
+        sources={sources}
+        onCancel={() => studioAi.cancel()}
+        onRetry={() => void studioAi.retryPages()}
+        onNavigate={chooseSource}
+      />
+      {figurePending.length > 0 ? (
+        <WorkProgress
+          label="SVG 도형 생성 중"
+          detail={studioFigureProgressDetail(
+            crops,
+            figurePending,
+            failedFigures.length,
+          )}
+          completed={doneFigures}
+          total={figureJobs.length}
+          unit="도형"
+          startedAt={figurePending.find((job) => job.startedAt)?.startedAt}
+          onCancel={() => studioAi.figureAi.cancel()}
+          cancelLabel="도형 생성 취소"
+        />
+      ) : failedFigures.length ? (
+        <div className={styles.queueSummary} role="status">
+          <strong>
+            도형 {doneFigures} / {figureJobs.length} 완료 · 실패{" "}
+            {failedFigures.length}개
+          </strong>
+          <button
+            type="button"
+            disabled={!studioAi.available || studioAi.running}
+            onClick={() =>
+              void studioAi.figureAi.run([
+                ...new Set(failedFigures.map((job) => job.cropId)),
+              ])
+            }
+          >
+            실패 {failedFigures.length}개 다시 생성
+          </button>
+        </div>
+      ) : figureJobs.length ? (
+        <div className={styles.queueSummary} role="status">
+          <strong>
+            도형 {doneFigures} / {figureJobs.length} 완료
+          </strong>
+          {figureJobs.some((job) => job.state === "cancelled") ? (
+            <span>취소한 도형은 그림 편집에서 다시 생성할 수 있습니다.</span>
+          ) : null}
+        </div>
+      ) : null}
+      {currentPageJob?.state === "error" ? (
+        <div className={styles.aiFeedback} role="alert">
+          <span>
+            {pageNumber}쪽 · {currentPageJob.error}
+          </span>
+          <button
+            type="button"
+            disabled={!studioAi.available}
+            onClick={() => recognizeSource(false)}
+          >
+            이 페이지 재시도
+          </button>
+        </div>
+      ) : null}
+      {studioAi.progress ? (
+        <WorkProgress
+          label={
+            studioAi.progress.action === "solution"
+              ? "해설 생성 중"
+              : studioAi.progress.action === "figures"
+                ? "도형 인식 중"
+                : "문제 인식 중"
+          }
+          completed={studioAi.progress.done}
+          total={studioAi.progress.total}
+          unit="문항"
+          startedAt={studioAi.progress.startedAt}
+          onCancel={() => studioAi.cancelCrop()}
+          cancelLabel="AI 작업 취소"
+        />
+      ) : null}
+      {!studioAi.progress && (studioAi.message || studioAi.error) ? (
+        <div
+          className={styles.aiFeedback}
+          role={studioAi.error ? "alert" : "status"}
+        >
+          <span>{studioAi.error || studioAi.message}</span>
+          {studioAi.error ? (
+            <button
+              type="button"
+              disabled={!studioAi.available || studioAi.running}
+              onClick={studioAi.retry}
+            >
+              다시 시도
+            </button>
+          ) : (
+            <button
+              type="button"
+              aria-label="AI 결과 안내 닫기"
+              onClick={() => studioAi.cancelCrop(true)}
+            >
+              ×
+            </button>
+          )}
+        </div>
+      ) : null}
+    </StudioProgressStrip>
+  );
 
   return (
     <section
       ref={studio}
       className={`${styles.studio} ${editing ? styles.editing : ""} ${focusMode ? styles.focusMode : ""} ${!inspectorOpen ? styles.panelClosed : ""} ${step === "review" ? styles.reviewMode : ""}`}
       aria-label="문제 제작 스튜디오"
+      style={
+        bandHeight
+          ? ({
+              "--studio-band-height": `${bandHeight}px`,
+            } as CSSProperties)
+          : undefined
+      }
       role={focusMode ? "dialog" : undefined}
       aria-modal={focusMode || undefined}
       onKeyDown={(event) => {
@@ -1919,26 +2378,29 @@ export default function StudioView({
       }}
     >
       {editing && (
-        <div className={styles.editorBar}>
+        <div ref={band} className={styles.editorBar} data-studio-band>
           <div className={styles.editorTabs}>
-            <h1>자료 제작</h1>
+            <h1>{bandTools ? "자료 제작 · 검수" : "자료 제작"}</h1>
             <button
               aria-pressed={step === "crop"}
               onClick={() => setStep("crop")}
             >
               문제&amp;도형 잘라내기
             </button>
-            <button
-              aria-pressed={step === "review"}
-              disabled={!crops.length}
-              onClick={() => {
-                setStep("review");
-                setInspectorOpen(true);
-              }}
-            >
-              OCR · 디지털화 <b>{crops.length}</b>
-            </button>
+            {!bandTools && (
+              <button
+                aria-pressed={step === "review"}
+                disabled={!crops.length}
+                onClick={() => {
+                  setStep("review");
+                  setInspectorOpen(true);
+                }}
+              >
+                OCR · 디지털화 <b>{crops.length}</b>
+              </button>
+            )}
           </div>
+          {bandTools && sourceToolbar}
           <div className={styles.editorTools}>
             <button onClick={() => fileInput.current?.click()} disabled={busy}>
               <Icon name="upload" />
@@ -2089,247 +2551,7 @@ export default function StudioView({
 
       <div className={styles.workspace}>
         <div className={styles.canvasColumn}>
-          <div className={styles.canvasToolbar}>
-            <div className={styles.sourcePicker}>
-              <Icon name="file" />
-              {sources.length ? (
-                <select
-                  aria-label="원본 파일"
-                  title={currentSource?.name}
-                  value={sourceId}
-                  onChange={(event) => chooseSource(event.target.value)}
-                >
-                  {sources.map((source) => (
-                    <option key={source.id} value={source.id}>
-                      {source.name}
-                    </option>
-                  ))}
-                </select>
-              ) : (
-                <span>원본 지면</span>
-              )}
-            </div>
-            {currentSource ? (
-              <label
-                className={styles.sourceGrade}
-                title={detectedGrade?.evidence ?? "이 파일의 모든 문제에 적용"}
-              >
-                <span>학년</span>
-                <select
-                  aria-label="시험지 학년"
-                  value={selectedGrade}
-                  disabled={sourceRecognizing}
-                  onChange={(event) => changeSourceGrade(event.target.value)}
-                >
-                  <option value="auto">
-                    {detectedGrade?.grade
-                      ? `${detectedGrade.grade} (자동 인식)`
-                      : detectedGrade?.needsReview
-                        ? "학년 확인 필요"
-                        : "자동 인식"}
-                  </option>
-                  <optgroup label="초등">
-                    {STUDIO_GRADES.elementary.map((value) => (
-                      <option key={value} value={value}>
-                        {value}
-                      </option>
-                    ))}
-                  </optgroup>
-                  <optgroup label="중·고등">
-                    {STUDIO_GRADES.secondary.map((value) => (
-                      <option key={value} value={value}>
-                        {value}
-                      </option>
-                    ))}
-                  </optgroup>
-                </select>
-              </label>
-            ) : null}
-            {currentSource ? (
-              <div className={styles.pageTools}>
-                <button
-                  type="button"
-                  className={styles.pageNavigationButton}
-                  aria-label="이전 페이지"
-                  disabled={pageNumber <= 1}
-                  onClick={() => chooseSource(sourceId, pageNumber - 1)}
-                >
-                  이전 쪽
-                </button>
-                <label>
-                  <span className={styles.srOnly}>페이지</span>
-                  <select
-                    aria-label="페이지 선택"
-                    value={pageNumber}
-                    onChange={(event) =>
-                      chooseSource(sourceId, Number(event.target.value))
-                    }
-                  >
-                    {Array.from({ length: currentSource.pages }, (_, index) => (
-                      <option key={index + 1} value={index + 1}>
-                        {index + 1}
-                      </option>
-                    ))}
-                  </select>
-                  <span>/ {currentSource.pages}</span>
-                </label>
-                <button
-                  type="button"
-                  className={styles.pageNavigationButton}
-                  aria-label="다음 페이지"
-                  disabled={pageNumber >= currentSource.pages}
-                  onClick={() => chooseSource(sourceId, pageNumber + 1)}
-                >
-                  다음 쪽
-                </button>
-                <span className={styles.divider} />
-                <button
-                  type="button"
-                  className={styles.pageNavigationButton}
-                  aria-label="현재 페이지 90도 회전"
-                  onClick={rotateCurrentPage}
-                  disabled={!pageReady || busy || studioAi.running}
-                >
-                  회전
-                </button>
-                {step === "crop" && (
-                  <select
-                    aria-label="원본 확대 비율"
-                    value={zoom}
-                    onChange={(event) => setZoom(Number(event.target.value))}
-                  >
-                    <option value={0}>전체 보기</option>
-                    <option value={75}>75%</option>
-                    <option value={100}>너비 맞춤</option>
-                    <option value={125}>125%</option>
-                    <option value={150}>150%</option>
-                    <option value={200}>200%</option>
-                  </select>
-                )}
-                <button
-                  type="button"
-                  className={`${styles.secondaryButton} ${styles.pageAiButton}`}
-                  disabled={
-                    !pageReady ||
-                    !studioAi.available ||
-                    sourceRecognizing ||
-                    busy
-                  }
-                  title="전체 페이지를 대기열에 넣어 최대 2쪽씩 인식합니다. 기존 영역은 유지합니다."
-                  aria-busy={sourceRecognizing}
-                  onClick={() => recognizeSource()}
-                >
-                  {currentSource.pages > 1
-                    ? "전체 페이지 자동 인식"
-                    : "페이지 자동 인식"}
-                </button>
-                <details className={styles.aiDetails}>
-                  <summary
-                    title={
-                      studioAi.available
-                        ? "AI 도구 선택과 연결 정보"
-                        : studioAi.unavailableReason
-                    }
-                  >
-                    AI 연결
-                  </summary>
-                  <div>
-                    {currentSource.pages > 1 ? (
-                      <button
-                        type="button"
-                        className={styles.secondaryButton}
-                        disabled={
-                          !pageReady || recognizingPage || !studioAi.available
-                        }
-                        onClick={(event) => {
-                          recognizeSource(false);
-                          event.currentTarget
-                            .closest("details")
-                            ?.removeAttribute("open");
-                        }}
-                      >
-                        현재 {pageNumber}쪽만 다시 인식
-                      </button>
-                    ) : null}
-                    <select
-                      aria-label="Studio AI 도구"
-                      value={studioAi.ai.provider}
-                      disabled={studioAi.running || studioAi.ai.checking}
-                      onChange={(event) =>
-                        studioAi.ai.setProvider(
-                          event.target.value as StudioAiProvider,
-                        )
-                      }
-                    >
-                      {studioAi.ai.status?.providers.length ? (
-                        studioAi.ai.status.providers.map((provider) => (
-                          <option
-                            key={provider.id}
-                            value={provider.id}
-                            disabled={
-                              !["ready", "unverified"].includes(provider.status)
-                            }
-                          >
-                            {provider.label}
-                            {!["ready", "unverified"].includes(provider.status)
-                              ? " · 연결 필요"
-                              : provider.status === "unverified"
-                                ? " · 미확인"
-                                : ""}
-                          </option>
-                        ))
-                      ) : (
-                        <option value={studioAi.ai.provider}>
-                          AI 연결 확인
-                        </option>
-                      )}
-                    </select>
-                    {studioAi.ai.status?.providers.map((provider) => (
-                      <p key={provider.id}>
-                        <strong>{provider.label}</strong> · {provider.detail}
-                      </p>
-                    ))}
-                    {!studioAi.available ? (
-                      <p>{studioAi.unavailableReason}</p>
-                    ) : null}
-                    <button
-                      type="button"
-                      className={styles.secondaryButton}
-                      onClick={() => void studioAi.ai.refresh()}
-                      disabled={studioAi.ai.checking}
-                    >
-                      연결 다시 확인
-                    </button>
-                  </div>
-                </details>
-                {step === "crop" && (
-                  <button
-                    className={styles.preciseButton}
-                    type="button"
-                    onClick={() => {
-                      setStep("crop");
-                      setCropTool("add-problem");
-                      setSelection({
-                        x: 0.08,
-                        y: 0.15,
-                        width: 0.84,
-                        height: 0.2,
-                      });
-                      requestAnimationFrame(() =>
-                        surface.current?.focus({ preventScroll: true }),
-                      );
-                    }}
-                    disabled={!pageReady || recognizingPage}
-                    aria-label="키보드로 영역 지정"
-                  >
-                    영역 지정
-                  </button>
-                )}
-              </div>
-            ) : (
-              <span className={styles.toolbarMeta}>PDF · 이미지</span>
-            )}
-          </div>
+          {!bandTools && sourceToolbar}
 
           {importProgress ? (
             <WorkProgress
@@ -2345,248 +2567,77 @@ export default function StudioView({
               startedAt={importProgress.startedAt}
             />
           ) : null}
-          <StudioProgressStrip
-            hasFeedback={!!studioAi.message || !!studioAi.error}
-            summaries={[
-              ...(studioAi.pageJobs.length
-                ? [
-                    {
-                      id: "pages",
-                      label: "페이지",
-                      done: studioAi.pageJobs.filter(
-                        (job) =>
-                          job.state === "complete" || job.state === "empty",
-                      ).length,
-                      total: studioAi.pageJobs.length,
-                      active: studioAi.pageJobs.some((job) =>
-                        ["queued", "rendering", "running"].includes(job.state),
-                      ),
-                    },
-                  ]
-                : []),
-              ...(studioAi.progress
-                ? [
-                    {
-                      id: "crops",
-                      label:
-                        studioAi.progress.action === "solution"
-                          ? "해설"
-                          : studioAi.progress.action === "figures"
-                            ? "도형 인식"
-                            : "문제",
-                      done: studioAi.progress.done,
-                      total: studioAi.progress.total,
-                      active: true,
-                    },
-                  ]
-                : []),
-              ...(figureJobs.length
-                ? [
-                    {
-                      id: "figures",
-                      label: "도형",
-                      done: doneFigures,
-                      total: figureJobs.length,
-                      active: figurePending.length > 0,
-                    },
-                  ]
-                : []),
-            ]}
-            warningCount={
-              studioAi.pageJobs.reduce(
-                (count, job) =>
-                  count +
-                  (job.warnings?.length ?? 0) +
-                  Number(!!job.textLayerWarning) +
-                  Number(job.state === "error"),
-                0,
-              ) +
-              failedFigures.length +
-              Number(!!studioAi.error)
-            }
-          >
-            <StudioQueueStatus
-              jobs={studioAi.pageJobs}
-              startedAt={studioAi.pageProgress.startedAt ?? undefined}
-              sources={sources}
-              onCancel={() => studioAi.cancel()}
-              onRetry={() => void studioAi.retryPages()}
-              onNavigate={chooseSource}
-            />
-            {figurePending.length > 0 ? (
-              <WorkProgress
-                label="SVG 도형 생성 중"
-                detail={studioFigureProgressDetail(
-                  crops,
-                  figurePending,
-                  failedFigures.length,
-                )}
-                completed={doneFigures}
-                total={figureJobs.length}
-                unit="도형"
-                startedAt={
-                  figurePending.find((job) => job.startedAt)?.startedAt
-                }
-                onCancel={() => studioAi.figureAi.cancel()}
-                cancelLabel="도형 생성 취소"
-              />
-            ) : failedFigures.length ? (
-              <div className={styles.queueSummary} role="status">
-                <strong>
-                  도형 {doneFigures} / {figureJobs.length} 완료 · 실패{" "}
-                  {failedFigures.length}개
-                </strong>
-                <button
-                  type="button"
-                  disabled={!studioAi.available || studioAi.running}
-                  onClick={() =>
-                    void studioAi.figureAi.run([
-                      ...new Set(failedFigures.map((job) => job.cropId)),
-                    ])
-                  }
-                >
-                  실패 {failedFigures.length}개 다시 생성
-                </button>
-              </div>
-            ) : figureJobs.length ? (
-              <div className={styles.queueSummary} role="status">
-                <strong>
-                  도형 {doneFigures} / {figureJobs.length} 완료
-                </strong>
-                {figureJobs.some((job) => job.state === "cancelled") ? (
-                  <span>
-                    취소한 도형은 그림 편집에서 다시 생성할 수 있습니다.
-                  </span>
-                ) : null}
-              </div>
-            ) : null}
-            {currentPageJob?.state === "error" ? (
-              <div className={styles.aiFeedback} role="alert">
-                <span>
-                  {pageNumber}쪽 · {currentPageJob.error}
-                </span>
-                <button
-                  type="button"
-                  disabled={!studioAi.available}
-                  onClick={() => recognizeSource(false)}
-                >
-                  이 페이지 재시도
-                </button>
-              </div>
-            ) : null}
-            {studioAi.progress ? (
-              <WorkProgress
-                label={
-                  studioAi.progress.action === "solution"
-                    ? "해설 생성 중"
-                    : studioAi.progress.action === "figures"
-                      ? "도형 인식 중"
-                      : "문제 인식 중"
-                }
-                completed={studioAi.progress.done}
-                total={studioAi.progress.total}
-                unit="문항"
-                startedAt={studioAi.progress.startedAt}
-                onCancel={() => studioAi.cancelCrop()}
-                cancelLabel="AI 작업 취소"
-              />
-            ) : null}
-            {!studioAi.progress && (studioAi.message || studioAi.error) ? (
-              <div
-                className={styles.aiFeedback}
-                role={studioAi.error ? "alert" : "status"}
-              >
-                <span>{studioAi.error || studioAi.message}</span>
-                {studioAi.error ? (
-                  <button
-                    type="button"
-                    disabled={!studioAi.available || studioAi.running}
-                    onClick={studioAi.retry}
-                  >
-                    다시 시도
-                  </button>
-                ) : (
-                  <button
-                    type="button"
-                    aria-label="AI 결과 안내 닫기"
-                    onClick={() => studioAi.cancelCrop(true)}
-                  >
-                    ×
-                  </button>
-                )}
-              </div>
-            ) : null}
-          </StudioProgressStrip>
-
-          {step === "review" && (
-            <div className={styles.digitalBar} aria-label="OCR 디지털화 단계">
-              <strong>
-                디지털화 {digitalCount}/{crops.length}문항
-              </strong>
-              <span>문자 인식 → 수식 후보정 → SVG 도형 → 검수</span>
-              <button
-                type="button"
-                disabled={!studioAi.available || !crops.length}
-                onClick={digitizeAll}
-              >
-                전체 디지털화
-              </button>
-            </div>
-          )}
+          {step !== "review" && progressStrip}
 
           {step === "review" ? (
             <>
-              {activeCrop && (
-                <div
-                  className={styles.reviewNavigation}
-                  aria-label="문항 검수 이동"
+              {/* 시안 B 둘째 줄 — 문제 이동 · 진행 요약(상세·확인 필요) · 전체 디지털화 · 검수 완료. */}
+              <div
+                className={styles.reviewNavigation}
+                aria-label="문항 검수 이동"
+              >
+                {activeCrop && (
+                  <>
+                    <button
+                      type="button"
+                      className={styles.secondaryButton}
+                      aria-label="이전 문제 검수"
+                      disabled={activeCropIndex <= 0 || recognizingPage}
+                      onClick={() => selectCrop(crops[activeCropIndex - 1].id)}
+                    >
+                      이전 문제
+                    </button>
+                    <strong>
+                      문제 {activeCropIndex + 1} <span>/ {crops.length}</span>
+                    </strong>
+                    <button
+                      type="button"
+                      className={styles.secondaryButton}
+                      aria-label="다음 문제 검수"
+                      disabled={
+                        activeCropIndex >= crops.length - 1 || recognizingPage
+                      }
+                      onClick={() => selectCrop(crops[activeCropIndex + 1].id)}
+                    >
+                      다음 문제
+                    </button>
+                  </>
+                )}
+                {progressStrip}
+                <button
+                  type="button"
+                  className={styles.secondaryButton}
+                  disabled={!studioAi.available || !crops.length}
+                  onClick={digitizeAll}
                 >
-                  <button
-                    type="button"
-                    className={styles.secondaryButton}
-                    aria-label="이전 문제 검수"
-                    disabled={activeCropIndex <= 0 || recognizingPage}
-                    onClick={() => selectCrop(crops[activeCropIndex - 1].id)}
-                  >
-                    이전 문제
-                  </button>
-                  <strong>
-                    문제 {activeCropIndex + 1} <span>/ {crops.length}</span>
-                  </strong>
-                  <button
-                    type="button"
-                    className={styles.secondaryButton}
-                    aria-label="다음 문제 검수"
-                    disabled={
-                      activeCropIndex >= crops.length - 1 || recognizingPage
-                    }
-                    onClick={() => selectCrop(crops[activeCropIndex + 1].id)}
-                  >
-                    다음 문제
-                  </button>
-                  <span className={styles.reviewProgress}>
-                    {reviewedCount}문항 검수 완료
-                  </span>
-                  <button
-                    type="button"
-                    className={styles.primaryButton}
-                    disabled={
-                      recognizingPage ||
-                      studioAi.isCropBusy?.(activeCrop.id) ||
-                      studioAi.figureAi?.isBusy(activeCrop.id) ||
-                      (activeCrop.reviewed &&
-                        activeCropIndex === crops.length - 1)
-                    }
-                    onClick={finishReview}
-                  >
-                    {activeCropIndex < crops.length - 1
-                      ? "검수 완료 · 다음"
-                      : activeCrop.reviewed
-                        ? "검수 완료됨"
-                        : "검수 완료"}
-                  </button>
-                </div>
-              )}
+                  전체 디지털화
+                </button>
+                {activeCrop && (
+                  <>
+                    <span className={styles.reviewProgress}>
+                      {reviewedCount}문항 검수 완료
+                    </span>
+                    <button
+                      type="button"
+                      className={styles.primaryButton}
+                      disabled={
+                        recognizingPage ||
+                        studioAi.isCropBusy?.(activeCrop.id) ||
+                        studioAi.figureAi?.isBusy(activeCrop.id) ||
+                        (activeCrop.reviewed &&
+                          activeCropIndex === crops.length - 1)
+                      }
+                      onClick={finishReview}
+                    >
+                      {activeCropIndex < crops.length - 1
+                        ? "검수 완료 · 다음"
+                        : activeCrop.reviewed
+                          ? "검수 완료됨"
+                          : "검수 완료"}
+                    </button>
+                  </>
+                )}
+              </div>
               <StudioReviewPane
                 crops={pageCrops}
                 allCrops={crops}

@@ -1,4 +1,5 @@
 import {
+  act,
   cleanup,
   fireEvent,
   render,
@@ -62,14 +63,19 @@ function crop(id: string, patch: Partial<StudioCrop> = {}): StudioCrop {
   };
 }
 
+const observers: { target: Element; callback: () => void }[] = [];
 /** POST 는 기본으로 끝나지 않는다 — «도는 중»을 붙잡아 둔다. 유료 AI 는 부르지 않는다. */
 let posts: { action: string }[] = [];
 beforeEach(() => {
   posts = [];
+  observers.length = 0;
   vi.stubGlobal(
     "ResizeObserver",
     class {
-      observe() {}
+      constructor(readonly callback: () => void) {}
+      observe(target: Element) {
+        observers.push({ target, callback: this.callback });
+      }
       disconnect() {}
     },
   );
@@ -407,5 +413,101 @@ describe("2 · 자른 문제 목록의 글자 넘침", () => {
       "title",
       "1쪽 · 중2 · 텍스트",
     );
+  });
+});
+
+describe("6 · 검수는 확대로(시안 B)", () => {
+  const studio = () =>
+    screen.getByRole("region", { name: "문제 제작 스튜디오" });
+  const focused = () =>
+    screen.queryByRole("dialog", { name: "문제 제작 스튜디오" }) !== null;
+  // 머리 탭 — 단계 목록(편집 중에는 CSS 로 숨김)에도 같은 이름이 있다.
+  const cropTab = () =>
+    screen.getAllByRole("button", { name: "문제&도형 잘라내기" })[0];
+  const twoCrops = () => [
+    crop("p1", { content: "본문", mode: "text" }),
+    crop("p2", { rect: { x: 0.1, y: 0.5, width: 0.8, height: 0.3 } }),
+  ];
+
+  it("검수에 들어서면 확대하고, 잘라내기로 돌아가면 들어오기 전 상태로 돌린다", async () => {
+    await openStudio(twoCrops());
+    expect(studio()).toBeInTheDocument();
+    fireEvent.click(
+      screen.getByRole("button", { name: /^OCR · 디지털화 \d+$/ }),
+    );
+    expect(focused()).toBe(true);
+    expect(screen.getByRole("button", { name: "확대 종료" })).toHaveAttribute(
+      "aria-pressed",
+      "true",
+    );
+    fireEvent.click(cropTab());
+    expect(focused()).toBe(false);
+  });
+
+  it("검수 중 «축소»를 누르면 그 뜻을 따른다 — 다른 문제로 옮겨도 다시 켜지 않는다", async () => {
+    await openStudio(twoCrops(), { step: "review" });
+    expect(focused()).toBe(true);
+    fireEvent.click(screen.getByRole("button", { name: "확대 종료" }));
+    expect(focused()).toBe(false);
+    fireEvent.click(screen.getByRole("button", { name: "다음 문제 검수" }));
+    expect(
+      screen.getByText(/^문제 2/, { selector: "strong" }),
+    ).toBeInTheDocument();
+    expect(focused()).toBe(false);
+  });
+
+  it("들어오기 전에 확대해 두었으면 돌아가도 확대가 남는다", async () => {
+    await openStudio(twoCrops());
+    fireEvent.click(screen.getByRole("button", { name: "작업 영역 확대" }));
+    expect(focused()).toBe(true);
+    fireEvent.click(
+      screen.getByRole("button", { name: /^OCR · 디지털화 \d+$/ }),
+    );
+    fireEvent.click(cropTab());
+    expect(focused()).toBe(true);
+  });
+
+  it("위 띠는 두 줄 — 제목 줄에 파일·학년·쪽, 문제 이동 줄에 진행 요약과 전체 디지털화", async () => {
+    await openStudio(twoCrops(), { step: "review" });
+    const title = screen.getByRole("heading", { name: "자료 제작 · 검수" });
+    const band = title.closest("[data-studio-band]") as HTMLElement;
+    expect(band).not.toBeNull();
+    for (const name of ["원본 파일", "시험지 학년", "페이지 선택"])
+      expect(within(band).getByRole("combobox", { name })).toBeInTheDocument();
+    expect(
+      within(band).getByRole("button", { name: "확대 종료" }),
+    ).toBeInTheDocument();
+    const second = screen.getByLabelText("문항 검수 이동");
+    expect(
+      within(second).getByRole("button", { name: "전체 디지털화" }),
+    ).toBeInTheDocument();
+    expect(
+      within(second).getByRole("button", {
+        name: /^작업 진행 상세 · 디지털화 1\/2/,
+      }),
+    ).toBeInTheDocument();
+    expect(
+      within(second).getByRole("button", { name: /검수 완료/ }),
+    ).toBeInTheDocument();
+    // 설명 글 줄은 뺐다.
+    expect(
+      screen.queryByText("문자 인식 → 수식 후보정 → SVG 도형 → 검수"),
+    ).not.toBeInTheDocument();
+  });
+});
+
+describe("6 · 확대를 풀어도 제목 줄이 꺾인 만큼 작업 칸이 양보한다", () => {
+  it("검수 단계의 제목 줄 실제 높이를 --studio-band-height 로 알린다", async () => {
+    await openStudio([crop("p1")], { step: "review" });
+    const band = document.querySelector("[data-studio-band]") as HTMLElement;
+    Object.defineProperty(band, "offsetHeight", {
+      configurable: true,
+      value: 144,
+    });
+    const observed = observers.filter((item) => item.target === band);
+    expect(observed.length).toBeGreaterThan(0);
+    act(() => observed.forEach((item) => item.callback()));
+    const root = screen.getByRole("dialog", { name: "문제 제작 스튜디오" });
+    expect(root.style.getPropertyValue("--studio-band-height")).toBe("144px");
   });
 });
