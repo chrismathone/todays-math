@@ -4,8 +4,12 @@ import catalog from "../../../scripts/figure/engine-catalog.json";
 import { runSubscriptionCli } from "@/lib/dev-ai/cli";
 import { abortError } from "@/lib/dev-ai/cli-process";
 import { redrawDevAiFigure } from "@/lib/dev-ai/figure-engine";
-import { parseFigureSpecResult } from "@/lib/dev-ai/figure-spec";
+import {
+  parseFigureSpecResult,
+  withTransparentBackground,
+} from "@/lib/dev-ai/figure-spec";
 import { renderFigureSpec } from "@/lib/figure/renderFigureSpec";
+import { withLabelMetrics } from "@/lib/figure/mathjaxSubstitute";
 import { validDevAiSvg } from "@/lib/dev-ai/svg";
 import type { DevAiRequest } from "@/lib/dev-ai/contracts";
 import { buildFigureComparisonImage } from "@/lib/dev-ai/figure-comparison";
@@ -27,6 +31,8 @@ const input: DevAiRequest = {
 const triangle = catalog.v2_example;
 const pass = JSON.stringify({ passed: true, issues: [] });
 const run = vi.mocked(runSubscriptionCli);
+// 작업실 재작도는 v2 바탕을 투명으로 고정해 저장한다(2026-09-19 — 흰 바탕 rect 가 편집기 1번 «사각형»이 됐다)
+const transparent = (spec: object) => ({ ...spec, background: "transparent" });
 beforeEach(() => vi.clearAllMocks());
 afterEach(() => vi.useRealTimers());
 
@@ -134,7 +140,7 @@ describe("real local Python subscription figure pipeline", () => {
       .mockResolvedValueOnce(JSON.stringify({ spec: triangle }))
       .mockResolvedValueOnce(pass);
     const result = await redrawDevAiFigure(input);
-    expect(result.spec).toEqual(triangle);
+    expect(result.spec).toEqual(transparent(triangle));
     expect(run).toHaveBeenCalledTimes(3);
     expect(run.mock.calls[1][0].prompt).toContain("<previous-spec-data>");
     expect(run.mock.calls[1][0].prompt).toContain("perpendicular");
@@ -351,7 +357,7 @@ describe("real local Python subscription figure pipeline", () => {
     await untilCalled(3);
     await vi.advanceTimersByTimeAsync(240_001);
     const value = await result;
-    expect(value.spec).toEqual(triangle);
+    expect(value.spec).toEqual(transparent(triangle));
     expect(validDevAiSvg(value.svg!)).toBe(true);
     expect(value.engine).toBe("todays-math-python");
     expect(value.figureReview).toEqual({
@@ -376,7 +382,7 @@ describe("real local Python subscription figure pipeline", () => {
     await untilCalled(2);
     await vi.advanceTimersByTimeAsync(240_001);
     const value = await result;
-    expect(value.spec).toEqual(triangle);
+    expect(value.spec).toEqual(transparent(triangle));
     expect(value.figureReview).toEqual({
       mode: "source-and-rendered-images",
       passed: false,
@@ -422,6 +428,91 @@ describe("real local Python subscription figure pipeline", () => {
       expect(result.ok).toBe(false);
     },
   );
+});
+
+// 원장님 2026-09-19 «도형 생성 시 사각형이 왜 생기나» — v2 엔진은 흰 바탕 rect 를 첫 도형으로 깐다
+// (vendor/figure-engine/core/figure_scene.py:2906). 편집기가 그것을 1번 «사각형»으로 셌다. 엔진 기본값(white)은
+// 지면·DB 그림 바이트가 걸려 그대로 두고, 작업실 재작도만 투명으로 넘긴다.
+describe("studio redraw renders v2 on a transparent canvas", () => {
+  const rects = (svg?: string) => (svg?.match(/<rect\b/g) ?? []).length;
+  const canvas = { width: 340, height: 250 };
+
+  it("the engine default still paints a white background rect", async () => {
+    const rendered = await renderFigureSpec(withLabelMetrics(triangle), {
+      typeset: false,
+      strict: true,
+    });
+    expect(rendered.ok && rects(rendered.svg)).toBe(1);
+  });
+
+  it.each([
+    ["no background", triangle],
+    ["a white background", { ...triangle, background: "white" }],
+    [
+      "a white canvas background",
+      { ...triangle, canvas: { ...canvas, background: "white" } },
+    ],
+    [
+      "both backgrounds",
+      {
+        ...triangle,
+        background: "white",
+        canvas: { ...canvas, background: "white" },
+      },
+    ],
+    ["an array canvas", { ...triangle, canvas: [340, 250] }],
+  ])(
+    "renders a v2 spec with %s transparently and stores that spec",
+    async (_name, spec) => {
+      run
+        .mockResolvedValueOnce(JSON.stringify({ spec }))
+        .mockResolvedValueOnce(pass);
+      const result = await redrawDevAiFigure(input);
+      // 배경 충돌(«background conflicts with canvas.background»)로 다시 그리지 않았다
+      expect(run).toHaveBeenCalledTimes(2);
+      expect(rects(result.svg)).toBe(0);
+      expect(result.spec).toMatchObject({ background: "transparent" });
+      const stored = (result.spec as { canvas?: unknown }).canvas;
+      if (stored && !Array.isArray(stored))
+        expect(stored).toMatchObject({ background: "transparent" });
+      // 대조 단계도 저장될 spec 을 본다
+      expect(run.mock.calls[1][0].prompt).toContain(
+        '"background":"transparent"',
+      );
+      // 저장된 spec 을 다시 그려도 같은 그림이다
+      const again = await renderFigureSpec(withLabelMetrics(result.spec!), {
+        typeset: false,
+        strict: true,
+      });
+      expect(again).toMatchObject({ ok: true, svg: result.svg });
+    },
+  );
+
+  it.each([
+    ["graph-1", catalog["graph-1"].example],
+    ["elem-1", { version: "elem-1", kind: "cuboid", w: 4, d: 3, h: 2 }],
+  ])("leaves %s specs as the model wrote them", async (_name, spec) => {
+    run
+      .mockResolvedValueOnce(JSON.stringify({ spec }))
+      .mockResolvedValueOnce(pass);
+    const result = await redrawDevAiFigure(input);
+    expect(result.spec).toEqual(spec);
+  });
+
+  it("does not mutate the parsed model spec", () => {
+    const spec = {
+      version: 2 as const,
+      background: "white",
+      canvas: { ...canvas, background: "white" },
+    };
+    const before = structuredClone(spec);
+    expect(withTransparentBackground(spec)).toEqual({
+      version: 2,
+      background: "transparent",
+      canvas: { ...canvas, background: "transparent" },
+    });
+    expect(spec).toEqual(before);
+  });
 });
 
 describe("figure spec transport boundary", () => {

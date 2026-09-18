@@ -63,3 +63,28 @@ export function parseFigureSpecResult(raw: string): {
   }
   return parsed.data;
 }
+
+/**
+ * 작업실 재작도의 v2 바탕을 투명으로 고정한다(원장님 2026-09-19 «도형 생성 시 사각형이 왜 생기나»).
+ * v2 엔진은 바탕이 white(기본값)면 캔버스 전체에 흰 rect 를 첫 도형으로 깔고
+ * (vendor/figure-engine/core/figure_scene.py:2906), 도형 편집기가 그것을 1번 «사각형»으로 셌다.
+ * 엔진 기본값은 지면·DB 그림 바이트가 걸려 그대로 둔다 — 여기서 넘기는 spec 만 바꾸고, 저장도 이 spec 으로 한다.
+ * canvas.background 가 있으면 같이 맞춘다(둘이 다르면 엔진이 «background conflicts with canvas.background»로 던진다).
+ * graph-1·elem-1 에는 바탕 rect 가 없어 손대지 않는다.
+ */
+export function withTransparentBackground(
+  spec: DevAiFigureSpec,
+): DevAiFigureSpec {
+  if (spec.version !== 2) return spec;
+  const { canvas } = spec;
+  return {
+    ...spec,
+    background: "transparent",
+    ...(canvas &&
+    typeof canvas === "object" &&
+    !Array.isArray(canvas) &&
+    "background" in canvas
+      ? { canvas: { ...canvas, background: "transparent" } }
+      : {}),
+  };
+}

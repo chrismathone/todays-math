@@ -9,7 +9,10 @@ import {
   buildFigureReviewPrompt,
   buildFigureSpecPrompt,
 } from "./figure-prompt";
-import { parseFigureSpecResult } from "./figure-spec";
+import {
+  parseFigureSpecResult,
+  withTransparentBackground,
+} from "./figure-spec";
 import { validDevAiSvg } from "./svg";
 import { buildFigureComparisonImage } from "./figure-comparison";
 
@@ -116,16 +119,15 @@ export async function redrawDevAiFigure(
           generated.note ||
             "도형 엔진으로 재현할 수 없습니다. 원본은 유지됩니다.",
         );
+      // v2 흰 바탕 rect 가 편집기 1번 «사각형»이 됐다(2026-09-19) — 렌더·대조·저장 모두 투명 바탕 spec 으로.
+      const spec = withTransparentBackground(generated.spec);
       // Pass MathJax metrics to the authoritative geometry engine, but keep its
       // text labels editable. The Studio's existing typesetter owns final glyphs.
-      const rendered = await renderFigureSpec(
-        withLabelMetrics(generated.spec),
-        {
-          typeset: false,
-          strict: true,
-          signal: deadline.signal,
-        },
-      );
+      const rendered = await renderFigureSpec(withLabelMetrics(spec), {
+        typeset: false,
+        strict: true,
+        signal: deadline.signal,
+      });
       check();
       if (!rendered.ok) {
         // Only a spec validation failure earns another inference. Missing
@@ -134,7 +136,7 @@ export async function redrawDevAiFigure(
           attempt < 2 &&
           rendered.error.startsWith("도형을 그리지 못했습니다:")
         ) {
-          repair = { spec: generated.spec, error: rendered.error };
+          repair = { spec, error: rendered.error };
           continue;
         }
         throw new Error(`${rendered.error} 원본은 유지됩니다.`);
@@ -145,7 +147,7 @@ export async function redrawDevAiFigure(
         );
       const warnings = [...generated.warnings];
       if (generated.note) warnings.push(generated.note);
-      lastRender = { svg: rendered.svg, spec: generated.spec, warnings };
+      lastRender = { svg: rendered.svg, spec, warnings };
       const comparison = await buildFigureComparisonImage(
         request.imageDataUrl,
         rendered.svg,
@@ -155,11 +157,7 @@ export async function redrawDevAiFigure(
       const review = parseReview(
         await invoke({
           phase: "review",
-          prompt: buildFigureReviewPrompt(
-            request,
-            generated.spec,
-            rendered.svg,
-          ),
+          prompt: buildFigureReviewPrompt(request, spec, rendered.svg),
           imageDataUrl: comparison,
           signal: deadline.signal,
         }),
@@ -168,7 +166,7 @@ export async function redrawDevAiFigure(
       if (!review.passed && attempt < 2) {
         lastRender.issues = review.issues;
         repair = {
-          spec: generated.spec,
+          spec,
           error: `원본 대조: ${review.issues.join(" / ") || "도형의 원본 일치 여부를 확인할 수 없습니다."}`,
         };
         continue;
@@ -181,7 +179,7 @@ export async function redrawDevAiFigure(
         solution: "",
         warnings,
         svg: rendered.svg,
-        spec: generated.spec,
+        spec,
         engine: "todays-math-python",
         figureReview: { mode: "source-and-rendered-images", ...review },
       };
