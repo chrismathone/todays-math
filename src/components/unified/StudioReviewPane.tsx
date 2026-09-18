@@ -6,6 +6,7 @@ import { ProblemContent } from "@/components/math/ProblemContent";
 import { displayFractions } from "./fractionDisplay";
 import {
   STUDIO_QUESTION_TYPES,
+  studioFigureLabel,
   visibleStudioWarnings,
   type StudioCrop,
   type StudioFigure,
@@ -136,9 +137,9 @@ function ReviewCard({
   showScores,
   ...props
 }: Props & { crop: StudioCrop; showScores: boolean }) {
-  const number =
-    crop.ocr?.number ??
-    props.allCrops.findIndex((item) => item.id === crop.id) + 1;
+  // 도형 번호는 문제 크롭 라벨과 같은 목록 차례를 쓴다 — 원본 인쇄 번호(ocr.number)와 다를 수 있다.
+  const position = props.allCrops.findIndex((item) => item.id === crop.id) + 1;
+  const number = crop.ocr?.number ?? position;
   const [editing, setEditing] = useState(false);
   const [draft, setDraft] = useState({
     content: crop.content,
@@ -229,7 +230,7 @@ function ReviewCard({
       displayedFigures?.map((figure, index) => ({
         svg: figure.svg,
         imageData: figure.image,
-        label: `문제 ${number} 도형 ${index + 1}`,
+        label: studioFigureLabel(position, index),
         box: [
           figure.rect.y * 1000,
           figure.rect.x * 1000,
@@ -237,7 +238,7 @@ function ReviewCard({
           (figure.rect.x + figure.rect.width) * 1000,
         ] as [number, number, number, number],
       })),
-    [displayedFigures, number],
+    [displayedFigures, position],
   );
   const jobs = props.jobs.filter((job) => job.cropId === crop.id);
   const figureJobs = props.figureJobs.filter((job) => job.cropId === crop.id);
@@ -468,7 +469,7 @@ function ReviewCard({
                 {!figure.svg && (
                   <figcaption>
                     <span>
-                      도형 {index + 1} ·{" "}
+                      {studioFigureLabel(position, index)} ·{" "}
                       {drawing
                         ? "원본 · SVG 생성 중"
                         : "원본 크롭 · SVG 미생성"}

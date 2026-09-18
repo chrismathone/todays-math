@@ -64,6 +64,57 @@ export const clamp = (value: number, min = 0, max = 1) =>
   Math.min(max, Math.max(min, value));
 
 /**
+ * 도형 번호 — 원장님 2026-09-19 «도형 {문제번호}-{그 문제 안 순번}». 문제번호는 문제 크롭 라벨과 같은
+ * 자른 문제 목록 차례(`crops.indexOf(crop) + 1`)다. 문제마다 1부터 다시 세면 두 문제에 «도형 1»이 둘 붙는다.
+ */
+export function studioFigureLabel(problemNumber: number, figureIndex: number) {
+  return `도형 ${problemNumber}-${figureIndex + 1}`;
+}
+
+/** 작업(job)에는 cropId·figureId 만 있다 — 지금 목록에서 자리를 찾는다. 사라진 도형은 undefined. */
+function studioFigurePosition(
+  crops: StudioCrop[],
+  cropId: string,
+  figureId: string,
+) {
+  const problem = crops.findIndex((crop) => crop.id === cropId);
+  const figure =
+    problem < 0
+      ? -1
+      : (crops[problem].figures ?? []).findIndex(
+          (item) => item.id === figureId,
+        );
+  return figure < 0 ? undefined : { problem, figure };
+}
+
+/**
+ * «SVG 도형 생성 중» 진행 칸의 설명 줄 — 몇 번 도형을 만드는지 적는다.
+ * «도형 9-1, 11-1 생성 중 · 11개 대기», 도는 것이 없으면 «12개 대기». 실패 꼬리는 그대로.
+ */
+export function studioFigureProgressDetail(
+  crops: StudioCrop[],
+  jobs: { cropId: string; figureId: string; state: string }[],
+  failed: number,
+) {
+  const running = jobs
+    .filter((job) => job.state === "running")
+    .flatMap((job) => {
+      const position = studioFigurePosition(crops, job.cropId, job.figureId);
+      return position ? [position] : [];
+    })
+    .sort((a, b) => a.problem - b.problem || a.figure - b.figure)
+    .map(({ problem, figure }) => `${problem + 1}-${figure + 1}`);
+  const queued = jobs.filter((job) => job.state === "queued").length;
+  return [
+    running.length ? `도형 ${running.join(", ")} 생성 중` : "",
+    queued ? `${queued}개 대기` : "",
+    failed ? `실패 ${failed}개` : "",
+  ]
+    .filter(Boolean)
+    .join(" · ");
+}
+
+/**
  * 화면에 내지 않는 옛 AI 경고. 원장님 2026-09-19 «원본 대조 멘트는 필요 없다» — 서버는 더 안 만들지만
  * 이미 저장된 초안에는 남아 있다. 경고를 보이거나 세는 자리는 모두 이 함수를 거친다.
  */

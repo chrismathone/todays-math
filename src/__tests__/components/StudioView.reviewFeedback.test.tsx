@@ -178,3 +178,66 @@ describe("10 · 잘라내기 단계 이름", () => {
     ).toBeInTheDocument();
   });
 });
+
+describe("3 · 도형 번호 «문제번호-순번»", () => {
+  // 문제 1(도형 하나) · 문제 2(도형 둘) — 옛 화면은 두 문제에 모두 «도형 1»을 붙였다.
+  const twoProblems = () => [
+    crop("p1", { figures: [figure("a")] }),
+    crop("p2", {
+      rect: { x: 0.1, y: 0.5, width: 0.8, height: 0.3 },
+      figures: [
+        figure("b", { rect: { x: 0.2, y: 0.55, width: 0.1, height: 0.05 } }),
+        figure("c", { rect: { x: 0.5, y: 0.55, width: 0.1, height: 0.05 } }),
+      ],
+    }),
+  ];
+
+  it("페이지 위 도형 크롭과 검사 칸 도형 목록이 같은 번호를 쓴다", async () => {
+    await openStudio(twoProblems(), { activeCropId: "p2" });
+    for (const name of ["도형 1-1 영역", "도형 2-1 영역", "도형 2-2 영역"])
+      expect(await screen.findByRole("button", { name })).toBeInTheDocument();
+    expect(
+      screen.queryByRole("button", { name: "도형 1 영역" }),
+    ).not.toBeInTheDocument();
+    const list = screen.getByLabelText("내부 도형 검수");
+    expect(
+      within(list).getByRole("button", { name: "도형 2-1" }),
+    ).toBeInTheDocument();
+    expect(
+      within(list).getByRole("button", { name: "도형 2-2 삭제" }),
+    ).toBeInTheDocument();
+  });
+
+  it("검수 카드의 도형 캡션과 대체 글도 같은 번호", async () => {
+    await openStudio(twoProblems(), { step: "review" });
+    const card = screen.getByRole("article", { name: "문제 2 인식 결과" });
+    expect(
+      within(card).getByText(/^도형 2-2 · 원본 크롭 · SVG 미생성/),
+    ).toBeInTheDocument();
+    expect(
+      within(card).getByRole("button", { name: "그림 2 편집: 도형 2-2" }),
+    ).toBeInTheDocument();
+  });
+
+  it("진행 칸은 생성 중인 도형의 번호를 적는다", async () => {
+    const crops = twoProblems().map((item) => ({
+      ...item,
+      content: "넓이를 구하시오.",
+      mode: "text" as const,
+    }));
+    await openStudio(crops, { step: "review" });
+    const digitize = screen.getByRole("button", { name: "전체 디지털화" });
+    await waitFor(() => expect(digitize).toBeEnabled());
+    fireEvent.click(digitize);
+    await waitFor(() =>
+      expect(
+        posts.filter((post) => post.action === "figure-redraw"),
+      ).toHaveLength(2),
+    );
+    await openProgress();
+    const panel = screen.getByRole("region", { name: "작업별 진행 상황" });
+    expect(
+      within(panel).getByText("도형 1-1, 2-1 생성 중 · 1개 대기"),
+    ).toBeInTheDocument();
+  });
+});

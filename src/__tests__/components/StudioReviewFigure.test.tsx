@@ -222,12 +222,9 @@ describe("Studio review figure activation", () => {
     expect(document.querySelectorAll('[data-figure-index="0"]')).toHaveLength(
       1,
     );
-    expect(screen.getByAltText("문제 1 도형 2")).toHaveAttribute("src", raster);
+    expect(screen.getByAltText("도형 1-2")).toHaveAttribute("src", raster);
     // 편집 단추가 빠져 래스터 그림도 그림 자체가 편집을 연다.
-    expect(screen.getByAltText("문제 1 도형 2")).toHaveAttribute(
-      "role",
-      "button",
-    );
+    expect(screen.getByAltText("도형 1-2")).toHaveAttribute("role", "button");
   });
 
   it("retains separated figures when recognition has not supplied text yet", () => {

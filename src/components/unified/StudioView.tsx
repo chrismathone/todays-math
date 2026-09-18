@@ -42,6 +42,8 @@ import {
   drawStudioSample,
   STUDIO_GRADES,
   STUDIO_QUESTION_TYPES,
+  studioFigureLabel,
+  studioFigureProgressDetail,
   studioPixelRect,
   studioProblem,
   studioRectBetween,
@@ -2411,7 +2413,11 @@ export default function StudioView({
             {figurePending.length > 0 ? (
               <WorkProgress
                 label="SVG 도형 생성 중"
-                detail={`${figurePending.filter((job) => job.state === "running").length}개 처리 중 · ${figurePending.filter((job) => job.state === "queued").length}개 대기${failedFigures.length ? ` · 실패 ${failedFigures.length}개` : ""}`}
+                detail={studioFigureProgressDetail(
+                  crops,
+                  figurePending,
+                  failedFigures.length,
+                )}
                 completed={doneFigures}
                 total={figureJobs.length}
                 unit="도형"
@@ -2772,7 +2778,10 @@ export default function StudioView({
                             id={figure.id}
                             rect={figure.rect}
                             bounds={crop.rect}
-                            label={`도형 ${index + 1}`}
+                            label={studioFigureLabel(
+                              crops.indexOf(crop) + 1,
+                              index,
+                            )}
                             kind="figure"
                             selected={selectedBoxId === figure.id}
                             disabled={recognizingPage}
@@ -3077,11 +3086,11 @@ export default function StudioView({
                             }}
                           >
                             <img src={figure.image} alt="" />
-                            도형 {index + 1}
+                            {studioFigureLabel(activeCropIndex + 1, index)}
                           </button>
                           <button
                             type="button"
-                            aria-label={`도형 ${index + 1} 삭제`}
+                            aria-label={`${studioFigureLabel(activeCropIndex + 1, index)} 삭제`}
                             disabled={recognizingPage}
                             onClick={() => deleteBox(figure.id)}
                           >
