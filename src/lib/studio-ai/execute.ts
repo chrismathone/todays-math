@@ -2,6 +2,7 @@ import "server-only";
 import type { DevAiRequest, StudioApiProvider } from "@/lib/dev-ai/contracts";
 import { executeMathgenTask } from "@/lib/dev-ai/tasks";
 import { redrawDevAiFigure } from "@/lib/dev-ai/figure-engine";
+import { editDevAiFigure } from "@/lib/dev-ai/figure-edit";
 import { runModelApi, StudioApiError } from "./api";
 import { API_KEY_NAMES, resolveApiModel } from "./routing";
 
@@ -25,6 +26,10 @@ export async function executeStudioTask(
     if (request.action === "figure-redraw")
       return {
         result: await redrawDevAiFigure(request, signal, undefined, deadlineAt),
+      };
+    if (request.action === "figure-edit")
+      return {
+        result: await editDevAiFigure(request, signal, undefined, deadlineAt),
       };
     const { runSubscriptionCli } = await import("@/lib/dev-ai/cli");
     return {
@@ -78,6 +83,28 @@ export async function executeStudioTask(
             // 운영에서 단계별 시간을 되짚는 한 줄 — 입력·응답 본문은 남기지 않는다
             console.info(
               `[POST /api/studio/ai] figure-redraw ${phase} ${target.vendor}/${target.model} ${Date.now() - started}ms ${outcome}`,
+            );
+          }
+        },
+        deadlineAt,
+      ),
+    };
+  if (request.action === "figure-edit")
+    return {
+      model: route.model,
+      result: await editDevAiFigure(
+        request,
+        signal,
+        async (inference) => {
+          const started = Date.now();
+          let outcome = "failed";
+          try {
+            const text = await runModelApi({ ...inference, ...route });
+            outcome = "ok";
+            return text;
+          } finally {
+            console.info(
+              `[POST /api/studio/ai] figure-edit ${route.vendor}/${route.model} ${Date.now() - started}ms ${outcome}`,
             );
           }
         },

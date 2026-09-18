@@ -487,7 +487,7 @@ test("Mathgen figure editor redraw, manual geometry, save and reopen through Stu
   await review(page);
   const second = card(page, 2);
   await second.getByRole("button", { name: /^그림 1 편집/ }).click();
-  const editor = page.getByRole("dialog", { name: "도형 1 편집기" });
+  const editor = page.getByRole("dialog", { name: "도형 2-1 편집기" });
   await expect(editor).toBeVisible({ timeout: 15000 });
   await expect(
     editor.getByRole("img", { name: "도형 원본", exact: true }),

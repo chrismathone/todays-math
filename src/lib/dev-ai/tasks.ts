@@ -34,6 +34,8 @@ import {
 } from "@/lib/math/normalizeMathgenText";
 import { validDevAiSvg } from "./svg";
 import { buildFigureSpecPrompt } from "./figure-prompt";
+import { buildFigureEditPrompt } from "./figure-edit-prompt";
+import { FigureEditFigureSchema } from "./figure-edit-contract";
 import {
   CLI_MODEL_ID,
   DEV_AI_PROVIDERS,
@@ -57,11 +59,19 @@ export const DevAiRequestSchema = z
       .string()
       .regex(CLI_MODEL_ID, "모델 이름 형식이 올바르지 않습니다.")
       .optional(),
-    action: z.enum(["ocr", "page-ocr", "figures", "figure-redraw", "solution"]),
+    action: z.enum([
+      "ocr",
+      "page-ocr",
+      "figures",
+      "figure-redraw",
+      "figure-edit",
+      "solution",
+    ]),
     imageDataUrl: image.optional(),
     content: z.string().max(40000).optional(),
     ocr: MathgenProblemDataSchema.optional(),
     svg: z.string().max(MAX_AI_SVG_CHARS).optional(),
+    figure: FigureEditFigureSchema.optional(),
     sourceName: z
       .string()
       .max(255)
@@ -83,10 +93,18 @@ export const DevAiRequestSchema = z
         code: "custom",
         message: "해설을 만들 문제 내용을 먼저 확인해 주세요.",
       });
-    if (value.action === "figure-redraw" && !value.content?.trim())
+    if (
+      (value.action === "figure-redraw" || value.action === "figure-edit") &&
+      !value.content?.trim()
+    )
       ctx.addIssue({
         code: "custom",
         message: "그림 수정 요청을 입력해 주세요.",
+      });
+    if (value.action === "figure-edit" && !value.figure)
+      ctx.addIssue({
+        code: "custom",
+        message: "지금 그림의 요소 목록이 필요합니다.",
       });
   });
 
@@ -125,6 +143,7 @@ detectedGrade 객체 형식: {"grade":"허용 학년 중 하나","confidence":"h
 export function buildDevAiPrompt(request: DevAiRequest): string {
   const context = `대상 학년: ${JSON.stringify(request.grade)}`;
   if (request.action === "figure-redraw") return buildFigureSpecPrompt(request);
+  if (request.action === "figure-edit") return buildFigureEditPrompt(request);
   if (request.action === "figures")
     return `${COMMON}\n${context}\n${FIGURES}
 첨부된 단일 문제 이미지에서 내부 그림 영역만 찾는다. 문자를 다시 인식하거나 정답·해설을 작성하지 않는다.
