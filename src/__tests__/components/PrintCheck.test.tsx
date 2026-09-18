@@ -151,7 +151,14 @@ describe("실물 출력 검수 목록 — 데이터", () => {
     //     오려 그림으로 붙였다. 원본 표 폭 98.7~106.5mm 가 그림 상한 70mm 로 줄어
     //     0.66~0.71 배로 찍힌다 — 칸 글자가 읽히는지는 종이에서만 안다. 그리고 동도중 문1 은
     //     그림이 〈보기〉 뒤에 서서 원본과 읽는 순서가 다르다).
-    expect(ITEMS.length).toBe(56);
+    // 57·58: studio-native-hwpx-pdf · studio-export-condition-and-solve-layout
+    //     (2026-09-14, 283841ec·8749b02c). 두 항목이 들어오면서 이 숫자를 안 올려
+    //     main 에서 이 시험이 58 ≠ 56 으로 빨강이었다 — 2026-09-18 hwpx-writer-port 가 찾았다.
+    // 59: hwpx-hancom-layout 추가 (2026-09-18 — mathg-gen 의 HWPX writer 수정 이식.
+    //     수식 상자 폭을 한글이 잴 폭으로 · 넓은 간격을 탭으로 · 줄 고정 · 구역 위 여백을
+    //     쪽 내용 시작점으로. 한글이 그 XML 을 어떻게 그리는지는 COM 을 안 돌려 못 봤다.
+    //     그리고 우리 미리보기는 흰 전면 rect 때문에 위 여백이 전 쪽 8px 가 된다).
+    expect(ITEMS.length).toBe(59);
   });
 
   /**
