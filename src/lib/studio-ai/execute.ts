@@ -58,12 +58,25 @@ export async function executeStudioTask(
       result: await redrawDevAiFigure(
         request,
         signal,
-        ({ phase, ...inference }) =>
-          runModelApi({
-            ...inference,
-            ...(phase === "review" ? reviewRoute : route),
-            ...(phase === "review" ? { maxOutputTokens: 3000 } : {}),
-          }),
+        async ({ phase, ...inference }) => {
+          const target = phase === "review" ? reviewRoute : route;
+          const started = Date.now();
+          let outcome = "failed";
+          try {
+            const text = await runModelApi({
+              ...inference,
+              ...target,
+              ...(phase === "review" ? { maxOutputTokens: 3000 } : {}),
+            });
+            outcome = "ok";
+            return text;
+          } finally {
+            // 운영에서 단계별 시간을 되짚는 한 줄 — 입력·응답 본문은 남기지 않는다
+            console.info(
+              `[POST /api/studio/ai] figure-redraw ${phase} ${target.vendor}/${target.model} ${Date.now() - started}ms ${outcome}`,
+            );
+          }
+        },
       ),
     };
   return {

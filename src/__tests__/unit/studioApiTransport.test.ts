@@ -37,7 +37,7 @@ afterEach(() => {
   vi.unstubAllGlobals();
 });
 describe("source model API routing and compatibility", () => {
-  it("routes OCR/detection to current Gemini, solutions to DeepSeek, figures to Opus", () => {
+  it("routes OCR/detection and figures to current Gemini, solutions to DeepSeek", () => {
     const env = { NODE_ENV: "test" as const };
     for (const action of ["ocr", "page-ocr", "figures"] as const)
       expect(resolveApiModel("auto", action, env)).toEqual({
@@ -47,10 +47,32 @@ describe("source model API routing and compatibility", () => {
     expect(resolveApiModel("auto", "solution", env).model).toBe(
       "deepseek-v4-pro",
     );
-    expect(resolveApiModel("auto", "figure-redraw", env).model).toBe(
-      "claude-opus-5",
-    );
+    // 2026-09-18 실측(그림 3장): 사양 생성이 Flash LOW 4~7초 · Opus 5 medium 8~40초 · Codex 10~72초
+    expect(resolveApiModel("auto", "figure-redraw", env)).toEqual({
+      vendor: "gemini",
+      model: "gemini-3.8-flash",
+    });
     expect(() => resolveApiModel("deepseek", "ocr", env)).toThrow("해설");
+    // 되돌리기는 코드 없이 운영 환경변수 하나로 — 이미지를 못 보는 DeepSeek·목록 밖 이름은 받지 않는다
+    expect(
+      resolveApiModel("auto", "figure-redraw", {
+        ...env,
+        STUDIO_AI_FIGURE_VENDOR: "anthropic",
+      }),
+    ).toEqual({ vendor: "anthropic", model: "claude-opus-5" });
+    expect(
+      resolveApiModel("auto", "ocr", {
+        ...env,
+        STUDIO_AI_FIGURE_VENDOR: "anthropic",
+      }).vendor,
+    ).toBe("gemini");
+    for (const bad of ["deepseek", "claude", "auto"])
+      expect(() =>
+        resolveApiModel("auto", "figure-redraw", {
+          ...env,
+          STUDIO_AI_FIGURE_VENDOR: bad,
+        }),
+      ).toThrow("서버의 AI 모델 설정");
     expect(() =>
       resolveApiModel("openai", "ocr", {
         ...env,

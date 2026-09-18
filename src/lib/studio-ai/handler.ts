@@ -30,6 +30,7 @@ export async function studioApiPost(request: Request, owner: string) {
   activeUsers.set(owner, (activeUsers.get(owner) ?? 0) + 1);
   const timeout = AbortSignal.timeout(240_000);
   const signal = AbortSignal.any([request.signal, timeout]);
+  let action: string | undefined;
   try {
     let input, provider;
     try {
@@ -41,6 +42,7 @@ export async function studioApiPost(request: Request, owner: string) {
       provider = envelope.provider;
       // Provider is transport metadata; validation and prompt inputs stay shared.
       input = DevAiRequestSchema.parse({ ...envelope, provider: "codex" });
+      action = input.action;
     } catch {
       signal.throwIfAborted();
       return Response.json(
@@ -66,6 +68,15 @@ export async function studioApiPost(request: Request, owner: string) {
         { error: "AI 작업 시간이 초과되었습니다. 다시 시도해 주세요." },
         { status: 504, headers },
       );
+    // 2026-09-18 운영 502 16건이 사유 없이 남았다 — 우리 쪽 문구만 남긴다(상류 원문·키는 api.ts 가 이미 걸렀다)
+    console.error(
+      `[POST /api/studio/ai] ${action ?? "?"} failed:`,
+      error instanceof StudioApiError
+        ? `${error.status} ${error.message}`
+        : error instanceof Error
+          ? error.message.slice(0, 300)
+          : "unknown",
+    );
     return Response.json(
       {
         error:

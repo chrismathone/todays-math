@@ -16,7 +16,15 @@
 | ----------------------------------- | -------------------------- |
 | 페이지 영역 탐지·개별 OCR·도형 검수 | Gemini `gemini-3.8-flash`  |
 | 해설 생성·경고에 따른 1회 재생성    | DeepSeek `deepseek-v4-pro` |
-| 도형 구조 생성·수정                 | Anthropic `claude-opus-5`  |
+| 도형 구조 생성·수정                 | Gemini `gemini-3.8-flash`  |
+
+**도형 구조 생성은 2026-09-18 부터 Gemini 3.8 Flash(생각 LOW)**다(원장님 «가장 빠른 걸 정해 주면 운영에 돌려 보겠다»). 전에는 Anthropic `claude-opus-5` 였다.
+그림 3장(함수 그래프·삼각형·사다리 삽화)으로 사양 생성 한 번씩 쟀다.
+- Flash LOW: 4~7초. 둘은 원본에 가깝게 그렸고, 삽화 하나는 «엔진으로 못 그림»으로 원본을 남겼다.
+- Opus 5 medium: 8~40초. Codex astra·sol·terra·luna(low·medium): 10~72초. sol·terra 는 엔진 검증 오류가 잦았다.
+- Flash MEDIUM 은 생각 토큰 1.5만으로 53초 — 느리고 비싸다.
+
+표본이 3장이라 운영 기록으로 다시 본다. 되돌리기는 코드 없이 운영 환경변수 `STUDIO_AI_FIGURE_VENDOR=anthropic`(또는 `openai`)이다. 운영 로그에 단계별 한 줄(`figure-redraw generate gemini/gemini-3.8-flash 5321ms ok`)과 실패 사유가 남는다. 측정 스크립트는 `.qa-artifacts/sim/figure-timing.ts`(저장소 밖 보관)다.
 
 기본값은 `D:/mathg-gen`의 현재 실행 코드에서 옮겼다. API 제공자를 직접 선택할 수도 있다. DeepSeek는 해설 전용이며 이미지 작업 선택 시 실행 전에 안내한다. 모델 변경은 `STUDIO_AI_<VENDOR>_MODEL`로 하되 `src/lib/studio-ai/routing.ts`의 허용 목록에 있는 모델만 받는다. 키가 없는 제공자는 상태판에 표시되고 실행되지 않는다.
 
@@ -26,7 +34,7 @@
 
 로컬/자체 호스팅에서는 기존 Python을 직접 실행한다. Vercel에서는 `api/mathgen-engine.py`를 별도 Python 함수로 배포하고 Node API가 같은 배포의 엔진을 호출한다. `vercel.json`에 엔진·템플릿 포함 설정을 추가했으며 기존 Next 경로와 cron은 유지한다.
 
-🔴 **배포 보호(2026-09-18 실측)** — `STUDIO_ENGINE_URL` 이 없으면 Node API 는 엔진을 **배포 고유 주소**(`https://$VERCEL_URL`)로 부르는데, 그 주소는 Vercel 배포 보호가 막는다(«Protected deployment» 401). 우회 비밀값(`VERCEL_AUTOMATION_BYPASS_SECRET`)은 9/15 에 회수했다. 그래서 운영의 SVG 도형 생성이 전부 502 «AI 결과를 처리하지 못했습니다»로 떨어졌다(HWPX 내보내기도 같은 길). 운영 환경변수 `STUDIO_ENGINE_URL=https://todays-math.vercel.app`(Production 만)로 엔진을 운영 도메인으로 부른다 — 엔진은 HMAC 서명(`STUDIO_ENGINE_SECRET`·`AUTH_SECRET`)으로 따로 잠겨 있어 서명 없는 요청은 스스로 401 이다.
+🔴 **배포 보호(2026-09-18 실측)** — `STUDIO_ENGINE_URL` 이 없으면 Node API 는 엔진을 **배포 고유 주소**(`https://$VERCEL_URL`)로 부르는데, 그 주소는 Vercel 배포 보호가 막는다(«Protected deployment» 401). 우회 비밀값(`VERCEL_AUTOMATION_BYPASS_SECRET`)은 9/15 에 회수했다. 그래서 운영의 SVG 도형 생성이 전부 502 «AI 결과를 처리하지 못했습니다»로 떨어졌다(HWPX 내보내기도 같은 길). 운영 환경변수 `STUDIO_ENGINE_URL=https://todays-math.vercel.app`(Production 만)로 엔진을 운영 도메인으로 부른다 — 엔진은 HMAC 서명(`STUDIO_ENGINE_SECRET`·`AUTH_SECRET`)으로 따로 잠겨 있어 서명 없는 요청은 스스로 401 이다. ⚠️ 이 문장을 적은 뒤에도 운영 변수는 **실제로 비어 있었다**. 2026-09-18 20시 `vercel env ls` 에 없었고, 그때 원장님 승인으로 넣었다(Production). 문서에 «설정한다»고 적힌 값은 `vercel env ls` 로 이름을 확인한다.
 
 `functions`의 `includeFiles`·`excludeFiles`는 각각 최대 256자다. 2026-09-15 배포 실패는 362자였던 제외 패턴 때문이었다. Python 빌더가 기본 제외하는 `node_modules`, `.next`, `.git`, `public`, `__pycache__`의 중복을 제거하고 패턴을 묶어 246자로 줄였다. 공식 Vercel 스키마로 이전 설정의 실패와 수정 설정의 통과를 확인했으며, 추적 파일 24,774개와 Vercel 빌더의 실제 glob 결과를 대조해 엔진 파일·도형 자산·HWPX 템플릿 포함 목록이 동일함을 검증했다. 별도 임시 폴더의 Python 도형 렌더링도 통과했다. `next build`만으로는 이 Vercel 설정 오류를 검사하지 못한다.
 

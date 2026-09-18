@@ -38,6 +38,19 @@ export const API_KEY_NAMES: Record<ApiVendor, string> = {
   anthropic: "ANTHROPIC_API_KEY",
   openai: "OPENAI_API_KEY",
 };
+/**
+ * 자동 배정에서 도형 사양 생성을 맡을 제공자. 2026-09-18 실측(그림 3장, 사양 생성 한 번):
+ * Gemini 3.8 Flash LOW 4~7초 · Claude Opus 5 medium 8~40초 · Codex 10~72초 — 그림 품질은 견줄 만했다.
+ * `STUDIO_AI_FIGURE_VENDOR` 로 코드 없이 되돌린다. 이미지를 못 보는 DeepSeek 는 받지 않는다.
+ */
+const FIGURE_VENDORS: readonly ApiVendor[] = ["gemini", "anthropic", "openai"];
+function figureVendor(env: NodeJS.ProcessEnv): ApiVendor {
+  const chosen = env.STUDIO_AI_FIGURE_VENDOR?.trim();
+  if (!chosen) return "gemini";
+  if (!(FIGURE_VENDORS as readonly string[]).includes(chosen))
+    throw new Error("서버의 AI 모델 설정을 확인해 주세요.");
+  return chosen as ApiVendor;
+}
 export function resolveApiModel(
   provider: StudioApiProvider,
   action: DevAiAction,
@@ -48,7 +61,7 @@ export function resolveApiModel(
       ? action === "solution"
         ? "deepseek"
         : action === "figure-redraw"
-          ? "anthropic"
+          ? figureVendor(env)
           : "gemini"
       : provider;
   if (vendor === "deepseek" && action !== "solution")

@@ -173,7 +173,7 @@ describe("authenticated production AI execution", () => {
     expect(response.status).toBe(200);
     expect(runSubscriptionCli).not.toHaveBeenCalled();
   });
-  it("uses injected Opus/Gemini inference with the real deterministic Python figure engine", async () => {
+  it("uses injected Gemini inference for both figure phases with the real deterministic Python figure engine", async () => {
     vi.mocked(runModelApi)
       .mockResolvedValueOnce(JSON.stringify({ spec: catalog.v2_example }))
       .mockResolvedValueOnce(JSON.stringify({ passed: true, issues: [] }));
@@ -195,7 +195,7 @@ describe("authenticated production AI execution", () => {
     expect(body.result.svg).toContain("<svg");
     expect(
       vi.mocked(runModelApi).mock.calls.map(([arg]) => arg.vendor),
-    ).toEqual(["anthropic", "gemini"]);
+    ).toEqual(["gemini", "gemini"]);
     expect(runSubscriptionCli).not.toHaveBeenCalled();
   });
   it("bounds concurrent requests per user and frees admission after cancellation", async () => {
