@@ -199,32 +199,46 @@ export function editFigureObject(
 }
 
 /**
- * 사용자가 만든 묶음 — 요소마다 `data-group` 에 이름을 적는다. 원문에 남아 되돌리기·저장·다시 열기를 같이 탄다.
- * 이름이 비면 묶음에서 뺀다.
+ * 요소의 묶음을 정한다 — 요소마다 `data-group` 에 적어 원문에 남긴다(되돌리기·저장·다시 열기를 같이 탄다).
+ * - 이름: 그 묶음으로(역할 묶음과 이름이 같으면 그 묶음에 합쳐 보인다 — 끌어서 옮기기)
+ * - `""`: **묶음 밖**(해제 — 역할로도 다시 묶지 않는다)
+ * - `null`: 표시를 지워 역할 어림으로 돌아간다
  */
 export function setFigureGroup(
   svg: string,
   ids: readonly string[],
-  name: string,
+  name: string | null,
 ) {
   const doc = parse(svg);
   const wanted = new Set(ids);
   for (const node of doc.querySelectorAll("[data-object-id]"))
     if (wanted.has(node.getAttribute("data-object-id")!)) {
-      if (name) node.setAttribute("data-group", name);
-      else node.removeAttribute("data-group");
+      if (name === null) node.removeAttribute("data-group");
+      else node.setAttribute("data-group", name);
     }
   return serializeFigureSvg(doc);
 }
 
-/** 묶음 이름 바꾸기 — 새 이름이 비면 묶음을 푼다. */
-export function renameFigureGroup(svg: string, from: string, to: string) {
+/** 여러 요소에 같은 서식을 한 번에 — 묶음을 골라 공통 서식을 바꾼다(한 번 되돌리기로 돌아간다). */
+export function editFigureObjects(
+  svg: string,
+  ids: readonly string[],
+  attrs: Record<string, string>,
+) {
   const doc = parse(svg);
-  for (const node of doc.querySelectorAll("[data-group]"))
-    if (node.getAttribute("data-group") === from) {
-      if (to) node.setAttribute("data-group", to);
-      else node.removeAttribute("data-group");
+  const wanted = new Set(ids);
+  for (const el of doc.querySelectorAll("[data-object-id]")) {
+    if (!wanted.has(el.getAttribute("data-object-id")!)) continue;
+    for (const [key, value] of Object.entries(attrs)) {
+      if (value === "") el.removeAttribute(key);
+      else el.setAttribute(key, value);
+      const styled = el as SVGElement;
+      if (styled.style.getPropertyValue(key)) {
+        if (value === "") styled.style.removeProperty(key);
+        else styled.style.setProperty(key, value);
+      }
     }
+  }
   return serializeFigureSvg(doc);
 }
 

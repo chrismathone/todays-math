@@ -2,7 +2,6 @@ import { describe, expect, it } from "vitest";
 import {
   figureObjects,
   prepareFigureSvg,
-  renameFigureGroup,
   setFigureGroup,
 } from "@/components/unified/figure-editor/figureSvgEditing";
 import { groupFigureObjects } from "@/components/unified/figure-editor/figureObjectGroups";
@@ -137,19 +136,55 @@ describe("groupFigureObjects — 역할로 묶기", () => {
     });
     expect(groups.find((g) => g.name === "그래프")!.numbers).toEqual([7, 8, 9]);
   });
-  it("묶음 이름을 바꾸거나 풀 수 있고, 원문에 남는다", () => {
-    const svg = setFigureGroup(speedGraph(), ["obj-4", "obj-5"], "앞 구간");
-    const renamed = renameFigureGroup(svg, "앞 구간", "오르막");
-    expect(grouped(renamed)[0].name).toBe("오르막");
-    expect(renamed).toContain('data-group="오르막"');
-    // 저장·다시 열기(원문 정리)를 거쳐도 남는다
-    expect(prepareFigureSvg(renamed)).toContain('data-group="오르막"');
-    const released = renameFigureGroup(renamed, "오르막", "");
-    expect(released).not.toContain("data-group");
-    expect(grouped(released)[2]).toEqual({
-      name: "그래프",
-      custom: false,
+  it("이름을 바꾸면 사용자 묶음이 되고, 원문에 남는다", () => {
+    const graph = ["obj-4", "obj-5", "obj-6", "obj-7", "obj-8"];
+    const renamed = setFigureGroup(speedGraph(), graph, "속력");
+    expect(grouped(renamed)[0]).toEqual({
+      name: "속력",
+      custom: true,
       numbers: [5, 6, 7, 8, 9],
     });
+    expect(grouped(renamed).some((g) => g.name === "그래프")).toBe(false);
+    // 저장·다시 열기(원문 정리)를 거쳐도 남는다
+    expect(prepareFigureSvg(renamed)).toContain('data-group="속력"');
+    // 표시를 지우면 역할 어림으로 돌아간다
+    expect(grouped(setFigureGroup(renamed, graph, null))[2].name).toBe(
+      "그래프",
+    );
+  });
+  it("역할 묶음 이름으로 옮기면 그 묶음에 번호 차례대로 합쳐진다", () => {
+    const moved = setFigureGroup(speedGraph(), ["obj-19"], "그래프");
+    expect(grouped(moved).find((g) => g.name === "그래프")!.numbers).toEqual([
+      5, 6, 7, 8, 9, 20,
+    ]);
+    expect(grouped(moved).find((g) => g.name === "눈금 숫자")!.numbers).toEqual(
+      [21, 22, 23, 24, 25, 26, 27, 28, 29, 30],
+    );
+  });
+  it("해제한 요소는 역할로 다시 묶지 않고 맨 끝 «묶음 없음»에 둔다", () => {
+    const released = setFigureGroup(
+      speedGraph(),
+      ["obj-32", "obj-33", "obj-34"],
+      "",
+    );
+    expect(released).toContain('data-group=""');
+    const groups = grouped(released);
+    expect(groups.at(-1)).toEqual({
+      name: "묶음 없음",
+      custom: false,
+      numbers: [33, 34, 35],
+    });
+    expect(groups.find((g) => g.name === "점")!.numbers).toEqual([36, 37, 38]);
+    expect(prepareFigureSvg(released)).toContain('data-group=""');
+  });
+  it("점을 글자(●)로 찍은 그림도 점으로 묶는다", () => {
+    let n = 0;
+    const svg = speedGraph().replace(
+      /<circle [^>]*\/>/g,
+      () => `<text x="${100 + 40 * n++}" y="160" font-size="10">●</text>`,
+    );
+    const groups = grouped(prepareFigureSvg(svg));
+    expect(groups.find((g) => g.name === "점")!.numbers).toHaveLength(6);
+    expect(groups.find((g) => g.name === "축 이름")!.numbers).toEqual([31, 32]);
   });
 });

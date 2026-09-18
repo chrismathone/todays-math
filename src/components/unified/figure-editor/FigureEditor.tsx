@@ -20,7 +20,7 @@ import {
   figureObjects,
   prepareFigureSvg,
   fitFigureViewport,
-  renameFigureGroup,
+  editFigureObjects,
   setFigureGroup,
 } from "./figureSvgEditing";
 import { groupFigureObjects } from "./figureObjectGroups";
@@ -46,6 +46,7 @@ import { layoutFigureNumbers, type FigureNumber } from "./figureObjectNumbers";
 import { FigureSelectionOverlay } from "./FigureSelectionOverlay";
 import { FigureNumberLayer } from "./FigureNumberLayer";
 import { FigureObjectList } from "./FigureObjectList";
+import { FigureCommonFormat } from "./FigureCommonFormat";
 import { NAMES } from "./figureObjectNames";
 import { FunctionGraphInput } from "./FunctionGraphInput";
 import type { FunctionGraphConfig } from "./functionGraph";
@@ -259,26 +260,18 @@ export function FigureEditor({
     liveSvg.current = next;
     setSvg(next);
   }, []);
-  const renameGroup = useCallback(
-    (from: string, to: string) =>
-      editGroups((source) => renameFigureGroup(source, from, to)),
-    [editGroups],
-  );
-  const selectedRef = useRef(selectedIds);
-  useLayoutEffect(() => {
-    selectedRef.current = selectedIds;
-  }, [selectedIds]);
-  const addToGroup = useCallback(
-    (name: string) =>
-      editGroups((source) => setFigureGroup(source, selectedRef.current, name)),
+  // 옮기기(끌어 놓기) · 이름 바꾸기 · 해제("") · 자동 묶음(null) 이 모두 이 하나다.
+  const assignGroup = useCallback(
+    (ids: string[], name: string | null) =>
+      editGroups((source) => setFigureGroup(source, ids, name)),
     [editGroups],
   );
   const makeGroup = () => {
-    const names = new Set(groups.filter((g) => g.custom).map((g) => g.name));
-    let n = names.size + 1;
+    const names = new Set(groups.map((g) => g.name));
+    let n = groups.filter((g) => g.custom).length + 1;
     while (names.has(`묶음 ${n}`)) n++;
-    editGroups((source) => setFigureGroup(source, selectedIds, `묶음 ${n}`));
-    setRenamingGroup(`묶음 ${n}`);
+    assignGroup(selectedIds, `묶음 ${n}`);
+    setRenamingGroup(`custom:묶음 ${n}`);
   };
   const pickGroup = useCallback((ids: string[], additive: boolean) => {
     setSelectedIds((previous) =>
@@ -1251,8 +1244,7 @@ export function FigureEditor({
               selectedIds={selectedIds}
               onPick={pick}
               onPickGroup={pickGroup}
-              onAddToGroup={addToGroup}
-              onRenameGroup={renameGroup}
+              onAssign={assignGroup}
               renaming={renamingGroup}
               onRenaming={setRenamingGroup}
             />
@@ -1279,11 +1271,13 @@ export function FigureEditor({
                     : "상세 편집"}
             </h3>
             <p className="mb-3 text-xs text-muted">
-              {current
-                ? "선택한 요소의 모양과 표시를 바꿉니다."
-                : tool === "text"
-                  ? "내용을 정한 다음 그림에서 놓을 위치를 클릭하세요."
-                  : "그림에서 수정할 요소를 선택하세요."}
+              {selectedIds.length > 1
+                ? "선택한 요소의 서식을 한꺼번에 바꿉니다. 그림에서 함께 끌어 옮길 수도 있습니다."
+                : current
+                  ? "선택한 요소의 모양과 표시를 바꿉니다."
+                  : tool === "text"
+                    ? "내용을 정한 다음 그림에서 놓을 위치를 클릭하세요."
+                    : "그림에서 수정할 요소를 선택하세요."}
             </p>
             {current ? (
               <div className="space-y-3 text-xs">
@@ -1547,17 +1541,18 @@ export function FigureEditor({
                 value={label}
                 onChange={setLabel}
               />
+            ) : selectedIds.length > 1 ? (
+              <FigureCommonFormat
+                objects={objects.filter((o) => selectedIds.includes(o.id))}
+                onChange={(ids, attrs) =>
+                  commit(editFigureObjects(svg, ids, attrs))
+                }
+              />
             ) : (
               <div className="rounded-lg border border-dashed border-control p-4 text-center text-xs leading-relaxed text-muted">
-                {selectedIds.length > 1 ? (
-                  "선택한 요소를 함께 끌어서 옮기거나 복사·잘라내기·삭제할 수 있습니다."
-                ) : (
-                  <>
-                    캔버스의 선, 곡선, 글자를 클릭하면
-                    <br />
-                    여기에 편집 항목이 나타납니다.
-                  </>
-                )}
+                캔버스의 선, 곡선, 글자를 클릭하면
+                <br />
+                여기에 편집 항목이 나타납니다.
               </div>
             )}
           </fieldset>

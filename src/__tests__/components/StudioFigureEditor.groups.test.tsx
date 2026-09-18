@@ -181,19 +181,125 @@ describe("요소 목록 — 사용자 묶음", () => {
     expect(groupNames()[0]).toBe("묶음 1 묶음");
     expect(onClose).not.toHaveBeenCalled();
   });
-  it("선택한 요소를 사용자 묶음에 넣고, 묶음을 풀면 역할 묶음으로 돌아간다", () => {
+});
+
+// jsdom 에는 DataTransfer 가 없다 — 끌기에서 쓰는 만큼만.
+const transfer = () => ({
+  setData: vi.fn(),
+  getData: vi.fn(),
+  effectAllowed: "",
+  dropEffect: "",
+});
+function dragTo(from: HTMLElement, to: HTMLElement) {
+  const dataTransfer = transfer();
+  fireEvent.dragStart(from, { dataTransfer });
+  fireEvent.dragOver(to, { dataTransfer });
+  fireEvent.drop(to, { dataTransfer });
+  fireEvent.dragEnd(from, { dataTransfer });
+}
+
+describe("요소 목록 — 끌어 옮기기 · 해제 (원장님 2026-09-18)", () => {
+  it("요소를 다른 묶음 위로 끌어 놓으면 옮겨지고, 고른 요소는 함께 간다", () => {
     open();
-    fireEvent.click(chip(7));
-    fireEvent.click(screen.getByRole("button", { name: "묶음 만들기" }));
-    fireEvent.keyDown(screen.getByRole("textbox"), { key: "Enter" });
-    fireEvent.click(chip(9));
+    dragTo(chip(9), group("그래프"));
+    expect(chipNumbers("그래프")).toEqual(["7", "8", "9"]);
+    expect(list().queryByRole("group", { name: "눈금 숫자 묶음" })).toBeNull();
+    fireEvent.click(chip(5));
+    fireEvent.click(chip(6), { shiftKey: true });
+    dragTo(chip(5), group("x축"));
+    expect(chipNumbers("x축")).toEqual(["1", "2", "5", "6"]);
+    fireEvent.click(screen.getByRole("button", { name: /되돌리기/ }));
+    expect(chipNumbers("눈금")).toEqual(["5", "6"]);
+  });
+  it("끄는 동안 «묶음 없음» 칸이 서고, 거기 놓으면 묶음 밖으로 간다", () => {
+    open();
+    const dataTransfer = transfer();
+    fireEvent.dragStart(chip(7), { dataTransfer });
+    const loose = group("묶음 없음");
+    expect(
+      within(loose).getByText("여기에 놓으면 묶음 밖으로"),
+    ).toBeInTheDocument();
+    fireEvent.dragOver(loose, { dataTransfer });
+    fireEvent.drop(loose, { dataTransfer });
+    expect(chipNumbers("묶음 없음")).toEqual(["7"]);
+    expect(chipNumbers("그래프")).toEqual(["8"]);
+  });
+  it("어느 묶음이든 고르면 해제할 수 있고, 해제하면 전부 묶음 밖으로 — «자동 묶기»로 돌아온다", () => {
+    open();
+    expect(screen.queryByRole("button", { name: "눈금 묶음 해제" })).toBeNull();
     fireEvent.click(
-      screen.getByRole("button", { name: "선택한 요소를 묶음 1에 넣기" }),
+      within(group("눈금")).getByRole("button", { name: "눈금 2개" }),
     );
-    expect(chipNumbers("묶음 1")).toEqual(["7", "9"]);
-    fireEvent.click(screen.getByRole("button", { name: "묶음 1 묶음 풀기" }));
-    expect(screen.queryByRole("group", { name: "묶음 1 묶음" })).toBeNull();
-    expect(chipNumbers("그래프")).toEqual(["7", "8"]);
-    expect(chipNumbers("눈금 숫자")).toEqual(["9"]);
+    fireEvent.click(screen.getByRole("button", { name: "눈금 묶음 해제" }));
+    expect(list().queryByRole("group", { name: "눈금 묶음" })).toBeNull();
+    expect(groupNames().at(-1)).toBe("묶음 없음 묶음");
+    expect(chipNumbers("묶음 없음")).toEqual(["5", "6"]);
+    fireEvent.click(
+      within(group("묶음 없음")).getByRole("button", { name: "묶음 없음 2개" }),
+    );
+    fireEvent.click(
+      screen.getByRole("button", { name: "묶음 없는 요소 자동 묶기" }),
+    );
+    expect(chipNumbers("눈금")).toEqual(["5", "6"]);
+    expect(list().queryByRole("group", { name: "묶음 없음 묶음" })).toBeNull();
+  });
+  it("묶음 이름도 바꿀 수 있다 — 역할 묶음이면 사용자 묶음이 된다", () => {
+    open();
+    fireEvent.click(
+      within(group("그래프")).getByRole("button", { name: "그래프 2개" }),
+    );
+    fireEvent.click(screen.getByRole("button", { name: "그래프 이름 바꾸기" }));
+    const input = screen.getByRole("textbox", { name: "그래프 묶음 이름" });
+    fireEvent.change(input, { target: { value: "속력" } });
+    fireEvent.keyDown(input, { key: "Enter" });
+    expect(groupNames()[0]).toBe("속력 묶음");
+    expect(chipNumbers("속력")).toEqual(["7", "8"]);
+  });
+});
+
+describe("요소 목록 — 묶음을 고르면 공통 서식 (원장님 2026-09-18)", () => {
+  it("선 두께·점선을 고른 요소 모두에 한 번에 — 되돌리기 한 번에 돌아온다", () => {
+    open();
+    fireEvent.click(
+      within(group("그래프")).getByRole("button", { name: "그래프 2개" }),
+    );
+    const panel = screen.getByRole("region", { name: "선·도형 공통 서식" });
+    fireEvent.change(within(panel).getByLabelText("고른 선 두께"), {
+      target: { value: "4" },
+    });
+    const lines = () =>
+      [...document.querySelectorAll("#figure-editor-canvas line")].slice(4, 6);
+    expect(lines().map((l) => l.getAttribute("stroke-width"))).toEqual([
+      "4",
+      "4",
+    ]);
+    fireEvent.click(within(panel).getByLabelText("고른 선 점선"));
+    expect(lines().map((l) => l.getAttribute("stroke-dasharray"))).toEqual([
+      "5 4",
+      "5 4",
+    ]);
+    fireEvent.click(screen.getByRole("button", { name: /되돌리기/ }));
+    fireEvent.click(screen.getByRole("button", { name: /되돌리기/ }));
+    expect(lines().map((l) => l.getAttribute("stroke-width"))).toEqual([
+      null,
+      null,
+    ]);
+  });
+  it("글자를 고르면 글자 칸 — 크기가 갈리면 «여러 값»", () => {
+    open();
+    fireEvent.click(chip(9));
+    fireEvent.click(chip(7), { shiftKey: true });
+    expect(
+      screen.getByRole("region", { name: "선·도형 공통 서식" }),
+    ).toBeInTheDocument();
+    const text = screen.getByRole("region", { name: "글자 공통 서식" });
+    fireEvent.change(within(text).getByLabelText("고른 글자 크기"), {
+      target: { value: "24" },
+    });
+    expect(
+      document
+        .querySelector("#figure-editor-canvas text")
+        ?.getAttribute("font-size"),
+    ).toBe("24");
   });
 });

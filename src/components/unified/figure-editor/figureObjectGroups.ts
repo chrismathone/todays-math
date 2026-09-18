@@ -8,6 +8,8 @@ export interface FigureObjectGroup {
   name: string;
   /** 사용자가 만든 묶음 — 요소의 `data-group` 에 이름이 적혀 원문과 같이 저장된다. */
   custom: boolean;
+  /** 묶음 밖(해제한 요소) — `data-group=""`. 늘 맨 끝에 하나. */
+  loose?: boolean;
   ids: string[];
 }
 
@@ -98,6 +100,7 @@ const label = (o: FigureObject) =>
   (o.attrs["data-mj"] ?? o.text).replace(/\$/g, "").replace(/\s+/g, "");
 const numeric = (o: FigureObject) =>
   /^(?:[-−+]?\d+(?:[.,]\d+)?|[-−]?\\[dt]?frac\{\d+\}\{\d+\}|O)$/.test(label(o));
+const DOT = /^[●•∙⋅·○◦⚫⬤]$/;
 const width = (b: Box) => b.x2 - b.x1;
 const height = (b: Box) => b.y2 - b.y1;
 const center = (b: Box) => [(b.x1 + b.x2) / 2, (b.y1 + b.y2) / 2];
@@ -107,7 +110,8 @@ const near = (a: number[], b: number[], limit: number) =>
 /**
  * 요소 목록을 역할로 묶는다(원장님 2026-09-18 «역할별로 묶고 사용자 커스텀도 가능하게»).
  * 좌표 그래프면 x축·y축(화살촉 포함) · 그래프 · 점선 · 점 · 눈금 · 눈금 숫자 · 축 이름,
- * 아니면 종류(선분·원·글자 …)로 묶는다. 사용자가 만든 묶음(`data-group`)이 먼저 오고 그 요소는 역할 묶음에서 빠진다.
+ * 아니면 종류(선분·원·글자 …)로 묶는다. 사용자가 정한 묶음(`data-group`)이 어림을 이긴다 — 이름이 역할 묶음과 같으면
+ * 그 묶음에 합쳐 보이고(끌어서 옮기기), 새 이름이면 사용자 묶음으로 맨 앞에, 빈 이름이면 **묶음 밖**(해제)으로 맨 끝에 간다.
  * 묶음 차례는 첫 요소의 번호 차례다 — 그림 위 번호와 같은 차례로 읽힌다.
  * 어림은 자리만 본다(평행 이동까지) — 틀리게 묶였으면 사용자가 묶음을 만들어 옮긴다.
  */
@@ -118,18 +122,11 @@ export function groupFigureObjects(
   const W = viewBox[2] || 480,
     H = viewBox[3] || 360,
     S = Math.max(W, H);
-  const custom = new Map<string, string[]>();
   const role = new Map<string, string>();
-  const free: Shape[] = [];
-  objects.forEach((object, index) => {
-    const name = object.attrs["data-group"]?.trim();
-    if (name) {
-      custom.set(name, [...(custom.get(name) ?? []), object.id]);
-      return;
-    }
-    const shape = shapeOf(object, index);
-    if (shape) free.push(shape);
-  });
+  // 역할 어림은 사용자가 옮긴 요소까지 다 본다 — 화살촉 하나를 옮겼다고 축이 안 서면 나머지 묶음이 흔들린다.
+  const free: Shape[] = objects.flatMap(
+    (object, index) => shapeOf(object, index) ?? [],
+  );
 
   // 축 — 곧고 긴 실선. 둘이 만나고, 화살촉·눈금 중 하나는 있어야 축이다(세로 높이선이 곧다고 축이 아니다).
   const solidLines = free.filter((s) => s.line && !s.dashed);
@@ -233,6 +230,11 @@ export function groupFigureObjects(
       continue;
     }
     if (o.type === "text") {
+      // 점을 글자(●)로 찍은 그림이 있다 — 원장님 그림의 꺾은점 여섯이 «글자»·«축 이름»으로 묶였다(2026-09-18).
+      if (DOT.test(label(o))) {
+        role.set(o.id, "점");
+        continue;
+      }
       if (!graph) continue;
       const [x, y] = [s.box.x1, s.box.y1];
       const beside = axes.some(([axis, name]) => {
@@ -275,15 +277,9 @@ export function groupFigureObjects(
       role.set(o.id, "그래프");
   }
 
-  const groups: FigureObjectGroup[] = [...custom].map(([name, ids]) => ({
-    key: `custom:${name}`,
-    name,
-    custom: true,
-    ids,
-  }));
   const auto = new Map<string, FigureObjectGroup>();
   objects.forEach((object) => {
-    if (object.attrs["data-group"]?.trim()) return;
+    if (object.attrs["data-group"] !== undefined) return;
     const name =
       role.get(object.id) ??
       (object.attrs["data-function"]
@@ -296,5 +292,42 @@ export function groupFigureObjects(
     if (group) group.ids.push(object.id);
     else auto.set(key, { key, name, custom: false, ids: [object.id] });
   });
-  return [...groups, ...auto.values()];
+  const custom = new Map<string, FigureObjectGroup>();
+  const loose: string[] = [];
+  objects.forEach((object) => {
+    const name = object.attrs["data-group"]?.trim();
+    if (name === undefined) return;
+    if (!name) {
+      loose.push(object.id);
+      return;
+    }
+    const match = [...auto.values()].find((group) => group.name === name);
+    if (match) match.ids.push(object.id);
+    else if (custom.has(name)) custom.get(name)!.ids.push(object.id);
+    else
+      custom.set(name, {
+        key: `custom:${name}`,
+        name,
+        custom: true,
+        ids: [object.id],
+      });
+  });
+  const order = new Map(objects.map((object, index) => [object.id, index]));
+  for (const group of auto.values())
+    group.ids.sort((a, b) => order.get(a)! - order.get(b)!);
+  return [
+    ...custom.values(),
+    ...auto.values(),
+    ...(loose.length
+      ? [
+          {
+            key: "loose",
+            name: "묶음 없음",
+            custom: false,
+            loose: true,
+            ids: loose,
+          },
+        ]
+      : []),
+  ];
 }

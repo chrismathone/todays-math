@@ -1,4 +1,4 @@
-import { memo, useRef, useState } from "react";
+import { memo, useRef, useState, type DragEvent } from "react";
 import type { figureObjects } from "./figureSvgEditing";
 import { figureLabelSummary, isFigureMathLabel } from "./FigureLabelInput";
 import { NAMES } from "./figureObjectNames";
@@ -14,6 +14,13 @@ const listLabel = (o: FigureObject) =>
       : (NAMES[o.type] ?? o.type);
 const groupsKey = (groups: FigureObjectGroup[]) =>
   groups.map((g) => `${g.key}:${g.ids.join(",")}`).join("|");
+const LOOSE: FigureObjectGroup = {
+  key: "loose",
+  name: "묶음 없음",
+  custom: false,
+  loose: true,
+  ids: [],
+};
 
 interface Props {
   objects: FigureObject[];
@@ -21,11 +28,11 @@ interface Props {
   selectedIds: string[];
   onPick: (id: string, additive: boolean) => void;
   onPickGroup: (ids: string[], additive: boolean) => void;
-  /** 사용자 묶음 — 선택을 넣기 · 이름 바꾸기(빈 이름은 풀기). */
-  onAddToGroup: (name: string) => void;
-  onRenameGroup: (from: string, to: string) => void;
+  /** 묶음 정하기 — 이름(옮기기·이름 바꾸기) · ""(해제 — 묶음 밖) · null(자동 묶음으로). */
+  onAssign: (ids: string[], name: string | null) => void;
+  /** 이름을 고치는 중인 묶음의 key. */
   renaming: string | null;
-  onRenaming: (name: string | null) => void;
+  onRenaming: (key: string | null) => void;
 }
 
 function RenameInput({
@@ -68,8 +75,11 @@ function RenameInput({
 
 /**
  * 요소 목록 — **역할로 묶어** 보인다(축 · 그래프 · 눈금 · 눈금 숫자 …, `figureObjectGroups.ts`).
- * 묶음 이름을 누르면 그 요소가 한꺼번에 선택되고(Shift 로 더하기), 사용자가 묶음을 만들어 이름을 붙일 수 있다
- * (원장님 2026-09-18 «역할별로 묶고 사용자 커스텀도 가능하게»).
+ * 원장님 2026-09-18: «역할별로 묶고 사용자 커스텀도 가능하게» · «드래그해서 다른 묶음으로 이동» ·
+ * «묶음 선택 후 공통 서식»(오른쪽 칸 — `FigureCommonFormat`) · «묶음 해제 — 해제하면 전부 묶음 밖으로».
+ * - 묶음 이름을 누르면 그 요소가 모두 선택된다(Shift 로 더하기·빼기). 고른 묶음에 «이름»·«해제»가 선다.
+ * - 요소 단추를 다른 묶음 위로 끌어 놓으면 옮겨진다. 고른 요소 위에서 끌면 고른 것이 다 간다.
+ *   «묶음 없음» 칸(끄는 동안 늘 보인다)에 놓으면 묶음 밖으로.
  * 끄는 동안 원문이 걸음마다 새로 읽혀도 **이름·순서·묶음이 같으면 다시 그리지 않는다**(2026-09-18 끊김).
  */
 export const FigureObjectList = memo(
@@ -79,14 +89,23 @@ export const FigureObjectList = memo(
     selectedIds,
     onPick,
     onPickGroup,
-    onAddToGroup,
-    onRenameGroup,
+    onAssign,
     renaming,
     onRenaming,
   }: Props) {
     const [collapsed, setCollapsed] = useState<string[]>([]);
+    const dragIds = useRef<string[] | null>(null);
+    const [dragging, setDragging] = useState(false);
+    const [over, setOver] = useState<string | null>(null);
     const numberOf = new Map(objects.map((o, n) => [o.id, n + 1]));
     const byId = new Map(objects.map((o) => [o.id, o]));
+    const endDrag = () => {
+      dragIds.current = null;
+      setDragging(false);
+      setOver(null);
+    };
+    const shown =
+      dragging && !groups.some((g) => g.loose) ? [...groups, LOOSE] : groups;
     const chip = (o: FigureObject, short: string) => {
       const selected = selectedIds.includes(o.id);
       return (
@@ -95,7 +114,17 @@ export const FigureObjectList = memo(
           key={o.id}
           data-figure-list-number={numberOf.get(o.id)}
           aria-pressed={selected}
-          title={listLabel(o)}
+          title={`${listLabel(o)} · 끌어서 다른 묶음으로`}
+          draggable
+          onDragStart={(event) => {
+            const ids =
+              selected && selectedIds.length > 1 ? selectedIds : [o.id];
+            dragIds.current = ids;
+            event.dataTransfer.effectAllowed = "move";
+            event.dataTransfer.setData("text/plain", ids.join(" "));
+            setDragging(true);
+          }}
+          onDragEnd={endDrag}
           onClick={(event) =>
             onPick(o.id, event.shiftKey || event.ctrlKey || event.metaKey)
           }
@@ -110,53 +139,78 @@ export const FigureObjectList = memo(
         </button>
       );
     };
+    const dropProps = (g: FigureObjectGroup) => ({
+      onDragOver: (event: DragEvent) => {
+        if (!dragIds.current) return;
+        event.preventDefault();
+        event.dataTransfer.dropEffect = "move";
+        if (over !== g.key) setOver(g.key);
+      },
+      onDragLeave: (event: DragEvent) => {
+        if (!event.currentTarget.contains(event.relatedTarget as Node | null))
+          setOver((key) => (key === g.key ? null : key));
+      },
+      onDrop: (event: DragEvent) => {
+        event.preventDefault();
+        const ids = dragIds.current?.filter((id) => !g.ids.includes(id));
+        endDrag();
+        if (ids?.length) onAssign(ids, g.loose ? "" : g.name);
+      },
+    });
     return (
       <div className="flex flex-wrap items-start gap-x-2 gap-y-1.5">
-        {groups.map((g) => {
+        {shown.map((g) => {
           const folded = collapsed.includes(g.key);
-          const all = g.ids.every((id) => selectedIds.includes(id));
-          const adding =
-            g.custom &&
-            selectedIds.length > 0 &&
-            selectedIds.some((id) => !g.ids.includes(id));
+          const all =
+            g.ids.length > 0 && g.ids.every((id) => selectedIds.includes(id));
           const members = g.ids.flatMap((id) => byId.get(id) ?? []);
           const labels = members.map(listLabel);
           // 묶음 이름이 말해 주는 것은 단추에서 뺀다 — 모두 글이면 내용만, 모두 같은 종류면 번호만.
           const short = (o: FigureObject, i: number) =>
-            members.every((m) => m.type === "text")
-              ? figureLabelSummary(o.attrs["data-mj"] ?? o.text)
-              : labels.every((l) => l === labels[0])
-                ? ""
-                : labels[i];
+            g.loose
+              ? labels[i]
+              : members.every((m) => m.type === "text")
+                ? figureLabelSummary(o.attrs["data-mj"] ?? o.text)
+                : labels.every((l) => l === labels[0])
+                  ? ""
+                  : labels[i];
+          const tone = g.loose
+            ? "border border-dashed border-control"
+            : g.custom
+              ? "bg-[var(--figure-accent-soft)]"
+              : "bg-[var(--side)]";
           return (
             <div
               key={g.key}
               role="group"
               aria-label={`${g.name} 묶음`}
-              className={`flex max-w-full flex-wrap items-center gap-1 rounded-md py-0.5 pl-0.5 pr-1 ${g.custom ? "bg-[var(--figure-accent-soft)]" : "bg-[var(--side)]"}`}
+              {...dropProps(g)}
+              className={`flex max-w-full flex-wrap items-center gap-1 rounded-md py-0.5 pl-0.5 pr-1 ${tone} ${over === g.key ? "ring-2 ring-[var(--figure-primary)]" : ""}`}
             >
-              <button
-                type="button"
-                aria-label={`${g.name} ${folded ? "펼치기" : "접기"}`}
-                aria-expanded={!folded}
-                onClick={() =>
-                  setCollapsed((keys) =>
-                    folded
-                      ? keys.filter((key) => key !== g.key)
-                      : [...keys, g.key],
-                  )
-                }
-                className="grid h-6 w-4 shrink-0 place-items-center rounded text-[9px] text-muted hover:bg-white"
-              >
-                {folded ? "▶" : "▼"}
-              </button>
-              {renaming === g.name && g.custom ? (
+              {!g.loose && (
+                <button
+                  type="button"
+                  aria-label={`${g.name} ${folded ? "펼치기" : "접기"}`}
+                  aria-expanded={!folded}
+                  onClick={() =>
+                    setCollapsed((keys) =>
+                      folded
+                        ? keys.filter((key) => key !== g.key)
+                        : [...keys, g.key],
+                    )
+                  }
+                  className="grid h-6 w-4 shrink-0 place-items-center rounded text-[9px] text-muted hover:bg-white"
+                >
+                  {folded ? "▶" : "▼"}
+                </button>
+              )}
+              {renaming === g.key ? (
                 <span className="w-28">
                   <RenameInput
                     name={g.name}
                     onDone={(to) => {
                       onRenaming(null);
-                      if (to && to !== g.name) onRenameGroup(g.name, to);
+                      if (to && to !== g.name) onAssign(g.ids, to);
                     }}
                   />
                 </span>
@@ -166,6 +220,7 @@ export const FigureObjectList = memo(
                   aria-pressed={all}
                   aria-label={`${g.name} ${g.ids.length}개`}
                   title="묶음 요소를 모두 선택 · Shift+클릭으로 더하기"
+                  disabled={!g.ids.length}
                   onClick={(event) =>
                     onPickGroup(
                       g.ids,
@@ -180,34 +235,35 @@ export const FigureObjectList = memo(
                   </span>
                 </button>
               )}
+              {!g.ids.length && (
+                <span className="px-1 text-xs text-muted">
+                  여기에 놓으면 묶음 밖으로
+                </span>
+              )}
               {!folded && members.map((o, i) => chip(o, short(o, i)))}
-              {g.custom && renaming !== g.name && (
+              {all && renaming !== g.key && (
                 <>
-                  {adding && (
+                  {!g.loose && (
                     <button
                       type="button"
-                      aria-label={`선택한 요소를 ${g.name}에 넣기`}
-                      onClick={() => onAddToGroup(g.name)}
+                      aria-label={`${g.name} 이름 바꾸기`}
+                      onClick={() => onRenaming(g.key)}
                       className="rounded px-1 py-0.5 text-xs text-[var(--figure-accent-ink)] hover:bg-white"
                     >
-                      넣기
+                      이름
                     </button>
                   )}
                   <button
                     type="button"
-                    aria-label={`${g.name} 이름 바꾸기`}
-                    onClick={() => onRenaming(g.name)}
-                    className="rounded px-1 py-0.5 text-xs text-muted hover:bg-white"
+                    aria-label={
+                      g.loose
+                        ? "묶음 없는 요소 자동 묶기"
+                        : `${g.name} 묶음 해제`
+                    }
+                    onClick={() => onAssign(g.ids, g.loose ? null : "")}
+                    className="rounded px-1 py-0.5 text-xs text-[var(--figure-accent-ink)] hover:bg-white"
                   >
-                    이름
-                  </button>
-                  <button
-                    type="button"
-                    aria-label={`${g.name} 묶음 풀기`}
-                    onClick={() => onRenameGroup(g.name, "")}
-                    className="rounded px-1 py-0.5 text-xs text-muted hover:bg-white"
-                  >
-                    풀기
+                    {g.loose ? "자동 묶기" : "해제"}
                   </button>
                 </>
               )}
@@ -222,8 +278,7 @@ export const FigureObjectList = memo(
     a.renaming === b.renaming &&
     a.onPick === b.onPick &&
     a.onPickGroup === b.onPickGroup &&
-    a.onAddToGroup === b.onAddToGroup &&
-    a.onRenameGroup === b.onRenameGroup &&
+    a.onAssign === b.onAssign &&
     a.onRenaming === b.onRenaming &&
     groupsKey(a.groups) === groupsKey(b.groups) &&
     a.objects.length === b.objects.length &&
