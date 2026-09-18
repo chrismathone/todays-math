@@ -1,12 +1,14 @@
 import type { PointerEvent } from "react";
 import type { FigureHandle } from "./figureHandles";
+import { isMoveHandle } from "./figureSizeLock";
 
 export function FigureSelectionOverlay({
   selection,
-  handles,
+  handles: allHandles,
   currentType,
   viewBox,
   busy,
+  sizeLocked = false,
   onHandleDown,
 }: {
   selection: { matrix: DOMMatrix; bounds: DOMRect; scale: number };
@@ -14,8 +16,13 @@ export function FigureSelectionOverlay({
   currentType?: string;
   viewBox: number[];
   busy: boolean;
+  /** 크기 고정 — 크기·모양을 바꾸는 점은 그리지 않는다(누를 수 있어 보이면 안 된다). 옮기기만 하는 점은 남긴다. */
+  sizeLocked?: boolean;
   onHandleDown: (event: PointerEvent, handle: string) => void;
 }) {
+  const handles = sizeLocked
+    ? allHandles.filter((h) => isMoveHandle(h.key))
+    : allHandles;
   const at = (x: number, y: number) =>
     new DOMPoint(x, y).matrixTransform(selection.matrix);
   const b = selection.bounds;
@@ -27,7 +34,7 @@ export function FigureSelectionOverlay({
   ];
   const controls = handles.length
     ? handles
-    : currentType !== "text"
+    : currentType !== "text" && !sizeLocked
       ? corners.map(([x, y], i) => ({
           key: `resize-${i}`,
           x,
