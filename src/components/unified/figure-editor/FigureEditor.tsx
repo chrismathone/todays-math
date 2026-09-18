@@ -54,6 +54,7 @@ import { FigureGroupRow } from "./FigureGroupRow";
 import { FigureCommonFormat } from "./FigureCommonFormat";
 import { NAMES } from "./figureObjectNames";
 import { FIGURE_SYMBOL_GROUPS } from "./figureSymbols";
+import { TEXT_BG_ATTR } from "./figureTextBackground";
 import { FunctionGraphInput } from "./FunctionGraphInput";
 import type { FunctionGraphConfig } from "./functionGraph";
 import {
@@ -1458,6 +1459,35 @@ export function FigureEditor({
                     }
                   />
                 </label>
+                {current.type === "text" && (
+                  // 글자 배경색 — 도형의 «채우기 / 채우기 없애기»와 같은 모양(원장님 2026-09-19).
+                  <>
+                    <label className="flex items-center justify-between">
+                      배경색
+                      <input
+                        type="color"
+                        aria-label="글자 배경색"
+                        value={
+                          /^#[\da-f]{6}$/i.test(
+                            current.attrs[TEXT_BG_ATTR] ?? "",
+                          )
+                            ? current.attrs[TEXT_BG_ATTR]
+                            : "#ffffff"
+                        }
+                        onChange={(e) =>
+                          change({ [TEXT_BG_ATTR]: e.target.value })
+                        }
+                      />
+                    </label>
+                    <button
+                      type="button"
+                      onClick={() => change({ [TEXT_BG_ATTR]: "" })}
+                      className="underline text-muted"
+                    >
+                      배경 없애기
+                    </button>
+                  </>
+                )}
                 <label className="block">
                   <span className="flex justify-between">
                     {current.type === "text" ? "글자 크기" : "선 두께"}

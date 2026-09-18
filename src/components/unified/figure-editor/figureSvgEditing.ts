@@ -16,7 +16,7 @@ const STYLE_PROPERTIES = new Set(
   ),
 );
 const METADATA =
-  /^data-(?:mj|function|function-viewbox|mathgen-clipboard|label|anchor|halo|x|y|base|px|py|fs|w|a|d|group|size-locked)$/;
+  /^data-(?:mj|function|function-viewbox|mathgen-clipboard|label|anchor|halo|x|y|base|px|py|fs|w|a|d|group|size-locked|text-bg)$/;
 const safeValue = (value: string) =>
   !/[\\<>@\u0000-\u001f]/.test(value) &&
   !/(?:javascript|vbscript|data|https?|file)\s*:|\/\*|expression\s*\(/i.test(

@@ -1,4 +1,25 @@
 import { SVG_NS, cleanFigureForSave } from "./figureSvgEditing";
+import {
+  labelBackground,
+  plainTextBackground,
+  textBackgroundColor,
+} from "./figureTextBackground";
+
+/**
+ * 조판하지 못한 글자(`<text>` 그대로)에 배경색이 있으면 — 조판한 라벨처럼 묶음(`<g>`)에 싸고 뒤에 사각형을 둔다.
+ * 요소 아이디·자리(transform)는 묶음으로 옮긴다(끌기 미리보기·조판 이어 쓰기가 조판한 라벨과 같은 모양을 본다).
+ */
+function wrapPlainText(doc: Document, node: Element, color: string) {
+  const wrapper = doc.createElementNS(SVG_NS, "g");
+  for (const name of ["data-object-id", "transform"]) {
+    const value = node.getAttribute(name);
+    if (value === null) continue;
+    wrapper.setAttribute(name, value);
+    node.removeAttribute(name);
+  }
+  node.replaceWith(wrapper);
+  wrapper.append(plainTextBackground(doc, node, color), node);
+}
 
 const color = (value: string | null, fallback: string) =>
   /^#[\da-f]{3}(?:[\da-f]{3})?$/i.test(value ?? "")
@@ -20,13 +41,17 @@ export async function typesetFigureSvg(
     const { typesetLabel, placeLabel } = await import("./mathjaxLabel");
     for (const node of nodes) {
       const text = node.getAttribute("data-mj") ?? node.textContent ?? "";
+      const background = textBackgroundColor(node);
       const weight = node.getAttribute("font-weight") ?? "400";
       const laid = typesetLabel(
         text,
         weight === "bold" || Number(weight) >= 600,
         node.getAttribute("font-style") === "italic",
       );
-      if (!laid) continue;
+      if (!laid) {
+        if (background) wrapPlainText(doc, node, background);
+        continue;
+      }
       const width = Number(node.getAttribute("stroke-width"));
       const anchor = node.getAttribute("text-anchor");
       const fragment = placeLabel(
@@ -46,7 +71,10 @@ export async function typesetFigureSvg(
           ),
         },
       );
-      if (!fragment) continue;
+      if (!fragment) {
+        if (background) wrapPlainText(doc, node, background);
+        continue;
+      }
       const parsed = new DOMParser().parseFromString(
         `<svg xmlns="${SVG_NS}">${fragment}</svg>`,
         "image/svg+xml",
@@ -54,6 +82,8 @@ export async function typesetFigureSvg(
       const wrapper = doc.createElementNS(SVG_NS, "g");
       for (const child of [...parsed.documentElement.childNodes])
         wrapper.append(doc.importNode(child, true));
+      const label = background && wrapper.querySelector("[data-label]");
+      if (label) wrapper.prepend(labelBackground(doc, label, background));
       if (node.hasAttribute("transform"))
         wrapper.setAttribute("transform", node.getAttribute("transform")!);
       if (preserveObjectIds && node.hasAttribute("data-object-id"))

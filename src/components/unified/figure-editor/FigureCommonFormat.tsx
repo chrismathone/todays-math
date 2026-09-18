@@ -1,4 +1,5 @@
 import type { figureObjects } from "./figureSvgEditing";
+import { TEXT_BG_ATTR } from "./figureTextBackground";
 
 type FigureObject = ReturnType<typeof figureObjects>[number];
 
@@ -34,6 +35,7 @@ export function FigureCommonFormat({
   );
   const fill = common(fillable, "fill", "none");
   const textColor = common(texts, "fill", "#111111");
+  const textBackground = common(texts, TEXT_BG_ATTR, "none");
   const size = common(texts, "font-size", "18");
   const italic = texts.every((o) => o.attrs["font-style"] === "italic");
   const bold = texts.every((o) => o.attrs["font-weight"] === "bold");
@@ -121,6 +123,26 @@ export function FigureCommonFormat({
               onChange={(e) => onChange(ids(texts), { fill: e.target.value })}
             />
           </label>
+          <div className="flex items-center justify-between gap-2">
+            <label className="flex items-center gap-2">
+              <span>배경색 {textBackground === null && mixed}</span>
+              <input
+                type="color"
+                aria-label="고른 글자 배경색"
+                value={colorOf(textBackground, "#ffffff")}
+                onChange={(e) =>
+                  onChange(ids(texts), { [TEXT_BG_ATTR]: e.target.value })
+                }
+              />
+            </label>
+            <button
+              type="button"
+              onClick={() => onChange(ids(texts), { [TEXT_BG_ATTR]: "" })}
+              className="underline text-muted"
+            >
+              배경 없애기
+            </button>
+          </div>
           <label className="block">
             <span className="flex justify-between">
               글자 크기
