@@ -173,9 +173,15 @@ function LibraryItem({
   const [name, setName] = useState(item.title);
   const [busy, setBusy] = useState(false);
   const [error, setError] = useState("");
+  const renameButton = useRef<HTMLButtonElement>(null);
   const deleteButton = useRef<HTMLButtonElement>(null);
-  // 삭제 확인은 겹쳐 뜨는 창이다 — 그동안의 처리 중·오류는 창 안에 보이고 카드에는 안 붙는다.
-  const confirming = action === "delete";
+  // 이름 변경·삭제 확인은 겹쳐 뜨는 창이다 — 그동안의 처리 중·오류는 창 안에 보이고 카드에는
+  // 안 붙는다(카드 높이 불변). 카드에 남는 것은 «열기»의 처리 중·오류뿐이다.
+  const dialogOpen = action !== null;
+  const closeDialog = () => {
+    setAction(null);
+    setError("");
+  };
   const perform = async (work: () => Promise<void>) => {
     setBusy(true);
     setError("");
@@ -209,10 +215,12 @@ function LibraryItem({
           </button>
         )}
         <button
+          ref={renameButton}
           aria-label={`${item.title} 이름 변경`}
           disabled={busy}
           onClick={() => {
             setName(item.title);
+            setError("");
             setAction("rename");
           }}
         >
@@ -231,41 +239,29 @@ function LibraryItem({
         </button>
       </div>
       {action === "rename" && (
-        <form
-          onSubmit={(event) => {
-            event.preventDefault();
+        <ConfirmDialog
+          title="이름 변경"
+          field={{
+            label: "새 자료 이름",
+            value: name,
+            maxLength: item.kind === "draft" ? 80 : 200,
+            onChange: setName,
+          }}
+          confirmLabel="이름 저장"
+          busy={busy}
+          error={error}
+          returnFocus={renameButton}
+          onConfirm={() =>
             void perform(async () => {
               onChanged(
                 await client.rename(item.id, name.trim(), item.revision),
               );
-            });
-          }}
-        >
-          <label>
-            새 자료 이름
-            <input
-              value={name}
-              onChange={(event) => setName(event.target.value)}
-              maxLength={item.kind === "draft" ? 80 : 200}
-              required
-              autoFocus
-            />
-          </label>
-          <div className={s.actions}>
-            <button disabled={busy || !name.trim()} type="submit">
-              이름 저장
-            </button>
-            <button
-              disabled={busy}
-              type="button"
-              onClick={() => setAction(null)}
-            >
-              취소
-            </button>
-          </div>
-        </form>
+            })
+          }
+          onCancel={closeDialog}
+        />
       )}
-      {confirming && (
+      {action === "delete" && (
         <ConfirmDialog
           title={`‘${item.title}’ 자료를 삭제할까요?`}
           confirmLabel="삭제 확인"
@@ -279,14 +275,11 @@ function LibraryItem({
               onChanged();
             })
           }
-          onCancel={() => {
-            setAction(null);
-            setError("");
-          }}
+          onCancel={closeDialog}
         />
       )}
-      {busy && !confirming && <small role="status">처리 중…</small>}
-      {error && !confirming && (
+      {busy && !dialogOpen && <small role="status">처리 중…</small>}
+      {error && !dialogOpen && (
         <p className={s.error} role="alert">
           {error}
         </p>

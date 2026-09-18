@@ -19,11 +19,13 @@ export default function SavedWorksheetActions({
 }) {
   const [action, setAction] = useState<"rename" | "delete" | null>(null);
   const [name, setName] = useState(title);
+  const renameButton = useRef<HTMLButtonElement>(null);
   const deleteButton = useRef<HTMLButtonElement>(null);
   return (
     <div className={s.savedActions}>
       <div className={s.savedActionButtons}>
         <button
+          ref={renameButton}
           type="button"
           aria-label={`${title} 이름 변경`}
           onClick={() => {
@@ -47,35 +49,25 @@ export default function SavedWorksheetActions({
           삭제
         </button>
       </div>
+      {/* 이름 변경·삭제 확인은 카드 안에 펼치지 않고 겹쳐 뜨는 창으로 — 카드 높이가 변하지 않는다(2026-09-19). */}
       {action === "rename" && (
-        <form
-          onSubmit={(event) => {
-            event.preventDefault();
+        <ConfirmDialog
+          title="이름 변경"
+          field={{
+            label: "새 시험지 이름",
+            value: name,
+            maxLength: 80,
+            onChange: setName,
+          }}
+          confirmLabel="이름 저장"
+          error={error}
+          returnFocus={renameButton}
+          onConfirm={() => {
             if (onRename(name)) setAction(null);
           }}
-        >
-          <label>
-            새 시험지 이름
-            <input
-              aria-label="새 시험지 이름"
-              value={name}
-              onChange={(event) => setName(event.target.value)}
-              maxLength={80}
-              required
-              autoFocus
-            />
-          </label>
-          <div className={s.savedActionButtons}>
-            <button type="submit" disabled={!name.trim()}>
-              이름 저장
-            </button>
-            <button type="button" onClick={() => setAction(null)}>
-              취소
-            </button>
-          </div>
-        </form>
+          onCancel={() => setAction(null)}
+        />
       )}
-      {/* 삭제 확인은 카드 안에 펼치지 않고 겹쳐 뜨는 창으로 — 카드 높이가 변하지 않는다(2026-09-19). */}
       {action === "delete" && (
         <ConfirmDialog
           title={`‘${title}’ 시험지를 삭제할까요?`}
@@ -93,7 +85,6 @@ export default function SavedWorksheetActions({
           onCancel={() => setAction(null)}
         />
       )}
-      {action === "rename" && error && <p role="alert">{error}</p>}
     </div>
   );
 }
