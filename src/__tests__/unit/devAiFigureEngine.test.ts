@@ -175,7 +175,11 @@ describe("real local Python subscription figure pipeline", () => {
     );
     const result = await redrawDevAiFigure(input);
     expect(run).toHaveBeenCalledTimes(6);
-    expect(run.mock.calls.map(([args]) => args.phase)).toEqual([
+    expect(
+      run.mock.calls.map(([args]) =>
+        args.prompt.includes("<rendered-spec-data>") ? "review" : "generate",
+      ),
+    ).toEqual([
       "generate",
       "review",
       "generate",
