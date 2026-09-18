@@ -9,7 +9,7 @@ import {
   useState,
 } from "react";
 import { createPortal } from "react-dom";
-import { ModalShell, Btn } from "./editorUi";
+import { ModalShell, Btn, formatToggleClass, isBoldWeight } from "./editorUi";
 import styles from "./StudioFigureEditor.module.css";
 import type { StudioFigureEditorProps } from "./types";
 import { initialFigureSource, createFigureSaveResult } from "./figureDocument";
@@ -244,13 +244,16 @@ export function FigureEditor({
     (!/^data:image\/svg|^\s*<svg/i.test(image) ? image : undefined);
   const objects = useMemo(() => figureObjects(svg), [svg]);
   const current = objects.find((o) => o.id === selected);
-  const currentLocked = !!current && isSizeLocked(current);
-  const lockState = sizeLockState(objects);
   const handles = useMemo(
     () =>
       current && !current.attrs["data-function"] ? figureHandles(current) : [],
     [current],
   );
+  const currentLocked = !!current && isSizeLocked(current);
+  // 기울임·굵게 단추의 켜짐 — 그 글자 요소의 실제 속성(조판이 읽는 것과 같은 속성).
+  const currentItalic = current?.attrs["font-style"] === "italic";
+  const currentBold = isBoldWeight(current?.attrs["font-weight"]);
+  const lockState = sizeLockState(objects);
   let currentFunction: FunctionGraphConfig | undefined;
   try {
     currentFunction = current?.attrs["data-function"]
@@ -1033,7 +1036,7 @@ export function FigureEditor({
                   if (t.id !== "select" && t.id !== "pan") setSelected(null);
                 }}
                 disabled={busy}
-                className={`px-2 py-1.5 text-xs rounded ${tool === t.id ? PRESSED : "hover:bg-side"}`}
+                className={`px-2 py-1.5 text-xs rounded ${!addingFunction && tool === t.id ? PRESSED : "hover:bg-side"}`}
               >
                 <span aria-hidden="true" className="text-base mr-1">
                   {t.glyph}
@@ -1051,7 +1054,7 @@ export function FigureEditor({
                 setAddingFunction(true);
               }}
               disabled={busy}
-              className="px-2 py-1.5 text-xs rounded hover:bg-[var(--figure-accent-soft)]"
+              className={`px-2 py-1.5 text-xs rounded ${addingFunction ? PRESSED : "hover:bg-[var(--figure-accent-soft)]"}`}
             >
               ƒ 함수
             </button>
@@ -1407,13 +1410,11 @@ export function FigureEditor({
                   <div className="flex gap-2">
                     <button
                       type="button"
-                      className="border border-control rounded px-2 py-1"
+                      aria-pressed={currentItalic}
+                      className={formatToggleClass(currentItalic)}
                       onClick={() =>
                         change({
-                          "font-style":
-                            current.attrs["font-style"] === "italic"
-                              ? "normal"
-                              : "italic",
+                          "font-style": currentItalic ? "normal" : "italic",
                         })
                       }
                     >
@@ -1421,13 +1422,11 @@ export function FigureEditor({
                     </button>
                     <button
                       type="button"
-                      className="border border-control rounded px-2 py-1 font-bold"
+                      aria-pressed={currentBold}
+                      className={`${formatToggleClass(currentBold)} font-bold`}
                       onClick={() =>
                         change({
-                          "font-weight":
-                            current.attrs["font-weight"] === "bold"
-                              ? "normal"
-                              : "bold",
+                          "font-weight": currentBold ? "normal" : "bold",
                         })
                       }
                     >
