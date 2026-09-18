@@ -5,10 +5,18 @@ import remarkGfm from "remark-gfm";
 import remarkBreaks from "remark-breaks";
 import rehypeRaw from "rehype-raw";
 import { parseBoxCols, resolveCols } from "./boxGrid";
-import { parseImageTitle, preprocessMathText, wrapBareConditionBoxes } from "./textPreprocess";
+import {
+  parseImageTitle,
+  preprocessMathText,
+  wrapBareConditionBoxes,
+} from "./textPreprocess";
 import { renderKatexSafe } from "./katexRender";
 import { splitMathSegments } from "./mathSegments";
-import { groupFigureRows, assignBoxesByReadingOrder, type FigBox } from "./figureLayout";
+import {
+  groupFigureRows,
+  assignBoxesByReadingOrder,
+  type FigBox,
+} from "./figureLayout";
 import { SourceFigureSvg } from "./SourceFigureSvg";
 
 /**
@@ -204,7 +212,8 @@ const renderChoiceRowOrNull = (
 ): React.ReactNode | null => {
   const markers = ["①", "②", "③", "④", "⑤"] as const;
   type Marker = (typeof markers)[number];
-  const isMarker = (s: string): s is Marker => (markers as readonly string[]).includes(s);
+  const isMarker = (s: string): s is Marker =>
+    (markers as readonly string[]).includes(s);
 
   const slots: React.ReactNode[][] = [[], [], [], [], []];
   const leading: React.ReactNode[] = [];
@@ -229,14 +238,15 @@ const renderChoiceRowOrNull = (
           // since the marker already prints itself with a non-breaking space.
           const trimmed = currentSlot >= 0 ? part.replace(/^\s+/, "") : part;
           if (trimmed.length > 0) slots[currentSlot].push(trimmed);
-        }
-        else if (part.trim()) leading.push(part);
+        } else if (part.trim()) leading.push(part);
       }
     } else if (currentSlot >= 0) {
       // Non-text child (KaTeX math, image, etc.) — append to current slot,
       // assigning a unique key so React doesn't warn about duplicates.
       const node = React.isValidElement(child)
-        ? React.cloneElement(child as React.ReactElement, { key: `c-${inheritedKey++}` })
+        ? React.cloneElement(child as React.ReactElement, {
+            key: `c-${inheritedKey++}`,
+          })
         : child;
       slots[currentSlot].push(node);
     } else {
@@ -252,14 +262,18 @@ const renderChoiceRowOrNull = (
   const { cols, layoutClass } = resolveChoiceGrid(layout, anyTall, maxLen);
 
   return (
-    <>{leading.length > 0 && <p>{leading}</p>}<div className={`choice-row cols-${cols} ${layoutClass}`}>
-      {slots.map((s, i) => (
-        <span key={i} className="choice">
-          <span className="choice-marker">{markers[i]}</span>
-          {s}
-        </span>
-      ))}
-    </div></>
+    <>
+      {leading.length > 0 && <p>{leading}</p>}
+      <div className={`choice-row cols-${cols} ${layoutClass}`}>
+        {slots.map((s, i) => (
+          <span key={i} className="choice">
+            <span className="choice-marker">{markers[i]}</span>
+            {/* 내용은 한 상자 — 안 싸면 글·수식·글이 각각 격자 칸이 되어 수식에서 줄이 끊긴다(2026-09-18). */}
+            <span className="choice-body">{s}</span>
+          </span>
+        ))}
+      </div>
+    </>
   );
 };
 
@@ -341,11 +355,19 @@ const TALL_LATEX_RE =
 
 const prerenderAllKatex = (
   text: string,
-): { content: string; katexMap: Map<string, string>; texMap: Map<string, string> } => {
+): {
+  content: string;
+  katexMap: Map<string, string>;
+  texMap: Map<string, string>;
+} => {
   const map = new Map<string, string>();
   const texMap = new Map<string, string>();
   let nextId = 0;
-  const reserve = (tex: string, kind: "inline" | "block", tall: boolean): string => {
+  const reserve = (
+    tex: string,
+    kind: "inline" | "block",
+    tall: boolean,
+  ): string => {
     const id = String(nextId++);
     texMap.set(id, tex);
     map.set(id, renderKatex(tex, kind === "block"));
@@ -356,8 +378,17 @@ const prerenderAllKatex = (
   };
   // Block math first ($$...$$). Use a tight non-greedy match so we don't
   // accidentally swallow multiple paragraphs.
-  const out = splitMathSegments(text).map(segment => segment.kind === "text" ? segment.value
-    : reserve(segment.value, segment.kind, TALL_LATEX_RE.test(segment.value))).join("");
+  const out = splitMathSegments(text)
+    .map((segment) =>
+      segment.kind === "text"
+        ? segment.value
+        : reserve(
+            segment.value,
+            segment.kind,
+            TALL_LATEX_RE.test(segment.value),
+          ),
+    )
+    .join("");
   return { content: out, katexMap: map, texMap };
 };
 
@@ -416,16 +447,19 @@ const normalizeInlineSvgs = (html: string): string => {
   );
 
   // Pass B — clamp small-dot radii so labels aren't overwhelmed.
-  out = out.replace(/<circle\b([^>]*?)\br\s*=\s*"(\d+(?:\.\d+)?)"/g, (m, pre: string, rStr: string) => {
-    const r = parseFloat(rStr);
-    // Heuristic: a small filled dot has r < 10 and no `fill="none"`. We
-    // only clamp those (so geometry-defining circles like inscribed circles
-    // pass through untouched).
-    if (r > 4 && r < 10 && !/fill\s*=\s*"none"/i.test(pre)) {
-      return m.replace(/\br\s*=\s*"\d+(?:\.\d+)?"/, 'r="3.5"');
-    }
-    return m;
-  });
+  out = out.replace(
+    /<circle\b([^>]*?)\br\s*=\s*"(\d+(?:\.\d+)?)"/g,
+    (m, pre: string, rStr: string) => {
+      const r = parseFloat(rStr);
+      // Heuristic: a small filled dot has r < 10 and no `fill="none"`. We
+      // only clamp those (so geometry-defining circles like inscribed circles
+      // pass through untouched).
+      if (r > 4 && r < 10 && !/fill\s*=\s*"none"/i.test(pre)) {
+        return m.replace(/\br\s*=\s*"\d+(?:\.\d+)?"/, 'r="3.5"');
+      }
+      return m;
+    },
+  );
 
   // Pass C — ensure every <svg> root carries `shape-rendering="geometricPrecision"`.
   // Browsers default to `auto`, which can favour speed over smooth curves;
@@ -438,14 +472,19 @@ const normalizeInlineSvgs = (html: string): string => {
   // namespace fix landed.
   out = out.replace(/<svg(\s[^>]*)?>/g, (_, rawAttrs: string | undefined) => {
     let a = rawAttrs ?? "";
-    if (!/\bshape-rendering\s*=/i.test(a)) a += ' shape-rendering="geometricPrecision"';
+    if (!/\bshape-rendering\s*=/i.test(a))
+      a += ' shape-rendering="geometricPrecision"';
     const hasWidth = /\bwidth\s*=/i.test(a);
     const hasHeight = /\bheight\s*=/i.test(a);
     if (!hasWidth && !hasHeight) {
       const vb = a.match(/\bviewBox\s*=\s*"([^"]+)"/i);
       if (vb) {
         const parts = vb[1].split(/\s+/).map((n) => parseFloat(n));
-        if (parts.length === 4 && Number.isFinite(parts[2]) && Number.isFinite(parts[3])) {
+        if (
+          parts.length === 4 &&
+          Number.isFinite(parts[2]) &&
+          Number.isFinite(parts[3])
+        ) {
           a += ` width="${parts[2]}" height="${parts[3]}"`;
         }
       }
@@ -465,7 +504,9 @@ const normalizeInlineSvgs = (html: string): string => {
   //  - line 개수 3~12 일 때만 (3 미만 = 후보 X, 12 초과 = 복잡 도형 위험)
   //  - degree-1 endpoint 정확히 2 개 (1 개 = 닫힌 도형, 4 개+ = 복잡)
   //  - dangling 간격 < bbox 대각선 60% (멀면 의도된 열린 도형)
-  out = out.replace(/<svg\b[\s\S]*?<\/svg>/g, (svgBlock) => closeOpenPolygons(svgBlock));
+  out = out.replace(/<svg\b[\s\S]*?<\/svg>/g, (svgBlock) =>
+    closeOpenPolygons(svgBlock),
+  );
 
   return out;
 };
@@ -594,15 +635,27 @@ const MarkdownRenderer: React.FC<MarkdownRendererProps> = ({
   const svgPlaceholders = new Map<string, string>();
   const originalSvgs = new Map<string, string>();
   const svgFigureIndices = new Map<string, number>();
-  const figureAction = (index: number | undefined) => index === undefined ? {} : ({
-    "data-figure-index": index,
-    ...(onFigureClick && isFigureEditable?.(index) !== false ? { role: "button", tabIndex: 0, title: `그림 ${index + 1} 편집`,
-      "aria-label": `그림 ${index + 1} 편집${diagramSvgs?.[index]?.label || imageCrops?.[index]?.label ? `: ${diagramSvgs?.[index]?.label || imageCrops?.[index]?.label}` : ""}`,
-      onClick: () => onFigureClick(index),
-      onKeyDown: (event: React.KeyboardEvent) => {
-        if (event.key === "Enter" || event.key === " ") { event.preventDefault(); onFigureClick(index); }
-      } } : {}),
-  });
+  const figureAction = (index: number | undefined) =>
+    index === undefined
+      ? {}
+      : {
+          "data-figure-index": index,
+          ...(onFigureClick && isFigureEditable?.(index) !== false
+            ? {
+                role: "button",
+                tabIndex: 0,
+                title: `그림 ${index + 1} 편집`,
+                "aria-label": `그림 ${index + 1} 편집${diagramSvgs?.[index]?.label || imageCrops?.[index]?.label ? `: ${diagramSvgs?.[index]?.label || imageCrops?.[index]?.label}` : ""}`,
+                onClick: () => onFigureClick(index),
+                onKeyDown: (event: React.KeyboardEvent) => {
+                  if (event.key === "Enter" || event.key === " ") {
+                    event.preventDefault();
+                    onFigureClick(index);
+                  }
+                },
+              }
+            : {}),
+        };
   // Stage 1c(위치 기반 행 배치)용 — placeholder key → full-page box.
   // key = svg 의 data-svg-id (Stage 1) 또는 "img-<idx>" (Stage 1b). box 없으면
   // 미기록 → 행에 편입 안 됨(세로 스택 유지).
@@ -639,7 +692,9 @@ const MarkdownRenderer: React.FC<MarkdownRendererProps> = ({
           ? " diagram-align-center"
           : align === "right"
             ? " diagram-align-right"
-            : align === "left" ? " diagram-align-left" : "";
+            : align === "left"
+              ? " diagram-align-left"
+              : "";
       const sizeStyle = SIZE_STYLE[item.size ?? "full"] ?? SIZE_STYLE.full;
 
       // [그림N] SVGs use the same placeholder mechanism as the inline
@@ -708,7 +763,10 @@ const MarkdownRenderer: React.FC<MarkdownRendererProps> = ({
         // 두면 Stage 1c figure-row 의 flex override 가 불가능해서 클래스로 이전.
         // data-fig-key 로 figureBoxes 와 매칭.
         const tag = `<img src="${im.src}" alt="${alt}" class="diagram-inline-img" data-fig-key="img-${idx}" />`;
-        const line = input.slice(input.lastIndexOf("\n", offset - 1) + 1, offset);
+        const line = input.slice(
+          input.lastIndexOf("\n", offset - 1) + 1,
+          offset,
+        );
         return /[①②③④⑤]|^\s*>/.test(line) ? tag : `\n\n${tag}\n\n`;
       },
     );
@@ -718,8 +776,17 @@ const MarkdownRenderer: React.FC<MarkdownRendererProps> = ({
   // inline svg 도형(마커·box 없던 것)도 위치 획득. figureBoxes(Phase A 크롭 box)를
   // figures[] 권위값으로 덮어씀. figures 없으면 Phase A 크롭 box 만으로 동작.
   if (figures && figures.length > 0) {
-    const indexed = new Set([...svgFigureIndices.values(), ...inlinedImageIndices]);
-    assignBoxesByReadingOrder(svgReplacedContent, figures.filter((_figure, index) => !indexed.has(index)) as ReadonlyArray<{ box: FigBox }>, figureBoxes);
+    const indexed = new Set([
+      ...svgFigureIndices.values(),
+      ...inlinedImageIndices,
+    ]);
+    assignBoxesByReadingOrder(
+      svgReplacedContent,
+      figures.filter((_figure, index) => !indexed.has(index)) as ReadonlyArray<{
+        box: FigBox;
+      }>,
+      figureBoxes,
+    );
   }
 
   // Stage 1c (Phase A): 위치 기반 행 배치. 인접한 figure placeholder 들의 full-page
@@ -746,7 +813,8 @@ const MarkdownRenderer: React.FC<MarkdownRendererProps> = ({
   // Stage 2: normalize LaTeX delimiters, `\dfrac`, unicode → LaTeX commands.
   // The reader may normalize display, but editable tokens must retain the stored
   // formula (including empty fraction fields and explicit math styles).
-  if (!editorTokens) svgReplacedContent = preprocessMathText(svgReplacedContent);
+  if (!editorTokens)
+    svgReplacedContent = preprocessMathText(svgReplacedContent);
 
   // Stage 2.5: pre-render EVERY `$...$` / `$$...$$` to HTML and stash in a Map.
   //
@@ -790,7 +858,10 @@ const MarkdownRenderer: React.FC<MarkdownRendererProps> = ({
       const trimmed = desc.trim();
       const compact = trimmed.replace(/\s+/g, "");
       // 명시적 도형 캡션 + 동작 라벨 아님 → 대시드 박스 (드문 케이스).
-      if (FIGURE_CAPTION_RE.test(trimmed) && !ACTION_LABEL_SUFFIX.test(compact)) {
+      if (
+        FIGURE_CAPTION_RE.test(trimmed) &&
+        !ACTION_LABEL_SUFFIX.test(compact)
+      ) {
         return `<span class="diagram-placeholder">${desc}</span>`;
       }
       // 그 외 모두 일반 텍스트로 보존 (단계/동작/개념 라벨, 수학 구간, 보기 마커).
@@ -832,28 +903,36 @@ const MarkdownRenderer: React.FC<MarkdownRendererProps> = ({
           // √, large parens, etc., so it suffers from the same namespace bug
           // and gets the same treatment.
           div: ({ node, children, ...props }) => {
-            const dataset = node?.properties as Record<string, unknown> | undefined;
+            const dataset = node?.properties as
+              Record<string, unknown> | undefined;
             // Stage 1c: 위치 기반 행 컨테이너 — 자식(svg div / img)을 flex 로 좌우 배치.
             const figRow =
               (dataset?.dataFigureRow as string | undefined) ??
-              ((props as Record<string, unknown>)["data-figure-row"] as string | undefined);
+              ((props as Record<string, unknown>)["data-figure-row"] as
+                string | undefined);
             if (figRow) {
               return <div className="figure-row">{children}</div>;
             }
             const svgId =
               (dataset?.dataSvgId as string | undefined) ??
-              ((props as Record<string, unknown>)["data-svg-id"] as string | undefined);
+              ((props as Record<string, unknown>)["data-svg-id"] as
+                string | undefined);
             if (typeof svgId === "string" && svgPlaceholders.has(svgId)) {
               const classes =
-                (dataset?.dataSvgClasses as string | undefined) ?? "diagram-svg-inline";
-              const styleStr = (dataset?.dataSvgStyle as string | undefined) ?? "";
+                (dataset?.dataSvgClasses as string | undefined) ??
+                "diagram-svg-inline";
+              const styleStr =
+                (dataset?.dataSvgStyle as string | undefined) ?? "";
               // 방어선 — Stage 0 의 normalizeInlineSvgs 가 어떤 이유로
               // width/height 주입에 실패한 케이스 (모델이 emit 한 SVG opener
               // 가 우리 정규식 가정과 미세하게 어긋났을 때) 를 대비해 여기서
               // 한 번 더 확인 + 주입. viewBox 만 있고 width/height 없으면
               // viewBox 값을 그대로 attribute 으로 박는다.
               let svgHtml = svgPlaceholders.get(svgId)!;
-              if (svgHtml.startsWith("<svg") && !/<svg[^>]*\bwidth\s*=/i.test(svgHtml)) {
+              if (
+                svgHtml.startsWith("<svg") &&
+                !/<svg[^>]*\bwidth\s*=/i.test(svgHtml)
+              ) {
                 const vb = svgHtml.match(/<svg[^>]*\bviewBox\s*=\s*"([^"]+)"/i);
                 if (vb) {
                   const parts = vb[1].split(/\s+/).map((n) => parseFloat(n));
@@ -886,73 +965,118 @@ const MarkdownRenderer: React.FC<MarkdownRendererProps> = ({
               // Stage 1c figure-row 멤버면 flex share 적용 (box 폭 비례).
               const flexGrow = dataset?.dataFlexgrow as string | undefined;
               const style: Record<string, unknown> = flexGrow
-                ? { ...baseStyle, flexGrow: Number(flexGrow), flexShrink: 1, flexBasis: 0, minWidth: 0 }
+                ? {
+                    ...baseStyle,
+                    flexGrow: Number(flexGrow),
+                    flexShrink: 1,
+                    flexBasis: 0,
+                    minWidth: 0,
+                  }
                 : baseStyle;
               return (
                 <div
                   data-source-figure-layout
                   className={classes}
-                  style={Object.keys(style).length ? (style as React.CSSProperties) : undefined}
+                  style={
+                    Object.keys(style).length
+                      ? (style as React.CSSProperties)
+                      : undefined
+                  }
                 >
-                  <SourceFigureSvg source={svgHtml}
+                  <SourceFigureSvg
+                    source={svgHtml}
                     {...figureAction(svgFigureIndices.get(svgId))}
-                    data-editor-svg={editorTokens ? encodeURIComponent(originalSvgs.get(svgId) ?? diagramSvgs?.[svgFigureIndices.get(svgId)!]?.svg ?? svgHtml) : undefined}
+                    data-editor-svg={
+                      editorTokens
+                        ? encodeURIComponent(
+                            originalSvgs.get(svgId) ??
+                              diagramSvgs?.[svgFigureIndices.get(svgId)!]
+                                ?.svg ??
+                              svgHtml,
+                          )
+                        : undefined
+                    }
                   />
                 </div>
               );
             }
             const katexId =
               (dataset?.dataKatexId as string | undefined) ??
-              ((props as Record<string, unknown>)["data-katex-id"] as string | undefined);
+              ((props as Record<string, unknown>)["data-katex-id"] as
+                string | undefined);
             if (typeof katexId === "string" && katexPlaceholders.has(katexId)) {
               return (
                 <div
                   className="katex-block-wrap"
-                  data-math-tex={editorTokens ? encodeURIComponent(katexResult.texMap.get(katexId)!) : undefined}
+                  data-math-tex={
+                    editorTokens
+                      ? encodeURIComponent(katexResult.texMap.get(katexId)!)
+                      : undefined
+                  }
                   data-math-display={editorTokens ? "true" : undefined}
-                  dangerouslySetInnerHTML={{ __html: katexPlaceholders.get(katexId)! }}
+                  dangerouslySetInnerHTML={{
+                    __html: katexPlaceholders.get(katexId)!,
+                  }}
                 />
               );
             }
             return <div {...props}>{children}</div>;
           },
           span: ({ node, children, ...props }) => {
-            const dataset = node?.properties as Record<string, unknown> | undefined;
+            const dataset = node?.properties as
+              Record<string, unknown> | undefined;
             const svgId =
               (dataset?.dataSvgId as string | undefined) ??
-              ((props as Record<string, unknown>)["data-svg-id"] as string | undefined);
+              ((props as Record<string, unknown>)["data-svg-id"] as
+                string | undefined);
             if (typeof svgId === "string" && svgPlaceholders.has(svgId)) {
-              const inlineKind = (dataset?.dataSvgInline as string | undefined) ?? "";
+              const inlineKind =
+                (dataset?.dataSvgInline as string | undefined) ?? "";
               const cls = inlineKind.startsWith("bq")
                 ? `diagram-svg-inline-bq${inlineKind.length > 2 ? " " + inlineKind.slice(3) : ""}`
                 : "diagram-svg-inline";
               return (
-                <span
-                  data-source-figure-layout
-                  className={cls}
-                >
-                  <SourceFigureSvg source={svgPlaceholders.get(svgId)!}
+                <span data-source-figure-layout className={cls}>
+                  <SourceFigureSvg
+                    source={svgPlaceholders.get(svgId)!}
                     {...figureAction(svgFigureIndices.get(svgId))}
-                    data-editor-svg={editorTokens ? encodeURIComponent(originalSvgs.get(svgId) ?? diagramSvgs?.[svgFigureIndices.get(svgId)!]?.svg ?? svgPlaceholders.get(svgId)!) : undefined}
+                    data-editor-svg={
+                      editorTokens
+                        ? encodeURIComponent(
+                            originalSvgs.get(svgId) ??
+                              diagramSvgs?.[svgFigureIndices.get(svgId)!]
+                                ?.svg ??
+                              svgPlaceholders.get(svgId)!,
+                          )
+                        : undefined
+                    }
                   />
                 </span>
               );
             }
             const katexId =
               (dataset?.dataKatexId as string | undefined) ??
-              ((props as Record<string, unknown>)["data-katex-id"] as string | undefined);
+              ((props as Record<string, unknown>)["data-katex-id"] as
+                string | undefined);
             if (typeof katexId === "string" && katexPlaceholders.has(katexId)) {
               // tall flag (cases/matrix/aligned 등) 를 React prop 으로 propagate
               // — renderChoiceRowOrNull 이 1열 강제 판단에 사용. CLAUDE.md §2-18.
               const tallFlag =
                 (dataset?.dataKatexTall as string | undefined) ??
-                ((props as Record<string, unknown>)["data-katex-tall"] as string | undefined);
+                ((props as Record<string, unknown>)["data-katex-tall"] as
+                  string | undefined);
               return (
                 <span
                   className="katex-inline-wrap"
-                  data-math-tex={editorTokens ? encodeURIComponent(katexResult.texMap.get(katexId)!) : undefined}
+                  data-math-tex={
+                    editorTokens
+                      ? encodeURIComponent(katexResult.texMap.get(katexId)!)
+                      : undefined
+                  }
                   data-katex-tall={tallFlag === "1" ? "1" : undefined}
-                  dangerouslySetInnerHTML={{ __html: katexPlaceholders.get(katexId)! }}
+                  dangerouslySetInnerHTML={{
+                    __html: katexPlaceholders.get(katexId)!,
+                  }}
                 />
               );
             }
@@ -967,13 +1091,17 @@ const MarkdownRenderer: React.FC<MarkdownRendererProps> = ({
                 const hasOnlyImage =
                   childArray.length === 1 &&
                   React.isValidElement(childArray[0]) &&
-                  (childArray[0] as React.ReactElement<{ src?: string }>).props?.src;
+                  (childArray[0] as React.ReactElement<{ src?: string }>).props
+                    ?.src;
                 if (hasOnlyImage) {
                   return <div className="my-2">{children}</div>;
                 }
                 // 5-option multiple-choice row → flex grid (see helper).
                 // Phase #7: choicesLayout hint 전달 — OCR 모델이 인식한 grid 우선.
-                const choiceRow = renderChoiceRowOrNull(children, choicesLayout);
+                const choiceRow = renderChoiceRowOrNull(
+                  children,
+                  choicesLayout,
+                );
                 if (choiceRow) return <div className="my-2">{choiceRow}</div>;
                 return (
                   <p
@@ -994,11 +1122,25 @@ const MarkdownRenderer: React.FC<MarkdownRendererProps> = ({
               if (typeof node === "number") return String(node);
               if (React.isValidElement(node)) {
                 const props = node.props as Record<string, unknown>;
-                if (props["data-math-tex"] || props["data-editor-svg"] || props["data-figure-index"] !== undefined) return "\uFFFC";
-                const properties = (props.node as { properties?: Record<string, unknown> } | undefined)?.properties;
-                if (properties?.dataKatexId !== undefined || properties?.dataSvgId !== undefined) return "\uFFFC";
+                if (
+                  props["data-math-tex"] ||
+                  props["data-editor-svg"] ||
+                  props["data-figure-index"] !== undefined
+                )
+                  return "\uFFFC";
+                const properties = (
+                  props.node as
+                    { properties?: Record<string, unknown> } | undefined
+                )?.properties;
+                if (
+                  properties?.dataKatexId !== undefined ||
+                  properties?.dataSvgId !== undefined
+                )
+                  return "\uFFFC";
                 if (props.children) {
-                  return React.Children.toArray(props.children as React.ReactNode)
+                  return React.Children.toArray(
+                    props.children as React.ReactNode,
+                  )
                     .map(extractText)
                     .join("");
                 }
@@ -1034,7 +1176,8 @@ const MarkdownRenderer: React.FC<MarkdownRendererProps> = ({
             };
             const flattenP = (child: React.ReactNode) => {
               if (!React.isValidElement(child)) {
-                if (child != null) lines.push({ nodes: [child], text: String(child) });
+                if (child != null)
+                  lines.push({ nodes: [child], text: String(child) });
                 return;
               }
               const props = child.props as Record<string, unknown>;
@@ -1054,7 +1197,8 @@ const MarkdownRenderer: React.FC<MarkdownRendererProps> = ({
             let parsedCols = parseBoxCols("");
             for (const line of lines) {
               const maybeCols = parseBoxCols(line.text);
-              if (maybeCols !== null && parsedCols === null) parsedCols = maybeCols;
+              if (maybeCols !== null && parsedCols === null)
+                parsedCols = maybeCols;
               if (!line.text.trim()) continue;
               if (items.length === 0 && line.text.includes("보기")) {
                 if (maybeCols !== null) {
@@ -1077,17 +1221,31 @@ const MarkdownRenderer: React.FC<MarkdownRendererProps> = ({
                 : effectiveCols === 2
                   ? "grid-cols-2"
                   : "grid-cols-1";
-            const gridClass = items.length >= 2 ? `grid ${colsClass} gap-x-6 gap-y-1` : "";
+            const gridClass =
+              items.length >= 2 ? `grid ${colsClass} gap-x-6 gap-y-1` : "";
 
             if (![...header, ...items].length) return null;
-            if (items.every(item => item.map(extractText).join("").trim().match(/^<(?:조건|보기)(?::cols=[123]|[123])?>$/)) && !header.length) return null;
+            if (
+              items.every((item) =>
+                item
+                  .map(extractText)
+                  .join("")
+                  .trim()
+                  .match(/^<(?:조건|보기)(?::cols=[123]|[123])?>$/),
+              ) &&
+              !header.length
+            )
+              return null;
 
             return (
               // 오버플로우 강력 보정 (사용자 보고 2026-06-02: <조건> 내용이 박스 밖으로
               // 나옴). grid 아이템 기본 min-width:auto 가 긴 줄·넓은 수식을 못 줄여
               // 박스를 밀어내는 함정 → min-w-0 + break-words 로 줄바꿈 강제. 넓은
               // display 수식은 가로 스크롤로 박스 안에 가둠 ([&_.katex-display]).
-              <div data-condition-box={effectiveCols} className="border border-line-strong px-5 py-3 my-3 rounded-r2 bg-surface2 text-text not-italic w-fit max-w-full overflow-hidden [&_.katex-display]:overflow-x-auto">
+              <div
+                data-condition-box={effectiveCols}
+                className="border border-line-strong px-5 py-3 my-3 rounded-r2 bg-surface2 text-text not-italic w-fit max-w-full overflow-hidden [&_.katex-display]:overflow-x-auto"
+              >
                 {header.map((h, i) => (
                   <div key={`h-${i}`} className="min-w-0 break-words">
                     {h}
@@ -1106,17 +1264,25 @@ const MarkdownRenderer: React.FC<MarkdownRendererProps> = ({
             );
           },
           img: ({ node, src: rawSrc, alt, title, className }) => {
-            const figKey = (node?.properties as Record<string, unknown> | undefined)?.dataFigKey;
-            const figureIndex = typeof figKey === "string" && /^img-\d+$/.test(figKey) ? Number(figKey.slice(4)) : undefined;
+            const figKey = (
+              node?.properties as Record<string, unknown> | undefined
+            )?.dataFigKey;
+            const figureIndex =
+              typeof figKey === "string" && /^img-\d+$/.test(figKey)
+                ? Number(figKey.slice(4))
+                : undefined;
             const action = figureAction(figureIndex);
             const src = typeof rawSrc === "string" ? rawSrc : "";
             if (!src) {
-              return <span className="text-muted text-sm">[{alt || "이미지"}]</span>;
+              return (
+                <span className="text-muted text-sm">[{alt || "이미지"}]</span>
+              );
             }
             // Stage 1c figure-row 멤버 — 중앙 정렬 span 없이 *직접 flex item* 으로
             // (box 폭 비례 flex share 적용). 그 외 경로는 기존 동작 그대로.
-            const flexGrow = (node?.properties as Record<string, unknown> | undefined)
-              ?.dataFlexgrow as string | undefined;
+            const flexGrow = (
+              node?.properties as Record<string, unknown> | undefined
+            )?.dataFlexgrow as string | undefined;
             if (flexGrow) {
               return (
                 <img
@@ -1171,7 +1337,13 @@ const MarkdownRenderer: React.FC<MarkdownRendererProps> = ({
             }
             return (
               <span className="flex justify-center my-2">
-                <img {...action} src={src} alt={alt || ""} style={style} className="rounded-sm" />
+                <img
+                  {...action}
+                  src={src}
+                  alt={alt || ""}
+                  style={style}
+                  className="rounded-sm"
+                />
               </span>
             );
           },
