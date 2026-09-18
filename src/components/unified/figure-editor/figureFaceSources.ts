@@ -511,11 +511,89 @@ export function objectCurves(
   }));
 }
 
-/** 경계가 되는 요소들만 펴서 모은다. */
+/**
+ * 표시로 볼 굵기 — 선 굵기의 가운데 값(길이로 가중)의 85% 미만. 엔진은 표시를 도형 선보다 가늘게 긋는다
+ * (figure_scene.py mark_width 0.72 · segment_width 1.9 = 38%, 서식 틀 1.0 · 1.25~1.35 = 74~80%). 편집기 선 1.8 은
+ * 엔진 선 1.9 의 95% 라 경계로 남는다.
+ */
+const MARK_WIDTH_RATIO = 0.85;
+/** 표시로 볼 크기 — 경계 전체 크기의 12% 이하(직각 표시 한 변 12 · 각의 호 반지름 15~25, 그림 300~500). */
+const MARK_SIZE_RATIO = 0.12;
+
+/**
+ * 경계가 되는 요소와 그 꺾은선 — 보이는 선을 긋는 도형 중 표시(직각 표시·각의 호)를 뺀다.
+ * 표시는 가늘고(MARK_WIDTH_RATIO) 작은(MARK_SIZE_RATIO) 열린 선이다. 표시를 경계로 치면 채운 삼각형의 직각 칸·호 안쪽이
+ * 흰 구멍으로 남는다. 가늘어도 긴 선(사용자가 가늘게 그은 보조선)·도형 선만큼 굵은 작은 선·닫힌 도형은 경계로 남는다.
+ */
+function boundaryCurves(
+  objects: readonly FaceSourceObject[],
+  step = SAMPLE_STEP,
+) {
+  const candidates = objects.filter(drawsBoundary).map((o) => {
+    const matrix = objectMatrix(o);
+    const curves = objectCurves(o, step);
+    const box = {
+      minX: Infinity,
+      minY: Infinity,
+      maxX: -Infinity,
+      maxY: -Infinity,
+    };
+    let length = 0;
+    for (const curve of curves)
+      curve.points.forEach((p, i) => {
+        const q = curve.points[i + 1] ?? (curve.closed ? curve.points[0] : p);
+        length += distance(p, q);
+        box.minX = Math.min(box.minX, p.x);
+        box.minY = Math.min(box.minY, p.y);
+        box.maxX = Math.max(box.maxX, p.x);
+        box.maxY = Math.max(box.maxY, p.y);
+      });
+    return {
+      o,
+      curves,
+      length,
+      box,
+      open: curves.every((curve) => !curve.closed),
+      width:
+        (Number.parseFloat(styleValue(o.attrs, "stroke-width") ?? "") || 1) *
+        Math.sqrt(Math.abs(matrix[0] * matrix[3] - matrix[1] * matrix[2])),
+    };
+  });
+  const total = candidates.reduce((sum, c) => sum + c.length, 0);
+  let reference = 0,
+    walked = 0;
+  for (const c of [...candidates].sort((a, b) => a.width - b.width)) {
+    walked += c.length;
+    reference = c.width;
+    if (walked >= total / 2) break;
+  }
+  const all = candidates.filter((c) => c.curves.length);
+  const extent = Math.max(
+    Math.max(...all.map((c) => c.box.maxX)) -
+      Math.min(...all.map((c) => c.box.minX)),
+    Math.max(...all.map((c) => c.box.maxY)) -
+      Math.min(...all.map((c) => c.box.minY)),
+  );
+  return candidates.filter(
+    (c) =>
+      !(
+        c.open &&
+        c.width < MARK_WIDTH_RATIO * reference &&
+        Math.hypot(c.box.maxX - c.box.minX, c.box.maxY - c.box.minY) <=
+          MARK_SIZE_RATIO * extent
+      ),
+  );
+}
+
+/** 경계가 되는 요소들(표시 제외) */
+export const boundaryObjects = (objects: readonly FaceSourceObject[]) =>
+  boundaryCurves(objects).map((c) => c.o);
+
+/** 경계가 되는 요소들만 펴서 모은다(표시 제외). */
 export const faceCurves = (
   objects: readonly FaceSourceObject[],
   step = SAMPLE_STEP,
-) => objects.filter(drawsBoundary).flatMap((o) => objectCurves(o, step));
+) => boundaryCurves(objects, step).flatMap((c) => c.curves);
 
 /** 누른 점을 둘러싼 가장 작은 닫힌 영역(요소들에서). */
 export const findFaceAt = (
@@ -704,9 +782,10 @@ export function faceInsertBefore(objects: readonly FaceSourceObject[]) {
  */
 export function snapCandidates(objects: readonly FaceSourceObject[]): Point[] {
   const points: Point[] = [];
+  const boundary = new Set(boundaryObjects(objects));
   for (const o of objects) {
     const face = isFaceObject(o) && o.type === "polygon" && !hidden(o);
-    if (!face && !drawsBoundary(o)) continue;
+    if (!face && !boundary.has(o)) continue;
     const matrix = objectMatrix(o);
     for (const piece of localPieces(o, SAMPLE_STEP)) {
       const vertices =

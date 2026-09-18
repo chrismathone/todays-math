@@ -13,6 +13,7 @@ import {
 } from "@/components/unified/figure-editor/figureFaceGeometry";
 import {
   applyMatrix,
+  boundaryObjects,
   bucketAction,
   closedGroupFill,
   DEFAULT_FACE_FILL,
@@ -249,6 +250,92 @@ describe("drawsBoundary — 무엇이 경계인가", () => {
     };
     expect(drawsBoundary(bare)).toBe(false);
     expect(drawsBoundary({ ...bare, inheritedStroke: "#000" })).toBe(true);
+  });
+});
+
+describe("boundaryObjects — 표시(직각 표시·각의 호)는 경계가 아니다", () => {
+  // docs/qa/studio-figure-engine-smoke/claude-result.svg 그대로 — 엔진은 표시를 도형 선보다 가늘게 긋는다
+  // (figure_scene.py mark_width 0.72 · segment_width 1.9, «같은 굵기면 호가 도형의 일부처럼 보인다»).
+  const A = P(61.208, 32.653),
+    B = P(61.208, 347.653),
+    C = P(476.208, 347.653);
+  const engine = (extra: FaceSourceObject[] = []) => [
+    line("AB", A, B, { "stroke-width": "1.9" }),
+    line("BC", B, C, { "stroke-width": "1.9" }),
+    line("CA", C, A, { "stroke-width": "1.9" }),
+    obj("right", "path", {
+      d: "M 61.208 335.553 L 73.308 335.553 L 73.308 347.653",
+      "stroke-width": "0.72",
+    }),
+    obj("label", "text", { x: "57.208", y: "24.029", stroke: "none" }),
+    ...extra,
+  ];
+  const whole = (415 * 315) / 2;
+
+  it("직각 표시가 있어도 삼각형을 누르면 삼각형 전체 — 직각 칸이 흰 구멍으로 남지 않는다", () => {
+    expect(boundaryObjects(engine()).map((o) => o.id)).toEqual([
+      "AB",
+      "BC",
+      "CA",
+    ]);
+    const face = findFaceAt(engine(), P(150, 250))!;
+    expect(face.area).toBeCloseTo(whole, 3);
+    expect(face.outer).toHaveLength(3);
+  });
+
+  it("각의 호(가는 호)도 표시 — 꼭짓점 A 의 호 안쪽을 눌러도 삼각형 전체", () => {
+    const arc = obj("arc", "path", {
+      d: "M 61.208 57.653 A 25 25 0 0 0 81.208 47.653",
+      "stroke-width": "0.72",
+    });
+    expect(findFaceAt(engine([arc]), P(150, 250))!.area).toBeCloseTo(whole, 3);
+    expect(findFaceAt(engine([arc]), P(66, 50))!.area).toBeCloseTo(whole, 3);
+  });
+
+  it("가늘어도 긴 선은 경계다 — 사용자가 가늘게 그은 보조선은 칸을 가른다", () => {
+    const thin = line("thin", A, P(268.708, 347.653), {
+      "stroke-width": "0.72",
+    });
+    expect(boundaryObjects(engine([thin])).map((o) => o.id)).toContain("thin");
+    expect(findFaceAt(engine([thin]), P(100, 300))!.area).toBeCloseTo(
+      whole / 2,
+      3,
+    );
+  });
+
+  it("도형 선과 같은 굵기의 작은 꺾은선은 경계다(가늘지 않으면 표시로 보지 않는다)", () => {
+    const thick = engine().map((o) =>
+      o.id === "right"
+        ? { ...o, attrs: { ...o.attrs, "stroke-width": "1.9" } }
+        : o,
+    );
+    expect(boundaryObjects(thick).map((o) => o.id)).toContain("right");
+    expect(findFaceAt(thick, P(150, 250))!.area).toBeCloseTo(
+      whole - 12.1 * 12.1,
+      3,
+    );
+  });
+
+  it("가늘고 작아도 닫힌 도형은 경계다 — 작은 원 안을 누르면 그 원", () => {
+    const dot = obj("dot", "circle", {
+      cx: "150",
+      cy: "250",
+      r: "6",
+      "stroke-width": "0.72",
+    });
+    expect(boundaryObjects(engine([dot])).map((o) => o.id)).toContain("dot");
+    expect(findFaceAt(engine([dot]), P(150, 250))!.area).toBeLessThan(120);
+  });
+
+  it("서식 틀 굵기(표시 1.0 · 선 1.25)에서도 표시로 본다", () => {
+    const template = engine().map((o) => ({
+      ...o,
+      attrs: {
+        ...o.attrs,
+        "stroke-width": o.id === "right" ? "1" : "1.25",
+      },
+    }));
+    expect(boundaryObjects(template).map((o) => o.id)).not.toContain("right");
   });
 });
 
