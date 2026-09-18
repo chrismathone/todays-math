@@ -166,7 +166,9 @@ describe("실물 출력 검수 목록 — 데이터", () => {
     // 62: studio-figure-transparent-background 추가 (2026-09-19 — 작업실 AI 도형 재작도의 v2 흰 바탕
     //     rect 를 뺐다. 저장 이미지가 실제 선·글자 기준으로 재어져 둘레 여백이 한 겹이 되고, 원본 폭(mm)을
     //     아는 문항은 그림이 약 1.08배 커진다. HWPX 는 투명 PNG — 한글이 어떻게 그리는지는 못 봤다).
-    expect(ITEMS.length).toBe(62);
+    // 63: figure-editor-faces 추가 (2026-09-19 — 도형 편집기 면 만들기. 채우기·다각형·안쪽 채우기의 면이 선 뒤
+    //     채운 path·polygon 으로 저장 이미지에 들어가고, 사각형은 노란 점으로 기울이면 polygon 이 된다).
+    expect(ITEMS.length).toBe(63);
   });
 
   /**
