@@ -36,26 +36,32 @@ export default function PrivateLibrary({
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
   const [query, setQuery] = useState("");
-  const refresh = useCallback(async () => {
-    setLoading(true);
-    try {
-      setItems(await client.list());
-      setError("");
-    } catch (cause) {
-      setError(cloudError(cause));
-    } finally {
-      setLoading(false);
-    }
-  }, [client]);
+  // `quiet` — 창 초점 복귀·자동 저장 알림으로 **뒤에서** 다시 읽을 때는 격자를 «불러오는 중»으로
+  // 바꿔 끼우지 않는다. 바꿔 끼우면 카드가 다시 만들어져 열려 있던 삭제 확인 창이 사라진다 —
+  // 모달 창에서 Tab 이 주소창으로 나갔다 돌아오기만 해도 그랬다(2026-09-19 브라우저 측정).
+  const refresh = useCallback(
+    async (quiet = false) => {
+      if (!quiet) setLoading(true);
+      try {
+        setItems(await client.list());
+        setError("");
+      } catch (cause) {
+        setError(cloudError(cause));
+      } finally {
+        if (!quiet) setLoading(false);
+      }
+    },
+    [client],
+  );
   useEffect(() => {
     // This effect starts the account's remote library subscription.
     // eslint-disable-next-line react-hooks/set-state-in-effect
     void refresh();
     const changed = (event: Event) => {
-      if ((event as CustomEvent).detail === storageScope) void refresh();
+      if ((event as CustomEvent).detail === storageScope) void refresh(true);
     };
     const focused = () => {
-      void refresh();
+      void refresh(true);
     };
     window.addEventListener("private-library-change", changed);
     window.addEventListener("focus", focused);
