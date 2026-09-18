@@ -212,7 +212,9 @@ test("all pages use two background slots, preserve navigation, stamp empty pages
   expect(
     problems.every((problem: { grade: string }) => problem.grade === "중2"),
   ).toBe(true);
-  await page.getByRole("button", { name: "문제 자르기", exact: true }).click();
+  await page
+    .getByRole("button", { name: "문제&도형 잘라내기", exact: true })
+    .click();
   expect(
     await page
       .getByRole("button", { name: "문제 추가", exact: true })

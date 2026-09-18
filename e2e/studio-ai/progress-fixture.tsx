@@ -51,7 +51,7 @@ export default function ProgressFixture() {
             cancelLabel="도형 생성 취소"
           />
           <WorkProgress
-            label="문자 인식 중"
+            label="문제 인식 중"
             completed={6}
             total={21}
             onCancel={() => setAction("문자 취소")}

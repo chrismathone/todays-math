@@ -27,7 +27,7 @@ test("progress stays one row and anchored details escape canvas clipping", async
       panel.getByText("SVG 도형 생성 중", { exact: true }),
     ).toBeVisible();
     await expect(
-      panel.getByText("문자 인식 중", { exact: true }),
+      panel.getByText("문제 인식 중", { exact: true }),
     ).toBeVisible();
     const barBox = (await bar.boundingBox())!;
     const panelBox = (await panel.boundingBox())!;

@@ -1921,7 +1921,7 @@ export default function StudioView({
               aria-pressed={step === "crop"}
               onClick={() => setStep("crop")}
             >
-              문제 자르기
+              문제&amp;도형 잘라내기
             </button>
             <button
               aria-pressed={step === "review"}
@@ -2021,7 +2021,7 @@ export default function StudioView({
           {(
             [
               ["upload", "원본 가져오기"],
-              ["crop", "문제 자르기"],
+              ["crop", "문제&도형 잘라내기"],
               ["review", "OCR · 디지털화"],
             ] as const
           ).map(([key, label], index) => (
@@ -2472,7 +2472,7 @@ export default function StudioView({
                     ? "해설 생성 중"
                     : studioAi.progress.action === "figures"
                       ? "도형 인식 중"
-                      : "문자 인식 중"
+                      : "문제 인식 중"
                 }
                 completed={studioAi.progress.done}
                 total={studioAi.progress.total}
