@@ -1,5 +1,9 @@
 import type { figureObjects } from "./figureSvgEditing";
-import { objectName } from "./figureObjectNames";
+import {
+  objectName,
+  type FigureAngleKind,
+  type FigureAngleKinds,
+} from "./figureObjectNames";
 
 type FigureObject = ReturnType<typeof figureObjects>[number];
 
@@ -120,21 +124,33 @@ const distanceToSegment = (p: number[], a: number[], b: number[]) => {
   );
   return Math.hypot(p[0] - a[0] - t * dx, p[1] - a[1] - t * dy);
 };
-/** 곧은 변 — 선분 · 다각형(닫는 변 포함) · 꺾은선의 한 토막. 어느 요소의 변인지 같이 든다. */
+/** 곧은 변 — 선분 · 다각형(닫는 변 포함) · 꺾은선의 한 토막 · 사각형(rect)의 네 변. 어느 요소의 변인지 같이 든다. */
 type Edge = { s: Shape; e: number[][] };
-const edgesOf = (s: Shape): Edge[] =>
-  (s.object.type === "line"
-    ? [s.points]
-    : s.object.type === "polygon" || s.object.type === "polyline"
-      ? s.points.flatMap((p, i) =>
-          i + 1 < s.points.length
-            ? [[p, s.points[i + 1]]]
-            : s.object.type === "polygon" && s.points.length > 2
-              ? [[p, s.points[0]]]
-              : [],
-        )
-      : []
-  ).map((e) => ({ s, e }));
+const edgesOf = (s: Shape): Edge[] => {
+  const p = s.points,
+    type = s.object.type;
+  let edges: number[][][] = [];
+  if (type === "line") edges = [p];
+  else if (type === "rect") {
+    // 초등 엔진은 직사각형을 rect 한 요소로 그리고 네 모서리에 직각 표시를 단다(elem-1 markedShape)
+    const [[x1, y1], [x2, y2]] = p;
+    const c = [
+      [x1, y1],
+      [x2, y1],
+      [x2, y2],
+      [x1, y2],
+    ];
+    edges = c.map((q, i) => [q, c[(i + 1) % 4]]);
+  } else if (type === "polygon" || type === "polyline")
+    edges = p.flatMap((q, i) =>
+      i + 1 < p.length
+        ? [[q, p[i + 1]]]
+        : type === "polygon" && p.length > 2
+          ? [[q, p[0]]]
+          : [],
+    );
+  return edges.map((e) => ({ s, e }));
+};
 const unfilled = (o: FigureObject) =>
   (o.attrs.fill ?? "").trim().toLowerCase() === "none" ||
   /(?:^|;)\s*fill\s*:\s*none\b/i.test(o.attrs.style ?? "");
@@ -145,11 +161,13 @@ const unfilled = (o: FigureObject) =>
  * 두 점 A·C 와 그 맞은 모서리 B 를 A→B→C 로 잇는다). 엔진 SVG 에 표지(class·data)가 없어 모양과 자리로 가른다:
  * 열린 획 · 점 셋 · 두 토막 길이가 같고 90° · 양 끝 A·C 가 서로 다른 두 선 위에 있고 V = A + C − B 가 두 선에 다 닿는다.
  * 모양만으로는 90° 로 벌린 열린 V 화살촉과 같다 — 화살촉은 꺾인 점이 선 **위**, 양 끝이 선 밖이라 자리에서 갈린다.
+ * 실선만 — 점에서 두 축으로 내린 점선 꺾은선(elem-1 linearGraph)은 원점과 사각형을 이뤄 꼴·자리가 같다(2026-09-19 실측).
  * 직각 표시가 아니면 빈 목록, 맞으면 그 표시가 앉은 변들의 요소를 돌려준다.
  */
 function rightAngleMark(s: Shape, edges: Edge[], S: number): Shape[] {
   const o = s.object;
   if ((o.type !== "path" && o.type !== "polyline") || !unfilled(o)) return [];
+  if (s.dashed) return [];
   if (
     o.type === "path" &&
     !/^ML{1,2}$/.test((o.attrs.d ?? "").replace(/[^A-Za-z]/g, ""))
@@ -173,6 +191,149 @@ function rightAngleMark(s: Shape, edges: Edge[], S: number): Shape[] {
   return first.some((e1) => second.some((e2) => e2 !== e1))
     ? [...first, ...second].map(({ s }) => s)
     : [];
+}
+
+/** 각 표시 하나 — 각의 종류와, 표시가 앉은 변의 요소(좌표평면 위 닫힌 도형 찾기의 씨앗). */
+interface AngleMark {
+  kind: FigureAngleKind;
+  sides: Shape[];
+}
+/** 호로 그린 90° 를 «직각»으로 읽는 여유(도). 엔진 호는 두 변으로 재면 0.1° 안쪽이다 — 88° 는 예각으로 남긴다. */
+const RIGHT_SLACK = 1;
+const kindOf = (degrees: number): FigureAngleKind =>
+  Math.abs(degrees - 90) <= RIGHT_SLACK
+    ? "직각"
+    : degrees < 90
+      ? "예각"
+      : "둔각";
+
+/**
+ * 각의 호 — 꼭짓점 V 를 중심으로 한 변에서 다른 변까지 **작은 쪽**으로 돈 원호 한 획(엔진 v2 `figure_svg.angle_arc`:
+ * `M 시작 A r r 0 0 방향 끝`. 여러 겹이면 반지름을 3 씩 줄인 호가 겹마다 따로 선다 — 겹마다 같은 각이다).
+ * 엔진 SVG 에 표지가 없어 모양과 자리로 가른다: 열린 호 한 획 · 원호(rx = ry) · 1°~179° 를 돈다 · 작다.
+ * 호의 두 끝에서 중심을 지나는 변을 찾으면 **두 변 사이 각**을, 못 찾으면 **호가 돈 각**을 잰다.
+ * 부채꼴의 호는 중심을 지나는 변(반지름)이 호 끝에서 **끝난다** — 각 표시의 변은 호 너머로 뻗는다. 그래서 도형의 호로 둔다.
+ */
+function arcAngleMark(s: Shape, edges: Edge[], S: number): AngleMark | null {
+  const o = s.object;
+  if (o.type !== "path" || !unfilled(o)) return null;
+  const d = o.attrs.d ?? "";
+  if (!/^\s*M[^A-Za-z]*A[^A-Za-z]*$/.test(d)) return null;
+  const v = numbers(d);
+  if (v.length !== 9) return null;
+  const [dx, dy] = offset(o) ?? [0, 0];
+  const [x0, y0, rx, ry, , large, sweep, x1, y1] = v;
+  const a = [x0 + dx, y0 + dy],
+    b = [x1 + dx, y1 + dy];
+  const r = (Math.abs(rx) + Math.abs(ry)) / 2;
+  if (!r || Math.abs(Math.abs(rx) - Math.abs(ry)) > 0.02 * r) return null;
+  // 중심 — SVG 호 규격(F.6.5)을 원(rx = ry)·기울기 0 으로 줄인 것. 반지름이 모자라면 SVG 처럼 늘린다(반원).
+  const hx = (a[0] - b[0]) / 2,
+    hy = (a[1] - b[1]) / 2;
+  const half = hx * hx + hy * hy;
+  if (!half) return null;
+  const k =
+    (large !== sweep ? 1 : -1) * Math.sqrt(Math.max(0, r * r - half) / half);
+  const c = [k * hy + (a[0] + b[0]) / 2, -k * hx + (a[1] + b[1]) / 2];
+  const radius = Math.max(r, Math.sqrt(half));
+  let turn =
+    Math.atan2(b[1] - c[1], b[0] - c[0]) - Math.atan2(a[1] - c[1], a[0] - c[0]);
+  if (sweep && turn < 0) turn += 2 * Math.PI;
+  if (!sweep && turn > 0) turn -= 2 * Math.PI;
+  const span = (Math.abs(turn) * 180) / Math.PI;
+  if (span < 1 || span > 179) return null;
+  const tol = Math.max(1, 0.08 * radius);
+  let sector = false;
+  // 호 끝 p 에서 중심을 지나는 변 — 호 너머로 뻗으면 각의 변(방향은 중심에서 p 쪽), 호 끝에서 끝나면 부채꼴의 반지름.
+  const sideAt = (p: number[]) => {
+    const ux = (p[0] - c[0]) / radius,
+      uy = (p[1] - c[1]) / radius;
+    for (const edge of edges) {
+      const [e0, e1] = edge.e;
+      if (
+        distanceToSegment(c, e0, e1) > tol ||
+        distanceToSegment(p, e0, e1) > tol
+      )
+        continue;
+      const reach = Math.max(
+        ...edge.e.map((q) => (q[0] - c[0]) * ux + (q[1] - c[1]) * uy),
+      );
+      if (reach < radius + tol) {
+        sector = true;
+        continue;
+      }
+      const ex = e1[0] - e0[0],
+        ey = e1[1] - e0[1];
+      const sign = (ex * ux + ey * uy < 0 ? -1 : 1) / Math.hypot(ex, ey);
+      return { s: edge.s, dir: [sign * ex, sign * ey] };
+    }
+    return null;
+  };
+  const first = sideAt(a),
+    second = sideAt(b);
+  if (first && second) {
+    if (radius > 0.25 * S) return null;
+    const cos = first.dir[0] * second.dir[0] + first.dir[1] * second.dir[1];
+    const degrees = (Math.acos(Math.max(-1, Math.min(1, cos))) * 180) / Math.PI;
+    return { kind: kindOf(degrees), sides: [first.s, second.s] };
+  }
+  // 두 변을 못 찾으면 호가 돈 각 — 변이 경로 속에 있는 그림(전개도 등). 도형의 호와 헷갈리지 않게 더 작은 것만.
+  if (sector || radius > 0.12 * S) return null;
+  return { kind: kindOf(span), sides: [] };
+}
+
+/** 그림의 각 표시 전부 — 직각 표시(ㄱ자)와 각의 호. */
+function angleMarks(free: Shape[], S: number) {
+  const edges = free.flatMap(edgesOf);
+  const marks = new Map<Shape, AngleMark>();
+  for (const s of free) {
+    const on = rightAngleMark(s, edges, S);
+    const mark: AngleMark | null = on.length
+      ? { kind: "직각", sides: on }
+      : arcAngleMark(s, edges, S);
+    if (mark) marks.set(s, mark);
+  }
+  return marks;
+}
+
+const sizeOf = (viewBox: number[]) =>
+  Math.max(viewBox[2] || 480, viewBox[3] || 360);
+
+/**
+ * 편집기는 끄는 걸음마다 **같은 요소 배열**로 묶기(`groupFigureObjects`)와 각 종류(`figureAngleKinds`)를 둘 다 부른다 —
+ * 요소 1,000개 그림에서 자리 읽기·각 판정을 두 번 하면 걸음당 2.2ms 가 4.9ms 가 됐다(2026-09-19 실측).
+ * 마지막 한 벌(요소 배열 · 캔버스 크기)만 기억한다. 요소 배열은 원문을 읽을 때마다 새로 생긴다(`figureObjects`).
+ */
+let measured: {
+  objects: FigureObject[];
+  S: number;
+  free: Shape[];
+  marks: Map<Shape, AngleMark>;
+} | null = null;
+function measure(objects: FigureObject[], S: number) {
+  if (!measured || measured.objects !== objects || measured.S !== S) {
+    const free = objects.flatMap(
+      (object, index) => shapeOf(object, index) ?? [],
+    );
+    measured = { objects, S, free, marks: angleMarks(free, S) };
+  }
+  return measured;
+}
+
+/**
+ * 각 표시의 종류(요소 id → 직각·예각·둔각, 원장님 2026-09-19 «직각 둔각 예각»). 요소 이름(`objectName`)이 이것으로
+ * 각 표시를 부른다 — 요소 목록 · 오른쪽 칸 제목 · AI 요소 목록 · AI 결과 줄이 같은 이름을 쓰게 한 곳에서 잰다.
+ */
+export function figureAngleKinds(
+  objects: FigureObject[],
+  viewBox: number[],
+): FigureAngleKinds {
+  return new Map(
+    [...measure(objects, sizeOf(viewBox)).marks].map(([s, mark]) => [
+      s.object.id,
+      mark.kind,
+    ]),
+  );
 }
 
 /**
@@ -222,7 +383,8 @@ function markedFigureSides(lines: Shape[], seeds: Set<Shape>, tol: number) {
 /**
  * 요소 목록을 역할로 묶는다(원장님 2026-09-18 «역할별로 묶고 사용자 커스텀도 가능하게»).
  * 좌표 그래프면 x축·y축(화살촉 포함) · 그래프 · 점선 · 점 · 눈금 · 눈금 숫자 · 축 이름,
- * 아니면 종류(선분·원·글자 …)로 묶는다. 좌표평면 위 도형(직각 표시 · 한 바퀴 도는 선분)은 그래프가 아니라 종류로 둔다.
+ * 아니면 종류(선분·원·글자 …)로 묶는다. 각 표시(직각 표시 ㄱ자 · 각의 호)는 어느 그림에서나 «각» 하나로 모은다
+ * (원장님 2026-09-19). 좌표평면 위 도형의 변(각 표시가 앉아 한 바퀴 도는 선분)은 그래프가 아니라 종류로 둔다.
  * 사용자가 정한 묶음(`data-group`)이 어림을 이긴다 — 이름이 역할 묶음과 같으면 그 묶음에 합쳐 보이고(끌어서 옮기기),
  * 새 이름이면 사용자 묶음으로 맨 앞에, 빈 이름이면 **묶음 밖**(해제)으로 맨 끝에 간다.
  * 묶음 차례는 첫 요소의 번호 차례다 — 그림 위 번호와 같은 차례로 읽힌다.
@@ -234,12 +396,11 @@ export function groupFigureObjects(
 ): FigureObjectGroup[] {
   const W = viewBox[2] || 480,
     H = viewBox[3] || 360,
-    S = Math.max(W, H);
+    S = sizeOf(viewBox);
   const role = new Map<string, string>();
   // 역할 어림은 사용자가 옮긴 요소까지 다 본다 — 화살촉 하나를 옮겼다고 축이 안 서면 나머지 묶음이 흔들린다.
-  const free: Shape[] = objects.flatMap(
-    (object, index) => shapeOf(object, index) ?? [],
-  );
+  // 각 표시(직각 표시 ㄱ자 · 각의 호)는 좌표평면 위에서도 «각» — 축 끝 가까이 있어도 화살촉이 아니다.
+  const { free, marks } = measure(objects, S);
 
   // 축 — 곧고 긴 실선. 둘이 만나고, 화살촉·눈금 중 하나는 있어야 축이다(세로 높이선이 곧다고 축이 아니다).
   const solidLines = free.filter((s) => s.line && !s.dashed);
@@ -293,6 +454,7 @@ export function groupFigureObjects(
       : free.filter((s) => {
           if (!["polygon", "path", "polyline"].includes(s.object.type))
             return false;
+          if (marks.has(s)) return false;
           const size = Math.hypot(width(s.box), height(s.box));
           if (size > 0.06 * S) return false;
           const [x1, y1, x2, y2] = axis.line!;
@@ -363,21 +525,17 @@ export function groupFigureObjects(
     for (const s of arrows) role.set(s.object.id, name);
     for (const s of ticks) role.set(s.object.id, "눈금");
   }
+  // 원장님 2026-09-19 «기존의 각들은 다 각으로 묶어. 직각 둔각 예각.» — 점선으로 그린 호도 «점선»이 아니라 «각».
+  for (const s of marks.keys()) role.set(s.object.id, "각");
 
-  // 좌표평면 위 도형 — 직각 표시와, 그 표시가 앉은 닫힌 도형의 변(삼각형 OAB)은 «그래프»가 아니다.
-  // 종류(곡선/경로·선분)로 둔다.
-  const edges = free.flatMap(edgesOf);
-  const marks = new Map(
-    (graph ? free : []).flatMap((s) => {
-      const on = rightAngleMark(s, edges, S);
-      return on.length ? [[s, on] as const] : [];
-    }),
-  );
-  const sides = markedFigureSides(
-    free.filter((s) => s.line && !role.has(s.object.id)),
-    new Set([...marks.values()].flat()),
-    0.01 * S,
-  );
+  // 좌표평면 위 도형 — 각 표시가 앉은 닫힌 도형의 변(삼각형 OAB)은 «그래프»가 아니다. 종류(선분)로 둔다.
+  const sides = graph
+    ? markedFigureSides(
+        free.filter((s) => s.line && !role.has(s.object.id)),
+        new Set([...marks.values()].flatMap((mark) => mark.sides)),
+        0.01 * S,
+      )
+    : new Set<Shape>();
 
   const reach = 0.12 * S;
   for (const s of free) {
@@ -431,7 +589,7 @@ export function groupFigureObjects(
       role.set(o.id, "점선");
       continue;
     }
-    if (marks.has(s) || sides.has(s)) continue;
+    if (sides.has(s)) continue;
     if (
       graph &&
       (o.type === "line" || o.type === "path" || o.type === "polyline")
