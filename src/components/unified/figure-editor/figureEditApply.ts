@@ -31,6 +31,14 @@ import {
   round2,
   type Point,
 } from "./figureEditGeometry";
+import { BENT_ACROSS, bentCurveReason, flipFigureCurve } from "./figureFlip";
+import {
+  ANGLE_MARK_RADIUS,
+  ANGLE_MARK_WIDTH,
+  angleMarkCorner,
+  angleMarkPath,
+  sameAngle,
+} from "./figureAngleMark";
 
 type FigureObject = ReturnType<typeof figureObjects>[number];
 
@@ -83,6 +91,11 @@ function reject(reason: string): never {
  *   삼각형·평행사변형(`data-shape`)은 꼭짓점 하나만 옮기지 않는다(노란 점이 모양을 지킨다).
  * - 표지 속성(크기 고정 · 면 · 글자 배경 · 모양)은 건드리지 않는다 — 명령이 바꾸는 속성만 고친다.
  * - 좌표는 그림 좌표(루트 viewBox)이고 그림 둘레 1/4 까지만 받는다.
+ * - 뒤집기(`flip`)는 곡선을 두 끝을 잇는 현에 대해 대칭하고 딸린 값 글자를 따라 옮긴다(figureFlip.ts). 곡선의 점을
+ *   하나씩 옮겨(`point`) 곡선이 현을 가로질러 꺾이거나 스스로 엇갈리면 그 곡선의 점 옮기기를 모두 거절한다
+ *   (원장님 2026-09-19 «치수선 고치기가 제대로 안 되네.» — 조용히 망가진 그림을 내지 않는다).
+ * - 각 표시(`addAngle`)는 엔진·편집기와 같은 모양(figureAngleMark.ts) — 크기·굵기는 그림에 있는 각 표시를 따르고,
+ *   이미 표시가 있는 각에는 다시 달지 않는다.
  */
 export function applyFigureEdits(
   svg: string,
@@ -135,6 +148,50 @@ export function applyFigureEdits(
     });
   };
 
+  // 곡선(경로)의 점 옮기기는 한 곡선 몫을 한꺼번에 미리 적용해 본다 — 현을 가로질러 꺾이거나 스스로 엇갈리면 그 곡선의
+  // 점 옮기기를 모두 거절한다(원장님 2026-09-19: 치수 호의 틈 두 끝만 아래로 옮겨 두 조각으로 꺾였다). 기준은 figureFlip.ts.
+  const bent = new Map<number, { message: string; reported: boolean }>();
+  const moves = new Map<number, { vertex: number; x: number; y: number }[]>();
+  for (const raw of commands) {
+    const checked = FigureEditCommandSchema.safeParse(raw);
+    if (!checked.success || checked.data.op !== "point") continue;
+    if (checked.data.target > before.length) continue;
+    moves.set(checked.data.target, [
+      ...(moves.get(checked.data.target) ?? []),
+      checked.data,
+    ]);
+  }
+  for (const [target, list] of moves) {
+    const o = before[target - 1];
+    if (o.type !== "path" || !/[QTCSA]/i.test(o.attrs.d ?? "")) continue;
+    // 면·모양·크기 고정은 적용할 때 제 이유로 거절된다
+    if (isTiedFace(o) || o.attrs[SHAPE_ATTR] || isSizeLocked(o)) continue;
+    const vertices = figureEditVertices(o);
+    const inverse = invert(elementMatrix(nodeOf(svg, o.id)));
+    if (!inverse) continue;
+    let trial = svg;
+    const moved: number[] = [];
+    for (const move of list) {
+      const vertex = vertices[move.vertex - 1];
+      if (!vertex || !inside(move)) continue;
+      const [x, y] = applyPoint(inverse, [move.x, move.y]);
+      trial = moveFigureHandle(trial, o.id, vertex.key, {
+        x: round2(x),
+        y: round2(y),
+      });
+      moved.push(move.vertex);
+    }
+    const after = figureObjects(trial).find((t) => t.id === o.id)?.attrs.d;
+    const reason = moved.length && after && bentCurveReason(o.attrs.d, after);
+    if (reason)
+      bent.set(target, {
+        message: `꼭짓점 ${moved.join("·")} 이동 — ${reason}. 적용하지 않았습니다${
+          reason === BENT_ACROSS ? "(반대쪽으로는 뒤집기)" : ""
+        }`,
+        reported: false,
+      });
+  }
+
   let current = svg;
   const applied: string[] = [];
   const rejected: string[] = [];
@@ -186,6 +243,63 @@ export function applyFigureEdits(
         });
       return { svg: next, text: label };
     }
+    if (command.op === "addAngle") {
+      const at = resolve(command.at),
+        from = resolve(command.from),
+        to = resolve(command.to);
+      const point = ({ x, y }: { x: number; y: number }): Point => [x, y];
+      // 지금 그림(앞 명령이 더한 각 표시까지)의 각 표시 — 크기·굵기를 따르고, 같은 각에 두 번 달지 않는다
+      const objects = figureObjects(current);
+      const kinds = figureAngleKinds(objects, figure.viewBox);
+      const nodes = [
+        ...readFigureSvg(current).querySelectorAll("[data-object-id]"),
+      ];
+      const marks = objects.flatMap((o, i) => {
+        const corner = kinds.has(o.id)
+          ? angleMarkCorner(o, elementMatrix(nodes[i]))
+          : null;
+        return corner ? [{ o, corner }] : [];
+      });
+      const middle = (values: number[]) =>
+        [...values].sort((a, b) => a - b)[Math.floor(values.length / 2)];
+      const mark = angleMarkPath({
+        at: point(at),
+        from: point(from),
+        to: point(to),
+        right: command.right,
+        radius: marks.length
+          ? middle(marks.map((m) => m.corner.radius))
+          : Math.min(ANGLE_MARK_RADIUS, 0.08 * Math.max(width, height)),
+      });
+      if ("reason" in mark) reject(mark.reason);
+      const twin = marks.find((m) =>
+        sameAngle(m.corner, point(at), point(from), point(to)),
+      );
+      if (twin) {
+        const index = before.findIndex((o) => o.id === twin.o.id);
+        reject(
+          `이미 각 표시가 있습니다(${index >= 0 ? nameOf(index) : objectName(twin.o, kinds)})`,
+        );
+      }
+      const widths = marks
+        .map((m) => Number.parseFloat(m.o.attrs["stroke-width"] ?? ""))
+        .filter((value) => value > 0);
+      const color = marks
+        .map((m) => m.o.attrs.stroke?.trim())
+        .find((value) => value && /^#[\da-f]{3,6}$/i.test(value));
+      const added = addFigureObject(current, "curve", at, to);
+      const next = editFigureObject(added.svg, added.id, {
+        d: mark.d,
+        stroke: color ?? INK,
+        "stroke-width": String(
+          widths.length ? middle(widths) : ANGLE_MARK_WIDTH,
+        ),
+      });
+      const kind = figureAngleKinds(figureObjects(next), figure.viewBox).get(
+        added.id,
+      );
+      return { svg: next, text: kind ? `${label}(${kind})` : label };
+    }
     const id = before[command.target - 1].id;
     const object = figureObjects(current).find((o) => o.id === id);
     if (!object) return reject("앞 명령에서 지웠습니다");
@@ -196,6 +310,25 @@ export function applyFigureEdits(
       };
     const tied = isTiedFace(object);
     const following = "선을 따라가는 면은 선을 옮기면 따라옵니다";
+    if (command.op === "flip") {
+      if (object.type !== "path" && object.type !== "polyline")
+        reject("곡선·꺾은선만 뒤집습니다");
+      if (angles.has(id)) reject("각 표시는 뒤집지 않습니다");
+      if (tied) reject(following);
+      if (isSizeLocked(object))
+        reject("크기 고정이라 모양을 바꾸지 않았습니다");
+      const flipped = flipFigureCurve(current, id);
+      if ("reason" in flipped) return reject(flipped.reason);
+      const value = flipped.labelId
+        ? figureObjects(current).find((o) => o.id === flipped.labelId)
+        : undefined;
+      return {
+        svg: flipped.svg,
+        text: `${label} 반대쪽으로 뒤집기${
+          value ? `(${objectName(value, angles)} ${labelOf(value)} 함께)` : ""
+        }`,
+      };
+    }
     if (command.op === "move") {
       if (tied) reject(following);
       if (Math.abs(command.dx) > width || Math.abs(command.dy) > height)
@@ -310,9 +443,22 @@ export function applyFigureEdits(
             : "선분 추가"
           : command.op === "addText"
             ? `${textKind(command.text)} ${figureLabelSummary(command.text)} 추가`
-            : command.label
-              ? `점 ${command.label} 추가`
-              : "점 추가";
+            : command.op === "addAngle"
+              ? [command.from, command.at, command.to].every(
+                  (ref) => typeof ref === "string",
+                )
+                ? `각 ${command.from}${command.at}${command.to} 표시 추가`
+                : "각 표시 추가"
+              : command.label
+                ? `점 ${command.label} 추가`
+                : "점 추가";
+    const bend = command.op === "point" && bent.get(command.target);
+    if (bend) {
+      // 한 곡선의 점 옮기기는 한 줄로 알린다
+      if (!bend.reported) rejected.push(`${label}: ${bend.message}`);
+      bend.reported = true;
+      continue;
+    }
     try {
       const result = applyOne(command, label);
       current = result.svg;

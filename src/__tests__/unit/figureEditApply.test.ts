@@ -12,6 +12,11 @@ import {
   addFigureTriangle,
   bucketFill,
 } from "@/components/unified/figure-editor/figureFaceEditing";
+import {
+  figureAngleKinds,
+  groupFigureObjects,
+} from "@/components/unified/figure-editor/figureObjectGroups";
+import { flipFigureCurve } from "@/components/unified/figure-editor/figureFlip";
 
 /**
  * «요청대로 고치기»(원장님 2026-09-19) — AI 가 돌려준 수정 명령을 **지금 그림에** 편집기의 기존 편집 함수로 적용한다.
@@ -460,5 +465,279 @@ describe("면 · 모양 · 표지 속성", () => {
     keep(label, "data-text-bg");
     keep(shape, "data-shape");
     expect(byId.get(objects[face - 1].id)?.attrs.fill).toBe("#ffcccc");
+  });
+});
+
+// 원장님 2026-09-19 «치수선 고치기가 제대로 안 되네.» — 평행사변형 ABCD, 밑변 BC 위쪽(안쪽)의 점선 치수 호와 «10».
+// «선분 BC의 치수선을 선분 BC 아래로» 를 모델이 경로의 점을 하나씩 옮겨(`point`) 흉내 내다 호가 둘로 꺾였다.
+// 도형 엔진 v2 와 같은 짜임 — 치수선은 값 자리에 틈을 낸 두 조각(`M 틈 Q … B  M 틈 Q … C`), 값 라벨은 곡선 위에 선다.
+describe("뒤집기 — 치수 호를 반대쪽으로", () => {
+  const DIM =
+    'fill="none" stroke="#111111" stroke-width="0.72" stroke-dasharray="5 3" stroke-linecap="round"';
+  const VALUE = `${LABEL} paint-order="stroke fill" stroke="#ffffff" stroke-width="5.6"`;
+  const parallelogram = prepareFigureSvg(
+    `<svg xmlns="${NS}" viewBox="0 0 300 240">
+  <g>
+    <line x1="80" y1="40" x2="280" y2="40" stroke="#111111" stroke-width="1.9"/>
+    <line x1="280" y1="40" x2="240" y2="200" stroke="#111111" stroke-width="1.9"/>
+    <line x1="240" y1="200" x2="40" y2="200" stroke="#111111" stroke-width="1.9"/>
+    <line x1="40" y1="200" x2="80" y2="40" stroke="#111111" stroke-width="1.9"/>
+  </g>
+  <g>
+    <path d="M 124 186.358 Q 82 188.24 40 200 M 156 186.358 Q 198 188.24 240 200" ${DIM}/>
+    <path d="M 40 200 Q 32.84 113.21 80 40" ${DIM}/>
+  </g>
+  <g>
+    <text x="140" y="191.376" ${VALUE} data-mj="10">10</text>
+    <text x="46.42" y="121.98" ${VALUE} data-mj="6">6</text>
+    <text x="74" y="30" ${LABEL} data-px="80" data-py="40" data-mj="A">A</text>
+    <text x="30" y="214" ${LABEL} data-px="40" data-py="200" data-mj="B">B</text>
+    <text x="250" y="214" ${LABEL} data-px="240" data-py="200" data-mj="C">C</text>
+    <text x="288" y="30" ${LABEL} data-px="280" data-py="40" data-mj="D">D</text>
+  </g>
+</svg>`,
+  );
+  const pids = figureObjects(parallelogram).map((o) => o.id);
+  const unchanged = (after: string, targets: number[]) => {
+    for (const [i, id] of pids.entries())
+      if (!targets.includes(i + 1))
+        expect(xml(after, id), `${i + 1}번 요소`).toBe(xml(parallelogram, id));
+  };
+  const at = (svg: string, n: number, name: string) =>
+    node(svg, pids[n - 1])?.getAttribute(name);
+
+  it("flips the dimension arc below BC, keeps B and C, and takes «10» to the mirrored place", () => {
+    const result = applyFigureEdits(parallelogram, [{ op: "flip", target: 5 }]);
+    expect(at(result.svg, 5, "d")).toBe(
+      "M 124 213.642 Q 82 211.76 40 200 M 156 213.642 Q 198 211.76 240 200",
+    );
+    // 글자는 똑바로 선 채 옮긴다(원장님 항목 22) — 돌리거나 뒤집지 않는다. 곡선 위 가운데(140, 186)가 (140, 214)로.
+    expect(at(result.svg, 7, "transform")).toBe("translate(0 28)");
+    // 다른 치수의 값 «6» · 꼭짓점 이름 B·C 는 가까워도 딸린 글자가 아니다
+    unchanged(result.svg, [5, 7]);
+    expect(result.applied).toEqual([
+      "5번 곡선/경로 반대쪽으로 뒤집기(글자 10 함께)",
+    ]);
+    expect(result.rejected).toEqual([]);
+  });
+
+  it("flips each dimension with its own value", () => {
+    const result = applyFigureEdits(parallelogram, [{ op: "flip", target: 6 }]);
+    expect(at(result.svg, 6, "d")).toMatch(/^M 40 200 Q [\d.]+ [\d.]+ 80 40$/);
+    const [, cx] = at(result.svg, 6, "d")!.match(/Q ([\d.]+)/)!;
+    // 바깥(왼쪽)으로 부풀던 호가 안쪽(오른쪽)으로
+    expect(Number(cx)).toBeGreaterThan(60);
+    expect(at(result.svg, 8, "transform")).toMatch(
+      /^translate\([\d.]+ [-\d.]+\)$/,
+    );
+    unchanged(result.svg, [6, 8]);
+  });
+
+  it("gives the same result from the editor's own flip function", () => {
+    const direct = flipFigureCurve(parallelogram, pids[4]);
+    expect("svg" in direct && direct.svg).toBe(
+      applyFigureEdits(parallelogram, [{ op: "flip", target: 5 }]).svg,
+    );
+    expect("svg" in direct && direct.labelId).toBe(pids[6]);
+  });
+
+  it("flips a curve with no value label on its own", () => {
+    const bare = prepareFigureSvg(
+      `<svg xmlns="${NS}" viewBox="0 0 300 240"><path d="M 40 200 Q 140 172 240 200" ${DIM}/><text x="30" y="30" ${LABEL} data-mj="7">7</text></svg>`,
+    );
+    const result = applyFigureEdits(bare, [{ op: "flip", target: 1 }]);
+    expect(figureObjects(result.svg)[0].attrs.d).toBe(
+      "M 40 200 Q 140 228 240 200",
+    );
+    expect(figureObjects(result.svg)[1].attrs.transform).toBeUndefined();
+    expect(result.applied).toEqual(["1번 곡선/경로 반대쪽으로 뒤집기"]);
+  });
+
+  it.each([
+    [{ op: "flip", target: 3 }, "3번 선분: 곡선·꺾은선만 뒤집습니다"],
+    [{ op: "flip", target: 7 }, "글자 10: 곡선·꺾은선만 뒤집습니다"],
+  ])("explains why a flip does not fit %#", (command, reason) => {
+    const result = applyFigureEdits(parallelogram, [command]);
+    expect(result.svg).toBe(parallelogram);
+    expect(result.rejected).toEqual([reason]);
+  });
+
+  it("does not flip an angle mark or a size-locked curve", () => {
+    const withMarks = prepareFigureSvg(
+      `<svg xmlns="${NS}" viewBox="0 0 300 240"><line x1="40" y1="200" x2="240" y2="200" stroke="#111111"/><line x1="40" y1="200" x2="140" y2="40" stroke="#111111"/><path d="M 62 200 A 22 22 0 0 0 51.66 181.34" fill="none" stroke="#111111" stroke-width="0.72"/><path d="M 40 150 Q 140 120 240 150" ${DIM} data-size-locked="true"/></svg>`,
+    );
+    const result = applyFigureEdits(withMarks, [
+      { op: "flip", target: 3 },
+      { op: "flip", target: 4 },
+    ]);
+    expect(result.svg).toBe(withMarks);
+    expect(result.rejected).toEqual([
+      "3번 예각: 각 표시는 뒤집지 않습니다",
+      "4번 곡선/경로: 크기 고정이라 모양을 바꾸지 않았습니다",
+    ]);
+  });
+
+  // 원장님 결과 그대로 — 적용 목록 첫 줄이 «7번 곡선/경로 꼭짓점 1 이동 · …». 틈 두 끝만 아래로 옮기고 조절점은 위에
+  // 남아 B 쪽은 처지고 C 쪽은 솟는 두 조각이 됐다. 조용히 망가진 그림을 내지 않고, 그 곡선의 점 옮기기를 모두 거절한다.
+  it("refuses point moves that bend the curve across its chord, and says why", () => {
+    const result = applyFigureEdits(parallelogram, [
+      { op: "point", target: 5, vertex: 1, x: 124, y: 213.64 },
+      { op: "point", target: 5, vertex: 3, x: 156, y: 213.64 },
+      { op: "move", target: 7, dx: 0, dy: 28 },
+    ]);
+    expect(at(result.svg, 5, "d")).toBe(at(parallelogram, 5, "d"));
+    expect(result.rejected).toEqual([
+      "5번 곡선/경로: 꼭짓점 1·3 이동 — 곡선이 현을 가로질러 꺾입니다. 적용하지 않았습니다(반대쪽으로는 뒤집기)",
+    ]);
+    expect(result.applied).toEqual(["글자 10 아래로 이동"]);
+  });
+
+  it("still moves a curve's point when the curve stays on one side", () => {
+    const result = applyFigureEdits(parallelogram, [
+      { op: "point", target: 5, vertex: 1, x: 124, y: 180 },
+    ]);
+    expect(at(result.svg, 5, "d")).toBe(
+      "M 124 180 Q 82 188.24 40 200 M 156 186.36 Q 198 188.24 240 200",
+    );
+    expect(result.applied).toEqual(["5번 곡선/경로 꼭짓점 1 이동"]);
+  });
+});
+
+// 원장님 2026-09-19 둘째 보고 — 삼각형 ABD, BD 위의 점 C, 선분 AC·BE, «96°» 글자는 C 왼쪽에 있으나 각 호가 없다.
+// «각 ACB에 각 표시» 가 422 였다(각 표시를 더하는 명령이 없어 모델이 빈 명령을 냈다).
+describe("각 표시 더하기", () => {
+  const angleSource = prepareFigureSvg(
+    `<svg xmlns="${NS}" viewBox="0 0 340 260">
+  <g>
+    <line x1="167.77" y1="50.93" x2="40" y2="220" stroke="#111111" stroke-width="1.9"/>
+    <line x1="167.77" y1="50.93" x2="300" y2="220" stroke="#111111" stroke-width="1.9"/>
+    <line x1="40" y1="220" x2="300" y2="220" stroke="#111111" stroke-width="1.9"/>
+    <line x1="167.77" y1="50.93" x2="150" y2="220" stroke="#111111" stroke-width="1.9"/>
+    <line x1="40" y1="220" x2="233.885" y2="135.465" stroke="#111111" stroke-width="1.9"/>
+  </g>
+  <g>
+    <text x="168" y="40" ${LABEL} data-px="167.77" data-py="50.93" data-mj="A">A</text>
+    <text x="30" y="236" ${LABEL} data-px="40" data-py="220" data-mj="B">B</text>
+    <text x="150" y="240" ${LABEL} data-px="150" data-py="220" data-mj="C">C</text>
+    <text x="310" y="236" ${LABEL} data-px="300" data-py="220" data-mj="D">D</text>
+    <text x="244" y="128" ${LABEL} data-px="233.885" data-py="135.465" data-mj="E">E</text>
+    <text x="128" y="205" ${LABEL} data-mj="96°">96°</text>
+  </g>
+</svg>`,
+  );
+  const angleIds = figureObjects(angleSource).map((o) => o.id);
+  const viewBox = [0, 0, 340, 260];
+  const arc = (d: string) => {
+    expect(d).toMatch(
+      /^M [-\d.]+ [-\d.]+ A [-\d.]+ [-\d.]+ 0 0 [01] [-\d.]+ [-\d.]+$/,
+    );
+    const v = d.match(/[-\d.]+/g)!.map(Number);
+    return { p0: [v[0], v[1]], r: v[2], sweep: v[6], p1: [v[7], v[8]] };
+  };
+
+  it("draws the arc of angle ACB at C between CA and CB, like the engine's angle arc", () => {
+    const result = applyFigureEdits(angleSource, [
+      { op: "addAngle", at: "C", from: "A", to: "B" },
+    ]);
+    const objects = figureObjects(result.svg);
+    expect(objects).toHaveLength(angleIds.length + 1);
+    const added = objects[angleIds.length];
+    expect(added.type).toBe("path");
+    expect(added.attrs).toMatchObject({
+      fill: "none",
+      stroke: "#111111",
+      "stroke-width": "0.72",
+    });
+    const { p0, r, sweep, p1 } = arc(added.attrs.d);
+    expect(r).toBe(22);
+    const C = [150, 220];
+    // 호의 두 끝이 CA 위·CB 위, C 에서 반지름만큼
+    const along = (p: number[], to: number[]) => {
+      const ux = to[0] - C[0],
+        uy = to[1] - C[1];
+      return {
+        distance: Math.hypot(p[0] - C[0], p[1] - C[1]),
+        off:
+          Math.abs((p[0] - C[0]) * uy - (p[1] - C[1]) * ux) /
+          Math.hypot(ux, uy),
+      };
+    };
+    expect(along(p0, [167.77, 50.93]).distance).toBeCloseTo(22, 1);
+    expect(along(p0, [167.77, 50.93]).off).toBeLessThan(0.02);
+    expect(along(p1, [40, 220]).distance).toBeCloseTo(22, 1);
+    expect(along(p1, [40, 220]).off).toBeLessThan(0.02);
+    // 작은 쪽 — C 를 중심으로 p0 → p1 을 도는 방향이 sweep 과 맞다(SVG: sweep 1 은 각이 커지는 쪽, 화면 시계 방향)
+    const cross =
+      (p0[0] - C[0]) * (p1[1] - C[1]) - (p0[1] - C[1]) * (p1[0] - C[0]);
+    expect(cross > 0 ? 1 : 0).toBe(sweep);
+    // 편집기가 이미 읽는 각 표시와 같은 모양 — 종류 판정 · «각» 묶음
+    expect(figureAngleKinds(objects, viewBox).get(added.id)).toBe("둔각");
+    const group = groupFigureObjects(objects, viewBox).find(
+      (g) => g.name === "각",
+    );
+    expect(group?.ids).toContain(added.id);
+    expect(result.applied).toEqual(["각 ACB 표시 추가(둔각)"]);
+    for (const id of angleIds)
+      expect(xml(result.svg, id)).toBe(xml(angleSource, id));
+  });
+
+  it("takes the size and weight of the angle marks already in the figure", () => {
+    // 맨 위 source — B 에 직각 표시(한 변 12, 굵기 0.72)가 있다. 호 반지름은 엔진처럼 한 변 ÷ 0.55
+    const result = applyFigureEdits(source, [
+      { op: "addAngle", at: "A", from: "B", to: "C" },
+    ]);
+    const added = figureObjects(result.svg)[ids.length];
+    expect(arc(added.attrs.d).r).toBeCloseTo(21.82, 2);
+    expect(added.attrs["stroke-width"]).toBe("0.72");
+    expect(result.applied).toEqual(["각 BAC 표시 추가(예각)"]);
+  });
+
+  it("draws a square corner for a right angle, which the editor reads as 직각", () => {
+    const corner = prepareFigureSvg(
+      `<svg xmlns="${NS}" viewBox="0 0 300 240"><line x1="50" y1="200" x2="250" y2="200" stroke="#111111" stroke-width="1.9"/><line x1="50" y1="200" x2="50" y2="20" stroke="#111111" stroke-width="1.9"/><text x="40" y="214" ${LABEL} data-px="50" data-py="200" data-mj="O">O</text><text x="260" y="214" ${LABEL} data-px="250" data-py="200" data-mj="X">X</text><text x="40" y="18" ${LABEL} data-px="50" data-py="20" data-mj="Y">Y</text></svg>`,
+    );
+    const result = applyFigureEdits(corner, [
+      { op: "addAngle", at: "O", from: "X", to: "Y" },
+    ]);
+    const objects = figureObjects(result.svg);
+    const added = objects.at(-1)!;
+    expect(added.attrs.d).toBe("M 62.1 200 L 62.1 187.9 L 50 187.9");
+    expect(figureAngleKinds(objects, [0, 0, 300, 240]).get(added.id)).toBe(
+      "직각",
+    );
+    expect(result.applied).toEqual(["각 XOY 표시 추가(직각)"]);
+  });
+
+  it.each([
+    [
+      { op: "addAngle", at: "C", from: "A", to: "B", right: true },
+      "각 ACB 표시 추가: 그림의 각이 96°라 직각 표시를 하지 않았습니다",
+    ],
+    [
+      { op: "addAngle", at: "C", from: "B", to: "D" },
+      "각 BCD 표시 추가: 두 변이 한 직선이라 각 표시를 하지 않았습니다",
+    ],
+    [
+      { op: "addAngle", at: "C", from: "C", to: "B" },
+      "각 CCB 표시 추가: 각의 두 변이 있어야 합니다",
+    ],
+    [
+      { op: "addAngle", at: "Q", from: "A", to: "B" },
+      "각 AQB 표시 추가: 점 이름 Q — 그림에서 찾지 못했습니다",
+    ],
+  ])("explains why an angle mark does not fit %#", (command, reason) => {
+    const result = applyFigureEdits(angleSource, [command]);
+    expect(result.svg).toBe(angleSource);
+    expect(result.rejected).toEqual([reason]);
+  });
+
+  it("does not add a second mark on an angle that already has one", () => {
+    const result = applyFigureEdits(source, [
+      { op: "addAngle", at: "B", from: "A", to: "C" },
+    ]);
+    expect(result.svg).toBe(source);
+    expect(result.rejected).toEqual([
+      "각 ABC 표시 추가: 이미 각 표시가 있습니다(4번 직각)",
+    ]);
   });
 });
