@@ -120,9 +120,10 @@ const distanceToSegment = (p: number[], a: number[], b: number[]) => {
   );
   return Math.hypot(p[0] - a[0] - t * dx, p[1] - a[1] - t * dy);
 };
-/** 곧은 변 — 선분 · 다각형(닫는 변 포함) · 꺾은선의 한 토막. */
-const edgesOf = (s: Shape): number[][][] =>
-  s.object.type === "line"
+/** 곧은 변 — 선분 · 다각형(닫는 변 포함) · 꺾은선의 한 토막. 어느 요소의 변인지 같이 든다. */
+type Edge = { s: Shape; e: number[][] };
+const edgesOf = (s: Shape): Edge[] =>
+  (s.object.type === "line"
     ? [s.points]
     : s.object.type === "polygon" || s.object.type === "polyline"
       ? s.points.flatMap((p, i) =>
@@ -132,7 +133,8 @@ const edgesOf = (s: Shape): number[][][] =>
               ? [[p, s.points[0]]]
               : [],
         )
-      : [];
+      : []
+  ).map((e) => ({ s, e }));
 const unfilled = (o: FigureObject) =>
   (o.attrs.fill ?? "").trim().toLowerCase() === "none" ||
   /(?:^|;)\s*fill\s*:\s*none\b/i.test(o.attrs.style ?? "");
@@ -143,42 +145,42 @@ const unfilled = (o: FigureObject) =>
  * 두 점 A·C 와 그 맞은 모서리 B 를 A→B→C 로 잇는다). 엔진 SVG 에 표지(class·data)가 없어 모양과 자리로 가른다:
  * 열린 획 · 점 셋 · 두 토막 길이가 같고 90° · 양 끝 A·C 가 서로 다른 두 선 위에 있고 V = A + C − B 가 두 선에 다 닿는다.
  * 모양만으로는 90° 로 벌린 열린 V 화살촉과 같다 — 화살촉은 꺾인 점이 선 **위**, 양 끝이 선 밖이라 자리에서 갈린다.
+ * 직각 표시가 아니면 빈 목록, 맞으면 그 표시가 앉은 변들의 요소를 돌려준다.
  */
-function rightAngleMark(s: Shape, edges: number[][][], S: number) {
+function rightAngleMark(s: Shape, edges: Edge[], S: number): Shape[] {
   const o = s.object;
-  if ((o.type !== "path" && o.type !== "polyline") || !unfilled(o))
-    return false;
+  if ((o.type !== "path" && o.type !== "polyline") || !unfilled(o)) return [];
   if (
     o.type === "path" &&
     !/^ML{1,2}$/.test((o.attrs.d ?? "").replace(/[^A-Za-z]/g, ""))
   )
-    return false;
-  if (s.points.length !== 3) return false;
+    return [];
+  if (s.points.length !== 3) return [];
   const [a, b, c] = s.points;
   const l1 = Math.hypot(a[0] - b[0], a[1] - b[1]),
     l2 = Math.hypot(c[0] - b[0], c[1] - b[1]);
-  if (!l1 || !l2 || Math.max(l1, l2) > 1.25 * Math.min(l1, l2)) return false;
-  if (Math.max(l1, l2) > 0.12 * S) return false;
+  if (!l1 || !l2 || Math.max(l1, l2) > 1.25 * Math.min(l1, l2)) return [];
+  if (Math.max(l1, l2) > 0.12 * S) return [];
   const cos =
     ((a[0] - b[0]) * (c[0] - b[0]) + (a[1] - b[1]) * (c[1] - b[1])) / (l1 * l2);
-  if (Math.abs(cos) > 0.1) return false;
+  if (Math.abs(cos) > 0.1) return [];
   const v = [a[0] + c[0] - b[0], a[1] + c[1] - b[1]];
   const tol = Math.max(1, 0.15 * Math.min(l1, l2));
-  const on = (p: number[], e: number[][]) =>
+  const on = (p: number[], { e }: Edge) =>
     distanceToSegment(p, e[0], e[1]) <= tol;
-  return edges.some(
-    (e1) =>
-      on(a, e1) &&
-      on(v, e1) &&
-      edges.some((e2) => e2 !== e1 && on(c, e2) && on(v, e2)),
-  );
+  const first = edges.filter((e) => on(a, e) && on(v, e)),
+    second = edges.filter((e) => on(c, e) && on(v, e));
+  return first.some((e1) => second.some((e2) => e2 !== e1))
+    ? [...first, ...second].map(({ s }) => s)
+    : [];
 }
 
 /**
- * 닫힌 도형의 변 — 선분들이 끝점을 맞대어 한 바퀴 돈다(좌표평면 위 삼각형 OAB). 함수의 그래프는 제자리로 돌아오지
- * 않는다(한 x 에 한 y). 끝점을 묶어 잎을 걷어 내고 남는 선분(고리에 든 것)을 돌려준다.
+ * 직각 표시가 앉은 닫힌 도형의 변 — 선분들이 끝점을 맞대어 한 바퀴 돈다(좌표평면 위 직각삼각형 OAB).
+ * 함수의 그래프는 제자리로 돌아오지 않는다(한 x 에 한 y). 끝점을 묶어 잎을 걷어 내고(고리에 든 선분만 남기고),
+ * 그중 직각 표시가 앉은 변과 이어진 덩어리만 돌려준다 — 격자 테두리처럼 직각 표시 없이 닫히는 선은 건드리지 않는다.
  */
-function closedSides(lines: Shape[], tol: number) {
+function markedFigureSides(lines: Shape[], seeds: Set<Shape>, tol: number) {
   const nodes: number[][] = [];
   const node = (p: number[]) => {
     const found = nodes.findIndex((q) => near(p, q, tol));
@@ -202,7 +204,17 @@ function closedSides(lines: Shape[], tol: number) {
     if (kept.length === edges.length) break;
     edges = kept;
   }
-  return new Set(edges.map(({ s }) => s));
+  // 덩어리 — 끝점을 공유하는 선분끼리 한 덩어리
+  const root = nodes.map((_, i) => i);
+  const find = (n: number): number =>
+    root[n] === n ? n : (root[n] = find(root[n]));
+  for (const { u, v } of edges) root[find(u)] = find(v);
+  const marked = new Set(
+    edges.filter(({ s }) => seeds.has(s)).map(({ u }) => find(u)),
+  );
+  return new Set(
+    edges.filter(({ u }) => marked.has(find(u))).map(({ s }) => s),
+  );
 }
 
 /**
@@ -297,6 +309,7 @@ export function groupFigureObjects(
           const far = Math.max(...s.points.map(along));
           const tip = s.points.filter((p) => along(p) >= far - 0.1 * size);
           const offset = tip.reduce((sum, p) => sum + off(p), 0) / tip.length;
+          // 여유는 크기의 1/5 — ㄱ자의 가장 바깥 점은 한 변 길이(크기의 71%)만큼 축에서 벗어난다.
           return Math.abs(offset) <= Math.max(1, 0.2 * size);
         });
   const crosses =
@@ -349,17 +362,20 @@ export function groupFigureObjects(
     for (const s of ticks) role.set(s.object.id, "눈금");
   }
 
-  // 좌표평면 위 도형 — 직각 표시와 한 바퀴 도는 선분(삼각형의 변)은 «그래프»가 아니다. 종류(곡선/경로·선분)로 둔다.
+  // 좌표평면 위 도형 — 직각 표시와, 그 표시가 앉은 닫힌 도형의 변(삼각형 OAB)은 «그래프»가 아니다.
+  // 종류(곡선/경로·선분)로 둔다.
   const edges = free.flatMap(edgesOf);
-  const marks = new Set(
-    graph ? free.filter((s) => rightAngleMark(s, edges, S)) : [],
+  const marks = new Map(
+    (graph ? free : []).flatMap((s) => {
+      const on = rightAngleMark(s, edges, S);
+      return on.length ? [[s, on] as const] : [];
+    }),
   );
-  const sides = graph
-    ? closedSides(
-        free.filter((s) => s.line && !role.has(s.object.id)),
-        0.01 * S,
-      )
-    : new Set<Shape>();
+  const sides = markedFigureSides(
+    free.filter((s) => s.line && !role.has(s.object.id)),
+    new Set([...marks.values()].flat()),
+    0.01 * S,
+  );
 
   const reach = 0.12 * S;
   for (const s of free) {
