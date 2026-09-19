@@ -4,11 +4,9 @@ import type {
 } from "@/lib/dev-ai/figure-edit-contract";
 import {
   addFigureObject,
-  editableFigureDoc,
   editFigureObject,
   figureObjects,
   readFigureSvg,
-  serializeFigureSvg,
 } from "./figureSvgEditing";
 import { figurePointNames } from "./figureEditElements";
 import { objectName } from "./figureObjectNames";
@@ -19,6 +17,7 @@ import {
   type Affine,
 } from "./figureEditGeometry";
 import { rotateFigureSelection, rotationBlock } from "./figureRotate";
+import { widenFrame } from "./figureFrame";
 import {
   bucketFill,
   faceSourceObjects,
@@ -691,9 +690,10 @@ function extentOf(o: FigureObject, matrix: Affine): [number, number][] {
 }
 
 /**
- * 새로 그렸거나 바뀐 요소가 그림 틀(루트 viewBox) 밖이면 틀을 넓힌다 — 밖으로 나간 쪽만, 여백 4 를 두고. 줄이지 않는다.
- * 뒤집기(figureFlip.ts `widenFrame`)와 같은 규칙이다: 엔진 그림은 틀이 도형에 꼭 맞아 발 이름 H 가 편집 화면 밑에서
- * 잘렸다(2026-09-19 브라우저 확인). 회전은 원장님 확정 «틀을 넓혀 다 보이게». 저장할 때는 fitFigureViewport 가 다시 맞춘다.
+ * 새로 그렸거나 바뀐 요소가 그림 틀(루트 viewBox) 밖이면 틀을 넓힌다 — 뒤집기·90° 회전과 **같은 함수**(`figureFrame.ts`
+ * `widenFrame`: 밖으로 나간 쪽만, 같은 여백, 줄이지 않음). 엔진 그림은 틀이 도형에 꼭 맞아 발 이름 H 가 편집 화면 밑에서
+ * 잘렸다(2026-09-19 브라우저 확인). 원장님 확정 «틀을 넓혀 다 보이게». 저장할 때는 fitFigureViewport 가 다시 맞춘다.
+ * 여기서 하는 일은 «바뀐 요소의 점 모으기»뿐이다 — 한때 여백 4 짜리 복사본이 따로 있었다(트랙 21, 병합 때 하나로 합침).
  */
 function widenToShow(before: string, after: string) {
   if (after === before) return after;
@@ -708,34 +708,5 @@ function widenToShow(before: string, after: string) {
       ? []
       : extentOf(o, elementMatrix(nodes[i]));
   });
-  if (!points.length) return after;
-  const doc = editableFigureDoc(after);
-  const root = doc.documentElement;
-  const view = (root.getAttribute("viewBox") ?? "")
-    .trim()
-    .split(/[\s,]+/)
-    .map(Number);
-  if (view.length !== 4 || !view.every(Number.isFinite) || view[2] <= 0)
-    return after;
-  const PAD = 4;
-  const [x, y, w, h] = view;
-  const xs = points.map((p) => p[0]),
-    ys = points.map((p) => p[1]);
-  const left = Math.min(...xs) < x ? Math.min(...xs) - PAD : x;
-  const top = Math.min(...ys) < y ? Math.min(...ys) - PAD : y;
-  const right = Math.max(...xs) > x + w ? Math.max(...xs) + PAD : x + w;
-  const bottom = Math.max(...ys) > y + h ? Math.max(...ys) + PAD : y + h;
-  if (left === x && top === y && right === x + w && bottom === y + h)
-    return after;
-  const next = [left, top, right - left, bottom - top].map(fmt);
-  root.setAttribute("viewBox", next.join(" "));
-  for (const [name, was, now] of [
-    ["width", w, next[2]],
-    ["height", h, next[3]],
-  ] as const) {
-    const size = Number.parseFloat(root.getAttribute(name) ?? "");
-    if (Number.isFinite(size) && size > 0)
-      root.setAttribute(name, String(fmt((size * now) / was)));
-  }
-  return serializeFigureSvg(doc);
+  return widenFrame(after, points);
 }
