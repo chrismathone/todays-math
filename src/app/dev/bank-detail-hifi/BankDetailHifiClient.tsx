@@ -10,6 +10,7 @@ import { BADGE_CHIP } from "@/components/unified/BankView";
 import UnifiedProblem from "@/components/unified/UnifiedProblem";
 import type { BankProblem } from "@/components/unified/types";
 import { provenanceBadges } from "@/lib/problem/provenance";
+import { solutionForDisplay } from "@/lib/solutionSteps";
 
 import { LENGTH_SAMPLES, type LengthKey } from "./fixtures";
 
@@ -131,7 +132,9 @@ function AnswerAndSolution({ problem }: { problem: BankProblem }) {
       <div className="text-[12.5px] leading-[1.8] text-ink">
         <MathText
           as="div"
-          text={problem.solution || "등록된 풀이가 없습니다."}
+          text={
+            solutionForDisplay(problem.solution) || "등록된 풀이가 없습니다."
+          }
         />
       </div>
     </>

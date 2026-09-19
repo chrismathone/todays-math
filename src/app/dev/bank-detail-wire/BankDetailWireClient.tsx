@@ -7,6 +7,7 @@ import { REVIEW_STATUS_LABEL, SOURCE_LABEL } from "@/components/problem/labels";
 import { PROBLEM_CARD_WIDTH } from "@/components/print/tokens";
 import UnifiedProblem from "@/components/unified/UnifiedProblem";
 import type { BankProblem } from "@/components/unified/types";
+import { solutionForDisplay } from "@/lib/solutionSteps";
 import styles from "@/components/unified/BankView.module.css";
 
 import { WIRE_PROBLEMS } from "./fixtures";
@@ -83,7 +84,10 @@ function DetailBody({ problem }: { problem: BankProblem }) {
         <MathText text={problem.answer || "등록된 정답이 없습니다."} />
       </div>
       <h4 style={{ margin: "16px 0 4px", fontSize: 13 }}>풀이</h4>
-      <MathText as="div" text={problem.solution || "등록된 풀이가 없습니다."} />
+      <MathText
+        as="div"
+        text={solutionForDisplay(problem.solution) || "등록된 풀이가 없습니다."}
+      />
     </>
   );
 }

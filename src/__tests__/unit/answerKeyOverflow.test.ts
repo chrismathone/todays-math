@@ -21,8 +21,10 @@
 import { describe, expect, it } from "vitest";
 
 import type { TestPrintProblem } from "@/components/print/types";
+import { displayWidth } from "@/lib/math/displayWidth";
 import { JASEUP_GEOMETRY, JASEUP_MEASURED_PX } from "@/lib/printGeometry";
 import { generateMiddleProblem, registeredTypes } from "@/lib/middle/generate";
+import { normalizeOcrText } from "@/lib/problem/parseProblemContent";
 import {
   assessAnswerKeyRisk,
   estimateSolutionPx,
@@ -64,8 +66,24 @@ describe("[적대③-C] 「빠른 정답」 상자가 1쪽 해설 칸을 얼마�
    * 그만큼 1쪽 해설 칸을 넓게 봐서 경고를 놓쳤다 —
    * **지면 실측은 실제 내용으로, 실제 지면 안에서 해야 한다.**
    */
+  /**
+   * 🔴 2026-09-19 — **표본이 우연히 길었다.** 예전 표본은 `"$\frac{-3+2\sqrt{5}}{7}$"` 를
+   * 보통 따옴표로 적어서 `\f` 가 **폼피드**가 되고 `\s` 는 `s` 가 됐다. 그 손상된 글이
+   * 폭 17(한 칸 16 초과 → 두 줄)이라 초록이었다. bf2a171e(2026-09-14, OCR 정규화
+   * `normalizeMathgenText` 를 `normalizeOcrText` 에 태움)가 그 손상을 의도대로 `\frac`·`\sqrt`
+   * 로 되살리자 바른 분수 폭 10(한 줄)이 되어 `100.6 > 100.6` 으로 빨개졌다 — 부동소수
+   * 경계도, 자의 회귀도 아니다. 그래서 표본을 **정말로 긴 정답**(두 근)으로, `String.raw` 로
+   * 바꾸고, 아래 두 단정으로 표본 자체를 잠근다(「변이가 초록이면 표본부터 의심하라」).
+   */
   it("정답이 길면 셀이 접혀 상자가 커진다 — 문항 수만으로는 못 구한다", () => {
-    const long = Array.from({ length: 8 }, () => "$\frac{-3+2\sqrt{5}}{7}$");
+    const answer = String.raw`$x=\frac{-3+2\sqrt{5}}{7}$ 또는 $x=\frac{-3-2\sqrt{5}}{7}$`;
+    // 표본이 정규화를 거쳐도 그대로다 — 손상된 글(폼피드 등)이 아니라 쓰려던 LaTeX 다
+    expect(normalizeOcrText(answer)).toBe(answer);
+    // 표본이 정말 한 칸 한 줄보다 길다 — 안 길면 아래 단정은 아무것도 안 지킨다
+    expect(displayWidth(answer)).toBeGreaterThan(
+      JASEUP_MEASURED_PX.quickAnswerCellUnits,
+    );
+    const long = Array.from({ length: 8 }, () => answer);
     expect(quickAnswerBoxPx(long)).toBeGreaterThan(quickAnswerBoxPx(plain(8)));
   });
 
