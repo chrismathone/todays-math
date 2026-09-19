@@ -72,9 +72,27 @@ async function build(params: URLSearchParams) {
     svg,
     image: svgDataUrl(cleanFigureForSave(rendered)),
   };
-  if (!params.has("roundtrip")) return { figure, stored: figure };
   const assets = new Map<string, Asset>();
   const saving = new PrivateCloudClient("owner-a", memoryTransport(assets));
+  if (params.has("broken")) {
+    // 이 고침 전의 저장이 남긴 모양 — 첫 `)`·`'` 앞까지만 자산, 나머지는 꼬리로 문자열에 남았다
+    const legacy = `data:image/svg+xml;charset=utf-8,${encodeURIComponent(
+      cleanFigureForSave(rendered),
+    )}`;
+    const comma = legacy.indexOf(",");
+    const cut = legacy.slice(comma + 1).search(/[\s"'<>)]/) + comma + 1;
+    const path = await saving.upload(
+      new Blob([decodeURIComponent(legacy.slice(comma + 1, cut))], {
+        type: "image/svg+xml",
+      }),
+    );
+    const stored = { svg, image: `${path}${legacy.slice(cut)}` };
+    const opening = new PrivateCloudClient("owner-a", memoryTransport(assets));
+    const opened = await opening.materialize(stored);
+    const resaved = await opening.externalize(opened);
+    return { figure: opened, stored, resaved };
+  }
+  if (!params.has("roundtrip")) return { figure, stored: figure };
   const stored = await saving.externalize(
     params.has("legacy")
       ? {
@@ -94,7 +112,11 @@ async function build(params: URLSearchParams) {
 
 function Harness() {
   const params = new URLSearchParams(location.search);
-  const [state, setState] = useState<{ figure: Figure; stored: Figure }>();
+  const [state, setState] = useState<{
+    figure: Figure;
+    stored: Figure;
+    resaved?: Figure;
+  }>();
   const [error, setError] = useState("");
   useEffect(() => {
     build(params).then(
