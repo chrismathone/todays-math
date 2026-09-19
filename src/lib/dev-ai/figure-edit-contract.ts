@@ -29,6 +29,8 @@ const PointRefSchema = z.union([
   z.string().trim().min(1).max(12),
   z.object({ x: coordinate, y: coordinate }).strict(),
 ]);
+/** 겹 표시 수 — 같은 길이 눈금·평행 »·각의 호(1~3). */
+const markCount = z.number().int().min(1).max(3);
 
 export const FigureEditCommandSchema = z
   .discriminatedUnion("op", [
@@ -175,6 +177,39 @@ export const FigureEditCommandSchema = z
       })
       .strict(),
     /**
+     * 표시(원장님 2026-09-19 «추가할 수 있는 것 전부») — 모양은 도형 엔진 v2 와 같다(figureMarks.ts).
+     * 치수: 두 점 사이 점선 곡선 + 값(값 자리에 틈). side 는 곡선이 설 쪽 — 없으면 도형 밖.
+     * 같은 길이 표시: 선분 한가운데를 가로지르는 눈금 count 줄. 평행 표시: from→to 를 가리키는 » count 개.
+     * 눈금·평행 표시는 그림에 그려진 선분 위에만 단다.
+     */
+    z
+      .object({
+        op: z.literal("addDimension"),
+        from: PointRefSchema,
+        to: PointRefSchema,
+        text: label,
+        side: z
+          .enum(["out", "in", "above", "below", "left", "right"])
+          .optional(),
+      })
+      .strict(),
+    z
+      .object({
+        op: z.literal("addTick"),
+        from: PointRefSchema,
+        to: PointRefSchema,
+        count: markCount.optional(),
+      })
+      .strict(),
+    z
+      .object({
+        op: z.literal("addParallelMark"),
+        from: PointRefSchema,
+        to: PointRefSchema,
+        count: markCount.optional(),
+      })
+      .strict(),
+    /**
      * 곡선·꺾은선을 두 끝을 잇는 현에 대해 거울 대칭 — 끝은 그대로, 부푼 쪽만 반대편으로. 딸린 값 글자도 대칭 자리로
      * (원장님 2026-09-19 «선분 BC의 치수선을 선분 BC 아래로» 를 점 하나씩 옮겨 흉내 내다 호가 꺾였다).
      */
@@ -190,6 +225,8 @@ export const FigureEditCommandSchema = z
         from: PointRefSchema,
         to: PointRefSchema,
         right: z.boolean().optional(),
+        /** 겹 호(같은 각끼리 같은 수) — 반지름을 3 씩 줄인 호를 더 긋는다. */
+        arcs: markCount.optional(),
       })
       .strict(),
   ])

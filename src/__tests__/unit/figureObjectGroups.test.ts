@@ -264,8 +264,10 @@ describe("groupFigureObjects — 직각 표시·등변 표시는 축의 증거�
     ]);
   });
   it("등변 표시(‖)가 붙은 직각이등변삼각형(엔진 v2 실출력)에도 축이 없다 — 한 자리에 모인 두 획은 눈금이 아니다", () => {
+    // 등변 표시는 축의 눈금이 아니라 «같은 길이 표시»(선분 위 표시 판정 figureSegmentMarks.ts)
     expect(grouped(prepareFigureSvg(V2_ISOSCELES_RIGHT))).toEqual([
-      { name: "선분", custom: false, numbers: [1, 2, 3, 4, 5, 6, 7] },
+      { name: "선분", custom: false, numbers: [1, 2, 3] },
+      { name: "같은 길이 표시", custom: false, numbers: [4, 5, 6, 7] },
       { name: "각", custom: false, numbers: [8] },
       { name: "글자", custom: false, numbers: [9, 10, 11] },
     ]);
@@ -380,7 +382,8 @@ describe("groupFigureObjects — 직각 표시·등변 표시는 축의 증거�
   </g>
 </svg>`);
     expect(grouped(svg)).toEqual([
-      { name: "선분", custom: false, numbers: [1, 2, 3, 4] },
+      { name: "선분", custom: false, numbers: [1] },
+      { name: "같은 길이 표시", custom: false, numbers: [2, 3, 4] },
       { name: "글자", custom: false, numbers: [5, 6] },
     ]);
   });

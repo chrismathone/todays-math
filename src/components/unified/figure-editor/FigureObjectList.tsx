@@ -1,7 +1,11 @@
 import { memo, useRef, useState, type DragEvent } from "react";
 import type { figureObjects } from "./figureSvgEditing";
 import { figureLabelSummary } from "./FigureLabelInput";
-import { objectName, type FigureAngleKinds } from "./figureObjectNames";
+import {
+  isAngleKind,
+  objectName,
+  type FigureAngleKinds,
+} from "./figureObjectNames";
 import type { FigureObjectGroup } from "./figureObjectGroups";
 
 type FigureObject = ReturnType<typeof figureObjects>[number];
@@ -129,7 +133,7 @@ export const FigureObjectList = memo(
           // 묶음 이름이 말해 주는 것은 단추에서 뺀다 — 모두 글이면 내용만, 모두 같은 종류면 번호만.
           // 각 표시는 늘 종류(직각·예각·둔각)를 적는다 — 묶음 이름 «각»은 종류를 말해 주지 않는다.
           const short = (o: FigureObject, i: number) =>
-            g.loose || angles.has(o.id)
+            g.loose || isAngleKind(angles.get(o.id))
               ? labels[i]
               : members.every((m) => m.type === "text")
                 ? figureLabelSummary(o.attrs["data-mj"] ?? o.text)

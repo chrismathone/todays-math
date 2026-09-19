@@ -42,8 +42,15 @@ import {
   ANGLE_MARK_WIDTH,
   angleMarkCorner,
   angleMarkPath,
+  innerAngleArcs,
+  outerMarkRadii,
   sameAngle,
 } from "./figureAngleMark";
+import {
+  addFigureMark,
+  figureMarkLabel,
+  isFigureMarkCommand,
+} from "./figureMarks";
 
 type FigureObject = ReturnType<typeof figureObjects>[number];
 
@@ -218,6 +225,18 @@ export function applyFigureEdits(
         reject,
         edit: applyFigureEdits,
       });
+    // 치수 · 같은 길이 표시 · 평행 표시 — 엔진과 같은 모양(figureMarks.ts)
+    if (isFigureMarkCommand(command)) {
+      const mark = addFigureMark(current, command, {
+        resolve,
+        names: [...names.values()],
+        nameOf: (id) => {
+          const index = before.findIndex((o) => o.id === id);
+          return index < 0 ? undefined : nameOf(index);
+        },
+      });
+      return "reason" in mark ? reject(mark.reason) : mark;
+    }
     if (command.op === "addLine") {
       const from = resolve(command.from),
         to = resolve(command.to);
@@ -281,13 +300,16 @@ export function applyFigureEdits(
       });
       const middle = (values: number[]) =>
         [...values].sort((a, b) => a - b)[Math.floor(values.length / 2)];
+      const arcs = command.arcs ?? 1;
       const mark = angleMarkPath({
         at: point(at),
         from: point(from),
         to: point(to),
-        right: command.right,
+        // 겹 호는 호로 그린다 — 직각 ㄱ자는 겹으로 하지 않는다(엔진: right 면 arcs 는 1)
+        right: command.right ?? (arcs > 1 ? false : undefined),
+        // 이웃 크기 — 꼭짓점마다 바깥 호만(겹 호의 안쪽 호가 끌어내리지 않게)
         radius: marks.length
-          ? middle(marks.map((m) => m.corner.radius))
+          ? middle(outerMarkRadii(marks.map((m) => m.corner)))
           : Math.min(ANGLE_MARK_RADIUS, 0.08 * Math.max(width, height)),
       });
       if ("reason" in mark) reject(mark.reason);
@@ -306,18 +328,35 @@ export function applyFigureEdits(
       const color = marks
         .map((m) => m.o.attrs.stroke?.trim())
         .find((value) => value && /^#[\da-f]{3,6}$/i.test(value));
-      const added = addFigureObject(current, "curve", at, to);
-      const next = editFigureObject(added.svg, added.id, {
-        d: mark.d,
-        stroke: color ?? INK,
-        "stroke-width": String(
-          widths.length ? middle(widths) : ANGLE_MARK_WIDTH,
-        ),
+      if (arcs > 1 && mark.right) reject("직각 표시는 겹으로 하지 않습니다");
+      const inner = innerAngleArcs(mark.d, arcs, {
+        at: point(at),
+        from: point(from),
+        to: point(to),
       });
+      if ("reason" in inner) return reject(inner.reason);
+      // 호마다 요소 하나(엔진 이중 호처럼) — 바깥 호부터
+      let next = current;
+      const ids: string[] = [];
+      for (const d of [mark.d, ...inner]) {
+        const added = addFigureObject(next, "curve", at, to);
+        ids.push(added.id);
+        next = editFigureObject(added.svg, added.id, {
+          d,
+          stroke: color ?? INK,
+          "stroke-width": String(
+            widths.length ? middle(widths) : ANGLE_MARK_WIDTH,
+          ),
+        });
+      }
       const kind = figureAngleKinds(figureObjects(next), figure.viewBox).get(
-        added.id,
+        ids[0],
       );
-      return { svg: next, text: kind ? `${label}(${kind})` : label };
+      const detail = [kind, arcs > 1 ? `${arcs}겹` : ""].filter(Boolean);
+      return {
+        svg: next,
+        text: detail.length ? `${label}(${detail.join(", ")})` : label,
+      };
     }
     const id = before[command.target - 1].id;
     const object = figureObjects(current).find((o) => o.id === id);
@@ -451,6 +490,7 @@ export function applyFigureEdits(
       label = nameOf(index);
     } else if (isShapeCommand(command))
       label = shapeCommandLabel(command, before, nameOf);
+    else if (isFigureMarkCommand(command)) label = figureMarkLabel(command);
     else
       label =
         command.op === "addLine"
@@ -479,6 +519,11 @@ export function applyFigureEdits(
       const result = applyOne(command, label);
       current = result.svg;
       applied.push(result.text);
+      // 이번 요청에서 새로 이름 붙은 점(중점 M · 수선의 발 H · 교점 O · 점 P)은 뒤 명령이 이름으로 부른다
+      // («M 은 AB 의 중점» = 중점 찍기 + 같은 길이 표시 둘). 요청 때 있던 이름은 그대로.
+      if (!("target" in command))
+        for (const { name, x, y } of describeFigureForEdit(current).names ?? [])
+          if (!names.has(name)) names.set(name, { x, y });
     } catch (error) {
       if (!(error instanceof Rejected)) throw error;
       rejected.push(`${label}: ${error.message}`);
