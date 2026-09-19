@@ -23,6 +23,14 @@ Commands (include only the fields shown; omit optional fields you do not change)
 {"op":"addLine","from":P,"to":P,"dashed":true|false,"arrow":true|false} — P is a name from names or {"x":number,"y":number}.
 {"op":"addText","text":"label","x":number,"y":number} — (x, y) is the centre of the new label.
 {"op":"addPoint","x":number,"y":number,"label":"optional name"} — a small filled dot.
+{"op":"addCircle","center":P,"through":P} or {"op":"addCircle","center":P,"r":number} — a circle; for "radius OA" use "center":"O","through":"A". Optional "dashed":true.
+{"op":"addArc","center":P,"from":P,"to":P,"via":P} — the arc from→to around center, the shorter way; give via (optional) for the arc through that point, e.g. arc ACB.
+{"op":"resize","target":n,"r":number} or {"op":"resize","target":n,"scale":number} — a circle's new radius, or scale a circle, ellipse, rectangle or polygon about its centre.
+{"op":"rotate","targets":[n,...]|"all","direction":"cw"|"ccw"} — turn the elements together by 90° about their centre, labels upright; 180° is two commands.
+{"op":"fillRegion","at":[P,P,P],"color":"#rrggbb"} — shade the closed region with these corners in order, e.g. ["A","B","C"] for triangle ABC; for a curved region give one point inside. color optional.
+{"op":"addPerpendicular","from":P,"onto":[P,P],"foot":"H"} — the perpendicular from a point to a line with its right-angle mark; the code finds the foot (foot names it, optional).
+{"op":"addMidpoint","from":P,"to":P,"label":"M"} — a dot at the midpoint.
+{"op":"addIntersection","lines":[[P,P],[P,P]],"label":"O"} — a dot where the two lines cross.
 {"op":"addDimension","from":P,"to":P,"text":"7","side":"out"|"in"|"above"|"below"|"left"|"right"} — a dashed curved length mark with its value, like the printed ones; side is where it bulges (default out, away from the figure).
 {"op":"addTick","from":P,"to":P,"count":1|2|3} — equal-length tick marks across the middle of a drawn segment; equal segments get the same count.
 {"op":"addParallelMark","from":P,"to":P,"count":1|2|3} — parallel marks (>) on a drawn segment pointing from → to; parallel segments get the same count and direction.

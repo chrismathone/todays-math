@@ -22,6 +22,7 @@ import {
   syncFigureFaces,
 } from "@/components/unified/figure-editor/figureFaceEditing";
 import {
+  measureTextBoxes,
   measureTextCenters,
   ROTATE_BLOCKED,
   rotateFigureSelection,
@@ -504,10 +505,83 @@ describe("회전 — 막을 때", () => {
   });
 });
 
+/**
+ * 원장님 2026-09-19 «틀을 넓혀 다 보이게» — 편집기는 그림 틀(viewBox)만 보여 준다. 돈 것이 틀 밖으로 나가면
+ * 뒤집기와 같은 규칙(figureFrame 한 함수)으로 **넘친 쪽만** 여백 6 을 두고 넓힌다. 줄이지는 않는다.
+ */
+describe("회전 — 틀 넓히기", () => {
+  const viewBoxOf = (svg: string) =>
+    read(svg).documentElement.getAttribute("viewBox")!.split(" ").map(Number);
+  const wide = figure(
+    `<line x1="20" y1="50" x2="380" y2="50" stroke="#111"/>`,
+    "0 0 400 100",
+  );
+
+  it("돈 것이 틀 밖으로 나가면 넘친 쪽만 넓힌다 — 위아래만, 가로는 그대로", () => {
+    const cw = rotateFigureSelection(wide, ["obj-0"], "cw");
+    // 가운데 (200, 50) — 세로 선 (200, −130)–(200, 230)
+    expect(
+      ["x1", "y1", "x2", "y2"].map((n) => Number(attr(cw, "obj-0", n))),
+    ).toEqual([200, -130, 200, 230]);
+    expect(viewBoxOf(cw)).toEqual([0, -136, 400, 372]);
+  });
+
+  it("네 번 돌면 좌표는 제자리, 틀은 넓힌 채 — 줄이지 않는다", () => {
+    const four = turn(wide, ["obj-0"], "cw", "cw", "cw", "cw");
+    expectSameFigure(four, wide);
+    expect(viewBoxOf(four)).toEqual([0, -136, 400, 372]);
+  });
+
+  it("틀 안에서 돌면 틀을 건드리지 않는다", () => {
+    const svg = figure(
+      `<line x1="100" y1="100" x2="200" y2="100" stroke="#111"/>`,
+    );
+    expect(viewBoxOf(rotateFigureSelection(svg, ["obj-0"], "cw"))).toEqual([
+      0, 0, 480, 360,
+    ]);
+  });
+
+  it("곡선은 조절점이 아니라 곡선 자체로 잰다 — 조절점만 틀 밖이면 그대로", () => {
+    // 가운데 (100, 150) = 꼭대기. 돈 뒤 현은 x = 50, 곡선은 x 50..100, 조절점은 (150, 150) — 틀(가로 140) 밖
+    const svg = figure(
+      `<path d="M 80 200 Q 100 100 120 200" stroke="#111" fill="none"/>`,
+      "0 0 140 240",
+    );
+    const cw = rotateFigureSelection(svg, ["obj-0"], "cw");
+    expect(numbers(attr(cw, "obj-0", "d"))).toEqual([
+      50, 130, 150, 150, 50, 170,
+    ]);
+    expect(viewBoxOf(cw)).toEqual([0, 0, 140, 240]);
+  });
+
+  it("조판한 글자 상자까지 넣는다 — 화면에서 잰 상자가 틀 밖이면 그쪽을 넓힌다", () => {
+    const svg = figure(
+      `<line x1="20" y1="100" x2="180" y2="100" stroke="#111"/>` +
+        `<text x="100" y="26" font-size="18" text-anchor="middle" data-mj="A">A</text>`,
+      "0 0 200 200",
+    );
+    // 가운데는 선의 상자 (100, 100) — 글자 가운데 (100, 20) 은 (180, 100) 으로 간다
+    // 글자 크기로 어림한 상자(반폭 5)는 틀 안이다
+    expect(
+      viewBoxOf(rotateFigureSelection(svg, ["obj-0", "obj-1"], "cw")),
+    ).toEqual([0, 0, 200, 200]);
+    // 조판본 상자가 반폭 30 이면 오른쪽 끝 210 — 오른쪽만 216 까지
+    const measured = rotateFigureSelection(svg, ["obj-0", "obj-1"], "cw", {
+      textBoxes: new Map([["obj-1", { center: [100, 20], half: [30, 14] }]]),
+    });
+    expect(attr(measured, "obj-1", "transform")).toBe("translate(80 80)");
+    expect(viewBoxOf(measured)).toEqual([0, 0, 216, 200]);
+  });
+});
+
 describe("회전 — 화면에서 잰 글자 가운데", () => {
   afterEach(() => vi.unstubAllGlobals());
-
-  it("화면 좌표의 떨림(float32)을 0.001 로 걷는다 — 돌린 뒤 다시 재도 같은 값이라 네 번 돌면 제자리", () => {
+  const stubScreen = (box: {
+    x: number;
+    y: number;
+    width: number;
+    height: number;
+  }) => {
     vi.stubGlobal(
       "DOMPoint",
       class {
@@ -521,17 +595,35 @@ describe("회전 — 화면에서 잰 글자 가운데", () => {
       },
     );
     const matrix = { inverse: () => matrix, multiply: () => matrix };
-    const label = {
-      getBBox: () => ({ x: 150.0000123, y: 69.9999914, width: 10, height: 12 }),
-      getScreenCTM: () => matrix,
-    };
-    const root = {
+    const label = { getBBox: () => box, getScreenCTM: () => matrix };
+    return {
       getScreenCTM: () => matrix,
       querySelector: (selector: string) =>
         selector === '[data-object-id="obj-1"]' ? label : null,
     } as unknown as SVGSVGElement;
+  };
+
+  it("화면 좌표의 떨림(float32)을 0.001 로 걷는다 — 돌린 뒤 다시 재도 같은 값이라 네 번 돌면 제자리", () => {
+    const root = stubScreen({
+      x: 150.0000123,
+      y: 69.9999914,
+      width: 10,
+      height: 12,
+    });
     expect(measureTextCenters(root, ["obj-1", "obj-9"])).toEqual(
       new Map([["obj-1", [155, 76]]]),
+    );
+  });
+
+  it("글자 상자는 가운데와 반폭·반높이 — 틀 넓히기가 조판한 크기를 쓴다", () => {
+    const root = stubScreen({
+      x: 150.0000123,
+      y: 69.9999914,
+      width: 40,
+      height: 12,
+    });
+    expect(measureTextBoxes(root, ["obj-1", "obj-9"])).toEqual(
+      new Map([["obj-1", { center: [170, 76], half: [20, 6] }]]),
     );
   });
 });

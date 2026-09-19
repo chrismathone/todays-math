@@ -254,6 +254,128 @@ describe("90° 회전 — 여러 요소·묶음 칸", () => {
   });
 });
 
+// 원장님 2026-09-19 «틀을 넓혀 다 보이게» — 편집기는 그림 틀만 보여 준다. 돈 것이 틀 밖이면 넘친 쪽만 넓힌다.
+describe("90° 회전 — 틀 넓히기", () => {
+  const frame = () => canvas().querySelector("svg")!.getAttribute("viewBox");
+
+  it("돈 것이 틀 밖으로 나가면 틀을 넓혀 다 보인다 — 되돌리기 한 걸음에 틀도 돌아온다", () => {
+    open(
+      `<svg xmlns="${SVG_NS}" viewBox="0 0 400 100"><line x1="20" y1="50" x2="380" y2="50" stroke="#111111"/></svg>`,
+    );
+    expect(frame()).toBe("0 0 400 100");
+    pickNumber(1);
+    fireEvent.click(cw());
+    expect(frame()).toBe("0 -136 400 372");
+    fireEvent.click(undoButton());
+    expect(frame()).toBe("0 0 400 100");
+    expect(
+      coords(canvas().querySelector("line")!, ["x1", "y1", "x2", "y2"]),
+    ).toEqual(["20", "50", "380", "50"]);
+  });
+
+  it("틀 안에서 돌면 틀은 그대로다", () => {
+    open();
+    pickNumber(1);
+    fireEvent.click(cw());
+    expect(frame()).toBe("0 0 480 360");
+  });
+});
+
+/**
+ * 원장님 2026-09-19 «반대쪽으로 뒤집기» 단추 — 회전 줄 바로 밑. 곡선·꺾은선 하나(와 뒤집기가 같이 옮기는 값 글자)를
+ * 골랐을 때만 선다. 누르면 치수 곡선이 현(두 끝)을 두고 반대편으로, 값 글자도 대칭 자리로 — 되돌리기 한 걸음.
+ * 뒤집을 수 없으면 단추를 끄고 `flipFigureCurve` 가 준 이유를 단다(AI «요청대로 고치기»와 같은 이유).
+ */
+describe("반대쪽으로 뒤집기", () => {
+  const DIM =
+    'fill="none" stroke="#111111" stroke-width="0.72" stroke-dasharray="5 3" stroke-linecap="round"';
+  // 1·2 선분(꼭짓점 (40, 200)) · 3 치수 곡선 · 4 값 «10» · 5 각 표시 · 6 곧은 경로 · 7 꺾은선
+  const dimension =
+    `<svg xmlns="${SVG_NS}" viewBox="0 0 300 240">` +
+    `<line x1="40" y1="200" x2="240" y2="200" stroke="#111111"/>` +
+    `<line x1="40" y1="200" x2="140" y2="40" stroke="#111111"/>` +
+    `<path d="M 40 150 Q 140 120 240 150" ${DIM}/>` +
+    `<text x="140" y="129.376" font-size="16.8" text-anchor="middle" fill="#111111" data-mj="10">10</text>` +
+    `<path d="M 62 200 A 22 22 0 0 0 51.66 181.34" fill="none" stroke="#111111" stroke-width="0.72"/>` +
+    `<path d="M 20 20 L 60 20 L 100 20" fill="none" stroke="#111111"/>` +
+    `<polyline points="160 230 200 215 240 230" fill="none" stroke="#111111"/>` +
+    `</svg>`;
+  const flipRow = () => screen.queryByRole("region", { name: "뒤집기" });
+  const flipButton = () =>
+    within(flipRow()!).getByRole("button", { name: "반대쪽으로 뒤집기" });
+  const curve = () => canvas().querySelector('[data-object-id="obj-2"]')!;
+  const value = () => canvas().querySelector('[data-object-id="obj-3"]')!;
+
+  it("곡선 하나를 고르면 회전 줄 밑에 단추가 선다 — 선분·글자·여럿이면 없다", () => {
+    open(dimension);
+    pickNumber(3);
+    expect(rotateRow()).not.toBeNull();
+    expect(flipButton()).toBeEnabled();
+    pickNumber(1);
+    expect(flipRow()).toBeNull();
+    pickNumber(4);
+    expect(flipRow()).toBeNull();
+    selectAll();
+    expect(flipRow()).toBeNull();
+  });
+
+  it("누르면 곡선이 현을 두고 반대편으로, 값 글자도 대칭 자리로 — 선택은 곡선과 그 글자", () => {
+    open(dimension);
+    pickNumber(3);
+    fireEvent.click(flipButton());
+    expect(curve().getAttribute("d")).toBe("M 40 150 Q 140 180 240 150");
+    expect(value().getAttribute("transform")).toBe("translate(0 52)");
+    expect(screen.getByText("2개 요소 선택")).toBeInTheDocument();
+    // 곡선과 그 글자를 고른 채라 단추가 남는다 — 다시 누르면 제자리
+    fireEvent.click(flipButton());
+    expect(curve().getAttribute("d")).toBe("M 40 150 Q 140 120 240 150");
+  });
+
+  it("되돌리기 한 걸음 = 한 번 뒤집기", () => {
+    open(dimension);
+    pickNumber(3);
+    fireEvent.click(flipButton());
+    fireEvent.click(undoButton());
+    expect(curve().getAttribute("d")).toBe("M 40 150 Q 140 120 240 150");
+    expect(value().getAttribute("transform")).toBeNull();
+    expect(undoButton()).toBeDisabled();
+  });
+
+  it("꺾은선도 뒤집는다", () => {
+    open(dimension);
+    pickNumber(7);
+    fireEvent.click(flipButton());
+    expect(
+      canvas()
+        .querySelector('[data-object-id="obj-6"]')!
+        .getAttribute("points"),
+    ).toBe("160 230 200 245 240 230");
+  });
+
+  it.each([
+    [5, "각 표시는 뒤집지 않습니다"],
+    [6, "곧은 선이라 뒤집을 것이 없습니다"],
+  ])("%i번은 단추를 끄고 이유를 단다", (n, reason) => {
+    open(dimension);
+    pickNumber(n);
+    expect(flipButton()).toBeDisabled();
+    expect(flipButton()).toHaveAttribute("title", reason);
+    expect(within(flipRow()!).getByText(reason)).toBeVisible();
+  });
+
+  it("크기 고정한 곡선은 끈다", () => {
+    open(dimension);
+    pickNumber(3);
+    fireEvent.click(
+      screen.getByRole("checkbox", { name: "요소 크기 고정 (이동만 가능)" }),
+    );
+    expect(flipButton()).toBeDisabled();
+    expect(
+      within(flipRow()!).getByText("크기 고정이라 모양을 바꾸지 않았습니다"),
+    ).toBeVisible();
+  });
+});
+
 describe("90° 회전 — 크기 고정", () => {
   const lockBox = () =>
     screen.getByRole("checkbox", { name: "요소 크기 고정 (이동만 가능)" });

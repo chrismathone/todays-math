@@ -4,11 +4,9 @@ import type {
 } from "@/lib/dev-ai/figure-edit-contract";
 import {
   addFigureObject,
-  editableFigureDoc,
   editFigureObject,
   figureObjects,
   readFigureSvg,
-  serializeFigureSvg,
 } from "./figureSvgEditing";
 import {
   applyPoint,
@@ -18,6 +16,7 @@ import {
   type Point,
 } from "./figureEditGeometry";
 import { sampleFigurePath } from "./figureFlip";
+import { widenFrame } from "./figureFrame";
 import { POINT_NAME } from "./figureEditElements";
 import { figureAngleKinds } from "./figureObjectGroups";
 import { ANGLE_MARK_WIDTH } from "./figureAngleMark";
@@ -751,7 +750,7 @@ function addDimension(
     "stroke-width": fmt(halo),
     "stroke-linejoin": "round",
   });
-  // 값·곡선이 그림 틀 밖이면 틀을 넓힌다
+  // 값·곡선이 그림 틀 밖이면 틀을 넓힌다 — 뒤집기·회전·도형 명령과 같은 한 함수(figureFrame.ts), 여백은 뒤집기의 값 글자처럼
   const [bx1, by1, bx2, by2] = boxAt(center);
   return {
     svg: widenFrame(
@@ -760,40 +759,4 @@ function addDimension(
       0.6 * fs,
     ),
   };
-}
-
-/**
- * 그림 틀(루트 viewBox)을 점들이 들어가게 넓힌다 — 밖으로 나간 쪽만, 줄이지 않는다(figureFlip.ts `widenFrame` 과 같은 규칙).
- * TODO(리드): 트랙 19 가 틀 넓히기를 한 함수로 꺼낸다 — 병합 때 그 함수로 바꾼다.
- */
-function widenFrame(svg: string, points: Point[], pad: number): string {
-  const doc = editableFigureDoc(svg);
-  const root = doc.documentElement;
-  const view = root
-    .getAttribute("viewBox")
-    ?.trim()
-    .split(/[\s,]+/)
-    .map(Number);
-  if (view?.length !== 4 || !view.every(Number.isFinite) || view[2] <= 0)
-    return svg;
-  const [x, y, w, h] = view;
-  const xs = points.map((p) => p[0]),
-    ys = points.map((p) => p[1]);
-  const left = Math.min(...xs) < x ? Math.min(...xs) - pad : x;
-  const top = Math.min(...ys) < y ? Math.min(...ys) - pad : y;
-  const right = Math.max(...xs) > x + w ? Math.max(...xs) + pad : x + w;
-  const bottom = Math.max(...ys) > y + h ? Math.max(...ys) + pad : y + h;
-  if (left === x && top === y && right === x + w && bottom === y + h)
-    return svg;
-  const next = [left, top, right - left, bottom - top].map(round3);
-  root.setAttribute("viewBox", next.map(fmt).join(" "));
-  for (const [name, before, after] of [
-    ["width", w, next[2]],
-    ["height", h, next[3]],
-  ] as const) {
-    const size = Number.parseFloat(root.getAttribute(name) ?? "");
-    if (Number.isFinite(size) && size > 0)
-      root.setAttribute(name, fmt((size * after) / before));
-  }
-  return serializeFigureSvg(doc);
 }
