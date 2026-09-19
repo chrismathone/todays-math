@@ -38,7 +38,7 @@
 import fs from "node:fs";
 import path from "node:path";
 
-import { describe, expect, it } from "vitest";
+import { beforeAll, describe, expect, it } from "vitest";
 
 import nextConfig from "../../../next.config";
 
@@ -119,6 +119,14 @@ function hazardousPackages(): string[] {
 }
 
 describe("[배포] 번들되면 자리를 잃는 패키지", () => {
+  // `node_modules`·`src` 훑기는 **한 번만**, 넉넉한 한도로. 시험마다 따로 훑을 때는 전체 시험 부하에서
+  // 첫 훑기가 20초 한도를 넘겨 양성 대조군이 «시간 초과»로 빨갰다 — 2026-09-19 그날 전체 시험 다섯 번 모두
+  // (단독이면 늘 초록). 틀린 게 아니라 느린 것이라, 판정은 그대로 두고 훑는 횟수와 한도만 바꿨다.
+  let hazards: string[] = [];
+  beforeAll(() => {
+    hazards = hazardousPackages();
+  }, 120_000);
+
   it("**검출기가 살아 있다** — 그 수법을 실제로 문다", () => {
     // 0 이 「깨끗」인지 「못 셈」인지 갈라야 한다. 정본 그대로의 세 줄.
     expect(HAZARD.test("var dirname = eval('__dirname');")).toBe(true);
@@ -130,12 +138,12 @@ describe("[배포] 번들되면 자리를 잃는 패키지", () => {
 
   it("**mathjax-full 은 실제로 그 수법을 쓴다** — 이 시험의 양성 대조군이다", () => {
     // 여기가 비면 위 시험은 아무것도 안 지킨다(모집단이 사라진 것을 알아야 한다).
-    expect(hazardousPackages()).toContain("mathjax-full");
+    expect(hazards).toContain("mathjax-full");
   });
 
   it("🔴 그런 패키지는 **전부** `serverExternalPackages` 에 있어야 한다", () => {
     const declared = new Set(nextConfig.serverExternalPackages ?? []);
-    const missing = hazardousPackages().filter((dep) => !declared.has(dep));
+    const missing = hazards.filter((dep) => !declared.has(dep));
     expect(
       missing,
       missing.length > 0
