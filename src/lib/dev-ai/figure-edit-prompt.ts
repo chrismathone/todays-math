@@ -23,6 +23,14 @@ Commands (include only the fields shown; omit optional fields you do not change)
 {"op":"addLine","from":P,"to":P,"dashed":true|false,"arrow":true|false} — P is a name from names or {"x":number,"y":number}.
 {"op":"addText","text":"label","x":number,"y":number} — (x, y) is the centre of the new label.
 {"op":"addPoint","x":number,"y":number,"label":"optional name"} — a small filled dot.
+{"op":"addCircle","center":P,"through":P} or {"op":"addCircle","center":P,"r":number} — a circle; for "radius OA" use "center":"O","through":"A". Optional "dashed":true.
+{"op":"addArc","center":P,"from":P,"to":P,"via":P} — the arc from→to around center, the shorter way; give via (optional) for the arc through that point, e.g. arc ACB.
+{"op":"resize","target":n,"r":number} or {"op":"resize","target":n,"scale":number} — a circle's new radius, or scale a circle, ellipse, rectangle or polygon about its centre.
+{"op":"rotate","targets":[n,...]|"all","direction":"cw"|"ccw"} — turn the elements together by 90° about their centre, labels upright; 180° is two commands.
+{"op":"fillRegion","at":[P,P,P],"color":"#rrggbb"} — shade the closed region with these corners in order, e.g. ["A","B","C"] for triangle ABC; for a curved region give one point inside. color optional.
+{"op":"addPerpendicular","from":P,"onto":[P,P],"foot":"H"} — the perpendicular from a point to a line with its right-angle mark; the code finds the foot (foot names it, optional).
+{"op":"addMidpoint","from":P,"to":P,"label":"M"} — a dot at the midpoint.
+{"op":"addIntersection","lines":[[P,P],[P,P]],"label":"O"} — a dot where the two lines cross.
 {"op":"flip","target":n} — mirror a curve (a path or polyline, e.g. a dashed dimension arc) across the straight line joining its two ends: the ends stay, the bulge goes to the other side, and its value label (e.g. "10") moves to the mirrored place, upright. Use it to put a dimension line or arc on the other side of its segment (below, above, outside, inside).
 {"op":"addAngle","at":P,"from":P,"to":P,"right":true|false} — an angle mark at vertex at, on the smaller angle between the rays at→from and at→to: an arc, or a small square corner when right is true (omit right to follow the drawing). P as in addLine; for angle ACB use "at":"C","from":"A","to":"B". Only for an angle that has no mark yet.
 Never reshape a curve by moving its points one by one with "point": the listed points of a curve are only on-curve ends, so it breaks into bent pieces. To move a curve to the other side use flip.
