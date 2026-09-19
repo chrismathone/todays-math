@@ -248,17 +248,18 @@ test("wide rendered review, scoped solution retry, edit guards and restart", asy
   await expect(
     first.getByRole("button", { name: "취소", exact: true }),
   ).toBeVisible();
+  // 확인 대화상자는 이름으로 잡는다 — 검수는 확대로 들어와(시안 B) 작업실 자체가 role="dialog" 라,
+  // 이름 없이 찾으면 카드의 «취소»·띠의 «새로 시작»까지 같이 잡힌다.
+  const restartDialog = page.getByRole("dialog", { name: "새로 시작할까요?" });
   await page.getByRole("button", { name: "새로 시작", exact: true }).click();
-  await page
-    .getByRole("dialog")
+  await restartDialog
     .getByRole("button", { name: "취소", exact: true })
     .click();
   await expect(
     first.getByRole("button", { name: "취소", exact: true }),
   ).toBeVisible();
   await page.getByRole("button", { name: "새로 시작", exact: true }).click();
-  await page
-    .getByRole("dialog")
+  await restartDialog
     .getByRole("button", { name: "새로 시작", exact: true })
     .click();
   mock.release();
@@ -349,7 +350,7 @@ test("problem OCR continues through selecting another problem and crop/review na
   expect(mock.errors).toEqual([]);
 });
 
-test("manual mobile crop and source fraction rendering without horizontal overflow", async ({
+test("manual mobile crop, mixed fraction only for elementary grades, and no horizontal overflow", async ({
   page,
 }, testInfo) => {
   const mock = await mockAi(page);
@@ -367,6 +368,8 @@ test("manual mobile crop and source fraction rendering without horizontal overfl
   await card(page, 1)
     .getByRole("button", { name: "문자 인식", exact: true })
     .click();
+  // 가짜 OCR 원문은 \frac{7}{3}. 대분수는 초등만(트랙 12·14 확정, `fractionDisplay.ts`) — 초5 는 2⅓,
+  // 중1 로 바꾸면 원문 7/3 으로 돌아온다.
   await expect(card(page, 1).locator(".katex").first()).toHaveAttribute(
     "data-export-tex",
     /2%5Cd?frac%7B1%7D%7B3%7D/,
@@ -374,7 +377,7 @@ test("manual mobile crop and source fraction rendering without horizontal overfl
   await page.getByRole("combobox", { name: "시험지 학년" }).selectOption("중1");
   await expect(card(page, 1).locator(".katex").first()).toHaveAttribute(
     "data-export-tex",
-    /2%5Cd?frac%7B1%7D%7B3%7D/,
+    /%5Cd?frac%7B7%7D%7B3%7D/,
   );
   expect(
     await page.evaluate(
