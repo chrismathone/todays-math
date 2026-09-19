@@ -231,6 +231,34 @@ describe("같은 길이 표시(addTick) — 엔진 `_segment_mark_lines` 와 같
   });
 
   // 엔진 `_segment_mark_center` — 선분 위에 얹힌 점(중점 M 등)을 피해 가장 넓은 빈 구간의 한복판
+  // «M 은 AB 의 중점» 한 요청 — 중점 찍기(트랙 21 addMidpoint)로 생긴 M 을 뒤 명령이 이름으로 부르고, 표시는 M 을 피한다
+  it("marks a midpoint made in the same request, stepping aside from it", () => {
+    const source = prepared(
+      svg(
+        BOTH_VIEW,
+        BOTH_SIDES,
+        BOTH_LABELS.replace(/<text[^>]*data-mj="M"[^]*?<\/text>/, ""),
+      ),
+    );
+    const result = applyFigureEdits(source, [
+      { op: "addMidpoint", from: "A", to: "B", label: "M" },
+      { op: "addTick", from: "A", to: "M" },
+      { op: "addTick", from: "M", to: "B" },
+      { op: "addParallelMark", from: "A", to: "B" },
+    ]);
+    expect(result.rejected).toEqual([]);
+    expect(result.applied.slice(1)).toEqual([
+      "선분 AM 같은 길이 표시 추가",
+      "선분 MB 같은 길이 표시 추가",
+      "선분 AB 평행 표시 추가",
+    ]);
+    const lines = added(source, result.svg).filter((o) => o.type === "line");
+    expectClose(ends(lines[0]), [78.789, 25.948, 78.789, 33.948]);
+    expectClose(ends(lines[1]), [178.789, 25.948, 178.789, 33.948]);
+    // AB 의 » 는 M 을 피해 가장 넓은 빈 구간(AM)에 — 이미 선 눈금 옆 12
+    expect(Number(lines[2].attrs.x2)).toBeCloseTo(28.789 + 50 + 12 + 2.815, 2);
+  });
+
   it("steps aside from a point sitting on the segment, like the engine", () => {
     const source = prepared(BOTH_BASE);
     const result = applyFigureEdits(source, [

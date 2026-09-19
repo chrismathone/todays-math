@@ -229,7 +229,7 @@ export function applyFigureEdits(
     if (isFigureMarkCommand(command)) {
       const mark = addFigureMark(current, command, {
         resolve,
-        names: figure.names ?? [],
+        names: [...names.values()],
         nameOf: (id) => {
           const index = before.findIndex((o) => o.id === id);
           return index < 0 ? undefined : nameOf(index);
@@ -519,6 +519,11 @@ export function applyFigureEdits(
       const result = applyOne(command, label);
       current = result.svg;
       applied.push(result.text);
+      // 이번 요청에서 새로 이름 붙은 점(중점 M · 수선의 발 H · 교점 O · 점 P)은 뒤 명령이 이름으로 부른다
+      // («M 은 AB 의 중점» = 중점 찍기 + 같은 길이 표시 둘). 요청 때 있던 이름은 그대로.
+      if (!("target" in command))
+        for (const { name, x, y } of describeFigureForEdit(current).names ?? [])
+          if (!names.has(name)) names.set(name, { x, y });
     } catch (error) {
       if (!(error instanceof Rejected)) throw error;
       rejected.push(`${label}: ${error.message}`);

@@ -216,13 +216,21 @@ function readFigure(svg: string) {
   const fonts = pool
     .map((o) => Number.parseFloat(o.attrs["font-size"] ?? ""))
     .filter((value) => value > 0);
-  // 엔진 라벨이 적어 둔 제 점(`data-px`·`data-py`) — 선 끝이 아닌 점(중점 M 등)의 정확한 자리
-  const anchors = objects.flatMap((o, i) => {
+  // 선 끝이 아닌 점(중점 M 등)의 정확한 자리 — 엔진 라벨이 적어 둔 제 점(`data-px`·`data-py`)과 찍은 점(작은 원)의 가운데
+  const anchors = objects.flatMap((o, i): Point[] => {
     const px = Number.parseFloat(o.attrs["data-px"] ?? ""),
       py = Number.parseFloat(o.attrs["data-py"] ?? "");
-    return o.type === "text" && Number.isFinite(px) && Number.isFinite(py)
-      ? [applyPoint(parentMatrix(nodes[i]), [px, py])]
-      : [];
+    if (o.type === "text" && Number.isFinite(px) && Number.isFinite(py))
+      return [applyPoint(parentMatrix(nodes[i]), [px, py])];
+    const r = Number.parseFloat(o.attrs.r ?? "");
+    if (o.type === "circle" && r > 0 && r <= 0.04 * size)
+      return [
+        applyPoint(matrices[i], [
+          Number.parseFloat(o.attrs.cx ?? "") || 0,
+          Number.parseFloat(o.attrs.cy ?? "") || 0,
+        ]),
+      ];
+    return [];
   });
   return {
     objects,
