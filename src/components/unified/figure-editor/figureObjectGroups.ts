@@ -296,10 +296,29 @@ function angleMarks(free: Shape[], S: number) {
   return marks;
 }
 
-const shapesOf = (objects: FigureObject[]) =>
-  objects.flatMap((object, index) => shapeOf(object, index) ?? []);
 const sizeOf = (viewBox: number[]) =>
   Math.max(viewBox[2] || 480, viewBox[3] || 360);
+
+/**
+ * 편집기는 끄는 걸음마다 **같은 요소 배열**로 묶기(`groupFigureObjects`)와 각 종류(`figureAngleKinds`)를 둘 다 부른다 —
+ * 요소 1,000개 그림에서 자리 읽기·각 판정을 두 번 하면 걸음당 2.2ms 가 4.9ms 가 됐다(2026-09-19 실측).
+ * 마지막 한 벌(요소 배열 · 캔버스 크기)만 기억한다. 요소 배열은 원문을 읽을 때마다 새로 생긴다(`figureObjects`).
+ */
+let measured: {
+  objects: FigureObject[];
+  S: number;
+  free: Shape[];
+  marks: Map<Shape, AngleMark>;
+} | null = null;
+function measure(objects: FigureObject[], S: number) {
+  if (!measured || measured.objects !== objects || measured.S !== S) {
+    const free = objects.flatMap(
+      (object, index) => shapeOf(object, index) ?? [],
+    );
+    measured = { objects, S, free, marks: angleMarks(free, S) };
+  }
+  return measured;
+}
 
 /**
  * 각 표시의 종류(요소 id → 직각·예각·둔각, 원장님 2026-09-19 «직각 둔각 예각»). 요소 이름(`objectName`)이 이것으로
@@ -310,7 +329,7 @@ export function figureAngleKinds(
   viewBox: number[],
 ): FigureAngleKinds {
   return new Map(
-    [...angleMarks(shapesOf(objects), sizeOf(viewBox))].map(([s, mark]) => [
+    [...measure(objects, sizeOf(viewBox)).marks].map(([s, mark]) => [
       s.object.id,
       mark.kind,
     ]),
@@ -377,12 +396,11 @@ export function groupFigureObjects(
 ): FigureObjectGroup[] {
   const W = viewBox[2] || 480,
     H = viewBox[3] || 360,
-    S = Math.max(W, H);
+    S = sizeOf(viewBox);
   const role = new Map<string, string>();
   // 역할 어림은 사용자가 옮긴 요소까지 다 본다 — 화살촉 하나를 옮겼다고 축이 안 서면 나머지 묶음이 흔들린다.
-  const free = shapesOf(objects);
   // 각 표시(직각 표시 ㄱ자 · 각의 호)는 좌표평면 위에서도 «각» — 축 끝 가까이 있어도 화살촉이 아니다.
-  const marks = angleMarks(free, S);
+  const { free, marks } = measure(objects, S);
 
   // 축 — 곧고 긴 실선. 둘이 만나고, 화살촉·눈금 중 하나는 있어야 축이다(세로 높이선이 곧다고 축이 아니다).
   const solidLines = free.filter((s) => s.line && !s.dashed);

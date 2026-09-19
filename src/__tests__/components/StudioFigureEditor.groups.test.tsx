@@ -464,6 +464,17 @@ describe("각 표시 — «각» 묶음 · 직각/예각/둔각이 모든 자리
     fireEvent.click(chip(8));
     expect(heading()).toBe("8 · 글자 편집");
   });
+  it("수식 라벨도 목록과 제목이 같은 이름 — 전에는 목록 «수식», 제목 «글자 편집»이었다", () => {
+    openFigure(
+      rightFigure.replace(
+        '<text x="29.6" y="24" font-size="16.8" data-mj="A">A</text>',
+        '<text x="29.6" y="24" font-size="16.8" data-mj="$x^2$">x2</text>',
+      ),
+    );
+    expect(chip(5)).toHaveAttribute("title", "수식 x^2 · 끌어서 다른 묶음으로");
+    fireEvent.click(chip(5));
+    expect(heading()).toBe("5 · 수식 편집");
+  });
   it("«각» 묶음 전부를 고르면 오른쪽 칸 묶음 이름도 «각»", () => {
     openFigure(angleFigure);
     fireEvent.click(
