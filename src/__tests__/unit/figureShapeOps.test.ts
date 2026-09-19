@@ -91,6 +91,11 @@ const normalized = (svg: string) => {
     (id) => seen.get(id) ?? (seen.set(id, `#${seen.size}`), seen.get(id)!),
   );
 };
+/** 요소마다 직렬화한 글 — 틀(루트 viewBox) 말고 요소가 같은가. */
+const elementsXml = (svg: string) =>
+  [...readFigureSvg(svg).querySelectorAll("[data-object-id]")].map((el) =>
+    new XMLSerializer().serializeToString(el),
+  );
 const unchanged = (before: string, after: string) => {
   const xml = (svg: string) =>
     new Map(
@@ -194,6 +199,21 @@ describe("호 더하기 — 엔진 add_arc 와 같은 모양", () => {
       "M 148.728 65.192 A 70 70 0 0 0 47.95 28.511",
     );
     expect(result.applied).toEqual(["호 AB 추가"]);
+  });
+
+  it("ends exactly on the named point of a sector with no circle drawn", () => {
+    // 엔진 부채꼴(원은 draw: false) — 끝점 반올림으로 |OA| = 89.9997, |OB| = 90.0006. 호는 A 에서 B 로, 이름 붙은 끝 그대로
+    const sector = prepareFigureSvg(
+      `<svg viewBox="0 0 180.679 131.413" xmlns="${NS}"><g>${line(67.965, 106.454, 152.537, 75.672)}${line(67.965, 106.454, 22.965, 28.511)}</g><g>${label("A", 162.614, 77.38, 152.537, 75.672)}${label("B", 17.603, 24.6, 22.965, 28.511)}${label("O", 60.382, 119.413, 67.965, 106.454)}</g></svg>`,
+    );
+    const result = applyFigureEdits(sector, [
+      { op: "addArc", center: "O", from: "A", to: "B" },
+    ]);
+    expect(added(sector, result.svg)[0].attrs.d).toBe(
+      "M 152.537 75.672 A 90 90 0 0 0 22.965 28.511",
+    );
+    // 반지름이 90 이라 호 꼭대기(y 16.45)가 틀 안 — 틀은 그대로
+    expect(viewBoxOf(result.svg)).toEqual([0, 0, 180.679, 131.413]);
   });
 
   it("goes the long way when the arc must pass a given point", () => {
@@ -328,12 +348,24 @@ describe("크기 바꾸기 — 원·타원·사각형·다각형, 크기 고정�
 });
 
 describe("회전 — 편집기 «시계 90°»·«반시계 90°» 단추와 같은 함수", () => {
-  it("turns the whole figure exactly like the editor's button", () => {
+  it("turns the whole figure exactly like the editor's button, and widens the frame to show it", () => {
     const result = applyFigureEdits(tri, [
       { op: "rotate", targets: "all", direction: "cw" },
     ]);
-    expect(result.svg).toBe(rotateFigureSelection(tri, ids(tri), "cw"));
-    expect(result.svg).not.toBe(tri);
+    const button = rotateFigureSelection(tri, ids(tri), "cw");
+    // 요소는 단추와 한 글자도 다르지 않다 — 다른 것은 틀(루트 viewBox)뿐
+    expect(elementsXml(result.svg)).toEqual(elementsXml(button));
+    expect(elementsXml(result.svg)).not.toEqual(elementsXml(tri));
+    // 가로 286.654 × 세로 194.183 을 돌리면 세로로 길다 — 편집 화면에서 잘리지 않게 위아래로 넓힌다(원장님: 회전은 «틀을 넓혀 다 보이게»)
+    const [x, y, w, h] = viewBoxOf(result.svg);
+    expect(x).toBe(0);
+    expect(w).toBe(286.654);
+    expect(y).toBeLessThan(0);
+    expect(y + h).toBeGreaterThan(194.183);
+    const lines = figureObjects(result.svg).filter((o) => o.type === "line");
+    for (const o of lines)
+      for (const key of ["y1", "y2"])
+        expect(Number(o.attrs[key])).toBeGreaterThanOrEqual(y);
     expect(result.applied).toEqual(["그림 전체 시계 90° 회전"]);
   });
 
@@ -342,7 +374,9 @@ describe("회전 — 편집기 «시계 90°»·«반시계 90°» 단추와 같
     const result = applyFigureEdits(tri, [
       { op: "rotate", targets: [1, 2, 3], direction: "ccw" },
     ]);
-    expect(result.svg).toBe(rotateFigureSelection(tri, three, "ccw"));
+    expect(elementsXml(result.svg)).toEqual(
+      elementsXml(rotateFigureSelection(tri, three, "ccw")),
+    );
     expect(result.applied).toEqual(["3개 요소 반시계 90° 회전"]);
     expect(
       applyFigureEdits(tri, [{ op: "rotate", targets: [2], direction: "cw" }])
@@ -499,6 +533,18 @@ describe("수선 — 발은 코드가 계산하고 직각 표시를 단다", () 
     });
     expect(result.applied).toEqual(["A에서 BC에 내린 수선 추가(발 H)"]);
     unchanged(tri, result.svg);
+    // 발 이름 H 는 틀(높이 194.183) 아래로 삐져나간다 — 편집 화면에서 잘리지 않게 아래만 넓힌다(뒤집기와 같은 규칙)
+    const [x, y, w, h] = viewBoxOf(result.svg);
+    expect([x, y, w]).toEqual([0, 0, 286.654]);
+    expect(h).toBeGreaterThan(Number(foot.attrs.y) + 8);
+    // 틀 안이면 건드리지 않는다
+    expect(
+      viewBoxOf(
+        applyFigureEdits(tri, [
+          { op: "addPerpendicular", from: "C", onto: ["A", "B"] },
+        ]).svg,
+      ),
+    ).toEqual([0, 0, 286.654, 194.183]);
   });
 
   it("draws the extension of BC dashed when the foot falls outside the segment", () => {

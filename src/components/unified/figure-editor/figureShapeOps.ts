@@ -4,9 +4,11 @@ import type {
 } from "@/lib/dev-ai/figure-edit-contract";
 import {
   addFigureObject,
+  editableFigureDoc,
   editFigureObject,
   figureObjects,
   readFigureSvg,
+  serializeFigureSvg,
 } from "./figureSvgEditing";
 import { figurePointNames } from "./figureEditElements";
 import { objectName } from "./figureObjectNames";
@@ -36,6 +38,7 @@ import {
   ringArea,
 } from "./figureFaceGeometry";
 import { formatPoints, parsePoints } from "./figureShapeAdjust";
+import { sampleFigurePath } from "./figureFlip";
 import { isSizeLocked } from "./figureSizeLock";
 
 /**
@@ -189,6 +192,14 @@ export function applyShapeCommand(
   command: FigureShapeCommand,
   ctx: FigureShapeContext,
 ): { svg: string; text: string } {
+  const result = applyOne(command, ctx);
+  return { ...result, svg: widenToShow(ctx.svg, result.svg) };
+}
+
+function applyOne(
+  command: FigureShapeCommand,
+  ctx: FigureShapeContext,
+): { svg: string; text: string } {
   // 이름은 그림의 점 그대로 — 요소 목록(0.1 반올림)이 아니라. 이름이 없거나 둘이면 applyFigureEdits 와 같은 이유로 거절
   const exact = new Map(
     figurePointNames(ctx.sent).map(({ name, x, y }) => [name, { x, y }]),
@@ -259,10 +270,14 @@ export function applyShapeCommand(
         sweep = forward < Math.PI ? 1 : 0;
       }
       const large = (sweep ? forward : TURN - forward) > Math.PI ? 1 : 0;
-      const tip = {
-        x: fmt(center.x + radius * Math.cos(end)),
-        y: fmt(center.y + radius * Math.sin(end)),
-      };
+      // 끝은 그 점 그대로 — 원 위가 아니면(5% 안) 반지름 위로 옮긴다(엔진처럼 이름 붙은 끝에서 끝난다)
+      const tip =
+        Math.abs(r2 - radius) <= close
+          ? to
+          : {
+              x: fmt(center.x + radius * Math.cos(end)),
+              y: fmt(center.y + radius * Math.sin(end)),
+            };
       const added = addFigureObject(svg, "curve", from, tip);
       return {
         svg: editFigureObject(added.svg, added.id, {
@@ -625,4 +640,102 @@ function fillRegion(
     svg,
     text: notes.length ? `${ctx.label}(${notes.join(" · ")})` : ctx.label,
   };
+}
+
+/** 요소가 차지하는 점들(그림 좌표) — 틀을 넓힐 때. 글자는 글자 크기로 어림한 상자. */
+function extentOf(o: FigureObject, matrix: Affine): [number, number][] {
+  const local: [number, number][] = [];
+  if (o.type === "line")
+    local.push(
+      [number(o, "x1"), number(o, "y1")],
+      [number(o, "x2"), number(o, "y2")],
+    );
+  else if (o.type === "circle" || o.type === "ellipse") {
+    const cx = number(o, "cx"),
+      cy = number(o, "cy");
+    const rx = number(o, o.type === "circle" ? "r" : "rx"),
+      ry = number(o, o.type === "circle" ? "r" : "ry");
+    local.push([cx - rx, cy], [cx + rx, cy], [cx, cy - ry], [cx, cy + ry]);
+  } else if (o.type === "rect") {
+    const x = number(o, "x"),
+      y = number(o, "y");
+    local.push([x, y], [x + number(o, "width"), y + number(o, "height")]);
+  } else if (o.type === "polygon" || o.type === "polyline")
+    local.push(
+      ...parsePoints(o.attrs.points).map((p): [number, number] => [p.x, p.y]),
+    );
+  else if (o.type === "path")
+    local.push(...(sampleFigurePath(o.attrs.d ?? "") ?? []).flat());
+  else if (o.type === "text") {
+    const size = number(o, "font-size") || 18;
+    const chars = Math.max(
+      1,
+      (o.attrs["data-mj"] ?? o.text).replace(/[$\\{}^_\s]/g, "").length,
+    );
+    const half = 0.3 * size * chars;
+    const x = number(o, "x"),
+      y = number(o, "y");
+    const anchor = o.attrs["text-anchor"];
+    const left =
+      anchor === "middle" ? x - half : anchor === "end" ? x - 2 * half : x;
+    const central = ["central", "middle"].includes(
+      o.attrs["dominant-baseline"] ?? "",
+    );
+    const top = central ? y - 0.5 * size : y - 0.8 * size;
+    local.push(
+      [left, top],
+      [left + 2 * half, top + (central ? size : 1.05 * size)],
+    );
+  }
+  return local.map((p) => applyPoint(matrix, p));
+}
+
+/**
+ * 새로 그렸거나 바뀐 요소가 그림 틀(루트 viewBox) 밖이면 틀을 넓힌다 — 밖으로 나간 쪽만, 여백 4 를 두고. 줄이지 않는다.
+ * 뒤집기(figureFlip.ts `widenFrame`)와 같은 규칙이다: 엔진 그림은 틀이 도형에 꼭 맞아 발 이름 H 가 편집 화면 밑에서
+ * 잘렸다(2026-09-19 브라우저 확인). 회전은 원장님 확정 «틀을 넓혀 다 보이게». 저장할 때는 fitFigureViewport 가 다시 맞춘다.
+ */
+function widenToShow(before: string, after: string) {
+  if (after === before) return after;
+  const old = new Map(figureObjects(before).map((o) => [o.id, o.attrs]));
+  const same = (a: Record<string, string>, b: Record<string, string>) =>
+    Object.keys(a).length === Object.keys(b).length &&
+    Object.entries(a).every(([key, value]) => b[key] === value);
+  const nodes = [...readFigureSvg(after).querySelectorAll("[data-object-id]")];
+  const points = figureObjects(after).flatMap((o, i) => {
+    const was = old.get(o.id);
+    return was && same(was, o.attrs)
+      ? []
+      : extentOf(o, elementMatrix(nodes[i]));
+  });
+  if (!points.length) return after;
+  const doc = editableFigureDoc(after);
+  const root = doc.documentElement;
+  const view = (root.getAttribute("viewBox") ?? "")
+    .trim()
+    .split(/[\s,]+/)
+    .map(Number);
+  if (view.length !== 4 || !view.every(Number.isFinite) || view[2] <= 0)
+    return after;
+  const PAD = 4;
+  const [x, y, w, h] = view;
+  const xs = points.map((p) => p[0]),
+    ys = points.map((p) => p[1]);
+  const left = Math.min(...xs) < x ? Math.min(...xs) - PAD : x;
+  const top = Math.min(...ys) < y ? Math.min(...ys) - PAD : y;
+  const right = Math.max(...xs) > x + w ? Math.max(...xs) + PAD : x + w;
+  const bottom = Math.max(...ys) > y + h ? Math.max(...ys) + PAD : y + h;
+  if (left === x && top === y && right === x + w && bottom === y + h)
+    return after;
+  const next = [left, top, right - left, bottom - top].map(fmt);
+  root.setAttribute("viewBox", next.join(" "));
+  for (const [name, was, now] of [
+    ["width", w, next[2]],
+    ["height", h, next[3]],
+  ] as const) {
+    const size = Number.parseFloat(root.getAttribute(name) ?? "");
+    if (Number.isFinite(size) && size > 0)
+      root.setAttribute(name, String(fmt((size * now) / was)));
+  }
+  return serializeFigureSvg(doc);
 }
