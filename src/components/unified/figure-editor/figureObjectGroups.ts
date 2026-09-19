@@ -161,11 +161,13 @@ const unfilled = (o: FigureObject) =>
  * 두 점 A·C 와 그 맞은 모서리 B 를 A→B→C 로 잇는다). 엔진 SVG 에 표지(class·data)가 없어 모양과 자리로 가른다:
  * 열린 획 · 점 셋 · 두 토막 길이가 같고 90° · 양 끝 A·C 가 서로 다른 두 선 위에 있고 V = A + C − B 가 두 선에 다 닿는다.
  * 모양만으로는 90° 로 벌린 열린 V 화살촉과 같다 — 화살촉은 꺾인 점이 선 **위**, 양 끝이 선 밖이라 자리에서 갈린다.
+ * 실선만 — 점에서 두 축으로 내린 점선 꺾은선(elem-1 linearGraph)은 원점과 사각형을 이뤄 꼴·자리가 같다(2026-09-19 실측).
  * 직각 표시가 아니면 빈 목록, 맞으면 그 표시가 앉은 변들의 요소를 돌려준다.
  */
 function rightAngleMark(s: Shape, edges: Edge[], S: number): Shape[] {
   const o = s.object;
   if ((o.type !== "path" && o.type !== "polyline") || !unfilled(o)) return [];
+  if (s.dashed) return [];
   if (
     o.type === "path" &&
     !/^ML{1,2}$/.test((o.attrs.d ?? "").replace(/[^A-Za-z]/g, ""))
