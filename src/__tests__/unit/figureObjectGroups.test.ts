@@ -213,6 +213,26 @@ const V2_RIGHT_TRIANGLE = `<svg viewBox="0 0 305.997 241.186" xmlns="http://www.
     <text x="17.208" y="121.612" font-family="Cambria Math, HancomEQN, Times New Roman, serif" font-size="16.8" text-anchor="middle" fill="#111111" data-px="17.208" data-py="116.236" data-mj="3"><tspan font-style="normal">3</tspan></text>
   </g>
 </svg>`;
+// 직각이등변삼각형 — AB·BC 에 등변 표시 둘(`ticks: 2`), ∠B 직각. 4~7번이 등변 표시, 8번이 직각 표시.
+const V2_ISOSCELES_RIGHT = `<svg viewBox="0 0 243.739 241.186" xmlns="http://www.w3.org/2000/svg">
+  <g>
+    <line x1="34.95" y1="26.236" x2="34.95" y2="206.236" stroke="#111111" stroke-width="1.9" />
+    <line x1="34.95" y1="206.236" x2="214.95" y2="206.236" stroke="#111111" stroke-width="1.9" />
+    <line x1="214.95" y1="206.236" x2="34.95" y2="26.236" stroke="#111111" stroke-width="1.9" />
+  </g>
+  <g>
+    <line x1="38.95" y1="114.736" x2="30.95" y2="114.736" stroke="#111111" stroke-width="0.72" stroke-linecap="round" />
+    <line x1="38.95" y1="117.736" x2="30.95" y2="117.736" stroke="#111111" stroke-width="0.72" stroke-linecap="round" />
+    <line x1="123.45" y1="202.236" x2="123.45" y2="210.236" stroke="#111111" stroke-width="0.72" stroke-linecap="round" />
+    <line x1="126.45" y1="202.236" x2="126.45" y2="210.236" stroke="#111111" stroke-width="0.72" stroke-linecap="round" />
+    <path d="M 34.95 194.136 L 47.05 194.136 L 47.05 206.236" fill="none" stroke="#111111" stroke-width="0.72" />
+  </g>
+  <g>
+    <text x="27.367" y="24.029" font-family="Cambria Math, HancomEQN, Times New Roman, serif" font-size="16.8" text-anchor="middle" fill="#111111" data-px="34.95" data-py="26.236" data-mj="A"><tspan font-style="normal">A</tspan></text>
+    <text x="24.226" y="211.612" font-family="Cambria Math, HancomEQN, Times New Roman, serif" font-size="16.8" text-anchor="middle" fill="#111111" data-px="34.95" data-py="206.236" data-mj="B"><tspan font-style="normal">B</tspan></text>
+    <text x="225.674" y="211.612" font-family="Cambria Math, HancomEQN, Times New Roman, serif" font-size="16.8" text-anchor="middle" fill="#111111" data-px="214.95" data-py="206.236" data-mj="C"><tspan font-style="normal">C</tspan></text>
+  </g>
+</svg>`;
 // graph-1 예시 — y = 9 − x² 와 내접 직사각형의 윗변. 축은 선 + 채운 삼각형 화살촉.
 const GRAPH1_EXAMPLE = `<svg viewBox="0 0 520 460" xmlns="http://www.w3.org/2000/svg"><line x1="48.0" y1="356.0" x2="472.0" y2="356.0" stroke="#000" stroke-width="1.4" /><polygon points="472.000,356.000 464.000,353.000 464.000,359.000" fill="#111" /><line x1="260.0" y1="412.0" x2="260.0" y2="48.0" stroke="#000" stroke-width="1.4" /><polygon points="260.000,48.000 257.000,56.000 263.000,56.000" fill="#111" /><path d="M 84.3 411.7 L 87.9 399.2 L 91.5 387.0 L 95.1 375.0 L 98.7 363.3 L 102.3 351.8 L 105.9 340.6 L 109.5 329.7 L 113.1 319.0 L 116.7 308.6 L 120.3 298.4 L 123.9 288.5 L 127.6 278.9 L 131.2 269.5 L 134.8 260.3 L 138.4 251.5 L 142.0 242.9 L 145.6 234.5 L 149.2 226.4 L 152.8 218.6 L 156.4 211.0 L 160.0 203.7 L 163.6 196.6 L 167.2 189.8 L 170.8 183.3 L 174.4 177.0 L 178.0 171.0 L 181.6 165.2 L 185.2 159.7 L 188.8 154.5 L 192.4 149.5 L 196.0 144.8 L 199.6 140.3 L 203.2 136.1 L 206.8 132.2 L 210.4 128.5 L 214.0 125.0 L 217.7 121.9 L 221.3 119.0 L 224.9 116.3 L 228.5 113.9 L 232.1 111.8 L 235.7 109.9 L 239.3 108.3 L 242.9 106.9 L 246.5 105.8 L 250.1 105.0 L 253.7 104.4 L 257.3 104.1 L 260.9 104.0 L 264.5 104.2 L 268.1 104.7 L 271.7 105.4 L 275.3 106.3 L 278.9 107.6 L 282.5 109.1 L 286.1 110.8 L 289.7 112.8 L 293.3 115.1 L 296.9 117.6 L 300.5 120.4 L 304.1 123.4 L 307.8 126.7 L 311.4 130.3 L 315.0 134.1 L 318.6 138.2 L 322.2 142.5 L 325.8 147.1 L 329.4 152.0 L 333.0 157.1 L 336.6 162.5 L 340.2 168.1 L 343.8 174.0 L 347.4 180.1 L 351.0 186.5 L 354.6 193.2 L 358.2 200.1 L 361.8 207.3 L 365.4 214.8 L 369.0 222.5 L 372.6 230.4 L 376.2 238.7 L 379.8 247.1 L 383.4 255.9 L 387.0 264.9 L 390.6 274.1 L 394.2 283.7 L 397.9 293.4 L 401.5 303.5 L 405.1 313.8 L 408.7 324.3 L 412.3 335.1 L 415.9 346.2 L 419.5 357.5 L 423.1 369.1 L 426.7 380.9 L 430.3 393.1 L 433.9 405.4 L 435.7 411.7 L 435.7 411.7" fill="none" stroke="#000" stroke-width="2" stroke-linejoin="round" /><line x1="154.0" y1="216.0" x2="366.0" y2="216.0" stroke="#000" stroke-width="1.7" /><text x="244.0" y="101.0" font-size="20.0" font-family="Times New Roman, Batang, serif" text-anchor="middle" data-mj="9">9</text><text x="101.0" y="378.0" font-size="20.0" font-family="Times New Roman, Batang, serif" text-anchor="middle" data-mj="−3">−3</text><text x="419.0" y="378.0" font-size="20.0" font-family="Times New Roman, Batang, serif" text-anchor="middle" data-mj="3">3</text><text x="244.0" y="378.0" font-size="20.0" font-family="Times New Roman, Batang, serif" text-anchor="middle" data-mj="O">O</text><text x="361.5" y="96.0" font-size="20.0" font-family="Times New Roman, Batang, serif" text-anchor="middle" data-mj="y = 9 − x²">y = 9 − x²</text><text x="476.0" y="379.0" font-size="20.0" font-family="Times New Roman, Batang, serif" text-anchor="middle" data-mj="x">x</text><text x="247.0" y="40.0" font-size="20.0" font-family="Times New Roman, Batang, serif" text-anchor="middle" data-mj="y">y</text></svg>`;
 // graph-1 — 좌표평면 위 삼각형 OAB(선분 셋, ∠A 직각). graph-1 은 직각 표시를 안 그려서 v2 와 같은 모양의 ㄱ자를
@@ -237,6 +257,13 @@ describe("groupFigureObjects — 직각 표시·등변 표시는 축의 증거�
       "선분",
       "곡선/경로",
       "글자",
+    ]);
+  });
+  it("등변 표시(‖)가 붙은 직각이등변삼각형(엔진 v2 실출력)에도 축이 없다 — 한 자리에 모인 두 획은 눈금이 아니다", () => {
+    expect(grouped(prepareFigureSvg(V2_ISOSCELES_RIGHT))).toEqual([
+      { name: "선분", custom: false, numbers: [1, 2, 3, 4, 5, 6, 7] },
+      { name: "곡선/경로", custom: false, numbers: [8] },
+      { name: "글자", custom: false, numbers: [9, 10, 11] },
     ]);
   });
   it("좌표평면 위 직각삼각형 — 축은 축, 삼각형 변은 선분, 직각 표시는 그래프가 아니다", () => {
@@ -315,6 +342,51 @@ describe("groupFigureObjects — 직각 표시·등변 표시는 축의 증거�
       { name: "선분", custom: false, numbers: [1, 2, 3, 4] },
       { name: "곡선/경로", custom: false, numbers: [5, 6] },
       { name: "글자", custom: false, numbers: [7, 8, 9, 10] },
+    ]);
+  });
+  it("등변 표시 셋(엔진 v2 실출력)이 붙은 선분은 수직선이 아니다", () => {
+    const svg =
+      prepareFigureSvg(`<svg viewBox="0 0 337.695 36.029" xmlns="http://www.w3.org/2000/svg">
+  <g>
+    <line x1="29.024" y1="18.653" x2="309.024" y2="18.653" stroke="#111111" stroke-width="1.9" />
+  </g>
+  <g>
+    <line x1="166.024" y1="14.653" x2="166.024" y2="22.653" stroke="#111111" stroke-width="0.72" stroke-linecap="round" />
+    <line x1="169.024" y1="14.653" x2="169.024" y2="22.653" stroke="#111111" stroke-width="0.72" stroke-linecap="round" />
+    <line x1="172.024" y1="14.653" x2="172.024" y2="22.653" stroke="#111111" stroke-width="0.72" stroke-linecap="round" />
+  </g>
+  <g>
+    <text x="18.3" y="24.029" font-family="Cambria Math, HancomEQN, Times New Roman, serif" font-size="16.8" text-anchor="middle" fill="#111111" data-px="29.024" data-py="18.653" data-mj="A"><tspan font-style="normal">A</tspan></text>
+    <text x="319.748" y="24.029" font-family="Cambria Math, HancomEQN, Times New Roman, serif" font-size="16.8" text-anchor="middle" fill="#111111" data-px="309.024" data-py="18.653" data-mj="B"><tspan font-style="normal">B</tspan></text>
+  </g>
+</svg>`);
+    expect(grouped(svg)).toEqual([
+      { name: "선분", custom: false, numbers: [1, 2, 3, 4] },
+      { name: "글자", custom: false, numbers: [5, 6] },
+    ]);
+  });
+  it("눈금이 축을 따라 흩어진 수직선은 지금처럼 축이다", () => {
+    const ticks = [40, 110, 180, 250, 320];
+    const svg = prepareFigureSvg(
+      `<svg xmlns="${NS}" viewBox="0 0 400 80">` +
+        `<line x1="20" y1="40" x2="380" y2="40" stroke="#111"/>` +
+        ticks
+          .map(
+            (x) => `<line x1="${x}" y1="34" x2="${x}" y2="46" stroke="#111"/>`,
+          )
+          .join("") +
+        ticks
+          .map(
+            (x, i) =>
+              `<text x="${x - 4}" y="66" font-size="16" data-mj="${i - 2}">${i - 2}</text>`,
+          )
+          .join("") +
+        `</svg>`,
+    );
+    expect(grouped(svg)).toEqual([
+      { name: "x축", custom: false, numbers: [1] },
+      { name: "눈금", custom: false, numbers: [2, 3, 4, 5, 6] },
+      { name: "눈금 숫자", custom: false, numbers: [7, 8, 9, 10, 11] },
     ]);
   });
 });

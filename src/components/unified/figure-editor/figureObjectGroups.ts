@@ -311,19 +311,35 @@ export function groupFigureObjects(
   const xArrows = arrowsOf(xAxis),
     yArrows = arrowsOf(yAxis);
   const marked = (axis?: Shape) => !!axis?.object.attrs["marker-end"];
-  const evidence = (axis: Shape | undefined, ticks: Shape[], arrows: Shape[]) =>
-    ticks.length >= 2 || arrows.length > 0 || marked(axis);
+  // 눈금은 축을 따라 흩어져 있다 — 등변 표시(‖·‖|)는 변 가운데 한 자리에 3px 간격으로 모인다
+  // (figure_scene.py `_MARK_GAP`). 직각이등변삼각형의 두 변이 «x축»·«y축», 선분 하나가 수직선으로 묶였다(2026-09-19).
+  const spread = (ticks: Shape[], horizontal: boolean) => {
+    const at = ticks.map((s) => center(s.box)[horizontal ? 0 : 1]);
+    return at.length ? Math.max(...at) - Math.min(...at) : 0;
+  };
+  const scale = (ticks: Shape[], horizontal: boolean, count: number) =>
+    ticks.length >= count && spread(ticks, horizontal) >= 0.04 * S;
+  const evidence = (
+    axis: Shape | undefined,
+    ticks: Shape[],
+    arrows: Shape[],
+    horizontal: boolean,
+  ) => scale(ticks, horizontal, 2) || arrows.length > 0 || marked(axis);
   const axes: [Shape, string, Shape[], Shape[]][] = [];
   if (crosses) {
-    if (evidence(xAxis, xTicks, xArrows) || evidence(yAxis, yTicks, yArrows))
+    if (
+      evidence(xAxis, xTicks, xArrows, true) ||
+      evidence(yAxis, yTicks, yArrows, false)
+    )
       axes.push(
         [xAxis!, "x축", xTicks, xArrows],
         [yAxis!, "y축", yTicks, yArrows],
       );
   } else {
     // 축 하나(수직선 등) — 눈금이 셋 이상일 때만.
-    if (xAxis && xTicks.length >= 3) axes.push([xAxis, "x축", xTicks, xArrows]);
-    else if (yAxis && yTicks.length >= 3)
+    if (xAxis && scale(xTicks, true, 3))
+      axes.push([xAxis, "x축", xTicks, xArrows]);
+    else if (yAxis && scale(yTicks, false, 3))
       axes.push([yAxis, "y축", yTicks, yArrows]);
   }
   const graph = axes.length > 0;
