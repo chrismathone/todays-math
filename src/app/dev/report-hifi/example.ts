@@ -29,11 +29,7 @@ import {
   type ScoredItem,
 } from "@/lib/achievement/collect";
 import { testMaxScore } from "@/lib/achievement/maxScore";
-import {
-  addDays,
-  periodEndExclusive,
-  withinPeriod,
-} from "@/lib/achievement/period";
+import { addDays, withinPeriod } from "@/lib/achievement/period";
 import type {
   AchievementBand,
   AchievementFactors,
@@ -189,13 +185,19 @@ export function exampleInput(real: AchievementFactors): AchievementInput {
   });
 
   // 영상 6편 — 넷은 월말 전에 끝냈고, 하나는 **다음 달 1일**에 끝냈고(안 센다), 하나는 40%
-  const end = periodEndExclusive(period).getTime();
+  //
+  // 다음 달 1일 오전 9시(KST)는 **시각 문자열로** 적는다. 예전에는 `periodEndExclusive` 에
+  // «+9시간»을 더해 만들었는데, 그 셈 모양이 `kstDate.test.ts` 의 «KST 셈은 한 곳에만» 과 같아
+  // 가드가 울었다(시간대 변환이 아니라 경계 뒤 9시간이었다). 값은 같다 — 경계(다음 달 1일
+  // 00:00 KST)보다 9시간 뒤다.
   const lectureUnits = covered.slice(0, 6);
-  const at = (ms: number) => new Date(ms).toISOString();
+  const nextMonthMorning = new Date(
+    `${addDays(period.to, 1)}T09:00:00+09:00`,
+  ).toISOString();
   const views: LectureViewRow[] = lectureUnits.map((_, i) => {
     const lectureId = `example-lecture-${i + 1}`;
     if (i === 4)
-      return { lectureId, percent: 100, completedAt: at(end + 9 * 3_600_000) };
+      return { lectureId, percent: 100, completedAt: nextMonthMorning };
     if (i === 5) return { lectureId, percent: 40, completedAt: null };
     // 첫 편은 **지난달 말**에 미리 봤다 — 예습이라 아래 경계가 없다
     const day = addDays(period.from, i === 0 ? -3 : 3 + i * 6);
