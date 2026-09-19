@@ -170,7 +170,9 @@ describe("실물 출력 검수 목록 — 데이터", () => {
     //     채운 path·polygon 으로 저장 이미지에 들어가고, 사각형은 노란 점으로 기울이면 polygon 이 된다).
     // 64: elementary-mixed-fraction-test-print 추가 (2026-09-19 — 옛 시험지 인쇄 `/tests/{id}/print` 가
     //     초등 가분수를 화면과 같은 함수로 대분수로 찍는다. 대분수는 폭이 조금 넓어 넘침이 바뀔 수 있다).
-    expect(ITEMS.length).toBe(64);
+    // 65: elementary-mixed-fraction-per-problem 추가 (2026-09-19 — 대분수 결정을 문항 단위로. 해설이
+    //     «가분수»를 부르는 초6 «(가분수)÷(분수)» 문항의 문제지 본문이 3½ 에서 7/2 로 돌아온다).
+    expect(ITEMS.length).toBe(65);
   });
 
   /**
