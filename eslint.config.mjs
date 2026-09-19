@@ -44,6 +44,10 @@ const eslintConfig = defineConfig([
     //    **ESLint 는 `.gitignore` 를 안 본다** — 여기 따로 적어야 한다.
     //    늘 우는 가드는 꺼진다(2026-08-20). 세션 임시 작업터는 통째로 뺀다.
     ".tmp-*/**",
+    // 같은 뿌리로 `.qa-artifacts/` 도 뺀다 — 브라우저 실측 산출물(.gitignore 49줄, 추적 0)인데
+    // 그 안의 `.cjs` 탐침 `require()` 152건이 이 폴더가 있는 컴퓨터에서만 lint 를 빨갛게 했다
+    // (2026-09-19 main 병합 검수 — 추적 파일의 오류는 0).
+    ".qa-artifacts/**",
   ]),
 ]);
 
