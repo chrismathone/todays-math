@@ -181,6 +181,8 @@ function rightAngleMark(s: Shape, edges: Edge[], S: number): Shape[] {
  * 그중 직각 표시가 앉은 변과 이어진 덩어리만 돌려준다 — 격자 테두리처럼 직각 표시 없이 닫히는 선은 건드리지 않는다.
  */
 function markedFigureSides(lines: Shape[], seeds: Set<Shape>, tol: number) {
+  // 끄는 걸음마다 불린다 — 직각 표시가 없으면(대부분) 끝점 묶기를 아예 안 한다
+  if (!seeds.size) return new Set<Shape>();
   const nodes: number[][] = [];
   const node = (p: number[]) => {
     const found = nodes.findIndex((q) => near(p, q, tol));
