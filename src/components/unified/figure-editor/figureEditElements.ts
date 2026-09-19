@@ -85,7 +85,8 @@ function boxOf(o: FigureObject, node: Element) {
   ] as [number, number, number, number];
 }
 
-const POINT_NAME = /^[A-Z](?:'{1,2}|′{1,2}|_?\{?\d{1,2}\}?)?$/;
+/** 점 이름 라벨(A · P′ · A_1 …) — 곡선 뒤집기(figureFlip.ts)도 «값 글자가 아닌 것»을 이것으로 가른다. */
+export const POINT_NAME = /^[A-Z](?:'{1,2}|′{1,2}|_?\{?\d{1,2}\}?)?$/;
 
 /**
  * 라벨로 이름 붙은 점 — 도형 엔진 라벨은 자기 점을 `data-px`·`data-py` 로 적어 둔다(v2). 그 자리의 꼭짓점을 쓰고,

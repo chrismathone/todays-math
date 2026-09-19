@@ -28,6 +28,12 @@ export class FigureEditError extends FigureRedrawError {
   }
 }
 const KEPT = " 지금 그림은 그대로입니다.";
+/**
+ * 빈 명령에 모델 사유도 없을 때 — «무엇이 되는지»를 짧게(원장님 2026-09-19 «각 ACB에 각 표시» 가 사유 없이 422).
+ * 수정 명령(figure-edit-contract.ts)과 같은 차례.
+ */
+const CAN_DO =
+  "지우기·옮기기·글자 바꾸기·서식·꼭짓점 옮기기·뒤집기·선분·글자·점·각 표시 더하기";
 function figureEditReason(reason: string) {
   const text = reason.replace(/\s+/g, " ").trim();
   const room = FIGURE_REASON_MAX - KEPT.length;
@@ -91,7 +97,9 @@ export function parseFigureEditResult(raw: string): {
   if (!edits.length) {
     if (note.trim()) throw figureEditReason(note);
     if (dropped) throw unreadable();
-    throw new FigureEditError(`요청에서 고칠 것을 찾지 못했습니다.${KEPT}`);
+    throw new FigureEditError(
+      `이 요청은 아직 할 수 없습니다 — 할 수 있는 것: ${CAN_DO}.${KEPT}`,
+    );
   }
   return {
     edits,

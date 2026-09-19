@@ -85,6 +85,24 @@ export const FigureEditCommandSchema = z
         label: label.optional(),
       })
       .strict(),
+    /**
+     * 곡선·꺾은선을 두 끝을 잇는 현에 대해 거울 대칭 — 끝은 그대로, 부푼 쪽만 반대편으로. 딸린 값 글자도 대칭 자리로
+     * (원장님 2026-09-19 «선분 BC의 치수선을 선분 BC 아래로» 를 점 하나씩 옮겨 흉내 내다 호가 꺾였다).
+     */
+    z.object({ op: z.literal("flip"), target }).strict(),
+    /**
+     * 각 표시 — 꼭짓점 at 에서 반직선 at→from 과 at→to 사이 **작은 쪽** 각에 호, 직각이면 작은 네모
+     * (원장님 2026-09-19 «각 ACB에 각 표시» 가 422 — 더할 명령이 없었다). right 가 없으면 그림의 각으로 정한다.
+     */
+    z
+      .object({
+        op: z.literal("addAngle"),
+        at: PointRefSchema,
+        from: PointRefSchema,
+        to: PointRefSchema,
+        right: z.boolean().optional(),
+      })
+      .strict(),
   ])
   .superRefine((command, ctx) => {
     if (

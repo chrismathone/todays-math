@@ -13,7 +13,7 @@ import {
   FigureEditError,
   parseFigureEditResult,
 } from "@/lib/dev-ai/figure-edit";
-import { FigureRedrawError } from "@/lib/dev-ai/figure-spec";
+import { FIGURE_REASON_MAX, FigureRedrawError } from "@/lib/dev-ai/figure-spec";
 import { DevAiRequestSchema } from "@/lib/dev-ai/tasks";
 import { resolveApiModel } from "@/lib/studio-ai/routing";
 import { renderFigureSpec } from "@/lib/figure/renderFigureSpec";
@@ -78,6 +78,15 @@ describe("수정 명령 스키마 — 좁게", () => {
       { op: "addLine", from: "A", to: { x: 277, y: 206 }, dashed: true },
       { op: "addText", text: "H", x: 100, y: 60 },
       { op: "addPoint", x: 100, y: 60, label: "H" },
+      { op: "flip", target: 5 },
+      { op: "addAngle", at: "C", from: "A", to: "B" },
+      {
+        op: "addAngle",
+        at: { x: 150, y: 220 },
+        from: "A",
+        to: "B",
+        right: true,
+      },
     ])
       expect(FigureEditCommandSchema.safeParse(command).success).toBe(true);
   });
@@ -97,6 +106,14 @@ describe("수정 명령 스키마 — 좁게", () => {
     ["꼭짓점 0", { op: "point", target: 2, vertex: 0, x: 1, y: 1 }],
     ["빈 글자", { op: "addText", text: " ", x: 1, y: 1 }],
     ["제어 문자", { op: "text", target: 3, text: "A\u0000" }],
+    ["뒤집기 번호 없음", { op: "flip" }],
+    ["뒤집기 모르는 칸", { op: "flip", target: 5, side: "below" }],
+    ["각 꼭짓점 없음", { op: "addAngle", from: "A", to: "B" }],
+    ["각 변 하나", { op: "addAngle", at: "C", from: "A" }],
+    [
+      "직각 글자",
+      { op: "addAngle", at: "C", from: "A", to: "B", right: "yes" },
+    ],
   ])("rejects %s", (_name, command) => {
     expect(FigureEditCommandSchema.safeParse(command).success).toBe(false);
   });
@@ -165,6 +182,17 @@ describe("지시문", () => {
     expect(prompt).toContain("<figure-elements-data>");
     // 엔진 계약(수만 자)은 싣지 않는다 — 새로 그리지 않는다
     expect(prompt).not.toContain("ENGINE CONTRACT");
+  });
+
+  // 원장님 2026-09-19 «치수선 고치기가 제대로 안 되네.» — 모델이 경로의 점을 하나씩 옮겨 반대쪽 넘기기를 흉내 냈다.
+  // 둘째 보고 «각 ACB에 각 표시» 422 — 각 표시를 더하는 명령이 없었다.
+  it("offers flip and addAngle, and forbids reshaping a curve point by point", () => {
+    const prompt = buildFigureEditPrompt(request);
+    expect(prompt).toContain('{"op":"flip","target":n}');
+    expect(prompt).toMatch(/flip[^\n]*dimension[^\n]*other side/);
+    expect(prompt).toContain('{"op":"addAngle","at":P,"from":P,"to":P');
+    expect(prompt).toMatch(/angle ACB[^\n]*"at":"C"/);
+    expect(prompt).toMatch(/Never reshape a curve[^\n]*"point"[^\n]*flip/);
   });
 });
 
@@ -242,6 +270,39 @@ describe("모델 응답 읽기", () => {
     expect((error as Error).message).toBe(
       "지울 손글씨가 지금 그림에 없습니다. 지금 그림은 그대로입니다.",
     );
+  });
+
+  // 원장님 2026-09-19 «각 ACB에 각 표시» 422 — 빈 명령에 사유가 없으면 «무엇이 되는지»를 짧게 알린다.
+  it("says what can be done when the model returns no command and no reason", () => {
+    const error = (() => {
+      try {
+        parseFigureEditResult(reply({ commands: [], note: "" }));
+      } catch (e) {
+        return e as FigureEditError;
+      }
+    })();
+    expect(error).toBeInstanceOf(FigureEditError);
+    expect(error?.status).toBe(422);
+    expect(error?.message).toMatch(
+      /^이 요청은 아직 할 수 없습니다 — 할 수 있는 것: .*뒤집기.*각 표시.* 지금 그림은 그대로입니다\.$/,
+    );
+    expect(error!.message.length).toBeLessThanOrEqual(FIGURE_REASON_MAX);
+  });
+
+  it("keeps the new commands from a model reply", () => {
+    expect(
+      parseFigureEditResult(
+        reply({
+          commands: [
+            { op: "addAngle", at: "C", from: "A", to: "B", right: null },
+            { op: "flip", target: 5 },
+          ],
+        }),
+      ).edits,
+    ).toEqual([
+      { op: "addAngle", at: "C", from: "A", to: "B" },
+      { op: "flip", target: 5 },
+    ]);
   });
 
   it.each([
