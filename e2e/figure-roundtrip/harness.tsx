@@ -154,6 +154,8 @@ function Harness() {
         />
       </section>
       <section style={{ width: 420 }}>
+        {/* 저장된 그림(figure.image)이 실제로 뜨는지 naturalWidth 로 잰다 — 최적화 로더를 거치면 못 잰다 */}
+        {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
           id="figure-image"
           src={figure.image}
