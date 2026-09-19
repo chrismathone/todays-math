@@ -7,7 +7,7 @@
  */
 import { describe, expect, it } from "vitest";
 
-import { displayFractions } from "@/components/unified/fractionDisplay";
+import { fractionViewFor } from "@/components/unified/fractionDisplay";
 import {
   PRINT_FIGURE_FIELDS,
   toPrintProblem,
@@ -64,8 +64,28 @@ describe("[지면] DB 행 → 시험지 문항", () => {
     );
     expect(out.answer).toBe(String.raw`$4\frac{1}{3}$`);
     expect(out.solution).toBe(String.raw`$3\frac{1}{3}+1=4\frac{1}{3}$`);
-    expect(out.answer).toBe(displayFractions(row.answer, "초5", row.content));
+    // 화면과 같은 결정 하나 — 트랙 14 에서 «글마다» 판정을 «문항마다» 결정으로 바꿨다.
+    expect(out.answer).toBe(
+      fractionViewFor({ ...row, grade: "초5" })(row.answer),
+    );
     expect(row.content).toContain(String.raw`\frac{10}{3}`);
+  });
+
+  // 원장님 2026-09-19 «항상 뷰는 통일이야» — 대분수 결정은 문항 하나에 한 번이다. 해설만 분수의
+  // 이름을 불러도 문제지 본문까지 원문이어야 정답지와 같은 수로 찍힌다(트랙 12 판은 문제지 본문
+  // «3½ ÷ 2/3» · 정답지 해설 «7/2×3/2» 로 갈렸다).
+  it("해설이 «가분수»를 부르면 문제지 본문·정답·해설 모두 원문으로 찍는다", () => {
+    const row: PrintableProblemRow = {
+      ...ROW,
+      content: String.raw`다음을 계산하시오. $\frac{7}{2}\div\frac{2}{3}=\square$`,
+      answer: String.raw`$\frac{21}{4}$`,
+      solution: String.raw`가분수는 그대로 두고 나누는 수의 분모와 분자를 바꾸어 곱합니다. $\frac{7}{2}\times\frac{3}{2}=\frac{21}{4}$`,
+      unit: { grade: "초6" },
+    };
+    const out = toPrintProblem(row, 1);
+    expect(out.content).toBe(row.content);
+    expect(out.answer).toBe(row.answer);
+    expect(out.solution).toBe(row.solution);
   });
 
   it("중학 이상 · 학년을 모르는 행 · 바꾸기 문제는 원문 그대로 찍는다", () => {

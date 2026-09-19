@@ -7,7 +7,7 @@ import { parseProblemContent } from "@/lib/problem/parseProblemContent";
 import { CHOICE_MARKS } from "@/lib/math/circledNumber";
 import { fitsTwoColumns } from "@/lib/math/displayWidth";
 import { figureWidthStyle, parseFigureDimensions } from "@/lib/figurePrintSize";
-import { displayFractions } from "./fractionDisplay";
+import { fractionViewFor } from "./fractionDisplay";
 import {
   repositionScore,
   stripLeadingProblemNumber,
@@ -42,10 +42,12 @@ export default function NativeProblem({
     sourceMm: placements[index]?.sourceMm,
   }));
   const used = new Set<number>();
+  // 대분수 결정은 문항 하나에 한 번 — 본문·보기·소문항이 같은 모양이다(정답지와도 같다).
+  const shownFractions = fractionViewFor(problem);
   const markFigures = (text: string) => {
     for (const match of text.matchAll(/\[그림\s*(\d+)\]/g))
       used.add(Number(match[1]) - 1);
-    return displayFractions(text, problem.grade, problem.content);
+    return shownFractions(text);
   };
   const markdown = (text: string, emphasizeNegation = false) => (
     <MarkdownRenderer

@@ -1,6 +1,6 @@
 /* eslint-disable @next/next/no-img-element -- browser-local crops are data URLs */
 import { ProblemContent } from "@/components/math/ProblemContent";
-import { displayFractions } from "./fractionDisplay";
+import { fractionViewFor } from "./fractionDisplay";
 import type { StudioProblem } from "./types";
 import NativeProblem from "./NativeProblem";
 import { hideQuestionScores } from "./questionScoreDisplay";
@@ -33,9 +33,8 @@ export default function UnifiedProblem({
     );
   return (
     <ProblemContent
-      content={displayFractions(
+      content={fractionViewFor(problem)(
         hideScores ? hideQuestionScores(problem.content) : problem.content,
-        problem.grade,
       )}
       figureUrls={problem.figureUrls}
       figureSvg={problem.figureSvg}

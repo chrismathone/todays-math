@@ -222,7 +222,7 @@ const injectDisplayStyle = (inner: string): string => {
 // 뺀 `src/lib/math/textPreprocess.ts` 가 아니라 그 전 판을 가져왔다. 그래서 편집기 렌더러가
 // 학년과 상관없이 — 중1·고1 도 — `\frac{10}{3}` 을 3⅓ 로, 355/5 를 71 로 그렸다.
 // 렌더러는 학년을 모른다. 초등 대분수는 보여 주는 쪽이 **한 함수**로 한다:
-// `src/components/unified/fractionDisplay.ts` (`displayFractions`).
+// `src/components/unified/fractionDisplay.ts` (`fractionViewFor` — 문항 하나에 한 번 정한다).
 // 지키는 검사: `src/__tests__/unit/mixedNumberPolicy.test.ts` «편집기 렌더러도…».
 
 /**

@@ -4,7 +4,7 @@ import dynamic from "next/dynamic";
 import { useState } from "react";
 import { MathText } from "@/components/math/MathText";
 import UnifiedProblem from "./UnifiedProblem";
-import { displayFractions } from "./fractionDisplay";
+import { fractionViewFor } from "./fractionDisplay";
 import type { BankData, StudioProblem } from "./types";
 import s from "./Workspace.module.css";
 import {
@@ -898,19 +898,13 @@ export default function LegacyUnifiedWorkspace({
                             <section className={s.answerItem} key={p.id}>
                               <strong>{String(i + 1).padStart(2, "0")}</strong>
                               <MathText
-                                text={displayFractions(
+                                text={fractionViewFor(p)(
                                   p.answer || "정답 미입력",
-                                  p.grade,
-                                  p.content,
                                 )}
                               />
                               {p.solution && (
                                 <MathText
-                                  text={displayFractions(
-                                    p.solution,
-                                    p.grade,
-                                    p.content,
-                                  )}
+                                  text={fractionViewFor(p)(p.solution)}
                                   as="div"
                                 />
                               )}

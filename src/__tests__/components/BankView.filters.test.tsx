@@ -792,7 +792,7 @@ describe("상세 모달의 풀이가 단계별 줄로 갈린다", () => {
     expect(detail.querySelectorAll("br")).toHaveLength(0);
   });
 
-  it("초등 가분수 표시(displayFractions)는 줄을 나눠도 그대로 한다", async () => {
+  it("초등 가분수 표시(fractionViewFor)는 줄을 나눠도 그대로 한다", async () => {
     const detail = await openDetail(
       String.raw`넓이는 $\frac{7}{3}$이다. 따라서 답은 $\frac{7}{3}$이다.`,
       "초4",
