@@ -137,6 +137,12 @@ export const reviewConsoleRowSchema = z.strictObject({
   figureSourceMm: z.array(z.number()),
   directUseAllowed: z.boolean(),
   unitName: z.string(),
+  /**
+   * 단원의 학년(없으면 `""`) — 초등이면 콘솔이 가분수를 대분수로 보인다(원장님 2026-09-19
+   * «모든 화면이 일치하도록»). 매퍼에만 더하고 여기를 빼먹어 «더 불러오기» 응답이 계약에서
+   * 거절됐다(병합 검수에서 `reviewQueue.test.ts` 가 잡음) — 매퍼와 이 계약은 같이 고친다.
+   */
+  grade: z.string(),
   /** 원본이 어디서 왔나 — 검수자가 원본을 열어 대 볼 수 있게 (원장님 요청 2026-08-24). */
   source: z.string(),
   sourceFile: z.string().nullable(),
