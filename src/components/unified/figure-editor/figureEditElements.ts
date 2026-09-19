@@ -144,9 +144,39 @@ function pointNames(
     found.set(name, found.has(name) ? null : at);
   });
   const names = [...found].flatMap(([name, at]) =>
-    at ? [{ name, x: tenth(at[0]), y: tenth(at[1]) }] : [],
+    at ? [{ name, x: at[0], y: at[1] }] : [],
   );
   return names.length ? names.slice(0, 60) : undefined;
+}
+
+function viewBoxOf(doc: Document): [number, number, number, number] {
+  const parsed = doc.documentElement
+    .getAttribute("viewBox")
+    ?.trim()
+    .split(/[\s,]+/)
+    .map(Number);
+  return parsed?.length === 4 &&
+    parsed.every(Number.isFinite) &&
+    parsed[2] > 0 &&
+    parsed[3] > 0
+    ? [parsed[0], parsed[1], parsed[2], parsed[3]]
+    : [0, 0, 480, 360];
+}
+
+/**
+ * 이름 붙은 점의 **정확한** 자리(그림 좌표) — 요소 목록(`describeFigureForEdit`)은 0.1 로 반올림해 싣는다.
+ * 코드가 계산하는 명령(수선의 발 · 원의 반지름 · 중점 · 교점, figureShapeOps.ts)은 이것으로 그림의 점 그대로 잰다.
+ */
+export function figurePointNames(svg: string) {
+  const doc = readFigureSvg(svg);
+  const [, , width, height] = viewBoxOf(doc);
+  return (
+    pointNames(
+      figureObjects(svg),
+      [...doc.querySelectorAll("[data-object-id]")],
+      Math.max(width, height),
+    ) ?? []
+  );
 }
 
 /**
@@ -159,18 +189,7 @@ export function describeFigureForEdit(svg: string): FigureEditFigure {
   const doc = readFigureSvg(svg);
   const nodes = [...doc.querySelectorAll("[data-object-id]")];
   const objects = figureObjects(svg);
-  const parsed = doc.documentElement
-    .getAttribute("viewBox")
-    ?.trim()
-    .split(/[\s,]+/)
-    .map(Number);
-  const viewBox: [number, number, number, number] =
-    parsed?.length === 4 &&
-    parsed.every(Number.isFinite) &&
-    parsed[2] > 0 &&
-    parsed[3] > 0
-      ? [parsed[0], parsed[1], parsed[2], parsed[3]]
-      : [0, 0, 480, 360];
+  const viewBox = viewBoxOf(doc);
   // 종류 이름은 편집기 요소 목록·오른쪽 칸 제목과 같은 함수(`objectName`) — 각 표시는 직각·예각·둔각
   const angles = figureAngleKinds(objects, viewBox);
   const elements = objects
@@ -221,6 +240,10 @@ export function describeFigureForEdit(svg: string): FigureEditFigure {
       if (isSizeLocked(o)) element.locked = true;
       return element;
     });
-  const names = pointNames(objects, nodes, Math.max(viewBox[2], viewBox[3]));
+  const names = pointNames(
+    objects,
+    nodes,
+    Math.max(viewBox[2], viewBox[3]),
+  )?.map(({ name, x, y }) => ({ name, x: tenth(x), y: tenth(y) }));
   return { viewBox, elements, ...(names ? { names } : {}) };
 }
