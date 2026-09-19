@@ -2427,13 +2427,14 @@ export default function StudioView({
                 검수 패널
               </button>
             )}
+            {/* 원장님 2026-09-19 — «검수 완료 · 다음»과 같은 채운 단추. 읽히는 이름은 보이는 글자 그대로다. */}
             <button
               ref={focusButton}
+              className={styles.primaryButton}
               aria-pressed={focusMode}
-              aria-label={focusMode ? "확대 종료" : "작업 영역 확대"}
               onClick={() => setFocusMode((value) => !value)}
             >
-              {focusMode ? "축소" : "확대"}
+              {focusMode ? "편집창 축소" : "편집창 확대"}
             </button>
           </div>
         </div>
