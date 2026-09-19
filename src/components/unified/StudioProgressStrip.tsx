@@ -99,6 +99,11 @@ export default function StudioProgressStrip({
       data-studio-progress
       // 들어온 사건(pointerenter)이 아니라 움직임으로 연다 — 검수 단계에서 띠가 탭 자리로 올라오면
       // 마우스를 안 움직여도 pointerover 가 들어와 상세 창이 저절로 열렸다(2026-09-19).
+      // 들어올 때는 표지만 푼다 — 상세 창 안에서 Esc 로 닫으면 창이 DOM 에서 빠져 크롬이 pointerleave 를
+      // 안 보낸다. 표지가 켜진 채 남으면 다시 들어와 움직여도 안 열렸다(e2e progress-strip, 2026-09-19).
+      onPointerEnter={() => {
+        hovering.current = false;
+      }}
       onPointerMove={(event) => {
         if (event.pointerType === "touch" || hovering.current) return;
         hovering.current = true;
