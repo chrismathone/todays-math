@@ -91,12 +91,13 @@ import {
   sizeLockValue,
 } from "./figureSizeLock";
 import {
-  measureTextCenters,
+  measureTextBoxes,
   rotateFigureSelection,
   rotationBlock,
   type RotateTurn,
 } from "./figureRotate";
 import { FigureRotateRow } from "./FigureRotateRow";
+import { flipFigureCurve } from "./figureFlip";
 
 type Tool =
   | "select"
@@ -451,7 +452,8 @@ export function FigureEditor({
         sizeLockValue(lockState !== true),
       ),
     );
-  // 90° 회전 — 고른 것 전체가 한 덩어리로(되돌리기 한 번). 글자 가운데는 화면의 조판본에서 잰다. 선택은 그대로 둔다.
+  // 90° 회전 — 고른 것 전체가 한 덩어리로(되돌리기 한 번). 글자 상자는 화면의 조판본에서 잰다(가운데·틀 넓히기).
+  // 선택은 그대로 둔다.
   const rotateBlocked = useMemo(
     () => rotationBlock(objects, selectedIds),
     [objects, selectedIds],
@@ -463,9 +465,34 @@ export function FigureEditor({
       .map((o) => o.id);
     commit(
       rotateFigureSelection(svg, selectedIds, turn, {
-        textCenters: root ? measureTextCenters(root, texts) : undefined,
+        textBoxes: root ? measureTextBoxes(root, texts) : undefined,
       }),
     );
+  };
+  // «반대쪽으로 뒤집기» — 곡선·꺾은선 하나(와 뒤집기가 같이 옮기는 값 글자)를 골랐을 때만 선다. 뒤집은 뒤에도
+  // 선택이 곡선과 그 글자라 다시 누르면 제자리로 온다. 여럿·묶음·함수 그래프는 세우지 않는다.
+  // 끌 이유는 `flipFigureCurve` 가 준다(AI «요청대로 고치기»의 flip 과 같은 이유).
+  const flipping = useMemo(() => {
+    const curves = objects.filter(
+      (o) =>
+        selectedIds.includes(o.id) &&
+        (o.type === "path" || o.type === "polyline") &&
+        !o.attrs["data-function"],
+    );
+    if (curves.length !== 1) return null;
+    const { id } = curves[0];
+    const rest = selectedIds.filter((other) => other !== id);
+    if (rest.length > 1) return null;
+    const result = flipFigureCurve(svg, id);
+    if (rest.length && !("svg" in result && result.labelId === rest[0]))
+      return null;
+    return { id, result };
+  }, [objects, selectedIds, svg]);
+  const flip = () => {
+    if (!flipping || !("svg" in flipping.result)) return;
+    const { svg: next, labelId } = flipping.result;
+    commit(next);
+    setSelectedIds(labelId ? [flipping.id, labelId] : [flipping.id]);
   };
   const remove = () => {
     if (selectedIds.length) {
@@ -1706,7 +1733,21 @@ export function FigureEditor({
               />
             )}
             {selectedIds.length > 0 && (
-              <FigureRotateRow blocked={rotateBlocked} onRotate={rotate} />
+              <FigureRotateRow
+                blocked={rotateBlocked}
+                onRotate={rotate}
+                flip={
+                  flipping
+                    ? {
+                        blocked:
+                          "reason" in flipping.result
+                            ? flipping.result.reason
+                            : null,
+                        onFlip: flip,
+                      }
+                    : undefined
+                }
+              />
             )}
             {current ? (
               <div className="space-y-3 text-xs">
