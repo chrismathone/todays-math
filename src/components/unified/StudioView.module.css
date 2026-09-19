@@ -1743,15 +1743,21 @@
   gap: 6px;
   height: var(--control-height, 44px);
   padding: 0 11px;
-  border: 1px solid transparent;
   border-radius: var(--control-radius, 8px);
   font-size: var(--text-body, 14px);
   white-space: nowrap;
+}
+/* 흰 바탕·눌림 색은 채운 단추가 아닌 띠 단추에만 — «편집창 확대»는 «검수 완료 · 다음»과 같은 .primaryButton 이라
+   그 색을 그대로 둔다(원장님 2026-09-19). :where() 는 특정도를 안 올린다 — 다른 띠 단추는 전과 같은 세기라
+   `.studio button:disabled` 의 회색이 그대로 이긴다. */
+.editorTabs button,
+.editorTools button:where(:not(.primaryButton)) {
+  border: 1px solid transparent;
   color: #486286;
   background: white;
 }
 .editorTabs button[aria-pressed="true"],
-.editorTools button[aria-pressed="true"] {
+.editorTools button[aria-pressed="true"]:where(:not(.primaryButton)) {
   background: #e7edfb;
   border-color: #cbd8f3;
   color: #3159df;
@@ -1762,7 +1768,7 @@
   border-radius: 4px;
   background: #e1e8f7;
 }
-.editorTools button {
+.editorTools button:where(:not(.primaryButton)) {
   border-color: #d4deed;
 }
 /* 검수 단계에서 제목 줄로 올라온 파일·학년·쪽 도구 — 잘라내기 단계의 파일·쪽 줄과 같은 조각이다. */
@@ -1775,7 +1781,7 @@
   gap: 6px 8px;
   min-width: 0;
 }
-/* 좁아 제목 줄이 꺾여도 파일 가져오기·새로 시작·축소는 오른쪽 끝에 둔다(시안 B 의 [축소] 자리). */
+/* 좁아 제목 줄이 꺾여도 파일 가져오기·새로 시작·편집창 축소는 오른쪽 끝에 둔다(시안 B 의 [축소] 자리). */
 .editing.reviewMode .editorTools {
   margin-left: auto;
 }

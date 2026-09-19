@@ -436,7 +436,7 @@ describe("6 · 검수는 확대로(시안 B)", () => {
       screen.getByRole("button", { name: /^OCR · 디지털화 \d+$/ }),
     );
     expect(focused()).toBe(true);
-    expect(screen.getByRole("button", { name: "확대 종료" })).toHaveAttribute(
+    expect(screen.getByRole("button", { name: "편집창 축소" })).toHaveAttribute(
       "aria-pressed",
       "true",
     );
@@ -444,10 +444,10 @@ describe("6 · 검수는 확대로(시안 B)", () => {
     expect(focused()).toBe(false);
   });
 
-  it("검수 중 «축소»를 누르면 그 뜻을 따른다 — 다른 문제로 옮겨도 다시 켜지 않는다", async () => {
+  it("검수 중 «편집창 축소»를 누르면 그 뜻을 따른다 — 다른 문제로 옮겨도 다시 켜지 않는다", async () => {
     await openStudio(twoCrops(), { step: "review" });
     expect(focused()).toBe(true);
-    fireEvent.click(screen.getByRole("button", { name: "확대 종료" }));
+    fireEvent.click(screen.getByRole("button", { name: "편집창 축소" }));
     expect(focused()).toBe(false);
     fireEvent.click(screen.getByRole("button", { name: "다음 문제 검수" }));
     expect(
@@ -458,7 +458,7 @@ describe("6 · 검수는 확대로(시안 B)", () => {
 
   it("들어오기 전에 확대해 두었으면 돌아가도 확대가 남는다", async () => {
     await openStudio(twoCrops());
-    fireEvent.click(screen.getByRole("button", { name: "작업 영역 확대" }));
+    fireEvent.click(screen.getByRole("button", { name: "편집창 확대" }));
     expect(focused()).toBe(true);
     fireEvent.click(
       screen.getByRole("button", { name: /^OCR · 디지털화 \d+$/ }),
@@ -475,7 +475,7 @@ describe("6 · 검수는 확대로(시안 B)", () => {
     for (const name of ["원본 파일", "시험지 학년", "페이지 선택"])
       expect(within(band).getByRole("combobox", { name })).toBeInTheDocument();
     expect(
-      within(band).getByRole("button", { name: "확대 종료" }),
+      within(band).getByRole("button", { name: "편집창 축소" }),
     ).toBeInTheDocument();
     const second = screen.getByLabelText("문항 검수 이동");
     expect(
@@ -515,5 +515,45 @@ describe("6 · 확대를 풀어도 제목 줄이 꺾인 만큼 작업 칸이 양
     act(() => observed.forEach((item) => item.callback()));
     const root = screen.getByRole("dialog", { name: "문제 제작 스튜디오" });
     expect(root.style.getPropertyValue("--studio-band-height")).toBe("144px");
+  });
+});
+
+/**
+ * 원장님 2026-09-19 «축소 확대 버튼을 눈에 잘 띄도록 [검수 완료 · 다음] 색상 맞춰주고.
+ * '창 확대' 편집창 확대로 변경.» — 위 띠 오른쪽 끝의 단추 하나다(잘라내기·검수 두 단계가 같은 띠를 쓴다).
+ * 계산된 색이 같은지는 jsdom 이 못 잰다(CSS 를 안 돈다) — `e2e/studio-ai/studio-ai.spec.ts` 가 브라우저에서 잰다.
+ */
+describe("7 · 편집창 확대 단추 — «검수 완료 · 다음»과 같은 채운 단추", () => {
+  const band = () =>
+    document.querySelector("[data-studio-band]") as HTMLElement;
+  const twoCrops = () => [
+    crop("p1", { content: "본문", mode: "text" }),
+    crop("p2", { rect: { x: 0.1, y: 0.5, width: 0.8, height: 0.3 } }),
+  ];
+
+  it("글자는 «편집창 확대» ↔ «편집창 축소»이고 읽히는 이름도 그 글자다", async () => {
+    await openStudio(twoCrops());
+    const zoom = within(band()).getByRole("button", { name: "편집창 확대" });
+    expect(zoom).toHaveTextContent(/^편집창 확대$/);
+    expect(zoom).toHaveAttribute("aria-pressed", "false");
+    fireEvent.click(zoom);
+    // 같은 단추다 — 글자만 바뀐다(확대를 풀면 포커스가 이 단추로 돌아온다).
+    expect(within(band()).getByRole("button", { name: "편집창 축소" })).toBe(
+      zoom,
+    );
+    expect(zoom).toHaveTextContent(/^편집창 축소$/);
+    expect(zoom).toHaveAttribute("aria-pressed", "true");
+  });
+
+  it("확대 전·중 모두 «검수 완료 · 다음»과 같은 클래스를 쓴다", async () => {
+    await openStudio(twoCrops(), { step: "review" });
+    const next = screen.getByRole("button", { name: "검수 완료 · 다음" });
+    // 빈 문자열끼리 같아서 초록이 되지 않게 — 채운 단추 클래스가 실제로 붙어 있어야 한다.
+    expect(next.className).toMatch(/primaryButton/);
+    const zoom = within(band()).getByRole("button", { name: "편집창 축소" });
+    expect(zoom.className).toBe(next.className);
+    fireEvent.click(zoom);
+    expect(zoom).toHaveAccessibleName("편집창 확대");
+    expect(zoom.className).toBe(next.className);
   });
 });
