@@ -27,11 +27,15 @@ export const decodeHtmlEntities = (text: string): string =>
     .replace(/&gt;/g, ">")
     .replace(/&quot;/g, '"')
     .replace(/&#(\d+);/g, (_, n) => String.fromCharCode(Number(n)))
-    .replace(/&#x([0-9a-fA-F]+);/g, (_, n) => String.fromCharCode(parseInt(n, 16)))
+    .replace(/&#x([0-9a-fA-F]+);/g, (_, n) =>
+      String.fromCharCode(parseInt(n, 16)),
+    )
     .replace(/&amp;/g, "&");
 
 /** 마크다운 이미지 title 파싱: "50% center" → { width: '50%', align: 'center' }. */
-export const parseImageTitle = (title: string | undefined): { width?: string; align?: string } => {
+export const parseImageTitle = (
+  title: string | undefined,
+): { width?: string; align?: string } => {
   if (!title) return {};
   const parts = title.trim().split(/\s+/);
   let width: string | undefined;
@@ -77,7 +81,8 @@ const inlineEquationSystems = (text: string): string => {
   // (1) 문장 사이 display 연립식: `\n\n$$sys$$\n\n` → ` $sys$ ` (문단 합쳐 흐름 복원)
   let s = text.replace(
     /[ \t]*\n{2,}[ \t]*\$\$([\s\S]*?)\$\$[ \t]*\n{2,}[ \t]*/g,
-    (full, inner: string) => (SYSTEM_ENV.test(inner) ? " $" + inner.trim() + "$ " : full),
+    (full, inner: string) =>
+      SYSTEM_ENV.test(inner) ? " $" + inner.trim() + "$ " : full,
   );
   // (2) 남은 display 연립식: `$$sys$$` → `$sys$`
   s = s.replace(/\$\$([\s\S]*?)\$\$/g, (full, inner: string) =>
@@ -108,7 +113,8 @@ const inlineEquationSystems = (text: string): string => {
  * KaTeX 기본 동작이 사용자 경험과 안 맞는다는 피드백을 반영. mathlab도
  * 같은 처리를 한다.
  */
-const HAS_STYLE_DIRECTIVE = /\\(?:displaystyle|textstyle|scriptstyle|scriptscriptstyle)\b/;
+const HAS_STYLE_DIRECTIVE =
+  /\\(?:displaystyle|textstyle|scriptstyle|scriptscriptstyle)\b/;
 
 /**
  * 괄호 내용이 "키 큰" 라텍스 구조(`\int`, `\frac`, `\sum`, `\sqrt`, `\binom`
@@ -171,7 +177,9 @@ const autoSizeBrackets = (math: string): string => {
         const inner = math.slice(i + 1, close);
         const needsSize = TALL_CMDS.test(inner);
         const processedInner = autoSizeBrackets(inner);
-        out += needsSize ? `\\left(${processedInner}\\right)` : `(${processedInner})`;
+        out += needsSize
+          ? `\\left(${processedInner}\\right)`
+          : `(${processedInner})`;
         i = close + 1;
         continue;
       }
@@ -209,39 +217,13 @@ const injectDisplayStyle = (inner: string): string => {
   return `\\displaystyle ${inner}`;
 };
 
-/**
- * 단순 정수 가분수 → 대분수 변환. 한국 중·고등 교과 관행 — 특히 중1
- * 수준에선 순환소수 미학습이라 대분수가 크기 비교·근사 판단에 훨씬 직관적.
- * 예: `\frac{4}{3}` → `1\frac{1}{3}`, `\frac{7}{2}` → `3\frac{1}{2}`,
- *     `-\frac{5}{2}` → `-2\frac{1}{2}`, `\frac{6}{3}` → `2` (정수로 떨어짐).
- *
- * **보수적 휴리스틱** — 분자·분모가 모두 *순수 정수* (1~3자리) 인 가분수만
- * 변환. 식 분수 (`\frac{a+1}{2}` / `\frac{\sqrt{2}}{3}` 등) 는 의도된 표기일
- * 수 있고 KaTeX 가 단순화 못 하므로 그대로 둔다. 진분수 (`\frac{1}{3}`),
- * 분모 0, 분자 = 분모 (1), 분자 < 분모 도 모두 그대로.
- *
- * 음수: 부호를 외부로 빼서 같은 변환 적용한다. `\dfrac` 도 대상에 포함 —
- * 이 시점이 preprocessMathText 안이라 `\dfrac` → `\frac` 정규화 이후라
- * 신경 안 써도 되지만, 호출 순서가 바뀌어도 안전하게 둘 다 매치.
- */
-const improperToMixed = (math: string): string =>
-  math.replace(
-    /(-?)\\d?frac\{(\d{1,4})\}\{(\d{1,4})\}/g,
-    (full, sign: string, numStr: string, denStr: string) => {
-      const num = parseInt(numStr, 10);
-      const den = parseInt(denStr, 10);
-      if (!Number.isFinite(num) || !Number.isFinite(den) || den === 0) return full;
-      if (num < den) return full; // 진분수 — 손대지 않음.
-      const whole = Math.floor(num / den);
-      const remainder = num % den;
-      if (remainder === 0) {
-        // 정수로 떨어짐 — 그냥 정수로 표기.
-        return `${sign}${whole}`;
-      }
-      // 대분수 — `n\frac{r}{q}`. KaTeX는 정수 옆 \frac 을 자동 spacing 처리.
-      return `${sign}${whole}\\frac{${remainder}}{${den}}`;
-    },
-  );
+// §대분수 — **가분수를 대분수로 바꾸는 규칙(`improperToMixed`)이 여기 있었고, 지웠다**
+// (2026-09-19). 이 파일은 2026-09-14 원본 편집기를 옮겨 오며(`c0bf4551`) 08-24 에 규칙을
+// 뺀 `src/lib/math/textPreprocess.ts` 가 아니라 그 전 판을 가져왔다. 그래서 편집기 렌더러가
+// 학년과 상관없이 — 중1·고1 도 — `\frac{10}{3}` 을 3⅓ 로, 355/5 를 71 로 그렸다.
+// 렌더러는 학년을 모른다. 초등 대분수는 보여 주는 쪽이 **한 함수**로 한다:
+// `src/components/unified/fractionDisplay.ts` (`displayFractions`).
+// 지키는 검사: `src/__tests__/unit/mixedNumberPolicy.test.ts` «편집기 렌더러도…».
 
 /**
  * 인접 박스 행 auto-split harness — 사용자 보고 (2026-05-27, CLAUDE.md §26-6).
@@ -322,7 +304,7 @@ export const cleanMalformedLatex = (s: string): string =>
  *
  *  1) cleanMalformedLatex (모델 typo 정리)
  *  2) 유니코드 수학기호 → LaTeX 명령어
- *  3) `improperToMixed` — `\frac`/`\dfrac` 정수 가분수 → 대분수 (한국 교과서)
+ *  3) (없음) — 예전에 여기서 «정수 가분수 → 대분수» 를 했다. 뺐다: 위 §대분수
  *  4) uprightGeometryLabels (점 라벨 직립 Roman)
  *  5) autoSizeBrackets (분수/적분 포함 괄호를 `\left/\right` 로)
  *  6) **`\frac` → `\dfrac` 업그레이드** — 한국 교과서 룰: 인라인 모드에서도
@@ -343,9 +325,7 @@ export const applyMathInnerNormalization = (inner: string): string => {
   s = s.replace(/(?<!\\)\$/g, "");
   for (const [re, repl] of UNICODE_MATH_MAP) s = s.replace(re, repl);
   s = uprightMeasurementUnits(s);
-  // improperToMixed 가 `\frac` 와 `\dfrac` 둘 다 매치, 반환은 `\frac` 표준화.
-  // 그 뒤 단계 6 에서 모두 `\dfrac` 로 업그레이드.
-  s = improperToMixed(s);
+  // ⚠️ **가분수를 대분수로 바꾸지 않는다** — 위 §대분수. 학년을 아는 쪽이 한다.
   // 인접 박스 행 안전망 — `\boxed{ABCD}` → `\boxed{A}\boxed{B}\boxed{C}\boxed{D}`.
   // uprightGeometryLabels *이전* 에 호출 — \mathrm{} wrap 후엔 매치 안 됨.
   s = splitMultiLetterBoxed(s);
@@ -425,7 +405,8 @@ const GEOMETRY_LABEL_REGEX = new RegExp(
   "g",
 );
 
-const FIGURE_PREFIX_COMMANDS = "triangle|square|angle|measuredangle|sphericalangle";
+const FIGURE_PREFIX_COMMANDS =
+  "triangle|square|angle|measuredangle|sphericalangle";
 const FIGURE_PREFIX_REGEX = new RegExp(
   `\\\\(${FIGURE_PREFIX_COMMANDS})(?![a-zA-Z])\\s*([A-Z][A-Z']*)`,
   "g",
@@ -433,7 +414,8 @@ const FIGURE_PREFIX_REGEX = new RegExp(
 
 // 호 패턴: \widehat{AB}, \overset{\frown}{AB} (2자 이상 대문자만)
 const ARC_WIDEHAT_REGEX = /\\widehat\{\s*([A-Z][A-Z']+)\s*\}/g;
-const ARC_FROWN_OVERSET_REGEX = /\\overset\{\s*\\frown\s*\}\{\s*([A-Z][A-Z']+)\s*\}/g;
+const ARC_FROWN_OVERSET_REGEX =
+  /\\overset\{\s*\\frown\s*\}\{\s*([A-Z][A-Z']+)\s*\}/g;
 // 단일 대문자 \widehat — 호가 아니라 일반 hat accent 의도. \mathrm만 적용.
 const SINGLE_HAT_REGEX = /\\widehat\{\s*([A-Z]'*)\s*\}/g;
 
@@ -685,10 +667,12 @@ const splitMathInnerByHangul = (inner: string): MathSegment[] => {
 /** math 구간이 비었거나 directive/공백뿐이라 버려도 되는지. */
 const isDroppableMath = (s: string): boolean =>
   s
-    .replace(/\\(?:displaystyle|textstyle|scriptstyle|scriptscriptstyle)\b/g, "")
+    .replace(
+      /\\(?:displaystyle|textstyle|scriptstyle|scriptscriptstyle)\b/g,
+      "",
+    )
     .replace(/\\(?:qquad|quad|,|;|:|!)/g, "")
-    .replace(/[\s{}]/g, "")
-    .length === 0;
+    .replace(/[\s{}]/g, "").length === 0;
 
 /** 한 수식 span 의 inner 한글 분리 결과. 분리할 게 없으면 null(원본 유지). */
 const extractHangulFromInner = (inner: string): string | null => {
@@ -812,7 +796,9 @@ export const wrapBareConditionBoxes = (content: string): string => {
     const kind = hm[1].replace(/\s+/g, ""); // "조건" | "보기"
     lines[i] = `> &lt;${kind}&gt;`; // 헤더 — escaped 라벨 통일.
     for (let k = i + 1; k < j; k++) {
-      lines[k] = /^\s*>/.test(lines[k]) ? lines[k] : `> ${lines[k].replace(/^\s+/, "")}`;
+      lines[k] = /^\s*>/.test(lines[k])
+        ? lines[k]
+        : `> ${lines[k].replace(/^\s+/, "")}`;
     }
     changed = true;
     i = j - 1;
@@ -867,7 +853,10 @@ export const preprocessMathText = (content: string): string => {
     .replace(/\\\[([\s\S]*?)\\\]/g, (_m, p1) => `$$${p1}$$`);
 
   for (let i = 0; i < 5; i++) {
-    const next = out.replace(/\$([^$\n]+)\$\$([^$\n]+)\$/g, (_m, a, b) => `$${a}$ $${b}$`);
+    const next = out.replace(
+      /\$([^$\n]+)\$\$([^$\n]+)\$/g,
+      (_m, a, b) => `$${a}$ $${b}$`,
+    );
     if (next === out) break;
     out = next;
   }
@@ -881,7 +870,9 @@ export const preprocessMathText = (content: string): string => {
     (match, inner) =>
       // 멀티라인 환경(align/aligned/gather 등)은 display 로 승격하되, *연립방정식
       // (cases / `\left\{`)* 은 인라인 유지(발문 흐름). SYSTEM_ENV 제외.
-      MULTILINE_ENV.test(inner) && !SYSTEM_ENV.test(inner) ? `$$${inner}$$` : match,
+      MULTILINE_ENV.test(inner) && !SYSTEM_ENV.test(inner)
+        ? `$$${inner}$$`
+        : match,
   );
 
   // 한글-수식 분리 — `$...$` / `$$...$$` 안에 섞인 한글을 prose 레벨로 떼어
@@ -895,11 +886,13 @@ export const preprocessMathText = (content: string): string => {
   // autoSizeBrackets, injectDisplayStyle) 일괄 적용.
   out = out.replace(
     INLINE_MATH_RE,
-    (_m, inner) => `$${applyMathInnerNormalization(uprightMeasurementUnits(inner, content))}$`,
+    (_m, inner) =>
+      `$${applyMathInnerNormalization(uprightMeasurementUnits(inner, content))}$`,
   );
   out = out.replace(
     /\$\$([\s\S]*?)\$\$/g,
-    (_m, inner) => `$$${applyMathInnerNormalization(uprightMeasurementUnits(inner, content))}$$`,
+    (_m, inner) =>
+      `$$${applyMathInnerNormalization(uprightMeasurementUnits(inner, content))}$$`,
   );
 
   // (8) `$...$` / `$$...$$` 밖에 떠도는 math-mode-only directive 청소.
@@ -954,7 +947,8 @@ export const preprocessMathText = (content: string): string => {
     .split("\n")
     .map((line) => {
       // sentinel (이미 $...$ 마스크) 가 있으면 건드리지 말 것
-      if (line.includes(SENTINEL_BLOCK) || line.includes(SENTINEL_INLINE)) return line;
+      if (line.includes(SENTINEL_BLOCK) || line.includes(SENTINEL_INLINE))
+        return line;
       // `$` 가 있으면 부분적으로라도 인용된 줄. 자동 wrap 하면 충돌 위험.
       if (line.includes("$")) return line;
       // 알려진 LaTeX 명령어가 1개 이상 — wrap 후보. (sanitize 의 preWrap 과 동일
@@ -963,7 +957,9 @@ export const preprocessMathText = (content: string): string => {
       const cmds = line.match(LATEX_CMD);
       if (!cmds || cmds.length < 1) return line;
       // enum marker 또는 blockquote prefix 보존.
-      const m = line.match(/^(\s*(?:>\s?)?(?:[ㄱ-ㅎ]\.|[①②③④⑤⑥⑦⑧⑨⑩]|\d+\.|\d+\)|-|\*)?\s*)([\s\S]+?)$/);
+      const m = line.match(
+        /^(\s*(?:>\s?)?(?:[ㄱ-ㅎ]\.|[①②③④⑤⑥⑦⑧⑨⑩]|\d+\.|\d+\)|-|\*)?\s*)([\s\S]+?)$/,
+      );
       const prefix = m ? m[1] : "";
       const rest = m ? m[2] : line;
 
@@ -991,7 +987,9 @@ export const preprocessMathText = (content: string): string => {
       // 같은 모델 typo 가 KaTeX 까지 그대로 도달해 빨간 글씨 fallback.
       const hasDisplay = /\\displaystyle\b/.test(mathSpan);
       const innerRaw = hasDisplay ? mathSpan : `\\displaystyle ${mathSpan}`;
-      const innerNormalized = applyMathInnerNormalization(uprightMeasurementUnits(innerRaw, content));
+      const innerNormalized = applyMathInnerNormalization(
+        uprightMeasurementUnits(innerRaw, content),
+      );
       return `${prefix}${leading}$${innerNormalized}$${trailingText}`;
     })
     .join("\n");
