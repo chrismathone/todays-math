@@ -53,30 +53,43 @@ afterEach(() => {
   vi.useRealTimers();
   vi.unstubAllGlobals();
   vi.restoreAllMocks();
+  window.history.replaceState(null, "", "/");
 });
 
 describe("compact teaching overview", () => {
-  it("shows session loading, then an inline sign-in CTA with no external navigation or fake totals", async () => {
-    const onOpen = vi.fn();
-    fetchMock.mockResolvedValue(new Response(null, { status: 401 }));
-    const user = userEvent.setup();
-    render(<TeachingOverview onOpen={onOpen} />);
-    expect(screen.getByRole("status")).toHaveTextContent("로그인 정보를 확인");
-    await user.click(
-      await screen.findByRole("button", { name: "로그인하고 내 수업 보기" }),
-    );
-    expect(onOpen).toHaveBeenCalledTimes(1);
-    expect(screen.queryByRole("link")).not.toBeInTheDocument();
-    expect(screen.queryByText("등록 학생")).not.toBeInTheDocument();
-    expect(fetchMock).toHaveBeenCalledTimes(1);
-    expect(fetchMock).toHaveBeenCalledWith(
-      "/api/dev/unified/overview",
-      expect.objectContaining({
-        cache: "no-store",
-        signal: expect.any(AbortSignal),
-      }),
-    );
-  });
+  // 개요는 **표면**의 데이터 경로를 따른다(`getStudioEndpoints`). 2026-09-14(ce1a16d4)부터
+  // `/` 가 로그인한 작업실이라 `/api/studio/overview` 이고, 개발 표면 `/dev/unified` 만 개발 경로다.
+  // 전에는 경로를 안 박아 jsdom 기본값 `/` 를 개발 표면으로 가정하고 있었다.
+  it.each([
+    ["/", "/api/studio/overview"],
+    ["/dev/unified", "/api/dev/unified/overview"],
+  ])(
+    "at %s shows session loading, then an inline sign-in CTA with no external navigation or fake totals",
+    async (pathname, endpoint) => {
+      window.history.replaceState(null, "", pathname);
+      const onOpen = vi.fn();
+      fetchMock.mockResolvedValue(new Response(null, { status: 401 }));
+      const user = userEvent.setup();
+      render(<TeachingOverview onOpen={onOpen} />);
+      expect(screen.getByRole("status")).toHaveTextContent(
+        "로그인 정보를 확인",
+      );
+      await user.click(
+        await screen.findByRole("button", { name: "로그인하고 내 수업 보기" }),
+      );
+      expect(onOpen).toHaveBeenCalledTimes(1);
+      expect(screen.queryByRole("link")).not.toBeInTheDocument();
+      expect(screen.queryByText("등록 학생")).not.toBeInTheDocument();
+      expect(fetchMock).toHaveBeenCalledTimes(1);
+      expect(fetchMock).toHaveBeenCalledWith(
+        endpoint,
+        expect.objectContaining({
+          cache: "no-store",
+          signal: expect.any(AbortSignal),
+        }),
+      );
+    },
+  );
 
   it("shows real account totals separately from the three class previews, including units and missing progress", async () => {
     const onOpen = vi.fn();
