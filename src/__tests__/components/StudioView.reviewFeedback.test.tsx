@@ -504,8 +504,14 @@ describe("6 · 확대를 풀어도 제목 줄이 꺾인 만큼 작업 칸이 양
       configurable: true,
       value: 144,
     });
+    // 복원 안내 글이 뜬 뒤에도 띠를 재는 효과(useEffect)는 아직 안 돌았을 수 있다 — 바로 세면
+    // 전체 시험 부하에서만 0 으로 빨개졌다(2026-09-19 병합 검수). 관찰자가 붙을 때까지 기다린다.
+    await waitFor(() =>
+      expect(
+        observers.filter((item) => item.target === band).length,
+      ).toBeGreaterThan(0),
+    );
     const observed = observers.filter((item) => item.target === band);
-    expect(observed.length).toBeGreaterThan(0);
     act(() => observed.forEach((item) => item.callback()));
     const root = screen.getByRole("dialog", { name: "문제 제작 스튜디오" });
     expect(root.style.getPropertyValue("--studio-band-height")).toBe("144px");
