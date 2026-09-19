@@ -224,6 +224,9 @@ describe("같은 길이 표시(addTick) — 엔진 `_segment_mark_lines` 와 같
     expect(groupNames(after).get(tick.id)).toBe(
       groupNames(engine).get(engineTicks[0].id),
     );
+    // 요소 목록·오른쪽 칸 제목·AI 요소 목록이 쓰는 한 이름(objectName)과 묶음
+    expect(kindOf(after, tick.id)).toBe("같은 길이 표시");
+    expect(groupNames(after).get(tick.id)).toBe("같은 길이 표시");
     // 선분 위 표시 판정(요소 이름에 쓰일 한 규칙)이 엔진 눈금과 새 눈금을 같게 읽는다
     const engineMarks = segmentMarks(engine);
     expect(engineMarks.get(engineTicks[0].id)).toBe("같은 길이 표시");
@@ -272,7 +275,7 @@ describe("같은 길이 표시(addTick) — 엔진 `_segment_mark_lines` 와 같
       "같은 표시가 이미 있음",
       TRI_MARKED,
       { op: "addTick", from: "B", to: "A", count: 2 },
-      "선분 BA 같은 길이 표시 추가(2겹): 이미 같은 길이 표시가 있습니다(4번 선분)",
+      "선분 BA 같은 길이 표시 추가(2겹): 이미 같은 길이 표시가 있습니다(4번 같은 길이 표시)",
     ],
     [
       "두 점이 같음",
@@ -358,6 +361,8 @@ describe("평행 표시(addParallelMark) — 엔진의 » 두 획", () => {
     expect(groupNames(after).get(arms[0].id)).toBe(
       groupNames(engine).get(engineArm.id),
     );
+    expect(kindOf(after, arms[0].id)).toBe("평행 표시");
+    expect(groupNames(after).get(arms[0].id)).toBe("평행 표시");
     const engineMarks = segmentMarks(engine);
     expect(
       figureObjects(engine)
@@ -377,7 +382,9 @@ describe("평행 표시(addParallelMark) — 엔진의 » 두 획", () => {
     expect(
       applyFigureEdits(source, [{ op: "addParallelMark", from: "B", to: "C" }])
         .rejected,
-    ).toEqual(["선분 BC 평행 표시 추가: 이미 평행 표시가 있습니다(9번 선분)"]);
+    ).toEqual([
+      "선분 BC 평행 표시 추가: 이미 평행 표시가 있습니다(9번 평행 표시)",
+    ]);
   });
 
   it("puts parallel marks only on a drawn segment", () => {

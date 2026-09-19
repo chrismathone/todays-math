@@ -3,7 +3,9 @@ import {
   objectName,
   type FigureAngleKind,
   type FigureAngleKinds,
+  type FigureSegmentMarkKind,
 } from "./figureObjectNames";
+import { figureSegmentMarks } from "./figureSegmentMarks";
 
 type FigureObject = ReturnType<typeof figureObjects>[number];
 
@@ -309,31 +311,39 @@ let measured: {
   S: number;
   free: Shape[];
   marks: Map<Shape, AngleMark>;
+  /** 선분 위 표시(같은 길이 눈금 · 평행 ») — figureSegmentMarks.ts 한 규칙. */
+  segments: Map<string, FigureSegmentMarkKind>;
 } | null = null;
 function measure(objects: FigureObject[], S: number) {
   if (!measured || measured.objects !== objects || measured.S !== S) {
     const free = objects.flatMap(
       (object, index) => shapeOf(object, index) ?? [],
     );
-    measured = { objects, S, free, marks: angleMarks(free, S) };
+    measured = {
+      objects,
+      S,
+      free,
+      marks: angleMarks(free, S),
+      segments: figureSegmentMarks(objects, S),
+    };
   }
   return measured;
 }
 
 /**
- * 각 표시의 종류(요소 id → 직각·예각·둔각, 원장님 2026-09-19 «직각 둔각 예각»). 요소 이름(`objectName`)이 이것으로
- * 각 표시를 부른다 — 요소 목록 · 오른쪽 칸 제목 · AI 요소 목록 · AI 결과 줄이 같은 이름을 쓰게 한 곳에서 잰다.
+ * 각 표시의 종류(요소 id → 직각·예각·둔각, 원장님 2026-09-19 «직각 둔각 예각»)와 선분 위 표시의 이름(«같은 길이 표시»·
+ * «평행 표시», 원장님 2026-09-19 «추가할 수 있는 것 전부»). 요소 이름(`objectName`)이 이것으로 표시를 부른다 —
+ * 요소 목록 · 오른쪽 칸 제목 · AI 요소 목록 · AI 결과 줄이 같은 이름을 쓰게 한 곳에서 잰다.
  */
 export function figureAngleKinds(
   objects: FigureObject[],
   viewBox: number[],
 ): FigureAngleKinds {
-  return new Map(
-    [...measure(objects, sizeOf(viewBox)).marks].map(([s, mark]) => [
-      s.object.id,
-      mark.kind,
-    ]),
-  );
+  const { marks, segments } = measure(objects, sizeOf(viewBox));
+  return new Map<string, FigureAngleKind | FigureSegmentMarkKind>([
+    ...segments,
+    ...[...marks].map(([s, mark]) => [s.object.id, mark.kind] as const),
+  ]);
 }
 
 /**
@@ -400,7 +410,7 @@ export function groupFigureObjects(
   const role = new Map<string, string>();
   // 역할 어림은 사용자가 옮긴 요소까지 다 본다 — 화살촉 하나를 옮겼다고 축이 안 서면 나머지 묶음이 흔들린다.
   // 각 표시(직각 표시 ㄱ자 · 각의 호)는 좌표평면 위에서도 «각» — 축 끝 가까이 있어도 화살촉이 아니다.
-  const { free, marks } = measure(objects, S);
+  const { free, marks, segments } = measure(objects, S);
 
   // 축 — 곧고 긴 실선. 둘이 만나고, 화살촉·눈금 중 하나는 있어야 축이다(세로 높이선이 곧다고 축이 아니다).
   const solidLines = free.filter((s) => s.line && !s.dashed);
@@ -527,6 +537,8 @@ export function groupFigureObjects(
   }
   // 원장님 2026-09-19 «기존의 각들은 다 각으로 묶어. 직각 둔각 예각.» — 점선으로 그린 호도 «점선»이 아니라 «각».
   for (const s of marks.keys()) role.set(s.object.id, "각");
+  // 선분 위 표시(같은 길이 눈금 · 평행 ») — 좌표축 눈금으로 이미 묶인 것은 그대로
+  for (const [id, kind] of segments) if (!role.has(id)) role.set(id, kind);
 
   // 좌표평면 위 도형 — 각 표시가 앉은 닫힌 도형의 변(삼각형 OAB)은 «그래프»가 아니다. 종류(선분)로 둔다.
   const sides = graph
