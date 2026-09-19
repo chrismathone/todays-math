@@ -23,6 +23,8 @@ Activity records distinguish observed UI requests from confirmed server changes.
 
 The script accepts a single JSON line containing `email`, `password` and optional `name`; credentials are never embedded in the script or committed. It records a bootstrap event and preserves an existing account's identity.
 
+> 2026-09-19: 스크립트가 `scripts/admin/bootstrap-admin.mjs` 로 옮겨졌다(ESM `import` — `require()` 가 `npm run lint` 오류 3건이었다). 실행은 `node scripts/admin/bootstrap-admin.mjs`, 입력·동작은 그대로다. 위 19줄의 `.cjs` 는 그때의 기록이다.
+
 ## Loading UI integration
 
 Grok's independent inventory and rebuild is in [the skeleton audit](skeleton-audit.md). The integrated application also has matching administrator, user-detail and approval-status loaders. Unused auth loading styles were removed, and the developer gallery includes the new account states. Asynchronous operation progress remains measured progress UI rather than a page placeholder.

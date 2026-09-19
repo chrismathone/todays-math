@@ -1,7 +1,12 @@
 /* Read one JSON line from stdin: {email,password,name?}. Never pass credentials as CLI args. */
-const { loadEnvConfig } = require('@next/env');
-const { PrismaClient } = require('@prisma/client');
-const { hash } = require('bcryptjs');
+// 실행: node scripts/admin/bootstrap-admin.mjs (stdin 에 JSON 한 줄)
+// ESM 이다(2026-09-19 .cjs 에서 옮김) — `require()` 가 lint(no-require-imports)에 걸렸다.
+// 저장소의 다른 Node 스크립트(.mjs·.ts)처럼 import 로 적는다. 동작은 그대로다.
+import nextEnv from '@next/env';
+import { PrismaClient } from '@prisma/client';
+import { hash } from 'bcryptjs';
+// @next/env 는 CommonJS 번들이라 ESM 에서 이름 내보내기가 안 잡힌다 — 기본 내보내기에서 꺼낸다.
+const { loadEnvConfig } = nextEnv;
 loadEnvConfig(process.cwd());
 const db = new PrismaClient();
 process.stdin.setEncoding('utf8');
