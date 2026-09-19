@@ -90,6 +90,13 @@ import {
   sizeLockState,
   sizeLockValue,
 } from "./figureSizeLock";
+import {
+  measureTextCenters,
+  rotateFigureSelection,
+  rotationBlock,
+  type RotateTurn,
+} from "./figureRotate";
+import { FigureRotateRow } from "./FigureRotateRow";
 
 type Tool =
   | "select"
@@ -436,6 +443,22 @@ export function FigureEditor({
         sizeLockValue(lockState !== true),
       ),
     );
+  // 90° 회전 — 고른 것 전체가 한 덩어리로(되돌리기 한 번). 글자 가운데는 화면의 조판본에서 잰다. 선택은 그대로 둔다.
+  const rotateBlocked = useMemo(
+    () => rotationBlock(objects, selectedIds),
+    [objects, selectedIds],
+  );
+  const rotate = (turn: RotateTurn) => {
+    const root = canvas.current?.querySelector("svg");
+    const texts = objects
+      .filter((o) => o.type === "text" && selectedIds.includes(o.id))
+      .map((o) => o.id);
+    commit(
+      rotateFigureSelection(svg, selectedIds, turn, {
+        textCenters: root ? measureTextCenters(root, texts) : undefined,
+      }),
+    );
+  };
   const remove = () => {
     if (selectedIds.length) {
       commit(removeFigureSelection(svg, selectedIds));
@@ -1673,6 +1696,9 @@ export function FigureEditor({
                 onFocused={clearRenaming}
                 onAssign={assignGroup}
               />
+            )}
+            {selectedIds.length > 0 && (
+              <FigureRotateRow blocked={rotateBlocked} onRotate={rotate} />
             )}
             {current ? (
               <div className="space-y-3 text-xs">
