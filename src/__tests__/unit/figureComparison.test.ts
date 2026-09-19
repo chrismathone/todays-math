@@ -11,8 +11,10 @@ import { launchExportBrowser } from "@/lib/export/pdfServer";
 vi.mock("server-only", () => ({}));
 
 describe("actual source/rendered comparison image", () => {
-  // 결함 2: 비교 브라우저는 유휴 시간까지 살아 있으므로 시험이 끝나면 바로 닫는다
-  afterAll(() => closeFigureComparisonBrowser());
+  // 결함 2: 비교 브라우저는 유휴 시간까지 살아 있으므로 시험이 끝나면 바로 닫는다.
+  // 닫기는 시험 대상이 아니라 한도를 넉넉히 — 이 컴퓨터(크롬 없음 → 엣지)는 전체 시험 부하에서 닫기가 10초를 넘겨
+  // 시험 둘이 초록인데 파일이 빨갰다(2026-09-19, 단독이면 3.9초). 트랙 15 가 잰 엣지 닫기는 33초까지 걸렸다.
+  afterAll(() => closeFigureComparisonBrowser(), 60_000);
   it("rejects remote source images and unsafe SVG before opening a browser", async () => {
     await expect(
       buildFigureComparisonImage("https://example.com/source.png", "<svg/>"),
