@@ -393,8 +393,76 @@ test("manual mobile crop and source fraction rendering without horizontal overfl
     page.getByRole("complementary", { name: "자른 문제 검수" }),
   ).not.toBeVisible();
   await page.getByRole("button", { name: "검수 패널 열기" }).click();
-  await page.getByRole("button", { name: "작업 영역 확대" }).click();
-  await page.getByRole("button", { name: "확대 종료" }).press("Escape");
+  await page.getByRole("button", { name: "편집창 확대", exact: true }).click();
+  await page
+    .getByRole("button", { name: "편집창 축소", exact: true })
+    .press("Escape");
+  expect(mock.errors).toEqual([]);
+});
+
+// 원장님 2026-09-19 «축소 확대 버튼을 눈에 잘 띄도록 [검수 완료 · 다음] 색상 맞춰주고» — jsdom 은 CSS 를 안 돌아,
+// 클래스가 같아도 위 띠의 단추 규칙(흰 바탕·눌림 색)이 그 색을 덮는지는 못 본다. 계산된 모양을 여기서 잰다.
+test("edit-window zoom button is painted like the review next button in both states", async ({
+  page,
+}, testInfo) => {
+  const mock = await mockAi(page);
+  await page.setViewportSize({ width: 1680, height: 920 });
+  await sample(page);
+  await detect(page);
+  await review(page);
+  const band = page.locator("[data-studio-band]");
+  const look = (button: ReturnType<Page["getByRole"]>) =>
+    button.evaluate((element) => {
+      const style = getComputedStyle(element);
+      return {
+        background: style.backgroundColor,
+        color: style.color,
+        border: `${style.borderTopWidth} ${style.borderTopColor}`,
+        radius: style.borderTopLeftRadius,
+        weight: style.fontWeight,
+        size: style.fontSize,
+        shadow: style.boxShadow,
+      };
+    });
+  // 마우스가 단추 위에 남으면 hover 색으로 잰다 — 빈 가장자리로 치우고, 색 전환(0.15s)은 poll 로 기다린다.
+  const settle = () => page.mouse.move(2, 918);
+  const next = page.getByRole("button", {
+    name: "검수 완료 · 다음",
+    exact: true,
+  });
+  await expect(next).toBeEnabled();
+  await settle();
+  const expected = await look(next);
+  expect(expected.background).toBe("rgb(49, 89, 223)");
+  expect(expected.color).toBe("rgb(255, 255, 255)");
+
+  // 검수는 확대로 들어온다(시안 B) — 확대 중.
+  const zoomOut = band.getByRole("button", {
+    name: "편집창 축소",
+    exact: true,
+  });
+  await expect(zoomOut).toHaveAttribute("aria-pressed", "true");
+  await expect.poll(() => look(zoomOut)).toEqual(expected);
+  await band.screenshot({ path: testInfo.outputPath("zoom-band-focus.png") });
+
+  // 확대 전.
+  await zoomOut.click();
+  await settle();
+  const zoomIn = band.getByRole("button", { name: "편집창 확대", exact: true });
+  await expect(zoomIn).toHaveAttribute("aria-pressed", "false");
+  await expect.poll(() => look(zoomIn)).toEqual(expected);
+  await band.screenshot({ path: testInfo.outputPath("zoom-band.png") });
+
+  // 잘라내기 단계도 같은 띠의 같은 단추다.
+  await page
+    .getByRole("button", { name: "문제&도형 잘라내기", exact: true })
+    .click();
+  await settle();
+  await expect
+    .poll(() =>
+      look(band.getByRole("button", { name: "편집창 확대", exact: true })),
+    )
+    .toEqual(expected);
   expect(mock.errors).toEqual([]);
 });
 
