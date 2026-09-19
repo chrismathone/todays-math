@@ -25,6 +25,7 @@ import {
   splitProblemFilterValue,
 } from "@/components/problem/labels";
 import { provenanceBadges } from "@/lib/problem/provenance";
+import { solutionForDisplay } from "@/lib/solutionSteps";
 import { ProblemTransformPanel } from "@/components/problem/ProblemTransformPanelLazy";
 import UnifiedProblem from "./UnifiedProblem";
 import { displayFractions } from "./fractionDisplay";
@@ -450,16 +451,21 @@ function DetailModal({
               </div>
               <div className={styles.detail}>
                 <h4>풀이</h4>
+                {/* 풀이는 `solutionForDisplay` 를 지난다 — 안 거치면 이 화면에서만 해설이
+                    한 줄로 붙는다(solutionSteps.ts · solutionWiring.test.ts). 분수 표시를
+                    먼저 하고 줄은 그리기 직전에 나눈다. */}
                 <MathText
                   as="div"
                   text={
-                    problem.solution
-                      ? displayFractions(
-                          problem.solution,
-                          problem.grade,
-                          problem.content,
-                        )
-                      : "등록된 풀이가 없습니다."
+                    solutionForDisplay(
+                      problem.solution
+                        ? displayFractions(
+                            problem.solution,
+                            problem.grade,
+                            problem.content,
+                          )
+                        : null,
+                    ) || "등록된 풀이가 없습니다."
                   }
                 />
               </div>

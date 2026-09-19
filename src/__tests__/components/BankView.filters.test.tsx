@@ -758,3 +758,59 @@ describe("필터는 한 줄이다 — 라벨은 칸 문구로 (원장님 2026-09
     expect(screen.getByText(help).className).toContain("sr-only");
   });
 });
+
+/**
+ * 🔴 **상세 모달의 풀이도 `solutionForDisplay` 를 지난다** (2026-09-19).
+ *
+ * 통합 문제은행이 들어온 날(8baffa91, 2026-09-13)부터 상세의 풀이는 `displayFractions`
+ * 만 거치고 줄 나누기를 안 거쳤다. 그래서 원장님이 두 번 지적하신 «해설이 한 줄로 나간다»
+ * (solutionSteps.ts 머리말 — 2026-08-21 · 2026-09-06)가 **이 화면에서만** 다시 났다.
+ * 소스 가드(`solutionWiring.test.ts`)가 그 자리를 짚었고, 여기서는 **그려진 결과**로 잰다.
+ */
+describe("상세 모달의 풀이가 단계별 줄로 갈린다", () => {
+  const openDetail = async (solution: string, grade = "중1") => {
+    const row: BankProblem = { ...problem, solution, grade };
+    servedProblems = [row];
+    mount({ ...initialData, problems: [row] });
+    await settled();
+    fireEvent.click(screen.getByRole("button", { name: "문제 상세" }));
+    return within(screen.getByRole("dialog")).getByText("풀이", {
+      selector: "h4",
+    }).parentElement!;
+  };
+
+  it("두 문장 풀이는 두 줄로 그린다 — 한 줄로 붙이지 않는다", async () => {
+    // solutionWiring.test.ts 의 표본과 같다 — 두 조각이 각각 짧아 경계를 가른다
+    const detail = await openDetail("밑변은 $5$이다. 높이는 $4$이다.");
+    expect(detail.querySelectorAll("br")).toHaveLength(1);
+    expect(detail.textContent).toContain("밑변은");
+    expect(detail.textContent).toContain("높이는");
+  });
+
+  it("한 문장 풀이는 그대로 한 줄이다 — 없는 경계를 만들지 않는다", async () => {
+    const detail = await openDetail("밑변은 $5$이고 높이는 $4$이다.");
+    expect(detail.querySelectorAll("br")).toHaveLength(0);
+  });
+
+  it("초등 가분수 표시(displayFractions)는 줄을 나눠도 그대로 한다", async () => {
+    const detail = await openDetail(
+      String.raw`넓이는 $\frac{7}{3}$이다. 따라서 답은 $\frac{7}{3}$이다.`,
+      "초4",
+    );
+    expect(detail.querySelectorAll("br")).toHaveLength(1);
+    // KaTeX 가 남기는 TeX 원문(annotation)으로 잰다 — 렌더러가 `\frac` 를 `\dfrac` 로 올린다
+    const tex = [...detail.querySelectorAll("annotation")].map(
+      (a) => a.textContent ?? "",
+    );
+    expect(tex).toHaveLength(2);
+    for (const t of tex) {
+      expect(t).toMatch(/2\\d?frac\{1\}\{3\}/);
+      expect(t).not.toContain("{7}{3}");
+    }
+  });
+
+  it("풀이가 없으면 없다고 적는다", async () => {
+    const detail = await openDetail("");
+    expect(detail.textContent).toContain("등록된 풀이가 없습니다.");
+  });
+});
