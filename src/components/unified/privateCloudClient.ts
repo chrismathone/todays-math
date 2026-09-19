@@ -2,6 +2,7 @@ import type {
   PrivateDocument,
   PrivateDocumentSummary,
 } from "@/contracts/privateWorkspace.contract";
+import { svgDataUrl } from "@/lib/svgDataUrl";
 
 export class PrivateCloudError extends Error {
   constructor(
@@ -32,13 +33,86 @@ type AssetPool = {
   portable: Map<string, string>;
 };
 const activeAssetPools = new Map<string, AssetPool>();
+/** 내려받은 자산 — `truncated` 는 옛 저장이 잘라 올린 SVG 의 앞부분(온전한 자산이면 없다). */
+type Download = { url: string; truncated?: string };
+
+const IMAGE_URLS =
+  /data:image\/[\w.+-]+(?:;charset=[\w-]+)?;base64,[A-Za-z0-9+/=]+|data:image\/[\w.+-]+(?:;charset=[\w-]+)?,[^\s"'<>)]*|blob:[^\s"'<>)]*/gi;
+const ENCODED_SVG = /^data:image\/svg\+xml(?:;charset=[\w-]+)?,/i;
+/** 인코딩된 `</svg>`(+ 인코딩된 공백) — 옛 SVG 주소가 끝날 수 있는 자리 */
+const ENCODED_SVG_CLOSE = /%3C%2Fsvg%3E(?:%0A|%0D|%09|%20)*/gi;
+/** 되살릴 수 없게 잘린 그림 자리 — 조용히 깨진 그림 대신 이 그림 하나로 드러낸다. */
+const REDRAW_SVG = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 360 72" width="360" height="72"><rect x="1" y="1" width="358" height="70" fill="#ffffff" stroke="#9aa5b8" stroke-dasharray="6 4"/><text x="180" y="42" text-anchor="middle" font-size="15" font-family="sans-serif" fill="#52617a">그림을 불러오지 못했습니다. 다시 그려 주세요.</text></svg>`;
+
+const looksLikeSvg = (text: string) =>
+  /^\s*(?:<\?xml[^>]*>\s*)?<svg\b/i.test(text);
+/** 한 장으로 닫힌 SVG 인가 — 잘린 앞부분은 여기서 걸린다. */
+function wholeSvg(text: string) {
+  if (!looksLikeSvg(text)) return false;
+  if (typeof DOMParser === "undefined")
+    return /(?:<\/svg>|\/>)\s*$/i.test(text);
+  const doc = new DOMParser().parseFromString(text, "image/svg+xml");
+  return (
+    !doc.querySelector("parsererror") && doc.documentElement.localName === "svg"
+  );
+}
+
+/**
+ * 옛 SVG 데이터 주소 — `svgDataUrl` 이 `( ) '` 까지 인코딩하기 전에 지은 주소는 괄호·작은따옴표가 날것이다.
+ * 첫 `)`·`'` 에서 끊으면 앞부분만 자산이 되고 꼬리가 문자열에 남는다(원장님 운영 콘솔 2026-09-19).
+ * 거기서 멈췄으면 뒤로 이어 읽어 **디코드한 SVG 가 한 장으로 닫히는** 첫 `</svg>` 까지를 주소로 삼는다 —
+ * 마크다운 `![](…)`·CSS `url(…)` 의 닫는 괄호는 그 뒤라 먹지 않는다. 닫히는 자리가 없으면 예전 그대로.
+ */
+function wholeImageUrl(text: string, index: number, matched: string) {
+  const header = ENCODED_SVG.exec(matched)?.[0];
+  if (!header || !/^[)']/.test(text.slice(index + matched.length)))
+    return matched;
+  const body = /^[^\s"<>]*/.exec(text.slice(index + header.length))![0];
+  for (const close of body.matchAll(ENCODED_SVG_CLOSE)) {
+    const end = close.index + close[0].length;
+    if (end <= matched.length - header.length) continue;
+    try {
+      if (wholeSvg(decodeURIComponent(body.slice(0, end))))
+        return header + body.slice(0, end);
+    } catch {
+      // 깨진 퍼센트 부호 — 다음 자리를 본다
+    }
+  }
+  return matched;
+}
+
+/**
+ * 이미 잘려 저장된 SVG 를 다시 열 때 — 옛 `externalize` 는 앞부분만 자산으로 올리고 꼬리
+ * `)%20translate(…)…%3C%2Fsvg%3E` 를 문자열에 남겼다. 자산(디코드된 앞부분) + 디코드한 꼬리 = 원래 SVG 이므로
+ * 이어 붙여 데이터 주소로 되돌린다(다음 저장 때 온전한 자산이 된다). 자산이 온전하면 뒤의 `)` 는 마크다운의
+ * 닫는 괄호라 손대지 않는다. 이을 수 없으면 그 그림만 «다시 그려 주세요» 그림으로 바꾼다 — 문서는 열린다.
+ */
+function repairTruncatedSvg(prefix: string, after: string) {
+  const run = /^[)'][^\s"<>]*/.exec(after)?.[0] ?? "";
+  const closes = [...run.matchAll(ENCODED_SVG_CLOSE)].map(
+    (close) => close.index + close[0].length,
+  );
+  for (const end of closes) {
+    try {
+      const svg = prefix + decodeURIComponent(run.slice(0, end));
+      if (wholeSvg(svg)) return { url: svgDataUrl(svg), consumed: end };
+    } catch {
+      // 깨진 퍼센트 부호 — 다음 자리를 본다
+    }
+  }
+  // 문자열 끝까지가 꼬리면(그림 칸 하나) 통째로, 아니면 마지막 `</svg>` 까지만 걷는다
+  return {
+    url: svgDataUrl(REDRAW_SVG),
+    consumed: run.length === after.length ? run.length : (closes.at(-1) ?? 0),
+  };
+}
 
 /** One immutable owner per client, including requests still queued after logout. */
 export class PrivateCloudClient {
   private uploads = new Map<string, Promise<string>>();
   private conversions = new Map<string, Promise<string>>();
   private blobs = new WeakMap<Blob, Promise<string>>();
-  private downloads = new Map<string, Promise<string>>();
+  private downloads = new Map<string, Promise<Download>>();
   private portable = new Map<string, string>();
   private objectUrls = new Set<string>();
   private pool?: AssetPool;
@@ -305,40 +379,58 @@ export class PrivateCloudClient {
   }
   async externalize<T>(value: T): Promise<T> {
     return this.walk(value, async (text) => {
-      const matches = [
-        ...text.matchAll(
-          /data:image\/[\w.+-]+(?:;charset=[\w-]+)?;base64,[A-Za-z0-9+/=]+|data:image\/[\w.+-]+(?:;charset=[\w-]+)?,[^\s"'<>)]*|blob:[^\s"'<>)]*/gi,
-        ),
-      ];
-      for (const match of matches)
-        text = text.replace(match[0], await this.convert(match[0]));
-      return text;
+      let out = "";
+      let at = 0;
+      for (const match of text.matchAll(IMAGE_URLS)) {
+        if (match.index < at) continue; // 앞의 옛 SVG 주소가 이어 읽은 자리
+        const url = wholeImageUrl(text, match.index, match[0]);
+        out += text.slice(at, match.index) + (await this.convert(url));
+        at = match.index + url.length;
+      }
+      return out + text.slice(at);
     });
+  }
+  private download(path: string, hash: string): Promise<Download> {
+    let pending = this.downloads.get(path);
+    if (!pending) {
+      pending = this.original(hash).then(async (blob) => {
+        const url = URL.createObjectURL(blob);
+        this.conversions.set(url, Promise.resolve(path));
+        this.portable.set(url, path);
+        this.objectUrls.add(url);
+        const pool = activeAssetPools.get(this.scope);
+        pool?.urls.add(url);
+        pool?.portable.set(url, path);
+        if (!/^image\/svg\+xml/i.test(blob.type)) return { url };
+        const text = await blob.text();
+        return looksLikeSvg(text) && !wholeSvg(text)
+          ? { url, truncated: text }
+          : { url };
+      });
+      this.downloads.set(path, pending);
+      void pending.catch(() => this.downloads.delete(path));
+    }
+    return pending;
   }
   /** Private images are fetched with the owner fence, then rendered from local object URLs. */
   async materialize<T>(value: T): Promise<T> {
     return this.walk(value, async (text) => {
+      let out = "";
+      let at = 0;
       for (const match of text.matchAll(
         /\/api\/library\/assets\/([a-f0-9]{64})\b/g,
       )) {
-        let pending = this.downloads.get(match[0]);
-        if (!pending) {
-          pending = this.original(match[1]).then((blob) => {
-            const url = URL.createObjectURL(blob);
-            this.conversions.set(url, Promise.resolve(match[0]));
-            this.portable.set(url, match[0]);
-            this.objectUrls.add(url);
-            const pool = activeAssetPools.get(this.scope);
-            pool?.urls.add(url);
-            pool?.portable.set(url, match[0]);
-            return url;
-          });
-          this.downloads.set(match[0], pending);
-          void pending.catch(() => this.downloads.delete(match[0]));
-        }
-        text = text.replace(match[0], await pending);
+        if (match.index < at) continue;
+        const { url, truncated } = await this.download(match[0], match[1]);
+        const end = match.index + match[0].length;
+        const repaired =
+          truncated === undefined
+            ? undefined
+            : repairTruncatedSvg(truncated, text.slice(end));
+        out += text.slice(at, match.index) + (repaired?.url ?? url);
+        at = end + (repaired?.consumed ?? 0);
       }
-      return text;
+      return out + text.slice(at);
     });
   }
   private async walk<T>(

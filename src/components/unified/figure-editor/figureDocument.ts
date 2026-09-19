@@ -1,8 +1,8 @@
+import { svgDataUrl } from "@/lib/svgDataUrl";
 import { cleanFigureForSave, prepareFigureSvg } from "./figureSvgEditing";
 import type { StudioFigureSaveResult } from "./types";
 
-export const svgDataUrl = (svg: string) =>
-  `data:image/svg+xml;charset=utf-8,${encodeURIComponent(svg)}`;
+export { svgDataUrl };
 
 export function svgFromImage(image: string): string | undefined {
   if (/^\s*<svg\b/i.test(image)) return image;

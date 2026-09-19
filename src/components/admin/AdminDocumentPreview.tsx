@@ -4,6 +4,7 @@ import { useState } from "react";
 import { ProblemContent } from "@/components/math/ProblemContent";
 import { MathText } from "@/components/math/MathText";
 import { fractionViewFor } from "@/components/unified/fractionDisplay";
+import { svgDataUrl } from "@/lib/svgDataUrl";
 import { accountDate } from "./AccountReview";
 import { objectValue, stringValue, type DocumentDetail } from "./documentTypes";
 import s from "./admin.module.css";
@@ -81,8 +82,7 @@ function ProblemPreview({
   }
   // SVG is rendered as an image, not injected HTML from a private document payload.
   const svg = stringValue(problem.figureSvg);
-  if (svg)
-    figures.push(`data:image/svg+xml;charset=utf-8,${encodeURIComponent(svg)}`);
+  if (svg) figures.push(svgDataUrl(svg));
   const answer = shown(stringValue(problem.answer));
   const solution = shown(stringValue(problem.solution));
   return (
