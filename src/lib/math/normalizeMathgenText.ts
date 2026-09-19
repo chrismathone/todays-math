@@ -166,7 +166,7 @@ function fixLatexEscaping(text: string, inMath: boolean): string {
   return normalizeCircledMarkers(out);
 }
 
-function mathRunEnd(text: string, start: number): number {
+function mathRunEnd(text: string, start: number, openBraces = 0): number {
   const environment = text.slice(start).match(/^\\begin\{([A-Za-z*]+)\}/);
   if (environment) {
     const closer = `\\end{${environment[1]}}`;
@@ -174,7 +174,8 @@ function mathRunEnd(text: string, start: number): number {
     return end < 0 ? start : end + closer.length;
   }
   let i = start;
-  let braces = 0;
+  // A prefix like `A^{` already opened a group; the run must reach its `}`.
+  let braces = openBraces;
   for (; i < text.length;) {
     const ch = text[i];
     if (ch === "\\") {
@@ -231,8 +232,6 @@ function protectLooseLatex(text: string): string {
       !KNOWN_COMMAND.test(match[0])
     )
       continue;
-    const end = mathRunEnd(text, commandStart);
-    if (end === commandStart) continue;
     const before = text.slice(last, commandStart);
     // Keep problem/choice numbers outside. Pull in only an adjacent math prefix
     // with an operator (e.g. 5 - \frac or x=\sqrt), not English words/quantities.
@@ -240,6 +239,12 @@ function protectLooseLatex(text: string): string {
       before.match(
         /(?<![A-Za-z0-9])(?:[A-Za-z]|\d+(?:\.\d+)?)[ \t]*[=+*/^-][ \t]*(?:[()[\]{}][ \t]*)?$/,
       )?.[0] ?? "";
+    const end = mathRunEnd(
+      text,
+      commandStart,
+      /\{[ \t]*$/.test(prefix) ? 1 : 0,
+    );
+    if (end === commandStart) continue;
     const start = commandStart - prefix.length;
     out += text.slice(last, start) + `$${text.slice(start, end)}$`;
     last = end;

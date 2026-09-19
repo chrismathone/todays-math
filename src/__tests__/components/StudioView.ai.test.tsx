@@ -16,6 +16,27 @@ vi.mock("@/components/math/ProblemContent", () => ({
     <div data-testid="math-content">{content}</div>
   ),
 }));
+// 검수 칸의 본문·정답·풀이 편집기는 2026-09-14(bf1becc6)부터 MathLive 시각 편집기다.
+// MathLive 는 jsdom 에서 못 뜬다(`MathfieldElement` 가 없어 지연 적재가 트리를 통째로 내린다).
+// 편집기 자체는 브라우저 검수(scripts/qa/math-text-editor)가 맡고, 여기서는 StudioReviewDraft
+// 시험과 같은 textarea 대역으로 «무엇이 편집 칸에 들어가고 저장이 무엇을 보내는가»만 본다.
+vi.mock("@/components/math/editor/MathTextEditor", () => ({
+  MathTextEditor: ({
+    value,
+    onChange,
+    "aria-label": label,
+  }: {
+    value: string;
+    onChange: (value: string) => void;
+    "aria-label": string;
+  }) => (
+    <textarea
+      aria-label={label}
+      value={value}
+      onChange={(event) => onChange(event.target.value)}
+    />
+  ),
+}));
 const posts: DevAiRequest[] = [];
 let respond: (request: DevAiRequest) => Promise<Response>;
 const recognized = String.raw`$\frac{7}{3}$ + 1의 값을 구하세요.`;
@@ -143,8 +164,11 @@ async function recognize() {
     ).toBeEnabled(),
   );
   fireEvent.click(screen.getByRole("button", { name: /^OCR · 디지털화 \d+$/ }));
-  await screen.findByText(/값을 구하세요/);
-  fireEvent.click(screen.getByRole("button", { name: "내용 수정" }));
+  await waitFor(() => expect(reviewCard()).toHaveTextContent(/값을 구하세요/));
+}
+/** 검수 칸의 문항 카드 — 인식한 본문·편집·해설 단추가 모두 이 안에 있다. */
+function reviewCard() {
+  return screen.getByRole("article", { name: "문제 1 인식 결과" });
 }
 
 describe("Studio AI review controls", () => {
@@ -278,10 +302,22 @@ describe("Studio AI review controls", () => {
     expect(
       screen.getByRole("combobox", { name: "문제 1 출력 방식" }),
     ).toHaveValue("text");
-    const content = screen.getByDisplayValue(recognized);
+    // 검수한 본문이 해설 요청에 실린다. 새 화면은 편집 중에 해설을 못 돌리므로(저장한 본문만
+    // 보낸다) «수정 → 저장 → 해설 생성» 순서다. 옛 화면은 편집 칸 그대로 요청했다.
+    const card = reviewCard();
+    fireEvent.click(within(card).getByRole("button", { name: "내용 수정" }));
+    const content = within(card).getByLabelText("문제 내용");
+    expect(content).toHaveValue(recognized);
     fireEvent.change(content, { target: { value: "검수한 도형 문제" } });
-    fireEvent.click(screen.getByRole("button", { name: "해설 생성" }));
-    await screen.findByDisplayValue("한 개를 더합니다.");
+    expect(
+      within(card).getByRole("button", { name: "해설 생성" }),
+    ).toBeDisabled();
+    fireEvent.click(within(card).getByRole("button", { name: "저장" }));
+    expect(posts).toHaveLength(1);
+    fireEvent.click(within(card).getByRole("button", { name: "해설 생성" }));
+    expect(
+      await within(card).findByText("한 개를 더합니다."),
+    ).toBeInTheDocument();
     expect(posts[1]).toMatchObject({
       action: "solution",
       content: "검수한 도형 문제",
@@ -298,21 +334,34 @@ describe("Studio AI review controls", () => {
     ]);
   });
 
+  // 대분수는 «보여 줄 때만»(fractionDisplay) — 원문·편집 칸은 가분수 그대로다.
+  // 새 검수 칸에서 대분수로 보여 주는 미리보기는 정답·해설이다. 본문 읽기는 2026-09-14
+  // (bf1becc6)부터 원본 편집기 읽기(SourceEditorDisplay)라 원문 그대로다 — 보고서에 적었다.
   it("keeps editable raw fractions and applies mixed fractions only in elementary previews", async () => {
     await open();
     await recognize();
-    fireEvent.change(
-      screen.getByRole("combobox", { name: "문제 1 출력 방식" }),
-      { target: { value: "text" } },
+    const card = reviewCard();
+    fireEvent.click(within(card).getByRole("button", { name: "해설 생성" }));
+    await within(card).findByText("한 개를 더합니다.");
+    const answerPreview = () =>
+      within(within(card).getByText("정답").parentElement!).getByTestId(
+        "math-content",
+      );
+    // 초5: 정답 10/3 이 미리보기에서 대분수로 보인다.
+    expect(answerPreview()).toHaveTextContent(String.raw`$3\frac{1}{3}$`);
+    // 편집 칸에는 날것 그대로 — 본문도 정답도 가분수다.
+    fireEvent.click(within(card).getByRole("button", { name: "내용 수정" }));
+    expect(within(card).getByLabelText("문제 내용")).toHaveValue(recognized);
+    expect(within(card).getByLabelText("정답")).toHaveValue(
+      String.raw`$\frac{10}{3}$`,
     );
-    expect(screen.getByTestId("math-content")).toHaveTextContent(
-      String.raw`$2\frac{1}{3}$ + 1의 값을 구하세요.`,
-    );
-    expect(screen.getByDisplayValue(recognized)).toBeInTheDocument();
+    fireEvent.click(within(card).getByRole("button", { name: "취소" }));
+    // 중1: 같은 정답이 가분수 그대로 보인다.
     fireEvent.change(screen.getByRole("combobox", { name: "시험지 학년" }), {
       target: { value: "중1" },
     });
-    expect(screen.getByTestId("math-content")).toHaveTextContent(recognized);
+    expect(answerPreview()).toHaveTextContent(String.raw`$\frac{10}{3}$`);
+    expect(answerPreview()).not.toHaveTextContent(String.raw`3\frac{1}{3}`);
   });
 
   it("preserves a pending request on restart dialog cancel, then aborts and resets on acceptance without clearing added problems", async () => {
@@ -330,22 +379,27 @@ describe("Studio AI review controls", () => {
     );
     await screen.findByRole("button", { name: "AI 작업 취소" });
     const request = vi.mocked(fetch).mock.calls.at(-1)![1] as RequestInit;
-    fireEvent.click(screen.getByRole("button", { name: "새로 시작" }));
-    const dialog = screen.getByRole("dialog");
-    fireEvent.click(within(dialog).getByRole("button", { name: /취소/ }));
-    expect(request.signal?.aborted).toBe(false);
-    expect(screen.getByDisplayValue(recognized)).toBeInTheDocument();
+    // 작업실 자체도 dialog 라(«문제 제작 스튜디오») 확인 창은 제목으로 집는다.
+    const restartDialog = () =>
+      screen.getByRole("dialog", { name: "새로 시작할까요?" });
     fireEvent.click(screen.getByRole("button", { name: "새로 시작" }));
     fireEvent.click(
-      within(screen.getByRole("dialog")).getByRole("button", {
-        name: /새로 시작/,
-      }),
+      within(restartDialog()).getByRole("button", { name: "취소" }),
+    );
+    expect(request.signal?.aborted).toBe(false);
+    expect(reviewCard()).toHaveTextContent(/값을 구하세요/);
+    fireEvent.click(screen.getByRole("button", { name: "새로 시작" }));
+    fireEvent.click(
+      within(restartDialog()).getByRole("button", { name: "새로 시작" }),
     );
     expect(request.signal?.aborted).toBe(true);
     await act(async () => {
       finish(await normal(posts.at(-1)!));
     });
-    expect(screen.queryByDisplayValue(recognized)).not.toBeInTheDocument();
+    expect(
+      screen.queryByRole("article", { name: "문제 1 인식 결과" }),
+    ).not.toBeInTheDocument();
+    expect(screen.queryByText(/값을 구하세요/)).not.toBeInTheDocument();
     expect(
       screen.getByRole("button", { name: "예제로 시작" }),
     ).toBeInTheDocument();

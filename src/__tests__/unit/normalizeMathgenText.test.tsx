@@ -108,6 +108,17 @@ describe("Mathgen postprocessing parity with conservative guards", () => {
     expectSafe(renderMathHtml(input));
     expect(visible(renderMathHtml(input))).toContain("이다. ①");
   });
+  it("closes the brace a pulled-in prefix opened instead of cutting the group", () => {
+    // 앞머리 `A^{` 를 끌어오면 `{` 는 수식 안에 있는데 짝 `}` 는 밖에 남아
+    // `$A^{\bigstar$}` 가 됐다 — KaTeX 가 거부해 지면에 원문이 드러났다.
+    const input = String.raw`에 대하여 A^{\bigstar}=\{x+y \mid x \in A\}로 정의한다.`;
+    const once = normalizeMathgenText(input);
+    expect(once).toBe(
+      String.raw`에 대하여 $A^{\bigstar}=\{x+y \mid x \in A\}$로 정의한다.`,
+    );
+    expect(normalizeMathgenText(once)).toBe(once);
+    expectSafe(renderMathHtml(input));
+  });
   it("restores Mathgen circled markers before wrapping without broadening existing choice glyphs", () => {
     const input = String.raw`\textcircled{1} $\frac{1}{2}$ \textcircled{2} 3, \textcircled{ㄱ}, \textcircled{가}, ❶ 규칙`;
     expect(normalizeMathgenText(input)).toBe(
