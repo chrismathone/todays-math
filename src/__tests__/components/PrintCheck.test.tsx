@@ -168,7 +168,9 @@ describe("실물 출력 검수 목록 — 데이터", () => {
     //     아는 문항은 그림이 약 1.08배 커진다. HWPX 는 투명 PNG — 한글이 어떻게 그리는지는 못 봤다).
     // 63: figure-editor-faces 추가 (2026-09-19 — 도형 편집기 면 만들기. 채우기·다각형·안쪽 채우기의 면이 선 뒤
     //     채운 path·polygon 으로 저장 이미지에 들어가고, 사각형은 노란 점으로 기울이면 polygon 이 된다).
-    expect(ITEMS.length).toBe(63);
+    // 64: elementary-mixed-fraction-test-print 추가 (2026-09-19 — 옛 시험지 인쇄 `/tests/{id}/print` 가
+    //     초등 가분수를 화면과 같은 함수로 대분수로 찍는다. 대분수는 폭이 조금 넓어 넘침이 바뀔 수 있다).
+    expect(ITEMS.length).toBe(64);
   });
 
   /**

@@ -25,7 +25,10 @@ export default async function TestPrintPage({ params }: TestPrintPageProps) {
       class: true,
       rangeEndUnit: true,
       testProblems: {
-        include: { problem: true },
+        // 학년은 단원에 있다 — 초등 대분수 표시(`toPrintProblem`)가 읽는다.
+        include: {
+          problem: { include: { unit: { select: { grade: true } } } },
+        },
         orderBy: { orderIndex: "asc" },
       },
     },
