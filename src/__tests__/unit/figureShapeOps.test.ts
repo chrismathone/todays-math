@@ -185,6 +185,17 @@ describe("호 더하기 — 엔진 add_arc 와 같은 모양", () => {
     unchanged(circle, result.svg);
   });
 
+  it("sits on the circle already drawn when the centre comes as the listed (rounded) coordinates", () => {
+    // 요소 목록은 원 중심을 0.1 로 반올림해 싣는다([83, 89.1]) — 모델이 그 좌표를 주어도 호는 그림의 원 위에
+    const result = applyFigureEdits(circle, [
+      { op: "addArc", center: { x: 83, y: 89.1 }, from: "A", to: "B" },
+    ]);
+    expect(added(circle, result.svg)[0].attrs.d).toBe(
+      "M 148.728 65.192 A 70 70 0 0 0 47.95 28.511",
+    );
+    expect(result.applied).toEqual(["호 AB 추가"]);
+  });
+
   it("goes the long way when the arc must pass a given point", () => {
     const result = applyFigureEdits(circle, [
       {
@@ -431,6 +442,18 @@ describe("색칠 — 편집기 채우기 통과 같은 면", () => {
       {
         op: "fillRegion",
         at: ["A", "B", { x: 258.327, y: 26.807 }],
+      },
+      "삼각형 색칠: 닫힌 영역이 아닙니다",
+    ],
+    [
+      // 칸(삼각형 ABC)의 안쪽 점을 품지만 칸보다 작은 삼각형 — 선이 두른 칸이 아니다
+      {
+        op: "fillRegion",
+        at: [
+          { x: 120, y: 150 },
+          { x: 160, y: 150 },
+          { x: 140, y: 175 },
+        ],
       },
       "삼각형 색칠: 닫힌 영역이 아닙니다",
     ],
