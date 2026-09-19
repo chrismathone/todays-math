@@ -11,7 +11,7 @@ import {
   groupFigureObjects,
 } from "@/components/unified/figure-editor/figureObjectGroups";
 import { flipFigureCurve } from "@/components/unified/figure-editor/figureFlip";
-import { figureSegmentMarks } from "@/components/unified/figure-editor/figureMarks";
+import { figureSegmentMarks } from "@/components/unified/figure-editor/figureSegmentMarks";
 
 /**
  * «요청대로 고치기» 표시 명령(원장님 2026-09-19 «추가할 수 있는 것 전부») — 치수 · 같은 길이 표시 · 평행 표시 · 겹 각.
@@ -162,6 +162,12 @@ const groupNames = (source: string) => {
     ),
   );
 };
+/** 선분 위 표시 판정 — 요소 id → «같은 길이 표시»·«평행 표시». */
+const segmentMarks = (source: string) =>
+  figureSegmentMarks(
+    figureObjects(source),
+    Math.max(...viewBoxOf(source).slice(2)),
+  );
 const kindOf = (source: string, id: string) => {
   const figure = describeFigureForEdit(source);
   const index = figureObjects(source).findIndex((o) => o.id === id);
@@ -219,14 +225,9 @@ describe("같은 길이 표시(addTick) — 엔진 `_segment_mark_lines` 와 같
       groupNames(engine).get(engineTicks[0].id),
     );
     // 선분 위 표시 판정(요소 이름에 쓰일 한 규칙)이 엔진 눈금과 새 눈금을 같게 읽는다
-    const engineMarks = figureSegmentMarks(
-      figureObjects(engine),
-      viewBoxOf(engine),
-    );
+    const engineMarks = segmentMarks(engine);
     expect(engineMarks.get(engineTicks[0].id)).toBe("같은 길이 표시");
-    expect(
-      figureSegmentMarks(figureObjects(after), viewBoxOf(after)).get(tick.id),
-    ).toBe("같은 길이 표시");
+    expect(segmentMarks(after).get(tick.id)).toBe("같은 길이 표시");
   });
 
   // 엔진 `_segment_mark_center` — 선분 위에 얹힌 점(중점 M 등)을 피해 가장 넓은 빈 구간의 한복판
@@ -357,17 +358,14 @@ describe("평행 표시(addParallelMark) — 엔진의 » 두 획", () => {
     expect(groupNames(after).get(arms[0].id)).toBe(
       groupNames(engine).get(engineArm.id),
     );
-    const engineMarks = figureSegmentMarks(
-      figureObjects(engine),
-      viewBoxOf(engine),
-    );
+    const engineMarks = segmentMarks(engine);
     expect(
       figureObjects(engine)
         .slice(4)
         .filter((o) => o.type === "line")
         .map((o) => engineMarks.get(o.id)),
     ).toEqual(Array(12).fill("평행 표시"));
-    const marks = figureSegmentMarks(figureObjects(after), viewBoxOf(after));
+    const marks = segmentMarks(after);
     expect(arms.map((o) => marks.get(o.id))).toEqual([
       "평행 표시",
       "평행 표시",
@@ -403,9 +401,7 @@ describe("선분 위 표시 판정 — 좌표축 눈금은 표시가 아니다",
         ticks,
       ),
     );
-    expect(
-      figureSegmentMarks(figureObjects(source), viewBoxOf(source)).size,
-    ).toBe(0);
+    expect(segmentMarks(source).size).toBe(0);
   });
 });
 

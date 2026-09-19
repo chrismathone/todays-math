@@ -14,7 +14,6 @@ import {
   applyPoint,
   elementMatrix,
   parentMatrix,
-  parseTransform,
   type Affine,
   type Point,
 } from "./figureEditGeometry";
@@ -23,7 +22,15 @@ import { POINT_NAME } from "./figureEditElements";
 import { figureAngleKinds } from "./figureObjectGroups";
 import { ANGLE_MARK_WIDTH } from "./figureAngleMark";
 import { figureLabelSummary } from "./FigureLabelInput";
-import { objectName, type FigureSegmentMarkKind } from "./figureObjectNames";
+import { objectName } from "./figureObjectNames";
+import {
+  recognizeSegmentMarks,
+  SEGMENT_MARK_NAMES,
+  straightInk,
+  straightPathPieces,
+  unitOf,
+  type StraightInk,
+} from "./figureSegmentMarks";
 
 /**
  * 표시 더하기(원장님 2026-09-19 «추가할 수 있는 것 전부») — 치수 · 같은 길이 표시 · 평행 표시.
@@ -64,11 +71,6 @@ export const isFigureMarkCommand = (
   command.op === "addTick" ||
   command.op === "addParallelMark";
 
-const KIND_NAME: Record<"tick" | "parallel", FigureSegmentMarkKind> = {
-  tick: "같은 길이 표시",
-  parallel: "평행 표시",
-};
-
 /** 적용 목록의 한 줄 — «선분 AB 같은 길이 표시 추가(2겹)» · «선분 BC 치수 10 추가». 좌표로 준 끝이 있으면 «선분 AB» 없이. */
 export function figureMarkLabel(command: FigureMarkCommand): string {
   const segment =
@@ -78,7 +80,7 @@ export function figureMarkLabel(command: FigureMarkCommand): string {
   if (command.op === "addDimension")
     return `${segment}치수 ${figureLabelSummary(command.text)} 추가`;
   const count = command.count ?? 1;
-  return `${segment}${KIND_NAME[command.op === "addTick" ? "tick" : "parallel"]} 추가${
+  return `${segment}${SEGMENT_MARK_NAMES[command.op === "addTick" ? "tick" : "parallel"]} 추가${
     count > 1 ? `(${count}겹)` : ""
   }`;
 }
@@ -107,335 +109,78 @@ const fmt = (value: number) => {
   return text === "-0" || !text ? "0" : text;
 };
 const round3 = (value: number) => Number(fmt(value));
+type FigureObject = ReturnType<typeof figureObjects>[number];
 const NUMBER = /[-+]?(?:\d*\.\d+|\d+\.?\d*)(?:e[-+]?\d+)?/gi;
 const numbers = (value = "") => (value.match(NUMBER) ?? []).map(Number);
 const pairs = (values: number[]): Point[] =>
   values.flatMap((x, i) =>
     i % 2 || i + 1 >= values.length ? [] : [[x, values[i + 1]] as Point],
   );
+const spread = (points: Point[]) =>
+  points.length
+    ? Math.hypot(
+        Math.max(...points.map((p) => p[0])) -
+          Math.min(...points.map((p) => p[0])),
+        Math.max(...points.map((p) => p[1])) -
+          Math.min(...points.map((p) => p[1])),
+      )
+    : 0;
 
-type FigureObject = ReturnType<typeof figureObjects>[number];
-/** 곧은 획 — 선분·다각형의 변·꺾은선 토막(그림 좌표). index 는 요소 차례. */
-interface Straight {
-  index: number;
-  a: Point;
-  b: Point;
-}
-interface Ink {
-  /** 곧은 변 전부(짧은 획 포함). */
-  edges: Straight[];
-  /** 표시일 수 있는 짧은 획 — 선분 요소·두 점 경로. */
-  strokes: Straight[];
-  /** 도형 잉크의 점(볼록 껍질 재료) — 짧은 획·글자는 뺀다. */
-  hull: Point[];
-}
-
-const STRAIGHT_PATH = /^[\sMmLlHhVvZz\d.,eE+-]*$/;
-
-/** 요소들의 곧은 변·짧은 획·잉크 — matrices 는 요소마다 그림 좌표로 가는 변환. */
-function readInk(
+/**
+ * 도형 잉크의 점 — 치수의 «도형 밖»을 가르는 볼록 껍질 재료(엔진 `_shape_hull`: 보조점이 아니라 그려지는 잉크).
+ * 선분 위 표시(짧은 획)·각 표시·치수(점선 곡선)·글자는 도형 몸통이 아니라 뺀다.
+ */
+function inkHull(
   objects: FigureObject[],
   matrices: Affine[],
   size: number,
-): Ink {
-  const markMax = Math.max(12, 0.05 * size);
-  const edges: Straight[] = [];
-  const strokes: Straight[] = [];
+  strokes: ReadonlySet<number>,
+): Point[] {
   const hull: Point[] = [];
   objects.forEach((o, index) => {
+    if (strokes.has(index)) return;
     const m = matrices[index];
-    const put = (points: Point[], closed: boolean) => {
-      const list = points.map((p) => applyPoint(m, p));
-      for (let i = 0; i + 1 < list.length + (closed ? 1 : 0); i++)
-        edges.push({ index, a: list[i], b: list[(i + 1) % list.length] });
-      return list;
-    };
     const n = (key: string) => Number.parseFloat(o.attrs[key] ?? "") || 0;
-    if (o.type === "line") {
-      const [a, b] = put(
-        [
-          [n("x1"), n("y1")],
-          [n("x2"), n("y2")],
-        ],
-        false,
-      );
-      if (length(a, b) <= markMax) strokes.push({ index, a, b });
-      else hull.push(a, b);
-    } else if (o.type === "polyline" || o.type === "polygon")
-      hull.push(...put(pairs(numbers(o.attrs.points)), o.type === "polygon"));
-    else if (o.type === "rect") {
-      const [x, y, w, h] = [n("x"), n("y"), n("width"), n("height")];
-      hull.push(
-        ...put(
-          [
-            [x, y],
-            [x + w, y],
-            [x + w, y + h],
-            [x, y + h],
-          ],
-          true,
-        ),
-      );
-    } else if (o.type === "circle" || o.type === "ellipse") {
+    const put = (points: Point[]) =>
+      hull.push(...points.map((p) => applyPoint(m, p)));
+    if (o.type === "line")
+      put([
+        [n("x1"), n("y1")],
+        [n("x2"), n("y2")],
+      ]);
+    else if (o.type === "polyline" || o.type === "polygon")
+      put(pairs(numbers(o.attrs.points)));
+    else if (o.type === "rect")
+      put([
+        [n("x"), n("y")],
+        [n("x") + n("width"), n("y") + n("height")],
+        [n("x") + n("width"), n("y")],
+        [n("x"), n("y") + n("height")],
+      ]);
+    else if (o.type === "circle" || o.type === "ellipse") {
       const rx = n(o.type === "circle" ? "r" : "rx"),
         ry = n(o.type === "circle" ? "r" : "ry");
-      for (let k = 0; k < 16; k++)
-        hull.push(
-          applyPoint(m, [
-            n("cx") + rx * Math.cos((k * Math.PI) / 8),
-            n("cy") + ry * Math.sin((k * Math.PI) / 8),
-          ]),
-        );
+      put(
+        Array.from({ length: 16 }, (_, k): Point => [
+          n("cx") + rx * Math.cos((k * Math.PI) / 8),
+          n("cy") + ry * Math.sin((k * Math.PI) / 8),
+        ]),
+      );
     } else if (o.type === "path") {
-      const d = o.attrs.d ?? "";
-      const pieces = sampleFigurePath(d, 8);
-      if (!pieces) return;
-      if (STRAIGHT_PATH.test(d)) {
-        const lists = pieces.map((piece) => put(piece, false));
-        if (lists.length === 1 && lists[0].length === 2) {
-          const [a, b] = lists[0];
-          if (length(a, b) <= markMax) {
-            strokes.push({ index, a, b });
-            return;
-          }
-        }
-        // 직각 표시 ㄱ자 같은 작은 꺾은선은 도형 몸통이 아니다
-        const flat = lists.flat();
-        const xs = flat.map((p) => p[0]),
-          ys = flat.map((p) => p[1]);
-        if (
-          Math.hypot(
-            Math.max(...xs) - Math.min(...xs),
-            Math.max(...ys) - Math.min(...ys),
-          ) >
-          0.12 * size
-        )
-          hull.push(...flat);
-        return;
-      }
-      // 곡선 — 점선(치수)·작은 호(각 표시)가 아닌 큰 곡선만 도형 잉크로
       const dash = o.attrs["stroke-dasharray"] ?? "";
       if (dash && dash !== "none") return;
-      const flat = pieces.flat().map((p) => applyPoint(m, p));
-      const xs = flat.map((p) => p[0]),
-        ys = flat.map((p) => p[1]);
-      if (
-        Math.hypot(
-          Math.max(...xs) - Math.min(...xs),
-          Math.max(...ys) - Math.min(...ys),
-        ) >
-        0.2 * size
-      )
-        hull.push(...flat);
+      const points = (sampleFigurePath(o.attrs.d ?? "", 8) ?? [])
+        .flat()
+        .map((p) => applyPoint(m, p));
+      // ㄱ자·각의 호처럼 작은 경로는 도형 몸통이 아니다
+      if (spread(points) > 0.12 * size) hull.push(...points);
     }
   });
-  return { edges, strokes, hull };
-}
-
-/** 선분 위 표시 하나(겹 포함) — 앉은 변과 그 변 위 자리(가운데까지 거리). */
-interface SegmentMark {
-  kind: "tick" | "parallel";
-  /** 요소 차례들. */
-  indices: number[];
-  edge: Straight;
-  /** 변의 a 에서 표시 가운데까지. */
-  center: number;
-  /** 평행 표시의 촉 방향 — 변 a → b 쪽이면 1. */
-  dir: 1 | -1;
-  /** 눈금 한 줄의 길이 · » 한 획의 길이. */
-  stroke: number;
-}
-
-const unit = (e: Straight): Point => {
-  const l = length(e.a, e.b);
-  return [(e.b[0] - e.a[0]) / l, (e.b[1] - e.a[1]) / l];
-};
-
-/**
- * 짧은 획을 선분 위 표시로 가른다 — 엔진 SVG 에 표지가 없어 모양과 자리로(figureObjectGroups.ts 의 각 표시처럼).
- * - 눈금: 가운데가 (그보다 2.5배 넘게 긴) 변 위, 변과 거의 수직(75°~105°), 변을 가로지른다.
- * - » 한 획: 한 끝(촉)이 변 위, 다른 끝이 변에서 비켜 있고 변과 15°~53°. 촉을 같이 쓰는 반대편 획과 짝이면 » 하나.
- * 한 변 위에 붙어 선 것끼리 겹으로 센다(눈금 사이 3 · » 사이 4). 좌표축 눈금처럼 한 변을 따라 여러 자리에 흩어져
- * 있으면(셋 이상) 표시가 아니다.
- */
-function recognizeMarks(ink: Ink): SegmentMark[] {
-  type Tick = { s: Straight; e: Straight; along: number; score: number };
-  type Arm = {
-    s: Straight;
-    e: Straight;
-    tip: Point;
-    tipAlong: number;
-    backAlong: number;
-    side: number;
-    dir: 1 | -1;
-    score: number;
-  };
-  const ticks: Tick[] = [];
-  const arms: Arm[] = [];
-  for (const s of ink.strokes) {
-    const L = length(s.a, s.b);
-    if (!(L > 0)) continue;
-    const tol = Math.max(0.75, 0.2 * L);
-    const v: Point = [(s.b[0] - s.a[0]) / L, (s.b[1] - s.a[1]) / L];
-    let tick: Tick | undefined;
-    let arm: Arm | undefined;
-    for (const e of ink.edges) {
-      if (e.index === s.index) continue;
-      const E = length(e.a, e.b);
-      if (E < 2.5 * L) continue;
-      const u = unit(e);
-      const rel = (p: Point) => [dot(sub(p, e.a), u), cross(u, sub(p, e.a))];
-      const [ma, mp] = rel(lerp(s.a, s.b, 0.5));
-      const [, pa] = rel(s.a),
-        [, pb] = rel(s.b);
-      if (
-        Math.abs(mp) <= tol &&
-        ma > tol &&
-        ma < E - tol &&
-        Math.abs(dot(v, u)) <= 0.26 &&
-        pa * pb < 0 &&
-        (!tick || Math.abs(mp) < tick.score)
-      )
-        tick = { s, e, along: ma, score: Math.abs(mp) };
-      for (const [tip, back] of [
-        [s.a, s.b],
-        [s.b, s.a],
-      ] as const) {
-        const [ta, tp] = rel(tip),
-          [ba, bp] = rel(back);
-        if (Math.abs(tp) > tol || ta <= tol || ta >= E - tol) continue;
-        const sin = Math.abs(bp) / L;
-        if (sin < 0.25 || sin > 0.8 || Math.abs(ta - ba) < 0.3 * L) continue;
-        if (!arm || Math.abs(tp) < arm.score)
-          arm = {
-            s,
-            e,
-            tip,
-            tipAlong: ta,
-            backAlong: ba,
-            side: Math.sign(bp),
-            dir: ta > ba ? 1 : -1,
-            score: Math.abs(tp),
-          };
-      }
-    }
-    if (tick) ticks.push(tick);
-    else if (arm) arms.push(arm);
-  }
-  // » — 촉을 같이 쓰고 변의 양쪽으로 벌어진 두 획
-  const chevrons: { arms: Arm[]; e: Straight; center: number; dir: 1 | -1 }[] =
-    [];
-  const used = new Set<Arm>();
-  for (const first of arms) {
-    if (used.has(first)) continue;
-    const L = length(first.s.a, first.s.b);
-    const u = unit(first.e);
-    const partner = arms.find((other) => {
-      if (other === first || used.has(other)) return false;
-      if (length(other.tip, first.tip) > Math.max(0.75, 0.2 * L)) return false;
-      const back =
-        length(other.s.a, other.tip) > length(other.s.b, other.tip)
-          ? other.s.a
-          : other.s.b;
-      const side = Math.sign(cross(u, sub(back, first.e.a)));
-      const dir = dot(sub(other.tip, back), u) > 0 ? 1 : -1;
-      return side === -first.side && dir === first.dir;
-    });
-    if (!partner) continue;
-    used.add(first).add(partner);
-    chevrons.push({
-      arms: [first, partner],
-      e: first.e,
-      center: (first.tipAlong + first.backAlong) / 2,
-      dir: first.dir,
-    });
-  }
-  const marks: SegmentMark[] = [];
-  // 한 변 위 붙어 선 것끼리 한 표시(겹)
-  const byEdge = <T extends { e: Straight }>(list: T[]) => {
-    const groups = new Map<Straight, T[]>();
-    for (const item of list)
-      groups.set(item.e, [...(groups.get(item.e) ?? []), item]);
-    return [...groups.values()];
-  };
-  for (const group of byEdge(ticks)) {
-    group.sort((a, b) => a.along - b.along);
-    const clusters: Tick[][] = [];
-    for (const tick of group) {
-      const last = clusters.at(-1);
-      const L = length(tick.s.a, tick.s.b);
-      if (last && tick.along - last.at(-1)!.along <= 0.75 * L) last.push(tick);
-      else clusters.push([tick]);
-    }
-    // 좌표축 눈금 — 한 변을 따라 여러 자리에 흩어져 있다
-    if (clusters.length >= 3) continue;
-    for (const cluster of clusters) {
-      if (cluster.length > 3) continue;
-      marks.push({
-        kind: "tick",
-        indices: cluster.map((t) => t.s.index),
-        edge: cluster[0].e,
-        center: cluster.reduce((sum, t) => sum + t.along, 0) / cluster.length,
-        dir: 1,
-        stroke: median(cluster.map((t) => length(t.s.a, t.s.b))),
-      });
-    }
-  }
-  for (const group of byEdge(chevrons)) {
-    group.sort((a, b) => a.center - b.center);
-    const clusters: (typeof chevrons)[] = [];
-    for (const chevron of group) {
-      const last = clusters.at(-1);
-      const L = length(chevron.arms[0].s.a, chevron.arms[0].s.b);
-      if (
-        last &&
-        last[0].dir === chevron.dir &&
-        chevron.center - last.at(-1)!.center <= 1.0 * L
-      )
-        last.push(chevron);
-      else clusters.push([chevron]);
-    }
-    for (const cluster of clusters) {
-      if (cluster.length > 3) continue;
-      marks.push({
-        kind: "parallel",
-        indices: cluster.flatMap((c) => c.arms.map((arm) => arm.s.index)),
-        edge: cluster[0].e,
-        center: cluster.reduce((sum, c) => sum + c.center, 0) / cluster.length,
-        dir: cluster[0].dir,
-        stroke: median(
-          cluster.flatMap((c) => c.arms.map((arm) => length(arm.s.a, arm.s.b))),
-        ),
-      });
-    }
-  }
-  return marks;
+  return hull;
 }
 
 const sizeOf = (viewBox: readonly number[]) =>
   Math.max(viewBox[2] || 480, viewBox[3] || 360);
-
-/**
- * 선분 위 표시(같은 길이 눈금 · 평행 »)인 요소 — 요소 id → 이름. 요소 이름(`objectName`)이 부를 한 규칙이다.
- * 요소 자신의 transform 만 따른다(편집기 각 표시 판정 figureObjectGroups.ts 와 같은 눈).
- */
-export function figureSegmentMarks(
-  objects: FigureObject[],
-  viewBox: readonly number[],
-): Map<string, FigureSegmentMarkKind> {
-  const ink = readInk(
-    objects,
-    objects.map((o) => parseTransform(o.attrs.transform)),
-    sizeOf(viewBox),
-  );
-  return new Map(
-    recognizeMarks(ink).flatMap((mark) =>
-      mark.indices.map(
-        (index) => [objects[index].id, KIND_NAME[mark.kind]] as const,
-      ),
-    ),
-  );
-}
 
 // ── 적용 ────────────────────────────────────────────────────────────────
 export interface FigureMarkContext {
@@ -462,7 +207,7 @@ function readFigure(svg: string) {
       : [0, 0, 480, 360];
   const size = sizeOf(viewBox);
   const matrices = nodes.map(elementMatrix);
-  const ink = readInk(objects, matrices, size);
+  const ink = straightInk(objects, matrices, size);
   // 꼭짓점 이름 글자 크기 — 엔진 16.8 을 1배로 삼는다(치수 값 글자는 짧은 변에서 작아지므로 이름 글자를 본다)
   const texts = objects.filter((o) => o.type === "text");
   const pointNames = texts.filter((o) =>
@@ -487,7 +232,13 @@ function readFigure(svg: string) {
     viewBox,
     size,
     ink,
-    marks: recognizeMarks(ink),
+    hull: inkHull(
+      objects,
+      matrices,
+      size,
+      new Set(ink.strokes.map((stroke) => stroke.index)),
+    ),
+    marks: recognizeSegmentMarks(ink),
     font: fonts.length ? median(fonts) : undefined,
     family: pool.find((o) => o.attrs["font-family"])?.attrs["font-family"],
   };
@@ -592,12 +343,12 @@ export function addFigureMark(
 }
 
 /** 선분 AB 가 그림에 그려져 있나 — 한 변이든 이어 붙은 변들이든(중점 M 으로 나뉜 AM·MB), 선분 위 다섯 자리가 다 변 위. */
-function drawn(ink: Ink, a: Point, b: Point, tol: number) {
+function drawn(ink: StraightInk, a: Point, b: Point, tol: number) {
   const onSomeEdge = (p: Point) =>
     ink.edges.some((e) => {
       const E = length(e.a, e.b);
       if (!(E > 0)) return false;
-      const u = unit(e);
+      const u = unitOf(e);
       const t = dot(sub(p, e.a), u);
       return (
         Math.abs(cross(u, sub(p, e.a))) <= tol && t >= -tol && t <= E + tol
@@ -623,7 +374,7 @@ function addSegmentMark(
     return { reason: "그림에 없는 선분입니다" };
   // 이 선분 위에 이미 선 표시
   const onSegment = figure.marks.flatMap((mark) => {
-    const eu = unit(mark.edge);
+    const eu = unitOf(mark.edge);
     const center = at(mark.edge.a, eu, mark.center);
     const t = dot(sub(center, a), u);
     return Math.abs(cross(u, sub(center, a))) <= tol && t > 0 && t < len
@@ -633,7 +384,7 @@ function addSegmentMark(
   const same = onSegment.find(({ mark }) => mark.kind === kind);
   if (same)
     return {
-      reason: `이미 ${KIND_NAME[kind]}가 있습니다(${describe(figure, same.mark.indices[0], context)})`,
+      reason: `이미 ${SEGMENT_MARK_NAMES[kind]}가 있습니다(${describe(figure, same.mark.indices[0], context)})`,
     };
   const scale = figure.marks.length
     ? median(
@@ -834,7 +585,7 @@ function dimensionSign(
     return n[0] < 0 === (side === "left") ? 1 : -1;
   }
   // 도형 밖 — 엔진처럼 현 가운데에서 2 비킨 자리가 잉크 껍질 밖인 쪽. 둘 다 같으면 덜 깊은 쪽, 그래도 같으면 n 쪽
-  const hull = convexHull(figure.ink.hull);
+  const hull = convexHull(figure.hull);
   const mid = lerp(a, b, 0.5);
   const left = hullDepth(hull, at(mid, n, 2)),
     right = hullDepth(hull, at(mid, n, -2));
@@ -846,7 +597,7 @@ function dimensionSign(
 /** 이미 이 두 점을 잇는 치수(점선 곡선) — 끝이 두 점에서 인셋만큼 안쪽이거나 그 점에 닿는다. */
 function existingDimension(figure: Figure, a: Point, b: Point, reach: number) {
   return figure.objects.findIndex((o, index) => {
-    if (o.type !== "path" || STRAIGHT_PATH.test(o.attrs.d ?? "")) return false;
+    if (o.type !== "path" || straightPathPieces(o.attrs.d ?? "")) return false;
     const dash = o.attrs["stroke-dasharray"] ?? "";
     if (!dash || dash === "none") return false;
     const pieces = sampleFigurePath(o.attrs.d ?? "", 4);
@@ -971,7 +722,7 @@ function addDimension(
   const neighbour = figure.objects.find(
     (o) =>
       o.type === "path" &&
-      !STRAIGHT_PATH.test(o.attrs.d ?? "") &&
+      !straightPathPieces(o.attrs.d ?? "") &&
       (o.attrs["stroke-dasharray"] ?? "none") !== "none",
   );
   const curve = addFigureObject(svg, "curve", { x: 0, y: 0 }, { x: 1, y: 1 });
