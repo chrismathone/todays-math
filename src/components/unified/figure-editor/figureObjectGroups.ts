@@ -18,6 +18,7 @@ interface Shape {
   object: FigureObject;
   index: number;
   box: Box;
+  points: number[][];
   line?: [number, number, number, number];
   dashed: boolean;
 }
@@ -91,6 +92,7 @@ function shapeOf(object: FigureObject, index: number): Shape | null {
     object,
     index,
     box: boxOf(points),
+    points,
     line,
     dashed: !!dash && dash !== "none" && numbers(dash).some((v) => v > 0),
   };
@@ -106,12 +108,109 @@ const height = (b: Box) => b.y2 - b.y1;
 const center = (b: Box) => [(b.x1 + b.x2) / 2, (b.y1 + b.y2) / 2];
 const near = (a: number[], b: number[], limit: number) =>
   Math.hypot(a[0] - b[0], a[1] - b[1]) <= limit;
+const distanceToSegment = (p: number[], a: number[], b: number[]) => {
+  const dx = b[0] - a[0],
+    dy = b[1] - a[1];
+  const t = Math.max(
+    0,
+    Math.min(
+      1,
+      ((p[0] - a[0]) * dx + (p[1] - a[1]) * dy) / (dx * dx + dy * dy || 1),
+    ),
+  );
+  return Math.hypot(p[0] - a[0] - t * dx, p[1] - a[1] - t * dy);
+};
+/** 곧은 변 — 선분 · 다각형(닫는 변 포함) · 꺾은선의 한 토막. */
+const edgesOf = (s: Shape): number[][][] =>
+  s.object.type === "line"
+    ? [s.points]
+    : s.object.type === "polygon" || s.object.type === "polyline"
+      ? s.points.flatMap((p, i) =>
+          i + 1 < s.points.length
+            ? [[p, s.points[i + 1]]]
+            : s.object.type === "polygon" && s.points.length > 2
+              ? [[p, s.points[0]]]
+              : [],
+        )
+      : [];
+const unfilled = (o: FigureObject) =>
+  (o.attrs.fill ?? "").trim().toLowerCase() === "none" ||
+  /(?:^|;)\s*fill\s*:\s*none\b/i.test(o.attrs.style ?? "");
+
+/**
+ * 직각 표시 — 두 선이 만나는 꼭짓점 **안쪽**의 같은 길이 두 토막이 이루는 ㄱ자 한 획(엔진 v2 `right: true`,
+ * vendor/figure-engine/core/figure_scene.py `_angle_mark_polylines`: 꼭짓점 V 에서 두 변을 따라 같은 거리 s 인
+ * 두 점 A·C 와 그 맞은 모서리 B 를 A→B→C 로 잇는다). 엔진 SVG 에 표지(class·data)가 없어 모양과 자리로 가른다:
+ * 열린 획 · 점 셋 · 두 토막 길이가 같고 90° · 양 끝 A·C 가 서로 다른 두 선 위에 있고 V = A + C − B 가 두 선에 다 닿는다.
+ * 모양만으로는 90° 로 벌린 열린 V 화살촉과 같다 — 화살촉은 꺾인 점이 선 **위**, 양 끝이 선 밖이라 자리에서 갈린다.
+ */
+function rightAngleMark(s: Shape, edges: number[][][], S: number) {
+  const o = s.object;
+  if ((o.type !== "path" && o.type !== "polyline") || !unfilled(o))
+    return false;
+  if (
+    o.type === "path" &&
+    !/^ML{1,2}$/.test((o.attrs.d ?? "").replace(/[^A-Za-z]/g, ""))
+  )
+    return false;
+  if (s.points.length !== 3) return false;
+  const [a, b, c] = s.points;
+  const l1 = Math.hypot(a[0] - b[0], a[1] - b[1]),
+    l2 = Math.hypot(c[0] - b[0], c[1] - b[1]);
+  if (!l1 || !l2 || Math.max(l1, l2) > 1.25 * Math.min(l1, l2)) return false;
+  if (Math.max(l1, l2) > 0.12 * S) return false;
+  const cos =
+    ((a[0] - b[0]) * (c[0] - b[0]) + (a[1] - b[1]) * (c[1] - b[1])) / (l1 * l2);
+  if (Math.abs(cos) > 0.1) return false;
+  const v = [a[0] + c[0] - b[0], a[1] + c[1] - b[1]];
+  const tol = Math.max(1, 0.15 * Math.min(l1, l2));
+  const on = (p: number[], e: number[][]) =>
+    distanceToSegment(p, e[0], e[1]) <= tol;
+  return edges.some(
+    (e1) =>
+      on(a, e1) &&
+      on(v, e1) &&
+      edges.some((e2) => e2 !== e1 && on(c, e2) && on(v, e2)),
+  );
+}
+
+/**
+ * 닫힌 도형의 변 — 선분들이 끝점을 맞대어 한 바퀴 돈다(좌표평면 위 삼각형 OAB). 함수의 그래프는 제자리로 돌아오지
+ * 않는다(한 x 에 한 y). 끝점을 묶어 잎을 걷어 내고 남는 선분(고리에 든 것)을 돌려준다.
+ */
+function closedSides(lines: Shape[], tol: number) {
+  const nodes: number[][] = [];
+  const node = (p: number[]) => {
+    const found = nodes.findIndex((q) => near(p, q, tol));
+    if (found >= 0) return found;
+    nodes.push(p);
+    return nodes.length - 1;
+  };
+  let edges = lines.flatMap((s) => {
+    const [x1, y1, x2, y2] = s.line!;
+    const u = node([x1, y1]),
+      v = node([x2, y2]);
+    return u === v ? [] : [{ s, u, v }];
+  });
+  for (;;) {
+    const degree = new Map<number, number>();
+    for (const { u, v } of edges)
+      for (const n of [u, v]) degree.set(n, (degree.get(n) ?? 0) + 1);
+    const kept = edges.filter(
+      ({ u, v }) => degree.get(u)! > 1 && degree.get(v)! > 1,
+    );
+    if (kept.length === edges.length) break;
+    edges = kept;
+  }
+  return new Set(edges.map(({ s }) => s));
+}
 
 /**
  * 요소 목록을 역할로 묶는다(원장님 2026-09-18 «역할별로 묶고 사용자 커스텀도 가능하게»).
  * 좌표 그래프면 x축·y축(화살촉 포함) · 그래프 · 점선 · 점 · 눈금 · 눈금 숫자 · 축 이름,
- * 아니면 종류(선분·원·글자 …)로 묶는다. 사용자가 정한 묶음(`data-group`)이 어림을 이긴다 — 이름이 역할 묶음과 같으면
- * 그 묶음에 합쳐 보이고(끌어서 옮기기), 새 이름이면 사용자 묶음으로 맨 앞에, 빈 이름이면 **묶음 밖**(해제)으로 맨 끝에 간다.
+ * 아니면 종류(선분·원·글자 …)로 묶는다. 좌표평면 위 도형(직각 표시 · 한 바퀴 도는 선분)은 그래프가 아니라 종류로 둔다.
+ * 사용자가 정한 묶음(`data-group`)이 어림을 이긴다 — 이름이 역할 묶음과 같으면 그 묶음에 합쳐 보이고(끌어서 옮기기),
+ * 새 이름이면 사용자 묶음으로 맨 앞에, 빈 이름이면 **묶음 밖**(해제)으로 맨 끝에 간다.
  * 묶음 차례는 첫 요소의 번호 차례다 — 그림 위 번호와 같은 차례로 읽힌다.
  * 어림은 자리만 본다(평행 이동까지) — 틀리게 묶였으면 사용자가 묶음을 만들어 옮긴다.
  */
@@ -171,18 +270,34 @@ export function groupFigureObjects(
                 b.y1 >= a.y1 - tol &&
                 b.y1 <= a.y2 + tol;
         });
+  // 화살촉 — 축 끝에서 축을 따라 **바깥**을 향하는 작은 V·채운 삼각형: 가장 바깥 점(촉)이 축 위에 있다.
+  // 직각 표시·각의 호는 두 선이 만나는 꼭짓점 안쪽에 앉아 가장 바깥 점이 다른 변 위(축 밖)에 있다 — 직각삼각형의
+  // 두 변이 «x축»·«y축»으로 묶였다(2026-09-19). 캔버스가 크면 ㄱ자가 크기 문턱 안에 들어 끝 가까이만 보고는 못 가른다.
   const arrowsOf = (axis: Shape | undefined) =>
     !axis
       ? []
       : free.filter((s) => {
           if (!["polygon", "path", "polyline"].includes(s.object.type))
             return false;
-          if (Math.hypot(width(s.box), height(s.box)) > 0.06 * S) return false;
+          const size = Math.hypot(width(s.box), height(s.box));
+          if (size > 0.06 * S) return false;
           const [x1, y1, x2, y2] = axis.line!;
-          return (
-            near(center(s.box), [x1, y1], 0.04 * S) ||
-            near(center(s.box), [x2, y2], 0.04 * S)
-          );
+          const c = center(s.box);
+          const toward = near(c, [x2, y2], 0.04 * S)
+            ? 1
+            : near(c, [x1, y1], 0.04 * S)
+              ? -1
+              : 0;
+          if (!toward) return false;
+          const length = Math.hypot(x2 - x1, y2 - y1);
+          const ux = ((x2 - x1) / length) * toward,
+            uy = ((y2 - y1) / length) * toward;
+          const along = (p: number[]) => p[0] * ux + p[1] * uy;
+          const off = (p: number[]) => (p[0] - x1) * uy - (p[1] - y1) * ux;
+          const far = Math.max(...s.points.map(along));
+          const tip = s.points.filter((p) => along(p) >= far - 0.1 * size);
+          const offset = tip.reduce((sum, p) => sum + off(p), 0) / tip.length;
+          return Math.abs(offset) <= Math.max(1, 0.2 * size);
         });
   const crosses =
     !!xAxis &&
@@ -217,6 +332,18 @@ export function groupFigureObjects(
     for (const s of arrows) role.set(s.object.id, name);
     for (const s of ticks) role.set(s.object.id, "눈금");
   }
+
+  // 좌표평면 위 도형 — 직각 표시와 한 바퀴 도는 선분(삼각형의 변)은 «그래프»가 아니다. 종류(곡선/경로·선분)로 둔다.
+  const edges = free.flatMap(edgesOf);
+  const marks = new Set(
+    graph ? free.filter((s) => rightAngleMark(s, edges, S)) : [],
+  );
+  const sides = graph
+    ? closedSides(
+        free.filter((s) => s.line && !role.has(s.object.id)),
+        0.01 * S,
+      )
+    : new Set<Shape>();
 
   const reach = 0.12 * S;
   for (const s of free) {
@@ -270,6 +397,7 @@ export function groupFigureObjects(
       role.set(o.id, "점선");
       continue;
     }
+    if (marks.has(s) || sides.has(s)) continue;
     if (
       graph &&
       (o.type === "line" || o.type === "path" || o.type === "polyline")
