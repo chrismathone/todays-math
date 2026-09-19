@@ -92,6 +92,60 @@ export function angleMarkPath({
   };
 }
 
+/** 겹 호의 반지름 차 — 엔진 `_MARK_GAP`(figure_scene.py «이중 호 반지름 차»). */
+export const ANGLE_ARC_GAP = 3;
+
+/**
+ * 겹 호(같은 각끼리 같은 수 — 원장님 2026-09-19 «각 B·각 C 같다») — 바깥 호(angleMarkPath 가 그린 `d`)
+ * 안쪽으로 반지름을 3 씩 줄인 호 arcs − 1 개(엔진 `_angle_mark_polylines`: `radius - arc_index * _MARK_GAP`).
+ * 호마다 따로 선 요소다 — 편집기가 겹마다 같은 각으로 읽는다(figureObjectGroups.ts `arcAngleMark`).
+ */
+export function innerAngleArcs(
+  outer: string,
+  arcs: number,
+  corner: { at: Point; from: Point; to: Point },
+): string[] | { reason: string } {
+  if (arcs <= 1) return [];
+  const radius = Number(outer.match(/A\s*([-+\d.e]+)/i)?.[1]);
+  if (!(radius > 0)) return { reason: "각 표시를 겹칠 수 없습니다" };
+  const inner: string[] = [];
+  for (let index = 1; index < arcs; index++) {
+    if (radius - index * ANGLE_ARC_GAP <= 0)
+      return { reason: "각이 좁아 호를 겹칠 자리가 없습니다" };
+    const mark = angleMarkPath({
+      ...corner,
+      right: false,
+      radius: radius - index * ANGLE_ARC_GAP,
+    });
+    if ("reason" in mark) return mark;
+    inner.push(mark.d);
+  }
+  return inner;
+}
+
+/**
+ * 이웃 각 표시의 크기 — 꼭짓점마다 **가장 큰** 반지름(겹 호의 바깥 호)만 센다. 안쪽 호까지 세면 삼중 호 옆의 새 호가
+ * 안쪽 호 크기로 작아진다.
+ */
+export function outerMarkRadii(corners: readonly AngleMarkCorner[]): number[] {
+  const outer: AngleMarkCorner[] = [];
+  for (const corner of corners) {
+    const same = outer.findIndex(
+      (other) =>
+        Math.hypot(
+          other.vertex[0] - corner.vertex[0],
+          other.vertex[1] - corner.vertex[1],
+        ) <= Math.max(2, 0.15 * Math.max(other.radius, corner.radius)) &&
+        other.bisector[0] * corner.bisector[0] +
+          other.bisector[1] * corner.bisector[1] >
+          Math.cos((20 * Math.PI) / 180),
+    );
+    if (same < 0) outer.push(corner);
+    else if (corner.radius > outer[same].radius) outer[same] = corner;
+  }
+  return outer.map((corner) => corner.radius);
+}
+
 /** 이미 있는 각 표시의 꼭짓점·크기·가운데 방향(그림 좌표) — 이웃 크기를 따르고 같은 각에 두 번 달지 않으려고. */
 export interface AngleMarkCorner {
   vertex: Point;

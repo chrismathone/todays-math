@@ -19,6 +19,11 @@ const SHAPE_NAMES: Record<string, string> = {
 
 /** 각 표시(직각 표시 ㄱ자 · 각의 호)의 종류 — 원장님 2026-09-19 «직각 둔각 예각». */
 export type FigureAngleKind = "직각" | "예각" | "둔각";
+/**
+ * 선분 위 표시의 이름 — 같은 길이 눈금(‖) · 평행 표시(»). 엔진은 한 획마다 `<line>` 하나로 그린다.
+ * 선분을 봐야 알아서 `figureSegmentMarks`(figureMarks.ts)가 모양으로 가른다.
+ */
+export type FigureSegmentMarkKind = "같은 길이 표시" | "평행 표시";
 /** 요소 id → 각의 종류. 그림 전체(두 변)를 봐야 알아서 `figureAngleKinds`(figureObjectGroups.ts)가 만든다. */
 export type FigureAngleKinds = ReadonlyMap<string, FigureAngleKind>;
 
