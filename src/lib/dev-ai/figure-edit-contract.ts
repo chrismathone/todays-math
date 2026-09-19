@@ -85,6 +85,95 @@ export const FigureEditCommandSchema = z
         label: label.optional(),
       })
       .strict(),
+    // 도형·변환(원장님 2026-09-19 «추가할 수 있는 것 전부») — 점은 이름으로 받고 발·반지름·중점·교점은 코드가 계산한다.
+    // 적용 본체는 figure-editor/figureShapeOps.ts.
+    /** 원 — 중심과, 지나는 점(«반지름 OA» 면 through A) 또는 반지름 r 중 하나. 편집기 원 도구와 같은 요소. */
+    z
+      .object({
+        op: z.literal("addCircle"),
+        center: PointRefSchema,
+        through: PointRefSchema.optional(),
+        r: size.positive().optional(),
+        dashed: z.boolean().optional(),
+      })
+      .strict()
+      .refine(
+        (c) => (c.through === undefined) !== (c.r === undefined),
+        "반지름(r)이나 지나는 점(through) 중 하나만 줍니다.",
+      ),
+    /** 원호 — center 둘레로 from → to, 짧은 쪽. via 를 주면 그 점을 지나는 쪽(호 ACB). 엔진 add_arc 와 같은 `M … A …`. */
+    z
+      .object({
+        op: z.literal("addArc"),
+        center: PointRefSchema,
+        from: PointRefSchema,
+        to: PointRefSchema,
+        via: PointRefSchema.optional(),
+        dashed: z.boolean().optional(),
+      })
+      .strict(),
+    /** 크기 — 원의 반지름(그림 좌표) 또는 원·타원·사각형·다각형의 배율(가운데 그대로). 크기 고정은 거절. */
+    z
+      .object({
+        op: z.literal("resize"),
+        target,
+        r: size.positive().optional(),
+        scale: z.number().finite().min(0.1).max(10).optional(),
+      })
+      .strict()
+      .refine(
+        (c) => (c.r === undefined) !== (c.scale === undefined),
+        "반지름(r)이나 배율(scale) 중 하나만 줍니다.",
+      ),
+    /** 90° 회전 — 편집기 «시계 90°»·«반시계 90°» 단추와 같은 함수(figureRotate.ts). 여럿은 한 덩어리로. */
+    z
+      .object({
+        op: z.literal("rotate"),
+        targets: z.union([
+          z.array(target).min(1).max(FIGURE_EDIT_MAX_ELEMENTS),
+          z.literal("all"),
+        ]),
+        direction: z.enum(["cw", "ccw"]),
+      })
+      .strict(),
+    /** 색칠 — 편집기 채우기 통과 같은 면. at 은 칸의 꼭짓점들(차례대로) 또는 칸 안의 점 하나. */
+    z
+      .object({
+        op: z.literal("fillRegion"),
+        at: z.union([PointRefSchema, z.array(PointRefSchema).min(3).max(12)]),
+        color: color.optional(),
+      })
+      .strict(),
+    /** 수선 — from 에서 직선 onto 에 내린 수선 + 직각 표시. 발은 코드가 계산하고, 선분 밖이면 연장선을 점선으로. */
+    z
+      .object({
+        op: z.literal("addPerpendicular"),
+        from: PointRefSchema,
+        onto: z.tuple([PointRefSchema, PointRefSchema]),
+        foot: label.optional(),
+        dashed: z.boolean().optional(),
+      })
+      .strict(),
+    /** 중점 — 점 더하기(addPoint)와 같은 점. */
+    z
+      .object({
+        op: z.literal("addMidpoint"),
+        from: PointRefSchema,
+        to: PointRefSchema,
+        label: label.optional(),
+      })
+      .strict(),
+    /** 두 직선의 교점 — 점 더하기(addPoint)와 같은 점. */
+    z
+      .object({
+        op: z.literal("addIntersection"),
+        lines: z.tuple([
+          z.tuple([PointRefSchema, PointRefSchema]),
+          z.tuple([PointRefSchema, PointRefSchema]),
+        ]),
+        label: label.optional(),
+      })
+      .strict(),
     /**
      * 곡선·꺾은선을 두 끝을 잇는 현에 대해 거울 대칭 — 끝은 그대로, 부푼 쪽만 반대편으로. 딸린 값 글자도 대칭 자리로
      * (원장님 2026-09-19 «선분 BC의 치수선을 선분 BC 아래로» 를 점 하나씩 옮겨 흉내 내다 호가 꺾였다).
