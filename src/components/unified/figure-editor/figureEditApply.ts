@@ -311,12 +311,7 @@ export function applyFigureEdits(
     const tied = isTiedFace(object);
     const following = "선을 따라가는 면은 선을 옮기면 따라옵니다";
     if (command.op === "flip") {
-      if (object.type !== "path" && object.type !== "polyline")
-        reject("곡선·꺾은선만 뒤집습니다");
-      if (angles.has(id)) reject("각 표시는 뒤집지 않습니다");
-      if (tied) reject(following);
-      if (isSizeLocked(object))
-        reject("크기 고정이라 모양을 바꾸지 않았습니다");
+      // 거절 규칙(곡선만 · 각 표시 · 면 · 크기 고정)은 편집기 단추와 같게 flipFigureCurve 안에 있다
       const flipped = flipFigureCurve(current, id);
       if ("reason" in flipped) return reject(flipped.reason);
       const value = flipped.labelId

@@ -1,5 +1,8 @@
 import { transformFigureSelection } from "./figureClipboard";
 import { POINT_NAME } from "./figureEditElements";
+import { isTiedFace } from "./figureFaceEditing";
+import { figureAngleKinds } from "./figureObjectGroups";
+import { isSizeLocked } from "./figureSizeLock";
 import {
   applyPoint,
   applyVector,
@@ -600,7 +603,8 @@ export type FlipCurveResult =
 /**
  * 편집기 요소 하나(곡선 path · 꺾은선 polyline)를 현에 대해 뒤집고, 딸린 값 글자를 같은 현에 대해 대칭 자리로
  * 옮긴다 — 글자는 **똑바로 선 채**(원장님 항목 22) 평행 이동만 한다. 요소 id 로 부른다(편집기 단추·AI `flip` 공용).
- * 크기 고정·각 표시 같은 편집기 규칙은 부르는 쪽이 먼저 본다.
+ * 곡선·꺾은선이 아니거나 · 각 표시 · 선을 따라가는 면 · 크기 고정이면 이유만 돌려준다(그림은 그대로).
+ * 딸린 글자나 뒤집은 곡선이 그림 틀 밖으로 나가면 틀을 넓힌다.
  */
 export function flipFigureCurve(svg: string, id: string): FlipCurveResult {
   const objects = figureObjects(svg);
@@ -612,12 +616,25 @@ export function flipFigureCurve(svg: string, id: string): FlipCurveResult {
     object.attrs["data-function"]
   )
     return { reason: "곡선·꺾은선만 뒤집습니다" };
+  // 편집기 규칙 — AI `flip` 과 편집기 단추가 같은 이유로 거절하게 여기 한 곳에 둔다
+  const doc = readFigureSvg(svg);
+  const viewBox = doc.documentElement
+    .getAttribute("viewBox")
+    ?.trim()
+    .split(/[\s,]+/)
+    .map(Number) ?? [0, 0, 480, 360];
+  if (figureAngleKinds(objects, viewBox).has(id))
+    return { reason: "각 표시는 뒤집지 않습니다" };
+  if (isTiedFace(object))
+    return { reason: "선을 따라가는 면은 선을 옮기면 따라옵니다" };
+  if (isSizeLocked(object))
+    return { reason: "크기 고정이라 모양을 바꾸지 않았습니다" };
   const flipped =
     object.type === "path"
       ? flipFigurePathData(object.attrs.d ?? "")
       : flipFigurePointList(object.attrs.points ?? "");
   if ("reason" in flipped) return flipped;
-  const nodes = [...readFigureSvg(svg).querySelectorAll("[data-object-id]")];
+  const nodes = [...doc.querySelectorAll("[data-object-id]")];
   const matrix = elementMatrix(nodes[index]);
   const chord = flipped.chord.map((p) => applyPoint(matrix, p)) as [
     Point,

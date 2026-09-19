@@ -596,6 +596,10 @@ describe("뒤집기 — 치수 호를 반대쪽으로", () => {
       applyFigureEdits(parallelogram, [{ op: "flip", target: 5 }]).svg,
     );
     expect("svg" in direct && direct.labelId).toBe(pids[6]);
+    // 거절 규칙도 같은 함수 — 편집기 단추가 AI 명령과 같은 이유를 낸다
+    expect(flipFigureCurve(parallelogram, pids[2])).toEqual({
+      reason: "곡선·꺾은선만 뒤집습니다",
+    });
   });
 
   it("flips a curve with no value label on its own", () => {
