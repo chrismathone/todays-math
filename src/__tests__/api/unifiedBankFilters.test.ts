@@ -60,6 +60,9 @@ afterEach(() => {
 });
 const marker = "통합조회확인";
 async function plant(patch: Record<string, unknown> = {}) {
+  // exam-wiring: 테스트 — 시험 대역(prismaTestDouble)에 픽스처를 심는다. 실 DB 가 아니고
+  //   원본 시험지(examId·sourceFile)도 없다. `source: "past_exam"` 은 통합 조회의 필터·출처
+  //   배지를 재려는 자리채움이다 — 시험마다 `patch` 로 manual·transformed 등으로 바꿔 심는다.
   return await db.problem.create({
     data: {
       userId: USER_TEACHER_ID,
