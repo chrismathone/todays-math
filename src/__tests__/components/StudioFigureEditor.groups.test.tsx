@@ -390,3 +390,87 @@ describe("요소 목록 — 묶음을 고르면 공통 서식 (원장님 2026-09
     ).toBe("24");
   });
 });
+
+/**
+ * 각 표시는 «각» 묶음, 요소 이름은 직각·예각·둔각 — 이름이 나오는 **모든 자리**에서 같다(원장님 2026-09-19
+ * «기존의 각들은 다 각으로 묶어. 직각 둔각 예각.» · «항상 모든 화면이 일치하도록 맞춰야 사용자 경험이 상승함»).
+ * 도형 엔진 v2 실출력: 삼각형 변 셋(1~3) · ∠A 예각 호(4) · ∠B 둔각 두 겹 호(5·6) · ∠C 예각 호(7) · ∠B 직각 아님.
+ */
+const angleFigure =
+  `<svg viewBox="0 0 289.9 209.9" xmlns="${SVG_NS}">` +
+  `<line x1="34.95" y1="174.95" x2="154.95" y2="174.95" stroke="#111111" stroke-width="1.9" />` +
+  `<line x1="154.95" y1="174.95" x2="254.95" y2="34.95" stroke="#111111" stroke-width="1.9" />` +
+  `<line x1="254.95" y1="34.95" x2="34.95" y2="174.95" stroke="#111111" stroke-width="1.9" />` +
+  `<path d="M 57.0 174.9 A 22.0 22.0 0 0 0 53.5 163.1" fill="none" stroke="#111111" stroke-width="0.72" />` +
+  `<path d="M 132.9 174.9 A 22.0 22.0 0 0 1 167.7 157.0" fill="none" stroke="#111111" stroke-width="0.72" />` +
+  `<path d="M 135.9 174.9 A 19.0 19.0 0 0 1 166.0 159.5" fill="none" stroke="#111111" stroke-width="0.72" />` +
+  `<path d="M 236.4 46.8 A 22.0 22.0 0 0 0 242.2 52.9" fill="none" stroke="#111111" stroke-width="0.72" />` +
+  `<text x="88" y="165" font-size="16.8" data-mj="34°">34°</text>` +
+  `<text x="24" y="180" font-size="16.8" data-mj="A">A</text>` +
+  `</svg>`;
+// 엔진 v2 직각삼각형(v2_example) — 4번이 직각 표시(ㄱ자)
+const rightFigure =
+  `<svg viewBox="0 0 305.997 241.186" xmlns="${SVG_NS}">` +
+  `<line x1="37.208" y1="26.236" x2="37.208" y2="206.236" stroke="#111111" stroke-width="1.9" />` +
+  `<line x1="37.208" y1="206.236" x2="277.208" y2="206.236" stroke="#111111" stroke-width="1.9" />` +
+  `<line x1="277.208" y1="206.236" x2="37.208" y2="26.236" stroke="#111111" stroke-width="1.9" />` +
+  `<path d="M 37.208 194.136 L 49.308 194.136 L 49.308 206.236" fill="none" stroke="#111111" stroke-width="0.72" />` +
+  `<text x="29.6" y="24" font-size="16.8" data-mj="A">A</text>` +
+  `</svg>`;
+function openFigure(svg: string) {
+  render(
+    <StudioFigureEditor
+      image={crop}
+      initialSvg={svg}
+      index={0}
+      onSave={vi.fn()}
+      onClose={vi.fn()}
+    />,
+  );
+}
+const chipText = (n: number) => chip(n).textContent;
+/** 오른쪽 칸 제목 — «n · 이름 편집» */
+const heading = () =>
+  screen.getByRole("heading", { name: /^\d+ · .+ 편집$/ }).textContent ?? "";
+
+describe("각 표시 — «각» 묶음 · 직각/예각/둔각이 모든 자리에서 같다 (원장님 2026-09-19)", () => {
+  it("요소 목록: 각 표시는 «각» 묶음, 단추에는 각의 종류", () => {
+    openFigure(angleFigure);
+    expect(groupNames()).toEqual(["선분 묶음", "각 묶음", "글자 묶음"]);
+    expect(chipNumbers("각")).toEqual(["4", "5", "6", "7"]);
+    expect([4, 5, 6, 7].map(chipText)).toEqual([
+      "4예각",
+      "5둔각",
+      "6둔각",
+      "7예각",
+    ]);
+    expect(chip(5)).toHaveAttribute("title", "둔각 · 끌어서 다른 묶음으로");
+  });
+  it("모두 직각이어도 단추에 «직각» — 묶음 이름 «각»은 종류를 말하지 않는다", () => {
+    openFigure(rightFigure);
+    expect(groupNames()).toEqual(["선분 묶음", "각 묶음", "글자 묶음"]);
+    expect(chipText(4)).toBe("4직각");
+    // 다른 묶음은 지금처럼 — 모두 같은 종류면 번호만
+    expect(chipText(1)).toBe("1");
+  });
+  it("오른쪽 칸 제목도 같은 이름 — «5 · 둔각 편집»", () => {
+    openFigure(angleFigure);
+    fireEvent.click(chip(5));
+    expect(heading()).toBe("5 · 둔각 편집");
+    fireEvent.click(chip(4));
+    expect(heading()).toBe("4 · 예각 편집");
+    fireEvent.click(chip(1));
+    expect(heading()).toBe("1 · 선분 편집");
+    fireEvent.click(chip(8));
+    expect(heading()).toBe("8 · 글자 편집");
+  });
+  it("«각» 묶음 전부를 고르면 오른쪽 칸 묶음 이름도 «각»", () => {
+    openFigure(angleFigure);
+    fireEvent.click(
+      within(group("각")).getByRole("button", { name: "각 4개" }),
+    );
+    expect(
+      within(groupRow()!).getByRole("textbox", { name: "각 묶음 이름" }),
+    ).toHaveValue("각");
+  });
+});

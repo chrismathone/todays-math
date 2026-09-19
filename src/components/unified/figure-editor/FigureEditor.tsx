@@ -26,7 +26,7 @@ import {
   editFigureObjects,
   setFigureGroup,
 } from "./figureSvgEditing";
-import { groupFigureObjects } from "./figureObjectGroups";
+import { figureAngleKinds, groupFigureObjects } from "./figureObjectGroups";
 import {
   copyFigureSelection,
   pasteFigureSelection,
@@ -339,6 +339,11 @@ export function FigureEditor({
   const viewBoxKey = viewBox.join(" ");
   const groups = useMemo(
     () => groupFigureObjects(objects, viewBoxKey.split(" ").map(Number)),
+    [objects, viewBoxKey],
+  );
+  // 각 표시의 종류(직각·예각·둔각) — 요소 목록 단추와 오른쪽 칸 제목이 같은 이름(`objectName`)을 쓴다.
+  const angles = useMemo(
+    () => figureAngleKinds(objects, viewBoxKey.split(" ").map(Number)),
     [objects, viewBoxKey],
   );
   // «묶음 만들기» 직후 오른쪽 칸의 묶음 이름 칸에 초점을 줄 묶음 key — 초점을 주면 지운다.
@@ -1616,6 +1621,7 @@ export function FigureEditor({
             <FigureObjectList
               objects={objects}
               groups={groups}
+              angles={angles}
               selectedIds={selectedIds}
               onPick={pick}
               onPickGroup={pickGroup}
@@ -1638,7 +1644,7 @@ export function FigureEditor({
               {selectedIds.length > 1
                 ? `${selectedIds.length}개 요소 선택`
                 : current
-                  ? `${objects.indexOf(current) + 1} · ${objectName(current)} 편집`
+                  ? `${objects.indexOf(current) + 1} · ${objectName(current, angles)} 편집`
                   : tool === "text"
                     ? "새 글자"
                     : tool === "fill"

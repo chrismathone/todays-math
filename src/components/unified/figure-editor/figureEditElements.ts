@@ -7,7 +7,7 @@ import {
 import { figureObjects, readFigureSvg } from "./figureSvgEditing";
 import { figureHandles } from "./figureHandles";
 import { objectName } from "./figureObjectNames";
-import { isFigureMathLabel } from "./FigureLabelInput";
+import { figureAngleKinds } from "./figureObjectGroups";
 import { isSizeLocked } from "./figureSizeLock";
 import {
   applyPoint,
@@ -18,16 +18,6 @@ import {
 } from "./figureEditGeometry";
 
 type FigureObject = ReturnType<typeof figureObjects>[number];
-
-/** 요소 목록의 이름 — 편집기 목록(FigureObjectList)과 같은 말(면 · 삼각형 · 평행사변형 포함). */
-export const figureEditKind = (o: FigureObject) =>
-  o.attrs["data-function"]
-    ? "함수 그래프"
-    : o.type === "text"
-      ? isFigureMathLabel(o.attrs["data-mj"] ?? o.text)
-        ? "수식"
-        : "글자"
-      : objectName(o);
 
 const first = (value: string | undefined) => {
   const number = Number.parseFloat(value?.trim().split(/[\s,]+/)[0] ?? "");
@@ -180,6 +170,8 @@ export function describeFigureForEdit(svg: string): FigureEditFigure {
     parsed[3] > 0
       ? [parsed[0], parsed[1], parsed[2], parsed[3]]
       : [0, 0, 480, 360];
+  // 종류 이름은 편집기 요소 목록·오른쪽 칸 제목과 같은 함수(`objectName`) — 각 표시는 직각·예각·둔각
+  const angles = figureAngleKinds(objects, viewBox);
   const elements = objects
     .slice(0, FIGURE_EDIT_MAX_ELEMENTS)
     .map((o, index): FigureEditElement => {
@@ -187,7 +179,7 @@ export function describeFigureForEdit(svg: string): FigureEditFigure {
       const matrix = elementMatrix(node);
       const element: FigureEditElement = {
         n: index + 1,
-        kind: figureEditKind(o),
+        kind: objectName(o, angles),
       };
       const group = o.attrs["data-group"]?.trim();
       if (group) element.role = group.slice(0, 40);

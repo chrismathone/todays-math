@@ -69,7 +69,7 @@ describe("요소 목록 — 편집기 번호와 같은 번호", () => {
       "선분",
       "선분",
       "선분",
-      "곡선/경로",
+      "직각",
       "글자",
       "글자",
       "글자",
@@ -374,6 +374,20 @@ describe("검증 — 적용 못 한 명령은 이유와 함께", () => {
     expect(result.summary).toBe(
       "1번 선분 삭제 · 글자 A 위로 이동 · 글자 H 추가",
     );
+  });
+
+  // 원장님 2026-09-19 «항상 모든 화면이 일치하도록» — 결과 줄도 요소 목록·보낸 목록과 같은 이름(각 표시는 직각·예각·둔각)
+  it("names an angle mark by its kind, like the editor list and the sent element list", () => {
+    const result = applyFigureEdits(source, [
+      { op: "style", target: 4, color: "#ff0000" },
+      { op: "delete", target: 4 },
+      { op: "addText", text: "$x^2$", x: 100, y: 60 },
+    ]);
+    expect(result.applied).toEqual([
+      "4번 직각 서식 변경(색)",
+      "4번 직각 삭제",
+      "수식 x^2 추가",
+    ]);
   });
 });
 

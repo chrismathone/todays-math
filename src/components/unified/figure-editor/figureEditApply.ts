@@ -15,12 +15,13 @@ import { moveFigureHandle } from "./figureHandles";
 import { blocksSizeChange, isMoveHandle, isSizeLocked } from "./figureSizeLock";
 import { isTiedFace } from "./figureFaceEditing";
 import { SHAPE_ATTR } from "./figureShapeAdjust";
-import { figureLabelSummary, isFigureMathLabel } from "./FigureLabelInput";
+import { figureLabelSummary } from "./FigureLabelInput";
 import {
   describeFigureForEdit,
-  figureEditKind,
   figureEditVertices,
 } from "./figureEditElements";
+import { objectName } from "./figureObjectNames";
+import { figureAngleKinds } from "./figureObjectGroups";
 import {
   applyPoint,
   applyVector,
@@ -64,7 +65,9 @@ const direction = (dx: number, dy: number) =>
 
 const labelOf = (o: FigureObject) =>
   figureLabelSummary(o.attrs["data-mj"] ?? o.text);
-const textKind = (text: string) => (isFigureMathLabel(text) ? "수식" : "글자");
+/** 새로 넣는 글의 이름 — 있는 요소와 같은 함수(`objectName`)로 «수식»·«글자». */
+const textKind = (text: string) =>
+  objectName({ type: "text", attrs: {}, text });
 
 class Rejected extends Error {}
 function reject(reason: string): never {
@@ -100,11 +103,13 @@ export function applyFigureEdits(
     .filter((o) => o.type === "text")
     .map((o) => Number.parseFloat(o.attrs["font-size"] ?? ""))
     .find((size) => Number.isFinite(size) && size > 0);
+  // 결과 줄의 이름은 편집기 요소 목록·보낸 요소 목록과 같은 함수(`objectName`) — 각 표시는 직각·예각·둔각
+  const angles = figureAngleKinds(before, figure.viewBox);
   const nameOf = (index: number) => {
     const o = before[index];
     return o.type === "text"
-      ? `${figureEditKind(o)} ${labelOf(o)}`
-      : `${index + 1}번 ${figureEditKind(o)}`;
+      ? `${objectName(o, angles)} ${labelOf(o)}`
+      : `${index + 1}번 ${objectName(o, angles)}`;
   };
   const nodeOf = (source: string, id: string) =>
     [...readFigureSvg(source).querySelectorAll("[data-object-id]")].find(
@@ -215,7 +220,7 @@ export function applyFigureEdits(
       if (object.type !== "text") reject("글자 요소가 아닙니다");
       return {
         svg: editFigureObject(current, id, {}, command.text),
-        text: `${figureEditKind(object)} ${labelOf(object)} → ${figureLabelSummary(command.text)}`,
+        text: `${objectName(object, angles)} ${labelOf(object)} → ${figureLabelSummary(command.text)}`,
       };
     }
     if (command.op === "style") {

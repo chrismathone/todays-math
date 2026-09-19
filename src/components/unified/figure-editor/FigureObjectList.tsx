@@ -1,17 +1,16 @@
 import { memo, useRef, useState, type DragEvent } from "react";
 import type { figureObjects } from "./figureSvgEditing";
-import { figureLabelSummary, isFigureMathLabel } from "./FigureLabelInput";
-import { objectName } from "./figureObjectNames";
+import { figureLabelSummary } from "./FigureLabelInput";
+import { objectName, type FigureAngleKinds } from "./figureObjectNames";
 import type { FigureObjectGroup } from "./figureObjectGroups";
 
 type FigureObject = ReturnType<typeof figureObjects>[number];
 
-const listLabel = (o: FigureObject) =>
-  o.attrs["data-function"]
-    ? "함수 그래프"
-    : o.type === "text"
-      ? `${isFigureMathLabel(o.attrs["data-mj"] ?? o.text) ? "수식" : "글자"} ${figureLabelSummary(o.attrs["data-mj"] ?? o.text)}`
-      : objectName(o);
+/** 단추 이름 — 요소 이름(`objectName`, 모든 자리가 같이 쓴다)에 글이면 내용을 붙인다. */
+const listLabel = (o: FigureObject, angles: FigureAngleKinds) =>
+  o.type === "text"
+    ? `${objectName(o, angles)} ${figureLabelSummary(o.attrs["data-mj"] ?? o.text)}`
+    : objectName(o, angles);
 const groupsKey = (groups: FigureObjectGroup[]) =>
   groups.map((g) => `${g.key}:${g.ids.join(",")}`).join("|");
 const LOOSE: FigureObjectGroup = {
@@ -25,6 +24,8 @@ const LOOSE: FigureObjectGroup = {
 interface Props {
   objects: FigureObject[];
   groups: FigureObjectGroup[];
+  /** 각 표시의 종류(직각·예각·둔각) — 오른쪽 칸 제목·AI 요소 목록과 같은 이름을 쓰게 편집기가 한 번 재어 넘긴다. */
+  angles: FigureAngleKinds;
   selectedIds: string[];
   onPick: (id: string, additive: boolean) => void;
   onPickGroup: (ids: string[], additive: boolean) => void;
@@ -47,6 +48,7 @@ export const FigureObjectList = memo(
   function FigureObjectList({
     objects,
     groups,
+    angles,
     selectedIds,
     onPick,
     onPickGroup,
@@ -73,7 +75,7 @@ export const FigureObjectList = memo(
           key={o.id}
           data-figure-list-number={numberOf.get(o.id)}
           aria-pressed={selected}
-          title={`${listLabel(o)} · 끌어서 다른 묶음으로`}
+          title={`${listLabel(o, angles)} · 끌어서 다른 묶음으로`}
           draggable
           onDragStart={(event) => {
             const ids =
@@ -123,10 +125,11 @@ export const FigureObjectList = memo(
           const all =
             g.ids.length > 0 && g.ids.every((id) => selectedIds.includes(id));
           const members = g.ids.flatMap((id) => byId.get(id) ?? []);
-          const labels = members.map(listLabel);
+          const labels = members.map((o) => listLabel(o, angles));
           // 묶음 이름이 말해 주는 것은 단추에서 뺀다 — 모두 글이면 내용만, 모두 같은 종류면 번호만.
+          // 각 표시는 늘 종류(직각·예각·둔각)를 적는다 — 묶음 이름 «각»은 종류를 말해 주지 않는다.
           const short = (o: FigureObject, i: number) =>
-            g.loose
+            g.loose || angles.has(o.id)
               ? labels[i]
               : members.every((m) => m.type === "text")
                 ? figureLabelSummary(o.attrs["data-mj"] ?? o.text)
@@ -203,6 +206,7 @@ export const FigureObjectList = memo(
     a.objects.length === b.objects.length &&
     a.objects.every(
       (o, i) =>
-        o.id === b.objects[i].id && listLabel(o) === listLabel(b.objects[i]),
+        o.id === b.objects[i].id &&
+        listLabel(o, a.angles) === listLabel(b.objects[i], b.angles),
     ),
 );
