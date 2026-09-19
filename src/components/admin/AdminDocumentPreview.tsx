@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { ProblemContent } from "@/components/math/ProblemContent";
 import { MathText } from "@/components/math/MathText";
+import { displayFractions } from "@/components/unified/fractionDisplay";
 import { accountDate } from "./AccountReview";
 import { objectValue, stringValue, type DocumentDetail } from "./documentTypes";
 import s from "./admin.module.css";
@@ -51,7 +52,11 @@ function ProblemPreview({
   extraction: boolean;
 }) {
   const problem = objectValue(value);
-  const content = stringValue(problem.content);
+  // 초등이면 가분수를 대분수로 보인다 — 작업실·학습지 인쇄와 같은 함수(원장님 2026-09-19).
+  const grade = stringValue(problem.grade);
+  const source = stringValue(problem.content);
+  const shown = (text: string) => displayFractions(text, grade, source);
+  const content = shown(source);
   const cropped = imageSource(
     extraction ? problem.image : problem.croppedImage,
     userId,
@@ -73,8 +78,8 @@ function ProblemPreview({
   const svg = stringValue(problem.figureSvg);
   if (svg)
     figures.push(`data:image/svg+xml;charset=utf-8,${encodeURIComponent(svg)}`);
-  const answer = stringValue(problem.answer);
-  const solution = stringValue(problem.solution);
+  const answer = shown(stringValue(problem.answer));
+  const solution = shown(stringValue(problem.solution));
   return (
     <li className={d.problem}>
       <h3>

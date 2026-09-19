@@ -5,12 +5,18 @@ import { memo } from "react";
 import { MathText } from "@/components/math/MathText";
 import { ProblemExcerpt } from "@/components/problem/ProblemExcerpt";
 import { Button } from "@/components/ui/Button";
+import { displayFractions } from "@/components/unified/fractionDisplay";
 import type { ProblemEntity } from "@/contracts/problem.contract";
 import { solutionForDisplay, splitSolutionSteps } from "@/lib/solutionSteps";
 
 type Props = {
   orderIndex: number;
   problem: ProblemEntity;
+  /**
+   * 문항 단원의 학년 — 초등이면 본문·답·해설의 가분수를 대분수로 보인다(`displayFractions`,
+   * 인쇄 지면과 같은 함수 — 원장님 2026-09-19 «모든 화면이 일치하도록»). 없으면 원문 그대로.
+   */
+  grade?: string;
   onReplace?: (orderIndex: number) => void;
   replacing?: boolean;
 };
@@ -38,10 +44,17 @@ const MICRO = `${MICRO_PLAIN} text-text-2`;
 export const ReviewProblemCard = memo(function ReviewProblemCard({
   orderIndex,
   problem,
+  grade = "",
   onReplace,
   replacing,
 }: Props) {
-  const solution = solutionForDisplay(problem.solution)?.trim() ?? "";
+  const shown = (text: string) =>
+    displayFractions(text, grade, problem.content);
+  // 분수 표시를 먼저 하고 줄은 그리기 직전에 나눈다(문제은행 상세와 같은 순서).
+  const solution =
+    solutionForDisplay(
+      problem.solution === null ? null : shown(problem.solution),
+    )?.trim() ?? "";
 
   return (
     <article
@@ -62,7 +75,11 @@ export const ReviewProblemCard = memo(function ReviewProblemCard({
         aria-orientation="vertical"
         className="bg-[#C2C2C0]"
       />
-      <ProblemExcerpt problem={problem} className="leading-relaxed" />
+      <ProblemExcerpt
+        problem={problem}
+        grade={grade}
+        className="leading-relaxed"
+      />
       <aside
         aria-label="답과 해설"
         className="min-w-0 self-start border-l border-divider pl-4"
@@ -72,7 +89,7 @@ export const ReviewProblemCard = memo(function ReviewProblemCard({
           <MathText
             as="div"
             className="mt-1 text-[12.5px] leading-relaxed"
-            text={problem.answer}
+            text={shown(problem.answer)}
           />
         </section>
         <section className="mt-3">

@@ -25,6 +25,7 @@ import {
   type ReviewConsoleRow,
 } from "@/lib/review/consoleRow";
 import { REASON_LABELS, REASON_ORDER } from "@/components/review/reasonLabels";
+import { displayFractions } from "@/components/unified/fractionDisplay";
 import { solutionForDisplay } from "@/lib/solutionSteps";
 import type { ReportReason } from "@/contracts/problemReport.contract";
 import type {
@@ -263,7 +264,7 @@ export function ReviewConsole({
 
               <div className="mt-4 min-w-0 overflow-x-auto text-[15px] leading-relaxed">
                 <PaperProblemView
-                  content={row.content}
+                  content={displayFractions(row.content, row.grade)}
                   figureUrls={row.figureUrls}
                   figureDims={row.figureDims}
                   figureSourceMm={row.figureSourceMm}
@@ -278,7 +279,7 @@ export function ReviewConsole({
                       글자 그대로 새고, `④` 는 렌더러를 탄 보기와 글꼴이 갈린다
                       (원장님이 화면에서 둘 다 찾아 주셨다, 2026-08-24). */}
                   <MathText
-                    text={row.answer}
+                    text={displayFractions(row.answer, row.grade, row.content)}
                     className="text-[15px] font-semibold"
                   />
                 </div>
@@ -289,7 +290,15 @@ export function ReviewConsole({
                     </summary>
                     <div className="mt-2 text-[14px] leading-relaxed text-text-2">
                       <PaperProblemView
-                        content={solutionForDisplay(row.solution) ?? ""}
+                        content={
+                          solutionForDisplay(
+                            displayFractions(
+                              row.solution,
+                              row.grade,
+                              row.content,
+                            ),
+                          ) ?? ""
+                        }
                       />
                     </div>
                   </details>

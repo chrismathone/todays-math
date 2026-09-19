@@ -3,6 +3,7 @@
 import { useCallback } from "react";
 import Link from "next/link";
 
+import { useUnitGrades } from "@/components/problem/useUnitGrades";
 import { Button } from "@/components/ui/Button";
 import { OwnerTag } from "@/components/ui/OwnerTag";
 import { TestReviewContentSkeleton } from "@/components/ui/PageSkeletons";
@@ -33,6 +34,7 @@ export function TestReview({ testId }: Props) {
     replacedCount,
     actionError,
   } = useTestReview(testId);
+  const grades = useUnitGrades();
 
   // 카드마다 새 화살표 함수를 만들면 ReviewProblemCard 의 memo 가 죽는다 —
   // 번호는 카드가 인자로 돌려주고, 여기서는 고정된 함수 하나만 넘긴다.
@@ -113,6 +115,7 @@ export function TestReview({ testId }: Props) {
               key={item.id}
               orderIndex={item.orderIndex}
               problem={item.problem}
+              grade={grades.get(item.problem.unitId)}
               replacing={busy}
               onReplace={draft ? replaceProblem : undefined}
             />

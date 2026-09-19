@@ -26,6 +26,11 @@ export type ReviewConsoleRow = {
   figureSourceMm: number[];
   directUseAllowed: boolean;
   unitName: string;
+  /**
+   * 단원의 학년(없으면 `""`). 초등이면 콘솔이 가분수를 대분수로 **보인다** — 인쇄·문제은행과
+   * 같은 함수(`displayFractions`, 원장님 2026-09-19 «모든 화면이 일치하도록»). 원문은 그대로다.
+   */
+  grade: string;
 
   /**
    * 원본이 어디서 왔나 (원장님 요청 2026-08-24: 「검수 계정은 원본이 어디에 있는지
@@ -59,6 +64,7 @@ export function toConsoleRow(p: ProblemWithUnit): ReviewConsoleRow {
     figureSourceMm: p.figureSourceMm ?? [],
     directUseAllowed: p.directUseAllowed,
     unitName: p.unit ? `${p.unit.grade} · ${p.unit.section}` : "—",
+    grade: p.unit?.grade ?? "",
 
     source: p.source,
     sourceFile: p.sourceFile,
