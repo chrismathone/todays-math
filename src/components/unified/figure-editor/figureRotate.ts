@@ -658,6 +658,8 @@ export function rotateFigureSelection(
 /**
  * 화면에서 잰 글자 가운데(그림 좌표) — 조판한 라벨은 원문 글자 수로 어림하면 크게 어긋난다(`\frac{1}{2}` 가 11글자).
  * 캔버스의 조판본(`<g data-object-id>`)이나 `<text>` 의 상자를 루트 좌표로 옮긴다.
+ * 화면 좌표는 float32 라 1e-5 쯤 떨린다 — 0.001 로 자른다. 안 자르면 돌린 뒤 다시 잰 값이 조금씩 달라 네 번 돌아도
+ * 라벨에 `translate(-0.000008 0)` 같은 찌꺼기가 남았다(브라우저 실측 2026-09-19).
  */
 export function measureTextCenters(
   root: SVGSVGElement,
@@ -675,8 +677,9 @@ export function measureTextCenters(
       box.x + box.width / 2,
       box.y + box.height / 2,
     ).matrixTransform(toRoot.multiply(matrix));
+    const thousandth = (value: number) => Math.round(value * 1000) / 1000;
     if (Number.isFinite(at.x) && Number.isFinite(at.y))
-      centers.set(id, [at.x, at.y]);
+      centers.set(id, [thousandth(at.x), thousandth(at.y)]);
   }
   return centers;
 }

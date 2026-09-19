@@ -8,7 +8,7 @@
  * - 크기 고정 요소가 섞이면 돌리지 않는다.
  * 화면과 무관한 순수 계산이다.
  */
-import { describe, expect, it } from "vitest";
+import { afterEach, describe, expect, it, vi } from "vitest";
 
 import {
   applyPoint,
@@ -22,6 +22,7 @@ import {
   syncFigureFaces,
 } from "@/components/unified/figure-editor/figureFaceEditing";
 import {
+  measureTextCenters,
   ROTATE_BLOCKED,
   rotateFigureSelection,
   rotationBlock,
@@ -500,5 +501,37 @@ describe("회전 — 막을 때", () => {
     expect(rotationBlock(objects, ["obj-2"])).toBe(ROTATE_BLOCKED.text);
     expect(rotationBlock(objects, ["obj-1", "obj-2"])).toBeNull();
     expect(rotationBlock(objects, [])).toBeNull();
+  });
+});
+
+describe("회전 — 화면에서 잰 글자 가운데", () => {
+  afterEach(() => vi.unstubAllGlobals());
+
+  it("화면 좌표의 떨림(float32)을 0.001 로 걷는다 — 돌린 뒤 다시 재도 같은 값이라 네 번 돌면 제자리", () => {
+    vi.stubGlobal(
+      "DOMPoint",
+      class {
+        constructor(
+          public x = 0,
+          public y = 0,
+        ) {}
+        matrixTransform() {
+          return this;
+        }
+      },
+    );
+    const matrix = { inverse: () => matrix, multiply: () => matrix };
+    const label = {
+      getBBox: () => ({ x: 150.0000123, y: 69.9999914, width: 10, height: 12 }),
+      getScreenCTM: () => matrix,
+    };
+    const root = {
+      getScreenCTM: () => matrix,
+      querySelector: (selector: string) =>
+        selector === '[data-object-id="obj-1"]' ? label : null,
+    } as unknown as SVGSVGElement;
+    expect(measureTextCenters(root, ["obj-1", "obj-9"])).toEqual(
+      new Map([["obj-1", [155, 76]]]),
+    );
   });
 });

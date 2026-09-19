@@ -119,6 +119,9 @@ describe("90° 회전 — 돌린 직후의 라벨", () => {
       "transform",
       expect.stringMatching(/^translate\(/),
     );
-    expect(canvas().querySelector("[data-label]")).toHaveTextContent("");
+    expect(canvas().querySelector("[data-label]")).toHaveAttribute(
+      "data-label",
+      "A",
+    );
   });
 });
