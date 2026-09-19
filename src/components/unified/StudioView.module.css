@@ -1785,8 +1785,10 @@
 .editing.reviewMode .editorTools {
   margin-left: auto;
 }
+/* 실제 작업실 1680×920 검수·확대 풀림에서 띠가 한 줄에 들도록 108px(원장님 2026-09-19) — 120 이면 두 줄(94px)이
+   됐다. 예제 파일로 잰 한 줄 한도가 109px 이라 여유는 1px 이다. 남으면 늘어나고(최대 240), 잘린 이름은 title 로 다 보인다. */
 .editing .bandTools .sourcePicker {
-  flex-basis: 120px;
+  flex-basis: 108px;
 }
 .editing .bandTools .pageTools {
   flex: 0 1 auto;
