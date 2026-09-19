@@ -41,7 +41,9 @@ test("all pages use two background slots, preserve navigation, stamp empty pages
   await page.setViewportSize({ width: 1440, height: 923 });
   const errors: string[] = [];
   page.on("pageerror", (error) => errors.push(error.message));
-  await page.route("**/api/dev/unified/pdf-worker?*", (route) =>
+  // 하네스는 `/` 에 뜬다. `/` 가 로그인한 작업실이 된 뒤(ce1a16d4, 2026-09-14) `/` 의 PDF 뷰어는
+  // `/api/studio/pdf-*` 를 부른다(`studio-ai/endpoints.ts`). AI 만 빌드를 보고 dev 다리로 간다(2cb3feb5).
+  await page.route("**/api/studio/pdf-worker?*", (route) =>
     route.fulfill({
       body: readFileSync(
         resolve("node_modules/pdfjs-dist/build/pdf.worker.min.mjs"),
@@ -49,7 +51,7 @@ test("all pages use two background slots, preserve navigation, stamp empty pages
       contentType: "text/javascript",
     }),
   );
-  await page.route("**/api/dev/unified/pdf-assets/**", (route) => {
+  await page.route("**/api/studio/pdf-assets/**", (route) => {
     const parts = new URL(route.request().url()).pathname.split("/").slice(-2);
     return route.fulfill({
       body: readFileSync(resolve("node_modules/pdfjs-dist", ...parts)),
