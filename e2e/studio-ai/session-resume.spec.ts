@@ -176,8 +176,9 @@ test("보관한 문제 크롭을 독립 원본으로 다시 열어 편집하고 
     sessionStorage.setItem("studio-test-archive", JSON.stringify(crops));
   });
   await page.getByRole("button", { name: "새로 시작", exact: true }).click();
+  // 작업실은 확대 중이면 자체가 role="dialog" 다 — 확인 대화상자를 이름으로 좁힌다(아래 시험과 같은 까닭).
   await page
-    .getByRole("dialog")
+    .getByRole("dialog", { name: "새로 시작할까요?" })
     .getByRole("button", { name: "새로 시작", exact: true })
     .click();
   await page.getByRole("button", { name: "보관한 원본 다시 열기" }).click();
@@ -282,8 +283,10 @@ test("원본·OCR 수정·검수 위치를 새로고침 뒤 복원하고 새로 
   await expect(card).toContainText("5");
   expect(calls).toBe(1);
   await page.getByRole("button", { name: "새로 시작", exact: true }).click();
+  // 검수는 확대로 들어와(시안 B, 9ae03718) 작업실 자체가 role="dialog" 다. 이름 없이 찾으면 띠의
+  // «새로 시작»까지 잡혀 둘이 된다 — 확인 대화상자를 이름으로 좁힌다.
   await page
-    .getByRole("dialog")
+    .getByRole("dialog", { name: "새로 시작할까요?" })
     .getByRole("button", { name: "새로 시작", exact: true })
     .click();
   await expect(

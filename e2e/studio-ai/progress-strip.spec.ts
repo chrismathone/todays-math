@@ -44,6 +44,8 @@ test("progress stays one row and anchored details escape canvas clipping", async
     await page.screenshot({
       path: testInfo.outputPath(`progress-${width}.png`),
     });
+    // 상세 창 안(취소 단추 위)에 마우스를 둔 채 Esc — 창이 DOM 에서 빠져 크롬이 띠의 pointerleave 를
+    // 안 보낸다. 다음 폭에서 bar.hover() 로 상세가 다시 열려야 한다(main 부터 여기서 빨갰다, 2026-09-19).
     await page.keyboard.press("Escape");
     await expect(panel).not.toBeVisible();
     await expect(bar).toBeFocused();
