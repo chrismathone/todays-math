@@ -635,6 +635,28 @@ describe("겹 각 표시(addAngle arcs) — 엔진 이중 호", () => {
     expect(radii[3]).toBeCloseTo(radii[0], 5);
   });
 
+  // 손으로 고친 그림은 안쪽 호가 먼저 올 수 있다 — 반지름 가운데값(19)도, 먼저 온 호(16)도 아닌 바깥 호(22)
+  it("follows the outer arc even when the inner arcs come first", () => {
+    const arc = (r: number, x0: number, y0: number) =>
+      `<path d="M ${x0} ${y0} A ${r} ${r} 0 0 0 ${234.95 - r} 189.948" fill="none" stroke="#111111" stroke-width="0.72"/>`;
+    const source = prepared(
+      svg(
+        TRI_VIEW,
+        TRI_SIDES,
+        arc(16, 226.47, 176.38) +
+          arc(19, 224.88, 173.83) +
+          arc(22, 223.29, 171.29),
+        TRI_LABELS,
+      ),
+    );
+    const result = applyFigureEdits(source, [
+      { op: "addAngle", at: "B", from: "A", to: "C" },
+    ]);
+    expect(result.rejected).toEqual([]);
+    const [mark] = added(source, result.svg);
+    expect(numbers(mark.attrs.d)[2]).toBeCloseTo(22, 1);
+  });
+
   it("draws arcs, not a square corner, when several arcs mark a right angle", () => {
     const source = prepared(BOTH_BASE);
     const result = applyFigureEdits(source, [
