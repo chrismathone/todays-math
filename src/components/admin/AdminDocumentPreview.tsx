@@ -3,7 +3,7 @@
 import { useState } from "react";
 import { ProblemContent } from "@/components/math/ProblemContent";
 import { MathText } from "@/components/math/MathText";
-import { displayFractions } from "@/components/unified/fractionDisplay";
+import { fractionViewFor } from "@/components/unified/fractionDisplay";
 import { accountDate } from "./AccountReview";
 import { objectValue, stringValue, type DocumentDetail } from "./documentTypes";
 import s from "./admin.module.css";
@@ -52,10 +52,15 @@ function ProblemPreview({
   extraction: boolean;
 }) {
   const problem = objectValue(value);
-  // 초등이면 가분수를 대분수로 보인다 — 작업실·학습지 인쇄와 같은 함수(원장님 2026-09-19).
-  const grade = stringValue(problem.grade);
+  // 초등이면 가분수를 대분수로 보인다 — 작업실·학습지 인쇄와 같은 결정(원장님 2026-09-19).
+  // 본문·정답·해설을 다 보고 문항 하나에 한 번 정한다.
   const source = stringValue(problem.content);
-  const shown = (text: string) => displayFractions(text, grade, source);
+  const shown = fractionViewFor({
+    grade: stringValue(problem.grade),
+    content: source,
+    answer: stringValue(problem.answer),
+    solution: stringValue(problem.solution),
+  });
   const content = shown(source);
   const cropped = imageSource(
     extraction ? problem.image : problem.croppedImage,

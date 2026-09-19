@@ -28,7 +28,7 @@ import { provenanceBadges } from "@/lib/problem/provenance";
 import { solutionForDisplay } from "@/lib/solutionSteps";
 import { ProblemTransformPanel } from "@/components/problem/ProblemTransformPanelLazy";
 import UnifiedProblem from "./UnifiedProblem";
-import { displayFractions } from "./fractionDisplay";
+import { fractionViewFor } from "./fractionDisplay";
 import type {
   BankData,
   BankProblem,
@@ -339,6 +339,8 @@ function DetailModal({
 }) {
   // 담을 수 없는 행이라도 **이미 담은 것은 뺄 수 있다** — 카드(`ProblemRow`)와 같은 규칙.
   const addDisabled = problem.eligible === false && !selected;
+  // 정답·풀이는 본문(`UnifiedProblem`)과 같은 문항 단위 결정으로 대분수를 보인다.
+  const shownFractions = fractionViewFor(problem);
   const [showTransform, setShowTransform] = useState(false);
   /**
    * 채택 결과 알림 — **없으면 「저장했는데 아무 일도 안 일어난」 것으로 읽힌다.**
@@ -440,11 +442,7 @@ function DetailModal({
                 <MathText
                   text={
                     problem.answer
-                      ? displayFractions(
-                          problem.answer,
-                          problem.grade,
-                          problem.content,
-                        )
+                      ? shownFractions(problem.answer)
                       : "등록된 정답이 없습니다."
                   }
                 />
@@ -459,11 +457,7 @@ function DetailModal({
                   text={
                     solutionForDisplay(
                       problem.solution
-                        ? displayFractions(
-                            problem.solution,
-                            problem.grade,
-                            problem.content,
-                          )
+                        ? shownFractions(problem.solution)
                         : null,
                     ) || "등록된 풀이가 없습니다."
                   }

@@ -6,7 +6,7 @@ import { MathText } from "@/components/math/MathText";
 import { PaperProblemView } from "@/components/print/PaperProblemView";
 import paper from "@/components/print/TestPrint.module.css";
 import { PAPER_CSS_VARIABLES } from "@/components/print/tokens";
-import { displayFractions } from "@/components/unified/fractionDisplay";
+import { fractionViewFor } from "@/components/unified/fractionDisplay";
 import type { ReviewStatus } from "@/contracts/common.contract";
 import type { ProblemEntity } from "@/contracts/problem.contract";
 
@@ -75,7 +75,7 @@ const REVIEW_STATUS_TONE: Record<string, string> = {
 type ProblemCardProps = {
   problem: ProblemEntity;
   /**
-   * 문항 단원의 학년 — 초등이면 가분수를 대분수로 **보인다**(`displayFractions`, 작업실·
+   * 문항 단원의 학년 — 초등이면 가분수를 대분수로 **보인다**(`fractionViewFor`, 작업실·
    * 새 문제은행·인쇄와 같은 함수 — 원장님 2026-09-19 «모든 화면이 일치하도록»).
    * `ProblemEntity` 에는 학년이 없고 단원 목록을 가진 쪽이 넘긴다. 없으면 원문 그대로다.
    */
@@ -130,8 +130,8 @@ export const ProblemCard = memo(function ProblemCard({
   onReviewStatusChange,
   basket,
 }: ProblemCardProps) {
-  const shown = (text: string) =>
-    displayFractions(text, grade, problem.content);
+  // 본문·보기·정답·해설이 문항 단위 결정 하나를 쓴다(원장님 2026-09-19 «항상 뷰는 통일이야»).
+  const shown = fractionViewFor({ ...problem, grade });
   const [showSolution, setShowSolution] = useState(false);
   const [showTransform, setShowTransform] = useState(false);
   // 승격은 왕복이 있다. 누른 뒤 응답이 오기 전에 또 누르면 같은 요청이 두 번 나간다.

@@ -4,7 +4,7 @@ import { useState } from "react";
 
 import { MathText } from "@/components/math/MathText";
 import { Button } from "@/components/ui/Button";
-import { displayFractions } from "@/components/unified/fractionDisplay";
+import { fractionViewFor } from "@/components/unified/fractionDisplay";
 import type {
   DifficultyShift,
   ProblemEntity,
@@ -59,13 +59,15 @@ function isAdoptable(
  *    그래서 서명은 **쓰는 만큼만** 적는다. 그것이 이 패널을 열 수 있는 화면의 조건이다.
  *    `ProblemCard` 는 그대로 `ProblemEntity` 를 넘긴다(구조적으로 만족한다).
  *
- * `content`·`grade` 는 **보여 주기에만** 쓴다 — 초등이면 원본 정답과 후보를 대분수로
- * 보인다(`displayFractions`, 카드·인쇄와 같은 함수 · 원장님 2026-09-19). 후보는 원본과 같은
- * 단원이라 같은 학년이다. 학년이 없으면(옛 카드가 단원을 모를 때) 원문 그대로다.
+ * `content`·`solution`·`grade` 는 **보여 주기에만** 쓴다 — 초등이면 원본 정답과 후보를
+ * 대분수로 보인다(`fractionViewFor`, 카드·인쇄와 같은 결정 · 원장님 2026-09-19). 결정은 문항
+ * 하나에 한 번이라 원본 정답도 원본의 본문·해설까지 보고 정한다 — 해설을 빼면 바로 위 카드와
+ * 다른 수로 보일 수 있다. 후보는 원본과 같은 단원이라 같은 학년이고, 제 글 전부로 따로 정한다.
+ * 학년이 없으면(옛 카드가 단원을 모를 때) 원문 그대로다.
  */
 export type TransformOrigin = Pick<
   ProblemEntity,
-  "id" | "answer" | "content"
+  "id" | "answer" | "content" | "solution"
 > & {
   grade?: string;
 };
@@ -195,7 +197,7 @@ export function ProblemTransformPanel({ origin, onAdopted, onClose }: Props) {
         <span className={`${MICRO} text-text-2`}>원본 정답</span>
         <MathText
           className="text-[12.5px] font-bold text-ink"
-          text={displayFractions(origin.answer, grade, origin.content)}
+          text={fractionViewFor({ ...origin, grade })(origin.answer)}
         />
       </p>
 
@@ -263,74 +265,74 @@ export function ProblemTransformPanel({ origin, onAdopted, onClose }: Props) {
             </p>
           ) : null}
           <ol className="mt-2 space-y-2">
-            {stage.candidates.map((candidate, at) => (
-              <li
-                // 후보는 순서가 곧 신원이다(같은 본문이 나올 수 있다).
-                key={at}
-                className="border border-divider bg-surface p-4"
-              >
-                <div className="flex flex-wrap items-baseline gap-2">
-                  <span className={`${MICRO} text-text-2`}>{at + 1}</span>
-                  {isAdoptable(candidate, figureRequired) ? (
-                    <label className="ml-auto flex cursor-pointer items-center gap-2">
-                      <input
-                        type="checkbox"
-                        checked={adopted.has(at)}
-                        onChange={() => toggleAdopted(at)}
-                        className="h-4 w-4 cursor-pointer accent-[var(--blue)]"
-                      />
-                      <span className={`${MICRO} text-ink`}>채택</span>
-                    </label>
-                  ) : (
-                    <span className={`ml-auto ${MICRO} text-g-red-text`}>
-                      폐기
-                    </span>
-                  )}
-                </div>
-                <MathText
-                  as="div"
-                  className="mt-2 text-[13px] text-ink"
-                  text={displayFractions(candidate.content, grade)}
-                />
-                {/* 도형은 **서버가 그린 것**만 그린다 — 엔진(`render_figure_spec`)이 만들고
+            {stage.candidates.map((candidate, at) => {
+              // 후보 하나가 한 문항이다 — 본문·정답을 후보의 글 전부로 한 번 정한다.
+              const shown = fractionViewFor({ ...candidate, grade });
+              return (
+                <li
+                  // 후보는 순서가 곧 신원이다(같은 본문이 나올 수 있다).
+                  key={at}
+                  className="border border-divider bg-surface p-4"
+                >
+                  <div className="flex flex-wrap items-baseline gap-2">
+                    <span className={`${MICRO} text-text-2`}>{at + 1}</span>
+                    {isAdoptable(candidate, figureRequired) ? (
+                      <label className="ml-auto flex cursor-pointer items-center gap-2">
+                        <input
+                          type="checkbox"
+                          checked={adopted.has(at)}
+                          onChange={() => toggleAdopted(at)}
+                          className="h-4 w-4 cursor-pointer accent-[var(--blue)]"
+                        />
+                        <span className={`${MICRO} text-ink`}>채택</span>
+                      </label>
+                    ) : (
+                      <span className={`ml-auto ${MICRO} text-g-red-text`}>
+                        폐기
+                      </span>
+                    )}
+                  </div>
+                  <MathText
+                    as="div"
+                    className="mt-2 text-[13px] text-ink"
+                    text={shown(candidate.content)}
+                  />
+                  {/* 도형은 **서버가 그린 것**만 그린다 — 엔진(`render_figure_spec`)이 만들고
                     `sanitize_svg` 를 통과한 마크업이다. 클라이언트가 SVG 를 만들거나 실어
                     보내는 경로는 없다(계약: 채택 시 되돌아가는 것은 스펙뿐). */}
-                {figureRequired && candidate.figureSvg ? (
-                  <div
-                    data-figure-preview
-                    className="mt-3 max-w-[280px] [&>svg]:h-auto [&>svg]:w-full"
-                    dangerouslySetInnerHTML={{ __html: candidate.figureSvg }}
-                  />
-                ) : null}
-                {figureRequired && candidate.figureError ? (
-                  <p className={`mt-2 ${MICRO} text-g-red-text`}>
-                    {`도형 없음 — ${candidate.figureError}`}
+                  {figureRequired && candidate.figureSvg ? (
+                    <div
+                      data-figure-preview
+                      className="mt-3 max-w-[280px] [&>svg]:h-auto [&>svg]:w-full"
+                      dangerouslySetInnerHTML={{ __html: candidate.figureSvg }}
+                    />
+                  ) : null}
+                  {figureRequired && candidate.figureError ? (
+                    <p className={`mt-2 ${MICRO} text-g-red-text`}>
+                      {`도형 없음 — ${candidate.figureError}`}
+                    </p>
+                  ) : null}
+                  <p className="mt-2 flex flex-wrap items-baseline gap-2">
+                    <span className={`${MICRO} text-text-2`}>정답</span>
+                    <MathText
+                      className="text-[12.5px] font-bold text-ink"
+                      text={shown(candidate.answer)}
+                    />
                   </p>
-                ) : null}
-                <p className="mt-2 flex flex-wrap items-baseline gap-2">
-                  <span className={`${MICRO} text-text-2`}>정답</span>
-                  <MathText
-                    className="text-[12.5px] font-bold text-ink"
-                    text={displayFractions(
-                      candidate.answer,
-                      grade,
-                      candidate.content,
-                    )}
-                  />
-                </p>
-                {/* 검사 결과는 통과·탈락 **양쪽 다** 적는다. 탈락만 적으면 통과가
+                  {/* 검사 결과는 통과·탈락 **양쪽 다** 적는다. 탈락만 적으면 통과가
                     「검사를 안 한 것」과 구분되지 않는다. */}
-                {candidate.verified ? (
-                  <p className={`mt-2 ${MICRO} text-g-green`}>
-                    원본 재현 검사 통과
-                  </p>
-                ) : (
-                  <p className={`mt-2 ${MICRO} text-g-red-text`}>
-                    {`원본 재현 검사 실패 — 재현값 ${candidate.originalAnswerRecomputed} ≠ 원본 정답 ${origin.answer}`}
-                  </p>
-                )}
-              </li>
-            ))}
+                  {candidate.verified ? (
+                    <p className={`mt-2 ${MICRO} text-g-green`}>
+                      원본 재현 검사 통과
+                    </p>
+                  ) : (
+                    <p className={`mt-2 ${MICRO} text-g-red-text`}>
+                      {`원본 재현 검사 실패 — 재현값 ${candidate.originalAnswerRecomputed} ≠ 원본 정답 ${origin.answer}`}
+                    </p>
+                  )}
+                </li>
+              );
+            })}
           </ol>
           <div className="mt-4 flex flex-wrap items-center justify-end gap-2">
             <span className={`mr-auto ${MICRO} text-text-2`}>

@@ -2,7 +2,7 @@
  * 🔴 **초등 대분수는 모든 화면에서 한 함수로 보인다** (원장님 2026-09-19 «항상 모든 화면이
  * 일치하도록 맞춰야 사용자 경험이 상승함»).
  *
- * 작업실·새 문제은행·학습지 인쇄는 `displayFractions` 로 초등 가분수를 대분수로 보였는데,
+ * 작업실·새 문제은행·학습지 인쇄는 `displayFractions`(지금은 문항 단위 `fractionViewFor`)로 초등 가분수를 대분수로 보였는데,
  * 옛 화면들 — 반 → 시험지 검토 · 문제은행(`/problems`) · AI 초안 검수 · 변형 패널 · 검수 콘솔 ·
  * 관리자 문서 미리보기 — 은 같은 문항을 가분수로 보였다. 한 문항이 화면마다 다른 수로 보였다.
  *
@@ -130,10 +130,12 @@ describe("변형 패널(옛·새 문제은행이 같이 쓴다)", () => {
     );
     const { container } = render(
       <ProblemTransformPanel
+        // 트랙 14: 대분수 결정이 문항 단위라 원본 해설까지 넘긴다(패널 서명에 `solution` 추가).
         origin={{
           id: PROBLEM.id,
           answer: ANSWER,
           content: CONTENT,
+          solution: SOLUTION,
           grade: "초5",
         }}
         onAdopted={() => {}}

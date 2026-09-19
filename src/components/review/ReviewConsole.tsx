@@ -25,7 +25,7 @@ import {
   type ReviewConsoleRow,
 } from "@/lib/review/consoleRow";
 import { REASON_LABELS, REASON_ORDER } from "@/components/review/reasonLabels";
-import { displayFractions } from "@/components/unified/fractionDisplay";
+import { fractionViewFor } from "@/components/unified/fractionDisplay";
 import { solutionForDisplay } from "@/lib/solutionSteps";
 import type { ReportReason } from "@/contracts/problemReport.contract";
 import type {
@@ -82,6 +82,8 @@ export function ReviewConsole({
 
   const queue = qs.find((q) => q.key === key) ?? qs[0];
   const row = rows[0];
+  // 본문·정답·해설이 문항 단위 결정 하나를 쓴다(원장님 2026-09-19 «항상 뷰는 통일이야»).
+  const shownFractions = row ? fractionViewFor(row) : (text: string) => text;
   const loading = useRef(false);
 
   const load = useCallback(async (k: ReviewQueueKey, replace: boolean) => {
@@ -264,7 +266,7 @@ export function ReviewConsole({
 
               <div className="mt-4 min-w-0 overflow-x-auto text-[15px] leading-relaxed">
                 <PaperProblemView
-                  content={displayFractions(row.content, row.grade)}
+                  content={shownFractions(row.content)}
                   figureUrls={row.figureUrls}
                   figureDims={row.figureDims}
                   figureSourceMm={row.figureSourceMm}
@@ -279,7 +281,7 @@ export function ReviewConsole({
                       글자 그대로 새고, `④` 는 렌더러를 탄 보기와 글꼴이 갈린다
                       (원장님이 화면에서 둘 다 찾아 주셨다, 2026-08-24). */}
                   <MathText
-                    text={displayFractions(row.answer, row.grade, row.content)}
+                    text={shownFractions(row.answer)}
                     className="text-[15px] font-semibold"
                   />
                 </div>
@@ -291,13 +293,7 @@ export function ReviewConsole({
                     <div className="mt-2 text-[14px] leading-relaxed text-text-2">
                       <PaperProblemView
                         content={
-                          solutionForDisplay(
-                            displayFractions(
-                              row.solution,
-                              row.grade,
-                              row.content,
-                            ),
-                          ) ?? ""
+                          solutionForDisplay(shownFractions(row.solution)) ?? ""
                         }
                       />
                     </div>

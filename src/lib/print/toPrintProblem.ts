@@ -16,7 +16,7 @@
  *    때까지 아무도 모른다(CLAUDE.md 2026-08-20 「배포본만 조용히 깨진다」와 같은 자리).
  */
 import type { TestPrintProblem } from "@/components/print/types";
-import { displayFractions } from "@/components/unified/fractionDisplay";
+import { fractionViewFor } from "@/components/unified/fractionDisplay";
 
 /** 지면이 읽는 DB 행 — 이 함수가 보는 것은 이 컬럼들뿐이다. */
 export interface PrintableProblemRow {
@@ -52,12 +52,16 @@ export function toPrintProblem(
   problem: PrintableProblemRow,
   orderIndex: number,
 ): TestPrintProblem {
-  // 초등 가분수는 대분수로 **보인다** — 화면(작업실·문제은행·학습지)과 같은 함수 하나다
-  // (원장님 2026-09-19 «모든 화면이 일치하도록»). 여기서 한 번 바꿔야 넘침 판정·답지·지면이
-  // 같은 글을 본다(CLAUDE.md 2026-08-18 «자와 지면은 같은 값»). DB 원문은 안 바뀐다.
-  const grade = problem.unit?.grade ?? "";
-  const shown = (text: string) =>
-    displayFractions(text, grade, problem.content);
+  // 초등 가분수는 대분수로 **보인다** — 화면(작업실·문제은행·학습지)과 같은 결정 하나다
+  // (원장님 2026-09-19 «모든 화면이 일치하도록» · «항상 뷰는 통일이야»). 문제지·정답지가 한 문항을
+  // 같은 모양으로 찍게 본문·정답·해설을 다 보고 한 번 정한다. 여기서 한 번 바꿔야 넘침 판정·
+  // 답지·지면이 같은 글을 본다(CLAUDE.md 2026-08-18 «자와 지면은 같은 값»). DB 원문은 안 바뀐다.
+  const shown = fractionViewFor({
+    grade: problem.unit?.grade ?? "",
+    content: problem.content,
+    answer: problem.answer,
+    solution: problem.solution,
+  });
   return {
     id: problem.id,
     orderIndex,

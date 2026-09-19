@@ -5,7 +5,7 @@ import { memo } from "react";
 import { MathText } from "@/components/math/MathText";
 import { ProblemExcerpt } from "@/components/problem/ProblemExcerpt";
 import { Button } from "@/components/ui/Button";
-import { displayFractions } from "@/components/unified/fractionDisplay";
+import { fractionViewFor } from "@/components/unified/fractionDisplay";
 import type { ProblemEntity } from "@/contracts/problem.contract";
 import { solutionForDisplay, splitSolutionSteps } from "@/lib/solutionSteps";
 
@@ -13,7 +13,7 @@ type Props = {
   orderIndex: number;
   problem: ProblemEntity;
   /**
-   * 문항 단원의 학년 — 초등이면 본문·답·해설의 가분수를 대분수로 보인다(`displayFractions`,
+   * 문항 단원의 학년 — 초등이면 본문·답·해설의 가분수를 대분수로 보인다(`fractionViewFor`,
    * 인쇄 지면과 같은 함수 — 원장님 2026-09-19 «모든 화면이 일치하도록»). 없으면 원문 그대로.
    */
   grade?: string;
@@ -48,8 +48,8 @@ export const ReviewProblemCard = memo(function ReviewProblemCard({
   onReplace,
   replacing,
 }: Props) {
-  const shown = (text: string) =>
-    displayFractions(text, grade, problem.content);
+  // 본문(`ProblemExcerpt`)과 같은 문항 단위 결정 — 답·해설이 본문과 다른 수로 보이지 않는다.
+  const shown = fractionViewFor({ ...problem, grade });
   // 분수 표시를 먼저 하고 줄은 그리기 직전에 나눈다(문제은행 상세와 같은 순서).
   const solution =
     solutionForDisplay(

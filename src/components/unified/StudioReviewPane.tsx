@@ -3,7 +3,7 @@
 /* eslint-disable @next/next/no-img-element */
 import { useEffect, useMemo, useRef, useState } from "react";
 import { ProblemContent } from "@/components/math/ProblemContent";
-import { displayFractions } from "./fractionDisplay";
+import { fractionViewFor } from "./fractionDisplay";
 import {
   STUDIO_QUESTION_TYPES,
   studioFigureLabel,
@@ -264,20 +264,18 @@ function ReviewCard({
     props.onSelect(crop.id);
     props.onUpdate(crop.id, patch);
   };
-  // 미리보기는 인쇄(NativeProblem·AnswerPage)와 같은 규칙으로 초등 가분수를 대분수로 보인다.
-  // 본문을 «묻는 말»로 넘겨야 바꾸기 문제의 분수가 남는다. 편집 칸·저장 원문은 가분수 그대로다.
-  const preview = (text: string) =>
-    displayFractions(text, crop.grade, crop.content);
+  // 미리보기는 인쇄(NativeProblem·AnswerPage)와 같은 결정으로 초등 가분수를 대분수로 보인다 —
+  // 이 문항의 본문·정답·해설을 다 보고 한 번 정한다(바꾸기 문제·«가분수는 그대로 두고» 해설이면
+  // 세 칸 모두 원문). 편집 칸·저장 원문은 가분수 그대로다.
+  const preview = fractionViewFor(crop);
   const readContent = useMemo(
     () =>
-      displayFractions(
+      preview(
         showScores
           ? editableContent
           : repositionScore(editableContent, undefined, false),
-        crop.grade,
-        crop.content,
       ),
-    [editableContent, showScores, crop.grade, crop.content],
+    [editableContent, showScores, preview],
   );
   return (
     <article

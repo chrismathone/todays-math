@@ -1,5 +1,5 @@
 import { MathText } from "@/components/math/MathText";
-import { displayFractions } from "../fractionDisplay";
+import { fractionViewFor } from "../fractionDisplay";
 import { A4_DIM } from "./tokens";
 import { printPagePadding, scaledItemStyle } from "./geometry";
 import { BodyContainer } from "./templates/BodyContainer";
@@ -17,36 +17,35 @@ export function AnswerPage({
   splitIndex,
   itemScales,
 }: PrintTemplateProps) {
-  const items = problems.map(({ id, variant: p }, index) => (
-    <section
-      key={id}
-      data-measure-idx={index}
-      style={{
-        fontSize: 12,
-        lineHeight: 1.8,
-        overflowWrap: "anywhere",
-        ...scaledItemStyle(
-          { ...options, template: "jeongtong" },
-          itemScales?.[index],
-        ),
-      }}
-    >
-      <div style={{ display: "flex", alignItems: "baseline", gap: 8 }}>
-        <strong style={{ color: options.color }}>
-          {startingNumber + index}.
-        </strong>
-        <MathText
-          text={displayFractions(p.answer || "정답 미입력", p.grade, p.content)}
-        />
-      </div>
-      {!options.quickAnswerOnly && p.solution && (
-        <MathText
-          as="div"
-          text={displayFractions(p.solution, p.grade, p.content)}
-        />
-      )}
-    </section>
-  ));
+  const items = problems.map(({ id, variant: p }, index) => {
+    // 문제지(NativeProblem)와 같은 결정 — 한 문항의 정답·해설·본문이 같은 모양이다.
+    const shown = fractionViewFor(p);
+    return (
+      <section
+        key={id}
+        data-measure-idx={index}
+        style={{
+          fontSize: 12,
+          lineHeight: 1.8,
+          overflowWrap: "anywhere",
+          ...scaledItemStyle(
+            { ...options, template: "jeongtong" },
+            itemScales?.[index],
+          ),
+        }}
+      >
+        <div style={{ display: "flex", alignItems: "baseline", gap: 8 }}>
+          <strong style={{ color: options.color }}>
+            {startingNumber + index}.
+          </strong>
+          <MathText text={shown(p.answer || "정답 미입력")} />
+        </div>
+        {!options.quickAnswerOnly && p.solution && (
+          <MathText as="div" text={shown(p.solution)} />
+        )}
+      </section>
+    );
+  });
   if (measure)
     return <div style={{ width: measure.columnWidthPx }}>{items}</div>;
   return (
