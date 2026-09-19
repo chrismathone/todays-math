@@ -101,10 +101,20 @@ test("source in-card math, figure and metadata edits save together and survive r
     .click();
   const field = body.locator("math-field");
   await expect(field).toBeVisible();
+  // 칸이 보이자마자 친다 — 기다리지 않는다. MathLive 는 입력 자리에 포커스를 60ms 뒤에
+  // 넘겨서, 그 틈에 친 글자는 사라지고 Esc 는 작업실 확대를 풀었다(2026-09-20 트랙 23).
+  // 페이지가 느린 기계에서는 키가 늦게 닿아 초록이 됐다 — 그래서 기다리면 결함이 숨는다.
   await page.keyboard.press("Control+a");
   await page.keyboard.type("3/4");
   await page.keyboard.press("Escape");
   await expect(field).toHaveCount(0);
+  // Esc 는 수식 칸만 닫는다 — 작업실 확대(시안 B)는 그대로다.
+  await expect(
+    page.getByRole("dialog", { name: "문제 제작 스튜디오" }),
+  ).toBeVisible();
+  await expect(
+    body.getByRole("button", { name: "수식 편집", exact: true }).first(),
+  ).toHaveAttribute("data-math-tex", encodeURIComponent("\\frac34"));
   await body.locator("p").last().click();
   await page.keyboard.press("End");
   await page.keyboard.insertText(" 직접 수정");
@@ -134,7 +144,9 @@ test("source in-card math, figure and metadata edits save together and survive r
   );
   expect(problem.content).toContain("직접 수정");
   expect(problem.content).toContain("[그림1]");
-  expect(problem.content).toContain("3");
+  // «3» 만 보면 보기 «③ $3$» 에 늘 걸린다 — 친 수식 그대로를 본다.
+  expect(problem.content).toContain("$\\frac34$");
+  expect(problem.content).not.toContain("\\frac{1}{2}");
   expect(problem.ocr).toMatchObject({
     number: 20,
     topic: "넓이 검수",
