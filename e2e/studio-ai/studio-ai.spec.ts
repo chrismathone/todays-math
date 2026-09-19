@@ -469,6 +469,50 @@ test("edit-window zoom button is painted like the review next button in both sta
   expect(mock.errors).toEqual([]);
 });
 
+// 원장님 2026-09-19 «파일 선택 칸 120 → 108px 로 줄여 한 줄» — 실제 작업실(/dev/unified, 왼쪽 메뉴 260px) 1680×920
+// 검수·확대 풀림에서 위 띠가 두 줄(94px)이었다. 하네스는 앱 틀이 없어 띠가 넓고 글꼴도 달라, 같은 여유(한 줄에 드는
+// 기본 폭이 114px 까지 — 120 이면 꺾이고 108 이면 한 줄)가 되는 폭 1516 에서 잰다. jsdom 은 flex 줄바꿈을 안 돈다.
+test("review band stays on one row with the 108px file picker", async ({
+  page,
+}, testInfo) => {
+  const mock = await mockAi(page);
+  await page.setViewportSize({ width: 1516, height: 920 });
+  await sample(page);
+  await detect(page);
+  await review(page);
+  const band = page.locator("[data-studio-band]");
+  const studio = page.locator('section[aria-label="문제 제작 스튜디오"]');
+  const picker = band.getByRole("combobox", { name: "원본 파일", exact: true });
+  const basis = () =>
+    picker.evaluate(
+      (select) => getComputedStyle(select.parentElement!).flexBasis,
+    );
+  const height = () => band.evaluate((element) => element.offsetHeight);
+  const bandVar = () =>
+    studio.evaluate((element) =>
+      element.style.getPropertyValue("--studio-band-height"),
+    );
+  expect(await basis()).toBe("108px");
+  // 검수 확대 중
+  await expect.poll(height).toBe(44);
+  // 검수 확대 풀림 — 두 줄이던 자리
+  await band.getByRole("button", { name: "편집창 축소", exact: true }).click();
+  await expect(
+    band.getByRole("button", { name: "편집창 확대", exact: true }),
+  ).toBeVisible();
+  expect(await basis()).toBe("108px");
+  await expect.poll(height).toBe(44);
+  await expect.poll(bandVar).toBe("44px");
+  // 칸이 좁아 파일 이름이 잘려도 title 로 다 보인다
+  const name = await picker.evaluate(
+    (select: HTMLSelectElement) => select.selectedOptions[0]?.text,
+  );
+  expect(name).toBeTruthy();
+  await expect(picker).toHaveAttribute("title", name!);
+  await band.screenshot({ path: testInfo.outputPath("band-108.png") });
+  expect(mock.errors).toEqual([]);
+});
+
 test("recognized figure is visible beside rendered text and exported with text mode", async ({
   page,
 }, testInfo) => {

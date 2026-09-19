@@ -18,7 +18,10 @@
  * - 선을 따라가는 면(채우기 통·안쪽 채우기)은 스스로 돌지 않는다 — 둘러싼 선이 모두 돌면 경로·씨앗 점을 같이 돌려
  *   (편집기 commit 의 면 맞추기가 같은 칸을 다시 찾게) 따라온다.
  * - 크기 고정 요소가 섞이면 돌리지 않는다(`rotationBlock`).
- * 번호(요소 차례)·요소 이름·묶음 표시는 건드리지 않는다. 캔버스 밖으로 나가도 그림 틀을 넓히지 않는다(저장할 때 맞춘다).
+ * - 돈 것(곡선은 곡선 자체, 글자는 조판한 상자)이 그림 틀 밖으로 나가면 넘친 쪽만 틀을 넓힌다 — 뒤집기와 같은 한 함수
+ *   (`widenFigureFrame`, 원장님 2026-09-19 «틀을 넓혀 다 보이게»). 줄이지는 않는다 — 네 번 돌아 제자리여도 넓힌 채.
+ *   같은 원문에 적으니 되돌리기 한 걸음에 같이 돌아간다. 저장할 때는 `fitFigureViewport` 가 다시 맞춘다.
+ * 번호(요소 차례)·요소 이름·묶음 표시는 건드리지 않는다.
  */
 import {
   applyPoint,
@@ -33,6 +36,8 @@ import {
 } from "./figureEditGeometry";
 import { isTiedFace } from "./figureFaceEditing";
 import { FACE_ATTR, FACE_SEED_ATTR } from "./figureFaceSources";
+import { sampleFigurePath } from "./figureFlip";
+import { widenFigureFrame } from "./figureFrame";
 import { isSizeLocked } from "./figureSizeLock";
 import {
   editableFigureDoc,
@@ -50,9 +55,20 @@ export const ROTATE_BLOCKED = {
   face: "면은 둘러싼 선을 따라갑니다. 선을 같이 고르세요.",
 } as const;
 
+/** 글자 상자(그림 좌표) — 가운데와 반폭·반높이. */
+export interface TextBox {
+  center: Point;
+  half: Point;
+}
+
 export interface RotateOptions {
-  /** 글자 가운데(그림 좌표) — 편집기가 화면에서 잰 값. 없는 글자는 글자 크기로 어림한다. */
+  /** 글자 가운데(그림 좌표) — 화면에서 잰 값. 없는 글자는 글자 크기로 어림한다. */
   textCenters?: ReadonlyMap<string, Point>;
+  /**
+   * 화면에서 잰 글자 상자(`measureTextBoxes`) — 가운데는 `textCenters` 대신 이것을 쓰고, 상자는 돈 뒤 틀 밖인지
+   * 재는 데 쓴다(조판한 `\frac{1}{2}` 는 원문 글자 수 어림보다 훨씬 크다). 없는 글자는 글자 크기로 어림한다.
+   */
+  textBoxes?: ReadonlyMap<string, TextBox>;
 }
 
 const OBJECT = "data-object-id";
@@ -375,8 +391,11 @@ function extentPoints(node: Element, m: Affine): Point[] {
   return localPoints(node).map((p) => applyPoint(m, p));
 }
 
-/** 글자 가운데 어림(요소 좌표) — 한글·전각 1em, 빈칸 0.25em, 나머지 0.55em, 밑선에서 0.36em 위. */
-function estimateTextCenter(node: Element): Point {
+/**
+ * 글자 상자 어림(요소 좌표) — 한글·전각 1em, 빈칸 0.25em, 나머지 0.55em, 가운데는 밑선에서 0.36em 위, 높이 1em.
+ * 가운데는 회전 중심·자리 옮기기에, 반폭·반높이는 틀 넓히기에 쓴다.
+ */
+function estimateTextBox(node: Element): { center: Point; half: Point } {
   const size = first(node.getAttribute("font-size")) || 18;
   const x = first(node.getAttribute("x")),
     y = first(node.getAttribute("y"));
@@ -390,10 +409,43 @@ function estimateTextCenter(node: Element): Point {
   const middle = ["middle", "central"].includes(
     node.getAttribute("dominant-baseline") ?? "",
   );
+  return {
+    center: [
+      anchor === "middle"
+        ? x
+        : anchor === "end"
+          ? x - width / 2
+          : x + width / 2,
+      middle ? y : y - 0.36 * size,
+    ],
+    half: [width / 2, size / 2],
+  };
+}
+
+/** 요소 좌표의 반폭·반높이를 m 으로 옮긴 그림 좌표의 반폭·반높이 — 네 모서리를 옮긴 상자. */
+function halfExtent(m: Affine, [hx, hy]: Point): Point {
+  const corners = [
+    [-hx, -hy],
+    [hx, -hy],
+    [hx, hy],
+    [-hx, hy],
+  ].map((p) => applyVector(m, p as Point));
+  const xs = corners.map((p) => p[0]),
+    ys = corners.map((p) => p[1]);
   return [
-    anchor === "middle" ? x : anchor === "end" ? x - width / 2 : x + width / 2,
-    middle ? y : y - 0.36 * size,
+    (Math.max(...xs) - Math.min(...xs)) / 2,
+    (Math.max(...ys) - Math.min(...ys)) / 2,
   ];
+}
+
+/** 요소가 그림에서 차지하는 자리(그림 좌표) — 곡선은 조절점이 아니라 곡선 위의 점, 원·타원은 정확한 상자. */
+function inkPoints(node: Element): Point[] {
+  const m = elementMatrix(node);
+  if (node.localName === "path") {
+    const pieces = sampleFigurePath(node.getAttribute("d") ?? "", 12);
+    if (pieces) return pieces.flat().map((p) => applyPoint(m, p));
+  }
+  return extentPoints(node, m);
 }
 
 /** 좌표를 l 로 옮겨 적는다 — 이 요소 모양으로 못 적으면 false(부르는 쪽이 자기 변환으로 돌린다). */
@@ -550,23 +602,32 @@ export function rotateFigureSelection(
   );
   const isText = (node: Element) => node.localName === "text";
 
-  // 중심 — 도형 요소의 경계 상자(글자만 골랐으면 글자 가운데들의 상자)
-  const textCenters = new Map(
-    targets.filter(isText).map((node) => {
+  // 글자 상자(그림 좌표) — 화면에서 잰 것이 있으면 그것, 없으면 글자 크기로 어림
+  const textBoxes = new Map(
+    targets.filter(isText).map((node): [Element, TextBox] => {
       const id = node.getAttribute(OBJECT)!;
+      const measured = options.textBoxes?.get(id);
+      if (measured) return [node, measured];
+      const m = matrices.get(node)!;
+      const estimate = estimateTextBox(node);
       return [
         node,
-        options.textCenters?.get(id) ??
-          applyPoint(matrices.get(node)!, estimateTextCenter(node)),
-      ] as const;
+        {
+          center:
+            options.textCenters?.get(id) ?? applyPoint(m, estimate.center),
+          half: halfExtent(m, estimate.half),
+        },
+      ];
     }),
   );
+
+  // 중심 — 도형 요소의 경계 상자(글자만 골랐으면 글자 가운데들의 상자)
   const shapeExtents = targets.flatMap((node) =>
     isText(node) ? [] : extentPoints(node, matrices.get(node)!),
   );
   const extents = shapeExtents.length
     ? shapeExtents
-    : [...textCenters.values()];
+    : [...textBoxes.values()].map((box) => box.center);
   if (!extents.length) return svg;
   const xs = extents.map((p) => p[0]),
     ys = extents.map((p) => p[1]);
@@ -615,7 +676,7 @@ export function rotateFigureSelection(
     const parent = parentMatrix(node),
       back = invert(parent);
     if (!back) continue;
-    const center = textCenters.get(node)!;
+    const { center } = textBoxes.get(node)!;
     const [x, y] = applyPoint(rotation, center);
     shift(node, applyVector(back, [x - center[0], y - center[1]]));
     if (node.hasAttribute("data-px") && node.hasAttribute("data-py")) {
@@ -652,34 +713,69 @@ export function rotateFigureSelection(
     }
     turnShape(node);
   });
+
+  // 돈 것이 틀 밖이면 넘친 쪽만 넓힌다(뒤집기와 같은 한 함수) — 글자는 돈 가운데에 제 상자를 얹는다
+  const ink = targets.flatMap((node): Point[] => {
+    if (!isText(node)) return inkPoints(node);
+    const { center, half } = textBoxes.get(node)!;
+    const [x, y] = applyPoint(rotation, center);
+    return [
+      [x - half[0], y - half[1]],
+      [x + half[0], y + half[1]],
+    ];
+  });
+  widenFigureFrame(doc.documentElement, ink);
   return serializeFigureSvg(doc);
 }
 
 /**
- * 화면에서 잰 글자 가운데(그림 좌표) — 조판한 라벨은 원문 글자 수로 어림하면 크게 어긋난다(`\frac{1}{2}` 가 11글자).
- * 캔버스의 조판본(`<g data-object-id>`)이나 `<text>` 의 상자를 루트 좌표로 옮긴다.
+ * 화면에서 잰 글자 상자(그림 좌표) — 조판한 라벨은 원문 글자 수로 어림하면 크게 어긋난다(`\frac{1}{2}` 가 11글자).
+ * 캔버스의 조판본(`<g data-object-id>`)이나 `<text>` 의 상자를 루트 좌표로 옮긴다: 가운데는 상자 가운데를 옮긴 점,
+ * 반폭·반높이는 네 모서리를 옮긴 상자. 글자는 돌 때 자리만 옮기니 돈 뒤의 상자는 이 상자를 옮긴 것이다(틀 넓히기).
  * 화면 좌표는 float32 라 1e-5 쯤 떨린다 — 0.001 로 자른다. 안 자르면 돌린 뒤 다시 잰 값이 조금씩 달라 네 번 돌아도
  * 라벨에 `translate(-0.000008 0)` 같은 찌꺼기가 남았다(브라우저 실측 2026-09-19).
  */
-export function measureTextCenters(
-  root: SVGSVGElement,
-  ids: readonly string[],
-) {
-  const centers = new Map<string, Point>();
+export function measureTextBoxes(root: SVGSVGElement, ids: readonly string[]) {
+  const boxes = new Map<string, TextBox>();
   const toRoot = root.getScreenCTM?.()?.inverse();
-  if (!toRoot) return centers;
+  if (!toRoot) return boxes;
+  const thousandth = (value: number) => Math.round(value * 1000) / 1000;
   for (const id of ids) {
     const node = root.querySelector<SVGGraphicsElement>(`[${OBJECT}="${id}"]`);
     const box = node?.getBBox?.();
     const matrix = node?.getScreenCTM?.();
     if (!box || !matrix || !(box.width > 0 || box.height > 0)) continue;
-    const at = new DOMPoint(
-      box.x + box.width / 2,
-      box.y + box.height / 2,
-    ).matrixTransform(toRoot.multiply(matrix));
-    const thousandth = (value: number) => Math.round(value * 1000) / 1000;
-    if (Number.isFinite(at.x) && Number.isFinite(at.y))
-      centers.set(id, [thousandth(at.x), thousandth(at.y)]);
+    const toFigure = toRoot.multiply(matrix);
+    const at = (x: number, y: number) =>
+      new DOMPoint(x, y).matrixTransform(toFigure);
+    const center = at(box.x + box.width / 2, box.y + box.height / 2);
+    const corners = [
+      at(box.x, box.y),
+      at(box.x + box.width, box.y),
+      at(box.x + box.width, box.y + box.height),
+      at(box.x, box.y + box.height),
+    ];
+    const xs = corners.map((p) => p.x),
+      ys = corners.map((p) => p.y);
+    const half: Point = [
+      thousandth((Math.max(...xs) - Math.min(...xs)) / 2),
+      thousandth((Math.max(...ys) - Math.min(...ys)) / 2),
+    ];
+    if ([center.x, center.y, ...half].every(Number.isFinite))
+      boxes.set(id, {
+        center: [thousandth(center.x), thousandth(center.y)],
+        half,
+      });
   }
-  return centers;
+  return boxes;
+}
+
+/** 화면에서 잰 글자 가운데(그림 좌표) — `measureTextBoxes` 의 가운데만. */
+export function measureTextCenters(
+  root: SVGSVGElement,
+  ids: readonly string[],
+) {
+  return new Map(
+    [...measureTextBoxes(root, ids)].map(([id, box]) => [id, box.center]),
+  );
 }

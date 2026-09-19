@@ -12,12 +12,11 @@ import {
   round2,
   type Point,
 } from "./figureEditGeometry";
+import { widenFrame } from "./figureFrame";
 import {
-  editableFigureDoc,
   editFigureObject,
   figureObjects,
   readFigureSvg,
-  serializeFigureSvg,
 } from "./figureSvgEditing";
 
 /**
@@ -604,7 +603,7 @@ export type FlipCurveResult =
  * 편집기 요소 하나(곡선 path · 꺾은선 polyline)를 현에 대해 뒤집고, 딸린 값 글자를 같은 현에 대해 대칭 자리로
  * 옮긴다 — 글자는 **똑바로 선 채**(원장님 항목 22) 평행 이동만 한다. 요소 id 로 부른다(편집기 단추·AI `flip` 공용).
  * 곡선·꺾은선이 아니거나 · 각 표시 · 선을 따라가는 면 · 크기 고정이면 이유만 돌려준다(그림은 그대로).
- * 딸린 글자나 뒤집은 곡선이 그림 틀 밖으로 나가면 틀을 넓힌다.
+ * 딸린 글자나 뒤집은 곡선이 그림 틀 밖으로 나가면 틀을 넓힌다(`widenFrame` — 90° 회전과 같은 한 함수).
  */
 export function flipFigureCurve(svg: string, id: string): FlipCurveResult {
   const objects = figureObjects(svg);
@@ -678,42 +677,4 @@ export function flipFigureCurve(svg: string, id: string): FlipCurveResult {
   }
   next = widenFrame(next, ink, pad);
   return labelId ? { svg: next, labelId } : { svg: next };
-}
-
-/**
- * 그림 틀(루트 viewBox)을 점들이 들어가게 넓힌다 — 밖으로 나간 쪽만, 여백 pad 를 두고. 줄이지는 않는다.
- * 편집기는 틀만 보여 준다: 엔진 그림은 틀이 도형에 꼭 맞아, 아래로 뒤집은 «10» 이 편집 화면 밑에서 잘렸다
- * (2026-09-19 브라우저 확인). 저장할 때는 fitFigureViewport 가 다시 맞춘다. width·height 가 적혀 있으면 같은 비율로.
- */
-function widenFrame(svg: string, points: Point[], pad: number): string {
-  if (!points.length) return svg;
-  const doc = editableFigureDoc(svg);
-  const root = doc.documentElement;
-  const view = root
-    .getAttribute("viewBox")
-    ?.trim()
-    .split(/[\s,]+/)
-    .map(Number);
-  if (view?.length !== 4 || !view.every(Number.isFinite) || view[2] <= 0)
-    return svg;
-  const [x, y, w, h] = view;
-  const xs = points.map((p) => p[0]),
-    ys = points.map((p) => p[1]);
-  const left = Math.min(...xs) < x ? Math.min(...xs) - pad : x;
-  const top = Math.min(...ys) < y ? Math.min(...ys) - pad : y;
-  const right = Math.max(...xs) > x + w ? Math.max(...xs) + pad : x + w;
-  const bottom = Math.max(...ys) > y + h ? Math.max(...ys) + pad : y + h;
-  if (left === x && top === y && right === x + w && bottom === y + h)
-    return svg;
-  const next = [left, top, right - left, bottom - top].map(round3);
-  root.setAttribute("viewBox", next.map(text).join(" "));
-  for (const [name, before, after] of [
-    ["width", w, next[2]],
-    ["height", h, next[3]],
-  ] as const) {
-    const size = Number.parseFloat(root.getAttribute(name) ?? "");
-    if (Number.isFinite(size) && size > 0)
-      root.setAttribute(name, text(round3((size * after) / before)));
-  }
-  return serializeFigureSvg(doc);
 }
