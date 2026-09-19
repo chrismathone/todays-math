@@ -533,6 +533,20 @@ describe("뒤집기 — 치수 호를 반대쪽으로", () => {
     unchanged(result.svg, [6, 8]);
   });
 
+  // 겹친 치수 — BM 의 «5» 는 BC 곡선에도 가깝지만 제 곡선(BM)이 더 가깝다. BC 의 «10» 은 꼭대기 너머에 선다.
+  it("leaves a value that sits nearer another curve", () => {
+    const stacked = prepareFigureSvg(
+      `<svg xmlns="${NS}" viewBox="0 0 300 300"><line x1="40" y1="200" x2="240" y2="200" stroke="#111111"/><path d="M 40 200 Q 90 172 140 200" ${DIM}/><path d="M 40 200 Q 140 144 240 200" ${DIM}/><text x="90" y="191.376" ${VALUE} data-mj="5">5</text><text x="140" y="155.376" ${VALUE} data-mj="10">10</text></svg>`,
+    );
+    const result = applyFigureEdits(stacked, [{ op: "flip", target: 3 }]);
+    const after = figureObjects(result.svg);
+    expect(after[3].attrs.transform).toBeUndefined();
+    expect(after[4].attrs.transform).toBe("translate(0 100)");
+    expect(result.applied).toEqual([
+      "3번 곡선/경로 반대쪽으로 뒤집기(글자 10 함께)",
+    ]);
+  });
+
   it("gives the same result from the editor's own flip function", () => {
     const direct = flipFigureCurve(parallelogram, pids[4]);
     expect("svg" in direct && direct.svg).toBe(
