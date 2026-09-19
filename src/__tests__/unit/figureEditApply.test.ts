@@ -547,6 +547,49 @@ describe("뒤집기 — 치수 호를 반대쪽으로", () => {
     ]);
   });
 
+  // 2026-09-19 브라우저 확인 — 엔진 그림은 틀(viewBox)이 도형에 꼭 맞아, 아래로 뒤집은 «10» 이 편집 화면 밑에서 잘렸다.
+  // 편집기는 틀만 보여 준다. 뒤집은 곡선·글자가 틀 밖으로 나가면 그만큼(+ 여백) 넓힌다 — 줄이지는 않는다.
+  it("widens the figure frame when the flipped value would fall outside it", () => {
+    // 도형 엔진 v2 가 실제로 그린 것(평행사변형 ABCD · BC 위쪽 치수 «10» — 스펙 side "right")
+    const engine = prepareFigureSvg(
+      `<svg viewBox="0 0 307.116 174.183" xmlns="${NS}">
+  <rect width="307.116" height="174.183" fill="#ffffff" />
+  <g>
+    <line x1="78.327" y1="26.807" x2="28.327" y2="156.807" stroke="#111111" stroke-width="1.9" />
+    <line x1="28.327" y1="156.807" x2="228.327" y2="156.807" stroke="#111111" stroke-width="1.9" />
+    <line x1="228.327" y1="156.807" x2="278.327" y2="26.807" stroke="#111111" stroke-width="1.9" />
+    <line x1="278.327" y1="26.807" x2="78.327" y2="26.807" stroke="#111111" stroke-width="1.9" />
+  </g>
+  <g>
+    <path d="M 113.717 143.125 Q 72.522 144.916 31.327 156.807 M 142.937 143.125 Q 184.132 144.916 225.327 156.807" fill="none" stroke="#111111" stroke-width="0.72" stroke-dasharray="5 3" stroke-linecap="round" />
+  </g>
+  <g>
+    <text x="128.327" y="148.183" font-family="Cambria Math, HancomEQN, Times New Roman, serif" font-size="16.8" text-anchor="middle" fill="#111111" paint-order="stroke fill" stroke="#ffffff" stroke-width="5.6" stroke-linejoin="round" data-mj="10"><tspan font-style="normal">10</tspan></text>
+    <text x="17.603" y="162.183" font-family="Cambria Math, HancomEQN, Times New Roman, serif" font-size="16.8" text-anchor="middle" fill="#111111" data-px="28.327" data-py="156.807" data-mj="B"><tspan font-style="normal">B</tspan></text>
+  </g>
+</svg>`,
+    );
+    const result = applyFigureEdits(engine, [{ op: "flip", target: 5 }]);
+    const after = figureObjects(result.svg);
+    expect(after[4].attrs.d).toBe(
+      "M 113.717 170.489 Q 72.522 168.698 31.327 156.807 M 142.937 170.489 Q 184.132 168.698 225.327 156.807",
+    );
+    expect(after[5].attrs.transform).toBe("translate(0 28)");
+    const view = readFigureSvg(result.svg)
+      .documentElement.getAttribute("viewBox")!
+      .split(" ")
+      .map(Number);
+    // 가로·위는 그대로, 아래만 «10» 의 글자 상자(가운데 170.8 + 반 글자 8.4) + 여백까지
+    expect(view.slice(0, 3)).toEqual([0, 0, 307.116]);
+    expect(view[3]).toBeGreaterThan(179.2);
+    expect(view[3]).toBeLessThan(195);
+    // 틀 안에 있으면 건드리지 않는다
+    const inside = applyFigureEdits(parallelogram, [{ op: "flip", target: 5 }]);
+    expect(
+      readFigureSvg(inside.svg).documentElement.getAttribute("viewBox"),
+    ).toBe("0 0 300 240");
+  });
+
   it("gives the same result from the editor's own flip function", () => {
     const direct = flipFigureCurve(parallelogram, pids[4]);
     expect("svg" in direct && direct.svg).toBe(

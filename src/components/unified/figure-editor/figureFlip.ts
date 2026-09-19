@@ -10,9 +10,11 @@ import {
   type Point,
 } from "./figureEditGeometry";
 import {
+  editableFigureDoc,
   editFigureObject,
   figureObjects,
   readFigureSvg,
+  serializeFigureSvg,
 } from "./figureSvgEditing";
 
 /**
@@ -371,14 +373,20 @@ export function flipFigurePathData(d: string): FlipPathResult {
 export type FlipPointsResult =
   { points: string; chord: [Point, Point] } | { reason: string };
 
-/** 꺾은선(points) 을 처음·끝을 잇는 현에 대해 뒤집는다. */
-export function flipFigurePointList(points: string): FlipPointsResult {
+/** 꺾은선 points 속성 → 점 목록. */
+function pointList(points: string): Point[] {
   const values = (
     points.match(/[-+]?(?:\d*\.\d+|\d+\.?\d*)(?:e[-+]?\d+)?/gi) ?? []
   ).map(Number);
   const list: Point[] = [];
   for (let k = 0; k + 1 < values.length; k += 2)
     list.push([values[k], values[k + 1]]);
+  return list;
+}
+
+/** 꺾은선(points) 을 처음·끝을 잇는 현에 대해 뒤집는다. */
+export function flipFigurePointList(points: string): FlipPointsResult {
+  const list = pointList(points);
   if (list.length < 2) return { reason: "경로를 읽지 못했습니다" };
   const chord = chordOf([list]);
   if (!chord) return { reason: CLOSED };
@@ -480,7 +488,8 @@ const styled = (node: Element, o: FigureObject, name: string) =>
 function labelCenter(o: FigureObject, node: Element) {
   const size = first(styled(node, o, "font-size")) || 16;
   const anchor = styled(node, o, "text-anchor");
-  const length = [...(o.attrs["data-mj"] ?? o.text).replace(/\$/g, "")].length;
+  // 보이는 글자 수 — 수식 원문(`$96^\circ$`)이 아니라 지면의 «96°»
+  const length = [...(o.text.trim() || o.attrs["data-mj"] || "")].length;
   const baseline = styled(node, o, "dominant-baseline");
   const at = applyPoint(elementMatrix(node), [
     first(o.attrs.x) +
@@ -490,7 +499,7 @@ function labelCenter(o: FigureObject, node: Element) {
     first(o.attrs.y) -
       (["middle", "central"].includes(baseline ?? "") ? 0 : 0.32 * size),
   ]);
-  return { at, size };
+  return { at, size, half: 0.3 * size * Math.max(1, length) };
 }
 
 function curveSamples(o: FigureObject, node: Element): Point[][] | null {
@@ -498,12 +507,7 @@ function curveSamples(o: FigureObject, node: Element): Point[][] | null {
   let pieces: Point[][] | null = null;
   if (o.type === "path") pieces = sampleFigurePath(o.attrs.d ?? "", 12);
   else if (o.type === "polyline") {
-    const values = (
-      o.attrs.points?.match(/[-+]?(?:\d*\.\d+|\d+\.?\d*)(?:e[-+]?\d+)?/gi) ?? []
-    ).map(Number);
-    const list: Point[] = [];
-    for (let k = 0; k + 1 < values.length; k += 2)
-      list.push([values[k], values[k + 1]]);
+    const list = pointList(o.attrs.points ?? "");
     pieces = list.length > 1 ? [list] : null;
   }
   return (
@@ -568,21 +572,24 @@ function curveLabel(
       ? [curveSamples(o, nodes[i])].filter((p): p is Point[][] => !!p)
       : [],
   );
-  let found: { index: number; at: Point; distance: number } | undefined;
+  let found:
+    | { index: number; at: Point; distance: number; size: number; half: number }
+    | undefined;
   objects.forEach((o, i) => {
     if (o.type !== "text") return;
     if (o.attrs["data-px"] !== undefined || o.attrs["data-py"] !== undefined)
       return;
     if (POINT_NAME.test((o.attrs["data-mj"] ?? o.text).replace(/[$\s]/g, "")))
       return;
-    const { at, size } = labelCenter(o, nodes[i]);
+    const { at, size, half } = labelCenter(o, nodes[i]);
     const t = ((at[0] - a[0]) * dx + (at[1] - a[1]) * dy) / length2;
     if (t <= 0 || t >= 1) return;
     if ((dx * (at[1] - a[1]) - dy * (at[0] - a[0])) * bulge <= 0) return;
     const distance = distanceToCurve(at, pieces);
     if (distance > 2.5 * size) return;
     if (others.some((other) => distanceToCurve(at, other) < distance)) return;
-    if (!found || distance < found.distance) found = { index: i, at, distance };
+    if (!found || distance < found.distance)
+      found = { index: i, at, distance, size, half };
   });
   return found;
 }
@@ -622,22 +629,74 @@ export function flipFigureCurve(svg: string, id: string): FlipCurveResult {
     id,
     "d" in flipped ? { d: flipped.d } : { points: flipped.points },
   );
-  if (!label) return { svg: next };
-  const target = mirrorAcross(label.at, chord[0], chord[1]);
-  const labelNode = nodes[label.index];
-  const inverse = invert(parentMatrix(labelNode));
-  if (!inverse) return { svg: next };
-  const [lx, ly] = applyVector(inverse, [
-    target[0] - label.at[0],
-    target[1] - label.at[1],
-  ]);
-  const previous = labelNode.getAttribute("transform")?.trim();
-  const labelId = objects[label.index].id;
-  next = transformFigureSelection(next, [
-    {
-      id: labelId,
-      transform: `translate(${round2(lx)} ${round2(ly)})${previous ? ` ${previous}` : ""}`,
-    },
-  ]);
-  return { svg: next, labelId };
+  // 뒤집은 곡선이 차지하는 자리(그림 좌표) — 틀 밖으로 나가면 넓힌다
+  const ink: Point[] = (
+    "d" in flipped
+      ? (sampleFigurePath(flipped.d, 12) ?? [])
+      : [pointList(flipped.points)]
+  ).flatMap((piece) => piece.map((p) => applyPoint(matrix, p)));
+  let pad = 6;
+  let labelId: string | undefined;
+  const labelNode = label && nodes[label.index];
+  const inverse = labelNode && invert(parentMatrix(labelNode));
+  if (label && labelNode && inverse) {
+    const target = mirrorAcross(label.at, chord[0], chord[1]);
+    const [lx, ly] = applyVector(inverse, [
+      target[0] - label.at[0],
+      target[1] - label.at[1],
+    ]);
+    const previous = labelNode.getAttribute("transform")?.trim();
+    labelId = objects[label.index].id;
+    next = transformFigureSelection(next, [
+      {
+        id: labelId,
+        transform: `translate(${round2(lx)} ${round2(ly)})${previous ? ` ${previous}` : ""}`,
+      },
+    ]);
+    ink.push(
+      [target[0] - label.half, target[1] - label.size / 2],
+      [target[0] + label.half, target[1] + label.size / 2],
+    );
+    pad = 0.6 * label.size;
+  }
+  next = widenFrame(next, ink, pad);
+  return labelId ? { svg: next, labelId } : { svg: next };
+}
+
+/**
+ * 그림 틀(루트 viewBox)을 점들이 들어가게 넓힌다 — 밖으로 나간 쪽만, 여백 pad 를 두고. 줄이지는 않는다.
+ * 편집기는 틀만 보여 준다: 엔진 그림은 틀이 도형에 꼭 맞아, 아래로 뒤집은 «10» 이 편집 화면 밑에서 잘렸다
+ * (2026-09-19 브라우저 확인). 저장할 때는 fitFigureViewport 가 다시 맞춘다. width·height 가 적혀 있으면 같은 비율로.
+ */
+function widenFrame(svg: string, points: Point[], pad: number): string {
+  if (!points.length) return svg;
+  const doc = editableFigureDoc(svg);
+  const root = doc.documentElement;
+  const view = root
+    .getAttribute("viewBox")
+    ?.trim()
+    .split(/[\s,]+/)
+    .map(Number);
+  if (view?.length !== 4 || !view.every(Number.isFinite) || view[2] <= 0)
+    return svg;
+  const [x, y, w, h] = view;
+  const xs = points.map((p) => p[0]),
+    ys = points.map((p) => p[1]);
+  const left = Math.min(...xs) < x ? Math.min(...xs) - pad : x;
+  const top = Math.min(...ys) < y ? Math.min(...ys) - pad : y;
+  const right = Math.max(...xs) > x + w ? Math.max(...xs) + pad : x + w;
+  const bottom = Math.max(...ys) > y + h ? Math.max(...ys) + pad : y + h;
+  if (left === x && top === y && right === x + w && bottom === y + h)
+    return svg;
+  const next = [left, top, right - left, bottom - top].map(round3);
+  root.setAttribute("viewBox", next.map(text).join(" "));
+  for (const [name, before, after] of [
+    ["width", w, next[2]],
+    ["height", h, next[3]],
+  ] as const) {
+    const size = Number.parseFloat(root.getAttribute(name) ?? "");
+    if (Number.isFinite(size) && size > 0)
+      root.setAttribute(name, text(round3((size * after) / before)));
+  }
+  return serializeFigureSvg(doc);
 }
