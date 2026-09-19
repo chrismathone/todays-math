@@ -2,8 +2,10 @@
  * 고른 요소를 시계·반시계 90° 회전 — 원장님 2026-09-19 «회전 옵션 추가 가능한지. 시계 반시계 90도 방향».
  *
  * - 중심은 고른 것 전체의 경계 상자 가운데(그림 좌표). 여럿·묶음은 한 덩어리로 돈다 — 각자 제자리에서 돌지 않는다.
- *   상자는 요소의 점(끝점·꼭짓점·곡선 조절점·원/타원의 정확한 상자)과 **글자의 가운데**로 잰다. 글자는 돌아도 모양이
- *   그대로라 글자 상자를 넣으면 돈 뒤의 상자 가운데가 달라진다 — 점으로 재면 네 번 돌아 제자리로 온다.
+ *   상자는 도형 요소의 점(끝점·꼭짓점·곡선 조절점·원/타원의 정확한 상자)으로 잰다 — 돈 뒤의 상자가 돈 상자와 같아
+ *   네 번 돌면 제자리로 온다. 글자는 넣지 않는다: 글자는 돌아도 모양이 그대로라 글자 상자를 넣으면 돈 뒤의 가운데가
+ *   달라지고, 화면에서 잰 글자 가운데(소수 여러 자리)가 들어가면 선 좌표에 떠돌이 자릿수가 붙는다(정밀 수치에 보인다).
+ *   글자만 골랐으면 글자 가운데들의 상자로 돈다.
  * - 좌표를 돌려 적는다(변환 행렬을 덧씌우지 않는다) — 정밀 수치·조절점·노란 점·면 계산이 돈 모양을 그대로 읽는다.
  *   요소의 조상·자기 transform 은 그대로 두고, 그 좌표계로 옮긴 회전(요소 좌표 → 그림 좌표 → 회전 → 되돌림)을 점에 건다.
  *   사각형·타원은 축에 붙은 채 폭과 높이가 바뀐다. 사각형은 사각형, 원은 원으로 남는다.
@@ -548,7 +550,7 @@ export function rotateFigureSelection(
   );
   const isText = (node: Element) => node.localName === "text";
 
-  // 중심 — 요소의 점 · 글자 가운데의 경계 상자
+  // 중심 — 도형 요소의 경계 상자(글자만 골랐으면 글자 가운데들의 상자)
   const textCenters = new Map(
     targets.filter(isText).map((node) => {
       const id = node.getAttribute(OBJECT)!;
@@ -559,11 +561,12 @@ export function rotateFigureSelection(
       ] as const;
     }),
   );
-  const extents = targets.flatMap((node) =>
-    isText(node)
-      ? [textCenters.get(node)!]
-      : extentPoints(node, matrices.get(node)!),
+  const shapeExtents = targets.flatMap((node) =>
+    isText(node) ? [] : extentPoints(node, matrices.get(node)!),
   );
+  const extents = shapeExtents.length
+    ? shapeExtents
+    : [...textCenters.values()];
   if (!extents.length) return svg;
   const xs = extents.map((p) => p[0]),
     ys = extents.map((p) => p[1]);

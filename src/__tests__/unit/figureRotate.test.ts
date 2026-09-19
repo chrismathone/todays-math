@@ -233,21 +233,53 @@ describe("회전 — 요소 종류별 좌표", () => {
   it("글자는 똑바로 선 채 자리만 돈다 — 회전각 없이 옮기기만, 임자 꼭짓점(data-px)은 같이 돈다", () => {
     const svg = figure(
       `<line x1="100" y1="100" x2="200" y2="100" stroke="#111"/>` +
-        `<text x="150" y="80" font-size="18" text-anchor="middle" data-px="150" data-py="100" data-mj="A">A</text>`,
+        `<text x="100" y="80" font-size="18" text-anchor="middle" data-px="100" data-py="100" data-mj="A">A</text>`,
     );
-    // 글자 가운데를 편집기가 재어 넘긴다 — (150, 80). 상자 x 100..200, y 80..100 → 가운데 (150, 90)
+    // 글자 가운데를 편집기가 재어 넘긴다 — (100, 75). 중심은 선분의 상자 가운데 (150, 100): (x, y) → (250 − y, x − 50)
     const cw = rotateFigureSelection(svg, ids(svg), "cw", {
-      textCenters: new Map([["obj-1", [150, 80]]]),
+      textCenters: new Map([["obj-1", [100, 75]]]),
     });
     closeTo(
       ["x1", "y1", "x2", "y2"].map((n) => Number(attr(cw, "obj-0", n))),
-      [140, 40, 140, 140],
+      [150, 50, 150, 150],
     );
-    expect(attr(cw, "obj-1", "transform")).toBe("translate(10 10)");
-    expect(attr(cw, "obj-1", "x")).toBe("150");
+    // 가운데 (100, 75) → (175, 50): 선분 위쪽 끝(150, 50)의 오른쪽 — 왼쪽 위에 있던 라벨이 오른쪽 위로
+    expect(attr(cw, "obj-1", "transform")).toBe("translate(75 -25)");
+    expect(attr(cw, "obj-1", "x")).toBe("100");
     expect(attr(cw, "obj-1", "y")).toBe("80");
-    closeTo(numbers(attr(cw, "obj-1", "data-px")), [140]);
-    closeTo(numbers(attr(cw, "obj-1", "data-py")), [90]);
+    expect(attr(cw, "obj-1", "data-px")).toBe("150");
+    expect(attr(cw, "obj-1", "data-py")).toBe("50");
+  });
+
+  it("중심은 도형 요소의 상자로 잰다 — 글자가 삐져나와도 좌표에 떠돌이 자릿수가 안 붙는다", () => {
+    const svg = figure(
+      `<line x1="100" y1="100" x2="200" y2="100" stroke="#111"/>` +
+        `<text x="90" y="60" font-size="18" data-mj="\\frac{1}{3}">\\frac{1}{3}</text>`,
+    );
+    const cw = rotateFigureSelection(svg, ids(svg), "cw", {
+      textCenters: new Map([["obj-1", [93.123457, 51.987654]]]),
+    });
+    expect(["x1", "y1", "x2", "y2"].map((n) => attr(cw, "obj-0", n))).toEqual([
+      "150",
+      "50",
+      "150",
+      "150",
+    ]);
+  });
+
+  it("글자만 여럿 고르면 글자 가운데들의 상자로 돈다", () => {
+    const svg = figure(
+      `<text x="100" y="100" font-size="18">A</text><text x="200" y="100" font-size="18">B</text>`,
+    );
+    const cw = rotateFigureSelection(svg, ids(svg), "cw", {
+      textCenters: new Map<string, Point>([
+        ["obj-0", [100, 100]],
+        ["obj-1", [200, 100]],
+      ]),
+    });
+    // 가운데 (150, 100): A (100, 100) → (150, 50) · B (200, 100) → (150, 150)
+    expect(attr(cw, "obj-0", "transform")).toBe("translate(50 -50)");
+    expect(attr(cw, "obj-1", "transform")).toBe("translate(-50 50)");
   });
 
   it("임자 꼭짓점은 그 꼭짓점이 같이 돌 때만 돈다 — 고르지 않은 선의 꼭짓점이면 그대로", () => {
@@ -263,8 +295,8 @@ describe("회전 — 요소 종류별 좌표", () => {
         ["obj-3", [300, 280]],
       ]),
     });
-    // 상자: 선분 (100..200, 100) · 글자 가운데 (100, 80) · (300, 280) → 가운데 (200, 180)
-    const R = rotation("cw", [200, 180]);
+    // 중심은 고른 선분의 상자 가운데 (150, 100)
+    const R = rotation("cw", [150, 100]);
     // A 의 임자(100, 100)는 고른 선분의 끝점 — 같이 돈다
     closeTo(
       [attr(cw, "obj-2", "data-px"), attr(cw, "obj-2", "data-py")].map(Number),

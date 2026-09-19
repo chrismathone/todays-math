@@ -133,6 +133,9 @@ const ADJUST_SNAP_PX = 6;
 /** 도구 줄 단추의 눌림 모양 — 도구와 «전체 요소 크기 고정»이 같이 쓴다. */
 const PRESSED =
   "bg-[var(--figure-accent-soft)] text-[var(--figure-accent-ink)] ring-1 ring-[var(--figure-accent-line)]";
+/** 화면용 — 라벨의 임자 꼭짓점 표지를 걷는다(원문은 그대로 둔다). */
+const withoutLabelOwner = (source: string) =>
+  source.replace(/ data-p[xy]="[^"]*"/g, "");
 const FIELD_NAMES: Record<string, string> = {
   x: "가로 위치",
   y: "세로 위치",
@@ -171,7 +174,12 @@ export function FigureEditor({
     if (frozenCanvas !== null) return frozenCanvas;
     if (typeset.source === svg) return typeset.rendered;
     try {
-      return carryTypeset(typeset.source, typeset.rendered, svg);
+      // 엔진 라벨의 임자 꼭짓점(data-px·data-py)은 조판에 안 쓰인다 — 회전이 이것만 바꾼 라벨도 앞 조판본을 옮겨 쓴다.
+      return carryTypeset(
+        withoutLabelOwner(typeset.source),
+        typeset.rendered,
+        withoutLabelOwner(svg),
+      );
     } catch {
       return svg;
     }
