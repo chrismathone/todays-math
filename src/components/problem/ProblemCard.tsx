@@ -6,6 +6,7 @@ import { MathText } from "@/components/math/MathText";
 import { PaperProblemView } from "@/components/print/PaperProblemView";
 import paper from "@/components/print/TestPrint.module.css";
 import { PAPER_CSS_VARIABLES } from "@/components/print/tokens";
+import { displayFractions } from "@/components/unified/fractionDisplay";
 import type { ReviewStatus } from "@/contracts/common.contract";
 import type { ProblemEntity } from "@/contracts/problem.contract";
 
@@ -74,6 +75,12 @@ const REVIEW_STATUS_TONE: Record<string, string> = {
 type ProblemCardProps = {
   problem: ProblemEntity;
   /**
+   * 문항 단원의 학년 — 초등이면 가분수를 대분수로 **보인다**(`displayFractions`, 작업실·
+   * 새 문제은행·인쇄와 같은 함수 — 원장님 2026-09-19 «모든 화면이 일치하도록»).
+   * `ProblemEntity` 에는 학년이 없고 단원 목록을 가진 쪽이 넘긴다. 없으면 원문 그대로다.
+   */
+  grade?: string;
+  /**
    * 변형 채택분이 저장되면 알린다. **넘기지 않으면 「변형」 버튼이 아예 없다** —
    * 문제은행(S-08)에서만 변형하고, dev 미리보기 같은 자리에서는 나오지 않는다.
    *
@@ -118,10 +125,13 @@ type ProblemCardProps = {
  */
 export const ProblemCard = memo(function ProblemCard({
   problem,
+  grade = "",
   onTransformAdopted,
   onReviewStatusChange,
   basket,
 }: ProblemCardProps) {
+  const shown = (text: string) =>
+    displayFractions(text, grade, problem.content);
   const [showSolution, setShowSolution] = useState(false);
   const [showTransform, setShowTransform] = useState(false);
   // 승격은 왕복이 있다. 누른 뒤 응답이 오기 전에 또 누르면 같은 요청이 두 번 나간다.
@@ -220,7 +230,7 @@ export const ProblemCard = memo(function ProblemCard({
 
       <div className="flex flex-1 flex-col overflow-x-auto p-6 print:block print:px-0">
         <PaperProblemView
-          content={problem.content}
+          content={shown(problem.content)}
           figureUrls={problem.figureUrls}
           figureSvg={problem.figureSvg}
         />
@@ -340,7 +350,7 @@ export const ProblemCard = memo(function ProblemCard({
 
         {showTransform && onTransformAdopted ? (
           <ProblemTransformPanel
-            origin={problem}
+            origin={{ ...problem, grade }}
             onAdopted={(created) => {
               setShowTransform(false);
               onTransformAdopted(created);
@@ -370,16 +380,17 @@ export const ProblemCard = memo(function ProblemCard({
               <MathText
                 as="div"
                 className={`${paper.problemText} font-medium`}
-                text={problem.answer}
+                text={shown(problem.answer)}
               />
             </div>
             {problem.solution ? (
               <div className="border border-divider p-6">
                 <h4 className={`mb-2 ${MICRO}`}>상세 풀이</h4>
+                {/* 분수 표시를 먼저 하고 줄은 그리기 직전에 나눈다(BankView 와 같은 순서). */}
                 <MathText
                   as="div"
                   className={paper.problemText}
-                  text={solutionForDisplay(problem.solution) ?? ""}
+                  text={solutionForDisplay(shown(problem.solution)) ?? ""}
                 />
               </div>
             ) : null}

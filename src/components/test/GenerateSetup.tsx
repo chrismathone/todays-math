@@ -134,6 +134,11 @@ type Props = {
 
 export function GenerateSetup({ initialClassId, initialStudentId }: Props) {
   const form = useGenerateSetup({ initialClassId, initialStudentId });
+  /** 단원 → 학년 — AI 초안 카드가 초등 가분수를 대분수로 보인다(화면·인쇄 한 함수). */
+  const gradeOf = useMemo(() => {
+    const grades = new Map(form.units.map((unit) => [unit.id, unit.grade]));
+    return (unitId: string) => grades.get(unitId);
+  }, [form.units]);
   /**
    * 배분 합계 — 갈래를 **손으로 더하지 않는다**(D-106). 사다리를 돌아 더하므로
    * 갈래가 늘어도 이 값이 저절로 따라온다.
@@ -365,6 +370,7 @@ export function GenerateSetup({ initialClassId, initialStudentId }: Props) {
 
           <AiDraftReview
             drafts={form.aiDrafts}
+            gradeOf={gradeOf}
             onReviewStatusChange={form.reviewAiDraft}
           />
 

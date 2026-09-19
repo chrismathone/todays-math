@@ -4,6 +4,7 @@ import { useState } from "react";
 
 import { MathText } from "@/components/math/MathText";
 import { Button } from "@/components/ui/Button";
+import { displayFractions } from "@/components/unified/fractionDisplay";
 import type {
   DifficultyShift,
   ProblemEntity,
@@ -57,8 +58,17 @@ function isAdoptable(
  *
  *    그래서 서명은 **쓰는 만큼만** 적는다. 그것이 이 패널을 열 수 있는 화면의 조건이다.
  *    `ProblemCard` 는 그대로 `ProblemEntity` 를 넘긴다(구조적으로 만족한다).
+ *
+ * `content`·`grade` 는 **보여 주기에만** 쓴다 — 초등이면 원본 정답과 후보를 대분수로
+ * 보인다(`displayFractions`, 카드·인쇄와 같은 함수 · 원장님 2026-09-19). 후보는 원본과 같은
+ * 단원이라 같은 학년이다. 학년이 없으면(옛 카드가 단원을 모를 때) 원문 그대로다.
  */
-export type TransformOrigin = Pick<ProblemEntity, "id" | "answer">;
+export type TransformOrigin = Pick<
+  ProblemEntity,
+  "id" | "answer" | "content"
+> & {
+  grade?: string;
+};
 
 type Props = {
   origin: TransformOrigin;
@@ -86,6 +96,7 @@ export function ProblemTransformPanel({ origin, onAdopted, onClose }: Props) {
   const [adopted, setAdopted] = useState<Set<number>>(new Set());
   const [pending, setPending] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const grade = origin.grade ?? "";
 
   async function runTransform() {
     setPending(true);
@@ -184,7 +195,7 @@ export function ProblemTransformPanel({ origin, onAdopted, onClose }: Props) {
         <span className={`${MICRO} text-text-2`}>원본 정답</span>
         <MathText
           className="text-[12.5px] font-bold text-ink"
-          text={origin.answer}
+          text={displayFractions(origin.answer, grade, origin.content)}
         />
       </p>
 
@@ -279,7 +290,7 @@ export function ProblemTransformPanel({ origin, onAdopted, onClose }: Props) {
                 <MathText
                   as="div"
                   className="mt-2 text-[13px] text-ink"
-                  text={candidate.content}
+                  text={displayFractions(candidate.content, grade)}
                 />
                 {/* 도형은 **서버가 그린 것**만 그린다 — 엔진(`render_figure_spec`)이 만들고
                     `sanitize_svg` 를 통과한 마크업이다. 클라이언트가 SVG 를 만들거나 실어
@@ -300,7 +311,11 @@ export function ProblemTransformPanel({ origin, onAdopted, onClose }: Props) {
                   <span className={`${MICRO} text-text-2`}>정답</span>
                   <MathText
                     className="text-[12.5px] font-bold text-ink"
-                    text={candidate.answer}
+                    text={displayFractions(
+                      candidate.answer,
+                      grade,
+                      candidate.content,
+                    )}
                   />
                 </p>
                 {/* 검사 결과는 통과·탈락 **양쪽 다** 적는다. 탈락만 적으면 통과가

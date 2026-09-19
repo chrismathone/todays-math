@@ -52,6 +52,8 @@ describe("[검수] 콘솔 행 매퍼", () => {
     expect(out.figureDims).toEqual([10, 20]);
     expect(out.figureSourceMm).toEqual([30, 40]);
     expect(out.unitName).toBe("중3 · 삼각비의 뜻");
+    // 초등 대분수 표시가 읽는 학년 — 첫 묶음(서버 페이지)과 더 불러온 묶음(API)이 같이 산다.
+    expect(out.grade).toBe("중3");
   });
 
   it("단원이 없으면 «—» 로 둔다", () => {
@@ -60,5 +62,7 @@ describe("[검수] 콘솔 행 매퍼", () => {
       unit: null,
     } as unknown as ProblemWithUnit);
     expect(out.unitName).toBe("—");
+    // 학년을 모르면 빈 값 — 대분수로 바꾸지 않는다(원문 그대로).
+    expect(out.grade).toBe("");
   });
 });

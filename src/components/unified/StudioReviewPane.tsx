@@ -264,12 +264,20 @@ function ReviewCard({
     props.onSelect(crop.id);
     props.onUpdate(crop.id, patch);
   };
+  // 미리보기는 인쇄(NativeProblem·AnswerPage)와 같은 규칙으로 초등 가분수를 대분수로 보인다.
+  // 본문을 «묻는 말»로 넘겨야 바꾸기 문제의 분수가 남는다. 편집 칸·저장 원문은 가분수 그대로다.
+  const preview = (text: string) =>
+    displayFractions(text, crop.grade, crop.content);
   const readContent = useMemo(
     () =>
-      showScores
-        ? editableContent
-        : repositionScore(editableContent, undefined, false),
-    [editableContent, showScores],
+      displayFractions(
+        showScores
+          ? editableContent
+          : repositionScore(editableContent, undefined, false),
+        crop.grade,
+        crop.content,
+      ),
+    [editableContent, showScores, crop.grade, crop.content],
   );
   return (
     <article
@@ -545,15 +553,13 @@ function ReviewCard({
       {!editing && crop.answer.trim() && (
         <div className={styles.answer}>
           <strong>정답</strong>
-          <ProblemContent content={displayFractions(crop.answer, crop.grade)} />
+          <ProblemContent content={preview(crop.answer)} />
         </div>
       )}
       {!editing && crop.solution.trim() && (
         <div className={styles.answer}>
           <strong>해설</strong>
-          <ProblemContent
-            content={displayFractions(crop.solution, crop.grade)}
-          />
+          <ProblemContent content={preview(crop.solution)} />
         </div>
       )}
       <div className={styles.cardFooter}>

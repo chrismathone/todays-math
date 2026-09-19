@@ -37,9 +37,12 @@ const GRID_STYLE = {
 
 export function AiDraftReview({
   drafts,
+  gradeOf,
   onReviewStatusChange,
 }: {
   drafts: readonly ProblemEntity[];
+  /** 단원 → 학년. 초등이면 카드가 가분수를 대분수로 보인다(`ProblemCard.grade`). */
+  gradeOf?: (unitId: string) => string | undefined;
   /**
    * ⚠️ `ProblemCard` 는 `memo` 다 — 호출부에서 `useCallback` 으로 고정해서 넘길 것.
    *    인라인 화살표로 넘기면 승인 한 번에 카드 전량이 KaTeX 째로 다시 그려진다.
@@ -78,6 +81,7 @@ export function AiDraftReview({
           <ProblemCard
             key={draft.id}
             problem={draft}
+            grade={gradeOf?.(draft.unitId)}
             onReviewStatusChange={onReviewStatusChange}
           />
         ))}

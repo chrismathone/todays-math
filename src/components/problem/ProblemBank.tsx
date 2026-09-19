@@ -780,6 +780,7 @@ export function ProblemBank() {
             <ProblemCard
               key={problem.id}
               problem={problem}
+              grade={unitById.get(problem.unitId)?.grade}
               onTransformAdopted={handleTransformAdopted}
               onReviewStatusChange={handleReviewStatusChange}
               basket={{

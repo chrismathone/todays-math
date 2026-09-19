@@ -52,6 +52,7 @@ const problem = (i: number): ConsoleProblem => ({
   figureSourceMm: [],
   directUseAllowed: true,
   unitName: "테스트 단원",
+  grade: "중2",
   // 원본 메타데이터 (2026-08-24). 타입이 이걸 요구하는 것이 **의도한 가드**다 —
   // 예전에는 API 응답을 캐스팅해 받아 모양이 갈려도 아무도 몰랐다.
   source: "past_exam",

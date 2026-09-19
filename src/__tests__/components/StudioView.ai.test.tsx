@@ -335,8 +335,8 @@ describe("Studio AI review controls", () => {
   });
 
   // 대분수는 «보여 줄 때만»(fractionDisplay) — 원문·편집 칸은 가분수 그대로다.
-  // 새 검수 칸에서 대분수로 보여 주는 미리보기는 정답·해설이다. 본문 읽기는 2026-09-14
-  // (bf1becc6)부터 원본 편집기 읽기(SourceEditorDisplay)라 원문 그대로다 — 보고서에 적었다.
+  // 본문·정답·해설 미리보기와 인쇄가 한 규칙이다(원장님 2026-09-19 «통일시켜» — 본문 읽기가
+  // 2026-09-14 bf1becc6 에 SourceEditorDisplay 로 바뀌며 빠졌던 것을 되돌렸다).
   it("keeps editable raw fractions and applies mixed fractions only in elementary previews", async () => {
     await open();
     await recognize();
@@ -362,6 +362,70 @@ describe("Studio AI review controls", () => {
     });
     expect(answerPreview()).toHaveTextContent(String.raw`$\frac{10}{3}$`);
     expect(answerPreview()).not.toHaveTextContent(String.raw`3\frac{1}{3}`);
+  });
+
+  /** 본문 미리보기(원본 편집기 읽기)가 그린 수식들 — 렌더러가 식마다 원식을 적어 둔다. */
+  const bodyFormulas = (card: HTMLElement) =>
+    Array.from(
+      card.querySelectorAll<HTMLElement>(
+        ".source-editor-display [data-math-tex]",
+      ),
+    ).map((element) => decodeURIComponent(element.dataset.mathTex ?? ""));
+  const answerText = (card: HTMLElement) =>
+    within(within(card).getByText("정답").parentElement!).getByTestId(
+      "math-content",
+    ).textContent;
+  function recognizeAs(content: string, answer: string) {
+    respond = (request) =>
+      normal(request)
+        .then((response) => response.json())
+        .then((body) => {
+          body.result.content = content;
+          body.result.answer = answer;
+          body.result.problems[0].content = content;
+          return json(body);
+        });
+  }
+
+  it("shows the elementary body preview in mixed fractions with the same rule as the answer preview", async () => {
+    const body = String.raw`$\frac{10}{3}$ 보다 1 큰 수의 값을 구하세요.`;
+    recognizeAs(body, String.raw`$\frac{10}{3}$`);
+    await open();
+    await recognize();
+    const card = reviewCard();
+    fireEvent.click(within(card).getByRole("button", { name: "해설 생성" }));
+    await within(card).findByText("한 개를 더합니다.");
+    // 초5: 본문의 10/3 이 정답 미리보기와 똑같이 대분수로 보인다.
+    expect(bodyFormulas(card)).toEqual([String.raw`3\frac{1}{3}`]);
+    expect(answerText(card)).toBe(`$${bodyFormulas(card)[0]}$`);
+    // 편집 칸은 날것 그대로 — 본문도 정답도 가분수다.
+    fireEvent.click(within(card).getByRole("button", { name: "내용 수정" }));
+    expect(within(card).getByLabelText("문제 내용")).toHaveValue(body);
+    expect(within(card).getByLabelText("정답")).toHaveValue(
+      String.raw`$\frac{10}{3}$`,
+    );
+    fireEvent.click(within(card).getByRole("button", { name: "취소" }));
+    expect(bodyFormulas(card)).toEqual([String.raw`3\frac{1}{3}`]);
+    // 중1: 같은 본문이 가분수 그대로 보인다 — 정답 미리보기도 같다.
+    fireEvent.change(screen.getByRole("combobox", { name: "시험지 학년" }), {
+      target: { value: "중1" },
+    });
+    expect(bodyFormulas(card)).toEqual([String.raw`\frac{10}{3}`]);
+    expect(answerText(card)).toBe(`$${bodyFormulas(card)[0]}$`);
+  });
+
+  it("keeps a conversion exercise's fractions in every preview, as print does", async () => {
+    // 인쇄(NativeProblem·AnswerPage)는 본문을 «묻는 말»로 넘겨 바꾸기 문제를 알아본다.
+    // 미리보기도 같은 인자로 부른다 — 정답 7/3 을 2⅓ 로 보이면 정답이 틀려 보인다.
+    const body = String.raw`대분수 $2\frac{1}{3}$ 을 가분수로 바꾸어 값을 구하세요.`;
+    recognizeAs(body, String.raw`$\frac{7}{3}$`);
+    await open();
+    await recognize();
+    const card = reviewCard();
+    fireEvent.click(within(card).getByRole("button", { name: "해설 생성" }));
+    await within(card).findByText("한 개를 더합니다.");
+    expect(bodyFormulas(card)).toEqual([String.raw`2\frac{1}{3}`]);
+    expect(answerText(card)).toBe(String.raw`$\frac{7}{3}$`);
   });
 
   it("preserves a pending request on restart dialog cancel, then aborts and resets on acceptance without clearing added problems", async () => {

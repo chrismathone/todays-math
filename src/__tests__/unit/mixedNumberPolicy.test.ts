@@ -19,6 +19,11 @@
  */
 import { describe, expect, it } from "vitest";
 
+import { renderKatexSafe as renderEditorKatex } from "../../components/math/editor/katexRender";
+import {
+  applyMathInnerNormalization as normalizeEditorMath,
+  preprocessMathText as preprocessEditorText,
+} from "../../components/math/editor/textPreprocess";
 import {
   elementaryUnits,
   generateElementaryProblem,
@@ -103,5 +108,42 @@ describe("지면 표기 — 가분수를 대분수로 바꾸지 않는다", () =
     // 그런 발문이 표본에 있어야 이 검사가 무엇이든 잰다.
     expect(asked).toBeGreaterThan(0);
     expect(bad.slice(0, 3)).toEqual([]);
+  });
+});
+
+/**
+ * 🔴 **원본 편집기(2026-09-14 이식, `c0bf4551`)에 옛 전처리가 한 벌 딸려 왔다.**
+ *
+ * `components/math/editor/textPreprocess.ts` 는 08-24 에 규칙을 뺀 `lib/math` 판이 아니라
+ * 그 전 판을 옮겨 온 것이라 `improperToMixed` 가 살아 있었다. 편집기 렌더러
+ * (`renderKatexSafe`)는 **보이는 식마다** 이것을 불러, 작업실 검수 칸의 본문 미리보기와
+ * 편집 칸이 학년과 상관없이 — 중1·고1 도 — `\frac{10}{3}` 을 3⅓ 로 그렸다. 편집 칸의
+ * 원문은 가분수 그대로라 값 시험은 다 초록이었다.
+ *
+ * 초등 대분수는 보여 줄 때 **한 함수**(`displayFractions`, 학년을 안다)만 한다 — 렌더러는
+ * 학년을 모르므로 바꾸지 않는다(원장님 2026-09-19 «모든 화면이 일치하도록»).
+ */
+describe("편집기 렌더러도 가분수를 대분수로 바꾸지 않는다", () => {
+  /** 렌더된 KaTeX 의 보이는 글자 — 대분수로 그렸으면 분자 10 이 없다. */
+  const visible = (tex: string) =>
+    renderEditorKatex(tex, false).replace(/<[^>]+>/g, "");
+
+  it("보이는 식의 정규화가 가분수를 그대로 둔다", () => {
+    for (const tex of [String.raw`\frac{10}{3}`, String.raw`-\dfrac{5}{2}x`]) {
+      expect(countMixed(normalizeEditorMath(tex))).toBe(0);
+    }
+    expect(normalizeEditorMath(String.raw`\frac{10}{3}`)).toContain("{10}{3}");
+    // 정수로 떨어지는 분수도 접지 않는다 — 계산 단계가 사라진다(위 355/5).
+    expect(normalizeEditorMath(String.raw`\dfrac{355}{5}=71`)).toContain("355");
+  });
+
+  it("편집 칸·본문 미리보기가 그리는 식에 분자가 남는다", () => {
+    expect(visible(String.raw`\frac{10}{3}`)).toContain("10");
+    expect(visible(String.raw`\frac{1}{3}`)).toContain("1");
+  });
+
+  it("편집기 판 전처리도 지면의 수를 고쳐 쓰지 않는다", () => {
+    const before = String.raw`부피는 $\dfrac{4}{3}\pi r^{3}$이다. $\frac{10}{3}$`;
+    expect(countMixed(preprocessEditorText(before))).toBe(0);
   });
 });
