@@ -521,6 +521,26 @@ const leaders = (number: number) =>
   document
     .querySelector(`[data-figure-number="${number}"]`)!
     .parentElement!.querySelectorAll("line").length;
+/** 표의 «모양» — 클래스 이름이 아니라 실제로 그려진 도형 요소로 잰다(2026-09-16 교훈). */
+const tagShape = (number: number) => {
+  const tag = document.querySelector(`[data-figure-number="${number}"]`)!;
+  if (tag.querySelector("rect")) return "네모";
+  if (tag.querySelector("circle")) return "동그라미";
+  return "없음";
+};
+const tagGlyph = (number: number) =>
+  document.querySelector(`[data-figure-number="${number}"] text`)?.textContent;
+const tagFace = (number: number) => {
+  const tag = document.querySelector(`[data-figure-number="${number}"]`)!;
+  const face = tag.querySelector("rect") ?? tag.querySelector("circle")!;
+  const ink = tag.querySelector("text")!;
+  return {
+    fill: face.getAttribute("fill"),
+    stroke: face.getAttribute("stroke"),
+    font: (ink as SVGElement).style.font,
+    ink: (ink as SVGElement).style.fill,
+  };
+};
 
 describe("단축키 — Ctrl+G 묶기 · Ctrl+Shift+G 묶음 해제 (원장님 2026-09-21)", () => {
   it("Ctrl+G 로 묶고 Ctrl+Shift+G 로 푼다 — 되돌리기는 각각 한 걸음", () => {
@@ -596,31 +616,70 @@ describe("단축키 — Ctrl+G 묶기 · Ctrl+Shift+G 묶음 해제 (원장님 2
 });
 
 describe("묶음 이름 A·B·C · 번호표 하나 (원장님 2026-09-21)", () => {
-  it("묶을 때마다 A · B · C — 손수 고친 이름은 덮이지 않는다", () => {
-    open();
-    fireEvent.click(chip(7));
-    fireEvent.click(chip(8), { shiftKey: true });
+  const groupTwo = (a: number, b: number) => {
+    fireEvent.click(chip(a));
+    fireEvent.click(chip(b), { shiftKey: true });
     press("g");
-    fireEvent.click(chip(5));
-    fireEvent.click(chip(6), { shiftKey: true });
-    press("g");
-    // 이름은 **만든 차례**(A → B), 목록 차례는 첫 요소의 번호 차례라 B(5,6) 가 A(7,8) 보다 위에 선다
-    expect(groupNames().slice(0, 2)).toEqual(["B 묶음", "A 묶음"]);
-    // A 를 «오르막» 으로 고치면 다음 묶음이 A 를 쓴다(빈 자리부터)
-    fireEvent.click(within(group("A")).getByRole("button", { name: "A 2개" }));
+  };
+  const rename = (from: string, to: string) => {
+    fireEvent.click(
+      within(group(from)).getByRole("button", { name: `${from} 2개` }),
+    );
     const input = within(groupRow()!).getByRole("textbox", {
-      name: "A 묶음 이름",
+      name: `${from} 묶음 이름`,
     });
-    fireEvent.change(input, { target: { value: "오르막" } });
+    fireEvent.change(input, { target: { value: to } });
     fireEvent.keyDown(input, { key: "Enter" });
-    fireEvent.click(chip(1));
-    fireEvent.click(chip(2), { shiftKey: true });
-    press("g");
+  };
+
+  // 원장님 2026-09-21 «그렇게해» — 자동 이름은 **목록 차례**(위에서부터 A·B·C)를 따른다.
+  it("나중에 묶어도 목록에서 위에 있으면 A 가 된다", () => {
+    open();
+    groupTwo(7, 8);
+    expect(groupNames()[0]).toBe("A 묶음");
+    // 5·6 은 목록에서 7·8 보다 위다 — 나중에 묶어도 이쪽이 A, 7·8 이 B 로 밀린다
+    groupTwo(5, 6);
+    expect(groupNames().slice(0, 2)).toEqual(["A 묶음", "B 묶음"]);
+    expect(chipNumbers("A")).toEqual(["5", "6"]);
+    expect(chipNumbers("B")).toEqual(["7", "8"]);
+  });
+
+  it("손수 지은 이름은 안 바뀌고 그 자리를 건너뛴다", () => {
+    open();
+    groupTwo(5, 6);
+    groupTwo(7, 8);
+    rename("A", "오르막");
+    // 남은 자동 묶음(7·8)이 A 로 촘촘해지고, 손수 이름은 글자 차례에서 빠진다
+    expect(groupNames().slice(0, 2)).toEqual(["오르막 묶음", "A 묶음"]);
+    expect(chipNumbers("A")).toEqual(["7", "8"]);
+    // 맨 위에 새 묶음을 만들어도 손수 이름은 그대로 — 새것이 A, 7·8 이 B
+    groupTwo(1, 2);
     expect(groupNames().slice(0, 3)).toEqual([
       "A 묶음",
-      "B 묶음",
       "오르막 묶음",
+      "B 묶음",
     ]);
+    expect(chipNumbers("A")).toEqual(["1", "2"]);
+    expect(chipNumbers("오르막")).toEqual(["5", "6"]);
+    expect(chipNumbers("B")).toEqual(["7", "8"]);
+  });
+
+  it("묶음 하나를 풀면 남은 것들이 다시 A 부터 촘촘해진다", () => {
+    open();
+    groupTwo(1, 2);
+    groupTwo(5, 6);
+    groupTwo(7, 8);
+    expect(groupNames().slice(0, 3)).toEqual(["A 묶음", "B 묶음", "C 묶음"]);
+    // 가운데(B = 5·6)를 풀면 아랫것이 B 로 올라온다
+    fireEvent.click(within(group("B")).getByRole("button", { name: "B 2개" }));
+    press("g", { shiftKey: true });
+    expect(groupNames().slice(0, 2)).toEqual(["A 묶음", "B 묶음"]);
+    expect(chipNumbers("B")).toEqual(["7", "8"]);
+    expect(chipNumbers("묶음 없음")).toEqual(["5", "6"]);
+    // 되돌리기는 한 걸음 — 이름 다시 매기기까지 같이 돌아온다
+    fireEvent.click(screen.getByRole("button", { name: /되돌리기/ }));
+    expect(groupNames().slice(0, 3)).toEqual(["A 묶음", "B 묶음", "C 묶음"]);
+    expect(chipNumbers("B")).toEqual(["5", "6"]);
   });
   it("묶으면 그림 위 번호표가 하나로 합쳐지고 지시선이 속 요소마다 나간다", () => {
     open();
@@ -645,5 +704,92 @@ describe("묶음 이름 A·B·C · 번호표 하나 (원장님 2026-09-21)", () 
     fireEvent.click(screen.getByRole("button", { name: "A 묶음 선택" }));
     expect(screen.getByText(/2개 선택/)).toBeInTheDocument();
     expect(within(groupRow()!).getByRole("textbox")).toHaveValue("A");
+  });
+});
+
+/**
+ * 묶음 표는 **네모**, 요소 표는 **동그라미** — 원장님 2026-09-21
+ * «그룹은 요소와 차별성을 둬서 네모 A 로 하든지. 그게 나을지도.»
+ * 모양만으로 갈리고, 크기·글자 크기·색은 기존 번호표 토큰을 그대로 쓴다(새 시안이 아니다, D-07).
+ */
+describe("묶음 표는 네모 · 요소 표는 동그라미 (원장님 2026-09-21)", () => {
+  const groupTwo = (a: number, b: number) => {
+    fireEvent.click(chip(a));
+    fireEvent.click(chip(b), { shiftKey: true });
+    press("g");
+  };
+
+  it("묶으면 그 표만 네모가 되고 글자는 묶음 이름이다", () => {
+    open();
+    expect(tagShape(1)).toBe("동그라미");
+    expect(tagGlyph(1)).toBe("1");
+    groupTwo(7, 8);
+    expect(tagShape(7)).toBe("네모");
+    expect(tagGlyph(7)).toBe("A");
+    // 요소 표는 그대로 동그라미에 숫자
+    expect(tagShape(1)).toBe("동그라미");
+    expect(tagGlyph(1)).toBe("1");
+    // 지시선은 지금처럼 속 요소마다
+    expect(leaders(7)).toBe(2);
+  });
+
+  it("네모와 동그라미가 같은 색·같은 글자를 쓴다 — 모양만 다르다", () => {
+    open();
+    groupTwo(7, 8);
+    // 둘 다 안 고른 상태로 견준다(고르면 둘 다 진해진다 — 아래 시험)
+    fireEvent.keyDown(document.activeElement ?? document.body, {
+      key: "Escape",
+    });
+    const box = tagFace(7),
+      dot = tagFace(1);
+    expect(box.fill).toBe(dot.fill);
+    expect(box.stroke).toBe(dot.stroke);
+    expect(box.font).toBe(dot.font);
+    expect(box.ink).toBe(dot.ink);
+    expect(box.font).toContain("11px");
+  });
+
+  it("고르면 네모도 동그라미와 같이 진해진다", () => {
+    open();
+    groupTwo(7, 8);
+    // 묶은 직후는 그 묶음이 골라져 있다 — 다른 것을 골라 풀고 나서 네모를 누른다
+    fireEvent.click(chip(1));
+    const off = tagFace(7).fill;
+    expect(off).toBe("var(--figure-accent-soft)");
+    fireEvent.click(screen.getByRole("button", { name: "A 묶음 선택" }));
+    expect(tagFace(7).fill).not.toBe(off);
+    expect(tagFace(7).fill).toBe("var(--figure-primary)");
+  });
+
+  it("손수 지은 긴 이름은 첫 글자만 — 전체 이름은 읽는 이름과 마우스 올림에", () => {
+    open();
+    groupTwo(7, 8);
+    fireEvent.click(within(group("A")).getByRole("button", { name: "A 2개" }));
+    const input = within(groupRow()!).getByRole("textbox", {
+      name: "A 묶음 이름",
+    });
+    fireEvent.change(input, { target: { value: "오르막" } });
+    fireEvent.keyDown(input, { key: "Enter" });
+    expect(tagShape(7)).toBe("네모");
+    expect(tagGlyph(7)).toBe("오");
+    expect(
+      screen.getByRole("button", { name: "오르막 묶음 선택" }),
+    ).toBeInTheDocument();
+    expect(
+      document.querySelector(`[data-figure-number="7"] title`)?.textContent,
+    ).toBe("오르막 묶음");
+  });
+
+  // Z 를 다 쓴 그림은 만들기 어렵다 — 이미 «AA» 로 저장된 옛 그림을 여는 자리로 같은 것을 본다
+  // (여는 것만으로는 다시 매기지 않는다 — 묶음을 건드릴 때만 매긴다).
+  it("두 글자 이름(AA)은 그대로 들어간다", () => {
+    openFigure(
+      figure.replace(
+        /<line x1="60" y1="250" x2="160" y2="160"([^/]*)\/>/,
+        '<line x1="60" y1="250" x2="160" y2="160"$1 data-group="AA"/>',
+      ),
+    );
+    expect(tagGlyph(7)).toBe("AA");
+    expect(tagShape(7)).toBe("네모");
   });
 });

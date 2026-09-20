@@ -7,7 +7,9 @@ import {
 import {
   figureAngleKinds,
   groupFigureObjects,
+  isAutoGroupName,
   nextGroupName,
+  renumberAutoGroups,
 } from "@/components/unified/figure-editor/figureObjectGroups";
 import { objectName } from "@/components/unified/figure-editor/figureObjectNames";
 
@@ -750,5 +752,91 @@ describe("새 묶음 이름 — A · B · C", () => {
   });
   it("앞뒤 빈칸은 같은 이름으로 본다", () => {
     expect(nextGroupName([" A "])).toBe("B");
+  });
+});
+
+/**
+ * 자동으로 붙은 묶음 이름은 **목록 차례**를 따른다 — 원장님 2026-09-21 «그렇게해»
+ * (위에서부터 A · B · C). 목록 차례는 첫 요소의 번호 차례라, 나중에 묶어도 위에 있으면 A 가 된다.
+ * 손수 지은 이름(«오르막» · «묶음 1»)은 **절대 안 건드리고 그 자리를 건너뛴다** —
+ * 덮는 순간 원장님의 «그룹 … 을» 이 딴 것을 가리킨다.
+ */
+describe("자동 묶음 이름은 목록 차례를 따른다", () => {
+  const six = prepareFigureSvg(
+    `<svg xmlns="${NS}" viewBox="0 0 480 360">` +
+      [0, 1, 2, 3, 4, 5]
+        .map(
+          (i) =>
+            `<line x1="20" y1="${20 + i * 40}" x2="120" y2="${30 + i * 40}" stroke="#111"/>`,
+        )
+        .join("") +
+      `</svg>`,
+  );
+  const ids = figureObjects(six).map((o) => o.id);
+  const group = (svg: string, id: string) =>
+    figureObjects(svg).find((o) => o.id === id)?.attrs["data-group"];
+  /** 사용자 묶음 이름 — 목록 차례대로. */
+  const names = (svg: string) =>
+    groupFigureObjects(figureObjects(svg), [0, 0, 480, 360])
+      .filter((g) => g.custom)
+      .map((g) => g.name);
+
+  it("글자 이름만 자동으로 본다", () => {
+    expect(isAutoGroupName("A")).toBe(true);
+    expect(isAutoGroupName("AA")).toBe(true);
+    expect(isAutoGroupName(" B ")).toBe(true);
+    expect(isAutoGroupName("오르막")).toBe(false);
+    expect(isAutoGroupName("묶음 1")).toBe(false);
+    expect(isAutoGroupName("A번")).toBe(false);
+  });
+
+  it("나중에 묶어도 목록에서 위에 있으면 A 가 된다", () => {
+    // 먼저 뒤쪽(5·6번)을 묶고, 나중에 앞쪽(1·2번)을 묶는다
+    const first = renumberAutoGroups(
+      setFigureGroup(six, [ids[4], ids[5]], "A"),
+    );
+    expect(names(first)).toEqual(["A"]);
+    const second = renumberAutoGroups(
+      setFigureGroup(first, [ids[0], ids[1]], "B"),
+    );
+    // 위엓것(1·2번)이 A, 아랫것(5·6번)이 B
+    expect(names(second)).toEqual(["A", "B"]);
+    expect(group(second, ids[0])).toBe("A");
+    expect(group(second, ids[1])).toBe("A");
+    expect(group(second, ids[4])).toBe("B");
+  });
+
+  it("손수 지은 이름은 안 바뀜고 그 자리를 건너뛴다", () => {
+    let svg = setFigureGroup(six, [ids[0], ids[1]], "오르막");
+    svg = renumberAutoGroups(setFigureGroup(svg, [ids[2], ids[3]], "A"));
+    svg = renumberAutoGroups(setFigureGroup(svg, [ids[4], ids[5]], "B"));
+    expect(names(svg)).toEqual(["오르막", "A", "B"]);
+    // 손수 이름이 맨 앞이어도 A 를 가져가지 않는다
+    expect(group(svg, ids[0])).toBe("오르막");
+    expect(group(svg, ids[2])).toBe("A");
+    expect(group(svg, ids[4])).toBe("B");
+  });
+
+  it("묶음 하나를 풀면 남은 것들이 다시 A 부터 촌촌해진다", () => {
+    let svg = renumberAutoGroups(setFigureGroup(six, [ids[0], ids[1]], "A"));
+    svg = renumberAutoGroups(setFigureGroup(svg, [ids[2], ids[3]], "B"));
+    svg = renumberAutoGroups(setFigureGroup(svg, [ids[4], ids[5]], "C"));
+    expect(names(svg)).toEqual(["A", "B", "C"]);
+    // 가운데(B) 를 푸면 아랫것이 B 로 올라온다
+    const broken = renumberAutoGroups(
+      setFigureGroup(svg, [ids[2], ids[3]], ""),
+    );
+    expect(names(broken)).toEqual(["A", "B"]);
+    expect(group(broken, ids[4])).toBe("B");
+    expect(group(broken, ids[2])).toBe("");
+  });
+
+  it("바꿀 것이 없으면 원문 그대로다 — 되돌리기 자리가 안 생긴다", () => {
+    const named = setFigureGroup(six, [ids[0], ids[1]], "오르막");
+    expect(renumberAutoGroups(named)).toBe(named);
+    const lettered = renumberAutoGroups(
+      setFigureGroup(six, [ids[0], ids[1]], "A"),
+    );
+    expect(renumberAutoGroups(lettered)).toBe(lettered);
   });
 });
