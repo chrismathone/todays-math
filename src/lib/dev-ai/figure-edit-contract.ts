@@ -79,6 +79,34 @@ export const FigureEditCommandSchema = z
         y: coordinate,
       })
       .strict(),
+    /**
+     * 점 이름(A·D·P′ …) — 그 점 곁에 이름을 붙인다. 자리는 엔진 꼭짓점 라벨 규칙 그대로(바깥쪽 여덟 방향·다섯 거리
+     * 가운데 선·다른 이름을 피하는 자리). position 을 주면 그쪽으로만 — N 이 위다(그림 좌표는 y 가 아래).
+     * 적용 본체는 figure-editor/figureLabelOps.ts.
+     */
+    z
+      .object({
+        op: z.literal("addLabel"),
+        at: PointRefSchema,
+        text: label,
+        position: z
+          .enum(["N", "NE", "E", "SE", "S", "SW", "W", "NW"])
+          .optional(),
+      })
+      .strict(),
+    /**
+     * 이미 있는 점 이름의 자리를 다시 잡는다 — 선·다른 글자를 밟는 이름을 엔진 규칙으로 비켜 세운다
+     * (원장님 2026-08-25 «텍스트가 선을 침범한다»). position 을 주면 그쪽으로.
+     */
+    z
+      .object({
+        op: z.literal("relabel"),
+        target,
+        position: z
+          .enum(["N", "NE", "E", "SE", "S", "SW", "W", "NW"])
+          .optional(),
+      })
+      .strict(),
     z
       .object({
         op: z.literal("addPoint"),
@@ -361,6 +389,8 @@ export const FigureEditCommandSchema = z
         right: z.boolean().optional(),
         /** 겹 호(같은 각끼리 같은 수) — 반지름을 3 씩 줄인 호를 더 긋는다. */
         arcs: markCount.optional(),
+        /** 각의 크기 글자(«40°»·«$x$») — 엔진처럼 이등분선 위, 좁으면 밖으로 끌어내고 지시선을 긋는다. */
+        text: label.optional(),
       })
       .strict(),
   ])
