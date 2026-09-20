@@ -694,8 +694,9 @@ function extentOf(o: FigureObject, matrix: Affine): [number, number][] {
  * `widenFrame`: 밖으로 나간 쪽만, 같은 여백, 줄이지 않음). 엔진 그림은 틀이 도형에 꼭 맞아 발 이름 H 가 편집 화면 밑에서
  * 잘렸다(2026-09-19 브라우저 확인). 원장님 확정 «틀을 넓혀 다 보이게». 저장할 때는 fitFigureViewport 가 다시 맞춘다.
  * 여기서 하는 일은 «바뀐 요소의 점 모으기»뿐이다 — 한때 여백 4 짜리 복사본이 따로 있었다(트랙 21, 병합 때 하나로 합침).
+ * 직선·원 명령(figureLineCircleOps.ts)도 이것을 부른다 — 또 한 벌 만들지 않는다.
  */
-function widenToShow(before: string, after: string) {
+export function widenToShow(before: string, after: string) {
   if (after === before) return after;
   const old = new Map(figureObjects(before).map((o) => [o.id, o.attrs]));
   const same = (a: Record<string, string>, b: Record<string, string>) =>

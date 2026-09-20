@@ -27,6 +27,11 @@ import {
   isShapeCommand,
   shapeCommandLabel,
 } from "./figureShapeOps";
+import {
+  applyLineCircleCommand,
+  isLineCircleCommand,
+  lineCircleCommandLabel,
+} from "./figureLineCircleOps";
 import { figureAngleKinds } from "./figureObjectGroups";
 import {
   applyPoint,
@@ -165,13 +170,9 @@ export function applyFigureEdits(
       );
     return inside(ref) ? ref : reject("좌표가 그림 밖입니다");
   };
-  // 대칭축의 점은 요소 목록의 0.1 반올림이 아니라 **그림의 점 그대로** 쓴다(도형 명령이 수선의 발에 쓰는 것과 같은
-  // `figurePointNames`) — 축이 0.01 만 어긋나도 비친 그림이 통째로 밀린다.
-  const exactNames = new Map(
-    figurePointNames(svg).map(({ name, x, y }) => [name, { x, y }] as const),
-  );
-  const exactPoint = (ref: FigureEditPointRef) =>
-    (typeof ref === "string" ? exactNames.get(ref) : undefined) ?? resolve(ref);
+  // 대칭축의 점은 요소 목록의 0.1 반올림이 아니라 **그림의 점 그대로** 쓴다 — 축이 0.01 만 어긋나도 비친 그림이
+  // 통째로 밀린다. 이제 `names` 자체가 `figurePointNames` 라(위 주석) 따로 둘 이유가 없다 — 한 벌로 합쳤다.
+  const exactPoint = resolve;
   const addText = (
     source: string,
     text: string,
@@ -274,19 +275,23 @@ export function applyFigureEdits(
     command: FigureEditCommand,
     label: string,
   ): { svg: string; text: string } => {
-    if (isShapeCommand(command))
-      return applyShapeCommand(command, {
-        svg: current,
-        sent: svg,
-        before,
-        viewBox: figure.viewBox,
-        label,
-        nameOf,
-        resolve,
-        inside,
-        reject,
-        edit: applyFigureEdits,
-      });
+    // 도형·변환과 직선·원은 같은 문맥을 쓴다(figureShapeOps.ts `FigureShapeContext`)
+    const geometry = () => ({
+      svg: current,
+      sent: svg,
+      before,
+      viewBox: figure.viewBox,
+      label,
+      nameOf,
+      resolve,
+      inside,
+      reject,
+      edit: applyFigureEdits,
+    });
+    if (isShapeCommand(command)) return applyShapeCommand(command, geometry());
+    // 연장 · 평행선 · 수직이등분선 · 각의 이등분선 · 접선 · 외접원 · 내접원 · 원의 교점 · 호의 중점
+    if (isLineCircleCommand(command))
+      return applyLineCircleCommand(command, geometry());
     // 치수 · 같은 길이 표시 · 평행 표시 — 엔진과 같은 모양(figureMarks.ts)
     if (isFigureMarkCommand(command)) {
       const mark = addFigureMark(current, command, {
@@ -620,6 +625,8 @@ export function applyFigureEdits(
     } else if (command.op === "mirror") label = targetsLabel(command.targets);
     else if (isShapeCommand(command))
       label = shapeCommandLabel(command, before, nameOf);
+    else if (isLineCircleCommand(command))
+      label = lineCircleCommandLabel(command);
     else if (isFigureMarkCommand(command)) label = figureMarkLabel(command);
     else if (isFigureLabelCommand(command)) label = figureLabelOpLabel(command);
     else
