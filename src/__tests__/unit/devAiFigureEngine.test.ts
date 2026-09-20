@@ -13,6 +13,7 @@ import { withLabelMetrics } from "@/lib/figure/mathjaxSubstitute";
 import { validDevAiSvg } from "@/lib/dev-ai/svg";
 import type { DevAiRequest } from "@/lib/dev-ai/contracts";
 import { buildFigureComparisonImage } from "@/lib/dev-ai/figure-comparison";
+import conceptMap from "../fixtures/quadrilateral-concept-map.spec.json";
 
 vi.mock("server-only", () => ({}));
 vi.mock("@/lib/dev-ai/cli", () => ({ runSubscriptionCli: vi.fn() }));
@@ -478,76 +479,8 @@ describe("real local Python subscription figure pipeline", () => {
 
 // 원장님 2026-09-19 «충분히 우리 엔진으로 그릴 수 있을 것 같은데» — 사각형 관계 개념도를 모델이 두 번 «지원 엔진으로
 // 표현할 수 없다»며 spec:null 로 포기했다(운영 로그). graph-1(axes:false)의 다각형·화살표 선분·한글 일반 글자로 그려진다.
-// 이 사양은 원본(사다리꼴 → ㉠ → 평행사변형 → ㉡ → 직사각형, ㉢ → 마름모 → ㉤ → 정사각형, ㉣)을 손으로 옮긴 것이다.
-const CONCEPT_MAP = {
-  version: "graph-1",
-  xRange: [0, 100],
-  yRange: [0, 60],
-  width: 600,
-  height: 360,
-  axes: false,
-  polygons: [
-    {
-      points: [
-        [4, 38],
-        [26, 38],
-        [21, 52],
-        [9, 52],
-      ],
-    },
-    {
-      points: [
-        [37, 38],
-        [59, 38],
-        [63, 52],
-        [41, 52],
-      ],
-    },
-    {
-      points: [
-        [74, 38],
-        [96, 38],
-        [96, 52],
-        [74, 52],
-      ],
-    },
-    {
-      points: [
-        [50, 4],
-        [60, 12],
-        [50, 20],
-        [40, 12],
-      ],
-    },
-    {
-      points: [
-        [78, 4],
-        [92, 4],
-        [92, 18],
-        [78, 18],
-      ],
-    },
-  ],
-  segments: [
-    { from: [27, 45], to: [36, 45], arrow: true },
-    { from: [63, 45], to: [73, 45], arrow: true },
-    { from: [50, 37], to: [50, 21], arrow: true },
-    { from: [85, 37], to: [85, 19], arrow: true },
-    { from: [61, 11], to: [77, 11], arrow: true },
-  ],
-  labels: [
-    { at: [15, 45], text: "사다리꼴", size: 15, dy: 5 },
-    { at: [50, 45], text: "평행사변형", size: 15, dy: 5 },
-    { at: [85, 45], text: "직사각형", size: 15, dy: 5 },
-    { at: [50, 12], text: "마름모", size: 15, dy: 5 },
-    { at: [85, 11], text: "정사각형", size: 15, dy: 5 },
-    { at: [31.5, 45], text: "㉠", dy: -12 },
-    { at: [68, 45], text: "㉡", dy: -12 },
-    { at: [50, 29], text: "㉢", dx: 16, dy: 5 },
-    { at: [85, 28], text: "㉣", dx: 16, dy: 5 },
-    { at: [69, 11], text: "㉤", dy: -12 },
-  ],
-};
+// 사양은 픽스처 한 벌만 둔다 — 2026-09-20 에 리드가 눈으로 확인한 것을 옮겨 두었다(devAiFigureRefusal.test.ts 와 공유).
+const CONCEPT_MAP = conceptMap;
 
 describe("concept maps and flowcharts are drawn, not refused", () => {
   it("draws the quadrilateral concept map through the whole redraw pipeline", async () => {
