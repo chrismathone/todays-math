@@ -143,6 +143,46 @@ describe("게이트웨이 한 겹", () => {
     }
   });
 
+  // 리드의 실측 스크립트(scratchpad/jev-pilot)는 확신을 `providerMetadata.typesafe.confidence` 에서 읽었다.
+  // 그 값이 «맞은 것 0.93~1.00 · 틀린 것 0.28·0.36» 이고 문턱 0.9 의 눈금도 거기서 나왔다 — 그러니 우리도 읽는다.
+  it("확신을 providerMetadata 에서도 읽는다", async () => {
+    const evaluate = await evaluateMock();
+    evaluate.mockResolvedValue({
+      answers: { op: { type: "choice", choice: "delete" } },
+      providerMetadata: { typesafe: { confidence: { op: 0.94 } } },
+      warnings: [],
+    } as never);
+    expect(
+      await askJev({
+        state: "{}",
+        questions,
+        env: envOf({ AI_GATEWAY_API_KEY: "key" }),
+      }),
+    ).toEqual({ op: { choice: "delete", confidence: 0.94 } });
+  });
+
+  it("두 군데 다 확신이 오면 낮은 쪽으로 읽는다 — 문턱을 느슨하게 만들지 않는다", async () => {
+    const evaluate = await evaluateMock();
+    evaluate.mockResolvedValue({
+      answers: {
+        op: {
+          type: "choice",
+          choice: "delete",
+          probabilities: { delete: 0.99 },
+        },
+      },
+      providerMetadata: { typesafe: { confidence: { op: 0.62 } } },
+      warnings: [],
+    } as never);
+    expect(
+      await askJev({
+        state: "{}",
+        questions,
+        env: envOf({ AI_GATEWAY_API_KEY: "key" }),
+      }),
+    ).toEqual({ op: { choice: "delete", confidence: 0.62 } });
+  });
+
   it("확률을 안 주면 확신 0 으로 읽는다 — 문턱에 걸려 떨어지도록", async () => {
     const evaluate = await evaluateMock();
     evaluate.mockResolvedValue({

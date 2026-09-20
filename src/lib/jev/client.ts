@@ -48,10 +48,26 @@ export function isJevEnabled(env: NodeJS.ProcessEnv = process.env): boolean {
   );
 }
 
-/** 답 하나가 이 물음의 선택지 안에서 나온 «고르기»인가. */
+/** [0, 1] 안의 수만 확신으로 인정한다. */
+const asProbability = (value: unknown) =>
+  typeof value === "number" &&
+  Number.isFinite(value) &&
+  value >= 0 &&
+  value <= 1
+    ? value
+    : undefined;
+
+/**
+ * 답 하나가 이 물음의 선택지 안에서 나온 «고르기»인가.
+ * 확신은 두 군데서 올 수 있다 — 답의 `probabilities[고른 값]`, 그리고
+ * `providerMetadata.typesafe.confidence[물음 id]`(리드의 실측 스크립트가 읽은 자리, 문턱 0.9 의 눈금이 나온 곳).
+ * 둘 다 오면 **낮은 쪽**을 쓴다: 문턱을 느슨하게 만들어 틀린 답을 통과시키느니 빠른 길을 덜 타는 쪽이 낫다.
+ * 어느 쪽도 없으면 0 이고, 그러면 문턱에 걸려 지금 경로로 떨어진다.
+ */
 function readAnswer(
   value: unknown,
   question: JevChoiceQuestion,
+  metaConfidence: unknown,
 ): JevAnswer | null {
   if (!value || typeof value !== "object") return null;
   const answer = value as {
@@ -64,16 +80,17 @@ function readAnswer(
   if (!Object.prototype.hasOwnProperty.call(question.criteria, answer.choice))
     return null;
   const probabilities = answer.probabilities;
-  const probability =
-    probabilities && typeof probabilities === "object"
-      ? (probabilities as Record<string, unknown>)[answer.choice]
-      : undefined;
+  const found = [
+    asProbability(
+      probabilities && typeof probabilities === "object"
+        ? (probabilities as Record<string, unknown>)[answer.choice]
+        : undefined,
+    ),
+    asProbability(metaConfidence),
+  ].filter((value): value is number => value !== undefined);
   return {
     choice: answer.choice,
-    confidence:
-      typeof probability === "number" && Number.isFinite(probability)
-        ? probability
-        : 0,
+    confidence: found.length ? Math.min(...found) : 0,
   };
 }
 
@@ -129,11 +146,20 @@ export async function askJev(input: {
     const result = await Promise.race([call, timeout]);
     const answers = (result as { answers?: unknown } | null)?.answers;
     if (!answers || typeof answers !== "object") return null;
+    const confidence = (
+      result as {
+        providerMetadata?: Record<string, Record<string, unknown>>;
+      } | null
+    )?.providerMetadata?.typesafe?.confidence as
+      Record<string, unknown> | undefined;
     const read: Record<string, JevAnswer> = {};
     for (const id of ids) {
       const answer = readAnswer(
         (answers as Record<string, unknown>)[id],
         questions[id],
+        confidence && typeof confidence === "object"
+          ? confidence[id]
+          : undefined,
       );
       if (!answer) return null;
       read[id] = answer;

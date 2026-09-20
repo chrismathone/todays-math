@@ -10,7 +10,7 @@
  */
 import { createServer, type Server } from "node:http";
 import type { AddressInfo } from "node:net";
-import { afterAll, beforeAll, expect, it, vi } from "vitest";
+import { afterAll, beforeAll, beforeEach, expect, it, vi } from "vitest";
 import { createGateway } from "@ai-sdk/gateway";
 import { http, passthrough } from "msw";
 import { server as mswServer } from "@/mocks/server";
@@ -43,7 +43,10 @@ const figure: FigureEditFigure = {
     { name: "C", x: 260, y: 200 },
   ],
 };
+/** 게이트웨이가 확신을 어디에 싣는가 — 둘 중 어느 모양이 오든 우리 한 겹이 읽어야 한다. */
+let shape: "probabilities" | "providerMetadata" = "probabilities";
 let server: Server;
+let port = 0;
 let seen: { url?: string; headers?: Record<string, unknown>; body?: unknown } =
   {};
 
@@ -96,13 +99,35 @@ beforeAll(async () => {
           ];
         }),
       );
+      const body_ =
+        shape === "probabilities"
+          ? { answers, warnings: [] }
+          : {
+              // 리드의 실측 스크립트가 읽은 자리 — 답에는 고른 값만 있고 확신은 여기에 온다.
+              answers: Object.fromEntries(
+                Object.entries(answers).map(([id, answer]) => [
+                  id,
+                  {
+                    type: "choice",
+                    choice: (answer as { choice: string }).choice,
+                  },
+                ]),
+              ),
+              providerMetadata: {
+                typesafe: {
+                  confidence: Object.fromEntries(
+                    Object.keys(answers).map((id) => [id, 0.97]),
+                  ),
+                },
+              },
+              warnings: [],
+            };
       response.writeHead(200, { "content-type": "application/json" });
-      response.end(JSON.stringify({ answers, warnings: [] }));
+      response.end(JSON.stringify(body_));
     });
   });
   await new Promise<void>((resolve) => server.listen(0, "127.0.0.1", resolve));
-  const port = (server.address() as AddressInfo).port;
-  mswServer.use(http.all(`http://127.0.0.1:${port}/*`, () => passthrough()));
+  port = (server.address() as AddressInfo).port;
   (
     globalThis as unknown as { AI_SDK_DEFAULT_PROVIDER?: unknown }
   ).AI_SDK_DEFAULT_PROVIDER = createGateway({
@@ -110,31 +135,41 @@ beforeAll(async () => {
     apiKey: "local-fake",
   });
 });
+// vitest.setup.ts 가 시험마다 MSW 핸들러를 되돌린다 — 그래서 매번 다시 건다(안 걸면 로컬 요청이 막힌다).
+beforeEach(() => {
+  mswServer.use(http.all(`http://127.0.0.1:${port}/*`, () => passthrough()));
+});
 afterAll(async () => {
   delete (globalThis as unknown as { AI_SDK_DEFAULT_PROVIDER?: unknown })
     .AI_SDK_DEFAULT_PROVIDER;
   await new Promise<void>((resolve) => server.close(() => resolve()));
 });
 
-it("실제 ai SDK 를 통과해 명령이 조립된다", async () => {
-  const content = "각 ABC에 각 표시를 해 주세요.";
-  const questions = buildFigureEditQuestions(figure, content);
-  expect(questions).not.toBeNull();
-  const answers = await askJev({
-    state: buildFigureEditState(figure, content),
-    questions: questions!,
-    env: { NODE_ENV: "test", AI_GATEWAY_API_KEY: "local-fake" },
-  });
-  expect(answers).not.toBeNull();
-  expect(seen.url).toBe("/evaluation-model");
-  expect(seen.headers?.["ai-model-id"]).toBe("typesafe-ai/jev");
-  expect((seen.body as { providerOptions?: unknown }).providerOptions).toEqual({
-    gateway: { zeroDataRetention: true },
-  });
-  expect(assembleFigureEditCommand(answers!, figure)).toEqual({
-    op: "addAngle",
-    at: "B",
-    from: "A",
-    to: "C",
-  });
-});
+it.each(["probabilities", "providerMetadata"] as const)(
+  "실제 ai SDK 를 통과해 명령이 조립된다 — 확신이 %s 에 실려도",
+  async (responseShape) => {
+    shape = responseShape;
+    const content = "각 ABC에 각 표시를 해 주세요.";
+    const questions = buildFigureEditQuestions(figure, content);
+    expect(questions).not.toBeNull();
+    const answers = await askJev({
+      state: buildFigureEditState(figure, content),
+      questions: questions!,
+      env: { NODE_ENV: "test", AI_GATEWAY_API_KEY: "local-fake" },
+    });
+    expect(answers).not.toBeNull();
+    expect(seen.url).toBe("/evaluation-model");
+    expect(seen.headers?.["ai-model-id"]).toBe("typesafe-ai/jev");
+    expect(
+      (seen.body as { providerOptions?: unknown }).providerOptions,
+    ).toEqual({
+      gateway: { zeroDataRetention: true },
+    });
+    expect(assembleFigureEditCommand(answers!, figure)).toEqual({
+      op: "addAngle",
+      at: "B",
+      from: "A",
+      to: "C",
+    });
+  },
+);
