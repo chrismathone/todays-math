@@ -162,8 +162,14 @@ test("검수 단계 상단 두 줄 — 쪽·문제가 한 줄, 전체 작업 셋
     ),
   );
   expect(new Set(bulkCenters).size).toBe(1);
-  // 제목 줄은 전(前)과 같이 1516px 에서 한 줄로 남는다.
+  /*
+   * 제목 줄은 한 줄로 남는다 — 세로 중심만 보는 자는 bandTools «안»의 꺾임을 못 본다
+   * (전(前) 상태에서 줄 수 1 · 높이 94px 이 나왔다). 높이로 함께 못 박는다.
+   */
   expect(await lines(band)).toBe(1);
+  expect(Math.round((await band.boundingBox())!.height)).toBeLessThanOrEqual(
+    44,
+  );
 
   // 파일 이름 — 고른 칸의 실제 폭을 잰다(잘린 글자 수는 보고서에 적는다).
   const nameBox = (await page
@@ -173,9 +179,31 @@ test("검수 단계 상단 두 줄 — 쪽·문제가 한 줄, 전체 작업 셋
     .locator("[data-studio-progress]")
     .first()
     .boundingBox())!;
+  /** 원장님이 보시던 그 잘림 — 35자 이름 중 몇 자가 실제로 보이는가. */
+  const fit = async () =>
+    page
+      .getByRole("combobox", { name: "원본 파일" })
+      .evaluate((select: HTMLSelectElement) => {
+        const style = getComputedStyle(select);
+        const context = document.createElement("canvas").getContext("2d")!;
+        context.font = `${style.fontSize} ${style.fontFamily}`;
+        const text = select.selectedOptions[0]?.text ?? "";
+        const inner =
+          select.clientWidth -
+          parseFloat(style.paddingLeft) -
+          parseFloat(style.paddingRight);
+        let shown = 0;
+        while (
+          shown < text.length &&
+          context.measureText(text.slice(0, shown + 1)).width <= inner
+        )
+          shown++;
+        return { 전체글자: text.length, 보이는글자: shown };
+      });
   const measured = {
     폭_1516: {
       파일이름칸: Math.round(nameBox.width),
+      보이는글자: await fit(),
       진행띠: Math.round(strip.width),
       제목줄높이: Math.round((await band.boundingBox())!.height),
       제목줄_줄수: await lines(band),
@@ -204,6 +232,7 @@ test("검수 단계 상단 두 줄 — 쪽·문제가 한 줄, 전체 작업 셋
         (await page.getByRole("combobox", { name: "원본 파일" }).boundingBox())!
           .width,
       ),
+      보이는글자: await fit(),
       진행띠: Math.round(
         (await page.locator("[data-studio-progress]").first().boundingBox())!
           .width,

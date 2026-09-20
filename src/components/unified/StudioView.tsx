@@ -2637,6 +2637,7 @@ export default function StudioView({
                     </button>
                   </>
                 )}
+                <span className={styles.divider} />
                 {bulkActions}
                 {progressStrip}
                 {crops.length > 0 && (
