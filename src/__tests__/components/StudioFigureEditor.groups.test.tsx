@@ -61,6 +61,20 @@ beforeEach(() => {
     },
   );
   vi.stubGlobal("DOMPoint", Point);
+  // jsdom 에는 SVGGeometryElement 가 없고 상자도 늘 0 이다 — 그림 위 번호표가 서도록 캔버스 크기를 준다.
+  vi.stubGlobal("SVGGeometryElement", class {});
+  Object.defineProperty(SVGElement.prototype, "getBoundingClientRect", {
+    configurable: true,
+    value: () => ({ x: 0, y: 0, width: 480, height: 300, toJSON: () => ({}) }),
+  });
+  for (const [name, value] of [
+    ["clientWidth", 480],
+    ["clientHeight", 300],
+  ] as const)
+    Object.defineProperty(SVGElement.prototype, name, {
+      configurable: true,
+      value,
+    });
   Object.defineProperty(SVGElement.prototype, "getScreenCTM", {
     configurable: true,
     value: () => identity,
@@ -153,7 +167,7 @@ describe("요소 목록 — 사용자 묶음", () => {
     fireEvent.click(chip(7));
     fireEvent.click(chip(8), { shiftKey: true });
     fireEvent.click(screen.getByRole("button", { name: "묶음 만들기" }));
-    const input = screen.getByRole("textbox", { name: "묶음 1 묶음 이름" });
+    const input = screen.getByRole("textbox", { name: "A 묶음 이름" });
     fireEvent.change(input, { target: { value: "오르막" } });
     fireEvent.keyDown(input, { key: "Enter" });
     expect(groupNames()[0]).toBe("오르막 묶음");
@@ -179,12 +193,13 @@ describe("요소 목록 — 사용자 묶음", () => {
       />,
     );
     fireEvent.click(chip(7));
+    fireEvent.click(chip(8), { shiftKey: true });
     fireEvent.click(screen.getByRole("button", { name: "묶음 만들기" }));
-    const input = screen.getByRole("textbox", { name: "묶음 1 묶음 이름" });
+    const input = screen.getByRole("textbox", { name: "A 묶음 이름" });
     fireEvent.change(input, { target: { value: "바꾸다 만 이름" } });
     fireEvent.keyDown(input, { key: "Escape" });
     fireEvent.blur(input);
-    expect(groupNames()[0]).toBe("묶음 1 묶음");
+    expect(groupNames()[0]).toBe("A 묶음");
     expect(onClose).not.toHaveBeenCalled();
   });
 });
@@ -483,5 +498,146 @@ describe("각 표시 — «각» 묶음 · 직각/예각/둔각이 모든 자리
     expect(
       within(groupRow()!).getByRole("textbox", { name: "각 묶음 이름" }),
     ).toHaveValue("각");
+  });
+});
+
+/**
+ * 원장님 2026-09-21 넷 — ⑴ «Ctrl+G 그룹화, Ctrl+Shift+G 그룹 해제 (ppt 명령어)»
+ * ⑵ «그룹화되면 번호를 하나로 합치게» ⑶ «그룹 순서대로 A 그룹, B 그룹, C 그룹».
+ */
+const press = (key: string, init: KeyboardEventInit = {}) =>
+  fireEvent.keyDown(document.activeElement ?? document.body, {
+    key,
+    ctrlKey: true,
+    ...init,
+  });
+/** 그림 둘레의 번호표 — 묶음은 하나뿐이다. */
+const tags = () =>
+  [...document.querySelectorAll<SVGGElement>("[data-figure-number]")].map(
+    (g) => [g.getAttribute("data-figure-number"), g.getAttribute("aria-label")],
+  );
+/** 한 번호표에서 나가는 지시선 수. */
+const leaders = (number: number) =>
+  document
+    .querySelector(`[data-figure-number="${number}"]`)!
+    .parentElement!.querySelectorAll("line").length;
+
+describe("단축키 — Ctrl+G 묶기 · Ctrl+Shift+G 묶음 해제 (원장님 2026-09-21)", () => {
+  it("Ctrl+G 로 묶고 Ctrl+Shift+G 로 푼다 — 되돌리기는 각각 한 걸음", () => {
+    open();
+    fireEvent.click(chip(7));
+    fireEvent.click(chip(8), { shiftKey: true });
+    press("g");
+    expect(groupNames()[0]).toBe("A 묶음");
+    expect(chipNumbers("A")).toEqual(["7", "8"]);
+    press("g", { shiftKey: true });
+    expect(list().queryByRole("group", { name: "A 묶음" })).toBeNull();
+    expect(chipNumbers("묶음 없음")).toEqual(["7", "8"]);
+    fireEvent.click(screen.getByRole("button", { name: /되돌리기/ }));
+    expect(chipNumbers("A")).toEqual(["7", "8"]);
+    fireEvent.click(screen.getByRole("button", { name: /되돌리기/ }));
+    expect(list().queryByRole("group", { name: "A 묶음" })).toBeNull();
+    expect(chipNumbers("그래프")).toEqual(["7", "8"]);
+  });
+  it("Ctrl+G 는 이름 칸에 초점을 주지 않는다 — 이어지는 단축키가 먹는다", () => {
+    open();
+    fireEvent.click(chip(7));
+    fireEvent.click(chip(8), { shiftKey: true });
+    press("g");
+    expect(
+      within(groupRow()!).getByRole("textbox", { name: "A 묶음 이름" }),
+    ).not.toBe(document.activeElement);
+    press("g", { shiftKey: true });
+    expect(list().queryByRole("group", { name: "A 묶음" })).toBeNull();
+  });
+  it("고른 것이 하나뿐이거나 없으면 아무 일도 안 한다", () => {
+    open();
+    press("g");
+    expect(groupNames()[0]).toBe("x축 묶음");
+    fireEvent.click(chip(7));
+    press("g");
+    expect(list().queryByRole("group", { name: "A 묶음" })).toBeNull();
+    expect(screen.getByRole("button", { name: "묶음 만들기" })).toBeDisabled();
+    // 묶음에 안 든 요소를 풀어도 되돌릴 것이 생기지 않는다
+    fireEvent.click(chip(8), { shiftKey: true });
+    press("g", { shiftKey: true });
+    expect(screen.getByRole("button", { name: /되돌리기/ })).toBeDisabled();
+  });
+  it("글자 칸에서는 안 먹는다 — 묶음 이름을 치는 중에 Ctrl+G 를 눌러도", () => {
+    open();
+    fireEvent.click(chip(7));
+    fireEvent.click(chip(8), { shiftKey: true });
+    fireEvent.click(screen.getByRole("button", { name: "묶음 만들기" }));
+    const input = within(groupRow()!).getByRole("textbox", {
+      name: "A 묶음 이름",
+    });
+    fireEvent.keyDown(input, { key: "g", ctrlKey: true, shiftKey: true });
+    expect(chipNumbers("A")).toEqual(["7", "8"]);
+  });
+  it("브라우저 기본 동작(크롬 «찾기 다음»)을 막는다", () => {
+    open();
+    fireEvent.click(chip(7));
+    fireEvent.click(chip(8), { shiftKey: true });
+    const event = new KeyboardEvent("keydown", {
+      key: "g",
+      ctrlKey: true,
+      bubbles: true,
+      cancelable: true,
+    });
+    document.body.dispatchEvent(event);
+    expect(event.defaultPrevented).toBe(true);
+  });
+});
+
+describe("묶음 이름 A·B·C · 번호표 하나 (원장님 2026-09-21)", () => {
+  it("묶을 때마다 A · B · C — 손수 고친 이름은 덮이지 않는다", () => {
+    open();
+    fireEvent.click(chip(7));
+    fireEvent.click(chip(8), { shiftKey: true });
+    press("g");
+    fireEvent.click(chip(5));
+    fireEvent.click(chip(6), { shiftKey: true });
+    press("g");
+    // 이름은 **만든 차례**(A → B), 목록 차례는 첫 요소의 번호 차례라 B(5,6) 가 A(7,8) 보다 위에 선다
+    expect(groupNames().slice(0, 2)).toEqual(["B 묶음", "A 묶음"]);
+    // A 를 «오르막» 으로 고치면 다음 묶음이 A 를 쓴다(빈 자리부터)
+    fireEvent.click(within(group("A")).getByRole("button", { name: "A 2개" }));
+    const input = within(groupRow()!).getByRole("textbox", {
+      name: "A 묶음 이름",
+    });
+    fireEvent.change(input, { target: { value: "오르막" } });
+    fireEvent.keyDown(input, { key: "Enter" });
+    fireEvent.click(chip(1));
+    fireEvent.click(chip(2), { shiftKey: true });
+    press("g");
+    expect(groupNames().slice(0, 3)).toEqual([
+      "A 묶음",
+      "B 묶음",
+      "오르막 묶음",
+    ]);
+  });
+  it("묶으면 그림 위 번호표가 하나로 합쳐지고 지시선이 속 요소마다 나간다", () => {
+    open();
+    expect(tags().length).toBe(9);
+    fireEvent.click(chip(7));
+    fireEvent.click(chip(8), { shiftKey: true });
+    press("g");
+    const after = tags();
+    expect(after.length).toBe(8);
+    expect(after.map(([n]) => n)).not.toContain("8");
+    expect(after).toContainEqual(["7", "A 묶음 선택"]);
+    expect(leaders(7)).toBe(2);
+    expect(leaders(1)).toBe(1);
+  });
+  it("합친 번호표를 누르면 묶음 전체가 선택된다", () => {
+    open();
+    fireEvent.click(chip(7));
+    fireEvent.click(chip(8), { shiftKey: true });
+    press("g");
+    fireEvent.click(chip(1));
+    expect(screen.getByText(/1개 선택/)).toBeInTheDocument();
+    fireEvent.click(screen.getByRole("button", { name: "A 묶음 선택" }));
+    expect(screen.getByText(/2개 선택/)).toBeInTheDocument();
+    expect(within(groupRow()!).getByRole("textbox")).toHaveValue("A");
   });
 });

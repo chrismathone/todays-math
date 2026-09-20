@@ -7,6 +7,7 @@ import {
 import {
   figureAngleKinds,
   groupFigureObjects,
+  nextGroupName,
 } from "@/components/unified/figure-editor/figureObjectGroups";
 import { objectName } from "@/components/unified/figure-editor/figureObjectNames";
 
@@ -719,5 +720,35 @@ describe("objectName — 모든 자리의 요소 이름", () => {
         attrs: { "data-function": '{"expression":"x"}', d: "M0 0 L1 1" },
       }),
     ).toBe("함수 그래프");
+  });
+});
+
+/**
+ * 새 묶음의 기본 이름 — 원장님 2026-09-21 «그룹화는 숫자가 아니라 그룹 순서대로 A 그룹, B 그룹, C 그룹 이런 식으로».
+ * 이미 쓰는 이름(옛 그림의 «오르막»·«묶음 1»)은 덮지 않고 건너뛴다.
+ */
+describe("새 묶음 이름 — A · B · C", () => {
+  it("빈 그림의 첫 묶음은 A, 다음은 B · C", () => {
+    expect(nextGroupName([])).toBe("A");
+    expect(nextGroupName(["A"])).toBe("B");
+    expect(nextGroupName(["A", "B"])).toBe("C");
+  });
+  it("비어 있는 자리부터 채운다 — 가운데를 지우면 그 글자가 다시 나온다", () => {
+    expect(nextGroupName(["A", "C"])).toBe("B");
+    expect(nextGroupName(["B", "C"])).toBe("A");
+  });
+  it("Z 다음은 AA · AB — 스프레드시트 열 이름과 같은 규칙", () => {
+    const upTo = (last: number) =>
+      Array.from({ length: last }, (_, i) => String.fromCharCode(65 + i));
+    expect(nextGroupName(upTo(25))).toBe("Z");
+    expect(nextGroupName(upTo(26))).toBe("AA");
+    expect(nextGroupName([...upTo(26), "AA"])).toBe("AB");
+  });
+  it("손수 지은 이름·옛 «묶음 1» 은 건너뛰지 않는다 — 글자 이름만 본다", () => {
+    expect(nextGroupName(["오르막", "묶음 1"])).toBe("A");
+    expect(nextGroupName(["오르막", "A"])).toBe("B");
+  });
+  it("앞뒤 빈칸은 같은 이름으로 본다", () => {
+    expect(nextGroupName([" A "])).toBe("B");
   });
 });

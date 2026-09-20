@@ -25,7 +25,11 @@ import {
   editFigureObjects,
   setFigureGroup,
 } from "./figureSvgEditing";
-import { figureAngleKinds, groupFigureObjects } from "./figureObjectGroups";
+import {
+  figureAngleKinds,
+  groupFigureObjects,
+  nextGroupName,
+} from "./figureObjectGroups";
 import {
   copyFigureSelection,
   pasteFigureSelection,
@@ -367,6 +371,18 @@ export function FigureEditor({
     () => figureAngleKinds(objects, viewBoxKey.split(" ").map(Number)),
     [objects, viewBoxKey],
   );
+  // 요소 id → 묶음 이름(사용자가 묶은 것만) — 그림 위 번호표를 묶음마다 하나로 합치는 데 쓴다(원장님 2026-09-21).
+  // AI 에게 보내는 그림은 이것을 주지 않고 번호를 매겨 요소마다 번호가 그대로 간다.
+  const groupNames = useMemo(
+    () =>
+      new Map(
+        objects.flatMap((o) => {
+          const name = o.attrs["data-group"]?.trim();
+          return name ? [[o.id, name] as const] : [];
+        }),
+      ),
+    [objects],
+  );
   // «묶음 만들기» 직후 오른쪽 칸의 묶음 이름 칸에 초점을 줄 묶음 key — 초점을 주면 지운다.
   const [renamingGroup, setRenamingGroup] = useState<string | null>(null);
   const clearRenaming = useCallback(() => setRenamingGroup(null), []);
@@ -393,17 +409,25 @@ export function FigureEditor({
       editGroups((source) => setFigureGroup(source, ids, name)),
     [editGroups],
   );
-  const makeGroup = () => {
-    const names = new Set(groups.map((g) => g.name));
-    let n = groups.filter((g) => g.custom).length + 1;
-    while (names.has(`묶음 ${n}`)) n++;
-    assignGroup(selectedIds, `묶음 ${n}`);
-    setRenamingGroup(`custom:묶음 ${n}`);
+  // 새 묶음 — 이름은 A · B · C … 차례(원장님 2026-09-21). 단추로 만들면 이름 칸에 바로 초점을 주고,
+  // 단축키(Ctrl+G)로 만들면 주지 않는다 — 초점이 글자 칸으로 가면 이어지는 단축키가 안 먹는다.
+  const makeGroup = (focusName = true) => {
+    if (selectedIds.length < 2) return;
+    const name = nextGroupName(groups.map((g) => g.name));
+    assignGroup(selectedIds, name);
+    if (focusName) setRenamingGroup(`custom:${name}`);
   };
-  const pickGroup = useCallback((ids: string[], additive: boolean) => {
+  // 묶음 해제(Ctrl+Shift+G) — 오른쪽 칸 «묶음 해제» 단추와 같은 한 길(`data-group=""` — 묶음 밖).
+  // 묶음에 든 것만 푼다 — 묶음 밖 요소까지 `data-group=""` 로 적으면 «아무 일도 안 한다»가 되돌리기 한 걸음이 된다.
+  const breakGroup = () => {
+    const inGroup = selectedIds.filter((id) => groupNames.has(id));
+    if (inGroup.length < 2) return;
+    assignGroup(inGroup, "");
+  };
+  const pickGroup = useCallback((ids: readonly string[], additive: boolean) => {
     setSelectedIds((previous) =>
       !additive
-        ? ids
+        ? [...ids]
         : ids.every((id) => previous.includes(id))
           ? previous.filter((id) => !ids.includes(id))
           : [...previous, ...ids.filter((id) => !previous.includes(id))],
@@ -626,8 +650,8 @@ export function FigureEditor({
       setObjectNumbers((previous) =>
         retargetFigureNumbers(root, previous, ids),
       );
-    else setObjectNumbers(layoutFigureNumbers(root));
-  }, [svg, displaySvg, zoom, available, showNumbers, frozenCanvas]);
+    else setObjectNumbers(layoutFigureNumbers(root, groupNames));
+  }, [svg, displaySvg, zoom, available, showNumbers, frozenCanvas, groupNames]);
   useLayoutEffect(() => {
     const node = viewport.current;
     if (!node) return;
@@ -685,6 +709,12 @@ export function FigureEditor({
           e.preventDefault();
           const source = copyFigureSelection(svg, selectedIds);
           if (source) paste(source, true);
+        } else if (key === "g") {
+          // 묶기(Ctrl+G)·묶음 해제(Ctrl+Shift+G) — 원장님 2026-09-21 «ppt 명령어».
+          // 크롬의 «찾기 다음»이 Ctrl+G 라 반드시 막는다. 고른 것이 둘 미만이면 아무 일도 안 한다.
+          e.preventDefault();
+          if (e.shiftKey) breakGroup();
+          else makeGroup(false);
         }
         // C/X/V는 브라우저의 clipboard 이벤트에서 처리해 OS 클립보드와 호환한다.
         return;
@@ -1661,7 +1691,7 @@ export function FigureEditor({
                 <FigureNumberLayer
                   numbers={objectNumbers}
                   selectedIds={selectedIds}
-                  onPick={pick}
+                  onPick={pickGroup}
                 />
               )}
               {selection && selected && tool === "select" && (
@@ -1705,9 +1735,9 @@ export function FigureEditor({
               </span>
               <button
                 type="button"
-                title="선택한 요소를 새 묶음으로 — 이름을 붙일 수 있습니다"
-                onClick={makeGroup}
-                disabled={!selectedIds.length || busy}
+                title="선택한 요소를 새 묶음으로 — 이름을 붙일 수 있습니다 (Ctrl+G)"
+                onClick={() => makeGroup()}
+                disabled={selectedIds.length < 2 || busy}
                 className="rounded border border-[var(--figure-accent-line)] px-2 py-0.5 text-[var(--figure-accent-ink)] disabled:opacity-40"
               >
                 묶음 만들기
