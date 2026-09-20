@@ -22,7 +22,6 @@ import {
   editFigureObject,
   figureObjects,
   prepareFigureSvg,
-  fitFigureViewport,
   editFigureObjects,
   setFigureGroup,
 } from "./figureSvgEditing";
@@ -36,6 +35,7 @@ import {
 } from "./figureClipboard";
 import { modKey } from "./platform";
 import { carryTypeset, typesetFigureSvg } from "./figureTypeset";
+import { fitFrameToContent, renderFittedFigure } from "./figureFrame";
 import { previewFigureObjects } from "./figureDragPreview";
 import {
   figureHandles,
@@ -101,7 +101,7 @@ import {
   mirrorFigureSelection,
   type MirrorAxis,
 } from "./figureMirror";
-import { FigureRotateRow } from "./FigureRotateRow";
+import { FigureFitRow, FigureRotateRow } from "./FigureRotateRow";
 import { flipFigureCurve } from "./figureFlip";
 
 type Tool =
@@ -514,6 +514,21 @@ export function FigureEditor({
     const { svg: next, labelId } = flipping.result;
     commit(next);
     setSelectedIds(labelId ? [flipping.id, labelId] : [flipping.id]);
+  };
+  // «다 보이게» — 지금 내용에 틀을 딱 맞춘다(원장님 2026-09-20). 저장할 때와 **같은 함수**를 타고,
+  // 틀(viewBox·width·height)만 바꾸니 글자 크기·선 굵기·크기 고정과 무관하다. 잘린 것을 들이고
+  // 남는 여백은 줄인다. 이미 맞으면 아무 일도 안 한다 — 되돌리기 자리도 안 만든다.
+  const fitFrame = async () => {
+    setBusy(true);
+    setError("");
+    try {
+      const next = await fitFrameToContent(svg);
+      if (next) commit(next);
+    } catch (e) {
+      setError((e as Error).message);
+    } finally {
+      setBusy(false);
+    }
   };
   const remove = () => {
     if (selectedIds.length) {
@@ -1173,8 +1188,9 @@ export function FigureEditor({
       }
     }
   };
-  const output = async () =>
-    fitFigureViewport(await typesetFigureSvg(cleanFigureForSave(svg)));
+  // 저장·내려받기가 내보내는 그림. 오른쪽 칸 «다 보이게»(fitFrameToContent)가 **같은 이 함수**를 탄다 —
+  // 규칙이 갈리면 «단추를 눌러 본 모습»과 «저장한 모습»이 달라진다(원장님 2026-09-20).
+  const output = () => renderFittedFigure(svg);
   const save = async () => {
     setBusy(true);
     setError("");
@@ -1771,6 +1787,7 @@ export function FigureEditor({
                 }
               />
             )}
+            <FigureFitRow onFit={fitFrame} />
             {current ? (
               <div className="space-y-3 text-xs">
                 {currentFunction && (
