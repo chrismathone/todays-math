@@ -16,6 +16,7 @@ import {
   withTransparentBackground,
 } from "./figure-spec";
 import { MAX_DROPPED, repairFigureSpec } from "./figure-repair";
+import { isEngineCapabilityRefusal } from "./figure-refusal";
 import { validDevAiSvg } from "./svg";
 import { buildFigureComparisonImage } from "./figure-comparison";
 
@@ -133,20 +134,36 @@ export async function redrawDevAiFigure(
       Math.max(0, budget),
     );
     let repair: { spec: DevAiFigureSpec; error: string } | undefined;
+    // 원장님 2026-09-20 — 모델이 «엔진이 한글을 못 그린다»고 지어내 spec:null 로 끝냈다(422).
+    // 그런 사유에만 반박 한 줄을 붙여 **딱 한 번** 다시 묻는다 — 사진·손그림 같은 진짜 사유는 그대로 422.
+    // 되묻기는 아래 세 바퀴 안에서 한 칸을 쓸 뿐이라 토큰·시간 예산은 그대로다.
+    let refusal: string | undefined;
+    let rebutted = false;
     for (let attempt = 0; attempt < 3; attempt++) {
       check();
       const raw = await invoke({
         phase: "generate",
-        prompt: buildFigureSpecPrompt(request, repair),
+        prompt: buildFigureSpecPrompt(request, repair, refusal),
         imageDataUrl: request.imageDataUrl,
         signal: deadline.signal,
       });
+      refusal = undefined; // 반박은 바로 다음 한 번에만 싣는다
       check();
       const generated = parseFigureSpecResult(raw);
-      if (!generated.spec)
+      if (!generated.spec) {
+        if (
+          !rebutted &&
+          attempt < 2 &&
+          isEngineCapabilityRefusal(generated.note)
+        ) {
+          rebutted = true;
+          refusal = generated.note;
+          continue;
+        }
         throw figureReasonError(
           generated.note || "도형 엔진으로 재현할 수 없습니다.",
         );
+      }
       // v2 흰 바탕 rect 가 편집기 1번 «사각형»이 됐다(2026-09-19) — 렌더·대조·저장 모두 투명 바탕 spec 으로.
       let spec = withTransparentBackground(generated.spec);
       // Pass MathJax metrics to the authoritative geometry engine, but keep its

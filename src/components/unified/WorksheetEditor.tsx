@@ -16,6 +16,11 @@ import {
   WORKSPACE_MENUS,
   type WorkspaceMenu,
 } from "@/contracts/accountAccess.contract";
+import {
+  isSourceOrdered,
+  sortBySourceOrder,
+  worksheetRowLabel,
+} from "./worksheetOrder";
 import s from "./WorksheetEditor.module.css";
 interface Props {
   cloudSaveStatus?: string;
@@ -37,6 +42,8 @@ interface Props {
   download: () => void;
   toggle: (problem: StudioProblem) => void;
   move: (index: number, direction: number) => void;
+  /** 「순서 초기화」가 세운 차례를 통째로 적용한다 — 되돌리기는 부모가 맡는다. */
+  reorder: (next: StudioProblem[]) => void;
   navigate: (view: "bank" | "studio") => void;
   onBackToReview?: () => void;
   onImportFiles?: () => void;
@@ -61,6 +68,7 @@ export default function WorksheetEditor({
   download,
   toggle,
   move,
+  reorder,
   navigate,
   onBackToReview,
   onImportFiles,
@@ -76,6 +84,8 @@ export default function WorksheetEditor({
   const addFromBankRef = useRef<HTMLButtonElement>(null);
   const removedIndexRef = useRef<number | null>(null);
   const [tab, setTab] = useState<"settings" | "order">("settings");
+  // 「순서 초기화」는 이미 원본 차례이면 할 일이 없다 — 그때는 흐리게 둔다.
+  const sourceOrdered = isSourceOrdered(selected);
   // Archived concept callers still work; the live workspace persists through its draft store.
   const [localOptions, setLocalOptions] = useState(() => ({
     ...DEFAULT_PRINT_OPTIONS,
@@ -352,56 +362,70 @@ export default function WorksheetEditor({
               <div className={s.orderHeading}>
                 <h3>문제 순서</h3>
                 <span>{selected.length}문항</span>
+                <button
+                  type="button"
+                  className={`${s.secondaryButton} ${s.orderReset}`}
+                  disabled={sourceOrdered}
+                  onClick={() => reorder(sortBySourceOrder(selected))}
+                >
+                  순서 초기화
+                </button>
               </div>
               <ol className={s.orderList} ref={orderListRef}>
-                {selected.map((p, i) => (
-                  <li key={p.id}>
-                    <span className={s.orderNumber}>
-                      {String(i + 1).padStart(2, "0")}
-                    </span>
-                    <div>
-                      <strong
-                        title={p.section || p.sourceLabel || "가져온 문제"}
-                      >
-                        {p.section || p.sourceLabel || "가져온 문제"}
-                      </strong>
-                      <small>
-                        {p.grade} · {p.difficulty || "내 자료"}
-                      </small>
-                    </div>
-                    <div className={s.orderActions}>
-                      {can("studio") && p.studioCrop && onEditSource && (
+                {selected.map((p, i) => {
+                  const row = worksheetRowLabel(p);
+                  return (
+                    <li key={p.id}>
+                      <span className={s.orderNumber}>
+                        {String(i + 1).padStart(2, "0")}
+                      </span>
+                      <div>
+                        <strong title={row.title}>{row.text}</strong>
+                        <small>
+                          {p.grade} · {p.difficulty || "내 자료"}
+                        </small>
+                      </div>
+                      <div className={s.orderActions}>
+                        {can("studio") && p.studioCrop && onEditSource && (
+                          <button
+                            type="button"
+                            className={`${s.secondaryButton} ${s.orderEdit}`}
+                            aria-label={`${i + 1}번 원본 편집`}
+                            onClick={() => onEditSource(p)}
+                          >
+                            <span>원본 편집</span>
+                          </button>
+                        )}
                         <button
-                          className={s.secondaryButton}
-                          aria-label={`${i + 1}번 원본 편집`}
-                          onClick={() => onEditSource(p)}
+                          type="button"
+                          className={s.orderStep}
+                          disabled={i === 0}
+                          aria-label={`${i + 1}번 문제 위로`}
+                          onClick={() => move(i, -1)}
                         >
-                          원본 편집
+                          ↑
                         </button>
-                      )}
-                      <button
-                        disabled={i === 0}
-                        aria-label={`${i + 1}번 문제 위로`}
-                        onClick={() => move(i, -1)}
-                      >
-                        ↑
-                      </button>
-                      <button
-                        disabled={i === selected.length - 1}
-                        aria-label={`${i + 1}번 문제 아래로`}
-                        onClick={() => move(i, 1)}
-                      >
-                        ↓
-                      </button>
-                      <button
-                        aria-label={`${i + 1}번 문제 빼기`}
-                        onClick={() => removeProblem(p, i)}
-                      >
-                        ×
-                      </button>
-                    </div>
-                  </li>
-                ))}
+                        <button
+                          type="button"
+                          className={s.orderStep}
+                          disabled={i === selected.length - 1}
+                          aria-label={`${i + 1}번 문제 아래로`}
+                          onClick={() => move(i, 1)}
+                        >
+                          ↓
+                        </button>
+                        <button
+                          type="button"
+                          className={s.orderStep}
+                          aria-label={`${i + 1}번 문제 빼기`}
+                          onClick={() => removeProblem(p, i)}
+                        >
+                          ×
+                        </button>
+                      </div>
+                    </li>
+                  );
+                })}
               </ol>
             </div>
             <div className={s.bottomActions}>

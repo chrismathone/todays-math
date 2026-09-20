@@ -17,15 +17,22 @@ describe("[figureSvgFrame] 초등 그림은 발문에 맞춰 줄인다", () => {
     expect(figureSvgSize(svg(136))).toBe("compact");
     expect(figureSvgSize(svg(140))).toBe("compact");
     expect(figureSvgSize(svg(144))).toBe("compact");
-    expect(figureSvgFrameClass(svg(140))).toContain("max-w-[140px]");
+    // 🔴 폭은 **화면·인쇄가 같은 mm** 다 — 예전에는 화면만 px(140)로 따로 적었다.
+    expect(figureSvgFrameClass(svg(140))).toContain(
+      `max-w-[${FIGURE_SVG_PRINT_MM.compact}mm]`,
+    );
   });
 
   it("상자 연쇄·각·연산 흐름은 240 — 360 으로 늘리지 않는다", () => {
     expect(figureSvgSize(svg(229))).toBe("mid");
     expect(figureSvgSize(svg(242))).toBe("mid");
     expect(figureSvgSize(svg(304))).toBe("mid");
-    expect(figureSvgFrameClass(svg(242))).toContain("max-w-[240px]");
-    expect(figureSvgFrameClass(svg(242))).not.toContain("max-w-[360px]");
+    expect(figureSvgFrameClass(svg(242))).toContain(
+      `max-w-[${FIGURE_SVG_PRINT_MM.mid}mm]`,
+    );
+    expect(figureSvgFrameClass(svg(242))).not.toContain(
+      `max-w-[${FIGURE_SVG_PRINT_MM.wide}mm]`,
+    );
   });
 
   it("문턱을 넘기면 다음 칸으로 간다", () => {
@@ -62,7 +69,9 @@ describe("[figureSvgFrame] 그래프 짝은 폭이 아니라 kind 로 가른다"
     expect(figureSvgSize(pairSvg(273))).toBe("pair");
     expect(figureSvgSize(pairSvg(320))).toBe("pair");
     expect(figureSvgSize(pairSvg(360))).toBe("pair");
-    expect(figureSvgFrameClass(pairSvg(273))).toContain("max-w-[364px]");
+    expect(figureSvgFrameClass(pairSvg(273))).toContain(
+      `max-w-[${FIGURE_SVG_PRINT_MM.pair}mm]`,
+    );
   });
 
   it("**음성 대조군** — 같은 폭이어도 짝이 아니면 pair 가 아니다", () => {
@@ -85,7 +94,15 @@ describe("[figureSvgFrame] 그래프 짝은 폭이 아니라 kind 로 가른다"
   });
 });
 
-describe("[figureSvgFrame] 자와 지면이 **같은 mm** 를 본다", () => {
+/* ── 화면·인쇄·HWPX 가 **한 수**를 본다 (2026-09-20, hwpx-figure-scale) ──────
+ *
+ * 🔴 예전에는 화면을 px, 인쇄를 mm 로 적었다. compact·mid·pair 는 두 수가 1% 안이라
+ *    아무도 몰랐는데 `wide` 만 화면 360px · 종이 70mm(264.57px)로 **36% 갈렸다.**
+ *    HWPX 내보내기는 미리보기 DOM 을 **화면 매체 그대로** 복제해 재므로
+ *    (`hwpxLayout.collectHwpxLayout`) HWPX 가 화면 편에, PDF·실제 인쇄가 반대편에
+ *    섰다. 단위를 하나로 적으면 갈라질 자리가 없다.
+ */
+describe("[figureSvgFrame] 화면·자·지면이 **같은 mm** 를 본다", () => {
   /**
    * 🔴 넘침 판정(`printOverflow.estimateFigureSvgPx`)이 `FIGURE_SVG_PRINT_MM` 을
    * 읽고, 실제로 그려지는 폭은 `FRAME` 의 Tailwind 클래스가 정한다. Tailwind 는
@@ -93,7 +110,7 @@ describe("[figureSvgFrame] 자와 지면이 **같은 mm** 를 본다", () => {
    * **여기서 대조**한다. 어긋나면 자가 재는 지면과 실제 지면이 갈라지는데,
    * 그건 아무도 모르게 어긋난다(2026-08-23 `PAIR_FRAME_PX` 가 같은 자리였다).
    */
-  it("등급마다 `print:max-w-[Xmm]` 이 표와 같은 수다", () => {
+  it("등급마다 `max-w-[Xmm]` 이 표와 같은 수다 — **화면도 같은 수다**", () => {
     const sample: Record<keyof typeof FIGURE_SVG_PRINT_MM, string> = {
       compact: svg(140),
       mid: svg(240),
@@ -109,7 +126,11 @@ describe("[figureSvgFrame] 자와 지면이 **같은 mm** 를 본다", () => {
         figureSvgSize(sample[size as keyof typeof FIGURE_SVG_PRINT_MM]),
         `표본이 ${size} 가 아니다`,
       ).toBe(size);
-      expect(cls, `${size} 의 인쇄 폭`).toContain(`print:max-w-[${mm}mm]`);
+      expect(cls, `${size} 의 폭`).toContain(`max-w-[${mm}mm]`);
+      // 🔴 화면 전용 px 폭이 남아 있으면 매체마다 갈린다 — HWPX 는 화면 쪽에 선다.
+      expect(cls, `${size} 에 화면 전용 px 폭이 남았다`).not.toMatch(
+        /max-w-\[\d+(\.\d+)?px\]/,
+      );
     }
   });
 

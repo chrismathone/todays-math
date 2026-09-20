@@ -5,7 +5,10 @@ import { blocksToMarkdown } from "@/lib/mathgen/blocksToMarkdown";
 import type { ContentBlock, ChoiceGroup } from "@/lib/mathgen/contracts";
 import { parseProblemContent } from "@/lib/problem/parseProblemContent";
 import { CHOICE_MARKS } from "@/lib/math/circledNumber";
-import { fitsTwoColumns } from "@/lib/math/displayWidth";
+import {
+  choiceColumnCount,
+  type PrintChoiceLayout,
+} from "@/lib/math/choiceLayout";
 import { figureWidthStyle, parseFigureDimensions } from "@/lib/figurePrintSize";
 import { fractionViewFor } from "./fractionDisplay";
 import {
@@ -21,10 +24,17 @@ export default function NativeProblem({
   print,
   renderFigure,
   hideScores = false,
+  choiceLayout = "auto",
 }: {
   problem: StudioProblem;
   print: boolean;
   hideScores?: boolean;
+  /**
+   * 보기 번호 배치 — 원장님이 시험지 설정에서 고른 값(2026-09-20).
+   * 「자동」이면 **원본 시험지의 배치 힌트**(`ocr.choicesLayout`)가 그대로 이긴다 —
+   * 오늘 그대로다. 고른 값이 있으면 그것이 힌트를 이긴다(문서 전체를 같은 꼴로).
+   */
+  choiceLayout?: PrintChoiceLayout;
   /** Decorate figures in place using their original zero-based source index. */
   renderFigure?: (index: number, image: ReactNode) => ReactNode;
 }) {
@@ -124,16 +134,14 @@ export default function NativeProblem({
   };
   const choiceGrid = (choices: ChoiceGroup[]) => {
     if (!choices.length) return null;
-    const layout = metadata?.choicesLayout ?? "auto";
-    const columns =
-      ({ "1x5": 5, "2x3": 3, "3x2": 2, "5x1": 1 } as Record<string, number>)[
-        layout
-      ] ??
-      (fitsTwoColumns(
-        choices.map((choice) => blocksToMarkdown(choice.contents)),
-      )
-        ? 2
-        : 1);
+    // 원장님이 고른 값이 원본 힌트를 이긴다. 「자동」이면 힌트 → 폭 판정 순서로 오늘 그대로.
+    const chosen = choiceLayout !== "auto";
+    const layout = chosen ? choiceLayout : (metadata?.choicesLayout ?? "auto");
+    const columns = choiceColumnCount(
+      layout,
+      choices.map((choice) => blocksToMarkdown(choice.contents)),
+      chosen,
+    );
     return (
       <div
         data-native-choices={layout}

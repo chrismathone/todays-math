@@ -1,5 +1,11 @@
 import type { Point } from "./figureEditGeometry";
-import { editableFigureDoc, serializeFigureSvg } from "./figureSvgEditing";
+import {
+  cleanFigureForSave,
+  editableFigureDoc,
+  fitFigureViewport,
+  serializeFigureSvg,
+} from "./figureSvgEditing";
+import { typesetFigureSvg } from "./figureTypeset";
 
 /**
  * 그림 틀(루트 viewBox) 넓히기 — 뒤집기(`flipFigureCurve`)와 90° 회전(`rotateFigureSelection`)이 같이 쓰는 한 함수.
@@ -66,4 +72,62 @@ export function widenFrame(
   return widenFigureFrame(doc.documentElement, points, pad)
     ? serializeFigureSvg(doc)
     : svg;
+}
+
+/**
+ * 저장할 때 내보내는 그림 — 라벨을 조판하고 틀을 **실제 선·글자**에 맞춘다(여백 = 큰 변의 4%, 최소 10).
+ * 편집 화면의 «다 보이게»(`fitFrameToContent`)가 **같은 이 함수**를 탄다: 규칙이 갈리면 «단추를 눌러 본 모습»과
+ * «저장한 모습»이 달라진다(원장님 2026-09-20).
+ */
+export const renderFittedFigure = async (svg: string) =>
+  fitFigureViewport(await typesetFigureSvg(cleanFigureForSave(svg)));
+
+/** 적힌 수가 같은 틀인가 — 글자가 달라도(`10` vs `10.0`) 수가 같으면 같다. */
+const sameFrameValue = (a: string | null, b: string) => {
+  const read = (value: string | null) =>
+    (value ?? "")
+      .trim()
+      .split(/[\s,]+/)
+      .map(Number);
+  const [before, after] = [read(a), read(b)];
+  return (
+    before.length === after.length &&
+    before.every(
+      (value, i) =>
+        Number.isFinite(value) &&
+        Number.isFinite(after[i]) &&
+        Math.abs(value - after[i]) < 1e-6,
+    )
+  );
+};
+
+/**
+ * 오른쪽 칸 «다 보이게» — 지금 내용에 틀을 딱 맞춘 원문. **틀(viewBox·width·height)만** 바꾼다:
+ * 요소는 하나도 안 건드리니 글자 크기·선 굵기가 그대로고, 크기 고정(`figureSizeLock`)과도 무관하다.
+ * - 밖으로 나가 잘린 것을 들이고(넓히고), 쓸데없이 넓던 여백은 **줄인다** — `widenFrame`(넓히기만)과 다른 점.
+ * - 틀이 저장본과 같은 글자가 되게 저장본의 속성을 **그대로 옮겨 적는다**(다시 계산하지 않는다).
+ * - 원문에 width·height 가 없으면 새로 적지 않는다 — 그래야 두 번째 누름이 «이미 맞음»으로 멈춘다.
+ * - 이미 맞으면 `null` — 부르는 쪽이 되돌리기 자리를 안 만든다.
+ */
+export async function fitFrameToContent(svg: string): Promise<string | null> {
+  const doc = editableFigureDoc(svg);
+  const root = doc.documentElement;
+  const fitted = new DOMParser().parseFromString(
+    await renderFittedFigure(svg),
+    "image/svg+xml",
+  ).documentElement;
+  const next = (["viewBox", "width", "height"] as const)
+    // width·height 는 원문에 있을 때만 — viewBox 는 prepareFigureSvg 가 늘 채워 둔다.
+    .filter((name) => name === "viewBox" || root.hasAttribute(name))
+    .map((name) => [name, fitted.getAttribute(name) ?? ""] as const)
+    .filter(([, value]) => value !== "");
+  if (!next.some(([name]) => name === "viewBox")) return null;
+  if (
+    next.every(([name, value]) =>
+      sameFrameValue(root.getAttribute(name), value),
+    )
+  )
+    return null;
+  for (const [name, value] of next) root.setAttribute(name, value);
+  return serializeFigureSvg(doc);
 }

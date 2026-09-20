@@ -197,11 +197,15 @@ function UnifiedWorkspaceContent({
     setNoticeError(error);
   }, []);
   const [sidebarCollapsed, setSidebarCollapsed] = useState(false);
-  const [undo, setUndo] = useState<{
-    problem: StudioProblem;
-    index: number;
-    draftId: string;
-  } | null>(null);
+  /**
+   * 「되돌리기」 한 칸 — 뺀 문제를 다시 담거나(`remove`), 「순서 초기화」 직전의
+   * 차례로 되돌린다(`order`). 알림 줄의 단추 하나가 둘을 다 맡는다.
+   */
+  const [undo, setUndo] = useState<
+    | { kind: "remove"; problem: StudioProblem; index: number; draftId: string }
+    | { kind: "order"; previous: StudioProblem[]; draftId: string }
+    | null
+  >(null);
   const [modal, setModal] = useState<"new" | "search" | "help" | null>(null);
   const [newTitle, setNewTitle] = useState("");
   const [quickQuery, setQuickQuery] = useState("");
@@ -346,7 +350,7 @@ function UnifiedWorkspaceContent({
       return;
     }
     if (index >= 0) {
-      setUndo({ problem, index, draftId: draft.id });
+      setUndo({ kind: "remove", problem, index, draftId: draft.id });
       setNotice("시험지에서 문제를 뺐습니다.");
     }
     setSelected((current) =>
@@ -355,9 +359,15 @@ function UnifiedWorkspaceContent({
         : [...current, problem],
     );
   }
-  function undoRemove() {
-    if (!undo || undo.draftId !== draft.id || undo.problem.eligible === false)
+  function undoLast() {
+    if (!undo || undo.draftId !== draft.id) return;
+    if (undo.kind === "order") {
+      setSelected(undo.previous);
+      setUndo(null);
+      setNotice("문제 차례를 되돌렸습니다.");
       return;
+    }
+    if (undo.problem.eligible === false) return;
     setSelected((current) => {
       if (current.some((p) => p.id === undo.problem.id)) return current;
       const next = [...current];
@@ -376,6 +386,20 @@ function UnifiedWorkspaceContent({
         ...problems.filter((p) => !current.some((old) => old.id === p.id)),
       ];
     });
+  /**
+   * 「순서 초기화」가 세운 차례를 통째로 적용한다. 지우는 것이 아니라 **되돌릴 수 있는**
+   * 바꾸기라 확인 창은 두지 않고, 대신 알림 줄의 「되돌리기」를 한 칸 채운다.
+   */
+  function reorder(next: StudioProblem[]) {
+    if (
+      next.length === selected.length &&
+      next.every((problem, index) => problem === selected[index])
+    )
+      return;
+    setUndo({ kind: "order", previous: selected, draftId: draft.id });
+    setSelected(next);
+    setNotice("문제를 원본 차례로 되돌렸습니다.");
+  }
   function move(index: number, direction: number) {
     setSelected((current) => {
       if (index + direction < 0 || index + direction >= current.length)
@@ -736,7 +760,7 @@ function UnifiedWorkspaceContent({
               <Icon name={noticeError ? "warning" : "check"} size={18} />
               <span>{notice}</span>
               {undo && undo.draftId === draft.id && (
-                <button className={s.undoButton} onClick={undoRemove}>
+                <button className={s.undoButton} onClick={undoLast}>
                   <Icon name="undo" size={16} />
                   되돌리기
                 </button>
@@ -859,6 +883,7 @@ function UnifiedWorkspaceContent({
               download={download}
               toggle={toggle}
               move={move}
+              reorder={reorder}
               navigate={navigate}
               allowedMenus={allowedMenus}
               onImportFiles={

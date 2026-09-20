@@ -34,6 +34,11 @@
  * 아무도 모른다 — 이 저장소가 실제로 그랬다(해설 자에만 「세로 수식」 항을 넣어
  * 문제지 쪽 과소평가가 17.6% 였다. CLAUDE.md 2026-08-18).
  */
+import {
+  FIGURE_SVG_PRINT_MM,
+  figureSvgSize,
+  figureSvgViewBox,
+} from "@/lib/figure/figureSvgFrame";
 import { JASEUP_MEASURED_PX } from "@/lib/printGeometry";
 
 /**
@@ -244,6 +249,60 @@ export function fallbackSourceMm(
   return Math.min(FIGURE_MAX_WIDTH_MM, Math.max(FALLBACK_MIN_MM, mm));
 }
 
+/**
+ * data URL 에 담긴 **SVG 본문**. 아니면 `null`.
+ *
+ * 작업실이 다시 그린 도형은 `svgDataUrl()` 로 **`figureUrls` 에 실려** 온다
+ * (`studioHelpers.studioProblem` — `figureSvg` 는 `null` 이다). 그래서 그 도형은
+ * 지면에서 「스캔 그림」 취급을 받아 왔다. 주소만 보고는 못 가르니 **본문을 꺼내**
+ * 엔진 SVG 자로 넘긴다.
+ */
+export function figureSvgFromUrl(
+  url: string | null | undefined,
+): string | null {
+  if (!url || !url.startsWith("data:image/svg+xml")) return null;
+  const comma = url.indexOf(",");
+  if (comma < 0) return null;
+  const meta = url.slice(0, comma);
+  const body = url.slice(comma + 1);
+  try {
+    const svg = meta.includes(";base64")
+      ? atob(body)
+      : decodeURIComponent(body);
+    return svg.includes("<svg") ? svg : null;
+  } catch {
+    // 망가진 주소는 «모른다»로 미끄러진다 — 예전 길(픽셀 환산)이 받는다.
+    return null;
+  }
+}
+
+/**
+ * 엔진이 그린 SVG 한 장의 **인쇄 폭(mm)** — 등급표(`FIGURE_SVG_PRINT_MM`)를 그대로 읽는다.
+ *
+ * 🔴 **자를 합치는 자리다.** 인라인 `figureSvg`(초등·중등 엔진 문항)는 예전부터 이 표를
+ *    탔고, 넘침 판정(`printOverflow.estimateFigureSvgPx`)도 이 표를 읽는다. 작업실이
+ *    다시 그린 SVG 만 `fallbackSourceMm`(스캔 253dpi · 바닥 28mm)를 타고 있었다 —
+ *    같은 엔진 그림에 자가 두 벌이었다(2026-09-20 원장님 «hwpx 로 내보내면 도형만 작아진다»).
+ *
+ * ⚠️ 표의 `pair`(97mm)는 `figurePrintWidthMm` 의 정책 상한(70mm)보다 크다. 짝은
+ *    초등 `elem_advanced` 의 인라인 SVG 로만 나오고 `figureUrls` 로는 오지 않아 오늘은
+ *    닿지 않는 자리다 — 시험이 그 사실을 적어 둔다. 짝이 data URL 로 오게 되는 날에는
+ *    상한을 등급표와 같이 봐야 한다.
+ */
+export function figureSvgUrlPrintMm(
+  url: string | null | undefined,
+): { widthMm: number; width: number; height: number } | null {
+  const svg = figureSvgFromUrl(url);
+  if (!svg) return null;
+  const box = figureSvgViewBox(svg);
+  if (!box) return null;
+  return {
+    widthMm: FIGURE_SVG_PRINT_MM[figureSvgSize(svg)],
+    width: box.width,
+    height: box.height,
+  };
+}
+
 export function parseFigureDimensions(
   figureCount: number,
   flat: readonly number[] | null | undefined,
@@ -255,15 +314,23 @@ export function parseFigureDimensions(
   urls?: readonly string[] | null,
 ): (FigureDimension | null)[] {
   if (figureCount <= 0) return [];
-  const unknown = (): (FigureDimension | null)[] =>
-    Array.from({ length: figureCount }, () => null);
-  if (!flat || flat.length !== figureCount * 2) return unknown();
-
   const sourceMm = parseFigureSourceMm(figureCount, sourceMmFlat);
+  const paired = !!flat && flat.length === figureCount * 2;
 
   return Array.from({ length: figureCount }, (_, index) => {
-    const width = flat[index * 2]!;
-    const height = flat[index * 2 + 1]!;
+    // 🔴 **엔진 SVG 는 제 치수와 제 자를 같이 들고 온다.** `figureDims`(스캔 크롭의
+    //    픽셀)와 짝이 안 맞아도, 아예 없어도 비율과 폭을 알 수 있다 — 그래서 치수
+    //    계약(«짝이 안 맞으면 통째로 모른다»)보다 먼저 본다.
+    const engine = figureSvgUrlPrintMm(urls?.[index]);
+    if (engine)
+      return {
+        width: engine.width,
+        height: engine.height,
+        sourceMm: engine.widthMm,
+      };
+    if (!paired) return null;
+    const width = flat![index * 2]!;
+    const height = flat![index * 2 + 1]!;
     if (!Number.isFinite(width) || !Number.isFinite(height)) return null;
     if (width <= 0 || height <= 0) return null;
     const mm = sourceMm[index];

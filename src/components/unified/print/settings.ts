@@ -23,6 +23,17 @@ export const COLORS = [
   ["초록", "#10b981"],
   ["회색", "#64748b"],
 ] as const;
+/**
+ * 보기 번호 배치 — 원장님이 직접 정하신 네 값과 라벨(2026-09-20).
+ * 라벨은 원장님 표 그대로 쓴다(D-08). 순서도 그 표의 순서다.
+ * 값 어휘는 OCR 계약(`choicesLayout`)과 같은 «행x열» — 두 벌을 만들지 않으려는 것이다.
+ */
+export const CHOICE_LAYOUTS = [
+  ["5x1", "5행"],
+  ["2x3", "3열 2행"],
+  ["3x2", "2열 3행"],
+  ["auto", "자동"],
+] as const;
 export const SPACING_PRESETS = [
   ["최소", 4],
   ["좁게", 16],
@@ -54,6 +65,7 @@ export function parsePrintOptions(
     fontPack: ["system", "nanum", "noto", "gowun", "pretendard"],
     marginPreset: ["narrow", "normal", "wide"],
     solvingArea: ["off", "blank", "ruled", "chalkboard"],
+    choiceLayout: CHOICE_LAYOUTS.map(([value]) => value),
   };
   for (const key of Object.keys(options) as (keyof PrintOptions)[]) {
     const next = value[key];

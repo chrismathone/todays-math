@@ -27,6 +27,7 @@ describe("restored Mathgen options and measured pagination", () => {
       showDifficulty: true,
       hideScores: true,
       columnDivider: false,
+      choiceLayout: "auto",
       solvingArea: "off",
       fontPack: "system",
       marginPreset: "normal",
@@ -42,9 +43,20 @@ describe("restored Mathgen options and measured pagination", () => {
     { spacing: -1 },
     { showDate: "false" },
     { fontPack: "unknown" },
+    { choiceLayout: "4x2" },
+    { choiceLayout: true },
   ])("rejects malformed known formatting fields: %j", (value) => {
     expect(() => parsePrintOptions(value)).toThrow();
   });
+  it.each(["5x1", "2x3", "3x2", "auto"])(
+    // 보기 번호 배치는 저장·복원된다 — 원장님이 고른 값이 다음 시험지에도 남는다.
+    "keeps the chosen choice layout across save and restore: %s",
+    (choiceLayout) => {
+      expect(parsePrintOptions({ choiceLayout })).toMatchObject({
+        choiceLayout,
+      });
+    },
+  );
   it("validates metadata without interpreting HTML", () => {
     expect(
       parsePrintMeta({

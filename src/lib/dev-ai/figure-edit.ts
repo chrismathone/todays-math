@@ -11,6 +11,7 @@ import {
   type FigureEditCommand,
 } from "./figure-edit-contract";
 import { buildFigureEditPrompt } from "./figure-edit-prompt";
+import { isEngineCapabilityRefusal } from "./figure-refusal";
 import {
   FIGURE_BUDGET_MS,
   FIGURE_REASONING_EFFORT,
@@ -180,15 +181,34 @@ export async function editDevAiFigure(
     Math.max(0, budget),
   );
   try {
-    if (deadline.signal.aborted) throw abortError();
-    const raw = await invoke({
-      prompt: buildFigureEditPrompt(request),
-      imageDataUrl: request.imageDataUrl,
-      signal: deadline.signal,
-    });
-    if (deadline.signal.aborted) throw abortError();
-    const { edits, warnings } = parseFigureEditResult(raw);
-    return { content: "", answer: "", solution: "", warnings, edits };
+    /**
+     * 모델이 «엔진이 못 한다»고 지어낸 거절에는 반박 한 줄을 붙여 **딱 한 번** 다시 묻는다 —
+     * 재작도(`figure-engine.ts`)와 **같은 판정 함수**를 쓴다(2026-09-20). 사진·손그림처럼 사람이
+     * 읽는 진짜 사유는 되묻지 않고 그대로 422 다. 되묻기는 바깥 시한(`budget`) 안에서 일어나므로
+     * 원장님이 기다리는 시간의 상한은 전과 같다.
+     */
+    let refusal: string | undefined;
+    for (let attempt = 0; ; attempt++) {
+      if (deadline.signal.aborted) throw abortError();
+      const raw = await invoke({
+        prompt: buildFigureEditPrompt(request, refusal),
+        imageDataUrl: request.imageDataUrl,
+        signal: deadline.signal,
+      });
+      if (deadline.signal.aborted) throw abortError();
+      try {
+        const { edits, warnings } = parseFigureEditResult(raw);
+        return { content: "", answer: "", solution: "", warnings, edits };
+      } catch (error) {
+        if (
+          attempt > 0 ||
+          !(error instanceof FigureEditError) ||
+          !isEngineCapabilityRefusal(error.message)
+        )
+          throw error;
+        refusal = error.message;
+      }
+    }
   } catch (error) {
     if (timedOut)
       throw new FigureEditError(
