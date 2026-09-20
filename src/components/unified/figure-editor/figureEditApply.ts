@@ -19,6 +19,7 @@ import { figureLabelSummary } from "./FigureLabelInput";
 import {
   describeFigureForEdit,
   figureEditVertices,
+  figurePointNames,
 } from "./figureEditElements";
 import { objectName } from "./figureObjectNames";
 import {
@@ -51,6 +52,12 @@ import {
   figureMarkLabel,
   isFigureMarkCommand,
 } from "./figureMarks";
+import {
+  addAngleSizeLabel,
+  addFigureLabel,
+  figureLabelOpLabel,
+  isFigureLabelCommand,
+} from "./figureLabelOps";
 
 type FigureObject = ReturnType<typeof figureObjects>[number];
 
@@ -122,8 +129,10 @@ export function applyFigureEdits(
     x <= vx + width * 1.25 &&
     y >= vy - height / 4 &&
     y <= vy + height * 1.25;
+  // 이름 붙은 점은 **정확한** 자리로 — 요소 목록(`figure.names`)은 0.1 로 반올림해 싣는다(모델에게 보내는 값).
+  // 그 반올림한 값으로 그으면 엔진이 그린 같은 그림과 0.05 어긋난다(각의 크기 글자가 그만큼 밀렸다, 2026-09-20).
   const names = new Map(
-    (figure.names ?? []).map(({ name, x, y }) => [name, { x, y }]),
+    figurePointNames(svg).map(({ name, x, y }) => [name, { x, y }]),
   );
   const firstFontSize = before
     .filter((o) => o.type === "text")
@@ -208,6 +217,14 @@ export function applyFigureEdits(
   let current = svg;
   const applied: string[] = [];
   const rejected: string[] = [];
+  // 표시·글자 모듈이 거절 이유에 쓰는 요소 이름 — 요소 목록과 같은 함수(`objectName`)
+  const labelContext = {
+    resolve,
+    nameOf: (id: string) => {
+      const index = before.findIndex((o) => o.id === id);
+      return index < 0 ? undefined : nameOf(index);
+    },
+  };
   const applyOne = (
     command: FigureEditCommand,
     label: string,
@@ -230,12 +247,14 @@ export function applyFigureEdits(
       const mark = addFigureMark(current, command, {
         resolve,
         names: [...names.values()],
-        nameOf: (id) => {
-          const index = before.findIndex((o) => o.id === id);
-          return index < 0 ? undefined : nameOf(index);
-        },
+        nameOf: labelContext.nameOf,
       });
       return "reason" in mark ? reject(mark.reason) : mark;
+    }
+    // 점 이름 — 엔진 꼭짓점 라벨 자리 규칙(figureLabelOps.ts)
+    if (isFigureLabelCommand(command)) {
+      const added = addFigureLabel(current, command, labelContext);
+      return "reason" in added ? reject(added.reason) : added;
     }
     if (command.op === "addLine") {
       const from = resolve(command.from),
@@ -316,7 +335,9 @@ export function applyFigureEdits(
       const twin = marks.find((m) =>
         sameAngle(m.corner, point(at), point(from), point(to)),
       );
-      if (twin) {
+      // 크기 글자(`text`)는 **이미 표시가 있는 각에도** 적는다 — «각 B 에 40°» 는 호를 하나 더 그리라는 말이 아니다.
+      // 글자 없이 같은 각을 다시 달라고 하면 전처럼 거절한다(트랙 18 규칙).
+      if (twin && !command.text) {
         const index = before.findIndex((o) => o.id === twin.o.id);
         reject(
           `이미 각 표시가 있습니다(${index >= 0 ? nameOf(index) : objectName(twin.o, kinds)})`,
@@ -329,30 +350,53 @@ export function applyFigureEdits(
         .map((m) => m.o.attrs.stroke?.trim())
         .find((value) => value && /^#[\da-f]{3,6}$/i.test(value));
       if (arcs > 1 && mark.right) reject("직각 표시는 겹으로 하지 않습니다");
-      const inner = innerAngleArcs(mark.d, arcs, {
-        at: point(at),
-        from: point(from),
-        to: point(to),
-      });
-      if ("reason" in inner) return reject(inner.reason);
-      // 호마다 요소 하나(엔진 이중 호처럼) — 바깥 호부터
       let next = current;
-      const ids: string[] = [];
-      for (const d of [mark.d, ...inner]) {
-        const added = addFigureObject(next, "curve", at, to);
-        ids.push(added.id);
-        next = editFigureObject(added.svg, added.id, {
-          d,
-          stroke: color ?? INK,
-          "stroke-width": String(
-            widths.length ? middle(widths) : ANGLE_MARK_WIDTH,
-          ),
+      const detail: string[] = [];
+      // 글자만 더하는 길이면 표시는 그대로 두고 그 표시의 반지름을 쓴다(지시선이 그 호에서 시작한다)
+      let radius = twin?.corner.radius ?? 0;
+      if (!twin) {
+        const inner = innerAngleArcs(mark.d, arcs, {
+          at: point(at),
+          from: point(from),
+          to: point(to),
         });
+        if ("reason" in inner) return reject(inner.reason);
+        // 호마다 요소 하나(엔진 이중 호처럼) — 바깥 호부터
+        const ids: string[] = [];
+        for (const d of [mark.d, ...inner]) {
+          const added = addFigureObject(next, "curve", at, to);
+          ids.push(added.id);
+          next = editFigureObject(added.svg, added.id, {
+            d,
+            stroke: color ?? INK,
+            "stroke-width": String(
+              widths.length ? middle(widths) : ANGLE_MARK_WIDTH,
+            ),
+          });
+        }
+        const kind = figureAngleKinds(figureObjects(next), figure.viewBox).get(
+          ids[0],
+        );
+        if (kind) detail.push(kind);
+        if (arcs > 1) detail.push(`${arcs}겹`);
+        radius =
+          angleMarkCorner(
+            { type: "path", attrs: { d: mark.d } },
+            [1, 0, 0, 1, 0, 0],
+          )?.radius ?? ANGLE_MARK_RADIUS;
       }
-      const kind = figureAngleKinds(figureObjects(next), figure.viewBox).get(
-        ids[0],
-      );
-      const detail = [kind, arcs > 1 ? `${arcs}겹` : ""].filter(Boolean);
+      // 각의 크기 글자(원장님 2026-09-20 «각 B 에 40° 표시») — 엔진 자리 규칙은 figureLabelOps.ts
+      if (command.text) {
+        const written = addAngleSizeLabel(
+          next,
+          { at: point(at), from: point(from), to: point(to), radius },
+          command.text,
+          labelContext,
+        );
+        if ("reason" in written) reject(written.reason);
+        next = written.svg;
+        if (written.leader) detail.push("지시선");
+      }
       return {
         svg: next,
         text: detail.length ? `${label}(${detail.join(", ")})` : label,
@@ -491,6 +535,7 @@ export function applyFigureEdits(
     } else if (isShapeCommand(command))
       label = shapeCommandLabel(command, before, nameOf);
     else if (isFigureMarkCommand(command)) label = figureMarkLabel(command);
+    else if (isFigureLabelCommand(command)) label = figureLabelOpLabel(command);
     else
       label =
         command.op === "addLine"
@@ -500,11 +545,16 @@ export function applyFigureEdits(
           : command.op === "addText"
             ? `${textKind(command.text)} ${figureLabelSummary(command.text)} 추가`
             : command.op === "addAngle"
-              ? [command.from, command.at, command.to].every(
-                  (ref) => typeof ref === "string",
-                )
-                ? `각 ${command.from}${command.at}${command.to} 표시 추가`
-                : "각 표시 추가"
+              ? (() => {
+                  const named = [command.from, command.at, command.to].every(
+                    (ref) => typeof ref === "string",
+                  )
+                    ? `각 ${command.from}${command.at}${command.to}`
+                    : "각";
+                  return command.text
+                    ? `${named} 에 ${figureLabelSummary(command.text)} 표시 추가`
+                    : `${named} 표시 추가`;
+                })()
               : command.label
                 ? `점 ${command.label} 추가`
                 : "점 추가";
