@@ -159,6 +159,18 @@ describe("문제 순서 칸 — 순서 초기화", () => {
       "c",
     ]);
   });
+  it("원본 자리를 모르는 문항만 있으면 되돌릴 차례가 없어 흐리다", () => {
+    const bank: StudioProblem = {
+      ...problem("bank", 1, 1),
+      section: "일차방정식",
+    };
+    delete (bank as { studioCrop?: unknown }).studioCrop;
+    delete (bank as { ocr?: unknown }).ocr;
+    delete (bank as { sourceLabel?: unknown }).sourceLabel;
+    setup([bank, { ...bank, id: "bank2", section: "부등식" }]);
+    expect(screen.getByText("일차방정식")).toBeVisible();
+    expect(screen.getByRole("button", { name: "순서 초기화" })).toBeDisabled();
+  });
   it("이미 원본 차례이면 흐리다", () => {
     setup([problem("a", 1, 1), problem("b", 2, 1)]);
     expect(screen.getByRole("button", { name: "순서 초기화" })).toBeDisabled();
