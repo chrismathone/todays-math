@@ -138,6 +138,23 @@ export const FigureEditCommandSchema = z
         direction: z.enum(["cw", "ccw"]),
       })
       .strict(),
+    /**
+     * 대칭 — 편집기 «좌우 대칭»·«상하 대칭» 단추와 같은 함수(figureMirror.ts). 여럿은 한 덩어리로.
+     * 축은 세로(좌우 뒤집기)·가로(상하 뒤집기) 또는 **두 점이 정하는 직선**(그림에 그려져 있지 않아도 된다).
+     */
+    z
+      .object({
+        op: z.literal("mirror"),
+        targets: z.union([
+          z.array(target).min(1).max(FIGURE_EDIT_MAX_ELEMENTS),
+          z.literal("all"),
+        ]),
+        axis: z.union([
+          z.enum(["vertical", "horizontal"]),
+          z.tuple([PointRefSchema, PointRefSchema]),
+        ]),
+      })
+      .strict(),
     /** 색칠 — 편집기 채우기 통과 같은 면. at 은 칸의 꼭짓점들(차례대로) 또는 칸 안의 점 하나. */
     z
       .object({

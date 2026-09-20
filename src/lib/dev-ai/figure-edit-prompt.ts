@@ -27,6 +27,7 @@ Commands (include only the fields shown; omit optional fields you do not change)
 {"op":"addArc","center":P,"from":P,"to":P,"via":P} — the arc from→to around center, the shorter way; give via (optional) for the arc through that point, e.g. arc ACB.
 {"op":"resize","target":n,"r":number} or {"op":"resize","target":n,"scale":number} — a circle's new radius, or scale a circle, ellipse, rectangle or polygon about its centre.
 {"op":"rotate","targets":[n,...]|"all","direction":"cw"|"ccw"} — turn the elements together by 90° about their centre, labels upright; 180° is two commands.
+{"op":"mirror","targets":[n,...]|"all","axis":"vertical"|"horizontal"|[P,P]} — reflect the elements together, labels upright: "vertical" flips them left-right about their own centre, "horizontal" flips them top-bottom, and [P,P] mirrors them across the line through those two points (that line need not be drawn), e.g. "axis":["B","C"] folds a triangle over its base BC.
 {"op":"fillRegion","at":[P,P,P],"color":"#rrggbb"} — shade the closed region with these corners in order, e.g. ["A","B","C"] for triangle ABC; for a curved region give one point inside. color optional.
 {"op":"addPerpendicular","from":P,"onto":[P,P],"foot":"H"} — the perpendicular from a point to a line with its right-angle mark; the code finds the foot (foot names it, optional).
 {"op":"addMidpoint","from":P,"to":P,"label":"M"} — a dot at the midpoint.
