@@ -19,6 +19,7 @@ import { figureLabelSummary } from "./FigureLabelInput";
 import {
   describeFigureForEdit,
   figureEditVertices,
+  figurePointNames,
 } from "./figureEditElements";
 import { objectName } from "./figureObjectNames";
 import {
@@ -37,6 +38,11 @@ import {
   type Point,
 } from "./figureEditGeometry";
 import { BENT_ACROSS, bentCurveReason, flipFigureCurve } from "./figureFlip";
+import {
+  mirrorBlock,
+  mirrorFigureSelection,
+  type MirrorAxis,
+} from "./figureMirror";
 import {
   ANGLE_MARK_RADIUS,
   ANGLE_MARK_WIDTH,
@@ -148,6 +154,13 @@ export function applyFigureEdits(
       );
     return inside(ref) ? ref : reject("좌표가 그림 밖입니다");
   };
+  // 대칭축의 점은 요소 목록의 0.1 반올림이 아니라 **그림의 점 그대로** 쓴다(도형 명령이 수선의 발에 쓰는 것과 같은
+  // `figurePointNames`) — 축이 0.01 만 어긋나도 비친 그림이 통째로 밀린다.
+  const exactNames = new Map(
+    figurePointNames(svg).map(({ name, x, y }) => [name, { x, y }] as const),
+  );
+  const exactPoint = (ref: FigureEditPointRef) =>
+    (typeof ref === "string" ? exactNames.get(ref) : undefined) ?? resolve(ref);
   const addText = (
     source: string,
     text: string,
@@ -204,6 +217,36 @@ export function applyFigureEdits(
         reported: false,
       });
   }
+
+  // 여럿을 한꺼번에 가리키는 명령(대칭)의 번호 풀기 — 번호는 **요청을 보낼 때의 그림** 기준이다.
+  const targetIds = (
+    targets: number[] | "all",
+    objects: readonly { id: string }[],
+  ): string[] => {
+    if (targets === "all") return objects.map((o) => o.id);
+    const missing = targets.find((n) => n > before.length);
+    if (missing)
+      reject(
+        targets.length === 1
+          ? "그런 번호의 요소가 없습니다"
+          : `${missing}번 — 그런 번호의 요소가 없습니다`,
+      );
+    const present = new Set(objects.map((o) => o.id));
+    const ids = [...new Set(targets)]
+      .map((n) => before[n - 1].id)
+      .filter((id) => present.has(id));
+    if (!ids.length) reject("앞 명령에서 지웠습니다");
+    return ids;
+  };
+  /** 여럿을 가리키는 명령의 이름 — 회전(`shapeCommandLabel`)과 같은 말. */
+  const targetsLabel = (targets: number[] | "all") =>
+    targets === "all"
+      ? "그림 전체"
+      : targets.length === 1
+        ? targets[0] <= before.length
+          ? nameOf(targets[0] - 1)
+          : `${targets[0]}번`
+        : `${targets.length}개 요소`;
 
   let current = svg;
   const applied: string[] = [];
@@ -358,6 +401,38 @@ export function applyFigureEdits(
         text: detail.length ? `${label}(${detail.join(", ")})` : label,
       };
     }
+    // 대칭 — 편집기 «좌우 대칭»·«상하 대칭» 단추와 같은 함수(figureMirror.ts). 여럿은 한 덩어리로.
+    if (command.op === "mirror") {
+      const objects = figureObjects(current);
+      const ids = targetIds(command.targets, objects);
+      const axis: MirrorAxis =
+        typeof command.axis === "string"
+          ? command.axis
+          : (command.axis.map((ref) => {
+              const { x, y } = exactPoint(ref);
+              return [x, y];
+            }) as [Point, Point]);
+      // 끄는 이유는 편집기 단추가 꺼지는 이유 그대로(크기 고정 · 면만 · 세로·가로에 글자 하나만 · 축의 두 점이 같음)
+      const blocked = mirrorBlock(objects, ids, axis);
+      if (blocked) reject(blocked.replace(/\.$/, ""));
+      const mirrored = mirrorFigureSelection(current, ids, axis);
+      if (mirrored === current) reject("대칭할 것이 없습니다");
+      const named =
+        typeof command.axis !== "string" &&
+        command.axis.every((ref) => typeof ref === "string")
+          ? ` ${command.axis.join("")}`
+          : "";
+      return {
+        svg: mirrored,
+        text: `${label} ${
+          command.axis === "vertical"
+            ? "좌우"
+            : command.axis === "horizontal"
+              ? "상하"
+              : `직선${named}`
+        } 대칭`,
+      };
+    }
     const id = before[command.target - 1].id;
     const object = figureObjects(current).find((o) => o.id === id);
     if (!object) return reject("앞 명령에서 지웠습니다");
@@ -488,7 +563,8 @@ export function applyFigureEdits(
         continue;
       }
       label = nameOf(index);
-    } else if (isShapeCommand(command))
+    } else if (command.op === "mirror") label = targetsLabel(command.targets);
+    else if (isShapeCommand(command))
       label = shapeCommandLabel(command, before, nameOf);
     else if (isFigureMarkCommand(command)) label = figureMarkLabel(command);
     else
