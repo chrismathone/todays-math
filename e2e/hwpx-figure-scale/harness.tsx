@@ -132,6 +132,23 @@ const hugeProblem: StudioProblem = {
   figureSourceMm: [],
 };
 
+/** ⑤ 아주 큰 **엔진 인라인** 그림 — `wide` 등급 틀이 실제로 쓰이는 유일한 자리. */
+const hugeEngineProblem: StudioProblem = {
+  id: "huge-engine",
+  content: "넓은 엔진 도형 문항입니다.",
+  answer: "-",
+  solution: "",
+  grade: "중2",
+  chapter: "삼각형",
+  section: "넓은 도형",
+  difficulty: "기본",
+  problemCode: "",
+  figureUrls: [],
+  figureSvg: HUGE_SVG,
+  figureDims: [],
+  figureSourceMm: [],
+};
+
 function Harness() {
   return (
     <>
@@ -153,7 +170,13 @@ function Harness() {
       </section>
       <section data-probe="sheet">
         <WorksheetEditor
-          selected={[studioProblem, engineProblem, plainProblem, hugeProblem]}
+          selected={[
+            studioProblem,
+            engineProblem,
+            plainProblem,
+            hugeProblem,
+            hugeEngineProblem,
+          ]}
           title="도형 비례 측정"
           columns={1}
           answers={false}

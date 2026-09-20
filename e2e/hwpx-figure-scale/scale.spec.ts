@@ -77,9 +77,20 @@ test("검수·지면(화면)·지면(인쇄)·HWPX 가 같은 «도형 대 글�
   await page.waitForFunction(
     () =>
       document.querySelectorAll("[data-mathgen-document] [data-problem-body]")
-        .length >= 4,
+        .length >= 5,
   );
   await page.waitForTimeout(800);
+
+  // 원장님 화면과 같은 문항의 전/후를 남긴다 — `SHOT_DIR` 을 주면 그 폴더에도 쓴다.
+  const shots = process.env.SHOT_DIR ?? testInfo.outputDir;
+  mkdirSync(shots, { recursive: true });
+  await page
+    .locator('[data-probe="review"]')
+    .screenshot({ path: path.join(shots, "1-검수화면.png") });
+  await page
+    .locator("[data-mathgen-document] [data-unified-paper]")
+    .first()
+    .screenshot({ path: path.join(shots, "2-지면.png") });
 
   const screen = await collect(page);
   await page.emulateMedia({ media: "print" });
@@ -132,8 +143,11 @@ test("검수·지면(화면)·지면(인쇄)·HWPX 가 같은 «도형 대 글�
   expect(screen.sheet[2].kind).toBe("none");
 
   // ④ 아주 큰 그림(viewBox 900)은 `wide` 상한(70mm)에 선다 — 문항 열을 안 넘는다.
-  expect(screen.sheet[3].width).toBeCloseTo(WIDE_PX, 1);
-  expect(screen.sheet[3].width).toBeLessThan(PROBLEM_COLUMN_PX);
+  //    작업실 경로(img)와 엔진 인라인 경로(svg) 둘 다 — `wide` 등급 틀이 쓰이는 자리다.
+  for (const index of [3, 4]) {
+    expect(screen.sheet[index].width).toBeCloseTo(WIDE_PX, 1);
+    expect(screen.sheet[index].width).toBeLessThan(PROBLEM_COLUMN_PX);
+  }
 
   // ⑤ **화면과 인쇄가 같다.** 갈리면 HWPX(화면 매체)와 PDF(인쇄 매체)가 갈린다.
   expect(print.sheet.map((row) => row.width)).toEqual(
@@ -144,10 +158,11 @@ test("검수·지면(화면)·지면(인쇄)·HWPX 가 같은 «도형 대 글�
   );
 
   // ⑥ **HWPX 가 미리보기와 같은 크기**다 — 잰 값 → XML 까지.
-  expect(images).toHaveLength(3);
+  expect(images).toHaveLength(4);
   expect(images[0].w).toBeCloseTo(MID_PX, 1);
   expect(images[1].w).toBeCloseTo(MID_PX, 1);
   expect(images[2].w).toBeCloseTo(WIDE_PX, 1);
+  expect(images[3].w).toBeCloseTo(WIDE_PX, 1);
   expect(xmlSizes).toEqual(images.map((image) => hwpunit(image.w)));
   // 64mm = 18,141 HWPUNIT (1/7200 inch). 종이에서 실제로 64mm 로 나간다.
   expect((xmlSizes[0] / 7200) * 25.4).toBeCloseTo(FIGURE_SVG_PRINT_MM.mid, 1);
