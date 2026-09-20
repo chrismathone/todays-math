@@ -101,11 +101,23 @@ import {
   type RotateTurn,
 } from "./figureRotate";
 import {
+  alignBlock,
+  alignFigureSelection,
+  spreadBlock,
+  spreadFigureSelection,
+  type AlignKind,
+  type SpreadAxis,
+} from "./figureAlign";
+import {
   mirrorBlock,
   mirrorFigureSelection,
   type MirrorAxis,
 } from "./figureMirror";
-import { FigureFitRow, FigureRotateRow } from "./FigureRotateRow";
+import {
+  FigureAlignRow,
+  FigureFitRow,
+  FigureRotateRow,
+} from "./FigureRotateRow";
 import { flipFigureCurve } from "./figureFlip";
 
 type Tool =
@@ -510,6 +522,30 @@ export function FigureEditor({
   const mirror = (axis: MirrorAxis) => {
     commit(
       mirrorFigureSelection(svg, selectedIds, axis, {
+        textBoxes: selectedTextBoxes(),
+      }),
+    );
+  };
+  // 정렬 — 고른 것들의 바깥 상자에 서로 맞춘다(되돌리기 한 걸음). 회전·대칭과 같은 한 엔진(figureBake).
+  // 크기 고정은 막지 않는다 — 고정은 «이동만 가능»이고 정렬은 옮기기뿐이다.
+  const alignBlocked = useMemo(
+    () => alignBlock(objects, selectedIds),
+    [objects, selectedIds],
+  );
+  const spreadBlocked = useMemo(
+    () => spreadBlock(objects, selectedIds),
+    [objects, selectedIds],
+  );
+  const align = (kind: AlignKind) => {
+    commit(
+      alignFigureSelection(svg, selectedIds, kind, {
+        textBoxes: selectedTextBoxes(),
+      }),
+    );
+  };
+  const spread = (axis: SpreadAxis) => {
+    commit(
+      spreadFigureSelection(svg, selectedIds, axis, {
         textBoxes: selectedTextBoxes(),
       }),
     );
@@ -1815,6 +1851,13 @@ export function FigureEditor({
                       }
                     : undefined
                 }
+              />
+            )}
+            {selectedIds.length > 0 && (
+              <FigureAlignRow
+                blocked={alignBlocked}
+                onAlign={align}
+                spread={{ blocked: spreadBlocked, onSpread: spread }}
               />
             )}
             <FigureFitRow onFit={fitFrame} />
