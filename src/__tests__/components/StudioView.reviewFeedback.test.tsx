@@ -467,28 +467,34 @@ describe("6 · 검수는 확대로(시안 B)", () => {
     expect(focused()).toBe(true);
   });
 
-  it("위 띠는 두 줄 — 제목 줄에 파일·학년·쪽, 문제 이동 줄에 진행 요약과 전체 디지털화", async () => {
+  // 원장님 2026-09-21 재배치 — 쪽 이동이 제목 줄에서 둘째 줄로 내려가고, 전체 작업 셋이
+  // 제목 줄로 올라갔다(트랙 35). 두 줄이라는 뼈대는 그대로다.
+  it("위 띠는 두 줄 — 제목 줄에 파일·학년·전체 작업, 둘째 줄에 쪽·문제 이동과 진행 요약", async () => {
     await openStudio(twoCrops(), { step: "review" });
-    const title = screen.getByRole("heading", { name: "자료 제작 · 검수" });
+    const title = screen.getByRole("heading", { name: "자료 제작" });
     const band = title.closest("[data-studio-band]") as HTMLElement;
     expect(band).not.toBeNull();
-    for (const name of ["원본 파일", "시험지 학년", "페이지 선택"])
+    for (const name of ["원본 파일", "시험지 학년"])
       expect(within(band).getByRole("combobox", { name })).toBeInTheDocument();
+    expect(
+      within(band).getByRole("button", { name: "전체 디지털화" }),
+    ).toBeInTheDocument();
     expect(
       within(band).getByRole("button", { name: "편집창 축소" }),
     ).toBeInTheDocument();
     const second = screen.getByLabelText("문항 검수 이동");
     expect(
-      within(second).getByRole("button", { name: "전체 디지털화" }),
+      within(second).getByRole("combobox", { name: "페이지 선택" }),
+    ).toBeInTheDocument();
+    expect(
+      within(second).getByRole("button", { name: "다음 문제 검수" }),
     ).toBeInTheDocument();
     expect(
       within(second).getByRole("button", {
         name: /^작업 진행 상세 · 디지털화 1\/2/,
       }),
     ).toBeInTheDocument();
-    expect(
-      within(second).getByRole("button", { name: /검수 완료/ }),
-    ).toBeInTheDocument();
+    expect(within(second).getByText(/문항 검수 완료$/)).toBeInTheDocument();
     // 설명 글 줄은 뺐다.
     expect(
       screen.queryByText("문자 인식 → 수식 후보정 → SVG 도형 → 검수"),
@@ -545,15 +551,15 @@ describe("7 · 편집창 확대 단추 — «검수 완료 · 다음»과 같은
     expect(zoom).toHaveAttribute("aria-pressed", "true");
   });
 
-  it("확대 전·중 모두 «검수 완료 · 다음»과 같은 클래스를 쓴다", async () => {
+  // «검수 완료 · 다음»은 없앴다(원장님 2026-09-21 ⑹) — 견줄 짝이 사라졌으므로 채운 단추
+  // 클래스가 실제로 붙어 있는지를 직접 본다(빈 문자열끼리 같아서 초록이 되지 않게).
+  it("확대 전·중 모두 채운 단추 그대로다", async () => {
     await openStudio(twoCrops(), { step: "review" });
-    const next = screen.getByRole("button", { name: "검수 완료 · 다음" });
-    // 빈 문자열끼리 같아서 초록이 되지 않게 — 채운 단추 클래스가 실제로 붙어 있어야 한다.
-    expect(next.className).toMatch(/primaryButton/);
     const zoom = within(band()).getByRole("button", { name: "편집창 축소" });
-    expect(zoom.className).toBe(next.className);
+    expect(zoom.className).toMatch(/primaryButton/);
+    const filled = zoom.className;
     fireEvent.click(zoom);
     expect(zoom).toHaveAccessibleName("편집창 확대");
-    expect(zoom.className).toBe(next.className);
+    expect(zoom.className).toBe(filled);
   });
 });

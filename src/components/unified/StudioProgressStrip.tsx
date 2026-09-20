@@ -177,7 +177,10 @@ export default function StudioProgressStrip({
           {warningCount > 0 && (
             <span className={s.warning}>
               <span aria-hidden="true">!</span>
-              <span className={s.warningLabel}>확인 필요</span> {warningCount}
+              <span className={s.warningLabel} data-strip-warning-label>
+                확인 필요
+              </span>{" "}
+              {warningCount}
             </span>
           )}
           <span className={s.detailLabel} data-strip-detail>

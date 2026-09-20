@@ -1769,23 +1769,6 @@ export default function StudioView({
     }
   }
 
-  function finishReview() {
-    if (
-      !activeCrop ||
-      recognizingPage ||
-      studioAi.isCropBusy?.(activeCrop.id) ||
-      studioAi.figureAi?.isBusy(activeCrop.id)
-    )
-      return;
-    setCrops((previous) =>
-      previous.map((crop) =>
-        crop.id === activeCropId ? { ...crop, reviewed: true } : crop,
-      ),
-    );
-    const next = crops[activeCropIndex + 1];
-    if (next) selectCrop(next.id);
-  }
-
   function inspectPage() {
     if (!pageCrops.length || !pageReady || recognizingPage) return;
     setInspectedPages((previous) => ({
@@ -1936,10 +1919,148 @@ export default function StudioView({
   const selectedGrade = currentSource?.gradeManual
     ? currentSource.grade
     : "auto";
-  // 시안 B — 검수 단계는 파일·학년·쪽 도구를 제목 줄로 올리고, 진행 띠는 문제 이동 줄에 넣는다.
+  /*
+   * 시안 B-2 — 원장님 2026-09-21 «공간을 전체적으로 재배치».
+   * 제목 줄: 파일 이름(넓게) · 학년 · 전체 작업 셋.  둘째 줄: 쪽 이동 · 문제 이동 · 진행 띠.
+   * 쪽 이동이 제목 줄에서 내려간 만큼이 파일 이름 자리다(전에는 108px 에서 이름이 잘렸다).
+   */
   const bandTools = editing && step === "review";
+  /*
+   * 학년은 자동 인식이 서면 조용히 둔다(원장님 2026-09-21 «확인 필요할 때만 드러내기»).
+   * 고칠 길은 어느 상태에서도 남는다 — 학년은 문항에 저장되는 실제 데이터이고(대분수 표시·출제
+   * 조건이 이것을 본다) 자동 인식이 틀렸을 때 고칠 자리가 여기뿐이다.
+   */
+  const gradeState = detectedGrade?.needsReview ? "review" : "quiet";
+  // 쪽 이동 — 잘라내기는 제목 줄에, 검수는 문제 이동과 같은 둘째 줄에 선다.
+  const pageNavigation = currentSource ? (
+    <div className={styles.pageTools} data-studio-page-tools>
+      <button
+        type="button"
+        className={styles.pageNavigationButton}
+        aria-label="이전 페이지"
+        disabled={pageNumber <= 1}
+        onClick={() => chooseSource(sourceId, pageNumber - 1)}
+      >
+        이전 쪽
+      </button>
+      <label>
+        <span className={styles.srOnly}>페이지</span>
+        <select
+          aria-label="페이지 선택"
+          value={pageNumber}
+          onChange={(event) =>
+            chooseSource(sourceId, Number(event.target.value))
+          }
+        >
+          {Array.from({ length: currentSource.pages }, (_, index) => (
+            <option key={index + 1} value={index + 1}>
+              {index + 1}
+            </option>
+          ))}
+        </select>
+        <span>/ {currentSource.pages}</span>
+      </label>
+      <button
+        type="button"
+        className={styles.pageNavigationButton}
+        aria-label="다음 페이지"
+        disabled={pageNumber >= currentSource.pages}
+        onClick={() => chooseSource(sourceId, pageNumber + 1)}
+      >
+        다음 쪽
+      </button>
+      <span className={styles.divider} />
+      <button
+        type="button"
+        className={styles.pageNavigationButton}
+        aria-label="현재 페이지 90도 회전"
+        onClick={rotateCurrentPage}
+        disabled={!pageReady || busy || studioAi.running}
+      >
+        회전
+      </button>
+      {step === "crop" && (
+        <select
+          aria-label="원본 확대 비율"
+          value={zoom}
+          onChange={(event) => setZoom(Number(event.target.value))}
+        >
+          <option value={0}>전체 보기</option>
+          <option value={75}>75%</option>
+          <option value={100}>너비 맞춤</option>
+          <option value={125}>125%</option>
+          <option value={150}>150%</option>
+          <option value={200}>200%</option>
+        </select>
+      )}
+    </div>
+  ) : null;
+  /*
+   * 전체 작업 셋 — 원장님 2026-09-21 «전체 페이지 자동 인식, 전체 디지털화, 전체 해설 생성은
+   * 같은 행에». 검수 줄에 흩어져 있던 둘을 여기로 올렸다. 상단의 «AI 연결» 칸은 없앴고(왼쪽
+   * 탭의 AI 상태판이 그 일을 한다), 그 안에 있던 «현재 쪽만 다시 인식»은 이 묶음에 남긴다.
+   */
+  const bulkActions = currentSource ? (
+    <div className={styles.bulkActions} data-studio-bulk>
+      <button
+        type="button"
+        className={`${styles.secondaryButton} ${styles.pageAiButton}`}
+        disabled={
+          !pageReady || !studioAi.available || sourceRecognizing || busy
+        }
+        title="전체 페이지를 대기열에 넣어 최대 2쪽씩 인식합니다. 기존 영역은 유지합니다."
+        aria-busy={sourceRecognizing}
+        onClick={() => recognizeSource()}
+      >
+        {currentSource.pages > 1 ? "전체 페이지 자동 인식" : "페이지 자동 인식"}
+      </button>
+      {currentSource.pages > 1 ? (
+        <button
+          type="button"
+          className={styles.secondaryButton}
+          disabled={!pageReady || recognizingPage || !studioAi.available}
+          onClick={() => recognizeSource(false)}
+        >
+          현재 {pageNumber}쪽만 다시 인식
+        </button>
+      ) : null}
+      {bandTools ? (
+        <>
+          <button
+            type="button"
+            className={styles.secondaryButton}
+            disabled={!studioAi.available || !crops.length}
+            onClick={digitizeAll}
+          >
+            전체 디지털화
+          </button>
+          <button
+            type="button"
+            className={styles.secondaryButton}
+            disabled={!studioAi.available || !solutionTargets.length}
+            title={
+              solutionTargets.length
+                ? undefined
+                : "해설이 없는 문항이 없습니다."
+            }
+            onClick={() =>
+              void studioAi.processCrops(
+                "solution",
+                solutionTargets.map((crop) => crop.id),
+              )
+            }
+          >
+            전체 해설 생성
+          </button>
+        </>
+      ) : null}
+    </div>
+  ) : null;
   const sourceToolbar = (
-    <div className={bandTools ? styles.bandTools : styles.canvasToolbar}>
+    <div
+      className={bandTools ? styles.bandTools : styles.canvasToolbar}
+      data-studio-band-tools={bandTools ? "" : undefined}
+    >
       <div className={styles.sourcePicker}>
         <Icon name="file" />
         {sources.length ? (
@@ -1962,9 +2083,12 @@ export default function StudioView({
       {currentSource ? (
         <label
           className={styles.sourceGrade}
+          data-grade={gradeState}
           title={detectedGrade?.evidence ?? "이 파일의 모든 문제에 적용"}
         >
-          <span>학년</span>
+          <span className={gradeState === "quiet" ? styles.srOnly : undefined}>
+            학년
+          </span>
           <select
             aria-label="시험지 학년"
             value={selectedGrade}
@@ -1972,11 +2096,9 @@ export default function StudioView({
             onChange={(event) => changeSourceGrade(event.target.value)}
           >
             <option value="auto">
-              {detectedGrade?.grade
-                ? `${detectedGrade.grade} (자동 인식)`
-                : detectedGrade?.needsReview
-                  ? "학년 확인 필요"
-                  : "자동 인식"}
+              {detectedGrade?.needsReview
+                ? "학년 확인 필요"
+                : (detectedGrade?.grade ?? "자동 인식")}
             </option>
             <optgroup label="초등">
               {STUDIO_GRADES.elementary.map((value) => (
@@ -1996,155 +2118,9 @@ export default function StudioView({
         </label>
       ) : null}
       {currentSource ? (
-        <div className={styles.pageTools}>
-          <button
-            type="button"
-            className={styles.pageNavigationButton}
-            aria-label="이전 페이지"
-            disabled={pageNumber <= 1}
-            onClick={() => chooseSource(sourceId, pageNumber - 1)}
-          >
-            이전 쪽
-          </button>
-          <label>
-            <span className={styles.srOnly}>페이지</span>
-            <select
-              aria-label="페이지 선택"
-              value={pageNumber}
-              onChange={(event) =>
-                chooseSource(sourceId, Number(event.target.value))
-              }
-            >
-              {Array.from({ length: currentSource.pages }, (_, index) => (
-                <option key={index + 1} value={index + 1}>
-                  {index + 1}
-                </option>
-              ))}
-            </select>
-            <span>/ {currentSource.pages}</span>
-          </label>
-          <button
-            type="button"
-            className={styles.pageNavigationButton}
-            aria-label="다음 페이지"
-            disabled={pageNumber >= currentSource.pages}
-            onClick={() => chooseSource(sourceId, pageNumber + 1)}
-          >
-            다음 쪽
-          </button>
-          <span className={styles.divider} />
-          <button
-            type="button"
-            className={styles.pageNavigationButton}
-            aria-label="현재 페이지 90도 회전"
-            onClick={rotateCurrentPage}
-            disabled={!pageReady || busy || studioAi.running}
-          >
-            회전
-          </button>
-          {step === "crop" && (
-            <select
-              aria-label="원본 확대 비율"
-              value={zoom}
-              onChange={(event) => setZoom(Number(event.target.value))}
-            >
-              <option value={0}>전체 보기</option>
-              <option value={75}>75%</option>
-              <option value={100}>너비 맞춤</option>
-              <option value={125}>125%</option>
-              <option value={150}>150%</option>
-              <option value={200}>200%</option>
-            </select>
-          )}
-          <button
-            type="button"
-            className={`${styles.secondaryButton} ${styles.pageAiButton}`}
-            disabled={
-              !pageReady || !studioAi.available || sourceRecognizing || busy
-            }
-            title="전체 페이지를 대기열에 넣어 최대 2쪽씩 인식합니다. 기존 영역은 유지합니다."
-            aria-busy={sourceRecognizing}
-            onClick={() => recognizeSource()}
-          >
-            {currentSource.pages > 1
-              ? "전체 페이지 자동 인식"
-              : "페이지 자동 인식"}
-          </button>
-          <details className={styles.aiDetails}>
-            <summary
-              title={
-                studioAi.available
-                  ? "AI 도구 선택과 연결 정보"
-                  : studioAi.unavailableReason
-              }
-            >
-              AI 연결
-            </summary>
-            <div>
-              {currentSource.pages > 1 ? (
-                <button
-                  type="button"
-                  className={styles.secondaryButton}
-                  disabled={
-                    !pageReady || recognizingPage || !studioAi.available
-                  }
-                  onClick={(event) => {
-                    recognizeSource(false);
-                    event.currentTarget
-                      .closest("details")
-                      ?.removeAttribute("open");
-                  }}
-                >
-                  현재 {pageNumber}쪽만 다시 인식
-                </button>
-              ) : null}
-              <select
-                aria-label="Studio AI 도구"
-                value={studioAi.ai.provider}
-                disabled={studioAi.running || studioAi.ai.checking}
-                onChange={(event) =>
-                  studioAi.ai.setProvider(
-                    event.target.value as StudioAiProvider,
-                  )
-                }
-              >
-                {studioAi.ai.status?.providers.length ? (
-                  studioAi.ai.status.providers.map((provider) => (
-                    <option
-                      key={provider.id}
-                      value={provider.id}
-                      disabled={
-                        !["ready", "unverified"].includes(provider.status)
-                      }
-                    >
-                      {provider.label}
-                      {!["ready", "unverified"].includes(provider.status)
-                        ? " · 연결 필요"
-                        : provider.status === "unverified"
-                          ? " · 미확인"
-                          : ""}
-                    </option>
-                  ))
-                ) : (
-                  <option value={studioAi.ai.provider}>AI 연결 확인</option>
-                )}
-              </select>
-              {studioAi.ai.status?.providers.map((provider) => (
-                <p key={provider.id}>
-                  <strong>{provider.label}</strong> · {provider.detail}
-                </p>
-              ))}
-              {!studioAi.available ? <p>{studioAi.unavailableReason}</p> : null}
-              <button
-                type="button"
-                className={styles.secondaryButton}
-                onClick={() => void studioAi.ai.refresh()}
-                disabled={studioAi.ai.checking}
-              >
-                연결 다시 확인
-              </button>
-            </div>
-          </details>
+        <>
+          {!bandTools && pageNavigation}
+          {bulkActions}
           {step === "crop" && (
             <button
               className={styles.preciseButton}
@@ -2168,7 +2144,7 @@ export default function StudioView({
               영역 지정
             </button>
           )}
-        </div>
+        </>
       ) : (
         <span className={styles.toolbarMeta}>PDF · 이미지</span>
       )}
@@ -2411,14 +2387,25 @@ export default function StudioView({
       {editing && (
         <div ref={band} className={styles.editorBar} data-studio-band>
           <div className={styles.editorTabs}>
-            <h1>{bandTools ? "자료 제작 · 검수" : "자료 제작"}</h1>
-            <button
-              aria-pressed={step === "crop"}
-              onClick={() => setStep("crop")}
-            >
-              문제&amp;도형 잘라내기
-            </button>
-            {!bandTools && (
+            <h1>자료 제작</h1>
+            {/*
+              원장님 2026-09-21 «현재 시퀀스를 디지털화 단계에는 안 보임» — 검수 단계에서는
+              «OCR · 디지털화» 단추가 빠져 지금 어느 단계인지 드러나지 않았다. 세 단계를 늘 세우고
+              눌린 단추 하나로 «지금 여기»를 보인다. 아래 .workflow 는 편집 전에만 선다.
+            */}
+            <nav className={styles.stepTabs} aria-label="제작 단계 이동">
+              <button
+                aria-pressed={step === "upload"}
+                onClick={() => setStep("upload")}
+              >
+                원본 가져오기
+              </button>
+              <button
+                aria-pressed={step === "crop"}
+                onClick={() => setStep("crop")}
+              >
+                문제&amp;도형 잘라내기
+              </button>
               <button
                 aria-pressed={step === "review"}
                 disabled={!crops.length}
@@ -2429,14 +2416,15 @@ export default function StudioView({
               >
                 OCR · 디지털화 <b>{crops.length}</b>
               </button>
-            )}
+            </nav>
           </div>
           {bandTools && sourceToolbar}
           <div className={styles.editorTools}>
-            <button onClick={() => fileInput.current?.click()} disabled={busy}>
-              <Icon name="upload" />
-              {busy ? busyLabel : "파일 가져오기"}
-            </button>
+            {/*
+              원장님 2026-09-21 «파일 가져오기는 완전히 새로 시작일 때만» — 원본을 열어 둔
+              동안에는 이 자리에 두지 않는다. 자료를 더 넣을 때는 «원본 가져오기» 단계로 간다
+              (그 화면에 끌어 놓기와 «내 컴퓨터에서 선택»이 있다).
+            */}
             <button
               ref={restartButton}
               type="button"
@@ -2454,7 +2442,6 @@ export default function StudioView({
                 검수 패널
               </button>
             )}
-            {/* 원장님 2026-09-19 — «검수 완료 · 다음»과 같은 채운 단추. 읽히는 이름은 보이는 글자 그대로다. */}
             <button
               ref={focusButton}
               className={styles.primaryButton}
@@ -2515,48 +2502,53 @@ export default function StudioView({
         }}
       />
 
-      <div className={styles.workflow}>
-        <nav className={styles.steps} aria-label="제작 단계">
-          {(
-            [
-              ["upload", "원본 가져오기"],
-              ["crop", "문제&도형 잘라내기"],
-              ["review", "OCR · 디지털화"],
-            ] as const
-          ).map(([key, label], index) => (
-            <button
-              key={key}
-              type="button"
-              aria-current={step === key ? "step" : undefined}
-              data-complete={
-                (key === "upload" && sources.length > 0) ||
-                (key === "crop" && crops.length > 0) ||
-                (key === "review" && crops.length > 0 && pendingCount === 0)
-              }
-              disabled={
-                (key === "crop" && !currentSource) ||
-                (key === "review" && !crops.length)
-              }
-              onClick={() => setStep(key)}
-            >
-              <span className={styles.stepNumber}>
-                {(key === "upload" && sources.length > 0) ||
-                (key === "crop" && crops.length > 0) ||
-                (key === "review" && crops.length > 0 && pendingCount === 0) ? (
-                  <Icon name="check" />
-                ) : (
-                  index + 1
-                )}
-              </span>
-              {label}
-            </button>
-          ))}
-        </nav>
-        <span className={styles.localBadge}>
-          <Icon name="file" />
-          로컬 작업
-        </span>
-      </div>
+      {/* 편집에 들어서면 제목 줄의 단계 탭이 이 일을 한다(원장님 2026-09-21 ⑻). */}
+      {!editing && (
+        <div className={styles.workflow}>
+          <nav className={styles.steps} aria-label="제작 단계">
+            {(
+              [
+                ["upload", "원본 가져오기"],
+                ["crop", "문제&도형 잘라내기"],
+                ["review", "OCR · 디지털화"],
+              ] as const
+            ).map(([key, label], index) => (
+              <button
+                key={key}
+                type="button"
+                aria-current={step === key ? "step" : undefined}
+                data-complete={
+                  (key === "upload" && sources.length > 0) ||
+                  (key === "crop" && crops.length > 0) ||
+                  (key === "review" && crops.length > 0 && pendingCount === 0)
+                }
+                disabled={
+                  (key === "crop" && !currentSource) ||
+                  (key === "review" && !crops.length)
+                }
+                onClick={() => setStep(key)}
+              >
+                <span className={styles.stepNumber}>
+                  {(key === "upload" && sources.length > 0) ||
+                  (key === "crop" && crops.length > 0) ||
+                  (key === "review" &&
+                    crops.length > 0 &&
+                    pendingCount === 0) ? (
+                    <Icon name="check" />
+                  ) : (
+                    index + 1
+                  )}
+                </span>
+                {label}
+              </button>
+            ))}
+          </nav>
+          <span className={styles.localBadge}>
+            <Icon name="file" />
+            로컬 작업
+          </span>
+        </div>
+      )}
 
       {error ? (
         <div className={styles.error} role="alert">
@@ -2603,13 +2595,20 @@ export default function StudioView({
 
           {step === "review" ? (
             <>
-              {/* 시안 B 둘째 줄 — 문제 이동 · 진행 요약(상세·확인 필요) · 전체 디지털화 · 검수 완료. */}
+              {/*
+                시안 B-2 둘째 줄 — 원장님 2026-09-21 «쪽이랑 문제는 같은 행에. 왔다갔다 불편하지
+                않게». 쪽 이동을 제목 줄에서 내려 문제 이동 바로 앞에 세웠다. 전체 작업 셋은
+                제목 줄로 올라갔고, 여기 남은 «검수 완료 · 다음»은 없앴다 — 카드 바닥의
+                «이 문제 검수 완료»가 같은 일을 하고, 다음으로 가는 길은 «다음 문제»가 맡는다.
+              */}
               <div
                 className={styles.reviewNavigation}
                 aria-label="문항 검수 이동"
               >
+                {pageNavigation}
                 {activeCrop && (
                   <>
+                    <span className={styles.divider} />
                     <button
                       type="button"
                       className={styles.secondaryButton}
@@ -2636,56 +2635,10 @@ export default function StudioView({
                   </>
                 )}
                 {progressStrip}
-                <button
-                  type="button"
-                  className={styles.secondaryButton}
-                  disabled={!studioAi.available || !crops.length}
-                  onClick={digitizeAll}
-                >
-                  전체 디지털화
-                </button>
-                <button
-                  type="button"
-                  className={styles.secondaryButton}
-                  disabled={!studioAi.available || !solutionTargets.length}
-                  title={
-                    solutionTargets.length
-                      ? undefined
-                      : "해설이 없는 문항이 없습니다."
-                  }
-                  onClick={() =>
-                    void studioAi.processCrops(
-                      "solution",
-                      solutionTargets.map((crop) => crop.id),
-                    )
-                  }
-                >
-                  전체 해설 생성
-                </button>
-                {activeCrop && (
-                  <>
-                    <span className={styles.reviewProgress}>
-                      {reviewedCount}문항 검수 완료
-                    </span>
-                    <button
-                      type="button"
-                      className={styles.primaryButton}
-                      disabled={
-                        recognizingPage ||
-                        studioAi.isCropBusy?.(activeCrop.id) ||
-                        studioAi.figureAi?.isBusy(activeCrop.id) ||
-                        (activeCrop.reviewed &&
-                          activeCropIndex === crops.length - 1)
-                      }
-                      onClick={finishReview}
-                    >
-                      {activeCropIndex < crops.length - 1
-                        ? "검수 완료 · 다음"
-                        : activeCrop.reviewed
-                          ? "검수 완료됨"
-                          : "검수 완료"}
-                    </button>
-                  </>
+                {crops.length > 0 && (
+                  <span className={styles.reviewProgress}>
+                    {reviewedCount}문항 검수 완료
+                  </span>
                 )}
               </div>
               <StudioReviewPane
