@@ -10,6 +10,9 @@ import StudioQueueStatus from "./StudioQueueStatus";
 import StudioProgressStrip from "./StudioProgressStrip";
 import { applyStudioCropEdit } from "./studioCropEdit";
 import { retainStudioFigures } from "./studioFigureReferences";
+import StudioFigureFailures, {
+  studioFailedFigureItems,
+} from "./StudioFigureFailures";
 import StudioReviewPane from "./StudioReviewPane";
 import StudioPageEmpty from "./StudioPageEmpty";
 import {
@@ -2257,23 +2260,37 @@ export default function StudioView({
           cancelLabel="도형 생성 취소"
         />
       ) : failedFigures.length ? (
-        <div className={styles.queueSummary} role="status">
-          <strong>
-            도형 {doneFigures} / {figureJobs.length} 완료 · 실패{" "}
-            {failedFigures.length}개
-          </strong>
-          <button
-            type="button"
-            disabled={!studioAi.available || studioAi.running}
-            onClick={() =>
-              void studioAi.figureAi.run([
-                ...new Set(failedFigures.map((job) => job.cropId)),
-              ])
-            }
-          >
-            실패 {failedFigures.length}개 다시 생성
-          </button>
-        </div>
+        <>
+          <div className={styles.queueSummary} role="status">
+            <strong>
+              도형 {doneFigures} / {figureJobs.length} 완료 · 실패{" "}
+              {failedFigures.length}개
+            </strong>
+            <button
+              type="button"
+              disabled={!studioAi.available || studioAi.running}
+              onClick={() =>
+                void studioAi.figureAi.run([
+                  ...new Set(failedFigures.map((job) => job.cropId)),
+                ])
+              }
+            >
+              실패 {failedFigures.length}개 다시 생성
+            </button>
+          </div>
+          {/*
+            원장님 2026-09-20 «전부 완료인데 도형 2/4 이니까 어딘지 알 수가 없음» ·
+            «실패한 문항을 누르면 그 문항 검수 창으로 이동» — 셈만 있던 자리에 이름을
+            하나씩 적고, 누르면 검수 단계로 옮겨 그 문항을 고른다(`selectCrop`).
+          */}
+          <StudioFigureFailures
+            items={studioFailedFigureItems(crops, failedFigures)}
+            onSelect={(cropId) => {
+              setStep("review");
+              selectCrop(cropId);
+            }}
+          />
+        </>
       ) : figureJobs.length ? (
         <div className={styles.queueSummary} role="status">
           <strong>
