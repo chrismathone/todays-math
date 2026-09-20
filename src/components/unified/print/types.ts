@@ -1,6 +1,7 @@
 // Mathgen print options/defaults and template metadata, adapted to the unified draft schema.
 // Original: F:/Mathgen/src/stores/wizardStore.ts and components/print/types.ts.
 import type { StudioProblem } from "../types";
+import type { PrintChoiceLayout } from "@/lib/math/choiceLayout";
 import type { FontPackId } from "./fontPacks";
 export interface ProblemReview {
   id: string;
@@ -109,6 +110,15 @@ export interface PrintOptions {
   hideScores: boolean;
   /** 2단 일 때 컬럼 사이 세로 구분선. 1단 이면 무시. */
   columnDivider: boolean;
+  /**
+   * 보기 번호 배치 — 원장님 확정 네 값(2026-09-20). 보기 다섯 ①~⑤ 기준:
+   *   `5x1` 「5행」 한 줄에 하나씩 · `2x3` 「3열 2행」 ①②③/④⑤
+   *   · `3x2` 「2열 3행」 ①②/③④/⑤ · `auto` 「자동」 지금처럼 들어갈 때만 여러 열
+   *
+   * 정하는 것은 **열 수 하나**다 — 행 수는 보기 수를 따라간다(보기 넷 + 「3열 2행」
+   * 은 ①②③/④ 로 2행). 규칙·넘침 처리는 `src/lib/math/choiceLayout.ts`.
+   */
+  choiceLayout: PrintChoiceLayout;
   /** Optional full-height workspace to the right of one-column questions. */
   solvingArea: "off" | "blank" | "ruled" | "chalkboard";
   /** 한글 폰트 팩 (sans/serif 한 쌍). FONT_PACKS 의 id. */
@@ -138,6 +148,7 @@ export const DEFAULT_PRINT_OPTIONS: PrintOptions = {
   showDifficulty: true,
   hideScores: true,
   columnDivider: false,
+  choiceLayout: "auto", // 지금 동작이 기본값 — 지면이 한 픽셀도 안 바뀐다
   solvingArea: "off",
   fontPack: "system",
   marginPreset: "normal", // 좌우 15mm·상하 12mm (HWP 출력 기본; 좁게/넓게 선택 가능)

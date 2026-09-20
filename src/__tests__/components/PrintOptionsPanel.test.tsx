@@ -103,4 +103,68 @@ describe("Mathgen print spacing presets", () => {
     );
     expect(onOptions).toHaveBeenLastCalledWith({ layoutMode: "count" });
   });
+
+  it("offers the four choice-number layouts the director picked, defaulting to 자동", () => {
+    // 원장님 2026-09-20 확정 — 라벨은 원장님 표 그대로(D-08).
+    const onOptions = vi.fn();
+    const props = {
+      title: "시험지",
+      setTitle: vi.fn(),
+      meta: DEFAULT_PRINT_META,
+      onMeta: vi.fn(),
+      onOptions,
+      options: { ...DEFAULT_PRINT_OPTIONS },
+    };
+    const view = render(<PrintOptionsPanel {...props} />);
+    const group = screen.getByRole("group", { name: "보기 번호 배치" });
+    expect(
+      within(group)
+        .getAllByRole("button")
+        .map((button) => button.textContent),
+    ).toEqual(["5행", "3열 2행", "2열 3행", "자동"]);
+    expect(within(group).getByRole("button", { name: "자동" })).toHaveAttribute(
+      "aria-pressed",
+      "true",
+    );
+    for (const [label, choiceLayout] of [
+      ["5행", "5x1"],
+      ["3열 2행", "2x3"],
+      ["2열 3행", "3x2"],
+      ["자동", "auto"],
+    ] as const) {
+      fireEvent.click(within(group).getByRole("button", { name: label }));
+      expect(onOptions).toHaveBeenLastCalledWith({ choiceLayout });
+    }
+    // 넘침 규칙은 그 값을 고른 동안에만 알린다 — 문구는 간결·사무적(D-08).
+    expect(group).not.toHaveTextContent("열을 줄입니다");
+    view.rerender(
+      <PrintOptionsPanel
+        {...props}
+        options={{ ...props.options, choiceLayout: "2x3" }}
+      />,
+    );
+    expect(
+      screen.getByRole("group", { name: "보기 번호 배치" }),
+    ).toHaveTextContent(
+      "보기가 길어 3열에 안 들어가는 문항은 그 문항만 열을 줄입니다.",
+    );
+  });
+
+  it("restores every print option to its default, including the choice layout", () => {
+    const onOptions = vi.fn();
+    render(
+      <PrintOptionsPanel
+        title="시험지"
+        setTitle={vi.fn()}
+        options={{ ...DEFAULT_PRINT_OPTIONS, choiceLayout: "2x3" }}
+        meta={DEFAULT_PRINT_META}
+        onOptions={onOptions}
+        onMeta={vi.fn()}
+      />,
+    );
+    fireEvent.click(screen.getByRole("button", { name: "기본값으로 재설정" }));
+    expect(onOptions).toHaveBeenLastCalledWith(
+      expect.objectContaining({ choiceLayout: "auto" }),
+    );
+  });
 });

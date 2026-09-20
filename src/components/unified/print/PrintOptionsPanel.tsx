@@ -1,5 +1,5 @@
 import { FONT_PACKS } from "./fontPacks";
-import { COLORS, SPACING_PRESETS, TEMPLATES } from "./settings";
+import { CHOICE_LAYOUTS, COLORS, SPACING_PRESETS, TEMPLATES } from "./settings";
 import {
   DEFAULT_PRINT_OPTIONS,
   type PrintMeta,
@@ -281,6 +281,27 @@ export function PrintOptionsPanel({
               긴 문제는 다음 쪽에 배치합니다.
             </p>
           </>
+        )}
+      </fieldset>
+      <fieldset className={s.optionGroup}>
+        <legend>보기 번호 배치</legend>
+        <div
+          className={`${s.choiceWrap} ${s.equalChoices} ${s.spacingChoices}`}
+        >
+          {CHOICE_LAYOUTS.map(([value, label]) => (
+            <button
+              key={value}
+              aria-pressed={options.choiceLayout === value}
+              onClick={() => onOptions({ choiceLayout: value })}
+            >
+              {label}
+            </button>
+          ))}
+        </div>
+        {options.choiceLayout === "2x3" && (
+          <p className={s.subtle}>
+            보기가 길어 3열에 안 들어가는 문항은 그 문항만 열을 줄입니다.
+          </p>
         )}
       </fieldset>
       <fieldset className={s.optionGroup}>

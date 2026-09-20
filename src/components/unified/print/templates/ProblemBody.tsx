@@ -26,6 +26,8 @@ export function ProblemBody({
         problem={problem}
         print
         hideScores={options.hideScores !== false}
+        // 보기 번호 배치 — 여섯 템플릿이 전부 이 한 부품을 거친다(2026-09-20).
+        choiceLayout={options.choiceLayout}
       />
     </div>
   );
