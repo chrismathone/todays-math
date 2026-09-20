@@ -81,24 +81,38 @@ export const FIGURE_EDIT_OP_LABELS: Record<FigureEditOp, string> = {
  * 계약의 op 목록 — 선택지를 여기서 **파생**시킨다(표를 손으로 베끼지 않는다).
  * 뽑지 못하면 빈 배열이고, 그러면 빠른 길이 꺼진다(시험도 같이 빨개진다).
  */
-export function contractFigureEditOps(): readonly FigureEditOp[] {
+function contractOpFields(): ReadonlyMap<FigureEditOp, ReadonlySet<string>> {
   const options = (
     FigureEditCommandSchema as unknown as {
       def?: { options?: readonly unknown[] };
     }
   ).def?.options;
-  if (!Array.isArray(options)) return [];
-  const ops: FigureEditOp[] = [];
+  const fields = new Map<FigureEditOp, ReadonlySet<string>>();
+  if (!Array.isArray(options)) return fields;
   for (const option of options) {
-    const literal = (
+    const shape = (
       option as {
-        def?: { shape?: { op?: { def?: { values?: readonly unknown[] } } } };
+        def?: {
+          shape?: Record<string, { def?: { values?: readonly unknown[] } }>;
+        };
       }
-    ).def?.shape?.op?.def?.values?.[0];
-    if (typeof literal !== "string" || !literal) return [];
-    ops.push(literal as FigureEditOp);
+    ).def?.shape;
+    const literal = shape?.op?.def?.values?.[0];
+    if (!shape || typeof literal !== "string" || !literal) return new Map();
+    fields.set(literal as FigureEditOp, new Set(Object.keys(shape)));
   }
-  return ops;
+  return fields;
+}
+export function contractFigureEditOps(): readonly FigureEditOp[] {
+  return [...contractOpFields().keys()];
+}
+/**
+ * 계약이 이 명령에 점선(`dashed`)을 받는가 — 손으로 적은 표를 두지 않고 스키마에서 본다.
+ * 계약은 명령마다 다르다(`addMidpoint`·`addArcMidpoint` 는 안 받는다). 어긋나면 «점선으로»라고 말한
+ * 요청만 조용히 떨어져, 손으로 적은 표로는 알아채기 어렵다.
+ */
+export function contractOpAcceptsDashed(op: FigureEditOp): boolean {
+  return contractOpFields().get(op)?.has("dashed") ?? false;
 }
 
 /**
@@ -290,7 +304,12 @@ export function assembleFigureEditCommand(
   const axis = pick(answers, "axis");
   const countPick = pick(answers, "count");
   const count = countPick ? Number(countPick) : undefined;
-  const dashed = answers.dashed?.choice === "yes" ? { dashed: true } : {};
+  const wantsDashed = answers.dashed?.choice === "yes";
+  // 고른 값은 위에서 빠른 길 목록에 있음을 확인했다.
+  const dashedFor = (chosen: string) =>
+    wantsDashed && contractOpAcceptsDashed(chosen as FigureEditOp)
+      ? { dashed: true }
+      : {};
 
   const command = ((): Record<string, unknown> | null => {
     switch (op.choice) {
@@ -309,7 +328,7 @@ export function assembleFigureEditCommand(
       case "addPerpendicularBisector":
       case "extendLine":
         return a && b && distinct(a, b)
-          ? { op: op.choice, from: a, to: b, ...dashed }
+          ? { op: op.choice, from: a, to: b, ...dashedFor(op.choice) }
           : null;
       case "addTick":
       case "addParallelMark":
@@ -318,12 +337,18 @@ export function assembleFigureEditCommand(
           : null;
       case "addCircle":
         return a && b && distinct(a, b)
-          ? { op: "addCircle", center: a, through: b, ...dashed }
+          ? { op: "addCircle", center: a, through: b, ...dashedFor(op.choice) }
           : null;
       case "addArc":
       case "addArcMidpoint":
         return a && b && c && distinct(a, b, c)
-          ? { op: op.choice, center: a, from: b, to: c, ...dashed }
+          ? {
+              op: op.choice,
+              center: a,
+              from: b,
+              to: c,
+              ...dashedFor(op.choice),
+            }
           : null;
       case "addAngle":
         return a && b && c && distinct(a, b, c)
@@ -337,20 +362,36 @@ export function assembleFigureEditCommand(
           : null;
       case "addAngleBisector":
         return a && b && c && distinct(a, b, c)
-          ? { op: "addAngleBisector", at: a, from: b, to: c, ...dashed }
+          ? {
+              op: "addAngleBisector",
+              at: a,
+              from: b,
+              to: c,
+              ...dashedFor(op.choice),
+            }
           : null;
       case "addPerpendicular":
         return a && b && c && distinct(a, b, c)
-          ? { op: "addPerpendicular", from: a, onto: [b, c], ...dashed }
+          ? {
+              op: "addPerpendicular",
+              from: a,
+              onto: [b, c],
+              ...dashedFor(op.choice),
+            }
           : null;
       case "addParallel":
         return a && b && c && distinct(a, b, c)
-          ? { op: "addParallel", through: a, to: [b, c], ...dashed }
+          ? {
+              op: "addParallel",
+              through: a,
+              to: [b, c],
+              ...dashedFor(op.choice),
+            }
           : null;
       case "addCircumcircle":
       case "addIncircle":
         return a && b && c && distinct(a, b, c)
-          ? { op: op.choice, points: [a, b, c], ...dashed }
+          ? { op: op.choice, points: [a, b, c], ...dashedFor(op.choice) }
           : null;
       case "fillRegion":
         return a && b && c && distinct(a, b, c)

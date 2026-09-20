@@ -9,6 +9,7 @@ import {
   assembleFigureEditCommand,
   buildFigureEditQuestions,
   contractFigureEditOps,
+  contractOpAcceptsDashed,
   FIGURE_EDIT_OP_LABELS,
   JEV_FAST_PATH_OPS,
   JEV_MIN_CONFIDENCE,
@@ -337,6 +338,40 @@ describe("명령 조립 — 코드가 검산한다", () => {
         "rotate",
       ].sort(),
     );
+  });
+
+  // 계약은 명령마다 점선을 받기도 하고 안 받기도 한다(addMidpoint·addArcMidpoint 는 안 받는다).
+  // 손으로 적어 둔 표가 계약과 어긋나면 «점선으로»라고 말한 요청만 조용히 떨어진다 — 전수로 잰다.
+  it("빠른 길 명령을 인자를 다 채워 조립하면 점선을 붙였을 때도 모두 계약을 통과한다", () => {
+    for (const op of JEV_FAST_PATH_OPS)
+      for (const dashed of ["no", "yes"]) {
+        const command = assemble({
+          op,
+          target: "2",
+          pointA: "A",
+          pointB: "B",
+          pointC: "C",
+          direction: "cw",
+          axis: "horizontal",
+          dashed,
+        });
+        expect({ op, dashed, command }).toEqual({
+          op,
+          dashed,
+          command: expect.objectContaining({ op }),
+        });
+        expect(FigureEditCommandSchema.safeParse(command).success).toBe(true);
+      }
+  });
+
+  it("계약이 점선을 받는 명령에만 점선을 붙인다", () => {
+    expect(contractOpAcceptsDashed("addLine")).toBe(true);
+    expect(contractOpAcceptsDashed("addCircle")).toBe(true);
+    // 계약에 dashed 칸이 없는 것들
+    expect(contractOpAcceptsDashed("addMidpoint")).toBe(false);
+    expect(contractOpAcceptsDashed("addArcMidpoint")).toBe(false);
+    expect(contractOpAcceptsDashed("delete")).toBe(false);
+    expect(contractOpAcceptsDashed("addAngle")).toBe(false);
   });
 
   it("확신이 문턱보다 낮으면 떨어진다", () => {
