@@ -16,6 +16,14 @@ import { sampleFigurePath } from "./figureFlip";
  *   `_angle_mark_polylines` · `_RIGHT_ANGLE_SCALE` · `_RIGHT_ANGLE_FIT`).
  * - 굵기 0.72(`mark_width`) · 색 #111111 · 채우기 없음.
  */
+/**
+ * 새 각 표시의 **기본 반지름** — 엔진과 같은 22(figure_scene.py `StyleProfile.angle_radius = 22.0`).
+ * 원장님 2026-09-20 «엔진과 같은 22 로». 2026-09-20 전에는 이웃 각 표시가 없을 때 적용 쪽이
+ * `min(22, 긴 변의 8%)` 로 줄여, 엔진 그림(틀 150~310px)에서 17~20 으로 그려졌다 —
+ * 같은 그림 안의 엔진 호(22)보다 작았다. **틀 크기는 이제 안 본다.**
+ * 줄이는 자리는 하나뿐이다 — 그림이 작아 22 가 변을 넘치면 `angleMarkPath` 가 **짧은 변의 절반**까지 줄인다
+ * (ㄱ자는 짧은 변의 0.85 까지). 그 한계를 넘겨 그리지는 않는다.
+ */
 export const ANGLE_MARK_RADIUS = 22;
 export const RIGHT_MARK_SCALE = 0.55;
 const RIGHT_MARK_FIT = 0.85;

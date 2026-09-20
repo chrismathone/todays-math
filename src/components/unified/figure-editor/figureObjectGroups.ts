@@ -1,5 +1,6 @@
 import type { figureObjects } from "./figureSvgEditing";
 import {
+  isArcPath,
   objectName,
   type FigureAngleKind,
   type FigureAngleKinds,
@@ -220,15 +221,15 @@ function arcAngleMark(s: Shape, edges: Edge[], S: number): AngleMark | null {
   const o = s.object;
   if (o.type !== "path" || !unfilled(o)) return null;
   const d = o.attrs.d ?? "";
-  if (!/^\s*M[^A-Za-z]*A[^A-Za-z]*$/.test(d)) return null;
+  // 각의 호도 한 원 위의 호 한 획이라, 꼴 판정은 요소 이름이 «호»를 가르는 자리와 **같은 한 함수**를 쓴다
+  // (figureObjectNames.ts `isArcPath` — 획 하나 · 수 아홉 · rx ≈ ry). 여기서 갈리면 이름과 묶음이 어긋난다.
+  if (!isArcPath(d)) return null;
   const v = numbers(d);
-  if (v.length !== 9) return null;
   const [dx, dy] = offset(o) ?? [0, 0];
   const [x0, y0, rx, ry, , large, sweep, x1, y1] = v;
   const a = [x0 + dx, y0 + dy],
     b = [x1 + dx, y1 + dy];
   const r = (Math.abs(rx) + Math.abs(ry)) / 2;
-  if (!r || Math.abs(Math.abs(rx) - Math.abs(ry)) > 0.02 * r) return null;
   // 중심 — SVG 호 규격(F.6.5)을 원(rx = ry)·기울기 0 으로 줄인 것. 반지름이 모자라면 SVG 처럼 늘린다(반원).
   const hx = (a[0] - b[0]) / 2,
     hy = (a[1] - b[1]) / 2;
