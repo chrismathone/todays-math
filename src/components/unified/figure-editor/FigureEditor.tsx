@@ -529,26 +529,24 @@ export function FigureEditor({
   // 정렬 — 고른 것들의 바깥 상자에 서로 맞춘다(되돌리기 한 걸음). 회전·대칭과 같은 한 엔진(figureBake).
   // 크기 고정은 막지 않는다 — 고정은 «이동만 가능»이고 정렬은 옮기기뿐이다.
   const alignBlocked = useMemo(
-    () => alignBlock(objects, selectedIds),
-    [objects, selectedIds],
+    () => alignBlock(objects, selectedIds, groupNames),
+    [objects, selectedIds, groupNames],
   );
   const spreadBlocked = useMemo(
-    () => spreadBlock(objects, selectedIds),
-    [objects, selectedIds],
+    () => spreadBlock(objects, selectedIds, groupNames),
+    [objects, selectedIds, groupNames],
   );
+  // 묶음은 한 덩어리로 움직인다(ppt 와 같다) — 상자 하나가 사각 + 이름 글자 둘인 관계도에서
+  // 요소마다 따로 맞추면 글자가 상자 밖으로 빠져나간다.
+  const alignOptions = () => ({
+    textBoxes: selectedTextBoxes(),
+    groups: groupNames,
+  });
   const align = (kind: AlignKind) => {
-    commit(
-      alignFigureSelection(svg, selectedIds, kind, {
-        textBoxes: selectedTextBoxes(),
-      }),
-    );
+    commit(alignFigureSelection(svg, selectedIds, kind, alignOptions()));
   };
   const spread = (axis: SpreadAxis) => {
-    commit(
-      spreadFigureSelection(svg, selectedIds, axis, {
-        textBoxes: selectedTextBoxes(),
-      }),
-    );
+    commit(spreadFigureSelection(svg, selectedIds, axis, alignOptions()));
   };
   // «반대쪽으로 뒤집기» — 곡선·꺾은선 하나(와 뒤집기가 같이 옮기는 값 글자)를 골랐을 때만 선다. 뒤집은 뒤에도
   // 선택이 곡선과 그 글자라 다시 누르면 제자리로 온다. 여럿·묶음·함수 그래프는 세우지 않는다.
@@ -751,6 +749,10 @@ export function FigureEditor({
           e.preventDefault();
           if (e.shiftKey) breakGroup();
           else makeGroup(false);
+          // 묶으면 요소 목록이 다시 그려져 **눌렀던 요소 단추가 사라진다** — 초점이 <body> 로 떨어져
+          // 바로 이어 누른 Ctrl+Shift+G 가 «편집기 안»이 아니라고 걸러졌다(브라우저 실측 2026-09-21).
+          // jsdom 은 클릭으로 초점이 옮겨지지 않아 이 자리가 안 보인다. 캔버스로 초점을 돌려 둔다.
+          surface.current?.focus();
         }
         // C/X/V는 브라우저의 clipboard 이벤트에서 처리해 OS 클립보드와 호환한다.
         return;

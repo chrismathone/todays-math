@@ -539,11 +539,17 @@ describe("단축키 — Ctrl+G 묶기 · Ctrl+Shift+G 묶음 해제 (원장님 2
     expect(list().queryByRole("group", { name: "A 묶음" })).toBeNull();
     expect(chipNumbers("그래프")).toEqual(["7", "8"]);
   });
-  it("Ctrl+G 는 이름 칸에 초점을 주지 않는다 — 이어지는 단축키가 먹는다", () => {
+  it("Ctrl+G 뒤 초점이 캔버스로 온다 — 이어지는 단축키가 먹는다", () => {
     open();
+    // 실제 브라우저에서는 요소 단추를 누르면 그 단추가 초점을 갖는다. 묶으면 목록이 다시 그려져
+    // 그 단추가 사라지고 초점이 <body> 로 떨어져, 이어 누른 Ctrl+Shift+G 가 걸러졌다(2026-09-21 실측).
+    chip(7).focus();
     fireEvent.click(chip(7));
     fireEvent.click(chip(8), { shiftKey: true });
     press("g");
+    expect(document.activeElement).toBe(
+      screen.getByLabelText("도형 편집 캔버스"),
+    );
     expect(
       within(groupRow()!).getByRole("textbox", { name: "A 묶음 이름" }),
     ).not.toBe(document.activeElement);

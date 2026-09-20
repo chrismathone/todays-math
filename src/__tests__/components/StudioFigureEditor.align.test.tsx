@@ -77,9 +77,14 @@ beforeEach(() => {
     configurable: true,
     value: () => identity,
   });
+  // 글자 상자는 화면에서 잰다(measureTextBoxes → getBBox) — 관계도의 이름 글자가 상자 안에 앉은 크기로.
   Object.defineProperty(SVGElement.prototype, "getBBox", {
     configurable: true,
-    value: () => ({ x: 10, y: 10, width: 40, height: 20 }),
+    value: function (this: Element) {
+      return this.localName === "text"
+        ? { x: 245, y: 28, width: 20, height: 20 }
+        : { x: 10, y: 10, width: 40, height: 20 };
+    },
   });
 });
 afterEach(() => {
@@ -223,5 +228,43 @@ describe("정렬 — 크기 고정 · 면", () => {
     expect(canvas().querySelectorAll("rect")[1].getAttribute("width")).toBe(
       "60",
     );
+  });
+});
+
+describe("정렬 — 묶음은 한 덩어리 (원장님 화면의 사각형 관계도)", () => {
+  // 상자 = 사각 + 이름 글자. 묶어 두면 맞출 때 글자가 상자를 벗어나지 않는다.
+  const relation =
+    `<svg xmlns="${SVG_NS}" viewBox="0 0 480 360">` +
+    `<rect x="200" y="20" width="110" height="40" stroke="#111" fill="none"/>` +
+    `<text x="255" y="45" font-size="20" text-anchor="middle" data-mj="가">가</text>` +
+    `<rect x="40" y="120" width="110" height="40" stroke="#111" fill="none"/>` +
+    `</svg>`;
+  it("Ctrl+G 로 묶은 상자는 사각과 글자가 같이 간다", () => {
+    open(relation);
+    // 사각 + 글자를 묶는다
+    pick(1, 2);
+    fireEvent.keyDown(screen.getByLabelText("도형 편집 캔버스"), {
+      key: "g",
+      ctrlKey: true,
+    });
+    // 묶음(사각+글자)과 아래 사각을 모두 골라 왼쪽 맞추기 — 묶음은 한 단위로 센다
+    pick(1, 2, 3);
+    fireEvent.click(alignButton("왼쪽"));
+    const canvasSvg = canvas();
+    expect(canvasSvg.querySelectorAll("rect")[0].getAttribute("x")).toBe("40");
+    // 글자도 같은 −160 만큼 — 상자 안에 그대로 있다
+    expect(canvasSvg.querySelector("text")!.getAttribute("transform")).toBe(
+      "translate(-160 0)",
+    );
+  });
+  it("묶음 하나만 고르면 흐리다 — 맞출 단위가 하나다", () => {
+    open(relation);
+    pick(1, 2);
+    fireEvent.keyDown(screen.getByLabelText("도형 편집 캔버스"), {
+      key: "g",
+      ctrlKey: true,
+    });
+    pick(1, 2);
+    expect(alignButton("왼쪽")).toBeDisabled();
   });
 });
