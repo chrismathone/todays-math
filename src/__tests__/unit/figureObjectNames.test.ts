@@ -10,6 +10,7 @@ import {
 } from "@/components/unified/figure-editor/figureObjectGroups";
 import { objectName } from "@/components/unified/figure-editor/figureObjectNames";
 import { applyFigureEdits } from "@/components/unified/figure-editor/figureEditApply";
+import { describeFigureForEdit } from "@/components/unified/figure-editor/figureEditElements";
 
 /**
  * 요소 이름 — 원장님 2026-09-20 «부채꼴의 호·AI 가 더한 호를 곡선이라 부르지 말고 «호»라고 해».
@@ -83,6 +84,13 @@ describe("요소 이름 — 원호는 «호»", () => {
       "점선", // 치수 곡선은 점선이라 역할 묶음이 먼저 잡는다 — 이름은 «곡선/경로» 그대로
       "글자",
     ]);
+  });
+
+  it("sends the same name to the AI as the list shows", () => {
+    // 원장님 «모든 화면 일치» — AI 에게 보내는 요소 종류도 같은 `objectName` 에서 나온다
+    const kinds = describeFigureForEdit(sector).elements.map((e) => e.kind);
+    expect(kinds).toEqual(namesIn(sector));
+    expect(kinds[2]).toBe("호");
   });
 
   it("names the arc that the AI adds «호», like the engine's own", () => {
