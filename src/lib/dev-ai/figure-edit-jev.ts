@@ -164,6 +164,13 @@ export function buildFigureEditQuestions(
       "이 요청은 지금 그림에 무엇을 하라는 것인가. 어느 명령에도 맞지 않으면 해당 없음을 고른다.",
       withNone(opCriteria),
     ),
+    scope: choice(
+      "이 요청은 그림에서 몇 군데를 고치라는 것인가. 한 군데만 고치면 되는지, 서로 다른 곳을 두 가지 이상 고쳐야 하는지.",
+      {
+        one: "한 군데만 고치면 된다",
+        many: "서로 다른 곳을 두 가지 이상 고쳐야 한다",
+      },
+    ),
     target: choice(
       "그 명령이 가리키는 지금 그림의 요소 번호. 요소를 가리키지 않는 요청이면 해당 없음.",
       withNone({
@@ -249,6 +256,14 @@ export function assembleFigureEditCommand(
   const op = answers.op;
   if (!op || op.confidence < JEV_MIN_CONFIDENCE) return null;
   if (!(JEV_FAST_PATH_OPS as readonly string[]).includes(op.choice))
+    return null;
+  /**
+   * 지금 경로는 한 번에 명령을 스물까지 돌려준다(`FIGURE_EDIT_MAX_COMMANDS`). 빠른 길은 **하나뿐**이라
+   * «7번 선을 지우고 점 A 이름을 위로» 같은 두 가지 요청을 **반만** 고칠 수 있다 — 그러면 지금보다 나빠진다.
+   * 선택지가 둘뿐이라 이 물음은 확신이 구조적으로 낮지 않다. 한 군데라고 확실할 때만 빠른 길을 탄다.
+   */
+  const scope = answers.scope;
+  if (!scope || scope.choice !== "one" || scope.confidence < JEV_MIN_CONFIDENCE)
     return null;
 
   const known = new Set((figure.names ?? []).map((name) => name.name));
@@ -401,7 +416,13 @@ export async function tryJevFigureEdit(
   const command = assembleFigureEditCommand(answers, figure);
   const op = answers.op;
   if (!command) {
-    const why = op.confidence < JEV_MIN_CONFIDENCE ? "확신 낮음" : "인자 안 참";
+    const scope = answers.scope;
+    const why =
+      op.confidence < JEV_MIN_CONFIDENCE
+        ? "확신 낮음"
+        : scope?.choice !== "one" || scope.confidence < JEV_MIN_CONFIDENCE
+          ? "고칠 곳이 여럿"
+          : "인자 안 참";
     log(`떨어짐 (${why}) op=${op.choice} 확신=${op.confidence} ${elapsed()}`);
     return null;
   }

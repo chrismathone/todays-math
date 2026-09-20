@@ -86,8 +86,10 @@ const answers = (picked: Record<string, string>, confidence = 0.97) =>
     ).map((id) => [
       id,
       {
-        choice: picked[id] ?? (id === "dashed" ? "no" : "none"),
-        confidence: id === "op" ? confidence : 0.6,
+        choice:
+          picked[id] ??
+          (id === "dashed" ? "no" : id === "scope" ? "one" : "none"),
+        confidence: id === "op" || id === "scope" ? confidence : 0.6,
       },
     ]),
   );
@@ -157,11 +159,26 @@ describe("물음 구성", () => {
     ]);
   });
 
+  // dashed·scope 만 예외다 — 그 둘은 두 값이 다 뜻이 있어(실선/점선 · 한 군데/여러 군데) «해당 없음»이 없다.
   it("모든 선택지 물음에 «해당 없음»이 있다 — 억지로 고르게 하지 않는다", () => {
     const built = buildFigureEditQuestions(figure, "무엇이든");
+    const twoWay = ["dashed", "scope"];
     for (const [id, question] of Object.entries(built ?? {}))
-      if (id !== "dashed")
+      if (!twoWay.includes(id))
         expect(Object.keys(question.criteria)).toContain("none");
+    expect(
+      Object.keys(built ?? {})
+        .filter((id) => twoWay.includes(id))
+        .sort(),
+    ).toEqual([...twoWay].sort());
+  });
+
+  it("«고칠 곳이 몇 군데인가»를 함께 묻는다", () => {
+    const built = buildFigureEditQuestions(
+      figure,
+      "7번 선을 지우고 점 A 이름을 위로",
+    );
+    expect(Object.keys(built?.scope?.criteria ?? {})).toEqual(["one", "many"]);
   });
 
   it("요소가 선택지 한도를 넘는 그림은 빠른 길을 끈다", () => {
@@ -340,6 +357,21 @@ describe("명령 조립 — 코드가 검산한다", () => {
     expect(assemble({ op: "none", target: "2" })).toBeNull();
   });
 
+  // 지금 경로는 한 번에 명령을 스물까지 돌려준다. 빠른 길은 하나뿐이라 «두 가지 요청»을 반만 고칠 수 있다 —
+  // 반만 고치느니 지금 경로로 떨어뜨린다.
+  it("고칠 곳이 두 군데 이상이면 떨어진다", () => {
+    expect(assemble({ op: "delete", target: "2", scope: "many" })).toBeNull();
+    expect(
+      assembleFigureEditCommand(
+        {
+          ...answers({ op: "delete", target: "2" }),
+          scope: { choice: "one", confidence: JEV_MIN_CONFIDENCE - 0.01 },
+        },
+        figure,
+      ),
+    ).toBeNull();
+  });
+
   it("점 이름이 그림에 없으면 떨어진다", () => {
     expect(
       assembleFigureEditCommand(
@@ -470,6 +502,50 @@ describe("빠른 길 전체", () => {
     expect(state).not.toContain("data:image");
     expect(state).not.toContain("YWJj");
     expect(state).toContain("각 ABC에 각 표시");
+  });
+});
+
+describe("운영 로그", () => {
+  // 빠른 길이 몇 번 먹었고 왜 떨어졌는지를 운영 로그에서 세기 위한 한 줄. 요청 글·요소 목록은 남기지 않는다.
+  it("먹었나·떨어졌나와 그 까닭을 한 줄로 남긴다", async () => {
+    const info = vi.spyOn(console, "info").mockImplementation(() => {});
+    const env = envOf({ AI_GATEWAY_API_KEY: "key" });
+
+    ask.mockResolvedValue(answers({ op: "delete", target: "2" }));
+    await tryJevFigureEdit(request, { env });
+    expect(info).toHaveBeenCalledWith(
+      expect.stringContaining("[jev] figure-edit 빠른 길 op=delete"),
+    );
+
+    for (const [picked, why] of [
+      [{ op: "delete" }, "인자 안 참"],
+      [{ op: "delete", target: "2", scope: "many" }, "고칠 곳이 여럿"],
+    ] as const) {
+      info.mockClear();
+      ask.mockResolvedValue(answers(picked));
+      await tryJevFigureEdit(request, { env });
+      expect(info).toHaveBeenCalledWith(
+        expect.stringContaining(`떨어짐 (${why})`),
+      );
+    }
+
+    info.mockClear();
+    ask.mockResolvedValue(answers({ op: "delete", target: "2" }, 0.4));
+    await tryJevFigureEdit(request, { env });
+    expect(info).toHaveBeenCalledWith(
+      expect.stringContaining("떨어짐 (확신 낮음)"),
+    );
+
+    info.mockClear();
+    ask.mockResolvedValue(null);
+    await tryJevFigureEdit(request, { env });
+    expect(info).toHaveBeenCalledWith(
+      expect.stringContaining("떨어짐 (응답 없음·시한 초과)"),
+    );
+
+    // 요청 글은 로그에 싣지 않는다
+    for (const call of info.mock.calls)
+      expect(String(call[0])).not.toContain("각 ABC");
   });
 });
 
