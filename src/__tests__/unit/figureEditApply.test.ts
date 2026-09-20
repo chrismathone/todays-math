@@ -17,6 +17,7 @@ import {
   groupFigureObjects,
 } from "@/components/unified/figure-editor/figureObjectGroups";
 import { flipFigureCurve } from "@/components/unified/figure-editor/figureFlip";
+import { buildFigureEditPrompt } from "@/lib/dev-ai/figure-edit-prompt";
 
 /**
  * «요청대로 고치기»(원장님 2026-09-19) — AI 가 돌려준 수정 명령을 **지금 그림에** 편집기의 기존 편집 함수로 적용한다.
@@ -800,5 +801,71 @@ describe("각 표시 더하기", () => {
     expect(result.rejected).toEqual([
       "각 ABC 표시 추가: 이미 각 표시가 있습니다(4번 직각)",
     ]);
+  });
+});
+
+/**
+ * 원장님 2026-09-21 확정 — «그룹 A라고 따로 AI에게 지시하지 않는 이상 항상 그룹은 신경쓰지 않도록» ·
+ * «마찬가지. 요소도 «요소 15» 등으로 정확하게 지정하지 않는 이상 신경쓰지 않음».
+ *
+ * 번호와 묶음 이름은 **부를 때만 쓰는 손잡이**다. 그러니 묶어도 AI 가 보는 것이 **한 가지도 줄지 않아야 한다**:
+ * 요소는 전부 제 번호로 실리고, 묶음 이름은 이미 있던 `role` 한 칸에 덤으로 얹힐 뿐이다
+ * (계약 `figure-edit-contract.ts` 도 지시문 `figure-edit-prompt.ts` 도 넓히지 않았다).
+ * 화면 번호표만 묶음마다 하나로 합친다 — 그쪽은 `figureObjectNumbers.ts` 의 시험이 지킨다.
+ */
+describe("묶어도 AI 는 요소를 그대로 가리킨다 (원장님 2026-09-21)", () => {
+  const grouped = setFigureGroup(source, [ids[0], ids[1]], "A");
+  const request = {
+    provider: "claude" as const,
+    action: "figure-edit" as const,
+    grade: "중학교 1학년",
+  };
+
+  it("요소는 전부 제 번호로 실린다 — 묶기 전과 번호·종류가 같다", () => {
+    const before = describeFigureForEdit(source).elements;
+    const after = describeFigureForEdit(grouped).elements;
+    expect(after).toHaveLength(before.length);
+    expect(after.map((e) => [e.n, e.kind])).toEqual(
+      before.map((e) => [e.n, e.kind]),
+    );
+  });
+
+  it("묶음 이름은 role 한 칸으로 덤이다 — 나머지 칸은 한 글자도 안 바뀜다", () => {
+    const before = describeFigureForEdit(source).elements;
+    describeFigureForEdit(grouped).elements.forEach((element, i) => {
+      const { role, ...rest } = element;
+      expect(rest).toEqual(before[i]);
+      expect(role).toBe(i < 2 ? "A" : undefined);
+    });
+  });
+
+  it("묶음 속 요소 하나를 가리힌 명령은 그 요소에만 닿는다 — 묶음 동무는 안 끕려간다", () => {
+    const moved = applyFigureEdits(grouped, [
+      { op: "move", target: 1, dx: 5, dy: 0 },
+    ]).svg;
+    expect(xml(moved, ids[0])).not.toBe(xml(grouped, ids[0]));
+    expect(xml(moved, ids[1])).toBe(xml(grouped, ids[1]));
+    // 묶음 표시는 그대로 남는다
+    expect(moved).toContain('data-group="A"');
+  });
+
+  it("번호를 대지 않은 맨 말 요청도 지금과 똑같이 나간다", () => {
+    // 원장님이 «사다리꼴 상자를 …» 처럼 말로만 가리키는 길 — 묶어도 지시문이 줄지 않는다
+    const ask = "사다리꼴 상자를 왼쪽으로 옮겨 주세요";
+    const plain = buildFigureEditPrompt({
+      ...request,
+      figure: describeFigureForEdit(source),
+      content: ask,
+    });
+    const withGroups = buildFigureEditPrompt({
+      ...request,
+      figure: describeFigureForEdit(grouped),
+      content: ask,
+    });
+    // 묶어서 달라지는 것은 role 칸뿐이다 — 요청 글도 요소 번호도 그대로다
+    expect(withGroups.split(',"role":"A"').join("")).toBe(plain);
+    expect(withGroups).toContain(ask);
+    // 번호를 대라고 시키지 않는다 — 글자 라벨도 그대로 실려 말로 찾을 수 있다
+    expect(withGroups).toContain('"text":"A"');
   });
 });
