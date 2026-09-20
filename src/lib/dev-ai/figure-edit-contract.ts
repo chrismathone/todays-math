@@ -176,6 +176,123 @@ export const FigureEditCommandSchema = z
         label: label.optional(),
       })
       .strict(),
+    // 직선·원(원장님 2026-09-20 «아직 없는 명령을 전부») — 연장 · 평행선 · 수직이등분선 · 각의 이등분선 ·
+    // 접선 · 외접원 · 내접원 · 원의 교점 · 호의 중점. 적용 본체는 figure-editor/figureLineCircleOps.ts.
+    // 외심·내심·접점·교점은 **코드가 계산한다** — 모델이 지은 좌표를 믿지 않는다.
+    /**
+     * 선분 연장 — 그려진 선분 from→to 를 to 쪽으로 잇는다(그 선분과 같은 서식의 새 선분 하나).
+     * length 면 그만큼, until 이면 그 점·그 직선까지, 아무것도 없으면 선분 길이의 1/3 을 그림 틀 안까지.
+     */
+    z
+      .object({
+        op: z.literal("extendLine"),
+        from: PointRefSchema,
+        to: PointRefSchema,
+        length: size.positive().optional(),
+        until: z
+          .union([PointRefSchema, z.tuple([PointRefSchema, PointRefSchema])])
+          .optional(),
+        dashed: z.boolean().optional(),
+      })
+      .strict()
+      .refine(
+        (c) => c.length === undefined || c.until === undefined,
+        "길이(length)와 until 중 하나만 줍니다.",
+      ),
+    /** 평행선 — through 를 지나고 직선 to 에 평행한 선분. 기본은 기준 선분을 그대로 평행이동(같은 길이). */
+    z
+      .object({
+        op: z.literal("addParallel"),
+        through: PointRefSchema,
+        to: z.tuple([PointRefSchema, PointRefSchema]),
+        length: size.positive().optional(),
+        dashed: z.boolean().optional(),
+      })
+      .strict(),
+    /** 수직이등분선 — 선분의 중점에서 직각으로. 직각 표시는 늘 달고, label 은 중점 이름. */
+    z
+      .object({
+        op: z.literal("addPerpendicularBisector"),
+        from: PointRefSchema,
+        to: PointRefSchema,
+        label: label.optional(),
+        dashed: z.boolean().optional(),
+      })
+      .strict(),
+    /** 각의 이등분선 — 꼭짓점 at 에서 각 from-at-to 를 반으로. until 이면 그 직선과 만나는 데까지. */
+    z
+      .object({
+        op: z.literal("addAngleBisector"),
+        at: PointRefSchema,
+        from: PointRefSchema,
+        to: PointRefSchema,
+        until: z.tuple([PointRefSchema, PointRefSchema]).optional(),
+        label: label.optional(),
+        dashed: z.boolean().optional(),
+      })
+      .strict(),
+    /**
+     * 접선 — circle 은 그림에 있는 원의 **중심**. at 은 원 위의 점(접선 하나), from 은 밖의 점(접선 둘 —
+     * 접점을 코드가 계산하고 labels 가 이름을 준다). rightAngle 이면 접점에 반지름과의 직각 표시.
+     */
+    z
+      .object({
+        op: z.literal("addTangent"),
+        circle: PointRefSchema,
+        at: PointRefSchema.optional(),
+        from: PointRefSchema.optional(),
+        labels: z.array(label).min(1).max(2).optional(),
+        rightAngle: z.boolean().optional(),
+        dashed: z.boolean().optional(),
+      })
+      .strict()
+      .refine(
+        (c) => (c.at === undefined) !== (c.from === undefined),
+        "원 위의 점(at)이나 밖의 점(from) 중 하나만 줍니다.",
+      ),
+    /** 외접원 — 세 점을 지나는 원. 외심은 코드가 계산하고 label 은 그 중심의 이름. */
+    z
+      .object({
+        op: z.literal("addCircumcircle"),
+        points: z.tuple([PointRefSchema, PointRefSchema, PointRefSchema]),
+        label: label.optional(),
+        dashed: z.boolean().optional(),
+      })
+      .strict(),
+    /** 내접원 — 세 변에 모두 닿는 원. 내심은 코드가 계산하고 label 은 그 중심의 이름. */
+    z
+      .object({
+        op: z.literal("addIncircle"),
+        points: z.tuple([PointRefSchema, PointRefSchema, PointRefSchema]),
+        label: label.optional(),
+        dashed: z.boolean().optional(),
+      })
+      .strict(),
+    /** 원의 교점 — 원(중심 circle)과 다른 원(중심 other) 또는 직선 line 이 만나는 점. 점 더하기와 같은 점. */
+    z
+      .object({
+        op: z.literal("addCircleIntersection"),
+        circle: PointRefSchema,
+        other: PointRefSchema.optional(),
+        line: z.tuple([PointRefSchema, PointRefSchema]).optional(),
+        labels: z.array(label).min(1).max(2).optional(),
+      })
+      .strict()
+      .refine(
+        (c) => (c.other === undefined) !== (c.line === undefined),
+        "다른 원(other)이나 직선(line) 중 하나만 줍니다.",
+      ),
+    /** 호의 중점 — center 둘레 from→to 호(짧은 쪽, via 면 그 점을 지나는 쪽)의 한가운데 점. */
+    z
+      .object({
+        op: z.literal("addArcMidpoint"),
+        center: PointRefSchema,
+        from: PointRefSchema,
+        to: PointRefSchema,
+        via: PointRefSchema.optional(),
+        label: label.optional(),
+      })
+      .strict(),
     /**
      * 표시(원장님 2026-09-19 «추가할 수 있는 것 전부») — 모양은 도형 엔진 v2 와 같다(figureMarks.ts).
      * 치수: 두 점 사이 점선 곡선 + 값(값 자리에 틈). side 는 곡선이 설 쪽 — 없으면 도형 밖.
