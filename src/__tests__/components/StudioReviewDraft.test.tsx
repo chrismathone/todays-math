@@ -170,7 +170,6 @@ describe("Studio source review drafts", () => {
         answer: "3",
         solution: "바꾼 풀이",
         figures: [nextFigure],
-        reviewed: true,
         ocr: expect.objectContaining({
           number: 8,
           topic: "함수",
@@ -178,6 +177,8 @@ describe("Studio source review drafts", () => {
         }),
       }),
     );
+    // 저장은 «검수 완료» 가 아니다 — 세우면 저장만 해도 카드가 잠긴다(2026-09-20, 검수 완료 잠금).
+    expect(onUpdate.mock.calls[0][1]).not.toHaveProperty("reviewed");
   });
 });
 

@@ -654,3 +654,46 @@ test("Mathgen figure editor redraw, manual geometry, save and reopen through Stu
   expect(added[1].figureUrls[0]).toMatch(/^data:image\/svg\+xml/);
   expect(mock.errors).toEqual([]);
 });
+
+// 원장님 2026-09-20 «상단 열을 줄여서 «전체 해설 생성» 버튼 추가. 순서대로 해설 생성».
+// 줄이 꺾이는지는 CSS 가 정한다 — jsdom 은 못 본다.
+test("검수 줄은 «전체 해설 생성»이 늘어도 한 줄로 남고 차례대로 부른다", async ({
+  page,
+}, testInfo) => {
+  const mock = await mockAi(page);
+  await page.setViewportSize({ width: 1516, height: 920 });
+  await sample(page);
+  await detect(page);
+  await review(page);
+  const row = page.getByLabel("문항 검수 이동");
+  const bulk = row.getByRole("button", { name: "전체 해설 생성", exact: true });
+  await expect(bulk).toBeVisible();
+  // 자리를 만든 방법 — 띠의 «작업 중/작업 결과»와 «상세» 글자를 뺐다(점·화살표는 남는다).
+  await expect(row.locator("[data-strip-overall]")).toBeHidden();
+  await expect(row.locator("[data-strip-detail]")).toBeHidden();
+  await expect(row.locator("[data-studio-progress]")).toBeVisible();
+  // 한 줄인가 — flex 항목의 세로 중심이 한 값이면 한 줄이다(글자 칸과 단추는 높이가 달라
+  // top 이 서로 다르다). 이 자(尺)는 1100px 에서 1, 900px 에서 2 를 낸다 — 물 수 있는 자다.
+  const lines = () =>
+    row.evaluate(
+      (element) =>
+        new Set(
+          [...element.children].map((child) => {
+            const box = child.getBoundingClientRect();
+            return Math.round(box.top + box.height / 2);
+          }),
+        ).size,
+    );
+  expect(await lines()).toBe(1);
+  await page.screenshot({ path: testInfo.outputPath("review-row-bulk.png") });
+  await bulk.click();
+  await expect
+    .poll(() => mock.posts.filter((post) => post.action === "solution").length)
+    .toBe(2);
+  expect(
+    mock.posts
+      .filter((post) => post.action === "solution")
+      .map((post) => post.content),
+  ).toEqual([content, "직사각형의 넓이를 구하세요."]);
+  expect(mock.errors).toEqual([]);
+});

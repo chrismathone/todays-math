@@ -25,6 +25,11 @@ import WorkProgress from "./WorkProgress";
 import styles from "./StudioReviewPane.module.css";
 
 type Action = "ocr" | "figures" | "solution";
+/**
+ * 원장님 2026-09-20 «검수 완료 버튼 누르면 모든 해당 문제 버튼 비활성화로 수정 불가능하게».
+ * 잠긴 이유를 같은 말로 알린다 — 잠긴 단추의 `title` 과 카드 바닥 한 줄이 이 문구를 쓴다.
+ */
+const LOCKED_HINT = "수정하려면 검수 완료를 취소하세요.";
 export interface ReviewCropJob {
   cropId: string;
   action: Action;
@@ -198,7 +203,8 @@ function ReviewCard({
         number: Number(draftNumber),
         topic: draftTopic.trim() || undefined,
       },
-      reviewed: true,
+      // 저장은 «고쳤다» 이지 «검수를 마쳤다» 가 아니다 — 여기서 reviewed 를 세우면
+      // 저장만 해도 카드가 잠겨 해설 생성·그림 다시 찾기가 막힌다(2026-09-20).
       ...(!draft.content.trim() ? { mode: "image" as const } : {}),
     });
     setEditing(false);
@@ -246,6 +252,7 @@ function ReviewCard({
     const figure = displayedFigures?.[index];
     return (
       Boolean(figure) &&
+      !crop.reviewed &&
       !figureJobs.some(
         (job) =>
           job.figureId === figure?.id &&
@@ -256,6 +263,9 @@ function ReviewCard({
   const busy =
     jobs.some((job) => ["queued", "running"].includes(job.state)) ||
     figureJobs.some((job) => ["queued", "running"].includes(job.state));
+  /** 검수 완료 — 이 문항을 바꾸는 것은 전부 잠근다. 푸는 길은 카드 바닥의 «검수 완료 취소». */
+  const locked = Boolean(crop.reviewed);
+  const lockTitle = locked ? LOCKED_HINT : undefined;
   const activeJob = jobs.find((job) =>
     ["queued", "running"].includes(job.state),
   );
@@ -337,7 +347,8 @@ function ReviewCard({
         <div className={styles.actions}>
           <button
             type="button"
-            disabled={!props.available || busy || editing}
+            disabled={!props.available || busy || editing || locked}
+            title={lockTitle}
             onClick={() => props.onRun("ocr", [crop.id])}
           >
             {crop.content.trim() ? "다시 인식" : "문자 인식"}
@@ -360,7 +371,8 @@ function ReviewCard({
             <button
               type="button"
               aria-expanded={editing}
-              disabled={busy}
+              disabled={busy || locked}
+              title={lockTitle}
               onClick={startEdit}
             >
               내용 수정
@@ -382,7 +394,8 @@ function ReviewCard({
           {failed.error}
           <button
             type="button"
-            disabled={!props.available || busy || editing}
+            disabled={!props.available || busy || editing || locked}
+            title={lockTitle}
             onClick={() => props.onRetry(crop.id, failed.action)}
           >
             다시 시도
@@ -439,7 +452,8 @@ function ReviewCard({
           <strong>도형 {crop.figures?.length ?? 0}개</strong>
           <button
             type="button"
-            disabled={!props.available || busy || editing}
+            disabled={!props.available || busy || editing || locked}
+            title={lockTitle}
             onClick={() => props.onRun("figures", [crop.id])}
           >
             그림 다시 찾기
@@ -482,7 +496,8 @@ function ReviewCard({
                     </span>
                     <button
                       type="button"
-                      disabled={!props.available || busy || editing}
+                      disabled={!props.available || busy || editing || locked}
+                      title={lockTitle}
                       onClick={() => props.onRenderFigure(crop.id, figure.id)}
                     >
                       {job?.state === "error" ? "SVG 다시 시도" : "SVG 생성"}
@@ -566,7 +581,8 @@ function ReviewCard({
           <select
             aria-label={`문제 ${number} 출력 방식`}
             value={crop.mode}
-            disabled={editing}
+            disabled={editing || locked}
+            title={lockTitle}
             onChange={(event) =>
               update({ mode: event.target.value as StudioCrop["mode"] })
             }
@@ -579,17 +595,26 @@ function ReviewCard({
         </label>
         <button
           type="button"
-          disabled={!props.available || busy || editing || !crop.content.trim()}
+          disabled={
+            !props.available ||
+            busy ||
+            editing ||
+            locked ||
+            !crop.content.trim()
+          }
+          title={lockTitle}
           onClick={() => props.onRun("solution", [crop.id])}
         >
           {crop.solution.trim() ? "해설 다시 생성" : "해설 생성"}
         </button>
+        {locked && <span className={styles.lockNote}>{LOCKED_HINT}</span>}
+        {/* 푸는 길은 잠근 자리에 둔다 — 없으면 한 번 잘못 눌러 영영 못 고친다. */}
         <button
           type="button"
-          disabled={busy || editing || crop.reviewed}
-          onClick={() => props.onUpdate(crop.id, { reviewed: true })}
+          disabled={busy || editing}
+          onClick={() => props.onUpdate(crop.id, { reviewed: !locked })}
         >
-          {crop.reviewed ? "검수 완료" : "이 문제 검수 완료"}
+          {locked ? "검수 완료 취소" : "이 문제 검수 완료"}
         </button>
       </div>
     </article>

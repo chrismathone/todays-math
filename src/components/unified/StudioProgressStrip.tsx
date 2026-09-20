@@ -150,7 +150,9 @@ export default function StudioProgressStrip({
             data-active={active}
             aria-hidden="true"
           />
-          {active ? "작업 중" : "작업 결과"}
+          {/* 글자에 표를 붙여 둔다 — 검수 줄은 좁아서 이 말을 빼고 점·화살표만 남긴다
+              (원장님 2026-09-20 «상단 열을 줄여서»). 읽는 이름은 trigger 의 aria-label 이 그대로 나른다. */}
+          <span data-strip-overall>{active ? "작업 중" : "작업 결과"}</span>
         </span>
         <span className={s.summaries}>
           {summaries.map((item) => (
@@ -178,7 +180,9 @@ export default function StudioProgressStrip({
               <span className={s.warningLabel}>확인 필요</span> {warningCount}
             </span>
           )}
-          <span className={s.detailLabel}>상세</span>
+          <span className={s.detailLabel} data-strip-detail>
+            상세
+          </span>
           <span className={s.chevron} data-open={open} aria-hidden="true">
             ⌄
           </span>
