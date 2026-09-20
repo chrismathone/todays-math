@@ -153,7 +153,9 @@ function Harness() {
         toggle={noop}
         move={noop}
         navigate={noop}
-        onBackToReview={() => setReview(true)}
+        // 원장님 2026-09-21 안 A — 「이전 검토 단계」 단추 대신 단계 탭이 그 일을 한다.
+        cropCount={2}
+        onGoToStep={(step) => setReview(step === "review")}
       />
       <button
         onClick={() => setSelected(problems.slice(0, 1))}

@@ -173,7 +173,16 @@ function UnifiedWorkspaceContent({
   const [requestedView, setView] = useState<View | null>(defaultView);
   const view =
     requestedView && can(requestedView) ? requestedView : defaultView;
-  const [studioReviewRequest, setStudioReviewRequest] = useState(0);
+  /**
+   * 작업실이 알려 주는 자른 문제 수 — 시험지 화면의 「OCR · 디지털화」 탭 배지가 쓴다(안 A).
+   * 작업실이 아직 안 떠 있으면 0 이다(그 탭은 흐리다 — `WorksheetEditor` 의 `cropCount` 주석).
+   */
+  const [studioCropCount, setStudioCropCount] = useState<number>();
+  /** 시험지 화면의 단계 탭 — 작업실의 그 단계로 간다. */
+  const [studioStepRequest, setStudioStepRequest] = useState<{
+    id: number;
+    step: "upload" | "crop" | "review";
+  }>();
   const [extraction, setExtraction] = useState<{
     id?: string;
     version: number;
@@ -828,7 +837,9 @@ function UnifiedWorkspaceContent({
                 onExport={() => navigate("export")}
                 canExport={can("export")}
                 importRequest={importRequest}
-                reviewRequest={studioReviewRequest}
+                stepRequest={studioStepRequest}
+                pickedCount={selected.length}
+                onCropCountChange={setStudioCropCount}
                 restoreRequest={studioRestoreRequest}
                 storageScope={storageScope}
                 documentId={extraction.id}
@@ -901,11 +912,16 @@ function UnifiedWorkspaceContent({
                     }
                   : undefined
               }
-              onBackToReview={
+              cropCount={studioCropCount}
+              onGoToStep={
                 can("studio")
-                  ? () => {
+                  ? (step) => {
                       if (!can("studio")) return;
-                      setStudioReviewRequest((request) => request + 1);
+                      // 시계가 아니라 셈으로 센다 — 같은 밀리초에 두 번 누르면 둘째가 묻힌다.
+                      setStudioStepRequest((request) => ({
+                        id: (request?.id ?? 0) + 1,
+                        step,
+                      }));
                       navigate("studio");
                     }
                   : undefined

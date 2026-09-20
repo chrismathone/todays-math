@@ -55,14 +55,15 @@ vi.mock("@/components/unified/BankView", () => ({
 }));
 vi.mock("@/components/unified/StudioView", () => ({
   default: ({
-    reviewRequest,
+    stepRequest,
     importRequest,
   }: {
-    reviewRequest: number;
+    stepRequest?: { id: number; step: string };
     importRequest?: { files: File[] };
   }) => (
     <p>
-      자료 작업실 열림: 검토 {reviewRequest} · 파일{" "}
+      자료 작업실 열림: 단계{" "}
+      {stepRequest ? `${stepRequest.step} ${stepRequest.id}` : "없음"} · 파일{" "}
       {importRequest?.files.length ?? 0}
     </p>
   ),
@@ -156,7 +157,7 @@ describe("workspace action wiring", () => {
       },
     });
     expect(
-      await screen.findByText("자료 작업실 열림: 검토 0 · 파일 1"),
+      await screen.findByText("자료 작업실 열림: 단계 없음 · 파일 1"),
     ).toBeVisible();
     expect(location.hash).toBe("#studio");
   });
@@ -187,7 +188,8 @@ describe("workspace action wiring", () => {
       await screen.findByDisplayValue("파일로 가져온 시험지"),
     ).toBeVisible();
   });
-  it("restores a saved worksheet and requests the review step on each back action", async () => {
+  // 원장님 2026-09-21 안 A — 「이전 검토 단계」 단추를 없애고 단계 탭 「OCR · 디지털화」가 그 일을 한다.
+  it("restores a saved worksheet and requests the review step on each tab press", async () => {
     seed();
     const store = createWorkspaceDraftStore();
     store.hydrate();
@@ -197,16 +199,19 @@ describe("workspace action wiring", () => {
       await screen.findByRole("button", { name: "저장한 작업 불러오기" }),
     );
     expect(await screen.findByDisplayValue("저장한 시험지")).toBeVisible();
-    fireEvent.click(screen.getByRole("button", { name: "이전 검토 단계" }));
+    const reviewTab = () =>
+      within(
+        screen.getByRole("navigation", { name: "제작 단계 이동" }),
+      ).getByRole("button", { name: /^OCR · 디지털화/ });
+    fireEvent.click(reviewTab());
     expect(
-      await screen.findByText("자료 작업실 열림: 검토 1 · 파일 0"),
+      await screen.findByText("자료 작업실 열림: 단계 review 1 · 파일 0"),
     ).toBeVisible();
     fireEvent.click(screen.getByRole("button", { name: "시험지 · 내보내기" }));
-    fireEvent.click(
-      await screen.findByRole("button", { name: "이전 검토 단계" }),
-    );
+    fireEvent.click(reviewTab());
+    // 같은 밀리초에 두 번 눌러도 둘째가 묻히지 않는다 — 요청 번호가 셈이라서.
     expect(
-      await screen.findByText("자료 작업실 열림: 검토 2 · 파일 0"),
+      await screen.findByText("자료 작업실 열림: 단계 review 2 · 파일 0"),
     ).toBeVisible();
   });
   it("renames, edits and confirms deletion using the visible library card buttons", async () => {

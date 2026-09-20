@@ -108,60 +108,37 @@ const measure = (page: Page, selector: string) =>
       ).size,
     }));
 
-test("현행 네 단계의 머리 높이 — 진짜 화면에서 잰다", async ({
+/**
+ * 지은 것(안 A)을 **진짜 화면**에서 재고, 시안에서 잰 값과 맞는지 본다.
+ * 보고서 표는 시안에서 잰 값으로 썼다 — 여기서 어긋나면 그 표가 거짓이 된다.
+ * 안 A 시안(폭 1516): ① 52 · ② 109 · ③ 137 / (폭 1280): ① 52 · ② 109 · ③ 159.
+ * 「머리」는 제목 줄 + 그 아래 여백 + 둘째 줄을 통째로 담은 칸이다(`[data-studio-header]`).
+ */
+test("지은 안 A 의 머리 높이 — 시안에서 잰 값과 같은가", async ({
   page,
 }, testInfo) => {
   const errors: string[] = [];
   page.on("pageerror", (error) => errors.push(error.message));
   await stubNetwork(page);
 
-  /** 큰 제목 칸 · 얇은 띠 — 표가 그대로 붙어 있는 것들. */
-  const box = (selector: string) => measure(page, selector);
-  /** 원본 파일 고르는 칸을 담은 «도구 줄» — 클래스가 해시라 표를 타고 올라간다. */
-  const toolbarBox = () =>
-    page.getByRole("combobox", { name: "원본 파일" }).evaluate((select) => {
-      const row = select.parentElement!.parentElement!;
-      return {
-        높이: Math.round(row.getBoundingClientRect().height),
-        폭: Math.round(row.getBoundingClientRect().width),
-        줄수: new Set(
-          [...row.children].flatMap((child) => {
-            const rect = child.getBoundingClientRect();
-            return rect.height ? [Math.round(rect.top + rect.height / 2)] : [];
-          }),
-        ).size,
-      };
-    });
-  /** 원형 체크 진행 막대를 감싼 칸(테두리·여백까지). */
-  const workflowBox = () =>
-    page.getByRole("navigation", { name: "제작 단계" }).evaluate((nav) => {
-      const row = nav.parentElement!;
-      return {
-        높이: Math.round(row.getBoundingClientRect().height),
-        폭: Math.round(row.getBoundingClientRect().width),
-        줄수: 1,
-      };
-    });
+  const header = () => measure(page, "[data-studio-header]");
+  const bar = () => measure(page, "[data-studio-band]");
 
-  // ① 원본 가져오기 — 큰 제목 + 원형 체크 진행 막대.
+  // ① 원본 가져오기 — 큰 제목·원형 막대는 없고 띠 하나다.
   await page.setViewportSize({ width: 1516, height: 940 });
   await page.goto("/");
-  await expect(page.getByRole("heading", { level: 1 })).toHaveText(
-    "내 자료로 만드는 문제",
-  );
+  await expect(page.getByRole("heading", { level: 1 })).toHaveText("자료 제작");
+  expect(await page.locator("[data-studio-tool-row]").count()).toBe(0);
   const 단계1: Record<string, unknown> = {};
   for (const width of [1516, 1280]) {
     await page.setViewportSize({ width, height: 940 });
-    단계1[`폭_${width}`] = {
-      제목줄: await box("[data-workspace-page-header]"),
-      단계막대: await workflowBox(),
-    };
+    단계1[`폭_${width}`] = { 머리: await header(), 제목줄: await bar() };
     await page.screenshot({
-      path: testInfo.outputPath(`now-step1-${width}.png`),
+      path: testInfo.outputPath(`a-step1-${width}.png`),
     });
   }
 
-  // ② 문제&도형 잘라내기 — 얇은 띠 + 지면 도구 줄.
+  // ② 문제&도형 잘라내기
   await page.setViewportSize({ width: 1516, height: 940 });
   await page.getByLabel("PDF 또는 이미지 파일 가져오기").setInputFiles({
     name: FILE_NAME,
@@ -170,19 +147,21 @@ test("현행 네 단계의 머리 높이 — 진짜 화면에서 잰다", async 
   });
   const area = page.getByRole("group", { name: "문제 자르기 영역" });
   await expect(area).toBeVisible();
+  await expect(page.getByLabel("지면 도구")).toBeVisible();
   const 단계2: Record<string, unknown> = {};
   for (const width of [1516, 1280]) {
     await page.setViewportSize({ width, height: 940 });
     단계2[`폭_${width}`] = {
-      제목줄: await box("[data-studio-band]"),
-      도구줄: await toolbarBox(),
+      머리: await header(),
+      제목줄: await bar(),
+      도구줄: await measure(page, "[data-studio-tool-row]"),
     };
     await page.screenshot({
-      path: testInfo.outputPath(`now-step2-${width}.png`),
+      path: testInfo.outputPath(`a-step2-${width}.png`),
     });
   }
 
-  // ③ OCR · 디지털화 — 같은 띠 + 검수 줄.
+  // ③ OCR · 디지털화 — 회전이 없다.
   await page.setViewportSize({ width: 1516, height: 940 });
   for (const top of [0.08, 0.38, 0.68]) {
     const rect = (await area.boundingBox())!;
@@ -203,33 +182,57 @@ test("현행 네 단계의 머리 높이 — 진짜 화면에서 잰다", async 
     .getByRole("button", { name: /OCR · 디지털화/ })
     .click();
   await expect(page.getByLabel("문항 검수 이동")).toBeVisible();
+  await expect(
+    page.getByRole("button", { name: "현재 페이지 90도 회전" }),
+  ).toHaveCount(0);
   const 단계3: Record<string, unknown> = {};
   for (const width of [1516, 1280]) {
     await page.setViewportSize({ width, height: 940 });
     단계3[`폭_${width}`] = {
-      제목줄: await box("[data-studio-band]"),
-      도구줄: await box('[aria-label="문항 검수 이동"]'),
+      머리: await header(),
+      제목줄: await bar(),
+      도구줄: await measure(page, "[data-studio-tool-row]"),
     };
     await page.screenshot({
-      path: testInfo.outputPath(`now-step3-${width}.png`),
+      path: testInfo.outputPath(`a-step3-${width}.png`),
     });
   }
 
   const 잰값 = { "①": 단계1, "②": 단계2, "③": 단계3 };
-  console.log("[잰 값 · 현행 진짜 화면]", JSON.stringify(잰값));
-  await testInfo.attach("현행-진짜화면.json", {
+  console.log("[잰 값 · 지은 안 A]", JSON.stringify(잰값));
+  await testInfo.attach("안A-진짜화면.json", {
     body: JSON.stringify(잰값, null, 2),
     contentType: "application/json",
   });
   for (const width of [1516, 1280])
-    await testInfo.attach(`now-step3-${width}.png`, {
-      path: testInfo.outputPath(`now-step3-${width}.png`),
-      contentType: "image/png",
-    });
-  // 트랙 35 가 박아 둔 값 — 검수 제목 줄은 한 줄 44px 이다. 여기서도 같아야 한다.
-  expect(
-    (단계3["폭_1516"] as { 제목줄: { 높이: number } }).제목줄.높이,
-  ).toBeLessThanOrEqual(44);
+    for (const step of [1, 2, 3])
+      await testInfo.attach(`a-step${step}-${width}.png`, {
+        path: testInfo.outputPath(`a-step${step}-${width}.png`),
+        contentType: "image/png",
+      });
+
+  /*
+   * 시안에서 잰 값과 못 박아 견준다. 어긋나면 보고서 표가 거짓이라는 뜻이다.
+   * ②③ 의 둘째 줄은 이제 캔버스 «밖» 전폭이라 두 단계가 같은 폭을 쓴다.
+   */
+  const 시안 = {
+    "①": { 폭_1516: 52, 폭_1280: 52 },
+    "②": { 폭_1516: 109, 폭_1280: 109 },
+    "③": { 폭_1516: 137, 폭_1280: 159 },
+  } as const;
+  for (const [단계, 표] of Object.entries(시안))
+    for (const [폭, 높이] of Object.entries(표)) {
+      const 잰 = (
+        잰값 as Record<string, Record<string, { 머리: { 높이: number } }>>
+      )[단계][폭].머리.높이;
+      expect({ 단계, 폭, 높이: 잰 }).toEqual({ 단계, 폭, 높이 });
+    }
+  // 제목 줄은 어느 폭·어느 단계에서도 44px 한 줄이다 — 안 A 를 고른 첫째 이유다.
+  for (const 표 of [단계1, 단계2, 단계3])
+    for (const 값 of Object.values(
+      표 as Record<string, { 제목줄: { 높이: number; 줄수: number } }>,
+    ))
+      expect(값.제목줄).toEqual({ ...값.제목줄, 높이: 44, 줄수: 1 });
   expect(errors).toEqual([]);
 });
 
@@ -245,7 +248,7 @@ test("시안 화면 — 네 안 × 네 단계 높이를 1516·1280 에서 잰다
   const table = async (width: number) => {
     await page.setViewportSize({ width, height: 940 });
     const rows: Record<string, unknown> = {};
-    for (const plan of ["now", "A", "A2", "B", "C"])
+    for (const plan of ["A", "B", "C"])
       for (const step of [1, 2, 3, 4]) {
         const root = page.locator(`[data-plan="${plan}"][data-step="${step}"]`);
         rows[`${plan}·${step}`] = await root.evaluate((element) => {

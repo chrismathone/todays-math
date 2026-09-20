@@ -1,6 +1,6 @@
 "use client";
 import { useCallback, useLayoutEffect, useRef, useState } from "react";
-import WorkspacePageHeader from "./WorkspacePageHeader";
+import StudioStepBar from "./StudioStepBar";
 import WorkProgress from "./WorkProgress";
 import { PrintOptionsPanel } from "./print/PrintOptionsPanel";
 import { WorksheetPrint } from "./print/WorksheetPrint";
@@ -45,7 +45,14 @@ interface Props {
   /** 「순서 초기화」가 세운 차례를 통째로 적용한다 — 되돌리기는 부모가 맡는다. */
   reorder: (next: StudioProblem[]) => void;
   navigate: (view: "bank" | "studio") => void;
-  onBackToReview?: () => void;
+  /**
+   * 작업실의 자른 문제 수 — 「OCR · 디지털화」 탭의 배지이자 눌림 조건(안 A, 2026-09-21).
+   * 작업실이 아직 안 떠 있으면 0 으로 온다. 그때 그 탭은 흐리고, 「원본 가져오기」로 들어가면
+   * 작업실이 되살아나 다시 열린다 — 막힌 길은 아니고 한 번 더 누르는 길이다.
+   */
+  cropCount?: number;
+  /** 단계 탭 — 작업실의 그 단계로 간다. 전에 있던 「이전 검토 단계」가 하던 일이다. */
+  onGoToStep?: (step: "upload" | "crop" | "review") => void;
   onImportFiles?: () => void;
   onEditSource?: (problem: StudioProblem) => void;
 }
@@ -70,7 +77,8 @@ export default function WorksheetEditor({
   move,
   reorder,
   navigate,
-  onBackToReview,
+  cropCount,
+  onGoToStep,
   onImportFiles,
   onEditSource,
   allowedMenus = WORKSPACE_MENUS.map((menu) => menu.id),
@@ -177,15 +185,26 @@ export default function WorksheetEditor({
 
   return (
     <main className={s.exportContent} ref={editorRef}>
-      <WorkspacePageHeader
-        title="시험지 구성하기"
-        description="문제 순서와 배치를 정하고 인쇄하세요."
+      {/*
+        자료 제작 네 단계의 제목 줄 — 작업실과 **같은 띠**다(원장님 2026-09-21 안 A 확정).
+        전에 있던 큰 제목 「시험지 구성하기」·설명 줄과 「이전 검토 단계」 단추는 없앴다 —
+        탭 「OCR · 디지털화」가 그 일을 한다. 되살리지 말 것.
+        앞 세 탭은 셈이 아니라 «자료 제작을 쓸 수 있는 계정인가»로 막는다 — 여기서는 작업실의
+        셈을 모를 수 있고(작업실이 아직 안 떴다), 셈으로 막으면 돌아가는 길이 막힌다.
+      */}
+      <StudioStepBar
+        step="export"
+        cropCount={cropCount}
+        pickedCount={selected.length}
+        canCrop={can("studio")}
+        canReview={can("studio")}
+        canStudio={can("studio") && Boolean(onGoToStep)}
+        canExport
+        onStep={(next) => {
+          if (next === "export") return;
+          onGoToStep?.(next);
+        }}
       >
-        {can("studio") && onBackToReview && (
-          <button className={s.secondaryButton} onClick={onBackToReview}>
-            <span aria-hidden="true">←</span> 이전 검토 단계
-          </button>
-        )}
         <button
           className={s.secondaryButton}
           onClick={save}
@@ -222,7 +241,7 @@ export default function WorksheetEditor({
         >
           PDF 내려받기
         </button>
-      </WorkspacePageHeader>
+      </StudioStepBar>
       {(exportProgress || exportError) && (
         <div className={s.exportNotification} data-error={Boolean(exportError)}>
           {exportError ? (

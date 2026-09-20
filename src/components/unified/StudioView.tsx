@@ -3,7 +3,7 @@
 /* Local image data must stay in the browser, bypassing the Next image optimizer. */
 /* eslint-disable @next/next/no-img-element */
 
-import WorkspacePageHeader from "./WorkspacePageHeader";
+import StudioStepBar from "./StudioStepBar";
 import StudioCropOverlay from "./StudioCropOverlay";
 import WorkProgress from "./WorkProgress";
 import StudioQueueStatus from "./StudioQueueStatus";
@@ -272,22 +272,33 @@ export default function StudioView({
   onExport,
   importRequest,
   active = true,
-  reviewRequest = 0,
   restoreRequest,
   storageScope,
   documentId,
   onDocumentChange,
+  onCropCountChange,
   canExport = true,
+  pickedCount = 0,
+  stepRequest,
 }: StudioViewProps & {
   canExport?: boolean;
   active?: boolean;
-  reviewRequest?: number;
+  /**
+   * 시험지에 담은 문항 수 — 「시험지 구성」 탭의 배지이자 눌림 조건.
+   * 왼쪽 메뉴 「시험지 · 내보내기」 배지와 **같은 값**을 받는다(`UnifiedWorkspace` 의 `selected`).
+   * 작업실이 제 안에서 세면 두 숫자가 갈린다.
+   */
+  pickedCount?: number;
+  /** 시험지 화면의 단계 탭이 보내는 요청 — 그 단계로 간다. */
+  stepRequest?: { id: number; step: "upload" | "crop" | "review" };
+  /** 자른 문제 수를 밖에 알린다 — 시험지 화면의 탭 배지가 쓴다(안 A). */
+  onCropCountChange?: (count: number) => void;
   restoreRequest?: { id: number; crops: StudioCrop[] };
   storageScope?: string;
   documentId?: string;
   onDocumentChange?: (id?: string) => void;
 }) {
-  const handledReview = useRef(reviewRequest);
+  const handledStep = useRef<number | null>(null);
   const handledRestore = useRef<number | null>(null);
   const handledImport = useRef<number | null>(null);
   const [sources, setSources] = useState<StudioSource[]>([]);
@@ -305,13 +316,17 @@ export default function StudioView({
     {},
   );
   const [step, setStep] = useState<"upload" | "crop" | "review">("upload");
+  /*
+   * 시험지 화면의 단계 탭이 보내는 요청 — 그 단계로 간다. 2026-09-21 안 A 전에는
+   * 「이전 검토 단계」 단추만 있어 `reviewRequest`(검수로만 가는 셈)였다. 탭이 넷이 되면서
+   * 어느 단계로든 갈 수 있어야 해 단계까지 실어 나른다.
+   * 검수 패널은 건드리지 않는다 — 원장님이 접어 둔 것을 펴지 않는다.
+   */
   useEffect(() => {
-    if (reviewRequest > 0 && handledReview.current !== reviewRequest) {
-      handledReview.current = reviewRequest;
-      // The parent explicitly requests return to the preserved review step.
-      setStep("review");
-    }
-  }, [reviewRequest]);
+    if (!stepRequest || handledStep.current === stepRequest.id) return;
+    handledStep.current = stepRequest.id;
+    setStep(stepRequest.step);
+  }, [stepRequest]);
   const [level, setLevel] = useState<SchoolLevel>("secondary");
   const [grade, setGrade] = useState("미지정");
   const [zoom, setZoom] = useState(100);
@@ -378,7 +393,6 @@ export default function StudioView({
   const studio = useRef<HTMLElement>(null);
   const focusButton = useRef<HTMLButtonElement>(null);
   const restartButton = useRef<HTMLButtonElement>(null);
-  const emptyRestartButton = useRef<HTMLButtonElement>(null);
   const restartDialog = useRef<HTMLDialogElement>(null);
   const cancelRestartButton = useRef<HTMLButtonElement>(null);
   const pageViewport = useRef<HTMLDivElement>(null);
@@ -490,6 +504,11 @@ export default function StudioView({
     rendered.number === pageNumber,
   );
   const pendingCount = crops.filter((item) => !item.added).length;
+  // 시험지 화면의 「OCR · 디지털화」 탭 배지가 이 값을 쓴다(안 A).
+  const reportCropCount = useEffectEvent(() =>
+    onCropCountChange?.(crops.length),
+  );
+  useEffect(reportCropCount, [crops.length, reportCropCount]);
   const readyToCrop =
     pageReady && selection && rendered
       ? studioPixelRect(
@@ -582,7 +601,8 @@ export default function StudioView({
     return () => observer.disconnect();
   }, [editing, step, pageReady]);
 
-  // 검수 단계는 제목 줄에 파일·쪽 도구가 올라와 좁으면 꺾인다 — 작업 칸 높이가 그 실제 높이를 빼도록 알린다.
+  // 제목 줄이 좁아 꺾이면 작업 칸 높이가 그 실제 높이를 빼도록 알린다.
+  // 띠는 네 단계에 다 서므로(안 A) 관찰자도 늘 붙어 있다.
   useEffect(() => {
     const element = band.current;
     if (!element) return;
@@ -591,7 +611,7 @@ export default function StudioView({
     );
     observer.observe(element);
     return () => observer.disconnect();
-  }, [editing]);
+  }, []);
 
   useEffect(() => {
     if (!focusMode) return;
@@ -1913,11 +1933,12 @@ export default function StudioView({
     ? currentSource.grade
     : "auto";
   /*
-   * 시안 B-2 — 원장님 2026-09-21 «공간을 전체적으로 재배치».
-   * 제목 줄: 파일 이름(넓게) · 학년 · 전체 작업 셋.  둘째 줄: 쪽 이동 · 문제 이동 · 진행 띠.
-   * 쪽 이동이 제목 줄에서 내려간 만큼이 파일 이름 자리다(전에는 108px 에서 이름이 잘렸다).
+   * 안 A(원장님 2026-09-21 확정) — 제목 줄은 네 단계가 똑같고, 단계별 도구는 **모두 둘째 줄**이다.
+   * 파일·학년도 그 줄로 내려왔다(전에는 검수 단계만 제목 줄에 있었다).
+   * 둘째 줄은 캔버스 칸 «밖» 전폭에 선다 — 안에 두면 검수 패널만큼 좁아져 ②만 먼저 꺾였다
+   * (실측 1516px: 캔버스 안 1170px vs 전폭 1490px).
    */
-  const bandTools = editing && step === "review";
+  const toolRowShown = Boolean(currentSource) && step !== "upload";
   /*
    * 학년은 자동 인식이 서면 조용히 둔다(원장님 2026-09-21 «확인 필요할 때만 드러내기»).
    * 고칠 길은 어느 상태에서도 남는다 — 학년은 문항에 저장되는 실제 데이터이고(대분수 표시·출제
@@ -1962,16 +1983,25 @@ export default function StudioView({
       >
         다음 쪽
       </button>
-      <span className={styles.divider} />
-      <button
-        type="button"
-        className={styles.pageNavigationButton}
-        aria-label="현재 페이지 90도 회전"
-        onClick={rotateCurrentPage}
-        disabled={!pageReady || busy || studioAi.running}
-      >
-        회전
-      </button>
+      {/*
+        회전은 **잘라내기 단계에만** 둔다(원장님 2026-09-21 «OCR 단계에서 '페이지 회전'이 왜
+        필요한가? 필요없음»). 근거는 `rotateCurrentPage` 에 있다 — 이 쪽의 영역과 인식 결과를
+        지우고 잘라내기 단계로 되돌린다. 검수 화면에서 누르면 검수하러 온 그것을 버린다.
+      */}
+      {step === "crop" && (
+        <>
+          <span className={styles.divider} />
+          <button
+            type="button"
+            className={styles.pageNavigationButton}
+            aria-label="현재 페이지 90도 회전"
+            onClick={rotateCurrentPage}
+            disabled={!pageReady || busy || studioAi.running}
+          >
+            회전
+          </button>
+        </>
+      )}
       {step === "crop" && (
         <select
           aria-label="원본 확대 비율"
@@ -2020,7 +2050,7 @@ export default function StudioView({
           이 쪽 다시 인식
         </button>
       ) : null}
-      {bandTools ? (
+      {step === "review" ? (
         <>
           <button
             type="button"
@@ -2052,12 +2082,36 @@ export default function StudioView({
       ) : null}
     </div>
   ) : null;
+  /** 문제 이동 — 검수 단계의 둘째 줄에만 선다. */
+  const cropNavigation = activeCrop ? (
+    <>
+      <span className={styles.divider} />
+      <button
+        type="button"
+        className={styles.secondaryButton}
+        aria-label="이전 문제 검수"
+        disabled={activeCropIndex <= 0 || recognizingPage}
+        onClick={() => selectCrop(crops[activeCropIndex - 1].id)}
+      >
+        이전 문제
+      </button>
+      <strong>
+        문제 {activeCropIndex + 1} <span>/ {crops.length}</span>
+      </strong>
+      <button
+        type="button"
+        className={styles.secondaryButton}
+        aria-label="다음 문제 검수"
+        disabled={activeCropIndex >= crops.length - 1 || recognizingPage}
+        onClick={() => selectCrop(crops[activeCropIndex + 1].id)}
+      >
+        다음 문제
+      </button>
+    </>
+  ) : null;
   const sourceToolbar = (
-    <div
-      className={bandTools ? styles.bandTools : styles.canvasToolbar}
-      data-studio-band-tools={bandTools ? "" : undefined}
-    >
-      <div className={styles.sourcePicker}>
+    <>
+      <div className={styles.sourcePicker} data-studio-band-tools>
         <Icon name="file" />
         {sources.length ? (
           <select
@@ -2115,8 +2169,10 @@ export default function StudioView({
       ) : null}
       {currentSource ? (
         <>
-          {!bandTools && pageNavigation}
-          {!bandTools && bulkActions}
+          {pageNavigation}
+          {step === "review" && cropNavigation}
+          <span className={styles.divider} />
+          {bulkActions}
           {step === "crop" && (
             <button
               className={styles.preciseButton}
@@ -2144,7 +2200,7 @@ export default function StudioView({
       ) : (
         <span className={styles.toolbarMeta}>PDF · 이미지</span>
       )}
-    </div>
+    </>
   );
   const progressStrip = (
     <StudioProgressStrip
@@ -2380,108 +2436,98 @@ export default function StudioView({
         }
       }}
     >
-      {editing && (
-        <div ref={band} className={styles.editorBar} data-studio-band>
-          <div className={styles.editorTabs}>
-            <h1>자료 제작</h1>
-            {/*
-              원장님 2026-09-21 «현재 시퀀스를 디지털화 단계에는 안 보임» — 검수 단계에서는
-              «OCR · 디지털화» 단추가 빠져 지금 어느 단계인지 드러나지 않았다. 세 단계를 늘 세우고
-              눌린 단추 하나로 «지금 여기»를 보인다. 아래 .workflow 는 편집 전에만 선다.
+      {/*
+        자료 제작 네 단계의 제목 줄 — 원장님 2026-09-21 «4단계 헤더 구성 일치화 시킬것.
+        각 단계에서 필요없는 헤더는 지울것. 단계마다 헤더 구조가 바뀌는 치명적인 ux 고칠것»
+        → **안 A 확정**. 네 단계가 같은 띠를 쓰고, 단계별 도구는 아래 둘째 줄에 선다.
+        전에 여기 있던 큰 제목(「내 자료로 만드는 문제」)·설명 줄·원형 체크 막대(.workflow)는
+        없앴다 — 탭 넷이 그 일을 한다. 되살리지 말 것.
+      */}
+      <div ref={band} className={styles.studioHeader} data-studio-header>
+        <StudioStepBar
+          step={step}
+          cropCount={crops.length}
+          pickedCount={pickedCount}
+          canCrop={Boolean(currentSource)}
+          canReview={crops.length > 0}
+          canExport={canExport}
+          onStep={(next) => {
+            if (next === "export") {
+              onExport();
+              return;
+            }
+            setStep(next);
+            if (next === "review") setInspectorOpen(true);
+          }}
+        >
+          {step === "upload" ? (
+            <>
+              <button type="button" onClick={loadSample} disabled={busy}>
+                <Icon name="file" />
+                예제로 시작
+              </button>
+              {/*
+              띠의 «파일 가져오기»는 지름길이다 — 이 단계의 본 자리(끌어 놓기 칸)에
+              «내 컴퓨터에서 선택»이 그대로 있다. 그래서 채운 단추로 세우지 않는다
+              (한 줄에 파란 단추 둘이 서지 않게 — 채운 단추는 «편집창 확대» 하나다).
             */}
-            <nav className={styles.stepTabs} aria-label="제작 단계 이동">
               <button
-                aria-pressed={step === "upload"}
-                onClick={() => setStep("upload")}
+                type="button"
+                onClick={() => fileInput.current?.click()}
+                disabled={busy}
               >
-                원본 가져오기
+                <Icon name="upload" />
+                {busy ? busyLabel : "파일 가져오기"}
               </button>
-              <button
-                aria-pressed={step === "crop"}
-                onClick={() => setStep("crop")}
-              >
-                문제&amp;도형 잘라내기
-              </button>
-              <button
-                aria-pressed={step === "review"}
-                disabled={!crops.length}
-                onClick={() => {
-                  setStep("review");
-                  setInspectorOpen(true);
-                }}
-              >
-                OCR · 디지털화 <b>{crops.length}</b>
-              </button>
-            </nav>
-          </div>
-          {bandTools && sourceToolbar}
-          <div className={styles.editorTools}>
-            {/*
-              원장님 2026-09-21 «파일 가져오기는 완전히 새로 시작일 때만» — 원본을 열어 둔
-              동안에는 이 자리에 두지 않는다. 자료를 더 넣을 때는 «원본 가져오기» 단계로 간다
-              (그 화면에 끌어 놓기와 «내 컴퓨터에서 선택»이 있다).
-            */}
+            </>
+          ) : null}
+          <button ref={restartButton} type="button" onClick={requestStartOver}>
+            <Icon name="restart" />
+            새로 시작
+          </button>
+          {step === "crop" && (
             <button
-              ref={restartButton}
-              type="button"
-              onClick={requestStartOver}
+              aria-pressed={inspectorOpen}
+              aria-label={inspectorOpen ? "검수 패널 접기" : "검수 패널 열기"}
+              onClick={() => setInspectorOpen((value) => !value)}
             >
-              <Icon name="restart" />
-              새로 시작
+              검수 패널
             </button>
-            {step === "crop" && (
-              <button
-                aria-pressed={inspectorOpen}
-                aria-label={inspectorOpen ? "검수 패널 접기" : "검수 패널 열기"}
-                onClick={() => setInspectorOpen((value) => !value)}
-              >
-                검수 패널
-              </button>
+          )}
+          {/*
+          ①에도 둔다(원장님 2026-09-21 확정) — 확대를 켠 채 «원본 가져오기»로 오면
+          이 단추가 없어 Esc 말고는 풀 길이 없었다. 띠가 네 단계에 다 서면서 사라진 덫이다.
+        */}
+          <button
+            ref={focusButton}
+            className={styles.primaryButton}
+            aria-pressed={focusMode}
+            onClick={() => setFocusMode((value) => !value)}
+          >
+            {focusMode ? "편집창 축소" : "편집창 확대"}
+          </button>
+        </StudioStepBar>
+
+        {/*
+        둘째 줄 — 그 단계의 도구. 캔버스 칸 «밖»이라 ②③ 이 같은 폭을 쓴다(안 A).
+        검수 단계는 문제 이동과 「N문항 검수 완료」가 더 붙는다.
+      */}
+        {toolRowShown && (
+          <div
+            className={styles.reviewNavigation}
+            data-studio-tool-row
+            aria-label={step === "review" ? "문항 검수 이동" : "지면 도구"}
+          >
+            {sourceToolbar}
+            {progressStrip}
+            {step === "review" && crops.length > 0 && (
+              <span className={styles.reviewProgress}>
+                {reviewedCount}문항 검수 완료
+              </span>
             )}
-            <button
-              ref={focusButton}
-              className={styles.primaryButton}
-              aria-pressed={focusMode}
-              onClick={() => setFocusMode((value) => !value)}
-            >
-              {focusMode ? "편집창 축소" : "편집창 확대"}
-            </button>
           </div>
-        </div>
-      )}
-      <WorkspacePageHeader
-        title="내 자료로 만드는 문제"
-        description="자료에서 문제를 자르고, 검수한 문항을 내 시험지에 담으세요."
-        hidden={editing}
-      >
-        <button
-          type="button"
-          className={styles.secondaryButton}
-          onClick={loadSample}
-          disabled={busy}
-        >
-          <Icon name="file" />
-          예제로 시작
-        </button>
-        <button
-          type="button"
-          className={styles.primaryButton}
-          onClick={() => fileInput.current?.click()}
-          disabled={busy}
-        >
-          <Icon name="upload" />
-          {busy ? busyLabel : "파일 가져오기"}
-        </button>
-        <button
-          ref={emptyRestartButton}
-          type="button"
-          className={styles.secondaryButton}
-          onClick={requestStartOver}
-        >
-          <Icon name="restart" />
-          새로 시작
-        </button>
-      </WorkspacePageHeader>
+        )}
+      </div>
 
       <input
         ref={fileInput}
@@ -2497,54 +2543,6 @@ export default function StudioView({
           event.currentTarget.value = "";
         }}
       />
-
-      {/* 편집에 들어서면 제목 줄의 단계 탭이 이 일을 한다(원장님 2026-09-21 ⑻). */}
-      {!editing && (
-        <div className={styles.workflow}>
-          <nav className={styles.steps} aria-label="제작 단계">
-            {(
-              [
-                ["upload", "원본 가져오기"],
-                ["crop", "문제&도형 잘라내기"],
-                ["review", "OCR · 디지털화"],
-              ] as const
-            ).map(([key, label], index) => (
-              <button
-                key={key}
-                type="button"
-                aria-current={step === key ? "step" : undefined}
-                data-complete={
-                  (key === "upload" && sources.length > 0) ||
-                  (key === "crop" && crops.length > 0) ||
-                  (key === "review" && crops.length > 0 && pendingCount === 0)
-                }
-                disabled={
-                  (key === "crop" && !currentSource) ||
-                  (key === "review" && !crops.length)
-                }
-                onClick={() => setStep(key)}
-              >
-                <span className={styles.stepNumber}>
-                  {(key === "upload" && sources.length > 0) ||
-                  (key === "crop" && crops.length > 0) ||
-                  (key === "review" &&
-                    crops.length > 0 &&
-                    pendingCount === 0) ? (
-                    <Icon name="check" />
-                  ) : (
-                    index + 1
-                  )}
-                </span>
-                {label}
-              </button>
-            ))}
-          </nav>
-          <span className={styles.localBadge}>
-            <Icon name="file" />
-            로컬 작업
-          </span>
-        </div>
-      )}
 
       {error ? (
         <div className={styles.error} role="alert">
@@ -2571,8 +2569,6 @@ export default function StudioView({
 
       <div className={styles.workspace}>
         <div className={styles.canvasColumn}>
-          {!bandTools && sourceToolbar}
-
           {importProgress ? (
             <WorkProgress
               label={
@@ -2587,58 +2583,11 @@ export default function StudioView({
               startedAt={importProgress.startedAt}
             />
           ) : null}
-          {step !== "review" && progressStrip}
+          {/* ②③ 은 둘째 줄이 진행 띠를 안고 있다 — ① 에만 여기 남는다. */}
+          {step === "upload" && progressStrip}
 
           {step === "review" ? (
             <>
-              {/*
-                시안 B-2 둘째 줄 — 원장님 2026-09-21 «쪽이랑 문제는 같은 행에. 왔다갔다 불편하지
-                않게». 쪽 이동을 제목 줄에서 내려 문제 이동 바로 앞에 세웠다. 전체 작업 셋은
-                제목 줄로 올라갔고, 여기 남은 «검수 완료 · 다음»은 없앴다 — 카드 바닥의
-                «이 문제 검수 완료»가 같은 일을 하고, 다음으로 가는 길은 «다음 문제»가 맡는다.
-              */}
-              <div
-                className={styles.reviewNavigation}
-                aria-label="문항 검수 이동"
-              >
-                {pageNavigation}
-                {activeCrop && (
-                  <>
-                    <span className={styles.divider} />
-                    <button
-                      type="button"
-                      className={styles.secondaryButton}
-                      aria-label="이전 문제 검수"
-                      disabled={activeCropIndex <= 0 || recognizingPage}
-                      onClick={() => selectCrop(crops[activeCropIndex - 1].id)}
-                    >
-                      이전 문제
-                    </button>
-                    <strong>
-                      문제 {activeCropIndex + 1} <span>/ {crops.length}</span>
-                    </strong>
-                    <button
-                      type="button"
-                      className={styles.secondaryButton}
-                      aria-label="다음 문제 검수"
-                      disabled={
-                        activeCropIndex >= crops.length - 1 || recognizingPage
-                      }
-                      onClick={() => selectCrop(crops[activeCropIndex + 1].id)}
-                    >
-                      다음 문제
-                    </button>
-                  </>
-                )}
-                <span className={styles.divider} />
-                {bulkActions}
-                {progressStrip}
-                {crops.length > 0 && (
-                  <span className={styles.reviewProgress}>
-                    {reviewedCount}문항 검수 완료
-                  </span>
-                )}
-              </div>
               <StudioReviewPane
                 crops={pageCrops}
                 allCrops={crops}
@@ -3487,9 +3436,8 @@ export default function StudioView({
               document.querySelector("dialog[open]")
             )
               return;
-            (restartButton.current ?? emptyRestartButton.current)?.focus({
-              preventScroll: true,
-            });
+            // 띠가 네 단계에 다 서므로 「새로 시작」 단추는 늘 있다(안 A) — 대역이 필요 없다.
+            restartButton.current?.focus({ preventScroll: true });
           });
         }}
       >

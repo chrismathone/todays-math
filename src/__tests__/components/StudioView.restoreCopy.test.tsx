@@ -39,6 +39,14 @@ const session: StudioSessionData = {
 };
 
 function renderStudio() {
+  // 제목 줄은 네 단계에 다 선다(안 A, 2026-09-21) — 그 줄의 높이를 재는 관찰자가 늘 붙는다.
+  vi.stubGlobal(
+    "ResizeObserver",
+    class {
+      observe() {}
+      disconnect() {}
+    },
+  );
   vi.stubGlobal(
     "fetch",
     vi.fn(async () => Response.json({ enabled: false, providers: [] })),
