@@ -42,6 +42,7 @@
     "@tiptap/pm": "^3.31.3",
     "@tiptap/react": "^3.31.3",
     "@tiptap/starter-kit": "^3.31.3",
+    "ai": "^7.0.107",
     "bcryptjs": "^3.0.3",
     "katex": "^0.16.47",
     "mathjax-full": "^3.2.1",
@@ -63,6 +64,7 @@
     "zod": "4.4.3"
   },
   "devDependencies": {
+    "@ai-sdk/gateway": "4.0.87",
     "@next/bundle-analyzer": "^16.3.1",
     "@playwright/test": "^1.62.1",
     "@tailwindcss/postcss": "^4",

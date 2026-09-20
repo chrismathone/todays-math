@@ -1,6 +1,7 @@
 import "server-only";
 import { z } from "zod";
 import { repairJsonString } from "@/lib/ai/jsonRepair";
+import { isJevEnabled } from "@/lib/jev/client";
 import { recoverJson } from "@/lib/mathgen/ocrJsonRecovery";
 import { abortError } from "./cli-process";
 import type { DevAiRequest, DevAiResult } from "./contracts";
@@ -138,6 +139,17 @@ export async function editDevAiFigure(
     throw new FigureEditError(`고칠 그림과 요청이 필요합니다.${KEPT}`);
   if (!inference && process.env.NODE_ENV === "production")
     throw new Error("운영 환경에서는 서버 API 연결이 필요합니다.");
+  /**
+   * 빠른 길(Jev) — 두 전송 경로(구독 CLI·서버 API)가 모두 여기를 지나므로 배선은 이 한 자리면 된다.
+   * 되면 지금과 **같은 모양의 결과**로 여기서 끝나고, 안 되면 `null` 이라 아래 지금 경로가 그대로 돈다.
+   * 꺼져 있으면(`STUDIO_AI_JEV=off`·키 없음) **기다림을 하나도 끼우지 않는다** — `ai` 패키지를 읽지 않는 것은 물론,
+   * 취소 신호가 도착하는 차례까지 지금과 똑같아야 한다.
+   */
+  if (isJevEnabled()) {
+    const { tryJevFigureEdit } = await import("./figure-edit-jev");
+    const fast = await tryJevFigureEdit(request, { signal, deadlineAt });
+    if (fast) return fast;
+  }
   const invoke: FigureEditInference =
     inference ??
     (async (input) => {
