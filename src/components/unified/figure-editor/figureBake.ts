@@ -575,12 +575,84 @@ export interface SelectionBounds {
 /** 경계 상자를 받아 걸 변환을 정한다 — null 이면 그림을 그대로 둔다. */
 export type SelectionMotion = (bounds: SelectionBounds) => Affine | null;
 
+/**
+ * 요소마다 **다른** 변환을 걸 때(정렬 — figureAlign.ts). 고른 요소 전부의 상자(요소 id → 상자, 그림 차례)와
+ * 그것을 합친 바깥 상자를 받아 요소마다 걸 변환을 정한다. 돌려준 Map 에 없는 요소는 그대로 둔다
+ * («고르게 벌리기»처럼 이웃을 봐야 정해지는 것이 있어 요소 하나씩이 아니라 전부를 한 번에 받는다).
+ */
+export type ObjectMotions = (
+  boxes: ReadonlyMap<string, SelectionBounds>,
+  whole: SelectionBounds,
+) => ReadonlyMap<string, Affine> | null;
+
 /** 고른 요소에 변환 하나를 한 덩어리로 걸어 좌표로 적은 새 원문. 걸 것이 없으면 원문 그대로. */
 export function bakeFigureSelection(
   svg: string,
   ids: readonly string[],
   plan: SelectionMotion,
   options: BakeOptions = {},
+): string {
+  return runBake(svg, ids, options, (whole) => plan(whole));
+}
+
+/**
+ * 고른 요소에 **요소마다 다른** 변환을 걸어 좌표로 적은 새 원문 — 정렬(figureAlign.ts)이 쓴다.
+ * 규칙은 한 덩어리로 걸 때(위 문서)와 같다. 다른 것 둘:
+ * - 상자는 «그림에서 차지하는 자리»(곡선은 곡선 위의 점, 글자는 조판한 상자)로 잰다 — 왼쪽을 맞추려면
+ *   곡선의 조절점이 아니라 곡선이 닿는 왼쪽 끝이, 글자는 가운데가 아니라 상자의 왼쪽 끝이 기준이어야 한다.
+ *   «전체 상자»도 그 상자들을 합친 것이다 — 회전·대칭이 중심을 잡는 상자와 달리 글자의 폭·높이가 들어간다.
+ * - 선을 따라가는 면은 둘러싼 선이 **모두 같은 변환**으로 움직일 때만 따라간다(제각각이면 따라갈 수 없다).
+ */
+export function bakeFigureObjects(
+  svg: string,
+  ids: readonly string[],
+  plan: ObjectMotions,
+  options: BakeOptions = {},
+): string {
+  return runBake(svg, ids, options, (_, each) => {
+    const boxes = each();
+    if (!boxes.size) return null;
+    const all = [...boxes.values()];
+    const min: Point = [
+      Math.min(...all.map((b) => b.min[0])),
+      Math.min(...all.map((b) => b.min[1])),
+    ];
+    const max: Point = [
+      Math.max(...all.map((b) => b.max[0])),
+      Math.max(...all.map((b) => b.max[1])),
+    ];
+    const byId = new Map(
+      [...boxes].map(([node, box]) => [node.getAttribute(OBJECT) ?? "", box]),
+    );
+    const planned = plan(byId, {
+      min,
+      max,
+      center: [(min[0] + max[0]) / 2, (min[1] + max[1]) / 2],
+    });
+    if (!planned?.size) return null;
+    const motions = new Map<Element, Affine>();
+    for (const node of boxes.keys()) {
+      const motion = planned.get(node.getAttribute(OBJECT) ?? "");
+      if (motion) motions.set(node, motion);
+    }
+    return motions.size ? motions : null;
+  });
+}
+
+/** 걸 변환 — 하나면 고른 것 전부에, Map 이면 요소마다. `each()` 는 부를 때만 요소 상자를 잰다. */
+type BakePlan = (
+  whole: SelectionBounds,
+  each: () => ReadonlyMap<Element, SelectionBounds>,
+) => Affine | ReadonlyMap<Element, Affine> | null;
+
+/** 두 변환이 같은가 — 면이 둘러싼 선을 따라갈 수 있는지 가른다. */
+const sameMotion = (a: Affine, b: Affine) => a.every((v, i) => v === b[i]);
+
+function runBake(
+  svg: string,
+  ids: readonly string[],
+  options: BakeOptions,
+  plan: BakePlan,
 ): string {
   const doc = editableFigureDoc(svg);
   const nodes = [...doc.querySelectorAll(`[${OBJECT}]`)];
@@ -627,26 +699,62 @@ export function bakeFigureSelection(
     ys = extents.map((p) => p[1]);
   const min: Point = [Math.min(...xs), Math.min(...ys)],
     max: Point = [Math.max(...xs), Math.max(...ys)];
-  const motion = plan({
-    min,
-    max,
-    center: [(min[0] + max[0]) / 2, (min[1] + max[1]) / 2],
-  });
-  if (!motion) return svg;
 
-  // 임자 꼭짓점 — 움직이기 전 모든 도형의 점(그림 좌표)과 그 도형이 같이 움직이는가
-  const moving = new Set(targets);
+  // 요소마다의 상자(그림에서 차지하는 자리) — 부를 때만 잰다(한 덩어리로 걸 때는 쓰지 않는다)
+  let boxes: ReadonlyMap<Element, SelectionBounds> | null = null;
+  const eachBounds = () => {
+    if (boxes) return boxes;
+    const found = new Map<Element, SelectionBounds>();
+    for (const node of targets) {
+      const box = textBoxes.get(node);
+      const points: Point[] = box
+        ? [
+            [box.center[0] - box.half[0], box.center[1] - box.half[1]],
+            [box.center[0] + box.half[0], box.center[1] + box.half[1]],
+          ]
+        : inkPoints(node);
+      if (!points.length) continue;
+      const px = points.map((p) => p[0]),
+        py = points.map((p) => p[1]);
+      const lo: Point = [Math.min(...px), Math.min(...py)],
+        hi: Point = [Math.max(...px), Math.max(...py)];
+      found.set(node, {
+        min: lo,
+        max: hi,
+        center: [(lo[0] + hi[0]) / 2, (lo[1] + hi[1]) / 2],
+      });
+    }
+    boxes = found;
+    return boxes;
+  };
+
+  const planned = plan(
+    { min, max, center: [(min[0] + max[0]) / 2, (min[1] + max[1]) / 2] },
+    eachBounds,
+  );
+  if (!planned) return svg;
+  // 고른 요소에만 건다 — 임자 꼭짓점을 찾을 때 고르지 않은 요소의 꼭짓점이 «같이 움직인다»로 읽히면 안 된다.
+  const motions: ReadonlyMap<Element, Affine> =
+    planned instanceof Map
+      ? planned
+      : new Map(targets.map((node) => [node, planned as Affine]));
+  const motionOf = (node: Element): Affine | null => motions.get(node) ?? null;
+  const moved = targets.filter((node) => motionOf(node));
+  if (!moved.length) return svg;
+
+  // 임자 꼭짓점 — 움직이기 전 모든 도형의 점(그림 좌표)과 그 점이 든 요소
   const vertices = nodes
     .filter((node, i) => !isText(node) && !isTiedFace(objects[i]))
     .flatMap((node) =>
       localPoints(node).map((p) => ({
         at: applyPoint(matrices.get(node)!, p),
-        turns: moving.has(node),
+        node,
       })),
     );
   const view = numbersOf(doc.documentElement.getAttribute("viewBox"));
   const reach = OWNER_REACH * (Math.max(view[2] || 0, view[3] || 0) || 480);
-  const ownerTurns = (at: Point) => {
+  /** 라벨의 임자 꼭짓점이 어떻게 움직이는가 — 가까운 꼭짓점이 없으면 라벨을 따라 움직인다. */
+  const ownerMotion = (at: Point, fallback: Affine | null): Affine | null => {
     let best: (typeof vertices)[number] | undefined,
       distance = reach;
     for (const vertex of vertices) {
@@ -656,52 +764,70 @@ export function bakeFigureSelection(
         distance = d;
       }
     }
-    // 가까운 꼭짓점이 없으면 라벨을 따라 움직인다
-    return best?.turns ?? true;
+    return best ? motionOf(best.node) : fallback;
   };
 
-  const moveShape = (node: Element) => {
+  const moveShape = (node: Element, motion: Affine) => {
     const local = conjugate(matrices.get(node)!, motion);
     if (local && !keepsFrame(node) && bake(node, local)) return;
     const k = conjugate(parentMatrix(node), motion);
     if (k) frame(node, k);
   };
+  // 글자는 안 움직여도 한 번 본다 — 임자 꼭짓점이 든 요소가 움직였으면 그 점은 따라가야 한다(정렬).
   for (const node of targets) {
+    const motion = motionOf(node);
     if (!isText(node)) {
-      moveShape(node);
+      if (motion) moveShape(node, motion);
       continue;
     }
     const parent = parentMatrix(node),
       back = invert(parent);
     if (!back) continue;
-    const { center } = textBoxes.get(node)!;
-    const [x, y] = applyPoint(motion, center);
-    shift(node, applyVector(back, [x - center[0], y - center[1]]));
+    if (motion) {
+      const { center } = textBoxes.get(node)!;
+      const [x, y] = applyPoint(motion, center);
+      shift(node, applyVector(back, [x - center[0], y - center[1]]));
+    }
     if (node.hasAttribute("data-px") && node.hasAttribute("data-py")) {
       const owner = applyPoint(parent, [
         first(node.getAttribute("data-px")),
         first(node.getAttribute("data-py")),
       ]);
-      if (ownerTurns(owner)) {
-        const [px, py] = applyPoint(back, applyPoint(motion, owner));
+      const turn = ownerMotion(owner, motion);
+      if (turn) {
+        const [px, py] = applyPoint(back, applyPoint(turn, owner));
         node.setAttribute("data-px", text(px));
         node.setAttribute("data-py", text(py));
       }
     }
   }
 
-  // 선을 따라가는 면 — 둘러싼 선이 모두 움직이면 같이 간다(씨앗 점은 면이 든 좌표계, 자기 변환 제외)
-  const keys = new Set(
-    targets.flatMap((node) => node.getAttribute("id") ?? []),
+  // 선을 따라가는 면 — 둘러싼 선이 모두 **같은 변환으로** 움직이면 같이 간다
+  // (씨앗 점은 면이 든 좌표계, 자기 변환 제외)
+  const keyed = new Map(
+    targets.flatMap((node) => {
+      const key = node.getAttribute("id");
+      return key ? [[key, node] as const] : [];
+    }),
   );
   nodes.forEach((node, i) => {
     if (!isTiedFace(objects[i])) return;
     const faceKeys = (node.getAttribute(FACE_ATTR) ?? "")
       .split(/\s+/)
       .filter(Boolean);
-    if (!faceKeys.every((key) => keys.has(key))) return;
+    const owners = faceKeys.map((key) => keyed.get(key));
+    if (!faceKeys.length || owners.some((owner) => !owner)) return;
+    const shared = motionOf(owners[0]!);
+    if (
+      !shared ||
+      owners.some((owner) => {
+        const motion = motionOf(owner!);
+        return !motion || !sameMotion(motion, shared);
+      })
+    )
+      return;
     const seed = node.getAttribute(FACE_SEED_ATTR);
-    const k = conjugate(parentMatrix(node), motion);
+    const k = conjugate(parentMatrix(node), shared);
     if (seed !== null && k) {
       const [sx, sy] = applyPoint(k, [
         numbersOf(seed)[0] ?? 0,
@@ -709,14 +835,14 @@ export function bakeFigureSelection(
       ]);
       node.setAttribute(FACE_SEED_ATTR, `${text(sx)} ${text(sy)}`);
     }
-    moveShape(node);
+    moveShape(node, shared);
   });
 
   // 움직인 것이 틀 밖이면 넘친 쪽만 넓힌다(뒤집기와 같은 한 함수) — 글자는 옮긴 가운데에 제 상자를 얹는다
-  const ink = targets.flatMap((node): Point[] => {
+  const ink = moved.flatMap((node): Point[] => {
     if (!isText(node)) return inkPoints(node);
     const { center, half } = textBoxes.get(node)!;
-    const [x, y] = applyPoint(motion, center);
+    const [x, y] = applyPoint(motionOf(node)!, center);
     return [
       [x - half[0], y - half[1]],
       [x + half[0], y + half[1]],
