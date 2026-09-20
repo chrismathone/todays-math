@@ -469,7 +469,7 @@ describe("6 · 검수는 확대로(시안 B)", () => {
 
   // 원장님 2026-09-21 재배치 — 쪽 이동이 제목 줄에서 둘째 줄로 내려가고, 전체 작업 셋이
   // 제목 줄로 올라갔다(트랙 35). 두 줄이라는 뼈대는 그대로다.
-  it("위 띠는 두 줄 — 제목 줄에 파일·학년·전체 작업, 둘째 줄에 쪽·문제 이동과 진행 요약", async () => {
+  it("위 띠는 두 줄 — 제목 줄에 파일·학년, 둘째 줄에 쪽·문제 이동과 전체 작업·진행 요약", async () => {
     await openStudio(twoCrops(), { step: "review" });
     const title = screen.getByRole("heading", { name: "자료 제작" });
     const band = title.closest("[data-studio-band]") as HTMLElement;
@@ -477,14 +477,14 @@ describe("6 · 검수는 확대로(시안 B)", () => {
     for (const name of ["원본 파일", "시험지 학년"])
       expect(within(band).getByRole("combobox", { name })).toBeInTheDocument();
     expect(
-      within(band).getByRole("button", { name: "전체 디지털화" }),
-    ).toBeInTheDocument();
-    expect(
       within(band).getByRole("button", { name: "편집창 축소" }),
     ).toBeInTheDocument();
     const second = screen.getByLabelText("문항 검수 이동");
     expect(
       within(second).getByRole("combobox", { name: "페이지 선택" }),
+    ).toBeInTheDocument();
+    expect(
+      within(second).getByRole("button", { name: "전체 디지털화" }),
     ).toBeInTheDocument();
     expect(
       within(second).getByRole("button", { name: "다음 문제 검수" }),

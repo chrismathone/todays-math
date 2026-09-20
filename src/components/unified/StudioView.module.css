@@ -1776,16 +1776,13 @@
 .editing.reviewMode .editorTools {
   margin-left: auto;
 }
-/* 쪽 이동이 둘째 줄로 내려간 자리를 파일 이름이 쓴다(원장님 2026-09-21 «파일명을 그만큼 공간에 배정»).
-   전에는 108px 이라 «[경신중][2][25-2-중간][미래…» 에서 잘렸다. 남는 폭을 먼저 먹되 최대 460px —
-   그 위는 전체 작업 셋이 한 줄에 서는 데 쓴다. 잘린 이름은 title 로 다 보인다. */
+/* 쪽 이동과 전체 작업 셋이 둘째 줄로 내려간 자리를 파일 이름이 쓴다(원장님 2026-09-21
+   «파일명을 그만큼 공간에 배정»). 전에는 108px 이라 «[경신중][2][25-2-중간][미래…» 에서 잘렸다.
+   남는 폭을 먼저 먹되 최대 460px — 그 위는 제목 줄이 한 줄로 남는 데 쓴다.
+   잘린 이름은 title 로 다 보인다. */
 .editing .bandTools .sourcePicker {
-  flex: 1 1 260px;
+  flex: 1 1 200px;
   max-width: 460px;
-}
-.editing .bandTools .bulkActions {
-  flex: 0 1 auto;
-  margin-left: auto;
 }
 .editing .cropHint,
 .editing .keyboardHelp,
@@ -2261,6 +2258,10 @@
   min-width: 56px;
   padding-inline: 9px;
   white-space: nowrap;
+}
+/* ⑶ 검수 줄로 내려온 전체 작업 셋. */
+.reviewNavigation .bulkActions {
+  flex: 0 1 auto;
 }
 /* ⑵ 진행 띠 — 원장님 «이건 더 좁아져도 괜찮아 보이네». 남는 폭을 다 먹지 않게 상한을 두고,
    «확인 필요» 글자도 뺀다(!숫자와 aria-label 이 같은 말을 한다). */

@@ -201,10 +201,9 @@ describe("⑶ 전체 작업 셋은 한 줄", () => {
       /^전체 해설 생성$/,
     ])
       expect(within(bulk!).getByRole("button", { name })).toBeInTheDocument();
-    // 둘째 줄에는 더 이상 없다.
-    expect(
-      within(reviewRow()).queryByRole("button", { name: /^전체 디지털화$/ }),
-    ).toBeNull();
+    // 검수 단계에서는 둘째 줄에 함께 선다 — 제목 줄은 파일 이름에 자리를 내준다.
+    expect(reviewRow().contains(bulk)).toBe(true);
+    expect(bandTools(container)!.contains(bulk)).toBe(false);
   });
 });
 

@@ -1997,8 +1997,10 @@ export default function StudioView({
   ) : null;
   /*
    * 전체 작업 셋 — 원장님 2026-09-21 «전체 페이지 자동 인식, 전체 디지털화, 전체 해설 생성은
-   * 같은 행에». 검수 줄에 흩어져 있던 둘을 여기로 올렸다. 상단의 «AI 연결» 칸은 없앴고(왼쪽
-   * 탭의 AI 상태판이 그 일을 한다), 그 안에 있던 «현재 쪽만 다시 인식»은 이 묶음에 남긴다.
+   * 같은 행에». 잘라내기는 제목 줄, 검수는 둘째 줄에 함께 선다. 제목 줄에 두면 1516px 에서
+   * 줄이 꺾여(잰 값 94px) 파일 이름에 줄 자리가 없어진다 — 쪽 이동과 같은 줄로 내렸다.
+   * 상단의 «AI 연결» 칸은 없앴고(왼쪽 탭의 AI 상태판이 그 일을 한다), 그 안에 있던
+   * «현재 쪽만 다시 인식»은 이 묶음에 남긴다.
    */
   const bulkActions = currentSource ? (
     <div className={styles.bulkActions} data-studio-bulk>
@@ -2018,10 +2020,11 @@ export default function StudioView({
         <button
           type="button"
           className={styles.secondaryButton}
+          aria-label={`현재 ${pageNumber}쪽만 다시 인식`}
           disabled={!pageReady || recognizingPage || !studioAi.available}
           onClick={() => recognizeSource(false)}
         >
-          현재 {pageNumber}쪽만 다시 인식
+          이 쪽 다시 인식
         </button>
       ) : null}
       {bandTools ? (
@@ -2120,7 +2123,7 @@ export default function StudioView({
       {currentSource ? (
         <>
           {!bandTools && pageNavigation}
-          {bulkActions}
+          {!bandTools && bulkActions}
           {step === "crop" && (
             <button
               className={styles.preciseButton}
@@ -2634,6 +2637,7 @@ export default function StudioView({
                     </button>
                   </>
                 )}
+                {bulkActions}
                 {progressStrip}
                 {crops.length > 0 && (
                   <span className={styles.reviewProgress}>

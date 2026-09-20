@@ -185,9 +185,9 @@ test("all pages use two background slots, preserve navigation, stamp empty pages
     "인식 6 / 6쪽 완료",
   );
   await page.keyboard.press("Escape");
-  await expect(
-    page.getByRole("option", { name: "고1 (자동 인식)", exact: true }),
-  ).toHaveCount(1);
+  // 자동 인식이 선 학년은 조용히 학년만 적는다(원장님 2026-09-21 ⑺). 직접 고르는 목록에도
+  // «고1» 이 있으므로 auto 칸을 값으로 집는다.
+  await expect(page.locator('option[value="auto"]')).toHaveText("고1");
   expect(peak).toBe(2);
   expect(requests).toHaveLength(6);
   expect(requests.every((request) => request.grade === "미지정")).toBe(true);
