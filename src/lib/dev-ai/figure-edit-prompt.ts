@@ -23,6 +23,7 @@ Commands (include only the fields shown; omit optional fields you do not change)
 {"op":"addLine","from":P,"to":P,"dashed":true|false,"arrow":true|false} — P is a name from names or {"x":number,"y":number}.
 {"op":"addText","text":"label","x":number,"y":number} — (x, y) is the centre of the new label.
 {"op":"addLabel","at":P,"text":"D","position":"N"} — name a point: the label sits just outside it, clear of the lines, like the printed ones. position (optional) pins the side, N up. A new name can be used by later commands in this answer.
+{"op":"relabel","target":n,"position":"NE"} — move an existing point name to a clear place beside its point (use it when a name sits on a line); position (optional) pins the side.
 {"op":"addPoint","x":number,"y":number,"label":"optional name"} — a small filled dot.
 {"op":"addCircle","center":P,"through":P} or {"op":"addCircle","center":P,"r":number} — a circle; for "radius OA" use "center":"O","through":"A". Optional "dashed":true.
 {"op":"addArc","center":P,"from":P,"to":P,"via":P} — the arc from→to around center, the shorter way; give via (optional) for the arc through that point, e.g. arc ACB.

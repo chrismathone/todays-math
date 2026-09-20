@@ -94,6 +94,19 @@ export const FigureEditCommandSchema = z
           .optional(),
       })
       .strict(),
+    /**
+     * 이미 있는 점 이름의 자리를 다시 잡는다 — 선·다른 글자를 밟는 이름을 엔진 규칙으로 비켜 세운다
+     * (원장님 2026-08-25 «텍스트가 선을 침범한다»). position 을 주면 그쪽으로.
+     */
+    z
+      .object({
+        op: z.literal("relabel"),
+        target,
+        position: z
+          .enum(["N", "NE", "E", "SE", "S", "SW", "W", "NW"])
+          .optional(),
+      })
+      .strict(),
     z
       .object({
         op: z.literal("addPoint"),

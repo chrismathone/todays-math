@@ -436,3 +436,63 @@ describe("점 이름(addLabel) — 엔진 꼭짓점 라벨 규칙", () => {
     expect(y).toBeGreaterThan(D_POINT.y);
   });
 });
+
+describe("이름 자리 고치기(relabel) — 선을 밟는 이름을 비켜 세운다", () => {
+  // D 의 이름이 변 DA 위에 얹혀 있는 그림(원장님 2026-08-25 «텍스트가 선을 침범한다»)
+  const ON_LINE = svg(
+    "0 0 197.116 134.183",
+    QUAD_SIDES,
+    label("A", 18.065, 32.183, 28.789, 26.807) +
+      label("B", 156.372, 24.6, 148.789, 26.807) +
+      label("C", 179.513, 122.183, 168.789, 116.807) +
+      label("D", 48.789, 111.459, 48.789, 116.807),
+  );
+
+  it("moves the name to the place the engine would choose", () => {
+    const source = prepared(ON_LINE);
+    const result = applyFigureEdits(source, [{ op: "relabel", target: 8 }]);
+    expect(result.rejected).toEqual([]);
+    expect(result.applied).toEqual(["글자 D 자리 고침"]);
+    const moved = figureObjects(result.svg)[7];
+    expectClose([num(moved.attrs.x), num(moved.attrs.y)], [41.206, 129.766]);
+    // 끌어 옮긴 자리는 지우고, 임자 점은 그대로 적어 둔다
+    expect(moved.attrs.transform).toBeUndefined();
+    expectClose(
+      [num(moved.attrs["data-px"]), num(moved.attrs["data-py"])],
+      [D_POINT.x, D_POINT.y],
+      3,
+    );
+    // 요소는 늘지 않는다 — 자리만 바뀐다
+    expect(added(source, result.svg)).toEqual([]);
+  });
+
+  it("pins the side when position is given", () => {
+    const result = applyFigureEdits(prepared(ON_LINE), [
+      { op: "relabel", target: 8, position: "S" },
+    ]);
+    expect(result.rejected).toEqual([]);
+    const moved = figureObjects(result.svg)[7];
+    expectClose(
+      [num(moved.attrs.x), num(moved.attrs.y)],
+      [48.789, 116.807 + 10.724 + 5.376],
+    );
+  });
+
+  it("says nothing changed when the name is already in place", () => {
+    const source = prepared(QUAD_ABC);
+    const result = applyFigureEdits(source, [{ op: "relabel", target: 5 }]);
+    expect(result.applied).toEqual([]);
+    expect(result.rejected[0]).toContain("이미 제자리입니다");
+    expect(result.svg).toBe(source);
+  });
+
+  it("refuses what it cannot place — a size label or a line", () => {
+    const result = applyFigureEdits(prepared(TRI_ANGLE), [
+      { op: "relabel", target: 5 },
+      { op: "relabel", target: 1 },
+    ]);
+    expect(result.applied).toEqual([]);
+    expect(result.rejected[0]).toContain("점 이름이 아닙니다");
+    expect(result.rejected[1]).toContain("글자 요소가 아닙니다");
+  });
+});

@@ -59,6 +59,8 @@ describe("글자 명령 스키마", () => {
     [{ op: "addLabel", at: { x: 12.5, y: 30 }, text: "P′" }],
     [{ op: "addLabel", at: { x: 12.5, y: 30 }, text: "D", position: "SW" }],
     [{ op: "addLabel", at: "A", text: "M", position: "N" }],
+    [{ op: "relabel", target: 3 }],
+    [{ op: "relabel", target: 3, position: "NE" }],
   ])("accepts %j", (command) => {
     expect(FigureEditCommandSchema.safeParse(command).success).toBe(true);
   });
@@ -78,6 +80,9 @@ describe("글자 명령 스키마", () => {
     ["모르는 쪽", { op: "addLabel", at: "A", text: "D", position: "UP" }],
     ["남는 칸", { op: "addLabel", at: "A", text: "D", dx: 3 }],
     ["이름 자리가 반쪽", { op: "addLabel", at: { x: 3 }, text: "D" }],
+    ["자리 고칠 요소 없음", { op: "relabel", position: "N" }],
+    ["자리 고치기 0번", { op: "relabel", target: 0 }],
+    ["자리 고치기 모르는 쪽", { op: "relabel", target: 3, position: "UP" }],
     ["모르는 명령", { op: "renameLabel", target: 1, text: "D" }],
   ])("rejects %s", (_name, command) => {
     expect(FigureEditCommandSchema.safeParse(command).success).toBe(false);
@@ -106,6 +111,15 @@ describe("지시문", () => {
     expect(line!.length).toBeLessThanOrEqual(260);
   });
 
+  it("이름 자리 고치기 줄이 한 줄 있다", () => {
+    const line = prompt
+      .split("\n")
+      .find((row) => row.startsWith('{"op":"relabel"'));
+    expect(line).toBeDefined();
+    expect(line).toContain('"target"');
+    expect(line!.length).toBeLessThanOrEqual(260);
+  });
+
   it("요청 글과 요소 목록은 그대로 실린다", () => {
     expect(prompt).toContain("각 B 에 40° 표시");
     expect(prompt).toContain('"names"');
@@ -126,6 +140,7 @@ describe("빈 명령 문구", () => {
     const message = reason().message;
     expect(message).toContain("각의 크기");
     expect(message).toContain("점 이름");
+    expect(message).toContain("이름 자리 고치기");
     expect(message).toContain("지금 그림은 그대로입니다");
   });
 

@@ -57,6 +57,7 @@ import {
   addFigureLabel,
   figureLabelOpLabel,
   isFigureLabelCommand,
+  relocateFigureLabel,
 } from "./figureLabelOps";
 
 type FigureObject = ReturnType<typeof figureObjects>[number];
@@ -425,6 +426,13 @@ export function applyFigureEdits(
           value ? `(${objectName(value, angles)} ${labelOf(value)} 함께)` : ""
         }`,
       };
+    }
+    if (command.op === "relabel") {
+      // 이미 있는 점 이름을 선·다른 글자에서 비켜 세운다 — 더하기와 같은 자리 규칙(figureLabelOps.ts)
+      const placed = relocateFigureLabel(current, id, command.position);
+      if ("reason" in placed) return reject(placed.reason);
+      if (!placed.moved) reject("이미 제자리입니다");
+      return { svg: placed.svg, text: `${label} 자리 고침` };
     }
     if (command.op === "move") {
       if (tied) reject(following);

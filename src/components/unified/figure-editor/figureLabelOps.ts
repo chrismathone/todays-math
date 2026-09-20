@@ -11,6 +11,7 @@ import {
 import {
   applyPoint,
   elementMatrix,
+  invert,
   parentMatrix,
   scaleOf,
   type Affine,
@@ -810,6 +811,128 @@ function namedAlready(
 }
 
 /**
+ * 점 이름이 설 자리 — 엔진 `_place_labels`: 바깥 차례의 여덟 방향 × 다섯 거리
+ * `label_offset + 0.18×글자 + 자리순위 × max(3.5, 0.55×글자)`. 엔진은 자리를 못 얻으면 던지지만(그림을 다시 그리면
+ * 되니까) 우리는 **가장 덜 나쁜 자리**를 쓴다 — 이름 없는 점을 남기는 것보다 조금 붙은 이름이 낫다.
+ * `skip` 은 자기 자신(자리 고치기 때 옛 자리를 겹침으로 세지 않는다).
+ */
+function pointLabelLayout(
+  at: Point,
+  text: string,
+  fs: number,
+  figure: LabelFigure,
+  tolerance: number,
+  position?: string,
+  skip?: number,
+) {
+  const k = fs / LABEL_FONT;
+  const occupied = figure.texts
+    .filter((t) => t.index !== skip)
+    .map((t) => t.box);
+  const vectors = labelVectors(outwardVector(at, figure, tolerance), position);
+  let best: { cost: [number, number]; center: Point; box: Box } | undefined;
+  for (const [rank, [ux, uy]] of vectors.entries())
+    for (let distanceRank = 0; distanceRank < 5; distanceRank++) {
+      const distance =
+        LABEL_OFFSET * k +
+        0.18 * fs +
+        distanceRank * Math.max(3.5 * k, 0.55 * fs);
+      const x = at[0] + ux * distance;
+      const baseline = at[1] + uy * distance + 0.32 * fs;
+      const box = textBox(x, baseline, text, fs);
+      const cost = candidateCost(
+        box,
+        figure,
+        occupied,
+        rank,
+        distanceRank,
+        true,
+        at,
+      );
+      if (!best || better(cost, best.cost))
+        best = { cost, center: [x, baseline], box };
+    }
+  return best!;
+}
+
+/**
+ * 이미 있는 점 이름의 자리를 다시 잡는다 — `relabel`(원장님 2026-08-25 «텍스트가 선을 침범한다»).
+ * 더하기와 **같은 규칙**으로 고르고, 끌어 옮긴 자리(`transform`)는 지운다. 임자 점을 모르면 손대지 않는다 —
+ * 어느 점의 이름인지 모르는 채로 옮기면 엉뚱한 점에 붙는다.
+ */
+export function relocateFigureLabel(
+  svg: string,
+  id: string,
+  position: string | undefined,
+): { svg: string; moved: boolean } | { reason: string } {
+  const figure = readLabelFigure(svg);
+  const index = figure.objects.findIndex((o) => o.id === id);
+  const label = figure.texts.find((t) => t.index === index);
+  if (!label) return { reason: "글자 요소가 아닙니다" };
+  if (!label.isName)
+    return {
+      reason: "점 이름이 아닙니다(각의 크기 글자는 지우고 다시 답니다)",
+    };
+  const o = figure.objects[index];
+  const px = Number.parseFloat(o.attrs["data-px"] ?? "");
+  const tol = Math.max(1, 0.01 * figure.size);
+  // 엔진 라벨은 제 점을 적어 둔다. 안 적혀 있으면 가까운 꼭짓점을 임자로 본다(요소 목록의 이름 찾기와 같은 자)
+  let at = label.owner;
+  if (!Number.isFinite(px)) {
+    const vertices = figure.ink.flatMap((piece) =>
+      piece.lines.flatMap(([a, b]) => [a, b]),
+    );
+    let near = 0.12 * figure.size;
+    let found: Point | undefined;
+    for (const v of vertices) {
+      const d = length(v, label.center);
+      if (d <= near) [found, near] = [v, d];
+    }
+    if (!found) return { reason: "어느 점의 이름인지 알 수 없습니다" };
+    at = found;
+  }
+  const fs = label.fontSize;
+  const { center, box } = pointLabelLayout(
+    at,
+    label.text,
+    fs,
+    figure,
+    tol,
+    position,
+    index,
+  );
+  const node = [...readFigureSvg(svg).querySelectorAll("[data-object-id]")][
+    index
+  ];
+  const inverse = invert(parentMatrix(node));
+  if (!inverse) return { reason: "변환 때문에 옮길 수 없습니다" };
+  const [lx, ly] = applyPoint(inverse, center);
+  const moved =
+    Math.hypot(
+      center[0] - label.center[0],
+      center[1] - label.center[1] - 0.32 * fs,
+    ) > 0.05;
+  const next = editFigureObject(svg, id, {
+    x: fmt(lx),
+    y: fmt(ly),
+    transform: "",
+    "data-px": fmt(at[0]),
+    "data-py": fmt(at[1]),
+  });
+  return {
+    svg: widenFrame(
+      next,
+      [
+        [box[0], box[1]],
+        [box[2], box[3]],
+      ],
+      CANVAS_PAD * (fs / LABEL_FONT),
+    ),
+    moved,
+  };
+}
+
+/**
  * 점 이름을 더한다 — `addLabel`(원장님 2026-09-20 «이 꼭짓점을 D 로»). 엔진 꼭짓점 라벨 규칙 그대로
  * (바깥 차례의 여덟 방향 × 다섯 거리). 엔진과 달리 자리를 못 얻어도 던지지 않고 **가장 덜 나쁜 자리**에 세운다 —
  * 이름 없는 점을 남기는 것보다 조금 붙은 이름이 낫다(원장님은 이름을 붙여 달라고 하셨다).
@@ -845,32 +968,14 @@ export function addFigureLabel(
 
   const fs = figure.font ?? LABEL_FONT * figure.k;
   const k = fs / LABEL_FONT;
-  const occupied = figure.texts.map((t) => t.box);
-  const outward = outwardVector(at, figure, tol);
-  const vectors = labelVectors(outward, command.position);
-  let best: { cost: [number, number]; center: Point; box: Box } | undefined;
-  for (const [rank, [ux, uy]] of vectors.entries())
-    for (let distanceRank = 0; distanceRank < 5; distanceRank++) {
-      const distance =
-        LABEL_OFFSET * k +
-        0.18 * fs +
-        distanceRank * Math.max(3.5 * k, 0.55 * fs);
-      const x = at[0] + ux * distance;
-      const baseline = at[1] + uy * distance + 0.32 * fs;
-      const box = textBox(x, baseline, command.text, fs);
-      const cost = candidateCost(
-        box,
-        figure,
-        occupied,
-        rank,
-        distanceRank,
-        true,
-        at,
-      );
-      if (!best || better(cost, best.cost))
-        best = { cost, center: [x, baseline], box };
-    }
-  const { center, box } = best!;
+  const { center, box } = pointLabelLayout(
+    at,
+    command.text,
+    fs,
+    figure,
+    tol,
+    command.position,
+  );
   const added = addFigureObject(
     svg,
     "text",
