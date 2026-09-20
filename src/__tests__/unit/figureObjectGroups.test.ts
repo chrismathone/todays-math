@@ -583,11 +583,13 @@ describe("groupFigureObjects — 각 표시는 «각» 묶음 · 직각/예각/�
     });
     expect(angleKinds(svg)).toEqual({ 4: "직각" });
   });
-  it("부채꼴의 호는 각 표시가 아니다 — 중심각 표시만 «각»", () => {
+  // 이름 «호»는 원장님 2026-09-20 «부채꼴의 호·AI 가 더한 호를 곡선이라 부르지 말고 «호»» — 도형의 호는
+  // 각 표시가 아니라 한 원 위의 호로 남아 `objectName` 이 «호»로 부른다(figureObjectNames.ts `isArcPath`).
+  it("부채꼴의 호는 각 표시가 아니다 — 중심각 표시만 «각», 호는 «호»", () => {
     const svg = prepareFigureSvg(V2_SECTOR);
     expect(grouped(svg)).toEqual([
       { name: "선분", custom: false, numbers: [1, 2] },
-      { name: "곡선/경로", custom: false, numbers: [3] },
+      { name: "호", custom: false, numbers: [3] },
       { name: "각", custom: false, numbers: [4] },
       { name: "글자", custom: false, numbers: [5, 6, 7, 8] },
     ]);
@@ -600,7 +602,7 @@ describe("groupFigureObjects — 각 표시는 «각» 묶음 · 직각/예각/�
         `<path d="M 124 120 A 24 24 0 0 0 100 96" fill="none" stroke="#111"/>` +
         `</svg>`,
     );
-    expect(grouped(small).map((g) => g.name)).toEqual(["선분", "곡선/경로"]);
+    expect(grouped(small).map((g) => g.name)).toEqual(["선분", "호"]);
     expect(angleKinds(small)).toEqual({});
   });
   it("점선으로 그린 각의 호(figure_svg `angle_mark` 기본값)도 «점선»이 아니라 «각»", () => {
