@@ -307,10 +307,11 @@ export function applyFigureEdits(
         to: point(to),
         // 겹 호는 호로 그린다 — 직각 ㄱ자는 겹으로 하지 않는다(엔진: right 면 arcs 는 1)
         right: command.right ?? (arcs > 1 ? false : undefined),
-        // 이웃 크기 — 꼭짓점마다 바깥 호만(겹 호의 안쪽 호가 끌어내리지 않게)
+        // 이웃 크기 — 꼭짓점마다 바깥 호만(겹 호의 안쪽 호가 끌어내리지 않게).
+        // 이웃이 없으면 엔진과 같은 22 — 틀 크기로 줄이지 않는다(figureAngleMark.ts `ANGLE_MARK_RADIUS`).
         radius: marks.length
           ? middle(outerMarkRadii(marks.map((m) => m.corner)))
-          : Math.min(ANGLE_MARK_RADIUS, 0.08 * Math.max(width, height)),
+          : ANGLE_MARK_RADIUS,
       });
       if ("reason" in mark) reject(mark.reason);
       const twin = marks.find((m) =>
