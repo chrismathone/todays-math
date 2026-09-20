@@ -234,6 +234,22 @@ export const FALLBACK_MIN_MM = 28;
  * 경로가 곧 출처다 — 실측으로 `transformed` 1,862자리가 **전부** `/figures/rpm/`
  * 아래이고, `past_exam` 9,215자리는 **하나도** 거기 없다. 그래서 `source` 컬럼을
  * 컴포넌트까지 끌고 오지 않아도 된다(끌고 오면 계약이 넓어지고, 넓어진 계약은 샌다).
+ *
+ * ## `/figures-svg/<번호>/` 는 여기 안 온다 — 확인했다 (2026-09-21)
+ *
+ * 2026-09-20 에 「엔진이 그린 그림이 스캔 자를 탔다」를 고친 뒤, **파일 경로** SVG
+ * (`/figures-svg/1318/q10.svg` 2,467장 — `rpm/` 밖이 888장)도 같은 함정에 빠져
+ * 있는지 의심했다. 그 그림들은 제 안에 `width="70.000mm"` 를 들고 있는데 viewBox 는
+ * 238.7 이라, 여기로 흘러오면 253dpi 환산 23.96mm → 바닥 28mm 로 **2.5배 작아진다.**
+ *
+ * 흘러오지 않는다. 채택기(`scripts/qa/adopt-figure-svg.ts` `decideAdoption`)가
+ * `sourceMm` 이 없는 자리를 **거부**하고, 그 사유를 「mm 를 모른다 — SVG 내장 70mm 가
+ * 거짓 크기를 만든다」로 적어 둔다. 그래서 `/figures-svg/` 로 갈아 끼운 1,118문항은
+ * 예외 없이 mm 를 들고 오고, `parseFigureDimensions` 가 그 값을 먼저 쓴다.
+ * 그 계약은 `adoptFigureSvg.test.ts` 의 `slot({ sourceMm: null })` 이 잠근다.
+ *
+ * 다시 의심할 일이 생기면 **채택기의 그 거부부터** 보라. 거기가 풀리는 날 이 함수가
+ * 조용히 2.5배를 먹는다.
  */
 export function figureFallbackDpi(url: string | undefined): number {
   if (url && /^\/figures(-svg)?\/rpm\//.test(url)) return FALLBACK_DPI.vector;
