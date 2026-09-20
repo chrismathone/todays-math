@@ -29,6 +29,7 @@ import {
   figureAngleKinds,
   groupFigureObjects,
   nextGroupName,
+  renumberAutoGroups,
 } from "./figureObjectGroups";
 import {
   copyFigureSelection,
@@ -416,18 +417,29 @@ export function FigureEditor({
     setSvg(next);
   }, []);
   // 옮기기(끌어 놓기) · 이름 바꾸기 · 해제("") · 자동 묶음(null) 이 모두 이 하나다.
+  // 묶음이 바뀌면 자동 이름(A·B·…)을 목록 차례에 맞춰 다시 매긴다 — 같은 한 걸음에(원장님 2026-09-21).
+  // 손수 지은 이름은 안 건드린다. 옮기기·이름 바꾸기·해제·자동 묶기가 모두 이 하나를 탄다.
+  const regroup = (source: string, ids: string[], name: string | null) =>
+    renumberAutoGroups(setFigureGroup(source, ids, name));
   const assignGroup = useCallback(
     (ids: string[], name: string | null) =>
-      editGroups((source) => setFigureGroup(source, ids, name)),
+      editGroups((source) => regroup(source, ids, name)),
     [editGroups],
   );
   // 새 묶음 — 이름은 A · B · C … 차례(원장님 2026-09-21). 단추로 만들면 이름 칸에 바로 초점을 주고,
   // 단축키(Ctrl+G)로 만들면 주지 않는다 — 초점이 글자 칸으로 가면 이어지는 단축키가 안 먹는다.
   const makeGroup = (focusName = true) => {
     if (selectedIds.length < 2) return;
-    const name = nextGroupName(groups.map((g) => g.name));
-    assignGroup(selectedIds, name);
-    if (focusName) setRenamingGroup(`custom:${name}`);
+    const next = regroup(
+      liveSvg.current,
+      selectedIds,
+      nextGroupName(groups.map((g) => g.name)),
+    );
+    // 초점을 줄 이름은 **다시 매긴 뒤**의 것이다 — 목록에서 위에 서면 방금 만든 묶음이 A 가 된다.
+    const named = figureObjects(next).find((o) => o.id === selectedIds[0])
+      ?.attrs["data-group"];
+    editGroups(() => next);
+    if (focusName && named) setRenamingGroup(`custom:${named}`);
   };
   // 묶음 해제(Ctrl+Shift+G) — 오른쪽 칸 «묶음 해제» 단추와 같은 한 길(`data-group=""` — 묶음 밖).
   // 묶음에 든 것만 푼다 — 묶음 밖 요소까지 `data-group=""` 로 적으면 «아무 일도 안 한다»가 되돌리기 한 걸음이 된다.

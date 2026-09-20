@@ -1,4 +1,4 @@
-import type { figureObjects } from "./figureSvgEditing";
+import { figureObjects, setFigureGroup } from "./figureSvgEditing";
 import {
   isArcPath,
   objectName,
@@ -41,6 +41,46 @@ export function nextGroupName(used: Iterable<string>): string {
     const name = letterName(i);
     if (!taken.has(name)) return name;
   }
+}
+
+/**
+ * 자동으로 붙은 이름인가 — A · B · … · AA 꼴(글자 한둘)만 그렇다.
+ * 손수 지은 이름(«오르막» · 옛 «묶음 1»)은 아니다 — 다시 매기지 않는다.
+ */
+export const isAutoGroupName = (name: string) =>
+  /^[A-Z]{1,2}$/.test(name.trim());
+
+/**
+ * 자동으로 붙은 묶음 이름을 **목록 차례**에 맞춰 다시 매긴다 — 위에서부터 A · B · C
+ * (원장님 2026-09-21). 목록 차례는 첫 요소의 번호 차례라, 나중에 묶어도 위에 있으면 A 가 된다.
+ *
+ * 🔴 **손수 지은 이름은 절대 안 건드리고 그 자리를 건너뛴다** — 원장님이 «오르막 그룹을 …» 하실 때
+ * 그 이름이 딴 것을 가리키면 안 된다. 손수 이름은 글자 차례에서도 빠진다(A 를 가져가지 않는다).
+ * 손수 지은 이름이 마침 «A» 꼴이면 자동 이름과 가를 길이 없어 같이 다시 매겨진다 — 그때도 손잡이는 글자 하나라 뜻이 같다.
+ *
+ * 묶음을 만들 때 · 풀 때 · 끌어 옮길 때 — 목록 차례가 바뀌는 **모든 자리**에서 한 번에 부른다
+ * (편집기 `assignGroup`). 바꿀 것이 없으면 **받은 원문을 그대로** 돌려준다(되돌리기 자리가 안 생긴다).
+ */
+export function renumberAutoGroups(svg: string): string {
+  const objects = figureObjects(svg);
+  const viewBox = svg
+    .match(/viewBox=["\']([^"\']+)/)?.[1]
+    .trim()
+    .split(/[\s,]+/)
+    .map(Number) ?? [0, 0, 480, 360];
+  const custom = groupFigureObjects(objects, viewBox).filter((g) => g.custom);
+  const changes = new Map<string, string[]>();
+  let index = 0;
+  for (const group of custom) {
+    if (!isAutoGroupName(group.name)) continue;
+    const name = letterName(index++);
+    if (name === group.name) continue;
+    changes.set(name, [...(changes.get(name) ?? []), ...group.ids]);
+  }
+  if (!changes.size) return svg;
+  let next = svg;
+  for (const [name, ids] of changes) next = setFigureGroup(next, ids, name);
+  return next;
 }
 
 type Box = { x1: number; y1: number; x2: number; y2: number };
