@@ -390,77 +390,6 @@
   white-space: nowrap;
   border: 0;
 }
-.workflow {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 16px;
-  padding: 10px 14px;
-  background: white;
-  border: 1px solid var(--studio-line);
-  border-radius: 10px 10px 0 0;
-}
-.steps {
-  display: flex;
-  gap: 8px;
-  flex: 1;
-}
-.steps button {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 9px;
-  flex: 1;
-  padding: 8px 12px;
-  border: 1px solid transparent;
-  border-radius: var(--control-radius, 8px);
-  color: var(--studio-muted);
-  background: white;
-  font-weight: 600;
-}
-.steps button:disabled {
-  background: #f3f5f9;
-  border-color: transparent;
-}
-.stepNumber {
-  display: grid;
-  place-items: center;
-  width: 28px;
-  height: 28px;
-  flex-shrink: 0;
-  border-radius: 50%;
-  color: var(--studio-muted);
-  background: #e4e9f1;
-  font-size: var(--text-body, 14px);
-  font-weight: 750;
-}
-.steps button[data-complete="true"] {
-  color: #2448bb;
-}
-.steps button[data-complete="true"] .stepNumber {
-  background: #e5ecff;
-  color: #2448bb;
-}
-.steps button[aria-current] {
-  background: #eaf0ff;
-  border-color: #b8c8f7;
-  color: #2448bb;
-}
-.steps button[aria-current] .stepNumber {
-  background: var(--studio-primary);
-  color: white;
-}
-.steps button:hover:not(:disabled) {
-  background: #edf2ff;
-}
-.localBadge {
-  display: flex;
-  align-items: center;
-  gap: 6px;
-  color: var(--studio-muted);
-  font-size: var(--text-body, 14px);
-  white-space: nowrap;
-}
 .announcement {
   display: flex;
   align-items: center;
@@ -504,16 +433,6 @@
   flex-direction: column;
   min-width: 0;
   min-height: 0;
-}
-.canvasToolbar {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  justify-content: space-between;
-  gap: 8px 12px;
-  padding: 10px 16px;
-  background: white;
-  border-bottom: 1px solid var(--studio-line);
 }
 .sourcePicker {
   display: flex;
@@ -1507,12 +1426,6 @@
     grid-template-columns: minmax(0, 1fr) 330px;
     height: max(530px, calc(100dvh - 400px));
   }
-  .localBadge {
-    display: none;
-  }
-  .canvasToolbar {
-    padding: 10px 12px;
-  }
   .sourcePicker {
     flex-basis: 100%;
   }
@@ -1598,28 +1511,12 @@
   }
 }
 @container (max-width: 560px) {
-  .workflow {
-    padding: 8px;
-  }
-  .steps {
-    gap: 5px;
-  }
-  .steps button {
-    flex-direction: column;
-    gap: 6px;
-    padding: 8px 4px;
-    font-size: var(--text-body, 14px);
-    line-height: 1.4;
-  }
   .announcement {
     align-items: flex-start;
     padding: 10px 12px;
   }
   .announcement svg {
     margin-top: 2px;
-  }
-  .canvasToolbar {
-    padding: 10px 12px;
   }
   .sourcePicker {
     flex-basis: 100%;
@@ -1702,6 +1599,12 @@
     min-width: 0;
   }
 }
+/* 작업실의 머리 — 제목 줄과 둘째 줄을 한 칸에 담는다. 작업 칸 높이가 빼는 것이 이 칸의
+   **실제** 높이다(`--studio-band-height`). `flow-root` 는 제목 줄의 아래 여백을 이 칸 안에
+   가두려고 둔다 — 밖으로 새면 잰 높이가 8px 모자란다. */
+.studioHeader {
+  display: flow-root;
+}
 /* Keep document controls responsive to the canvas after either sidebar changes. */
 .editorBar {
   display: flex;
@@ -1760,28 +1663,6 @@
 .editorTools button:where(:not(.primaryButton)) {
   border-color: #d4deed;
 }
-/* 검수 단계에서 제목 줄로 올라온 파일·학년·쪽 도구 — 잘라내기 단계의 파일·쪽 줄과 같은 조각이다. */
-.bandTools {
-  display: flex;
-  /* 남는 폭만 쓴다 — 파일 선택 칸이 먼저 줄어들고, 그래도 모자라면 이 묶음 안에서 꺾인다. */
-  flex: 1 1 0;
-  flex-wrap: wrap;
-  align-items: center;
-  gap: 6px 8px;
-  min-width: 0;
-}
-/* 좁아 제목 줄이 꺾여도 파일 가져오기·새로 시작·편집창 축소는 오른쪽 끝에 둔다(시안 B 의 [축소] 자리). */
-.editing.reviewMode .editorTools {
-  margin-left: auto;
-}
-/* 쪽 이동과 전체 작업 셋이 둘째 줄로 내려간 자리를 파일 이름이 쓴다(원장님 2026-09-21
-   «파일명을 그만큼 공간에 배정»). 전에는 108px 이라 «[경신중][2][25-2-중간][미래…» 에서 잘렸다.
-   남는 폭을 먼저 먹되 최대 460px — 그 위는 제목 줄이 한 줄로 남는 데 쓴다.
-   잘린 이름은 title 로 다 보인다. */
-.editing .bandTools .sourcePicker {
-  flex: 1 1 200px;
-  max-width: 460px;
-}
 .editing .cropHint,
 .editing .keyboardHelp,
 .editing .canvasFootnote {
@@ -1789,8 +1670,10 @@
 }
 .editing .workspace {
   grid-template-columns: minmax(0, 1fr) 320px;
-  /* 머리줄 52 + 쪽 여백 16·16 + 편집 줄 44 + 8 + 바닥 줄 63(위 테두리 2px) — 1px 모자라면 창 전체가 스크롤된다 */
-  height: calc(100dvh - 199px);
+  /* 머리줄 52 + 쪽 여백 16·16 + 바닥 줄 63(위 테두리 2px) = 155, 거기에 작업실 머리(제목 줄 +
+     둘째 줄)의 **실제** 높이를 뺀다. 안 A 로 둘째 줄이 캔버스 밖으로 나오면서 그 높이도 셈에 든다.
+     1px 모자라면 창 전체가 스크롤된다. */
+  height: calc(100dvh - 155px - var(--studio-band-height, 52px));
   min-height: 240px;
   max-height: none;
   border-radius: 9px 9px 0 0;
@@ -1800,16 +1683,11 @@
   container: studio-canvas / inline-size;
   min-height: 0;
   position: relative;
-}
-.editing .canvasToolbar {
-  flex: none;
-  flex-wrap: wrap;
-  gap: 8px;
-  padding: 6px 10px;
-}
+} /* 파일 이름은 둘째 줄에서 남는 폭을 먼저 먹되 460px 까지 — 그 위는 줄이 한 줄로 남는 데 쓴다.
+   전에는 240px 이라 «[경신중][2][25-2-중간][미래…» 에서 잘렸다. 잘려도 title 로 다 보인다. */
 .editing .sourcePicker {
-  flex: 1 1 160px;
-  max-width: 240px;
+  flex: 1 1 200px;
+  max-width: 460px;
   min-width: 100px;
 }
 .editing .sourcePicker > svg {
@@ -1849,12 +1727,6 @@
 }
 .editing.reviewMode .workspace {
   grid-template-columns: minmax(0, 1fr);
-}
-/* 확대를 풀어도 — 제목 줄이 꺾인 만큼 작업 칸이 양보한다(44px 은 한 줄일 때, 위 199px 계산과 같다). */
-@container studio (min-width: 801px) {
-  .editing.reviewMode .workspace {
-    height: calc(100dvh - 155px - var(--studio-band-height, 44px));
-  }
 }
 .reviewMode .inspector {
   display: none;
@@ -1902,7 +1774,7 @@
   padding: 0 8px;
   background: white;
 }
-.editing .canvasToolbar .preciseButton {
+.editing .reviewNavigation .preciseButton {
   width: auto;
   height: var(--control-height, 44px);
   padding-inline: 12px;
@@ -2025,9 +1897,6 @@
   }
 }
 @container studio-canvas (max-width: 760px) {
-  .editing .canvasToolbar {
-    flex-wrap: wrap;
-  }
   .editing .sourcePicker {
     flex-basis: calc(100% - 120px);
     max-width: none;
@@ -2040,11 +1909,6 @@
   }
 }
 @container studio-canvas (max-width: 400px) {
-  .editing .canvasToolbar {
-    display: grid;
-    grid-template-columns: 64px minmax(44px, 1fr) 64px minmax(84px, 1fr);
-    gap: 6px;
-  }
   .editing .sourcePicker {
     grid-column: 1 / 4;
   }
@@ -2064,11 +1928,6 @@
   }
   .editing .pageTools .divider {
     display: none;
-  }
-  .editing .canvasToolbar .preciseButton {
-    grid-column: 4;
-    grid-row: 4;
-    padding-inline: 9px;
   }
   .editing .pageTools .pageAiButton {
     grid-column: 1 / 4;
@@ -2108,15 +1967,6 @@
     position: sticky;
     top: 0;
     z-index: 6;
-  }
-  .reviewMode .canvasToolbar .pageTools {
-    display: flex;
-    flex-wrap: wrap;
-    grid-column: 1 / -1;
-    justify-content: flex-start;
-  }
-  .reviewMode .canvasToolbar .pageAiButton {
-    display: none;
   }
   .editing .workspace {
     grid-template-columns: minmax(0, 1fr);

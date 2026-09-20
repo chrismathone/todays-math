@@ -14,6 +14,7 @@
 import { createRoot } from "react-dom/client";
 import PaperIcon from "../../src/components/unified/WorkspaceIcon";
 import StudioProgressStrip from "../../src/components/unified/StudioProgressStrip";
+import StudioStepBar from "../../src/components/unified/StudioStepBar";
 import WorkspacePageHeader from "../../src/components/unified/WorkspacePageHeader";
 import st from "../../src/components/unified/StudioView.module.css";
 import ws from "../../src/components/unified/WorksheetEditor.module.css";
@@ -52,7 +53,7 @@ const FILE_NAME = "[경신중][2][25-2-중간][미래엔][1학기 전범위].pdf
 const CROPS = 19;
 const PICKED = 5;
 
-type Plan = "now" | "A" | "A2" | "B" | "C";
+type Plan = "A" | "B" | "C";
 type Step = 1 | 2 | 3 | 4;
 
 const STEP_NAME: Record<Step, string> = {
@@ -245,7 +246,10 @@ function StepActions({ step }: { step: Step }) {
   );
 }
 
-/** 단계 탭 — 안 A·B·C 는 넷, 현행은 셋(④ 는 탭이 아예 없다). */
+/**
+ * 단계 탭 — 현행(셋)을 그릴 때만 쓴다. 안 A·A2·C 의 제목 줄은 **제품이 쓰는 그 컴포넌트**
+ * (`StudioStepBar`)를 그대로 부른다 — 시안에서 잰 높이가 지어 놓은 것과 같은 값이 되게.
+ */
 function StepTabs({ step, count }: { step: Step; count: 3 | 4 }) {
   return (
     <nav className={st.stepTabs} aria-label="제작 단계 이동">
@@ -267,12 +271,12 @@ function StepTabs({ step, count }: { step: Step; count: 3 | 4 }) {
  * 단계별 도구 줄 — 안 A·B·C 에서 둘째(B 는 셋째) 줄에 선다.
  * ①④ 는 도구가 없어 줄 자체가 서지 않는다.
  */
-function ToolsRow({ step, source = true }: { step: Step; source?: boolean }) {
+function ToolsRow({ step }: { step: Step }) {
   if (step === 2)
     return (
       <div className={st.reviewNavigation} aria-label="지면 도구">
-        {source && <SourcePicker />}
-        {source && <SourceGrade />}
+        <SourcePicker />
+        <SourceGrade />
         <PageTools rotate zoom />
         <span className={st.divider} />
         <BulkActions digitize={false} />
@@ -285,8 +289,8 @@ function ToolsRow({ step, source = true }: { step: Step; source?: boolean }) {
   if (step === 3)
     return (
       <div className={st.reviewNavigation} aria-label="문항 검수 이동">
-        {source && <SourcePicker />}
-        {source && <SourceGrade />}
+        <SourcePicker />
+        <SourceGrade />
         {/* 회전은 없다 — 검수 단계에서 돌리면 이 쪽의 영역·인식 결과가 지워진다. */}
         <PageTools rotate={false} zoom={false} />
         <CropNav />
@@ -301,125 +305,25 @@ function ToolsRow({ step, source = true }: { step: Step; source?: boolean }) {
 
 /* ── 네 가지 안 ───────────────────────────────────────────────────────── */
 
-/** 현행 — 세 가지 꼴이 섞여 있다. */
-function Now({ step }: { step: Step }) {
-  if (step === 1)
-    return (
-      <>
-        <WorkspacePageHeader
-          title="내 자료로 만드는 문제"
-          description={STEP_DESC[1]}
-        >
-          <StepActions step={1} />
-        </WorkspacePageHeader>
-        <div className={st.workflow}>
-          <nav className={st.steps} aria-label="제작 단계">
-            {([1, 2, 3] as const).map((index) => (
-              <button
-                key={index}
-                type="button"
-                aria-current={index === 1 ? "step" : undefined}
-              >
-                <span className={st.stepNumber}>{index}</span>
-                {STEP_NAME[index as Step]}
-              </button>
-            ))}
-          </nav>
-          <span className={st.localBadge}>
-            <Icon name="file" />
-            로컬 작업
-          </span>
-        </div>
-      </>
-    );
-  if (step === 4)
-    return (
-      <WorkspacePageHeader title="시험지 구성하기" description={STEP_DESC[4]}>
-        <button type="button" className={ws.secondaryButton}>
-          <span aria-hidden="true">←</span> 이전 검토 단계
-        </button>
-        <StepActions step={4} />
-      </WorkspacePageHeader>
-    );
-  return (
-    <>
-      <div className={st.editorBar} data-studio-band>
-        <div className={st.editorTabs}>
-          <h1>자료 제작</h1>
-          <StepTabs step={step} count={3} />
-        </div>
-        {step === 3 && (
-          <div className={st.bandTools} data-studio-band-tools>
-            <SourcePicker />
-            <SourceGrade />
-          </div>
-        )}
-        <div className={st.editorTools}>
-          <StepActions step={step} />
-        </div>
-      </div>
-      {step === 2 ? (
-        /*
-         * 현행 ② 의 도구 줄은 캔버스 «안»에 있어 검수 패널(320px)만큼 좁다 — 실측 1516px 에서
-         * 1170px. 여기서도 같은 폭으로 세워야 «1280px 에서 두 줄로 꺾인다»가 그대로 나온다.
-         * (③ 은 검수 패널이 숨어 전폭 1490px 이다 — 같은 조각인데 폭이 갈린다.)
-         */
-        <div className={`${st.canvasToolbar} canvasWidth`}>
-          <SourcePicker />
-          <SourceGrade />
-          <PageTools rotate zoom />
-          <BulkActions digitize={false} />
-          <button type="button" className={st.preciseButton}>
-            영역 지정
-          </button>
-        </div>
-      ) : (
-        <div className={st.reviewNavigation} aria-label="문항 검수 이동">
-          <PageTools rotate zoom={false} />
-          <CropNav />
-          <span className={st.divider} />
-          <BulkActions digitize />
-          <Strip />
-          <span className={st.reviewProgress}>2문항 검수 완료</span>
-        </div>
-      )}
-    </>
-  );
-}
-
 /**
  * 안 A — 얇은 띠 하나로 통일. 제목 줄은 네 단계가 똑같다.
  * `band` 가 참이면 파일·학년을 띠에 남긴다(안 A2 — 트랙 35 가 검수 단계에 둔 자리 그대로).
  */
-function PlanA({
-  step,
-  hint,
-  band,
-}: {
-  step: Step;
-  hint?: boolean;
-  band?: boolean;
-}) {
-  const inBand = Boolean(band) && (step === 2 || step === 3);
+function PlanA({ step, hint }: { step: Step; hint?: boolean }) {
   return (
     <>
-      <div className={st.editorBar} data-studio-band>
-        <div className={st.editorTabs}>
-          <h1>자료 제작</h1>
-          <StepTabs step={step} count={4} />
-        </div>
-        {inBand && (
-          <div className={st.bandTools} data-studio-band-tools>
-            <SourcePicker />
-            <SourceGrade />
-          </div>
-        )}
-        <div className={st.editorTools}>
-          <StepActions step={step} />
-        </div>
-      </div>
+      <StudioStepBar
+        step={(["upload", "crop", "review", "export"] as const)[step - 1]}
+        cropCount={CROPS}
+        pickedCount={PICKED}
+        canCrop
+        canReview
+        onStep={() => {}}
+      >
+        <StepActions step={step} />
+      </StudioStepBar>
       {hint && <p className="stepHint">{STEP_DESC[step]}</p>}
-      <ToolsRow step={step} source={!inBand} />
+      <ToolsRow step={step} />
     </>
   );
 }
@@ -447,15 +351,13 @@ function PlanB({ step }: { step: Step }) {
 /* ── 화면 ─────────────────────────────────────────────────────────────── */
 
 const PLAN_NAME: Record<Plan, string> = {
-  now: "현행 — 세 꼴이 섞여 있다",
-  A: "안 A — 얇은 띠로 통일(도구는 모두 둘째 줄)",
-  A2: "안 A2 — 얇은 띠로 통일(파일·학년은 띠에 남긴다)",
+  A: "안 A — 얇은 띠로 통일(도구는 모두 둘째 줄) · **지어진 것**",
   B: "안 B — 큰 제목으로 통일",
   C: "안 C — 섞기(설명 줄은 처음 들어왔을 때만)",
 };
 
 function Block({ plan, step }: { plan: Plan; step: Step }) {
-  const editing = plan === "now" ? step === 2 || step === 3 : step !== 1;
+  const editing = step !== 1;
   return (
     <section
       className={`${st.studio} ${editing ? st.editing : ""} ${step === 3 ? st.reviewMode : ""}`}
@@ -463,12 +365,10 @@ function Block({ plan, step }: { plan: Plan; step: Step }) {
       data-step={step}
       aria-label={`${PLAN_NAME[plan]} · ${STEP_NAME[step]}`}
     >
-      {plan === "now" ? (
-        <Now step={step} />
-      ) : plan === "B" ? (
+      {plan === "B" ? (
         <PlanB step={step} />
       ) : (
-        <PlanA step={step} hint={plan === "C"} band={plan === "A2"} />
+        <PlanA step={step} hint={plan === "C"} />
       )}
     </section>
   );
@@ -478,7 +378,7 @@ function Page() {
   const params = new URLSearchParams(location.search);
   const bare = params.get("bare") === "1";
   const only = params.get("plan") as Plan | null;
-  const plans: Plan[] = only ? [only] : ["now", "A", "A2", "B", "C"];
+  const plans: Plan[] = only ? [only] : ["A", "B", "C"];
   return (
     <main className="fixtureRoot">
       {plans.map((plan) => (

@@ -297,7 +297,10 @@ for (const mobile of [false, true]) {
       .getByRole("button", { name: "이전 페이지", exact: true })
       .click();
     await expect(navigation.getByRole("status")).toHaveText("1 / 2쪽");
-    await page.getByRole("button", { name: "이전 검토 단계" }).click();
+    await page
+      .getByRole("navigation", { name: "제작 단계 이동" })
+      .getByRole("button", { name: /^OCR · 디지털화/ })
+      .click();
     await expect(page.getByText("검토 단계로 돌아왔습니다.")).toBeVisible();
   });
 }

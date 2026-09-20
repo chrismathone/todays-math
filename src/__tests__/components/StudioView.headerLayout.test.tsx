@@ -158,7 +158,10 @@ async function openStudio(
 
 /** 검수 단계 둘째 줄 — 쪽 이동·문제 이동이 함께 사는 자리. */
 const reviewRow = () => screen.getByLabelText("문항 검수 이동");
-/** 검수 단계 제목 줄의 파일·학년·전체 작업 묶음. */
+/**
+ * 파일 고르는 칸 — 안 A(원장님 2026-09-21)로 제목 줄에서 **둘째 줄**로 내려왔다.
+ * 표(`data-studio-band-tools`)가 그 칸을 따라간다.
+ */
 const bandTools = (container: HTMLElement) =>
   container.querySelector<HTMLElement>("[data-studio-band-tools]");
 
@@ -309,8 +312,9 @@ describe("⑺ 학년은 확인이 필요할 때만 드러낸다", () => {
   });
 });
 
+// 원장님 2026-09-21 안 A 확정 — 탭은 넷이 됐다(「시험지 구성」이 늘었다).
 describe("⑻ 단계 표시는 어느 단계에서든 «지금 여기»를 보인다", () => {
-  it("잘라내기 단계에서 세 단계가 모두 보이고 현재만 눌려 있다", async () => {
+  it("잘라내기 단계에서 네 단계가 모두 보이고 현재만 눌려 있다", async () => {
     await openStudio([crop("c1")], { step: "crop" });
     const tabs = screen.getByLabelText("제작 단계 이동");
     const pressed = within(tabs)
@@ -318,7 +322,7 @@ describe("⑻ 단계 표시는 어느 단계에서든 «지금 여기»를 보�
       .filter((button) => button.getAttribute("aria-pressed") === "true");
     expect(pressed).toHaveLength(1);
     expect(pressed[0]).toHaveAccessibleName(/문제&도형 잘라내기/);
-    expect(within(tabs).getAllByRole("button")).toHaveLength(3);
+    expect(within(tabs).getAllByRole("button")).toHaveLength(4);
   });
 
   it("검수 단계에서도 현재 단계가 드러난다", async () => {

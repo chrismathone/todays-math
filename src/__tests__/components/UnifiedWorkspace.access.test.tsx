@@ -422,9 +422,18 @@ describe("per-account workspace menu access", () => {
     render(
       <UnifiedWorkspace initialData={initialData} allowedMenus={["export"]} />,
     );
+    // 안 A(2026-09-21) — 큰 제목 대신 같은 띠다. 자료 제작을 못 쓰는 계정이면
+    // 앞 세 탭은 아예 서지 않고 제목도 「시험지 구성」이 된다.
     expect(
-      await screen.findByRole("heading", { name: "시험지 구성하기" }),
+      await screen.findByRole("heading", { name: "시험지 구성" }),
     ).toBeVisible();
+    expect(
+      within(
+        screen.getByRole("navigation", { name: "제작 단계 이동" }),
+      ).getAllByRole("button"),
+    ).toHaveLength(1);
+    for (const name of ["원본 가져오기", "문제&도형 잘라내기"])
+      expect(screen.queryByRole("button", { name })).not.toBeInTheDocument();
     expect(
       screen.queryByRole("button", { name: "문제은행에서 담기" }),
     ).not.toBeInTheDocument();

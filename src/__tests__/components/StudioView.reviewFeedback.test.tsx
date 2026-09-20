@@ -487,19 +487,23 @@ describe("6 · 편집창 확대는 원장님 선택에만 따른다(2026-09-21 �
     expect(focused()).toBe(false);
   });
 
-  // 원장님 2026-09-21 재배치 — 쪽 이동이 제목 줄에서 둘째 줄로 내려가고, 전체 작업 셋이
-  // 제목 줄로 올라갔다(트랙 35). 두 줄이라는 뼈대는 그대로다.
-  it("위 띠는 두 줄 — 제목 줄에 파일·학년, 둘째 줄에 쪽·문제 이동과 전체 작업·진행 요약", async () => {
+  // 원장님 2026-09-21 안 A 확정 — 제목 줄은 네 단계가 똑같고(제목·탭 넷·단계 단추),
+  // 파일·학년을 **포함한** 모든 도구가 둘째 줄로 내려갔다. 두 줄이라는 뼈대는 그대로다.
+  it("위 띠는 두 줄 — 제목 줄에 탭과 단계 단추, 둘째 줄에 파일·학년·쪽·문제 이동과 전체 작업·진행 요약", async () => {
     await openStudio(twoCrops(), { step: "review" });
     const title = screen.getByRole("heading", { name: "자료 제작" });
     const band = title.closest("[data-studio-band]") as HTMLElement;
     expect(band).not.toBeNull();
     for (const name of ["원본 파일", "시험지 학년"])
-      expect(within(band).getByRole("combobox", { name })).toBeInTheDocument();
+      expect(within(band).queryByRole("combobox", { name })).toBeNull();
     expect(
       within(band).getByRole("button", { name: "편집창 확대" }),
     ).toBeInTheDocument();
     const second = screen.getByLabelText("문항 검수 이동");
+    for (const name of ["원본 파일", "시험지 학년"])
+      expect(
+        within(second).getByRole("combobox", { name }),
+      ).toBeInTheDocument();
     expect(
       within(second).getByRole("combobox", { name: "페이지 선택" }),
     ).toBeInTheDocument();
@@ -523,9 +527,10 @@ describe("6 · 편집창 확대는 원장님 선택에만 따른다(2026-09-21 �
 });
 
 describe("6 · 확대를 풀어도 제목 줄이 꺾인 만큼 작업 칸이 양보한다", () => {
-  it("검수 단계의 제목 줄 실제 높이를 --studio-band-height 로 알린다", async () => {
+  it("작업실 머리(제목 줄 + 둘째 줄)의 실제 높이를 --studio-band-height 로 알린다", async () => {
     await openStudio([crop("p1")], { step: "review" });
-    const band = document.querySelector("[data-studio-band]") as HTMLElement;
+    // 안 A(2026-09-21) — 둘째 줄이 캔버스 밖으로 나오면서 재는 대상이 «머리 칸 전체»가 됐다.
+    const band = document.querySelector("[data-studio-header]") as HTMLElement;
     Object.defineProperty(band, "offsetHeight", {
       configurable: true,
       value: 144,

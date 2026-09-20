@@ -476,9 +476,9 @@ test("edit-window zoom button is painted like the review next button in both sta
   expect(mock.errors).toEqual([]);
 });
 
-// 원장님 2026-09-21 «파일명을 그만큼 공간에 배정» — 쪽 이동과 전체 작업 셋이 둘째 줄로 내려간 자리를
-// 파일 이름이 쓴다(기본 200px, 남으면 460px 까지). 2026-09-19 의 108px 은 그 셋이 제목 줄에 함께 있을 때의
-// 값이었다. 제목 줄이 한 줄로 남는지는 그때와 같은 폭 1516 에서 잰다 — jsdom 은 flex 줄바꿈을 안 돈다.
+// 원장님 2026-09-21 «파일명을 그만큼 공간에 배정» — 파일 이름은 둘째 줄에서 남는 폭을 먼저 먹는다
+// (기본 200px, 남으면 460px 까지). 안 A 로 파일 칸이 제목 줄에서 **둘째 줄**로 내려갔다.
+// 제목 줄이 한 줄(44px)로 남는지는 그때와 같은 폭 1516 에서 잰다 — jsdom 은 flex 줄바꿈을 안 돈다.
 test("review band stays on one row with a wider file picker", async ({
   page,
 }, testInfo) => {
@@ -488,21 +488,27 @@ test("review band stays on one row with a wider file picker", async ({
   await detect(page);
   await review(page);
   const band = page.locator("[data-studio-band]");
+  const header = page.locator("[data-studio-header]");
+  const row = page.locator("[data-studio-tool-row]");
   const studio = page.locator('section[aria-label="문제 제작 스튜디오"]');
-  const picker = band.getByRole("combobox", { name: "원본 파일", exact: true });
+  const picker = row.getByRole("combobox", { name: "원본 파일", exact: true });
   const basis = () =>
     picker.evaluate(
       (select) => getComputedStyle(select.parentElement!).flexBasis,
     );
   const height = () => band.evaluate((element) => element.offsetHeight);
+  // 알리는 값은 머리 칸 «전체»(제목 줄 + 둘째 줄)다 — 작업 칸 높이가 그만큼 뺀다.
   const bandVar = () =>
     studio.evaluate((element) =>
       element.style.getPropertyValue("--studio-band-height"),
     );
+  const headerHeight = () => header.evaluate((element) => element.offsetHeight);
   // 검수 확대 전 — 검수도 확대로 시작하지 않는다(원장님 2026-09-21).
   expect(await basis()).toBe("200px");
   await expect.poll(height).toBe(44);
-  await expect.poll(bandVar).toBe("44px");
+  await expect
+    .poll(async () => `${await headerHeight()}px`)
+    .toBe(await bandVar());
   // 검수 확대 중 — 제목 줄은 그대로 한 줄이다.
   await band.getByRole("button", { name: "편집창 확대", exact: true }).click();
   await expect(
@@ -540,7 +546,7 @@ test("review band stays on one row with a wider file picker", async ({
 
   console.log("[파일 이름 칸]", JSON.stringify(fit));
   expect(fit.보이는글자).toBeGreaterThan(0);
-  await band.screenshot({ path: testInfo.outputPath("band-name.png") });
+  await header.screenshot({ path: testInfo.outputPath("band-name.png") });
   expect(mock.errors).toEqual([]);
 });
 
