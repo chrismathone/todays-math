@@ -62,6 +62,7 @@ export default function ChoiceLayoutClient({
       download={noop}
       toggle={noop}
       move={noop}
+      reorder={noop}
       navigate={noop}
     />
   );
