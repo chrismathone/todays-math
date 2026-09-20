@@ -1,0 +1,26 @@
+{
+ "version":"graph-1", "xRange":[0,100], "yRange":[0,52], "width":600, "height":312, "axes":false,
+ "polygons":[
+   {"points":[[4,20],[20,20],[17,32],[7,32]]},
+   {"points":[[32,20],[50,20],[46,32],[28,32]]},
+   {"points":[[58,34],[80,34],[80,48],[58,48]]},
+   {"points":[[66,10],[76,20],[66,30],[56,20]]},
+   {"points":[[86,20],[98,20],[98,32],[86,32]]}],
+ "segments":[
+   {"from":[20,26],"to":[27,26],"arrow":true},
+   {"from":[48,32],"to":[60,34],"arrow":true},
+   {"from":[45,22],"to":[58,21],"arrow":true},
+   {"from":[76,20],"to":[88,24],"arrow":true},
+   {"from":[80,40],"to":[90,33],"arrow":true}],
+ "labels":[
+   {"at":[12,26],"text":"사다리꼴","anchor":"middle"},
+   {"at":[39,26],"text":"평행사변형","anchor":"middle"},
+   {"at":[69,41],"text":"직사각형","anchor":"middle"},
+   {"at":[66,20],"text":"마름모","anchor":"middle"},
+   {"at":[92,26],"text":"정사각형","anchor":"middle"},
+   {"at":[24,26],"text":"㉠","dy":-10,"anchor":"middle"},
+   {"at":[54,34],"text":"㉡","dy":-8,"anchor":"middle"},
+   {"at":[51,20],"text":"㉢","dy":14,"anchor":"middle"},
+   {"at":[82,22],"text":"㉣","dy":14,"anchor":"middle"},
+   {"at":[85,37],"text":"㉤","dy":-8,"anchor":"middle"}]
+}
