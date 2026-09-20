@@ -27,6 +27,11 @@ import {
   isShapeCommand,
   shapeCommandLabel,
 } from "./figureShapeOps";
+import {
+  applyLineCircleCommand,
+  isLineCircleCommand,
+  lineCircleCommandLabel,
+} from "./figureLineCircleOps";
 import { figureAngleKinds } from "./figureObjectGroups";
 import {
   applyPoint,
@@ -257,19 +262,23 @@ export function applyFigureEdits(
     command: FigureEditCommand,
     label: string,
   ): { svg: string; text: string } => {
-    if (isShapeCommand(command))
-      return applyShapeCommand(command, {
-        svg: current,
-        sent: svg,
-        before,
-        viewBox: figure.viewBox,
-        label,
-        nameOf,
-        resolve,
-        inside,
-        reject,
-        edit: applyFigureEdits,
-      });
+    // 도형·변환과 직선·원은 같은 문맥을 쓴다(figureShapeOps.ts `FigureShapeContext`)
+    const geometry = () => ({
+      svg: current,
+      sent: svg,
+      before,
+      viewBox: figure.viewBox,
+      label,
+      nameOf,
+      resolve,
+      inside,
+      reject,
+      edit: applyFigureEdits,
+    });
+    if (isShapeCommand(command)) return applyShapeCommand(command, geometry());
+    // 연장 · 평행선 · 수직이등분선 · 각의 이등분선 · 접선 · 외접원 · 내접원 · 원의 교점 · 호의 중점
+    if (isLineCircleCommand(command))
+      return applyLineCircleCommand(command, geometry());
     // 치수 · 같은 길이 표시 · 평행 표시 — 엔진과 같은 모양(figureMarks.ts)
     if (isFigureMarkCommand(command)) {
       const mark = addFigureMark(current, command, {
@@ -569,6 +578,8 @@ export function applyFigureEdits(
     } else if (command.op === "mirror") label = targetsLabel(command.targets);
     else if (isShapeCommand(command))
       label = shapeCommandLabel(command, before, nameOf);
+    else if (isLineCircleCommand(command))
+      label = lineCircleCommandLabel(command);
     else if (isFigureMarkCommand(command)) label = figureMarkLabel(command);
     else
       label =

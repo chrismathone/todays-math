@@ -32,6 +32,15 @@ Commands (include only the fields shown; omit optional fields you do not change)
 {"op":"addPerpendicular","from":P,"onto":[P,P],"foot":"H"} — the perpendicular from a point to a line with its right-angle mark; the code finds the foot (foot names it, optional).
 {"op":"addMidpoint","from":P,"to":P,"label":"M"} — a dot at the midpoint.
 {"op":"addIntersection","lines":[[P,P],[P,P]],"label":"O"} — a dot where the two lines cross.
+{"op":"extendLine","from":P,"to":P,"length":number,"until":P|[P,P]} — carry a drawn segment on past "to" as one more segment in the same style; give length, or until a point or a line it must reach; with neither it runs about a third further, inside the frame.
+{"op":"addParallel","through":P,"to":[P,P],"length":number} — a segment through the point, parallel to the line [P,P]; by default that same segment slid across, so it has the same length.
+{"op":"addPerpendicularBisector","from":P,"to":P,"label":"M"} — the perpendicular bisector of the segment, with its right-angle mark; label puts a named dot at the midpoint.
+{"op":"addAngleBisector","at":P,"from":P,"to":P,"until":[P,P],"label":"D"} — the ray halving angle from-at-to; until stops it on that line (e.g. the opposite side), label names a dot there.
+{"op":"addTangent","circle":P,"at":P,"from":P,"labels":["S","T"],"rightAngle":true} — a tangent of the circle centred at circle: at a point on it (one), or from a point outside (two); the code finds the tangency points and labels names them; rightAngle marks the right angle with the radius.
+{"op":"addCircumcircle","points":[P,P,P],"label":"O"} — the circle through the three points; the code finds the centre, label names a dot there.
+{"op":"addIncircle","points":[P,P,P],"label":"I"} — the circle inside triangle PPP touching all three sides; the code finds the centre.
+{"op":"addCircleIntersection","circle":P,"other":P,"line":[P,P],"labels":["P","Q"]} — dots where the circle (centre circle) meets another circle (centre other) or the line; the code finds them.
+{"op":"addArcMidpoint","center":P,"from":P,"to":P,"via":P,"label":"M"} — a dot half way along the arc from→to about center, the shorter way; give via for the arc through that point.
 {"op":"addDimension","from":P,"to":P,"text":"7","side":"out"|"in"|"above"|"below"|"left"|"right"} — a dashed curved length mark with its value, like the printed ones; side is where it bulges (default out, away from the figure).
 {"op":"addTick","from":P,"to":P,"count":1|2|3} — equal-length tick marks across the middle of a drawn segment; equal segments get the same count.
 {"op":"addParallelMark","from":P,"to":P,"count":1|2|3} — parallel marks (>) on a drawn segment pointing from → to; parallel segments get the same count and direction.
