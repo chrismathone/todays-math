@@ -17,6 +17,7 @@ import {
   figureSvgSize,
   figureSvgViewBoxWidth,
 } from "@/lib/figure/figureSvgFrame";
+import { mmToCssPx } from "@/lib/figurePrintSize";
 import { renderFigureSpec } from "@/lib/figure/renderFigureSpec";
 import type { SvgLabel } from "@/lib/figure/svgLabels";
 import { labelTexts, stripLabels, svgLabels } from "@/lib/figure/svgLabels";
@@ -2401,12 +2402,18 @@ describe.skipIf(!hasEngine)("[초등 그림] 그래프 짝 (chartPair)", () => {
     //    `viewBox 405` 를 넣었는데, 그 폭이 380 을 넘는 짝만 걸려서 **실제 짝 53장 중
     //    17장(32%)이 mid 로 떨어지고 있었다.** 폭을 넣으면 그 결함이 되살아난다.
     const pairSvg = '<svg viewBox="0 0 405 206"><desc>chartPair</desc>';
+    // 폭은 **화면·인쇄가 같은 mm** 다(2026-09-20) — 화면 전용 px 값은 없앴다.
+    // `FIGURE_SVG_PAIR_MAX_PX`(364px) 는 파이썬 `PAIR_FRAME_PX` 와 맞추는 값으로 남는다.
     expect(figureSvgFrameClass(pairSvg)).toContain(
-      `max-w-[${FIGURE_SVG_PAIR_MAX_PX}px]`,
+      `max-w-[${FIGURE_SVG_PAIR_MM}mm]`,
     );
-    expect(figureSvgFrameClass(pairSvg)).toContain(
-      `print:max-w-[${FIGURE_SVG_PAIR_MM}mm]`,
-    );
+    // 🔴 파이썬이 「눈금 글자가 본문 이상인가」를 판정하는 폭(364px)보다 **실제로
+    //    그려지는 폭(97mm = 366.61px)이 작으면 안 된다** — 작으면 가드가 통과시킨
+    //    그림이 지면에서 작아진다(2026-08-23 이 파일이 겪은 바로 그 결함).
+    //    두 수는 1% 안이고, 그려지는 쪽이 넉넉한 방향이라야 한다.
+    const drawn = mmToCssPx(FIGURE_SVG_PAIR_MM);
+    expect(drawn).toBeGreaterThanOrEqual(FIGURE_SVG_PAIR_MAX_PX);
+    expect(drawn / FIGURE_SVG_PAIR_MAX_PX).toBeLessThan(1.01);
   });
 
   it("짝 등급 띠는 **오늘 비어 있다** — 짝 말고는 폭이 안 바뀐다", async () => {
@@ -3635,7 +3642,7 @@ describe.skipIf(!hasEngine)(
       // TS 가 그것을 본다
       expect(figureSvgSize(r.svg)).toBe("pair");
       expect(figureSvgFrameClass(r.svg)).toContain(
-        `max-w-[${FIGURE_SVG_PAIR_MAX_PX}px]`,
+        `max-w-[${FIGURE_SVG_PAIR_MM}mm]`,
       );
     });
 

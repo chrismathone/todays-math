@@ -2054,6 +2054,44 @@ export const ITEMS: PrintCheckItem[] = [
       "학습지)에 넣고 문제지와 정답지(해설 포함)를 함께 뽑는다.",
     changedOn: "2026-09-19",
   },
+  {
+    id: "studio-svg-figure-width",
+    title:
+      "작업실이 다시 그린 도형이 지면·HWPX 에서 제 크기로 나오나 — 치수 숫자가 본문 글자만큼 읽히나",
+    changed:
+      "원장님 2026-09-20 «검수 단계에서의 도형과 텍스트 크기 비례가, hwpx로 내보내기했을때의 도형과 텍스트 크기 " +
+      "비례가 일치하지 않음». 작업실이 AI 로 다시 그린 SVG 도형은 `figureUrls` 의 data URL 로 실려 **스캔 그림 " +
+      "자**(253dpi 환산 · 바닥 28mm)를 타고 있었다. 이등변삼각형 ABC(치수 5·3·4, viewBox 236.7) 실측으로 검수 " +
+      "화면 236.6px 이던 것이 지면·HWPX 에서 **105.8px(28mm)** — 글자 대비 2.2배 작았고 치수 숫자가 16.8px → " +
+      "7.5px 로 본문(13.5px)보다 작아졌다. 이제 엔진 SVG 자(`figureSvgFrame` 37/64/70/97mm)를 타 **64mm(241.9px)** " +
+      "로 나간다. 같이 고친 것 둘: ① 등급 틀의 폭을 화면 px·인쇄 mm 두 벌로 적던 것을 **mm 하나**로 합쳤다 — " +
+      "`wide` 등급이 화면·HWPX 360px 대 종이 70mm(264.6px)로 36% 갈려 있었다. ② `viewBox` 원점이 0 이 아닌 " +
+      "그림(작업실 저장본이 그렇다)을 «못 읽음»으로 흘려 통째로 `wide` 로 떨어뜨리던 것을 읽게 했다.",
+    look:
+      "(제안) ① 작업실에서 도형을 다시 그린 문항을 인쇄하고, 도형 안 치수 숫자(5·3·4 같은 것)가 **본문 글자보다 " +
+      "작지 않은가** — 작으면 불합격. ② 같은 문항을 HWPX 로 내보내 한글에서 열었을 때 도형 크기가 인쇄물과 같은가. " +
+      "③ 초등 엔진 도형(수 카드·각·연산 흐름)이 예전과 같은 크기인가 — 37mm·64mm 등급은 각각 140px·240px 과 1% " +
+      "안이라 눈에 띄면 불합격. ④ 아주 넓은 엔진 도형이 문항 열을 안 넘고 70mm 안에 서는가.",
+    lookFromSource: false,
+    evidence: [
+      "src/lib/figurePrintSize.ts (figureSvgFromUrl · figureSvgUrlPrintMm · parseFigureDimensions)",
+      "src/lib/figure/figureSvgFrame.ts (FRAME 을 mm 한 단위로 · viewBox 원점)",
+      "src/__tests__/unit/figureSvgDataUrlWidth.test.ts",
+      "e2e/hwpx-figure-scale/scale.spec.ts (검수·화면·인쇄·HWPX 네 자리 실측)",
+    ],
+    scale:
+      "작업실에서 SVG 로 다시 그린 도형 **전부**(그 경로는 전에 예외 없이 28mm~70mm 스캔 자를 탔다) · " +
+      "화면 폭이 바뀌는 것은 엔진 인라인 SVG 중 `wide` 등급(360px → 264.6px)뿐이고 compact·mid·pair 는 1% 안이다.",
+    status: "형태미확정",
+    needs:
+      "작업실에서 도형이 있는 문항을 하나 인식·재작도한 뒤 시험지에 넣어, 문제지를 인쇄하고 같은 시험지를 HWPX 로 " +
+      "내보내 한글에서 함께 연다. 초등 엔진 문항(수 카드·각)도 같은 지면에 한 문항 넣어 예전 크기와 견준다.",
+    blockedBy:
+      "화면에서 `wide` 등급 엔진 도형이 360px → 264.6px(70mm)로 줄어든다 — 종이로 나가던 폭 그대로지만 **화면 " +
+      "모양이 바뀌는 변경**이라 원장님 확인이 필요하다(절대 규칙 1). 작업실 도형이 64mm 로 커지는 쪽은 원장님이 " +
+      "직접 지적하신 결함의 수정이다.",
+    changedOn: "2026-09-20",
+  },
 ];
 
 /** 한 번에 다 보려면 어떤 시험지를 뽑아야 하나. */

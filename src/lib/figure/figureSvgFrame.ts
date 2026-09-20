@@ -71,15 +71,26 @@ const PAIR_DESC = /<desc>\s*chartPair\s*<\/desc>/;
 
 export type FigureSvgSize = "compact" | "mid" | "wide" | "pair";
 
-const VIEWBOX_WH = /viewBox="0\s+0\s+([\d.]+)\s+([\d.]+)"/;
+/**
+ * `viewBox` 의 **폭·높이**. 원점은 0 이 아니어도 된다.
+ *
+ * 🔴 예전 정규식은 `viewBox="0 0 W H"` 만 읽었다. 엔진이 내는 그림은 `0 0` 으로 시작하도록
+ *    `figure_quality._validate_viewbox` 가 강제하니 그것으로 충분해 보였지만, **작업실이
+ *    저장 직전에 부르는 `fitFigureViewport` 는 라벨까지 감싸느라 음수 원점**을 쓴다
+ *    (`viewBox="-10.4 -10.4 236.654 249.324"`). 그 그림들은 「못 읽었다」가 되어
+ *    `figureSvgSize` 의 `wide`(제일 큰 등급)로 조용히 미끄러졌다 — 실패가 기본값으로
+ *    번지는 꼴이다. 원점과 구분자(공백·쉼표)를 같이 받는다.
+ */
+const VIEWBOX_WH =
+  /viewBox="\s*(-?[\d.]+)[\s,]+(-?[\d.]+)[\s,]+([\d.]+)[\s,]+([\d.]+)\s*"/;
 
 export function figureSvgViewBox(
   svg: string,
 ): { width: number; height: number } | null {
   const match = VIEWBOX_WH.exec(svg);
   if (!match) return null;
-  const width = Number(match[1]);
-  const height = Number(match[2]);
+  const width = Number(match[3]);
+  const height = Number(match[4]);
   if (!Number.isFinite(width) || width <= 0) return null;
   if (!Number.isFinite(height) || height <= 0) return null;
   return { width, height };
@@ -104,23 +115,37 @@ export function isCompactFigureSvg(svg: string): boolean {
   return figureSvgSize(svg) !== "wide";
 }
 
+/**
+ * 등급별 틀. **폭은 화면·인쇄가 같은 수(mm)** 다.
+ *
+ * 🔴 예전에는 화면을 px, 인쇄를 mm 로 따로 적었다(`max-w-[360px] print:max-w-[70mm]`).
+ *    compact·mid·pair 는 두 수가 1% 안이라 아무도 몰랐지만 **`wide` 는 화면 360px ·
+ *    종이 70mm(264.57px)로 36% 갈렸다.** 그런데 HWPX 내보내기는 미리보기 DOM 을
+ *    **화면 매체 그대로** 복제해 재므로(`hwpxLayout.collectHwpxLayout`) HWPX 가 화면
+ *    편에 서고 PDF·실제 인쇄가 반대편에 섰다 — 「미리보기와 내보낸 것이 다르다」의
+ *    한 갈래다(2026-09-20 실측: 화면·HWPX 360px vs PDF 264.57px).
+ *
+ *    mm 하나로 적으면 매체가 갈라질 자리가 없다. 확정된 수는 **인쇄 폭**
+ *    (`FIGURE_SVG_PRINT_MM`)이므로 화면이 그쪽으로 맞춘다 — 미리보기는 지면을
+ *    보여 주는 물건이기 때문이다.
+ */
 const FRAME: Record<FigureSvgSize, string> = {
   compact:
-    "mt-3 max-w-[140px] print:max-w-[37mm] [&>svg]:h-auto [&>svg]:w-full print:break-inside-avoid",
-  mid: "mt-3 max-w-[240px] print:max-w-[64mm] [&>svg]:h-auto [&>svg]:w-full print:break-inside-avoid",
-  wide: "mt-3 max-w-[360px] print:max-w-[70mm] [&>svg]:h-auto [&>svg]:w-full print:break-inside-avoid",
-  // 짝은 문항 열을 통째로 쓴다 — 위 상수와 같은 수여야 한다(364px / 97mm).
-  pair: "mt-3 max-w-[364px] print:max-w-[97mm] [&>svg]:h-auto [&>svg]:w-full print:break-inside-avoid",
+    "mt-3 max-w-[37mm] [&>svg]:h-auto [&>svg]:w-full print:break-inside-avoid",
+  mid: "mt-3 max-w-[64mm] [&>svg]:h-auto [&>svg]:w-full print:break-inside-avoid",
+  wide: "mt-3 max-w-[70mm] [&>svg]:h-auto [&>svg]:w-full print:break-inside-avoid",
+  // 짝은 문항 열을 통째로 쓴다 — 위 상수와 같은 수여야 한다(97mm = 366.6px).
+  pair: "mt-3 max-w-[97mm] [&>svg]:h-auto [&>svg]:w-full print:break-inside-avoid",
 };
 
 /**
- * 등급별 **인쇄 폭(mm)**. 아래 `FRAME` 의 `print:max-w-[Xmm]` 과 **같은 수여야 한다** —
- * Tailwind 는 클래스 문자열을 글자 그대로 훑으므로 그쪽을 이 표에서 만들 수 없다.
- * 그래서 `figureSvgFrame.test.ts` 가 둘을 대조한다(어긋나면 빨개진다).
+ * 등급별 **폭(mm)** — 화면·인쇄·HWPX 가 **모두 이 수**다. 아래 `FRAME` 의
+ * `max-w-[Xmm]` 과 같은 수여야 한다 — Tailwind 는 클래스 문자열을 글자 그대로 훑으므로
+ * 그쪽을 이 표에서 만들 수 없다. 그래서 `figureSvgFrame.test.ts` 가 둘을 대조한다.
  *
- * 🔴 **넘침 판정(`printOverflow.estimateFigureSvgPx`)이 이 표를 읽는다.** 화면 px
- * (140/240/360)가 아니라 **인쇄 mm** 라야 한다 — `wide` 는 화면 360px 인데 종이에서는
- * 70mm(264.57px)라 화면 값으로 재면 **36% 크게** 센다. 자는 종이를 재는 물건이다.
+ * 🔴 **넘침 판정(`printOverflow.estimateFigureSvgPx`)과 지면 컴포넌트가 같은 표를 읽는다.**
+ * 예전에는 화면만 px 로 따로 적어(140/240/360) `wide` 가 종이(70mm = 264.57px)와
+ * 36% 갈렸고, HWPX 는 화면 쪽에 서 있었다. 자는 종이를 재는 물건이다.
  */
 export const FIGURE_SVG_PRINT_MM: Record<FigureSvgSize, number> = {
   compact: 37,
