@@ -159,7 +159,7 @@ label.checkField {
 .orderHeading {
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  gap: 8px;
   padding-top: 12px;
   border-top: 1px solid #e7ecf4;
   margin: 12px 0;
@@ -167,10 +167,26 @@ label.checkField {
 .orderHeading h3 {
   font-size: var(--text-section, 18px);
   font-weight: 700;
+  /* 제목만 왼쪽에 남기고 문항 수·순서 초기화는 오른쪽으로 민다. */
+  margin-right: auto;
 }
 .orderHeading span {
   font-size: var(--text-caption, 12px);
   color: #61748f;
+  white-space: nowrap;
+}
+/* 「순서 초기화」 — 제목 줄의 보조 단추. 글자가 두 줄로 접히면 줄 높이가 흔들린다. */
+.orderReset {
+  flex-shrink: 0;
+  padding: 0 12px;
+  font-size: var(--text-caption, 12px);
+  white-space: nowrap;
+}
+.orderReset:disabled,
+.orderReset:disabled:hover {
+  background: #f7f9fc;
+  border-color: #e6ecf5;
+  color: #9dabc0;
 }
 .orderList {
   display: flex;
@@ -221,20 +237,47 @@ label.checkField {
   font-size: var(--text-caption, 12px);
   color: #61748f;
 }
+/*
+ * 한 줄에 선 단추 넷 — 원장님 2026-09-20 «위 아래 x 등 모든 버튼들 정렬할것 깔끔하게».
+ *
+ * 넷 다 `--control-height` 한 값으로 높이를 잡고 `align-items: center` 로 세로를 맞춘다.
+ * 칸이 좁아지면 **「원본 편집」이 먼저 줄고**(`flex: 0 1 auto` + 말줄임), ↑·↓·× 는
+ * 안 줄인다(`flex: 0 0 auto`) — 차례를 세우는 동안 계속 누르는 것이 그 셋이다.
+ */
 .orderActions {
   display: flex;
+  align-items: center;
   justify-content: end;
-  gap: 2px;
+  gap: 4px;
   grid-column: 2;
+  min-width: 0;
+  padding-bottom: 4px;
 }
 .orderActions button {
-  display: grid;
-  place-items: center;
-  width: 44px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex: 0 0 auto;
+  width: var(--control-height, 44px);
   height: var(--control-height, 44px);
   font-size: var(--text-body, 14px);
+  line-height: 1;
   color: #526b90;
   border-radius: var(--control-radius, 8px);
+}
+/* 글자 단추는 폭을 글자에 맞춘다 — 44px 정사각형에 갇히면 「원본 편집」이 찌그러진다. */
+.orderActions .orderEdit {
+  flex: 0 1 auto;
+  width: auto;
+  min-width: 0;
+  padding: 0 10px;
+  font-size: var(--text-caption, 12px);
+}
+.orderActions .orderEdit span {
+  min-width: 0;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
 }
 .orderActions button:hover:not(:disabled) {
   background: #e9effa;
@@ -243,6 +286,9 @@ label.checkField {
 .orderActions button:last-child:hover {
   background: #fae7e4;
   color: #b54331;
+}
+.orderActions button:disabled {
+  color: #b3bfd0;
 }
 .addMore {
   display: flex;

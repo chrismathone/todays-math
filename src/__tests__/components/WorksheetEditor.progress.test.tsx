@@ -52,6 +52,7 @@ const props = {
   download: vi.fn(),
   toggle: vi.fn(),
   move: vi.fn(),
+  reorder: vi.fn(),
   navigate: vi.fn(),
 };
 
