@@ -438,28 +438,32 @@ test("edit-window zoom button is painted like the review next button in both sta
    * 빈 값끼리 같아서 초록이 되지 않게 파란 바탕·흰 글자를 함께 적는다. 이 시험이 무는 것은
    * 띠 단추 규칙(흰 바탕·눌림 색)이 채운 단추의 색을 덮는 경우다.
    */
-  // 검수는 확대로 들어온다(시안 B) — 확대 중.
+  /*
+   * 검수도 확대로 시작하지 않는다 — 원장님 2026-09-21 «편집창 확대/축소도 자동으로 하지말고
+   * 사용자 선택에 놔둘것»(2026-09-19 시안 B 를 물렸다). 확대 전 상태를 기준으로 잰다.
+   */
+  const zoomIn = band.getByRole("button", { name: "편집창 확대", exact: true });
+  await expect(zoomIn).toHaveAttribute("aria-pressed", "false");
+  await settle();
+  const expected = await look(zoomIn);
+  expect(expected.background).toBe("rgb(49, 89, 223)");
+  expect(expected.color).toBe("rgb(255, 255, 255)");
+  expect(expected.border).toBe("1px rgb(49, 89, 223)");
+  await band.screenshot({ path: testInfo.outputPath("zoom-band.png") });
+
+  // 확대 중.
+  await zoomIn.click();
+  await settle();
   const zoomOut = band.getByRole("button", {
     name: "편집창 축소",
     exact: true,
   });
   await expect(zoomOut).toHaveAttribute("aria-pressed", "true");
-  await settle();
-  const expected = await look(zoomOut);
-  expect(expected.background).toBe("rgb(49, 89, 223)");
-  expect(expected.color).toBe("rgb(255, 255, 255)");
-  expect(expected.border).toBe("1px rgb(49, 89, 223)");
+  await expect.poll(() => look(zoomOut)).toEqual(expected);
   await band.screenshot({ path: testInfo.outputPath("zoom-band-focus.png") });
 
-  // 확대 전.
+  // 잘라내기 단계도 같은 띠의 같은 단추다 — 고른 상태는 단계를 오가도 남는다.
   await zoomOut.click();
-  await settle();
-  const zoomIn = band.getByRole("button", { name: "편집창 확대", exact: true });
-  await expect(zoomIn).toHaveAttribute("aria-pressed", "false");
-  await expect.poll(() => look(zoomIn)).toEqual(expected);
-  await band.screenshot({ path: testInfo.outputPath("zoom-band.png") });
-
-  // 잘라내기 단계도 같은 띠의 같은 단추다.
   await page
     .getByRole("button", { name: "문제&도형 잘라내기", exact: true })
     .click();
@@ -495,17 +499,17 @@ test("review band stays on one row with a wider file picker", async ({
     studio.evaluate((element) =>
       element.style.getPropertyValue("--studio-band-height"),
     );
-  expect(await basis()).toBe("200px");
-  // 검수 확대 중
-  await expect.poll(height).toBe(44);
-  // 검수 확대 풀림 — 두 줄이던 자리
-  await band.getByRole("button", { name: "편집창 축소", exact: true }).click();
-  await expect(
-    band.getByRole("button", { name: "편집창 확대", exact: true }),
-  ).toBeVisible();
+  // 검수 확대 전 — 검수도 확대로 시작하지 않는다(원장님 2026-09-21).
   expect(await basis()).toBe("200px");
   await expect.poll(height).toBe(44);
   await expect.poll(bandVar).toBe("44px");
+  // 검수 확대 중 — 제목 줄은 그대로 한 줄이다.
+  await band.getByRole("button", { name: "편집창 확대", exact: true }).click();
+  await expect(
+    band.getByRole("button", { name: "편집창 축소", exact: true }),
+  ).toBeVisible();
+  expect(await basis()).toBe("200px");
+  await expect.poll(height).toBe(44);
   // 칸이 좁아 파일 이름이 잘려도 title 로 다 보인다
   const name = await picker.evaluate(
     (select: HTMLSelectElement) => select.selectedOptions[0]?.text,
