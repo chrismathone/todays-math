@@ -11,6 +11,27 @@ export const NAMES: Record<string, string> = {
   text: "글자",
 };
 
+/**
+ * 원호 경로인가 — 한 원 위의 호 한 획(`M 시작 A r r 0 large sweep 끝`). 엔진의 부채꼴 호(figure_svg.arc)·
+ * 각 표시 호(figure_svg.angle_arc)·AI 가 더한 호(figureShapeOps `addArc`)가 다 이 꼴이다.
+ * 원장님 2026-09-20 «부채꼴의 호·AI 가 더한 호를 «호»라고 불러» — 그 «호»의 판정 한 자리다.
+ * 치수선의 두 조각 점선 곡선·베지어(Q·C)로 그린 자유 곡선은 «곡선/경로» 그대로다(`A` 가 없거나 획이 둘이라 걸리지 않는다).
+ * 타원 호(rx ≠ ry)도 한 원 위가 아니라 «곡선/경로» — 여유 2% 는 각 표시를 가르는 자리
+ * (figureObjectGroups.ts `arcAngleMark`)와 같은 값이다.
+ */
+export const isArcPath = (d: string | undefined): boolean => {
+  if (!d || !/^\s*M[^A-Za-z]*A[^A-Za-z]*$/.test(d)) return false;
+  const v = (d.match(/[-+]?(?:\d*\.\d+|\d+\.?\d*)(?:e[-+]?\d+)?/gi) ?? []).map(
+    Number,
+  );
+  // M x0 y0 A rx ry 기울기 large sweep x1 y1 — 아홉
+  if (v.length !== 9) return false;
+  const rx = Math.abs(v[2]),
+    ry = Math.abs(v[3]);
+  const r = (rx + ry) / 2;
+  return r > 0 && Math.abs(rx - ry) <= 0.02 * r;
+};
+
 /** 노란 점으로 바꿀 수 있는 다각형의 이름(`data-shape`) — figureShapeAdjust 의 모양 표와 같은 이름. */
 const SHAPE_NAMES: Record<string, string> = {
   parallelogram: "평행사변형",
@@ -44,7 +65,8 @@ export type FigureAngleKinds = ReadonlyMap<
  * 각 표시는 그 종류(직각·예각·둔각 — `angles`), 선분 위 표시는 «같은 길이 표시»·«평행 표시»(`angles`),
  * 함수 도구가 그린 곡선은 «함수 그래프», 글은 «수식»·«글자»,
  * 면(채우기 통·다각형 도구·안쪽 채우기가 만든 채운 영역, `data-face`)은 «면», 삼각형·평행사변형(`data-shape`)은
- * 그 이름, 나머지는 종류 이름.
+ * 그 이름, 한 원 위의 호(`isArcPath` — 부채꼴의 호·AI 가 더한 호)는 «호», 나머지는 종류 이름.
+ * 각 표시의 호도 같은 꼴이지만 `angles` 가 먼저라 «직각»·«예각»·«둔각»으로 남는다(원장님 2026-09-20).
  */
 export const objectName = (
   o: {
@@ -64,6 +86,8 @@ export const objectName = (
         : "글자"
       : o.attrs["data-face"] !== undefined
         ? "면"
-        : (SHAPE_NAMES[o.attrs["data-shape"] ?? ""] ??
-          NAMES[o.type] ??
-          o.type));
+        : o.type === "path" && isArcPath(o.attrs.d)
+          ? "호"
+          : (SHAPE_NAMES[o.attrs["data-shape"] ?? ""] ??
+            NAMES[o.type] ??
+            o.type));
