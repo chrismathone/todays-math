@@ -1,0 +1,39 @@
+/*
+ * 시안 화면의 겉옷 — 라벨과 칸 사이 여백만. 헤더 자체는 제품 CSS 모듈이 그린다.
+ * 하나 예외가 `.stepHint` 다: 안 C 의 «설명 줄»은 아직 제품에 없는 것이라
+ * WorkspacePageHeader.module.css 의 `.copy p` 와 같은 값으로 여기 둔다.
+ */
+body {
+  background: #eef1f6;
+}
+.fixtureRoot {
+  margin: 0;
+}
+.fixturePlan {
+  margin: 28px 0 8px;
+  font-size: 16px;
+  color: #172b4d;
+}
+.fixtureStepName {
+  margin: 12px 0 4px;
+  font-size: 12px;
+  font-weight: 600;
+  color: #6b7a90;
+}
+.fixtureStep {
+  margin-bottom: 10px;
+}
+/* WorkspacePageHeader.module.css `.copy p` 와 같은 값 — 안 C 의 설명 줄. */
+.stepHint {
+  margin: 0 0 8px;
+  color: #52617a;
+  font-size: var(--text-body, 14px);
+  line-height: 1.5;
+  word-break: keep-all;
+  overflow-wrap: anywhere;
+}
+
+/* 현행 ② 의 도구 줄은 캔버스 칸 안에 있다 — 검수 패널 320px + 테두리 2px 만큼 좁다(실측). */
+.canvasWidth {
+  width: calc(100% - 322px);
+}

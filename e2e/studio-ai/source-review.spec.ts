@@ -100,6 +100,16 @@ test("source in-card math, figure and metadata edits save together and survive r
   await card.getByRole("button", { name: "취소", exact: true }).click();
   await expect(card).not.toContainText("취소할 내용");
 
+  /*
+   * 확대를 손으로 켠다 — 검수에 들어섰다고 저절로 확대되지는 않는다(원장님 2026-09-21,
+   * 2026-09-19 시안 B 를 물렸다). 아래 Esc 가 수식 칸만 닫는지 보려면 확대가 켜져 있어야 한다.
+   * 켜지 않고 두면 이 가드는 «없다»가 아니라 «못 센다»가 된다.
+   */
+  await page.getByRole("button", { name: "편집창 확대", exact: true }).click();
+  await expect(
+    page.getByRole("dialog", { name: "문제 제작 스튜디오" }),
+  ).toBeVisible();
+
   await card.getByRole("button", { name: "내용 수정", exact: true }).click();
   await body
     .getByRole("button", { name: "수식 편집", exact: true })
@@ -114,7 +124,7 @@ test("source in-card math, figure and metadata edits save together and survive r
   await page.keyboard.type("3/4");
   await page.keyboard.press("Escape");
   await expect(field).toHaveCount(0);
-  // Esc 는 수식 칸만 닫는다 — 작업실 확대(시안 B)는 그대로다.
+  // Esc 는 수식 칸만 닫는다 — 손으로 켠 작업실 확대는 그대로다.
   await expect(
     page.getByRole("dialog", { name: "문제 제작 스튜디오" }),
   ).toBeVisible();

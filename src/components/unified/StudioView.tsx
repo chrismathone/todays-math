@@ -451,21 +451,14 @@ export default function StudioView({
   );
   const currentPageJob = sourceJobs.find((job) => job.page === pageNumber);
   const editing = Boolean(currentSource && step !== "upload");
-  // 원장님 2026-09-19 시안 B «검수는 확대로» — 검수 화면에 들어서는 순간에만 확대한다. 들어선 뒤 «축소»·Esc 는
-  // 그 뜻대로 두고(매 렌더마다 다시 켜지 않는다), 잘라내기로 돌아가면 들어오기 전 상태로 돌린다.
-  const reviewShown = active && editing && step === "review";
-  const [reviewFocus, setReviewFocus] = useState({
-    shown: false,
-    before: false,
-  });
-  if (reviewShown !== reviewFocus.shown) {
-    setReviewFocus({
-      shown: reviewShown,
-      before: reviewShown ? focusMode : reviewFocus.before,
-    });
-    if (reviewShown) setFocusMode(true);
-    else if (active && step === "crop") setFocusMode(reviewFocus.before);
-  }
+  /*
+   * 편집창 확대는 원장님 선택에만 따른다 — 단계가 바뀐다고 건드리지 않는다.
+   * 원장님 2026-09-21 «편집창 확대/축소도 자동으로 하지말고 사용자 선택에 놔둘것»:
+   * 2026-09-19 에 고르신 시안 B(«검수에 들어서면 확대, 잘라내기로 돌아가면 되돌림»)를
+   * 2026-09-21 에 물린 것이다. 되살리지 말 것 — 켜고 끄는 길은 띠의 «편집창 확대/축소»
+   * 단추와 Esc 뿐이고, 고른 상태는 단계를 오가도 그대로 남는다.
+   * (작업실을 떠나면 푸는 것은 위 `!active` 줄이 한다 — 확대는 바깥을 inert 로 덮는다.)
+   */
   const activeCrop = crops.find((item) => item.id === activeCropId);
   const figureCrop = crops.find((crop) => crop.id === figureEditor?.cropId);
   const editedFigure =
