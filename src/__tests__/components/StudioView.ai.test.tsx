@@ -496,6 +496,16 @@ describe("Studio AI review controls", () => {
                       },
                     ],
                   },
+                  {
+                    content: recognized,
+                    answer: "",
+                    bbox: { left: 80, top: 400, width: 840, height: 170 },
+                    figures: [
+                      {
+                        bbox: { left: 120, top: 420, width: 200, height: 160 },
+                      },
+                    ],
+                  },
                 ],
               },
             }),
@@ -515,6 +525,20 @@ describe("Studio AI review controls", () => {
     expect(
       await screen.findByRole("button", { name: /실패 \d+개 다시 생성/ }),
     ).toBeInTheDocument();
+    // 원장님 2026-09-20 «전부 완료인데 도형 2/4 이니까 어딘지 알 수가 없음» —
+    // 실패한 도형이 하나씩, 진행 문구와 같은 이름으로 보이고 눌러서 그 문항으로 간다.
+    const failures = screen.getByLabelText("실패한 도형 목록");
+    expect(within(failures).getAllByRole("button")).toHaveLength(2);
+    expect(
+      within(failures).getByRole("button", { name: "도형 1-1" }),
+    ).toHaveAttribute("title", expect.stringContaining("도형 생성 실패"));
+    fireEvent.click(within(failures).getByRole("button", { name: "도형 2-1" }));
+    expect(screen.getByLabelText("문항 검수 이동")).toHaveTextContent(
+      "문제 2 / 2",
+    );
+    expect(
+      screen.getByRole("article", { name: "문제 2 인식 결과" }),
+    ).toHaveAttribute("data-selected", "true");
   });
   it("retains keyboard crop controls and allows manual image output without OCR", async () => {
     const { onAdd } = await open();

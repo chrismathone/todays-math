@@ -69,65 +69,81 @@
   color: #974923;
   border: 1px solid #dfb49b;
 }
-.queueDetails {
-  --control-height: 34px;
-  position: relative;
-  flex: none;
-  margin: 0;
-  font-size: var(--text-caption, 12px);
-}
-.queueDetails > summary {
+/*
+ * 쪽별 진행 · 실패한 도형 나열 (원장님 2026-09-20 «화살표 말고 쪽이 나열되면 좋겠네»).
+ * 접는 칸을 없앴으므로 «줄이 터지지 않게» 하는 일은 이 두 규칙이 맡는다.
+ * ① 목록은 `flex-wrap: nowrap` — 쪽이 수십 개라도 한 줄에 머문다(띠 높이가 안 밀린다).
+ * ② 넘치면 목록 안에서 가로로만 구른다 — `min-width: 0` 이 없으면 flex 항목이 안 줄어
+ *    상세 창을 밀어 가로 스크롤이 창 전체로 번진다.
+ */
+.queueRow {
+  --control-height: 26px;
   display: flex;
   align-items: center;
   gap: 8px;
-  padding: 8px;
-  cursor: pointer;
-  border-radius: 6px;
+  min-width: 0;
+  padding: 2px 10px 6px;
+  font-size: var(--text-caption, 12px);
+}
+.queueRowLabel {
+  flex: none;
+  color: var(--studio-muted);
   white-space: nowrap;
-  color: #3159df;
 }
-.queueDetails > summary:focus-visible {
-  outline: 2px solid #3159df;
-}
-.queueDetails > div {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(135px, 1fr));
-  max-height: 280px;
-  overflow-y: auto;
-  padding: 6px;
-  background: white;
-  border: 1px solid var(--studio-line);
-  border-radius: 8px;
-}
-.studio .queueDetails button {
+.queueChips {
   display: flex;
-  justify-content: space-between;
-  gap: 8px;
-  width: 100%;
-  min-height: 34px;
-  padding: 6px 8px;
-  border: 0;
+  flex: 1 1 auto;
+  flex-wrap: nowrap;
+  gap: 4px;
+  min-width: 0;
+  padding-bottom: 2px;
+  overflow-x: auto;
+  overflow-y: hidden;
+  scrollbar-width: thin;
+}
+.queueChipGroup {
+  display: flex;
+  align-items: center;
+  flex: none;
+  padding-left: 4px;
+  color: var(--studio-muted);
+  white-space: nowrap;
+}
+.studio .queueChips button {
+  display: flex;
+  align-items: center;
+  flex: none;
+  gap: 4px;
+  min-height: 26px;
+  padding: 2px 8px;
+  border: 1px solid var(--studio-line);
+  border-radius: 999px;
   background: white;
   font-size: var(--text-caption, 12px);
   color: var(--studio-ink);
+  white-space: nowrap;
 }
-.queueDetails button:hover {
+.queueChips button:hover {
   background: #eef3ff;
 }
-.queueDetails button b {
+.queueChips button b {
   font-weight: 500;
   color: #64748b;
 }
-.queueDetails button[data-state="running"] b,
-.queueDetails button[data-state="rendering"] b {
+.queueChips button[data-state="running"] b,
+.queueChips button[data-state="rendering"] b {
   color: #3159df;
 }
-.queueDetails button[data-state="complete"] b,
-.queueDetails button[data-state="empty"] b {
+.queueChips button[data-state="complete"] b,
+.queueChips button[data-state="empty"] b {
   color: #26745e;
 }
-.queueDetails button[data-state="error"] b {
+.queueChips button[data-state="error"] b {
   color: #a23e24;
+}
+.studio .queueChips button[data-state="error"] {
+  border-color: #dfb49b;
+  color: #974923;
 }
 .emptyPageStamp {
   position: absolute;

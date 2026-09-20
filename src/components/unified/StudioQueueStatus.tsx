@@ -1,5 +1,6 @@
 "use client";
 
+import { Fragment } from "react";
 import WorkProgress from "./WorkProgress";
 import styles from "./StudioView.module.css";
 
@@ -101,36 +102,47 @@ export default function StudioQueueStatus({
             ))}
           </div>
         ))}
-      <details className={styles.queueDetails}>
-        <summary>
-          쪽별 진행 <span aria-hidden="true">⌄</span>
-        </summary>
-        <div>
-          {jobs.map((job) => (
-            <button
-              type="button"
-              key={job.key}
-              data-state={job.state}
-              title={
-                job.error ||
-                sources.find((source) => source.id === job.sourceId)?.name
-              }
-              onClick={(event) => {
-                onNavigate(job.sourceId, job.page);
-                event.currentTarget.closest("details")?.removeAttribute("open");
-              }}
-            >
-              <span>
-                {sources.length > 1
-                  ? `${sources.findIndex((source) => source.id === job.sourceId) + 1}번 파일 · `
-                  : ""}
-                {job.page}쪽
-              </span>
-              <b>{labels[job.state]}</b>
-            </button>
-          ))}
+      {/*
+        원장님 2026-09-20 «쪽별 진행 우측에 쪽이 나열되면 더 좋겠네. 화살표 말고» —
+        접는 칸(details)을 없애고 라벨 오른쪽에 쪽을 그대로 늘어놓는다. 쪽이 많으면
+        줄바꿈 대신 목록 안에서 가로로 구른다(.queueChips). 파일이 여럿이면 파일이
+        바뀌는 자리에 «N번 파일» 을 끼워 같은 쪽 번호를 가른다.
+      */}
+      <div className={styles.queueRow}>
+        <span className={styles.queueRowLabel}>쪽별 진행</span>
+        <div className={styles.queueChips} aria-label="쪽별 진행 목록">
+          {jobs.map((job, index) => {
+            const fileNumber =
+              sources.findIndex((source) => source.id === job.sourceId) + 1;
+            const manyFiles = sources.length > 1;
+            return (
+              <Fragment key={job.key}>
+                {manyFiles &&
+                (index === 0 || jobs[index - 1].sourceId !== job.sourceId) ? (
+                  <span className={styles.queueChipGroup}>
+                    {fileNumber}번 파일
+                  </span>
+                ) : null}
+                <button
+                  type="button"
+                  data-state={job.state}
+                  /* 이름을 못 박는다 — span·b 사이에 글자가 없어 읽는 쪽마다
+                     «4쪽인식 중» 과 «4쪽 인식 중» 으로 갈린다(jsdom 은 CSS 를 안 돈다). */
+                  aria-label={`${manyFiles ? `${fileNumber}번 파일 · ` : ""}${job.page}쪽 ${labels[job.state]}`}
+                  title={
+                    job.error ||
+                    sources.find((source) => source.id === job.sourceId)?.name
+                  }
+                  onClick={() => onNavigate(job.sourceId, job.page)}
+                >
+                  <span>{job.page}쪽</span>
+                  <b>{labels[job.state]}</b>
+                </button>
+              </Fragment>
+            );
+          })}
         </div>
-      </details>
+      </div>
     </div>
   );
 }
