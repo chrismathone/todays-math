@@ -466,6 +466,22 @@ function earlier(a: readonly number[], b: readonly number[]) {
 }
 const better = (a: [number, number], b: [number, number]) => earlier(a, b);
 
+/**
+ * 거절 이유에 쓰는 글자 요소의 이름 — 요소 목록과 같은 함수(«5번 글자 40°»). 요소 이름이 이미 내용을 담으므로
+ * 내용을 다시 붙이지 않는다(브라우저 확인 2026-09-20: «글자 40° 40°» 가 나왔다).
+ */
+function describeText(
+  figure: LabelFigure,
+  index: number,
+  context: FigureLabelContext,
+) {
+  const o = figure.objects[figure.texts[index].index];
+  return (
+    context.nameOf(o.id) ??
+    `${objectName(o)} ${figureLabelSummary(figure.texts[index].text)}`
+  );
+}
+
 // ── 각의 크기 글자 ───────────────────────────────────────────────────────
 export interface AngleLabelCorner {
   at: Point;
@@ -671,14 +687,11 @@ export function addAngleSizeLabel(
   const figure = readLabelFigure(svg);
   const fs = figure.font ?? LABEL_FONT * figure.k;
   const twin = angleLabelIndex(corner, fs, figure);
-  if (twin >= 0) {
-    const o = figure.objects[figure.texts[twin].index];
+  // 요소 이름(«글자 40°»)이 이미 글의 내용을 담는다 — 여기서 또 붙이면 «글자 40° 40°» 가 된다
+  if (twin >= 0)
     return {
-      reason: `이미 각의 크기 글자가 있습니다(${
-        context.nameOf(o.id) ?? objectName(o)
-      } ${figureLabelSummary(figure.texts[twin].text)})`,
+      reason: `이미 각의 크기 글자가 있습니다(${describeText(figure, twin, context)})`,
     };
-  }
   const k = fs / LABEL_FONT;
   const layout = angleLabelLayout(
     corner,
@@ -957,10 +970,7 @@ export function addFigureLabel(
   }
   const tol = Math.max(1, 0.01 * figure.size);
   const { here, same } = namedAlready(figure, at, command.text, tol);
-  const describe = (index: number) => {
-    const o = figure.objects[figure.texts[index].index];
-    return `${context.nameOf(o.id) ?? objectName(o)} ${figureLabelSummary(figure.texts[index].text)}`;
-  };
+  const describe = (index: number) => describeText(figure, index, context);
   if (here >= 0)
     return { reason: `이미 점 이름이 있습니다(${describe(here)})` };
   if (same >= 0)

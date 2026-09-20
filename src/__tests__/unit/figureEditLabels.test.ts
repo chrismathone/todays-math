@@ -231,7 +231,9 @@ describe("각의 크기 글자(addAngle.text) — 엔진 `_angle_label_layout` �
     expect(result.applied).toEqual([]);
     expect(result.rejected).toHaveLength(1);
     expect(result.rejected[0]).toContain("이미 각의 크기 글자가 있습니다");
-    expect(result.rejected[0]).toContain("글자 40°");
+    // 요소 이름 그대로 — 내용을 두 번 적지 않는다(브라우저 확인 2026-09-20)
+    expect(result.rejected[0]).toContain("(글자 40°)");
+    expect(result.rejected[0]).not.toContain("40° 40°");
     expect(result.svg).toBe(source);
   });
 
@@ -425,7 +427,8 @@ describe("점 이름(addLabel) — 엔진 꼭짓점 라벨 규칙", () => {
     ]);
     expect(result.applied).toEqual([]);
     expect(result.rejected[0]).toContain("이미 점 이름이 있습니다");
-    expect(result.rejected[0]).toContain("글자 A");
+    expect(result.rejected[0]).toContain("(글자 A)");
+    expect(result.rejected[0]).not.toContain("A A");
     expect(result.rejected[1]).toContain("이미 그림에 있는 이름입니다");
     expect(result.rejected[2]).toContain("점 이름 Z");
     expect(result.svg).toBe(source);
