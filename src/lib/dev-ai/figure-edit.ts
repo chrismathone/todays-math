@@ -33,7 +33,7 @@ const KEPT = " 지금 그림은 그대로입니다.";
  * 수정 명령(figure-edit-contract.ts)과 같은 차례.
  */
 const CAN_DO =
-  "지우기·옮기기·글자 바꾸기·서식·꼭짓점 옮기기·크기 바꾸기·90° 회전·뒤집기·색칠·선분·글자·점·각 표시·치수·같은 길이 표시·평행 표시·원·호·수선·중점·교점·각의 크기·점 이름 더하기·이름 자리 고치기";
+  "지우기·옮기기·글자 바꾸기·서식·꼭짓점 옮기기·크기 바꾸기·90° 회전·대칭·뒤집기·색칠·선분·글자·점·각 표시·치수·같은 길이 표시·평행 표시·원·호·수선·중점·교점·각의 크기·점 이름 더하기·이름 자리 고치기";
 function figureEditReason(reason: string) {
   const text = reason.replace(/\s+/g, " ").trim();
   const room = FIGURE_REASON_MAX - KEPT.length;
