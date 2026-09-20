@@ -105,3 +105,31 @@ export function FigureRotateRow({
     </>
   );
 }
+
+/**
+ * «다 보이게» — 그림을 손으로 끌어 틀 밖으로 내보내면 편집 화면에서만 잘린다(저장하면 틀이 다시 맞춰진다).
+ * 원장님 2026-09-20 확정: 끌 때마다 자동으로 넓히지 않고(그러면 끌 때마다 그림이 야금야금 작아진다)
+ * **단추 하나**로 한다. 누르면 지금 내용에 틀을 딱 맞춘다 — 잘린 것이 들어오고 남는 여백은 줄어든다.
+ * 규칙은 저장할 때와 같은 한 함수(`figureFrame.renderFittedFigure`)다.
+ *
+ * 회전·대칭 줄 **아래**, 고른 것이 없어도 늘 선다 — 틀은 선택과 무관하다.
+ * 이미 딱 맞으면 눌러도 아무 일이 안 일어난다(되돌리기 자리도 안 생긴다). 미리 흐리게 하려면 렌더마다
+ * 조판·측정을 다시 해야 해서 끄지 않는다.
+ */
+export function FigureFitRow({ onFit }: { onFit: () => void }) {
+  return (
+    <section aria-label="틀" className="mb-3 space-y-1 text-xs">
+      <button
+        type="button"
+        title="그림 전체가 들어가게 틀을 다시 맞춥니다"
+        onClick={onFit}
+        className={BUTTON}
+      >
+        다 보이게
+      </button>
+      <p className="text-muted">
+        틀을 지금 그림에 맞춥니다. 잘린 곳이 들어오고 남는 여백은 줄어듭니다.
+      </p>
+    </section>
+  );
+}
