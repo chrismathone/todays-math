@@ -7,6 +7,7 @@ import type { StudioCrop } from "../../src/components/unified/studioHelpers";
 import "katex/dist/katex.min.css";
 import "./harness.css";
 import ProgressFixture from "./progress-fixture";
+import ReviewLockFixture from "./review-lock-fixture";
 
 function Harness() {
   const [problems, setProblems] = useState<StudioProblem[]>([]);
@@ -40,6 +41,8 @@ createRoot(document.getElementById("root")!).render(
   <StrictMode>
     {new URLSearchParams(location.search).has("progress-fixture") ? (
       <ProgressFixture />
+    ) : new URLSearchParams(location.search).has("review-lock-fixture") ? (
+      <ReviewLockFixture />
     ) : (
       <Harness />
     )}
