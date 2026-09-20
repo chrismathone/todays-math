@@ -397,6 +397,25 @@ describe("점 이름(addLabel) — 엔진 꼭짓점 라벨 규칙", () => {
     );
   });
 
+  it("measures the degree sign the way the engine does", () => {
+    // 엔진은 도 기호를 0.63 배로 센다(`label_markup.DEG_RATIO`) — 본디 크기로 세면 «40°» 상자가 12% 넓어진다.
+    // 넓힌 틀이 그 폭을 그대로 말한다: 187.583 + 1.252×16.8÷2 + 여백 12.
+    const tight = prepared(
+      svg(
+        "0 0 190 24",
+        line(20, 12, 180, 12),
+        label("A", 9.276, 17.376, 20, 12),
+      ),
+    );
+    const result = applyFigureEdits(tight, [
+      { op: "addLabel", at: { x: 180, y: 12 }, text: "40°", position: "SE" },
+    ]);
+    expect(result.rejected).toEqual([]);
+    const news = added(tight, result.svg)[0];
+    expectClose([num(news.attrs.x), num(news.attrs.y)], [187.583, 24.959]);
+    expectClose(viewBoxOf(result.svg), [0, 0, 210.1, 36.959], 2);
+  });
+
   it("refuses a point that already has a name, and a name already in the figure", () => {
     const source = prepared(QUAD_ABC);
     const result = applyFigureEdits(source, [
