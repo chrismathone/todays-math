@@ -221,16 +221,20 @@ function applyOne(
       const end = spot(along(to, u, reach));
       if (!ctx.inside(end)) reject("연장선이 그림 밖입니다");
       const added = addFigureObject(svg, "line", spot(to), end);
-      // 늘이는 선분의 서식 그대로 — 이어 붙은 자리에 단이 지지 않게
-      const dash = command.dashed
-        ? DASH
-        : (source.o.attrs["stroke-dasharray"] ?? "");
+      // 늘이는 선분의 서식 그대로 — 이어 붙은 자리에 굵기·색이 바뀌는 단이 지지 않게.
+      // 그 선분이 안 적어 둔 것(묶음에서 물려받은 색 등)은 선 도구 기본값을 그대로 둔다
+      const style: Record<string, string> = {};
+      for (const key of ["stroke", "stroke-width"])
+        if (source.o.attrs[key]) style[key] = source.o.attrs[key];
+      const dash =
+        command.dashed === undefined
+          ? (source.o.attrs["stroke-dasharray"] ?? "")
+          : command.dashed
+            ? DASH
+            : "";
+      if (dash && dash !== "none") style["stroke-dasharray"] = dash;
       return {
-        svg: editFigureObject(added.svg, added.id, {
-          stroke: source.o.attrs.stroke ?? "",
-          "stroke-width": source.o.attrs["stroke-width"] ?? "",
-          "stroke-dasharray": dash === "none" ? "" : dash,
-        }),
+        svg: editFigureObject(added.svg, added.id, style),
         text: `${ctx.label}(길이 ${tenth(reach)})`,
       };
     }
@@ -400,7 +404,9 @@ function applyOne(
         const gap = distance(foot, first.centre);
         if (gap > first.radius + close) reject("직선이 원과 만나지 않습니다");
         const half = Math.sqrt(Math.max(0, first.radius ** 2 - gap * gap));
-        crossings = bothSides(foot, { x: -u.y, y: u.x }, half, close).reverse();
+        // 직선 위 차례대로(첫 점에서 둘째 점 쪽으로) — 이름 labels 도 그 차례로 붙는다
+        crossings =
+          half < close ? [foot] : [along(foot, u, -half), along(foot, u, half)];
       }
       let next = svg;
       const named: string[] = [];

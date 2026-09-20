@@ -71,6 +71,12 @@ const sector =
   <g>${label("A", 158.806, 66.9, 148.728, 65.192)}${label("B", 42.588, 24.6, 47.95, 28.511)}${label("O", 75.367, 102.092, 82.95, 89.133)}</g>
 </svg>`);
 
+// 제 색을 안 적고 묶음에서 물려받은 선분 — 연장선이 «빈 서식»을 베끼면 안 보인다
+const groupStroke = prepareFigureSvg(`<svg viewBox="0 0 200 100" xmlns="${NS}">
+  <rect width="200" height="100" fill="#ffffff" />
+  <g stroke="#111111" stroke-width="2.4"><line x1="20" y1="50" x2="100" y2="50" /></g>
+</svg>`);
+
 // 끝이 틀 가장자리에 붙은 외딴 선분 — 연장할 자리가 없는 경우
 const edgeLine = prepareFigureSvg(`<svg viewBox="0 0 100 100" xmlns="${NS}">
   <rect width="100" height="100" fill="#ffffff" />
@@ -144,6 +150,19 @@ describe("선분 연장 — 그림에 그려진 선분의 서식 그대로 잇�
     expect(grown.attrs.stroke).toBe("#111111");
     expect(grown.attrs["stroke-dasharray"]).toBeUndefined();
     expect(nameIn(tri, ids(tri)[0])).toBe("선분");
+  });
+
+  it("keeps the line tool's own stroke when the segment inherits its colour from a group", () => {
+    const result = applyFigureEdits(groupStroke, [
+      {
+        op: "extendLine",
+        from: { x: 20, y: 50 },
+        to: { x: 100, y: 50 },
+      },
+    ]);
+    const [grown] = added(groupStroke, result.svg);
+    expect(grown.attrs.stroke).toBe("#111111");
+    expect(grown.attrs["stroke-width"]).toBe("1.8");
   });
 
   it("draws the asked length and widens the frame when it leaves it", () => {
@@ -691,15 +710,32 @@ describe("원의 교점", () => {
     expect(result.applied).toEqual(["원 O 와 원 P 의 교점 추가(X·Y)"]);
   });
 
-  it("finds where a line cuts the circle", () => {
+  it("finds where a line cuts the circle and names the points along it", () => {
     const result = applyFigureEdits(twoCircles, [
-      { op: "addCircleIntersection", circle: "O", line: ["O", "P"] },
+      {
+        op: "addCircleIntersection",
+        circle: "O",
+        line: ["O", "P"],
+        labels: ["X", "Y"],
+      },
     ]);
     for (const at of [
       { x: 12.95, y: 72.95 },
       { x: 132.95, y: 72.95 },
     ])
       expect(dotAt(result.svg, at)).toBeTruthy();
+    // 이름은 직선 차례대로 — 첫 점(O)에서 둘째 점(P) 쪽으로 X 다음 Y
+    const names = describeFigureForEdit(result.svg).names ?? [];
+    expect(names.find((n) => n.name === "X")!.x).toBeLessThan(
+      names.find((n) => n.name === "Y")!.x,
+    );
+    expect(result.applied).toEqual(["원 O 와 직선 OP 의 교점 추가(X·Y)"]);
+  });
+
+  it("says how many it found when no names were given", () => {
+    const result = applyFigureEdits(twoCircles, [
+      { op: "addCircleIntersection", circle: "O", line: ["O", "P"] },
+    ]);
     expect(result.applied).toEqual(["원 O 와 직선 OP 의 교점 추가(2개)"]);
   });
 
