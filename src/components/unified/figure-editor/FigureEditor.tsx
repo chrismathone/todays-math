@@ -448,6 +448,32 @@ export function FigureEditor({
     if (inGroup.length < 2) return;
     assignGroup(inGroup, "");
   };
+  /** 묶음 이름 → 그 묶음에 든 요소들. `groupNames`(요소 → 이름)의 반대쪽이다. */
+  const groupMembers = useMemo(() => {
+    const byName = new Map<string, string[]>();
+    for (const [id, name] of groupNames)
+      byName.set(name, [...(byName.get(name) ?? []), id]);
+    return byName;
+  }, [groupNames]);
+  /**
+   * 캔버스에서 이 요소를 누르면 **실제로 골라질 것들** — 묶음에 들었으면 묶음 전부다.
+   *
+   * 원장님 2026-09-21 «그룹을 만들었는데 별개로 움직이네. 내가 생각한 그룹이면 같이 움직일 줄
+   * 알았는데». 묶음 전체 선택은 번호표(네모 A)와 오른쪽 칸의 묶음 줄에만 있었고 **캔버스 클릭은
+   * 요소 하나**였다 — 묶어도 끌면 따로 갔다.
+   *
+   * ppt 와 같이 나눈다: **캔버스는 묶음 단위**, 속 요소 하나는 **오른쪽 요소 목록**에서 고른다
+   * (`FigureObjectList` 의 요소 줄이 전부터 그 일을 한다 — 잃는 길이 없다).
+   */
+  const pickedWith = useCallback(
+    (id: string | null | undefined): string[] => {
+      if (!id) return [];
+      const name = groupNames.get(id);
+      const ids = name ? groupMembers.get(name) : null;
+      return ids && ids.length > 1 ? ids : [id];
+    },
+    [groupNames, groupMembers],
+  );
   const pickGroup = useCallback((ids: readonly string[], additive: boolean) => {
     setSelectedIds((previous) =>
       !additive
@@ -904,12 +930,18 @@ export function FigureEditor({
     const start = point(e, inverse);
     if (tool === "select") {
       const id = target?.getAttribute("data-object-id");
+      // 묶음에 든 것을 캔버스에서 누르면 **묶음 전부**가 골라진다(ppt 와 같다).
+      const together = pickedWith(id);
       if (e.shiftKey || e.ctrlKey || e.metaKey) {
-        setSelected(id ?? null, true);
+        if (together.length) pickGroup(together, true);
+        else setSelected(null, true);
         e.preventDefault();
         return;
       }
-      if (!id || !selectedIds.includes(id)) setSelected(id ?? null);
+      // 이미 골라 둔 것 안을 누르면 그 선택을 그대로 둔다 — 오른쪽 요소 목록에서 묶음 속
+      // 하나만 골라 두었을 수 있고, 그 뜻을 캔버스 클릭이 덮으면 안 된다.
+      if (!id) setSelected(null);
+      else if (!selectedIds.includes(id)) pickGroup(together, false);
       if (!target) return;
       // 선을 따라가는 면은 골라지기만 한다 — 옮기면 선에서 떨어진다(선을 옮기면 따라온다).
       if (
@@ -927,27 +959,29 @@ export function FigureEditor({
         id: target.getAttribute("data-object-id")!,
         transform: target.getAttribute("transform") ?? "",
       };
-      if (id && selectedIds.includes(id) && selectedIds.length > 1) {
-        drag.current.multiple = movableIds(svg, selectedIds).flatMap(
-          (objectId) => {
-            const node = root.querySelector<SVGGraphicsElement>(
-              `[data-object-id="${objectId}"]`,
-            );
-            const parent = (
-              node?.parentElement as unknown as SVGGraphicsElement
-            )?.getScreenCTM();
-            if (!node || !parent) return [];
-            const inverse = parent.inverse();
-            return [
-              {
-                id: objectId,
-                inverse,
-                start: point(e, inverse),
-                transform: node.getAttribute("transform") ?? "",
-              },
-            ];
-          },
-        );
+      // 같이 끌 것 — 골라 둔 것 안을 눌렀으면 그 선택, 아니면 **누른 것의 묶음**.
+      // 묶음은 방금 골라져 `selectedIds` 가 아직 낡았으므로 여기서 직접 센다 — 그래야 누르고
+      // 끄는 **한 동작**에 묶음이 통째로 간다(원장님 2026-09-21 «같이 움직일 줄 알았는데»).
+      const dragIds = id && selectedIds.includes(id) ? selectedIds : together;
+      if (dragIds.length > 1) {
+        drag.current.multiple = movableIds(svg, dragIds).flatMap((objectId) => {
+          const node = root.querySelector<SVGGraphicsElement>(
+            `[data-object-id="${objectId}"]`,
+          );
+          const parent = (
+            node?.parentElement as unknown as SVGGraphicsElement
+          )?.getScreenCTM();
+          if (!node || !parent) return [];
+          const inverse = parent.inverse();
+          return [
+            {
+              id: objectId,
+              inverse,
+              start: point(e, inverse),
+              transform: node.getAttribute("transform") ?? "",
+            },
+          ];
+        });
       }
     } else if (tool === "text") {
       const result = addFigureObject(svg, "text", start, start, label);
