@@ -1,3 +1,4 @@
+import type { AlignKind, SpreadAxis } from "./figureAlign";
 import type { MirrorAxis } from "./figureMirror";
 import type { RotateTurn } from "./figureRotate";
 
@@ -102,6 +103,79 @@ export function FigureRotateRow({
           {flip.blocked && <p className="text-muted">{flip.blocked}</p>}
         </section>
       )}
+    </>
+  );
+}
+
+/**
+ * 오른쪽 칸 «정렬»·«간격» — 원장님 2026-09-21 «요소별 각종 정렬 기능 넣어줄 수 있으면 넣어줘.
+ * 왼쪽 정렬, 가운데 정렬, 우측 정렬, 중앙 정렬 등등».
+ *
+ * 회전·대칭 줄과 같은 꼴(제목 + 단추들)로 그 아래 선다. 고른 것 **둘 이상**을 서로 맞춘다 —
+ * 기준은 고른 것들의 바깥 상자다(그림 틀이 아니다). 하나만 골랐으면 흐리고 이유를 단추 밑에 적는다.
+ * «간격»(고르게 벌리기)은 셋부터 — 사이가 둘은 되어야 «고르게»가 뜻이 있다.
+ */
+export function FigureAlignRow({
+  blocked,
+  onAlign,
+  spread,
+}: {
+  /** 끌 이유 — 없으면 null */
+  blocked: string | null;
+  onAlign: (kind: AlignKind) => void;
+  /** «고르게 벌리기» — `blocked` 는 끌 이유(없으면 null). */
+  spread: { blocked: string | null; onSpread: (axis: SpreadAxis) => void };
+}) {
+  const kinds: { kind: AlignKind; label: string }[] = [
+    { kind: "left", label: "왼쪽" },
+    { kind: "centerX", label: "가로 가운데" },
+    { kind: "right", label: "오른쪽" },
+    { kind: "top", label: "위" },
+    { kind: "middleY", label: "세로 가운데" },
+    { kind: "bottom", label: "아래" },
+  ];
+  const axes: { axis: SpreadAxis; label: string }[] = [
+    { axis: "horizontal", label: "가로 고르게" },
+    { axis: "vertical", label: "세로 고르게" },
+  ];
+  return (
+    <>
+      <section aria-label="정렬" className="mb-2 space-y-1 text-xs">
+        <div className="flex flex-wrap items-center gap-2">
+          <span className="font-medium">정렬</span>
+          {kinds.map(({ kind, label }) => (
+            <button
+              key={kind}
+              type="button"
+              disabled={blocked !== null}
+              title={blocked ?? `${label} 맞추기`}
+              onClick={() => onAlign(kind)}
+              className={BUTTON}
+            >
+              {label}
+            </button>
+          ))}
+        </div>
+        {blocked && <p className="text-muted">{blocked}</p>}
+      </section>
+      <section aria-label="간격" className="mb-3 space-y-1 text-xs">
+        <div className="flex flex-wrap items-center gap-2">
+          <span className="font-medium">간격</span>
+          {axes.map(({ axis, label }) => (
+            <button
+              key={axis}
+              type="button"
+              disabled={spread.blocked !== null}
+              title={spread.blocked ?? "사이 간격을 같게 — 양 끝은 제자리"}
+              onClick={() => spread.onSpread(axis)}
+              className={BUTTON}
+            >
+              {label}
+            </button>
+          ))}
+        </div>
+        {spread.blocked && <p className="text-muted">{spread.blocked}</p>}
+      </section>
     </>
   );
 }

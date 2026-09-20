@@ -25,7 +25,11 @@ import {
   editFigureObjects,
   setFigureGroup,
 } from "./figureSvgEditing";
-import { figureAngleKinds, groupFigureObjects } from "./figureObjectGroups";
+import {
+  figureAngleKinds,
+  groupFigureObjects,
+  nextGroupName,
+} from "./figureObjectGroups";
 import {
   copyFigureSelection,
   pasteFigureSelection,
@@ -97,11 +101,23 @@ import {
   type RotateTurn,
 } from "./figureRotate";
 import {
+  alignBlock,
+  alignFigureSelection,
+  spreadBlock,
+  spreadFigureSelection,
+  type AlignKind,
+  type SpreadAxis,
+} from "./figureAlign";
+import {
   mirrorBlock,
   mirrorFigureSelection,
   type MirrorAxis,
 } from "./figureMirror";
-import { FigureFitRow, FigureRotateRow } from "./FigureRotateRow";
+import {
+  FigureAlignRow,
+  FigureFitRow,
+  FigureRotateRow,
+} from "./FigureRotateRow";
 import { flipFigureCurve } from "./figureFlip";
 
 type Tool =
@@ -367,6 +383,18 @@ export function FigureEditor({
     () => figureAngleKinds(objects, viewBoxKey.split(" ").map(Number)),
     [objects, viewBoxKey],
   );
+  // 요소 id → 묶음 이름(사용자가 묶은 것만) — 그림 위 번호표를 묶음마다 하나로 합치는 데 쓴다(원장님 2026-09-21).
+  // AI 에게 보내는 그림은 이것을 주지 않고 번호를 매겨 요소마다 번호가 그대로 간다.
+  const groupNames = useMemo(
+    () =>
+      new Map(
+        objects.flatMap((o) => {
+          const name = o.attrs["data-group"]?.trim();
+          return name ? [[o.id, name] as const] : [];
+        }),
+      ),
+    [objects],
+  );
   // «묶음 만들기» 직후 오른쪽 칸의 묶음 이름 칸에 초점을 줄 묶음 key — 초점을 주면 지운다.
   const [renamingGroup, setRenamingGroup] = useState<string | null>(null);
   const clearRenaming = useCallback(() => setRenamingGroup(null), []);
@@ -393,17 +421,25 @@ export function FigureEditor({
       editGroups((source) => setFigureGroup(source, ids, name)),
     [editGroups],
   );
-  const makeGroup = () => {
-    const names = new Set(groups.map((g) => g.name));
-    let n = groups.filter((g) => g.custom).length + 1;
-    while (names.has(`묶음 ${n}`)) n++;
-    assignGroup(selectedIds, `묶음 ${n}`);
-    setRenamingGroup(`custom:묶음 ${n}`);
+  // 새 묶음 — 이름은 A · B · C … 차례(원장님 2026-09-21). 단추로 만들면 이름 칸에 바로 초점을 주고,
+  // 단축키(Ctrl+G)로 만들면 주지 않는다 — 초점이 글자 칸으로 가면 이어지는 단축키가 안 먹는다.
+  const makeGroup = (focusName = true) => {
+    if (selectedIds.length < 2) return;
+    const name = nextGroupName(groups.map((g) => g.name));
+    assignGroup(selectedIds, name);
+    if (focusName) setRenamingGroup(`custom:${name}`);
   };
-  const pickGroup = useCallback((ids: string[], additive: boolean) => {
+  // 묶음 해제(Ctrl+Shift+G) — 오른쪽 칸 «묶음 해제» 단추와 같은 한 길(`data-group=""` — 묶음 밖).
+  // 묶음에 든 것만 푼다 — 묶음 밖 요소까지 `data-group=""` 로 적으면 «아무 일도 안 한다»가 되돌리기 한 걸음이 된다.
+  const breakGroup = () => {
+    const inGroup = selectedIds.filter((id) => groupNames.has(id));
+    if (inGroup.length < 2) return;
+    assignGroup(inGroup, "");
+  };
+  const pickGroup = useCallback((ids: readonly string[], additive: boolean) => {
     setSelectedIds((previous) =>
       !additive
-        ? ids
+        ? [...ids]
         : ids.every((id) => previous.includes(id))
           ? previous.filter((id) => !ids.includes(id))
           : [...previous, ...ids.filter((id) => !previous.includes(id))],
@@ -489,6 +525,28 @@ export function FigureEditor({
         textBoxes: selectedTextBoxes(),
       }),
     );
+  };
+  // 정렬 — 고른 것들의 바깥 상자에 서로 맞춘다(되돌리기 한 걸음). 회전·대칭과 같은 한 엔진(figureBake).
+  // 크기 고정은 막지 않는다 — 고정은 «이동만 가능»이고 정렬은 옮기기뿐이다.
+  const alignBlocked = useMemo(
+    () => alignBlock(objects, selectedIds, groupNames),
+    [objects, selectedIds, groupNames],
+  );
+  const spreadBlocked = useMemo(
+    () => spreadBlock(objects, selectedIds, groupNames),
+    [objects, selectedIds, groupNames],
+  );
+  // 묶음은 한 덩어리로 움직인다(ppt 와 같다) — 상자 하나가 사각 + 이름 글자 둘인 관계도에서
+  // 요소마다 따로 맞추면 글자가 상자 밖으로 빠져나간다.
+  const alignOptions = () => ({
+    textBoxes: selectedTextBoxes(),
+    groups: groupNames,
+  });
+  const align = (kind: AlignKind) => {
+    commit(alignFigureSelection(svg, selectedIds, kind, alignOptions()));
+  };
+  const spread = (axis: SpreadAxis) => {
+    commit(spreadFigureSelection(svg, selectedIds, axis, alignOptions()));
   };
   // «반대쪽으로 뒤집기» — 곡선·꺾은선 하나(와 뒤집기가 같이 옮기는 값 글자)를 골랐을 때만 선다. 뒤집은 뒤에도
   // 선택이 곡선과 그 글자라 다시 누르면 제자리로 온다. 여럿·묶음·함수 그래프는 세우지 않는다.
@@ -626,8 +684,8 @@ export function FigureEditor({
       setObjectNumbers((previous) =>
         retargetFigureNumbers(root, previous, ids),
       );
-    else setObjectNumbers(layoutFigureNumbers(root));
-  }, [svg, displaySvg, zoom, available, showNumbers, frozenCanvas]);
+    else setObjectNumbers(layoutFigureNumbers(root, groupNames));
+  }, [svg, displaySvg, zoom, available, showNumbers, frozenCanvas, groupNames]);
   useLayoutEffect(() => {
     const node = viewport.current;
     if (!node) return;
@@ -685,6 +743,16 @@ export function FigureEditor({
           e.preventDefault();
           const source = copyFigureSelection(svg, selectedIds);
           if (source) paste(source, true);
+        } else if (key === "g") {
+          // 묶기(Ctrl+G)·묶음 해제(Ctrl+Shift+G) — 원장님 2026-09-21 «ppt 명령어».
+          // 크롬의 «찾기 다음»이 Ctrl+G 라 반드시 막는다. 고른 것이 둘 미만이면 아무 일도 안 한다.
+          e.preventDefault();
+          if (e.shiftKey) breakGroup();
+          else makeGroup(false);
+          // 묶으면 요소 목록이 다시 그려져 **눌렀던 요소 단추가 사라진다** — 초점이 <body> 로 떨어져
+          // 바로 이어 누른 Ctrl+Shift+G 가 «편집기 안»이 아니라고 걸러졌다(브라우저 실측 2026-09-21).
+          // jsdom 은 클릭으로 초점이 옮겨지지 않아 이 자리가 안 보인다. 캔버스로 초점을 돌려 둔다.
+          surface.current?.focus();
         }
         // C/X/V는 브라우저의 clipboard 이벤트에서 처리해 OS 클립보드와 호환한다.
         return;
@@ -1661,7 +1729,7 @@ export function FigureEditor({
                 <FigureNumberLayer
                   numbers={objectNumbers}
                   selectedIds={selectedIds}
-                  onPick={pick}
+                  onPick={pickGroup}
                 />
               )}
               {selection && selected && tool === "select" && (
@@ -1705,9 +1773,9 @@ export function FigureEditor({
               </span>
               <button
                 type="button"
-                title="선택한 요소를 새 묶음으로 — 이름을 붙일 수 있습니다"
-                onClick={makeGroup}
-                disabled={!selectedIds.length || busy}
+                title="선택한 요소를 새 묶음으로 — 이름을 붙일 수 있습니다 (Ctrl+G)"
+                onClick={() => makeGroup()}
+                disabled={selectedIds.length < 2 || busy}
                 className="rounded border border-[var(--figure-accent-line)] px-2 py-0.5 text-[var(--figure-accent-ink)] disabled:opacity-40"
               >
                 묶음 만들기
@@ -1785,6 +1853,13 @@ export function FigureEditor({
                       }
                     : undefined
                 }
+              />
+            )}
+            {selectedIds.length > 0 && (
+              <FigureAlignRow
+                blocked={alignBlocked}
+                onAlign={align}
+                spread={{ blocked: spreadBlocked, onSpread: spread }}
               />
             )}
             <FigureFitRow onFit={fitFrame} />

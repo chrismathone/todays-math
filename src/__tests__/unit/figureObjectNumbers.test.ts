@@ -88,3 +88,82 @@ describe("끄는 동안 번호 지시선만 옮긴다", () => {
     expect(retargetFigureNumbers(root, numbers, ["zzz"])).toBe(numbers);
   });
 });
+
+/**
+ * 묶음은 **번호표 하나** — 원장님 2026-09-21 «그룹화되면 번호를 하나로 합치게 할 것»
+ * (사다리꼴 상자 하나에 ⑯ ⑰ 둘이 붙어 있었다).
+ * 번호 매기기 자체는 그대로다(요소 차례 + 1) — AI «요청대로 고치기»가 그 번호로 요소를 가리키고,
+ * AI 에게 보내는 그림(figureEditSnapshot)은 묶음을 주지 않고 불러 **요소마다** 번호를 그대로 단다.
+ */
+describe("묶음은 번호표 하나", () => {
+  const third = () => {
+    const node = document.createElementNS(SVG_NS, "rect");
+    node.setAttribute("data-object-id", "c");
+    root.appendChild(node);
+    place(node, 300, 100, 20, 20);
+    return node;
+  };
+  it("묶음을 안 주면 요소마다 번호 — AI 그림이 타는 길", () => {
+    third();
+    expect(layoutFigureNumbers(root).map((n) => [n.number, n.ids])).toEqual([
+      [1, ["a"]],
+      [2, ["b"]],
+      [3, ["c"]],
+    ]);
+  });
+  it("같은 묶음의 요소는 번호표 하나 — 번호는 가장 작은 번호, 지시선은 속 요소마다", () => {
+    third();
+    const groups = new Map([
+      ["b", "A"],
+      ["c", "A"],
+    ]);
+    const numbers = layoutFigureNumbers(root, groups);
+    expect(numbers.map((n) => n.number)).toEqual([1, 2]);
+    expect(numbers[1]).toMatchObject({
+      id: "b",
+      ids: ["b", "c"],
+      group: "A",
+      // 속 요소 가운데(200,200)·(310,110) 의 한가운데
+      targetX: 255,
+      targetY: 155,
+    });
+    expect(numbers[1].targets).toEqual([
+      { x: 200, y: 200 },
+      { x: 310, y: 110 },
+    ]);
+    expect(numbers[0].targets).toBeUndefined();
+  });
+  it("묶음 이름이 다르면 따로 — 번호는 요소 차례를 그대로 쓴다", () => {
+    third();
+    const numbers = layoutFigureNumbers(
+      root,
+      new Map([
+        ["a", "A"],
+        ["c", "B"],
+      ]),
+    );
+    expect(numbers.map((n) => [n.number, n.group])).toEqual([
+      [1, "A"],
+      [2, undefined],
+      [3, "B"],
+    ]);
+  });
+  it("묶음 속 요소를 끌면 그 묶음 번호표의 지시선만 다시 잰다", () => {
+    third();
+    const groups = new Map([
+      ["b", "A"],
+      ["c", "A"],
+    ]);
+    const numbers = layoutFigureNumbers(root, groups);
+    expect(retargetFigureNumbers(root, numbers, ["a"])).toBe(numbers);
+    place(root.querySelector('[data-object-id="c"]')!, 300, 300, 20, 20);
+    const next = retargetFigureNumbers(root, numbers, ["c"]);
+    expect(next).not.toBe(numbers);
+    expect(next[1]).toMatchObject({ targetX: 255, targetY: 255 });
+    expect(next[1].targets).toEqual([
+      { x: 200, y: 200 },
+      { x: 310, y: 310 },
+    ]);
+    expect(next[0]).toBe(numbers[0]);
+  });
+});

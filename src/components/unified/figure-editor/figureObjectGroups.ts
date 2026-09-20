@@ -20,6 +20,29 @@ export interface FigureObjectGroup {
   ids: string[];
 }
 
+/** 차례의 글자 이름 — 0 → A, 25 → Z, 26 → AA (스프레드시트 열 이름과 같은 규칙). */
+function letterName(index: number) {
+  let name = "";
+  for (let n = index; ; n = Math.floor(n / 26) - 1) {
+    name = String.fromCharCode(65 + (n % 26)) + name;
+    if (n < 26) return name;
+  }
+}
+
+/**
+ * 새 묶음의 기본 이름 — **A · B · C …** 차례(원장님 2026-09-21 «그룹화는 숫자가 아니라 그룹 순서대로
+ * A 그룹, B 그룹, C 그룹 이런 식으로»). Z 다음은 AA · AB … 로 이어 간다.
+ * 이미 쓰는 이름은 건너뛰고 **빈 자리부터** 채운다 — 가운데 묶음을 풀면 그 글자가 다시 나온다.
+ * 옛 그림의 손수 지은 이름(«오르막»)이나 전에 쓰던 «묶음 1» 은 글자 이름이 아니라 그대로 남는다(덮지 않는다).
+ */
+export function nextGroupName(used: Iterable<string>): string {
+  const taken = new Set([...used].map((name) => name.trim()));
+  for (let i = 0; ; i++) {
+    const name = letterName(i);
+    if (!taken.has(name)) return name;
+  }
+}
+
 type Box = { x1: number; y1: number; x2: number; y2: number };
 interface Shape {
   object: FigureObject;
