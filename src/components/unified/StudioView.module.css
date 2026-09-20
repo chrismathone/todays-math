@@ -2073,9 +2073,6 @@
   .editing .pageTools .pageAiButton {
     grid-column: 1 / 4;
   }
-  .editing .pageTools .aiDetails {
-    grid-column: 4;
-  }
   .editing .coordinates {
     position: absolute;
     left: 8px;
@@ -2120,9 +2117,6 @@
   }
   .reviewMode .canvasToolbar .pageAiButton {
     display: none;
-  }
-  .reviewMode .canvasToolbar .aiDetails {
-    margin-left: auto;
   }
   .editing .workspace {
     grid-template-columns: minmax(0, 1fr);
