@@ -170,7 +170,8 @@ describe("[D-55] ProblemCard — 도형 SVG", () => {
     );
     const compactFrame = compact.container.querySelector("[data-figure-svg]");
     expect(compactFrame).toHaveAttribute("data-figure-size", "compact");
-    expect(compactFrame?.className).toContain("max-w-[140px]");
+    // 폭은 화면·인쇄가 같은 mm 다(`figureSvgFrame.FIGURE_SVG_PRINT_MM`): 37mm = 139.8px.
+    expect(compactFrame?.className).toContain("max-w-[37mm]");
 
     compact.unmount();
     const midCard = render(
@@ -180,7 +181,7 @@ describe("[D-55] ProblemCard — 도형 SVG", () => {
     );
     const midFrame = midCard.container.querySelector("[data-figure-svg]");
     expect(midFrame).toHaveAttribute("data-figure-size", "mid");
-    expect(midFrame?.className).toContain("max-w-[240px]");
+    expect(midFrame?.className).toContain("max-w-[64mm]");
   });
 });
 
