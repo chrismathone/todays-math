@@ -216,3 +216,47 @@ describe("한글 사각형 관계도 픽스처가 엔진에서 그려진다", ()
     );
   });
 });
+
+/**
+ * 문장만으로는 안 통했다 — 2026-09-20 운영에서 원장님이 첫 판(한 줄 반박)으로도
+ * 「한글 및 원문자(㉠~㉤) 텍스트 렌더링 미지원」 거절을 다시 받으셨다.
+ * 그래서 반박에 **엔진이 실제로 그려 낸 사양 한 벌**을 같이 싣는다.
+ */
+describe("반박에 실린 보기 사양", () => {
+  const spec = JSON.parse(
+    FIGURE_CAPABILITY_REBUTTAL.slice(
+      FIGURE_CAPABILITY_REBUTTAL.indexOf("{"),
+      FIGURE_CAPABILITY_REBUTTAL.lastIndexOf("}") + 1,
+    ),
+  );
+
+  it("graph-1 사양이고 한글과 ㉠ 이 들어 있다", () => {
+    expect(spec.version).toBe("graph-1");
+    expect(spec.axes).toBe(false);
+    const texts = spec.labels.map((label: { text: string }) => label.text);
+    expect(texts).toContain("사다리꼴");
+    expect(texts).toContain("㉠");
+    expect(texts.every((text: string) => !text.includes("$"))).toBe(true);
+  });
+
+  it("그 사양을 엔진이 실제로 그린다 — 한글이 글자로 나온다", async () => {
+    const rendered = await renderFigureSpec(withLabelMetrics(spec), {
+      typeset: false,
+      strict: true,
+    });
+    expect(rendered.ok).toBe(true);
+    const svg = rendered.ok ? rendered.svg : "";
+    expect(svg).toContain("사다리꼴");
+    expect(svg).toContain("㉠");
+  });
+
+  it("🔴 원장님 문항과 **다른 그림**이다 — 베껴도 답이 안 된다", () => {
+    // 상자 다섯짜리 관계도를 그대로 실으면 모델이 지금 그림을 안 보고 좌표를 베낀다.
+    expect(spec.polygons).toHaveLength(2);
+    expect(spec.segments).toHaveLength(1);
+  });
+
+  it("좌표를 베끼지 말라는 말이 같이 실린다", () => {
+    expect(FIGURE_CAPABILITY_REBUTTAL).toContain("좌표를 베끼지 말고");
+  });
+});
