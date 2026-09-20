@@ -12,6 +12,11 @@ import {
   figureSvgSize,
 } from "@/lib/figure/figureSvgFrame";
 import { figureWidthStyle, parseFigureDimensions } from "@/lib/figurePrintSize";
+import {
+  CHOICE_COLUMN_CLASS,
+  choiceColumnCount,
+  type PrintChoiceLayout,
+} from "@/lib/math/choiceLayout";
 import { fitsTwoColumns } from "@/lib/math/displayWidth";
 import { CHOICE_MARKS } from "@/lib/math/circledNumber";
 import { hideFigureMarker } from "@/lib/problem/figureMarker";
@@ -78,6 +83,15 @@ export interface ProblemContentProps {
    * 인쇄 지면의 `<img>` 마크업이 수리 전과 한 글자도 다르지 않다.
    */
   deferFigures?: boolean;
+  /**
+   * 보기 번호 배치 — 원장님이 시험지 설정에서 고른 값(D-07, 2026-09-20).
+   * 「5행」=`5x1` · 「3열 2행」=`2x3` · 「2열 3행」=`3x2` · 「자동」=`auto`.
+   *
+   * ⚠️ **없거나 `"auto"` 면 오늘 그대로**다 — 클래스 문자열이 한 글자도 안 바뀐다
+   *    (`renderParity` 잠금과 `choiceLayoutRender.test.tsx` 가 지킨다).
+   *    규칙은 `src/lib/math/choiceLayout.ts` 한 곳에 있고 `NativeProblem` 도 같은 함수를 쓴다.
+   */
+  choiceLayout?: PrintChoiceLayout;
 }
 
 export function ProblemContent({
@@ -88,6 +102,7 @@ export function ProblemContent({
   figureSourceMm,
   className = "",
   deferFigures = true,
+  choiceLayout = "auto",
 }: ProblemContentProps) {
   const { question: rawQuestion, choices } = parseProblemContent(content);
   const figures = figureUrls ?? [];
@@ -123,6 +138,13 @@ export function ProblemContent({
    * **인쇄 지면도 같이 바뀐다**(절대 규칙 6 — 실물 출력 검수 대상).
    */
   const choicesInTwoColumns = fitsTwoColumns(choices);
+  /**
+   * 원장님이 고른 배치. «자동»이면 위 `choicesInTwoColumns` 가 그대로 정한다 —
+   * 아래 클래스 문자열도 두 갈래로 갈라 **자동 쪽은 오늘의 글자 그대로** 남긴다.
+   * 고른 값 쪽은 `md:` 를 쓰지 않는다: 시험지 지면은 창 폭과 무관한 고정 A4 라
+   * 화면 폭에 따라 배치가 흔들리면 미리보기와 인쇄가 갈린다.
+   */
+  const chosenColumns = choiceColumnCount(choiceLayout, choices, true);
   // undefined 면 React 가 속성 자체를 만들지 않는다 — 인쇄 지면은 종전 그대로.
   const figureLoading = deferFigures ? "lazy" : undefined;
   const figureDecoding = deferFigures ? "async" : undefined;
@@ -180,9 +202,17 @@ export function ProblemContent({
       ) : null}
       {choices.length > 0 ? (
         <div
-          className={`mt-4 grid grid-cols-1 gap-x-8 gap-y-2${
-            choicesInTwoColumns ? " md:grid-cols-2 print:grid-cols-2" : ""
-          }`}
+          // 「자동」은 표식을 안 붙인다 — React 가 속성 자체를 안 만들어 마크업이 오늘 그대로다.
+          data-choice-layout={
+            choiceLayout === "auto" ? undefined : choiceLayout
+          }
+          className={
+            choiceLayout === "auto"
+              ? `mt-4 grid grid-cols-1 gap-x-8 gap-y-2${
+                  choicesInTwoColumns ? " md:grid-cols-2 print:grid-cols-2" : ""
+                }`
+              : `mt-4 grid gap-x-8 gap-y-2 ${CHOICE_COLUMN_CLASS[chosenColumns]}`
+          }
         >
           {choices.map((choice, index) => (
             <div
