@@ -185,7 +185,8 @@ describe("호 더하기 — 엔진 add_arc 와 같은 모양", () => {
     expect(arc.type).toBe("path");
     expect(arc.attrs.d).toBe("M 148.728 65.192 A 70 70 0 0 0 47.95 28.511");
     expect(arc.attrs).toMatchObject({ fill: "none", stroke: "#111111" });
-    expect(nameIn(result.svg, arc.id)).toBe("곡선/경로");
+    // 원장님 2026-09-20 — AI 가 더한 호도 엔진의 호와 같은 이름 «호»(figureObjectNames.ts `isArcPath`)
+    expect(nameIn(result.svg, arc.id)).toBe("호");
     expect(result.applied).toEqual(["호 AB 추가(중심 O)"]);
     unchanged(circle, result.svg);
   });
