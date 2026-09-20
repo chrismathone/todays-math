@@ -68,6 +68,20 @@ beforeEach(() => {
     },
   );
   vi.stubGlobal("PointerEvent", MouseEvent);
+  // jsdom 에는 SVGGeometryElement 가 없고 상자도 늘 0 이다 — 번호표가 서도록 캔버스 크기를 준다.
+  vi.stubGlobal("SVGGeometryElement", class {});
+  Object.defineProperty(SVGElement.prototype, "getBoundingClientRect", {
+    configurable: true,
+    value: () => ({ x: 0, y: 0, width: 300, height: 240, toJSON: () => ({}) }),
+  });
+  for (const [name, value] of [
+    ["clientWidth", 300],
+    ["clientHeight", 240],
+  ] as const)
+    Object.defineProperty(SVGElement.prototype, name, {
+      configurable: true,
+      value,
+    });
   Object.defineProperty(SVGElement.prototype, "getScreenCTM", {
     configurable: true,
     value: () => identity,
@@ -88,6 +102,7 @@ const editor = (props: {
   ) => Promise<StudioFigureEditResult>;
   onRedraw?: () => Promise<{ svg: string }>;
   label?: string;
+  initialSvg?: string;
 }) =>
   render(
     <StudioFigureEditor
@@ -272,5 +287,76 @@ describe("편집기 머리 번호", () => {
     await waitFor(() => expect(click).toHaveBeenCalledOnce());
     expect(click.mock.instances[0]).toHaveAttribute("download", "도형-9-1.svg");
     click.mockRestore();
+  });
+});
+
+/**
+ * 원장님 2026-09-21 확정 — «그룹 A라고 따로 AI에게 지시하지 않는 이상 항상 그룹은 신경쓰지 않도록» ·
+ * «요소도 «요소 15» 등으로 정확하게 지정하지 않는 이상 신경쓰지 않음».
+ *
+ * 묶음은 **화면 번호표만** 하나로 합친다. AI 에게 보내는 그림(figureEditSnapshot 의 `numbers`)과 요소 목록은
+ * 묶기 전과 똑같이 **요소마다 제 번호**다 — AI 가 하던 일이 한 가지도 줄지 않는다.
+ */
+describe("묶음은 화면에서만 합친다 — AI 가 보는 것은 그대로 (원장님 2026-09-21)", () => {
+  const screenTags = () =>
+    [...document.querySelectorAll("[data-figure-number]")].map((g) =>
+      g.getAttribute("data-figure-number"),
+    );
+  const groupTwo = () => {
+    fireEvent.click(document.querySelector('[data-figure-list-number="1"]')!);
+    fireEvent.click(document.querySelector('[data-figure-list-number="2"]')!, {
+      shiftKey: true,
+    });
+    fireEvent.keyDown(screen.getByLabelText("도형 편집 캔버스"), {
+      key: "g",
+      ctrlKey: true,
+    });
+  };
+
+  it("화면 번호표는 하나로 합쳐도 AI 에게 보내는 그림은 요소마다 번호를 단다", async () => {
+    const onEdit = vi.fn<
+      (request: StudioFigureEditRequest) => Promise<StudioFigureEditResult>
+    >(async () => ({ edits: [] }));
+    editor({ onEdit });
+    expect(screenTags()).toEqual(["1", "2", "3"]);
+    groupTwo();
+    // 화면: 묶음 하나 + 남은 요소 하나
+    expect(screenTags()).toEqual(["1", "3"]);
+    ask("사다리꼴 상자를 왼쪽으로 옮겨 주세요");
+    fireEvent.click(screen.getByRole("button", { name: "요청대로 고치기" }));
+    await waitFor(() => expect(onEdit).toHaveBeenCalledOnce());
+    // AI 가 보는 그림: 요소마다 번호 하나 — 묶기 전과 같다
+    const snapshot = vi.mocked(buildFigureEditSnapshot).mock.calls.at(-1)![0];
+    expect(snapshot.numbers.map((n) => n.number)).toEqual([1, 2, 3]);
+    expect(snapshot.numbers.every((n) => n.ids.length === 1)).toBe(true);
+  });
+
+  it("번호를 대지 않은 맨 말 요청이 지금과 똑같이 처리된다 — 요소 목록도 요청 글도 그대로", async () => {
+    const onEdit = vi.fn<
+      (request: StudioFigureEditRequest) => Promise<StudioFigureEditResult>
+    >(async () => ({ edits: [{ op: "move", target: 1, dx: -10, dy: 0 }] }));
+    editor({ onEdit });
+    groupTwo();
+    ask("사다리꼴 상자를 왼쪽으로 옮겨 주세요");
+    fireEvent.click(screen.getByRole("button", { name: "요청대로 고치기" }));
+    await waitFor(() => expect(onEdit).toHaveBeenCalledOnce());
+    const [request] = onEdit.mock.calls[0];
+    expect(request.instructions).toBe("사다리꼴 상자를 왼쪽으로 옮겨 주세요");
+    expect(request.figure.elements.map((e) => [e.n, e.kind])).toEqual([
+      [1, "선분"],
+      [2, "선분"],
+      [3, "글자"],
+    ]);
+    // 묶음 이름은 role 한 칸에 덤으로만
+    expect(request.figure.elements.map((e) => e.role)).toEqual([
+      "A",
+      "A",
+      undefined,
+    ]);
+    // 그리고 AI 가 번호로 가리킨 묶음 속 요소 하나만 움직인다 — 묶음 동무는 제자리
+    await waitFor(() =>
+      expect(lines()[0]).toHaveAttribute("transform", "translate(-10 0)"),
+    );
+    expect(lines()[1]).not.toHaveAttribute("transform");
   });
 });
