@@ -105,3 +105,37 @@ describe("요청대로 고치기 — 엔진 탓 거절에는 한 번 되묻는�
     expect(inference).toHaveBeenCalledTimes(1);
   });
 });
+
+/**
+ * 원장님 2026-09-21 — «15라고 해서 요소 15를 보지 말란 뜻이야. 15는 화면상에 존재하는 숫자(텍스트) 15를 찾는 것» ·
+ * «A라고 해도 그룹 A가 아닌 점 A를 찾아야 함» · «그룹 A라고 따로 지시하지 않는 이상 그룹은 신경쓰지 않도록».
+ * 번호와 묶음 이름은 **부를 때만 쓰는 손잡이**지 원장님이 관리할 물건이 아니다.
+ */
+describe("맨 숫자·맨 글자를 무엇으로 읽는가", () => {
+  const prompt = buildFigureEditPrompt(request);
+
+  it("맨 숫자는 그려진 글자이지 요소 번호가 아니다", () => {
+    expect(prompt).toContain("A bare number in the request");
+    expect(prompt).toContain("It does NOT mean element n = 15");
+  });
+
+  it("맨 글자는 점 이름이지 묶음 이름이 아니다", () => {
+    expect(prompt).toContain("A bare letter");
+    expect(prompt).toContain("It does NOT mean the group named A");
+  });
+
+  it("요소 번호·묶음은 **그렇게 말했을 때만** 쓴다", () => {
+    expect(prompt).toContain("요소 15");
+    expect(prompt).toContain("그룹 A");
+  });
+
+  it("못 찾으면 요소 번호로 미끄러지지 않고 사유를 적는다", () => {
+    expect(prompt).toContain("do not fall back to the element number");
+  });
+
+  it("이 규칙은 한 벌뿐이다", () => {
+    const once = (text: string) => prompt.split(text).length - 1;
+    expect(once("A bare number in the request")).toBe(1);
+    expect(once("A bare letter")).toBe(1);
+  });
+});

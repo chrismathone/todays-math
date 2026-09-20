@@ -18,6 +18,12 @@ export function buildFigureEditPrompt(
 The attached image has two labeled panels side by side: LEFT "1. 원본" is the original printed crop (reference only); RIGHT "2. 지금 그림" is the figure being edited, exactly as the editor shows it, with small element number tags joined to their elements by thin leader lines.
 figure-elements-data lists every element of the current figure with the SAME numbers as those tags: n, kind, role (a group name the user gave), text, key points, style, and locked (size fixed — it may move but its shape must not change). Coordinates are the figure's own units: x to the right, y DOWN, inside viewBox [minX, minY, width, height]. names maps point labels (A, B, P′ …) to their positions.
 Apply ONLY what edit-request-data asks. Every element that no command names stays exactly as it is. Change an element in place instead of deleting and re-adding it. Use the fewest commands; at most ${FIGURE_EDIT_MAX_COMMANDS}.
+How to read what the request names — the element number n and the group role are handles you use internally, NOT what the user is talking about:
+- A bare number in the request ("15를 지워줘") means the printed TEXT whose content is 15 (a length, an angle size, a choice marker). It does NOT mean element n = 15.
+- A bare letter ("A를 옮겨줘") means the POINT named A in names, or the printed label "A". It does NOT mean the group named A.
+- Use the element number only when the request says so explicitly: 요소 15 · 15번 요소 · 15번 선.
+- Use the group only when the request says so explicitly: 그룹 A · A 그룹.
+When no element carries that text or name, say so in note; do not fall back to the element number.
 Output exactly one JSON object {"commands":[...],"note":"","warnings":[]}. If the request cannot be done with these commands, or asks about something that is not in the current figure, return {"commands":[],"note":"short Korean reason"}.
 Commands (include only the fields shown; omit optional fields you do not change):
 {"op":"delete","target":n}
