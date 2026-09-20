@@ -273,10 +273,9 @@ describe("Studio AI review controls", () => {
       screen.getByRole("button", { name: /^OCR · 디지털화 \d+$/ }),
     ).toBeEnabled();
     expect(
-      within(screen.getByRole("navigation", { name: "제작 단계" })).getByRole(
-        "button",
-        { name: /OCR · 디지털화/ },
-      ),
+      within(
+        screen.getByRole("navigation", { name: "제작 단계 이동" }),
+      ).getByRole("button", { name: /OCR · 디지털화/ }),
     ).toBeEnabled();
     expect(screen.getByText(/남음$/)).toBeInTheDocument();
     await act(async () => {
@@ -292,11 +291,10 @@ describe("Studio AI review controls", () => {
   it("imports without a paid request, reviews recognized text and sends edits to the solution request", async () => {
     const { onAdd } = await open();
     expect(posts).toEqual([]);
-    fireEvent.click(screen.getByText("AI 연결"));
-    expect(
-      screen.getByRole("option", { name: "Claude · 연결 필요" }),
-    ).toBeDisabled();
-    expect(screen.getByText(/Claude CLI에서 로그인/)).toBeInTheDocument();
+    // 상단의 «AI 연결» 칸은 없앴다(원장님 2026-09-21 ⑷) — 도구 고르기·연결 상태는 왼쪽
+    // AI 상태판이 맡는다(devAiClient 시험). 여기서는 그 자리가 비었는지만 본다.
+    expect(screen.queryByText("AI 연결")).toBeNull();
+    expect(screen.queryByLabelText("Studio AI 도구")).toBeNull();
     await recognize();
     expect(posts.map((post) => post.action)).toEqual(["page-ocr"]);
     expect(

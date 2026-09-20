@@ -195,9 +195,13 @@ test("wide rendered review, scoped solution retry, edit guards and restart", asy
   await expect(page.getByRole("combobox", { name: "시험지 학년" })).toHaveValue(
     "auto",
   );
-  await expect(
-    page.getByRole("option", { name: "초5 (자동 인식)" }),
-  ).toHaveCount(1);
+  // 자동 인식이 선 학년은 조용히 학년만 적는다(원장님 2026-09-21 ⑺ — «(자동 인식)» 은 뺐다).
+  // 직접 고르는 목록에도 «초5» 가 있으므로 auto 칸을 값으로 집는다.
+  await expect(page.locator('option[value="auto"]')).toHaveText("초5");
+  await expect(page.locator("[data-grade]")).toHaveAttribute(
+    "data-grade",
+    "quiet",
+  );
   await first.getByRole("button", { name: "내용 수정", exact: true }).click();
   await first
     .getByRole("textbox", { name: "문제 내용" })
@@ -429,23 +433,22 @@ test("edit-window zoom button is painted like the review next button in both sta
     });
   // 마우스가 단추 위에 남으면 hover 색으로 잰다 — 빈 가장자리로 치우고, 색 전환(0.15s)은 poll 로 기다린다.
   const settle = () => page.mouse.move(2, 918);
-  const next = page.getByRole("button", {
-    name: "검수 완료 · 다음",
-    exact: true,
-  });
-  await expect(next).toBeEnabled();
-  await settle();
-  const expected = await look(next);
-  expect(expected.background).toBe("rgb(49, 89, 223)");
-  expect(expected.color).toBe("rgb(255, 255, 255)");
-
+  /*
+   * 견주던 «검수 완료 · 다음»은 없앴다(원장님 2026-09-21 ⑹). 기준을 값으로 못 박는다 —
+   * 빈 값끼리 같아서 초록이 되지 않게 파란 바탕·흰 글자를 함께 적는다. 이 시험이 무는 것은
+   * 띠 단추 규칙(흰 바탕·눌림 색)이 채운 단추의 색을 덮는 경우다.
+   */
   // 검수는 확대로 들어온다(시안 B) — 확대 중.
   const zoomOut = band.getByRole("button", {
     name: "편집창 축소",
     exact: true,
   });
   await expect(zoomOut).toHaveAttribute("aria-pressed", "true");
-  await expect.poll(() => look(zoomOut)).toEqual(expected);
+  await settle();
+  const expected = await look(zoomOut);
+  expect(expected.background).toBe("rgb(49, 89, 223)");
+  expect(expected.color).toBe("rgb(255, 255, 255)");
+  expect(expected.border).toBe("1px rgb(49, 89, 223)");
   await band.screenshot({ path: testInfo.outputPath("zoom-band-focus.png") });
 
   // 확대 전.
@@ -469,10 +472,10 @@ test("edit-window zoom button is painted like the review next button in both sta
   expect(mock.errors).toEqual([]);
 });
 
-// 원장님 2026-09-19 «파일 선택 칸 120 → 108px 로 줄여 한 줄» — 실제 작업실(/dev/unified, 왼쪽 메뉴 260px) 1680×920
-// 검수·확대 풀림에서 위 띠가 두 줄(94px)이었다. 하네스는 앱 틀이 없어 띠가 넓고 글꼴도 달라, 같은 여유(한 줄에 드는
-// 기본 폭이 114px 까지 — 120 이면 꺾이고 108 이면 한 줄)가 되는 폭 1516 에서 잰다. jsdom 은 flex 줄바꿈을 안 돈다.
-test("review band stays on one row with the 108px file picker", async ({
+// 원장님 2026-09-21 «파일명을 그만큼 공간에 배정» — 쪽 이동과 전체 작업 셋이 둘째 줄로 내려간 자리를
+// 파일 이름이 쓴다(기본 200px, 남으면 460px 까지). 2026-09-19 의 108px 은 그 셋이 제목 줄에 함께 있을 때의
+// 값이었다. 제목 줄이 한 줄로 남는지는 그때와 같은 폭 1516 에서 잰다 — jsdom 은 flex 줄바꿈을 안 돈다.
+test("review band stays on one row with a wider file picker", async ({
   page,
 }, testInfo) => {
   const mock = await mockAi(page);
@@ -492,7 +495,7 @@ test("review band stays on one row with the 108px file picker", async ({
     studio.evaluate((element) =>
       element.style.getPropertyValue("--studio-band-height"),
     );
-  expect(await basis()).toBe("108px");
+  expect(await basis()).toBe("200px");
   // 검수 확대 중
   await expect.poll(height).toBe(44);
   // 검수 확대 풀림 — 두 줄이던 자리
@@ -500,7 +503,7 @@ test("review band stays on one row with the 108px file picker", async ({
   await expect(
     band.getByRole("button", { name: "편집창 확대", exact: true }),
   ).toBeVisible();
-  expect(await basis()).toBe("108px");
+  expect(await basis()).toBe("200px");
   await expect.poll(height).toBe(44);
   await expect.poll(bandVar).toBe("44px");
   // 칸이 좁아 파일 이름이 잘려도 title 로 다 보인다
@@ -509,7 +512,31 @@ test("review band stays on one row with the 108px file picker", async ({
   );
   expect(name).toBeTruthy();
   await expect(picker).toHaveAttribute("title", name!);
-  await band.screenshot({ path: testInfo.outputPath("band-108.png") });
+  const fit = await picker.evaluate((select: HTMLSelectElement) => {
+    const style = getComputedStyle(select);
+    const context = document.createElement("canvas").getContext("2d")!;
+    context.font = `${style.fontSize} ${style.fontFamily}`;
+    const text = select.selectedOptions[0]?.text ?? "";
+    const inner =
+      select.clientWidth -
+      parseFloat(style.paddingLeft) -
+      parseFloat(style.paddingRight);
+    let shown = 0;
+    while (
+      shown < text.length &&
+      context.measureText(text.slice(0, shown + 1)).width <= inner
+    )
+      shown++;
+    return {
+      전체글자: text.length,
+      보이는글자: shown,
+      글자자리: Math.round(inner),
+    };
+  });
+
+  console.log("[파일 이름 칸]", JSON.stringify(fit));
+  expect(fit.보이는글자).toBeGreaterThan(0);
+  await band.screenshot({ path: testInfo.outputPath("band-name.png") });
   expect(mock.errors).toEqual([]);
 });
 
