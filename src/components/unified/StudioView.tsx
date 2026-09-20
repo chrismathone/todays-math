@@ -1906,6 +1906,16 @@ export default function StudioView({
     (job) => job.state === "complete",
   ).length;
   const digitalCount = crops.filter(studioCropDigitized).length;
+  /*
+   * 원장님 2026-09-20 «전체 해설 생성. 순서대로 해설 생성» — 목록 차례대로 보낸다.
+   * 이미 해설이 있으면 건너뛰고, 검수 완료된 문항은 건드리지 않는다(검수 완료 잠금과 같은 규칙).
+   * 본문이 없으면 보낼 것이 없다 — 한 문항 «해설 생성» 도 그때 안 눌린다.
+   * 줄 세우기·진행·취소·실패는 `studioAi.processCrops` 가 이미 하던 그대로 쓴다.
+   */
+  const solutionTargets = crops.filter(
+    (crop) =>
+      !crop.solution.trim() && !crop.reviewed && Boolean(crop.content.trim()),
+  );
   // 다음 단계로 넘어가기 전에 남은 일. 실패·취소는 studioAi.running 에 없으므로 여기서 멈추지 않는다.
   const busyPages =
     studioAi.pageProgress.queued + studioAi.pageProgress.running;
@@ -2633,6 +2643,24 @@ export default function StudioView({
                   onClick={digitizeAll}
                 >
                   전체 디지털화
+                </button>
+                <button
+                  type="button"
+                  className={styles.secondaryButton}
+                  disabled={!studioAi.available || !solutionTargets.length}
+                  title={
+                    solutionTargets.length
+                      ? undefined
+                      : "해설이 없는 문항이 없습니다."
+                  }
+                  onClick={() =>
+                    void studioAi.processCrops(
+                      "solution",
+                      solutionTargets.map((crop) => crop.id),
+                    )
+                  }
+                >
+                  전체 해설 생성
                 </button>
                 {activeCrop && (
                   <>
