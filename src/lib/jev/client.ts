@@ -40,9 +40,18 @@ export interface JevAnswer {
  * 빠른 길을 켤 수 있는가 — 운영은 Vercel OIDC, 로컬은 `AI_GATEWAY_API_KEY`.
  * 둘 다 없으면 **오류가 아니라** 조용히 꺼진다. `STUDIO_AI_JEV=off` 면 코드 없이 되돌린다
  * (`STUDIO_AI_FIGURE_VENDOR` 와 같은 결).
+ *
+ * 🔴 **시험 안에서는 «켜라»고 해야 켜진다**(`STUDIO_AI_JEV=on`). `vitest.config.mts:16` 이
+ * `loadEnv` 로 `.env` 를 시험 환경에 통째로 주입하므로, 키를 가진 컴퓨터에서는 시험이
+ * **진짜 게이트웨이를 부른다**(절대 규칙 7 — 시험에서 유료 실호출 금지). 게다가 켜지면서 생기는
+ * `await` 한 틱이 취소 신호가 도착하는 차례를 바꿔 기존 시험을 깨뜨렸다.
+ * 워크트리에는 `.env` 가 없어 **main 에 병합한 뒤에야** 드러났다(2026-09-20).
+ * 이 겹을 직접 재는 시험은 `env` 를 손수 넘기므로 영향을 받지 않는다.
  */
 export function isJevEnabled(env: NodeJS.ProcessEnv = process.env): boolean {
-  if (env.STUDIO_AI_JEV?.trim().toLowerCase() === "off") return false;
+  const switched = env.STUDIO_AI_JEV?.trim().toLowerCase();
+  if (switched === "off") return false;
+  if (env.VITEST && switched !== "on") return false;
   return Boolean(
     env.AI_GATEWAY_API_KEY?.trim() || env.VERCEL_OIDC_TOKEN?.trim(),
   );

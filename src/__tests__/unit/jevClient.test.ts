@@ -62,6 +62,35 @@ describe("빠른 길 스위치", () => {
       isJevEnabled(envOf({ AI_GATEWAY_API_KEY: "key", STUDIO_AI_JEV: "on" })),
     ).toBe(true);
   });
+
+  it("시험 안에서는 키가 있어도 꺼진다 — «켜라»고 해야 켜진다", () => {
+    expect(
+      isJevEnabled(envOf({ AI_GATEWAY_API_KEY: "key", VITEST: "true" })),
+    ).toBe(false);
+    expect(
+      isJevEnabled(envOf({ VERCEL_OIDC_TOKEN: "token", VITEST: "true" })),
+    ).toBe(false);
+    expect(
+      isJevEnabled(
+        envOf({
+          AI_GATEWAY_API_KEY: "key",
+          VITEST: "true",
+          STUDIO_AI_JEV: "on",
+        }),
+      ),
+    ).toBe(true);
+  });
+
+  /**
+   * 진짜 결함을 잡는 시험 — `vitest.config.mts` 가 `.env` 를 주입하므로 키를 가진 컴퓨터에서는
+   * 이것이 없으면 시험이 유료 게이트웨이를 실제로 부른다(2026-09-20 main 에서 드러났다).
+   */
+  it("돌고 있는 이 시험의 process.env 로는 켜지지 않는다", () => {
+    vi.stubEnv("AI_GATEWAY_API_KEY", "key");
+    expect(process.env.VITEST).toBeTruthy();
+    expect(isJevEnabled()).toBe(false);
+    vi.unstubAllEnvs();
+  });
 });
 
 describe("게이트웨이 한 겹", () => {

@@ -585,7 +585,11 @@ describe("운영 로그", () => {
 });
 
 describe("배선 — 지금 경로는 한 글자도 달라지지 않는다", () => {
-  beforeEach(() => vi.stubEnv("AI_GATEWAY_API_KEY", "key"));
+  beforeEach(() => {
+    vi.stubEnv("AI_GATEWAY_API_KEY", "key");
+    // 시험 안에서는 기본이 «꺼짐»이다(`isJevEnabled` 머리말) — 배선을 재려면 손수 켠다.
+    vi.stubEnv("STUDIO_AI_JEV", "on");
+  });
   afterEach(() => vi.unstubAllEnvs());
 
   it("빠른 길이 먹으면 지금 경로의 모델을 아예 부르지 않는다", async () => {
