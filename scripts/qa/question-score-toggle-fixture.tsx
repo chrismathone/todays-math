@@ -170,6 +170,7 @@ function Fixture() {
       download={() => {}}
       toggle={() => {}}
       move={() => {}}
+      reorder={() => {}}
       navigate={() => {}}
     />
   );
