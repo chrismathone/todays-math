@@ -6,6 +6,17 @@ import {
   type PrintOptions,
 } from "./types";
 import s from "../WorksheetEditor.module.css";
+
+/**
+ * 고른 값이 지면에서 **무엇을 감수하는지** 한 줄로 알린다 — 값마다 다르다(D-08).
+ * 「자동」·「5행」은 접힐 일이 없어 아무 말도 안 한다.
+ */
+const CHOICE_LAYOUT_NOTES: Partial<
+  Record<PrintOptions["choiceLayout"], string>
+> = {
+  "2x3": "보기가 길어 3열에 안 들어가는 문항은 그 문항만 열을 줄입니다.",
+  "3x2": "고른 열 수를 지킵니다. 보기가 길면 칸 안에서 두 줄이 됩니다.",
+};
 import panel from "./PrintOptionsPanel.module.css";
 
 export function PrintOptionsPanel({
@@ -298,9 +309,9 @@ export function PrintOptionsPanel({
             </button>
           ))}
         </div>
-        {options.choiceLayout === "2x3" && (
+        {CHOICE_LAYOUT_NOTES[options.choiceLayout] && (
           <p className={s.subtle}>
-            보기가 길어 3열에 안 들어가는 문항은 그 문항만 열을 줄입니다.
+            {CHOICE_LAYOUT_NOTES[options.choiceLayout]}
           </p>
         )}
       </fieldset>

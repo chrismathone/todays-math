@@ -22,13 +22,30 @@ import { displayWidth, TWO_COLUMN_WIDTH_LIMIT } from "@/lib/math/displayWidth";
 const five = ["$1$", "$2$", "$3$", "$4$", "$5$"];
 /** 실측 표본 — 표시폭 36 으로 2열 한 칸(24)도 넘는다. */
 const LONG = "서로 다른 두 소수는 항상 서로소이다.";
-/** 3열 한 칸(13)은 넘고 2열 한 칸(24)에는 들어가는 보기. */
+/** 3열 한 칸(9)은 넘고 2열 한 칸(18)에는 들어가는 보기 — 표시폭 18. */
 const MEDIUM = "$x=2y+3z-1$";
 
-describe("[보기 배치] 칸 폭 상한은 이미 있던 실측에서 이어 뽑는다", () => {
-  it("2열 상한은 `TWO_COLUMN_WIDTH_LIMIT` 와 같은 수다", () => {
-    // 새 상수를 지어내지 않았다는 증거 — 같은 실측(문항 열 364px)에서 나온다.
-    expect(choiceColumnLimit(2)).toBe(TWO_COLUMN_WIDTH_LIMIT);
+describe("[보기 배치] 칸 폭 상한은 «실제 시험지 지면»에서 잰 것이다", () => {
+  /**
+   * 🔴 2026-09-20 Chromium 실측(`/dev/choice-layout`, 2단 · 여백 «보통»):
+   *   문항 열 327.2px · 2열 칸 147.6px · 3열 칸 87.7px · 마커+간격 20px
+   *   · 본문 13.5px 에서 한글 한 글자 14px(= 표시폭 2) → 1 단위 7px
+   * 이 수들로 나눈 값이 아래 셋이다. **지어낸 문턱이 아니다.**
+   */
+  it("실측에서 나온 상한 셋", () => {
+    expect(choiceColumnLimit(1)).toBe(43);
+    expect(choiceColumnLimit(2)).toBe(18);
+    expect(choiceColumnLimit(3)).toBe(9);
+  });
+
+  it("고른 값의 상한은 «자동»의 24 보다 엄격하다", () => {
+    /**
+     * `TWO_COLUMN_WIDTH_LIMIT`(24) 는 **옛 인쇄 경로**(`TestPrint`, 문항 열 364px)의
+     * 실측이라 통합 시험지 지면(327px)에서는 관대하다. 자동은 **기본값**이라 문턱을
+     * 옮기면 지면이 바뀌므로(절대 규칙 6) 그대로 두고, 고른 값만 실측대로 쓴다.
+     * 자동을 다시 눈금 맞추는 것은 별건이다 — 보고서 «리드에게 넘길 것».
+     */
+    expect(choiceColumnLimit(2)).toBeLessThan(TWO_COLUMN_WIDTH_LIMIT);
   });
 
   it("열이 늘수록 칸이 좁아진다", () => {

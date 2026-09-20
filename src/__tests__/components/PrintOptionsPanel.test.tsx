@@ -135,19 +135,33 @@ describe("Mathgen print spacing presets", () => {
       fireEvent.click(within(group).getByRole("button", { name: label }));
       expect(onOptions).toHaveBeenLastCalledWith({ choiceLayout });
     }
-    // 넘침 규칙은 그 값을 고른 동안에만 알린다 — 문구는 간결·사무적(D-08).
+    // 감수할 것은 값마다 다르고, 그 값을 고른 동안에만 알린다(D-08).
     expect(group).not.toHaveTextContent("열을 줄입니다");
+    expect(group).not.toHaveTextContent("두 줄이 됩니다");
+    for (const [choiceLayout, note] of [
+      ["2x3", "보기가 길어 3열에 안 들어가는 문항은 그 문항만 열을 줄입니다."],
+      ["3x2", "고른 열 수를 지킵니다. 보기가 길면 칸 안에서 두 줄이 됩니다."],
+    ] as const) {
+      view.rerender(
+        <PrintOptionsPanel
+          {...props}
+          options={{ ...props.options, choiceLayout }}
+        />,
+      );
+      expect(
+        screen.getByRole("group", { name: "보기 번호 배치" }),
+      ).toHaveTextContent(note);
+    }
+    // 「5행」은 접힐 일이 없어 아무 말도 안 한다.
     view.rerender(
       <PrintOptionsPanel
         {...props}
-        options={{ ...props.options, choiceLayout: "2x3" }}
+        options={{ ...props.options, choiceLayout: "5x1" }}
       />,
     );
     expect(
       screen.getByRole("group", { name: "보기 번호 배치" }),
-    ).toHaveTextContent(
-      "보기가 길어 3열에 안 들어가는 문항은 그 문항만 열을 줄입니다.",
-    );
+    ).not.toHaveTextContent("두 줄이 됩니다");
   });
 
   it("restores every print option to its default, including the choice layout", () => {
