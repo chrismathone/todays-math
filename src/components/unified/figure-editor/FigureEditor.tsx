@@ -96,6 +96,11 @@ import {
   rotationBlock,
   type RotateTurn,
 } from "./figureRotate";
+import {
+  mirrorBlock,
+  mirrorFigureSelection,
+  type MirrorAxis,
+} from "./figureMirror";
 import { FigureRotateRow } from "./FigureRotateRow";
 import { flipFigureCurve } from "./figureFlip";
 
@@ -458,14 +463,30 @@ export function FigureEditor({
     () => rotationBlock(objects, selectedIds),
     [objects, selectedIds],
   );
-  const rotate = (turn: RotateTurn) => {
+  const selectedTextBoxes = () => {
     const root = canvas.current?.querySelector("svg");
     const texts = objects
       .filter((o) => o.type === "text" && selectedIds.includes(o.id))
       .map((o) => o.id);
+    return root ? measureTextBoxes(root, texts) : undefined;
+  };
+  const rotate = (turn: RotateTurn) => {
     commit(
       rotateFigureSelection(svg, selectedIds, turn, {
-        textBoxes: root ? measureTextBoxes(root, texts) : undefined,
+        textBoxes: selectedTextBoxes(),
+      }),
+    );
+  };
+  // 대칭 — 고른 것 전체를 제 가운데를 지나는 세로 축(좌우)·가로 축(상하)에 비춘다(되돌리기 한 번).
+  // 끌 이유는 축과 무관하다(세로·가로가 같다). AI «요청대로 고치기»의 `mirror` 와 같은 함수.
+  const mirrorBlocked = useMemo(
+    () => mirrorBlock(objects, selectedIds, "vertical"),
+    [objects, selectedIds],
+  );
+  const mirror = (axis: MirrorAxis) => {
+    commit(
+      mirrorFigureSelection(svg, selectedIds, axis, {
+        textBoxes: selectedTextBoxes(),
       }),
     );
   };
@@ -1736,6 +1757,7 @@ export function FigureEditor({
               <FigureRotateRow
                 blocked={rotateBlocked}
                 onRotate={rotate}
+                mirror={{ blocked: mirrorBlocked, onMirror: mirror }}
                 flip={
                   flipping
                     ? {
