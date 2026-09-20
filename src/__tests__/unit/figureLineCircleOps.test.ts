@@ -22,6 +22,8 @@ import { describeFigureForEdit } from "@/components/unified/figure-editor/figure
  *   그래서 외심·내심·접점·교점은 여기서 **다른 식으로 다시 풀어** 대조한다(같은 식을 두 번 쓰면 검산이 아니다).
  * - 새 요소는 편집기 도구가 짓는 것과 같은 모양이어야 한다 — 요소 이름·묶음·오른쪽 칸 제목이 손으로 그린 것과 같게.
  * - 그림은 도형 엔진 v2 가 실제로 그린 것(`scripts/figure/render_spec.py`, 2026-09-20).
+ * - 검산의 허용 오차가 0.001 언저리인 것은 **새 좌표를 엔진처럼 소수 셋째 자리로 적기 때문**이다
+ *   (figure_scene.py `_fmt`). 그보다 촘촘히 잠그면 반올림만으로 빨개진다.
  */
 const NS = "http://www.w3.org/2000/svg";
 const F =
@@ -377,7 +379,7 @@ describe("각의 이등분선", () => {
     // 검산 — 두 변과 이루는 각이 같다
     const angle = (p: XY, q: XY) =>
       Math.acos(dot(sub(p, A), sub(q, A)) / (len(p, A) * len(q, A)));
-    expect(angle(b, B)).toBeCloseTo(angle(b, C), 8);
+    expect(angle(b, B)).toBeCloseTo(angle(b, C), 6);
     expect(result.applied).toEqual(["각 BAC 의 이등분선 추가"]);
   });
 
@@ -396,7 +398,7 @@ describe("각의 이등분선", () => {
     const d = ends(bisector).b;
     expect(d).toEqual({ x: 120.998, y: 176.807 });
     // 검산 — 각의 이등분선 정리 BD : DC = AB : AC
-    expect(len(d, B) / len(d, C)).toBeCloseTo(len(A, B) / len(A, C), 6);
+    expect(len(d, B) / len(d, C)).toBeCloseTo(len(A, B) / len(A, C), 5);
     expect(result.applied).toEqual(["각 BAC 의 이등분선 추가(교점 D)"]);
     expect(dotAt(result.svg, d)).toBeTruthy();
   });
@@ -452,7 +454,7 @@ describe("접선", () => {
     // 검산 — 중심에서 이 직선까지 거리가 반지름과 같다(접한다)
     const u = { x: (b.x - a.x) / len(a, b), y: (b.y - a.y) / len(a, b) };
     const distance = Math.abs((O.x - a.x) * u.y - (O.y - a.y) * u.x);
-    expect(distance).toBeCloseTo(70, 6);
+    expect(distance).toBeCloseTo(70, 3);
     expect(result.applied).toEqual(["원 O 의 접선 추가"]);
     expect(nameIn(result.svg, tangent.id)).toBe("선분");
   });
@@ -469,8 +471,10 @@ describe("접선", () => {
     for (const [i, tip] of tips.entries()) {
       expect(ends(lines[i]).a).toEqual(P);
       // 검산 — 접점은 원 위이고 반지름과 접선이 직각이다
-      expect(len(tip, O)).toBeCloseTo(70, 6);
-      expect(dot(sub(P, tip), sub(O, tip))).toBeCloseTo(0, 6);
+      expect(len(tip, O)).toBeCloseTo(70, 3);
+      expect(
+        dot(sub(P, tip), sub(O, tip)) / (len(P, tip) * len(O, tip)),
+      ).toBeCloseTo(0, 4);
       expect(dotAt(result.svg, tip)).toBeTruthy();
     }
     expect(result.applied).toEqual([
@@ -532,7 +536,7 @@ describe("접선", () => {
     ],
     [
       "from 이 원 안",
-      { op: "addTangent", circle: "O", from: "O" },
+      { op: "addTangent", circle: "O", from: { x: 100, y: 100 } },
       "점이 원 안에 있어 접선이 없습니다",
     ],
   ])("rejects %s", (_name, command, reason) => {
@@ -612,7 +616,7 @@ describe("외접원·내접원 — 중심은 코드가 계산한다", () => {
       const distance = Math.abs(
         ((q.x - p.x) * (p.y - centre.y) - (p.x - centre.x) * (q.y - p.y)) / L,
       );
-      expect(distance).toBeCloseTo(55.428688, 4);
+      expect(distance).toBeCloseTo(55.428688, 3);
     }
     expect(result.applied).toEqual(["삼각형 ABC 의 내접원 추가(중심 I)"]);
     expect(circle.attrs["stroke-dasharray"]).toBeUndefined();
@@ -681,8 +685,8 @@ describe("원의 교점", () => {
     ]) {
       expect(dotAt(result.svg, at)).toBeTruthy();
       // 검산 — 두 원 위에 모두 있다
-      expect(len(at, centres[0])).toBeCloseTo(60, 4);
-      expect(len(at, centres[1])).toBeCloseTo(50, 4);
+      expect(len(at, centres[0])).toBeCloseTo(60, 3);
+      expect(len(at, centres[1])).toBeCloseTo(50, 3);
     }
     expect(result.applied).toEqual(["원 O 와 원 P 의 교점 추가(X·Y)"]);
   });
@@ -735,7 +739,7 @@ describe("호의 중점", () => {
     expect(len(at, { x: 82.95, y: 89.133 })).toBeCloseTo(70, 3);
     expect(len(at, { x: 148.728, y: 65.192 })).toBeCloseTo(
       len(at, { x: 47.95, y: 28.511 }),
-      3,
+      2,
     );
     expect(result.applied).toEqual(["호 AB 의 중점 M 추가"]);
     expect(
