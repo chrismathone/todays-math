@@ -110,8 +110,22 @@ const createMathNode = (active: {
             node.attrs.display,
           );
         };
+        // 칸의 값을 본문 노드에 싣는다. MathLive 는 `input` 을 setTimeout 뒤에 낸다(한 글자에
+        // 15~20ms) — 치자마자 Esc·Enter 로 닫으면 마지막 값이 안 실렸다. 닫을 때도 부른다(트랙 23).
+        const commit = () => {
+          const pos = getPos();
+          if (typeof pos !== "number" || !field) return;
+          editor.view.dispatch(
+            editor.state.tr.setNodeMarkup(pos, undefined, {
+              ...node.attrs,
+              tex: field.value,
+              fresh: false,
+            }),
+          );
+        };
         const close = (direction?: "forward" | "backward") => {
           if (!field || destroyed) return;
+          if (field.value !== node.attrs.tex) commit();
           if (active.get() === field) active.set(null);
           detachKeyboard?.();
           detachKeyboard = null;
@@ -139,17 +153,7 @@ const createMathNode = (active: {
           // 한컴 수식 낱말 «작은 판»(트랙 8) — `root2` → √2, `a over b` → 분수.
           attachHwpMathShortcuts(field);
           detachKeyboard = attachCompactMathKeyboard(field);
-          field.addEventListener("input", () => {
-            const pos = getPos();
-            if (typeof pos !== "number" || !field) return;
-            editor.view.dispatch(
-              editor.state.tr.setNodeMarkup(pos, undefined, {
-                ...node.attrs,
-                tex: field.value,
-                fresh: false,
-              }),
-            );
-          });
+          field.addEventListener("input", commit);
           field.addEventListener("blur", () =>
             setTimeout(() => {
               if (field && !field.matches(":focus-within")) close();
@@ -169,6 +173,12 @@ const createMathNode = (active: {
             event.stopPropagation();
           });
           field.focus();
+          // MathLive 는 입력 자리(keyboard-sink)에 포커스를 60ms 뒤에 넘긴다(onFocus 의
+          // setTimeout). 그 틈에 친 글자는 겉 틀로 가서 사라지고 Esc 는 작업실 확대를 풀었다
+          // (트랙 23). 입력 자리에 바로 준다 — `part` 는 MathLive 가 밖에 내놓은 부품 이름이다.
+          field.shadowRoot
+            ?.querySelector<HTMLElement>('[part~="keyboard-sink"]')
+            ?.focus({ preventScroll: true });
           if (node.attrs.fresh) {
             field.executeCommand("moveToMathfieldStart");
             field.executeCommand("moveToNextPlaceholder");
