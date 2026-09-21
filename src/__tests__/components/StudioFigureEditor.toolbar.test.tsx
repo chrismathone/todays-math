@@ -189,6 +189,15 @@ describe("도구 줄 — 선·도형 무리, 마지막에 쓴 도구가 겉에",
     expect(item("원")).toHaveAttribute("aria-checked", "false");
   });
 
+  it("메뉴가 열린 채 겉을 누르면 메뉴가 닫히고 겉 도구가 켜진다", () => {
+    open();
+    fireEvent.click(toggle("선"));
+    fireEvent.pointerDown(button("선분"));
+    fireEvent.click(button("선분"));
+    expect(menu()).toBeNull();
+    expect(button("선분")).toHaveAttribute("aria-pressed", "true");
+  });
+
   it("마우스로 고르면 초점은 겉 단추로 — 메뉴가 사라져 초점이 <body> 로 떨어지지 않는다", () => {
     open();
     fireEvent.click(toggle("선"));

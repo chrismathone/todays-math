@@ -110,7 +110,11 @@ export function FigureToolMenu({
           aria-label={shown.label}
           aria-pressed={on}
           title={titleOf(face)}
-          onClick={() => onChoose(face)}
+          onClick={() => {
+            // 메뉴가 열린 채 겉을 눌러도 닫는다 — 겉은 같은 무리(바깥 누름이 아니다)
+            onChoose(face);
+            setOpen(false);
+          }}
           disabled={disabled}
           className={`${TOOL_BUTTON} ${on ? TOOL_PRESSED : "hover:bg-side"}`}
         >
