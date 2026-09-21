@@ -73,6 +73,8 @@ export const proxy = auth(async (req) => {
     pathname.startsWith("/signup") ||
     pathname.startsWith("/api/") ||
     pathname.startsWith("/dev/") ||
+    ((req.method === "GET" || req.method === "HEAD") &&
+      pathname.startsWith("/lab")) ||
     pathname === "/favicon.ico";
 
   if (!req.auth?.user?.id && !isPublic) {
