@@ -4,6 +4,7 @@ import { MarkdownRenderer } from "@/components/math/MarkdownRenderer";
 import { blocksToMarkdown } from "@/lib/mathgen/blocksToMarkdown";
 import type { ContentBlock, ChoiceGroup } from "@/lib/mathgen/contracts";
 import { parseProblemContent } from "@/lib/problem/parseProblemContent";
+import { layoutQuotedBoxes } from "@/lib/math/boxLayout";
 import { CHOICE_MARKS } from "@/lib/math/circledNumber";
 import {
   choiceColumnCount,
@@ -54,10 +55,15 @@ export default function NativeProblem({
   const used = new Set<number>();
   // 대분수 결정은 문항 하나에 한 번 — 본문·보기·소문항이 같은 모양이다(정답지와도 같다).
   const shownFractions = fractionViewFor(problem);
+  // 〈보기〉 배치(트랙 46): 칸마다 그림 하나인 상자는 원본 그림 자리가 열 수를 안다 — 검수 카드와
+  // 같은 규칙(`layoutQuotedBoxes`)에 작업실이 원본 쪽에서 오려 낸 자리를 넘긴다(원장님 문제 22).
+  const boxLayout = {
+    figureRect: (index: number) => problem.studioCrop?.figures?.[index]?.rect,
+  };
   const markFigures = (text: string) => {
     for (const match of text.matchAll(/\[그림\s*(\d+)\]/g))
       used.add(Number(match[1]) - 1);
-    return shownFractions(text);
+    return shownFractions(layoutQuotedBoxes(text, boxLayout));
   };
   const markdown = (text: string, emphasizeNegation = false) => (
     <MarkdownRenderer
@@ -180,7 +186,9 @@ export default function NativeProblem({
         true,
       )
     : null;
-  const fallback = !data ? parseProblemContent(problem.content) : null;
+  const fallback = !data
+    ? parseProblemContent(layoutQuotedBoxes(problem.content, boxLayout))
+    : null;
   const body = data
     ? nativeBody
     : markdown(
