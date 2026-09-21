@@ -2127,6 +2127,34 @@ export const ITEMS: PrintCheckItem[] = [
       "직접 지적하신 결함의 수정이다.",
     changedOn: "2026-09-20",
   },
+  {
+    id: "studio-typed-spaces",
+    title: "작업실 편집기에서 여러 칸 띄운 자리가 지면에 그 폭 그대로 나오나",
+    changed:
+      "원장님 2026-09-21 «띄워쓰기를 해놓고 저장해보면 다시 띄워쓰기가 사라지네». 저장 원문은 멀쩡했고, 검수 카드·지면의 " +
+      "HTML 접힘 · 지면 파서의 공백 정리(`collapseWhitespace`) · 편집기를 다시 열 때의 재파싱이 여러 칸을 한 칸으로 " +
+      "줄였다. 이제 작업실 «내용 수정» 편집기에서 **친** 여러 칸은 고정 공백(U+00A0)으로 저장되어 검수 카드·지면에 그 " +
+      "폭 그대로 선다. 보통 공백 여럿(엔진이 넣은 두 칸 1,827문항 · 옛 변환본)은 예전처럼 한 칸이다.",
+    look:
+      "(제안) ① 작업실에서 한 줄 가운데를 네 칸 띄워 저장한 문항을 인쇄해, 종이에서도 한 칸일 때보다 뚜렷이(약 네 배) " +
+      "벌어지는가 — 한 칸으로 붙으면 불합격. ② 그 줄이 문항 칸 밖으로 넘치지 않는가. ③ 같은 시험지를 HWPX 로 내보내 " +
+      "한글에서 열면 지금은 **한 칸**이다(수집기 `hwpxLayout.ts` 가 공백을 접는다 — 리드에게 넘긴 자리). 종이와 다르면 " +
+      "그 수리가 아직 안 들어온 것이다.",
+    lookFromSource: false,
+    evidence: [
+      "src/components/math/editor/visualDocument.ts (keepTypedSpaces)",
+      "src/__tests__/unit/typedSpaces.test.ts",
+      "src/__tests__/components/typedSpacesRender.test.tsx",
+      "e2e/body-typeset/body-typeset.spec.ts (편집기·검수 카드·지면 간격 실측)",
+    ],
+    scale:
+      "작업실 편집기에서 두 칸 이상 띄워 저장한 문항만 — 기존 문항은 0 (보통 공백은 지면에서 예전처럼 한 칸)",
+    status: "대기",
+    needs:
+      "작업실에서 문항 하나를 «내용 수정»으로 열어 한 줄 가운데를 네 칸 띄워 저장하고, 그 문항을 시험지에 넣어 " +
+      "인쇄한다. 같은 시험지를 HWPX 로도 내보내 견준다.",
+    changedOn: "2026-09-21",
+  },
 ];
 
 /** 한 번에 다 보려면 어떤 시험지를 뽑아야 하나. */

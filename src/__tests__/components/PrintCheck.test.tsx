@@ -179,7 +179,9 @@ describe("실물 출력 검수 목록 — 데이터", () => {
     // 67: studio-svg-figure-width 추가 (2026-09-20 — 작업실이 다시 그린 SVG 도형이
     //     스캔 자(28mm 바닥)를 타던 것을 엔진 SVG 자(64mm)로 옮겼다. 등급 틀의 폭도
     //     화면 px·인쇄 mm 두 벌에서 mm 하나로 합쳤다).
-    expect(ITEMS.length).toBe(67);
+    // 68: studio-typed-spaces 추가 (2026-09-21 — 작업실 편집기에서 친 여러 칸을 고정 공백으로
+    //     저장해 지면에 그 폭 그대로 세운다. 기존 문항은 0 — 보통 공백은 예전처럼 한 칸이다).
+    expect(ITEMS.length).toBe(68);
   });
 
   /**
