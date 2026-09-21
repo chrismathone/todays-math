@@ -1,6 +1,7 @@
 import { afterEach, describe, expect, it } from "vitest";
 import { Editor, Node, type JSONContent } from "@tiptap/core";
 import StarterKit from "@tiptap/starter-kit";
+import { TableKit } from "@tiptap/extension-table";
 import { NodeSelection, TextSelection } from "@tiptap/pm/state";
 import { ConditionBox } from "@/components/math/editor/conditionBox";
 import { documentMarkdown } from "@/components/math/editor/visualDocument";
@@ -87,7 +88,8 @@ function mount(content: JSONContent) {
   document.body.append(element);
   editor = new Editor({
     element,
-    extensions: [StarterKit, VisualMath, ConditionBox],
+    // 작업실 편집기와 같은 짝 — 표(TableKit)의 Tab(다음 칸)과 겹치지 않는지도 본다.
+    extensions: [StarterKit, TableKit, VisualMath, ConditionBox],
     content,
   });
   return editor;
@@ -300,6 +302,25 @@ describe("Esc 뒤 Tab = 상자 밖 · 상자 밖의 키는 예전 그대로", ()
     expect(current.state.selection.$from.depth).toBe(1);
     expect(current.state.selection.$from.parent.type.name).toBe("paragraph");
     expect(current.state.doc.lastChild?.type.name).toBe("paragraph");
+  });
+
+  it("상자 밖 표의 Tab 은 예전처럼 다음 칸", () => {
+    const cell = (value: string): JSONContent => ({
+      type: "tableCell",
+      content: [paragraph(text(value))],
+    });
+    const current = mount({
+      type: "doc",
+      content: [
+        {
+          type: "table",
+          content: [{ type: "tableRow", content: [cell("갑"), cell("을")] }],
+        },
+      ],
+    });
+    caretAt(current, positionOf(current, "갑"));
+    expect(press(current, "Tab").defaultPrevented).toBe(true);
+    expect(current.state.selection.$from.parent.textContent).toBe("을");
   });
 
   it("상자 밖 Tab·Esc 는 손대지 않는다 — 브라우저 초점 이동·작업실 Esc 그대로", () => {
