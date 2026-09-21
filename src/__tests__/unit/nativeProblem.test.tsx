@@ -64,9 +64,11 @@ describe("native OCR worksheet rendering", () => {
       "않은",
     );
     expect(container.querySelector("table")).toHaveTextContent("항목값A");
-    expect(container.querySelector("table annotation")).toHaveTextContent(
-      "\\dfrac{9}{4}",
-    );
+    expect(
+      container.querySelector(
+        "table tr:nth-child(2) td:nth-child(2) annotation",
+      ),
+    ).toHaveTextContent("\\dfrac{9}{4}");
     expect(container.querySelector("[data-native-choices]")).toHaveStyle({
       gridTemplateColumns: "repeat(5, minmax(0, 1fr))",
     });
@@ -129,9 +131,11 @@ describe("native OCR worksheet rendering", () => {
     const { container, rerender } = render(
       <UnifiedProblem problem={{ ...problem, grade: "초5" }} />,
     );
-    expect(container.querySelector("table annotation")).toHaveTextContent(
-      "2\\dfrac{1}{4}",
-    );
+    expect(
+      container.querySelector(
+        "table tr:nth-child(2) td:nth-child(2) annotation",
+      ),
+    ).toHaveTextContent("2\\dfrac{1}{4}");
     rerender(
       <UnifiedProblem
         problem={{
@@ -141,9 +145,11 @@ describe("native OCR worksheet rendering", () => {
         }}
       />,
     );
-    expect(container.querySelector("table annotation")).toHaveTextContent(
-      "\\dfrac{9}{4}",
-    );
+    expect(
+      container.querySelector(
+        "table tr:nth-child(2) td:nth-child(2) annotation",
+      ),
+    ).toHaveTextContent("\\dfrac{9}{4}");
   });
   it("keeps image-output crops authoritative even when typed OCR exists", () => {
     render(

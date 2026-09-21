@@ -54,21 +54,47 @@ const isSvgText = (b: ContentBlock): boolean =>
 /** 표 셀이 명백한 LaTeX(백슬래시·위첨자·아래첨자·중괄호)면 `$…$` 로 감싸 KaTeX 렌더. */
 const needsMathWrap = (cell: string): boolean => /[\\^_{}]/.test(cell);
 
+/** 수·문자·연산 기호·괄호만 든 칸 — 한글이나 다른 글자가 하나라도 있으면 아니다. */
+const BARE_MATH_CELL = /^[0-9A-Za-z\s+\-−×÷·*/=<>≤≥().,:%]+$/;
+/** `1,000` · `12,345,678` — 수식 안의 쉼표는 뒤가 벌어진다(`{,}` 로 적어야 붙는다). */
+const THOUSANDS = /^\d{1,3}(?:,\d{3})+(?:\.\d+)?$/;
+
+/**
+ * LaTeX 표지는 없지만 **수식으로 서야 하는** 칸 — `0` · `15` · `a` · `2x+1` · `(0, 15)`.
+ *
+ * 인식은 표를 `rows: string[][]` 로 주고 칸에 `$` 를 안 붙인다. 발문은 수를 전부 수식으로 적으므로
+ * (`$1$시간마다`) 표의 수만 보통 글자로 서면 한 문항 안에서 글꼴이 갈린다(원장님 2026-09-21).
+ * 글자가 **둘 이상 이어지면** 낱말·단위다(`cm` · `kg` · `sin` · `AB`) — 감싸면 c·m 기울임으로 서므로 그대로 둔다.
+ */
+const isBareMath = (cell: string): boolean =>
+  BARE_MATH_CELL.test(cell) &&
+  /[0-9A-Za-z]/.test(cell) &&
+  !/[A-Za-z]{2,}/.test(cell);
+
+/**
+ * 인식한 표의 칸 하나 → 그 칸의 글(수식이면 `$…$` 로 감싼). 검수 카드·편집기(`tableToGfm`)와 지면(`NativeProblem`)이
+ * **같이** 쓴다 — 전에는 같은 판정(`[\\^_{}]`)이 두 파일에 따로 있었다.
+ */
+export const tableCellMath = (raw: string): string => {
+  const cell = (raw ?? "").trim();
+  if (!cell || cell.includes("$")) return cell;
+  if (needsMathWrap(cell)) return `$${cell}$`;
+  if (!isBareMath(cell)) return cell;
+  const grouped = THOUSANDS.test(cell) ? cell.replace(/,/g, "{,}") : cell;
+  return `$${grouped.replace(/%/g, "\\%")}$`;
+};
+
+/** GFM 표의 칸 — 셀 구분자(`|`)와 충돌하지 않게 피한다(절댓값 |x|·집합표기 {x | ...} 셀이 표를 깨뜨림). */
+export const tableCellMarkdown = (raw: string): string =>
+  tableCellMath(raw).replace(/\|/g, "\\|");
+
 /** 2D 셀 배열 → GFM 표 markdown. rows[0] = 헤더 행. */
 const tableToGfm = (rows: string[][]): string => {
   const safe = (rows ?? []).filter((r) => Array.isArray(r));
   if (safe.length === 0) return "";
   const cols = Math.max(...safe.map((r) => r.length));
-  const wrap = (c: string): string => {
-    const cell = (c ?? "").trim();
-    if (!cell) return "";
-    const wrapped =
-      needsMathWrap(cell) && !cell.includes("$") ? `$${cell}$` : cell;
-    // GFM 셀 구분자(|)와 충돌 방지 — 절댓값 |x|·집합표기 {x | ...} 셀이 표를 깨뜨림.
-    return wrapped.replace(/\|/g, "\\|");
-  };
   const padRow = (r: string[]): string => {
-    const cells = r.map(wrap);
+    const cells = r.map(tableCellMarkdown);
     while (cells.length < cols) cells.push("");
     return `| ${cells.join(" | ")} |`;
   };
@@ -128,14 +154,32 @@ const inlinePiece = (b: ContentBlock): string => {
       .trim();
     return v ? `$${v}$` : "";
   }
-  if (b.type === "table") {
-    // 인라인(보기 안)에서 표는 드묾 — 셀을 공백 join 으로 degrade.
-    return (b.rows ?? [])
-      .map((r) => (Array.isArray(r) ? r.join(" ") : ""))
-      .join(" ")
-      .trim();
-  }
+  if (b.type === "table") return inlineTable(b.rows ?? []);
   return b.value;
+};
+
+/**
+ * 보기 안에 든 표 — 한 줄 글로 푼다. 칸은 표의 칸과 같은 규칙(`tableCellMath`)으로 수식을 감싼다.
+ *
+ * 전에는 «드물다»며 칸을 공백으로 이어 붙이기만 해서 `\angle \mathrm{ABE}` 가 화면에 날것으로 찍혔다(원장님 2026-09-21).
+ * 이 모양은 «(가)·(나)·(다) 에 알맞은 것» 을 고르는 **보기 표**에서 온다 — 인식은 보기마다 머리행 + 값행 두 줄짜리 표를 준다.
+ * 그 두 줄은 짝지어 «(가) …, (나) …, (다) …» 로 적는다(머리행을 보기마다 따로 늘어놓지 않는다). 짝이 안 맞으면 칸을 차례로.
+ */
+const inlineTable = (rows: string[][]): string => {
+  const cells = rows
+    .filter((row) => Array.isArray(row))
+    .map((row) => row.map(tableCellMath));
+  const [head, values] = cells;
+  if (
+    cells.length === 2 &&
+    head!.length === values!.length &&
+    head!.every(Boolean) &&
+    values!.some(Boolean)
+  )
+    return head!
+      .map((label, index) => `${label} ${values![index]}`.trim())
+      .join(", ");
+  return cells.flat().filter(Boolean).join(" ").trim();
 };
 
 const serializeChoiceContents = (contents: ContentBlock[]): string =>

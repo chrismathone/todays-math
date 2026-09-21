@@ -2284,6 +2284,82 @@ export const ITEMS: PrintCheckItem[] = [
       "분수 보기 문항 하나, 3열로 고친 9번, 문제 22 를 한 시험지에 넣어 인쇄한다(문제은행 문항 하나도 섞는다).",
     changedOn: "2026-09-21",
   },
+  {
+    id: "hwpx-equation-height",
+    title: "HWPX — 분수·큰 수식이 든 줄이 아래 줄을 덮지 않는다",
+    changed:
+      "원장님 2026-09-21 «한글 내보내기할때 줄간격이 왜 이렇게 타이트하지 … com 이용해서 hwp로 내보내면 아주 잘되던데»: " +
+      "한글은 HWPX 를 열 때 수식 상자를 다시 재지 않고 `<hp:sz>`·`baseLine` 을 그대로 쓴다. 폭은 한글 값이었는데 " +
+      "**높이·기준선은 KaTeX 값**이었다 — 한글의 분수는 2.30줄(10.5pt 에서 32.2px), KaTeX 는 28px 쯤이라 4px 가 상자 " +
+      "아래로 나가고, 줄 높이는 «고정값»이라 안 늘어났다. 이제 수식 상자와 그 줄의 고정 높이를 **한글이 그릴 높이**" +
+      "(`scripts/hwpx/eqheight.py` — 한글 COM 실측 11,000건에서 읽은 규칙, 시험 수식 3,000개 99.9% 일치)로 잡는다. " +
+      "글의 기준선 자리는 미리보기 그대로다. 줄이 틈보다 커서 밀린 만큼은 다음 빈틈에서 되찾는다.",
+    look:
+      "(제안) 분수가 든 발문(예: «확률은 1/7 이다»), `(1/x − 1)^6` 같은 큰 괄호 식, 첨자·루트가 든 줄을 HWPX 로 " +
+      "내보내 **한글에서 연다**. ① 분수의 분모가 아래 줄 글자와 겹치지 않는가. ② 분수 줄 위·아래 간격이 눈에 띄게 " +
+      "벌어지지 않았는가(4px 안팎). ③ 〈보기〉 상자의 배경·테두리가 글과 어긋나지 않는가 — 분수 줄이 많은 쪽에서. " +
+      "④ 쪽 끝 문항이 다음 쪽으로 넘어가지 않았는가.",
+    lookFromSource: false,
+    evidence: [
+      "scripts/hwpx/eqheight.py (높이·기준선 규칙)",
+      "scripts/hwpx/writer.py (hancom_equation — 상자·줄 높이 · cursor 는 실제 바닥)",
+      "src/__tests__/unit/hwpEquationHeightModel.test.ts (한글 실측 214건 — 1px 넘게 모자란 식 0)",
+      "src/__tests__/unit/hwpxEquationHeight.test.ts (분수 줄의 고정 높이 ≥ 수식 상자)",
+    ],
+    scale: "분수·첨자·루트·행렬·적분이 든 모든 줄 — HWPX 내보내기 전부",
+    status: "대기",
+    needs:
+      "분수가 발문 가운데 든 문항, 큰 괄호 + 지수 식, 연립방정식(CASES), 〈보기〉 안 분수 — 한 시험지에 넣어 HWPX 로 내보낸다. " +
+      "🔴 한글에서 여는 것까지가 검수다(이 시험들은 XML 안만 본다 — 규칙 9 로 한글 COM 을 안 돌렸다).",
+    changedOn: "2026-09-21",
+  },
+  {
+    id: "table-cell-math",
+    title: "인식한 표 — 칸의 수·문자가 본문과 같은 수식 글꼴",
+    changed:
+      "원장님 2026-09-21 «표 내부 숫자가 수식 처리 안되어있기도 하고»: 인식은 표를 칸 글자(`rows`)로 주고 `$` 를 안 붙인다. " +
+      "칸을 수식으로 볼지를 `\\ ^ _ { }` 하나로 정해서 `x (시간)` · `(x, y)` 는 수식인데 **`0` · `15` · `a`** 는 보통 글자였다. " +
+      "이제 수·한 글자 문자·연산 기호·괄호만 든 칸도 수식이다(`tableCellMath` — 검수 카드·편집기·지면이 같은 규칙 하나). " +
+      "글자가 둘 이상 이어지면(`cm` · `AB`) 낱말·단위로 보고 그대로 둔다. «내용 수정»으로 이미 저장한 문항은 저장본 그대로다.",
+    look:
+      "(제안) 표가 든 인식 문항(문명중 1학년 3번 양초 표)을 인쇄한다. ① 표의 `0 1 2 3 4 5` · `15` · `a b c d e` 가 " +
+      "발문의 `15cm` · `a+b+c` 와 **같은 글꼴**인가. ② 한글 칸(«시간» · «합계»)과 단위 칸(`cm`)은 예전 그대로인가. " +
+      "③ 표의 폭·행 높이가 눈에 띄게 달라지지 않았는가.",
+    lookFromSource: false,
+    evidence: [
+      "src/lib/mathgen/blocksToMarkdown.ts (tableCellMath · tableCellMarkdown)",
+      "src/components/unified/NativeProblem.tsx (지면 표 칸 — 같은 규칙)",
+      "src/__tests__/unit/tableCellMath.test.ts",
+    ],
+    scale: "인식 결과에 표가 든 문항(«내용 수정» 전 상태) 전부",
+    status: "대기",
+    needs:
+      "표가 든 인식 문항 하나 — 칸에 수·문자·한글·단위가 섞인 것이면 한 번에 본다.",
+    changedOn: "2026-09-21",
+  },
+  {
+    id: "figure-label-upright",
+    title: "다시 그린 도형 — 라벨의 수·단위가 어느 화면에서나 정자",
+    changed:
+      "원장님 2026-09-21 «왜 서로 글씨체가 다르지?»: 검수 카드의 도형은 «2 cm» 가 숫자까지 기울었고, 도형 편집기의 같은 " +
+      "도형은 정자였다. 엔진은 각도·호 라벨의 바깥 `<text>` 에 기울임을 걸고 숫자·°·단위 조각만 정자로 적는데, " +
+      "조판기가 바깥 표시만 보고 라벨 전체를 기울였다. 2026-09-19 에 고친 자리가 **편집기를 여는 길**뿐이어서, 편집기를 " +
+      "안 거친 도형은 카드·지면에서 그대로 기울었다. 이제 규칙이 조판기 안에 있다 — 어느 길로 와도 같다. " +
+      "사용자가 «기울임» 단추로 켠 라벨은 기울임 그대로다.",
+    look:
+      "(제안) AI 로 다시 그린 도형 중 **편집기를 한 번도 안 연 것**을 인쇄한다. ① 각도(«30°»)·길이(«2 cm»)의 숫자와 " +
+      "단위가 곧은 글자인가. ② 변수(`x`·`a`)는 기울임 그대로인가. ③ 같은 도형을 편집기에서 열었다 닫은 뒤에도 같은가.",
+    lookFromSource: false,
+    evidence: [
+      "src/components/unified/figure-editor/figureTypeset.ts (engineUprightPieces)",
+      "src/components/unified/figure-editor/figureSvgEditing.ts",
+      "src/__tests__/components/figureLabelUpright.test.ts",
+    ],
+    scale: "AI 로 다시 그린 도형 중 각도·호 라벨이 든 것",
+    status: "대기",
+    needs: "각도 표시가 있는 다시 그린 도형 하나 — 편집기를 열지 않은 상태로.",
+    changedOn: "2026-09-21",
+  },
 ];
 
 /** 한 번에 다 보려면 어떤 시험지를 뽑아야 하나. */

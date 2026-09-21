@@ -14,8 +14,10 @@ export function prepareVisualDocument(html: string): string {
       element.parentElement?.closest("[data-figure-index], [data-editor-svg]")
     )
       continue;
+    // 상자(`>` 줄) 안의 그림은 렌더러가 **인라인**으로 그린다 — 편집기도 같은 칸에 둔다. 블록 `<div>` 로
+    // 바꾸면 HTML 파서가 `<p>` 를 그 자리에서 닫아 «ㄱ. [그림]» 한 칸이 문단·그림·빈 문단 세 칸으로 쪼개진다.
     const inline =
-      !!element.closest(".choice, td, th") ||
+      !!element.closest(".choice, td, th, [data-condition-box]") ||
       (element.tagName === "IMG" && !!element.closest("p"));
     const figure = doc.createElement(inline ? "span" : "div");
     figure.dataset.visualFigure = inline ? "inline" : "true";
@@ -44,7 +46,10 @@ export function prepareVisualDocument(html: string): string {
   for (const box of doc.querySelectorAll<HTMLElement>("[data-condition-box]")) {
     const children = [...box.children];
     const rows = children.flatMap((child) =>
-      child.classList.contains("grid") ? [...child.children] : [child],
+      // 칸 묶음은 표지(`data-box-cells`)로 안다 — 칸이 하나뿐이면 렌더러가 `grid` 를 안 붙인다.
+      child.hasAttribute("data-box-cells") || child.classList.contains("grid")
+        ? [...child.children]
+        : [child],
     );
     box.replaceChildren(
       ...rows.flatMap((row) => {

@@ -145,6 +145,27 @@ const FIXTURES: Record<keyof typeof ENGINE_FAILURES, DevAiFigureSpec> = {
   duplicateName: triangle({
     angles: { B: { vertex: "B", points: ["A", "C"], right: true } },
   }),
+  // 원장님 운영 콘솔 2026-09-21(전부 422) — 모델이 엔진 문법에서 살짝 어긋나게 적은 것들
+  unknownFields: triangle({
+    segments: {
+      AB: { points: ["A", "B"], arrow: true },
+      BC: ["B", "C"],
+      CA: ["C", "A"],
+    },
+  }),
+  dimensionSide: triangle({
+    dimensions: { dAB: { points: ["A", "B"], label: "3 cm", side: "top" } },
+  }),
+  labelPosition: triangle({
+    labels: { A: "A", B: "B", C: { text: "C", position: "center" } },
+  }),
+  segmentDash: triangle({
+    segments: {
+      AB: { points: ["A", "B"], dash: true },
+      BC: ["B", "C"],
+      CA: ["C", "A"],
+    },
+  }),
 };
 const engineError = async (spec: DevAiFigureSpec) => {
   const rendered = await renderFigureSpec(spec, {
@@ -168,6 +189,108 @@ describe("the engine still words its failures the way the repair table reads the
     expect(Object.keys(FIXTURES).sort()).toEqual(
       Object.keys(ENGINE_FAILURES).sort(),
     );
+  });
+});
+
+describe("운영 콘솔 2026-09-21 — 문법에서 살짝 어긋난 사양은 되묻지 않고 고친다", () => {
+  it("치수의 쪽(side)이 엔진이 모르는 말이면 자리 찾기를 엔진에 맡긴다 — 경고 없음", async () => {
+    const fix = repairFigureSpec(
+      FIXTURES.dimensionSide,
+      await engineError(FIXTURES.dimensionSide),
+      false,
+    );
+    expect(fix?.warning).toBeUndefined();
+    expect(fix?.spec.dimensions).toEqual({
+      dAB: { points: ["A", "B"], label: "3 cm" },
+    });
+    expect(await engineError(fix!.spec)).toBe("");
+  });
+
+  it("이름표 자리(position)가 엔진이 모르는 말이면 그 이름표의 자리 지정만 푼다", async () => {
+    const fix = repairFigureSpec(
+      FIXTURES.labelPosition,
+      await engineError(FIXTURES.labelPosition),
+      false,
+    );
+    expect(fix?.warning).toBeUndefined();
+    expect(fix?.spec.labels).toEqual({ A: "A", B: "B", C: { text: "C" } });
+    expect(await engineError(fix!.spec)).toBe("");
+  });
+
+  it.each([
+    [true, "5 3"],
+    ["dashed", "5 3"],
+    ["dotted", "5 3"],
+  ])(
+    "점선을 %j 로 적으면 엔진의 점선 값으로 옮긴다 — 점선이라는 뜻은 그대로",
+    async (dash, expected) => {
+      const spec = triangle({
+        segments: {
+          AB: { points: ["A", "B"], dash },
+          BC: ["B", "C"],
+          CA: ["C", "A"],
+        },
+      });
+      const fix = repairFigureSpec(spec, await engineError(spec), false);
+      expect(fix?.warning).toBeUndefined();
+      expect((fix?.spec.segments as Record<string, unknown>).AB).toEqual({
+        points: ["A", "B"],
+        dashed: expected,
+      });
+      expect(await engineError(fix!.spec)).toBe("");
+    },
+  );
+
+  it.each([[false], ["solid"], ["none"]])(
+    "점선을 %j 로 적으면 실선이다 — 값을 뺀다",
+    async (dash) => {
+      const spec = triangle({
+        segments: {
+          AB: { points: ["A", "B"], dash },
+          BC: ["B", "C"],
+          CA: ["C", "A"],
+        },
+      });
+      const fix = repairFigureSpec(spec, await engineError(spec), false);
+      expect((fix?.spec.segments as Record<string, unknown>).AB).toEqual({
+        points: ["A", "B"],
+      });
+      expect(await engineError(fix!.spec)).toBe("");
+    },
+  );
+
+  it("엔진이 모르는 칸(arrow)은 마지막 시도에서만 빼고, 무엇을 뺐는지 원장님께 알린다", async () => {
+    const error = await engineError(FIXTURES.unknownFields);
+    // 그 전에는 모델에 되묻는다 — 화살표를 다른 길로 그릴 기회를 먼저 준다
+    expect(
+      repairFigureSpec(FIXTURES.unknownFields, error, false),
+    ).toBeUndefined();
+    const fix = repairFigureSpec(FIXTURES.unknownFields, error, true);
+    expect(fix?.dropped).toBe(true);
+    expect(fix?.warning).toContain("AB");
+    expect(fix?.warning).toContain("arrow");
+    expect((fix?.spec.segments as Record<string, unknown>).AB).toEqual({
+      points: ["A", "B"],
+    });
+    expect(await engineError(fix!.spec)).toBe("");
+  });
+
+  it("같은 점의 이름표가 둘이면(E + dot_E) 글이 비었거나 같은 쪽을 뺀다 — 글이 다르면 되묻는다", async () => {
+    const withDot = (text: string) =>
+      triangle({
+        labels: { A: "A", B: "B", C: "C", dot_C: { point: "C", text } },
+      });
+    for (const text of ["", "C"]) {
+      const spec = withDot(text);
+      const fix = repairFigureSpec(spec, await engineError(spec), false);
+      expect(fix?.warning).toBeUndefined();
+      expect(fix?.spec.labels).toEqual({ A: "A", B: "B", C: "C" });
+      expect(await engineError(fix!.spec)).toBe("");
+    }
+    const other = withDot("P");
+    expect(
+      repairFigureSpec(other, await engineError(other), false),
+    ).toBeUndefined();
   });
 });
 
@@ -353,9 +476,15 @@ describe("rejections with one meaning are fixed without asking the model", () =>
   });
 
   it.each([
+    // 그 점에 이름표가 이미 있고, 덧붙은 쪽이 **다른 글**이거나 **자리를 적었으면** 어느 쪽이 맞는지 모른다.
+    // (글이 같고 자리도 안 적었으면 그림이 같아서 고친다 — 아래 «운영 콘솔 2026-09-21» 묶음.)
     [
-      "that point already has a label",
-      { A: "A", lA: { point: "A", text: "A" } },
+      "that point already has a label with another text",
+      { A: "A", lA: { point: "A", text: "P" } },
+    ],
+    [
+      "that point already has a label and the extra one sets a position",
+      { A: "A", lA: { point: "A", text: "A", position: "N" } },
     ],
     [
       "two labels name the same point",

@@ -1,0 +1,1503 @@
+{
+ "source": "한글 2022 COM 실측 — mathg-gen .checks.local/eqfit (eq_measure.py). h 는 HWPUNIT, baseLine 은 %.",
+ "records": [
+  {
+   "set": "probe2",
+   "pt": 12.25,
+   "script": "a~1",
+   "h": 1225,
+   "baseLine": 85
+  },
+  {
+   "set": "probe2",
+   "pt": 12.25,
+   "script": "bar {a}~1",
+   "h": 1453,
+   "baseLine": 88
+  },
+  {
+   "set": "probe2",
+   "pt": 12.25,
+   "script": "sqrt {2})",
+   "h": 1384,
+   "baseLine": 88
+  },
+  {
+   "set": "probe2",
+   "pt": 12.25,
+   "script": "sqrt {2}~1",
+   "h": 1397,
+   "baseLine": 87
+  },
+  {
+   "set": "probe2",
+   "pt": 12.25,
+   "script": "sqrt {x^{2}+1}",
+   "h": 1609,
+   "baseLine": 90
+  },
+  {
+   "set": "probe2",
+   "pt": 12.25,
+   "script": "sqrt {{a+b} over {c}}",
+   "h": 2941,
+   "baseLine": 68
+  },
+  {
+   "set": "probe2",
+   "pt": 12.25,
+   "script": "underline {x}",
+   "h": 1440,
+   "baseLine": 72
+  },
+  {
+   "set": "probe2",
+   "pt": 12.25,
+   "script": "x^{2}~1",
+   "h": 1438,
+   "baseLine": 88
+  },
+  {
+   "set": "probe2",
+   "pt": 12.25,
+   "script": "x^{a}",
+   "h": 1425,
+   "baseLine": 88
+  },
+  {
+   "set": "probe2",
+   "pt": 12.25,
+   "script": "x^{sqrt {2}}",
+   "h": 1550,
+   "baseLine": 89
+  },
+  {
+   "set": "probe2",
+   "pt": 12.25,
+   "script": "x^{{1} over {2}}",
+   "h": 2500,
+   "baseLine": 94
+  },
+  {
+   "set": "probe2",
+   "pt": 12.25,
+   "script": "x_{1}~1",
+   "h": 1458,
+   "baseLine": 72
+  },
+  {
+   "set": "probe2",
+   "pt": 12.25,
+   "script": "{1+ {1} over {2}} over {3}",
+   "h": 4336,
+   "baseLine": 78
+  },
+  {
+   "set": "probe2",
+   "pt": 12.25,
+   "script": "{1} over {2})",
+   "h": 2768,
+   "baseLine": 66
+  },
+  {
+   "set": "probe2",
+   "pt": 12.25,
+   "script": "{2 sqrt {3}} over {3}",
+   "h": 2952,
+   "baseLine": 68
+  },
+  {
+   "set": "probe2",
+   "pt": 12.25,
+   "script": "{sqrt {3}} over {2}",
+   "h": 2949,
+   "baseLine": 68
+  },
+  {
+   "set": "probe3",
+   "pt": 12.25,
+   "script": "BAR",
+   "h": 1465,
+   "baseLine": 88
+  },
+  {
+   "set": "probe3",
+   "pt": 12.25,
+   "script": "BOX{}",
+   "h": 1465,
+   "baseLine": 78
+  },
+  {
+   "set": "probe3",
+   "pt": 12.25,
+   "script": "CASES {1 # 2 # 3}",
+   "h": 3968,
+   "baseLine": 61
+  },
+  {
+   "set": "probe3",
+   "pt": 12.25,
+   "script": "CASES {x^{2}=1 # 1}",
+   "h": 2809,
+   "baseLine": 66
+  },
+  {
+   "set": "probe3",
+   "pt": 12.25,
+   "script": "CASES {{1} over {2} # 1}",
+   "h": 4152,
+   "baseLine": 61
+  },
+  {
+   "set": "probe3",
+   "pt": 12.25,
+   "script": "INT",
+   "h": 2336,
+   "baseLine": 66
+  },
+  {
+   "set": "probe3",
+   "pt": 12.25,
+   "script": "LEFT ( {{1} over {2}} over {{3} over {4}} RIGHT )",
+   "h": 5904,
+   "baseLine": 58
+  },
+  {
+   "set": "probe3",
+   "pt": 12.25,
+   "script": "Lim",
+   "h": 1500,
+   "baseLine": 79
+  },
+  {
+   "set": "probe3",
+   "pt": 12.25,
+   "script": "PILE {1 # 2}",
+   "h": 2584,
+   "baseLine": 67
+  },
+  {
+   "set": "probe3",
+   "pt": 12.25,
+   "script": "SUM",
+   "h": 1631,
+   "baseLine": 77
+  },
+  {
+   "set": "probe3",
+   "pt": 12.25,
+   "script": "UNDERLINE",
+   "h": 1465,
+   "baseLine": 71
+  },
+  {
+   "set": "probe3",
+   "pt": 12.25,
+   "script": "a BAR b",
+   "h": 1440,
+   "baseLine": 89
+  },
+  {
+   "set": "probe3",
+   "pt": 12.25,
+   "script": "a arch b",
+   "h": 1520,
+   "baseLine": 84
+  },
+  {
+   "set": "probe3",
+   "pt": 12.25,
+   "script": "a atop b",
+   "h": 2520,
+   "baseLine": 67
+  },
+  {
+   "set": "probe3",
+   "pt": 12.25,
+   "script": "arch",
+   "h": 1545,
+   "baseLine": 83
+  },
+  {
+   "set": "probe3",
+   "pt": 12.25,
+   "script": "bar {a}^{2}+1",
+   "h": 1665,
+   "baseLine": 90
+  },
+  {
+   "set": "probe3",
+   "pt": 12.25,
+   "script": "boxed",
+   "h": 1440,
+   "baseLine": 78
+  },
+  {
+   "set": "probe3",
+   "pt": 12.25,
+   "script": "lim _{x -> 0} f(x)",
+   "h": 2325,
+   "baseLine": 51
+  },
+  {
+   "set": "probe3",
+   "pt": 12.25,
+   "script": "underline {a}^{2}+1",
+   "h": 1665,
+   "baseLine": 76
+  },
+  {
+   "set": "probe3",
+   "pt": 12.25,
+   "script": "x^{2}_{1}",
+   "h": 1671,
+   "baseLine": 75
+  },
+  {
+   "set": "probe3",
+   "pt": 12.25,
+   "script": "{-b PLUSMINUS sqrt {b^{2}-4ac}} over {2a}",
+   "h": 3177,
+   "baseLine": 70
+  },
+  {
+   "set": "probe3",
+   "pt": 12.25,
+   "script": "{1} over {sqrt {2}}",
+   "h": 2949,
+   "baseLine": 62
+  },
+  {
+   "set": "probe3",
+   "pt": 12.25,
+   "script": "①",
+   "h": 1200,
+   "baseLine": 86
+  },
+  {
+   "set": "probe4",
+   "pt": 12.25,
+   "script": "PMATRIX {x_{1} # x_{2}}",
+   "h": 3076,
+   "baseLine": 64
+  },
+  {
+   "set": "probe4",
+   "pt": 12.25,
+   "script": "a_{n}",
+   "h": 1446,
+   "baseLine": 72
+  },
+  {
+   "set": "probe5",
+   "pt": 12.25,
+   "script": "LEFT ( sqrt {2} RIGHT )",
+   "h": 1381,
+   "baseLine": 88
+  },
+  {
+   "set": "probe5",
+   "pt": 12.25,
+   "script": "LEFT ( sqrt {2} RIGHT )^{2}",
+   "h": 1585,
+   "baseLine": 90
+  },
+  {
+   "set": "probe5",
+   "pt": 12.25,
+   "script": "LEFT ( x^{2} RIGHT )^{2}",
+   "h": 1629,
+   "baseLine": 90
+  },
+  {
+   "set": "probe5",
+   "pt": 12.25,
+   "script": "LEFT ( {1+i} over {sqrt {2}} RIGHT )^{2n}",
+   "h": 3153,
+   "baseLine": 64
+  },
+  {
+   "set": "probe5",
+   "pt": 12.25,
+   "script": "LEFT ( {1} over {2} RIGHT )^{2}",
+   "h": 2972,
+   "baseLine": 68
+  },
+  {
+   "set": "probe5",
+   "pt": 12.25,
+   "script": "LEFT ( {1} over {2} RIGHT )_{2}",
+   "h": 3014,
+   "baseLine": 61
+  },
+  {
+   "set": "probe5",
+   "pt": 12.25,
+   "script": "LEFT ( {{1} over {2}} over {3} RIGHT )^{2}",
+   "h": 4540,
+   "baseLine": 79
+  },
+  {
+   "set": "sweep",
+   "pt": 8.0,
+   "script": "a",
+   "h": 825,
+   "baseLine": 84
+  },
+  {
+   "set": "sweep",
+   "pt": 8.0,
+   "script": "sqrt {2}",
+   "h": 939,
+   "baseLine": 87
+  },
+  {
+   "set": "sweep",
+   "pt": 8.0,
+   "script": "x^{2}",
+   "h": 951,
+   "baseLine": 87
+  },
+  {
+   "set": "sweep",
+   "pt": 8.0,
+   "script": "x_{1}",
+   "h": 979,
+   "baseLine": 71
+  },
+  {
+   "set": "sweep",
+   "pt": 8.0,
+   "script": "{1} over {2}",
+   "h": 1890,
+   "baseLine": 65
+  },
+  {
+   "set": "sweep",
+   "pt": 9.0,
+   "script": "a",
+   "h": 900,
+   "baseLine": 86
+  },
+  {
+   "set": "sweep",
+   "pt": 9.0,
+   "script": "sqrt {2}",
+   "h": 1035,
+   "baseLine": 87
+  },
+  {
+   "set": "sweep",
+   "pt": 9.0,
+   "script": "x^{2}",
+   "h": 1050,
+   "baseLine": 88
+  },
+  {
+   "set": "sweep",
+   "pt": 9.0,
+   "script": "x_{1}",
+   "h": 1078,
+   "baseLine": 71
+  },
+  {
+   "set": "sweep",
+   "pt": 9.0,
+   "script": "{1} over {2}",
+   "h": 2070,
+   "baseLine": 66
+  },
+  {
+   "set": "sweep",
+   "pt": 9.5,
+   "script": "a",
+   "h": 975,
+   "baseLine": 85
+  },
+  {
+   "set": "sweep",
+   "pt": 9.5,
+   "script": "sqrt {2}",
+   "h": 1111,
+   "baseLine": 87
+  },
+  {
+   "set": "sweep",
+   "pt": 9.5,
+   "script": "x^{2}",
+   "h": 1163,
+   "baseLine": 87
+  },
+  {
+   "set": "sweep",
+   "pt": 9.5,
+   "script": "x_{1}",
+   "h": 1184,
+   "baseLine": 70
+  },
+  {
+   "set": "sweep",
+   "pt": 9.5,
+   "script": "{1} over {2}",
+   "h": 2235,
+   "baseLine": 65
+  },
+  {
+   "set": "sweep",
+   "pt": 10.0,
+   "script": "a",
+   "h": 975,
+   "baseLine": 86
+  },
+  {
+   "set": "sweep",
+   "pt": 10.0,
+   "script": "sqrt {2}",
+   "h": 1123,
+   "baseLine": 88
+  },
+  {
+   "set": "sweep",
+   "pt": 10.0,
+   "script": "x^{2}",
+   "h": 1163,
+   "baseLine": 89
+  },
+  {
+   "set": "sweep",
+   "pt": 10.0,
+   "script": "x_{1}",
+   "h": 1177,
+   "baseLine": 72
+  },
+  {
+   "set": "sweep",
+   "pt": 10.0,
+   "script": "{1} over {2}",
+   "h": 2250,
+   "baseLine": 66
+  },
+  {
+   "set": "sweep",
+   "pt": 10.5,
+   "script": "a",
+   "h": 1050,
+   "baseLine": 85
+  },
+  {
+   "set": "sweep",
+   "pt": 10.5,
+   "script": "sqrt {2}",
+   "h": 1208,
+   "baseLine": 87
+  },
+  {
+   "set": "sweep",
+   "pt": 10.5,
+   "script": "x^{2}",
+   "h": 1275,
+   "baseLine": 88
+  },
+  {
+   "set": "sweep",
+   "pt": 10.5,
+   "script": "x_{1}",
+   "h": 1282,
+   "baseLine": 70
+  },
+  {
+   "set": "sweep",
+   "pt": 10.5,
+   "script": "{1} over {2}",
+   "h": 2415,
+   "baseLine": 66
+  },
+  {
+   "set": "sweep",
+   "pt": 11.0,
+   "script": "a",
+   "h": 1125,
+   "baseLine": 85
+  },
+  {
+   "set": "sweep",
+   "pt": 11.0,
+   "script": "sqrt {2}",
+   "h": 1281,
+   "baseLine": 87
+  },
+  {
+   "set": "sweep",
+   "pt": 11.0,
+   "script": "x^{2}",
+   "h": 1313,
+   "baseLine": 87
+  },
+  {
+   "set": "sweep",
+   "pt": 11.0,
+   "script": "x_{1}",
+   "h": 1350,
+   "baseLine": 71
+  },
+  {
+   "set": "sweep",
+   "pt": 11.0,
+   "script": "{1} over {2}",
+   "h": 2580,
+   "baseLine": 65
+  },
+  {
+   "set": "sweep",
+   "pt": 11.34,
+   "script": "a",
+   "h": 1125,
+   "baseLine": 86
+  },
+  {
+   "set": "sweep",
+   "pt": 11.34,
+   "script": "sqrt {2}",
+   "h": 1295,
+   "baseLine": 88
+  },
+  {
+   "set": "sweep",
+   "pt": 11.34,
+   "script": "x^{2}",
+   "h": 1313,
+   "baseLine": 88
+  },
+  {
+   "set": "sweep",
+   "pt": 11.34,
+   "script": "x_{1}",
+   "h": 1346,
+   "baseLine": 72
+  },
+  {
+   "set": "sweep",
+   "pt": 11.34,
+   "script": "{1} over {2}",
+   "h": 2590,
+   "baseLine": 66
+  },
+  {
+   "set": "sweep",
+   "pt": 11.5,
+   "script": "a",
+   "h": 1125,
+   "baseLine": 86
+  },
+  {
+   "set": "sweep",
+   "pt": 11.5,
+   "script": "sqrt {2}",
+   "h": 1296,
+   "baseLine": 88
+  },
+  {
+   "set": "sweep",
+   "pt": 11.5,
+   "script": "x^{2}",
+   "h": 1313,
+   "baseLine": 88
+  },
+  {
+   "set": "sweep",
+   "pt": 11.5,
+   "script": "x_{1}",
+   "h": 1344,
+   "baseLine": 72
+  },
+  {
+   "set": "sweep",
+   "pt": 11.5,
+   "script": "{1} over {2}",
+   "h": 2595,
+   "baseLine": 66
+  },
+  {
+   "set": "sweep",
+   "pt": 12.0,
+   "script": "a",
+   "h": 1200,
+   "baseLine": 86
+  },
+  {
+   "set": "sweep",
+   "pt": 12.0,
+   "script": "sqrt {2}",
+   "h": 1380,
+   "baseLine": 87
+  },
+  {
+   "set": "sweep",
+   "pt": 12.0,
+   "script": "x^{2}",
+   "h": 1425,
+   "baseLine": 88
+  },
+  {
+   "set": "sweep",
+   "pt": 12.0,
+   "script": "x_{1}",
+   "h": 1450,
+   "baseLine": 71
+  },
+  {
+   "set": "sweep",
+   "pt": 12.0,
+   "script": "{1} over {2}",
+   "h": 2760,
+   "baseLine": 66
+  },
+  {
+   "set": "sweep",
+   "pt": 12.25,
+   "script": "a",
+   "h": 1200,
+   "baseLine": 86
+  },
+  {
+   "set": "sweep",
+   "pt": 12.25,
+   "script": "sqrt {2}",
+   "h": 1381,
+   "baseLine": 88
+  },
+  {
+   "set": "sweep",
+   "pt": 12.25,
+   "script": "x^{2}",
+   "h": 1425,
+   "baseLine": 88
+  },
+  {
+   "set": "sweep",
+   "pt": 12.25,
+   "script": "x_{1}",
+   "h": 1446,
+   "baseLine": 72
+  },
+  {
+   "set": "sweep",
+   "pt": 12.25,
+   "script": "{1} over {2}",
+   "h": 2768,
+   "baseLine": 66
+  },
+  {
+   "set": "sweep",
+   "pt": 13.0,
+   "script": "a",
+   "h": 1275,
+   "baseLine": 86
+  },
+  {
+   "set": "sweep",
+   "pt": 13.0,
+   "script": "sqrt {2}",
+   "h": 1468,
+   "baseLine": 88
+  },
+  {
+   "set": "sweep",
+   "pt": 13.0,
+   "script": "x^{2}",
+   "h": 1538,
+   "baseLine": 89
+  },
+  {
+   "set": "sweep",
+   "pt": 13.0,
+   "script": "x_{1}",
+   "h": 1548,
+   "baseLine": 71
+  },
+  {
+   "set": "sweep",
+   "pt": 13.0,
+   "script": "{1} over {2}",
+   "h": 2940,
+   "baseLine": 66
+  },
+  {
+   "set": "sweep",
+   "pt": 14.0,
+   "script": "a",
+   "h": 1425,
+   "baseLine": 85
+  },
+  {
+   "set": "sweep",
+   "pt": 14.0,
+   "script": "sqrt {2}",
+   "h": 1623,
+   "baseLine": 87
+  },
+  {
+   "set": "sweep",
+   "pt": 14.0,
+   "script": "x^{2}",
+   "h": 1688,
+   "baseLine": 87
+  },
+  {
+   "set": "sweep",
+   "pt": 14.0,
+   "script": "x_{1}",
+   "h": 1723,
+   "baseLine": 70
+  },
+  {
+   "set": "sweep",
+   "pt": 14.0,
+   "script": "{1} over {2}",
+   "h": 3270,
+   "baseLine": 65
+  },
+  {
+   "set": "sweep",
+   "pt": 15.0,
+   "script": "a",
+   "h": 1500,
+   "baseLine": 86
+  },
+  {
+   "set": "sweep",
+   "pt": 15.0,
+   "script": "sqrt {2}",
+   "h": 1725,
+   "baseLine": 87
+  },
+  {
+   "set": "sweep",
+   "pt": 15.0,
+   "script": "x^{2}",
+   "h": 1800,
+   "baseLine": 88
+  },
+  {
+   "set": "sweep",
+   "pt": 15.0,
+   "script": "x_{1}",
+   "h": 1821,
+   "baseLine": 71
+  },
+  {
+   "set": "sweep",
+   "pt": 15.0,
+   "script": "{1} over {2}",
+   "h": 3450,
+   "baseLine": 66
+  },
+  {
+   "set": "sweep",
+   "pt": 16.0,
+   "script": "a",
+   "h": 1575,
+   "baseLine": 86
+  },
+  {
+   "set": "sweep",
+   "pt": 16.0,
+   "script": "sqrt {2}",
+   "h": 1813,
+   "baseLine": 88
+  },
+  {
+   "set": "sweep",
+   "pt": 16.0,
+   "script": "x^{2}",
+   "h": 1913,
+   "baseLine": 89
+  },
+  {
+   "set": "sweep",
+   "pt": 16.0,
+   "script": "x_{1}",
+   "h": 1920,
+   "baseLine": 71
+  },
+  {
+   "set": "sweep",
+   "pt": 16.0,
+   "script": "{1} over {2}",
+   "h": 3630,
+   "baseLine": 66
+  },
+  {
+   "set": "sweep",
+   "pt": 18.0,
+   "script": "a",
+   "h": 1800,
+   "baseLine": 86
+  },
+  {
+   "set": "sweep",
+   "pt": 18.0,
+   "script": "sqrt {2}",
+   "h": 2070,
+   "baseLine": 87
+  },
+  {
+   "set": "sweep",
+   "pt": 18.0,
+   "script": "x^{2}",
+   "h": 2100,
+   "baseLine": 88
+  },
+  {
+   "set": "sweep",
+   "pt": 18.0,
+   "script": "x_{1}",
+   "h": 2155,
+   "baseLine": 71
+  },
+  {
+   "set": "sweep",
+   "pt": 18.0,
+   "script": "{1} over {2}",
+   "h": 4140,
+   "baseLine": 66
+  },
+  {
+   "set": "sweep",
+   "pt": 20.0,
+   "script": "a",
+   "h": 2025,
+   "baseLine": 85
+  },
+  {
+   "set": "sweep",
+   "pt": 20.0,
+   "script": "sqrt {2}",
+   "h": 2307,
+   "baseLine": 88
+  },
+  {
+   "set": "sweep",
+   "pt": 20.0,
+   "script": "x^{2}",
+   "h": 2363,
+   "baseLine": 87
+  },
+  {
+   "set": "sweep",
+   "pt": 20.0,
+   "script": "x_{1}",
+   "h": 2428,
+   "baseLine": 71
+  },
+  {
+   "set": "sweep",
+   "pt": 20.0,
+   "script": "{1} over {2}",
+   "h": 4650,
+   "baseLine": 66
+  },
+  {
+   "set": "sweep",
+   "pt": 24.0,
+   "script": "a",
+   "h": 2400,
+   "baseLine": 86
+  },
+  {
+   "set": "sweep",
+   "pt": 24.0,
+   "script": "sqrt {2}",
+   "h": 2760,
+   "baseLine": 87
+  },
+  {
+   "set": "sweep",
+   "pt": 24.0,
+   "script": "x^{2}",
+   "h": 2850,
+   "baseLine": 88
+  },
+  {
+   "set": "sweep",
+   "pt": 24.0,
+   "script": "x_{1}",
+   "h": 2899,
+   "baseLine": 71
+  },
+  {
+   "set": "sweep",
+   "pt": 24.0,
+   "script": "{1} over {2}",
+   "h": 5520,
+   "baseLine": 66
+  },
+  {
+   "set": "sweep",
+   "pt": 30.0,
+   "script": "a",
+   "h": 3000,
+   "baseLine": 86
+  },
+  {
+   "set": "sweep",
+   "pt": 30.0,
+   "script": "sqrt {2}",
+   "h": 3450,
+   "baseLine": 87
+  },
+  {
+   "set": "sweep",
+   "pt": 30.0,
+   "script": "x^{2}",
+   "h": 3525,
+   "baseLine": 88
+  },
+  {
+   "set": "sweep",
+   "pt": 30.0,
+   "script": "x_{1}",
+   "h": 3605,
+   "baseLine": 71
+  },
+  {
+   "set": "sweep",
+   "pt": 30.0,
+   "script": "{1} over {2}",
+   "h": 6900,
+   "baseLine": 66
+  },
+  {
+   "set": "sweep",
+   "pt": 36.0,
+   "script": "a",
+   "h": 3600,
+   "baseLine": 86
+  },
+  {
+   "set": "sweep",
+   "pt": 36.0,
+   "script": "sqrt {2}",
+   "h": 4140,
+   "baseLine": 87
+  },
+  {
+   "set": "sweep",
+   "pt": 36.0,
+   "script": "x^{2}",
+   "h": 4275,
+   "baseLine": 88
+  },
+  {
+   "set": "sweep",
+   "pt": 36.0,
+   "script": "x_{1}",
+   "h": 4348,
+   "baseLine": 71
+  },
+  {
+   "set": "sweep",
+   "pt": 36.0,
+   "script": "{1} over {2}",
+   "h": 8280,
+   "baseLine": 66
+  },
+  {
+   "set": "sweep",
+   "pt": 48.0,
+   "script": "a",
+   "h": 4800,
+   "baseLine": 86
+  },
+  {
+   "set": "sweep",
+   "pt": 48.0,
+   "script": "sqrt {2}",
+   "h": 5520,
+   "baseLine": 87
+  },
+  {
+   "set": "sweep",
+   "pt": 48.0,
+   "script": "x^{2}",
+   "h": 5700,
+   "baseLine": 88
+  },
+  {
+   "set": "sweep",
+   "pt": 48.0,
+   "script": "x_{1}",
+   "h": 5797,
+   "baseLine": 71
+  },
+  {
+   "set": "sweep",
+   "pt": 48.0,
+   "script": "{1} over {2}",
+   "h": 11040,
+   "baseLine": 66
+  },
+  {
+   "set": "sweep",
+   "pt": 60.0,
+   "script": "a",
+   "h": 6000,
+   "baseLine": 86
+  },
+  {
+   "set": "sweep",
+   "pt": 60.0,
+   "script": "sqrt {2}",
+   "h": 6900,
+   "baseLine": 87
+  },
+  {
+   "set": "sweep",
+   "pt": 60.0,
+   "script": "x^{2}",
+   "h": 7050,
+   "baseLine": 88
+  },
+  {
+   "set": "sweep",
+   "pt": 60.0,
+   "script": "x_{1}",
+   "h": 7209,
+   "baseLine": 71
+  },
+  {
+   "set": "sweep",
+   "pt": 60.0,
+   "script": "{1} over {2}",
+   "h": 13800,
+   "baseLine": 66
+  },
+  {
+   "set": "sweep",
+   "pt": 72.0,
+   "script": "a",
+   "h": 7200,
+   "baseLine": 86
+  },
+  {
+   "set": "sweep",
+   "pt": 72.0,
+   "script": "sqrt {2}",
+   "h": 8280,
+   "baseLine": 87
+  },
+  {
+   "set": "sweep",
+   "pt": 72.0,
+   "script": "x^{2}",
+   "h": 8475,
+   "baseLine": 88
+  },
+  {
+   "set": "sweep",
+   "pt": 72.0,
+   "script": "x_{1}",
+   "h": 8659,
+   "baseLine": 71
+  },
+  {
+   "set": "sweep",
+   "pt": 72.0,
+   "script": "{1} over {2}",
+   "h": 16560,
+   "baseLine": 66
+  },
+  {
+   "set": "valid",
+   "pt": 11.34,
+   "script": "()^{2}_{3}",
+   "h": 1534,
+   "baseLine": 75
+  },
+  {
+   "set": "valid",
+   "pt": 11.34,
+   "script": "(x_{2},~y_{2})",
+   "h": 1351,
+   "baseLine": 72
+  },
+  {
+   "set": "valid",
+   "pt": 11.34,
+   "script": "-6+3 sqrt {2}`i",
+   "h": 1299,
+   "baseLine": 87
+  },
+  {
+   "set": "valid",
+   "pt": 11.34,
+   "script": "-{3 TIMES 107 TIMES 7} over {10^{6}}",
+   "h": 2778,
+   "baseLine": 61
+  },
+  {
+   "set": "valid",
+   "pt": 11.34,
+   "script": "2^{6}",
+   "h": 1313,
+   "baseLine": 88
+  },
+  {
+   "set": "valid",
+   "pt": 11.34,
+   "script": "2x underline {-3}=11 underline {-5x} RARROW 2x+5x=11+3",
+   "h": 1350,
+   "baseLine": 71
+  },
+  {
+   "set": "valid",
+   "pt": 11.34,
+   "script": "3(x-2)+1=2x+BOX{ ~ {rm {AA}} ~ }",
+   "h": 1359,
+   "baseLine": 78
+  },
+  {
+   "set": "valid",
+   "pt": 11.34,
+   "script": "50 rm {m}^{2}",
+   "h": 1317,
+   "baseLine": 88
+  },
+  {
+   "set": "valid",
+   "pt": 11.34,
+   "script": "A_{j}",
+   "h": 1346,
+   "baseLine": 72
+  },
+  {
+   "set": "valid",
+   "pt": 11.34,
+   "script": "CASES {2x+y=1 # x^{2}-ky=-6}",
+   "h": 2608,
+   "baseLine": 66
+  },
+  {
+   "set": "valid",
+   "pt": 11.34,
+   "script": "CASES {2x^{2}-xy-y^{2}=0 # x^{2}+2y^{2}=9}",
+   "h": 2796,
+   "baseLine": 65
+  },
+  {
+   "set": "valid",
+   "pt": 11.34,
+   "script": "LEFT ( a-1{1} over {3} RIGHT )^{2}",
+   "h": 2772,
+   "baseLine": 68
+  },
+  {
+   "set": "valid",
+   "pt": 11.34,
+   "script": "MATRIX {-2 & 2 & 0 & -5 & 4 # & & -4 & a & -6 # & 2 & -4 & 3 & -2}",
+   "h": 3733,
+   "baseLine": 61
+  },
+  {
+   "set": "valid",
+   "pt": 11.34,
+   "script": "PMATRIX {-3 # 2}",
+   "h": 2420,
+   "baseLine": 67
+  },
+  {
+   "set": "valid",
+   "pt": 11.34,
+   "script": "PMATRIX {10 & 20 # 8 & 25 # 12 & 18}PMATRIX {3 # 2}",
+   "h": 3715,
+   "baseLine": 61
+  },
+  {
+   "set": "valid",
+   "pt": 11.34,
+   "script": "PMATRIX {{1} over {2} & 2 & 3{1} over {2} # 1 & 2{1} over {2} & 3}",
+   "h": 5350,
+   "baseLine": 58
+  },
+  {
+   "set": "valid",
+   "pt": 11.34,
+   "script": "rm U",
+   "h": 1134,
+   "baseLine": 85
+  },
+  {
+   "set": "valid",
+   "pt": 11.34,
+   "script": "sqrt {7}",
+   "h": 1295,
+   "baseLine": 88
+  },
+  {
+   "set": "valid",
+   "pt": 11.34,
+   "script": "z={1+(ω)^{22}} over {1+ω^{20}}",
+   "h": 2966,
+   "baseLine": 64
+  },
+  {
+   "set": "valid",
+   "pt": 11.34,
+   "script": "{-1-i} over {sqrt {2}}",
+   "h": 2760,
+   "baseLine": 62
+  },
+  {
+   "set": "valid",
+   "pt": 11.34,
+   "script": "{11^{3}-1} over {11×12+1}",
+   "h": 2778,
+   "baseLine": 68
+  },
+  {
+   "set": "valid",
+   "pt": 11.34,
+   "script": "{2} over {3}",
+   "h": 2590,
+   "baseLine": 66
+  },
+  {
+   "set": "valid",
+   "pt": 11.34,
+   "script": "{sqrt {3}} over {2}",
+   "h": 2760,
+   "baseLine": 68
+  },
+  {
+   "set": "valid",
+   "pt": 11.34,
+   "script": "{sqrt {8}} over {sqrt {-2}}=-2i",
+   "h": 2930,
+   "baseLine": 64
+  },
+  {
+   "set": "valid",
+   "pt": 11.34,
+   "script": "{}_{1},",
+   "h": 1312,
+   "baseLine": 74
+  },
+  {
+   "set": "valid",
+   "pt": 11.34,
+   "script": "{}_{n}rm P_{r-1} ~~ {}_{n-1}rm C_{r-1}",
+   "h": 1355,
+   "baseLine": 72
+  },
+  {
+   "set": "valid",
+   "pt": 11.34,
+   "script": "ω",
+   "h": 1125,
+   "baseLine": 86
+  },
+  {
+   "set": "valid",
+   "pt": 12.25,
+   "script": "()^{2}_{3}",
+   "h": 1671,
+   "baseLine": 75
+  },
+  {
+   "set": "valid",
+   "pt": 12.25,
+   "script": "(x_{2},~y_{2})",
+   "h": 1458,
+   "baseLine": 72
+  },
+  {
+   "set": "valid",
+   "pt": 12.25,
+   "script": "-6+3 sqrt {2}`i",
+   "h": 1397,
+   "baseLine": 87
+  },
+  {
+   "set": "valid",
+   "pt": 12.25,
+   "script": "-sqrt {2}",
+   "h": 1384,
+   "baseLine": 88
+  },
+  {
+   "set": "valid",
+   "pt": 12.25,
+   "script": "-{3 TIMES 107 TIMES 7} over {10^{6}}",
+   "h": 2993,
+   "baseLine": 61
+  },
+  {
+   "set": "valid",
+   "pt": 12.25,
+   "script": "2^{6}",
+   "h": 1425,
+   "baseLine": 88
+  },
+  {
+   "set": "valid",
+   "pt": 12.25,
+   "script": "2x underline {-3}=11 underline {-5x} RARROW 2x+5x=11+3",
+   "h": 1440,
+   "baseLine": 72
+  },
+  {
+   "set": "valid",
+   "pt": 12.25,
+   "script": "3(x-2)+1=2x+BOX{ ~ {rm {AA}} ~ }",
+   "h": 1465,
+   "baseLine": 78
+  },
+  {
+   "set": "valid",
+   "pt": 12.25,
+   "script": "50 rm {m}^{2}",
+   "h": 1438,
+   "baseLine": 88
+  },
+  {
+   "set": "valid",
+   "pt": 12.25,
+   "script": "A_{j}",
+   "h": 1446,
+   "baseLine": 72
+  },
+  {
+   "set": "valid",
+   "pt": 12.25,
+   "script": "CASES {2x+y=1 # x^{2}-ky=-6}",
+   "h": 2809,
+   "baseLine": 66
+  },
+  {
+   "set": "valid",
+   "pt": 12.25,
+   "script": "CASES {2x^{2}-xy-y^{2}=0 # x^{2}+2y^{2}=9}",
+   "h": 3034,
+   "baseLine": 65
+  },
+  {
+   "set": "valid",
+   "pt": 12.25,
+   "script": "LEFT ( a-1{1} over {3} RIGHT )^{2}",
+   "h": 2972,
+   "baseLine": 68
+  },
+  {
+   "set": "valid",
+   "pt": 12.25,
+   "script": "MATRIX {-2 & 2 & 0 & -5 & 4 # & & -4 & a & -6 # & 2 & -4 & 3 & -2}",
+   "h": 4018,
+   "baseLine": 61
+  },
+  {
+   "set": "valid",
+   "pt": 12.25,
+   "script": "PMATRIX {-3 # 2}",
+   "h": 2584,
+   "baseLine": 67
+  },
+  {
+   "set": "valid",
+   "pt": 12.25,
+   "script": "PMATRIX {10 & 20 # 8 & 25 # 12 & 18}PMATRIX {3 # 2}",
+   "h": 3968,
+   "baseLine": 61
+  },
+  {
+   "set": "valid",
+   "pt": 12.25,
+   "script": "PMATRIX {{1} over {2} & 2 & 3{1} over {2} # 1 & 2{1} over {2} & 3}",
+   "h": 5720,
+   "baseLine": 58
+  },
+  {
+   "set": "valid",
+   "pt": 12.25,
+   "script": "rm U",
+   "h": 1225,
+   "baseLine": 85
+  },
+  {
+   "set": "valid",
+   "pt": 12.25,
+   "script": "sqrt {7}",
+   "h": 1381,
+   "baseLine": 88
+  },
+  {
+   "set": "valid",
+   "pt": 12.25,
+   "script": "z={1+(ω)^{22}} over {1+ω^{20}}",
+   "h": 3218,
+   "baseLine": 64
+  },
+  {
+   "set": "valid",
+   "pt": 12.25,
+   "script": "{-1-i} over {sqrt {2}}",
+   "h": 2949,
+   "baseLine": 62
+  },
+  {
+   "set": "valid",
+   "pt": 12.25,
+   "script": "{11^{3}-1} over {11×12+1}",
+   "h": 2993,
+   "baseLine": 69
+  },
+  {
+   "set": "valid",
+   "pt": 12.25,
+   "script": "{2} over {3}",
+   "h": 2768,
+   "baseLine": 66
+  },
+  {
+   "set": "valid",
+   "pt": 12.25,
+   "script": "{4-sqrt {3}} over {4}",
+   "h": 2952,
+   "baseLine": 68
+  },
+  {
+   "set": "valid",
+   "pt": 12.25,
+   "script": "{sqrt {3}} over {2}",
+   "h": 2949,
+   "baseLine": 68
+  },
+  {
+   "set": "valid",
+   "pt": 12.25,
+   "script": "{sqrt {8}} over {sqrt {-2}}=-2i",
+   "h": 3130,
+   "baseLine": 64
+  },
+  {
+   "set": "valid",
+   "pt": 12.25,
+   "script": "{}_{1},",
+   "h": 1425,
+   "baseLine": 73
+  },
+  {
+   "set": "valid",
+   "pt": 12.25,
+   "script": "{}_{n}rm P_{r-1} ~~ {}_{n-1}rm C_{r-1}",
+   "h": 1471,
+   "baseLine": 71
+  },
+  {
+   "set": "valid",
+   "pt": 12.25,
+   "script": "ω",
+   "h": 1200,
+   "baseLine": 86
+  }
+ ]
+}

@@ -4,9 +4,14 @@
 .source-math-editor .visual-source-input { box-sizing: border-box; width: 100%; min-height: 300px; padding: 12px; border: 0; font: 13px/1.7 monospace; resize: vertical; }
 .source-math-editor .visual-editor-help { margin: 0; border-top: 1px solid #e2e8f0; padding: 8px 12px; color: #64748b; font-size: 12px; }
 .source-math-editor .visual-editor-toolbar button { cursor: pointer; }
-.source-math-editor .visual-document table { border-collapse: collapse; width: 100%; table-layout: fixed; margin: 12px 0; }
-.source-math-editor .visual-document td, .source-math-editor .visual-document th { border: 1px solid #94a3b8; min-width: 40px; padding: 6px 10px; position: relative; vertical-align: top; }
-.source-math-editor .visual-document th { background: #f1f5f9; font-weight: 600; }
+/* 표는 검수 카드(아래 `.source-editor-display table`)와 **같은 모양**으로 선다 — 내용만큼의 폭·같은 글자 크기·가운데 맞춤.
+   전에는 편집기만 `width:100%`·`table-layout:fixed` 라 «내용 수정»을 열면 표가 화면 폭으로 늘어났다(원장님 2026-09-21).
+   빈 칸에도 커서가 설 자리는 남긴다(`min-width:1em`). */
+.source-math-editor .visual-document table { border-collapse: collapse; max-width: 100%; table-layout: auto; margin: 8px 0; font-size: .92em; }
+.source-math-editor .visual-document td, .source-math-editor .visual-document th { border: 1px solid #cbd5e1; min-width: 1em; padding: 6px 10px; position: relative; vertical-align: middle; }
+.source-math-editor .visual-document th { background: #f1f5f9; font-weight: 600; text-align: center; }
+/* 편집기의 칸은 문단을 품는다(TipTap) — 카드의 칸에는 문단이 없으니 그 위아래 여백(6px)을 걷어 행 높이를 맞춘다. */
+.source-math-editor .visual-document :is(td, th) > p { margin: 0; }
 .source-math-editor .visual-document .selectedCell { background: #dbeafe; }
 /* 〈보기〉 상자의 칸(트랙 51): 칸은 contentDOM(`.visual-condition-cells`) 안의 문단 하나씩. 글 칸은 기준선, 그림 칸은 위쪽. */
 .source-math-editor .visual-condition-cells[data-condition-box="2"] { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 3px 24px; align-items: baseline; }

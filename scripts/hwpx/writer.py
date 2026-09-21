@@ -16,6 +16,7 @@ sys.path.insert(0, str(VENDOR))
 from latex_to_hwpeq import latex_to_hwpeq
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 from eqsize import hwpeq_width
+from eqheight import hwpeq_extent
 
 NS = {'hp':'http://www.hancom.co.kr/hwpml/2011/paragraph', 'hc':'http://www.hancom.co.kr/hwpml/2011/core',
       'hh':'http://www.hancom.co.kr/hwpml/2011/head', 'hs':'http://www.hancom.co.kr/hwpml/2011/section',
@@ -36,6 +37,20 @@ _EQ_OUT_MARGIN = 56     # Hancom's own inline equation margin (HWPUNIT per side)
 def equation_width(item, script):
     """CSS px width of the box Hancom gives ``script`` at the preview font size."""
     return hwpeq_width(script, units(item.get('fontSize') or 14)) / 75
+
+# The same holds for the box height and baseline (eqheight): Hancom draws the equation at its
+# natural size from the top of the box, and its fraction is 2.30 lines against KaTeX's ~2.0. With
+# the FIXED line height below, a KaTeX-sized box let the fraction run over the next line. The
+# equation keeps its preview baseline; its box (and so its row) takes Hancom's ascent and descent.
+def hancom_equation(item):
+    """``item`` with Hancom's own box: script, width, height and baseline at the same text baseline."""
+    native_latex=re.sub(r'\\htmlClass\{geom-arc-wrap\}',r'\\widehat',str(item.get('latex','')))
+    script=latex_to_hwpeq(native_latex)
+    height,percent=hwpeq_extent(script, units(item.get('fontSize') or 14))
+    h=height/75;baseline=item.get('baseline',item['y']+item['h']*.85)
+    # previewY/previewH keep the KaTeX box: whether an item belongs to the body is a fact about the
+    # preview page, and Hancom's taller box would push a first/last-row fraction across the body edge.
+    return {**item,'script':script,'w':equation_width(item,script),'h':h,'y':baseline-h*percent/100,'baseline':baseline,'baseLine':percent,'previewY':item['y'],'previewH':item['h']}
 
 def build_parts(payload):
     pages = payload.get('pages')
@@ -114,7 +129,8 @@ def build_parts(payload):
         counter+=1
         return add(parent,'hp:p',id=counter,paraPrIDRef=style or para_id,styleIDRef=0,pageBreak=int(page_break),columnBreak=int(column_break),merged=0)
     def line_info(p,width,height=100,y=0,x=0,baseline=None):
-        add(add(p,'hp:linesegarray'),'hp:lineseg',textpos=0,vertpos=y,vertsize=height,textheight=height,baseline=round(height*.85) if baseline is None else baseline,spacing=0,horzpos=x,horzsize=width,flags=393216)
+        baseline=round(height*.85) if baseline is None else max(0,min(height,baseline))
+        add(add(p,'hp:linesegarray'),'hp:lineseg',textpos=0,vertpos=max(0,y),vertsize=height,textheight=height,baseline=baseline,spacing=0,horzpos=x,horzsize=width,flags=393216)
     def placement(node,item,inline=False,side_margin=0):
         w,h=units(item['w']),units(item['h'])
         add(node,'hp:sz',width=w,height=h,widthRelTo='ABSOLUTE',heightRelTo='ABSOLUTE',protect=0)
@@ -138,13 +154,12 @@ def build_parts(payload):
             latex=str(item.get('latex',''))
             if len(latex)>16000:raise ValueError('수식이 너무 깁니다.')
             counter+=1
-            baseline=round(100*(item.get('baseline',item['y']+item['h']*.85)-item['y'])/item['h'])
+            if 'script' not in item:item=hancom_equation(item)
+            baseline=item['baseLine']
             node=add(run,'hp:equation',id=counter,zOrder=order,numberingType='EQUATION',textWrap='TOP_AND_BOTTOM' if inline else 'IN_FRONT_OF_TEXT',textFlow='BOTH_SIDES',lock=0,dropcapstyle='None',version='Equation Version 60',baseLine=max(0,min(100,baseline)),textColor=item.get('color','#111111'),baseUnit=units(item.get('fontSize',14)),lineMode='CHAR',font='HYhwpEQ')
-            native_latex=re.sub(r'\\htmlClass\{geom-arc-wrap\}',r'\\widehat',latex)
-            script=latex_to_hwpeq(native_latex)
-            placement(node,{**item,'w':equation_width(item,script)},inline,_EQ_OUT_MARGIN if inline else 0)
+            placement(node,item,inline,_EQ_OUT_MARGIN if inline else 0)
             add(node,'hp:shapeComment').text=latex
-            add(node,'hp:script').text=script
+            add(node,'hp:script').text=item['script']
         elif kind=='image':
             image_id=str(item.get('imageId',''))
             if not image_id.startswith('image') or not image_id[5:].isdigit():raise ValueError('잘못된 그림 참조입니다.')
@@ -199,16 +214,19 @@ def build_parts(payload):
         # and its content, so a fraction's baseline sits below its ① and baseline grouping dropped
         # the fraction onto its own line (both the studio and the bank paper did this).
         def cell_lines(cell):
+            # Lines inside a cell are a fact about the preview: group by the KaTeX box (previewY/H). Hancom's
+            # taller equation box made two preview lines overlap by half and merged them into one paragraph.
+            top=lambda o:o.get('previewY',o['y']);height=lambda o:o.get('previewH',o['h'])
             lines=[]
-            for item in sorted(cell,key=lambda o:(o['y'],o['x'])):
+            for item in sorted(cell,key=lambda o:(top(o),o['x'])):
                 target=None
                 for line in reversed(lines):
-                    overlap=min(line['bottom'],item['y']+item['h'])-max(line['y'],item['y'])
-                    if overlap>=.5*min(line['bottom']-line['y'],item['h']):target=line;break
+                    overlap=min(line['bottom'],top(item)+height(item))-max(line['y'],top(item))
+                    if overlap>=.5*min(line['bottom']-line['y'],height(item)):target=line;break
                 if target is None:
-                    target={'items':[],'y':item['y'],'bottom':item['y']+item['h']};lines.append(target)
+                    target={'items':[],'y':top(item),'bottom':top(item)+height(item)};lines.append(target)
                 target['items'].append(item)
-                target['y']=min(target['y'],item['y']);target['bottom']=max(target['bottom'],item['y']+item['h'])
+                target['y']=min(target['y'],top(item));target['bottom']=max(target['bottom'],top(item)+height(item))
             for line in lines:line['items'].sort(key=lambda o:o['x'])
             return sorted(lines,key=lambda l:l['y'])
         groups={}
@@ -270,6 +288,10 @@ def build_parts(payload):
         for item in objects:
             for key in ['x','y','w','h']:
                 if not isinstance(item.get(key),(int,float)) or not math.isfinite(item[key]) or abs(item[key])>12000:raise ValueError('잘못된 요소 위치입니다.')
+        # Rows are built from Hancom's equation boxes, so a row is as tall as Hancom draws it.
+        for item in objects:
+            if item['type']=='equation' and len(str(item.get('latex','')))>16000:raise ValueError('수식이 너무 깁니다.')
+        objects=[hancom_equation(o) if o['type']=='equation' else o for o in objects]
         body=page.get('body') or {'x':40,'y':40,'w':714,'h':1030,'columns':1,'gap':0}
         for key in ['x','y','w','h','columns','gap']:
             if not isinstance(body.get(key),(int,float)) or not math.isfinite(body[key]):raise ValueError('잘못된 본문 영역입니다.')
@@ -283,7 +305,7 @@ def build_parts(payload):
         # The section margin applies to every page Hancom flows this section onto. Using the
         # body top (below a first-page exam header) made overflow pages start mid-page, so
         # the margin is the page's content top and the first body row is pushed down instead.
-        top=max(8,min([body['y']]+[o['y'] for o in objects]))
+        top=max(8,min([body['y']]+[o.get('previewY',o['y']) for o in objects]))
         for key,value in [('left',body['x']),('right',59528/75-body['x']-body['w']),('top',top),('bottom',max(8,84189/75-body['y']-body['h']))]:margin.set(key,str(units(value)))
         col=sec_run.find('.//'+tag('hp:colPr'));col.set('colCount',str(columns));col.set('sameGap',str(units(body['gap'])))
         p=paragraph(section,style=paragraph_style(height=1));p.append(sec_run)
@@ -291,7 +313,7 @@ def build_parts(payload):
         body_items=[[],[]];outside=[]
         for order,item in enumerate(objects):
             if item['type']=='rect':emit_object(anchor,item,order)
-            elif item['y']>=body['y']-3 and item['y']+item['h']<=body['y']+body['h']+3 and item['x']>=body['x']-3 and item['x']<body['x']+body['w']:
+            elif item.get('previewY',item['y'])>=body['y']-3 and item.get('previewY',item['y'])+item.get('previewH',item['h'])<=body['y']+body['h']+3 and item['x']>=body['x']-3 and item['x']<body['x']+body['w']:
                 column=int(columns==2 and item['x']+item['w']/2>body['x']+body['w']/2)
                 body_items[column].append(item)
             else:outside.append(item)
@@ -313,7 +335,9 @@ def build_parts(payload):
                 body_p=write_row(section,row,left=row['x']-x,before=before,height=row['h'],column_break=column>0 and index==0)
                 row_baseline=row['bottom'] if row['items'][0]['type']=='image' else row['baseline']
                 line_info(body_p,units(column_width-row['x']+x),units(row['h']),y=units(row['y']-body['y']),x=units(row['x']-x),baseline=units(row_baseline-row['y']))
-                cursor=row['bottom']
+                # The cursor is the row's actual bottom: a row pushed down by a taller one above
+                # gives the shift back at the next gap instead of carrying it down the page.
+                cursor=max(cursor,row['y'])+row['h']
         parts[f'Contents/section{page_index}.xml']=xml(section)
     char_props.set('itemCnt',str(len(char_props)))
     para_props.set('itemCnt',str(len(para_props)));head.set('secCnt',str(len(pages)))

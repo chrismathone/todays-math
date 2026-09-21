@@ -34,7 +34,19 @@ export const ENGINE_FAILURES = {
   angleAndAngleDeg: /points\.(.+) provides both angle and angle_deg/,
   duplicateName:
     /duplicate geometry name (?:'([^']*)'|"([^"]*)")(?:: new (\w+) conflicts with (\w+)| across (\w+) and (\w+))/,
+  // 원장님 운영 콘솔 2026-09-21(전부 422) — 모델이 엔진 문법에서 **살짝** 어긋나게 적은 것들.
+  // `arrow` 같은 없는 칸 · 치수의 쪽 «top» · 이름표 자리 «center» · 점선 `dash:true`.
+  unknownFields:
+    /\b(points|segments|angles|dimensions|labels)\.(.+?): unknown field\(s\): (.+)$/,
+  dimensionSide: /dimension side must be 'auto', 'left', or 'right'/,
+  labelPosition: /label '([^']+)' has unknown position '([^']*)'/,
+  segmentDash: /segment '([^']+)' dash must be a numeric list/,
 } as const;
+
+/** 프롬프트가 모델에 가르치는 점선 값(`figure-prompt.ts` — «A dashed v2 segment is {…,"dashed":"5 3"}»). */
+const DASHED = "5 3";
+const SAYS_DASHED = /^(?:true|yes|dash|dashed|dot|dotted)$/i;
+const SAYS_SOLID = /^(?:false|no|none|solid)$/i;
 
 /**
  * 원장님 화면에 나가는 엔진 거절 사유(D-08 — 간결·사무적 한국어 한 줄, 원장님 2026-09-21 «영어 엔진 오류가 그대로 나갔다»).
@@ -52,6 +64,10 @@ const REASONS: Partial<Record<keyof typeof ENGINE_FAILURES, string>> = {
   canvasClips: "그림이 틀 밖으로 넘쳐",
   labelKeyConflict: "점 이름표가 가리키는 점이 맞지 않아",
   rightWithArcs: "직각 표시와 호 표시가 함께 있어",
+  unknownFields: "엔진이 그리지 못하는 설정이 있어",
+  dimensionSide: "치수 표시 설정이 맞지 않아",
+  labelPosition: "점 이름표 자리 설정이 맞지 않아",
+  segmentDash: "점선 설정이 맞지 않아",
 };
 export function engineRejectionReason(error: string) {
   for (const [key, pattern] of Object.entries(ENGINE_FAILURES)) {
@@ -372,6 +388,23 @@ export function repairFigureSpec(
     const warning = `∠${label} 표시를 그릴 변이 없어 뺐습니다.`;
     return next && { spec: next, warning, note: warning, dropped: true };
   }
+  hit = ENGINE_FAILURES.unknownFields.exec(error);
+  if (hit) {
+    // 엔진이 모르는 칸(예: 선분의 `arrow`)은 어차피 못 그린다. 그래도 먼저 모델에 되물어 다른 길로 그릴 기회를 주고,
+    // 마지막 시도에서만 그 칸을 뺀다 — 그림 전체가 원본 크롭으로 남는 것보다 낫다. 뜻이 바뀌므로 화면에 알린다.
+    if (!allowDrop) return undefined;
+    const table = hit[1] as
+      "points" | "segments" | "angles" | "dimensions" | "labels";
+    const name = hit[2]!;
+    const fields = hit[3]!.split(",").map((field) => field.trim());
+    const next = editRecord(spec, table, name, (item) =>
+      isItem(item) && fields.some((field) => field in item)
+        ? without(item, ...fields)
+        : undefined,
+    );
+    const warning = `${table}.${name} 의 ${fields.join("·")} 설정은 그릴 수 없어 뺐습니다. 그림 편집에서 넣어 주세요.`;
+    return next && { spec: next, warning, note: warning, dropped: true };
+  }
   return repairOneMeaning(spec, error);
 }
 
@@ -415,6 +448,41 @@ function repairOneMeaning(
       )
         moves.set(key, String(item.point));
     const targets = [...moves.values()];
+    // 그 점에 이름표가 **이미 있는데** 또 하나(`dot_E` → E)를 적은 경우 — 덧붙은 쪽이 `point`·`text` 말고는 아무것도
+    // 안 적었고 글이 비었거나 같으면, 어느 쪽을 남겨도 **그림이 같다**. 덧붙은 쪽을 뺀다(운영 콘솔 2026-09-21
+    // `labels.dot_E.point conflicts with its key` — 되물어도 세 번 다 같은 사양이 와서 422 로 끝났다).
+    // 글이 다르거나 자리(dx·dy·position)를 적었으면 어느 쪽이 맞는지 몰라 되묻는다(트랙 45 의 판단 그대로).
+    const textOf = (item: unknown) =>
+      typeof item === "string"
+        ? item.trim()
+        : isItem(item) && typeof item.text === "string"
+          ? item.text.trim()
+          : "";
+    const redundant = [...moves].filter(
+      ([key, to]) =>
+        !points.has(key) &&
+        points.has(to) &&
+        to in labels &&
+        isItem(labels[key]) &&
+        Object.keys(labels[key]).every((field) =>
+          ["point", "text"].includes(field),
+        ) &&
+        ["", textOf(labels[to])].includes(textOf(labels[key])),
+    );
+    if (redundant.length) {
+      const drop = new Set(redundant.map(([key]) => key));
+      return {
+        spec: {
+          ...spec,
+          labels: Object.fromEntries(
+            Object.entries(labels).filter(([key]) => !drop.has(key)),
+          ),
+        },
+        note: `같은 점에 두 번 적은 이름표를 하나로 했습니다(${redundant
+          .map(([from, to]) => `${from}→${to}`)
+          .join(", ")}).`,
+      };
+    }
     for (const [key, to] of moves)
       if (
         points.has(key) ||
@@ -498,6 +566,63 @@ function repairOneMeaning(
       next && {
         spec: next,
         note: `점 ${hit[1]} 에 겹쳐 적은 angle_deg 를 지웠습니다.`,
+      }
+    );
+  }
+  if (ENGINE_FAILURES.dimensionSide.test(error)) {
+    // 엔진이 아는 쪽은 auto·left·right 셋이다. 그 밖의 말(«top»·«above»)은 어느 쪽인지 정할 수 없다 —
+    // 자리 찾기를 엔진에 맡긴다(`dimensionNoRoom` 의 «자리 풀기»와 같은 고침). 사유가 이름을 안 주므로 어긋난 것을 다 고친다.
+    const bad = (item: unknown): item is Item =>
+      isItem(item) &&
+      item.side !== undefined &&
+      !["auto", "left", "right"].includes(String(item.side));
+    const names = records(spec.dimensions)
+      .filter(([, item]) => bad(item))
+      .map(([name]) => name);
+    let next: DevAiFigureSpec | undefined = spec;
+    for (const name of names)
+      next =
+        next &&
+        editRecord(next, "dimensions", name, (item) =>
+          isItem(item) ? without(item, "side") : undefined,
+        );
+    return names.length && next
+      ? {
+          spec: next,
+          note: `치수 ${names.join(", ")} 의 모르는 쪽(side) 지정을 풀었습니다.`,
+        }
+      : undefined;
+  }
+  hit = ENGINE_FAILURES.labelPosition.exec(error);
+  if (hit) {
+    // 엔진이 아는 자리는 AUTO·RADIAL·여덟 방위다. «center» 같은 말은 자리를 못 정한다 — 그 이름표의 자리 지정만 푼다.
+    const next = editRecord(spec, "labels", hit[1]!, (item) =>
+      isItem(item) && "position" in item
+        ? without(item, "position")
+        : undefined,
+    );
+    return (
+      next && {
+        spec: next,
+        note: `이름표 ${hit[1]} 의 모르는 자리(${hit[2]}) 지정을 풀었습니다.`,
+      }
+    );
+  }
+  hit = ENGINE_FAILURES.segmentDash.exec(error);
+  if (hit) {
+    // 엔진의 점선은 길이 목록(«5 3»)이다. 모델이 `dash:true`·«dashed» 로 «점선이다»만 적으면 프롬프트가 가르치는 값으로,
+    // `false`·«solid» 면 실선으로 — 뜻은 그대로다. 그 밖의 값은 무슨 뜻인지 몰라 되묻는다.
+    const next = editRecord(spec, "segments", hit[1]!, (item) => {
+      if (!isItem(item)) return undefined;
+      const said = String(item.dash ?? item.dashed).trim();
+      const rest = without(item, "dash", "dashed");
+      if (SAYS_DASHED.test(said)) return { ...rest, dashed: DASHED };
+      return SAYS_SOLID.test(said) ? rest : undefined;
+    });
+    return (
+      next && {
+        spec: next,
+        note: `선분 ${hit[1]} 의 점선 표기를 엔진 값으로 옮겼습니다.`,
       }
     );
   }
