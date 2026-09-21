@@ -1,0 +1,247 @@
+<!doctype html>
+<meta charset="utf-8">
+<title>도형 편집기 오른쪽 칸 와이어</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<!-- 편집기와 같은 글꼴 — 폭이 곧 이 시안의 요점이라 Pretendard 로 그린다(없으면 정렬 줄이 더 넓게 잡힌다). -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable.min.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nanum+Myeongjo:wght@800&family=Noto+Sans+KR:wght@400;500;600;700&display=swap">
+<style>
+/* 트랙 43 — 원장님 2026-09-21 «우측 설정창을 공간 더 배정해서 좀 깔끔하게 정리할 수 있게».
+   D-07 이라 **제품은 안 고쳤다**(폭 428px · 줄바꿈 없애기만 했다). 무리 짓기는 이 시안에서 고르신다.
+   칸 속 단추·글자·색은 도형 편집기의 실제 토큰(StudioFigureEditor.module.css .dialog)을 그대로 쓴다 — 새 꼴을 들이지 않는다.
+   칸 높이는 1516×730 화면의 실제 값(637px)으로 잘라, 스크롤 없이 몇 줄이 보이는지 그대로 보인다. */
+:root {
+  color-scheme: light;
+  --paper: #fafaf8; --page-ink: #161616; --page-ink-2: #61615e; --rule: #b9b9b6; --pick: #2064b3;
+  --figure-primary: #3159df; --figure-accent-ink: #284f93; --figure-accent-soft: #edf3ff; --figure-accent-line: #a9bdea;
+  --ink: #172b4d; --text-2: #52617a; --side: #f3f5f9; --divider: #d4dce8; --control: #b5c3d7;
+  --sans: "Pretendard Variable", Pretendard, "Noto Sans KR", "Malgun Gothic", system-ui, sans-serif;
+  --serif: "Nanum Myeongjo", "Noto Serif KR", Batang, serif;
+}
+* { box-sizing: border-box; }
+body { margin: 0; background: var(--paper); color: var(--page-ink); font-family: var(--sans); font-size: 14px; line-height: 1.55; }
+button, input { font: inherit; color: inherit; }
+:is(button, summary):focus-visible { outline: 2px solid var(--figure-primary); outline-offset: 2px; }
+.board { max-width: 1240px; margin: 0 auto; padding: 28px 24px 72px; }
+.eyebrow { margin: 0; font-size: 12px; letter-spacing: .06em; color: var(--page-ink-2); }
+h1 { margin: 6px 0 10px; font-family: var(--serif); font-weight: 800; font-size: 28px; letter-spacing: -.02em; }
+.lede { margin: 0 0 6px; max-width: 76ch; color: var(--page-ink-2); }
+.lede b { color: var(--page-ink); }
+.tabs { position: sticky; top: 0; z-index: 5; display: flex; flex-wrap: wrap; gap: 4px; margin-top: 18px; padding-block: 10px; background: var(--paper); border-block: 1px solid var(--rule); }
+.tab { display: flex; gap: 8px; align-items: baseline; padding: 7px 12px; border: 1px solid transparent; border-radius: 6px; background: none; color: var(--page-ink-2); cursor: pointer; }
+.tab .k { font-weight: 700; color: var(--page-ink); }
+.tab:hover { background: #fff; }
+.tab[aria-selected="true"] { background: #fff; border-color: var(--rule); color: var(--page-ink); box-shadow: inset 0 -2px 0 var(--pick); }
+.stage { display: grid; grid-template-columns: auto minmax(260px, 1fr); gap: 28px; align-items: start; padding-top: 20px; }
+@media (max-width: 860px) { .stage { grid-template-columns: 1fr; } }
+.note h2 { margin: 0 0 6px; font-size: 18px; }
+.note p, .note li { color: var(--page-ink-2); }
+.note ul { padding-left: 18px; margin: 6px 0; }
+.note .meta { display: flex; flex-wrap: wrap; gap: 4px 18px; margin: 10px 0; padding: 0; list-style: none; font-size: 13px; }
+.note .meta b { color: var(--page-ink); }
+.ask { margin-top: 36px; padding-top: 16px; border-top: 1px solid var(--rule); }
+.ask ol { padding-left: 20px; }
+.ask li { margin: 6px 0; }
+
+/* ── 편집기 오른쪽 칸 (실제 토큰) ── */
+.frame { border: 1px solid var(--divider); border-width: 0 0 0 1px; border-radius: 0 12px 12px 0; background: #fff; color: var(--ink); font-size: 12px; line-height: 1.5; height: 637px; overflow-y: auto; scrollbar-gutter: stable; box-shadow: 0 1px 6px #0001; }
+.frame .in { padding: 16px; }
+.frame h3 { margin: 0 0 4px; font-size: 14px; font-weight: 600; }
+.muted { color: var(--text-2); }
+.hint { margin: 0 0 12px; }
+.row { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; margin-bottom: 8px; }
+.row > .name { font-weight: 500; }
+.row > .name.fixed { width: 34px; flex: none; }
+.btn { border: 1px solid var(--control); border-radius: 4px; background: #fff; padding: 4px 8px; font-size: 12px; line-height: 16px; white-space: nowrap; cursor: pointer; }
+.btn:hover:not(:disabled) { background: var(--side); }
+.btn:disabled { opacity: .4; cursor: default; }
+.reason { margin: -4px 0 8px; }
+.gap { height: 4px; }
+.info { margin: 0 0 12px; border-radius: 4px; background: var(--figure-accent-soft); color: var(--figure-accent-ink); padding: 8px; line-height: 1.6; }
+.field { display: flex; align-items: center; justify-content: space-between; margin-bottom: 12px; }
+.swatch { width: 44px; height: 20px; border: 1px solid #999; border-radius: 2px; }
+.slider { margin-bottom: 12px; }
+.slider .top { display: flex; justify-content: space-between; }
+.slider .bar { position: relative; height: 4px; margin-top: 10px; border-radius: 2px; background: #d6d9df; }
+.slider .bar::before { content: ""; position: absolute; left: 0; top: 0; width: 7%; height: 4px; border-radius: 2px; background: var(--figure-primary); }
+.slider .bar::after { content: ""; position: absolute; left: 7%; top: -5px; width: 14px; height: 14px; margin-left: -7px; border-radius: 50%; background: var(--figure-primary); }
+.check { display: flex; gap: 8px; align-items: center; margin-bottom: 12px; }
+.check i { width: 13px; height: 13px; border: 1px solid #767676; border-radius: 2px; }
+.link { margin: -6px 0 12px; text-decoration: underline; color: var(--text-2); }
+.details { border-top: 1px solid var(--control); padding-top: 8px; color: var(--text-2); }
+.grp { display: flex; align-items: center; gap: 8px; margin: 14px 0 10px; font-size: 11px; font-weight: 600; letter-spacing: .04em; color: var(--text-2); }
+.grp::after { content: ""; flex: 1; height: 1px; background: var(--divider); }
+.grp:first-child { margin-top: 0; }
+.fold { display: flex; width: 100%; align-items: center; gap: 6px; margin: 10px 0 8px; padding: 6px 4px; border: 0; border-bottom: 1px solid var(--divider); background: none; font-size: 12px; font-weight: 600; color: var(--ink); cursor: pointer; text-align: left; }
+.fold:hover { background: var(--side); }
+.fold .cnt { margin-left: auto; font-weight: 400; color: var(--text-2); }
+.grid3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 6px; }
+.grid2 { display: grid; grid-template-columns: repeat(2, 1fr); gap: 6px; }
+.grid4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 6px; }
+.stack { display: grid; grid-template-columns: 34px 1fr; gap: 6px 8px; align-items: start; margin-bottom: 10px; }
+.stack .name { padding-top: 4px; font-weight: 500; }
+.sub { display: flex; gap: 6px; align-items: center; }
+.sub .axis { width: 28px; flex: none; color: var(--text-2); }
+.ptabs { display: flex; gap: 2px; margin: 0 0 12px; border-bottom: 1px solid var(--divider); }
+.ptab { padding: 6px 12px; border: 0; background: none; border-bottom: 2px solid transparent; font-size: 12px; font-weight: 500; color: var(--text-2); cursor: pointer; }
+.ptab[aria-selected="true"] { color: var(--figure-accent-ink); border-bottom-color: var(--figure-primary); font-weight: 600; }
+.measure { font-variant-numeric: tabular-nums; }
+</style>
+
+<div class="board">
+  <p class="eyebrow">트랙 43 · 도형 편집기 · Wire 5안 · 2026-09-21</p>
+  <h1>오른쪽 설정 칸 — 무리 짓기</h1>
+  <p class="lede">원장님 말씀: <b>«도형 편집기를 좀 더 확장시켜. 우측 설정창을 공간 더 배정해서 좀 깔끔하게 정리할 수 있게.»</b></p>
+  <p class="lede">제품에는 <b>폭만</b> 넣었습니다 — 칸 280→428px, 대화상자를 화면에 맞게 키움(그림은 넓히기 전보다 8~11% 큼), 정렬·간격·순서 단추와 안내 글이 모두 한 줄. 아래는 <b>칸 안의 무리 짓기</b>입니다. 요소 순서(맨 앞으로 등) 단추 넷이 더해져 한 줄기로 쌓인 줄이 열다섯 개입니다.</p>
+  <p class="lede">원장님 화면 그대로(삼각형 ABC 하나를 고른 상태)를 칸 높이 637px(1516×730 화면의 실제 칸 높이)로 잘라 보입니다. 내용이 그보다 길면 칸 안에서 스크롤됩니다.</p>
+
+  <div class="tabs" role="tablist" aria-label="시안">
+    <button class="tab" role="tab" aria-selected="true" data-tab="now"><span class="k">현행</span> 한 줄기 (428px)</button>
+    <button class="tab" role="tab" aria-selected="false" data-tab="a"><span class="k">A</span> 무리 머리글</button>
+    <button class="tab" role="tab" aria-selected="false" data-tab="b"><span class="k">B</span> 모양 먼저</button>
+    <button class="tab" role="tab" aria-selected="false" data-tab="c"><span class="k">C</span> 조밀한 격자 (320px)</button>
+    <button class="tab" role="tab" aria-selected="false" data-tab="d"><span class="k">D</span> 접는 무리</button>
+    <button class="tab" role="tab" aria-selected="false" data-tab="e"><span class="k">E</span> 칸 속 탭</button>
+  </div>
+
+  <section class="stage">
+    <div id="frame-host"></div>
+    <div class="note" id="note"></div>
+  </section>
+
+  <section class="ask">
+    <h2>여쭐 것</h2>
+    <ol>
+      <li><b>어느 안으로 할지</b> — 현행(한 줄기 그대로) · A · B · C · D · E.</li>
+      <li><b>배치와 모양 중 어느 쪽이 위인지</b> — 요소를 고르는 까닭이 주로 «색·굵기를 바꾸려고»인지 «돌리고 맞추려고»인지(A·B 가 이것만 다릅니다).</li>
+      <li><b>정렬·간격이 꺼졌을 때의 안내 글</b> — 지금은 두 줄(«둘 이상 고르면…», «셋 이상 고르면…»)입니다. 한 줄로 합칠지, 없애고 단추에 마우스를 올릴 때만 보일지.</li>
+      <li><b>C 안을 고르시면 칸 폭</b> — 격자로 줄이면 320px 로 돌아갈 수 있고, 가운데 그림 칸이 108px 넓어집니다.</li>
+    </ol>
+  </section>
+</div>
+
+<script>
+// 칸 속 조각 — 편집기 FigureEditor.tsx 의 오른쪽 칸과 같은 글·같은 차례.
+const btn = (t, off) => `<button class="btn" ${off ? "disabled" : ""}>${t}</button>`;
+const row = (name, buttons, fixed) =>
+  `<div class="row"><span class="name ${fixed ? "fixed" : ""}">${name}</span>${buttons}</div>`;
+const reason = (t) => `<p class="reason muted">${t}</p>`;
+const T = {
+  title: `<h3>5 · 다각형 편집</h3><p class="hint muted">선택한 요소의 모양과 표시를 바꿉니다.</p>`,
+  group: `<div class="field" style="gap:8px"><span style="flex:none">묶음 이름</span></div><div class="row"><input value="다각형" style="flex:1;min-width:0;border:1px solid var(--control);border-radius:4px;padding:3px 6px;font-size:12px"> ${btn("묶음 해제")}</div>`,
+  rotate: row("회전", btn("↺ 반시계 90°") + btn("↻ 시계 90°")),
+  mirror: row("대칭", btn("↔ 좌우 대칭") + btn("↕ 상하 대칭")),
+  align: row("정렬", ["왼쪽", "가로 가운데", "오른쪽", "위", "세로 가운데", "아래"].map((t) => btn(t, true)).join("")),
+  alignWhy: reason("요소나 묶음을 둘 이상 고르면 서로 맞출 수 있습니다."),
+  spread: row("간격", btn("가로 고르게", true) + btn("세로 고르게", true)),
+  spreadWhy: reason("요소나 묶음을 셋 이상 고르면 고르게 벌릴 수 있습니다."),
+  bothWhy: reason("정렬은 둘, 간격은 셋 이상 고르면 켜집니다."),
+  order: row("순서", btn("맨 앞으로") + btn("앞으로") + btn("뒤로", true) + btn("맨 뒤로", true)),
+  fit: `<div class="row">${btn("다 보이게")}</div>${reason("틀을 지금 그림에 맞춥니다. 잘린 곳이 들어오고 남는 여백은 줄어듭니다.")}`,
+  fitShort: row("틀", btn("다 보이게") + `<span class="muted">잘린 곳을 들이고 여백을 줄입니다</span>`),
+  info: `<p class="info">파란색 조절점을 끌어 모양을 바꾸세요. 선이나 테두리를 끌면 통째로 이동합니다.</p>`,
+  stroke: `<div class="field">선 색 <span class="swatch" style="background:#111"></span></div>`,
+  width: `<div class="slider"><div class="top">선 두께 <span>1.6</span></div><div class="bar"></div></div>`,
+  dash: `<div class="check"><i></i>점선</div>`,
+  fill: `<div class="field">채우기 <span class="swatch" style="background:#c8c8c8"></span></div><p class="link">채우기 없애기</p>`,
+  fillInline: `<div class="field">채우기 <span style="display:flex;gap:10px;align-items:center"><span class="link" style="margin:0">없애기</span><span class="swatch" style="background:#c8c8c8"></span></span></div>`,
+  lock: `<div class="check"><i></i>요소 크기 고정 (이동만 가능)</div>`,
+  numbers: `<p class="details">▸ 정밀 수치 조정</p>`,
+};
+const grp = (name) => `<p class="grp">${name}</p>`;
+const arrange = T.rotate + T.mirror + T.align + T.spread + T.bothWhy + T.order;
+const shape = T.stroke + T.width + T.dash + T.fillInline;
+const detail = T.fitShort + T.lock + T.numbers;
+
+// C — 조밀한 격자: 이름 칸 + 단추 격자. 정렬은 가로·세로 두 줄.
+const compact =
+  `<div class="stack"><span class="name">회전</span><div class="grid2">${btn("↺ 반시계 90°")}${btn("↻ 시계 90°")}</div></div>` +
+  `<div class="stack"><span class="name">대칭</span><div class="grid2">${btn("↔ 좌우 대칭")}${btn("↕ 상하 대칭")}</div></div>` +
+  `<div class="stack"><span class="name">정렬</span><div style="display:grid;gap:6px">` +
+  `<div class="sub"><span class="axis">가로</span><div class="grid3" style="flex:1">${btn("왼쪽", true)}${btn("가운데", true)}${btn("오른쪽", true)}</div></div>` +
+  `<div class="sub"><span class="axis">세로</span><div class="grid3" style="flex:1">${btn("위", true)}${btn("가운데", true)}${btn("아래", true)}</div></div>` +
+  `<div class="sub"><span class="axis">간격</span><div class="grid2" style="flex:1">${btn("가로 고르게", true)}${btn("세로 고르게", true)}</div></div>` +
+  `</div></div>${reason("정렬은 둘, 간격은 셋 이상 고르면 켜집니다.")}` +
+  `<div class="stack"><span class="name">순서</span><div class="grid2">${btn("맨 앞으로")}${btn("앞으로")}${btn("뒤로", true)}${btn("맨 뒤로", true)}</div></div>`;
+
+const fold = (name, count, open, body, id) =>
+  `<button class="fold" aria-expanded="${open}" data-fold="${id}">${open ? "▾" : "▸"} ${name}<span class="cnt">${count}</span></button><div data-fold-body="${id}" ${open ? "" : "hidden"}>${body}</div>`;
+
+const VARIANTS = {
+  now: {
+    width: 428,
+    html: T.title + T.group + T.rotate + T.mirror + T.align + T.alignWhy + T.spread + T.spreadWhy + T.order + T.fit + T.info + T.stroke + T.width + T.dash + T.fill + T.lock + T.numbers,
+    title: "현행 — 한 줄기(폭만 넓힘)",
+    body: `<p>지금 제품 그대로입니다. 폭을 넓혀 줄바꿈은 없어졌지만, 배치(회전·대칭·정렬·간격·순서)와 모양(선 색·두께·점선·채우기)이 무리 없이 한 줄기로 쌓여 있습니다. 모양 칸은 스크롤해야 보입니다.</p>`,
+  },
+  a: {
+    width: 428,
+    html: T.title + T.group + T.info + grp("배치") + arrange + grp("모양") + shape + grp("틀 · 세부") + detail,
+    title: "A — 무리 머리글",
+    body: `<p>차례는 현행과 같고, <b>배치 · 모양 · 틀·세부</b> 세 무리에 작은 머리글과 가는 선을 답니다. 꺼진 정렬·간격의 안내 글 두 줄은 한 줄로 합치고, «다 보이게» 안내는 단추 옆 짧은 글로 줄였습니다. 채우기 없애기는 채우기 줄 안으로.</p><ul><li>가장 작은 변화 — 익숙한 차례가 그대로입니다.</li><li>모양 칸이 스크롤 없이 보이는지는 옆 숫자로 보십시오.</li></ul>`,
+  },
+  b: {
+    width: 428,
+    html: T.title + T.group + T.info + grp("모양") + shape + grp("배치") + arrange + grp("틀 · 세부") + detail,
+    title: "B — 모양 먼저",
+    body: `<p>A 와 같은 무리에 <b>모양을 맨 위로</b> 올립니다. 요소를 고르는 까닭이 주로 색·굵기를 바꾸는 것이라면 손이 덜 갑니다. 회전·정렬·순서는 한 번 스크롤 아래에 옵니다.</p><ul><li>ppt 의 «서식» 창이 채우기·선을 먼저 두는 것과 같은 차례입니다.</li></ul>`,
+  },
+  c: {
+    width: 320,
+    html: T.title + T.group + T.info + grp("배치") + compact + grp("모양") + shape + grp("틀 · 세부") + detail,
+    title: "C — 조밀한 격자 (칸 320px)",
+    body: `<p>배치 단추를 <b>격자</b>로 모읍니다 — 회전·대칭은 칸을 맞춘 두 줄, 정렬을 «가로 / 세로» 두 줄(왼쪽·가운데·오른쪽 / 위·가운데·아래), 순서를 2×2. 한 줄에 여섯이 서지 않아도 되니 <b>칸을 320px 로 줄일 수 있고</b>, 가운데 그림 칸이 108px 넓어집니다.</p><ul><li>«가로 가운데»·«세로 가운데»가 줄 머리(가로·세로) 덕에 «가운데» 하나로 줄어듭니다.</li><li>단추 모양이 지금과 달라지는 폭이 가장 큽니다.</li></ul>`,
+  },
+  d: {
+    width: 428,
+    html: T.title + T.group + T.info + fold("배치", "회전 · 대칭 · 정렬 · 간격 · 순서", true, arrange, "arr") + fold("모양", "선 색 · 두께 · 점선 · 채우기", true, shape, "shp") + fold("틀 · 세부", "다 보이게 · 크기 고정 · 정밀 수치", false, detail, "det"),
+    title: "D — 접는 무리",
+    body: `<p>무리 머리글을 <b>누르면 접히는 줄</b>로 합니다. 잘 안 쓰는 «틀·세부»는 처음부터 접어 두고, 접은 상태는 편집기를 연 동안 기억합니다. 머리글을 눌러 보십시오.</p><ul><li>칸이 짧아져 모양까지 한눈에 들어옵니다.</li><li>접어 둔 것을 못 찾으실 수 있습니다 — 머리글 오른쪽에 속 항목 이름을 적어 두었습니다.</li></ul>`,
+  },
+  e: {
+    width: 428,
+    html: T.title + T.group + `<div class="ptabs" role="tablist"><button class="ptab" aria-selected="true" data-ptab="shp">모양</button><button class="ptab" aria-selected="false" data-ptab="arr">배치</button><button class="ptab" aria-selected="false" data-ptab="det">틀 · 세부</button></div>` + `<div data-ptab-body="shp">${T.info + shape}</div><div data-ptab-body="arr" hidden>${arrange}</div><div data-ptab-body="det" hidden>${detail}</div>`,
+    title: "E — 칸 속 탭",
+    body: `<p>제목 아래에 <b>모양 · 배치 · 틀·세부</b> 탭을 두고 한 번에 한 무리만 보입니다. 칸이 가장 짧고 스크롤이 없습니다.</p><ul><li>다른 무리로 갈 때 한 번 더 눌러야 합니다.</li><li>단축키(Ctrl+] 등)는 탭과 무관하게 먹습니다.</li></ul>`,
+  },
+};
+
+const host = document.getElementById("frame-host");
+const note = document.getElementById("note");
+function show(key) {
+  const v = VARIANTS[key];
+  host.innerHTML = `<div class="frame" style="width:${v.width}px"><div class="in">${v.html}</div></div>`;
+  const frame = host.firstElementChild;
+  const measure = () => {
+    const content = frame.firstElementChild.getBoundingClientRect().height;
+    note.querySelector(".measure").innerHTML =
+      `<li><b>칸 폭</b> ${v.width}px</li><li><b>내용 높이</b> ${Math.round(content)}px</li><li><b>칸 높이</b> 637px — ${content > 637 ? `${Math.round(content - 637)}px 스크롤` : "스크롤 없음"}</li>`;
+  };
+  note.innerHTML = `<h2>${v.title}</h2><ul class="meta measure"></ul>${v.body}`;
+  measure();
+  frame.addEventListener("click", (event) => {
+    const f = event.target.closest("[data-fold]");
+    if (f) {
+      const body = frame.querySelector(`[data-fold-body="${f.dataset.fold}"]`);
+      body.hidden = !body.hidden;
+      f.setAttribute("aria-expanded", String(!body.hidden));
+      f.firstChild.textContent = (body.hidden ? "▸" : "▾") + f.firstChild.textContent.slice(1);
+      measure();
+    }
+    const t = event.target.closest("[data-ptab]");
+    if (t) {
+      frame.querySelectorAll("[data-ptab]").forEach((b) => b.setAttribute("aria-selected", String(b === t)));
+      frame.querySelectorAll("[data-ptab-body]").forEach((b) => (b.hidden = b.dataset.ptabBody !== t.dataset.ptab));
+      measure();
+    }
+  });
+}
+document.querySelectorAll(".tab").forEach((tab) =>
+  tab.addEventListener("click", () => {
+    document.querySelectorAll(".tab").forEach((t) => t.setAttribute("aria-selected", String(t === tab)));
+    show(tab.dataset.tab);
+  }),
+);
+show("now");
+</script>
