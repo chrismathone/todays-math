@@ -996,16 +996,28 @@ export function splitBoxSegments(raw: string): ContentSegment[] {
  * 계열 판정은 위의 `findItemRun`(오름차순·수식 가림) 그대로다.
  */
 function splitItemLine(line: string): string[] {
-  const probe = maskMathInPlace(line);
-  const run = findItemRun(probe);
-  if (run.length < 2) return [line];
-  const head = probe.length - probe.trimStart().length;
-  if (run[0]!.start !== head) return [line];
-  return run
-    .map((hit, index) =>
-      line.slice(hit.start, run[index + 1]?.start ?? line.length).trim(),
+  const starts = itemCellStarts(maskMathInPlace(line));
+  if (starts.length === 0) return [line];
+  return starts
+    .map((start, index) =>
+      line.slice(start, starts[index + 1] ?? line.length).trim(),
     )
     .filter((cell) => cell.length > 0);
+}
+
+/**
+ * 한 줄에 든 항목들의 시작 자리 — 항목이 둘 이상이고 첫 항목이 줄머리일 때만, 아니면 빈 배열.
+ *
+ * `probe` 는 수식을 **같은 길이**로 가린 줄이다(`\u0000`). 지면·검수 카드는 원문을 가려 넘기고
+ * (`splitItemLine`), 작업실 편집기는 문단의 수식 노드 하나를 `\u0000` 한 글자로 적어 넘긴다 —
+ * 편집기에서 열 수를 고르면 같은 규칙으로 칸을 가른다(트랙 51).
+ */
+export function itemCellStarts(probe: string): number[] {
+  const run = findItemRun(probe);
+  if (run.length < 2) return [];
+  const head = probe.length - probe.trimStart().length;
+  if (run[0]!.start !== head) return [];
+  return run.map((hit) => hit.start);
 }
 
 /**
