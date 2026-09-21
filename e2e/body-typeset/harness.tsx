@@ -42,6 +42,16 @@ const CASES: Record<string, string> = {
     "다음 이차함수의 그래프에 대한 설명으로 옳지 않은 것은?\n\n> <보기:cols=3>\n> (가) $y = 3x^2$\n> (나) $y = -\\frac{2}{3}x^2$\n> (다) $y = -3x^2$\n> (라) $y = \\frac{4}{3}x^2$\n> (마) $y = \\frac{3}{4}x^2$\n> (바) $y = -5x^2$",
 };
 
+/**
+ * 지면 단 폭·글자 크기 — 기본은 harness.css 의 88mm·10.5pt(2단 시험지 한 단).
+ * 트랙 51: `?paperWidth=180mm`(1단 지면) · `?paperFont=13.2px`(시험지 템플릿 글자)로 바꿔 좁은 단 판정을 잰다.
+ */
+const PARAMS = new URLSearchParams(location.search);
+const PAPER_STYLE = {
+  ...(PARAMS.get("paperWidth") ? { width: PARAMS.get("paperWidth")! } : {}),
+  ...(PARAMS.get("paperFont") ? { fontSize: PARAMS.get("paperFont")! } : {}),
+};
+
 /* ── 트랙 46 — 작업실 문항 사례(검수 카드는 그림 자리까지, 지면은 studioProblem 으로) ─────────── */
 
 /** 그림 대역 — 번호가 보이는 작은 SVG. 스크린샷용으로 실제 그림을 넣으려면 `window.__boxFigures`. */
@@ -223,7 +233,7 @@ function CropHarness({ crop }: { crop: StudioCrop }) {
         />
       </section>
       <section data-panel="paper">
-        <div data-unified-paper>
+        <div data-unified-paper style={PAPER_STYLE}>
           <div data-hwpx-body>
             <NativeProblem problem={studioProblem(crop)} print />
           </div>
@@ -293,7 +303,7 @@ function Harness() {
         <SourceEditorDisplay value={stored} />
       </section>
       <section data-panel="paper">
-        <div data-unified-paper>
+        <div data-unified-paper style={PAPER_STYLE}>
           <div data-hwpx-body>
             <NativeProblem problem={paperProblem(stored)} print />
           </div>
@@ -322,7 +332,7 @@ function BankHarness({ content }: { content: string }) {
   return (
     <main>
       <section data-panel="paper">
-        <div data-unified-paper>
+        <div data-unified-paper style={PAPER_STYLE}>
           <div data-hwpx-body>
             <ProblemContent content={content} deferFigures={false} />
           </div>

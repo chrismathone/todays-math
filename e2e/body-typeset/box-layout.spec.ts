@@ -1,8 +1,5 @@
-import { expect, test, type Locator, type Page } from "@playwright/test";
-import {
-  buildHwpxParts,
-  HwpxPayloadSchema,
-} from "../../src/lib/export/hwpxServer";
+import { expect, test, type Locator } from "@playwright/test";
+import { hwpxLines, open, panel } from "./paperProbe";
 
 /**
  * 트랙 46 — 〈보기〉 배치가 원본을 따른다: 검수 카드 · 지면 · HWPX 가 한 배치.
@@ -16,19 +13,6 @@ import {
  */
 
 const SHOTS = process.env.BODY_TYPESET_SHOTS;
-
-const panel = (page: Page, name: "editor" | "card" | "paper") =>
-  name === "editor"
-    ? page.locator('[data-panel="editor"] .visual-document')
-    : page.locator(`[data-panel="${name}"]`);
-
-async function open(page: Page, name: string) {
-  await page.goto(`/?case=${name}`);
-  await expect(
-    panel(page, "paper").locator(".katex, img").first(),
-  ).toBeVisible();
-  await page.evaluate(() => document.fonts.ready);
-}
 
 /** 한 자리 안 그림들의 화면 자리(그림 번호 차례). */
 async function figureBoxes(root: Locator) {
@@ -59,38 +43,6 @@ async function labelBoxes(root: Locator, labels: string[]) {
     }
     return wanted.map((label) => found[label] ?? null);
   }, labels);
-}
-
-/** 지면 → HWPX(서버와 같은 스키마 → 파이썬 writer) → 본문 문단마다 한 줄(탭은 ⇥, 그림은 [id]). */
-async function hwpxLines(page: Page) {
-  const pages = await page.evaluate(
-    async () => (await window.collectPaperHwpx()).pages,
-  );
-  const parts = await buildHwpxParts(
-    HwpxPayloadSchema.parse({ title: "보기 배치", pages }),
-  );
-  return page.evaluate((xml) => {
-    const doc = new DOMParser().parseFromString(xml, "application/xml");
-    return [...doc.documentElement.children]
-      .filter((node) => node.tagName === "hp:p")
-      .slice(1)
-      .map((p) =>
-        [...p.getElementsByTagName("*")]
-          .map((node) =>
-            node.tagName === "hp:t" && node.parentElement?.tagName === "hp:run"
-              ? (node.textContent ?? "").trim()
-              : node.tagName === "hp:tab"
-                ? "⇥"
-                : node.tagName === "hp:shapeComment"
-                  ? `$${(node.textContent ?? "").replace("\\displaystyle ", "")}$`
-                  : node.tagName === "hc:img"
-                    ? `[${node.getAttribute("binaryItemIDRef")}]`
-                    : "",
-          )
-          .filter(Boolean)
-          .join(" "),
-      );
-  }, parts["Contents/section0.xml"]!);
 }
 
 test.describe("문제 22 — 그림 넷이 원본처럼 2열 2행", () => {
@@ -171,7 +123,8 @@ test.describe("원장님 9번 — (가)~(바) 가 원문 차례", () => {
   test("`<보기:cols=3>` 을 적으면 3열 2행 — 검수 카드·지면이 같고, HWPX 는 두 문단에 탭", async ({
     page,
   }) => {
-    await open(page, "box9cols3");
+    // 넓은 단(1단 지면)에서 — 88mm 단은 칸이 좁아 지면이 열을 줄여 그린다(트랙 51, `box-cols.spec.ts`).
+    await open(page, "box9cols3", "&paperWidth=180mm");
     for (const where of ["card", "paper"] as const) {
       const at = await labelBoxes(panel(page, where), [
         "(가)",
