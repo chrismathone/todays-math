@@ -134,6 +134,11 @@ import {
   FigureRotateRow,
 } from "./FigureRotateRow";
 import { flipFigureCurve } from "./figureFlip";
+import {
+  figureShortcutKeys,
+  figureShortcutSheet,
+  matchFigureShortcut,
+} from "./figureShortcuts";
 
 type Tool =
   | "select"
@@ -163,15 +168,6 @@ const TOOLS: { id: Tool; label: string; glyph: string }[] = [
   { id: "text", label: "글자", glyph: "T" },
   { id: "fill", label: "채우기", glyph: "▧" },
 ];
-/** 순서 단축키 — ppt 와 같다(Ctrl+] 앞으로 · Ctrl+[ 뒤로, Shift 를 더하면 맨 앞·맨 뒤). 자판 자리(code)가 먼저. */
-const ORDER_KEYS: Record<string, "up" | "down"> = {
-  BracketRight: "up",
-  "]": "up",
-  "}": "up",
-  BracketLeft: "down",
-  "[": "down",
-  "{": "down",
-};
 /** 다각형 도구가 선의 끝점·꼭짓점·교점에 달라붙는 거리(화면 px) */
 const SNAP_PX = 8;
 /** 노란 점이 직사각형·이등변·직각에 붙는 거리(화면 px) */
@@ -835,94 +831,101 @@ export function FigureEditor({
         ?.contains(document.activeElement);
     const key = (e: KeyboardEvent) => {
       if (e.defaultPrevented || !inEditor(e) || busy || drag.current) return;
-      const key = e.key.toLowerCase();
-      if (e.ctrlKey || e.metaKey) {
-        if (key === "z" || key === "y") {
+      // 단축키는 표 하나(figureShortcuts.ts)에서만 읽는다 — «단축키» 도움말 목록도 같은 표를 그린다
+      // (원장님 2026-09-21 «단축키도 업데이트하고»; 목록을 손으로 적어 Ctrl+G 가 빠졌었다).
+      // C/X/V 는 표에 있지만 여기서 안 읽는다 — 브라우저 clipboard 이벤트로 받아 OS 클립보드와 맞춘다.
+      const shortcut = matchFigureShortcut(e);
+      if (!shortcut) return;
+      const drawing = tool === "polygon" ? draft : null;
+      switch (shortcut.id) {
+        case "undo":
           e.preventDefault();
-          if (key === "y" || e.shiftKey) redo();
-          else undo();
-        } else if (key === "a") {
+          undo();
+          return;
+        case "redo":
+          e.preventDefault();
+          redo();
+          return;
+        case "selectAll":
           e.preventDefault();
           setSelectedIds(objects.map((o) => o.id));
           setTool("select");
-        } else if (key === "d") {
+          return;
+        case "duplicate": {
           e.preventDefault();
           const source = copyFigureSelection(svg, selectedIds);
           if (source) paste(source, true);
-        } else if (key === "g") {
+          return;
+        }
+        case "group":
+        case "ungroup":
           // 묶기(Ctrl+G)·묶음 해제(Ctrl+Shift+G) — 원장님 2026-09-21 «ppt 명령어».
           // 크롬의 «찾기 다음»이 Ctrl+G 라 반드시 막는다. 고른 것이 둘 미만이면 아무 일도 안 한다.
           e.preventDefault();
-          if (e.shiftKey) breakGroup();
+          if (shortcut.id === "ungroup") breakGroup();
           else makeGroup(false);
           // 묶으면 요소 목록이 다시 그려져 **눌렀던 요소 단추가 사라진다** — 초점이 <body> 로 떨어져
           // 바로 이어 누른 Ctrl+Shift+G 가 «편집기 안»이 아니라고 걸러졌다(브라우저 실측 2026-09-21).
           // jsdom 은 클릭으로 초점이 옮겨지지 않아 이 자리가 안 보인다. 캔버스로 초점을 돌려 둔다.
           surface.current?.focus();
-        } else if (ORDER_KEYS[e.code] ?? ORDER_KEYS[key]) {
-          // 순서 — ppt 와 같다: Ctrl+] 앞으로 · Ctrl+[ 뒤로 · Shift 를 더하면 맨 앞으로·맨 뒤로(원장님 2026-09-21).
-          // 맥 크롬의 Cmd+[ 는 «뒤로 가기»라 반드시 막는다. 자판 자리(code)가 먼저 — Shift 를 누르면 글자가 { } 로 바뀐다.
+          return;
+        case "front":
+        case "forward":
+        case "backward":
+        case "back":
+          // 순서 — ppt 와 같다(원장님 2026-09-21). 맥 크롬의 Cmd+[ 는 «뒤로 가기»라 반드시 막는다.
           e.preventDefault();
-          const up = (ORDER_KEYS[e.code] ?? ORDER_KEYS[key]) === "up";
-          reorder(
-            up
-              ? e.shiftKey
-                ? "front"
-                : "forward"
-              : e.shiftKey
-                ? "back"
-                : "backward",
-          );
+          reorder(shortcut.id);
           // 차례가 바뀌면 요소 목록 단추가 다시 놓인다 — 옮겨진 단추에 있던 초점이 <body> 로 떨어지면
           // 이어 누른 단축키가 «편집기 안»이 아니라고 걸러진다(Ctrl+G 와 같은 자리). 캔버스로 돌려 둔다.
           surface.current?.focus();
-        }
-        // C/X/V는 브라우저의 clipboard 이벤트에서 처리해 OS 클립보드와 호환한다.
-        return;
-      }
-      // 그리던 다각형 — Enter 로 닫고 Esc 로 버린다(Esc 가 편집기를 닫거나 도구를 풀지 않게).
-      if (tool === "polygon" && draft) {
-        if (e.key === "Escape") {
+          return;
+        case "finish":
+          // 그리던 다각형을 닫는다 — 그리는 중이 아니면 Enter 를 가로채지 않는다(초점 단추가 눌려야 한다)
+          if (!drawing) return;
           e.preventDefault();
-          e.stopPropagation();
-          setDraft(null);
+          finishPolygon(drawing.points);
+          return;
+        case "cancel":
+          // 그리던 다각형은 버리고(편집기를 닫거나 도구를 풀지 않게), 아니면 선택 해제·도구 풀기
+          if (drawing) {
+            e.preventDefault();
+            e.stopPropagation();
+            setDraft(null);
+            return;
+          }
+          if (selectedIds.length || tool !== "select") {
+            e.preventDefault();
+            e.stopPropagation();
+            setSelected(null);
+            setTool("select");
+          }
+          return;
+        case "pan":
+          // 캔버스에 초점이 있을 때만 — 단추에 초점이 있으면 Space 는 그 단추를 누른다
+          if (surface.current?.contains(document.activeElement)) {
+            e.preventDefault();
+            spaceDown.current = true;
+          }
+          return;
+        case "delete":
+          e.preventDefault();
+          remove();
+          return;
+        case "nudge": {
+          if (!selectedIds.length) return;
+          const directions: Record<string, [number, number]> = {
+            ArrowLeft: [-1, 0],
+            ArrowRight: [1, 0],
+            ArrowUp: [0, -1],
+            ArrowDown: [0, 1],
+          };
+          e.preventDefault();
+          const [x, y] = directions[e.key],
+            step = e.shiftKey ? 10 : 1;
+          nudge(x * step, y * step);
           return;
         }
-        if (e.key === "Enter") {
-          e.preventDefault();
-          finishPolygon(draft.points);
-          return;
-        }
-      }
-      if (e.key === "Escape" && (selectedIds.length || tool !== "select")) {
-        e.preventDefault();
-        e.stopPropagation();
-        setSelected(null);
-        setTool("select");
-        return;
-      }
-      if (
-        e.code === "Space" &&
-        surface.current?.contains(document.activeElement)
-      ) {
-        e.preventDefault();
-        spaceDown.current = true;
-      }
-      if (e.key === "Delete" || e.key === "Backspace") {
-        e.preventDefault();
-        remove();
-      }
-      const directions: Record<string, [number, number]> = {
-        ArrowLeft: [-1, 0],
-        ArrowRight: [1, 0],
-        ArrowUp: [0, -1],
-        ArrowDown: [0, 1],
-      };
-      if (selectedIds.length && directions[e.key]) {
-        e.preventDefault();
-        const [x, y] = directions[e.key],
-          step = e.shiftKey ? 10 : 1;
-        nudge(x * step, y * step);
       }
     };
     const copy = (event: ClipboardEvent) => {
@@ -1695,28 +1698,27 @@ export function FigureEditor({
               <summary className="cursor-pointer rounded px-2 py-1.5 hover:bg-slate-100">
                 단축키
               </summary>
-              <div className="absolute right-0 top-full z-20 w-64 rounded-lg border border-control bg-white p-3 shadow-lg leading-6">
-                <div>
-                  {modKey()}+Z 되돌리기 · {modKey()}+Y 다시 실행
-                </div>
-                <div>{modKey()}+C / X / V 복사 / 잘라내기 / 붙여넣기</div>
-                <div>
-                  {modKey()}+A 전체 선택 · {modKey()}+D 복제
-                </div>
-                <div>
-                  {modKey()}+G 묶기 · {modKey()}+Shift+G 묶음 해제
-                </div>
-                <div>
-                  {modKey()}+] 앞으로 · {modKey()}+[ 뒤로 · Shift를 더하면 맨
-                  앞으로 / 맨 뒤로
-                </div>
-                <div>Shift+클릭 여러 요소 선택</div>
-                <div>
-                  선분·화살표 그리기 / 끝점 조절: Shift로 수평·수직·45° 고정
-                </div>
-                <div>방향키 미세 이동 · Shift로 10배</div>
-                <div>Delete 삭제 · Esc 선택 해제</div>
-                <p className="mt-1 text-muted">
+              {/* 처리기와 같은 표(figureShortcuts.ts)에서 그린다 — 단축키를 더하면 목록이 저절로 따라온다.
+                  무리(편집·선택·이동·그리기·순서·묶음)마다 한 덩이, 한 항목은 줄에서 안 쪼갠다. */}
+              <div
+                aria-label="단축키 목록"
+                className="absolute right-0 top-full z-20 w-[26rem] rounded-lg border border-control bg-white p-3 shadow-lg leading-6"
+              >
+                {figureShortcutSheet().map((group) => (
+                  <div key={group.name} className="mt-1.5 first:mt-0">
+                    <div className="text-[11px] font-semibold text-muted">
+                      {group.name}
+                    </div>
+                    <div className="flex flex-wrap gap-x-3">
+                      {group.items.map((item) => (
+                        <span key={item.id} className="whitespace-nowrap">
+                          {figureShortcutKeys(item, modKey())} {item.label}
+                        </span>
+                      ))}
+                    </div>
+                  </div>
+                ))}
+                <p className="mt-1.5 text-muted">
                   글자·수식 입력 중에는 입력창의 단축키가 동작합니다.
                 </p>
               </div>

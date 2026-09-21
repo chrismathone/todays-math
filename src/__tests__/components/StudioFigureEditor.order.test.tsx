@@ -11,6 +11,10 @@ import StudioFigureEditor, {
   type StudioFigureEditResult,
 } from "@/components/unified/figure-editor";
 import { buildFigureEditSnapshot } from "@/components/unified/figure-editor/figureEditSnapshot";
+import {
+  FIGURE_SHORTCUTS,
+  figureShortcutKeys,
+} from "@/components/unified/figure-editor/figureShortcuts";
 import { SVG_NS } from "@/components/unified/figure-editor/figureSvgEditing";
 
 vi.mock(
@@ -465,5 +469,22 @@ describe("AI 명령 «요소 5를 뒤로» — 단추와 같은 한 칸", () => 
     expect(
       screen.getByRole("status", { name: "요청대로 고친 결과" }),
     ).toHaveTextContent("5번 다각형 뒤로");
+  });
+});
+
+/**
+ * 원장님 2026-09-21 «단축키도 업데이트하고» — 도움말 목록은 처리기와 **같은 표**에서 그린다.
+ * 전에는 손으로 따로 적어 Ctrl+G 묶기가 처리기에만 있고 목록에 없었다.
+ */
+describe("단축키 도움말 — 처리기와 같은 표", () => {
+  it("표의 모든 줄(키 + 이름)이 목록에 선다 — Ctrl+G · 순서 넷 포함", () => {
+    open();
+    const sheet = screen.getByLabelText("단축키 목록");
+    for (const shortcut of FIGURE_SHORTCUTS)
+      expect(sheet, shortcut.id).toHaveTextContent(
+        `${figureShortcutKeys(shortcut, "Ctrl")} ${shortcut.label}`,
+      );
+    expect(sheet).toHaveTextContent("Ctrl+G 묶음 만들기");
+    expect(sheet).toHaveTextContent("Ctrl+Shift+[ 맨 뒤로");
   });
 });
