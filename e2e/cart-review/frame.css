@@ -1,0 +1,87 @@
+/*
+ * 제품 둘레의 대역 — 값은 Workspace.module.css 에서 옮겼다(왼쪽 메뉴 `.sidebar` 248px,
+ * 위 띠 `.topbar` 72px, 작업실 칸 `.studioContent` 안쪽 여백 28px).
+ * 작업실은 컨테이너 질의(`container: studio`)로 **제 폭**을 보고 배치를 바꾼다. 둘레를 빼고
+ * 화면 폭 그대로 그리면 1280 에서도 넓은 배치가 나와 «자리가 되는가»를 잘못 잰다.
+ */
+body {
+  margin: 0;
+  font-family: Arial, "Malgun Gothic", sans-serif;
+  background: #f3f5f9;
+}
+button,
+input,
+textarea,
+select {
+  font-family: inherit;
+}
+output {
+  display: none;
+}
+.frame {
+  display: flex;
+  min-height: 100vh;
+}
+.frameNav {
+  box-sizing: border-box;
+  width: 248px;
+  flex: none;
+  padding: 24px 16px;
+  background: #172b4d;
+  color: #fff;
+  font-size: 14px;
+}
+.frameNav p {
+  margin: 0 0 12px;
+}
+.frameNav b {
+  margin-left: 6px;
+  padding: 0 6px;
+  border-radius: 8px;
+  background: #3159df;
+}
+.frameMain {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  min-width: 0;
+}
+.frameTop {
+  box-sizing: border-box;
+  display: flex;
+  flex: none;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 8px;
+  height: 72px;
+  padding: 0 32px;
+  border-bottom: 1px solid #d4dce8;
+  background: #fff;
+  font-size: 14px;
+}
+.frameContent {
+  min-width: 0;
+  padding: 28px;
+}
+/* ④ 문제 순서 칸 대역 — 화면 아래(접힌 곳)에 둔다. 작업실 배치를 건드리지 않으려고. */
+.standIn {
+  margin: 24px;
+  padding: 16px;
+  border: 2px dashed #8a97ab;
+  background: #fff;
+  font-size: 14px;
+}
+.standIn h2 {
+  margin: 0 0 8px;
+  font-size: 15px;
+}
+.standIn ol {
+  margin: 0 0 12px;
+  padding-left: 20px;
+}
+.standIn li {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 4px;
+}
