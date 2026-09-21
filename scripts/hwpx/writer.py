@@ -189,8 +189,9 @@ def build_parts(payload):
         return sorted(rows,key=lambda r:r['y'])
 
     def grid_rows(items):
-        # A preview grid (box items in 2/3 columns, choice grids) top-aligns its cells, so a
-        # fraction in one cell drops that cell's baseline a few px below its neighbour. Grouping
+        # A preview grid (box items in 2/3 columns, choice grids) top-aligned its cells, so a
+        # fraction in one cell dropped that cell's baseline a few px below its neighbour (text cells
+        # are baseline-aligned since 2026-09-21, which moves the neighbour's top instead). Grouping
         # by baseline alone split one grid row into per-cell paragraphs and ordered them by y —
         # (바) came before (마). The collector tags each cell; one grid row is one paragraph, in
         # cell (= source) order, and the cells' own lines pair up by their order in the cell.

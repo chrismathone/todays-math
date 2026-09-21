@@ -1190,8 +1190,11 @@ const MarkdownRenderer: React.FC<MarkdownRendererProps> = ({
                 : effectiveCols === 2
                   ? "grid-cols-2"
                   : "grid-cols-1";
+            // 글 칸은 기준선 맞춤, 그림 칸은 위쪽 — 지면과 같다(트랙 51).
             const gridClass =
-              items.length >= 2 ? `grid ${colsClass} gap-x-6 gap-y-1` : "";
+              items.length >= 2
+                ? `grid ${colsClass} items-baseline gap-x-6 gap-y-1`
+                : "";
 
             if (![...header, ...items].length) return null;
             if (
@@ -1223,7 +1226,10 @@ const MarkdownRenderer: React.FC<MarkdownRendererProps> = ({
                 {items.length > 0 && (
                   <div className={`min-w-0 ${gridClass}`}>
                     {items.map((item, i) => (
-                      <div key={`i-${i}`} className="min-w-0 break-words">
+                      <div
+                        key={`i-${i}`}
+                        className="min-w-0 break-words has-[img]:self-start has-[[data-figure-index]]:self-start"
+                      >
                         {item}
                       </div>
                     ))}

@@ -153,14 +153,16 @@ export default function NativeProblem({
         data-native-choices={layout}
         // HWPX 에 칸을 알린다 — 분수 보기가 한글에서 번호와 다른 줄로 떨어지지 않게(트랙 46).
         data-hwpx-grid=""
-        className="mt-3 grid gap-x-4 gap-y-2"
+        // 글 칸은 기준선 맞춤 — 분수 보기 옆 칸·번호가 분수의 기준선에 선다(한글과 같다, 트랙 51).
+        // 그림 보기만 위쪽(그림 바닥이 기준선이 되면 번호가 그림 아래로 내려간다).
+        className="mt-3 grid items-baseline gap-x-4 gap-y-2"
         style={{ gridTemplateColumns: `repeat(${columns}, minmax(0, 1fr))` }}
       >
         {choices.map((choice) => (
           <div
             key={choice.number}
             data-native-choice={choice.number}
-            className="flex items-start gap-1.5"
+            className="flex items-baseline gap-1.5 has-[img]:items-start has-[img]:self-start"
           >
             <span>
               {CHOICE_MARKS[choice.number - 1] ?? `(${choice.number})`}

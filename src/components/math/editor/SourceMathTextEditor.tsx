@@ -3,7 +3,7 @@
 /* Ported from D:/mathg-gen/src/components/math/MathTextEditor.tsx. */
 import { useEffect, useLayoutEffect, useRef, useState } from "react";
 import { renderToStaticMarkup } from "react-dom/server";
-import { EditorContent, useEditor } from "@tiptap/react";
+import { EditorContent, useEditor, useEditorState } from "@tiptap/react";
 import { InputRule, Node } from "@tiptap/core";
 import { closeHistory } from "@tiptap/pm/history";
 import StarterKit from "@tiptap/starter-kit";
@@ -19,6 +19,7 @@ import { attachCompactMathKeyboard } from "./compactMathKeyboard";
 import { attachHwpMathShortcuts } from "./hwpMathShortcuts";
 import { SourceEditorFigures } from "./SourceEditorFigures";
 import { paintSourceFigure } from "./sourceFigurePresentation";
+import { caretInConditionBox, ConditionBox } from "./conditionBox";
 
 MathfieldElement.fontsDirectory = null;
 MathfieldElement.soundsDirectory = null;
@@ -254,27 +255,6 @@ const ChoiceItem = Node.create({
   ],
 });
 
-const ConditionBox = Node.create({
-  name: "conditionBox",
-  group: "block",
-  content: "block+",
-  defining: true,
-  addAttributes: () => ({ cols: { default: 1 } }),
-  parseHTML: () => [
-    {
-      tag: "[data-condition-box]",
-      getAttrs: (element) => ({
-        cols: Number((element as HTMLElement).dataset.conditionBox) || 1,
-      }),
-    },
-  ],
-  renderHTML: ({ node }) => [
-    "div",
-    { class: "visual-condition", "data-condition-box": node.attrs.cols },
-    0,
-  ],
-});
-
 const figureAttributes = (element: HTMLElement) => ({
   index:
     element.dataset.figureIndex === undefined
@@ -500,6 +480,14 @@ export function SourceMathTextEditor(props: SourceMathTextEditorProps) {
     },
   });
 
+  // 커서가 〈보기〉 상자 안이면 아래 안내가 상자 키로 바뀐다(트랙 51 시안 안 C).
+  const caretInBox =
+    useEditorState({
+      editor,
+      selector: ({ editor: current }) =>
+        !!current && caretInConditionBox(current.state),
+    }) ?? false;
+
   useEffect(() => {
     if (editor && props.value !== lastEmitted.current) {
       lastEmitted.current = props.value;
@@ -619,8 +607,17 @@ export function SourceMathTextEditor(props: SourceMathTextEditorProps) {
         <SourceEditorFigures {...props} />
       </div>
       <p className="visual-editor-help">
-        글은 바로 입력하고, 수식과 그림은 클릭해서 고치세요. 분수는 위아래 칸에
-        숫자를 입력하면 됩니다.
+        {caretInBox && !sourceMode ? (
+          <>
+            상자 안에서 <kbd>Tab</kbd> 다음 칸 · <kbd>Esc</kbd> 뒤{" "}
+            <kbd>Tab</kbd> 상자 밖으로.
+          </>
+        ) : (
+          <>
+            글은 바로 입력하고, 수식과 그림은 클릭해서 고치세요. 분수는 위아래
+            칸에 숫자를 입력하면 됩니다.
+          </>
+        )}
       </p>
     </div>
   );

@@ -76,7 +76,9 @@ describe("[적대④] 지면 상수는 지면 원문에서 나온다", () => {
   });
 
   it("1열 보기 글자칸은 마커(①)와 `gap-1.5` 만큼 좁다", () => {
-    expect(problemContent).toContain('className="flex items-start gap-1.5');
+    // 2026-09-21 트랙 51: 세로 맞춤만 `items-start` → `items-baseline`(번호가 분수의 기준선에 선다).
+    // 가로 폭(`gap-1.5`)은 그대로라 이 상수와 여전히 한 수다.
+    expect(problemContent).toContain('className="flex items-baseline gap-1.5');
     const marker = 12.5; // 마커 한 글자 = 본문 글꼴 폭
     const gap = spacing(1.5); // gap-1.5 = 6px
     expect(JASEUP_MEASURED_PX.choiceTextColumn).toBeCloseTo(
@@ -122,7 +124,10 @@ describe("[적대④] 지면 상수는 지면 원문에서 나온다", () => {
   });
 
   it("보기 그리드 여백은 `mt-4`·`gap-y-2` 그대로다", () => {
-    expect(problemContent).toContain("mt-4 grid grid-cols-1 gap-x-8 gap-y-2");
+    // 트랙 51: 칸 세로 맞춤(`items-baseline`)만 더했다 — 여백(`mt-4`·`gap-y-2`)은 그대로.
+    expect(problemContent).toContain(
+      "mt-4 grid grid-cols-1 items-baseline gap-x-8 gap-y-2",
+    );
     expect(JASEUP_MEASURED_PX.choiceGridTop).toBe(spacing(4));
     expect(JASEUP_MEASURED_PX.choiceRowGap).toBe(spacing(2));
   });
