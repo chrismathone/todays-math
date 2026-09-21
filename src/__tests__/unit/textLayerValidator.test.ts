@@ -50,10 +50,10 @@ describe("validateOcrAgainstTextLayer — 셈은 그대로", () => {
 });
 
 describe("경고 문구 — 원장님 2026-09-21 «크롭만 떴는데 왜 이 경고가 떴을까?»", () => {
-  it("무엇과 무엇을 견줬는지 한 줄에 — 쪽 전체 PDF 낱말 대비 인식 결과", () => {
+  it("무엇과 무엇을 견줬는지 한 줄에 — PDF 원문 낱말 대비 인식 결과, 자른 영역 밖도 셈에 든다", () => {
     const warning = validateOcrAgainstTextLayer(ocr, layer)!;
     expect(warning.summary).toBe(
-      "쪽 전체 PDF 낱말 중 38%만 인식 결과에 있음 (머리글·자르지 않은 문제 포함)",
+      "PDF 원문 낱말 중 38%만 인식 결과에 있음 (자른 영역 밖 머리글·문제 포함)",
     );
     // «본문 누락 의심 (검토 권장)» 은 원장님이 «내가 뭘 잘못했나» 로 읽으셨다.
     expect(warning.summary).not.toMatch(/누락 의심|검토 권장|OCR/);

@@ -125,7 +125,7 @@ describe("«PDF 원문과 N% 만 일치» 경고 — 원장님 2026-09-21 «이 
     renderStatus([warned()]);
     expect(
       screen.getByText(
-        "3쪽 · 쪽 전체 PDF 낱말 중 38%만 인식 결과에 있음 (머리글·자르지 않은 문제 포함)",
+        "3쪽 · PDF 원문 낱말 중 38%만 인식 결과에 있음 (자른 영역 밖 머리글·문제 포함)",
       ),
     ).toBeInTheDocument();
     expect(screen.queryByText(/누락 의심|검토 권장/)).not.toBeInTheDocument();
