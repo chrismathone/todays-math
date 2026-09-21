@@ -192,13 +192,18 @@ describe("노란 조절점 — 사각형을 평행사변형으로", () => {
 });
 
 describe("채우기 통", () => {
-  it("선이 두른 칸을 누르면 선 뒤에 면이 생기고 목록에 «면»으로 1번이 된다", () => {
+  it("선이 두른 칸을 누르면 선 뒤에 면이 생기고 목록에 «면»으로 새 번호(5번)가 된다 — 선 번호는 안 밀린다", () => {
     open();
     tool("채우기");
     click(120, 150);
     expect(faces()).toHaveLength(1);
     expect(faces()[0].getAttribute("fill")).toBe("#d9d9d9");
-    expect(listNames()).toEqual(["면", "선분", "선분", "선분", "사각형"]);
+    // 면은 선 뒤(문서 맨 앞)에 그려지지만 번호는 마지막 번호 다음 — 번호 고정(원장님 2026-09-21).
+    // 전에는 면이 1번이 되고 선이 2·3·4 로 밀렸다(원장님이 부르던 «요소 2»가 딴 것을 가리켰다).
+    expect(
+      canvas().querySelector("[data-object-id]")!.hasAttribute("data-face"),
+    ).toBe(true);
+    expect(listNames()).toEqual(["선분", "선분", "선분", "사각형", "면"]);
     // 되돌리기로 사라진다
     fireEvent.click(screen.getByRole("button", { name: /되돌리기/ }));
     expect(faces()).toHaveLength(0);
@@ -234,10 +239,10 @@ describe("채우기 통", () => {
     click(120, 150);
     const before = faces()[0].getAttribute("d");
     tool("선택·이동");
-    // 2번 = 선분 AB. 두 끝을 모두 옮기면 고리가 끊긴다 — 가로 위치 대신 방향키 미세 이동으로 셋을 함께.
-    pickNumber(2);
+    // 1번 = 선분 AB(면이 생겨도 번호 그대로). 두 끝을 모두 옮기면 고리가 끊긴다 — 방향키 미세 이동으로 셋을 함께.
+    pickNumber(1);
+    pickNumber(2, true);
     pickNumber(3, true);
-    pickNumber(4, true);
     fireEvent.keyDown(surface(), { key: "ArrowRight", shiftKey: true });
     const after = faces()[0].getAttribute("d")!;
     expect(after).not.toBe(before);
@@ -254,9 +259,9 @@ describe("채우기 통", () => {
     tool("채우기");
     click(120, 150);
     tool("선택·이동");
-    pickNumber(1);
+    pickNumber(5);
     expect(
-      screen.getByRole("heading", { name: "1 · 면 편집" }),
+      screen.getByRole("heading", { name: "5 · 면 편집" }),
     ).toBeInTheDocument();
     expect(screen.queryByLabelText("도형 선 색")).toBeNull();
     fireEvent.change(screen.getByLabelText("도형 채우기 색"), {
@@ -326,7 +331,7 @@ describe("묶음 안쪽 채우기", () => {
     fireEvent.click(on);
     expect(faces()).toHaveLength(1);
     expect(faces()[0].hasAttribute("data-face-seed")).toBe(false);
-    // 면이 1번이 되어 선은 2·3·4 — 고른 선은 그대로
+    // 면은 새 번호를 받고 선은 1·2·3 그대로 — 고른 선도 그대로
     expect(screen.getByRole("button", { name: "안쪽 채우기" })).toHaveAttribute(
       "aria-pressed",
       "true",
@@ -354,7 +359,8 @@ describe("저장 · 다시 열기", () => {
     tool("채우기");
     click(120, 150);
     tool("선택·이동");
-    pickNumber(5);
+    // 사각형은 면이 생겨도 4번 그대로
+    pickNumber(4);
     dragHandle("adjust", 380, 40);
     fireEvent.click(screen.getByRole("button", { name: "도형 적용" }));
     await waitFor(() => expect(onSave).toHaveBeenCalledOnce());
@@ -363,6 +369,7 @@ describe("저장 · 다시 열기", () => {
     expect(saved.svg).toContain('data-shape="parallelogram"');
     cleanup();
     open(saved.svg);
-    expect(listNames()).toEqual(["면", "선분", "선분", "선분", "평행사변형"]);
+    // 다시 열어도 같은 번호 — 평행사변형은 사각형의 4번을 이어받고 면은 5번
+    expect(listNames()).toEqual(["선분", "선분", "선분", "평행사변형", "면"]);
   });
 });

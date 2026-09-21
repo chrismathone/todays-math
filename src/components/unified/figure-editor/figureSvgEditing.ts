@@ -16,7 +16,7 @@ const STYLE_PROPERTIES = new Set(
   ),
 );
 const METADATA =
-  /^data-(?:mj|function|function-viewbox|mathgen-clipboard|label|anchor|halo|x|y|base|px|py|fs|w|a|d|group|size-locked|text-bg|face|face-seed|shape)$/;
+  /^data-(?:mj|function|function-viewbox|mathgen-clipboard|label|anchor|halo|x|y|base|px|py|fs|w|a|d|group|size-locked|text-bg|face|face-seed|shape|n|n-last)$/;
 const safeValue = (value: string) =>
   !/[\\<>@\u0000-\u001f]/.test(value) &&
   !/(?:javascript|vbscript|data|https?|file)\s*:|\/\*|expression\s*\(/i.test(
@@ -229,6 +229,9 @@ export function prepareFigureSvg(source?: string) {
   for (const node of doc.querySelectorAll(SHAPES)) {
     if (!node.closest("defs,clipPath,mask,marker,pattern")) {
       node.setAttribute("data-object-id", `obj-${index++}`);
+      // 번호는 요소에 붙은 값 — 틀리게 적힌 것은 지우고 아래 writeNumbers 가 새로 준다
+      if (!validNumber(node.getAttribute(NUMBER_ATTR)))
+        node.removeAttribute(NUMBER_ATTR);
       if (node.localName === "text") {
         const text = node as SVGElement;
         uprightEngineAngleLabel(text);
@@ -247,8 +250,102 @@ export function prepareFigureSvg(source?: string) {
       }
     }
   }
+  // 옛 그림(번호가 안 적힌 것)은 여기서 지금 차례대로 1·2·3 — 오늘 보이던 번호와 같다. 그 뒤로 고정.
+  writeNumbers(doc);
   return serializeFigureSvg(doc);
 }
+
+/**
+ * **요소 번호** — 원장님 2026-09-21 «순서를 바꿔도 요소 번호가 안바뀌게 고정시켜».
+ *
+ * 번호는 그리는 차례(DOM 차례)가 아니라 **요소에 붙은 값**(`data-n`)이다. 맨 앞으로·맨 뒤로를 해도 안 바뀐다.
+ * 번호를 쓰는 자리가 여럿이라 모두 `figureNumbers` 한 함수를 읽는다 — 화면 번호표(`layoutFigureNumbers`) ·
+ * 요소 목록(`FigureObjectList`) · 오른쪽 칸 제목 · AI 자료 목록(`describeFigureForEdit` 의 n) · AI 그림 번호표
+ * (`figureEditSnapshot` — 번호표를 그대로 옮긴다) · AI 결과의 `target: n` 되짚기(`figureEditApply`·`figureShapeOps`).
+ * 한 곳만 고치면 화면과 AI 가 다른 번호를 봐 AI 가 딴 요소를 고친다.
+ *
+ * - 옛 그림은 처음 열 때(`prepareFigureSvg`) 지금 차례대로 매긴다.
+ * - 새 요소는 **마지막으로 준 번호 다음**. 마지막 번호는 루트 `data-n-last` 에 적어 두어 **지운 번호를 다시 안 쓴다**
+ *   (맨 끝 15를 지우고 새로 그려도 16) — 다시 쓰면 원장님이 부르던 «요소 15»가 딴 것을 가리킨다. 빈 번호는 그대로 빈다.
+ * - 같은 번호가 둘이면(붙여넣은 옛 원문 등) **앞(문서 차례)의 것**이 갖고 뒤의 것은 새 번호. 틀린 값도 새 번호.
+ * - 번호를 아직 안 적은 요소(그리는 중·AI 가 막 더한 것)도 **같은 규칙으로 읽힌다** — 적기 전과 뒤가 같은 번호다.
+ *   편집기는 한 걸음을 넘길 때마다(`commit`) `numberFigureObjects` 로 적는다.
+ * - 편집 원문(저장의 `svg`)에만 싣는다. 지면·HWPX 로 나가는 그림(`dataUrl`)·내려받는 SVG 는 `withoutFigureNumbers`.
+ */
+export const NUMBER_ATTR = "data-n";
+/** 루트 — 지금까지 준 가장 큰 번호. */
+export const NUMBER_LAST_ATTR = "data-n-last";
+const validNumber = (value: string | null) =>
+  !!value && /^[1-9]\d{0,5}$/.test(value.trim());
+
+function planNumbers(doc: Document) {
+  const root = doc.documentElement;
+  let last = validNumber(root.getAttribute(NUMBER_LAST_ATTR))
+    ? Number(root.getAttribute(NUMBER_LAST_ATTR))
+    : 0;
+  const nodes = [...doc.querySelectorAll("[data-object-id]")];
+  const numbers = new Map<string, number>();
+  const taken = new Set<number>();
+  const waiting: Element[] = [];
+  for (const node of nodes) {
+    const value = node.getAttribute(NUMBER_ATTR);
+    const n = validNumber(value) ? Number(value) : NaN;
+    if (Number.isNaN(n) || taken.has(n)) {
+      waiting.push(node);
+      continue;
+    }
+    taken.add(n);
+    last = Math.max(last, n);
+    numbers.set(node.getAttribute("data-object-id")!, n);
+  }
+  for (const node of waiting)
+    numbers.set(node.getAttribute("data-object-id")!, ++last);
+  return { nodes, numbers, last };
+}
+
+/** 요소 id → 번호. 번호를 쓰는 모든 자리가 이것 하나를 읽는다. */
+export function figureNumbers(svg: string): Map<string, number> {
+  return planNumbers(readFigureSvg(svg)).numbers;
+}
+
+/** 번호를 원문에 적는다 — 고친 것이 있으면 true. */
+function writeNumbers(doc: Document) {
+  const { nodes, numbers, last } = planNumbers(doc);
+  let changed = false;
+  for (const node of nodes) {
+    const value = String(numbers.get(node.getAttribute("data-object-id")!));
+    if (node.getAttribute(NUMBER_ATTR) === value) continue;
+    node.setAttribute(NUMBER_ATTR, value);
+    changed = true;
+  }
+  const root = doc.documentElement;
+  if (last && root.getAttribute(NUMBER_LAST_ATTR) !== String(last)) {
+    root.setAttribute(NUMBER_LAST_ATTR, String(last));
+    changed = true;
+  }
+  return changed;
+}
+
+/** 번호가 안 적힌 요소에 번호를 적은 원문. 바꿀 것이 없으면 받은 원문 그대로(되돌리기 자리가 안 생긴다). */
+export function numberFigureObjects(svg: string): string {
+  const doc = editableFigureDoc(svg);
+  return writeNumbers(doc) ? serializeFigureSvg(doc) : svg;
+}
+
+/**
+ * 요소를 **번호 차례**로 — 요소 목록·묶음 차례(A·B·C 이름 매기기)가 이 차례를 쓴다. 그리는 차례(`figureObjects`)는
+ * 맨 앞으로·맨 뒤로에 따라 바뀌지만 목록은 번호 차례라 그대로다.
+ */
+export function numberedFigureObjects(svg: string) {
+  const numbers = figureNumbers(svg);
+  return figureObjects(svg).sort(
+    (a, b) => numbers.get(a.id)! - numbers.get(b.id)!,
+  );
+}
+
+/** 번호 둘(`data-n`·루트 `data-n-last`)을 걷은 원문 — 지면·HWPX·내려받기·AI 다시 그리기로 나가는 그림. */
+export const withoutFigureNumbers = (svg: string) =>
+  svg.replace(/\sdata-n(?:-last)?="[^"]*"/g, "");
 
 export function figureObjects(svg: string) {
   return [...readFigureSvg(svg).querySelectorAll("[data-object-id]")].map(

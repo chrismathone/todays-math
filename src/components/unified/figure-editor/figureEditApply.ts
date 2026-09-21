@@ -6,6 +6,7 @@ import {
 import {
   addFigureObject,
   editFigureObject,
+  figureNumbers,
   figureObjects,
   readFigureSvg,
   removeFigureObject,
@@ -43,6 +44,15 @@ import {
   type Point,
 } from "./figureEditGeometry";
 import { BENT_ACROSS, bentCurveReason, flipFigureCurve } from "./figureFlip";
+import {
+  figureGroupNames,
+  ORDER_LABELS,
+  ORDER_NONE,
+  orderBlock,
+  orderFigureSelection,
+  withGroupMates,
+  type OrderBox,
+} from "./figureOrder";
 import {
   mirrorBlock,
   mirrorFigureSelection,
@@ -116,6 +126,8 @@ function reject(reason: string): never {
  * «요청대로 고치기»(원장님 2026-09-19) — AI 가 돌려준 수정 명령을 지금 그림에 적용한다. 편집기의 기존 편집 함수만 쓴다
  * (지우기 · 옮기기 · 조절점 · 서식 · 요소 더하기). 명령에 없는 요소는 건드리지 않는다.
  * - 번호는 **요청을 보낼 때의 그림** 기준이다 — 앞 명령이 요소를 지워도 뒤 명령의 «3번»은 처음 그림의 3번이다.
+ *   번호는 그리는 차례가 아니라 요소에 붙은 **고정 번호**(`figureNumbers`, 원장님 2026-09-21 «순서를 바꿔도 요소 번호가
+ *   안바뀌게») — 요소 목록·그림 위 번호표·AI 자료 목록과 같은 값이다. 맨 뒤로 보낸 «5번»도 5번이다.
  * - 크기 고정(트랙 3) 요소는 옮기기·서식만 받고 모양 바꾸기는 거절한다.
  * - 도형·변환(원 · 호 · 크기 · 90° 회전 · 색칠 · 수선 · 중점 · 교점)은 figureShapeOps.ts — 편집기 도구·단추와 같은 함수로.
  * - 대칭(`mirror`)은 편집기 «좌우 대칭»·«상하 대칭» 단추와 같은 함수(figureMirror.ts) — 축은 세로·가로 또는 두 점이
@@ -133,9 +145,20 @@ function reject(reason: string): never {
 export function applyFigureEdits(
   svg: string,
   commands: readonly unknown[],
+  options: {
+    /**
+     * 요소 id → 화면 상자(편집기 `measureOrderBoxes`) — 순서 명령의 «한 칸»이 편집기 단추처럼 겹치는 것만 센다.
+     * 없으면 문서 한 칸(상자를 못 잰 요소는 겹친다고 본다, figureOrder.ts).
+     */
+    boxes?: ReadonlyMap<string, OrderBox>;
+  } = {},
 ): FigureEditApplyResult {
   const figure = describeFigureForEdit(svg);
   const before = figureObjects(svg);
+  // 번호 → 요소(요청을 보낼 때의 그림). 번호를 쓰는 자리가 모두 `figureNumbers` 한 함수를 읽는다.
+  const numbers = figureNumbers(svg);
+  const byNumber = new Map(before.map((o) => [numbers.get(o.id)!, o]));
+  const numbered = (n: number) => byNumber.get(n);
   const [vx, vy, width, height] = figure.viewBox;
   const inside = ({ x, y }: { x: number; y: number }) =>
     x >= vx - width / 4 &&
@@ -153,11 +176,14 @@ export function applyFigureEdits(
     .find((size) => Number.isFinite(size) && size > 0);
   // 결과 줄의 이름은 편집기 요소 목록·보낸 요소 목록과 같은 함수(`objectName`) — 각 표시는 직각·예각·둔각
   const angles = figureAngleKinds(before, figure.viewBox);
-  const nameOf = (index: number) => {
-    const o = before[index];
+  // 요청 때 있던 요소면 번호와 함께(«5번 다각형»), 앞 명령이 만든 것이면 이름만. 글은 번호 대신 내용(«글자 A»).
+  const nameOf = (o: FigureObject) => {
+    const n = numbers.get(o.id);
     return o.type === "text"
       ? `${objectName(o, angles)} ${labelOf(o)}`
-      : `${index + 1}번 ${objectName(o, angles)}`;
+      : n === undefined
+        ? objectName(o, angles)
+        : `${n}번 ${objectName(o, angles)}`;
   };
   const nodeOf = (source: string, id: string) =>
     [...readFigureSvg(source).querySelectorAll("[data-object-id]")].find(
@@ -193,14 +219,14 @@ export function applyFigureEdits(
   for (const raw of commands) {
     const checked = FigureEditCommandSchema.safeParse(raw);
     if (!checked.success || checked.data.op !== "point") continue;
-    if (checked.data.target > before.length) continue;
+    if (!numbered(checked.data.target)) continue;
     moves.set(checked.data.target, [
       ...(moves.get(checked.data.target) ?? []),
       checked.data,
     ]);
   }
   for (const [target, list] of moves) {
-    const o = before[target - 1];
+    const o = numbered(target)!;
     if (o.type !== "path" || !/[QTCSA]/i.test(o.attrs.d ?? "")) continue;
     // 면·모양·크기 고정은 적용할 때 제 이유로 거절된다
     if (isTiedFace(o) || o.attrs[SHAPE_ATTR] || isSizeLocked(o)) continue;
@@ -236,7 +262,7 @@ export function applyFigureEdits(
     objects: readonly { id: string }[],
   ): string[] => {
     if (targets === "all") return objects.map((o) => o.id);
-    const missing = targets.find((n) => n > before.length);
+    const missing = targets.find((n) => !numbered(n));
     if (missing)
       reject(
         targets.length === 1
@@ -245,7 +271,7 @@ export function applyFigureEdits(
       );
     const present = new Set(objects.map((o) => o.id));
     const ids = [...new Set(targets)]
-      .map((n) => before[n - 1].id)
+      .map((n) => numbered(n)!.id)
       .filter((id) => present.has(id));
     if (!ids.length) reject("앞 명령에서 지웠습니다");
     return ids;
@@ -255,8 +281,8 @@ export function applyFigureEdits(
     targets === "all"
       ? "그림 전체"
       : targets.length === 1
-        ? targets[0] <= before.length
-          ? nameOf(targets[0] - 1)
+        ? numbered(targets[0])
+          ? nameOf(numbered(targets[0])!)
           : `${targets[0]}번`
         : `${targets.length}개 요소`;
 
@@ -267,8 +293,8 @@ export function applyFigureEdits(
   const labelContext = {
     resolve,
     nameOf: (id: string) => {
-      const index = before.findIndex((o) => o.id === id);
-      return index < 0 ? undefined : nameOf(index);
+      const o = before.find((item) => item.id === id);
+      return o ? nameOf(o) : undefined;
     },
   };
   const applyOne = (
@@ -280,6 +306,7 @@ export function applyFigureEdits(
       svg: current,
       sent: svg,
       before,
+      numbered,
       viewBox: figure.viewBox,
       label,
       nameOf,
@@ -389,9 +416,8 @@ export function applyFigureEdits(
       // 크기 글자(`text`)는 **이미 표시가 있는 각에도** 적는다 — «각 B 에 40°» 는 호를 하나 더 그리라는 말이 아니다.
       // 글자 없이 같은 각을 다시 달라고 하면 전처럼 거절한다(트랙 18 규칙).
       if (twin && !command.text) {
-        const index = before.findIndex((o) => o.id === twin.o.id);
         reject(
-          `이미 각 표시가 있습니다(${index >= 0 ? nameOf(index) : objectName(twin.o, kinds)})`,
+          `이미 각 표시가 있습니다(${numbers.has(twin.o.id) ? nameOf(twin.o) : objectName(twin.o, kinds)})`,
         );
       }
       const widths = marks
@@ -485,7 +511,24 @@ export function applyFigureEdits(
         } 대칭`,
       };
     }
-    const id = before[command.target - 1].id;
+    // 순서 — 편집기 «맨 앞으로·앞으로·뒤로·맨 뒤로» 단추와 같은 함수(figureOrder.ts). 가리킨 요소가 묶음에 들었으면
+    // 묶음 전부(캔버스에서 누를 때와 같다). 끄는 이유·«겹친 것 없음»도 단추 알림과 같은 말.
+    if (command.op === "order") {
+      const objects = figureObjects(current);
+      const ids = withGroupMates(objects, targetIds(command.targets, objects));
+      const blocked = orderBlock(objects, ids, command.to);
+      if (blocked) reject(blocked.replace(/\.$/, ""));
+      const moved = orderFigureSelection(current, ids, command.to, {
+        groups: figureGroupNames(objects),
+        boxes: options.boxes,
+      });
+      if (moved === current)
+        reject(
+          (ORDER_NONE[command.to] ?? "옮길 곳이 없습니다").replace(/\.$/, ""),
+        );
+      return { svg: moved, text: `${label} ${ORDER_LABELS[command.to]}` };
+    }
+    const id = numbered(command.target)!.id;
     const object = figureObjects(current).find((o) => o.id === id);
     if (!object) return reject("앞 명령에서 지웠습니다");
     if (command.op === "delete")
@@ -616,15 +659,16 @@ export function applyFigureEdits(
     const command: FigureEditCommand = checked.data;
     let label: string;
     if ("target" in command) {
-      const index = command.target - 1;
-      if (index >= before.length) {
+      const o = numbered(command.target);
+      if (!o) {
         rejected.push(`${command.target}번: 그런 번호의 요소가 없습니다`);
         continue;
       }
-      label = nameOf(index);
-    } else if (command.op === "mirror") label = targetsLabel(command.targets);
+      label = nameOf(o);
+    } else if (command.op === "mirror" || command.op === "order")
+      label = targetsLabel(command.targets);
     else if (isShapeCommand(command))
-      label = shapeCommandLabel(command, before, nameOf);
+      label = shapeCommandLabel(command, numbered, nameOf);
     else if (isLineCircleCommand(command))
       label = lineCircleCommandLabel(command);
     else if (isFigureMarkCommand(command)) label = figureMarkLabel(command);

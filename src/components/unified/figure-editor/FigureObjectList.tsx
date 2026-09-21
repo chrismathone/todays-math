@@ -27,6 +27,8 @@ const LOOSE: FigureObjectGroup = {
 
 interface Props {
   objects: FigureObject[];
+  /** 요소 id → 고정 번호(`figureNumbers`) — 그림 위 번호표·AI 자료 목록과 같은 값. 그리는 차례가 아니다. */
+  numbers: ReadonlyMap<string, number>;
   groups: FigureObjectGroup[];
   /** 각 표시의 종류(직각·예각·둔각) — 오른쪽 칸 제목·AI 요소 목록과 같은 이름을 쓰게 편집기가 한 번 재어 넘긴다. */
   angles: FigureAngleKinds;
@@ -51,6 +53,7 @@ interface Props {
 export const FigureObjectList = memo(
   function FigureObjectList({
     objects,
+    numbers,
     groups,
     angles,
     selectedIds,
@@ -62,7 +65,7 @@ export const FigureObjectList = memo(
     const dragIds = useRef<string[] | null>(null);
     const [dragging, setDragging] = useState(false);
     const [over, setOver] = useState<string | null>(null);
-    const numberOf = new Map(objects.map((o, n) => [o.id, n + 1]));
+    const numberOf = numbers;
     const byId = new Map(objects.map((o) => [o.id, o]));
     const endDrag = () => {
       dragIds.current = null;
@@ -211,6 +214,7 @@ export const FigureObjectList = memo(
     a.objects.every(
       (o, i) =>
         o.id === b.objects[i].id &&
+        a.numbers.get(o.id) === b.numbers.get(o.id) &&
         listLabel(o, a.angles) === listLabel(b.objects[i], b.angles),
     ),
 );

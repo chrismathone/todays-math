@@ -1,4 +1,8 @@
-import { figureObjects, setFigureGroup } from "./figureSvgEditing";
+import {
+  figureObjects,
+  numberedFigureObjects,
+  setFigureGroup,
+} from "./figureSvgEditing";
 import {
   isArcPath,
   objectName,
@@ -62,7 +66,8 @@ export const isAutoGroupName = (name: string) =>
  * (편집기 `assignGroup`). 바꿀 것이 없으면 **받은 원문을 그대로** 돌려준다(되돌리기 자리가 안 생긴다).
  */
 export function renumberAutoGroups(svg: string): string {
-  const objects = figureObjects(svg);
+  // 번호 차례 — 맨 앞으로·맨 뒤로로 그리는 차례가 바뀌어도 이름이 안 뒤바뀐다(번호 고정, 원장님 2026-09-21)
+  const objects = numberedFigureObjects(svg);
   const viewBox = svg
     .match(/viewBox=["\']([^"\']+)/)?.[1]
     .trim()

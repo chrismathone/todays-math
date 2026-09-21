@@ -1,6 +1,8 @@
 import type { AlignKind, SpreadAxis } from "./figureAlign";
 import type { MirrorAxis } from "./figureMirror";
+import type { OrderMove } from "./figureOrder";
 import type { RotateTurn } from "./figureRotate";
+import { modKey } from "./platform";
 
 const BUTTON =
   "rounded border border-control px-2 py-1 enabled:hover:bg-side disabled:opacity-40";
@@ -177,6 +179,65 @@ export function FigureAlignRow({
         {spread.blocked && <p className="text-muted">{spread.blocked}</p>}
       </section>
     </>
+  );
+}
+
+/**
+ * 오른쪽 칸 «순서» — 원장님 2026-09-21 «맨 뒤로 맨 앞으로, 뒤로, 앞으로 같은 순서를 이용해서 조절하는게 있는데,
+ * 우리 도형 편집기에는 그 기능이 없어서 지금 y축이 가려져버렸어».
+ *
+ * 정렬·간격 줄과 같은 꼴(제목 + 단추)로 그 아래 선다 — ppt 도 «정렬» 메뉴에 순서를 같이 둔다. 단축키는 ppt 그대로라
+ * title 에 적는다. 이미 맨 앞(맨 뒤)이면 그쪽 단추 둘을 끄고 이유는 title 에만 — 새로 그린 요소는 늘 맨 앞이라
+ * 회전 줄처럼 밑에 줄 글로 달면 그릴 때마다 한 줄이 생겼다 사라진다. 규칙은 `figureOrder.ts`.
+ */
+export function FigureOrderRow({
+  blocked,
+  onOrder,
+}: {
+  /** 앞으로 가는 둘(맨 앞으로·앞으로) · 뒤로 가는 둘(뒤로·맨 뒤로)을 끌 이유 — 없으면 null */
+  blocked: { front: string | null; back: string | null };
+  onOrder: (move: OrderMove) => void;
+}) {
+  const mod = modKey();
+  const moves: {
+    move: OrderMove;
+    label: string;
+    keys: string;
+    off: string | null;
+  }[] = [
+    {
+      move: "front",
+      label: "맨 앞으로",
+      keys: `${mod}+Shift+]`,
+      off: blocked.front,
+    },
+    { move: "forward", label: "앞으로", keys: `${mod}+]`, off: blocked.front },
+    { move: "backward", label: "뒤로", keys: `${mod}+[`, off: blocked.back },
+    {
+      move: "back",
+      label: "맨 뒤로",
+      keys: `${mod}+Shift+[`,
+      off: blocked.back,
+    },
+  ];
+  return (
+    <section aria-label="순서" className="mb-3 space-y-1 text-xs">
+      <div className="flex flex-wrap items-center gap-2">
+        <span className="font-medium">순서</span>
+        {moves.map(({ move, label, keys, off }) => (
+          <button
+            key={move}
+            type="button"
+            disabled={off !== null}
+            title={off ?? `${label} (${keys})`}
+            onClick={() => onOrder(move)}
+            className={BUTTON}
+          >
+            {label}
+          </button>
+        ))}
+      </div>
+    </section>
   );
 }
 

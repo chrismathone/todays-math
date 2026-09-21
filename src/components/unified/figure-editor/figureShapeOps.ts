@@ -9,7 +9,6 @@ import {
   readFigureSvg,
 } from "./figureSvgEditing";
 import { figurePointNames } from "./figureEditElements";
-import { objectName } from "./figureObjectNames";
 import {
   applyPoint,
   elementMatrix,
@@ -81,10 +80,13 @@ export interface FigureShapeContext {
   /** 요청을 보낼 때의 그림 — 번호와 점 이름은 이 그림 기준(앞 명령이 지워도 «3번»은 처음 그림의 3번). */
   sent: string;
   before: readonly FigureObject[];
+  /** 번호 → 요소(요청 때 그림) — 번호는 요소에 붙은 고정 번호(`figureNumbers`)라 그리는 차례와 다르다. */
+  numbered: (n: number) => FigureObject | undefined;
   viewBox: readonly [number, number, number, number];
   /** 이 명령의 이름 — 결과 줄·거절 줄 앞머리. */
   label: string;
-  nameOf: (index: number) => string;
+  /** 요소 이름 — 요청 때 있던 요소면 번호와 함께(«1번 원»), 앞 명령이 만든 것이면 이름만. */
+  nameOf: (o: FigureObject) => string;
   resolve: (ref: FigureEditPointRef) => XY;
   inside: (p: XY) => boolean;
   reject: (reason: string) => never;
@@ -123,9 +125,13 @@ const POLYGONS: Record<number, string> = { 3: "삼각형", 4: "사각형" };
 /** 명령 이름 — 번호로 가리키지 않는 명령만(번호가 있으면 `nameOf`). 결과 줄·거절 줄 앞머리. */
 export function shapeCommandLabel(
   command: FigureShapeCommand,
-  before: readonly unknown[],
-  nameOf: (index: number) => string,
+  numbered: (n: number) => FigureObject | undefined,
+  nameOf: (o: FigureObject) => string,
 ): string {
+  const named = (n: number) => {
+    const o = numbered(n);
+    return o ? nameOf(o) : `${n}번`;
+  };
   switch (command.op) {
     case "addCircle": {
       const center = refName(command.center);
@@ -148,15 +154,10 @@ export function shapeCommandLabel(
       return `${from && to ? `호 ${from}${via}${to}` : "호"} 추가${center ? `(중심 ${center})` : ""}`;
     }
     case "resize":
-      return command.target <= before.length
-        ? nameOf(command.target - 1)
-        : `${command.target}번`;
+      return named(command.target);
     case "rotate":
       if (command.targets === "all") return "그림 전체";
-      if (command.targets.length === 1)
-        return command.targets[0] <= before.length
-          ? nameOf(command.targets[0] - 1)
-          : `${command.targets[0]}번`;
+      if (command.targets.length === 1) return named(command.targets[0]);
       return `${command.targets.length}개 요소`;
     case "fillRegion": {
       if (!Array.isArray(command.at)) return "칸 색칠";
@@ -295,7 +296,7 @@ function applyOne(
       let ids: string[];
       if (command.targets === "all") ids = objects.map((o) => o.id);
       else {
-        const missing = command.targets.find((n) => n > ctx.before.length);
+        const missing = command.targets.find((n) => !ctx.numbered(n));
         if (missing)
           reject(
             command.targets.length === 1
@@ -304,7 +305,7 @@ function applyOne(
           );
         const present = new Set(objects.map((o) => o.id));
         ids = [...new Set(command.targets)]
-          .map((n) => ctx.before[n - 1].id)
+          .map((n) => ctx.numbered(n)!.id)
           .filter((id) => present.has(id));
         if (!ids.length) reject("앞 명령에서 지웠습니다");
       }
@@ -434,8 +435,7 @@ const firstFontSize = (objects: readonly FigureObject[]) =>
 
 /** 결과 줄에 쓰는 요소 이름 — 요청 때 있던 요소면 번호와 함께(«1번 원»), 앞 명령이 만든 것이면 이름만. */
 function nameIn(ctx: FigureShapeContext, o: FigureObject) {
-  const index = ctx.before.findIndex((b) => b.id === o.id);
-  return index >= 0 ? ctx.nameOf(index) : objectName(o);
+  return ctx.nameOf(o);
 }
 
 /** 그림에 있는 원 가운데 중심·반지름이 같은 것(그림 좌표). */
@@ -475,7 +475,7 @@ function resize(
   ctx: FigureShapeContext,
 ) {
   const { svg, reject } = ctx;
-  const id = ctx.before[command.target - 1].id;
+  const id = ctx.numbered(command.target)!.id;
   const o =
     figureObjects(svg).find((item) => item.id === id) ??
     reject("앞 명령에서 지웠습니다");

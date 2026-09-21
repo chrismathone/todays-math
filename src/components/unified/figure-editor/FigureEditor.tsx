@@ -20,10 +20,13 @@ import {
   addFigureObject,
   cleanFigureForSave,
   editFigureObject,
+  figureNumbers,
   figureObjects,
+  numberFigureObjects,
   prepareFigureSvg,
   editFigureObjects,
   setFigureGroup,
+  withoutFigureNumbers,
 } from "./figureSvgEditing";
 import {
   figureAngleKinds,
@@ -115,11 +118,27 @@ import {
   type MirrorAxis,
 } from "./figureMirror";
 import {
+  figureGroupNames,
+  measureOrderBoxes,
+  ORDER_BLOCKED,
+  ORDER_DONE,
+  ORDER_NONE,
+  orderBlock,
+  orderFigureSelection,
+  type OrderMove,
+} from "./figureOrder";
+import {
   FigureAlignRow,
   FigureFitRow,
+  FigureOrderRow,
   FigureRotateRow,
 } from "./FigureRotateRow";
 import { flipFigureCurve } from "./figureFlip";
+import {
+  figureShortcutKeys,
+  figureShortcutSheet,
+  matchFigureShortcut,
+} from "./figureShortcuts";
 
 type Tool =
   | "select"
@@ -339,6 +358,14 @@ export function FigureEditor({
     originalImage ??
     (!/^data:image\/svg|^\s*<svg/i.test(image) ? image : undefined);
   const objects = useMemo(() => figureObjects(svg), [svg]);
+  // 요소 번호 — 그리는 차례가 아니라 요소에 붙은 고정 번호(원장님 2026-09-21 «순서를 바꿔도 요소 번호가 안바뀌게
+  // 고정시켜»). 번호표·요소 목록·오른쪽 칸 제목·AI 자료 목록·AI 그림 번호표가 모두 이 한 함수를 읽는다.
+  const numbers = useMemo(() => figureNumbers(svg), [svg]);
+  // 요소 목록·묶음 차례는 번호 차례 — 맨 앞으로·맨 뒤로를 해도 목록이 제자리다(`objects` 는 그리는 차례).
+  const listed = useMemo(
+    () => [...objects].sort((a, b) => numbers.get(a.id)! - numbers.get(b.id)!),
+    [objects, numbers],
+  );
   const current = objects.find((o) => o.id === selected);
   // 선을 따라가는 면(채우기 통·안쪽 채우기)은 조절점이 없다 — 모양은 선이 정한다.
   const currentTied = !!current && isTiedFace(current);
@@ -376,8 +403,8 @@ export function FigureEditor({
     .map(Number) ?? [0, 0, 480, 360];
   const viewBoxKey = viewBox.join(" ");
   const groups = useMemo(
-    () => groupFigureObjects(objects, viewBoxKey.split(" ").map(Number)),
-    [objects, viewBoxKey],
+    () => groupFigureObjects(listed, viewBoxKey.split(" ").map(Number)),
+    [listed, viewBoxKey],
   );
   // 각 표시의 종류(직각·예각·둔각) — 요소 목록 단추와 오른쪽 칸 제목이 같은 이름(`objectName`)을 쓴다.
   const angles = useMemo(
@@ -386,16 +413,7 @@ export function FigureEditor({
   );
   // 요소 id → 묶음 이름(사용자가 묶은 것만) — 그림 위 번호표를 묶음마다 하나로 합치는 데 쓴다(원장님 2026-09-21).
   // AI 에게 보내는 그림은 이것을 주지 않고 번호를 매겨 요소마다 번호가 그대로 간다.
-  const groupNames = useMemo(
-    () =>
-      new Map(
-        objects.flatMap((o) => {
-          const name = o.attrs["data-group"]?.trim();
-          return name ? [[o.id, name] as const] : [];
-        }),
-      ),
-    [objects],
-  );
+  const groupNames = useMemo(() => figureGroupNames(objects), [objects]);
   // «묶음 만들기» 직후 오른쪽 칸의 묶음 이름 칸에 초점을 줄 묶음 key — 초점을 주면 지운다.
   const [renamingGroup, setRenamingGroup] = useState<string | null>(null);
   const clearRenaming = useCallback(() => setRenamingGroup(null), []);
@@ -410,7 +428,7 @@ export function FigureEditor({
   // 묶음 편집은 원문(`data-group`)을 고친다 — 되돌리기·저장을 같이 탄다. 목록이 memo 라 콜백은 안 바뀌게 liveSvg 로.
   const editGroups = useCallback((edit: (source: string) => string) => {
     const current = liveSvg.current;
-    const next = edit(current);
+    const next = numberFigureObjects(edit(current));
     if (next === current) return;
     setHistory((h) => ({ past: [...h.past.slice(-59), current], future: [] }));
     liveSvg.current = next;
@@ -491,7 +509,8 @@ export function FigureEditor({
   );
   const commit = (source: string) => {
     // 선이 바뀌었으면 그 선을 따라가는 면도 같은 한 걸음에(되돌리기 한 번에 같이 돌아간다).
-    const next = syncFigureFaces(source).svg;
+    // 새 요소(그리기·붙여넣기·AI 가 더한 것)는 이 걸음에 번호를 적는다 — 마지막 번호 다음(`numberFigureObjects`).
+    const next = numberFigureObjects(syncFigureFaces(source).svg);
     if (next === svg) return;
     setHistory((h) => ({ past: [...h.past.slice(-59), svg], future: [] }));
     setSvg(next);
@@ -585,6 +604,42 @@ export function FigureEditor({
   };
   const spread = (axis: SpreadAxis) => {
     commit(spreadFigureSelection(svg, selectedIds, axis, alignOptions()));
+  };
+  // 순서 — 맨 앞으로·앞으로·뒤로·맨 뒤로(원장님 2026-09-21 «ppt 처럼», 되돌리기 한 걸음). 묶음은 한 덩어리.
+  // «한 칸»은 겹치는 것 사이의 한 칸이라 캔버스에서 요소마다 상자를 잰다(figureOrder.ts). 번호가 곧 그리는
+  // 차례라 옮기면 번호가 바뀐다 — 몇 번이 몇 번이 됐는지 알린다.
+  const orderBlocked = useMemo(
+    () => ({
+      front: orderBlock(objects, selectedIds, "front"),
+      back: orderBlock(objects, selectedIds, "back"),
+    }),
+    [objects, selectedIds],
+  );
+  const reorder = (move: OrderMove) => {
+    if (!selectedIds.length) return;
+    const blocked = orderBlock(objects, selectedIds, move);
+    if (blocked) {
+      setClipboardNotice(blocked === ORDER_BLOCKED.none ? "" : blocked);
+      return;
+    }
+    const root = canvas.current?.querySelector("svg");
+    const next = orderFigureSelection(svg, selectedIds, move, {
+      groups: groupNames,
+      boxes: root ? measureOrderBoxes(root) : undefined,
+    });
+    if (next === svg) {
+      setClipboardNotice(ORDER_NONE[move] ?? "");
+      return;
+    }
+    commit(next);
+    // 맨 뒤로 보내면 «뒤로»·«맨 뒤로»가 바로 꺼진다 — 누른 단추에 있던 초점이 <body> 로 떨어져 이어 누른
+    // Ctrl+Z 가 «편집기 밖»으로 걸러졌다(브라우저 실측 2026-09-21). 캔버스로 돌려 둔다(단축키 길과 같다).
+    surface.current?.focus({ preventScroll: true });
+    setClipboardNotice(
+      selectedIds.length > 1
+        ? `${selectedIds.length}개 요소를 ${ORDER_DONE[move]}.`
+        : `${ORDER_DONE[move]}.`,
+    );
   };
   // «반대쪽으로 뒤집기» — 곡선·꺾은선 하나(와 뒤집기가 같이 옮기는 값 글자)를 골랐을 때만 선다. 뒤집은 뒤에도
   // 선택이 곡선과 그 글자라 다시 누르면 제자리로 온다. 여럿·묶음·함수 그래프는 세우지 않는다.
@@ -722,8 +777,17 @@ export function FigureEditor({
       setObjectNumbers((previous) =>
         retargetFigureNumbers(root, previous, ids),
       );
-    else setObjectNumbers(layoutFigureNumbers(root, groupNames));
-  }, [svg, displaySvg, zoom, available, showNumbers, frozenCanvas, groupNames]);
+    else setObjectNumbers(layoutFigureNumbers(root, numbers, groupNames));
+  }, [
+    svg,
+    displaySvg,
+    zoom,
+    available,
+    showNumbers,
+    frozenCanvas,
+    groupNames,
+    numbers,
+  ]);
   useLayoutEffect(() => {
     const node = viewport.current;
     if (!node) return;
@@ -767,77 +831,101 @@ export function FigureEditor({
         ?.contains(document.activeElement);
     const key = (e: KeyboardEvent) => {
       if (e.defaultPrevented || !inEditor(e) || busy || drag.current) return;
-      const key = e.key.toLowerCase();
-      if (e.ctrlKey || e.metaKey) {
-        if (key === "z" || key === "y") {
+      // 단축키는 표 하나(figureShortcuts.ts)에서만 읽는다 — «단축키» 도움말 목록도 같은 표를 그린다
+      // (원장님 2026-09-21 «단축키도 업데이트하고»; 목록을 손으로 적어 Ctrl+G 가 빠졌었다).
+      // C/X/V 는 표에 있지만 여기서 안 읽는다 — 브라우저 clipboard 이벤트로 받아 OS 클립보드와 맞춘다.
+      const shortcut = matchFigureShortcut(e);
+      if (!shortcut) return;
+      const drawing = tool === "polygon" ? draft : null;
+      switch (shortcut.id) {
+        case "undo":
           e.preventDefault();
-          if (key === "y" || e.shiftKey) redo();
-          else undo();
-        } else if (key === "a") {
+          undo();
+          return;
+        case "redo":
+          e.preventDefault();
+          redo();
+          return;
+        case "selectAll":
           e.preventDefault();
           setSelectedIds(objects.map((o) => o.id));
           setTool("select");
-        } else if (key === "d") {
+          return;
+        case "duplicate": {
           e.preventDefault();
           const source = copyFigureSelection(svg, selectedIds);
           if (source) paste(source, true);
-        } else if (key === "g") {
+          return;
+        }
+        case "group":
+        case "ungroup":
           // 묶기(Ctrl+G)·묶음 해제(Ctrl+Shift+G) — 원장님 2026-09-21 «ppt 명령어».
           // 크롬의 «찾기 다음»이 Ctrl+G 라 반드시 막는다. 고른 것이 둘 미만이면 아무 일도 안 한다.
           e.preventDefault();
-          if (e.shiftKey) breakGroup();
+          if (shortcut.id === "ungroup") breakGroup();
           else makeGroup(false);
           // 묶으면 요소 목록이 다시 그려져 **눌렀던 요소 단추가 사라진다** — 초점이 <body> 로 떨어져
           // 바로 이어 누른 Ctrl+Shift+G 가 «편집기 안»이 아니라고 걸러졌다(브라우저 실측 2026-09-21).
           // jsdom 은 클릭으로 초점이 옮겨지지 않아 이 자리가 안 보인다. 캔버스로 초점을 돌려 둔다.
           surface.current?.focus();
-        }
-        // C/X/V는 브라우저의 clipboard 이벤트에서 처리해 OS 클립보드와 호환한다.
-        return;
-      }
-      // 그리던 다각형 — Enter 로 닫고 Esc 로 버린다(Esc 가 편집기를 닫거나 도구를 풀지 않게).
-      if (tool === "polygon" && draft) {
-        if (e.key === "Escape") {
+          return;
+        case "front":
+        case "forward":
+        case "backward":
+        case "back":
+          // 순서 — ppt 와 같다(원장님 2026-09-21). 맥 크롬의 Cmd+[ 는 «뒤로 가기»라 반드시 막는다.
           e.preventDefault();
-          e.stopPropagation();
-          setDraft(null);
+          reorder(shortcut.id);
+          // 차례가 바뀌면 요소 목록 단추가 다시 놓인다 — 옮겨진 단추에 있던 초점이 <body> 로 떨어지면
+          // 이어 누른 단축키가 «편집기 안»이 아니라고 걸러진다(Ctrl+G 와 같은 자리). 캔버스로 돌려 둔다.
+          surface.current?.focus();
+          return;
+        case "finish":
+          // 그리던 다각형을 닫는다 — 그리는 중이 아니면 Enter 를 가로채지 않는다(초점 단추가 눌려야 한다)
+          if (!drawing) return;
+          e.preventDefault();
+          finishPolygon(drawing.points);
+          return;
+        case "cancel":
+          // 그리던 다각형은 버리고(편집기를 닫거나 도구를 풀지 않게), 아니면 선택 해제·도구 풀기
+          if (drawing) {
+            e.preventDefault();
+            e.stopPropagation();
+            setDraft(null);
+            return;
+          }
+          if (selectedIds.length || tool !== "select") {
+            e.preventDefault();
+            e.stopPropagation();
+            setSelected(null);
+            setTool("select");
+          }
+          return;
+        case "pan":
+          // 캔버스에 초점이 있을 때만 — 단추에 초점이 있으면 Space 는 그 단추를 누른다
+          if (surface.current?.contains(document.activeElement)) {
+            e.preventDefault();
+            spaceDown.current = true;
+          }
+          return;
+        case "delete":
+          e.preventDefault();
+          remove();
+          return;
+        case "nudge": {
+          if (!selectedIds.length) return;
+          const directions: Record<string, [number, number]> = {
+            ArrowLeft: [-1, 0],
+            ArrowRight: [1, 0],
+            ArrowUp: [0, -1],
+            ArrowDown: [0, 1],
+          };
+          e.preventDefault();
+          const [x, y] = directions[e.key],
+            step = e.shiftKey ? 10 : 1;
+          nudge(x * step, y * step);
           return;
         }
-        if (e.key === "Enter") {
-          e.preventDefault();
-          finishPolygon(draft.points);
-          return;
-        }
-      }
-      if (e.key === "Escape" && (selectedIds.length || tool !== "select")) {
-        e.preventDefault();
-        e.stopPropagation();
-        setSelected(null);
-        setTool("select");
-        return;
-      }
-      if (
-        e.code === "Space" &&
-        surface.current?.contains(document.activeElement)
-      ) {
-        e.preventDefault();
-        spaceDown.current = true;
-      }
-      if (e.key === "Delete" || e.key === "Backspace") {
-        e.preventDefault();
-        remove();
-      }
-      const directions: Record<string, [number, number]> = {
-        ArrowLeft: [-1, 0],
-        ArrowRight: [1, 0],
-        ArrowUp: [0, -1],
-        ArrowDown: [0, 1],
-      };
-      if (selectedIds.length && directions[e.key]) {
-        e.preventDefault();
-        const [x, y] = directions[e.key],
-          step = e.shiftKey ? 10 : 1;
-        nudge(x * step, y * step);
       }
     };
     const copy = (event: ClipboardEvent) => {
@@ -1193,6 +1281,12 @@ export function FigureEditor({
     drag.current = null;
     releaseCanvas(d);
     if (d?.moved && d.original !== liveSvg.current) {
+      // 끌어 그린 새 요소도 놓는 걸음에 번호를 적는다(다른 편집은 `commit` 이 적는다)
+      const numbered = numberFigureObjects(liveSvg.current);
+      if (numbered !== liveSvg.current) {
+        liveSvg.current = numbered;
+        setSvg(numbered);
+      }
       setHistory((h) => ({
         past: [...h.past.slice(-59), d.original],
         future: [],
@@ -1227,7 +1321,8 @@ export function FigureEditor({
     try {
       const result = await onRedraw({
         originalImage: original,
-        svg: cleanFigureForSave(svg),
+        // 요소 번호는 편집기 안의 표지 — 새로 그려 달라는 AI 에게는 안 보낸다(베껴 오면 번호가 겹친다)
+        svg: withoutFigureNumbers(cleanFigureForSave(svg)),
         instructions,
         signal: controller.signal,
       });
@@ -1250,8 +1345,8 @@ export function FigureEditor({
     }
   };
   // «요청대로 고치기»(원장님 2026-09-19) — 지금 그림을 새로 그리지 않는다. AI 가 돌려준 수정 명령만 편집기 편집 함수로
-  // 적용해 한 걸음으로 넘긴다(되돌리기 한 번). 번호는 요청을 보낼 때의 그림 기준이라, 기다리는 동안 그림이 바뀌면
-  // (면을 만들면 뒤 요소 번호가 하나씩 밀린다) 적용하지 않는다.
+  // 적용해 한 걸음으로 넘긴다(되돌리기 한 번). 명령의 좌표·점 이름은 요청을 보낼 때의 그림 기준이라, 기다리는 동안
+  // 그림이 바뀌면 적용하지 않는다. 번호는 고정이라(`figureNumbers`) 순서를 바꾸거나 면을 만들어도 안 밀린다.
   const requestEdit = async () => {
     if (!onEdit || busy || !instructions.trim()) return;
     const controller = new AbortController();
@@ -1269,7 +1364,9 @@ export function FigureEditor({
         figureSvg: await typesetFigureSvg(cleanFigureForSave(sent)),
         width: root?.clientWidth || viewBox[2],
         height: root?.clientHeight || viewBox[3],
-        numbers: root ? layoutFigureNumbers(root) : [],
+        // 그림 위 번호표는 AI 자료 목록(`describeFigureForEdit` 의 n)과 **같은 고정 번호**라야 한다 —
+        // 어긋나면 AI 가 딴 요소를 고친다(지시문 figure-edit-prompt.ts «번호가 그림 위 번호표와 같다»).
+        numbers: root ? layoutFigureNumbers(root, figureNumbers(sent)) : [],
       });
       if (controller.signal.aborted) return;
       const result = await onEdit({
@@ -1283,7 +1380,11 @@ export function FigureEditor({
         throw new Error(
           "요청을 보낸 뒤 그림이 바뀌어 적용하지 않았습니다. 다시 요청해 주세요.",
         );
-      const edited = applyFigureEdits(sent, result.edits);
+      // 순서 명령의 «한 칸»은 단추처럼 화면 상자로 겹치는 것만 센다 — 캔버스는 아직 보낸 그림(`sent`)을 보인다
+      const shown = canvas.current?.querySelector("svg");
+      const edited = applyFigureEdits(sent, result.edits, {
+        boxes: shown ? measureOrderBoxes(shown) : undefined,
+      });
       commit(edited.svg);
       if (edited.svg !== sent) setSelected(null);
       setEditReport({
@@ -1597,21 +1698,27 @@ export function FigureEditor({
               <summary className="cursor-pointer rounded px-2 py-1.5 hover:bg-slate-100">
                 단축키
               </summary>
-              <div className="absolute right-0 top-full z-20 w-64 rounded-lg border border-control bg-white p-3 shadow-lg leading-6">
-                <div>
-                  {modKey()}+Z 되돌리기 · {modKey()}+Y 다시 실행
-                </div>
-                <div>{modKey()}+C / X / V 복사 / 잘라내기 / 붙여넣기</div>
-                <div>
-                  {modKey()}+A 전체 선택 · {modKey()}+D 복제
-                </div>
-                <div>Shift+클릭 여러 요소 선택</div>
-                <div>
-                  선분·화살표 그리기 / 끝점 조절: Shift로 수평·수직·45° 고정
-                </div>
-                <div>방향키 미세 이동 · Shift로 10배</div>
-                <div>Delete 삭제 · Esc 선택 해제</div>
-                <p className="mt-1 text-muted">
+              {/* 처리기와 같은 표(figureShortcuts.ts)에서 그린다 — 단축키를 더하면 목록이 저절로 따라온다.
+                  무리(편집·선택·이동·그리기·순서·묶음)마다 한 덩이, 한 항목은 줄에서 안 쪼갠다. */}
+              <div
+                aria-label="단축키 목록"
+                className="absolute right-0 top-full z-20 w-[26rem] rounded-lg border border-control bg-white p-3 shadow-lg leading-6"
+              >
+                {figureShortcutSheet().map((group) => (
+                  <div key={group.name} className="mt-1.5 first:mt-0">
+                    <div className="text-[11px] font-semibold text-muted">
+                      {group.name}
+                    </div>
+                    <div className="flex flex-wrap gap-x-3">
+                      {group.items.map((item) => (
+                        <span key={item.id} className="whitespace-nowrap">
+                          {figureShortcutKeys(item, modKey())} {item.label}
+                        </span>
+                      ))}
+                    </div>
+                  </div>
+                ))}
+                <p className="mt-1.5 text-muted">
                   글자·수식 입력 중에는 입력창의 단축키가 동작합니다.
                 </p>
               </div>
@@ -1828,7 +1935,8 @@ export function FigureEditor({
               </button>
             </div>
             <FigureObjectList
-              objects={objects}
+              objects={listed}
+              numbers={numbers}
               groups={groups}
               angles={angles}
               selectedIds={selectedIds}
@@ -1853,7 +1961,7 @@ export function FigureEditor({
               {selectedIds.length > 1
                 ? `${selectedIds.length}개 요소 선택`
                 : current
-                  ? `${objects.indexOf(current) + 1} · ${objectName(current, angles)} 편집`
+                  ? `${numbers.get(current.id)} · ${objectName(current, angles)} 편집`
                   : tool === "text"
                     ? "새 글자"
                     : tool === "fill"
@@ -1907,6 +2015,9 @@ export function FigureEditor({
                 onAlign={align}
                 spread={{ blocked: spreadBlocked, onSpread: spread }}
               />
+            )}
+            {selectedIds.length > 0 && (
+              <FigureOrderRow blocked={orderBlocked} onOrder={reorder} />
             )}
             <FigureFitRow onFit={fitFrame} />
             {current ? (

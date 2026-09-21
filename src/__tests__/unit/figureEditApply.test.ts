@@ -1,5 +1,6 @@
 import { describe, expect, it } from "vitest";
 import {
+  figureNumbers,
   figureObjects,
   prepareFigureSvg,
   readFigureSvg,
@@ -397,7 +398,8 @@ describe("검증 — 적용 못 한 명령은 이유와 함께", () => {
   });
 });
 
-// 트랙 4(면 만들기, 2026-09-19): 면은 선 뒤(문서 앞)에 들어가 뒤 요소 번호를 민다 · 선을 따라가는 면은 스스로 옮기지 않는다
+// 트랙 4(면 만들기, 2026-09-19): 면은 선 뒤(문서 앞)에 들어간다 — 번호는 **새로** 받아 선 번호를 밀지 않는다
+// (번호 고정, 원장님 2026-09-21 «순서를 바꿔도 요소 번호가 안바뀌게»; 전에는 면이 1번이 되고 뒤가 하나씩 밀렸다) · 선을 따라가는 면은 스스로 옮기지 않는다
 // · 삼각형·평행사변형(data-shape)은 노란 점으로 모양을 지킨다. 명령 적용이 표지 속성을 지우지 않는다(리드 2026-09-19).
 describe("면 · 모양 · 표지 속성", () => {
   const withFace = bucketFill(
@@ -412,19 +414,27 @@ describe("면 · 모양 · 표지 속성", () => {
     { x: 400, y: 320 },
   ).svg;
   const objects = figureObjects(withShape);
+  // 번호는 요소에 붙은 고정 번호 — 편집기 목록·그림 위 번호표·AI 자료 목록과 같은 함수
+  const numbers = figureNumbers(withShape);
   const n = (predicate: (o: (typeof objects)[number]) => boolean) =>
-    objects.findIndex(predicate) + 1;
+    numbers.get(objects.find(predicate)!.id)!;
+  const numbered = (number: number) =>
+    objects.find((o) => numbers.get(o.id) === number)!;
   const face = n((o) => o.attrs["data-face"] !== undefined);
   const shape = n((o) => o.attrs["data-shape"] === "triangle");
   const locked = n((o) => o.attrs["data-size-locked"] === "true");
   const label = n((o) => o.type === "text");
 
   it("names faces and shapes like the editor list", () => {
-    const kinds = describeFigureForEdit(withShape).elements.map((e) => e.kind);
-    // 면은 선 뒤 — 문서 앞이라 1번이다
-    expect(face).toBe(1);
-    expect(kinds[face - 1]).toBe("면");
-    expect(kinds[shape - 1]).toBe("삼각형");
+    const kind = (number: number) =>
+      describeFigureForEdit(withShape).elements.find((e) => e.n === number)
+        ?.kind;
+    // 면은 선 뒤(문서 앞)에 들지만 번호는 새로 받는다 — 선 셋·글자 하나 다음인 5번. 선 번호는 안 밀린다.
+    expect(figureObjects(withShape)[0].attrs["data-face"]).toBeDefined();
+    expect(face).toBe(5);
+    expect(n((o) => o.type === "line")).toBe(1);
+    expect(kind(face)).toBe("면");
+    expect(kind(shape)).toBe("삼각형");
   });
 
   it("does not move a face that follows its lines, nor bend a kept shape", () => {
@@ -454,18 +464,18 @@ describe("면 · 모양 · 표지 속성", () => {
     expect(result.rejected).toEqual([]);
     const after = figureObjects(result.svg);
     const byId = new Map(after.map((o) => [o.id, o]));
-    const keep = (index: number, name: string) =>
+    const keep = (number: number, name: string) =>
       expect(
-        byId.get(objects[index - 1].id)?.attrs[name],
-        `${index}번 ${name}`,
-      ).toBe(objects[index - 1].attrs[name]);
+        byId.get(numbered(number).id)?.attrs[name],
+        `${number}번 ${name}`,
+      ).toBe(numbered(number).attrs[name]);
     keep(face, "data-face");
     keep(face, "data-face-seed");
     keep(locked, "data-size-locked");
     keep(locked, "id");
     keep(label, "data-text-bg");
     keep(shape, "data-shape");
-    expect(byId.get(objects[face - 1].id)?.attrs.fill).toBe("#ffcccc");
+    expect(byId.get(numbered(face).id)?.attrs.fill).toBe("#ffcccc");
   });
 });
 
