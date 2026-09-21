@@ -73,8 +73,10 @@ export const proxy = auth(async (req) => {
     pathname.startsWith("/signup") ||
     pathname.startsWith("/api/") ||
     pathname.startsWith("/dev/") ||
+    // 수학 랩실은 로그인 없이 읽기만 연다(원장님 2026-09-21) — 서버·DB 를 안 부르고 진도는 브라우저에만 있다.
+    // `startsWith("/lab")` 는 `/label`·`/labx` 까지 열어서 `/lab` 과 그 아래로 좁혔다(proxyLabGate.test.ts).
     ((req.method === "GET" || req.method === "HEAD") &&
-      pathname.startsWith("/lab")) ||
+      (pathname === "/lab" || pathname.startsWith("/lab/"))) ||
     pathname === "/favicon.ico";
 
   if (!req.auth?.user?.id && !isPublic) {
