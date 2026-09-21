@@ -69,7 +69,7 @@ interface Props {
    * 바닥 줄 끝이라 1280px 에서도 카드 머리가 두 줄로 안 꺾인다. 안 넘기면 표시가 안 선다.
    */
   cartState?: (crop: StudioCrop) => StudioCartState;
-  /** «담음 · 고친 내용 반영 전» 옆의 «반영» — 고친 판을 시험지의 같은 자리에 갈아 넣는다. */
+  /** «반영 전» 표시 옆의 «반영» — 고친 판을 시험지의 같은 자리에 갈아 넣는다. */
   onReflect?: (id: string) => void;
 }
 
