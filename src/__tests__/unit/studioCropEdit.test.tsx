@@ -52,7 +52,8 @@ describe("source visual edit metadata", () => {
       subQuestions: [],
     });
     expect(edited.reviewed).toBe(true);
-    expect(edited.added).toBe(false);
+    // 내용을 고쳤다 — 판이 올라 시험지의 담은 판과 갈린다(«고친 뒤 반영 전»).
+    expect(edited.revision).toBe(1);
     expect(MathgenProblemDataSchema.safeParse(edited.ocr).success).toBe(true);
     const html = renderToStaticMarkup(
       <NativeProblem problem={studioProblem(edited)} print={false} />,
@@ -70,5 +71,17 @@ describe("source visual edit metadata", () => {
     expect(saved.ocr?.contentEdited).toBeUndefined();
     expect(applyStudioCropEdit(crop, { answer: "2" }).ocr).toBe(crop.ocr);
     expect(crop.ocr?.blocks[0].value).toBe("옛 본문");
+  });
+  it("검수 완료·취소는 상태라 판을 올리지 않고 다른 칸도 건드리지 않는다 (트랙 41 어긋남 3)", () => {
+    const reviewed = applyStudioCropEdit(
+      { ...crop, revision: 4 },
+      { reviewed: true },
+    );
+    expect(reviewed).toEqual({ ...crop, revision: 4, reviewed: true });
+    expect(applyStudioCropEdit(reviewed, { reviewed: false }).revision).toBe(4);
+    // 검수 완료와 함께 내용을 고치면 내용 고침이다.
+    expect(
+      applyStudioCropEdit(reviewed, { reviewed: true, answer: "5" }).revision,
+    ).toBe(5);
   });
 });
