@@ -10,7 +10,10 @@
  * - 이름은 편집기 단추와 같은 말(«되돌리기»·«묶음 만들기»·«맨 앞으로» …) — 한 화면 안에서 같은 일을 다르게 부르지 않는다.
  * - 글자 키는 `e.key` 로, 한글 낱자로 오면(한글 입력 상태) 자판 자리 `e.code` 로 읽는다. 괄호는 자판 자리가 먼저
  *   (Shift 를 누르면 글자가 `{` `}` 로 바뀐다 — ppt 와 같은 Ctrl+Shift+] ).
+ * - 도구 한 글자(원장님 2026-09-21 «두다») — Ctrl·Alt·⌘·Shift 없이 누른 글자 하나. 글자는 Figma·tldraw 관례를 따르고
+ *   관례가 없는 것(곡선·타원·삼각형·다각형·채우기·함수)은 비어 있는 글자에서 뜻이 닿는 것을 골랐다(트랙 50 보고서 표).
  */
+import { figureTool, type FigureToolChoice } from "./figureTools";
 
 /** 처리기가 하는 일의 이름 — `FigureEditor` 가 이것으로 갈라 부른다. */
 export type FigureShortcutId =
@@ -32,10 +35,11 @@ export type FigureShortcutId =
   | "backward"
   | "back"
   | "group"
-  | "ungroup";
+  | "ungroup"
+  | `tool:${FigureToolChoice}`;
 
 export type FigureShortcutGroup =
-  "편집" | "선택" | "이동" | "그리기" | "순서" | "묶음";
+  "도구" | "편집" | "선택" | "이동" | "그리기" | "순서" | "묶음";
 
 export interface FigureShortcut {
   id: FigureShortcutId;
@@ -46,6 +50,8 @@ export interface FigureShortcut {
   label: string;
   /** 처리기가 읽는 키인가 — 없으면 목록에만 서는 안내. */
   test?: (e: KeyboardEvent) => boolean;
+  /** 도구 한 글자 — 이 키가 고르는 도구. */
+  tool?: FigureToolChoice;
 }
 
 const mod = (e: KeyboardEvent) => e.ctrlKey || e.metaKey;
@@ -65,7 +71,35 @@ const bracket = (e: KeyboardEvent) =>
       : null;
 const ARROWS = new Set(["ArrowLeft", "ArrowRight", "ArrowUp", "ArrowDown"]);
 
+/**
+ * 도구 한 글자 줄 — 이름은 도구 단추와 같은 말(`figureTools`). 꾸밈 키(Ctrl·Alt·⌘·Shift)가 하나라도 눌렸으면 안 먹는다:
+ * Ctrl+A·C·D·V·X·Y 는 편집 단축키이고, Shift+글자는 비워 둔다(Figma 의 Shift+L 화살표 같은 짝을 뒤에 둘 자리).
+ */
+const toolRow = (tool: FigureToolChoice, key: string): FigureShortcut => ({
+  id: `tool:${tool}`,
+  group: "도구",
+  keys: [[key]],
+  label: figureTool(tool).label,
+  tool,
+  test: (e) =>
+    !mod(e) && !e.altKey && !e.shiftKey && letter(e) === key.toLowerCase(),
+});
+
 export const FIGURE_SHORTCUTS: readonly FigureShortcut[] = [
+  // 도구 — Figma·tldraw 관례: V 선택 · H 화면 이동 · L 선 · A 화살표 · O 원 · R 사각형 · T 글자
+  toolRow("select", "V"),
+  toolRow("pan", "H"),
+  toolRow("line", "L"),
+  toolRow("arrow", "A"),
+  toolRow("curve", "C"), // Curve
+  toolRow("circle", "O"),
+  toolRow("ellipse", "E"), // Ellipse — Inkscape 와 같다
+  toolRow("rect", "R"),
+  toolRow("triangle", "Y"), // 관례 없음 — 비어 있는 글자 중 T·R 곁
+  toolRow("polygon", "P"), // 점을 차례로 찍는 도구 — 여느 편집기의 펜(P)과 같은 손놀림
+  toolRow("text", "T"),
+  toolRow("fill", "F"), // Fill — Krita·Paint.NET 의 채우기 통
+  toolRow("function", "X"), // f(x) 의 x
   // 편집
   {
     id: "undo",
@@ -228,6 +262,7 @@ export function figureShortcutKeys(
 }
 
 const GROUPS: readonly FigureShortcutGroup[] = [
+  "도구",
   "편집",
   "선택",
   "이동",
@@ -235,6 +270,12 @@ const GROUPS: readonly FigureShortcutGroup[] = [
   "순서",
   "묶음",
 ];
+
+/** 도구 단추·메뉴 항목의 title 에 적는 글자 — 같은 표에서 읽는다. */
+export function figureToolKey(tool: FigureToolChoice): string | undefined {
+  return FIGURE_SHORTCUTS.find((shortcut) => shortcut.tool === tool)
+    ?.keys[0][0];
+}
 
 /** 도움말 목록 — 무리마다 줄들. 처리기와 같은 표에서 그린다. */
 export function figureShortcutSheet(): {

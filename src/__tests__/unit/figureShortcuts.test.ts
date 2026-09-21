@@ -9,9 +9,14 @@ import {
   FIGURE_SHORTCUTS,
   figureShortcutKeys,
   figureShortcutSheet,
+  figureToolKey,
   matchFigureShortcut,
   type FigureShortcutId,
 } from "@/components/unified/figure-editor/figureShortcuts";
+import {
+  FIGURE_TOOLS,
+  type FigureTool,
+} from "@/components/unified/figure-editor/figureTools";
 
 const press = (key: string, init: Partial<KeyboardEventInit> = {}) =>
   new KeyboardEvent("keydown", { key, ...init });
@@ -54,10 +59,76 @@ describe("처리기가 읽는 키", () => {
     ["e", { ctrlKey: true }],
     ["Delete", { ctrlKey: true }],
     ["ArrowLeft", { ctrlKey: true }],
-    ["a", {}],
+    ["q", {}],
+    ["1", {}],
     ["Enter", { ctrlKey: true }],
   ])("표 밖의 키는 안 읽는다 — %s %j", (key, init) => {
     expect(hit(key, init)).toBeNull();
+  });
+});
+
+/**
+ * 도구 한 글자 — 원장님 2026-09-21 «두다»(트랙 43 여쭐 것 3). 글자는 Figma·tldraw 관례(V 선택 · H 화면 이동 ·
+ * L 선 · A 화살표 · O 원 · R 사각형 · T 글자), 관례가 없는 것은 비어 있는 글자(보고서 표).
+ * 묶인 도구(선·도형)를 글자로 고르면 그 도구가 무리의 겉에 선다 — 그것은 편집기 시험(toolbar)이 본다.
+ */
+describe("도구 한 글자", () => {
+  const TOOL_KEYS: [string, FigureTool | "function"][] = [
+    ["v", "select"],
+    ["h", "pan"],
+    ["l", "line"],
+    ["a", "arrow"],
+    ["c", "curve"],
+    ["o", "circle"],
+    ["e", "ellipse"],
+    ["r", "rect"],
+    ["y", "triangle"],
+    ["p", "polygon"],
+    ["t", "text"],
+    ["f", "fill"],
+    ["x", "function"],
+  ];
+  it.each(TOOL_KEYS)("%s → %s (Caps Lock 이 켜져도)", (key, tool) => {
+    expect(hit(key)?.tool).toBe(tool);
+    expect(hit(key.toUpperCase())?.tool).toBe(tool);
+  });
+  it("한글 입력 상태는 자판 자리로 읽는다 — ㅣ(L 자리) 선분 · ㅔ(P 자리) 다각형 · ㅅ(T 자리) 글자", () => {
+    expect(hit("ㅣ", { code: "KeyL" })?.tool).toBe("line");
+    expect(hit("ㅔ", { code: "KeyP" })?.tool).toBe("polygon");
+    expect(hit("ㅅ", { code: "KeyT" })?.tool).toBe("text");
+  });
+  it.each<[string, Partial<KeyboardEventInit>]>([
+    ["l", { ctrlKey: true }],
+    ["l", { metaKey: true }],
+    ["l", { altKey: true }],
+    ["L", { shiftKey: true }],
+    ["o", { ctrlKey: true, shiftKey: true }],
+  ])("Ctrl·Alt·⌘·Shift 가 눌렸으면 도구를 안 고른다 — %s %j", (key, init) => {
+    expect(hit(key, init)?.tool).toBeUndefined();
+  });
+  it("Ctrl 이 붙은 같은 글자는 전과 같다 — Ctrl+A 전체 선택 · Ctrl+D 복제 · Ctrl+Y 다시 실행", () => {
+    expect(hit("a", { ctrlKey: true })?.id).toBe("selectAll");
+    expect(hit("y", { ctrlKey: true })?.id).toBe("redo");
+    expect(hit("c", { ctrlKey: true })).toBeNull();
+  });
+  it("도구 줄의 도구마다 꼭 한 줄 · 글자는 겹치지 않는다 · 이름은 도구 단추와 같은 말", () => {
+    const rows = FIGURE_SHORTCUTS.filter((s) => s.tool);
+    expect(rows.map((s) => s.tool).sort()).toEqual(
+      FIGURE_TOOLS.map((t) => t.id).sort(),
+    );
+    const keys = rows.map((s) => figureShortcutKeys(s, "Ctrl"));
+    expect(new Set(keys).size).toBe(keys.length);
+    for (const row of rows)
+      expect(row.label).toBe(
+        FIGURE_TOOLS.find((t) => t.id === row.tool)!.label,
+      );
+    expect(rows.every((s) => s.group === "도구")).toBe(true);
+  });
+  it("도구 단추의 title 이 읽는 글자도 같은 표에서 — figureToolKey", () => {
+    expect(figureToolKey("line")).toBe("L");
+    expect(figureToolKey("function")).toBe("X");
+    for (const tool of FIGURE_TOOLS)
+      expect(figureToolKey(tool.id), tool.id).toMatch(/^[A-Z]$/);
   });
 });
 
@@ -88,9 +159,13 @@ describe("도움말 목록은 같은 표를 그린다", () => {
     expect(text).toContain("Ctrl+] 앞으로");
     expect(text).toContain("Ctrl+[ 뒤로");
     expect(text).toContain("Ctrl+Shift+[ 맨 뒤로");
+    expect(text).toContain("L 선분");
+    expect(text).toContain("O 원");
+    expect(text).toContain("T 글자");
   });
-  it("무리 차례 — 편집 · 선택 · 이동 · 그리기 · 순서 · 묶음", () => {
+  it("무리 차례 — 도구 · 편집 · 선택 · 이동 · 그리기 · 순서 · 묶음", () => {
     expect(sheet.map((group) => group.name)).toEqual([
+      "도구",
       "편집",
       "선택",
       "이동",
