@@ -1,0 +1,428 @@
+import {
+  cleanup,
+  fireEvent,
+  render,
+  screen,
+  within,
+} from "@testing-library/react";
+import { useState } from "react";
+import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
+import StudioView from "@/components/unified/StudioView";
+import { DevAiProvider } from "@/components/unified/useDevAi";
+import type { StudioSessionData } from "@/components/unified/studioSessionStore";
+import {
+  studioProblem,
+  type StudioCrop,
+} from "@/components/unified/studioHelpers";
+import {
+  addToCart,
+  forgetRemovals,
+  rememberRemoval,
+  restoreToCart,
+  type StudioCartRemoval,
+} from "@/components/unified/studioCart";
+import type { StudioProblem } from "@/components/unified/types";
+
+/**
+ * 담은 문항 — 진짜 작업실(원장님 2026-09-21 확정 안 D, 트랙 44).
+ *
+ * 부모는 `UnifiedWorkspace` 와 **같은 함수**(`studioCart.ts`)로 장부를 든다. 작업실의 «담음»·
+ * «N문항 담기»·«담은 문항» 목록이 그 장부 하나에서 나오는지, 트랙 41 어긋남 1~4 가 사라졌는지,
+ * 뺀 것을 한꺼번에 담기가 되넣지 않는지를 본다. 계산된 모양은 `e2e/cart-review` 가 브라우저에서 잰다.
+ */
+
+const saved: { current: Promise<unknown> } = { current: new Promise(() => {}) };
+vi.mock("@/components/unified/studioSessionStore", () => ({
+  StudioSessionStore: class {
+    documentId = "doc-1";
+    load = () => saved.current;
+    save = () => Promise.resolve();
+    clear = () => Promise.resolve();
+    retain() {}
+    release() {}
+  },
+}));
+vi.mock("@/components/math/ProblemContent", () => ({
+  ProblemContent: ({ content }: { content: string }) => <div>{content}</div>,
+}));
+vi.mock("@/components/math/editor/SourceEditorDisplay", () => ({
+  SourceEditorDisplay: ({ value }: { value: string }) => <div>{value}</div>,
+}));
+vi.mock("@/components/math/editor/MathTextEditor", () => ({
+  MathTextEditor: ({
+    value,
+    onChange,
+    "aria-label": label,
+  }: {
+    value: string;
+    onChange?: (value: string) => void;
+    "aria-label"?: string;
+  }) => (
+    <textarea
+      aria-label={label}
+      value={value}
+      onChange={(event) => onChange?.(event.target.value)}
+    />
+  ),
+}));
+
+function crop(id: string, patch: Partial<StudioCrop> = {}): StudioCrop {
+  return {
+    id,
+    sourceId: "s1",
+    sourceLabel: "예제",
+    page: 1,
+    rect: { x: 0.1, y: 0.1, width: 0.8, height: 0.2 },
+    image: "data:image/png;base64,Y3JvcA==",
+    content: `본문 ${id}`,
+    answer: "1",
+    solution: "",
+    level: "secondary",
+    grade: "중2",
+    mode: "text",
+    ...patch,
+  };
+}
+const bank: StudioProblem = {
+  id: "bank-1",
+  content: "은행 문항",
+  answer: "",
+  solution: "",
+  grade: "중1",
+  chapter: "일차방정식",
+  section: "일차방정식의 활용",
+  difficulty: "중",
+  problemCode: "B-1",
+  figureUrls: [],
+  figureSvg: null,
+  figureDims: [],
+  figureSourceMm: [],
+};
+
+beforeEach(() => {
+  vi.stubGlobal(
+    "ResizeObserver",
+    class {
+      observe() {}
+      disconnect() {}
+    },
+  );
+  vi.spyOn(HTMLCanvasElement.prototype, "getContext").mockReturnValue(
+    new Proxy({}, { get: () => vi.fn() }) as CanvasRenderingContext2D,
+  );
+  vi.spyOn(HTMLCanvasElement.prototype, "toDataURL").mockReturnValue(
+    "data:image/png;base64,c291cmNl",
+  );
+  vi.stubGlobal(
+    "fetch",
+    vi.fn(async (_url: string, init?: RequestInit) => {
+      if (init?.method === "POST") return new Promise<Response>(() => {});
+      return Response.json({
+        enabled: true,
+        mode: "subscription-cli",
+        defaultProvider: "codex",
+        providers: [
+          {
+            id: "codex",
+            label: "Codex",
+            status: "ready",
+            detail: "사용 가능",
+            image: true,
+          },
+        ],
+      });
+    }),
+  );
+});
+afterEach(() => {
+  cleanup();
+  vi.restoreAllMocks();
+  vi.unstubAllGlobals();
+  saved.current = new Promise(() => {});
+});
+
+/** `UnifiedWorkspace` 의 장부 규칙 그대로 — `toggle`·`restoreRemoved`·`add`·새 시험지. */
+function Workspace({
+  initial = [],
+  onExport,
+  restoreRequest,
+}: {
+  initial?: StudioProblem[];
+  onExport?: () => void;
+  restoreRequest?: { id: number; crops: StudioCrop[] };
+}) {
+  const [picked, setPicked] = useState<StudioProblem[]>(initial);
+  const [removed, setRemoved] = useState<StudioCartRemoval[]>([]);
+  const remove = (problem: StudioProblem) => {
+    const index = picked.findIndex((item) => item.id === problem.id);
+    if (index < 0) return;
+    setRemoved((items) => rememberRemoval(items, picked[index], index));
+    setPicked((items) => items.filter((item) => item.id !== problem.id));
+  };
+  return (
+    <>
+      <DevAiProvider>
+        <StudioView
+          picked={picked}
+          removed={removed}
+          onAdd={(problems) => {
+            setPicked((items) => addToCart(items, problems));
+            setRemoved((items) =>
+              forgetRemovals(
+                items,
+                problems.map((problem) => problem.id),
+              ),
+            );
+          }}
+          onRemove={remove}
+          onRestore={(problem) => {
+            const index =
+              removed.find((item) => item.problem.id === problem.id)?.index ??
+              picked.length;
+            setPicked((items) => restoreToCart(items, problem, index));
+            setRemoved((items) => forgetRemovals(items, [problem.id]));
+          }}
+          onExport={onExport ?? (() => {})}
+          restoreRequest={restoreRequest}
+          canExport
+          storageScope="owner-a"
+        />
+      </DevAiProvider>
+      <section aria-label="시험지 대역">
+        <output aria-label="시험지 담은 문제">
+          {JSON.stringify(
+            picked.map((problem) => ({
+              id: problem.id,
+              revision: problem.studioCrop?.revision ?? 0,
+              reviewed: problem.studioCrop?.reviewed ?? false,
+              mode: problem.studioCrop?.mode,
+            })),
+          )}
+        </output>
+        {picked.map((problem, index) => (
+          <button key={problem.id} onClick={() => remove(problem)}>
+            ④ {index + 1}번 문제 빼기
+          </button>
+        ))}
+        <button
+          onClick={() => {
+            setPicked([]);
+            setRemoved([]);
+          }}
+        >
+          새 시험지 (대역)
+        </button>
+      </section>
+    </>
+  );
+}
+
+async function openReview(
+  crops: StudioCrop[],
+  props: Parameters<typeof Workspace>[0] = {},
+) {
+  saved.current = Promise.resolve({
+    data: {
+      sources: [{ id: "s1", name: "예제 지면", kind: "sample", pages: 1 }],
+      crops,
+      sourceId: "s1",
+      pageNumber: 1,
+      activeCropId: crops[0]?.id ?? "",
+      inspectedPages: {},
+      step: "review",
+      grade: "중2",
+      level: "secondary",
+    } satisfies StudioSessionData,
+    originals: new Map(),
+  });
+  render(<Workspace {...props} />);
+  await screen.findByText("이전 자료 제작 작업을 복원했습니다.");
+}
+
+const footer = () =>
+  screen.getByRole("contentinfo", { name: "문제 제작 주요 작업" });
+const addButton = () =>
+  within(footer()).getByRole("button", {
+    name: /문항 담기|모두 담았습니다|시험지에 담기/,
+  });
+const cartToggle = () =>
+  within(footer()).getByRole("button", { name: /^담은 문항/ });
+const card = (n: number) =>
+  screen.getByRole("article", { name: `문제 ${n} 인식 결과` });
+const chip = (n: number) =>
+  card(n).querySelector("[data-studio-cart-chip]")?.textContent ?? null;
+const worksheet = () =>
+  JSON.parse(screen.getByLabelText("시험지 담은 문제").textContent!) as {
+    id: string;
+    revision: number;
+    reviewed: boolean;
+    mode?: string;
+  }[];
+const tabBadge = () =>
+  within(screen.getByRole("navigation", { name: "제작 단계 이동" }))
+    .getByRole("button", { name: /시험지 구성/ })
+    .querySelector("b")?.textContent;
+const panel = () => screen.getByRole("region", { name: "담은 문항 목록" });
+
+describe("작업실 «담음»은 시험지 목록 하나에서 나온다", () => {
+  it("담으면 카드 바닥에 «담음», 목록·탭 배지·바닥 개수가 모두 시험지와 같은 수", async () => {
+    await openReview([crop("a"), crop("b"), crop("c")], { initial: [bank] });
+    expect(addButton()).toHaveTextContent("3문항 담기");
+    expect([chip(1), chip(2), chip(3)]).toEqual([null, null, null]);
+    fireEvent.click(addButton());
+    expect(worksheet().map((row) => row.id)).toEqual(["bank-1", "a", "b", "c"]);
+    expect([chip(1), chip(2), chip(3)]).toEqual(["담음", "담음", "담음"]);
+    expect(addButton()).toHaveTextContent("모두 담았습니다");
+    expect(addButton()).toBeDisabled();
+    expect(cartToggle()).toHaveTextContent(/담은 문항\s*4/);
+    expect(tabBadge()).toBe("4");
+    expect(footer()).toHaveTextContent("3문항 담음");
+    fireEvent.click(cartToggle());
+    expect(cartToggle()).toHaveAttribute("aria-expanded", "true");
+    // 시험지 전체 — 문제은행 문항까지, 출처와 함께.
+    const rows = within(panel()).getAllByRole("listitem");
+    expect(rows).toHaveLength(4);
+    expect(rows[0]).toHaveTextContent(/01일차방정식의 활용문제은행중1 · 중/);
+    expect(rows[1]).toHaveTextContent(/02문제 01이 원본1쪽 · 중2/);
+    expect(within(panel()).getByRole("heading")).toHaveTextContent(
+      "담은 문항 4",
+    );
+    expect(panel()).toHaveTextContent("이 원본 3 · 다른 곳 1");
+  });
+
+  it("검수 완료만 눌러도 «담음» 그대로 — 시험지 판은 상태만 따라온다 (어긋남 3)", async () => {
+    await openReview([crop("a"), crop("b")]);
+    fireEvent.click(addButton());
+    const before = worksheet();
+    fireEvent.click(
+      within(card(1)).getByRole("button", { name: "이 문제 검수 완료" }),
+    );
+    expect(chip(1)).toBe("담음");
+    expect(addButton()).toHaveTextContent("모두 담았습니다");
+    const after = worksheet();
+    expect(after.map((row) => [row.id, row.revision])).toEqual(
+      before.map((row) => [row.id, row.revision]),
+    );
+    expect(after[0].reviewed).toBe(true);
+    fireEvent.click(
+      within(card(1)).getByRole("button", { name: "검수 완료 취소" }),
+    );
+    expect(chip(1)).toBe("담음");
+    expect(worksheet()[0].reviewed).toBe(false);
+  });
+
+  it("④ 에서 빼면 작업실도 «뺌» — 목록의 «다시 담기»로 제자리에 돌아온다 (어긋남 1)", async () => {
+    await openReview([crop("a"), crop("b"), crop("c")]);
+    fireEvent.click(addButton());
+    fireEvent.click(screen.getByRole("button", { name: "④ 2번 문제 빼기" }));
+    expect(worksheet().map((row) => row.id)).toEqual(["a", "c"]);
+    expect([chip(1), chip(2), chip(3)]).toEqual(["담음", "뺌", "담음"]);
+    // 뺀 것은 한꺼번에 담기가 건너뛴다 — 원장님 확정 «안 넣는다».
+    expect(addButton()).toHaveTextContent("모두 담았습니다");
+    expect(cartToggle()).toHaveTextContent(/담은 문항\s*2/);
+    fireEvent.click(cartToggle());
+    const out = within(panel()).getAllByRole("listitem")[1];
+    expect(out).toHaveAttribute("data-removed", "true");
+    expect(out).toHaveTextContent(/–문제 02이 원본뺐습니다/);
+    fireEvent.click(
+      within(out).getByRole("button", { name: "문제 02 다시 담기" }),
+    );
+    expect(worksheet().map((row) => row.id)).toEqual(["a", "b", "c"]);
+    expect(chip(2)).toBe("담음");
+    // 초점은 같은 줄의 × 로 — 키보드로 바로 다시 뺄 수 있다.
+    expect(document.activeElement).toBe(
+      within(panel()).getByRole("button", { name: "문제 02 빼기" }),
+    );
+  });
+
+  it("목록 × 로 빼면 «담고 내보내기»가 되넣지 않는다 (공통 ②)", async () => {
+    const onExport = vi.fn();
+    await openReview([crop("a"), crop("b"), crop("c")], { onExport });
+    fireEvent.click(addButton());
+    fireEvent.click(cartToggle());
+    fireEvent.click(
+      within(panel()).getByRole("button", { name: "문제 01 빼기" }),
+    );
+    expect(worksheet().map((row) => row.id)).toEqual(["b", "c"]);
+    expect(chip(1)).toBe("뺌");
+    // 뺀 줄은 흐리게 남고 초점이 «다시 담기» 로.
+    expect(document.activeElement).toBe(
+      within(panel()).getByRole("button", { name: "문제 01 다시 담기" }),
+    );
+    fireEvent.click(
+      within(footer()).getByRole("button", { name: /^(담고 )?내보내기/ }),
+    );
+    expect(onExport).toHaveBeenCalledOnce();
+    expect(worksheet().map((row) => row.id)).toEqual(["b", "c"]);
+  });
+
+  it("새 시험지를 열면 «담음»이 풀리고 다시 담을 수 있다 (어긋남 2)", async () => {
+    await openReview([crop("a"), crop("b")]);
+    fireEvent.click(addButton());
+    expect([chip(1), chip(2)]).toEqual(["담음", "담음"]);
+    fireEvent.click(screen.getByRole("button", { name: "새 시험지 (대역)" }));
+    expect([chip(1), chip(2)]).toEqual([null, null]);
+    expect(addButton()).toHaveTextContent("2문항 담기");
+    expect(footer()).toHaveTextContent("0문항 담음");
+    fireEvent.click(addButton());
+    expect(worksheet().map((row) => row.id)).toEqual(["a", "b"]);
+  });
+
+  it("담은 뒤 고치면 «담음 · 고친 내용 반영 전» — «반영»이 같은 자리에 새 판을 넣는다", async () => {
+    await openReview([crop("a"), crop("b")]);
+    fireEvent.click(addButton());
+    fireEvent.change(
+      within(card(1)).getByRole("combobox", { name: "문제 1 출력 방식" }),
+      { target: { value: "image" } },
+    );
+    expect(chip(1)).toBe("담음 · 고친 내용 반영 전");
+    // 고친 것은 한꺼번에 담기의 일이 아니다.
+    expect(addButton()).toHaveTextContent("모두 담았습니다");
+    expect(worksheet()[0]).toMatchObject({ id: "a", mode: "text" });
+    fireEvent.click(cartToggle());
+    expect(within(panel()).getAllByRole("listitem")[0]).toHaveTextContent(
+      "고친 내용 반영 전",
+    );
+    fireEvent.click(
+      within(card(1)).getByRole("button", { name: "문제 1 고친 내용 반영" }),
+    );
+    expect(chip(1)).toBe("담음");
+    expect(worksheet().map((row) => row.id)).toEqual(["a", "b"]);
+    expect(worksheet()[0]).toMatchObject({ mode: "image", revision: 1 });
+    expect(
+      within(card(1)).queryByRole("button", { name: /고친 내용 반영/ }),
+    ).toBeNull();
+  });
+
+  it("④ «원본 편집»으로 돌아온 문항은 시험지에 있으니 «담음» (어긋남 4)", async () => {
+    // 같은 원본이 열려 있는데 작업실에서는 지운 문항 — 전에는 `added:false` 로 들어와 «1문항 담기»가 됐다.
+    const other = crop("elsewhere", {
+      rect: { x: 0.1, y: 0.5, width: 0.8, height: 0.2 },
+    });
+    const snapshot = studioProblem(other);
+    await openReview([crop("a")], {
+      initial: [snapshot],
+      restoreRequest: { id: 1, crops: [snapshot.studioCrop!] },
+    });
+    await screen.findByText("저장한 문제의 원본과 검수 내용을 열었습니다.");
+    // 되살린 문항은 작업실 목록 끝(둘째)에 붙는다.
+    expect([chip(1), chip(2)]).toEqual([null, "담음"]);
+    // 한꺼번에 담기는 작업실의 다른 문항(a)만 센다.
+    expect(addButton()).toHaveTextContent("1문항 담기");
+  });
+
+  it("목록은 Esc 로 닫히고 여는 단추로 초점이 돌아온다 — 편집창 확대는 그대로", async () => {
+    await openReview([crop("a")]);
+    fireEvent.click(addButton());
+    fireEvent.click(screen.getByRole("button", { name: "편집창 확대" }));
+    fireEvent.click(cartToggle());
+    expect(document.activeElement).toBe(within(panel()).getByRole("heading"));
+    fireEvent.keyDown(within(panel()).getByRole("heading"), { key: "Escape" });
+    expect(screen.queryByRole("region", { name: "담은 문항 목록" })).toBeNull();
+    expect(document.activeElement).toBe(cartToggle());
+    expect(screen.getByRole("button", { name: "편집창 축소" })).toHaveAttribute(
+      "aria-pressed",
+      "true",
+    );
+  });
+});

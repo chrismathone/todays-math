@@ -443,6 +443,8 @@
   font-size: var(--text-body, 14px);
 }
 .workspace {
+  /* 담은 문항 목록(`StudioCartPanel`)이 이 칸의 오른쪽 아래에서 위로 펼친다(안 D). */
+  position: relative;
   display: grid;
   grid-template-columns: minmax(0, 1fr) 360px;
   height: max(530px, calc(100dvh - 355px));

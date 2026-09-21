@@ -23,6 +23,8 @@ import type { StudioAiPageJob } from "./useStudioAi";
 import type { StudioFigureJob } from "./useStudioFigureAi";
 import WorkProgress from "./WorkProgress";
 import { studioCropWorkKind, studioWorkName } from "./studioWorkNames";
+import type { StudioCartState } from "./studioCart";
+import { StudioCartChip } from "./StudioCartPanel";
 import styles from "./StudioReviewPane.module.css";
 
 type Action = "ocr" | "figures" | "solution";
@@ -62,6 +64,13 @@ interface Props {
   onRetryPage: () => void;
   onRenderFigure: (cropId: string, figureId: string) => void;
   onCancelFigure: (cropId: string, figureId: string) => void;
+  /**
+   * 담은 문항 — 카드 바닥 줄 끝의 «담음» 표시(읽기 전용, 안 D@foot · 원장님 2026-09-21 확정).
+   * 바닥 줄 끝이라 1280px 에서도 카드 머리가 두 줄로 안 꺾인다. 안 넘기면 표시가 안 선다.
+   */
+  cartState?: (crop: StudioCrop) => StudioCartState;
+  /** «담음 · 고친 내용 반영 전» 옆의 «반영» — 고친 판을 시험지의 같은 자리에 갈아 넣는다. */
+  onReflect?: (id: string) => void;
 }
 
 export default function StudioReviewPane(props: Props) {
@@ -279,6 +288,7 @@ function ReviewCard({
   // 이 문항의 본문·정답·해설을 다 보고 한 번 정한다(바꾸기 문제·«가분수는 그대로 두고» 해설이면
   // 세 칸 모두 원문). 편집 칸·저장 원문은 가분수 그대로다.
   const preview = fractionViewFor(crop);
+  const cart = props.cartState?.(crop);
   const readContent = useMemo(
     () =>
       preview(
@@ -617,6 +627,18 @@ function ReviewCard({
         >
           {locked ? "검수 완료 취소" : "이 문제 검수 완료"}
         </button>
+        {cart && <StudioCartChip state={cart} />}
+        {/* 반영은 내용이 아니라 시험지 소속을 바꾼다 — 검수 완료 잠금과 상관없이 눌린다. */}
+        {cart === "stale" && props.onReflect && (
+          <button
+            type="button"
+            aria-label={`문제 ${number} 고친 내용 반영`}
+            disabled={busy || editing}
+            onClick={() => props.onReflect?.(crop.id)}
+          >
+            반영
+          </button>
+        )}
       </div>
     </article>
   );

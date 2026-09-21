@@ -879,7 +879,7 @@ describe("Studio figure detection owner", () => {
       answer: original.answer,
       solution: original.solution,
       reviewed: false,
-      added: false,
+      // 담았는지는 시험지 목록이 정한다(`studioCart.ts`) — 판이 올라 «고친 뒤 반영 전»이 된다.
       revision: 1,
       sourceSize: { width: 2000, height: 1600 },
       figures: [
