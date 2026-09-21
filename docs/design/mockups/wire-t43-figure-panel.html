@@ -1,6 +1,6 @@
 <!doctype html>
 <meta charset="utf-8">
-<title>도형 편집기 오른쪽 칸 와이어</title>
+<title>도형 편집기 모양 와이어</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <!-- 편집기와 같은 글꼴 — 폭이 곧 이 시안의 요점이라 Pretendard 로 그린다(없으면 정렬 줄이 더 넓게 잡힌다). -->
@@ -87,11 +87,41 @@ h1 { margin: 6px 0 10px; font-family: var(--serif); font-weight: 800; font-size:
 .ptab { padding: 6px 12px; border: 0; background: none; border-bottom: 2px solid transparent; font-size: 12px; font-weight: 500; color: var(--text-2); cursor: pointer; }
 .ptab[aria-selected="true"] { color: var(--figure-accent-ink); border-bottom-color: var(--figure-primary); font-weight: 600; }
 .measure { font-variant-numeric: tabular-nums; }
+
+/* ── 상단 도구 줄 (편집기 FigureEditor.tsx 도구 줄과 같은 꼴: px-2 py-1.5 text-xs, 글리프 text-base) ── */
+.part { margin-top: 44px; padding-top: 18px; border-top: 2px solid var(--page-ink); }
+.part-title { margin: 26px 0 6px; font-family: var(--serif); font-size: 22px; }
+.widths { display: flex; gap: 6px; margin: 12px 0 0; }
+.widths button { padding: 4px 10px; border: 1px solid var(--rule); border-radius: 6px; background: #fff; cursor: pointer; font-size: 13px; }
+.widths button[aria-pressed="true"] { border-color: var(--pick); box-shadow: inset 0 -2px 0 var(--pick); }
+.bar-stage { padding-top: 16px; display: grid; gap: 18px; }
+.bar { display: flex; flex-wrap: wrap; gap: 4px; padding: 8px; border: 1px solid var(--divider); background: #fff; color: var(--ink); font-size: 12px; line-height: 16px; box-shadow: 0 1px 6px #0001; }
+.tool { display: inline-flex; align-items: center; padding: 6px 8px; border: 0; border-radius: 4px; background: none; font-size: 12px; line-height: 16px; cursor: pointer; white-space: nowrap; }
+.tool:hover { background: var(--side); }
+.tool .g { font-size: 16px; line-height: 16px; margin-right: 4px; }
+.tool[aria-pressed="true"] { background: var(--figure-accent-soft); color: var(--figure-accent-ink); box-shadow: inset 0 0 0 1px var(--figure-accent-line); }
+.sep { margin: 0 4px; border-left: 1px solid var(--control); }
+.push { margin-left: auto; }
+.split { display: inline-flex; border-radius: 4px; }
+.split .arrow { padding: 6px 4px; font-size: 10px; color: var(--text-2); }
+.split[data-on="true"] .tool { background: var(--figure-accent-soft); color: var(--figure-accent-ink); box-shadow: inset 0 0 0 1px var(--figure-accent-line); }
+.menu-host { position: relative; display: inline-flex; }
+.menu { position: absolute; left: 0; top: 100%; z-index: 3; min-width: 120px; margin-top: 2px; padding: 4px; border: 1px solid var(--control); border-radius: 6px; background: #fff; box-shadow: 0 6px 18px #172b4d22; }
+.menu .tool { display: flex; width: 100%; }
+.menu .tool[aria-checked="true"]::after { content: "✓"; margin-left: auto; padding-left: 10px; color: var(--figure-accent-ink); }
+.box { display: inline-flex; align-items: center; gap: 2px; padding: 0 2px 0 6px; border: 1px solid var(--divider); border-radius: 6px; }
+.box > .cap { margin-right: 2px; font-size: 11px; color: var(--text-2); }
+.box .tool { padding: 6px; }
+.box .tool .g { margin: 0; }
+.bar-note { display: flex; flex-wrap: wrap; gap: 4px 18px; font-size: 13px; color: var(--page-ink-2); }
+.bar-note b { color: var(--page-ink); }
 </style>
 
 <div class="board">
-  <p class="eyebrow">트랙 43 · 도형 편집기 · Wire 5안 · 2026-09-21</p>
-  <h1>오른쪽 설정 칸 — 무리 짓기</h1>
+  <p class="eyebrow">트랙 43 · 도형 편집기 · Wire · 2026-09-21</p>
+  <h1>도형 편집기 모양 — 오른쪽 칸 · 상단 도구</h1>
+  <p class="lede">두 가지를 한 번에 고르시게 한 장에 올렸습니다 — <b>① 오른쪽 설정 칸 무리 짓기</b>(5안) · <b>② 상단 도구 묶기</b>(3안). 제품은 둘 다 안 고쳤습니다(D-07).</p>
+  <h2 class="part-title">① 오른쪽 설정 칸 — 무리 짓기</h2>
   <p class="lede">원장님 말씀: <b>«도형 편집기를 좀 더 확장시켜. 우측 설정창을 공간 더 배정해서 좀 깔끔하게 정리할 수 있게.»</b></p>
   <p class="lede">제품에는 <b>폭만</b> 넣었습니다 — 칸 280→428px, 대화상자를 화면에 맞게 키움(그림은 넓히기 전보다 8~11% 큼), 정렬·간격·순서 단추와 안내 글이 모두 한 줄. 아래는 <b>칸 안의 무리 짓기</b>입니다. 요소 순서(맨 앞으로 등) 단추 넷이 더해져 한 줄기로 쌓인 줄이 열다섯 개입니다.</p>
   <p class="lede">원장님 화면 그대로(삼각형 ABC 하나를 고른 상태)를 칸 높이 637px(1516×730 화면의 실제 칸 높이)로 잘라 보입니다. 내용이 그보다 길면 칸 안에서 스크롤됩니다.</p>
@@ -110,6 +140,27 @@ h1 { margin: 6px 0 10px; font-family: var(--serif); font-weight: 800; font-size:
     <div class="note" id="note"></div>
   </section>
 
+  <section class="part">
+    <h2 class="part-title" style="margin-top:0">② 상단 도구 — 선 · 도형 묶기</h2>
+    <p class="lede">원장님 말씀: <b>«상단 메뉴들을 묶을 수 있는건 하나로 묶어. 예를 들어 선 (선분, 화살표, 곡선 등), 도형 (원, 타원, 삼각형, 사각형 다각형 등)»</b></p>
+    <p class="lede">묶는 것은 말씀하신 둘 — <b>선</b>(선분·화살표·곡선) · <b>도형</b>(원·타원·삼각형·사각형·다각형). 나머지는 그대로 둡니다: 선택·이동은 도구가 아니라 «고르는 상태»이고, 화면 이동·글자·채우기·함수는 서로 성격이 달라 한 무리가 되지 않습니다. 고를 것은 <b>무리 단추를 어떻게 여는가</b>입니다 — 선분을 연달아 그리실 때 매번 펼쳐 골라야 하면 지금보다 느려집니다.</p>
+    <div class="tabs" role="tablist" aria-label="상단 도구 시안">
+      <button class="tab ttab" role="tab" aria-selected="true" data-bar="now"><span class="k">현행</span> 열셋이 한 줄</button>
+      <button class="tab ttab" role="tab" aria-selected="false" data-bar="a"><span class="k">A</span> 마지막에 쓴 것이 겉에</button>
+      <button class="tab ttab" role="tab" aria-selected="false" data-bar="b"><span class="k">B</span> 누르면 펼침 목록</button>
+      <button class="tab ttab" role="tab" aria-selected="false" data-bar="c"><span class="k">C</span> 무리 칸 · 그림 단추</button>
+    </div>
+    <div class="widths" aria-label="화면 폭">
+      <button type="button" aria-pressed="true" data-width="784">1516 화면(가운데 칸 784px)</button>
+      <button type="button" aria-pressed="false" data-width="556">1280 화면(가운데 칸 556px)</button>
+    </div>
+    <div class="bar-stage">
+      <div id="bar-host"></div>
+      <div class="bar-note" id="bar-measure"></div>
+      <div class="note" id="bar-note"></div>
+    </div>
+  </section>
+
   <section class="ask">
     <h2>여쭐 것</h2>
     <ol>
@@ -117,6 +168,8 @@ h1 { margin: 6px 0 10px; font-family: var(--serif); font-weight: 800; font-size:
       <li><b>배치와 모양 중 어느 쪽이 위인지</b> — 요소를 고르는 까닭이 주로 «색·굵기를 바꾸려고»인지 «돌리고 맞추려고»인지(A·B 가 이것만 다릅니다).</li>
       <li><b>정렬·간격이 꺼졌을 때의 안내 글</b> — 지금은 두 줄(«둘 이상 고르면…», «셋 이상 고르면…»)입니다. 한 줄로 합칠지, 없애고 단추에 마우스를 올릴 때만 보일지.</li>
       <li><b>C 안을 고르시면 칸 폭</b> — 격자로 줄이면 320px 로 돌아갈 수 있고, 가운데 그림 칸이 108px 넓어집니다.</li>
+      <li><b>상단 도구를 어떻게 묶을지</b> — 현행 · A(마지막에 쓴 것이 겉에) · B(펼침 목록) · C(무리 칸 그림 단추).</li>
+      <li><b>도구 한 글자 단축키를 둘지</b> — 지금 도구에는 단축키가 없습니다. 두신다면 예: 선분 L · 원 O · 글자 T. 단축키 표(한 원천)에 한 줄씩이라 도움말에도 저절로 섭니다.</li>
     </ol>
   </section>
 </div>
@@ -237,11 +290,160 @@ function show(key) {
     }
   });
 }
-document.querySelectorAll(".tab").forEach((tab) =>
+document.querySelectorAll(".tab:not(.ttab)").forEach((tab) =>
   tab.addEventListener("click", () => {
-    document.querySelectorAll(".tab").forEach((t) => t.setAttribute("aria-selected", String(t === tab)));
+    document.querySelectorAll(".tab:not(.ttab)").forEach((t) => t.setAttribute("aria-selected", String(t === tab)));
     show(tab.dataset.tab);
   }),
 );
 show("now");
+</script>
+
+<script>
+// ② 상단 도구 — 편집기 TOOLS(FigureEditor.tsx)와 같은 이름·글리프·차례.
+const TL = (id, label, g) => ({ id, label, g });
+const LINE = [TL("line", "선분", "╱"), TL("arrow", "화살표", "↗"), TL("curve", "곡선", "⌒")];
+const SHAPE = [TL("circle", "원", "○"), TL("ellipse", "타원", "⬭"), TL("rect", "사각형", "□"), TL("triangle", "삼각형", "△"), TL("polygon", "다각형", "⬠")];
+const HEAD = [TL("select", "선택·이동", "↖"), TL("pan", "화면 이동", "✋")];
+const TAIL = [TL("text", "글자", "T"), TL("fill", "채우기", "▧"), TL("function", "함수", "ƒ")];
+const REST =
+  '<button class="tool">삭제</button><span class="sep"></span><button class="tool">↶ 되돌리기</button>' +
+  '<button class="tool" disabled style="opacity:.4">↷ 다시 실행</button><span class="sep"></span>' +
+  '<button class="tool">전체 요소 크기 고정 (이동만 가능)</button><button class="tool push">단축키</button>';
+const listOf = (name) => (name === "선" ? LINE : SHAPE);
+let active = "line";
+const face = { 선: LINE[0], 도형: SHAPE[0] };
+let opened = null;
+let barKey = "now";
+let barWidth = 784;
+const toolButton = (t, extra = "") =>
+  `<button class="tool" data-tool="${t.id}" aria-pressed="${active === t.id}" ${extra}><span class="g" aria-hidden="true">${t.g}</span>${t.label}</button>`;
+const iconButton = (t) =>
+  `<button class="tool" data-tool="${t.id}" aria-pressed="${active === t.id}" title="${t.label}" aria-label="${t.label}"><span class="g" aria-hidden="true">${t.g}</span></button>`;
+const menuOf = (name) =>
+  opened === name
+    ? `<div class="menu" role="menu">${listOf(name)
+        .map(
+          (t) =>
+            `<button class="tool" role="menuitemradio" data-pick="${name}:${t.id}" aria-checked="${active === t.id}"><span class="g" aria-hidden="true">${t.g}</span>${t.label}</button>`,
+        )
+        .join("")}</div>`
+    : "";
+const BARS = {
+  now: {
+    title: "현행 — 열셋이 한 줄",
+    html: () => [...HEAD, ...LINE, ...SHAPE, ...TAIL].map((t) => toolButton(t)).join("") + REST,
+    body: "<p>지금 제품 그대로입니다. 도구 열셋이 이름과 함께 늘어서 1516 화면에서도 두 줄, 1280 화면에서는 세 줄로 꺾여 그림 칸 높이를 먹습니다.</p>",
+  },
+  a: {
+    title: "A — 마지막에 쓴 것이 겉에(ppt 식 나눈 단추)",
+    html: () =>
+      HEAD.map((t) => toolButton(t)).join("") +
+      ["선", "도형"]
+        .map((name) => {
+          const on = listOf(name).some((t) => t.id === active);
+          return `<span class="menu-host"><span class="split" data-on="${on}">${toolButton(face[name])}<button class="tool arrow" data-open="${name}" aria-haspopup="menu" aria-expanded="${opened === name}" aria-label="${name} 도구 고르기">▾</button></span>${menuOf(name)}</span>`;
+        })
+        .join("") +
+      TAIL.map((t) => toolButton(t)).join("") +
+      REST,
+    body:
+      "<p>무리 단추 하나가 <b>둘로 나뉩니다</b> — 왼쪽(겉)을 누르면 <b>마지막에 쓴 도구</b>로 바로 그리고, 오른쪽 ▾ 를 누르면 무리 안의 도구를 고릅니다. 고른 도구가 겉에 남습니다. ppt 의 도형 고르기와 같은 짜임입니다. ▾ 를 눌러 보십시오.</p>" +
+      "<ul><li><b>선분을 연달아</b> 그리실 때 지금처럼 한 번 누르면 됩니다.</li><li>켜진 도구가 겉 글자·눌린 모양으로 보입니다(원을 골랐으면 «○ 원»이 눌림).</li><li>키보드: 겉은 여느 단추(Tab·Enter), ▾ 는 메뉴 단추(Enter·Space·↓ 로 열고 ↑↓ 로 옮겨 Enter, Esc 로 닫기).</li><li>무리 안의 다른 도구는 ▾ 를 한 번 더 눌러야 보입니다.</li></ul>",
+  },
+  b: {
+    title: "B — 누르면 펼침 목록",
+    html: () =>
+      HEAD.map((t) => toolButton(t)).join("") +
+      ["선", "도형"]
+        .map((name) => {
+          const on = listOf(name).find((t) => t.id === active);
+          return `<span class="menu-host"><button class="tool" data-open="${name}" aria-haspopup="menu" aria-expanded="${opened === name}" aria-pressed="${!!on}"><span class="g" aria-hidden="true">${(on ?? listOf(name)[0]).g}</span>${on ? on.label : name} ▾</button>${menuOf(name)}</span>`;
+        })
+        .join("") +
+      TAIL.map((t) => toolButton(t)).join("") +
+      REST,
+    body:
+      "<p>무리 단추를 누르면 목록이 펼쳐지고 거기서 도구를 고릅니다. 켜진 도구가 있으면 단추 글자가 그 도구(«╱ 선분 ▾»)로 바뀝니다.</p>" +
+      "<ul><li>가장 단순하지만 <b>다른 도구를 쓴 뒤 선분으로 돌아올 때마다 펼쳐 골라야</b> 해 지금보다 한 번씩 더 누릅니다.</li><li>키보드: 메뉴 단추(Enter·Space·↓ 로 열고 ↑↓·Enter, Esc 로 닫기).</li></ul>",
+  },
+  c: {
+    title: "C — 무리 칸 · 그림 단추",
+    html: () =>
+      HEAD.map((t) => toolButton(t)).join("") +
+      `<span class="box"><span class="cap">선</span>${LINE.map(iconButton).join("")}</span>` +
+      `<span class="box"><span class="cap">도형</span>${SHAPE.map(iconButton).join("")}</span>` +
+      TAIL.map((t) => toolButton(t)).join("") +
+      REST,
+    body:
+      "<p>숨기지 않고 <b>무리마다 칸</b>으로 둘러 이름(«선»·«도형»)을 달고, 칸 안 도구는 <b>그림만</b> 둡니다(마우스를 올리면 이름). 모두 한 번에 보이고 한 번에 눌립니다.</p>" +
+      "<ul><li>선분을 연달아 그려도 지금처럼 한 번.</li><li>켜진 도구는 그 그림 단추가 눌린 모양.</li><li>키보드: 지금처럼 Tab 으로 하나씩(단추마다 이름이 붙어 있다).</li><li>그림만 보고 고르는 데 익숙해지셔야 합니다(○ 원 · ⬭ 타원처럼 닮은 것).</li></ul>",
+  },
+};
+const barHost = document.getElementById("bar-host");
+function drawBar() {
+  const v = BARS[barKey];
+  barHost.innerHTML = `<div class="bar" style="width:${barWidth}px">${v.html()}</div>`;
+  const bar = barHost.firstElementChild;
+  document.getElementById("bar-note").innerHTML = `<h2>${v.title}</h2>${v.body}`;
+  // 펼친 목록은 재지 않는다(떠 있다) — 줄 높이만. 현행도 같은 모형으로 옆에서 재어 견준다.
+  const measureAt = (html) => {
+    const probe = document.createElement("div");
+    probe.className = "bar";
+    probe.style.cssText = "position:absolute;visibility:hidden;left:-9999px";
+    probe.innerHTML = html;
+    document.body.append(probe);
+    const heights = [784, 556].map((w) => {
+      probe.style.width = `${w}px`;
+      return Math.round(probe.getBoundingClientRect().height);
+    });
+    probe.remove();
+    return heights;
+  };
+  const opened0 = opened;
+  opened = null;
+  const [h1516, h1280] = measureAt(v.html());
+  const [n1516, n1280] = measureAt(BARS.now.html());
+  opened = opened0;
+  document.getElementById("bar-measure").innerHTML =
+    `<span class="measure" data-heights="${h1516},${h1280}"><b>도구 줄 높이</b> 1516 화면 ${h1516}px · 1280 화면 ${h1280}px</span>` +
+    `<span>같은 모형의 현행 ${n1516}px · ${n1280}px — 줄이 줄면 그만큼 그림 칸이 높아진다(제품 실측 현행 93px · 125px)</span>`;
+}
+barHost.addEventListener("click", (event) => {
+  const pick = event.target.closest("[data-pick]");
+  if (pick) {
+    const [name, id] = pick.dataset.pick.split(":");
+    face[name] = listOf(name).find((t) => t.id === id);
+    active = id;
+    opened = null;
+    return drawBar();
+  }
+  const opener = event.target.closest("[data-open]");
+  if (opener) {
+    opened = opened === opener.dataset.open ? null : opener.dataset.open;
+    return drawBar();
+  }
+  const t = event.target.closest("[data-tool]");
+  if (t) {
+    active = t.dataset.tool;
+    opened = null;
+    drawBar();
+  }
+});
+document.querySelectorAll(".ttab").forEach((tab) =>
+  tab.addEventListener("click", () => {
+    document.querySelectorAll(".ttab").forEach((t) => t.setAttribute("aria-selected", String(t === tab)));
+    barKey = tab.dataset.bar;
+    opened = null;
+    drawBar();
+  }),
+);
+document.querySelectorAll("[data-width]").forEach((button) =>
+  button.addEventListener("click", () => {
+    document.querySelectorAll("[data-width]").forEach((b) => b.setAttribute("aria-pressed", String(b === button)));
+    barWidth = Number(button.dataset.width);
+    drawBar();
+  }),
+);
+drawBar();
 </script>
