@@ -25,7 +25,7 @@ export interface StudioCartRemoval {
 
 /**
  * - `picked` 시험지에 이 판 그대로 있다 — «담음»
- * - `stale` 시험지에 있는데 그 뒤에 고쳤다 — «담음 · 고친 내용 반영 전»
+ * - `stale` 시험지에 있는데 그 뒤에 고쳤다 — «반영 전»(긴 뜻 «담음 · 고친 내용 반영 전»)
  * - `removed` 이 시험지에서 뺐다 — «뺌». 한꺼번에 담기가 건너뛴다(원장님 확정 «안 넣는다»)
  * - `pending` 아직 안 담았다
  */
@@ -46,15 +46,47 @@ export function studioCartState(
     : "pending";
 }
 
-/** 카드 표시·목록 줄·② 목록 배지가 같은 글자를 쓴다(모든 화면 일치). */
+/**
+ * 카드 표시·② 목록 배지가 같은 글자를 쓴다(모든 화면 일치).
+ * «반영 전»은 줄인 글자다 — «담음 · 고친 내용 반영 전»이 길어 카드 바닥의 «반영» 단추를 둘째 줄로
+ * 밀었다(원장님 2026-09-21 확정, 트랙 47). 긴 뜻은 `studioCartMeaning` 이 읽는 이름·마우스 올림에 싣는다.
+ */
 export function studioCartLabel(state: StudioCartState) {
   return state === "picked"
     ? "담음"
     : state === "stale"
-      ? "담음 · 고친 내용 반영 전"
+      ? "반영 전"
       : state === "removed"
         ? "뺌"
         : null;
+}
+
+/** 표시의 긴 뜻 — 읽는 이름·마우스 올림. 목록 줄의 작은 글자도 이 뜻을 풀어 쓴다. */
+export function studioCartMeaning(state: StudioCartState) {
+  return state === "stale"
+    ? "담음 · 고친 내용 반영 전"
+    : studioCartLabel(state);
+}
+
+/**
+ * 바닥 «담기» 단추 글자. 담을 것이 없을 때 두 경우를 가른다(원장님 2026-09-21 확정, 트랙 47).
+ * - 이 원본 문항이 다 시험지에 있다(고친 뒤 반영 전 포함) — «모두 담았습니다»
+ * - 이 원본에 뺀 것이 남았다 — «담을 문항 없음». 뺀 것은 한꺼번에 담기가 일부러 건너뛰니 «모두»가 틀린 말이다.
+ *   뺀 것은 «담은 문항» 목록의 «다시 담기»로만 돌아온다.
+ */
+export function studioCartAddLabel(
+  crops: StudioCrop[],
+  picked: StudioProblem[],
+  removed: StudioCartRemoval[],
+) {
+  const pending = studioCartPending(crops, picked, removed).length;
+  if (pending) return `${pending}문항 담기`;
+  if (!crops.length) return "시험지에 담기";
+  return crops.some(
+    (crop) => studioCartState(crop, picked, removed) === "removed",
+  )
+    ? "담을 문항 없음"
+    : "모두 담았습니다";
 }
 
 /**

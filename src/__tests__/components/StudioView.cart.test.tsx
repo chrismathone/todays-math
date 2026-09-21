@@ -243,14 +243,23 @@ const footer = () =>
   screen.getByRole("contentinfo", { name: "문제 제작 주요 작업" });
 const addButton = () =>
   within(footer()).getByRole("button", {
-    name: /문항 담기|모두 담았습니다|시험지에 담기/,
+    name: /문항 담기|모두 담았습니다|담을 문항 없음|시험지에 담기/,
   });
 const cartToggle = () =>
   within(footer()).getByRole("button", { name: /^담은 문항/ });
 const card = (n: number) =>
   screen.getByRole("article", { name: `문제 ${n} 인식 결과` });
-const chip = (n: number) =>
-  card(n).querySelector("[data-studio-cart-chip]")?.textContent ?? null;
+const chipOf = (n: number) =>
+  card(n).querySelector<HTMLElement>("[data-studio-cart-chip]");
+/** 표시의 **보이는** 글자 — 줄인 글자는 `aria-hidden` 쪽이 보이고 긴 뜻은 숨은 글자로 따로 있다. */
+const chip = (n: number) => {
+  const element = chipOf(n);
+  if (!element) return null;
+  return (
+    element.querySelector('[aria-hidden="true"]')?.textContent ??
+    element.textContent
+  );
+};
 const worksheet = () =>
   JSON.parse(screen.getByLabelText("시험지 담은 문제").textContent!) as {
     id: string;
@@ -258,10 +267,12 @@ const worksheet = () =>
     reviewed: boolean;
     mode?: string;
   }[];
-const tabBadge = () =>
-  within(screen.getByRole("navigation", { name: "제작 단계 이동" }))
-    .getByRole("button", { name: /시험지 구성/ })
-    .querySelector("b")?.textContent;
+const stepTab = (name: RegExp) =>
+  within(screen.getByRole("navigation", { name: "제작 단계 이동" })).getByRole(
+    "button",
+    { name },
+  );
+const tabBadge = () => stepTab(/시험지 구성/).querySelector("b")?.textContent;
 const panel = () => screen.getByRole("region", { name: "담은 문항 목록" });
 
 describe("작업실 «담음»은 시험지 목록 하나에서 나온다", () => {
@@ -317,8 +328,10 @@ describe("작업실 «담음»은 시험지 목록 하나에서 나온다", () =
     fireEvent.click(screen.getByRole("button", { name: "④ 2번 문제 빼기" }));
     expect(worksheet().map((row) => row.id)).toEqual(["a", "c"]);
     expect([chip(1), chip(2), chip(3)]).toEqual(["담음", "뺌", "담음"]);
-    // 뺀 것은 한꺼번에 담기가 건너뛴다 — 원장님 확정 «안 넣는다».
-    expect(addButton()).toHaveTextContent("모두 담았습니다");
+    // 뺀 것은 한꺼번에 담기가 건너뛴다 — 원장님 확정 «안 넣는다». 일부러 건너뛴 것이 있으니
+    // «모두 담았습니다»가 아니라 «담을 문항 없음»(원장님 2026-09-21 확정, 트랙 47).
+    expect(addButton()).toHaveTextContent("담을 문항 없음");
+    expect(addButton()).toBeDisabled();
     expect(cartToggle()).toHaveTextContent(/담은 문항\s*2/);
     fireEvent.click(cartToggle());
     const out = within(panel()).getAllByRole("listitem")[1];
@@ -329,6 +342,8 @@ describe("작업실 «담음»은 시험지 목록 하나에서 나온다", () =
     );
     expect(worksheet().map((row) => row.id)).toEqual(["a", "b", "c"]);
     expect(chip(2)).toBe("담음");
+    // 되돌리면 뺀 것이 없다 — 다시 «모두 담았습니다».
+    expect(addButton()).toHaveTextContent("모두 담았습니다");
     // 초점은 같은 줄의 × 로 — 키보드로 바로 다시 뺄 수 있다.
     expect(document.activeElement).toBe(
       within(panel()).getByRole("button", { name: "문제 02 빼기" }),
@@ -345,6 +360,7 @@ describe("작업실 «담음»은 시험지 목록 하나에서 나온다", () =
     );
     expect(worksheet().map((row) => row.id)).toEqual(["b", "c"]);
     expect(chip(1)).toBe("뺌");
+    expect(addButton()).toHaveTextContent("담을 문항 없음");
     // 뺀 줄은 흐리게 남고 초점이 «다시 담기» 로.
     expect(document.activeElement).toBe(
       within(panel()).getByRole("button", { name: "문제 01 다시 담기" }),
@@ -368,18 +384,38 @@ describe("작업실 «담음»은 시험지 목록 하나에서 나온다", () =
     expect(worksheet().map((row) => row.id)).toEqual(["a", "b"]);
   });
 
-  it("담은 뒤 고치면 «담음 · 고친 내용 반영 전» — «반영»이 같은 자리에 새 판을 넣는다", async () => {
+  it("담은 뒤 고치면 «반영 전» — 긴 뜻은 읽는 이름·마우스 올림에, «반영»이 같은 자리에 새 판을 넣는다", async () => {
     await openReview([crop("a"), crop("b")]);
     fireEvent.click(addButton());
     fireEvent.change(
       within(card(1)).getByRole("combobox", { name: "문제 1 출력 방식" }),
       { target: { value: "image" } },
     );
-    expect(chip(1)).toBe("담음 · 고친 내용 반영 전");
-    // 고친 것은 한꺼번에 담기의 일이 아니다.
+    // 원장님 2026-09-21 확정(트랙 47) — 짧게 줄여 «반영» 단추와 한 줄에.
+    expect(chip(1)).toBe("반영 전");
+    expect(chipOf(1)).toHaveAttribute("title", "담음 · 고친 내용 반영 전");
+    // 보이는 줄인 글자는 읽지 않고, 긴 뜻을 읽는다.
+    expect(
+      within(chipOf(1)!).getByText("반영 전").getAttribute("aria-hidden"),
+    ).toBe("true");
+    expect(
+      within(chipOf(1)!).getByText("담음 · 고친 내용 반영 전"),
+    ).not.toHaveAttribute("aria-hidden");
+    // ② 자른 문제 목록 배지도 같은 표시 — 목록 단추의 이름에 긴 뜻이 실린다(목록은 ② 단계에서 보인다).
+    fireEvent.click(stepTab(/잘라내기/));
+    const listItem = within(screen.getByLabelText("자른 문제 목록")).getByRole(
+      "button",
+      { name: /문제 01.*담음 · 고친 내용 반영 전/ },
+    );
+    expect(
+      listItem.querySelector('[data-studio-cart-chip] [aria-hidden="true"]'),
+    ).toHaveTextContent("반영 전");
+    fireEvent.click(stepTab(/OCR · 디지털화/));
+    // 고친 것은 한꺼번에 담기의 일이 아니다 — 시험지에는 있으니 «모두 담았습니다».
     expect(addButton()).toHaveTextContent("모두 담았습니다");
     expect(worksheet()[0]).toMatchObject({ id: "a", mode: "text" });
     fireEvent.click(cartToggle());
+    // 목록 줄의 작은 글자는 400px 칸에 넉넉해 풀어 쓴 그대로 둔다.
     expect(within(panel()).getAllByRole("listitem")[0]).toHaveTextContent(
       "고친 내용 반영 전",
     );

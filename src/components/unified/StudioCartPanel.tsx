@@ -5,6 +5,7 @@ import type { StudioCrop } from "./studioHelpers";
 import type { StudioProblem } from "./types";
 import {
   studioCartLabel,
+  studioCartMeaning,
   studioCartRows,
   studioCartState,
   type StudioCartRemoval,
@@ -14,14 +15,30 @@ import { worksheetRowLabel } from "./worksheetOrder";
 import studio from "./StudioView.module.css";
 import s from "./StudioCart.module.css";
 
-/** 담음 표시 — 카드 바닥 줄 끝·② 자른 문제 목록이 같은 글자·같은 모양을 쓴다. 읽기 전용. */
+/**
+ * 담음 표시 — 카드 바닥 줄 끝·② 자른 문제 목록이 같은 글자·같은 모양을 쓴다. 읽기 전용.
+ * 줄인 글자(«반영 전»)는 보이기만 하고, 긴 뜻(«담음 · 고친 내용 반영 전»)은 숨은 글자로 읽고
+ * 마우스를 올리면 `title` 로 보인다(원장님 2026-09-21 확정, 트랙 47). 줄이지 않은 글자는 그대로 읽는다.
+ */
 export function StudioCartChip({ state }: { state: StudioCartState }) {
   const label = studioCartLabel(state);
-  return label ? (
+  const meaning = studioCartMeaning(state);
+  if (!label) return null;
+  return meaning === label ? (
     <span className={s.chip} data-state={state} data-studio-cart-chip>
       {label}
     </span>
-  ) : null;
+  ) : (
+    <span
+      className={s.chip}
+      data-state={state}
+      data-studio-cart-chip
+      title={meaning ?? undefined}
+    >
+      <span aria-hidden="true">{label}</span>
+      <span className={s.srOnly}>{meaning}</span>
+    </span>
+  );
 }
 
 /**
