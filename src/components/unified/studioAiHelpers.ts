@@ -55,6 +55,25 @@ export function studioImageCanvas(
   });
 }
 
+/**
+ * 쪽 회전은 이 함수 하나다 — 90°·270° 면 폭과 높이를 바꾼다. 화면 렌더·AI 쪽 렌더·자동 회전 재인식이
+ * 같이 쓴다(트랙 39: 재인식 쪽만 폭·높이를 안 바꿔 가로 쪽을 90° 돌리면 잘렸다). 0° 면 원본을 돌려준다.
+ */
+export function studioRotateCanvas(canvas: HTMLCanvasElement, angle: number) {
+  const rotation = ((angle % 360) + 360) % 360;
+  if (!rotation) return canvas;
+  const rotated = document.createElement("canvas");
+  const sideways = rotation === 90 || rotation === 270;
+  rotated.width = sideways ? canvas.height : canvas.width;
+  rotated.height = sideways ? canvas.width : canvas.height;
+  const ctx = rotated.getContext("2d");
+  if (!ctx) throw new Error("페이지를 회전할 수 없습니다.");
+  ctx.translate(rotated.width / 2, rotated.height / 2);
+  ctx.rotate((rotation * Math.PI) / 180);
+  ctx.drawImage(canvas, -canvas.width / 2, -canvas.height / 2);
+  return rotated;
+}
+
 /** Keep original pixels; the normalized model box is only a selection coordinate. */
 export function studioCropImage(canvas: HTMLCanvasElement, rect: StudioRect) {
   const pixels = studioPixelRect(rect, canvas.width, canvas.height);

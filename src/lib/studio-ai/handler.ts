@@ -6,6 +6,7 @@ import { DevAiRequestSchema } from "@/lib/dev-ai/tasks";
 import { getModelApiStatus, StudioApiError } from "./api";
 import { executeStudioTask } from "./execute";
 import { readStudioAiBody, STUDIO_HEADERS as headers } from "./http";
+import { STUDIO_AI_PLATFORM_BODY_LIMIT, STUDIO_AI_TOO_LARGE } from "./limits";
 
 // Admission is bounded per server process; no unbounded waiting list or retry spend.
 const activeUsers = new Map<string, number>();
@@ -21,6 +22,15 @@ export async function studioApiPost(request: Request, owner: string) {
     return Response.json(
       { error: "JSON 요청이 필요합니다." },
       { status: 415, headers },
+    );
+  // 운영은 이 문턱을 넘는 본문을 플랫폼이 먼저 자른다(평문 413) — 로컬도 같은 자리에서 막되 읽을 수 있는 문구로
+  if (
+    Number(request.headers.get("content-length")) >
+    STUDIO_AI_PLATFORM_BODY_LIMIT
+  )
+    return Response.json(
+      { error: STUDIO_AI_TOO_LARGE },
+      { status: 413, headers },
     );
   if (active >= 8 || (activeUsers.get(owner) ?? 0) >= 2)
     return Response.json(

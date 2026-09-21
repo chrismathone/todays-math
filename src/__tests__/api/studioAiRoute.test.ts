@@ -24,6 +24,10 @@ import { auth } from "@/lib/auth";
 import { runModelApi } from "@/lib/studio-ai/api";
 import { runSubscriptionCli, getDevAiProviderStatuses } from "@/lib/dev-ai/cli";
 import { MAX_AI_BODY_BYTES } from "@/lib/dev-ai/tasks";
+import {
+  STUDIO_AI_PLATFORM_BODY_LIMIT,
+  STUDIO_AI_TOO_LARGE,
+} from "@/lib/studio-ai/limits";
 import { readStudioAiBody } from "@/lib/studio-ai/http";
 import { executeStudioTask } from "@/lib/studio-ai/execute";
 import catalog from "../../../scripts/figure/engine-catalog.json";
@@ -104,13 +108,14 @@ describe("authenticated production AI execution", () => {
     expect(
       (await POST(request({ ...input, apiKey: "client-key" }))).status,
     ).toBe(400);
+    // 16MB 를 넘는 본문은 그 전에 4.5MB 플랫폼 상한에 걸린다(트랙 39) — 413 이다
     expect(
       (
         await POST(
           request(input, { "content-length": String(MAX_AI_BODY_BYTES + 1) }),
         )
       ).status,
-    ).toBe(400);
+    ).toBe(413);
     expect(runModelApi).not.toHaveBeenCalled();
     expect(runSubscriptionCli).not.toHaveBeenCalled();
   });
@@ -249,6 +254,29 @@ describe("authenticated production AI execution", () => {
     );
     abort.abort();
     await expect(stalled).rejects.toThrow();
+  });
+});
+
+// 트랙 39 (2026-09-21) — 운영(Vercel)은 본문이 4.5MB 를 넘으면 우리 코드에 닿기 전에 평문 413 을 낸다.
+// 로컬(next start)은 16MB 까지 받아 그 결함이 안 보였다 — 같은 문턱에서 같은 413 을 내되 사람 문구 JSON 으로.
+describe("request body over the platform limit", () => {
+  it("answers 413 with a readable reason before admission or inference", async () => {
+    const response = await POST(
+      request(input, {
+        "content-length": String(STUDIO_AI_PLATFORM_BODY_LIMIT + 1),
+      }),
+    );
+    expect(response.status).toBe(413);
+    expect(await response.json()).toEqual({ error: STUDIO_AI_TOO_LARGE });
+    expect(runModelApi).not.toHaveBeenCalled();
+  });
+  it("keeps accepting a body at the limit", async () => {
+    const response = await POST(
+      request(input, {
+        "content-length": String(STUDIO_AI_PLATFORM_BODY_LIMIT),
+      }),
+    );
+    expect(response.status).not.toBe(413);
   });
 });
 
