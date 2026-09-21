@@ -68,8 +68,10 @@ const lstrip = (s: string): string => s.replace(/^\s+/u, "");
 // ── 정규식 상수 (content_parser.py 와 동치) ──────────────────────────────
 
 // 박스 머리 마커 제거용(_drop_duplicate_box_fragments).
+// `(?::cols=[1-3])?` — 인식이 원본 박스의 열 배치를 머리에 적는다(`<보기:cols=2>`, 트랙 46). 아래 둘도 같다.
+// 이 표기를 모르면 박스가 안 서고 머리가 발문에 날 글자로 찍힌다.
 const BOX_MARK_LEAD_RE =
-  /^\s*(?:<\s*(?:상자|조건|보기)\s*>|\[\s*(?:조건|보기)\s*\])\s*/;
+  /^\s*(?:<\s*(?:상자|조건|보기)(?::cols=[1-3])?\s*>|\[\s*(?:조건|보기)\s*\])\s*/;
 const MIN_DUP_BOX_KO = 8;
 
 // 박스 동그라미 불릿 통일 (_normalize_box_circles). ∘(합성연산자)·°·라틴 o·키릴 О 제외.
@@ -205,7 +207,7 @@ const PURE_NUM_FULL_RE = /^\d+(?:\.\d+)?$/;
 
 // 박스 머리 마커(_RAW_BOX_MARK_RE) — <보기>에서·중 참조어는 제외.
 const RAW_BOX_MARK_RE =
-  /^\s*(?:<\s*상자\s*>|(?:<\s*(?:조건|보기)\s*>|\[\s*(?:조건|보기)\s*\])(?![가-힣])(?!\s+(?:중에서|에서|중)(?=[\s,.?]|$)))/;
+  /^\s*(?:<\s*상자\s*>|(?:<\s*(?:조건|보기)(?::cols=[1-3])?\s*>|\[\s*(?:조건|보기)\s*\])(?![가-힣])(?!\s+(?:중에서|에서|중)(?=[\s,.?]|$)))/;
 const BARE_ITEM_LABEL_RE =
   /^(?:[ㄱ-ㅎ]\s*\.?|[（(]\s*[가-힣]\s*[)）]|\d+\s*[.)])\s*$/;
 const NEXT_ITEM_START_RE =
@@ -977,7 +979,7 @@ const EMBED_ITEM_LOOKAHEAD =
 const EMBED_BOX_MARK_RE = new RegExp(
   "<\\s*상자\\s*>" +
     EMBED_ITEM_LOOKAHEAD +
-    "|(?:<\\s*(?:조건|보기)\\s*>|\\[\\s*(?:조건|보기)\\s*\\])(?![가-힣])" +
+    "|(?:<\\s*(?:조건|보기)(?::cols=[1-3])?\\s*>|\\[\\s*(?:조건|보기)\\s*\\])(?![가-힣])" +
     EMBED_ITEM_LOOKAHEAD,
 );
 

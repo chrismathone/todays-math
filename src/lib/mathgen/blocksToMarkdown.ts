@@ -19,6 +19,7 @@
  */
 
 import type { ContentBlock, ChoiceGroup, SubQuestion } from "./contracts";
+import { boxHeaderMarkdown, type BoxColumns } from "@/lib/math/boxHeader";
 import {
   hasGeometryContext,
   type NBlock,
@@ -29,12 +30,14 @@ import {
 /** 보기 마커 ①..⑩. */
 const CIRCLED = "①②③④⑤⑥⑦⑧⑨⑩";
 
-/** 박스 라벨 prefix (testchange 네이티브 표기). */
-const BOX_MARKERS = ["<보기>", "<조건>", "<상자>"];
+/**
+ * 박스 라벨 prefix (testchange 네이티브 표기). 인식이 원본 박스의 열 배치를 머리에 적으면
+ * `<보기:cols=2>` 다(트랙 46) — 그 열 수는 인용 상자 머리로 그대로 옮긴다(`boxHeaderMarkdown`).
+ */
+const BOX_MARKER_RE = /^<(보기|조건|상자)(?::cols=([1-3]))?>/;
 
 const isBoxText = (b: ContentBlock): boolean =>
-  b.type === "text" &&
-  BOX_MARKERS.some((m) => b.value.trimStart().startsWith(m));
+  b.type === "text" && BOX_MARKER_RE.test(b.value.trimStart());
 
 /**
  * 모델이 이야기/지문 본문에 raw `> ` (markdown blockquote 마커) 를 붙여 emit 한 경우
@@ -88,12 +91,12 @@ const tableToGfm = (rows: string[][]): string => {
 const boxToBlockquote = (value: string): string => {
   let v = value.trim();
   let kind = ""; // "보기" | "조건" | "상자"
-  for (const m of BOX_MARKERS) {
-    if (v.startsWith(m)) {
-      kind = m.slice(1, -1); // "<보기>" → "보기"
-      v = v.slice(m.length).trim();
-      break;
-    }
+  let cols: BoxColumns | null = null;
+  const marker = BOX_MARKER_RE.exec(v);
+  if (marker) {
+    kind = marker[1]!;
+    cols = marker[2] ? (Number(marker[2]) as BoxColumns) : null;
+    v = v.slice(marker[0].length).trim();
   }
   const items = v
     .split(/\s*(?=•)/)
@@ -110,7 +113,7 @@ const boxToBlockquote = (value: string): string => {
   );
   // 보기·조건 만 라벨 헤더 보존(렌더러가 보기/조건 헤더만 인식). 상자·기타는 헤더 없음.
   if (kind === "보기" || kind === "조건") {
-    return [`> <${kind}>`, ...body].join("\n>\n");
+    return [`> ${boxHeaderMarkdown(kind, cols)}`, ...body].join("\n>\n");
   }
   return body.join("\n>\n");
 };
