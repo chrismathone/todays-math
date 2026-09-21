@@ -17,6 +17,7 @@ import { requestedCallbackUrl } from "@/lib/callbackUrl";
 import { routeAccessFor } from "@/lib/routeAccess";
 import { accountRouteAllowed } from "@/lib/accountRouteAccess";
 import { recordAudit } from "@/lib/audit";
+import { isLabPath } from "@/lib/labPath";
 import {
   anonymousLearnGate,
   studentGateFor,
@@ -36,14 +37,11 @@ function learnGateResponse(gate: LearnGate, url: URL): Response {
 }
 
 /**
- * 수학 랩실 읽기 — `/lab` 과 그 아래의 GET·HEAD. 판정은 **이 함수 하나**다.
- * `startsWith("/lab")` 는 `/label`·`/labx` 까지 열어서 `/lab` 과 그 아래로 좁혔다(proxyLabGate.test.ts).
+ * 수학 랩실 읽기 — `/lab` 과 그 아래의 GET·HEAD.
+ * 경로 판정은 활동 기록기와 같은 `isLabPath` 하나다(src/lib/labPath.ts) — 관문은 읽기 조건만 더한다.
  */
 function isLabRead(method: string, pathname: string): boolean {
-  return (
-    (method === "GET" || method === "HEAD") &&
-    (pathname === "/lab" || pathname.startsWith("/lab/"))
-  );
+  return (method === "GET" || method === "HEAD") && isLabPath(pathname);
 }
 
 export const proxy = auth(async (req) => {
