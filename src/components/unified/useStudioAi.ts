@@ -20,6 +20,7 @@ import {
   studioFiguresEqual,
   studioImageCanvas,
   studioRectsOverlap,
+  studioRotateCanvas,
 } from "./studioAiHelpers";
 
 import { StudioAiQueue } from "./studioAiQueue";
@@ -1203,14 +1204,8 @@ export function useStudioAi({
             if (signal.aborted)
               throw new DOMException("cancelled", "AbortError");
             if (!extraRotation) return { canvas, imageDataUrl };
-            const rotated = document.createElement("canvas");
-            rotated.width = canvas.width;
-            rotated.height = canvas.height;
-            const context = rotated.getContext("2d");
-            if (!context) throw new Error("원본을 회전할 수 없습니다.");
-            context.translate(rotated.width / 2, rotated.height / 2);
-            context.rotate((extraRotation * Math.PI) / 180);
-            context.drawImage(canvas, -canvas.width / 2, -canvas.height / 2);
+            // 폭·높이를 바꾸는 회전은 한 함수로(트랙 39) — 여기만 크기를 그대로 둬 90° 면 잘렸다
+            const rotated = studioRotateCanvas(canvas, extraRotation);
             return {
               canvas: rotated,
               imageDataUrl: rotated.toDataURL("image/png"),

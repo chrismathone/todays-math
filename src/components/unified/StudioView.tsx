@@ -41,7 +41,11 @@ import type {
   RenderTask,
 } from "pdfjs-dist";
 import { useStudioAi, type StudioAiPageTask } from "./useStudioAi";
-import { studioCropImage, studioImageCanvas } from "./studioAiHelpers";
+import {
+  studioCropImage,
+  studioImageCanvas,
+  studioRotateCanvas,
+} from "./studioAiHelpers";
 import type { StudioAiProvider } from "@/lib/dev-ai/contracts";
 import { getStudioEndpoints } from "@/lib/studio-ai/endpoints";
 import type { SchoolLevel, StudioViewProps } from "./types";
@@ -157,7 +161,7 @@ async function renderAiPage(
     context.drawImage(source.image, 0, 0);
   } else throw new Error("원본 파일을 다시 불러와 주세요.");
   check();
-  const result = rotatePageCanvas(
+  const result = studioRotateCanvas(
     canvas,
     (source.pageRotations?.[page] ?? 0) + extraRotation,
   );
@@ -166,21 +170,6 @@ async function renderAiPage(
     imageDataUrl: result.toDataURL("image/png"),
     referenceText,
   };
-}
-
-function rotatePageCanvas(canvas: HTMLCanvasElement, angle: number) {
-  const rotation = ((angle % 360) + 360) % 360;
-  if (!rotation) return canvas;
-  const rotated = document.createElement("canvas");
-  const sideways = rotation === 90 || rotation === 270;
-  rotated.width = sideways ? canvas.height : canvas.width;
-  rotated.height = sideways ? canvas.width : canvas.height;
-  const ctx = rotated.getContext("2d");
-  if (!ctx) throw new Error("페이지를 회전할 수 없습니다.");
-  ctx.translate(rotated.width / 2, rotated.height / 2);
-  ctx.rotate((rotation * Math.PI) / 180);
-  ctx.drawImage(canvas, -canvas.width / 2, -canvas.height / 2);
-  return rotated;
 }
 
 interface RenderedPage {
@@ -725,7 +714,7 @@ export default function StudioView({
           ctx.fillRect(0, 0, canvas.width, canvas.height);
           ctx.drawImage(image, 0, 0);
         }
-        const pageCanvas = rotatePageCanvas(
+        const pageCanvas = studioRotateCanvas(
           canvas,
           currentSource!.pageRotations?.[pageNumber] ?? 0,
         );

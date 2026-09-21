@@ -19,6 +19,13 @@ import {
   type DevAiStatus,
 } from "@/lib/dev-ai/contracts";
 import { aiImageDataUrl } from "./aiImageDataUrl";
+import {
+  AI_IMAGE_BUDGET,
+  aiImageReducedWarning,
+  fitAiImageDataUrl,
+  type AiImageFit,
+} from "./aiImageBudget";
+import { readAiJson } from "./aiResponse";
 import { getStudioEndpoints } from "@/lib/studio-ai/endpoints";
 
 export interface DevAiActivity {
@@ -180,9 +187,10 @@ export function DevAiProvider({
         cache: "no-store",
         signal: controller.signal,
       });
-      if (!response.ok)
+      // 로그인 화면·게이트웨이 오류는 JSON 이 아니다 — 파서 오류 대신 이 문장을 보인다(트랙 39)
+      const next = (await readAiJson(response).catch(() => {
         throw new Error("개발용 AI 연결 상태를 확인하지 못했습니다.");
-      const next: DevAiStatus = await response.json();
+      })) as unknown as DevAiStatus;
       if (controller.signal.aborted) return;
       setStatusError("");
       setStatus(next);
@@ -295,30 +303,56 @@ export function DevAiProvider({
       try {
         // 되살린 작업의 그림은 blob: 이다 — 서버는 data: 만 받는다(aiImageDataUrl.ts). blob: 일 때만 기다린다 —
         // 늘 await 하면 모든 요청이 한 박자 늦게 나가 «요청이 곧바로 나간다»는 대기열 시험 8건이 깨졌다.
-        const imageDataUrl = request.imageDataUrl?.startsWith("blob:")
+        const original = request.imageDataUrl?.startsWith("blob:")
           ? await aiImageDataUrl(request.imageDataUrl, controller.signal)
           : request.imageDataUrl;
-        const response = await fetch(endpoint(), {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          // 모델은 구독 CLI 에서 고른 때만 — 비우면 서버가 원장님 CLI 설정을 쓴다
-          body: JSON.stringify({
-            ...request,
-            imageDataUrl,
-            provider,
-            ...(model ? { model } : {}),
-          }),
-          signal: controller.signal,
-        });
-        const body = await response.json();
-        if (!response.ok)
-          throw new Error(
-            typeof body.error === "string"
-              ? body.error
-              : "AI 처리에 실패했습니다.",
+        // 운영은 본문 4.5MB 를 넘으면 플랫폼이 413 을 낸다 — 예산을 넘는 그림만 다시 인코딩한다(aiImageBudget.ts).
+        // 예산 안이면 기다리지 않는다 — 위 blob: 과 같은 까닭(요청이 곧바로 나가야 한다).
+        let image: AiImageFit | undefined =
+          original === undefined
+            ? undefined
+            : original.length <= AI_IMAGE_BUDGET
+              ? { dataUrl: original }
+              : await fitAiImageDataUrl(original, undefined, controller.signal);
+        const send = () =>
+          fetch(endpoint(), {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            // 모델은 구독 CLI 에서 고른 때만 — 비우면 서버가 원장님 CLI 설정을 쓴다
+            body: JSON.stringify({
+              ...request,
+              imageDataUrl: image?.dataUrl,
+              provider,
+              ...(model ? { model } : {}),
+            }),
+            signal: controller.signal,
+          });
+        let response = await send();
+        if (response.status === 413 && original !== undefined && image) {
+          // 예산 안인데도 잘렸다 — 실제 천장이 더 낮다. 절반 예산으로 한 번만 더 보낸다.
+          setActivities((previous) => ({
+            ...previous,
+            activities: previous.activities.map((item) =>
+              item.id === id
+                ? { ...item, message: "그림을 줄여 다시 보내는 중" }
+                : item,
+            ),
+          }));
+          image = await fitAiImageDataUrl(
+            original,
+            Math.floor(image.dataUrl.length / 2),
+            controller.signal,
           );
+          response = await send();
+        }
+        const body = (await readAiJson(response)) as unknown as DevAiResponse;
         if (controller.signal.aborted)
           throw new DOMException("작업 취소", "AbortError");
+        if (image?.reducedTo && Array.isArray(body.result?.warnings))
+          body.result.warnings = [
+            ...body.result.warnings,
+            aiImageReducedWarning(image.reducedTo),
+          ];
         settle({
           ...base,
           state: "complete",
@@ -352,7 +386,7 @@ export function DevAiProvider({
               ),
             },
         );
-        return body as DevAiResponse;
+        return body;
       } catch (error) {
         const cancelled = controller.signal.aborted;
         settle({
