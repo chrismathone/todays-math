@@ -1,7 +1,10 @@
 /* eslint-disable @next/next/no-img-element -- source-local figure resources */
 import { Fragment, type ReactNode } from "react";
 import { MarkdownRenderer } from "@/components/math/MarkdownRenderer";
-import { blocksToMarkdown } from "@/lib/mathgen/blocksToMarkdown";
+import {
+  blocksToMarkdown,
+  tableCellMath,
+} from "@/lib/mathgen/blocksToMarkdown";
 import type { ContentBlock, ChoiceGroup } from "@/lib/mathgen/contracts";
 import { parseProblemContent } from "@/lib/problem/parseProblemContent";
 import { layoutQuotedBoxes } from "@/lib/math/boxLayout";
@@ -124,11 +127,8 @@ export default function NativeProblem({
                         textAlign: "center",
                       }}
                     >
-                      {markdown(
-                        /[\\^_{}]/.test(cell) && !cell.includes("$")
-                          ? `$${cell}$`
-                          : cell,
-                      )}
+                      {/* 칸을 수식으로 볼지는 검수 카드·편집기와 같은 규칙 하나(`tableCellMath`) */}
+                      {markdown(tableCellMath(cell))}
                     </td>
                   ))}
                 </tr>
