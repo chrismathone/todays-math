@@ -13,6 +13,7 @@ import {
   type FigureEditCommand,
   type FigureEditFigure,
 } from "./figure-edit-contract";
+import { explicitElementNumbers } from "./figure-edit-prompt";
 
 /**
  * «요청대로 고치기»의 빠른 길 — Jev(선택지에 확률을 매기는 모델)에게 **어느 명령·어느 점·어느 요소**만 묻고,
@@ -57,6 +58,7 @@ export const FIGURE_EDIT_OP_LABELS: Record<FigureEditOp, string> = {
   resize: "요소의 크기를 바꾼다",
   rotate: "요소를 90° 돌린다",
   mirror: "요소를 대칭으로 뒤집는다",
+  order: "요소를 맨 앞·앞·뒤·맨 뒤로 보내 겹쳐 그려지는 차례를 바꾼다",
   fillRegion: "닫힌 칸을 색칠한다",
   addPerpendicular: "한 점에서 직선에 수선을 내린다",
   addMidpoint: "선분의 중점을 찍는다",
@@ -116,7 +118,8 @@ export function contractOpAcceptsDashed(op: FigureEditOp): boolean {
 }
 
 /**
- * 빠른 길에 넣는 명령 — **고정 물음(명령·요소·점 셋·방향·축·개수·점선)만으로 인자가 다 차는 것**뿐이다.
+ * 빠른 길에 넣는 명령 — **고정 물음(명령·요소·점 셋·방향·축·차례·개수·점선)만으로 인자가 다 차는 것**뿐이다.
+ * 순서(`order`)는 요청 글이 요소 번호를 드러내 말했을 때만 맡는다(«읽는 차례», 아래 조립기).
  * 좌표(move·point·addText·addPoint)나 글자(text·addLabel·addDimension)나 값(style·resize)이 필요한 명령,
  * 점이 넷 이상인 명령(addIntersection·addCircleIntersection)과 원 안팎을 가려야 하는 addTangent 는 뺐다 —
  * 그런 요청은 지금 경로가 그대로 맡는다.
@@ -127,6 +130,7 @@ export const JEV_FAST_PATH_OPS: readonly FigureEditOp[] = [
   "flip",
   "rotate",
   "mirror",
+  "order",
   "addLine",
   "addMidpoint",
   "addPerpendicularBisector",
@@ -201,6 +205,15 @@ export function buildFigureEditQuestions(
       "돌리라는 방향. 돌리라는 요청이 아니면 해당 없음.",
       withNone({ cw: "시계 방향", ccw: "반시계 방향" }),
     ),
+    layer: choice(
+      "겹쳐 그려지는 차례를 어떻게 바꾸라는가. 차례를 바꾸라는 요청이 아니면 해당 없음.",
+      withNone({
+        front: "맨 앞으로(모든 것 위로)",
+        forward: "앞으로(한 칸 위로)",
+        backward: "뒤로(한 칸 아래로)",
+        back: "맨 뒤로(모든 것 아래로)",
+      }),
+    ),
     axis: choice(
       "대칭으로 뒤집을 축. 뒤집으라는 요청이 아니면 해당 없음.",
       withNone({
@@ -266,6 +279,8 @@ const pick = (answers: Picks, id: string) => {
 export function assembleFigureEditCommand(
   answers: Picks,
   figure: FigureEditFigure,
+  /** 요청 글 — 순서 명령만 본다(요소 번호를 드러내 말했나). 없으면 순서 명령은 맡지 않는다. */
+  requestText = "",
 ): FigureEditCommand | null {
   const op = answers.op;
   if (!op || op.confidence < JEV_MIN_CONFIDENCE) return null;
@@ -323,6 +338,19 @@ export function assembleFigureEditCommand(
           : null;
       case "mirror":
         return targets && axis ? { op: "mirror", targets, axis } : null;
+      case "order": {
+        // 원장님 2026-09-21 «요소를 입력하면 더 정확하게». 요소 물음은 지시문의 «읽는 차례»(맨 숫자는 그려진 글자,
+        // «요소 N»·«N번 …»만 요소 번호)를 모른다 — 요청 글이 번호를 **하나** 드러내 말했고 고른 번호가 그것일 때만
+        // 맡는다. 판정은 지시문의 보기와 같은 원천(`explicitElementNumbers`). 아니면 지금 경로가 규칙대로 읽는다.
+        const to = pick(answers, "layer");
+        const said = explicitElementNumbers(requestText);
+        return target !== undefined &&
+          to &&
+          said.length === 1 &&
+          said[0] === target
+          ? { op: "order", targets: [target], to }
+          : null;
+      }
       case "addLine":
       case "addMidpoint":
       case "addPerpendicularBisector":
@@ -454,7 +482,7 @@ export async function tryJevFigureEdit(
     log(`떨어짐 (응답 없음·시한 초과) ${elapsed()}`);
     return null;
   }
-  const command = assembleFigureEditCommand(answers, figure);
+  const command = assembleFigureEditCommand(answers, figure, content);
   const op = answers.op;
   if (!command) {
     const scope = answers.scope;

@@ -443,3 +443,27 @@ describe("번호 고정 — 맨 뒤로 보내도 번호표·요소 목록·AI �
     );
   });
 });
+
+/**
+ * AI 명령으로 순서 — 원장님 2026-09-21 «Ai 명령으로 순서 조절도 가능하게해. 요소를 입력하면 더 정확하게».
+ * 편집기 단추와 같은 함수를 타고, «한 칸»도 단추처럼 **화면 상자**로 겹치는 것만 센다(배선을 여기서 잠근다).
+ */
+describe("AI 명령 «요소 5를 뒤로» — 단추와 같은 한 칸", () => {
+  it("안 겹치는 점은 건너뛰고 y축 밑으로 — 결과 줄은 번호와 이름", async () => {
+    const onEdit = vi.fn(async () => ({
+      edits: [{ op: "order" as const, targets: [5], to: "backward" as const }],
+    }));
+    open(figure, onEdit);
+    fireEvent.change(
+      screen.getByRole("textbox", { name: "도형 AI 수정 요청" }),
+      { target: { value: "요소 5를 뒤로" } },
+    );
+    fireEvent.click(screen.getByRole("button", { name: "요청대로 고치기" }));
+    await waitFor(() =>
+      expect(painted()).toEqual(["포물선", "x축", "삼각형", "y축", "점"]),
+    );
+    expect(
+      screen.getByRole("status", { name: "요청대로 고친 결과" }),
+    ).toHaveTextContent("5번 다각형 뒤로");
+  });
+});

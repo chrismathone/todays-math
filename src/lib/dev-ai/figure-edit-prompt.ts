@@ -6,6 +6,30 @@ const dataBlock = (value: unknown) =>
   JSON.stringify(value).replace(/</g, "\\u003c").replace(/>/g, "\\u003e");
 
 /**
+ * «읽는 차례» — 요청 글이 요소 번호를 **드러내 말한** 꼴. 지시문 규칙 줄의 보기가 이것이고(아래 지시문이 그대로 싣는다),
+ * 빠른 길(figure-edit-jev.ts)이 순서 명령을 맡는 문지기 `explicitElementNumbers` 도 이 보기를 읽는다 — 규칙이 두 벌이
+ * 되지 않게 한 자리에 둔다(원장님 2026-09-21 «요소를 입력하면 더 정확하게»). 맨 숫자(«15를 지워줘»)는 그려진 글자다.
+ */
+export const ELEMENT_NUMBER_EXAMPLES = [
+  "요소 15",
+  "15번 요소",
+  "15번 선",
+] as const;
+
+/**
+ * 요청 글이 드러내 말한 요소 번호들(글 차례, 겹치면 한 번) — «요소 N» · «N번 …». 맨 숫자는 세지 않는다.
+ * 보기(`ELEMENT_NUMBER_EXAMPLES`)가 모두 15로 읽히는지 시험이 대조한다.
+ */
+export function explicitElementNumbers(text: string): number[] {
+  const found: number[] = [];
+  for (const match of text.matchAll(/요소\s*(\d+)(?!\d)|(?<!\d)(\d+)\s*번/g)) {
+    const n = Number(match[1] ?? match[2]);
+    if (n > 0 && !found.includes(n)) found.push(n);
+  }
+  return found;
+}
+
+/**
  * «요청대로 고치기» 지시문 — 원장님 2026-09-19 «처음부터 그리는 건 별로 같은데?». 다시 그리기(figure-prompt.ts)와 달리
  * 엔진 계약을 싣지 않고, 지금 그림의 번호 붙은 요소 목록과 요청 글만 준다. 출력은 수정 명령 목록(figure-edit-contract.ts).
  */
@@ -21,7 +45,7 @@ Apply ONLY what edit-request-data asks. Every element that no command names stay
 How to read what the request names — the element number n and the group role are handles you use internally, NOT what the user is talking about:
 - A bare number in the request ("15를 지워줘") means the printed TEXT whose content is 15 (a length, an angle size, a choice marker). It does NOT mean element n = 15.
 - A bare letter ("A를 옮겨줘") means the POINT named A in names, or the printed label "A". It does NOT mean the group named A.
-- Use the element number only when the request says so explicitly: 요소 15 · 15번 요소 · 15번 선.
+- Use the element number only when the request says so explicitly: ${ELEMENT_NUMBER_EXAMPLES.join(" · ")}.
 - Use the group only when the request says so explicitly: 그룹 A · A 그룹.
 When no element carries that text or name, say so in note; do not fall back to the element number.
 Output exactly one JSON object {"commands":[...],"note":"","warnings":[]}. If the request cannot be done with these commands, or asks about something that is not in the current figure, return {"commands":[],"note":"short Korean reason"}.
@@ -41,6 +65,7 @@ Commands (include only the fields shown; omit optional fields you do not change)
 {"op":"resize","target":n,"r":number} or {"op":"resize","target":n,"scale":number} — a circle's new radius, or scale a circle, ellipse, rectangle or polygon about its centre.
 {"op":"rotate","targets":[n,...]|"all","direction":"cw"|"ccw"} — turn the elements together by 90° about their centre, labels upright; 180° is two commands.
 {"op":"mirror","targets":[n,...]|"all","axis":"vertical"|"horizontal"|[P,P]} — reflect the elements together, labels upright: "vertical" flips them left-right about their own centre, "horizontal" flips them top-bottom, and [P,P] mirrors them across the line through those two points (that line need not be drawn), e.g. "axis":["B","C"] folds a triangle over its base BC.
+{"op":"order","targets":[n,...],"to":"front"|"forward"|"backward"|"back"} — change which elements are drawn on top where they overlap: "front" brings them in front of everything (맨 앞으로), "back" sends them behind everything (맨 뒤로), "forward"/"backward" moves them one step past the next element they overlap (앞으로 · 뒤로). A group the user made moves as one block. Element numbers stay the same after this, so later commands keep using the same n.
 {"op":"fillRegion","at":[P,P,P],"color":"#rrggbb"} — shade the closed region with these corners in order, e.g. ["A","B","C"] for triangle ABC; for a curved region give one point inside. color optional.
 {"op":"addPerpendicular","from":P,"onto":[P,P],"foot":"H"} — the perpendicular from a point to a line with its right-angle mark; the code finds the foot (foot names it, optional).
 {"op":"addMidpoint","from":P,"to":P,"label":"M"} — a dot at the midpoint.

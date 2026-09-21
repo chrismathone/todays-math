@@ -45,6 +45,15 @@ import {
 } from "./figureEditGeometry";
 import { BENT_ACROSS, bentCurveReason, flipFigureCurve } from "./figureFlip";
 import {
+  figureGroupNames,
+  ORDER_LABELS,
+  ORDER_NONE,
+  orderBlock,
+  orderFigureSelection,
+  withGroupMates,
+  type OrderBox,
+} from "./figureOrder";
+import {
   mirrorBlock,
   mirrorFigureSelection,
   type MirrorAxis,
@@ -136,6 +145,13 @@ function reject(reason: string): never {
 export function applyFigureEdits(
   svg: string,
   commands: readonly unknown[],
+  options: {
+    /**
+     * 요소 id → 화면 상자(편집기 `measureOrderBoxes`) — 순서 명령의 «한 칸»이 편집기 단추처럼 겹치는 것만 센다.
+     * 없으면 문서 한 칸(상자를 못 잰 요소는 겹친다고 본다, figureOrder.ts).
+     */
+    boxes?: ReadonlyMap<string, OrderBox>;
+  } = {},
 ): FigureEditApplyResult {
   const figure = describeFigureForEdit(svg);
   const before = figureObjects(svg);
@@ -495,6 +511,23 @@ export function applyFigureEdits(
         } 대칭`,
       };
     }
+    // 순서 — 편집기 «맨 앞으로·앞으로·뒤로·맨 뒤로» 단추와 같은 함수(figureOrder.ts). 가리킨 요소가 묶음에 들었으면
+    // 묶음 전부(캔버스에서 누를 때와 같다). 끄는 이유·«겹친 것 없음»도 단추 알림과 같은 말.
+    if (command.op === "order") {
+      const objects = figureObjects(current);
+      const ids = withGroupMates(objects, targetIds(command.targets, objects));
+      const blocked = orderBlock(objects, ids, command.to);
+      if (blocked) reject(blocked.replace(/\.$/, ""));
+      const moved = orderFigureSelection(current, ids, command.to, {
+        groups: figureGroupNames(objects),
+        boxes: options.boxes,
+      });
+      if (moved === current)
+        reject(
+          (ORDER_NONE[command.to] ?? "옮길 곳이 없습니다").replace(/\.$/, ""),
+        );
+      return { svg: moved, text: `${label} ${ORDER_LABELS[command.to]}` };
+    }
     const id = numbered(command.target)!.id;
     const object = figureObjects(current).find((o) => o.id === id);
     if (!object) return reject("앞 명령에서 지웠습니다");
@@ -632,7 +665,8 @@ export function applyFigureEdits(
         continue;
       }
       label = nameOf(o);
-    } else if (command.op === "mirror") label = targetsLabel(command.targets);
+    } else if (command.op === "mirror" || command.op === "order")
+      label = targetsLabel(command.targets);
     else if (isShapeCommand(command))
       label = shapeCommandLabel(command, numbered, nameOf);
     else if (isLineCircleCommand(command))

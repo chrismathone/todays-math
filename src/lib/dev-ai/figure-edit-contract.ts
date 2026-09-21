@@ -189,6 +189,18 @@ export const FigureEditCommandSchema = z
         ]),
       })
       .strict(),
+    /**
+     * 순서 — 편집기 «맨 앞으로·앞으로·뒤로·맨 뒤로» 단추·단축키와 같은 함수(figureOrder.ts), 원장님 2026-09-21
+     * «Ai 명령으로 순서 조절도 가능하게해». 가리킨 요소가 묶음에 들었으면 묶음 전부가 한 덩어리로 간다.
+     * 번호는 고정이라 순서를 바꿔도 안 바뀐다 — 같은 요청의 뒤 명령도 같은 번호를 쓴다.
+     */
+    z
+      .object({
+        op: z.literal("order"),
+        targets: z.array(target).min(1).max(FIGURE_EDIT_MAX_ELEMENTS),
+        to: z.enum(["front", "forward", "backward", "back"]),
+      })
+      .strict(),
     /** 색칠 — 편집기 채우기 통과 같은 면. at 은 칸의 꼭짓점들(차례대로) 또는 칸 안의 점 하나. */
     z
       .object({

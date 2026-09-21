@@ -199,8 +199,12 @@ describe("물음 구성", () => {
 });
 
 describe("명령 조립 — 코드가 검산한다", () => {
-  const assemble = (picked: Record<string, string>, confidence = 0.97) =>
-    assembleFigureEditCommand(answers(picked, confidence), figure);
+  // 요청 글 — 순서 명령만 본다(요소 번호를 드러내 말했나). 다른 명령은 글과 무관하다.
+  const assemble = (
+    picked: Record<string, string>,
+    confidence = 0.97,
+    text = "요소 2를 맨 뒤로",
+  ) => assembleFigureEditCommand(answers(picked, confidence), figure, text);
 
   it.each([
     ["delete", { op: "delete", target: "2" }, { op: "delete", target: 2 }],
@@ -312,9 +316,10 @@ describe("명령 조립 — 코드가 검산한다", () => {
     expect(FigureEditCommandSchema.safeParse(command).success).toBe(true);
   });
 
-  it("빠른 길 명령 스물한 가지를 모두 덮는다", () => {
+  it("빠른 길 명령 스물두 가지를 모두 덮는다", () => {
     expect([...JEV_FAST_PATH_OPS].sort()).toEqual(
       [
+        "order",
         "addAngle",
         "addAngleBisector",
         "addArc",
@@ -353,6 +358,7 @@ describe("명령 조립 — 코드가 검산한다", () => {
           pointC: "C",
           direction: "cw",
           axis: "horizontal",
+          layer: "back",
           dashed,
         });
         expect({ op, dashed, command }).toEqual({
@@ -372,6 +378,63 @@ describe("명령 조립 — 코드가 검산한다", () => {
     expect(contractOpAcceptsDashed("addArcMidpoint")).toBe(false);
     expect(contractOpAcceptsDashed("delete")).toBe(false);
     expect(contractOpAcceptsDashed("addAngle")).toBe(false);
+  });
+
+  /**
+   * 순서(원장님 2026-09-21 «요소를 입력하면 더 정확하게») — 지시문의 «읽는 차례» 그대로: 맨 숫자는 그려진 글자,
+   * «요소 N»·«N번 …»만 요소 번호. 빠른 길의 요소 물음은 그 규칙을 모르므로 **요청 글이 번호를 드러내 말했고
+   * 고른 번호가 그것과 같을 때만** 맡는다. 아니면 지금 경로(규칙이 적힌 지시문)로 떨어진다.
+   */
+  it("순서 — 요청 글이 요소 번호를 드러내 말했을 때만 맡는다", () => {
+    expect(
+      assemble(
+        { op: "order", target: "2", layer: "back" },
+        0.97,
+        "요소 2를 맨 뒤로",
+      ),
+    ).toEqual({ op: "order", targets: [2], to: "back" });
+    expect(
+      assemble(
+        { op: "order", target: "2", layer: "front" },
+        0.97,
+        "2번 선분을 맨 앞으로 가져와",
+      ),
+    ).toEqual({ op: "order", targets: [2], to: "front" });
+    // 맨 숫자는 그려진 글자다 — 요소 2 로 읽지 않고 지금 경로로 넘긴다
+    expect(
+      assemble(
+        { op: "order", target: "2", layer: "back" },
+        0.97,
+        "2를 맨 뒤로",
+      ),
+    ).toBeNull();
+    // 맨 숫자와 «요소 N»이 섞여도 요소 번호만 본다 — 고른 번호가 글자 쪽이면 떨어진다
+    expect(
+      assemble(
+        { op: "order", target: "1", layer: "back" },
+        0.97,
+        "1이라고 적힌 글자를 가리는 요소 2를 맨 뒤로",
+      ),
+    ).toBeNull();
+    expect(
+      assemble(
+        { op: "order", target: "2", layer: "back" },
+        0.97,
+        "1이라고 적힌 글자를 가리는 요소 2를 맨 뒤로",
+      ),
+    ).toEqual({ op: "order", targets: [2], to: "back" });
+    // 요소를 둘 말했으면 하나만 옮기지 않는다
+    expect(
+      assemble(
+        { op: "order", target: "2", layer: "back" },
+        0.97,
+        "요소 1과 요소 2를 맨 뒤로",
+      ),
+    ).toBeNull();
+    // 방향이 없으면 떨어진다
+    expect(
+      assemble({ op: "order", target: "2" }, 0.97, "요소 2를 맨 뒤로"),
+    ).toBeNull();
   });
 
   it("확신이 문턱보다 낮으면 떨어진다", () => {

@@ -45,6 +45,57 @@ export interface OrderOptions {
   boxes?: ReadonlyMap<string, OrderBox>;
 }
 
+/**
+ * 문구 한 벌 — 편집기 단추·단축키의 알림과 AI 명령(`figureEditApply` 의 `order`)의 결과·거절 줄이 같이 쓴다.
+ * 두 벌이면 한쪽만 고쳐져 화면과 AI 결과가 다른 말을 한다.
+ */
+export const ORDER_LABELS: Record<OrderMove, string> = {
+  front: "맨 앞으로",
+  forward: "앞으로",
+  backward: "뒤로",
+  back: "맨 뒤로",
+};
+/** 옮긴 뒤 알림 — 요소 번호는 그리는 차례와 떨어져 있어 안 바뀐다(원장님 2026-09-21 «번호 고정»). */
+export const ORDER_DONE: Record<OrderMove, string> = {
+  front: "맨 앞으로 가져왔습니다",
+  forward: "앞으로 가져왔습니다",
+  backward: "뒤로 보냈습니다",
+  back: "맨 뒤로 보냈습니다",
+};
+/** 한 칸 옮길 곳이 없을 때 — 겹치는 것 사이의 한 칸이라, 안 겹치는 것만 남았으면 옮기지 않는다. */
+export const ORDER_NONE: Partial<Record<OrderMove, string>> = {
+  forward: "앞에 겹친 요소가 없습니다.",
+  backward: "뒤에 겹친 요소가 없습니다.",
+};
+
+/** 요소 id → 묶음 이름(사용자가 묶은 것, `data-group`). 편집기 `groupNames` 와 AI 명령이 같이 쓴다. */
+export function figureGroupNames(
+  objects: readonly { id: string; attrs: Record<string, string> }[],
+): Map<string, string> {
+  return new Map(
+    objects.flatMap((o) => {
+      const name = o.attrs["data-group"]?.trim();
+      return name ? [[o.id, name] as const] : [];
+    }),
+  );
+}
+
+/**
+ * 가리킨 요소가 묶음에 들었으면 묶음 전부 — 캔버스에서 누르면 묶음 전부가 골라지는 것(편집기 `pickedWith`)과 같다.
+ * AI 가 «요소 5를 맨 뒤로»라고 했는데 5가 묶음 A 에 들었으면 A 가 한 덩어리로 간다.
+ */
+export function withGroupMates(
+  objects: readonly { id: string; attrs: Record<string, string> }[],
+  ids: readonly string[],
+): string[] {
+  const names = figureGroupNames(objects);
+  const wanted = new Set(ids.flatMap((id) => names.get(id) ?? []));
+  const picked = new Set(ids);
+  return objects
+    .filter((o) => picked.has(o.id) || wanted.has(names.get(o.id) ?? ""))
+    .map((o) => o.id);
+}
+
 /** 단추를 끄는 이유 — 단추의 title. */
 export const ORDER_BLOCKED = {
   none: "요소를 고르면 순서를 바꿀 수 있습니다.",

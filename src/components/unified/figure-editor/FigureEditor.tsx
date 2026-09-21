@@ -118,8 +118,11 @@ import {
   type MirrorAxis,
 } from "./figureMirror";
 import {
+  figureGroupNames,
   measureOrderBoxes,
   ORDER_BLOCKED,
+  ORDER_DONE,
+  ORDER_NONE,
   orderBlock,
   orderFigureSelection,
   type OrderMove,
@@ -160,18 +163,6 @@ const TOOLS: { id: Tool; label: string; glyph: string }[] = [
   { id: "text", label: "글자", glyph: "T" },
   { id: "fill", label: "채우기", glyph: "▧" },
 ];
-/** 순서를 바꾼 뒤 알림 — 요소 번호는 그리는 차례와 떨어져 있어 안 바뀐다(원장님 2026-09-21 «번호 고정»). */
-const ORDER_DONE: Record<OrderMove, string> = {
-  front: "맨 앞으로 가져왔습니다",
-  forward: "앞으로 가져왔습니다",
-  backward: "뒤로 보냈습니다",
-  back: "맨 뒤로 보냈습니다",
-};
-/** 한 칸 옮길 곳이 없을 때 — 겹치는 것 사이의 한 칸이라, 안 겹치는 것만 남았으면 옮기지 않는다. */
-const ORDER_NONE: Partial<Record<OrderMove, string>> = {
-  forward: "앞에 겹친 요소가 없습니다.",
-  backward: "뒤에 겹친 요소가 없습니다.",
-};
 /** 순서 단축키 — ppt 와 같다(Ctrl+] 앞으로 · Ctrl+[ 뒤로, Shift 를 더하면 맨 앞·맨 뒤). 자판 자리(code)가 먼저. */
 const ORDER_KEYS: Record<string, "up" | "down"> = {
   BracketRight: "up",
@@ -426,16 +417,7 @@ export function FigureEditor({
   );
   // 요소 id → 묶음 이름(사용자가 묶은 것만) — 그림 위 번호표를 묶음마다 하나로 합치는 데 쓴다(원장님 2026-09-21).
   // AI 에게 보내는 그림은 이것을 주지 않고 번호를 매겨 요소마다 번호가 그대로 간다.
-  const groupNames = useMemo(
-    () =>
-      new Map(
-        objects.flatMap((o) => {
-          const name = o.attrs["data-group"]?.trim();
-          return name ? [[o.id, name] as const] : [];
-        }),
-      ),
-    [objects],
-  );
+  const groupNames = useMemo(() => figureGroupNames(objects), [objects]);
   // «묶음 만들기» 직후 오른쪽 칸의 묶음 이름 칸에 초점을 줄 묶음 key — 초점을 주면 지운다.
   const [renamingGroup, setRenamingGroup] = useState<string | null>(null);
   const clearRenaming = useCallback(() => setRenamingGroup(null), []);
@@ -1395,7 +1377,11 @@ export function FigureEditor({
         throw new Error(
           "요청을 보낸 뒤 그림이 바뀌어 적용하지 않았습니다. 다시 요청해 주세요.",
         );
-      const edited = applyFigureEdits(sent, result.edits);
+      // 순서 명령의 «한 칸»은 단추처럼 화면 상자로 겹치는 것만 센다 — 캔버스는 아직 보낸 그림(`sent`)을 보인다
+      const shown = canvas.current?.querySelector("svg");
+      const edited = applyFigureEdits(sent, result.edits, {
+        boxes: shown ? measureOrderBoxes(shown) : undefined,
+      });
       commit(edited.svg);
       if (edited.svg !== sent) setSelected(null);
       setEditReport({
