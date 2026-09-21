@@ -16,7 +16,7 @@
  */
 import { beforeEach, describe, expect, it, vi } from "vitest";
 import { runSubscriptionCli } from "@/lib/dev-ai/cli";
-import type { DevAiRequest } from "@/lib/dev-ai/contracts";
+import type { DevAiFigureSpec, DevAiRequest } from "@/lib/dev-ai/contracts";
 import { redrawDevAiFigure } from "@/lib/dev-ai/figure-engine";
 import {
   buildFigureReviewPrompt,
@@ -53,7 +53,7 @@ const input: DevAiRequest = {
   content: "원본 도형을 또렷하게 재작도",
 };
 /** y = x² − 2.2x + 1 (꼭짓점 x = 1.1). domain [−1, 3] 은 왼쪽을 더 뻗는다 — 왼쪽 끝 4.2, 오른쪽 끝 3.4. */
-const parabola = (domain: [number, number]) => ({
+const parabola = (domain: [number, number]): DevAiFigureSpec => ({
   version: "graph-1",
   xRange: [-2, 4],
   yRange: [-1, 5],
@@ -62,6 +62,8 @@ const parabola = (domain: [number, number]) => ({
 const lopsided = parabola([-1, 3]);
 const even = parabola([-0.8, 3]); // 1.1 ± 1.9 — 양 끝 3.4
 const pass = JSON.stringify({ passed: true, issues: [] });
+const domainOf = (spec: unknown) =>
+  (spec as { curves: { domain: number[] }[] }).curves[0].domain;
 
 describe("다시 그리기 지시문 — 곡선 구간 규칙은 한 벌", () => {
   const variants: [string, string][] = [
@@ -132,9 +134,7 @@ describe("흐름 — 모델이 실제로 받는 지시문과 그려지는 곡선
     const result = await redrawDevAiFigure(input);
     expect(count(run.mock.calls[0][0].prompt, RULE)).toBe(1);
     expect(count(run.mock.calls[1][0].prompt, CHECK)).toBe(1);
-    expect(
-      (result.spec as { curves: { domain: number[] }[] }).curves[0].domain,
-    ).toEqual([-1, 3]);
+    expect(domainOf(result.spec)).toEqual([-1, 3]);
     // 그려진 곡선의 양 끝 — 화면 y 가 작을수록 높다. 왼쪽 끝(4.2)이 오른쪽 끝(3.4)보다 높게 선다.
     const d = /<path\b[^>]*\bd="(M[^"]+)"/.exec(result.svg!)![1];
     const xy = (d.match(/-?\d+(?:\.\d+)?/g) ?? []).map(Number);
@@ -159,8 +159,6 @@ describe("흐름 — 모델이 실제로 받는 지시문과 그려지는 곡선
     const again = run.mock.calls[2][0].prompt;
     expect(count(again, RULE)).toBe(1);
     expect(again).toContain("양 끝 높이를 같게");
-    expect(
-      (result.spec as { curves: { domain: number[] }[] }).curves[0].domain,
-    ).toEqual([-0.8, 3]);
+    expect(domainOf(result.spec)).toEqual([-0.8, 3]);
   });
 });
