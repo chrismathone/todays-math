@@ -208,18 +208,19 @@ export function ProblemContent({
           data-choice-layout={
             choiceLayout === "auto" ? undefined : choiceLayout
           }
+          // 글 칸은 기준선 맞춤, 그림 보기만 위쪽 — 분수 보기 옆 칸·번호가 분수의 기준선에 선다(트랙 51).
           className={
             choiceLayout === "auto"
-              ? `mt-4 grid grid-cols-1 gap-x-8 gap-y-2${
+              ? `mt-4 grid grid-cols-1 items-baseline gap-x-8 gap-y-2${
                   choicesInTwoColumns ? " md:grid-cols-2 print:grid-cols-2" : ""
                 }`
-              : `mt-4 grid gap-x-8 gap-y-2 ${CHOICE_COLUMN_CLASS[chosenColumns]}`
+              : `mt-4 grid items-baseline gap-x-8 gap-y-2 ${CHOICE_COLUMN_CLASS[chosenColumns]}`
           }
         >
           {choices.map((choice, index) => (
             <div
               key={index}
-              className="flex items-start gap-1.5 print:break-inside-avoid"
+              className="flex items-baseline gap-1.5 has-[img]:items-start has-[img]:self-start print:break-inside-avoid"
             >
               <span className="flex-shrink-0 leading-relaxed">
                 {CHOICE_MARKS[index] ?? `(${index + 1})`}

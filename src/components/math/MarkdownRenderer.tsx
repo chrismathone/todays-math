@@ -43,6 +43,7 @@ import {
   remarkNativeContent,
 } from "./remarkNativeContent";
 import { figureWidthStyle } from "@/lib/figurePrintSize";
+import { BoxQuoteCard } from "./BoxQuoteCard";
 
 import { BOX_HEADER_RE as SHARED_BOX_HEADER_RE } from "@/lib/math/boxHeader";
 import { layoutQuotedBoxes } from "@/lib/math/boxLayout";
@@ -94,6 +95,8 @@ const REHYPE_PLUGINS: PluggableList = [[rehypeKatex, UI_KATEX_OPTIONS]];
  *     그 옮김은 이 파일 안에서만 일어난다 — 원문·편집기·인식의 표기는 정본 하나다(`boxHeader.ts`).
  *  3. **열 수와 칸은 `layoutQuotedBoxes` 가 정한다** — 검수 카드와 같은 규칙이다(트랙 46).
  *     여러 열이면 칸마다 문단이 되어 온다. 이 파일은 «문단 하나 = 칸 하나» 만 안다.
+ *  4. **좁은 단에서 그리는 열 수·여백은 `BoxQuoteCard` 가 실제 조판에서 고른다**(트랙 51) —
+ *     칸이 한 줄에 안 들면 여백을 줄여 보고, 그래도 안 되면 열을 줄여 그린다. 적힌 열 수는 그대로다.
  * ────────────────────────────────────────────────────────────────────────── */
 
 /** 인용문 첫 문단의 상자 머리 — 정본·옛 표기 모두(`boxHeader.ts`). 숫자 없으면 1열. */
@@ -216,42 +219,24 @@ function BoxQuote({ children }: { children?: ReactNode }) {
   // Older native serializers emitted label + contents in one paragraph. A
   // heading is only the label; never center or bold those continuation lines.
   const items = [...headerBodyLines(blocks[0]), ...blocks.slice(1)];
+  // 격자 칸은 기준선 맞춤(`items-baseline`), 그림 칸만 위쪽(`has-[img]:self-start`) — 트랙 51.
   const gridClass =
     columns === 3
-      ? "grid grid-cols-1 gap-x-6 gap-y-1 md:grid-cols-3 print:grid-cols-3"
+      ? "grid grid-cols-1 items-baseline gap-x-6 gap-y-1 md:grid-cols-3 print:grid-cols-3"
       : columns === 2
-        ? "grid grid-cols-1 gap-x-6 gap-y-1 md:grid-cols-2 print:grid-cols-2"
+        ? "grid grid-cols-1 items-baseline gap-x-6 gap-y-1 md:grid-cols-2 print:grid-cols-2"
         : "space-y-1";
 
+  // 좁은 단에서 그리는 열 수·여백은 카드가 실제 조판에서 고른다(`BoxQuoteCard`, 트랙 51).
   return (
-    <div data-box-card className={BOX_CARD_CLASS}>
-      {headerless ? null : (
-        // 라벨은 상자 위 **가운데**다(D-108) — 한국 시험지 관행.
-        <div
-          data-box-header
-          className="mb-1 text-center font-normal leading-normal [&>p]:my-0"
-        >
-          {`${LABEL_OPEN}${label}${LABEL_CLOSE}`}
-        </div>
-      )}
-      {items.length > 0 ? (
-        // 여러 열 격자는 HWPX 수집기에 칸을 알린다 — 한 행을 한 문단으로, 칸 차례대로 묶게.
-        <div
-          className={gridClass}
-          data-hwpx-grid={columns > 1 ? "" : undefined}
-        >
-          {items.map((item, index) => (
-            <div
-              key={index}
-              data-box-item
-              className="min-w-0 break-words text-left font-normal [&>p]:my-0"
-            >
-              {item}
-            </div>
-          ))}
-        </div>
-      ) : null}
-    </div>
+    <BoxQuoteCard
+      className={BOX_CARD_CLASS}
+      label={headerless ? null : `${LABEL_OPEN}${label}${LABEL_CLOSE}`}
+      columns={columns}
+      gridClassName={gridClass}
+      itemClassName="min-w-0 break-words text-left font-normal has-[img]:self-start [&>p]:my-0"
+      items={items}
+    />
   );
 }
 
