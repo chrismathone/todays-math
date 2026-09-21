@@ -1,0 +1,18 @@
+body {
+  margin: 0;
+  padding: 12px;
+  font-family: Arial, "Malgun Gothic", sans-serif;
+}
+main {
+  display: grid;
+  gap: 16px;
+  max-width: 720px;
+}
+output {
+  display: none;
+}
+/* 지면 문항 열 폭 — A4 2단 시험지의 한 단(대략 88mm). */
+[data-panel="paper"] [data-unified-paper] {
+  width: 88mm;
+  font-size: 10.5pt;
+}
