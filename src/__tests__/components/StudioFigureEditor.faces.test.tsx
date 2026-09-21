@@ -345,7 +345,7 @@ describe("묶음 안쪽 채우기", () => {
       target: { value: "#d5e8f0" },
     });
     expect(faces()[0].getAttribute("fill")).toBe("#d5e8f0");
-    fireEvent.click(screen.getByRole("button", { name: "채우기 없애기" }));
+    fireEvent.click(screen.getByRole("button", { name: "안쪽 채우기 없애기" }));
     expect(faces()).toHaveLength(0);
   });
 

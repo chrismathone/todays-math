@@ -291,4 +291,40 @@ describe("오른쪽 칸 — 접는 무리 셋", () => {
     expect(fold("모양")).toHaveTextContent("선 색 · 두께 · 점선 · 채우기");
     expect(fold("틀 · 세부")).toHaveTextContent(/틀 · 세부\s*다 보이게$/);
   });
+
+  it("여럿을 고를 때도 채우기·배경색·안쪽 채우기는 «이름 … [없애기][색]» 한 줄 — 요소 하나일 때와 같은 꼴", () => {
+    open();
+    pickNumber(2);
+    pickNumber(4, true);
+    const rowWith = (label: string) =>
+      screen.getByLabelText(label).closest("[data-fill-row]") as HTMLElement;
+    const fill = rowWith("고른 채우기 색");
+    expect(fill).toHaveTextContent(/^채우기/);
+    expect(
+      within(fill).getByRole("button", { name: "채우기 없애기" }),
+    ).toHaveTextContent(/^없애기$/);
+    const background = rowWith("고른 글자 배경색");
+    expect(background).toHaveTextContent(/^배경색/);
+    expect(
+      within(background).getByRole("button", { name: "배경 없애기" }),
+    ).toHaveTextContent(/^없애기$/);
+    const inner = rowWith("고른 선 안쪽 채우기 색");
+    expect(
+      within(inner).getByRole("button", { name: "안쪽 채우기" }),
+    ).toBeInTheDocument();
+    expect(
+      within(inner).getByRole("button", { name: "안쪽 채우기 없애기" }),
+    ).toHaveTextContent(/^없애기$/);
+    // 색 칸은 줄 끝 — [없애기][색] 차례
+    for (const row of [fill, background, inner]) {
+      const clear = within(row)
+        .getAllByRole("button")
+        .find((b) => b.textContent === "없애기")!;
+      expect(
+        clear.compareDocumentPosition(
+          row.querySelector('input[type="color"]')!,
+        ) & Node.DOCUMENT_POSITION_FOLLOWING,
+      ).toBeTruthy();
+    }
+  });
 });

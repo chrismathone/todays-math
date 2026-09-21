@@ -1,3 +1,4 @@
+import type { ReactNode } from "react";
 import type { figureObjects } from "./figureSvgEditing";
 import { TEXT_BG_ATTR } from "./figureTextBackground";
 import { formatToggleClass, isBoldWeight } from "./editorUi";
@@ -30,6 +31,9 @@ export interface InnerFill {
 /**
  * 여러 요소를 고르면(묶음 이름을 눌러도) 공통 서식을 한 번에 바꾼다 — 원장님 2026-09-18 «묶음 선택 후 공통 서식 수정가능하게».
  * 선·도형과 글자는 서식이 달라 칸을 나눈다. 값이 갈리면 «여러 값»이라 적고, 바꾸면 고른 요소 모두에 같은 값이 들어간다.
+ *
+ * 채우기·배경색·안쪽 채우기는 요소 하나를 골랐을 때와 같은 한 줄 «이름 … [없애기][색]»(원장님 2026-09-21 «안 D» 의
+ * 채우기 줄 — 같은 칸에서 같은 일을 다른 꼴로 두지 않는다). 단추 이름(«채우기 없애기» 등)은 aria-label 에 남긴다.
  */
 export function FigureCommonFormat({
   objects,
@@ -108,9 +112,11 @@ export function FigureCommonFormat({
             점선
           </label>
           {fillable.length > 0 && (
-            <div className="flex items-center justify-between gap-2">
-              <label className="flex items-center gap-2">
-                <span>채우기 {fill === null && mixed}</span>
+            <FillRow
+              name={<>채우기 {fill === null && mixed}</>}
+              clearLabel="채우기 없애기"
+              onClear={() => onChange(ids(fillable), { fill: "none" })}
+              color={
                 <input
                   type="color"
                   aria-label="고른 채우기 색"
@@ -119,15 +125,8 @@ export function FigureCommonFormat({
                     onChange(ids(fillable), { fill: e.target.value })
                   }
                 />
-              </label>
-              <button
-                type="button"
-                onClick={() => onChange(ids(fillable), { fill: "none" })}
-                className="underline text-muted"
-              >
-                채우기 없애기
-              </button>
-            </div>
+              }
+            />
           )}
           {innerFill && <InnerFillRow {...innerFill} />}
         </section>
@@ -144,9 +143,11 @@ export function FigureCommonFormat({
               onChange={(e) => onChange(ids(texts), { fill: e.target.value })}
             />
           </label>
-          <div className="flex items-center justify-between gap-2">
-            <label className="flex items-center gap-2">
-              <span>배경색 {textBackground === null && mixed}</span>
+          <FillRow
+            name={<>배경색 {textBackground === null && mixed}</>}
+            clearLabel="배경 없애기"
+            onClear={() => onChange(ids(texts), { [TEXT_BG_ATTR]: "" })}
+            color={
               <input
                 type="color"
                 aria-label="고른 글자 배경색"
@@ -155,15 +156,8 @@ export function FigureCommonFormat({
                   onChange(ids(texts), { [TEXT_BG_ATTR]: e.target.value })
                 }
               />
-            </label>
-            <button
-              type="button"
-              onClick={() => onChange(ids(texts), { [TEXT_BG_ATTR]: "" })}
-              className="underline text-muted"
-            >
-              배경 없애기
-            </button>
-          </div>
+            }
+          />
           <label className="block">
             <span className="flex justify-between">
               글자 크기
@@ -214,16 +208,56 @@ export function FigureCommonFormat({
   );
 }
 
-/** «안쪽 채우기 [■] / 채우기 없애기» — 도형의 «채우기 / 채우기 없애기»와 같은 모양. 켜기 단추는 지금 색으로 켠다. */
+/**
+ * 채우기 줄 한 줄 — «이름 … [없애기][색]». 요소 하나를 골랐을 때의 채우기·배경색 줄(`FigureEditor`)과 같은 꼴
+ * (시안 wire-t43-figure-panel.html D 의 fillInline).
+ */
+function FillRow({
+  name,
+  clearLabel,
+  onClear,
+  clearDisabled,
+  color,
+  className = "",
+}: {
+  name: ReactNode;
+  clearLabel: string;
+  onClear: () => void;
+  clearDisabled?: boolean;
+  color: ReactNode;
+  className?: string;
+}) {
+  return (
+    <div
+      data-fill-row=""
+      className={`flex items-center justify-between gap-2 ${className}`}
+    >
+      {name}
+      <span className="flex items-center gap-2.5">
+        <button
+          type="button"
+          aria-label={clearLabel}
+          disabled={clearDisabled}
+          onClick={onClear}
+          className="underline text-muted disabled:opacity-40"
+        >
+          없애기
+        </button>
+        {color}
+      </span>
+    </div>
+  );
+}
+
+/** «[안쪽 채우기] … [없애기][■]» — 채우기 줄과 같은 꼴. 켜기 단추는 지금 색으로 켠다. */
 function InnerFillRow({ ok, reason, color, onFill, onClear }: InnerFill) {
   const on = color !== undefined;
   const usable = ok || on;
   return (
     <div className="space-y-1">
-      <div
-        className={`flex items-center justify-between gap-2 ${usable ? "" : "opacity-40"}`}
-      >
-        <div className="flex items-center gap-2">
+      <FillRow
+        className={usable ? "" : "opacity-40"}
+        name={
           <button
             type="button"
             aria-pressed={on}
@@ -233,6 +267,11 @@ function InnerFillRow({ ok, reason, color, onFill, onClear }: InnerFill) {
           >
             안쪽 채우기
           </button>
+        }
+        clearLabel="안쪽 채우기 없애기"
+        clearDisabled={!on}
+        onClear={onClear}
+        color={
           <input
             type="color"
             aria-label="고른 선 안쪽 채우기 색"
@@ -240,16 +279,8 @@ function InnerFillRow({ ok, reason, color, onFill, onClear }: InnerFill) {
             value={colorOf(color ?? null, DEFAULT_FACE_FILL)}
             onChange={(e) => onFill(e.target.value)}
           />
-        </div>
-        <button
-          type="button"
-          disabled={!on}
-          onClick={onClear}
-          className="underline text-muted disabled:opacity-40"
-        >
-          채우기 없애기
-        </button>
-      </div>
+        }
+      />
       {!ok && reason && <p className="text-muted">{reason}</p>}
     </div>
   );
