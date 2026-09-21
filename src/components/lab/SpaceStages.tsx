@@ -65,7 +65,7 @@ export function CubeFoldStage({
         />
       ) : (
         <LabModelViewer
-          src="/dev/blender-assets/cuboid-fold.glb"
+          src="/lab/models/cuboid-fold.glb"
           animationName="Fold"
           alt="가로 4cm 세로 3cm 높이 2cm 직육면체 전개도"
           percent={fold}
@@ -154,7 +154,7 @@ export function StackViewStage({
     <div>
       {demo ? (
         <LabModelViewer
-          src="/dev/blender-assets/stack-cubes/stack-cubes.glb"
+          src="/lab/models/stack-cubes.glb"
           animationName="Separate"
           alt="쌓기나무 12개"
           percent={fold}

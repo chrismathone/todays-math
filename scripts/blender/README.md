@@ -15,7 +15,7 @@ node scripts/blender/verify_stack_cubes.mjs
 npm run dev
 ```
 
-개념 실험실(`/lab`)은 정육면체 전개도 `public/lab/blender/cube-net-lesson.blend`의 다섯 접힘 축을 하나의 `Fold` 클립으로 합쳐 `cube-net-fold.glb`로 내보낸다. 학생 화면은 그 GLB와 기존의 `cuboid-fold.glb`·`stack-cubes.glb`를 읽는다.
+개념 실험실(`/lab`)은 정육면체 전개도 `public/lab/blender/cube-net-lesson.blend`의 다섯 접힘 축을 하나의 `Fold` 클립으로 합쳐 `cube-net-fold.glb`로 내보낸다. 학생 화면은 그 GLB와 기존의 `cuboid-fold.glb`·`stack-cubes.glb`를 읽는다. 뒤의 둘은 `public/lab/models/`에 둔 **복사본**을 읽는다 — 관문이 누구에게나 여는 곳은 `/lab` 아래뿐이라서다(D-135 ⑼). 생성기를 다시 돌려 `public/dev/blender-assets/`의 원본이 바뀌면 거기에도 복사한다(`src/__tests__/unit/lab/labStaticAddresses.test.ts`가 바이트를 대조한다).
 
 - `build_cuboid_demo.py`: 실제 Blender 면·회전축·키프레임 생성, GLB 내보내기, 정투영 PNG 렌더. 기존 `scripts/figure/render_spec.py`로 비교용 SVG를 생성한다.
 - 펼친 Blender 면의 꼭짓점을 투영해 번호가 있는 인쇄용 SVG도 생성한다. 원래 엔진의 치수 SVG와 구분된 실험용 자산이다.
