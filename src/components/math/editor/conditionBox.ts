@@ -48,7 +48,7 @@ interface CaretState {
 
 export const conditionBoxCaret = new PluginKey<CaretState>("conditionBoxCaret");
 
-const SPACE = /[  \t]/;
+const SPACE = /[ \u00A0\t]/;
 
 /** 커서가 든 상자 — 없으면 null. */
 function boxAround($pos: ResolvedPos) {
@@ -180,7 +180,7 @@ function nextCell(
     "",
     "\u0000",
   );
-  const blank = (value: string) => value.replace(/[  \t]/g, "") === "";
+  const blank = (value: string) => value.replace(/[ \u00A0\t]/g, "") === "";
 
   if (
     !inHeader &&
