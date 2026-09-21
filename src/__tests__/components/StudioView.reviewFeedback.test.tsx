@@ -165,7 +165,13 @@ describe("1 · 문제 인식 진행 문구", () => {
     expect(within(card).getByText("문제 인식 중")).toBeInTheDocument();
     await openProgress();
     const panel = screen.getByRole("region", { name: "작업별 진행 상황" });
-    expect(within(panel).getByText("문제 인식 중")).toBeInTheDocument();
+    // 원장님 2026-09-21 — 좁은 진행 칸에는 짧은 이름표 «문제» 만 보이고, 읽는 이름·마우스 올림은
+    // 카드와 같은 «문제 인식 중» 이다(이름은 studioWorkName 한 곳에서 짓는다).
+    const progress = within(panel).getByRole("progressbar", {
+      name: "문제 인식 중",
+    });
+    const tag = within(progress.parentElement!).getByTitle("문제 인식 중");
+    expect(tag.querySelector('[aria-hidden="true"]')!.textContent).toBe("문제");
     expect(screen.queryByText("문자 인식 중")).not.toBeInTheDocument();
   });
 });

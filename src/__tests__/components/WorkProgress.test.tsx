@@ -128,6 +128,47 @@ describe("WorkProgress", () => {
     expect(submit).not.toHaveBeenCalled();
   });
 
+  // 원장님 2026-09-21 «'문제 인식 중' 글자가 안잘리면 좋겠는데. 그냥 라벨을 만들어 버리면 어때?»
+  // 좁은 칸에서는 짧은 이름표만 보이고, 읽는 이름·마우스 올림은 긴 이름을 그대로 나른다.
+  it("짧은 이름표를 보이고 읽는 이름·마우스 올림에는 긴 이름을 남긴다", () => {
+    render(
+      <WorkProgress
+        label="문제"
+        fullLabel="문제 인식 중"
+        completed={11}
+        total={21}
+        unit="문항"
+      />,
+    );
+    const status = screen.getByRole("status");
+    // 읽는 쪽은 긴 이름만 한 번 듣는다 — 짧은 이름표는 가려 «문제문제 인식 중» 이 안 된다.
+    const heard = status.cloneNode(true) as HTMLElement;
+    heard
+      .querySelectorAll('[aria-hidden="true"]')
+      .forEach((node) => node.remove());
+    expect(heard.textContent).toBe("문제 인식 중");
+    const tag = screen.getByTitle("문제 인식 중");
+    expect(tag).toHaveTextContent(/^문제문제 인식 중$/);
+    const visible = [...tag.childNodes].find(
+      (node) =>
+        node instanceof HTMLElement &&
+        node.getAttribute("aria-hidden") === "true",
+    );
+    expect(visible).toHaveTextContent(/^문제$/);
+    expect(
+      screen.getByRole("progressbar", { name: "문제 인식 중" }),
+    ).toBeInTheDocument();
+  });
+
+  it("긴 이름을 안 주면 예전처럼 이름 하나만 그린다", () => {
+    render(<WorkProgress label="자료 확인 중" />);
+    expect(screen.getByRole("status")).toHaveTextContent(/^자료 확인 중$/);
+    expect(screen.queryByTitle("자료 확인 중")).not.toBeInTheDocument();
+    expect(
+      screen.getByRole("progressbar", { name: "자료 확인 중" }),
+    ).toBeInTheDocument();
+  });
+
   it("renders inline inside a disabled button without block elements or a timer", () => {
     render(
       <button disabled>

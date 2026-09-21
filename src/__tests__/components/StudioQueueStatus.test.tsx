@@ -1,6 +1,7 @@
 import { fireEvent, render, screen, within } from "@testing-library/react";
 import { describe, expect, it, vi } from "vitest";
 import StudioQueueStatus from "@/components/unified/StudioQueueStatus";
+import { validateOcrAgainstTextLayer } from "@/lib/mathgen/textLayerValidator";
 
 type Props = Parameters<typeof StudioQueueStatus>[0];
 type Job = Props["jobs"][number];
@@ -87,5 +88,72 @@ describe("쪽별 진행 나열 — 원장님 2026-09-20 «화살표 말고 쪽�
     // 여기서는 «목록이 하나이고 40쪽이 모두 그 안에 있다»만 본다.
     expect(within(list()).getAllByRole("button")).toHaveLength(40);
     expect(screen.getAllByLabelText("쪽별 진행 목록")).toHaveLength(1);
+  });
+});
+
+describe("진행 칸 이름표 — 원장님 2026-09-21 «페이지 자동 인식 → 페이지»", () => {
+  it("쪽을 도는 동안 화면에는 «페이지», 읽는 이름은 «페이지 자동 인식 중»", () => {
+    renderStatus([job(1, "complete"), job(2, "running")]);
+    const progress = screen.getByRole("progressbar", {
+      name: "페이지 자동 인식 중",
+    });
+    const panel = progress.parentElement!;
+    const tag = within(panel).getByTitle("페이지 자동 인식 중");
+    expect(tag.querySelector('[aria-hidden="true"]')!.textContent).toBe(
+      "페이지",
+    );
+    // 긴 이름이 보이는 글자로 남으면 좁은 칸에서 다시 한 글자씩 쪼개진다.
+    expect(
+      within(panel).queryByText("페이지 자동 인식", { exact: true }),
+    ).not.toBeInTheDocument();
+  });
+});
+
+describe("«PDF 원문과 N% 만 일치» 경고 — 원장님 2026-09-21 «이 경고가 어떤 문제인지 알려주면 더 좋을듯»", () => {
+  // 머리글(학교·학년·시험 이름)과 둘째 문제는 안 잘렸고, 첫 문제만 잘려 읽혔다.
+  const layer =
+    "2024학년도 경신중학교 2학년 기말고사 수학 이름 " +
+    "1. 이등변삼각형 ABC 에서 꼭짓점 대각선 길이를 구하시오 " +
+    "2. 평행사변형 넓이는 얼마인가";
+  const ocr = "이등변삼각형 ABC 에서 꼭짓점 대각선 길이를 구하시오";
+  const warned = () => ({
+    ...job(3, "complete"),
+    textLayerWarning: validateOcrAgainstTextLayer(ocr, layer)!,
+  });
+
+  it("무엇과 무엇을 견줬는지 한 줄에 적는다 — «누락 의심» 대신", () => {
+    renderStatus([warned()]);
+    expect(
+      screen.getByText(
+        "3쪽 · PDF 원문 낱말 중 38%만 인식 결과에 있음 (자른 영역 밖 머리글·문제 포함)",
+      ),
+    ).toBeInTheDocument();
+    expect(screen.queryByText(/누락 의심|검토 권장/)).not.toBeInTheDocument();
+  });
+
+  it("빠진 낱말을 마우스 올림 없이 화면에 적는다 — 긴 낱말부터, 넘치면 «외 N개»", () => {
+    renderStatus([warned()]);
+    // 16개 중 6개가 읽혔다 — 빠진 10개 중 8개를 적고 나머지는 셈만.
+    expect(
+      screen.getByText(
+        "빠진 낱말: 경신중학교, 평행사변형, 기말고사, 얼마인가, 2024, 학년도, 넓이는, 학년 외 2개",
+      ),
+    ).toBeInTheDocument();
+  });
+
+  it("빠진 낱말이 여덟 개 이하면 «외» 없이 다 적는다", () => {
+    // 낱말 12개 중 5개가 읽혔다 — 빠진 7개를 다 적는다.
+    const short = validateOcrAgainstTextLayer(
+      "이등변삼각형 대각선 꼭짓점 길이를 구하시오",
+      "경신중학교 기말고사 학년 이름 점수 " +
+        "1. 이등변삼각형 대각선 꼭짓점 길이를 구하시오 넓이는 얼마인가",
+    )!;
+    expect(short.total - short.matched).toBe(7);
+    renderStatus([{ ...job(1, "complete"), textLayerWarning: short }]);
+    expect(
+      screen.getByText(
+        "빠진 낱말: 경신중학교, 기말고사, 얼마인가, 넓이는, 학년, 이름, 점수",
+      ),
+    ).toBeInTheDocument();
   });
 });
