@@ -1,7 +1,7 @@
 import { afterEach, describe, expect, it } from "vitest";
 import { Editor, Node, type JSONContent } from "@tiptap/core";
 import StarterKit from "@tiptap/starter-kit";
-import { TextSelection } from "@tiptap/pm/state";
+import { NodeSelection, TextSelection } from "@tiptap/pm/state";
 import { ConditionBox } from "@/components/math/editor/conditionBox";
 import { documentMarkdown } from "@/components/math/editor/visualDocument";
 
@@ -235,6 +235,20 @@ describe("상자 안 Tab = 다음 칸", () => {
     expect(current.state.selection.$from.node(-1).type.name).toBe(
       "conditionBox",
     );
+  });
+
+  it("수식을 고른 채(노드 선택) 눌러도 수식을 지우지 않는다 — 고른 자리 앞에서 가른다", () => {
+    const current = mount(box9());
+    const math = positionOf(current, " (나) ") + " (나) ".length;
+    current.view.dispatch(
+      current.state.tr.setSelection(
+        NodeSelection.create(current.state.doc, math),
+      ),
+    );
+    press(current, "Tab");
+    const saved = markdown(current);
+    for (const tex of ["y = 3x^2", "y = -\\frac{2}{3}x^2", "y = -3x^2"])
+      expect(saved).toContain(`$${tex}$`);
   });
 
   it("머리(〈보기〉) 에서는 첫 칸으로 — 머리를 가르지 않는다", () => {

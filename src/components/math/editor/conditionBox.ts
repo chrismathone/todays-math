@@ -158,61 +158,41 @@ function nextCell(
   box: { node: ProseMirrorNode; pos: number; depth: number },
 ) {
   const { state } = view;
+  // 고른 것은 지우지 않는다 — 수식을 고른 채(노드 선택) 눌러도 수식이 남고, 고른 자리 앞에서 가른다.
   const { $from } = state.selection;
   const cellDepth = box.depth + 1;
   if ($from.depth < cellDepth) return true;
-  const cellIndex = $from.index(box.depth);
-  const cellEnd = $from.after(cellDepth);
+  const cell = $from.node(cellDepth);
+  const inHeader = $from.index(box.depth) === 0 && hasHeader(box.node);
+  const blank = (from: number, to: number) =>
+    state.doc
+      .textBetween(from, to, "", "\u0000")
+      .replace(/[ \u00A0\t]/g, "") === "";
+  const blankBefore = blank($from.start(cellDepth), $from.pos);
+  const blankAfter = blank($from.pos, $from.end(cellDepth));
   const tr = state.tr;
-  if (!state.selection.empty) tr.deleteSelection();
-  const $at = tr.doc.resolve(tr.mapping.map($from.pos));
-  const cell = $at.node(cellDepth);
-  const inHeader = cellIndex === 0 && hasHeader(box.node);
-  const textBefore = tr.doc.textBetween(
-    $at.start(cellDepth),
-    $at.pos,
-    "",
-    "\u0000",
-  );
-  const textAfter = tr.doc.textBetween(
-    $at.pos,
-    $at.end(cellDepth),
-    "",
-    "\u0000",
-  );
-  const blank = (value: string) => value.replace(/[ \u00A0\t]/g, "") === "";
 
-  if (
-    !inHeader &&
-    cell.isTextblock &&
-    !blank(textBefore) &&
-    !blank(textAfter)
-  ) {
-    const next = splitCellAt(tr, $at.pos);
+  if (!inHeader && cell.isTextblock && !blankBefore && !blankAfter) {
+    const next = splitCellAt(tr, $from.pos);
     view.dispatch(
       tr.setSelection(TextSelection.create(tr.doc, next)).scrollIntoView(),
     );
     return true;
   }
   // 다음 칸 처음으로 — 없으면(마지막 칸) 빈 칸을 연다. 빈 칸에서 또 누르면 그대로.
-  const mappedEnd = tr.mapping.map(cellEnd);
-  const boxEnd = tr.mapping.map(box.pos + box.node.nodeSize) - 1;
-  if (mappedEnd < boxEnd) {
-    const target = Selection.findFrom(tr.doc.resolve(mappedEnd), 1, true);
-    if (target) {
-      view.dispatch(tr.setSelection(target).scrollIntoView());
-      return true;
-    }
-  }
-  if (!inHeader && blank(textBefore) && blank(textAfter)) {
-    if (tr.docChanged) view.dispatch(tr);
+  const cellEnd = $from.after(cellDepth);
+  const next =
+    cellEnd < box.pos + box.node.nodeSize - 1
+      ? Selection.findFrom(state.doc.resolve(cellEnd), 1, true)
+      : null;
+  if (next) {
+    view.dispatch(tr.setSelection(next).scrollIntoView());
     return true;
   }
-  tr.insert(mappedEnd, state.schema.nodes.paragraph!.create());
+  if (!inHeader && blankBefore && blankAfter) return true;
+  tr.insert(cellEnd, state.schema.nodes.paragraph!.create());
   view.dispatch(
-    tr
-      .setSelection(TextSelection.create(tr.doc, mappedEnd + 1))
-      .scrollIntoView(),
+    tr.setSelection(TextSelection.create(tr.doc, cellEnd + 1)).scrollIntoView(),
   );
   return true;
 }
