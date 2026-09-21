@@ -60,6 +60,10 @@ test.describe("⑵ 편집기에서 친 여러 칸은 저장 뒤에도 남는다"
       await page.goto(`/?case=${name}`);
       const editor = panel(page, "editor");
       await expect(editor).toContainText("갑 을");
+      // 상자 사례는 지면에서도 정말 상자로 서야 상자 안을 잰 것이다.
+      await expect(panel(page, "paper").locator("[data-box-card]")).toHaveCount(
+        name === "box" ? 1 : 0,
+      );
       // 한 칸 폭 — 고치기 전 검수 카드의 «갑 을» 간격.
       const one = await gapBetween(panel(page, "card"), "갑", "을");
       expect(one).toBeGreaterThan(1);

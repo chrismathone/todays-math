@@ -16,7 +16,8 @@ import "./harness.css";
  */
 const CASES: Record<string, string> = {
   spaces: "갑 을",
-  box: "> <보기>\n> 갑 을",
+  // 지면 파서는 아주 짧은 상자(«갑 을»)를 상자로 안 본다 — 상자로 서는 길이로 둔다.
+  box: "> <보기>\n> 하나 둘 셋 갑 을",
   // 인식이 `equation_block` 을 낸 모양 — blocksToMarkdown 이 `$$…$$` 를 따로 문단으로 세운다.
   q7display:
     "한 자리의 자연수 $a$, $b$, $c$에 대하여 이차방정식\n\n$$x^2-ax+4=0$$\n\n의 해가 $x = b \\pm \\sqrt{c}$일 때, $a + b + c$의 값은? \\[5점\\]\n\n① $12$ ② $14$ ③ $16$ ④ $18$ ⑤ $20$",
