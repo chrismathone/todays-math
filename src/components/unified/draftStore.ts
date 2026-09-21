@@ -1,6 +1,7 @@
 import type { Dispatch, SetStateAction } from "react";
 import type { StudioProblem } from "./types";
 import type { StudioCrop } from "./studioHelpers";
+import type { StudioCartRemoval } from "./studioCart";
 import { MathgenProblemDataSchema } from "@/lib/mathgen/ocr";
 import {
   DEFAULT_PRINT_OPTIONS,
@@ -19,6 +20,13 @@ export interface WorkspaceDraft {
   id: string;
   title: string;
   problems: StudioProblem[];
+  /**
+   * 뺀 기억 — 이 시험지에서 뺀 문항과 뺀 자리(`studioCart.ts`). 한꺼번에 담기가 건너뛰고, 작업실
+   * «담은 문항» 목록의 «다시 담기»가 이 판을 뺀 자리에 되넣는다. 원장님 2026-09-21 확정 «시험지와 같이
+   * 저장한다»(트랙 47) — 전에는 화면 상태라 새로 고치면 뺀 것이 «N문항 담기»에 다시 잡혔다.
+   * 이 판 전 저장본에는 칸이 없다 — 빈 기억으로 읽는다(`parseRemovals`).
+   */
+  removed: StudioCartRemoval[];
   columns: 1 | 2;
   answers: boolean;
   printOptions: PrintOptions;
@@ -68,6 +76,7 @@ function blankDraft(id = ""): WorkspaceDraft {
     id,
     title: DEFAULT_DRAFT_TITLE,
     problems: [],
+    removed: [],
     columns: DEFAULT_PRINT_OPTIONS.columns,
     answers: DEFAULT_PRINT_OPTIONS.showAnswers,
     printOptions: { ...DEFAULT_PRINT_OPTIONS },
@@ -359,6 +368,33 @@ function parseProblems(value: unknown): StudioProblem[] {
   });
 }
 
+/**
+ * 뺀 기억(`WorkspaceDraft.removed`). 칸이 없으면(이 판 전 저장본) 빈 기억이다.
+ * - 문항은 담은 목록과 같은 검사를 거친다 — «다시 담기»가 이 판을 그대로 시험지에 넣는다.
+ * - 담은 목록에 다시 있는 문항의 기억은 버린다 — 같은 문항(그림 data URL 까지)을 두 곳에 싣지 않는다.
+ *   뺀 문항은 담은 목록에서 **옮겨** 온 것이라 저장 크기는 빼기 전과 같다.
+ */
+function parseRemovals(
+  value: unknown,
+  problems: StudioProblem[],
+): StudioCartRemoval[] {
+  if (value === undefined) return [];
+  if (
+    !Array.isArray(value) ||
+    !value.every(
+      (item: unknown) =>
+        record(item) &&
+        Number.isInteger(item.index) &&
+        (item.index as number) >= 0,
+    )
+  )
+    throw new DraftError(INVALID_IMPORT);
+  const items = value as { problem: unknown; index: number }[];
+  return parseProblems(items.map((item) => item.problem))
+    .map((problem, at) => ({ problem, index: items[at].index }))
+    .filter((item) => !problems.some((kept) => kept.id === item.problem.id));
+}
+
 export function parseImport(
   value: unknown,
 ): Omit<WorkspaceDraft, "id" | "updatedAt"> {
@@ -368,9 +404,11 @@ export function parseImport(
     columns: value.columns === 1 ? 1 : 2,
     answers: value.answers,
   });
+  const problems = parseProblems(value.problems);
   return {
     title: value.title,
-    problems: parseProblems(value.problems),
+    problems,
+    removed: parseRemovals(value.removed, problems),
     columns: printOptions.columns,
     answers: printOptions.showAnswers,
     printOptions,
@@ -428,6 +466,10 @@ function summaries(envelope: DraftEnvelope): DraftSummary[] {
 
 function draftRevision(draft: WorkspaceDraft | undefined): string | undefined {
   // Field order differs between a new draft and a decoded draft; compare their data, not that order.
+  // 뺀 기억(`removed`)은 일부러 안 넣는다 — 이 판 전 배포본의 창은 모르는 칸을 버리고 봉투를 통째로
+  // 다시 쓴다(`parseImport` 가 아는 칸만 고른다). 그 떨굼은 시험지를 고친 것이 아니니 «다른 창의 변경»으로
+  // 읽지 않고, 새 창이 다음 저장에 제 기억을 다시 싣는다. 뺀 기억은 빼기·담기와 늘 같이 바뀌어
+  // 두 새 창의 진짜 충돌은 `problems` 가 잡는다.
   return (
     draft &&
     JSON.stringify([
@@ -544,6 +586,7 @@ export function createWorkspaceDraftStore(
         const saved = {
           ...current,
           problems,
+          removed: parseRemovals(current.removed, problems),
           printOptions: parsePrintOptions(current.printOptions),
           printMeta: parsePrintMeta(current.printMeta),
           updatedAt: new Date().toISOString(),
@@ -665,6 +708,12 @@ export function createWorkspaceDraftStore(
         typeof value === "function" ? value(draft.problems) : value;
       return problems === draft.problems ? draft : { ...draft, problems };
     });
+  const setRemoved: Dispatch<SetStateAction<StudioCartRemoval[]>> = (value) =>
+    edit((draft) => {
+      const removed =
+        typeof value === "function" ? value(draft.removed) : value;
+      return removed === draft.removed ? draft : { ...draft, removed };
+    });
 
   return {
     getSnapshot: () => snapshot,
@@ -683,6 +732,7 @@ export function createWorkspaceDraftStore(
     setTitle: (title: string) =>
       edit((draft) => (title === draft.title ? draft : { ...draft, title })),
     setProblems,
+    setRemoved,
     setColumns: (columns: number) => {
       if (columns === 1 || columns === 2)
         edit((draft) =>
