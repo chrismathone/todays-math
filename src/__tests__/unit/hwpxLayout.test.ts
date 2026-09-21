@@ -249,3 +249,47 @@ describe("HWPX 친 띄어쓰기 — 고정 공백 자리에서 글 조각을 끊
     ).toEqual(["갑 을"]);
   });
 });
+
+describe("HWPX 줄바꿈된 인라인 수식 — 자리는 첫 줄 조각", () => {
+  afterEach(() => {
+    vi.restoreAllMocks();
+    document.body.replaceChildren();
+  });
+
+  /**
+   * 좁은 칸(3열 〈보기〉)에서 KaTeX 는 «y =» 뒤에서 접힌다. 외곽 상자(getBoundingClientRect)의 x 는
+   * **둘째 줄의 왼쪽 끝**이라 writer 가 수식을 «(가)» 보다 앞에 세웠다(하네스 box9cols3 실측).
+   * 기준선은 이미 첫 줄(첫 strut)에서 잰다 — 자리도 첫 줄 조각으로 맞춘다.
+   */
+  it("둘로 접힌 수식은 첫 조각의 x·y·폭 — 앞말 «(가)» 뒤에 선다", async () => {
+    Object.defineProperty(document, "fonts", {
+      configurable: true,
+      value: { ready: Promise.resolve() },
+    });
+    vi.spyOn(HTMLElement.prototype, "getBoundingClientRect").mockImplementation(
+      function (this: HTMLElement) {
+        if (this.matches("[data-unified-paper]"))
+          return new DOMRect(0, 0, 794, 1123);
+        if (this.matches(".katex")) return new DOMRect(17, 105, 59, 40);
+        if (this.matches(".strut")) return new DOMRect(44, 105, 0, 16);
+        return new DOMRect(0, 0, 700, 20);
+      },
+    );
+    vi.spyOn(HTMLElement.prototype, "getClientRects").mockImplementation(
+      function (this: HTMLElement) {
+        const rects = this.matches(".katex-html")
+          ? [new DOMRect(44, 105, 30, 20), new DOMRect(17, 125, 29, 20)]
+          : [new DOMRect(0, 0, 700, 20)];
+        return Object.assign(rects, {
+          item: (i: number) => rects[i] ?? null,
+        }) as unknown as DOMRectList;
+      },
+    );
+    const source = document.createElement("div");
+    source.innerHTML = `<section data-unified-paper><p><span class="katex" data-export-tex="y%20%3D%203x%5E2"><span class="katex-html"><span class="base"><span class="strut"></span></span></span></span></p></section>`;
+    document.body.append(source);
+    const page = (await collectHwpxLayout(source)).pages[0]!;
+    const equation = page.objects.find((object) => object.type === "equation");
+    expect(equation).toMatchObject({ x: 44, y: 105, w: 30, h: 20 });
+  });
+});

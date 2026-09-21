@@ -294,8 +294,20 @@ export async function collectHwpxLayout(
       )) {
         if (!visible(el)) continue;
         if (el.parentElement?.closest(".katex, svg")) continue;
-        const rect = el.getBoundingClientRect();
+        let rect = el.getBoundingClientRect();
         if (el.classList.contains("katex")) {
+          // 좁은 칸에서 KaTeX 가 줄바꿈되면 외곽 상자의 x 는 **둘째 줄의 왼쪽 끝**이라 writer 가 수식을
+          // 앞말보다 앞에 세웠다(3열 〈보기〉: «$y=3x^2$ (가)»). 기준선은 아래에서 첫 줄(첫 strut)로
+          // 재므로, 자리도 첫 줄 조각으로 맞춘다. 한글 수식은 줄을 안 바꾼다 — 한 줄로 그 자리에 선다.
+          const fragments = [
+            ...(el.querySelector(".katex-html")?.getClientRects() ?? []),
+          ].filter((fragment) => fragment.width > 0 && fragment.height > 0);
+          if (
+            fragments.length > 1 &&
+            Math.abs(fragments[fragments.length - 1]!.top - fragments[0]!.top) >
+              2
+          )
+            rect = fragments[0]!;
           const encoded = el.getAttribute("data-export-tex");
           const latex = encoded
             ? decodeURIComponent(encoded)

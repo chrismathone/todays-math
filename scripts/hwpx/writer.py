@@ -194,11 +194,27 @@ def build_parts(payload):
         # by baseline alone split one grid row into per-cell paragraphs and ordered them by y —
         # (바) came before (마). The collector tags each cell; one grid row is one paragraph, in
         # cell (= source) order, and the cells' own lines pair up by their order in the cell.
+        # Inside a cell, one line is what overlaps vertically: a choice cell top-aligns its number
+        # and its content, so a fraction's baseline sits below its ① and baseline grouping dropped
+        # the fraction onto its own line (both the studio and the bank paper did this).
+        def cell_lines(cell):
+            lines=[]
+            for item in sorted(cell,key=lambda o:(o['y'],o['x'])):
+                target=None
+                for line in reversed(lines):
+                    overlap=min(line['bottom'],item['y']+item['h'])-max(line['y'],item['y'])
+                    if overlap>=.5*min(line['bottom']-line['y'],item['h']):target=line;break
+                if target is None:
+                    target={'items':[],'y':item['y'],'bottom':item['y']+item['h']};lines.append(target)
+                target['items'].append(item)
+                target['y']=min(target['y'],item['y']);target['bottom']=max(target['bottom'],item['y']+item['h'])
+            for line in lines:line['items'].sort(key=lambda o:o['x'])
+            return sorted(lines,key=lambda l:l['y'])
         groups={}
         for item in items:groups.setdefault((item['gridId'],item['gridRow']),{}).setdefault(item.get('gridCol',0),[]).append(item)
         rows=[]
         for cells in groups.values():
-            per_cell=[baseline_rows(cells[col]) for col in sorted(cells)]
+            per_cell=[cell_lines(cells[col]) for col in sorted(cells)]
             for depth in range(max(len(lines) for lines in per_cell)):
                 merged=[item for lines in per_cell if depth<len(lines) for item in lines[depth]['items']]
                 rows.append(finish_row({'baseline':max(o.get('baseline',o['y']+o['h']*.8) for o in merged),'items':merged}))

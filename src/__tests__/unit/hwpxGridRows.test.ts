@@ -152,6 +152,40 @@ describe("HWPX 격자 — 한 행은 한 문단, 칸은 원문 차례대로", ()
     ]);
   });
 
+  /**
+   * 보기 번호 칸은 번호와 내용이 위쪽 정렬(`items-start`)이라 분수 칸은 **칸 안에서도** 번호와 기준선이
+   * 갈린다. 칸 안의 줄을 기준선으로 세면 «①» 옆이 비고 분수가 아랫줄로 떨어진다(하네스 실측 —
+   * 작업실 지면·문제은행 지면 둘 다). 칸 안의 한 줄은 **세로로 겹치는** 것끼리다.
+   */
+  it("분수 보기: 번호와 분수가 한 줄 — 칸 안의 줄은 세로 겹침으로 묶는다", async () => {
+    const choice = (row: number, col: number): Cell => ({
+      gridId: 2,
+      gridRow: row,
+      gridCol: col,
+    });
+    const lines = (
+      await paragraphs([
+        text(0, 3, 135, "다음 중 가장 큰 수는?", 16.2),
+        // 트랙 46 하네스(choicesFrac)가 실제로 수집한 좌표.
+        text(0, 36.8, 14, "①", 50, choice(0, 0)),
+        equation(20, 42.1, 12.5, "\\dfrac{5}{2}", 57.1, choice(0, 0)),
+        text(116.2, 36.8, 14, "②", 50, choice(0, 1)),
+        equation(136.2, 35.8, 21.7, "-3", 50.7, choice(0, 1)),
+        text(232.4, 36.8, 14, "③", 50, choice(0, 2)),
+        equation(252.4, 42.1, 12.5, "\\dfrac{1}{3}", 57.1, choice(0, 2)),
+        text(0, 78.8, 14, "④", 92, choice(1, 0)),
+        equation(20, 77.8, 8.5, "2", 92.8, choice(1, 0)),
+        text(116.2, 78.8, 14, "⑤", 92, choice(1, 1)),
+        equation(136.2, 84.1, 12.5, "\\dfrac{7}{4}", 99.1, choice(1, 1)),
+      ])
+    ).map((entry) => entry.line);
+    expect(lines).toEqual([
+      "다음 중 가장 큰 수는?",
+      "① $\\dfrac{5}{2}$ ② $-3$ ③ $\\dfrac{1}{3}$",
+      "④ $2$ ⑤ $\\dfrac{7}{4}$",
+    ]);
+  });
+
   it("격자 밖 줄은 예전 그대로 — 표시가 없으면 기준선으로 묶는다", async () => {
     const lines = (
       await paragraphs([
