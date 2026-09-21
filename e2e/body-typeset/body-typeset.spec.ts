@@ -74,7 +74,7 @@ test.describe("⑵ 편집기에서 친 여러 칸은 저장 뒤에도 남는다"
       await page.getByRole("button", { name: "저장" }).click();
 
       // 저장본에 네 칸이 남아 있다(고정 공백으로 — 지면 파서·HTML 이 접지 않는 글자).
-      expect(await storedText(page)).toMatch(/갑[  ]{4}을/);
+      expect(await storedText(page)).toMatch(/갑[ \xA0]{4}을/);
       for (const where of ["card", "paper", "editor"] as const) {
         const gap = await gapBetween(panel(page, where), "갑", "을");
         expect(gap, `${where} 간격`).toBeGreaterThan(3.5 * one);
@@ -90,7 +90,7 @@ test.describe("⑵ 편집기에서 친 여러 칸은 저장 뒤에도 남는다"
       await page.keyboard.press("End");
       await page.keyboard.type("병");
       await page.getByRole("button", { name: "저장" }).click();
-      expect(await storedText(page)).toMatch(/갑[  ]{4}을병/);
+      expect(await storedText(page)).toMatch(/갑[ \xA0]{4}을병/);
       expect(await gapBetween(panel(page, "card"), "갑", "을")).toBeGreaterThan(
         3.5 * one,
       );

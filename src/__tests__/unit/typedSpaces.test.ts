@@ -17,7 +17,7 @@ import { describe, expect, it } from "vitest";
 
 import { documentMarkdown } from "@/components/math/editor/visualDocument";
 
-const NBSP = " ";
+const NBSP = "\xA0";
 const text = (value: string): JSONContent => ({ type: "text", text: value });
 const math = (tex: string): JSONContent => ({
   type: "visualMath",

@@ -82,8 +82,8 @@ const tableMarkdown = (node: JSONContent): string => {
     .join("\n");
 };
 
-const NBSP = " ";
-const TYPED_SPACES = /[  ]{2,}/g;
+const NBSP = "\xA0";
+const TYPED_SPACES = /[ \xA0]{2,}/g;
 
 /**
  * 편집기에서 친 여러 칸 띄어쓰기는 **고정 공백**(U+00A0)으로 싣는다 — 원장님 2026-09-21
