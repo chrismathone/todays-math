@@ -7,6 +7,7 @@ import {
   type DevAiStatus,
 } from "@/lib/dev-ai/contracts";
 import { DevAiRequestSchema } from "@/lib/dev-ai/tasks";
+import { FigureRedrawError } from "@/lib/dev-ai/figure-spec";
 import {
   DEV_AI_HEADERS as headers,
   readDevAiBody,
@@ -113,6 +114,10 @@ export async function POST(request: Request) {
       {
         error:
           error instanceof Error ? error.message : "AI 처리에 실패했습니다.",
+        // 운영 경로(handler.ts)와 같이 엔진 원문은 개발자용 detail 로 따로 싣는다
+        ...(error instanceof FigureRedrawError && error.detail
+          ? { detail: error.detail }
+          : {}),
       },
       { status: 502, headers },
     );

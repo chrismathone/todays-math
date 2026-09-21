@@ -87,15 +87,21 @@ export async function studioApiPost(request: Request, owner: string) {
       `[POST /api/studio/ai] ${action ?? "?"} failed:`,
       error instanceof StudioApiError
         ? `${error.status} ${error.message}`
-        : error instanceof Error
-          ? error.message.slice(0, 300)
-          : "unknown",
+        : error instanceof FigureRedrawError && error.detail
+          ? `${error.message} | ${error.detail}`
+          : error instanceof Error
+            ? error.message.slice(0, 300)
+            : "unknown",
     );
     // 2026-09-19 도형 재작도의 사유(모델 note·엔진 검증 사유 — 잘라 둔 것)가 이 502 에 가려져 원장님이
     // 왜 안 됐는지 몰랐다. FigureRedrawError 는 우리가 화면용으로 쓴 문장만 싣는다(figure-spec.ts).
+    // 엔진 원문은 개발자용 detail 로 따로 — 작업실은 마우스 올림·콘솔로만 보인다(2026-09-21).
     if (error instanceof FigureRedrawError)
       return Response.json(
-        { error: error.message },
+        {
+          error: error.message,
+          ...(error.detail ? { detail: error.detail } : {}),
+        },
         { status: error.status, headers },
       );
     return Response.json(

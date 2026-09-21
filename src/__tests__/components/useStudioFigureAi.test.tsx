@@ -9,6 +9,7 @@ import {
 } from "@/components/unified/studioHelpers";
 import type { useDevAi } from "@/components/unified/useDevAi";
 import type { DevAiResponse } from "@/lib/dev-ai/contracts";
+import { AiRequestError } from "@/components/unified/aiResponse";
 
 const svg =
   '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><path d="M10 90L50 10L90 90Z" fill="none" stroke="black"/></svg>';
@@ -225,6 +226,31 @@ describe("Studio automatic SVG ownership", () => {
       state: "error",
       error: shown,
     });
+  });
+  // 트랙 45(2026-09-21) — 엔진 원문은 개발자용: 작업 칸의 한 줄에는 안 들어가고, 마우스 올림(errorDetail)·콘솔로만 간다
+  it("keeps the engine's words for hover and console, not for the line", async () => {
+    const log = vi.spyOn(console, "warn").mockImplementation(() => {});
+    const words =
+      "도형을 그리지 못했습니다: labels.lA.point conflicts with its key";
+    const run = vi
+      .fn()
+      .mockRejectedValueOnce(
+        new AiRequestError(
+          "도형을 다시 그리지 못했습니다. 원본은 유지됩니다.",
+          words,
+        ),
+      );
+    const { result } = mount([crop("a")], run);
+    await act(async () => {
+      await result.current.run(["a"]);
+    });
+    expect(result.current.jobs[0]).toMatchObject({
+      state: "error",
+      error: "도형을 다시 그리지 못했습니다. 원본은 유지됩니다.",
+      errorDetail: words,
+    });
+    expect(log).toHaveBeenCalledWith("[도형 재작도] 엔진 사유:", words);
+    log.mockRestore();
   });
   it("retries only the failed figure and retains originals while failures are visible", async () => {
     const run = vi

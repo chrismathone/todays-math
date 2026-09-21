@@ -11,9 +11,15 @@ export const MAX_FIGURE_SPEC_BYTES = 64 * 1024;
  */
 export class FigureRedrawError extends Error {
   readonly status = 422;
-  constructor(message: string) {
+  /**
+   * 개발자용 원문(엔진 검증 사유 등, 트랙 45 2026-09-21) — 화면 문구(`message`)와 따로 싣는다.
+   * 처리기가 서버 기록과 응답 `detail` 에 싣고, 작업실은 마우스 올림·콘솔로만 보인다.
+   */
+  readonly detail?: string;
+  constructor(message: string, detail?: string) {
     super(message);
     this.name = "FigureRedrawError";
+    if (detail) this.detail = detail.slice(0, 500);
   }
 }
 /** 오류 칸 한 줄에 들어가는 길이. */
