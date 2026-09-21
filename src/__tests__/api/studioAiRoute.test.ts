@@ -317,23 +317,53 @@ describe("figure redraw reasons reach the screen", () => {
     expect(error).toMatch(/… 원본은 유지됩니다\.$/);
   });
 
-  it("shows the engine's validation reason when the repairs run out", async () => {
-    vi.mocked(runModelApi).mockResolvedValue(
-      JSON.stringify({
-        spec: {
-          version: 2,
-          points: { A: [0, 0] },
-          segments: { AB: ["A", "missing"] },
-        },
-      }),
-    );
+  // 원장님 2026-09-21 — 엔진의 영어 원문이 화면에 그대로 나갔다(D-08). 화면은 한국어 한 줄, 원문은 개발자용 detail·서버 기록.
+  const missingRef = {
+    spec: {
+      version: 2,
+      points: { A: [0, 0] },
+      segments: { AB: ["A", "missing"] },
+    },
+  };
+  const engineWords =
+    "도형을 그리지 못했습니다: segment 'AB' has unknown point ref 'missing'";
+  it("shows the engine's reason as one Korean line when the repairs run out — its words go to detail", async () => {
+    const log = vi.spyOn(console, "error").mockImplementation(() => {});
+    vi.mocked(runModelApi).mockResolvedValue(JSON.stringify(missingRef));
     const response = await POST(request(figure));
     expect(response.status).toBe(422);
-    const { error } = await response.json();
-    expect(error).toMatch(
-      /^도형을 그리지 못했습니다: .*missing.* 원본은 유지됩니다\.$/,
-    );
+    expect(await response.json()).toEqual({
+      error: "도형을 다시 그리지 못했습니다. 원본은 유지됩니다.",
+      detail: engineWords,
+    });
     expect(runModelApi).toHaveBeenCalledTimes(3);
+    // 운영 로그(원장님이 붙여 주시는 것)에는 엔진 원문이 남는다
+    expect(log).toHaveBeenCalledWith(
+      "[POST /api/studio/ai] figure-redraw failed:",
+      expect.stringContaining(engineWords),
+    );
+    log.mockRestore();
+  });
+
+  it("carries the same detail on the development route", async () => {
+    vi.stubEnv("NODE_ENV", "development");
+    vi.stubEnv("DEV_AI_MODE", "subscription-cli");
+    vi.mocked(runSubscriptionCli).mockResolvedValue(JSON.stringify(missingRef));
+    const response = await devPost(
+      new Request("http://localhost:3000/api/dev/unified/ai", {
+        method: "POST",
+        headers: {
+          origin: "http://localhost:3000",
+          "content-type": "application/json",
+        },
+        body: JSON.stringify({ ...figure, provider: "codex" }),
+      }),
+    );
+    expect(await response.json()).toEqual({
+      error: "도형을 다시 그리지 못했습니다. 원본은 유지됩니다.",
+      detail: engineWords,
+    });
+    expect(runSubscriptionCli).toHaveBeenCalledTimes(3);
   });
 
   // 리드 결정 2026-09-19 — 처리기의 240초는 요청 시작부터, 도형 쪽 240초는 칸을 얻은 뒤부터라 처리기가 먼저 끊어

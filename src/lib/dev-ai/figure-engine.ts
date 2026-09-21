@@ -15,7 +15,11 @@ import {
   parseFigureSpecResult,
   withTransparentBackground,
 } from "./figure-spec";
-import { MAX_DROPPED, repairFigureSpec } from "./figure-repair";
+import {
+  MAX_DROPPED,
+  engineRejectionReason,
+  repairFigureSpec,
+} from "./figure-repair";
 import { isEngineCapabilityRefusal } from "./figure-refusal";
 import { validDevAiSvg } from "./svg";
 import { buildFigureComparisonImage } from "./figure-comparison";
@@ -193,6 +197,10 @@ export async function redrawDevAiFigure(
         if (!fix) break;
         if (fix.dropped) dropped++;
         if (fix.warning) repaired.push(fix.warning);
+        // 조용히 고치지 않는다 — 원장님 화면에 안 적는 교정도 무엇을 고쳤는지 서버 기록에 남긴다(트랙 45)
+        console.warn(
+          `[도형 재작도] 엔진 거절을 사양 교정으로 풀었습니다: ${fix.note} (${rendered.error})`,
+        );
         spec = fix.spec;
         rendered = await render(spec);
         check();
@@ -204,9 +212,13 @@ export async function redrawDevAiFigure(
           repair = { spec, error: rendered.error };
           continue;
         }
-        // 엔진 검증 사유는 화면까지 간다. 엔진을 못 띄운 실패는 실행 파일 경로를 싣고 있어 가린다.
+        // 엔진 검증 사유는 화면에 한국어 한 줄로, 엔진 원문은 개발자용 detail 로 간다(원장님 2026-09-21 — 영어 원문이
+        // 그대로 나갔다). 엔진을 못 띄운 실패는 실행 파일 경로를 싣고 있어 가린다.
         throw rendered.error.startsWith(ENGINE_REJECTED)
-          ? figureReasonError(rendered.error)
+          ? new FigureRedrawError(
+              engineRejectionReason(rendered.error),
+              rendered.error,
+            )
           : new Error(`${rendered.error} 원본은 유지됩니다.`);
       }
       if (rendered.svg.length > 500000 || !validDevAiSvg(rendered.svg))
