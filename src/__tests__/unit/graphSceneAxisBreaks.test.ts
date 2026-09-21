@@ -151,6 +151,21 @@ const box = (points: P[]) => ({
   y1: Math.min(...points.map((p) => p[1])),
   y2: Math.max(...points.map((p) => p[1])),
 });
+/**
+ * 가운데 기준 180° 돌린 자리에도 획이 있는가 — ∿ 는 점대칭이다. 한쪽으로만 솟는 「∧」·「∨」나 마루까지만 그은
+ * 반쪽 물결은 여기서 떨어진다(돌린 자리가 비어 가장 먼 표본이 크게 벗어난다). 돌아온 가장 먼 거리(픽셀).
+ */
+function asymmetry(points: P[], [cx, cy]: P) {
+  let worst = 0;
+  for (const [x, y] of points) {
+    const [rx, ry] = [2 * cx - x, 2 * cy - y];
+    worst = Math.max(
+      worst,
+      Math.min(...points.map(([px, py]) => Math.hypot(px - rx, py - ry))),
+    );
+  }
+  return worst;
+}
 /** 이음매마다 앞 조각의 나가는 접선과 뒷 조각의 들어오는 접선이 나란한가(도). */
 function joinAngles(subs: Seg[][]) {
   const angles: number[] = [];
@@ -190,6 +205,8 @@ describe("graph-1 축 생략 물결 — 모양", () => {
     for (const [x, y] of points)
       if (Math.abs(x - cx) > 6.01) expect(Math.abs(y - cy)).toBeLessThan(0.01);
     expect(b.x2 - b.x1).toBeLessThanOrEqual(12 * 1.5);
+    // 양 끝까지 이어진 ∿ — 가운데 기준 점대칭
+    expect(asymmetry(points, [cx, cy])).toBeLessThan(0.2);
     // 매끄럽다 — 이음매마다 접선이 이어진다
     const angles = joinAngles(subs);
     expect(angles.length).toBeGreaterThan(0);
@@ -238,6 +255,7 @@ describe("graph-1 축 생략 물결 — 모양", () => {
     expect(b.x2).toBeGreaterThan(cx + 2);
     for (const [x, y] of points)
       if (Math.abs(y - cy) > 6.01) expect(Math.abs(x - cx)).toBeLessThan(0.01);
+    expect(asymmetry(points, [cx, cy])).toBeLessThan(0.2);
     for (const angle of joinAngles(subs)) expect(angle).toBeLessThan(1);
   });
 
