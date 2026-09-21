@@ -1,5 +1,6 @@
 import { describe, expect, it } from "vitest";
 import {
+  studioCropWorkKind,
   studioWorkName,
   type StudioWorkKind,
 } from "@/components/unified/studioWorkNames";
@@ -53,5 +54,17 @@ describe("studioWorkName — 작업실 작업 이름표", () => {
         studioWorkName(kind).short.replace(/\s/g, "").length,
       ).toBeLessThanOrEqual(4);
     }
+  });
+});
+
+// 문항 단위 AI 작업(진행 칸 · 진행 띠 · 검수 카드)이 같은 삼항식을 세 자리에서 따로 쓰고 있었다.
+describe("studioCropWorkKind — 문항 작업 동작 → 이름", () => {
+  it.each([
+    ["ocr", "ocr"],
+    ["page-ocr", "ocr"],
+    ["solution", "solution"],
+    ["figures", "figures"],
+  ] as const)("%s → %s", (action, kind) => {
+    expect(studioCropWorkKind(action)).toBe(kind);
   });
 });

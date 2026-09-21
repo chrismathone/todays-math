@@ -303,16 +303,17 @@
   padding: 8px 10px;
   border-radius: 8px;
 }
+/* 경고 문장은 낱말 단위로만 넘긴다 — 한국어 기본 줄바꿈은 «자르지 않 / 은» 처럼 낱말 가운데서
+   갈랐다(트랙 40 실측, 2026-09-21). 띄어쓰기 없는 긴 글자만 overflow-wrap 이 받아 준다. */
 .aiWarnings p {
   margin: 0;
   overflow-wrap: anywhere;
+  word-break: keep-all;
 }
-/* 빠진 낱말 줄 — «PDF 원문과 N%» 경고 밑에(원장님 2026-09-21 «이 경고가 어떤 문제인지 알려주면»).
-   낱말 가운데서 줄이 갈리면 «이등변 / 삼각형» 이 두 낱말로 읽힌다 — 낱말 단위로만 넘긴다. */
+/* 빠진 낱말 줄 — «PDF 낱말 N%» 경고 밑에(원장님 2026-09-21 «이 경고가 어떤 문제인지 알려주면»). */
 .aiWarnings p.missingWords {
   margin-top: 2px;
   color: #975021;
-  word-break: keep-all;
 }
 .primaryButton,
 .secondaryButton {

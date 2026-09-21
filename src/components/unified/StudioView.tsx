@@ -8,6 +8,7 @@ import StudioCropOverlay from "./StudioCropOverlay";
 import WorkProgress from "./WorkProgress";
 import StudioQueueStatus from "./StudioQueueStatus";
 import StudioProgressStrip from "./StudioProgressStrip";
+import { studioCropWorkKind, studioWorkName } from "./studioWorkNames";
 import { applyStudioCropEdit } from "./studioCropEdit";
 import { retainStudioFigures } from "./studioFigureReferences";
 import StudioFigureFailures, {
@@ -2210,7 +2211,7 @@ export default function StudioView({
           ? [
               {
                 id: "pages",
-                label: "페이지",
+                label: studioWorkName("pages").short,
                 done: studioAi.pageJobs.filter(
                   (job) => job.state === "complete" || job.state === "empty",
                 ).length,
@@ -2225,12 +2226,9 @@ export default function StudioView({
           ? [
               {
                 id: "crops",
-                label:
-                  studioAi.progress.action === "solution"
-                    ? "해설"
-                    : studioAi.progress.action === "figures"
-                      ? "도형 인식"
-                      : "문제",
+                label: studioWorkName(
+                  studioCropWorkKind(studioAi.progress.action),
+                ).short,
                 done: studioAi.progress.done,
                 total: studioAi.progress.total,
                 active: true,
@@ -2241,7 +2239,7 @@ export default function StudioView({
           ? [
               {
                 id: "figures",
-                label: "도형",
+                label: studioWorkName("svg").short,
                 done: doneFigures,
                 total: figureJobs.length,
                 active: figurePending.length > 0,
@@ -2253,7 +2251,7 @@ export default function StudioView({
           ? [
               {
                 id: "digital",
-                label: "디지털화",
+                label: studioWorkName("digital").short,
                 done: digitalCount,
                 total: crops.length,
                 active: false,
@@ -2284,7 +2282,8 @@ export default function StudioView({
       />
       {figurePending.length > 0 ? (
         <WorkProgress
-          label="SVG 도형 생성 중"
+          label={studioWorkName("svg").short}
+          fullLabel={studioWorkName("svg").running}
           detail={studioFigureProgressDetail(
             crops,
             figurePending,
@@ -2292,7 +2291,6 @@ export default function StudioView({
           )}
           completed={doneFigures}
           total={figureJobs.length}
-          unit="도형"
           startedAt={figurePending.find((job) => job.startedAt)?.startedAt}
           onCancel={() => studioAi.figureAi.cancel()}
           cancelLabel="도형 생성 취소"
@@ -2356,11 +2354,10 @@ export default function StudioView({
       {studioAi.progress ? (
         <WorkProgress
           label={
-            studioAi.progress.action === "solution"
-              ? "해설 생성 중"
-              : studioAi.progress.action === "figures"
-                ? "도형 인식 중"
-                : "문제 인식 중"
+            studioWorkName(studioCropWorkKind(studioAi.progress.action)).short
+          }
+          fullLabel={
+            studioWorkName(studioCropWorkKind(studioAi.progress.action)).running
           }
           completed={studioAi.progress.done}
           total={studioAi.progress.total}
@@ -3296,7 +3293,7 @@ export default function StudioView({
               <div className={styles.selectionStatus}>
                 <strong>
                   {recognizingPage
-                    ? "페이지 인식 중"
+                    ? studioWorkName("pages").running
                     : validSelection
                       ? "선택 영역"
                       : cropTool === "add-figure"

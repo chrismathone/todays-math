@@ -23,15 +23,25 @@ test("progress stays one row and anchored details escape canvas clipping", async
     );
     await bar.hover();
     await expect(panel).toBeVisible();
+    // 짧은 이름표가 보이고 긴 이름은 읽는 이름으로 남는다(원장님 2026-09-21).
     await expect(
-      panel.getByText("SVG 도형 생성 중", { exact: true }),
-    ).toBeVisible();
+      panel.getByRole("progressbar", { name: "SVG 도형 생성 중" }),
+    ).toBeAttached();
     await expect(
-      panel.getByText("문제 인식 중", { exact: true }),
-    ).toBeVisible();
+      panel.getByRole("progressbar", { name: "문제 인식 중" }),
+    ).toBeAttached();
+    await expect(panel.getByText("도형", { exact: true })).toBeVisible();
+    await expect(panel.getByText("문제", { exact: true })).toBeVisible();
     const barBox = (await bar.boundingBox())!;
     const panelBox = (await panel.boundingBox())!;
-    expect(panelBox.x).toBeCloseTo(barBox.x, 0);
+    // 띠와 겹치게 매달리고, 화면 좌우 8px 안에 머문다(좁은 화면에서는 화면 폭 - 16px).
+    expect(panelBox.x).toBeGreaterThanOrEqual(8);
+    expect(panelBox.x + panelBox.width).toBeLessThanOrEqual(width - 8 + 0.5);
+    expect(panelBox.x).toBeLessThan(barBox.x + barBox.width);
+    expect(panelBox.x + panelBox.width).toBeGreaterThan(barBox.x);
+    expect(panelBox.width).toBeGreaterThanOrEqual(
+      Math.min(480, width - 16) - 0.5,
+    );
     await expect
       .poll(async () => (await panel.boundingBox())!.y)
       .toBeCloseTo(barBox.y + barBox.height, 0);
@@ -156,5 +166,79 @@ test("쪽이 많아도 한 줄로 흐르고 실패한 도형은 하나씩 눌러
   await page.screenshot({ path: testInfo.outputPath("figure-failures.png") });
   await failures.getByRole("button", { name: "도형 3-2" }).click();
   await expect(page.getByLabel("진행 동작 결과")).toHaveText("c3 검수 이동");
+  expect(errors).toEqual([]);
+});
+
+/**
+ * 원장님 2026-09-21 — 검수 줄의 띠(줄 오른쪽 끝 268px)에서 «SVG 도형 생성 중»·«문제 인식 중» 이
+ * 한 글자씩 세로로 쪼개졌다(1516px 화면 실측: 이름 칸 폭 0px, 5줄). 짧은 이름표로 바꾸고,
+ * 상세 창은 «원본 영역보다 커도 된다» — 띠보다 넓게 펴되 화면 밖으로는 안 나간다.
+ * 줄 수와 폭은 계산된 레이아웃으로 잰다(jsdom 은 CSS 를 안 돈다).
+ */
+test("좁은 띠의 상세 창 — 이름표는 한 줄, 창은 띠보다 넓고 화면 안", async ({
+  page,
+}, testInfo) => {
+  const errors: string[] = [];
+  page.on("pageerror", (error) => errors.push(error.message));
+  await page.goto("/?progress-fixture");
+  await page.getByRole("button", { name: "좁은 띠 전환" }).click();
+  await page.getByRole("button", { name: "원문 대조 경고 전환" }).click();
+  const bar = page.locator("[data-studio-progress] > button");
+  const panel = page.getByRole("region", { name: "작업별 진행 상황" });
+  for (const [width, height] of [
+    [1516, 900],
+    [1280, 800],
+  ]) {
+    await page.setViewportSize({ width, height });
+    await page.keyboard.press("Escape");
+    await bar.click();
+    await expect(panel).toBeVisible();
+    const barBox = (await bar.boundingBox())!;
+    expect(barBox.width).toBeCloseTo(268, 0);
+    const panelBox = (await panel.boundingBox())!;
+    // 띠(268px)보다 넓게 — 오른쪽 끝을 띠에 맞추고 왼쪽으로 편다.
+    expect(panelBox.width).toBeCloseTo(480, 0);
+    expect(panelBox.x + panelBox.width).toBeCloseTo(barBox.x + barBox.width, 0);
+    expect(panelBox.x).toBeGreaterThanOrEqual(8);
+    // 이름표마다 한 줄 — 높이가 줄 높이를 넘지 않는다.
+    const tags = await panel.evaluate((element) =>
+      [...element.querySelectorAll("[title]")]
+        .filter((node) => node.querySelector('[aria-hidden="true"]'))
+        .map((node) => {
+          const style = getComputedStyle(node);
+          return {
+            text: node.querySelector('[aria-hidden="true"]')!.textContent,
+            height: node.getBoundingClientRect().height,
+            lineHeight: parseFloat(style.lineHeight),
+            whiteSpace: style.whiteSpace,
+            clipped: node.scrollWidth > node.clientWidth + 1,
+          };
+        }),
+    );
+    expect(tags.map((tag) => tag.text)).toEqual(["페이지", "도형", "문제"]);
+    for (const tag of tags) {
+      expect(tag.whiteSpace).toBe("nowrap");
+      expect(tag.height).toBeLessThanOrEqual(tag.lineHeight + 0.5);
+      expect(tag.clipped).toBe(false);
+    }
+    // 빠진 낱말이 마우스 올림 없이 보인다.
+    await expect(
+      panel.getByText(/^빠진 낱말: 경신중학교, 평행사변형/),
+    ).toBeVisible();
+    // 창도 문서도 가로로 안 터진다.
+    expect(
+      await panel.evaluate(
+        (element) => element.scrollWidth <= element.clientWidth,
+      ),
+    ).toBe(true);
+    expect(
+      await page.evaluate(
+        () => document.documentElement.scrollWidth <= innerWidth,
+      ),
+    ).toBe(true);
+    await page.screenshot({
+      path: testInfo.outputPath(`narrow-strip-${width}.png`),
+    });
+  }
   expect(errors).toEqual([]);
 });

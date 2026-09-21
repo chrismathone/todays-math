@@ -34,3 +34,10 @@ export function studioWorkName(kind: StudioWorkKind) {
   const { short, long } = NAMES[kind];
   return { short, long, running: `${long} 중` };
 }
+
+/** 문항 단위 AI 작업의 동작 → 이름 종류. 쪽 인식이 문항을 읽는 물결(`page-ocr`)도 «문제» 다. */
+export function studioCropWorkKind(
+  action: "ocr" | "page-ocr" | "figures" | "solution",
+): StudioWorkKind {
+  return action === "solution" || action === "figures" ? action : "ocr";
+}

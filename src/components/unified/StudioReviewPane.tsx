@@ -22,6 +22,7 @@ import { MathTextEditor } from "@/components/math/editor/MathTextEditor";
 import type { StudioAiPageJob } from "./useStudioAi";
 import type { StudioFigureJob } from "./useStudioFigureAi";
 import WorkProgress from "./WorkProgress";
+import { studioCropWorkKind, studioWorkName } from "./studioWorkNames";
 import styles from "./StudioReviewPane.module.css";
 
 type Action = "ocr" | "figures" | "solution";
@@ -382,7 +383,7 @@ function ReviewCard({
       </div>
       {activeJob && (
         <WorkProgress
-          label={`${activeJob.action === "solution" ? "해설 생성" : activeJob.action === "figures" ? "도형 인식" : "문제 인식"} ${activeJob.state === "queued" ? "대기 중" : "중"}`}
+          label={`${studioWorkName(studioCropWorkKind(activeJob.action)).long} ${activeJob.state === "queued" ? "대기 중" : "중"}`}
           variant="inline"
           startedAt={activeJob.startedAt}
           onCancel={() => props.onCancel(crop.id, activeJob.action)}

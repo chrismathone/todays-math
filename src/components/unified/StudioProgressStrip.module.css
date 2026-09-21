@@ -131,6 +131,14 @@
   box-shadow: 0 8px 24px #172b4d24;
   animation: appear 140ms ease-out;
 }
+/* 상세 창이 띠보다 넓으면(원장님 2026-09-21 «원본 영역보다 커도 될거같으니까») 띠 밖으로 나간
+   쪽의 위 모서리만 둥글린다 — 띠에 붙은 자리는 각진 채로 두어 띠에서 흘러내린 꼴을 지킨다. */
+.popover[data-overhang-start] {
+  border-top-left-radius: 9px;
+}
+.popover[data-overhang-end] {
+  border-top-right-radius: 9px;
+}
 .popover::backdrop {
   background: transparent;
   pointer-events: none;

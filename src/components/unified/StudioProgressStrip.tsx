@@ -52,11 +52,18 @@ export function progressDetailPlacement(
   const below = viewport.height - bounds.bottom - 12;
   const above = below < 160 && bounds.top > below;
   const maxHeight = Math.max(0, Math.min(460, above ? bounds.top - 12 : below));
+  const placedLeft = Math.max(
+    EDGE,
+    Math.min(left, viewport.width - EDGE - width),
+  );
   return {
-    left: Math.max(EDGE, Math.min(left, viewport.width - EDGE - width)),
+    left: placedLeft,
     width,
     above,
     maxHeight,
+    /** 띠 밖으로 나간 쪽 — 그쪽 위 모서리만 둥글게 한다(띠에 붙은 곳은 각지게). */
+    overhangStart: placedLeft < bounds.left - 0.5,
+    overhangEnd: placedLeft + width > bounds.right + 0.5,
   };
 }
 
@@ -99,6 +106,8 @@ export default function StudioProgressStrip({
         : "auto";
       popup.style.width = `${placed.width}px`;
       popup.style.maxHeight = `${placed.maxHeight}px`;
+      popup.toggleAttribute("data-overhang-start", placed.overhangStart);
+      popup.toggleAttribute("data-overhang-end", placed.overhangEnd);
     };
     position();
     // Native top layer avoids clipping by the editor canvas's overflow boundary,

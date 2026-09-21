@@ -147,6 +147,19 @@ describe("progressDetailPlacement — 상세 창 폭과 자리", () => {
     }
   });
 
+  // 띠에 붙은 쪽 모서리는 각지고, 띠 밖으로 나간 쪽 위 모서리만 둥글다 — 창이 띠에서 흘러내린 꼴.
+  it("띠 밖으로 나간 쪽을 알린다 — 위 모서리를 둥글게 할 자리", () => {
+    expect(
+      progressDetailPlacement(strip(1226, 268), { width: 1516, height: 900 }),
+    ).toMatchObject({ overhangStart: true, overhangEnd: false });
+    expect(
+      progressDetailPlacement(strip(100, 200), { width: 1440, height: 900 }),
+    ).toMatchObject({ overhangStart: false, overhangEnd: true });
+    expect(
+      progressDetailPlacement(strip(20, 1000), { width: 1440, height: 900 }),
+    ).toMatchObject({ overhangStart: false, overhangEnd: false });
+  });
+
   it("아래 자리가 모자라면 위로 연다 — 세로 규칙은 그대로", () => {
     expect(
       progressDetailPlacement(strip(100, 200, 700), {
