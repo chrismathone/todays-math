@@ -34,7 +34,7 @@ _SENT_DLB = "\x03"  # LEFT 구분자 {
 # 맨 ``\{…\}`` 승격 판정 — 내용에 이 2단 구조가 있으면 고정 리터럴 중괄호가 내용을
 # 못 감싼다(조건제시법 분수 실측). \left\{ 의 ``\{`` 를 오인하지 않게 앞말을 본다.
 _TALL_INNER_RE = re.compile(
-    r"\\(?:d?frac|sqrt|sum|prod|int|binom|over(?:line)?\b)|\batop\b")
+    r"\\(?:[cdt]?frac|sqrt|sum|prod|int|binom|over(?:line)?\b)|\batop\b")
 
 
 def _upgrade_tall_set_braces(s: str) -> str:
@@ -798,9 +798,9 @@ class LaTeXToHWPConverter:
 
     def _build_patterns(self):
         """정규식 패턴 사전 컴파일."""
-        # \frac{a}{b}, \dfrac{a}{b}, \tfrac{a}{b}
+        # \frac{a}{b}, \dfrac{a}{b}, \tfrac{a}{b}, \cfrac{a}{b} — cfrac 을 빼면 «모르는 명령 지우기»에 걸려 {a}{b} 가 된다
         self._frac_pattern = re.compile(
-            r"\\[dt]?frac\s*" + self._brace_group("num") + r"\s*" + self._brace_group("den")
+            r"\\[cdt]?frac\s*" + self._brace_group("num") + r"\s*" + self._brace_group("den")
         )
         # \sqrt[n]{x} 또는 \sqrt{x}
         self._sqrt_n_pattern = re.compile(
@@ -1256,10 +1256,13 @@ class LaTeXToHWPConverter:
             # 안 그러면 `PLEFT` 가 되어 로만화·렌더가 깨진다(사용자 2026-06-08).
             if l_str and r_str:
                 return f" LEFT {l_str} {inner} RIGHT {r_str}"
+            # 한쪽만 있는 울타리(`\left\{ … \right.`)도 **짝을 맞춘다** — 빈 쪽은 `.`(한글의 빈 구분자, 실측
+            # `LEFT . a RIGHT |`). 닫힘 없는 `LEFT {` 는 식의 나머지를 전부 울타리 안으로 읽게 만든다
+            # (폭·높이 계산도 그렇게 읽는다 — 그록 적대적 리뷰 2026-09-21).
             elif l_str:
-                return f" LEFT {l_str} {inner}"
+                return f" LEFT {l_str} {inner} RIGHT ."
             elif r_str:
-                return f"{inner} RIGHT {r_str}"
+                return f" LEFT . {inner} RIGHT {r_str}"
             return inner
 
         # 최내곽부터 고정점까지 반복 — 중첩 \left…\right 쌍을 안쪽→바깥쪽 순서로 정확 매칭.
