@@ -151,6 +151,8 @@ export default function NativeProblem({
     return (
       <div
         data-native-choices={layout}
+        // HWPX 에 칸을 알린다 — 분수 보기가 한글에서 번호와 다른 줄로 떨어지지 않게(트랙 46).
+        data-hwpx-grid=""
         className="mt-3 grid gap-x-4 gap-y-2"
         style={{ gridTemplateColumns: `repeat(${columns}, minmax(0, 1fr))` }}
       >

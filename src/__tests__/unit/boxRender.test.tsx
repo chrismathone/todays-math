@@ -218,3 +218,15 @@ describe("[상자 렌더] 정본 `<보기:cols=N>` — 지면이 열 수를 읽�
     for (const item of items) expect(item.split("</div>")[0]).toContain("<img");
   });
 });
+
+describe("[보기 번호] 문제은행 지면의 보기 격자도 HWPX 격자 표시", () => {
+  it("ProblemContent 의 보기 격자에 data-hwpx-grid — 칸은 보기 하나씩", () => {
+    const out = html(
+      <ProblemContent
+        content={"다음 중 가장 큰 수는?\n① $1$\n② $2$\n③ $3$\n④ $4$\n⑤ $5$"}
+      />,
+    );
+    const grid = /<div data-hwpx-grid="" class="mt-4 grid[^"]*">/.exec(out);
+    expect(grid).not.toBeNull();
+  });
+});

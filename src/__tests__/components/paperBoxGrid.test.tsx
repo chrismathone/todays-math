@@ -123,3 +123,20 @@ describe("지면 〈보기〉 — 원본 그림 자리로 2열 2행 (원장님 �
     expect(grid).toBeNull();
   });
 });
+
+/**
+ * 보기 번호 격자도 HWPX 에 칸을 알린다 — 분수 보기가 한글에서 번호와 다른 줄로 떨어지던 것(하네스 실측,
+ * 작업실 지면·문제은행 지면 둘 다). 칸 안의 한 줄은 writer 가 세로 겹침으로 묶는다.
+ */
+describe("보기 번호 격자 — HWPX 격자 표시", () => {
+  it("작업실 지면(NativeProblem)의 보기 격자", () => {
+    const { container } = render(
+      <NativeProblem problem={studioProblem(Q22)} print />,
+    );
+    const grid = container.querySelector("[data-native-choices]");
+    expect(grid?.hasAttribute("data-hwpx-grid")).toBe(true);
+    expect(
+      grid?.querySelectorAll(":scope > [data-native-choice]"),
+    ).toHaveLength(5);
+  });
+});

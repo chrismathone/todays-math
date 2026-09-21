@@ -202,6 +202,8 @@ export function ProblemContent({
       ) : null}
       {choices.length > 0 ? (
         <div
+          // HWPX 에 칸을 알린다 — 분수 보기가 한글에서 번호와 다른 줄로 떨어지지 않게(트랙 46).
+          data-hwpx-grid=""
           // 「자동」은 표식을 안 붙인다 — React 가 속성 자체를 안 만들어 마크업이 오늘 그대로다.
           data-choice-layout={
             choiceLayout === "auto" ? undefined : choiceLayout
