@@ -33,9 +33,11 @@ export interface HwpxGridCell {
 /**
  * 격자 칸 표시 — 지면의 `[data-hwpx-grid]` 바로 아래 자식이 한 칸이다.
  *
- * 격자는 칸이 **위쪽 정렬**이라 한 칸에 분수가 들면 그 칸의 기준선만 내려간다. writer 가 기준선으로만
- * 줄을 세우면 한 행이 칸마다 갈라지고 y 순으로 뒤섞인다(원장님 9번: (바)가 (마)보다 먼저). 그래서
- * 행은 **칸의 위쪽 끝**(같은 행의 칸은 위쪽이 같다)으로, 칸 차례는 **그 행 안의 문서 차례**로 적는다.
+ * 한 칸에 분수가 들면 그 칸의 기준선만 내려간다(트랙 46 은 칸이 위쪽 정렬이었고, 트랙 51 부터 글 칸은
+ * 기준선 맞춤이라 이번엔 **옆 칸의 위쪽 끝**이 내려온다). writer 가 기준선으로만 줄을 세우면 한 행이
+ * 칸마다 갈라지고 y 순으로 뒤섞인다(원장님 9번: (바)가 (마)보다 먼저). 그래서 칸 차례는 **문서 차례**로,
+ * 행은 격자가 앞에서부터 가로로 채운다는 사실로 적는다 — 칸이 앞 칸보다 오른쪽이 아니면 새 행이다.
+ * 위쪽 끝·기준선 어느 쪽도 안 본다(칸 세로 맞춤이 바뀌어도 행이 안 갈린다).
  */
 export function gridCellMarks(root: Element) {
   const grids = new Map<Element, number>();
@@ -46,18 +48,16 @@ export function gridCellMarks(root: Element) {
     const children = [...grid.children].filter(
       (child) => child.getBoundingClientRect().width > 0,
     );
-    const tops: number[] = [];
+    let gridRow = -1;
+    let gridCol = 0;
+    let previousLeft = Infinity;
     for (const child of children) {
-      const top = child.getBoundingClientRect().top;
-      if (!tops.some((known) => Math.abs(known - top) <= 1)) tops.push(top);
-    }
-    tops.sort((a, b) => a - b);
-    const used = new Map<number, number>();
-    for (const child of children) {
-      const top = child.getBoundingClientRect().top;
-      const gridRow = tops.findIndex((known) => Math.abs(known - top) <= 1);
-      const gridCol = used.get(gridRow) ?? 0;
-      used.set(gridRow, gridCol + 1);
+      const left = child.getBoundingClientRect().left;
+      if (left <= previousLeft + 1) {
+        gridRow += 1;
+        gridCol = 0;
+      } else gridCol += 1;
+      previousLeft = left;
       cells.set(child, { gridId, gridRow, gridCol });
     }
   };

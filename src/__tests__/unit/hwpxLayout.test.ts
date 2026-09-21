@@ -141,6 +141,37 @@ describe("HWPX 격자 칸 표시 — writer 가 격자 한 행을 한 문단으�
     expect(at("outside")).toBeUndefined();
   });
 
+  it("기준선 맞춤으로 칸의 위쪽 끝이 갈려도 한 행 — 행은 칸이 왼쪽으로 돌아올 때 바뀐다", async () => {
+    // 트랙 51: 글 칸이 기준선 맞춤이라, 분수 칸 옆의 글 칸은 위쪽 끝이 몇 px 내려온다.
+    const { gridCellMarks } = await import("@/lib/export/hwpxLayout");
+    const root = mount(`
+      <div data-hwpx-grid>
+        <div data-top="100" data-left="0"><span id="ga">(가)</span></div>
+        <div data-top="106.5" data-left="110"><span id="na">(나)</span></div>
+        <div data-top="100" data-left="220"><span id="da">(다)</span></div>
+        <div data-top="140" data-left="0"><span id="ra">(라)</span></div>
+        <div data-top="146" data-left="110"><span id="ma">(마)</span></div>
+      </div>
+      <div data-hwpx-grid>
+        <div data-top="200" data-left="0"><span id="one">ㄱ</span></div>
+        <div data-top="230" data-left="0"><span id="two">ㄴ</span></div>
+      </div>`);
+    const mark = gridCellMarks(root);
+    const at = (id: string) => mark(root.querySelector(`#${id}`)!);
+    expect(["ga", "na", "da", "ra", "ma"].map(at)).toEqual([
+      { gridId: 1, gridRow: 0, gridCol: 0 },
+      { gridId: 1, gridRow: 0, gridCol: 1 },
+      { gridId: 1, gridRow: 0, gridCol: 2 },
+      { gridId: 1, gridRow: 1, gridCol: 0 },
+      { gridId: 1, gridRow: 1, gridCol: 1 },
+    ]);
+    // 1열로 그린 격자는 칸마다 한 행.
+    expect(["one", "two"].map(at)).toEqual([
+      { gridId: 2, gridRow: 0, gridCol: 0 },
+      { gridId: 2, gridRow: 1, gridCol: 0 },
+    ]);
+  });
+
   it("표시 없는 격자(쪽 본문 2단 등)는 칸으로 보지 않는다", async () => {
     const { gridCellMarks } = await import("@/lib/export/hwpxLayout");
     const root = mount(`
