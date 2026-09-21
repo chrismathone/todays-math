@@ -1,0 +1,239 @@
+/*
+ * 담은 문항 시안(Wire) 겉옷. 작업실의 틀·단추·카드는 제품 CSS 모듈이 그린다 —
+ * 여기에는 «그대로인 칸»의 회색 대역과, **새로 서는 것**의 점선 표시만 둔다.
+ * 점선(.wireNew)은 시안에서 «이것이 새것»을 가리키는 표시일 뿐, 제품 모양이 아니다.
+ */
+.wireStudio {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+.wireTools {
+  display: flex;
+  align-items: center;
+  height: 96px;
+  margin-bottom: 8px;
+  padding: 0 16px;
+  border: 1px solid #d4dce8;
+  border-radius: 8px;
+  background: #fff;
+  color: #8a97ab;
+  font-size: 13px;
+}
+.wireBody {
+  position: relative;
+  display: flex;
+  height: 520px;
+  border: 1px solid #d4dce8;
+  border-bottom: 0;
+  border-radius: 9px 9px 0 0;
+  overflow: hidden;
+}
+.wireBody > div {
+  flex: 1;
+}
+.wireOriginal {
+  display: grid;
+  place-items: center;
+  height: 100%;
+  background: #eef1f6;
+  color: #8a97ab;
+  font-size: 13px;
+}
+.wireLines {
+  display: grid;
+  gap: 8px;
+  margin: 4px 0 16px;
+}
+.wireLines span {
+  display: block;
+  height: 10px;
+  border-radius: 4px;
+  background: #e4e9f1;
+}
+.wireLines span:nth-child(2) {
+  width: 72%;
+}
+.wireNew {
+  outline: 2px dashed #c2410c;
+  outline-offset: 2px;
+}
+/* 카드 머리의 담음 표시 — 읽기 전용(안 D). 제품의 `.addedBadge` 와 같은 값에 초록 띠만 달리. */
+.wireChip {
+  flex-shrink: 0;
+  padding: 2px 6px;
+  border-radius: 4px;
+  background: #e3f3ec;
+  color: #1c6b4a;
+  font-size: 12px;
+  font-weight: 600;
+}
+.wireChip[data-state="stale"] {
+  background: #fff4e5;
+  color: #8a4b08;
+}
+.wireChip[data-state="out"] {
+  background: #eef1f6;
+  color: #52617a;
+}
+/* 안 A — 카드 머리의 누르는 단추. 누른 상태(담음)만 채운다. */
+.wireToggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  height: 30px;
+  padding: 0 10px;
+  border: 1px solid #b8c6dc;
+  border-radius: 6px;
+  background: #fff;
+  color: #172b4d;
+  font-size: 13px;
+  font-weight: 600;
+  white-space: nowrap;
+}
+.wireToggle[aria-pressed="true"] {
+  border-color: #1c6b4a;
+  background: #e3f3ec;
+  color: #1c6b4a;
+}
+.wireToggle:hover:not(:disabled) {
+  border-color: #a7b8e9;
+}
+/* 안 B·D — 바닥 막대에서 위로 펼치는 목록. 문제은행이 좁을 때 쓰는 바구니와 같은 결. */
+.wirePop {
+  position: absolute;
+  right: 16px;
+  bottom: 8px;
+  z-index: 10;
+  display: flex;
+  flex-direction: column;
+  width: 400px;
+  max-height: calc(100% - 16px);
+  border: 1px solid #b8c6dd;
+  border-radius: 12px;
+  background: #fff;
+  box-shadow: 0 4px 32px #172b4d24;
+}
+.wirePopHead {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+  padding: 12px 16px;
+  border-bottom: 1px solid #e4e9f1;
+}
+.wirePopHead h3 {
+  margin: 0;
+  font-size: 15px;
+}
+.wirePopHead span {
+  color: #52617a;
+  font-size: 12px;
+}
+.wirePop ol,
+.wireDrawer ol {
+  flex: 1;
+  margin: 0;
+  padding: 4px 8px;
+  overflow-y: auto;
+  list-style: none;
+}
+.wireRow {
+  display: grid;
+  grid-template-columns: 26px minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 8px;
+  min-height: 44px;
+  padding: 4px 8px;
+  border-bottom: 1px solid #eef1f6;
+  font-size: 13px;
+}
+.wireRow[data-out="true"] {
+  color: #8a97ab;
+}
+.wireRow small {
+  display: block;
+  color: #52617a;
+  font-size: 12px;
+}
+.wireRowNumber {
+  color: #52617a;
+  font-variant-numeric: tabular-nums;
+}
+/* 줄 이름 — «이 원본» 문항이면 그 카드로 간다(진짜 단추). 다른 곳에서 온 문항은 글자만. */
+.wireJump {
+  padding: 0;
+  border: 0;
+  background: none;
+  color: #172b4d;
+  font: inherit;
+  font-weight: 600;
+  text-align: left;
+  text-decoration: underline;
+  text-decoration-color: #b8c6dc;
+  text-underline-offset: 3px;
+}
+.wireSource {
+  margin-left: 6px;
+  padding: 0 5px;
+  border-radius: 4px;
+  background: #eef1f6;
+  color: #52617a;
+  font-size: 11px;
+  font-weight: 600;
+}
+.wireRowActions {
+  display: flex;
+  gap: 4px;
+}
+.wireIcon {
+  width: 32px;
+  height: 32px;
+  padding: 0;
+  border: 1px solid #d4dce8;
+  border-radius: 6px;
+  background: #fff;
+  color: #172b4d;
+}
+.wireIcon:hover:not(:disabled) {
+  background: #edf2ff;
+}
+.wireText {
+  height: 32px;
+  padding: 0 10px;
+  border: 1px solid #d4dce8;
+  border-radius: 6px;
+  background: #fff;
+  color: #172b4d;
+  font-size: 12px;
+  font-weight: 600;
+  white-space: nowrap;
+}
+.wireText:hover:not(:disabled) {
+  background: #edf2ff;
+}
+.wirePopFoot {
+  display: flex;
+  justify-content: flex-end;
+  gap: 8px;
+  padding: 10px 16px;
+  border-top: 1px solid #e4e9f1;
+}
+/* 안 C — 결과 칸 위로 덮는 오른쪽 서랍(④ 문제 순서 칸과 같은 줄 모양). */
+.wireDrawer {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 10;
+  display: flex;
+  flex-direction: column;
+  width: 380px;
+  border-left: 1px solid #b8c6dd;
+  background: #fff;
+  box-shadow: -8px 0 24px #172b4d18;
+}
+.wireCaption {
+  margin: 0 0 8px;
+  color: #52617a;
+  font-size: 12px;
+}
