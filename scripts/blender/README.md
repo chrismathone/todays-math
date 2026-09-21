@@ -11,8 +11,11 @@ Blender 5.2.1 LTS와 PATH의 Python으로 확인했다. 저장소 루트에서 �
 node scripts/blender/verify_cuboid_demo.mjs
 & 'C:\Program Files\Blender Foundation\Blender 5.2\blender.exe' --background --factory-startup --python-exit-code 1 --python scripts/blender/build_stack_cubes.py
 node scripts/blender/verify_stack_cubes.mjs
+& 'C:\Program Files\Blender Foundation\Blender 5.2\blender.exe' --background --factory-startup --python-exit-code 1 --python scripts/blender/export_cube_net_fold.py
 npm run dev
 ```
+
+개념 실험실(`/lab`)은 정육면체 전개도 `public/lab/blender/cube-net-lesson.blend`의 다섯 접힘 축을 하나의 `Fold` 클립으로 합쳐 `cube-net-fold.glb`로 내보낸다. 학생 화면은 그 GLB와 기존의 `cuboid-fold.glb`·`stack-cubes.glb`를 읽는다.
 
 - `build_cuboid_demo.py`: 실제 Blender 면·회전축·키프레임 생성, GLB 내보내기, 정투영 PNG 렌더. 기존 `scripts/figure/render_spec.py`로 비교용 SVG를 생성한다.
 - 펼친 Blender 면의 꼭짓점을 투영해 번호가 있는 인쇄용 SVG도 생성한다. 원래 엔진의 치수 SVG와 구분된 실험용 자산이다.
