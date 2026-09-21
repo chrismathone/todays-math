@@ -148,3 +148,73 @@ describe("[상자 렌더] blockquote → 보기 카드", () => {
     expect(out.match(/data-box-item/g)).toHaveLength(2);
   });
 });
+
+/**
+ * 트랙 46 (2026-09-21) — 표기 하나: 편집기·인식이 쓰는 정본 `<보기:cols=N>` 을 지면이 읽는다.
+ * 전에는 지면이 `<보기N>` 만 알아 편집기의 `<보기:cols=3>` 이 **`cols=3` 수식으로 찍혔다**(트랙 42 §7).
+ */
+describe("[상자 렌더] 정본 `<보기:cols=N>` — 지면이 열 수를 읽는다", () => {
+  it("`<보기:cols=3>` 은 세 열 격자이고 `cols=3` 이 지면에 안 찍힌다", () => {
+    const out = html(
+      <MarkdownRenderer
+        content={"> <보기:cols=3>\n>\n> (가) $a$\n>\n> (나) $b$\n>\n> (다) $c$"}
+      />,
+    );
+    expect(out).toContain("print:grid-cols-3");
+    expect(out.match(/data-box-item/g)).toHaveLength(3);
+    expect(out).toContain("〈보기〉");
+    // 클래스 이름(`grid-cols-3`)이 아니라 지면에 찍히는 글자로 본다.
+    expect(out).not.toContain("cols=");
+    expect(out).not.toMatch(/<annotation[^>]*>[^<]*cols/);
+  });
+
+  it("편집기가 쓰는 압축 원문(한 줄 한 칸, 빈 줄 없음)도 칸마다 선다", () => {
+    const out = html(
+      <MarkdownRenderer content={"> <보기:cols=2>\n> ㄱ. 참\n> ㄴ. 거짓"} />,
+    );
+    expect(out).toContain("print:grid-cols-2");
+    expect(out.match(/data-box-item/g)).toHaveLength(2);
+  });
+
+  it("인식이 한 문단에 줄로 적은 칸(blocksToMarkdown)도 칸마다 선다", () => {
+    const out = html(
+      <MarkdownRenderer
+        content={"> <보기:cols=2>\n>\n> ㄱ. 참\n> ㄴ. 거짓\n> ㄷ. 참"}
+      />,
+    );
+    expect(out.match(/data-box-item/g)).toHaveLength(3);
+  });
+
+  it("옛 표기 `<보기2>` 도 그대로 두 열", () => {
+    const out = html(
+      <MarkdownRenderer content={"> <보기2>\n>\n> ㄱ. 참\n>\n> ㄴ. 거짓"} />,
+    );
+    expect(out).toContain("print:grid-cols-2");
+  });
+
+  it("여러 열 격자에는 HWPX 격자 표시가 붙는다 — 1열에는 없다", () => {
+    const grid = html(
+      <MarkdownRenderer content={"> <보기:cols=2>\n> ㄱ. 참\n> ㄴ. 거짓"} />,
+    );
+    expect(grid).toContain("data-hwpx-grid");
+    const single = html(
+      <MarkdownRenderer content={"> <보기>\n>\n> ㄱ. 참\n>\n> ㄴ. 거짓"} />,
+    );
+    expect(single).not.toContain("data-hwpx-grid");
+  });
+
+  it("그림 칸 — 문제 22 를 두 열로 적으면 그림이 칸마다 선다", () => {
+    const pixel = "data:image/png;base64,iVBORw0KGgo=";
+    const out = html(
+      <MarkdownRenderer
+        content={
+          "> <보기:cols=2>\n>\n> ㄱ. [그림1]\n> ㄴ. [그림2]\n> ㄷ. [그림3]\n> ㄹ. [그림4]"
+        }
+        nativeFigures={[1, 2, 3, 4].map(() => ({ src: pixel }))}
+      />,
+    );
+    const items = out.split("data-box-item").slice(1);
+    expect(items).toHaveLength(4);
+    for (const item of items) expect(item.split("</div>")[0]).toContain("<img");
+  });
+});

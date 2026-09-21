@@ -951,6 +951,54 @@ export function splitBoxSegments(raw: string): ContentSegment[] {
   return assemble(text, found);
 }
 
+/* ────────────────────────────────────────────────────────────────────────
+ * 6. 인용 상자의 칸 — 검수 카드·지면이 같은 격자를 그리는 규칙 (2026-09-21)
+ * ──────────────────────────────────────────────────────────────────────── */
+
+/**
+ * 한 줄에 든 항목이 여럿이면(`(가) … (나) … (다) …`) 항목마다 자른다. 못 자르면 그 줄 그대로.
+ *
+ * 첫 항목이 **줄머리**여야 한다 — 문장 속 «(가)와 (나)를 비교» 같은 참조를 칸으로 쪼개지 않는다.
+ * 계열 판정은 위의 `findItemRun`(오름차순·수식 가림) 그대로다.
+ */
+function splitItemLine(line: string): string[] {
+  const probe = maskMathInPlace(line);
+  const run = findItemRun(probe);
+  if (run.length < 2) return [line];
+  const head = probe.length - probe.trimStart().length;
+  if (run[0]!.start !== head) return [line];
+  return run
+    .map((hit, index) =>
+      line.slice(hit.start, run[index + 1]?.start ?? line.length).trim(),
+    )
+    .filter((cell) => cell.length > 0);
+}
+
+/**
+ * 인용 상자(`> <보기>` …) 본문의 **칸**. 한 줄이 한 칸이다 — 편집기(conditionBox 의 문단 하나)·
+ * 검수 카드(줄 하나)와 같은 단위다. 빈 줄은 버리고, 여러 줄에 걸친 `$$…$$` 는 한 칸으로 둔다.
+ *
+ * 여러 열(`cols` ≥ 2)이면 한 줄에 든 항목 여럿을 칸마다 자른다. 인식은 원본의 한 **행**을 한 줄에
+ * 적는 일이 있어서(원장님 9번: `(가) … (나) … (다) …` 가 한 줄) 열 수만 고르면 원본 격자가 선다.
+ * 1열이면 자르지 않는다 — 그 줄이 원본의 한 행이다.
+ */
+export function boxCells(body: string, cols: number): string[] {
+  const lines: string[] = [];
+  let pending: string | null = null;
+  for (const line of body.split("\n")) {
+    const current: string = pending === null ? line : `${pending}\n${line}`;
+    // `$$` 가 홀수 번이면 수식이 다음 줄로 이어진다.
+    if ((current.match(/\$\$/g)?.length ?? 0) % 2 === 1) {
+      pending = current;
+      continue;
+    }
+    pending = null;
+    if (current.trim()) lines.push(current.trim());
+  }
+  if (pending !== null && pending.trim()) lines.push(pending.trim());
+  return cols >= 2 ? lines.flatMap(splitItemLine) : lines;
+}
+
 /** 찾은 상자들을 «평문 · 상자» 조각으로 엮는다. */
 function assemble(text: string, found: readonly FoundBox[]): ContentSegment[] {
   const segments: ContentSegment[] = [];
