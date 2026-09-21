@@ -18,6 +18,48 @@ export interface StudioProgressSummary {
   active: boolean;
 }
 
+/** 상세 창이 띠보다 좁아지지 않게 둘 폭 — 진행 칸 한 줄(이름표·설명·셈·경과·취소)과 경고 두 줄이
+ * 쪼개지지 않고 들어가는 폭을 실제 브라우저에서 재서 정했다(트랙 40, 2026-09-21). */
+const DETAIL_MIN_WIDTH = 480;
+const DETAIL_MAX_WIDTH = 680;
+const EDGE = 8;
+
+/**
+ * 상세 창의 폭과 자리. 원장님 2026-09-21 «하단 펼쳐지는 영역은 원본 영역보다 커도 될거같으니까».
+ * 검수 줄의 띠는 줄 오른쪽 끝에서 150~300px 이다 — 예전처럼 띠 폭에 가두면 진행 칸 이름이
+ * 한 글자씩 세로로 쪼개졌다. 그래서 폭은 띠보다 넓어도 되고(최소 480px), 오른쪽에 자리가 없으면
+ * 오른쪽 끝을 띠에 맞춰 왼쪽으로 편다. 어떤 경우에도 화면 좌우 8px 안에 머문다.
+ */
+export function progressDetailPlacement(
+  bounds: {
+    left: number;
+    right: number;
+    width: number;
+    top: number;
+    bottom: number;
+  },
+  viewport: { width: number; height: number },
+) {
+  const room = viewport.width - EDGE * 2;
+  const width = Math.max(
+    0,
+    Math.min(DETAIL_MAX_WIDTH, room, Math.max(bounds.width, DETAIL_MIN_WIDTH)),
+  );
+  const fitsRight = bounds.left + width <= viewport.width - EDGE;
+  const left = fitsRight
+    ? bounds.left
+    : Math.min(bounds.right, viewport.width - EDGE) - width;
+  const below = viewport.height - bounds.bottom - 12;
+  const above = below < 160 && bounds.top > below;
+  const maxHeight = Math.max(0, Math.min(460, above ? bounds.top - 12 : below));
+  return {
+    left: Math.max(EDGE, Math.min(left, viewport.width - EDGE - width)),
+    width,
+    above,
+    maxHeight,
+  };
+}
+
 /** Stable one-line surface; details never participate in the canvas layout. */
 export default function StudioProgressStrip({
   summaries,
@@ -46,20 +88,17 @@ export default function StudioProgressStrip({
     const position = () => {
       if (!root.current) return;
       const bounds = root.current.getBoundingClientRect();
-      const width = Math.min(680, bounds.width, window.innerWidth - 16);
-      const below = window.innerHeight - bounds.bottom - 12;
-      const above = below < 160 && bounds.top > below;
-      const maxHeight = Math.max(
-        0,
-        Math.min(460, above ? bounds.top - 12 : below),
-      );
-      popup.style.left = `${Math.max(8, Math.min(bounds.left, window.innerWidth - width - 8))}px`;
-      popup.style.top = above ? "auto" : `${bounds.bottom}px`;
-      popup.style.bottom = above
+      const placed = progressDetailPlacement(bounds, {
+        width: window.innerWidth,
+        height: window.innerHeight,
+      });
+      popup.style.left = `${placed.left}px`;
+      popup.style.top = placed.above ? "auto" : `${bounds.bottom}px`;
+      popup.style.bottom = placed.above
         ? `${window.innerHeight - bounds.top}px`
         : "auto";
-      popup.style.width = `${width}px`;
-      popup.style.maxHeight = `${maxHeight}px`;
+      popup.style.width = `${placed.width}px`;
+      popup.style.maxHeight = `${placed.maxHeight}px`;
     };
     position();
     // Native top layer avoids clipping by the editor canvas's overflow boundary,

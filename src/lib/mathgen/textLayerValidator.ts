@@ -26,9 +26,9 @@
 
 export interface TextLayerWarning {
   rule: "text-layer-mismatch";
-  /** 한 줄 — UI banner. */
+  /** 한 줄 — 작업실 진행 칸의 경고 줄(무엇과 무엇을 견줬는지까지). */
   summary: string;
-  /** 자세한 내용 — collapsible. */
+  /** 자세한 내용 — 경고 줄의 마우스 올림. 빠진 낱말은 화면에도 따로 적는다(`missingSample`). */
   detail: string;
   /** anchor recall 0..1 (OCR 에서 발견된 text-layer anchor 비율). */
   score: number;
@@ -108,15 +108,20 @@ export const validateOcrAgainstTextLayer = (
     .slice(0, sampleSize);
 
   const pct = Math.round(score * 100);
+  // 문구 — 원장님 2026-09-21 «크롭만 떴는데 왜 이 경고가 떴을까?». 예전 «본문 누락 의심 (검토 권장)» 은
+  // 무엇과 무엇을 견줬는지 없이 결함처럼 읽혔다. 견준 것은 «쪽 전체 PDF 낱말» 과 «자른 문제의 인식
+  // 결과» 다 — 크롭 밖 글자(머리글·쪽 번호·자르지 않은 문제)도 분모에 든다. 셈은 그대로 두었다:
+  // 크롭만 셈하는 축으로 바꾸면 거짓 경보는 사라지지만 진짜 누락도 절반 넘게 놓쳤다(트랙 40 보고서).
   return {
     rule: "text-layer-mismatch",
-    summary: `OCR 가 PDF 원문과 ${pct}% 만 일치 — 본문 누락 의심 (검토 권장)`,
+    summary: `쪽 전체 PDF 낱말 중 ${pct}%만 인식 결과에 있음 (머리글·자르지 않은 문제 포함)`,
     detail:
-      `이 페이지는 PDF 에 *원본 텍스트*(born-digital)가 있어 정답과 대조 가능합니다. ` +
-      `PDF 원문의 핵심 토큰 ${total}개 중 ${matched}개만 OCR 결과에 있습니다(${pct}%). ` +
-      `누락 의심 토큰: ${missingSample.map((t) => `"${t}"`).join(", ")}` +
+      `PDF 에 글자가 들어 있는 쪽이라 자른 문제의 인식 결과와 견줬습니다. ` +
+      `쪽 전체 낱말 ${total}개 중 ${matched}개가 인식 결과에 있습니다(${pct}%). ` +
+      `머리글·쪽 번호·자르지 않은 문제의 낱말도 셈에 듭니다. ` +
+      `빠진 낱말: ${missingSample.join(", ")}` +
       `${missing.length > missingSample.length ? " 등" : ""}. ` +
-      `머리글/페이지번호 등 의도적 생략일 수도 있으나, 본문/보기가 빠졌다면 "페이지 재인식"을 권장합니다.`,
+      `문제 본문 낱말이 빠졌으면 이 쪽을 다시 인식해 주세요.`,
     score,
     matched,
     total,

@@ -1,6 +1,8 @@
 import { fireEvent, render, screen } from "@testing-library/react";
 import { describe, expect, it, vi } from "vitest";
-import StudioProgressStrip from "@/components/unified/StudioProgressStrip";
+import StudioProgressStrip, {
+  progressDetailPlacement,
+} from "@/components/unified/StudioProgressStrip";
 
 vi.stubGlobal(
   "ResizeObserver",
@@ -69,5 +71,94 @@ describe("StudioProgressStrip 상세 창", () => {
     const strip = setup();
     fireEvent.pointerMove(strip, { pointerType: "touch" });
     expect(screen.queryByText("상세 내용")).not.toBeInTheDocument();
+  });
+});
+
+/**
+ * 원장님 2026-09-21 «하단 펼쳐지는 영역은 원본 영역보다 커도 될거같으니까 알아서 잘처리».
+ * 검수 줄의 띠는 150~300px 이고 줄 오른쪽 끝에 있다 — 상세 창이 띠 폭에 갇히면 이름이 한 글자씩 쪼개졌다.
+ * 상세 창은 띠보다 넓어도 되지만 화면 밖으로는 안 나간다(좌우 8px 여백).
+ */
+describe("progressDetailPlacement — 상세 창 폭과 자리", () => {
+  const strip = (left: number, width: number, top = 70, height = 44) => ({
+    left,
+    right: left + width,
+    width,
+    top,
+    bottom: top + height,
+  });
+  const inside = (
+    placed: { left: number; width: number },
+    viewportWidth: number,
+  ) => {
+    expect(placed.left).toBeGreaterThanOrEqual(8);
+    expect(placed.left + placed.width).toBeLessThanOrEqual(viewportWidth - 8);
+  };
+
+  it("줄 오른쪽 끝의 좁은 띠(1516px 화면 · 268px) — 띠보다 넓게, 오른쪽 끝을 띠에 맞춘다", () => {
+    const placed = progressDetailPlacement(strip(1226, 268), {
+      width: 1516,
+      height: 900,
+    });
+    expect(placed.width).toBe(480);
+    expect(placed.left + placed.width).toBe(1494);
+    inside(placed, 1516);
+  });
+
+  it("1280px 화면 · 150px 띠도 같은 폭", () => {
+    const placed = progressDetailPlacement(strip(1108, 150), {
+      width: 1280,
+      height: 800,
+    });
+    expect(placed.width).toBe(480);
+    expect(placed.left + placed.width).toBe(1258);
+    inside(placed, 1280);
+  });
+
+  it("오른쪽에 자리가 있으면 왼쪽 끝을 띠에 맞춘다", () => {
+    const placed = progressDetailPlacement(strip(100, 200), {
+      width: 1440,
+      height: 900,
+    });
+    expect(placed).toMatchObject({ left: 100, width: 480 });
+  });
+
+  it("넓은 띠(① 가져오기 단계)는 예전처럼 띠 폭 · 680px 상한", () => {
+    expect(
+      progressDetailPlacement(strip(20, 1000), { width: 1440, height: 900 }),
+    ).toMatchObject({ left: 20, width: 680 });
+    expect(
+      progressDetailPlacement(strip(20, 560), { width: 1440, height: 900 }),
+    ).toMatchObject({ left: 20, width: 560 });
+  });
+
+  it("좁은 화면에서는 화면 폭에서 여백만 뺀다", () => {
+    for (const [left, width, viewport] of [
+      [9, 372, 390],
+      [9, 318, 336],
+      [200, 150, 360],
+    ]) {
+      const placed = progressDetailPlacement(strip(left, width), {
+        width: viewport,
+        height: 900,
+      });
+      expect(placed.width).toBe(Math.min(480, viewport - 16));
+      inside(placed, viewport);
+    }
+  });
+
+  it("아래 자리가 모자라면 위로 연다 — 세로 규칙은 그대로", () => {
+    expect(
+      progressDetailPlacement(strip(100, 200, 700), {
+        width: 1440,
+        height: 800,
+      }),
+    ).toMatchObject({ above: true, maxHeight: 460 });
+    expect(
+      progressDetailPlacement(strip(100, 200, 70), {
+        width: 1440,
+        height: 800,
+      }),
+    ).toMatchObject({ above: false, maxHeight: 460 });
   });
 });

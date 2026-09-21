@@ -56,6 +56,15 @@
   font-weight: inherit;
 }
 
+/* 짧은 이름표(fullLabel 을 준 자리) — 한 줄로만. 긴 이름은 title 과 읽는 이름이 나른다.
+   좁은 칸에서 `overflow-wrap: anywhere` 가 이름을 한 글자씩 세로로 쪼갰다(원장님 2026-09-21). */
+.tag {
+  overflow: hidden;
+  overflow-wrap: normal;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
 .detail {
   overflow: hidden;
   color: #596e89;

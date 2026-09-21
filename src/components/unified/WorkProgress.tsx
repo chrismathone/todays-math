@@ -5,6 +5,11 @@ import s from "./WorkProgress.module.css";
 
 export interface WorkProgressProps {
   label: string;
+  /**
+   * 읽는 이름·마우스 올림에 쓰는 긴 이름. 주면 `label` 은 한 줄 이름표로만 그린다 —
+   * 좁은 칸에서 긴 이름이 한 글자씩 쪼개지던 자리(작업실 진행 칸, 원장님 2026-09-21).
+   */
+  fullLabel?: string;
   detail?: string;
   startedAt?: number;
   completed?: number;
@@ -70,6 +75,7 @@ function Timing({
  */
 export default function WorkProgress({
   label,
+  fullLabel,
   detail,
   startedAt,
   completed,
@@ -112,7 +118,14 @@ export default function WorkProgress({
         aria-live="polite"
         aria-atomic="true"
       >
-        <span className={s.label}>{label}</span>
+        {fullLabel ? (
+          <span className={`${s.label} ${s.tag}`} title={fullLabel}>
+            <span aria-hidden="true">{label}</span>
+            <span className={s.srOnly}>{fullLabel}</span>
+          </span>
+        ) : (
+          <span className={s.label}>{label}</span>
+        )}
         {detail ? (
           <span className={s.detail} title={detail}>
             {detail}
@@ -134,7 +147,7 @@ export default function WorkProgress({
         <span
           className={s.track}
           role="progressbar"
-          aria-label={label}
+          aria-label={fullLabel ?? label}
           aria-valuemin={measured ? 0 : undefined}
           aria-valuemax={measured ? target : undefined}
           aria-valuenow={measured ? count : undefined}
