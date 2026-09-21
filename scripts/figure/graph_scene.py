@@ -25,7 +25,7 @@ CONTRACT = {
         'circles': 'list of {center:[x,y],radius:number,dashed?:boolean}; a geometric circle in DATA units (stretches to an ellipse when x/y scales differ) — never use it for printed dots; use points',
         'points': 'list of {at:[x,y],radius?:pixels 1..6 default 3,open?:boolean}; small printed dots at graph points (vertices, endpoints, intersections) in fixed screen pixels, filled black or open (white inside)',
         'labels': 'list of {at:[x,y],text:string,dx?:pixels,dy?:pixels,size?:pixels,anchor?:"start"|"middle"|"end"}; only printed labels; math can use $...$ LaTeX and is typeset as vector glyphs. Korean text cannot be typeset: write a label containing Korean as plain text without $ (e.g. "x(초)")',
-        'axisBreaks': 'list of {at:[x,y],axis?:"x"|"y",size?:pixels 6..24 default 12}; the printed wavy ∿ axis-break mark (물결선) ON an axis line where the axis skips values (e.g. between O and the first tick of a scatter plot whose data start far from 0). at = centre of the mark placed ON that axis line (same y as the x-axis line, same x as the y-axis line); axis = which axis it cuts, default "x"; size = its length along the axis in fixed screen pixels. The engine draws a smooth wave and blanks the axis line under it — never imitate it with short segments or curves',
+        'axisBreaks': 'list of {at:[x,y],axis?:"x"|"y",size?:pixels 6..24 default 14}; the printed wavy ∿ axis-break mark (물결선) ON an axis line where the axis skips values (e.g. between O and the first tick of a scatter plot whose data start far from 0). at = centre of the mark placed ON that axis line (same y as the x-axis line, same x as the y-axis line); axis = which axis it cuts, default "x"; size = its length along the axis in fixed screen pixels. The engine draws a smooth wave and blanks the axis line under it — never imitate it with short segments or curves',
     },
     'example': {'version':'graph-1','xRange':[-4,4],'yRange':[-2,11],
         'curves':[{'coefficients':[-1,0,9],'domain':[-3.4,3.4]}],
@@ -50,6 +50,7 @@ FIELDS = {
 # 축 생략 물결(∿) — 원장님 2026-09-21 «물결 기호는 넣어». 산점도처럼 자료가 0 에서 멀리 시작하면 교과서는
 # 원점과 첫 눈금 사이 축에 물결을 넣는다. 종전에는 칸이 없어 짧은 선분 둘로 「∧」 를 흉내 냈다.
 # 모양은 모두 **물결 길이(size, 화면 픽셀)에 비례**한다 — 그래프 눈금과 무관한 표식이라 `points` 반지름처럼 픽셀이다.
+BREAK_SIZE = 14    # 기본 길이(픽셀) — 원장님 산점도(440×400)에서 12·14·16 을 견줘 물결 높이(8.4)가 눈금 숫자 높이와 맞는 14
 BREAK_AMP = 0.3    # 마루·골 높이 / 길이
 BREAK_EASE = 0.5   # 끝과 가운데의 조절점 거리 / 반길이 — 축에서 평평하게 떠나 매끄럽게 이어진다
 BREAK_STUB = 0.2   # 양 끝 곧은 꼬리 / 길이 — 흰 채움의 닫는 줄을 축 띠 밑으로 민다(아래 주석). 0.15 면 0.06px 틈
@@ -194,7 +195,7 @@ def render_graph(spec):
             raise ValueError('물결의 자리(at)는 유한한 [x,y]여야 합니다.') from None
         axis=mark.get('axis','x')
         if axis not in ('x','y'):raise ValueError('물결이 끊는 축(axis)은 "x" 또는 "y"여야 합니다.')
-        size=mark.get('size',12)
+        size=mark.get('size',BREAK_SIZE)
         if isinstance(size,bool) or not isinstance(size,(int,float)) or not 6<=size<=24:
             raise ValueError('물결의 크기(size)는 6~24 픽셀이어야 합니다.')
         on_auto=spec.get('axes',True) and (by==0 and ylo<=0<=yhi if axis=='x' else bx==0 and xlo<=0<=xhi)

@@ -45,6 +45,10 @@ const scatter = {
 const sx = (x: number) => 48 + ((x - 30) * 344) / 80;
 const sy = (y: number) => 352 - ((y - 22) * 304) / 90;
 
+/** 물결의 기본 길이(화면 픽셀) — 원장님 산점도에서 12·14·16 을 견줘 숫자 높이와 맞는 14 로 정했다. */
+const SIZE = 14;
+const HALF = SIZE / 2;
+
 const render = (spec: object) =>
   renderFigureSpec(spec, { typeset: false, strict: true });
 
@@ -200,11 +204,12 @@ describe("graph-1 축 생략 물결 — 모양", () => {
     const b = box(points);
     expect(b.y1).toBeLessThan(cy - 2);
     expect(b.y2).toBeGreaterThan(cy + 2);
-    expect(b.y2 - b.y1).toBeLessThan(12);
-    // 물결 구간(기본 12px) 밖은 축 위의 곧은 꼬리뿐이다
+    expect(b.y2 - b.y1).toBeLessThan(SIZE);
+    // 물결 구간(기본 SIZE) 밖은 축 위의 곧은 꼬리뿐이다
     for (const [x, y] of points)
-      if (Math.abs(x - cx) > 6.01) expect(Math.abs(y - cy)).toBeLessThan(0.01);
-    expect(b.x2 - b.x1).toBeLessThanOrEqual(12 * 1.5);
+      if (Math.abs(x - cx) > HALF + 0.01)
+        expect(Math.abs(y - cy)).toBeLessThan(0.01);
+    expect(b.x2 - b.x1).toBeLessThanOrEqual(SIZE * 1.5);
     // 양 끝까지 이어진 ∿ — 가운데 기준 점대칭
     expect(asymmetry(points, [cx, cy])).toBeLessThan(0.2);
     // 매끄럽다 — 이음매마다 접선이 이어진다
@@ -224,7 +229,10 @@ describe("graph-1 축 생략 물결 — 모양", () => {
     const holes: P[] = [];
     for (let i = 0; i <= 120; i++)
       for (let j = 0; j <= 20; j++) {
-        const p: P = [cx - 6 + (12 * i) / 120, cy - band + (2 * band * j) / 20];
+        const p: P = [
+          cx - HALF + (SIZE * i) / 120,
+          cy - band + (2 * band * j) / 20,
+        ];
         if (winding(polys, p) !== 0) continue;
         if (distanceToStroke(polys, p) <= half + 0.02) continue;
         holes.push(p);
@@ -254,7 +262,8 @@ describe("graph-1 축 생략 물결 — 모양", () => {
     expect(b.x1).toBeLessThan(cx - 2);
     expect(b.x2).toBeGreaterThan(cx + 2);
     for (const [x, y] of points)
-      if (Math.abs(y - cy) > 6.01) expect(Math.abs(x - cx)).toBeLessThan(0.01);
+      if (Math.abs(y - cy) > HALF + 0.01)
+        expect(Math.abs(x - cx)).toBeLessThan(0.01);
     expect(asymmetry(points, [cx, cy])).toBeLessThan(0.2);
     for (const angle of joinAngles(subs)) expect(angle).toBeLessThan(1);
   });
@@ -288,9 +297,9 @@ describe("graph-1 축 생략 물결 — 모양", () => {
       const wave = points.filter(([, y]) => Math.abs(y - cy) > 0.01);
       return box(wave).x2 - box(wave).x1;
     };
-    expect(span(base.points)).toBeLessThanOrEqual(12);
-    expect(span(base.points)).toBeGreaterThan(9);
-    expect(span(wide.points) / span(base.points)).toBeCloseTo(2, 1);
+    expect(span(base.points)).toBeLessThanOrEqual(SIZE);
+    expect(span(base.points)).toBeGreaterThan(SIZE * 0.75);
+    expect(span(wide.points) / span(base.points)).toBeCloseTo(24 / SIZE, 1);
   });
 
   it("획 굵기는 밑의 축과 같다 — 자동 축 위는 1.4, 선분 축 위는 1.7", async () => {
