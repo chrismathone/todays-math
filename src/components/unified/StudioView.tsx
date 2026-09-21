@@ -451,6 +451,8 @@ export default function StudioView({
     setCrops,
     contextKey: `${sourceId}:${pageNumber}`,
     active,
+    // 도형 생성은 ② 영역 지정이 끝난 뒤에 — 크롭과 같이 돌리면 칸을 고친 뒤 두 번 만든다(원장님 2026-09-21).
+    figuresDeferred: step === "crop",
     onRotatePage: (id, page, delta) => {
       setSources((previous) =>
         previous.map((source) =>
@@ -3489,7 +3491,7 @@ export default function StudioView({
                 disabled={!crops.length || recognizingPage || studioAi.running}
                 title={
                   studioAi.running
-                    ? "자동 인식과 도형 생성이 모두 끝나면 넘어갈 수 있습니다."
+                    ? "자동 인식이 끝나면 넘어갈 수 있습니다. 도형 생성은 다음 단계에서 시작합니다."
                     : undefined
                 }
                 onClick={digitizeAll}

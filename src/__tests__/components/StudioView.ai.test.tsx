@@ -468,6 +468,88 @@ describe("Studio AI review controls", () => {
     expect(onAdd).toHaveBeenCalledTimes(1);
   });
 
+  /**
+   * 원장님 2026-09-21: «도형 생성을 먼저 돌려버리고 있으니까 이후에 크롭 조정하게 되면 이중생성 … 잘라내기를 끝내고,
+   * 다음단계(OCR, 디지털화)를 시작하게 되면 디지털화를 시작하는걸로. 크롭과 동시에 진행하지말고.»
+   * 훅의 규칙은 `useStudioAi.test.tsx` 가 재고, 여기서는 **화면이 단계를 훅에 제대로 알리는가**(배선)를 잰다.
+   */
+  describe("도형 생성은 ② 영역 지정이 끝난 뒤에", () => {
+    const withFigures = (request: DevAiRequest) =>
+      Promise.resolve(
+        json({
+          provider: request.provider,
+          action: request.action,
+          result:
+            request.action === "figure-redraw"
+              ? {
+                  content: "",
+                  answer: "",
+                  solution: "",
+                  warnings: [],
+                  svg: '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 10 10"><path d="M1 9L5 1L9 9Z"/></svg>',
+                }
+              : {
+                  content: recognized,
+                  answer: "",
+                  solution: "",
+                  warnings: [],
+                  problems: [
+                    {
+                      content: recognized,
+                      answer: "",
+                      bbox: { left: 80, top: 180, width: 840, height: 170 },
+                      figures: [
+                        {
+                          bbox: {
+                            left: 120,
+                            top: 200,
+                            width: 200,
+                            height: 160,
+                          },
+                        },
+                      ],
+                    },
+                  ],
+                },
+        }),
+      );
+    const redraws = () =>
+      posts.filter((request) => request.action === "figure-redraw");
+    async function recognizeInCropStep() {
+      await open();
+      respond = withFigures;
+      fireEvent.click(screen.getByRole("button", { name: "페이지 자동 인식" }));
+      await waitFor(() =>
+        expect(
+          screen.getByRole("button", { name: "다음: OCR · 디지털화" }),
+        ).toBeEnabled(),
+      );
+      // 한 박자 더 — «아직 안 불렸을 뿐»과 가른다.
+      await act(async () => {
+        await new Promise((resolve) => setTimeout(resolve, 30));
+      });
+    }
+
+    it("🔴 ② 에서는 인식이 끝나도 도형 생성을 부르지 않는다 — «다음»을 누르면 그때 부른다", async () => {
+      await recognizeInCropStep();
+      expect(redraws()).toEqual([]);
+      expect(screen.queryByText("도형 생성 중")).toBeNull();
+      fireEvent.click(
+        screen.getByRole("button", { name: "다음: OCR · 디지털화" }),
+      );
+      await waitFor(() => expect(redraws()).toHaveLength(1));
+    });
+
+    it("🔴 단계 탭으로 ③ 에 가도 미뤄 둔 도형을 만든다", async () => {
+      await recognizeInCropStep();
+      expect(redraws()).toEqual([]);
+      fireEvent.click(
+        screen.getByRole("button", { name: /^OCR · 디지털화 \d+$/ }),
+      );
+      await waitFor(() => expect(redraws()).toHaveLength(1));
+    });
+  });
+
   it("counts failed figures instead of losing them and offers a retry", async () => {
     await open();
     // 도형만 실패시킨다 — 실패는 처리 중·대기·완료 어디에도 안 들어가 분모에서만 사라졌었다.
