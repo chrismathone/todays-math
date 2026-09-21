@@ -489,7 +489,10 @@ describe("② 모집단 — auth() 를 부르는 파일은 전부 어딘가에�
           f === "src/lib/auth.ts" ||
           /^src\/app\/api\/.+\/route\.ts$/.test(f) || // 위 라우트 전수
           USE_SERVER_FILES.map(rel).includes(f) || // 위 서버 액션 전수
-          /^src\/app\/.+\/(page|layout)\.tsx$/.test(f) || // 화면 — 학생은 관문이 /learn 밖으로 못 보낸다(③)
+          // 화면 — 학생은 관문이 /learn 밖으로 못 보낸다(③). 🔴 랩실 화면(`src/app/lab/**`)은 뺀다 —
+          // 관문이 학생에게도 연다(D-135 ⑼). 랩실은 세션을 안 읽으니, 부르게 되면 여기서 갈래를 못 받아 빨갛다.
+          (/^src\/app\/.+\/(page|layout)\.tsx$/.test(f) &&
+            !f.startsWith("src/app/lab/")) ||
           HELPERS_TESTED_WITH_REAL_STUDENT_SESSION.has(f)
         ),
     );

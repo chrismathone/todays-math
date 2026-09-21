@@ -209,6 +209,84 @@ const lineBox = (page: Page, selector: string) =>
       };
     });
 
+/**
+ * 카드 바닥 줄의 짜임 — 담은 문항 표시(+ 고친 뒤면 «반영»)가 어디 섰나.
+ * 확정: 둘은 한 덩어리로 줄 오른쪽 끝, 모자라면 같이 둘째 줄 오른쪽(안 A — 원장님 2026-09-21 «추천대로 가», D-135 ⑼).
+ *
+ * 줄 수는 겹침으로 센다 — 칸을 윗변 차례로 놓고, 앞 줄의 아랫변 아래에서 시작하면 새 줄.
+ * 🔴 칸 세로 중심을 반올림해 세면(`lineBox`) 높이가 다른 칸(출력 44 · 단추 34 · 표시 21px)의 소수점
+ *    차이로 한 줄을 둘로 센다(트랙 47 에서 실제로 그랬다). 그래서 겹침으로 센다.
+ * 덩어리(`data-studio-cart-slot`)는 풀어서 표시·«반영»을 따로 센다 — 트랙 47 이 잰 수(요소 합 528)와 같은
+ * 셈이고, 덩어리를 `display: contents` 로 풀어 옛 모양을 만들어도 같은 자로 잰다(자가 눈 멀지 않았나 확인).
+ * `모자람` — 칸 폭과 간격을 다 더한 것이 줄 폭보다 얼마나 넘치나(0 이하면 한 줄에 들어간다).
+ */
+const footerLayout = (page: Page, n: number) =>
+  card(page, n)
+    .locator('[class*="cardFooter"]')
+    .evaluate((footer) => {
+      const slot = footer.querySelector("[data-studio-cart-slot]");
+      const chip = footer.querySelector("[data-studio-cart-chip]");
+      const reflect = [...footer.querySelectorAll("button")].find(
+        (button) => button.textContent === "반영",
+      );
+      const items = [...footer.children]
+        .flatMap((child) => (child === slot ? [...child.children] : [child]))
+        .map((child) => ({ child, rect: child.getBoundingClientRect() }))
+        .filter(({ rect }) => rect.width && rect.height);
+      const rects = items.map(({ rect }) => rect).sort((a, b) => a.top - b.top);
+      let rows = 0;
+      let bottom = -Infinity;
+      for (const rect of rects) {
+        if (rect.top >= bottom - 1) {
+          rows += 1;
+          bottom = rect.bottom;
+        } else bottom = Math.max(bottom, rect.bottom);
+      }
+      const gap = parseFloat(getComputedStyle(footer).columnGap) || 0;
+      const box = footer.getBoundingClientRect();
+      const need =
+        rects.reduce((sum, rect) => sum + rect.width, 0) +
+        gap * (rects.length - 1);
+      const a = chip?.getBoundingClientRect();
+      const b = reflect?.getBoundingClientRect();
+      const last = b ?? a;
+      const others = items
+        .filter(({ child }) => child !== chip && child !== reflect)
+        .map(({ rect }) => rect);
+      return {
+        줄수: rows,
+        폭: Math.round(box.width),
+        모자람: Math.round(need - box.width),
+        표시폭: a ? Math.round(a.width) : null,
+        같은줄: !a || !b || (a.top < b.bottom && b.top < a.bottom),
+        반영이_오른쪽: !a || !b || b.left >= a.right,
+        /** 덩어리의 오른쪽 끝(«반영», 없으면 표시)이 바닥 줄 오른쪽 끝에 붙었나. */
+        오른쪽끝: !!last && Math.abs(box.right - last.right) <= 1,
+        /** 표시 아래 줄에서 시작하는 칸이 없다 — 꺾이면 덩어리가 마지막 줄로 간다. */
+        마지막줄: !!a && others.every((rect) => rect.top < a.bottom),
+        /** 짜임 — 표시와 «반영»이 한 덩어리이고, 그 덩어리가 바닥 줄의 맨 끝 칸. */
+        바닥줄_맨끝칸:
+          !!slot &&
+          slot.parentElement === footer &&
+          footer.lastElementChild === slot &&
+          chip?.parentElement === slot &&
+          (!reflect || reflect.parentElement === slot),
+      };
+    });
+
+/** 덩어리를 `display: contents` 로 풀어(= 안 A 전의 모양) 같은 자로 잰 뒤 되돌린다. */
+async function footerLayoutUnwrapped(page: Page, n: number) {
+  const slot = card(page, n).locator("[data-studio-cart-slot]");
+  await slot.evaluate((element: HTMLElement) => {
+    element.style.display = "contents";
+  });
+  const loose = await footerLayout(page, n);
+  await slot.evaluate((element: HTMLElement) => {
+    element.style.display = "";
+  });
+  return loose;
+}
+
 /** 한 칸 높이 0.18 — 세 칸(0.05·0.30·0.55)이 서로 겹치지 않는다. */
 async function dragBox(page: Page, top: number) {
   const area = page.getByRole("group", { name: "문제 자르기 영역" });
@@ -295,14 +373,13 @@ test("③ 에서 담으면 카드마다 «담음» · 목록으로 보고 뺀다
     );
     expect(머리_담은뒤[width].줄수).toBe(1);
     expect(머리_담은뒤[width]).toEqual(머리_담기전[width]);
-    const chip = card(page, 1).locator("[data-studio-cart-chip]");
-    const cardFooter = card(page, 1).locator('[class*="cardFooter"]');
-    expect(
-      await chip.evaluate(
-        (element, footerElement) => element.parentElement === footerElement,
-        await cardFooter.elementHandle(),
-      ),
-    ).toBe(true);
+    // «담음»도 «반영 전 · 반영»과 같은 덩어리 자리 — 바닥 줄 오른쪽 끝(안 A, D-135 ⑼).
+    // 표시 자리가 상태마다 바뀌지 않는다.
+    expect(await footerLayout(page, 1)).toMatchObject({
+      오른쪽끝: true,
+      마지막줄: true,
+      바닥줄_맨끝칸: true,
+    });
     await page.screenshot({
       path: testInfo.outputPath(`담은뒤-3단계-${width}.png`),
     });
@@ -362,6 +439,12 @@ test("③ 에서 담으면 카드마다 «담음» · 목록으로 보고 뺀다
     const row = await lineBox(page, '[class*="outputActions"]');
     expect(lines).toMatchObject({ 줄수: 1, 넘침: false });
     expect(row.줄수).toBe(1);
+    // «뺌» 표시도 같은 덩어리 자리 — 바닥 줄 오른쪽 끝(안 A, D-135 ⑼).
+    expect(await footerLayout(page, 1)).toMatchObject({
+      오른쪽끝: true,
+      마지막줄: true,
+      바닥줄_맨끝칸: true,
+    });
     담을문항없음[width] = { 단추: lines, 바닥줄: row };
     await page.screenshot({
       path: testInfo.outputPath(`담을문항없음-${width}.png`),
@@ -494,93 +577,76 @@ test("검수 완료만 눌러도 «담음» 그대로 — 고치면 «반영 전
     path: testInfo.outputPath("고친뒤-반영전-3단계.png"),
   });
   /**
-   * 카드 바닥 줄의 줄 수 — 자식을 윗변 차례로 놓고, 앞 줄의 아랫변 아래에서 시작하면 새 줄.
-   * 🔴 자식 세로 중심을 반올림해 세면(`lineBox`) 높이가 다른 칸(출력 44 · 단추 34 · 표시 21px)의 소수점
-   *    차이로 한 줄을 둘로 센다(트랙 47 에서 실제로 그랬다). 그래서 겹침으로 센다.
-   * `모자람` — 자식 폭과 간격을 다 더한 것이 줄 폭보다 얼마나 넘치나(0 이하면 한 줄에 들어간다).
+   * 안 A(원장님 2026-09-21 «추천대로 가», D-135 ⑼) — «반영 전»과 «반영»은 한 덩어리로 바닥 줄 오른쪽 끝.
+   * 1280(왼쪽 메뉴 편 채)은 카드 폭 487 에 바닥 줄 요소 합이 528 이라 한 줄에 못 들어간다(트랙 47) —
+   * 그때는 둘이 **같이** 둘째 줄 오른쪽으로 간다. 고친 뒤 «검수 완료»까지 누른 카드는 잠금 안내 글 때문에
+   * 1516 에서도 두 줄이다. 네 경우(1516·1280 × 잠금 안/잠금) 모두 같은 줄 · 오른쪽 끝 · 마지막 줄.
    */
-  const footerRows = () =>
-    card(page, 1)
-      .locator('[class*="cardFooter"]')
-      .evaluate((footer) => {
-        const rects = [...footer.children]
-          .map((child) => child.getBoundingClientRect())
-          .filter((rect) => rect.width && rect.height)
-          .sort((a, b) => a.top - b.top);
-        let rows = 0;
-        let bottom = -Infinity;
-        for (const rect of rects) {
-          if (rect.top >= bottom - 1) {
-            rows += 1;
-            bottom = rect.bottom;
-          } else bottom = Math.max(bottom, rect.bottom);
-        }
-        const gap = parseFloat(getComputedStyle(footer).columnGap) || 0;
-        const width = footer.getBoundingClientRect().width;
-        const need =
-          rects.reduce((sum, rect) => sum + rect.width, 0) +
-          gap * (rects.length - 1);
-        return {
-          줄수: rows,
-          폭: Math.round(width),
-          모자람: Math.round(need - width),
-        };
-      });
-  /** 표시와 «반영» 단추가 같은 줄인가 — 세로로 겹치고 «반영»이 표시 오른쪽. */
-  const chipAndReflect = () =>
-    card(page, 1).evaluate((article) => {
-      const chip = article.querySelector("[data-studio-cart-chip]")!;
-      const reflect = [...article.querySelectorAll("button")].find(
-        (button) => button.textContent === "반영",
-      )!;
-      const a = chip.getBoundingClientRect();
-      const b = reflect.getBoundingClientRect();
-      return {
-        표시폭: Math.round(a.width),
-        같은줄: a.top < b.bottom && b.top < a.bottom,
-        반영이_오른쪽: b.left >= a.right,
-      };
-    });
   const 반영전: Record<string, Record<string, unknown>> = {};
-  for (const width of [1516, 1280]) {
-    await page.setViewportSize({ width, height: 940 });
-    expect(
-      (
-        await lineBox(
-          page,
-          'article[aria-label="문제 1 인식 결과"] [class*="cardHeading"]',
-        )
-      ).줄수,
-    ).toBe(1);
-    const now = { ...(await footerRows()), ...(await chipAndReflect()) };
-    await page.screenshot({
-      path: testInfo.outputPath(`고친뒤-반영전-${width}.png`),
-    });
-    // 자가 눈이 멀지 않았는지 — 옛 긴 글자를 그 자리에 넣으면 같은 자가 꺾임을 잰다.
-    const saved = await staleChip.evaluate((element) => {
-      const html = element.innerHTML;
-      element.textContent = "담음 · 고친 내용 반영 전";
-      return html;
-    });
-    const old = await footerRows();
-    await staleChip.evaluate((element, html) => {
-      element.innerHTML = html;
-    }, saved);
-    const { 줄수, 폭, 모자람 } = now;
-    expect(await footerRows()).toEqual({ 줄수, 폭, 모자람 });
-    expect(old.줄수).toBeGreaterThan(1);
-    반영전[`${width}`] = { 지금: now, 옛글자: old };
-  }
-  await page.setViewportSize({ width: 1516, height: 940 });
+  const measureStale = async (잠금: boolean) => {
+    for (const width of [1516, 1280]) {
+      await page.setViewportSize({ width, height: 940 });
+      expect(
+        (
+          await lineBox(
+            page,
+            'article[aria-label="문제 1 인식 결과"] [class*="cardHeading"]',
+          )
+        ).줄수,
+      ).toBe(1);
+      const now = await footerLayout(page, 1);
+      const name = `${잠금 ? "잠금-" : ""}${width}`;
+      await page.screenshot({
+        path: testInfo.outputPath(`고친뒤-반영전-${name}.png`),
+      });
+      await card(page, 1)
+        .locator('[class*="cardFooter"]')
+        .screenshot({
+          path: testInfo.outputPath(`카드바닥-반영전-${name}.png`),
+        });
+      expect(now).toMatchObject({
+        같은줄: true,
+        반영이_오른쪽: true,
+        오른쪽끝: true,
+        마지막줄: true,
+        바닥줄_맨끝칸: true,
+      });
+      // 자가 눈이 멀지 않았는지 ① — 덩어리를 풀면(안 A 전 모양) 같은 자가 떨어짐을 잰다.
+      // 1516 잠금 안은 옛 모양도 한 줄 오른쪽 끝이라 뺀다(트랙 47 이 1516 은 이미 맞다고 쟀다).
+      const loose = await footerLayoutUnwrapped(page, 1);
+      if (잠금 || width === 1280)
+        expect(loose.같은줄 && loose.오른쪽끝).toBe(false);
+      expect(await footerLayout(page, 1)).toEqual(now);
+      const row: Record<string, unknown> = { 지금: now, 풀면: loose };
+      // 자가 눈이 멀지 않았는지 ② — 옛 긴 글자를 그 자리에 넣으면 같은 자가 꺾임을 잰다.
+      if (!잠금) {
+        const saved = await staleChip.evaluate((element) => {
+          const html = element.innerHTML;
+          element.textContent = "담음 · 고친 내용 반영 전";
+          return html;
+        });
+        const old = await footerLayout(page, 1);
+        await staleChip.evaluate((element, html) => {
+          element.innerHTML = html;
+        }, saved);
+        expect(await footerLayout(page, 1)).toEqual(now);
+        expect(old.줄수).toBeGreaterThan(1);
+        row.옛글자 = old;
+      }
+      반영전[`${잠금 ? "잠금_" : ""}${width}`] = row;
+    }
+    await page.setViewportSize({ width: 1516, height: 940 });
+  };
+  await measureStale(false);
   // 1516 — 출력·해설·검수 완료·«반영 전»·«반영»이 한 줄(트랙 44 는 «반영»이 둘째 줄로 꺾였다).
-  expect(반영전["1516"].지금).toMatchObject({
-    줄수: 1,
-    같은줄: true,
-    반영이_오른쪽: true,
-  });
-  // 🔴 1280(왼쪽 메뉴 편 채)은 재기만 한다 — 카드 폭 487 에 바닥 줄 요소 합이 528 이라 «반영 전»으로 줄여도
-  //    41px 모자라 «반영»이 둘째 줄로 꺾인다. 어떻게 맞출지는 원장님 결정 대기(트랙 47 보고서 (4)).
-  //    정해지면 여기에 1516 과 같은 단정을 건다.
+  expect(반영전["1516"].지금).toMatchObject({ 줄수: 1 });
+  // 고친 뒤 «검수 완료»까지 — 가장 흔한 흐름(고치고 → 검수 완료 → 반영). 상태라 «반영 전» 그대로.
+  await card(page, 1)
+    .getByRole("button", { name: "이 문제 검수 완료" })
+    .click();
+  await expect(staleChip.locator('[aria-hidden="true"]')).toHaveText("반영 전");
+  await measureStale(true);
+  await card(page, 1).getByRole("button", { name: "검수 완료 취소" }).click();
 
   // ② 자른 문제 목록 배지도 같은 표시(모든 화면 일치) — 두 폭에서 한 줄.
   await stepTab(page, /잘라내기/).click();

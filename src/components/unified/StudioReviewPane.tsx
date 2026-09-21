@@ -23,7 +23,7 @@ import type { StudioAiPageJob } from "./useStudioAi";
 import type { StudioFigureJob } from "./useStudioFigureAi";
 import WorkProgress from "./WorkProgress";
 import { studioCropWorkKind, studioWorkName } from "./studioWorkNames";
-import type { StudioCartState } from "./studioCart";
+import { studioCartLabel, type StudioCartState } from "./studioCart";
 import { StudioCartChip } from "./StudioCartPanel";
 import styles from "./StudioReviewPane.module.css";
 
@@ -632,17 +632,23 @@ function ReviewCard({
         >
           {locked ? "검수 완료 취소" : "이 문제 검수 완료"}
         </button>
-        {cart && <StudioCartChip state={cart} />}
-        {/* 반영은 내용이 아니라 시험지 소속을 바꾼다 — 검수 완료 잠금과 상관없이 눌린다. */}
-        {cart === "stale" && props.onReflect && (
-          <button
-            type="button"
-            aria-label={`문제 ${number} 고친 내용 반영`}
-            disabled={busy || editing}
-            onClick={() => props.onReflect?.(crop.id)}
-          >
-            반영
-          </button>
+        {/* 표시와 «반영»은 한 덩어리로 줄 오른쪽 끝 — 모자라면 같이 둘째 줄 오른쪽(안 A, D-135 ⑼).
+            «담음»·«뺌»도 같은 자리라 표시 자리가 상태마다 안 바뀐다. 안 담은 문항은 빈 칸을 안 둔다. */}
+        {cart && studioCartLabel(cart) && (
+          <span className={styles.cartSlot} data-studio-cart-slot>
+            <StudioCartChip state={cart} />
+            {/* 반영은 내용이 아니라 시험지 소속을 바꾼다 — 검수 완료 잠금과 상관없이 눌린다. */}
+            {cart === "stale" && props.onReflect && (
+              <button
+                type="button"
+                aria-label={`문제 ${number} 고친 내용 반영`}
+                disabled={busy || editing}
+                onClick={() => props.onReflect?.(crop.id)}
+              >
+                반영
+              </button>
+            )}
+          </span>
         )}
       </div>
     </article>
