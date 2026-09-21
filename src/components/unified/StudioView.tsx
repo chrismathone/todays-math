@@ -63,6 +63,29 @@ import styles from "./StudioView.module.css";
 
 const StudioFigureEditor = lazy(() => import("./figure-editor"));
 
+function StudioEmptyPageStamp() {
+  const [loaded, setLoaded] = useState(false);
+
+  return (
+    <div
+      className={styles.emptyPageStamp}
+      data-loaded={loaded}
+      role="status"
+      aria-label="자동 인식 완료: 문제가 없는 빈 페이지"
+    >
+      <img
+        src="/images/studio/empty-page-stamp.png"
+        width={1774}
+        height={887}
+        alt=""
+        aria-hidden="true"
+        draggable={false}
+        onLoad={() => setLoaded(true)}
+      />
+    </div>
+  );
+}
+
 interface StudioSource {
   id: string;
   name: string;
@@ -2750,15 +2773,9 @@ export default function StudioView({
                       />
                       {currentPageJob?.state === "empty" &&
                       !pageCrops.length ? (
-                        <div
-                          className={styles.emptyPageStamp}
-                          role="status"
-                          aria-label="자동 인식 완료: 문제가 없는 빈 페이지"
-                        >
-                          <span>인식 완료</span>
-                          <strong>빈 페이지</strong>
-                          <small>문제 없음</small>
-                        </div>
+                        <StudioEmptyPageStamp
+                          key={`${currentSource.id}:${pageNumber}`}
+                        />
                       ) : null}
                       {pageCrops.map((crop) => (
                         <StudioCropOverlay
