@@ -154,6 +154,16 @@ const EXIT = [
   "POST /api/auth/signout",
 ];
 
+/**
+ * 수학 랩실 화면 읽기 — 누구든 연다(D-135 ⑼, 원장님 2026-09-21 «추천대로 가»). 랩실은 서버·DB 를 안 부른다.
+ * 🔴 손으로 적는다 — 관문의 판정(`/lab` 과 그 아래)을 여기서 다시 쓰면 세는 쪽과 고치는 쪽이 같이 눈이 먼다.
+ *    새 랩실 화면이 생기면 아래 집합 견줌이 빨갛게 되어 여기 적어야 한다(그 편이 안전하다).
+ */
+const LAB = ["/lab", `/lab/play/${UUID}`, "/lab/teacher"].flatMap((p) => [
+  `GET ${p}`,
+  `HEAD ${p}`,
+]);
+
 beforeEach(() => {
   session.mockReset();
   vi.mocked(recordAudit).mockClear();
@@ -173,11 +183,14 @@ describe("모집단 — 파일 목록에서 뽑았다 (분모부터 검산)", ()
       expect(APIS, known).toContain(known);
     expect(PAGES).toContain("/");
     expect(PAGES).toContain("/login");
+    // 랩실 화면도 파일에서 뽑혔다 — 아래 «지나가는 집합»의 LAB 이 모집단에 실제로 있다.
+    for (const lab of ["/lab", `/lab/play/${UUID}`, "/lab/teacher"])
+      expect(PAGES, lab).toContain(lab);
   });
 });
 
 describe("🔴 첫 비밀번호를 바꾼 학생 — 지나가는 것의 집합이 정확히 이것이다", () => {
-  it("화면 셋 · 학생 API · 나가기 · 세션 · 브랜드 이미지뿐", async () => {
+  it("화면 셋 · 학생 API · 나가기 · 세션 · 브랜드 이미지 · 랩실 읽기뿐", async () => {
     session.mockReturnValue(studentSession(false));
     const { pass } = await sweep();
     expect(pass.sort()).toStrictEqual(
@@ -191,6 +204,7 @@ describe("🔴 첫 비밀번호를 바꾼 학생 — 지나가는 것의 집합�
         "POST /api/learn/password",
         ...EXIT,
         ...brand,
+        ...LAB,
       ].sort(),
     );
   });
@@ -223,9 +237,10 @@ describe("🔴 첫 비밀번호를 바꾼 학생 — 지나가는 것의 집합�
 });
 
 describe("🔴 첫 로그인 학생 — 비밀번호 바꾸기 외에는 못 간다", () => {
-  it("지나가는 것은 바꾸기 화면·바꾸기 API · 나가기 · 세션 · 브랜드뿐", async () => {
+  it("지나가는 것은 바꾸기 화면·바꾸기 API · 나가기 · 세션 · 브랜드 · 랩실 읽기뿐", async () => {
     session.mockReturnValue(studentSession(true));
     const { pass } = await sweep();
+    // 랩실은 학생 계정을 안 본다 — 비밀번호를 바꾸기 전에도 읽기는 열린다(관문 맨 앞에서 보낸다).
     expect(pass.sort()).toStrictEqual(
       [
         "GET /learn/password",
@@ -233,6 +248,7 @@ describe("🔴 첫 로그인 학생 — 비밀번호 바꾸기 외에는 못 간
         "POST /api/learn/password",
         ...EXIT,
         ...brand,
+        ...LAB,
       ].sort(),
     );
   });

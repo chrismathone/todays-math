@@ -35,8 +35,26 @@ function learnGateResponse(gate: LearnGate, url: URL): Response {
   );
 }
 
+/**
+ * 수학 랩실 읽기 — `/lab` 과 그 아래의 GET·HEAD. 판정은 **이 함수 하나**다.
+ * `startsWith("/lab")` 는 `/label`·`/labx` 까지 열어서 `/lab` 과 그 아래로 좁혔다(proxyLabGate.test.ts).
+ */
+function isLabRead(method: string, pathname: string): boolean {
+  return (
+    (method === "GET" || method === "HEAD") &&
+    (pathname === "/lab" || pathname.startsWith("/lab/"))
+  );
+}
+
 export const proxy = auth(async (req) => {
   const { pathname } = req.nextUrl;
+  /**
+   * 수학 랩실은 **누구든** 읽는다 — 로그인 안 한 사람 · 원장 · 선생님 · 검수 · 승인 대기 · 학생 세션
+   * (원장님 2026-09-21, D-135 ⑻⑼). 랩실은 서버·DB 를 안 부르고 진도는 브라우저에만 있다.
+   * 그래서 학생 갈래·역할 갈래보다 **먼저** 보내고, 운영 데이터를 안 보니 요청 감사 기록도 안 남긴다.
+   * 쓰기와 `/lab` 밖은 아래 규칙 그대로다 — 학생 세션이 `/lab` 밖에서 얻는 것은 늘지 않는다.
+   */
+  if (isLabRead(req.method, pathname)) return NextResponse.next();
   /**
    * 🔴 학생 세션 — **원장 갈래보다 먼저** 가둔다 (D-124 ⑶ · D-125 ⑷).
    * 학생 세션에는 `user` 가 없다(src/lib/learn/studentSession.ts). 아래로 흘러가면 «로그인 안 한
@@ -73,10 +91,6 @@ export const proxy = auth(async (req) => {
     pathname.startsWith("/signup") ||
     pathname.startsWith("/api/") ||
     pathname.startsWith("/dev/") ||
-    // 수학 랩실은 로그인 없이 읽기만 연다(원장님 2026-09-21) — 서버·DB 를 안 부르고 진도는 브라우저에만 있다.
-    // `startsWith("/lab")` 는 `/label`·`/labx` 까지 열어서 `/lab` 과 그 아래로 좁혔다(proxyLabGate.test.ts).
-    ((req.method === "GET" || req.method === "HEAD") &&
-      (pathname === "/lab" || pathname.startsWith("/lab/"))) ||
     pathname === "/favicon.ico";
 
   if (!req.auth?.user?.id && !isPublic) {
