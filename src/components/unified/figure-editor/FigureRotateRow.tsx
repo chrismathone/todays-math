@@ -1,4 +1,10 @@
-import type { AlignKind, SpreadAxis } from "./figureAlign";
+import {
+  ALIGN_BLOCKED,
+  ALIGN_SPREAD_FEW,
+  SPREAD_BLOCKED,
+  type AlignKind,
+  type SpreadAxis,
+} from "./figureAlign";
 import type { MirrorAxis } from "./figureMirror";
 import type { OrderMove } from "./figureOrder";
 import type { RotateTurn } from "./figureRotate";
@@ -116,6 +122,9 @@ export function FigureRotateRow({
  * 회전·대칭 줄과 같은 꼴(제목 + 단추들)로 그 아래 선다. 고른 것 **둘 이상**을 서로 맞춘다 —
  * 기준은 고른 것들의 바깥 상자다(그림 틀이 아니다). 하나만 골랐으면 흐리고 이유를 단추 밑에 적는다.
  * «간격»(고르게 벌리기)은 셋부터 — 사이가 둘은 되어야 «고르게»가 뜻이 있다.
+ *
+ * 둘 다 꺼졌으면 이유를 **한 줄**로 합쳐 간격 줄 밑에 적는다(원장님 2026-09-21 «안 D», 시안 그대로) —
+ * «고른 것이 적어»면 «정렬은 둘, 간격은 셋 이상 고르면 켜집니다.», 이유가 같으면(면만 고름) 그 이유 하나.
  */
 export function FigureAlignRow({
   blocked,
@@ -140,6 +149,13 @@ export function FigureAlignRow({
     { axis: "horizontal", label: "가로 고르게" },
     { axis: "vertical", label: "세로 고르게" },
   ];
+  const merged =
+    blocked === ALIGN_BLOCKED.few && spread.blocked === SPREAD_BLOCKED.few
+      ? ALIGN_SPREAD_FEW
+      : blocked !== null && blocked === spread.blocked
+        ? blocked
+        : null;
+  const spreadNote = merged ?? spread.blocked;
   return (
     <>
       <section aria-label="정렬" className="mb-2 space-y-1 text-xs">
@@ -158,7 +174,7 @@ export function FigureAlignRow({
             </button>
           ))}
         </div>
-        {blocked && <p className="text-muted">{blocked}</p>}
+        {blocked && !merged && <p className="text-muted">{blocked}</p>}
       </section>
       <section aria-label="간격" className="mb-3 space-y-1 text-xs">
         <div className="flex flex-wrap items-center gap-2">
@@ -176,7 +192,7 @@ export function FigureAlignRow({
             </button>
           ))}
         </div>
-        {spread.blocked && <p className="text-muted">{spread.blocked}</p>}
+        {spreadNote && <p className="text-muted">{spreadNote}</p>}
       </section>
     </>
   );
@@ -247,13 +263,18 @@ export function FigureOrderRow({
  * **단추 하나**로 한다. 누르면 지금 내용에 틀을 딱 맞춘다 — 잘린 것이 들어오고 남는 여백은 줄어든다.
  * 규칙은 저장할 때와 같은 한 함수(`figureFrame.renderFittedFigure`)다.
  *
- * 회전·대칭 줄 **아래**, 고른 것이 없어도 늘 선다 — 틀은 선택과 무관하다.
+ * 오른쪽 칸 «틀 · 세부» 무리의 첫 줄 — 고른 것이 없어도 늘 선다(틀은 선택과 무관하다). 꼴은 회전·정렬 줄과 같은
+ * «이름 + 단추 + 짧은 글» 한 줄(원장님 2026-09-21 «안 D», 시안 그대로).
  * 이미 딱 맞으면 눌러도 아무 일이 안 일어난다(되돌리기 자리도 안 생긴다). 미리 흐리게 하려면 렌더마다
  * 조판·측정을 다시 해야 해서 끄지 않는다.
  */
 export function FigureFitRow({ onFit }: { onFit: () => void }) {
   return (
-    <section aria-label="틀" className="mb-3 space-y-1 text-xs">
+    <section
+      aria-label="틀"
+      className="flex flex-wrap items-center gap-2 text-xs"
+    >
+      <span className="font-medium">틀</span>
       <button
         type="button"
         title="그림 전체가 들어가게 틀을 다시 맞춥니다"
@@ -262,9 +283,7 @@ export function FigureFitRow({ onFit }: { onFit: () => void }) {
       >
         다 보이게
       </button>
-      <p className="text-muted">
-        틀을 지금 그림에 맞춥니다. 잘린 곳이 들어오고 남는 여백은 줄어듭니다.
-      </p>
+      <span className="text-muted">잘린 곳을 들이고 여백을 줄입니다</span>
     </section>
   );
 }

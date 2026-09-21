@@ -12,6 +12,7 @@ import StudioFigureEditor, {
   type StudioFigureSaveResult,
 } from "@/components/unified/figure-editor";
 import { SVG_NS } from "@/components/unified/figure-editor/figureSvgEditing";
+import { openFigureDetails } from "@/__tests__/helpers/figureEditorPanel";
 
 const crop = "data:image/png;base64,b3JpZ2luYWw=";
 const initialSvg = `<svg xmlns="${SVG_NS}" viewBox="0 0 480 360"><line x1="20" y1="30" x2="80" y2="90" stroke="#111111"/></svg>`;
@@ -86,16 +87,18 @@ describe("StudioFigureEditor", () => {
       "선택·이동",
       "화면 이동",
       "선분",
-      "화살표",
-      "곡선",
       "원",
-      "타원",
-      "사각형",
       "글자",
+      "채우기",
       "함수",
     ]) {
       expect(screen.getByRole("button", { name })).toBeInTheDocument();
     }
+    // 선·도형 무리 속 도구는 ▾ 메뉴에 선다(원장님 2026-09-21 «안 A»)
+    fireEvent.click(screen.getByRole("button", { name: "선 도구 고르기" }));
+    fireEvent.click(screen.getByRole("button", { name: "도형 도구 고르기" }));
+    for (const name of ["화살표", "곡선", "타원", "사각형", "삼각형", "다각형"])
+      expect(screen.getByRole("menuitemradio", { name })).toBeInTheDocument();
     expect(
       screen.queryByRole("button", { name: "원본으로 다시 그리기" }),
     ).not.toBeInTheDocument();
@@ -118,6 +121,7 @@ describe("StudioFigureEditor", () => {
       />,
     );
     fireEvent.click(document.querySelector('[data-figure-list-number="1"]')!);
+    openFigureDetails();
     fireEvent.change(screen.getByRole("spinbutton", { name: "끝 X" }), {
       target: { value: "142" },
     });
@@ -150,6 +154,7 @@ describe("StudioFigureEditor", () => {
     );
     expect(screen.getByAltText("도형 원본")).toHaveAttribute("src", crop);
     fireEvent.click(document.querySelector('[data-figure-list-number="1"]')!);
+    openFigureDetails();
     expect(screen.getByRole("spinbutton", { name: "끝 X" })).toHaveValue(142);
   });
 

@@ -54,7 +54,11 @@ for (const tool of ["선분", "화살표"]) {
     page,
   }) => {
     await page.goto("/?figure");
-    await page.getByRole("button", { name: tool, exact: true }).click();
+    // 선 무리의 겉은 처음에 선분 — 화살표는 ▾ 메뉴에서 고른다(원장님 2026-09-21 «안 A»)
+    if (tool === "화살표") {
+      await page.getByRole("button", { name: "선 도구 고르기" }).click();
+      await page.getByRole("menuitemradio", { name: tool }).click();
+    } else await page.getByRole("button", { name: tool, exact: true }).click();
     const start = await canvasPoint(page, 240, 180);
     await page.mouse.move(start.x, start.y);
     await page.keyboard.down("Shift");

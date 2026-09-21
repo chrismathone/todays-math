@@ -11,6 +11,7 @@ import StudioFigureEditor, {
 } from "@/components/unified/figure-editor";
 import { MIRROR_BLOCKED } from "@/components/unified/figure-editor/figureMirror";
 import { SVG_NS } from "@/components/unified/figure-editor/figureSvgEditing";
+import { openFigureDetails } from "@/__tests__/helpers/figureEditorPanel";
 
 /**
  * 오른쪽 칸 «좌우 대칭»·«상하 대칭» — 원장님 2026-09-20 «대칭(편집기 단추도)».
@@ -176,6 +177,7 @@ describe("대칭 — 선택한 요소 칸", () => {
       "60",
       "30",
     ]);
+    openFigureDetails();
     expect(screen.getByRole("spinbutton", { name: "너비" })).toHaveValue(60);
     expect(screen.getByRole("spinbutton", { name: "높이" })).toHaveValue(30);
   });

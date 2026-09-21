@@ -11,6 +11,7 @@ import StudioFigureEditor, {
 } from "@/components/unified/figure-editor";
 import { ROTATE_BLOCKED } from "@/components/unified/figure-editor/figureRotate";
 import { SVG_NS } from "@/components/unified/figure-editor/figureSvgEditing";
+import { openFigureDetails } from "@/__tests__/helpers/figureEditorPanel";
 
 /**
  * 오른쪽 칸 «반시계 90°»·«시계 90°» — 원장님 2026-09-19 «회전 옵션 추가 가능한지. 시계 반시계 90도 방향».
@@ -164,6 +165,7 @@ describe("90° 회전 — 선택한 요소 칸", () => {
       "30",
       "60",
     ]);
+    openFigureDetails();
     expect(screen.getByRole("spinbutton", { name: "너비" })).toHaveValue(30);
     expect(screen.getByRole("spinbutton", { name: "높이" })).toHaveValue(60);
   });
@@ -366,6 +368,7 @@ describe("반대쪽으로 뒤집기", () => {
   it("크기 고정한 곡선은 끈다", () => {
     open(dimension);
     pickNumber(3);
+    openFigureDetails();
     fireEvent.click(
       screen.getByRole("checkbox", { name: "요소 크기 고정 (이동만 가능)" }),
     );
@@ -377,8 +380,12 @@ describe("반대쪽으로 뒤집기", () => {
 });
 
 describe("90° 회전 — 크기 고정", () => {
-  const lockBox = () =>
-    screen.getByRole("checkbox", { name: "요소 크기 고정 (이동만 가능)" });
+  const lockBox = () => {
+    openFigureDetails();
+    return screen.getByRole("checkbox", {
+      name: "요소 크기 고정 (이동만 가능)",
+    });
+  };
 
   it("고정한 요소를 고르면 단추가 꺼지고 이유가 보인다", () => {
     open();

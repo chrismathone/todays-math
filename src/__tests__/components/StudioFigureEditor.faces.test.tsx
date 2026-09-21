@@ -10,6 +10,10 @@ import StudioFigureEditor, {
   type StudioFigureSaveResult,
 } from "@/components/unified/figure-editor";
 import { SVG_NS } from "@/components/unified/figure-editor/figureSvgEditing";
+import {
+  openFigureDetails,
+  pickFigureTool,
+} from "@/__tests__/helpers/figureEditorPanel";
 
 /**
  * 도형 편집기 «면 만들기»(트랙 4) 2단계 — 도구 줄 «삼각형»·«다각형»·«채우기», 노란 조절점, 오른쪽 칸 «안쪽 채우기».
@@ -86,8 +90,8 @@ afterEach(() => {
 
 const canvas = () => document.querySelector("#figure-editor-canvas")!;
 const surface = () => screen.getByLabelText("도형 편집 캔버스");
-const tool = (name: string) =>
-  fireEvent.click(screen.getByRole("button", { name }));
+// 선·도형 무리 속 도구는 겉에 없으면 ▾ 메뉴에서 고른다(원장님 2026-09-21 «안 A»)
+const tool = (name: string) => pickFigureTool(name);
 const click = (x: number, y: number) =>
   fireEvent.pointerDown(canvas(), { button: 0, clientX: x, clientY: y });
 const dragHandle = (key: string, x: number, y: number) => {
@@ -184,6 +188,7 @@ describe("노란 조절점 — 사각형을 평행사변형으로", () => {
   it("크기를 고정한 사각형에는 노란 점이 없다", () => {
     open();
     pickNumber(4);
+    openFigureDetails();
     fireEvent.click(
       screen.getByRole("checkbox", { name: "요소 크기 고정 (이동만 가능)" }),
     );
@@ -340,7 +345,7 @@ describe("묶음 안쪽 채우기", () => {
       target: { value: "#d5e8f0" },
     });
     expect(faces()[0].getAttribute("fill")).toBe("#d5e8f0");
-    fireEvent.click(screen.getByRole("button", { name: "채우기 없애기" }));
+    fireEvent.click(screen.getByRole("button", { name: "안쪽 채우기 없애기" }));
     expect(faces()).toHaveLength(0);
   });
 

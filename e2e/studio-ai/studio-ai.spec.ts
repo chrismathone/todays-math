@@ -652,7 +652,9 @@ test("Mathgen figure editor redraw, manual geometry, save and reopen through Stu
   const circle = editor.locator("#figure-editor-canvas circle");
   await expect(circle).toHaveCount(1);
   expect(mock.posts.at(-1)?.action).toBe("figure-redraw");
-  await editor.getByRole("button", { name: "사각형", exact: true }).click();
+  // 사각형은 도형 무리의 ▾ 메뉴에 든다(원장님 2026-09-21 «안 A»)
+  await editor.getByRole("button", { name: "도형 도구 고르기" }).click();
+  await editor.getByRole("menuitemradio", { name: "사각형" }).click();
   const bounds = (await editor
     .getByLabel("도형 편집 캔버스", { exact: true })
     .boundingBox())!;
