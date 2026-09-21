@@ -261,7 +261,6 @@ export function studioAiSnapshotMatches(
     current.solution === snapshot.solution &&
     current.grade === snapshot.grade &&
     current.mode === snapshot.mode &&
-    current.modeManual === snapshot.modeManual &&
-    current.added === snapshot.added,
+    current.modeManual === snapshot.modeManual,
   );
 }

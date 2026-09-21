@@ -198,7 +198,6 @@ export function useStudioFigureAi({
                       ]),
                     ],
                     reviewed: false,
-                    added: false,
                     revision: (current.revision ?? 0) + 1,
                   }
                 : current,

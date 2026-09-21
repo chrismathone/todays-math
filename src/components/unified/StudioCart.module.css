@@ -1,0 +1,167 @@
+/*
+ * 담은 문항 — 안 D(원장님 2026-09-21 확정, 트랙 44). 값은 시안 `e2e/cart-review/wire.css` 에서
+ * 옮겼다(점선 «새것» 표시만 뺐다). 한 가지만 다르다 — 출처 딱지를 11px → 12px 로 올렸다.
+ * 12px 이 작업실 글자 바닥이다(`Workroom.module.css` 의 `--text-caption`).
+ *
+ * 카드 바닥 표시·② 자른 문제 목록 배지·목록 줄이 **이 한 파일**의 모양을 쓴다(모든 화면 일치).
+ */
+
+/* 담음 표시 — 읽기 전용. 누르는 것이 아니라 손가락 커서·hover 가 없다(D-30). */
+.chip {
+  flex-shrink: 0;
+  padding: 2px 6px;
+  border-radius: 4px;
+  background: #e3f3ec;
+  color: #1c6b4a;
+  font-size: var(--text-caption, 12px);
+  font-weight: 600;
+  line-height: 1.4;
+  white-space: nowrap;
+}
+.chip[data-state="stale"] {
+  background: #fff4e5;
+  color: #8a4b08;
+}
+.chip[data-state="removed"] {
+  background: #eef1f6;
+  color: #52617a;
+}
+
+/* 바닥 막대에서 위로 펼치는 목록 — 문제은행이 좁을 때 쓰는 바구니와 같은 결. */
+.panel {
+  position: absolute;
+  right: 16px;
+  bottom: 8px;
+  z-index: 10;
+  display: flex;
+  flex-direction: column;
+  width: 400px;
+  max-width: calc(100% - 32px);
+  max-height: calc(100% - 16px);
+  border: 1px solid #b8c6dd;
+  border-radius: 12px;
+  background: #fff;
+  box-shadow: 0 4px 32px #172b4d24;
+  font-size: var(--text-body, 14px);
+  line-height: 1.6;
+}
+.head {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+  padding: 12px 16px;
+  border-bottom: 1px solid #e4e9f1;
+}
+.head h3 {
+  margin: 0;
+  font-size: 15px;
+  font-weight: 700;
+}
+.head h3:focus {
+  outline: none;
+}
+.head h3:focus-visible {
+  outline: 2px solid var(--studio-primary, #3159df);
+  outline-offset: 2px;
+}
+.head span {
+  color: #52617a;
+  font-size: var(--text-caption, 12px);
+}
+.list {
+  flex: 1;
+  min-height: 0;
+  margin: 0;
+  padding: 4px 8px;
+  overflow-y: auto;
+  list-style: none;
+}
+/* 줄 자체는 누르는 표면이 아니다 — 이름(이 원본)·×·다시 담기만 단추다(D-30). */
+.row {
+  display: grid;
+  grid-template-columns: 26px minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 8px;
+  min-height: 44px;
+  padding: 4px 8px;
+  border-bottom: 1px solid #eef1f6;
+  font-size: 13px;
+}
+.row[data-removed="true"] {
+  color: #8a97ab;
+}
+.row small {
+  display: block;
+  color: #52617a;
+  font-size: var(--text-caption, 12px);
+}
+.number {
+  color: #52617a;
+  font-variant-numeric: tabular-nums;
+}
+.name {
+  font-weight: 600;
+}
+/* 이 원본 문항의 이름 — 누르면 그 검수 카드로 간다(진짜 단추). */
+.jump {
+  padding: 0;
+  border: 0;
+  background: none;
+  color: #172b4d;
+  font: inherit;
+  font-weight: 600;
+  text-align: left;
+  text-decoration: underline;
+  text-decoration-color: #b8c6dc;
+  text-underline-offset: 3px;
+}
+.row[data-removed="true"] .jump {
+  color: inherit;
+}
+.source {
+  margin-left: 6px;
+  padding: 0 5px;
+  border-radius: 4px;
+  background: #eef1f6;
+  color: #52617a;
+  font-size: var(--text-caption, 12px);
+  font-weight: 600;
+  white-space: nowrap;
+}
+.actions {
+  display: flex;
+  gap: 4px;
+}
+.icon {
+  width: 32px;
+  height: 32px;
+  padding: 0;
+  border: 1px solid #d4dce8;
+  border-radius: 6px;
+  background: #fff;
+  color: #172b4d;
+}
+.icon:hover:not(:disabled) {
+  background: #edf2ff;
+}
+.text {
+  height: 32px;
+  padding: 0 10px;
+  border: 1px solid #d4dce8;
+  border-radius: 6px;
+  background: #fff;
+  color: #172b4d;
+  font-size: var(--text-caption, 12px);
+  font-weight: 600;
+  white-space: nowrap;
+}
+.text:hover:not(:disabled) {
+  background: #edf2ff;
+}
+.foot {
+  display: flex;
+  justify-content: flex-end;
+  gap: 8px;
+  padding: 10px 16px;
+  border-top: 1px solid #e4e9f1;
+}

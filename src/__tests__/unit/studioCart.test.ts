@@ -1,0 +1,180 @@
+import { describe, expect, it } from "vitest";
+import {
+  addToCart,
+  forgetRemovals,
+  rememberRemoval,
+  restoreToCart,
+  studioCartLabel,
+  studioCartPending,
+  studioCartRows,
+  studioCartState,
+  type StudioCartRemoval,
+} from "@/components/unified/studioCart";
+import { applyStudioCropEdit } from "@/components/unified/studioCropEdit";
+import {
+  studioProblem,
+  type StudioCrop,
+} from "@/components/unified/studioHelpers";
+import type { StudioProblem } from "@/components/unified/types";
+
+/**
+ * 담은 문항 장부 — 원장님 2026-09-21 확정(트랙 41 안 D → 트랙 44 구현).
+ * 작업실의 «담음»과 시험지의 담은 목록이 **한 장부**(`selected`)에서 나오는지,
+ * «고친 뒤 반영 전»이 판 번호로 갈리는지, 뺀 것을 한꺼번에 담기가 건너뛰는지를 못 박는다.
+ */
+
+function crop(id: string, patch: Partial<StudioCrop> = {}): StudioCrop {
+  return {
+    id,
+    sourceId: "s1",
+    sourceLabel: "예제",
+    page: 1,
+    rect: { x: 0.1, y: 0.1, width: 0.8, height: 0.3 },
+    image: "data:image/png;base64,Y3JvcA==",
+    content: "",
+    answer: "",
+    solution: "",
+    level: "secondary",
+    grade: "중2",
+    mode: "image",
+    ...patch,
+  };
+}
+const bank = (id: string): StudioProblem => ({
+  id,
+  content: "은행 문항",
+  answer: "",
+  solution: "",
+  grade: "중1",
+  chapter: "일차방정식",
+  section: "일차방정식의 활용",
+  difficulty: "중",
+  problemCode: "B-1",
+  figureUrls: [],
+  figureSvg: null,
+  figureDims: [],
+  figureSourceMm: [],
+});
+
+describe("studioCartState — 작업실 한 문항이 시험지에서 어떤 상태인가", () => {
+  const a = crop("a");
+  it("시험지에 없으면 «안 담음», 뺀 기억이 있으면 «뺌»", () => {
+    expect(studioCartState(a, [], [])).toBe("pending");
+    expect(
+      studioCartState(a, [], [{ problem: studioProblem(a), index: 0 }]),
+    ).toBe("removed");
+  });
+  it("시험지에 같은 판이 있으면 «담음», 판이 다르면 «고친 뒤 반영 전»", () => {
+    expect(studioCartState(a, [studioProblem(a)], [])).toBe("picked");
+    const edited = applyStudioCropEdit(a, { answer: "3" });
+    expect(studioCartState(edited, [studioProblem(a)], [])).toBe("stale");
+    // 반영하면(같은 id 를 새 판으로 갈면) 다시 «담음».
+    expect(studioCartState(edited, [studioProblem(edited)], [])).toBe("picked");
+  });
+  it("검수 완료는 내용이 아니라 상태다 — 눌러도 «담음» 그대로 (어긋남 3)", () => {
+    const reviewed = applyStudioCropEdit(a, { reviewed: true });
+    expect(reviewed.reviewed).toBe(true);
+    expect(studioCartState(reviewed, [studioProblem(a)], [])).toBe("picked");
+    const undone = applyStudioCropEdit(reviewed, { reviewed: false });
+    expect(studioCartState(undone, [studioProblem(a)], [])).toBe("picked");
+  });
+  it("시험지에 있으면 뺀 기억보다 시험지가 이긴다", () => {
+    expect(
+      studioCartState(
+        a,
+        [studioProblem(a)],
+        [{ problem: studioProblem(a), index: 0 }],
+      ),
+    ).toBe("picked");
+  });
+});
+
+describe("studioCartPending — «N문항 담기»·«담고 내보내기»가 담을 것", () => {
+  it("안 담은 것만 — 담은 것·고친 뒤 반영 전·뺀 것은 건너뛴다 (공통 ②)", () => {
+    const [a, b, c, d] = ["a", "b", "c", "d"].map((id) => crop(id));
+    const picked = [studioProblem(a), studioProblem(b)];
+    const staleB = applyStudioCropEdit(b, { answer: "1" });
+    const removed: StudioCartRemoval[] = [
+      { problem: studioProblem(c), index: 2 },
+    ];
+    expect(
+      studioCartPending([a, staleB, c, d], picked, removed).map(
+        (item) => item.id,
+      ),
+    ).toEqual(["d"]);
+  });
+  it("새 시험지(목록·기억이 빔)면 전부 다시 담을 수 있다 (어긋남 2)", () => {
+    const crops = [crop("a"), crop("b")];
+    expect(studioCartPending(crops, [], []).map((item) => item.id)).toEqual([
+      "a",
+      "b",
+    ]);
+  });
+});
+
+describe("장부 고치기 — 담기·빼기·되돌리기", () => {
+  it("담기는 같은 id 를 제자리에서 갈고 새것은 뒤에 붙인다 · 출제 불가는 거른다", () => {
+    const a = crop("a");
+    const edited = applyStudioCropEdit(a, { answer: "7" });
+    const next = addToCart(
+      [studioProblem(a), bank("b")],
+      [
+        studioProblem(edited),
+        studioProblem(crop("c")),
+        { ...bank("x"), eligible: false },
+      ],
+    );
+    expect(next.map((item) => item.id)).toEqual(["a", "b", "c"]);
+    expect(next[0].answer).toBe("7");
+  });
+  it("뺀 기억은 같은 id 를 한 번만 두고, 다시 담으면 풀린다", () => {
+    const p = bank("b");
+    let removed = rememberRemoval([], p, 1);
+    removed = rememberRemoval(removed, p, 3);
+    expect(removed).toEqual([{ problem: p, index: 3 }]);
+    expect(forgetRemovals(removed, ["b"])).toEqual([]);
+    expect(forgetRemovals(removed, ["zz"])).toBe(removed);
+  });
+  it("되돌리기는 뺀 자리로 — 목록이 줄었으면 끝에", () => {
+    const [a, b, c] = [bank("a"), bank("b"), bank("c")];
+    expect(restoreToCart([a, c], b, 1).map((item) => item.id)).toEqual([
+      "a",
+      "b",
+      "c",
+    ]);
+    expect(restoreToCart([a], c, 5).map((item) => item.id)).toEqual(["a", "c"]);
+    // 이미 있으면 그대로.
+    const list = [a, b];
+    expect(restoreToCart(list, b, 0)).toBe(list);
+  });
+});
+
+describe("studioCartRows — 목록 줄", () => {
+  it("담긴 것은 시험지 차례대로 번호, 뺀 것은 뺀 자리에 흐리게(번호 없음)", () => {
+    const [a, b, c, d] = ["a", "b", "c", "d"].map(bank);
+    const rows = studioCartRows(
+      [a, c],
+      [
+        { problem: b, index: 1 },
+        { problem: d, index: 9 },
+      ],
+    );
+    expect(
+      rows.map((row) => [row.problem.id, row.removed, row.order ?? null]),
+    ).toEqual([
+      ["a", false, 1],
+      ["b", true, null],
+      ["c", false, 2],
+      ["d", true, null],
+    ]);
+  });
+});
+
+describe("studioCartLabel — 카드·목록이 같은 글자를 쓴다", () => {
+  it("담음 · 고친 내용 반영 전 · 뺌, 안 담은 것은 글자 없음", () => {
+    expect(studioCartLabel("picked")).toBe("담음");
+    expect(studioCartLabel("stale")).toBe("담음 · 고친 내용 반영 전");
+    expect(studioCartLabel("removed")).toBe("뺌");
+    expect(studioCartLabel("pending")).toBeNull();
+  });
+});

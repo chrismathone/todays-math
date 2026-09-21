@@ -63,7 +63,9 @@ describe("worksheet source provenance", () => {
   it("retains a detached editable crop and all figure variants through saving and reload", () => {
     vi.useFakeTimers();
     const problem = studioProblem(crop);
-    expect(problem.studioCrop).toEqual(crop);
+    // `added: true` 는 옛 배포본의 draftStore 를 위한 칸이다(`StudioCrop.added`) — 나머지는 그대로.
+    const snapshot = { ...crop, added: true };
+    expect(problem.studioCrop).toEqual(snapshot);
     expect(problem.studioCrop).not.toBe(crop);
     const store = createWorkspaceDraftStore();
     store.hydrate();
@@ -78,7 +80,9 @@ describe("worksheet source provenance", () => {
     ).toBe(true);
     const restored = createWorkspaceDraftStore();
     restored.hydrate();
-    expect(restored.getSnapshot().draft.problems[0].studioCrop).toEqual(crop);
+    expect(restored.getSnapshot().draft.problems[0].studioCrop).toEqual(
+      snapshot,
+    );
     expect(restored.getSnapshot().draft.problems[0].ocr).toEqual(crop.ocr);
     expect(restored.getSnapshot().draft.problems[0].figureUrls[0]).toContain(
       "data:image/svg+xml",
@@ -111,5 +115,30 @@ describe("worksheet source provenance", () => {
       }),
     ).toBe(false);
     expect(store.getSnapshot().draft).toBe(before);
+  });
+  it("«담음» 칸(added)이 없는 원본 편집 스냅숏도 읽는다 — 담았는지는 시험지 목록이 정한다", () => {
+    const problem = studioProblem(crop);
+    const { added: _legacy, ...withoutAdded } = problem.studioCrop!;
+    void _legacy;
+    const store = createWorkspaceDraftStore();
+    store.hydrate();
+    expect(
+      store.importDraft({
+        version: 1,
+        title: "added 없는 스냅숏",
+        problems: [{ ...problem, studioCrop: withoutAdded }],
+      }),
+    ).toBe(true);
+    expect(store.getSnapshot().draft.problems[0].studioCrop?.id).toBe("crop-1");
+    // 칸이 있는데 boolean 이 아니면 여전히 막는다.
+    expect(
+      store.importDraft({
+        version: 1,
+        title: "added 가 문자",
+        problems: [
+          { ...problem, studioCrop: { ...withoutAdded, added: "yes" } },
+        ],
+      }),
+    ).toBe(false);
   });
 });

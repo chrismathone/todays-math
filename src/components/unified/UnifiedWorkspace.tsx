@@ -15,6 +15,13 @@ import {
 import { useWorkspaceAccess } from "./useWorkspaceAccess";
 import type { BankData, StudioProblem } from "./types";
 import type { StudioCrop } from "./studioHelpers";
+import {
+  addToCart,
+  forgetRemovals,
+  rememberRemoval,
+  restoreToCart,
+  type StudioCartRemoval,
+} from "./studioCart";
 import { useWorkspaceDrafts } from "./useWorkspaceDrafts";
 import WorkroomHome, { formatDraftDate } from "./WorkroomHome";
 import Icon, { type WorkspaceIconName } from "./WorkspaceIcon";
@@ -64,6 +71,7 @@ const ConceptView = dynamic(() => import("./ConceptView"), {
   ),
 });
 type View = WorkspaceMenu;
+const NO_REMOVALS: StudioCartRemoval[] = [];
 const navItems: {
   id: View;
   label: string;
@@ -215,6 +223,26 @@ function UnifiedWorkspaceContent({
     | { kind: "order"; previous: StudioProblem[]; draftId: string }
     | null
   >(null);
+  /**
+   * 이 시험지에서 뺀 문항과 그 자리 — 어느 화면에서 뺐든(④·문제은행·작업실 목록) 여기 남는다.
+   * 작업실이 받아 «담은 문항» 목록에 흐린 줄(«다시 담기»)로 남기고, 한꺼번에 담기가 건너뛴다
+   * (원장님 2026-09-21 확정 «안 넣는다» — `studioCart.ts`). 시험지가 바뀌면 빈 것으로 읽는다.
+   */
+  const [removals, setRemovals] = useState<{
+    draftId: string;
+    items: StudioCartRemoval[];
+  }>({ draftId: "", items: [] });
+  const removed = removals.draftId === draft.id ? removals.items : NO_REMOVALS;
+  const updateRemovals = (
+    change: (items: StudioCartRemoval[]) => StudioCartRemoval[],
+  ) =>
+    setRemovals((current) => {
+      const items = current.draftId === draft.id ? current.items : NO_REMOVALS;
+      const next = change(items);
+      return next === items && current.draftId === draft.id
+        ? current
+        : { draftId: draft.id, items: next };
+    });
   const [modal, setModal] = useState<"new" | "search" | "help" | null>(null);
   const [newTitle, setNewTitle] = useState("");
   const [quickQuery, setQuickQuery] = useState("");
@@ -361,7 +389,10 @@ function UnifiedWorkspaceContent({
     if (index >= 0) {
       setUndo({ kind: "remove", problem, index, draftId: draft.id });
       setNotice("시험지에서 문제를 뺐습니다.");
-    }
+      // 시험지에 있던 판을 기억한다 — 문제은행 카드가 넘기는 것은 은행 쪽 판일 수 있다.
+      const removedProblem = selected[index];
+      updateRemovals((items) => rememberRemoval(items, removedProblem, index));
+    } else updateRemovals((items) => forgetRemovals(items, [problem.id]));
     setSelected((current) =>
       current.some((p) => p.id === problem.id)
         ? current.filter((p) => p.id !== problem.id)
@@ -377,24 +408,40 @@ function UnifiedWorkspaceContent({
       return;
     }
     if (undo.problem.eligible === false) return;
-    setSelected((current) => {
-      if (current.some((p) => p.id === undo.problem.id)) return current;
-      const next = [...current];
-      next.splice(Math.min(undo.index, next.length), 0, undo.problem);
-      return next;
-    });
+    setSelected((current) => restoreToCart(current, undo.problem, undo.index));
+    updateRemovals((items) => forgetRemovals(items, [undo.problem.id]));
     setUndo(null);
     setNotice("문제를 다시 담았습니다.");
   }
-  const add = (problems: StudioProblem[]) =>
-    setSelected((current) => {
-      problems = problems.filter((problem) => problem.eligible !== false);
-      const updates = new Map(problems.map((p) => [p.id, p]));
-      return [
-        ...current.map((p) => updates.get(p.id) ?? p),
-        ...problems.filter((p) => !current.some((old) => old.id === p.id)),
-      ];
-    });
+  /** 작업실의 담기·반영 — 같은 id 는 제자리에서 갈고 새것은 뒤에(`addToCart`). */
+  const add = (problems: StudioProblem[]) => {
+    setSelected((current) => addToCart(current, problems));
+    updateRemovals((items) =>
+      forgetRemovals(
+        items,
+        problems.map((problem) => problem.id),
+      ),
+    );
+  };
+  /** 작업실 «담은 문항» 목록의 ×. 시험지에 있을 때만 뺀다 — 없는 것을 `toggle` 하면 담긴다. */
+  function remove(problem: StudioProblem) {
+    if (selected.some((item) => item.id === problem.id)) toggle(problem);
+  }
+  /**
+   * 작업실 «담은 문항» 목록의 «다시 담기» — 뺀 자리로 되돌린다. 편집창 확대 중에는 위 알림 줄의
+   * «되돌리기»가 inert 에 덮여 안 닿아, 되돌리기를 작업실 안에 둔 것이다(트랙 41 공통 ③).
+   */
+  function restoreRemoved(problem: StudioProblem) {
+    if (problem.eligible === false) return;
+    const index =
+      removed.find((item) => item.problem.id === problem.id)?.index ??
+      selected.length;
+    setSelected((current) => restoreToCart(current, problem, index));
+    updateRemovals((items) => forgetRemovals(items, [problem.id]));
+    if (undo?.kind === "remove" && undo.problem.id === problem.id)
+      setUndo(null);
+    setNotice("문제를 다시 담았습니다.");
+  }
   /**
    * 「순서 초기화」가 세운 차례를 통째로 적용한다. 지우는 것이 아니라 **되돌릴 수 있는**
    * 바꾸기라 확인 창은 두지 않고, 대신 알림 줄의 「되돌리기」를 한 칸 채운다.
@@ -833,12 +880,15 @@ function UnifiedWorkspaceContent({
               <StudioView
                 key={`${storageScope ?? "preview"}:${extraction.version}`}
                 active={view === "studio"}
+                picked={selected}
+                removed={removed}
                 onAdd={add}
+                onRemove={remove}
+                onRestore={restoreRemoved}
                 onExport={() => navigate("export")}
                 canExport={can("export")}
                 importRequest={importRequest}
                 stepRequest={studioStepRequest}
-                pickedCount={selected.length}
                 onCropCountChange={setStudioCropCount}
                 restoreRequest={studioRestoreRequest}
                 storageScope={storageScope}

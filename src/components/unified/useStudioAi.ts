@@ -702,7 +702,6 @@ export function useStudioAi({
             grade: page.grade,
             level: page.level,
             mode: item.content.trim() ? "text" : "image",
-            added: false,
             aiWarnings: [
               ...response.result.warnings,
               ...(figures?.warnings ?? []),
@@ -996,7 +995,6 @@ export function useStudioAi({
         aiWarnings: warnings,
         ...(changed
           ? {
-              added: false,
               reviewed: false,
               revision: (snapshot.revision ?? 0) + 1,
             }

@@ -198,7 +198,8 @@ function parseStudioCrop(value: unknown): StudioCrop {
     (value.page as number) < 1 ||
     !["text", "image"].includes(value.mode as string) ||
     !["elementary", "secondary"].includes(value.level as string) ||
-    typeof value.added !== "boolean" ||
+    // 옛 «담음» 칸 — 이제 아무도 안 읽는다(`StudioCrop.added`). 없어도 되고, 있으면 boolean.
+    (value.added !== undefined && typeof value.added !== "boolean") ||
     typeof value.image !== "string" ||
     !validImageUrl(value.image)
   )

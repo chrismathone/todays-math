@@ -42,8 +42,16 @@ export interface StudioCrop {
   mode: "image" | "text";
   /** Explicit output choice takes precedence over later automatic OCR. */
   modeManual?: boolean;
-  added: boolean;
-  /** Monotonic edit generation, including changes that restore the old text. */
+  /**
+   * @deprecated 옛 판의 «담음» 칸 — **아무도 읽지 않는다**(트랙 44, 2026-09-21). 담았는지는 시험지의
+   * 담은 목록이 정한다(`studioCart.ts`). 옛 세션·시험지에 남아 있어 칸만 둔다. 시험지 스냅숏에는
+   * `studioProblem` 이 `true` 로 적는다 — 이 판 전 배포본의 `draftStore` 가 boolean 이어야 시험지를 읽는다.
+   */
+  added?: boolean;
+  /**
+   * Monotonic edit generation, including changes that restore the old text.
+   * 내용을 바꾸는 고침만 올린다 — 시험지의 담은 판과 견줘 «고친 뒤 반영 전»을 가른다(`studioCart.ts`).
+   */
   revision?: number;
   aiWarnings?: string[];
   questionType?: "multiple-choice" | "short-answer" | "descriptive";
@@ -216,7 +224,8 @@ export function studioProblem(crop: StudioCrop): StudioProblem {
   return {
     id: crop.id,
     ...(crop.ocr ? { ocr: structuredClone(crop.ocr) } : {}),
-    studioCrop: structuredClone(crop),
+    // `added: true` 는 옛 배포본의 `draftStore` 를 위한 칸이다(위 `StudioCrop.added`). 작업실은 안 읽는다.
+    studioCrop: { ...structuredClone(crop), added: true },
     ...(crop.questionType ? { questionType: crop.questionType } : {}),
     content: useText ? crop.content.trim() : "",
     answer: crop.answer.trim(),

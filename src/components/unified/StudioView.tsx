@@ -9,7 +9,7 @@ import WorkProgress from "./WorkProgress";
 import StudioQueueStatus from "./StudioQueueStatus";
 import StudioProgressStrip from "./StudioProgressStrip";
 import { studioCropWorkKind, studioWorkName } from "./studioWorkNames";
-import { applyStudioCropEdit } from "./studioCropEdit";
+import { applyStudioCropEdit, studioCropStatusOnly } from "./studioCropEdit";
 import { retainStudioFigures } from "./studioFigureReferences";
 import StudioFigureFailures, {
   studioFailedFigureItems,
@@ -26,6 +26,7 @@ import {
   Suspense,
   useEffect,
   useEffectEvent,
+  useId,
   useMemo,
   useRef,
   useState,
@@ -49,7 +50,14 @@ import {
 } from "./studioAiHelpers";
 import type { StudioAiProvider } from "@/lib/dev-ai/contracts";
 import { getStudioEndpoints } from "@/lib/studio-ai/endpoints";
-import type { SchoolLevel, StudioViewProps } from "./types";
+import type { SchoolLevel, StudioProblem, StudioViewProps } from "./types";
+import {
+  studioCartPending,
+  studioCartState,
+  useStudioCart,
+  type StudioCartRemoval,
+} from "./studioCart";
+import StudioCartPanel, { StudioCartChip } from "./StudioCartPanel";
 import {
   clamp,
   drawStudioSample,
@@ -291,15 +299,30 @@ export default function StudioView({
   onDocumentChange,
   onCropCountChange,
   canExport = true,
-  pickedCount = 0,
+  picked,
+  removed,
+  onRemove,
+  onRestore,
+  pickedCount,
   stepRequest,
 }: StudioViewProps & {
   canExport?: boolean;
   active?: boolean;
   /**
-   * 시험지에 담은 문항 수 — 「시험지 구성」 탭의 배지이자 눌림 조건.
-   * 왼쪽 메뉴 「시험지 · 내보내기」 배지와 **같은 값**을 받는다(`UnifiedWorkspace` 의 `selected`).
-   * 작업실이 제 안에서 세면 두 숫자가 갈린다.
+   * 시험지의 담은 목록 — `UnifiedWorkspace` 의 `selected` **그대로**(원장님 2026-09-21 확정, 트랙 44).
+   * 작업실의 «담음»·«N문항 담기»·«M문항 담음»·«담은 문항» 목록·「시험지 구성」 탭 배지가 모두
+   * 이것에서 센다(`studioCart.ts`). 작업실이 제 안에서 따로 세면 ④·문제은행과 갈린다(트랙 41 어긋남 1~4).
+   * 안 넘기면(작업실만 띄우는 시험 하네스) 같은 규칙으로 제 안에 한 벌 둔다.
+   */
+  picked?: StudioProblem[];
+  /** 이 시험지에서 뺀 문항과 그 자리 — 한꺼번에 담기가 건너뛰고, 목록이 흐린 줄로 남긴다. */
+  removed?: StudioCartRemoval[];
+  /** 목록 줄의 × — ④·문제은행과 같은 빼기 길(`UnifiedWorkspace` 의 `toggle`). */
+  onRemove?: (problem: StudioProblem) => void;
+  /** 목록 줄의 «다시 담기» — 뺀 자리로. */
+  onRestore?: (problem: StudioProblem) => void;
+  /**
+   * 「시험지 구성」 탭 배지 — `picked` 를 넘기면 쓰지 않는다. 장부 없이 배지만 보는 옛 하네스용.
    */
   pickedCount?: number;
   /** 시험지 화면의 단계 탭이 보내는 요청 — 그 단계로 간다. */
@@ -458,16 +481,28 @@ export default function StudioView({
     },
   });
   const recognizingPage = studioAi.isPageBusy(sourceId, pageNumber);
+  /** 담은 문항 장부 — 시험지의 담은 목록 하나에서 센다(`studioCart.ts`). */
+  const cart = useStudioCart({ picked, removed, onAdd, onRemove, onRestore });
+  const cartState = (crop: StudioCrop) =>
+    studioCartState(crop, cart.picked, cart.removed);
+  const [cartOpen, setCartOpen] = useState(false);
+  const cartToggle = useRef<HTMLButtonElement>(null);
+  const cartPanelId = useId();
+  // 시험지에 이 판 그대로 담긴 것은 한꺼번에 인식·해설에서 뺀다(전에는 `crop.added` 가 그 일을 했다).
   const unreadCrops = crops.filter(
-    (crop) => !crop.content.trim() && !crop.added,
+    (crop) => !crop.content.trim() && cartState(crop) !== "picked",
   );
   const unsolvedCrops = crops.filter(
-    (crop) => crop.content.trim() && !crop.solution.trim() && !crop.added,
+    (crop) =>
+      crop.content.trim() &&
+      !crop.solution.trim() &&
+      cartState(crop) !== "picked",
   );
 
   // The workspace keeps inactive views mounted; leaving must release modal state.
   if (!active && focusMode) setFocusMode(false);
   if (!active && restartOpen) setRestartOpen(false);
+  if (!active && cartOpen) setCartOpen(false);
 
   const currentSource = sources.find((item) => item.id === sourceId);
   const sourceJobs = studioAi.pageJobs.filter(
@@ -516,7 +551,13 @@ export default function StudioView({
     rendered.sourceId === sourceId &&
     rendered.number === pageNumber,
   );
-  const pendingCount = crops.filter((item) => !item.added).length;
+  // «N문항 담기»·«담고 내보내기»가 담을 것 — 뺀 것·고친 뒤 반영 전인 것은 없다(`studioCartPending`).
+  const pendingCrops = studioCartPending(crops, cart.picked, cart.removed);
+  const pendingCount = pendingCrops.length;
+  // 바닥 «M문항 담음» — 작업실 문항 가운데 시험지에 있는 것(고친 뒤 반영 전 포함).
+  const pickedHereCount = crops.filter((crop) =>
+    cart.picked.some((problem) => problem.id === crop.id),
+  ).length;
   // 시험지 화면의 「OCR · 디지털화」 탭 배지가 이 값을 쓴다(안 A).
   const reportCropCount = useEffectEvent(() =>
     onCropCountChange?.(crops.length),
@@ -573,7 +614,6 @@ export default function StudioView({
               ...crop,
               grade: nextGrade,
               level: studioGradeLevel(result.grade),
-              added: false,
               reviewed: false,
               revision: (crop.revision ?? 0) + 1,
             }
@@ -1252,7 +1292,7 @@ export default function StudioView({
           continue;
         }
         if (sources.some((source) => source.id === snapshot.sourceId)) {
-          restoredCrops.push({ ...structuredClone(snapshot), added: false });
+          restoredCrops.push(structuredClone(snapshot));
           continue;
         }
         // A portable worksheet contains the original problem crop, not the full PDF.
@@ -1277,7 +1317,6 @@ export default function StudioView({
           sourceLabel: name,
           page: 1,
           rect: { x: 0, y: 0, width: 1, height: 1 },
-          added: false,
           sourceSize: { width: canvas.width, height: canvas.height },
           sourceWidthMm: snapshot.sourceWidthMm
             ? snapshot.sourceWidthMm * rect.width
@@ -1522,7 +1561,6 @@ export default function StudioView({
         level,
         grade,
         mode: "image",
-        added: false,
         sourceSize: {
           width: rendered.canvas.width,
           height: rendered.canvas.height,
@@ -1697,7 +1735,6 @@ export default function StudioView({
                   width: rendered.canvas.width,
                   height: rendered.canvas.height,
                 },
-                added: false,
                 reviewed: false,
                 revision: (item.revision ?? 0) + 1,
               }
@@ -1742,7 +1779,7 @@ export default function StudioView({
         setSelectedBoxId(next?.id ?? "");
         if (!next) setStep(currentSource ? "crop" : "upload");
       }
-      if (crop.added)
+      if (cartState(crop) === "picked" || cartState(crop) === "stale")
         setNotice(
           "원본 작업에서 삭제했습니다. 이미 담은 문항은 내 시험지에서 관리해 주세요.",
         );
@@ -1756,7 +1793,6 @@ export default function StudioView({
                   item,
                   (item.figures ?? []).filter((figure) => figure.id !== id),
                 ),
-                added: false,
                 reviewed: false,
                 revision: (item.revision ?? 0) + 1,
               }
@@ -1778,6 +1814,11 @@ export default function StudioView({
         crop.id === id ? applyStudioCropEdit(crop, patch) : crop,
       ),
     );
+    // 검수 완료·취소는 상태라 판을 안 올린다(«담음» 그대로). 시험지 판이 이 판과 같으면 상태만 같이
+    // 적어 둔다 — ④ «원본 편집»으로 이 문항을 다시 열 때 검수 상태가 되살아나게.
+    const crop = crops.find((item) => item.id === id);
+    if (crop && studioCropStatusOnly(patch) && cartState(crop) === "picked")
+      cart.add([studioProblem(applyStudioCropEdit(crop, patch))]);
   }
 
   function selectCrop(id: string) {
@@ -1841,7 +1882,6 @@ export default function StudioView({
               ...crop,
               grade: nextGrade ?? "미지정",
               level: nextLevel,
-              added: false,
               reviewed: false,
               revision: (crop.revision ?? 0) + 1,
             }
@@ -1874,13 +1914,10 @@ export default function StudioView({
   function addProblems(exportAfter = false) {
     if (exportAfter && !canExport) return;
     if (!crops.length || studioAi.running) return;
-    const pending = crops.filter((crop) => !crop.added);
-    if (pending.length) {
-      onAdd(pending.map(studioProblem));
-      setCrops((previous) =>
-        previous.map((crop) => ({ ...crop, added: true })),
-      );
-      setNotice(`${pending.length}문항을 내 시험지에 담았습니다.`);
+    // 뺀 것은 건너뛴다 — 원장님 2026-09-21 확정 «안 넣는다». 뺀 것은 목록의 «다시 담기»로만.
+    if (pendingCrops.length) {
+      cart.add(pendingCrops.map(studioProblem));
+      setNotice(`${pendingCrops.length}문항을 내 시험지에 담았습니다.`);
     }
     if (exportAfter) {
       setFocusMode(false);
@@ -1888,12 +1925,39 @@ export default function StudioView({
     }
   }
 
+  /** 카드의 «반영» — 담은 뒤 고친 문항의 새 판을 시험지의 같은 자리에 갈아 넣는다. */
+  function reflectCrop(id: string) {
+    const crop = crops.find((item) => item.id === id);
+    if (!crop || cartState(crop) !== "stale") return;
+    cart.add([studioProblem(crop)]);
+    setNotice("고친 내용을 시험지에 반영했습니다.");
+  }
+
+  /** 목록 줄의 × — 시험지에서 뺀다. 작업실 문항은 그대로 남는다. */
+  function removeFromCart(problem: StudioProblem) {
+    cart.remove(problem);
+    setNotice("시험지에서 문제를 뺐습니다.");
+  }
+
+  /** 목록 줄의 «다시 담기» — 작업실에 그 문항이 있으면 지금 판을, 없으면 뺄 때의 판을 되돌린다. */
+  function restoreToCartFromStudio(problem: StudioProblem) {
+    const crop = crops.find((item) => item.id === problem.id);
+    cart.restore(crop ? studioProblem(crop) : problem);
+    setNotice("문제를 다시 담았습니다.");
+  }
+
   function digitizeAll() {
     setStep("review");
     setCrops((previous) =>
       previous.map((crop) =>
         crop.content.trim() && !crop.modeManual && crop.mode !== "text"
-          ? { ...crop, mode: "text", added: false, reviewed: false }
+          ? // 출력 방식이 바뀌면 시험지에 실리는 것이 바뀐다 — 판을 올려 «고친 뒤 반영 전»이 보이게.
+            {
+              ...crop,
+              mode: "text",
+              reviewed: false,
+              revision: (crop.revision ?? 0) + 1,
+            }
           : crop,
       ),
     );
@@ -2460,7 +2524,11 @@ export default function StudioView({
         <StudioStepBar
           step={step}
           cropCount={crops.length}
-          pickedCount={pickedCount}
+          pickedCount={
+            cart.controlled
+              ? cart.picked.length
+              : (pickedCount ?? cart.picked.length)
+          }
           canCrop={Boolean(currentSource)}
           canReview={crops.length > 0}
           canExport={canExport}
@@ -2631,6 +2699,8 @@ export default function StudioView({
                 onCancelFigure={(cropId, figureId) =>
                   studioAi.figureAi.cancel(cropId, figureId)
                 }
+                cartState={cartState}
+                onReflect={reflectCrop}
               />
             </>
           ) : step === "upload" || !currentSource ? (
@@ -3026,8 +3096,9 @@ export default function StudioView({
                           (job) => job.cropId === crop.id,
                         ) ? (
                         <span className={styles.draftBadge}>도형 생성 중</span>
-                      ) : crop.added ? (
-                        <span className={styles.addedBadge}>담음</span>
+                      ) : cartState(crop) !== "pending" ? (
+                        // 카드 바닥 표시와 같은 글자·같은 모양(모든 화면 일치).
+                        <StudioCartChip state={cartState(crop)} />
                       ) : crop.reviewed ? (
                         <span className={styles.addedBadge}>검수 완료</span>
                       ) : (
@@ -3156,6 +3227,36 @@ export default function StudioView({
             ) : null}
           </div>
         </aside>
+        {/*
+          담은 문항 목록 — 안 D(원장님 2026-09-21 확정). 바닥 막대에서 위로 펼친다(문제은행이 좁을 때
+          쓰는 바구니와 같은 결). 시험지 전체를 보이고(문제은행에서 담은 것까지, 출처 표시), 뺀 줄은
+          흐리게 남아 «다시 담기»로 제자리에 돌린다 — 편집창 확대 중에도 닿는 되돌리기다.
+        */}
+        {cartOpen && step !== "crop" && (
+          <StudioCartPanel
+            id={cartPanelId}
+            crops={crops}
+            picked={cart.picked}
+            removed={cart.removed}
+            canExport={canExport}
+            onJump={(id) => {
+              setCartOpen(false);
+              setStep("review");
+              selectCrop(id);
+            }}
+            onRemove={removeFromCart}
+            onRestore={restoreToCartFromStudio}
+            onClose={(returnFocus) => {
+              setCartOpen(false);
+              if (returnFocus) cartToggle.current?.focus();
+            }}
+            onExport={() => {
+              setCartOpen(false);
+              setFocusMode(false);
+              onExport();
+            }}
+          />
+        )}
       </div>
       {active && figureCrop && editedFigure && (
         <Suspense
@@ -3208,7 +3309,6 @@ export default function StudioView({
                           crop.content.trim() && !crop.modeManual
                             ? "text"
                             : crop.mode,
-                        added: false,
                         reviewed: false,
                         revision: (crop.revision ?? 0) + 1,
                       }
@@ -3369,7 +3469,7 @@ export default function StudioView({
               <strong>자른 문제 {crops.length}문항</strong>
               <span>
                 {crops.length
-                  ? `${reviewedCount}문항 검수 완료 · ${crops.length - pendingCount}문항 담음`
+                  ? `${reviewedCount}문항 검수 완료 · ${pickedHereCount}문항 담음`
                   : "원본을 가져와 첫 문제를 선택하세요"}
               </span>
             </div>
@@ -3397,6 +3497,19 @@ export default function StudioView({
             </>
           ) : (
             <>
+              {/* 시험지 전체의 담은 수 — 1280px 에서 위 «M문항 담음» 줄이 숨어도 개수가 여기 남는다. */}
+              <button
+                ref={cartToggle}
+                type="button"
+                className={styles.secondaryButton}
+                aria-expanded={cartOpen}
+                aria-controls={cartPanelId}
+                disabled={!cart.picked.length && !cart.removed.length}
+                onClick={() => setCartOpen((value) => !value)}
+              >
+                담은 문항 <b>{cart.picked.length}</b>{" "}
+                <span aria-hidden="true">{cartOpen ? "▾" : "▴"}</span>
+              </button>
               <button
                 type="button"
                 className={styles.secondaryButton}
