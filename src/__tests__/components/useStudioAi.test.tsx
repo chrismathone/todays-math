@@ -78,21 +78,28 @@ function mount(
   onDetected = vi.fn(),
   onRotatePage?: (sourceId: string, page: number, delta: number) => void,
 ) {
+  /** ② 영역 지정에 있는 동안만 `figuresDeferred` — 안 주면 ③ 에 있는 것과 같다. */
+  interface MountProps {
+    contextKey: string;
+    active: boolean;
+    figuresDeferred?: boolean;
+  }
   return renderHook(
-    ({ contextKey, active }) => {
+    ({ contextKey, active, figuresDeferred }: MountProps) => {
       const [crops, setCrops] = useState(initial);
       const studio = useStudioAi({
         crops,
         setCrops,
         contextKey,
         active,
+        figuresDeferred,
         onDetected,
         onRotatePage,
       });
       return { ...studio, crops, setCrops };
     },
     {
-      initialProps: { contextKey: "source:1", active: true },
+      initialProps: { contextKey: "source:1", active: true } as MountProps,
       wrapper: StrictMode,
     },
   );
@@ -1096,6 +1103,118 @@ describe("Studio figure detection owner", () => {
         (call) => call[0].action !== "figure-redraw",
       ),
     ).toHaveLength(1);
+  });
+
+  /**
+   * 원장님 2026-09-21: «도형의 경우 크롭이 불안전한게 있는데, 도형 생성을 먼저 돌려버리고 있으니까 이후에 크롭 조정하게 되면
+   * 이중생성하게 되는 불편함이 있네. 잘라내기를 끝내고, 다음단계(OCR, 디지털화)를 시작하게 되면 디지털화를 시작하는걸로.
+   * 크롭과 동시에 진행하지말고.»
+   *
+   * 자동 인식이 문제를 찾아 넣자마자 도형 생성(`figure-redraw` — 유료 호출)이 같이 돌았다. ② 영역 지정에서 도형 칸을
+   * 고치면 같은 도형을 한 번 더 만든다. 이제 ② 에 있는 동안은 **미뤄 두고**, ③ 으로 넘어갈 때 시작한다.
+   */
+  describe("도형 생성은 ② 영역 지정이 끝난 뒤에", () => {
+    const recognizeWithFigure = async (
+      studio: ReturnType<typeof mount>["result"],
+    ) => {
+      const { canvas } = image();
+      const value = response("page-ocr");
+      value.result.problems = [
+        {
+          content: "도형 문제",
+          answer: "",
+          bbox: { left: 250, top: 125, width: 500, height: 500 },
+          figures: [{ bbox: { left: 0, top: 250, width: 500, height: 250 } }],
+        },
+      ];
+      bridge.run.mockImplementation(async (request) =>
+        request.action === "figure-redraw"
+          ? {
+              ...response("figure-redraw"),
+              result: { ...response().result, svg: "<svg></svg>" },
+            }
+          : value,
+      );
+      await act(async () => {
+        await studio.current.recognizePage({
+          sourceId: "source",
+          sourceLabel: "sheet.png",
+          page: 1,
+          canvas,
+          imageDataUrl: "data:image/png;base64,cGFnZQ==",
+          grade: "초5",
+          level: "elementary",
+        });
+      });
+    };
+    const redraws = () =>
+      bridge.run.mock.calls.filter(
+        (call) => call[0].action === "figure-redraw",
+      );
+
+    it("전제 — 미루지 않으면(③ 에서 인식하면) 인식 직후에 도형 생성을 부른다", async () => {
+      const { result } = mount([]);
+      await recognizeWithFigure(result);
+      expect(result.current.crops[0]?.figures).toHaveLength(1);
+      await waitFor(() => expect(redraws()).toHaveLength(1));
+    });
+
+    it("🔴 ② 에 있는 동안은 도형 생성을 부르지 않는다 — 문제와 도형 칸은 그대로 선다", async () => {
+      const { result, rerender } = mount([]);
+      rerender({ contextKey: "source:1", active: true, figuresDeferred: true });
+      await recognizeWithFigure(result);
+      expect(result.current.crops[0]?.figures).toHaveLength(1);
+      // 한 박자 더 돌려도 안 부른다 — «아직 안 불렸을 뿐»과 가른다.
+      await act(async () => {
+        await new Promise((resolve) => setTimeout(resolve, 20));
+      });
+      expect(redraws()).toEqual([]);
+      expect(result.current.figureAi.jobs).toEqual([]);
+      expect(result.current.running).toBe(false);
+    });
+
+    it("🔴 ③ 으로 넘어가면 미뤄 둔 도형을 그때 만든다 — 한 번만", async () => {
+      const { result, rerender } = mount([]);
+      rerender({ contextKey: "source:1", active: true, figuresDeferred: true });
+      await recognizeWithFigure(result);
+      expect(redraws()).toEqual([]);
+      rerender({
+        contextKey: "source:1",
+        active: true,
+        figuresDeferred: false,
+      });
+      await waitFor(() => expect(redraws()).toHaveLength(1));
+      await waitFor(() =>
+        expect(result.current.crops[0]?.figures?.[0]?.svg).toBeTruthy(),
+      );
+      // 다시 ② 로 갔다 와도 이미 만든 도형은 다시 만들지 않는다.
+      rerender({ contextKey: "source:1", active: true, figuresDeferred: true });
+      rerender({
+        contextKey: "source:1",
+        active: true,
+        figuresDeferred: false,
+      });
+      await act(async () => {
+        await new Promise((resolve) => setTimeout(resolve, 20));
+      });
+      expect(redraws()).toHaveLength(1);
+    });
+
+    it("🔴 ② 에서 지운 문제의 도형은 ③ 에서도 안 만든다", async () => {
+      const { result, rerender } = mount([]);
+      rerender({ contextKey: "source:1", active: true, figuresDeferred: true });
+      await recognizeWithFigure(result);
+      act(() => result.current.setCrops([]));
+      rerender({
+        contextKey: "source:1",
+        active: true,
+        figuresDeferred: false,
+      });
+      await act(async () => {
+        await new Promise((resolve) => setTimeout(resolve, 20));
+      });
+      expect(redraws()).toEqual([]);
+    });
   });
 });
 

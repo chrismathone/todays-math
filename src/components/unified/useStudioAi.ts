@@ -147,6 +147,7 @@ export function useStudioAi({
   setCrops,
   contextKey,
   active,
+  figuresDeferred = false,
   onDetected,
   onRotatePage,
 }: {
@@ -154,6 +155,12 @@ export function useStudioAi({
   setCrops: Dispatch<SetStateAction<StudioCrop[]>>;
   contextKey: string;
   active: boolean;
+  /**
+   * ② 영역 지정에 있는 동안 참 — 인식이 찾아낸 도형을 **바로 만들지 않고** 미뤄 둔다(원장님 2026-09-21).
+   * 도형 칸은 ② 에서 고치는 일이 잦은데, 인식과 같이 돌리면 고친 뒤에 같은 도형을 한 번 더 만든다(유료 호출).
+   * 거짓이 되면(③ 으로 넘어가면) 미뤄 둔 것을 그때 만든다. 이미 만든 도형은 `figureAi.run` 이 건너뛴다.
+   */
+  figuresDeferred?: boolean;
   onDetected: (id: string) => void;
   onRotatePage?: (sourceId: string, page: number, delta: number) => void;
 }) {
@@ -262,8 +269,11 @@ export function useStudioAi({
       )
         onDetected(detection.id);
     }
-    const figureCrops = pendingFigureCrops.current.splice(0);
-    if (figureCrops.length) void figureAi.run(figureCrops);
+    // ② 에서는 비우지 않고 들고 있다 — 그사이 지운 문제는 `run` 이 지금의 문제 목록에서 못 찾아 자연히 빠진다.
+    if (!figuresDeferred) {
+      const figureCrops = pendingFigureCrops.current.splice(0);
+      if (figureCrops.length) void figureAi.run(figureCrops);
+    }
     // Crop jobs enter the same FIFO only after insertion commits. Waiting for
     // children inside a running page slot could deadlock two active pages.
     const ocrCrops = pendingOcrCrops.current
