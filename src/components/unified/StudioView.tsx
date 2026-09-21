@@ -3320,7 +3320,8 @@ export default function StudioView({
             onRedraw={
               studioAi.available
                 ? async ({ originalImage, svg, instructions, signal }) => {
-                    const response = await studioAi.ai.run(
+                    // 대기열 맨 앞으로 — 일괄 생성이 도는 동안 바로 보내면 서버가 429 로 거절한다
+                    const response = await studioAi.runInteractive(
                       {
                         action: "figure-redraw",
                         imageDataUrl: originalImage,
@@ -3346,7 +3347,7 @@ export default function StudioView({
             onEdit={
               studioAi.available
                 ? async ({ imageDataUrl, figure, instructions, signal }) => {
-                    const response = await studioAi.ai.run(
+                    const response = await studioAi.runInteractive(
                       {
                         action: "figure-edit",
                         imageDataUrl,

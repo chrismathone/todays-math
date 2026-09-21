@@ -1155,8 +1155,39 @@ export function useStudioAi({
     [publishPages],
   );
 
+  /**
+   * 편집기에서 직접 누른 요청(«다시 그리기»·«요청대로 고치기») — 같은 대기열의 **맨 앞**에 세워 보낸다.
+   * 전에는 `ai.run` 으로 바로 나가, 일괄 생성이 서버의 계정당 두 자리를 쓰는 동안에는 세 번째 요청이 되어
+   * 429 로 거절됐다(원장님 운영 콘솔 2026-09-21). 기다리다 취소되면 AbortError 로 끝난다.
+   */
+  const runInteractive = (
+    request: Parameters<typeof ai.run>[0],
+    signal: AbortSignal = new AbortController().signal,
+  ) =>
+    new Promise<Awaited<ReturnType<typeof ai.run>>>((resolve, reject) => {
+      let started = false;
+      queue
+        .enqueue(
+          signal,
+          async () => {
+            started = true;
+            try {
+              resolve(await ai.run(request, signal));
+            } catch (error) {
+              reject(error);
+            }
+          },
+          true,
+        )
+        .then(() => {
+          if (!started)
+            reject(new DOMException("요청을 취소했습니다.", "AbortError"));
+        }, reject);
+    });
+
   return {
     ai,
+    runInteractive,
     available,
     unavailableReason,
     running,

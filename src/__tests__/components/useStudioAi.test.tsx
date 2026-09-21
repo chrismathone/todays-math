@@ -2172,3 +2172,62 @@ describe("Studio background page queue", () => {
     ]);
   });
 });
+
+/**
+ * 원장님 운영 콘솔 2026-09-21 — `POST /api/studio/ai 429`. 도형 편집기의 «요청대로 고치기»가 대기열을 안 거치고 바로 나가,
+ * 일괄 작업이 서버의 계정당 두 자리를 쓰는 동안 세 번째 요청이 되어 거절됐다. 대기열 규칙은 `studioAiQueuePriority.test.ts` 가
+ * 재고, 여기서는 **훅이 그 길로 보내는가**를 잰다.
+ */
+describe("편집기에서 직접 누른 요청은 대기열 맨 앞으로", () => {
+  it("🔴 두 자리가 찬 동안에는 안 나가고, 자리가 나면 기다리던 일괄 작업보다 먼저 나간다", async () => {
+    const gates = [deferred<DevAiResponse>(), deferred<DevAiResponse>()];
+    const actions: string[] = [];
+    let inFlight = 0;
+    let peak = 0;
+    bridge.run.mockImplementation(async (request) => {
+      actions.push(request.action);
+      inFlight += 1;
+      peak = Math.max(peak, inFlight);
+      try {
+        const gate = request.action === "ocr" ? gates.shift() : undefined;
+        return gate
+          ? await gate.promise
+          : { ...response(request.action), result: { ...response().result } };
+      } finally {
+        inFlight -= 1;
+      }
+    });
+    const held = [...gates];
+    const { result } = mount([crop("a"), crop("b"), crop("c")]);
+    let batch!: Promise<unknown>;
+    act(() => {
+      batch = result.current.processCrops("ocr", ["a", "b", "c"]);
+    });
+    await waitFor(() => expect(actions).toEqual(["ocr", "ocr"]));
+    let edit!: Promise<DevAiResponse>;
+    act(() => {
+      edit = result.current.runInteractive({
+        action: "figure-edit",
+        imageDataUrl: "data:image/png;base64,YWJj",
+        content: "2번 선분을 점선으로",
+        grade: "중2",
+      } as never);
+    });
+    await act(async () => {
+      await new Promise((resolve) => setTimeout(resolve, 20));
+    });
+    // 세 번째 동시 요청은 없다 — 서버가 429 로 거절하는 자리
+    expect(actions).toEqual(["ocr", "ocr"]);
+    await act(async () => {
+      held[0]!.resolve(response());
+      await edit;
+    });
+    // 자리가 나자 기다리던 셋째 OCR 보다 먼저
+    expect(actions.slice(0, 3)).toEqual(["ocr", "ocr", "figure-edit"]);
+    await act(async () => {
+      held[1]!.resolve(response());
+      await batch;
+    });
+    expect(peak).toBe(2);
+  });
+});
