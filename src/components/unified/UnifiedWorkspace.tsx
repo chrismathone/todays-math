@@ -20,7 +20,6 @@ import {
   forgetRemovals,
   rememberRemoval,
   restoreToCart,
-  type StudioCartRemoval,
 } from "./studioCart";
 import { useWorkspaceDrafts } from "./useWorkspaceDrafts";
 import WorkroomHome, { formatDraftDate } from "./WorkroomHome";
@@ -71,7 +70,6 @@ const ConceptView = dynamic(() => import("./ConceptView"), {
   ),
 });
 type View = WorkspaceMenu;
-const NO_REMOVALS: StudioCartRemoval[] = [];
 const navItems: {
   id: View;
   label: string;
@@ -154,6 +152,7 @@ function UnifiedWorkspaceContent({
     saveError,
     setTitle,
     setProblems: setSelected,
+    setRemoved: updateRemovals,
     setColumns,
     setAnswers,
     setPrintOptions,
@@ -169,9 +168,16 @@ function UnifiedWorkspaceContent({
     storageScope,
     can("library") || can("studio") || can("export"),
   );
+  /**
+   * `removed` — 이 시험지에서 뺀 문항과 그 자리. 어느 화면에서 뺐든(④·문제은행·작업실 목록) 여기 남는다.
+   * 작업실이 받아 «담은 문항» 목록에 흐린 줄(«다시 담기»)로 남기고, 한꺼번에 담기가 건너뛴다
+   * (원장님 2026-09-21 확정 «안 넣는다» — `studioCart.ts`). 시험지 초안에 같이 저장한다(트랙 47 —
+   * 전에는 화면 상태라 새로 고치면 사라졌다). 시험지가 바뀌면 그 시험지의 기억을 읽는다.
+   */
   const {
     title,
     problems: selected,
+    removed,
     columns,
     answers,
     printOptions,
@@ -223,26 +229,6 @@ function UnifiedWorkspaceContent({
     | { kind: "order"; previous: StudioProblem[]; draftId: string }
     | null
   >(null);
-  /**
-   * 이 시험지에서 뺀 문항과 그 자리 — 어느 화면에서 뺐든(④·문제은행·작업실 목록) 여기 남는다.
-   * 작업실이 받아 «담은 문항» 목록에 흐린 줄(«다시 담기»)로 남기고, 한꺼번에 담기가 건너뛴다
-   * (원장님 2026-09-21 확정 «안 넣는다» — `studioCart.ts`). 시험지가 바뀌면 빈 것으로 읽는다.
-   */
-  const [removals, setRemovals] = useState<{
-    draftId: string;
-    items: StudioCartRemoval[];
-  }>({ draftId: "", items: [] });
-  const removed = removals.draftId === draft.id ? removals.items : NO_REMOVALS;
-  const updateRemovals = (
-    change: (items: StudioCartRemoval[]) => StudioCartRemoval[],
-  ) =>
-    setRemovals((current) => {
-      const items = current.draftId === draft.id ? current.items : NO_REMOVALS;
-      const next = change(items);
-      return next === items && current.draftId === draft.id
-        ? current
-        : { draftId: draft.id, items: next };
-    });
   const [modal, setModal] = useState<"new" | "search" | "help" | null>(null);
   const [newTitle, setNewTitle] = useState("");
   const [quickQuery, setQuickQuery] = useState("");

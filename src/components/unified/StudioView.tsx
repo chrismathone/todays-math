@@ -52,6 +52,7 @@ import type { StudioAiProvider } from "@/lib/dev-ai/contracts";
 import { getStudioEndpoints } from "@/lib/studio-ai/endpoints";
 import type { SchoolLevel, StudioProblem, StudioViewProps } from "./types";
 import {
+  studioCartAddLabel,
   studioCartPending,
   studioCartState,
   useStudioCart,
@@ -3517,11 +3518,8 @@ export default function StudioView({
                 onClick={() => addProblems()}
               >
                 <Icon name="plus" />
-                {pendingCount
-                  ? `${pendingCount}문항 담기`
-                  : crops.length
-                    ? "모두 담았습니다"
-                    : "시험지에 담기"}
+                {/* 뺀 것만 남았으면 «담을 문항 없음», 다 담겼으면 «모두 담았습니다»(`studioCartAddLabel`). */}
+                {studioCartAddLabel(crops, cart.picked, cart.removed)}
               </button>
               {canExport && (
                 <button

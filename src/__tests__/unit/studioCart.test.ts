@@ -4,7 +4,9 @@ import {
   forgetRemovals,
   rememberRemoval,
   restoreToCart,
+  studioCartAddLabel,
   studioCartLabel,
+  studioCartMeaning,
   studioCartPending,
   studioCartRows,
   studioCartState,
@@ -170,11 +172,59 @@ describe("studioCartRows — 목록 줄", () => {
   });
 });
 
-describe("studioCartLabel — 카드·목록이 같은 글자를 쓴다", () => {
-  it("담음 · 고친 내용 반영 전 · 뺌, 안 담은 것은 글자 없음", () => {
+describe("studioCartLabel — 카드·② 목록 배지가 같은 글자를 쓴다", () => {
+  it("담음 · 반영 전 · 뺌, 안 담은 것은 글자 없음", () => {
     expect(studioCartLabel("picked")).toBe("담음");
-    expect(studioCartLabel("stale")).toBe("담음 · 고친 내용 반영 전");
+    // 원장님 2026-09-21 확정 — 카드 바닥에서 «반영» 단추가 둘째 줄로 꺾이지 않게 짧게(트랙 47).
+    expect(studioCartLabel("stale")).toBe("반영 전");
     expect(studioCartLabel("removed")).toBe("뺌");
     expect(studioCartLabel("pending")).toBeNull();
+  });
+  it("긴 뜻은 읽는 이름·마우스 올림에 — 짧게 줄인 «반영 전»만 다르다", () => {
+    expect(studioCartMeaning("stale")).toBe("담음 · 고친 내용 반영 전");
+    expect(studioCartMeaning("picked")).toBe("담음");
+    expect(studioCartMeaning("removed")).toBe("뺌");
+    expect(studioCartMeaning("pending")).toBeNull();
+  });
+});
+
+describe("studioCartAddLabel — 바닥 «담기» 단추 글자", () => {
+  const [a, b, c] = ["a", "b", "c"].map((id) => crop(id));
+  it("담을 것이 있으면 «N문항 담기», 자른 것이 없으면 «시험지에 담기»", () => {
+    expect(studioCartAddLabel([a, b], [studioProblem(a)], [])).toBe(
+      "1문항 담기",
+    );
+    expect(studioCartAddLabel([], [], [])).toBe("시험지에 담기");
+  });
+  it("다 담겼으면 «모두 담았습니다» — 고친 뒤 반영 전인 것도 시험지에 있으니 «모두»", () => {
+    const staleB = applyStudioCropEdit(b, { answer: "9" });
+    expect(
+      studioCartAddLabel([a, staleB], [studioProblem(a), studioProblem(b)], []),
+    ).toBe("모두 담았습니다");
+  });
+  it("뺀 것이 남았으면 «담을 문항 없음» — 일부러 건너뛴 것이 있어 «모두»가 틀린 말이다", () => {
+    const removed: StudioCartRemoval[] = [
+      { problem: studioProblem(c), index: 2 },
+    ];
+    // 나머지는 다 담겼고 뺀 것 하나만 남았다.
+    expect(
+      studioCartAddLabel(
+        [a, b, c],
+        [studioProblem(a), studioProblem(b)],
+        removed,
+      ),
+    ).toBe("담을 문항 없음");
+    // 전부 뺐다.
+    expect(
+      studioCartAddLabel([c], [], [{ problem: studioProblem(c), index: 0 }]),
+    ).toBe("담을 문항 없음");
+    // 다른 원본에서 뺀 기억은 이 원본의 단추 글자와 상관없다.
+    expect(
+      studioCartAddLabel(
+        [a],
+        [studioProblem(a)],
+        [{ problem: bank("elsewhere"), index: 1 }],
+      ),
+    ).toBe("모두 담았습니다");
   });
 });

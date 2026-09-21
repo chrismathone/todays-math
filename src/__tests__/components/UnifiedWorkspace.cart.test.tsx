@@ -272,6 +272,26 @@ describe("담은 문항 장부 배선", () => {
     expect(orderIds()[0]).toBe("1쪽");
   });
 
+  it("뺀 기억은 시험지와 같이 저장된다 — 새로 고친 뒤에도 뺀 자리와 함께 남는다 (트랙 47)", async () => {
+    seed();
+    const first = render(<UnifiedWorkspace initialData={initialData} />);
+    await toOrder();
+    fireEvent.click(screen.getByRole("button", { name: "2번 문제 빼기" }));
+    await toStudio();
+    fireEvent.click(screen.getByRole("button", { name: "a 빼기" }));
+    expect(studioRemoved()).toBe("b@1,a@0");
+    // 화면을 내리면(새로 고침) 저장소에 남은 것만 돌아온다.
+    first.unmount();
+    render(<UnifiedWorkspace initialData={initialData} />);
+    await toStudio();
+    expect(studioPicked()).toBe("c");
+    expect(studioRemoved()).toBe("b@1,a@0");
+    // «다시 담기»도 저장된 기억으로 뺀 자리에 돌아간다 — a 가 먼저 돌아오면 첫째 자리.
+    fireEvent.click(screen.getByRole("button", { name: "a 다시 담기" }));
+    expect(studioPicked()).toBe("a,c");
+    expect(studioRemoved()).toBe("b@1");
+  });
+
   it("새 시험지를 열면 담은 목록도 뺀 기억도 빈다 (어긋남 2)", async () => {
     seed();
     render(<UnifiedWorkspace initialData={initialData} />);

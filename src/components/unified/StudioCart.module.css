@@ -26,6 +26,18 @@
   background: #eef1f6;
   color: #52617a;
 }
+/* 표시의 긴 뜻 — 읽기만 한다(보이는 것은 줄인 글자 «반영 전»). 표시 모양이 이 파일 하나에 모이게 여기 둔다. */
+.srOnly {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
 
 /* 바닥 막대에서 위로 펼치는 목록 — 문제은행이 좁을 때 쓰는 바구니와 같은 결. */
 .panel {

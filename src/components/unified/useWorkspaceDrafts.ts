@@ -42,6 +42,7 @@ export function useWorkspaceDrafts(storageScope?: string, enabled = true) {
       : {}),
     setTitle: store.setTitle,
     setProblems: store.setProblems,
+    setRemoved: store.setRemoved,
     setColumns: store.setColumns,
     setAnswers: store.setAnswers,
     setPrintOptions: store.setPrintOptions,

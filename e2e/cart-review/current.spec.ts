@@ -1,4 +1,4 @@
-import { expect, test, type Page } from "@playwright/test";
+import { expect, test, type Locator, type Page } from "@playwright/test";
 import { readFileSync } from "node:fs";
 import { resolve } from "node:path";
 
@@ -13,6 +13,9 @@ import { resolve } from "node:path";
  *
  * 화면은 **진짜 `UnifiedWorkspace`**(`current.tsx`) — 작업실·④ 시험지 구성·문제은행·새 시험지가 다 진짜다.
  * 유료 AI 는 부르지 않는다 — POST 는 막는다.
+ *
+ * 트랙 47(원장님 2026-09-21 확정 «추천대로») — 뺀 것만 남으면 «담을 문항 없음», 카드 표시는 «반영 전»
+ * (긴 뜻은 읽는 이름·title), 뺀 기억은 시험지와 같이 저장돼 새로 고쳐도 남는다.
  */
 
 /** step-header.spec.ts 와 같은 다섯 쪽 PDF. 거기 것을 내보내지 않아 여기 다시 둔다. */
@@ -105,7 +108,7 @@ const footer = (page: Page) =>
   page.locator('footer[aria-label="문제 제작 주요 작업"]');
 const addButton = (page: Page) =>
   footer(page).getByRole("button", {
-    name: /문항 담기|모두 담았습니다|시험지에 담기/,
+    name: /문항 담기|모두 담았습니다|담을 문항 없음|시험지에 담기/,
   });
 const cartToggle = (page: Page) =>
   footer(page).getByRole("button", { name: /^담은 문항/ });
@@ -147,6 +150,45 @@ const savedWorksheet = (page: Page) =>
       reviewed: problem.studioCrop?.reviewed ?? false,
       topic: problem.studioCrop?.ocr?.topic ?? null,
     }));
+  });
+
+/** 지금 시험지의 뺀 기억(트랙 47 — 시험지와 같이 저장한다). */
+const savedRemoved = (page: Page) =>
+  page.evaluate(() => {
+    const envelope = JSON.parse(
+      localStorage.getItem("today-math-workspace-drafts-v1") ?? "null",
+    ) as {
+      activeId: string;
+      drafts: {
+        id: string;
+        removed?: { problem: { id: string }; index: number }[];
+      }[];
+    } | null;
+    const draft = envelope?.drafts.find(
+      (item) => item.id === envelope.activeId,
+    );
+    return (draft?.removed ?? []).map((item) => ({
+      id: item.problem.id,
+      index: item.index,
+    }));
+  });
+
+/** 글자의 줄 수 — 글자 조각(텍스트 노드) 윗변의 가짓수. 넘쳐 잘렸는지도 같이. */
+const textLines = (locator: Locator) =>
+  locator.evaluate((element) => {
+    const walker = document.createTreeWalker(element, NodeFilter.SHOW_TEXT);
+    const tops = new Set<number>();
+    for (let node = walker.nextNode(); node; node = walker.nextNode()) {
+      const range = document.createRange();
+      range.selectNodeContents(node);
+      for (const rect of range.getClientRects())
+        if (rect.width && rect.height) tops.add(Math.round(rect.top));
+    }
+    return {
+      줄수: tops.size,
+      넘침: element.scrollWidth > element.clientWidth + 1,
+      폭: Math.round(element.getBoundingClientRect().width),
+    };
   });
 
 /** 칸의 폭·높이와 줄 수(자식 세로 중심의 가짓수 — 한 줄이면 1). */
@@ -309,7 +351,24 @@ test("③ 에서 담으면 카드마다 «담음» · 목록으로 보고 뺀다
   );
   await expect(chips(page).filter({ hasText: /^담음$/ })).toHaveCount(n - 1);
   // 뺀 것은 한꺼번에 담기가 건너뛴다(확정 «안 넣는다») — 잠김이 아니라 «다시 담기»가 따로 있다.
-  await expect(addButton(page)).toHaveText(/모두 담았습니다/);
+  // 일부러 건너뛴 것이 있으니 «모두»가 아니다 — «담을 문항 없음»(원장님 2026-09-21 확정, 트랙 47).
+  await expect(addButton(page)).toHaveText(/담을 문항 없음/);
+  await expect(addButton(page)).toBeDisabled();
+  // «담을 문항 없음»이 두 폭에서 한 줄 — 바닥 단추 셋도 한 줄.
+  const 담을문항없음: Record<number, unknown> = {};
+  for (const width of [1516, 1280]) {
+    await page.setViewportSize({ width, height: 940 });
+    const lines = await textLines(addButton(page));
+    const row = await lineBox(page, '[class*="outputActions"]');
+    expect(lines).toMatchObject({ 줄수: 1, 넘침: false });
+    expect(row.줄수).toBe(1);
+    담을문항없음[width] = { 단추: lines, 바닥줄: row };
+    await page.screenshot({
+      path: testInfo.outputPath(`담을문항없음-${width}.png`),
+    });
+  }
+  잰값.담을문항없음 = 담을문항없음;
+  await page.setViewportSize({ width: 1516, height: 940 });
   await expect(cartToggle(page)).toHaveText(
     new RegExp(`담은 문항\\s*${n - 1}`),
   );
@@ -324,6 +383,7 @@ test("③ 에서 담으면 카드마다 «담음» · 목록으로 보고 뺀다
   await expect(card(page, 1).locator("[data-studio-cart-chip]")).toHaveText(
     "담음",
   );
+  await expect(addButton(page)).toHaveText(/모두 담았습니다/);
   await expect(topBadge(page)).toHaveAccessibleName(`담은 문제 ${n}`);
   await menu(page, "시험지 · 내보내기").click();
   await page.getByRole("tab", { name: /문제 순서/ }).click();
@@ -415,12 +475,16 @@ test("검수 완료만 눌러도 «담음» 그대로 — 고치면 «반영 전
     path: testInfo.outputPath("검수완료뒤-3단계.png"),
   });
 
-  // 내용을 고친다(토픽) → «담음 · 고친 내용 반영 전» + «반영».
+  // 내용을 고친다(토픽) → «반영 전» + «반영».
   await card(page, 1).getByRole("button", { name: "검수 완료 취소" }).click();
   await card(page, 1).getByRole("button", { name: "내용 수정" }).click();
   await card(page, 1).getByLabel("토픽").fill("일차방정식");
   await card(page, 1).getByRole("button", { name: "저장" }).click();
-  await expect(card(page, 1).locator("[data-studio-cart-chip]")).toHaveText(
+  // 원장님 2026-09-21 확정(트랙 47) — 보이는 글자는 «반영 전», 긴 뜻은 읽는 이름(숨은 글자)·title.
+  const staleChip = card(page, 1).locator("[data-studio-cart-chip]");
+  await expect(staleChip.locator('[aria-hidden="true"]')).toHaveText("반영 전");
+  await expect(staleChip).toHaveAttribute("title", "담음 · 고친 내용 반영 전");
+  await expect(staleChip.locator(":scope > :not([aria-hidden])")).toHaveText(
     "담음 · 고친 내용 반영 전",
   );
   // 고친 것은 한꺼번에 담기의 일이 아니다 — «N문항 담기»에 안 잡힌다.
@@ -429,6 +493,55 @@ test("검수 완료만 눌러도 «담음» 그대로 — 고치면 «반영 전
   await page.screenshot({
     path: testInfo.outputPath("고친뒤-반영전-3단계.png"),
   });
+  /**
+   * 카드 바닥 줄의 줄 수 — 자식을 윗변 차례로 놓고, 앞 줄의 아랫변 아래에서 시작하면 새 줄.
+   * 🔴 자식 세로 중심을 반올림해 세면(`lineBox`) 높이가 다른 칸(출력 44 · 단추 34 · 표시 21px)의 소수점
+   *    차이로 한 줄을 둘로 센다(트랙 47 에서 실제로 그랬다). 그래서 겹침으로 센다.
+   * `모자람` — 자식 폭과 간격을 다 더한 것이 줄 폭보다 얼마나 넘치나(0 이하면 한 줄에 들어간다).
+   */
+  const footerRows = () =>
+    card(page, 1)
+      .locator('[class*="cardFooter"]')
+      .evaluate((footer) => {
+        const rects = [...footer.children]
+          .map((child) => child.getBoundingClientRect())
+          .filter((rect) => rect.width && rect.height)
+          .sort((a, b) => a.top - b.top);
+        let rows = 0;
+        let bottom = -Infinity;
+        for (const rect of rects) {
+          if (rect.top >= bottom - 1) {
+            rows += 1;
+            bottom = rect.bottom;
+          } else bottom = Math.max(bottom, rect.bottom);
+        }
+        const gap = parseFloat(getComputedStyle(footer).columnGap) || 0;
+        const width = footer.getBoundingClientRect().width;
+        const need =
+          rects.reduce((sum, rect) => sum + rect.width, 0) +
+          gap * (rects.length - 1);
+        return {
+          줄수: rows,
+          폭: Math.round(width),
+          모자람: Math.round(need - width),
+        };
+      });
+  /** 표시와 «반영» 단추가 같은 줄인가 — 세로로 겹치고 «반영»이 표시 오른쪽. */
+  const chipAndReflect = () =>
+    card(page, 1).evaluate((article) => {
+      const chip = article.querySelector("[data-studio-cart-chip]")!;
+      const reflect = [...article.querySelectorAll("button")].find(
+        (button) => button.textContent === "반영",
+      )!;
+      const a = chip.getBoundingClientRect();
+      const b = reflect.getBoundingClientRect();
+      return {
+        표시폭: Math.round(a.width),
+        같은줄: a.top < b.bottom && b.top < a.bottom,
+        반영이_오른쪽: b.left >= a.right,
+      };
+    });
+  const 반영전: Record<string, Record<string, unknown>> = {};
   for (const width of [1516, 1280]) {
     await page.setViewportSize({ width, height: 940 });
     expect(
@@ -439,11 +552,76 @@ test("검수 완료만 눌러도 «담음» 그대로 — 고치면 «반영 전
         )
       ).줄수,
     ).toBe(1);
+    const now = { ...(await footerRows()), ...(await chipAndReflect()) };
     await page.screenshot({
       path: testInfo.outputPath(`고친뒤-반영전-${width}.png`),
     });
+    // 자가 눈이 멀지 않았는지 — 옛 긴 글자를 그 자리에 넣으면 같은 자가 꺾임을 잰다.
+    const saved = await staleChip.evaluate((element) => {
+      const html = element.innerHTML;
+      element.textContent = "담음 · 고친 내용 반영 전";
+      return html;
+    });
+    const old = await footerRows();
+    await staleChip.evaluate((element, html) => {
+      element.innerHTML = html;
+    }, saved);
+    const { 줄수, 폭, 모자람 } = now;
+    expect(await footerRows()).toEqual({ 줄수, 폭, 모자람 });
+    expect(old.줄수).toBeGreaterThan(1);
+    반영전[`${width}`] = { 지금: now, 옛글자: old };
   }
   await page.setViewportSize({ width: 1516, height: 940 });
+  // 1516 — 출력·해설·검수 완료·«반영 전»·«반영»이 한 줄(트랙 44 는 «반영»이 둘째 줄로 꺾였다).
+  expect(반영전["1516"].지금).toMatchObject({
+    줄수: 1,
+    같은줄: true,
+    반영이_오른쪽: true,
+  });
+  // 🔴 1280(왼쪽 메뉴 편 채)은 재기만 한다 — 카드 폭 487 에 바닥 줄 요소 합이 528 이라 «반영 전»으로 줄여도
+  //    41px 모자라 «반영»이 둘째 줄로 꺾인다. 어떻게 맞출지는 원장님 결정 대기(트랙 47 보고서 (4)).
+  //    정해지면 여기에 1516 과 같은 단정을 건다.
+
+  // ② 자른 문제 목록 배지도 같은 표시(모든 화면 일치) — 두 폭에서 한 줄.
+  await stepTab(page, /잘라내기/).click();
+  const listItem = page
+    .getByLabel("자른 문제 목록")
+    .getByRole("button", { name: /문제 01/ });
+  await expect(listItem).toHaveAccessibleName(/담음 · 고친 내용 반영 전/);
+  await expect(
+    listItem.locator('[data-studio-cart-chip] [aria-hidden="true"]'),
+  ).toHaveText("반영 전");
+  for (const width of [1516, 1280]) {
+    await page.setViewportSize({ width, height: 940 });
+    const visible = await textLines(
+      listItem.locator('[data-studio-cart-chip] [aria-hidden="true"]'),
+    );
+    const box = await listItem.evaluate((item) => {
+      const chip = item
+        .querySelector("[data-studio-cart-chip]")!
+        .getBoundingClientRect();
+      const row = item.getBoundingClientRect();
+      return {
+        표시폭: Math.round(chip.width),
+        표시높이: Math.round(chip.height),
+        목록폭: Math.round(row.width),
+        안에_있음: chip.right <= row.right + 0.5 && chip.left >= row.left,
+      };
+    });
+    expect(visible.줄수).toBe(1);
+    expect(box.안에_있음).toBe(true);
+    반영전[`목록_${width}`] = { ...box, 글자줄수: visible.줄수 };
+    await page.screenshot({
+      path: testInfo.outputPath(`2단계-목록-반영전-${width}.png`),
+    });
+  }
+  await page.setViewportSize({ width: 1516, height: 940 });
+  await stepTab(page, /OCR · 디지털화/).click();
+  console.log(`[잰 값 반영 전] ${JSON.stringify(반영전)}`);
+  await testInfo.attach("잰 값 반영 전", {
+    body: JSON.stringify(반영전, null, 2),
+    contentType: "application/json",
+  });
   await card(page, 1)
     .getByRole("button", { name: "문제 1 고친 내용 반영" })
     .click();
@@ -516,6 +694,84 @@ test("편집창 확대 중 — 목록에서 빼고 되돌리고, 뺀 것은 «�
   // 저장소에도 n — 뺀 02 는 없고 새로 자른 것이 있다(자동 저장은 조금 늦게 쓴다).
   await expect.poll(async () => (await savedWorksheet(page)).length).toBe(n);
   await expect(topBadge(page)).toHaveAccessibleName(`담은 문제 ${n}`);
+  expect(errors).toEqual([]);
+});
+
+test("빼고 → 새로 고침 → 담기 단추가 뺀 것을 안 넣는다 — 뺀 기억은 시험지와 같이 저장된다", async ({
+  page,
+}, testInfo) => {
+  // 원장님 2026-09-21 확정(트랙 44 여쭐 것 3 → 트랙 47). 전에는 뺀 기억이 화면 상태라 새로 고치면 사라져
+  // ④ 에서 뺀 작업실 문항이 «N문항 담기»·«담고 내보내기»에 다시 잡혔다.
+  const errors: string[] = [];
+  page.on("pageerror", (error) => errors.push(error.message));
+  const n = await toReview(page);
+  await addButton(page).click();
+  await expect.poll(() => savedWorksheet(page)).toHaveLength(n);
+  const ids = (await savedWorksheet(page)).map((row) => row.id);
+
+  // 목록 × 로 둘째를 뺀다.
+  await cartToggle(page).click();
+  await panel(page).getByRole("button", { name: "문제 02 빼기" }).click();
+  await page.keyboard.press("Escape");
+  await expect(card(page, 2).locator("[data-studio-cart-chip]")).toHaveText(
+    "뺌",
+  );
+  await expect(addButton(page)).toHaveText(/담을 문항 없음/);
+  // 자동 저장이 담은 목록과 뺀 기억을 같이 쓴다.
+  await expect
+    .poll(() => savedRemoved(page))
+    .toEqual([{ id: ids[1], index: 1 }]);
+  expect((await savedWorksheet(page)).map((row) => row.id)).toEqual(
+    ids.filter((id) => id !== ids[1]),
+  );
+
+  await page.reload();
+  await expect(page.getByLabel("문항 검수 이동")).toBeVisible();
+  await expect(chips(page)).toHaveCount(n);
+  // 새로 고친 뒤에도 «뺌» — «N문항 담기»에 안 잡힌다.
+  await expect(card(page, 2).locator("[data-studio-cart-chip]")).toHaveText(
+    "뺌",
+  );
+  await expect(addButton(page)).toHaveText(/담을 문항 없음/);
+  await expect(addButton(page)).toBeDisabled();
+  await page.screenshot({
+    path: testInfo.outputPath("새로고침뒤-뺀것-3단계.png"),
+  });
+  // 목록에도 흐린 줄 «다시 담기»가 그대로.
+  await cartToggle(page).click();
+  const removedRow = panel(page).locator('li[data-removed="true"]');
+  await expect(removedRow).toHaveCount(1);
+  await expect(
+    removedRow.getByRole("button", { name: "문제 02 다시 담기" }),
+  ).toBeVisible();
+  await page.screenshot({
+    path: testInfo.outputPath("새로고침뒤-목록.png"),
+  });
+  await page.keyboard.press("Escape");
+
+  // 파란 «내보내기»(담을 것이 없으니 «담고»가 빠진다)도 뺀 것을 되넣지 않는다.
+  await footer(page)
+    .getByRole("button", { name: /^(담고 )?내보내기/ })
+    .click();
+  const order = page.getByRole("tabpanel", { name: /문제 순서/ });
+  await page.getByRole("tab", { name: /문제 순서/ }).click();
+  await expect(order.getByRole("listitem")).toHaveCount(n - 1);
+  expect((await savedWorksheet(page)).map((row) => row.id)).not.toContain(
+    ids[1],
+  );
+  await expect(topBadge(page)).toHaveAccessibleName(`담은 문제 ${n - 1}`);
+
+  // 다시 담기는 새로 고친 뒤에도 뺀 자리(둘째)로.
+  await menu(page, "자료 제작").click();
+  await cartToggle(page).click();
+  await panel(page).getByRole("button", { name: "문제 02 다시 담기" }).click();
+  await expect(card(page, 2).locator("[data-studio-cart-chip]")).toHaveText(
+    "담음",
+  );
+  await expect.poll(() => savedRemoved(page)).toEqual([]);
+  await expect
+    .poll(async () => (await savedWorksheet(page)).map((row) => row.id))
+    .toEqual(ids);
   expect(errors).toEqual([]);
 });
 
