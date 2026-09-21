@@ -218,27 +218,32 @@ describe("graph-1 축 생략 물결 — 모양", () => {
     for (const angle of angles) expect(angle).toBeLessThan(1);
   });
 
-  it("흰 채움이 끊긴 자리의 축 띠를 빈틈없이 덮는다", async () => {
-    const { polys, tag } = await breakOf({
-      ...scatter,
-      axisBreaks: [{ at: [35, 32] }],
-    });
-    const [cx, cy] = [sx(35), sy(32)];
-    const half = Number(attr(tag, "stroke-width")) / 2;
-    const band = 0.85; // 선분 축(1.7)의 반 굵기
-    const holes: P[] = [];
-    for (let i = 0; i <= 120; i++)
-      for (let j = 0; j <= 20; j++) {
-        const p: P = [
-          cx - HALF + (SIZE * i) / 120,
-          cy - band + (2 * band * j) / 20,
-        ];
-        if (winding(polys, p) !== 0) continue;
-        if (distanceToStroke(polys, p) <= half + 0.02) continue;
-        holes.push(p);
-      }
-    expect(holes).toEqual([]);
-  });
+  // 작을수록 마루가 낮아 닫는 줄이 띠 밑으로 덜 내려간다 — 12 에서만 재고 6~24 를 열었더니 6 에서 0.43px 틈(계산).
+  // 그래서 받는 범위의 양 끝과 기본값을 다 잰다.
+  it.each([10, SIZE, 24])(
+    "흰 채움이 끊긴 자리의 축 띠를 빈틈없이 덮는다 — 크기 %i",
+    async (size) => {
+      const { polys, tag } = await breakOf({
+        ...scatter,
+        axisBreaks: [{ at: [35, 32], size }],
+      });
+      const [cx, cy] = [sx(35), sy(32)];
+      const half = Number(attr(tag, "stroke-width")) / 2;
+      const band = 0.85; // 선분 축(1.7)의 반 굵기
+      const holes: P[] = [];
+      for (let i = 0; i <= 120; i++)
+        for (let j = 0; j <= 20; j++) {
+          const p: P = [
+            cx - size / 2 + (size * i) / 120,
+            cy - band + (2 * band * j) / 20,
+          ];
+          if (winding(polys, p) !== 0) continue;
+          if (distanceToStroke(polys, p) <= half + 0.02) continue;
+          holes.push(p);
+        }
+      expect(holes).toEqual([]);
+    },
+  );
 
   it("축을 긋는 선보다 뒤에, 점·글자보다 앞에 그린다 — 축을 가리고 점·글자는 안 가린다", async () => {
     const { svg, tag } = await breakOf({
@@ -328,7 +333,7 @@ describe("graph-1 축 생략 물결 — 모양", () => {
 
 describe("graph-1 축 생략 물결 — 거절", () => {
   it.each([
-    [{ at: [35, 32], size: 5 }],
+    [{ at: [35, 32], size: 9 }],
     [{ at: [35, 32], size: 25 }],
     [{ at: [35, 32], size: "12" }],
     [{ at: [35, 32], size: true }],
