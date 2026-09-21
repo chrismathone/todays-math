@@ -44,6 +44,8 @@ import {
 } from "./remarkNativeContent";
 import { figureWidthStyle } from "@/lib/figurePrintSize";
 
+import { BOX_HEADER_RE as SHARED_BOX_HEADER_RE } from "@/lib/math/boxHeader";
+import { layoutQuotedBoxes } from "@/lib/math/boxLayout";
 import { applyHardBreaks } from "@/lib/math/hardBreaks";
 import { UI_KATEX_OPTIONS } from "@/lib/math/katexRender";
 import {
@@ -86,14 +88,28 @@ const REHYPE_PLUGINS: PluggableList = [[rehypeKatex, UI_KATEX_OPTIONS]];
  *     부드러운 줄바꿈을 `<br>` 로 만든 뒤 그걸 잘라 항목을 센다. 이 저장소는
  *     remark-breaks 를 안 쓰고(새 의존성 금지) 넣을 이유도 없다 —
  *     `parseProblemContent` 가 항목마다 빈 `>` 줄을 넣어 문단으로 만들어 준다.
- *  2. **열 수를 `:cols=N` 이 아니라 라벨 뒤 숫자로 싣는다** (`<보기2>`).
- *     정본 표기 `<보기:cols=1>` 은 이 저장소의 `preprocessMathText`(Step 9 자동
- *     wrap)가 `cols=1` 을 수식으로 감싸 KaTeX 로 그려 버린다 — 실측으로 확인했다.
- *     숫자만 붙인 형태는 전처리를 그대로 통과한다.
+ *  2. **정본 표기 `<보기:cols=N>` 는 수식 전처리 직전에만 `<보기N>` 으로 옮겨 적는다.**
+ *     `preprocessMathText`(Step 9 자동 wrap)가 `cols=2` 를 수식으로 감싸 KaTeX 로
+ *     그려 버리기 때문이다(실측). 숫자만 붙인 형태는 전처리를 그대로 통과한다.
+ *     그 옮김은 이 파일 안에서만 일어난다 — 원문·편집기·인식의 표기는 정본 하나다(`boxHeader.ts`).
+ *  3. **열 수와 칸은 `layoutQuotedBoxes` 가 정한다** — 검수 카드와 같은 규칙이다(트랙 46).
+ *     여러 열이면 칸마다 문단이 되어 온다. 이 파일은 «문단 하나 = 칸 하나» 만 안다.
  * ────────────────────────────────────────────────────────────────────────── */
 
-/** 인용문 첫 문단이 이 모양이면 상자다. 숫자는 열 수(1~3), 없으면 1열. */
-const BOX_HEADER_RE = /^<(보기|조건|상자|나열)([1-3])?>/;
+/** 인용문 첫 문단의 상자 머리 — 정본·옛 표기 모두(`boxHeader.ts`). 숫자 없으면 1열. */
+const BOX_HEADER_RE = SHARED_BOX_HEADER_RE;
+
+/** 인용문 머리 줄의 정본 `<보기:cols=N>` → 전처리를 통과하는 `<보기N>`(`auto` 는 맨 `<보기>`). */
+const QUOTED_CANONICAL_HEADER =
+  /^([ \t]*>[ \t]*)\\?<(보기|조건|상자|나열):cols=(auto|[1-3])\\?>/gm;
+const protectBoxHeaders = (text: string) =>
+  text.includes(":cols=")
+    ? text.replace(
+        QUOTED_CANONICAL_HEADER,
+        (_m, lead: string, label: string, cols: string) =>
+          `${lead}<${label}${cols === "auto" ? "" : cols}>`,
+      )
+    : text;
 
 /**
  * 라벨 머리를 그리지 않는 상자. 원장님(2026-08-18) "다음 작은 수를 네모 박스 안에
@@ -195,7 +211,8 @@ function BoxQuote({ children }: { children?: ReactNode }) {
 
   const label = header[1]!;
   const headerless = HEADERLESS_LABELS.has(label);
-  const columns = header[2] === "2" ? 2 : header[2] === "3" ? 3 : 1;
+  const written = header[2] ?? header[3];
+  const columns = written === "2" ? 2 : written === "3" ? 3 : 1;
   // Older native serializers emitted label + contents in one paragraph. A
   // heading is only the label; never center or bold those continuation lines.
   const items = [...headerBodyLines(blocks[0]), ...blocks.slice(1)];
@@ -218,7 +235,11 @@ function BoxQuote({ children }: { children?: ReactNode }) {
         </div>
       )}
       {items.length > 0 ? (
-        <div className={gridClass}>
+        // 여러 열 격자는 HWPX 수집기에 칸을 알린다 — 한 행을 한 문단으로, 칸 차례대로 묶게.
+        <div
+          className={gridClass}
+          data-hwpx-grid={columns > 1 ? "" : undefined}
+        >
           {items.map((item, index) => (
             <div
               key={index}
@@ -269,11 +290,11 @@ function preprocess(content: string): string {
   // ⚠️ 하드 브레이크는 **맨 마지막**이다. `preprocessMathText` 가 `\(…\)` → `$…$`,
   //    `$…$` → `$$…$$` 승격 등으로 수식 경계를 바꾸므로, 그 전에 공백을 붙이면
   //    「수식 밖인 줄 알았던 줄」이 수식 안이 되어 원문이 오염된다.
+  // 상자 배치(열 수·칸)는 수식 전처리 **전에** 정한다 — 검수 카드와 같은 원문을 봐야 같은 격자다.
   const result = applyHardBreaks(
-    preprocessMathText(decodeHtmlEntities(content)).replace(
-      BARE_LIM,
-      "\\lim\\limits",
-    ),
+    preprocessMathText(
+      protectBoxHeaders(layoutQuotedBoxes(decodeHtmlEntities(content))),
+    ).replace(BARE_LIM, "\\lim\\limits"),
   );
 
   if (preprocessCache.size >= PREPROCESS_CACHE_LIMIT) {

@@ -18,6 +18,55 @@ export interface HwpxObject {
   baseline?: number;
   lineHeight?: number;
   blockId?: number;
+  /** 지면 격자(`[data-hwpx-grid]`)의 칸 — writer 가 격자 한 행을 한 문단으로 묶는다. */
+  gridId?: number;
+  gridRow?: number;
+  gridCol?: number;
+}
+
+export interface HwpxGridCell {
+  gridId: number;
+  gridRow: number;
+  gridCol: number;
+}
+
+/**
+ * 격자 칸 표시 — 지면의 `[data-hwpx-grid]` 바로 아래 자식이 한 칸이다.
+ *
+ * 격자는 칸이 **위쪽 정렬**이라 한 칸에 분수가 들면 그 칸의 기준선만 내려간다. writer 가 기준선으로만
+ * 줄을 세우면 한 행이 칸마다 갈라지고 y 순으로 뒤섞인다(원장님 9번: (바)가 (마)보다 먼저). 그래서
+ * 행은 **칸의 위쪽 끝**(같은 행의 칸은 위쪽이 같다)으로, 칸 차례는 **그 행 안의 문서 차례**로 적는다.
+ */
+export function gridCellMarks(root: Element) {
+  const grids = new Map<Element, number>();
+  const cells = new Map<Element, HwpxGridCell>();
+  const markGrid = (grid: Element) => {
+    const gridId = grids.size + 1;
+    grids.set(grid, gridId);
+    const children = [...grid.children].filter(
+      (child) => child.getBoundingClientRect().width > 0,
+    );
+    const tops: number[] = [];
+    for (const child of children) {
+      const top = child.getBoundingClientRect().top;
+      if (!tops.some((known) => Math.abs(known - top) <= 1)) tops.push(top);
+    }
+    tops.sort((a, b) => a - b);
+    const used = new Map<number, number>();
+    for (const child of children) {
+      const top = child.getBoundingClientRect().top;
+      const gridRow = tops.findIndex((known) => Math.abs(known - top) <= 1);
+      const gridCol = used.get(gridRow) ?? 0;
+      used.set(gridRow, gridCol + 1);
+      cells.set(child, { gridId, gridRow, gridCol });
+    }
+  };
+  return (el: Element): HwpxGridCell | undefined => {
+    const cell = el.closest("[data-hwpx-grid] > *");
+    if (!cell || !root.contains(cell)) return undefined;
+    if (!grids.has(cell.parentElement!)) markGrid(cell.parentElement!);
+    return cells.get(cell);
+  };
 }
 export interface HwpxPage {
   objects: HwpxObject[];
@@ -118,6 +167,7 @@ export async function collectHwpxLayout(
         decorations: HwpxObject[] = [],
         contents: HwpxObject[] = [];
       const blocks = new Map<Element, number>();
+      const gridCell = gridCellMarks(page);
       const box = (rect: DOMRect) => ({
         x: rect.x - pageRect.x,
         y: rect.y - pageRect.y,
@@ -138,6 +188,7 @@ export async function collectHwpxLayout(
         }
         if (!blocks.has(block)) blocks.set(block, blocks.size + 1);
         return {
+          ...gridCell(el),
           blockId: blocks.get(block),
           lineHeight: parseFloat(s.lineHeight) || parseFloat(s.fontSize) * 1.5,
           font: fontName(s.fontFamily),
@@ -243,8 +294,20 @@ export async function collectHwpxLayout(
       )) {
         if (!visible(el)) continue;
         if (el.parentElement?.closest(".katex, svg")) continue;
-        const rect = el.getBoundingClientRect();
+        let rect = el.getBoundingClientRect();
         if (el.classList.contains("katex")) {
+          // 좁은 칸에서 KaTeX 가 줄바꿈되면 외곽 상자의 x 는 **둘째 줄의 왼쪽 끝**이라 writer 가 수식을
+          // 앞말보다 앞에 세웠다(3열 〈보기〉: «$y=3x^2$ (가)»). 기준선은 아래에서 첫 줄(첫 strut)로
+          // 재므로, 자리도 첫 줄 조각으로 맞춘다. 한글 수식은 줄을 안 바꾼다 — 한 줄로 그 자리에 선다.
+          const fragments = [
+            ...(el.querySelector(".katex-html")?.getClientRects() ?? []),
+          ].filter((fragment) => fragment.width > 0 && fragment.height > 0);
+          if (
+            fragments.length > 1 &&
+            Math.abs(fragments[fragments.length - 1]!.top - fragments[0]!.top) >
+              2
+          )
+            rect = fragments[0]!;
           const encoded = el.getAttribute("data-export-tex");
           const latex = encoded
             ? decodeURIComponent(encoded)
@@ -273,7 +336,12 @@ export async function collectHwpxLayout(
             rect.width,
             rect.height,
           );
-          contents.push({ type: "image", ...box(rect), imageId });
+          contents.push({
+            type: "image",
+            ...box(rect),
+            ...gridCell(el),
+            imageId,
+          });
         }
       }
       const walker = document.createTreeWalker(page, NodeFilter.SHOW_TEXT);
@@ -309,7 +377,23 @@ export async function collectHwpxLayout(
           start = -1;
         };
         let offset = 0;
+        let afterTyped = false;
         for (const char of text) {
+          // 친 여러 칸(편집기가 싣는 고정 공백 U+00A0 × (n−1) + 보통 공백 1)에서 글 조각을 끊는다.
+          // 아래 `\s+` 접기는 U+00A0 도 접어 지면의 네 칸이 한글에서 한 칸이 됐다(트랙 42 §7).
+          // 끊으면 writer 가 두 조각 사이를 미리보기 x 의 탭 멈춤(좁으면 공백)으로 옮긴다 — 공백 글자로
+          // 채우면 한글 글꼴 폭만큼 밀린다(`write_row` 주석).
+          if (char === "\u00A0") {
+            flush();
+            afterTyped = true;
+            offset += char.length;
+            continue;
+          }
+          if (afterTyped && /\s/.test(char)) {
+            offset += char.length;
+            continue;
+          }
+          afterTyped = false;
           range.setStart(node, offset);
           range.setEnd(node, offset + char.length);
           const rect = range.getBoundingClientRect();

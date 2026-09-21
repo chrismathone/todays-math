@@ -46,6 +46,7 @@ import {
   figureSvgSize,
   figureSvgViewBox,
 } from "@/lib/figure/figureSvgFrame";
+import { parseBoxHeader } from "@/lib/math/boxHeader";
 import { displayWidth, fitsTwoColumns } from "@/lib/math/displayWidth";
 import { EXAM_MEASURED_PX, JASEUP_MEASURED_PX } from "@/lib/printGeometry";
 import { hideFigureMarker } from "@/lib/problem/figureMarker";
@@ -353,8 +354,8 @@ export function estimateProblemPx(
   let px = fixedChrome;
 
   // `parseProblemContent` 는 상자를 이미 **인용문 마크다운**으로 굳혀 준다
-  //   `> <보기2>` / `>` / `> ㄱ. …`
-  // 라벨 뒤 숫자가 렌더러가 정한 **열 수**다. 여기서 다시 판단하지 않고 그대로 읽는다 —
+  //   `> <보기:cols=2>` / `>` / `> ㄱ. …`   (1열은 맨 `<보기>`, 옛 `<보기2>` 도 읽는다)
+  // 머리의 열 수가 렌더러가 정한 **열 수**다. 여기서 다시 판단하지 않고 그대로 읽는다 —
   // 판정이 스스로 열 수를 정하면 렌더러와 갈라져 조용히 어긋난다.
   let plain: string[] = [];
   let box: string[] | null = null;
@@ -386,13 +387,16 @@ export function estimateProblemPx(
       .filter(Boolean);
     const header = paras[0] ?? "";
     const items = paras.slice(1);
-    const cols = Number(header.match(/(\d+)\s*[>〉】］\]]/)?.[1] ?? 1);
+    // 머리 읽기는 렌더러와 **같은 함수**다 — 정본 `<보기:cols=2>`·옛 `<보기2>` 모두(트랙 46).
+    const parsedHeader = parseBoxHeader(header);
+    const cols = parsedHeader?.cols ?? 1;
 
     // `boxChrome` 은 테두리·안쪽 여백·`my-4` 바깥 마진에 **라벨 줄까지** 넣은 실측값이다.
     // `<나열>` 상자는 라벨 줄을 안 그리므로(머리 없는 상자) 한 줄을 뺀다.
-    const headerless = header.startsWith("<나열");
+    const headerless = parsedHeader?.label === "나열";
     px += boxChrome - (headerless ? line : 0);
-    if (headerless) items.unshift(header.replace(/^<나열\d?>\s*/, ""));
+    if (headerless)
+      items.unshift(header.slice(parsedHeader!.length).trimStart());
     if (cols >= 2) {
       // 2열은 항목이 전부 한 칸에 들어갈 때만 선택된다(`fitsTwoColumns`).
       px += Math.ceil(items.length / cols) * line;
