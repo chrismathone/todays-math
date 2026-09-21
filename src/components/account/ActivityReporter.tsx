@@ -1,6 +1,7 @@
 "use client";
 import { useEffect } from "react";
 import { usePathname } from "next/navigation";
+import { isLabPath } from "@/lib/labPath";
 type EventRow = {
   id: string;
   action: "click" | "change" | "submit" | "navigate" | "print";
@@ -44,6 +45,9 @@ export default function ActivityReporter({ userId }: { userId: string }) {
       }
     };
     const add = (action: EventRow["action"], label: string) => {
+      // 수학 랩실의 일은 기록하지 않는다 — 관문과 같은 판정(D-135 ⑼). 행의 path 와 같은 주소로
+      // 가리므로 랩실에 들어가기 전 화면의 기록은 그대로 보낸다.
+      if (isLabPath(window.location.pathname)) return;
       queue.push({
         id: crypto.randomUUID(),
         action,

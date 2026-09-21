@@ -26,6 +26,8 @@ import { ALL_WORKSPACE_MENUS } from "@/contracts/accountAccess.contract";
 import { recordAudit } from "@/lib/audit";
 import { proxy } from "@/proxy";
 
+import { labFileAddresses } from "../helpers/labAddresses";
+
 async function run(method: string, path: string): Promise<Response> {
   const call = proxy as unknown as (r: NextRequest) => Promise<Response>;
   return await call(new NextRequest(`http://localhost${path}`, { method }));
@@ -200,6 +202,59 @@ describe("🔴 로그인한 사람도 /lab 을 연다 (D-135 ⑼ — 원장님 2
           outcome(await run(method, "/lab/teacher")),
           method,
         ).toStrictEqual(outcome(await run(method, "/labx/teacher")));
+    },
+  );
+});
+
+/**
+ * 🔴 랩실 화면이 부르는 **파일**도 누구에게나 받아져야 한다 (트랙 53).
+ * 화면이 열려도 모형이 `/lab` 밖에 있으면 역할에 따라 되돌려져 안 그려진다 — 2026-09-21 에 모형 둘이
+ * `/dev/blender-assets/` 에 있어서 실제로 그랬다. 파일 목록은 랩실 코드에서 **뽑는다**(손으로 안 적는다) —
+ * 새 모형·그림이 생기면 저절로 여기 들어온다.
+ */
+describe("🔴 랩실이 부르는 파일은 누구에게나 받아진다 (트랙 53)", () => {
+  const FILES = labFileAddresses();
+
+  it("자가 모형 둘을 본다 — 빈 목록이면 아래 시험이 헛돈다", () => {
+    expect(FILES).toEqual(
+      expect.arrayContaining([
+        "/lab/models/cuboid-fold.glb",
+        "/lab/models/stack-cubes.glb",
+      ]),
+    );
+  });
+
+  it.each(IDENTITIES)(
+    "%s — 랩실 코드가 부르는 파일을 GET·HEAD 로 받고 감사 기록이 없다",
+    async (_, identity) => {
+      session.mockReturnValue(identity);
+      for (const path of FILES)
+        for (const method of ["GET", "HEAD"])
+          expect(outcome(await run(method, path)), `${method} ${path}`).toBe(
+            "통과",
+          );
+      expect(recordAudit).not.toHaveBeenCalled();
+    },
+  );
+
+  /** 이 시험이 눈먼 게 아니다 — 옛 자리였다면 네 역할이 못 받았다(트랙 52 가 잰 그대로). */
+  const OLD_PLACE: Record<(typeof IDENTITIES)[number][0], string> = {
+    "로그인 안 함": "통과",
+    원장: "통과",
+    선생님: "→ /",
+    검수: "→ /",
+    "승인 대기": "→ /approval-pending",
+    학생: "→ /learn",
+    "첫 로그인 학생": "→ /learn/password",
+  };
+
+  it.each(IDENTITIES)(
+    "%s — 옛 자리 /dev/blender-assets/cuboid-fold.glb 는 관문 판정이 다르다",
+    async (name, identity) => {
+      session.mockReturnValue(identity);
+      expect(
+        outcome(await run("GET", "/dev/blender-assets/cuboid-fold.glb")),
+      ).toBe(OLD_PLACE[name]);
     },
   );
 });
