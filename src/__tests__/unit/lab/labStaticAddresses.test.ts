@@ -11,55 +11,27 @@
  * 🔴 고치는 길은 **파일을 `/lab` 아래로 두는 것**이지 관문을 넓히는 것이 아니다 —
  *    학생이 `/lab` 밖에서 얻는 것이 늘면 안 된다.
  *
- * 재는 법: 랩실 코드(src/components/lab · src/app/lab · src/lib/lab)의 문자열에서 사이트 뿌리 주소
- * (`/` 로 시작)를 **전부** 뽑는다. 파일 주소만 보면 `const DIR = "/dev/x"` 처럼 확장자 없는 뿌리를
- * 놓치므로 화면 링크까지 다 본다. 랩실 밖으로 나가는 화면 링크를 일부러 만들게 되면
- * 그 주소를 여기 따로 적어 허용하라(그 화면은 제 관문을 탄다).
+ * 재는 법은 src/__tests__/helpers/labAddresses.ts — 랩실 코드의 문자열에서 사이트 뿌리 주소를 **전부**
+ * 뽑는다(화면 링크까지). 랩실 밖으로 나가는 화면 링크를 일부러 만들게 되면 그 주소를 여기 따로 적어
+ * 허용하라(그 화면은 제 관문을 탄다). 역할 일곱이 그 파일들을 진짜 관문으로 받는지는 proxyLabGate.test.ts.
  */
-import { existsSync, readdirSync, readFileSync } from "node:fs";
+import { existsSync, readFileSync } from "node:fs";
 import path from "node:path";
 import { describe, expect, it } from "vitest";
 
-const ROOT = path.resolve(import.meta.dirname, "../../../..");
-const LAB_CODE = ["src/components/lab", "src/app/lab", "src/lib/lab"];
-const SOURCE = /\.(tsx?|css|json|m?js)$/;
+import {
+  fileAddress,
+  labCodeFiles,
+  labRootAddresses,
+  REPO_ROOT as ROOT,
+  rootAddresses,
+} from "../../helpers/labAddresses";
 
-/** 문자열 한 편에서 사이트 뿌리 주소를 모두 — 따옴표 셋과 따옴표 없는 CSS `url()`. */
-function rootAddresses(text: string): string[] {
-  const patterns = [
-    /"(\/[A-Za-z0-9_][^"\n]*)"/g,
-    /'(\/[A-Za-z0-9_][^'\n]*)'/g,
-    /`(\/[A-Za-z0-9_][^`\n]*)`/g,
-    /url\(\s*(\/[A-Za-z0-9_][^)"'\s]*)\s*\)/g,
-  ];
-  return patterns.flatMap((re) => [...text.matchAll(re)].map((m) => m[1]));
-}
-
-function walk(dir: string): string[] {
-  return readdirSync(path.join(ROOT, dir), { withFileTypes: true }).flatMap(
-    (entry) => {
-      const rel = `${dir}/${entry.name}`;
-      if (entry.isDirectory()) return walk(rel);
-      return SOURCE.test(entry.name) ? [rel] : [];
-    },
-  );
-}
-
-const FILES = LAB_CODE.flatMap(walk);
-const FOUND = FILES.flatMap((file) =>
-  rootAddresses(readFileSync(path.join(ROOT, file), "utf8")).map((address) => ({
-    file,
-    address,
-  })),
-);
+const FILES = labCodeFiles();
+const FOUND = labRootAddresses();
 
 const inLab = (address: string) =>
   address === "/lab" || address.startsWith("/lab/");
-/** 마지막 조각에 확장자가 있으면 파일 주소다. 조립 주소(`${…}`)는 파일을 못 짚으니 뺀다. */
-const fileAddress = (address: string) => {
-  const bare = address.split(/[?#]/)[0];
-  return !bare.includes("${") && /\.[a-z0-9]{2,5}$/i.test(bare) ? bare : null;
-};
 
 /**
  * 랩실 모형은 `/dev/blender` 시연 화면 원본의 **복사본**이다 — 시연 화면(FoldingDemo·StackCubesDemo)이
