@@ -25,6 +25,7 @@ CONTRACT = {
         'circles': 'list of {center:[x,y],radius:number,dashed?:boolean}; a geometric circle in DATA units (stretches to an ellipse when x/y scales differ) — never use it for printed dots; use points',
         'points': 'list of {at:[x,y],radius?:pixels 1..6 default 3,open?:boolean}; small printed dots at graph points (vertices, endpoints, intersections) in fixed screen pixels, filled black or open (white inside)',
         'labels': 'list of {at:[x,y],text:string,dx?:pixels,dy?:pixels,size?:pixels,anchor?:"start"|"middle"|"end"}; only printed labels; math can use $...$ LaTeX and is typeset as vector glyphs. Korean text cannot be typeset: write a label containing Korean as plain text without $ (e.g. "x(초)")',
+        'axisBreaks': 'list of {at:[x,y],axis?:"x"|"y",size?:pixels 10..24 default 14}; the printed wavy ∿ axis-break mark (물결선) ON an axis line where the axis skips values (e.g. between O and the first tick of a scatter plot whose data start far from 0). at = centre of the mark placed ON that axis line (same y as the x-axis line, same x as the y-axis line); axis = which axis it cuts, default "x"; size = its length along the axis in fixed screen pixels. The engine draws a smooth wave and blanks the axis line under it — never imitate it with short segments or curves',
     },
     'example': {'version':'graph-1','xRange':[-4,4],'yRange':[-2,11],
         'curves':[{'coefficients':[-1,0,9],'domain':[-3.4,3.4]}],
@@ -34,16 +35,73 @@ CONTRACT = {
             {'at':[1.5,9],'text':'y = 9 − x²','dx':22,'dy':-8}]},
 }
 
+# 엔진이 받는 칸 — **정본**. 모델에게 가는 설명(CONTRACT['fields'])은 사람이 쓴 글이라 따로 논다.
+# build_catalog.py 가 둘을 견줘, 여기 있는데 설명에 없는 칸이 있으면 카탈로그를 안 만든다(설명서에만 없는 기능).
+FIELDS = {
+    'curves': {'coefficients', 'domain', 'type', 'k', 'dashed'},
+    'segments': {'from', 'to', 'dashed', 'arrow'},
+    'polygons': {'points', 'fill', 'dashed'},
+    'circles': {'center', 'radius', 'dashed'},
+    'points': {'at', 'radius', 'open'},
+    'labels': {'at', 'text', 'dx', 'dy', 'size', 'anchor'},
+    'axisBreaks': {'at', 'axis', 'size'},
+}
+
+# 축 생략 물결(∿) — 원장님 2026-09-21 «물결 기호는 넣어». 산점도처럼 자료가 0 에서 멀리 시작하면 교과서는
+# 원점과 첫 눈금 사이 축에 물결을 넣는다. 종전에는 칸이 없어 짧은 선분 둘로 「∧」 를 흉내 냈다.
+# 모양은 모두 **물결 길이(size, 화면 픽셀)에 비례**한다 — 그래프 눈금과 무관한 표식이라 `points` 반지름처럼 픽셀이다.
+BREAK_SIZE = 14    # 기본 길이(픽셀) — 원장님 산점도(440×400)에서 12·14·16 을 견줘 물결 높이(8.4)가 눈금 숫자 높이와 맞는 14
+BREAK_AMP = 0.3    # 마루·골 높이 / 길이
+BREAK_EASE = 0.5   # 끝과 가운데의 조절점 거리 / 반길이 — 축에서 평평하게 떠나 매끄럽게 이어진다
+BREAK_STUB = 0.25  # 양 끝 곧은 꼬리 / 길이 — 흰 채움의 닫는 줄을 축 띠 밑으로 민다(아래 주석)
+BREAK_MIN = 10     # 이보다 작으면 마루가 낮아 닫는 줄이 1.7 축 띠를 못 덮는다 — 크기 6 은 0.43px 틈(계산).
+                   # 10~24 에서 틈 0.004px 이하. 10 보다 작은 물결은 획 굵기에 묻혀 ∿ 로 읽히지도 않는다
+
+
+def _cubic_head(p0, p1, p2, p3, t):
+    """삼차 베지에를 t 에서 잘라 **앞 조각**의 네 점(드 카스텔조)."""
+    def lerp(a, b):
+        return (a[0] + (b[0] - a[0]) * t, a[1] + (b[1] - a[1]) * t)
+    a, b = lerp(p0, p1), lerp(p1, p2)
+    d = lerp(a, b)
+    return p0, a, d, lerp(d, lerp(b, lerp(p2, p3)))
+
+
+def axis_break_path(cx, cy, axis, size, width):
+    """축 생략 물결 — **흰 채움 + 검은 획의 `<path>` 한 요소**. (cx, cy) 는 물결 가운데(화면 좌표).
+
+    물결은 축에서 평평하게 떠나 한쪽으로 마루, 가운데서 축을 건너 반대쪽으로 골, 다시 축으로 평평하게 돌아온다(∿).
+    삼차 베지에 둘로 긋는다 — 이음매마다 접선이 이어져 꺾인 데가 없다.
+
+    그 자리의 축 선은 **같은 요소의 흰 채움**이 가린다. 흰 바탕을 따로 깔면 편집기가 보이지 않는 요소를 하나 더
+    센다(v2 바탕 rect 가 «사각형 1번»이던 2026-09-19 함정) — 물결만 지우면 축에 까닭 모를 틈이 남는다.
+    채움은 획을 긋지 않는 **암묵의 닫는 줄**로 영역을 만든다(열린 하위 경로는 끝→시작으로 닫혀 칠해진다):
+    - 앞 하위 경로: 왼쪽 꼬리 → 마루 → 가운데 → 골 바닥. 닫는 줄(골 바닥 → 꼬리 끝)이 축 띠 **밑**을 지나
+      마루와 함께 왼쪽 반의 축 띠를 감싼다. 꼬리가 짧으면 닫는 줄이 물결 끝에서 띠를 스쳐 틈이 남는다.
+    - 뒤 하위 경로: 그것을 가운데 기준 180° 돌린 것(오른쪽 반). 돈 것이라 감는 방향이 같아 겹쳐도 비지 않는다.
+    꼬리는 축 위에 겹쳐 그어져(굵기가 축과 같다) 보이지 않고, 축 밖에 놓이면 「—∿—」 로 선다.
+    """
+    h = size / 2
+    lift = 9 * BREAK_AMP * size / 4          # 조절점 높이 — 곡선 꼭대기가 정확히 BREAK_AMP·size 가 된다
+    ease = BREAK_EASE * h
+    stub = BREAK_STUB * size
+    ux, uy = (1.0, 0.0) if axis == 'x' else (0.0, -1.0)   # 축 방향(화면)
+    nx, ny = uy, -ux                                      # 마루 쪽 — x축이면 위, y축이면 왼쪽
+    rise = ((-h, 0), (-h + ease, 0), (-ease, lift), (0, 0))
+    fall = _cubic_head((0, 0), (ease, -lift), (h - ease, 0), (h, 0), 1 / 3)   # 가운데 → 골 바닥
+
+    def half(sign):
+        xy = [f'{cx + sign * (s * ux + v * nx):.2f} {cy + sign * (s * uy + v * ny):.2f}'
+              for s, v in ((-h - stub, 0), *rise, *fall[1:])]
+        return f'M {xy[0]} L {xy[1]} C {xy[2]} {xy[3]} {xy[4]} C {xy[5]} {xy[6]} {xy[7]}'
+
+    return (f'<path d="{half(1)} {half(-1)}" fill="#fff" stroke="#000" '
+            f'stroke-width="{width:g}" stroke-linejoin="round"/>')
+
+
 def render_graph(spec):
     from core.figure_svg import line as engine_line, curve_path, txt
-    fields = {
-        'curves': {'coefficients', 'domain', 'type', 'k', 'dashed'},
-        'segments': {'from', 'to', 'dashed', 'arrow'},
-        'polygons': {'points', 'fill', 'dashed'},
-        'circles': {'center', 'radius', 'dashed'},
-        'points': {'at', 'radius', 'open'},
-        'labels': {'at', 'text', 'dx', 'dy', 'size', 'anchor'},
-    }
+    fields = FIELDS
     if not isinstance(spec, dict) or spec.get('version') != 'graph-1':
         raise ValueError('graph-1 도형 스펙이 필요합니다.')
     if set(spec) - {'version', 'xRange', 'yRange', 'width', 'height', 'axes', *fields}:
@@ -128,6 +186,22 @@ def render_graph(spec):
         cx,cy=screen(circle.get('center'));r=num(circle.get('radius'))
         if r<=0:raise ValueError('원의 반지름은 양수여야 합니다.')
         out.append(f'<ellipse cx="{cx:.3f}" cy="{cy:.3f}" rx="{r/(xhi-xlo)*(w-2*pad):.3f}" ry="{r/(yhi-ylo)*(h-2*pad):.3f}" fill="none" stroke="#111" stroke-width="1.7"{style(circle)}/>')
+    # 축 생략 물결 — 선(축·선분·곡선) **뒤**라 그 자리의 축을 가리고, 점·글자 **앞**이라 그것들은 안 가린다.
+    # 굵기는 밑의 축과 같게 — 자동 축(0 위, 1.4) 이면 1.4, 아니면 선분 축(1.7). 다르면 이음매에 턱이 진다.
+    for mark in items('axisBreaks'):
+        at=mark.get('at')
+        try:
+            if not isinstance(at,list) or len(at)!=2: raise ValueError
+            bx,by=point(at)
+        except ValueError:
+            raise ValueError('물결의 자리(at)는 유한한 [x,y]여야 합니다.') from None
+        axis=mark.get('axis','x')
+        if axis not in ('x','y'):raise ValueError('물결이 끊는 축(axis)은 "x" 또는 "y"여야 합니다.')
+        size=mark.get('size',BREAK_SIZE)
+        if isinstance(size,bool) or not isinstance(size,(int,float)) or not BREAK_MIN<=size<=24:
+            raise ValueError(f'물결의 크기(size)는 {BREAK_MIN}~24 픽셀이어야 합니다.')
+        on_auto=spec.get('axes',True) and (by==0 and ylo<=0<=yhi if axis=='x' else bx==0 and xlo<=0<=xhi)
+        out.append(axis_break_path(*screen(at),axis,float(size),1.4 if on_auto else 1.7))
     # 꺾인점·끝점의 인쇄된 점 — 반지름은 화면 픽셀이다. 2026-09-18 운영: 이 칸이 없어 모델이 circles(데이터
     # 단위)로 점을 흉내 냈고, x 0~180·y 0~4 그래프에서 세로로 긴 타원이 섰다(다른 모델은 점을 빼먹었다).
     for dot in items('points'):

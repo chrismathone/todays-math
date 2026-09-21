@@ -9,7 +9,14 @@ ensure_on_path()
 import elementary
 import core.figure_scene as figure_scene
 from core.figure_scene import StyleProfile, compile_figure_spec
-from graph_scene import CONTRACT
+from graph_scene import CONTRACT, FIELDS
+
+# graph-1 설명(CONTRACT)은 사람이 쓴 글이고 받는 칸의 정본은 FIELDS 다. 칸을 늘리고 설명을 빠뜨리면
+# 모델은 「엔진에 그런 기능이 없다」로 읽는다(v2 의 `curvature` 가 그랬다 — 아래 `_v2_fields`).
+# 그래서 설명이 모자라면 카탈로그를 만들지 않는다(2026-09-21 axisBreaks 를 넣으며).
+_undescribed = sorted(set(FIELDS) - set(CONTRACT['fields']))
+if _undescribed:
+    raise SystemExit(f'build_catalog: graph-1 CONTRACT 에 설명이 없는 칸: {_undescribed}')
 
 
 def _v2_fields() -> dict[str, list[str]]:
