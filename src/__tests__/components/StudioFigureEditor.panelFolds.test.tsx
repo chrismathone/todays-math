@@ -327,4 +327,16 @@ describe("오른쪽 칸 — 접는 무리 셋", () => {
       ).toBeTruthy();
     }
   });
+
+  it("값이 갈리면 «채우기 여러 값»이 이름 곁에 붙는다 — 줄 가운데로 떨어지지 않는다", () => {
+    open();
+    pickNumber(1); // 채운 다각형
+    pickNumber(4, true); // 안 채운 사각형
+    const fill = screen
+      .getByLabelText("고른 채우기 색")
+      .closest("[data-fill-row]")!;
+    // 한 줄은 두 칸 — 왼쪽 이름(여러 값 포함) · 오른쪽 [없애기][색]
+    expect(fill.childNodes).toHaveLength(2);
+    expect(fill.firstElementChild).toHaveTextContent("채우기 여러 값");
+  });
 });

@@ -232,7 +232,8 @@ function FillRow({
       data-fill-row=""
       className={`flex items-center justify-between gap-2 ${className}`}
     >
-      {name}
+      {/* 이름은 한 칸 — «채우기 여러 값»이 조각으로 갈려 줄 가운데로 떨어지지 않게 */}
+      <span>{name}</span>
       <span className="flex items-center gap-2.5">
         <button
           type="button"
