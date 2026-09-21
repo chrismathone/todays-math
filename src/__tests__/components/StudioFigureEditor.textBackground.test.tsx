@@ -11,6 +11,7 @@ import StudioFigureEditor, {
 } from "@/components/unified/figure-editor";
 import { SVG_NS } from "@/components/unified/figure-editor/figureSvgEditing";
 import { svgFromImage } from "@/components/unified/figure-editor/figureDocument";
+import { openFigureDetails } from "@/__tests__/helpers/figureEditorPanel";
 
 /**
  * 글자 배경색 — 원장님 2026-09-19 «글자 배경색도 추가할 수 있도록».
@@ -144,6 +145,7 @@ describe("글자 배경색 — 오른쪽 칸", () => {
   it("크기를 고정한 글자도 배경색은 바꿀 수 있다(서식)", () => {
     open();
     pickNumber(2);
+    openFigureDetails();
     fireEvent.click(
       screen.getByRole("checkbox", { name: "요소 크기 고정 (이동만 가능)" }),
     );

@@ -12,6 +12,7 @@ import StudioFigureEditor, {
 } from "@/components/unified/figure-editor";
 import { SVG_NS } from "@/components/unified/figure-editor/figureSvgEditing";
 import { buildFigureEditSnapshot } from "@/components/unified/figure-editor/figureEditSnapshot";
+import { openFigureDetails } from "@/__tests__/helpers/figureEditorPanel";
 
 /**
  * «요청대로 고치기»(원장님 2026-09-19 «처음부터 그리는 건 별로 같은데? … 사용자가 요청한 것만 바꾼다든가
@@ -223,6 +224,7 @@ describe("요청대로 고치기", () => {
     ask("1번 선을 지워 주세요");
     fireEvent.click(screen.getByRole("button", { name: "요청대로 고치기" }));
     await waitFor(() => expect(finish).toBeTypeOf("function"));
+    openFigureDetails();
     fireEvent.change(screen.getByRole("spinbutton", { name: "끝 X" }), {
       target: { value: "60" },
     });

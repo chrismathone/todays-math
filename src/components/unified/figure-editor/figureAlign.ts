@@ -45,6 +45,11 @@ export const SPREAD_BLOCKED = {
   few: "요소나 묶음을 셋 이상 고르면 고르게 벌릴 수 있습니다.",
   face: ALIGN_BLOCKED.face,
 } as const;
+/**
+ * 정렬·간격이 둘 다 «고른 것이 적어» 꺼졌을 때의 안내 한 줄 — 두 줄을 합쳤다(원장님 2026-09-21 «안 D», 시안 그대로).
+ * 낱낱의 이유는 단추 title 에 그대로 남는다.
+ */
+export const ALIGN_SPREAD_FEW = "정렬은 둘, 간격은 셋 이상 고르면 켜집니다.";
 
 const translation = (dx: number, dy: number): Affine => [1, 0, 0, 1, dx, dy];
 

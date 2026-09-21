@@ -4,6 +4,7 @@ import StudioFigureEditor, {
   type StudioFigureSaveResult,
 } from "@/components/unified/figure-editor";
 import { SVG_NS } from "@/components/unified/figure-editor/figureSvgEditing";
+import { openFigureDetails } from "@/__tests__/helpers/figureEditorPanel";
 
 /**
  * 오른쪽 칸 «다 보이게» — 원장님 2026-09-20. 그림을 손으로 끌어 틀 밖으로 내보내면 편집 화면에서만 잘린다
@@ -74,7 +75,11 @@ const viewBoxOf = () =>
     .trim()
     .split(/[\s,]+/)
     .map(Number);
-const fitButton = () => screen.getByRole("button", { name: "다 보이게" });
+// «다 보이게»는 오른쪽 칸 «틀 · 세부» 무리에 있고, 그 무리는 처음에 접혀 있다(원장님 2026-09-21 «안 D»).
+const fitButton = () => {
+  openFigureDetails();
+  return screen.getByRole("button", { name: "다 보이게" });
+};
 const undoButton = () => screen.getByRole("button", { name: /되돌리기/ });
 const press = async () => {
   fireEvent.click(fitButton());
@@ -91,8 +96,8 @@ const formats = () =>
 describe("오른쪽 칸 «다 보이게»", () => {
   it("고른 것이 없어도 선다 — 틀은 선택과 무관하다", () => {
     open();
-    expect(screen.getByRole("region", { name: "틀" })).toBeInTheDocument();
     expect(fitButton()).toBeEnabled();
+    expect(screen.getByRole("region", { name: "틀" })).toBeInTheDocument();
   });
 
   it("누르면 틀 밖으로 나간 것이 다 들어온다 — 여백은 저장할 때와 같은 규칙", async () => {

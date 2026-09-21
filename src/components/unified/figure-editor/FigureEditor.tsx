@@ -133,48 +133,43 @@ import {
   FigureOrderRow,
   FigureRotateRow,
 } from "./FigureRotateRow";
+import {
+  arrangeSummary,
+  commonSummary,
+  detailSummary,
+  FIGURE_PANEL_FOLDS_OPEN,
+  FigurePanelFold,
+  shapeSummary,
+  type FigurePanelFoldName,
+} from "./FigurePanelFold";
 import { flipFigureCurve } from "./figureFlip";
 import {
   figureShortcutKeys,
   figureShortcutSheet,
+  figureToolKey,
   matchFigureShortcut,
 } from "./figureShortcuts";
+import {
+  FIGURE_TOOL_GROUPS,
+  FIGURE_TOOLBAR,
+  figureTool,
+  figureToolGroup,
+  type FigureTool,
+  type FigureToolChoice,
+  type FigureToolGroupName,
+} from "./figureTools";
+import {
+  FigureToolMenu,
+  TOOL_BUTTON,
+  TOOL_PRESSED as PRESSED,
+  toolMenuOwnsKey,
+} from "./FigureToolMenu";
 
-type Tool =
-  | "select"
-  | "pan"
-  | "line"
-  | "arrow"
-  | "curve"
-  | "circle"
-  | "ellipse"
-  | "rect"
-  | "triangle"
-  | "polygon"
-  | "text"
-  | "fill";
-const TOOLS: { id: Tool; label: string; glyph: string }[] = [
-  { id: "select", label: "선택·이동", glyph: "↖" },
-  { id: "pan", label: "화면 이동", glyph: "✋" },
-  { id: "line", label: "선분", glyph: "╱" },
-  { id: "arrow", label: "화살표", glyph: "↗" },
-  { id: "curve", label: "곡선", glyph: "⌒" },
-  { id: "circle", label: "원", glyph: "○" },
-  { id: "ellipse", label: "타원", glyph: "⬭" },
-  { id: "rect", label: "사각형", glyph: "□" },
-  // 원장님 2026-09-19 «삼각형도 추가해 주고» · «면을 쉽게 만들 수 있어야 색칠을 할 수가 있음»
-  { id: "triangle", label: "삼각형", glyph: "△" },
-  { id: "polygon", label: "다각형", glyph: "⬠" },
-  { id: "text", label: "글자", glyph: "T" },
-  { id: "fill", label: "채우기", glyph: "▧" },
-];
+type Tool = FigureTool;
 /** 다각형 도구가 선의 끝점·꼭짓점·교점에 달라붙는 거리(화면 px) */
 const SNAP_PX = 8;
 /** 노란 점이 직사각형·이등변·직각에 붙는 거리(화면 px) */
 const ADJUST_SNAP_PX = 6;
-/** 도구 줄 단추의 눌림 모양 — 도구와 «전체 요소 크기 고정»이 같이 쓴다. */
-const PRESSED =
-  "bg-[var(--figure-accent-soft)] text-[var(--figure-accent-ink)] ring-1 ring-[var(--figure-accent-line)]";
 /** 화면용 — 라벨의 임자 꼭짓점 표지를 걷는다(원문은 그대로 둔다). */
 const withoutLabelOwner = (source: string) =>
   source.replace(/ data-p[xy]="[^"]*"/g, "");
@@ -231,6 +226,13 @@ export function FigureEditor({
   const canvasHtml = useMemo(() => ({ __html: displaySvg }), [displaySvg]);
   const [tool, setTool] = useState<Tool>("select");
   const [addingFunction, setAddingFunction] = useState(false);
+  // 선·도형 무리의 겉에 선 도구 — 마지막에 쓴 것(원장님 2026-09-21 «안 A»). 편집기를 연 동안 기억한다.
+  const [toolFaces, setToolFaces] = useState(
+    () =>
+      Object.fromEntries(
+        FIGURE_TOOL_GROUPS.map((group) => [group.name, group.tools[0]]),
+      ) as Record<FigureToolGroupName, FigureTool>,
+  );
   const [selectedIds, setSelectedIds] = useState<string[]>([]);
   const selected = selectedIds.length === 1 ? selectedIds[0] : null;
   const setSelected = useCallback(
@@ -257,6 +259,21 @@ export function FigureEditor({
     },
     [setSelected],
   );
+  // 도구 고르기 — 도구 줄 단추·▾ 메뉴·한 글자 단축키가 모두 이 하나다. 선·도형 무리의 도구면 그 무리의 겉에 선다.
+  const chooseTool = (id: FigureToolChoice) => {
+    if (id === "function") {
+      setSelected(null);
+      setTool("select");
+      setAddingFunction(true);
+      return;
+    }
+    setAddingFunction(false);
+    setTool(id);
+    setDraft(null);
+    if (id !== "select" && id !== "pan") setSelected(null);
+    const group = figureToolGroup(id);
+    if (group) setToolFaces((faces) => ({ ...faces, [group]: id }));
+  };
   const [clipboardNotice, setClipboardNotice] = useState("");
   const pasteCount = useRef({ source: "", count: 0 });
   const [zoom, setZoom] = useState(1);
@@ -298,6 +315,10 @@ export function FigureEditor({
   const [sourceOverlay, setSourceOverlay] = useState(false);
   const [sourceOverlayScale, setSourceOverlayScale] = useState(1);
   const [showNumbers, setShowNumbers] = useState(true);
+  // 오른쪽 칸 무리(배치·모양·틀 · 세부)의 펼침 — 편집기를 연 동안 기억한다(원장님 2026-09-21 «안 D»).
+  const [folds, setFolds] = useState(FIGURE_PANEL_FOLDS_OPEN);
+  const toggleFold = (name: FigurePanelFoldName) =>
+    setFolds((open) => ({ ...open, [name]: !open[name] }));
   const [showSourcePanel, setShowSourcePanel] = useState(
     () =>
       !!(
@@ -831,6 +852,8 @@ export function FigureEditor({
         ?.contains(document.activeElement);
     const key = (e: KeyboardEvent) => {
       if (e.defaultPrevented || !inEditor(e) || busy || drag.current) return;
+      // 열린 ▾ 메뉴(와 ▾ 의 ↑↓)는 메뉴가 받는다 — 여기서 Esc·방향키를 먼저 먹으면 선택이 풀리고 요소가 움직인다.
+      if (toolMenuOwnsKey(e)) return;
       // 단축키는 표 하나(figureShortcuts.ts)에서만 읽는다 — «단축키» 도움말 목록도 같은 표를 그린다
       // (원장님 2026-09-21 «단축키도 업데이트하고»; 목록을 손으로 적어 Ctrl+G 가 빠졌었다).
       // C/X/V 는 표에 있지만 여기서 안 읽는다 — 브라우저 clipboard 이벤트로 받아 OS 클립보드와 맞춘다.
@@ -926,6 +949,12 @@ export function FigureEditor({
           nudge(x * step, y * step);
           return;
         }
+        default:
+          // 도구 한 글자(원장님 2026-09-21 «두다») — 도구 단추를 누른 것과 같다. 초점은 그대로 둔다.
+          if (shortcut.tool) {
+            e.preventDefault();
+            chooseTool(shortcut.tool);
+          }
       }
     };
     const copy = (event: ClipboardEvent) => {
@@ -1619,41 +1648,47 @@ export function FigureEditor({
             role="toolbar"
             aria-label="도형 편집 도구"
           >
-            {TOOLS.map((t) => (
-              <button
-                type="button"
-                key={t.id}
-                aria-label={t.label}
-                aria-pressed={!addingFunction && tool === t.id}
-                onClick={() => {
-                  setAddingFunction(false);
-                  setTool(t.id);
-                  setDraft(null);
-                  if (t.id !== "select" && t.id !== "pan") setSelected(null);
-                }}
-                disabled={busy}
-                className={`px-2 py-1.5 text-xs rounded ${!addingFunction && tool === t.id ? PRESSED : "hover:bg-side"}`}
-              >
-                <span aria-hidden="true" className="text-base mr-1">
-                  {t.glyph}
-                </span>
-                {t.label}
-              </button>
-            ))}
-            <button
-              type="button"
-              aria-label="함수"
-              aria-pressed={addingFunction}
-              onClick={() => {
-                setSelected(null);
-                setTool("select");
-                setAddingFunction(true);
-              }}
-              disabled={busy}
-              className={`px-2 py-1.5 text-xs rounded ${addingFunction ? PRESSED : "hover:bg-[var(--figure-accent-soft)]"}`}
-            >
-              ƒ 함수
-            </button>
+            {/* 선·도형은 나눈 단추(겉 = 마지막에 쓴 도구, ▾ = 무리의 도구) — 원장님 2026-09-21 «안 A».
+                나머지는 따로 선다. 도구 이름·차례는 figureTools.ts, 글자는 단축키 표(figureShortcuts.ts). */}
+            {FIGURE_TOOLBAR.map((entry) => {
+              if (entry.kind === "group")
+                return (
+                  <FigureToolMenu
+                    key={entry.name}
+                    name={entry.name}
+                    tools={
+                      FIGURE_TOOL_GROUPS.find((g) => g.name === entry.name)!
+                        .tools
+                    }
+                    face={toolFaces[entry.name]}
+                    active={addingFunction ? null : tool}
+                    disabled={busy}
+                    onChoose={chooseTool}
+                  />
+                );
+              const t = figureTool(entry.id);
+              const on =
+                t.id === "function"
+                  ? addingFunction
+                  : !addingFunction && tool === t.id;
+              return (
+                <button
+                  type="button"
+                  key={t.id}
+                  aria-label={t.label}
+                  aria-pressed={on}
+                  title={`${t.label} (${figureToolKey(t.id)})`}
+                  onClick={() => chooseTool(t.id)}
+                  disabled={busy}
+                  className={`${TOOL_BUTTON} ${on ? PRESSED : "hover:bg-side"}`}
+                >
+                  <span aria-hidden="true" className="text-base mr-1">
+                    {t.glyph}
+                  </span>
+                  {t.label}
+                </button>
+              );
+            })}
             <button
               type="button"
               title="Delete / Backspace"
@@ -1991,37 +2026,9 @@ export function FigureEditor({
                 onAssign={assignGroup}
               />
             )}
-            {selectedIds.length > 0 && (
-              <FigureRotateRow
-                blocked={rotateBlocked}
-                onRotate={rotate}
-                mirror={{ blocked: mirrorBlocked, onMirror: mirror }}
-                flip={
-                  flipping
-                    ? {
-                        blocked:
-                          "reason" in flipping.result
-                            ? flipping.result.reason
-                            : null,
-                        onFlip: flip,
-                      }
-                    : undefined
-                }
-              />
-            )}
-            {selectedIds.length > 0 && (
-              <FigureAlignRow
-                blocked={alignBlocked}
-                onAlign={align}
-                spread={{ blocked: spreadBlocked, onSpread: spread }}
-              />
-            )}
-            {selectedIds.length > 0 && (
-              <FigureOrderRow blocked={orderBlocked} onOrder={reorder} />
-            )}
-            <FigureFitRow onFit={fitFrame} />
+            {/* 요소의 내용(함수식·글자)과 안내는 무리 밖 — 접어도 늘 보인다(더블클릭하면 글자 칸으로 간다). */}
             {current ? (
-              <div className="space-y-3 text-xs">
+              <div className="mb-3 space-y-3 text-xs">
                 {currentFunction && (
                   // 함수식·범위를 바꾸면 곡선 모양이 바뀐다 — 크기 고정이면 통째로 막는다.
                   <fieldset
@@ -2070,270 +2077,6 @@ export function FigureEditor({
                     />
                   </div>
                 )}
-                {current.type === "text" && (
-                  <div className="flex gap-2">
-                    <button
-                      type="button"
-                      aria-pressed={currentItalic}
-                      className={formatToggleClass(currentItalic)}
-                      onClick={() =>
-                        change({
-                          "font-style": currentItalic ? "normal" : "italic",
-                        })
-                      }
-                    >
-                      기울임
-                    </button>
-                    <button
-                      type="button"
-                      aria-pressed={currentBold}
-                      className={`${formatToggleClass(currentBold)} font-bold`}
-                      onClick={() =>
-                        change({
-                          "font-weight": currentBold ? "normal" : "bold",
-                        })
-                      }
-                    >
-                      굵게
-                    </button>
-                  </div>
-                )}
-                {/* 면은 선이 없다 — 선 색·선 두께·점선 칸을 두지 않는다. */}
-                {!currentFace && (
-                  <label className="flex items-center justify-between">
-                    {current.type === "text" ? "글자 색" : "선 색"}
-                    <input
-                      type="color"
-                      aria-label="도형 선 색"
-                      value={
-                        /^#[\da-f]{6}$/i.test(
-                          current.attrs[
-                            current.type === "text" ? "fill" : "stroke"
-                          ] ?? "",
-                        )
-                          ? current.attrs[
-                              current.type === "text" ? "fill" : "stroke"
-                            ]
-                          : "#111111"
-                      }
-                      onChange={(e) =>
-                        change({
-                          [current.type === "text" ? "fill" : "stroke"]:
-                            e.target.value,
-                        })
-                      }
-                    />
-                  </label>
-                )}
-                {current.type === "text" && (
-                  // 글자 배경색 — 도형의 «채우기 / 채우기 없애기»와 같은 모양(원장님 2026-09-19).
-                  <>
-                    <label className="flex items-center justify-between">
-                      배경색
-                      <input
-                        type="color"
-                        aria-label="글자 배경색"
-                        value={
-                          /^#[\da-f]{6}$/i.test(
-                            current.attrs[TEXT_BG_ATTR] ?? "",
-                          )
-                            ? current.attrs[TEXT_BG_ATTR]
-                            : "#ffffff"
-                        }
-                        onChange={(e) =>
-                          change({ [TEXT_BG_ATTR]: e.target.value })
-                        }
-                      />
-                    </label>
-                    <button
-                      type="button"
-                      onClick={() => change({ [TEXT_BG_ATTR]: "" })}
-                      className="underline text-muted"
-                    >
-                      배경 없애기
-                    </button>
-                  </>
-                )}
-                {!currentFace && (
-                  <label className="block">
-                    <span className="flex justify-between">
-                      {current.type === "text" ? "글자 크기" : "선 두께"}
-                      <output>
-                        {parseFloat(
-                          current.attrs[
-                            current.type === "text"
-                              ? "font-size"
-                              : "stroke-width"
-                          ] ?? (current.type === "text" ? "18" : "1.5"),
-                        )}
-                      </output>
-                    </span>
-                    <input
-                      type="range"
-                      min={current.type === "text" ? 6 : 0.2}
-                      max={current.type === "text" ? 100 : 20}
-                      step={0.2}
-                      aria-label="도형 선 두께 또는 글자 크기"
-                      value={parseFloat(
-                        current.attrs[
-                          current.type === "text" ? "font-size" : "stroke-width"
-                        ] ?? (current.type === "text" ? "18" : "1.5"),
-                      )}
-                      onChange={(e) => {
-                        if (+e.target.value > 0)
-                          change({
-                            [current.type === "text"
-                              ? "font-size"
-                              : "stroke-width"]: e.target.value,
-                          });
-                      }}
-                      className="mt-2 w-full accent-[var(--figure-primary)]"
-                    />
-                  </label>
-                )}
-                {current.type !== "text" && (
-                  <>
-                    {!currentFace && (
-                      <label className="flex gap-2">
-                        <input
-                          type="checkbox"
-                          checked={
-                            !!current.attrs["stroke-dasharray"] &&
-                            current.attrs["stroke-dasharray"] !== "none"
-                          }
-                          onChange={(e) =>
-                            change({
-                              "stroke-dasharray": e.target.checked ? "5 4" : "",
-                            })
-                          }
-                        />
-                        점선
-                      </label>
-                    )}
-                    <label className="flex items-center justify-between">
-                      채우기
-                      <input
-                        type="color"
-                        aria-label="도형 채우기 색"
-                        value={
-                          /^#[\da-f]{6}$/i.test(current.attrs.fill ?? "")
-                            ? current.attrs.fill
-                            : "#ffffff"
-                        }
-                        onChange={(e) => change({ fill: e.target.value })}
-                      />
-                    </label>
-                    {currentFace ? (
-                      // 채우기를 없앤 면은 보이지 않는 번호만 남는다 — 면은 지운다.
-                      <button
-                        type="button"
-                        onClick={remove}
-                        className="underline text-muted"
-                      >
-                        면 지우기
-                      </button>
-                    ) : (
-                      <button
-                        type="button"
-                        onClick={() => change({ fill: "none" })}
-                        className="underline text-muted"
-                      >
-                        채우기 없애기
-                      </button>
-                    )}
-                  </>
-                )}
-                <label className="flex gap-2">
-                  <input
-                    type="checkbox"
-                    checked={currentLocked}
-                    onChange={(e) => change(sizeLockValue(e.target.checked))}
-                  />
-                  요소 크기 고정 (이동만 가능)
-                </label>
-                <details className="border-t border-control pt-2">
-                  <summary className="cursor-pointer text-muted">
-                    정밀 수치 조정
-                  </summary>
-                  <div className="grid grid-cols-2 gap-2 mt-2">
-                    {Object.entries(FIELD_NAMES)
-                      .filter(([key]) => key in current.attrs)
-                      .map(([key, name]) => (
-                        <label key={key}>
-                          {name}
-                          <input
-                            type="number"
-                            step={1}
-                            value={Number.parseFloat(current.attrs[key]) || 0}
-                            aria-label={name}
-                            disabled={
-                              currentLocked && isShapeAttr(current, key)
-                            }
-                            onChange={(e) => {
-                              if (
-                                e.target.value !== "" &&
-                                Number.isFinite(+e.target.value)
-                              )
-                                change({ [key]: e.target.value });
-                            }}
-                            className="w-full border border-control rounded px-1 py-1 mt-1 disabled:opacity-40"
-                          />
-                        </label>
-                      ))}
-                  </div>
-                  <div className="flex gap-1">
-                    {[
-                      ["←", -1, 0],
-                      ["↑", 0, -1],
-                      ["↓", 0, 1],
-                      ["→", 1, 0],
-                    ].map(([name, x, y]) => (
-                      <button
-                        type="button"
-                        key={name}
-                        aria-label={`도형 ${name} 미세 이동`}
-                        onClick={() =>
-                          change({
-                            transform: `translate(${x} ${y}) ${current.attrs.transform ?? ""}`,
-                          })
-                        }
-                        className="border border-control rounded px-2 py-1"
-                      >
-                        {name}
-                      </button>
-                    ))}
-                  </div>
-                  {curvePoints?.length === 6 && (
-                    <div className="grid grid-cols-2 gap-2">
-                      {[
-                        "시작 X",
-                        "시작 Y",
-                        "휘어짐 X",
-                        "휘어짐 Y",
-                        "끝 X",
-                        "끝 Y",
-                      ].map((name, index) => (
-                        <label key={name}>
-                          {name}
-                          <input
-                            type="number"
-                            value={curvePoints[index]}
-                            disabled={currentLocked}
-                            className="w-full border border-control rounded px-1 py-1 disabled:opacity-40"
-                            onChange={(e) => {
-                              if (e.target.value === "") return;
-                              const points = [...curvePoints];
-                              points[index] = Number(e.target.value);
-                              change({
-                                d: `M ${points[0]} ${points[1]} Q ${points[2]} ${points[3]} ${points[4]} ${points[5]}`,
-                              });
-                            }}
-                          />
-                        </label>
-                      ))}
-                    </div>
-                  )}
-                </details>
               </div>
             ) : addingFunction ? (
               <FunctionGraphInput
@@ -2365,28 +2108,377 @@ export function FigureEditor({
                   onChange={(e) => setFaceColor(e.target.value)}
                 />
               </label>
-            ) : selectedIds.length > 1 ? (
-              <FigureCommonFormat
-                objects={objects.filter((o) => selectedIds.includes(o.id))}
-                onChange={(ids, attrs) =>
-                  commit(editFigureObjects(svg, ids, attrs))
-                }
-                innerFill={
-                  innerFill && {
-                    ...innerFill,
-                    onFill: (color) =>
-                      commit(setInnerFill(svg, selectedIds, color)),
-                    onClear: () => commit(clearInnerFill(svg, selectedIds)),
-                  }
-                }
-              />
-            ) : (
+            ) : selectedIds.length > 1 ? null : (
               <div className="rounded-lg border border-dashed border-control p-4 text-center text-xs leading-relaxed text-muted">
                 캔버스의 선, 곡선, 글자를 클릭하면
                 <br />
                 여기에 편집 항목이 나타납니다.
               </div>
             )}
+            {/* 오른쪽 칸 무리 셋 — 원장님 2026-09-21 확정 «안 D — 접는 무리»(시안 wire-t43-figure-panel.html D).
+                배치·모양은 펼쳐 두고 틀·세부만 처음부터 접는다. 접은 상태는 편집기를 연 동안 기억한다. */}
+            {selectedIds.length > 0 && (
+              <FigurePanelFold
+                name="배치"
+                summary={arrangeSummary(!!flipping)}
+                open={folds.배치}
+                onToggle={() => toggleFold("배치")}
+              >
+                <FigureRotateRow
+                  blocked={rotateBlocked}
+                  onRotate={rotate}
+                  mirror={{ blocked: mirrorBlocked, onMirror: mirror }}
+                  flip={
+                    flipping
+                      ? {
+                          blocked:
+                            "reason" in flipping.result
+                              ? flipping.result.reason
+                              : null,
+                          onFlip: flip,
+                        }
+                      : undefined
+                  }
+                />
+                <FigureAlignRow
+                  blocked={alignBlocked}
+                  onAlign={align}
+                  spread={{ blocked: spreadBlocked, onSpread: spread }}
+                />
+                <FigureOrderRow blocked={orderBlocked} onOrder={reorder} />
+              </FigurePanelFold>
+            )}
+            {current ? (
+              <FigurePanelFold
+                name="모양"
+                summary={shapeSummary(current)}
+                open={folds.모양}
+                onToggle={() => toggleFold("모양")}
+              >
+                <div className="space-y-3 text-xs">
+                  {current.type === "text" && (
+                    <div className="flex gap-2">
+                      <button
+                        type="button"
+                        aria-pressed={currentItalic}
+                        className={formatToggleClass(currentItalic)}
+                        onClick={() =>
+                          change({
+                            "font-style": currentItalic ? "normal" : "italic",
+                          })
+                        }
+                      >
+                        기울임
+                      </button>
+                      <button
+                        type="button"
+                        aria-pressed={currentBold}
+                        className={`${formatToggleClass(currentBold)} font-bold`}
+                        onClick={() =>
+                          change({
+                            "font-weight": currentBold ? "normal" : "bold",
+                          })
+                        }
+                      >
+                        굵게
+                      </button>
+                    </div>
+                  )}
+                  {/* 면은 선이 없다 — 선 색·선 두께·점선 칸을 두지 않는다. */}
+                  {!currentFace && (
+                    <label className="flex items-center justify-between">
+                      {current.type === "text" ? "글자 색" : "선 색"}
+                      <input
+                        type="color"
+                        aria-label="도형 선 색"
+                        value={
+                          /^#[\da-f]{6}$/i.test(
+                            current.attrs[
+                              current.type === "text" ? "fill" : "stroke"
+                            ] ?? "",
+                          )
+                            ? current.attrs[
+                                current.type === "text" ? "fill" : "stroke"
+                              ]
+                            : "#111111"
+                        }
+                        onChange={(e) =>
+                          change({
+                            [current.type === "text" ? "fill" : "stroke"]:
+                              e.target.value,
+                          })
+                        }
+                      />
+                    </label>
+                  )}
+                  {current.type === "text" && (
+                    // 글자 배경색 — 도형의 «채우기 [없애기][색]»과 같은 한 줄(원장님 2026-09-19 · 2026-09-21 «안 D»).
+                    <div
+                      data-fill-row=""
+                      className="flex items-center justify-between"
+                    >
+                      배경색
+                      <span className="flex items-center gap-2.5">
+                        <button
+                          type="button"
+                          aria-label="배경 없애기"
+                          onClick={() => change({ [TEXT_BG_ATTR]: "" })}
+                          className="underline text-muted"
+                        >
+                          없애기
+                        </button>
+                        <input
+                          type="color"
+                          aria-label="글자 배경색"
+                          value={
+                            /^#[\da-f]{6}$/i.test(
+                              current.attrs[TEXT_BG_ATTR] ?? "",
+                            )
+                              ? current.attrs[TEXT_BG_ATTR]
+                              : "#ffffff"
+                          }
+                          onChange={(e) =>
+                            change({ [TEXT_BG_ATTR]: e.target.value })
+                          }
+                        />
+                      </span>
+                    </div>
+                  )}
+                  {!currentFace && (
+                    <label className="block">
+                      <span className="flex justify-between">
+                        {current.type === "text" ? "글자 크기" : "선 두께"}
+                        <output>
+                          {parseFloat(
+                            current.attrs[
+                              current.type === "text"
+                                ? "font-size"
+                                : "stroke-width"
+                            ] ?? (current.type === "text" ? "18" : "1.5"),
+                          )}
+                        </output>
+                      </span>
+                      <input
+                        type="range"
+                        min={current.type === "text" ? 6 : 0.2}
+                        max={current.type === "text" ? 100 : 20}
+                        step={0.2}
+                        aria-label="도형 선 두께 또는 글자 크기"
+                        value={parseFloat(
+                          current.attrs[
+                            current.type === "text"
+                              ? "font-size"
+                              : "stroke-width"
+                          ] ?? (current.type === "text" ? "18" : "1.5"),
+                        )}
+                        onChange={(e) => {
+                          if (+e.target.value > 0)
+                            change({
+                              [current.type === "text"
+                                ? "font-size"
+                                : "stroke-width"]: e.target.value,
+                            });
+                        }}
+                        className="mt-2 w-full accent-[var(--figure-primary)]"
+                      />
+                    </label>
+                  )}
+                  {current.type !== "text" && (
+                    <>
+                      {!currentFace && (
+                        <label className="flex gap-2">
+                          <input
+                            type="checkbox"
+                            checked={
+                              !!current.attrs["stroke-dasharray"] &&
+                              current.attrs["stroke-dasharray"] !== "none"
+                            }
+                            onChange={(e) =>
+                              change({
+                                "stroke-dasharray": e.target.checked
+                                  ? "5 4"
+                                  : "",
+                              })
+                            }
+                          />
+                          점선
+                        </label>
+                      )}
+                      <div
+                        data-fill-row=""
+                        className="flex items-center justify-between"
+                      >
+                        채우기
+                        <span className="flex items-center gap-2.5">
+                          {currentFace ? (
+                            // 채우기를 없앤 면은 보이지 않는 번호만 남는다 — 면은 지운다.
+                            <button
+                              type="button"
+                              onClick={remove}
+                              className="underline text-muted"
+                            >
+                              면 지우기
+                            </button>
+                          ) : (
+                            <button
+                              type="button"
+                              aria-label="채우기 없애기"
+                              onClick={() => change({ fill: "none" })}
+                              className="underline text-muted"
+                            >
+                              없애기
+                            </button>
+                          )}
+                          <input
+                            type="color"
+                            aria-label="도형 채우기 색"
+                            value={
+                              /^#[\da-f]{6}$/i.test(current.attrs.fill ?? "")
+                                ? current.attrs.fill
+                                : "#ffffff"
+                            }
+                            onChange={(e) => change({ fill: e.target.value })}
+                          />
+                        </span>
+                      </div>
+                    </>
+                  )}
+                </div>
+              </FigurePanelFold>
+            ) : selectedIds.length > 1 ? (
+              <FigurePanelFold
+                name="모양"
+                summary={commonSummary(
+                  objects.filter((o) => selectedIds.includes(o.id)),
+                )}
+                open={folds.모양}
+                onToggle={() => toggleFold("모양")}
+              >
+                <FigureCommonFormat
+                  objects={objects.filter((o) => selectedIds.includes(o.id))}
+                  onChange={(ids, attrs) =>
+                    commit(editFigureObjects(svg, ids, attrs))
+                  }
+                  innerFill={
+                    innerFill && {
+                      ...innerFill,
+                      onFill: (color) =>
+                        commit(setInnerFill(svg, selectedIds, color)),
+                      onClear: () => commit(clearInnerFill(svg, selectedIds)),
+                    }
+                  }
+                />
+              </FigurePanelFold>
+            ) : null}
+            <FigurePanelFold
+              name="틀 · 세부"
+              summary={detailSummary(!!current)}
+              open={folds["틀 · 세부"]}
+              onToggle={() => toggleFold("틀 · 세부")}
+            >
+              <div className="space-y-3 text-xs">
+                <FigureFitRow onFit={fitFrame} />
+                {current && (
+                  <>
+                    <label className="flex gap-2">
+                      <input
+                        type="checkbox"
+                        checked={currentLocked}
+                        onChange={(e) =>
+                          change(sizeLockValue(e.target.checked))
+                        }
+                      />
+                      요소 크기 고정 (이동만 가능)
+                    </label>
+                    <details className="border-t border-control pt-2">
+                      <summary className="cursor-pointer text-muted">
+                        정밀 수치 조정
+                      </summary>
+                      <div className="grid grid-cols-2 gap-2 mt-2">
+                        {Object.entries(FIELD_NAMES)
+                          .filter(([key]) => key in current.attrs)
+                          .map(([key, name]) => (
+                            <label key={key}>
+                              {name}
+                              <input
+                                type="number"
+                                step={1}
+                                value={
+                                  Number.parseFloat(current.attrs[key]) || 0
+                                }
+                                aria-label={name}
+                                disabled={
+                                  currentLocked && isShapeAttr(current, key)
+                                }
+                                onChange={(e) => {
+                                  if (
+                                    e.target.value !== "" &&
+                                    Number.isFinite(+e.target.value)
+                                  )
+                                    change({ [key]: e.target.value });
+                                }}
+                                className="w-full border border-control rounded px-1 py-1 mt-1 disabled:opacity-40"
+                              />
+                            </label>
+                          ))}
+                      </div>
+                      <div className="flex gap-1">
+                        {[
+                          ["←", -1, 0],
+                          ["↑", 0, -1],
+                          ["↓", 0, 1],
+                          ["→", 1, 0],
+                        ].map(([name, x, y]) => (
+                          <button
+                            type="button"
+                            key={name}
+                            aria-label={`도형 ${name} 미세 이동`}
+                            onClick={() =>
+                              change({
+                                transform: `translate(${x} ${y}) ${current.attrs.transform ?? ""}`,
+                              })
+                            }
+                            className="border border-control rounded px-2 py-1"
+                          >
+                            {name}
+                          </button>
+                        ))}
+                      </div>
+                      {curvePoints?.length === 6 && (
+                        <div className="grid grid-cols-2 gap-2">
+                          {[
+                            "시작 X",
+                            "시작 Y",
+                            "휘어짐 X",
+                            "휘어짐 Y",
+                            "끝 X",
+                            "끝 Y",
+                          ].map((name, index) => (
+                            <label key={name}>
+                              {name}
+                              <input
+                                type="number"
+                                value={curvePoints[index]}
+                                disabled={currentLocked}
+                                className="w-full border border-control rounded px-1 py-1 disabled:opacity-40"
+                                onChange={(e) => {
+                                  if (e.target.value === "") return;
+                                  const points = [...curvePoints];
+                                  points[index] = Number(e.target.value);
+                                  change({
+                                    d: `M ${points[0]} ${points[1]} Q ${points[2]} ${points[3]} ${points[4]} ${points[5]}`,
+                                  });
+                                }}
+                              />
+                            </label>
+                          ))}
+                        </div>
+                      )}
+                    </details>
+                  </>
+                )}
+              </div>
+            </FigurePanelFold>
           </fieldset>
         </aside>
       </div>

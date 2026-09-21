@@ -11,6 +11,7 @@ import StudioFigureEditor, {
 } from "@/components/unified/figure-editor";
 import {
   ALIGN_BLOCKED,
+  ALIGN_SPREAD_FEW,
   SPREAD_BLOCKED,
 } from "@/components/unified/figure-editor/figureAlign";
 import { SVG_NS } from "@/components/unified/figure-editor/figureSvgEditing";
@@ -128,7 +129,7 @@ describe("정렬 줄 — 회전·대칭 줄 곁", () => {
     expect(alignRow()).toBeNull();
     expect(spreadRow()).toBeNull();
   });
-  it("하나만 고르면 여섯 단추가 다 흐리고 이유를 단다", () => {
+  it("하나만 고르면 여섯 단추가 다 흐리고 이유를 단다 — 둘 다 꺼지면 안내는 한 줄(원장님 2026-09-21 «안 D»)", () => {
     open();
     pickNumber(1);
     for (const name of [
@@ -142,9 +143,14 @@ describe("정렬 줄 — 회전·대칭 줄 곁", () => {
       expect(alignButton(name)).toBeDisabled();
       expect(alignButton(name)).toHaveAttribute("title", ALIGN_BLOCKED.few);
     }
-    expect(within(alignRow()!).getByText(ALIGN_BLOCKED.few)).toBeVisible();
     expect(spreadButton("가로 고르게")).toBeDisabled();
-    expect(within(spreadRow()!).getByText(SPREAD_BLOCKED.few)).toBeVisible();
+    expect(spreadButton("가로 고르게")).toHaveAttribute(
+      "title",
+      SPREAD_BLOCKED.few,
+    );
+    expect(within(spreadRow()!).getByText(ALIGN_SPREAD_FEW)).toBeVisible();
+    expect(screen.queryByText(ALIGN_BLOCKED.few)).toBeNull();
+    expect(screen.queryByText(SPREAD_BLOCKED.few)).toBeNull();
   });
   it("둘을 고르면 왼쪽 맞추기가 좌표를 그 자리에 적는다 — 선택은 그대로", () => {
     open();

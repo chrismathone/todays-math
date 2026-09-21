@@ -8,6 +8,7 @@ import {
   prepareFigureSvg,
   SVG_NS,
 } from "@/components/unified/figure-editor/figureSvgEditing";
+import { openFigureDetails } from "@/__tests__/helpers/figureEditorPanel";
 
 /**
  * 요소 크기 고정 (이동만 가능) — 원장님 2026-09-19 «고정된 도형은 이동만 가능하고 수정 불가능»
@@ -83,7 +84,11 @@ const LOCK = "요소 크기 고정 (이동만 가능)";
 const LOCK_ALL = "전체 요소 크기 고정 (이동만 가능)";
 const canvas = () => document.querySelector("#figure-editor-canvas")!;
 const surface = () => screen.getByLabelText("도형 편집 캔버스");
-const lockBox = () => screen.getByRole("checkbox", { name: LOCK });
+// 요소 크기 고정은 오른쪽 칸 «틀 · 세부» 무리에 있고, 그 무리는 처음에 접혀 있다(원장님 2026-09-21 «안 D»).
+const lockBox = () => {
+  openFigureDetails();
+  return screen.getByRole("checkbox", { name: LOCK });
+};
 const lockAll = () => screen.getByRole("button", { name: LOCK_ALL });
 const handleKeys = () =>
   [...document.querySelectorAll("[data-figure-handle]")].map((node) =>
