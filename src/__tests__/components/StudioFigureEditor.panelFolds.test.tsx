@@ -237,6 +237,19 @@ describe("오른쪽 칸 — 접는 무리 셋", () => {
     ).toBeInTheDocument();
   });
 
+  it("글자를 두 번 누르면 글자 칸으로 — 누를 때 포인터를 잡은 캔버스 겉으로 오는 dblclick 도 받는다", () => {
+    // 브라우저는 누를 때 캔버스 겉(«도형 편집 캔버스»)이 포인터를 잡아(setPointerCapture) click·dblclick 을 **겉**에
+    // 보낸다. 처리기가 안쪽 그림 칸에만 있으면 안 불린다(2026-09-21 크로미움 실측 — main 에서도 같았다).
+    open();
+    pickNumber(2);
+    const surface = screen.getByLabelText("도형 편집 캔버스");
+    act(() => surface.focus());
+    fireEvent.doubleClick(surface);
+    expect(document.activeElement).toBe(
+      screen.getByRole("textbox", { name: "선택한 도형 글자" }),
+    );
+  });
+
   it("면은 «채우기 [면 지우기][색]» — 모양 머리글은 채우기 하나", () => {
     const faceFigure = figure.replace("<polygon ", '<polygon data-face="" ');
     render(

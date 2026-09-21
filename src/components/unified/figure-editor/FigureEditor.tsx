@@ -1851,6 +1851,23 @@ export function FigureEditor({
               className={styles.surface}
               onPointerMove={move}
               onPointerUp={up}
+              // 두 번 누르기는 여기(겉)서 받는다 — 누를 때 겉이 포인터를 잡아(setPointerCapture) 브라우저가
+              // click·dblclick 을 겉에 보낸다. 안쪽 그림 칸에 두면 안 불려 글자 칸으로 못 갔다(2026-09-21 실측).
+              onDoubleClick={() => {
+                if (tool === "polygon" && draft) {
+                  finishPolygon(draft.points);
+                  return;
+                }
+                if (current?.type === "text") {
+                  const input = document.querySelector<
+                    HTMLInputElement | HTMLElement
+                  >(
+                    '[aria-label="선택한 도형 글자"], [aria-label="선택한 도형 글자 수식"]',
+                  );
+                  input?.focus();
+                  if (input instanceof HTMLInputElement) input.select();
+                }
+              }}
               onPointerCancel={() => {
                 const d = drag.current;
                 drag.current = null;
@@ -1882,21 +1899,6 @@ export function FigureEditor({
                     tool === "select" || tool === "pan" ? "grab" : "crosshair",
                 }}
                 onPointerDown={down}
-                onDoubleClick={() => {
-                  if (tool === "polygon" && draft) {
-                    finishPolygon(draft.points);
-                    return;
-                  }
-                  if (current?.type === "text") {
-                    const input = document.querySelector<
-                      HTMLInputElement | HTMLElement
-                    >(
-                      '[aria-label="선택한 도형 글자"], [aria-label="선택한 도형 글자 수식"]',
-                    );
-                    input?.focus();
-                    if (input instanceof HTMLInputElement) input.select();
-                  }
-                }}
                 dangerouslySetInnerHTML={canvasHtml}
               />
               {sourceOverlay && original && (
