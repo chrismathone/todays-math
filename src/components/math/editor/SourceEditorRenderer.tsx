@@ -1224,7 +1224,7 @@ const MarkdownRenderer: React.FC<MarkdownRendererProps> = ({
                   </div>
                 ))}
                 {items.length > 0 && (
-                  <div className={`min-w-0 ${gridClass}`}>
+                  <div data-box-cells className={`min-w-0 ${gridClass}`}>
                     {items.map((item, i) => (
                       <div
                         key={`i-${i}`}
