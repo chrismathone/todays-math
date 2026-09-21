@@ -4,7 +4,8 @@ import ReactMarkdown, { defaultUrlTransform } from "react-markdown";
 import remarkGfm from "remark-gfm";
 import remarkBreaks from "remark-breaks";
 import rehypeRaw from "rehype-raw";
-import { parseBoxCols, resolveCols } from "./boxGrid";
+import { parseBoxHeader } from "@/lib/math/boxHeader";
+import { layoutQuotedBoxes, type FigureRect } from "@/lib/math/boxLayout";
 import {
   parseImageTitle,
   preprocessMathText,
@@ -502,8 +503,54 @@ const normalizeInlineSvgs = (html: string): string => {
   return out;
 };
 
+/**
+ * Drop the first `count` characters of leading text (a box header marker), descending
+ * into a wrapping paragraph — a header alone in its paragraph arrives as one `<p>`.
+ */
+const dropLeadingText = (
+  nodes: React.ReactNode[],
+  count: number,
+): React.ReactNode[] => {
+  let left = count;
+  const drop = (list: React.ReactNode[]): React.ReactNode[] => {
+    const out: React.ReactNode[] = [];
+    for (const node of list) {
+      if (left > 0 && typeof node === "string") {
+        const kept = node.slice(left);
+        left = Math.max(0, left - node.length);
+        if (kept.trim()) out.push(kept);
+        continue;
+      }
+      if (left > 0 && React.isValidElement(node)) {
+        const props = node.props as { children?: React.ReactNode };
+        if (props.children !== undefined) {
+          const children = drop(React.Children.toArray(props.children));
+          left = 0;
+          if (children.length > 0) out.push(...children);
+          continue;
+        }
+      }
+      left = 0;
+      out.push(node);
+    }
+    return out;
+  };
+  return drop(nodes);
+};
+
+/** `[yMin,xMin,yMax,xMax]`(0–1000) 그림 자리 → 쪽 비율 rect. */
+const boxRect = (box: FigBox | undefined): FigureRect | undefined =>
+  box
+    ? {
+        x: box[1] / 1000,
+        y: box[0] / 1000,
+        width: (box[3] - box[1]) / 1000,
+        height: (box[2] - box[0]) / 1000,
+      }
+    : undefined;
+
 const MarkdownRenderer: React.FC<MarkdownRendererProps> = ({
-  content,
+  content: source,
   className = "",
   inline,
   diagramSvgs,
@@ -514,6 +561,18 @@ const MarkdownRenderer: React.FC<MarkdownRendererProps> = ({
   isFigureEditable,
   editorTokens,
 }) => {
+  // Stage −1 (트랙 46): 〈보기〉 배치 — 지면과 **같은 규칙**(`layoutQuotedBoxes`)으로 열 수와 칸을 정한다.
+  // 적힌 `<보기:cols=N>` → 칸마다 그림 하나인 상자는 원본 그림 자리 → 1열. 여러 열이면 머리를 정본으로
+  // 적고 칸마다 문단으로 나눠 온다. `[그림N]` 이 그림으로 바뀌기 **전에** 봐야 칸의 그림 번호가 보인다.
+  // 편집기도 이 렌더러의 DOM 으로 문서를 세우므로(`prepareVisualDocument`) 같은 열 수로 열린다.
+  const content = layoutQuotedBoxes(source, {
+    figureRect: (index) =>
+      boxRect(
+        figures?.[index]?.box ??
+          imageCrops?.[index]?.box ??
+          diagramSvgs?.[index]?.box,
+      ),
+  });
   // Stage 0: inline <svg>…</svg> extraction.
   //
   // Why this exists: when raw SVG ships through react-markdown + rehype-raw,
@@ -1091,29 +1150,39 @@ const MarkdownRenderer: React.FC<MarkdownRendererProps> = ({
             };
             React.Children.forEach(children, flattenP);
 
-            // Separate `<보기>` header line from item lines, parse cols.
+            // Separate the `<보기>`/`<조건>` header line from item lines. The column
+            // count is the one written in the header — `layoutQuotedBoxes` (Stage −1)
+            // has already resolved it the same way the paper does and put every cell
+            // on its own line (트랙 46). Canonical `<보기:cols=N>`, old `<보기2>`.
             const header: React.ReactNode[][] = [];
             const items: React.ReactNode[][] = [];
-            let parsedCols = parseBoxCols("");
+            let boxCols: 1 | 2 | 3 = 1;
             for (const line of lines) {
-              const maybeCols = parseBoxCols(line.text);
-              if (maybeCols !== null && parsedCols === null)
-                parsedCols = maybeCols;
-              if (!line.text.trim()) continue;
-              if (items.length === 0 && line.text.includes("보기")) {
-                if (maybeCols !== null) {
-                  header.push([<strong key="hdr">&lt;보기&gt;</strong>]);
-                } else {
-                  header.push(line.nodes);
-                }
-              } else if (line.text.trim() !== "") {
+              const text = line.text.trim();
+              if (!text) continue;
+              const parsed =
+                header.length === 0 && items.length === 0
+                  ? parseBoxHeader(text)
+                  : null;
+              if (parsed?.label === "보기" || parsed?.label === "조건") {
+                boxCols = parsed.cols ?? 1;
+                // The marker (and its `:cols=N`) is never shown — only the label.
+                header.push([
+                  <strong key="hdr">&lt;{parsed.label}&gt;</strong>,
+                  ...dropLeadingText(
+                    line.nodes,
+                    line.text.indexOf("<") + parsed.length,
+                  ),
+                ]);
+              } else if (items.length === 0 && text.includes("보기")) {
+                header.push(line.nodes);
+              } else {
                 items.push(line.nodes);
               }
             }
             // Only switch to grid if there's an explicit `<보기>` marker —
             // a plain blockquote (계산식 등) should stay single-column.
-            const effectiveCols =
-              parsedCols !== null ? resolveCols(parsedCols, items.length) : 1;
+            const effectiveCols = boxCols;
 
             const colsClass =
               effectiveCols === 3
