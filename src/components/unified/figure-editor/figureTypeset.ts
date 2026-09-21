@@ -1,4 +1,8 @@
-import { SVG_NS, cleanFigureForSave } from "./figureSvgEditing";
+import {
+  SVG_NS,
+  cleanFigureForSave,
+  engineUprightPieces,
+} from "./figureSvgEditing";
 import {
   labelBackground,
   plainTextBackground,
@@ -46,7 +50,10 @@ export async function typesetFigureSvg(
       const laid = typesetLabel(
         text,
         weight === "bold" || Number(weight) >= 600,
-        node.getAttribute("font-style") === "italic",
+        // 엔진 라벨은 바깥이 기울임이어도 숫자·단위 조각이 정자다 — 통째로 기울이지 않는다.
+        // 편집기를 거친 도형이든 아니든(카드·지면) 같은 글씨체로 선다.
+        node.getAttribute("font-style") === "italic" &&
+          engineUprightPieces(node).length === 0,
       );
       if (!laid) {
         if (background) wrapPlainText(doc, node, background);

@@ -118,17 +118,27 @@ function engineBackgroundRect(root: Element) {
 // 조판이 기본 규칙(한 글자 소문자·그리스 문자만 기울임, 숫자·단위·대문자는 정자)을 따른다.
 // 걷을 때 조각의 font-style="normal" 도 지운다(바깥이 정자라 같은 뜻이다). 그러면 한 번 걷힌 라벨은 다시
 // 이 조건에 안 걸려, 사용자가 «기울임» 단추로 켠 기울임은 저장·다시 열기를 지나도 그대로 남는다.
-function uprightEngineAngleLabel(text: SVGElement) {
+/**
+ * 엔진 라벨의 정자 조각 — 바깥 `<text>` 가 기울임인데 조각이 `font-style="normal"` 을 적어 둔 것들. 없으면 빈 배열.
+ *
+ * 이 판정은 **조판기(`typesetFigureSvg`)도 같이 쓴다**(원장님 2026-09-21 «왜 서로 글씨체가 다르지?»). 전에는 규칙이
+ * 편집기를 여는 길(`prepareFigureSvg`)에만 있어서, 편집기를 안 거친 도형은 검수 카드에서 «2 cm» 가 숫자까지 기울었다.
+ */
+export function engineUprightPieces(text: Element): Element[] {
   if (
     text.getAttribute("font-style") !== "italic" ||
     !text.hasAttribute("paint-order")
   )
-    return;
-  const upright = [...text.children].filter(
+    return [];
+  return [...text.children].filter(
     (piece) =>
       piece.localName === "tspan" &&
       piece.getAttribute("font-style") === "normal",
   );
+}
+
+function uprightEngineAngleLabel(text: SVGElement) {
+  const upright = engineUprightPieces(text);
   if (!upright.length) return;
   for (const piece of upright) piece.removeAttribute("font-style");
   text.setAttribute("font-style", "normal");
