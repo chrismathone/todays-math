@@ -21,7 +21,9 @@ vi.mock("next/navigation", () => ({ usePathname: () => nav.pathname }));
 type Row = { action: string; label: string; path: string };
 
 const fetchMock = vi.fn();
-const beaconMock = vi.fn((_url: string, _data?: BodyInit | null) => true);
+const beaconMock = vi.fn<(url: string, data?: BodyInit | null) => boolean>(
+  () => true,
+);
 
 beforeEach(() => {
   vi.useFakeTimers();
