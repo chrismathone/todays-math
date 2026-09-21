@@ -1,5 +1,5 @@
 import { expect, test, type Page } from "@playwright/test";
-import { baselines, hwpxLines, open, panel } from "./paperProbe";
+import { baselines, hwpxLines, open, panel, settle } from "./paperProbe";
 
 /**
  * 트랙 51 — 원장님 2026-09-21 확정(«추천대로 가»).
@@ -61,7 +61,7 @@ test.describe("좁은 단의 3열 — 식이 칸 안에서 접히지 않는다",
     expect(box.tracks, "지면은 2열로 그린다").toBe(2);
     expect(box.oneLine, "칸마다 한 줄").toEqual(Array(6).fill(true));
     // 원문의 열 수는 그대로 — 검수 카드(넓은 칸)는 3열.
-    expect(page.locator("[data-stored]")).toContainText("<보기:cols=3>");
+    await expect(page.locator("[data-stored]")).toContainText("<보기:cols=3>");
     const cardTracks = await panel(page, "card")
       .locator("[data-condition-box] .grid")
       .evaluate(
@@ -145,6 +145,43 @@ test.describe("격자 칸 세로 맞춤 — 글 칸은 기준선, 그림 칸은 
     });
   }
 
+  test("검수 카드·편집기도 같은 맞춤 — (가)(나)(다) 앞말의 글자 바닥이 한 줄(모든 화면 일치)", async ({
+    page,
+  }) => {
+    await open(page, "box9cols3", "&paperWidth=180mm");
+    for (const [where, cells] of [
+      ["card", '[data-panel="card"] [data-condition-box] .grid > *'],
+      ["editor", '[data-panel="editor"] .visual-condition-cells > p'],
+    ] as const) {
+      // 같은 글꼴의 앞말끼리는 글자 상자 바닥의 차가 곧 기준선의 차다.
+      const bottoms = await page.evaluate((selector) => {
+        const found: number[] = [];
+        for (const cell of document.querySelectorAll(selector)) {
+          const walker = document.createTreeWalker(cell, NodeFilter.SHOW_TEXT);
+          for (let node = walker.nextNode(); node; node = walker.nextNode()) {
+            const at = (node.textContent ?? "").search(/\((가|나|다)\)/);
+            if (at < 0) continue;
+            const range = document.createRange();
+            range.setStart(node, at);
+            range.setEnd(node, at + 3);
+            found.push(range.getBoundingClientRect().bottom);
+            break;
+          }
+        }
+        return found.slice(0, 3);
+      }, cells);
+      expect(bottoms, where).toHaveLength(3);
+      expect(
+        Math.abs(bottoms[1]! - bottoms[0]!),
+        `${where} (가)·(나)`,
+      ).toBeLessThan(1);
+      expect(
+        Math.abs(bottoms[2]! - bottoms[1]!),
+        `${where} (나)·(다)`,
+      ).toBeLessThan(1);
+    }
+  });
+
   test("그림 칸은 위쪽 정렬 그대로 — 문제 22", async ({ page }) => {
     await open(page, "q22");
     const aligns = await panel(page, "paper")
@@ -159,5 +196,185 @@ test.describe("격자 칸 세로 맞춤 — 글 칸은 기준선, 그림 칸은 
       .locator("[data-box-card] [data-hwpx-grid]")
       .evaluate((grid) => getComputedStyle(grid).alignItems);
     expect(gridAlign).toBe("baseline");
+  });
+});
+
+/* ── 작업실 원문 편집기 — 열 수 손잡이(안 C) · 상자 안 Tab ─────────────────────────────────── */
+
+const editorBox = (page: Page) =>
+  page.locator('[data-panel="editor"] .visual-condition');
+const handle = (page: Page) =>
+  editorBox(page).locator(".visual-condition-cols");
+const draft = async (page: Page) =>
+  JSON.parse(
+    (await page.locator("[data-draft]").textContent()) ?? '""',
+  ) as string;
+
+/**
+ * 편집기 글 `needle` 바로 앞에 커서를 둔다. 먼저 수식이 없는 첫 줄을 눌러 편집기에 초점을 준다 —
+ * 칸 가운데를 누르면 수식을 눌러 수식 칸이 열린다.
+ */
+async function caretBefore(page: Page, needle: string) {
+  if (
+    !(await page.evaluate(() =>
+      document.activeElement?.classList.contains("visual-document"),
+    ))
+  )
+    await page
+      .locator('[data-panel="editor"] .visual-document')
+      .getByText("다음 이차함수")
+      .click();
+  await page.evaluate((wanted) => {
+    const root = document.querySelector(
+      '[data-panel="editor"] .visual-document',
+    )!;
+    const walker = document.createTreeWalker(root, NodeFilter.SHOW_TEXT);
+    for (let node = walker.nextNode(); node; node = walker.nextNode()) {
+      const at = (node.textContent ?? "").indexOf(wanted);
+      if (at < 0) continue;
+      document.getSelection()!.collapse(node, at);
+      return;
+    }
+    throw new Error(`없는 글: ${wanted}`);
+  }, needle);
+  await settle(page);
+}
+
+test.describe("편집기 〈보기〉 — 열 수 손잡이와 상자 안 Tab", () => {
+  test("손잡이는 커서가 상자 안일 때만 — 3열을 누르면 원문이 `<보기:cols=3>` + 한 줄에 한 칸, 편집기도 3열", async ({
+    page,
+  }) => {
+    await open(page, "box9");
+    await expect(handle(page)).toBeHidden();
+    await caretBefore(page, "(가)");
+    await expect(handle(page)).toBeVisible();
+    await expect(editorBox(page)).toHaveClass(/has-caret/);
+    await expect(
+      handle(page).getByRole("button", { name: "1열" }),
+    ).toHaveAttribute("aria-pressed", "true");
+    await expect(page.locator(".visual-editor-help")).toContainText(
+      "상자 안에서 Tab 다음 칸",
+    );
+    await expect(
+      editorBox(page).locator(".visual-condition-tabhint"),
+    ).toBeVisible();
+    // 손잡이 모양(시안): 눌린 열은 짙은 남색 바탕, 버튼만 손가락 커서(D-30).
+    const look = await handle(page).evaluate((group) => {
+      const [one] = group.querySelectorAll("button");
+      const box = group.closest(".visual-condition")!;
+      return {
+        pressedBg: getComputedStyle(
+          group.querySelector('[aria-pressed="true"]')!,
+        ).backgroundColor,
+        buttonCursor: getComputedStyle(one!).cursor,
+        boxCursor: getComputedStyle(box).cursor,
+      };
+    });
+    expect(look.pressedBg).toBe("rgb(30, 58, 138)");
+    expect(look.buttonCursor).toBe("pointer");
+    expect(look.boxCursor).not.toBe("pointer");
+    if (SHOTS)
+      await page.screenshot({
+        path: `${SHOTS}/editor-handle.png`,
+        fullPage: true,
+      });
+
+    await handle(page).getByRole("button", { name: "3열" }).click();
+    await expect.poll(() => draft(page)).toContain("<보기:cols=3>");
+    const lines = (await draft(page))
+      .split("\n")
+      .filter((line) => line.startsWith(">"));
+    expect(lines).toEqual([
+      "> <보기:cols=3>",
+      "> (가) $y = 3x^2$",
+      "> (나) $y = -\\frac{2}{3}x^2$",
+      "> (다) $y = -3x^2$",
+      "> (라) $y = \\frac{4}{3}x^2$",
+      "> (마) $y = \\frac{3}{4}x^2$",
+      "> (바) $y = -5x^2$",
+    ]);
+    // 편집기 격자도 3열 — 저장 뒤 검수 카드·지면과 같은 칸.
+    const tracks = await editorBox(page)
+      .locator(".visual-condition-cells")
+      .evaluate(
+        (cells) =>
+          getComputedStyle(cells).gridTemplateColumns.split(" ").length,
+      );
+    expect(tracks).toBe(3);
+    if (SHOTS)
+      await page.screenshot({
+        path: `${SHOTS}/editor-cols3.png`,
+        fullPage: true,
+      });
+
+    // 상자 밖을 누르면 손잡이가 사라진다.
+    await page
+      .locator('[data-panel="editor"] .visual-document')
+      .getByText("다음 이차함수")
+      .click();
+    await expect(handle(page)).toBeHidden();
+    await expect(page.locator(".visual-editor-help")).toContainText(
+      "글은 바로 입력하고",
+    );
+  });
+
+  test("상자 안 Tab — (나) 앞에서 누르면 그 자리에서 칸이 갈리고, Esc 뒤 Tab 은 상자 다음 문단", async ({
+    page,
+  }) => {
+    await open(page, "box9");
+    await caretBefore(page, "(가)");
+    await caretBefore(page, "(나)");
+    await page.keyboard.press("Tab");
+    await expect
+      .poll(async () =>
+        (await draft(page)).split("\n").filter((line) => line.startsWith(">")),
+      )
+      .toEqual([
+        "> <보기>",
+        "> (가) $y = 3x^2$",
+        "> (나) $y = -\\frac{2}{3}x^2$ (다) $y = -3x^2$",
+        expect.stringMatching(/^> \(라\) /),
+      ]);
+    // 초점은 편집기에 그대로(Tab 이 초점을 밖으로 옮기지 않았다).
+    expect(
+      await page.evaluate(() =>
+        document.activeElement?.classList.contains("visual-document"),
+      ),
+    ).toBe(true);
+    await page.keyboard.press("Escape");
+    await page.keyboard.press("Tab");
+    await page.keyboard.type("Z");
+    await expect
+      .poll(() => draft(page))
+      .toContain("Z① 모두 원점이 꼭짓점이다.");
+    await expect(handle(page)).toBeHidden();
+  });
+
+  test("상자 밖 Tab 은 예전 그대로 — 원문은 안 바뀌고 브라우저가 초점을 옮긴다", async ({
+    page,
+  }) => {
+    await open(page, "box9");
+    const before = await draft(page);
+    await page
+      .locator('[data-panel="editor"] .visual-document')
+      .getByText("다음 이차함수")
+      .click();
+    await page.evaluate(() => {
+      window.addEventListener(
+        "keydown",
+        (event) => {
+          (window as unknown as { tabPrevented: boolean }).tabPrevented =
+            event.defaultPrevented;
+        },
+        { once: true },
+      );
+    });
+    await page.keyboard.press("Tab");
+    expect(
+      await page.evaluate(
+        () => (window as unknown as { tabPrevented: boolean }).tabPrevented,
+      ),
+    ).toBe(false);
+    expect(await draft(page)).toBe(before);
   });
 });

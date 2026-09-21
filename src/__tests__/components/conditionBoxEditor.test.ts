@@ -192,13 +192,17 @@ describe("커서가 상자 안에 있을 때만 손잡이가 보인다", () => {
   it("상자 안 + 초점 → has-caret, 상자 밖·초점 잃음 → 없음", () => {
     const current = mount(box9());
     const box = () => current.view.dom.querySelector(".visual-condition")!;
-    current.view.dom.dispatchEvent(new FocusEvent("focus"));
+    current.view.dom.dispatchEvent(
+      new FocusEvent("focusin", { bubbles: true }),
+    );
     caretAt(current, positionOf(current, "(가)"));
     expect(box().classList.contains("has-caret")).toBe(true);
     caretAt(current, positionOf(current, "다음 이차함수"));
     expect(box().classList.contains("has-caret")).toBe(false);
     caretAt(current, positionOf(current, "(가)"));
-    current.view.dom.dispatchEvent(new FocusEvent("blur"));
+    current.view.dom.dispatchEvent(
+      new FocusEvent("focusout", { bubbles: true }),
+    );
     expect(box().classList.contains("has-caret")).toBe(false);
   });
 });

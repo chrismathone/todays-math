@@ -325,18 +325,24 @@ const caretPlugin = () =>
           }),
         ]);
       },
+      // 초점은 편집기 안 어디든(상자 안 수식 칸 포함) — `focusin`·`focusout` 은 안쪽에서도 올라온다.
       handleDOMEvents: {
-        focus(view) {
-          view.dispatch(
-            view.state.tr.setMeta(conditionBoxCaret, { focused: true }),
-          );
+        focusin(view) {
+          if (!conditionBoxCaret.getState(view.state)?.focused)
+            view.dispatch(
+              view.state.tr.setMeta(conditionBoxCaret, { focused: true }),
+            );
           return false;
         },
-        blur(view, event) {
-          // 상자 안 수식 칸(MathLive)으로 초점이 가면 커서는 여전히 상자 안이다.
-          const next = (event as FocusEvent)
-            .relatedTarget as globalThis.Node | null;
-          if (next && view.dom.contains(next)) return false;
+        focusout(view, event) {
+          // 상자 안 수식 칸(MathLive)·그 작은 자판으로 가면 커서는 여전히 상자 안이다.
+          const next = (event as FocusEvent).relatedTarget as Element | null;
+          if (
+            next &&
+            (view.dom.contains(next) ||
+              next.closest?.(".compact-math-keyboard"))
+          )
+            return false;
           view.dispatch(
             view.state.tr.setMeta(conditionBoxCaret, { focused: false }),
           );
