@@ -10,16 +10,21 @@ import {
   buildFigureEditQuestions,
   contractFigureEditOps,
   contractOpAcceptsDashed,
+  contractOpTakesElements,
   FIGURE_EDIT_OP_LABELS,
   JEV_FAST_PATH_OPS,
   JEV_MIN_CONFIDENCE,
   tryJevFigureEdit,
+  type FigureEditOp,
 } from "@/lib/dev-ai/figure-edit-jev";
 import {
   editDevAiFigure,
   type FigureEditInference,
 } from "@/lib/dev-ai/figure-edit";
-import { buildFigureEditPrompt } from "@/lib/dev-ai/figure-edit-prompt";
+import {
+  buildFigureEditPrompt,
+  ELEMENT_NUMBER_EXAMPLES,
+} from "@/lib/dev-ai/figure-edit-prompt";
 import type { DevAiRequest } from "@/lib/dev-ai/contracts";
 
 /** 이 저장소의 `NodeJS.ProcessEnv` 는 NODE_ENV 를 요구한다(routing.ts 시험과 같은 결). */
@@ -199,11 +204,15 @@ describe("물음 구성", () => {
 });
 
 describe("명령 조립 — 코드가 검산한다", () => {
-  // 요청 글 — 순서 명령만 본다(요소 번호를 드러내 말했나). 다른 명령은 글과 무관하다.
+  // 요청 글 — 요소 번호를 받는 명령만 본다(«읽는 차례» 문지기, 아래). 기본은 고른 번호를 드러내 말한 글이다.
+  const saying = (picked: Record<string, string>) =>
+    /^\d+$/.test(picked.target ?? "")
+      ? `요소 ${picked.target}을 고쳐 주세요`
+      : "그림을 고쳐 주세요";
   const assemble = (
     picked: Record<string, string>,
     confidence = 0.97,
-    text = "요소 2를 맨 뒤로",
+    text = saying(picked),
   ) => assembleFigureEditCommand(answers(picked, confidence), figure, text);
 
   it.each([
@@ -523,6 +532,152 @@ describe("명령 조립 — 코드가 검산한다", () => {
   });
 });
 
+/**
+ * «읽는 차례» 문지기 — 트랙 43 이 찾은 틈. 지시문은 맨 숫자(«15를 지워줘»)를 그려진 **글자** 15 로, «요소 15»·«15번 요소»·
+ * «15번 선»만 요소 번호로 읽는다(`ELEMENT_NUMBER_EXAMPLES`). 빠른 길의 요소 물음은 그 규칙을 모르므로 요소 15 를 고를 수 있다 —
+ * 지우기는 되돌리기 전까지 그림을 망친다. 그래서 **요소 번호를 받는 명령 여섯 모두** 요청 글이 드러내 말한 번호들과
+ * 고른 번호들이 같은 집합일 때만 맡고, 아니면 지금 경로(규칙이 적힌 지시문)로 떨어진다.
+ * 그림은 요소 15 가 **선**이고 글자 «15»가 요소 16 인 것으로 잰다 — 맨 숫자를 요소 번호로 읽으면 엉뚱한 선이 지워진다.
+ */
+describe("«읽는 차례» 문지기 — 요소 번호는 드러내 말했을 때만", () => {
+  const numbered: FigureEditFigure = {
+    viewBox: [0, 0, 300, 240],
+    elements: [
+      {
+        n: 7,
+        kind: "선분",
+        points: [
+          [40, 200],
+          [260, 200],
+        ],
+      },
+      {
+        n: 15,
+        kind: "선분",
+        points: [
+          [40, 200],
+          [150, 40],
+        ],
+      },
+      { n: 16, kind: "글자", text: "15", points: [[100, 110]] },
+    ],
+    names: figure.names,
+  };
+  const GATED: [
+    FigureEditOp,
+    Record<string, string>,
+    string,
+    (n: number) => Record<string, unknown>,
+  ][] = [
+    ["delete", {}, "지워줘", (n) => ({ op: "delete", target: n })],
+    [
+      "relabel",
+      {},
+      "이름 자리를 고쳐줘",
+      (n) => ({ op: "relabel", target: n }),
+    ],
+    ["flip", {}, "반대쪽으로 넘겨줘", (n) => ({ op: "flip", target: n })],
+    [
+      "rotate",
+      { direction: "cw" },
+      "시계 방향으로 돌려줘",
+      (n) => ({ op: "rotate", targets: [n], direction: "cw" }),
+    ],
+    [
+      "mirror",
+      { axis: "vertical" },
+      "좌우로 뒤집어줘",
+      (n) => ({ op: "mirror", targets: [n], axis: "vertical" }),
+    ],
+    [
+      "order",
+      { layer: "back" },
+      "맨 뒤로 보내줘",
+      (n) => ({ op: "order", targets: [n], to: "back" }),
+    ],
+  ];
+  const assemble = (
+    op: FigureEditOp,
+    extra: Record<string, string>,
+    target: string,
+    text: string,
+  ) =>
+    assembleFigureEditCommand(
+      answers({ op, target, ...extra }),
+      numbered,
+      text,
+    );
+
+  it("요소 번호를 받는 빠른 길 명령은 계약에서 뽑은 여섯이다 — 손 목록이 아니다", () => {
+    expect(JEV_FAST_PATH_OPS.filter(contractOpTakesElements).sort()).toEqual(
+      GATED.map(([op]) => op).sort(),
+    );
+  });
+
+  describe.each(GATED)("%s", (op, extra, verb, expected) => {
+    it(`«15를 ${verb}» — 맨 숫자는 글자다, 요소 15 를 고치지 않는다`, () => {
+      expect(assemble(op, extra, "15", `15를 ${verb}`)).toBeNull();
+      // 글자 «15»(요소 16)를 골랐어도 맡지 않는다 — 규칙대로 읽는 것은 지금 경로의 몫
+      expect(assemble(op, extra, "16", `15를 ${verb}`)).toBeNull();
+    });
+
+    it.each(ELEMENT_NUMBER_EXAMPLES)(
+      `«%s ${verb}» — 빠른 길로 맡는다`,
+      (said) => {
+        const command = assemble(op, extra, "15", `${said} ${verb}`);
+        expect(command).toEqual(expected(15));
+        expect(FigureEditCommandSchema.safeParse(command).success).toBe(true);
+      },
+    );
+
+    it("말한 번호와 고른 번호가 다르면 떨어진다", () => {
+      expect(assemble(op, extra, "7", `요소 15 ${verb}`)).toBeNull();
+    });
+
+    it("번호를 말하지 않았으면 떨어진다 — 지금 경로가 맡는다", () => {
+      expect(assemble(op, extra, "15", `선분을 ${verb}`)).toBeNull();
+    });
+
+    it("요소를 둘 말했으면 하나만 고치지 않는다 — 같은 집합일 때만", () => {
+      expect(
+        assemble(op, extra, "15", `요소 7과 요소 15를 ${verb}`),
+      ).toBeNull();
+    });
+
+    it("맨 숫자와 «요소 N»이 섞여도 요소 번호만 센다", () => {
+      const text = `15라고 적힌 글자 옆 요소 7을 ${verb}`;
+      expect(assemble(op, extra, "7", text)).toEqual(expected(7));
+      expect(assemble(op, extra, "16", text)).toBeNull();
+      expect(assemble(op, extra, "15", text)).toBeNull();
+    });
+  });
+
+  /**
+   * 회전·대칭의 «그림 전체»(`targets: "all"`)는 번호를 고르지 않은 것 — 빈 집합이다. 번호를 말하지 않은 요청은 지금처럼 맡고,
+   * 요소를 드러내 말했는데 전체를 골랐으면 말한 번호를 버린 것이라 떨어진다.
+   */
+  it.each([
+    [
+      "rotate",
+      { direction: "cw" },
+      { op: "rotate", targets: "all", direction: "cw" },
+    ],
+    [
+      "mirror",
+      { axis: "vertical" },
+      { op: "mirror", targets: "all", axis: "vertical" },
+    ],
+  ] as const)(
+    "%s — «그림 전체»는 번호를 말하지 않았을 때만",
+    (op, extra, expected) => {
+      expect(assemble(op, extra, "all", "그림 전체를 고쳐줘")).toEqual(
+        expected,
+      );
+      expect(assemble(op, extra, "all", "요소 15를 고쳐줘")).toBeNull();
+    },
+  );
+});
+
 describe("빠른 길 전체", () => {
   it("명령이 서면 지금과 같은 모양의 결과를 돌려준다", async () => {
     ask.mockResolvedValue(
@@ -608,9 +763,10 @@ describe("운영 로그", () => {
   it("먹었나·떨어졌나와 그 까닭을 한 줄로 남긴다", async () => {
     const info = vi.spyOn(console, "info").mockImplementation(() => {});
     const env = envOf({ AI_GATEWAY_API_KEY: "key" });
+    const deleting = { ...request, content: "요소 2를 지워 주세요." };
 
     ask.mockResolvedValue(answers({ op: "delete", target: "2" }));
-    await tryJevFigureEdit(request, { env });
+    await tryJevFigureEdit(deleting, { env });
     expect(info).toHaveBeenCalledWith(
       expect.stringContaining("[jev] figure-edit 빠른 길 op=delete"),
     );
@@ -621,10 +777,25 @@ describe("운영 로그", () => {
     ] as const) {
       info.mockClear();
       ask.mockResolvedValue(answers(picked));
-      await tryJevFigureEdit(request, { env });
+      await tryJevFigureEdit(deleting, { env });
       expect(info).toHaveBeenCalledWith(
         expect.stringContaining(`떨어짐 (${why})`),
       );
+    }
+
+    // «읽는 차례» 문지기에 걸린 것 — 번호를 안 말한 요청(빠른 길을 잃는 꼴)과 말한 번호를 어긴 고름을 따로 센다
+    for (const [content, why] of [
+      ["2를 지워 주세요.", "요소 번호 안 말함"],
+      ["요소 1을 지워 주세요.", "말한 요소 번호와 다름"],
+    ] as const) {
+      info.mockClear();
+      ask.mockResolvedValue(answers({ op: "delete", target: "2" }));
+      await tryJevFigureEdit({ ...request, content }, { env });
+      expect(info).toHaveBeenCalledWith(
+        expect.stringContaining(`떨어짐 (${why}) op=delete`),
+      );
+      for (const call of info.mock.calls)
+        expect(String(call[0])).not.toContain("지워 주세요");
     }
 
     info.mockClear();
@@ -670,6 +841,19 @@ describe("배선 — 지금 경로는 한 글자도 달라지지 않는다", () 
       edits: [{ op: "addAngle", at: "B", from: "A", to: "C" }],
     });
     expect(inference).not.toHaveBeenCalled();
+  });
+
+  it("맨 숫자(«2를 지워»)는 빠른 길이 안 지운다 — 지금 경로가 규칙대로 읽는다", async () => {
+    ask.mockResolvedValue(answers({ op: "delete", target: "2" }));
+    const bare = { ...request, content: "2를 지워 주세요." };
+    const inference = vi.fn<FigureEditInference>(async () =>
+      JSON.stringify({ commands: [{ op: "delete", target: 3 }] }),
+    );
+    const result = await editDevAiFigure(bare, undefined, inference);
+    expect(ask).toHaveBeenCalledTimes(1);
+    expect(inference).toHaveBeenCalledTimes(1);
+    expect(inference.mock.calls[0][0].prompt).toBe(buildFigureEditPrompt(bare));
+    expect(result.edits).toEqual([{ op: "delete", target: 3 }]);
   });
 
   it("떨어지면 지금 경로가 지금과 똑같은 인자로 불린다", async () => {

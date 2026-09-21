@@ -116,10 +116,33 @@ export function contractFigureEditOps(): readonly FigureEditOp[] {
 export function contractOpAcceptsDashed(op: FigureEditOp): boolean {
   return contractOpFields().get(op)?.has("dashed") ?? false;
 }
+/**
+ * 계약이 이 명령에 요소 번호(`target`·`targets`)를 받는가 — 역시 스키마에서 본다. 빠른 길에서는 지우기·이름표·뒤집기·
+ * 회전·대칭·순서 여섯이다. 요소를 받는 명령이 빠른 길에 새로 들면 아래 «읽는 차례» 문지기가 저절로 걸린다.
+ */
+export function contractOpTakesElements(op: FigureEditOp): boolean {
+  const fields = contractOpFields().get(op);
+  return !!fields && (fields.has("target") || fields.has("targets"));
+}
+
+/**
+ * «읽는 차례» 문지기 — 요청 글이 드러내 말한 요소 번호들과 Jev 가 고른 번호들이 **같은 집합**인가.
+ * 요소 물음은 지시문의 «읽는 차례»(맨 숫자는 그려진 글자, «요소 N»·«N번 …»만 요소 번호)를 모른다 — «15를 지워줘»에서
+ * 글자 15 가 아니라 요소 15 를 지울 수 있다(트랙 43). 판정은 지시문의 보기와 같은 원천(`explicitElementNumbers`) 하나다.
+ * «그림 전체»는 번호를 고르지 않은 것이라 빈 집합으로 넘긴다 — 번호를 말하지 않았을 때만 맞는다.
+ */
+export function saidSameElements(
+  requestText: string,
+  picked: readonly number[],
+): boolean {
+  const said = explicitElementNumbers(requestText);
+  const chosen = new Set(picked);
+  return chosen.size === said.length && said.every((n) => chosen.has(n));
+}
 
 /**
  * 빠른 길에 넣는 명령 — **고정 물음(명령·요소·점 셋·방향·축·차례·개수·점선)만으로 인자가 다 차는 것**뿐이다.
- * 순서(`order`)는 요청 글이 요소 번호를 드러내 말했을 때만 맡는다(«읽는 차례», 아래 조립기).
+ * 요소 번호를 받는 것(지우기·이름표·뒤집기·회전·대칭·순서)은 요청 글이 그 번호를 드러내 말했을 때만 맡는다(«읽는 차례», 아래 조립기).
  * 좌표(move·point·addText·addPoint)나 글자(text·addLabel·addDimension)나 값(style·resize)이 필요한 명령,
  * 점이 넷 이상인 명령(addIntersection·addCircleIntersection)과 원 안팎을 가려야 하는 addTangent 는 뺐다 —
  * 그런 요청은 지금 경로가 그대로 맡는다.
@@ -272,6 +295,12 @@ const pick = (answers: Picks, id: string) => {
   return value && value !== NONE ? value : undefined;
 };
 
+/** 조립 결과 — 명령, 또는 떨어진 까닭(운영 로그 한 줄에 싣는다). */
+type Assembled =
+  | { command: FigureEditCommand; why?: undefined }
+  | { command: null; why: string };
+const miss = (why: string): Assembled => ({ command: null, why });
+
 /**
  * 고른 값 → 명령 하나. **인자가 다 차고 계약을 통과할 때만** 명령을 만든다.
  * 점 이름은 그림의 `names` 에 있어야 하고, 요소 번호는 그림에 있어야 하며, 같은 점을 두 번 쓰지 않는다.
@@ -279,13 +308,19 @@ const pick = (answers: Picks, id: string) => {
 export function assembleFigureEditCommand(
   answers: Picks,
   figure: FigureEditFigure,
-  /** 요청 글 — 순서 명령만 본다(요소 번호를 드러내 말했나). 없으면 순서 명령은 맡지 않는다. */
+  /** 요청 글 — 요소 번호를 받는 명령만 본다(번호를 드러내 말했나). 없으면 그 명령들은 맡지 않는다. */
   requestText = "",
 ): FigureEditCommand | null {
+  return assemble(answers, figure, requestText).command;
+}
+
+function assemble(
+  answers: Picks,
+  figure: FigureEditFigure,
+  requestText: string,
+): Assembled {
   const op = answers.op;
-  if (!op || op.confidence < JEV_MIN_CONFIDENCE) return null;
-  if (!(JEV_FAST_PATH_OPS as readonly string[]).includes(op.choice))
-    return null;
+  if (!op || op.confidence < JEV_MIN_CONFIDENCE) return miss("확신 낮음");
   /**
    * 지금 경로는 한 번에 명령을 스물까지 돌려준다(`FIGURE_EDIT_MAX_COMMANDS`). 빠른 길은 **하나뿐**이라
    * «7번 선을 지우고 점 A 이름을 위로» 같은 두 가지 요청을 **반만** 고칠 수 있다 — 그러면 지금보다 나빠진다.
@@ -293,7 +328,9 @@ export function assembleFigureEditCommand(
    */
   const scope = answers.scope;
   if (!scope || scope.choice !== "one" || scope.confidence < JEV_MIN_CONFIDENCE)
-    return null;
+    return miss("고칠 곳이 여럿");
+  if (!(JEV_FAST_PATH_OPS as readonly string[]).includes(op.choice))
+    return miss("인자 안 참");
 
   const known = new Set((figure.names ?? []).map((name) => name.name));
   const point = (id: string) => {
@@ -314,6 +351,18 @@ export function assembleFigureEditCommand(
       ? n
       : undefined;
   const targets = all ? ALL : target !== undefined ? [target] : undefined;
+  // 원장님 2026-09-21 «요소를 입력하면 더 정확하게». 요소 번호를 받는 명령은 요청 글이 드러내 말한 번호들을 골랐을 때만
+  // 맡는다 — 아니면 지금 경로가 «읽는 차례»가 적힌 지시문대로 읽는다. 번호를 안 말한 요청과 말한 번호를 어긴 고름을 갈라 센다.
+  if (
+    targets !== undefined &&
+    contractOpTakesElements(op.choice as FigureEditOp) &&
+    !saidSameElements(requestText, targets === ALL ? [] : targets)
+  )
+    return miss(
+      explicitElementNumbers(requestText).length
+        ? "말한 요소 번호와 다름"
+        : "요소 번호 안 말함",
+    );
 
   const direction = pick(answers, "direction");
   const axis = pick(answers, "axis");
@@ -339,15 +388,8 @@ export function assembleFigureEditCommand(
       case "mirror":
         return targets && axis ? { op: "mirror", targets, axis } : null;
       case "order": {
-        // 원장님 2026-09-21 «요소를 입력하면 더 정확하게». 요소 물음은 지시문의 «읽는 차례»(맨 숫자는 그려진 글자,
-        // «요소 N»·«N번 …»만 요소 번호)를 모른다 — 요청 글이 번호를 **하나** 드러내 말했고 고른 번호가 그것일 때만
-        // 맡는다. 판정은 지시문의 보기와 같은 원천(`explicitElementNumbers`). 아니면 지금 경로가 규칙대로 읽는다.
         const to = pick(answers, "layer");
-        const said = explicitElementNumbers(requestText);
-        return target !== undefined &&
-          to &&
-          said.length === 1 &&
-          said[0] === target
+        return target !== undefined && to
           ? { op: "order", targets: [target], to }
           : null;
       }
@@ -429,10 +471,10 @@ export function assembleFigureEditCommand(
         return null;
     }
   })();
-  if (!command) return null;
+  if (!command) return miss("인자 안 참");
   // 마지막 관문은 계약 자체다 — 여기를 통과하지 못하면 지금 경로로 떨어진다.
   const checked = FigureEditCommandSchema.safeParse(command);
-  return checked.success ? checked.data : null;
+  return checked.success ? { command: checked.data } : miss("인자 안 참");
 }
 
 /** 운영 로그에서 «빠른 길이 몇 번 먹었나»를 셀 한 줄 — 요청 글·요소 목록은 남기지 않는다. */
@@ -482,16 +524,9 @@ export async function tryJevFigureEdit(
     log(`떨어짐 (응답 없음·시한 초과) ${elapsed()}`);
     return null;
   }
-  const command = assembleFigureEditCommand(answers, figure, content);
+  const { command, why } = assemble(answers, figure, content);
   const op = answers.op;
   if (!command) {
-    const scope = answers.scope;
-    const why =
-      op.confidence < JEV_MIN_CONFIDENCE
-        ? "확신 낮음"
-        : scope?.choice !== "one" || scope.confidence < JEV_MIN_CONFIDENCE
-          ? "고칠 곳이 여럿"
-          : "인자 안 참";
     log(`떨어짐 (${why}) op=${op.choice} 확신=${op.confidence} ${elapsed()}`);
     return null;
   }
