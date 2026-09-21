@@ -354,8 +354,8 @@ export function estimateProblemPx(
   let px = fixedChrome;
 
   // `parseProblemContent` 는 상자를 이미 **인용문 마크다운**으로 굳혀 준다
-  //   `> <보기2>` / `>` / `> ㄱ. …`
-  // 라벨 뒤 숫자가 렌더러가 정한 **열 수**다. 여기서 다시 판단하지 않고 그대로 읽는다 —
+  //   `> <보기:cols=2>` / `>` / `> ㄱ. …`   (1열은 맨 `<보기>`, 옛 `<보기2>` 도 읽는다)
+  // 머리의 열 수가 렌더러가 정한 **열 수**다. 여기서 다시 판단하지 않고 그대로 읽는다 —
   // 판정이 스스로 열 수를 정하면 렌더러와 갈라져 조용히 어긋난다.
   let plain: string[] = [];
   let box: string[] | null = null;
