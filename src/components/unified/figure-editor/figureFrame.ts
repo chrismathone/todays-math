@@ -4,6 +4,7 @@ import {
   editableFigureDoc,
   fitFigureViewport,
   serializeFigureSvg,
+  withoutFigureNumbers,
 } from "./figureSvgEditing";
 import { typesetFigureSvg } from "./figureTypeset";
 
@@ -80,7 +81,9 @@ export function widenFrame(
  * «저장한 모습»이 달라진다(원장님 2026-09-20).
  */
 export const renderFittedFigure = async (svg: string) =>
-  fitFigureViewport(await typesetFigureSvg(cleanFigureForSave(svg)));
+  withoutFigureNumbers(
+    fitFigureViewport(await typesetFigureSvg(cleanFigureForSave(svg))),
+  );
 
 /** 적힌 수가 같은 틀인가 — 글자가 달라도(`10` vs `10.0`) 수가 같으면 같다. */
 const sameFrameValue = (a: string | null, b: string) => {

@@ -10,6 +10,12 @@ import { z } from "zod";
 export const FIGURE_EDIT_MAX_COMMANDS = 20;
 /** 요소 목록 상한 — 눈금 많은 그래프도 들어가고 지시문은 수십 KB 안에 머문다. */
 export const FIGURE_EDIT_MAX_ELEMENTS = 400;
+/**
+ * 요소 번호 상한 — 번호는 요소에 붙은 고정 번호라(편집기 `figureNumbers`, 원장님 2026-09-21 «순서를 바꿔도 요소 번호가
+ * 안바뀌게») 지운 번호는 비워 둔다. 오래 고친 그림은 요소가 적어도 번호가 요소 수 상한을 넘을 수 있어 따로 둔다
+ * (편집기가 받는 번호 자릿수와 같은 여섯 자리).
+ */
+export const FIGURE_EDIT_MAX_NUMBER = 999_999;
 /** 요소 하나에 싣는 핵심 좌표 상한 — 편집기 조절점 상한(꼭짓점 32개)과 같다. */
 export const FIGURE_EDIT_MAX_POINTS = 32;
 
@@ -22,7 +28,7 @@ const label = z
   .min(1)
   .max(80)
   .regex(/^[^\p{Cc}]*$/u);
-const target = z.number().int().min(1).max(FIGURE_EDIT_MAX_ELEMENTS);
+const target = z.number().int().min(1).max(FIGURE_EDIT_MAX_NUMBER);
 const color = z.string().regex(/^#(?:[0-9a-fA-F]{3}|[0-9a-fA-F]{6})$/);
 /** 점 이름(요소 목록 `names` 의 이름) 또는 좌표. */
 const PointRefSchema = z.union([

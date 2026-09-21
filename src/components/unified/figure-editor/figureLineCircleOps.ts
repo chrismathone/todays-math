@@ -9,7 +9,6 @@ import {
   readFigureSvg,
 } from "./figureSvgEditing";
 import { figurePointNames } from "./figureEditElements";
-import { objectName } from "./figureObjectNames";
 import {
   applyPoint,
   elementMatrix,
@@ -837,8 +836,7 @@ const circleNear = (
 
 /** 결과 줄에 쓰는 요소 이름 — 요청 때 있던 요소면 번호와 함께(«1번 원»), 앞 명령이 만든 것이면 이름만. */
 function nameIn(ctx: FigureShapeContext, o: FigureObject) {
-  const index = ctx.before.findIndex((before) => before.id === o.id);
-  return index >= 0 ? ctx.nameOf(index) : objectName(o);
+  return ctx.nameOf(o);
 }
 
 // ── 새 요소 ─────────────────────────────────────────────────────────────

@@ -1,5 +1,7 @@
 import {
   editableFigureDoc,
+  NUMBER_ATTR,
+  NUMBER_LAST_ATTR,
   prepareFigureSvg,
   serializeFigureSvg,
   SVG_NS,
@@ -72,6 +74,8 @@ export function pasteFigureSelection(svg: string, source: string, offset = 12) {
   const ids = nodes.map((node) => {
     const id = `obj-${crypto.randomUUID()}`;
     node.setAttribute("data-object-id", id);
+    // 붙여넣은 것은 새 요소 — 원래 요소의 번호를 들고 오지 않는다(편집기가 마지막 번호 다음을 준다)
+    node.removeAttribute(NUMBER_ATTR);
     return id;
   });
   const translated = doc.createElementNS(SVG_NS, "g");
@@ -88,6 +92,7 @@ export function pasteFigureSelection(svg: string, source: string, offset = 12) {
         "x",
         "y",
         "data-mathgen-clipboard",
+        NUMBER_LAST_ATTR,
       ].includes(attr.name)
     )
       group.setAttribute(attr.name, attr.value);

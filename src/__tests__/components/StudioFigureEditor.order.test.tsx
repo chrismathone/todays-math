@@ -1,7 +1,32 @@
-import { fireEvent, render, screen, within } from "@testing-library/react";
+import {
+  fireEvent,
+  render,
+  screen,
+  waitFor,
+  within,
+} from "@testing-library/react";
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
-import StudioFigureEditor from "@/components/unified/figure-editor";
+import StudioFigureEditor, {
+  type StudioFigureEditRequest,
+  type StudioFigureEditResult,
+} from "@/components/unified/figure-editor";
+import { buildFigureEditSnapshot } from "@/components/unified/figure-editor/figureEditSnapshot";
 import { SVG_NS } from "@/components/unified/figure-editor/figureSvgEditing";
+
+vi.mock(
+  "@/components/unified/figure-editor/figureTypeset",
+  async (importOriginal) => {
+    const actual =
+      await importOriginal<
+        typeof import("@/components/unified/figure-editor/figureTypeset")
+      >();
+    return { ...actual, typesetFigureSvg: async (source: string) => source };
+  },
+);
+// jsdom 에는 캔버스가 없다 — AI 에게 보내는 합성 그림은 번호표(`numbers`) 인자로 본다.
+vi.mock("@/components/unified/figure-editor/figureEditSnapshot", () => ({
+  buildFigureEditSnapshot: vi.fn(async () => "data:image/png;base64,c25hcA=="),
+}));
 
 /**
  * 도형 편집기 — 요소 순서(맨 앞으로 · 앞으로 · 뒤로 · 맨 뒤로). 원장님 2026-09-21:
@@ -113,7 +138,12 @@ afterEach(() => {
   vi.restoreAllMocks();
 });
 
-function open(svg = figure) {
+function open(
+  svg = figure,
+  onEdit?: (
+    request: StudioFigureEditRequest,
+  ) => Promise<StudioFigureEditResult>,
+) {
   render(
     <StudioFigureEditor
       image={crop}
@@ -121,21 +151,27 @@ function open(svg = figure) {
       index={0}
       onSave={vi.fn()}
       onClose={vi.fn()}
+      onEdit={onEdit}
     />,
   );
 }
 const canvas = () => document.querySelector("#figure-editor-canvas")!;
+const kindOf = (node: Element) =>
+  node.localName === "line"
+    ? Number(node.getAttribute("y1")) === 300
+      ? "x축"
+      : "y축"
+    : ({ path: "포물선", circle: "점", polygon: "삼각형" } as const)[
+        node.localName as "path" | "circle" | "polygon"
+      ];
+/** 번호표가 가리키는 요소의 종류 — 이미 지워졌으면 null. */
+const kindOfId = (id: string | null) => {
+  const node = canvas().querySelector(`[data-object-id="${id}"]`);
+  return node ? kindOf(node) : null;
+};
 /** 캔버스에 **실제로 그려지는 차례** — 뒤에 적힌 것이 위에 그려진다. */
 const painted = () =>
-  [...canvas().querySelectorAll("[data-object-id]")].map((node) =>
-    node.localName === "line"
-      ? Number(node.getAttribute("y1")) === 300
-        ? "x축"
-        : "y축"
-      : ({ path: "포물선", circle: "점", polygon: "삼각형" } as const)[
-          node.localName as "path" | "circle" | "polygon"
-        ],
-  );
+  [...canvas().querySelectorAll("[data-object-id]")].map(kindOf);
 const ORIGINAL = ["포물선", "x축", "y축", "점", "삼각형"];
 const chip = (n: number) =>
   document.querySelector<HTMLElement>(`[data-figure-list-number="${n}"]`)!;
@@ -160,15 +196,14 @@ describe("원장님 화면 — 채운 삼각형이 y축을 덮었다", () => {
     fireEvent.click(orderButton("맨 뒤로"));
     expect(painted()).toEqual(["삼각형", "포물선", "x축", "y축", "점"]);
   });
-  it("번호는 그리는 차례라 바뀐다 — 오른쪽 칸 제목과 알림에 새 번호가 선다", () => {
+  it("번호는 안 바뀐다 — 오른쪽 칸 제목은 5 그대로, 알림은 옮긴 것만 (원장님 2026-09-21 «번호 고정»)", () => {
     open();
     fireEvent.click(chip(5));
     expect(title()).toBe("5 · 다각형 편집");
     fireEvent.click(orderButton("맨 뒤로"));
-    expect(title()).toBe("1 · 다각형 편집");
-    expect(
-      screen.getByText("맨 뒤로 보냈습니다. 5번이 1번이 되었습니다."),
-    ).toBeInTheDocument();
+    expect(title()).toBe("5 · 다각형 편집");
+    expect(screen.getByText("맨 뒤로 보냈습니다.")).toBeInTheDocument();
+    expect(screen.queryByText(/번이 .*번이 되었습니다/)).toBeNull();
   });
   it("되돌리기 한 걸음이면 원래 차례", () => {
     open();
@@ -329,5 +364,82 @@ describe("묶음은 한 덩어리로 — 캔버스에서 누르면 묶음 전부
       ),
     ).toEqual(["A", "A"]);
     expect(kinds()).toEqual(["rect", "line", "circle", "polygon"]);
+  });
+});
+
+/**
+ * 원장님 2026-09-21 «순서를 바꿔도 요소 번호가 안바뀌게 고정시켜». 번호를 쓰는 자리 넷이 **모두** 같은 번호를
+ * 봐야 한다 — 한 곳만 고치면 화면과 AI 가 다른 번호를 봐 AI 가 딴 요소를 고친다(지시문 «자료 목록의 번호가
+ * 그림 위 번호표와 같다», figure-edit-prompt.ts).
+ */
+describe("번호 고정 — 맨 뒤로 보내도 번호표·요소 목록·AI 자료 목록·AI 그림 번호표가 전과 같다", () => {
+  /** 번호 → 요소 종류, 자리 넷에서. */
+  const screenTags = () =>
+    Object.fromEntries(
+      [...document.querySelectorAll("[data-figure-number]")].map((tag) => [
+        tag.getAttribute("data-figure-number"),
+        kindOfId(tag.getAttribute("data-number-object")),
+      ]),
+    );
+  const listChips = () =>
+    Object.fromEntries(
+      [...document.querySelectorAll("[data-figure-list-number]")].map(
+        (chip) => [
+          chip.getAttribute("data-figure-list-number"),
+          chip.getAttribute("title")!.split(" · ")[0],
+        ],
+      ),
+    );
+  const askAi = async (onEdit: ReturnType<typeof vi.fn>, calls: number) => {
+    fireEvent.change(
+      screen.getByRole("textbox", { name: "도형 AI 수정 요청" }),
+      { target: { value: "요소 5를 확인해 주세요" } },
+    );
+    fireEvent.click(screen.getByRole("button", { name: "요청대로 고치기" }));
+    await waitFor(() => expect(onEdit).toHaveBeenCalledTimes(calls));
+    const [request] = onEdit.mock.calls.at(-1)! as [StudioFigureEditRequest];
+    const snapshot = vi.mocked(buildFigureEditSnapshot).mock.calls.at(-1)![0];
+    return {
+      elements: request.figure.elements.map((e) => [e.n, e.kind]),
+      picture: Object.fromEntries(
+        snapshot.numbers.map((n) => [n.number, kindOfId(n.ids[0])]),
+      ),
+    };
+  };
+  it("넷 모두 전과 같다", async () => {
+    const onEdit = vi.fn(async () => ({ edits: [] }));
+    open(figure, onEdit);
+    const before = { tags: screenTags(), list: listChips() };
+    expect(before.tags).toEqual({
+      "1": "포물선",
+      "2": "x축",
+      "3": "y축",
+      "4": "점",
+      "5": "삼각형",
+    });
+    const aiBefore = await askAi(onEdit, 1);
+    expect(aiBefore.picture).toEqual(before.tags);
+    expect(aiBefore.elements.map(([n]) => n)).toEqual([1, 2, 3, 4, 5]);
+
+    fireEvent.click(chip(5));
+    fireEvent.click(orderButton("맨 뒤로"));
+    expect(painted()).toEqual(["삼각형", "포물선", "x축", "y축", "점"]);
+
+    expect(screenTags()).toEqual(before.tags);
+    expect(listChips()).toEqual(before.list);
+    const aiAfter = await askAi(onEdit, 2);
+    expect(aiAfter).toEqual(aiBefore);
+  });
+  it("AI 가 «요소 5»(target 5)를 가리키면 맨 뒤로 보낸 뒤에도 삼각형이다", async () => {
+    const onEdit = vi.fn(async () => ({
+      edits: [{ op: "delete" as const, target: 5 }],
+    }));
+    open(figure, onEdit);
+    fireEvent.click(chip(5));
+    fireEvent.click(orderButton("맨 뒤로"));
+    await askAi(onEdit, 1);
+    await waitFor(() =>
+      expect(painted()).toEqual(["포물선", "x축", "y축", "점"]),
+    );
   });
 });

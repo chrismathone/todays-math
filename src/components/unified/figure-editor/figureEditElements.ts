@@ -4,7 +4,11 @@ import {
   type FigureEditElement,
   type FigureEditFigure,
 } from "@/lib/dev-ai/figure-edit-contract";
-import { figureObjects, readFigureSvg } from "./figureSvgEditing";
+import {
+  figureNumbers,
+  figureObjects,
+  readFigureSvg,
+} from "./figureSvgEditing";
 import { figureHandles } from "./figureHandles";
 import { objectName } from "./figureObjectNames";
 import { figureAngleKinds } from "./figureObjectGroups";
@@ -180,7 +184,8 @@ export function figurePointNames(svg: string) {
 }
 
 /**
- * «요청대로 고치기»에 보내는 지금 그림 — 편집기 번호(요소 목록·그림 위 번호 = `figureObjects` 차례 + 1) 그대로,
+ * «요청대로 고치기»에 보내는 지금 그림 — 편집기 번호(요소 목록·그림 위 번호 = 요소에 붙은 고정 번호 `figureNumbers`) 그대로,
+ * 번호 차례로 싣는다(그리는 차례가 아니다 — 맨 뒤로 보낸 «5번»도 5번 자리에 5번으로 간다, 원장님 2026-09-21).
  * 종류 · 사용자가 이름 붙인 묶음 · 글자 · 핵심 좌표(그림 좌표) · 서식 · 크기 고정을 싣는다.
  * 편집기 목록의 역할 어림(x축·눈금 …)은 싣지 않는다 — 직각 표시를 축 화살촉으로 읽어 직각삼각형 변을 «x축»·«y축»으로
  * 묶는 일이 있다(2026-09-19 브라우저 확인). 틀릴 수 있는 어림보다 그림 이미지의 번호가 낫다.
@@ -192,13 +197,18 @@ export function describeFigureForEdit(svg: string): FigureEditFigure {
   const viewBox = viewBoxOf(doc);
   // 종류 이름은 편집기 요소 목록·오른쪽 칸 제목과 같은 함수(`objectName`) — 각 표시는 직각·예각·둔각
   const angles = figureAngleKinds(objects, viewBox);
-  const elements = objects
+  const numbers = figureNumbers(svg);
+  const nodeOf = new Map(
+    nodes.map((node) => [node.getAttribute("data-object-id")!, node]),
+  );
+  const elements = [...objects]
+    .sort((a, b) => numbers.get(a.id)! - numbers.get(b.id)!)
     .slice(0, FIGURE_EDIT_MAX_ELEMENTS)
-    .map((o, index): FigureEditElement => {
-      const node = nodes[index];
+    .map((o): FigureEditElement => {
+      const node = nodeOf.get(o.id)!;
       const matrix = elementMatrix(node);
       const element: FigureEditElement = {
-        n: index + 1,
+        n: numbers.get(o.id)!,
         kind: objectName(o, angles),
       };
       const group = o.attrs["data-group"]?.trim();

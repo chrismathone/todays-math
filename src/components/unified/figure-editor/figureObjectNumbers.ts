@@ -61,15 +61,19 @@ const merged = (targets: readonly { x: number; y: number }[]) => ({
 /**
  * 도형 바깥 24px 여백에 번호를 배치한다. 번호끼리 겹치지 않는 가장 가까운 자리를 쓴다.
  *
- * 번호 매기기는 요소 차례 + 1 — **묶어도 번호는 그대로다.** «요청대로 고치기»가 그 번호로 요소를 가리키고
+ * 번호는 요소에 붙은 **고정 번호**(`numbers` — `figureNumbers`, 원장님 2026-09-21 «순서를 바꿔도 요소 번호가
+ * 안바뀌게») — 그리는 차례가 아니다. 반드시 넘겨야 한다(빠뜨리면 차례 번호가 새어 AI 가 딴 요소를 고친다).
+ * **묶어도 번호는 그대로다.** «요청대로 고치기»가 그 번호로 요소를 가리키고
  * (`figure-edit-contract.ts` 의 `target: n`, `describeFigureForEdit` 의 `n`), AI 에게 보내는 그림
  * (`figureEditSnapshot`)은 묶음을 주지 않고 이 함수를 불러 **요소마다** 번호를 그대로 단다.
  * `groups`(요소 id → 묶음 이름)를 주면 **화면에서만** 같은 묶음의 번호표를 하나로 합친다
  * (원장님 2026-09-21 «그룹화되면 번호를 하나로 합치게 할 것» — 사다리꼴 상자 하나에 ⑯ ⑰ 둘이 붙어 있었다).
  * 합친 번호표는 속 요소 중 **가장 작은 번호**를 쓰고, 지시선은 속 요소마다 하나씩 나간다.
+ * 번호표 자리는 **번호 차례로** 잡는다 — 맨 앞으로·맨 뒤로를 해도 번호표가 제자리에 선다.
  */
 export function layoutFigureNumbers(
   root: SVGSVGElement,
+  numbers: ReadonlyMap<string, number>,
   groups?: ReadonlyMap<string, string>,
 ): FigureNumber[] {
   const bounds = root.getBoundingClientRect();
@@ -97,8 +101,10 @@ export function layoutFigureNumbers(
   const byGroup = new Map<string, Unit>();
   root
     .querySelectorAll<SVGGraphicsElement>("[data-object-id]")
-    .forEach((node, index) => {
+    .forEach((node) => {
       const id = node.getAttribute("data-object-id")!;
+      const number = numbers.get(id);
+      if (number === undefined) return;
       const { targetX, targetY } = numberTarget(node, bounds, scaleX, scaleY);
       const at = { x: targetX, y: targetY };
       const name = groups?.get(id);
@@ -106,20 +112,25 @@ export function layoutFigureNumbers(
       if (unit) {
         unit.ids.push(id);
         unit.targets.push(at);
+        if (number < unit.number) {
+          unit.number = number;
+          unit.id = id;
+        }
         return;
       }
       const made: Unit = {
         id,
         ids: [id],
         group: name,
-        number: index + 1,
+        number,
         targets: [at],
       };
       if (name) byGroup.set(name, made);
       units.push(made);
     });
+  units.sort((a, b) => a.number - b.number);
 
-  const numbers: FigureNumber[] = [];
+  const placed: FigureNumber[] = [];
   units.forEach((unit, index) => {
     const { targetX, targetY } = merged(unit.targets);
     let best = 0,
@@ -136,7 +147,7 @@ export function layoutFigureNumbers(
       x: 14 + (index % 10) * gap,
       y: -margin - gap * (1 + Math.floor(index / 10)),
     };
-    numbers.push({
+    placed.push({
       ...slot,
       id: unit.id,
       ids: unit.ids,
@@ -147,7 +158,7 @@ export function layoutFigureNumbers(
       ...(unit.targets.length > 1 ? { targets: unit.targets } : {}),
     });
   });
-  return numbers;
+  return placed;
 }
 
 /**

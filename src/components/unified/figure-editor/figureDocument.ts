@@ -1,5 +1,9 @@
 import { svgDataUrl } from "@/lib/svgDataUrl";
-import { cleanFigureForSave, prepareFigureSvg } from "./figureSvgEditing";
+import {
+  cleanFigureForSave,
+  prepareFigureSvg,
+  withoutFigureNumbers,
+} from "./figureSvgEditing";
 import type { StudioFigureSaveResult } from "./types";
 
 export { svgDataUrl };
@@ -36,8 +40,9 @@ export function createFigureSaveResult(
   originalImage?: string,
 ): StudioFigureSaveResult {
   return {
+    // 요소 번호(data-n)는 편집 원문에만 — 지면·HWPX 로 나가는 그림에는 안 싣는다
     svg: cleanFigureForSave(svg),
-    dataUrl: svgDataUrl(cleanFigureForSave(rendered)),
+    dataUrl: svgDataUrl(withoutFigureNumbers(cleanFigureForSave(rendered))),
     originalImage,
   };
 }

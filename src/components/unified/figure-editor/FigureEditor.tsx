@@ -20,10 +20,13 @@ import {
   addFigureObject,
   cleanFigureForSave,
   editFigureObject,
+  figureNumbers,
   figureObjects,
+  numberFigureObjects,
   prepareFigureSvg,
   editFigureObjects,
   setFigureGroup,
+  withoutFigureNumbers,
 } from "./figureSvgEditing";
 import {
   figureAngleKinds,
@@ -157,7 +160,7 @@ const TOOLS: { id: Tool; label: string; glyph: string }[] = [
   { id: "text", label: "글자", glyph: "T" },
   { id: "fill", label: "채우기", glyph: "▧" },
 ];
-/** 순서를 바꾼 뒤 알림 — 요소 번호(그리는 차례)가 바뀌므로 몇 번이 몇 번이 됐는지 같이 적는다. */
+/** 순서를 바꾼 뒤 알림 — 요소 번호는 그리는 차례와 떨어져 있어 안 바뀐다(원장님 2026-09-21 «번호 고정»). */
 const ORDER_DONE: Record<OrderMove, string> = {
   front: "맨 앞으로 가져왔습니다",
   forward: "앞으로 가져왔습니다",
@@ -368,6 +371,14 @@ export function FigureEditor({
     originalImage ??
     (!/^data:image\/svg|^\s*<svg/i.test(image) ? image : undefined);
   const objects = useMemo(() => figureObjects(svg), [svg]);
+  // 요소 번호 — 그리는 차례가 아니라 요소에 붙은 고정 번호(원장님 2026-09-21 «순서를 바꿔도 요소 번호가 안바뀌게
+  // 고정시켜»). 번호표·요소 목록·오른쪽 칸 제목·AI 자료 목록·AI 그림 번호표가 모두 이 한 함수를 읽는다.
+  const numbers = useMemo(() => figureNumbers(svg), [svg]);
+  // 요소 목록·묶음 차례는 번호 차례 — 맨 앞으로·맨 뒤로를 해도 목록이 제자리다(`objects` 는 그리는 차례).
+  const listed = useMemo(
+    () => [...objects].sort((a, b) => numbers.get(a.id)! - numbers.get(b.id)!),
+    [objects, numbers],
+  );
   const current = objects.find((o) => o.id === selected);
   // 선을 따라가는 면(채우기 통·안쪽 채우기)은 조절점이 없다 — 모양은 선이 정한다.
   const currentTied = !!current && isTiedFace(current);
@@ -405,8 +416,8 @@ export function FigureEditor({
     .map(Number) ?? [0, 0, 480, 360];
   const viewBoxKey = viewBox.join(" ");
   const groups = useMemo(
-    () => groupFigureObjects(objects, viewBoxKey.split(" ").map(Number)),
-    [objects, viewBoxKey],
+    () => groupFigureObjects(listed, viewBoxKey.split(" ").map(Number)),
+    [listed, viewBoxKey],
   );
   // 각 표시의 종류(직각·예각·둔각) — 요소 목록 단추와 오른쪽 칸 제목이 같은 이름(`objectName`)을 쓴다.
   const angles = useMemo(
@@ -439,7 +450,7 @@ export function FigureEditor({
   // 묶음 편집은 원문(`data-group`)을 고친다 — 되돌리기·저장을 같이 탄다. 목록이 memo 라 콜백은 안 바뀌게 liveSvg 로.
   const editGroups = useCallback((edit: (source: string) => string) => {
     const current = liveSvg.current;
-    const next = edit(current);
+    const next = numberFigureObjects(edit(current));
     if (next === current) return;
     setHistory((h) => ({ past: [...h.past.slice(-59), current], future: [] }));
     liveSvg.current = next;
@@ -520,7 +531,8 @@ export function FigureEditor({
   );
   const commit = (source: string) => {
     // 선이 바뀌었으면 그 선을 따라가는 면도 같은 한 걸음에(되돌리기 한 번에 같이 돌아간다).
-    const next = syncFigureFaces(source).svg;
+    // 새 요소(그리기·붙여넣기·AI 가 더한 것)는 이 걸음에 번호를 적는다 — 마지막 번호 다음(`numberFigureObjects`).
+    const next = numberFigureObjects(syncFigureFaces(source).svg);
     if (next === svg) return;
     setHistory((h) => ({ past: [...h.past.slice(-59), svg], future: [] }));
     setSvg(next);
@@ -645,12 +657,10 @@ export function FigureEditor({
     // 맨 뒤로 보내면 «뒤로»·«맨 뒤로»가 바로 꺼진다 — 누른 단추에 있던 초점이 <body> 로 떨어져 이어 누른
     // Ctrl+Z 가 «편집기 밖»으로 걸러졌다(브라우저 실측 2026-09-21). 캔버스로 돌려 둔다(단축키 길과 같다).
     surface.current?.focus({ preventScroll: true });
-    const number = (source: typeof objects) =>
-      source.findIndex((o) => o.id === selected) + 1;
     setClipboardNotice(
-      selected
-        ? `${ORDER_DONE[move]}. ${number(objects)}번이 ${number(figureObjects(next))}번이 되었습니다.`
-        : `${selectedIds.length}개 요소를 ${ORDER_DONE[move]}.`,
+      selectedIds.length > 1
+        ? `${selectedIds.length}개 요소를 ${ORDER_DONE[move]}.`
+        : `${ORDER_DONE[move]}.`,
     );
   };
   // «반대쪽으로 뒤집기» — 곡선·꺾은선 하나(와 뒤집기가 같이 옮기는 값 글자)를 골랐을 때만 선다. 뒤집은 뒤에도
@@ -789,8 +799,17 @@ export function FigureEditor({
       setObjectNumbers((previous) =>
         retargetFigureNumbers(root, previous, ids),
       );
-    else setObjectNumbers(layoutFigureNumbers(root, groupNames));
-  }, [svg, displaySvg, zoom, available, showNumbers, frozenCanvas, groupNames]);
+    else setObjectNumbers(layoutFigureNumbers(root, numbers, groupNames));
+  }, [
+    svg,
+    displaySvg,
+    zoom,
+    available,
+    showNumbers,
+    frozenCanvas,
+    groupNames,
+    numbers,
+  ]);
   useLayoutEffect(() => {
     const node = viewport.current;
     if (!node) return;
@@ -1277,6 +1296,12 @@ export function FigureEditor({
     drag.current = null;
     releaseCanvas(d);
     if (d?.moved && d.original !== liveSvg.current) {
+      // 끌어 그린 새 요소도 놓는 걸음에 번호를 적는다(다른 편집은 `commit` 이 적는다)
+      const numbered = numberFigureObjects(liveSvg.current);
+      if (numbered !== liveSvg.current) {
+        liveSvg.current = numbered;
+        setSvg(numbered);
+      }
       setHistory((h) => ({
         past: [...h.past.slice(-59), d.original],
         future: [],
@@ -1311,7 +1336,8 @@ export function FigureEditor({
     try {
       const result = await onRedraw({
         originalImage: original,
-        svg: cleanFigureForSave(svg),
+        // 요소 번호는 편집기 안의 표지 — 새로 그려 달라는 AI 에게는 안 보낸다(베껴 오면 번호가 겹친다)
+        svg: withoutFigureNumbers(cleanFigureForSave(svg)),
         instructions,
         signal: controller.signal,
       });
@@ -1334,8 +1360,8 @@ export function FigureEditor({
     }
   };
   // «요청대로 고치기»(원장님 2026-09-19) — 지금 그림을 새로 그리지 않는다. AI 가 돌려준 수정 명령만 편집기 편집 함수로
-  // 적용해 한 걸음으로 넘긴다(되돌리기 한 번). 번호는 요청을 보낼 때의 그림 기준이라, 기다리는 동안 그림이 바뀌면
-  // (면을 만들면 뒤 요소 번호가 하나씩 밀린다) 적용하지 않는다.
+  // 적용해 한 걸음으로 넘긴다(되돌리기 한 번). 명령의 좌표·점 이름은 요청을 보낼 때의 그림 기준이라, 기다리는 동안
+  // 그림이 바뀌면 적용하지 않는다. 번호는 고정이라(`figureNumbers`) 순서를 바꾸거나 면을 만들어도 안 밀린다.
   const requestEdit = async () => {
     if (!onEdit || busy || !instructions.trim()) return;
     const controller = new AbortController();
@@ -1353,7 +1379,9 @@ export function FigureEditor({
         figureSvg: await typesetFigureSvg(cleanFigureForSave(sent)),
         width: root?.clientWidth || viewBox[2],
         height: root?.clientHeight || viewBox[3],
-        numbers: root ? layoutFigureNumbers(root) : [],
+        // 그림 위 번호표는 AI 자료 목록(`describeFigureForEdit` 의 n)과 **같은 고정 번호**라야 한다 —
+        // 어긋나면 AI 가 딴 요소를 고친다(지시문 figure-edit-prompt.ts «번호가 그림 위 번호표와 같다»).
+        numbers: root ? layoutFigureNumbers(root, figureNumbers(sent)) : [],
       });
       if (controller.signal.aborted) return;
       const result = await onEdit({
@@ -1919,7 +1947,8 @@ export function FigureEditor({
               </button>
             </div>
             <FigureObjectList
-              objects={objects}
+              objects={listed}
+              numbers={numbers}
               groups={groups}
               angles={angles}
               selectedIds={selectedIds}
@@ -1944,7 +1973,7 @@ export function FigureEditor({
               {selectedIds.length > 1
                 ? `${selectedIds.length}개 요소 선택`
                 : current
-                  ? `${objects.indexOf(current) + 1} · ${objectName(current, angles)} 편집`
+                  ? `${numbers.get(current.id)} · ${objectName(current, angles)} 편집`
                   : tool === "text"
                     ? "새 글자"
                     : tool === "fill"
