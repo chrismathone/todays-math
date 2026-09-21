@@ -71,7 +71,7 @@ PAGE ORIENTATION — set "upsideDown" on the top-level object. Some scans come i
 블록 타입 4 가지 (모든 블록은 \`rows\` 필드 필수 — 비-table 은 \`[]\`):
   - **text** — 한국어 산문. 박스 라벨 \`<보기>\`/\`<조건>\`/\`<상자>\` 머리, \`[그림N]\` 마커, inline \`<svg>…</svg>\`, \`__강조__\` 를 value 안에 둘 수 있음.
   - **equation** — 인라인 수식 LaTeX (value 는 \`$\` 없이 순수 LaTeX).
-  - **equation_block** — 독립행/디스플레이 수식 LaTeX.
+  - **equation_block** — 독립행/디스플레이 수식 LaTeX. 원본에서 그 줄에 수식만 홀로 있을 때만 (아래 4a). 줄바꿈으로 줄머리에 왔을 뿐 같은 줄에 글이 이어지면 equation.
   - **table** — 격자 표. 셀은 \`rows\` (2D 문자열 배열, rows[0]=헤더 행), value="".
 
 🔑 **핵심 분리 규칙 (반드시 지킬 것)**:
@@ -203,6 +203,14 @@ RULES FOR EACH "items" ENTRY
    - If a page contains "다음 중 옳은 것은?" plus 5 options spread across multiple lines, the body is "다음 중 옳은 것은?" and the 5 options follow per rule 4b.
 
    4a. **Math → equation blocks (NOT text, NOT \$-wrapped)**: every variable, number, fraction, and formula is its OWN equation block — type=equation (inline) or type=equation_block (display/standalone line). The value is *pure LaTeX with NO \$ delimiters* (renderer adds them). Never leave raw "x", "y", "k", "2x²", or any number inside a text block. (Exception that STAYS in a text block: ①②③④⑤, ㄱㄴㄷㄹㅁ, and sub-numbers like (1), (2).)
+
+       🚨 **equation 과 equation_block 가르기 — 한국 시험지는 인라인이 기본** (사용자 보고: 한 문장 안의 수식이 지면에서 혼자 한 줄을 차지함):
+       - equation_block 은 원본에서 **그 줄에 수식만 홀로 인쇄되어 있을 때만** 쓴다 — 보통 가운데 정렬이고, 앞 문장이 수식 앞 줄에서 끝나고 수식 다음 줄에서 이어진다.
+       - 줄이 꽉 차서 **줄바꿈으로 줄머리(또는 줄 끝)에 온 수식**은 같은 줄에 글이 이어지므로 equation (인라인) 이다. 줄머리에 왔다는 것만으로 블록으로 올리지 말 것.
+         · 원본: "…에 대하여 이차방정식⏎x²−ax+4=0의 해가 x=b±√c 일 때, …" (둘째 줄 머리의 수식 바로 뒤에 같은 줄로 "의 해가"가 이어진다)
+         · 잘못됨: [{"type":"text","value":"에 대하여 이차방정식"}, {"type":"equation_block","value":"x^2-ax+4=0"}, {"type":"text","value":"의 해가 "}]  ← 지면에서 수식이 혼자 한 줄을 차지한다
+         · 올바름: [{"type":"text","value":"에 대하여 이차방정식 "}, {"type":"equation","value":"x^2-ax+4=0"}, {"type":"text","value":"의 해가 "}]
+       - 판단이 서지 않으면 equation (인라인).
 
        🚨 **GOLDEN RULE — LaTeX 는 오직 equation/equation_block value 안에만**:
        - 모든 backslash 명령 (\\frac, \\displaystyle, \\left, \\right, \\times, \\sum, \\int, etc.) 은 반드시 equation/equation_block 블록의 value 다. text 블록 value 에 LaTeX 명령을 절대 넣지 말 것.
