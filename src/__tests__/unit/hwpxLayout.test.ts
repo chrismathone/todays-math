@@ -161,3 +161,91 @@ describe("HWPX 격자 칸 표시 — writer 가 격자 한 행을 한 문단으�
     expect(mark(root.querySelector("#b")!)?.gridId).toBe(2);
   });
 });
+
+describe("HWPX 친 띄어쓰기 — 고정 공백 자리에서 글 조각을 끊는다", () => {
+  const original = Object.getOwnPropertyDescriptor(
+    Range.prototype,
+    "getBoundingClientRect",
+  );
+  afterEach(() => {
+    vi.restoreAllMocks();
+    document.body.replaceChildren();
+    if (original)
+      Object.defineProperty(Range.prototype, "getBoundingClientRect", original);
+    else Reflect.deleteProperty(Range.prototype, "getBoundingClientRect");
+  });
+
+  /**
+   * 편집기는 친 여러 칸을 «고정 공백(U+00A0) × (n−1) + 보통 공백»으로 싣는다(트랙 42). 수집기가 글 조각을
+   * `\s+` → 한 칸으로 접으면(JS `\s` 는 U+00A0 포함) 지면의 네 칸이 한글에서 한 칸이 됐다.
+   * 고정 공백에서 조각을 끊으면 writer 가 그 간격을 미리보기 x 의 탭 멈춤으로 옮긴다.
+   */
+  it("«갑    을»(친 네 칸)은 «갑»·«을» 두 조각 — 사이는 미리보기 간격 그대로", async () => {
+    Object.defineProperty(document, "fonts", {
+      configurable: true,
+      value: { ready: Promise.resolve() },
+    });
+    vi.spyOn(HTMLElement.prototype, "getBoundingClientRect").mockImplementation(
+      function (this: HTMLElement) {
+        if (this.matches("[data-unified-paper]"))
+          return new DOMRect(0, 0, 794, 1123);
+        return new DOMRect(0, 0, 700, 20);
+      },
+    );
+    // 글자마다 8px — 조각의 자리를 셀 수 있게 한다(jsdom 은 배치를 안 한다).
+    Object.defineProperty(Range.prototype, "getBoundingClientRect", {
+      configurable: true,
+      value: function (this: Range) {
+        return new DOMRect(
+          this.startOffset * 8,
+          0,
+          (this.endOffset - this.startOffset) * 8,
+          16,
+        );
+      },
+    });
+    const source = document.createElement("div");
+    source.innerHTML = `<section data-unified-paper><p>갑\u00A0\u00A0\u00A0 을</p></section>`;
+    document.body.append(source);
+    const page = (await collectHwpxLayout(source)).pages[0]!;
+    const texts = page.objects.filter((object) => object.type === "text");
+    expect(texts.map((object) => [object.text, object.x])).toEqual([
+      ["갑", 0],
+      ["을", 40],
+    ]);
+  });
+
+  it("보통 공백 한 칸은 예전 그대로 한 조각", async () => {
+    Object.defineProperty(document, "fonts", {
+      configurable: true,
+      value: { ready: Promise.resolve() },
+    });
+    vi.spyOn(HTMLElement.prototype, "getBoundingClientRect").mockImplementation(
+      function (this: HTMLElement) {
+        if (this.matches("[data-unified-paper]"))
+          return new DOMRect(0, 0, 794, 1123);
+        return new DOMRect(0, 0, 700, 20);
+      },
+    );
+    Object.defineProperty(Range.prototype, "getBoundingClientRect", {
+      configurable: true,
+      value: function (this: Range) {
+        return new DOMRect(
+          this.startOffset * 8,
+          0,
+          (this.endOffset - this.startOffset) * 8,
+          16,
+        );
+      },
+    });
+    const source = document.createElement("div");
+    source.innerHTML = `<section data-unified-paper><p>갑 을</p></section>`;
+    document.body.append(source);
+    const page = (await collectHwpxLayout(source)).pages[0]!;
+    expect(
+      page.objects
+        .filter((object) => object.type === "text")
+        .map((object) => object.text),
+    ).toEqual(["갑 을"]);
+  });
+});
