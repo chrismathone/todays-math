@@ -115,8 +115,16 @@ import {
   type MirrorAxis,
 } from "./figureMirror";
 import {
+  measureOrderBoxes,
+  ORDER_BLOCKED,
+  orderBlock,
+  orderFigureSelection,
+  type OrderMove,
+} from "./figureOrder";
+import {
   FigureAlignRow,
   FigureFitRow,
+  FigureOrderRow,
   FigureRotateRow,
 } from "./FigureRotateRow";
 import { flipFigureCurve } from "./figureFlip";
@@ -149,6 +157,27 @@ const TOOLS: { id: Tool; label: string; glyph: string }[] = [
   { id: "text", label: "글자", glyph: "T" },
   { id: "fill", label: "채우기", glyph: "▧" },
 ];
+/** 순서를 바꾼 뒤 알림 — 요소 번호(그리는 차례)가 바뀌므로 몇 번이 몇 번이 됐는지 같이 적는다. */
+const ORDER_DONE: Record<OrderMove, string> = {
+  front: "맨 앞으로 가져왔습니다",
+  forward: "앞으로 가져왔습니다",
+  backward: "뒤로 보냈습니다",
+  back: "맨 뒤로 보냈습니다",
+};
+/** 한 칸 옮길 곳이 없을 때 — 겹치는 것 사이의 한 칸이라, 안 겹치는 것만 남았으면 옮기지 않는다. */
+const ORDER_NONE: Partial<Record<OrderMove, string>> = {
+  forward: "앞에 겹친 요소가 없습니다.",
+  backward: "뒤에 겹친 요소가 없습니다.",
+};
+/** 순서 단축키 — ppt 와 같다(Ctrl+] 앞으로 · Ctrl+[ 뒤로, Shift 를 더하면 맨 앞·맨 뒤). 자판 자리(code)가 먼저. */
+const ORDER_KEYS: Record<string, "up" | "down"> = {
+  BracketRight: "up",
+  "]": "up",
+  "}": "up",
+  BracketLeft: "down",
+  "[": "down",
+  "{": "down",
+};
 /** 다각형 도구가 선의 끝점·꼭짓점·교점에 달라붙는 거리(화면 px) */
 const SNAP_PX = 8;
 /** 노란 점이 직사각형·이등변·직각에 붙는 거리(화면 px) */
@@ -586,6 +615,41 @@ export function FigureEditor({
   const spread = (axis: SpreadAxis) => {
     commit(spreadFigureSelection(svg, selectedIds, axis, alignOptions()));
   };
+  // 순서 — 맨 앞으로·앞으로·뒤로·맨 뒤로(원장님 2026-09-21 «ppt 처럼», 되돌리기 한 걸음). 묶음은 한 덩어리.
+  // «한 칸»은 겹치는 것 사이의 한 칸이라 캔버스에서 요소마다 상자를 잰다(figureOrder.ts). 번호가 곧 그리는
+  // 차례라 옮기면 번호가 바뀐다 — 몇 번이 몇 번이 됐는지 알린다.
+  const orderBlocked = useMemo(
+    () => ({
+      front: orderBlock(objects, selectedIds, "front"),
+      back: orderBlock(objects, selectedIds, "back"),
+    }),
+    [objects, selectedIds],
+  );
+  const reorder = (move: OrderMove) => {
+    if (!selectedIds.length) return;
+    const blocked = orderBlock(objects, selectedIds, move);
+    if (blocked) {
+      setClipboardNotice(blocked === ORDER_BLOCKED.none ? "" : blocked);
+      return;
+    }
+    const root = canvas.current?.querySelector("svg");
+    const next = orderFigureSelection(svg, selectedIds, move, {
+      groups: groupNames,
+      boxes: root ? measureOrderBoxes(root) : undefined,
+    });
+    if (next === svg) {
+      setClipboardNotice(ORDER_NONE[move] ?? "");
+      return;
+    }
+    commit(next);
+    const number = (source: typeof objects) =>
+      source.findIndex((o) => o.id === selected) + 1;
+    setClipboardNotice(
+      selected
+        ? `${ORDER_DONE[move]}. ${number(objects)}번이 ${number(figureObjects(next))}번이 되었습니다.`
+        : `${selectedIds.length}개 요소를 ${ORDER_DONE[move]}.`,
+    );
+  };
   // «반대쪽으로 뒤집기» — 곡선·꺾은선 하나(와 뒤집기가 같이 옮기는 값 글자)를 골랐을 때만 선다. 뒤집은 뒤에도
   // 선택이 곡선과 그 글자라 다시 누르면 제자리로 온다. 여럿·묶음·함수 그래프는 세우지 않는다.
   // 끌 이유는 `flipFigureCurve` 가 준다(AI «요청대로 고치기»의 flip 과 같은 이유).
@@ -790,6 +854,23 @@ export function FigureEditor({
           // 묶으면 요소 목록이 다시 그려져 **눌렀던 요소 단추가 사라진다** — 초점이 <body> 로 떨어져
           // 바로 이어 누른 Ctrl+Shift+G 가 «편집기 안»이 아니라고 걸러졌다(브라우저 실측 2026-09-21).
           // jsdom 은 클릭으로 초점이 옮겨지지 않아 이 자리가 안 보인다. 캔버스로 초점을 돌려 둔다.
+          surface.current?.focus();
+        } else if (ORDER_KEYS[e.code] ?? ORDER_KEYS[key]) {
+          // 순서 — ppt 와 같다: Ctrl+] 앞으로 · Ctrl+[ 뒤로 · Shift 를 더하면 맨 앞으로·맨 뒤로(원장님 2026-09-21).
+          // 맥 크롬의 Cmd+[ 는 «뒤로 가기»라 반드시 막는다. 자판 자리(code)가 먼저 — Shift 를 누르면 글자가 { } 로 바뀐다.
+          e.preventDefault();
+          const up = (ORDER_KEYS[e.code] ?? ORDER_KEYS[key]) === "up";
+          reorder(
+            up
+              ? e.shiftKey
+                ? "front"
+                : "forward"
+              : e.shiftKey
+                ? "back"
+                : "backward",
+          );
+          // 차례가 바뀌면 요소 목록 단추가 다시 놓인다 — 옮겨진 단추에 있던 초점이 <body> 로 떨어지면
+          // 이어 누른 단축키가 «편집기 안»이 아니라고 걸러진다(Ctrl+G 와 같은 자리). 캔버스로 돌려 둔다.
           surface.current?.focus();
         }
         // C/X/V는 브라우저의 clipboard 이벤트에서 처리해 OS 클립보드와 호환한다.
@@ -1605,6 +1686,13 @@ export function FigureEditor({
                 <div>
                   {modKey()}+A 전체 선택 · {modKey()}+D 복제
                 </div>
+                <div>
+                  {modKey()}+G 묶기 · {modKey()}+Shift+G 묶음 해제
+                </div>
+                <div>
+                  {modKey()}+] 앞으로 · {modKey()}+[ 뒤로 · Shift를 더하면 맨
+                  앞으로 / 맨 뒤로
+                </div>
                 <div>Shift+클릭 여러 요소 선택</div>
                 <div>
                   선분·화살표 그리기 / 끝점 조절: Shift로 수평·수직·45° 고정
@@ -1907,6 +1995,9 @@ export function FigureEditor({
                 onAlign={align}
                 spread={{ blocked: spreadBlocked, onSpread: spread }}
               />
+            )}
+            {selectedIds.length > 0 && (
+              <FigureOrderRow blocked={orderBlocked} onOrder={reorder} />
             )}
             <FigureFitRow onFit={fitFrame} />
             {current ? (
