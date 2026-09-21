@@ -383,7 +383,7 @@ export async function collectHwpxLayout(
           // 아래 `\s+` 접기는 U+00A0 도 접어 지면의 네 칸이 한글에서 한 칸이 됐다(트랙 42 §7).
           // 끊으면 writer 가 두 조각 사이를 미리보기 x 의 탭 멈춤(좁으면 공백)으로 옮긴다 — 공백 글자로
           // 채우면 한글 글꼴 폭만큼 밀린다(`write_row` 주석).
-          if (char === " ") {
+          if (char === "\u00A0") {
             flush();
             afterTyped = true;
             offset += char.length;
