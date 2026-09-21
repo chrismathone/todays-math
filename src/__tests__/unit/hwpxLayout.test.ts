@@ -99,3 +99,65 @@ describe("HWPX body layout", () => {
     },
   );
 });
+
+describe("HWPX 격자 칸 표시 — writer 가 격자 한 행을 한 문단으로 묶게", () => {
+  afterEach(() => {
+    vi.restoreAllMocks();
+    document.body.replaceChildren();
+  });
+
+  /** 칸마다 data-top/left 로 자리를 준다 — jsdom 은 배치를 안 한다. */
+  function mount(html: string) {
+    const root = document.createElement("section");
+    root.innerHTML = html;
+    document.body.append(root);
+    vi.spyOn(Element.prototype, "getBoundingClientRect").mockImplementation(
+      function (this: Element) {
+        const el = this as HTMLElement;
+        const top = Number(el.dataset.top ?? 0);
+        const left = Number(el.dataset.left ?? 0);
+        return new DOMRect(left, top, 100, 20);
+      },
+    );
+    return root;
+  }
+
+  it("같은 위쪽 끝의 칸은 한 행, 행 안 차례는 문서 차례 — 분수로 기준선이 달라도", async () => {
+    const { gridCellMarks } = await import("@/lib/export/hwpxLayout");
+    const root = mount(`
+      <div data-hwpx-grid>
+        <div data-top="100" data-left="0"><span id="ga">(가)</span></div>
+        <div data-top="100" data-left="160"><span id="na">(나)</span></div>
+        <div data-top="140" data-left="0"><span id="da">(다)</span></div>
+        <div data-top="140.6" data-left="160"><span id="ra">(라)</span></div>
+      </div>
+      <p id="outside">격자 밖</p>`);
+    const mark = gridCellMarks(root);
+    const at = (id: string) => mark(root.querySelector(`#${id}`)!);
+    expect(at("ga")).toEqual({ gridId: 1, gridRow: 0, gridCol: 0 });
+    expect(at("na")).toEqual({ gridId: 1, gridRow: 0, gridCol: 1 });
+    expect(at("da")).toEqual({ gridId: 1, gridRow: 1, gridCol: 0 });
+    expect(at("ra")).toEqual({ gridId: 1, gridRow: 1, gridCol: 1 });
+    expect(at("outside")).toBeUndefined();
+  });
+
+  it("표시 없는 격자(쪽 본문 2단 등)는 칸으로 보지 않는다", async () => {
+    const { gridCellMarks } = await import("@/lib/export/hwpxLayout");
+    const root = mount(`
+      <div class="measure-body" style="display:grid">
+        <div data-top="0"><span id="a">1.</span></div>
+        <div data-top="0" data-left="400"><span id="b">2.</span></div>
+      </div>`);
+    expect(gridCellMarks(root)(root.querySelector("#a")!)).toBeUndefined();
+  });
+
+  it("격자마다 번호가 따로다 — 둘째 격자는 gridId 2", async () => {
+    const { gridCellMarks } = await import("@/lib/export/hwpxLayout");
+    const root = mount(`
+      <div data-hwpx-grid><div data-top="0"><i id="a">ㄱ</i></div></div>
+      <div data-hwpx-grid><div data-top="50"><i id="b">①</i></div></div>`);
+    const mark = gridCellMarks(root);
+    expect(mark(root.querySelector("#a")!)?.gridId).toBe(1);
+    expect(mark(root.querySelector("#b")!)?.gridId).toBe(2);
+  });
+});

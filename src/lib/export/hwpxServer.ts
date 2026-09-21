@@ -30,6 +30,11 @@ const object = z
     baseline: position.optional(),
     lineHeight: coordinate.optional(),
     blockId: z.number().int().nonnegative().optional(),
+    // 지면 격자(〈보기〉 2·3열·선택지)의 칸 — writer 가 격자 한 행을 한 문단으로, 칸 차례대로 묶는다.
+    // ⚠️ 스키마에 없는 칸은 zod 가 **말없이 버린다** — 여기서 빠지면 수집기가 붙여도 writer 에 안 간다.
+    gridId: z.number().int().nonnegative().optional(),
+    gridRow: z.number().int().nonnegative().optional(),
+    gridCol: z.number().int().nonnegative().optional(),
   })
   .superRefine((item, ctx) => {
     const key =

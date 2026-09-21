@@ -18,6 +18,55 @@ export interface HwpxObject {
   baseline?: number;
   lineHeight?: number;
   blockId?: number;
+  /** 지면 격자(`[data-hwpx-grid]`)의 칸 — writer 가 격자 한 행을 한 문단으로 묶는다. */
+  gridId?: number;
+  gridRow?: number;
+  gridCol?: number;
+}
+
+export interface HwpxGridCell {
+  gridId: number;
+  gridRow: number;
+  gridCol: number;
+}
+
+/**
+ * 격자 칸 표시 — 지면의 `[data-hwpx-grid]` 바로 아래 자식이 한 칸이다.
+ *
+ * 격자는 칸이 **위쪽 정렬**이라 한 칸에 분수가 들면 그 칸의 기준선만 내려간다. writer 가 기준선으로만
+ * 줄을 세우면 한 행이 칸마다 갈라지고 y 순으로 뒤섞인다(원장님 9번: (바)가 (마)보다 먼저). 그래서
+ * 행은 **칸의 위쪽 끝**(같은 행의 칸은 위쪽이 같다)으로, 칸 차례는 **그 행 안의 문서 차례**로 적는다.
+ */
+export function gridCellMarks(root: Element) {
+  const grids = new Map<Element, number>();
+  const cells = new Map<Element, HwpxGridCell>();
+  const markGrid = (grid: Element) => {
+    const gridId = grids.size + 1;
+    grids.set(grid, gridId);
+    const children = [...grid.children].filter(
+      (child) => child.getBoundingClientRect().width > 0,
+    );
+    const tops: number[] = [];
+    for (const child of children) {
+      const top = child.getBoundingClientRect().top;
+      if (!tops.some((known) => Math.abs(known - top) <= 1)) tops.push(top);
+    }
+    tops.sort((a, b) => a - b);
+    const used = new Map<number, number>();
+    for (const child of children) {
+      const top = child.getBoundingClientRect().top;
+      const gridRow = tops.findIndex((known) => Math.abs(known - top) <= 1);
+      const gridCol = used.get(gridRow) ?? 0;
+      used.set(gridRow, gridCol + 1);
+      cells.set(child, { gridId, gridRow, gridCol });
+    }
+  };
+  return (el: Element): HwpxGridCell | undefined => {
+    const cell = el.closest("[data-hwpx-grid] > *");
+    if (!cell || !root.contains(cell)) return undefined;
+    if (!grids.has(cell.parentElement!)) markGrid(cell.parentElement!);
+    return cells.get(cell);
+  };
 }
 export interface HwpxPage {
   objects: HwpxObject[];
@@ -118,6 +167,7 @@ export async function collectHwpxLayout(
         decorations: HwpxObject[] = [],
         contents: HwpxObject[] = [];
       const blocks = new Map<Element, number>();
+      const gridCell = gridCellMarks(page);
       const box = (rect: DOMRect) => ({
         x: rect.x - pageRect.x,
         y: rect.y - pageRect.y,
@@ -138,6 +188,7 @@ export async function collectHwpxLayout(
         }
         if (!blocks.has(block)) blocks.set(block, blocks.size + 1);
         return {
+          ...gridCell(el),
           blockId: blocks.get(block),
           lineHeight: parseFloat(s.lineHeight) || parseFloat(s.fontSize) * 1.5,
           font: fontName(s.fontFamily),
@@ -273,7 +324,12 @@ export async function collectHwpxLayout(
             rect.width,
             rect.height,
           );
-          contents.push({ type: "image", ...box(rect), imageId });
+          contents.push({
+            type: "image",
+            ...box(rect),
+            ...gridCell(el),
+            imageId,
+          });
         }
       }
       const walker = document.createTreeWalker(page, NodeFilter.SHOW_TEXT);

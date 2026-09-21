@@ -165,7 +165,13 @@ def build_parts(payload):
             placement(node,item)
         else:raise ValueError('지원하지 않는 출력 요소입니다.')
 
-    def make_rows(items):
+    def finish_row(row):
+        row['y']=min(o['y'] for o in row['items']);row['bottom']=max(o['y']+o['h'] for o in row['items'])
+        row['x']=min(o['x'] for o in row['items']);row['right']=max(o['x']+o['w'] for o in row['items'])
+        row['h']=row['bottom']-row['y']
+        return row
+
+    def baseline_rows(items):
         rows=[]
         for item in sorted(items,key=lambda o:(o.get('baseline',o['y']+o['h']*.8),o['x'])):
             baseline=item.get('baseline',item['y']+item['h']*.8)
@@ -179,10 +185,29 @@ def build_parts(payload):
             target['items'].append(item)
         for row in rows:
             row['items'].sort(key=lambda o:o['x'])
-            row['y']=min(o['y'] for o in row['items']);row['bottom']=max(o['y']+o['h'] for o in row['items'])
-            row['x']=min(o['x'] for o in row['items']);row['right']=max(o['x']+o['w'] for o in row['items'])
-            row['h']=row['bottom']-row['y']
+            finish_row(row)
         return sorted(rows,key=lambda r:r['y'])
+
+    def grid_rows(items):
+        # A preview grid (box items in 2/3 columns, choice grids) top-aligns its cells, so a
+        # fraction in one cell drops that cell's baseline a few px below its neighbour. Grouping
+        # by baseline alone split one grid row into per-cell paragraphs and ordered them by y —
+        # (바) came before (마). The collector tags each cell; one grid row is one paragraph, in
+        # cell (= source) order, and the cells' own lines pair up by their order in the cell.
+        groups={}
+        for item in items:groups.setdefault((item['gridId'],item['gridRow']),{}).setdefault(item.get('gridCol',0),[]).append(item)
+        rows=[]
+        for cells in groups.values():
+            per_cell=[baseline_rows(cells[col]) for col in sorted(cells)]
+            for depth in range(max(len(lines) for lines in per_cell)):
+                merged=[item for lines in per_cell if depth<len(lines) for item in lines[depth]['items']]
+                rows.append(finish_row({'baseline':max(o.get('baseline',o['y']+o['h']*.8) for o in merged),'items':merged}))
+        return rows
+
+    def make_rows(items):
+        gridded=[o for o in items if isinstance(o.get('gridId'),int) and isinstance(o.get('gridRow'),int)]
+        plain=[o for o in items if not (isinstance(o.get('gridId'),int) and isinstance(o.get('gridRow'),int))]
+        return sorted(baseline_rows(plain)+grid_rows(gridded),key=lambda r:r['y'])
 
     def write_row(parent,row,left=0,before=0,height=None,column_break=False):
         # Wide gaps (choice grids, aligned fields) become tab stops at the preview position.
