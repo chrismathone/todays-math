@@ -28,6 +28,7 @@
  * 규칙별 근거와 실측치는 `docs/planning/tracks/reports/render-b-box.md`.
  */
 import { findSubQuestionMarkers } from "@/lib/math/subQuestion";
+import { parseBoxHeader, type BoxColumns } from "@/lib/math/boxHeader";
 
 /** 상자 라벨 — 정본 `blocksToMarkdown.ts` 32행 BOX_MARKERS 와 같은 셋. */
 export type BoxLabel = "보기" | "조건" | "상자";
@@ -47,6 +48,13 @@ export interface BoxSegment {
   lead: string;
   /** 항목 본문. 마커(`ㄱ.`, `∘`)를 **포함한** 원문 — 임의로 지우지 않는다. */
   items: string[];
+  /** 원문 머리에 **적힌** 열 수(`<보기:cols=N>`·옛 `<보기N>`). 안 적혔으면 없다. */
+  cols?: BoxColumns;
+  /**
+   * 인용 상자(`> <보기>` …) — 편집기·인식이 줄까지 적어 둔 원문이다. 칸은 줄이고(`boxCells`),
+   * 열 수를 폭으로 **추정하지 않는다**(검수 카드와 같은 규칙, 트랙 46). OCR 흐름 글은 이것이 없다.
+   */
+  native?: boolean;
 }
 
 export interface TextSegment {
@@ -885,8 +893,13 @@ export function splitBoxSegments(raw: string): ContentSegment[] {
   // following question/score cannot be swallowed by the final condition item.
   // Verify the marker on a math-masked copy, but read line boundaries from the
   // source: masking a multiline equation also masks its quote prefixes/newlines.
+  //
+  // 트랙 46: the quote's own lines are the cells (`boxCells`) and the column count is the one
+  // written in its header (`<보기:cols=N>`, old `<보기N>`) — the same rule the review card uses.
+  // Re-splitting a quote by item markers made the paper disagree with the review card (원장님 9번:
+  // two lines on the card, six items in two columns on paper).
   const quotedBoxes =
-    /^[ \t]*>[ \t]*<(보기|조건|상자)>([^\n]*)(?:\n[ \t]*>[^\n]*)*/gm;
+    /^[ \t]*>[ \t]*\\?<(보기|조건|상자)(?::cols=(?:auto|[1-3])|[1-3])?\\?>([^\n]*)(?:\n[ \t]*>[^\n]*)*/gm;
   const quoteProbe = maskMathInPlace(text);
   for (const quoted of text.matchAll(quotedBoxes)) {
     const start = quoted.index!;
@@ -897,9 +910,30 @@ export function splitBoxSegments(raw: string): ContentSegment[] {
       continue;
     const end = start + quoted[0].length;
     const contents = text.slice(start, end).replace(/^[ \t]*>[ \t]?/gm, "");
+    const header = parseBoxHeader(contents.trimStart())!;
+    const firstBreak = contents.indexOf("\n");
+    const lead = (firstBreak < 0 ? contents : contents.slice(0, firstBreak))
+      .trimStart()
+      .slice(header.length)
+      .trim();
+    const items = boxCells(
+      firstBreak < 0 ? "" : contents.slice(firstBreak + 1),
+      header.cols ?? 1,
+    );
+    const box: BoxSegment | null =
+      items.length > 0 || hasMeaningfulContent(lead)
+        ? {
+            kind: "box",
+            label: header.label as BoxLabel,
+            lead,
+            items,
+            native: true,
+            ...(header.cols ? { cols: header.cols } : {}),
+          }
+        : null;
     return [
       ...splitBoxSegments(text.slice(0, start)),
-      ...splitBoxSegments(contents),
+      ...(box ? [box] : splitBoxSegments(contents)),
       ...splitBoxSegments(text.slice(end)),
     ].filter(
       (segment) => segment.kind !== "text" || segment.text.trim() !== "",
