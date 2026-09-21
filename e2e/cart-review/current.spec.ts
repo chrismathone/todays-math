@@ -262,6 +262,22 @@ const footerLayout = (page: Page, n: number) =>
         반영이_오른쪽: !a || !b || b.left >= a.right,
         /** 덩어리의 오른쪽 끝(«반영», 없으면 표시)이 바닥 줄 오른쪽 끝에 붙었나. */
         오른쪽끝: !!last && Math.abs(box.right - last.right) <= 1,
+        /**
+         * 표시와 같은 줄의 칸들이 «출력» 칸 다음부터 빈틈 없이 붙었나 — 단추(해설 생성·검수 완료)가
+         * 빈 자리 가운데로 뜨지 않고 표시 곁 오른쪽에 모인다(원장님 2026-09-21 «권장안대로»).
+         */
+        단추_붙음: (() => {
+          if (!a) return true;
+          const label = footer.querySelector(":scope > label");
+          const row = items
+            .filter(({ child }) => child !== label)
+            .map(({ rect }) => rect)
+            .filter((rect) => rect.top < a.bottom && a.top < rect.bottom)
+            .sort((x, y) => x.left - y.left);
+          return row.every(
+            (rect, i) => i === 0 || rect.left - row[i - 1].right <= gap + 1,
+          );
+        })(),
         /** 표시 아래 줄에서 시작하는 칸이 없다 — 꺾이면 덩어리가 마지막 줄로 간다. */
         마지막줄: !!a && others.every((rect) => rect.top < a.bottom),
         /** 짜임 — 표시와 «반영»이 한 덩어리이고, 그 덩어리가 바닥 줄의 맨 끝 칸. */
@@ -379,6 +395,7 @@ test("③ 에서 담으면 카드마다 «담음» · 목록으로 보고 뺀다
       오른쪽끝: true,
       마지막줄: true,
       바닥줄_맨끝칸: true,
+      단추_붙음: true,
     });
     await page.screenshot({
       path: testInfo.outputPath(`담은뒤-3단계-${width}.png`),
@@ -610,12 +627,14 @@ test("검수 완료만 눌러도 «담음» 그대로 — 고치면 «반영 전
         오른쪽끝: true,
         마지막줄: true,
         바닥줄_맨끝칸: true,
+        단추_붙음: true,
       });
       // 자가 눈이 멀지 않았는지 ① — 덩어리를 풀면(안 A 전 모양) 같은 자가 떨어짐을 잰다.
-      // 1516 잠금 안은 옛 모양도 한 줄 오른쪽 끝이라 뺀다(트랙 47 이 1516 은 이미 맞다고 쟀다).
+      // 오른쪽 끝은 이제 바닥 줄의 justify-content 가 만든다(D-135 ⑽) — 덩어리가 지키는 것은 «같은 줄» 하나다.
+      // 그것이 갈리는 자리는 1280 잠금 안: 풀면 «반영 전»은 첫 줄 끝에 남고 «반영»만 둘째 줄로 떨어진다.
+      // 잠긴 카드는 풀어도 둘이 같이 둘째 줄로 가고, 1516 잠금 안은 한 줄이라 둘 다 풀어도 같다(2026-09-21 실측).
       const loose = await footerLayoutUnwrapped(page, 1);
-      if (잠금 || width === 1280)
-        expect(loose.같은줄 && loose.오른쪽끝).toBe(false);
+      if (!잠금 && width === 1280) expect(loose.같은줄).toBe(false);
       expect(await footerLayout(page, 1)).toEqual(now);
       const row: Record<string, unknown> = { 지금: now, 풀면: loose };
       // 자가 눈이 멀지 않았는지 ② — 옛 긴 글자를 그 자리에 넣으면 같은 자가 꺾임을 잰다.

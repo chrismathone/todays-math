@@ -633,7 +633,9 @@ function ReviewCard({
           {locked ? "검수 완료 취소" : "이 문제 검수 완료"}
         </button>
         {/* 표시와 «반영»은 한 덩어리로 줄 오른쪽 끝 — 모자라면 같이 둘째 줄 오른쪽(안 A, D-135 ⑼).
-            «담음»·«뺌»도 같은 자리라 표시 자리가 상태마다 안 바뀐다. 안 담은 문항은 빈 칸을 안 둔다. */}
+            «담음»·«뺌»도 같은 자리라 표시 자리가 상태마다 안 바뀐다. 안 담은 문항은 빈 칸을 안 둔다.
+            오른쪽으로 모으는 것은 바닥 줄의 justify-content 다 — 덩어리에 auto 여백을 주면 «출력» 칸의
+            auto 여백과 빈 자리를 나눠 단추가 가운데로 뜬다(D-135 ⑽). */}
         {cart && studioCartLabel(cart) && (
           <span className={styles.cartSlot} data-studio-cart-slot>
             <StudioCartChip state={cart} />
