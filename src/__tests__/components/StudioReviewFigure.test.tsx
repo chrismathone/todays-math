@@ -6,6 +6,7 @@ import type {
   StudioCrop,
   StudioFigure,
 } from "@/components/unified/studioHelpers";
+import type { StudioFigureJob } from "@/components/unified/useStudioFigureAi";
 
 const svg =
   '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="50" cy="50" r="30"/></svg>';
@@ -15,6 +16,7 @@ function setup(
   figurePatch: Partial<StudioFigure> = {},
   drawing = false,
   cropPatch: Partial<StudioCrop> = {},
+  job?: Pick<StudioFigureJob, "state" | "error" | "errorDetail">,
 ) {
   const figure: StudioFigure = {
     id: "figure-1",
@@ -52,9 +54,11 @@ function setup(
       page={1}
       jobs={[]}
       figureJobs={
-        drawing
-          ? [{ cropId: crop.id, figureId: figure.id, state: "running" }]
-          : []
+        job
+          ? [{ cropId: crop.id, figureId: figure.id, ...job }]
+          : drawing
+            ? [{ cropId: crop.id, figureId: figure.id, state: "running" }]
+            : []
       }
       available
       onSelect={vi.fn()}
@@ -71,6 +75,45 @@ function setup(
   );
   return { user: userEvent.setup(), onEditFigure, onUpdate, crop, figure };
 }
+
+// 트랙 45(2026-09-21) — 원장님께는 한국어 한 줄, 엔진 원문은 마우스를 올려야 보인다(개발자용)
+describe("a failed redraw", () => {
+  it("shows one Korean line and keeps the engine's words for hover", () => {
+    const words =
+      "도형을 그리지 못했습니다: labels.lA.point conflicts with its key";
+    // 재작도가 실패한 도형은 원본 크롭 그대로다(SVG 없음)
+    setup(
+      { svg: undefined, image: raster },
+      false,
+      {},
+      {
+        state: "error",
+        error: "도형을 다시 그리지 못했습니다. 원본은 유지됩니다.",
+        errorDetail: words,
+      },
+    );
+    const line = screen.getByText(
+      "도형을 다시 그리지 못했습니다. 원본은 유지됩니다.",
+    );
+    expect(line).toHaveAttribute("title", words);
+    expect(line).not.toHaveTextContent(/[A-Za-z]/);
+  });
+
+  it("has no hover text when there is no detail", () => {
+    setup(
+      { svg: undefined, image: raster },
+      false,
+      {},
+      {
+        state: "error",
+        error: "도형 재작도에 실패했습니다.",
+      },
+    );
+    expect(screen.getByText("도형 재작도에 실패했습니다.")).not.toHaveAttribute(
+      "title",
+    );
+  });
+});
 
 describe("Studio review figure activation", () => {
   it.each(["click", "Enter", " "])(

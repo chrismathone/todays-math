@@ -12,6 +12,7 @@ import {
 import type { StudioCrop, StudioFigure } from "./studioHelpers";
 import type { useDevAi } from "./useDevAi";
 import type { StudioAiQueue } from "./studioAiQueue";
+import { AiRequestError } from "./aiResponse";
 
 export interface StudioFigureJob {
   cropId: string;
@@ -20,6 +21,8 @@ export interface StudioFigureJob {
   startedAt?: number;
   stage?: string;
   error?: string;
+  /** 개발자용 원문(도형 엔진 사유 등) — 화면 한 줄(error)에 넣지 않고 마우스 올림으로만 보인다(트랙 45). */
+  errorDetail?: string;
 }
 interface Entry {
   job: StudioFigureJob;
@@ -206,6 +209,8 @@ export function useStudioFigureAi({
       if (stale()) return;
       const message =
         error instanceof Error ? error.message : "SVG 생성에 실패했습니다.";
+      const detail = error instanceof AiRequestError ? error.detail : undefined;
+      if (detail) console.warn("[도형 재작도] 엔진 사유:", detail);
       update(
         error instanceof Error && error.name === "AbortError"
           ? { state: "cancelled" }
@@ -214,6 +219,7 @@ export function useStudioFigureAi({
               error: KEEPS_ORIGINAL.test(message)
                 ? message
                 : `${message} 원본 그림을 유지했습니다.`,
+              errorDetail: detail,
             },
       );
     }

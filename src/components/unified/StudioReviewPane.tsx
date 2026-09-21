@@ -483,7 +483,12 @@ function ReviewCard({
                   />
                 )}
                 {job?.state === "error" && (
-                  <p className={styles.warning} role="alert">
+                  // 엔진 원문은 개발자용 — 한 줄에 안 넣고 마우스를 올리면 보인다(트랙 45)
+                  <p
+                    className={styles.warning}
+                    role="alert"
+                    title={job.errorDetail}
+                  >
                     {job.error}
                   </p>
                 )}

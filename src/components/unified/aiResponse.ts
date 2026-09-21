@@ -26,6 +26,29 @@ export function aiFailureMessage(status: number, body?: unknown) {
   return `AI 요청이 실패했습니다(${status}). 다시 시도해 주세요.`;
 }
 
+/**
+ * 실패한 AI 요청 — `message` 는 화면에 나가는 사람 문구, `detail` 은 서버가 따로 실어 보낸 개발자용 원문
+ * (도형 엔진 검증 사유 등, 트랙 45 2026-09-21). detail 은 화면 한 줄에 넣지 않고 마우스 올림·콘솔로만 쓴다.
+ */
+export class AiRequestError extends Error {
+  readonly detail?: string;
+  constructor(message: string, detail?: string) {
+    super(message);
+    this.name = "AiRequestError";
+    if (detail) this.detail = detail;
+  }
+}
+
+function aiFailureDetail(body: unknown) {
+  const detail =
+    body && typeof body === "object" && "detail" in body
+      ? (body as { detail?: unknown }).detail
+      : undefined;
+  return typeof detail === "string" && detail.trim()
+    ? detail.slice(0, 500)
+    : undefined;
+}
+
 /** 성공이면 JSON 객체를, 아니면 사람 문구의 Error 를 던진다. 파서 오류는 밖으로 안 나간다. */
 export async function readAiJson(
   response: Response,
@@ -38,7 +61,11 @@ export async function readAiJson(
     } catch {
       body = undefined;
     }
-  if (!response.ok) throw new Error(aiFailureMessage(response.status, body));
+  if (!response.ok)
+    throw new AiRequestError(
+      aiFailureMessage(response.status, body),
+      aiFailureDetail(body),
+    );
   if (!body || typeof body !== "object" || Array.isArray(body))
     throw new Error(AI_RESPONSE_UNREADABLE);
   return body as Record<string, unknown>;
