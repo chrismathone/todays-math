@@ -52,7 +52,7 @@ test("progress stays one row and anchored details escape canvas clipping", async
     await expect(page.getByLabel("진행 동작 결과")).toHaveText(
       "source 4쪽 이동",
     );
-    await panel.getByRole("button", { name: "도형 생성 취소" }).click();
+    await panel.getByRole("button", { name: "SVG 도형 생성 취소" }).click();
     await expect(page.getByLabel("진행 동작 결과")).toHaveText("도형 취소");
     await page.screenshot({
       path: testInfo.outputPath(`progress-${width}.png`),
@@ -82,7 +82,7 @@ test("progress details support click pinning, outside dismissal and keyboard foc
   await expect(panel).toBeVisible();
   await page.keyboard.press("Tab");
   await expect(
-    panel.getByRole("button", { name: "AI 작업 취소" }),
+    panel.getByRole("button", { name: "페이지 자동 인식 취소" }),
   ).toBeFocused();
   await page.keyboard.press("Enter");
   await expect(page.getByLabel("진행 동작 결과")).toHaveText("페이지 취소");

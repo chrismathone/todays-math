@@ -169,6 +169,49 @@ describe("WorkProgress", () => {
     ).toBeInTheDocument();
   });
 
+  /**
+   * 원장님 2026-09-21 «AI 작업 취소 → 취소 해도 이상없어보임». 진행 칸에 취소 단추가 여럿 서므로
+   * 보이는 글자는 «취소» 하나, 읽는 이름은 무엇을 취소하는지 — 둘을 같이 잠근다.
+   */
+  it("보이는 글자는 «취소», 읽는 이름은 무엇을 취소하는지 — 단추 여럿이 서도 갈린다", () => {
+    const pages = vi.fn();
+    const ocr = vi.fn();
+    render(
+      <>
+        <WorkProgress
+          label="페이지"
+          onCancel={pages}
+          cancelLabel="취소"
+          cancelName="페이지 자동 인식 취소"
+        />
+        <WorkProgress
+          label="문제"
+          onCancel={ocr}
+          cancelLabel="취소"
+          cancelName="문제 인식 취소"
+        />
+      </>,
+    );
+    const pageCancel = screen.getByRole("button", {
+      name: "페이지 자동 인식 취소",
+    });
+    const ocrCancel = screen.getByRole("button", { name: "문제 인식 취소" });
+    // 눈에 보이는 것은 둘 다 «취소» 한 낱말이다.
+    expect(pageCancel).toHaveTextContent(/^취소$/);
+    expect(ocrCancel).toHaveTextContent(/^취소$/);
+    // 읽는 이름이 보이는 글자를 품는다(label-in-name) — 말로 부르는 사람도 «취소»로 누를 수 있다.
+    expect(pageCancel.getAttribute("aria-label")).toContain("취소");
+    fireEvent.click(ocrCancel);
+    expect(ocr).toHaveBeenCalledTimes(1);
+    expect(pages).not.toHaveBeenCalled();
+  });
+
+  it("읽는 이름을 안 주면 보이는 글자가 곧 이름이다 — 다른 화면은 그대로", () => {
+    render(<WorkProgress label="자료 확인" onCancel={vi.fn()} />);
+    const cancel = screen.getByRole("button", { name: "취소" });
+    expect(cancel).not.toHaveAttribute("aria-label");
+  });
+
   it("renders inline inside a disabled button without block elements or a timer", () => {
     render(
       <button disabled>

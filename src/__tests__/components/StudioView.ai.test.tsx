@@ -439,7 +439,7 @@ describe("Studio AI review controls", () => {
     fireEvent.click(
       await screen.findByRole("button", { name: /작업 진행 상세/ }),
     );
-    await screen.findByRole("button", { name: "AI 작업 취소" });
+    await screen.findByRole("button", { name: "문제 인식 취소" });
     const request = vi.mocked(fetch).mock.calls.at(-1)![1] as RequestInit;
     // 작업실 자체도 dialog 라(«문제 제작 스튜디오») 확인 창은 제목으로 집는다.
     const restartDialog = () =>

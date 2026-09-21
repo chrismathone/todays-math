@@ -17,6 +17,12 @@ export interface WorkProgressProps {
   unit?: string;
   onCancel?: () => void;
   cancelLabel?: string;
+  /**
+   * 취소 단추의 **읽는 이름** — 보이는 글자(`cancelLabel`)가 짧은 «취소»일 때 무엇을 취소하는지 싣는다.
+   * 원장님 2026-09-21 «AI 작업 취소 → 취소 해도 이상없어보임»: 진행 칸에 취소 단추가 여럿 서는데 모두
+   * «취소»면 화면 읽기·시험이 어느 것인지 못 가른다. 보이는 «취소»를 읽는 이름이 품는다(label-in-name).
+   */
+  cancelName?: string;
   variant?: "panel" | "inline";
   showElapsed?: boolean;
   showCount?: boolean;
@@ -83,6 +89,7 @@ export default function WorkProgress({
   unit = "",
   onCancel,
   cancelLabel = "취소",
+  cancelName,
   variant = "panel",
   showElapsed = variant === "panel",
   showCount = true,
@@ -139,7 +146,12 @@ export default function WorkProgress({
         <Timing key={start} startedAt={start} showElapsed={showElapsed} />
       ) : null}
       {onCancel ? (
-        <button type="button" className={s.cancel} onClick={onCancel}>
+        <button
+          type="button"
+          className={s.cancel}
+          onClick={onCancel}
+          aria-label={cancelName}
+        >
           {cancelLabel}
         </button>
       ) : null}

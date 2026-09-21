@@ -144,7 +144,8 @@ export default function ProgressFixture() {
                 completed={0}
                 total={1}
                 onCancel={() => setAction("도형 취소")}
-                cancelLabel="도형 생성 취소"
+                cancelLabel="취소"
+                cancelName={`${studioWorkName("svg").long} 취소`}
               />
             )}
             <WorkProgress
@@ -154,7 +155,8 @@ export default function ProgressFixture() {
               total={21}
               unit="문항"
               onCancel={() => setAction("문자 취소")}
-              cancelLabel="문자 인식 취소"
+              cancelLabel="취소"
+              cancelName={`${studioWorkName("ocr").long} 취소`}
             />
           </StudioProgressStrip>
         </div>

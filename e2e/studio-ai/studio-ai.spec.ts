@@ -154,7 +154,9 @@ test("image file import keeps its resolution and background recognition does not
     page.getByRole("img", { name: "replacement.png, 1쪽 원본", exact: true }),
   ).toBeVisible();
   await expect(
-    page.getByRole("button", { name: "AI 작업 취소" }),
+    page.getByRole("button", {
+      name: /^(페이지 자동 인식|문제 인식|해설 생성|도형 인식|SVG 도형 생성) 취소$/,
+    }),
   ).not.toBeVisible();
   await expect(
     page.getByRole("textbox", { name: "문제 내용" }),

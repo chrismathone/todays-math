@@ -218,7 +218,7 @@ describe("전체 해설 생성 — 원장님 2026-09-20 «순서대로 해설 �
       within(panel).getByRole("progressbar", { name: "해설 생성 중" }),
     ).toHaveAttribute("aria-valuemax", "3");
     fireEvent.click(
-      within(panel).getByRole("button", { name: "AI 작업 취소" }),
+      within(panel).getByRole("button", { name: "해설 생성 취소" }),
     );
     await waitFor(() =>
       expect(screen.queryByText("해설 생성 중")).not.toBeInTheDocument(),

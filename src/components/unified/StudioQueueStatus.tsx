@@ -96,7 +96,8 @@ export default function StudioQueueStatus({
           showCount={false}
           startedAt={startedAt}
           onCancel={onCancel}
-          cancelLabel="AI 작업 취소"
+          cancelLabel="취소"
+          cancelName={`${studioWorkName("pages").long} 취소`}
         />
       ) : (
         <div className={styles.queueSummary} role="status">

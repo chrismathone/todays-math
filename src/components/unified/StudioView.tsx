@@ -2305,7 +2305,8 @@ export default function StudioView({
           total={figureJobs.length}
           startedAt={figurePending.find((job) => job.startedAt)?.startedAt}
           onCancel={() => studioAi.figureAi.cancel()}
-          cancelLabel="도형 생성 취소"
+          cancelLabel="취소"
+          cancelName={`${studioWorkName("svg").long} 취소`}
         />
       ) : failedFigures.length ? (
         <>
@@ -2376,7 +2377,10 @@ export default function StudioView({
           unit="문항"
           startedAt={studioAi.progress.startedAt}
           onCancel={() => studioAi.cancelCrop()}
-          cancelLabel="AI 작업 취소"
+          cancelLabel="취소"
+          cancelName={`${
+            studioWorkName(studioCropWorkKind(studioAi.progress.action)).long
+          } 취소`}
         />
       ) : null}
       {!studioAi.progress && (studioAi.message || studioAi.error) ? (
