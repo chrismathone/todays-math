@@ -257,6 +257,20 @@ describe("단축키 — ppt 와 같다", () => {
       screen.getByLabelText("도형 편집 캔버스"),
     );
   });
+  it("단추로 옮긴 뒤에도 단축키가 먹는다 — 누른 단추가 꺼지며 떨어지는 초점을 캔버스로 돌린다", () => {
+    // 브라우저 실측(2026-09-21): «맨 뒤로»를 누르면 이미 맨 뒤라 그 단추가 꺼지고, 초점이 <body> 로
+    // 떨어져 이어 누른 Ctrl+Z 가 «편집기 밖»으로 걸러졌다. jsdom 은 꺼진 단추의 초점을 안 빼서 여기서는 초점 자리를 본다.
+    open();
+    fireEvent.click(chip(5));
+    const button = orderButton("맨 뒤로");
+    button.focus();
+    fireEvent.click(button);
+    expect(document.activeElement).toBe(
+      screen.getByLabelText("도형 편집 캔버스"),
+    );
+    press("z", "KeyZ");
+    expect(painted()).toEqual(ORIGINAL);
+  });
   it("브라우저 기본 동작(맥의 Cmd+[ 뒤로 가기 등)을 막는다", () => {
     open();
     fireEvent.click(chip(5));

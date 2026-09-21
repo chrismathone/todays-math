@@ -642,6 +642,9 @@ export function FigureEditor({
       return;
     }
     commit(next);
+    // 맨 뒤로 보내면 «뒤로»·«맨 뒤로»가 바로 꺼진다 — 누른 단추에 있던 초점이 <body> 로 떨어져 이어 누른
+    // Ctrl+Z 가 «편집기 밖»으로 걸러졌다(브라우저 실측 2026-09-21). 캔버스로 돌려 둔다(단축키 길과 같다).
+    surface.current?.focus({ preventScroll: true });
     const number = (source: typeof objects) =>
       source.findIndex((o) => o.id === selected) + 1;
     setClipboardNotice(
