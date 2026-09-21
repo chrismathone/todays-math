@@ -1,7 +1,7 @@
 import fs from "node:fs";
 
 const html = fs.readFileSync(
-  "public/lab/archive/elementary-math-lab.html",
+  "docs/lab/elementary-math-lab.html",
   "utf8",
 );
 for (const name of ["function drawRuler()", "function drawArea()"]) {

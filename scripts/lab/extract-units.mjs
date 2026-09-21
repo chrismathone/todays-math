@@ -1,7 +1,7 @@
 import fs from "node:fs";
 
 const html = fs.readFileSync(
-  "public/lab/archive/elementary-math-lab.html",
+  "docs/lab/elementary-math-lab.html",
   "utf8",
 );
 const start = html.indexOf('<script type="application/json" id="eml-curriculum">');
