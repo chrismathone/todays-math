@@ -502,6 +502,7 @@ export default function StudioView({
   // The workspace keeps inactive views mounted; leaving must release modal state.
   if (!active && focusMode) setFocusMode(false);
   if (!active && restartOpen) setRestartOpen(false);
+  if (!active && cartOpen) setCartOpen(false);
 
   const currentSource = sources.find((item) => item.id === sourceId);
   const sourceJobs = studioAi.pageJobs.filter(
