@@ -36,6 +36,8 @@ export interface GeneratedProblem {
   prompt: string;
   equation: string;
   answer: number;
+  /** Original engine notation, revealed only after grading in authenticated APIs. */
+  answerText?: string;
   answerUnit?: string;
   hint: string;
   solution: string[];

@@ -151,7 +151,7 @@ function validateProblem(value: unknown): Record<string, unknown> {
       "solution",
       "expectedSeconds",
     ],
-    ["answerUnit", "source"],
+    ["answerUnit", "answerText", "source"],
   );
   text(problem.id, 200);
   text(problem.templateId, 200);
@@ -170,6 +170,7 @@ function validateProblem(value: unknown): Record<string, unknown> {
   text(problem.prompt, 4_000);
   text(problem.equation, 1_000, 0);
   number(problem.answer, -1e12, 1e12);
+  if (problem.answerText !== undefined) text(problem.answerText, 4_000);
   if (problem.answerUnit !== undefined) text(problem.answerUnit, 100);
   text(problem.hint, 4_000);
   array(problem.solution, 1, 20).forEach((step) => text(step, 4_000));

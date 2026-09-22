@@ -149,6 +149,7 @@ describe("Math SRS browser persistence", () => {
       ...store.learners[0].missions[0].problems[0],
       prompt: "방정식 $x+3=5$의 해를 구하시오.",
       equation: "",
+      answerText: "$2$",
       source: {
         engine: "middle",
         typeKey: "M1|equation|1",

@@ -388,8 +388,14 @@ function Feedback({
       <p className={s.answerResult}>
         정답{" "}
         <strong>
-          {problem.answer}
-          {problem.answerUnit ? ` ${problem.answerUnit}` : ""}
+          {problem.answerText ? (
+            <MathText text={problem.answerText} />
+          ) : (
+            <>
+              {problem.answer}
+              {problem.answerUnit ? ` ${problem.answerUnit}` : ""}
+            </>
+          )}
         </strong>
         <span>내 답: {attempt.submittedAnswer || "아직 모름"}</span>
       </p>
