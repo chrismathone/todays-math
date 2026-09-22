@@ -69,6 +69,14 @@ function BundleBoard({
     experiment.counts[1] * 10 +
     experiment.counts[2];
   const previous = state.history.at(-1);
+  const exchangeColors = state.exchange
+    ? ({
+        "--exchange-from": `var(--${PLACES[state.exchange.from].shape}-block)`,
+        "--exchange-from-edge": `var(--${PLACES[state.exchange.from].shape}-edge)`,
+        "--exchange-to": `var(--${PLACES[state.exchange.to].shape}-block)`,
+        "--exchange-to-edge": `var(--${PLACES[state.exchange.to].shape}-edge)`,
+      } as CSSProperties)
+    : undefined;
 
   function exchange(from: Place, to: Place) {
     if (disabled || Math.abs(from - to) !== 1) return;
@@ -175,7 +183,7 @@ function BundleBoard({
       <p className={styles.prompt}>{experiment.prompt}</p>
 
       {state.opened ? (
-        <div id={boardId} className={styles.board}>
+        <div id={boardId} className={styles.board} style={exchangeColors}>
           {PLACES.map((place, index) => {
             const position = index as Place;
             const count = state.counts[position];
@@ -200,7 +208,16 @@ function BundleBoard({
                 {Array.from(
                   { length: Math.min(count, MAX_VISIBLE) },
                   (_, block) => (
-                    <span className={styles.block} key={block} />
+                    <span
+                      className={styles.block}
+                      key={block}
+                      data-arriving={
+                        (state.exchange?.to === position &&
+                          previous &&
+                          block >= previous.counts[position]) ||
+                        undefined
+                      }
+                    />
                   ),
                 )}
               </span>
@@ -321,6 +338,8 @@ function BundleBoard({
               key={state.revision}
               className={styles.flight}
               data-kind={state.exchange.kind}
+              data-from={PLACES[state.exchange.from].shape}
+              data-to={PLACES[state.exchange.to].shape}
               aria-hidden="true"
               style={
                 {

@@ -1,3 +1,4 @@
+import { readFileSync } from "node:fs";
 import { StrictMode } from "react";
 import { fireEvent, render, screen, within } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
@@ -36,6 +37,121 @@ function click(name: string) {
 }
 
 describe("BundleExplorer", () => {
+  it.each([
+    {
+      action: "백 블록 1개 풀기",
+      from: "hundred",
+      to: "ten",
+      destination: "십의 자리",
+      counts: [0, 11, 10],
+      arrivals: 10,
+      kind: "split",
+    },
+    {
+      action: "십 블록 1개 풀기",
+      from: "ten",
+      to: "one",
+      destination: "일의 자리",
+      counts: [1, 0, 20],
+      arrivals: 2,
+      kind: "split",
+    },
+    {
+      action: "일 블록 10개를 십 블록 1개로 묶기",
+      from: "one",
+      to: "ten",
+      destination: "십의 자리",
+      counts: [1, 2, 0],
+      arrivals: 1,
+      kind: "merge",
+    },
+    {
+      action: "십 블록 10개를 백 블록 1개로 묶기",
+      from: "ten",
+      to: "hundred",
+      destination: "백의 자리",
+      counts: [2, 1, 10],
+      arrivals: 1,
+      kind: "merge",
+    },
+  ])(
+    "carries $from colors into $to when using $action",
+    ({ action, from, to, destination, counts, arrivals, kind }) => {
+      const initial: BundleExperiment["counts"] =
+        to === "hundred" ? [1, 11, 10] : [1, 1, 10];
+      const { container } = render(
+        <BundleExplorer experiment={experiment(initial)} />,
+      );
+      click(action);
+      expectCounts(counts);
+      const flight = container.querySelector<HTMLElement>("[data-kind]")!;
+      expect(flight).toHaveAttribute("data-kind", kind);
+      expect(flight).toHaveAttribute("data-from", from);
+      expect(flight).toHaveAttribute("data-to", to);
+      expect(flight).toHaveAttribute("aria-hidden", "true");
+      expect(flight.children).toHaveLength(10);
+      const board = flight.parentElement!;
+      expect(board.style.getPropertyValue("--exchange-from")).toBe(
+        `var(--${from}-block)`,
+      );
+      expect(board.style.getPropertyValue("--exchange-to")).toBe(
+        `var(--${to}-block)`,
+      );
+      expect(board.style.getPropertyValue("--exchange-from-edge")).toBe(
+        `var(--${from}-edge)`,
+      );
+      expect(board.style.getPropertyValue("--exchange-to-edge")).toBe(
+        `var(--${to}-edge)`,
+      );
+      const received = screen
+        .getByRole("group", { name: destination })
+        .querySelectorAll("[data-arriving]");
+      expect(received).toHaveLength(arrivals);
+      expect(container.querySelectorAll("[data-arriving]")).toHaveLength(
+        arrivals,
+      );
+      click("되돌리기");
+      expectCounts(initial);
+      expect(
+        container.querySelector("[data-kind], [data-arriving]"),
+      ).toBeNull();
+      expect(board.style.getPropertyValue("--exchange-from")).toBe("");
+      click(action);
+      click("처음으로");
+      expectCounts(initial);
+      expect(
+        container.querySelector("[data-kind], [data-arriving]"),
+      ).toBeNull();
+    },
+  );
+
+  it("disables transfer and landing motion while keeping destination blocks visible with reduced motion", () => {
+    // jsdom does not evaluate media queries or run CSS animations. Check the
+    // reduced-motion stylesheet contract; exchanges must not await animation.
+    const css = readFileSync(
+      "src/components/lab/cube31/BundleExplorer.module.css",
+      "utf8",
+    );
+    const reduced = css.slice(
+      css.indexOf("@media (prefers-reduced-motion: reduce)"),
+    );
+    expect(reduced).toMatch(/\.explorer \*[^}]*animation: none !important;/);
+    expect(reduced).toMatch(/\.explorer \*[^}]*transition: none !important;/);
+    expect(reduced).toMatch(/\.flight\s*\{\s*display: none;/);
+    // Hidden starting states belong only to keyframes, never the static block.
+    expect(
+      css.match(/\.block\[data-arriving\]\s*\{([^}]+)\}/)?.[1],
+    ).not.toMatch(/opacity:|visibility:|display:/);
+    render(<BundleExplorer experiment={experiment([1, 0, 0])} />);
+    click("백 블록 1개 풀기");
+    expectCounts([0, 10, 0]);
+    click("십 블록 1개 풀기");
+    expectCounts([0, 9, 10]);
+    click("일 블록 10개 묶기");
+    click("십 블록 10개를 백 블록 1개로 묶기");
+    expectCounts([1, 0, 0]);
+  });
+
   it("unpacks the given total, splits actual blocks, and bundles back without changing the total", () => {
     render(
       <StrictMode>
