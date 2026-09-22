@@ -28,6 +28,7 @@ import { ERROR_LOG_HEADER } from "@/contracts/errorLogValues";
 
 import { recordErrorLog, type ErrorLogEntry } from "./record";
 import { redactSecrets } from "./sanitize";
+import { admitServerLog } from "./serverQuota";
 import {
   createErrorLogNotes,
   runWithErrorLogNotes,
@@ -146,6 +147,32 @@ function describeRequest(value: unknown): {
     // 요청 모양이 아니다 — 아래로
   }
   return { method: null, request: {}, requestId: null };
+}
+
+/** 양 제한의 «사람» — 세션 계정, 없으면 IP(열쇠로만 쓰고 기록에는 안 싣는다). */
+function whoOf(notes: ErrorLogNotes, request: unknown): string {
+  if (notes.userId) return `user:${notes.userId}`;
+  if (request instanceof Request) {
+    const ip =
+      request.headers.get("x-forwarded-for")?.split(",")[0]?.trim() ||
+      request.headers.get("x-real-ip")?.trim();
+    if (ip) return `ip:${ip}`;
+  }
+  return "anon";
+}
+
+/** 같은 경로·상태·사람의 폭주를 묶는다(serverQuota.ts). 남긴다면 앞 창에서 버린 수를 메모에 싣는다. */
+function admit(
+  info: { route: string; status: number },
+  notes: ErrorLogNotes,
+  request: unknown,
+): boolean {
+  const { record, suppressedBefore } = admitServerLog(
+    `${info.route}|${info.status}|${whoOf(notes, request)}`,
+  );
+  if (record && suppressedBefore)
+    notes.context.suppressedBefore = suppressedBefore;
+  return record;
 }
 
 async function routeParams(context: unknown) {
@@ -324,8 +351,8 @@ export function withErrorLog<H extends RouteHandler>(
         handler(...args),
       )) as Awaited<ReturnType<H>>;
     } catch (error) {
-      if (!isFrameworkSignal(error)) {
-        const info = { ...base(), status: 500 };
+      const info = { ...base(), status: 500 };
+      if (!isFrameworkSignal(error) && admit(info, notes, args[0])) {
         schedule(async () =>
           recordErrorLog(
             entryFrom(info, notes, await routeParams(args[1]), {}, error),
@@ -341,6 +368,7 @@ export function withErrorLog<H extends RouteHandler>(
         { ...base(), status: response.status },
         notes,
         () => routeParams(args[1]),
+        args[0],
       );
     return response;
   };
@@ -353,7 +381,17 @@ function logRejection(
   info: Omit<Parameters<typeof entryFrom>[0], "id">,
   notes: ErrorLogNotes,
   params: () => Promise<unknown>,
+  request: unknown,
 ) {
+  if (!admit(info, notes, request)) {
+    // 넘친 것 — 줄은 안 남기지만 머리는 붙인다(브라우저가 같은 실패를 다시 보내지 않게). 버린 수는 serverQuota 가 센다
+    try {
+      response.headers.set(ERROR_LOG_HEADER, "suppressed");
+    } catch {
+      // 머리가 잠긴 응답
+    }
+    return;
+  }
   const id = randomUUID();
   let copy: Response | undefined;
   try {
@@ -403,6 +441,7 @@ export function logRejectedResponse<R extends Response>(options: {
     },
     notes,
     async () => undefined,
+    options.request,
   );
   return options.response;
 }

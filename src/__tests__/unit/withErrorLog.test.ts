@@ -18,6 +18,10 @@ import { ERROR_LOG_HEADER } from "@/contracts/errorLogValues";
 import { recordErrorLog } from "@/lib/errorLog/record";
 import { noteErrorLog } from "@/lib/errorLog/scope";
 import {
+  resetServerLogQuota,
+  SERVER_LOG_PER_KEY_PER_MINUTE,
+} from "@/lib/errorLog/serverQuota";
+import {
   ERROR_LOG_ROUTE,
   settleErrorLogWrites,
   withErrorLog,
@@ -42,7 +46,10 @@ async function entries() {
   return record.mock.calls.map(([entry]) => entry);
 }
 
-beforeEach(() => record.mockClear());
+beforeEach(() => {
+  record.mockClear();
+  resetServerLogQuota();
+});
 afterEach(() => vi.unstubAllEnvs());
 
 describe("⑴ 성공은 손대지 않는다", () => {
@@ -308,5 +315,44 @@ describe("표지", () => {
     expect((GET as unknown as Record<symbol, unknown>)[ERROR_LOG_ROUTE]).toBe(
       "/api/units",
     );
+  });
+});
+
+describe("양 제한 — 봇이 두드려도 표가 부풀지 않게", () => {
+  it(`같은 경로·상태·사람은 1분에 ${SERVER_LOG_PER_KEY_PER_MINUTE}줄까지 — 넘친 수는 창이 지난 뒤 다음 줄에`, async () => {
+    vi.useFakeTimers({ toFake: ["Date"] });
+    try {
+      vi.setSystemTime(new Date("2026-09-22T12:00:00.000Z"));
+      const GET = withErrorLog<Handler>("/api/classes", async () =>
+        Response.json({ error: "로그인이 필요합니다." }, { status: 401 }),
+      );
+      const bot = () =>
+        GET(
+          req("http://localhost/api/classes", {
+            headers: { "x-forwarded-for": "203.0.113.9" },
+          }),
+        );
+      for (let i = 0; i < SERVER_LOG_PER_KEY_PER_MINUTE + 5; i++) {
+        const res = await bot();
+        // 응답은 늘 그대로 · 머리도 늘 붙는다(브라우저가 다시 보내지 않게)
+        expect(res.status).toBe(401);
+        expect(res.headers.get(ERROR_LOG_HEADER)).toBeTruthy();
+      }
+      expect(await entries()).toHaveLength(SERVER_LOG_PER_KEY_PER_MINUTE);
+      // 다른 사람(IP)은 따로 센다
+      await GET(
+        req("http://localhost/api/classes", {
+          headers: { "x-forwarded-for": "198.51.100.1" },
+        }),
+      );
+      expect(await entries()).toHaveLength(SERVER_LOG_PER_KEY_PER_MINUTE + 1);
+      // 창이 지나면 다시 남고, 버린 5건이 그 줄에 적힌다
+      vi.setSystemTime(new Date("2026-09-22T12:01:01.000Z"));
+      await bot();
+      const last = (await entries()).at(-1)!;
+      expect(last.context).toMatchObject({ suppressedBefore: 5 });
+    } finally {
+      vi.useRealTimers();
+    }
   });
 });
