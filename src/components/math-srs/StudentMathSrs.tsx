@@ -387,6 +387,7 @@ function Question({
     <section className={s.card} aria-label="현재 문제" aria-busy={busy}>
       <p className={s.eyebrow}>
         {CONCEPTS.find((concept) => concept.id === problem.conceptId)?.title}
+        {problem.source ? ` · ${problem.source.tier}` : ""}
       </p>
       <div className={s.question}>
         <ProblemContent content={problem.prompt} />
@@ -401,6 +402,7 @@ function Question({
         <div className={s.answer}>
           <Input
             id="srs-answer"
+            autoFocus
             value={answer}
             onChange={(event) => setAnswer(event.target.value)}
             disabled={busy}
@@ -490,6 +492,10 @@ function Feedback({
   mission: MathSrsPublicMission;
   onNext: () => void;
 }) {
+  const heading = useRef<HTMLHeadingElement>(null);
+  useEffect(() => {
+    heading.current?.focus();
+  }, [problem.id]);
   const attempt = mission.attempts.find(
     (item) => item.problemId === problem.id,
   );
@@ -498,6 +504,8 @@ function Feedback({
     <section className={s.card} aria-labelledby="answer-feedback-heading">
       <h2
         id="answer-feedback-heading"
+        ref={heading}
+        tabIndex={-1}
         className={attempt?.correct ? s.correct : s.review}
       >
         {attempt?.correct ? "잘 풀었어요!" : "풀이를 보며 다시 생각해 봐요."}
