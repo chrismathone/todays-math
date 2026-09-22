@@ -118,12 +118,26 @@ describe("수정 명령 스키마 — 좁게", () => {
     expect(FigureEditCommandSchema.safeParse(command).success).toBe(false);
   });
 
-  it("numbers the element list 1, 2, 3 … like the editor", () => {
+  it("carries the editor's fixed numbers in order — deleted numbers stay empty", () => {
     expect(FigureEditFigureSchema.safeParse(figure).success).toBe(true);
+    // 지운 번호는 비워 둔다(D-135 ⑸) — 1·3 도 받는다
+    expect(
+      FigureEditFigureSchema.safeParse({
+        ...figure,
+        elements: [figure.elements[0], { ...figure.elements[1], n: 3 }],
+      }).success,
+    ).toBe(true);
     expect(
       FigureEditFigureSchema.safeParse({
         ...figure,
         elements: [figure.elements[1], figure.elements[0]],
+      }).success,
+    ).toBe(false);
+    // 같은 번호 둘이면 «3번»이 어느 요소인지 모른다
+    expect(
+      FigureEditFigureSchema.safeParse({
+        ...figure,
+        elements: [figure.elements[0], { ...figure.elements[1], n: 1 }],
       }).success,
     ).toBe(false);
     expect(

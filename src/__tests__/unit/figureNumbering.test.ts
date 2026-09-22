@@ -32,6 +32,8 @@ import {
   withoutFigureNumbers,
 } from "@/components/unified/figure-editor/figureSvgEditing";
 import { svgFromImage } from "@/components/unified/figure-editor/figureDocument";
+import { FigureEditFigureSchema } from "@/lib/dev-ai/figure-edit-contract";
+import { DevAiRequestSchema } from "@/lib/dev-ai/tasks";
 
 const figure = (body: string) =>
   prepareFigureSvg(
@@ -172,6 +174,25 @@ describe("새 요소 · 지운 요소 · 붙여넣기", () => {
       점: 4,
       삼각형: 5,
     });
+  });
+  it("번호가 빈 그림도 «요청대로 고치기» 요청이 서버 계약을 통과한다", () => {
+    // 원장님 운영 2026-09-22 «치수선 추가» → 400 — 계약이 1·2·3 … 빈틈없는 번호만 받았다
+    const removed = numberFigureObjects(
+      removeFigureSelection(OLD, [idOf(OLD, "y축")]),
+    );
+    const snapshot = describeFigureForEdit(removed);
+    expect(snapshot.elements.map((e) => e.n)).toEqual([1, 2, 4, 5]);
+    expect(FigureEditFigureSchema.safeParse(snapshot).success).toBe(true);
+    expect(
+      DevAiRequestSchema.safeParse({
+        provider: "codex",
+        action: "figure-edit",
+        imageDataUrl: "data:image/png;base64,AAAA",
+        content: "선분 BC 에 치수선 추가",
+        figure: snapshot,
+        grade: "중2",
+      }).success,
+    ).toBe(true);
   });
   it("붙여넣기·복제는 새 번호 — 원래 요소는 제 번호 그대로", () => {
     const source = copyFigureSelection(OLD, [idOf(OLD, "x축")])!;

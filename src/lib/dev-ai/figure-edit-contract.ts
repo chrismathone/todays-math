@@ -481,9 +481,13 @@ export const FigureEditFigureSchema = z
       .optional(),
   })
   .strict()
+  // 번호는 편집기의 고정 번호 — 지운 번호는 비어 있다(D-135 ⑸). 겹치지 않고 번호 차례로만 받는다.
   .refine(
     (figure) =>
-      figure.elements.every((element, index) => element.n === index + 1),
-    "요소 번호는 1부터 차례대로여야 합니다.",
+      figure.elements.every(
+        (element, index) =>
+          index === 0 || element.n > figure.elements[index - 1].n,
+      ),
+    "요소 번호는 겹치지 않고 번호 차례여야 합니다.",
   );
 export type FigureEditFigure = z.infer<typeof FigureEditFigureSchema>;
