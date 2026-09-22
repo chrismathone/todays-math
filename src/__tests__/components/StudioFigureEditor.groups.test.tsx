@@ -681,8 +681,10 @@ describe("묶음 이름 A·B·C · 번호표 하나 (원장님 2026-09-21)", () 
     expect(groupNames().slice(0, 3)).toEqual(["A 묶음", "B 묶음", "C 묶음"]);
     expect(chipNumbers("B")).toEqual(["5", "6"]);
   });
-  it("묶으면 번호표가 하나로 합쳐지고 묶음 지시선은 사라진다", () => {
+  it("묶으면 번호표가 하나로 합쳐지고 묶음 지시선은 사라진다", async () => {
     open();
+    await waitFor(() => expect(tags()).toHaveLength(9));
+
     expect(tags().length).toBe(9);
     fireEvent.click(chip(7));
     fireEvent.click(chip(8), { shiftKey: true });
@@ -694,8 +696,10 @@ describe("묶음 이름 A·B·C · 번호표 하나 (원장님 2026-09-21)", () 
     expect(leaders(7)).toBe(0);
     expect(leaders(1)).toBe(1);
   });
-  it("합친 번호표를 누르면 묶음 전체가 선택된다", () => {
+  it("합친 번호표를 누르면 묶음 전체가 선택된다", async () => {
     open();
+    await waitFor(() => expect(tags()).toHaveLength(9));
+
     fireEvent.click(chip(7));
     fireEvent.click(chip(8), { shiftKey: true });
     press("g");
@@ -719,8 +723,10 @@ describe("묶음 표는 네모 · 요소 표는 동그라미 (원장님 2026-09-
     press("g");
   };
 
-  it("묶으면 그 표만 네모가 되고 글자는 묶음 이름이다", () => {
+  it("묶으면 그 표만 네모가 되고 글자는 묶음 이름이다", async () => {
     open();
+    await waitFor(() => expect(tags()).toHaveLength(9));
+
     expect(tagShape(1)).toBe("동그라미");
     expect(tagGlyph(1)).toBe("1");
     groupTwo(7, 8);
@@ -733,8 +739,10 @@ describe("묶음 표는 네모 · 요소 표는 동그라미 (원장님 2026-09-
     expect(leaders(7)).toBe(0);
   });
 
-  it("네모와 동그라미가 같은 색·같은 글자를 쓴다 — 모양만 다르다", () => {
+  it("네모와 동그라미가 같은 색·같은 글자를 쓴다 — 모양만 다르다", async () => {
     open();
+    await waitFor(() => expect(tags()).toHaveLength(9));
+
     groupTwo(7, 8);
     // 둘 다 안 고른 상태로 견준다(고르면 둘 다 진해진다 — 아래 시험)
     fireEvent.keyDown(document.activeElement ?? document.body, {
@@ -749,8 +757,10 @@ describe("묶음 표는 네모 · 요소 표는 동그라미 (원장님 2026-09-
     expect(box.font).toContain("11px");
   });
 
-  it("고르면 네모도 동그라미와 같이 진해진다", () => {
+  it("고르면 네모도 동그라미와 같이 진해진다", async () => {
     open();
+    await waitFor(() => expect(tags()).toHaveLength(9));
+
     groupTwo(7, 8);
     // 묶은 직후는 그 묶음이 골라져 있다 — 다른 것을 골라 풀고 나서 네모를 누른다
     fireEvent.click(chip(1));
@@ -761,8 +771,10 @@ describe("묶음 표는 네모 · 요소 표는 동그라미 (원장님 2026-09-
     expect(tagFace(7).fill).toBe("var(--figure-primary)");
   });
 
-  it("손수 지은 긴 이름은 첫 글자만 — 전체 이름은 읽는 이름과 마우스 올림에", () => {
+  it("손수 지은 긴 이름은 첫 글자만 — 전체 이름은 읽는 이름과 마우스 올림에", async () => {
     open();
+    await waitFor(() => expect(tags()).toHaveLength(9));
+
     groupTwo(7, 8);
     fireEvent.click(within(group("A")).getByRole("button", { name: "A 2개" }));
     const input = within(groupRow()!).getByRole("textbox", {
@@ -782,13 +794,15 @@ describe("묶음 표는 네모 · 요소 표는 동그라미 (원장님 2026-09-
 
   // Z 를 다 쓴 그림은 만들기 어렵다 — 이미 «AA» 로 저장된 옛 그림을 여는 자리로 같은 것을 본다
   // (여는 것만으로는 다시 매기지 않는다 — 묶음을 건드릴 때만 매긴다).
-  it("두 글자 이름(AA)은 그대로 들어간다", () => {
+  it("두 글자 이름(AA)은 그대로 들어간다", async () => {
     openFigure(
       figure.replace(
         /<line x1="60" y1="250" x2="160" y2="160"([^/]*)\/>/,
         '<line x1="60" y1="250" x2="160" y2="160"$1 data-group="AA"/>',
       ),
     );
+
+    await waitFor(() => expect(tags()).toHaveLength(9));
     expect(tagGlyph(7)).toBe("AA");
     expect(tagShape(7)).toBe("네모");
   });

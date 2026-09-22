@@ -80,7 +80,7 @@ const navItems: {
   icon: WorkspaceIconName;
 }[] = [
   { id: "home", label: "오늘의 작업", short: "홈", icon: "home" },
-  { id: "bank", label: "시험지 만들기", short: "시험지 만들기", icon: "bank" },
+  { id: "bank", label: "시험지 만들기", short: "만들기", icon: "bank" },
   { id: "studio", label: "자료 제작", short: "자료 제작", icon: "crop" },
   { id: "export", label: "시험지 · 내보내기", short: "시험지", icon: "paper" },
   { id: "library", label: "내 시험지", short: "보관함", icon: "folder" },
