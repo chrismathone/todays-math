@@ -153,6 +153,8 @@ const FIXTURES: Record<keyof typeof ENGINE_FAILURES, DevAiFigureSpec> = {
       CA: ["C", "A"],
     },
   }),
+  // 원장님 운영 2026-09-22 — 모델이 지어낸 최상위 칸(`points_dots`·`points_style`)
+  unknownSpecFields: triangle({ points_dots: { C: true } }),
   dimensionSide: triangle({
     dimensions: { dAB: { points: ["A", "B"], label: "3 cm", side: "top" } },
   }),
@@ -275,7 +277,7 @@ describe("운영 콘솔 2026-09-21 — 문법에서 살짝 어긋난 사양은 �
     expect(await engineError(fix!.spec)).toBe("");
   });
 
-  it("같은 점의 이름표가 둘이면(E + dot_E) 글이 비었거나 같은 쪽을 뺀다 — 글이 다르면 되묻는다", async () => {
+  it("같은 점의 이름표가 둘이면(E + dot_E) 글이 비었거나 같은 쪽을 뺀다 — 글이 다르면 따로 선 기준점으로", async () => {
     const withDot = (text: string) =>
       triangle({
         labels: { A: "A", B: "B", C: "C", dot_C: { point: "C", text } },
@@ -288,9 +290,28 @@ describe("운영 콘솔 2026-09-21 — 문법에서 살짝 어긋난 사양은 �
       expect(await engineError(fix!.spec)).toBe("");
     }
     const other = withDot("P");
-    expect(
-      repairFigureSpec(other, await engineError(other), false),
-    ).toBeUndefined();
+    const moved = repairFigureSpec(other, await engineError(other), false);
+    expect(moved?.spec.labels).toEqual({
+      A: "A",
+      B: "B",
+      C: "C",
+      dot_C: { text: "P" },
+    });
+    expect(await engineError(moved!.spec)).toBe("");
+  });
+
+  it("없는 최상위 칸(points_dots)은 마지막 시도에서만 빼고, 무엇을 뺐는지 원장님께 알린다 (운영 2026-09-22)", async () => {
+    const spec = triangle({ points_dots: { C: true }, points_style: "dot" });
+    const error = await engineError(spec);
+    expect(error).toMatch(ENGINE_FAILURES.unknownSpecFields);
+    // 그 전에는 모델에 되묻는다 — 점 표시를 엔진 문법으로 다시 적을 기회를 먼저 준다
+    expect(repairFigureSpec(spec, error, false)).toBeUndefined();
+    const fix = repairFigureSpec(spec, error, true);
+    expect(fix?.dropped).toBe(true);
+    expect(fix?.warning).toContain("points_dots");
+    expect(fix?.warning).toContain("points_style");
+    expect(fix?.spec).toEqual(triangle());
+    expect(await engineError(fix!.spec)).toBe("");
   });
 });
 
@@ -475,12 +496,58 @@ describe("rejections with one meaning are fixed without asking the model", () =>
     });
   });
 
+  // 원장님 운영 2026-09-22 — `labels.val30.point conflicts with its key`(∠IBO 의 30°) ·
+  // `labels.dot_ACD.point conflicts with its key`(∠ACD 의 점 표시). 이름표가 이미 있는 점 옆에 인쇄된 글자를 그 점의
+  // 두 번째 이름표로 적었다 — 되물어도 세 번 다 같은 사양이 와서 그림 전체가 원본 크롭으로 남았다(«못 그릴 도형이 아닌데»).
+  // 엔진은 점 하나에 이름표 하나라, 글자마다 그 점 자리에 따로 선 기준점을 세워 옮긴다(지시문의 «맨 숫자 = 기준점 +
+  // 이름표»와 같은 꼴). 글자를 버리지 않으니 자리가 틀리면 원본 대조가 잡는다.
+  it("moves extra text beside an already-labelled point onto its own anchor point (운영 2026-09-22)", async () => {
+    const spec = exteriorX({
+      A: "A",
+      B: "B",
+      C: "C",
+      D: "D",
+      val30: { point: "B", text: "30°", dx: -24, dy: 22 },
+      dot_ACD: { point: "C", text: "•" },
+    });
+    expect(await engineError(spec)).toMatch(
+      /labels.(val30|dot_ACD).point conflicts with its key/,
+    );
+    const fix = await fixed(spec);
+    expect(fix.spec.points).toEqual({
+      ...(exteriorX().points as object),
+      val30: [30, 200],
+      dot_ACD: [220, 200],
+    });
+    expect(fix.spec.labels).toEqual({
+      A: "A",
+      B: "B",
+      C: "C",
+      D: "D",
+      val30: { text: "30°", dx: -24, dy: 22 },
+      dot_ACD: { text: "•" },
+    });
+  });
+
+  it("copies a constructed point's definition for the anchor — same place, no coordinates to guess", async () => {
+    const spec: DevAiFigureSpec = {
+      ...onCircle({ angle: 30 }),
+      labels: { O: "O", P: "P", valP: { point: "P", text: "60°" } },
+    };
+    const fix = await fixed(spec);
+    expect((fix.spec.points as Record<string, unknown>).valP).toEqual(
+      (spec.points as Record<string, unknown>).P,
+    );
+    expect(fix.spec.labels).toEqual({ O: "O", P: "P", valP: { text: "60°" } });
+  });
+
   it.each([
     // 그 점에 이름표가 이미 있고, 덧붙은 쪽이 **다른 글**이거나 **자리를 적었으면** 어느 쪽이 맞는지 모른다.
     // (글이 같고 자리도 안 적었으면 그림이 같아서 고친다 — 아래 «운영 콘솔 2026-09-21» 묶음.)
+    // 열쇠가 다른 요소(각 aB)의 이름이면 기준점으로 세울 수 없다
     [
-      "that point already has a label with another text",
-      { A: "A", lA: { point: "A", text: "P" } },
+      "the key already names another element",
+      { A: "A", B: "B", aB: { point: "B", text: "30°" } },
     ],
     [
       "that point already has a label and the extra one sets a position",

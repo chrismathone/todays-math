@@ -38,6 +38,8 @@ export const ENGINE_FAILURES = {
   // `arrow` 같은 없는 칸 · 치수의 쪽 «top» · 이름표 자리 «center» · 점선 `dash:true`.
   unknownFields:
     /\b(points|segments|angles|dimensions|labels)\.(.+?): unknown field\(s\): (.+)$/,
+  // 원장님 운영 2026-09-22 — 모델이 최상위에 없는 칸을 지어냈다(`points_dots`·`points_style`).
+  unknownSpecFields: /\bFigureSpec: unknown field\(s\): (.+)$/,
   dimensionSide: /dimension side must be 'auto', 'left', or 'right'/,
   labelPosition: /label '([^']+)' has unknown position '([^']*)'/,
   segmentDash: /segment '([^']+)' dash must be a numeric list/,
@@ -65,6 +67,7 @@ const REASONS: Partial<Record<keyof typeof ENGINE_FAILURES, string>> = {
   labelKeyConflict: "점 이름표가 가리키는 점이 맞지 않아",
   rightWithArcs: "직각 표시와 호 표시가 함께 있어",
   unknownFields: "엔진이 그리지 못하는 설정이 있어",
+  unknownSpecFields: "엔진이 그리지 못하는 설정이 있어",
   dimensionSide: "치수 표시 설정이 맞지 않아",
   labelPosition: "점 이름표 자리 설정이 맞지 않아",
   segmentDash: "점선 설정이 맞지 않아",
@@ -405,6 +408,23 @@ export function repairFigureSpec(
     const warning = `${table}.${name} 의 ${fields.join("·")} 설정은 그릴 수 없어 뺐습니다. 그림 편집에서 넣어 주세요.`;
     return next && { spec: next, warning, note: warning, dropped: true };
   }
+  hit = ENGINE_FAILURES.unknownSpecFields.exec(error);
+  if (hit) {
+    // 최상위의 모르는 칸도 표 안의 것과 같다 — 먼저 모델에 되묻고, 마지막 시도에서만 빼고 그린다.
+    if (!allowDrop) return undefined;
+    const fields = hit[1]!
+      .split(",")
+      .map((field) => field.trim())
+      .filter((field) => field in spec);
+    if (!fields.length) return undefined;
+    const warning = `${fields.join("·")} 설정은 그릴 수 없어 뺐습니다. 그림 편집에서 넣어 주세요.`;
+    return {
+      spec: without(spec, ...fields) as DevAiFigureSpec,
+      warning,
+      note: warning,
+      dropped: true,
+    };
+  }
   return repairOneMeaning(spec, error);
 }
 
@@ -435,7 +455,7 @@ function repairOneMeaning(
   }
   if (ENGINE_FAILURES.labelKeyConflict.test(error)) {
     // 엔진은 점 이름이 이름표의 열쇠다(figure_scene.py compile_figure_spec). 열쇠가 점이 아니고, 가리키는 점이 있고,
-    // 그 점에 이름표가 아직 없을 때만 열쇠를 point 값으로 바꾼다 — 그 밖에는 어느 쪽이 맞는지 모른다.
+    // 그 점에 이름표가 아직 없으면 열쇠를 point 값으로 바꾼다. 이미 있으면 아래 «따로 선 기준점»으로 옮긴다.
     const labels = spec.labels;
     if (!isItem(labels)) return undefined;
     const points = new Set(records(spec.points).map(([name]) => name));
@@ -447,11 +467,10 @@ function repairOneMeaning(
         String(item.point) !== key
       )
         moves.set(key, String(item.point));
-    const targets = [...moves.values()];
     // 그 점에 이름표가 **이미 있는데** 또 하나(`dot_E` → E)를 적은 경우 — 덧붙은 쪽이 `point`·`text` 말고는 아무것도
     // 안 적었고 글이 비었거나 같으면, 어느 쪽을 남겨도 **그림이 같다**. 덧붙은 쪽을 뺀다(운영 콘솔 2026-09-21
     // `labels.dot_E.point conflicts with its key` — 되물어도 세 번 다 같은 사양이 와서 422 로 끝났다).
-    // 글이 다르거나 자리(dx·dy·position)를 적었으면 어느 쪽이 맞는지 몰라 되묻는다(트랙 45 의 판단 그대로).
+    // 글이 같은데 자리(dx·dy·position)를 적었으면 어느 쪽 자리가 맞는지 몰라 되묻는다. 글이 다르면 아래 기준점으로.
     const textOf = (item: unknown) =>
       typeof item === "string"
         ? item.trim()
@@ -483,28 +502,67 @@ function repairOneMeaning(
           .join(", ")}).`,
       };
     }
-    for (const [key, to] of moves)
+    // 운영 2026-09-22 — 이름표가 이미 있는 점 옆의 **다른** 글자(∠IBO 의 30° → `val30`, ∠ACD 의 점 → `dot_ACD`)는 그 점의
+    // 두 번째 이름표가 아니라 옆에 따로 인쇄된 글자다. 엔진은 점 하나에 이름표 하나라, 그 점 자리에 따로 선 기준점(열쇠 이름,
+    // 점 정의를 그대로 베낀다)을 세워 그 기준점의 이름표로 옮긴다 — 지시문의 «맨 숫자 = 기준점 + 이름표»와 같은 꼴.
+    // 글자를 버리지 않으니 자리가 틀리면 원본 대조가 잡는다(되물어도 세 번 다 같은 사양이 와서 그림 전체를 잃었다).
+    const pointTable = spec.points;
+    const named = new Set(
+      NAMED_TABLES.flatMap((table) => records(spec[table]).map(([n]) => n)),
+    );
+    const anchors = new Map([...moves].filter(([, to]) => to in labels));
+    for (const [key, to] of anchors)
+      if (
+        named.has(key) ||
+        !isItem(pointTable) ||
+        !(to in pointTable) ||
+        !textOf(labels[key]) ||
+        textOf(labels[key]) === (textOf(labels[to]) || to)
+      )
+        return undefined;
+    const renames = new Map([...moves].filter(([key]) => !anchors.has(key)));
+    const renamed = [...renames.values()];
+    for (const [key, to] of renames)
       if (
         points.has(key) ||
         !points.has(to) ||
-        to in labels ||
-        targets.indexOf(to) !== targets.lastIndexOf(to)
+        renamed.indexOf(to) !== renamed.lastIndexOf(to)
       )
         return undefined;
     if (!moves.size) return undefined;
+    const notes = [
+      renames.size &&
+        `이름표 열쇠를 점 이름으로 바꿨습니다(${[...renames]
+          .map(([from, to]) => `${from}→${to}`)
+          .join(", ")}).`,
+      anchors.size &&
+        `점 옆 글자를 따로 선 기준점의 이름표로 옮겼습니다(${[...anchors]
+          .map(([key, to]) => `${key}@${to}`)
+          .join(", ")}).`,
+    ].filter(Boolean);
     return {
       spec: {
         ...spec,
+        ...(anchors.size && {
+          points: {
+            ...(pointTable as Item),
+            ...Object.fromEntries(
+              [...anchors].map(([key, to]) => [
+                key,
+                structuredClone((pointTable as Item)[to]),
+              ]),
+            ),
+          },
+        }),
         labels: Object.fromEntries(
-          Object.entries(labels).map(([key, item]) => [
-            moves.get(key) ?? key,
-            item,
-          ]),
+          Object.entries(labels).map(([key, item]) =>
+            anchors.has(key)
+              ? [key, without(item as Item, "point")]
+              : [renames.get(key) ?? key, item],
+          ),
         ),
       },
-      note: `이름표 열쇠를 점 이름으로 바꿨습니다(${[...moves]
-        .map(([from, to]) => `${from}→${to}`)
-        .join(", ")}).`,
+      note: notes.join(" "),
     };
   }
   if (ENGINE_FAILURES.unknownTheme.test(error)) {
