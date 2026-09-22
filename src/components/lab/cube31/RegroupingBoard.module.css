@@ -4,6 +4,9 @@
   --teal: #087f8c;
   --block-line: #096c9a;
   --press-ease: cubic-bezier(0.2, 0.8, 0.3, 1);
+  --workspace-block-height: 94px;
+  --tray-block-height: 46px;
+  --block-gap: 4px;
   color: var(--ink);
   background: #fff;
   border: 1px solid #dbe8e8;
@@ -199,15 +202,15 @@
 .blocks,
 .trayBlocks,
 .removedBlocks {
-  /* Always reserve 20 workspace slots and 10 tray slots. Neither the model
-     scale nor the card geometry depends on the number of blocks. */
+  /* Each zone supplies its own width; both share the same glyph dimensions. */
+  container-type: size;
   display: grid;
-  grid-template-columns: repeat(5, minmax(0, 1fr));
-  grid-auto-rows: 22px;
+  grid-template-columns: repeat(var(--tray-columns), minmax(0, 1fr));
+  grid-template-rows: repeat(var(--tray-rows), minmax(0, 1fr));
   align-content: start;
   align-items: center;
-  gap: 2px;
-  height: 46px;
+  gap: var(--block-gap);
+  height: var(--tray-block-height);
   padding: 0;
 }
 .zoneLabel {
@@ -218,14 +221,45 @@
   font-size: 15px;
 }
 .blocks {
-  height: 94px;
+  grid-template-columns: repeat(var(--block-columns), minmax(0, 1fr));
+  grid-template-rows: repeat(var(--workspace-rows), minmax(0, 1fr));
+  height: var(--workspace-block-height);
 }
 .staticBlock,
 .blockButton {
+  --slot-width: calc(
+    (100cqw - (var(--block-fit-columns) - 1) * var(--block-gap)) /
+      var(--block-fit-columns)
+  );
+  --slot-height: min(
+    calc(
+      (
+          var(--workspace-block-height) - (var(--workspace-rows) - 1) *
+            var(--block-gap)
+        ) /
+        var(--workspace-rows)
+    ),
+    calc(
+      (var(--tray-block-height) - (var(--tray-rows) - 1) * var(--block-gap)) /
+        var(--tray-rows)
+    )
+  );
+  --plate-size: max(
+    6px,
+    min(112px, var(--slot-width) - 6px, var(--slot-height) - 6px)
+  );
+  --rod-size: max(
+    8px,
+    min(112px, (var(--slot-width) - 6px) * 52 / 7, var(--slot-height) - 6px)
+  );
+  --unit-size: max(
+    5px,
+    min(28px, (var(--slot-width) - 6px) * 9 / 8, var(--slot-height) - 6px)
+  );
   display: inline-flex;
   width: 100%;
   min-width: 0;
-  height: 22px;
+  height: 100%;
   align-items: center;
   justify-content: center;
   color: #4ab8e6;
@@ -252,20 +286,20 @@
   opacity: 1 !important;
 }
 .hundred {
-  width: 20px;
-  height: 20px;
+  width: var(--plate-size);
+  height: var(--plate-size);
 }
 .ten {
-  width: 3px;
-  height: 20px;
+  width: calc(var(--rod-size) * 7 / 52);
+  height: var(--rod-size);
 }
 .one {
-  width: 5px;
-  height: 6px;
+  width: calc(var(--unit-size) * 8 / 9);
+  height: var(--unit-size);
 }
 .thousand {
-  width: 22px;
-  height: 22px;
+  width: calc(var(--plate-size) * 70 / 72);
+  height: var(--plate-size);
   color: #359ed1;
 }
 .staticBlock {
@@ -277,7 +311,7 @@
   justify-content: center;
   width: 100%;
   grid-column: 1 / -1;
-  grid-row: 1 / 3;
+  grid-row: 1 / -1;
   color: #8ea4ad;
   font-size: 13px;
 }
@@ -728,24 +762,10 @@
     margin-top: 8px;
   }
 }
-@container cube-workspace (min-width: 700px) and (max-width: 759px) {
-  .columns[data-place-count="4"] .blocks {
-    grid-template-columns: repeat(4, minmax(0, 1fr));
-    height: 118px;
-  }
-  .columns[data-place-count="4"] .workspace {
-    height: 152px;
-  }
-  .columns[data-place-count="4"] .trayBlocks {
-    grid-template-columns: repeat(4, minmax(0, 1fr));
-    height: 70px;
-  }
-  .columns[data-place-count="4"] .tray {
-    height: 136px;
-  }
-}
 @container cube-workspace (min-width: 1000px) {
   .board {
+    --workspace-block-height: 118px;
+    --tray-block-height: 58px;
     grid-template-columns: minmax(0, 1fr) 240px;
     padding: 8px;
   }
@@ -763,35 +783,6 @@
   .workspace {
     height: 152px;
   }
-  .blocks,
-  .trayBlocks,
-  .removedBlocks {
-    grid-auto-rows: 28px;
-    height: 58px;
-  }
-  .blocks {
-    height: 118px;
-  }
-  .staticBlock,
-  .blockButton {
-    height: 28px;
-  }
-  .hundred {
-    width: 26px;
-    height: 26px;
-  }
-  .ten {
-    width: 4px;
-    height: 26px;
-  }
-  .one {
-    width: 6px;
-    height: 7px;
-  }
-  .thousand {
-    width: 28px;
-    height: 28px;
-  }
   .trade {
     height: 36px;
     padding-block: 1px;
@@ -804,42 +795,15 @@
   }
 }
 @container cube-workspace (min-width: 1250px) {
+  .board {
+    --workspace-block-height: 166px;
+    --tray-block-height: 82px;
+  }
   .columnHead strong {
     font-size: 14px;
   }
   .workspace {
     height: 200px;
-  }
-  .blocks,
-  .trayBlocks,
-  .removedBlocks {
-    grid-template-columns: repeat(5, minmax(0, 44px));
-    grid-auto-rows: 40px;
-    height: 82px;
-    gap: 2px 5px;
-  }
-  .blocks {
-    height: 166px;
-  }
-  .staticBlock,
-  .blockButton {
-    height: 40px;
-  }
-  .hundred {
-    width: 38px;
-    height: 38px;
-  }
-  .ten {
-    width: 5px;
-    height: 38px;
-  }
-  .one {
-    width: 8px;
-    height: 9px;
-  }
-  .thousand {
-    width: 40px;
-    height: 40px;
   }
   .tray {
     height: 154px;

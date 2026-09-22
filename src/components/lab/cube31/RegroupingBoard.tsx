@@ -225,6 +225,47 @@ const ACTION = {
 const VERB = { tray: "옮기기", workspace: "빼기", removed: "넣기" } as const;
 type TouchDrag = { block: MovingBlock; x: number; y: number; moved: boolean };
 
+/** Keep a shared block scale in both zones, including after transfers.
+ * Reserve the capacity this problem can actually need, rather than 20 tiny slots
+ * in every place. Splitting may increase capacity, but moving never changes it. */
+function blockLayout(
+  problem: RegroupingProblem,
+  board: ManipulativeState,
+  place: Place,
+): CSSProperties {
+  const value = VALUES[place];
+  const givenCapacity =
+    problem.operation === "add"
+      ? Math.floor(
+          ((problem.a % (value * 10)) + (problem.b % (value * 10))) / value,
+        )
+      : toBlocks(problem.a)[place];
+  const capacity = Math.max(
+    1,
+    givenCapacity,
+    board.workspace[place] + board.tray[place] + board.removed[place],
+  );
+  const columns =
+    place === 1
+      ? Math.min(10, capacity)
+      : place === 0
+        ? Math.min(5, capacity)
+        : Math.min(5, Math.ceil(Math.sqrt(capacity * 1.5)));
+  const trayCapacity =
+    problem.operation === "add"
+      ? Math.max(1, toBlocks(problem.b)[place])
+      : capacity;
+  // Removed plates can use the full width of the shorter lower tray.
+  const trayColumns = Math.min(place === 0 ? 5 : 10, trayCapacity);
+  return {
+    "--block-columns": columns,
+    "--tray-columns": trayColumns,
+    "--block-fit-columns": Math.max(columns, trayColumns),
+    "--workspace-rows": Math.ceil(capacity / columns),
+    "--tray-rows": Math.ceil(trayCapacity / trayColumns),
+  } as CSSProperties;
+}
+
 /** Mount with an activity key to start a fresh problem and completion lifecycle. */
 export default function RegroupingBoard({
   problem,
@@ -477,6 +518,7 @@ export default function RegroupingBoard({
           <section
             className={styles.column}
             data-place={place}
+            style={blockLayout(problem, board, place)}
             key={place}
             aria-label={`${PLACE_NAMES[place]} 수 모형`}
           >
