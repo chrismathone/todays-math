@@ -19,6 +19,11 @@ async function main() {
       { width: 1024, height: 768 },
       { width: 390, height: 844 },
     ]) {
+      if (
+        process.env.CUBE_QA_WIDTH &&
+        viewport.width !== Number(process.env.CUBE_QA_WIDTH)
+      )
+        continue;
       const page = await browser.newPage({ viewport });
       const errors: string[] = [];
       page.on("pageerror", (error) => errors.push(error.message));
@@ -117,12 +122,37 @@ async function main() {
             [],
             `${label}: controls outside viewport`,
           );
+          if (
+            viewport.width >= 1366 &&
+            CUBE_LESSONS[lesson].tasks[step]?.kind === "regroup"
+          ) {
+            assert(
+              geometry.scale >= 0.8,
+              `${label}: manipulative is too small to use`,
+            );
+          }
           rows.push({ lesson, step, scale: geometry.scale });
           if ((lesson === 1 || lesson === 12) && step === 0)
             await page.screenshot({
               path: path.join(output, `${viewport.width}-${lesson}.png`),
             });
         }
+      }
+      if (viewport.width > 760) {
+        const nav = page.getByRole("navigation", { name: "단원 학습 순서" });
+        const before = await nav.evaluate((el) => el.scrollTop);
+        const stage = await page.locator("article").boundingBox();
+        await nav.hover();
+        await page.mouse.wheel(0, -200);
+        await expect
+          .poll(() => nav.evaluate((el) => el.scrollTop))
+          .toBeLessThan(before);
+        assert.deepEqual(
+          await page.locator("article").boundingBox(),
+          stage,
+          "Scrolling lessons moved the activity",
+        );
+        assert.equal(await page.evaluate(() => scrollY), 0);
       }
       assert.deepEqual(errors, []);
       results.push({
