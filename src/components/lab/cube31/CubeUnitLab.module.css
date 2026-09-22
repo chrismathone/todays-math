@@ -1,5 +1,9 @@
 .page {
-  min-height: 100vh;
+  height: 100dvh;
+  min-height: 0;
+  display: grid;
+  grid-template-rows: 64px minmax(0, 1fr);
+  overflow: hidden;
   background: #f5f6f9;
   color: #20304b;
   --cube-blue: #3258d5;
@@ -7,7 +11,7 @@
   font-family: var(--font-pretendard), sans-serif;
 }
 .header {
-  height: 72px;
+  height: 64px;
   padding: 0 38px;
   display: flex;
   align-items: center;
@@ -73,14 +77,20 @@
 .layout {
   display: grid;
   grid-template-columns: 254px minmax(0, 1fr);
-  max-width: 1600px;
+  width: 100%;
+  height: 100%;
+  min-height: 0;
+  max-width: 1800px;
   margin: auto;
 }
 .sidebar {
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+  overflow: hidden;
   background: #fff;
   border-right: 1px solid var(--cube-line);
-  min-height: calc(100vh - 72px);
-  padding: 32px 20px;
+  padding: 22px 20px 14px;
 }
 .courseTitle {
   padding: 0 12px;
@@ -102,7 +112,7 @@
   color: #687791;
 }
 .courseProgress {
-  margin: 25px 12px;
+  margin: 18px 12px;
 }
 .courseProgress > span {
   display: flex;
@@ -130,10 +140,20 @@
   background: var(--cube-blue);
 }
 .sidebar nav {
-  display: grid;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  min-height: 0;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  scrollbar-width: thin;
+  scrollbar-color: #c4d0e4 transparent;
+  padding-block: var(--nav-edge, 0px);
   gap: 4px;
 }
 .lessonButton {
+  flex-shrink: 0;
   display: flex;
   align-items: center;
   gap: 12px;
@@ -184,30 +204,39 @@
   font-size: 11px;
   line-height: 1.8;
   color: #7a889c;
-  margin: 26px 12px 0;
+  margin: 14px 12px 0;
 }
 .workspace {
   container-type: inline-size;
   container-name: cube-workspace;
   min-width: 0;
-  padding: 38px clamp(22px, 3vw, 55px) 25px;
+  min-height: 0;
+  display: grid;
+  grid-template-rows: auto minmax(0, 1fr) auto;
+  gap: 12px;
+  padding: 20px clamp(18px, 2vw, 36px) 12px;
+  overflow: hidden;
 }
 .lessonHeading {
   display: flex;
   justify-content: space-between;
   gap: 20px;
   align-items: center;
-  margin-bottom: 25px;
+  margin-bottom: 0;
+}
+.lessonHeading > div:first-child {
+  flex: 1;
+  min-width: 0;
 }
 .lessonHeading h2 {
-  font-size: clamp(22px, 2vw, 30px);
+  font-size: clamp(22px, 2vw, 27px);
   letter-spacing: -0.8px;
-  margin: 9px 0;
+  margin: 5px 0;
   outline: none;
 }
 .lessonHeading p {
   color: #69788e;
-  font-size: 14px;
+  font-size: 13px;
   line-height: 1.7;
   margin: 0;
 }
@@ -224,14 +253,17 @@
 .stepTrack {
   display: flex;
   align-items: center;
-  gap: 7px;
-  margin-bottom: 17px;
-  overflow-x: auto;
+  gap: 5px;
+  flex-wrap: wrap;
+  max-width: 40%;
+  flex-shrink: 0;
+  justify-content: flex-end;
+  margin-bottom: 0;
   padding: 3px 1px;
 }
 .stepButton {
-  width: 44px;
-  height: 44px;
+  width: 36px;
+  height: 36px;
   border: 1px solid var(--cube-line);
   border-radius: 50%;
   background: #fff;
@@ -249,12 +281,54 @@
   border: 1px solid var(--cube-line);
   border-radius: 18px;
   background: white;
-  padding: clamp(20px, 3vw, 38px);
-  min-height: 460px;
+  padding: 18px 22px 12px;
+  min-height: 0;
+  height: 100%;
+  display: grid;
+  grid-template-rows: auto minmax(0, 1fr) auto;
+  overflow: hidden;
+  gap: 10px;
   box-shadow: 0 5px 22px #273e5d04;
 }
 .taskTitle {
-  padding-bottom: 24px;
+  padding-bottom: 0;
+}
+.stage[data-kind="regroup"] {
+  border: 0;
+  padding: 0;
+  border-radius: 0;
+  background: transparent;
+  box-shadow: none;
+}
+.stage[data-kind="regroup"] > .taskTitle {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.stage[data-kind="regroup"] > .taskTitle h3 {
+  margin: 0;
+  font-size: 18px;
+}
+.stage[data-kind="regroup"] > .taskTitle p {
+  display: none;
+}
+.stage[data-kind="regroup"] > .stageFooter {
+  border-color: var(--cube-line);
+}
+.activityViewport {
+  position: relative;
+  min-width: 0;
+  min-height: 0;
+  overflow: clip;
+}
+.activityContent {
+  position: absolute;
+  top: 0;
+  left: var(--activity-inset, 0px);
+  width: 100%;
+  display: flow-root;
+  transform: scale(var(--activity-scale, 1));
+  transform-origin: top left;
 }
 .activityTag {
   display: inline-block;
@@ -266,22 +340,33 @@
   padding: 5px 8px;
 }
 .taskTitle h3 {
-  margin: 12px 0 9px;
-  font-size: 24px;
+  margin: 7px 0;
+  font-size: 22px;
   letter-spacing: -0.7px;
 }
 .taskTitle p {
   font-size: 15px;
   color: #61718b;
-  line-height: 1.8;
+  line-height: 1.55;
   max-width: 820px;
   margin: 0;
   word-break: keep-all;
 }
 .stageFooter {
-  margin-top: 27px;
+  position: relative;
+  min-height: 58px;
+  margin-top: 0;
   border-top: 1px solid #edf0f5;
-  padding-top: 19px;
+  padding-top: 10px;
+}
+.stageFooter > .hint {
+  position: absolute;
+  bottom: calc(100% + 8px);
+  left: 0;
+  right: 0;
+  z-index: 2;
+  margin: 0;
+  box-shadow: 0 7px 25px #594c2220;
 }
 .hintButton {
   border-color: transparent;
@@ -303,7 +388,7 @@
   justify-content: space-between;
   align-items: center;
   border-radius: 11px;
-  padding: 20px;
+  padding: 10px 14px;
   background: #edf6f0;
   color: #30634a;
   font-size: 14px;
@@ -341,7 +426,7 @@
   color: #75839a;
   font-size: 11px;
   line-height: 1.7;
-  padding-top: 20px;
+  padding-top: 0;
 }
 .mobileBar {
   display: none;
@@ -486,10 +571,10 @@
     grid-template-columns: 215px minmax(0, 1fr);
   }
   .sidebar {
-    padding: 26px 12px;
+    padding: 18px 12px;
   }
   .workspace {
-    padding: 28px 22px;
+    padding: 16px 18px 10px;
   }
   .lessonHeading {
     align-items: flex-start;
@@ -504,10 +589,64 @@
     flex-wrap: wrap;
   }
 }
+@media (max-height: 820px) {
+  .workspace {
+    gap: 8px;
+    padding-top: 12px;
+  }
+  .lessonHeading h2 {
+    font-size: 24px;
+    margin: 4px 0;
+  }
+  .lessonHeading p {
+    font-size: 12px;
+  }
+  .stepButton {
+    width: 36px;
+    height: 36px;
+  }
+  .stage {
+    padding: 12px 18px 10px;
+    gap: 8px;
+  }
+  .taskTitle h3 {
+    font-size: 20px;
+    margin: 4px 0;
+  }
+  .taskTitle p {
+    font-size: 13px;
+  }
+  .activityTag {
+    padding: 3px 7px;
+  }
+  .courseTitle p {
+    display: none;
+  }
+  .courseProgress {
+    margin-block: 14px;
+  }
+  .stageFooter {
+    min-height: 52px;
+    padding-top: 6px;
+  }
+  .success {
+    padding: 7px 12px;
+  }
+  .success p {
+    margin-top: 2px;
+    line-height: 1.5;
+  }
+  .footnote {
+    font-size: 10px;
+  }
+}
 @media (max-width: 760px) {
+  .page {
+    grid-template-rows: 56px minmax(0, 1fr);
+  }
   .header {
-    height: 62px;
-    padding: 0 16px;
+    height: 56px;
+    padding: 0 12px;
     gap: 10px;
   }
   .brand {
@@ -523,23 +662,29 @@
   }
   .layout {
     display: block;
+    position: relative;
   }
   .sidebar {
     display: none;
     min-height: 0;
-    border-right: 0;
-    border-bottom: 1px solid var(--cube-line);
+    position: absolute;
+    top: 58px;
+    left: 12px;
+    bottom: 12px;
+    width: min(290px, calc(100% - 24px));
+    z-index: 5;
+    padding: 10px;
+    border: 1px solid var(--cube-line);
+    border-radius: 12px;
+    box-shadow: 0 12px 45px #263d6130;
   }
   .sidebar[data-open="true"] {
-    display: block;
+    display: flex;
   }
   .courseTitle,
   .courseProgress,
   .sourceNote {
     display: none;
-  }
-  .sidebar nav {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
   .lessonButton {
     padding: 8px 5px;
@@ -549,40 +694,91 @@
     font-size: 12px;
   }
   .workspace {
-    padding: 16px 14px 28px;
+    height: 100%;
+    grid-template-rows: auto auto minmax(0, 1fr);
+    padding: 8px 10px 10px;
+    gap: 6px;
   }
   .mobileBar {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 24px;
+    margin-bottom: 0;
     color: #7a879c;
     font-size: 12px;
   }
   .lessonHeading {
     gap: 8px;
+    flex-wrap: wrap;
+  }
+  .stepTrack {
+    order: 3;
+    max-width: 100%;
+    width: 100%;
+    justify-content: flex-start;
+    gap: 4px;
+  }
+  .stepTrack .stepButton {
+    width: 28px;
+    height: 28px;
+    font-size: 12px;
   }
   .lessonHeading p {
-    font-size: 13px;
+    display: none;
+  }
+  .lessonHeading h2 {
+    font-size: 22px;
+    margin: 4px 0;
+  }
+  .mobileBar button {
+    min-height: 36px;
+    padding: 6px 10px;
+    font-size: 12px;
+  }
+  .footnote {
+    display: none;
+  }
+  .stepButton {
+    width: 36px;
+    height: 36px;
   }
   .explorerButton {
     font-size: 11px;
     min-width: 76px;
   }
   .explorerButton span {
-    display: block;
-    margin: 0 0 2px;
+    margin: 0;
   }
   .stage {
-    padding: 22px 17px;
+    padding: 12px 10px 8px;
     border-radius: 13px;
-    min-height: 430px;
+    min-height: 0;
+    gap: 8px;
   }
   .taskTitle h3 {
-    font-size: 21px;
+    font-size: 18px;
+    margin: 4px 0;
   }
   .taskTitle p {
-    font-size: 14px;
+    font-size: 12px;
+  }
+  .activityTag {
+    padding: 3px 6px;
+    font-size: 10px;
+  }
+  .success {
+    gap: 8px;
+    flex-wrap: nowrap;
+    font-size: 12px;
+    padding: 8px;
+  }
+  .success button {
+    font-size: 12px;
+    padding: 9px;
+  }
+  .stageFooter {
+    min-height: 52px;
+    padding-top: 6px;
   }
   .modalBody {
     padding: 20px;

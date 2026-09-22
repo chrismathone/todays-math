@@ -19,7 +19,7 @@
 
 .controls {
   display: grid;
-  gap: 1.25rem;
+  gap: 0.875rem;
   min-width: 0;
   margin: 0;
   padding: 0;
@@ -68,8 +68,8 @@
   align-items: flex-start;
   gap: 0.875rem;
   flex-wrap: wrap;
-  margin-top: 1.5rem;
-  padding-top: 1rem;
+  margin-top: 0.875rem;
+  padding-top: 0.75rem;
   border-top: 1px solid var(--line);
 }
 
@@ -130,7 +130,7 @@
   font-weight: 700;
 }
 
-.choice {
+label.choice {
   display: flex;
   align-items: center;
   gap: 0.65rem;
@@ -331,7 +331,7 @@
   height: 0.65rem;
   border-left: 1px solid #697f8e;
 }
-.slider {
+input.slider {
   width: 100%;
   min-height: 44px;
   margin: 0.25rem 0;
@@ -481,6 +481,51 @@
   clip-path: inset(50%);
   white-space: nowrap;
   border: 0;
+}
+
+/* Keep the map and its pieces together in the fixed learning stage. */
+@container cube-workspace (min-width: 640px) {
+  .controls:has(.repairColumn) {
+    grid-template-columns: 220px minmax(0, 1fr);
+    align-items: start;
+    column-gap: 2rem;
+  }
+  .repairColumn {
+    grid-column: 1;
+    grid-row: 1/3;
+  }
+  .controls:has(.repairColumn) > .choices {
+    grid-column: 2;
+  }
+  .controls:has(.repairColumn) > .answerLabel {
+    grid-column: 2;
+  }
+  .controls:has(.puzzleBoard) {
+    grid-template-columns: minmax(0, 1fr) minmax(220px, 0.85fr);
+    column-gap: 1.5rem;
+    align-items: start;
+  }
+  .controls:has(.puzzleBoard) > .help {
+    grid-column: 1/-1;
+  }
+  .puzzleBoard {
+    grid-column: 1;
+    grid-row: 2/5;
+    width: min(100%, 340px);
+  }
+  .pieceBank {
+    grid-column: 2;
+    grid-row: 2;
+    grid-template-columns: repeat(3, minmax(0, 100px));
+  }
+  .controls:has(.puzzleBoard) > .selection {
+    grid-column: 2;
+    grid-row: 3;
+  }
+  .controls:has(.puzzleBoard) > .toolRow {
+    grid-column: 2;
+    grid-row: 4;
+  }
 }
 
 @media (max-width: 520px) {
