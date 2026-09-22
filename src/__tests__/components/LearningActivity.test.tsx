@@ -420,17 +420,39 @@ describe("Cube map puzzle", () => {
       expect(button).toBeDisabled();
   });
 
-  it("can return pieces, rejects invalid drags, and never duplicates a moved piece", () => {
+  it("disables used palette pieces and restores them after removal, replacement, and reset", () => {
     mount(puzzle);
+    const bank = screen.getAllByRole("button", { name: /^[A-E] 조각:/ });
+    for (const piece of bank) {
+      expect(piece).toBeEnabled();
+      expect(piece).toHaveAttribute("data-used", "false");
+      expect(piece).toHaveAttribute("draggable", "true");
+    }
+    const pieceB = screen.getByRole("button", { name: /^B 조각:/ });
     const target = screen.getByRole("button", { name: "1번 자리: 빈자리" });
     fireEvent.drop(target, { dataTransfer: dragData("999") });
     expect(target).toHaveAccessibleName("1번 자리: 빈자리");
     const dataTransfer = dragData("1");
-    fireEvent.dragStart(screen.getByRole("button", { name: /^B 조각:/ }), {
-      dataTransfer,
-    });
+    fireEvent.dragStart(pieceB, { dataTransfer });
     expect(dataTransfer.setData).toHaveBeenCalledWith("text/plain", "1");
     fireEvent.drop(target, { dataTransfer });
+    expect(pieceB).toBeDisabled();
+    expect(pieceB).toHaveAttribute("data-used", "true");
+    expect(pieceB).toHaveAttribute("draggable", "false");
+    expect(pieceB).toHaveAccessibleName(/놓음$/);
+    expect(pieceB).toHaveTextContent("놓음");
+    const blockedDrag = dragData("1");
+    expect(fireEvent.dragStart(pieceB, { dataTransfer: blockedDrag })).toBe(
+      false,
+    );
+    expect(blockedDrag.setData).not.toHaveBeenCalled();
+    fireEvent.click(pieceB);
+    click("4번 자리: 빈자리");
+    expect(target).toHaveAccessibleName("1번 자리: B 조각");
+    expect(
+      screen.getByRole("button", { name: "4번 자리: 빈자리" }),
+    ).toBeInTheDocument();
+    fireEvent.dragStart(target, { dataTransfer });
     fireEvent.drop(screen.getByRole("button", { name: "4번 자리: 빈자리" }), {
       dataTransfer,
     });
@@ -445,18 +467,33 @@ describe("Cube map puzzle", () => {
     expect(
       screen.getAllByRole("button", { name: /^\d번 자리: 빈자리$/ }),
     ).toHaveLength(5);
+    expect(pieceB).toBeEnabled();
+    expect(pieceB).toHaveAttribute("data-used", "false");
+    expect(pieceB).toHaveAttribute("draggable", "true");
+    expect(pieceB).not.toHaveAccessibleName(/놓음$/);
     placePiece("A", 1);
     placePiece("B", 1);
     expect(
       screen.queryByRole("button", { name: /^\d번 자리: A 조각$/ }),
     ).not.toBeInTheDocument();
+    const pieceA = screen.getByRole("button", { name: /^A 조각:/ });
+    expect(pieceA).toBeEnabled();
+    expect(pieceA).toHaveAttribute("data-used", "false");
+    expect(pieceA).toHaveAttribute("draggable", "true");
+    expect(pieceA).not.toHaveAccessibleName(/놓음$/);
     click("조각 다시 놓기");
     expect(
       screen.getAllByRole("button", { name: /^\d번 자리: 빈자리$/ }),
     ).toHaveLength(5);
+    for (const piece of bank) {
+      expect(piece).toBeEnabled();
+      expect(piece).toHaveAttribute("data-used", "false");
+      expect(piece).toHaveAttribute("draggable", "true");
+      expect(piece).not.toHaveAccessibleName(/놓음$/);
+    }
   });
 
-  it("supports keyboard piece selection and placement with unique SVG clip IDs", async () => {
+  it("supports keyboard placement and return while skipping used palette pieces, with unique SVG clip IDs", async () => {
     const { container } = mount(puzzle);
     const user = userEvent.setup();
     screen.getByRole("button", { name: /^B 조각:/ }).focus();
@@ -471,5 +508,29 @@ describe("Cube map puzzle", () => {
     );
     expect(new Set(ids).size).toBe(ids.length);
     expect(container.querySelectorAll('svg path[d*=" C"]')).not.toHaveLength(0);
+
+    screen.getByRole("button", { name: /^A 조각:/ }).focus();
+    await user.tab();
+    expect(screen.getByRole("button", { name: /^C 조각:/ })).toHaveFocus();
+    screen.getByRole("button", { name: "1번 자리: B 조각" }).focus();
+    await user.keyboard("{Enter}");
+    screen.getByRole("button", { name: "선택 조각 되돌리기" }).focus();
+    await user.keyboard(" ");
+    const pieceB = screen.getByRole("button", { name: /^B 조각:/ });
+    expect(pieceB).toBeEnabled();
+    expect(pieceB).not.toHaveAccessibleName(/놓음$/);
+    screen.getByRole("button", { name: /^A 조각:/ }).focus();
+    await user.tab();
+    expect(pieceB).toHaveFocus();
+    await user.keyboard(" ");
+    screen.getByRole("button", { name: "1번 자리: 빈자리" }).focus();
+    await user.keyboard("{Enter}");
+    expect(pieceB).toBeDisabled();
+    screen.getByRole("button", { name: "조각 다시 놓기" }).focus();
+    await user.keyboard("{Enter}");
+    expect(pieceB).toBeEnabled();
+    expect(
+      screen.getAllByRole("button", { name: /^\d번 자리: 빈자리$/ }),
+    ).toHaveLength(5);
   });
 });

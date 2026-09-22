@@ -891,32 +891,40 @@ function PuzzleActivity(callbacks: KindProps<"puzzle">) {
         })}
       </div>
       <div className={styles.pieceBank} aria-label="지도 조각">
-        {PIECES.map((piece, index) => (
-          <button
-            type="button"
-            key={piece.name}
-            className={styles.puzzlePiece}
-            aria-label={`${piece.name} 조각: ${piece.description}`}
-            aria-pressed={selected === index}
-            draggable={!state.done}
-            onDragStart={(event) => {
-              event.dataTransfer.setData("text/plain", String(index));
-              setSelected(index);
-            }}
-            onClick={() => setSelected(selected === index ? null : index)}
-          >
-            <svg
-              viewBox={`${(piece.cell % 3) * 100 - 19} ${Math.floor(piece.cell / 3) * 100 - 19} 138 138`}
-              aria-hidden="true"
+        {PIECES.map((piece, index) => {
+          const used = slots.includes(index);
+          return (
+            <button
+              type="button"
+              key={piece.name}
+              className={styles.puzzlePiece}
+              data-used={used}
+              aria-label={`${piece.name} 조각: ${piece.description}${used ? ", 놓음" : ""}`}
+              aria-pressed={!used && selected === index}
+              disabled={used}
+              draggable={!used && !state.done}
+              onDragStart={(event) => {
+                if (used || state.done) {
+                  event.preventDefault();
+                  return;
+                }
+                event.dataTransfer.setData("text/plain", String(index));
+                setSelected(index);
+              }}
+              onClick={() => setSelected(selected === index ? null : index)}
             >
-              <MapPiece cell={piece.cell} id={`${prefix}-bank-${index}`} />
-            </svg>
-            <span>
-              {piece.name}{" "}
-              <small>{slots.includes(index) ? "놓음" : "조각"}</small>
-            </span>
-          </button>
-        ))}
+              <svg
+                viewBox={`${(piece.cell % 3) * 100 - 19} ${Math.floor(piece.cell / 3) * 100 - 19} 138 138`}
+                aria-hidden="true"
+              >
+                <MapPiece cell={piece.cell} id={`${prefix}-bank-${index}`} />
+              </svg>
+              <span>
+                {piece.name} <small>{used ? "놓음" : "조각"}</small>
+              </span>
+            </button>
+          );
+        })}
       </div>
       <p className={styles.selection} role="status">
         {selected === null
