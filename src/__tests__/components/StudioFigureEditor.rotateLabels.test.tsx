@@ -94,34 +94,39 @@ afterEach(() => {
 const canvas = () => document.querySelector("#figure-editor-canvas")!;
 const surface = () => screen.getByLabelText("도형 편집 캔버스");
 
-describe("90° 회전 — 돌린 직후의 라벨", () => {
-  it("임자 꼭짓점만 바뀐 엔진 라벨은 날것 글자로 깜빡이지 않고 조판본 그대로 옮겨 보인다", async () => {
-    render(
-      <StudioFigureEditor
-        image={crop}
-        initialSvg={figure}
-        index={0}
-        onSave={vi.fn()}
-        onClose={vi.fn()}
-      />,
-    );
-    await waitFor(() => expect(canvas().querySelector("text")).toBeNull());
-    surface().focus();
-    fireEvent.keyDown(surface(), { key: "a", ctrlKey: true });
-    fireEvent.click(
-      within(screen.getByRole("region", { name: "회전" })).getByRole("button", {
-        name: "시계 90°",
-      }),
-    );
-    // 돌린 바로 그 화면 — 조판(350ms 뒤)을 기다리지 않는다
-    expect(canvas().querySelector("text")).toBeNull();
-    expect(canvas().querySelector('g[data-object-id="obj-1"]')).toHaveAttribute(
-      "transform",
-      expect.stringMatching(/^translate\(/),
-    );
-    expect(canvas().querySelector("[data-label]")).toHaveAttribute(
-      "data-label",
-      "A",
-    );
-  });
+describe("회전 — 돌린 직후의 라벨", () => {
+  it.each(["시계 90°", "180도 회전"])(
+    "%s: 임자 꼭짓점만 바뀐 엔진 라벨은 날것 글자로 깜빡이지 않고 조판본 그대로 옮겨 보인다",
+    async (name) => {
+      render(
+        <StudioFigureEditor
+          image={crop}
+          initialSvg={figure}
+          index={0}
+          onSave={vi.fn()}
+          onClose={vi.fn()}
+        />,
+      );
+      await waitFor(() => expect(canvas().querySelector("text")).toBeNull());
+      surface().focus();
+      fireEvent.keyDown(surface(), { key: "a", ctrlKey: true });
+      fireEvent.click(
+        within(screen.getByRole("region", { name: "회전" })).getByRole(
+          "button",
+          {
+            name,
+          },
+        ),
+      );
+      // 돌린 바로 그 화면 — 조판(350ms 뒤)을 기다리지 않는다
+      expect(canvas().querySelector("text")).toBeNull();
+      expect(
+        canvas().querySelector('g[data-object-id="obj-1"]'),
+      ).toHaveAttribute("transform", expect.stringMatching(/^translate\(/));
+      expect(canvas().querySelector("[data-label]")).toHaveAttribute(
+        "data-label",
+        "A",
+      );
+    },
+  );
 });

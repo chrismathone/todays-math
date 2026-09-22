@@ -14,7 +14,7 @@ import { SVG_NS } from "@/components/unified/figure-editor/figureSvgEditing";
 import { openFigureDetails } from "@/__tests__/helpers/figureEditorPanel";
 
 /**
- * 오른쪽 칸 «반시계 90°»·«시계 90°» — 원장님 2026-09-19 «회전 옵션 추가 가능한지. 시계 반시계 90도 방향».
+ * 오른쪽 칸 «반시계 90°»·«시계 90°»·«180도 회전».
  * 선택한 요소·여러 요소·묶음 칸 모두에 선다. 되돌리기 한 걸음 = 한 번 회전, 돈 뒤에도 선택은 그대로.
  * 크기 고정 요소가 섞이면 단추가 꺼지고 짧은 이유를 단다.
  */
@@ -111,6 +111,8 @@ const rotateRow = () => screen.queryByRole("region", { name: "회전" });
 const cw = () => within(rotateRow()!).getByRole("button", { name: "시계 90°" });
 const ccw = () =>
   within(rotateRow()!).getByRole("button", { name: "반시계 90°" });
+const half = () =>
+  within(rotateRow()!).getByRole("button", { name: "180도 회전" });
 const undoButton = () => screen.getByRole("button", { name: /되돌리기/ });
 const coords = (node: Element, names: string[]) =>
   names.map((name) => node.getAttribute(name));
@@ -125,11 +127,12 @@ describe("90° 회전 — 선택한 요소 칸", () => {
     expect(rotateRow()).toBeNull();
   });
 
-  it("선분을 고르면 두 단추가 서고, 시계 90° 는 선분을 제 가운데로 돌린다 — 선택은 그대로", () => {
+  it("선분을 고르면 세 단추가 서고, 시계 90° 는 선분을 제 가운데로 돌린다 — 선택은 그대로", () => {
     open();
     pickNumber(1);
     expect(ccw()).toBeEnabled();
     expect(cw()).toBeEnabled();
+    expect(half()).toBeEnabled();
     fireEvent.click(cw());
     // 가운데 (50, 60): (x, y) → (110 − y, x + 10)
     const line = canvas().querySelector("line")!;
@@ -205,6 +208,7 @@ describe("90° 회전 — 선택한 요소 칸", () => {
     pickNumber(3);
     expect(cw()).toBeDisabled();
     expect(ccw()).toBeDisabled();
+    expect(half()).toBeDisabled();
     expect(cw()).toHaveAttribute("title", ROTATE_BLOCKED.text);
     expect(within(rotateRow()!).getByText(ROTATE_BLOCKED.text)).toBeVisible();
   });
@@ -283,12 +287,7 @@ describe("90° 회전 — 틀 넓히기", () => {
   });
 });
 
-/**
- * 원장님 2026-09-19 «반대쪽으로 뒤집기» 단추 — 회전 줄 바로 밑. 곡선·꺾은선 하나(와 뒤집기가 같이 옮기는 값 글자)를
- * 골랐을 때만 선다. 누르면 치수 곡선이 현(두 끝)을 두고 반대편으로, 값 글자도 대칭 자리로 — 되돌리기 한 걸음.
- * 뒤집을 수 없으면 단추를 끄고 `flipFigureCurve` 가 준 이유를 단다(AI «요청대로 고치기»와 같은 이유).
- */
-describe("반대쪽으로 뒤집기", () => {
+describe("180도 회전", () => {
   const DIM =
     'fill="none" stroke="#111111" stroke-width="0.72" stroke-dasharray="5 3" stroke-linecap="round"';
   // 1·2 선분(꼭짓점 (40, 200)) · 3 치수 곡선 · 4 값 «10» · 5 각 표시 · 6 곧은 경로 · 7 꺾은선
@@ -296,73 +295,86 @@ describe("반대쪽으로 뒤집기", () => {
     `<svg xmlns="${SVG_NS}" viewBox="0 0 300 240">` +
     `<line x1="40" y1="200" x2="240" y2="200" stroke="#111111"/>` +
     `<line x1="40" y1="200" x2="140" y2="40" stroke="#111111"/>` +
-    `<path d="M 40 150 Q 140 120 240 150" ${DIM}/>` +
+    `<path d="M 40 150 Q 100 120 240 150" ${DIM}/>` +
     `<text x="140" y="129.376" font-size="16.8" text-anchor="middle" fill="#111111" data-mj="10">10</text>` +
     `<path d="M 62 200 A 22 22 0 0 0 51.66 181.34" fill="none" stroke="#111111" stroke-width="0.72"/>` +
     `<path d="M 20 20 L 60 20 L 100 20" fill="none" stroke="#111111"/>` +
     `<polyline points="160 230 200 215 240 230" fill="none" stroke="#111111"/>` +
     `</svg>`;
-  const flipRow = () => screen.queryByRole("region", { name: "뒤집기" });
-  const flipButton = () =>
-    within(flipRow()!).getByRole("button", { name: "반대쪽으로 뒤집기" });
   const curve = () => canvas().querySelector('[data-object-id="obj-2"]')!;
   const value = () => canvas().querySelector('[data-object-id="obj-3"]')!;
 
-  it("곡선 하나를 고르면 회전 줄 밑에 단추가 선다 — 선분·글자·여럿이면 없다", () => {
+  it("곡선·선분·여럿 선택에서 회전 줄에 선다 — 대칭 줄이나 뒤집기 줄에는 없다", () => {
     open(dimension);
     pickNumber(3);
-    expect(rotateRow()).not.toBeNull();
-    expect(flipButton()).toBeEnabled();
+    expect(half()).toBeEnabled();
+    expect(
+      within(screen.getByRole("region", { name: "대칭" })).queryByRole(
+        "button",
+        { name: "180도 회전" },
+      ),
+    ).toBeNull();
+    expect(
+      screen.queryByRole("button", { name: "반대쪽으로 뒤집기" }),
+    ).toBeNull();
+    expect(screen.queryByRole("region", { name: "뒤집기" })).toBeNull();
+    expect(screen.getByRole("button", { name: /^배치/ })).toHaveTextContent(
+      "회전 · 대칭 · 정렬 · 간격 · 순서",
+    );
     pickNumber(1);
-    expect(flipRow()).toBeNull();
+    expect(half()).toBeEnabled();
     pickNumber(4);
-    expect(flipRow()).toBeNull();
+    expect(half()).toBeDisabled();
     selectAll();
-    expect(flipRow()).toBeNull();
+    expect(half()).toBeEnabled();
   });
 
-  it("누르면 곡선이 현을 두고 반대편으로, 값 글자도 대칭 자리로 — 선택은 곡선과 그 글자", () => {
+  it("곡선은 가운데로 180° 돈다 — 끝점도 돌고, 선택하지 않은 글자는 그대로", () => {
     open(dimension);
     pickNumber(3);
-    fireEvent.click(flipButton());
-    expect(curve().getAttribute("d")).toBe("M 40 150 Q 140 180 240 150");
-    expect(value().getAttribute("transform")).toBe("translate(0 52)");
-    expect(screen.getByText("2개 요소 선택")).toBeInTheDocument();
-    // 곡선과 그 글자를 고른 채라 단추가 남는다 — 다시 누르면 제자리
-    fireEvent.click(flipButton());
-    expect(curve().getAttribute("d")).toBe("M 40 150 Q 140 120 240 150");
-  });
-
-  it("되돌리기 한 걸음 = 한 번 뒤집기", () => {
-    open(dimension);
-    pickNumber(3);
-    fireEvent.click(flipButton());
-    fireEvent.click(undoButton());
-    expect(curve().getAttribute("d")).toBe("M 40 150 Q 140 120 240 150");
+    fireEvent.click(half());
+    expect(curve().getAttribute("d")).toBe("M 240 120 Q 180 150 40 120");
     expect(value().getAttribute("transform")).toBeNull();
+    expect(screen.queryByText("2개 요소 선택")).toBeNull();
+    fireEvent.click(half());
+    expect(curve().getAttribute("d")).toBe("M 40 150 Q 100 120 240 150");
+  });
+
+  it("180° 회전은 되돌리기 한 걸음 — 다시 실행도 한 걸음", () => {
+    open(dimension);
+    pickNumber(3);
+    fireEvent.click(half());
+    expect(curve().getAttribute("d")).toBe("M 240 120 Q 180 150 40 120");
+    fireEvent.click(undoButton());
+    expect(curve().getAttribute("d")).toBe("M 40 150 Q 100 120 240 150");
+    expect(value().getAttribute("transform")).toBeNull();
+    expect(undoButton()).toBeDisabled();
+    fireEvent.click(screen.getByRole("button", { name: /다시 실행/ }));
+    expect(curve().getAttribute("d")).toBe("M 240 120 Q 180 150 40 120");
+    fireEvent.click(undoButton());
     expect(undoButton()).toBeDisabled();
   });
 
-  it("꺾은선도 뒤집는다", () => {
+  it("꺾은선도 가운데를 두고 돈다", () => {
     open(dimension);
     pickNumber(7);
-    fireEvent.click(flipButton());
+    fireEvent.click(half());
     expect(
       canvas()
         .querySelector('[data-object-id="obj-6"]')!
         .getAttribute("points"),
-    ).toBe("160 230 200 245 240 230");
+    ).toBe("240 215 200 230 160 215");
   });
 
-  it.each([
-    [5, "각 표시는 뒤집지 않습니다"],
-    [6, "곧은 선이라 뒤집을 것이 없습니다"],
-  ])("%i번은 단추를 끄고 이유를 단다", (n, reason) => {
+  it.each([5, 6])("%i번: 각 표시와 곧은 경로도 회전할 수 있다", (n) => {
     open(dimension);
     pickNumber(n);
-    expect(flipButton()).toBeDisabled();
-    expect(flipButton()).toHaveAttribute("title", reason);
-    expect(within(flipRow()!).getByText(reason)).toBeVisible();
+    expect(half()).toBeEnabled();
+    const path = () =>
+      canvas().querySelector(`[data-object-id="obj-${n - 1}"]`)!;
+    const before = path().getAttribute("d");
+    fireEvent.click(half());
+    expect(path().getAttribute("d")).not.toBe(before);
   });
 
   it("크기 고정한 곡선은 끈다", () => {
@@ -372,10 +384,33 @@ describe("반대쪽으로 뒤집기", () => {
     fireEvent.click(
       screen.getByRole("checkbox", { name: "요소 크기 고정 (이동만 가능)" }),
     );
-    expect(flipButton()).toBeDisabled();
+    expect(half()).toBeDisabled();
+    expect(half()).toHaveAttribute("title", ROTATE_BLOCKED.locked);
+    expect(within(rotateRow()!).getByText(ROTATE_BLOCKED.locked)).toBeVisible();
+  });
+
+  it("묶음은 전체 가운데로 돈다 — 각 눈금의 제자리를 중심으로 돌지 않는다", () => {
+    open(graph);
+    const list = within(screen.getByRole("region", { name: "도형 요소 목록" }));
+    fireEvent.click(list.getByRole("button", { name: "눈금 2개" }));
+    fireEvent.click(half());
     expect(
-      within(flipRow()!).getByText("크기 고정이라 모양을 바꾸지 않았습니다"),
-    ).toBeVisible();
+      coords(canvas().querySelector('[data-object-id="obj-4"]')!, [
+        "x1",
+        "y1",
+        "x2",
+        "y2",
+      ]),
+    ).toEqual(["260", "255", "260", "245"]);
+    expect(
+      coords(canvas().querySelector('[data-object-id="obj-5"]')!, [
+        "x1",
+        "y1",
+        "x2",
+        "y2",
+      ]),
+    ).toEqual(["160", "255", "160", "245"]);
+    expect(screen.getByRole("region", { name: "묶음" })).toBeInTheDocument();
   });
 });
 
@@ -393,6 +428,7 @@ describe("90° 회전 — 크기 고정", () => {
     fireEvent.click(lockBox());
     expect(cw()).toBeDisabled();
     expect(ccw()).toBeDisabled();
+    expect(half()).toBeDisabled();
     expect(cw()).toHaveAttribute("title", ROTATE_BLOCKED.locked);
     expect(within(rotateRow()!).getByText(ROTATE_BLOCKED.locked)).toBeVisible();
   });
@@ -403,10 +439,12 @@ describe("90° 회전 — 크기 고정", () => {
     fireEvent.click(lockBox());
     selectAll();
     expect(cw()).toBeDisabled();
+    expect(half()).toBeDisabled();
     pickNumber(1);
     fireEvent.click(lockBox());
     selectAll();
     expect(cw()).toBeEnabled();
+    expect(half()).toBeEnabled();
   });
 
   it("«전체 요소 크기 고정»을 켜면 어떤 선택이든 꺼진다", () => {
@@ -419,5 +457,6 @@ describe("90° 회전 — 크기 고정", () => {
     selectAll();
     expect(cw()).toBeDisabled();
     expect(ccw()).toBeDisabled();
+    expect(half()).toBeDisabled();
   });
 });

@@ -142,7 +142,6 @@ import {
   shapeSummary,
   type FigurePanelFoldName,
 } from "./FigurePanelFold";
-import { flipFigureCurve } from "./figureFlip";
 import {
   figureShortcutKeys,
   figureShortcutSheet,
@@ -578,7 +577,7 @@ export function FigureEditor({
         sizeLockValue(lockState !== true),
       ),
     );
-  // 90° 회전 — 고른 것 전체가 한 덩어리로(되돌리기 한 번). 글자 상자는 화면의 조판본에서 잰다(가운데·틀 넓히기).
+  // 90°·180° 회전 — 고른 것 전체가 한 덩어리로(되돌리기 한 번). 글자 상자는 화면의 조판본에서 잰다(가운데·틀 넓히기).
   // 선택은 그대로 둔다.
   const rotateBlocked = useMemo(
     () => rotationBlock(objects, selectedIds),
@@ -668,31 +667,6 @@ export function FigureEditor({
         ? `${selectedIds.length}개 요소를 ${ORDER_DONE[move]}.`
         : `${ORDER_DONE[move]}.`,
     );
-  };
-  // «반대쪽으로 뒤집기» — 곡선·꺾은선 하나(와 뒤집기가 같이 옮기는 값 글자)를 골랐을 때만 선다. 뒤집은 뒤에도
-  // 선택이 곡선과 그 글자라 다시 누르면 제자리로 온다. 여럿·묶음·함수 그래프는 세우지 않는다.
-  // 끌 이유는 `flipFigureCurve` 가 준다(AI «요청대로 고치기»의 flip 과 같은 이유).
-  const flipping = useMemo(() => {
-    const curves = objects.filter(
-      (o) =>
-        selectedIds.includes(o.id) &&
-        (o.type === "path" || o.type === "polyline") &&
-        !o.attrs["data-function"],
-    );
-    if (curves.length !== 1) return null;
-    const { id } = curves[0];
-    const rest = selectedIds.filter((other) => other !== id);
-    if (rest.length > 1) return null;
-    const result = flipFigureCurve(svg, id);
-    if (rest.length && !("svg" in result && result.labelId === rest[0]))
-      return null;
-    return { id, result };
-  }, [objects, selectedIds, svg]);
-  const flip = () => {
-    if (!flipping || !("svg" in flipping.result)) return;
-    const { svg: next, labelId } = flipping.result;
-    commit(next);
-    setSelectedIds(labelId ? [flipping.id, labelId] : [flipping.id]);
   };
   // «다 보이게» — 지금 내용에 틀을 딱 맞춘다(원장님 2026-09-20). 저장할 때와 **같은 함수**를 타고,
   // 틀(viewBox·width·height)만 바꾸니 글자 크기·선 굵기·크기 고정과 무관하다. 잘린 것을 들이고
@@ -2173,7 +2147,7 @@ export function FigureEditor({
             {selectedIds.length > 0 && (
               <FigurePanelFold
                 name="배치"
-                summary={arrangeSummary(!!flipping)}
+                summary={arrangeSummary(false)}
                 open={folds.배치}
                 onToggle={() => toggleFold("배치")}
               >
@@ -2181,17 +2155,6 @@ export function FigureEditor({
                   blocked={rotateBlocked}
                   onRotate={rotate}
                   mirror={{ blocked: mirrorBlocked, onMirror: mirror }}
-                  flip={
-                    flipping
-                      ? {
-                          blocked:
-                            "reason" in flipping.result
-                              ? flipping.result.reason
-                              : null,
-                          onFlip: flip,
-                        }
-                      : undefined
-                  }
                 />
                 <FigureAlignRow
                   blocked={alignBlocked}
