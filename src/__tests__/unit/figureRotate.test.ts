@@ -1,5 +1,5 @@
 /**
- * 도형 편집기 — 고른 요소를 시계·반시계 90° 회전 (원장님 2026-09-19 «회전 옵션 추가 가능한지. 시계 반시계 90도 방향»).
+ * 도형 편집기 — 고른 요소를 시계·반시계 90° 또는 180° 회전.
  *
  * - 회전 중심은 고른 것 전체의 경계 상자 가운데 — 여럿·묶음은 한 덩어리로 돈다(각자 제자리에서 돌지 않는다).
  * - 선·다각형·곡선(조절점)·원·타원·호·각 표시·면·노란 조절점이 **기하 그대로** 돈다. 축에 붙은 사각형·타원은
@@ -57,11 +57,13 @@ const ids = (svg: string) => figureObjects(svg).map((o) => o.id);
 const turn = (svg: string, list: readonly string[], ...turns: RotateTurn[]) =>
   turns.reduce((source, t) => rotateFigureSelection(source, list, t), svg);
 
-/** 그림 좌표의 90° 회전 — 시계(화면 기준, y 가 아래로) : (x, y) → (cx+cy−y, x−cx+cy). */
+/** 그림 좌표의 회전 — 시계(화면 기준, y 가 아래로) : (x, y) → (cx+cy−y, x−cx+cy). */
 const rotation = (turn: RotateTurn, [cx, cy]: Point): Affine =>
-  turn === "cw"
-    ? [0, 1, -1, 0, cx + cy, cy - cx]
-    : [0, -1, 1, 0, cx - cy, cx + cy];
+  turn === "half"
+    ? [-1, 0, 0, -1, 2 * cx, 2 * cy]
+    : turn === "cw"
+      ? [0, 1, -1, 0, cx + cy, cy - cx]
+      : [0, -1, 1, 0, cx - cy, cx + cy];
 const closeTo = (a: readonly number[], b: readonly number[], digits = 6) => {
   expect(a.length).toBe(b.length);
   a.forEach((value, i) => expect(value).toBeCloseTo(b[i], digits));
@@ -397,6 +399,13 @@ describe("회전 — 요소 종류별 좌표", () => {
 });
 
 describe("회전 — 되돌아오기", () => {
+  it("180° 두 번 = 원위치 — 모든 요소와 개별 선택 모두", () => {
+    expectSameFigure(turn(ALL, ids(ALL), "half", "half"), ALL);
+    for (const id of ids(ALL)) {
+      expectSameFigure(turn(ALL, [id], "half", "half"), ALL);
+    }
+  });
+
   it("시계 네 번 · 반시계 네 번 = 원위치", () => {
     const all = ids(ALL);
     expectSameFigure(turn(ALL, all, "cw", "cw", "cw", "cw"), ALL);
@@ -428,6 +437,60 @@ describe("회전 — 되돌아오기", () => {
   });
 });
 
+describe("180° 회전 — 한 번에 좌표 굽기", () => {
+  it("곡선의 끝점과 조절점이 가운데를 두고 돈다 — 현을 기준으로 비추지 않는다", () => {
+    const svg = figure(
+      `<path d="M 40 150 Q 100 120 240 150" stroke="#111" fill="none"/>`,
+    );
+    const half = rotateFigureSelection(svg, ids(svg), "half");
+    expect(attr(half, "obj-0", "d")).toBe("M 240 120 Q 180 150 40 120");
+    expect(attr(half, "obj-0", "transform")).toBeNull();
+  });
+
+  it("여러 도형을 한 덩어리로 돌리고 사각형·타원의 폭과 높이를 지킨다", () => {
+    const svg = figure(
+      `<rect x="20" y="30" width="60" height="20"/>` +
+        `<ellipse cx="180" cy="100" rx="20" ry="10"/>` +
+        `<line x1="300" y1="250" x2="400" y2="300"/>`,
+    );
+    // 고른 상자 (20, 30)..(200, 110)의 가운데 (110, 70).
+    const half = rotateFigureSelection(svg, ["obj-0", "obj-1"], "half");
+    expect(
+      ["x", "y", "width", "height"].map((n) => attr(half, "obj-0", n)),
+    ).toEqual(["140", "90", "60", "20"]);
+    expect(["cx", "cy", "rx", "ry"].map((n) => attr(half, "obj-1", n))).toEqual(
+      ["40", "40", "20", "10"],
+    );
+    expect(node(half, "obj-2").outerHTML).toBe(node(svg, "obj-2").outerHTML);
+  });
+
+  it("조판한 라벨은 똑바로 자리만 옮기고 임자 꼭짓점도 함께 돈다", () => {
+    const svg = figure(
+      `<line x1="100" y1="100" x2="200" y2="100"/>` +
+        `<text x="100" y="80" font-size="18" data-px="100" data-py="100" data-mj="A">A</text>`,
+    );
+    const half = rotateFigureSelection(svg, ids(svg), "half", {
+      textBoxes: new Map([["obj-1", { center: [100, 75], half: [10, 8] }]]),
+    });
+    expect(attr(half, "obj-1", "transform")).toBe("translate(100 50)");
+    expect(
+      ["x", "y", "data-px", "data-py"].map((n) => attr(half, "obj-1", n)),
+    ).toEqual(["100", "80", "200", "100"]);
+  });
+
+  it("묶음과 요소의 기존 변환을 보존한 채 보이는 자리에서 돈다", () => {
+    const svg = figure(
+      `<g transform="translate(30 40)"><polyline points="0 0 10 20 40 10" transform="translate(5 -3)"/></g>`,
+    );
+    const half = rotateFigureSelection(svg, ids(svg), "half");
+    expect(attr(half, "obj-0", "points")).toBe("40 20 30 0 0 10");
+    expect(attr(half, "obj-0", "transform")).toBe("translate(5 -3)");
+    expect(node(half, "obj-0").parentElement!.getAttribute("transform")).toBe(
+      "translate(30 40)",
+    );
+  });
+});
+
 describe("회전 — 면(채우기)", () => {
   const triangle = figure(
     `<line x1="100" y1="200" x2="200" y2="200" stroke="#111"/>` +
@@ -437,46 +500,50 @@ describe("회전 — 면(채우기)", () => {
   const filled = bucketFill(triangle, { x: 150, y: 170 }, "#d9d9d9").svg;
   const face = () => figureObjects(filled).find((o) => o.attrs["data-face"])!;
 
-  it("둘러싼 선을 다 돌리면 선을 따라가는 면도 같이 돈다 — 씨앗 점까지", () => {
-    const lines = figureObjects(filled)
-      .filter((o) => o.type === "line")
-      .map((o) => o.id);
-    const cw = rotateFigureSelection(filled, lines, "cw");
-    // 상자 x 100..200, y 100..200 → 가운데 (150, 150). 씨앗은 채우기 통이 적어 둔 칸 안의 점
-    const R = rotation("cw", [150, 150]);
-    const [sx, sy] = numbers(face().attrs["data-face-seed"]);
-    closeTo(
-      numbers(attr(cw, face().id, "data-face-seed")),
-      applyPoint(R, [sx, sy]),
-    );
-    // 면의 꼭짓점도 돈 삼각형의 꼭짓점이다
-    const want = [
-      [100, 200],
-      [200, 200],
-      [150, 100],
-    ].map((p) => applyPoint(R, p as Point));
-    const hasVertices = (source: string) => {
-      const got = numbers(attr(source, face().id, "d"));
-      for (const [x, y] of want)
-        expect(
-          got.some(
-            (value, i) =>
-              i % 2 === 0 &&
-              Math.abs(value - x) < 0.01 &&
-              Math.abs(got[i + 1] - y) < 0.01,
-          ),
-        ).toBe(true);
-    };
-    hasVertices(cw);
-    // 편집기 commit 의 면 맞추기가 돈 씨앗으로 같은 칸을 다시 찾는다
-    hasVertices(syncFigureFaces(cw).svg);
-  });
+  it.each(["cw", "half"] as const)(
+    "%s: 둘러싼 선을 다 돌리면 선을 따라가는 면도 같이 돈다 — 씨앗 점까지",
+    (turn) => {
+      const lines = figureObjects(filled)
+        .filter((o) => o.type === "line")
+        .map((o) => o.id);
+      const cw = rotateFigureSelection(filled, lines, turn);
+      // 상자 x 100..200, y 100..200 → 가운데 (150, 150). 씨앗은 채우기 통이 적어 둔 칸 안의 점
+      const R = rotation(turn, [150, 150]);
+      const [sx, sy] = numbers(face().attrs["data-face-seed"]);
+      closeTo(
+        numbers(attr(cw, face().id, "data-face-seed")),
+        applyPoint(R, [sx, sy]),
+      );
+      // 면의 꼭짓점도 돈 삼각형의 꼭짓점이다
+      const want = [
+        [100, 200],
+        [200, 200],
+        [150, 100],
+      ].map((p) => applyPoint(R, p as Point));
+      const hasVertices = (source: string) => {
+        const got = numbers(attr(source, face().id, "d"));
+        for (const [x, y] of want)
+          expect(
+            got.some(
+              (value, i) =>
+                i % 2 === 0 &&
+                Math.abs(value - x) < 0.01 &&
+                Math.abs(got[i + 1] - y) < 0.01,
+            ),
+          ).toBe(true);
+      };
+      hasVertices(cw);
+      // 편집기 commit 의 면 맞추기가 돈 씨앗으로 같은 칸을 다시 찾는다
+      hasVertices(syncFigureFaces(cw).svg);
+    },
+  );
 
   it("면만 고르면 돌리지 않는다 — 면은 둘러싼 선을 따라간다", () => {
     expect(rotationBlock(figureObjects(filled), [face().id])).toBe(
       ROTATE_BLOCKED.face,
     );
     expect(rotateFigureSelection(filled, [face().id], "cw")).toBe(filled);
+    expect(rotateFigureSelection(filled, [face().id], "half")).toBe(filled);
   });
 });
 
@@ -494,6 +561,7 @@ describe("회전 — 막을 때", () => {
     );
     expect(rotationBlock(objects, ["obj-0"])).toBe(ROTATE_BLOCKED.locked);
     expect(rotateFigureSelection(svg, ["obj-0", "obj-1"], "cw")).toBe(svg);
+    expect(rotateFigureSelection(svg, ["obj-0", "obj-1"], "half")).toBe(svg);
     expect(rotationBlock(objects, ["obj-1"])).toBeNull();
   });
 
@@ -502,6 +570,8 @@ describe("회전 — 막을 때", () => {
     expect(rotationBlock(objects, ["obj-2"])).toBe(ROTATE_BLOCKED.text);
     expect(rotationBlock(objects, ["obj-1", "obj-2"])).toBeNull();
     expect(rotationBlock(objects, [])).toBeNull();
+    expect(rotateFigureSelection(svg, ["obj-2"], "half")).toBe(svg);
+    expect(rotateFigureSelection(svg, [], "half")).toBe(svg);
   });
 });
 
