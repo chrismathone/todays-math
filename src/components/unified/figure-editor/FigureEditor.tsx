@@ -204,7 +204,14 @@ export function FigureEditor({
   const figureName = figureLabel ?? `도형 ${index + 1}`;
   const [initial] = useState(() => initialFigureSource(image, initialSvg));
   const [svg, setSvg] = useState(initial.svg);
-  const [typeset, setTypeset] = useState({ source: svg, rendered: svg });
+  const [typeset, setTypeset] = useState(() => ({
+    source: svg,
+    rendered: svg,
+    ready: !/<text[\s>]/i.test(svg),
+    failed: false,
+  }));
+  const typesetStarted = useRef(false);
+  const [typesetAttempt, setTypesetAttempt] = useState(0);
   // 끄는 동안 캔버스는 끌기 전 그림에 멈춰 두고(React 가 손대지 않는다) 바뀐 요소만 `previewFigureObjects` 로 고친다.
   const [frozenCanvas, setFrozenCanvas] = useState<string | null>(null);
   const displaySvg = useMemo(() => {
@@ -1012,20 +1019,34 @@ export function FigureEditor({
   useEffect(() => {
     if (frozenCanvas !== null) return; // 끄는 동안은 조판하지 않는다 — 놓은 뒤 한 번.
     let active = true;
-    const timer = setTimeout(() => {
-      void typesetFigureSvg(svg, true)
-        .then((result) => {
-          if (active) setTypeset({ source: svg, rendered: result });
-        })
-        .catch((e) => {
-          if (active) setError((e as Error).message);
-        });
-    }, 350);
+    const timer = setTimeout(
+      () => {
+        void typesetFigureSvg(svg, true)
+          .then((result) => {
+            if (active) {
+              typesetStarted.current = true;
+              setTypeset({
+                source: svg,
+                rendered: result,
+                ready: true,
+                failed: false,
+              });
+            }
+          })
+          .catch((e) => {
+            if (active) {
+              setError((e as Error).message);
+              setTypeset((previous) => ({ ...previous, failed: true }));
+            }
+          });
+      },
+      typesetStarted.current ? 350 : 0,
+    );
     return () => {
       active = false;
       clearTimeout(timer);
     };
-  }, [svg, frozenCanvas]);
+  }, [svg, frozenCanvas, typesetAttempt]);
   const point = (e: { clientX: number; clientY: number }, inverse: DOMMatrix) =>
     new DOMPoint(e.clientX, e.clientY).matrixTransform(inverse);
   const down = (e: React.PointerEvent) => {
@@ -1848,6 +1869,7 @@ export function FigureEditor({
               ref={surface}
               tabIndex={0}
               aria-label="도형 편집 캔버스"
+              aria-busy={!typeset.ready && !typeset.failed}
               className={styles.surface}
               onPointerMove={move}
               onPointerUp={up}
@@ -1895,12 +1917,41 @@ export function FigureEditor({
                   height: "100%",
                   position: "relative",
                   touchAction: "none",
+                  visibility: typeset.ready ? "visible" : "hidden",
                   cursor:
                     tool === "select" || tool === "pan" ? "grab" : "crosshair",
                 }}
                 onPointerDown={down}
                 dangerouslySetInnerHTML={canvasHtml}
               />
+              {!typeset.ready && (
+                <div
+                  className="absolute inset-0 flex flex-col items-center justify-center gap-3 text-sm text-muted"
+                  role="status"
+                >
+                  <span>
+                    {typeset.failed
+                      ? "도형 표시를 준비하지 못했습니다."
+                      : "도형 준비 중…"}
+                  </span>
+                  {typeset.failed && (
+                    <button
+                      type="button"
+                      className="rounded border border-control px-3 py-2"
+                      onClick={() => {
+                        setTypeset((previous) => ({
+                          ...previous,
+                          failed: false,
+                        }));
+                        setError("");
+                        setTypesetAttempt((attempt) => attempt + 1);
+                      }}
+                    >
+                      도형 표시 다시 시도
+                    </button>
+                  )}
+                </div>
+              )}
               {sourceOverlay && original && (
                 <div className="absolute inset-0 overflow-hidden pointer-events-none">
                   <img
@@ -1915,7 +1966,7 @@ export function FigureEditor({
                   />
                 </div>
               )}
-              {showNumbers && (
+              {showNumbers && typeset.ready && (
                 <FigureNumberLayer
                   numbers={objectNumbers}
                   selectedIds={selectedIds}
