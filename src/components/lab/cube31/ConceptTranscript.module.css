@@ -78,6 +78,24 @@
   background: #f6eebc;
   border-radius: 13px 0 13px 13px;
 }
+.reactionUpdate {
+  display: block;
+  border-radius: 4px;
+  font-variant-numeric: tabular-nums;
+  animation: reactionUpdate 240ms ease-out;
+}
+@keyframes reactionUpdate {
+  from {
+    transform: translateY(3px);
+    background: #e7bd3a45;
+    box-shadow: 0 0 0 4px #e7bd3a45;
+  }
+  to {
+    transform: translateY(0);
+    background: transparent;
+    box-shadow: 0 0 0 4px transparent;
+  }
+}
 .typingDots {
   display: inline-flex;
   align-items: center;
@@ -98,7 +116,8 @@
 .typingDots > span:nth-child(3) {
   animation-delay: 0.24s;
 }
-.root[data-paused="true"] .typingDots > span {
+.root[data-paused="true"] .typingDots > span,
+.root[data-paused="true"] .reactionUpdate {
   animation-play-state: paused;
 }
 .chatFoot {
@@ -193,7 +212,8 @@
   }
 }
 @media (prefers-reduced-motion: reduce) {
-  .typingDots > span {
+  .typingDots > span,
+  .reactionUpdate {
     animation: none;
   }
 }

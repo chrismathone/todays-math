@@ -90,6 +90,36 @@ describe("ConceptPlay conversation pacing", () => {
     expect(screen.getByText(/장면 2 \/ 8/)).toBeVisible();
   });
 
+  it("updates one reaction bubble immediately during rapid moves without restarting the dialogue", async () => {
+    render(<ConceptPlay onClose={vi.fn()} />);
+    await advance(700);
+    const intro = transcript().querySelector(
+      '[data-message-id="intro-0-duri"] p',
+    );
+    const typed = intro?.textContent;
+    key("2");
+    const reaction = transcript().querySelector(
+      '[data-message-id="reaction-0"] p',
+    );
+    expect(reaction).toHaveTextContent("직접 움직이니 0 + 10 = 10");
+    key("2");
+    key("2");
+    expect(transcript().querySelector('[data-message-id="reaction-0"] p')).toBe(
+      reaction,
+    );
+    expect(reaction).toHaveTextContent("직접 움직이니 20 + 10 = 30");
+    expect(reaction?.querySelector('[aria-label$="생각 중"]')).toBeNull();
+    expect(intro?.textContent).toBe(typed);
+    await advance(7000);
+    expect(transcript()).toHaveTextContent(PLAY_MISSIONS[0].chat[1]);
+    expect(reaction).toHaveTextContent("직접 움직이니 20 + 10 = 30");
+    expect(
+      screen.queryByRole("button", { name: "대화 바로 보기" }),
+    ).not.toBeInTheDocument();
+    key("u");
+    expect(reaction).toHaveTextContent("마지막 움직임을 되돌렸어");
+  });
+
   it("cancels an unfinished discovery on undo and restarts the current conversation on reset", async () => {
     render(<ConceptPlay onClose={vi.fn()} />);
     click("대화 바로 보기");

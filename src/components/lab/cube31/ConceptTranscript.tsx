@@ -15,6 +15,7 @@ export type ConversationMessage = {
   text: string;
   scene?: { id: string; label: string };
   immediate?: boolean;
+  kind?: "reaction";
 };
 
 type Props = {
@@ -286,7 +287,9 @@ function Transcript({
           const showScene = message.scene && !scenes.has(message.scene.id);
           if (message.scene) scenes.add(message.scene.id);
           return (
-            <Fragment key={entry.key}>
+            <Fragment
+              key={message.kind === "reaction" ? message.id : entry.key}
+            >
               {showScene ? (
                 <div className={styles.sceneDivider}>
                   {message.scene?.label}
@@ -303,7 +306,14 @@ function Transcript({
                 <div>
                   <span className={styles.speaker}>{message.speaker}</span>
                   <p className={styles.bubble}>
-                    {!entry.complete && entry.visible === 0 ? (
+                    {message.kind === "reaction" ? (
+                      <span
+                        key={message.text}
+                        className={styles.reactionUpdate}
+                      >
+                        {message.text}
+                      </span>
+                    ) : !entry.complete && entry.visible === 0 ? (
                       <span
                         className={styles.typingDots}
                         aria-label={`${message.speaker} 생각 중`}

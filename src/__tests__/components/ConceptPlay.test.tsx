@@ -2,6 +2,7 @@ import { StrictMode } from "react";
 import { act, fireEvent, render, screen, within } from "@testing-library/react";
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 import ConceptPlay from "@/components/lab/cube31/ConceptPlay";
+import { PLAY_MISSIONS } from "@/lib/lab/cube31/conceptPlay";
 
 const surface = () =>
   screen.getByRole("region", { name: "모아와 두리의 블록 가게 게임" });
@@ -67,9 +68,7 @@ describe("ConceptPlay", () => {
   it("focuses the surface, starts the conversation immediately and links block actions to value", () => {
     render(<ConceptPlay onClose={vi.fn()} />);
     expect(surface()).toHaveFocus();
-    expect(
-      screen.getByText("12개를 놓으려면 낱개를 열두 번 눌러야 해?"),
-    ).toBeVisible();
+    expect(screen.getByText(PLAY_MISSIONS[0].chat[0])).toBeVisible();
     expect(screen.queryByRole("textbox")).not.toBeInTheDocument();
     expect(
       screen.queryByRole("button", { name: "백 판 1개 놓기" }),

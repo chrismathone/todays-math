@@ -81,6 +81,8 @@ export default function ConceptPlay({ onClose }: { onClose: () => void }) {
         id: `reaction-${index}`,
         speaker: "모아",
         text: `직접 움직이니 ${state.feedback}`,
+        kind: "reaction",
+        immediate: true,
       });
     }
   });
