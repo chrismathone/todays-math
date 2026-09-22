@@ -5,7 +5,7 @@
  * 규칙의 짝: src/lib/routeAccess.ts (검수 계정) — 같은 원칙, 같은 경로 문법(`{id}` 한 칸, 끝의 `/**`)을
  *            그 파일의 `compileRoutePattern` 으로 만든다(규칙 문법을 두 벌로 적지 않는다).
  *
- * 🔴 **허용 목록이다.** 학생 세션은 영상 시청 하나만 연다(D-123 ⑵). 새 학생 화면·API·서버 액션이
+ * 🔴 **허용 목록이다.** 학생 세션은 영상 시청과 본인의 기억 학습을 연다. 새 학생 화면·API·서버 액션이
  *    생기면 **여기 적어야** 열린다 — 잊으면 닫히고, 그 편이 안전하다(routeAccess.ts 머리말과 같다).
  *    ⚠️ 서버 액션은 **자기 페이지 주소로 POST** 한다. 학생 화면에 서버 액션을 넣으면 그 페이지의
  *    POST 를 여기 적어야 한다(2026-08-25 검수 계정 로그아웃이 그렇게 막혔다). 지금 학생 쪽 쓰기는
@@ -66,6 +66,26 @@ const ACTIVE_RULES: readonly Rule[] = [
   { methods: PAGE, path: STUDENT_HOME, why: "강의 목록 화면" },
   { methods: PAGE, path: STUDENT_PASSWORD_PAGE, why: "비밀번호 바꾸기 화면" },
   { methods: PAGE, path: "/learn/watch/{id}", why: "재생 화면" },
+  {
+    methods: PAGE,
+    path: "/learn/math-srs",
+    why: "학생 계정에 저장하는 오늘의 기억",
+  },
+  {
+    methods: ["GET", "POST"],
+    path: "/api/learn/math-srs",
+    why: "기억 학습 조회 · 오늘 미션 시작",
+  },
+  {
+    methods: ["POST"],
+    path: "/api/learn/math-srs/attempts",
+    why: "현재 문제 답안 제출",
+  },
+  {
+    methods: ["POST"],
+    path: "/api/learn/math-srs/hint",
+    why: "현재 문제 힌트 확인",
+  },
   { methods: ["GET"], path: "/api/learn/lectures", why: "강의 목록" },
   { methods: ["GET"], path: "/api/learn/lectures/{id}", why: "강의 하나" },
   { methods: ["POST"], path: "/api/learn/watch", why: "시청 기록" },

@@ -78,6 +78,7 @@ const LEARN_PAGES = [
   "/learn/login",
   "/learn/password",
   `/learn/watch/${UUID}`,
+  "/learn/math-srs",
 ];
 const LEARN_APIS = [
   "/api/learn/login",
@@ -86,6 +87,9 @@ const LEARN_APIS = [
   "/api/learn/lectures",
   `/api/learn/lectures/${UUID}`,
   "/api/learn/watch",
+  "/api/learn/math-srs",
+  "/api/learn/math-srs/attempts",
+  "/api/learn/math-srs/hint",
 ];
 const STATIC = [
   "/favicon.ico",
@@ -168,6 +172,7 @@ const LAB_PAGES = [
   "/lab/teacher",
   // 큐브 3-1 개념 실험실(4d3429c1) — 같은 랩실 아래라 누구든 연다. 이 목록에 안 적혀 두 시험이 빨갰다(2026-09-22).
   "/lab/cube-3-1",
+  "/lab/math-srs",
 ];
 const LAB = LAB_PAGES.flatMap((p) => [`GET ${p}`, `HEAD ${p}`]);
 
@@ -201,13 +206,20 @@ describe("🔴 첫 비밀번호를 바꾼 학생 — 지나가는 것의 집합�
     const { pass } = await sweep();
     expect(pass.sort()).toStrictEqual(
       [
-        ...["/learn", "/learn/password", `/learn/watch/${UUID}`].flatMap(
-          (p) => [`GET ${p}`, `HEAD ${p}`],
-        ),
+        ...[
+          "/learn",
+          "/learn/password",
+          `/learn/watch/${UUID}`,
+          "/learn/math-srs",
+        ].flatMap((p) => [`GET ${p}`, `HEAD ${p}`]),
         "GET /api/learn/lectures",
         `GET /api/learn/lectures/${UUID}`,
         "POST /api/learn/watch",
         "POST /api/learn/password",
+        "GET /api/learn/math-srs",
+        "POST /api/learn/math-srs",
+        "POST /api/learn/math-srs/attempts",
+        "POST /api/learn/math-srs/hint",
         ...REPORT,
         ...EXIT,
         ...brand,

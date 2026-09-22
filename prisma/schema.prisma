@@ -360,9 +360,24 @@ model Student {
   studentAccount      StudentAccount?
   /// 진도 계획 — 개별 진도 학생일 때만 반 계획을 덮는다(D-129 ⑴). 없으면 반 계획을 쓴다
   progressPlan        ProgressPlan?
+  /// Generated daily practice is independent of scored exams and private teacher worksheets.
+  srsState            StudentSrsState?
 
   @@index([classId])
   @@map("student")
+}
+
+/// One atomic practice state per real student. Revision compare-and-swap prevents lost answers.
+/// SQL draft: 20260923150000_student_srs_state. Applying it is a separate reviewed deployment step.
+model StudentSrsState {
+  studentId String   @id @map("student_id") @db.Uuid
+  revision  Int      @default(1)
+  payload   Json     @db.JsonB
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
+  student   Student  @relation(fields: [studentId], references: [id], onDelete: Cascade)
+
+  @@map("student_srs_state")
 }
 
 // ─────────────────────────────────────────────
