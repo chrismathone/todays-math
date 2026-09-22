@@ -144,6 +144,18 @@
   align-items: flex-start;
   gap: 7px;
   margin-bottom: 14px;
+  padding-right: 18px;
+}
+.chatRow > div {
+  min-width: 0;
+}
+.chatRow.moa {
+  flex-direction: row-reverse;
+  padding-right: 0;
+  padding-left: 18px;
+}
+.moa .speaker {
+  text-align: right;
 }
 .avatar {
   display: grid;
@@ -179,6 +191,7 @@
 }
 .moa .bubble {
   background: #f6eebc;
+  border-radius: 13px 0 13px 13px;
 }
 .chatFoot {
   padding: 9px 12px;
@@ -738,19 +751,15 @@ button.column:disabled {
     margin-bottom: 8px;
   }
   .chatRow > div {
-    max-width: 91%;
+    max-width: calc(100% - 30px);
   }
   .speaker {
-    display: inline-block;
-    margin-right: 6px;
-    margin-bottom: 0;
+    margin-bottom: 3px;
   }
   .bubble {
     padding: 6px 9px;
-    display: inline;
     font-size: 11px;
     line-height: 1.75;
-    box-decoration-break: clone;
   }
   .avatar {
     width: 23px;
