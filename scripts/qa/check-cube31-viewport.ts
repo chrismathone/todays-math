@@ -13,6 +13,7 @@ async function main() {
   const results: unknown[] = [];
   try {
     for (const viewport of [
+      { width: 2560, height: 1283 },
       { width: 1920, height: 920 },
       { width: 1440, height: 900 },
       { width: 1366, height: 768 },
@@ -39,15 +40,29 @@ async function main() {
         await nav.getByRole("button").nth(lesson).click();
         if (viewport.width <= 760)
           await page.getByRole("button", { name: "학습 순서 보기" }).click();
+        // The current lesson is centred as far as the list can scroll; the
+        // list itself never grows blank space above the first or below the last lesson.
         await expect
           .poll(() =>
             nav.evaluate((el) => {
-              const selected = el
-                .querySelector('[aria-current="step"]')!
-                .getBoundingClientRect();
-              const frame = el.getBoundingClientRect();
-              return Math.abs(
-                (selected.top + selected.bottom - frame.top - frame.bottom) / 2,
+              const selected = el.querySelector<HTMLElement>(
+                '[aria-current="step"]',
+              )!;
+              const first = el.firstElementChild as HTMLElement;
+              const last = el.lastElementChild as HTMLElement;
+              const target = Math.min(
+                Math.max(
+                  0,
+                  selected.offsetTop -
+                    (el.clientHeight - selected.offsetHeight) / 2,
+                ),
+                el.scrollHeight - el.clientHeight,
+              );
+              return Math.max(
+                Math.abs(el.scrollTop - target),
+                first.offsetTop,
+                el.scrollHeight -
+                  Math.max(el.clientHeight, last.offsetTop + last.offsetHeight),
               );
             }),
           )
@@ -117,6 +132,11 @@ async function main() {
             geometry.activityBottom <= geometry.frameBottom + 1,
             `${label}: activity clipped`,
           );
+          // The card ends with its activity — no blank card below short activities.
+          assert(
+            geometry.frameBottom - geometry.activityBottom <= 2,
+            `${label}: blank card space below activity`,
+          );
           assert.deepEqual(
             geometry.outside,
             [],
@@ -139,14 +159,35 @@ async function main() {
         }
       }
       if (viewport.width > 760) {
+        // Wide screens: the sidebar stays on the left edge under the logo, and the
+        // activity column stops at 1500px, centred in the space beside it.
+        const frame = await page.evaluate(() => {
+          const aside = document
+            .querySelector("aside")!
+            .getBoundingClientRect();
+          const stage = document
+            .querySelector("article")!
+            .getBoundingClientRect();
+          const main = document.querySelector("main")!.getBoundingClientRect();
+          return {
+            asideLeft: aside.left,
+            stageWidth: stage.width,
+            offCentre: stage.left - aside.right - (main.right - stage.right),
+          };
+        });
+        assert.equal(frame.asideLeft, 0, "sidebar floats off the left edge");
+        assert(frame.stageWidth <= 1501, "activity column grows past 1500px");
+        assert(Math.abs(frame.offCentre) < 2, "activity column is off centre");
         const nav = page.getByRole("navigation", { name: "단원 학습 순서" });
         const before = await nav.evaluate((el) => el.scrollTop);
         const stage = await page.locator("article").boundingBox();
         await nav.hover();
         await page.mouse.wheel(0, -200);
-        await expect
-          .poll(() => nav.evaluate((el) => el.scrollTop))
-          .toBeLessThan(before);
+        // A list that fits its column has nothing to scroll (2560×1283).
+        if (await nav.evaluate((el) => el.scrollHeight > el.clientHeight))
+          await expect
+            .poll(() => nav.evaluate((el) => el.scrollTop))
+            .toBeLessThan(before);
         assert.deepEqual(
           await page.locator("article").boundingBox(),
           stage,

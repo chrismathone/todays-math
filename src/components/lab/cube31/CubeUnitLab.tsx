@@ -70,14 +70,9 @@ export default function CubeUnitLab({
     const center = () => {
       const current = list.querySelector<HTMLElement>('[aria-current="step"]');
       if (!current) return;
-      // Old centering space must not set a minimum size after a shorter resize.
-      list.style.removeProperty("--nav-edge");
       const height = list.clientHeight;
       if (!height) return;
-      list.style.setProperty(
-        "--nav-edge",
-        Math.max(0, (height - current.offsetHeight) / 2) + "px",
-      );
+      // Centre as far as the list can scroll — the ends stay flush, no blank padding.
       const top = current.offsetTop - (height - current.offsetHeight) / 2;
       list.scrollTo({ top, behavior: "instant" });
     };
