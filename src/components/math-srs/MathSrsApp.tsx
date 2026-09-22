@@ -5,11 +5,11 @@ import { useEffect, useRef, useState, type FormEvent } from "react";
 import TodayMathMark from "@/components/brand/TodayMathMark";
 import { MathText } from "@/components/math/MathText";
 import { ProblemContent } from "@/components/math/ProblemContent";
+import { CONCEPTS, TEMPLATE_COUNT } from "@/lib/math-srs/generator";
 import {
-  CONCEPTS,
   checkAnswer,
-  TEMPLATE_COUNT,
-} from "@/lib/math-srs/generator";
+  parseSubmittedNumber,
+} from "@/lib/math-srs/sharedAnswers";
 import { dueConcepts, estimatedRecall } from "@/lib/math-srs/memory";
 import {
   createMission,
@@ -192,25 +192,10 @@ function QuestionCard({
       input.current?.focus();
       return;
     }
-    const normalized = answer
-      .trim()
-      .replace(/^x\s*=\s*/i, "")
-      .replace(/−/g, "-");
-    if (
-      !skipped &&
-      !/^[+-]?(?:\d+(?:\.\d*)?|\.\d+)(?:\s*\/\s*[+-]?(?:\d+(?:\.\d*)?|\.\d+))?$/.test(
-        normalized,
-      )
-    ) {
-      setError("정수, 소수 또는 분수로 입력해 주세요. 예: -3, 0.5, 1/2");
-      return;
-    }
-    if (
-      !skipped &&
-      normalized.includes("/") &&
-      Number(normalized.split("/")[1]) === 0
-    ) {
-      setError("분모는 0이 될 수 없어요.");
+    if (!skipped && parseSubmittedNumber(answer) === null) {
+      setError(
+        "정수, 소수 또는 분수로 입력해 주세요. 분모는 0이 될 수 없어요.",
+      );
       return;
     }
     submitted.current = true;
@@ -385,9 +370,9 @@ function Feedback({
       ) : (
         <ProblemContent content={problem.prompt} />
       )}
-      <p className={s.answerResult}>
+      <div className={s.answerResult}>
         정답{" "}
-        <strong>
+        <div className={s.answerValue}>
           {problem.answerText ? (
             <MathText text={problem.answerText} />
           ) : (
@@ -396,9 +381,9 @@ function Feedback({
               {problem.answerUnit ? ` ${problem.answerUnit}` : ""}
             </>
           )}
-        </strong>
+        </div>
         <span>내 답: {attempt.submittedAnswer || "아직 모름"}</span>
-      </p>
+      </div>
       <div className={s.solution}>
         <h3>이렇게 생각해요</h3>
         <ol>

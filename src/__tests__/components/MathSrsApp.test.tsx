@@ -35,7 +35,7 @@ describe("Math SRS learning journey", () => {
     );
     await user.click(screen.getByRole("button", { name: "정답 확인 →" }));
     expect(screen.getByRole("alert")).toHaveTextContent("답을 입력");
-    await user.type(screen.getByLabelText("나의 답"), "1/0");
+    await user.type(screen.getByLabelText(/^나의 답/), "1/0");
     await user.click(screen.getByRole("button", { name: "정답 확인 →" }));
     expect(screen.getByRole("alert")).toHaveTextContent("분모는 0");
     expect(loadStore().store.learners[0].missions[0].attempts).toHaveLength(0);
@@ -57,7 +57,7 @@ describe("Math SRS learning journey", () => {
     expect(
       screen.getByRole("button", { name: "힌트를 확인했어요" }),
     ).toBeDisabled();
-    await user.type(screen.getByLabelText("나의 답"), String(answer));
+    await user.type(screen.getByLabelText(/^나의 답/), String(answer));
     await user.click(screen.getByRole("button", { name: "정답 확인 →" }));
     const attempt = loadStore().store.learners[0].missions[0].attempts[0];
     expect(attempt).toMatchObject({
