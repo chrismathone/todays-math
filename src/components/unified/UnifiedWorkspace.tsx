@@ -31,7 +31,10 @@ import s from "./Workroom.module.css";
 import WorkspaceAccount, { type WorkspaceIdentity } from "./WorkspaceAccount";
 const BankView = dynamic(() => import("./BankView"), {
   loading: () => (
-    <WorkProgress className={s.loading} label="문제은행을 불러오는 중입니다…" />
+    <WorkProgress
+      className={s.loading}
+      label="시험지 만들기를 여는 중입니다…"
+    />
   ),
 });
 const StudioView = dynamic(() => import("./StudioView"), {
@@ -77,7 +80,7 @@ const navItems: {
   icon: WorkspaceIconName;
 }[] = [
   { id: "home", label: "오늘의 작업", short: "홈", icon: "home" },
-  { id: "bank", label: "문제은행", short: "문제은행", icon: "bank" },
+  { id: "bank", label: "시험지 만들기", short: "시험지 만들기", icon: "bank" },
   { id: "studio", label: "자료 제작", short: "자료 제작", icon: "crop" },
   { id: "export", label: "시험지 · 내보내기", short: "시험지", icon: "paper" },
   { id: "library", label: "내 시험지", short: "보관함", icon: "folder" },
@@ -402,6 +405,31 @@ function UnifiedWorkspaceContent({
     updateRemovals((items) => forgetRemovals(items, [undo.problem.id]));
     setUndo(null);
     setNotice("문제를 다시 담았습니다.");
+  }
+  /** Bank composition changes keep replacement positions and recovery in one update. */
+  function changeBankSelection(problems: StudioProblem[]) {
+    const next = [
+      ...new Map(
+        problems
+          .filter(
+            (problem) =>
+              problem.eligible !== false ||
+              selected.some((item) => item.id === problem.id),
+          )
+          .map((problem) => [problem.id, problem]),
+      ).values(),
+    ];
+    const nextIds = new Set(next.map((problem) => problem.id));
+    updateRemovals((items) => {
+      let changed = items;
+      selected.forEach((problem, index) => {
+        if (!nextIds.has(problem.id))
+          changed = rememberRemoval(changed, problem, index);
+      });
+      return forgetRemovals(changed, [...nextIds]);
+    });
+    setSelected(next);
+    setUndo(null);
   }
   /** 작업실의 담기·반영 — 같은 id 는 제자리에서 갈고 새것은 뒤에(`addToCart`). */
   const add = (problems: StudioProblem[]) => {
@@ -875,11 +903,12 @@ function UnifiedWorkspaceContent({
           {can("bank") && (opened.has("bank") || view === "bank") && (
             <main hidden={view !== "bank"} className={s.viewContent}>
               <BankView
-                key={bankEntry.version}
+                key={`${draft.id}:${bankEntry.version}`}
                 initialData={initialData}
                 initialFilters={bankEntry}
                 selected={selected}
                 onToggle={toggle}
+                onSelectionChange={changeBankSelection}
                 onExport={() => navigate("export")}
                 canExport={can("export")}
                 canUseAi={can("studio")}
@@ -1031,7 +1060,7 @@ function UnifiedWorkspaceContent({
             />
           )}
           {view === "library" && !storageScope && (
-            <main className={s.library}>
+            <main className={cloudStyles.library}>
               <WorkspacePageHeader
                 title="내 시험지"
                 description="저장한 작업을 이어가거나 다른 기기의 작업 파일을 불러오세요."
@@ -1084,47 +1113,95 @@ function UnifiedWorkspaceContent({
                   label="저장한 시험지를 불러오는 중입니다…"
                 />
               ) : filteredDrafts.length ? (
-                <div className={s.libraryGrid}>
-                  {filteredDrafts.map((item) => (
-                    <article key={item.id} className={s.libraryCard}>
-                      <div className={s.libraryCardTop}>
-                        <span>
-                          <Icon name="paper" size={24} />
-                        </span>
-                        <small>
-                          {item.id === draft.id ? "현재 작업" : "저장된 시험지"}
-                        </small>
-                      </div>
-                      <h2 title={item.title || "제목 없는 시험지"}>
-                        {item.title || "제목 없는 시험지"}
-                      </h2>
-                      <p>
-                        {item.problemCount}문항<span>·</span>
-                        {formatDraftDate(item.updatedAt)}
-                      </p>
-                      <SavedWorksheetActions
-                        title={item.title || "제목 없는 시험지"}
-                        current={item.id === draft.id}
-                        error={saveError}
-                        onEdit={
-                          can("export") ? () => openSaved(item.id) : undefined
-                        }
-                        onRename={(name) => {
-                          const saved = renameDraft(item.id, name);
-                          if (saved) setNotice("시험지 이름을 변경했습니다.");
-                          return saved;
-                        }}
-                        onDelete={() => {
-                          const removed = deleteDraft(item.id);
-                          if (removed) {
-                            setUndo(null);
-                            setNotice("시험지를 삭제했습니다.");
-                          }
-                          return removed;
-                        }}
-                      />
-                    </article>
-                  ))}
+                <div className={cloudStyles.board}>
+                  <table
+                    className={cloudStyles.table}
+                    aria-label="저장한 시험지 목록"
+                  >
+                    <thead>
+                      <tr>
+                        <th scope="col" className={cloudStyles.numberCell}>
+                          번호
+                        </th>
+                        <th scope="col" className={cloudStyles.kindCell}>
+                          구분
+                        </th>
+                        <th scope="col" className={cloudStyles.titleCell}>
+                          시험지 이름
+                        </th>
+                        <th scope="col" className={cloudStyles.countCell}>
+                          문항 수
+                        </th>
+                        <th scope="col" className={cloudStyles.updatedCell}>
+                          수정일
+                        </th>
+                        <th scope="col" className={cloudStyles.actionsCell}>
+                          관리
+                        </th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {filteredDrafts.map((item, index) => (
+                        <tr key={item.id}>
+                          <td className={cloudStyles.numberCell}>
+                            {index + 1}
+                          </td>
+                          <td className={cloudStyles.kindCell}>
+                            <span className={cloudStyles.kindBadge}>
+                              {item.id === draft.id ? "현재 작업" : "시험지"}
+                            </span>
+                          </td>
+                          <td className={cloudStyles.titleCell}>
+                            {can("export") ? (
+                              <button
+                                type="button"
+                                className={cloudStyles.titleButton}
+                                aria-label={`${item.title || "제목 없는 시험지"} 편집`}
+                                onClick={() => openSaved(item.id)}
+                              >
+                                {item.title || "제목 없는 시험지"}
+                              </button>
+                            ) : (
+                              <span className={cloudStyles.titleText}>
+                                {item.title || "제목 없는 시험지"}
+                              </span>
+                            )}
+                          </td>
+                          <td className={cloudStyles.countCell}>
+                            {item.problemCount}
+                            <span className={cloudStyles.mobileLabel}>
+                              문항
+                            </span>
+                          </td>
+                          <td className={cloudStyles.updatedCell}>
+                            {formatDraftDate(item.updatedAt)}
+                          </td>
+                          <td className={cloudStyles.actionsCell}>
+                            <SavedWorksheetActions
+                              compact
+                              title={item.title || "제목 없는 시험지"}
+                              current={item.id === draft.id}
+                              error={saveError}
+                              onRename={(name) => {
+                                const saved = renameDraft(item.id, name);
+                                if (saved)
+                                  setNotice("시험지 이름을 변경했습니다.");
+                                return saved;
+                              }}
+                              onDelete={() => {
+                                const removed = deleteDraft(item.id);
+                                if (removed) {
+                                  setUndo(null);
+                                  setNotice("시험지를 삭제했습니다.");
+                                }
+                                return removed;
+                              }}
+                            />
+                          </td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
                 </div>
               ) : (
                 <div className={s.libraryEmpty}>
@@ -1207,7 +1284,7 @@ function UnifiedWorkspaceContent({
                 {
                   view: "bank" as const,
                   icon: "bank" as const,
-                  title: "문제은행에서 만들기",
+                  title: "시험지 만들기",
                   description: "학년·단원별 문제 선택",
                 },
                 {

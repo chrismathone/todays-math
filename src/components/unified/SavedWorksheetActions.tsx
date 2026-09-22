@@ -9,6 +9,7 @@ export default function SavedWorksheetActions({
   onEdit,
   onRename,
   onDelete,
+  compact = false,
 }: {
   title: string;
   current: boolean;
@@ -16,13 +17,16 @@ export default function SavedWorksheetActions({
   onEdit?: () => void;
   onRename: (title: string) => boolean;
   onDelete: () => boolean;
+  compact?: boolean;
 }) {
   const [action, setAction] = useState<"rename" | "delete" | null>(null);
   const [name, setName] = useState(title);
   const renameButton = useRef<HTMLButtonElement>(null);
   const deleteButton = useRef<HTMLButtonElement>(null);
   return (
-    <div className={s.savedActions}>
+    <div
+      className={`${s.savedActions} ${compact ? s.savedActionsCompact : ""}`}
+    >
       <div className={s.savedActionButtons}>
         <button
           ref={renameButton}

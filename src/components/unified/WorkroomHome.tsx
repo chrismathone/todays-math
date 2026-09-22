@@ -112,9 +112,9 @@ export default function WorkroomHome({
                       <Icon name="bank" size={24} />
                     </span>
                     <div>
-                      <span className={s.eyebrow}>문제은행</span>
+                      <span className={s.eyebrow}>시험지 만들기</span>
                       <h2 id="quick-bank-title">
-                        수업에 맞는 문제를 찾아보세요
+                        수업에 맞는 시험지를 구성하세요
                       </h2>
                     </div>
                   </div>
@@ -177,7 +177,7 @@ export default function WorkroomHome({
                 </div>
                 <div className={s.bankFoot}>
                   <button onClick={() => onBank()}>
-                    전체 문제은행
+                    시험지 만들기
                     <Icon name="arrow" size={16} />
                   </button>
                 </div>
@@ -364,7 +364,7 @@ export default function WorkroomHome({
                   <div className={s.draftSources}>
                     <span>
                       <i />
-                      문제은행{" "}
+                      시험지 만들기{" "}
                       <b>
                         {
                           draft.problems.filter(

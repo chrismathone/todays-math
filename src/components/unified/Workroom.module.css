@@ -702,6 +702,20 @@
   font-size: 14px;
   white-space: nowrap;
 }
+.savedActionsCompact {
+  padding: 0;
+  border: 0;
+}
+.savedActionsCompact .savedActionButtons {
+  justify-content: flex-end;
+  gap: 6px;
+}
+.savedActionsCompact .savedActionButtons button {
+  flex: none;
+  min-height: 32px;
+  padding: 6px 9px;
+  font-size: 12px;
+}
 .savedActions form,
 .savedActions > div + div {
   margin-top: 12px;

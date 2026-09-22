@@ -7,6 +7,9 @@ vi.mock("@/lib/unifiedPreview", () => ({
   loadUnifiedBank: vi.fn(),
   UnifiedBankQueryError: class extends Error {},
 }));
+vi.mock("@/lib/unifiedBankSelection", () => ({
+  randomBankResponse: vi.fn(),
+}));
 vi.mock("@/lib/db", () => ({
   db: {
     class: { count: vi.fn(), findMany: vi.fn() },
@@ -19,6 +22,8 @@ import { auth } from "@/lib/auth";
 import { db } from "@/lib/db";
 import { loadUnifiedBank } from "@/lib/unifiedPreview";
 import { GET as bank } from "@/app/api/studio/problems/route";
+import { POST as randomBank } from "@/app/api/studio/problems/random/route";
+import { randomBankResponse } from "@/lib/unifiedBankSelection";
 import { GET as overview } from "@/app/api/studio/overview/route";
 import { GET as teaching } from "@/app/api/studio/teaching/route";
 import { GET as worker } from "@/app/api/studio/pdf-worker/route";
@@ -52,6 +57,26 @@ beforeEach(() => {
 });
 afterEach(() => vi.unstubAllEnvs());
 describe("production workspace resources", () => {
+  it("guards random selection by login and same-origin before loading the pool", async () => {
+    vi.stubEnv("AUTH_URL", "https://math.example");
+    const post = (origin: string) =>
+      new Request("https://math.example/api/studio/problems/random", {
+        method: "POST",
+        headers: { origin },
+        body: "{}",
+      });
+    vi.mocked(getSessionUser).mockResolvedValueOnce(null);
+    expect((await randomBank(post("https://math.example"))).status).toBe(401);
+    expect((await randomBank(post("https://elsewhere.example"))).status).toBe(
+      403,
+    );
+    expect(randomBankResponse).not.toHaveBeenCalled();
+    vi.mocked(randomBankResponse).mockResolvedValueOnce(
+      Response.json({ problems: [] }),
+    );
+    expect((await randomBank(post("https://math.example"))).status).toBe(200);
+    expect(randomBankResponse).toHaveBeenCalledOnce();
+  });
   it("guards bank, teaching, overview and PDF resources before loading anything", async () => {
     vi.mocked(getSessionUser).mockResolvedValue(null);
     for (const get of [bank, overview, teaching, worker])

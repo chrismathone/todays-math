@@ -214,14 +214,14 @@ describe("workspace action wiring", () => {
       await screen.findByText("자료 작업실 열림: 단계 review 2 · 파일 0"),
     ).toBeVisible();
   });
-  it("renames, edits and confirms deletion using the visible library card buttons", async () => {
+  it("renames, opens and confirms deletion from the library board", async () => {
     const id = seed();
     window.history.replaceState(null, "", "/#library");
     render(<UnifiedWorkspace initialData={initialData} />);
     const rename = await screen.findByRole("button", {
       name: "저장한 시험지 이름 변경",
     });
-    const card = rename.closest("article")!;
+    const card = rename.closest("tr")!;
     fireEvent.click(rename);
     // 이름 변경도 겹쳐 뜨는 창이다(2026-09-19) — 카드 안에는 입력칸이 없다.
     expect(within(card).queryByRole("textbox")).not.toBeInTheDocument();
@@ -237,7 +237,7 @@ describe("workspace action wiring", () => {
       screen.queryByRole("dialog", { name: "이름 변경" }),
     ).not.toBeInTheDocument();
     expect(
-      within(card).getByRole("heading", { name: "이름 바꾼 시험지" }),
+      within(card).getByRole("button", { name: "이름 바꾼 시험지 편집" }),
     ).toBeVisible();
     expect(
       JSON.parse(localStorage.getItem(DRAFT_STORE_KEY)!).drafts.find(
@@ -261,7 +261,7 @@ describe("workspace action wiring", () => {
     fireEvent.click(within(confirm).getByRole("button", { name: "삭제 확인" }));
     await waitFor(() =>
       expect(
-        screen.queryByRole("heading", { name: "이름 바꾼 시험지" }),
+        screen.queryByRole("button", { name: "이름 바꾼 시험지 편집" }),
       ).not.toBeInTheDocument(),
     );
     expect(JSON.parse(localStorage.getItem(DRAFT_STORE_KEY)!).drafts).toEqual(
