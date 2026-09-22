@@ -1,0 +1,323 @@
+.journey {
+  box-sizing: border-box;
+  display: grid;
+  grid-template-rows: 20px 20px 90px 24px 74px 44px;
+  gap: 4px;
+  width: 100%;
+  height: 318px;
+  padding: 12px;
+  border: 1px solid #d8e4e3;
+  border-radius: 14px;
+  background: #f8fbfa;
+  color: #183c45;
+  font-size: 13px;
+  line-height: 1.4;
+  font-variant-numeric: tabular-nums;
+}
+
+.heading,
+.step,
+.readout,
+.trayCaption,
+.controls {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  min-width: 0;
+}
+
+.prompt,
+.stepLabel,
+.equation {
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.prompt {
+  margin: 0;
+  font-weight: 700;
+}
+
+.progress,
+.step > span:last-child {
+  flex-shrink: 0;
+  color: #52666a;
+  font-size: 11px;
+}
+
+.numberLine {
+  position: relative;
+  min-width: 0;
+}
+
+.numberLine svg {
+  display: block;
+  width: 100%;
+  height: 90px;
+  overflow: visible;
+}
+
+.axis,
+.tick path {
+  fill: none;
+  stroke: #829a9d;
+  stroke-width: 1.5;
+  vector-effect: non-scaling-stroke;
+}
+
+.tickLabel {
+  position: absolute;
+  top: 70px;
+  transform: translateX(-50%);
+  color: #52666a;
+  font-size: 11px;
+}
+
+.hop {
+  fill: none;
+  stroke: #287c72;
+  color: #287c72;
+  stroke-width: 2;
+  vector-effect: non-scaling-stroke;
+  animation: appear 250ms ease-out;
+}
+
+.marker {
+  position: absolute;
+  top: 8px;
+  display: grid;
+  justify-items: center;
+  transform: translateX(-50%);
+  transition: left 250ms ease-out;
+  pointer-events: none;
+}
+
+.marker strong {
+  padding: 3px 8px;
+  border-radius: 8px;
+  background: #205e57;
+  color: #fff;
+  font-size: 16px;
+  line-height: 23px;
+}
+
+.marker i {
+  position: relative;
+  width: 2px;
+  height: 23px;
+  background: #205e57;
+}
+
+.marker i::after {
+  position: absolute;
+  bottom: -5px;
+  left: -4px;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: #205e57;
+  content: "";
+}
+
+.current {
+  flex-shrink: 0;
+  color: #205e57;
+  font-size: 16px;
+  font-weight: 800;
+}
+
+.equation {
+  text-align: right;
+}
+
+.tray {
+  display: grid;
+  grid-template-rows: 18px 52px;
+  gap: 4px;
+  min-width: 0;
+}
+
+.trayCaption {
+  color: #52666a;
+  font-size: 11px;
+  white-space: nowrap;
+}
+
+.chips {
+  display: flex;
+  gap: 8px;
+}
+
+.journey button {
+  box-sizing: border-box;
+  min-height: 44px;
+  border: 1px solid #bccdcc;
+  border-radius: 9px;
+  background: #fff;
+  color: #254f54;
+  font: inherit;
+  font-weight: 700;
+  cursor: pointer;
+  touch-action: manipulation;
+}
+
+.journey button:focus-visible {
+  outline: 3px solid #246caa;
+  outline-offset: 2px;
+}
+
+.journey button:hover:not(:disabled) {
+  border-color: #287c72;
+  background: #eaf5f1;
+}
+
+.journey button:disabled {
+  cursor: default;
+  opacity: 0.55;
+}
+
+.journey .chip {
+  display: grid;
+  grid-template-columns: 26px auto;
+  grid-template-rows: 22px 14px;
+  align-content: center;
+  justify-content: center;
+  align-items: center;
+  column-gap: 7px;
+  flex: 1;
+  min-width: 0;
+  padding: 5px 8px;
+  border-bottom-width: 3px;
+  transition:
+    opacity 250ms ease-out,
+    background-color 250ms ease-out;
+}
+
+.chip strong {
+  font-size: 17px;
+}
+
+.chipDetail {
+  grid-column: 2;
+  font-size: 10px;
+  font-weight: 500;
+}
+
+.block {
+  grid-row: 1 / 3;
+  justify-self: center;
+  width: 23px;
+  height: 23px;
+  border: 1px solid #b88429;
+  border-radius: 2px;
+  background:
+    repeating-linear-gradient(0deg, transparent 0 6px, #c491374f 6px 7px),
+    repeating-linear-gradient(90deg, #f2cd81 0 6px, #c4913770 6px 7px);
+  box-shadow: 2px 2px 0 #b8842950;
+}
+
+.tens .block {
+  height: 8px;
+  border-color: #277f8d;
+  background: repeating-linear-gradient(
+    90deg,
+    #87d1da 0 6px,
+    #277f8d70 6px 7px
+  );
+  box-shadow: 2px 2px 0 #277f8d50;
+}
+
+.ones .block {
+  width: 10px;
+  height: 10px;
+  border-color: #438365;
+  background: #9ed4b4;
+  box-shadow: 2px 2px 0 #43836550;
+}
+
+.chip[data-used="true"] {
+  border-style: dashed;
+  border-bottom-width: 1px;
+  background: #edf2f0;
+}
+
+.zero {
+  align-self: center;
+  margin: 0;
+  color: #52666a;
+}
+
+.controls {
+  justify-content: flex-start;
+}
+
+.controls button {
+  padding: 6px 12px;
+  white-space: nowrap;
+}
+
+.controls .next {
+  margin-left: auto;
+  border-color: #205e57;
+  background: #205e57;
+  color: #fff;
+}
+
+.controls .next:hover:not(:disabled) {
+  background: #174b45;
+}
+
+@keyframes appear {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@media (max-width: 420px) {
+  .journey {
+    padding-inline: 8px;
+  }
+  .chips {
+    gap: 5px;
+  }
+  .journey .chip {
+    grid-template-columns: 18px auto;
+    padding-inline: 4px;
+    column-gap: 4px;
+  }
+  .chip strong {
+    font-size: 15px;
+  }
+  .hundreds .block {
+    width: 18px;
+    height: 18px;
+  }
+  .tens .block {
+    width: 18px;
+  }
+  .controls {
+    gap: 5px;
+  }
+  .controls button {
+    padding-inline: 8px;
+  }
+  .equation {
+    font-size: 11px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .marker,
+  .journey .chip {
+    transition: none;
+  }
+  .hop {
+    animation: none;
+  }
+}
