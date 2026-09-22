@@ -32,25 +32,37 @@ function object(
     Object.keys(result).some(
       (key) => !required.includes(key) && !optional.includes(key),
     )
-  ) invalid();
+  )
+    invalid();
   return result;
 }
 
 function array(value: unknown, min: number, max: number): unknown[] {
-  if (!Array.isArray(value) || value.length < min || value.length > max) invalid();
+  if (!Array.isArray(value) || value.length < min || value.length > max)
+    invalid();
   return Array.from(value);
 }
 
 function text(value: unknown, max: number, min = 1): string {
-  if (typeof value !== "string" || value.length < min || value.length > max) invalid();
+  if (typeof value !== "string" || value.length < min || value.length > max)
+    invalid();
   return value;
 }
 
-function number(value: unknown, min: number, max: number, integer = false): number {
+function number(
+  value: unknown,
+  min: number,
+  max: number,
+  integer = false,
+): number {
   if (
-    typeof value !== "number" || !Number.isFinite(value) || value < min || value > max ||
+    typeof value !== "number" ||
+    !Number.isFinite(value) ||
+    value < min ||
+    value > max ||
     (integer && !Number.isSafeInteger(value))
-  ) invalid();
+  )
+    invalid();
   return value;
 }
 
@@ -69,7 +81,8 @@ function timestamp(value: unknown): number {
   // Dates written by this version use Date.toISOString(), including milliseconds.
   if (!/^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}\.\d{3}Z$/.test(date)) invalid();
   const result = Date.parse(date);
-  if (!Number.isFinite(result) || new Date(result).toISOString() !== date) invalid();
+  if (!Number.isFinite(result) || new Date(result).toISOString() !== date)
+    invalid();
   return result;
 }
 
@@ -79,13 +92,24 @@ function unique(values: string[]): void {
 
 function learnerName(value: unknown): string {
   const name = text(value, 20);
-  if (name.trim() !== name || !name.trim() || /[\u0000-\u001f\u007f]/.test(name)) invalid();
+  if (
+    name.trim() !== name ||
+    !name.trim() ||
+    /[\u0000-\u001f\u007f]/.test(name)
+  )
+    invalid();
   return name;
 }
 
 function validateMemory(value: unknown): string {
   const memory = object(value, [
-    "conceptId", "mastery", "stabilityDays", "lastReviewedAt", "nextReviewAt", "attempts", "successes",
+    "conceptId",
+    "mastery",
+    "stabilityDays",
+    "lastReviewedAt",
+    "nextReviewAt",
+    "attempts",
+    "successes",
   ]);
   const conceptId = choice(memory.conceptId, CONCEPT_IDS);
   const mastery = number(memory.mastery, 0, 100);
@@ -93,26 +117,50 @@ function validateMemory(value: unknown): string {
   const attempts = number(memory.attempts, 0, Number.MAX_SAFE_INTEGER, true);
   number(memory.successes, 0, attempts, true);
   if (attempts === 0) {
-    if (memory.lastReviewedAt !== null || memory.nextReviewAt !== null || mastery !== 0 || stability !== 1) invalid();
-  } else if (timestamp(memory.nextReviewAt) < timestamp(memory.lastReviewedAt)) {
+    if (
+      memory.lastReviewedAt !== null ||
+      memory.nextReviewAt !== null ||
+      mastery !== 0 ||
+      stability !== 1
+    )
+      invalid();
+  } else if (
+    timestamp(memory.nextReviewAt) < timestamp(memory.lastReviewedAt)
+  ) {
     invalid();
   }
   return conceptId;
 }
 
 function validateProblem(value: unknown): Record<string, unknown> {
-  const problem = object(value, [
-    "id", "templateId", "conceptId", "conceptWeights", "difficulty", "kind", "prompt", "equation",
-    "answer", "hint", "solution", "expectedSeconds",
-  ], ["answerUnit"]);
+  const problem = object(
+    value,
+    [
+      "id",
+      "templateId",
+      "conceptId",
+      "conceptWeights",
+      "difficulty",
+      "kind",
+      "prompt",
+      "equation",
+      "answer",
+      "hint",
+      "solution",
+      "expectedSeconds",
+    ],
+    ["answerUnit"],
+  );
   text(problem.id, 200);
   text(problem.templateId, 200);
   const conceptId = choice(problem.conceptId, CONCEPT_IDS);
-  const weights = array(problem.conceptWeights, 1, CONCEPT_IDS.length).map((value) => {
-    const weight = object(value, ["conceptId", "weight"]);
-    number(weight.weight, Number.MIN_VALUE, 1);
-    return choice(weight.conceptId, CONCEPT_IDS);
-  });
+  const weights = array(problem.conceptWeights, 1, CONCEPT_IDS.length).map(
+    (value) => {
+      const weight = object(value, ["conceptId", "weight"]);
+      number(weight.weight, Number.MIN_VALUE, 1);
+      return choice(weight.conceptId, CONCEPT_IDS);
+    },
+  );
   unique(weights);
   if (!weights.includes(conceptId)) invalid();
   number(problem.difficulty, 1, 5, true);
@@ -128,7 +176,15 @@ function validateProblem(value: unknown): Record<string, unknown> {
 }
 
 function validateMission(value: unknown): string {
-  const mission = object(value, ["id", "date", "seed", "startedAt", "completedAt", "problems", "attempts"]);
+  const mission = object(value, [
+    "id",
+    "date",
+    "seed",
+    "startedAt",
+    "completedAt",
+    "problems",
+    "attempts",
+  ]);
   const id = text(mission.id, 200);
   const day = text(mission.date, 10);
   if (!/^\d{4}-\d{2}-\d{2}$/.test(day)) invalid();
@@ -140,14 +196,25 @@ function validateMission(value: unknown): string {
   const attempts = array(mission.attempts, 0, problems.length);
   attempts.forEach((value, index) => {
     const attempt = object(value, [
-      "problemId", "conceptId", "templateId", "kind", "submittedAnswer", "correct", "rating", "usedHint",
-      "elapsedSeconds", "answeredAt",
+      "problemId",
+      "conceptId",
+      "templateId",
+      "kind",
+      "submittedAnswer",
+      "correct",
+      "rating",
+      "usedHint",
+      "elapsedSeconds",
+      "answeredAt",
     ]);
     const problem = problems[index];
     if (
-      attempt.problemId !== problem.id || attempt.conceptId !== problem.conceptId ||
-      attempt.templateId !== problem.templateId || attempt.kind !== problem.kind
-    ) invalid();
+      attempt.problemId !== problem.id ||
+      attempt.conceptId !== problem.conceptId ||
+      attempt.templateId !== problem.templateId ||
+      attempt.kind !== problem.kind
+    )
+      invalid();
     text(attempt.submittedAnswer, 200, 0);
     boolean(attempt.correct);
     choice(attempt.rating, RATINGS);
@@ -165,7 +232,10 @@ function validateMission(value: unknown): string {
   return id;
 }
 
-function validateStore(value: unknown, missionLimit = MAX_INPUT_MISSIONS): asserts value is SrsStore {
+function validateStore(
+  value: unknown,
+  missionLimit = MAX_INPUT_MISSIONS,
+): asserts value is SrsStore {
   const store = object(value, ["version", "activeLearnerId", "learners"]);
   if (store.version !== 1) invalid();
   const activeId = text(store.activeLearnerId, 200);
@@ -173,7 +243,11 @@ function validateStore(value: unknown, missionLimit = MAX_INPUT_MISSIONS): asser
   const ids = array(store.learners, 1, MAX_LEARNERS).map((value) => {
     const learner = object(value, ["id", "name", "memories", "missions"]);
     names.push(learnerName(learner.name).toLocaleLowerCase());
-    const memories = array(learner.memories, CONCEPT_IDS.length, CONCEPT_IDS.length).map(validateMemory);
+    const memories = array(
+      learner.memories,
+      CONCEPT_IDS.length,
+      CONCEPT_IDS.length,
+    ).map(validateMemory);
     unique(memories);
     unique(array(learner.missions, 0, missionLimit).map(validateMission));
     return text(learner.id, 200);
@@ -184,7 +258,10 @@ function validateStore(value: unknown, missionLimit = MAX_INPUT_MISSIONS): asser
 }
 
 function id(): string {
-  return globalThis.crypto?.randomUUID?.() ?? `learner-${Date.now().toString(36)}-${Math.random().toString(36).slice(2)}`;
+  return (
+    globalThis.crypto?.randomUUID?.() ??
+    `learner-${Date.now().toString(36)}-${Math.random().toString(36).slice(2)}`
+  );
 }
 
 function createLearner(name: string): Learner {
@@ -192,7 +269,13 @@ function createLearner(name: string): Learner {
     id: id(),
     name,
     memories: CONCEPT_IDS.map((conceptId) => ({
-      conceptId, mastery: 0, stabilityDays: 1, lastReviewedAt: null, nextReviewAt: null, attempts: 0, successes: 0,
+      conceptId,
+      mastery: 0,
+      stabilityDays: 1,
+      lastReviewedAt: null,
+      nextReviewAt: null,
+      attempts: 0,
+      successes: 0,
     })),
     missions: [],
   };
@@ -200,6 +283,9 @@ function createLearner(name: string): Learner {
 
 export function createStore(): SrsStore {
   const learner = createLearner("나의 학습");
+  // The initial profile is also rendered on the server; its identity must agree
+  // with the first client render and repeated reads of an empty storage key.
+  learner.id = "srs-default";
   return { version: 1, activeLearnerId: learner.id, learners: [learner] };
 }
 
@@ -210,12 +296,21 @@ function resolveStorage(storage?: Storage): Storage | null {
   return window.localStorage;
 }
 
-function parseStore(raw: string): { store: SrsStore | null; warning: string | null } {
+function parseStore(raw: string): {
+  store: SrsStore | null;
+  warning: string | null;
+} {
   try {
     // A bounded input avoids spending excessive time parsing externally altered storage.
-    if (raw.length > MAX_SERIALIZED_LENGTH) return { store: null, warning: CORRUPT_WARNING };
+    if (raw.length > MAX_SERIALIZED_LENGTH)
+      return { store: null, warning: CORRUPT_WARNING };
     const value: unknown = JSON.parse(raw);
-    if (value && typeof value === "object" && "version" in value && value.version !== 1) {
+    if (
+      value &&
+      typeof value === "object" &&
+      "version" in value &&
+      value.version !== 1
+    ) {
       return { store: null, warning: UNSUPPORTED_WARNING };
     }
     validateStore(value, MAX_SAVED_MISSIONS);
@@ -225,7 +320,10 @@ function parseStore(raw: string): { store: SrsStore | null; warning: string | nu
   }
 }
 
-export function loadStore(storage?: Storage): { store: SrsStore; warning: string | null } {
+export function loadStore(storage?: Storage): {
+  store: SrsStore;
+  warning: string | null;
+} {
   try {
     const target = resolveStorage(storage);
     if (!target) return { store: createStore(), warning: UNAVAILABLE_WARNING };
@@ -238,11 +336,18 @@ export function loadStore(storage?: Storage): { store: SrsStore; warning: string
   }
 }
 
-export function saveStore(store: SrsStore, storage?: Storage): { ok: boolean; warning: string | null } {
+export function saveStore(
+  store: SrsStore,
+  storage?: Storage,
+): { ok: boolean; warning: string | null } {
   try {
     validateStore(store);
   } catch {
-    return { ok: false, warning: "학습 기록의 형식이 올바르지 않아 저장하지 않았습니다. 기존 기록은 유지됩니다." };
+    return {
+      ok: false,
+      warning:
+        "학습 기록의 형식이 올바르지 않아 저장하지 않았습니다. 기존 기록은 유지됩니다.",
+    };
   }
   try {
     const target = resolveStorage(storage);
@@ -256,20 +361,30 @@ export function saveStore(store: SrsStore, storage?: Storage): { ok: boolean; wa
       ...store,
       learners: store.learners.map((learner) => ({
         ...learner,
-        missions: learner.missions.length > MAX_SAVED_MISSIONS
-          ? [...learner.missions].sort((a, b) => b.startedAt.localeCompare(a.startedAt)).slice(0, MAX_SAVED_MISSIONS)
-          : learner.missions,
+        missions:
+          learner.missions.length > MAX_SAVED_MISSIONS
+            ? [...learner.missions]
+                .sort((a, b) => b.startedAt.localeCompare(a.startedAt))
+                .slice(0, MAX_SAVED_MISSIONS)
+            : learner.missions,
       })),
     };
     const serialized = JSON.stringify(compacted);
     if (serialized.length > MAX_SERIALIZED_LENGTH) {
-      return { ok: false, warning: "학습 기록의 크기가 저장 한도를 초과했습니다. 이전 기록은 유지됩니다." };
+      return {
+        ok: false,
+        warning:
+          "학습 기록의 크기가 저장 한도를 초과했습니다. 이전 기록은 유지됩니다.",
+      };
     }
     target.setItem(STORAGE_KEY, serialized);
     return { ok: true, warning: null };
   } catch (error) {
-    const errorName = error && typeof error === "object" && "name" in error ? error.name : "";
-    const quota = errorName === "QuotaExceededError" || errorName === "NS_ERROR_DOM_QUOTA_REACHED";
+    const errorName =
+      error && typeof error === "object" && "name" in error ? error.name : "";
+    const quota =
+      errorName === "QuotaExceededError" ||
+      errorName === "NS_ERROR_DOM_QUOTA_REACHED";
     return {
       ok: false,
       warning: quota
@@ -288,30 +403,47 @@ export function addLearner(store: SrsStore, name: string): SrsStore {
   } catch {
     throw new Error("학습자 이름은 공백을 제외하고 1~20자로 입력해 주세요.");
   }
-  if (store.learners.some((learner) => learner.name.toLocaleLowerCase() === trimmed.toLocaleLowerCase())) {
+  if (
+    store.learners.some(
+      (learner) =>
+        learner.name.toLocaleLowerCase() === trimmed.toLocaleLowerCase(),
+    )
+  ) {
     throw new Error("이미 사용 중인 학습자 이름입니다.");
   }
-  if (store.learners.length >= MAX_LEARNERS) throw new Error("학습자는 최대 12명까지 만들 수 있습니다.");
+  if (store.learners.length >= MAX_LEARNERS)
+    throw new Error("학습자는 최대 12명까지 만들 수 있습니다.");
   const learner = createLearner(trimmed);
   // Even a mocked or unavailable UUID source must not replace an existing profile.
-  while (store.learners.some((existing) => existing.id === learner.id)) learner.id += "-new";
-  return { ...store, activeLearnerId: learner.id, learners: [...store.learners, learner] };
+  while (store.learners.some((existing) => existing.id === learner.id))
+    learner.id += "-new";
+  return {
+    ...store,
+    activeLearnerId: learner.id,
+    learners: [...store.learners, learner],
+  };
 }
 
 export function selectLearner(store: SrsStore, learnerId: string): SrsStore {
   validateStore(store);
-  if (!store.learners.some((learner) => learner.id === learnerId)) throw new Error("학습자를 찾을 수 없습니다.");
+  if (!store.learners.some((learner) => learner.id === learnerId))
+    throw new Error("학습자를 찾을 수 없습니다.");
   return { ...store, activeLearnerId: learnerId };
 }
 
 export function updateLearner(store: SrsStore, learner: Learner): SrsStore {
   validateStore(store);
-  if (!learner || !store.learners.some((existing) => existing.id === learner.id)) {
+  if (
+    !learner ||
+    !store.learners.some((existing) => existing.id === learner.id)
+  ) {
     throw new Error("수정할 학습자를 찾을 수 없습니다.");
   }
   const result = {
     ...store,
-    learners: store.learners.map((existing) => existing.id === learner.id ? learner : existing),
+    learners: store.learners.map((existing) =>
+      existing.id === learner.id ? learner : existing,
+    ),
   };
   validateStore(result);
   return result;

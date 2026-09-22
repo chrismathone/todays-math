@@ -28,3 +28,5 @@ npm run dev            # http://localhost:3000
 
 기획 문서는 `docs/planning/` 참조.  
 다른 컴퓨터에서 이어서 할 때: **`docs/HANDOFF.md`**.
+
+중1 일차방정식 개인별 복습 MVP: `/lab/math-srs` — 구현 범위와 검증은 [오늘의 기억 MVP](docs/math-srs-mvp.md)를 참조한다.

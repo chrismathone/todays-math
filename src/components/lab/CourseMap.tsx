@@ -27,6 +27,19 @@ export function CourseMap() {
           다시 씁니다. 수 모형을 묶고 푸는 덧셈·뺄셈부터 겉넓이까지, 직접
           조작하고 생각을 확인하는 코스가 열려 있습니다.
         </p>
+        <Link href="/lab/math-srs" className={styles.cubeFeature}>
+          <span className={styles.cubeFeatureBlocks} aria-hidden="true">
+            ↺
+          </span>
+          <span>
+            <small>중등 1학년 · 일차방정식</small>
+            <b>오늘의 기억</b>
+            <span>
+              하루 12문제 · 나에게 맞는 복습 · 새로운 숫자로 다시 도전
+            </span>
+          </span>
+          <strong>미션 시작 →</strong>
+        </Link>
         <Link href="/lab/cube-3-1" className={styles.cubeFeature}>
           <span className={styles.cubeFeatureBlocks} aria-hidden="true">
             ▦ <span>▥</span> <i>▪</i>
