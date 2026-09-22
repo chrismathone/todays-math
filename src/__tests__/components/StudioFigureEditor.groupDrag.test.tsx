@@ -30,7 +30,7 @@ vi.mock(
           if (node.hasAttribute(name))
             wrapper.setAttribute(name, node.getAttribute(name)!);
         wrapper.append(doc.createElementNS(SVG_NS, "path"));
-        return new XMLSerializer().serializeToString(doc.documentElement);
+        node.replaceWith(wrapper);
       }
       return new XMLSerializer().serializeToString(doc.documentElement);
     };
@@ -50,27 +50,28 @@ const figure =
   `</svg>`;
 const crop = "data:image/png;base64,b3JpZ2luYWw=";
 
-const identity = {
-  a: 1,
+const matrix = (a = 1, d = 1, e = 0, f = 0) => ({
+  a,
   b: 0,
   c: 0,
-  d: 1,
-  e: 0,
-  f: 0,
+  d,
+  e,
+  f,
   inverse() {
-    return this;
+    return matrix(1 / a, 1 / d, -e / a, -f / d);
   },
-  multiply() {
-    return this;
+  multiply(other: { a: number; d: number; e: number; f: number }) {
+    return matrix(a * other.a, d * other.d, a * other.e + e, d * other.f + f);
   },
-};
+});
+const capture = vi.fn();
 class Point {
   constructor(
     public x = 0,
     public y = 0,
   ) {}
-  matrixTransform() {
-    return new Point(this.x, this.y);
+  matrixTransform(m: ReturnType<typeof matrix>) {
+    return new Point(this.x * m.a + m.e, this.y * m.d + m.f);
   }
 }
 
@@ -83,10 +84,16 @@ beforeEach(() => {
     },
   );
   vi.stubGlobal("DOMPoint", Point);
+  vi.stubGlobal("SVGGeometryElement", class {});
   vi.stubGlobal("PointerEvent", MouseEvent);
   Object.defineProperty(SVGElement.prototype, "getScreenCTM", {
     configurable: true,
-    value: () => identity,
+    value: function (this: SVGElement) {
+      const shift = /translate\(\s*(-?[\d.]+)[ ,]+(-?[\d.]+)/.exec(
+        this.getAttribute("transform") ?? "",
+      );
+      return matrix(1, 1, Number(shift?.[1] ?? 0), Number(shift?.[2] ?? 0));
+    },
   });
   Object.defineProperty(SVGElement.prototype, "getBBox", {
     configurable: true,
@@ -94,10 +101,11 @@ beforeEach(() => {
   });
   Object.defineProperty(HTMLElement.prototype, "setPointerCapture", {
     configurable: true,
-    value: () => {},
+    value: capture,
   });
 });
 afterEach(() => {
+  Reflect.deleteProperty(document, "elementsFromPoint");
   vi.unstubAllGlobals();
   vi.restoreAllMocks();
 });
@@ -121,11 +129,11 @@ const moved = (node: Element) => {
   return shift ? Number(shift[1]) : 0;
 };
 
-async function open() {
+async function open(source = figure) {
   render(
     <StudioFigureEditor
       image={crop}
-      initialSvg={figure}
+      initialSvg={source}
       index={0}
       onSave={vi.fn()}
       onClose={vi.fn()}
@@ -176,5 +184,126 @@ describe("묶음은 캔버스에서도 한 덩어리다", () => {
     dragFrom(box(), 70);
     await waitFor(() => expect(moved(box())).toBe(30));
     expect(moved(boxLine())).toBe(0);
+    expect(document.querySelector("[data-figure-group-border]")).toBeNull();
+  });
+
+  it.each(["border", "interior"])(
+    "묶음 %s에서 끌면 모든 요소와 이동 사각형이 함께 움직인다",
+    async (part) => {
+      await open();
+      fireEvent.pointerDown(box(), { button: 0, clientX: 40, clientY: 50 });
+      fireEvent.pointerUp(surface());
+      const border = () =>
+        document.querySelector("[data-figure-group-border]")!;
+      expect(border().getAttribute("x")).toBe("12");
+      capture.mockClear();
+      dragFrom(document.querySelector(`[data-figure-group-${part}]`)!, 70);
+      expect(capture).toHaveBeenCalledOnce();
+      expect(moved(box())).toBe(30);
+      expect(moved(boxLine())).toBe(30);
+      expect(moved(loose())).toBe(0);
+      expect(border().getAttribute("x")).toBe("42");
+      fireEvent.pointerUp(surface());
+      // A complete drag is one history step, including every member.
+      fireEvent.click(screen.getByRole("button", { name: /되돌리기/ }));
+      expect(moved(box())).toBe(0);
+      expect(moved(boxLine())).toBe(0);
+      expect(screen.getByRole("button", { name: /되돌리기/ })).toBeDisabled();
+      fireEvent.click(screen.getByRole("button", { name: /다시 실행/ }));
+      expect(moved(box())).toBe(30);
+      expect(moved(boxLine())).toBe(30);
+    },
+  );
+
+  it("묶음 이동 취소는 원래 위치로 되돌리고 기록을 추가하지 않는다", async () => {
+    await open();
+    fireEvent.pointerDown(box(), { button: 0, clientX: 40, clientY: 50 });
+    fireEvent.pointerUp(surface());
+    dragFrom(document.querySelector("[data-figure-group-border]")!, 90);
+    fireEvent.pointerCancel(surface());
+    expect(moved(box())).toBe(0);
+    expect(moved(boxLine())).toBe(0);
+    expect(screen.getByRole("button", { name: /되돌리기/ })).toBeDisabled();
+  });
+
+  it("번호 숨기기와 다중 선택에서도 이동 사각형을 쓸 수 있다", async () => {
+    await open();
+    fireEvent.click(screen.getByRole("button", { name: "번호 숨기기" }));
+    fireEvent.pointerDown(box(), { button: 0, clientX: 40, clientY: 50 });
+    fireEvent.pointerUp(surface());
+    fireEvent.pointerDown(loose(), {
+      button: 0,
+      shiftKey: true,
+      clientX: 300,
+      clientY: 60,
+    });
+    dragFrom(document.querySelector("[data-figure-group-border]")!, 70);
+    fireEvent.pointerUp(surface());
+    expect(moved(box())).toBe(30);
+    expect(moved(boxLine())).toBe(30);
+    expect(moved(loose())).toBe(30);
+  });
+
+  it("이동 사각형 안 다른 요소는 클릭과 Shift 선택을 계속 받는다", async () => {
+    await open();
+    fireEvent.pointerDown(box(), { button: 0, clientX: 40, clientY: 50 });
+    fireEvent.pointerUp(surface());
+    // Browser hit testing reaches the painted object beneath the overlay.
+    Object.defineProperty(document, "elementsFromPoint", {
+      configurable: true,
+      value: () => [loose()],
+    });
+    fireEvent.pointerDown(
+      document.querySelector("[data-figure-group-interior]")!,
+      {
+        button: 0,
+        shiftKey: true,
+        clientX: 40,
+        clientY: 50,
+      },
+    );
+    expect(screen.getByText(/3개 선택/)).toBeInTheDocument();
+    fireEvent.pointerDown(
+      document.querySelector("[data-figure-group-interior]")!,
+      {
+        button: 0,
+        ctrlKey: true,
+        clientX: 40,
+        clientY: 50,
+      },
+    );
+    expect(screen.getByText(/2개 선택/)).toBeInTheDocument();
+    fireEvent.pointerDown(
+      document.querySelector("[data-figure-group-interior]")!,
+      {
+        button: 0,
+        clientX: 40,
+        clientY: 50,
+      },
+    );
+    expect(rowFor("원")).toHaveAttribute("aria-pressed", "true");
+    expect(rowFor("사각형")).toHaveAttribute("aria-pressed", "false");
+  });
+
+  it("묶음의 조판 수식은 이동 도중과 놓은 직후에도 조판 상태를 유지한다", async () => {
+    await open(
+      figure.replace(
+        "</svg>",
+        '<text x="30" y="40" data-group="A" data-mj="$x^2$">$x^2$</text></svg>',
+      ),
+    );
+    await waitFor(() =>
+      expect(canvas().querySelector("[data-typeset]")).not.toBeNull(),
+    );
+    fireEvent.pointerDown(box(), { button: 0, clientX: 40, clientY: 50 });
+    fireEvent.pointerUp(surface());
+    const label = canvas().querySelector("[data-typeset]")!;
+    dragFrom(document.querySelector("[data-figure-group-border]")!, 70);
+    expect(label.isConnected).toBe(true);
+    expect(moved(label)).toBe(30);
+    expect(canvas().querySelector("text")).toBeNull();
+    fireEvent.pointerUp(surface());
+    expect(canvas().querySelector("text")).toBeNull();
+    expect(moved(canvas().querySelector("[data-typeset]")!)).toBe(30);
   });
 });
