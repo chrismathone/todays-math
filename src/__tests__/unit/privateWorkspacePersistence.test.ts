@@ -29,6 +29,91 @@ afterEach(() => {
   vi.restoreAllMocks();
 });
 describe("cloud worksheet persistence", () => {
+  it("waits for a departing worksheet instance before reopening its recovery", async () => {
+    const server = privateServer();
+    let complete!: () => void;
+    const gate = new Promise<void>((resolve) => {
+      complete = resolve;
+    });
+    let started!: () => void;
+    const saving = new Promise<void>((resolve) => {
+      started = resolve;
+    });
+    const first = createPrivateDraftStore(
+      "owner-a",
+      new PrivateCloudClient("owner-a", async (url, init) => {
+        const response = await server.transport(url, init);
+        if (init?.method === "PUT") {
+          started();
+          await gate;
+        }
+        return response;
+      }),
+    );
+    await first.hydrate();
+    first.setProblems([problem()]);
+    const pending = first.saveNow();
+    await saving;
+    first.release();
+    const second = createPrivateDraftStore(
+      "owner-a",
+      new PrivateCloudClient("owner-a", server.transport),
+    );
+    const reopening = second.hydrate();
+    await new Promise((resolve) => setTimeout(resolve, 0));
+    complete();
+    await pending;
+    await reopening;
+    second.setTitle("돌아와서 수정");
+    expect(await second.saveNow()).toBe(true);
+    expect([...server.documents.values()][0]).toMatchObject({
+      title: "돌아와서 수정",
+      revision: 2,
+    });
+  });
+  it("uses the confirmed revision for edits queued behind a lost save response", async () => {
+    const server = privateServer();
+    let complete!: () => void;
+    const responseGate = new Promise<void>((resolve) => {
+      complete = resolve;
+    });
+    let started!: () => void;
+    const saving = new Promise<void>((resolve) => {
+      started = resolve;
+    });
+    let loseResponse = true;
+    const client = new PrivateCloudClient("owner-a", async (url, init) => {
+      const response = await server.transport(url, init);
+      if (init?.method === "PUT" && loseResponse) {
+        loseResponse = false;
+        started();
+        await responseGate;
+        throw new Error("response lost");
+      }
+      return response;
+    });
+    const cloud = createPrivateDraftStore("owner-a", client);
+    await cloud.hydrate();
+    cloud.setProblems([problem()]);
+    const first = cloud.saveNow();
+    await saving;
+    cloud.setTitle("저장 중에 추가한 수정");
+    const second = cloud.saveNow();
+    complete();
+    expect(await first).toBe(true);
+    expect(await second).toBe(true);
+    const document = [...server.documents.values()][0];
+    expect(document).toMatchObject({
+      revision: 2,
+      title: "저장 중에 추가한 수정",
+    });
+    expect(
+      server.transport.mock.calls
+        .filter(([, init]) => init?.method === "PUT")
+        .map(([, init]) => JSON.parse(String(init?.body)).expectedRevision),
+    ).toEqual([null, 1]);
+    expect(cloud.getSnapshot().saveStatus).toBe("saved");
+  });
   it("opens a library-renamed current draft without an obsolete write, then forgets an acknowledged deletion", async () => {
     const server = privateServer();
     const client = new PrivateCloudClient("owner-a", server.transport);
@@ -134,9 +219,17 @@ describe("cloud worksheet persistence", () => {
       draft: { title: "내 변경 유지" },
     });
     expect(b.getSnapshot().saveError).toContain("다른 창이나 기기");
+    server.transport.mockClear();
+    for (let edit = 0; edit < 4; edit++) {
+      b.setTitle(`내 변경 유지 ${edit}`);
+      expect(await b.saveNow()).toBe(false);
+    }
+    expect(
+      server.transport.mock.calls.filter(([, init]) => init?.method === "PUT"),
+    ).toHaveLength(0);
     const restored = createPrivateDraftStore("owner-a", client());
     await restored.hydrate();
-    expect(restored.getSnapshot().draft.title).toBe("내 변경 유지");
+    expect(restored.getSnapshot().draft.title).toBe("내 변경 유지 3");
     expect(await restored.saveNow()).toBe(false);
     expect([...server.documents.values()][0].title).toBe("다른 기기");
   });
@@ -187,6 +280,55 @@ describe("cloud worksheet persistence", () => {
   });
 });
 describe("cloud extraction sessions", () => {
+  it("waits for a departing extraction save before restoring its pending revision", async () => {
+    const server = privateServer();
+    const recovery = memoryRecovery();
+    let complete!: () => void;
+    const gate = new Promise<void>((resolve) => {
+      complete = resolve;
+    });
+    let started!: () => void;
+    const saving = new Promise<void>((resolve) => {
+      started = resolve;
+    });
+    const first = new PrivateStudioSessionStore(
+      "owner-a",
+      undefined,
+      undefined,
+      new PrivateCloudClient("owner-a", async (url, init) => {
+        const response = await server.transport(url, init);
+        if (init?.method === "PUT" && String(url).includes("/documents/")) {
+          started();
+          await gate;
+        }
+        return response;
+      }),
+      recovery,
+    );
+    await first.load();
+    const originals = new Map([
+      ["source1", new Blob(["PDF"], { type: "application/pdf" })],
+    ]);
+    const pending = first.save(sessionData(), originals);
+    await saving;
+    first.release();
+    const second = new PrivateStudioSessionStore(
+      "owner-a",
+      first.documentId,
+      undefined,
+      new PrivateCloudClient("owner-a", server.transport),
+      recovery,
+    );
+    const reopening = second.load();
+    await new Promise((resolve) => setTimeout(resolve, 0));
+    complete();
+    await pending;
+    const restored = await reopening;
+    await expect(
+      second.save({ ...restored!.data, pageNumber: 2 }, restored!.originals),
+    ).resolves.toBeUndefined();
+    expect([...server.documents.values()][0].revision).toBe(2);
+  });
   it("clears the deleted current selection, rejects late saves, and starts a new document", async () => {
     const server = privateServer();
     const recovery = memoryRecovery();
@@ -370,12 +512,13 @@ describe("cloud extraction sessions", () => {
       ["source1", new Blob(["PDF"], { type: "application/pdf" })],
     ]);
     await first.save(sessionData(), originals);
+    const secondRecovery = memoryRecovery();
     const second = new PrivateStudioSessionStore(
       "owner-a",
       first.documentId,
       undefined,
       client(),
-      memoryRecovery(),
+      secondRecovery,
     );
     await second.load();
     await first.save({ ...sessionData(), pageNumber: 2 }, originals);
@@ -383,6 +526,25 @@ describe("cloud extraction sessions", () => {
       second.save({ ...sessionData(), pageNumber: 3 }, originals),
     ).rejects.toMatchObject({ status: 409 });
     expect(second.conflict).toBe(true);
+    server.transport.mockClear();
+    for (let pageNumber = 4; pageNumber <= 6; pageNumber++) {
+      await expect(
+        second.save({ ...sessionData(), pageNumber }, originals),
+      ).rejects.toMatchObject({ status: 409 });
+    }
+    expect(
+      server.transport.mock.calls.filter(([, init]) => init?.method === "PUT"),
+    ).toHaveLength(0);
+    const resumed = new PrivateStudioSessionStore(
+      "owner-a",
+      first.documentId,
+      undefined,
+      client(),
+      secondRecovery,
+    );
+    const recovered = await resumed.load();
+    expect(recovered?.data.pageNumber).toBe(6);
+    expect(await recovered?.originals.get("source1")?.text()).toBe("PDF");
     expect(
       (
         server.documents.get(`owner-a:${first.documentId}`)?.payload.data as {

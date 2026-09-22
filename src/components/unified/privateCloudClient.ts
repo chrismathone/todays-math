@@ -33,6 +33,27 @@ type AssetPool = {
   portable: Map<string, string>;
 };
 const activeAssetPools = new Map<string, AssetPool>();
+/** JSONB may reorder object keys; array order and every value still have to match. */
+function sameJson(left: unknown, right: unknown): boolean {
+  if (left === right) return true;
+  if (!left || !right || typeof left !== "object" || typeof right !== "object")
+    return false;
+  if (Array.isArray(left) || Array.isArray(right))
+    return (
+      Array.isArray(left) &&
+      Array.isArray(right) &&
+      left.length === right.length &&
+      left.every((item, index) => sameJson(item, right[index]))
+    );
+  const a = left as Record<string, unknown>;
+  const b = right as Record<string, unknown>;
+  return (
+    Object.keys(a).length === Object.keys(b).length &&
+    Object.keys(a).every(
+      (key) => Object.hasOwn(b, key) && sameJson(a[key], b[key]),
+    )
+  );
+}
 /** 내려받은 자산 — `truncated` 는 옛 저장이 잘라 올린 SVG 의 앞부분(온전한 자산이면 없다). */
 type Download = { url: string; truncated?: string };
 
@@ -225,17 +246,43 @@ export class PrivateCloudClient {
     });
     if (new TextEncoder().encode(body).byteLength > 3_500_000)
       throw new Error("자료 내용이 너무 큽니다. 자료를 나누어 저장해 주세요.");
-    const saved = (
-      await (
-        await this.request(documentPath(id), {
-          method: "PUT",
-          headers: { "Content-Type": "application/json" },
-          body,
-        })
-      ).json()
-    ).data;
-    if (!saved || saved.id !== id || !Number.isInteger(saved.revision))
-      throw new Error("자료 저장을 확인하지 못했습니다. 다시 시도해 주세요.");
+    let saved: PrivateDocument;
+    try {
+      saved = (
+        await (
+          await this.request(documentPath(id), {
+            method: "PUT",
+            headers: { "Content-Type": "application/json" },
+            body,
+          })
+        ).json()
+      ).data;
+      if (!saved || saved.id !== id || !Number.isInteger(saved.revision))
+        throw new Error("자료 저장을 확인하지 못했습니다. 다시 시도해 주세요.");
+    } catch (cause) {
+      if (
+        cause instanceof PrivateCloudError &&
+        cause.status > 0 &&
+        cause.status !== 409 &&
+        cause.status < 500
+      )
+        throw cause;
+      // The PUT may have committed before its response was lost. Confirm only the
+      // exact submitted content at the single expected successor revision; never
+      // adopt a newer base and resend unsaved edits over another device's work.
+      const current = await this.get(id).catch(() => undefined);
+      const submitted = JSON.parse(body);
+      if (
+        !current ||
+        current.id !== id ||
+        current.kind !== kind ||
+        current.revision !== (expectedRevision ?? 0) + 1 ||
+        current.title !== submitted.title ||
+        !sameJson(current.payload, submitted.payload)
+      )
+        throw cause;
+      saved = current;
+    }
     this.changed();
     return saved;
   }

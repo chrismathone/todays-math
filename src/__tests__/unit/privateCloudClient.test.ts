@@ -13,6 +13,87 @@ afterEach(() => {
   vi.restoreAllMocks();
 });
 describe("private cloud transport", () => {
+  it("acknowledges a committed save whose response was lost without writing it twice", async () => {
+    const server = privateServer();
+    let loseResponse = true;
+    const transport: typeof fetch = async (url, init) => {
+      const response = await server.transport(url, init);
+      if (init?.method === "PUT" && loseResponse) {
+        loseResponse = false;
+        throw new Error("connection closed after commit");
+      }
+      return response;
+    };
+    const client = new PrivateCloudClient("owner-a", transport);
+    const saved = await client.save(
+      "lost",
+      "draft",
+      "제목",
+      { problems: [] },
+      null,
+    );
+    expect(saved.revision).toBe(1);
+    expect(
+      server.transport.mock.calls.filter(([, init]) => init?.method === "PUT"),
+    ).toHaveLength(1);
+    expect(
+      (
+        await client.save(
+          "lost",
+          "draft",
+          "다음 수정",
+          { problems: [] },
+          saved.revision,
+        )
+      ).revision,
+    ).toBe(2);
+  });
+
+  it("verifies an identical retry using JSON content even when database key order changes", async () => {
+    const server = privateServer();
+    const client = new PrivateCloudClient("owner-a", server.transport);
+    await client.save(
+      "retry",
+      "draft",
+      "제목",
+      { problems: [], settings: { a: 1, b: 2 } },
+      null,
+    );
+    const saved = server.documents.get("owner-a:retry")!;
+    saved.payload = { settings: { b: 2, a: 1 }, problems: [] };
+    expect(
+      (
+        await client.save(
+          "retry",
+          "draft",
+          "제목",
+          { problems: [], settings: { a: 1, b: 2 } },
+          null,
+        )
+      ).revision,
+    ).toBe(1);
+    expect(saved.revision).toBe(1);
+    // A later revision, different title, or different content is still a conflict.
+    saved.revision = 2;
+    await expect(
+      client.save(
+        "retry",
+        "draft",
+        "제목",
+        { problems: [], settings: { a: 1, b: 2 } },
+        null,
+      ),
+    ).rejects.toMatchObject({ status: 409 });
+    saved.revision = 1;
+    await expect(
+      client.save("retry", "draft", "수정", saved.payload, null),
+    ).rejects.toMatchObject({ status: 409 });
+    await expect(
+      client.save("retry", "draft", "제목", { problems: ["unsaved"] }, null),
+    ).rejects.toMatchObject({ status: 409 });
+    expect(server.documents.get("owner-a:retry")).toBe(saved);
+  });
+
   it("accepts encoded SVG charset URLs and bounds simultaneous asset transfers", async () => {
     const server = privateServer();
     let active = 0;
