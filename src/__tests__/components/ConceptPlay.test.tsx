@@ -47,9 +47,20 @@ function reachFinale() {
 describe("ConceptPlay", () => {
   beforeEach(() => {
     vi.useFakeTimers();
+    // Gameplay checks use the accessible instant transcript; conversation timing
+    // is covered separately with motion enabled.
+    vi.stubGlobal(
+      "matchMedia",
+      vi.fn(() => ({
+        matches: true,
+        addEventListener: vi.fn(),
+        removeEventListener: vi.fn(),
+      })),
+    );
   });
   afterEach(() => {
     vi.restoreAllMocks();
+    vi.unstubAllGlobals();
     vi.useRealTimers();
   });
 

@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useReducer, useRef } from "react";
+import { useEffect, useReducer, useRef, useState } from "react";
 import type { CSSProperties, KeyboardEvent } from "react";
 import {
   PLAY_MISSIONS,
@@ -13,6 +13,9 @@ import {
 import type { PlayEvent, PlayPlace } from "@/lib/lab/cube31/conceptPlay";
 import { BLOCK_NAMES, VALUES, blockValue } from "@/lib/lab/cube31/manipulative";
 import styles from "./ConceptPlay.module.css";
+import ConceptTranscript, {
+  type ConversationMessage,
+} from "./ConceptTranscript";
 
 const KEYS = ["3", "2", "1"] as const;
 const COLOR_CLASSES = [styles.ones, styles.tens, styles.hundreds];
@@ -28,40 +31,59 @@ function Block({ place }: { place: PlayPlace }) {
   );
 }
 
-function ChatBubble({
-  speaker,
-  children,
-}: {
-  speaker: "모아" | "두리";
-  children: string;
-}) {
-  return (
-    <div
-      className={`${styles.chatRow} ${speaker === "모아" ? styles.moa : ""}`}
-    >
-      <span className={styles.avatar} aria-hidden="true">
-        {speaker === "모아" ? "모" : "두"}
-      </span>
-      <div>
-        <span className={styles.speaker}>{speaker}</span>
-        <p className={styles.bubble}>{children}</p>
-      </div>
-    </div>
-  );
-}
-
 export default function ConceptPlay({ onClose }: { onClose: () => void }) {
   const [state, dispatch] = useReducer(reducePlay, undefined, () =>
     createPlayState(),
   );
+  const [conversationKey, setConversationKey] = useState(0);
+  const [spokenDiscovery, setSpokenDiscovery] = useState<string | null>(null);
+  const [closing, setClosing] = useState(false);
   const root = useRef<HTMLElement>(null);
-  const chat = useRef<HTMLDivElement>(null);
   const timer = useRef<ReturnType<typeof setTimeout> | null>(null);
   const closed = useRef(false);
   const held = useRef(new Set<string>());
   const mission = PLAY_MISSIONS[state.round];
   const complete = state.phase === "complete";
   const success = state.phase === "success";
+  const discoveryId = `discovery-${state.round}-${state.revision}`;
+  const discoveryReady = spokenDiscovery === discoveryId;
+  const messages: ConversationMessage[] = [];
+  PLAY_MISSIONS.slice(0, state.round + 1).forEach((scene, index) => {
+    const previous = index < state.round;
+    const immediate = previous || complete;
+    messages.push(
+      {
+        id: `intro-${index}-duri`,
+        speaker: "두리",
+        text: scene.chat[0],
+        scene: {
+          id: String(index),
+          label: `${String(index + 1).padStart(2, "0")} · ${scene.title}`,
+        },
+        immediate,
+      },
+      {
+        id: `intro-${index}-moa`,
+        speaker: "모아",
+        text: scene.chat[1],
+        immediate,
+      },
+    );
+    if (previous || success || complete) {
+      messages.push({
+        id: previous ? `discovery-${index}-past` : discoveryId,
+        speaker: "두리",
+        text: scene.discovery,
+        immediate,
+      });
+    } else if (state.feedback) {
+      messages.push({
+        id: `reaction-${index}`,
+        speaker: "모아",
+        text: `직접 움직이니 ${state.feedback}`,
+      });
+    }
+  });
   const locked = state.paused || state.phase !== "playing";
   const stars = complete ? PLAY_MISSIONS.length : state.round + Number(success);
   const value = blockValue(state.board.workspace);
@@ -85,7 +107,14 @@ export default function ConceptPlay({ onClose }: { onClose: () => void }) {
   }, []);
 
   useEffect(() => {
-    if (state.phase !== "success" || state.paused || closed.current) return;
+    if (
+      state.phase !== "success" ||
+      !discoveryReady ||
+      state.paused ||
+      closing ||
+      closed.current
+    )
+      return;
     timer.current = setTimeout(() => {
       if (!closed.current)
         dispatch({ type: "advance", revision: state.revision });
@@ -94,15 +123,16 @@ export default function ConceptPlay({ onClose }: { onClose: () => void }) {
       if (timer.current !== null) clearTimeout(timer.current);
       timer.current = null;
     };
-  }, [state.phase, state.paused, state.revision]);
-
-  useEffect(() => {
-    // Scroll only the transcript, never the dialog or document; no forced motion.
-    if (chat.current) chat.current.scrollTop = chat.current.scrollHeight;
-  }, [state.round, state.phase, state.feedback]);
+  }, [state.phase, state.paused, state.revision, discoveryReady, closing]);
 
   function act(event: PlayEvent) {
     if (!closed.current) {
+      if (
+        event.type === "replay" ||
+        (event.type === "reset" && !state.paused && !complete)
+      ) {
+        setConversationKey((key) => key + 1);
+      }
       dispatch(event);
       // A used-up supply button becomes disabled; keep keyboard play inside
       // the game even when the browser would otherwise drop focus to body.
@@ -113,6 +143,7 @@ export default function ConceptPlay({ onClose }: { onClose: () => void }) {
   function close() {
     if (closed.current) return;
     closed.current = true;
+    setClosing(true);
     if (timer.current !== null) clearTimeout(timer.current);
     held.current.clear();
     onClose();
@@ -210,34 +241,14 @@ export default function ConceptPlay({ onClose }: { onClose: () => void }) {
             <span>블록 가게 친구들</span>
             <span>2명</span>
           </div>
-          <div
-            ref={chat}
-            className={styles.transcript}
-            role="log"
-            aria-live="off"
-            aria-label="이야기 기록"
-            tabIndex={0}
-          >
-            {PLAY_MISSIONS.slice(0, state.round + 1).map((scene, index) => (
-              <div key={scene.title}>
-                <p className={styles.sceneDivider}>
-                  {String(index + 1).padStart(2, "0")} · {scene.title}
-                </p>
-                <ChatBubble speaker="두리">{scene.chat[0]}</ChatBubble>
-                <ChatBubble speaker="모아">{scene.chat[1]}</ChatBubble>
-                {index === state.round &&
-                  state.feedback &&
-                  !success &&
-                  !complete && (
-                    <ChatBubble speaker="모아">{`직접 움직이니 ${state.feedback}`}</ChatBubble>
-                  )}
-                {(index < state.round || success || complete) && (
-                  <ChatBubble speaker="두리">{scene.discovery}</ChatBubble>
-                )}
-              </div>
-            ))}
-          </div>
-          <div className={styles.chatFoot}>네가 움직이면 이야기가 이어져.</div>
+          <ConceptTranscript
+            messages={messages}
+            paused={state.paused || closing}
+            conversationKey={conversationKey}
+            onMessageComplete={(id) => {
+              if (id === discoveryId && !closed.current) setSpokenDiscovery(id);
+            }}
+          />
         </aside>
 
         <main className={styles.scene}>
@@ -516,7 +527,12 @@ export default function ConceptPlay({ onClose }: { onClose: () => void }) {
                 {state.paused ? (
                   "잠깐 쉬는 중 · 계속을 누르면 이어져."
                 ) : success ? (
-                  <>★ 발견! {mission.discovery}</>
+                  <>
+                    ★ 발견!{" "}
+                    {discoveryReady
+                      ? mission.discovery
+                      : "두리와 모아의 이야기를 들어 보자."}
+                  </>
                 ) : (
                   state.feedback ||
                   (mission.kind === "subtract"
