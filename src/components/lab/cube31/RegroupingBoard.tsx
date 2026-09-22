@@ -43,6 +43,11 @@ type Session = {
   digits: string[];
   marks: string[];
   checked: boolean;
+  exchange: {
+    place: number;
+    kind: "bundle" | "split";
+    sequence: number;
+  } | null;
 };
 type BoardEvent =
   | { type: "action"; action: ManipulativeAction }
@@ -59,6 +64,7 @@ function newSession(problem: RegroupingProblem): Session {
     digits: ["", "", "", ""],
     marks: ["", "", "", ""],
     checked: false,
+    exchange: null,
   };
 }
 
@@ -88,6 +94,7 @@ function updateSession(
           history: session.history.slice(0, -1),
           message: "마지막 블록 움직임을 되돌렸어요.",
           checked: false,
+          exchange: null,
         }
       : session;
   }
@@ -97,6 +104,16 @@ function updateSession(
     board: result.state,
     message: result.message,
     checked: false,
+    exchange:
+      result.changed &&
+      (event.action.type === "bundle" || event.action.type === "split")
+        ? {
+            place:
+              event.action.place + (event.action.type === "bundle" ? 1 : -1),
+            kind: event.action.type,
+            sequence: result.state.moves,
+          }
+        : null,
     history: result.changed
       ? [...session.history, session.board]
       : session.history,
@@ -475,6 +492,14 @@ export default function RegroupingBoard({
               onDrop={(event) => nativeDrop(event, place)}
               aria-label={`${PLACE_NAMES[place]} 작업판`}
             >
+              {session.exchange?.place === place ? (
+                <span
+                  key={session.exchange.sequence}
+                  className={styles.exchangeResponse}
+                  data-block-exchange={session.exchange.kind}
+                  aria-hidden="true"
+                />
+              ) : null}
               <div className={styles.zoneLabel}>
                 <span>작업판</span>
                 <strong
