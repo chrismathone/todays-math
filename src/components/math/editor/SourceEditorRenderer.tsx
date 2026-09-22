@@ -430,14 +430,17 @@ const normalizeInlineSvgs = (html: string): string => {
   // 사용자 보고 (2026-05-27): 도형 안 점 라벨이 italic 인데 본문은 직립 →
   // 시각 불일치. content 분석해 점/숫자 = normal, 변수 = italic 으로 분기.
   // 모델이 직접 명시한 font-style/font-family 는 *그대로 존중* (override X).
+  // 🔴 속성뿐 아니라 `style="font-style: …"` 도 «명시»다 — 편집기·재작도가 저장한 그림은 모양을 style 에
+  // 적는다(`prepareFigureSvg`). 속성만 보던 때는 그걸 못 보고 «50°»·«3 cm» 에 italic 을 달아, 편집 화면에선
+  // 곧은 글자가 보기 화면에서만 기울었다(원장님 2026-09-22 «자꾸 기울어진 폰트가 왜 자꾸 나오는거지?»).
   let out = html.replace(
     /<text(\s[^>]*)?>([\s\S]*?)<\/text>/g,
     (_match, attrs: string | undefined, content: string) => {
       let a = attrs ?? "";
-      if (!/\bfont-family\s*=/i.test(a)) {
+      if (!/\bfont-family\s*[=:]/i.test(a)) {
         a += ' font-family="Times New Roman, serif"';
       }
-      if (!/\bfont-style\s*=/i.test(a)) {
+      if (!/\bfont-style\s*[=:]/i.test(a)) {
         // text content 의 내부 markup (예: <tspan>) 제거 후 분석
         const plainText = content.replace(/<[^>]+>/g, "");
         const style = defaultFontStyleForText(plainText);
