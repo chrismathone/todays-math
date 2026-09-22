@@ -84,7 +84,7 @@ export async function loadMainDashboard(): Promise<MainDashboardData> {
   const progressEntries = await Promise.all(
     classesBody.data.map(async (cls) => {
       const res = await fetch(`/api/progress?classId=${cls.id}`);
-      if (res.status === 404) {
+      if (res.status === 204 || res.status === 404) {
         // 반 진도가 없으면 **시작점만** 물어본다 — 없으면 차시이동이 죽는다.
         // 실패해도 화면 전체를 죽이지 않는다(제안은 있으면 좋은 것이지 필수가 아니다).
         try {

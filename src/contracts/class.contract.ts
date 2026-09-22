@@ -207,6 +207,7 @@ const progressSchema = z.strictObject({
 });
 export type ProgressEntity = z.infer<typeof progressSchema>;
 
+/** GET returns 204 (no body) for an owned class without progress; populated GET and POST use this schema. */
 export const progressResponseSchema = dataResponseSchema(progressSchema);
 
 /**

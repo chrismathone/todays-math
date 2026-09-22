@@ -130,7 +130,8 @@ export async function GET(request: NextRequest) {
     useIndividualProgress,
   });
 
-  if (!current) return notFoundError("진도 기록");
+  // A valid class can have no progress yet; that is a normal empty state.
+  if (!current) return new Response(null, { status: 204 });
 
   return jsonOk(progressResponseSchema, { data: current });
 }

@@ -202,7 +202,7 @@ describe("[T2.2] GET /api/progress — 현재 진도 조회(개별 우선 적용
     expect(body.error.code).toBe("NOT_FOUND");
   });
 
-  it("진도 이력이 없는 반을 조회하면 NOT_FOUND(404)를 반환한다", async () => {
+  it("진도 이력이 없는 유효한 반은 정상 빈 응답(204)을 반환한다", async () => {
     const created = await createClass(
       jsonRequest("http://localhost/api/classes", "POST", {
         name: "진도없는반",
@@ -216,9 +216,8 @@ describe("[T2.2] GET /api/progress — 현재 진도 조회(개별 우선 적용
         "GET",
       ),
     );
-    expect(res.status).toBe(404);
-    const body = errorResponseSchema.parse(await res.json());
-    expect(body.error.code).toBe("NOT_FOUND");
+    expect(res.status).toBe(204);
+    expect(await res.text()).toBe("");
   });
 
   it("classId 없이 조회하면 VALIDATION_ERROR(400)를 반환한다", async () => {

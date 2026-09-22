@@ -48,7 +48,7 @@ export async function fetchProgress(
   classId: string,
 ): Promise<ProgressEntity | null> {
   const res = await fetch(`/api/progress?classId=${classId}`);
-  if (res.status === 404) return null;
+  if (res.status === 204 || res.status === 404) return null;
   const { progressResponseSchema } = await classContract();
   const body = await parseOk(res, (json) => progressResponseSchema.parse(json));
   return body.data;

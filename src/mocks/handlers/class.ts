@@ -10,7 +10,7 @@
  *    고정 픽스처 배열을 직접 변형(mutate)하지 않고, "요청이 반영되었다면 이런 모양"을 매번
  *    새로 계산해 반환한다. 테스트 실행 순서에 따라 Mock 데이터가 누적/오염되는 것을 막기 위함.
  */
-import { http, type HttpHandler } from "msw";
+import { http, HttpResponse, type HttpHandler } from "msw";
 
 import {
   classCreateRequestSchema,
@@ -256,7 +256,7 @@ export const classHandlers: HttpHandler[] = [
         : [],
       useIndividualProgress,
     });
-    if (!current) return notFoundError("진도 기록");
+    if (!current) return new HttpResponse(null, { status: 204 });
     return jsonOk(progressResponseSchema, { data: current });
   }),
 
