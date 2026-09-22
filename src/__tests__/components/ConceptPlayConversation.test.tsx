@@ -47,7 +47,9 @@ describe("ConceptPlay conversation pacing", () => {
     expect(transcript()).not.toHaveTextContent(PLAY_MISSIONS[0].chat[0]);
     expect(within(transcript()).queryByText("모아")).not.toBeInTheDocument();
     await advance(700);
-    expect(transcript()).toHaveTextContent("12");
+    expect(transcript()).toHaveTextContent(
+      PLAY_MISSIONS[0].chat[0].slice(0, 2),
+    );
     expect(transcript()).not.toHaveTextContent(PLAY_MISSIONS[0].chat[0]);
     click("잠깐 멈추기");
     const pausedText = transcript().textContent;
