@@ -59,6 +59,11 @@ import {
   type FigureNumber,
 } from "./figureObjectNumbers";
 import { FigureSelectionOverlay } from "./FigureSelectionOverlay";
+import { FigureGroupOverlay } from "./FigureGroupOverlay";
+import {
+  figureGroupBounds,
+  type FigureGroupBounds,
+} from "./figureGroupSelection";
 import { FigureNumberLayer } from "./FigureNumberLayer";
 import { FigureObjectList } from "./FigureObjectList";
 import { FigureGroupRow } from "./FigureGroupRow";
@@ -357,6 +362,9 @@ export function FigureEditor({
     bounds: DOMRect;
     scale: number;
   } | null>(null);
+  const [groupBounds, setGroupBounds] = useState<FigureGroupBounds | null>(
+    null,
+  );
   const drag = useRef<{
     original: string;
     start: DOMPoint;
@@ -990,6 +998,14 @@ export function FigureEditor({
       scale: Math.hypot(rootMatrix.a, rootMatrix.b),
     });
   }, [svg, displaySvg, selected, zoom, available]);
+  useLayoutEffect(() => {
+    const root = canvas.current?.querySelector("svg");
+    setGroupBounds(
+      root && selectedIds.length > 1
+        ? figureGroupBounds(root, selectedIds)
+        : null,
+    );
+  }, [svg, displaySvg, selectedIds, zoom, available]);
   useEffect(() => {
     if (frozenCanvas !== null) return; // 끄는 동안은 조판하지 않는다 — 놓은 뒤 한 번.
     let active = true;
@@ -1023,12 +1039,36 @@ export function FigureEditor({
   }, [svg, frozenCanvas, typesetAttempt]);
   const point = (e: { clientX: number; clientY: number }, inverse: DOMMatrix) =>
     new DOMPoint(e.clientX, e.clientY).matrixTransform(inverse);
-  const down = (e: React.PointerEvent) => {
+  const selectionDrag = (
+    root: SVGSVGElement,
+    ids: readonly string[],
+    e: React.PointerEvent,
+  ) =>
+    movableIds(svg, ids).flatMap((id) => {
+      const node = root.querySelector<SVGGraphicsElement>(
+        `[data-object-id="${id}"]`,
+      );
+      const parent = (
+        node?.parentElement as unknown as SVGGraphicsElement
+      )?.getScreenCTM();
+      if (!node || !parent) return [];
+      const inverse = parent.inverse();
+      return [
+        {
+          id,
+          inverse,
+          start: point(e, inverse),
+          transform: node.getAttribute("transform") ?? "",
+        },
+      ];
+    });
+  const down = (e: React.PointerEvent, hitTarget?: SVGGraphicsElement) => {
     if (busy || e.button !== 0) return;
     surface.current?.focus({ preventScroll: true });
     const root = canvas.current?.querySelector("svg");
     if (!root) return;
     const target =
+      hitTarget ??
       (e.target as Element).closest<SVGGraphicsElement>("[data-object-id]") ??
       hitFigureObject(root, e.clientX, e.clientY);
     const matrix =
@@ -1076,24 +1116,7 @@ export function FigureEditor({
       // 끄는 **한 동작**에 묶음이 통째로 간다(원장님 2026-09-21 «같이 움직일 줄 알았는데»).
       const dragIds = id && selectedIds.includes(id) ? selectedIds : together;
       if (dragIds.length > 1) {
-        drag.current.multiple = movableIds(svg, dragIds).flatMap((objectId) => {
-          const node = root.querySelector<SVGGraphicsElement>(
-            `[data-object-id="${objectId}"]`,
-          );
-          const parent = (
-            node?.parentElement as unknown as SVGGraphicsElement
-          )?.getScreenCTM();
-          if (!node || !parent) return [];
-          const inverse = parent.inverse();
-          return [
-            {
-              id: objectId,
-              inverse,
-              start: point(e, inverse),
-              transform: node.getAttribute("transform") ?? "",
-            },
-          ];
-        });
+        drag.current.multiple = selectionDrag(root, dragIds, e);
       }
     } else if (tool === "text") {
       const result = addFigureObject(svg, "text", start, start, label);
@@ -1138,6 +1161,51 @@ export function FigureEditor({
     }
     e.preventDefault();
     surface.current?.setPointerCapture(e.pointerId);
+  };
+  const groupDown = (e: React.PointerEvent, border: boolean) => {
+    if (busy || e.button !== 0 || tool !== "select") return;
+    const root = canvas.current?.querySelector("svg");
+    const matrix = root?.getScreenCTM();
+    if (!root || !matrix) return;
+    if (!border) {
+      // Preserve ordinary picking through the empty-space drag surface, including
+      // filled shapes and rendered math nested inside an SVG group.
+      const hit =
+        document
+          .elementsFromPoint?.(e.clientX, e.clientY)
+          .map((node) => node.closest<SVGGraphicsElement>("[data-object-id]"))
+          .find((node) => node && root.contains(node)) ??
+        hitFigureObject(root, e.clientX, e.clientY);
+      if (
+        hit &&
+        (!selectedIds.includes(hit.getAttribute("data-object-id")!) ||
+          e.shiftKey ||
+          e.ctrlKey ||
+          e.metaKey)
+      ) {
+        down(e, hit);
+        return;
+      }
+    }
+    if (e.shiftKey || e.ctrlKey || e.metaKey) {
+      pickGroup(selectedIds, true);
+      e.preventDefault();
+      return;
+    }
+    const multiple = selectionDrag(root, selectedIds, e);
+    if (!multiple.length) return;
+    const inverse = matrix.inverse();
+    drag.current = {
+      original: svg,
+      start: point(e, inverse),
+      inverse,
+      transform: "",
+      multiple,
+    };
+    surface.current?.focus({ preventScroll: true });
+    surface.current?.setPointerCapture(e.pointerId);
+    e.preventDefault();
+    e.stopPropagation();
   };
   const handleDown = (e: React.PointerEvent, handle: string) => {
     if (busy || e.button !== 0 || !selected || !selection) return;
@@ -1940,6 +2008,22 @@ export function FigureEditor({
                   />
                 </div>
               )}
+              {typeset.ready &&
+                groupBounds &&
+                selectedIds.length > 1 &&
+                tool === "select" && (
+                  <FigureGroupOverlay
+                    bounds={groupBounds}
+                    viewBox={viewBox}
+                    name={
+                      selectedGroup
+                        ? `${selectedGroup.name} 묶음`
+                        : `${selectedIds.length}개 요소`
+                    }
+                    busy={busy}
+                    onPointerDown={groupDown}
+                  />
+                )}
               {showNumbers && typeset.ready && (
                 <FigureNumberLayer
                   numbers={objectNumbers}

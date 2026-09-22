@@ -681,7 +681,7 @@ describe("묶음 이름 A·B·C · 번호표 하나 (원장님 2026-09-21)", () 
     expect(groupNames().slice(0, 3)).toEqual(["A 묶음", "B 묶음", "C 묶음"]);
     expect(chipNumbers("B")).toEqual(["5", "6"]);
   });
-  it("묶으면 그림 위 번호표가 하나로 합쳐지고 지시선이 속 요소마다 나간다", () => {
+  it("묶으면 번호표가 하나로 합쳐지고 묶음 지시선은 사라진다", () => {
     open();
     expect(tags().length).toBe(9);
     fireEvent.click(chip(7));
@@ -691,7 +691,7 @@ describe("묶음 이름 A·B·C · 번호표 하나 (원장님 2026-09-21)", () 
     expect(after.length).toBe(8);
     expect(after.map(([n]) => n)).not.toContain("8");
     expect(after).toContainEqual(["7", "A 묶음 선택"]);
-    expect(leaders(7)).toBe(2);
+    expect(leaders(7)).toBe(0);
     expect(leaders(1)).toBe(1);
   });
   it("합친 번호표를 누르면 묶음 전체가 선택된다", () => {
@@ -729,8 +729,8 @@ describe("묶음 표는 네모 · 요소 표는 동그라미 (원장님 2026-09-
     // 요소 표는 그대로 동그라미에 숫자
     expect(tagShape(1)).toBe("동그라미");
     expect(tagGlyph(1)).toBe("1");
-    // 지시선은 지금처럼 속 요소마다
-    expect(leaders(7)).toBe(2);
+    // 묶음은 이동 사각형으로 표시하고 지시선은 그리지 않는다.
+    expect(leaders(7)).toBe(0);
   });
 
   it("네모와 동그라미가 같은 색·같은 글자를 쓴다 — 모양만 다르다", () => {

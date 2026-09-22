@@ -21,8 +21,8 @@ const groupGlyph = (name: string) =>
  * 그림 둘레의 요소 번호. 끄는 동안 번호 자리는 걸음마다 다시 재지만, **자리가 바뀐 번호만** 다시 그린다 —
  * 번호 하나가 요소 다섯(선·원·글…)이라 38개면 190개를 걸음마다 새로 만들고 있었다(2026-09-18).
  *
- * 묶음은 **번호표 하나**다(원장님 2026-09-21). 합친 번호표에서는 지시선이 속 요소마다 하나씩 나가
- * «이 번호가 이 요소들»임을 그림이 스스로 말한다. 누르면 묶음 전체가 선택된다.
+ * 묶음은 **번호표 하나**다. 누르면 묶음 전체가 선택되고 이동 사각형이 표시된다.
+ * 묶음 지시선은 그리지 않는다 — 속 요소마다 뻗는 선이 그림과 이동 영역을 가렸다.
  *
  * 묶음 표는 **네모(모서리를 살짝 둥글린 사각)에 묶음 이름**, 요소 표는 **동그라미에 번호**다
  * (원장님 2026-09-21 «그룹은 요소와 차별성을 둬서 네모 A 로 하든지. 그게 나을지도.»).
@@ -37,11 +37,10 @@ const NumberMark = memo(function NumberMark({
   y,
   targetX,
   targetY,
-  targets,
   selected,
   onPick,
 }: FigureNumber & { selected: boolean; onPick: Pick }) {
-  const leaders = targets ?? [{ x: targetX, y: targetY }];
+  const leaders = group ? [] : [{ x: targetX, y: targetY }];
   return (
     <g>
       {leaders.map((at, index) => (
