@@ -16,6 +16,7 @@ import { boxCells } from "./boxBlock";
 import {
   boxHeaderMarkdown,
   parseBoxHeader,
+  SIDE_BY_SIDE_LABEL,
   type BoxColumns,
 } from "./boxHeader";
 
@@ -101,7 +102,10 @@ export function layoutQuotedBoxes(
   markdown: string,
   options: BoxLayoutOptions = {},
 ): string {
-  if (!markdown.includes(">") || !/<(?:보기|조건|상자|나열)/.test(markdown))
+  if (
+    !markdown.includes(">") ||
+    !/<(?:보기|조건|상자|나열|나란히)/.test(markdown)
+  )
     return markdown;
   return markdown.replace(QUOTED_BLOCK, (block) => {
     const lines = block
@@ -112,9 +116,10 @@ export function layoutQuotedBoxes(
     const rest = lines[0]!.trimStart().slice(header.length);
     if (PARTICLE_AFTER.test(rest)) return block;
     const body = lines.slice(1).join("\n");
+    // 나란히 묶음의 열 수는 원장님이 고른 값이다 — 안 적혔으면 1열이고, 그림 자리로 추정하지 않는다.
     const cols =
       header.cols ??
-      (options.figureRect
+      (options.figureRect && header.label !== SIDE_BY_SIDE_LABEL
         ? figureGridColumns(boxCells(body, 1), options.figureRect)
         : null);
     if (cols === null || cols === 1) return block;

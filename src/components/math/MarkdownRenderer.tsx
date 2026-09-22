@@ -45,7 +45,12 @@ import {
 import { figureWidthStyle } from "@/lib/figurePrintSize";
 import { BoxQuoteCard } from "./BoxQuoteCard";
 
-import { BOX_HEADER_RE as SHARED_BOX_HEADER_RE } from "@/lib/math/boxHeader";
+import {
+  BOX_HEADER_RE as SHARED_BOX_HEADER_RE,
+  parseBoxHeader,
+  SIDE_BY_SIDE_LABEL,
+  type BoxColumns,
+} from "@/lib/math/boxHeader";
 import { layoutQuotedBoxes } from "@/lib/math/boxLayout";
 import { applyHardBreaks } from "@/lib/math/hardBreaks";
 import { UI_KATEX_OPTIONS } from "@/lib/math/katexRender";
@@ -97,20 +102,34 @@ const REHYPE_PLUGINS: PluggableList = [[rehypeKatex, UI_KATEX_OPTIONS]];
  *     여러 열이면 칸마다 문단이 되어 온다. 이 파일은 «문단 하나 = 칸 하나» 만 안다.
  *  4. **좁은 단에서 그리는 열 수·여백은 `BoxQuoteCard` 가 실제 조판에서 고른다**(트랙 51) —
  *     칸이 한 줄에 안 들면 여백을 줄여 보고, 그래도 안 되면 열을 줄여 그린다. 적힌 열 수는 그대로다.
+ *  5. **`<나란히:cols=N>` 은 같은 칸 규칙의 «칸 묶음»이다**(원장님 2026-09-22) — 제목·테두리 없이
+ *     1~4열. 서답형 소문항 (1)~(4) 처럼 그림을 단 항목을 나란히 세운다. 칸 안 그림은 칸 폭에 맞춰 준다.
  * ────────────────────────────────────────────────────────────────────────── */
 
 /** 인용문 첫 문단의 상자 머리 — 정본·옛 표기 모두(`boxHeader.ts`). 숫자 없으면 1열. */
 const BOX_HEADER_RE = SHARED_BOX_HEADER_RE;
 
-/** 인용문 머리 줄의 정본 `<보기:cols=N>` → 전처리를 통과하는 `<보기N>`(`auto` 는 맨 `<보기>`). */
+/**
+ * 인용문 머리 줄의 정본 `<보기:cols=N>` → 전처리를 통과하는 `<보기N>`(`auto` 는 맨 `<보기>`).
+ * 열 수 상한은 머리 판정과 같다 — 상자 1~3 · 나란히 1~4(`<보기:cols=4>` 는 머리가 아니라 옮기지 않는다).
+ */
 const QUOTED_CANONICAL_HEADER =
-  /^([ \t]*>[ \t]*)\\?<(보기|조건|상자|나열):cols=(auto|[1-3])\\?>/gm;
+  /^([ \t]*>[ \t]*)\\?<(?:(보기|조건|상자|나열):cols=(auto|[1-3])|(나란히):cols=(auto|[1-4]))\\?>/gm;
 const protectBoxHeaders = (text: string) =>
   text.includes(":cols=")
     ? text.replace(
         QUOTED_CANONICAL_HEADER,
-        (_m, lead: string, label: string, cols: string) =>
-          `${lead}<${label}${cols === "auto" ? "" : cols}>`,
+        (
+          _m,
+          lead: string,
+          boxLabel: string | undefined,
+          boxCols: string | undefined,
+          sideLabel: string | undefined,
+          sideCols: string | undefined,
+        ) => {
+          const cols = boxCols ?? sideCols;
+          return `${lead}<${boxLabel ?? sideLabel}${cols === "auto" ? "" : cols}>`;
+        },
       )
     : text;
 
@@ -137,6 +156,23 @@ const QUOTE_CLASS =
   "my-4 border border-[#8A8A88] bg-white p-4 not-italic print:border-black";
 /** 넓은 수식이 카드를 밀어내지 않게 — 정본 1040행의 오버플로 보정과 같은 취지. */
 const BOX_CARD_CLASS = `${QUOTE_CLASS} max-w-full overflow-hidden print:break-inside-avoid [&_.katex-display]:overflow-x-auto`;
+/**
+ * «나란히» 칸 묶음 — 테두리·배경·안쪽 여백·제목이 **없다**(원장님 2026-09-22). 칸만 선다.
+ * 위아래 `my-2` 는 인쇄 높이 자(`SIDE_BY_SIDE_CHROME_PX`)가 같은 값으로 센다 — 바꾸면 거기도.
+ */
+const SIDE_CARD_CLASS =
+  "my-2 max-w-full overflow-hidden not-italic print:break-inside-avoid [&_.katex-display]:overflow-x-auto";
+
+/**
+ * 열 수별 격자 — Tailwind 가 읽도록 **글자 그대로** 적는다(`md:grid-cols-${n}` 로 짜면 클래스가 안 생긴다).
+ * 격자 칸은 기준선 맞춤(`items-baseline`), 그림 칸만 위쪽(`has-[img]:self-start`) — 트랙 51.
+ */
+const GRID_CLASS: Record<BoxColumns, string> = {
+  1: "space-y-1",
+  2: "grid grid-cols-1 items-baseline gap-x-6 gap-y-1 md:grid-cols-2 print:grid-cols-2",
+  3: "grid grid-cols-1 items-baseline gap-x-6 gap-y-1 md:grid-cols-3 print:grid-cols-3",
+  4: "grid grid-cols-1 items-baseline gap-x-6 gap-y-1 md:grid-cols-4 print:grid-cols-4",
+};
 
 /** 문단 안의 글자만 이어 붙인다. 헤더 판정은 **맨 앞** 글자만 보면 되므로 충분하다. */
 function textOf(node: ReactNode): string {
@@ -208,32 +244,27 @@ function BoxQuote({ children }: { children?: ReactNode }) {
   const blocks = Children.toArray(children).filter(
     (block) => !(typeof block === "string" && block.trim() === ""),
   );
-  const header = BOX_HEADER_RE.exec(textOf(blocks[0]).trim());
+  const header = parseBoxHeader(textOf(blocks[0]).trim());
   // 마커가 없으면 예전 인용문 그대로 — 여기서 갈라야 렌더 회귀가 없다.
   if (!header) return <div className={QUOTE_CLASS}>{children}</div>;
 
-  const label = header[1]!;
-  const headerless = HEADERLESS_LABELS.has(label);
-  const written = header[2] ?? header[3];
-  const columns = written === "2" ? 2 : written === "3" ? 3 : 1;
+  const { label } = header;
+  // «나란히» 는 상자가 아니라 칸 묶음이다 — 제목·테두리 없이 칸만(원장님 2026-09-22).
+  const side = label === SIDE_BY_SIDE_LABEL;
+  const headerless = side || HEADERLESS_LABELS.has(label);
+  const columns = header.cols ?? 1;
   // Older native serializers emitted label + contents in one paragraph. A
   // heading is only the label; never center or bold those continuation lines.
   const items = [...headerBodyLines(blocks[0]), ...blocks.slice(1)];
-  // 격자 칸은 기준선 맞춤(`items-baseline`), 그림 칸만 위쪽(`has-[img]:self-start`) — 트랙 51.
-  const gridClass =
-    columns === 3
-      ? "grid grid-cols-1 items-baseline gap-x-6 gap-y-1 md:grid-cols-3 print:grid-cols-3"
-      : columns === 2
-        ? "grid grid-cols-1 items-baseline gap-x-6 gap-y-1 md:grid-cols-2 print:grid-cols-2"
-        : "space-y-1";
 
   // 좁은 단에서 그리는 열 수·여백은 카드가 실제 조판에서 고른다(`BoxQuoteCard`, 트랙 51).
   return (
     <BoxQuoteCard
-      className={BOX_CARD_CLASS}
+      className={side ? SIDE_CARD_CLASS : BOX_CARD_CLASS}
       label={headerless ? null : `${LABEL_OPEN}${label}${LABEL_CLOSE}`}
       columns={columns}
-      gridClassName={gridClass}
+      sideBySide={side}
+      gridClassName={GRID_CLASS[columns]}
       itemClassName="min-w-0 break-words text-left font-normal has-[img]:self-start [&>p]:my-0"
       items={items}
     />

@@ -19,7 +19,7 @@ import { attachCompactMathKeyboard } from "./compactMathKeyboard";
 import { attachHwpMathShortcuts } from "./hwpMathShortcuts";
 import { SourceEditorFigures } from "./SourceEditorFigures";
 import { paintSourceFigure } from "./sourceFigurePresentation";
-import { caretInConditionBox, ConditionBox } from "./conditionBox";
+import { caretBoxKind, ConditionBox } from "./conditionBox";
 
 MathfieldElement.fontsDirectory = null;
 MathfieldElement.soundsDirectory = null;
@@ -480,13 +480,14 @@ export function SourceMathTextEditor(props: SourceMathTextEditorProps) {
     },
   });
 
-  // 커서가 〈보기〉 상자 안이면 아래 안내가 상자 키로 바뀐다(트랙 51 시안 안 C).
-  const caretInBox =
+  // 커서가 〈보기〉 상자(또는 나란히 묶음) 안이면 아래 안내가 상자 키로 바뀐다(트랙 51 시안 안 C).
+  const caretBox =
     useEditorState({
       editor,
       selector: ({ editor: current }) =>
-        !!current && caretInConditionBox(current.state),
-    }) ?? false;
+        current ? caretBoxKind(current.state) : null,
+    }) ?? null;
+  const boxWord = caretBox === "side" ? "묶음" : "상자";
 
   useEffect(() => {
     if (editor && props.value !== lastEmitted.current) {
@@ -567,6 +568,18 @@ export function SourceMathTextEditor(props: SourceMathTextEditorProps) {
           ))}
         {!sourceMode && (
           <>
+            {/*
+              «나란히» — 고른 문단(소문항·그림)을 테두리·제목 없는 칸 묶음으로(원장님 2026-09-22).
+              묶음 위 «1열~4열 · 풀기» 로 바꾼다. 상자·표 안에서는 아무것도 안 한다.
+            */}
+            <button
+              type="button"
+              title="고른 문단을 칸으로 나란히 묶기"
+              onMouseDown={(event) => event.preventDefault()}
+              onClick={() => editor?.chain().focus().wrapSideBySide().run()}
+            >
+              나란히
+            </button>
             <button
               type="button"
               aria-label="본문 되돌리기"
@@ -607,10 +620,10 @@ export function SourceMathTextEditor(props: SourceMathTextEditorProps) {
         <SourceEditorFigures {...props} />
       </div>
       <p className="visual-editor-help">
-        {caretInBox && !sourceMode ? (
+        {caretBox && !sourceMode ? (
           <>
-            상자 안에서 <kbd>Tab</kbd> 다음 칸 · <kbd>Esc</kbd> 뒤{" "}
-            <kbd>Tab</kbd> 상자 밖으로.
+            {boxWord} 안에서 <kbd>Tab</kbd> 다음 칸 · <kbd>Esc</kbd> 뒤{" "}
+            <kbd>Tab</kbd> {boxWord} 밖으로.
           </>
         ) : (
           <>

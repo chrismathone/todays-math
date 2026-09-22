@@ -46,7 +46,17 @@ import {
   figureSvgSize,
   figureSvgViewBox,
 } from "@/lib/figure/figureSvgFrame";
-import { parseBoxHeader } from "@/lib/math/boxHeader";
+import {
+  BOX_TIGHT_SPACING,
+  fitBoxColumns,
+  SIDE_BY_SIDE_SPACING,
+  type BoxFitStep,
+} from "@/lib/math/boxFit";
+import {
+  parseBoxHeader,
+  SIDE_BY_SIDE_LABEL,
+  type BoxColumns,
+} from "@/lib/math/boxHeader";
 import { displayWidth, fitsTwoColumns } from "@/lib/math/displayWidth";
 import { EXAM_MEASURED_PX, JASEUP_MEASURED_PX } from "@/lib/printGeometry";
 import { hideFigureMarker } from "@/lib/problem/figureMarker";
@@ -292,6 +302,48 @@ function choicesBlockPx(items: readonly string[], ruler: RulerMetrics): number {
 }
 
 /**
+ * «나란히» 칸 묶음(`<나란히:cols=N>`, 원장님 2026-09-22)이 먹는 **세로 픽셀**.
+ *
+ * 상자 셈(`boxChrome` = 테두리·안쪽 여백·라벨 줄)을 쓰지 않는다 — 묶음에는 셋 다 없고 위아래 여백뿐이다.
+ * 그리는 열 수는 **지면과 같은 판정**(`fitBoxColumns`)으로 고른다: 칸 글이 한 줄에 안 들면 지면이 열을
+ * 줄여 그리므로(4 → 3 → 2 → 1) 자도 같은 사다리를 탄다. 한 행의 높이는 그 행에서 **가장 높은 칸**이다.
+ *
+ * ⚠️ 칸 안 그림은 여기서 안 센다. 이 자가 재는 지면(`ProblemContent`)은 그림을 본문 아래 그림 묶음으로
+ *    따로 그리고, 그 높이는 `estimateFigureBlockPx` 가 센다 — 여기서 또 세면 두 번 센다. 칸 안에 그림을
+ *    그리는 작업실 인쇄(`NativeProblem`)는 자가 아니라 **실제 조판을 잰다**(`useMeasuredPages`).
+ */
+function sideBySidePx(
+  items: readonly string[],
+  written: BoxColumns,
+  ruler: RulerMetrics,
+): number {
+  const { line } = ruler;
+  const { gapX, rowGap, marginY } = SIDE_BY_SIDE_SPACING;
+  if (items.length === 0) return marginY;
+  // 지면에 찍히는 글 — 마크다운 역슬래시(`\[2점\]`)는 안 찍힌다.
+  const shown = items.map((item) => item.replace(/\\(.)/g, "$1"));
+  const trackAt = ({ cols, tight }: BoxFitStep) =>
+    (ruler.problemColumn -
+      (cols - 1) * (tight ? BOX_TIGHT_SPACING.gapX : gapX)) /
+    cols;
+  const step = fitBoxColumns({
+    written,
+    naturals: shown.map((item) => displayWidth(item) * ruler.unit),
+    trackAt,
+  });
+  const units = unitsOf(trackAt(step), ruler);
+  let px = marginY;
+  for (let start = 0; start < shown.length; start += step.cols) {
+    const row = shown.slice(start, start + step.cols);
+    const lines = Math.max(
+      ...row.map((item) => Math.max(1, linesFor(item, units))),
+    );
+    px += lines * line + (start > 0 ? rowGap : 0);
+  }
+  return px;
+}
+
+/**
  * 문항 하나가 지면에서 차지하는 **세로 픽셀**을 추정한다.
  *
  * 문항번호 위부터 정답란 아래까지 — `measure-print-overflow.tsx` 가 재는 `needed`
@@ -390,6 +442,13 @@ export function estimateProblemPx(
     // 머리 읽기는 렌더러와 **같은 함수**다 — 정본 `<보기:cols=2>`·옛 `<보기2>` 모두(트랙 46).
     const parsedHeader = parseBoxHeader(header);
     const cols = parsedHeader?.cols ?? 1;
+    if (parsedHeader?.label === SIDE_BY_SIDE_LABEL) {
+      // 머리 줄에 붙어 온 글은 첫 칸이다(지면 `headerBodyLines` 와 같다).
+      const lead = header.slice(parsedHeader.length).trim();
+      px += sideBySidePx(lead ? [lead, ...items] : items, cols, ruler);
+      box = null;
+      return;
+    }
 
     // `boxChrome` 은 테두리·안쪽 여백·`my-4` 바깥 마진에 **라벨 줄까지** 넣은 실측값이다.
     // `<나열>` 상자는 라벨 줄을 안 그리므로(머리 없는 상자) 한 줄을 뺀다.

@@ -30,8 +30,11 @@
 import { findSubQuestionMarkers } from "@/lib/math/subQuestion";
 import { parseBoxHeader, type BoxColumns } from "@/lib/math/boxHeader";
 
-/** 상자 라벨 — 정본 `blocksToMarkdown.ts` 32행 BOX_MARKERS 와 같은 셋. */
-export type BoxLabel = "보기" | "조건" | "상자";
+/**
+ * 상자 라벨 — 정본 `blocksToMarkdown.ts` 32행 BOX_MARKERS 와 같은 셋.
+ * `나란히` 는 편집기가 적는 인용 칸 묶음(`> <나란히:cols=N>`)에서만 온다 — OCR 흐름 글의 마커가 아니다.
+ */
+export type BoxLabel = "보기" | "조건" | "상자" | "나란히";
 
 export interface BoxSegment {
   kind: "box";
@@ -882,8 +885,11 @@ function findEnumerationBox(text: string, probe: string): FoundBox | null {
 export function splitBoxSegments(raw: string): ContentSegment[] {
   if (!raw) return [{ kind: "text", text: raw }];
   // 「다음을 모두 만족」처럼 낱말 «조건»이 없는 발문도 있으므로 여기서 같이 본다.
+  // `나란히` — 편집기의 칸 묶음. 여기서 빠지면 묶음이 평문으로 녹아 인용 줄이 한 줄로 붙는다.
   if (
-    !/보\s*기|조\s*건|상\s*자|만\s*족|나\s*열|차례|순서|크기순|부터/.test(raw)
+    !/보\s*기|조\s*건|상\s*자|만\s*족|나\s*열|차례|순서|크기순|부터|나란히/.test(
+      raw,
+    )
   )
     return [{ kind: "text", text: raw }];
 
@@ -898,8 +904,9 @@ export function splitBoxSegments(raw: string): ContentSegment[] {
   // written in its header (`<보기:cols=N>`, old `<보기N>`) — the same rule the review card uses.
   // Re-splitting a quote by item markers made the paper disagree with the review card (원장님 9번:
   // two lines on the card, six items in two columns on paper).
+  // 열 수는 넉넉히(1~4) 받고 머리 판정(`parseBoxHeader`)이 가른다 — 〈보기〉 의 4열은 머리가 아니다.
   const quotedBoxes =
-    /^[ \t]*>[ \t]*\\?<(보기|조건|상자)(?::cols=(?:auto|[1-3])|[1-3])?\\?>([^\n]*)(?:\n[ \t]*>[^\n]*)*/gm;
+    /^[ \t]*>[ \t]*\\?<(보기|조건|상자|나란히)(?::cols=(?:auto|[1-4])|[1-4])?\\?>([^\n]*)(?:\n[ \t]*>[^\n]*)*/gm;
   const quoteProbe = maskMathInPlace(text);
   for (const quoted of text.matchAll(quotedBoxes)) {
     const start = quoted.index!;
@@ -910,7 +917,8 @@ export function splitBoxSegments(raw: string): ContentSegment[] {
       continue;
     const end = start + quoted[0].length;
     const contents = text.slice(start, end).replace(/^[ \t]*>[ \t]?/gm, "");
-    const header = parseBoxHeader(contents.trimStart())!;
+    const header = parseBoxHeader(contents.trimStart());
+    if (!header) continue;
     const firstBreak = contents.indexOf("\n");
     const lead = (firstBreak < 0 ? contents : contents.slice(0, firstBreak))
       .trimStart()

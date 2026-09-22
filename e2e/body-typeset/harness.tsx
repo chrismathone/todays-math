@@ -11,6 +11,10 @@ import {
 } from "../../src/components/unified/studioHelpers";
 import { studioReviewContent } from "../../src/components/unified/studioReviewContent";
 import { collectHwpxLayout } from "../../src/lib/export/hwpxLayout";
+import {
+  RAW as SIDE_RAW,
+  SIDE_Q,
+} from "../../src/__tests__/fixtures/sideBySide";
 import "katex/dist/katex.min.css";
 // 지면의 격자·여백은 Tailwind 클래스로 선다 — 앱과 같은 스타일을 얹어야 지면 모양을 잴 수 있다.
 import "../../src/app/globals.css";
@@ -154,7 +158,21 @@ const edited = (id: string, content: string): StudioCrop => ({
     contentEdited: true,
   },
 });
+/** «나란히» 칸 묶음(원장님 2026-09-22) — 서답형 3, 소문항 넷·그림 넷. 그림은 원본에서 가로로 나란하다. */
+const sideCrop = (id: string, content: string): StudioCrop => ({
+  ...edited(id, content),
+  figures: [0, 1, 2, 3].map((index) => ({
+    id: `figure-${index + 1}`,
+    rect: { x: 0.06 + index * 0.23, y: 0.4, width: 0.2, height: 0.15 },
+    image: window.__boxFigures?.[index] ?? stand(index + 1, 200, 150),
+  })),
+});
 const CROPS: Record<string, () => StudioCrop> = {
+  // 인식 결과 그대로(세로로 쌓인 소문항) — 편집기에서 (1)~(4) 를 고르고 [나란히] 를 누른다.
+  sideRaw: () => sideCrop("sideRaw", SIDE_RAW),
+  side2: () => sideCrop("side2", SIDE_Q),
+  side4: () =>
+    sideCrop("side4", SIDE_Q.replace("<나란히:cols=2>", "<나란히:cols=4>")),
   q22,
   q22edited: () => {
     const crop = q22();
@@ -216,18 +234,21 @@ const cardFigures = (crop: StudioCrop) =>
 function CropHarness({ crop }: { crop: StudioCrop }) {
   const source = studioReviewContent(crop);
   const figures = cardFigures(crop);
+  // 편집기가 낸 원문 — 검수 카드·지면은 저장본(`source`) 그대로 둔다.
+  const [draft, setDraft] = useState(source);
   return (
     <main>
       <section data-panel="editor">
         <MathTextEditor
           aria-label="문제 내용"
-          value={source}
-          onChange={() => {}}
+          value={draft}
+          onChange={setDraft}
           figures={figures}
           choicesLayout={crop.ocr?.choicesLayout}
         />
       </section>
       <output data-stored>{JSON.stringify(source)}</output>
+      <output data-draft>{JSON.stringify(draft)}</output>
       <section data-panel="card">
         <SourceEditorDisplay
           value={source}

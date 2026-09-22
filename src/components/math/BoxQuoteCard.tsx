@@ -13,6 +13,9 @@
  *
  * 격자 칸 세로 맞춤: 글 칸은 **기준선**(분수 칸 옆 글이 몇 px 높게 서던 것 — 한글과 같아진다),
  * 그림 칸은 **위쪽**(그림의 아래 끝이 기준선이 되면 옆 글이 그림 바닥으로 내려간다).
+ *
+ * «나란히» 칸 묶음(`<나란히:cols=N>`, 원장님 2026-09-22)도 이 카드다 — 제목·테두리·안쪽 여백이 없고 1~4열.
+ * 좁은 단 사다리는 같다(4 → 4 좁게 → 3 → … → 1). 여백이 원래 0 이라 «좁게»는 칸 사이만 줄인다.
  */
 import {
   useLayoutEffect,
@@ -44,11 +47,15 @@ function naturalWidths(cells: HTMLElement[]): number[] {
   return widths;
 }
 
-/** 한 단계를 잠깐 그려 칸 폭을 잰다 — 끝나면 인라인 스타일을 그대로 되돌린다. */
+/**
+ * 한 단계를 잠깐 그려 칸 폭을 잰다 — 끝나면 인라인 스타일을 그대로 되돌린다.
+ * `padded` 가 거짓이면(나란히 묶음 — 안쪽 여백이 원래 0) 좁게 그릴 때 칸 사이만 줄인다.
+ */
 function measureFit(
   card: HTMLElement,
   grid: HTMLElement,
   written: BoxColumns,
+  padded: boolean,
 ): BoxFitStep {
   const cells = [...grid.children] as HTMLElement[];
   if (cells.length < 2) return { cols: written, tight: false };
@@ -62,8 +69,10 @@ function measureFit(
       trackAt: ({ cols, tight }) => {
         card.style.cssText = savedCard;
         grid.style.cssText = savedGrid;
-        card.style.paddingLeft = tight ? `${BOX_TIGHT_SPACING.padX}px` : "";
-        card.style.paddingRight = tight ? `${BOX_TIGHT_SPACING.padX}px` : "";
+        if (padded) {
+          card.style.paddingLeft = tight ? `${BOX_TIGHT_SPACING.padX}px` : "";
+          card.style.paddingRight = tight ? `${BOX_TIGHT_SPACING.padX}px` : "";
+        }
         grid.style.columnGap = tight ? `${BOX_TIGHT_SPACING.gapX}px` : "";
         grid.style.gridTemplateColumns = `repeat(${cols}, minmax(0, 1fr))`;
         return cells[0]!.getBoundingClientRect().width;
@@ -82,6 +91,7 @@ export function BoxQuoteCard({
   className,
   label,
   columns,
+  sideBySide = false,
   gridClassName,
   itemClassName,
   items,
@@ -91,6 +101,11 @@ export function BoxQuoteCard({
   label: string | null;
   /** 원문에 적힌 열 수. */
   columns: BoxColumns;
+  /**
+   * «나란히» 칸 묶음(`<나란히:cols=N>`) — 테두리·안쪽 여백이 없어 좁게 그릴 때 여백은 그대로 두고 칸 사이만
+   * 줄인다. 표지 `data-side-by-side` 를 단다(인쇄·HWPX 수집·시험이 묶음을 알아본다).
+   */
+  sideBySide?: boolean;
   gridClassName: string;
   itemClassName: string;
   items: ReactNode[];
@@ -107,7 +122,7 @@ export function BoxQuoteCard({
     let live = true;
     const run = () => {
       if (!live || !cardElement.isConnected) return;
-      const next = measureFit(cardElement, gridElement, columns);
+      const next = measureFit(cardElement, gridElement, columns, !sideBySide);
       setFit((previous) => (sameStep(previous, next) ? previous : next));
     };
     const later = () => {
@@ -130,16 +145,17 @@ export function BoxQuoteCard({
       observer?.disconnect();
       fonts?.removeEventListener?.("loadingdone", later);
     };
-  }, [columns, items]);
+  }, [columns, items, sideBySide]);
 
   const drawn = fit && fit.cols !== columns ? fit.cols : null;
   const tight = !!fit?.tight;
-  const cardStyle: CSSProperties | undefined = tight
-    ? {
-        paddingLeft: BOX_TIGHT_SPACING.padX,
-        paddingRight: BOX_TIGHT_SPACING.padX,
-      }
-    : undefined;
+  const cardStyle: CSSProperties | undefined =
+    tight && !sideBySide
+      ? {
+          paddingLeft: BOX_TIGHT_SPACING.padX,
+          paddingRight: BOX_TIGHT_SPACING.padX,
+        }
+      : undefined;
   const gridStyle: CSSProperties | undefined =
     drawn || tight
       ? {
@@ -154,6 +170,7 @@ export function BoxQuoteCard({
     <div
       ref={card}
       data-box-card
+      data-side-by-side={sideBySide ? "" : undefined}
       data-box-drawn={drawn ?? undefined}
       data-box-tight={tight ? "" : undefined}
       className={className}
