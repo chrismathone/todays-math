@@ -1,0 +1,199 @@
+.root {
+  display: contents;
+}
+.transcript {
+  min-width: 0;
+  min-height: 0;
+  overflow-y: auto;
+  overflow-x: hidden;
+  overscroll-behavior: contain;
+  overflow-anchor: none;
+  padding: 0 13px 12px;
+  scrollbar-width: thin;
+}
+.transcript:focus-visible,
+.chatFoot button:focus-visible {
+  outline: 3px solid #188877;
+  outline-offset: -3px;
+}
+.sceneDivider {
+  font-size: 10px;
+  color: #587367;
+  margin: 12px 0;
+  text-align: center;
+}
+.chatRow {
+  display: flex;
+  align-items: flex-start;
+  gap: 7px;
+  margin-bottom: 14px;
+  padding-right: 18px;
+}
+.chatRow > div {
+  min-width: 0;
+}
+.chatRow.moa {
+  flex-direction: row-reverse;
+  padding-right: 0;
+  padding-left: 18px;
+}
+.moa .speaker {
+  text-align: right;
+}
+.avatar {
+  display: grid;
+  place-items: center;
+  width: 29px;
+  height: 29px;
+  border-radius: 11px;
+  flex: 0 0 29px;
+  font-size: 12px;
+  font-weight: 800;
+  background: #ead2ba;
+  color: #674a2b;
+}
+.moa .avatar {
+  background: #badcd0;
+  color: #285748;
+}
+.speaker {
+  display: block;
+  font-size: 10px;
+  margin-bottom: 4px;
+  color: #52635a;
+}
+.bubble {
+  margin: 0;
+  border-radius: 0 13px 13px;
+  padding: 10px 11px;
+  background: #fff;
+  font-size: 12px;
+  line-height: 1.65;
+  word-break: keep-all;
+  overflow-wrap: anywhere;
+  white-space: pre-wrap;
+  box-shadow: 0 2px 3px #243d2b06;
+}
+.moa .bubble {
+  background: #f6eebc;
+  border-radius: 13px 0 13px 13px;
+}
+.typingDots {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  min-width: 29px;
+  height: 1em;
+}
+.typingDots > span {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: #6c8074;
+  animation: thinking 0.9s ease-in-out infinite;
+}
+.typingDots > span:nth-child(2) {
+  animation-delay: 0.12s;
+}
+.typingDots > span:nth-child(3) {
+  animation-delay: 0.24s;
+}
+.root[data-paused="true"] .typingDots > span {
+  animation-play-state: paused;
+}
+.chatFoot {
+  position: relative;
+  min-width: 0;
+  min-height: 40px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 3px 8px;
+  padding: 6px 9px;
+  font-size: 10px;
+  text-align: center;
+  color: #64776d;
+  border-top: 1px solid #d8e5de;
+}
+.chatFoot button {
+  min-height: 26px;
+  padding: 4px 7px;
+  border: 1px solid #bdcfc3;
+  border-radius: 7px;
+  background: #f8fcf9;
+  color: #365f48;
+  font: inherit;
+  cursor: pointer;
+  touch-action: manipulation;
+}
+.chatFoot button:not(:disabled):hover {
+  background: #dceae2;
+}
+.chatFoot button:disabled {
+  opacity: 0.5;
+  cursor: default;
+}
+.live {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+@keyframes thinking {
+  0%,
+  70%,
+  100% {
+    opacity: 0.4;
+    transform: translateY(0);
+  }
+  35% {
+    opacity: 1;
+    transform: translateY(-2px);
+  }
+}
+@media (max-width: 680px) {
+  .transcript {
+    padding: 5px 12px;
+  }
+  .sceneDivider {
+    margin: 4px 0 7px;
+  }
+  .chatRow {
+    margin-bottom: 8px;
+  }
+  .chatRow > div {
+    max-width: calc(100% - 30px);
+  }
+  .speaker {
+    margin-bottom: 3px;
+  }
+  .bubble {
+    padding: 6px 9px;
+    font-size: 11px;
+    line-height: 1.75;
+  }
+  .avatar {
+    width: 23px;
+    height: 23px;
+    flex-basis: 23px;
+    font-size: 10px;
+    border-radius: 8px;
+  }
+  .chatFoot {
+    min-height: 28px;
+    padding: 2px 8px;
+    font-size: 9px;
+  }
+  .chatFoot button {
+    min-height: 24px;
+    padding: 3px 6px;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .typingDots > span {
+    animation: none;
+  }
+}
