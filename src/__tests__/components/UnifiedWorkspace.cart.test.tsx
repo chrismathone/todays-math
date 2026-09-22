@@ -255,14 +255,14 @@ describe("담은 문항 장부 배선", () => {
     await toStudio();
     fireEvent.click(screen.getByRole("button", { name: "첫 문항 반영" }));
     expect(studioPicked()).toBe("a,b,c");
-    fireEvent.click(menu("문제은행"));
+    fireEvent.click(menu("시험지 만들기"));
     fireEvent.click(await screen.findByRole("button", { name: "문제 담기" }));
     expect(screen.getByText("문제은행 담은 문제 4")).toBeVisible();
     fireEvent.click(screen.getByRole("button", { name: "담기 완료" }));
     await toStudio();
     expect(studioPicked()).toBe("a,b,c");
     expect(studioRemoved()).toBe("bank-1@3");
-    fireEvent.click(menu("문제은행"));
+    fireEvent.click(menu("시험지 만들기"));
     fireEvent.click(await screen.findByRole("button", { name: "문제 담기" }));
     await toStudio();
     expect(studioPicked()).toBe("a,b,c,bank-1");
