@@ -4,9 +4,10 @@ import {
 } from "@/lib/studio-ai/guard";
 import { studioApiPost, studioApiStatus } from "@/lib/studio-ai/handler";
 import { recordAudit } from "@/lib/audit";
+import { withErrorLog } from "@/lib/errorLog/withErrorLog";
 export const runtime = "nodejs";
 export const maxDuration = 300;
-export async function GET(request: Request) {
+async function handleGet(request: Request) {
   try {
     const access = await authorizeStudio(request);
     return access.response ?? studioApiStatus();
@@ -17,7 +18,7 @@ export async function GET(request: Request) {
     );
   }
 }
-export async function POST(request: Request) {
+async function handlePost(request: Request) {
   let owner: string | undefined;
   try {
     const access = await authorizeStudio(request);
@@ -47,3 +48,6 @@ export async function POST(request: Request) {
     );
   }
 }
+
+export const GET = withErrorLog("/api/studio/ai", handleGet);
+export const POST = withErrorLog("/api/studio/ai", handlePost);

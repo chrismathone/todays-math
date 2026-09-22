@@ -28,6 +28,7 @@ import { requireAccessibleProblem } from "@/lib/ownership";
 import { isPrismaErrorCode } from "@/lib/prismaErrors";
 import { serializeProblem } from "@/lib/serializers";
 import { getSessionUser } from "@/lib/session";
+import { withErrorLog } from "@/lib/errorLog/withErrorLog";
 
 type RouteContext = { params: Promise<{ id: string }> };
 
@@ -40,7 +41,7 @@ function problemInUseError() {
 }
 
 // GET /api/problems/{id} — 단건 조회(LaTeX 본문 무손실 반환)
-export async function GET(request: NextRequest, { params }: RouteContext) {
+async function handleGet(request: NextRequest, { params }: RouteContext) {
   const session = await getSessionUser();
   if (!session) return unauthorizedError();
 
@@ -57,7 +58,7 @@ export async function GET(request: NextRequest, { params }: RouteContext) {
 }
 
 // PATCH /api/problems/{id} — 문제 수정
-export async function PATCH(request: NextRequest, { params }: RouteContext) {
+async function handlePatch(request: NextRequest, { params }: RouteContext) {
   const session = await getSessionUser();
   if (!session) return unauthorizedError();
 
@@ -98,7 +99,7 @@ export async function PATCH(request: NextRequest, { params }: RouteContext) {
 }
 
 // DELETE /api/problems/{id} — 문제 삭제
-export async function DELETE(request: NextRequest, { params }: RouteContext) {
+async function handleDelete(request: NextRequest, { params }: RouteContext) {
   const session = await getSessionUser();
   if (!session) return unauthorizedError();
 
@@ -121,3 +122,7 @@ export async function DELETE(request: NextRequest, { params }: RouteContext) {
   }
   return jsonOk(deleteResponseSchema, { data: { id } });
 }
+
+export const GET = withErrorLog("/api/problems/[id]", handleGet);
+export const PATCH = withErrorLog("/api/problems/[id]", handlePatch);
+export const DELETE = withErrorLog("/api/problems/[id]", handleDelete);

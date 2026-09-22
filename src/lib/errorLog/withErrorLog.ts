@@ -126,6 +126,28 @@ function summarize(request: Request): RequestSummary {
   };
 }
 
+/**
+ * 요청 요약 — 부른 쪽이 요청을 안 넘길 수도 있다(인자 없는 처리기 `GET()` 를 시험이 그렇게 부른다).
+ * 요약이 실패해도 기록은 남는다.
+ */
+function describeRequest(value: unknown): {
+  method: string | null;
+  request: RequestSummary | Record<string, never>;
+  requestId: string | null;
+} {
+  try {
+    if (value instanceof Request)
+      return {
+        method: value.method,
+        request: summarize(value),
+        requestId: value.headers.get("x-vercel-id"),
+      };
+  } catch {
+    // 요청 모양이 아니다 — 아래로
+  }
+  return { method: null, request: {}, requestId: null };
+}
+
 async function routeParams(context: unknown) {
   try {
     const params =
@@ -227,9 +249,9 @@ function entryFrom(
   base: {
     id?: string;
     route: string;
-    method: string;
+    method: string | null;
     status: number;
-    request: RequestSummary;
+    request: RequestSummary | Record<string, never>;
     requestId: string | null;
     durationMs: number;
   },
@@ -275,8 +297,10 @@ function entryFrom(
   };
 }
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any -- 처리기의 모양(Request·NextRequest, params 유무)을 그대로 보존한다
-type RouteHandler = (...args: any[]) => Response | Promise<Response>;
+type RouteHandler = (
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any -- 처리기의 모양(Request·NextRequest, params 유무)을 그대로 보존한다
+  ...args: any[]
+) => Response | void | Promise<Response | undefined | void>;
 
 export function withErrorLog<H extends RouteHandler>(
   route: string,
@@ -287,14 +311,11 @@ export function withErrorLog<H extends RouteHandler>(
   const wrapped = async (
     ...args: Parameters<H>
   ): Promise<Awaited<ReturnType<H>>> => {
-    const request = args[0] as Request;
     const started = Date.now();
     const notes = createErrorLogNotes();
     const base = () => ({
       route,
-      method: request.method,
-      request: summarize(request),
-      requestId: request.headers.get("x-vercel-id"),
+      ...describeRequest(args[0]),
       durationMs: Date.now() - started,
     });
     let response: Awaited<ReturnType<H>>;
@@ -313,6 +334,7 @@ export function withErrorLog<H extends RouteHandler>(
       }
       throw error;
     }
+    // 처리기가 아무것도 안 돌려준 것(형으로만 가능 — Next 가 500 으로 바꾼다)은 여기서 판정하지 않는다
     if (response instanceof Response && response.status >= 400) {
       const id = randomUUID();
       const info = { ...base(), id, status: response.status };

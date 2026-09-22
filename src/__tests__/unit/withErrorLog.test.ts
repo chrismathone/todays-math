@@ -24,6 +24,12 @@ import {
 } from "@/lib/errorLog/withErrorLog";
 
 const record = vi.mocked(recordErrorLog);
+/** 부르는 쪽이 요청을 넘기는 처리기의 모양 — 본문은 요청을 안 봐도 된다 */
+type Handler = (request: Request) => Promise<Response>;
+type WithParams = (
+  request: Request,
+  context: { params: Promise<{ id: string }> },
+) => Promise<Response>;
 
 function req(
   url = "http://localhost/api/tests/abc?page=2",
@@ -42,7 +48,7 @@ afterEach(() => vi.unstubAllEnvs());
 describe("⑴ 성공은 손대지 않는다", () => {
   it("같은 응답 객체 · 머리 그대로 · 기록 없음", async () => {
     const original = Response.json({ data: 1 });
-    const GET = withErrorLog("/api/tests/[id]", async () => original);
+    const GET = withErrorLog<Handler>("/api/tests/[id]", async () => original);
     const res = await GET(req());
     expect(res).toBe(original);
     expect(res.headers.get(ERROR_LOG_HEADER)).toBeNull();
@@ -50,7 +56,7 @@ describe("⑴ 성공은 손대지 않는다", () => {
   });
 
   it("성공한 요청에 남긴 메모는 버린다", async () => {
-    const POST = withErrorLog("/api/studio/ai", async () => {
+    const POST = withErrorLog<Handler>("/api/studio/ai", async () => {
       noteErrorLog({
         detail: "안 쓰일 메모",
         image: "data:image/png;base64,AA==",
@@ -74,7 +80,7 @@ describe("⑵ 거절·실패는 한 줄", () => {
         ],
       },
     };
-    const POST = withErrorLog("/api/tests/generate", async () =>
+    const POST = withErrorLog<Handler>("/api/tests/generate", async () =>
       Response.json(body, { status: 400 }),
     );
     const res = await POST(
@@ -99,7 +105,7 @@ describe("⑵ 거절·실패는 한 줄", () => {
   });
 
   it("작업실 모양의 본문({ error: 문구, detail: 원문 })도 읽는다", async () => {
-    const POST = withErrorLog("/api/studio/ai", async () =>
+    const POST = withErrorLog<Handler>("/api/studio/ai", async () =>
       Response.json(
         { error: "화면 문구", detail: "엔진 원문" },
         { status: 422 },
@@ -116,7 +122,7 @@ describe("⑵ 거절·실패는 한 줄", () => {
   });
 
   it("5xx 는 api-error", async () => {
-    const GET = withErrorLog("/api/metrics", async () =>
+    const GET = withErrorLog<Handler>("/api/metrics", async () =>
       Response.json({ error: "x" }, { status: 503 }),
     );
     await GET(req("http://localhost/api/metrics"));
@@ -127,7 +133,7 @@ describe("⑵ 거절·실패는 한 줄", () => {
   });
 
   it("본문이 JSON 이 아니면 앞부분을 원문으로", async () => {
-    const GET = withErrorLog(
+    const GET = withErrorLog<Handler>(
       "/api/exports/pdf",
       async () =>
         new Response("Request Entity Too Large", {
@@ -143,7 +149,7 @@ describe("⑵ 거절·실패는 한 줄", () => {
   });
 
   it("응답 머리에 기록 번호를 붙인다 — 그 번호가 곧 줄 id(브라우저가 같은 실패를 다시 안 보낸다)", async () => {
-    const GET = withErrorLog("/api/units", async () =>
+    const GET = withErrorLog<Handler>("/api/units", async () =>
       Response.json({ error: "x" }, { status: 404 }),
     );
     const res = await GET(req("http://localhost/api/units"));
@@ -157,7 +163,7 @@ describe("⑵ 거절·실패는 한 줄", () => {
     vi.spyOn(locked.headers, "set").mockImplementation(() => {
       throw new TypeError("immutable");
     });
-    const GET = withErrorLog("/api/basket", async () => locked);
+    const GET = withErrorLog<Handler>("/api/basket", async () => locked);
     const res = await GET(req("http://localhost/api/basket"));
     expect(res).toBe(locked);
     expect(res.status).toBe(409);
@@ -166,10 +172,8 @@ describe("⑵ 거절·실패는 한 줄", () => {
 
   it("요청 요약 — 경로·질의·본문 형식·크기·요청 번호·걸린 시간 · 🔴 비밀 질의는 걸러서 · 쿠키·Authorization 은 안 싣는다", async () => {
     vi.stubEnv("VERCEL_GIT_COMMIT_SHA", "deadbeef");
-    const GET = withErrorLog(
-      "/api/tests/[id]",
-      async (_r: Request, _c: { params: Promise<{ id: string }> }) =>
-        Response.json({ error: "x" }, { status: 404 }),
+    const GET = withErrorLog<WithParams>("/api/tests/[id]", async () =>
+      Response.json({ error: "x" }, { status: 404 }),
     );
     await GET(
       req("http://localhost/api/tests/abc?page=2&token=SECRET", {
@@ -211,7 +215,7 @@ describe("⑶ 던진 예외", () => {
     const boom = new TypeError(
       "Cannot read properties of undefined (reading 'id')",
     );
-    const GET = withErrorLog("/api/classes", async () => {
+    const GET = withErrorLog<Handler>("/api/classes", async () => {
       throw boom;
     });
     await expect(GET(req("http://localhost/api/classes"))).rejects.toBe(boom);
@@ -232,7 +236,7 @@ describe("⑶ 던진 예외", () => {
     const signal = Object.assign(new Error("NEXT_REDIRECT"), {
       digest: "NEXT_REDIRECT;replace;/login;307;",
     });
-    const GET = withErrorLog("/api/classes", async () => {
+    const GET = withErrorLog<Handler>("/api/classes", async () => {
       throw signal;
     });
     await expect(GET(req("http://localhost/api/classes"))).rejects.toBe(signal);
@@ -242,7 +246,7 @@ describe("⑶ 던진 예외", () => {
 
 describe("⑷ 깊은 곳의 메모가 실린다", () => {
   it("작업 이름·종류·원문·시도 기록·이미지·사용자", async () => {
-    const POST = withErrorLog("/api/studio/ai", async () => {
+    const POST = withErrorLog<Handler>("/api/studio/ai", async () => {
       noteErrorLog({ userId: "u-1" });
       await Promise.resolve();
       noteErrorLog({
@@ -274,9 +278,22 @@ describe("⑷ 깊은 곳의 메모가 실린다", () => {
 });
 
 describe("⑸ 기록이 실패해도 응답은 그대로", () => {
+  it("요청 없이 불러도 죽지 않는다 — 인자 없는 처리기(`GET()`)를 시험이 그렇게 부른다", async () => {
+    const GET = withErrorLog("/api/units", async () =>
+      Response.json({ error: "x" }, { status: 401 }),
+    );
+    const res = await GET();
+    expect(res.status).toBe(401);
+    expect((await entries())[0]).toMatchObject({
+      route: "/api/units",
+      method: null,
+      status: 401,
+    });
+  });
+
   it("쓰기가 던져도 부르는 쪽은 모른다", async () => {
     record.mockRejectedValueOnce(new Error("db down"));
-    const GET = withErrorLog("/api/units", async () =>
+    const GET = withErrorLog<Handler>("/api/units", async () =>
       Response.json({ error: "x" }, { status: 400 }),
     );
     const res = await GET(req("http://localhost/api/units"));
@@ -287,7 +304,7 @@ describe("⑸ 기록이 실패해도 응답은 그대로", () => {
 
 describe("표지", () => {
   it("감싼 처리기는 라우트 틀을 들고 있다 — 가드가 행동으로 세는 근거", () => {
-    const GET = withErrorLog("/api/units", async () => new Response());
+    const GET = withErrorLog<Handler>("/api/units", async () => new Response());
     expect((GET as unknown as Record<symbol, unknown>)[ERROR_LOG_ROUTE]).toBe(
       "/api/units",
     );

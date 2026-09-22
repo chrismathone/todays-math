@@ -23,10 +23,11 @@ import {
   toLearnUnit,
 } from "@/lib/learn/studentLectures";
 import { requireStudent } from "@/lib/learn/studentRequest";
+import { withErrorLog } from "@/lib/errorLog/withErrorLog";
 
 type RouteContext = { params: Promise<{ id: string }> };
 
-export async function GET(_request: NextRequest, { params }: RouteContext) {
+async function handleGet(_request: NextRequest, { params }: RouteContext) {
   const gate = await requireStudent({ active: true });
   if (gate.response) return gate.response;
 
@@ -59,3 +60,5 @@ export async function GET(_request: NextRequest, { params }: RouteContext) {
     },
   });
 }
+
+export const GET = withErrorLog("/api/learn/lectures/[id]", handleGet);

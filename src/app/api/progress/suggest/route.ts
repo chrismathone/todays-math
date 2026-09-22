@@ -24,8 +24,9 @@ import { db } from "@/lib/db";
 import { requireOwnedClass } from "@/lib/ownership";
 import { suggestStartUnit } from "@/lib/progress/suggestStartUnit";
 import { getSessionUser } from "@/lib/session";
+import { withErrorLog } from "@/lib/errorLog/withErrorLog";
 
-export async function GET(request: NextRequest) {
+async function handleGet(request: NextRequest) {
   const session = await getSessionUser();
   if (!session) return unauthorizedError();
 
@@ -53,3 +54,5 @@ export async function GET(request: NextRequest) {
     data: suggestStartUnit(rows, units),
   });
 }
+
+export const GET = withErrorLog("/api/progress/suggest", handleGet);

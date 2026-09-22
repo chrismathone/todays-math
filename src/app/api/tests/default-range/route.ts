@@ -22,6 +22,7 @@ import { requireOwnedClass, requireOwnedStudentInClass } from "@/lib/ownership";
 import { getCurrentProgress } from "@/lib/progressResolver";
 import { serializeProgress } from "@/lib/serializers";
 import { getSessionUser } from "@/lib/session";
+import { withErrorLog } from "@/lib/errorLog/withErrorLog";
 
 /**
  * **실제로 낸 시험만** 「직전 확인테스트」로 센다.
@@ -42,7 +43,7 @@ const LATEST_FIRST = [
   { createdAt: "desc" as const },
 ];
 
-export async function GET(request: NextRequest) {
+async function handleGet(request: NextRequest) {
   const session = await getSessionUser();
   if (!session) return unauthorizedError();
 
@@ -175,3 +176,5 @@ export async function GET(request: NextRequest) {
     },
   });
 }
+
+export const GET = withErrorLog("/api/tests/default-range", handleGet);

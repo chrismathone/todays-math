@@ -21,10 +21,11 @@ import { jsonError, jsonOk } from "@/lib/apiResponse";
 import { kstDateOf } from "@/lib/kstDate";
 import { resolveAutoDraftOwner } from "@/lib/tests/autoDraftOwner";
 import { runAutoDraft } from "@/lib/tests/runAutoDraft";
+import { withErrorLog } from "@/lib/errorLog/withErrorLog";
 
 export const maxDuration = 300;
 
-export async function GET(request: NextRequest) {
+async function handleGet(request: NextRequest) {
   const secret = process.env.CRON_SECRET;
   if (!secret)
     return jsonError(
@@ -60,3 +61,5 @@ export async function GET(request: NextRequest) {
     );
   }
 }
+
+export const GET = withErrorLog("/api/tests/auto-draft/cron", handleGet);

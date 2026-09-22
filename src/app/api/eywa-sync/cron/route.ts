@@ -15,10 +15,11 @@ import type { NextRequest } from "next/server";
 import { jsonError } from "@/lib/apiResponse";
 
 import { executeSyncResponse } from "../route";
+import { withErrorLog } from "@/lib/errorLog/withErrorLog";
 
 export const maxDuration = 300;
 
-export async function GET(request: NextRequest) {
+async function handleGet(request: NextRequest) {
   const secret = process.env.CRON_SECRET;
   if (!secret)
     return jsonError(
@@ -30,3 +31,5 @@ export async function GET(request: NextRequest) {
     return jsonError("UNAUTHORIZED", "cron 시크릿이 다릅니다.", 401);
   return executeSyncResponse();
 }
+
+export const GET = withErrorLog("/api/eywa-sync/cron", handleGet);

@@ -1,6 +1,7 @@
 import { loadUnifiedBank, UnifiedBankQueryError } from "@/lib/unifiedPreview";
+import { withErrorLog } from "@/lib/errorLog/withErrorLog";
 
-export async function GET(request: Request) {
+async function handleGet(request: Request) {
   if (process.env.NODE_ENV !== "development")
     return new Response(null, { status: 404 });
   try {
@@ -17,3 +18,5 @@ export async function GET(request: Request) {
     );
   }
 }
+
+export const GET = withErrorLog("/api/dev/unified/problems", handleGet);

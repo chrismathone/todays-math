@@ -40,11 +40,12 @@ import {
   loadRunPredictions,
 } from "@/lib/predictor/actualScoreService";
 import { getSessionUser } from "@/lib/session";
+import { withErrorLog } from "@/lib/errorLog/withErrorLog";
 
 type RouteContext = { params: Promise<{ id: string }> };
 
 // POST /api/predictions/{id}/actual — 실측 점수 저장(같은 학생이면 갱신)
-export async function POST(request: NextRequest, { params }: RouteContext) {
+async function handlePost(request: NextRequest, { params }: RouteContext) {
   const session = await getSessionUser();
   if (!session) return unauthorizedError();
 
@@ -110,7 +111,7 @@ export async function POST(request: NextRequest, { params }: RouteContext) {
 }
 
 // GET /api/predictions/{id}/actual — 저장된 실측과 잔차 요약
-export async function GET(_request: NextRequest, { params }: RouteContext) {
+async function handleGet(_request: NextRequest, { params }: RouteContext) {
   const session = await getSessionUser();
   if (!session) return unauthorizedError();
 
@@ -125,3 +126,6 @@ export async function GET(_request: NextRequest, { params }: RouteContext) {
   const payload = await listActualScores(id, session.id);
   return jsonOk(actualScoreResponseSchema, { data: payload });
 }
+
+export const GET = withErrorLog("/api/predictions/[id]/actual", handleGet);
+export const POST = withErrorLog("/api/predictions/[id]/actual", handlePost);

@@ -58,7 +58,7 @@ const text = (value: string | null | undefined, max: number) =>
 function decodeImage(
   dataUrl: string,
 ):
-  | { ok: true; mimeType: string; data: Buffer }
+  | { ok: true; mimeType: string; data: Uint8Array<ArrayBuffer> }
   | { ok: false; skipped: Record<string, unknown> } {
   const match = IMAGE_DATA_URL.exec(dataUrl);
   if (!match) return { ok: false, skipped: { reason: "not-image" } };
@@ -66,7 +66,8 @@ function decodeImage(
   const approx = Math.floor((match[2].length * 3) / 4);
   if (approx > ERROR_LOG_IMAGE_MAX_BYTES + 4)
     return { ok: false, skipped: { reason: "too-large", bytes: approx } };
-  const data = Buffer.from(match[2], "base64");
+  // Prisma 6 의 Bytes 는 Uint8Array<ArrayBuffer> — Buffer(ArrayBufferLike) 를 한 번 옮겨 담는다
+  const data = new Uint8Array(Buffer.from(match[2], "base64"));
   if (data.length > ERROR_LOG_IMAGE_MAX_BYTES)
     return { ok: false, skipped: { reason: "too-large", bytes: data.length } };
   return { ok: true, mimeType: match[1], data };
@@ -75,7 +76,7 @@ function decodeImage(
 /** 한 줄을 표의 모양으로 — 여기서 거르고 자른다. */
 export function errorLogRow(entry: ErrorLogEntry): {
   row: Prisma.ErrorLogUncheckedCreateInput;
-  image?: { mimeType: string; byteSize: number; data: Buffer };
+  image?: { mimeType: string; byteSize: number; data: Uint8Array<ArrayBuffer> };
 } {
   const context: Record<string, unknown> = { ...(entry.context ?? {}) };
   let userId = entry.userId ?? null;
@@ -83,7 +84,9 @@ export function errorLogRow(entry: ErrorLogEntry): {
     context.actor = userId;
     userId = null;
   }
-  let image: { mimeType: string; byteSize: number; data: Buffer } | undefined;
+  let image:
+    | { mimeType: string; byteSize: number; data: Uint8Array<ArrayBuffer> }
+    | undefined;
   if (entry.image) {
     const decoded = decodeImage(entry.image);
     if (decoded.ok)

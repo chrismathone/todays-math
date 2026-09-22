@@ -18,11 +18,12 @@ import { db } from "@/lib/db";
 import { requireAccessibleProblem } from "@/lib/ownership";
 import { serializeProblem } from "@/lib/serializers";
 import { getSessionUser } from "@/lib/session";
+import { withErrorLog } from "@/lib/errorLog/withErrorLog";
 
 type RouteContext = { params: Promise<{ id: string }> };
 
 // PATCH /api/problems/{id}/review-status — 검수 상태 승격
-export async function PATCH(request: NextRequest, { params }: RouteContext) {
+async function handlePatch(request: NextRequest, { params }: RouteContext) {
   const session = await getSessionUser();
   if (!session) return unauthorizedError();
 
@@ -43,3 +44,8 @@ export async function PATCH(request: NextRequest, { params }: RouteContext) {
   });
   return jsonOk(problemResponseSchema, { data: serializeProblem(updated) });
 }
+
+export const PATCH = withErrorLog(
+  "/api/problems/[id]/review-status",
+  handlePatch,
+);

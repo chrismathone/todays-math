@@ -23,6 +23,7 @@ import { db } from "@/lib/db";
 import { isEywaOwner } from "@/lib/eywa/owner";
 import { runEywaSync } from "@/lib/eywa/runSync";
 import { getSessionUser } from "@/lib/session";
+import { withErrorLog } from "@/lib/errorLog/withErrorLog";
 
 export const maxDuration = 300;
 
@@ -73,10 +74,12 @@ export async function executeSyncResponse() {
   }
 }
 
-export async function POST() {
+async function handlePost() {
   const session = await getSessionUser();
   if (!session) return unauthorizedError();
   // 🔴 소유자 계정만 — 남의 학원 동기화를 누구나 돌릴 수 있던 자리(2026-09-07).
   if (!isEywaOwner(session.email)) return forbiddenError();
   return executeSyncResponse();
 }
+
+export const POST = withErrorLog("/api/eywa-sync", handlePost);

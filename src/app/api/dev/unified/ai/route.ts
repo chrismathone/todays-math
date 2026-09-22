@@ -13,9 +13,10 @@ import {
   readDevAiBody,
   rejectDevAiRequest,
 } from "./guard";
+import { withErrorLog } from "@/lib/errorLog/withErrorLog";
 export const runtime = "nodejs";
 const enabled = () => process.env.DEV_AI_MODE === "subscription-cli";
-export async function GET(request: Request) {
+async function handleGet(request: Request) {
   const rejected = rejectDevAiRequest(request);
   if (rejected) return rejected;
   if (new URL(request.url).searchParams.get("mode") === "model-api")
@@ -48,7 +49,7 @@ export async function GET(request: Request) {
     );
   }
 }
-export async function POST(request: Request) {
+async function handlePost(request: Request) {
   const rejected = rejectDevAiRequest(request);
   if (rejected) return rejected;
   if (new URL(request.url).searchParams.get("mode") === "model-api")
@@ -123,3 +124,6 @@ export async function POST(request: Request) {
     );
   }
 }
+
+export const GET = withErrorLog("/api/dev/unified/ai", handleGet);
+export const POST = withErrorLog("/api/dev/unified/ai", handlePost);

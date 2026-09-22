@@ -30,10 +30,11 @@ import {
 import { kstDateOf } from "@/lib/kstDate";
 import { requireOwnedClass } from "@/lib/ownership";
 import { getSessionUser } from "@/lib/session";
+import { withErrorLog } from "@/lib/errorLog/withErrorLog";
 
 type RouteContext = { params: Promise<{ id: string }> };
 
-export async function POST(request: NextRequest, { params }: RouteContext) {
+async function handlePost(request: NextRequest, { params }: RouteContext) {
   const session = await getSessionUser();
   if (!session) return unauthorizedError();
 
@@ -66,3 +67,8 @@ export async function POST(request: NextRequest, { params }: RouteContext) {
 
   return jsonOk(progressPlanPreviewResponseSchema, { data: { schedule } });
 }
+
+export const POST = withErrorLog(
+  "/api/classes/[id]/progress-plan/preview",
+  handlePost,
+);

@@ -13,10 +13,11 @@ import {
 } from "@/lib/apiResponse";
 import { getSessionUser } from "@/lib/session";
 import { submitTestResult } from "@/lib/testResults/submitTestResult";
+import { withErrorLog } from "@/lib/errorLog/withErrorLog";
 
 type RouteContext = { params: Promise<{ id: string }> };
 
-export async function POST(request: NextRequest, { params }: RouteContext) {
+async function handlePost(request: NextRequest, { params }: RouteContext) {
   const session = await getSessionUser();
   if (!session) return unauthorizedError();
 
@@ -32,6 +33,12 @@ export async function POST(request: NextRequest, { params }: RouteContext) {
     return await submitTestResult(session, id, parsed.data);
   } catch {
     console.error("[POST /api/tests/{id}/submit] submission failed");
-    return jsonError("INTERNAL_ERROR", "채점 처리 중 오류가 발생했습니다.", 500);
+    return jsonError(
+      "INTERNAL_ERROR",
+      "채점 처리 중 오류가 발생했습니다.",
+      500,
+    );
   }
 }
+
+export const POST = withErrorLog("/api/tests/[id]/submit", handlePost);

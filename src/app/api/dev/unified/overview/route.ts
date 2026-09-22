@@ -2,6 +2,7 @@ import { loadRecentClasses } from "@/lib/class/recentClasses";
 import { db } from "@/lib/db";
 import { ownedRowsWhere, ownedStudentsWhere } from "@/lib/ownerScope";
 import { getSessionUser } from "@/lib/session";
+import { withErrorLog } from "@/lib/errorLog/withErrorLog";
 
 const headers = { "Cache-Control": "private, no-store" };
 
@@ -9,7 +10,7 @@ const headers = { "Cache-Control": "private, no-store" };
  * A bounded, read-only home summary; no curriculum or student roster download.
  * Counts follow the owner scope (D-130 — an admin counts every class): src/lib/ownerScope.ts
  */
-export async function GET() {
+async function handleGet() {
   if (process.env.NODE_ENV !== "development") {
     return new Response(null, { status: 404, headers });
   }
@@ -48,3 +49,5 @@ export async function GET() {
     );
   }
 }
+
+export const GET = withErrorLog("/api/dev/unified/overview", handleGet);

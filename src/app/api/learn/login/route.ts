@@ -21,8 +21,9 @@ import { signIn } from "@/lib/auth";
 import { db } from "@/lib/db";
 import { crossSiteError } from "@/lib/learn/accountRoutes";
 import { STUDENT_PROVIDER_ID } from "@/lib/learn/studentSession";
+import { withErrorLog } from "@/lib/errorLog/withErrorLog";
 
-export async function POST(request: NextRequest) {
+async function handlePost(request: NextRequest) {
   if (!sameOriginMutation(request)) return crossSiteError();
 
   const body = await request.json().catch(() => undefined);
@@ -51,3 +52,5 @@ export async function POST(request: NextRequest) {
     data: { mustChangePassword: account?.mustChangePassword ?? true },
   });
 }
+
+export const POST = withErrorLog("/api/learn/login", handlePost);

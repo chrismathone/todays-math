@@ -3,6 +3,7 @@ import {
   createSharedFigureAssetHandler,
   type SharedFigureRouteContext,
 } from "@/lib/sharedFigureAssets";
+import { withErrorLog } from "@/lib/errorLog/withErrorLog";
 
 export const runtime = "nodejs";
 
@@ -13,13 +14,19 @@ const deliverAsset = createSharedFigureAssetHandler({
   baseUrl: process.env.SHARED_FIGURE_CDN_BASE_URL,
 });
 
-export async function GET(request: Request, context: SharedFigureRouteContext) {
+async function handleGet(request: Request, context: SharedFigureRouteContext) {
   return deliverAsset(request, context);
 }
 
-export async function HEAD(
-  request: Request,
-  context: SharedFigureRouteContext,
-) {
+async function handleHead(request: Request, context: SharedFigureRouteContext) {
   return deliverAsset(request, context);
 }
+
+export const GET = withErrorLog(
+  "/api/shared-figures/[kind]/[...path]",
+  handleGet,
+);
+export const HEAD = withErrorLog(
+  "/api/shared-figures/[kind]/[...path]",
+  handleHead,
+);

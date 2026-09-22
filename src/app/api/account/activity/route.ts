@@ -1,6 +1,7 @@
 import { z } from "zod";
 import { db } from "@/lib/db";
 import { getAccountAccess, sameOriginMutation } from "@/lib/accountAccess";
+import { withErrorLog } from "@/lib/errorLog/withErrorLog";
 const schema = z.object({
   ownerId: z.uuid(),
   events: z
@@ -15,7 +16,7 @@ const schema = z.object({
     .min(1)
     .max(50),
 });
-export async function POST(request: Request) {
+async function handlePost(request: Request) {
   const account = await getAccountAccess();
   if (!account)
     return Response.json(
@@ -57,3 +58,5 @@ export async function POST(request: Request) {
   });
   return new Response(null, { status: 204 });
 }
+
+export const POST = withErrorLog("/api/account/activity", handlePost);

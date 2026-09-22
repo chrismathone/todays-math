@@ -19,11 +19,12 @@ import { jsonError, jsonOk, validationError } from "@/lib/apiResponse";
 import { db } from "@/lib/db";
 import { isPrismaErrorCode } from "@/lib/prismaErrors";
 import { recordAudit } from "@/lib/audit";
+import { withErrorLog } from "@/lib/errorLog/withErrorLog";
 
 /** bcrypt salt rounds — 보안/성능 균형의 관행값. */
 const BCRYPT_SALT_ROUNDS = 10;
 
-export async function POST(request: NextRequest) {
+async function handlePost(request: NextRequest) {
   const body: unknown = await request.json().catch(() => null);
   const parsed = authSignupRequestSchema.safeParse(body);
   if (!parsed.success) {
@@ -76,3 +77,5 @@ export async function POST(request: NextRequest) {
     { status: 201 },
   );
 }
+
+export const POST = withErrorLog("/api/auth/signup", handlePost);

@@ -20,8 +20,9 @@ import { db } from "@/lib/db";
 import { findQueue, unreviewedWhere } from "@/lib/review/queues";
 import { toConsoleRow } from "@/lib/review/consoleRow";
 import { getSessionUser } from "@/lib/session";
+import { withErrorLog } from "@/lib/errorLog/withErrorLog";
 
-export async function GET(request: NextRequest) {
+async function handleGet(request: NextRequest) {
   const session = await getSessionUser();
   if (!session) return unauthorizedError();
 
@@ -65,3 +66,5 @@ export async function GET(request: NextRequest) {
     },
   });
 }
+
+export const GET = withErrorLog("/api/review/queue", handleGet);

@@ -33,8 +33,9 @@ import {
 } from "@/lib/learn/prismaLoginStore";
 import { verifyStudentPin } from "@/lib/learn/studentLogin";
 import { requireStudent } from "@/lib/learn/studentRequest";
+import { withErrorLog } from "@/lib/errorLog/withErrorLog";
 
-export async function POST(request: NextRequest) {
+async function handlePost(request: NextRequest) {
   const gate = await requireStudent({ active: false });
   if (gate.response) return gate.response;
   if (!sameOriginMutation(request)) return crossSiteError();
@@ -86,3 +87,5 @@ export async function POST(request: NextRequest) {
     data: { mustChangePassword: false },
   });
 }
+
+export const POST = withErrorLog("/api/learn/password", handlePost);

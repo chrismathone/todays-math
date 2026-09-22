@@ -20,10 +20,11 @@ import {
 import { studentIssueDeps } from "@/lib/learn/issueDeps";
 import { reissueStudentPassword } from "@/lib/learn/issueStudentAccount";
 import { getSessionUser } from "@/lib/session";
+import { withErrorLog } from "@/lib/errorLog/withErrorLog";
 
 type RouteContext = { params: Promise<{ id: string }> };
 
-export async function POST(request: NextRequest, { params }: RouteContext) {
+async function handlePost(request: NextRequest, { params }: RouteContext) {
   const session = await getSessionUser();
   if (!session) return unauthorizedError();
   if (!sameOriginMutation(request)) return crossSiteError();
@@ -51,3 +52,8 @@ export async function POST(request: NextRequest, { params }: RouteContext) {
     }),
   );
 }
+
+export const POST = withErrorLog(
+  "/api/students/[id]/account/password",
+  handlePost,
+);
