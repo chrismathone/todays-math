@@ -85,6 +85,45 @@ beforeEach(() => {
   };
 });
 describe("CubeUnitLab learner evidence", () => {
+  it("tracks session discoveries without rewarding replay or hint-assisted streaks", () => {
+    render(<CubeUnitLab practice={pool} />);
+    expect(screen.getByRole("button", { name: "효과음 켜기" })).toHaveAttribute(
+      "aria-pressed",
+      "false",
+    );
+    fireEvent.click(
+      screen.getByRole("button", { name: "올바른 과정과 답 제출" }),
+    );
+    expect(screen.getByLabelText("이번 탐험 1개 해결")).toBeInTheDocument();
+    fireEvent.click(screen.getByRole("button", { name: "다음 활동 →" }));
+    fireEvent.click(
+      screen.getByRole("button", { name: "올바른 과정과 답 제출" }),
+    );
+    expect(screen.getByText("2연속", { exact: true })).toBeInTheDocument();
+    fireEvent.click(screen.getByRole("button", { name: "1번째 활동" }));
+    fireEvent.click(
+      screen.getByRole("button", { name: "올바른 과정과 답 제출" }),
+    );
+    expect(screen.getByLabelText("이번 탐험 2개 해결")).toBeInTheDocument();
+    expect(screen.getByText("2연속", { exact: true })).toBeInTheDocument();
+    fireEvent.click(screen.getByRole("button", { name: "3번째 활동" }));
+    fireEvent.click(screen.getByRole("button", { name: "생각하는 힌트 보기" }));
+    expect(
+      screen.queryByText("2연속", { exact: true }),
+    ).not.toBeInTheDocument();
+    fireEvent.click(
+      screen.getByRole("button", { name: "올바른 과정과 답 제출" }),
+    );
+    expect(screen.getByLabelText("이번 탐험 3개 해결")).toBeInTheDocument();
+    expect(screen.getByLabelText("이번 탐험 3개 해결")).toHaveTextContent(
+      /^3해결$/,
+    );
+    fireEvent.click(screen.getByRole("button", { name: /학습 기록/ }));
+    expect(screen.getByText(/한 번에 맞힌 최고 기록/)).toHaveTextContent(
+      "2연속",
+    );
+  });
+
   it("checks practice answers and focuses the next problem using Enter", async () => {
     const user = userEvent.setup();
     startChallenge();

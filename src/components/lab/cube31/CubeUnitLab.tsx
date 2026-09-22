@@ -15,8 +15,15 @@ import {
 } from "@/lib/lab/cube31/progress";
 import type { CubePractice, CubeTask } from "@/lib/lab/cube31/types";
 import { labZoom } from "@/lib/lab/cube31/zoom";
+import {
+  emptyMomentum,
+  recordLabSuccess,
+  type LabCelebration as Celebration,
+} from "@/lib/lab/cube31/momentum";
 import RegroupingBoard from "./RegroupingBoard";
 import LearningActivity from "./LearningActivity";
+import LabCelebration from "./LabCelebration";
+import { useLabSound } from "./useLabSound";
 import styles from "./CubeUnitLab.module.css";
 
 const Base10Explorer = dynamic(() => import("./Base10Explorer"), {
@@ -70,6 +77,8 @@ export default function CubeUnitLab({
   const [mapOpen, setMapOpen] = useState(false);
   const [explorerOpen, setExplorerOpen] = useState(false);
   const [reportOpen, setReportOpen] = useState(false);
+  const [momentum, setMomentum] = useState(emptyMomentum);
+  const sound = useLabSound();
   const heading = useRef<HTMLHeadingElement>(null);
   const lessonList = useRef<HTMLElement>(null);
   useEffect(() => {
@@ -107,6 +116,15 @@ export default function CubeUnitLab({
   const mastered = CONCEPTS.filter(
     (c) => (save.mastery[c]?.length ?? 0) > 0,
   ).length;
+  function celebrate(activity: string, clean: boolean) {
+    const result = recordLabSuccess(momentum, activity, clean);
+    setMomentum(result);
+    sound.play(result.celebration?.milestone ? "milestone" : "success");
+  }
+  function retry(withSound = true) {
+    setMomentum((previous) => ({ ...previous, streak: 0 }));
+    if (withSound) sound.play("retry");
+  }
   function persist(next: CubeSave) {
     setSave(next);
     try {
@@ -122,6 +140,7 @@ export default function CubeUnitLab({
     heading.current?.focus({ preventScroll: true });
   }
   function next() {
+    sound.play("advance");
     if (step + 1 < steps) navigate(save.lesson, step + 1);
     else if (challenge) {
       setReportOpen(true);
@@ -139,16 +158,67 @@ export default function CubeUnitLab({
           <span className={styles.labTag}>랩실</span>
         </Link>
         <span className={styles.headerUnit}>초등 3-1 · 1단원</span>
-        <button
-          type="button"
-          className={styles.textButton}
-          onClick={() => setReportOpen(true)}
-        >
-          학습 기록{" "}
-          <span>
-            {done}/{CUBE_TASK_IDS.length}
-          </span>
-        </button>
+        <div className={styles.headerTools}>
+          <div
+            className={styles.momentum}
+            aria-label={`이번 탐험 ${momentum.solved.length}개 해결`}
+          >
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <path d="m14 2-9 12h6l-1 8 9-12h-6z" fill="currentColor" />
+            </svg>
+            <b key={`solved-${momentum.solved.length}`}>
+              {momentum.solved.length}
+            </b>
+            <span>해결</span>
+            {momentum.streak >= 2 && (
+              <strong
+                className={styles.streak}
+                key={`streak-${momentum.streak}`}
+                title="도움 없이 첫 시도에 연속으로 해결했어요"
+              >
+                {momentum.streak}연속
+              </strong>
+            )}
+          </div>
+          <button
+            type="button"
+            className={styles.soundButton}
+            aria-label={sound.enabled ? "효과음 끄기" : "효과음 켜기"}
+            aria-pressed={sound.enabled}
+            title={sound.enabled ? "효과음 끄기" : "효과음 켜기"}
+            onClick={sound.toggle}
+          >
+            <svg
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="1.8"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              aria-hidden="true"
+            >
+              <path d="M11 5 6 9H3v6h3l5 4z" />
+              {sound.enabled ? (
+                <>
+                  <path d="M15 8a6 6 0 0 1 0 8" />
+                  <path d="M18 5a10 10 0 0 1 0 14" />
+                </>
+              ) : (
+                <path d="m16 9 5 6m0-6-5 6" />
+              )}
+            </svg>
+          </button>
+          <button
+            type="button"
+            className={styles.textButton}
+            onClick={() => setReportOpen(true)}
+          >
+            학습 기록{" "}
+            <span>
+              {done}/{CUBE_TASK_IDS.length}
+            </span>
+          </button>
+        </div>
       </header>
       <main className={styles.layout} id="main-content">
         <aside className={styles.sidebar} data-open={mapOpen}>
@@ -160,6 +230,23 @@ export default function CubeUnitLab({
               <br />
               계산의 이유가 보여요.
             </p>
+            <div
+              className={styles.sessionGoal}
+              aria-label={`이번 탐험 목표 5개 중 ${Math.min(momentum.solved.length, 5)}개 해결`}
+            >
+              <span>
+                {momentum.solved.length >= 5
+                  ? "다섯 미션, 해냈어요!"
+                  : "이번 탐험 · 다섯 미션 도전"}
+              </span>
+              <div aria-hidden="true">
+                {Array.from({ length: 5 }, (_, i) => (
+                  <i key={i} data-filled={momentum.solved.length > i}>
+                    ◆
+                  </i>
+                ))}
+              </div>
+            </div>
           </div>
           <div className={styles.courseProgress}>
             <span>
@@ -239,6 +326,11 @@ export default function CubeUnitLab({
                   className={styles.stepButton}
                   aria-label={index + 1 + "번째 활동"}
                   aria-current={step === index ? "step" : undefined}
+                  data-completed={
+                    challenge
+                      ? momentum.solved.includes(`practice:${round[index]?.id}`)
+                      : !!save.tasks[lesson.tasks[index]?.id]?.completed
+                  }
                   onClick={() => navigate(save.lesson, index)}
                 >
                   <span>{index + 1}</span>
@@ -263,6 +355,12 @@ export default function CubeUnitLab({
               problem={round[step]}
               onNext={next}
               last={step + 1 === steps}
+              celebration={momentum.celebration}
+              onSolved={(clean) =>
+                celebrate(`practice:${round[step].id}`, clean)
+              }
+              onRetry={() => retry()}
+              onAssist={() => retry(false)}
               onMastered={(id) =>
                 persist({
                   ...save,
@@ -283,9 +381,12 @@ export default function CubeUnitLab({
               key={task.id}
               task={task}
               onNext={next}
-              onRecord={(action) =>
-                persist(updateCubeRecord(save, task.id, action))
-              }
+              celebration={momentum.celebration}
+              onRecord={(action, clean) => {
+                persist(updateCubeRecord(save, task.id, action));
+                if (action === "complete") celebrate(task.id, !!clean);
+                else retry(action === "attempt");
+              }}
             />
           ) : (
             <p role="alert">
@@ -323,6 +424,10 @@ export default function CubeUnitLab({
               <small> / 6 독립 적용</small>
             </strong>
           </div>
+          <p className={styles.sessionSummary}>
+            이번 탐험에서 <b>{momentum.solved.length}개</b> 해결 · 한 번에 맞힌
+            최고 기록 <b>{momentum.best}연속</b>
+          </p>
           <p>
             독립 적용은 도움 없이 첫 시도에 새 문제를 맞혔을 때 기록돼요. 틀린
             문제는 수 모형으로 다시 확인할 수 있어요.
@@ -416,21 +521,30 @@ function TaskStage({
   task,
   onNext,
   onRecord,
+  celebration,
 }: {
   task: CubeTask;
   onNext: () => void;
-  onRecord: (action: "attempt" | "hint" | "complete") => void;
+  onRecord: (action: "attempt" | "hint" | "complete", clean: boolean) => void;
+  celebration: Celebration | null;
 }) {
   const [complete, setComplete] = useState(false);
   const [hint, setHint] = useState(false);
+  const clean = useRef(true);
   const stage = useActivityFocus(complete);
+  function record(action: "attempt" | "hint" | "complete") {
+    if (action !== "complete") clean.current = false;
+    onRecord(action, clean.current);
+  }
   return (
     <article
       ref={stage}
       className={styles.stage}
       data-kind={task.kind}
+      data-complete={complete}
       onKeyDownCapture={guardActivityEnter}
     >
+      {complete && celebration && <LabCelebration result={celebration} />}
       <div className={styles.taskTitle}>
         <span className={styles.activityTag}>
           {task.kind === "regroup"
@@ -449,19 +563,19 @@ function TaskStage({
           <RegroupingBoard
             problem={task}
             disabled={complete}
-            onAttempt={() => onRecord("attempt")}
+            onAttempt={() => record("attempt")}
             onComplete={() => {
               setComplete(true);
-              onRecord("complete");
+              record("complete");
             }}
           />
         ) : (
           <LearningActivity
             task={task}
-            onAttempt={() => onRecord("attempt")}
+            onAttempt={() => record("attempt")}
             onComplete={() => {
               setComplete(true);
-              onRecord("complete");
+              record("complete");
             }}
           />
         )}
@@ -475,7 +589,7 @@ function TaskStage({
               aria-expanded={hint}
               onClick={() => {
                 setHint(!hint);
-                if (!hint) onRecord("hint");
+                if (!hint) record("hint");
               }}
             >
               생각하는 힌트 {hint ? "접기" : "보기"}
@@ -489,7 +603,9 @@ function TaskStage({
         ) : (
           <div className={styles.success} role="status">
             <div>
-              <b>이 생각을 기억해요</b>
+              <b>
+                <span aria-hidden="true">✓ </span>이 생각을 기억해요
+              </b>
               <p>{task.explanation}</p>
             </div>
             <button
@@ -500,7 +616,7 @@ function TaskStage({
               title="Enter 키로 다음 활동"
               onClick={onNext}
             >
-              다음 활동 →
+              다음 활동 →<kbd aria-hidden="true">Enter</kbd>
             </button>
           </div>
         )}
@@ -513,11 +629,19 @@ function PracticeStage({
   onNext,
   onMastered,
   last,
+  celebration,
+  onSolved,
+  onRetry,
+  onAssist,
 }: {
   problem: CubePractice;
   onNext: () => void;
   onMastered: (id: string) => void;
   last: boolean;
+  celebration: Celebration | null;
+  onSolved: (clean: boolean) => void;
+  onRetry: () => void;
+  onAssist: () => void;
 }) {
   const [answer, setAnswer] = useState("");
   const [message, setMessage] = useState("");
@@ -539,7 +663,9 @@ function PracticeStage({
           : "다시 생각해서 해결했어요. 다음에는 다른 수로 혼자 도전해 봐요.",
       );
       if (!assisted && !attempted) onMastered(problem.id);
+      onSolved(!assisted && !attempted);
     } else {
+      onRetry();
       setAttempted(true);
       setMessage(
         answer.trim()
@@ -552,8 +678,11 @@ function PracticeStage({
     <article
       ref={stage}
       className={styles.stage}
+      data-kind="practice"
+      data-complete={complete}
       onKeyDownCapture={guardActivityEnter}
     >
+      {complete && celebration && <LabCelebration result={celebration} />}
       <div className={styles.taskTitle}>
         <span className={styles.activityTag}>
           혼자 적용 · {CONCEPT_LABELS[problem.concept]}
@@ -618,6 +747,7 @@ function PracticeStage({
             onClick={() => {
               setModelOpen(!modelOpen);
               setAssisted(true);
+              if (!modelOpen) onAssist();
             }}
           >
             수 모형으로 {modelOpen ? "접기" : "다시 생각하기"}
@@ -640,6 +770,7 @@ function PracticeStage({
               onClick={onNext}
             >
               {last ? "학습 기록 보기" : "다음 문제 →"}
+              <kbd aria-hidden="true">Enter</kbd>
             </button>
           </div>
         )}

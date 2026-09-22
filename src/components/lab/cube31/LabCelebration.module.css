@@ -1,0 +1,130 @@
+.burst {
+  position: absolute;
+  z-index: 4;
+  left: 50%;
+  top: 48%;
+  display: grid;
+  justify-items: center;
+  gap: 7px;
+  width: min(320px, 90%);
+  pointer-events: none;
+  transform: translate(-50%, -50%);
+  animation: celebrate 1250ms both;
+  color: #163e5b;
+  text-align: center;
+}
+.burst strong {
+  z-index: 1;
+  padding: 8px 18px;
+  border-radius: 30px;
+  background: #fff;
+  box-shadow: 0 5px 24px #1c427221;
+  font-size: clamp(22px, 3vw, 34px);
+  font-weight: 850;
+  letter-spacing: -1px;
+}
+.burst > span {
+  z-index: 1;
+  background: #fff;
+  border-radius: 14px;
+  padding: 3px 10px;
+  font-size: 13px;
+  font-weight: 650;
+}
+.medal {
+  display: grid;
+  place-items: center;
+  width: 80px;
+  height: 80px;
+  border-radius: 26px;
+  color: #fff;
+  background: linear-gradient(145deg, #18cfa6, #008f96);
+  box-shadow:
+    0 8px 0 #087577,
+    0 16px 40px #00ab8a40;
+  transform: rotate(-8deg);
+}
+.medal svg {
+  width: 48px;
+  height: 48px;
+}
+.halo {
+  position: absolute;
+  left: calc(50% - 72px);
+  top: -30px;
+  width: 144px;
+  height: 144px;
+  border: 2px solid #19c6ab;
+  border-radius: 50%;
+  animation: ripple 650ms ease-out both;
+}
+.particle {
+  position: absolute;
+  left: calc(50% - 4px);
+  top: 36px;
+  width: 8px;
+  height: 13px;
+  border-radius: 3px;
+  background: var(--color);
+  animation: scatter 750ms cubic-bezier(0.12, 0.7, 0.22, 1) var(--delay) both;
+}
+.burst[data-milestone="true"] .medal {
+  background: linear-gradient(145deg, #ffc958, #ec9314);
+  box-shadow:
+    0 8px 0 #be7210,
+    0 16px 40px #eaa22d40;
+}
+@keyframes celebrate {
+  0% {
+    opacity: 0;
+    transform: translate(-50%, -38%) scale(0.65) rotate(-5deg);
+  }
+  18% {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1.06) rotate(0);
+  }
+  30%,
+  72% {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1);
+  }
+  100% {
+    opacity: 0;
+    visibility: hidden;
+    transform: translate(-50%, -62%) scale(0.95);
+  }
+}
+@keyframes scatter {
+  0% {
+    opacity: 0;
+    transform: rotate(var(--angle)) translateY(12px) scale(0.5);
+  }
+  15% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+    transform: rotate(var(--angle)) translateY(calc(-1 * var(--travel)))
+      rotate(70deg);
+  }
+}
+@keyframes ripple {
+  from {
+    opacity: 0.6;
+    transform: scale(0.25);
+  }
+  to {
+    opacity: 0;
+    transform: scale(1.8);
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .burst {
+    display: none;
+  }
+  .burst,
+  .halo,
+  .particle {
+    animation: none;
+  }
+}
