@@ -13,6 +13,8 @@ import {
   type ApiVendor,
 } from "./routing";
 
+import { pushErrorLogContext } from "@/lib/errorLog/scope";
+
 import { StudioApiError, retryAfterMs } from "./errors";
 import { withModelRetry } from "./retry";
 export { StudioApiError } from "./errors";
@@ -31,6 +33,26 @@ function nonempty(text: string | null | undefined) {
     throw new StudioApiError("AI 응답이 너무 큽니다.");
   return text;
 }
+/** 실패한 상류 응답의 앞부분 — 오류 기록 메모용. 읽다 실패하면 빈 글. */
+async function upstreamHead(response: Response, max = 2000): Promise<string> {
+  const reader = response.body?.getReader();
+  if (!reader) return "";
+  const decoder = new TextDecoder();
+  let text = "";
+  try {
+    while (text.length < max) {
+      const { done, value } = await reader.read();
+      if (done) break;
+      text += decoder.decode(value, { stream: true });
+    }
+  } catch {
+    // 끊긴 본문 — 읽은 데까지
+  } finally {
+    await reader.cancel().catch(() => undefined);
+  }
+  return text.slice(0, max);
+}
+
 async function rest(
   url: string,
   keyHeaders: Record<string, string>,
@@ -45,7 +67,16 @@ async function rest(
     cache: "no-store",
   });
   if (!response.ok) {
-    await response.body?.cancel();
+    // 상류의 거절 원문은 **오류 기록에만** 남긴다(원장님 2026-09-22 «AI 거절 원문») — 화면·응답에는 안 나간다.
+    // 키 값·Bearer 따위는 기록기(src/lib/errorLog/sanitize.ts)가 거른다.
+    const target = new URL(url);
+    pushErrorLogContext("upstream", {
+      host: target.host,
+      path: target.pathname,
+      status: response.status,
+      retryAfter: response.headers.get("retry-after"),
+      body: await upstreamHead(response),
+    });
     throw new StudioApiError(
       response.status === 429
         ? "AI 사용량 한도에 도달했습니다. 잠시 후 다시 시도해 주세요."
@@ -292,6 +323,16 @@ async function runModelApiOnce(input: InferenceInput): Promise<string> {
     input.signal.throwIfAborted();
     if (error instanceof StudioApiError) throw error;
     // SDK/raw upstream errors may contain credentials or source material.
+    // 화면에는 안 싣고, 오류 기록에만 원문을 남긴다(비밀 값은 기록기가 거른다).
+    pushErrorLogContext("upstream", {
+      vendor: input.vendor,
+      model: input.model,
+      status: (error as { status?: unknown } | null)?.status ?? null,
+      message:
+        error instanceof Error
+          ? `${error.name}: ${error.message}`.slice(0, 2000)
+          : String(error).slice(0, 2000),
+    });
     const upstream = error as {
       status?: unknown;
       headers?: Headers;

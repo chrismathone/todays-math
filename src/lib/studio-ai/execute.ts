@@ -3,6 +3,8 @@ import type { DevAiRequest, StudioApiProvider } from "@/lib/dev-ai/contracts";
 import { executeMathgenTask } from "@/lib/dev-ai/tasks";
 import { redrawDevAiFigure } from "@/lib/dev-ai/figure-engine";
 import { editDevAiFigure } from "@/lib/dev-ai/figure-edit";
+import { dataUrlBytes } from "@/lib/errorLog/describe";
+import { noteErrorLog } from "@/lib/errorLog/scope";
 import { runModelApi, StudioApiError } from "./api";
 import { API_KEY_NAMES, resolveApiModel } from "./routing";
 
@@ -17,6 +19,29 @@ export async function executeStudioTask(
   deadlineAt?: number,
 ) {
   signal.throwIfAborted();
+  // 오류 기록 메모 — 실패했을 때만 실린다. 무엇을 어떤 길로 불렀나(본문 값 대신 크기)
+  noteErrorLog({
+    action: request.action,
+    context: {
+      aiRequest: {
+        action: request.action,
+        transport: transport.mode,
+        provider:
+          transport.mode === "model-api"
+            ? transport.provider
+            : request.provider,
+        ...(request.model ? { model: request.model } : {}),
+        grade: request.grade,
+        ...(request.content ? { contentLength: request.content.length } : {}),
+        ...(request.imageDataUrl
+          ? { imageBytes: dataUrlBytes(request.imageDataUrl) }
+          : {}),
+        ...(request.figure
+          ? { figureElements: request.figure.elements.length }
+          : {}),
+      },
+    },
+  });
   if (transport.mode === "subscription-cli") {
     if (process.env.NODE_ENV !== "development")
       throw new StudioApiError(
@@ -54,6 +79,17 @@ export async function executeStudioTask(
     transport.provider === "auto" && request.action === "figure-redraw"
       ? resolveApiModel("gemini", "figure-redraw", process.env)
       : route;
+  noteErrorLog({
+    context: {
+      aiRoute: {
+        vendor: route.vendor,
+        model: route.model,
+        ...(reviewRoute !== route
+          ? { reviewVendor: reviewRoute.vendor, reviewModel: reviewRoute.model }
+          : {}),
+      },
+    },
+  });
   // Preflight all required providers before spending the first inference.
   for (const { vendor } of [route, reviewRoute])
     if (!process.env[API_KEY_NAMES[vendor]]?.trim())

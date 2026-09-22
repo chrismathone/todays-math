@@ -57,3 +57,21 @@ export function noteErrorLog(note: ErrorLogNote): void {
   if (note.context) Object.assign(notes.context, note.context);
   if (note.image) notes.image = note.image;
 }
+
+/**
+ * 요약의 목록 칸에 하나를 덧붙인다 — 재시도마다 남는 것(상류 API 실패 등). 목록은 `max` 개까지.
+ * 범위 밖이면 아무 일도 안 한다.
+ */
+export function pushErrorLogContext(
+  key: string,
+  item: unknown,
+  max = 10,
+): void {
+  const notes = storage.getStore();
+  if (!notes) return;
+  const list = Array.isArray(notes.context[key])
+    ? (notes.context[key] as unknown[])
+    : [];
+  if (list.length < max) list.push(item);
+  notes.context[key] = list;
+}

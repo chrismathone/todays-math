@@ -28,6 +28,8 @@ import { resolveMCAnswer } from "@/lib/mathgen/answers";
 import { parseProblemContent } from "@/lib/problem/parseProblemContent";
 import { blocksToMarkdown } from "@/lib/mathgen/blocksToMarkdown";
 import { repairJsonString } from "@/lib/ai/jsonRepair";
+import { textHead } from "@/lib/errorLog/describe";
+import { noteErrorLog } from "@/lib/errorLog/scope";
 import {
   normalizeMathgenAnswer,
   normalizeMathgenText,
@@ -269,6 +271,11 @@ const DIAGNOSTIC_FIELDS = new Set([
 ]);
 export class DevAiParseError extends Error {
   readonly issues: { path: string; code: string }[];
+  /**
+   * 개발자용 진단 — zod 이슈의 **진짜 경로와 문구**. 화면(응답)에는 안 나가고 오류 기록에만 실린다
+   * (`message` 는 위 규칙대로 거른 것 그대로다). 원장님 2026-09-22 «업그레이드 패치 가능하게».
+   */
+  readonly diagnostic: string;
 
   constructor(
     readonly stage: "json" | "schema",
@@ -300,6 +307,13 @@ export class DevAiParseError extends Error {
     );
     this.name = "DevAiParseError";
     this.issues = safeIssues;
+    this.diagnostic = issues
+      .slice(0, 20)
+      .map(
+        (issue) =>
+          `${issue.path.map(String).join(".") || "(root)"}: ${issue.message} (${issue.code})`,
+      )
+      .join("\n");
   }
 }
 
@@ -516,7 +530,15 @@ export async function executeMathgenTask(
   invoke: (prompt: string) => Promise<string>,
 ): Promise<DevAiResult> {
   const prompt = buildDevAiPrompt(request);
-  let result = parseDevAiResult(await invoke(prompt), request.action);
+  const raw = await invoke(prompt);
+  let result: DevAiResult;
+  try {
+    result = parseDevAiResult(raw, request.action);
+  } catch (error) {
+    // 모델 응답을 못 읽었다 — 무엇을 냈는지(앞부분)가 오류 기록에 남아야 지시문·파서를 고친다
+    noteErrorLog({ context: { modelResponse: textHead(raw) } });
+    throw error;
+  }
   if (request.action === "ocr" && result.ocr) {
     const items = [nativeFromMetadata(result.ocr)];
     const supplement = async (instruction: string) =>
