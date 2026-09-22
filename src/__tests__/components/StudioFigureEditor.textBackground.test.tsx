@@ -195,3 +195,60 @@ describe("글자 배경색 — 여러 글자 공통 서식", () => {
     expect(sourceText(1).hasAttribute("data-text-bg")).toBe(false);
   });
 });
+
+/**
+ * «없음»과 흰색을 가른다 — 원장님 2026-09-22 «배경색이 흰색인지 없음인지 헷갈림. 없을때 구분 확실하게».
+ * 없음이면 칸에 빨간 사선(한글의 «색 없음»)이 서고 «없애기»는 누를 수 없다. 흰색을 고르면 사선이 없다.
+ */
+describe("색 없음 표시 — 빨간 사선", () => {
+  const slashed = (input: HTMLElement) =>
+    input.hasAttribute("data-none") &&
+    !!input.parentElement!.querySelector("[data-color-none]");
+
+  it("배경이 없으면 사선 · «없애기» 막힘 — 흰색을 고르면 사선이 사라진다", () => {
+    open();
+    pickNumber(2);
+    const clear = screen.getByRole("button", { name: "배경 없애기" });
+    expect(slashed(bgInput())).toBe(true);
+    expect(clear).toBeDisabled();
+    fireEvent.change(bgInput(), { target: { value: "#ffffff" } });
+    expect(sourceText(0)).toHaveAttribute("data-text-bg", "#ffffff");
+    expect(slashed(bgInput())).toBe(false);
+    expect(clear).toBeEnabled();
+    fireEvent.click(clear);
+    expect(slashed(bgInput())).toBe(true);
+  });
+
+  it("도형 채우기도 같다 — 없음이면 사선, 색을 주면 사라진다", () => {
+    open(
+      `<svg xmlns="${SVG_NS}" viewBox="0 0 480 360"><circle cx="100" cy="100" r="40" fill="none" stroke="#111111"/></svg>`,
+    );
+    pickNumber(1);
+    const fill = screen.getByLabelText("도형 채우기 색");
+    expect(slashed(fill)).toBe(true);
+    expect(
+      screen.getByRole("button", { name: "채우기 없애기" }),
+    ).toBeDisabled();
+    fireEvent.change(fill, { target: { value: "#ffffff" } });
+    expect(slashed(screen.getByLabelText("도형 채우기 색"))).toBe(false);
+    expect(screen.getByRole("button", { name: "채우기 없애기" })).toBeEnabled();
+  });
+
+  it("여러 글자 — 모두 없음이면 사선, 값이 갈리면 사선 없이 «여러 값»", () => {
+    open();
+    pickNumber(2);
+    pickNumber(3, true);
+    const panel = () => screen.getByRole("region", { name: "글자 공통 서식" });
+    const input = () => within(panel()).getByLabelText("고른 글자 배경색");
+    const clear = () =>
+      within(panel()).getByRole("button", { name: "배경 없애기" });
+    expect(slashed(input())).toBe(true);
+    expect(clear()).toBeDisabled();
+    pickNumber(2);
+    fireEvent.change(bgInput(), { target: { value: "#ffffff" } });
+    pickNumber(3, true);
+    expect(slashed(input())).toBe(false);
+    expect(within(panel()).getByText("여러 값")).toBeInTheDocument();
+    expect(clear()).toBeEnabled();
+  });
+});

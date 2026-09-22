@@ -9,7 +9,15 @@ import {
   useState,
 } from "react";
 import { createPortal } from "react-dom";
-import { ModalShell, Btn, formatToggleClass, isBoldWeight } from "./editorUi";
+import {
+  ModalShell,
+  Btn,
+  ColorInput,
+  formatToggleClass,
+  hexColor,
+  isBoldWeight,
+  noFill,
+} from "./editorUi";
 import styles from "./StudioFigureEditor.module.css";
 import type { StudioFigureEditorProps } from "./types";
 import { initialFigureSource, createFigureSaveResult } from "./figureDocument";
@@ -2322,20 +2330,17 @@ export function FigureEditor({
                         <button
                           type="button"
                           aria-label="배경 없애기"
+                          disabled={!hexColor(current.attrs[TEXT_BG_ATTR])}
                           onClick={() => change({ [TEXT_BG_ATTR]: "" })}
-                          className="underline text-muted"
+                          className="underline text-muted disabled:opacity-40"
                         >
                           없애기
                         </button>
-                        <input
-                          type="color"
+                        <ColorInput
                           aria-label="글자 배경색"
+                          none={!hexColor(current.attrs[TEXT_BG_ATTR])}
                           value={
-                            /^#[\da-f]{6}$/i.test(
-                              current.attrs[TEXT_BG_ATTR] ?? "",
-                            )
-                              ? current.attrs[TEXT_BG_ATTR]
-                              : "#ffffff"
+                            hexColor(current.attrs[TEXT_BG_ATTR]) ?? "#ffffff"
                           }
                           onChange={(e) =>
                             change({ [TEXT_BG_ATTR]: e.target.value })
@@ -2423,15 +2428,16 @@ export function FigureEditor({
                             <button
                               type="button"
                               aria-label="채우기 없애기"
+                              disabled={noFill(current.attrs.fill)}
                               onClick={() => change({ fill: "none" })}
-                              className="underline text-muted"
+                              className="underline text-muted disabled:opacity-40"
                             >
                               없애기
                             </button>
                           )}
-                          <input
-                            type="color"
+                          <ColorInput
                             aria-label="도형 채우기 색"
+                            none={noFill(current.attrs.fill)}
                             value={
                               /^#[\da-f]{6}$/i.test(current.attrs.fill ?? "")
                                 ? current.attrs.fill

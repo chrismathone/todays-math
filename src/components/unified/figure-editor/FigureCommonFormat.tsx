@@ -1,7 +1,13 @@
 import type { ReactNode } from "react";
 import type { figureObjects } from "./figureSvgEditing";
 import { TEXT_BG_ATTR } from "./figureTextBackground";
-import { formatToggleClass, isBoldWeight } from "./editorUi";
+import {
+  ColorInput,
+  formatToggleClass,
+  hexColor,
+  isBoldWeight,
+  noFill,
+} from "./editorUi";
 import { DEFAULT_FACE_FILL } from "./figureFaceSources";
 
 type FigureObject = ReturnType<typeof figureObjects>[number];
@@ -116,10 +122,11 @@ export function FigureCommonFormat({
               name={<>채우기 {fill === null && mixed}</>}
               clearLabel="채우기 없애기"
               onClear={() => onChange(ids(fillable), { fill: "none" })}
+              clearDisabled={fill !== null && noFill(fill)}
               color={
-                <input
-                  type="color"
+                <ColorInput
                   aria-label="고른 채우기 색"
+                  none={fill !== null && noFill(fill)}
                   value={colorOf(fill, "#ffffff")}
                   onChange={(e) =>
                     onChange(ids(fillable), { fill: e.target.value })
@@ -147,10 +154,11 @@ export function FigureCommonFormat({
             name={<>배경색 {textBackground === null && mixed}</>}
             clearLabel="배경 없애기"
             onClear={() => onChange(ids(texts), { [TEXT_BG_ATTR]: "" })}
+            clearDisabled={textBackground !== null && !hexColor(textBackground)}
             color={
-              <input
-                type="color"
+              <ColorInput
                 aria-label="고른 글자 배경색"
+                none={textBackground !== null && !hexColor(textBackground)}
                 value={colorOf(textBackground, "#ffffff")}
                 onChange={(e) =>
                   onChange(ids(texts), { [TEXT_BG_ATTR]: e.target.value })
@@ -273,10 +281,10 @@ function InnerFillRow({ ok, reason, color, onFill, onClear }: InnerFill) {
         clearDisabled={!on}
         onClear={onClear}
         color={
-          <input
-            type="color"
+          <ColorInput
             aria-label="고른 선 안쪽 채우기 색"
             disabled={!usable}
+            none={!on}
             value={colorOf(color ?? null, DEFAULT_FACE_FILL)}
             onChange={(e) => onFill(e.target.value)}
           />
