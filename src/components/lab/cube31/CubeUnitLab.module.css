@@ -321,6 +321,8 @@
   min-width: 0;
   min-height: 0;
   overflow: clip;
+  /* Keep the 3px focus outline and its 3px offset visible at the stage edge. */
+  overflow-clip-margin: 6px;
 }
 .activityContent {
   position: relative;
