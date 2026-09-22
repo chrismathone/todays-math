@@ -21,7 +21,9 @@ export function accountRouteAllowed(
     path === "/login" ||
     path === "/signup" ||
     path === "/approval-pending" ||
-    under(path, "/api/account")
+    under(path, "/api/account") ||
+    // 브라우저 오류 보고 — 승인 전·메뉴가 없는 계정의 화면 오류도 와야 한다(오류 기록 2026-09-22). 받는 쪽이 양을 묶는다
+    (method === "POST" && path === "/api/logs/client")
   )
     return true;
   if (account.approvalStatus !== "approved") return false;

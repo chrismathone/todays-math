@@ -33,11 +33,12 @@ import {
   toAccountStatus,
 } from "@/lib/learn/issueStudentAccount";
 import { getSessionUser } from "@/lib/session";
+import { withErrorLog } from "@/lib/errorLog/withErrorLog";
 
 type RouteContext = { params: Promise<{ id: string }> };
 
 // GET — 발급 칸: 퇴원 여부 + 계정 상태(없으면 account: null)
-export async function GET(_request: NextRequest, { params }: RouteContext) {
+async function handleGet(_request: NextRequest, { params }: RouteContext) {
   const session = await getSessionUser();
   if (!session) return unauthorizedError();
 
@@ -62,7 +63,7 @@ export async function GET(_request: NextRequest, { params }: RouteContext) {
 }
 
 // POST — 발급
-export async function POST(request: NextRequest, { params }: RouteContext) {
+async function handlePost(request: NextRequest, { params }: RouteContext) {
   const session = await getSessionUser();
   if (!session) return unauthorizedError();
   if (!sameOriginMutation(request)) return crossSiteError();
@@ -101,7 +102,7 @@ export async function POST(request: NextRequest, { params }: RouteContext) {
 }
 
 // PATCH — 끄기 · 켜기 (`disabledAt` 만 — 지우지 않는다)
-export async function PATCH(request: NextRequest, { params }: RouteContext) {
+async function handlePatch(request: NextRequest, { params }: RouteContext) {
   const session = await getSessionUser();
   if (!session) return unauthorizedError();
   if (!sameOriginMutation(request)) return crossSiteError();
@@ -124,3 +125,7 @@ export async function PATCH(request: NextRequest, { params }: RouteContext) {
     data: toAccountStatus(result.value, new Date(), session.id),
   });
 }
+
+export const GET = withErrorLog("/api/students/[id]/account", handleGet);
+export const POST = withErrorLog("/api/students/[id]/account", handlePost);
+export const PATCH = withErrorLog("/api/students/[id]/account", handlePatch);

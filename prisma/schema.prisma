@@ -189,6 +189,8 @@ model User {
   conceptLecturesCreated ConceptLecture[] @relation("conceptLectureCreator")
   /// 이 원장이 발급한 학생 로그인 계정 (D-124 ⑷) — 계정을 지우면 발급자 칸만 비워진다
   studentAccountsIssued  StudentAccount[] @relation("studentAccountIssuer")
+  /// 이 계정의 요청이 거절·실패한 기록 (오류 기록 표) — 계정을 지우면 기록은 남고 이 칸만 빈다
+  errorLogs              ErrorLog[]
 
   @@map("user")
 }
@@ -1356,4 +1358,60 @@ model ProblemReviewLog {
   @@index([createdAt(sort: Desc)])
   @@index([problemId])
   @@map("problem_review_log")
+}
+
+/// 오류 기록 — 사용자의 요청이 거절(4xx)·실패(5xx·예외)했을 때, 그리고 브라우저 쪽 오류를 한 줄씩 남긴다.
+///
+/// 🔴 감사 기록(`AccountAuditLog`)과 **섞지 않는다**(원장님 2026-09-22). 그쪽은 «누가 무엇을 했나»,
+///    이쪽은 «무엇이 왜 안 됐나» — 업그레이드 패치의 재료다(요청 요약 · zod 칸 · 엔진 거절 원문 · AI 시도 기록).
+/// 🔴 **90일 보관** — `/api/logs/purge/cron` 이 매일 지운다. 쓰기는 best effort(`src/lib/errorLog/record.ts`) —
+///    표가 없거나 DB 가 느려도 요청을 깨지 않는다.
+/// 지점 칸은 두지 않는다(D-136 트랙과 겹치지 않게) — `userId` 로 계정의 지점에 이어 붙인다.
+model ErrorLog {
+  id         String   @id @db.Uuid
+  createdAt  DateTime @default(now()) @map("created_at") @db.Timestamptz(6)
+  /// `server` | `client` — 계약: src/contracts/errorLog.contract.ts
+  source     String   @db.VarChar(10)
+  /// `api-rejected`(4xx) · `api-error`(5xx·예외) · `ai-rejected` · `client-exception` · `client-request-failed`
+  kind       String   @db.VarChar(40)
+  /// 서버는 라우트 틀(`/api/tests/[id]`), 브라우저는 그 화면의 경로
+  route      String?  @db.VarChar(300)
+  method     String?  @db.VarChar(10)
+  status     Int?
+  /// 작업 이름 — 작업실 AI 의 `figure-redraw` 같은 것
+  action     String?  @db.VarChar(60)
+  /// 화면에 나간 문구 그대로
+  message    String?
+  /// 개발자용 원문 — zod 이슈 경로·엔진 거절 사유·스택
+  detail     String?
+  /// 요청 요약 · AI 시도 기록 — 비밀 값은 걸러 싣는다(`sanitize.ts`)
+  context    Json     @default("{}") @db.JsonB
+  userId     String?  @map("user_id") @db.Uuid
+  /// 배포 커밋(`VERCEL_GIT_COMMIT_SHA`)
+  release    String?  @db.VarChar(64)
+  /// 플랫폼 요청 번호(`x-vercel-id`) — Vercel 실행 기록과 맞춰 볼 때
+  requestId  String?  @map("request_id") @db.VarChar(200)
+  durationMs Int?     @map("duration_ms")
+
+  user  User?          @relation(fields: [userId], references: [id], onDelete: SetNull)
+  /// AI 도형 재작도 · «요청대로 고치기» 실패 때의 크롭 이미지 — 목록 조회가 무거워지지 않게 따로 둔다
+  image ErrorLogImage?
+
+  @@index([createdAt(sort: Desc)])
+  @@index([route, createdAt(sort: Desc)])
+  @@index([action, createdAt(sort: Desc)])
+  @@index([userId, createdAt(sort: Desc)])
+  @@map("error_log")
+}
+
+/// 오류 기록에 딸린 원본 이미지(상한 2MB) — 기록을 지우면 같이 지워진다.
+model ErrorLogImage {
+  errorLogId String   @id @map("error_log_id") @db.Uuid
+  mimeType   String   @map("mime_type") @db.VarChar(40)
+  byteSize   Int      @map("byte_size")
+  data       Bytes
+
+  errorLog ErrorLog @relation(fields: [errorLogId], references: [id], onDelete: Cascade)
+
+  @@map("error_log_image")
 }

@@ -12,8 +12,9 @@ import {
 } from "@/lib/apiResponse";
 import { getSessionUser } from "@/lib/session";
 import { generateDraftTest } from "@/lib/tests/generateDraftTest";
+import { withErrorLog } from "@/lib/errorLog/withErrorLog";
 
-export async function POST(request: NextRequest) {
+async function handlePost(request: NextRequest) {
   const session = await getSessionUser();
   if (!session) return unauthorizedError();
 
@@ -28,3 +29,5 @@ export async function POST(request: NextRequest) {
     return jsonError("INTERNAL_ERROR", "출제 중 오류가 발생했습니다.", 500);
   }
 }
+
+export const POST = withErrorLog("/api/tests/generate", handlePost);

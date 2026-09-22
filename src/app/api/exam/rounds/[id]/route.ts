@@ -14,8 +14,9 @@ import { jsonOk, notFoundError, unauthorizedError } from "@/lib/apiResponse";
 import { toRoundDetail } from "@/lib/exam/composeRounds";
 import { loadVisibleRun } from "@/lib/exam/loadRounds";
 import { getSessionUser } from "@/lib/session";
+import { withErrorLog } from "@/lib/errorLog/withErrorLog";
 
-export async function GET(
+async function handleGet(
   _request: NextRequest,
   { params }: { params: Promise<{ id: string }> },
 ) {
@@ -35,3 +36,5 @@ export async function GET(
 
   return jsonOk(examRoundDetailResponseSchema, { data: detail });
 }
+
+export const GET = withErrorLog("/api/exam/rounds/[id]", handleGet);

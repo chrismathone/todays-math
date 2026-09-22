@@ -24,9 +24,10 @@ import { requireOwnedClass, requireOwnedStudentInClass } from "@/lib/ownership";
 import { getCurrentProgress, nextOrderIndex } from "@/lib/progressResolver";
 import { serializeProgress } from "@/lib/serializers";
 import { getSessionUser } from "@/lib/session";
+import { withErrorLog } from "@/lib/errorLog/withErrorLog";
 
 // POST /api/progress/advance — 현재 진도 소단원의 다음 소단원으로 1클릭 진행
-export async function POST(request: NextRequest) {
+async function handlePost(request: NextRequest) {
   const session = await getSessionUser();
   if (!session) return unauthorizedError();
 
@@ -114,3 +115,5 @@ export async function POST(request: NextRequest) {
     { status: 201 },
   );
 }
+
+export const POST = withErrorLog("/api/progress/advance", handlePost);

@@ -2,6 +2,7 @@ import { loadRecentClasses } from "@/lib/class/recentClasses";
 import { db } from "@/lib/db";
 import { ownedRowsWhere, ownedStudentsWhere } from "@/lib/ownerScope";
 import { authorizeStudio } from "@/lib/studio-ai/guard";
+import { withErrorLog } from "@/lib/errorLog/withErrorLog";
 
 const headers = { "Cache-Control": "private, no-store" };
 
@@ -9,7 +10,7 @@ const headers = { "Cache-Control": "private, no-store" };
  * A bounded, read-only home summary; no curriculum or student roster download.
  * Counts follow the owner scope (D-130 — an admin counts every class): src/lib/ownerScope.ts
  */
-export async function GET(request: Request) {
+async function handleGet(request: Request) {
   try {
     const access = await authorizeStudio(request);
     if (access.response) return access.response;
@@ -40,3 +41,5 @@ export async function GET(request: Request) {
     );
   }
 }
+
+export const GET = withErrorLog("/api/studio/overview", handleGet);

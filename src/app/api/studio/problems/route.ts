@@ -3,7 +3,8 @@ import {
   authorizeStudio,
   STUDIO_HEADERS as headers,
 } from "@/lib/studio-ai/guard";
-export async function GET(request: Request) {
+import { withErrorLog } from "@/lib/errorLog/withErrorLog";
+async function handleGet(request: Request) {
   try {
     const access = await authorizeStudio(request);
     if (access.response) return access.response;
@@ -23,3 +24,5 @@ export async function GET(request: Request) {
     );
   }
 }
+
+export const GET = withErrorLog("/api/studio/problems", handleGet);

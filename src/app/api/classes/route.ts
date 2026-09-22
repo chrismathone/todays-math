@@ -34,9 +34,10 @@ import { db } from "@/lib/db";
 import { ownedRowsWhere, type ScopeViewer } from "@/lib/ownerScope";
 import { serializeClass } from "@/lib/serializers";
 import { getSessionUser } from "@/lib/session";
+import { withErrorLog } from "@/lib/errorLog/withErrorLog";
 
 // POST /api/classes — 반 생성
-export async function POST(request: NextRequest) {
+async function handlePost(request: NextRequest) {
   const session = await getSessionUser();
   if (!session) return unauthorizedError();
 
@@ -101,7 +102,7 @@ export async function POST(request: NextRequest) {
 }
 
 // GET /api/classes — 소유 범위 안의 반 목록(페이지네이션, 관리자가 아니면 타 사용자 반 제외)
-export async function GET(request: NextRequest) {
+async function handleGet(request: NextRequest) {
   const session = await getSessionUser();
   if (!session) return unauthorizedError();
 
@@ -192,3 +193,6 @@ async function listWithOwners(
     meta: { page, pageSize, total: mineTotal + othersTotal },
   };
 }
+
+export const GET = withErrorLog("/api/classes", handleGet);
+export const POST = withErrorLog("/api/classes", handlePost);

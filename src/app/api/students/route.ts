@@ -15,9 +15,10 @@ import { db } from "@/lib/db";
 import { requireOwnedClass } from "@/lib/ownership";
 import { serializeStudent } from "@/lib/serializers";
 import { getSessionUser } from "@/lib/session";
+import { withErrorLog } from "@/lib/errorLog/withErrorLog";
 
 // POST /api/students — 학생 등록(classId + 이름만)
-export async function POST(request: NextRequest) {
+async function handlePost(request: NextRequest) {
   const session = await getSessionUser();
   if (!session) return unauthorizedError();
 
@@ -40,7 +41,7 @@ export async function POST(request: NextRequest) {
 }
 
 // GET /api/students?classId=... — 학생 목록 조회(classId 쿼리 필수)
-export async function GET(request: NextRequest) {
+async function handleGet(request: NextRequest) {
   const session = await getSessionUser();
   if (!session) return unauthorizedError();
 
@@ -69,3 +70,6 @@ export async function GET(request: NextRequest) {
     meta: { page, pageSize, total },
   });
 }
+
+export const GET = withErrorLog("/api/students", handleGet);
+export const POST = withErrorLog("/api/students", handlePost);

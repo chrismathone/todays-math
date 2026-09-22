@@ -50,6 +50,7 @@ import { db } from "@/lib/db";
 import { kstDateOf } from "@/lib/kstDate";
 import { requireOwnedStudent } from "@/lib/ownership";
 import { getSessionUser } from "@/lib/session";
+import { withErrorLog } from "@/lib/errorLog/withErrorLog";
 
 type RouteContext = { params: Promise<{ id: string }> };
 
@@ -75,7 +76,7 @@ const targetOf = (student: StudentRow) => ({
 });
 
 // GET — 학생 계획 · 지금 반 계획을 덮나 · 그 학생의 이번 주 예정
-export async function GET(request: NextRequest, { params }: RouteContext) {
+async function handleGet(request: NextRequest, { params }: RouteContext) {
   const g = await guard(params);
   if (!g.ok) return g.response;
 
@@ -110,7 +111,7 @@ export async function GET(request: NextRequest, { params }: RouteContext) {
 }
 
 // PUT — 넣기(201) · 덮어쓰기(200). 개별 진도 학생만.
-export async function PUT(request: NextRequest, { params }: RouteContext) {
+async function handlePut(request: NextRequest, { params }: RouteContext) {
   const g = await guard(params);
   if (!g.ok) return g.response;
 
@@ -130,7 +131,7 @@ export async function PUT(request: NextRequest, { params }: RouteContext) {
 }
 
 // PATCH — 일부 고치기 · 켜기/끄기. 개별 진도 학생만.
-export async function PATCH(request: NextRequest, { params }: RouteContext) {
+async function handlePatch(request: NextRequest, { params }: RouteContext) {
   const g = await guard(params);
   if (!g.ok) return g.response;
 
@@ -151,7 +152,7 @@ export async function PATCH(request: NextRequest, { params }: RouteContext) {
 }
 
 // DELETE — 학생 계획만 지운다(반 계획은 남는다). 개별 진도가 꺼진 학생에게도 받는다(정리).
-export async function DELETE(request: NextRequest, { params }: RouteContext) {
+async function handleDelete(request: NextRequest, { params }: RouteContext) {
   const g = await guard(params);
   if (!g.ok) return g.response;
 
@@ -161,3 +162,14 @@ export async function DELETE(request: NextRequest, { params }: RouteContext) {
   await db.progressPlan.delete({ where: { id: plan.id } });
   return jsonOk(deleteResponseSchema, { data: { id: plan.id } });
 }
+
+export const GET = withErrorLog("/api/students/[id]/progress-plan", handleGet);
+export const PUT = withErrorLog("/api/students/[id]/progress-plan", handlePut);
+export const PATCH = withErrorLog(
+  "/api/students/[id]/progress-plan",
+  handlePatch,
+);
+export const DELETE = withErrorLog(
+  "/api/students/[id]/progress-plan",
+  handleDelete,
+);

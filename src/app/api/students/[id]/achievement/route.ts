@@ -29,10 +29,11 @@ import {
 } from "@/lib/apiResponse";
 import { requireOwnedStudent } from "@/lib/ownership";
 import { getSessionUser } from "@/lib/session";
+import { withErrorLog } from "@/lib/errorLog/withErrorLog";
 
 type RouteContext = { params: Promise<{ id: string }> };
 
-export async function GET(request: NextRequest, { params }: RouteContext) {
+async function handleGet(request: NextRequest, { params }: RouteContext) {
   const session = await getSessionUser();
   if (!session) return unauthorizedError();
 
@@ -60,3 +61,5 @@ export async function GET(request: NextRequest, { params }: RouteContext) {
     data: collectAchievement(input),
   });
 }
+
+export const GET = withErrorLog("/api/students/[id]/achievement", handleGet);

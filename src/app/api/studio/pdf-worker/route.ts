@@ -4,8 +4,9 @@ import {
   authorizeStudio,
   STUDIO_HEADERS as headers,
 } from "@/lib/studio-ai/guard";
+import { withErrorLog } from "@/lib/errorLog/withErrorLog";
 export const runtime = "nodejs";
-export async function GET(request: Request) {
+async function handleGet(request: Request) {
   const access = await authorizeStudio(request);
   if (access.response) return access.response;
   const require = createRequire(`${process.cwd()}/package.json`);
@@ -16,3 +17,5 @@ export async function GET(request: Request) {
     headers: { ...headers, "Content-Type": "text/javascript; charset=utf-8" },
   });
 }
+
+export const GET = withErrorLog("/api/studio/pdf-worker", handleGet);

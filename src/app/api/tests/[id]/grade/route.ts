@@ -20,10 +20,11 @@ import {
 } from "@/lib/apiResponse";
 import { getSessionUser } from "@/lib/session";
 import { loadGradeSheet, saveGradingMarks } from "@/lib/testResults/gradeSheet";
+import { withErrorLog } from "@/lib/errorLog/withErrorLog";
 
 type RouteContext = { params: Promise<{ id: string }> };
 
-export async function GET(_request: NextRequest, { params }: RouteContext) {
+async function handleGet(_request: NextRequest, { params }: RouteContext) {
   const session = await getSessionUser();
   if (!session) return unauthorizedError();
 
@@ -34,7 +35,7 @@ export async function GET(_request: NextRequest, { params }: RouteContext) {
   return loadGradeSheet(session, idResult.data.id);
 }
 
-export async function POST(request: NextRequest, { params }: RouteContext) {
+async function handlePost(request: NextRequest, { params }: RouteContext) {
   const session = await getSessionUser();
   if (!session) return unauthorizedError();
 
@@ -57,3 +58,6 @@ export async function POST(request: NextRequest, { params }: RouteContext) {
     );
   }
 }
+
+export const GET = withErrorLog("/api/tests/[id]/grade", handleGet);
+export const POST = withErrorLog("/api/tests/[id]/grade", handlePost);

@@ -5,10 +5,11 @@ import {
   exportHeaders,
   readExportBody,
 } from "@/lib/export/request";
+import { withErrorLog } from "@/lib/errorLog/withErrorLog";
 
 export const runtime = "nodejs";
 export const maxDuration = 60;
-export async function POST(request: Request) {
+async function handlePost(request: Request) {
   const rejected = await authorizeExport(request);
   if (rejected) return rejected;
   try {
@@ -33,3 +34,5 @@ export async function POST(request: Request) {
     );
   }
 }
+
+export const POST = withErrorLog("/api/exports/hwpx", handlePost);

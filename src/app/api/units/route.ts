@@ -8,8 +8,9 @@ import {
 import { jsonOk, unauthorizedError } from "@/lib/apiResponse";
 import { db } from "@/lib/db";
 import { getSessionUser } from "@/lib/session";
+import { withErrorLog } from "@/lib/errorLog/withErrorLog";
 
-export async function GET() {
+async function handleGet() {
   const session = await getSessionUser();
   if (!session) return unauthorizedError();
 
@@ -28,3 +29,5 @@ export async function GET() {
   });
   return jsonOk(unitListResponseSchema, { data: units });
 }
+
+export const GET = withErrorLog("/api/units", handleGet);

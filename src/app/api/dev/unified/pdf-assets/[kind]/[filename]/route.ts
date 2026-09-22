@@ -1,6 +1,7 @@
 import { readFile, realpath } from "node:fs/promises";
 import { createRequire } from "node:module";
 import { dirname, extname, join } from "node:path";
+import { withErrorLog } from "@/lib/errorLog/withErrorLog";
 
 export const runtime = "nodejs";
 
@@ -28,7 +29,7 @@ function notFound() {
   return new Response(null, { status: 404, headers });
 }
 
-export async function GET(
+async function handleGet(
   _request: Request,
   context: { params: Promise<{ kind: string; filename: string }> },
 ) {
@@ -72,3 +73,8 @@ export async function GET(
     throw error;
   }
 }
+
+export const GET = withErrorLog(
+  "/api/dev/unified/pdf-assets/[kind]/[filename]",
+  handleGet,
+);

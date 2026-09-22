@@ -11,7 +11,7 @@
  *   - 그 밖(공개 라우트 — 가입 · 공유 그림 · 크론 …)이면 학생 응답이 **글자까지 같아야** 한다.
  *     학생은 «로그인 안 한 사람» 이상을 얻으면 안 된다. 어느 라우트가 공개인지 **손으로 적지 않는다** —
  *     로그인 안 한 요청의 응답이 정한다.
- *   - DB 는 **덫**이다: 학생 세션을 읽는 한 줄(`studentAccount.findUnique`)과 감사 기록 말고는 무엇을
+ *   - DB 는 **덫**이다: 학생 세션을 읽는 한 줄(`studentAccount.findUnique`)과 감사 기록·오류 기록 말고는 무엇을
  *     건드려도 던진다. 학생 요청이 로그인 안 한 요청보다 DB 를 더 건드리면 빨갛다.
  *
  * 세션은 진짜 Auth.js 가 만든다(helpers/authRequestContext.ts) — 학생 쿠키는 진짜 로그인이 싣는 그
@@ -68,6 +68,9 @@ vi.mock("@/lib/db", () => {
             if (name === "studentAccount" && method === "findUnique")
               return trap.account;
             if (name === "accountAuditLog") return { count: 0 };
+            // 오류 기록(withErrorLog 가 거절 응답 뒤에 쓴다) — 감사 기록과 같은 «서버가 남기는 기록»이다.
+            // 학생에게 나가는 데이터가 아니고, 응답 뒤 비동기라 덫에 잡히는 시점도 들쭉날쭉하다.
+            if (name === "errorLog") return { id: "logged" };
             throw new Error(`DB_TOUCHED ${name}.${method}`);
           };
         },
@@ -222,11 +225,13 @@ afterAll(() => {
   }
 });
 
-/** DB 덫의 흔적 — 학생 세션을 읽는 한 줄과 감사 기록은 빼고 센다 */
+/** DB 덫의 흔적 — 학생 세션을 읽는 한 줄과 감사 기록·오류 기록은 빼고 센다 */
 const touched = () =>
   trap.calls.filter(
     (c) =>
-      c !== "studentAccount.findUnique" && !c.startsWith("accountAuditLog."),
+      c !== "studentAccount.findUnique" &&
+      !c.startsWith("accountAuditLog.") &&
+      !c.startsWith("errorLog."),
   );
 
 async function callRoute(

@@ -25,8 +25,9 @@ import { lectureOpenToStudent } from "@/lib/learn/lectureAccess";
 import { loadStudentLectureScope } from "@/lib/learn/studentLectures";
 import { requireStudent } from "@/lib/learn/studentRequest";
 import { recordWatchReport } from "@/lib/learn/watchReport";
+import { withErrorLog } from "@/lib/errorLog/withErrorLog";
 
-export async function POST(request: NextRequest) {
+async function handlePost(request: NextRequest) {
   const gate = await requireStudent({ active: true });
   if (gate.response) return gate.response;
   if (!sameOriginMutation(request)) return crossSiteError();
@@ -78,3 +79,5 @@ export async function POST(request: NextRequest) {
     },
   });
 }
+
+export const POST = withErrorLog("/api/learn/watch", handlePost);

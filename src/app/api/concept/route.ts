@@ -10,8 +10,9 @@ import { conceptBoardResponseSchema } from "@/contracts/conceptAdmin.contract";
 import { authorizeAccount } from "@/lib/accountAccess";
 import { jsonOk } from "@/lib/apiResponse";
 import { loadConceptBoard } from "@/lib/concept/adminService";
+import { withErrorLog } from "@/lib/errorLog/withErrorLog";
 
-export async function GET(request: Request) {
+async function handleGet(request: Request) {
   const access = await authorizeAccount(request);
   if (access.response) return access.response;
   const account = access.account!;
@@ -21,3 +22,5 @@ export async function GET(request: Request) {
   res.headers.set("Cache-Control", "private, no-store");
   return res;
 }
+
+export const GET = withErrorLog("/api/concept", handleGet);

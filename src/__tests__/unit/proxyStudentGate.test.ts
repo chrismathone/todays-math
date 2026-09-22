@@ -154,6 +154,9 @@ const EXIT = [
   "POST /api/auth/signout",
 ];
 
+/** 브라우저 오류 보고 — 학생 화면의 오류도 모은다(원장님 2026-09-22). 보내기 한 메서드 · 한 경로뿐 */
+const REPORT = ["POST /api/logs/client"];
+
 /**
  * 수학 랩실 화면 읽기 — 누구든 연다(D-135 ⑼, 원장님 2026-09-21 «추천대로 가»). 랩실은 서버·DB 를 안 부른다.
  * 🔴 손으로 적는다 — 관문의 판정(`/lab` 과 그 아래)을 여기서 다시 쓰면 세는 쪽과 고치는 쪽이 같이 눈이 먼다.
@@ -202,6 +205,7 @@ describe("🔴 첫 비밀번호를 바꾼 학생 — 지나가는 것의 집합�
         `GET /api/learn/lectures/${UUID}`,
         "POST /api/learn/watch",
         "POST /api/learn/password",
+        ...REPORT,
         ...EXIT,
         ...brand,
         ...LAB,
@@ -246,6 +250,7 @@ describe("🔴 첫 로그인 학생 — 비밀번호 바꾸기 외에는 못 간
         "GET /learn/password",
         "HEAD /learn/password",
         "POST /api/learn/password",
+        ...REPORT,
         ...EXIT,
         ...brand,
         ...LAB,

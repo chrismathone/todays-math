@@ -1,11 +1,12 @@
 import { unitListResponseSchema } from "@/contracts/unit.contract";
 import { db } from "@/lib/db";
 import { getSessionUser } from "@/lib/session";
+import { withErrorLog } from "@/lib/errorLog/withErrorLog";
 
 const headers = { "Cache-Control": "private, no-store" };
 
 /** Bootstrap the embedded teaching area; never expose teaching data anonymously. */
-export async function GET() {
+async function handleGet() {
   if (process.env.NODE_ENV !== "development") {
     return new Response(null, { status: 404, headers });
   }
@@ -39,3 +40,5 @@ export async function GET() {
     );
   }
 }
+
+export const GET = withErrorLog("/api/dev/unified/teaching", handleGet);

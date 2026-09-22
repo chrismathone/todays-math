@@ -18,11 +18,12 @@ import { db } from "@/lib/db";
 import { requireOwnedClass } from "@/lib/ownership";
 import { serializeClass } from "@/lib/serializers";
 import { getSessionUser } from "@/lib/session";
+import { withErrorLog } from "@/lib/errorLog/withErrorLog";
 
 type RouteContext = { params: Promise<{ id: string }> };
 
 // GET /api/classes/{id} — 단건 조회
-export async function GET(request: NextRequest, { params }: RouteContext) {
+async function handleGet(request: NextRequest, { params }: RouteContext) {
   const session = await getSessionUser();
   if (!session) return unauthorizedError();
 
@@ -37,7 +38,7 @@ export async function GET(request: NextRequest, { params }: RouteContext) {
 }
 
 // PATCH /api/classes/{id} — 반 수정
-export async function PATCH(request: NextRequest, { params }: RouteContext) {
+async function handlePatch(request: NextRequest, { params }: RouteContext) {
   const session = await getSessionUser();
   if (!session) return unauthorizedError();
 
@@ -57,7 +58,7 @@ export async function PATCH(request: NextRequest, { params }: RouteContext) {
 }
 
 // DELETE /api/classes/{id} — 반 삭제 (cascade: 소속 학생/진도/시험지, schema.prisma 참조)
-export async function DELETE(request: NextRequest, { params }: RouteContext) {
+async function handleDelete(request: NextRequest, { params }: RouteContext) {
   const session = await getSessionUser();
   if (!session) return unauthorizedError();
 
@@ -71,3 +72,7 @@ export async function DELETE(request: NextRequest, { params }: RouteContext) {
   await db.class.delete({ where: { id } });
   return jsonOk(deleteResponseSchema, { data: { id } });
 }
+
+export const GET = withErrorLog("/api/classes/[id]", handleGet);
+export const PATCH = withErrorLog("/api/classes/[id]", handlePatch);
+export const DELETE = withErrorLog("/api/classes/[id]", handleDelete);

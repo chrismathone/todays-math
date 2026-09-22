@@ -32,9 +32,10 @@ import { PROBLEM_BANK_ORDER_BY } from "@/lib/problem/problemOrder";
 import { isPrismaErrorCode } from "@/lib/prismaErrors";
 import { serializeProblem } from "@/lib/serializers";
 import { getSessionUser } from "@/lib/session";
+import { withErrorLog } from "@/lib/errorLog/withErrorLog";
 
 // POST /api/problems — 문제 등록(source: manual/past_exam만 허용 — 계약이 강제)
-export async function POST(request: NextRequest) {
+async function handlePost(request: NextRequest) {
   const session = await getSessionUser();
   if (!session) return unauthorizedError();
 
@@ -94,7 +95,7 @@ export async function POST(request: NextRequest) {
 }
 
 // GET /api/problems — 공용 풀 + 본인 private (필터 + 페이지네이션, D-31)
-export async function GET(request: NextRequest) {
+async function handleGet(request: NextRequest) {
   const session = await getSessionUser();
   if (!session) return unauthorizedError();
 
@@ -281,3 +282,6 @@ export async function GET(request: NextRequest) {
     meta: { page, pageSize, total },
   });
 }
+
+export const GET = withErrorLog("/api/problems", handleGet);
+export const POST = withErrorLog("/api/problems", handlePost);

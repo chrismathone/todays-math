@@ -20,10 +20,11 @@ import {
   serializeTestResult,
 } from "@/lib/serializers";
 import { getSessionUser } from "@/lib/session";
+import { withErrorLog } from "@/lib/errorLog/withErrorLog";
 
 type RouteContext = { params: Promise<{ id: string; studentId: string }> };
 
-export async function GET(_request: NextRequest, { params }: RouteContext) {
+async function handleGet(_request: NextRequest, { params }: RouteContext) {
   const session = await getSessionUser();
   if (!session) return unauthorizedError();
 
@@ -61,3 +62,8 @@ export async function GET(_request: NextRequest, { params }: RouteContext) {
     },
   });
 }
+
+export const GET = withErrorLog(
+  "/api/tests/[id]/results/[studentId]",
+  handleGet,
+);

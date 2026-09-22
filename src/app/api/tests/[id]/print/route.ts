@@ -18,10 +18,11 @@ import { requireOwnedTest } from "@/lib/ownership";
 import { isPrismaErrorCode } from "@/lib/prismaErrors";
 import { serializeTest } from "@/lib/serializers";
 import { getSessionUser } from "@/lib/session";
+import { withErrorLog } from "@/lib/errorLog/withErrorLog";
 
 type RouteContext = { params: Promise<{ id: string }> };
 
-export async function POST(_request: NextRequest, { params }: RouteContext) {
+async function handlePost(_request: NextRequest, { params }: RouteContext) {
   const session = await getSessionUser();
   if (!session) return unauthorizedError();
 
@@ -60,3 +61,5 @@ export async function POST(_request: NextRequest, { params }: RouteContext) {
 
   return jsonError("CONFLICT", "확정된 테스트만 인쇄할 수 있습니다.", 409);
 }
+
+export const POST = withErrorLog("/api/tests/[id]/print", handlePost);

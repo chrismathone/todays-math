@@ -18,10 +18,11 @@ import { ownedRowsWhere } from "@/lib/ownerScope";
 import { requireOwnedTest } from "@/lib/ownership";
 import { serializeTest } from "@/lib/serializers";
 import { getSessionUser } from "@/lib/session";
+import { withErrorLog } from "@/lib/errorLog/withErrorLog";
 
 type RouteContext = { params: Promise<{ id: string }> };
 
-export async function POST(_request: NextRequest, { params }: RouteContext) {
+async function handlePost(_request: NextRequest, { params }: RouteContext) {
   const session = await getSessionUser();
   if (!session) return unauthorizedError();
 
@@ -49,3 +50,5 @@ export async function POST(_request: NextRequest, { params }: RouteContext) {
 
   return jsonOk(testConfirmResponseSchema, { data: serializeTest(updated) });
 }
+
+export const POST = withErrorLog("/api/tests/[id]/confirm", handlePost);

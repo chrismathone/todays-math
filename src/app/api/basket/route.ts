@@ -33,15 +33,16 @@ import { db } from "@/lib/db";
 import { readBasket } from "@/lib/basket/readBasket";
 import { problemIneligibleReason } from "@/lib/problemEligibility";
 import { getSessionUser } from "@/lib/session";
+import { withErrorLog } from "@/lib/errorLog/withErrorLog";
 
-export async function GET() {
+async function handleGet() {
   const session = await getSessionUser();
   if (!session) return unauthorizedError();
 
   return jsonOk(basketResponseSchema, { data: await readBasket(session.id) });
 }
 
-export async function POST(request: NextRequest) {
+async function handlePost(request: NextRequest) {
   const session = await getSessionUser();
   if (!session) return unauthorizedError();
 
@@ -104,7 +105,7 @@ export async function POST(request: NextRequest) {
   return jsonOk(basketResponseSchema, { data: await readBasket(session.id) });
 }
 
-export async function DELETE(request: NextRequest) {
+async function handleDelete(request: NextRequest) {
   const session = await getSessionUser();
   if (!session) return unauthorizedError();
 
@@ -125,3 +126,7 @@ export async function DELETE(request: NextRequest) {
 
   return jsonOk(basketResponseSchema, { data: await readBasket(session.id) });
 }
+
+export const GET = withErrorLog("/api/basket", handleGet);
+export const POST = withErrorLog("/api/basket", handlePost);
+export const DELETE = withErrorLog("/api/basket", handleDelete);

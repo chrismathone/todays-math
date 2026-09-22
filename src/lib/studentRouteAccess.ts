@@ -9,12 +9,14 @@
  *    생기면 **여기 적어야** 열린다 — 잊으면 닫히고, 그 편이 안전하다(routeAccess.ts 머리말과 같다).
  *    ⚠️ 서버 액션은 **자기 페이지 주소로 POST** 한다. 학생 화면에 서버 액션을 넣으면 그 페이지의
  *    POST 를 여기 적어야 한다(2026-08-25 검수 계정 로그아웃이 그렇게 막혔다). 지금 학생 쪽 쓰기는
- *    전부 `/api/learn/**` 라우트라 페이지 POST 는 하나도 열지 않았다.
+ *    `/api/learn/**` 라우트와 브라우저 오류 보고(`/api/logs/client`, 원장님 2026-09-22)뿐이라
+ *    페이지 POST 는 하나도 열지 않았다.
  *
  * 🔴 학생 세션은 `session.user` 가 **없다**(src/lib/auth.ts). 기존 관문은 `user.id` 가 없으면
  *    «로그인 안 한 사람»으로 보고 `/` · `/api/**` 를 열어 둔다 — 그래서 학생 갈래를 원장 갈래보다
  *    **먼저** 태운다. 여기서 막지 않으면 학생은 «로그인 안 한 사람»이 볼 수 있는 것을 다 본다.
  */
+import { CLIENT_LOG_ENDPOINT } from "@/contracts/errorLogValues";
 import { compileRoutePattern, normalizeRoutePathname } from "@/lib/routeAccess";
 
 export type LearnGate =
@@ -68,6 +70,11 @@ const ACTIVE_RULES: readonly Rule[] = [
   { methods: ["GET"], path: "/api/learn/lectures/{id}", why: "강의 하나" },
   { methods: ["POST"], path: "/api/learn/watch", why: "시청 기록" },
   { methods: ["POST"], path: "/api/learn/password", why: "비밀번호 바꾸기" },
+  {
+    methods: ["POST"],
+    path: CLIENT_LOG_ENDPOINT,
+    why: "브라우저 오류 보고 — 학생 화면의 오류도 모은다(원장님 2026-09-22). 보내기뿐, 읽는 것은 없다",
+  },
   ...EXIT_RULES,
   ...BRAND_RULES,
 ];
@@ -75,6 +82,11 @@ const ACTIVE_RULES: readonly Rule[] = [
 /** 🔴 첫 로그인(`mustChangePassword`) — 비밀번호 바꾸기 외에는 못 간다(브리프 §2.3) */
 const MUST_CHANGE_RULES: readonly Rule[] = [
   ...PASSWORD_RULES,
+  {
+    methods: ["POST"],
+    path: CLIENT_LOG_ENDPOINT,
+    why: "브라우저 오류 보고 — 비밀번호 바꾸기 화면의 오류도 와야 한다(원장님 2026-09-22)",
+  },
   ...EXIT_RULES,
   ...BRAND_RULES,
 ];

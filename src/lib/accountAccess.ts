@@ -1,12 +1,15 @@
 import "server-only";
 import { cache } from "react";
 import { auth } from "@/lib/auth";
+import { noteErrorLog } from "@/lib/errorLog/scope";
 import type { AccountAccess } from "@/contracts/accountAccess.contract";
 
 export const getAccountAccess = cache(
   async (): Promise<AccountAccess | null> => {
     const session = await auth();
     if (!session?.user?.id) return null;
+    // 이 요청이 거절·실패하면 오류 기록에 누구였는지 남긴다 — 요청 밖이면 아무 일도 안 한다
+    noteErrorLog({ userId: session.user.id });
     return {
       id: session.user.id,
       name: session.user.name ?? "",

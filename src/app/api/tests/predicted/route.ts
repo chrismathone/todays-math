@@ -25,8 +25,9 @@ import {
 } from "@/lib/apiResponse";
 import { generatePredictedPaper } from "@/lib/predictor/generatePredictedPaper";
 import { getSessionUser } from "@/lib/session";
+import { withErrorLog } from "@/lib/errorLog/withErrorLog";
 
-export async function POST(request: NextRequest) {
+async function handlePost(request: NextRequest) {
   const session = await getSessionUser();
   if (!session) return unauthorizedError();
 
@@ -76,3 +77,5 @@ export async function POST(request: NextRequest) {
     { status: 201 },
   );
 }
+
+export const POST = withErrorLog("/api/tests/predicted", handlePost);

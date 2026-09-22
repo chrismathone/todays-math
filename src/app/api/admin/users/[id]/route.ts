@@ -7,6 +7,7 @@ import {
   ALL_WORKSPACE_MENUS,
 } from "@/contracts/accountAccess.contract";
 import { auditData, recordAudit } from "@/lib/audit";
+import { withErrorLog } from "@/lib/errorLog/withErrorLog";
 
 type Context = { params: Promise<{ id: string }> };
 const failure = (message: string, status: number) =>
@@ -24,7 +25,7 @@ const failure = (message: string, status: number) =>
     },
     { status },
   );
-export async function GET(request: Request, context: Context) {
+async function handleGet(request: Request, context: Context) {
   const access = await authorizeAccount(request, true);
   if (access.response) return access.response;
   const { id } = await context.params;
@@ -48,7 +49,7 @@ export async function GET(request: Request, context: Context) {
       )
     : failure("사용자를 찾지 못했습니다.", 404);
 }
-export async function PATCH(request: Request, context: Context) {
+async function handlePatch(request: Request, context: Context) {
   const access = await authorizeAccount(request, true);
   if (access.response) return access.response;
   const { id } = await context.params;
@@ -135,3 +136,6 @@ export async function PATCH(request: Request, context: Context) {
         { headers: { "Cache-Control": "no-store" } },
       );
 }
+
+export const GET = withErrorLog("/api/admin/users/[id]", handleGet);
+export const PATCH = withErrorLog("/api/admin/users/[id]", handlePatch);

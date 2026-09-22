@@ -13,9 +13,17 @@ import {
   readDevAiBody,
   rejectDevAiRequest,
 } from "./guard";
+import {
+  badRequestDetail,
+  bodyShape,
+  describeFailure,
+  zodIssueDetail,
+} from "@/lib/errorLog/describe";
+import { noteErrorLog } from "@/lib/errorLog/scope";
+import { withErrorLog } from "@/lib/errorLog/withErrorLog";
 export const runtime = "nodejs";
 const enabled = () => process.env.DEV_AI_MODE === "subscription-cli";
-export async function GET(request: Request) {
+async function handleGet(request: Request) {
   const rejected = rejectDevAiRequest(request);
   if (rejected) return rejected;
   if (new URL(request.url).searchParams.get("mode") === "model-api")
@@ -48,7 +56,7 @@ export async function GET(request: Request) {
     );
   }
 }
-export async function POST(request: Request) {
+async function handlePost(request: Request) {
   const rejected = rejectDevAiRequest(request);
   if (rejected) return rejected;
   if (new URL(request.url).searchParams.get("mode") === "model-api")
@@ -65,8 +73,16 @@ export async function POST(request: Request) {
     );
   let input;
   try {
-    const parsed = DevAiRequestSchema.safeParse(await readDevAiBody(request));
-    if (!parsed.success)
+    const raw = await readDevAiBody(request);
+    const parsed = DevAiRequestSchema.safeParse(raw);
+    if (!parsed.success) {
+      // 운영 경로(handler.ts)와 같이 — 어느 칸이 왜(zod)와 본문의 모양만 오류 기록에
+      const shape = bodyShape(raw);
+      noteErrorLog({
+        ...(typeof shape.action === "string" ? { action: shape.action } : {}),
+        detail: zodIssueDetail(parsed.error),
+        context: { requestShape: shape },
+      });
       return Response.json(
         {
           error:
@@ -74,8 +90,10 @@ export async function POST(request: Request) {
         },
         { status: 400, headers },
       );
+    }
     input = parsed.data;
   } catch (error) {
+    noteErrorLog({ detail: badRequestDetail(error) });
     return Response.json(
       {
         error:
@@ -110,6 +128,7 @@ export async function POST(request: Request) {
       (error instanceof Error && error.name === "AbortError")
     )
       return new Response(null, { status: 499, headers });
+    noteErrorLog({ kind: "ai-rejected", detail: describeFailure(error) });
     return Response.json(
       {
         error:
@@ -123,3 +142,6 @@ export async function POST(request: Request) {
     );
   }
 }
+
+export const GET = withErrorLog("/api/dev/unified/ai", handleGet);
+export const POST = withErrorLog("/api/dev/unified/ai", handlePost);

@@ -1,11 +1,12 @@
 import { unitListResponseSchema } from "@/contracts/unit.contract";
 import { db } from "@/lib/db";
 import { authorizeStudio } from "@/lib/studio-ai/guard";
+import { withErrorLog } from "@/lib/errorLog/withErrorLog";
 
 const headers = { "Cache-Control": "private, no-store" };
 
 /** Bootstrap the embedded teaching area; never expose teaching data anonymously. */
-export async function GET(request: Request) {
+async function handleGet(request: Request) {
   try {
     const access = await authorizeStudio(request);
     if (access.response) return access.response;
@@ -31,3 +32,5 @@ export async function GET(request: Request) {
     );
   }
 }
+
+export const GET = withErrorLog("/api/studio/teaching", handleGet);
