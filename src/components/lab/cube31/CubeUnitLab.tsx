@@ -69,13 +69,16 @@ export default function CubeUnitLab({
     if (!list) return;
     const center = () => {
       const current = list.querySelector<HTMLElement>('[aria-current="step"]');
-      if (!current || !list.clientHeight) return;
+      if (!current) return;
+      // Old centering space must not set a minimum size after a shorter resize.
+      list.style.removeProperty("--nav-edge");
+      const height = list.clientHeight;
+      if (!height) return;
       list.style.setProperty(
         "--nav-edge",
-        Math.max(0, (list.clientHeight - current.offsetHeight) / 2) + "px",
+        Math.max(0, (height - current.offsetHeight) / 2) + "px",
       );
-      const top =
-        current.offsetTop - (list.clientHeight - current.offsetHeight) / 2;
+      const top = current.offsetTop - (height - current.offsetHeight) / 2;
       list.scrollTo({ top, behavior: "instant" });
     };
     center();
