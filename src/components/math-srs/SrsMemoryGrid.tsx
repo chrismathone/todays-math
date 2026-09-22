@@ -1,0 +1,32 @@
+import { CONCEPTS } from "@/lib/math-srs/concepts";
+import { estimatedRecall } from "@/lib/math-srs/memory";
+import type { ConceptMemory } from "@/lib/math-srs/types";
+import s from "./authenticated.module.css";
+
+export function SrsMemoryGrid({
+  memories,
+  now = new Date(),
+}: {
+  memories: ConceptMemory[];
+  now?: Date;
+}) {
+  return (
+    <ul className={s.memories}>
+      {CONCEPTS.map((concept) => {
+        const memory = memories.find((item) => item.conceptId === concept.id);
+        const assessed = memory && memory.attempts > 0;
+        const estimate = assessed ? estimatedRecall(memory, now) : null;
+        const recall = estimate === null ? null : Math.round(estimate);
+        return (
+          <li key={concept.id}>
+            <span>{concept.title}</span>
+            <strong>{recall === null ? "측정 전" : `${recall}%`}</strong>
+            <span className={s.memoryTrack} aria-hidden="true">
+              <span style={{ width: `${recall ?? 0}%` }} />
+            </span>
+          </li>
+        );
+      })}
+    </ul>
+  );
+}

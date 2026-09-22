@@ -71,6 +71,14 @@ export function LectureList({ now }: { now?: Date }) {
         student={state.status === "ready" ? state.data.student : null}
       />
       <main className={s.body}>
+        <Link href="/learn/math-srs" className={s.item}>
+          <span>
+            <b className={s.it}>매일 수학 복습</b>
+            <span className={s.meta}>
+              중1 일차방정식 · 하루 12문제로 기억 다지기 →
+            </span>
+          </span>
+        </Link>
         <h1 className={s.h}>오늘의 개념</h1>
         {state.status === "loading" ? (
           <p role="status" className={s.line}>

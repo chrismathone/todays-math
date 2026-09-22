@@ -1,5 +1,6 @@
 ﻿"use client";
 
+import Link from "next/link";
 import { useId, useState, type FormEvent } from "react";
 
 import { ProgressPlanFields } from "@/components/class/ProgressPlanFields";
@@ -71,6 +72,14 @@ export function ClassManage({ units }: ClassManageProps) {
           />
         </section>
         <section aria-labelledby="class-students-heading">
+          {selectedClass ? (
+            <Link
+              href={`/classes/${encodeURIComponent(selectedClass.id)}/math-srs`}
+              className="mb-3 inline-flex min-h-11 items-center text-[12.5px] font-bold text-g-blue underline underline-offset-4"
+            >
+              {selectedClass.name} 수학 복습 현황 →
+            </Link>
+          ) : null}
           <StudentList
             students={manage.students}
             selectedClass={selectedClass}
