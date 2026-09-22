@@ -76,6 +76,8 @@ export interface BankViewProps {
   initialFilters?: { q?: string; grade?: string };
   selected: StudioProblem[];
   onToggle: (problem: StudioProblem) => void;
+  /** Commit additions, replacements, and order changes as one selection update. */
+  onSelectionChange?: (problems: StudioProblem[]) => void;
   onExport: () => void;
 }
 
