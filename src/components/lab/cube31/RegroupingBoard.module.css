@@ -242,6 +242,8 @@
   padding: 4px 10px 10px;
 }
 .trade button {
+  position: relative;
+  isolation: isolate;
   width: 100%;
   min-height: 55px;
   padding: 7px 5px;
@@ -261,6 +263,73 @@
 .trade button:hover:enabled {
   background: #cdefe2;
   border-color: #78b8a6;
+}
+.trade button:enabled {
+  border-color: #43a58b;
+}
+.trade button:enabled::before,
+.trade button:enabled::after {
+  content: "";
+  position: absolute;
+  pointer-events: none;
+}
+.trade button:enabled::before {
+  inset: -1px;
+  border: 1px solid #60c7a4;
+  border-radius: inherit;
+  box-shadow:
+    0 0 0 2px #85dcb32b,
+    0 0 12px #60c7a45c,
+    inset 0 0 8px #ffffffa6;
+  opacity: 0.4;
+  animation: exchangeGlow 3.2s ease-in-out infinite;
+}
+.trade button:enabled::after {
+  top: -7px;
+  right: 15px;
+  width: 14px;
+  height: 14px;
+  background: #f5c363;
+  clip-path: polygon(
+    50% 0%,
+    62% 37%,
+    100% 50%,
+    62% 63%,
+    50% 100%,
+    38% 63%,
+    0% 50%,
+    38% 37%
+  );
+  opacity: 0.85;
+  transform: scale(0.8);
+  animation: exchangeTwinkle 3.2s ease-in-out infinite;
+}
+@keyframes exchangeGlow {
+  0%,
+  100% {
+    opacity: 0.3;
+  }
+  45% {
+    opacity: 0.95;
+  }
+  70% {
+    opacity: 0.5;
+  }
+}
+@keyframes exchangeTwinkle {
+  0%,
+  100% {
+    opacity: 0.25;
+    transform: scale(0.55) rotate(-12deg);
+  }
+  40% {
+    opacity: 1;
+    transform: scale(1.15) rotate(8deg);
+  }
+  70% {
+    opacity: 0.55;
+    transform: scale(0.75) rotate(0deg);
+  }
 }
 .tray {
   padding: 12px;
