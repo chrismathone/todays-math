@@ -1,6 +1,13 @@
 "use client";
 
-import { useId, useReducer, useRef, useState } from "react";
+import {
+  useEffect,
+  useId,
+  useLayoutEffect,
+  useReducer,
+  useRef,
+  useState,
+} from "react";
 import type { CSSProperties, DragEvent, PointerEvent } from "react";
 import {
   BLOCK_NAMES,
@@ -23,6 +30,7 @@ import type {
   RegroupingProblem,
 } from "@/lib/lab/cube31/manipulative";
 import styles from "./RegroupingBoard.module.css";
+import { createBlockMotion } from "./blockMotion";
 
 export type { RegroupingProblem } from "@/lib/lab/cube31/manipulative";
 
@@ -179,7 +187,11 @@ function Block({ place }: { place: Place }) {
   );
 }
 
-type MovingBlock = { place: Place; source: "tray" | "workspace" };
+type MovingBlock = {
+  place: Place;
+  source: "tray" | "workspace";
+  element?: HTMLElement;
+};
 type TouchDrag = { block: MovingBlock; x: number; y: number; moved: boolean };
 
 /** Mount with an activity key to start a fresh problem and completion lifecycle. */
@@ -204,6 +216,9 @@ export default function RegroupingBoard({
   const dragRef = useRef<MovingBlock | null>(null);
   const touchRef = useRef<TouchDrag | null>(null);
   const suppressClick = useRef(false);
+  const rootRef = useRef<HTMLElement>(null);
+  const currentBoard = useRef(session.board);
+  const [motion] = useState(createBlockMotion);
   const id = useId();
   const { board } = session;
   const required = notationRequirements(problem);
@@ -213,8 +228,29 @@ export default function RegroupingBoard({
   const b = toBlocks(problem.b);
   const hasMarks = required.marks.some((n) => n !== null);
 
-  function act(action: ManipulativeAction) {
-    if (!disabled) dispatch({ type: "action", action });
+  useEffect(() => motion.watchPreference(), [motion]);
+  useLayoutEffect(() => {
+    currentBoard.current = board;
+    if (rootRef.current) motion.play(rootRef.current);
+  }, [board, motion]);
+
+  function clearMotion() {
+    motion.clear();
+    dragRef.current = null;
+    touchRef.current = null;
+    suppressClick.current = false;
+    setDragging(null);
+  }
+
+  function act(action: ManipulativeAction, source?: HTMLElement) {
+    if (disabled) return;
+    const before = currentBoard.current;
+    const result = manipulate(problem, before, action);
+    if (result.changed && rootRef.current) {
+      motion.capture(rootRef.current, action, before, result.state, source);
+      currentBoard.current = result.state;
+    }
+    dispatch({ type: "action", action });
   }
 
   function finishDrop(
@@ -233,11 +269,14 @@ export default function RegroupingBoard({
       });
       return;
     }
-    act({
-      type: block.source === "tray" ? "move" : "remove",
-      place: block.place,
-      toPlace: place,
-    });
+    act(
+      {
+        type: block.source === "tray" ? "move" : "remove",
+        place: block.place,
+        toPlace: place,
+      },
+      block.element,
+    );
   }
 
   function nativeDrop(event: DragEvent<HTMLElement>, place: Place) {
@@ -255,7 +294,7 @@ export default function RegroupingBoard({
     suppressClick.current = false;
     if (disabled || event.pointerType === "mouse") return;
     touchRef.current = {
-      block,
+      block: { ...block, element: event.currentTarget },
       x: event.clientX,
       y: event.clientY,
       moved: false,
@@ -304,6 +343,7 @@ export default function RegroupingBoard({
           key={index}
           type="button"
           className={styles.blockButton}
+          data-block-index={index}
           aria-label={`${source === "tray" ? "옮기기" : "빼기"}: ${PLACE_NAMES[place]} ${BLOCK_NAMES[place]} ${index + 1}번`}
           disabled={
             disabled ||
@@ -315,11 +355,14 @@ export default function RegroupingBoard({
               suppressClick.current = false;
               return;
             }
-            act({ type: source === "tray" ? "move" : "remove", place });
+            act(
+              { type: source === "tray" ? "move" : "remove", place },
+              event.currentTarget,
+            );
           }}
           onDragStart={(event) => {
             touchRef.current = null;
-            const block = { place, source };
+            const block = { place, source, element: event.currentTarget };
             dragRef.current = block;
             setDragging(block);
             event.dataTransfer.effectAllowed = "move";
@@ -340,7 +383,11 @@ export default function RegroupingBoard({
           <Block place={place} />
         </button>
       ) : (
-        <span className={styles.staticBlock} key={index}>
+        <span
+          className={styles.staticBlock}
+          key={index}
+          data-block-index={index}
+        >
           <Block place={place} />
         </span>
       ),
@@ -349,6 +396,7 @@ export default function RegroupingBoard({
 
   return (
     <section
+      ref={rootRef}
       className={styles.board}
       aria-label="수 모형으로 덧셈과 뺄셈"
       id={id}
@@ -365,7 +413,10 @@ export default function RegroupingBoard({
           <button
             type="button"
             disabled={disabled || session.history.length === 0}
-            onClick={() => dispatch({ type: "undo" })}
+            onClick={() => {
+              clearMotion();
+              dispatch({ type: "undo" });
+            }}
           >
             한 번 되돌리기
           </button>
@@ -378,9 +429,7 @@ export default function RegroupingBoard({
                 !session.marks.some(Boolean))
             }
             onClick={() => {
-              dragRef.current = null;
-              touchRef.current = null;
-              setDragging(null);
+              clearMotion();
               dispatch({ type: "reset" });
             }}
           >
@@ -395,6 +444,7 @@ export default function RegroupingBoard({
       </p>
       <div
         className={styles.columns}
+        data-place-count={required.places.length}
         style={{ "--places": required.places.length } as CSSProperties}
       >
         {required.places.map((place) => (
@@ -425,7 +475,11 @@ export default function RegroupingBoard({
                   <small>개</small>
                 </strong>
               </div>
-              <div className={styles.blocks}>
+              <div
+                className={styles.blocks}
+                data-block-zone="workspace"
+                data-place={place}
+              >
                 {renderBlocks(
                   place,
                   board.workspace[place],
@@ -467,7 +521,11 @@ export default function RegroupingBoard({
                     <small>개</small>
                   </strong>
                 </div>
-                <div className={styles.trayBlocks}>
+                <div
+                  className={styles.trayBlocks}
+                  data-block-zone="tray"
+                  data-place={place}
+                >
                   {renderBlocks(place, board.tray[place], "tray", true)}
                 </div>
                 <button
@@ -499,7 +557,12 @@ export default function RegroupingBoard({
                 <div className={styles.removalProgress}>
                   <strong>{board.removed[place]}</strong> / {b[place]}개 뺐어요
                 </div>
-                <div className={styles.removedBlocks} aria-hidden="true">
+                <div
+                  className={styles.removedBlocks}
+                  aria-hidden="true"
+                  data-block-zone="removed"
+                  data-place={place}
+                >
                   {renderBlocks(
                     place,
                     board.removed[place],
