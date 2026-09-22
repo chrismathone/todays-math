@@ -495,11 +495,14 @@ export default function CubeUnitLab({
 function useActivityFocus(complete: boolean, modelOpen = false) {
   const stage = useRef<HTMLElement>(null);
   useEffect(() => {
-    const target = stage.current?.querySelector<HTMLElement>(
-      complete
-        ? "[data-continue-activity]"
-        : 'input:not(:disabled):not([type="hidden"]), button:not(:disabled)',
-    );
+    const target = complete
+      ? stage.current?.querySelector<HTMLElement>("[data-continue-activity]")
+      : (stage.current?.querySelector<HTMLElement>(
+          "[data-activity-answer]:not(:disabled)",
+        ) ??
+        stage.current?.querySelector<HTMLElement>(
+          'input:not(:disabled):not([type="hidden"]), button:not(:disabled)',
+        ));
     target?.focus({ preventScroll: true });
   }, [complete, modelOpen]);
   return stage;
@@ -541,6 +544,7 @@ function TaskStage({
       ref={stage}
       className={styles.stage}
       data-kind={task.kind}
+      data-experiment={task.kind === "question" && !!task.experiment}
       data-complete={complete}
       onKeyDownCapture={guardActivityEnter}
     >
@@ -549,11 +553,13 @@ function TaskStage({
         <span className={styles.activityTag}>
           {task.kind === "regroup"
             ? "직접 조작"
-            : task.kind === "repair"
-              ? "오류 찾기"
-              : task.kind === "puzzle"
-                ? "공간 탐험"
-                : "생각해 보기"}
+            : task.kind === "question" && task.experiment
+              ? "움직이며 발견하기"
+              : task.kind === "repair"
+                ? "오류 찾기"
+                : task.kind === "puzzle"
+                  ? "공간 탐험"
+                  : "생각해 보기"}
         </span>
         <h3>{task.title}</h3>
         <p>{task.instruction}</p>

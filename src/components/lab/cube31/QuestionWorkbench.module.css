@@ -1,0 +1,279 @@
+.board,
+.comparison {
+  min-width: 0;
+  color: #203d56;
+}
+.board {
+  padding: 18px;
+  border: 1px solid #d6e6f1;
+  border-radius: 18px;
+  background: linear-gradient(140deg, #eef7ff, #f2fcf7);
+}
+.prompt {
+  font-size: 14px;
+  line-height: 1.55;
+  margin: 0 0 16px;
+  color: #3b5e79;
+  font-weight: 650;
+}
+.alignment {
+  display: grid;
+  grid-template-columns: 150px minmax(0, 1fr);
+  gap: 20px;
+  align-items: center;
+  min-height: 215px;
+}
+.digitSource {
+  display: grid;
+  justify-items: center;
+  gap: 10px;
+}
+.digitSource > span {
+  font-size: 12px;
+  color: #58738d;
+}
+.digitSource small,
+.paletteArea small {
+  color: #607a8e;
+  font-size: 11px;
+  text-align: center;
+}
+.numberPiece {
+  width: 72px;
+  height: 86px;
+  border: 1px solid #ddb153;
+  border-radius: 13px;
+  background: #ffe3a1;
+  color: #674515;
+  font-size: 36px !important;
+  font-weight: 800 !important;
+  box-shadow:
+    0 5px 0 #dbb664,
+    0 8px 18px #8d67181a;
+  cursor: grab !important;
+}
+.numberPiece:active {
+  cursor: grabbing !important;
+}
+.placeGrid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 8px;
+}
+.placeColumn {
+  display: grid;
+  justify-items: center;
+  gap: 10px;
+}
+.placeColumn > span {
+  font-size: 12px;
+  color: #4e718c;
+}
+.placeColumn strong {
+  font-size: 28px;
+  font-weight: 750;
+}
+.placeColumn > button {
+  display: grid;
+  place-items: center;
+  width: 100%;
+  height: 74px;
+  border: 2px dashed #a8c5dc;
+  border-radius: 12px;
+  background: #ffffff8c;
+  color: #7495b0;
+  font-size: 26px;
+}
+.placeColumn > button[data-filled="true"] {
+  border: 2px solid #5486df;
+  color: #244dab;
+  background: #e5efff;
+}
+.placeColumn b {
+  font-size: 32px;
+  animation: land 220ms ease-out;
+}
+.placeColumn small {
+  font-size: 11px;
+  color: #63829a;
+}
+.liveEquation {
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  min-height: 58px;
+  padding: 10px 14px;
+  margin-top: 14px;
+  border-radius: 11px;
+  background: #ffffffbf;
+  border: 1px solid #d5e3eb;
+  font-size: 14px;
+}
+.liveEquation strong {
+  color: #2456c5;
+  font-size: 28px;
+  animation: land 220ms ease-out;
+}
+.liveEquation b {
+  font-variant-numeric: tabular-nums;
+  font-size: 22px;
+}
+.liveEquation[data-balanced="true"] {
+  color: #067d68;
+  background: #e1f7ed;
+  border-color: #87d9be;
+}
+.digitLab {
+  display: grid;
+  grid-template-columns: minmax(185px, 0.9fr) minmax(195px, 1.1fr);
+  gap: 28px;
+  align-items: center;
+  min-height: 205px;
+}
+.columnMath {
+  max-width: 280px;
+  width: 100%;
+  margin: auto;
+}
+.mathRow,
+.placeLabels {
+  display: grid;
+  grid-template-columns: 26px repeat(3, minmax(0, 1fr));
+  gap: 8px;
+  align-items: center;
+  text-align: center;
+  margin-bottom: 8px;
+}
+.placeLabels {
+  color: #63829a;
+  font-size: 12px;
+}
+.mathRow {
+  min-height: 50px;
+}
+.mathRow strong {
+  font-size: 29px;
+  font-weight: 750;
+}
+.mathRow > span {
+  font-size: 24px;
+}
+.mathRow[data-result="true"] {
+  padding-top: 10px;
+  border-top: 2px solid #8faac3;
+}
+.digitSlot {
+  height: 48px;
+  border: 2px dashed #9ab9dc;
+  color: #2254be;
+  background: #e7efff;
+  border-radius: 9px;
+  font-size: 26px !important;
+  font-weight: 750 !important;
+}
+.paletteArea {
+  display: grid;
+  gap: 10px;
+  justify-items: start;
+}
+.slotLabel {
+  font-size: 13px;
+  font-weight: 700;
+  color: #456782;
+}
+.digitPalette {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 8px;
+  width: 100%;
+}
+.digitPalette button {
+  height: 46px;
+  border: 1px solid #b6cedf;
+  border-radius: 9px;
+  background: #fff;
+  color: #315982;
+  font-size: 21px !important;
+  font-weight: 750 !important;
+  box-shadow: 0 3px 0 #c5d8e5;
+}
+.digitPalette button:active:enabled,
+.numberPiece:active:enabled {
+  transform: translateY(3px);
+  box-shadow: none;
+}
+.digitPalette button:hover:enabled {
+  background: #e5f2ff;
+  border-color: #629ae0;
+}
+.textButton {
+  border: 0;
+  background: transparent;
+  color: #53738d;
+  padding: 5px;
+  font-size: 12px !important;
+}
+.routeTabs {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 12px;
+  flex-wrap: wrap;
+}
+.routeTabs button {
+  flex: 1;
+  min-width: 100px;
+  border: 1px solid #c0d4e9;
+  border-radius: 10px;
+  padding: 8px 12px;
+  background: #fff;
+  color: #45658c;
+  font-size: 14px !important;
+  font-weight: 650 !important;
+}
+.board button:disabled,
+.comparison button:disabled {
+  opacity: 0.55;
+  cursor: default !important;
+}
+@keyframes land {
+  from {
+    transform: translateY(-8px) scale(0.92);
+    opacity: 0.5;
+  }
+  to {
+    transform: translateY(0) scale(1);
+    opacity: 1;
+  }
+}
+@media (max-width: 1000px) {
+  .alignment {
+    grid-template-columns: 100px minmax(0, 1fr);
+    gap: 12px;
+  }
+  .digitLab {
+    gap: 14px;
+  }
+}
+@media (max-width: 600px) {
+  .board {
+    padding: 12px;
+  }
+  .digitLab {
+    grid-template-columns: minmax(150px, 0.9fr) minmax(140px, 1.1fr);
+    gap: 12px;
+  }
+  .digitPalette {
+    gap: 5px;
+  }
+  .digitPalette button {
+    font-size: 18px !important;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .placeColumn b,
+  .liveEquation strong {
+    animation: none;
+  }
+}

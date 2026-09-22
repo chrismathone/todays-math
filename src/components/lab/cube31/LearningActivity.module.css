@@ -27,6 +27,89 @@
   border: 0;
 }
 
+.explorationActivity {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(220px, 27%);
+  align-items: start;
+  gap: 22px;
+}
+.responsePanel {
+  min-width: 0;
+  padding: 18px;
+  border-radius: 16px;
+  background: #f2f6fc;
+  border: 1px solid #dce6f3;
+}
+.responseTitle {
+  margin-bottom: 18px;
+  font-size: 13px;
+  font-weight: 750;
+  color: #415a7a;
+}
+.responseTitle span {
+  color: #3861da;
+  margin-right: 5px;
+}
+.responsePanel .choice {
+  font-size: 14px;
+  padding: 9px 10px;
+}
+.responsePanel .choices legend {
+  font-size: 13px;
+}
+.responsePanel .answers {
+  gap: 12px;
+}
+.responsePanel .answerLabel {
+  font-size: 14px;
+}
+.responsePanel .checkRow {
+  display: grid;
+  gap: 4px;
+  margin-top: 16px;
+  border-color: #d3e0ef;
+}
+.responsePanel .feedback,
+.responsePanel .success {
+  min-height: 22px;
+  font-size: 13px;
+}
+.keyboardHint {
+  color: #75849b;
+  font-size: 11px;
+  margin: 8px 0 0;
+}
+@media (max-width: 1000px) {
+  .explorationActivity {
+    grid-template-columns: minmax(0, 1fr) 220px;
+    gap: 14px;
+  }
+}
+@media (max-width: 760px) {
+  .explorationActivity {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 12px;
+  }
+  .responsePanel {
+    padding: 12px;
+  }
+  .responseTitle {
+    margin-bottom: 10px;
+  }
+  .responsePanel .choices {
+    grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+  }
+  .responsePanel .choices legend {
+    margin-bottom: 6px;
+  }
+  .responsePanel .checkRow {
+    grid-template-columns: auto minmax(0, 1fr);
+    align-items: center;
+    gap: 10px;
+    margin-top: 10px;
+  }
+}
+
 .activity button,
 .activity input {
   font: inherit;

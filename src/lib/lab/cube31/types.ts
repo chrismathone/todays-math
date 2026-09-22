@@ -1,3 +1,5 @@
+import type { CubeExperiment } from "./explorationTypes";
+
 export type CubeOperation = "add" | "subtract";
 
 export type CubeField = {
@@ -39,6 +41,7 @@ export type CubeTask = {
       choices?: CubeChoice[];
       correctChoice?: string;
       visual?: CubeVisual;
+      experiment?: CubeExperiment;
     }
   | {
       kind: "cards";

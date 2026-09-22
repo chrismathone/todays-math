@@ -1,4 +1,5 @@
 import type { CubeLesson, CubeTask, CubeOperation } from "./types";
+import { CUBE_EXPERIMENTS } from "./experiments";
 
 function model(
   id: string,
@@ -72,7 +73,7 @@ function why(
     explanation,
   };
 }
-export const CUBE_LESSONS: CubeLesson[] = [
+const LESSON_CONTENT: CubeLesson[] = [
   {
     id: "prepare",
     title: "수의 작업실",
@@ -740,6 +741,15 @@ export const CUBE_LESSONS: CubeLesson[] = [
     ],
   },
 ];
+export const CUBE_LESSONS: CubeLesson[] = LESSON_CONTENT.map((lesson) => ({
+  ...lesson,
+  tasks: lesson.tasks.map((task) =>
+    task.kind === "question"
+      ? { ...task, experiment: CUBE_EXPERIMENTS[task.id] }
+      : task,
+  ),
+}));
+
 export const CUBE_TASK_IDS = CUBE_LESSONS.flatMap((lesson) =>
   lesson.tasks.map((task) => task.id),
 );

@@ -8,6 +8,7 @@ import type {
   CubeVisual,
 } from "@/lib/lab/cube31/types";
 import styles from "./LearningActivity.module.css";
+import QuestionWorkbench from "./QuestionWorkbench";
 
 type ActivityTask = Exclude<CubeTask, { kind: "regroup" }>;
 type Callbacks = { onComplete: () => void; onAttempt?: () => void };
@@ -58,16 +59,39 @@ function ActivityForm({
   state,
   onCheck,
   checkLabel = "확인하기",
+  response,
 }: {
   children: ReactNode;
   state: ReturnType<typeof useCheck>;
   onCheck: () => void;
   checkLabel?: string;
+  response?: ReactNode;
 }) {
   const feedbackId = useId();
+  const checkRow = (
+    <div className={styles.checkRow}>
+      <button
+        className={styles.primary}
+        type="submit"
+        disabled={state.done}
+        aria-describedby={feedbackId}
+      >
+        {state.done ? "확인 완료" : checkLabel}
+      </button>
+      <p
+        id={feedbackId}
+        className={state.done ? styles.success : styles.feedback}
+        role="status"
+        aria-live="polite"
+        aria-atomic="true"
+      >
+        {state.feedback}
+      </p>
+    </div>
+  );
   return (
     <form
-      className={styles.activity}
+      className={`${styles.activity} ${response ? styles.explorationActivity : ""}`}
       onSubmit={(event) => {
         event.preventDefault();
         onCheck();
@@ -76,25 +100,22 @@ function ActivityForm({
       <fieldset className={styles.controls} disabled={state.done}>
         {children}
       </fieldset>
-      <div className={styles.checkRow}>
-        <button
-          className={styles.primary}
-          type="submit"
-          disabled={state.done}
-          aria-describedby={feedbackId}
-        >
-          {state.done ? "확인 완료" : checkLabel}
-        </button>
-        <p
-          id={feedbackId}
-          className={state.done ? styles.success : styles.feedback}
-          role="status"
-          aria-live="polite"
-          aria-atomic="true"
-        >
-          {state.feedback}
-        </p>
-      </div>
+      {response ? (
+        <section className={styles.responsePanel} aria-label="발견한 내용 확인">
+          <div className={styles.responseTitle}>
+            <span aria-hidden="true">✦</span> 발견한 내용을 적어요
+          </div>
+          <fieldset className={styles.controls} disabled={state.done}>
+            {response}
+          </fieldset>
+          {checkRow}
+          <p className={styles.keyboardHint}>
+            Enter로 확인 · 정답 뒤 Enter로 다음 활동
+          </p>
+        </section>
+      ) : (
+        checkRow
+      )}
     </form>
   );
 }
@@ -123,6 +144,7 @@ function AnswerInput({
           aria-label={suffix ? `${label} ${suffix}` : label}
           inputMode={numeric ? "numeric" : "text"}
           autoComplete="off"
+          data-activity-answer
           spellCheck={false}
           value={value}
           onChange={(event) => onChange(event.target.value)}
@@ -157,6 +179,7 @@ function Choices({
         >
           <input
             type="radio"
+            data-activity-answer
             name={name}
             value={choice.value}
             checked={value === choice.value}
@@ -265,9 +288,8 @@ function QuestionActivity({ task, ...callbacks }: KindProps<"question">) {
       problems.push("아직 응답할 내용이 없어요.");
     state.check(problems);
   }
-  return (
-    <ActivityForm state={state} onCheck={check}>
-      {task.visual ? <Visual visual={task.visual} /> : null}
+  const response = (
+    <>
       {task.choices?.length ? (
         <Choices
           label="알맞은 보기"
@@ -290,6 +312,32 @@ function QuestionActivity({ task, ...callbacks }: KindProps<"question">) {
           />
         ))}
       </div>
+    </>
+  );
+  return (
+    <ActivityForm
+      state={state}
+      onCheck={check}
+      response={task.experiment ? response : undefined}
+    >
+      {task.experiment ? (
+        <QuestionWorkbench
+          experiment={task.experiment}
+          fields={task.fields?.map(({ id, label }) => ({ id, label })) ?? []}
+          disabled={state.done}
+          values={values}
+          choice={choice}
+          onChoice={setChoice}
+          onValueChange={(id, value) =>
+            setValues((previous) => ({ ...previous, [id]: value }))
+          }
+        />
+      ) : (
+        <>
+          {task.visual ? <Visual visual={task.visual} /> : null}
+          {response}
+        </>
+      )}
     </ActivityForm>
   );
 }

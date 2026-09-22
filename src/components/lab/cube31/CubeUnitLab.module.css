@@ -416,6 +416,19 @@
 .taskTitle {
   padding-bottom: 0;
 }
+.stage[data-experiment="true"] {
+  background: linear-gradient(145deg, #ffffff 55%, #f5f9ff);
+}
+.stage[data-experiment="true"] .taskTitle {
+  padding-bottom: 6px;
+}
+.stage[data-experiment="true"] .activityContent {
+  padding-top: 6px;
+}
+.stage[data-experiment="true"] .activityTag {
+  background: #e1f5ef;
+  color: #067563;
+}
 .stage[data-kind="regroup"] {
   border: 0;
   padding: 0;
