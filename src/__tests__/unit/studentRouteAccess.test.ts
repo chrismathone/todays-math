@@ -23,6 +23,8 @@ describe("🔴 학생이 할 수 있는 것 전부 — 늘거나 넓어지면 �
       "GET /api/learn/lectures/{id}",
       "POST /api/learn/watch",
       "POST /api/learn/password",
+      // 학생 화면에서 난 오류도 모은다(원장님 2026-09-22) — 보내기 하나뿐, 읽는 것은 없다
+      "POST /api/logs/client",
       "POST /api/learn/logout",
       "GET /api/auth/session",
       "GET /api/auth/csrf",
@@ -34,10 +36,12 @@ describe("🔴 학생이 할 수 있는 것 전부 — 늘거나 넓어지면 �
     ]);
   });
 
-  it("🔴 첫 로그인(비밀번호를 아직 안 바꾼) 학생 — 비밀번호 바꾸기 · 나가기 · 세션뿐", () => {
+  it("🔴 첫 로그인(비밀번호를 아직 안 바꾼) 학생 — 비밀번호 바꾸기 · 나가기 · 세션 · 오류 보고뿐", () => {
     expect(STUDENT_MUST_CHANGE_CAPABILITIES).toStrictEqual([
       "GET|HEAD /learn/password",
       "POST /api/learn/password",
+      // 비밀번호 바꾸기 화면에서 난 오류도 와야 한다(원장님 2026-09-22)
+      "POST /api/logs/client",
       "POST /api/learn/logout",
       "GET /api/auth/session",
       "GET /api/auth/csrf",
@@ -186,6 +190,47 @@ describe("🔴 첫 로그인 — 비밀번호 바꾸기 외에는 못 간다 (�
     ] as const)
       expect(first(m, p), `${m} ${p}`).toStrictEqual({ kind: "allow" });
   });
+});
+
+describe("🔴 브라우저 오류 보고 — 학생에게 연 것은 POST /api/logs/client 한 줄뿐 (원장님 2026-09-22)", () => {
+  const states = [
+    ["첫 비밀번호를 바꾼 학생", false],
+    ["첫 로그인 학생", true],
+  ] as const;
+
+  it.each(states)("%s — 보고는 지나간다", (_, mustChange) => {
+    expect(
+      studentGateFor(mustChange, "POST", "/api/logs/client"),
+    ).toStrictEqual({ kind: "allow" });
+    // 끝의 빗금은 같은 주소다(관문의 경로 정규화)
+    expect(
+      studentGateFor(mustChange, "POST", "/api/logs/client/"),
+    ).toStrictEqual({ kind: "allow" });
+  });
+
+  it.each(states)(
+    "%s — 다른 메서드·옆 경로·그 아래는 막힌다(쌓인 기록을 읽거나 지우는 길은 없다)",
+    (_, mustChange) => {
+      for (const [m, p] of [
+        ["GET", "/api/logs/client"],
+        ["HEAD", "/api/logs/client"],
+        ["PUT", "/api/logs/client"],
+        ["PATCH", "/api/logs/client"],
+        ["DELETE", "/api/logs/client"],
+        ["GET", "/api/logs"],
+        ["POST", "/api/logs"],
+        ["POST", "/api/logs/clientx"],
+        ["POST", "/api/logs/client/x"],
+        ["GET", "/api/logs/purge/cron"],
+        ["POST", "/api/logs/purge/cron"],
+        ["POST", "/api/logs/purge"],
+      ] as const)
+        expect(studentGateFor(mustChange, m, p), `${m} ${p}`).toStrictEqual({
+          kind: "forbidden",
+          message: "학생 계정은 이 기능을 쓸 수 없습니다.",
+        });
+    },
+  );
 });
 
 describe("로그인 안 한 사람이 /learn 에 오면 (D-125 ⑷)", () => {

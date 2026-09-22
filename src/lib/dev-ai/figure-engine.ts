@@ -23,6 +23,7 @@ import {
 import { isEngineCapabilityRefusal } from "./figure-refusal";
 import { validDevAiSvg } from "./svg";
 import { buildFigureComparisonImage } from "./figure-comparison";
+import { noteErrorLog } from "@/lib/errorLog/scope";
 
 const slots = new ProcessSlots();
 /** renderFigureSpec 이 엔진 검증 실패에 붙이는 머리 — 이것만 사양을 고쳐 다시 그릴 값이 있다. */
@@ -66,6 +67,50 @@ export type FigureInference = (input: {
   phase: "generate" | "review";
 }) => Promise<string>;
 
+/**
+ * 도형 재작도 한 번의 **시도 기록** — 실패하면 오류 기록(`error_log.context.figureTrail`)에 실린다
+ * (원장님 2026-09-22 «수집된 로그로 업그레이드 패치 가능하게»). 성공하면 버린다. 화면에는 안 나간다.
+ * 2026-09-22 운영 422(`labels.val30.point conflicts with its key`)의 원문이 Vercel 실행 기록에만 있었던 까닭이다.
+ */
+export type FigureAttemptLog = {
+  attempt: number;
+  /** 이 시도의 지시문에 붙인 반박(앞 시도의 «엔진이 못 한다» 거절) */
+  refusal?: string;
+  /** 이 시도의 지시문에 되돌려 준 앞 시도의 사유(엔진 거절 · 원본 대조 지적) */
+  repairPrompt?: string;
+  /** 모델이 낸 것(앞부분) — 사양 JSON 이 여기 있다 */
+  modelOutput?: string;
+  modelOutputLength?: number;
+  /** 모델의 note(그리지 않겠다는 사유 등) */
+  note?: string;
+  /** 엔진 거절 원문 — 교정하며 다시 그릴 때마다 하나씩 */
+  engineErrors: string[];
+  /** 적용한 교정(`repairFigureSpec` 의 note · warning)과 그 교정을 부른 엔진 사유 */
+  repairs: { note: string; warning?: string; error: string }[];
+  /** 교정을 거친 뒤의 사양(앞부분) — 교정이 하나라도 있었을 때만 */
+  specAfterRepairs?: string;
+  /** 원본 대조 결과 */
+  review?: { passed: boolean; issues: string[] };
+  /** 원본 대조 응답을 못 읽었을 때 그 앞부분 */
+  reviewOutput?: string;
+  outcome:
+    | "pending"
+    | "unreadable"
+    | "declined"
+    | "rebutted"
+    | "engine-rejected"
+    | "engine-failed"
+    | "unsafe-svg"
+    | "review-unreadable"
+    | "review-failed"
+    | "rendered"
+    | "timeout"
+    | "error";
+  error?: string;
+  ms?: number;
+};
+const TRAIL_TEXT_MAX = 6000;
+
 /** 도형 한 장의 예산 — 칸을 얻은 뒤부터 잰다(결함 3, 2026-09-18). */
 export const FIGURE_BUDGET_MS = 240_000;
 /**
@@ -99,6 +144,14 @@ export async function redrawDevAiFigure(
         reasoningEffort: FIGURE_REASONING_EFFORT,
       });
     });
+  // 실패하면 오류 기록에 실린다 — 배열은 쓰는 때(실패한 뒤) 직렬화되므로 여기서 걸어 두고 채운다.
+  // 크롭 이미지도 같이(원장님 2026-09-22 — 상한 2MB 는 기록기가 본다).
+  const trail: FigureAttemptLog[] = [];
+  noteErrorLog({
+    action: "figure-redraw",
+    context: { figureTrail: trail },
+    image: request.imageDataUrl,
+  });
   const deadline = new AbortController();
   const cancel = () => deadline.abort();
   signal?.addEventListener("abort", cancel, { once: true });
@@ -145,15 +198,40 @@ export async function redrawDevAiFigure(
     let rebutted = false;
     for (let attempt = 0; attempt < 3; attempt++) {
       check();
+      const log: FigureAttemptLog = {
+        attempt,
+        ...(refusal ? { refusal } : {}),
+        ...(repair
+          ? { repairPrompt: repair.error.slice(0, TRAIL_TEXT_MAX) }
+          : {}),
+        engineErrors: [],
+        repairs: [],
+        outcome: "pending",
+      };
+      trail.push(log);
+      const started = Date.now();
+      const finish = (outcome: FigureAttemptLog["outcome"]) => {
+        log.outcome = outcome;
+        log.ms = Date.now() - started;
+      };
       const raw = await invoke({
         phase: "generate",
         prompt: buildFigureSpecPrompt(request, repair, refusal),
         imageDataUrl: request.imageDataUrl,
         signal: deadline.signal,
       });
+      log.modelOutput = raw.slice(0, TRAIL_TEXT_MAX);
+      if (raw.length > TRAIL_TEXT_MAX) log.modelOutputLength = raw.length;
       refusal = undefined; // 반박은 바로 다음 한 번에만 싣는다
       check();
-      const generated = parseFigureSpecResult(raw);
+      let generated: ReturnType<typeof parseFigureSpecResult>;
+      try {
+        generated = parseFigureSpecResult(raw);
+      } catch (error) {
+        finish("unreadable");
+        throw error;
+      }
+      if (generated.note) log.note = generated.note;
       if (!generated.spec) {
         if (
           !rebutted &&
@@ -162,8 +240,10 @@ export async function redrawDevAiFigure(
         ) {
           rebutted = true;
           refusal = generated.note;
+          finish("rebutted");
           continue;
         }
+        finish("declined");
         throw figureReasonError(
           generated.note || "도형 엔진으로 재현할 수 없습니다.",
         );
@@ -180,6 +260,7 @@ export async function redrawDevAiFigure(
         });
       let rendered = await render(spec);
       check();
+      if (!rendered.ok) log.engineErrors.push(rendered.error);
       // 25(2026-09-19 운영 로그): 치수 하나·라벨 하나·직각 표시 하나 때문에 그림 전체를 버렸다.
       // 기계적으로 고쳐지는 사유는 AI 를 다시 부르기 전에 고쳐 바로 다시 그리고, 사유가 가리키는 요소 빼기는
       // 마지막 시도에서만 한다(figure-repair.ts). 고친 그림도 아래 원본 대조를 거친다.
@@ -197,6 +278,11 @@ export async function redrawDevAiFigure(
         if (!fix) break;
         if (fix.dropped) dropped++;
         if (fix.warning) repaired.push(fix.warning);
+        log.repairs.push({
+          note: fix.note,
+          ...(fix.warning ? { warning: fix.warning } : {}),
+          error: rendered.error,
+        });
         // 조용히 고치지 않는다 — 원장님 화면에 안 적는 교정도 무엇을 고쳤는지 서버 기록에 남긴다(트랙 45)
         console.warn(
           `[도형 재작도] 엔진 거절을 사양 교정으로 풀었습니다: ${fix.note} (${rendered.error})`,
@@ -204,8 +290,16 @@ export async function redrawDevAiFigure(
         spec = fix.spec;
         rendered = await render(spec);
         check();
+        if (!rendered.ok) log.engineErrors.push(rendered.error);
       }
+      if (log.repairs.length)
+        log.specAfterRepairs = JSON.stringify(spec).slice(0, TRAIL_TEXT_MAX);
       if (!rendered.ok) {
+        finish(
+          rendered.error.startsWith(ENGINE_REJECTED)
+            ? "engine-rejected"
+            : "engine-failed",
+        );
         // Only a spec validation failure earns another inference. Missing
         // Python, sanitization failure, cancellation and timeouts terminate.
         if (attempt < 2 && rendered.error.startsWith(ENGINE_REJECTED)) {
@@ -221,10 +315,12 @@ export async function redrawDevAiFigure(
             )
           : new Error(`${rendered.error} 원본은 유지됩니다.`);
       }
-      if (rendered.svg.length > 500000 || !validDevAiSvg(rendered.svg))
+      if (rendered.svg.length > 500000 || !validDevAiSvg(rendered.svg)) {
+        finish("unsafe-svg");
         throw new FigureRedrawError(
           "도형 엔진의 정적 SVG 안전 검사를 통과하지 못했습니다. 원본은 유지됩니다.",
         );
+      }
       const warnings = [...generated.warnings];
       if (generated.note) warnings.push(generated.note);
       warnings.push(...repaired);
@@ -235,14 +331,22 @@ export async function redrawDevAiFigure(
         deadline.signal,
       );
       check();
-      const review = parseReview(
-        await invoke({
-          phase: "review",
-          prompt: buildFigureReviewPrompt(request, spec, rendered.svg),
-          imageDataUrl: comparison,
-          signal: deadline.signal,
-        }),
-      );
+      const reviewRaw = await invoke({
+        phase: "review",
+        prompt: buildFigureReviewPrompt(request, spec, rendered.svg),
+        imageDataUrl: comparison,
+        signal: deadline.signal,
+      });
+      let review: ReturnType<typeof parseReview>;
+      try {
+        review = parseReview(reviewRaw);
+      } catch (error) {
+        log.reviewOutput = reviewRaw.slice(0, TRAIL_TEXT_MAX);
+        finish("review-unreadable");
+        throw error;
+      }
+      log.review = { passed: review.passed, issues: review.issues };
+      finish(review.passed ? "rendered" : "review-failed");
       check();
       if (!review.passed && attempt < 2) {
         lastRender.issues = review.issues;
@@ -269,6 +373,12 @@ export async function redrawDevAiFigure(
       "도형 재작도에 실패했습니다. 원본은 유지됩니다.",
     );
   } catch (error) {
+    const last = trail.at(-1);
+    if (last?.outcome === "pending") {
+      last.outcome = timedOut ? "timeout" : "error";
+      last.error =
+        error instanceof Error ? error.message.slice(0, 500) : String(error);
+    }
     if (timedOut) {
       if (!lastRender)
         throw new FigureRedrawError(

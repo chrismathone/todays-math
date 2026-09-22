@@ -9,6 +9,7 @@ import { idParamSchema } from "@/contracts/common.contract";
 import { unauthorizedError, validationError } from "@/lib/apiResponse";
 import { getSessionUser } from "@/lib/session";
 import { replaceTestProblemAtSeq } from "@/lib/tests/replaceTestProblem";
+import { withErrorLog } from "@/lib/errorLog/withErrorLog";
 
 type RouteContext = { params: Promise<{ id: string; seq: string }> };
 
@@ -17,7 +18,7 @@ const seqParamSchema = z.coerce
   .int()
   .min(1, { error: "문항 번호가 올바르지 않습니다." });
 
-export async function PUT(_request: NextRequest, { params }: RouteContext) {
+async function handlePut(_request: NextRequest, { params }: RouteContext) {
   const session = await getSessionUser();
   if (!session) return unauthorizedError();
 
@@ -30,3 +31,5 @@ export async function PUT(_request: NextRequest, { params }: RouteContext) {
 
   return replaceTestProblemAtSeq(session, id, seqResult.data);
 }
+
+export const PUT = withErrorLog("/api/tests/[id]/problems/[seq]", handlePut);

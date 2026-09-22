@@ -14,10 +14,11 @@ import {
 import { authorizeAccount } from "@/lib/accountAccess";
 import { jsonError, jsonOk, validationError } from "@/lib/apiResponse";
 import { applyLectureAction } from "@/lib/concept/adminService";
+import { withErrorLog } from "@/lib/errorLog/withErrorLog";
 
 type Context = { params: Promise<{ id: string }> };
 
-export async function PATCH(request: Request, context: Context) {
+async function handlePatch(request: Request, context: Context) {
   const access = await authorizeAccount(request, true);
   if (access.response) return access.response;
   const id = idParamSchema.safeParse(await context.params);
@@ -36,3 +37,5 @@ export async function PATCH(request: Request, context: Context) {
     );
   return jsonOk(conceptLectureResponseSchema, { data: result.data });
 }
+
+export const PATCH = withErrorLog("/api/concept/lectures/[id]", handlePatch);

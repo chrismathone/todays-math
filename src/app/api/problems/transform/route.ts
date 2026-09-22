@@ -33,8 +33,9 @@ import { requireAccessibleProblem } from "@/lib/ownership";
 import { pickFamilyMain } from "@/lib/problem/familyMainProblem";
 import { getSessionUser } from "@/lib/session";
 import type { ProblemType } from "@/contracts/problem.contract";
+import { withErrorLog } from "@/lib/errorLog/withErrorLog";
 
-export async function POST(request: NextRequest) {
+async function handlePost(request: NextRequest) {
   const session = await getSessionUser();
   if (!session) return unauthorizedError();
 
@@ -162,3 +163,5 @@ export async function POST(request: NextRequest) {
     throw error;
   }
 }
+
+export const POST = withErrorLog("/api/problems/transform", handlePost);

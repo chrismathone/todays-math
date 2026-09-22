@@ -8,8 +8,9 @@ import { conceptUnitsResponseSchema } from "@/contracts/conceptAdmin.contract";
 import { authorizeAccount } from "@/lib/accountAccess";
 import { jsonOk } from "@/lib/apiResponse";
 import { loadConceptUnits } from "@/lib/concept/adminService";
+import { withErrorLog } from "@/lib/errorLog/withErrorLog";
 
-export async function GET(request: Request) {
+async function handleGet(request: Request) {
   const access = await authorizeAccount(request);
   if (access.response) return access.response;
   const data = await loadConceptUnits(access.account!.isAdmin);
@@ -17,3 +18,5 @@ export async function GET(request: Request) {
   res.headers.set("Cache-Control", "private, no-store");
   return res;
 }
+
+export const GET = withErrorLog("/api/concept/units", handleGet);

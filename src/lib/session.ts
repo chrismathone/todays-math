@@ -12,6 +12,7 @@
  * ```
  */
 import { auth } from "@/lib/auth";
+import { noteErrorLog } from "@/lib/errorLog/scope";
 
 export type SessionUser = {
   id: string;
@@ -28,6 +29,8 @@ export type SessionUser = {
 /** 현재 요청의 로그인 사용자를 반환한다. 미인증이면 null. */
 export async function getSessionUser(): Promise<SessionUser | null> {
   const session = await auth();
+  // 이 요청이 거절·실패하면 오류 기록에 누구였는지 남긴다(승인 전 계정도) — 요청 밖이면 아무 일도 안 한다
+  if (session?.user?.id) noteErrorLog({ userId: session.user.id });
   if (!session?.user?.id || session.user.approvalStatus !== "approved") {
     return null;
   }

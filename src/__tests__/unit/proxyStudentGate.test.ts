@@ -154,15 +154,22 @@ const EXIT = [
   "POST /api/auth/signout",
 ];
 
+/** 브라우저 오류 보고 — 학생 화면의 오류도 모은다(원장님 2026-09-22). 보내기 한 메서드 · 한 경로뿐 */
+const REPORT = ["POST /api/logs/client"];
+
 /**
  * 수학 랩실 화면 읽기 — 누구든 연다(D-135 ⑼, 원장님 2026-09-21 «추천대로 가»). 랩실은 서버·DB 를 안 부른다.
  * 🔴 손으로 적는다 — 관문의 판정(`/lab` 과 그 아래)을 여기서 다시 쓰면 세는 쪽과 고치는 쪽이 같이 눈이 먼다.
  *    새 랩실 화면이 생기면 아래 집합 견줌이 빨갛게 되어 여기 적어야 한다(그 편이 안전하다).
  */
-const LAB = ["/lab", `/lab/play/${UUID}`, "/lab/teacher"].flatMap((p) => [
-  `GET ${p}`,
-  `HEAD ${p}`,
-]);
+const LAB_PAGES = [
+  "/lab",
+  `/lab/play/${UUID}`,
+  "/lab/teacher",
+  // 큐브 3-1 개념 실험실(4d3429c1) — 같은 랩실 아래라 누구든 연다. 이 목록에 안 적혀 두 시험이 빨갰다(2026-09-22).
+  "/lab/cube-3-1",
+];
+const LAB = LAB_PAGES.flatMap((p) => [`GET ${p}`, `HEAD ${p}`]);
 
 beforeEach(() => {
   session.mockReset();
@@ -184,8 +191,7 @@ describe("모집단 — 파일 목록에서 뽑았다 (분모부터 검산)", ()
     expect(PAGES).toContain("/");
     expect(PAGES).toContain("/login");
     // 랩실 화면도 파일에서 뽑혔다 — 아래 «지나가는 집합»의 LAB 이 모집단에 실제로 있다.
-    for (const lab of ["/lab", `/lab/play/${UUID}`, "/lab/teacher"])
-      expect(PAGES, lab).toContain(lab);
+    for (const lab of LAB_PAGES) expect(PAGES, lab).toContain(lab);
   });
 });
 
@@ -202,6 +208,7 @@ describe("🔴 첫 비밀번호를 바꾼 학생 — 지나가는 것의 집합�
         `GET /api/learn/lectures/${UUID}`,
         "POST /api/learn/watch",
         "POST /api/learn/password",
+        ...REPORT,
         ...EXIT,
         ...brand,
         ...LAB,
@@ -246,6 +253,7 @@ describe("🔴 첫 로그인 학생 — 비밀번호 바꾸기 외에는 못 간
         "GET /learn/password",
         "HEAD /learn/password",
         "POST /api/learn/password",
+        ...REPORT,
         ...EXIT,
         ...brand,
         ...LAB,

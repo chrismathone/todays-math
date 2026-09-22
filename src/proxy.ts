@@ -10,7 +10,7 @@
  * 왜 관문 하나인가: 라우트마다 검사를 넣으면 **새 라우트에서 넣는 걸 잊는다.**
  * 그리고 잊었을 때 열려 버린다. 관문이 하나면 잊을 자리가 없다.
  */
-import { NextResponse } from "next/server";
+import { NextResponse, type NextRequest } from "next/server";
 
 import { auth } from "@/lib/auth";
 import { requestedCallbackUrl } from "@/lib/callbackUrl";
@@ -24,6 +24,8 @@ import {
   type LearnGate,
 } from "@/lib/studentRouteAccess";
 import type { AccountAccess } from "@/contracts/accountAccess.contract";
+import { CLIENT_LOG_ENDPOINT } from "@/contracts/errorLogValues";
+import { logRejectedResponse } from "@/lib/errorLog/withErrorLog";
 
 /** 학생 관문의 판정 → 응답. 막힌 API 는 403 **JSON**(화면용 되돌림을 fetch 가 파싱하다 죽는다). */
 function learnGateResponse(gate: LearnGate, url: URL): Response {
@@ -34,6 +36,35 @@ function learnGateResponse(gate: LearnGate, url: URL): Response {
     { error: { code: "FORBIDDEN", message: gate.message } },
     { status: 403 },
   );
+}
+
+/**
+ * 관문이 낸 **API 거절**도 오류 기록에 남긴다 — 라우트 틀(`withErrorLog`)은 관문 뒤에 있어 이 거절을 못 본다
+ * (원장님 2026-09-22 «거절되었을 때 로그를 전부»). 응답(문구·상태)은 그대로다. 화면 되돌림(307)은 거절이 아니다.
+ * 🔴 브라우저 오류를 받는 곳에 대한 거절은 기록하지 않는다 — 되먹임 고리 금지.
+ */
+function rejected(
+  req: NextRequest,
+  response: Response,
+  who: { userId?: string; student?: string } = {},
+): Response {
+  const { pathname } = req.nextUrl;
+  if (
+    response.status < 400 ||
+    !pathname.startsWith("/api/") ||
+    pathname === CLIENT_LOG_ENDPOINT
+  )
+    return response;
+  return logRejectedResponse({
+    route: pathname,
+    request: req,
+    response,
+    userId: who.userId,
+    context: {
+      stage: "proxy",
+      ...(who.student ? { student: who.student } : {}),
+    },
+  });
 }
 
 /**
@@ -61,9 +92,13 @@ export const proxy = auth(async (req) => {
    */
   const student = req.auth?.student;
   if (student)
-    return learnGateResponse(
-      studentGateFor(student.mustChangePassword, req.method, pathname),
-      req.nextUrl,
+    return rejected(
+      req,
+      learnGateResponse(
+        studentGateFor(student.mustChangePassword, req.method, pathname),
+        req.nextUrl,
+      ),
+      { student: student.accountId },
     );
   // 로그인 안 한 사람의 /learn — 원장님 /login 이 아니라 학생 로그인으로(D-125 ⑷). /learn 밖은 null.
   if (!req.auth?.user?.id) {
@@ -129,9 +164,11 @@ export const proxy = auth(async (req) => {
     const legacyDenied =
       !bypassLegacy && routeAccessFor(role, req.method, pathname) === "deny";
     // Record requested/denied operations without query strings, credentials or bodies.
+    // 브라우저 오류 보고(`/api/logs/`)도 뺀다 — 오류 한 번 보낼 때마다 «request» 한 줄이 쌓이면 안 된다
     if (
       !pathname.startsWith("/api/auth/") &&
       !pathname.startsWith("/api/account/") &&
+      !pathname.startsWith("/api/logs/") &&
       (pathname.startsWith("/api/") || !pathname.includes("."))
     )
       await recordAudit({
@@ -143,17 +180,21 @@ export const proxy = auth(async (req) => {
       });
     if (!allowed) {
       if (pathname.startsWith("/api/"))
-        return NextResponse.json(
-          {
-            error: {
-              code: "FORBIDDEN",
-              message:
-                account.approvalStatus !== "approved"
-                  ? "관리자의 가입 승인이 필요합니다."
-                  : "사용 권한이 없는 메뉴입니다.",
+        return rejected(
+          req,
+          NextResponse.json(
+            {
+              error: {
+                code: "FORBIDDEN",
+                message:
+                  account.approvalStatus !== "approved"
+                    ? "관리자의 가입 승인이 필요합니다."
+                    : "사용 권한이 없는 메뉴입니다.",
+              },
             },
-          },
-          { status: 403 },
+            { status: 403 },
+          ),
+          { userId: user.id },
         );
       return NextResponse.redirect(
         new URL(
@@ -165,14 +206,18 @@ export const proxy = auth(async (req) => {
     if (legacyDenied) {
       if (pathname.startsWith("/api/")) {
         // 화면용 리다이렉트를 API 에 주면 fetch 가 HTML 을 파싱하다 죽는다.
-        return NextResponse.json(
-          {
-            error: {
-              code: "FORBIDDEN",
-              message: "검수 전용 계정은 이 기능을 쓸 수 없습니다.",
+        return rejected(
+          req,
+          NextResponse.json(
+            {
+              error: {
+                code: "FORBIDDEN",
+                message: "검수 전용 계정은 이 기능을 쓸 수 없습니다.",
+              },
             },
-          },
-          { status: 403 },
+            { status: 403 },
+          ),
+          { userId: user.id },
         );
       }
       // 화면이면 검수 콘솔로 되돌린다 — 빈 「권한 없음」 화면보다 낫다.

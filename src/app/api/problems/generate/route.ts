@@ -24,6 +24,7 @@ import {
 import { db } from "@/lib/db";
 import { serializeProblem } from "@/lib/serializers";
 import { getSessionUser } from "@/lib/session";
+import { withErrorLog } from "@/lib/errorLog/withErrorLog";
 
 /**
  * 🔴 **실측하니 기본 제한을 넘는다.** 2026-08-26
@@ -41,7 +42,7 @@ import { getSessionUser } from "@/lib/session";
  */
 export const maxDuration = 300;
 
-export async function POST(request: NextRequest) {
+async function handlePost(request: NextRequest) {
   const session = await getSessionUser();
   if (!session) return unauthorizedError();
 
@@ -120,3 +121,5 @@ export async function POST(request: NextRequest) {
     throw error;
   }
 }
+
+export const POST = withErrorLog("/api/problems/generate", handlePost);

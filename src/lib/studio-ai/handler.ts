@@ -3,6 +3,12 @@ import { z } from "zod";
 import { STUDIO_API_PROVIDERS } from "@/lib/dev-ai/contracts";
 import { FigureRedrawError } from "@/lib/dev-ai/figure-spec";
 import { DevAiRequestSchema } from "@/lib/dev-ai/tasks";
+import {
+  badRequestDetail,
+  bodyShape,
+  describeFailure,
+} from "@/lib/errorLog/describe";
+import { noteErrorLog } from "@/lib/errorLog/scope";
 import { getModelApiStatus, StudioApiError } from "./api";
 import { executeStudioTask } from "./execute";
 import { readStudioAiBody, STUDIO_HEADERS as headers } from "./http";
@@ -44,10 +50,13 @@ export async function studioApiPost(request: Request, owner: string) {
   const deadlineAt = Date.now() + 240_000;
   const signal = AbortSignal.any([request.signal, timeout]);
   let action: string | undefined;
+  // 오류 기록(withErrorLog)이 실패했을 때만 싣는 메모 — 누가 불렀나
+  noteErrorLog({ userId: owner });
   try {
     let input, provider;
+    let raw: unknown;
     try {
-      const raw = await readStudioAiBody(request, signal);
+      raw = await readStudioAiBody(request, signal);
       const envelope = z
         .object({ provider: z.enum(STUDIO_API_PROVIDERS).default("auto") })
         .passthrough()
@@ -56,8 +65,16 @@ export async function studioApiPost(request: Request, owner: string) {
       // Provider is transport metadata; validation and prompt inputs stay shared.
       input = DevAiRequestSchema.parse({ ...envelope, provider: "codex" });
       action = input.action;
-    } catch {
+    } catch (error) {
       signal.throwIfAborted();
+      // 2026-09-22 «요청대로 고치기» 400 — 어느 칸이 왜 틀렸는지가 어디에도 안 남았다. 화면 문구는 그대로 두고
+      // 기록에만 zod 경로·문구와 본문의 모양(열쇠·형·크기 — 값 없이)을 싣는다.
+      const shape = bodyShape(raw);
+      noteErrorLog({
+        ...(typeof shape.action === "string" ? { action: shape.action } : {}),
+        detail: badRequestDetail(error),
+        context: { requestShape: shape },
+      });
       return Response.json(
         { error: "문항 입력과 이미지 크기를 확인해 주세요." },
         { status: 400, headers },
@@ -77,6 +94,8 @@ export async function studioApiPost(request: Request, owner: string) {
   } catch (error) {
     if (request.signal.aborted)
       return new Response(null, { status: 499, headers });
+    // AI 쪽 실패 — 모델·엔진의 거절, 응답을 못 읽음, 상류 API 실패, 시간 초과. 개발자용 원문은 기록에만.
+    noteErrorLog({ kind: "ai-rejected", detail: describeFailure(error) });
     if (timeout.aborted)
       return Response.json(
         { error: "AI 작업 시간이 초과되었습니다. 다시 시도해 주세요." },

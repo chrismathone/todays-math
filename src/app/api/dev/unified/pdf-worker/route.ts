@@ -1,7 +1,8 @@
 import { readFile } from "node:fs/promises";
 import { createRequire } from "node:module";
+import { withErrorLog } from "@/lib/errorLog/withErrorLog";
 
-export async function GET() {
+async function handleGet() {
   if (process.env.NODE_ENV !== "development")
     return new Response(null, { status: 404 });
   const require = createRequire(`${process.cwd()}/package.json`);
@@ -16,3 +17,5 @@ export async function GET() {
     },
   });
 }
+
+export const GET = withErrorLog("/api/dev/unified/pdf-worker", handleGet);

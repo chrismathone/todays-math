@@ -1,7 +1,8 @@
 import { authorizePrivate, privateHeaders } from "@/lib/privateWorkspace";
 import { pagination } from "@/lib/adminAccounts";
 import { db } from "@/lib/db";
-export async function GET(
+import { withErrorLog } from "@/lib/errorLog/withErrorLog";
+async function handleGet(
   request: Request,
   context: { params: Promise<{ id: string }> },
 ) {
@@ -39,3 +40,5 @@ export async function GET(
     { headers: privateHeaders },
   );
 }
+
+export const GET = withErrorLog("/api/admin/users/[id]/audit", handleGet);

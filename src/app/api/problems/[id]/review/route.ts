@@ -24,10 +24,11 @@ import { db } from "@/lib/db";
 import { requireAccessibleProblem } from "@/lib/ownership";
 import { serializeReviewLog } from "@/lib/serializers";
 import { getSessionUser } from "@/lib/session";
+import { withErrorLog } from "@/lib/errorLog/withErrorLog";
 
 type RouteContext = { params: Promise<{ id: string }> };
 
-export async function POST(request: NextRequest, { params }: RouteContext) {
+async function handlePost(request: NextRequest, { params }: RouteContext) {
   const session = await getSessionUser();
   if (!session) return unauthorizedError();
 
@@ -103,3 +104,5 @@ export async function POST(request: NextRequest, { params }: RouteContext) {
     { status: 201 },
   );
 }
+
+export const POST = withErrorLog("/api/problems/[id]/review", handlePost);

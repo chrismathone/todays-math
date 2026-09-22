@@ -12,8 +12,9 @@ import { recordAudit } from "@/lib/audit";
 import { signOut } from "@/lib/auth";
 import { crossSiteError } from "@/lib/learn/accountRoutes";
 import { getStudentSession } from "@/lib/learn/studentRequest";
+import { withErrorLog } from "@/lib/errorLog/withErrorLog";
 
-export async function POST(request: NextRequest) {
+async function handlePost(request: NextRequest) {
   const student = await getStudentSession();
   if (!student) return unauthorizedError();
   if (!sameOriginMutation(request)) return crossSiteError();
@@ -31,3 +32,5 @@ export async function POST(request: NextRequest) {
     data: { redirectTo: "/learn/login" },
   });
 }
+
+export const POST = withErrorLog("/api/learn/logout", handlePost);

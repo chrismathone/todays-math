@@ -44,6 +44,7 @@ import { ownedRowsWhere } from "@/lib/ownerScope";
 import { getSessionUser } from "@/lib/session";
 import { draftCapacityOf, loadCapacityRows } from "@/lib/tests/draftCapacity";
 import { loadLastTeachableUnitId } from "@/lib/daily/teachableBoundary";
+import { withErrorLog } from "@/lib/errorLog/withErrorLog";
 
 /** 두 갈래가 **같은 칸**을 읽어야 한다 — 한쪽만 빠지면 그 학생만 조용히 다르게 갈린다. */
 const STUDENT_SELECT = {
@@ -70,7 +71,7 @@ const PROGRESS_SELECT = {
 
 const isoDay = (value: Date): string => value.toISOString().slice(0, 10);
 
-export async function GET(request: NextRequest) {
+async function handleGet(request: NextRequest) {
   const session = await getSessionUser();
   if (!session) return unauthorizedError();
 
@@ -313,3 +314,5 @@ export async function GET(request: NextRequest) {
     },
   });
 }
+
+export const GET = withErrorLog("/api/tests/daily-review", handleGet);

@@ -13,10 +13,11 @@ import {
   serializePredictionRunDetail,
 } from "@/lib/predictor/predictionRunService";
 import { getSessionUser } from "@/lib/session";
+import { withErrorLog } from "@/lib/errorLog/withErrorLog";
 
 type RouteContext = { params: Promise<{ id: string }> };
 
-export async function GET(_request: NextRequest, { params }: RouteContext) {
+async function handleGet(_request: NextRequest, { params }: RouteContext) {
   const session = await getSessionUser();
   if (!session) return unauthorizedError();
 
@@ -31,3 +32,5 @@ export async function GET(_request: NextRequest, { params }: RouteContext) {
     data: serializePredictionRunDetail(owned.data),
   });
 }
+
+export const GET = withErrorLog("/api/predictions/[id]", handleGet);

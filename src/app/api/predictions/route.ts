@@ -26,8 +26,9 @@ import {
   runPrediction,
 } from "@/lib/predictor/predictionRunService";
 import { getSessionUser } from "@/lib/session";
+import { withErrorLog } from "@/lib/errorLog/withErrorLog";
 
-export async function POST(request: NextRequest) {
+async function handlePost(request: NextRequest) {
   const session = await getSessionUser();
   if (!session) return unauthorizedError();
 
@@ -68,7 +69,7 @@ const LIST_QUERY_KEYS = [
   "pageSize",
 ] as const;
 
-export async function GET(request: NextRequest) {
+async function handleGet(request: NextRequest) {
   const session = await getSessionUser();
   if (!session) return unauthorizedError();
 
@@ -92,3 +93,6 @@ export async function GET(request: NextRequest) {
     meta: { page, pageSize, total },
   });
 }
+
+export const GET = withErrorLog("/api/predictions", handleGet);
+export const POST = withErrorLog("/api/predictions", handlePost);

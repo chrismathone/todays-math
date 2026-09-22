@@ -5,9 +5,18 @@ import {
 } from "./figureSvgEditing";
 import {
   labelBackground,
+  labelBox,
   plainTextBackground,
+  plainTextBox,
   textBackgroundColor,
 } from "./figureTextBackground";
+import { elementMatrix, type Point } from "./figureEditGeometry";
+import {
+  LINE_GAP_ATTR,
+  applyLineGaps,
+  gapCandidates,
+  gapPolygon,
+} from "./figureMidLabel";
 
 /**
  * 조판하지 못한 글자(`<text>` 그대로)에 배경색이 있으면 — 조판한 라벨처럼 묶음(`<g>`)에 싸고 뒤에 사각형을 둔다.
@@ -41,11 +50,19 @@ export async function typesetFigureSvg(
   const nodes = [...doc.querySelectorAll("text")].filter(
     (node) => !node.closest("defs,clipPath,mask,marker,pattern"),
   );
+  // «뒤 선 끊기» 글자(치수선 가운데 글자) — 구멍을 낼 선은 조판 전에 원문에서 고르고, 구멍은 글자 상자로.
+  const candidates = gapCandidates(doc);
+  const gaps: Point[][] = [];
   if (nodes.length) {
     const { typesetLabel, placeLabel } = await import("./mathjaxLabel");
     for (const node of nodes) {
       const text = node.getAttribute("data-mj") ?? node.textContent ?? "";
       const background = textBackgroundColor(node);
+      // 글자 좌표 → 그림 좌표 — 조판이 글자를 묶음으로 바꾸기 전에 읽는다.
+      const gapMatrix = node.hasAttribute(LINE_GAP_ATTR)
+        ? elementMatrix(node)
+        : null;
+      if (gapMatrix) gaps.push(gapPolygon(plainTextBox(node), gapMatrix));
       const weight = node.getAttribute("font-weight") ?? "400";
       const laid = typesetLabel(
         text,
@@ -89,8 +106,12 @@ export async function typesetFigureSvg(
       const wrapper = doc.createElementNS(SVG_NS, "g");
       for (const child of [...parsed.documentElement.childNodes])
         wrapper.append(doc.importNode(child, true));
-      const label = background && wrapper.querySelector("[data-label]");
-      if (label) wrapper.prepend(labelBackground(doc, label, background));
+      const placed = wrapper.querySelector("[data-label]");
+      // 조판했으면 어림 대신 조판한 상자로 구멍을 바꿔 낸다.
+      if (gapMatrix && placed)
+        gaps[gaps.length - 1] = gapPolygon(labelBox(placed), gapMatrix);
+      if (background && placed)
+        wrapper.prepend(labelBackground(doc, placed, background));
       if (node.hasAttribute("transform"))
         wrapper.setAttribute("transform", node.getAttribute("transform")!);
       if (preserveObjectIds && node.hasAttribute("data-object-id"))
@@ -101,6 +122,7 @@ export async function typesetFigureSvg(
       node.replaceWith(wrapper);
     }
   }
+  applyLineGaps(doc, candidates, gaps);
   const rendered = new XMLSerializer().serializeToString(doc.documentElement);
   return preserveObjectIds ? rendered : cleanFigureForSave(rendered);
 }

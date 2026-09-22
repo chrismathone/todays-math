@@ -17,8 +17,9 @@ import { assembleLearnList } from "@/lib/learn/learnList";
 import { lectureOpenToStudent } from "@/lib/learn/lectureAccess";
 import { loadStudentLectureScope } from "@/lib/learn/studentLectures";
 import { requireStudent } from "@/lib/learn/studentRequest";
+import { withErrorLog } from "@/lib/errorLog/withErrorLog";
 
-export async function GET() {
+async function handleGet() {
   const gate = await requireStudent({ active: true });
   if (gate.response) return gate.response;
 
@@ -64,3 +65,5 @@ export async function GET() {
     }),
   });
 }
+
+export const GET = withErrorLog("/api/learn/lectures", handleGet);

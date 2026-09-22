@@ -26,9 +26,10 @@ import { requireOwnedClass, requireOwnedStudentInClass } from "@/lib/ownership";
 import { getCurrentProgress } from "@/lib/progressResolver";
 import { serializeProgress } from "@/lib/serializers";
 import { getSessionUser } from "@/lib/session";
+import { withErrorLog } from "@/lib/errorLog/withErrorLog";
 
 // POST /api/progress — 진도 기록(반 전체 또는 개별 학생, 이력 누적)
-export async function POST(request: NextRequest) {
+async function handlePost(request: NextRequest) {
   const session = await getSessionUser();
   if (!session) return unauthorizedError();
 
@@ -70,7 +71,7 @@ export async function POST(request: NextRequest) {
 }
 
 // GET /api/progress?classId=&studentId= — 현재 진도 조회(개별 우선 적용)
-export async function GET(request: NextRequest) {
+async function handleGet(request: NextRequest) {
   const session = await getSessionUser();
   if (!session) return unauthorizedError();
 
@@ -135,3 +136,6 @@ export async function GET(request: NextRequest) {
 
   return jsonOk(progressResponseSchema, { data: current });
 }
+
+export const GET = withErrorLog("/api/progress", handleGet);
+export const POST = withErrorLog("/api/progress", handlePost);

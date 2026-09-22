@@ -1,3 +1,4 @@
+import { reportClientError, serverLogged } from "@/lib/errorLog/clientReporter";
 import { STUDIO_AI_TOO_LARGE } from "@/lib/studio-ai/limits";
 
 /**
@@ -49,7 +50,20 @@ function aiFailureDetail(body: unknown) {
     : undefined;
 }
 
-/** 성공이면 JSON 객체를, 아니면 사람 문구의 Error 를 던진다. 파서 오류는 밖으로 안 나간다. */
+const pathOf = (url: string) => {
+  try {
+    return new URL(url).pathname;
+  } catch {
+    return "";
+  }
+};
+
+/**
+ * 성공이면 JSON 객체를, 아니면 사람 문구의 Error 를 던진다. 파서 오류는 밖으로 안 나간다.
+ *
+ * 실패는 오류 기록으로도 보낸다(원장님 2026-09-22) — **서버가 기록하지 못한 것만**: 플랫폼이 먼저 자른 413·504,
+ * 게이트웨이 HTML, 로그인 화면이 온 200. 서버가 기록했으면 응답에 기록 번호 머리가 있다. 화면 문구는 그대로다.
+ */
 export async function readAiJson(
   response: Response,
 ): Promise<Record<string, unknown>> {
@@ -61,12 +75,25 @@ export async function readAiJson(
     } catch {
       body = undefined;
     }
-  if (!response.ok)
-    throw new AiRequestError(
-      aiFailureMessage(response.status, body),
-      aiFailureDetail(body),
-    );
-  if (!body || typeof body !== "object" || Array.isArray(body))
+  if (!response.ok) {
+    const message = aiFailureMessage(response.status, body);
+    if (!serverLogged(response))
+      reportClientError({
+        kind: "client-request-failed",
+        message,
+        detail: text.slice(0, 500) || undefined,
+        request: { path: pathOf(response.url), status: response.status },
+      });
+    throw new AiRequestError(message, aiFailureDetail(body));
+  }
+  if (!body || typeof body !== "object" || Array.isArray(body)) {
+    reportClientError({
+      kind: "client-request-failed",
+      message: AI_RESPONSE_UNREADABLE,
+      detail: text.slice(0, 500) || undefined,
+      request: { path: pathOf(response.url), status: response.status },
+    });
     throw new Error(AI_RESPONSE_UNREADABLE);
+  }
   return body as Record<string, unknown>;
 }

@@ -25,10 +25,11 @@ import {
 import { db } from "@/lib/db";
 import { saveManualScores } from "@/lib/predictor/persistPredictedPaper";
 import { getSessionUser } from "@/lib/session";
+import { withErrorLog } from "@/lib/errorLog/withErrorLog";
 
 type RouteContext = { params: Promise<{ id: string }> };
 
-export async function PATCH(request: NextRequest, { params }: RouteContext) {
+async function handlePatch(request: NextRequest, { params }: RouteContext) {
   const session = await getSessionUser();
   if (!session) return unauthorizedError();
 
@@ -80,3 +81,5 @@ export async function PATCH(request: NextRequest, { params }: RouteContext) {
     },
   });
 }
+
+export const PATCH = withErrorLog("/api/tests/[id]/scores", handlePatch);

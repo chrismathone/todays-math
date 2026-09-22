@@ -18,8 +18,9 @@ import {
   loadUnitLectures,
   registerLectureFromMeta,
 } from "@/lib/concept/adminService";
+import { withErrorLog } from "@/lib/errorLog/withErrorLog";
 
-export async function GET(request: Request) {
+async function handleGet(request: Request) {
   const access = await authorizeAccount(request);
   if (access.response) return access.response;
   const query = conceptUnitLecturesQuerySchema.safeParse(
@@ -39,7 +40,7 @@ export async function GET(request: Request) {
   return res;
 }
 
-export async function POST(request: Request) {
+async function handlePost(request: Request) {
   const access = await authorizeAccount(request, true);
   if (access.response) return access.response;
   const parsed = conceptRegisterRequestSchema.safeParse(
@@ -63,3 +64,6 @@ export async function POST(request: Request) {
     { status: 201 },
   );
 }
+
+export const GET = withErrorLog("/api/concept/lectures", handleGet);
+export const POST = withErrorLog("/api/concept/lectures", handlePost);

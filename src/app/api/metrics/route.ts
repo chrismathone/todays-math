@@ -19,8 +19,9 @@ import {
 import { ownedRowsWhere } from "@/lib/ownerScope";
 import { serializeTest } from "@/lib/serializers";
 import { getSessionUser } from "@/lib/session";
+import { withErrorLog } from "@/lib/errorLog/withErrorLog";
 
-export async function GET(request: NextRequest) {
+async function handleGet(request: NextRequest) {
   const session = await getSessionUser();
   if (!session) return unauthorizedError();
 
@@ -48,3 +49,5 @@ export async function GET(request: NextRequest) {
     data: computeWeeklyMetrics(rows.map(serializeTest), window),
   });
 }
+
+export const GET = withErrorLog("/api/metrics", handleGet);

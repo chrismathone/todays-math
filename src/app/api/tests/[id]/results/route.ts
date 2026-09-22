@@ -11,10 +11,11 @@ import { db } from "@/lib/db";
 import { requireOwnedTest } from "@/lib/ownership";
 import { serializeTestResult } from "@/lib/serializers";
 import { getSessionUser } from "@/lib/session";
+import { withErrorLog } from "@/lib/errorLog/withErrorLog";
 
 type RouteContext = { params: Promise<{ id: string }> };
 
-export async function GET(_request: NextRequest, { params }: RouteContext) {
+async function handleGet(_request: NextRequest, { params }: RouteContext) {
   const session = await getSessionUser();
   if (!session) return unauthorizedError();
 
@@ -34,3 +35,5 @@ export async function GET(_request: NextRequest, { params }: RouteContext) {
     data: rows.map(serializeTestResult),
   });
 }
+
+export const GET = withErrorLog("/api/tests/[id]/results", handleGet);

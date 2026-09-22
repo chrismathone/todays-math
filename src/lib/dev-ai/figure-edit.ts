@@ -18,6 +18,7 @@ import {
   HANDLER_MARGIN_MS,
 } from "./figure-engine";
 import { FIGURE_REASON_MAX, FigureRedrawError } from "./figure-spec";
+import { noteErrorLog } from "@/lib/errorLog/scope";
 
 /**
  * «요청대로 고치기»의 화면용 사유 — 처리기가 FigureRedrawError 를 422 로 화면까지 싣는 길(트랙 2)을 그대로 탄다.
@@ -162,6 +163,28 @@ export async function editDevAiFigure(
         reasoningEffort: FIGURE_REASONING_EFFORT,
       });
     });
+  // 오류 기록 메모 — 실패했을 때만 실린다(원장님 2026-09-22 «업그레이드 패치 가능하게»). 모델이 무엇을 냈고
+  // 왜 못 읽었나가 남아야 명령 계약·지시문을 고칠 수 있다. 요청 문장·지금 그림은 재현 재료라 같이 싣는다.
+  // 크롭 이미지도 같이(원장님 2026-09-22) — 재작도와 같은 표·같은 2MB 상한(기록기가 본다).
+  const trail: {
+    attempt: number;
+    refusal?: string;
+    modelOutput?: string;
+    modelOutputLength?: number;
+    error?: string;
+    ms?: number;
+  }[] = [];
+  noteErrorLog({
+    action: "figure-edit",
+    context: {
+      figureEditTrail: trail,
+      figureEditRequest: {
+        instruction: request.content.slice(0, 500),
+        figure: JSON.stringify(request.figure).slice(0, 8000),
+      },
+    },
+    image: request.imageDataUrl,
+  });
   const deadline = new AbortController();
   const cancel = () => deadline.abort();
   signal?.addEventListener("abort", cancel, { once: true });
@@ -190,16 +213,26 @@ export async function editDevAiFigure(
     let refusal: string | undefined;
     for (let attempt = 0; ; attempt++) {
       if (deadline.signal.aborted) throw abortError();
+      const log: (typeof trail)[number] = {
+        attempt,
+        ...(refusal ? { refusal } : {}),
+      };
+      trail.push(log);
+      const started = Date.now();
       const raw = await invoke({
         prompt: buildFigureEditPrompt(request, refusal),
         imageDataUrl: request.imageDataUrl,
         signal: deadline.signal,
       });
+      log.modelOutput = raw.slice(0, 6000);
+      if (raw.length > 6000) log.modelOutputLength = raw.length;
+      log.ms = Date.now() - started;
       if (deadline.signal.aborted) throw abortError();
       try {
         const { edits, warnings } = parseFigureEditResult(raw);
         return { content: "", answer: "", solution: "", warnings, edits };
       } catch (error) {
+        log.error = error instanceof Error ? error.message : String(error);
         if (
           attempt > 0 ||
           !(error instanceof FigureEditError) ||

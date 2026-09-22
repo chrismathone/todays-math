@@ -16,8 +16,9 @@ import { jsonOk, unauthorizedError } from "@/lib/apiResponse";
 import { toRoundSummary } from "@/lib/exam/composeRounds";
 import { loadVisibleRuns } from "@/lib/exam/loadRounds";
 import { getSessionUser } from "@/lib/session";
+import { withErrorLog } from "@/lib/errorLog/withErrorLog";
 
-export async function GET() {
+async function handleGet() {
   const session = await getSessionUser();
   if (!session) return unauthorizedError();
 
@@ -31,3 +32,5 @@ export async function GET() {
   // 빈 배열이 정상 응답이다 — 아직 예측을 한 번도 안 돌렸으면 회차가 없다.
   return jsonOk(examRoundListResponseSchema, { data });
 }
+
+export const GET = withErrorLog("/api/exam/rounds", handleGet);

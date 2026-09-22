@@ -12,5 +12,8 @@
  * 실제 Provider/세션 설정은 `src/lib/auth.ts`가 SSOT — 이 파일은 핸들러만 그대로 노출한다.
  */
 import { handlers } from "@/lib/auth";
+import { withErrorLog } from "@/lib/errorLog/withErrorLog";
 
-export const { GET, POST } = handlers;
+// 거절·실패 기록 틀(src/lib/errorLog/withErrorLog.ts) — 구조분해로 내보내면 가드가 틀을 증명하지 못한다
+export const GET = withErrorLog("/api/auth/[...nextauth]", handlers.GET);
+export const POST = withErrorLog("/api/auth/[...nextauth]", handlers.POST);

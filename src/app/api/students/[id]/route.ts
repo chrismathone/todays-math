@@ -18,11 +18,12 @@ import { db } from "@/lib/db";
 import { requireOwnedStudent } from "@/lib/ownership";
 import { serializeStudent } from "@/lib/serializers";
 import { getSessionUser } from "@/lib/session";
+import { withErrorLog } from "@/lib/errorLog/withErrorLog";
 
 type RouteContext = { params: Promise<{ id: string }> };
 
 // PATCH /api/students/{id} — 학생 수정
-export async function PATCH(request: NextRequest, { params }: RouteContext) {
+async function handlePatch(request: NextRequest, { params }: RouteContext) {
   const session = await getSessionUser();
   if (!session) return unauthorizedError();
 
@@ -42,7 +43,7 @@ export async function PATCH(request: NextRequest, { params }: RouteContext) {
 }
 
 // DELETE /api/students/{id} — 학생 삭제
-export async function DELETE(request: NextRequest, { params }: RouteContext) {
+async function handleDelete(request: NextRequest, { params }: RouteContext) {
   const session = await getSessionUser();
   if (!session) return unauthorizedError();
 
@@ -56,3 +57,6 @@ export async function DELETE(request: NextRequest, { params }: RouteContext) {
   await db.student.delete({ where: { id } });
   return jsonOk(deleteResponseSchema, { data: { id } });
 }
+
+export const PATCH = withErrorLog("/api/students/[id]", handlePatch);
+export const DELETE = withErrorLog("/api/students/[id]", handleDelete);

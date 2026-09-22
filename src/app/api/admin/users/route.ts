@@ -6,8 +6,9 @@ import {
   pagination,
 } from "@/lib/adminAccounts";
 import { approvalStatusSchema } from "@/contracts/accountAccess.contract";
+import { withErrorLog } from "@/lib/errorLog/withErrorLog";
 
-export async function GET(request: Request) {
+async function handleGet(request: Request) {
   const access = await authorizeAccount(request, true);
   if (access.response) return access.response;
   const url = new URL(request.url);
@@ -54,3 +55,5 @@ export async function GET(request: Request) {
     { headers: { "Cache-Control": "no-store" } },
   );
 }
+
+export const GET = withErrorLog("/api/admin/users", handleGet);

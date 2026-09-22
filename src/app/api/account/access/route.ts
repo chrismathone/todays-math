@@ -1,6 +1,7 @@
 import { getAccountAccess } from "@/lib/accountAccess";
+import { withErrorLog } from "@/lib/errorLog/withErrorLog";
 
-export async function GET() {
+async function handleGet() {
   const data = await getAccountAccess();
   return Response.json(
     data
@@ -12,3 +13,5 @@ export async function GET() {
     },
   );
 }
+
+export const GET = withErrorLog("/api/account/access", handleGet);
