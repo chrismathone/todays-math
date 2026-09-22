@@ -5,6 +5,12 @@ import { GET } from "@/app/api/dev/unified/problems/route";
 import { MOCK_UNITS, USER_TEACHER_ID } from "@/mocks/data";
 import { MISSING_ANSWER } from "@/lib/missingAnswer";
 import { provenanceBadges } from "@/lib/problem/provenance";
+import { selectUnifiedBankProblems } from "@/lib/unifiedBankSelection";
+import {
+  DIFFICULTY_LADDER,
+  type DifficultyRatio,
+} from "@/contracts/difficulty";
+import { POST as randomBank } from "@/app/api/dev/unified/problems/random/route";
 vi.mock("server-only", () => ({}));
 
 // The shared in-memory Prisma double evaluates the real WHERE clauses. Supply
@@ -87,6 +93,109 @@ async function plant(patch: Record<string, unknown> = {}) {
 }
 const query = (values: Record<string, string> = {}) =>
   new URLSearchParams({ q: marker, ...values });
+
+const tierCounts = (counts: Partial<DifficultyRatio> = {}): DifficultyRatio =>
+  Object.fromEntries(
+    DIFFICULTY_LADDER.map((tier) => [tier, counts[tier] ?? 0]),
+  ) as DifficultyRatio;
+
+describe("difficulty-based selection across the shared bank", () => {
+  it("selects beyond one displayed page, excludes existing questions, and reports exact-tier shortages", async () => {
+    const basics = await Promise.all(Array.from({ length: 18 }, () => plant()));
+    const advanced = await plant({ difficulty: "응용" });
+    await plant({ difficulty: "심화상" });
+    await plant({ pool: "private" });
+    await plant({ reviewStatus: "pending" });
+    await plant({ directUseAllowed: false });
+    await plant({ answer: MISSING_ANSWER });
+    const result = await selectUnifiedBankProblems({
+      filters: query({ page: "9", difficulty: "연산" }).toString(),
+      counts: tierCounts({ 기본: 20, 응용: 3 }),
+      excludeIds: [basics[0].id],
+    });
+    expect(result.available).toEqual(
+      tierCounts({ 기본: 17, 응용: 1, 심화상: 1 }),
+    );
+    expect(result.counts).toEqual(tierCounts({ 기본: 17, 응용: 1 }));
+    expect(new Set(result.problems.map((p) => p.id))).toEqual(
+      new Set([...basics.slice(1).map((p) => p.id), advanced.id]),
+    );
+    expect(result.problems.every((p) => p.eligible)).toBe(true);
+    expect(result.problems[0]).toHaveProperty("questionTypeRaw", "단답형");
+  });
+
+  it("uses the same unit, source and derived-format filters as browsing", async () => {
+    const matching = await plant({ source: "manual", questionType: "서술형" });
+    await plant({ source: "manual", questionType: "단답형" });
+    await plant({ source: "past_exam", questionType: "서술형" });
+    await plant({
+      source: "manual",
+      questionType: "서술형",
+      unitId: MOCK_UNITS[1].id,
+    });
+    const result = await selectUnifiedBankProblems({
+      filters: query({
+        source: "manual",
+        format: "descriptive",
+        unitFrom: MOCK_UNITS[0].id,
+        unitTo: MOCK_UNITS[0].id,
+      }).toString(),
+      counts: tierCounts({ 기본: 10 }),
+    });
+    expect(result.problems.map((p) => p.id)).toEqual([matching.id]);
+  });
+
+  it("never adds inspected but ineligible questions", async () => {
+    await plant({ reviewStatus: "pending" });
+    const result = await selectUnifiedBankProblems({
+      filters: query({ reviewStatus: "pending" }).toString(),
+      counts: tierCounts({ 기본: 2 }),
+    });
+    expect(result.problems).toEqual([]);
+    expect(result.counts).toEqual(tierCounts());
+  });
+
+  it("caps a random draw without returning duplicates", async () => {
+    await Promise.all(Array.from({ length: 25 }, () => plant()));
+    const result = await selectUnifiedBankProblems({
+      filters: query().toString(),
+      counts: tierCounts({ 기본: 5 }),
+    });
+    expect(result.problems).toHaveLength(5);
+    expect(new Set(result.problems.map((p) => p.id)).size).toBe(5);
+    expect(result.available.기본).toBe(25);
+  });
+
+  it.each([
+    tierCounts(),
+    tierCounts({ 기본: 101 }),
+    tierCounts({ 기본: 1.5 }),
+    { easy: 5 },
+  ])("rejects invalid counts before querying", async (counts) => {
+    await expect(selectUnifiedBankProblems({ counts })).rejects.toBeInstanceOf(
+      UnifiedBankQueryError,
+    );
+  });
+
+  it("returns 400 for malformed JSON and disables the development route in production", async () => {
+    vi.stubEnv("NODE_ENV", "development");
+    const malformed = await randomBank(
+      new Request("http://localhost/api/dev/unified/problems/random", {
+        method: "POST",
+        body: "{",
+      }),
+    );
+    expect(malformed.status).toBe(400);
+    vi.stubEnv("NODE_ENV", "production");
+    const disabled = await randomBank(
+      new Request("http://localhost/api/dev/unified/problems/random", {
+        method: "POST",
+        body: "{}",
+      }),
+    );
+    expect(disabled.status).toBe(404);
+  });
+});
 
 /**
  * 🔴 **출처 배지가 판정할 근거가 행에 실려 나오는가** (2026-09-14).
