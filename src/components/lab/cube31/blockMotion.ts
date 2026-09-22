@@ -89,7 +89,12 @@ export function createBlockMotion() {
       // next action. Restore it before reconciliation so hiding cannot leak.
       for (const restore of arrivals.values()) restore();
       const p = action.place;
-      const zone = action.type === "move" ? "tray" : "workspace";
+      const zone =
+        action.type === "move"
+          ? "tray"
+          : action.type === "restore"
+            ? "removed"
+            : "workspace";
       const destination = action.type === "remove" ? "removed" : "workspace";
       const targetPlace =
         p + (action.type === "bundle" ? 1 : action.type === "split" ? -1 : 0);

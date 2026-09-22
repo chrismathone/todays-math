@@ -14,6 +14,7 @@ import {
   PLACE_NAMES,
   VALUES,
   canRemove,
+  canRestore,
   canSplit,
   checkNotation,
   createManipulative,
@@ -21,6 +22,7 @@ import {
   manipulate,
   manipulationHint,
   notationRequirements,
+  suggestsSplit,
   toBlocks,
 } from "@/lib/lab/cube31/manipulative";
 import type {
@@ -189,9 +191,21 @@ function Block({ place }: { place: Place }) {
 
 type MovingBlock = {
   place: Place;
-  source: "tray" | "workspace";
+  /** 준비판(덧셈) → 작업판 · 작업판 → 빼기 상자 · 빼기 상자 → 작업판(다시 넣기) */
+  source: "tray" | "workspace" | "removed";
   element?: HTMLElement;
 };
+const DESTINATION = {
+  tray: "workspace",
+  workspace: "removed",
+  removed: "workspace",
+} as const;
+const ACTION = {
+  tray: "move",
+  workspace: "remove",
+  removed: "restore",
+} as const;
+const VERB = { tray: "옮기기", workspace: "빼기", removed: "넣기" } as const;
 type TouchDrag = { block: MovingBlock; x: number; y: number; moved: boolean };
 
 /** Mount with an activity key to start a fresh problem and completion lifecycle. */
@@ -259,22 +273,19 @@ export default function RegroupingBoard({
     place: Place,
   ) {
     if (disabled) return;
-    const expected = block.source === "tray" ? "workspace" : "removed";
-    if (destination !== expected) {
+    if (destination !== DESTINATION[block.source]) {
       dispatch({
         type: "feedback",
         message: addition
           ? "준비판에서 작업판의 같은 자리로 옮겨 주세요."
-          : "작업판에서 같은 자리의 빼기 상자로 옮겨 주세요.",
+          : block.source === "removed"
+            ? "뺀 블록은 같은 자리의 작업판으로 옮겨 다시 넣어요."
+            : "작업판에서 같은 자리의 빼기 상자로 옮겨 주세요.",
       });
       return;
     }
     act(
-      {
-        type: block.source === "tray" ? "move" : "remove",
-        place: block.place,
-        toPlace: place,
-      },
+      { type: ACTION[block.source], place: block.place, toPlace: place },
       block.element,
     );
   }
@@ -344,10 +355,11 @@ export default function RegroupingBoard({
           type="button"
           className={styles.blockButton}
           data-block-index={index}
-          aria-label={`${source === "tray" ? "옮기기" : "빼기"}: ${PLACE_NAMES[place]} ${BLOCK_NAMES[place]} ${index + 1}번`}
+          aria-label={`${VERB[source]}: ${PLACE_NAMES[place]} ${BLOCK_NAMES[place]} ${index + 1}번`}
           disabled={
             disabled ||
-            (source === "workspace" && !canRemove(problem, board, place))
+            (source === "workspace" && !canRemove(problem, board, place)) ||
+            (source === "removed" && !canRestore(problem, board, place))
           }
           draggable={!disabled}
           onClick={(event) => {
@@ -355,10 +367,7 @@ export default function RegroupingBoard({
               suppressClick.current = false;
               return;
             }
-            act(
-              { type: source === "tray" ? "move" : "remove", place },
-              event.currentTarget,
-            );
+            act({ type: ACTION[source], place }, event.currentTarget);
           }}
           onDragStart={(event) => {
             touchRef.current = null;
@@ -459,7 +468,7 @@ export default function RegroupingBoard({
               <span>{VALUES[place]}씩 세어요</span>
             </header>
             <div
-              className={`${styles.workspace} ${dragging?.place === place && addition ? styles.dropReady : ""}`}
+              className={`${styles.workspace} ${dragging?.place === place && dragging.source !== "workspace" ? styles.dropReady : ""}`}
               data-drop="workspace"
               data-place={place}
               onDragOver={(event) => event.preventDefault()}
@@ -493,6 +502,7 @@ export default function RegroupingBoard({
                 <button
                   type="button"
                   disabled={disabled || board.workspace[place] < 10}
+                  data-suggested=""
                   onClick={() => act({ type: "bundle", place })}
                   aria-label={`${PLACE_NAMES[place]} 10개 묶기`}
                 >
@@ -504,6 +514,10 @@ export default function RegroupingBoard({
                 <button
                   type="button"
                   disabled={disabled || !canSplit(problem, board, place)}
+                  // 풀기는 언제든 되지만, 빛은 받아내림이 필요한 자리에만
+                  data-suggested={
+                    suggestsSplit(problem, board, place) ? "" : undefined
+                  }
                   onClick={() => act({ type: "split", place })}
                   aria-label={`${PLACE_NAMES[place]} 1개 풀기`}
                 >
@@ -540,45 +554,50 @@ export default function RegroupingBoard({
               </div>
             ) : (
               <div
-                className={`${styles.tray} ${dragging?.place === place ? styles.dropReady : ""}`}
+                className={`${styles.tray} ${dragging?.place === place && dragging.source === "workspace" ? styles.dropReady : ""}`}
                 data-drop="removed"
                 data-place={place}
                 onDragOver={(event) => event.preventDefault()}
                 onDrop={(event) => nativeDrop(event, place)}
                 aria-label={`${PLACE_NAMES[place]} 빼기 상자`}
               >
+                {/* 빼야 할 개수를 미리 보여 주지 않는다 — 뺀 만큼만 센다(원장님 2026-09-22) */}
                 <div className={styles.zoneLabel}>
-                  <span>빼야 할 {BLOCK_NAMES[place]}</span>
-                  <strong>
-                    {b[place]}
+                  <span>뺀 {BLOCK_NAMES[place]}</span>
+                  <strong
+                    aria-label={`${PLACE_NAMES[place]} 뺀 블록 ${board.removed[place]}개`}
+                  >
+                    {board.removed[place]}
                     <small>개</small>
                   </strong>
                 </div>
-                <div className={styles.removalProgress}>
-                  <strong>{board.removed[place]}</strong> / {b[place]}개 뺐어요
-                </div>
                 <div
                   className={styles.removedBlocks}
-                  aria-hidden="true"
                   data-block-zone="removed"
                   data-place={place}
                 >
-                  {renderBlocks(
-                    place,
-                    board.removed[place],
-                    "workspace",
-                    false,
-                  )}
+                  {renderBlocks(place, board.removed[place], "removed", true)}
                 </div>
-                <button
-                  type="button"
-                  className={styles.moveButton}
-                  disabled={disabled || !canRemove(problem, board, place)}
-                  onClick={() => act({ type: "remove", place })}
-                  aria-label={`${PLACE_NAMES[place]} 1개 빼기`}
-                >
-                  ↓ 1개 빼기
-                </button>
+                <div className={styles.removeActions}>
+                  <button
+                    type="button"
+                    className={styles.moveButton}
+                    disabled={disabled || !canRemove(problem, board, place)}
+                    onClick={() => act({ type: "remove", place })}
+                    aria-label={`${PLACE_NAMES[place]} 1개 빼기`}
+                  >
+                    ↓ 1개 빼기
+                  </button>
+                  <button
+                    type="button"
+                    className={styles.moveButton}
+                    disabled={disabled || !canRestore(problem, board, place)}
+                    onClick={() => act({ type: "restore", place })}
+                    aria-label={`${PLACE_NAMES[place]} 1개 넣기`}
+                  >
+                    ↑ 1개 넣기
+                  </button>
+                </div>
               </div>
             )}
           </section>
@@ -637,8 +656,17 @@ export default function RegroupingBoard({
                 : "작은 칸에는 바꾼 뒤의 수를 써요. 이 자리의 남은 블록과 빼낸 블록을 합해 보세요."
               : "같은 자리끼리 계산해요. 블록이 없는 자리도 0을 써 주세요."}
           </p>
-          <span className={ready ? styles.readyBadge : styles.waitBadge}>
-            {ready ? "블록 준비 완료" : "블록을 먼저 움직여요"}
+          {/* 뺄셈은 조작 중에 «준비 완료»로 정답을 먼저 알려 주지 않는다 — 맞는지는 확인할 때 */}
+          <span
+            className={ready && addition ? styles.readyBadge : styles.waitBadge}
+          >
+            {board.moves === 0
+              ? "블록을 먼저 움직여요"
+              : !addition
+                ? "남은 블록을 세어 써요"
+                : ready
+                  ? "블록 준비 완료"
+                  : "블록을 먼저 움직여요"}
           </span>
         </div>
         <div className={styles.algorithmWrap}>

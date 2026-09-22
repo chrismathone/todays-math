@@ -215,6 +215,41 @@ async function main() {
           "Scrolling lessons moved the activity",
         );
         assert.equal(await page.evaluate(() => scrollY), 0);
+        // Solving an activity must not shrink it — the success line keeps the
+        // hint line's height (원장님 2026-09-22 «랩실에서 답을 맞추면 화면이 작아지네?»).
+        const activityBox = () =>
+          page.evaluate(() => {
+            const frame = document.querySelector<HTMLElement>(
+              '[class*="activityViewport"]',
+            )!;
+            const body = document.querySelector<HTMLElement>(
+              '[class*="activityContent"]',
+            )!;
+            return {
+              frame: Math.round(frame.getBoundingClientRect().height),
+              scale: body.style.getPropertyValue("--activity-scale"),
+            };
+          });
+        await page
+          .getByRole("navigation", { name: "단원 학습 순서" })
+          .getByRole("button")
+          .nth(0)
+          .click();
+        await page.getByRole("button", { name: "1번째 활동" }).click();
+        const unsolved = await activityBox();
+        await page.locator("article input").first().fill("2");
+        await page
+          .locator("article")
+          .getByRole("button", { name: "확인하기" })
+          .click();
+        await expect(
+          page.getByRole("button", { name: "다음 활동 →" }),
+        ).toBeVisible();
+        assert.deepEqual(
+          await activityBox(),
+          unsolved,
+          `${viewport.width}×${viewport.height}: solving the activity resized it`,
+        );
       }
       assert.deepEqual(errors, []);
       results.push({

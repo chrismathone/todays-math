@@ -352,9 +352,12 @@
   margin: 0;
   word-break: keep-all;
 }
+/* 힌트 단추 줄과 «이 생각을 기억해요» 줄이 같은 높이 — 정답을 맞혀도 활동 칸이 줄지 않는다
+   (원장님 2026-09-22 «랩실에서 답을 맞추면 화면이 작아지네?»). */
 .stageFooter {
   position: relative;
-  min-height: 58px;
+  height: 58px;
+  box-sizing: border-box;
   margin-top: 0;
   border-top: 1px solid #edf0f5;
   padding-top: 10px;
@@ -383,22 +386,41 @@
   line-height: 1.7;
 }
 .success {
+  height: 100%;
+  box-sizing: border-box;
   display: flex;
-  gap: 20px;
+  gap: 16px;
   justify-content: space-between;
   align-items: center;
   border-radius: 11px;
-  padding: 10px 14px;
+  padding: 3px 3px 3px 14px;
   background: #edf6f0;
   color: #30634a;
   font-size: 14px;
 }
+.success > div {
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+  min-width: 0;
+}
+.success b {
+  flex-shrink: 0;
+}
 .success p {
-  line-height: 1.7;
-  margin: 6px 0 0;
+  min-width: 0;
+  margin: 0;
+  line-height: 1.35;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  overflow: hidden;
 }
 .success button {
   flex-shrink: 0;
+  min-height: 0;
+  height: 100%;
+  padding-block: 0;
 }
 .primaryButton {
   min-height: 44px;
@@ -585,9 +607,6 @@
   .lessonHeading p {
     max-width: 330px;
   }
-  .success {
-    flex-wrap: wrap;
-  }
 }
 @media (max-height: 820px) {
   .workspace {
@@ -626,15 +645,11 @@
     margin-block: 14px;
   }
   .stageFooter {
-    min-height: 52px;
+    height: 52px;
     padding-top: 6px;
   }
   .success {
-    padding: 7px 12px;
-  }
-  .success p {
-    margin-top: 2px;
-    line-height: 1.5;
+    padding-left: 12px;
   }
   .footnote {
     font-size: 10px;
@@ -766,17 +781,27 @@
     padding: 3px 6px;
     font-size: 10px;
   }
+  /* 휴대폰은 폭이 좁아 설명을 한 줄에 못 넣는다 — 아래 칸이 늘어나게 둔다 */
   .success {
+    height: auto;
     gap: 8px;
-    flex-wrap: nowrap;
     font-size: 12px;
     padding: 8px;
   }
+  .success > div {
+    display: block;
+  }
+  .success p {
+    display: block;
+  }
   .success button {
+    height: auto;
+    min-height: 36px;
     font-size: 12px;
     padding: 9px;
   }
   .stageFooter {
+    height: auto;
     min-height: 52px;
     padding-top: 6px;
   }

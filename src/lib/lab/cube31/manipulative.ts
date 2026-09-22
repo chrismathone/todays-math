@@ -24,7 +24,7 @@ export type ManipulativeState = {
   zeroConfirmed: boolean;
 };
 export type ManipulativeAction =
-  | { type: "move" | "remove"; place: Place; toPlace?: Place }
+  | { type: "move" | "remove" | "restore"; place: Place; toPlace?: Place }
   | { type: "bundle" | "split"; place: Place }
   | { type: "confirm-zero" };
 export type Transition = {
@@ -75,7 +75,30 @@ export function createManipulative(
   };
 }
 
-/** A higher block is needed if this column is short, or an empty column must pass it onward. */
+/*
+ * 뺄셈은 정답에 묶지 않는다(원장님 2026-09-22 «정답을 정해놓고 빼고 넣도록 하지말것. 자유롭게 뺴고 넣도록.
+ * 지금 156이라서 1, 5, 6 개만 뺄 수 있는데, 자유롭게 빼고 넣고 정답 맞추도록»). 블록이 있으면 빼고·풀고, 뺀 블록은
+ * 다시 넣는다. 맞는지는 끝에서 — 뺀 블록의 합이 빼는 수인지(isManipulationComplete)와 세로셈(checkNotation)으로 본다.
+ */
+export function canSplit(
+  problem: RegroupingProblem,
+  state: ManipulativeState,
+  place: Place,
+): boolean {
+  return (
+    problem.operation === "subtract" && place > 0 && state.workspace[place] > 0
+  );
+}
+
+export function canRemove(
+  problem: RegroupingProblem,
+  state: ManipulativeState,
+  place: Place,
+): boolean {
+  return problem.operation === "subtract" && state.workspace[place] > 0;
+}
+
+/** 아래 자리가 빼야 할 만큼 모자라거나, 빈 자리가 받아내림을 더 아래로 넘겨야 한다. */
 function needsBorrow(
   state: ManipulativeState,
   target: Blocks,
@@ -89,29 +112,24 @@ function needsBorrow(
   );
 }
 
-export function canSplit(
+/** 받아내림을 **권하는** 자리 — 막지는 않는다(canSplit). 단추의 빛·안내 문구로만 알려 준다. */
+export function suggestsSplit(
   problem: RegroupingProblem,
   state: ManipulativeState,
   place: Place,
 ): boolean {
   return (
-    problem.operation === "subtract" &&
-    place > 0 &&
-    state.workspace[place] > 0 &&
+    canSplit(problem, state, place) &&
     needsBorrow(state, toBlocks(problem.b), (place - 1) as Place)
   );
 }
 
-export function canRemove(
+export function canRestore(
   problem: RegroupingProblem,
   state: ManipulativeState,
   place: Place,
 ): boolean {
-  return (
-    problem.operation === "subtract" &&
-    state.workspace[place] > 0 &&
-    state.removed[place] < toBlocks(problem.b)[place]
-  );
+  return problem.operation === "subtract" && state.removed[place] > 0;
 }
 
 export function manipulate(
@@ -141,7 +159,9 @@ export function manipulate(
   const p = action.place;
   if (!PLACES.includes(p)) return reject("블록의 자리를 확인해 보세요.");
   if (
-    (action.type === "move" || action.type === "remove") &&
+    (action.type === "move" ||
+      action.type === "remove" ||
+      action.type === "restore") &&
     action.toPlace !== undefined &&
     action.toPlace !== p
   ) {
@@ -158,10 +178,6 @@ export function manipulate(
   } else if (action.type === "remove") {
     if (problem.operation !== "subtract")
       return reject("덧셈에서는 준비한 블록을 작업판으로 옮겨요.");
-    if (removed[p] >= toBlocks(problem.b)[p])
-      return reject(
-        `${PLACE_NAMES[p]}에서는 필요한 만큼 모두 뺐어요. 더 빼면 빼려는 수가 달라져요.`,
-      );
     if (workspace[p] === 0)
       return reject(
         `${PLACE_NAMES[p]} 블록이 부족해요. 왼쪽 자리의 블록 1개를 10개로 바꿔 보세요.`,
@@ -169,6 +185,14 @@ export function manipulate(
     workspace[p] -= 1;
     removed[p] += 1;
     message = `${BLOCK_NAMES[p]} 1개를 뺐어요. ${PLACE_NAMES[p]} 블록은 ${state.workspace[p]}개 → ${workspace[p]}개예요.`;
+  } else if (action.type === "restore") {
+    if (!canRestore(problem, state, p))
+      return reject(
+        `${PLACE_NAMES[p]} 빼기 상자에 다시 넣을 블록이 없어요. 뺀 블록만 작업판으로 되돌릴 수 있어요.`,
+      );
+    removed[p] -= 1;
+    workspace[p] += 1;
+    message = `${BLOCK_NAMES[p]} 1개를 다시 넣었어요. ${PLACE_NAMES[p]} 블록은 ${state.workspace[p]}개 → ${workspace[p]}개예요.`;
   } else if (action.type === "bundle") {
     if (problem.operation !== "add" || p === 3 || workspace[p] < 10)
       return reject(
@@ -180,7 +204,9 @@ export function manipulate(
   } else {
     if (!canSplit(problem, state, p))
       return reject(
-        "아래 자리에 블록이 부족할 때, 왼쪽 블록 1개를 10개로 바꿀 수 있어요.",
+        problem.operation === "subtract"
+          ? `${PLACE_NAMES[p]}에 풀 블록이 없어요. 블록이 있는 자리에서 1개를 오른쪽 자리 10개로 바꿀 수 있어요.`
+          : "덧셈에서는 같은 자리 블록 10개를 왼쪽 자리 1개로 묶어요.",
       );
     workspace[p] -= 1;
     workspace[p - 1] += 10;
@@ -203,7 +229,6 @@ export function isManipulationComplete(
   problem: RegroupingProblem,
   state: ManipulativeState,
 ): boolean {
-  const target = toBlocks(problem.b);
   return (
     state.moves > 0 &&
     state.workspace.every((count) => count >= 0 && count < 10) &&
@@ -211,9 +236,10 @@ export function isManipulationComplete(
       (problem.operation === "add"
         ? problem.a + problem.b
         : problem.a - problem.b) &&
+    // 뺄셈은 뺀 블록의 **합**만 본다 — 백 판 대신 십 막대 10개를 빼도 같은 수를 뺀 것이다
     (problem.operation === "add"
       ? state.tray.every((n) => n === 0)
-      : state.removed.every((n, p) => n === target[p]))
+      : blockValue(state.removed) === problem.b)
   );
 }
 
@@ -255,12 +281,18 @@ export function checkNotation(
   state: ManipulativeState,
   notation: Notation,
 ): { correct: boolean; message: string } {
-  if (!isManipulationComplete(problem, state))
+  if (!isManipulationComplete(problem, state)) {
+    const taken = blockValue(state.removed);
     return {
       correct: false,
       message:
-        "먼저 블록을 모두 옮기거나 빼고, 각 자리에 9개 이하로 정리해 주세요.",
+        problem.operation === "subtract" &&
+        state.moves > 0 &&
+        taken !== problem.b
+          ? `빼낸 블록은 ${taken}이에요. 빼는 수 ${problem.b}만큼 뺐는지 다시 살펴보세요. 잘못 뺀 블록은 빼기 상자에서 다시 넣을 수 있어요.`
+          : "먼저 블록을 모두 옮기거나 빼고, 각 자리에 9개 이하로 정리해 주세요.",
     };
+  }
   const required = notationRequirements(problem);
   const matches = (text: string | undefined, expected: number) =>
     typeof text === "string" &&
@@ -298,18 +330,24 @@ export function manipulationHint(
   problem: RegroupingProblem,
   state: ManipulativeState,
 ): string {
+  if (problem.b === 0)
+    return isManipulationComplete(problem, state)
+      ? "블록 정리 완료! 남은 블록을 보고 세로셈의 답을 직접 채워 보세요."
+      : "옮기거나 뺄 블록이 0개예요. 빈 준비판을 확인해 보세요.";
+  // 뺄셈은 조작하는 동안 «정리 완료»로 정답을 먼저 알려 주지 않는다 — 맞는지는 확인할 때.
+  // 받아내림 안내(«○○가 부족해요»)는 막는 것이 아니라 권하는 것이라 남긴다.
+  if (problem.operation === "subtract") {
+    const p = PLACES.find((place) => suggestsSplit(problem, state, place));
+    if (p !== undefined)
+      return `${PLACE_NAMES[(p - 1) as Place]}가 부족해요. ${BLOCK_NAMES[p]} 1개를 ${BLOCK_NAMES[p - 1]} 10개로 바꿔 보세요.`;
+    return state.moves === 0
+      ? "빼는 수만큼 작업판 블록을 눌러 빼요. 아래의 빼기 상자로 끌어 놓아도 돼요."
+      : "잘못 뺀 블록은 빼기 상자에서 눌러 다시 넣어요. 다 뺐으면 남은 블록을 세어 세로셈을 채우고 확인해요.";
+  }
   if (isManipulationComplete(problem, state))
     return "블록 정리 완료! 남은 블록을 보고 세로셈의 답과 위쪽 작은 칸을 직접 채워 보세요.";
-  if (problem.b === 0)
-    return "옮기거나 뺄 블록이 0개예요. 빈 준비판을 확인해 보세요.";
-  if (problem.operation === "add") {
-    const p = PLACES.find((place) => place < 3 && state.workspace[place] >= 10);
-    if (p !== undefined)
-      return `${PLACE_NAMES[p]}에 ${state.workspace[p]}개가 모였어요. 10개를 왼쪽 자리의 1개로 바꾸면 세기 쉬워져요.`;
-    return "준비판의 블록을 같은 자리의 작업판으로 옮겨요. 블록을 누르거나 끌어 놓을 수 있어요.";
-  }
-  const p = PLACES.find((place) => canSplit(problem, state, place));
+  const p = PLACES.find((place) => place < 3 && state.workspace[place] >= 10);
   if (p !== undefined)
-    return `${PLACE_NAMES[(p - 1) as Place]}가 부족해요. ${BLOCK_NAMES[p]} 1개를 ${BLOCK_NAMES[p - 1]} 10개로 바꿔 보세요.`;
-  return "빼야 할 개수만큼 작업판 블록을 눌러 빼요. 아래의 빼기 상자로 끌어 놓아도 돼요.";
+    return `${PLACE_NAMES[p]}에 ${state.workspace[p]}개가 모였어요. 10개를 왼쪽 자리의 1개로 바꾸면 세기 쉬워져요.`;
+  return "준비판의 블록을 같은 자리의 작업판으로 옮겨요. 블록을 누르거나 끌어 놓을 수 있어요.";
 }

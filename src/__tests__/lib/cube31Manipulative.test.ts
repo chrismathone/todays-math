@@ -6,7 +6,9 @@ import {
   createManipulative,
   isManipulationComplete,
   manipulate,
+  manipulationHint,
   notationRequirements,
+  suggestsSplit,
   PLACES,
   toBlocks,
 } from "@/lib/lab/cube31/manipulative";
@@ -124,7 +126,7 @@ describe("base-ten arithmetic engine", () => {
     expect(checkNotation(problem, state, notation).correct).toBe(true);
   });
 
-  it("preserves exact state on illegal moves, over-removal, wrong-column drops, or trades", () => {
+  it("preserves exact state on illegal moves, wrong-column drops, or trades", () => {
     const problem = { a: 402, b: 175, operation: "subtract" } as const;
     const initial = createManipulative(problem);
     const reject = (state: ManipulativeState, action: ManipulativeAction) => {
@@ -140,11 +142,8 @@ describe("base-ten arithmetic engine", () => {
     reject(initial, { type: "split", place: 1 });
     reject(initial, { type: "bundle", place: 0 });
     reject(initial, { type: "confirm-zero" });
-    const once = manipulate(problem, initial, {
-      type: "remove",
-      place: 2,
-    }).state;
-    reject(once, { type: "remove", place: 2 });
+    // 빼기 상자가 비었으면 넣을 것이 없다
+    reject(initial, { type: "restore", place: 2 });
     expect(canSplit(problem, initial, 2)).toBe(true);
     const addition = { a: 312, b: 126, operation: "add" } as const;
     for (const action of [
@@ -152,11 +151,117 @@ describe("base-ten arithmetic engine", () => {
       { type: "bundle", place: 0 },
       { type: "split", place: 2 },
       { type: "remove", place: 0 },
+      { type: "restore", place: 0 },
     ] as const) {
       expect(
         manipulate(addition, createManipulative(addition), action).changed,
       ).toBe(false);
     }
+  });
+
+  // 원장님 2026-09-22 «정답을 정해놓고 빼고 넣도록 하지말것. 자유롭게 뺴고 넣도록. 지금 156이라서 1, 5, 6 개만
+  // 뺄 수 있는데, 자유롭게 빼고 넣고 정답 맞추도록.»
+  describe("뺄셈은 정답에 묶이지 않는다 — 자유롭게 빼고 넣고, 확인할 때 맞춘다", () => {
+    const problem = { a: 324, b: 156, operation: "subtract" } as const;
+    const run = (
+      actions: ManipulativeAction[],
+      from = createManipulative(problem),
+    ) =>
+      actions.reduce((state, action) => {
+        const next = manipulate(problem, state, action);
+        expect(next.changed).toBe(true);
+        expect(
+          blockValue(next.state.workspace) + blockValue(next.state.removed),
+        ).toBe(problem.a);
+        return next.state;
+      }, from);
+    const times = (n: number, action: ManipulativeAction) =>
+      Array.from({ length: n }, () => action);
+
+    it("빼는 수의 자리 숫자보다 더 뺄 수 있고, 뺀 블록을 다시 넣을 수 있다", () => {
+      const state = run([
+        ...times(3, { type: "remove", place: 2 }),
+        ...times(2, { type: "restore", place: 2 }),
+      ]);
+      expect(state.workspace[2]).toBe(2);
+      expect(state.removed[2]).toBe(1);
+    });
+
+    it("넣은 뒤 다시 맞게 빼면 끝난다", () => {
+      const state = run([
+        ...times(2, { type: "remove", place: 2 }),
+        { type: "restore", place: 2 },
+        { type: "split", place: 2 },
+        { type: "split", place: 1 },
+        ...times(6, { type: "remove", place: 0 }),
+        ...times(5, { type: "remove", place: 1 }),
+      ]);
+      expect(state.workspace).toEqual([8, 6, 1, 0]);
+      expect(isManipulationComplete(problem, state)).toBe(true);
+    });
+
+    it("받아내림(풀기)은 블록이 있으면 언제든 된다 — 필요한지로 막지 않는다", () => {
+      const easy = { a: 617, b: 342, operation: "subtract" } as const;
+      const initial = createManipulative(easy);
+      expect(canSplit(easy, initial, 1)).toBe(true);
+      expect(
+        manipulate(easy, initial, { type: "split", place: 1 }).changed,
+      ).toBe(true);
+    });
+
+    it("뺀 블록의 합이 빼는 수이면 묶음을 어떻게 뺐든 끝난다 — 백 판 대신 십 막대 10개", () => {
+      const state = run([
+        ...times(2, { type: "split", place: 2 }),
+        ...times(15, { type: "remove", place: 1 }),
+        { type: "split", place: 1 },
+        ...times(6, { type: "remove", place: 0 }),
+      ]);
+      expect(blockValue(state.removed)).toBe(156);
+      expect(state.workspace).toEqual([8, 6, 1, 0]);
+      expect(isManipulationComplete(problem, state)).toBe(true);
+    });
+
+    it("뺀 합이 다르면 끝나지 않고, 확인은 뺀 수를 알려 준다", () => {
+      const state = run([
+        { type: "remove", place: 2 },
+        ...times(2, { type: "remove", place: 1 }),
+        ...times(4, { type: "remove", place: 0 }),
+      ]);
+      expect(blockValue(state.removed)).toBe(124);
+      expect(isManipulationComplete(problem, state)).toBe(false);
+      const check = checkNotation(problem, state, {
+        digits: ["8", "6", "1", ""],
+        marks: ["14", "11", "2", ""],
+      });
+      expect(check.correct).toBe(false);
+      expect(check.message).toContain("124");
+      expect(check.message).toContain("156");
+    });
+
+    it("받아내림은 권하기만 하고(빛·안내), 조작이 맞았다는 «완료»는 미리 알려 주지 않는다", () => {
+      const initial = createManipulative(problem);
+      // 324 − 156: 일의 자리(4 < 6)가 모자라 십 막대 풀기를 권한다 — 백 판 풀기도 막히지는 않는다
+      expect(suggestsSplit(problem, initial, 1)).toBe(true);
+      expect(canSplit(problem, initial, 2)).toBe(true);
+      expect(manipulationHint(problem, initial)).toMatch(
+        /일의 자리가 부족해요/,
+      );
+      // 일의 자리를 빼는 수(6)보다 더 뺀 뒤에는 그 자리를 위한 풀기를 권하지 않는다
+      const over = run([
+        { type: "split", place: 1 },
+        ...times(7, { type: "remove", place: 0 }),
+      ]);
+      expect(suggestsSplit(problem, over, 1)).toBe(false);
+      const done = run([
+        { type: "split", place: 2 },
+        { type: "split", place: 1 },
+        ...times(6, { type: "remove", place: 0 }),
+        ...times(5, { type: "remove", place: 1 }),
+        { type: "remove", place: 2 },
+      ]);
+      expect(isManipulationComplete(problem, done)).toBe(true);
+      expect(manipulationHint(problem, done)).not.toMatch(/완료/);
+    });
   });
 
   it("allows borrowing before or after partial removals without changing notation meaning", () => {

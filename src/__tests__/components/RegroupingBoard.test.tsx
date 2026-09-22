@@ -105,9 +105,10 @@ describe("RegroupingBoard", () => {
       enter(problem, digits, marks);
       confirm();
       expect(onComplete).toHaveBeenCalledTimes(1);
-      expect(
-        screen.getByRole("button", { name: "일의 자리 1개 빼기" }),
-      ).toBeDisabled();
+      // 빼기는 정답 개수로 막지 않는다 — 끝난 활동은 부모가 판 전체를 잠근다(disabled)
+      expect(screen.getByRole("status")).toHaveTextContent(
+        "블록과 세로셈이 같아요",
+      );
     },
   );
 
@@ -172,7 +173,8 @@ describe("RegroupingBoard", () => {
     }
   });
 
-  it("refuses insufficient blocks and over-removal, including a forged drag of a disabled block", () => {
+  // 원장님 2026-09-22 «정답을 정해놓고 빼고 넣도록 하지말것. 자유롭게 뺴고 넣도록 … 자유롭게 빼고 넣고 정답 맞추도록»
+  it("refuses insufficient blocks, but lets the learner take out more and put blocks back", () => {
     const problem = { a: 402, b: 175, operation: "subtract" } as const;
     const onComplete = vi.fn();
     render(<RegroupingBoard problem={problem} onComplete={onComplete} />);
@@ -182,6 +184,9 @@ describe("RegroupingBoard", () => {
     expect(
       screen.getByRole("button", { name: "십의 자리 1개 빼기" }),
     ).toBeDisabled();
+    // 빼야 할 개수를 미리 보여 주지 않는다
+    expect(screen.queryByText(/빼야 할/)).toBeNull();
+    expect(screen.queryByText(/개 뺐어요/)).toBeNull();
     const dataTransfer = { setData: vi.fn(), effectAllowed: "" };
     const hundred = screen.getByRole("button", {
       name: "빼기: 백의 자리 백 판 1번",
@@ -196,18 +201,29 @@ describe("RegroupingBoard", () => {
       dataTransfer,
     });
     expect(screen.getByLabelText("백의 자리 작업판 3개")).toBeInTheDocument();
-    const disabledHundred = screen.getByRole("button", {
-      name: "빼기: 백의 자리 백 판 1번",
-    });
-    expect(disabledHundred).toBeDisabled();
-    fireEvent.dragStart(disabledHundred, { dataTransfer });
-    fireEvent.drop(screen.getByLabelText("백의 자리 빼기 상자"), {
+    // 빼는 수(175)의 백의 자리 숫자 1보다 더 뺄 수 있다
+    click("백의 자리 1개 빼기");
+    expect(screen.getByLabelText("백의 자리 작업판 2개")).toBeInTheDocument();
+    expect(screen.getByLabelText("백의 자리 뺀 블록 2개")).toBeInTheDocument();
+    // 다시 넣기 — 단추 · 뺀 블록 누르기 · 작업판으로 끌기
+    click("백의 자리 1개 넣기");
+    expect(screen.getByLabelText("백의 자리 작업판 3개")).toBeInTheDocument();
+    fireEvent.click(
+      screen.getByRole("button", { name: "넣기: 백의 자리 백 판 1번" }),
+    );
+    expect(screen.getByLabelText("백의 자리 작업판 4개")).toBeInTheDocument();
+    expect(
+      screen.getByRole("button", { name: "백의 자리 1개 넣기" }),
+    ).toBeDisabled();
+    click("백의 자리 1개 빼기");
+    fireEvent.dragStart(
+      screen.getByRole("button", { name: "넣기: 백의 자리 백 판 1번" }),
+      { dataTransfer },
+    );
+    fireEvent.drop(screen.getByLabelText("백의 자리 작업판"), {
       dataTransfer,
     });
-    expect(screen.getByLabelText("백의 자리 작업판 3개")).toBeInTheDocument();
-    expect(screen.getByRole("status")).toHaveTextContent(
-      "필요한 만큼 모두 뺐어요",
-    );
+    expect(screen.getByLabelText("백의 자리 작업판 4개")).toBeInTheDocument();
     expect(onComplete).not.toHaveBeenCalled();
   });
 
