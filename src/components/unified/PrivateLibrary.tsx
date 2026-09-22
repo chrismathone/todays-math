@@ -9,16 +9,7 @@ import { formatDraftDate } from "./WorkroomHome";
 import WorkProgress from "./WorkProgress";
 import s from "./PrivateLibrary.module.css";
 
-export default function PrivateLibrary({
-  storageScope,
-  canExport,
-  canStudio,
-  onOpenDraft,
-  onOpenExtraction,
-  onImport,
-  onNew,
-  onDeleted,
-}: {
+type PrivateLibraryProps = {
   storageScope: string;
   canExport: boolean;
   canStudio: boolean;
@@ -27,7 +18,23 @@ export default function PrivateLibrary({
   onImport?: () => void;
   onNew?: () => void;
   onDeleted?: (item: PrivateDocumentSummary) => void | Promise<void>;
-}) {
+};
+
+export default function PrivateLibrary(props: PrivateLibraryProps) {
+  // Account changes must discard the previous owner's rows and pending dialogs.
+  return <PrivateLibraryContent key={props.storageScope} {...props} />;
+}
+
+function PrivateLibraryContent({
+  storageScope,
+  canExport,
+  canStudio,
+  onOpenDraft,
+  onOpenExtraction,
+  onImport,
+  onNew,
+  onDeleted,
+}: PrivateLibraryProps) {
   const client = useMemo(
     () => new PrivateCloudClient(storageScope),
     [storageScope],
@@ -36,22 +43,28 @@ export default function PrivateLibrary({
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
   const [query, setQuery] = useState("");
-  // `quiet` — 창 초점 복귀·자동 저장 알림으로 **뒤에서** 다시 읽을 때는 격자를 «불러오는 중»으로
-  // 바꿔 끼우지 않는다. 바꿔 끼우면 카드가 다시 만들어져 열려 있던 삭제 확인 창이 사라진다 —
-  // 모달 창에서 Tab 이 주소창으로 나갔다 돌아오기만 해도 그랬다(2026-09-19 브라우저 측정).
+  const [kind, setKind] = useState("all");
+  const [sort, setSort] = useState("newest");
+  const requestId = useRef(0);
+  const invalidateReads = useCallback(() => ++requestId.current, []);
+  // Background refreshes preserve rows and dialogs. Only the latest read may
+  // update the list, including when a mutation completes during an older read.
   const refresh = useCallback(
     async (quiet = false) => {
+      const request = invalidateReads();
       if (!quiet) setLoading(true);
       try {
-        setItems(await client.list());
+        const next = await client.list();
+        if (request !== requestId.current) return;
+        setItems(next);
         setError("");
       } catch (cause) {
-        setError(cloudError(cause));
+        if (request === requestId.current) setError(cloudError(cause));
       } finally {
-        if (!quiet) setLoading(false);
+        if (request === requestId.current) setLoading(false);
       }
     },
-    [client],
+    [client, invalidateReads],
   );
   useEffect(() => {
     // This effect starts the account's remote library subscription.
@@ -66,13 +79,29 @@ export default function PrivateLibrary({
     window.addEventListener("private-library-change", changed);
     window.addEventListener("focus", focused);
     return () => {
+      invalidateReads();
       window.removeEventListener("private-library-change", changed);
       window.removeEventListener("focus", focused);
     };
-  }, [refresh, storageScope]);
-  const filtered = items.filter((item) =>
-    item.title.toLocaleLowerCase().includes(query.trim().toLocaleLowerCase()),
-  );
+  }, [refresh, storageScope, invalidateReads]);
+  const filtered = useMemo(() => {
+    const search = query.trim().toLocaleLowerCase();
+    return items
+      .filter(
+        (item) =>
+          (kind === "all" || item.kind === kind) &&
+          item.title.toLocaleLowerCase().includes(search),
+      )
+      .sort((a, b) => {
+        if (sort === "name") return a.title.localeCompare(b.title, "ko");
+        if (sort === "count" && a.problemCount !== b.problemCount)
+          return b.problemCount - a.problemCount;
+        return (
+          b.updatedAt.localeCompare(a.updatedAt) || a.id.localeCompare(b.id)
+        );
+      });
+  }, [items, kind, query, sort]);
+  const hasFilters = Boolean(query.trim()) || kind !== "all";
   return (
     <main className={s.library}>
       <WorkspacePageHeader
@@ -85,69 +114,147 @@ export default function PrivateLibrary({
         {onNew && <button onClick={onNew}>새 시험지</button>}
       </WorkspacePageHeader>
       <div className={s.tools}>
-        <strong>저장한 자료 {items.length}</strong>
         <input
+          type="search"
           aria-label="저장한 자료 검색"
           placeholder="자료 이름으로 찾기"
           value={query}
           onChange={(event) => setQuery(event.target.value)}
         />
+        <label>
+          종류
+          <select
+            aria-label="자료 종류"
+            value={kind}
+            onChange={(event) => setKind(event.target.value)}
+          >
+            <option value="all">전체 자료</option>
+            <option value="draft">시험지</option>
+            <option value="extraction">추출한 자료</option>
+          </select>
+        </label>
+        <label>
+          정렬
+          <select
+            aria-label="자료 정렬"
+            value={sort}
+            onChange={(event) => setSort(event.target.value)}
+          >
+            <option value="newest">최근 수정순</option>
+            <option value="name">이름순</option>
+            <option value="count">문항 많은순</option>
+          </select>
+        </label>
         <button onClick={() => void refresh()} disabled={loading}>
           새로고침
         </button>
       </div>
+      <p className={s.resultCount} aria-live="polite">
+        저장한 자료 <strong>{items.length}</strong>개
+        {hasFilters && (
+          <>
+            {" "}
+            · 검색 결과 <strong>{filtered.length}</strong>개
+          </>
+        )}
+      </p>
       {error && (
         <p className={s.error} role="alert">
           {error}
         </p>
       )}
-      {loading ? (
-        <WorkProgress label="저장한 자료를 불러오는 중입니다…" />
-      ) : filtered.length ? (
-        <div className={s.grid}>
-          {filtered.map((item) => (
-            <LibraryItem
-              key={`${item.id}:${item.revision}`}
-              item={item}
-              client={client}
-              onDeleted={async () => {
-                await onDeleted?.(item);
-              }}
-              onChanged={(next) =>
-                setItems((previous) =>
-                  next
-                    ? previous.map((value) =>
-                        value.id === next.id ? next : value,
-                      )
-                    : previous.filter((value) => value.id !== item.id),
-                )
-              }
-              onOpen={
-                item.kind === "draft"
-                  ? canExport
-                    ? () => onOpenDraft(item.id)
-                    : undefined
-                  : canStudio
-                    ? () => onOpenExtraction(item.id)
-                    : undefined
-              }
-            />
-          ))}
-        </div>
-      ) : (
-        !error && (
+      <div className={s.board} aria-busy={loading}>
+        {loading ? (
+          <div className={s.loading}>
+            <WorkProgress label="저장한 자료를 불러오는 중입니다…" />
+          </div>
+        ) : filtered.length ? (
+          <table className={s.table} aria-label="저장한 자료 목록" role="table">
+            <thead role="rowgroup">
+              <tr role="row">
+                <th scope="col" className={s.numberCell}>
+                  번호
+                </th>
+                <th scope="col" className={s.kindCell}>
+                  종류
+                </th>
+                <th scope="col" className={s.titleCell}>
+                  자료 이름
+                </th>
+                <th scope="col" className={s.countCell}>
+                  문항 수
+                </th>
+                <th scope="col" className={s.updatedCell}>
+                  최근 수정
+                </th>
+                <th scope="col" className={s.actionsCell}>
+                  관리
+                </th>
+              </tr>
+            </thead>
+            <tbody role="rowgroup">
+              {filtered.map((item, index) => (
+                <LibraryItem
+                  key={item.id}
+                  item={item}
+                  number={index + 1}
+                  client={client}
+                  onDeleted={async () => {
+                    await onDeleted?.(item);
+                  }}
+                  onChanged={(next) => {
+                    invalidateReads();
+                    setItems((previous) =>
+                      next
+                        ? previous.map((value) =>
+                            value.id === next.id ? next : value,
+                          )
+                        : previous.filter((value) => value.id !== item.id),
+                    );
+                  }}
+                  onOpen={
+                    item.kind === "draft"
+                      ? canExport
+                        ? () => onOpenDraft(item.id)
+                        : undefined
+                      : canStudio
+                        ? () => onOpenExtraction(item.id)
+                        : undefined
+                  }
+                />
+              ))}
+            </tbody>
+          </table>
+        ) : error ? (
+          <div className={s.empty}>
+            <h2>자료 목록을 불러오지 못했습니다</h2>
+            <p>연결 상태를 확인한 뒤 새로고침해 주세요.</p>
+          </div>
+        ) : (
           <div className={s.empty}>
             <h2>
-              {query ? "검색한 자료가 없습니다" : "아직 저장한 자료가 없어요"}
+              {hasFilters
+                ? "조건에 맞는 자료가 없습니다"
+                : "아직 저장한 자료가 없어요"}
             </h2>
             <p>
-              {query
-                ? "다른 이름으로 검색해 보세요."
+              {hasFilters
+                ? "자료 이름이나 종류를 바꿔 다시 찾아보세요."
                 : "시험지를 편집하거나 내 자료에서 문제를 추출하면 여기에 저장됩니다."}
             </p>
+            {hasFilters && (
+              <button
+                onClick={() => {
+                  setQuery("");
+                  setKind("all");
+                }}
+              >
+                검색 조건 초기화
+              </button>
+            )}
           </div>
-        )
-      )}
+        )}
+      </div>
       <p className={s.note}>
         이 계정의 비공개 자료입니다. 저장이 완료되면 다른 브라우저나 기기에서도
         열 수 있습니다.
@@ -158,25 +265,31 @@ export default function PrivateLibrary({
 
 function LibraryItem({
   item,
+  number,
   client,
   onOpen,
   onChanged,
   onDeleted,
 }: {
   item: PrivateDocumentSummary;
+  number: number;
   client: PrivateCloudClient;
   onOpen?: () => void | Promise<void>;
   onChanged: (next?: PrivateDocumentSummary) => void;
   onDeleted: () => Promise<void>;
 }) {
-  const [action, setAction] = useState<"rename" | "delete" | null>(null);
+  const [action, setAction] = useState<{
+    kind: "rename" | "delete";
+    revision: number;
+    title: string;
+  } | null>(null);
   const [name, setName] = useState(item.title);
   const [busy, setBusy] = useState(false);
   const [error, setError] = useState("");
   const renameButton = useRef<HTMLButtonElement>(null);
   const deleteButton = useRef<HTMLButtonElement>(null);
-  // 이름 변경·삭제 확인은 겹쳐 뜨는 창이다 — 그동안의 처리 중·오류는 창 안에 보이고 카드에는
-  // 안 붙는다(카드 높이 불변). 카드에 남는 것은 «열기»의 처리 중·오류뿐이다.
+  // Keep the confirmed revision even if another device refreshes this row while
+  // its dialog is open: the existing API conflict protects unseen changes.
   const dialogOpen = action !== null;
   const closeDialog = () => {
     setAction(null);
@@ -195,15 +308,20 @@ function LibraryItem({
     }
   };
   return (
-    <article className={s.card}>
-      <small>{item.kind === "draft" ? "시험지" : "추출한 자료"}</small>
-      <h2>{item.title}</h2>
-      <p>
-        {item.problemCount}문항 · {formatDraftDate(item.updatedAt)}
-      </p>
-      <div className={s.actions}>
-        {onOpen && (
+    <tr role="row">
+      <td className={s.numberCell} role="cell">
+        {number}
+      </td>
+      <td className={s.kindCell} role="cell">
+        <span className={s.kindBadge} data-kind={item.kind}>
+          {item.kind === "draft" ? "시험지" : "추출한 자료"}
+        </span>
+      </td>
+      <td className={s.titleCell} role="cell">
+        {onOpen ? (
           <button
+            className={s.titleButton}
+            aria-label={`${item.title} 열기`}
             disabled={busy}
             onClick={() =>
               void perform(async () => {
@@ -211,79 +329,102 @@ function LibraryItem({
               })
             }
           >
-            열기
+            {item.title}
           </button>
+        ) : (
+          <span className={s.titleText}>{item.title}</span>
         )}
-        <button
-          ref={renameButton}
-          aria-label={`${item.title} 이름 변경`}
-          disabled={busy}
-          onClick={() => {
-            setName(item.title);
-            setError("");
-            setAction("rename");
-          }}
-        >
-          이름 변경
-        </button>
-        <button
-          ref={deleteButton}
-          aria-label={`${item.title} 삭제`}
-          disabled={busy}
-          onClick={() => {
-            setError("");
-            setAction("delete");
-          }}
-        >
-          삭제
-        </button>
-      </div>
-      {action === "rename" && (
-        <ConfirmDialog
-          title="이름 변경"
-          field={{
-            label: "새 자료 이름",
-            value: name,
-            maxLength: item.kind === "draft" ? 80 : 200,
-            onChange: setName,
-          }}
-          confirmLabel="이름 저장"
-          busy={busy}
-          error={error}
-          returnFocus={renameButton}
-          onConfirm={() =>
-            void perform(async () => {
-              onChanged(
-                await client.rename(item.id, name.trim(), item.revision),
-              );
-            })
-          }
-          onCancel={closeDialog}
-        />
-      )}
-      {action === "delete" && (
-        <ConfirmDialog
-          title={`‘${item.title}’ 자료를 삭제할까요?`}
-          confirmLabel="삭제 확인"
-          busy={busy}
-          error={error}
-          returnFocus={deleteButton}
-          onConfirm={() =>
-            void perform(async () => {
-              await client.remove(item.id, item.revision);
-              await onDeleted();
-              onChanged();
-            })
-          }
-          onCancel={closeDialog}
-        />
-      )}
-      {busy && !dialogOpen && <small role="status">처리 중…</small>}
-      {error && !dialogOpen && (
-        <p className={s.error} role="alert">
-          {error}
-        </p>
-      )}
-    </article>
+        {!onOpen && <small>열기 권한 없음</small>}
+        {busy && !dialogOpen && <small role="status">처리 중…</small>}
+        {error && !dialogOpen && (
+          <p className={s.error} role="alert">
+            {error}
+          </p>
+        )}
+      </td>
+      <td className={s.countCell} role="cell">
+        {item.problemCount}
+        <span className={s.mobileLabel}>문항</span>
+      </td>
+      <td className={s.updatedCell} role="cell">
+        <span className={s.mobileLabel}>수정 </span>
+        <time dateTime={item.updatedAt}>{formatDraftDate(item.updatedAt)}</time>
+      </td>
+      <td className={s.actionsCell} role="cell">
+        <div className={s.actions}>
+          <button
+            ref={renameButton}
+            aria-label={`${item.title} 이름 변경`}
+            disabled={busy}
+            onClick={() => {
+              setName(item.title);
+              setError("");
+              setAction({
+                kind: "rename",
+                revision: item.revision,
+                title: item.title,
+              });
+            }}
+          >
+            이름 변경
+          </button>
+          <button
+            ref={deleteButton}
+            aria-label={`${item.title} 삭제`}
+            disabled={busy}
+            onClick={() => {
+              setError("");
+              setAction({
+                kind: "delete",
+                revision: item.revision,
+                title: item.title,
+              });
+            }}
+          >
+            삭제
+          </button>
+        </div>
+        {action?.kind === "rename" && (
+          <ConfirmDialog
+            title="이름 변경"
+            field={{
+              label: "새 자료 이름",
+              value: name,
+              maxLength: item.kind === "draft" ? 80 : 200,
+              onChange: setName,
+            }}
+            confirmLabel="이름 저장"
+            busy={busy}
+            error={error}
+            returnFocus={renameButton}
+            onConfirm={() =>
+              void perform(async () => {
+                onChanged(
+                  await client.rename(item.id, name.trim(), action.revision),
+                );
+              })
+            }
+            onCancel={closeDialog}
+          />
+        )}
+        {action?.kind === "delete" && (
+          <ConfirmDialog
+            title={`‘${action.title}’ 자료를 삭제할까요?`}
+            confirmLabel="삭제 확인"
+            busy={busy}
+            error={error}
+            returnFocus={deleteButton}
+            onConfirm={() =>
+              void perform(async () => {
+                await client.remove(item.id, action.revision);
+                await onDeleted();
+                onChanged();
+              })
+            }
+            onCancel={closeDialog}
+          />
+        )}
+      </td>
+    </tr>
   );
 }

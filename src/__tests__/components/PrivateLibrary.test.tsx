@@ -1,11 +1,14 @@
 import {
+  act,
   fireEvent,
   render,
   screen,
   waitFor,
   within,
 } from "@testing-library/react";
+import userEvent from "@testing-library/user-event";
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
+import type { PrivateDocumentSummary } from "@/contracts/privateWorkspace.contract";
 import PrivateLibrary from "@/components/unified/PrivateLibrary";
 import { PrivateCloudClient } from "@/components/unified/privateCloudClient";
 import { privateServer, sessionData } from "../fixtures/privateCloud";
@@ -31,10 +34,210 @@ afterEach(() => {
   Reflect.deleteProperty(HTMLDialogElement.prototype, "showModal");
   Reflect.deleteProperty(HTMLDialogElement.prototype, "close");
 });
-const article = (title: string) =>
-  within(
-    screen.getByRole("heading", { name: title, level: 2 }).closest("article")!,
-  );
+const boardRow = (title: string) =>
+  within(screen.getByRole("button", { name: `${title} 열기` }).closest("tr")!);
+const boardItems: PrivateDocumentSummary[] = [
+  {
+    id: "alpha",
+    kind: "draft",
+    title: "Alpha 학습지",
+    problemCount: 12,
+    revision: 1,
+    createdAt: "2026-09-01T00:00:00Z",
+    updatedAt: "2026-09-01T00:00:00Z",
+  },
+  {
+    id: "beta",
+    kind: "draft",
+    title: "beta 평가",
+    problemCount: 4,
+    revision: 1,
+    createdAt: "2026-09-01T00:00:00Z",
+    updatedAt: "2026-09-03T00:00:00Z",
+  },
+  {
+    id: "gamma",
+    kind: "extraction",
+    title: "Gamma 추출 자료",
+    problemCount: 25,
+    revision: 1,
+    createdAt: "2026-09-01T00:00:00Z",
+    updatedAt: "2026-09-02T00:00:00Z",
+  },
+];
+const boardProps = () => ({
+  storageScope: "owner-a",
+  canExport: true,
+  canStudio: true,
+  onOpenDraft: vi.fn(),
+  onOpenExtraction: vi.fn(),
+});
+const listResponse = (items: PrivateDocumentSummary[]) =>
+  Response.json({ data: items, meta: { total: items.length } });
+const titles = () =>
+  within(screen.getByRole("table", { name: "저장한 자료 목록" }))
+    .getAllByRole("button", { name: / 열기$/ })
+    .map((button) => button.textContent);
+
+describe("private library board", () => {
+  it("shows six columns, counts, newest order and client-side search, kind and sorting without writes", async () => {
+    const transport = vi.fn<typeof fetch>(async () => listResponse(boardItems));
+    vi.stubGlobal("fetch", transport);
+    render(<PrivateLibrary {...boardProps()} />);
+    await screen.findByRole("table");
+    expect(
+      screen.getAllByRole("columnheader").map((cell) => cell.textContent),
+    ).toEqual(["번호", "종류", "자료 이름", "문항 수", "최근 수정", "관리"]);
+    expect(titles()).toEqual(["beta 평가", "Gamma 추출 자료", "Alpha 학습지"]);
+    expect(boardRow("Alpha 학습지").getAllByRole("cell")).toHaveLength(6);
+    expect(screen.getByText(/저장한 자료/).textContent).toBe("저장한 자료 3개");
+
+    fireEvent.change(screen.getByRole("combobox", { name: "자료 정렬" }), {
+      target: { value: "name" },
+    });
+    expect(titles()).toEqual(["Alpha 학습지", "beta 평가", "Gamma 추출 자료"]);
+    fireEvent.change(screen.getByRole("combobox", { name: "자료 정렬" }), {
+      target: { value: "count" },
+    });
+    expect(titles()).toEqual(["Gamma 추출 자료", "Alpha 학습지", "beta 평가"]);
+    fireEvent.change(screen.getByRole("combobox", { name: "자료 종류" }), {
+      target: { value: "draft" },
+    });
+    expect(titles()).toEqual(["Alpha 학습지", "beta 평가"]);
+    fireEvent.change(
+      screen.getByRole("searchbox", { name: "저장한 자료 검색" }),
+      { target: { value: "  ALPHA  " } },
+    );
+    expect(titles()).toEqual(["Alpha 학습지"]);
+    expect(screen.getByText(/저장한 자료/)).toHaveTextContent(
+      "저장한 자료 3개 · 검색 결과 1개",
+    );
+    fireEvent.change(screen.getByRole("combobox", { name: "자료 종류" }), {
+      target: { value: "extraction" },
+    });
+    expect(
+      screen.getByRole("heading", { name: "조건에 맞는 자료가 없습니다" }),
+    ).toBeVisible();
+    fireEvent.click(screen.getByRole("button", { name: "검색 조건 초기화" }));
+    expect(titles()).toEqual(["Gamma 추출 자료", "Alpha 학습지", "beta 평가"]);
+    expect(transport).toHaveBeenCalledTimes(1);
+    expect(
+      transport.mock.calls.every(
+        ([, init]) => !init?.method || init.method === "GET",
+      ),
+    ).toBe(true);
+  });
+
+  it("opens titles by keyboard, reports failures in the row and permits retry", async () => {
+    vi.stubGlobal(
+      "fetch",
+      vi.fn(async () => listResponse(boardItems)),
+    );
+    const props = boardProps();
+    props.onOpenDraft.mockRejectedValueOnce(
+      new Error("열기 실패: 다시 시도해 주세요."),
+    );
+    render(<PrivateLibrary {...props} />);
+    const title = await screen.findByRole("button", {
+      name: "Alpha 학습지 열기",
+    });
+    const user = userEvent.setup();
+    title.focus();
+    await user.keyboard("{Enter}");
+    expect(
+      await boardRow("Alpha 학습지").findByRole("alert"),
+    ).toHaveTextContent("열기 실패");
+    expect(title).toHaveFocus();
+    await user.keyboard("{Enter}");
+    await waitFor(() =>
+      expect(
+        boardRow("Alpha 학습지").queryByRole("alert"),
+      ).not.toBeInTheDocument(),
+    );
+    expect(props.onOpenDraft).toHaveBeenNthCalledWith(1, "alpha");
+    expect(props.onOpenDraft).toHaveBeenNthCalledWith(2, "alpha");
+  });
+
+  it("preserves both types and management actions when opening permissions are absent", async () => {
+    vi.stubGlobal(
+      "fetch",
+      vi.fn(async () => listResponse(boardItems)),
+    );
+    const props = boardProps();
+    render(
+      <PrivateLibrary
+        {...props}
+        canExport={false}
+        canStudio={false}
+        onImport={vi.fn()}
+      />,
+    );
+    await screen.findByRole("table");
+    expect(
+      screen.queryByRole("button", { name: /열기$/ }),
+    ).not.toBeInTheDocument();
+    expect(screen.getAllByText("열기 권한 없음")).toHaveLength(3);
+    expect(
+      screen.getByRole("button", { name: "Gamma 추출 자료 이름 변경" }),
+    ).toBeEnabled();
+    expect(
+      screen.getByRole("button", { name: "Gamma 추출 자료 삭제" }),
+    ).toBeEnabled();
+    expect(
+      screen.queryByRole("button", { name: "작업 파일 불러오기" }),
+    ).not.toBeInTheDocument();
+    expect(props.onOpenDraft).not.toHaveBeenCalled();
+    expect(props.onOpenExtraction).not.toHaveBeenCalled();
+  });
+
+  it("ignores an older list that finishes after a focus refresh and clears loading", async () => {
+    const replies: ((response: Response) => void)[] = [];
+    vi.stubGlobal(
+      "fetch",
+      vi.fn(() => new Promise<Response>((resolve) => replies.push(resolve))),
+    );
+    render(<PrivateLibrary {...boardProps()} />);
+    fireEvent(window, new Event("focus"));
+    expect(replies).toHaveLength(2);
+    await act(async () => replies[1](listResponse([boardItems[1]])));
+    expect(titles()).toEqual(["beta 평가"]);
+    expect(
+      screen.queryByText("저장한 자료를 불러오는 중입니다…"),
+    ).not.toBeInTheDocument();
+    await act(async () => replies[0](listResponse([boardItems[0]])));
+    expect(titles()).toEqual(["beta 평가"]);
+  });
+
+  it("discards the old account immediately and ignores its delayed refresh", async () => {
+    let release!: (response: Response) => void;
+    let hold = false;
+    vi.stubGlobal(
+      "fetch",
+      vi.fn<typeof fetch>(async (_input, init) => {
+        const owner = new Headers(init?.headers).get("x-workspace-owner");
+        if (owner === "owner-b") return listResponse([boardItems[1]]);
+        if (hold)
+          return new Promise<Response>((resolve) => {
+            release = resolve;
+          });
+        return listResponse([boardItems[0]]);
+      }),
+    );
+    const props = boardProps();
+    const { rerender } = render(<PrivateLibrary {...props} />);
+    await screen.findByRole("button", { name: "Alpha 학습지 열기" });
+    hold = true;
+    fireEvent(window, new Event("focus"));
+    rerender(<PrivateLibrary {...props} storageScope="owner-b" />);
+    expect(
+      screen.queryByRole("button", { name: "Alpha 학습지 열기" }),
+    ).not.toBeInTheDocument();
+    await screen.findByRole("button", { name: "beta 평가 열기" });
+    await act(async () => release(listResponse([boardItems[0]])));
+    expect(titles()).toEqual(["beta 평가"]);
+  });
+});
+
 describe("private library", () => {
   it("lists both kinds, opens stable IDs, and waits for persisted rename/delete results", async () => {
     const server = privateServer();
@@ -46,6 +249,7 @@ describe("private library", () => {
       { problems: [] },
       null,
     );
+
     await client.save(
       "source",
       "extraction",
@@ -67,20 +271,26 @@ describe("private library", () => {
         onDeleted={deleted}
       />,
     );
-    await screen.findByRole("heading", { name: "추출 원본" });
-    fireEvent.click(article("추출 원본").getByRole("button", { name: "열기" }));
+    await screen.findByRole("button", { name: "추출 원본 열기" });
+    fireEvent.click(
+      boardRow("추출 원본").getByRole("button", { name: /열기$/ }),
+    );
     expect(openExtraction).toHaveBeenCalledWith("source");
-    fireEvent.click(article("내 시험지").getByRole("button", { name: "열기" }));
+    fireEvent.click(
+      boardRow("내 시험지").getByRole("button", { name: /열기$/ }),
+    );
     expect(openDraft).toHaveBeenCalledWith("worksheet");
     await waitFor(() =>
       expect(
-        article("추출 원본").getByRole("button", {
+        boardRow("추출 원본").getByRole("button", {
           name: "추출 원본 이름 변경",
         }),
       ).toBeEnabled(),
     );
     fireEvent.click(
-      article("추출 원본").getByRole("button", { name: "추출 원본 이름 변경" }),
+      boardRow("추출 원본").getByRole("button", {
+        name: "추출 원본 이름 변경",
+      }),
     );
     // 추출 자료는 이름을 200자까지 — 시험지(80자)와 다르다. 창으로 옮겨도 그대로.
     expect(
@@ -90,15 +300,15 @@ describe("private library", () => {
       target: { value: "바꾼 원본" },
     });
     fireEvent.click(screen.getByRole("button", { name: "이름 저장" }));
-    await screen.findByRole("heading", { name: "바꾼 원본" });
+    await screen.findByRole("button", { name: "바꾼 원본 열기" });
     expect(server.documents.get("owner-a:source")?.title).toBe("바꾼 원본");
     fireEvent.click(
-      article("바꾼 원본").getByRole("button", { name: "바꾼 원본 삭제" }),
+      boardRow("바꾼 원본").getByRole("button", { name: "바꾼 원본 삭제" }),
     );
     fireEvent.click(screen.getByRole("button", { name: "삭제 확인" }));
     await waitFor(() =>
       expect(
-        screen.queryByRole("heading", { name: "바꾼 원본" }),
+        screen.queryByRole("button", { name: "바꾼 원본 열기" }),
       ).not.toBeInTheDocument(),
     );
     expect(deleted).toHaveBeenCalledWith(
@@ -126,9 +336,9 @@ describe("private library", () => {
         onOpenExtraction={vi.fn()}
       />,
     );
-    await screen.findByRole("heading", { name: "읽기 자료" });
+    await screen.findByText("읽기 자료");
     expect(
-      screen.queryByRole("button", { name: "열기" }),
+      screen.queryByRole("button", { name: /열기$/ }),
     ).not.toBeInTheDocument();
     expect(
       screen.getByRole("button", { name: "읽기 자료 이름 변경" }),
@@ -197,11 +407,11 @@ describe("private library delete confirmation dialog", () => {
         onDeleted={deleted}
       />,
     );
-    await screen.findByRole("heading", { name: "오늘의 수학 학습지" });
-    const card = screen
-      .getByRole("heading", { name: "오늘의 수학 학습지", level: 2 })
-      .closest("article")!;
-    const trigger = within(card).getByRole("button", {
+    await screen.findByRole("button", { name: "오늘의 수학 학습지 열기" });
+    const row = screen
+      .getByRole("button", { name: "오늘의 수학 학습지 열기" })
+      .closest("tr")!;
+    const trigger = within(row).getByRole("button", {
       name: "오늘의 수학 학습지 삭제",
     });
     await waitFor(() => expect(trigger).toBeEnabled());
@@ -212,18 +422,18 @@ describe("private library delete confirmation dialog", () => {
         name: "‘오늘의 수학 학습지’ 자료를 삭제할까요?",
       });
     };
-    return { server, card, trigger, open, deleted };
+    return { server, row, trigger, open, deleted };
   }
 
-  it("opens a modal dialog instead of expanding the card", async () => {
-    const { card, open } = await seeded();
+  it("opens a modal dialog instead of expanding the row", async () => {
+    const { row, open } = await seeded();
     const dialog = open();
     expect(showModal).toHaveBeenCalledTimes(1);
     expect(dialog).toHaveAttribute("open");
-    expect(card.contains(dialog)).toBe(false);
-    expect(within(card).queryByText(/삭제할까요/)).not.toBeInTheDocument();
+    expect(row.contains(dialog)).toBe(false);
+    expect(within(row).queryByText(/삭제할까요/)).not.toBeInTheDocument();
     expect(
-      within(card).queryByRole("button", { name: "삭제 확인" }),
+      within(row).queryByRole("button", { name: "삭제 확인" }),
     ).not.toBeInTheDocument();
     expect(within(dialog).getByRole("button", { name: "취소" })).toHaveFocus();
     expect(
@@ -267,7 +477,7 @@ describe("private library delete confirmation dialog", () => {
     const gate = new Promise<void>((resolve) => {
       release = resolve;
     });
-    const { server, card, open, deleted } = await seeded(
+    const { server, row, open, deleted } = await seeded(
       (transport) => async (input, init) => {
         if (init?.method === "DELETE") await gate;
         return transport(input, init);
@@ -278,7 +488,7 @@ describe("private library delete confirmation dialog", () => {
     expect(await within(dialog).findByRole("status")).toHaveTextContent(
       "처리 중…",
     );
-    expect(within(card).queryByRole("status")).not.toBeInTheDocument();
+    expect(within(row).queryByRole("status")).not.toBeInTheDocument();
     expect(
       within(dialog).getByRole("button", { name: "삭제 확인" }),
     ).toBeDisabled();
@@ -289,7 +499,7 @@ describe("private library delete confirmation dialog", () => {
     release();
     await waitFor(() =>
       expect(
-        screen.queryByRole("heading", { name: "오늘의 수학 학습지" }),
+        screen.queryByRole("button", { name: "오늘의 수학 학습지 열기" }),
       ).not.toBeInTheDocument(),
     );
     expect(screen.queryByRole("dialog")).not.toBeInTheDocument();
@@ -300,7 +510,7 @@ describe("private library delete confirmation dialog", () => {
   });
 
   it("keeps the dialog open and shows the failure inside it", async () => {
-    const { server, card, open } = await seeded();
+    const { server, row, open } = await seeded();
     const client = new PrivateCloudClient("owner-a", server.transport);
     await client.rename("worksheet", "다른 기기 변경", 1);
     const dialog = open();
@@ -309,7 +519,7 @@ describe("private library delete confirmation dialog", () => {
       "다른 창이나 기기",
     );
     expect(screen.getByRole("dialog")).toBe(dialog);
-    expect(within(card).queryByRole("alert")).not.toBeInTheDocument();
+    expect(within(row).queryByRole("alert")).not.toBeInTheDocument();
     expect(
       within(dialog).getByRole("button", { name: "삭제 확인" }),
     ).toBeEnabled();
@@ -321,23 +531,23 @@ describe("private library delete confirmation dialog", () => {
    * 창 안에 지금의 입력칸(라벨 «새 자료 이름», 시험지 80자·추출 자료 200자)과 [취소][이름 저장].
    */
   describe("rename dialog", () => {
-    const renameTrigger = (card: HTMLElement) =>
-      within(card).getByRole("button", {
+    const renameTrigger = (row: HTMLElement) =>
+      within(row).getByRole("button", {
         name: "오늘의 수학 학습지 이름 변경",
       });
-    const openRename = (card: HTMLElement) => {
-      const trigger = renameTrigger(card);
+    const openRename = (row: HTMLElement) => {
+      const trigger = renameTrigger(row);
       trigger.focus();
       fireEvent.click(trigger);
       return screen.getByRole("dialog", { name: "이름 변경" });
     };
 
-    it("opens a modal with the current name selected instead of expanding the card", async () => {
-      const { card } = await seeded();
-      const dialog = openRename(card);
+    it("opens a modal with the current name selected instead of expanding the row", async () => {
+      const { row } = await seeded();
+      const dialog = openRename(row);
       expect(showModal).toHaveBeenCalledTimes(1);
-      expect(card.contains(dialog)).toBe(false);
-      expect(within(card).queryByRole("textbox")).not.toBeInTheDocument();
+      expect(row.contains(dialog)).toBe(false);
+      expect(within(row).queryByRole("textbox")).not.toBeInTheDocument();
       const input = within(dialog).getByRole("textbox", {
         name: "새 자료 이름",
       }) as HTMLInputElement;
@@ -356,8 +566,8 @@ describe("private library delete confirmation dialog", () => {
     });
 
     it("locks save for a blank name", async () => {
-      const { server, card } = await seeded();
-      const dialog = openRename(card);
+      const { server, row } = await seeded();
+      const dialog = openRename(row);
       fireEvent.change(within(dialog).getByRole("textbox"), {
         target: { value: "  " },
       });
@@ -375,20 +585,20 @@ describe("private library delete confirmation dialog", () => {
       const gate = new Promise<void>((resolve) => {
         release = resolve;
       });
-      const { server, card } = await seeded(
+      const { server, row } = await seeded(
         (transport) => async (input, init) => {
           if (init?.method === "PATCH") await gate;
           return transport(input, init);
         },
       );
-      const dialog = openRename(card);
+      const dialog = openRename(row);
       const input = within(dialog).getByRole("textbox");
       fireEvent.change(input, { target: { value: "  1학기 기말  " } });
       fireEvent.submit(input);
       expect(await within(dialog).findByRole("status")).toHaveTextContent(
         "처리 중…",
       );
-      expect(within(card).queryByRole("status")).not.toBeInTheDocument();
+      expect(within(row).queryByRole("status")).not.toBeInTheDocument();
       expect(
         within(dialog).getByRole("button", { name: "이름 저장" }),
       ).toBeDisabled();
@@ -398,18 +608,21 @@ describe("private library delete confirmation dialog", () => {
       fireEvent(dialog, new Event("cancel", { cancelable: true }));
       expect(screen.getByRole("dialog")).toBe(dialog);
       release();
-      await screen.findByRole("heading", { name: "1학기 기말", level: 2 });
+      await screen.findByRole("button", { name: "1학기 기말 열기" });
       expect(screen.queryByRole("dialog")).not.toBeInTheDocument();
       expect(server.documents.get("owner-a:worksheet")?.title).toBe(
         "1학기 기말",
       );
+      expect(
+        screen.getByRole("button", { name: "1학기 기말 이름 변경" }),
+      ).toHaveFocus();
     });
 
     it("keeps the dialog open and shows the failure inside it", async () => {
-      const { server, card } = await seeded();
+      const { server, row } = await seeded();
       const client = new PrivateCloudClient("owner-a", server.transport);
       await client.rename("worksheet", "다른 기기 변경", 1);
-      const dialog = openRename(card);
+      const dialog = openRename(row);
       fireEvent.click(
         within(dialog).getByRole("button", { name: "이름 저장" }),
       );
@@ -417,24 +630,24 @@ describe("private library delete confirmation dialog", () => {
         "다른 창이나 기기",
       );
       expect(screen.getByRole("dialog")).toBe(dialog);
-      expect(within(card).queryByRole("alert")).not.toBeInTheDocument();
+      expect(within(row).queryByRole("alert")).not.toBeInTheDocument();
     });
 
     it("closes on cancel, Esc and backdrop and returns focus to the rename button", async () => {
-      const { server, card } = await seeded();
+      const { server, row } = await seeded();
       fireEvent.click(
-        within(openRename(card)).getByRole("button", { name: "취소" }),
+        within(openRename(row)).getByRole("button", { name: "취소" }),
       );
       expect(screen.queryByRole("dialog")).not.toBeInTheDocument();
-      expect(renameTrigger(card)).toHaveFocus();
+      expect(renameTrigger(row)).toHaveFocus();
 
       const escape = new Event("cancel", { cancelable: true });
-      fireEvent(openRename(card), escape);
+      fireEvent(openRename(row), escape);
       expect(escape.defaultPrevented).toBe(true);
       expect(screen.queryByRole("dialog")).not.toBeInTheDocument();
-      expect(renameTrigger(card)).toHaveFocus();
+      expect(renameTrigger(row)).toHaveFocus();
 
-      const dialog = openRename(card);
+      const dialog = openRename(row);
       vi.spyOn(dialog, "getBoundingClientRect").mockReturnValue({
         x: 300,
         y: 200,
@@ -449,7 +662,7 @@ describe("private library delete confirmation dialog", () => {
       fireEvent.pointerDown(dialog, { clientX: 40, clientY: 40 });
       fireEvent.click(dialog, { clientX: 40, clientY: 40 });
       expect(screen.queryByRole("dialog")).not.toBeInTheDocument();
-      expect(renameTrigger(card)).toHaveFocus();
+      expect(renameTrigger(row)).toHaveFocus();
       expect(server.documents.get("owner-a:worksheet")?.title).toBe(
         "오늘의 수학 학습지",
       );
@@ -491,7 +704,7 @@ describe("private library delete confirmation dialog", () => {
       new CustomEvent("private-library-change", { detail: "owner-a" }),
     );
     await waitFor(() => expect(lists).toBe(3));
-    await screen.findByRole("heading", { name: "오늘의 수학 학습지" });
+    await screen.findByRole("button", { name: "오늘의 수학 학습지 열기" });
     expect(screen.getByRole("dialog")).toBe(dialog);
     expect(within(dialog).getByRole("button", { name: "취소" })).toBeEnabled();
   });
@@ -500,6 +713,77 @@ describe("private library delete confirmation dialog", () => {
     await seeded();
     fireEvent.click(screen.getByRole("button", { name: "새로고침" }));
     expect(screen.getByText("저장한 자료를 불러오는 중입니다…")).toBeVisible();
-    await screen.findByRole("heading", { name: "오늘의 수학 학습지" });
+    await screen.findByRole("button", { name: "오늘의 수학 학습지 열기" });
   });
+
+  it("preserves an open dialog across a new remote revision without confirming unseen changes", async () => {
+    const { server, open } = await seeded();
+    const dialog = open();
+    const client = new PrivateCloudClient("owner-a", server.transport);
+    await act(async () => {
+      await client.rename("worksheet", "다른 기기 변경", 1);
+      window.dispatchEvent(new Event("focus"));
+    });
+    await screen.findByRole("button", { name: "다른 기기 변경 열기" });
+    expect(screen.getByRole("dialog")).toBe(dialog);
+    expect(within(dialog).getByRole("heading")).toHaveTextContent(
+      "오늘의 수학 학습지",
+    );
+    fireEvent.click(within(dialog).getByRole("button", { name: "삭제 확인" }));
+    expect(await within(dialog).findByRole("alert")).toHaveTextContent(
+      "다른 창이나 기기",
+    );
+    expect(server.documents.get("owner-a:worksheet")?.revision).toBe(2);
+    expect(server.documents.has("owner-a:worksheet")).toBe(true);
+  });
+
+  it.each(["rename", "delete"] as const)(
+    "does not let a stale list undo a successful %s",
+    async (action) => {
+      let hold = false;
+      let release!: () => void;
+      const { row, open } = await seeded((transport) => async (input, init) => {
+        const response = await transport(input, init);
+        if (hold && String(input).startsWith("/api/library/documents?")) {
+          hold = false;
+          await new Promise<void>((resolve) => {
+            release = resolve;
+          });
+        }
+        return response;
+      });
+      hold = true;
+      fireEvent(window, new Event("focus"));
+      await waitFor(() => expect(release).toBeTypeOf("function"));
+      if (action === "rename") {
+        fireEvent.click(
+          within(row).getByRole("button", {
+            name: "오늘의 수학 학습지 이름 변경",
+          }),
+        );
+        fireEvent.change(
+          screen.getByRole("textbox", { name: "새 자료 이름" }),
+          { target: { value: "확정한 새 이름" } },
+        );
+        fireEvent.click(screen.getByRole("button", { name: "이름 저장" }));
+        await screen.findByRole("button", { name: "확정한 새 이름 열기" });
+      } else {
+        fireEvent.click(
+          within(open()).getByRole("button", { name: "삭제 확인" }),
+        );
+        await screen.findByRole("heading", {
+          name: "아직 저장한 자료가 없어요",
+        });
+      }
+      await act(async () => release());
+      expect(
+        screen.queryByRole("button", { name: "오늘의 수학 학습지 열기" }),
+      ).not.toBeInTheDocument();
+      if (action === "rename")
+        expect(
+          screen.getByRole("button", { name: "확정한 새 이름 열기" }),
+        ).toBeVisible();
+      else expect(screen.queryByRole("table")).not.toBeInTheDocument();
+    },
+  );
 });
