@@ -6,7 +6,11 @@ import {
   type WorkspaceDraft,
   type WorkspaceDraftSnapshot,
 } from "./draftStore";
-import { cloudError, PrivateCloudClient } from "./privateCloudClient";
+import {
+  cloudError,
+  PrivateCloudClient,
+  PrivateCloudError,
+} from "./privateCloudClient";
 import type { PrivateDocument } from "@/contracts/privateWorkspace.contract";
 
 type Base = { revision: number | null; acknowledged?: string };
@@ -35,6 +39,7 @@ export function createPrivateDraftStore(
   let hydration: Promise<void> | undefined;
   let lifecycle = 0;
   const queued = new Map<string, string>();
+  const conflicts = new Set<string>();
   const deleted = new Set<string>();
   const listeners = new Set<() => void>();
   const persist = () => {
@@ -95,7 +100,7 @@ export function createPrivateDraftStore(
   const enqueue = () => {
     if (initializing || !raw || loadError) return;
     for (const draft of parseEnvelope(raw).drafts) {
-      if (deleted.has(draft.id)) continue;
+      if (deleted.has(draft.id) || conflicts.has(draft.id)) continue;
       const signature = fingerprint(draft);
       if (
         bases[draft.id]?.acknowledged === signature ||
@@ -104,16 +109,24 @@ export function createPrivateDraftStore(
         continue;
       queued.set(draft.id, signature);
       void run(async () => {
-        if (deleted.has(draft.id)) return;
+        if (deleted.has(draft.id) || conflicts.has(draft.id)) return;
         const payload = await client.externalize({ ...draft, version: 1 });
         if (deleted.has(draft.id)) return;
-        const saved = await client.save(
-          draft.id,
-          "draft",
-          draft.title,
-          payload,
-          bases[draft.id]?.revision ?? null,
-        );
+        const saved = await client
+          .save(
+            draft.id,
+            "draft",
+            draft.title,
+            payload,
+            bases[draft.id]?.revision ?? null,
+          )
+          .catch((cause) => {
+            // Later autosaves still update local recovery, but a rejected base
+            // cannot succeed by repeatedly sending it (including queued edits).
+            if (cause instanceof PrivateCloudError && cause.status === 409)
+              conflicts.add(draft.id);
+            throw cause;
+          });
         // An acknowledgment only covers the captured version, never newer editor changes.
         bases[draft.id] = { revision: saved.revision, acknowledged: signature };
         if (

@@ -13,6 +13,10 @@ type Recovery = Session & {
   title: string;
   assets: Record<string, string>;
 };
+// Component replacement must not restore a pending cache while the departing
+// instance is still acknowledging its save. This registry is confined to this
+// JS realm; another tab/device must still pass the server's revision check.
+const pendingSessionSaves = new Map<string, Set<Promise<void>>>();
 export interface SessionRecovery {
   get<T>(key: string): Promise<T | undefined>;
   put(key: string, value: unknown): Promise<void>;
@@ -105,6 +109,7 @@ export class PrivateStudioSessionStore {
   private tail: Promise<unknown> = Promise.resolve();
   private loading?: Promise<Session | null>;
   private lastError: unknown;
+  private conflictError?: PrivateCloudError;
   private lastSaved = "";
   private lifecycle = 0;
   private released = false;
@@ -142,6 +147,8 @@ export class PrivateStudioSessionStore {
     }));
   }
   private async restore(): Promise<Session | null> {
+    while (pendingSessionSaves.get(this.scope)?.size)
+      await Promise.allSettled(pendingSessionSaves.get(this.scope)!);
     const current = await this.recovery.get<{ id: string | null }>("current");
     this.id = this.selectedId ?? current?.id ?? undefined;
     // Import only the account-scoped old extraction, once, preserving its original IDB data.
@@ -249,6 +256,9 @@ export class PrivateStudioSessionStore {
         // Keep recoverable originals before sending any remote writes.
         await this.recovery.put(id, cache);
         if (!this.released) await this.recovery.put("current", { id });
+        // Preserve subsequent edits and originals locally without retrying a
+        // revision the server has already rejected.
+        if (this.conflictError) throw this.conflictError;
         const assets: Record<string, string> = {};
         for (const source of captured.sources) {
           if (source.kind === "sample") continue;
@@ -286,10 +296,22 @@ export class PrivateStudioSessionStore {
         });
       })
       .catch((cause) => {
+        if (cause instanceof PrivateCloudError && cause.status === 409)
+          this.conflictError = cause;
         this.lastError = cause;
         throw cause;
       });
     this.tail = pending;
+    const saves =
+      pendingSessionSaves.get(this.scope) ?? new Set<Promise<void>>();
+    saves.add(pending);
+    pendingSessionSaves.set(this.scope, saves);
+    void pending
+      .finally(() => {
+        saves.delete(pending);
+        if (!saves.size) pendingSessionSaves.delete(this.scope);
+      })
+      .catch(() => {});
     return pending;
   }
   async clear(): Promise<void> {
@@ -304,9 +326,6 @@ export class PrivateStudioSessionStore {
     this.loading = Promise.resolve(null);
   }
   get conflict() {
-    return (
-      this.lastError instanceof PrivateCloudError &&
-      this.lastError.status === 409
-    );
+    return !!this.conflictError;
   }
 }

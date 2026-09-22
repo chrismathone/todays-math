@@ -269,6 +269,41 @@ describe("private material ownership and revision control", () => {
       }),
     });
   });
+  it("rejects a concurrent update between the initial read and the revision-fenced write", async () => {
+    mocks.doc.updateMany.mockResolvedValue({ count: 0 });
+    const response = await saveDocument(
+      request("PUT", {
+        kind: "draft",
+        title: "늦은 수정",
+        payload: { problems: [] },
+        expectedRevision: 1,
+      }),
+      "draft-1",
+    );
+    expect(response.status).toBe(409);
+    expect(mocks.doc.updateMany).toHaveBeenCalledWith(
+      expect.objectContaining({
+        where: { userId, id: "draft-1", revision: 1 },
+      }),
+    );
+    expect(mocks.doc.findUniqueOrThrow).not.toHaveBeenCalled();
+    expect(mocks.audit.create).not.toHaveBeenCalled();
+  });
+
+  it("rejects changing document kind even with the current revision", async () => {
+    const response = await saveDocument(
+      request("PUT", {
+        kind: "extraction",
+        title: "다른 자료",
+        payload: { data: { crops: [] } },
+        expectedRevision: 1,
+      }),
+      "draft-1",
+    );
+    expect(response.status).toBe(409);
+    expect(mocks.doc.updateMany).not.toHaveBeenCalled();
+    expect(mocks.audit.create).not.toHaveBeenCalled();
+  });
   it("checks the editor menu even when library reads are permitted", async () => {
     login({ menus: ["library"] });
     expect(
