@@ -1,4 +1,5 @@
 import { checkAnswer, generateProblem } from "./generator";
+import { kstDateOf } from "@/lib/kstDate";
 import { applyAttempt, createMemories, dueConcepts } from "./memory";
 import type {
   Attempt,
@@ -13,7 +14,7 @@ import type {
 export function localDateKey(now: Date): string {
   if (!Number.isFinite(now.getTime()))
     throw new Error("날짜가 올바르지 않아요.");
-  return `${now.getFullYear()}-${String(now.getMonth() + 1).padStart(2, "0")}-${String(now.getDate()).padStart(2, "0")}`;
+  return kstDateOf(now);
 }
 
 export function suggestedRating(
@@ -81,7 +82,9 @@ export function createMission(
     { kind: "quick", concept: ranked[1].conceptId, delta: -1 },
     { kind: "boss", concept: weak[0].conceptId, delta: 2 },
   ];
-  const seenEquations = new Set<string>();
+  const seenProblems = new Set<string>();
+  const contentKey = (problem: { prompt: string; equation: string }) =>
+    `${problem.prompt}\n${problem.equation}`;
   const problems = rhythm.map(({ kind, concept, delta }, index) => {
     const memory = memories.find((entry) => entry.conceptId === concept)!;
     const base =
@@ -101,7 +104,7 @@ export function createMission(
     });
     for (
       let retry = 1;
-      seenEquations.has(problem.equation) && retry <= 25;
+      seenProblems.has(contentKey(problem)) && retry <= 25;
       retry++
     ) {
       problem = generateProblem({
@@ -111,7 +114,7 @@ export function createMission(
         seed: (seed + (index + 1) * 104729 + retry * 1543) >>> 0,
       });
     }
-    seenEquations.add(problem.equation);
+    seenProblems.add(contentKey(problem));
     return { ...problem, id: `${problem.id}-${index}` };
   });
   return {

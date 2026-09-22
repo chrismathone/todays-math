@@ -1,4 +1,5 @@
 import { CONCEPT_IDS, type Learner, type SrsStore } from "./types";
+import { DIFFICULTY_LADDER } from "@/contracts/difficulty";
 
 export const STORAGE_KEY = "todays-math:srs:v1";
 
@@ -149,7 +150,7 @@ function validateProblem(value: unknown): Record<string, unknown> {
       "solution",
       "expectedSeconds",
     ],
-    ["answerUnit"],
+    ["answerUnit", "source"],
   );
   text(problem.id, 200);
   text(problem.templateId, 200);
@@ -166,12 +167,28 @@ function validateProblem(value: unknown): Record<string, unknown> {
   number(problem.difficulty, 1, 5, true);
   choice(problem.kind, KINDS);
   text(problem.prompt, 4_000);
-  text(problem.equation, 1_000);
+  text(problem.equation, 1_000, 0);
   number(problem.answer, -1e12, 1e12);
   if (problem.answerUnit !== undefined) text(problem.answerUnit, 100);
   text(problem.hint, 4_000);
   array(problem.solution, 1, 20).forEach((step) => text(step, 4_000));
   number(problem.expectedSeconds, Number.MIN_VALUE, 3_600);
+  if (problem.source !== undefined) {
+    const source = object(problem.source, [
+      "engine",
+      "typeKey",
+      "title",
+      "tier",
+      "seed",
+      "requestedDifficulty",
+    ]);
+    choice(source.engine, ["middle"]);
+    text(source.typeKey, 200);
+    text(source.title, 200);
+    choice(source.tier, DIFFICULTY_LADDER);
+    number(source.seed, 0, 0xffffffff, true);
+    number(source.requestedDifficulty, 1, 5, true);
+  }
   return problem;
 }
 

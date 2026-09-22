@@ -3,6 +3,8 @@
 import Link from "next/link";
 import { useEffect, useRef, useState, type FormEvent } from "react";
 import TodayMathMark from "@/components/brand/TodayMathMark";
+import { MathText } from "@/components/math/MathText";
+import { ProblemContent } from "@/components/math/ProblemContent";
 import {
   CONCEPTS,
   checkAnswer,
@@ -261,17 +263,23 @@ function QuestionCard({
       <p className={s.muted}>{kind.description}</p>
       <div className={s.problemBody}>
         <p className={s.eyebrow}>
-          {conceptTitle(problem.conceptId)} · 난이도 {problem.difficulty}
+          {conceptTitle(problem.conceptId)} ·{" "}
+          {problem.source?.tier ?? `난이도 ${problem.difficulty}`}
         </p>
-        <h2 id="question-title">{problem.prompt}</h2>
-        <div className={s.equation}>{problem.equation}</div>
+        <h2 id="question-title">{problem.source?.title ?? problem.prompt}</h2>
+        {problem.source ? <ProblemContent content={problem.prompt} /> : null}
+        {problem.equation ? (
+          <div className={s.equation}>
+            <MathText text={problem.equation} />
+          </div>
+        ) : null}
       </div>
       <form onSubmit={submit} className={s.answerForm}>
         <label htmlFor="srs-answer">
           나의 답 {problem.answerUnit ? `(${problem.answerUnit})` : ""}
         </label>
         <div className={s.answerLine}>
-          <span aria-hidden="true">x =</span>
+          <span aria-hidden="true">답</span>
           <input
             ref={input}
             id="srs-answer"
@@ -303,7 +311,7 @@ function QuestionCard({
       {usedHint ? (
         <aside className={s.hint}>
           <b>생각의 실마리</b>
-          <p>{problem.hint}</p>
+          <MathText text={problem.hint} as="div" />
         </aside>
       ) : null}
       <div className={s.questionActions}>
@@ -376,11 +384,17 @@ function Feedback({
           </p>
         </div>
       </div>
-      <div className={s.feedbackEquation}>{problem.equation}</div>
+      {problem.equation ? (
+        <div className={s.feedbackEquation}>
+          <MathText text={problem.equation} />
+        </div>
+      ) : (
+        <ProblemContent content={problem.prompt} />
+      )}
       <p className={s.answerResult}>
         정답{" "}
         <strong>
-          x = {problem.answer}
+          {problem.answer}
           {problem.answerUnit ? ` ${problem.answerUnit}` : ""}
         </strong>
         <span>내 답: {attempt.submittedAnswer || "아직 모름"}</span>
@@ -389,7 +403,9 @@ function Feedback({
         <h3>이렇게 생각해요</h3>
         <ol>
           {problem.solution.map((step, index) => (
-            <li key={index}>{step}</li>
+            <li key={index}>
+              <MathText text={step} as="div" />
+            </li>
           ))}
         </ol>
       </div>
@@ -1055,7 +1071,7 @@ export default function MathSrsApp() {
                   <p>
                     <b>{TEMPLATE_COUNT}개 문제 생성 규칙</b>
                     <br />
-                    정답에서 거꾸로 만든, 숫자가 바뀌는 방정식.
+                    일차방정식부터 문장제까지, 숫자를 바꾸어 연습해요.
                   </p>
                 </div>
               </section>

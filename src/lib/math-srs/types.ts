@@ -40,6 +40,14 @@ export interface GeneratedProblem {
   hint: string;
   solution: string[];
   expectedSeconds: number;
+  source?: {
+    engine: "middle";
+    typeKey: string;
+    title: string;
+    tier: import("@/contracts/difficulty").Difficulty;
+    seed: number;
+    requestedDifficulty: Difficulty;
+  };
 }
 export interface Attempt {
   problemId: string;
