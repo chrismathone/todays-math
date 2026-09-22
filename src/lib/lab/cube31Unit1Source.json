@@ -1,0 +1,6074 @@
+{
+  "schemaVersion": 1,
+  "book": {
+    "title": "큐브수학 개념 3-1 진도북",
+    "grade": 3,
+    "semester": 1,
+    "unit": 1,
+    "unitTitle": "덧셈과 뺄셈"
+  },
+  "source": {
+    "path": "N:\\개인\\강아\\교재자료\\큐브수학 개념\\큐브수학 개념\\진도북\\큐브수학 개념 3-1_진도북.pdf",
+    "pdfPageCount": 152,
+    "sha256": "d57231d7bf6ad2d3469d6bddb63cf7746920d872d32fc5bfe9cf3eec206b7536",
+    "scope": "printed pages 8 through 31 inclusive",
+    "auditDate": "2026-09-22",
+    "renderMethod": "PyMuPDF 1.28.2,120 dpi RGB;24 full-page PNGs inspected",
+    "textMethod": "Existing build-cube-type-catalog.py decode_span, then visual confirmation; raw EHsang glyphs never treated as final text",
+    "answerMethod": "Independently derived from source givens; arithmetic programmatically checked; no answer-book joining",
+    "notConsulted": [
+      "old466 extracted fragments",
+      "other N-drive data",
+      "live database"
+    ]
+  },
+  "pageMapping": {
+    "printedStart": 8,
+    "printedEnd": 31,
+    "pdfPageStart": 8,
+    "pdfPageEnd": 31,
+    "pdfIndexStart": 7,
+    "pdfIndexEnd": 30,
+    "rule": "pdfPage=printedPage; pdfIndex=printedPage-1",
+    "evidence": "Every rendered footer008 through031 visually checked"
+  },
+  "schemaNotes": [
+    "Entry numbers reproduce printed numbers; concept examples use example IDs and unnumbered puzzle uses puzzle.",
+    "Each subitem records a source response field, a printed concept example, or an explicitly marked derived checkpoint. Repeated digits in stepwise columns are separate fields.",
+    "answers maps stable subitem IDs to exact values; subitems also carry answer for local reading.",
+    "role=worked-example means a printed example/explanation; role=response means a source response location (a multi-select can be one array-valued response); role=derived-checkpoint is supporting arithmetic for a selection activity, not an additional printed blank.",
+    "Prompts are faithful normalized transcriptions; whitespace/line breaks and decorative copy are not reproduced. All givens, exact arithmetic and answer-bearing visual information are preserved.",
+    "visual.data contains semantic reconstruction, not PDF bitmap URLs. Empty visual means no answer-bearing diagram.",
+    "No unresolved glyph/render ambiguity remains. Jigsaw answers derive from outline and picture continuity, not an external answer key."
+  ],
+  "conceptDefinitions": [
+    {
+      "id": 1,
+      "title": "받아올림이 없는 세 자리 수의 덧셈",
+      "anchor": "312+126=438",
+      "pages": [
+        8,
+        9,
+        14
+      ]
+    },
+    {
+      "id": 2,
+      "title": "받아올림이 한 번 있는 세 자리 수의 덧셈",
+      "anchor": "138+214=352;473+352=825",
+      "pages": [
+        10,
+        11,
+        14,
+        15
+      ]
+    },
+    {
+      "id": 3,
+      "title": "받아올림이 여러 번 있는 세 자리 수의 덧셈",
+      "anchor": "265+147=412",
+      "pages": [
+        12,
+        13,
+        15
+      ]
+    },
+    {
+      "id": 4,
+      "title": "받아내림이 없는 세 자리 수의 뺄셈",
+      "anchor": "356-214=142",
+      "pages": [
+        16,
+        17,
+        22
+      ]
+    },
+    {
+      "id": 5,
+      "title": "받아내림이 한 번 있는 세 자리 수의 뺄셈",
+      "anchor": "254-138=116;617-342=275",
+      "pages": [
+        18,
+        19,
+        22,
+        23
+      ]
+    },
+    {
+      "id": 6,
+      "title": "받아내림이 두 번 있는 세 자리 수의 뺄셈",
+      "anchor": "324-156=168",
+      "pages": [
+        20,
+        21,
+        23
+      ]
+    }
+  ],
+  "pages": [
+    {
+      "page": 8,
+      "pdfPage": 8,
+      "pdfIndex": 7,
+      "heading": "교과서 개념 잡기",
+      "concepts": [
+        1
+      ],
+      "visuallyChecked": true,
+      "entries": [
+        {
+          "id": "cube31-u1-p008-example-1",
+          "number": "example-1",
+          "kind": "concept-example",
+          "prompt": "받아올림이 없는 (세 자리 수)+(세 자리 수): 312+126의 계산",
+          "subitems": [
+            {
+              "prompt": "2+6=□",
+              "answer": 8,
+              "expression": "2+6",
+              "id": "cube31-u1-p008-example-1-s01",
+              "role": "worked-example"
+            },
+            {
+              "prompt": "10+20=□",
+              "answer": 30,
+              "expression": "10+20",
+              "id": "cube31-u1-p008-example-1-s02",
+              "role": "worked-example"
+            },
+            {
+              "prompt": "300+100=□",
+              "answer": 400,
+              "expression": "300+100",
+              "id": "cube31-u1-p008-example-1-s03",
+              "role": "worked-example"
+            },
+            {
+              "prompt": "8+30+400=□",
+              "answer": 438,
+              "expression": "8+30+400",
+              "id": "cube31-u1-p008-example-1-s04",
+              "role": "worked-example"
+            },
+            {
+              "prompt": "400+30+8=□",
+              "answer": 438,
+              "expression": "400+30+8",
+              "id": "cube31-u1-p008-example-1-s05",
+              "role": "worked-example"
+            },
+            {
+              "prompt": "312+126=□",
+              "answer": 438,
+              "expression": "312+126",
+              "id": "cube31-u1-p008-example-1-s06",
+              "role": "worked-example"
+            },
+            {
+              "prompt": "312를 십 단위로 어림",
+              "answer": 310,
+              "id": "cube31-u1-p008-example-1-s07",
+              "role": "worked-example"
+            },
+            {
+              "prompt": "126을 십 단위로 어림",
+              "answer": 130,
+              "id": "cube31-u1-p008-example-1-s08",
+              "role": "worked-example"
+            },
+            {
+              "prompt": "어림한 합",
+              "answer": 440,
+              "expression": "310+130",
+              "id": "cube31-u1-p008-example-1-s09",
+              "role": "worked-example"
+            },
+            {
+              "prompt": "세로셈 일→십→백 자리 결과",
+              "answer": [
+                8,
+                3,
+                4
+              ],
+              "id": "cube31-u1-p008-example-1-s10",
+              "role": "worked-example"
+            }
+          ],
+          "answers": {
+            "cube31-u1-p008-example-1-s01": 8,
+            "cube31-u1-p008-example-1-s02": 30,
+            "cube31-u1-p008-example-1-s03": 400,
+            "cube31-u1-p008-example-1-s04": 438,
+            "cube31-u1-p008-example-1-s05": 438,
+            "cube31-u1-p008-example-1-s06": 438,
+            "cube31-u1-p008-example-1-s07": 310,
+            "cube31-u1-p008-example-1-s08": 130,
+            "cube31-u1-p008-example-1-s09": 440,
+            "cube31-u1-p008-example-1-s10": [
+              8,
+              3,
+              4
+            ]
+          },
+          "visual": {
+            "type": "base-ten-and-columns",
+            "description": "312와126 수 모형을 합치고 같은 자리끼리 차례로 더함; 두 수직선으로 어림",
+            "data": {
+              "operands": [
+                312,
+                126
+              ],
+              "partials": [
+                8,
+                38,
+                438
+              ],
+              "numberLines": [
+                [
+                  310,
+                  320,
+                  312
+                ],
+                [
+                  120,
+                  130,
+                  126
+                ]
+              ]
+            }
+          },
+          "notes": [
+            "백의 자리부터/일의 자리부터 분해해 더하는 두 방법 모두 제시. 상단 만화는 같은 312+126=438 예제의 반복.",
+            "세로로 계산할 때 자리 정렬. 어림값440과 정확한 값438 구별."
+          ],
+          "verification": {
+            "prompt": "visually-checked",
+            "answers": "independently-derived",
+            "uncertainty": null
+          }
+        }
+      ]
+    },
+    {
+      "page": 9,
+      "pdfPage": 9,
+      "pdfIndex": 8,
+      "heading": "개념 1 확인",
+      "concepts": [
+        1
+      ],
+      "visuallyChecked": true,
+      "entries": [
+        {
+          "id": "cube31-u1-p009-1",
+          "number": "1",
+          "kind": "base-ten-fill",
+          "prompt": "331+247을 수 모형으로 어떻게 계산하는지 알아봅니다. □ 안에 알맞은 수를 써넣으세요.",
+          "subitems": [
+            {
+              "prompt": "(1) 일 모형끼리 더한 개수",
+              "answer": 8,
+              "id": "cube31-u1-p009-1-s01",
+              "role": "response"
+            },
+            {
+              "prompt": "(2) 십 모형끼리 더한 개수",
+              "answer": 7,
+              "id": "cube31-u1-p009-1-s02",
+              "role": "response"
+            },
+            {
+              "prompt": "(3) 백 모형끼리 더한 개수",
+              "answer": 5,
+              "id": "cube31-u1-p009-1-s03",
+              "role": "response"
+            },
+            {
+              "prompt": "(4) 331+247",
+              "answer": 578,
+              "expression": "331+247",
+              "id": "cube31-u1-p009-1-s04",
+              "role": "response"
+            }
+          ],
+          "answers": {
+            "cube31-u1-p009-1-s01": 8,
+            "cube31-u1-p009-1-s02": 7,
+            "cube31-u1-p009-1-s03": 5,
+            "cube31-u1-p009-1-s04": 578
+          },
+          "visual": {
+            "type": "base-ten",
+            "description": "331과247을 각각 백·십·일 모형으로 제시",
+            "data": {
+              "operands": [
+                331,
+                247
+              ]
+            }
+          },
+          "notes": [],
+          "verification": {
+            "prompt": "visually-checked",
+            "answers": "independently-derived",
+            "uncertainty": null
+          }
+        },
+        {
+          "id": "cube31-u1-p009-2",
+          "number": "2",
+          "kind": "decomposition",
+          "prompt": "382+514를 백의 자리부터 더하는 방법으로 계산하세요.",
+          "subitems": [
+            {
+              "prompt": "300+500=□",
+              "answer": 800,
+              "expression": "300+500",
+              "id": "cube31-u1-p009-2-s01",
+              "role": "response"
+            },
+            {
+              "prompt": "80+□의 더하는 수",
+              "answer": 10,
+              "id": "cube31-u1-p009-2-s02",
+              "role": "response"
+            },
+            {
+              "prompt": "80+10=□",
+              "answer": 90,
+              "expression": "80+10",
+              "id": "cube31-u1-p009-2-s03",
+              "role": "response"
+            },
+            {
+              "prompt": "2+□의 더하는 수",
+              "answer": 4,
+              "id": "cube31-u1-p009-2-s04",
+              "role": "response"
+            },
+            {
+              "prompt": "2+4=□",
+              "answer": 6,
+              "expression": "2+4",
+              "id": "cube31-u1-p009-2-s05",
+              "role": "response"
+            },
+            {
+              "prompt": "382+514=□",
+              "answer": 896,
+              "expression": "382+514",
+              "id": "cube31-u1-p009-2-s06",
+              "role": "response"
+            }
+          ],
+          "answers": {
+            "cube31-u1-p009-2-s01": 800,
+            "cube31-u1-p009-2-s02": 10,
+            "cube31-u1-p009-2-s03": 90,
+            "cube31-u1-p009-2-s04": 4,
+            "cube31-u1-p009-2-s05": 6,
+            "cube31-u1-p009-2-s06": 896
+          },
+          "visual": {
+            "type": "decomposition-arrows",
+            "description": "300과500,80과10,2와4를 더한다는 안내와 합으로 모이는 화살표",
+            "data": {}
+          },
+          "notes": [],
+          "verification": {
+            "prompt": "visually-checked",
+            "answers": "independently-derived",
+            "uncertainty": null
+          }
+        },
+        {
+          "id": "cube31-u1-p009-3",
+          "number": "3",
+          "kind": "column-steps",
+          "prompt": "□ 안에 알맞은 수를 써넣으세요.",
+          "subitems": [
+            {
+              "prompt": "(1) 단계 1 답의 일의 자리",
+              "answer": 7,
+              "id": "cube31-u1-p009-3-s01",
+              "role": "response"
+            },
+            {
+              "prompt": "(1) 단계 2 답의 십의 자리",
+              "answer": 9,
+              "id": "cube31-u1-p009-3-s02",
+              "role": "response"
+            },
+            {
+              "prompt": "(1) 단계 2 답의 일의 자리",
+              "answer": 7,
+              "id": "cube31-u1-p009-3-s03",
+              "role": "response"
+            },
+            {
+              "prompt": "(1) 단계 3 답의 백의 자리",
+              "answer": 5,
+              "id": "cube31-u1-p009-3-s04",
+              "role": "response"
+            },
+            {
+              "prompt": "(1) 단계 3 답의 십의 자리",
+              "answer": 9,
+              "id": "cube31-u1-p009-3-s05",
+              "role": "response"
+            },
+            {
+              "prompt": "(1) 단계 3 답의 일의 자리",
+              "answer": 7,
+              "id": "cube31-u1-p009-3-s06",
+              "role": "response"
+            }
+          ],
+          "answers": {
+            "cube31-u1-p009-3-s01": 7,
+            "cube31-u1-p009-3-s02": 9,
+            "cube31-u1-p009-3-s03": 7,
+            "cube31-u1-p009-3-s04": 5,
+            "cube31-u1-p009-3-s05": 9,
+            "cube31-u1-p009-3-s06": 7
+          },
+          "visual": {
+            "type": "column-steps",
+            "description": "지면의 각 중간 결과 칸과 작은 받아올림/받아내림 칸을 따로 기록",
+            "data": {
+              "panels": [
+                {
+                  "expression": "473+124",
+                  "result": 597,
+                  "stages": [
+                    {
+                      "annotations": {},
+                      "visibleResult": "7"
+                    },
+                    {
+                      "annotations": {},
+                      "visibleResult": "97"
+                    },
+                    {
+                      "annotations": {},
+                      "visibleResult": "597"
+                    }
+                  ]
+                }
+              ]
+            }
+          },
+          "notes": [],
+          "verification": {
+            "prompt": "visually-checked",
+            "answers": "independently-derived",
+            "uncertainty": null
+          }
+        },
+        {
+          "id": "cube31-u1-p009-4",
+          "number": "4",
+          "kind": "calculation",
+          "prompt": "계산해 보세요.",
+          "subitems": [
+            {
+              "prompt": "(1) 253+341",
+              "answer": 594,
+              "expression": "253+341",
+              "id": "cube31-u1-p009-4-s01",
+              "role": "response"
+            },
+            {
+              "prompt": "(2) 165+632",
+              "answer": 797,
+              "expression": "165+632",
+              "id": "cube31-u1-p009-4-s02",
+              "role": "response"
+            },
+            {
+              "prompt": "(3) 524+314",
+              "answer": 838,
+              "expression": "524+314",
+              "id": "cube31-u1-p009-4-s03",
+              "role": "response"
+            }
+          ],
+          "answers": {
+            "cube31-u1-p009-4-s01": 594,
+            "cube31-u1-p009-4-s02": 797,
+            "cube31-u1-p009-4-s03": 838
+          },
+          "visual": {
+            "type": "column",
+            "description": "각 식은 지면 순서대로 기록; 위쪽은 세로셈, 아래쪽은 가로셈인 경우 포함",
+            "data": {
+              "expressions": [
+                "253+341",
+                "165+632",
+                "524+314"
+              ]
+            }
+          },
+          "notes": [
+            "반복 연습도 원래 번호와 소문항 순서를 보존; 새 개념으로 세지 않는다."
+          ],
+          "verification": {
+            "prompt": "visually-checked",
+            "answers": "independently-derived",
+            "uncertainty": null
+          }
+        }
+      ]
+    },
+    {
+      "page": 10,
+      "pdfPage": 10,
+      "pdfIndex": 9,
+      "heading": "교과서 개념 잡기",
+      "concepts": [
+        2
+      ],
+      "visuallyChecked": true,
+      "entries": [
+        {
+          "id": "cube31-u1-p010-example-2a",
+          "number": "example-2a",
+          "kind": "concept-example",
+          "prompt": "일의 자리에서 받아올림이 있는 138+214의 계산",
+          "subitems": [
+            {
+              "prompt": "8+4=□",
+              "answer": 12,
+              "expression": "8+4",
+              "id": "cube31-u1-p010-example-2a-s01",
+              "role": "worked-example"
+            },
+            {
+              "prompt": "일의 자리에 쓰는 수",
+              "answer": 2,
+              "id": "cube31-u1-p010-example-2a-s02",
+              "role": "worked-example"
+            },
+            {
+              "prompt": "10개의 일 모형과 교환하는 십 모형 수",
+              "answer": 1,
+              "id": "cube31-u1-p010-example-2a-s03",
+              "role": "worked-example"
+            },
+            {
+              "prompt": "받아올린1을 포함한 십의 자리 계산",
+              "answer": 5,
+              "expression": "1+3+1",
+              "id": "cube31-u1-p010-example-2a-s04",
+              "role": "worked-example"
+            },
+            {
+              "prompt": "백의 자리 계산",
+              "answer": 3,
+              "expression": "1+2",
+              "id": "cube31-u1-p010-example-2a-s05",
+              "role": "worked-example"
+            },
+            {
+              "prompt": "138+214=□",
+              "answer": 352,
+              "expression": "138+214",
+              "id": "cube31-u1-p010-example-2a-s06",
+              "role": "worked-example"
+            }
+          ],
+          "answers": {
+            "cube31-u1-p010-example-2a-s01": 12,
+            "cube31-u1-p010-example-2a-s02": 2,
+            "cube31-u1-p010-example-2a-s03": 1,
+            "cube31-u1-p010-example-2a-s04": 5,
+            "cube31-u1-p010-example-2a-s05": 3,
+            "cube31-u1-p010-example-2a-s06": 352
+          },
+          "visual": {
+            "type": "base-ten-and-columns",
+            "description": "보석8개+4개와 수 모형의10개 묶음; 10일→1십 교환과 작은1",
+            "data": {
+              "operands": [
+                138,
+                214
+              ],
+              "partials": [
+                2,
+                52,
+                352
+              ]
+            }
+          },
+          "notes": [
+            "상단 만화와 본문은 동일 예제. 받아올린1의 실제 값은10."
+          ],
+          "verification": {
+            "prompt": "visually-checked",
+            "answers": "independently-derived",
+            "uncertainty": null
+          }
+        },
+        {
+          "id": "cube31-u1-p010-example-2b",
+          "number": "example-2b",
+          "kind": "concept-example",
+          "prompt": "십의 자리에서 받아올림이 있는 473+352의 계산",
+          "subitems": [
+            {
+              "prompt": "3+2=□",
+              "answer": 5,
+              "expression": "3+2",
+              "id": "cube31-u1-p010-example-2b-s01",
+              "role": "worked-example"
+            },
+            {
+              "prompt": "7+5=□",
+              "answer": 12,
+              "expression": "7+5",
+              "id": "cube31-u1-p010-example-2b-s02",
+              "role": "worked-example"
+            },
+            {
+              "prompt": "십의 자리에 쓰는 수",
+              "answer": 2,
+              "id": "cube31-u1-p010-example-2b-s03",
+              "role": "worked-example"
+            },
+            {
+              "prompt": "백의 자리로 받아올린 수",
+              "answer": 1,
+              "id": "cube31-u1-p010-example-2b-s04",
+              "role": "worked-example"
+            },
+            {
+              "prompt": "1+4+3=□",
+              "answer": 8,
+              "expression": "1+4+3",
+              "id": "cube31-u1-p010-example-2b-s05",
+              "role": "worked-example"
+            },
+            {
+              "prompt": "473+352=□",
+              "answer": 825,
+              "expression": "473+352",
+              "id": "cube31-u1-p010-example-2b-s06",
+              "role": "worked-example"
+            }
+          ],
+          "answers": {
+            "cube31-u1-p010-example-2b-s01": 5,
+            "cube31-u1-p010-example-2b-s02": 12,
+            "cube31-u1-p010-example-2b-s03": 2,
+            "cube31-u1-p010-example-2b-s04": 1,
+            "cube31-u1-p010-example-2b-s05": 8,
+            "cube31-u1-p010-example-2b-s06": 825
+          },
+          "visual": {
+            "type": "column-steps",
+            "description": "십10개→백1개; 백의 자리 위에 작은1",
+            "data": {
+              "operands": [
+                473,
+                352
+              ],
+              "partials": [
+                5,
+                25,
+                825
+              ]
+            }
+          },
+          "notes": [
+            "한 번의 받아올림은 일→십뿐 아니라 십→백에서도 발생."
+          ],
+          "verification": {
+            "prompt": "visually-checked",
+            "answers": "independently-derived",
+            "uncertainty": null
+          }
+        }
+      ]
+    },
+    {
+      "page": 11,
+      "pdfPage": 11,
+      "pdfIndex": 10,
+      "heading": "개념 2 확인",
+      "concepts": [
+        2
+      ],
+      "visuallyChecked": true,
+      "entries": [
+        {
+          "id": "cube31-u1-p011-1",
+          "number": "1",
+          "kind": "base-ten-fill",
+          "prompt": "357+128을 수 모형으로 어떻게 계산하는지 알아봅니다.",
+          "subitems": [
+            {
+              "prompt": "(1) 일 모형 합",
+              "answer": 15,
+              "id": "cube31-u1-p011-1-s01",
+              "role": "response"
+            },
+            {
+              "prompt": "(1) 일10개를 바꾼 십 모형 수",
+              "answer": 1,
+              "id": "cube31-u1-p011-1-s02",
+              "role": "response"
+            },
+            {
+              "prompt": "(2) 받아올린 십 모형 수",
+              "answer": 1,
+              "id": "cube31-u1-p011-1-s03",
+              "role": "response"
+            },
+            {
+              "prompt": "(2) 합친 십 모형 수",
+              "answer": 8,
+              "id": "cube31-u1-p011-1-s04",
+              "role": "response"
+            },
+            {
+              "prompt": "(3) 백 모형 합",
+              "answer": 4,
+              "id": "cube31-u1-p011-1-s05",
+              "role": "response"
+            },
+            {
+              "prompt": "(4) 전체 합",
+              "answer": 485,
+              "expression": "357+128",
+              "id": "cube31-u1-p011-1-s06",
+              "role": "response"
+            }
+          ],
+          "answers": {
+            "cube31-u1-p011-1-s01": 15,
+            "cube31-u1-p011-1-s02": 1,
+            "cube31-u1-p011-1-s03": 1,
+            "cube31-u1-p011-1-s04": 8,
+            "cube31-u1-p011-1-s05": 4,
+            "cube31-u1-p011-1-s06": 485
+          },
+          "visual": {
+            "type": "base-ten",
+            "description": "357과128의 수 모형",
+            "data": {
+              "operands": [
+                357,
+                128
+              ]
+            }
+          },
+          "notes": [],
+          "verification": {
+            "prompt": "visually-checked",
+            "answers": "independently-derived",
+            "uncertainty": null
+          }
+        },
+        {
+          "id": "cube31-u1-p011-2",
+          "number": "2",
+          "kind": "column-steps",
+          "prompt": "□ 안에 알맞은 수를 써넣으세요.",
+          "subitems": [
+            {
+              "prompt": "(1) 단계 1 십 위의 받아올림/받아내림 빈칸",
+              "answer": 1,
+              "id": "cube31-u1-p011-2-s01",
+              "role": "response"
+            },
+            {
+              "prompt": "(1) 단계 1 답의 일의 자리",
+              "answer": 6,
+              "id": "cube31-u1-p011-2-s02",
+              "role": "response"
+            },
+            {
+              "prompt": "(1) 단계 2 십 위의 받아올림/받아내림 빈칸",
+              "answer": 1,
+              "id": "cube31-u1-p011-2-s03",
+              "role": "response"
+            },
+            {
+              "prompt": "(1) 단계 2 답의 십의 자리",
+              "answer": 7,
+              "id": "cube31-u1-p011-2-s04",
+              "role": "response"
+            },
+            {
+              "prompt": "(1) 단계 2 답의 일의 자리",
+              "answer": 6,
+              "id": "cube31-u1-p011-2-s05",
+              "role": "response"
+            },
+            {
+              "prompt": "(1) 단계 3 십 위의 받아올림/받아내림 빈칸",
+              "answer": 1,
+              "id": "cube31-u1-p011-2-s06",
+              "role": "response"
+            },
+            {
+              "prompt": "(1) 단계 3 답의 백의 자리",
+              "answer": 8,
+              "id": "cube31-u1-p011-2-s07",
+              "role": "response"
+            },
+            {
+              "prompt": "(1) 단계 3 답의 십의 자리",
+              "answer": 7,
+              "id": "cube31-u1-p011-2-s08",
+              "role": "response"
+            },
+            {
+              "prompt": "(1) 단계 3 답의 일의 자리",
+              "answer": 6,
+              "id": "cube31-u1-p011-2-s09",
+              "role": "response"
+            },
+            {
+              "prompt": "(2) 단계 1 답의 일의 자리",
+              "answer": 9,
+              "id": "cube31-u1-p011-2-s10",
+              "role": "response"
+            },
+            {
+              "prompt": "(2) 단계 2 백 위의 받아올림/받아내림 빈칸",
+              "answer": 1,
+              "id": "cube31-u1-p011-2-s11",
+              "role": "response"
+            },
+            {
+              "prompt": "(2) 단계 2 답의 십의 자리",
+              "answer": 5,
+              "id": "cube31-u1-p011-2-s12",
+              "role": "response"
+            },
+            {
+              "prompt": "(2) 단계 2 답의 일의 자리",
+              "answer": 9,
+              "id": "cube31-u1-p011-2-s13",
+              "role": "response"
+            },
+            {
+              "prompt": "(2) 단계 3 백 위의 받아올림/받아내림 빈칸",
+              "answer": 1,
+              "id": "cube31-u1-p011-2-s14",
+              "role": "response"
+            },
+            {
+              "prompt": "(2) 단계 3 답의 백의 자리",
+              "answer": 7,
+              "id": "cube31-u1-p011-2-s15",
+              "role": "response"
+            },
+            {
+              "prompt": "(2) 단계 3 답의 십의 자리",
+              "answer": 5,
+              "id": "cube31-u1-p011-2-s16",
+              "role": "response"
+            },
+            {
+              "prompt": "(2) 단계 3 답의 일의 자리",
+              "answer": 9,
+              "id": "cube31-u1-p011-2-s17",
+              "role": "response"
+            }
+          ],
+          "answers": {
+            "cube31-u1-p011-2-s01": 1,
+            "cube31-u1-p011-2-s02": 6,
+            "cube31-u1-p011-2-s03": 1,
+            "cube31-u1-p011-2-s04": 7,
+            "cube31-u1-p011-2-s05": 6,
+            "cube31-u1-p011-2-s06": 1,
+            "cube31-u1-p011-2-s07": 8,
+            "cube31-u1-p011-2-s08": 7,
+            "cube31-u1-p011-2-s09": 6,
+            "cube31-u1-p011-2-s10": 9,
+            "cube31-u1-p011-2-s11": 1,
+            "cube31-u1-p011-2-s12": 5,
+            "cube31-u1-p011-2-s13": 9,
+            "cube31-u1-p011-2-s14": 1,
+            "cube31-u1-p011-2-s15": 7,
+            "cube31-u1-p011-2-s16": 5,
+            "cube31-u1-p011-2-s17": 9
+          },
+          "visual": {
+            "type": "column-steps",
+            "description": "지면의 각 중간 결과 칸과 작은 받아올림/받아내림 칸을 따로 기록",
+            "data": {
+              "panels": [
+                {
+                  "expression": "657+219",
+                  "result": 876,
+                  "stages": [
+                    {
+                      "annotations": {
+                        "십": 1
+                      },
+                      "visibleResult": "6"
+                    },
+                    {
+                      "annotations": {
+                        "십": 1
+                      },
+                      "visibleResult": "76"
+                    },
+                    {
+                      "annotations": {
+                        "십": 1
+                      },
+                      "visibleResult": "876"
+                    }
+                  ]
+                },
+                {
+                  "expression": "183+576",
+                  "result": 759,
+                  "stages": [
+                    {
+                      "annotations": {},
+                      "visibleResult": "9"
+                    },
+                    {
+                      "annotations": {
+                        "백": 1
+                      },
+                      "visibleResult": "59"
+                    },
+                    {
+                      "annotations": {
+                        "백": 1
+                      },
+                      "visibleResult": "759"
+                    }
+                  ]
+                }
+              ]
+            }
+          },
+          "notes": [],
+          "verification": {
+            "prompt": "visually-checked",
+            "answers": "independently-derived",
+            "uncertainty": null
+          }
+        },
+        {
+          "id": "cube31-u1-p011-3",
+          "number": "3",
+          "kind": "calculation",
+          "prompt": "계산해 보세요.",
+          "subitems": [
+            {
+              "prompt": "(1) 275+319",
+              "answer": 594,
+              "expression": "275+319",
+              "id": "cube31-u1-p011-3-s01",
+              "role": "response"
+            },
+            {
+              "prompt": "(2) 562+174",
+              "answer": 736,
+              "expression": "562+174",
+              "id": "cube31-u1-p011-3-s02",
+              "role": "response"
+            },
+            {
+              "prompt": "(3) 316+154",
+              "answer": 470,
+              "expression": "316+154",
+              "id": "cube31-u1-p011-3-s03",
+              "role": "response"
+            },
+            {
+              "prompt": "(4) 435+291",
+              "answer": 726,
+              "expression": "435+291",
+              "id": "cube31-u1-p011-3-s04",
+              "role": "response"
+            }
+          ],
+          "answers": {
+            "cube31-u1-p011-3-s01": 594,
+            "cube31-u1-p011-3-s02": 736,
+            "cube31-u1-p011-3-s03": 470,
+            "cube31-u1-p011-3-s04": 726
+          },
+          "visual": {
+            "type": "column-and-inline",
+            "description": "각 식은 지면 순서대로 기록; 위쪽은 세로셈, 아래쪽은 가로셈인 경우 포함",
+            "data": {
+              "expressions": [
+                "275+319",
+                "562+174",
+                "316+154",
+                "435+291"
+              ]
+            }
+          },
+          "notes": [
+            "반복 연습도 원래 번호와 소문항 순서를 보존; 새 개념으로 세지 않는다."
+          ],
+          "verification": {
+            "prompt": "visually-checked",
+            "answers": "independently-derived",
+            "uncertainty": null
+          }
+        }
+      ]
+    },
+    {
+      "page": 12,
+      "pdfPage": 12,
+      "pdfIndex": 11,
+      "heading": "교과서 개념 잡기",
+      "concepts": [
+        3
+      ],
+      "visuallyChecked": true,
+      "entries": [
+        {
+          "id": "cube31-u1-p012-example-3",
+          "number": "example-3",
+          "kind": "concept-example",
+          "prompt": "받아올림이 여러 번 있는 265+147의 계산",
+          "subitems": [
+            {
+              "prompt": "5+7=□",
+              "answer": 12,
+              "expression": "5+7",
+              "id": "cube31-u1-p012-example-3-s01",
+              "role": "worked-example"
+            },
+            {
+              "prompt": "일의 자리 결과",
+              "answer": 2,
+              "id": "cube31-u1-p012-example-3-s02",
+              "role": "worked-example"
+            },
+            {
+              "prompt": "십의 자리로 받아올리는 수",
+              "answer": 1,
+              "id": "cube31-u1-p012-example-3-s03",
+              "role": "worked-example"
+            },
+            {
+              "prompt": "1+6+4=□",
+              "answer": 11,
+              "expression": "1+6+4",
+              "id": "cube31-u1-p012-example-3-s04",
+              "role": "worked-example"
+            },
+            {
+              "prompt": "십의 자리 결과",
+              "answer": 1,
+              "id": "cube31-u1-p012-example-3-s05",
+              "role": "worked-example"
+            },
+            {
+              "prompt": "백의 자리로 받아올리는 수",
+              "answer": 1,
+              "id": "cube31-u1-p012-example-3-s06",
+              "role": "worked-example"
+            },
+            {
+              "prompt": "1+2+1=□",
+              "answer": 4,
+              "expression": "1+2+1",
+              "id": "cube31-u1-p012-example-3-s07",
+              "role": "worked-example"
+            },
+            {
+              "prompt": "265+147=□",
+              "answer": 412,
+              "expression": "265+147",
+              "id": "cube31-u1-p012-example-3-s08",
+              "role": "worked-example"
+            }
+          ],
+          "answers": {
+            "cube31-u1-p012-example-3-s01": 12,
+            "cube31-u1-p012-example-3-s02": 2,
+            "cube31-u1-p012-example-3-s03": 1,
+            "cube31-u1-p012-example-3-s04": 11,
+            "cube31-u1-p012-example-3-s05": 1,
+            "cube31-u1-p012-example-3-s06": 1,
+            "cube31-u1-p012-example-3-s07": 4,
+            "cube31-u1-p012-example-3-s08": 412
+          },
+          "visual": {
+            "type": "base-ten-and-columns",
+            "description": "10일→1십 다음10십→1백; 두 작은1을 함께 표기",
+            "data": {
+              "operands": [
+                265,
+                147
+              ],
+              "partials": [
+                2,
+                12,
+                412
+              ]
+            }
+          },
+          "notes": [
+            "같은 자리 수끼리 더한 값이10 이상이면 바로 윗자리로 교환한다.",
+            "백의 자리에서 받아올린 수는 천의 자리에 쓴다는 곁설명 포함. 상단 만화는 같은 예제."
+          ],
+          "verification": {
+            "prompt": "visually-checked",
+            "answers": "independently-derived",
+            "uncertainty": null
+          }
+        }
+      ]
+    },
+    {
+      "page": 13,
+      "pdfPage": 13,
+      "pdfIndex": 12,
+      "heading": "개념 3 확인",
+      "concepts": [
+        3
+      ],
+      "visuallyChecked": true,
+      "entries": [
+        {
+          "id": "cube31-u1-p013-1",
+          "number": "1",
+          "kind": "base-ten-fill",
+          "prompt": "286+165를 수 모형으로 어떻게 계산하는지 알아봅니다.",
+          "subitems": [
+            {
+              "prompt": "(1) 일 모형 합",
+              "answer": 11,
+              "id": "cube31-u1-p013-1-s01",
+              "role": "response"
+            },
+            {
+              "prompt": "(1) 바꾼 십 모형",
+              "answer": 1,
+              "id": "cube31-u1-p013-1-s02",
+              "role": "response"
+            },
+            {
+              "prompt": "(2) 받아올린 십 모형",
+              "answer": 1,
+              "id": "cube31-u1-p013-1-s03",
+              "role": "response"
+            },
+            {
+              "prompt": "(2) 십 모형 합",
+              "answer": 15,
+              "id": "cube31-u1-p013-1-s04",
+              "role": "response"
+            },
+            {
+              "prompt": "(2) 바꾼 백 모형",
+              "answer": 1,
+              "id": "cube31-u1-p013-1-s05",
+              "role": "response"
+            },
+            {
+              "prompt": "(3) 받아올린 백 모형",
+              "answer": 1,
+              "id": "cube31-u1-p013-1-s06",
+              "role": "response"
+            },
+            {
+              "prompt": "(3) 백 모형 합",
+              "answer": 4,
+              "id": "cube31-u1-p013-1-s07",
+              "role": "response"
+            },
+            {
+              "prompt": "(4) 전체 합",
+              "answer": 451,
+              "expression": "286+165",
+              "id": "cube31-u1-p013-1-s08",
+              "role": "response"
+            }
+          ],
+          "answers": {
+            "cube31-u1-p013-1-s01": 11,
+            "cube31-u1-p013-1-s02": 1,
+            "cube31-u1-p013-1-s03": 1,
+            "cube31-u1-p013-1-s04": 15,
+            "cube31-u1-p013-1-s05": 1,
+            "cube31-u1-p013-1-s06": 1,
+            "cube31-u1-p013-1-s07": 4,
+            "cube31-u1-p013-1-s08": 451
+          },
+          "visual": {
+            "type": "base-ten",
+            "description": "286과165의 수 모형",
+            "data": {
+              "operands": [
+                286,
+                165
+              ]
+            }
+          },
+          "notes": [],
+          "verification": {
+            "prompt": "visually-checked",
+            "answers": "independently-derived",
+            "uncertainty": null
+          }
+        },
+        {
+          "id": "cube31-u1-p013-2",
+          "number": "2",
+          "kind": "column-steps",
+          "prompt": "□ 안에 알맞은 수를 써넣으세요.",
+          "subitems": [
+            {
+              "prompt": "(1) 단계 1 백 위의 받아올림/받아내림 빈칸",
+              "answer": 1,
+              "id": "cube31-u1-p013-2-s01",
+              "role": "response"
+            },
+            {
+              "prompt": "(1) 단계 1 십 위의 받아올림/받아내림 빈칸",
+              "answer": 1,
+              "id": "cube31-u1-p013-2-s02",
+              "role": "response"
+            },
+            {
+              "prompt": "(1) 단계 1 답의 백의 자리",
+              "answer": 8,
+              "id": "cube31-u1-p013-2-s03",
+              "role": "response"
+            },
+            {
+              "prompt": "(1) 단계 1 답의 십의 자리",
+              "answer": 7,
+              "id": "cube31-u1-p013-2-s04",
+              "role": "response"
+            },
+            {
+              "prompt": "(1) 단계 1 답의 일의 자리",
+              "answer": 4,
+              "id": "cube31-u1-p013-2-s05",
+              "role": "response"
+            },
+            {
+              "prompt": "(2) 단계 1 백 위의 받아올림/받아내림 빈칸",
+              "answer": 1,
+              "id": "cube31-u1-p013-2-s06",
+              "role": "response"
+            },
+            {
+              "prompt": "(2) 단계 1 십 위의 받아올림/받아내림 빈칸",
+              "answer": 1,
+              "id": "cube31-u1-p013-2-s07",
+              "role": "response"
+            },
+            {
+              "prompt": "(2) 단계 1 답의 천의 자리",
+              "answer": 1,
+              "id": "cube31-u1-p013-2-s08",
+              "role": "response"
+            },
+            {
+              "prompt": "(2) 단계 1 답의 백의 자리",
+              "answer": 2,
+              "id": "cube31-u1-p013-2-s09",
+              "role": "response"
+            },
+            {
+              "prompt": "(2) 단계 1 답의 십의 자리",
+              "answer": 4,
+              "id": "cube31-u1-p013-2-s10",
+              "role": "response"
+            },
+            {
+              "prompt": "(2) 단계 1 답의 일의 자리",
+              "answer": 3,
+              "id": "cube31-u1-p013-2-s11",
+              "role": "response"
+            }
+          ],
+          "answers": {
+            "cube31-u1-p013-2-s01": 1,
+            "cube31-u1-p013-2-s02": 1,
+            "cube31-u1-p013-2-s03": 8,
+            "cube31-u1-p013-2-s04": 7,
+            "cube31-u1-p013-2-s05": 4,
+            "cube31-u1-p013-2-s06": 1,
+            "cube31-u1-p013-2-s07": 1,
+            "cube31-u1-p013-2-s08": 1,
+            "cube31-u1-p013-2-s09": 2,
+            "cube31-u1-p013-2-s10": 4,
+            "cube31-u1-p013-2-s11": 3
+          },
+          "visual": {
+            "type": "column-steps",
+            "description": "지면의 각 중간 결과 칸과 작은 받아올림/받아내림 칸을 따로 기록",
+            "data": {
+              "panels": [
+                {
+                  "expression": "378+496",
+                  "result": 874,
+                  "stages": [
+                    {
+                      "annotations": {
+                        "백": 1,
+                        "십": 1
+                      },
+                      "visibleResult": "874"
+                    }
+                  ]
+                },
+                {
+                  "expression": "659+584",
+                  "result": 1243,
+                  "stages": [
+                    {
+                      "annotations": {
+                        "백": 1,
+                        "십": 1
+                      },
+                      "visibleResult": "1243"
+                    }
+                  ]
+                }
+              ]
+            }
+          },
+          "notes": [],
+          "verification": {
+            "prompt": "visually-checked",
+            "answers": "independently-derived",
+            "uncertainty": null
+          }
+        },
+        {
+          "id": "cube31-u1-p013-3",
+          "number": "3",
+          "kind": "calculation",
+          "prompt": "계산해 보세요.",
+          "subitems": [
+            {
+              "prompt": "(1) 565+378",
+              "answer": 943,
+              "expression": "565+378",
+              "id": "cube31-u1-p013-3-s01",
+              "role": "response"
+            },
+            {
+              "prompt": "(2) 493+819",
+              "answer": 1312,
+              "expression": "493+819",
+              "id": "cube31-u1-p013-3-s02",
+              "role": "response"
+            },
+            {
+              "prompt": "(3) 287+165",
+              "answer": 452,
+              "expression": "287+165",
+              "id": "cube31-u1-p013-3-s03",
+              "role": "response"
+            },
+            {
+              "prompt": "(4) 768+692",
+              "answer": 1460,
+              "expression": "768+692",
+              "id": "cube31-u1-p013-3-s04",
+              "role": "response"
+            }
+          ],
+          "answers": {
+            "cube31-u1-p013-3-s01": 943,
+            "cube31-u1-p013-3-s02": 1312,
+            "cube31-u1-p013-3-s03": 452,
+            "cube31-u1-p013-3-s04": 1460
+          },
+          "visual": {
+            "type": "column-and-inline",
+            "description": "각 식은 지면 순서대로 기록; 위쪽은 세로셈, 아래쪽은 가로셈인 경우 포함",
+            "data": {
+              "expressions": [
+                "565+378",
+                "493+819",
+                "287+165",
+                "768+692"
+              ]
+            }
+          },
+          "notes": [
+            "반복 연습도 원래 번호와 소문항 순서를 보존; 새 개념으로 세지 않는다."
+          ],
+          "verification": {
+            "prompt": "visually-checked",
+            "answers": "independently-derived",
+            "uncertainty": null
+          }
+        }
+      ]
+    },
+    {
+      "page": 14,
+      "pdfPage": 14,
+      "pdfIndex": 13,
+      "heading": "개념 한 번 더 잡기",
+      "concepts": [
+        1,
+        2
+      ],
+      "visuallyChecked": true,
+      "entries": [
+        {
+          "id": "cube31-u1-p014-01",
+          "number": "01",
+          "kind": "base-ten-fill",
+          "prompt": "수 모형을 보고 216+432를 계산해 보세요.",
+          "subitems": [
+            {
+              "prompt": "216+432=□",
+              "answer": 648,
+              "expression": "216+432",
+              "id": "cube31-u1-p014-01-s01",
+              "role": "response"
+            }
+          ],
+          "answers": {
+            "cube31-u1-p014-01-s01": 648
+          },
+          "visual": {
+            "type": "base-ten",
+            "description": "216과432의 백·십·일 모형",
+            "data": {
+              "operands": [
+                216,
+                432
+              ]
+            }
+          },
+          "notes": [],
+          "verification": {
+            "prompt": "visually-checked",
+            "answers": "independently-derived",
+            "uncertainty": null
+          }
+        },
+        {
+          "id": "cube31-u1-p014-02",
+          "number": "02",
+          "kind": "decomposition",
+          "prompt": "154+632를 일의 자리부터 더하는 방법으로 계산하려고 합니다.",
+          "subitems": [
+            {
+              "prompt": "4+2=□",
+              "answer": 6,
+              "expression": "4+2",
+              "id": "cube31-u1-p014-02-s01",
+              "role": "response"
+            },
+            {
+              "prompt": "50+30=□",
+              "answer": 80,
+              "expression": "50+30",
+              "id": "cube31-u1-p014-02-s02",
+              "role": "response"
+            },
+            {
+              "prompt": "100+600=□",
+              "answer": 700,
+              "expression": "100+600",
+              "id": "cube31-u1-p014-02-s03",
+              "role": "response"
+            },
+            {
+              "prompt": "154+632=□",
+              "answer": 786,
+              "expression": "154+632",
+              "id": "cube31-u1-p014-02-s04",
+              "role": "response"
+            }
+          ],
+          "answers": {
+            "cube31-u1-p014-02-s01": 6,
+            "cube31-u1-p014-02-s02": 80,
+            "cube31-u1-p014-02-s03": 700,
+            "cube31-u1-p014-02-s04": 786
+          },
+          "visual": {
+            "type": "decomposition",
+            "description": "4+2,50+30,100+600을 합치는 구조",
+            "data": {}
+          },
+          "notes": [],
+          "verification": {
+            "prompt": "visually-checked",
+            "answers": "independently-derived",
+            "uncertainty": null
+          }
+        },
+        {
+          "id": "cube31-u1-p014-03",
+          "number": "03",
+          "kind": "calculation",
+          "prompt": "계산해 보세요.",
+          "subitems": [
+            {
+              "prompt": "(1) 436+251",
+              "answer": 687,
+              "expression": "436+251",
+              "id": "cube31-u1-p014-03-s01",
+              "role": "response"
+            },
+            {
+              "prompt": "(2) 152+736",
+              "answer": 888,
+              "expression": "152+736",
+              "id": "cube31-u1-p014-03-s02",
+              "role": "response"
+            },
+            {
+              "prompt": "(3) 274+305",
+              "answer": 579,
+              "expression": "274+305",
+              "id": "cube31-u1-p014-03-s03",
+              "role": "response"
+            },
+            {
+              "prompt": "(4) 653+142",
+              "answer": 795,
+              "expression": "653+142",
+              "id": "cube31-u1-p014-03-s04",
+              "role": "response"
+            }
+          ],
+          "answers": {
+            "cube31-u1-p014-03-s01": 687,
+            "cube31-u1-p014-03-s02": 888,
+            "cube31-u1-p014-03-s03": 579,
+            "cube31-u1-p014-03-s04": 795
+          },
+          "visual": {
+            "type": "column-and-inline",
+            "description": "각 식은 지면 순서대로 기록; 위쪽은 세로셈, 아래쪽은 가로셈인 경우 포함",
+            "data": {
+              "expressions": [
+                "436+251",
+                "152+736",
+                "274+305",
+                "653+142"
+              ]
+            }
+          },
+          "notes": [
+            "반복 연습도 원래 번호와 소문항 순서를 보존; 새 개념으로 세지 않는다."
+          ],
+          "verification": {
+            "prompt": "visually-checked",
+            "answers": "independently-derived",
+            "uncertainty": null
+          }
+        },
+        {
+          "id": "cube31-u1-p014-04",
+          "number": "04",
+          "kind": "bundled-objects",
+          "prompt": "그림을 보고 217+324를 계산해 보세요.",
+          "subitems": [
+            {
+              "prompt": "217+324=□",
+              "answer": 541,
+              "expression": "217+324",
+              "id": "cube31-u1-p014-04-s01",
+              "role": "response"
+            }
+          ],
+          "answers": {
+            "cube31-u1-p014-04-s01": 541
+          },
+          "visual": {
+            "type": "pencil-bundles",
+            "description": "100개 묶음과10개 묶음 및 낱개 색연필",
+            "data": {
+              "operands": [
+                217,
+                324
+              ]
+            }
+          },
+          "notes": [],
+          "verification": {
+            "prompt": "visually-checked",
+            "answers": "independently-derived",
+            "uncertainty": null
+          }
+        },
+        {
+          "id": "cube31-u1-p014-05",
+          "number": "05",
+          "kind": "worked-example-followup",
+          "prompt": "보기와 같은 방법으로 계산해 보세요.",
+          "subitems": [
+            {
+              "prompt": "보기: 194+253 (인쇄된 풀이)",
+              "answer": 447,
+              "expression": "194+253",
+              "id": "cube31-u1-p014-05-s01",
+              "role": "worked-example"
+            },
+            {
+              "prompt": "연습: 342+586",
+              "answer": 928,
+              "expression": "342+586",
+              "id": "cube31-u1-p014-05-s02",
+              "role": "response"
+            }
+          ],
+          "answers": {
+            "cube31-u1-p014-05-s01": 447,
+            "cube31-u1-p014-05-s02": 928
+          },
+          "visual": {
+            "type": "column",
+            "description": "보기194+253=447에 백의 자리 받아올림1; 연습342+586",
+            "data": {
+              "example": 447,
+              "expression": "342+586"
+            }
+          },
+          "notes": [
+            "첫 소항목은 학생 빈칸이 아니라 개념 예시."
+          ],
+          "verification": {
+            "prompt": "visually-checked",
+            "answers": "independently-derived",
+            "uncertainty": null
+          }
+        },
+        {
+          "id": "cube31-u1-p014-06",
+          "number": "06",
+          "kind": "number-machine",
+          "prompt": "빈칸에 알맞은 수를 써넣으세요.",
+          "subitems": [
+            {
+              "prompt": "319+173=□",
+              "answer": 492,
+              "expression": "319+173",
+              "id": "cube31-u1-p014-06-s01",
+              "role": "response"
+            },
+            {
+              "prompt": "465+173=□",
+              "answer": 638,
+              "expression": "465+173",
+              "id": "cube31-u1-p014-06-s02",
+              "role": "response"
+            }
+          ],
+          "answers": {
+            "cube31-u1-p014-06-s01": 492,
+            "cube31-u1-p014-06-s02": 638
+          },
+          "visual": {
+            "type": "number-machine",
+            "description": "319와465에 각각173을 더하는 화살표",
+            "data": {
+              "inputs": [
+                319,
+                465
+              ],
+              "operation": "+173"
+            }
+          },
+          "notes": [],
+          "verification": {
+            "prompt": "visually-checked",
+            "answers": "independently-derived",
+            "uncertainty": null
+          }
+        }
+      ]
+    },
+    {
+      "page": 15,
+      "pdfPage": 15,
+      "pdfIndex": 14,
+      "heading": "개념 한 번 더 잡기",
+      "concepts": [
+        2,
+        3
+      ],
+      "visuallyChecked": true,
+      "entries": [
+        {
+          "id": "cube31-u1-p015-07",
+          "number": "07",
+          "kind": "place-value-choice",
+          "prompt": "다음 덧셈식에서 작은1이 실제로 나타내는 수는 얼마인가요?",
+          "subitems": [
+            {
+              "prompt": "156+427=583의 십의 자리 위1",
+              "answer": 10,
+              "rationale": "일10개를 십1개로 묶은 것",
+              "id": "cube31-u1-p015-07-s01",
+              "role": "response"
+            }
+          ],
+          "answers": {
+            "cube31-u1-p015-07-s01": 10
+          },
+          "visual": {
+            "type": "column",
+            "description": "156+427=583,십의 자리 위1 강조",
+            "data": {
+              "choices": [
+                1,
+                5,
+                10,
+                100,
+                1000
+              ],
+              "correctChoice": 3
+            }
+          },
+          "notes": [],
+          "verification": {
+            "prompt": "visually-checked",
+            "answers": "independently-derived",
+            "uncertainty": null
+          }
+        },
+        {
+          "id": "cube31-u1-p015-08",
+          "number": "08",
+          "kind": "base-ten-fill",
+          "prompt": "수 모형을 보고 245+157을 계산해 보세요.",
+          "subitems": [
+            {
+              "prompt": "245+157=□",
+              "answer": 402,
+              "expression": "245+157",
+              "id": "cube31-u1-p015-08-s01",
+              "role": "response"
+            }
+          ],
+          "answers": {
+            "cube31-u1-p015-08-s01": 402
+          },
+          "visual": {
+            "type": "base-ten",
+            "description": "245와157의 모형",
+            "data": {
+              "operands": [
+                245,
+                157
+              ]
+            }
+          },
+          "notes": [],
+          "verification": {
+            "prompt": "visually-checked",
+            "answers": "independently-derived",
+            "uncertainty": null
+          }
+        },
+        {
+          "id": "cube31-u1-p015-09",
+          "number": "09",
+          "kind": "calculation",
+          "prompt": "계산해 보세요.",
+          "subitems": [
+            {
+              "prompt": "(1) 582+179",
+              "answer": 761,
+              "expression": "582+179",
+              "id": "cube31-u1-p015-09-s01",
+              "role": "response"
+            },
+            {
+              "prompt": "(2) 829+273",
+              "answer": 1102,
+              "expression": "829+273",
+              "id": "cube31-u1-p015-09-s02",
+              "role": "response"
+            },
+            {
+              "prompt": "(3) 487+265",
+              "answer": 752,
+              "expression": "487+265",
+              "id": "cube31-u1-p015-09-s03",
+              "role": "response"
+            },
+            {
+              "prompt": "(4) 724+689",
+              "answer": 1413,
+              "expression": "724+689",
+              "id": "cube31-u1-p015-09-s04",
+              "role": "response"
+            }
+          ],
+          "answers": {
+            "cube31-u1-p015-09-s01": 761,
+            "cube31-u1-p015-09-s02": 1102,
+            "cube31-u1-p015-09-s03": 752,
+            "cube31-u1-p015-09-s04": 1413
+          },
+          "visual": {
+            "type": "column-and-inline",
+            "description": "각 식은 지면 순서대로 기록; 위쪽은 세로셈, 아래쪽은 가로셈인 경우 포함",
+            "data": {
+              "expressions": [
+                "582+179",
+                "829+273",
+                "487+265",
+                "724+689"
+              ]
+            }
+          },
+          "notes": [
+            "반복 연습도 원래 번호와 소문항 순서를 보존; 새 개념으로 세지 않는다."
+          ],
+          "verification": {
+            "prompt": "visually-checked",
+            "answers": "independently-derived",
+            "uncertainty": null
+          }
+        },
+        {
+          "id": "cube31-u1-p015-10",
+          "number": "10",
+          "kind": "matching",
+          "prompt": "같은 것끼리 이어 보세요.",
+          "subitems": [
+            {
+              "prompt": "637+285=□",
+              "answer": 922,
+              "expression": "637+285",
+              "id": "cube31-u1-p015-10-s01",
+              "role": "response"
+            },
+            {
+              "prompt": "124+789=□",
+              "answer": 913,
+              "expression": "124+789",
+              "id": "cube31-u1-p015-10-s02",
+              "role": "response"
+            },
+            {
+              "prompt": "589+472=□",
+              "answer": 1061,
+              "expression": "589+472",
+              "id": "cube31-u1-p015-10-s03",
+              "role": "response"
+            }
+          ],
+          "answers": {
+            "cube31-u1-p015-10-s01": 922,
+            "cube31-u1-p015-10-s02": 913,
+            "cube31-u1-p015-10-s03": 1061
+          },
+          "visual": {
+            "type": "matching",
+            "description": "왼쪽 식3개와 오른쪽 결과3개 연결",
+            "data": {
+              "left": [
+                "637+285",
+                "124+789",
+                "589+472"
+              ],
+              "right": [
+                913,
+                922,
+                1061
+              ]
+            }
+          },
+          "notes": [],
+          "verification": {
+            "prompt": "visually-checked",
+            "answers": "independently-derived",
+            "uncertainty": null
+          }
+        },
+        {
+          "id": "cube31-u1-p015-11",
+          "number": "11",
+          "kind": "part-whole",
+          "prompt": "그림을 보고 □ 안에 알맞은 수를 써넣으세요.",
+          "subitems": [
+            {
+              "prompt": "선분 전체",
+              "answer": 932,
+              "expression": "536+396",
+              "id": "cube31-u1-p015-11-s01",
+              "role": "response"
+            },
+            {
+              "prompt": "□+396의 첫째 수",
+              "answer": 536,
+              "id": "cube31-u1-p015-11-s02",
+              "role": "response"
+            },
+            {
+              "prompt": "식의 합",
+              "answer": 932,
+              "expression": "536+396",
+              "id": "cube31-u1-p015-11-s03",
+              "role": "response"
+            }
+          ],
+          "answers": {
+            "cube31-u1-p015-11-s01": 932,
+            "cube31-u1-p015-11-s02": 536,
+            "cube31-u1-p015-11-s03": 932
+          },
+          "visual": {
+            "type": "bar-model",
+            "description": "536과396 두 부분을 합한 전체가 빈칸",
+            "data": {
+              "parts": [
+                536,
+                396
+              ],
+              "whole": null
+            }
+          },
+          "notes": [],
+          "verification": {
+            "prompt": "visually-checked",
+            "answers": "independently-derived",
+            "uncertainty": null
+          }
+        },
+        {
+          "id": "cube31-u1-p015-12",
+          "number": "12",
+          "kind": "model-relative-number",
+          "prompt": "수 카드가 나타내는 수보다 478만큼 더 큰 수를 구하세요.",
+          "subitems": [
+            {
+              "prompt": "645+478=□",
+              "answer": 1123,
+              "expression": "645+478",
+              "id": "cube31-u1-p015-12-s01",
+              "role": "response"
+            }
+          ],
+          "answers": {
+            "cube31-u1-p015-12-s01": 1123
+          },
+          "visual": {
+            "type": "place-value-cards",
+            "description": "100카드6장,10카드4장,1카드5장",
+            "data": {
+              "counts": {
+                "100": 6,
+                "10": 4,
+                "1": 5
+              },
+              "representedNumber": 645
+            }
+          },
+          "notes": [],
+          "verification": {
+            "prompt": "visually-checked",
+            "answers": "independently-derived",
+            "uncertainty": null
+          }
+        }
+      ]
+    },
+    {
+      "page": 16,
+      "pdfPage": 16,
+      "pdfIndex": 15,
+      "heading": "교과서 개념 잡기",
+      "concepts": [
+        4
+      ],
+      "visuallyChecked": true,
+      "entries": [
+        {
+          "id": "cube31-u1-p016-example-4",
+          "number": "example-4",
+          "kind": "concept-example",
+          "prompt": "받아내림이 없는 356-214의 계산",
+          "subitems": [
+            {
+              "prompt": "6-4=□",
+              "answer": 2,
+              "expression": "6-4",
+              "id": "cube31-u1-p016-example-4-s01",
+              "role": "worked-example"
+            },
+            {
+              "prompt": "50-10=□",
+              "answer": 40,
+              "expression": "50-10",
+              "id": "cube31-u1-p016-example-4-s02",
+              "role": "worked-example"
+            },
+            {
+              "prompt": "300-200=□",
+              "answer": 100,
+              "expression": "300-200",
+              "id": "cube31-u1-p016-example-4-s03",
+              "role": "worked-example"
+            },
+            {
+              "prompt": "2+40+100=□",
+              "answer": 142,
+              "expression": "2+40+100",
+              "id": "cube31-u1-p016-example-4-s04",
+              "role": "worked-example"
+            },
+            {
+              "prompt": "100+40+2=□",
+              "answer": 142,
+              "expression": "100+40+2",
+              "id": "cube31-u1-p016-example-4-s05",
+              "role": "worked-example"
+            },
+            {
+              "prompt": "356-214=□",
+              "answer": 142,
+              "expression": "356-214",
+              "id": "cube31-u1-p016-example-4-s06",
+              "role": "worked-example"
+            },
+            {
+              "prompt": "356의 십 단위 어림",
+              "answer": 360,
+              "id": "cube31-u1-p016-example-4-s07",
+              "role": "worked-example"
+            },
+            {
+              "prompt": "214의 십 단위 어림",
+              "answer": 210,
+              "id": "cube31-u1-p016-example-4-s08",
+              "role": "worked-example"
+            },
+            {
+              "prompt": "어림한 차",
+              "answer": 150,
+              "expression": "360-210",
+              "id": "cube31-u1-p016-example-4-s09",
+              "role": "worked-example"
+            },
+            {
+              "prompt": "세로셈 일→십→백 자리 결과",
+              "answer": [
+                2,
+                4,
+                1
+              ],
+              "id": "cube31-u1-p016-example-4-s10",
+              "role": "worked-example"
+            }
+          ],
+          "answers": {
+            "cube31-u1-p016-example-4-s01": 2,
+            "cube31-u1-p016-example-4-s02": 40,
+            "cube31-u1-p016-example-4-s03": 100,
+            "cube31-u1-p016-example-4-s04": 142,
+            "cube31-u1-p016-example-4-s05": 142,
+            "cube31-u1-p016-example-4-s06": 142,
+            "cube31-u1-p016-example-4-s07": 360,
+            "cube31-u1-p016-example-4-s08": 210,
+            "cube31-u1-p016-example-4-s09": 150,
+            "cube31-u1-p016-example-4-s10": [
+              2,
+              4,
+              1
+            ]
+          },
+          "visual": {
+            "type": "base-ten-and-columns",
+            "description": "356에서214에 해당하는 모형을 제거; 두 수직선으로 어림",
+            "data": {
+              "operands": [
+                356,
+                214
+              ],
+              "partials": [
+                2,
+                42,
+                142
+              ],
+              "numberLines": [
+                [
+                  350,
+                  360,
+                  356
+                ],
+                [
+                  210,
+                  220,
+                  214
+                ]
+              ]
+            }
+          },
+          "notes": [
+            "백의 자리부터/일의 자리부터 빼는 분해 방법 모두 제시. 상단 만화는 같은 예제."
+          ],
+          "verification": {
+            "prompt": "visually-checked",
+            "answers": "independently-derived",
+            "uncertainty": null
+          }
+        }
+      ]
+    },
+    {
+      "page": 17,
+      "pdfPage": 17,
+      "pdfIndex": 16,
+      "heading": "개념 4 확인",
+      "concepts": [
+        4
+      ],
+      "visuallyChecked": true,
+      "entries": [
+        {
+          "id": "cube31-u1-p017-1",
+          "number": "1",
+          "kind": "base-ten-fill",
+          "prompt": "378-137을 수 모형으로 어떻게 계산하는지 알아봅니다.",
+          "subitems": [
+            {
+              "prompt": "(1) 남은 일 모형",
+              "answer": 1,
+              "expression": "8-7",
+              "id": "cube31-u1-p017-1-s01",
+              "role": "response"
+            },
+            {
+              "prompt": "(2) 남은 십 모형",
+              "answer": 4,
+              "expression": "7-3",
+              "id": "cube31-u1-p017-1-s02",
+              "role": "response"
+            },
+            {
+              "prompt": "(3) 남은 백 모형",
+              "answer": 2,
+              "expression": "3-1",
+              "id": "cube31-u1-p017-1-s03",
+              "role": "response"
+            },
+            {
+              "prompt": "(4) 차",
+              "answer": 241,
+              "expression": "378-137",
+              "id": "cube31-u1-p017-1-s04",
+              "role": "response"
+            }
+          ],
+          "answers": {
+            "cube31-u1-p017-1-s01": 1,
+            "cube31-u1-p017-1-s02": 4,
+            "cube31-u1-p017-1-s03": 2,
+            "cube31-u1-p017-1-s04": 241
+          },
+          "visual": {
+            "type": "base-ten",
+            "description": "378에서137의 모형을 동그라미와 화살표로 제거",
+            "data": {
+              "operands": [
+                378,
+                137
+              ]
+            }
+          },
+          "notes": [],
+          "verification": {
+            "prompt": "visually-checked",
+            "answers": "independently-derived",
+            "uncertainty": null
+          }
+        },
+        {
+          "id": "cube31-u1-p017-2",
+          "number": "2",
+          "kind": "decomposition",
+          "prompt": "647-312를 백의 자리부터 빼는 방법으로 계산하세요.",
+          "subitems": [
+            {
+              "prompt": "600-300=□",
+              "answer": 300,
+              "expression": "600-300",
+              "id": "cube31-u1-p017-2-s01",
+              "role": "response"
+            },
+            {
+              "prompt": "40-□의 빼는 수",
+              "answer": 10,
+              "id": "cube31-u1-p017-2-s02",
+              "role": "response"
+            },
+            {
+              "prompt": "40-10=□",
+              "answer": 30,
+              "expression": "40-10",
+              "id": "cube31-u1-p017-2-s03",
+              "role": "response"
+            },
+            {
+              "prompt": "□-2의 처음 수",
+              "answer": 7,
+              "id": "cube31-u1-p017-2-s04",
+              "role": "response"
+            },
+            {
+              "prompt": "7-2=□",
+              "answer": 5,
+              "expression": "7-2",
+              "id": "cube31-u1-p017-2-s05",
+              "role": "response"
+            },
+            {
+              "prompt": "647-312=□",
+              "answer": 335,
+              "expression": "647-312",
+              "id": "cube31-u1-p017-2-s06",
+              "role": "response"
+            }
+          ],
+          "answers": {
+            "cube31-u1-p017-2-s01": 300,
+            "cube31-u1-p017-2-s02": 10,
+            "cube31-u1-p017-2-s03": 30,
+            "cube31-u1-p017-2-s04": 7,
+            "cube31-u1-p017-2-s05": 5,
+            "cube31-u1-p017-2-s06": 335
+          },
+          "visual": {
+            "type": "decomposition",
+            "description": "600-300,40-10,7-2를 합침",
+            "data": {}
+          },
+          "notes": [],
+          "verification": {
+            "prompt": "visually-checked",
+            "answers": "independently-derived",
+            "uncertainty": null
+          }
+        },
+        {
+          "id": "cube31-u1-p017-3",
+          "number": "3",
+          "kind": "column-steps",
+          "prompt": "□ 안에 알맞은 수를 써넣으세요.",
+          "subitems": [
+            {
+              "prompt": "(1) 단계 1 답의 일의 자리",
+              "answer": 1,
+              "id": "cube31-u1-p017-3-s01",
+              "role": "response"
+            },
+            {
+              "prompt": "(1) 단계 2 답의 십의 자리",
+              "answer": 4,
+              "id": "cube31-u1-p017-3-s02",
+              "role": "response"
+            },
+            {
+              "prompt": "(1) 단계 2 답의 일의 자리",
+              "answer": 1,
+              "id": "cube31-u1-p017-3-s03",
+              "role": "response"
+            },
+            {
+              "prompt": "(1) 단계 3 답의 백의 자리",
+              "answer": 2,
+              "id": "cube31-u1-p017-3-s04",
+              "role": "response"
+            },
+            {
+              "prompt": "(1) 단계 3 답의 십의 자리",
+              "answer": 4,
+              "id": "cube31-u1-p017-3-s05",
+              "role": "response"
+            },
+            {
+              "prompt": "(1) 단계 3 답의 일의 자리",
+              "answer": 1,
+              "id": "cube31-u1-p017-3-s06",
+              "role": "response"
+            }
+          ],
+          "answers": {
+            "cube31-u1-p017-3-s01": 1,
+            "cube31-u1-p017-3-s02": 4,
+            "cube31-u1-p017-3-s03": 1,
+            "cube31-u1-p017-3-s04": 2,
+            "cube31-u1-p017-3-s05": 4,
+            "cube31-u1-p017-3-s06": 1
+          },
+          "visual": {
+            "type": "column-steps",
+            "description": "지면의 각 중간 결과 칸과 작은 받아올림/받아내림 칸을 따로 기록",
+            "data": {
+              "panels": [
+                {
+                  "expression": "742-501",
+                  "result": 241,
+                  "stages": [
+                    {
+                      "annotations": {},
+                      "visibleResult": "1"
+                    },
+                    {
+                      "annotations": {},
+                      "visibleResult": "41"
+                    },
+                    {
+                      "annotations": {},
+                      "visibleResult": "241"
+                    }
+                  ]
+                }
+              ]
+            }
+          },
+          "notes": [],
+          "verification": {
+            "prompt": "visually-checked",
+            "answers": "independently-derived",
+            "uncertainty": null
+          }
+        },
+        {
+          "id": "cube31-u1-p017-4",
+          "number": "4",
+          "kind": "calculation",
+          "prompt": "계산해 보세요.",
+          "subitems": [
+            {
+              "prompt": "(1) 596-271",
+              "answer": 325,
+              "expression": "596-271",
+              "id": "cube31-u1-p017-4-s01",
+              "role": "response"
+            },
+            {
+              "prompt": "(2) 768-156",
+              "answer": 612,
+              "expression": "768-156",
+              "id": "cube31-u1-p017-4-s02",
+              "role": "response"
+            },
+            {
+              "prompt": "(3) 894-362",
+              "answer": 532,
+              "expression": "894-362",
+              "id": "cube31-u1-p017-4-s03",
+              "role": "response"
+            }
+          ],
+          "answers": {
+            "cube31-u1-p017-4-s01": 325,
+            "cube31-u1-p017-4-s02": 612,
+            "cube31-u1-p017-4-s03": 532
+          },
+          "visual": {
+            "type": "column",
+            "description": "각 식은 지면 순서대로 기록; 위쪽은 세로셈, 아래쪽은 가로셈인 경우 포함",
+            "data": {
+              "expressions": [
+                "596-271",
+                "768-156",
+                "894-362"
+              ]
+            }
+          },
+          "notes": [
+            "반복 연습도 원래 번호와 소문항 순서를 보존; 새 개념으로 세지 않는다."
+          ],
+          "verification": {
+            "prompt": "visually-checked",
+            "answers": "independently-derived",
+            "uncertainty": null
+          }
+        }
+      ]
+    },
+    {
+      "page": 18,
+      "pdfPage": 18,
+      "pdfIndex": 17,
+      "heading": "교과서 개념 잡기",
+      "concepts": [
+        5
+      ],
+      "visuallyChecked": true,
+      "entries": [
+        {
+          "id": "cube31-u1-p018-example-5a",
+          "number": "example-5a",
+          "kind": "concept-example",
+          "prompt": "십의 자리에서 받아내림이 있는 254-138의 계산",
+          "subitems": [
+            {
+              "prompt": "십1개를 일 모형으로 바꾼 개수",
+              "answer": 10,
+              "id": "cube31-u1-p018-example-5a-s01",
+              "role": "worked-example"
+            },
+            {
+              "prompt": "10+4=□",
+              "answer": 14,
+              "expression": "10+4",
+              "id": "cube31-u1-p018-example-5a-s02",
+              "role": "worked-example"
+            },
+            {
+              "prompt": "14-8=□",
+              "answer": 6,
+              "expression": "14-8",
+              "id": "cube31-u1-p018-example-5a-s03",
+              "role": "worked-example"
+            },
+            {
+              "prompt": "교환 후 남은 십 모형 수",
+              "answer": 4,
+              "expression": "5-1",
+              "id": "cube31-u1-p018-example-5a-s04",
+              "role": "worked-example"
+            },
+            {
+              "prompt": "4-3=□",
+              "answer": 1,
+              "expression": "4-3",
+              "id": "cube31-u1-p018-example-5a-s05",
+              "role": "worked-example"
+            },
+            {
+              "prompt": "2-1=□",
+              "answer": 1,
+              "expression": "2-1",
+              "id": "cube31-u1-p018-example-5a-s06",
+              "role": "worked-example"
+            },
+            {
+              "prompt": "254-138=□",
+              "answer": 116,
+              "expression": "254-138",
+              "id": "cube31-u1-p018-example-5a-s07",
+              "role": "worked-example"
+            },
+            {
+              "prompt": "상단 만화의 잘못된 계산254-138=124 수정",
+              "answer": 116,
+              "rationale": "4-8을8-4로 뒤집어 계산하면 안 된다. 십1개를 일10개로 바꾼 뒤14-8을 계산한다.",
+              "id": "cube31-u1-p018-example-5a-s08",
+              "role": "worked-example"
+            }
+          ],
+          "answers": {
+            "cube31-u1-p018-example-5a-s01": 10,
+            "cube31-u1-p018-example-5a-s02": 14,
+            "cube31-u1-p018-example-5a-s03": 6,
+            "cube31-u1-p018-example-5a-s04": 4,
+            "cube31-u1-p018-example-5a-s05": 1,
+            "cube31-u1-p018-example-5a-s06": 1,
+            "cube31-u1-p018-example-5a-s07": 116,
+            "cube31-u1-p018-example-5a-s08": 116
+          },
+          "visual": {
+            "type": "base-ten-and-columns",
+            "description": "십5개 중1개를 일10개로 교환; 십 자리5를 지우고4 표기, 일 위10",
+            "data": {
+              "operands": [
+                254,
+                138
+              ],
+              "partials": [
+                6,
+                16,
+                116
+              ]
+            }
+          },
+          "notes": [
+            "십의 자리에서 받아내림한1의 실제 값은10."
+          ],
+          "verification": {
+            "prompt": "visually-checked",
+            "answers": "independently-derived",
+            "uncertainty": null
+          }
+        },
+        {
+          "id": "cube31-u1-p018-example-5b",
+          "number": "example-5b",
+          "kind": "concept-example",
+          "prompt": "백의 자리에서 받아내림이 있는 617-342의 계산",
+          "subitems": [
+            {
+              "prompt": "7-2=□",
+              "answer": 5,
+              "expression": "7-2",
+              "id": "cube31-u1-p018-example-5b-s01",
+              "role": "worked-example"
+            },
+            {
+              "prompt": "교환 후 백 모형 수",
+              "answer": 5,
+              "expression": "6-1",
+              "id": "cube31-u1-p018-example-5b-s02",
+              "role": "worked-example"
+            },
+            {
+              "prompt": "10+1=□",
+              "answer": 11,
+              "expression": "10+1",
+              "id": "cube31-u1-p018-example-5b-s03",
+              "role": "worked-example"
+            },
+            {
+              "prompt": "11-4=□",
+              "answer": 7,
+              "expression": "11-4",
+              "id": "cube31-u1-p018-example-5b-s04",
+              "role": "worked-example"
+            },
+            {
+              "prompt": "5-3=□",
+              "answer": 2,
+              "expression": "5-3",
+              "id": "cube31-u1-p018-example-5b-s05",
+              "role": "worked-example"
+            },
+            {
+              "prompt": "617-342=□",
+              "answer": 275,
+              "expression": "617-342",
+              "id": "cube31-u1-p018-example-5b-s06",
+              "role": "worked-example"
+            }
+          ],
+          "answers": {
+            "cube31-u1-p018-example-5b-s01": 5,
+            "cube31-u1-p018-example-5b-s02": 5,
+            "cube31-u1-p018-example-5b-s03": 11,
+            "cube31-u1-p018-example-5b-s04": 7,
+            "cube31-u1-p018-example-5b-s05": 2,
+            "cube31-u1-p018-example-5b-s06": 275
+          },
+          "visual": {
+            "type": "column-steps",
+            "description": "백6을5로 고치고 십 위10; 11십-4십=7십",
+            "data": {
+              "operands": [
+                617,
+                342
+              ],
+              "partials": [
+                5,
+                75,
+                275
+              ]
+            }
+          },
+          "notes": [
+            "백의 자리에서 받아내림한1의 실제 값은100."
+          ],
+          "verification": {
+            "prompt": "visually-checked",
+            "answers": "independently-derived",
+            "uncertainty": null
+          }
+        }
+      ]
+    },
+    {
+      "page": 19,
+      "pdfPage": 19,
+      "pdfIndex": 18,
+      "heading": "개념 5 확인",
+      "concepts": [
+        5
+      ],
+      "visuallyChecked": true,
+      "entries": [
+        {
+          "id": "cube31-u1-p019-1",
+          "number": "1",
+          "kind": "base-ten-fill",
+          "prompt": "372-153을 수 모형으로 어떻게 계산하는지 알아봅니다.",
+          "subitems": [
+            {
+              "prompt": "(1) 십1개를 바꾼 일 모형 개수",
+              "answer": 10,
+              "id": "cube31-u1-p019-1-s01",
+              "role": "response"
+            },
+            {
+              "prompt": "(1) 남은 일 모형",
+              "answer": 9,
+              "expression": "12-3",
+              "id": "cube31-u1-p019-1-s02",
+              "role": "response"
+            },
+            {
+              "prompt": "(2) 바꾸고 남은 십 모형",
+              "answer": 6,
+              "id": "cube31-u1-p019-1-s03",
+              "role": "response"
+            },
+            {
+              "prompt": "(2) 남은 십 모형",
+              "answer": 1,
+              "expression": "6-5",
+              "id": "cube31-u1-p019-1-s04",
+              "role": "response"
+            },
+            {
+              "prompt": "(3) 남은 백 모형",
+              "answer": 2,
+              "expression": "3-1",
+              "id": "cube31-u1-p019-1-s05",
+              "role": "response"
+            },
+            {
+              "prompt": "(4) 차",
+              "answer": 219,
+              "expression": "372-153",
+              "id": "cube31-u1-p019-1-s06",
+              "role": "response"
+            }
+          ],
+          "answers": {
+            "cube31-u1-p019-1-s01": 10,
+            "cube31-u1-p019-1-s02": 9,
+            "cube31-u1-p019-1-s03": 6,
+            "cube31-u1-p019-1-s04": 1,
+            "cube31-u1-p019-1-s05": 2,
+            "cube31-u1-p019-1-s06": 219
+          },
+          "visual": {
+            "type": "base-ten",
+            "description": "372에서십1개를 교환한 후153 제거",
+            "data": {
+              "operands": [
+                372,
+                153
+              ]
+            }
+          },
+          "notes": [],
+          "verification": {
+            "prompt": "visually-checked",
+            "answers": "independently-derived",
+            "uncertainty": null
+          }
+        },
+        {
+          "id": "cube31-u1-p019-2",
+          "number": "2",
+          "kind": "column-steps",
+          "prompt": "□ 안에 알맞은 수를 써넣으세요.",
+          "subitems": [
+            {
+              "prompt": "(1) 단계 1 십 위의 받아올림/받아내림 빈칸",
+              "answer": 7,
+              "id": "cube31-u1-p019-2-s01",
+              "role": "response"
+            },
+            {
+              "prompt": "(1) 단계 1 일 위의 받아올림/받아내림 빈칸",
+              "answer": 10,
+              "id": "cube31-u1-p019-2-s02",
+              "role": "response"
+            },
+            {
+              "prompt": "(1) 단계 1 답의 일의 자리",
+              "answer": 8,
+              "id": "cube31-u1-p019-2-s03",
+              "role": "response"
+            },
+            {
+              "prompt": "(1) 단계 2 십 위의 받아올림/받아내림 빈칸",
+              "answer": 7,
+              "id": "cube31-u1-p019-2-s04",
+              "role": "response"
+            },
+            {
+              "prompt": "(1) 단계 2 일 위의 받아올림/받아내림 빈칸",
+              "answer": 10,
+              "id": "cube31-u1-p019-2-s05",
+              "role": "response"
+            },
+            {
+              "prompt": "(1) 단계 2 답의 십의 자리",
+              "answer": 6,
+              "id": "cube31-u1-p019-2-s06",
+              "role": "response"
+            },
+            {
+              "prompt": "(1) 단계 2 답의 일의 자리",
+              "answer": 8,
+              "id": "cube31-u1-p019-2-s07",
+              "role": "response"
+            },
+            {
+              "prompt": "(1) 단계 3 십 위의 받아올림/받아내림 빈칸",
+              "answer": 7,
+              "id": "cube31-u1-p019-2-s08",
+              "role": "response"
+            },
+            {
+              "prompt": "(1) 단계 3 일 위의 받아올림/받아내림 빈칸",
+              "answer": 10,
+              "id": "cube31-u1-p019-2-s09",
+              "role": "response"
+            },
+            {
+              "prompt": "(1) 단계 3 답의 백의 자리",
+              "answer": 2,
+              "id": "cube31-u1-p019-2-s10",
+              "role": "response"
+            },
+            {
+              "prompt": "(1) 단계 3 답의 십의 자리",
+              "answer": 6,
+              "id": "cube31-u1-p019-2-s11",
+              "role": "response"
+            },
+            {
+              "prompt": "(1) 단계 3 답의 일의 자리",
+              "answer": 8,
+              "id": "cube31-u1-p019-2-s12",
+              "role": "response"
+            },
+            {
+              "prompt": "(2) 단계 1 답의 일의 자리",
+              "answer": 2,
+              "id": "cube31-u1-p019-2-s13",
+              "role": "response"
+            },
+            {
+              "prompt": "(2) 단계 2 백 위의 받아올림/받아내림 빈칸",
+              "answer": 6,
+              "id": "cube31-u1-p019-2-s14",
+              "role": "response"
+            },
+            {
+              "prompt": "(2) 단계 2 십 위의 받아올림/받아내림 빈칸",
+              "answer": 10,
+              "id": "cube31-u1-p019-2-s15",
+              "role": "response"
+            },
+            {
+              "prompt": "(2) 단계 2 답의 십의 자리",
+              "answer": 4,
+              "id": "cube31-u1-p019-2-s16",
+              "role": "response"
+            },
+            {
+              "prompt": "(2) 단계 2 답의 일의 자리",
+              "answer": 2,
+              "id": "cube31-u1-p019-2-s17",
+              "role": "response"
+            },
+            {
+              "prompt": "(2) 단계 3 백 위의 받아올림/받아내림 빈칸",
+              "answer": 6,
+              "id": "cube31-u1-p019-2-s18",
+              "role": "response"
+            },
+            {
+              "prompt": "(2) 단계 3 십 위의 받아올림/받아내림 빈칸",
+              "answer": 10,
+              "id": "cube31-u1-p019-2-s19",
+              "role": "response"
+            },
+            {
+              "prompt": "(2) 단계 3 답의 백의 자리",
+              "answer": 1,
+              "id": "cube31-u1-p019-2-s20",
+              "role": "response"
+            },
+            {
+              "prompt": "(2) 단계 3 답의 십의 자리",
+              "answer": 4,
+              "id": "cube31-u1-p019-2-s21",
+              "role": "response"
+            },
+            {
+              "prompt": "(2) 단계 3 답의 일의 자리",
+              "answer": 2,
+              "id": "cube31-u1-p019-2-s22",
+              "role": "response"
+            }
+          ],
+          "answers": {
+            "cube31-u1-p019-2-s01": 7,
+            "cube31-u1-p019-2-s02": 10,
+            "cube31-u1-p019-2-s03": 8,
+            "cube31-u1-p019-2-s04": 7,
+            "cube31-u1-p019-2-s05": 10,
+            "cube31-u1-p019-2-s06": 6,
+            "cube31-u1-p019-2-s07": 8,
+            "cube31-u1-p019-2-s08": 7,
+            "cube31-u1-p019-2-s09": 10,
+            "cube31-u1-p019-2-s10": 2,
+            "cube31-u1-p019-2-s11": 6,
+            "cube31-u1-p019-2-s12": 8,
+            "cube31-u1-p019-2-s13": 2,
+            "cube31-u1-p019-2-s14": 6,
+            "cube31-u1-p019-2-s15": 10,
+            "cube31-u1-p019-2-s16": 4,
+            "cube31-u1-p019-2-s17": 2,
+            "cube31-u1-p019-2-s18": 6,
+            "cube31-u1-p019-2-s19": 10,
+            "cube31-u1-p019-2-s20": 1,
+            "cube31-u1-p019-2-s21": 4,
+            "cube31-u1-p019-2-s22": 2
+          },
+          "visual": {
+            "type": "column-steps",
+            "description": "지면의 각 중간 결과 칸과 작은 받아올림/받아내림 칸을 따로 기록",
+            "data": {
+              "panels": [
+                {
+                  "expression": "483-215",
+                  "result": 268,
+                  "stages": [
+                    {
+                      "annotations": {
+                        "십": 7,
+                        "일": 10
+                      },
+                      "visibleResult": "8"
+                    },
+                    {
+                      "annotations": {
+                        "십": 7,
+                        "일": 10
+                      },
+                      "visibleResult": "68"
+                    },
+                    {
+                      "annotations": {
+                        "십": 7,
+                        "일": 10
+                      },
+                      "visibleResult": "268"
+                    }
+                  ]
+                },
+                {
+                  "expression": "726-584",
+                  "result": 142,
+                  "stages": [
+                    {
+                      "annotations": {},
+                      "visibleResult": "2"
+                    },
+                    {
+                      "annotations": {
+                        "백": 6,
+                        "십": 10
+                      },
+                      "visibleResult": "42"
+                    },
+                    {
+                      "annotations": {
+                        "백": 6,
+                        "십": 10
+                      },
+                      "visibleResult": "142"
+                    }
+                  ]
+                }
+              ]
+            }
+          },
+          "notes": [],
+          "verification": {
+            "prompt": "visually-checked",
+            "answers": "independently-derived",
+            "uncertainty": null
+          }
+        },
+        {
+          "id": "cube31-u1-p019-3",
+          "number": "3",
+          "kind": "calculation",
+          "prompt": "계산해 보세요.",
+          "subitems": [
+            {
+              "prompt": "(1) 261-136",
+              "answer": 125,
+              "expression": "261-136",
+              "id": "cube31-u1-p019-3-s01",
+              "role": "response"
+            },
+            {
+              "prompt": "(2) 529-256",
+              "answer": 273,
+              "expression": "529-256",
+              "id": "cube31-u1-p019-3-s02",
+              "role": "response"
+            },
+            {
+              "prompt": "(3) 885-327",
+              "answer": 558,
+              "expression": "885-327",
+              "id": "cube31-u1-p019-3-s03",
+              "role": "response"
+            },
+            {
+              "prompt": "(4) 714-283",
+              "answer": 431,
+              "expression": "714-283",
+              "id": "cube31-u1-p019-3-s04",
+              "role": "response"
+            }
+          ],
+          "answers": {
+            "cube31-u1-p019-3-s01": 125,
+            "cube31-u1-p019-3-s02": 273,
+            "cube31-u1-p019-3-s03": 558,
+            "cube31-u1-p019-3-s04": 431
+          },
+          "visual": {
+            "type": "column-and-inline",
+            "description": "각 식은 지면 순서대로 기록; 위쪽은 세로셈, 아래쪽은 가로셈인 경우 포함",
+            "data": {
+              "expressions": [
+                "261-136",
+                "529-256",
+                "885-327",
+                "714-283"
+              ]
+            }
+          },
+          "notes": [
+            "반복 연습도 원래 번호와 소문항 순서를 보존; 새 개념으로 세지 않는다."
+          ],
+          "verification": {
+            "prompt": "visually-checked",
+            "answers": "independently-derived",
+            "uncertainty": null
+          }
+        }
+      ]
+    },
+    {
+      "page": 20,
+      "pdfPage": 20,
+      "pdfIndex": 19,
+      "heading": "교과서 개념 잡기",
+      "concepts": [
+        6
+      ],
+      "visuallyChecked": true,
+      "entries": [
+        {
+          "id": "cube31-u1-p020-example-6",
+          "number": "example-6",
+          "kind": "concept-example",
+          "prompt": "받아내림이 두 번 있는 324-156의 계산",
+          "subitems": [
+            {
+              "prompt": "카드 교환 후 백·십·일 개수",
+              "answer": [
+                2,
+                11,
+                14
+              ],
+              "id": "cube31-u1-p020-example-6-s01",
+              "role": "worked-example"
+            },
+            {
+              "prompt": "10+4=□",
+              "answer": 14,
+              "expression": "10+4",
+              "id": "cube31-u1-p020-example-6-s02",
+              "role": "worked-example"
+            },
+            {
+              "prompt": "14-6=□",
+              "answer": 8,
+              "expression": "14-6",
+              "id": "cube31-u1-p020-example-6-s03",
+              "role": "worked-example"
+            },
+            {
+              "prompt": "일로 교환한 뒤 남은 십",
+              "answer": 1,
+              "expression": "2-1",
+              "id": "cube31-u1-p020-example-6-s04",
+              "role": "worked-example"
+            },
+            {
+              "prompt": "백1개를 교환한 뒤 십",
+              "answer": 11,
+              "expression": "10+1",
+              "id": "cube31-u1-p020-example-6-s05",
+              "role": "worked-example"
+            },
+            {
+              "prompt": "11-5=□",
+              "answer": 6,
+              "expression": "11-5",
+              "id": "cube31-u1-p020-example-6-s06",
+              "role": "worked-example"
+            },
+            {
+              "prompt": "백의 자리 계산",
+              "answer": 1,
+              "expression": "2-1",
+              "id": "cube31-u1-p020-example-6-s07",
+              "role": "worked-example"
+            },
+            {
+              "prompt": "324-156=□",
+              "answer": 168,
+              "expression": "324-156",
+              "id": "cube31-u1-p020-example-6-s08",
+              "role": "worked-example"
+            },
+            {
+              "prompt": "남은 카드100·10·1 개수",
+              "answer": [
+                1,
+                6,
+                8
+              ],
+              "id": "cube31-u1-p020-example-6-s09",
+              "role": "worked-example"
+            }
+          ],
+          "answers": {
+            "cube31-u1-p020-example-6-s01": [
+              2,
+              11,
+              14
+            ],
+            "cube31-u1-p020-example-6-s02": 14,
+            "cube31-u1-p020-example-6-s03": 8,
+            "cube31-u1-p020-example-6-s04": 1,
+            "cube31-u1-p020-example-6-s05": 11,
+            "cube31-u1-p020-example-6-s06": 6,
+            "cube31-u1-p020-example-6-s07": 1,
+            "cube31-u1-p020-example-6-s08": 168,
+            "cube31-u1-p020-example-6-s09": [
+              1,
+              6,
+              8
+            ]
+          },
+          "visual": {
+            "type": "cards-base-ten-and-columns",
+            "description": "100·10·1 카드, 수모형, 세로셈의 세 표현을 연결; 백3→2,십2→1→11,일4→14",
+            "data": {
+              "operands": [
+                324,
+                156
+              ],
+              "partials": [
+                8,
+                68,
+                168
+              ]
+            }
+          },
+          "notes": [
+            "상단 만화는 왜 십의 자리 재묶음이11인지 질문하고 2-1+10으로 설명.",
+            "받아내림한 자리의 원래 수를 그대로 다시 사용하지 않음."
+          ],
+          "verification": {
+            "prompt": "visually-checked",
+            "answers": "independently-derived",
+            "uncertainty": null
+          }
+        }
+      ]
+    },
+    {
+      "page": 21,
+      "pdfPage": 21,
+      "pdfIndex": 20,
+      "heading": "개념 6 확인",
+      "concepts": [
+        6
+      ],
+      "visuallyChecked": true,
+      "entries": [
+        {
+          "id": "cube31-u1-p021-1",
+          "number": "1",
+          "kind": "base-ten-fill",
+          "prompt": "423-189를 수 모형으로 어떻게 계산하는지 알아봅니다.",
+          "subitems": [
+            {
+              "prompt": "(1) 십1개를 바꾼 일 모형 개수",
+              "answer": 10,
+              "id": "cube31-u1-p021-1-s01",
+              "role": "response"
+            },
+            {
+              "prompt": "(1) 남은 일 모형",
+              "answer": 4,
+              "expression": "13-9",
+              "id": "cube31-u1-p021-1-s02",
+              "role": "response"
+            },
+            {
+              "prompt": "(2) 백1개를 바꾼 십 모형 개수",
+              "answer": 10,
+              "id": "cube31-u1-p021-1-s03",
+              "role": "response"
+            },
+            {
+              "prompt": "(2) 남은 십 모형",
+              "answer": 3,
+              "expression": "11-8",
+              "id": "cube31-u1-p021-1-s04",
+              "role": "response"
+            },
+            {
+              "prompt": "(3) 교환 후 남은 백 모형",
+              "answer": 3,
+              "id": "cube31-u1-p021-1-s05",
+              "role": "response"
+            },
+            {
+              "prompt": "(3) 제거 후 남은 백 모형",
+              "answer": 2,
+              "expression": "3-1",
+              "id": "cube31-u1-p021-1-s06",
+              "role": "response"
+            },
+            {
+              "prompt": "(4) 차",
+              "answer": 234,
+              "expression": "423-189",
+              "id": "cube31-u1-p021-1-s07",
+              "role": "response"
+            }
+          ],
+          "answers": {
+            "cube31-u1-p021-1-s01": 10,
+            "cube31-u1-p021-1-s02": 4,
+            "cube31-u1-p021-1-s03": 10,
+            "cube31-u1-p021-1-s04": 3,
+            "cube31-u1-p021-1-s05": 3,
+            "cube31-u1-p021-1-s06": 2,
+            "cube31-u1-p021-1-s07": 234
+          },
+          "visual": {
+            "type": "base-ten",
+            "description": "두 번의 교환 뒤189 제거",
+            "data": {
+              "operands": [
+                423,
+                189
+              ]
+            }
+          },
+          "notes": [],
+          "verification": {
+            "prompt": "visually-checked",
+            "answers": "independently-derived",
+            "uncertainty": null
+          }
+        },
+        {
+          "id": "cube31-u1-p021-2",
+          "number": "2",
+          "kind": "column-steps",
+          "prompt": "□ 안에 알맞은 수를 써넣으세요.",
+          "subitems": [
+            {
+              "prompt": "(1) 단계 1 백 위의 받아올림/받아내림 빈칸",
+              "answer": 7,
+              "id": "cube31-u1-p021-2-s01",
+              "role": "response"
+            },
+            {
+              "prompt": "(1) 단계 1 십 위의 받아올림/받아내림 빈칸",
+              "answer": 11,
+              "id": "cube31-u1-p021-2-s02",
+              "role": "response"
+            },
+            {
+              "prompt": "(1) 단계 1 일 위의 받아올림/받아내림 빈칸",
+              "answer": 10,
+              "id": "cube31-u1-p021-2-s03",
+              "role": "response"
+            },
+            {
+              "prompt": "(1) 단계 1 답의 백의 자리",
+              "answer": 6,
+              "id": "cube31-u1-p021-2-s04",
+              "role": "response"
+            },
+            {
+              "prompt": "(1) 단계 1 답의 십의 자리",
+              "answer": 2,
+              "id": "cube31-u1-p021-2-s05",
+              "role": "response"
+            },
+            {
+              "prompt": "(1) 단계 1 답의 일의 자리",
+              "answer": 9,
+              "id": "cube31-u1-p021-2-s06",
+              "role": "response"
+            },
+            {
+              "prompt": "(2) 단계 1 백 위의 받아올림/받아내림 빈칸",
+              "answer": 4,
+              "id": "cube31-u1-p021-2-s07",
+              "role": "response"
+            },
+            {
+              "prompt": "(2) 단계 1 십 위의 받아올림/받아내림 빈칸",
+              "answer": 12,
+              "id": "cube31-u1-p021-2-s08",
+              "role": "response"
+            },
+            {
+              "prompt": "(2) 단계 1 일 위의 받아올림/받아내림 빈칸",
+              "answer": 10,
+              "id": "cube31-u1-p021-2-s09",
+              "role": "response"
+            },
+            {
+              "prompt": "(2) 단계 1 답의 백의 자리",
+              "answer": 2,
+              "id": "cube31-u1-p021-2-s10",
+              "role": "response"
+            },
+            {
+              "prompt": "(2) 단계 1 답의 십의 자리",
+              "answer": 5,
+              "id": "cube31-u1-p021-2-s11",
+              "role": "response"
+            },
+            {
+              "prompt": "(2) 단계 1 답의 일의 자리",
+              "answer": 8,
+              "id": "cube31-u1-p021-2-s12",
+              "role": "response"
+            }
+          ],
+          "answers": {
+            "cube31-u1-p021-2-s01": 7,
+            "cube31-u1-p021-2-s02": 11,
+            "cube31-u1-p021-2-s03": 10,
+            "cube31-u1-p021-2-s04": 6,
+            "cube31-u1-p021-2-s05": 2,
+            "cube31-u1-p021-2-s06": 9,
+            "cube31-u1-p021-2-s07": 4,
+            "cube31-u1-p021-2-s08": 12,
+            "cube31-u1-p021-2-s09": 10,
+            "cube31-u1-p021-2-s10": 2,
+            "cube31-u1-p021-2-s11": 5,
+            "cube31-u1-p021-2-s12": 8
+          },
+          "visual": {
+            "type": "column-steps",
+            "description": "지면의 각 중간 결과 칸과 작은 받아올림/받아내림 칸을 따로 기록",
+            "data": {
+              "panels": [
+                {
+                  "expression": "825-196",
+                  "result": 629,
+                  "stages": [
+                    {
+                      "annotations": {
+                        "백": 7,
+                        "십": 11,
+                        "일": 10
+                      },
+                      "visibleResult": "629"
+                    }
+                  ]
+                },
+                {
+                  "expression": "536-278",
+                  "result": 258,
+                  "stages": [
+                    {
+                      "annotations": {
+                        "백": 4,
+                        "십": 12,
+                        "일": 10
+                      },
+                      "visibleResult": "258"
+                    }
+                  ]
+                }
+              ]
+            }
+          },
+          "notes": [],
+          "verification": {
+            "prompt": "visually-checked",
+            "answers": "independently-derived",
+            "uncertainty": null
+          }
+        },
+        {
+          "id": "cube31-u1-p021-3",
+          "number": "3",
+          "kind": "calculation",
+          "prompt": "계산해 보세요.",
+          "subitems": [
+            {
+              "prompt": "(1) 568-379",
+              "answer": 189,
+              "expression": "568-379",
+              "id": "cube31-u1-p021-3-s01",
+              "role": "response"
+            },
+            {
+              "prompt": "(2) 874-495",
+              "answer": 379,
+              "expression": "874-495",
+              "id": "cube31-u1-p021-3-s02",
+              "role": "response"
+            },
+            {
+              "prompt": "(3) 326-147",
+              "answer": 179,
+              "expression": "326-147",
+              "id": "cube31-u1-p021-3-s03",
+              "role": "response"
+            },
+            {
+              "prompt": "(4) 946-588",
+              "answer": 358,
+              "expression": "946-588",
+              "id": "cube31-u1-p021-3-s04",
+              "role": "response"
+            }
+          ],
+          "answers": {
+            "cube31-u1-p021-3-s01": 189,
+            "cube31-u1-p021-3-s02": 379,
+            "cube31-u1-p021-3-s03": 179,
+            "cube31-u1-p021-3-s04": 358
+          },
+          "visual": {
+            "type": "column-and-inline",
+            "description": "각 식은 지면 순서대로 기록; 위쪽은 세로셈, 아래쪽은 가로셈인 경우 포함",
+            "data": {
+              "expressions": [
+                "568-379",
+                "874-495",
+                "326-147",
+                "946-588"
+              ]
+            }
+          },
+          "notes": [
+            "반복 연습도 원래 번호와 소문항 순서를 보존; 새 개념으로 세지 않는다."
+          ],
+          "verification": {
+            "prompt": "visually-checked",
+            "answers": "independently-derived",
+            "uncertainty": null
+          }
+        }
+      ]
+    },
+    {
+      "page": 22,
+      "pdfPage": 22,
+      "pdfIndex": 21,
+      "heading": "개념 한 번 더 잡기",
+      "concepts": [
+        4,
+        5
+      ],
+      "visuallyChecked": true,
+      "entries": [
+        {
+          "id": "cube31-u1-p022-01",
+          "number": "01",
+          "kind": "base-ten-fill",
+          "prompt": "수 모형을 보고 578-253을 계산해 보세요.",
+          "subitems": [
+            {
+              "prompt": "578-253=□",
+              "answer": 325,
+              "expression": "578-253",
+              "id": "cube31-u1-p022-01-s01",
+              "role": "response"
+            }
+          ],
+          "answers": {
+            "cube31-u1-p022-01-s01": 325
+          },
+          "visual": {
+            "type": "base-ten",
+            "description": "578에서253의 모형을 제거",
+            "data": {
+              "operands": [
+                578,
+                253
+              ]
+            }
+          },
+          "notes": [],
+          "verification": {
+            "prompt": "visually-checked",
+            "answers": "independently-derived",
+            "uncertainty": null
+          }
+        },
+        {
+          "id": "cube31-u1-p022-02",
+          "number": "02",
+          "kind": "decomposition",
+          "prompt": "953-632를 일의 자리부터 빼는 방법으로 계산하려고 합니다.",
+          "subitems": [
+            {
+              "prompt": "3-2=□",
+              "answer": 1,
+              "expression": "3-2",
+              "id": "cube31-u1-p022-02-s01",
+              "role": "response"
+            },
+            {
+              "prompt": "50-30=□",
+              "answer": 20,
+              "expression": "50-30",
+              "id": "cube31-u1-p022-02-s02",
+              "role": "response"
+            },
+            {
+              "prompt": "900-600=□",
+              "answer": 300,
+              "expression": "900-600",
+              "id": "cube31-u1-p022-02-s03",
+              "role": "response"
+            },
+            {
+              "prompt": "953-632=□",
+              "answer": 321,
+              "expression": "953-632",
+              "id": "cube31-u1-p022-02-s04",
+              "role": "response"
+            }
+          ],
+          "answers": {
+            "cube31-u1-p022-02-s01": 1,
+            "cube31-u1-p022-02-s02": 20,
+            "cube31-u1-p022-02-s03": 300,
+            "cube31-u1-p022-02-s04": 321
+          },
+          "visual": {
+            "type": "decomposition",
+            "description": "일·십·백의 차를 합침",
+            "data": {}
+          },
+          "notes": [],
+          "verification": {
+            "prompt": "visually-checked",
+            "answers": "independently-derived",
+            "uncertainty": null
+          }
+        },
+        {
+          "id": "cube31-u1-p022-03",
+          "number": "03",
+          "kind": "calculation",
+          "prompt": "계산해 보세요.",
+          "subitems": [
+            {
+              "prompt": "(1) 497-124",
+              "answer": 373,
+              "expression": "497-124",
+              "id": "cube31-u1-p022-03-s01",
+              "role": "response"
+            },
+            {
+              "prompt": "(2) 862-241",
+              "answer": 621,
+              "expression": "862-241",
+              "id": "cube31-u1-p022-03-s02",
+              "role": "response"
+            },
+            {
+              "prompt": "(3) 358-234",
+              "answer": 124,
+              "expression": "358-234",
+              "id": "cube31-u1-p022-03-s03",
+              "role": "response"
+            },
+            {
+              "prompt": "(4) 587-136",
+              "answer": 451,
+              "expression": "587-136",
+              "id": "cube31-u1-p022-03-s04",
+              "role": "response"
+            }
+          ],
+          "answers": {
+            "cube31-u1-p022-03-s01": 373,
+            "cube31-u1-p022-03-s02": 621,
+            "cube31-u1-p022-03-s03": 124,
+            "cube31-u1-p022-03-s04": 451
+          },
+          "visual": {
+            "type": "column-and-inline",
+            "description": "각 식은 지면 순서대로 기록; 위쪽은 세로셈, 아래쪽은 가로셈인 경우 포함",
+            "data": {
+              "expressions": [
+                "497-124",
+                "862-241",
+                "358-234",
+                "587-136"
+              ]
+            }
+          },
+          "notes": [
+            "반복 연습도 원래 번호와 소문항 순서를 보존; 새 개념으로 세지 않는다."
+          ],
+          "verification": {
+            "prompt": "visually-checked",
+            "answers": "independently-derived",
+            "uncertainty": null
+          }
+        },
+        {
+          "id": "cube31-u1-p022-04",
+          "number": "04",
+          "kind": "base-ten-fill",
+          "prompt": "수 모형을 보고 451-237을 계산해 보세요.",
+          "subitems": [
+            {
+              "prompt": "451-237=□",
+              "answer": 214,
+              "expression": "451-237",
+              "id": "cube31-u1-p022-04-s01",
+              "role": "response"
+            }
+          ],
+          "answers": {
+            "cube31-u1-p022-04-s01": 214
+          },
+          "visual": {
+            "type": "base-ten",
+            "description": "451에서십1개→일10개 교환 후237 제거",
+            "data": {
+              "operands": [
+                451,
+                237
+              ]
+            }
+          },
+          "notes": [],
+          "verification": {
+            "prompt": "visually-checked",
+            "answers": "independently-derived",
+            "uncertainty": null
+          }
+        },
+        {
+          "id": "cube31-u1-p022-05",
+          "number": "05",
+          "kind": "worked-example-followup",
+          "prompt": "보기와 같은 방법으로 계산해 보세요.",
+          "subitems": [
+            {
+              "prompt": "보기: 372-136 (인쇄된 풀이)",
+              "answer": 236,
+              "expression": "372-136",
+              "id": "cube31-u1-p022-05-s01",
+              "role": "worked-example"
+            },
+            {
+              "prompt": "연습: 586-217",
+              "answer": 369,
+              "expression": "586-217",
+              "id": "cube31-u1-p022-05-s02",
+              "role": "response"
+            }
+          ],
+          "answers": {
+            "cube31-u1-p022-05-s01": 236,
+            "cube31-u1-p022-05-s02": 369
+          },
+          "visual": {
+            "type": "column",
+            "description": "보기372-136=236에 십6,일10의 교환 표시; 연습586-217",
+            "data": {}
+          },
+          "notes": [
+            "첫 소항목은 학생 빈칸이 아니라 인쇄된 예시."
+          ],
+          "verification": {
+            "prompt": "visually-checked",
+            "answers": "independently-derived",
+            "uncertainty": null
+          }
+        },
+        {
+          "id": "cube31-u1-p022-06",
+          "number": "06",
+          "kind": "number-grid",
+          "prompt": "빈칸에 알맞은 수를 써넣으세요.",
+          "subitems": [
+            {
+              "prompt": "가로 빈칸",
+              "answer": 419,
+              "expression": "875-456",
+              "id": "cube31-u1-p022-06-s01",
+              "role": "response"
+            },
+            {
+              "prompt": "세로 빈칸",
+              "answer": 683,
+              "expression": "875-192",
+              "id": "cube31-u1-p022-06-s02",
+              "role": "response"
+            }
+          ],
+          "answers": {
+            "cube31-u1-p022-06-s01": 419,
+            "cube31-u1-p022-06-s02": 683
+          },
+          "visual": {
+            "type": "number-grid",
+            "description": "왼쪽 위875를 공통으로 가로456/세로192를 뺌",
+            "data": {
+              "corner": 875,
+              "right": 456,
+              "below": 192
+            }
+          },
+          "notes": [],
+          "verification": {
+            "prompt": "visually-checked",
+            "answers": "independently-derived",
+            "uncertainty": null
+          }
+        }
+      ]
+    },
+    {
+      "page": 23,
+      "pdfPage": 23,
+      "pdfIndex": 22,
+      "heading": "개념 한 번 더 잡기",
+      "concepts": [
+        5,
+        6
+      ],
+      "visuallyChecked": true,
+      "entries": [
+        {
+          "id": "cube31-u1-p023-07",
+          "number": "07",
+          "kind": "error-choice",
+          "prompt": "바르게 계산한 것에 ○표 하세요.",
+          "subitems": [
+            {
+              "prompt": "972-354=628 / 972-354=618 중 선택",
+              "answer": "오른쪽: 618",
+              "expression": "972-354",
+              "rationale": "왼쪽628은 십의 자리에서 받아내림한1을 빼지 않은 오류.",
+              "id": "cube31-u1-p023-07-s01",
+              "role": "response"
+            }
+          ],
+          "answers": {
+            "cube31-u1-p023-07-s01": "오른쪽: 618"
+          },
+          "visual": {
+            "type": "column-choice",
+            "description": "동일 뺄셈에 두 계산 결과",
+            "data": {
+              "expression": "972-354",
+              "candidates": [
+                628,
+                618
+              ]
+            }
+          },
+          "notes": [],
+          "verification": {
+            "prompt": "visually-checked",
+            "answers": "independently-derived",
+            "uncertainty": null
+          }
+        },
+        {
+          "id": "cube31-u1-p023-08",
+          "number": "08",
+          "kind": "card-calculation",
+          "prompt": "수 카드를 보고 632-149를 계산해 보세요.",
+          "subitems": [
+            {
+              "prompt": "632-149=□",
+              "answer": 483,
+              "expression": "632-149",
+              "id": "cube31-u1-p023-08-s01",
+              "role": "response"
+            }
+          ],
+          "answers": {
+            "cube31-u1-p023-08-s01": 483
+          },
+          "visual": {
+            "type": "place-value-cards",
+            "description": "6백3십2일을5백12십12일로 교환하고1백4십9일 제거",
+            "data": {
+              "before": [
+                6,
+                3,
+                2
+              ],
+              "afterExchange": [
+                5,
+                12,
+                12
+              ],
+              "remove": [
+                1,
+                4,
+                9
+              ]
+            }
+          },
+          "notes": [],
+          "verification": {
+            "prompt": "visually-checked",
+            "answers": "independently-derived",
+            "uncertainty": null
+          }
+        },
+        {
+          "id": "cube31-u1-p023-09",
+          "number": "09",
+          "kind": "calculation",
+          "prompt": "계산해 보세요.",
+          "subitems": [
+            {
+              "prompt": "(1) 453-278",
+              "answer": 175,
+              "expression": "453-278",
+              "id": "cube31-u1-p023-09-s01",
+              "role": "response"
+            },
+            {
+              "prompt": "(2) 918-539",
+              "answer": 379,
+              "expression": "918-539",
+              "id": "cube31-u1-p023-09-s02",
+              "role": "response"
+            }
+          ],
+          "answers": {
+            "cube31-u1-p023-09-s01": 175,
+            "cube31-u1-p023-09-s02": 379
+          },
+          "visual": {
+            "type": "column",
+            "description": "각 식은 지면 순서대로 기록; 위쪽은 세로셈, 아래쪽은 가로셈인 경우 포함",
+            "data": {
+              "expressions": [
+                "453-278",
+                "918-539"
+              ]
+            }
+          },
+          "notes": [
+            "반복 연습도 원래 번호와 소문항 순서를 보존; 새 개념으로 세지 않는다."
+          ],
+          "verification": {
+            "prompt": "visually-checked",
+            "answers": "independently-derived",
+            "uncertainty": null
+          }
+        },
+        {
+          "id": "cube31-u1-p023-10",
+          "number": "10",
+          "kind": "matching",
+          "prompt": "같은 것끼리 이어 보세요.",
+          "subitems": [
+            {
+              "prompt": "612-129=□",
+              "answer": 483,
+              "expression": "612-129",
+              "id": "cube31-u1-p023-10-s01",
+              "role": "response"
+            },
+            {
+              "prompt": "725-478=□",
+              "answer": 247,
+              "expression": "725-478",
+              "id": "cube31-u1-p023-10-s02",
+              "role": "response"
+            },
+            {
+              "prompt": "841-563=□",
+              "answer": 278,
+              "expression": "841-563",
+              "id": "cube31-u1-p023-10-s03",
+              "role": "response"
+            }
+          ],
+          "answers": {
+            "cube31-u1-p023-10-s01": 483,
+            "cube31-u1-p023-10-s02": 247,
+            "cube31-u1-p023-10-s03": 278
+          },
+          "visual": {
+            "type": "matching",
+            "description": "식과 값 연결",
+            "data": {
+              "left": [
+                "612-129",
+                "725-478",
+                "841-563"
+              ],
+              "right": [
+                483,
+                278,
+                247
+              ]
+            }
+          },
+          "notes": [],
+          "verification": {
+            "prompt": "visually-checked",
+            "answers": "independently-derived",
+            "uncertainty": null
+          }
+        },
+        {
+          "id": "cube31-u1-p023-11",
+          "number": "11",
+          "kind": "number-machine",
+          "prompt": "□ 안에 알맞은 수를 써넣으세요.",
+          "subitems": [
+            {
+              "prompt": "542-386=□",
+              "answer": 156,
+              "expression": "542-386",
+              "id": "cube31-u1-p023-11-s01",
+              "role": "response"
+            }
+          ],
+          "answers": {
+            "cube31-u1-p023-11-s01": 156
+          },
+          "visual": {
+            "type": "number-machine",
+            "description": "542입력,386빼기,출력빈칸",
+            "data": {
+              "input": 542,
+              "operation": "-386"
+            }
+          },
+          "notes": [],
+          "verification": {
+            "prompt": "visually-checked",
+            "answers": "independently-derived",
+            "uncertainty": null
+          }
+        },
+        {
+          "id": "cube31-u1-p023-12",
+          "number": "12",
+          "kind": "model-relative-number",
+          "prompt": "수 모형이 나타내는 수보다 142만큼 더 작은 수를 구하세요.",
+          "subitems": [
+            {
+              "prompt": "321-142=□",
+              "answer": 179,
+              "expression": "321-142",
+              "id": "cube31-u1-p023-12-s01",
+              "role": "response"
+            }
+          ],
+          "answers": {
+            "cube31-u1-p023-12-s01": 179
+          },
+          "visual": {
+            "type": "base-ten",
+            "description": "백3개,십2개,일1개",
+            "data": {
+              "counts": [
+                3,
+                2,
+                1
+              ],
+              "representedNumber": 321
+            }
+          },
+          "notes": [],
+          "verification": {
+            "prompt": "visually-checked",
+            "answers": "independently-derived",
+            "uncertainty": null
+          }
+        }
+      ]
+    },
+    {
+      "page": 24,
+      "pdfPage": 24,
+      "pdfIndex": 23,
+      "heading": "수학 익힘 문제 잡기",
+      "concepts": [
+        1,
+        2,
+        3
+      ],
+      "visuallyChecked": true,
+      "entries": [
+        {
+          "id": "cube31-u1-p024-01",
+          "number": "01",
+          "kind": "part-whole",
+          "prompt": "빈칸에 두 수의 합을 써넣으세요.",
+          "subitems": [
+            {
+              "prompt": "143+532=□",
+              "answer": 675,
+              "expression": "143+532",
+              "id": "cube31-u1-p024-01-s01",
+              "role": "response"
+            }
+          ],
+          "answers": {
+            "cube31-u1-p024-01-s01": 675
+          },
+          "visual": {
+            "type": "part-whole-table",
+            "description": "윗행143,532; 아랫행 전체 합",
+            "data": {
+              "parts": [
+                143,
+                532
+              ]
+            }
+          },
+          "notes": [],
+          "verification": {
+            "prompt": "visually-checked",
+            "answers": "independently-derived",
+            "uncertainty": null
+          }
+        },
+        {
+          "id": "cube31-u1-p024-02",
+          "number": "02",
+          "kind": "comparison",
+          "prompt": "계산 결과를 비교하여 ○ 안에 >, =, <를 알맞게 써넣으세요.",
+          "subitems": [
+            {
+              "prompt": "256+312 ○ 435+124",
+              "answer": ">",
+              "rationale": "568>559",
+              "id": "cube31-u1-p024-02-s01",
+              "role": "response"
+            }
+          ],
+          "answers": {
+            "cube31-u1-p024-02-s01": ">"
+          },
+          "visual": {
+            "type": "comparison",
+            "description": "두 식 사이 비교 기호 빈칸",
+            "data": {
+              "left": "256+312",
+              "right": "435+124",
+              "values": [
+                568,
+                559
+              ]
+            }
+          },
+          "notes": [],
+          "verification": {
+            "prompt": "visually-checked",
+            "answers": "independently-derived",
+            "uncertainty": null
+          }
+        },
+        {
+          "id": "cube31-u1-p024-03",
+          "number": "03",
+          "kind": "word-problem",
+          "prompt": "오늘 동물원에 입장한 남자는347명, 여자는428명입니다. 오늘 동물원에 입장한 사람은 모두 몇 명인가요?",
+          "subitems": [
+            {
+              "prompt": "347+□의 여자 수",
+              "answer": 428,
+              "id": "cube31-u1-p024-03-s01",
+              "role": "response"
+            },
+            {
+              "prompt": "식의 결과",
+              "answer": 775,
+              "expression": "347+428",
+              "id": "cube31-u1-p024-03-s02",
+              "role": "response"
+            },
+            {
+              "prompt": "답과 단위",
+              "answer": "775명",
+              "id": "cube31-u1-p024-03-s03",
+              "role": "response"
+            }
+          ],
+          "answers": {
+            "cube31-u1-p024-03-s01": 428,
+            "cube31-u1-p024-03-s02": 775,
+            "cube31-u1-p024-03-s03": "775명"
+          },
+          "visual": {
+            "type": "zoo-illustration",
+            "description": "남녀 입장객 수를 합치는 동물원 문장제",
+            "data": {}
+          },
+          "notes": [
+            "상황의 전체를 묻는 덧셈."
+          ],
+          "verification": {
+            "prompt": "visually-checked",
+            "answers": "independently-derived",
+            "uncertainty": null
+          }
+        },
+        {
+          "id": "cube31-u1-p024-04",
+          "number": "04",
+          "kind": "operation-chain",
+          "prompt": "빈칸에 알맞은 수를 써넣으세요.",
+          "subitems": [
+            {
+              "prompt": "첫 계단",
+              "answer": 681,
+              "expression": "219+462",
+              "id": "cube31-u1-p024-04-s01",
+              "role": "response"
+            },
+            {
+              "prompt": "둘째 계단",
+              "answer": 819,
+              "expression": "681+138",
+              "id": "cube31-u1-p024-04-s02",
+              "role": "response"
+            }
+          ],
+          "answers": {
+            "cube31-u1-p024-04-s01": 681,
+            "cube31-u1-p024-04-s02": 819
+          },
+          "visual": {
+            "type": "step-chain",
+            "description": "219에서462를 더하고 다시138을 더함",
+            "data": {
+              "start": 219,
+              "operations": [
+                "+462",
+                "+138"
+              ]
+            }
+          },
+          "notes": [],
+          "verification": {
+            "prompt": "visually-checked",
+            "answers": "independently-derived",
+            "uncertainty": null
+          }
+        },
+        {
+          "id": "cube31-u1-p024-05",
+          "number": "05",
+          "kind": "select-and-add",
+          "prompt": "원 안에 있는 수의 합을 구하세요.",
+          "subitems": [
+            {
+              "prompt": "469+543=□",
+              "answer": 1012,
+              "expression": "469+543",
+              "id": "cube31-u1-p024-05-s01",
+              "role": "response"
+            }
+          ],
+          "answers": {
+            "cube31-u1-p024-05-s01": 1012
+          },
+          "visual": {
+            "type": "shape-number-filter",
+            "description": "삼각형207,사각형385,원469,삼각형437,원543,사다리꼴118",
+            "data": {
+              "shapes": [
+                [
+                  "triangle",
+                  207
+                ],
+                [
+                  "rectangle",
+                  385
+                ],
+                [
+                  "circle",
+                  469
+                ],
+                [
+                  "triangle",
+                  437
+                ],
+                [
+                  "circle",
+                  543
+                ],
+                [
+                  "trapezoid",
+                  118
+                ]
+              ]
+            }
+          },
+          "notes": [
+            "계산 전에 조건에 맞는 정보만 선택."
+          ],
+          "verification": {
+            "prompt": "visually-checked",
+            "answers": "independently-derived",
+            "uncertainty": null
+          }
+        },
+        {
+          "id": "cube31-u1-p024-06",
+          "number": "06",
+          "kind": "digit-card-order",
+          "prompt": "수 카드3장을 한 번씩만 사용하여 만들 수 있는 가장 큰 세 자리 수와178의 합을 구하려고 합니다. □ 안에 알맞은 수를 써넣으세요.",
+          "subitems": [
+            {
+              "prompt": "가장 큰 세 자리 수",
+              "answer": 632,
+              "id": "cube31-u1-p024-06-s01",
+              "role": "response"
+            },
+            {
+              "prompt": "632+178=□",
+              "answer": 810,
+              "expression": "632+178",
+              "id": "cube31-u1-p024-06-s02",
+              "role": "response"
+            }
+          ],
+          "answers": {
+            "cube31-u1-p024-06-s01": 632,
+            "cube31-u1-p024-06-s02": 810
+          },
+          "visual": {
+            "type": "digit-cards",
+            "description": "2,3,6 카드",
+            "data": {
+              "cards": [
+                2,
+                3,
+                6
+              ]
+            }
+          },
+          "notes": [
+            "백의 자리부터 큰 숫자를 놓아632를 구성."
+          ],
+          "verification": {
+            "prompt": "visually-checked",
+            "answers": "independently-derived",
+            "uncertainty": null
+          }
+        }
+      ]
+    },
+    {
+      "page": 25,
+      "pdfPage": 25,
+      "pdfIndex": 24,
+      "heading": "수학 익힘 문제 잡기",
+      "concepts": [
+        3,
+        4,
+        5
+      ],
+      "visuallyChecked": true,
+      "entries": [
+        {
+          "id": "cube31-u1-p025-07",
+          "number": "07",
+          "kind": "multi-select",
+          "prompt": "계산 결과를 오른쪽 칸에서 모두 찾아 색칠해 보세요.",
+          "subitems": [
+            {
+              "prompt": "387+493=□",
+              "answer": 880,
+              "expression": "387+493",
+              "id": "cube31-u1-p025-07-s01",
+              "role": "derived-checkpoint"
+            },
+            {
+              "prompt": "645+298=□",
+              "answer": 943,
+              "expression": "645+298",
+              "id": "cube31-u1-p025-07-s02",
+              "role": "derived-checkpoint"
+            },
+            {
+              "prompt": "196+825=□",
+              "answer": 1021,
+              "expression": "196+825",
+              "id": "cube31-u1-p025-07-s03",
+              "role": "derived-checkpoint"
+            },
+            {
+              "prompt": "색칠할 세 칸",
+              "answer": [
+                880,
+                943,
+                1021
+              ],
+              "id": "cube31-u1-p025-07-s04",
+              "role": "response"
+            }
+          ],
+          "answers": {
+            "cube31-u1-p025-07-s01": 880,
+            "cube31-u1-p025-07-s02": 943,
+            "cube31-u1-p025-07-s03": 1021,
+            "cube31-u1-p025-07-s04": [
+              880,
+              943,
+              1021
+            ]
+          },
+          "visual": {
+            "type": "number-selection-grid",
+            "description": "세 덧셈식과2행3열 결과 표",
+            "data": {
+              "grid": [
+                [
+                  943,
+                  921,
+                  1021
+                ],
+                [
+                  890,
+                  880,
+                  1011
+                ]
+              ],
+              "expressions": [
+                "387+493",
+                "645+298",
+                "196+825"
+              ]
+            }
+          },
+          "notes": [],
+          "verification": {
+            "prompt": "visually-checked",
+            "answers": "independently-derived",
+            "uncertainty": null
+          }
+        },
+        {
+          "id": "cube31-u1-p025-08",
+          "number": "08",
+          "kind": "decomposition",
+          "prompt": "579-234를 두 가지 방법으로 계산하려고 합니다. □ 안에 알맞은 수를 써넣으세요.",
+          "subitems": [
+            {
+              "prompt": "방법1 백부터",
+              "answer": 300,
+              "expression": "500-200",
+              "id": "cube31-u1-p025-08-s01",
+              "role": "response"
+            },
+            {
+              "prompt": "방법1 70-□",
+              "answer": 30,
+              "id": "cube31-u1-p025-08-s02",
+              "role": "response"
+            },
+            {
+              "prompt": "방법1 십 차",
+              "answer": 40,
+              "expression": "70-30",
+              "id": "cube31-u1-p025-08-s03",
+              "role": "response"
+            },
+            {
+              "prompt": "방법1 □-4",
+              "answer": 9,
+              "id": "cube31-u1-p025-08-s04",
+              "role": "response"
+            },
+            {
+              "prompt": "방법1 일 차",
+              "answer": 5,
+              "expression": "9-4",
+              "id": "cube31-u1-p025-08-s05",
+              "role": "response"
+            },
+            {
+              "prompt": "방법1 전체 차",
+              "answer": 345,
+              "expression": "579-234",
+              "id": "cube31-u1-p025-08-s06",
+              "role": "response"
+            },
+            {
+              "prompt": "방법2 일부터",
+              "answer": 5,
+              "expression": "9-4",
+              "id": "cube31-u1-p025-08-s07",
+              "role": "response"
+            },
+            {
+              "prompt": "방법2 □-30",
+              "answer": 70,
+              "id": "cube31-u1-p025-08-s08",
+              "role": "response"
+            },
+            {
+              "prompt": "방법2 십 차",
+              "answer": 40,
+              "expression": "70-30",
+              "id": "cube31-u1-p025-08-s09",
+              "role": "response"
+            },
+            {
+              "prompt": "방법2 500-□",
+              "answer": 200,
+              "id": "cube31-u1-p025-08-s10",
+              "role": "response"
+            },
+            {
+              "prompt": "방법2 백 차",
+              "answer": 300,
+              "expression": "500-200",
+              "id": "cube31-u1-p025-08-s11",
+              "role": "response"
+            },
+            {
+              "prompt": "방법2 전체 차",
+              "answer": 345,
+              "expression": "579-234",
+              "id": "cube31-u1-p025-08-s12",
+              "role": "response"
+            }
+          ],
+          "answers": {
+            "cube31-u1-p025-08-s01": 300,
+            "cube31-u1-p025-08-s02": 30,
+            "cube31-u1-p025-08-s03": 40,
+            "cube31-u1-p025-08-s04": 9,
+            "cube31-u1-p025-08-s05": 5,
+            "cube31-u1-p025-08-s06": 345,
+            "cube31-u1-p025-08-s07": 5,
+            "cube31-u1-p025-08-s08": 70,
+            "cube31-u1-p025-08-s09": 40,
+            "cube31-u1-p025-08-s10": 200,
+            "cube31-u1-p025-08-s11": 300,
+            "cube31-u1-p025-08-s12": 345
+          },
+          "visual": {
+            "type": "decomposition",
+            "description": "위는 백→십→일, 아래는 일→십→백",
+            "data": {
+              "expression": "579-234"
+            }
+          },
+          "notes": [
+            "두 순서의 결과345가 같다. 기존 정답집의 쪽/번호 불일치가 있었으므로 독립 검산."
+          ],
+          "verification": {
+            "prompt": "visually-checked",
+            "answers": "independently-derived",
+            "uncertainty": null
+          }
+        },
+        {
+          "id": "cube31-u1-p025-09",
+          "number": "09",
+          "kind": "unknown-part",
+          "prompt": "정현이의 일기를 읽고 오늘 읽은 동화책은 몇 쪽인지 구하세요. 어제120쪽, 어제와 오늘 모두248쪽을 읽었습니다.",
+          "subitems": [
+            {
+              "prompt": "248-120=□",
+              "answer": 128,
+              "expression": "248-120",
+              "id": "cube31-u1-p025-09-s01",
+              "role": "response"
+            }
+          ],
+          "answers": {
+            "cube31-u1-p025-09-s01": 128
+          },
+          "visual": {
+            "type": "diary",
+            "description": "200○○년 ○월 ○일 날씨맑음; 작가가 꿈이라는 일기 속 오늘의 쪽수 빈칸",
+            "data": {
+              "yesterday": 120,
+              "total": 248
+            }
+          },
+          "notes": [
+            "추가 일기 내용은 계산에 필요하지 않은 배경."
+          ],
+          "verification": {
+            "prompt": "visually-checked",
+            "answers": "independently-derived",
+            "uncertainty": null
+          }
+        },
+        {
+          "id": "cube31-u1-p025-10",
+          "number": "10",
+          "kind": "verbal-place-value",
+          "prompt": "동우와 민혜가 설명하는 두 수의 차를 구하려고 합니다.",
+          "subitems": [
+            {
+              "prompt": "동우:100이8개,10이3개,1이6개인 수",
+              "answer": 836,
+              "id": "cube31-u1-p025-10-s01",
+              "role": "response"
+            },
+            {
+              "prompt": "민혜:100이2개,10이5개,1이4개인 수",
+              "answer": 254,
+              "id": "cube31-u1-p025-10-s02",
+              "role": "response"
+            },
+            {
+              "prompt": "836-254=□",
+              "answer": 582,
+              "expression": "836-254",
+              "id": "cube31-u1-p025-10-s03",
+              "role": "response"
+            }
+          ],
+          "answers": {
+            "cube31-u1-p025-10-s01": 836,
+            "cube31-u1-p025-10-s02": 254,
+            "cube31-u1-p025-10-s03": 582
+          },
+          "visual": {
+            "type": "speech-bubbles",
+            "description": "두 인물의 자리값 설명을 수로 바꾼 뒤 차를 계산",
+            "data": {
+              "dongu": [
+                8,
+                3,
+                6
+              ],
+              "minhye": [
+                2,
+                5,
+                4
+              ]
+            }
+          },
+          "notes": [],
+          "verification": {
+            "prompt": "visually-checked",
+            "answers": "independently-derived",
+            "uncertainty": null
+          }
+        },
+        {
+          "id": "cube31-u1-p025-11",
+          "number": "11",
+          "kind": "table-comparison",
+          "prompt": "도쿄타워의 높이는 에펠탑의 높이보다 몇 m 더 높은지 구하세요.",
+          "subitems": [
+            {
+              "prompt": "식",
+              "answer": "333-324=9",
+              "id": "cube31-u1-p025-11-s01",
+              "role": "response"
+            },
+            {
+              "prompt": "답",
+              "answer": "9m",
+              "id": "cube31-u1-p025-11-s02",
+              "role": "response"
+            }
+          ],
+          "answers": {
+            "cube31-u1-p025-11-s01": "333-324=9",
+            "cube31-u1-p025-11-s02": "9m"
+          },
+          "visual": {
+            "type": "photo-table",
+            "description": "도쿄타워333m,에펠탑324m",
+            "data": {
+              "columns": [
+                "도쿄타워",
+                "에펠탑"
+              ],
+              "values": [
+                333,
+                324
+              ],
+              "unit": "m"
+            }
+          },
+          "notes": [
+            "결과가 한 자리9여도 세 자리 수끼리의 뺄셈. 십1개를 일10개로 바꾼 뒤 일의 자리13-4=9,십의 자리2-2=0,백의 자리3-3=0."
+          ],
+          "verification": {
+            "prompt": "visually-checked",
+            "answers": "independently-derived",
+            "uncertainty": null
+          }
+        },
+        {
+          "id": "cube31-u1-p025-12",
+          "number": "12",
+          "kind": "choose-operands",
+          "prompt": "두 수를 골라 뺄셈식을 만들려고 합니다. □-□=288.",
+          "subitems": [
+            {
+              "prompt": "피감수",
+              "answer": 592,
+              "id": "cube31-u1-p025-12-s01",
+              "role": "response"
+            },
+            {
+              "prompt": "감수",
+              "answer": 304,
+              "id": "cube31-u1-p025-12-s02",
+              "role": "response"
+            }
+          ],
+          "answers": {
+            "cube31-u1-p025-12-s01": 592,
+            "cube31-u1-p025-12-s02": 304
+          },
+          "visual": {
+            "type": "number-cards",
+            "description": "304,592,383 중 두 수 선택",
+            "data": {
+              "cards": [
+                304,
+                592,
+                383
+              ],
+              "difference": 288
+            }
+          },
+          "notes": [
+            "592-304=288;383은 쓰지 않음."
+          ],
+          "verification": {
+            "prompt": "visually-checked",
+            "answers": "independently-derived",
+            "uncertainty": null
+          }
+        }
+      ]
+    },
+    {
+      "page": 26,
+      "pdfPage": 26,
+      "pdfIndex": 25,
+      "heading": "수학 익힘 문제 잡기",
+      "concepts": [
+        6
+      ],
+      "visuallyChecked": true,
+      "entries": [
+        {
+          "id": "cube31-u1-p026-13",
+          "number": "13",
+          "kind": "maximum-result",
+          "prompt": "계산 결과가 가장 큰 것을 찾아 ○표 하세요.",
+          "subitems": [
+            {
+              "prompt": "가장 큰 결과의 식",
+              "answer": "713-426",
+              "rationale": "625-347=278,942-657=285,713-426=287",
+              "id": "cube31-u1-p026-13-s01",
+              "role": "response"
+            }
+          ],
+          "answers": {
+            "cube31-u1-p026-13-s01": "713-426"
+          },
+          "visual": {
+            "type": "expression-choice",
+            "description": "세 뺄셈식의 결과 비교",
+            "data": {
+              "expressions": [
+                "625-347",
+                "942-657",
+                "713-426"
+              ],
+              "values": [
+                278,
+                285,
+                287
+              ]
+            }
+          },
+          "notes": [],
+          "verification": {
+            "prompt": "visually-checked",
+            "answers": "independently-derived",
+            "uncertainty": null
+          }
+        },
+        {
+          "id": "cube31-u1-p026-14",
+          "number": "14",
+          "kind": "verbal-comparison",
+          "prompt": "연서와 민준이가 말한 수를 각각 쓰고, 더 작은 수를 말한 사람의 이름을 쓰세요. 연서:452와189의 차. 민준:816보다537만큼 더 작은 수.",
+          "subitems": [
+            {
+              "prompt": "연서의 수",
+              "answer": 263,
+              "expression": "452-189",
+              "id": "cube31-u1-p026-14-s01",
+              "role": "response"
+            },
+            {
+              "prompt": "민준의 수",
+              "answer": 279,
+              "expression": "816-537",
+              "id": "cube31-u1-p026-14-s02",
+              "role": "response"
+            },
+            {
+              "prompt": "더 작은 수를 말한 사람",
+              "answer": "연서",
+              "id": "cube31-u1-p026-14-s03",
+              "role": "response"
+            }
+          ],
+          "answers": {
+            "cube31-u1-p026-14-s01": 263,
+            "cube31-u1-p026-14-s02": 279,
+            "cube31-u1-p026-14-s03": "연서"
+          },
+          "visual": {
+            "type": "speech-text",
+            "description": "두 표현 모두 뺄셈이지만 서로 다른 피감수·감수",
+            "data": {}
+          },
+          "notes": [],
+          "verification": {
+            "prompt": "visually-checked",
+            "answers": "independently-derived",
+            "uncertainty": null
+          }
+        },
+        {
+          "id": "cube31-u1-p026-15",
+          "number": "15",
+          "kind": "table-comparison",
+          "prompt": "성준이가 학교 급식에서 먹은 음식의 열량입니다. 잡곡밥과 닭감자조림 중에서 어느 것의 열량이 몇 킬로칼로리 더 높은지 구하세요.",
+          "subitems": [
+            {
+              "prompt": "더 높은 음식",
+              "answer": "잡곡밥",
+              "id": "cube31-u1-p026-15-s01",
+              "role": "response"
+            },
+            {
+              "prompt": "열량 차(킬로칼로리)",
+              "answer": 138,
+              "expression": "310-172",
+              "id": "cube31-u1-p026-15-s02",
+              "role": "response"
+            }
+          ],
+          "answers": {
+            "cube31-u1-p026-15-s01": "잡곡밥",
+            "cube31-u1-p026-15-s02": 138
+          },
+          "visual": {
+            "type": "food-table",
+            "description": "잡곡밥310,냉이된장국80,닭감자조림172; 단위킬로칼로리",
+            "data": {
+              "columns": [
+                "잡곡밥",
+                "냉이된장국",
+                "닭감자조림"
+              ],
+              "values": [
+                310,
+                80,
+                172
+              ],
+              "unit": "킬로칼로리"
+            }
+          },
+          "notes": [
+            "80은 묻지 않은 음식의 열량으로 계산에서 제외."
+          ],
+          "verification": {
+            "prompt": "visually-checked",
+            "answers": "independently-derived",
+            "uncertainty": null
+          }
+        },
+        {
+          "id": "cube31-u1-p026-16",
+          "number": "16",
+          "kind": "missing-digits",
+          "prompt": "뺄셈식에 물감이 묻어 일부가 보이지 않습니다. 보이지 않는 숫자를 각각 구하세요.",
+          "subitems": [
+            {
+              "prompt": "㉠:524-37㉠=1㉡5",
+              "answer": 9,
+              "id": "cube31-u1-p026-16-s01",
+              "role": "response"
+            },
+            {
+              "prompt": "㉡:524-37㉠=1㉡5",
+              "answer": 4,
+              "id": "cube31-u1-p026-16-s02",
+              "role": "response"
+            }
+          ],
+          "answers": {
+            "cube31-u1-p026-16-s01": 9,
+            "cube31-u1-p026-16-s02": 4
+          },
+          "visual": {
+            "type": "column-missing-digits",
+            "description": "빨간 물감은 감수의 일의 자리,파란 물감은 차의 십의 자리",
+            "data": {
+              "minuend": "524",
+              "subtrahend": "37㉠",
+              "difference": "1㉡5",
+              "solved": "524-379=145"
+            }
+          },
+          "notes": [
+            "14-㉠=5이므로9;십의 자리는11-7=4."
+          ],
+          "verification": {
+            "prompt": "visually-checked",
+            "answers": "independently-derived",
+            "uncertainty": null
+          }
+        },
+        {
+          "id": "cube31-u1-p026-17",
+          "number": "17",
+          "kind": "equal-routes",
+          "prompt": "유미네 가족은 놀이동산에 갔습니다. 입구에서 대관람차까지 ㉮ 길과 ㉯ 길의 거리는 같습니다. 입구에서 우주 열차까지의 거리는 몇 m인지 구하세요.",
+          "subitems": [
+            {
+              "prompt": "(1) ㉮ 길로 입구→대관람차 거리(m)",
+              "answer": 512,
+              "expression": "215+297",
+              "id": "cube31-u1-p026-17-s01",
+              "role": "response"
+            },
+            {
+              "prompt": "(2) 입구→우주열차 거리(m)",
+              "answer": 245,
+              "expression": "512-267",
+              "id": "cube31-u1-p026-17-s02",
+              "role": "response"
+            }
+          ],
+          "answers": {
+            "cube31-u1-p026-17-s01": 512,
+            "cube31-u1-p026-17-s02": 245
+          },
+          "visual": {
+            "type": "route-map",
+            "description": "㉮입구→회전목마215m→대관람차297m;㉯입구→우주열차□m→대관람차267m",
+            "data": {
+              "segments": [
+                [
+                  "입구",
+                  "회전목마",
+                  215
+                ],
+                [
+                  "회전목마",
+                  "대관람차",
+                  297
+                ],
+                [
+                  "우주 열차",
+                  "대관람차",
+                  267
+                ]
+              ],
+              "equalRoutes": true
+            }
+          },
+          "notes": [
+            "먼저 공통 전체거리512를 구한 후 알려진 부분267을 뺀다."
+          ],
+          "verification": {
+            "prompt": "visually-checked",
+            "answers": "independently-derived",
+            "uncertainty": null
+          }
+        }
+      ]
+    },
+    {
+      "page": 27,
+      "pdfPage": 27,
+      "pdfIndex": 26,
+      "heading": "서술형 잡기",
+      "concepts": [
+        2,
+        6
+      ],
+      "visuallyChecked": true,
+      "entries": [
+        {
+          "id": "cube31-u1-p027-1",
+          "number": "1",
+          "kind": "error-repair",
+          "prompt": "계산에서 잘못된 곳을 찾아 바르게 계산하고, 잘못된 이유를 쓰세요. 529+343=862로 계산했습니다.",
+          "subitems": [
+            {
+              "prompt": "바른 계산",
+              "answer": 872,
+              "expression": "529+343",
+              "id": "cube31-u1-p027-1-s01",
+              "role": "response"
+            },
+            {
+              "prompt": "이유의9+3=□",
+              "answer": 12,
+              "expression": "9+3",
+              "id": "cube31-u1-p027-1-s02",
+              "role": "response"
+            },
+            {
+              "prompt": "□을 십의 자리로 받아올리지 않음",
+              "answer": 10,
+              "id": "cube31-u1-p027-1-s03",
+              "role": "response"
+            },
+            {
+              "prompt": "10을 □의 자리로 받아올리지 않음",
+              "answer": "십",
+              "id": "cube31-u1-p027-1-s04",
+              "role": "response"
+            }
+          ],
+          "answers": {
+            "cube31-u1-p027-1-s01": 872,
+            "cube31-u1-p027-1-s02": 12,
+            "cube31-u1-p027-1-s03": 10,
+            "cube31-u1-p027-1-s04": "십"
+          },
+          "visual": {
+            "type": "wrong-column",
+            "description": "529+343의 오답862와 수정 세로셈 틀",
+            "data": {
+              "wrong": 862,
+              "correct": 872
+            }
+          },
+          "notes": [
+            "이유 빈칸은10의 실제 값을 묻는다. 작은 표기1과 혼동하지 않음."
+          ],
+          "verification": {
+            "prompt": "visually-checked",
+            "answers": "independently-derived",
+            "uncertainty": null
+          }
+        },
+        {
+          "id": "cube31-u1-p027-2",
+          "number": "2",
+          "kind": "error-repair",
+          "prompt": "계산에서 잘못된 곳을 찾아 바르게 계산하고, 잘못된 이유를 쓰세요. 275+416=681로 계산했습니다.",
+          "subitems": [
+            {
+              "prompt": "바른 계산",
+              "answer": 691,
+              "expression": "275+416",
+              "id": "cube31-u1-p027-2-s01",
+              "role": "response"
+            },
+            {
+              "prompt": "잘못된 이유",
+              "answer": "일의 자리5+6=11에서10을 십의 자리로 받아올리지 않았습니다.",
+              "id": "cube31-u1-p027-2-s02",
+              "role": "response"
+            }
+          ],
+          "answers": {
+            "cube31-u1-p027-2-s01": 691,
+            "cube31-u1-p027-2-s02": "일의 자리5+6=11에서10을 십의 자리로 받아올리지 않았습니다."
+          },
+          "visual": {
+            "type": "wrong-column",
+            "description": "275+416의 오답681",
+            "data": {
+              "wrong": 681,
+              "correct": 691
+            }
+          },
+          "notes": [
+            "p27문항1의 안내를 줄이고 스스로 설명하는 짝문항."
+          ],
+          "verification": {
+            "prompt": "visually-checked",
+            "answers": "independently-derived",
+            "uncertainty": null
+          }
+        },
+        {
+          "id": "cube31-u1-p027-3",
+          "number": "3",
+          "kind": "unknown-addend",
+          "prompt": "수 카드에 적힌 두 수를 더했더니874가 되었습니다. 298과◆에서 ◆에 알맞은 세 자리 수를 풀이 과정과 함께 구하세요.",
+          "subitems": [
+            {
+              "prompt": "298+◆=□",
+              "answer": 874,
+              "id": "cube31-u1-p027-3-s01",
+              "role": "response"
+            },
+            {
+              "prompt": "◆=□-298의 전체",
+              "answer": 874,
+              "id": "cube31-u1-p027-3-s02",
+              "role": "response"
+            },
+            {
+              "prompt": "◆의 값",
+              "answer": 576,
+              "expression": "874-298",
+              "id": "cube31-u1-p027-3-s03",
+              "role": "response"
+            },
+            {
+              "prompt": "최종 답",
+              "answer": 576,
+              "id": "cube31-u1-p027-3-s04",
+              "role": "response"
+            }
+          ],
+          "answers": {
+            "cube31-u1-p027-3-s01": 874,
+            "cube31-u1-p027-3-s02": 874,
+            "cube31-u1-p027-3-s03": 576,
+            "cube31-u1-p027-3-s04": 576
+          },
+          "visual": {
+            "type": "number-cards",
+            "description": "298카드와◆카드; 식 세우기→역연산 안내",
+            "data": {
+              "known": 298,
+              "total": 874
+            }
+          },
+          "notes": [
+            "덧셈과 뺄셈의 관계를 사용한다."
+          ],
+          "verification": {
+            "prompt": "visually-checked",
+            "answers": "independently-derived",
+            "uncertainty": null
+          }
+        },
+        {
+          "id": "cube31-u1-p027-4",
+          "number": "4",
+          "kind": "unknown-addend",
+          "prompt": "수 카드에 적힌 두 수를 더했더니913이 되었습니다. ♥와387에서 ♥에 알맞은 세 자리 수를 풀이 과정과 함께 구하세요.",
+          "subitems": [
+            {
+              "prompt": "풀이 식",
+              "answer": "♥+387=913; ♥=913-387=526",
+              "id": "cube31-u1-p027-4-s01",
+              "role": "response"
+            },
+            {
+              "prompt": "최종 답",
+              "answer": 526,
+              "expression": "913-387",
+              "id": "cube31-u1-p027-4-s02",
+              "role": "response"
+            }
+          ],
+          "answers": {
+            "cube31-u1-p027-4-s01": "♥+387=913; ♥=913-387=526",
+            "cube31-u1-p027-4-s02": 526
+          },
+          "visual": {
+            "type": "number-cards",
+            "description": "♥카드와387카드",
+            "data": {
+              "known": 387,
+              "total": 913
+            }
+          },
+          "notes": [
+            "p27문항3의 안내를 줄인 독립 서술."
+          ],
+          "verification": {
+            "prompt": "visually-checked",
+            "answers": "independently-derived",
+            "uncertainty": null
+          }
+        }
+      ]
+    },
+    {
+      "page": 28,
+      "pdfPage": 28,
+      "pdfIndex": 27,
+      "heading": "단원 마무리",
+      "concepts": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6
+      ],
+      "visuallyChecked": true,
+      "entries": [
+        {
+          "id": "cube31-u1-p028-01",
+          "number": "01",
+          "kind": "base-ten-fill",
+          "prompt": "수 모형을 보고 264+123을 계산해 보세요.",
+          "subitems": [
+            {
+              "prompt": "264+123=□",
+              "answer": 387,
+              "expression": "264+123",
+              "id": "cube31-u1-p028-01-s01",
+              "role": "response"
+            }
+          ],
+          "answers": {
+            "cube31-u1-p028-01-s01": 387
+          },
+          "visual": {
+            "type": "base-ten",
+            "description": "264와123의 모형",
+            "data": {
+              "operands": [
+                264,
+                123
+              ]
+            }
+          },
+          "notes": [],
+          "verification": {
+            "prompt": "visually-checked",
+            "answers": "independently-derived",
+            "uncertainty": null
+          }
+        },
+        {
+          "id": "cube31-u1-p028-02",
+          "number": "02",
+          "kind": "decomposition",
+          "prompt": "742-521을 다음과 같은 방법으로 계산하려고 합니다. 700에서500,40에서20,2에서1을 뺍니다.",
+          "subitems": [
+            {
+              "prompt": "700-500=□",
+              "answer": 200,
+              "expression": "700-500",
+              "id": "cube31-u1-p028-02-s01",
+              "role": "response"
+            },
+            {
+              "prompt": "40-□",
+              "answer": 20,
+              "id": "cube31-u1-p028-02-s02",
+              "role": "response"
+            },
+            {
+              "prompt": "40-20=□",
+              "answer": 20,
+              "expression": "40-20",
+              "id": "cube31-u1-p028-02-s03",
+              "role": "response"
+            },
+            {
+              "prompt": "□-1",
+              "answer": 2,
+              "id": "cube31-u1-p028-02-s04",
+              "role": "response"
+            },
+            {
+              "prompt": "2-1=□",
+              "answer": 1,
+              "expression": "2-1",
+              "id": "cube31-u1-p028-02-s05",
+              "role": "response"
+            },
+            {
+              "prompt": "742-521=□",
+              "answer": 221,
+              "expression": "742-521",
+              "id": "cube31-u1-p028-02-s06",
+              "role": "response"
+            }
+          ],
+          "answers": {
+            "cube31-u1-p028-02-s01": 200,
+            "cube31-u1-p028-02-s02": 20,
+            "cube31-u1-p028-02-s03": 20,
+            "cube31-u1-p028-02-s04": 2,
+            "cube31-u1-p028-02-s05": 1,
+            "cube31-u1-p028-02-s06": 221
+          },
+          "visual": {
+            "type": "decomposition",
+            "description": "백의 자리부터 각 자리의 차를 합침",
+            "data": {}
+          },
+          "notes": [],
+          "verification": {
+            "prompt": "visually-checked",
+            "answers": "independently-derived",
+            "uncertainty": null
+          }
+        },
+        {
+          "id": "cube31-u1-p028-03",
+          "number": "03",
+          "kind": "column-steps",
+          "prompt": "□ 안에 알맞은 수를 써넣으세요.",
+          "subitems": [
+            {
+              "prompt": "(1) 단계 1 백 위의 받아올림/받아내림 빈칸",
+              "answer": 1,
+              "id": "cube31-u1-p028-03-s01",
+              "role": "response"
+            },
+            {
+              "prompt": "(1) 단계 1 십 위의 받아올림/받아내림 빈칸",
+              "answer": 1,
+              "id": "cube31-u1-p028-03-s02",
+              "role": "response"
+            },
+            {
+              "prompt": "(1) 단계 1 답의 천의 자리",
+              "answer": 1,
+              "id": "cube31-u1-p028-03-s03",
+              "role": "response"
+            },
+            {
+              "prompt": "(1) 단계 1 답의 백의 자리",
+              "answer": 1,
+              "id": "cube31-u1-p028-03-s04",
+              "role": "response"
+            },
+            {
+              "prompt": "(1) 단계 1 답의 십의 자리",
+              "answer": 3,
+              "id": "cube31-u1-p028-03-s05",
+              "role": "response"
+            },
+            {
+              "prompt": "(1) 단계 1 답의 일의 자리",
+              "answer": 0,
+              "id": "cube31-u1-p028-03-s06",
+              "role": "response"
+            }
+          ],
+          "answers": {
+            "cube31-u1-p028-03-s01": 1,
+            "cube31-u1-p028-03-s02": 1,
+            "cube31-u1-p028-03-s03": 1,
+            "cube31-u1-p028-03-s04": 1,
+            "cube31-u1-p028-03-s05": 3,
+            "cube31-u1-p028-03-s06": 0
+          },
+          "visual": {
+            "type": "column-steps",
+            "description": "지면의 각 중간 결과 칸과 작은 받아올림/받아내림 칸을 따로 기록",
+            "data": {
+              "panels": [
+                {
+                  "expression": "871+259",
+                  "result": 1130,
+                  "stages": [
+                    {
+                      "annotations": {
+                        "백": 1,
+                        "십": 1
+                      },
+                      "visibleResult": "1130"
+                    }
+                  ]
+                }
+              ]
+            }
+          },
+          "notes": [],
+          "verification": {
+            "prompt": "visually-checked",
+            "answers": "independently-derived",
+            "uncertainty": null
+          }
+        },
+        {
+          "id": "cube31-u1-p028-04",
+          "number": "04",
+          "kind": "calculation",
+          "prompt": "계산해 보세요.",
+          "subitems": [
+            {
+              "prompt": "(1) 126+745",
+              "answer": 871,
+              "expression": "126+745",
+              "id": "cube31-u1-p028-04-s01",
+              "role": "response"
+            }
+          ],
+          "answers": {
+            "cube31-u1-p028-04-s01": 871
+          },
+          "visual": {
+            "type": "inline",
+            "description": "각 식은 지면 순서대로 기록; 위쪽은 세로셈, 아래쪽은 가로셈인 경우 포함",
+            "data": {
+              "expressions": [
+                "126+745"
+              ]
+            }
+          },
+          "notes": [
+            "반복 연습도 원래 번호와 소문항 순서를 보존; 새 개념으로 세지 않는다."
+          ],
+          "verification": {
+            "prompt": "visually-checked",
+            "answers": "independently-derived",
+            "uncertainty": null
+          }
+        },
+        {
+          "id": "cube31-u1-p028-05",
+          "number": "05",
+          "kind": "calculation",
+          "prompt": "계산해 보세요.",
+          "subitems": [
+            {
+              "prompt": "(1) 781-254",
+              "answer": 527,
+              "expression": "781-254",
+              "id": "cube31-u1-p028-05-s01",
+              "role": "response"
+            }
+          ],
+          "answers": {
+            "cube31-u1-p028-05-s01": 527
+          },
+          "visual": {
+            "type": "inline",
+            "description": "각 식은 지면 순서대로 기록; 위쪽은 세로셈, 아래쪽은 가로셈인 경우 포함",
+            "data": {
+              "expressions": [
+                "781-254"
+              ]
+            }
+          },
+          "notes": [
+            "반복 연습도 원래 번호와 소문항 순서를 보존; 새 개념으로 세지 않는다."
+          ],
+          "verification": {
+            "prompt": "visually-checked",
+            "answers": "independently-derived",
+            "uncertainty": null
+          }
+        },
+        {
+          "id": "cube31-u1-p028-06",
+          "number": "06",
+          "kind": "number-machine",
+          "prompt": "□ 안에 알맞은 수를 써넣으세요.",
+          "subitems": [
+            {
+              "prompt": "688+272=□",
+              "answer": 960,
+              "expression": "688+272",
+              "id": "cube31-u1-p028-06-s01",
+              "role": "response"
+            }
+          ],
+          "answers": {
+            "cube31-u1-p028-06-s01": 960
+          },
+          "visual": {
+            "type": "number-machine",
+            "description": "688에272더하기",
+            "data": {
+              "input": 688,
+              "operation": "+272"
+            }
+          },
+          "notes": [],
+          "verification": {
+            "prompt": "visually-checked",
+            "answers": "independently-derived",
+            "uncertainty": null
+          }
+        },
+        {
+          "id": "cube31-u1-p028-07",
+          "number": "07",
+          "kind": "matching",
+          "prompt": "같은 것끼리 이어 보세요.",
+          "subitems": [
+            {
+              "prompt": "674-156=□",
+              "answer": 518,
+              "expression": "674-156",
+              "id": "cube31-u1-p028-07-s01",
+              "role": "response"
+            },
+            {
+              "prompt": "958-347=□",
+              "answer": 611,
+              "expression": "958-347",
+              "id": "cube31-u1-p028-07-s02",
+              "role": "response"
+            },
+            {
+              "prompt": "823-276=□",
+              "answer": 547,
+              "expression": "823-276",
+              "id": "cube31-u1-p028-07-s03",
+              "role": "response"
+            }
+          ],
+          "answers": {
+            "cube31-u1-p028-07-s01": 518,
+            "cube31-u1-p028-07-s02": 611,
+            "cube31-u1-p028-07-s03": 547
+          },
+          "visual": {
+            "type": "matching",
+            "description": "세 식과세 값 연결",
+            "data": {
+              "left": [
+                "674-156",
+                "958-347",
+                "823-276"
+              ],
+              "right": [
+                611,
+                547,
+                518
+              ]
+            }
+          },
+          "notes": [],
+          "verification": {
+            "prompt": "visually-checked",
+            "answers": "independently-derived",
+            "uncertainty": null
+          }
+        }
+      ]
+    },
+    {
+      "page": 29,
+      "pdfPage": 29,
+      "pdfIndex": 28,
+      "heading": "단원 마무리",
+      "concepts": [
+        2,
+        3,
+        4,
+        5,
+        6
+      ],
+      "visuallyChecked": true,
+      "entries": [
+        {
+          "id": "cube31-u1-p029-08",
+          "number": "08",
+          "kind": "place-value",
+          "prompt": "다음 덧셈식에서 작은1이 실제로 나타내는 수는 얼마인가요?",
+          "subitems": [
+            {
+              "prompt": "126+745=871의 십 위1",
+              "answer": 10,
+              "id": "cube31-u1-p029-08-s01",
+              "role": "response"
+            }
+          ],
+          "answers": {
+            "cube31-u1-p029-08-s01": 10
+          },
+          "visual": {
+            "type": "column",
+            "description": "126+745=871에서십의 자리 위1 강조",
+            "data": {
+              "expression": "126+745",
+              "highlight": "carry-to-tens"
+            }
+          },
+          "notes": [
+            "p15문항07과 같은 개념, 선택지 없이 답."
+          ],
+          "verification": {
+            "prompt": "visually-checked",
+            "answers": "independently-derived",
+            "uncertainty": null
+          }
+        },
+        {
+          "id": "cube31-u1-p029-09",
+          "number": "09",
+          "kind": "part-whole",
+          "prompt": "그림을 보고 □ 안에 알맞은 수를 써넣으세요.",
+          "subitems": [
+            {
+              "prompt": "선분의 왼쪽 부분",
+              "answer": 424,
+              "expression": "563-139",
+              "id": "cube31-u1-p029-09-s01",
+              "role": "response"
+            },
+            {
+              "prompt": "563-□의 오른쪽 부분",
+              "answer": 139,
+              "id": "cube31-u1-p029-09-s02",
+              "role": "response"
+            },
+            {
+              "prompt": "식의 차",
+              "answer": 424,
+              "expression": "563-139",
+              "id": "cube31-u1-p029-09-s03",
+              "role": "response"
+            }
+          ],
+          "answers": {
+            "cube31-u1-p029-09-s01": 424,
+            "cube31-u1-p029-09-s02": 139,
+            "cube31-u1-p029-09-s03": 424
+          },
+          "visual": {
+            "type": "bar-model",
+            "description": "전체563,오른쪽139,왼쪽빈칸",
+            "data": {
+              "whole": 563,
+              "rightPart": 139
+            }
+          },
+          "notes": [],
+          "verification": {
+            "prompt": "visually-checked",
+            "answers": "independently-derived",
+            "uncertainty": null
+          }
+        },
+        {
+          "id": "cube31-u1-p029-10",
+          "number": "10",
+          "kind": "operation-chain",
+          "prompt": "빈칸에 알맞은 수를 써넣으세요.",
+          "subitems": [
+            {
+              "prompt": "첫 칸",
+              "answer": 212,
+              "expression": "725-513",
+              "id": "cube31-u1-p029-10-s01",
+              "role": "response"
+            },
+            {
+              "prompt": "둘째 칸",
+              "answer": 891,
+              "expression": "212+679",
+              "id": "cube31-u1-p029-10-s02",
+              "role": "response"
+            }
+          ],
+          "answers": {
+            "cube31-u1-p029-10-s01": 212,
+            "cube31-u1-p029-10-s02": 891
+          },
+          "visual": {
+            "type": "operation-chain",
+            "description": "725→513빼기→679더하기",
+            "data": {
+              "start": 725,
+              "operations": [
+                "-513",
+                "+679"
+              ]
+            }
+          },
+          "notes": [],
+          "verification": {
+            "prompt": "visually-checked",
+            "answers": "independently-derived",
+            "uncertainty": null
+          }
+        },
+        {
+          "id": "cube31-u1-p029-11",
+          "number": "11",
+          "kind": "part-whole",
+          "prompt": "빈칸에 두 수의 합을 써넣으세요.",
+          "subitems": [
+            {
+              "prompt": "529+386=□",
+              "answer": 915,
+              "expression": "529+386",
+              "id": "cube31-u1-p029-11-s01",
+              "role": "response"
+            }
+          ],
+          "answers": {
+            "cube31-u1-p029-11-s01": 915
+          },
+          "visual": {
+            "type": "part-whole-circle",
+            "description": "윗반원529와386,아랫반원합",
+            "data": {
+              "parts": [
+                529,
+                386
+              ]
+            }
+          },
+          "notes": [],
+          "verification": {
+            "prompt": "visually-checked",
+            "answers": "independently-derived",
+            "uncertainty": null
+          }
+        },
+        {
+          "id": "cube31-u1-p029-12",
+          "number": "12",
+          "kind": "model-relative-number",
+          "prompt": "수 카드가 나타내는 수보다145만큼 더 큰 수를 구하세요.",
+          "subitems": [
+            {
+              "prompt": "326+145=□",
+              "answer": 471,
+              "expression": "326+145",
+              "id": "cube31-u1-p029-12-s01",
+              "role": "response"
+            }
+          ],
+          "answers": {
+            "cube31-u1-p029-12-s01": 471
+          },
+          "visual": {
+            "type": "place-value-cards",
+            "description": "100카드3장,10카드2장,1카드6장",
+            "data": {
+              "counts": {
+                "100": 3,
+                "10": 2,
+                "1": 6
+              },
+              "representedNumber": 326
+            }
+          },
+          "notes": [],
+          "verification": {
+            "prompt": "visually-checked",
+            "answers": "independently-derived",
+            "uncertainty": null
+          }
+        },
+        {
+          "id": "cube31-u1-p029-13",
+          "number": "13",
+          "kind": "comparison",
+          "prompt": "계산 결과를 비교하여 ○ 안에 >, =, <를 알맞게 써넣으세요.",
+          "subitems": [
+            {
+              "prompt": "729-354 ○ 942-521",
+              "answer": "<",
+              "rationale": "375<421",
+              "id": "cube31-u1-p029-13-s01",
+              "role": "response"
+            }
+          ],
+          "answers": {
+            "cube31-u1-p029-13-s01": "<"
+          },
+          "visual": {
+            "type": "comparison",
+            "description": "두 차 비교",
+            "data": {
+              "left": "729-354",
+              "right": "942-521",
+              "values": [
+                375,
+                421
+              ]
+            }
+          },
+          "notes": [],
+          "verification": {
+            "prompt": "visually-checked",
+            "answers": "independently-derived",
+            "uncertainty": null
+          }
+        },
+        {
+          "id": "cube31-u1-p029-14",
+          "number": "14",
+          "kind": "word-problem",
+          "prompt": "어느 가게에서 초콜릿을 지난주에876개 팔았고 이번 주에547개 팔았습니다. 지난주와 이번 주에 판 초콜릿은 모두 몇 개인가요?",
+          "subitems": [
+            {
+              "prompt": "□+547의 지난주 수",
+              "answer": 876,
+              "id": "cube31-u1-p029-14-s01",
+              "role": "response"
+            },
+            {
+              "prompt": "식의 합",
+              "answer": 1423,
+              "expression": "876+547",
+              "id": "cube31-u1-p029-14-s02",
+              "role": "response"
+            },
+            {
+              "prompt": "답과 단위",
+              "answer": "1423개",
+              "id": "cube31-u1-p029-14-s03",
+              "role": "response"
+            }
+          ],
+          "answers": {
+            "cube31-u1-p029-14-s01": 876,
+            "cube31-u1-p029-14-s02": 1423,
+            "cube31-u1-p029-14-s03": "1423개"
+          },
+          "visual": {
+            "type": "none",
+            "description": "두 기간의 판매량을 합치는 문장제",
+            "data": {}
+          },
+          "notes": [
+            "합이 네 자리 수가 된다."
+          ],
+          "verification": {
+            "prompt": "visually-checked",
+            "answers": "independently-derived",
+            "uncertainty": null
+          }
+        }
+      ]
+    },
+    {
+      "page": 30,
+      "pdfPage": 30,
+      "pdfIndex": 29,
+      "heading": "단원 마무리",
+      "concepts": [
+        2,
+        3,
+        5,
+        6
+      ],
+      "visuallyChecked": true,
+      "entries": [
+        {
+          "id": "cube31-u1-p030-15",
+          "number": "15",
+          "kind": "word-problem",
+          "prompt": "길이가346cm인 색 테이프 중에서168cm를 사용했습니다. 남은 색 테이프의 길이는 몇 cm인가요?",
+          "subitems": [
+            {
+              "prompt": "남은 길이(cm)",
+              "answer": 178,
+              "expression": "346-168",
+              "id": "cube31-u1-p030-15-s01",
+              "role": "response"
+            }
+          ],
+          "answers": {
+            "cube31-u1-p030-15-s01": 178
+          },
+          "visual": {
+            "type": "none",
+            "description": "전체에서 사용한 부분을 빼는 길이 문제",
+            "data": {}
+          },
+          "notes": [],
+          "verification": {
+            "prompt": "visually-checked",
+            "answers": "independently-derived",
+            "uncertainty": null
+          }
+        },
+        {
+          "id": "cube31-u1-p030-16",
+          "number": "16",
+          "kind": "digit-card-order",
+          "prompt": "수 카드3장을 한 번씩만 사용하여 만들 수 있는 가장 큰 세 자리 수와356의 차를 구하세요.",
+          "subitems": [
+            {
+              "prompt": "942-356=□",
+              "answer": 586,
+              "expression": "942-356",
+              "id": "cube31-u1-p030-16-s01",
+              "role": "response"
+            }
+          ],
+          "answers": {
+            "cube31-u1-p030-16-s01": 586
+          },
+          "visual": {
+            "type": "digit-cards",
+            "description": "2,9,4를 큰 순서로 배치하면942",
+            "data": {
+              "cards": [
+                2,
+                9,
+                4
+              ],
+              "greatestNumber": 942
+            }
+          },
+          "notes": [],
+          "verification": {
+            "prompt": "visually-checked",
+            "answers": "independently-derived",
+            "uncertainty": null
+          }
+        },
+        {
+          "id": "cube31-u1-p030-17",
+          "number": "17",
+          "kind": "minimum-result",
+          "prompt": "계산 결과가 가장 작은 것을 찾아 기호를 쓰세요.",
+          "subitems": [
+            {
+              "prompt": "가장 작은 결과의 기호",
+              "answer": "㉠",
+              "rationale": "㉠143+155=298,㉡852-498=354,㉢922-619=303",
+              "id": "cube31-u1-p030-17-s01",
+              "role": "response"
+            }
+          ],
+          "answers": {
+            "cube31-u1-p030-17-s01": "㉠"
+          },
+          "visual": {
+            "type": "expression-choice",
+            "description": "㉠덧셈,㉡과㉢뺄셈 결과를 비교",
+            "data": {
+              "expressions": {
+                "㉠": "143+155",
+                "㉡": "852-498",
+                "㉢": "922-619"
+              },
+              "values": [
+                298,
+                354,
+                303
+              ]
+            }
+          },
+          "notes": [],
+          "verification": {
+            "prompt": "visually-checked",
+            "answers": "independently-derived",
+            "uncertainty": null
+          }
+        },
+        {
+          "id": "cube31-u1-p030-18",
+          "number": "18",
+          "kind": "missing-digits",
+          "prompt": "□ 안에 알맞은 수를 써넣으세요. 275+5□□=793.",
+          "subitems": [
+            {
+              "prompt": "둘째 수의 십의 자리",
+              "answer": 1,
+              "id": "cube31-u1-p030-18-s01",
+              "role": "response"
+            },
+            {
+              "prompt": "둘째 수의 일의 자리",
+              "answer": 8,
+              "id": "cube31-u1-p030-18-s02",
+              "role": "response"
+            }
+          ],
+          "answers": {
+            "cube31-u1-p030-18-s01": 1,
+            "cube31-u1-p030-18-s02": 8
+          },
+          "visual": {
+            "type": "column-missing-digits",
+            "description": "275+5□□=793의두 칸",
+            "data": {
+              "solved": "275+518=793"
+            }
+          },
+          "notes": [
+            "5+8=13의 받아올림을 십의 자리7+1+1=9에 반영."
+          ],
+          "verification": {
+            "prompt": "visually-checked",
+            "answers": "independently-derived",
+            "uncertainty": null
+          }
+        },
+        {
+          "id": "cube31-u1-p030-19",
+          "number": "19",
+          "kind": "error-repair",
+          "prompt": "계산에서 잘못된 곳을 찾아 바르게 계산하고, 잘못된 이유를 쓰세요. 367+129=486으로 계산했습니다.",
+          "subitems": [
+            {
+              "prompt": "바른 계산",
+              "answer": 496,
+              "expression": "367+129",
+              "id": "cube31-u1-p030-19-s01",
+              "role": "response"
+            },
+            {
+              "prompt": "잘못된 이유",
+              "answer": "일의 자리7+9=16에서10을 십의 자리로 받아올리지 않았습니다.",
+              "id": "cube31-u1-p030-19-s02",
+              "role": "response"
+            }
+          ],
+          "answers": {
+            "cube31-u1-p030-19-s01": 496,
+            "cube31-u1-p030-19-s02": "일의 자리7+9=16에서10을 십의 자리로 받아올리지 않았습니다."
+          },
+          "visual": {
+            "type": "wrong-column",
+            "description": "367+129=486의 수정 세로셈과 이유란",
+            "data": {
+              "wrong": 486,
+              "correct": 496
+            }
+          },
+          "notes": [],
+          "verification": {
+            "prompt": "visually-checked",
+            "answers": "independently-derived",
+            "uncertainty": null
+          }
+        },
+        {
+          "id": "cube31-u1-p030-20",
+          "number": "20",
+          "kind": "unknown-addend",
+          "prompt": "수 카드에 적힌 두 수를 더했더니805가 되었습니다. ★와128에서 ★에 알맞은 세 자리 수를 풀이 과정과 함께 구하세요.",
+          "subitems": [
+            {
+              "prompt": "풀이 식",
+              "answer": "★+128=805; ★=805-128=677",
+              "id": "cube31-u1-p030-20-s01",
+              "role": "response"
+            },
+            {
+              "prompt": "최종 답",
+              "answer": 677,
+              "expression": "805-128",
+              "id": "cube31-u1-p030-20-s02",
+              "role": "response"
+            }
+          ],
+          "answers": {
+            "cube31-u1-p030-20-s01": "★+128=805; ★=805-128=677",
+            "cube31-u1-p030-20-s02": 677
+          },
+          "visual": {
+            "type": "number-cards",
+            "description": "★와128",
+            "data": {
+              "known": 128,
+              "total": 805
+            }
+          },
+          "notes": [
+            "805의십의 자리0을 거쳐 받아내리는 계산으로 전이."
+          ],
+          "verification": {
+            "prompt": "visually-checked",
+            "answers": "independently-derived",
+            "uncertainty": null
+          }
+        }
+      ]
+    },
+    {
+      "page": 31,
+      "pdfPage": 31,
+      "pdfIndex": 30,
+      "heading": "창의력 쑥쑥",
+      "concepts": [],
+      "visuallyChecked": true,
+      "entries": [
+        {
+          "id": "cube31-u1-p031-puzzle",
+          "number": "puzzle",
+          "kind": "spatial-jigsaw",
+          "prompt": "세계 지도의 조각이 몇 군데 빠져 있습니다. 알맞은 조각을 찾아 세계 지도를 완성해 보세요.",
+          "subitems": [
+            {
+              "prompt": "맨 위 빈칸(1행3열)에 놓을 조각",
+              "answer": 2,
+              "id": "cube31-u1-p031-puzzle-s01",
+              "role": "response"
+            },
+            {
+              "prompt": "오른쪽 빈칸(2행6열)에 놓을 조각",
+              "answer": 4,
+              "id": "cube31-u1-p031-puzzle-s02",
+              "role": "response"
+            },
+            {
+              "prompt": "아래쪽 가운데 빈칸(4행3열)에 놓을 조각",
+              "answer": 1,
+              "id": "cube31-u1-p031-puzzle-s03",
+              "role": "response"
+            },
+            {
+              "prompt": "아래쪽 오른쪽 빈칸(4행5열)에 놓을 조각",
+              "answer": 5,
+              "id": "cube31-u1-p031-puzzle-s04",
+              "role": "response"
+            },
+            {
+              "prompt": "맨 아래 왼쪽 빈칸(5행1열)에 놓을 조각",
+              "answer": 3,
+              "id": "cube31-u1-p031-puzzle-s05",
+              "role": "response"
+            }
+          ],
+          "answers": {
+            "cube31-u1-p031-puzzle-s01": 2,
+            "cube31-u1-p031-puzzle-s02": 4,
+            "cube31-u1-p031-puzzle-s03": 1,
+            "cube31-u1-p031-puzzle-s04": 5,
+            "cube31-u1-p031-puzzle-s05": 3
+          },
+          "visual": {
+            "type": "world-map-jigsaw",
+            "description": "6열5행 지도 퍼즐의빈칸5개와번호붙은조각5개; 윤곽과그림연속성으로매칭",
+            "data": {
+              "grid": {
+                "rows": 5,
+                "columns": 6
+              },
+              "pieces": [
+                {
+                  "number": 1,
+                  "clue": "펭귄/파란 바다/왼쪽 주황 육지"
+                },
+                {
+                  "number": 2,
+                  "clue": "이글루/아이/풍차 일부"
+                },
+                {
+                  "number": 3,
+                  "clue": "나침반"
+                },
+                {
+                  "number": 4,
+                  "clue": "아시아 인물/화산"
+                },
+                {
+                  "number": 5,
+                  "clue": "배/펭귄/파란 바다"
+                }
+              ],
+              "placements": [
+                {
+                  "row": 1,
+                  "column": 3,
+                  "piece": 2
+                },
+                {
+                  "row": 2,
+                  "column": 6,
+                  "piece": 4
+                },
+                {
+                  "row": 4,
+                  "column": 3,
+                  "piece": 1
+                },
+                {
+                  "row": 4,
+                  "column": 5,
+                  "piece": 5
+                },
+                {
+                  "row": 5,
+                  "column": 1,
+                  "piece": 3
+                }
+              ]
+            }
+          },
+          "notes": [
+            "산술식이나 새로운 덧셈·뺄셈 개념이 없는 공간추론 활동.",
+            "조각1과5는 유사한 윤곽이라 주변 그림의 연속성까지 확인해야 한다.",
+            "지면은 정답을진도북148쪽에서확인하라고안내하지만이번감사는8–31쪽만읽고직접맞춤."
+          ],
+          "verification": {
+            "prompt": "visually-checked",
+            "answers": "independently-derived",
+            "uncertainty": null
+          }
+        }
+      ]
+    }
+  ],
+  "verificationSummary": {
+    "pagesVisuallyChecked": 24,
+    "entries": 94,
+    "numberedProblems": 85,
+    "conceptExampleVariants": 8,
+    "spatialPuzzles": 1,
+    "subitems": 357,
+    "subitemRoles": {
+      "worked-example": 65,
+      "response": 289,
+      "derived-checkpoint": 3
+    },
+    "numericExpressionChecks": 188,
+    "columnPanelsChecked": 11,
+    "stringEquationChecks": 5,
+    "additionalChecks": [
+      "two concealed-digit solutions unique",
+      "largest-number card permutations",
+      "chosen subtraction operands unique",
+      "multi-select answer set",
+      "maximum/minimum comparisons",
+      "equal-route distance",
+      "comparison signs",
+      "three inverse-addition checks"
+    ],
+    "unresolvedAmbiguities": []
+  }
+}
