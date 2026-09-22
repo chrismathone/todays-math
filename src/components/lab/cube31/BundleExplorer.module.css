@@ -1,6 +1,12 @@
 .explorer {
   --ink: #193f4b;
   --muted: #4b6770;
+  --hundred-block: #edbe62;
+  --hundred-edge: #aa7628;
+  --ten-block: #75bfdc;
+  --ten-edge: #377ca6;
+  --one-block: #6ac7ad;
+  --one-edge: #2e8978;
   width: 100%;
   box-sizing: border-box;
   min-width: 0;
@@ -110,8 +116,8 @@
 
 .column {
   --place: #896021;
-  --block: #edbe62;
-  --edge: #aa7628;
+  --block: var(--hundred-block);
+  --edge: var(--hundred-edge);
   --paper: #fff8e8;
   min-width: 0;
   padding: 7px;
@@ -122,16 +128,16 @@
 
 .column[data-place="1"] {
   --place: #266c90;
-  --block: #75bfdc;
-  --edge: #377ca6;
+  --block: var(--ten-block);
+  --edge: var(--ten-edge);
   --paper: #eff8fe;
   border-color: #bfdbea;
 }
 
 .column[data-place="2"] {
   --place: #217064;
-  --block: #6ac7ad;
-  --edge: #2e8978;
+  --block: var(--one-block);
+  --edge: var(--one-edge);
   --paper: #edf9f3;
   border-color: #bfdfd4;
 }
@@ -265,6 +271,10 @@
 
 .column[data-changed] .blocks {
   animation: settle 400ms ease-out;
+}
+
+.block[data-arriving] {
+  animation: land 550ms ease-out both;
 }
 
 .tapHint,
@@ -454,9 +464,9 @@ button.packedButton {
   top: 78px;
   width: 9px;
   height: 9px;
-  border: 1px solid #276e62;
+  border: 1px solid var(--exchange-from-edge);
   border-radius: 2px;
-  background: #b3e8c5;
+  background-color: var(--exchange-from);
   box-shadow: 0 1px 3px #183c4530;
   animation: split 440ms var(--delay) cubic-bezier(0.2, 0.7, 0.3, 1) both;
 }
@@ -468,17 +478,25 @@ button.packedButton {
 @keyframes split {
   0% {
     left: var(--from);
+    background-color: var(--exchange-from);
+    border-color: var(--exchange-from-edge);
     opacity: 0;
     transform: scale(1.3);
   }
   15% {
     opacity: 1;
+    background-color: var(--exchange-from);
+    border-color: var(--exchange-from-edge);
   }
   75% {
     opacity: 1;
+    background-color: var(--exchange-to);
+    border-color: var(--exchange-to-edge);
   }
   100% {
     left: var(--to);
+    background-color: var(--exchange-to);
+    border-color: var(--exchange-to-edge);
     opacity: 0;
     transform: translateY(var(--fan)) scale(0.8);
   }
@@ -487,19 +505,47 @@ button.packedButton {
 @keyframes merge {
   0% {
     left: var(--from);
+    background-color: var(--exchange-from);
+    border-color: var(--exchange-from-edge);
     opacity: 0;
     transform: translateY(var(--fan));
   }
   15% {
     opacity: 1;
+    background-color: var(--exchange-from);
+    border-color: var(--exchange-from-edge);
   }
   75% {
     opacity: 1;
+    background-color: var(--exchange-to);
+    border-color: var(--exchange-to-edge);
   }
   100% {
     left: var(--to);
+    background-color: var(--exchange-to);
+    border-color: var(--exchange-to-edge);
     opacity: 0;
     transform: scale(1.3);
+  }
+}
+
+@keyframes land {
+  0% {
+    opacity: 0;
+    background-color: var(--exchange-from);
+    border-color: var(--exchange-from-edge);
+    box-shadow: 2px 2px 0 var(--exchange-from-edge);
+    transform: scale(0.85);
+  }
+  35% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+    background-color: var(--exchange-to);
+    border-color: var(--exchange-to-edge);
+    box-shadow: 2px 2px 0 var(--exchange-to-edge);
+    transform: none;
   }
 }
 
