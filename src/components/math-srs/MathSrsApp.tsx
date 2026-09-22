@@ -10,7 +10,7 @@ import {
   checkAnswer,
   TEMPLATE_COUNT,
 } from "@/lib/math-srs/generator";
-import { dueConcepts, retention } from "@/lib/math-srs/memory";
+import { dueConcepts, estimatedRecall } from "@/lib/math-srs/memory";
 import {
   createMission,
   localDateKey,
@@ -24,7 +24,6 @@ import {
 } from "@/lib/math-srs/storage";
 import type {
   Attempt,
-  ConceptMemory,
   GeneratedProblem,
   Learner,
   Mission,
@@ -78,11 +77,6 @@ const RATINGS: Record<Rating, string> = {
 };
 const conceptTitle = (id: string) =>
   CONCEPTS.find((concept) => concept.id === id)?.title ?? id;
-
-// Combine current performance with time decay; a recent wrong answer must not
-// appear as 100% recall just because it was submitted a moment ago.
-const estimatedRecall = (memory: ConceptMemory, now: Date) =>
-  Math.round((memory.mastery * retention(memory, now)) / 100);
 
 function summary(learner: Learner) {
   const attempts = learner.missions

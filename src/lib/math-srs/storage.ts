@@ -1,5 +1,6 @@
 import { CONCEPT_IDS, type Learner, type SrsStore } from "./types";
 import { DIFFICULTY_LADDER } from "@/contracts/difficulty";
+import { createMemories } from "./memory";
 
 export const STORAGE_KEY = "todays-math:srs:v1";
 
@@ -285,15 +286,7 @@ function createLearner(name: string): Learner {
   return {
     id: id(),
     name,
-    memories: CONCEPT_IDS.map((conceptId) => ({
-      conceptId,
-      mastery: 0,
-      stabilityDays: 1,
-      lastReviewedAt: null,
-      nextReviewAt: null,
-      attempts: 0,
-      successes: 0,
-    })),
+    memories: createMemories(),
     missions: [],
   };
 }

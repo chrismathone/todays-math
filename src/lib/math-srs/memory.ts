@@ -35,6 +35,11 @@ export function retention(memory: ConceptMemory, now: Date): number {
   );
 }
 
+/** Shared display estimate: immediate review alone does not imply mastery. */
+export function estimatedRecall(memory: ConceptMemory, now: Date): number {
+  return Math.round((memory.mastery * retention(memory, now)) / 100);
+}
+
 function boundedRating(problem: GeneratedProblem, attempt: Attempt): Rating {
   if (!attempt.correct) return "again";
   if (attempt.rating === "again") return "again";
