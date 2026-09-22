@@ -10,7 +10,7 @@
  * 왜 관문 하나인가: 라우트마다 검사를 넣으면 **새 라우트에서 넣는 걸 잊는다.**
  * 그리고 잊었을 때 열려 버린다. 관문이 하나면 잊을 자리가 없다.
  */
-import { NextResponse } from "next/server";
+import { NextResponse, type NextRequest } from "next/server";
 
 import { auth } from "@/lib/auth";
 import { requestedCallbackUrl } from "@/lib/callbackUrl";
