@@ -60,6 +60,7 @@ import {
   snapFigurePoint,
 } from "./figureHandles";
 import { FigureLabelInput } from "./FigureLabelInput";
+import { addMidLabel, midLabelTarget } from "./figureMidLabel";
 import { isTextInputEvent } from "./keyboard";
 import {
   layoutFigureNumbers,
@@ -298,6 +299,8 @@ export function FigureEditor({
   const [zoom, setZoom] = useState(1);
   const [panOffset, setPanOffset] = useState({ x: 0, y: 0 });
   const [label, setLabel] = useState("A");
+  // 치수선 가운데 글자 — 고른 선·곡선 한가운데에 «뒤 선 끊기» 글자(원장님 2026-09-22 «곡선에서 바로 글자»).
+  const [midLabel, setMidLabel] = useState("");
   // 채우기 통·다각형 도구가 칠할 색 — 편집기를 연 동안 기억한다.
   const [faceColor, setFaceColor] = useState(DEFAULT_FACE_FILL);
   // 다각형 도구가 그리는 중인 점들 · 마우스 자리(달라붙었나) · 화면 px/도형 단위
@@ -577,6 +580,13 @@ export function FigureEditor({
     });
     setSvg(next);
     setSelected(null);
+  };
+  const addMiddleLabel = () => {
+    const result = selected && addMidLabel(svg, selected, midLabel);
+    if (!result) return;
+    commit(result.svg);
+    setSelected(result.id);
+    setMidLabel("");
   };
   const change = (attrs: Record<string, string>, text?: string) => {
     if (!selected) return;
@@ -2408,6 +2418,39 @@ export function FigureEditor({
                           />
                           점선
                         </label>
+                      )}
+                      {midLabelTarget(current) && (
+                        <div
+                          data-mid-label-row=""
+                          className="flex items-center gap-2"
+                        >
+                          <input
+                            type="text"
+                            aria-label="가운데 글자 내용"
+                            placeholder="예: 9 cm"
+                            value={midLabel}
+                            onChange={(e) => setMidLabel(e.target.value)}
+                            onKeyDown={(e) => {
+                              if (
+                                e.key === "Enter" &&
+                                !e.nativeEvent.isComposing
+                              ) {
+                                e.preventDefault();
+                                addMiddleLabel();
+                              }
+                            }}
+                            className="min-w-0 flex-1 rounded border border-control px-2 py-1"
+                            spellCheck={false}
+                          />
+                          <button
+                            type="button"
+                            disabled={!midLabel.trim()}
+                            onClick={addMiddleLabel}
+                            className={`${formatToggleClass(false)} shrink-0 disabled:opacity-40`}
+                          >
+                            가운데 글자
+                          </button>
+                        </div>
                       )}
                       <div
                         data-fill-row=""

@@ -40,6 +40,14 @@ function singleCurve(d: string) {
     ? segments
     : null;
 }
+/** 한 토막 곡선(`M P0 Q C P2`)의 한가운데 점 — 노란 손잡이 자리. 다른 모양이면 null. */
+export function curveMidpoint(d: string) {
+  const curve = singleCurve(d);
+  if (!curve) return null;
+  const [x0, y0] = curve[0].values;
+  const [cx, cy, x2, y2] = curve[1].values;
+  return { x: (x0 + 2 * cx + x2) / 4, y: (y0 + 2 * cy + y2) / 4 };
+}
 const serializePath = (segments: Segment[]) =>
   segments
     .map(

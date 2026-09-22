@@ -22,38 +22,46 @@ export function textBackgroundColor(node: Element): string | null {
   return /^#[\da-f]{6}$/i.test(value) ? value : null;
 }
 
-function rect(
-  doc: Document,
-  color: string,
+/** 글자 상자 — 둘레 여백(글자 크기 비례)까지. 배경 사각형과 «뒤 선 끊기» 구멍(`figureMidLabel`)이 같이 쓴다. */
+export type TextBox = { x: number; y: number; width: number; height: number };
+
+function padded(
   box: { left: number; top: number; width: number; height: number },
   fontSize: number,
-) {
+): TextBox {
   const pad = PAD_EM * fontSize;
+  return {
+    x: box.left - pad,
+    y: box.top - pad,
+    width: box.width + pad * 2,
+    height: box.height + pad * 2,
+  };
+}
+
+function rect(doc: Document, color: string, box: TextBox) {
   const node = doc.createElementNS(SVG_NS, "rect");
   const f = (value: number) => value.toFixed(2);
-  node.setAttribute("x", f(box.left - pad));
-  node.setAttribute("y", f(box.top - pad));
-  node.setAttribute("width", f(box.width + pad * 2));
-  node.setAttribute("height", f(box.height + pad * 2));
+  node.setAttribute("x", f(box.x));
+  node.setAttribute("y", f(box.y));
+  node.setAttribute("width", f(box.width));
+  node.setAttribute("height", f(box.height));
   node.setAttribute("fill", color);
   node.setAttribute("stroke", "none");
   return node;
 }
 
 /**
- * 조판한 라벨(`<g data-label …>`) 뒤의 사각형. 라벨이 적어 둔 **그 상자**(`data-x`·`data-w`·`data-base`·`data-a`·`data-d`
+ * 조판한 라벨(`<g data-label …>`)의 상자. 라벨이 적어 둔 **그 상자**(`data-x`·`data-w`·`data-base`·`data-a`·`data-d`
  * — `placeLabel` 이 판정기용으로 남기는 치수)를 그대로 쓴다. 자식 `<path>` 를 되짚는 어림을 하나 더 두지 않는다.
  */
-export function labelBackground(doc: Document, label: Element, color: string) {
+export function labelBox(label: Element): TextBox {
   const n = (name: string) => Number(label.getAttribute(name)) || 0;
   const width = n("data-w"),
     x = n("data-x");
   const anchor = label.getAttribute("data-anchor");
   const left =
     anchor === "end" ? x - width : anchor === "middle" ? x - width / 2 : x;
-  return rect(
-    doc,
-    color,
+  return padded(
     {
       left,
       top: n("data-base") - n("data-a"),
@@ -64,15 +72,15 @@ export function labelBackground(doc: Document, label: Element, color: string) {
   );
 }
 
+/** 조판한 라벨 뒤의 사각형. */
+export const labelBackground = (doc: Document, label: Element, color: string) =>
+  rect(doc, color, labelBox(label));
+
 /**
- * 조판하지 못한 글자(한글 일반 글자 등 — `<text>` 그대로 남는다) 뒤의 사각형. 글꼴을 모르는 자리라 **어림**이다
+ * 조판하지 못한 글자(한글 일반 글자 등 — `<text>` 그대로 남는다)의 상자. 글꼴을 모르는 자리라 **어림**이다
  * (한글·전각 1em). 여백이 어림의 어긋남을 덮는다.
  */
-export function plainTextBackground(
-  doc: Document,
-  text: Element,
-  color: string,
-) {
+export function plainTextBox(text: Element): TextBox {
   const fontSize = Number(text.getAttribute("font-size")) || 18;
   const x = Number(text.getAttribute("x")) || 0;
   const y = Number(text.getAttribute("y")) || 0;
@@ -91,10 +99,15 @@ export function plainTextBackground(
   const top = middle
     ? y - ((ASCENT_EM + DESCENT_EM) / 2) * fontSize
     : y - ASCENT_EM * fontSize;
-  return rect(
-    doc,
-    color,
+  return padded(
     { left, top, width, height: (ASCENT_EM + DESCENT_EM) * fontSize },
     fontSize,
   );
 }
+
+/** 조판하지 못한 글자 뒤의 사각형. */
+export const plainTextBackground = (
+  doc: Document,
+  text: Element,
+  color: string,
+) => rect(doc, color, plainTextBox(text));
