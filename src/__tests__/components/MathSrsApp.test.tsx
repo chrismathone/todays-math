@@ -144,13 +144,15 @@ describe("Math SRS learning journey", () => {
 
   it("continues in memory when storage is full instead of dropping the active mission", async () => {
     const original = Storage.prototype.setItem;
-    vi.spyOn(Storage.prototype, "setItem").mockImplementation(
-      function (key, value) {
-        if (key === STORAGE_KEY)
-          throw new DOMException("quota", "QuotaExceededError");
-        original.call(this, key, value);
-      },
-    );
+    vi.spyOn(Storage.prototype, "setItem").mockImplementation(function (
+      this: Storage,
+      key,
+      value,
+    ) {
+      if (key === STORAGE_KEY)
+        throw new DOMException("quota", "QuotaExceededError");
+      original.call(this, key, value);
+    });
     const user = userEvent.setup();
     render(<MathSrsApp />);
     await user.click(
