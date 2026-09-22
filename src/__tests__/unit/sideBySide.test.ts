@@ -1,7 +1,13 @@
 import { describe, expect, it } from "vitest";
 import { boxHeaderMarkdown, parseBoxHeader } from "@/lib/math/boxHeader";
 import { splitBoxSegments } from "@/lib/math/boxBlock";
-import { boxFitSteps, fitBoxColumns } from "@/lib/math/boxFit";
+import {
+  BOX_TIGHT_SPACING,
+  boxFitSteps,
+  fitBoxColumns,
+  SIDE_BY_SIDE_SPACING,
+} from "@/lib/math/boxFit";
+import { displayWidth } from "@/lib/math/displayWidth";
 import { layoutQuotedBoxes } from "@/lib/math/boxLayout";
 import { parseProblemContent } from "@/lib/problem/parseProblemContent";
 import { estimateProblemPx, JASEUP_RULER } from "@/lib/printOverflow";
@@ -153,5 +159,27 @@ describe("인쇄 높이 추정 — 제목·테두리 없는 묶음, 행 수로 �
     expect(
       estimateProblemPx(long) - estimateProblemPx(short),
     ).toBeGreaterThanOrEqual(line);
+  });
+
+  /**
+   * 🔴 변이로 찾은 구멍(2026-09-22): 위 시험은 «줄이기»를 빼도 초록이었다 — 긴 칸은 4열에 그대로 두어도 칸 안에서
+   * 접혀 높아지니까. 줄이기 유무가 높이를 **가르는** 자리를 댄다: 칸 셋이 4열(좁게까지)에는 안 들고 3열에는 든다.
+   * 줄이면 3열 한 행·한 줄, 안 줄이면 4열에서 칸마다 두 줄로 접힌다.
+   */
+  it("🔴 4열에 안 들고 3열에 드는 칸 셋 — 3열 한 행 한 줄로 센다", () => {
+    const { problemColumn, unit } = JASEUP_RULER;
+    const { gapX, marginY } = SIDE_BY_SIDE_SPACING;
+    const three = ["(1) 가나다라마", "(2) 가나다라마", "(3) 가나다라마"];
+    // 전제 — 한 줄 폭이 4열 좁게 칸보다 넓고 3열 보통 칸보다 좁다.
+    const natural = displayWidth(three[0]!) * unit;
+    expect(natural).toBeGreaterThan(
+      (problemColumn - 3 * BOX_TIGHT_SPACING.gapX) / 4,
+    );
+    expect(natural).toBeLessThanOrEqual((problemColumn - 2 * gapX) / 3);
+    const stem = "다음 물음에 답하시오.";
+    const grouped = `${stem}\n\n> <나란히:cols=4>\n${three.map((cell) => `> ${cell}`).join("\n")}`;
+    expect(estimateProblemPx(grouped) - estimateProblemPx(stem)).toBe(
+      marginY + line,
+    );
   });
 });

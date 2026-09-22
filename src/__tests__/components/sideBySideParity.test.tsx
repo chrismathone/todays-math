@@ -440,6 +440,26 @@ describe("편집기 [나란히] — 고른 소문항을 묶는다", () => {
     expect(editorCells(again)).toEqual(EXPECTED_CELLS);
   });
 
+  it("그림이 아직 안 붙은 문항 — `[그림N]` 글자만 든 줄도 앞 소문항 칸에 붙는다", () => {
+    const current = open(RAW, {});
+    current.view.dispatch(
+      current.state.tr.setSelection(
+        TextSelection.create(
+          current.state.doc,
+          positionOf(current, "(1)"),
+          positionOf(current, "[그림4]") + "[그림4]".length,
+        ),
+      ),
+    );
+    expect(current.commands.wrapSideBySide()).toBe(true);
+    expect(editorCells(current)).toEqual([
+      "(1) [그림1] [2점]",
+      "(2) [그림2] [2점]",
+      "(3) [그림3] [2점]",
+      "(4) [그림4]",
+    ]);
+  });
+
   it("묶음·표·상자 안에서는 누르지 않는다 — 문서가 안 바뀐다", () => {
     const current = open(SIDE_Q, { diagramSvgs: SVGS });
     const before = saved(current);

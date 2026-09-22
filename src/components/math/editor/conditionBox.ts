@@ -176,6 +176,8 @@ function setColumns(
  * 번호와 한 줄에 적는다(원장님 문항: «[2점] (2)»). 묶을 때 앞 칸 끝으로 옮긴다. 그 밖의 글은 옮기지 않는다.
  */
 const LEADING_SCORE = /^\s*\[\s*\d+(?:\.\d+)?\s*점\s*\]/;
+/** 그림 자국 한 줄(`[그림2]`) — 그림 노드가 아니라 글로 남은 자리. */
+const FIGURE_MARKER_LINE = /^\[\s*그\s*림\s*\d*\s*\]$/;
 
 /** 묶을 수 있는 최상위 블록 — 문단과 그림. 표·목록·상자·선택지는 칸 하나(한 줄)로 적을 수 없다. */
 const WRAPPABLE = new Set(["paragraph", "visualFigure", "visualFigureRow"]);
@@ -260,6 +262,16 @@ function cellsOf(schema: Schema, pieces: Piece[]): ProseMirrorNode[][] | null {
       continue;
     }
     let nodes = trimInline(piece.nodes);
+    // 그림 자국만 든 줄(`[그림2]` — 그림이 아직 안 붙은 문항)도 그림처럼 앞 글 칸에 붙인다.
+    if (
+      nodes.length === 1 &&
+      nodes[0]!.isText &&
+      FIGURE_MARKER_LINE.test(nodes[0]!.text!) &&
+      last?.textual
+    ) {
+      append(last, nodes);
+      continue;
+    }
     const first = nodes[0];
     const score = first?.isText ? LEADING_SCORE.exec(first.text!) : null;
     if (last && first && score) {
