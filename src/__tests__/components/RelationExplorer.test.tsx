@@ -34,7 +34,69 @@ const part: RelationExperiment = {
 };
 const click = (name: string) =>
   fireEvent.click(screen.getByRole("button", { name }));
-const transfer = () => ({ setData: vi.fn(), effectAllowed: "" });
+function bounds(
+  element: HTMLElement,
+  x: number,
+  y: number,
+  width: number,
+  height: number,
+) {
+  vi.spyOn(element, "getBoundingClientRect").mockReturnValue({
+    x,
+    y,
+    left: x,
+    top: y,
+    right: x + width,
+    bottom: y + height,
+    width,
+    height,
+    toJSON: () => ({}),
+  });
+  Object.defineProperty(element, "offsetWidth", {
+    configurable: true,
+    value: width,
+  });
+  Object.defineProperty(element, "offsetHeight", {
+    configurable: true,
+    value: height,
+  });
+}
+function joinLayout(source: HTMLElement) {
+  bounds(source, 0, 0, 180, 44);
+  bounds(screen.getByLabelText("주어진 수 막대"), 0, 0, 360, 44);
+  bounds(screen.getByLabelText("전체를 만드는 칸"), 0, 80, 360, 48);
+}
+function compareLayout(source: HTMLElement, y = 0) {
+  bounds(source, 155, y, 160, 28);
+  bounds(source.parentElement!, 116, y, 300, 28);
+}
+function pointer(
+  source: HTMLElement,
+  phase: "Down" | "Move" | "Up" | "Cancel",
+  x: number,
+  y: number,
+  pointerType = "mouse",
+  pointerId = 1,
+) {
+  fireEvent[`pointer${phase}`](source, {
+    pointerId,
+    pointerType,
+    clientX: x,
+    clientY: y,
+    button: 0,
+    isPrimary: true,
+  });
+}
+function drag(
+  source: HTMLElement,
+  start: [number, number],
+  end: [number, number],
+  pointerType = "mouse",
+) {
+  pointer(source, "Down", ...start, pointerType);
+  pointer(source, "Move", ...end, pointerType);
+  pointer(source, "Up", ...end, pointerType);
+}
 
 describe("RelationExplorer", () => {
   it("starts separate and conserves each given through place, remove, repeated drop and reset", () => {
@@ -51,10 +113,9 @@ describe("RelationExplorer", () => {
       screen.getByRole("button", { name: "옆 책장 135 놓기" }),
     ).toBeDisabled();
     const source = screen.getByRole("button", { name: "첫 책장 248 놓기" });
-    const dataTransfer = transfer();
-    fireEvent.dragStart(source, { dataTransfer });
-    fireEvent.drop(screen.getByLabelText("전체를 만드는 칸"), { dataTransfer });
-    fireEvent.drop(screen.getByLabelText("전체를 만드는 칸"), { dataTransfer });
+    joinLayout(source);
+    drag(source, [50, 20], [290, 100]);
+    pointer(source, "Up", 290, 100);
     expect(status).toHaveTextContent("135 + 248 = 383");
     expect(screen.getAllByRole("button", { name: /빼기$/ })).toHaveLength(2);
     click("옆 책장 135 빼기");
@@ -73,13 +134,28 @@ describe("RelationExplorer", () => {
     expect(onValueChange).not.toHaveBeenCalled();
   });
 
-  it("cancels a join drag without placing anything and ignores unrelated drops", () => {
+  it("returns an outside drop and pointer cancellation without placing or clicking", () => {
     render(<RelationExplorer experiment={join} />);
     const source = screen.getByRole("button", { name: "첫 책장 248 놓기" });
-    const dataTransfer = transfer();
-    fireEvent.dragStart(source, { dataTransfer });
-    fireEvent.dragEnd(source, { dataTransfer });
-    fireEvent.drop(screen.getByLabelText("전체를 만드는 칸"), { dataTransfer });
+    joinLayout(source);
+    drag(source, [50, 20], [600, 200]);
+    fireEvent.click(source, { detail: 1 });
+    expect(source).toHaveAttribute("data-dragging", "false");
+    pointer(source, "Down", 50, 20);
+    pointer(source, "Move", 80, 100);
+    expect(source).toHaveAttribute("data-dragging", "true");
+    expect(screen.getByLabelText("전체를 만드는 칸")).toHaveAttribute(
+      "data-drop-ready",
+      "true",
+    );
+    pointer(source, "Cancel", 80, 100);
+    pointer(source, "Up", 80, 100);
+    fireEvent.click(source, { detail: 1 });
+    expect(source.style.translate).toBe("");
+    expect(screen.getByLabelText("전체를 만드는 칸")).not.toHaveAttribute(
+      "data-drop-ready",
+      "true",
+    );
     expect(screen.getByRole("status")).toHaveTextContent("놓은 막대의 합 0");
   });
 
@@ -98,12 +174,16 @@ describe("RelationExplorer", () => {
     expect(status).toHaveTextContent("310 − 80 = ?");
     expect(
       screen.getByRole("button", { name: "닭감자조림 172 비교 선택" }),
-    ).toBeDisabled();
+    ).toBeEnabled();
     const soup = screen.getByLabelText("국 막대 80");
     expect(soup).toHaveStyle({ marginLeft: "8%" });
-    fireEvent.dragStart(soup, { dataTransfer: transfer() });
-    fireEvent.drop(screen.getByLabelText("막대 시작선"));
+    compareLayout(soup);
+    drag(soup, [200, 14], [170, 14]);
     expect(soup).toHaveStyle({ marginLeft: "0%" });
+    expect(status).toHaveTextContent("310 − 80 = ?");
+    const rice = screen.getByLabelText("잡곡밥 막대 310");
+    compareLayout(rice);
+    drag(rice, [200, 14], [170, 14]);
     expect(status).toHaveTextContent("310 − 80 = 230");
     expect(status).not.toHaveTextContent("138");
     click("국 80 비교 선택");
@@ -138,6 +218,116 @@ describe("RelationExplorer", () => {
     expect(screen.getByRole("status")).toHaveTextContent("80 − 80 = ?");
     click("시작선 맞추기 ←");
     expect(screen.getByRole("status")).toHaveTextContent("80 − 80 = 0");
+  });
+
+  it("drags joined strips back to the full tray with touch and suppresses the trailing click", () => {
+    render(<RelationExplorer experiment={join} />);
+    click("첫 책장 248 놓기");
+    click("옆 책장 135 놓기");
+    const source = screen.getByRole("button", { name: "첫 책장 248 빼기" });
+    joinLayout(source);
+    bounds(source, 0, 80, 180, 44);
+    pointer(source, "Down", 50, 100, "touch");
+    pointer(source, "Move", 330, 20, "touch");
+    expect(screen.getByLabelText("주어진 수 막대")).toHaveAttribute(
+      "data-drop-ready",
+      "true",
+    );
+    expect(source).toHaveStyle({ translate: "280px -80px" });
+    expect(screen.getByRole("status")).toHaveTextContent("248 + 135 = 383");
+    pointer(source, "Up", 330, 20, "touch");
+    const returned = screen.getByRole("button", { name: "첫 책장 248 놓기" });
+    fireEvent.click(returned, { detail: 1 });
+    expect(screen.getByRole("status")).toHaveTextContent("135 = 135");
+    expect(returned).toBeEnabled();
+    // A new ordinary press is still a click, including small hand jitter.
+    pointer(returned, "Down", 50, 20);
+    pointer(returned, "Up", 52, 21);
+    fireEvent.click(returned, { detail: 1 });
+    expect(screen.getByRole("status")).toHaveTextContent("135 + 248 = 383");
+  });
+
+  it("auto-selects and aligns one bar per drag, permits replacing a pair and preserves chosen bars", () => {
+    render(<RelationExplorer experiment={compare} />);
+    const rice = screen.getByLabelText("잡곡밥 막대 310");
+    const soup = screen.getByLabelText("국 막대 80");
+    compareLayout(rice);
+    compareLayout(soup, 72);
+    drag(rice, [200, 14], [170, 14]);
+    fireEvent.click(rice, { detail: 1 });
+    expect(screen.getByRole("status")).toHaveTextContent("1/2개 선택");
+    expect(rice).toHaveAttribute("data-aligned", "true");
+    expect(soup).toHaveAttribute("data-aligned", "false");
+    drag(soup, [200, 86], [170, 86], "touch");
+    expect(screen.getByRole("status")).toHaveTextContent("310 − 80 = 230");
+    // Moving an already chosen strip never toggles its selection off.
+    drag(soup, [200, 86], [170, 86]);
+    expect(
+      screen.getByRole("button", { name: "국 80 비교 선택" }),
+    ).toHaveAttribute("aria-pressed", "true");
+    click("닭감자조림 172 비교 선택");
+    expect(screen.getByRole("status")).toHaveTextContent("172 − 80 = ?");
+    expect(rice).toHaveAttribute("data-aligned", "false");
+    expect(soup).toHaveAttribute("data-aligned", "true");
+    click("닭감자조림 막대 172");
+    expect(screen.getByRole("status")).toHaveTextContent("172 − 80 = 92");
+  });
+
+  it("cancels comparison outside the capture zone, Escape and lost capture without selecting", () => {
+    render(<RelationExplorer experiment={compare} />);
+    const source = screen.getByLabelText("잡곡밥 막대 310");
+    compareLayout(source);
+    drag(source, [200, 14], [450, 150]);
+    fireEvent.click(source, { detail: 1 });
+    expect(screen.getByRole("status")).toHaveTextContent("0/2개 선택");
+    pointer(source, "Down", 200, 14);
+    pointer(source, "Move", 170, 14);
+    fireEvent.keyDown(window, { key: "Escape" });
+    pointer(source, "Up", 170, 14);
+    expect(source.style.translate).toBe("");
+    expect(source).toHaveAttribute("data-aligned", "false");
+    pointer(source, "Down", 200, 14);
+    pointer(source, "Move", 170, 14);
+    fireEvent.lostPointerCapture(source, { pointerId: 1 });
+    pointer(source, "Up", 170, 14);
+    expect(screen.getByRole("status")).toHaveTextContent("0/2개 선택");
+    expect(screen.getByLabelText("막대 시작선")).not.toHaveAttribute(
+      "data-drop-ready",
+      "true",
+    );
+  });
+
+  it("keeps the moving strip under the pointer at combined zoom/transform scale and ignores other pointers", () => {
+    render(<RelationExplorer experiment={join} />);
+    const source = screen.getByRole("button", { name: "첫 책장 248 놓기" });
+    joinLayout(source);
+    Object.defineProperty(source, "offsetWidth", { value: 360 });
+    Object.defineProperty(source, "offsetHeight", { value: 88 });
+    pointer(source, "Down", 50, 20);
+    pointer(source, "Move", 100, 100, "touch", 2);
+    expect(source.style.translate).toBe("");
+    pointer(source, "Move", 100, 100);
+    expect(source).toHaveStyle({ translate: "100px 160px" });
+    pointer(source, "Up", 100, 100, "touch", 2);
+    expect(screen.getByRole("status")).toHaveTextContent("놓은 막대의 합 0");
+    pointer(source, "Up", 100, 100);
+    expect(screen.getByRole("status")).toHaveTextContent("248 = 248");
+  });
+
+  it("offers keyboard selection and single-bar alignment without submitting the parent form", async () => {
+    const user = userEvent.setup();
+    const submit = vi.fn((event) => event.preventDefault());
+    render(
+      <form onSubmit={submit}>
+        <RelationExplorer experiment={compare} />
+      </form>,
+    );
+    screen.getByLabelText("국 막대 80").focus();
+    await user.keyboard("{Enter}");
+    screen.getByLabelText("잡곡밥 막대 310").focus();
+    await user.keyboard(" ");
+    expect(screen.getByRole("status")).toHaveTextContent("310 − 80 = 230");
+    expect(submit).not.toHaveBeenCalled();
   });
 
   it("keeps the unknown blank and never exposes its value until the learner supplies it", () => {
@@ -269,12 +459,13 @@ describe("RelationExplorer", () => {
 
   it("guards an in-flight join drag when the parent disables the board", () => {
     const { rerender } = render(<RelationExplorer experiment={join} />);
-    fireEvent.dragStart(
-      screen.getByRole("button", { name: "첫 책장 248 놓기" }),
-      { dataTransfer: transfer() },
-    );
+    const source = screen.getByRole("button", { name: "첫 책장 248 놓기" });
+    joinLayout(source);
+    pointer(source, "Down", 50, 20);
+    pointer(source, "Move", 80, 100);
     rerender(<RelationExplorer experiment={join} disabled />);
-    fireEvent.drop(screen.getByLabelText("전체를 만드는 칸"));
+    pointer(source, "Up", 80, 100);
+    expect(source.style.translate).toBe("");
     click("옆 책장 135 놓기");
     expect(screen.getByRole("status")).toHaveTextContent("놓은 막대의 합 0");
     expect(
@@ -287,11 +478,12 @@ describe("RelationExplorer", () => {
   it("guards comparison selection, alignment and reset while disabled", () => {
     const twoParts = { ...compare, parts: compare.parts.slice(0, 2) };
     const { rerender } = render(<RelationExplorer experiment={twoParts} />);
-    fireEvent.dragStart(screen.getByLabelText("닭감자조림 막대 172"), {
-      dataTransfer: transfer(),
-    });
+    const source = screen.getByLabelText("닭감자조림 막대 172");
+    compareLayout(source);
+    pointer(source, "Down", 200, 14);
+    pointer(source, "Move", 170, 14);
     rerender(<RelationExplorer experiment={twoParts} disabled />);
-    fireEvent.drop(screen.getByLabelText("막대 시작선"));
+    pointer(source, "Up", 170, 14);
     click("시작선 맞추기 ←");
     click("잡곡밥 310 비교 선택");
     expect(screen.getByRole("status")).toHaveTextContent("310 − 172 = ?");

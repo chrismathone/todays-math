@@ -3,6 +3,7 @@
 import { useId, useRef, useState, type ReactNode } from "react";
 import type { RelationExperiment } from "@/lib/lab/cube31/explorationTypes";
 import styles from "./RelationExplorer.module.css";
+import { containsPoint, useRelationDrag } from "./useRelationDrag";
 
 type Props = {
   experiment: RelationExperiment;
@@ -78,7 +79,8 @@ function Board({
 
 function JoinExplorer({ experiment, disabled = false }: Props) {
   const [placed, setPlaced] = useState<number[]>([]);
-  const dragging = useRef<number | null>(null);
+  const tray = useRef<HTMLDivElement>(null);
+  const track = useRef<HTMLDivElement>(null);
   const scale =
     Math.max(
       1,
@@ -101,15 +103,34 @@ function JoinExplorer({ experiment, disabled = false }: Props) {
     setPlaced((previous) => previous.filter((part) => part !== index));
   }
 
+  const movement = useRelationDrag({
+    disabled,
+    hitTest: (drag) => {
+      if (
+        drag.source === "tray" &&
+        containsPoint(track.current, drag.x, drag.y)
+      )
+        return "join";
+      if (drag.source === "join" && containsPoint(tray.current, drag.x, drag.y))
+        return "tray";
+      return null;
+    },
+    onDrop: (drag) => {
+      if (drag.target === "join") place(drag.index);
+      if (drag.target === "tray") remove(drag.index);
+    },
+  });
+  const drag = movement.drag;
+
   return (
     <Board
       experiment={experiment}
       disabled={disabled}
       title="막대를 이어 전체 만들기"
-      hint="막대를 누르거나 아래로 끌어요. 이은 막대를 누르면 다시 빠져요."
+      hint="아래로 끌어 잇고, 위로 끌어 빼요. 누르거나 Enter로도 옮길 수 있어요."
       resetDisabled={placed.length === 0}
       onReset={() => {
-        dragging.current = null;
+        movement.cancel();
         setPlaced([]);
       }}
       equation={
@@ -123,8 +144,21 @@ function JoinExplorer({ experiment, disabled = false }: Props) {
           : `전체 칸에 ${placed.length}개를 놓았어요.`
       }
     >
-      <div className={styles.rowLabel}>주어진 부분</div>
-      <div className={styles.tray} aria-label="주어진 수 막대">
+      <div className={styles.rowLabel}>
+        주어진 부분
+        <span>
+          {drag?.source === "join"
+            ? "여기에 놓으면 다시 빠져요 ↑"
+            : "끌어서 옮겨요 ↕"}
+        </span>
+      </div>
+      <div
+        ref={tray}
+        className={styles.tray}
+        aria-label="주어진 수 막대"
+        data-drop-active={drag?.source === "join"}
+        data-drop-ready={drag?.target === "tray"}
+      >
         {experiment.parts.map((part, index) => (
           <div
             key={index}
@@ -136,47 +170,40 @@ function JoinExplorer({ experiment, disabled = false }: Props) {
               className={`${styles.strip} ${colors[index % colors.length]} ${placed.includes(index) ? styles.parked : ""}`}
               aria-label={`${part.label} ${part.value} 놓기`}
               disabled={disabled || placed.includes(index)}
-              draggable={!disabled && !placed.includes(index)}
+              {...movement.bind(index, "tray", placed.includes(index))}
+              style={movement.style(index, "tray")}
               onClick={() => place(index)}
-              onDragStart={(event) => {
-                if (disabled || placed.includes(index)) {
-                  event.preventDefault();
-                  return;
-                }
-                dragging.current = index;
-                event.dataTransfer.setData("text/plain", String(index));
-                event.dataTransfer.effectAllowed = "move";
-              }}
-              onDragEnd={() => {
-                dragging.current = null;
-              }}
             >
               <span>{part.label}</span>
               <b>{part.value}</b>
             </button>
+            {drag?.target === "tray" && drag.index === index ? (
+              <div
+                className={`${styles.strip} ${styles.snapPreview} ${colors[index % colors.length]}`}
+                aria-hidden="true"
+              >
+                <b>{part.value}</b>
+              </div>
+            ) : null}
           </div>
         ))}
       </div>
       <div className={styles.rowLabel}>
-        이어 만든 전체{" "}
+        이어 만든 전체
         <span>
-          {placed.length}/{experiment.parts.length}
+          {drag?.source === "tray"
+            ? "이 칸에 놓으면 이어져요 ↓"
+            : `${placed.length}/${experiment.parts.length}`}
         </span>
       </div>
       <div
+        ref={track}
         className={styles.joinTrack}
         aria-label="전체를 만드는 칸"
-        onDragOver={(event) => {
-          if (!disabled && dragging.current !== null) event.preventDefault();
-        }}
-        onDrop={(event) => {
-          event.preventDefault();
-          const index = dragging.current;
-          dragging.current = null;
-          if (!disabled && index !== null) place(index);
-        }}
+        data-drop-active={drag?.source === "tray"}
+        data-drop-ready={drag?.target === "join"}
       >
-        {placed.length === 0 ? (
+        {placed.length === 0 && drag?.target !== "join" ? (
           <span className={styles.placeholder}>여기에 부분을 이어 보세요</span>
         ) : null}
         {placed.map((index) => (
@@ -184,7 +211,11 @@ function JoinExplorer({ experiment, disabled = false }: Props) {
             type="button"
             key={index}
             className={`${styles.strip} ${styles.joined} ${colors[index % colors.length]}`}
-            style={{ width: percent(experiment.parts[index].value, scale) }}
+            {...movement.bind(index, "join")}
+            style={{
+              width: percent(experiment.parts[index].value, scale),
+              ...movement.style(index, "join"),
+            }}
             disabled={disabled}
             aria-label={`${experiment.parts[index].label} ${experiment.parts[index].value} 빼기`}
             onClick={() => remove(index)}
@@ -193,6 +224,18 @@ function JoinExplorer({ experiment, disabled = false }: Props) {
             <b>{experiment.parts[index].value}</b>
           </button>
         ))}
+        {drag?.target === "join" ? (
+          <div
+            className={`${styles.strip} ${styles.snapPreview} ${colors[drag.index % colors.length]}`}
+            style={{
+              left: percent(sum, scale),
+              width: percent(experiment.parts[drag.index].value, scale),
+            }}
+            aria-hidden="true"
+          >
+            <b>{experiment.parts[drag.index].value}</b>
+          </div>
+        ) : null}
       </div>
     </Board>
   );
@@ -200,82 +243,116 @@ function JoinExplorer({ experiment, disabled = false }: Props) {
 
 function CompareExplorer({ experiment, disabled = false }: Props) {
   const initialSelection = () => (experiment.parts.length === 2 ? [0, 1] : []);
-  const [selected, setSelected] = useState<number[]>(initialSelection);
-  const [aligned, setAligned] = useState(false);
-  const dragging = useRef<number | null>(null);
+  const [comparison, setComparison] = useState(() => ({
+    selected: initialSelection(),
+    aligned: [] as number[],
+  }));
+  const lanes = useRef<(HTMLDivElement | null)[]>([]);
+  const { selected, aligned } = comparison;
   const scale =
     Math.max(1, ...experiment.parts.map((part) => part.value)) / 0.84;
   const pair = selected.map((index) => experiment.parts[index].value);
   const larger = Math.max(...pair);
   const smaller = Math.min(...pair);
   const ready = selected.length === 2;
+  const complete = ready && selected.every((index) => aligned.includes(index));
 
   function select(index: number) {
-    if (disabled || (!selected.includes(index) && ready)) return;
-    setSelected((previous) =>
-      previous.includes(index)
-        ? previous.filter((item) => item !== index)
-        : [...previous, index],
-    );
-    setAligned(false);
+    if (disabled) return;
+    setComparison((previous) => {
+      const next = previous.selected.includes(index)
+        ? previous.selected.filter((item) => item !== index)
+        : [...previous.selected.slice(-1), index];
+      return {
+        selected: next,
+        aligned: previous.aligned.filter((item) => next.includes(item)),
+      };
+    });
   }
 
-  function align() {
-    if (disabled || !ready) return;
-    setAligned(true);
+  function alignOne(index: number) {
+    if (disabled) return;
+    setComparison((previous) => {
+      const next = previous.selected.includes(index)
+        ? previous.selected
+        : [...previous.selected.slice(-1), index];
+      return {
+        selected: next,
+        aligned: [
+          ...new Set([
+            ...previous.aligned.filter((item) => next.includes(item)),
+            index,
+          ]),
+        ],
+      };
+    });
   }
+
+  const movement = useRelationDrag({
+    disabled,
+    hitTest: (drag) => {
+      const lane = lanes.current[drag.index];
+      if (!lane) return null;
+      const rect = lane.getBoundingClientRect();
+      const tolerance = Math.max(24, Math.min(48, rect.width * 0.16));
+      // Accept either the strip's leading edge or the hand near the start line.
+      // Both are viewport coordinates, including any zoom / ancestor scaling.
+      const nearStart =
+        Math.abs(drag.left - rect.left) <= tolerance ||
+        Math.abs(drag.x - rect.left) <= tolerance;
+      const nearRow = drag.y >= rect.top - 24 && drag.y <= rect.bottom + 24;
+      return nearStart && nearRow ? "align" : null;
+    },
+    onDrop: (drag) => alignOne(drag.index),
+  });
+  const drag = movement.drag;
 
   return (
     <Board
       experiment={experiment}
       disabled={disabled}
       title="같은 시작점에서 비교하기"
-      hint="두 막대를 골라 시작선을 맞춰요. 선택을 바꾸려면 고른 막대를 다시 눌러요."
+      hint="막대를 왼쪽 시작선으로 끌어요. 막대를 누르면 하나씩, 아래 버튼은 둘 다 맞춰요."
       resetDisabled={
-        !aligned &&
+        aligned.length === 0 &&
         (experiment.parts.length === 2
           ? selected.length === 2
           : selected.length === 0)
       }
       onReset={() => {
-        dragging.current = null;
-        setSelected(initialSelection());
-        setAligned(false);
+        movement.cancel();
+        setComparison({ selected: initialSelection(), aligned: [] });
       }}
       equation={
         ready
-          ? `${larger} − ${smaller} = ${aligned ? larger - smaller : "?"}`
+          ? `${larger} − ${smaller} = ${complete ? larger - smaller : "?"}`
           : "비교할 두 수를 골라요"
       }
       feedback={
-        aligned
+        complete
           ? `겹치지 않는 길이가 두 수의 차이 ${larger - smaller}예요.`
           : ready
-            ? "시작점이 달라요. 같은 선에 맞춰 보세요."
-            : `${selected.length}/2개 선택 · 이야기에서 필요한 수를 찾아요.`
+            ? aligned.length > 0
+              ? "하나를 맞췄어요. 다른 막대도 시작선으로 끌어요."
+              : "시작점이 달라요. 같은 선에 맞춰 보세요."
+            : `${selected.length}/2개 선택 · 비교할 막대를 고르거나 시작선으로 끌어요.`
       }
     >
-      <div className={styles.compareRows}>
+      <div className={styles.compareRows} data-drag-active={!!drag}>
         <div
           className={styles.startLine}
           aria-label="막대 시작선"
-          onDragOver={(event) => {
-            if (!disabled && ready && dragging.current !== null)
-              event.preventDefault();
-          }}
-          onDrop={(event) => {
-            event.preventDefault();
-            const index = dragging.current;
-            dragging.current = null;
-            if (!disabled && index !== null && selected.includes(index))
-              align();
-          }}
+          data-drop-active={!!drag}
+          data-drop-ready={drag?.target === "align"}
         >
-          <span aria-hidden="true">시작</span>
+          <span aria-hidden="true">
+            {drag?.target === "align" ? "놓아요" : "시작"}
+          </span>
         </div>
         {experiment.parts.map((part, index) => {
           const chosen = selected.includes(index);
-          const offset = aligned && chosen ? 0 : [3, 13, 8][index % 3];
+          const isAligned = aligned.includes(index);
+          const offset = isAligned ? 0 : [3, 13, 8][index % 3];
           return (
             <div className={styles.compareRow} key={index}>
               <button
@@ -283,43 +360,50 @@ function CompareExplorer({ experiment, disabled = false }: Props) {
                 className={styles.choice}
                 aria-pressed={chosen}
                 aria-label={`${part.label} ${part.value} 비교 선택`}
-                disabled={disabled || (ready && !chosen)}
+                disabled={disabled}
                 onClick={() => select(index)}
               >
                 <span aria-hidden="true">{chosen ? "✓" : "+"}</span>
                 <span>{part.label}</span>
               </button>
-              <div className={styles.barLane}>
-                <div
+              <div
+                className={styles.barLane}
+                ref={(element) => {
+                  lanes.current[index] = element;
+                }}
+              >
+                {drag?.index === index && drag.target === "align" ? (
+                  <div
+                    className={`${styles.compareBar} ${styles.snapPreview} ${colors[index % colors.length]}`}
+                    style={{ width: percent(part.value, scale) }}
+                    aria-hidden="true"
+                  >
+                    <b>{part.value}</b>
+                  </div>
+                ) : null}
+                <button
+                  type="button"
                   className={`${styles.compareBar} ${colors[index % colors.length]} ${chosen ? styles.chosen : ""}`}
+                  {...movement.bind(index, "compare")}
                   style={{
                     width: percent(part.value, scale),
                     marginLeft: `${offset}%`,
+                    ...movement.style(index, "compare"),
                   }}
-                  draggable={!disabled && chosen && ready && !aligned}
+                  disabled={disabled}
+                  data-aligned={isAligned}
                   aria-label={`${part.label} 막대 ${part.value}`}
-                  onDragStart={(event) => {
-                    if (disabled || !chosen || !ready || aligned) {
-                      event.preventDefault();
-                      return;
-                    }
-                    dragging.current = index;
-                    event.dataTransfer.setData("text/plain", String(index));
-                    event.dataTransfer.effectAllowed = "move";
-                  }}
-                  onDragEnd={() => {
-                    dragging.current = null;
-                  }}
+                  onClick={() => alignOne(index)}
                 >
                   <b>{part.value}</b>
-                  {aligned && chosen && part.value > smaller ? (
+                  {complete && chosen && part.value > smaller ? (
                     <span
                       className={styles.difference}
                       aria-hidden="true"
                       style={{ left: percent(smaller, part.value) }}
                     />
                   ) : null}
-                </div>
+                </button>
               </div>
             </div>
           );
@@ -328,10 +412,18 @@ function CompareExplorer({ experiment, disabled = false }: Props) {
       <button
         type="button"
         className={styles.align}
-        disabled={disabled || !ready || aligned}
-        onClick={align}
+        disabled={disabled || !ready || complete}
+        onClick={() => {
+          if (!disabled && ready) {
+            movement.cancel();
+            setComparison((previous) => ({
+              ...previous,
+              aligned: [...previous.selected],
+            }));
+          }
+        }}
       >
-        {aligned ? "시작선을 맞췄어요" : "시작선 맞추기 ←"}
+        {complete ? "시작선을 맞췄어요" : "시작선 맞추기 ←"}
       </button>
     </Board>
   );
