@@ -14,7 +14,10 @@ import {
 } from "react";
 import { updateReviewStatus } from "@/lib/problem/problemApi";
 import { MathText } from "@/components/math/MathText";
-import { DIFFICULTY_LADDER } from "@/contracts/difficulty";
+import {
+  DIFFICULTY_LADDER,
+  type DifficultyRatio,
+} from "@/contracts/difficulty";
 import { UnitRangePicker } from "@/components/progress/UnitRangePicker";
 import { describeRange } from "@/components/test/rangeSummary";
 import {
@@ -37,6 +40,8 @@ import type {
 } from "./types";
 import { PROBLEM_CARD_WIDTH } from "@/components/print/tokens";
 import styles from "./BankView.module.css";
+import BankBasket from "./BankBasket";
+import BankRandomPanel, { type BankRandomResult } from "./BankRandomPanel";
 
 /**
  * 문제 목록 격자 — **카드 폭을 지면 한 단으로 박고 «열 수만» 바뀐다.**
@@ -93,6 +98,23 @@ const ASSET_FILTERS = [
   { key: "hasSolution", label: "해설" },
   { key: "hasAnswer", label: "정답" },
 ] as const;
+
+function queryFor(filters: Filters, random = false) {
+  const { problemFilter, ...query } = filters;
+  const params = new URLSearchParams();
+  Object.entries({
+    ...query,
+    ...splitProblemFilterValue(problemFilter),
+  }).forEach(([key, value]) => {
+    if (value !== "" && value !== false && value !== undefined)
+      params.set(key, String(value));
+  });
+  if (random) {
+    params.delete("difficulty");
+    params.delete("page");
+  }
+  return params;
+}
 
 /**
  * 출처·그림·형식 배지의 겉모습 — 옛 카드(`ProblemCard`)와 **같은 규격**을 쓴다
@@ -158,6 +180,8 @@ function ProblemRow({
   selected,
   onToggle,
   onOpenDetail,
+  busy = false,
+  replacing = false,
 }: {
   problem: BankProblem;
   number: number;
@@ -165,9 +189,16 @@ function ProblemRow({
   onToggle: (problem: StudioProblem) => void;
   /** 상세는 **카드를 펼치지 않고 모달로** 연다 (05 §8.6 확정 2026-09-14, Hi-fi ③). */
   onOpenDetail: (problem: BankProblem) => void;
+  busy?: boolean;
+  replacing?: boolean;
 }) {
   const id = useId();
-  const addDisabled = problem.eligible === false && !selected;
+  const addDisabled =
+    busy ||
+    (replacing && selected) ||
+    (problem.eligible === false && !selected);
+  const action =
+    replacing && !selected ? "이 문제로 교체" : selected ? "담기 취소" : "담기";
   const ineligibleReason =
     problem.eligible === false
       ? problem.ineligibleReason || "출제할 수 없는 문항입니다."
@@ -191,7 +222,7 @@ function ProblemRow({
               ineligibleReason ? `${id}-eligibility` : undefined
             }
             onChange={toggle}
-            aria-label={`${number}번 문제 ${selected ? "담기 취소" : "담기"}`}
+            aria-label={`${number}번 문제 ${action}`}
           />
           <span className={styles.rowNumber}>
             문제 {String(number).padStart(2, "0")}
@@ -280,7 +311,7 @@ function ProblemRow({
             type="button"
             className={`${styles.addButton} ${selected ? styles.addedButton : ""}`}
             aria-pressed={selected}
-            aria-label={`${number}번 문제 ${selected ? "담기 취소" : "담기"}`}
+            aria-label={`${number}번 문제 ${action}`}
             disabled={addDisabled}
             aria-describedby={
               ineligibleReason ? `${id}-eligibility` : undefined
@@ -288,7 +319,13 @@ function ProblemRow({
             onClick={toggle}
           >
             <Icon name={selected ? "check" : "plus"} />
-            {selected ? "담기 완료" : addDisabled ? "담기 불가" : "문제 담기"}
+            {selected
+              ? "담기 완료"
+              : problem.eligible === false
+                ? "담기 불가"
+                : replacing
+                  ? "이 문제로 교체"
+                  : "문제 담기"}
           </button>
         </div>
       </div>
@@ -314,6 +351,8 @@ function DetailModal({
   selected,
   onToggle,
   busy,
+  selectionBusy = false,
+  replacing = false,
 }: {
   problem: BankProblem;
   onClose: () => void;
@@ -336,9 +375,14 @@ function DetailModal({
   selected: boolean;
   onToggle: (problem: StudioProblem) => void;
   busy: boolean;
+  selectionBusy?: boolean;
+  replacing?: boolean;
 }) {
   // 담을 수 없는 행이라도 **이미 담은 것은 뺄 수 있다** — 카드(`ProblemRow`)와 같은 규칙.
-  const addDisabled = problem.eligible === false && !selected;
+  const addDisabled =
+    selectionBusy ||
+    (replacing && selected) ||
+    (problem.eligible === false && !selected);
   // 정답·풀이는 본문(`UnifiedProblem`)과 같은 문항 단위 결정으로 대분수를 보인다.
   const shownFractions = fractionViewFor(problem);
   const [showTransform, setShowTransform] = useState(false);
@@ -405,10 +449,10 @@ function DetailModal({
             격자 아래에 전폭으로 붙는다. 그래야 바닥 단추가 계속 고정된다
             (원장님 지시 2026-09-14 「문제 제외한 … 버튼은 하단 고정시켜」). */}
         <div className="min-h-0 flex-1 overflow-y-auto p-5">
-          <div className="grid grid-cols-[auto_minmax(0,1fr)] gap-8">
+          <div className={styles.detailColumns}>
             <div
               className={styles.problemBody}
-              style={{ width: PROBLEM_CARD_WIDTH }}
+              style={{ width: PROBLEM_CARD_WIDTH, maxWidth: "100%" }}
             >
               <UnifiedProblem problem={problem} />
             </div>
@@ -505,7 +549,13 @@ function DetailModal({
             }}
           >
             <Icon name={selected ? "check" : "plus"} />
-            {selected ? "담기 완료" : addDisabled ? "담기 불가" : "문제 담기"}
+            {selected
+              ? "담기 완료"
+              : problem.eligible === false
+                ? "담기 불가"
+                : replacing
+                  ? "이 문제로 교체"
+                  : "문제 담기"}
           </button>
           {canUseAi && (
             <button
@@ -573,17 +623,29 @@ export default function BankView({
   initialFilters,
   selected,
   onToggle,
+  onSelectionChange,
   onExport,
   canExport = true,
   canUseAi = true,
 }: BankViewProps & { canExport?: boolean; canUseAi?: boolean }) {
   const [search, setSearch] = useState(initialFilters?.q ?? "");
-  const [basketOpen, setBasketOpen] = useState(false);
+  const [randomOpen, setRandomOpen] = useState(false);
+  const [randomBusy, setRandomBusy] = useState(false);
+  const [randomResult, setRandomResult] = useState<BankRandomResult | null>(
+    null,
+  );
+  const [randomError, setRandomError] = useState<string | null>(null);
+  const [replaceId, setReplaceId] = useState<string | null>(null);
+  const [selectionNotice, setSelectionNotice] = useState("");
+  const randomController = useRef<AbortController | null>(null);
+  const selectedRef = useRef(selected);
+  useEffect(() => {
+    selectedRef.current = selected;
+  }, [selected]);
+  useEffect(() => () => randomController.current?.abort(), []);
   const [filtersOpen, setFiltersOpen] = useState(false);
   const [rangeEditing, setRangeEditing] = useState(false);
   const searchInput = useRef<HTMLInputElement>(null);
-  const basketToggle = useRef<HTMLButtonElement>(null);
-  const basketHeading = useRef<HTMLHeadingElement>(null);
   const resultsHeading = useRef<HTMLHeadingElement>(null);
   const [request, setRequest] = useState<{ filters: Filters; version: number }>(
     {
@@ -616,6 +678,10 @@ export default function BankView({
     () => new Set(selected.map((problem) => problem.id)),
     [selected],
   );
+  const replaceIndex = selected.findIndex(
+    (problem) => problem.id === replaceId,
+  );
+  const replacing = replaceIndex >= 0;
   const totalPages = Math.max(
     1,
     Math.ceil(data.total / Math.max(1, data.pageSize)),
@@ -739,15 +805,7 @@ export default function BankView({
     const controller = new AbortController();
     // The real bank splits one dropdown into problemType OR format. Do not send
     // the UI value, empty strings, or false booleans to the strict API contract.
-    const { problemFilter, ...query } = request.filters;
-    const params = new URLSearchParams();
-    Object.entries({
-      ...query,
-      ...splitProblemFilterValue(problemFilter),
-    }).forEach(([key, value]) => {
-      if (value !== "" && value !== false && value !== undefined)
-        params.set(key, String(value));
-    });
+    const params = queryFor(request.filters);
 
     async function loadProblems() {
       try {
@@ -831,27 +889,170 @@ export default function BankView({
   }
 
   function togglePage() {
-    if (loading || error) return;
-    eligibleOnPage.forEach((problem) => {
-      if (allOnPageSelected || !selectedIds.has(problem.id)) onToggle(problem);
-    });
+    if (loading || error || randomBusy || replacing) return;
+    const ids = new Set(eligibleOnPage.map((problem) => problem.id));
+    changeSelection(
+      allOnPageSelected
+        ? selected.filter((problem) => !ids.has(problem.id))
+        : [
+            ...selected,
+            ...eligibleOnPage.filter((problem) => !selectedIds.has(problem.id)),
+          ],
+    );
+  }
+
+  function changeSelection(next: StudioProblem[]) {
+    const unique = [
+      ...new Map(next.map((problem) => [problem.id, problem])).values(),
+    ];
+    if (onSelectionChange) onSelectionChange(unique);
+    else {
+      const nextIds = new Set(unique.map((problem) => problem.id));
+      const currentIds = new Set(
+        selectedRef.current.map((problem) => problem.id),
+      );
+      selectedRef.current
+        .filter((problem) => !nextIds.has(problem.id))
+        .forEach((problem) => onToggle(problem));
+      unique
+        .filter((problem) => !currentIds.has(problem.id))
+        .forEach((problem) => onToggle(problem));
+    }
+  }
+
+  function toggleProblem(problem: StudioProblem) {
+    if (randomBusy) return;
+    if (replacing) {
+      if (problem.eligible === false || selectedIds.has(problem.id)) return;
+      const next = [...selected];
+      next[replaceIndex] = problem;
+      changeSelection(next);
+      setReplaceId(null);
+      setDetail(null);
+      setSelectionNotice(
+        `${replaceIndex + 1}번 문제를 교체했습니다. 다른 문제와 순서는 유지됩니다.`,
+      );
+      return;
+    }
+    if (problem.eligible === false && !selectedIds.has(problem.id)) return;
+    changeSelection(
+      selectedIds.has(problem.id)
+        ? selected.filter((item) => item.id !== problem.id)
+        : [...selected, problem],
+    );
+  }
+
+  async function addRandom(counts: DifficultyRatio) {
+    const total = DIFFICULTY_LADDER.reduce(
+      (sum, tier) => sum + counts[tier],
+      0,
+    );
+    if (randomController.current || replacing || total < 1 || total > 100)
+      return;
+    const controller = new AbortController();
+    randomController.current = controller;
+    setRandomBusy(true);
+    setRandomError(null);
+    setRandomResult(null);
+    try {
+      const response = await fetch(`${getStudioEndpoints().problems}/random`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        signal: controller.signal,
+        body: JSON.stringify({
+          filters: queryFor(filters, true).toString(),
+          counts,
+          excludeIds: selectedRef.current.map((problem) => problem.id),
+        }),
+      });
+      const payload = await response.json();
+      if (!response.ok || payload.error)
+        throw new Error(
+          typeof payload.error === "string"
+            ? payload.error
+            : "문제를 추가하지 못했습니다. 다시 시도해 주세요.",
+        );
+      if (
+        !Array.isArray(payload.problems) ||
+        !DIFFICULTY_LADDER.every(
+          (tier) =>
+            Number.isInteger(payload.available?.[tier]) &&
+            payload.available[tier] >= 0 &&
+            Number.isInteger(payload.counts?.[tier]) &&
+            payload.counts[tier] >= 0,
+        )
+      ) {
+        throw new Error(
+          "랜덤 추가 결과를 확인할 수 없습니다. 다시 시도해 주세요.",
+        );
+      }
+      if (controller.signal.aborted) return;
+      const actual = Object.fromEntries(
+        DIFFICULTY_LADDER.map((tier) => [tier, 0]),
+      ) as DifficultyRatio;
+      const seen = new Set(selectedRef.current.map((problem) => problem.id));
+      const additions = (payload.problems as BankProblem[]).filter(
+        (problem) => {
+          if (
+            !problem ||
+            typeof problem.id !== "string" ||
+            typeof problem.content !== "string" ||
+            problem.eligible === false ||
+            seen.has(problem.id)
+          )
+            return false;
+          const tier = DIFFICULTY_LADDER.find(
+            (tier) => tier === problem.difficulty,
+          );
+          if (!tier || actual[tier] >= counts[tier]) return false;
+          seen.add(problem.id);
+          actual[tier] += 1;
+          return true;
+        },
+      );
+      if (additions.length)
+        changeSelection([...selectedRef.current, ...additions]);
+      setRandomResult({
+        requested: counts,
+        actual,
+        available: payload.available,
+      });
+    } catch (cause) {
+      if (!controller.signal.aborted)
+        setRandomError(
+          cause instanceof Error && !(cause instanceof SyntaxError)
+            ? cause.message
+            : "문제를 추가하지 못했습니다. 다시 시도해 주세요.",
+        );
+    } finally {
+      if (randomController.current === controller)
+        randomController.current = null;
+      if (!controller.signal.aborted) setRandomBusy(false);
+    }
   }
 
   return (
     <section className={styles.bank} aria-labelledby={headingId}>
       <WorkspacePageHeader
-        title="문제은행"
+        title="시험지 만들기"
         titleId={headingId}
-        description="학년·단원별로 문제를 찾고 수업에 필요한 문항을 담으세요."
+        description="출제 범위를 정하고, 필요한 문제를 골라 시험지를 완성하세요."
       />
+      <ol className={styles.buildSteps} aria-label="시험지 만드는 순서">
+        <li>
+          <span>1</span> 범위 설정
+        </li>
+        <li aria-current="step">
+          <span>2</span> 문제 선택
+        </li>
+        <li>
+          <span>3</span> 시험지 편집
+        </li>
+      </ol>
 
       <div className={styles.workspace}>
         <div className={styles.results}>
           <div className={styles.filters}>
-            {/* 🔴 한 줄 — 검색 · 필터 일곱 · 자료 셋 · 초기화 (원장님 2026-09-16
-                「행 개수를 최대한 줄이게 한행에 배치」). 라벨 글자는 칸 자신의 문구
-                (「전체 학년」…)가 대신하므로 화면에서 빼고 읽는 이름으로만 남긴다.
-                좁아지면 필터 쪽만 가로로 밀린다 — 칸은 찌그러지지 않는다(module.css). */}
             <div
               className={styles.filterBar}
               role="group"
@@ -893,10 +1094,7 @@ export default function BankView({
                   검색
                 </button>
               </form>
-              <div
-                id={`${headingId}-filters`}
-                className={`${styles.selectFilters} ${filtersOpen ? styles.filtersOpen : ""}`}
-              >
+              <div className={styles.selectFilters}>
                 <div className={styles.filterField}>
                   <label className="sr-only" htmlFor={`${headingId}-grade`}>
                     학년
@@ -991,102 +1189,6 @@ export default function BankView({
                     </span>
                   </button>
                 </div>
-                <div className={styles.filterField}>
-                  <label
-                    className="sr-only"
-                    htmlFor={`${headingId}-difficulty`}
-                  >
-                    난이도
-                  </label>
-                  <div className={styles.selectWrap}>
-                    <select
-                      id={`${headingId}-difficulty`}
-                      value={filters.difficulty}
-                      onChange={(event) =>
-                        updateFilters({ difficulty: event.target.value })
-                      }
-                    >
-                      <option value="">전체 난이도</option>
-                      {DIFFICULTY_LADDER.map((difficulty) => (
-                        <option key={difficulty} value={difficulty}>
-                          {difficulty}
-                        </option>
-                      ))}
-                    </select>
-                    <span className={styles.chevronDown}>
-                      <Icon name="chevron" />
-                    </span>
-                  </div>
-                </div>
-                {(
-                  [
-                    {
-                      key: "problemFilter",
-                      label: "유형",
-                      empty: "전체 유형",
-                      options: PROBLEM_FILTER_OPTIONS,
-                    },
-                    {
-                      key: "reviewStatus",
-                      label: "상태",
-                      empty: "출제 가능",
-                      options: Object.entries(REVIEW_STATUS_LABEL).map(
-                        ([value, label]) => ({ value, label }),
-                      ),
-                    },
-                    {
-                      key: "source",
-                      label: "출처",
-                      empty: "전체 출처",
-                      options: SOURCE_OPTIONS.map((value) => ({
-                        value,
-                        label: SOURCE_LABEL[value],
-                      })),
-                    },
-                  ] as const
-                ).map(({ key, label, empty, options }) => (
-                  <div key={key} className={styles.filterField}>
-                    <label className="sr-only" htmlFor={`${headingId}-${key}`}>
-                      {label}
-                    </label>
-                    <div className={styles.selectWrap}>
-                      <select
-                        id={`${headingId}-${key}`}
-                        value={filters[key]}
-                        onChange={(event) =>
-                          updateFilters({ [key]: event.target.value })
-                        }
-                      >
-                        <option value="">{empty}</option>
-                        {options.map(({ value, label }) => (
-                          <option key={value} value={value}>
-                            {label}
-                          </option>
-                        ))}
-                      </select>
-                      <span className={styles.chevronDown}>
-                        <Icon name="chevron" />
-                      </span>
-                    </div>
-                  </div>
-                ))}
-                <fieldset className={styles.assetFilters}>
-                  <legend className="sr-only">자료 있는 문제만</legend>
-                  <div>
-                    {ASSET_FILTERS.map(({ key, label }) => (
-                      <label key={key}>
-                        <input
-                          type="checkbox"
-                          checked={filters[key]}
-                          onChange={(event) =>
-                            updateFilters({ [key]: event.target.checked })
-                          }
-                        />
-                        {label}
-                      </label>
-                    ))}
-                  </div>
-                </fieldset>
               </div>
               <div className={styles.filterToolbar}>
                 <button
@@ -1123,6 +1225,105 @@ export default function BankView({
             <p id={`${headingId}-search-help`} className="sr-only">
               본문·문항번호·정답·해설·학교를 함께 검색합니다.
             </p>
+            <div
+              id={`${headingId}-filters`}
+              className={styles.extraFilters}
+              hidden={!filtersOpen}
+            >
+              <div className={styles.filterField}>
+                <label className="sr-only" htmlFor={`${headingId}-difficulty`}>
+                  난이도
+                </label>
+                <div className={styles.selectWrap}>
+                  <select
+                    id={`${headingId}-difficulty`}
+                    value={filters.difficulty}
+                    onChange={(event) =>
+                      updateFilters({ difficulty: event.target.value })
+                    }
+                  >
+                    <option value="">전체 난이도</option>
+                    {DIFFICULTY_LADDER.map((difficulty) => (
+                      <option key={difficulty} value={difficulty}>
+                        {difficulty}
+                      </option>
+                    ))}
+                  </select>
+                  <span className={styles.chevronDown}>
+                    <Icon name="chevron" />
+                  </span>
+                </div>
+              </div>
+              {(
+                [
+                  {
+                    key: "problemFilter",
+                    label: "유형",
+                    empty: "전체 유형",
+                    options: PROBLEM_FILTER_OPTIONS,
+                  },
+                  {
+                    key: "reviewStatus",
+                    label: "상태",
+                    empty: "출제 가능",
+                    options: Object.entries(REVIEW_STATUS_LABEL).map(
+                      ([value, label]) => ({ value, label }),
+                    ),
+                  },
+                  {
+                    key: "source",
+                    label: "출처",
+                    empty: "전체 출처",
+                    options: SOURCE_OPTIONS.map((value) => ({
+                      value,
+                      label: SOURCE_LABEL[value],
+                    })),
+                  },
+                ] as const
+              ).map(({ key, label, empty, options }) => (
+                <div key={key} className={styles.filterField}>
+                  <label className="sr-only" htmlFor={`${headingId}-${key}`}>
+                    {label}
+                  </label>
+                  <div className={styles.selectWrap}>
+                    <select
+                      id={`${headingId}-${key}`}
+                      value={filters[key]}
+                      onChange={(event) =>
+                        updateFilters({ [key]: event.target.value })
+                      }
+                    >
+                      <option value="">{empty}</option>
+                      {options.map(({ value, label }) => (
+                        <option key={value} value={value}>
+                          {label}
+                        </option>
+                      ))}
+                    </select>
+                    <span className={styles.chevronDown}>
+                      <Icon name="chevron" />
+                    </span>
+                  </div>
+                </div>
+              ))}
+              <fieldset className={styles.assetFilters}>
+                <legend className="sr-only">자료 있는 문제만</legend>
+                <div>
+                  {ASSET_FILTERS.map(({ key, label }) => (
+                    <label key={key}>
+                      <input
+                        type="checkbox"
+                        checked={filters[key]}
+                        onChange={(event) =>
+                          updateFilters({ [key]: event.target.checked })
+                        }
+                      />
+                      {label}
+                    </label>
+                  ))}
+                </div>
+              </fieldset>
+            </div>
             {rangeEditing ? (
               <div
                 id={`${headingId}-range-panel`}
@@ -1200,6 +1401,53 @@ export default function BankView({
             ) : null}
           </div>
 
+          <div className={styles.chooseToolbar}>
+            <p>문제를 직접 담거나, 난이도에 맞춰 한 번에 추가하세요.</p>
+            <button
+              type="button"
+              className={styles.randomToggle}
+              disabled={randomBusy}
+              aria-expanded={randomOpen}
+              aria-controls={`${headingId}-random`}
+              onClick={() => setRandomOpen((value) => !value)}
+            >
+              <Icon name="plus" /> 난이도별 랜덤 추가{" "}
+              <span aria-hidden="true">{randomOpen ? "−" : "+"}</span>
+            </button>
+          </div>
+          <div id={`${headingId}-random`} hidden={!randomOpen}>
+            <BankRandomPanel
+              busy={randomBusy}
+              disabled={loading || replacing || Boolean(error)}
+              result={randomResult}
+              error={randomError}
+              onAdd={addRandom}
+            />
+          </div>
+          {replacing ? (
+            <div className={styles.replaceBanner} role="status">
+              <div>
+                <strong>{replaceIndex + 1}번 문제 교체 중</strong>
+                <p>
+                  목록에서 아직 담지 않은 문제를 선택하세요. 나머지 문제와
+                  순서는 유지됩니다.
+                </p>
+              </div>
+              <button
+                type="button"
+                className={styles.textButton}
+                onClick={() => setReplaceId(null)}
+              >
+                교체 취소
+              </button>
+            </div>
+          ) : null}
+          {selectionNotice ? (
+            <p className={styles.selectionNotice} role="status">
+              {selectionNotice}
+            </p>
+          ) : null}
+
           <div className={styles.resultsHeader}>
             <h2 ref={resultsHeading} tabIndex={-1}>
               문제 목록{" "}
@@ -1228,7 +1476,11 @@ export default function BankView({
                       !allOnPageSelected;
                 }}
                 disabled={
-                  loading || Boolean(error) || eligibleOnPage.length === 0
+                  loading ||
+                  randomBusy ||
+                  replacing ||
+                  Boolean(error) ||
+                  eligibleOnPage.length === 0
                 }
                 onChange={togglePage}
               />
@@ -1293,7 +1545,9 @@ export default function BankView({
                   problem={problem}
                   number={firstRow + index}
                   selected={selectedIds.has(problem.id)}
-                  onToggle={onToggle}
+                  onToggle={toggleProblem}
+                  busy={randomBusy}
+                  replacing={replacing}
                   onOpenDetail={setDetail}
                 />
               ))
@@ -1304,7 +1558,9 @@ export default function BankView({
               problem={detail}
               busy={reviewBusy}
               selected={selectedIds.has(detail.id)}
-              onToggle={onToggle}
+              onToggle={toggleProblem}
+              selectionBusy={randomBusy}
+              replacing={replacing}
               onClose={() => setDetail(null)}
               onReviewStatusChange={handleReviewStatusChange}
               onTransformAdopted={refresh}
@@ -1362,150 +1618,19 @@ export default function BankView({
           ) : null}
         </div>
 
-        <aside
-          className={`${styles.basket} ${basketOpen ? styles.basketOpen : ""}`}
-          aria-label="담은 문제"
-          onKeyDown={(event) => {
-            if (event.key === "Escape" && basketOpen) {
-              event.preventDefault();
-              setBasketOpen(false);
-              basketToggle.current?.focus();
-            }
+        <BankBasket
+          selected={selected}
+          busy={randomBusy}
+          canExport={canExport}
+          onExport={onExport}
+          onChange={changeSelection}
+          canReorder={Boolean(onSelectionChange)}
+          onReplace={(id) => {
+            setReplaceId(id);
+            setSelectionNotice("");
+            resultsHeading.current?.scrollIntoView({ block: "start" });
           }}
-        >
-          <div className={styles.basketHeading}>
-            <span className={styles.basketIcon}>
-              <Icon name="basket" />
-            </span>
-            <h2 ref={basketHeading} tabIndex={-1}>
-              담은 문제
-            </h2>
-            <span
-              className={styles.basketCount}
-              role="status"
-              aria-label={`담은 문제 ${selected.length}문항`}
-            >
-              {selected.length.toLocaleString("ko-KR")}
-              <small>문항</small>
-            </span>
-            <button
-              ref={basketToggle}
-              type="button"
-              className={styles.basketToggle}
-              aria-expanded={basketOpen}
-              aria-controls={`${headingId}-basket-content`}
-              aria-label={
-                basketOpen ? "담은 문제 목록 닫기" : "담은 문제 목록 보기"
-              }
-              onClick={() => setBasketOpen((value) => !value)}
-            >
-              {basketOpen ? "닫기" : "목록"}
-              <span
-                className={basketOpen ? styles.chevronDown : styles.chevronUp}
-              >
-                <Icon name="chevron" />
-              </span>
-            </button>
-          </div>
-          <div
-            id={`${headingId}-basket-content`}
-            className={styles.basketContent}
-          >
-            <div className={styles.basketIntro}>
-              <p className={styles.basketDescription}>
-                {selected.length
-                  ? "검색 조건을 바꿔도 담은 문제는 유지됩니다."
-                  : "목록에서 필요한 문제를 선택하세요."}
-              </p>
-              {selected.length ? (
-                <button
-                  type="button"
-                  className={styles.clearBasket}
-                  onClick={() => {
-                    basketHeading.current?.focus({ preventScroll: true });
-                    selected.forEach(onToggle);
-                  }}
-                >
-                  전체 비우기
-                </button>
-              ) : null}
-            </div>
-            {selected.length ? (
-              <ol className={styles.basketList}>
-                {selected.map((problem, index) => (
-                  <li key={problem.id}>
-                    <span className={styles.basketNumber}>
-                      {String(index + 1).padStart(2, "0")}
-                    </span>
-                    <div>
-                      <strong
-                        title={
-                          problem.section || problem.chapter || "단원 미지정"
-                        }
-                      >
-                        {problem.section || problem.chapter || "단원 미지정"}
-                      </strong>
-                      <span>
-                        {[problem.grade, problem.difficulty]
-                          .filter(Boolean)
-                          .join(" · ") ||
-                          problem.problemCode ||
-                          "선택한 문제"}
-                      </span>
-                      {problem.problemCode ? (
-                        <span>{problem.problemCode}</span>
-                      ) : null}
-                    </div>
-                    <button
-                      type="button"
-                      aria-label={`${problem.problemCode || problem.chapter || index + 1} 문제 담기 취소`}
-                      onClick={(event) => {
-                        const row = event.currentTarget.closest("li");
-                        const next =
-                          row?.nextElementSibling?.querySelector("button") ||
-                          row?.previousElementSibling?.querySelector("button");
-                        (next || basketHeading.current)?.focus({
-                          preventScroll: true,
-                        });
-                        onToggle(problem);
-                      }}
-                    >
-                      <Icon name="close" />
-                    </button>
-                  </li>
-                ))}
-              </ol>
-            ) : (
-              <div className={styles.basketEmpty}>
-                <Icon name="basket" />
-                <p>담은 문제가 없습니다</p>
-                <span>
-                  문제의 ‘문제 담기’를 누르면
-                  <br />
-                  여기에서 모아 볼 수 있습니다.
-                </span>
-              </div>
-            )}
-          </div>
-          {canExport && (
-            <div className={styles.basketFooter}>
-              <button
-                type="button"
-                className={styles.exportButton}
-                disabled={selected.length === 0}
-                onClick={onExport}
-              >
-                <span>시험지 편집</span>
-                <Icon name="arrow" />
-              </button>
-              <p>
-                {selected.length
-                  ? "문제 순서와 배치를 정한 뒤 인쇄하세요."
-                  : "문제를 담으면 시험지 편집을 시작할 수 있어요."}
-              </p>
-            </div>
-          )}
-        </aside>
+        />
       </div>
     </section>
   );

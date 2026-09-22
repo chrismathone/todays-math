@@ -7,6 +7,7 @@
   --bank-selected: #edf2ff;
   width: 100%;
   min-width: 0;
+  padding-bottom: calc(100px + var(--workspace-bottom-inset, 0px));
   background: #f4f6fa;
   color: var(--bank-ink);
   font-size: var(--text-body, 14px);
@@ -46,8 +47,7 @@
 }
 .bank button:focus-visible,
 .bank input:focus-visible,
-.bank select:focus-visible,
-.basketHeading h2:focus-visible {
+.bank select:focus-visible {
   outline: 3px solid var(--bank-primary);
   outline-offset: 3px;
 }
@@ -64,7 +64,7 @@
 }
 .workspace {
   display: grid;
-  grid-template-columns: minmax(0, 1fr) 288px;
+  grid-template-columns: minmax(0, 1fr);
   gap: 24px;
   align-items: start;
 }
@@ -78,13 +78,9 @@
   border: 1px solid var(--bank-line);
   border-radius: 12px;
 }
-/* 🔴 한 줄 — 검색 · 필터 일곱 · 자료 셋 · 초기화 (원장님 2026-09-16
-   「행 개수를 최대한 줄이게 한행에 배치」). 라벨 글자는 칸 문구가 대신한다(TSX 의 sr-only).
-   자리가 모자라면 **가운데 필터 묶음만 가로로 민다** — 칸은 폭을 지켜 찌그러지지 않고
-   검색칸과 초기화는 제자리에 남는다. 브라우저 창 자체의 최소 크기는 웹에서 막을 수 없어
-   「좁아지면 미는 것」이 그 자리를 대신한다. */
 .filterBar {
   display: flex;
+  flex-wrap: wrap;
   align-items: center;
   gap: 12px;
   min-width: 0;
@@ -96,7 +92,17 @@
   justify-content: space-between;
 }
 .filterToggle {
-  display: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 10px;
+  border: 1px solid var(--bank-line);
+  background: #fff;
+  color: var(--bank-ink);
+}
+.filterToggle[aria-expanded="true"] {
+  background: var(--bank-selected);
+  border-color: var(--bank-primary);
 }
 .resetButton {
   display: inline-flex;
@@ -115,14 +121,14 @@
 }
 .searchForm {
   display: flex;
-  flex: 0 1 320px;
+  flex: 1 1 280px;
   width: min(100%, 320px);
   min-width: 220px;
   max-width: 400px;
   align-items: center;
   gap: 8px;
   min-width: 0;
-  min-height: 52px;
+  min-height: 46px;
   padding: 3px 3px 3px 12px;
   border: 1px solid var(--bank-control);
   border-radius: 8px;
@@ -193,25 +199,22 @@
   font-weight: 500;
   font-variant-numeric: tabular-nums;
 }
-/* 가로로 미는 묶음 — 칸 폭은 고정이고 모자라면 이 안에서만 밀린다 */
 .selectFilters {
   display: flex;
-  flex: 1 1 auto;
+  flex: 1 1 450px;
+  flex-wrap: wrap;
   align-items: center;
   gap: 8px;
   min-width: 0;
-  padding-bottom: 2px;
-  overflow-x: auto;
-  overscroll-behavior-x: contain;
-  scrollbar-width: thin;
 }
 .filterField {
-  flex: none;
+  flex: 1 1 120px;
   width: 134px;
   min-width: 0;
 }
 /* 범위는 고른 단원 이름이 들어가 조금 넓다 */
 .rangeField {
+  flex-grow: 1.4;
   width: 180px;
 }
 .selectWrap {
@@ -285,7 +288,7 @@
 .assetFilters > div {
   display: flex;
   align-items: center;
-  flex-wrap: nowrap;
+  flex-wrap: wrap;
   gap: 16px;
 }
 .assetFilters label {
@@ -299,6 +302,7 @@
 .rangePanel {
   grid-column: 1 / -1;
   min-width: 0;
+  margin-top: 12px;
   padding-top: 12px;
   border-top: 1px solid var(--bank-line);
 }
@@ -530,6 +534,11 @@ label.rowSelect {
 .detailDialog > header,
 .detailDialog > footer {
   flex: none;
+}
+.detailColumns {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  gap: 32px;
 }
 .sectionLabel {
   margin: 0 0 8px;
@@ -770,384 +779,451 @@ label.rowSelect {
 .mobilePageNumber {
   display: none;
 }
-.basket {
-  position: sticky;
-  top: 96px;
+/* Common scope stays visible; secondary filters wrap only when requested. */
+.extraFilters:not([hidden]) {
   display: flex;
-  flex-direction: column;
-  min-width: 0;
-  max-height: calc(100dvh - 120px);
-  border: 1px solid #b8c6dd;
-  border-radius: 12px;
-  background: #fff;
-  box-shadow: 0 6px 24px #172b4d0c;
-}
-.basketHeading {
-  display: flex;
-  align-items: center;
   flex-wrap: wrap;
+  align-items: center;
   gap: 8px;
-  padding: 16px 20px;
-  border-radius: 11px 11px 0 0;
-  background: var(--bank-ink);
-  color: #fff;
+  margin-top: 12px;
+  padding-top: 12px;
+  border-top: 1px solid var(--bank-line);
 }
-.basketIcon {
-  display: inline-flex;
+.extraFilters .filterField {
+  flex: 0 1 150px;
 }
-.basketIcon svg {
-  width: 22px;
-  height: 22px;
-}
-.basketHeading h2 {
-  margin: 0;
-  font-size: var(--text-section, 18px);
-  font-weight: 700;
-}
-.basketCount {
-  display: flex;
-  align-items: baseline;
-  gap: 5px;
-  margin-left: auto;
-  font-size: var(--text-title, 24px);
-  font-weight: 750;
-  font-variant-numeric: tabular-nums;
-}
-.basketCount small {
-  font-size: var(--text-caption, 12px);
-  font-weight: 500;
-}
-.basketToggle {
-  display: none;
-}
-.basketContent {
-  min-height: 0;
-  padding: 0 20px;
-  overflow-y: auto;
-  overscroll-behavior: contain;
-  scrollbar-width: thin;
-}
-.basketDescription {
-  margin: 14px 0;
-  color: var(--bank-muted);
-  font-size: var(--text-caption, 12px);
-  word-break: keep-all;
-}
-.basketIntro {
+.buildSteps {
   display: flex;
   flex-wrap: wrap;
   align-items: center;
-  justify-content: flex-end;
-}
-.basketIntro > p {
-  width: 100%;
-}
-.clearBasket {
-  margin: -6px -8px 4px 0;
-  padding: 8px;
-  border: 0;
-  background: transparent;
-  color: var(--bank-muted);
-}
-.clearBasket:hover {
-  color: var(--bank-primary);
-  background: var(--bank-selected);
-}
-.basketEmpty {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-direction: column;
-  min-height: 168px;
-  padding: 20px 0;
-  border-top: 1px solid var(--bank-line);
-  text-align: center;
-}
-.basketEmpty > svg {
-  width: 32px;
-  height: 32px;
-  margin-bottom: 18px;
-  color: #6c7e9e;
-}
-.basketEmpty p {
-  margin: 0;
-  font-size: var(--text-body, 14px);
-  font-weight: 700;
-}
-.basketEmpty > span {
-  margin-top: 8px;
-  color: var(--bank-muted);
-  font-size: var(--text-caption, 12px);
-}
-.basketList {
-  display: grid;
-  margin: 0;
+  gap: 12px 28px;
+  margin: 0 0 18px;
   padding: 0;
-  border-top: 1px solid var(--bank-line);
   list-style: none;
+  color: var(--bank-muted);
+  font-size: 12px;
 }
-.basketList li {
+.buildSteps li {
   display: flex;
   align-items: center;
-  gap: 10px;
-  min-width: 0;
-  padding: 12px 0;
-  border-bottom: 1px solid var(--bank-line);
+  gap: 8px;
 }
-.basketList li:last-child {
-  border-bottom: 0;
-}
-.basketNumber {
-  align-self: flex-start;
-  padding-top: 2px;
-  color: var(--bank-primary);
-  font-size: var(--text-caption, 12px);
-  font-weight: 700;
-  font-variant-numeric: tabular-nums;
-}
-.basketList li > div {
-  flex: 1;
-  min-width: 0;
-}
-.basketList strong {
-  display: block;
-  overflow-wrap: anywhere;
-  font-size: var(--text-body, 14px);
-  font-weight: 700;
-}
-.basketList li > div > span {
-  display: block;
-  margin-top: 4px;
-  color: var(--bank-muted);
-  font-size: var(--text-caption, 12px);
-  overflow-wrap: anywhere;
-}
-.basketList button {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  flex: none;
-  width: 44px;
-  padding: 0;
+.buildSteps li > span {
+  display: inline-grid;
+  place-items: center;
+  width: 24px;
+  height: 24px;
   border: 1px solid var(--bank-line);
+  border-radius: 50%;
   background: #fff;
-  color: var(--bank-muted);
+  font-weight: 700;
 }
-.basketList button:hover {
-  background: #f3f5f9;
-  color: var(--bank-ink);
+.buildSteps [aria-current] {
+  color: var(--bank-primary);
+  font-weight: 700;
 }
-.basketFooter {
-  flex: none;
-  padding: 16px 20px;
-  border-top: 1px solid var(--bank-line);
+.buildSteps [aria-current] > span {
+  color: #fff;
+  background: var(--bank-primary);
+  border-color: var(--bank-primary);
 }
-.exportButton {
+.chooseToolbar,
+.randomHeading,
+.randomActions,
+.replaceBanner {
   display: flex;
+  flex-wrap: wrap;
   align-items: center;
-  justify-content: center;
+  justify-content: space-between;
   gap: 12px;
-  width: fit-content;
-  max-width: 100%;
-  padding: 0 16px;
-  border: 0;
+}
+.chooseToolbar {
+  margin-bottom: 16px;
+}
+.chooseToolbar > p,
+.randomHeading p,
+.randomActions p,
+.replaceBanner p {
+  margin: 0;
+  color: var(--bank-muted);
+  font-size: 12px;
+  overflow-wrap: anywhere;
+}
+.randomToggle,
+.primaryButton,
+.basketExport {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 16px;
+  border: 1px solid var(--bank-primary);
   background: var(--bank-primary);
   color: #fff;
 }
-.exportButton:disabled {
-  opacity: 1 !important;
-  background: #e4e9f1;
-  color: #596981;
+.randomToggle {
+  color: #2548bc;
+  background: #fff;
 }
-.basketFooter > p {
-  margin: 10px 0 0;
+.randomToggle:hover,
+.randomToggle[aria-expanded="true"] {
+  background: var(--bank-selected);
+}
+.primaryButton:hover:enabled,
+.basketExport:hover:enabled {
+  background: #2548bc;
+}
+.randomPanel {
+  margin-bottom: 20px;
+  padding: 18px 20px;
+  border: 1px solid #c5d1ed;
+  border-radius: 12px;
+  background: #fff;
+}
+.randomHeading h3 {
+  margin: 0 0 4px;
+  font-size: 16px;
+}
+.totalCount {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 12px;
+  white-space: nowrap;
+}
+.totalCount input,
+.difficultyCounts input {
+  min-width: 0;
+  height: 42px;
+  border: 1px solid var(--bank-control);
+  border-radius: 6px;
+  background: #fff;
+  color: var(--bank-ink);
+  font-variant-numeric: tabular-nums;
+  text-align: center;
+  font-size: 16px;
+  font-weight: 700;
+}
+.totalCount input {
+  width: 76px;
+}
+.difficultyCounts {
+  display: grid;
+  grid-template-columns: repeat(6, minmax(0, 1fr));
+  gap: 8px;
+  margin: 16px 0 12px;
+  padding: 0;
+  border: 0;
+}
+.difficultyCounts label {
+  display: grid;
+  gap: 6px;
+  padding: 10px;
+  border: 1px solid var(--bank-line);
+  border-radius: 8px;
+  background: #f8f9fc;
+}
+.difficultyCounts label > span {
+  font-size: 12px;
+  font-weight: 600;
   color: var(--bank-muted);
-  font-size: var(--text-caption, 12px);
-  word-break: keep-all;
+  text-align: center;
 }
-@media (max-width: 1180px) {
-  .bank {
-    padding-bottom: 140px;
-  }
-  .workspace {
-    grid-template-columns: minmax(0, 1fr);
-  }
-  .basket {
-    position: fixed;
-    z-index: 30;
-    top: auto;
-    right: 32px;
-    bottom: 16px;
-    left: var(--workspace-basket-left, 272px);
-    display: grid;
-    grid-template-columns: minmax(0, 1fr) auto;
-    gap: 0 16px;
-    max-height: calc(100dvh - 100px);
-    padding: 12px 16px;
-    border-color: #b8c6dd;
-    box-shadow: 0 4px 32px #172b4d24;
-  }
-  .basketHeading {
-    grid-column: 1;
-    grid-row: 1;
-    gap: 8px;
-    padding: 0;
-    background: transparent;
-    color: var(--bank-ink);
-  }
-  .basketIcon {
-    display: none;
-  }
-  .basketCount {
-    margin-left: 0;
-  }
-  .basketToggle {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    gap: 4px;
-    padding: 6px;
-    border: 0;
-    background: #f3f5f9;
-    color: var(--bank-muted);
-  }
-  .basketToggle:hover {
-    background: var(--bank-selected);
-  }
-  .basketToggle svg {
-    width: 14px;
-    height: 14px;
-  }
-  .basketFooter {
-    grid-column: 2;
-    grid-row: 1;
-    align-self: center;
-    padding: 0;
-    border: 0;
-  }
-  .basketFooter > p {
-    display: none;
-  }
-  .basketContent {
-    display: none;
-  }
-  .basketOpen .basketContent {
-    display: block;
-    grid-column: 1 / -1;
-    grid-row: 2;
-    max-height: 45dvh;
-    margin-top: 12px;
-    padding: 0;
-    border-top: 1px solid var(--bank-line);
-  }
-  .basketEmpty {
-    min-height: 160px;
-  }
-  .basketIntro {
-    gap: 8px;
-  }
-  .basketIntro > p {
-    flex: 1;
-    width: auto;
-  }
-  .clearBasket {
-    margin: 0;
-  }
+.difficultyCounts input {
+  width: 100%;
 }
-@media (max-width: 900px) {
-  .basket {
-    left: var(--workspace-basket-left, 16px);
-    right: 16px;
-  }
+.randomActions {
+  justify-content: flex-start;
+}
+.randomActions p {
+  flex: 1 1 200px;
+}
+.randomFeedback {
+  margin-top: 14px;
+  padding: 12px 14px;
+  background: #f1f5fd;
+  border-radius: 8px;
+  font-size: 12px;
+}
+.randomFeedback p {
+  margin: 4px 0;
+}
+.randomFeedback ul {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px 20px;
+  margin: 8px 0 0;
+  padding-left: 18px;
+}
+.randomError {
+  margin: 12px 0 0;
+  font-size: 13px;
+  color: #8b3c23;
+}
+.replaceBanner {
+  margin-bottom: 16px;
+  padding: 14px 16px;
+  border: 1px solid #9eb4ea;
+  border-left: 4px solid var(--bank-primary);
+  border-radius: 8px;
+  background: var(--bank-selected);
+}
+.replaceBanner strong {
+  font-size: 14px;
+}
+.selectionNotice {
+  margin: 0 0 12px;
+  font-size: 13px;
+  color: #2548bc;
+}
+/* The basket never reserves a grid column, including on wide screens. */
+.floatingBasket {
+  position: fixed;
+  z-index: 40;
+  right: 24px;
+  bottom: calc(
+    max(20px, env(safe-area-inset-bottom)) + var(--workspace-bottom-inset, 0px)
+  );
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 10px;
+  max-width: calc(100vw - 24px);
+}
+.basketLauncher {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  min-width: 176px;
+  padding: 0 16px;
+  border: 1px solid var(--bank-ink);
+  background: var(--bank-ink);
+  color: #fff;
+  box-shadow: 0 5px 20px #172b4d29;
+}
+.bank .basketLauncher {
+  height: 52px;
+  border-radius: 12px;
+}
+.basketLauncher:hover {
+  background: #233e69;
+}
+.basketLauncher strong {
+  display: inline-grid;
+  place-items: center;
+  min-width: 28px;
+  height: 28px;
+  padding: 0 6px;
+  border-radius: 7px;
+  background: #fff;
+  color: var(--bank-ink);
+  font-variant-numeric: tabular-nums;
+}
+.basketPanel {
+  width: 320px;
+  max-width: 100%;
+  max-height: calc(100dvh - 170px - var(--workspace-bottom-inset, 0px));
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  padding: 16px;
+  border: 1px solid #bbc9df;
+  border-radius: 12px;
+  background: #fff;
+  box-shadow: 0 8px 32px #172b4d29;
+}
+.basketPanelHeading {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+}
+.basketPanelHeading h2 {
+  margin: 0;
+  font-size: 14px;
+}
+.basketPanelHeading h2 span {
+  color: var(--bank-primary);
+  font-size: 12px;
+}
+.basketPanelHeading .textButton {
+  padding: 6px;
+  font-size: 12px;
+}
+.basketHint {
+  margin: 10px 0;
+  font-size: 12px;
+  color: var(--bank-muted);
+}
+.basketDifficulty {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px 12px;
+  margin: 10px 0;
+  font-size: 11px;
+  color: var(--bank-muted);
+}
+.basketDifficulty b {
+  color: var(--bank-ink);
+}
+.basketNumberGrid {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 6px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.basketNumberGrid button {
+  width: 100%;
+  padding: 0;
+  border: 1px solid #c8d4ea;
+  background: #f4f7ff;
+  color: #2548bc;
+  font-variant-numeric: tabular-nums;
+}
+.basketNumberGrid button:hover {
+  background: #e3ebff;
+  border-color: var(--bank-primary);
+}
+.basketExport {
+  width: 100%;
+  margin-top: 16px;
+}
+.selectedPreview {
+  width: 100%;
+  max-height: calc(100dvh - 32px);
+  margin: auto;
+  padding: 0;
+  border: 1px solid #b8c6dd;
+  border-radius: 12px;
+  background: #fff;
+  color: var(--bank-ink);
+  box-shadow: 0 16px 60px #172b4d33;
+}
+.selectedPreview::backdrop {
+  background: #172b4d66;
+}
+.previewInner {
+  display: flex;
+  flex-direction: column;
+  max-height: calc(100dvh - 36px);
+}
+.previewHeading {
+  display: flex;
+  flex: none;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 12px 16px;
+  border-bottom: 1px solid var(--bank-line);
+  background: #f8f9fc;
+}
+.previewHeading h3 {
+  margin: 0;
+  font-size: 15px;
+}
+.previewHeading span {
+  color: var(--bank-muted);
+  font-size: 12px;
+}
+.previewBody {
+  flex: 1;
+  min-width: 0;
+  min-height: 0;
+  overflow: auto;
+  overscroll-behavior: contain;
+  padding: 20px 16px;
+  font-size: 16px;
+  line-height: 1.8;
+  overflow-wrap: anywhere;
+}
+.previewBody img {
+  max-width: 100%;
+}
+.previewActions {
+  display: flex;
+  flex: none;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  gap: 8px;
+  padding: 12px 16px;
+  border-top: 1px solid var(--bank-line);
+}
+.orderActions {
+  display: flex;
+  gap: 8px;
+  margin-right: auto;
+}
+.bank .previewActions button {
+  padding-inline: 10px;
+  font-size: 12px;
 }
 @media (max-width: 620px) {
-  .filters {
+  .detailColumns {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 20px;
+  }
+  .filters,
+  .randomPanel {
     padding: 12px;
-    margin-bottom: 12px;
   }
   .filterBar {
-    flex-wrap: wrap;
     gap: 8px;
+  }
+  .searchForm {
+    flex-basis: 100%;
+    width: 100%;
+    max-width: none;
+  }
+  .selectFilters {
+    flex-basis: 100%;
+  }
+  .selectFilters .filterField {
+    flex-basis: calc(50% - 4px);
+  }
+  .selectFilters .rangeField {
+    flex-basis: 100%;
   }
   .filterToolbar {
     width: 100%;
   }
-  .filterToggle {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    gap: 6px;
-    padding: 8px 10px;
-    border: 1px solid var(--bank-line);
-    background: #fff;
-    color: var(--bank-ink);
-  }
-  .filterToggle[aria-expanded="true"] {
-    border-color: #c2cef2;
-    background: var(--bank-selected);
-    color: #2548bc;
-  }
-  .searchForm {
-    gap: 6px;
-    padding-left: 10px;
-  }
-  .searchForm > svg {
-    display: none;
-  }
-  .searchButton {
-    min-width: 60px;
-    padding-inline: 12px;
-  }
-  /* 휴대폰에서는 지금처럼 「상세 필터」 단추 뒤에 접어 두고, 열면 한 칸씩 세로로 쌓는다 */
-  .selectFilters {
-    display: none;
-    flex-basis: 100%;
-    flex-wrap: wrap;
-    gap: 10px;
-    padding-top: 12px;
-    overflow-x: visible;
-    border-top: 1px solid var(--bank-line);
-  }
-  .selectFilters.filtersOpen {
-    display: flex;
-  }
-  .filterField,
-  .rangeField {
-    width: 100%;
+  .extraFilters .filterField {
+    flex: 1 1 calc(50% - 4px);
   }
   .assetFilters {
     width: 100%;
     padding-left: 0;
     border-left: 0;
   }
-  .filterSummary {
-    gap: 6px;
+  .buildSteps {
+    gap: 8px 16px;
+    font-size: 11px;
   }
-  .resultsHeader {
-    gap: 4px 12px;
+  .chooseToolbar {
+    gap: 8px;
+  }
+  .chooseToolbar > p {
+    flex-basis: 100%;
+  }
+  .difficultyCounts {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+  .randomActions .primaryButton {
+    width: 100%;
+  }
+  .randomActions p {
+    flex-basis: calc(100% - 110px);
   }
   .cardHeader {
     flex-wrap: wrap;
-    gap: 0 12px;
-    padding: 6px 16px 12px;
-  }
-  .rowSelect {
-    width: 100%;
+    gap: 4px 12px;
+    padding: 6px 16px 10px;
   }
   .problemMeta {
-    gap: 6px 8px;
+    flex-basis: 100%;
   }
   .rowMain {
     padding: 16px;
-  }
-  .rowActions {
-    gap: 8px;
-  }
-  .addButton {
-    margin-left: 0;
-  }
-  .detailMeta {
-    padding: 12px;
   }
   .listFooter {
     justify-content: center;
@@ -1168,27 +1244,13 @@ label.rowSelect {
   .mobilePageNumber {
     display: inline;
     color: var(--bank-muted);
-    font-size: var(--text-caption, 12px);
+    font-size: 12px;
   }
-  .basket {
+  .floatingBasket {
     right: 12px;
-    bottom: calc(
-      max(12px, env(safe-area-inset-bottom)) +
-        var(--workspace-bottom-inset, 0px)
-    );
-    left: 12px;
-    gap: 0 12px;
-    padding: 12px;
   }
-  .basketHeading {
-    gap: 2px 8px;
-  }
-  .basketToggle {
-    margin-right: auto;
-    min-width: 72px;
-  }
-  .basket .exportButton {
-    padding: 0 12px;
+  .previewActions .orderActions {
+    width: 100%;
   }
 }
 @media (prefers-reduced-motion: reduce) {
