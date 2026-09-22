@@ -215,6 +215,10 @@ function UnifiedWorkspaceContent({
   }>({ version: 0 });
   const [notice, setNoticeMessage] = useState("");
   const [noticeError, setNoticeError] = useState(false);
+  const [dismissedSaveError, setDismissedSaveError] = useState<string | null>(
+    null,
+  );
+  const saveErrorKey = `${storageScope ?? "local"}:${draft.id}:${saveError ?? ""}`;
   const setNotice = useCallback((message: string, error = false) => {
     setNoticeMessage(message);
     setNoticeError(error);
@@ -455,6 +459,7 @@ function UnifiedWorkspaceContent({
     });
   }
   async function save() {
+    setDismissedSaveError(null);
     setUndo(null);
     if (await saveNow())
       setNotice(
@@ -747,15 +752,26 @@ function UnifiedWorkspaceContent({
                       size={15}
                     />
                     <span role="status">
-                      {saveStatus === "disabled"
-                        ? "계정 저장 권한 없음"
-                        : saveStatus === "error"
-                          ? "저장 확인 필요"
-                          : selected.length
-                            ? storageScope
-                              ? "계정에 저장됨"
-                              : "자동 저장됨"
-                            : "작업 준비 완료"}
+                      {saveStatus === "disabled" ? (
+                        "계정 저장 권한 없음"
+                      ) : saveStatus === "error" ? (
+                        <button
+                          type="button"
+                          className={s.saveErrorTrigger}
+                          onClick={() => setDismissedSaveError(null)}
+                          aria-label="저장 오류 자세히 보기"
+                        >
+                          저장 확인 필요
+                        </button>
+                      ) : selected.length ? (
+                        storageScope ? (
+                          "계정에 저장됨"
+                        ) : (
+                          "자동 저장됨"
+                        )
+                      ) : (
+                        "작업 준비 완료"
+                      )}
                     </span>
                   </>
                 )}
@@ -780,7 +796,7 @@ function UnifiedWorkspaceContent({
           )}
         </header>
         <div className={s.notifications}>
-          {canCreate && saveError && (
+          {canCreate && saveError && dismissedSaveError !== saveErrorKey && (
             <div
               className={storageScope ? cloudStyles.cloudError : s.saveError}
               role="alert"
@@ -791,6 +807,15 @@ function UnifiedWorkspaceContent({
                 <button onClick={download}>작업 파일 내려받기</button>
               )}
               <button onClick={save}>다시 저장</button>
+              <button
+                type="button"
+                className={s.saveErrorDismiss}
+                aria-label="저장 오류 알림 닫기"
+                title="알림 닫기"
+                onClick={() => setDismissedSaveError(saveErrorKey)}
+              >
+                <Icon name="close" size={18} />
+              </button>
             </div>
           )}
           {hasMenus && notice && (
