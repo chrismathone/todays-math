@@ -57,6 +57,34 @@
   margin-left: auto;
   min-width: 0;
 }
+.playButton {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+  min-height: 39px;
+  padding: 8px 13px;
+  border: 1px solid #ebcf70;
+  border-radius: 11px;
+  background: #fff2ae;
+  color: #54411c;
+  font-size: 12px;
+  font-weight: 800;
+  white-space: nowrap;
+  cursor: pointer;
+  box-shadow: 0 2px 0 #dfc269;
+}
+.playButton svg {
+  width: 19px;
+  height: 19px;
+}
+.playButton:hover {
+  background: #ffe985;
+}
+.playButton:active {
+  transform: translateY(1px);
+  box-shadow: none;
+}
 .momentum {
   display: flex;
   align-items: center;
@@ -666,6 +694,7 @@
   line-height: 1.7;
 }
 .modal {
+  margin: auto;
   width: min(850px, calc((100vw - 36px) / var(--lab-zoom, 1)));
   max-height: calc(90dvh / var(--lab-zoom, 1));
   overflow: auto;
@@ -681,6 +710,25 @@
 }
 .modalBody {
   padding: 28px;
+}
+.playModal {
+  max-width: none;
+  width: min(1180px, calc((100vw - 32px) / var(--lab-zoom, 1)));
+  height: min(720px, calc((100dvh - 32px) / var(--lab-zoom, 1)));
+  max-height: calc((100dvh - 32px) / var(--lab-zoom, 1));
+  overflow: hidden;
+}
+.playModal .modalBody {
+  height: 100%;
+  min-height: 0;
+  padding: 0;
+}
+.playLoading {
+  height: 100%;
+  display: grid;
+  place-items: center;
+  margin: 0;
+  background: #f5f8fb;
 }
 .modalHeading {
   display: flex;
@@ -837,6 +885,15 @@
   }
 }
 @media (max-width: 760px) {
+  .desktopPlay {
+    display: none;
+  }
+  .playModal {
+    width: calc(100vw - 12px);
+    height: calc(100dvh - 12px);
+    max-height: calc(100dvh - 12px);
+    border-radius: 13px;
+  }
   .page {
     grid-template-rows: 56px minmax(0, 1fr);
   }

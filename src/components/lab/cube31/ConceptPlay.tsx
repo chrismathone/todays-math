@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useReducer, useRef } from "react";
-import type { KeyboardEvent } from "react";
+import type { CSSProperties, KeyboardEvent } from "react";
 import {
   PLAY_MISSIONS,
   canPlayExchange,
@@ -311,6 +311,30 @@ export default function ConceptPlay({ onClose }: { onClose: () => void }) {
               >
                 {mission.places.map((place) => {
                   const count = state.board.workspace[place];
+                  // Reserve room for the whole move, so receiving another block
+                  // does not suddenly shrink the models already on the shelf.
+                  const anticipated =
+                    mission.kind === "build"
+                      ? place === 2
+                        ? 4
+                        : 12
+                      : mission.problem
+                        ? (Math.floor(mission.problem.a / VALUES[place]) % 10) +
+                          (mission.kind === "add"
+                            ? (Math.floor(mission.problem.b / VALUES[place]) %
+                                10) +
+                              Number(place > 0 && !!mission.exchange)
+                            : Number(
+                                mission.exchange === "split" && place === 0,
+                              ) * 10)
+                        : mission.kind === "split" && place === 0
+                          ? 10
+                          : mission.initial[place];
+                  const capacity = Math.max(1, anticipated, count);
+                  const columns = Math.min(
+                    place === 2 ? 2 : place === 1 ? 6 : 5,
+                    capacity,
+                  );
                   const interactive =
                     mission.kind === "build" ||
                     mission.kind === "subtract" ||
@@ -333,7 +357,12 @@ export default function ConceptPlay({ onClose }: { onClose: () => void }) {
                       <span
                         className={styles.pile}
                         key={`${state.round}-${place}-${count}`}
-                        data-compact={place === 2 && count > 1}
+                        style={
+                          {
+                            "--pile-columns": columns,
+                            "--pile-rows": Math.ceil(capacity / columns),
+                          } as CSSProperties
+                        }
                         data-motion={
                           !state.paused && state.motion?.place === place
                             ? state.motion.kind

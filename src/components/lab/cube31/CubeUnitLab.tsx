@@ -30,6 +30,14 @@ const Base10Explorer = dynamic(() => import("./Base10Explorer"), {
   ssr: false,
   loading: () => <p role="status">수 모형을 준비하고 있어요…</p>,
 });
+const ConceptPlay = dynamic(() => import("./ConceptPlay"), {
+  ssr: false,
+  loading: () => (
+    <p className={styles.playLoading} role="status">
+      두리와 모아가 블록 가게를 열고 있어요…
+    </p>
+  ),
+});
 const subscribeResize = (callback: () => void) => {
   window.addEventListener("resize", callback);
   return () => window.removeEventListener("resize", callback);
@@ -77,6 +85,7 @@ export default function CubeUnitLab({
   const [mapOpen, setMapOpen] = useState(false);
   const [explorerOpen, setExplorerOpen] = useState(false);
   const [reportOpen, setReportOpen] = useState(false);
+  const [playOpen, setPlayOpen] = useState(false);
   const [momentum, setMomentum] = useState(emptyMomentum);
   const sound = useLabSound();
   const heading = useRef<HTMLHeadingElement>(null);
@@ -158,6 +167,13 @@ export default function CubeUnitLab({
           <span className={styles.labTag}>랩실</span>
         </Link>
         <span className={styles.headerUnit}>초등 3-1 · 1단원</span>
+        <button
+          type="button"
+          className={`${styles.playButton} ${styles.desktopPlay}`}
+          onClick={() => setPlayOpen(true)}
+        >
+          <ChatIcon /> 대화로 배우기
+        </button>
         <div className={styles.headerTools}>
           <div
             className={styles.momentum}
@@ -301,6 +317,13 @@ export default function CubeUnitLab({
             >
               학습 순서 {mapOpen ? "닫기" : "보기"}
             </button>
+            <button
+              type="button"
+              className={styles.playButton}
+              onClick={() => setPlayOpen(true)}
+            >
+              <ChatIcon /> 대화로 배우기
+            </button>
             <span>
               {save.lesson + 1} / {CUBE_LESSONS.length}
             </span>
@@ -410,6 +433,15 @@ export default function CubeUnitLab({
             10개의 낱개가 십 묶음 하나로, 10개의 십 묶음이 백 묶음 하나로
             바뀌어요.
           </p>
+        </Modal>
+      )}
+      {playOpen && (
+        <Modal
+          title="두리·모아와 대화로 배우기"
+          play
+          onClose={() => setPlayOpen(false)}
+        >
+          <ConceptPlay onClose={() => setPlayOpen(false)} />
         </Modal>
       )}
       {reportOpen && (
@@ -837,32 +869,53 @@ function ActivityViewport({ children }: { children: React.ReactNode }) {
     </div>
   );
 }
+function ChatIcon() {
+  return (
+    <svg
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="1.8"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      aria-hidden="true"
+    >
+      <path d="M20 11a8 8 0 0 1-8 8H5l-3 3V11a9 9 0 0 1 18 0Z" />
+      <path d="M7 9h8M7 13h5" />
+    </svg>
+  );
+}
 function Modal({
   title,
   children,
   onClose,
+  play = false,
 }: {
   title: string;
   children: React.ReactNode;
   onClose: () => void;
+  play?: boolean;
 }) {
   const ref = useRef<HTMLDialogElement>(null);
+  // Capture the opener before a child experiment moves focus on mount.
+  const [previous] = useState(() =>
+    typeof document !== "undefined" &&
+    document.activeElement instanceof HTMLElement
+      ? document.activeElement
+      : null,
+  );
   useEffect(() => {
     const node = ref.current;
-    const previous =
-      document.activeElement instanceof HTMLElement
-        ? document.activeElement
-        : null;
     node?.showModal();
     return () => {
       node?.close();
       if (previous?.isConnected) previous.focus();
     };
-  }, []);
+  }, [previous]);
   return (
     <dialog
       ref={ref}
-      className={styles.modal}
+      className={`${styles.modal} ${play ? styles.playModal : ""}`}
       onCancel={onClose}
       onClick={(event) => {
         if (event.target === event.currentTarget) onClose();
@@ -870,17 +923,19 @@ function Modal({
       aria-label={title}
     >
       <div className={styles.modalBody}>
-        <div className={styles.modalHeading}>
-          <h2>{title}</h2>
-          <button
-            type="button"
-            className={styles.secondaryButton}
-            onClick={onClose}
-            aria-label={title + " 닫기"}
-          >
-            닫기 ×
-          </button>
-        </div>
+        {!play && (
+          <div className={styles.modalHeading}>
+            <h2>{title}</h2>
+            <button
+              type="button"
+              className={styles.secondaryButton}
+              onClick={onClose}
+              aria-label={title + " 닫기"}
+            >
+              닫기 ×
+            </button>
+          </div>
+        )}
         {children}
       </div>
     </dialog>
