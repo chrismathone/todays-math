@@ -165,7 +165,7 @@ export async function editDevAiFigure(
     });
   // 오류 기록 메모 — 실패했을 때만 실린다(원장님 2026-09-22 «업그레이드 패치 가능하게»). 모델이 무엇을 냈고
   // 왜 못 읽었나가 남아야 명령 계약·지시문을 고칠 수 있다. 요청 문장·지금 그림은 재현 재료라 같이 싣는다.
-  // 크롭 이미지는 싣지 않는다 — 원장님 결정은 «도형 재작도 실패 때»다.
+  // 크롭 이미지도 같이(원장님 2026-09-22) — 재작도와 같은 표·같은 2MB 상한(기록기가 본다).
   const trail: {
     attempt: number;
     refusal?: string;
@@ -183,6 +183,7 @@ export async function editDevAiFigure(
         figure: JSON.stringify(request.figure).slice(0, 8000),
       },
     },
+    image: request.imageDataUrl,
   });
   const deadline = new AbortController();
   const cancel = () => deadline.abort();

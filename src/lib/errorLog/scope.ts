@@ -22,7 +22,7 @@ export type ErrorLogNote = {
   detail?: string;
   /** 요약 — 얕게 합친다. 값은 쓰는 때(실패한 뒤)에 직렬화되므로 배열을 넘기고 나중에 채워도 된다 */
   context?: Record<string, unknown>;
-  /** 원본 이미지(data URL) — AI 도형 재작도 실패 때 */
+  /** 원본 이미지(data URL) — AI 도형 재작도 · «요청대로 고치기» 실패 때 */
   image?: string;
 };
 

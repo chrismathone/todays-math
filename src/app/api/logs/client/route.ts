@@ -4,6 +4,7 @@
  * 계약: src/contracts/errorLog.contract.ts (clientErrorBatchSchema)
  *
  * - 로그인 안 한 사람도 보낸다(랩실 `/lab` 은 로그인 없이 연다 — D-135 ⑻). 로그인했으면 그 계정을 적는다.
+ *   학생 세션도 보낸다(원장님 2026-09-22 — 학생 관문 `studentRouteAccess.ts` 가 이 한 줄만 연다).
  * - 양 제한: 한 사람(계정, 없으면 IP)당 분당 사건 수 · 본문 크기 상한(`clientQuota.ts`). 넘치면 버린다.
  * - 🔴 **이 경로는 `withErrorLog` 를 거치지 않는다** — 받다가 실패한 것을 또 기록하면 되먹임 고리가 선다
  *   (가드 `errorLogRouteCoverage.test.ts` 의 EXEMPT 가 이 한 곳이다). 실패는 조용히 삼킨다.
@@ -69,13 +70,20 @@ export async function POST(request: Request): Promise<Response> {
     const parsed = clientErrorBatchSchema.safeParse(json);
     if (!parsed.success) return done(400);
 
-    const session = await auth().catch(() => null);
-    const userId =
-      (session as { user?: { id?: unknown } } | null)?.user?.id ?? null;
+    const session = (await auth().catch(() => null)) as {
+      user?: { id?: unknown };
+      student?: { accountId?: unknown };
+    } | null;
+    const userId = session?.user?.id ?? null;
+    // 학생 세션(원장님 2026-09-22 — 학생 화면 오류도 모은다)은 사용자 표의 행이 아니라 요약에 싣는다.
+    // 양도 학생마다 센다 — IP 로 묶으면 한 교실이 한 사람 몫을 나눠 쓴다.
+    const student = session?.student?.accountId;
     const key =
       typeof userId === "string"
         ? `user:${userId}`
-        : `ip:${clientIp(request) ?? "unknown"}`;
+        : typeof student === "string"
+          ? `student:${student}`
+          : `ip:${clientIp(request) ?? "unknown"}`;
     const allowed = takeClientLogQuota(key, parsed.data.events.length);
     if (!allowed) return done(429);
 
@@ -96,6 +104,7 @@ export async function POST(request: Request): Promise<Response> {
           ...(event.firstAt ? { firstAt: event.firstAt } : {}),
           ...(event.release ? { clientRelease: event.release } : {}),
           ...(event.request ? { request: event.request } : {}),
+          ...(typeof student === "string" ? { student } : {}),
           ...(userAgent ? { userAgent } : {}),
         },
       })),

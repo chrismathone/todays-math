@@ -3,7 +3,8 @@
 > 브리프: `docs/planning/tracks/briefs/error-log-collector.md` · 가지 `chrismathone/error-log` · 기준 `f63bd388`
 > **푸시하지 않았다.** 🔴 **운영 DB 에 적용하지 않았다**(드라이런도 안 돌렸다 — 워크트리에 `.env` 없음).
 > 결정 번호(D-xxx)·기획 문서 번호는 붙이지 않았다 — «결정 문장 초안»에 번호 없이 적었다.
-> 커밋 6개(§9 끝) · 136파일. 도형 편집기 폴더(`src/components/unified/figure-editor/`)는 건드리지 않았다.
+> 커밋 8개(§9 끝) · 도형 편집기 폴더(`src/components/unified/figure-editor/`)는 건드리지 않았다.
+> **추가 결정 반영(메인 전달, 원장님 2026-09-22)** — 학생 화면 오류도 받는다 · «요청대로 고치기» 실패에도 크롭 이미지 (§11).
 
 ---
 
@@ -29,9 +30,9 @@
 | 가드 | `src/__tests__/unit/errorLogRouteCoverage.test.ts` | 소스(AST, 메서드 단위·경로 일치) + 행동(모듈 적재 후 표지) 두 겹 (§4) |
 | AI 실패 | `dev-ai/figure-engine.ts` · `figure-edit.ts` · `tasks.ts` · `studio-ai/api.ts` · `execute.ts` · `handler.ts` · `api/dev/unified/ai` | §5 |
 | 사용자 | `src/lib/session.ts` · `src/lib/accountAccess.ts` | 세션을 읽을 때 사용자 id 를 메모로(라우트 63곳이 이 둘을 지난다) |
-| 관문 | `src/proxy.ts` · `accountRouteAccess.ts` · `routeAccess.ts` | 관문의 API 403 도 기록 · `/api/logs/client` 통과 · 감사 기록에 안 쌓임 (§6) |
+| 관문 | `src/proxy.ts` · `accountRouteAccess.ts` · `routeAccess.ts` · `studentRouteAccess.ts` | 관문의 API 403 도 기록 · `/api/logs/client` 통과(학생 세션 포함) · 감사 기록에 안 쌓임 (§6) |
 | 브라우저 | `src/lib/errorLog/clientReporter.ts` · `components/errorLog/ClientErrorLog.tsx` · `app/layout.tsx` · `components/unified/aiResponse.ts` | §7 |
-| 받는 곳 | `src/app/api/logs/client/route.ts` · `src/lib/errorLog/clientQuota.ts` | 로그인 없이도 · 분당 30건/사람 · 32KB · 교차 사이트 거절 · 스스로 기록 안 함 |
+| 받는 곳 | `src/app/api/logs/client/route.ts` · `src/lib/errorLog/clientQuota.ts` | 로그인 없이도 · 분당 30건/사람(계정 · 학생 계정 · 없으면 IP) · 32KB · 교차 사이트 거절 · 스스로 기록 안 함 |
 | 보관 | `src/lib/errorLog/purge.ts` · `src/app/api/logs/purge/cron/route.ts` · `vercel.json` | 90일 지난 줄 삭제(이미지는 FK CASCADE), 매일 18:30 UTC(03:30 KST) |
 | 조회 | `scripts/logs/recent-errors.ts` · `errorLogQuery.ts` | §8 |
 | 적용 | `scripts/qa/apply-error-log-migration.ts` | 이 마이그레이션 하나만 · 드라이런 먼저 · 되돌리기 — **안 돌렸다** |
@@ -99,7 +100,7 @@
 
 - **도형 재작도**(`figure-engine.ts`) — `context.figureTrail[]`, 시도마다: 되물은 사유(`repairPrompt`)·반박(`refusal`) · 모델 출력 앞 6천 자(사양 JSON) · 모델 note · 엔진 거절 원문(`engineErrors[]`, 교정하며 다시 그릴 때마다) · 적용한 교정(`repairs[] = {note, warning, error}`) · 교정 뒤 사양 · 원본 대조(`review`) · 결과(`outcome`: declined·rebutted·engine-rejected·engine-failed·unsafe-svg·review-unreadable·review-failed·rendered·timeout·error) · 걸린 시간. **크롭 이미지** → `error_log_image`.
   - 처음엔 브리프대로 `FigureRedrawError` 에 싣으려 했는데, 요청 메모로 바꿨다 — 그래야 422 가 아닌 실패(두 번째 시도의 상류 429·5xx, 엔진 실행 실패, 시간 초과)에서도 시도 기록이 남는다.
-- **요청대로 고치기**(`figure-edit.ts`) — `context.figureEditTrail[]`(모델 출력 앞부분·되물음·못 읽은 사유) + `figureEditRequest`(요청 문장 500자·지금 그림 8KB). 크롭 이미지는 **안 싣는다**(결정은 재작도만 — §11).
+- **요청대로 고치기**(`figure-edit.ts`) — `context.figureEditTrail[]`(모델 출력 앞부분·되물음·못 읽은 사유) + `figureEditRequest`(요청 문장 500자·지금 그림 8KB) + **크롭 이미지**(원장님 2026-09-22 추가 결정 — 재작도와 같은 `error_log_image` · 같은 2MB 상한, 넘으면 `context.imageSkipped`).
 - **OCR·해설**(`tasks.ts`) — 첫 응답을 못 읽으면 `context.modelResponse = {head(4천 자), length}`. `DevAiParseError.diagnostic` 에 진짜 zod 경로·문구(응답에는 안 나감 — `message` 는 기존 거름 규칙 그대로).
 - **상류 API**(`api.ts`) — 전에는 실패 본문을 읽지 않고 버렸다(`body.cancel()`). 이제 REST 는 `{host, path, status, retryAfter, body 앞 2천 자}`, SDK 는 `{vendor, model, status, message}` 를 `context.upstream[]` 에(재시도마다 하나씩). 키 값이 되비쳐도 기록기가 거른다(시험 있음).
 - **400 계약 실패**(`handler.ts` · dev 라우트) — `detail` 에 `경로: 문구 (code · 기대 형)` 한 줄씩, `context.requestShape` 에 본문의 **모양**(열쇠·형·크기, 열거형 값 `action`·`provider`·`grade`·`model` 만). 본문 값은 안 싣는다 — 시험이 «요청 문장이 기록에 없다»를 잠근다.
@@ -111,7 +112,7 @@
 
 - `POST /api/logs/client` 는 로그인 안 한 사람 · 메뉴 없는 원장 · 승인 대기 · 검수 계정 · 관리자 모두 지난다. 한 경로·POST 만(시험이 옆 경로를 막는다).
   - 검수 계정 허용 목록(`REVIEWER_RULES`)에 한 줄 더했고, 잠금 시험(`routeAccess.test.ts`)에 까닭과 함께 올렸다.
-  - 🔴 **학생 세션은 열지 않았다** — D-124 허용 목록은 원장님 결정이라 이 트랙이 넓히지 않는다. 학생 화면의 보고는 403 을 받고 그 화면에서 멈춘다(§11 결정 대기).
+  - **학생 세션도 연다**(원장님 2026-09-22 추가 결정) — `studentRouteAccess.ts` 의 `ACTIVE_RULES`·`MUST_CHANGE_RULES` 에 `POST /api/logs/client` 한 줄씩. 학생이 얻는 것은 **그 한 줄뿐**이다(§11).
 - `/api/logs/` 요청은 감사 기록(`request`)에 안 쌓인다.
 - 관문이 직접 낸 API 403(메뉴 없음·승인 대기·검수 전용·학생 관문)도 오류 기록에 — `context.stage = "proxy"`(학생이면 `student` = 학생 계정 id). 틀은 관문 뒤라 이 거절을 못 본다. 로그 받는 곳에 대한 거절은 기록하지 않는다(되먹임 금지).
 
@@ -167,11 +168,22 @@ npx tsx scripts/logs/recent-errors.ts --json ...                        # 기계
 - 전체 `npm run test`: 첫 시도는 19분쯤 끊겼고, 두 번째는 744파일을 시간당 ~200파일 속도로 돌고 있어 내가 멈추고 «영향 220파일»로 좁혔다(브리프의 «관련 묶음»). 그 뒤 이 트랙의 고아 vitest 작업자들이 CPU 를 쥐고 있던 것을 찾아 정리했다(CPU 100% → 49%).
 - `next build`: tsc 는 라우트 처리기 형을 통과하지만, 빌드가 만드는 라우트 내보내기 검사는 따로다. 감싼 처리기는 매개변수·반환 형을 그대로 보존하도록 짰다(`(...args: Parameters<H>) => Promise<Awaited<ReturnType<H>>>`). **병합 전에 한 번 빌드**를 권한다.
 
+**추가 결정 반영 뒤(§11) 다시 돌린 것** — 메모리가 모자라 전체 시험은 안 돌렸다(메인 지시):
+
+| 관문 | 결과 |
+|---|---|
+| `npx tsc --noEmit` | **0** |
+| ESLint(바꾼 10파일) · `prettier --check`(줄끝 뺀 내용) · `npm run lint:affordance` | 0 · 통과 · 통과 |
+| 관련 묶음 26파일(오류 기록 11 · 학생 관문 2 · `routeAccess` · `proxyRoleGate` · `studioAiFigureEdit` · `devAiFigureEdit*` 8 · 학생 세션 등) | 시험 **452 통과** · 2 실패 = 위 1번(`/lab/cube-3-1`) 그대로 — 기대 집합과 받은 집합의 차이는 `GET`·`HEAD /lab/cube-3-1` 둘뿐이고 `POST /api/logs/client` 는 양쪽에 있다 |
+| RED 먼저 | 새·바꾼 기대 9개가 코드 전에 빨강 → 코드 뒤 초록 |
+
 **그 밖에 돌려 본 것**(개발 중, 각 단계 끝에): API 시험 57파일(감싸기 직후 — 실패 2개는 가드 예외 항목·학생 전수 DB 덫, 둘 다 고친 뒤 초록) · 작업실 AI 회귀 12파일 332개 · 관문·접근 8파일 148개(실패 2 = 위 1번).
 
 **커밋**(`f63bd388` 위, 푸시 안 함)
 
 ```
+(이 커밋) 원장님 추가 결정 — 학생 화면 오류도 받는다 · «요청대로 고치기» 실패에도 크롭 이미지 · 보고 §11
+7b1c73b6 트랙 보고
 ce0b4f1b 서버 쪽 양 제한 — 같은 경로·상태·사람 분당 20줄, 넘친 수는 다음 줄에
 2d5e40b1 조회 스크립트 · 마이그레이션 적용 스크립트(미실행)
 9d603a9e 브라우저 쪽 오류 · 관문의 API 거절 · 90일 정리
@@ -192,9 +204,22 @@ adc7ee78 route.ts 88개 · 메서드 120개를 withErrorLog 로 감싼다 + 빠�
 
 ## 11. 남긴 것 · 원장님 결정 대기
 
+**원장님 결정(2026-09-22, 메인 전달) — 셋 다 처리했다**
+
+1. **운영 DB 표 만들기 — 승인.** 적용은 메인이 병합 뒤 드라이런 → `--apply`(§12). 이 트랙은 DB 를 만지지 않았다.
+2. **학생 화면 오류도 모은다 — 반영.**
+   - `studentRouteAccess.ts` 의 `ACTIVE_RULES`·`MUST_CHANGE_RULES` 에 `POST /api/logs/client` 한 줄씩(까닭 `why`: 원장님 2026-09-22). 머리말의 «학생 쪽 쓰기는 `/api/learn/**` 뿐»도 고쳤다.
+   - 잠금 시험 갱신: `studentRouteAccess.test.ts` 두 목록 · `proxyStudentGate.test.ts` 두 «지나가는 집합»(진짜 `proxy.ts` 전수).
+   - **음성 시험**(두 상태 모두): `GET`·`HEAD`·`PUT`·`PATCH`·`DELETE /api/logs/client` · `GET`·`POST /api/logs` · `POST /api/logs/clientx` · `POST /api/logs/client/x` · `GET`·`POST /api/logs/purge/cron` · `POST /api/logs/purge` → 전부 403(«학생 계정은 이 기능을 쓸 수 없습니다.»). 끝 빗금(`/api/logs/client/`)은 같은 주소로 지난다.
+   - **변이 둘 다 물었다**: 경로를 `/api/logs/**` 로 넓힘 → 잠금 목록 1 + 음성 2 빨강 · 첫 로그인 규칙에 `GET` 을 더함 → 잠금 목록 1 + 음성 1 빨강. 원복 확인(`cmp`).
+   - 받는 곳(`/api/logs/client`)은 학생 세션이면 `user_id` 를 비우고 `context.student`(학생 계정 id)에 싣는다 — 학생은 사용자 표의 행이 아니다. 양은 **학생마다** 센다(`student:<id>` — IP 로 묶으면 한 교실이 한 사람 몫을 나눠 쓴다). 시험 있음.
+   - 관문 되먹임 금지는 그대로: 학생이 막힌 메서드로 받는 곳을 두드린 거절은 줄이 안 생기고, 옆 경로(`/api/logs/purge/cron`) 거절은 여느 거절처럼 남는다(`proxyErrorLog.test.ts` 갱신).
+3. **«요청대로 고치기» 실패에도 크롭 이미지 — 반영.** `figure-edit.ts` 의 메모에 `image` 한 칸 — 재작도와 같은 `error_log_image` 표 · 같은 2MB 상한(기록기 `record.ts` 가 본다). 시험 둘: 3바이트 PNG 가 `image/png`·3바이트로 실린다 · 2MB+1바이트는 안 실리고 `context.imageSkipped.reason = "too-large"`. 주석(`scope.ts`·`errorLogValues.ts`·`schema.prisma` 의 `///` 설명 — SQL 에는 영향 없음)도 «재작도 · 고치기»로.
+
+**남긴 것**
+
 - **관리자 화면** — 이번 범위 밖(D-07 절차 — Wire 부터). 조회 스크립트가 그 전까지의 도구.
-- **학생 화면 오류** — 학생 세션은 `/api/logs/client` 를 못 쓴다(D-124 허용 목록). 열려면 `studentRouteAccess.ts` 의 `ACTIVE_RULES`·`MUST_CHANGE_RULES` 에 `POST /api/logs/client` 한 줄씩 + 잠금 시험 갱신. 원장님 결정 사항.
-- **고치기·OCR 크롭 이미지** — 결정은 «도형 재작도 실패 때»만이라 안 실었다. «요청대로 고치기»도 같은 이미지가 있으면 재현이 쉬워진다 — 원하시면 `figure-edit.ts` 의 메모에 `image` 한 칸.
+- **OCR·해설 크롭 이미지** — 결정은 재작도·고치기뿐이라 안 실었다(모델 응답 앞부분은 실린다).
 - **관문 거절의 `route`** 는 라우트 틀이 아니라 실제 경로다(관문은 틀을 모른다) — 묶음 조회 때 id 가 섞인다.
 - **양 제한은 서버 프로세스마다**(서버리스 인스턴스가 여럿이면 전역 상한이 아니다) — 폭주를 묶는 목적.
 - **Next 흐름 신호**(redirect·notFound)는 오류로 안 센다. 로그인 실패(Auth.js 는 4xx 가 아니라 되돌림)는 기록되지 않는다.
@@ -214,7 +239,8 @@ adc7ee78 route.ts 88개 · 메서드 120개를 withErrorLog 로 감싼다 + 빠�
 > **오류 기록 (2026-09-22, 원장님)** — 사용자의 요청이 거절(4xx)·실패(5xx·예외)되거나 브라우저에서 오류가 나면 새 표 `error_log` 에
 > 한 줄씩 남긴다(감사 기록 표와 섞지 않는다). ⑴ 모든 `src/app/api/**/route.ts` 의 모든 메서드는 `withErrorLog("<경로>", 처리기)` 를
 > 지난다 — 가드 시험이 메서드 단위로 센다(예외는 받는 곳 `/api/logs/client` 하나). ⑵ 화면 문구는 바꾸지 않는다 — 개발자용 원문·요청
-> 요약·AI 시도 기록은 기록에만 싣는다. 요청 본문은 싣지 않는다(모양만). 비밀 값은 걸러 싣는다. ⑶ AI 도형 재작도 실패는 크롭 이미지(2MB
-> 상한)를 별도 표에 남긴다. ⑷ 90일 보관 — 매일 지운다. ⑸ 보는 곳은 당장 조회 스크립트(`scripts/logs/recent-errors.ts`),
+> 요약·AI 시도 기록은 기록에만 싣는다. 요청 본문은 싣지 않는다(모양만). 비밀 값은 걸러 싣는다. ⑶ AI 도형 재작도 · «요청대로 고치기»
+> 실패는 크롭 이미지(2MB 상한)를 별도 표에 남긴다. ⑷ 90일 보관 — 매일 지운다. ⑸ 보는 곳은 당장 조회 스크립트(`scripts/logs/recent-errors.ts`),
 > 관리자 화면은 나중에 D-07 절차로. ⑹ 기록은 best effort — 표가 없거나 DB 가 느려도 요청을 깨지 않는다. ⑺ 같은 경로·상태·사람은
-> 분당 20줄(넘친 수는 다음 줄에), 브라우저는 사람당 분당 30건.
+> 분당 20줄(넘친 수는 다음 줄에), 브라우저는 사람당 분당 30건. ⑻ 학생 세션도 브라우저 오류를 보낸다 — 학생 허용 목록(D-124)에
+> `POST /api/logs/client` 한 줄만 더한다(읽기·다른 메서드·옆 경로는 닫힌 채).

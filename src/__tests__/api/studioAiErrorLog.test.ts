@@ -329,8 +329,40 @@ describe("⑶ 모델 응답을 못 읽었을 때 — 응답 앞부분", () => {
       attempt: 0,
       modelOutput: "명령을 만들 수 없습니다",
     });
-    // 고치기에는 크롭 이미지를 싣지 않는다(원장님 결정은 도형 재작도 실패 때만)
+    // 고치기 실패에도 크롭 이미지를 남긴다(원장님 2026-09-22) — 재작도와 같은 표·같은 2MB 상한
+    expect(row.image).toMatchObject({ mimeType: "image/png", byteSize: 3 });
+    expect(row.context.imageSkipped).toBeUndefined();
+  });
+
+  it("«요청대로 고치기» — 크롭 이미지가 2MB 를 넘으면 싣지 않고 넘었다고만 적는다(재작도와 같은 상한)", async () => {
+    vi.mocked(runModelApi).mockResolvedValue("명령을 만들 수 없습니다");
+    // 2MB + 1바이트 — 3바이트마다 base64 4글자
+    const big = Buffer.alloc(2 * 1024 * 1024 + 1, 1).toString("base64");
+    const response = await post({
+      provider: "auto",
+      action: "figure-edit",
+      grade: "중2",
+      imageDataUrl: `data:image/png;base64,${big}`,
+      content: "2번 선분을 점선으로 바꿔 주세요.",
+      figure: {
+        viewBox: [0, 0, 300, 240],
+        elements: [
+          {
+            n: 1,
+            kind: "선분",
+            points: [
+              [37, 26],
+              [37, 206],
+            ],
+          },
+        ],
+      },
+    });
+    expect(response.status).toBe(422);
+    const [row] = await logged();
+    expect(row).toMatchObject({ kind: "ai-rejected", action: "figure-edit" });
     expect(row.image).toBeNull();
+    expect(row.context.imageSkipped).toMatchObject({ reason: "too-large" });
   });
 });
 

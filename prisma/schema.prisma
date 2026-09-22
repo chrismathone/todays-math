@@ -1394,7 +1394,7 @@ model ErrorLog {
   durationMs Int?     @map("duration_ms")
 
   user  User?          @relation(fields: [userId], references: [id], onDelete: SetNull)
-  /// AI 도형 재작도 실패 때의 크롭 이미지 — 목록 조회가 무거워지지 않게 따로 둔다
+  /// AI 도형 재작도 · «요청대로 고치기» 실패 때의 크롭 이미지 — 목록 조회가 무거워지지 않게 따로 둔다
   image ErrorLogImage?
 
   @@index([createdAt(sort: Desc)])

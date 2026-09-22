@@ -145,7 +145,7 @@ describe("⑶ 관문의 API 거절도 오류 기록에", () => {
 });
 
 describe("⑷ 로그 받는 곳에 대한 거절은 기록하지 않는다", () => {
-  it("학생 세션이 보낸 오류 보고가 막혀도 줄이 생기지 않는다", async () => {
+  it("학생 세션 — 오류 보고(POST)는 지나가고(원장님 2026-09-22), 막힌 메서드로 두드려도 줄이 생기지 않는다", async () => {
     session.mockReturnValue({
       student: {
         accountId: "4a000000-0000-4000-8000-000000000001",
@@ -155,8 +155,14 @@ describe("⑷ 로그 받는 곳에 대한 거절은 기록하지 않는다", () 
       },
       expires: "2099-01-01T00:00:00.000Z",
     });
-    const res = await run("POST", "/api/logs/client");
+    expect(passed(await run("POST", "/api/logs/client"))).toBe(true);
+    const res = await run("GET", "/api/logs/client");
     expect(res.status).toBe(403);
     expect(await logged()).toEqual([]);
+    // 같은 학생이 옆 경로를 두드린 거절은 여느 거절처럼 남는다 — 빼는 것은 받는 곳 한 경로뿐
+    expect((await run("GET", "/api/logs/purge/cron")).status).toBe(403);
+    expect((await logged()).map((r) => r.route)).toEqual([
+      "/api/logs/purge/cron",
+    ]);
   });
 });

@@ -3,6 +3,7 @@
  * 따로 뺐다(`difficulty.ts` 와 같은 까닭). zod 계약은 `errorLog.contract.ts` 가 이 값으로 만든다.
  *
  * 원장님 2026-09-22 — 새 표 · 전부 수집 · AI 도형 재작도 실패 때 크롭 이미지(2MB) · 90일 · 화면 없음(조회 스크립트).
+ * 같은 날 더한 결정 — «요청대로 고치기» 실패 때도 크롭 이미지 · 학생 화면의 브라우저 오류도 받는다.
  * 브리프: docs/planning/tracks/briefs/error-log-collector.md
  */
 
@@ -51,5 +52,5 @@ export const CLIENT_LOG_PATH_MAX = 300;
 
 /** 보관 — 이보다 오래된 줄은 매일 지운다(`/api/logs/purge/cron`). */
 export const ERROR_LOG_RETENTION_DAYS = 90;
-/** AI 도형 재작도 실패 때 남기는 크롭 이미지의 상한(바이트) */
+/** AI 도형 재작도 · «요청대로 고치기» 실패 때 남기는 크롭 이미지의 상한(바이트) */
 export const ERROR_LOG_IMAGE_MAX_BYTES = 2 * 1024 * 1024;

@@ -113,6 +113,33 @@ describe("⑴ 받는다", () => {
     expect((await rows())[0].userId).toBe(USER);
   });
 
+  it("학생 세션(원장님 2026-09-22 — 학생 화면 오류도 모은다) — 학생 계정을 요약에 적고, 양은 학생마다 센다", async () => {
+    const STUDENT = "22222222-2222-4222-8222-222222222222";
+    vi.mocked(auth as () => Promise<unknown>).mockResolvedValue({
+      student: { accountId: STUDENT, mustChangePassword: false },
+    });
+    const res = await send({ events: [event({ page: "/learn" })] });
+    expect(res.status).toBe(204);
+    const [row] = await rows();
+    // 사용자 표의 행이 아니다 — user_id 칸은 비우고 요약에 싣는다
+    expect(row.userId).toBeNull();
+    expect(row.route).toBe("/learn");
+    expect(row.context).toMatchObject({ student: STUDENT });
+
+    // 같은 IP 의 다른 학생은 따로 센다 — IP 로 묶으면 한 교실이 한 사람 몫을 나눠 쓴다
+    const batch = {
+      events: Array.from({ length: CLIENT_LOG_MAX_EVENTS }, () => event()),
+    };
+    for (let i = 0; i < 4; i++) await send(batch);
+    vi.mocked(auth as () => Promise<unknown>).mockResolvedValue({
+      student: {
+        accountId: "33333333-3333-4333-8333-333333333333",
+        mustChangePassword: false,
+      },
+    });
+    expect((await send({ events: [event()] })).status).toBe(204);
+  });
+
   it("세션을 못 읽어도(auth 가 던져도) 받는다 — 계정 칸만 빈다", async () => {
     vi.mocked(auth as () => Promise<unknown>).mockRejectedValue(
       new Error("JWTSessionError"),
