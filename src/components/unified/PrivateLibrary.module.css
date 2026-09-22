@@ -1,100 +1,227 @@
 .library {
-  max-width: 1200px;
+  width: 100%;
+  max-width: 1480px;
+  min-width: 0;
   margin: 0 auto;
-  padding: 32px;
+  padding: 28px 32px;
+  container: library / inline-size;
 }
 .tools {
   display: flex;
   align-items: center;
-  gap: 16px;
+  gap: 10px;
   flex-wrap: wrap;
-  margin: 28px 0;
+  margin: 24px 0 14px;
 }
-.tools strong {
+.tools > input {
+  flex: 1;
+  max-width: 420px;
+  min-width: 180px;
   margin-right: auto;
 }
-.library input {
+.tools label {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: #52617a;
+  font-size: 13px;
+  white-space: nowrap;
+}
+.library input,
+.library select {
   border: 1px solid #cbd5e1;
-  border-radius: 8px;
+  border-radius: 6px;
   background: white;
-  padding: 10px 12px;
+  padding: 9px 11px;
   min-width: 0;
+  min-height: 38px;
   color: #172b42;
+  font: inherit;
+  font-size: 13px;
+}
+.library select {
+  cursor: pointer;
 }
 .library button {
   border: 1px solid #cbd5e1;
-  border-radius: 8px;
+  border-radius: 6px;
   background: white;
   color: #264861;
-  padding: 9px 13px;
+  padding: 9px 12px;
+  font: inherit;
+  font-size: 13px;
   font-weight: 600;
   cursor: pointer;
 }
-.library button:hover {
+.library button:hover:not(:disabled) {
   background: #f1f5f9;
+  border-color: #94a3b8;
 }
 .library button:disabled {
   opacity: 0.55;
   cursor: default;
 }
-.grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(270px, 1fr));
-  gap: 20px;
+.library :is(button, input, select):focus-visible {
+  outline: 2px solid #2563eb;
+  outline-offset: 3px;
 }
-.card {
-  border: 1px solid #dbe3ed;
-  border-radius: 14px;
-  padding: 22px;
-  background: white;
-  min-width: 0;
-}
-.card small,
-.note {
+.resultCount {
+  margin: 0 0 10px;
   color: #607085;
   font-size: 13px;
 }
-.card h2 {
-  margin: 12px 0;
-  font-size: 18px;
+.resultCount strong {
+  color: #243a52;
+  font-variant-numeric: tabular-nums;
+}
+.board {
+  border-top: 2px solid #29496b;
+  border-bottom: 1px solid #dbe3ed;
+  background: white;
+}
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  table-layout: fixed;
+  color: #243a52;
+  font-size: 14px;
+}
+.table th {
+  padding: 12px 14px;
+  background: #f6f8fb;
+  color: #52617a;
+  font-size: 12px;
+  font-weight: 600;
+  text-align: left;
+  white-space: nowrap;
+  border-bottom: 1px solid #dbe3ed;
+}
+.table td {
+  padding: 14px;
+  border-bottom: 1px solid #e8edf3;
+  vertical-align: middle;
+}
+.table tbody tr:last-child td {
+  border-bottom: 0;
+}
+.table .numberCell {
+  width: 58px;
+  text-align: center;
+  color: #718096;
+  font-size: 12px;
+  font-variant-numeric: tabular-nums;
+}
+.table .kindCell {
+  width: 110px;
+}
+.kindBadge {
+  display: inline-block;
+  border: 1px solid #dce6f3;
+  border-radius: 4px;
+  background: #f2f6fc;
+  padding: 3px 7px;
+  color: #365b87;
+  font-size: 12px;
+  font-weight: 600;
+  white-space: nowrap;
+}
+.kindBadge[data-kind="extraction"] {
+  border-color: #e0e5eb;
+  background: #f6f7f9;
+  color: #52617a;
+}
+.titleCell {
+  min-width: 0;
   overflow-wrap: anywhere;
 }
-.card p {
-  font-size: 14px;
-  line-height: 1.6;
+.library .titleButton {
+  max-width: 100%;
+  border: 0;
+  border-radius: 3px;
+  background: transparent;
+  padding: 4px 0;
+  color: #203f66;
+  font-size: 15px;
+  font-weight: 650;
+  line-height: 1.5;
+  text-align: left;
+  overflow-wrap: anywhere;
+}
+.library .titleButton:hover:not(:disabled) {
+  background: transparent;
+  color: #1d4ed8;
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}
+.titleText {
+  font-size: 15px;
+  font-weight: 600;
+  line-height: 1.5;
+}
+.titleCell small {
+  display: block;
   color: #607085;
+  font-size: 12px;
+  line-height: 1.6;
+}
+.table .countCell {
+  width: 82px;
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+.table .updatedCell {
+  width: 175px;
+  color: #607085;
+  font-size: 12px;
+  white-space: nowrap;
+}
+.table .actionsCell {
+  width: 156px;
+  text-align: right;
 }
 .actions {
   display: flex;
-  gap: 8px;
-  flex-wrap: wrap;
-  margin-top: 14px;
+  justify-content: flex-end;
+  gap: 6px;
 }
-.card form {
-  margin-top: 18px;
+.actions button {
+  padding: 6px 9px;
+  min-height: 32px;
+  font-size: 12px;
+  white-space: nowrap;
 }
-.card label {
-  display: grid;
-  gap: 8px;
-  font-size: 13px;
+.mobileLabel {
+  display: none;
 }
-.card .error,
 .error {
   color: #8a3636;
   font-size: 13px;
   line-height: 1.6;
+  overflow-wrap: anywhere;
 }
+.titleCell .error {
+  margin: 4px 0 0;
+}
+.loading,
 .empty {
   text-align: center;
-  padding: 64px 16px;
+  padding: 44px 16px;
   color: #607085;
 }
 .empty h2 {
+  margin: 0 0 8px;
   color: #243a52;
-  font-size: 22px;
+  font-size: 17px;
+}
+.empty p {
+  margin: 0 0 16px;
+  font-size: 14px;
+  line-height: 1.6;
 }
 .note {
-  margin-top: 28px;
+  margin-top: 16px;
+  color: #607085;
+  font-size: 12px;
   line-height: 1.6;
 }
 .cloudError {
@@ -117,11 +244,93 @@
   padding: 7px 10px;
   cursor: pointer;
 }
+@container library (max-width: 800px) {
+  .table,
+  .table tbody {
+    display: block;
+  }
+  .table thead {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    overflow: hidden;
+    clip-path: inset(50%);
+    white-space: nowrap;
+  }
+  .table tbody tr {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    grid-template-areas: "kind number" "title title" "count updated" "actions actions";
+    gap: 6px 12px;
+    padding: 14px 16px;
+    border-bottom: 1px solid #e8edf3;
+  }
+  .table tbody tr:last-child {
+    border-bottom: 0;
+  }
+  .table td {
+    width: auto;
+    border: 0;
+    padding: 0;
+  }
+  .table .numberCell,
+  .table .kindCell,
+  .table .countCell,
+  .table .updatedCell,
+  .table .actionsCell {
+    width: auto;
+  }
+  .table .numberCell {
+    grid-area: number;
+    align-self: center;
+    text-align: right;
+  }
+  .table .kindCell {
+    grid-area: kind;
+  }
+  .table .titleCell {
+    grid-area: title;
+  }
+  .table .countCell {
+    grid-area: count;
+    text-align: left;
+    color: #607085;
+    font-size: 12px;
+  }
+  .table .updatedCell {
+    grid-area: updated;
+    text-align: right;
+  }
+  .table .actionsCell {
+    grid-area: actions;
+    padding-top: 4px;
+  }
+  .mobileLabel {
+    display: inline;
+  }
+  .tools > input {
+    flex-basis: 100%;
+    max-width: none;
+  }
+  .tools label {
+    gap: 5px;
+  }
+  .tools > button {
+    margin-left: auto;
+  }
+}
 @media (max-width: 640px) {
   .library {
     padding: 20px 16px;
   }
-  .tools input {
-    width: 100%;
+  .tools {
+    gap: 8px;
+  }
+  .tools label {
+    font-size: 12px;
+  }
+  .tools select {
+    padding: 8px 5px;
   }
 }
