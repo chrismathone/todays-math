@@ -10,9 +10,18 @@
  * 칸마다 가른다 — 편집기에서 본 격자가 저장 뒤 검수 카드·지면의 격자와 같다.
  *
  * 상자 밖의 Tab·Esc 는 손대지 않는다(표의 다음 칸·브라우저 초점 이동·작업실 확대 풀기 그대로).
+ *
+ * «나란히» 칸 묶음(원장님 2026-09-22 확정)도 이 노드다(`kind: "side"`) — 제목 문단이 없고 **모든 문단이 칸**,
+ * 저장은 `> <나란히:cols=N>` + 한 줄에 한 칸. 도구줄 [나란히] 가 고른 문단들을 감싸고(`wrapSideBySide`),
+ * 묶음 위 «1열 2열 3열 4열 · 풀기» 로 열을 바꾸거나 푼다. Tab·Esc 는 상자와 같다.
  */
 import { Node, type CommandProps, type Editor } from "@tiptap/core";
-import type { Node as ProseMirrorNode, ResolvedPos } from "@tiptap/pm/model";
+import {
+  Fragment,
+  type Node as ProseMirrorNode,
+  type ResolvedPos,
+  type Schema,
+} from "@tiptap/pm/model";
 import {
   Plugin,
   PluginKey,
@@ -33,11 +42,33 @@ import { parseBoxHeader, type BoxColumns } from "@/lib/math/boxHeader";
 declare module "@tiptap/core" {
   interface Commands<ReturnType> {
     conditionBox: {
-      /** 상자(`position` 자리)의 열 수를 바꾼다. 2·3열이면 한 줄의 항목 여럿을 칸마다 가른다. */
+      /**
+       * 상자(`position` 자리)의 열 수를 바꾼다. 2열 이상이면 한 줄의 항목 여럿을 칸마다 가른다.
+       * 상한은 상자 3 · 나란히 4 — 넘치면 상한으로.
+       */
       setBoxColumns: (position: number, cols: BoxColumns) => ReturnType;
+      /** 고른 최상위 문단·그림을 «나란히» 칸 묶음으로 감싼다. 상자·표·목록 안이면 아무것도 안 한다. */
+      wrapSideBySide: () => ReturnType;
+      /** «나란히» 묶음(`position` 자리)을 푼다 — 칸이 문단으로 남는다. */
+      unwrapSideBySide: (position: number) => ReturnType;
     };
   }
 }
+
+/** 노드의 종류 — 〈보기〉·〈조건〉 상자 · «나란히» 칸 묶음. */
+export type ConditionBoxKind = "box" | "side";
+
+const isSide = (node: ProseMirrorNode) => node.attrs.kind === "side";
+
+/** 열 단추 — 상자는 예전처럼 1~3열, 나란히는 1~4열. */
+const columnChoices = (side: boolean): BoxColumns[] =>
+  side ? [1, 2, 3, 4] : [1, 2, 3];
+
+/**
+ * [나란히] 를 눌렀을 때의 열 수 — 칸이 둘 이상이면 2열. «나란히»라는 이름대로 누르자마자 옆으로 서고,
+ * 원장님 문항(서답형 3)의 원본이 2열이다. 3·4열은 묶음 위 단추로.
+ */
+const SIDE_DEFAULT_COLUMNS: BoxColumns = 2;
 
 interface CaretState {
   /** 편집기(또는 그 안의 수식 칸)에 초점이 있는가. */
@@ -60,8 +91,9 @@ function boxAround($pos: ResolvedPos) {
   return null;
 }
 
-/** 첫 문단이 `<보기>`·`<조건>` 머리인가 — 그래야 열 수를 적을 수 있다. */
+/** 첫 문단이 `<보기>`·`<조건>` 머리인가 — 그래야 열 수를 적을 수 있다. 나란히 묶음은 머리가 없다. */
 function hasHeader(box: ProseMirrorNode) {
+  if (isSide(box)) return false;
   const first = box.firstChild;
   if (!first?.isTextblock) return false;
   const label = parseBoxHeader(first.textContent.trim())?.label;
@@ -131,8 +163,219 @@ function setColumns(
 ): boolean {
   const box = tr.doc.nodeAt(position);
   if (box?.type.name !== "conditionBox") return false;
-  tr.setNodeMarkup(position, undefined, { ...box.attrs, cols });
-  if (cols >= 2) splitItems(tr, position);
+  const written = Math.min(cols, isSide(box) ? 4 : 3) as BoxColumns;
+  tr.setNodeMarkup(position, undefined, { ...box.attrs, cols: written });
+  if (written >= 2) splitItems(tr, position);
+  return true;
+}
+
+/* ── «나란히» 묶기·풀기 ─────────────────────────────────────────────────── */
+
+/**
+ * 줄머리의 배점 표시 `[2점]`. 시험지의 배점은 **앞 소문항의 끝**에 붙는 꼬리다 — 인식은 그것을 다음 소문항
+ * 번호와 한 줄에 적는다(원장님 문항: «[2점] (2)»). 묶을 때 앞 칸 끝으로 옮긴다. 그 밖의 글은 옮기지 않는다.
+ */
+const LEADING_SCORE = /^\s*\[\s*\d+(?:\.\d+)?\s*점\s*\]/;
+
+/** 묶을 수 있는 최상위 블록 — 문단과 그림. 표·목록·상자·선택지는 칸 하나(한 줄)로 적을 수 없다. */
+const WRAPPABLE = new Set(["paragraph", "visualFigure", "visualFigureRow"]);
+
+/** 앞뒤 공백 글을 걷어 낸다(빈 글 노드는 버린다). */
+function trimInline(nodes: ProseMirrorNode[]): ProseMirrorNode[] {
+  const out = [...nodes];
+  while (out.length > 0 && out[0]!.isText && !out[0]!.text!.trim()) out.shift();
+  while (out.length > 0 && out.at(-1)!.isText && !out.at(-1)!.text!.trim())
+    out.pop();
+  const first = out[0];
+  if (first?.isText) {
+    const cut = first.text!.length - first.text!.trimStart().length;
+    if (cut > 0) out[0] = first.cut(cut);
+  }
+  const last = out.at(-1);
+  if (last?.isText) {
+    const keep = last.text!.trimEnd().length;
+    if (keep < last.text!.length) out[out.length - 1] = last.cut(0, keep);
+  }
+  return out;
+}
+
+/** 문단을 줄바꿈(`hardBreak`)마다 가른 줄 — 각 줄의 노드와 문단 안 자리. */
+function paragraphLines(paragraph: ProseMirrorNode) {
+  const lines: Array<{ nodes: ProseMirrorNode[]; from: number; to: number }> = [
+    { nodes: [], from: 0, to: 0 },
+  ];
+  paragraph.forEach((child, offset) => {
+    const line = lines.at(-1)!;
+    if (child.type.name === "hardBreak") {
+      line.to = offset;
+      lines.push({ nodes: [], from: offset + child.nodeSize, to: 0 });
+      return;
+    }
+    line.nodes.push(child);
+  });
+  lines.at(-1)!.to = paragraph.content.size;
+  return lines;
+}
+
+/** 줄들을 한 문단으로 되붙인다(사이에 줄바꿈). 줄이 없으면 null. */
+function joinLines(
+  schema: Schema,
+  paragraph: ProseMirrorNode,
+  lines: Array<{ nodes: ProseMirrorNode[] }>,
+): ProseMirrorNode | null {
+  if (lines.length === 0) return null;
+  const hardBreak = schema.nodes.hardBreak;
+  const nodes = lines.flatMap((line, index) =>
+    index > 0 && hardBreak ? [hardBreak.create(), ...line.nodes] : line.nodes,
+  );
+  return paragraph.type.create(paragraph.attrs, nodes);
+}
+
+type Piece =
+  | { kind: "line"; nodes: ProseMirrorNode[] }
+  | { kind: "figure"; node: ProseMirrorNode; row: boolean };
+
+/**
+ * 조각 → 칸. **한 줄이 한 칸**(저장 규칙과 같다). 그림(블록)은 바로 앞 글 칸의 끝에 붙는다 — «(1)» 다음 줄의
+ * 그림은 (1) 의 그림이다. 앞이 없거나 그림 칸이면 제 칸을 연다. 그림 행(`visualFigureRow`)의 그림은 저마다 한 칸.
+ * 줄머리의 배점(`[2점]`)은 앞 칸 끝으로 옮긴다(`LEADING_SCORE`).
+ */
+function cellsOf(schema: Schema, pieces: Piece[]): ProseMirrorNode[][] | null {
+  const inlineFigure = schema.nodes.visualInlineFigure;
+  const cells: Array<{ nodes: ProseMirrorNode[]; textual: boolean }> = [];
+  const append = (
+    cell: { nodes: ProseMirrorNode[] },
+    nodes: ProseMirrorNode[],
+  ) => {
+    if (cell.nodes.length > 0) cell.nodes.push(schema.text(" "));
+    cell.nodes.push(...nodes);
+  };
+  for (const piece of pieces) {
+    const last = cells.at(-1);
+    if (piece.kind === "figure") {
+      if (!inlineFigure) return null;
+      const figure = inlineFigure.create(piece.node.attrs);
+      if (!piece.row && last?.textual) append(last, [figure]);
+      else cells.push({ nodes: [figure], textual: false });
+      continue;
+    }
+    let nodes = trimInline(piece.nodes);
+    const first = nodes[0];
+    const score = first?.isText ? LEADING_SCORE.exec(first.text!) : null;
+    if (last && first && score) {
+      append(last, [schema.text(score[0].trim(), first.marks)]);
+      nodes = trimInline(
+        first.text!.length > score[0].length
+          ? [first.cut(score[0].length), ...nodes.slice(1)]
+          : nodes.slice(1),
+      );
+    }
+    if (nodes.length > 0) cells.push({ nodes, textual: true });
+  }
+  return cells.map((cell) => cell.nodes);
+}
+
+/** 최상위 블록 `index` 가 시작하는 문서 자리. */
+function topPosition(doc: ProseMirrorNode, index: number) {
+  let position = 0;
+  for (let child = 0; child < index; child += 1)
+    position += doc.child(child).nodeSize;
+  return position;
+}
+
+function wrapSide(tr: Transaction): boolean {
+  const { doc, selection } = tr;
+  const schema = doc.type.schema;
+  const { $from, $to } = selection;
+  const first = $from.index(0);
+  let last = $to.depth === 0 ? $to.index(0) - 1 : $to.index(0);
+  // 다음 문단 맨 앞까지 끌어 고른 것은 그 문단을 고른 것이 아니다.
+  if (last > first && $to.depth > 0 && $to.parentOffset === 0) last -= 1;
+  if (last < first || first >= doc.childCount) return false;
+  /*
+   * 고른 끝이 문단 **끝**이면 바로 뒤따르는 그림(블록)까지 묶는다 — 그 그림은 끝 줄(«(4)»)의 그림이다.
+   * 글 선택은 그림 뒤에 끝을 둘 수 없다(브라우저·ProseMirror 가 끝을 앞 문단으로 당긴다). 이 규칙이 없으면
+   * «(1) 부터 끝까지» 고른 원장님 문항에서 마지막 그림만 묶음 밖에 남는다.
+   */
+  const lastBlock = doc.child(last);
+  if (
+    lastBlock.isTextblock &&
+    $to.depth > 0 &&
+    $to.parentOffset === lastBlock.content.size
+  )
+    while (
+      last + 1 < doc.childCount &&
+      /^visualFigure(Row)?$/.test(doc.child(last + 1).type.name)
+    )
+      last += 1;
+
+  const pieces: Piece[] = [];
+  let before: ProseMirrorNode | null = null;
+  let after: ProseMirrorNode | null = null;
+  for (let index = first; index <= last; index += 1) {
+    const block = doc.child(index);
+    if (!WRAPPABLE.has(block.type.name)) return false;
+    if (block.type.name === "visualFigure") {
+      pieces.push({ kind: "figure", node: block, row: false });
+      continue;
+    }
+    if (block.type.name === "visualFigureRow") {
+      block.forEach((figure) =>
+        pieces.push({ kind: "figure", node: figure, row: true }),
+      );
+      continue;
+    }
+    // 문단 — 고른 자리가 든 줄부터 고른 자리가 든 줄까지만 묶는다. 앞뒤 줄(발문 등)은 묶음 밖에 남긴다.
+    const lines = paragraphLines(block);
+    const lineAt = (offset: number) =>
+      Math.max(
+        0,
+        lines.findIndex((line) => offset >= line.from && offset <= line.to),
+      );
+    const start =
+      index === first && $from.depth > 0 ? lineAt($from.parentOffset) : 0;
+    const end =
+      index === last && $to.depth > 0
+        ? lineAt($to.parentOffset)
+        : lines.length - 1;
+    if (index === first)
+      before = joinLines(schema, block, lines.slice(0, start));
+    if (index === last) after = joinLines(schema, block, lines.slice(end + 1));
+    for (const line of lines.slice(start, end + 1))
+      pieces.push({ kind: "line", nodes: line.nodes });
+  }
+
+  const cells = cellsOf(schema, pieces);
+  if (!cells || cells.length === 0) return false;
+  const paragraph = schema.nodes.paragraph!;
+  const group = schema.nodes.conditionBox!.create(
+    {
+      kind: "side",
+      cols: cells.length >= 2 ? SIDE_DEFAULT_COLUMNS : 1,
+    },
+    cells.map((nodes) => paragraph.create(null, nodes)),
+  );
+  const from = topPosition(doc, first);
+  const to = topPosition(doc, last) + doc.child(last).nodeSize;
+  tr.replaceWith(
+    from,
+    to,
+    Fragment.fromArray(
+      [before, group, after].filter(
+        (node): node is ProseMirrorNode => node !== null,
+      ),
+    ),
+  );
+  // 커서는 묶음의 첫 칸으로 — 묶음 위 열 단추가 곧바로 보인다.
+  const inside = from + (before?.nodeSize ?? 0) + 2;
+  tr.setSelection(TextSelection.near(tr.doc.resolve(inside)));
+  return true;
+}
+
+function unwrapSide(tr: Transaction, position: number): boolean {
+  const node = tr.doc.nodeAt(position);
+  if (node?.type.name !== "conditionBox" || !isSide(node)) return false;
+  tr.replaceWith(position, position + node.nodeSize, node.content);
   return true;
 }
 
@@ -197,42 +440,65 @@ function nextCell(
   return true;
 }
 
-const COLUMN_CHOICES: BoxColumns[] = [1, 2, 3];
-
-/** 상자 틀 — 테두리 안에 칸들(contentDOM), 머리 오른쪽에 열 버튼, 아래에 Tab 안내. */
+/**
+ * 상자 틀 — 테두리 안에 칸들(contentDOM), 머리 오른쪽에 열 버튼, 아래에 Tab 안내.
+ * 나란히 묶음은 테두리·머리가 없어 열 버튼이 묶음 **위** 오른쪽에 서고, 뒤에 «풀기» 가 붙는다(같은 단추 꼴).
+ */
 class ConditionBoxView implements NodeView {
   dom: HTMLElement;
   contentDOM: HTMLElement;
   private handle: HTMLElement;
   private hint: HTMLElement;
   private buttons: HTMLButtonElement[];
+  private choices: BoxColumns[];
 
   constructor(
     private node: ProseMirrorNode,
     private editor: Editor,
     private getPos: () => number | undefined,
   ) {
+    const side = isSide(node);
+    this.choices = columnChoices(side);
     this.dom = document.createElement("div");
     this.dom.className = "visual-condition";
     this.handle = document.createElement("span");
     this.handle.className = "visual-condition-cols";
     this.handle.contentEditable = "false";
-    this.handle.setAttribute("role", "group");
-    this.handle.setAttribute("aria-label", "열 수");
-    this.buttons = COLUMN_CHOICES.map((cols) => {
-      const button = document.createElement("button");
-      button.type = "button";
-      button.textContent = `${cols}열`;
+    const button = (label: string, run: (position: number) => void) => {
+      const element = document.createElement("button");
+      element.type = "button";
+      element.textContent = label;
       // 누르는 동안 커서·초점이 상자에 남게 — 그래야 손잡이가 안 사라진다.
-      button.addEventListener("mousedown", (event) => event.preventDefault());
-      button.addEventListener("click", () => {
+      element.addEventListener("mousedown", (event) => event.preventDefault());
+      element.addEventListener("click", () => {
         const position = this.getPos();
-        if (typeof position === "number")
-          this.editor.commands.setBoxColumns(position, cols);
+        if (typeof position === "number") run(position);
       });
-      return button;
-    });
-    this.handle.append(...this.buttons);
+      return element;
+    };
+    this.buttons = this.choices.map((cols) =>
+      button(`${cols}열`, (position) =>
+        this.editor.commands.setBoxColumns(position, cols),
+      ),
+    );
+    if (side) {
+      // 열 단추 묶음 + 따로 선 «풀기» — 풀기가 «5열» 처럼 읽히지 않게 떼어 둔다.
+      const group = document.createElement("span");
+      group.className = "visual-condition-colgroup";
+      group.setAttribute("role", "group");
+      group.setAttribute("aria-label", "열 수");
+      group.append(...this.buttons);
+      const unwrap = button("풀기", (position) =>
+        this.editor.commands.unwrapSideBySide(position),
+      );
+      unwrap.className = "visual-condition-unwrap";
+      unwrap.setAttribute("aria-label", "나란히 풀기");
+      this.handle.append(group, unwrap);
+    } else {
+      this.handle.setAttribute("role", "group");
+      this.handle.setAttribute("aria-label", "열 수");
+      this.handle.append(...this.buttons);
+    }
     this.contentDOM = document.createElement("div");
     this.contentDOM.className = "visual-condition-cells";
     this.hint = document.createElement("span");
@@ -249,16 +515,16 @@ class ConditionBoxView implements NodeView {
     this.dom.dataset.conditionBox = String(cols);
     this.contentDOM.dataset.conditionBox = String(cols);
     this.dom.toggleAttribute("data-has-header", hasHeader(this.node));
+    this.dom.toggleAttribute("data-side-by-side", isSide(this.node));
     this.buttons.forEach((button, index) =>
-      button.setAttribute(
-        "aria-pressed",
-        String(COLUMN_CHOICES[index] === cols),
-      ),
+      button.setAttribute("aria-pressed", String(this.choices[index] === cols)),
     );
   }
 
   update(node: ProseMirrorNode) {
-    if (node.type !== this.node.type) return false;
+    // 종류가 바뀌면(상자 ↔ 나란히) 단추 줄이 달라 틀을 새로 세운다.
+    if (node.type !== this.node.type || isSide(node) !== isSide(this.node))
+      return false;
     this.node = node;
     this.paint();
     return true;
@@ -334,10 +600,14 @@ const caretPlugin = () =>
 
 /** 커서가 든 상자가 있고 초점이 편집기에 있는가 — 편집기 아래 안내 문구가 쓴다. */
 export function caretInConditionBox(state: EditorState) {
-  return (
-    !!conditionBoxCaret.getState(state)?.focused &&
-    !!boxAround(state.selection.$from)
-  );
+  return caretBoxKind(state) !== null;
+}
+
+/** 커서가 든 것이 상자인지 나란히 묶음인지 — 초점이 편집기에 없거나 밖이면 null. */
+export function caretBoxKind(state: EditorState): ConditionBoxKind | null {
+  if (!conditionBoxCaret.getState(state)?.focused) return null;
+  const box = boxAround(state.selection.$from);
+  return box ? (isSide(box.node) ? "side" : "box") : null;
 }
 
 export const ConditionBox = Node.create({
@@ -345,18 +615,33 @@ export const ConditionBox = Node.create({
   group: "block",
   content: "block+",
   defining: true,
-  addAttributes: () => ({ cols: { default: 1 } }),
+  addAttributes: () => ({
+    cols: { default: 1 },
+    kind: {
+      default: "box",
+      parseHTML: (element: HTMLElement) =>
+        element.hasAttribute("data-side-by-side") ? "side" : "box",
+      renderHTML: () => ({}),
+    },
+  }),
   parseHTML: () => [
     {
       tag: "[data-condition-box]",
       getAttrs: (element) => ({
         cols: Number((element as HTMLElement).dataset.conditionBox) || 1,
+        kind: (element as HTMLElement).hasAttribute("data-side-by-side")
+          ? "side"
+          : "box",
       }),
     },
   ],
   renderHTML: ({ node }) => [
     "div",
-    { class: "visual-condition", "data-condition-box": node.attrs.cols },
+    {
+      class: "visual-condition",
+      "data-condition-box": node.attrs.cols,
+      ...(isSide(node) ? { "data-side-by-side": "" } : {}),
+    },
     0,
   ],
   addNodeView() {
@@ -372,6 +657,15 @@ export const ConditionBox = Node.create({
             return tr.doc.nodeAt(position)?.type.name === this.name;
           return setColumns(tr, position, cols);
         },
+      wrapSideBySide:
+        () =>
+        ({ tr, state, dispatch }: CommandProps) =>
+          // 묻기만 할 때(`can()`)는 버릴 트랜잭션에서 해 본다 — 문서를 안 건드린다.
+          dispatch ? wrapSide(tr) : wrapSide(state.tr),
+      unwrapSideBySide:
+        (position: number) =>
+        ({ tr, state, dispatch }: CommandProps) =>
+          dispatch ? unwrapSide(tr, position) : unwrapSide(state.tr, position),
     };
   },
   addKeyboardShortcuts() {

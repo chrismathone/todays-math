@@ -4,7 +4,11 @@ import ReactMarkdown, { defaultUrlTransform } from "react-markdown";
 import remarkGfm from "remark-gfm";
 import remarkBreaks from "remark-breaks";
 import rehypeRaw from "rehype-raw";
-import { parseBoxHeader } from "@/lib/math/boxHeader";
+import {
+  parseBoxHeader,
+  SIDE_BY_SIDE_LABEL,
+  type BoxColumns,
+} from "@/lib/math/boxHeader";
 import { layoutQuotedBoxes, type FigureRect } from "@/lib/math/boxLayout";
 import {
   parseImageTitle,
@@ -1159,15 +1163,26 @@ const MarkdownRenderer: React.FC<MarkdownRendererProps> = ({
             // on its own line (트랙 46). Canonical `<보기:cols=N>`, old `<보기2>`.
             const header: React.ReactNode[][] = [];
             const items: React.ReactNode[][] = [];
-            let boxCols: 1 | 2 | 3 = 1;
+            let boxCols: BoxColumns = 1;
+            // «나란히» 칸 묶음(`<나란히:cols=N>`, 원장님 2026-09-22) — 제목·테두리 없이 칸만. 칸 규칙은 상자와 같다.
+            let side = false;
             for (const line of lines) {
               const text = line.text.trim();
               if (!text) continue;
               const parsed =
-                header.length === 0 && items.length === 0
+                header.length === 0 && items.length === 0 && !side
                   ? parseBoxHeader(text)
                   : null;
-              if (parsed?.label === "보기" || parsed?.label === "조건") {
+              if (parsed?.label === SIDE_BY_SIDE_LABEL) {
+                side = true;
+                boxCols = parsed.cols ?? 1;
+                // 머리는 그리지 않는다. 같은 줄에 글이 붙어 왔으면 그것이 첫 칸이다(지면과 같다).
+                const rest = dropLeadingText(
+                  line.nodes,
+                  line.text.indexOf("<") + parsed.length,
+                );
+                if (rest.map(extractText).join("").trim()) items.push(rest);
+              } else if (parsed?.label === "보기" || parsed?.label === "조건") {
                 boxCols = parsed.cols ?? 1;
                 // The marker (and its `:cols=N`) is never shown — only the label.
                 header.push([
@@ -1177,7 +1192,7 @@ const MarkdownRenderer: React.FC<MarkdownRendererProps> = ({
                     line.text.indexOf("<") + parsed.length,
                   ),
                 ]);
-              } else if (items.length === 0 && text.includes("보기")) {
+              } else if (!side && items.length === 0 && text.includes("보기")) {
                 header.push(line.nodes);
               } else {
                 items.push(line.nodes);
@@ -1187,17 +1202,45 @@ const MarkdownRenderer: React.FC<MarkdownRendererProps> = ({
             // a plain blockquote (계산식 등) should stay single-column.
             const effectiveCols = boxCols;
 
+            // Tailwind 가 읽도록 열 수마다 글자 그대로 적는다.
             const colsClass =
-              effectiveCols === 3
-                ? "grid-cols-3"
-                : effectiveCols === 2
-                  ? "grid-cols-2"
-                  : "grid-cols-1";
+              effectiveCols === 4
+                ? "grid-cols-4"
+                : effectiveCols === 3
+                  ? "grid-cols-3"
+                  : effectiveCols === 2
+                    ? "grid-cols-2"
+                    : "grid-cols-1";
             // 글 칸은 기준선 맞춤, 그림 칸은 위쪽 — 지면과 같다(트랙 51).
             const gridClass =
               items.length >= 2
                 ? `grid ${colsClass} items-baseline gap-x-6 gap-y-1`
                 : "";
+            const cells =
+              items.length > 0 ? (
+                <div data-box-cells className={`min-w-0 ${gridClass}`}>
+                  {items.map((item, i) => (
+                    <div
+                      key={`i-${i}`}
+                      className="min-w-0 break-words has-[img]:self-start has-[[data-figure-index]]:self-start"
+                    >
+                      {item}
+                    </div>
+                  ))}
+                </div>
+              ) : null;
+
+            if (side)
+              return items.length > 0 ? (
+                // 테두리·배경·안쪽 여백·제목 없이 칸만 — 지면 `SIDE_CARD_CLASS` 와 같은 모양이다.
+                <div
+                  data-condition-box={effectiveCols}
+                  data-side-by-side=""
+                  className="my-2 w-full max-w-full overflow-hidden text-text not-italic [&_.katex-display]:overflow-x-auto"
+                >
+                  {cells}
+                </div>
+              ) : null;
 
             if (![...header, ...items].length) return null;
             if (
@@ -1226,18 +1269,7 @@ const MarkdownRenderer: React.FC<MarkdownRendererProps> = ({
                     {h}
                   </div>
                 ))}
-                {items.length > 0 && (
-                  <div data-box-cells className={`min-w-0 ${gridClass}`}>
-                    {items.map((item, i) => (
-                      <div
-                        key={`i-${i}`}
-                        className="min-w-0 break-words has-[img]:self-start has-[[data-figure-index]]:self-start"
-                      >
-                        {item}
-                      </div>
-                    ))}
-                  </div>
-                )}
+                {cells}
               </div>
             );
           },

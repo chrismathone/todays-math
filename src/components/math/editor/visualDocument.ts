@@ -1,5 +1,5 @@
 import type { JSONContent } from "@tiptap/core";
-import { boxHeaderMarkdown } from "@/lib/math/boxHeader";
+import { boxHeaderMarkdown, SIDE_BY_SIDE_LABEL } from "@/lib/math/boxHeader";
 
 /** Convert the shared reader's DOM into an editable schema without parsing rendered math. */
 export function prepareVisualDocument(html: string): string {
@@ -163,6 +163,17 @@ export function documentMarkdown(node: JSONContent): string {
     case "conditionBox": {
       let text = (node.content ?? []).map(documentMarkdown).join("\n");
       text = text.replace(/\\([<>])/g, "$1");
+      // «나란히» 칸 묶음 — 머리 문단이 없다. 정본 머리를 앞에 적고 칸마다 한 줄(원장님 2026-09-22).
+      if (attrs.kind === "side")
+        return [
+          boxHeaderMarkdown(
+            SIDE_BY_SIDE_LABEL,
+            [2, 3, 4].includes(attrs.cols) ? attrs.cols : null,
+          ),
+          ...text.split("\n"),
+        ]
+          .map((line) => `> ${line}`)
+          .join("\n");
       // 머리는 정본 하나(`boxHeaderMarkdown`) — 검수 카드가 〈보기〉·〈조건〉 머리를 굵게 그리므로
       // 굵은 표시(`**`)를 벗기고 열 수를 적는다. 〈조건〉 도 같다(트랙 46 — 전에는 〈보기〉 만 알아
       // 〈조건〉 의 열 수가 사라지고 머리가 `**<조건>**` 으로 저장될 수 있었다).

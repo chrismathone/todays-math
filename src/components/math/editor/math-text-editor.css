@@ -17,6 +17,12 @@
 .source-math-editor .visual-condition-cells[data-condition-box="2"] { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 3px 24px; align-items: baseline; }
 .source-math-editor .visual-condition-cells[data-condition-box="3"] { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 3px 24px; align-items: baseline; }
 .source-math-editor .visual-condition[data-has-header] > .visual-condition-cells > :first-child { grid-column: 1 / -1; }
+/* «나란히» 칸 묶음(원장님 2026-09-22): 4열은 나란히만. 테두리·배경·안쪽 여백·제목 없이 칸만 — 검수 카드·지면과 같다.
+   테두리는 자리만 남긴다(투명 1px) — 커서가 들어올 때 상자와 같은 파란 테두리가 서도 칸이 안 밀리게. */
+.source-math-editor .visual-condition-cells[data-condition-box="4"] { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 3px 24px; align-items: baseline; }
+.source-math-editor .visual-condition[data-side-by-side] { width: auto; margin: 8px 0; padding: 0; border-color: transparent; border-radius: 0; background: transparent; }
+/* 칸 안 그림은 지면처럼 제 줄에 가운데로, 칸 폭에 맞춰 준다(지면 `img.mx-auto.block.max-w-full`). */
+.source-math-editor .visual-condition[data-side-by-side] .visual-figure-layout:is(span) { display: block; margin: 4px 0; text-align: center; }
 /* ProseMirror 는 수식으로 끝나는 문단에 커서용 `img.ProseMirror-separator` 를 넣는다 — 그것은 그림이 아니다. */
 .source-math-editor .visual-condition-cells > :has(.visual-figure, img:not(.ProseMirror-separator)) { align-self: start; }
 .source-math-editor .visual-figure:not([role="button"]) { cursor: default; }
@@ -32,6 +38,10 @@
 :is(.source-math-editor.source-editor-display, .source-math-editor .source-editor-display) [data-condition-box] .grid { display: grid; gap: 3px 24px; }
 :is(.source-math-editor.source-editor-display, .source-math-editor .source-editor-display) [data-condition-box="2"] .grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 :is(.source-math-editor.source-editor-display, .source-math-editor .source-editor-display) [data-condition-box="3"] .grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+:is(.source-math-editor.source-editor-display, .source-math-editor .source-editor-display) [data-condition-box="4"] .grid { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+/* «나란히» 칸 묶음 — 위 상자 모양(테두리·배경·여백·내용 폭)을 걷는다. 칸 안 그림은 제 줄에 가운데(지면과 같다). */
+:is(.source-math-editor.source-editor-display, .source-math-editor .source-editor-display) [data-condition-box][data-side-by-side] { width: 100%; margin: 8px 0; padding: 0; border: 0; border-radius: 0; background: transparent; }
+:is(.source-math-editor.source-editor-display, .source-math-editor .source-editor-display) [data-side-by-side] [data-source-figure-layout] { display: block; text-align: center; }
 :is(.source-math-editor.source-editor-display, .source-math-editor .source-editor-display) p { margin: 6px 0; }
 :is(.source-math-editor.source-editor-display, .source-math-editor .source-editor-display) .diagram-svg-inline { display: inline-block; width: min(360px, 100%); vertical-align: middle; }
 :is(.source-math-editor.source-editor-display, .source-math-editor .source-editor-display) .diagram-svg-inline svg { display: block; max-width: 100%; height: auto; max-height: 360px; }
@@ -264,6 +274,13 @@
   white-space: nowrap;
 }
 .source-math-editor .visual-condition.has-caret > .visual-condition-tabhint { display: block; }
+/* 나란히 묶음은 머리가 없어 «1열 2열 3열 4열 · 풀기» 가 묶음 **위** 오른쪽에 선다(Tab 안내가 아래에 서는 것과 같은 방식).
+   단추는 상자 단추와 같은 꼴 — 풀기만 열 단추 묶음에서 떼어 둔다(«5열» 처럼 안 읽히게). */
+.source-math-editor .visual-condition.has-caret[data-side-by-side] { margin-top: 42px; }
+.source-math-editor .visual-condition[data-side-by-side] > .visual-condition-cols { top: -36px; right: 0; }
+.source-math-editor .visual-condition.has-caret[data-side-by-side] > .visual-condition-cols { display: inline-flex; }
+.source-math-editor .visual-condition-colgroup { display: inline-flex; }
+.source-math-editor .visual-condition-cols button.visual-condition-unwrap { margin-left: 6px; border-radius: 6px; }
 .source-math-editor .visual-editor-help kbd { display: inline-block; padding: 0 5px; border: 1px solid #cbd5e1; border-bottom-width: 2px; border-radius: 4px; background: white; color: #334155; font: inherit; font-size: 11px; }
 
 .source-math-editor .visual-math[role="button"], .source-math-editor .visual-figure[role="button"] { cursor: pointer; }

@@ -29,10 +29,22 @@ export interface BoxFitStep {
  */
 export const BOX_TIGHT_SPACING = { padX: 6, gapX: 10 } as const;
 
+/**
+ * «나란히» 칸 묶음의 간격(px) — 지면 클래스(`MarkdownRenderer` SIDE_CARD_CLASS · GRID_CLASS)를 숫자로 옮긴 것.
+ * 칸 사이 `gap-x-6` 24 · 행 사이 `gap-y-1`/`space-y-1` 4 · 묶음 위아래 `my-2` 8+8. 테두리·안쪽 여백은 0 이라
+ * 좁게 그릴 때(`BOX_TIGHT_SPACING`)는 칸 사이만 줄어든다. 인쇄 높이 자(`printOverflow`)가 이 값으로 센다 —
+ * 클래스를 바꾸면 여기도(`sideBySideParity.test.tsx` 가 둘을 같이 잡는다). 실측이 아니라 CSS 값이다.
+ */
+export const SIDE_BY_SIDE_SPACING = {
+  gapX: 24,
+  rowGap: 4,
+  marginY: 16,
+} as const;
+
 /** 소수 px 반올림으로 판정이 흔들리지 않게 반 px 까지는 들어간 것으로 본다. */
 const TOLERANCE = 0.5;
 
-/** 적힌 열 수에서 시작하는 사다리 — N 보통 → N 좁게 → … → 2 좁게 → 1. */
+/** 적힌 열 수에서 시작하는 사다리 — N 보통 → N 좁게 → … → 2 좁게 → 1(나란히 묶음은 N 이 4까지). */
 export function boxFitSteps(written: BoxColumns): BoxFitStep[] {
   const steps: BoxFitStep[] = [];
   for (let cols = written; cols >= 2; cols -= 1) {
