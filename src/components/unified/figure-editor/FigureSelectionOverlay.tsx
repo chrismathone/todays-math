@@ -77,7 +77,8 @@ export function FigureSelectionOverlay({
         strokeDasharray={`${4 / selection.scale} ${3 / selection.scale}`}
       />
       {handles.map((h, i) =>
-        h.control
+        // 곡선 위 노란 손잡이(adjust)는 곡선에 붙어 있어 이을 선이 없다 — 옅은 파란 조절점만 양 끝과 잇는다
+        h.control && !h.adjust
           ? [handles[i - 1], handles[i + 1]].filter(Boolean).map((other, j) => {
               const a = at(h.x, h.y),
                 z = at(other.x, other.y);

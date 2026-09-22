@@ -26,6 +26,28 @@ export interface FigureHandle {
 }
 type Segment = { command: string; values: number[] };
 
+/**
+ * 곡선 한가운데의 노란 손잡이(원장님 2026-09-22 «꺾이는곳에 도형처럼 노란원을 배치해서 곡선 정도를 조정»).
+ * `M P0 Q C P2` 한 토막 곡선에만 — 곡선의 한가운데 점은 (P0 + 2C + P2) / 4 이고, 끈 자리 M 을 곡선이 지나가게
+ * C = 2M − (P0 + P2) / 2 로 되짚는다. 옅은 파란 «휘어짐 조절»(C)은 곡선에서 꼭대기의 두 배 떨어져 있어 그대로 둔다.
+ */
+export const CURVE_BEND_HANDLE = "bend";
+function singleCurve(d: string) {
+  const segments = pathSegments(d);
+  return segments?.length === 2 &&
+    segments[0].command === "M" &&
+    segments[1].command === "Q"
+    ? segments
+    : null;
+}
+const serializePath = (segments: Segment[]) =>
+  segments
+    .map(
+      (s) =>
+        `${s.command} ${s.values.map((v) => Math.round(v * 100) / 100).join(" ")}`,
+    )
+    .join(" ");
+
 /** Normalize the editable path subset to absolute coordinates; preserve unsupported paths intact. */
 function pathSegments(d: string): Segment[] | null {
   const tokens =
@@ -170,7 +192,23 @@ export function figureHandles(object: FigureObject): FigureHandle[] {
               ],
         ),
       ) ?? [];
-    return points.length <= 32 ? points : [];
+    if (points.length > 32) return [];
+    const curve = singleCurve(object.attrs.d ?? "");
+    if (!curve) return points;
+    const [x0, y0] = curve[0].values;
+    const [cx, cy, x2, y2] = curve[1].values;
+    return [
+      ...points,
+      {
+        key: CURVE_BEND_HANDLE,
+        x: (x0 + 2 * cx + x2) / 4,
+        y: (y0 + 2 * cy + y2) / 4,
+        label: "곡선 휘어짐",
+        // 꼭짓점이 아니다 — AI 에게 보내는 꼭짓점 번호(figureEditVertices)에서 빠진다
+        control: true,
+        adjust: true,
+      },
+    ];
   }
   return [];
 }
@@ -216,17 +254,20 @@ export function moveFigureHandle(
     values[index] = to.x;
     values[index + 1] = to.y;
     attrs.points = values.join(" ");
+  } else if (key === CURVE_BEND_HANDLE) {
+    const curve = singleCurve(object.attrs.d ?? "");
+    if (!curve) return svg;
+    const [x0, y0] = curve[0].values;
+    const [, , x2, y2] = curve[1].values;
+    curve[1].values[0] = 2 * to.x - (x0 + x2) / 2;
+    curve[1].values[1] = 2 * to.y - (y0 + y2) / 2;
+    attrs.d = serializePath(curve);
   } else if (key.startsWith("path-")) {
     const segments = pathSegments(object.attrs.d)!;
     const [, segment, index] = key.split("-").map(Number);
     segments[segment].values[index] = to.x;
     segments[segment].values[index + 1] = to.y;
-    attrs.d = segments
-      .map(
-        (s) =>
-          `${s.command} ${s.values.map((v) => Math.round(v * 100) / 100).join(" ")}`,
-      )
-      .join(" ");
+    attrs.d = serializePath(segments);
   }
   return editFigureObject(svg, id, attrs);
 }

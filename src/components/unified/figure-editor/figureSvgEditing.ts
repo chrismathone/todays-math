@@ -449,6 +449,33 @@ export function removeFigureObject(svg: string, id: string) {
   return serializeFigureSvg(doc);
 }
 
+/** 곡선 도구가 처음 휘는 정도 — 곡선 한가운데가 줄(현)에서 줄 길이의 이만큼 떨어진다. */
+export const CURVE_BULGE = 0.12;
+/**
+ * 곡선 도구의 조절점 — 줄에 **수직으로**, 위쪽(세로 줄이면 왼쪽)으로 줄 길이의 12% 부풀게(원장님 2026-09-22 «치수선을
+ * 만들려고하면, 자꾸 함수처럼 너무 과하게 곡선이 그려지는데»). 예전에는 늘 화면 위로 가로 길이의 절반만큼 올려
+ * 가로 줄은 25% 로 부풀고, 비스듬한 줄은 한쪽으로 쏠리고, 세로 줄은 안 휘었다. 곡선의 한가운데는 조절점까지의 절반이다.
+ */
+function curveControl(
+  from: { x: number; y: number },
+  to: { x: number; y: number },
+) {
+  const dx = to.x - from.x,
+    dy = to.y - from.y,
+    length = Math.hypot(dx, dy);
+  const mid = { x: (from.x + to.x) / 2, y: (from.y + to.y) / 2 };
+  if (!length) return mid;
+  let nx = dy / length,
+    ny = -dx / length;
+  if (ny > 0 || (ny === 0 && nx > 0)) {
+    nx = -nx;
+    ny = -ny;
+  }
+  const lift = 2 * CURVE_BULGE * length;
+  const round = (v: number) => Math.round(v * 100) / 100;
+  return { x: round(mid.x + nx * lift), y: round(mid.y + ny * lift) };
+}
+
 export function addFigureObject(
   svg: string,
   type: string,
@@ -512,10 +539,12 @@ export function addFigureObject(
       rx: Math.max(1, Math.abs(to.x - from.x)),
       ry: Math.max(1, Math.abs(to.y - from.y)),
     });
-  if (type === "curve")
+  if (type === "curve") {
+    const control = curveControl(from, to);
     set({
-      d: `M ${from.x} ${from.y} Q ${(from.x + to.x) / 2} ${Math.min(from.y, to.y) - Math.abs(to.x - from.x) / 2} ${to.x} ${to.y}`,
+      d: `M ${from.x} ${from.y} Q ${control.x} ${control.y} ${to.x} ${to.y}`,
     });
+  }
   if (type === "text") {
     set({
       x: from.x,
