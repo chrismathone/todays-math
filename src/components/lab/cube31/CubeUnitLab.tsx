@@ -293,7 +293,7 @@ export default function CubeUnitLab({
             </p>
           )}
           <footer className={styles.footnote}>
-            <span>클릭 · 끌기 · 숫자 입력 · 키보드로 조작할 수 있어요.</span>
+            <span>답 입력 후 Enter로 확인 · 정답이면 Enter로 다음 활동</span>
             <span>
               {storageError
                 ? "브라우저 저장 공간을 사용할 수 없어 이번 진도는 저장되지 않아요."
@@ -387,6 +387,31 @@ export default function CubeUnitLab({
   );
 }
 
+function useActivityFocus(complete: boolean, modelOpen = false) {
+  const stage = useRef<HTMLElement>(null);
+  useEffect(() => {
+    const target = stage.current?.querySelector<HTMLElement>(
+      complete
+        ? "[data-continue-activity]"
+        : 'input:not(:disabled):not([type="hidden"]), button:not(:disabled)',
+    );
+    target?.focus({ preventScroll: true });
+  }, [complete, modelOpen]);
+  return stage;
+}
+
+function guardActivityEnter(event: React.KeyboardEvent<HTMLElement>) {
+  if (
+    event.key === "Enter" &&
+    (event.repeat ||
+      event.nativeEvent.isComposing ||
+      // Some IMEs report the confirming Enter as keyCode 229.
+      event.keyCode === 229)
+  ) {
+    event.preventDefault();
+  }
+}
+
 function TaskStage({
   task,
   onNext,
@@ -398,8 +423,14 @@ function TaskStage({
 }) {
   const [complete, setComplete] = useState(false);
   const [hint, setHint] = useState(false);
+  const stage = useActivityFocus(complete);
   return (
-    <article className={styles.stage} data-kind={task.kind}>
+    <article
+      ref={stage}
+      className={styles.stage}
+      data-kind={task.kind}
+      onKeyDownCapture={guardActivityEnter}
+    >
       <div className={styles.taskTitle}>
         <span className={styles.activityTag}>
           {task.kind === "regroup"
@@ -464,6 +495,9 @@ function TaskStage({
             <button
               type="button"
               className={styles.primaryButton}
+              data-continue-activity
+              aria-keyshortcuts="Enter"
+              title="Enter 키로 다음 활동"
               onClick={onNext}
             >
               다음 활동 →
@@ -491,6 +525,7 @@ function PracticeStage({
   const [attempted, setAttempted] = useState(false);
   const [complete, setComplete] = useState(false);
   const [modelOpen, setModelOpen] = useState(false);
+  const stage = useActivityFocus(complete, modelOpen);
   function check(event: React.FormEvent) {
     event.preventDefault();
     if (complete) return;
@@ -514,7 +549,11 @@ function PracticeStage({
     }
   }
   return (
-    <article className={styles.stage}>
+    <article
+      ref={stage}
+      className={styles.stage}
+      onKeyDownCapture={guardActivityEnter}
+    >
       <div className={styles.taskTitle}>
         <span className={styles.activityTag}>
           혼자 적용 · {CONCEPT_LABELS[problem.concept]}
@@ -593,6 +632,11 @@ function PracticeStage({
             <button
               type="button"
               className={styles.primaryButton}
+              data-continue-activity
+              aria-keyshortcuts="Enter"
+              title={
+                last ? "Enter 키로 학습 기록 보기" : "Enter 키로 다음 문제"
+              }
               onClick={onNext}
             >
               {last ? "학습 기록 보기" : "다음 문제 →"}

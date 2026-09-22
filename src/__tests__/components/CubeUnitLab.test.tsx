@@ -1,4 +1,5 @@
 import { fireEvent, render, screen, within } from "@testing-library/react";
+import userEvent from "@testing-library/user-event";
 import { beforeEach, describe, expect, it, vi } from "vitest";
 import CubeUnitLab from "@/components/lab/cube31/CubeUnitLab";
 import { CUBE_LESSONS, CUBE_TASK_IDS } from "@/lib/lab/cube31/lessons";
@@ -84,6 +85,32 @@ beforeEach(() => {
   };
 });
 describe("CubeUnitLab learner evidence", () => {
+  it("checks practice answers and focuses the next problem using Enter", async () => {
+    const user = userEvent.setup();
+    startChallenge();
+    expect(screen.getByRole("textbox", { name: "계산한 답" })).toHaveFocus();
+    await user.keyboard("200{Enter}");
+    expect(screen.getByRole("button", { name: "다음 문제 →" })).toHaveFocus();
+    expect(stored().step).toBe(0);
+    await user.keyboard("{Enter}");
+    expect(stored().step).toBe(1);
+    expect(screen.getByRole("textbox", { name: "계산한 답" })).toHaveFocus();
+    expect(screen.getByRole("textbox", { name: "계산한 답" })).toHaveValue("");
+  });
+
+  it("returns focus to the practice answer after using the model", async () => {
+    const user = userEvent.setup();
+    startChallenge();
+    await user.click(
+      screen.getByRole("button", { name: "수 모형으로 다시 생각하기" }),
+    );
+    await user.click(screen.getByRole("button", { name: "모형 조작 완료" }));
+    expect(screen.getByRole("textbox", { name: "계산한 답" })).toHaveFocus();
+    await user.keyboard("200{Enter}");
+    expect(stored().mastery).toEqual({});
+    expect(screen.getByRole("button", { name: "다음 문제 →" })).toHaveFocus();
+  });
+
   it("saves failed attempts, hints and completion without counting hints as completion", () => {
     render(<CubeUnitLab practice={pool} />);
     fireEvent.click(screen.getByRole("button", { name: "틀린 답 제출" }));
