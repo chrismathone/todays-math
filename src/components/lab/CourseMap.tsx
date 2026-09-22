@@ -24,9 +24,20 @@ export function CourseMap() {
         <h1>직접 만지며 관계를 찾습니다</h1>
         <p className={styles.lead}>
           짧은 목표를 하나씩 끝낸 뒤, 모양과 숫자가 바뀐 문제에서 같은 생각을
-          다시 씁니다. 묶음부터 겉넓이까지 코스가 열려 있습니다. 계산 숙달과
-          실물을 만져야 하는 단원은 이 화면에 넣지 않습니다.
+          다시 씁니다. 수 모형을 묶고 푸는 덧셈·뺄셈부터 겉넓이까지, 직접
+          조작하고 생각을 확인하는 코스가 열려 있습니다.
         </p>
+        <Link href="/lab/cube-3-1" className={styles.cubeFeature}>
+          <span className={styles.cubeFeatureBlocks} aria-hidden="true">
+            ▦ <span>▥</span> <i>▪</i>
+          </span>
+          <span>
+            <small>초등 3-1 · 1단원 전체 여정</small>
+            <b>덧셈과 뺄셈 실험실</b>
+            <span>직접 묶고 풀기 → 세로셈 → 계산 탐정 → 혼자 적용</span>
+          </span>
+          <strong>실험 시작 →</strong>
+        </Link>
         <div className={styles.courseGrid}>
           {COURSES.map((course) => {
             const done = courseCompleteCount(

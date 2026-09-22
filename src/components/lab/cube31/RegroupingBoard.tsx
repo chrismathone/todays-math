@@ -186,10 +186,12 @@ type TouchDrag = { block: MovingBlock; x: number; y: number; moved: boolean };
 export default function RegroupingBoard({
   problem,
   onComplete,
+  onAttempt,
   disabled = false,
 }: {
   problem: RegroupingProblem;
   onComplete: () => void;
+  onAttempt?: () => void;
   disabled?: boolean;
 }) {
   const [session, dispatch] = useReducer(
@@ -549,6 +551,7 @@ export default function RegroupingBoard({
           event.preventDefault();
           if (disabled) return;
           const result = checkNotation(problem, board, session);
+          if (!result.correct) onAttempt?.();
           dispatch({
             type: "feedback",
             message: result.message,

@@ -508,6 +508,83 @@
   border: 0;
 }
 
+@container cube-workspace (min-width: 1000px) {
+  .board {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) 240px;
+    column-gap: 22px;
+    padding: 24px;
+    border-radius: 16px;
+    box-shadow: none;
+  }
+  .topline,
+  .instruction {
+    grid-column: 1 / -1;
+  }
+  .columns {
+    grid-column: 1;
+    grid-row: 3;
+    gap: 8px;
+  }
+  .columnHead {
+    padding: 10px 8px;
+  }
+  .workspace {
+    min-height: 150px;
+    padding: 9px;
+  }
+  .tray {
+    padding: 9px;
+    min-height: 115px;
+  }
+  .accessHint {
+    grid-column: 1;
+    grid-row: 4;
+  }
+  .feedback {
+    grid-column: 1;
+    grid-row: 5;
+    padding: 12px;
+  }
+  .zeroButton {
+    grid-column: 1;
+    grid-row: 6;
+  }
+  .notation {
+    grid-column: 2;
+    grid-row: 3 / 7;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 18px;
+    padding: 20px 0 20px 20px;
+    margin: 0;
+    border-top: 0;
+    border-left: 1px solid #e3ecee;
+  }
+  .notationIntro h4 {
+    font-size: 15px;
+  }
+  .algorithm th:first-child {
+    width: 33px;
+    font-size: 9px;
+  }
+  .algorithm {
+    border-spacing: 3px;
+  }
+  .algorithm td {
+    font-size: 25px;
+  }
+  .algorithm .syncRow td {
+    font-size: 11px;
+  }
+  .algorithm input {
+    font-size: 23px;
+  }
+  .topline h3 {
+    font-size: 34px;
+  }
+}
 @media (max-width: 650px) {
   .board {
     border-radius: 16px;

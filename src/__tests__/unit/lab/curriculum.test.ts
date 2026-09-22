@@ -22,7 +22,7 @@ describe("교육과정 범위", () => {
       "ratio",
     ]);
     const summary = implementationSummary();
-    expect(summary.implemented).toBe(57);
+    expect(summary.implemented).toBe(58);
     expect(summary.partial).toBe(0);
     expect(
       summary.implemented + summary.partial + summary.hold + summary.excluded,

@@ -1,4 +1,5 @@
 import { COURSES } from "./courses";
+import { SPECIAL_COURSES } from "./specialCourses";
 import { labScopeById } from "./scope";
 import type { UnitRecord } from "./types";
 import raw from "./units.json";
@@ -21,6 +22,7 @@ type RawUnit = {
 };
 
 const IMPLEMENTED: Record<string, string[]> = {
+  "3-1-1": ["cube-3-1"],
   "1-1-4": ["measure"],
   "1-1-5": ["number"],
   "1-2-1": ["number"],
@@ -123,11 +125,19 @@ export function implementationSummary() {
     hold: all.filter((u) => u.status === "hold").length,
     excluded: all.filter((u) => u.status === "excluded").length,
     play: all.filter((u) => u.gate === "play").length,
-    courses: COURSES.map((c) => ({
-      id: c.id,
-      title: c.title,
-      activities: c.activities.length,
-      units: c.unitIds,
-    })),
+    courses: [
+      ...COURSES.map((c) => ({
+        id: c.id,
+        title: c.title,
+        activities: c.activities.length,
+        units: c.unitIds,
+      })),
+      ...SPECIAL_COURSES.map((c) => ({
+        id: c.id,
+        title: c.title,
+        activities: c.activities,
+        units: c.unitIds,
+      })),
+    ],
   };
 }

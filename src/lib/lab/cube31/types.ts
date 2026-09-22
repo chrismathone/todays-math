@@ -45,6 +45,7 @@ export type CubeTask = {
       digits: number[];
       order: "largest" | "smallest";
       add: number;
+      operation?: CubeOperation;
     }
   | { kind: "estimate"; a: number; b: number; operation: CubeOperation }
   | {

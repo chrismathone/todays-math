@@ -1,6 +1,7 @@
 import { describe, expect, it } from "vitest";
 
 import { COURSES } from "@/lib/lab/courses";
+import { SPECIAL_COURSES } from "@/lib/lab/specialCourses";
 import { implementationSummary, units } from "@/lib/lab/curriculum";
 import { LAB_SCOPE, labScopeById, scopeSummary } from "@/lib/lab/scope";
 import raw from "@/lib/lab/units.json";
@@ -37,7 +38,9 @@ describe("실험실 단원 문지기", () => {
     const playIds = LAB_SCOPE.filter((r) => r.gate === "play").map(
       (r) => r.unitId,
     );
-    const inCourses = new Set(COURSES.flatMap((c) => c.unitIds));
+    const inCourses = new Set(
+      [...COURSES, ...SPECIAL_COURSES].flatMap((c) => c.unitIds),
+    );
     expect([...playIds].sort()).toEqual([...inCourses].sort());
   });
 
@@ -45,9 +48,9 @@ describe("실험실 단원 문지기", () => {
     const s = scopeSummary();
     expect(s.excluded).toBeGreaterThanOrEqual(12);
     expect(s.physical).toBeGreaterThanOrEqual(5);
-    expect(s.drill).toBeGreaterThanOrEqual(5);
+    expect(s.drill).toBeGreaterThanOrEqual(4);
     expect(s.fieldData).toBeGreaterThanOrEqual(3);
-    expect(s.play).toBe(57);
+    expect(s.play).toBe(58);
     expect(s.play + s.hold + s.excluded).toBe(71);
   });
 

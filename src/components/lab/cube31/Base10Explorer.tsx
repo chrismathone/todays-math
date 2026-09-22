@@ -14,10 +14,12 @@ const VIEWS = [
 /** Optional exploration: the arithmetic board works before this viewer loads. */
 export default function Base10Explorer({
   reducedMotion = false,
+  initialOpen = false,
 }: {
   reducedMotion?: boolean;
+  initialOpen?: boolean;
 }) {
-  const [open, setOpen] = useState(false);
+  const [open, setOpen] = useState(initialOpen);
   const [percent, setPercent] = useState(0);
   const contentId = useId();
   const headingId = useId();

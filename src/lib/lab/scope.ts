@@ -157,9 +157,9 @@ export const LAB_SCOPE: LabScopeRow[] = [
   },
   {
     unitId: "3-1-1",
-    gate: "exclude",
-    excludeKind: "drill",
-    reason: "세 자리 세로셈 숙달은 문제은행입니다.",
+    gate: "play",
+    reason:
+      "덧셈과 뺄셈 실험실에서 수 모형을 묶고 풀며 세로셈, 이유 설명, 새로운 수로의 적용을 연결합니다.",
   },
   {
     unitId: "3-1-2",

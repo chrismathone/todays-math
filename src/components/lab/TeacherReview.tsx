@@ -5,6 +5,7 @@ import Link from "next/link";
 
 import TodayMathMark from "@/components/brand/TodayMathMark";
 import { COURSES } from "@/lib/lab/courses";
+import { SPECIAL_COURSES } from "@/lib/lab/specialCourses";
 import {
   CURRICULUM_SOURCES,
   implementationSummary,
@@ -61,8 +62,9 @@ export function TeacherReview() {
           주요 단원 {summary.catalog}개를 퀴즈 코스 {summary.catalog}개로 만들지
           않습니다. 수업 {summary.play} · 보류 {summary.hold} · 일부{" "}
           {summary.partial} · 제외 {summary.excluded}입니다. 실물
-          세기·작도·무게, 계산 숙달, 교실 자료 수집은 빼 둡니다. 학생 몰입
-          효과는 아직 측정하지 않았습니다.
+          세기·작도·무게, 단순 계산 암기, 교실 자료 수집은 빼 둡니다. 초3-1
+          덧셈·뺄셈은 묶음 교환과 이유 설명을 연결하는 전용 실험실에서 다룹니다.
+          학생 몰입 효과는 아직 측정하지 않았습니다.
         </p>
         <p className={styles.note}>
           학생 화면: <Link href="/lab">/lab</Link> · 전개도 원본{" "}
@@ -148,8 +150,14 @@ export function TeacherReview() {
                     </div>
                     {u.courses.map((id) => (
                       <div key={id}>
-                        <Link href={`/lab/play/${id}`}>
-                          {COURSES.find((c) => c.id === id)?.title}
+                        <Link
+                          href={
+                            SPECIAL_COURSES.find((c) => c.id === id)?.href ??
+                            `/lab/play/${id}`
+                          }
+                        >
+                          {SPECIAL_COURSES.find((c) => c.id === id)?.title ??
+                            COURSES.find((c) => c.id === id)?.title}
                         </Link>
                       </div>
                     ))}
@@ -168,6 +176,11 @@ export function TeacherReview() {
           </tbody>
         </table>
         <h2 className={styles.kicker}>이 브라우저의 학습 기록</h2>
+        <p className={styles.note}>
+          <Link href="/lab/cube-3-1">초3-1 덧셈·뺄셈의 학습 기록</Link>은 전용
+          실험실에서 확인합니다. 개념 활동의 시도·도움 횟수와 도움 없이 해결한
+          여섯 계산 유형을 구분합니다.
+        </p>
         <RecordTable save={save} />
       </main>
     </div>
