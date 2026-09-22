@@ -63,6 +63,26 @@ export default function CubeUnitLab({
   const [explorerOpen, setExplorerOpen] = useState(false);
   const [reportOpen, setReportOpen] = useState(false);
   const heading = useRef<HTMLHeadingElement>(null);
+  const lessonList = useRef<HTMLElement>(null);
+  useEffect(() => {
+    const list = lessonList.current;
+    if (!list) return;
+    const center = () => {
+      const current = list.querySelector<HTMLElement>('[aria-current="step"]');
+      if (!current || !list.clientHeight) return;
+      list.style.setProperty(
+        "--nav-edge",
+        Math.max(0, (list.clientHeight - current.offsetHeight) / 2) + "px",
+      );
+      const top =
+        current.offsetTop - (list.clientHeight - current.offsetHeight) / 2;
+      list.scrollTo({ top, behavior: "instant" });
+    };
+    center();
+    const observer = new ResizeObserver(center);
+    observer.observe(list);
+    return () => observer.disconnect();
+  }, [save.lesson, ready, mapOpen]);
   if (hydrated && !ready) {
     setReady(true);
     try {
@@ -93,7 +113,7 @@ export default function CubeUnitLab({
   function navigate(lessonIndex: number, nextStep = 0) {
     persist({ ...save, lesson: lessonIndex, step: nextStep });
     setMapOpen(false);
-    heading.current?.focus();
+    heading.current?.focus({ preventScroll: true });
   }
   function next() {
     if (step + 1 < steps) navigate(save.lesson, step + 1);
@@ -139,7 +159,11 @@ export default function CubeUnitLab({
             </span>
             <progress max={CUBE_TASK_IDS.length} value={done} />
           </div>
-          <nav aria-label="단원 학습 순서">
+          <nav
+            id="cube-lesson-list"
+            ref={lessonList}
+            aria-label="단원 학습 순서"
+          >
             {CUBE_LESSONS.map((item, index) => {
               const completed =
                 item.id === "challenge"
@@ -176,6 +200,7 @@ export default function CubeUnitLab({
               type="button"
               className={styles.secondaryButton}
               aria-expanded={mapOpen}
+              aria-controls="cube-lesson-list"
               onClick={() => setMapOpen(!mapOpen)}
             >
               학습 순서 {mapOpen ? "닫기" : "보기"}
@@ -194,6 +219,23 @@ export default function CubeUnitLab({
               </h2>
               <p>{lesson.goal}</p>
             </div>
+            <div
+              className={styles.stepTrack}
+              aria-label={"활동 " + (step + 1) + " / " + steps}
+            >
+              {Array.from({ length: steps }, (_, index) => (
+                <button
+                  type="button"
+                  key={index}
+                  className={styles.stepButton}
+                  aria-label={index + 1 + "번째 활동"}
+                  aria-current={step === index ? "step" : undefined}
+                  onClick={() => navigate(save.lesson, index)}
+                >
+                  <span>{index + 1}</span>
+                </button>
+              ))}
+            </div>
             <button
               type="button"
               className={styles.explorerButton}
@@ -201,23 +243,6 @@ export default function CubeUnitLab({
             >
               <span aria-hidden="true">◈</span> 묶음 3D 탐험
             </button>
-          </div>
-          <div
-            className={styles.stepTrack}
-            aria-label={"활동 " + (step + 1) + " / " + steps}
-          >
-            {Array.from({ length: steps }, (_, index) => (
-              <button
-                type="button"
-                key={index}
-                className={styles.stepButton}
-                aria-label={index + 1 + "번째 활동"}
-                aria-current={step === index ? "step" : undefined}
-                onClick={() => navigate(save.lesson, index)}
-              >
-                <span>{index + 1}</span>
-              </button>
-            ))}
           </div>
           {!ready ? (
             <div className={styles.stage} role="status">
@@ -365,7 +390,7 @@ function TaskStage({
   const [complete, setComplete] = useState(false);
   const [hint, setHint] = useState(false);
   return (
-    <article className={styles.stage}>
+    <article className={styles.stage} data-kind={task.kind}>
       <div className={styles.taskTitle}>
         <span className={styles.activityTag}>
           {task.kind === "regroup"
@@ -379,26 +404,28 @@ function TaskStage({
         <h3>{task.title}</h3>
         <p>{task.instruction}</p>
       </div>
-      {task.kind === "regroup" ? (
-        <RegroupingBoard
-          problem={task}
-          disabled={complete}
-          onAttempt={() => onRecord("attempt")}
-          onComplete={() => {
-            setComplete(true);
-            onRecord("complete");
-          }}
-        />
-      ) : (
-        <LearningActivity
-          task={task}
-          onAttempt={() => onRecord("attempt")}
-          onComplete={() => {
-            setComplete(true);
-            onRecord("complete");
-          }}
-        />
-      )}
+      <ActivityViewport>
+        {task.kind === "regroup" ? (
+          <RegroupingBoard
+            problem={task}
+            disabled={complete}
+            onAttempt={() => onRecord("attempt")}
+            onComplete={() => {
+              setComplete(true);
+              onRecord("complete");
+            }}
+          />
+        ) : (
+          <LearningActivity
+            task={task}
+            onAttempt={() => onRecord("attempt")}
+            onComplete={() => {
+              setComplete(true);
+              onRecord("complete");
+            }}
+          />
+        )}
+      </ActivityViewport>
       <div className={styles.stageFooter}>
         {!complete ? (
           <>
@@ -489,74 +516,115 @@ function PracticeStage({
           생각할 수 있어요.
         </p>
       </div>
-      <form onSubmit={check} className={styles.practiceForm}>
-        <div className={styles.largeEquation}>
-          {problem.a} {problem.operation === "add" ? "+" : "−"} {problem.b}{" "}
-          <span>=</span>
-          <input
-            aria-label="계산한 답"
-            inputMode="numeric"
-            autoComplete="off"
-            value={answer}
-            disabled={complete}
-            onChange={(event) => setAnswer(event.target.value)}
-            maxLength={5}
+      <ActivityViewport>
+        {!modelOpen && (
+          <>
+            <form onSubmit={check} className={styles.practiceForm}>
+              <div className={styles.largeEquation}>
+                {problem.a} {problem.operation === "add" ? "+" : "−"}{" "}
+                {problem.b} <span>=</span>
+                <input
+                  aria-label="계산한 답"
+                  inputMode="numeric"
+                  autoComplete="off"
+                  value={answer}
+                  disabled={complete}
+                  onChange={(event) => setAnswer(event.target.value)}
+                  maxLength={5}
+                />
+              </div>
+              <button
+                type="submit"
+                className={styles.primaryButton}
+                disabled={complete}
+              >
+                답 확인
+              </button>
+            </form>
+            {message && (
+              <p
+                role="status"
+                className={complete ? styles.correctMessage : styles.hint}
+              >
+                {message}
+              </p>
+            )}
+          </>
+        )}
+        {modelOpen && !complete && (
+          <RegroupingBoard
+            problem={problem}
+            onComplete={() => {
+              setModelOpen(false);
+              setMessage("모형에서 확인한 결과를 위의 답 칸에 입력해 보세요.");
+            }}
           />
-        </div>
-        <button
-          type="submit"
-          className={styles.primaryButton}
-          disabled={complete}
-        >
-          답 확인
-        </button>
-      </form>
-      {message && (
-        <p
-          role="status"
-          className={complete ? styles.correctMessage : styles.hint}
-        >
-          {message}
-        </p>
-      )}
-      {!complete && (
-        <button
-          type="button"
-          className={styles.hintButton}
-          aria-expanded={modelOpen}
-          onClick={() => {
-            setModelOpen(!modelOpen);
-            setAssisted(true);
-          }}
-        >
-          수 모형으로 {modelOpen ? "접기" : "다시 생각하기"}
-        </button>
-      )}
-      {modelOpen && !complete && (
-        <RegroupingBoard
-          problem={problem}
-          onComplete={() => {
-            setModelOpen(false);
-            setMessage("모형에서 확인한 결과를 위의 답 칸에 입력해 보세요.");
-          }}
-        />
-      )}
-      {complete && (
-        <div className={styles.success}>
-          <p>
-            {problem.a} {problem.operation === "add" ? "+" : "−"} {problem.b} ={" "}
-            {problem.answer}
-          </p>
+        )}
+      </ActivityViewport>
+      <div className={styles.stageFooter}>
+        {!complete && (
           <button
             type="button"
-            className={styles.primaryButton}
-            onClick={onNext}
+            className={styles.hintButton}
+            aria-expanded={modelOpen}
+            onClick={() => {
+              setModelOpen(!modelOpen);
+              setAssisted(true);
+            }}
           >
-            {last ? "학습 기록 보기" : "다음 문제 →"}
+            수 모형으로 {modelOpen ? "접기" : "다시 생각하기"}
           </button>
-        </div>
-      )}
+        )}
+        {complete && (
+          <div className={styles.success}>
+            <p>
+              {problem.a} {problem.operation === "add" ? "+" : "−"} {problem.b}{" "}
+              = {problem.answer}
+            </p>
+            <button
+              type="button"
+              className={styles.primaryButton}
+              onClick={onNext}
+            >
+              {last ? "학습 기록 보기" : "다음 문제 →"}
+            </button>
+          </div>
+        )}
+      </div>
     </article>
+  );
+}
+/** Fit the complete activity into the stage, including on viewport resize. */
+function ActivityViewport({ children }: { children: React.ReactNode }) {
+  const viewport = useRef<HTMLDivElement>(null);
+  const content = useRef<HTMLDivElement>(null);
+  useEffect(() => {
+    const frame = viewport.current;
+    const body = content.current;
+    if (!frame || !body) return;
+    const fit = () => {
+      const scale = Math.min(
+        1,
+        frame.clientHeight / Math.max(1, body.offsetHeight),
+      );
+      body.style.setProperty("--activity-scale", String(scale));
+      body.style.setProperty(
+        "--activity-inset",
+        ((1 - scale) * frame.clientWidth) / 2 + "px",
+      );
+    };
+    fit();
+    const observer = new ResizeObserver(fit);
+    observer.observe(frame);
+    observer.observe(body);
+    return () => observer.disconnect();
+  }, []);
+  return (
+    <div ref={viewport} className={styles.activityViewport}>
+      <div ref={content} className={styles.activityContent}>
+        {children}
+      </div>
+    </div>
   );
 }
 function Modal({

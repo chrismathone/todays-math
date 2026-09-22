@@ -61,6 +61,13 @@ function startChallenge() {
 }
 beforeEach(() => {
   localStorage.clear();
+  vi.stubGlobal(
+    "ResizeObserver",
+    class {
+      observe() {}
+      disconnect() {}
+    },
+  );
   Object.defineProperty(window, "matchMedia", {
     configurable: true,
     value: vi.fn(() => ({
