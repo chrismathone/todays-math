@@ -5,6 +5,7 @@ import os from "node:os";
 import path from "node:path";
 import { chromium, expect } from "@playwright/test";
 import { CUBE_LESSONS } from "../../src/lib/lab/cube31/lessons";
+import { labZoom } from "../../src/lib/lab/cube31/zoom";
 
 const output = path.join(os.tmpdir(), "cube31-viewport-qa");
 mkdirSync(output, { recursive: true });
@@ -33,6 +34,7 @@ async function main() {
       );
       await expect(page.locator('[aria-busy="false"]')).toBeVisible();
       const rows = [];
+      const stageHeights: number[] = [];
       for (let lesson = 0; lesson < CUBE_LESSONS.length; lesson++) {
         if (viewport.width <= 760)
           await page.getByRole("button", { name: "학습 순서 보기" }).click();
@@ -115,6 +117,9 @@ async function main() {
               scale: Number(body.style.getPropertyValue("--activity-scale")),
               activityBottom: rect.bottom,
               frameBottom: frameRect.bottom,
+              stageHeight: document
+                .querySelector("article")!
+                .getBoundingClientRect().height,
               outside,
             };
           });
@@ -132,11 +137,7 @@ async function main() {
             geometry.activityBottom <= geometry.frameBottom + 1,
             `${label}: activity clipped`,
           );
-          // The card ends with its activity — no blank card below short activities.
-          assert(
-            geometry.frameBottom - geometry.activityBottom <= 2,
-            `${label}: blank card space below activity`,
-          );
+          stageHeights.push(geometry.stageHeight);
           assert.deepEqual(
             geometry.outside,
             [],
@@ -159,6 +160,23 @@ async function main() {
         }
       }
       if (viewport.width > 760) {
+        // Every activity gets the same card, whatever its content (원장님 2026-09-22).
+        // Phones stack a heading whose subtitle may wrap onto a second line (28~31쪽).
+        assert(
+          Math.max(...stageHeights) - Math.min(...stageHeights) <= 1,
+          `${viewport.width}×${viewport.height}: card size changes between activities`,
+        );
+        // Big screens scale the whole page up to the design size (labZoom).
+        const zoom = await page.evaluate(() =>
+          Number(
+            getComputedStyle(document.querySelector("main")!.parentElement!)
+              .zoom,
+          ),
+        );
+        assert(
+          Math.abs(zoom - labZoom(viewport.width, viewport.height)) < 0.01,
+          `page zoom ${zoom} is not labZoom`,
+        );
         // Wide screens: the sidebar stays on the left edge under the logo, and the
         // activity column stops at 1500px, centred in the space beside it.
         const frame = await page.evaluate(() => {
@@ -176,7 +194,10 @@ async function main() {
           };
         });
         assert.equal(frame.asideLeft, 0, "sidebar floats off the left edge");
-        assert(frame.stageWidth <= 1501, "activity column grows past 1500px");
+        assert(
+          frame.stageWidth <= 1500 * zoom + 1,
+          "activity column grows past 1500px",
+        );
         assert(Math.abs(frame.offCentre) < 2, "activity column is off centre");
         const nav = page.getByRole("navigation", { name: "단원 학습 순서" });
         const before = await nav.evaluate((el) => el.scrollTop);

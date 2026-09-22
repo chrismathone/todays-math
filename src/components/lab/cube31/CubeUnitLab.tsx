@@ -14,6 +14,7 @@ import {
   type CubeSave,
 } from "@/lib/lab/cube31/progress";
 import type { CubePractice, CubeTask } from "@/lib/lab/cube31/types";
+import { labZoom } from "@/lib/lab/cube31/zoom";
 import RegroupingBoard from "./RegroupingBoard";
 import LearningActivity from "./LearningActivity";
 import styles from "./CubeUnitLab.module.css";
@@ -22,6 +23,12 @@ const Base10Explorer = dynamic(() => import("./Base10Explorer"), {
   ssr: false,
   loading: () => <p role="status">수 모형을 준비하고 있어요…</p>,
 });
+const subscribeResize = (callback: () => void) => {
+  window.addEventListener("resize", callback);
+  return () => window.removeEventListener("resize", callback);
+};
+const zoomSnapshot = () => labZoom(window.innerWidth, window.innerHeight);
+const serverZoom = () => 1;
 const subscribeNever = () => () => {};
 const serverFalse = () => false;
 const clientTrue = () => true;
@@ -56,6 +63,7 @@ export default function CubeUnitLab({
     motionSnapshot,
     serverFalse,
   );
+  const zoom = useSyncExternalStore(subscribeResize, zoomSnapshot, serverZoom);
   const [ready, setReady] = useState(false);
   const [save, setSave] = useState<CubeSave>(emptyCubeSave);
   const [storageError, setStorageError] = useState(false);
@@ -121,7 +129,10 @@ export default function CubeUnitLab({
     else setReportOpen(true);
   }
   return (
-    <div className={styles.page}>
+    <div
+      className={styles.page}
+      style={{ "--lab-zoom": zoom } as React.CSSProperties}
+    >
       <header className={styles.header}>
         <Link href="/lab" className={styles.brand}>
           <span aria-hidden="true">▦</span> 오늘의수학{" "}
@@ -600,15 +611,35 @@ function ActivityViewport({ children }: { children: React.ReactNode }) {
     const frame = viewport.current;
     const body = content.current;
     if (!frame || !body) return;
+    // 줄일 때는 폭 W/s 로 펼쳐 놓고 s 배로 줄인다 — 줄인 뒤에도 폭이 칸을 꽉 채워 활동마다 카드 폭이 같다
+    // (원장님 2026-09-22 «문제마다 창 크기가 다르지않고 똑같았으면»). 글이 대부분인 활동은 넓히면 짧아지지만,
+    // 폭에 비례해 커지는 그림(모양 탐험)은 넓히면 **길어진다** — 펼쳐서 안 들어가면 폭 그대로 줄여 가운데 둔다.
+    const heightAt = (scale: number) => {
+      body.style.width = frame.clientWidth / scale + "px";
+      return Math.max(1, body.offsetHeight);
+    };
     const fit = () => {
-      const scale = Math.min(
-        1,
-        frame.clientHeight / Math.max(1, body.offsetHeight),
-      );
+      const room = frame.clientHeight;
+      let scale = 1;
+      let spread = true;
+      if (room && heightAt(1) > room) {
+        let fits = room / heightAt(1);
+        if (heightAt(fits) * fits > room) spread = false;
+        else {
+          let over = Math.min(1, room / heightAt(fits));
+          for (let i = 0; i < 6 && over - fits > 0.002; i++) {
+            const mid = (fits + over) / 2;
+            if (heightAt(mid) * mid <= room) fits = mid;
+            else over = mid;
+          }
+        }
+        scale = fits;
+      }
+      heightAt(spread ? scale : 1);
       body.style.setProperty("--activity-scale", String(scale));
       body.style.setProperty(
         "--activity-inset",
-        ((1 - scale) * frame.clientWidth) / 2 + "px",
+        spread ? "0px" : ((1 - scale) * frame.clientWidth) / 2 + "px",
       );
     };
     fit();
