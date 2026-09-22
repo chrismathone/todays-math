@@ -1,0 +1,142 @@
+.explorer {
+  --lab-line: #dce4e8;
+  --lab-ink: #183c45;
+  --lab-muted: #53666c;
+  --lab-accent: #27776b;
+  border: 1px solid var(--lab-line);
+  border-radius: 18px;
+  background: #f8fbfa;
+  color: var(--lab-ink);
+  padding: clamp(16px, 3vw, 28px);
+}
+
+.intro {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.intro h3 {
+  margin: 5px 0 8px;
+  font-size: clamp(18px, 3vw, 22px);
+  line-height: 1.4;
+  word-break: keep-all;
+}
+
+.intro p {
+  margin: 0;
+  font-size: 14px;
+  line-height: 1.6;
+  word-break: keep-all;
+}
+
+.intro .eyebrow {
+  color: #286e63;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.toggle {
+  min-height: 44px;
+  padding: 10px 16px;
+  border: 1px solid #38796e;
+  border-radius: 10px;
+  background: #fff;
+  color: #20594f;
+  cursor: pointer;
+  font: inherit;
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.toggle:hover {
+  background: #e9f4ef;
+}
+
+.explorer button:focus-visible,
+.explorer input:focus-visible {
+  outline: 3px solid #246caa;
+  outline-offset: 4px;
+}
+
+.content {
+  padding-top: 22px;
+}
+
+.values {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  margin-bottom: 16px;
+}
+
+.values p {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+  margin: 0;
+  padding: 12px;
+  border: 1px solid var(--lab-line);
+  border-radius: 10px;
+  background: #fff;
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+.values p > span:last-child {
+  flex-basis: 100%;
+  color: var(--lab-muted);
+}
+
+.one,
+.ten {
+  display: inline-block;
+  width: 15px;
+  height: 15px;
+  border: 1px solid #20756e;
+  border-radius: 2px;
+  background: #42ad9f;
+}
+
+.ten {
+  width: 30px;
+  border-color: #aa732e;
+  background: #efbd69;
+}
+
+.direction {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  color: #386057;
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.explanation {
+  margin: 18px 0 8px;
+  font-size: 15px;
+  line-height: 1.7;
+  word-break: keep-all;
+}
+
+.hint {
+  margin: 0;
+  color: var(--lab-muted);
+  font-size: 13px;
+  line-height: 1.6;
+  word-break: keep-all;
+}
+
+@media (max-width: 460px) {
+  .values {
+    grid-template-columns: 1fr;
+  }
+
+  .toggle {
+    width: 100%;
+  }
+}
