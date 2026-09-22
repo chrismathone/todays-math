@@ -335,32 +335,74 @@ export function withErrorLog<H extends RouteHandler>(
       throw error;
     }
     // 처리기가 아무것도 안 돌려준 것(형으로만 가능 — Next 가 500 으로 바꾼다)은 여기서 판정하지 않는다
-    if (response instanceof Response && response.status >= 400) {
-      const id = randomUUID();
-      const info = { ...base(), id, status: response.status };
-      let copy: Response | undefined;
-      try {
-        copy = response.clone();
-      } catch {
-        copy = undefined; // 이미 읽힌 본문 — 머리와 상태만 남긴다
-      }
-      try {
-        response.headers.set(ERROR_LOG_HEADER, id);
-      } catch {
-        // 머리가 잠긴 응답(fetch 로 받아 넘긴 것 등) — 기록은 그대로 남긴다
-      }
-      schedule(async () =>
-        recordErrorLog(
-          entryFrom(
-            info,
-            notes,
-            await routeParams(args[1]),
-            await readRejection(copy),
-          ),
-        ),
+    if (response instanceof Response && response.status >= 400)
+      logRejection(
+        response,
+        { ...base(), status: response.status },
+        notes,
+        () => routeParams(args[1]),
       );
-    }
     return response;
   };
   return Object.assign(wrapped, { [ERROR_LOG_ROUTE]: route });
+}
+
+/** 거절 응답 하나를 기록한다 — 본문은 복제해서 읽고, 머리에 줄 id 를 붙인다. */
+function logRejection(
+  response: Response,
+  info: Omit<Parameters<typeof entryFrom>[0], "id">,
+  notes: ErrorLogNotes,
+  params: () => Promise<unknown>,
+) {
+  const id = randomUUID();
+  let copy: Response | undefined;
+  try {
+    copy = response.clone();
+  } catch {
+    copy = undefined; // 이미 읽힌 본문 — 머리와 상태만 남긴다
+  }
+  try {
+    response.headers.set(ERROR_LOG_HEADER, id);
+  } catch {
+    // 머리가 잠긴 응답(fetch 로 받아 넘긴 것 등) — 기록은 그대로 남긴다
+  }
+  schedule(async () =>
+    recordErrorLog(
+      entryFrom(
+        { ...info, id },
+        notes,
+        await params(),
+        await readRejection(copy),
+      ),
+    ),
+  );
+}
+
+/**
+ * 라우트 틀 **밖**에서 낸 거절 응답을 기록한다 — 관문(`src/proxy.ts`)의 API 403 이 그것이다.
+ * 틀은 관문 뒤에 있어 그 거절을 못 본다(원장님 2026-09-22 «거절되었을 때 로그를 전부»). 응답은 그대로 돌려준다.
+ */
+export function logRejectedResponse<R extends Response>(options: {
+  route: string;
+  request: Request;
+  response: R;
+  userId?: string | null;
+  context?: Record<string, unknown>;
+}): R {
+  if (options.response.status < 400) return options.response;
+  const notes = createErrorLogNotes();
+  if (options.userId) notes.userId = options.userId;
+  Object.assign(notes.context, options.context ?? {});
+  logRejection(
+    options.response,
+    {
+      route: options.route,
+      ...describeRequest(options.request),
+      status: options.response.status,
+      durationMs: 0,
+    },
+    notes,
+    async () => undefined,
+  );
+  return options.response;
 }

@@ -53,6 +53,11 @@ const REVIEWER_RULES: readonly Rule[] = [
   },
   { methods: ["GET"], path: "/api/review/queue", why: "다음에 볼 문항" },
   { methods: ["GET"], path: "/api/units", why: "단원 이름" },
+  {
+    methods: ["POST"],
+    path: "/api/logs/client",
+    why: "브라우저 오류 보고 — 검수 화면의 오류도 와야 한다(오류 기록 2026-09-22). 읽는 것은 없다",
+  },
   /**
    * 🔴 **그림 파일.** 이게 빠져 있어서 검수 계정은 문항 그림을 **하나도 못 봤다**
    *    (2026-08-20 에 실제로 그랬다 — 견본지를 만들다 307 리다이렉트로 드러났다).
