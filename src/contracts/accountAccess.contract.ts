@@ -41,6 +41,7 @@ export type AccountAccess = {
   menus: WorkspaceMenu[];
 };
 export type ManagedAccount = AccountAccess & {
+  branchName?: string | null;
   createdAt: string;
   updatedAt: string;
   suspendedAt: string | null;

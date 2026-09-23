@@ -25,6 +25,79 @@
   font-size: 14px;
   margin: 20px 0 28px;
 }
+.profile {
+  margin: 24px 0;
+  border: 1px solid var(--learn-track);
+  border-radius: var(--learn-radius);
+  background: var(--learn-surface);
+  box-shadow: 0 2px 10px #14243d08;
+  overflow: hidden;
+}
+.profileHeading {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 24px;
+  border-bottom: 1px solid var(--learn-track);
+}
+.profileHeading h2 {
+  margin: 0;
+  font-size: 18px;
+}
+.profileHeading > span {
+  color: var(--learn-muted);
+  font-size: 12px;
+}
+.profileGrid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  margin: 0;
+}
+.profileGrid > div {
+  min-width: 0;
+  padding: 19px 24px;
+  border-right: 1px solid var(--learn-track);
+  border-bottom: 1px solid var(--learn-track);
+}
+.profileGrid dt {
+  margin-bottom: 7px;
+  color: var(--learn-muted);
+  font-size: 12px;
+}
+.profileGrid dd {
+  margin: 0;
+  font-size: 14px;
+  font-weight: 700;
+  overflow-wrap: anywhere;
+}
+.detailWorkspace {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 360px;
+  gap: 18px;
+  align-items: start;
+}
+.detailContent {
+  min-width: 0;
+}
+.settings {
+  min-width: 0;
+}
+@media (max-width: 1200px) {
+  .profileGrid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  .detailWorkspace {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+@media (max-width: 620px) {
+  .profileGrid {
+    grid-template-columns: 1fr;
+  }
+  .profileGrid > div {
+    padding: 14px 18px;
+  }
+}
 .tabs {
   display: flex;
   gap: 6px;

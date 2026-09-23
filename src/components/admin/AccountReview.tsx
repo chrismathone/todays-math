@@ -22,18 +22,14 @@ export const STATUS_LABELS = {
 
 export function AccountStatus({ account }: { account: ManagedAccount }) {
   return (
-    <span className={`${s.badge} ${s[account.approvalStatus]}`}>
+    <span
+      className={`${s.badge} ${s[account.deletedAt || account.suspendedAt ? "rejected" : account.approvalStatus]}`}
+    >
       {account.deletedAt
         ? "삭제됨"
         : account.suspendedAt
           ? "정지됨"
-          : account.isSuperAdmin
-            ? "최고관리자"
-            : account.isAdmin
-              ? account.branchRole === "owner"
-                ? "지점장"
-                : "지점 관리자"
-              : STATUS_LABELS[account.approvalStatus]}
+          : STATUS_LABELS[account.approvalStatus]}
     </span>
   );
 }
@@ -41,6 +37,7 @@ export function AccountStatus({ account }: { account: ManagedAccount }) {
 export function accountDate(value: string) {
   return new Intl.DateTimeFormat("ko-KR", {
     dateStyle: "medium",
+    timeStyle: "short",
     timeZone: "Asia/Seoul",
   }).format(new Date(value));
 }
@@ -49,10 +46,12 @@ export default function AccountReview({
   account,
   onLockChange,
   onUpdate,
+  autoFocus = true,
 }: {
   account: ManagedAccount;
   onLockChange: (locked: boolean) => void;
   onUpdate: (account: ManagedAccount) => void;
+  autoFocus?: boolean;
 }) {
   const [menus, setMenus] = useState<WorkspaceMenu[]>(account.menus);
   const [name, setName] = useState(account.name);
@@ -82,8 +81,8 @@ export default function AccountReview({
     menus.some((menu) => !account.menus.includes(menu));
 
   useEffect(() => {
-    headingRef.current?.focus();
-  }, []);
+    if (autoFocus) headingRef.current?.focus();
+  }, [autoFocus]);
 
   useEffect(() => {
     if (account.branchId || account.isSuperAdmin) return;
@@ -295,22 +294,30 @@ export default function AccountReview({
       <p className={s.email}>{account.email}</p>
       <dl className={s.facts}>
         <div>
+          <dt>지점</dt>
+          <dd>{account.branchName || "독립 계정"}</dd>
+        </div>
+        <div>
+          <dt>권한</dt>
+          <dd>
+            {account.isSuperAdmin
+              ? "최고관리자"
+              : account.branchRole === "owner"
+                ? "원장"
+                : account.branchRole === "manager"
+                  ? "지점 관리자"
+                  : account.role === "reviewer"
+                    ? "검수자"
+                    : "강사"}
+          </dd>
+        </div>
+        <div>
           <dt>가입일</dt>
           <dd>{accountDate(account.createdAt)}</dd>
         </div>
         <div>
-          <dt>계정 유형</dt>
-          <dd>
-            {account.isSuperAdmin
-              ? "최고관리자"
-              : account.isAdmin
-                ? account.branchRole === "owner"
-                  ? "지점장"
-                  : "지점 관리자"
-                : account.role === "reviewer"
-                  ? "검수자"
-                  : "강사"}
-          </dd>
+          <dt>마지막 변경</dt>
+          <dd>{accountDate(account.updatedAt)}</dd>
         </div>
       </dl>
       {!account.isSuperAdmin && !account.deletedAt ? (
@@ -512,6 +519,8 @@ export default function AccountReview({
                   setName(account.name);
                   setEmail(account.email);
                   setBranchManager(account.isAdmin);
+                  setBranchId(account.branchId ?? "");
+                  setBranchRole("teacher");
                   onLockChange(false);
                   setNotice(null);
                 }}
