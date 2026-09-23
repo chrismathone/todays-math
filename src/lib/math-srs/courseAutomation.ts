@@ -1,0 +1,660 @@
+/** Pure, validated server transitions. No browser state or database access. */
+import { z } from "zod";
+import {
+  courseActivityDaySchema,
+  courseAttemptInputSchema,
+  coursePlanSchema,
+  courseRecentAttemptSchema,
+  courseSectionIdSchema,
+  courseSectionReportSchema,
+  type CourseAttemptInput,
+  type CourseHintInput,
+  type CoursePlanInput,
+  type CoursePublicSession,
+  type CourseSummary,
+} from "@/contracts/mathSrsCourse.contract";
+import { kstDateOf } from "@/lib/kstDate";
+import { gradeCourseAnswer, validateCourseAnswer } from "./elementary/answers";
+import { COURSE_SECTIONS, getCourseSection } from "./elementary/catalog";
+import { generateCourseSession } from "./elementary/generator";
+import {
+  courseLearnerSchema,
+  courseRecord,
+  createCourseLearner,
+  markCourseHint,
+  recordCourseAttempt,
+} from "./elementary/progress";
+import type { CourseSession } from "./elementary/types";
+
+const DAY = 86_400_000;
+const clamp = (n: number, min: number, max: number) =>
+  Math.max(min, Math.min(max, n));
+const sessionSchema = courseLearnerSchema.shape.session.unwrap();
+const memorySchema = courseSectionReportSchema.omit({ estimatedRecall: true });
+const savedSessionSchema = z.strictObject({
+  session: sessionSchema,
+  requests: z.array(courseAttemptInputSchema).max(5),
+});
+export class CourseConflict extends Error {}
+export class CourseInvalidInput extends Error {}
+
+export const storedCourseSchema = z
+  .strictObject({
+    plan: coursePlanSchema.nullable(),
+    learner: courseLearnerSchema,
+    completedSectionIds: z
+      .array(courseSectionIdSchema)
+      .max(COURSE_SECTIONS.length),
+    requests: z.array(courseAttemptInputSchema).max(5),
+    history: z.array(savedSessionSchema).max(30),
+    activity: z.array(courseActivityDaySchema).max(90),
+    recentAttempts: z.array(courseRecentAttemptSchema).max(100),
+    memories: courseRecord(z.string(), memorySchema),
+  })
+  .superRefine((state, ctx) => {
+    const fail = () =>
+      ctx.addIssue({
+        code: "custom",
+        message: "자동 학습 기록이 일치하지 않습니다.",
+      });
+    const entries = [
+      ...state.history,
+      ...(state.learner.session
+        ? [{ session: state.learner.session, requests: state.requests }]
+        : []),
+    ];
+    const ids = new Set<string>();
+    const retainedDays = new Map<
+      string,
+      {
+        answered: number;
+        correct: number;
+        unaidedCorrect: number;
+        hinted: number;
+      }
+    >();
+    let completedAt: string | null = null;
+    for (const { session, requests } of entries) {
+      if (!z.uuid().safeParse(session.id).success || ids.has(session.id))
+        fail();
+      ids.add(session.id);
+      if (completedAt && session.startedAt < completedAt) fail();
+      completedAt = session.completedAt;
+      if (requests.length !== session.attempts.length) fail();
+      session.problems.forEach((p) => {
+        if (!z.uuid().safeParse(p.id).success || ids.has(p.id)) fail();
+        ids.add(p.id);
+      });
+      session.attempts.forEach((a, i) => {
+        const request = requests[i];
+        if (
+          !request ||
+          request.sessionId !== session.id ||
+          request.problemId !== a.problemId ||
+          a.submittedAnswer !==
+            (request.giveUp ? "" : request.submittedAnswer) ||
+          a.usedHint !==
+            (session.hintedProblemIds ?? []).includes(a.problemId) ||
+          (request.giveUp && a.correct) ||
+          (a.selfAssessed &&
+            !request.giveUp &&
+            (request.selfCorrect !== a.correct || !a.usedHint))
+        )
+          fail();
+        if (!state.memories[session.sectionId]) fail();
+        const date = kstDateOf(new Date(a.answeredAt));
+        const day = retainedDays.get(date) ?? {
+          answered: 0,
+          correct: 0,
+          unaidedCorrect: 0,
+          hinted: 0,
+        };
+        retainedDays.set(date, {
+          answered: day.answered + 1,
+          correct: day.correct + Number(a.correct),
+          unaidedCorrect:
+            day.unaidedCorrect +
+            Number(a.correct && !a.usedHint && !a.selfAssessed),
+          hinted: day.hinted + Number(a.usedHint),
+        });
+      });
+    }
+    if (
+      state.history.some(({ session }) => !session.completedAt) ||
+      Object.keys(state.learner.pausedSessions ?? {}).length ||
+      (!state.learner.session && state.requests.length) ||
+      new Set(state.completedSectionIds).size !==
+        state.completedSectionIds.length ||
+      state.completedSectionIds.some((id) => !state.learner.progress[id]) ||
+      (!state.plan &&
+        (entries.length ||
+          Object.keys(state.memories).length ||
+          state.completedSectionIds.length)) ||
+      new Set(state.activity.map((day) => day.date)).size !==
+        state.activity.length
+    )
+      fail();
+    for (const day of state.activity) {
+      if (
+        day.correct > day.answered ||
+        day.unaidedCorrect > day.correct ||
+        day.hinted > day.answered
+      )
+        fail();
+    }
+    for (const [date, retained] of retainedDays) {
+      const day = state.activity.find((d) => d.date === date);
+      // Days older than the retained 90-day ledger may have been compacted.
+      if (
+        !day &&
+        (state.activity.length < 90 || date >= state.activity[0].date)
+      )
+        fail();
+      if (
+        day &&
+        (day.answered < retained.answered ||
+          day.correct < retained.correct ||
+          day.unaidedCorrect < retained.unaidedCorrect ||
+          day.hinted < retained.hinted)
+      )
+        fail();
+    }
+    for (const [id, memory] of Object.entries(state.memories)) {
+      const progress = state.learner.progress[id];
+      const partial =
+        state.learner.session?.sectionId === id &&
+        !state.learner.session.completedAt
+          ? state.learner.session.attempts
+          : [];
+      if (
+        id !== memory.sectionId ||
+        memory.attempts !== (progress?.attempts ?? 0) + partial.length ||
+        memory.correct !==
+          (progress?.correct ?? 0) + partial.filter((a) => a.correct).length ||
+        memory.completedSessions !== (progress?.completedSessions ?? 0) ||
+        memory.correct > memory.attempts ||
+        memory.unaidedCorrect > memory.correct ||
+        memory.hinted > memory.attempts ||
+        memory.selfAssessed > memory.attempts ||
+        memory.nextReviewAt < memory.lastReviewedAt
+      )
+        fail();
+    }
+    if (Object.keys(state.learner.progress).some((id) => !state.memories[id]))
+      fail();
+    if (
+      state.completedSectionIds.some(
+        (id) => (state.memories[id]?.correct ?? 0) < 4,
+      )
+    )
+      fail();
+    if (
+      state.activity.reduce((sum, day) => sum + day.answered, 0) >
+      Object.values(state.memories).reduce((sum, m) => sum + m.attempts, 0)
+    )
+      fail();
+    if (
+      new Set(state.recentAttempts.map((a) => a.problemId)).size !==
+      state.recentAttempts.length
+    )
+      fail();
+  });
+export type StoredCourse = z.infer<typeof storedCourseSchema>;
+
+export function emptyCourseState(): StoredCourse {
+  return {
+    plan: null,
+    learner: courseLearnerSchema.parse(createCourseLearner()),
+    completedSectionIds: [],
+    requests: [],
+    history: [],
+    activity: [],
+    recentAttempts: [],
+    memories: {},
+  };
+}
+
+export function setCoursePlan(
+  state: StoredCourse,
+  input: CoursePlanInput,
+  now: Date,
+): StoredCourse {
+  if (!getCourseSection(input.startSectionId))
+    throw new CourseInvalidInput("학습할 소단원을 선택해 주세요.");
+  const changingStart = state.plan?.startSectionId !== input.startSectionId;
+  if (
+    changingStart &&
+    state.learner.session &&
+    !state.learner.session.completedAt
+  )
+    throw new CourseConflict(
+      "진행 중인 학습을 마친 뒤 시작 소단원을 바꿔 주세요.",
+    );
+  return {
+    ...state,
+    plan: {
+      startSectionId: input.startSectionId,
+      dailyQuestionCount: input.dailyQuestionCount,
+      enabled: input.enabled,
+      configuredAt: now.toISOString(),
+    },
+    learner: changingStart
+      ? { ...state.learner, selectedSectionId: input.startSectionId }
+      : state.learner,
+  };
+}
+
+function nextLearning(state: StoredCourse) {
+  const selected = getCourseSection(state.learner.selectedSectionId)!;
+  return (
+    COURSE_SECTIONS.find(
+      (s) =>
+        s.order >= selected.order && !state.completedSectionIds.includes(s.id),
+    ) ?? null
+  );
+}
+
+export function courseSummary(state: StoredCourse, now: Date): CourseSummary {
+  const today = kstDateOf(now);
+  const activity = state.activity.find((d) => d.date === today);
+  const due = Object.values(state.memories)
+    .filter((m) => Date.parse(m.nextReviewAt) <= now.getTime())
+    .sort(
+      (a, b) =>
+        a.nextReviewAt.localeCompare(b.nextReviewAt) ||
+        getCourseSection(a.sectionId)!.order -
+          getCourseSection(b.sectionId)!.order,
+    );
+  const session = state.learner.session;
+  const active = session && !session.completedAt;
+  const next = nextLearning(state);
+  const learnedToday = [
+    ...state.history.map((s) => s.session),
+    ...(session ? [session] : []),
+  ].some(
+    (s) =>
+      s.mode === "learn" &&
+      s.sectionId === next?.id &&
+      s.completedAt &&
+      kstDateOf(new Date(s.completedAt)) === today,
+  );
+  // A failed new lesson rests until tomorrow; reviews never consume its cursor.
+  const recommendation: CourseSummary["recommendation"] = active
+    ? {
+        sectionId: session.sectionId,
+        mode: "resume",
+        reason: "풀던 문제부터 이어서 학습해요.",
+      }
+    : !state.plan?.enabled ||
+        (activity?.answered ?? 0) >= state.plan.dailyQuestionCount
+      ? null
+      : due.length
+        ? {
+            sectionId: due[0].sectionId,
+            mode: "review",
+            reason: "복습 날짜가 가장 오래 지난 소단원이에요.",
+          }
+        : next && !learnedToday
+          ? {
+              sectionId: next.id,
+              mode: "learn",
+              reason: "선택한 진도에서 다음 소단원을 학습해요.",
+            }
+          : null;
+  const memories = Object.values(state.memories);
+  return {
+    status: !state.plan
+      ? "setup"
+      : active
+        ? session.mode === "review"
+          ? "review"
+          : "learning"
+        : !state.plan.enabled
+          ? "paused"
+          : recommendation?.mode === "review"
+            ? "review"
+            : recommendation
+              ? "ready"
+              : !next
+                ? "complete"
+                : "done",
+    currentSectionId: active ? session.sectionId : (next?.id ?? null),
+    dueCount: due.length,
+    todayAnswered: activity?.answered ?? 0,
+    todayCorrect: activity?.correct ?? 0,
+    todayGoal: state.plan?.dailyQuestionCount ?? 10,
+    completedSections: state.completedSectionIds.length,
+    lastPracticedAt:
+      memories
+        .map((m) => m.lastReviewedAt)
+        .sort()
+        .at(-1) ?? null,
+    nextReviewAt: memories.map((m) => m.nextReviewAt).sort()[0] ?? null,
+    recommendation,
+  };
+}
+
+export function startAutomaticCourse(
+  state: StoredCourse,
+  now: Date,
+  seed: number,
+  newId: () => string,
+): StoredCourse {
+  const next = courseSummary(state, now).recommendation;
+  if (!next || next.mode === "resume") return state;
+  const previous = state.learner.session;
+  const startedAt = new Date(
+    Math.max(
+      now.getTime(),
+      Date.parse(previous?.completedAt ?? now.toISOString()),
+    ),
+  );
+  const generated = generateCourseSession(
+    next.sectionId,
+    seed,
+    startedAt,
+    next.mode,
+  );
+  const session = sessionSchema.parse({
+    ...generated,
+    id: newId(),
+    problems: generated.problems.map((p) => ({ ...p, id: newId() })),
+  });
+  return {
+    ...state,
+    learner: { ...state.learner, session },
+    requests: [],
+    history: previous
+      ? [
+          ...state.history,
+          { session: previous, requests: state.requests },
+        ].slice(-30)
+      : state.history,
+  };
+}
+
+export function findStoredCourseSession(
+  state: StoredCourse,
+  id: string,
+): CourseSession | undefined {
+  return state.learner.session?.id === id
+    ? state.learner.session
+    : state.history.find((s) => s.session.id === id)?.session;
+}
+function requireCurrent(state: StoredCourse, input: CourseHintInput) {
+  const session = state.learner.session;
+  if (
+    !session ||
+    session.id !== input.sessionId ||
+    session.completedAt ||
+    session.problems[session.attempts.length]?.id !== input.problemId
+  )
+    throw new CourseConflict(
+      "학습 또는 문제 순서가 변경되었습니다. 다시 불러와 주세요.",
+    );
+  return session;
+}
+export function revealCourseHint(
+  state: StoredCourse,
+  input: CourseHintInput,
+): StoredCourse {
+  const previous = findStoredCourseSession(state, input.sessionId);
+  if (previous?.hintedProblemIds?.includes(input.problemId)) return state;
+  requireCurrent(state, input);
+  return {
+    ...state,
+    learner: markCourseHint(state.learner, input.problemId),
+  } as StoredCourse;
+}
+
+export function estimatedCourseRecall(
+  memory: StoredCourse["memories"][string],
+  now: Date,
+) {
+  const elapsed = Math.max(
+    0,
+    (now.getTime() - Date.parse(memory.lastReviewedAt)) / DAY,
+  );
+  return Math.round(
+    memory.mastery * Math.exp((Math.log(0.9) * elapsed) / memory.stabilityDays),
+  );
+}
+
+export function submitCourseAttempt(
+  state: StoredCourse,
+  input: CourseAttemptInput,
+  now: Date,
+): StoredCourse {
+  const saved =
+    state.learner.session?.id === input.sessionId
+      ? { session: state.learner.session, requests: state.requests }
+      : state.history.find((s) => s.session.id === input.sessionId);
+  const request = saved?.requests.find((r) => r.problemId === input.problemId);
+  if (request) {
+    if (
+      request.submittedAnswer === input.submittedAnswer &&
+      request.selfCorrect === input.selfCorrect &&
+      request.giveUp === input.giveUp
+    )
+      return state;
+    throw new CourseConflict("이미 제출한 문제의 답안을 바꿀 수 없습니다.");
+  }
+  const session = requireCurrent(state, input);
+  const problem = session.problems[session.attempts.length];
+  const selfAssessed = problem.input.mode === "self-check";
+  const hinted = (session.hintedProblemIds ?? []).includes(problem.id);
+  if (
+    !input.giveUp &&
+    selfAssessed &&
+    (!hinted || input.selfCorrect === undefined)
+  )
+    throw new CourseInvalidInput(
+      "정답·해설을 먼저 확인하고 풀이를 비교해 주세요.",
+    );
+  if (!selfAssessed && input.selfCorrect !== undefined)
+    throw new CourseInvalidInput("이 문제는 입력한 답으로 채점합니다.");
+  const invalid =
+    !input.giveUp &&
+    !selfAssessed &&
+    validateCourseAnswer(problem, input.submittedAnswer);
+  if (invalid) throw new CourseInvalidInput(invalid);
+  const answeredAt = new Date(
+    Math.max(
+      now.getTime(),
+      Date.parse(session.attempts.at(-1)?.answeredAt ?? session.startedAt),
+    ),
+  ).toISOString();
+  const attempt = {
+    problemId: problem.id,
+    submittedAnswer: input.giveUp ? "" : input.submittedAnswer,
+    correct:
+      !input.giveUp &&
+      (selfAssessed
+        ? input.selfCorrect === true
+        : gradeCourseAnswer(problem, input.submittedAnswer) === true),
+    usedHint: hinted,
+    selfAssessed,
+    answeredAt,
+  };
+  let learner = recordCourseAttempt(state.learner, attempt);
+  const finished = !!learner.session?.completedAt;
+  const independent =
+    attempt.correct && !attempt.usedHint && !attempt.selfAssessed;
+  const prior = state.memories[session.sectionId];
+  // Bounded evidence heuristic, aligned with memory.ts: EMA mastery and stability
+  // at 90% retention. Spaced, independently correct work grows stability more;
+  // wrong/assisted/self-assessed work cannot be treated as demonstrated mastery.
+  const previousReview =
+    state.learner.progress[session.sectionId]?.lastReviewedAt;
+  const elapsed = previousReview
+    ? Math.max(0, (Date.parse(answeredAt) - Date.parse(previousReview)) / DAY)
+    : 0;
+  const stability = prior?.stabilityDays ?? 1;
+  const mastery = selfAssessed
+    ? (prior?.mastery ?? 0)
+    : clamp(
+        (prior?.mastery ?? 50) +
+          ((!attempt.correct ? 0 : independent ? 92 : 52) -
+            (prior?.mastery ?? 50)) *
+            0.28,
+        0,
+        100,
+      );
+  const early = learner.session!.attempts.some(
+    (a) => !a.correct || a.usedHint || a.selfAssessed,
+  );
+  // Five immediate drills are one observation of spacing, not five recalls.
+  // First perfect session: 3 days. Later spaced successes grow by observed
+  // recall/elapsed time; partial sessions and same-day repeats do not grow S.
+  const factor =
+    elapsed < 0.5
+      ? 1
+      : 1.3 +
+        0.7 *
+          (1 -
+            ((prior?.mastery ?? 50) *
+              Math.exp((Math.log(0.9) * elapsed) / stability)) /
+              100) +
+        Math.min(0.5, (elapsed / stability) * 0.3);
+  const stabilityDays = !finished
+    ? stability
+    : early
+      ? clamp(
+          learner.session!.attempts.some((a) => !a.correct)
+            ? stability * 0.45
+            : Math.min(stability, 1),
+          0.25,
+          60,
+        )
+      : !previousReview
+        ? 3
+        : clamp(stability * factor, 0.25, 60);
+  const intervalDays = early ? 1 : clamp(Math.round(stabilityDays), 1, 60);
+  const nextReviewAt = new Date(
+    Date.parse(answeredAt) + intervalDays * DAY,
+  ).toISOString();
+  const memory = {
+    sectionId: session.sectionId,
+    completedSessions: (prior?.completedSessions ?? 0) + Number(finished),
+    attempts: (prior?.attempts ?? 0) + 1,
+    correct: (prior?.correct ?? 0) + Number(attempt.correct),
+    unaidedCorrect: (prior?.unaidedCorrect ?? 0) + Number(independent),
+    hinted: (prior?.hinted ?? 0) + Number(hinted),
+    selfAssessed: (prior?.selfAssessed ?? 0) + Number(selfAssessed),
+    mastery,
+    stabilityDays,
+    lastReviewedAt: answeredAt,
+    nextReviewAt,
+  };
+  let completedSectionIds = state.completedSectionIds;
+  // Auto-graded work needs >=80% unaided correctness. Self-check-only work may
+  // move the curriculum after explicit successful comparison, but never proves
+  // unaided mastery and always receives early review.
+  learner = { ...learner, selectedSectionId: state.learner.selectedSectionId };
+  if (finished) {
+    learner = {
+      ...learner,
+      progress: {
+        ...learner.progress,
+        [session.sectionId]: {
+          ...learner.progress[session.sectionId],
+          intervalDays,
+          nextReviewAt,
+        },
+      },
+    };
+    if (
+      session.mode === "learn" &&
+      learner.session!.attempts.filter(
+        (a) => !a.selfAssessed && a.correct && !a.usedHint,
+      ).length >=
+        Math.ceil(
+          learner.session!.attempts.filter((a) => !a.selfAssessed).length * 0.8,
+        ) &&
+      learner
+        .session!.attempts.filter((a) => a.selfAssessed)
+        .every((a) => a.correct && a.usedHint)
+    ) {
+      completedSectionIds = [
+        ...new Set([...completedSectionIds, session.sectionId]),
+      ];
+      const next = COURSE_SECTIONS.find(
+        (s) =>
+          s.order > getCourseSection(session.sectionId)!.order &&
+          !completedSectionIds.includes(s.id),
+      );
+      learner = {
+        ...learner,
+        selectedSectionId: next?.id ?? session.sectionId,
+      };
+    }
+  }
+  const date = kstDateOf(new Date(answeredAt));
+  const today = state.activity.find((d) => d.date === date) ?? {
+    date,
+    answered: 0,
+    correct: 0,
+    unaidedCorrect: 0,
+    hinted: 0,
+  };
+  const activity = [
+    ...state.activity.filter((d) => d.date !== date),
+    {
+      date,
+      answered: today.answered + 1,
+      correct: today.correct + Number(attempt.correct),
+      unaidedCorrect: today.unaidedCorrect + Number(independent),
+      hinted: today.hinted + Number(hinted),
+    },
+  ]
+    .sort((a, b) => a.date.localeCompare(b.date))
+    .slice(-90);
+  return {
+    ...state,
+    learner,
+    completedSectionIds,
+    requests: [...state.requests, input],
+    activity,
+    memories: { ...state.memories, [session.sectionId]: memory },
+    recentAttempts: [
+      ...state.recentAttempts,
+      {
+        ...attempt,
+        sessionId: session.id,
+        sectionId: session.sectionId,
+        content: problem.content,
+        answer: problem.answer,
+        solution: problem.solution,
+      },
+    ].slice(-100),
+  } as StoredCourse;
+}
+
+export function publicCourseSession(
+  session: CourseSession,
+): CoursePublicSession {
+  return {
+    id: session.id,
+    sectionId: session.sectionId,
+    mode: session.mode,
+    startedAt: session.startedAt,
+    completedAt: session.completedAt,
+    attempts: session.attempts,
+    problems: session.problems.map((p) => {
+      const attempt = session.attempts.find((a) => a.problemId === p.id);
+      const solution = { answer: p.answer, solution: p.solution };
+      return {
+        id: p.id,
+        sectionId: p.sectionId,
+        tier: p.tier,
+        content: p.content,
+        input: p.input,
+        figureUrl: p.figureSpec
+          ? `/api/learn/math-srs/course/figure?sessionId=${session.id}&problemId=${p.id}`
+          : null,
+        hint: session.hintedProblemIds?.includes(p.id) ? solution : null,
+        feedback: attempt ? { ...solution, correct: attempt.correct } : null,
+      };
+    }),
+  };
+}

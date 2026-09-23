@@ -1,0 +1,154 @@
+import "server-only";
+import { randomInt, randomUUID } from "node:crypto";
+import { z } from "zod";
+import {
+  courseAttemptInputSchema,
+  courseHintInputSchema,
+  coursePlanInputSchema,
+  courseStudentResponseSchema,
+} from "@/contracts/mathSrsCourse.contract";
+import { sameOriginMutation } from "@/lib/accountAccess";
+import {
+  jsonError,
+  jsonOk,
+  notFoundError,
+  unauthorizedError,
+  validationError,
+} from "@/lib/apiResponse";
+import { renderFigureSpec } from "@/lib/figure/renderFigureSpec";
+import { crossSiteError, noStore } from "@/lib/learn/accountRoutes";
+import { requireStudent } from "@/lib/learn/studentRequest";
+import {
+  CourseConflict,
+  CourseInvalidInput,
+  emptyCourseState,
+  findStoredCourseSession,
+  revealCourseHint,
+  setCoursePlan,
+  startAutomaticCourse,
+  submitCourseAttempt,
+  type StoredCourse,
+} from "./courseAutomation";
+import { courseStudentDto, loadCourseStudent } from "./courseServer";
+import { SrsUnavailable } from "./serverState";
+import { changeSrsState, readSrsState } from "./serverStore";
+import { srsFailureResponse } from "./serverRoutes";
+
+export function courseFailureResponse(error: unknown) {
+  if (error instanceof CourseConflict)
+    return noStore(jsonError("CONFLICT", error.message, 409));
+  if (error instanceof CourseInvalidInput)
+    return noStore(jsonError("VALIDATION_ERROR", error.message, 400));
+  return srsFailureResponse(error);
+}
+
+export async function handleCourseStudentRequest(
+  request: Request,
+  operation: "read" | "start" | "plan" | "attempt" | "hint",
+) {
+  const gate = await requireStudent({ active: true });
+  if (gate.response) return noStore(gate.response);
+  if (operation !== "read" && !sameOriginMutation(request))
+    return noStore(crossSiteError());
+  const now = new Date();
+  try {
+    const student = await loadCourseStudent(gate.student.studentId);
+    if (
+      !student ||
+      !student.studentAccount ||
+      student.studentAccount.disabledAt
+    )
+      return noStore(unauthorizedError());
+    let saved;
+    let requestedSessionId: string | undefined;
+    if (operation === "read") saved = await readSrsState(student.id);
+    else {
+      const body = await request.json().catch(() => undefined);
+      let change: (course: StoredCourse) => StoredCourse;
+      let expectedRevision: number | undefined;
+      if (operation === "plan") {
+        const parsed = coursePlanInputSchema.safeParse(body);
+        if (!parsed.success) return noStore(validationError(parsed.error));
+        expectedRevision = parsed.data.expectedRevision;
+        change = (c) => setCoursePlan(c, parsed.data, now);
+      } else if (operation === "start") {
+        const parsed = z.strictObject({}).safeParse(body);
+        if (!parsed.success) return noStore(validationError(parsed.error));
+        const seed = randomInt(0, 0x1_0000_0000);
+        change = (c) => startAutomaticCourse(c, now, seed, randomUUID);
+      } else if (operation === "hint") {
+        const parsed = courseHintInputSchema.safeParse(body);
+        if (!parsed.success) return noStore(validationError(parsed.error));
+        requestedSessionId = parsed.data.sessionId;
+        change = (c) => revealCourseHint(c, parsed.data);
+      } else {
+        const parsed = courseAttemptInputSchema.safeParse(body);
+        if (!parsed.success) return noStore(validationError(parsed.error));
+        requestedSessionId = parsed.data.sessionId;
+        change = (c) => submitCourseAttempt(c, parsed.data, now);
+      }
+      saved = await changeSrsState(
+        student.id,
+        (state) => {
+          const previous = state.course ?? emptyCourseState();
+          const course = change(previous);
+          return course === previous ? state : { ...state, course };
+        },
+        undefined,
+        expectedRevision,
+      );
+    }
+    return noStore(
+      jsonOk(courseStudentResponseSchema, {
+        data: courseStudentDto(student, saved, now, requestedSessionId),
+      }),
+    );
+  } catch (error) {
+    return courseFailureResponse(error);
+  }
+}
+
+export async function handleCourseFigure(request: Request) {
+  const gate = await requireStudent({ active: true });
+  if (gate.response) return noStore(gate.response);
+  const parsed = courseHintInputSchema.safeParse(
+    Object.fromEntries(new URL(request.url).searchParams),
+  );
+  if (!parsed.success) return noStore(validationError(parsed.error));
+  try {
+    const student = await loadCourseStudent(gate.student.studentId);
+    if (
+      !student ||
+      !student.studentAccount ||
+      student.studentAccount.disabledAt
+    )
+      return noStore(unauthorizedError());
+    const saved = await readSrsState(student.id);
+    const session =
+      saved.state.course &&
+      findStoredCourseSession(saved.state.course, parsed.data.sessionId);
+    const problem = session?.problems.find(
+      (p) => p.id === parsed.data.problemId,
+    );
+    if (!problem?.figureSpec) return noStore(notFoundError("문제 그림"));
+    const rendered = await renderFigureSpec(problem.figureSpec, {
+      signal: request.signal,
+    });
+    if (!rendered.ok)
+      throw new SrsUnavailable(
+        "문제 그림을 불러오지 못했습니다. 다시 시도해 주세요.",
+      );
+    return noStore(
+      new Response(rendered.svg, {
+        headers: {
+          "Content-Type": "image/svg+xml; charset=utf-8",
+          "X-Content-Type-Options": "nosniff",
+          "Content-Security-Policy":
+            "default-src 'none'; style-src 'unsafe-inline'; sandbox",
+        },
+      }),
+    );
+  } catch (error) {
+    return courseFailureResponse(error);
+  }
+}
