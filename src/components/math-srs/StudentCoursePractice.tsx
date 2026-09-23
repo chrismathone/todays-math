@@ -544,12 +544,18 @@ function Solution({
 }
 
 function CourseComplete({ session, summary, busy, onContinue, onExit }: Props) {
-  const heading = useRef<HTMLHeadingElement>(null);
-  useEffect(() => heading.current?.focus({ preventScroll: true }), []);
+  const nextAction = useRef<HTMLButtonElement>(null);
+  const homeAction = useRef<HTMLButtonElement>(null);
   const goalReached = summary.todayAnswered >= summary.todayGoal;
   const done = goalReached || summary.status === "done";
   const canContinue =
     !done && summary.status !== "paused" && !!summary.recommendation;
+  useEffect(() => {
+    if (!busy)
+      (canContinue ? nextAction : homeAction).current?.focus({
+        preventScroll: true,
+      });
+  }, [canContinue, busy]);
   return (
     <section className={`${s.practice} ${s.complete}`}>
       <div
@@ -565,7 +571,7 @@ function CourseComplete({ session, summary, busy, onContinue, onExit }: Props) {
               ? "오늘의 추천 학습 완료"
               : "5문제 학습 완료"}
         </p>
-        <h2 ref={heading} tabIndex={-1}>
+        <h2 id="course-complete-title" tabIndex={-1}>
           {done ? "오늘의 수학을 마쳤어요." : "차근차근, 한 걸음 배웠어요."}
         </h2>
         <p className={s.completeSection}>
@@ -634,19 +640,23 @@ function CourseComplete({ session, summary, busy, onContinue, onExit }: Props) {
       <div className={s.completeActions}>
         {canContinue ? (
           <button
+            ref={nextAction}
             type="button"
             className={s.primary}
             onClick={onContinue}
             disabled={busy}
+            aria-describedby="course-complete-title"
           >
             {busy ? "다음 학습 준비 중…" : "다음 추천 학습 · 5문제"}
           </button>
         ) : null}
         <button
+          ref={homeAction}
           type="button"
           className={s.secondary}
           onClick={onExit}
           disabled={busy}
+          aria-describedby="course-complete-title"
         >
           학습 홈으로
         </button>

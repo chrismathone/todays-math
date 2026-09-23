@@ -132,6 +132,18 @@ beforeEach(() => {
 afterEach(() => vi.unstubAllGlobals());
 
 describe("shared course plan", () => {
+  it("moves focus into settings and returns it to the opener on Escape", async () => {
+    render(<StudentCourseSrs />);
+    const opener = await screen.findByRole("button", { name: /학습 설정/ });
+    await userEvent.click(opener);
+    expect(screen.getByRole("heading", { name: "학습 설정" })).toHaveFocus();
+    await userEvent.keyboard("{Escape}");
+    expect(
+      screen.queryByRole("heading", { name: "학습 설정" }),
+    ).not.toBeInTheDocument();
+    expect(opener).toHaveFocus();
+  });
+
   it("keeps the exact saved section when only the goal is changed", async () => {
     const saved = state();
     const onSave = vi.fn();
@@ -343,6 +355,28 @@ async function begin() {
 }
 
 describe("persisted course practice", () => {
+  it("focuses the next recommendation at completion so Enter continues", async () => {
+    const completed = state(session(5));
+    vi.mocked(api.startCourse).mockResolvedValueOnce({
+      ok: true,
+      data: completed,
+    });
+    vi.mocked(api.startCourse).mockResolvedValueOnce({
+      ok: true,
+      data: state(session()),
+    });
+    render(<StudentCourseSrs />);
+    await userEvent.click(
+      await screen.findByRole("button", { name: "오늘의 추천 학습 시작" }),
+    );
+    const next = await screen.findByRole("button", {
+      name: "다음 추천 학습 · 5문제",
+    });
+    expect(next).toHaveFocus();
+    await userEvent.keyboard("{Enter}");
+    expect(api.startCourse).toHaveBeenCalledTimes(2);
+  });
+
   it("waits for the saved answer, prevents double submit, and supports Enter to advance", async () => {
     let resolve!: (value: Awaited<ReturnType<typeof api.answerCourse>>) => void;
     vi.mocked(api.answerCourse).mockReturnValue(
