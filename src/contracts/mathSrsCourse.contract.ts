@@ -1,0 +1,143 @@
+import { z } from "zod";
+import {
+  dataResponseSchema,
+  difficultySchema,
+  isoDateTimeSchema,
+  uuidSchema,
+} from "./common.contract";
+import { getCourseSection } from "@/lib/math-srs/elementary/catalog";
+
+export const courseSectionIdSchema = z
+  .string()
+  .refine((id) => !!getCourseSection(id), "학습할 소단원을 선택해 주세요.");
+export const courseDailyGoalSchema = z.union([
+  z.literal(5),
+  z.literal(10),
+  z.literal(15),
+  z.literal(20),
+]);
+export const coursePlanSchema = z.strictObject({
+  startSectionId: courseSectionIdSchema,
+  dailyQuestionCount: courseDailyGoalSchema,
+  enabled: z.boolean(),
+  configuredAt: isoDateTimeSchema,
+});
+export type CoursePlan = z.infer<typeof coursePlanSchema>;
+export const coursePlanInputSchema = coursePlanSchema
+  .omit({ configuredAt: true })
+  .extend({ expectedRevision: z.number().int().nonnegative() });
+export type CoursePlanInput = z.infer<typeof coursePlanInputSchema>;
+
+export const courseSummarySchema = z.strictObject({
+  status: z.enum([
+    "setup",
+    "paused",
+    "learning",
+    "review",
+    "ready",
+    "done",
+    "complete",
+  ]),
+  currentSectionId: courseSectionIdSchema.nullable(),
+  dueCount: z.number().int().nonnegative(),
+  todayAnswered: z.number().int().nonnegative(),
+  todayCorrect: z.number().int().nonnegative(),
+  todayGoal: courseDailyGoalSchema,
+  completedSections: z.number().int().nonnegative(),
+  lastPracticedAt: isoDateTimeSchema.nullable(),
+  nextReviewAt: isoDateTimeSchema.nullable(),
+  recommendation: z
+    .strictObject({
+      sectionId: courseSectionIdSchema,
+      mode: z.enum(["learn", "review", "resume"]),
+      reason: z.string(),
+    })
+    .nullable(),
+});
+export type CourseSummary = z.infer<typeof courseSummarySchema>;
+const solutionSchema = z.strictObject({
+  answer: z.string(),
+  solution: z.string(),
+});
+export const coursePublicProblemSchema = z.strictObject({
+  id: uuidSchema,
+  sectionId: courseSectionIdSchema,
+  tier: difficultySchema,
+  content: z.string(),
+  figureUrl: z.string().nullable(),
+  input: z.strictObject({
+    mode: z.enum(["number", "text", "self-check"]),
+    label: z.string(),
+    placeholder: z.string(),
+    help: z.string(),
+  }),
+  hint: solutionSchema.nullable(),
+  feedback: solutionSchema.extend({ correct: z.boolean() }).nullable(),
+});
+export type CoursePublicProblem = z.infer<typeof coursePublicProblemSchema>;
+export const coursePublicAttemptSchema = z.strictObject({
+  problemId: uuidSchema,
+  submittedAnswer: z.string(),
+  correct: z.boolean(),
+  usedHint: z.boolean(),
+  selfAssessed: z.boolean(),
+  answeredAt: isoDateTimeSchema,
+});
+export const coursePublicSessionSchema = z.strictObject({
+  id: uuidSchema,
+  sectionId: courseSectionIdSchema,
+  mode: z.enum(["learn", "review"]),
+  problems: z.array(coursePublicProblemSchema).length(5),
+  attempts: z.array(coursePublicAttemptSchema).max(5),
+  startedAt: isoDateTimeSchema,
+  completedAt: isoDateTimeSchema.nullable(),
+});
+export type CoursePublicSession = z.infer<typeof coursePublicSessionSchema>;
+export const courseHintInputSchema = z.strictObject({
+  sessionId: uuidSchema,
+  problemId: uuidSchema,
+});
+export type CourseHintInput = z.infer<typeof courseHintInputSchema>;
+export const courseAttemptInputSchema = courseHintInputSchema.extend({
+  submittedAnswer: z.string().trim().max(2000),
+  selfCorrect: z.boolean().optional(),
+  giveUp: z.boolean().optional(),
+});
+export type CourseAttemptInput = z.infer<typeof courseAttemptInputSchema>;
+export const courseStudentStateSchema = z.strictObject({
+  student: z.strictObject({
+    id: uuidSchema,
+    name: z.string(),
+    classId: uuidSchema,
+    className: z.string(),
+  }),
+  revision: z.number().int().nonnegative(),
+  plan: coursePlanSchema.nullable(),
+  summary: courseSummarySchema,
+  session: coursePublicSessionSchema.nullable(),
+});
+export type CourseStudentState = z.infer<typeof courseStudentStateSchema>;
+export const courseStudentResponseSchema = dataResponseSchema(
+  courseStudentStateSchema,
+);
+export const courseRosterStudentSchema = courseStudentStateSchema
+  .omit({ student: true, session: true })
+  .extend({
+    id: uuidSchema,
+    name: z.string(),
+    classId: uuidSchema,
+    className: z.string(),
+    hasAccount: z.boolean(),
+  });
+export type CourseRosterStudent = z.infer<typeof courseRosterStudentSchema>;
+export const courseDashboardSchema = z.strictObject({
+  classes: z.array(z.strictObject({ id: uuidSchema, name: z.string() })),
+  students: z.array(courseRosterStudentSchema),
+});
+export type CourseDashboard = z.infer<typeof courseDashboardSchema>;
+export const courseDashboardResponseSchema = dataResponseSchema(
+  courseDashboardSchema,
+);
+export const courseRosterStudentResponseSchema = dataResponseSchema(
+  courseRosterStudentSchema,
+);
