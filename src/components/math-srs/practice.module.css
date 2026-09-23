@@ -140,7 +140,7 @@
 }
 
 .answerForm {
-  padding: 0 0 22px;
+  padding: 0 0 14px;
 }
 
 .answerForm label {
@@ -151,44 +151,65 @@
 }
 
 .answerLine {
-  display: flex;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
   align-items: stretch;
-  gap: 10px;
+  gap: 12px;
 }
 
-.answerField {
-  display: flex;
-  align-items: center;
-  flex: 1;
-  min-width: 0;
-  background: var(--learn-neutral);
-  border-radius: var(--learn-radius-sm);
-}
-
-.answerField > span {
-  flex: none;
-  padding-left: 20px;
-  color: var(--learn-muted);
-  font-size: 14px;
-}
-
-.answerField input {
+.question .answerInput {
+  box-sizing: border-box;
   width: 100%;
   min-width: 0;
-  min-height: 58px;
-  padding: 15px;
+  height: 56px;
+  padding: 0 18px;
   border: 0;
   border-radius: var(--learn-radius-sm);
-  background: transparent;
+  background: var(--learn-neutral);
   color: var(--learn-ink);
   font: inherit;
-  font-size: 20px;
+  font-size: 18px;
+  line-height: 1.5;
   font-variant-numeric: tabular-nums;
+  transition: background 150ms ease;
 }
 
-.answerField input::placeholder {
+.question .answerInput::placeholder {
   color: var(--learn-muted);
-  font-size: 14px;
+  font-size: 16px;
+}
+
+.question .answerInput:focus {
+  outline: 2px solid var(--learn-accent);
+  outline-offset: -2px;
+  background: var(--learn-soft);
+}
+
+.question .answerInput[aria-invalid="true"] {
+  background: var(--learn-danger-bg);
+  outline: 2px solid var(--learn-danger);
+  outline-offset: -2px;
+}
+
+.question .answerInput:disabled {
+  color: var(--learn-muted);
+  background: var(--learn-neutral);
+}
+
+.question .answerLine .primary {
+  height: 56px;
+  min-height: 56px;
+  padding: 0 22px;
+}
+
+.inputMessage {
+  min-height: 43px;
+  padding-top: 9px;
+}
+
+.inputMessage > p {
+  margin: 0;
+  line-height: 1.6;
 }
 
 .inputHelp,
@@ -197,10 +218,6 @@
   color: var(--learn-muted);
   font-size: 12px;
   line-height: 1.8;
-}
-
-.inputHelp {
-  margin: 11px 0 0;
 }
 
 .question .primary,
@@ -215,7 +232,6 @@
 .question .primary:hover,
 .complete .primary:hover {
   background: var(--learn-accent-hover);
-  transform: translateY(-1px);
 }
 
 .question .primary:disabled,
@@ -263,6 +279,9 @@
 .questionActions {
   flex-wrap: wrap;
   gap: 8px;
+}
+.questionActions button {
+  white-space: nowrap;
 }
 
 .question .secondary {
@@ -612,27 +631,29 @@
     margin-top: 20px;
   }
   .answerLine {
-    flex-direction: column;
+    grid-template-columns: minmax(0, 1fr);
+    gap: 10px;
   }
-  .answerLine .primary {
-    min-height: 52px;
-  }
-  .answerField input {
-    min-height: 58px;
+  .inputMessage {
+    min-height: 48px;
   }
   .questionActions {
-    gap: 2px;
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 6px;
   }
   .question .textButton {
-    padding-inline: 11px;
+    padding-inline: 8px;
     font-size: 12px;
   }
   .question .secondary {
-    padding-inline: 13px;
+    padding-inline: 8px;
     font-size: 12px;
   }
   .pause {
-    margin-left: auto;
+    grid-column: 1 / -1;
+    justify-self: center;
+    margin-left: 0;
   }
   .hint {
     padding: 18px;
@@ -718,7 +739,8 @@
     animation: none;
   }
   .question button,
-  .complete button {
+  .complete button,
+  .question .answerInput {
     transition: none;
   }
 }

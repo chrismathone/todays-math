@@ -217,37 +217,41 @@ export function QuestionCard({
           나의 답 {problem.answerUnit ? `(${problem.answerUnit})` : ""}
         </label>
         <div className={s.answerLine}>
-          <div className={s.answerField}>
-            <span aria-hidden="true">답</span>
-            <input
-              ref={input}
-              id="srs-answer"
-              autoComplete="off"
-              type="text"
-              value={answer}
-              onChange={(event) => {
-                setAnswer(event.target.value);
-                setError("");
-              }}
-              placeholder="생각한 답을 적어보세요"
-              aria-invalid={Boolean(error)}
-              aria-describedby={error ? "answer-error" : "answer-help"}
-              disabled={locked}
-              maxLength={40}
-            />
-          </div>
+          <input
+            ref={input}
+            id="srs-answer"
+            className={s.answerInput}
+            autoComplete="off"
+            autoCapitalize="off"
+            spellCheck={false}
+            enterKeyHint="done"
+            type="text"
+            value={answer}
+            onChange={(event) => {
+              setAnswer(event.target.value);
+              setError("");
+            }}
+            placeholder="예: -3, 1/2"
+            aria-invalid={Boolean(error)}
+            aria-describedby={error ? "answer-error" : "answer-help"}
+            disabled={locked}
+            maxLength={40}
+          />
           <button className={s.primary} type="submit" disabled={locked}>
             정답 확인 →
           </button>
         </div>
-        <p id="answer-help" className={s.inputHelp}>
-          음수와 분수도 입력할 수 있어요. 예: -3, 1/2
-        </p>
-        {error ? (
-          <p id="answer-error" className={s.error} role="alert">
-            {error}
-          </p>
-        ) : null}
+        <div className={s.inputMessage}>
+          {error ? (
+            <p id="answer-error" className={s.error} role="alert">
+              {error}
+            </p>
+          ) : (
+            <p id="answer-help" className={s.inputHelp}>
+              정수·소수·분수로 입력할 수 있어요.
+            </p>
+          )}
+        </div>
       </form>
       {usedHint ? (
         <aside className={s.hint} aria-labelledby="hint-title" id="srs-hint">
