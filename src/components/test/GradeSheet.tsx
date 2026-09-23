@@ -83,7 +83,7 @@ type State =
   | { status: "ready"; sheet: Sheet };
 
 const EMPTY: Marking = { done: false, absent: false, wrong: new Set() };
-const NOTE = "text-[11.5px] leading-relaxed text-text-2";
+const NOTE = "text-[14px] leading-relaxed text-[var(--learn-muted,#596c86)]";
 /** 이름을 잇는 구분자 — 서버 거절 문구(`gradeSheet.ts`)와 같다. */
 const NAME_JOIN = " · ";
 
@@ -106,6 +106,7 @@ export function GradeSheet({ testId }: { testId: string }) {
   const [saving, setSaving] = useState(false);
   const [actionError, setActionError] = useState<string | null>(null);
   const [result, setResult] = useState<ScoreLine[] | null>(null);
+  const [loadAttempt, setLoadAttempt] = useState(0);
   const loadId = useRef(0);
 
   useEffect(() => {
@@ -146,7 +147,12 @@ export function GradeSheet({ testId }: { testId: string }) {
       }
     })();
     return () => controller.abort();
-  }, [testId]);
+  }, [testId, loadAttempt]);
+
+  function retry() {
+    setState({ status: "loading" });
+    setLoadAttempt((value) => value + 1);
+  }
 
   const markOf = useCallback(
     (sid: string): Marking => marks[sid] ?? EMPTY,
@@ -163,6 +169,7 @@ export function GradeSheet({ testId }: { testId: string }) {
       return { ...prev, [sid]: { ...cur, wrong } };
     });
     setResult(null);
+    setActionError(null);
   }, []);
 
   const toggleDone = useCallback((sid: string) => {
@@ -171,6 +178,7 @@ export function GradeSheet({ testId }: { testId: string }) {
       return { ...prev, [sid]: { ...cur, done: !cur.done } };
     });
     setResult(null);
+    setActionError(null);
   }, []);
 
   const toggleAbsent = useCallback((sid: string) => {
@@ -182,6 +190,7 @@ export function GradeSheet({ testId }: { testId: string }) {
         : { ...prev, [sid]: { done: false, absent: true, wrong: new Set() } };
     });
     setResult(null);
+    setActionError(null);
   }, []);
 
   const sheet = state.status === "ready" ? state.sheet : null;
@@ -234,7 +243,7 @@ export function GradeSheet({ testId }: { testId: string }) {
 
   if (state.status === "loading") {
     return (
-      <main className="px-8 py-6">
+      <main className="px-4 py-6 sm:px-8">
         <p className={NOTE}>채점표를 불러오는 중입니다</p>
       </main>
     );
@@ -242,16 +251,21 @@ export function GradeSheet({ testId }: { testId: string }) {
 
   if (state.status === "error") {
     return (
-      <main className="px-8 py-6">
-        <p role="alert" className="text-[12.5px] text-g-red-text">
+      <main className="px-4 py-6 sm:px-8">
+        <p role="alert" className="text-[14px] text-g-red-text">
           {state.message}
         </p>
-        <Link
-          href={`/tests/${testId}`}
-          className="mt-3 inline-flex min-h-11 items-center text-[12.5px] font-bold text-ink underline-offset-2 hover:underline focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-g-blue"
-        >
-          시험지로 돌아가기
-        </Link>
+        <div className="mt-3 flex flex-wrap gap-2">
+          <Button variant="secondary" onClick={retry}>
+            다시 불러오기
+          </Button>
+          <Link
+            href={`/tests/${testId}`}
+            className="inline-flex min-h-11 items-center text-[14px] font-semibold text-[var(--learn-ink,#172b4d)] underline-offset-2 hover:underline focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--learn-focus,#82a1ff)]"
+          >
+            시험지로 돌아가기
+          </Link>
+        </div>
       </main>
     );
   }
@@ -261,15 +275,15 @@ export function GradeSheet({ testId }: { testId: string }) {
   return (
     <div className="flex min-h-[calc(100vh-52px)] flex-col">
       <main className="flex-1 pb-20">
-        <div className="flex items-baseline justify-between px-8 py-4">
+        <div className="flex items-baseline justify-between px-4 py-4 sm:px-8">
           <div>
-            <h1 className="text-[17px] font-black">
+            <h1 className="text-[22px] font-bold text-[var(--learn-ink,#172b4d)]">
               채점 —{" "}
               {state.sheet.studentName
                 ? `${state.sheet.className} · ${state.sheet.studentName}`
                 : state.sheet.className}
             </h1>
-            <p className="mt-1 text-[11.5px] text-text-2">
+            <p className="mt-1 text-[14px] text-[var(--learn-muted,#596c86)]">
               {TEST_TYPE_TEXT[state.sheet.testType]} · {state.sheet.testDate} ·{" "}
               {problems.length}문항 · 학생 {students.length}명
             </p>
@@ -277,21 +291,28 @@ export function GradeSheet({ testId }: { testId: string }) {
         </div>
 
         {students.length === 0 ? (
-          <p className={`px-8 ${NOTE}`}>이 시험지의 대상 학생이 없습니다.</p>
+          <p className={`px-4 sm:px-8 ${NOTE}`}>
+            이 시험지의 대상 학생이 없습니다.
+          </p>
         ) : (
           <>
-            <p className={`px-8 pb-3 ${NOTE}`}>
+            <p className={`px-4 pb-3 sm:px-8 ${NOTE}`}>
               틀린 칸만 누릅니다. 오른쪽 「끝」을 눌러야 그 학생이 채점됩니다 —
               누르기 전에는 점선 칸이 「아직 안 봄」입니다. 시험을 안 본 학생은
               「결시」로 표시합니다.
             </p>
-            <div className="mx-8 overflow-x-auto border border-control bg-white">
-              <table className="w-full border-collapse text-[13px]">
+            <div
+              className="mx-4 overflow-x-auto rounded-xl border border-[var(--learn-track,#dde3ec)] bg-[var(--learn-surface,#fff)] sm:mx-8"
+              role="region"
+              aria-label="학생별 채점표"
+              tabIndex={0}
+            >
+              <table className="w-full border-collapse text-[14px] text-[var(--learn-ink,#172b4d)]">
                 <thead>
-                  <tr className="border-b border-divider">
+                  <tr className="border-b border-[var(--learn-track,#dde3ec)] bg-[var(--learn-soft,#edf2ff)]">
                     <th
                       scope="col"
-                      className="sticky left-0 z-10 bg-white px-3 py-2 text-left font-bold"
+                      className="sticky left-0 z-10 bg-[var(--learn-soft,#edf2ff)] px-3 py-2 text-left font-semibold"
                     >
                       학생
                     </th>
@@ -299,7 +320,7 @@ export function GradeSheet({ testId }: { testId: string }) {
                       <th
                         key={p.problemId}
                         scope="col"
-                        className="w-10 px-1 py-2 text-center font-bold tabular-nums"
+                        className="w-11 px-1 py-2 text-center font-semibold tabular-nums"
                         title={p.problemCode}
                       >
                         {p.no}
@@ -316,7 +337,7 @@ export function GradeSheet({ testId }: { testId: string }) {
                     */}
                     <th
                       scope="col"
-                      className="sticky right-0 z-10 bg-white px-3 py-2 text-center font-bold"
+                      className="sticky right-0 z-10 bg-[var(--learn-soft,#edf2ff)] px-3 py-2 text-center font-semibold"
                     >
                       상태
                     </th>
@@ -336,7 +357,7 @@ export function GradeSheet({ testId }: { testId: string }) {
                         */}
                         <th
                           scope="row"
-                          className="sticky left-0 z-10 bg-white px-3 py-1.5 text-left font-medium whitespace-nowrap"
+                          className="sticky left-0 z-10 bg-[var(--learn-surface,#fff)] px-3 py-1.5 text-left font-semibold whitespace-nowrap"
                         >
                           {s.name}
                         </th>
@@ -359,7 +380,7 @@ export function GradeSheet({ testId }: { testId: string }) {
                                 }
                                 aria-pressed={wrong}
                                 aria-label={`${s.name} ${p.no}번 ${label}`}
-                                className={`h-8 w-8 border text-[14px] font-bold disabled:cursor-not-allowed ${
+                                className={`h-10 w-10 rounded-lg border text-[14px] font-bold focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--learn-focus,#82a1ff)] disabled:cursor-not-allowed ${
                                   m.absent
                                     ? "border-divider bg-side text-text-3"
                                     : wrong
@@ -380,7 +401,7 @@ export function GradeSheet({ testId }: { testId: string }) {
                             </td>
                           );
                         })}
-                        <td className="sticky right-0 z-10 bg-white px-3 py-1.5">
+                        <td className="sticky right-0 z-10 bg-[var(--learn-surface,#fff)] px-3 py-1.5">
                           <div className="flex items-center justify-end gap-1.5">
                             {/*
                               🔴 단추가 «무엇을 굳히는지» **누르기 전에** 말한다.
@@ -392,7 +413,7 @@ export function GradeSheet({ testId }: { testId: string }) {
                               disabled={m.absent}
                               onClick={() => toggleDone(s.studentId)}
                               aria-pressed={m.done}
-                              className={`min-w-16 border px-2 py-1 text-[12px] whitespace-nowrap disabled:cursor-not-allowed disabled:border-divider disabled:bg-side disabled:text-text-3 ${
+                              className={`min-h-10 min-w-16 rounded-lg border px-2 py-1 text-[13px] whitespace-nowrap focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--learn-focus,#82a1ff)] disabled:cursor-not-allowed disabled:border-divider disabled:bg-side disabled:text-text-3 ${
                                 m.done
                                   ? "cursor-pointer border-ink bg-ink text-white"
                                   : "cursor-pointer border-control bg-white"
@@ -406,7 +427,7 @@ export function GradeSheet({ testId }: { testId: string }) {
                               type="button"
                               onClick={() => toggleAbsent(s.studentId)}
                               aria-pressed={m.absent}
-                              className={`cursor-pointer border px-2 py-1 text-[12px] whitespace-nowrap ${
+                              className={`min-h-10 cursor-pointer rounded-lg border px-2 py-1 text-[13px] whitespace-nowrap focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--learn-focus,#82a1ff)] ${
                                 m.absent
                                   ? "border-ink bg-ink text-white"
                                   : "border-control bg-white"
@@ -428,7 +449,7 @@ export function GradeSheet({ testId }: { testId: string }) {
         )}
       </main>
 
-      <footer className="sticky bottom-0 flex flex-wrap items-center gap-3 border-t border-divider bg-side px-8 py-3">
+      <footer className="sticky bottom-0 flex flex-wrap items-center gap-3 border-t border-[var(--learn-track,#dde3ec)] bg-[var(--learn-soft,#edf2ff)] px-4 py-3 sm:px-8">
         {/*
           🔴 미채점 행이 남은 채로 저장하지 못하게 막고, **누가** 남았는지 댄다.
              「N명 남음」만 적으면 원장님이 명단을 다시 훑어야 한다.
@@ -457,7 +478,7 @@ export function GradeSheet({ testId }: { testId: string }) {
             disabled={students.length === 0 || pending.length > 0 || saving}
             onClick={() => void save()}
           >
-            채점 결과 저장
+            {saving ? "저장 중…" : "채점 결과 저장"}
           </Button>
         </div>
       </footer>
@@ -477,6 +498,7 @@ function ScoreList({ lines }: { lines: ScoreLine[] }) {
   return (
     <section
       aria-label="채점 결과"
+      aria-live="polite"
       className="mx-8 mt-6 border border-control bg-white"
     >
       <h2 className="border-b border-divider px-3 py-2 text-[13px] font-black">

@@ -41,7 +41,13 @@ type PanelState =
  * 🔴 초기 비밀번호는 **이 칸의 상태에만** 산다 — localStorage · sessionStorage · URL · 로그 어디에도 안 적는다.
  *    칸이 사라지면(다른 학생을 고르면 · 화면을 벗어나면) 같이 사라진다(«저장하지 않아 다시 볼 수 없습니다»).
  */
-export function StudentAccountPanel({ student }: { student: StudentEntity }) {
+export function StudentAccountPanel({
+  student,
+  onClose,
+}: {
+  student: StudentEntity;
+  onClose?: () => void;
+}) {
   const [state, setState] = useState<PanelState>({ status: "loading" });
   const [attempt, setAttempt] = useState(0);
   const [pin, setPin] = useState<string | null>(null);
@@ -149,11 +155,27 @@ export function StudentAccountPanel({ student }: { student: StudentEntity }) {
 
   const headingId = `student-account-${student.id}`;
   return (
-    <section className={s.card} aria-labelledby={headingId}>
+    <section
+      id={`${headingId}-panel`}
+      className={s.card}
+      aria-labelledby={headingId}
+    >
       <p className={s.who}>{student.name}</p>
-      <h3 id={headingId} className={s.title}>
-        오늘의 개념 로그인
-      </h3>
+      <div className={s.headingRow}>
+        <h3 id={headingId} className={s.title}>
+          오늘의 개념 로그인
+        </h3>
+        {onClose ? (
+          <button
+            type="button"
+            className={s.button}
+            onClick={onClose}
+            aria-label={`${student.name} 계정 정보 닫기`}
+          >
+            닫기
+          </button>
+        ) : null}
+      </div>
       {state.status === "error" ? (
         <>
           <p role="alert" className={s.error}>

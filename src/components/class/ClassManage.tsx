@@ -18,6 +18,7 @@ import { kstDateOf } from "@/lib/kstDate";
 import { findUnit, type UnitNode } from "@/lib/units/groupUnits";
 
 import planStyles from "./ProgressPlan.module.css";
+import s from "./ClassManage.module.css";
 
 type ClassManageProps = {
   units: UnitNode[];
@@ -57,9 +58,9 @@ export function ClassManage({ units }: ClassManageProps) {
   }
 
   return (
-    <main className="px-[26px] py-5">
+    <main className={s.manage}>
       <div className="grid grid-cols-1 gap-8 lg:grid-cols-[minmax(0,1fr)_minmax(260px,320px)]">
-        <section aria-label="반 관리">
+        <section aria-label="반 관리" className={s.panel}>
           <ClassTable
             classes={manage.classes}
             selectedClassId={manage.selectedClassId}
@@ -71,7 +72,7 @@ export function ClassManage({ units }: ClassManageProps) {
             units={units}
           />
         </section>
-        <section aria-labelledby="class-students-heading">
+        <section aria-labelledby="class-students-heading" className={s.panel}>
           {selectedClass ? (
             <Link
               href={`/classes/${encodeURIComponent(selectedClass.id)}/math-srs`}
@@ -106,7 +107,10 @@ export function ClassManage({ units }: ClassManageProps) {
         />
       ) : null}
 
-      <section className="mt-8" aria-labelledby="class-progress-heading">
+      <section
+        className={`${s.panel} mt-8`}
+        aria-labelledby="class-progress-heading"
+      >
         <h2
           id="class-progress-heading"
           className="mb-2 border-t-[3px] border-ink pt-1.5 text-[10.5px] font-black tracking-[2.5px]"
@@ -246,7 +250,7 @@ function AddClassForm({
       aria-busy={feedback.pending}
       className="mt-3"
     >
-      <div className="flex gap-2">
+      <div className={s.formRow}>
         <Input
           aria-label="반 이름"
           value={name}
@@ -330,7 +334,7 @@ function AddStudentForm({
       aria-busy={feedback.pending}
       className="mt-3"
     >
-      <div className="flex gap-2">
+      <div className={s.formRow}>
         <Input
           aria-label="학생 이름"
           value={name}

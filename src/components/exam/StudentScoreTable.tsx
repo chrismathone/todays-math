@@ -49,102 +49,109 @@ export function StudentScoreTable({
   }
 
   return (
-    <table className="mt-5 w-full border-collapse text-[13px] tabular-nums">
-      <caption className="pb-2 text-left text-[11.5px] font-black tracking-[0.08em] text-muted uppercase">
-        {caption}
-      </caption>
-      <thead>
-        <tr>
-          <th scope="col" className={HEAD}>
-            학생
-          </th>
-          <th scope="col" className={`${HEAD} text-right`}>
-            예상
-          </th>
-          <th scope="col" className={HEAD}>
-            구간 {INTERVAL_SCALE_MIN} — {INTERVAL_SCALE_MAX}
-          </th>
-          <th scope="col" className={`${HEAD} text-right`}>
-            실제
-          </th>
-          <th scope="col" className={HEAD}>
-            잔차
-          </th>
-        </tr>
-      </thead>
-      <tbody>
-        {students.map((row) => {
-          const judgement = studentJudgement(row, roundAvailable);
-          const residual =
-            judgement.available && row.prediction
-              ? residualView(
-                  row.prediction.expectedScore,
-                  row.prediction.interval,
-                  row.actualScore,
-                )
-              : null;
+    <div
+      className="mt-5 overflow-x-auto rounded-xl border border-[var(--learn-track,#dde3ec)] bg-[var(--learn-surface,#fff)]"
+      role="region"
+      aria-label="학생별 예측 대비 실측 표"
+      tabIndex={0}
+    >
+      <table className="min-w-[720px] w-full border-collapse text-[14px] tabular-nums">
+        <caption className="pb-2 text-left text-[11.5px] font-black tracking-[0.08em] text-muted uppercase">
+          {caption}
+        </caption>
+        <thead>
+          <tr>
+            <th scope="col" className={HEAD}>
+              학생
+            </th>
+            <th scope="col" className={`${HEAD} text-right`}>
+              예상
+            </th>
+            <th scope="col" className={HEAD}>
+              구간 {INTERVAL_SCALE_MIN} — {INTERVAL_SCALE_MAX}
+            </th>
+            <th scope="col" className={`${HEAD} text-right`}>
+              실제
+            </th>
+            <th scope="col" className={HEAD}>
+              잔차
+            </th>
+          </tr>
+        </thead>
+        <tbody>
+          {students.map((row) => {
+            const judgement = studentJudgement(row, roundAvailable);
+            const residual =
+              judgement.available && row.prediction
+                ? residualView(
+                    row.prediction.expectedScore,
+                    row.prediction.interval,
+                    row.actualScore,
+                  )
+                : null;
 
-          return (
-            <tr key={row.studentId}>
-              <th scope="row" className={`${CELL} text-left font-bold`}>
-                {row.studentName}
-              </th>
+            return (
+              <tr key={row.studentId}>
+                <th scope="row" className={`${CELL} text-left font-bold`}>
+                  {row.studentName}
+                </th>
 
-              {judgement.available && row.prediction ? (
-                <>
-                  <td className={`${CELL} text-right`}>
-                    {formatScore(row.prediction.expectedScore)}
-                  </td>
-                  <td className={CELL}>
-                    <ScoreIntervalBar
-                      interval={row.prediction.interval}
-                      expectedScore={row.prediction.expectedScore}
-                    />
-                  </td>
-                </>
-              ) : (
-                <>
-                  <td className={`${CELL} text-right text-ghost`}>—</td>
-                  <td className={`${CELL} text-ghost`}>
-                    {unavailableText(judgement)}
-                  </td>
-                </>
-              )}
+                {judgement.available && row.prediction ? (
+                  <>
+                    <td className={`${CELL} text-right`}>
+                      {formatScore(row.prediction.expectedScore)}
+                    </td>
+                    <td className={CELL}>
+                      <ScoreIntervalBar
+                        interval={row.prediction.interval}
+                        expectedScore={row.prediction.expectedScore}
+                      />
+                    </td>
+                  </>
+                ) : (
+                  <>
+                    <td className={`${CELL} text-right text-ghost`}>—</td>
+                    <td className={`${CELL} text-ghost`}>
+                      {unavailableText(judgement)}
+                    </td>
+                  </>
+                )}
 
-              {/* 실측 — 보정 루프의 입력구.
+                {/* 실측 — 보정 루프의 입력구.
                   🔴 응시하지 않은 학생에게는 입력 자리를 주지 않는다. 붙일 예측이 없어
                      서버가 422 로 거절할 요청을 화면이 만들어 내지 않는다. */}
-              <td className={`${CELL} text-right`}>
-                {row.absent ? (
-                  // 확정 시안은 미응시 학생의 실측 칸을 **비워** 둔다.
-                  // 사유("미응시")는 같은 행 예측 쪽에 이미 적혀 있다 — 두 번 쓰면 잡음이다.
-                  <span className="text-ghost" />
-                ) : (
-                  <ActualScoreCell
-                    actualScore={row.actualScore}
-                    onSaved={onActualSaved}
-                    runId={runId}
-                    studentId={row.studentId}
-                    studentName={row.studentName}
-                  />
-                )}
-              </td>
+                <td className={`${CELL} text-right`}>
+                  {row.absent ? (
+                    // 확정 시안은 미응시 학생의 실측 칸을 **비워** 둔다.
+                    // 사유("미응시")는 같은 행 예측 쪽에 이미 적혀 있다 — 두 번 쓰면 잡음이다.
+                    <span className="text-ghost" />
+                  ) : (
+                    <ActualScoreCell
+                      actualScore={row.actualScore}
+                      onSaved={onActualSaved}
+                      runId={runId}
+                      studentId={row.studentId}
+                      studentName={row.studentName}
+                    />
+                  )}
+                </td>
 
-              <td
-                className={`${CELL} ${
-                  residual === null
-                    ? "text-ghost"
-                    : residual.hit
-                      ? "font-bold text-g-green"
-                      : "font-bold text-g-red-text"
-                }`}
-              >
-                {residual === null ? "—" : residual.text}
-              </td>
-            </tr>
-          );
-        })}
-      </tbody>
-    </table>
+                <td
+                  className={`${CELL} ${
+                    residual === null
+                      ? "text-ghost"
+                      : residual.hit
+                        ? "font-bold text-g-green"
+                        : "font-bold text-g-red-text"
+                  }`}
+                >
+                  {residual === null ? "—" : residual.text}
+                </td>
+              </tr>
+            );
+          })}
+        </tbody>
+      </table>
+    </div>
   );
 }
