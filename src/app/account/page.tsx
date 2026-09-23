@@ -107,7 +107,11 @@ export default async function AccountPage() {
               로그인 이메일과 소속·권한은 관리자 화면에서 변경할 수 있습니다.
             </p>
           </section>
-          <section className={s.card} aria-labelledby="security-title">
+          <section
+            id="security"
+            className={s.card}
+            aria-labelledby="security-title"
+          >
             <div className={s.cardHeading}>
               <span className={s.cardIcon} aria-hidden="true">
                 ✓
