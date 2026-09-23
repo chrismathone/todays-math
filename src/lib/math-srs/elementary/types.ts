@@ -52,6 +52,7 @@ export interface CourseSession {
   attempts: CourseAttempt[];
   startedAt: string;
   completedAt: string | null;
+  hintedProblemIds?: string[];
 }
 export interface SectionProgress {
   sectionId: string;
