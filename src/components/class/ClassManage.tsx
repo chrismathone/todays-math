@@ -1,6 +1,7 @@
 ﻿"use client";
 
 import Link from "next/link";
+import RouteLinkStatus from "@/components/ui/RouteLinkStatus";
 import { useId, useState, type FormEvent } from "react";
 
 import { ProgressPlanFields } from "@/components/class/ProgressPlanFields";
@@ -85,6 +86,7 @@ export function ClassManage({
               className="mb-3 inline-flex min-h-11 items-center text-[12.5px] font-bold text-g-blue underline underline-offset-4"
             >
               {selectedClass.name} 수학 복습 현황 →
+              <RouteLinkStatus />
             </Link>
           ) : null}
           <StudentList

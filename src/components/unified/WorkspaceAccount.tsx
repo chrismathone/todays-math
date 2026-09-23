@@ -1,7 +1,9 @@
 "use client";
 
+import Link from "next/link";
 import { useFormStatus } from "react-dom";
 import { signOutAction } from "@/app/actions/auth";
+import RouteLinkStatus from "@/components/ui/RouteLinkStatus";
 import s from "./WorkspaceAccount.module.css";
 
 export type WorkspaceIdentity = {
@@ -32,14 +34,28 @@ export default function WorkspaceAccount({
         <strong>{user.name || "선생님"}</strong>
         <span title={user.email}>{user.email}</span>
       </div>
-      {user.isSuperAdmin === true && <a href="/admin">관리</a>}
+      {user.isSuperAdmin === true && (
+        <Link href="/admin">
+          관리
+          <RouteLinkStatus />
+        </Link>
+      )}
       {user.isAdmin === true && !user.isSuperAdmin && (
-        <a href="/branch">지점관리</a>
+        <Link href="/branch">
+          지점관리
+          <RouteLinkStatus />
+        </Link>
       )}
       {!user.isAdmin && user.canManageClasses && (
-        <a href="/classes/manage">반 관리</a>
+        <Link href="/classes/manage">
+          반 관리
+          <RouteLinkStatus />
+        </Link>
       )}
-      <a href="/account">내정보</a>
+      <Link href="/account">
+        내정보
+        <RouteLinkStatus />
+      </Link>
       <form action={signOutAction}>
         <SignOutButton />
       </form>

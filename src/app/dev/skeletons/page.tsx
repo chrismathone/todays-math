@@ -3,6 +3,7 @@ import { connection } from "next/server";
 
 import { AuthLoading } from "@/components/auth/AuthLoading";
 import AccountLoading from "@/components/account/AccountLoading";
+import ApprovalPendingLoading from "@/app/approval-pending/loading";
 import {
   AuthFormSkeleton,
   ClassManageSkeleton,
@@ -68,12 +69,12 @@ const PIECES: Piece[] = [
     name: "가입 승인 확인",
     where: "approval-pending/loading.tsx",
     kind: "라우트",
-    node: <AccountLoading pending />,
+    node: <ApprovalPendingLoading />,
   },
   {
     name: "작업실 — 홈",
-    where: "(main)/loading.tsx · studio/loading.tsx",
-    kind: "라우트",
+    where: "작업실 미리보기",
+    kind: "화면 안",
     node: <WorkroomHomeSkeleton />,
   },
   {
@@ -96,8 +97,8 @@ const PIECES: Piece[] = [
   },
   {
     name: "반 목록",
-    where: "(main)/classes/loading.tsx",
-    kind: "라우트",
+    where: "반 목록 미리보기",
+    kind: "화면 안",
     node: <ClassesSkeleton />,
   },
   {
@@ -150,8 +151,8 @@ const PIECES: Piece[] = [
   },
   {
     name: "시험 검수 — 전체",
-    where: "(main)/tests/[id]/loading.tsx",
-    kind: "라우트",
+    where: "시험 검수 미리보기",
+    kind: "화면 안",
     node: <TestReviewSkeleton />,
   },
   {

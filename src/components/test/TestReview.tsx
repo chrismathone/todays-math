@@ -2,6 +2,7 @@
 
 import { useCallback } from "react";
 import Link from "next/link";
+import RouteLinkStatus from "@/components/ui/RouteLinkStatus";
 
 import { useUnitGrades } from "@/components/problem/useUnitGrades";
 import { Button } from "@/components/ui/Button";
@@ -184,6 +185,7 @@ export function TestReview({ testId }: Props) {
               className="inline-flex min-h-11 min-w-[44px] items-center justify-center px-3 text-[14px] font-bold text-ink underline-offset-2 hover:underline focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-g-blue"
             >
               채점
+              <RouteLinkStatus />
             </Link>
           )}
         </div>

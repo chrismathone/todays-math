@@ -163,18 +163,14 @@ describe("스켈레톤 자리 가드", () => {
 
   it("loading.tsx 가 맡은 스켈레톤과 어긋나지 않는다", () => {
     const wiring: Array<[string, string]> = [
-      ["src/app/(main)/loading.tsx", "WorkroomHomeSkeleton"],
-      ["src/app/studio/loading.tsx", "WorkroomHomeSkeleton"],
       ["src/app/(auth)/loading.tsx", "AuthLoading"],
       ["src/app/(auth)/login/loading.tsx", "AuthLoading"],
       ["src/app/(auth)/signup/loading.tsx", "AuthLoading"],
       ["src/app/(auth)/onboarding/loading.tsx", "OnboardingSkeleton"],
-      ["src/app/(main)/classes/loading.tsx", "ClassesSkeleton"],
       ["src/app/(main)/problems/loading.tsx", "ProblemBankSkeleton"],
       ["src/app/(main)/exam/loading.tsx", "ExamListSkeleton"],
       ["src/app/(main)/exam/[id]/loading.tsx", "ExamDetailSkeleton"],
       ["src/app/(main)/tests/new/loading.tsx", "TestSetupSkeleton"],
-      ["src/app/(main)/tests/[id]/loading.tsx", "TestReviewSkeleton"],
       ["src/app/(main)/tests/[id]/print/loading.tsx", "PrintPreviewSkeleton"],
       ["src/app/review/loading.tsx", "ReviewConsoleSkeleton"],
     ];

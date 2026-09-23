@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import RouteLinkStatus from "@/components/ui/RouteLinkStatus";
 import { useEffect, useMemo, useState } from "react";
 
 import type { DailyReviewResponse } from "@/contracts/test.contract";
@@ -408,6 +409,7 @@ export function DailyReviewSection({ units }: { units: UnitEntity[] }) {
                       className="inline-flex items-center underline underline-offset-2"
                     >
                       {name}
+                      <RouteLinkStatus />
                     </Link>
                     {/* 아침 회차가 세운 시험지만 — 이 화면에서 방금 낸 초안은 `todayTests` 에 없다 */}
                     {today?.autoDraft ? (
@@ -578,6 +580,7 @@ function DraftOrReviewLink({
       className="inline-flex items-center text-[12px] underline underline-offset-2"
     >
       {today ? "검수" : "직접 출제"}
+      <RouteLinkStatus />
     </Link>
   );
 }
