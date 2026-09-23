@@ -170,7 +170,9 @@ describe("account-based math practice", () => {
       await screen.findByRole("button", { name: "오늘의 미션 시작" }),
     );
     const answer = screen.getByLabelText("나의 답");
-    expect(answer).toHaveAccessibleDescription("음수와 분수도 입력할 수 있어요.");
+    expect(answer).toHaveAccessibleDescription(
+      "음수와 분수도 입력할 수 있어요.",
+    );
     await user.click(screen.getByRole("button", { name: "정답 확인" }));
     expect(screen.getByRole("alert")).toHaveTextContent("답을 먼저 입력");
     expect(answer).toHaveFocus();
@@ -195,7 +197,9 @@ describe("account-based math practice", () => {
     await user.clear(answer);
     expect(screen.queryByRole("alert")).not.toBeInTheDocument();
     expect(answer).toHaveAttribute("aria-invalid", "false");
-    expect(answer).toHaveAccessibleDescription("음수와 분수도 입력할 수 있어요.");
+    expect(answer).toHaveAccessibleDescription(
+      "음수와 분수도 입력할 수 있어요.",
+    );
     await user.type(answer, "1/3");
     await user.click(screen.getByRole("button", { name: "정답 확인" }));
     expect(
@@ -208,7 +212,8 @@ describe("account-based math practice", () => {
       expect(view.container.querySelector(".katex")).not.toBeNull(),
     );
     expect(screen.queryByText("0.3333333333333333")).not.toBeInTheDocument();
-    await user.click(screen.getByRole("button", { name: "다음 문제" }));
+    expect(screen.getByRole("button", { name: "다음 문제" })).toHaveFocus();
+    await user.keyboard("{Enter}");
     expect(screen.getByRole("progressbar")).toHaveAttribute("value", "1");
   });
 

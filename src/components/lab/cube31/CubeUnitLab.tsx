@@ -832,6 +832,14 @@ function ActivityViewport({ children }: { children: React.ReactNode }) {
       return Math.max(1, body.offsetHeight);
     };
     const fit = () => {
+      // On a phone, keep the manipulatives and instructions at their readable
+      // size. The activity viewport scrolls instead of shrinking the lesson.
+      if (window.innerWidth <= 760) {
+        body.style.width = "100%";
+        body.style.setProperty("--activity-scale", "1");
+        body.style.setProperty("--activity-inset", "0px");
+        return;
+      }
       const room = frame.clientHeight;
       let scale = 1;
       let spread = true;
@@ -859,7 +867,11 @@ function ActivityViewport({ children }: { children: React.ReactNode }) {
     const observer = new ResizeObserver(fit);
     observer.observe(frame);
     observer.observe(body);
-    return () => observer.disconnect();
+    window.addEventListener("resize", fit);
+    return () => {
+      observer.disconnect();
+      window.removeEventListener("resize", fit);
+    };
   }, []);
   return (
     <div ref={viewport} className={styles.activityViewport}>

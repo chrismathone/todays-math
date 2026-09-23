@@ -587,9 +587,11 @@ function Feedback({
   mission: MathSrsPublicMission;
   onNext: () => void;
 }) {
-  const heading = useRef<HTMLHeadingElement>(null);
+  const feedbackSection = useRef<HTMLElement>(null);
   useEffect(() => {
-    heading.current?.focus();
+    feedbackSection.current
+      ?.querySelector("button")
+      ?.focus({ preventScroll: true });
   }, [problem.id]);
   const attempt = mission.attempts.find(
     (item) => item.problemId === problem.id,
@@ -597,13 +599,13 @@ function Feedback({
   const feedback = problem.feedback!;
   return (
     <section
+      ref={feedbackSection}
       className={`${s.card} ${s.feedbackCard}`}
       aria-labelledby="answer-feedback-heading"
     >
       <p className={s.eyebrow}>한 문제, 한 걸음</p>
       <h2
         id="answer-feedback-heading"
-        ref={heading}
         tabIndex={-1}
         className={attempt?.correct ? s.correct : s.review}
       >
@@ -638,7 +640,7 @@ function Feedback({
           ))}
         </ol>
       </div>
-      <Button onClick={onNext}>
+      <Button onClick={onNext} aria-describedby="answer-feedback-heading">
         {mission.completedAt ? "미션 결과 보기" : "다음 문제"}
       </Button>
     </section>
@@ -656,12 +658,15 @@ function Result({
   const reviewed = [
     ...new Set(mission.attempts.map((attempt) => attempt.conceptId)),
   ].length;
-  const heading = useRef<HTMLHeadingElement>(null);
+  const resultSection = useRef<HTMLElement>(null);
   useEffect(() => {
-    heading.current?.focus();
+    resultSection.current
+      ?.querySelector("button")
+      ?.focus({ preventScroll: true });
   }, []);
   return (
     <section
+      ref={resultSection}
       className={`${s.card} ${s.resultCard}`}
       aria-labelledby="mission-result-heading"
     >
@@ -669,7 +674,7 @@ function Result({
         ✓
       </span>
       <p className={s.eyebrow}>{formatDayWithWeekday(mission.date)}</p>
-      <h2 ref={heading} tabIndex={-1} id="mission-result-heading">
+      <h2 tabIndex={-1} id="mission-result-heading">
         미션을 마쳤어요
       </h2>
       <p>
@@ -683,7 +688,9 @@ function Result({
         어려웠던 개념은 다음 복습에 다시 반영해요. 학습 기록은 계정에
         저장됐어요.
       </p>
-      <Button onClick={onHome}>학습 현황 보기</Button>
+      <Button onClick={onHome} aria-describedby="mission-result-heading">
+        학습 현황 보기
+      </Button>
     </section>
   );
 }

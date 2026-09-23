@@ -40,6 +40,8 @@ export default function StudentCourseSrs() {
   const [feedbackId, setFeedbackId] = useState<string | null>(null);
   const pending = useRef(false);
   const alive = useRef(true);
+  const settingsHeading = useRef<HTMLHeadingElement>(null);
+  const settingsOpener = useRef<HTMLElement | null>(null);
   const [retryAction, setRetryAction] = useState<Action | null>(null);
 
   const authFailure = useCallback(
@@ -139,6 +141,18 @@ export default function StudentCourseSrs() {
   const done = summary?.status === "done" || goalReached;
   const paused = summary?.status === "paused" || state?.plan?.enabled === false;
   const needsSetup = !!state && (!state.plan || summary?.status === "setup");
+  useEffect(() => {
+    if (settings && !needsSetup)
+      settingsHeading.current?.focus({ preventScroll: true });
+    if (!settings && settingsOpener.current) {
+      settingsOpener.current.focus({ preventScroll: true });
+      settingsOpener.current = null;
+    }
+  }, [settings, needsSetup]);
+  function openSettings(opener: HTMLElement) {
+    settingsOpener.current = opener;
+    setSettings(true);
+  }
   const title = needsSetup
     ? "시작 진도를 한 번 골라 주세요."
     : paused
@@ -288,7 +302,7 @@ export default function StudentCourseSrs() {
                     className={s.primary}
                     type="button"
                     disabled={blocked}
-                    onClick={() => setSettings(true)}
+                    onClick={(event) => openSettings(event.currentTarget)}
                   >
                     {needsSetup ? "시작 진도 설정" : "학습 설정 열기"}
                   </button>
@@ -347,7 +361,10 @@ export default function StudentCourseSrs() {
                   type="button"
                   className={s.settingsButton}
                   disabled={blocked}
-                  onClick={() => setSettings((value) => !value)}
+                  onClick={(event) => {
+                    if (settings) setSettings(false);
+                    else openSettings(event.currentTarget);
+                  }}
                   aria-expanded={settings}
                   aria-controls="course-settings"
                 >
@@ -360,8 +377,18 @@ export default function StudentCourseSrs() {
                 id="course-settings"
                 className={s.settings}
                 aria-labelledby="course-settings-title"
+                onKeyDown={(event) => {
+                  if (event.key === "Escape" && !needsSetup && !busy) {
+                    event.stopPropagation();
+                    setSettings(false);
+                  }
+                }}
               >
-                <h2 id="course-settings-title">
+                <h2
+                  id="course-settings-title"
+                  ref={settingsHeading}
+                  tabIndex={-1}
+                >
                   {needsSetup ? "나의 시작 진도" : "학습 설정"}
                 </h2>
                 <CoursePlanForm

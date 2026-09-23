@@ -147,6 +147,9 @@ export function CoursePlayer({ courseId }: { courseId: string }) {
   const [hintText, setHintText] = useState("");
   const [hintBack, setHintBack] = useState<string | undefined>();
   const [boundId, setBoundId] = useState("");
+  const heading = useRef<HTMLHeadingElement>(null);
+  const board = useRef<HTMLDivElement>(null);
+  const advanceTimer = useRef<number | null>(null);
   const saveRef = useRef(save);
   const busyRef = useRef(false);
   // 처리기·타이머가 읽는 «가장 최근 기록». 렌더 중에 ref 를 쓰면 react-hooks/refs 가 막아
@@ -169,6 +172,15 @@ export function CoursePlayer({ courseId }: { courseId: string }) {
   useLayoutEffect(() => {
     busyRef.current = false;
   }, [boundId]);
+  useEffect(() => {
+    if (ready && boundId) heading.current?.focus({ preventScroll: true });
+  }, [ready, boundId]);
+  useEffect(
+    () => () => {
+      if (advanceTimer.current !== null) clearTimeout(advanceTimer.current);
+    },
+    [],
+  );
 
   useEffect(() => {
     if (!ready || !course || !activity) return;
@@ -181,6 +193,12 @@ export function CoursePlayer({ courseId }: { courseId: string }) {
   const persist = (next: LabSave) => {
     writeSave(next);
     setSave({ ...next });
+  };
+  const navigate = (next: LabSave) => {
+    if (advanceTimer.current !== null) clearTimeout(advanceTimer.current);
+    advanceTimer.current = null;
+    busyRef.current = false;
+    persist(next);
   };
 
   const doneAll = Boolean(course && index >= course.activities.length);
@@ -207,7 +225,7 @@ export function CoursePlayer({ courseId }: { courseId: string }) {
         <main className={styles.main}>
           <div className={styles.done}>
             <p className={styles.kicker}>{course.gradeLabel}</p>
-            <h2>{course.title} 활동을 마쳤습니다</h2>
+            <h1>{course.title} 활동을 마쳤습니다</h1>
             <p className={styles.lead}>
               같은 활동을 다시 해도 이미 받은 점수는 다시 쌓이지 않습니다.
             </p>
@@ -218,7 +236,7 @@ export function CoursePlayer({ courseId }: { courseId: string }) {
               <button
                 type="button"
                 className={styles.labBtnSecondary}
-                onClick={() => persist(setCourseIndex(save, course.id, 0))}
+                onClick={() => navigate(setCourseIndex(save, course.id, 0))}
               >
                 처음부터
               </button>
@@ -235,7 +253,7 @@ export function CoursePlayer({ courseId }: { courseId: string }) {
 
   function goTo(id: string) {
     const i = currentCourse.activities.findIndex((a) => a.id === id);
-    if (i >= 0) persist(setCourseIndex(save, currentCourse.id, i));
+    if (i >= 0) navigate(setCourseIndex(save, currentCourse.id, i));
   }
 
   function checkWith(answer: EngineValue) {
@@ -266,8 +284,9 @@ export function CoursePlayer({ courseId }: { courseId: string }) {
     setTone(result.ok ? "good" : "bad");
     if (result.ok) {
       busyRef.current = true;
-      window.setTimeout(
+      advanceTimer.current = window.setTimeout(
         () => {
+          advanceTimer.current = null;
           persist(setCourseIndex(next.save, currentCourse.id, index + 1));
           busyRef.current = false;
         },
@@ -301,9 +320,11 @@ export function CoursePlayer({ courseId }: { courseId: string }) {
           {course.gradeLabel} · {index + 1} / {total}
         </p>
         <section className={styles.stage}>
-          <h2>{activity.title}</h2>
+          <h1 ref={heading} tabIndex={-1}>
+            {activity.title}
+          </h1>
           <p className={styles.intro}>{activity.intro}</p>
-          <div className={styles.board}>
+          <div className={styles.board} ref={board}>
             <ActivityEngine
               spec={activity.engine}
               value={value}
@@ -351,12 +372,30 @@ export function CoursePlayer({ courseId }: { courseId: string }) {
             >
               도움
             </button>
+            {tone === "bad" ? (
+              <button
+                type="button"
+                className={styles.labBtnSecondary}
+                onClick={() => {
+                  board.current
+                    ?.querySelector<HTMLElement>(
+                      'button:not(:disabled), input:not(:disabled), select:not(:disabled), [tabindex="0"]',
+                    )
+                    ?.focus({ preventScroll: true });
+                  setValue(emptyValue(currentActivity.engine));
+                  setFeedback("");
+                  setTone("");
+                }}
+              >
+                다시 해보기
+              </button>
+            ) : null}
             {index > 0 ? (
               <button
                 type="button"
                 className={styles.labBtnGhost}
                 onClick={() =>
-                  persist(setCourseIndex(save, course.id, index - 1))
+                  navigate(setCourseIndex(save, course.id, index - 1))
                 }
               >
                 이전
@@ -367,7 +406,7 @@ export function CoursePlayer({ courseId }: { courseId: string }) {
                 type="button"
                 className={styles.labBtnGhost}
                 onClick={() =>
-                  persist(setCourseIndex(save, course.id, index + 1))
+                  navigate(setCourseIndex(save, course.id, index + 1))
                 }
               >
                 다음

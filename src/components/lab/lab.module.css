@@ -4,10 +4,10 @@
   gap: 24px;
   padding: 30px;
   margin: 28px 0;
-  background: #eef3ff;
-  color: #203f8c;
-  border: 1px solid #cddafa;
-  border-radius: 14px;
+  background: var(--learn-soft);
+  color: var(--learn-ink);
+  border: 1px solid var(--learn-track);
+  border-radius: var(--learn-radius);
   text-decoration: none;
 }
 .cubeFeature > span:nth-child(2) {
@@ -20,12 +20,12 @@
 }
 .cubeFeature small {
   font-size: 12px;
-  color: #5875a5;
+  color: var(--learn-muted);
 }
 .cubeFeature > span > span {
   font-size: 13px;
   line-height: 1.7;
-  color: #59719a;
+  color: var(--learn-muted);
 }
 .cubeFeature strong {
   margin-left: auto;
@@ -47,7 +47,7 @@
   color: #508f77;
 }
 .cubeFeature:focus-visible {
-  outline: 3px solid #7498ef;
+  outline: 3px solid var(--learn-focus);
   outline-offset: 3px;
 }
 @media (max-width: 650px) {
@@ -107,8 +107,11 @@
 
 .wordmark:focus-visible,
 .page :is(button, a, input, select):focus-visible {
-  outline: 3px solid #82a1ff;
+  outline: 3px solid var(--learn-focus);
   outline-offset: 3px;
+}
+.stage h1:focus {
+  outline: none;
 }
 
 .sub {
@@ -210,7 +213,7 @@
   height: 6px;
   overflow: hidden;
   border-radius: 99px;
-  background: #e6ebf3;
+  background: var(--lab-line);
 }
 
 .progress > span {
@@ -234,7 +237,7 @@
   background: var(--lab-card);
 }
 
-.stage h2 {
+.stage h1 {
   margin: 0;
   font-size: 22px;
   font-weight: 750;
@@ -281,7 +284,7 @@
   margin-top: 20px;
   overflow: hidden;
   border-radius: 99px;
-  background: #e6ebf3;
+  background: var(--lab-line);
 }
 
 .bar > span {
@@ -314,23 +317,23 @@ button.labBtnGhost {
 button.labBtnPrimary {
   border: 0;
   background: var(--lab-accent);
-  color: #fff;
+  color: var(--learn-on-accent);
 }
 
 button.labBtnPrimary:hover {
-  background: #426bf0;
+  background: var(--learn-accent-hover);
 }
 
 button.labBtnSecondary {
   border: 1px solid var(--lab-ctl);
-  background: #fff;
+  background: var(--lab-card);
   color: var(--lab-ink);
 }
 
 button.labBtnSecondary:hover,
 button.labBtnSecondary[aria-pressed="true"] {
   border-color: var(--lab-accent);
-  background: #eef2ff;
+  background: var(--learn-soft);
 }
 
 button.labBtnGhost {
