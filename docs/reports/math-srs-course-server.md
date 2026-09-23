@@ -1,6 +1,6 @@
 # Durable elementary course backend
 
-Implemented on the worker branch for task `task_8b66c3cfc0bc`. The backend commit is reported in the terminal's `worker_done` message. Root-owned contract/access commits were cherry-picked as dependencies; integrate only the final backend commit onto root, which already contains those changes.
+Students can select a starting section and daily goal, then continue account-backed learning with due reviews prioritized over new sections. Teachers manage their own students from `/#srs`; approved administrators inspect all students at `/admin/math-srs`. Student learning is at `/learn/math-srs`, covering the existing 230 elementary grade 3–6 sections.
 
 ## API and exports
 
@@ -20,7 +20,7 @@ All exported route handlers use `withErrorLog`; all normal and handled failure r
 
 ## Storage and scheduling
 
-`StudentSrsState.payload` remains version 1 with an optional validated `course` field. Old algebra reads/writes preserve it, and old payloads without it remain valid. No schema or migration changes belong to this worker. No live student records or database migrations were written by this worker.
+`StudentSrsState.payload` remains version 1 with an optional validated `course` field. Old algebra reads/writes preserve it, and old payloads without it remain valid. The isolated migration tool `scripts/qa/apply-student-srs-migration.ts` passed a transactional rollback dry run and installed the SRS table on 2026-09-23. RLS, two checks, the primary key and student cascade foreign key were verified; no existing student or result rows were modified and no test learning records were inserted.
 
 The shared `changeSrsState` function accepts an optional fourth argument `expectedRevision`; it checks that revision on every CAS attempt. Plan edits cannot replay over a concurrent answer, including first-row creation races. Changing the starting section is rejected while work is unfinished; other settings preserve records.
 
@@ -46,4 +46,8 @@ npx vitest run src/__tests__/unit/mathSrsCourseServer.test.ts src/__tests__/api/
 
 Coverage includes real access/menu rules, ownership/admin exceptions, withdrawn and disabled accounts, same-origin checks, UUID figure isolation, answer privacy, 503 failures, malformed records, rollover, partial-session counts, pause/resume, final-section completion, weak-result scheduling, self-check-heavy sections, interval growth per session, concurrent starts/submissions/plans, and compatibility with the existing algebra endpoints. A 92-day simulation verifies bounded report retention and exact lifetime counts.
 
-`npx tsc --noEmit --incremental false` and targeted ESLint checks passed. Dependencies were reused through an ignored local `node_modules` junction to the main checkout. Root owns UI integration, live storage readiness verification, merge, and eventual worktree cleanup.
+Integration validation passed: 183 tests across 15 files, `npx tsc --noEmit --incremental false`, and targeted lint checks. Browser QA used isolated synthetic API responses with the actual curriculum generator, scheduler and SVG renderer: administrator plan save → student five-answer session → administrator answer/solution history. Desktop 1440px/1366px and mobile 390px were checked without page-wide horizontal overflow. Real student records were not used for this fixture. The unconfigured plan explicitly reports no current section, covered by the server regression suite.
+
+The UI distinguishes progress from estimated memory, assisted work from independently correct work, and an early end of today's recommendations from actually reaching the daily quota. Account checks include missing or disabled student accounts. Network timeouts and non-JSON gateway errors remain retryable without fabricating empty reports. The temporary browser fixture was removed after verification.
+
+`npm run build` passed with all new production routes included. Live unauthenticated requests to the new student, figure and teacher endpoints return 401 with `Cache-Control: no-store`; administrator and student pages redirect to their respective login screens. A stale local development cache initially returned 404 for both existing and new routes; rebuilding that cache restored normal responses. All three isolated implementation branches were merged into main and their clean, released Orca worktrees removed, preserving the Git branches.

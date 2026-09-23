@@ -318,7 +318,11 @@ export function courseSummary(state: StoredCourse, now: Date): CourseSummary {
               : !next
                 ? "complete"
                 : "done",
-    currentSectionId: active ? session.sectionId : (next?.id ?? null),
+    currentSectionId: !state.plan
+      ? null
+      : active
+        ? session.sectionId
+        : (next?.id ?? null),
     dueCount: due.length,
     todayAnswered: activity?.answered ?? 0,
     todayCorrect: activity?.correct ?? 0,

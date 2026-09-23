@@ -119,6 +119,7 @@ describe("durable elementary scheduling", () => {
   it("starts in setup with a default goal and no fabricated earlier progress", () => {
     expect(courseSummary(emptyCourseState(), now)).toMatchObject({
       status: "setup",
+      currentSectionId: null,
       todayGoal: 10,
       completedSections: 0,
     });

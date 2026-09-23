@@ -368,7 +368,7 @@ model Student {
 }
 
 /// One atomic practice state per real student. Revision compare-and-swap prevents lost answers.
-/// SQL draft: 20260923150000_student_srs_state. Applying it is a separate reviewed deployment step.
+/// Installed by the isolated, rollback-verified SRS migration tool on 2026-09-23.
 model StudentSrsState {
   studentId String   @id @map("student_id") @db.Uuid
   revision  Int      @default(1)
