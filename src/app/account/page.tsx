@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { redirect } from "next/navigation";
 import TodayMathMark from "@/components/brand/TodayMathMark";
+import AdminSignOut from "@/components/admin/AdminSignOut";
 import ChangePassword from "@/components/account/ChangePassword";
 import ProfileSettings from "@/components/account/ProfileSettings";
 import { getAccountAccess } from "@/lib/accountAccess";
@@ -52,34 +53,79 @@ export default async function AccountPage() {
 
   return (
     <div className={s.shell}>
-      <header className={s.header}>
-        <Link href="/" className={s.brand}>
-          <TodayMathMark size={30} />
-          <span>오늘의수학</span>
-        </Link>
-        <nav className={s.headerLinks} aria-label="계정 메뉴">
-          {profile.isSuperAdmin && <Link href="/admin">관리</Link>}
+      <aside className={s.sidebar}>
+        <div className={s.sidebarBrand}>
+          <Link href="/" className={s.brand}>
+            <TodayMathMark size={28} inverse />
+            <span>오늘의수학</span>
+          </Link>
+          <span className={s.sidebarLabel}>내 계정</span>
+        </div>
+        <p className={s.navCaption}>계정 메뉴</p>
+        <nav className={s.sidebarNav} aria-label="계정 메뉴">
+          <Link href="/account" aria-current="page">
+            <span aria-hidden="true">◩</span> 내정보
+          </Link>
+          {profile.isSuperAdmin && (
+            <Link href="/admin">
+              <span aria-hidden="true">◫</span> 관리 콘솔
+            </Link>
+          )}
           {profile.isAdmin && !profile.isSuperAdmin && (
-            <Link href="/branch">지점 관리</Link>
+            <Link href="/branch">
+              <span aria-hidden="true">⌂</span> 지점 관리
+            </Link>
           )}
           <Link href="/">
-            작업실로 돌아가기 <span aria-hidden="true">↗</span>
+            <span aria-hidden="true">↗</span> 작업실로 이동
           </Link>
         </nav>
-      </header>
-      <main className={s.main}>
-        <div className={s.intro}>
-          <p className={s.eyebrow}>ACCOUNT SETTINGS</p>
-          <h1>내정보</h1>
-          <p>계정 정보와 로그인 보안을 관리합니다.</p>
+        <div className={s.sidebarFooter}>
+          <div className={s.sidebarIdentity}>
+            <span className={s.sidebarAvatar} aria-hidden="true">
+              {(profile.name || "나").slice(0, 1)}
+            </span>
+            <span className={s.sidebarIdentityText}>
+              <strong>{profile.name || "내 계정"}</strong>
+              <span>{profile.email}</span>
+            </span>
+          </div>
+          <AdminSignOut className={s.signOut} />
         </div>
+      </aside>
+      <main className={s.main}>
+        <div className={s.breadcrumb} aria-label="현재 위치">
+          <Link href="/">작업실</Link>
+          <span aria-hidden="true">/</span>
+          <span>내정보</span>
+        </div>
+        <div className={s.intro}>
+          <div>
+            <p className={s.eyebrow}>MY ACCOUNT</p>
+            <h1>내정보</h1>
+            <p>작업실에서 사용하는 정보와 로그인 보안을 관리합니다.</p>
+          </div>
+          <span className={s.roleBadge}>{roleName(profile)}</span>
+        </div>
+        <section className={s.overview} aria-label="계정 요약">
+          <span className={s.overviewAvatar} aria-hidden="true">
+            {(profile.name || "나").slice(0, 1)}
+          </span>
+          <div className={s.overviewIdentity}>
+            <p className={s.overviewCaption}>내 계정</p>
+            <h2>{profile.name || "이름 미설정"}</h2>
+            <p>{profile.email}</p>
+          </div>
+          <div className={s.overviewMeta}>
+            <span>소속 지점</span>
+            <strong>{profile.branch?.name ?? "지정되지 않음"}</strong>
+          </div>
+        </section>
         <div className={s.layout}>
           <section className={s.card} aria-labelledby="profile-title">
             <div className={s.cardHeading}>
-              <span className={s.cardIcon} aria-hidden="true">
-                내
-              </span>
               <div>
+                <p className={s.sectionIndex}>01 / PROFILE</p>
                 <h2 id="profile-title">기본 정보</h2>
                 <p>이름은 작업실과 관리자 계정 목록에 표시됩니다.</p>
               </div>
@@ -113,10 +159,8 @@ export default async function AccountPage() {
             aria-labelledby="security-title"
           >
             <div className={s.cardHeading}>
-              <span className={s.cardIcon} aria-hidden="true">
-                ✓
-              </span>
               <div>
+                <p className={s.sectionIndex}>02 / SECURITY</p>
                 <h2 id="security-title">로그인 보안</h2>
                 <p>현재 비밀번호를 확인한 뒤 새 비밀번호를 설정합니다.</p>
               </div>
