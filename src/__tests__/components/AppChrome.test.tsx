@@ -14,15 +14,14 @@ describe("[AppChrome]", () => {
     const navigation = within(
       screen.getByRole("navigation", { name: "주 메뉴" }),
     );
-    expect(navigation.getByRole("link", { name: "반" })).toHaveAttribute(
-      "aria-current",
-      "page",
-    );
-    expect(navigation.getByRole("link", { name: "메인" })).not.toHaveAttribute(
-      "aria-current",
-    );
     expect(
-      navigation.getByRole("link", { name: "문제은행" }),
+      navigation.getByRole("link", { name: "수업·학생 관리" }),
+    ).toHaveAttribute("aria-current", "page");
+    expect(
+      navigation.getByRole("link", { name: "오늘의 작업" }),
+    ).not.toHaveAttribute("aria-current");
+    expect(
+      navigation.getByRole("link", { name: "시험지 만들기" }),
     ).not.toHaveAttribute("aria-current");
 
     const skip = screen.getByRole("link", { name: "본문으로 건너뛰기" });
@@ -40,16 +39,15 @@ describe("[AppChrome]", () => {
 
     const logo = screen.getByRole("link", { name: "오늘의수학" });
     expect(logo).toHaveAttribute("href", "/");
-    expect(logo.className).toMatch(/text-\[28\.5px\]/);
-    expect(screen.getByRole("link", { name: "메인" })).toHaveAttribute(
+    expect(logo.className).toContain("text-2xl");
+    expect(screen.getByRole("link", { name: "오늘의 작업" })).toHaveAttribute(
       "href",
       "/",
     );
-    expect(screen.getByRole("link", { name: "반" })).toHaveAttribute(
-      "href",
-      "/classes",
-    );
-    expect(screen.getByRole("link", { name: "문제은행" })).toHaveAttribute(
+    expect(
+      screen.getByRole("link", { name: "수업·학생 관리" }),
+    ).toHaveAttribute("href", "/classes");
+    expect(screen.getByRole("link", { name: "시험지 만들기" })).toHaveAttribute(
       "href",
       "/problems",
     );
@@ -161,6 +159,8 @@ describe("[AppChrome]", () => {
     expect(screen.getByText("2026-08-16 일")).toBeInTheDocument();
     expect(screen.getByText("남은 작업 3")).toBeInTheDocument();
     // nav 는 그대로다 — D-39 는 'nav 항목 추가'안을 반려했다.
-    expect(screen.getByRole("link", { name: "문제은행" })).toBeInTheDocument();
+    expect(
+      screen.getByRole("link", { name: "시험지 만들기" }),
+    ).toBeInTheDocument();
   });
 });

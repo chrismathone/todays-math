@@ -67,11 +67,11 @@ describe("페이지 로딩 스켈레톤", () => {
     expect(
       screen.getByRole("status", { name: "화면을 불러오는 중" }),
     ).toBeInTheDocument();
-    expect(screen.getByRole("link", { name: "메인" })).toHaveAttribute(
+    expect(screen.getByRole("link", { name: "오늘의 작업" })).toHaveAttribute(
       "href",
       "/",
     );
-    expect(screen.getByRole("link", { name: "문제은행" })).toHaveAttribute(
+    expect(screen.getByRole("link", { name: "시험지 만들기" })).toHaveAttribute(
       "href",
       "/problems",
     );

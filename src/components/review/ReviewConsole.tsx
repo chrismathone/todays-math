@@ -79,25 +79,38 @@ export function ReviewConsole({
   const [note, setNote] = useState("");
   const [busy, setBusy] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const reportTrigger = useRef<HTMLButtonElement>(null);
 
   const queue = qs.find((q) => q.key === key) ?? qs[0];
   const row = rows[0];
   // 본문·정답·해설이 문항 단위 결정 하나를 쓴다(원장님 2026-09-19 «항상 뷰는 통일이야»).
   const shownFractions = row ? fractionViewFor(row) : (text: string) => text;
-  const loading = useRef(false);
+  const loading = useRef<AbortController | null>(null);
+  const submitting = useRef(false);
+  const [queueLoading, setQueueLoading] = useState(false);
+  const [queueError, setQueueError] = useState(false);
+
+  useEffect(() => () => loading.current?.abort(), []);
 
   const load = useCallback(async (k: ReviewQueueKey, replace: boolean) => {
-    if (loading.current) return;
-    loading.current = true;
+    if (loading.current && !replace) return;
+    loading.current?.abort();
+    const controller = new AbortController();
+    loading.current = controller;
+    setQueueLoading(true);
+    setQueueError(false);
+    setError(null);
     try {
       const res = await fetch(
         `/api/review/queue?key=${encodeURIComponent(k)}&limit=10`,
+        { signal: controller.signal },
       );
       if (!res.ok) throw new Error("대기열을 불러오지 못했습니다.");
       const body = (await res.json()) as {
         data: ConsoleProblem[];
         meta: { queue: ConsoleQueue; reviewedByMe: number };
       };
+      if (controller.signal.aborted) return;
       setRows((prev) => {
         if (replace) return body.data;
         const have = new Set(prev.map((p) => p.id));
@@ -108,17 +121,23 @@ export function ReviewConsole({
       );
       setTotal(body.meta.reviewedByMe);
     } catch (e) {
+      if (controller.signal.aborted) return;
+      setQueueError(true);
       setError(
         e instanceof Error ? e.message : "대기열을 불러오지 못했습니다.",
       );
     } finally {
-      loading.current = false;
+      if (loading.current === controller) {
+        loading.current = null;
+        setQueueLoading(false);
+      }
     }
   }, []);
 
   const submit = useCallback(
     async (verdict: ReviewVerdict, why?: ReportReason, memo?: string) => {
-      if (!row || busy) return;
+      if (!row || submitting.current) return;
+      submitting.current = true;
       setBusy(true);
       setError(null);
       try {
@@ -163,15 +182,24 @@ export function ReviewConsole({
           e instanceof Error ? e.message : "판정을 저장하지 못했습니다.",
         );
       } finally {
+        submitting.current = false;
         setBusy(false);
       }
     },
-    [row, rows.length, busy, key, load],
+    [row, rows.length, key, load],
   );
 
   // 키보드가 주인공인 안이다(③). 글자를 치는 중에는 가로채지 않는다.
   useEffect(() => {
     const on = (e: KeyboardEvent) => {
+      if (e.isComposing || e.repeat) return;
+      if (reporting && e.key === "Escape" && !submitting.current) {
+        e.preventDefault();
+        setReporting(false);
+        setReason(null);
+        reportTrigger.current?.focus();
+        return;
+      }
       const t = e.target as HTMLElement | null;
       if (t && ["INPUT", "TEXTAREA", "SELECT"].includes(t.tagName)) return;
       if (e.metaKey || e.ctrlKey || e.altKey) return;
@@ -186,10 +214,6 @@ export function ReviewConsole({
           else void submit("defect", r, note);
           return;
         }
-        if (e.key === "Escape") {
-          setReporting(false);
-          setReason(null);
-        }
         return; // 패널이 열려 있는 동안 판정 단축(1·3)은 쉰다 — 숫자가 사유이므로
       }
       if (e.key === "1") void submit("pass");
@@ -201,6 +225,7 @@ export function ReviewConsole({
   }, [submit, reporting, note]);
 
   function pick(k: ReviewQueueKey) {
+    if (submitting.current) return;
     setKey(k);
     setRows([]);
     setDone(0);
@@ -211,8 +236,8 @@ export function ReviewConsole({
   }
 
   return (
-    <div className="min-h-screen bg-bg text-ink">
-      <header className="border-b border-divider px-6 py-3">
+    <div className="app-chrome min-h-screen bg-bg text-ink">
+      <header className="border-b border-divider bg-surface px-6 py-3">
         <div className="flex flex-wrap items-baseline gap-x-4 gap-y-1">
           <h1 className="text-base font-semibold">문제은행 검수</h1>
           <p className="text-sm text-text-2">지금까지 {n(total)}문항을 봤다.</p>
@@ -229,26 +254,36 @@ export function ReviewConsole({
       <div className="grid gap-6 p-6 lg:grid-cols-[1fr_320px]">
         <main className="mx-auto w-full max-w-2xl">
           <div className="flex flex-wrap items-center gap-x-3 gap-y-1">
-            <span className="rounded-md bg-side px-2 py-1 text-[13px] font-medium">
+            <span className="rounded-lg bg-side px-2 py-1 text-sm font-medium">
               {queue.label}
             </span>
-            <p className="text-[13px] text-text-2">
+            <p className="text-sm text-text-2">
               <span className="font-medium text-ink">볼 것</span> · {queue.look}
             </p>
           </div>
 
           {error ? (
-            <p
+            <div
               role="alert"
-              className="mt-3 rounded-md border border-[var(--red-text)] bg-surface p-3 text-sm text-[var(--red-text)]"
+              className="mt-3 rounded-lg border border-[var(--red-text)] bg-surface p-3 text-sm text-[var(--red-text)]"
             >
               {error}
-            </p>
+              {queueError ? (
+                <button
+                  type="button"
+                  disabled={queueLoading}
+                  onClick={() => void load(key, rows.length === 0)}
+                  className="ml-3 min-h-11 rounded-lg border border-control bg-surface px-3 text-sm font-semibold text-ink disabled:opacity-50"
+                >
+                  대기열 다시 불러오기
+                </button>
+              ) : null}
+            </div>
           ) : null}
 
           {row ? (
             <article className="mt-3 rounded-lg border border-divider bg-surface p-6">
-              <div className="flex flex-wrap items-center gap-x-3 gap-y-1 text-[13px] text-text-2">
+              <div className="flex flex-wrap items-center gap-x-3 gap-y-1 text-sm text-text-2">
                 <span className="rounded border border-divider px-1.5 py-0.5 font-medium tracking-wide text-ink">
                   {row.problemCode}
                 </span>
@@ -275,7 +310,7 @@ export function ReviewConsole({
 
               <div className="mt-5 border-t border-divider pt-3">
                 <div className="flex flex-wrap items-baseline gap-x-3">
-                  <span className="text-[13px] text-text-2">정답</span>
+                  <span className="text-sm text-text-2">정답</span>
                   {/* 정답도 **본문·해설과 같은 렌더 경로**를 탄다 (MathText 머리주석의
                       「렌더 경로 분기 금지」). 날 문자열로 그리면 `$\frac{12}{13}$` 가
                       글자 그대로 새고, `④` 는 렌더러를 탄 보기와 글꼴이 갈린다
@@ -287,7 +322,7 @@ export function ReviewConsole({
                 </div>
                 {row.solution ? (
                   <details className="mt-2">
-                    <summary className="cursor-pointer text-[13px] text-blue">
+                    <summary className="cursor-pointer text-sm text-blue">
                       해설 보기
                     </summary>
                     <div className="mt-2 text-[14px] leading-relaxed text-text-2">
@@ -299,7 +334,7 @@ export function ReviewConsole({
                     </div>
                   </details>
                 ) : (
-                  <p className="mt-2 text-[13px] text-[var(--red-text)]">
+                  <p className="mt-2 text-sm text-[var(--red-text)]">
                     해설이 없다 — 이 화면만으로는 답을 검산할 수 없다.
                   </p>
                 )}
@@ -345,8 +380,15 @@ export function ReviewConsole({
               </div>
             </article>
           ) : (
-            <p className="mt-6 rounded-lg border border-divider bg-surface p-6 text-sm text-text-2">
-              이 대기열에서 볼 것이 없다. 오른쪽에서 다른 대기열을 고른다.
+            <p
+              role="status"
+              className="mt-6 rounded-lg border border-divider bg-surface p-6 text-sm text-text-2"
+            >
+              {queueLoading
+                ? "대기열을 불러오고 있습니다."
+                : queueError
+                  ? "목록을 다시 불러오거나 다른 대기열을 선택해 주세요."
+                  : "이 대기열의 검수를 마쳤습니다. 다른 대기열을 선택해 주세요."}
             </p>
           )}
         </main>
@@ -357,7 +399,7 @@ export function ReviewConsole({
               type="button"
               disabled={!row || busy}
               onClick={() => void submit("pass")}
-              className="cursor-pointer rounded-md border border-ink bg-ink px-4 py-2.5 text-sm font-medium text-white transition-opacity hover:opacity-90 disabled:cursor-not-allowed disabled:opacity-40"
+              className="min-h-11 cursor-pointer rounded-lg border border-ink bg-ink px-4 py-2.5 text-sm font-medium text-white transition-opacity hover:opacity-90 disabled:cursor-not-allowed disabled:opacity-40"
             >
               문제 없다 <kbd className="ml-1 font-normal opacity-70">1</kbd>
             </button>
@@ -365,9 +407,10 @@ export function ReviewConsole({
               type="button"
               disabled={!row || busy}
               aria-pressed={reporting}
+              ref={reportTrigger}
               onClick={() => setReporting((v) => !v)}
               className={
-                "cursor-pointer rounded-md border px-4 py-2.5 text-sm font-medium transition-colors disabled:cursor-not-allowed disabled:opacity-40 " +
+                "min-h-11 cursor-pointer rounded-lg border px-4 py-2.5 text-sm font-medium transition-colors disabled:cursor-not-allowed disabled:opacity-40 " +
                 (reporting
                   ? "border-[var(--red-text)] bg-[var(--red-text)] text-white"
                   : "border-control bg-surface hover:bg-side")
@@ -379,7 +422,7 @@ export function ReviewConsole({
               type="button"
               disabled={!row || busy}
               onClick={() => void submit("unsure")}
-              className="cursor-pointer rounded-md border border-control bg-surface px-4 py-2.5 text-sm font-medium transition-colors hover:bg-side disabled:cursor-not-allowed disabled:opacity-40"
+              className="min-h-11 cursor-pointer rounded-lg border border-control bg-surface px-4 py-2.5 text-sm font-medium transition-colors hover:bg-side disabled:cursor-not-allowed disabled:opacity-40"
             >
               판단 못 하겠다{" "}
               <kbd className="ml-1 font-normal opacity-70">3</kbd>
@@ -387,8 +430,21 @@ export function ReviewConsole({
           </div>
 
           {reporting ? (
-            <div className="mt-3 rounded-md border border-[var(--red-text)]/40 bg-surface p-3">
-              <p className="text-[13px] font-semibold text-[var(--red-text)]">
+            <div className="relative mt-3 rounded-lg border border-[var(--red-text)]/40 bg-surface p-3">
+              <button
+                type="button"
+                disabled={busy}
+                aria-label="신고 창 닫기"
+                className="absolute top-1 right-2 min-h-11 rounded-lg px-3 text-sm text-text-2 hover:bg-side disabled:opacity-50"
+                onClick={() => {
+                  setReporting(false);
+                  setReason(null);
+                  reportTrigger.current?.focus();
+                }}
+              >
+                닫기
+              </button>
+              <p className="text-sm font-semibold text-[var(--red-text)]">
                 무엇이 이상한가
               </p>
               <p className="mt-0.5 text-[12px] text-text-2">
@@ -415,7 +471,7 @@ export function ReviewConsole({
                         else void submit("defect", r, note);
                       }}
                       className={
-                        "flex w-full cursor-pointer items-center justify-between rounded-md border px-3 py-2 text-left text-[13px] transition-colors disabled:cursor-not-allowed disabled:opacity-40 " +
+                        "flex min-h-11 w-full cursor-pointer items-center justify-between rounded-lg border px-3 py-2 text-left text-sm transition-colors disabled:cursor-not-allowed disabled:opacity-40 " +
                         (reason === r
                           ? "border-ink bg-ink text-white"
                           : hot
@@ -427,7 +483,7 @@ export function ReviewConsole({
                         {REASON_LABELS[r]}
                         {/* 강조를 **색·굵기만으로 알리지 않는다**(05 §5) — 왜 굵은지 말로 적는다. */}
                         {hot ? (
-                          <span className="ml-1.5 font-normal text-[11px] text-text-3">
+                          <span className="ml-1.5 font-normal text-xs text-text-3">
                             이 대기열
                           </span>
                         ) : null}
@@ -448,7 +504,7 @@ export function ReviewConsole({
                       ? "무엇이 이상한지 적는다 (필수)"
                       : "덧붙일 말 (선택)"
                   }
-                  className="w-full rounded-md border border-control bg-surface p-2 text-sm"
+                  className="w-full rounded-lg border border-control bg-surface p-2 text-sm"
                 />
               </label>
               <button
@@ -459,28 +515,29 @@ export function ReviewConsole({
                   (reason === "other" && note.trim().length === 0)
                 }
                 onClick={() => reason && void submit("defect", reason, note)}
-                className="mt-2 cursor-pointer rounded-md border border-[var(--red-text)] bg-[var(--red-text)] px-3 py-1.5 text-sm font-medium text-white disabled:cursor-not-allowed disabled:opacity-40"
+                className="mt-2 min-h-11 cursor-pointer rounded-lg border border-[var(--red-text)] bg-[var(--red-text)] px-3 py-1.5 text-sm font-medium text-white disabled:cursor-not-allowed disabled:opacity-40"
               >
                 신고하고 다음
               </button>
             </div>
           ) : null}
 
-          <p className="mt-5 text-[13px] text-text-2">
+          <p className="mt-5 text-sm text-text-2">
             이번에 {n(done)}문항 · 남은 것 {n(queue.remaining)}
           </p>
 
           <div className="mt-4 border-t border-divider pt-3">
-            <p className="text-[13px] font-medium">대기열</p>
+            <p className="text-sm font-medium">대기열</p>
             <ul className="mt-2 space-y-1.5">
               {qs.map((q) => (
                 <li key={q.key}>
                   <button
                     type="button"
+                    disabled={busy}
                     onClick={() => pick(q.key)}
                     aria-pressed={q.key === key}
                     className={
-                      "w-full cursor-pointer rounded-md border px-2.5 py-1.5 text-left text-[13px] transition-colors " +
+                      "w-full min-h-11 cursor-pointer rounded-lg border px-2.5 py-1.5 text-left text-sm transition-colors " +
                       (q.key === key
                         ? "border-ink bg-side"
                         : "border-control bg-surface hover:bg-side")

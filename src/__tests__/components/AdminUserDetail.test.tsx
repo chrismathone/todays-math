@@ -30,6 +30,31 @@ beforeEach(() => {
 afterEach(() => vi.unstubAllGlobals());
 
 describe("administrator user detail", () => {
+  it("focuses a selected document preview and closes it back to the document", async () => {
+    fetchMock.mockImplementation(async (url) => {
+      if (String(url).includes("/documents/"))
+        return Response.json({ data: draft });
+      if (String(url).includes("/documents?"))
+        return Response.json({
+          data: [draft],
+          meta: { page: 1, pageSize: 20, total: 1 },
+        });
+      return Response.json({ data: pendingAccount });
+    });
+    render(
+      <AdminUserDetail userId={pendingAccount.id} identity={adminIdentity} />,
+    );
+    const trigger = await screen.findByRole("button", {
+      name: /중1 방정식 연습/,
+    });
+    fireEvent.click(trigger);
+    await screen.findByRole("heading", { name: "문항 1 중1" });
+    const preview = screen.getByRole("region", { name: "자료 미리보기" });
+    expect(preview).toHaveFocus();
+    fireEvent.keyDown(preview, { key: "Escape" });
+    expect(screen.getByText("살펴볼 자료를 선택하세요")).toBeInTheDocument();
+    expect(trigger).toHaveFocus();
+  });
   it("reads private worksheets, renders math and switches to paginated audit records", async () => {
     fetchMock.mockImplementation(async (url) => {
       const path = String(url);

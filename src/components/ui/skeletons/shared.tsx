@@ -49,9 +49,9 @@ export function TableRows({
 }
 
 const NAV = [
-  ["/", "메인"],
-  ["/classes", "반"],
-  ["/problems", "문제은행"],
+  ["/", "오늘의 작업"],
+  ["/classes", "수업·학생 관리"],
+  ["/problems", "시험지 만들기"],
   ["/studio", "자료 제작"],
 ] as const;
 
@@ -65,25 +65,22 @@ export function MastheadSkeleton({
   return (
     <div aria-busy="true" className="min-h-full bg-canvas text-ink">
       <Status label="화면을 불러오는 중" />
-      <header className="flex flex-wrap items-baseline gap-x-6 gap-y-2 border-b-[3px] border-ink px-[26px] pt-[19px] pb-[15px]">
-        <span className="flex shrink-0 items-baseline whitespace-nowrap">
+      <header className="flex flex-wrap items-center gap-x-6 gap-y-3 border-b border-divider bg-surface px-5 py-3">
+        <span className="flex shrink-0 flex-wrap items-center gap-y-2 whitespace-nowrap">
           <Link
             aria-current={tab === "math" ? "page" : undefined}
-            className={`inline-flex items-center gap-2 text-[28.5px] font-black tracking-[-0.5px] ${tab === "math" ? "text-ink" : "text-text-3"}`}
+            className={`inline-flex items-center gap-2 text-2xl font-bold tracking-tight ${tab === "math" ? "text-ink" : "text-text-3"}`}
             href="/"
           >
             <TodayMathMark size={32} />
             오늘의수학
           </Link>
-          <span
-            aria-hidden="true"
-            className="mx-[7px] text-[28.5px] text-[#C2C2C0]"
-          >
+          <span aria-hidden="true" className="mx-3 text-xl text-divider">
             │
           </span>
           <Link
             aria-current={tab === "exam" ? "page" : undefined}
-            className={`text-[28.5px] font-black tracking-[-0.5px] ${tab === "exam" ? "text-ink" : "text-text-3"}`}
+            className={`text-2xl font-bold tracking-tight ${tab === "exam" ? "text-ink" : "text-text-3"}`}
             href="/exam"
           >
             오늘의시험
@@ -92,14 +89,18 @@ export function MastheadSkeleton({
         <Skeleton className="h-4 w-28 shrink-0" />
         <nav
           aria-label="화면을 불러오는 동안 사용할 수 있는 메뉴"
-          className="ml-auto flex shrink-0 items-center gap-5 whitespace-nowrap text-[17.25px] font-bold"
+          className="ml-auto flex min-w-0 flex-wrap items-center gap-2 text-sm font-semibold"
         >
           {NAV.map(([href, label]) => (
-            <Link href={href} key={href}>
+            <Link
+              href={href}
+              key={href}
+              className="inline-flex min-h-11 items-center rounded-lg px-3 text-text-2 hover:bg-side hover:text-ink"
+            >
               {label}
             </Link>
           ))}
-          <span aria-hidden="true" className="text-[#C2C2C0]">
+          <span aria-hidden="true" className="text-divider">
             ·
           </span>
           <Skeleton className="h-4 w-16" />

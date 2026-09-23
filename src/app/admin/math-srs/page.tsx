@@ -18,7 +18,10 @@ export default async function AdminSrsPage() {
 
   return (
     <div className={`${adminStyles.shell} ${styles.page}`}>
-      <AdminHeader identity={{ name: account.name, email: account.email }} />
+      <AdminHeader
+        identity={{ name: account.name, email: account.email }}
+        active="srs"
+      />
       <main className={styles.main}>
         <CourseDashboard admin />
       </main>

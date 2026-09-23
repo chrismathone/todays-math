@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { useEffect, useState, type FormEvent } from "react";
+import { useEffect, useRef, useState, type FormEvent } from "react";
 import type {
   AdminAccountsResponse,
   ManagedAccount,
@@ -46,6 +46,16 @@ export default function AdminAccounts({
   const [authError, setAuthError] = useState(false);
   const [selected, setSelected] = useState<ManagedAccount | null>(null);
   const [locked, setLocked] = useState(false);
+  const reviewTrigger = useRef<HTMLButtonElement | null>(null);
+  const searchInput = useRef<HTMLInputElement | null>(null);
+
+  function closeReview() {
+    if (locked) return;
+    setSelected(null);
+    const trigger = reviewTrigger.current;
+    if (trigger?.isConnected) trigger.focus();
+    else searchInput.current?.focus();
+  }
 
   useEffect(() => {
     const controller = new AbortController();
@@ -174,6 +184,7 @@ export default function AdminAccounts({
               </label>
               <input
                 id="account-search"
+                ref={searchInput}
                 type="search"
                 placeholder="이름 또는 이메일로 검색"
                 value={search}
@@ -273,7 +284,10 @@ export default function AdminAccounts({
                                 aria-pressed={selected?.id === account.id}
                                 aria-controls="account-detail"
                                 disabled={locked}
-                                onClick={() => setSelected(account)}
+                                onClick={(event) => {
+                                  reviewTrigger.current = event.currentTarget;
+                                  setSelected(account);
+                                }}
                               >
                                 {selected?.id === account.id
                                   ? "선택됨"
@@ -341,17 +355,44 @@ export default function AdminAccounts({
               )}
             </div>
           </section>
-          <div id="account-detail" className={s.detailSlot}>
+          <div
+            id="account-detail"
+            className={s.detailSlot}
+            onKeyDown={(event) => {
+              if (event.key === "Escape" && !locked && selected) {
+                event.preventDefault();
+                closeReview();
+              }
+            }}
+          >
             {selected ? (
-              <AccountReview
-                key={selected.id}
-                account={selected}
-                onLockChange={setLocked}
-                onUpdate={(account) => {
-                  setSelected(account);
-                  reload();
-                }}
-              />
+              <>
+                <div className={s.detailActions}>
+                  <button
+                    className={s.secondary}
+                    type="button"
+                    disabled={locked}
+                    onClick={closeReview}
+                    aria-describedby={locked ? "review-close-help" : undefined}
+                  >
+                    검토 닫기
+                  </button>
+                  {locked ? (
+                    <span id="review-close-help">
+                      변경을 저장하거나 취소한 뒤 닫을 수 있습니다.
+                    </span>
+                  ) : null}
+                </div>
+                <AccountReview
+                  key={selected.id}
+                  account={selected}
+                  onLockChange={setLocked}
+                  onUpdate={(account) => {
+                    setSelected(account);
+                    reload();
+                  }}
+                />
+              </>
             ) : (
               <section className={s.reviewPlaceholder}>
                 <span className={s.placeholderMark} aria-hidden="true">

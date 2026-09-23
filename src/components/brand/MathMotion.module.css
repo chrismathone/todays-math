@@ -3,8 +3,8 @@
   width: 100%;
   overflow: hidden;
   border-radius: 12px;
-  background: #f7f5ef;
-  color: #172b4d;
+  background: var(--learn-bg);
+  color: var(--learn-ink);
 }
 .motion video {
   display: block;

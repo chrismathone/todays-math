@@ -15,8 +15,8 @@ const DISABLED_FILLED = "disabled:bg-side disabled:text-text-3";
 const DISABLED_FLAT = "disabled:text-text-3";
 
 const VARIANT_CLASS: Record<Variant, string> = {
-  primary: `bg-g-blue text-white hover:enabled:bg-[#18497f] ${DISABLED_FILLED}`,
-  ink: `bg-ink text-white hover:enabled:bg-black ${DISABLED_FILLED}`,
+  primary: `bg-g-blue text-white hover:enabled:bg-[var(--learn-accent-hover)] ${DISABLED_FILLED}`,
+  ink: `bg-[var(--learn-nav)] text-white hover:enabled:bg-[#243b5c] ${DISABLED_FILLED}`,
   secondary: `border border-control bg-transparent text-ink hover:enabled:bg-side ${DISABLED_FILLED} disabled:border-divider`,
   ghost: `bg-transparent text-ink underline-offset-2 hover:enabled:underline ${DISABLED_FLAT}`,
 };
@@ -30,7 +30,7 @@ export function Button({
   return (
     <button
       type={type}
-      className={`inline-flex min-h-11 min-w-[44px] shrink-0 cursor-pointer items-center justify-center whitespace-nowrap px-3 text-[12.5px] font-bold focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-g-blue disabled:cursor-not-allowed ${VARIANT_CLASS[variant]} ${className}`}
+      className={`inline-flex min-h-11 min-w-[44px] shrink-0 cursor-pointer items-center justify-center gap-2 whitespace-nowrap rounded-lg px-3 text-sm font-semibold focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-g-blue disabled:cursor-not-allowed ${VARIANT_CLASS[variant]} ${className}`}
       {...props}
     />
   );

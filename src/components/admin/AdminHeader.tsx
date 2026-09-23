@@ -1,23 +1,35 @@
 import Link from "next/link";
+import TodayMathMark from "@/components/brand/TodayMathMark";
 import AdminSignOut from "./AdminSignOut";
 import s from "./admin.module.css";
 
 export default function AdminHeader({
   identity,
+  active = "accounts",
 }: {
   identity: { name: string; email: string };
+  active?: "accounts" | "srs";
 }) {
   return (
     <header className={s.header}>
       <Link href="/" className={s.brand}>
+        <TodayMathMark size={28} />
         오늘의수학<span className={s.adminLabel}>관리자</span>
       </Link>
       <div className={s.headerRight}>
         <nav className={s.headerNav} aria-label="관리자 메뉴">
-          <Link className={s.workroomLink} href="/admin">
+          <Link
+            className={s.workroomLink}
+            href="/admin"
+            aria-current={active === "accounts" ? "page" : undefined}
+          >
             계정 관리
           </Link>
-          <Link className={s.workroomLink} href="/admin/math-srs">
+          <Link
+            className={s.workroomLink}
+            href="/admin/math-srs"
+            aria-current={active === "srs" ? "page" : undefined}
+          >
             SRS 현황
           </Link>
           <Link className={s.workroomLink} href="/">

@@ -1,9 +1,9 @@
 .shell {
-  --paper: #f7f5ef;
-  --navy: #172b4d;
-  --cobalt: #3159df;
-  --muted: #59677d;
-  --line: #dddeda;
+  --paper: var(--learn-bg);
+  --navy: var(--learn-ink);
+  --cobalt: var(--learn-accent);
+  --muted: var(--learn-muted);
+  --line: var(--learn-track);
   min-height: 100svh;
   background: var(--paper);
   color: var(--navy);
@@ -32,7 +32,7 @@
   cursor: not-allowed;
   opacity: 0.48;
 }
-.shell :is(a, button, input):focus-visible {
+.shell :is(a, button, input, [tabindex]):focus-visible {
   outline: 3px solid var(--cobalt);
   outline-offset: 3px;
 }
@@ -45,6 +45,7 @@
   justify-content: space-between;
   gap: 24px;
   border-bottom: 1px solid var(--line);
+  background: var(--learn-surface);
 }
 .brand {
   display: inline-flex;
@@ -58,10 +59,10 @@
   letter-spacing: -1px;
 }
 .adminLabel {
-  font-size: 11px;
+  font-size: 12px;
   font-weight: 700;
   letter-spacing: 0;
-  border: 1px solid #bac3d2;
+  border: 1px solid var(--learn-control);
   border-radius: 4px;
   padding: 3px 7px;
 }
@@ -77,9 +78,19 @@
   gap: 16px;
   min-height: 44px;
   color: var(--navy);
-  font-size: 13px;
+  font-size: 14px;
   text-decoration: none;
   white-space: nowrap;
+  padding: 8px 12px;
+  border-radius: 8px;
+}
+.workroomLink:hover {
+  background: var(--learn-neutral);
+}
+.workroomLink[aria-current="page"] {
+  background: var(--learn-soft);
+  color: var(--learn-accent);
+  font-weight: 700;
 }
 .headerNav {
   display: flex;
@@ -97,7 +108,7 @@
   font-size: 12px;
 }
 .identity strong {
-  font-size: 13px;
+  font-size: 14px;
 }
 .identity span {
   overflow: hidden;
@@ -118,14 +129,14 @@
 }
 .eyebrow {
   margin: 0 0 9px;
-  font-size: 10px;
+  font-size: 12px;
   letter-spacing: 1.7px;
   font-weight: 750;
   color: var(--muted);
 }
 .titleRow h1 {
   margin: 0;
-  font-size: clamp(28px, 3vw, 36px);
+  font-size: 24px;
   font-weight: 800;
   line-height: 1.35;
   letter-spacing: -1.5px;
@@ -158,7 +169,7 @@
 }
 .directoryHeading h2 {
   margin: 0;
-  font-size: 17px;
+  font-size: 18px;
   font-weight: 750;
 }
 .directoryHeading > span {
@@ -177,7 +188,7 @@
   color: var(--muted);
   background: transparent;
   border: 1px solid transparent;
-  border-radius: 6px;
+  border-radius: 8px;
   font-size: 12px;
   font-weight: 700;
 }
@@ -186,12 +197,12 @@
   font-variant-numeric: tabular-nums;
 }
 .filters button[aria-pressed="true"] {
-  color: #254cc8;
-  background: #edf1ff;
+  color: var(--learn-accent);
+  background: var(--learn-soft);
   border-color: #cbd5fc;
 }
 .filters button:hover {
-  background: #f2f4f8;
+  background: var(--learn-soft-hover);
 }
 .search {
   display: flex;
@@ -202,15 +213,15 @@
   width: 100%;
   min-width: 0;
   min-height: 44px;
-  border: 1px solid #8d99ab;
-  border-radius: 6px;
+  border: 1px solid var(--learn-control);
+  border-radius: 8px;
   padding: 10px 12px;
   color: var(--navy);
   background: #fff;
-  font-size: 13px;
+  font-size: 14px;
 }
 .search input::placeholder {
-  color: #68758a;
+  color: var(--learn-muted);
 }
 .querySummary {
   display: flex;
@@ -234,10 +245,10 @@
   gap: 6px;
   min-height: 44px;
   padding: 9px 14px;
-  border-radius: 6px;
+  border-radius: 8px;
   border: 1px solid transparent;
   text-decoration: none;
-  font-size: 12px !important;
+  font-size: 14px !important;
   font-weight: 700 !important;
   line-height: 1.5;
   white-space: nowrap;
@@ -247,15 +258,15 @@
   color: #fff;
 }
 .primary:hover:not(:disabled) {
-  background: #2449c5;
+  background: var(--learn-accent-hover);
 }
 .secondary {
-  border-color: #8d99ab;
+  border-color: var(--learn-control);
   background: #fff;
   color: var(--navy);
 }
 .secondary:hover:not(:disabled) {
-  background: #f1f3f8;
+  background: var(--learn-soft-hover);
 }
 .quiet {
   padding-inline: 8px;
@@ -265,16 +276,16 @@
 .reject {
   background: #fff;
   border-color: #ba8c86;
-  color: #963b31;
+  color: var(--learn-danger);
 }
 .reviewButton {
   background: #fff;
-  border-color: #a3b0c4;
-  color: #294eae;
+  border-color: var(--learn-control);
+  color: var(--learn-accent);
   padding-inline: 11px;
 }
 .reviewButton[aria-pressed="true"] {
-  background: #eaf0ff;
+  background: var(--learn-soft);
   border-color: #91a6e6;
 }
 .table {
@@ -285,15 +296,15 @@
 }
 .table th {
   padding: 12px 10px;
-  border-block: 1px solid #e6e8ec;
-  background: #f7f8fa;
+  border-block: 1px solid var(--learn-track);
+  background: var(--learn-bg);
   color: var(--muted);
-  font-size: 11px;
+  font-size: 12px;
   font-weight: 650;
 }
 .table td {
   padding: 14px 10px;
-  border-bottom: 1px solid #e7e9ee;
+  border-bottom: 1px solid var(--learn-track);
   vertical-align: middle;
 }
 .table th:first-child,
@@ -312,11 +323,11 @@
   width: 114px;
 }
 .table tr[data-selected="true"] td {
-  background: #f3f6ff;
+  background: var(--learn-soft);
 }
 .accountCell strong {
   display: block;
-  font-size: 13px;
+  font-size: 14px;
   font-weight: 700;
   overflow-wrap: anywhere;
 }
@@ -324,46 +335,45 @@
   display: inline-flex;
   align-items: center;
   min-height: 28px;
-  font-size: 13px;
+  font-size: 14px;
   font-weight: 700;
   color: var(--navy);
   overflow-wrap: anywhere;
-  text-decoration: underline;
-  text-decoration-color: #bcc7da;
+  text-decoration: none;
   text-underline-offset: 4px;
 }
 .accountCell > span {
   display: block;
   margin-top: 3px;
-  font-size: 11px;
+  font-size: 12px;
   color: var(--muted);
   overflow-wrap: anywhere;
 }
 .dateCell {
-  font-size: 11px;
+  font-size: 12px;
   color: var(--muted);
 }
 .badge {
   display: inline-flex;
   align-items: center;
   padding: 4px 7px;
-  font-size: 10px;
+  font-size: 12px;
   font-weight: 700;
   line-height: 1.5;
   white-space: nowrap;
   border-radius: 4px;
 }
 .pending {
-  background: #f6edce;
-  color: #755615;
+  background: var(--learn-warning-bg);
+  color: var(--learn-warning);
 }
 .approved {
   background: #eaf0fd;
   color: #31519a;
 }
 .rejected {
-  background: #f6e9e5;
-  color: #923e32;
+  background: var(--learn-danger-bg);
+  color: var(--learn-danger);
 }
 .pagination {
   display: flex;
@@ -371,7 +381,7 @@
   justify-content: space-between;
   gap: 12px;
   padding: 16px 24px;
-  font-size: 11px;
+  font-size: 12px;
   color: var(--muted);
 }
 .pagination > div {
@@ -395,12 +405,12 @@
   border-top: 1px solid var(--line);
 }
 .empty strong {
-  font-size: 15px;
+  font-size: 14px;
 }
 .empty p {
   margin: 0 0 8px;
   color: var(--muted);
-  font-size: 13px;
+  font-size: 14px;
   word-break: keep-all;
 }
 .loadingDot {
@@ -413,9 +423,27 @@
 .detailSlot {
   min-width: 0;
 }
+.detailActions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 12px;
+}
+.detailActions span {
+  width: 100%;
+  color: var(--learn-muted);
+  font-size: 12px;
+  text-align: right;
+}
+.accountLink:hover {
+  color: var(--learn-accent);
+  text-decoration: underline;
+}
 .review,
 .reviewPlaceholder {
-  border: 1px solid #d1d7e2;
+  border: 1px solid var(--learn-track);
   border-radius: 12px;
   background: #fff;
   padding: 24px;
@@ -429,11 +457,11 @@
 }
 .sectionHeading .eyebrow {
   margin: 0;
-  font-size: 9px;
+  font-size: 12px;
 }
 .reviewName {
   margin: 0;
-  font-size: 23px;
+  font-size: 24px;
   font-weight: 800;
   line-height: 1.4;
   letter-spacing: -0.7px;
@@ -456,7 +484,7 @@
 .facts dt {
   margin-bottom: 5px;
   color: var(--muted);
-  font-size: 11px;
+  font-size: 12px;
 }
 .facts dd {
   margin: 0;
@@ -495,12 +523,12 @@
   align-items: center;
   gap: 10px;
   padding: 10px 12px;
-  border: 1px solid #dce1e9;
-  border-radius: 6px;
+  border: 1px solid var(--learn-track);
+  border-radius: 8px;
   font-size: 12px;
 }
 .menuOption:has(input:checked) {
-  background: #f6f8ff;
+  background: var(--learn-soft);
   border-color: #aabdec;
 }
 .menuOption input {
@@ -511,7 +539,7 @@
   flex-shrink: 0;
 }
 .menuFieldset:disabled .menuOption {
-  color: #677387;
+  color: var(--learn-muted);
 }
 .reviewActions {
   margin-top: 20px;
@@ -542,9 +570,9 @@
 .confirm {
   margin-top: 16px;
   padding: 13px;
-  border: 1px solid #d5dce8;
-  border-radius: 6px;
-  background: #f7f8fa;
+  border: 1px solid var(--learn-track);
+  border-radius: 8px;
+  background: var(--learn-bg);
   font-size: 12px;
   line-height: 1.7;
   overflow-wrap: anywhere;
@@ -554,12 +582,12 @@
   margin-bottom: 18px;
 }
 .notice {
-  background: #f0f4ff;
+  background: var(--learn-soft);
   color: #2d4e9b;
 }
 .error {
-  background: #fcf2ee;
-  color: #933b2e;
+  background: var(--learn-danger-bg);
+  color: var(--learn-danger);
   border-color: #e5c7bc;
 }
 .error p {
@@ -573,15 +601,15 @@
   margin: 0 0 12px;
 }
 .unsaved {
-  font-size: 11px;
-  color: #765b1b;
+  font-size: 12px;
+  color: var(--learn-warning);
   margin: 0 0 12px;
 }
 .textLink {
   display: inline-flex;
   align-items: center;
   min-height: 44px;
-  color: #284ebe;
+  color: var(--learn-accent);
   text-decoration: underline;
   text-underline-offset: 3px;
 }
@@ -602,12 +630,12 @@
   margin-bottom: 24px;
   color: var(--cobalt);
   border: 1px solid #d5def7;
-  background: #edf2ff;
+  background: var(--learn-soft);
   border-radius: 50%;
   font-size: 25px;
 }
 .reviewPlaceholder h2 {
-  font-size: 16px;
+  font-size: 18px;
   margin: 0 0 10px;
   font-weight: 750;
 }
@@ -618,14 +646,14 @@
   line-height: 1.8;
 }
 .placeholderFoot {
-  color: #637189;
-  font-size: 11px;
+  color: var(--learn-muted);
+  font-size: 12px;
   margin-top: 30px;
 }
 .footerNote {
   margin: 24px 0 0;
   color: var(--muted);
-  font-size: 11px;
+  font-size: 12px;
 }
 .srOnly,
 .skipLink:not(:focus) {
@@ -685,7 +713,7 @@
     gap: 16px;
   }
   .brand {
-    font-size: 22px;
+    font-size: 24px;
   }
   .headerRight {
     width: 100%;
@@ -718,7 +746,7 @@
     margin-bottom: 24px;
   }
   .subtitle {
-    font-size: 13px;
+    font-size: 14px;
   }
   .directoryHeading {
     padding: 18px 14px;
@@ -728,7 +756,7 @@
     gap: 1px;
   }
   .filters button {
-    font-size: 11px;
+    font-size: 12px;
     padding-inline: 2px;
   }
   .filters button span {
@@ -755,18 +783,18 @@
     width: 68px;
   }
   .badge {
-    font-size: 9px;
+    font-size: 12px;
     padding-inline: 4px;
   }
   .reviewButton {
     padding-inline: 8px;
-    font-size: 11px !important;
+    font-size: 12px !important;
   }
   .accountCell strong {
     font-size: 12px;
   }
   .accountCell > span {
-    font-size: 10px;
+    font-size: 12px;
   }
   .pagination {
     flex-wrap: wrap;
@@ -785,6 +813,6 @@
     grid-template-columns: minmax(0, 1fr);
   }
   .footerNote {
-    font-size: 10px;
+    font-size: 12px;
   }
 }

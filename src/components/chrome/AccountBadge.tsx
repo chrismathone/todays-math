@@ -44,7 +44,7 @@ export function AccountBadge() {
   return (
     <>
       {/* 이동(메인·반·문제은행)과 계정을 가르는 구분선 — 워드마크와 같은 어법이다. */}
-      <span aria-hidden="true" className="text-[17.25px] text-[#C2C2C0]">
+      <span aria-hidden="true" className="text-xl text-divider">
         │
       </span>
       {email === undefined ? (
@@ -52,7 +52,7 @@ export function AccountBadge() {
       ) : email ? (
         <span
           data-testid="account-email"
-          className="text-[15px] font-normal text-text-2"
+          className="min-w-0 max-w-56 break-all text-xs font-normal text-text-2"
         >
           {email}
         </span>
@@ -60,7 +60,7 @@ export function AccountBadge() {
       <form action={signOutAction}>
         <button
           type="submit"
-          className="text-[17.25px] font-bold text-ink underline-offset-2 hover:underline focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-g-blue"
+          className="inline-flex min-h-11 items-center rounded-lg border border-control bg-surface px-3 text-sm font-semibold text-ink hover:bg-side focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-g-blue"
         >
           로그아웃
         </button>

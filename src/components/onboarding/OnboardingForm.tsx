@@ -1,7 +1,7 @@
 "use client";
 
 import { useRouter } from "next/navigation";
-import { useEffect, useState, type FormEvent } from "react";
+import { useEffect, useRef, useState, type FormEvent } from "react";
 
 import { Button } from "@/components/ui/Button";
 import { Input } from "@/components/ui/Input";
@@ -14,13 +14,12 @@ export type OnboardingUnitOption = {
   section: string;
 };
 
-const FIELD_LABEL =
-  "mb-1 block text-[10.5px] font-extrabold tracking-[1.2px] text-text-2";
-const STEP_INDEX = "text-[10.5px] font-extrabold tracking-[1.2px] text-text-3";
-const STEP_TITLE = "mt-1 text-[15px] font-black tracking-[-0.3px]";
-const ERROR_TEXT = "text-[11.5px] text-g-red-text";
+const FIELD_LABEL = "mb-1 block text-xs font-semibold text-text-2";
+const STEP_INDEX = "text-xs font-semibold text-text-3";
+const STEP_TITLE = "mt-1 text-lg font-bold";
+const ERROR_TEXT = "text-xs text-g-red-text";
 const SELECT_CLASS =
-  "h-11 w-full cursor-pointer border border-control bg-white px-3 text-[12.5px] text-ink focus:border-g-blue focus:outline focus:outline-2 focus:outline-offset-0 focus:outline-g-blue disabled:cursor-not-allowed disabled:bg-[#E0E0DE]";
+  "h-11 w-full cursor-pointer rounded-lg border border-control bg-white px-3 text-sm text-ink focus:border-g-blue focus:outline focus:outline-2 focus:outline-offset-2 focus:outline-g-blue disabled:cursor-not-allowed disabled:bg-side";
 
 function unitLabel(unit: OnboardingUnitOption) {
   return `${unit.grade} · ${unit.section}`;
@@ -39,6 +38,7 @@ export function OnboardingForm({ units }: { units: OnboardingUnitOption[] }) {
   const [students, setStudents] = useState<string[]>([]);
   const [studentError, setStudentError] = useState("");
   const [studentSaving, setStudentSaving] = useState(false);
+  const studentInput = useRef<HTMLInputElement>(null);
 
   const [unitId, setUnitId] = useState("");
   const [progressError, setProgressError] = useState("");
@@ -101,6 +101,7 @@ export function OnboardingForm({ units }: { units: OnboardingUnitOption[] }) {
 
   async function handleCreateClass(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
+    if (classSaving || classId) return;
     const name = className.trim();
     const gradeValue = grade.trim();
     if (!name) {
@@ -135,7 +136,7 @@ export function OnboardingForm({ units }: { units: OnboardingUnitOption[] }) {
 
   async function handleAddStudent(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
-    if (!classId) return;
+    if (!classId || studentSaving) return;
     const name = studentName.trim();
     if (!name) {
       setStudentError("학생 이름을 입력해주세요.");
@@ -156,6 +157,7 @@ export function OnboardingForm({ units }: { units: OnboardingUnitOption[] }) {
       }
       setStudents((prev) => [...prev, name]);
       setStudentName("");
+      studentInput.current?.focus();
     } catch {
       setStudentError("저장하지 못했습니다.");
     } finally {
@@ -165,7 +167,7 @@ export function OnboardingForm({ units }: { units: OnboardingUnitOption[] }) {
 
   async function handleComplete(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
-    if (!classId || students.length === 0) return;
+    if (!classId || students.length === 0 || progressSaving) return;
     if (!unitId) {
       setProgressError("진도를 선택해주세요.");
       return;
@@ -192,10 +194,8 @@ export function OnboardingForm({ units }: { units: OnboardingUnitOption[] }) {
   }
 
   return (
-    <div className="w-full max-w-[960px]">
-      <h1 className="mb-8 text-[15px] font-black tracking-[-0.3px]">
-        초기 설정
-      </h1>
+    <div className="w-full max-w-[1100px] rounded-xl border border-divider bg-surface p-6 md:p-8">
+      <h1 className="mb-8 text-2xl font-bold">초기 설정</h1>
       <div className="grid grid-cols-1 gap-8 md:grid-cols-3">
         <section aria-labelledby="onboard-step-1">
           <p className={STEP_INDEX}>1</p>
@@ -203,7 +203,7 @@ export function OnboardingForm({ units }: { units: OnboardingUnitOption[] }) {
             반 만들기
           </h2>
           {classId ? (
-            <p className="mt-4 text-[12.5px] font-bold">{className.trim()}</p>
+            <p className="mt-4 text-sm font-bold">{className.trim()}</p>
           ) : (
             <form className="mt-4 space-y-3" onSubmit={handleCreateClass}>
               <label className="block">
@@ -226,7 +226,11 @@ export function OnboardingForm({ units }: { units: OnboardingUnitOption[] }) {
                   className={classError ? "border-g-red" : ""}
                 />
               </label>
-              {classError ? <p className={ERROR_TEXT}>{classError}</p> : null}
+              {classError ? (
+                <p className={ERROR_TEXT} role="alert">
+                  {classError}
+                </p>
+              ) : null}
               <Button type="submit" variant="primary" disabled={classSaving}>
                 반 만들기
               </Button>
@@ -247,6 +251,7 @@ export function OnboardingForm({ units }: { units: OnboardingUnitOption[] }) {
               <label className="block">
                 <span className={FIELD_LABEL}>이름</span>
                 <Input
+                  ref={studentInput}
                   value={studentName}
                   onChange={(event) => setStudentName(event.target.value)}
                   maxLength={50}
@@ -255,7 +260,9 @@ export function OnboardingForm({ units }: { units: OnboardingUnitOption[] }) {
                 />
               </label>
               {studentError ? (
-                <p className={ERROR_TEXT}>{studentError}</p>
+                <p className={ERROR_TEXT} role="alert">
+                  {studentError}
+                </p>
               ) : null}
               <Button
                 type="submit"
@@ -266,9 +273,9 @@ export function OnboardingForm({ units }: { units: OnboardingUnitOption[] }) {
               </Button>
             </form>
             {students.length > 0 ? (
-              <ul className="space-y-1 text-[12.5px] font-bold">
-                {students.map((name) => (
-                  <li key={name}>{name}</li>
+              <ul className="space-y-1 text-sm font-bold">
+                {students.map((name, index) => (
+                  <li key={`${index}:${name}`}>{name}</li>
                 ))}
               </ul>
             ) : null}
@@ -305,7 +312,9 @@ export function OnboardingForm({ units }: { units: OnboardingUnitOption[] }) {
                 </select>
               </label>
               {progressError ? (
-                <p className={ERROR_TEXT}>{progressError}</p>
+                <p className={ERROR_TEXT} role="alert">
+                  {progressError}
+                </p>
               ) : null}
               <Button type="submit" variant="ink" disabled={progressSaving}>
                 완료

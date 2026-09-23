@@ -29,6 +29,31 @@ beforeEach(() => {
 afterEach(() => vi.unstubAllGlobals());
 
 describe("admin account management", () => {
+  it("closes review with Escape and returns focus without discarding edited permissions", async () => {
+    render(<AdminAccounts identity={adminIdentity} />);
+    const trigger = await screen.findByRole("button", {
+      name: "김하늘 계정 검토",
+    });
+    fireEvent.click(trigger);
+    fireEvent.keyDown(screen.getByRole("heading", { name: "김하늘" }), {
+      key: "Escape",
+    });
+    expect(screen.getByText("검토할 계정을 선택하세요")).toBeInTheDocument();
+    expect(trigger).toHaveFocus();
+    fireEvent.click(trigger);
+    fireEvent.click(screen.getByLabelText("자료 제작"));
+    expect(screen.getByRole("button", { name: "검토 닫기" })).toBeDisabled();
+    fireEvent.keyDown(screen.getByRole("heading", { name: "김하늘" }), {
+      key: "Escape",
+    });
+    expect(screen.getByLabelText("자료 제작")).toBeChecked();
+    expect(
+      screen.getByText("변경을 저장하거나 취소한 뒤 닫을 수 있습니다."),
+    ).toBeInTheDocument();
+    expect(
+      fetchMock.mock.calls.filter(([, init]) => init?.method === "PATCH"),
+    ).toHaveLength(0);
+  });
   it("shows authenticated identity, account links and invokes logout", async () => {
     render(<AdminAccounts identity={adminIdentity} />);
     expect(screen.getByText("admin@example.com")).toBeInTheDocument();
@@ -210,7 +235,7 @@ describe("admin account management", () => {
     ).toBeDisabled();
     fireEvent.click(screen.getByRole("button", { name: "최신 정보 불러오기" }));
     await screen.findByText(/최신 정보를 불러왔습니다/);
-    expect(screen.getByLabelText("문제은행")).not.toBeChecked();
+    expect(screen.getByLabelText("시험지 만들기")).not.toBeChecked();
     fireEvent.click(screen.getByLabelText("자료 제작"));
     fireEvent.click(screen.getByRole("button", { name: "메뉴 변경 저장" }));
     await screen.findByText("사용 가능한 메뉴를 저장했습니다.");

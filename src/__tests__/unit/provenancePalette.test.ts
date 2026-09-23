@@ -236,16 +236,25 @@ describe("[출처 팔레트] 원장님 지시 「색상 전부 다르게」 — 
     expect(가까운짝).toEqual([]);
   });
 
-  it(`이 화면의 기존 색과도 ΔE2000 >= ${MIN_DELTA_E} 떨어져 있다`, () => {
+  // Workroom's blue controls and navy text are chrome, not status categories.
+  // Preserve the owner's distinct badge colours: status/category gaps stay 15;
+  // chrome gaps use the perceptible-difference floor of 10 (see §8.9).
+  it("상태색과 15, 작업실 글자·조작색과 10 이상 떨어져 있다", () => {
     const 가까운짝: string[] = [];
     for (const kind of NAMED) {
       for (const token of EXISTING_TOKENS) {
-        const existing = declaredValue(ROOT_BLOCK, token);
+        let existing = declaredValue(ROOT_BLOCK, token);
+        while (existing?.startsWith("var(--")) {
+          existing = declaredValue(ROOT_BLOCK, existing.slice(4, -1));
+        }
         expect(existing, `${token} 가 :root 에 없다`).toMatch(
           /^#[0-9a-f]{6}$/i,
         );
         const d = deltaE2000(NAMED_HEX.get(kind)!, existing!);
-        if (d < MIN_DELTA_E) {
+        const minimum = ["--ink", "--text-2", "--blue"].includes(token)
+          ? 10
+          : MIN_DELTA_E;
+        if (d < minimum) {
           가까운짝.push(`${kind} ↔ ${token} = ${d.toFixed(1)}`);
         }
       }

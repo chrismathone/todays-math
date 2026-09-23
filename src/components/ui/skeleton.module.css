@@ -4,12 +4,12 @@
  * Notices and cards never use a colored left-edge accent.
  */
 .workroom {
-  --sk-paper: #f4f6fa;
-  --sk-navy: #172b4d;
-  --sk-cobalt: #3159df;
+  --sk-paper: var(--learn-bg);
+  --sk-navy: var(--learn-ink);
+  --sk-cobalt: var(--learn-accent);
   --sk-mint: #d7ebe1;
-  --sk-muted: #52617a;
-  --sk-line: #d4dce8;
+  --sk-muted: var(--learn-muted);
+  --sk-line: var(--learn-track);
   --sk-sidebar: #14243d;
   --sk-sidebar-text: #c5d0e4;
   --sk-bone-on-navy: #2c415e;
@@ -171,7 +171,7 @@
   height: 45px;
   flex-shrink: 0;
   border-radius: 12px;
-  background: #edf2ff;
+  background: var(--learn-soft);
 }
 
 .searchField {
@@ -252,9 +252,9 @@
 }
 
 .landing {
-  --sk-paper: #f7f5ef;
-  --sk-navy: #172b4d;
-  --sk-cobalt: #3159df;
+  --sk-paper: var(--learn-bg);
+  --sk-navy: var(--learn-ink);
+  --sk-cobalt: var(--learn-accent);
   min-height: 100dvh;
   background: var(--sk-paper);
   color: var(--sk-navy);
@@ -337,7 +337,7 @@
 
 .heroCopy p {
   max-width: 36rem;
-  color: #52617a;
+  color: var(--learn-muted);
   font-size: 16px;
   line-height: 1.7;
 }
@@ -358,7 +358,7 @@
 
 .authEyebrow {
   margin: 0;
-  color: #58657a;
+  color: var(--learn-muted);
   font-size: 10px;
   font-weight: 650;
   letter-spacing: 1.8px;
@@ -366,7 +366,7 @@
 
 .authPanel h1 {
   margin: 0;
-  color: #172b4d;
+  color: var(--learn-ink);
   font-size: clamp(26px, 3vw, 34px);
   font-weight: 800;
   letter-spacing: -0.04em;
@@ -375,7 +375,7 @@
 
 .authLead {
   margin: 0;
-  color: #52617a;
+  color: var(--learn-muted);
   font-size: 14px;
   line-height: 1.7;
 }
@@ -387,9 +387,9 @@
 
 .authInput {
   height: 52px;
-  border: 1px solid #d5d8d7;
+  border: 1px solid var(--learn-track);
   border-radius: 7px;
-  background: #fffefa;
+  background: var(--learn-surface);
 }
 
 .authSubmit {
@@ -405,7 +405,7 @@
   align-items: center;
   justify-content: center;
   gap: 10px;
-  color: #58657a;
+  color: var(--learn-muted);
   font-size: 13px;
 }
 
@@ -413,7 +413,7 @@
   display: inline-flex;
   min-height: 44px;
   align-items: center;
-  color: #2345b0;
+  color: var(--learn-accent);
   font-weight: 750;
   text-underline-offset: 4px;
 }
@@ -421,10 +421,10 @@
 .authNote {
   margin: 0;
   padding-top: 20px;
-  color: #647086;
+  color: var(--learn-muted);
   font-size: 12px;
   line-height: 1.8;
-  border-top: 1px solid #d5d8d7;
+  border-top: 1px solid var(--learn-track);
 }
 
 .filterBar {

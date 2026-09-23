@@ -105,6 +105,7 @@ async function addStudent(user: UserEvent, name = "이서준") {
   await user.type(screen.getByLabelText("이름"), name);
   await user.click(screen.getByRole("button", { name: "추가" }));
   await screen.findByText(name);
+  expect(screen.getByLabelText("이름")).toHaveFocus();
 }
 
 describe("[T1.3] S-02 온보딩", () => {

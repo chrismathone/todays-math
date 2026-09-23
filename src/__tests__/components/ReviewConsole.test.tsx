@@ -20,7 +20,7 @@ import {
   within,
 } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
-import { http, HttpResponse } from "msw";
+import { delay, http, HttpResponse } from "msw";
 
 import {
   ReviewConsole,
@@ -97,6 +97,99 @@ function renderConsole() {
     />,
   );
 }
+
+describe("검수 대기열 전환과 복구", () => {
+  it("신고 입력 중 Esc로 닫고 신고 버튼에 초점을 돌려준다", async () => {
+    arm();
+    const user = userEvent.setup();
+    renderConsole();
+    const trigger = screen.getByRole("button", { name: /^신고/ });
+    await user.click(trigger);
+    await user.type(
+      screen.getByRole("textbox", { name: "덧붙일 말" }),
+      "확인 중",
+    );
+    await user.keyboard("{Escape}");
+    expect(
+      screen.queryByRole("textbox", { name: "덧붙일 말" }),
+    ).not.toBeInTheDocument();
+    expect(trigger).toHaveFocus();
+    await user.click(trigger);
+    await user.click(screen.getByRole("button", { name: "신고 창 닫기" }));
+    expect(trigger).toHaveFocus();
+  });
+  const queues: ConsoleQueue[] = [
+    QUEUES[0]!,
+    { ...QUEUES[0]!, key: "nosolution", label: "해설 확인" },
+  ];
+
+  it("새 대기열을 선택하면 느린 이전 응답이 선택한 목록을 덮어쓰지 않는다", async () => {
+    let slowStarted = false;
+    server.use(
+      http.get("/api/review/queue", async ({ request }) => {
+        const slow =
+          new URL(request.url).searchParams.get("key") === "nosolution";
+        if (slow) {
+          slowStarted = true;
+          await delay(180);
+        }
+        return HttpResponse.json({
+          data: [problem(slow ? 3 : 2)],
+          meta: { queue: queues[slow ? 1 : 0], reviewedByMe: 0 },
+        });
+      }),
+    );
+    const user = userEvent.setup();
+    render(
+      <ReviewConsole
+        queues={queues}
+        initialKey="figure"
+        initialRows={[problem(1)]}
+        reviewedByMe={0}
+      />,
+    );
+    await user.click(screen.getByRole("button", { name: /해설 확인/ }));
+    await waitFor(() => expect(slowStarted).toBe(true));
+    await user.click(screen.getByRole("button", { name: /그림을 보라/ }));
+    await screen.findByText(/문항 2 본문/);
+    await delay(220);
+    expect(screen.queryByText(/문항 3 본문/)).not.toBeInTheDocument();
+    expect(screen.getByRole("button", { name: /그림을 보라/ })).toHaveAttribute(
+      "aria-pressed",
+      "true",
+    );
+  });
+
+  it("대기열 조회 실패를 화면에서 재시도할 수 있다", async () => {
+    let attempts = 0;
+    server.use(
+      http.get("/api/review/queue", () =>
+        ++attempts === 1
+          ? HttpResponse.json({}, { status: 503 })
+          : HttpResponse.json({
+              data: [problem(2)],
+              meta: { queue: queues[1], reviewedByMe: 0 },
+            }),
+      ),
+    );
+    const user = userEvent.setup();
+    render(
+      <ReviewConsole
+        queues={queues}
+        initialKey="figure"
+        initialRows={[problem(1)]}
+        reviewedByMe={0}
+      />,
+    );
+    await user.click(screen.getByRole("button", { name: /해설 확인/ }));
+    await user.click(
+      await screen.findByRole("button", { name: "대기열 다시 불러오기" }),
+    );
+    await screen.findByText(/문항 2 본문/);
+    expect(screen.queryByRole("alert")).not.toBeInTheDocument();
+    expect(attempts).toBe(2);
+  });
+});
 
 describe("검수 콘솔 — 신고 가속 (2026-08-22)", () => {
   it("사유가 1행 1라벨 + 번호로 선다", async () => {

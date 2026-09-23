@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { lazy, Suspense, useEffect, useState } from "react";
+import { lazy, Suspense, useEffect, useRef, useState } from "react";
 import type { ManagedAccount } from "@/contracts/accountAccess.contract";
 import AdminHeader from "./AdminHeader";
 import { AccountStatus, accountDate } from "./AccountReview";
@@ -134,6 +134,17 @@ function OpenDocument({
 function Documents({ userId }: { userId: string }) {
   const [page, setPage] = useState(1);
   const [selected, setSelected] = useState<string | null>(null);
+  const documentTrigger = useRef<HTMLButtonElement | null>(null);
+  const preview = useRef<HTMLElement | null>(null);
+  const listHeading = useRef<HTMLHeadingElement | null>(null);
+  function closePreview() {
+    setSelected(null);
+    if (documentTrigger.current?.isConnected) documentTrigger.current.focus();
+    else listHeading.current?.focus();
+  }
+  useEffect(() => {
+    if (selected) preview.current?.focus();
+  }, [selected]);
   const resource = useAdminResource<PageResult<UserDocument>>(
     `/api/admin/users/${encodeURIComponent(userId)}/documents?page=${page}&pageSize=20`,
   );
@@ -141,7 +152,9 @@ function Documents({ userId }: { userId: string }) {
     <div className={d.documents}>
       <section className={d.documentList} aria-label="저장된 자료 목록">
         <div className={d.panelHeading}>
-          <h2>저장된 자료</h2>
+          <h2 ref={listHeading} tabIndex={-1}>
+            저장된 자료
+          </h2>
           <button className={s.quiet} type="button" onClick={resource.reload}>
             새로고침
           </button>
@@ -166,7 +179,11 @@ function Documents({ userId }: { userId: string }) {
                     type="button"
                     className={d.documentButton}
                     aria-pressed={selected === doc.id}
-                    onClick={() => setSelected(doc.id)}
+                    onClick={(event) => {
+                      documentTrigger.current = event.currentTarget;
+                      setSelected(doc.id);
+                      if (selected === doc.id) preview.current?.focus();
+                    }}
                   >
                     <span className={d.kind}>
                       {doc.kind === "draft" ? "시험지" : "추출 자료"}
@@ -187,9 +204,36 @@ function Documents({ userId }: { userId: string }) {
           </>
         )}
       </section>
-      <section className={d.preview} aria-label="자료 미리보기">
+      <section
+        className={d.preview}
+        aria-label="자료 미리보기"
+        tabIndex={-1}
+        ref={preview}
+        onKeyDown={(event) => {
+          if (event.key === "Escape" && selected) {
+            event.preventDefault();
+            closePreview();
+          }
+        }}
+      >
         {selected ? (
-          <OpenDocument key={selected} userId={userId} documentId={selected} />
+          <>
+            <div className={d.panelHeading}>
+              <span>선택한 자료</span>
+              <button
+                className={s.secondary}
+                type="button"
+                onClick={closePreview}
+              >
+                미리보기 닫기
+              </button>
+            </div>
+            <OpenDocument
+              key={selected}
+              userId={userId}
+              documentId={selected}
+            />
+          </>
         ) : (
           <div className={s.empty}>
             <strong>살펴볼 자료를 선택하세요</strong>

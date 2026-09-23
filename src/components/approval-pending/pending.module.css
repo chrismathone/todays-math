@@ -2,8 +2,8 @@
   min-height: 100svh;
   display: flex;
   flex-direction: column;
-  color: #172b4d;
-  background: #f7f5ef;
+  color: var(--learn-ink);
+  background: var(--learn-bg);
   font-family: var(--font-pretendard), sans-serif;
   line-height: 1.6;
 }
@@ -24,7 +24,7 @@
 }
 .headerLabel {
   font-size: 12px;
-  color: #59677d;
+  color: var(--learn-muted);
 }
 .main {
   flex: 1;
@@ -37,7 +37,7 @@
   width: min(520px, 100%);
   padding: 40px 44px 32px;
   background: #fff;
-  border: 1px solid #dadfdc;
+  border: 1px solid var(--learn-track);
   border-radius: 12px;
   box-shadow: 0 12px 36px #172b4d05;
 }
@@ -46,8 +46,8 @@
   place-items: center;
   width: 56px;
   height: 56px;
-  background: #edf1ff;
-  color: #3159df;
+  background: var(--learn-soft);
+  color: var(--learn-accent);
   border: 1px solid #d6def6;
   border-radius: 50%;
   margin-bottom: 24px;
@@ -58,24 +58,24 @@
   height: 40px;
 }
 .eyebrow {
-  color: #627088;
-  font-size: 9px;
+  color: var(--learn-muted);
+  font-size: 12px;
   font-weight: 700;
   letter-spacing: 1.6px;
   margin: 0 0 15px;
 }
 .status {
   display: inline-flex;
-  background: #f6edce;
-  color: #755615;
+  background: var(--learn-warning-bg);
+  color: var(--learn-warning);
   padding: 4px 8px;
-  font-size: 11px;
+  font-size: 12px;
   font-weight: 700;
   border-radius: 4px;
 }
 .rejected {
-  background: #f6e9e5;
-  color: #923e32;
+  background: var(--learn-danger-bg);
+  color: var(--learn-danger);
 }
 .card h1 {
   margin: 16px 0;
@@ -85,31 +85,31 @@
   letter-spacing: -1.4px;
 }
 .description {
-  color: #59677d;
-  font-size: 13px;
+  color: var(--learn-muted);
+  font-size: 14px;
   line-height: 1.9;
   margin: 0 0 24px;
   word-break: keep-all;
 }
 .identity {
   padding: 16px 18px;
-  border: 1px solid #dfe3eb;
-  border-radius: 6px;
-  background: #f8f9fc;
+  border: 1px solid var(--learn-track);
+  border-radius: 8px;
+  background: var(--learn-bg);
   overflow-wrap: anywhere;
 }
 .identity > span {
   display: block;
-  color: #59677d;
-  font-size: 10px;
+  color: var(--learn-muted);
+  font-size: 12px;
   margin-bottom: 7px;
 }
 .identity strong {
-  font-size: 13px;
+  font-size: 14px;
 }
 .identity p {
   margin: 2px 0 0;
-  color: #59677d;
+  color: var(--learn-muted);
   font-size: 12px;
 }
 .steps {
@@ -130,14 +130,14 @@
   flex-shrink: 0;
   width: 26px;
   height: 26px;
-  color: #59677d;
+  color: var(--learn-muted);
   border: 1px solid #b3becf;
   border-radius: 50%;
-  font-size: 11px;
+  font-size: 12px;
 }
 .steps li[aria-current] > span {
-  border-color: #3159df;
-  background: #3159df;
+  border-color: var(--learn-accent);
+  background: var(--learn-accent);
   color: white;
 }
 .steps strong {
@@ -145,8 +145,8 @@
   font-weight: 700;
 }
 .steps p {
-  color: #59677d;
-  font-size: 11px;
+  color: var(--learn-muted);
+  font-size: 12px;
   margin: 1px 0 0;
 }
 .actions {
@@ -160,9 +160,9 @@ button.secondary {
   min-height: 46px;
   width: 100%;
   padding: 10px 14px;
-  border: 1px solid #3159df;
-  border-radius: 6px;
-  background: #3159df;
+  border: 1px solid var(--learn-accent);
+  border-radius: 8px;
+  background: var(--learn-accent);
   color: #fff;
   font: inherit;
   font-size: 12px;
@@ -171,8 +171,8 @@ button.secondary {
 }
 .secondary {
   background: #fff;
-  border-color: #8d99ab;
-  color: #172b4d;
+  border-color: var(--learn-control);
+  color: var(--learn-ink);
 }
 .primary:disabled,
 .secondary:disabled {
@@ -180,12 +180,12 @@ button.secondary {
   cursor: not-allowed;
 }
 .shell button:focus-visible {
-  outline: 3px solid #3159df;
+  outline: 3px solid var(--learn-accent);
   outline-offset: 3px;
 }
 .footnote {
   color: #637088;
-  font-size: 10px;
+  font-size: 12px;
   margin: 20px 0 0;
 }
 .error,
@@ -193,20 +193,20 @@ button.secondary {
   padding: 12px;
   margin: 16px 0 0;
   border: 1px solid #cbd5ed;
-  border-radius: 6px;
+  border-radius: 8px;
   color: #31519a;
-  background: #f0f4ff;
+  background: var(--learn-soft);
   font-size: 12px;
 }
 .error {
-  background: #fcf2ee;
-  color: #933b2e;
+  background: var(--learn-danger-bg);
+  color: var(--learn-danger);
   border-color: #e5c7bc;
 }
 .footer {
   padding: 0 20px 24px;
   color: #637088;
-  font-size: 10px;
+  font-size: 12px;
   text-align: center;
 }
 @media (max-width: 600px) {
@@ -217,7 +217,7 @@ button.secondary {
     font-size: 22px;
   }
   .headerLabel {
-    font-size: 10px;
+    font-size: 12px;
   }
   .main {
     padding: 10px 16px 28px;
@@ -233,6 +233,6 @@ button.secondary {
     font-size: 12px;
   }
   .footnote {
-    font-size: 10px;
+    font-size: 12px;
   }
 }

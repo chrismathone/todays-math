@@ -31,7 +31,7 @@ type AppChromeProps = {
   activeNav?: "main" | "classes" | "problems" | "studio";
 };
 
-const WORDMARK = "text-[28.5px] font-black tracking-[-0.5px]";
+const WORDMARK = "text-2xl font-bold tracking-tight";
 
 export function AppChrome({
   children,
@@ -51,28 +51,10 @@ export function AppChrome({
       >
         본문으로 건너뛰기
       </a>
-      {/*
-        좁은 창에서 **단어 중간에 줄이 바뀌던 것**을 없앤다 (UI-01, 2026-09-08 결정 · 안 A).
-        고친 것은 둘이다 — 헤더가 **묶음 단위로** 접히게 하고(`flex-wrap` + `gap-y`),
-        묶음마다 `shrink-0 whitespace-nowrap` 을 준다. 그러면 자리가 모자랄 때 묶음째
-        아랫줄로 내려가고, 낱말이 세로로 쪼개지지 않는다.
-
-        실측 (`/dev/chrome-check` — 메인과 같은 무게: `remaining` + `extraNav` + 이메일):
-
-                    고치기 전            고친 뒤
-          1440px    80px               80px
-          1024px    123px · 「오늘의수학」이 86px(글꼴 29px)로 **세 줄**,
-                            「문제은행」 두 줄                  115px · 쪼개짐 0
-           900px    150px · 「문제은행」이 104px 로 **네 줄**     115px · 쪼개짐 0
-
-        ⚠️ **「날짜를 짧게」는 재 보고 버렸다.** 축약해도 1024px 에서 두 줄 그대로였다 —
-           넘치는 양이 그 몇 글자보다 크다. 아무것도 못 사는 손잡이는 넣지 않는다.
-        ⚠️ 메뉴를 접는 안(C)은 1024px 에서 한 줄(80px)을 지키지만 **1440px 에서는 이 안과
-           완전히 같고**, 좁을 때만 드롭다운과 클릭 한 번을 매번 요구한다. 35px 을 사려고
-           새 상호작용을 만들지 않는다는 것이 결정의 근거다.
-      */}
-      <header className="flex flex-wrap items-baseline gap-x-6 gap-y-2 border-b-[3px] border-ink px-[26px] pt-[19px] pb-[15px]">
-        <span className="flex shrink-0 items-baseline whitespace-nowrap">
+      {/* Shared Workroom controls also apply to legacy class/exam routes.
+          Navigation wraps within the viewport; account identity stays visible. */}
+      <header className="flex flex-wrap items-center gap-x-6 gap-y-3 border-b border-divider bg-surface px-5 py-3">
+        <span className="flex shrink-0 flex-wrap items-center gap-y-2 whitespace-nowrap">
           <Link
             href="/"
             aria-current={tab === "math" ? "page" : undefined}
@@ -81,10 +63,7 @@ export function AppChrome({
             <TodayMathMark size={32} />
             오늘의수학
           </Link>
-          <span
-            aria-hidden="true"
-            className="mx-[7px] text-[28.5px] text-[#C2C2C0]"
-          >
+          <span aria-hidden="true" className="mx-3 text-xl text-divider">
             │
           </span>
           <Link
@@ -95,12 +74,12 @@ export function AppChrome({
             오늘의시험
           </Link>
         </span>
-        <span className="shrink-0 whitespace-nowrap text-[16.5px] text-text-2 tabular-nums">
+        <span className="shrink-0 whitespace-nowrap text-xs text-text-2 tabular-nums">
           {date}
         </span>
         {remaining !== undefined ? (
           <span
-            className={`shrink-0 whitespace-nowrap text-[17.25px] font-black ${
+            className={`shrink-0 whitespace-nowrap text-sm font-semibold ${
               remaining > 0 ? "text-g-red-text" : "text-ink"
             }`}
           >
@@ -109,14 +88,14 @@ export function AppChrome({
         ) : null}
         <nav
           aria-label="주 메뉴"
-          className="ml-auto flex shrink-0 items-center gap-5 whitespace-nowrap text-[17.25px] font-bold"
+          className="ml-auto flex min-w-0 flex-wrap items-center gap-2 text-sm font-semibold"
         >
           {extraNav}
           {(
             [
-              ["main", "/", "메인"],
-              ["classes", "/classes", "반"],
-              ["problems", "/problems", "문제은행"],
+              ["main", "/", "오늘의 작업"],
+              ["classes", "/classes", "수업·학생 관리"],
+              ["problems", "/problems", "시험지 만들기"],
               ["studio", "/studio", "자료 제작"],
             ] as const
           ).map(([key, href, label]) => (
@@ -124,11 +103,7 @@ export function AppChrome({
               key={key}
               href={href}
               aria-current={activeNav === key ? "page" : undefined}
-              className={
-                activeNav === key
-                  ? "underline decoration-2 underline-offset-4"
-                  : undefined
-              }
+              className={`inline-flex min-h-11 items-center rounded-lg px-3 ${activeNav === key ? "bg-[var(--learn-soft)] text-g-blue" : "text-text-2 hover:bg-side hover:text-ink"}`}
             >
               {label}
             </Link>
