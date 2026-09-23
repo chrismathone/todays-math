@@ -1,0 +1,81 @@
+import type { Submitted } from "@/components/learn/learnApi";
+import { LEARN_OFFLINE_MESSAGE } from "@/components/learn/learnApi";
+import type {
+  CourseAttemptInput,
+  CourseHintInput,
+  CoursePlanInput,
+} from "@/contracts/mathSrsCourse.contract";
+
+const contract = () => import("@/contracts/mathSrsCourse.contract");
+async function request<T>(
+  url: string,
+  parse: (value: unknown) => Promise<T>,
+  body?: unknown,
+): Promise<Submitted<T>> {
+  try {
+    const response = await fetch(url, {
+      cache: "no-store",
+      ...(body === undefined
+        ? {}
+        : {
+            method: "POST",
+            headers: { "content-type": "application/json" },
+            body: JSON.stringify(body),
+          }),
+    });
+    const json = await response.json();
+    if (!response.ok)
+      return {
+        ok: false,
+        status: response.status,
+        message:
+          json.error?.details?.[0]?.message ??
+          json.error?.message ??
+          "학습 기록을 불러오지 못했습니다.",
+      };
+    try {
+      return { ok: true, data: await parse(json) };
+    } catch {
+      return {
+        ok: false,
+        status: response.status,
+        message: "학습 기록의 형식을 확인하지 못했습니다. 다시 불러와 주세요.",
+      };
+    }
+  } catch {
+    return { ok: false, status: 0, message: LEARN_OFFLINE_MESSAGE };
+  }
+}
+const state = async (value: unknown) =>
+  (await contract()).courseStudentResponseSchema.parse(value).data;
+const base = "/api/learn/math-srs/course";
+export const getCourseState = () => request(base, state);
+export const startCourse = () => request(base, state, {});
+export const saveOwnCoursePlan = (input: CoursePlanInput) =>
+  request(`${base}/plan`, state, input);
+export const answerCourse = (input: CourseAttemptInput) =>
+  request(`${base}/attempts`, state, input);
+export const hintCourse = (input: CourseHintInput) =>
+  request(`${base}/hint`, state, input);
+export const getCourseDashboard = () =>
+  request(
+    "/api/math-srs/course",
+    async (value) =>
+      (await contract()).courseDashboardResponseSchema.parse(value).data,
+  );
+export const getCourseStudentDetail = (studentId: string) =>
+  request(
+    `/api/students/${encodeURIComponent(studentId)}/math-srs/course`,
+    async (value) =>
+      (await contract()).courseStudentDetailResponseSchema.parse(value).data,
+  );
+export const saveCourseStudentPlan = (
+  studentId: string,
+  input: CoursePlanInput,
+) =>
+  request(
+    `/api/students/${encodeURIComponent(studentId)}/math-srs/course`,
+    async (value) =>
+      (await contract()).courseRosterStudentResponseSchema.parse(value).data,
+    input,
+  );
