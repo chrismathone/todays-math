@@ -1,91 +1,118 @@
 .form {
-  color: var(--learn-ink, #24342e);
+  color: var(--learn-ink, #172b4d);
+  font-family: inherit;
+  font-size: var(--text-body, 14px);
+  line-height: 1.5;
+  container: course-plan / inline-size;
 }
 .fields {
   min-width: 0;
   border: 0;
   padding: 0;
-  margin: 20px 0;
+  margin: 16px 0;
 }
 .legend {
-  font-size: 15px;
+  font-size: var(--text-body, 14px);
   font-weight: 700;
-  margin-bottom: 14px;
+  margin-bottom: 12px;
 }
 .grid {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 18px;
+  gap: 16px;
 }
 .form label {
   display: grid;
-  gap: 8px;
-  font-size: 14px;
+  gap: 6px;
+  font-size: var(--text-body, 14px);
   font-weight: 600;
 }
 .form select {
   width: 100%;
   min-width: 0;
-  min-height: 46px;
-  padding: 10px 12px;
-  border: 1px solid var(--learn-control, #c2cbc6);
-  border-radius: 8px;
+  min-height: var(--control-height, 44px);
+  padding: 9px 12px;
+  border: 1px solid var(--learn-control, #b8c4d6);
+  border-radius: var(--control-radius, 8px);
   background: var(--learn-surface, #fff);
   color: inherit;
   font: inherit;
+  font-weight: 400;
   cursor: pointer;
 }
 .form .daily {
-  margin-top: 22px;
+  margin-top: 20px;
   max-width: 260px;
+}
+.daily + .note {
+  margin-top: 6px;
 }
 .form .toggle {
   display: flex;
   align-items: center;
   gap: 10px;
-  min-height: 44px;
+  min-height: var(--control-height, 44px);
+  margin-top: 12px;
 }
 .toggle input {
   width: 18px;
   height: 18px;
-  accent-color: var(--learn-accent, #326e50);
+  flex-shrink: 0;
+  accent-color: var(--learn-accent, #3159df);
 }
 .note,
 .selection {
-  font-size: 13px;
-  line-height: 1.8;
-  color: var(--learn-muted, #617068);
+  font-size: var(--text-body, 14px);
+  line-height: 1.6;
+  color: var(--learn-muted, #596c86);
   overflow-wrap: anywhere;
 }
-.selection {
-  padding: 14px;
-  border-radius: 8px;
-  background: var(--learn-soft, #f1f5f1);
+.form .selection {
+  margin: 0 0 16px;
+  padding: 12px 14px;
+  border: 1px solid var(--learn-track, #dde3ec);
+  border-radius: var(--control-radius, 8px);
+  background: var(--learn-soft, #edf2ff);
+  color: var(--learn-ink, #172b4d);
 }
-.form .submit {
-  min-height: 48px;
-  padding: 12px 22px;
-  border: 0;
-  border-radius: 8px;
-  background: var(--learn-accent, #326e50);
+.form button.submit {
+  min-height: var(--control-height, 44px);
+  padding: 10px 16px;
+  border: 1px solid var(--learn-accent, #3159df);
+  border-radius: var(--control-radius, 8px);
+  background: var(--learn-accent, #3159df);
   color: var(--learn-on-accent, #fff);
   font: inherit;
-  font-weight: 700;
+  font-weight: 600;
   cursor: pointer;
 }
-.form :disabled {
-  opacity: 0.55;
-  cursor: default;
+.form button.submit:hover:not(:disabled) {
+  background: var(--learn-accent-hover, #2448bd);
+  border-color: var(--learn-accent-hover, #2448bd);
+}
+.form select:disabled,
+.form button.submit:disabled {
+  opacity: 1;
+  color: var(--learn-muted, #596c86);
+  background: var(--learn-neutral, #edf0f6);
+  border-color: var(--learn-track, #dde3ec);
+  cursor: not-allowed;
+}
+.form input:disabled {
+  cursor: not-allowed;
 }
 .form :focus-visible {
-  outline: 3px solid var(--learn-focus, #568c70);
+  outline: 3px solid var(--learn-focus, #82a1ff);
   outline-offset: 3px;
 }
-@media (max-width: 560px) {
+@container course-plan (max-width: 400px) {
   .grid {
     grid-template-columns: minmax(0, 1fr);
+    gap: 12px;
   }
+  .form .daily,
   .submit {
+    max-width: none;
     width: 100%;
   }
 }

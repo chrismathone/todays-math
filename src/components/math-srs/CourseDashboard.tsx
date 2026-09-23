@@ -159,20 +159,10 @@ export default function CourseDashboard({
     <div className={s.dashboard}>
       <header className={s.header}>
         <div>
-          <p className={s.eyebrow}>
-            {admin ? "ADMIN · LEARNING REPORT" : "SPACED REPETITION"}
-          </p>
           <h1 ref={heading} tabIndex={-1}>
             {admin ? "SRS 현황 · 관리자" : "SRS 현황"}
           </h1>
-          <p className={s.muted}>
-            {admin
-              ? "전체 반의 학생 진도와 복습 기록을 확인하고 학습 계획을 관리합니다."
-              : "담당 학생의 시작 진도를 설정하고 매일 학습과 복습을 이어갑니다."}
-          </p>
-          <p className={s.scope}>
-            지원 교육과정 초3–초6 · 오늘의 기록은 한국 시간 기준
-          </p>
+          <p className={s.scope}>지원 교육과정 초3–초6 · 한국 시간 기준</p>
         </div>
         <button
           type="button"
@@ -235,49 +225,54 @@ export default function CourseDashboard({
               </dd>
             </div>
           </dl>
-          <div className={s.toolbar}>
-            <label className={s.search}>
-              학생 / 반 검색
-              <input
-                type="search"
-                value={query}
-                onChange={(event) => setQuery(event.target.value)}
-                placeholder="이름 또는 반 이름"
-              />
-            </label>
-            <label>
-              반 선택
-              <select
-                value={classId}
-                onChange={(event) => setClassId(event.target.value)}
-              >
-                <option value="">전체 반</option>
-                {data.classes.map((item) => (
-                  <option key={item.id} value={item.id}>
-                    {item.name}
-                  </option>
-                ))}
-              </select>
-            </label>
-          </div>
-          <div className={s.filters} role="group" aria-label="학습 상태 필터">
-            {filters.map(([value, label]) => (
-              <button
-                type="button"
-                key={value}
-                aria-pressed={filter === value}
-                onClick={() => setFilter(value)}
-              >
-                {label}
-                <span>
-                  {inScope.filter((row) => matches(row, value)).length}
-                </span>
-              </button>
-            ))}
+          <div className={s.controls}>
+            <div className={s.toolbar}>
+              <label className={s.search}>
+                학생 / 반 검색
+                <input
+                  type="search"
+                  value={query}
+                  onChange={(event) => setQuery(event.target.value)}
+                  placeholder="이름 또는 반 이름"
+                />
+              </label>
+              <label>
+                반 선택
+                <select
+                  value={classId}
+                  onChange={(event) => setClassId(event.target.value)}
+                >
+                  <option value="">전체 반</option>
+                  {data.classes.map((item) => (
+                    <option key={item.id} value={item.id}>
+                      {item.name}
+                    </option>
+                  ))}
+                </select>
+              </label>
+            </div>
+            <div className={s.filters} role="group" aria-label="학습 상태 필터">
+              {filters.map(([value, label]) => (
+                <button
+                  type="button"
+                  key={value}
+                  aria-pressed={filter === value}
+                  onClick={() => setFilter(value)}
+                >
+                  {label}
+                  <span>
+                    {inScope.filter((row) => matches(row, value)).length}
+                  </span>
+                </button>
+              ))}
+            </div>
           </div>
           <p className={s.resultCount} aria-live="polite">
-            {visible.length}명 표시 / 접근 가능한 전체 학생 {students.length}명
-            · 요약 수치는 전체 학생 기준
+            <span>
+              학생 <strong>{visible.length}명</strong> / 전체 {students.length}
+              명
+            </span>
+            <span>요약 수치는 전체 학생 기준</span>
           </p>
         </>
       ) : null}
@@ -610,7 +605,6 @@ function StudentDetail({
     >
       <header className={s.detailHeader}>
         <div>
-          <p className={s.eyebrow}>STUDENT REPORT</p>
           <h2 id={`${id}-title`} ref={title} tabIndex={-1}>
             {student.name} · 학습 상세
           </h2>
@@ -1021,10 +1015,6 @@ function StudentDetail({
         {form ? (
           <section hidden={view !== "plan"} aria-label="학생 학습 계획">
             <h3>시작 진도와 자동 학습</h3>
-            <p className={s.muted}>
-              초3–초6 교육과정에서 학생의 시작 소단원과 하루 목표를 정합니다.
-              자동 학습을 켜면 학습 기록에 따라 다음 학습과 복습을 안내합니다.
-            </p>
             {record && !record.hasAccount ? (
               <AccountNotice student={record} />
             ) : null}
