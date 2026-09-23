@@ -47,7 +47,11 @@ describe.each([
   { who: "관리자", isAdmin: true, where: { id: TEST_ID } },
 ] as const)("인쇄 지면 조회 — $who", ({ isAdmin, where }) => {
   it("시험지 where", async () => {
-    mocks.session.mockResolvedValue({ ...VIEWER, isAdmin });
+    mocks.session.mockResolvedValue({
+      ...VIEWER,
+      isAdmin,
+      isSuperAdmin: isAdmin,
+    });
     await expect(page()).rejects.toThrow("NOT_FOUND");
     expect(mocks.findFirst).toHaveBeenCalledWith(
       expect.objectContaining({ where }),

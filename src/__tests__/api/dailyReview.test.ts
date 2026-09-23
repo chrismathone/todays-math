@@ -525,6 +525,7 @@ describe("[D-132] GET /api/tests/daily-review — 학생 줄의 담당(관리자
       email: "teacher@todaysmath.test",
       name: "테스트 강사",
       isAdmin,
+      isSuperAdmin: isAdmin,
     });
 
   it("🔴 관리자가 아니면 넓히기 전과 같다 — classOwner 키가 없다", async () => {

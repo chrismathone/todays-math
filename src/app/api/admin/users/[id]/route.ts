@@ -8,6 +8,7 @@ import {
 } from "@/contracts/accountAccess.contract";
 import { auditData, recordAudit } from "@/lib/audit";
 import { withErrorLog } from "@/lib/errorLog/withErrorLog";
+import { isPrismaErrorCode } from "@/lib/prismaErrors";
 
 type Context = { params: Promise<{ id: string }> };
 const failure = (message: string, status: number) =>
@@ -26,13 +27,13 @@ const failure = (message: string, status: number) =>
     { status },
   );
 async function handleGet(request: Request, context: Context) {
-  const access = await authorizeAccount(request, true);
+  const access = await authorizeAccount(request, true, true);
   if (access.response) return access.response;
   const { id } = await context.params;
   if (!z.uuid().safeParse(id).success)
     return failure("사용자를 찾지 못했습니다.", 404);
   const user = await db.user.findFirst({
-    where: { id, deletedAt: null },
+    where: { id },
     select: managedAccountSelect,
   });
   if (user)
@@ -50,7 +51,7 @@ async function handleGet(request: Request, context: Context) {
     : failure("사용자를 찾지 못했습니다.", 404);
 }
 async function handlePatch(request: Request, context: Context) {
-  const access = await authorizeAccount(request, true);
+  const access = await authorizeAccount(request, true, true);
   if (access.response) return access.response;
   const { id } = await context.params;
   if (!z.uuid().safeParse(id).success)
@@ -69,66 +70,181 @@ async function handlePatch(request: Request, context: Context) {
       { status: 400 },
     );
   const update = parsed.data;
-  const result = await db.$transaction(async (tx) => {
-    const previous = await tx.user.findFirst({
-      where: { id, deletedAt: null },
-      select: managedAccountSelect,
-    });
-    if (!previous) return { error: failure("사용자를 찾지 못했습니다.", 404) };
-    if (previous.isAdmin)
-      return {
-        error: failure(
-          "관리자 계정의 권한은 이 화면에서 변경할 수 없습니다.",
-          403,
-        ),
-      };
-    const changed = await tx.user.updateMany({
-      where: {
-        id,
-        isAdmin: false,
-        deletedAt: null,
-        updatedAt: new Date(update.expectedUpdatedAt),
-      },
-      data: {
-        ...(update.approvalStatus
-          ? { approvalStatus: update.approvalStatus }
-          : {}),
-        ...(update.menus
-          ? {
-              disabledMenus: ALL_WORKSPACE_MENUS.filter(
-                (menu) => !update.menus!.includes(menu),
-              ),
-            }
-          : {}),
-      },
-    });
-    if (changed.count !== 1)
-      return {
-        error: failure(
-          "다른 관리자가 설정을 변경했습니다. 새로고침 후 다시 확인해 주세요.",
-          409,
-        ),
-      };
-    const user = await tx.user.findUniqueOrThrow({
-      where: { id },
-      select: managedAccountSelect,
-    });
-    await tx.accountAuditLog.create({
-      data: auditData({
-        userId: id,
-        actorId: access.account!.id,
-        action: "account.settings_changed",
-        outcome: "success",
-        details: {
-          previousStatus: previous.approvalStatus,
-          status: user.approvalStatus,
-          previousMenus: managedAccount(previous).menus,
-          menus: managedAccount(user).menus,
+  let result;
+  try {
+    result = await db.$transaction(async (tx) => {
+      const previous = await tx.user.findFirst({
+        where: { id },
+        select: managedAccountSelect,
+      });
+      if (!previous)
+        return { error: failure("사용자를 찾지 못했습니다.", 404) };
+      if (previous.isSuperAdmin)
+        return {
+          error: failure(
+            "최고관리자 계정의 권한은 이 화면에서 변경할 수 없습니다.",
+            403,
+          ),
+        };
+      if (previous.deletedAt && update.deleted !== false)
+        return {
+          error: failure("삭제된 계정은 복원한 뒤 변경해 주세요.", 403),
+        };
+      if (
+        update.isAdmin !== undefined &&
+        !previous.branchId &&
+        !update.branchId
+      )
+        return { error: failure("먼저 계정을 지점에 소속시켜 주세요.", 403) };
+      if (update.branchRole !== undefined && update.branchId === undefined)
+        return {
+          error: failure("지점 소속과 계정 유형을 함께 선택해 주세요.", 403),
+        };
+      if (update.branchId !== undefined) {
+        if (update.isAdmin !== undefined)
+          return {
+            error: failure("지점 배정 중에는 계정 유형만 선택해 주세요.", 403),
+          };
+        if (previous.branchId)
+          return {
+            error: failure(
+              "이미 소속된 계정의 지점 변경은 지원하지 않습니다.",
+              403,
+            ),
+          };
+        if (!update.branchRole)
+          return {
+            error: failure("지점에서 사용할 계정 유형을 선택해 주세요.", 403),
+          };
+        const [branch, classCount] = await Promise.all([
+          tx.branch.findUnique({
+            where: { id: update.branchId },
+            select: { id: true },
+          }),
+          tx.class.count({ where: { userId: id } }),
+        ]);
+        if (!branch)
+          return { error: failure("선택한 지점을 찾지 못했습니다.", 404) };
+        if (classCount > 0)
+          return {
+            error: failure(
+              "운영 중인 반이 있는 계정은 지점에 바로 소속시킬 수 없습니다.",
+              403,
+            ),
+          };
+      }
+      if (
+        previous.branchRole === "owner" &&
+        (update.isAdmin === false ||
+          update.suspended === true ||
+          update.deleted === true ||
+          (update.approvalStatus !== undefined &&
+            update.approvalStatus !== "approved"))
+      ) {
+        const ownerCount = await tx.user.count({
+          where: {
+            branchId: previous.branchId,
+            branchRole: "owner",
+            approvalStatus: "approved",
+            deletedAt: null,
+            suspendedAt: null,
+          },
+        });
+        if (ownerCount <= 1)
+          return {
+            error: failure(
+              "마지막 활성 원장은 정지·삭제하거나 강사로 변경할 수 없습니다.",
+              403,
+            ),
+          };
+      }
+      const changed = await tx.user.updateMany({
+        where: {
+          id,
+          isSuperAdmin: false,
+          updatedAt: new Date(update.expectedUpdatedAt),
         },
-      }),
+        data: {
+          ...(update.approvalStatus
+            ? { approvalStatus: update.approvalStatus }
+            : {}),
+          ...(update.name !== undefined ? { name: update.name } : {}),
+          ...(update.email !== undefined ? { email: update.email } : {}),
+          ...(update.suspended !== undefined
+            ? { suspendedAt: update.suspended ? new Date() : null }
+            : {}),
+          ...(update.deleted !== undefined
+            ? { deletedAt: update.deleted ? new Date() : null }
+            : {}),
+          ...(update.branchId !== undefined
+            ? {
+                branchId: update.branchId,
+                branchRole: update.branchRole,
+                isAdmin: update.branchRole !== "teacher",
+              }
+            : {}),
+          ...(update.suspended !== undefined ||
+          update.deleted !== undefined ||
+          update.branchId !== undefined
+            ? { sessionVersion: { increment: 1 } }
+            : {}),
+          ...(update.isAdmin !== undefined
+            ? {
+                isAdmin: update.isAdmin,
+                branchRole: update.isAdmin
+                  ? previous.branchRole === "owner"
+                    ? "owner"
+                    : "manager"
+                  : "teacher",
+              }
+            : {}),
+          ...(update.menus
+            ? {
+                disabledMenus: ALL_WORKSPACE_MENUS.filter(
+                  (menu) => !update.menus!.includes(menu),
+                ),
+              }
+            : {}),
+        },
+      });
+      if (changed.count !== 1)
+        return {
+          error: failure(
+            "다른 관리자가 설정을 변경했습니다. 새로고침 후 다시 확인해 주세요.",
+            409,
+          ),
+        };
+      const user = await tx.user.findUniqueOrThrow({
+        where: { id },
+        select: managedAccountSelect,
+      });
+      await tx.accountAuditLog.create({
+        data: auditData({
+          userId: id,
+          actorId: access.account!.id,
+          action: "account.settings_changed",
+          outcome: "success",
+          details: {
+            previousStatus: previous.approvalStatus,
+            status: user.approvalStatus,
+            previousBranchManager: previous.isAdmin,
+            branchManager: user.isAdmin,
+            previousBranchId: previous.branchId,
+            branchId: user.branchId,
+            suspended: Boolean(user.suspendedAt),
+            deleted: Boolean(user.deletedAt),
+            previousMenus: managedAccount(previous).menus,
+            menus: managedAccount(user).menus,
+          },
+        }),
+      });
+      return { user };
     });
-    return { user };
-  });
+  } catch (error) {
+    if (isPrismaErrorCode(error, "P2002"))
+      return failure("이미 사용 중인 이메일입니다.", 409);
+    throw error;
+  }
   return "error" in result
     ? result.error
     : Response.json(

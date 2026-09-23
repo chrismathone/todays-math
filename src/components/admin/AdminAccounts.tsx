@@ -19,13 +19,15 @@ import {
 } from "./accountRequests";
 import s from "./admin.module.css";
 
-type Filter = "all" | keyof typeof STATUS_LABELS;
+type Filter = "all" | "suspended" | "deleted" | keyof typeof STATUS_LABELS;
 const FILTERS: { id: Filter; label: string }[] = [
   { id: "all", label: "전체 계정" },
   ...Object.entries(STATUS_LABELS).map(([id, label]) => ({
     id: id as Filter,
     label,
   })),
+  { id: "suspended", label: "정지" },
+  { id: "deleted", label: "삭제" },
 ];
 
 export default function AdminAccounts({
@@ -59,11 +61,12 @@ export default function AdminAccounts({
 
   useEffect(() => {
     const controller = new AbortController();
-    const params = new URLSearchParams({
-      ...query,
-      page: String(query.page),
-      pageSize: "25",
-    });
+    const params = new URLSearchParams({ q: query.q });
+    if (query.status === "suspended" || query.status === "deleted")
+      params.set("lifecycle", query.status);
+    else params.set("status", query.status);
+    params.set("page", String(query.page));
+    params.set("pageSize", "25");
     accountRequest<AdminAccountsResponse>(`/api/admin/users?${params}`, {
       signal: controller.signal,
     })
@@ -123,6 +126,10 @@ export default function AdminAccounts({
   const pages = result
     ? Math.max(1, Math.ceil(result.meta.total / result.meta.pageSize))
     : 1;
+  const filterCount = (filter: Filter) =>
+    filter === "suspended" || filter === "deleted"
+      ? (result?.meta.lifecycleCounts?.[filter] ?? 0)
+      : (result?.meta.counts[filter] ?? 0);
 
   return (
     <div className={s.shell}>
@@ -136,7 +143,7 @@ export default function AdminAccounts({
             <p className={s.eyebrow}>WORKSPACE ADMINISTRATION</p>
             <h1>계정 관리</h1>
             <p className={s.subtitle}>
-              가입 요청을 검토하고, 선생님에게 필요한 메뉴를 열어주세요.
+              가입 승인, 지점 권한, 계정 상태와 비밀번호를 관리하세요.
             </p>
           </div>
           <button
@@ -163,7 +170,7 @@ export default function AdminAccounts({
                 <button
                   type="button"
                   key={filter.id}
-                  aria-label={`${filter.label} ${result ? `${result.meta.counts[filter.id]}개` : "불러오는 중"}`}
+                  aria-label={`${filter.label} ${result ? `${filterCount(filter.id)}개` : "불러오는 중"}`}
                   aria-pressed={query.status === filter.id}
                   onClick={() =>
                     changeQuery({ ...query, status: filter.id, page: 1 })
@@ -172,7 +179,7 @@ export default function AdminAccounts({
                   {filter.label}
                   <span>
                     {result
-                      ? result.meta.counts[filter.id].toLocaleString("ko-KR")
+                      ? filterCount(filter.id).toLocaleString("ko-KR")
                       : "—"}
                   </span>
                 </button>

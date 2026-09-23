@@ -62,7 +62,7 @@ describe("SRS feature access", () => {
     expect(accountRouteAllowed(teacher, "GET", "/admin/math-srs")).toBe(false);
     expect(
       accountRouteAllowed(
-        { ...teacher, isAdmin: true },
+        { ...teacher, isAdmin: true, isSuperAdmin: true },
         "GET",
         "/admin/math-srs",
       ),

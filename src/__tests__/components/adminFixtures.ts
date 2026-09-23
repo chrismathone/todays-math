@@ -17,6 +17,8 @@ export const pendingAccount: ManagedAccount = {
   menus: ["home", "bank"],
   createdAt: "2026-09-10T10:00:00.000Z",
   updatedAt: "2026-09-10T10:00:00.000Z",
+  suspendedAt: null,
+  deletedAt: null,
 };
 export const approvedAccount: ManagedAccount = {
   ...pendingAccount,
@@ -31,6 +33,7 @@ export const adminAccount: ManagedAccount = {
   id: "33333333-3333-4333-8333-333333333333",
   ...adminIdentity,
   isAdmin: true,
+  isSuperAdmin: true,
   approvalStatus: "approved",
   menus: ["home", "bank", "studio", "export", "library", "teaching"],
 };

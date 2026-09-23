@@ -9,7 +9,7 @@ export default async function AdminPage() {
   const account = await getAccountAccess();
   if (!account) redirect("/login?callbackUrl=%2Fadmin");
   if (account.approvalStatus !== "approved") redirect("/approval-pending");
-  if (!account.isAdmin) redirect("/");
+  if (!account.isSuperAdmin) redirect("/");
 
   return (
     <AdminAccounts identity={{ name: account.name, email: account.email }} />

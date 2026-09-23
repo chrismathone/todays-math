@@ -113,6 +113,7 @@ describe("production workspace resources", () => {
       name: "Teacher",
       email: "teacher@example.test",
       isAdmin: true,
+      isSuperAdmin: true,
     });
     expect((await overview(request("overview"))).status).toBe(200);
     expect(db.class.count).toHaveBeenCalledWith({ where: {} });

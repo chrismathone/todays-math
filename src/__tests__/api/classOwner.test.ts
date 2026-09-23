@@ -25,6 +25,7 @@ const sessionState = vi.hoisted(() => ({
     email: string;
     name: string;
     isAdmin: boolean;
+    isSuperAdmin?: boolean;
   } | null,
 }));
 vi.mock("@/lib/session", () => ({
@@ -91,12 +92,13 @@ function req(url: string, method = "GET", body?: unknown) {
 const withId = (id: string) => ({ params: Promise.resolve({ id }) });
 
 function loginAs(isAdmin: boolean) {
-  sessionState.user = { ...VIEWER, isAdmin };
+  sessionState.user = { ...VIEWER, isAdmin, isSuperAdmin: isAdmin };
   authMock.auth.mockResolvedValue({
     user: {
       ...VIEWER,
       role: "director",
       isAdmin,
+      isSuperAdmin: isAdmin,
       approvalStatus: "approved",
       menus: [...ALL_WORKSPACE_MENUS],
     },
@@ -241,6 +243,7 @@ describe("GET /api/classes — 관리자 페이지 넘김", () => {
       email: "director@todaysmath.test",
       name: "원장",
       isAdmin: true,
+      isSuperAdmin: true,
     };
     const body = classListResponseSchema.parse(
       await (await listClasses(req("/api/classes?pageSize=100"))).json(),
@@ -373,6 +376,7 @@ describe.each(CASES)("GET /api/concept — $who", ({ isAdmin }) => {
           name: "원장",
           role: "director",
           isAdmin: true,
+          isSuperAdmin: true,
           approvalStatus: "approved",
           menus: [...ALL_WORKSPACE_MENUS],
         },

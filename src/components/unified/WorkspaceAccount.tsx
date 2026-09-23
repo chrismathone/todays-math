@@ -8,6 +8,8 @@ export type WorkspaceIdentity = {
   name: string;
   email: string;
   isAdmin?: boolean;
+  isSuperAdmin?: boolean;
+  canManageClasses?: boolean;
 };
 
 function SignOutButton() {
@@ -30,7 +32,14 @@ export default function WorkspaceAccount({
         <strong>{user.name || "선생님"}</strong>
         <span title={user.email}>{user.email}</span>
       </div>
-      {user.isAdmin === true && <a href="/admin">관리자</a>}
+      {user.isSuperAdmin === true && <a href="/admin">관리</a>}
+      {user.isAdmin === true && !user.isSuperAdmin && (
+        <a href="/branch">지점관리</a>
+      )}
+      {!user.isAdmin && user.canManageClasses && (
+        <a href="/classes/manage">반 관리</a>
+      )}
+      <a href="/account/password">비밀번호 변경</a>
       <form action={signOutAction}>
         <SignOutButton />
       </form>

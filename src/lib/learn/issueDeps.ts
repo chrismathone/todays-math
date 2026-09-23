@@ -21,11 +21,14 @@ export function studentIssueDeps(): IssueDeps {
     async findStudentOwner(studentId) {
       const student = await db.student.findUnique({
         where: { id: studentId },
-        include: { class: true },
+        include: {
+          class: { include: { user: { select: { branchId: true } } } },
+        },
       });
       return student
         ? {
             ownerId: student.class.userId,
+            ownerBranchId: student.class.user?.branchId ?? null,
             // 🔴 로그인을 막는 판정과 같은 함수(`accountBlock.ts`) — D-127
             withdrawn: studentWithdrawn({
               withdrawnAt: student.eywaWithdrawnAt,

@@ -33,12 +33,18 @@ export type AccountAccess = {
   email: string;
   role: "director" | "reviewer";
   isAdmin: boolean;
+  /** 최고관리자. 기존 isAdmin 은 지점 관리 권한이다. */
+  isSuperAdmin?: boolean;
+  branchId?: string | null;
+  branchRole?: "owner" | "manager" | "teacher" | null;
   approvalStatus: ApprovalStatus;
   menus: WorkspaceMenu[];
 };
 export type ManagedAccount = AccountAccess & {
   createdAt: string;
   updatedAt: string;
+  suspendedAt: string | null;
+  deletedAt: string | null;
 };
 export type AdminAccountsResponse = {
   data: ManagedAccount[];
@@ -47,11 +53,23 @@ export type AdminAccountsResponse = {
     pageSize: number;
     total: number;
     counts: Record<ApprovalStatus | "all", number>;
+    lifecycleCounts?: { suspended: number; deleted: number };
   };
 };
 export const accountUpdateSchema = z
   .strictObject({
     approvalStatus: approvalStatusSchema.optional(),
+    isAdmin: z.boolean().optional(),
+    branchId: z.uuid().optional(),
+    branchRole: z.enum(["owner", "manager", "teacher"]).optional(),
+    name: z.string().trim().min(1).max(50).optional(),
+    email: z
+      .email()
+      .max(255)
+      .transform((value) => value.trim().toLowerCase())
+      .optional(),
+    suspended: z.boolean().optional(),
+    deleted: z.boolean().optional(),
     menus: z
       .array(workspaceMenuSchema)
       // 손으로 적은 6 은 메뉴가 늘면 «전부 켜기»를 거절한다 — 메뉴 목록에서 센다.
@@ -61,5 +79,14 @@ export const accountUpdateSchema = z
     expectedUpdatedAt: z.iso.datetime(),
   })
   .refine(
-    (input) => input.approvalStatus !== undefined || input.menus !== undefined,
+    (input) =>
+      input.approvalStatus !== undefined ||
+      input.menus !== undefined ||
+      input.isAdmin !== undefined ||
+      input.branchId !== undefined ||
+      input.branchRole !== undefined ||
+      input.name !== undefined ||
+      input.email !== undefined ||
+      input.suspended !== undefined ||
+      input.deleted !== undefined,
   );

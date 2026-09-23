@@ -90,7 +90,7 @@ const account = (patch: Partial<AccountAccess> = {}): AccountAccess => ({
 function login(patch: Partial<AccountAccess> = {}) {
   mocks.auth.mockResolvedValue({ user: account(patch) });
 }
-const asAdmin = () => login({ isAdmin: true });
+const asAdmin = () => login({ isAdmin: true, isSuperAdmin: true });
 
 function get(path: string) {
   return new NextRequest(`http://localhost${path}`, { method: "GET" });
@@ -225,7 +225,7 @@ describe("② 남의 반은 안 보인다", () => {
     login({ id: NO_CLASS, isAdmin: false });
     expect((await board()).rows).toEqual([]);
 
-    login({ id: NO_CLASS, isAdmin: true });
+    login({ id: NO_CLASS, isAdmin: true, isSuperAdmin: true });
     expect(new Set((await board()).rows.map((r) => r.classId))).toEqual(
       new Set([CLASS_A_ID, CLASS_B_ID, CLASS_STARVED_ID, CLASS_OTHER_ID]),
     );

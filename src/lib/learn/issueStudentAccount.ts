@@ -60,7 +60,11 @@ export interface IssueDeps {
   /** 학생의 반 소유자와 퇴원 여부 — 학생이 없으면 null */
   findStudentOwner(
     studentId: string,
-  ): Promise<{ ownerId: string; withdrawn: boolean } | null>;
+  ): Promise<{
+    ownerId: string;
+    ownerBranchId?: string | null;
+    withdrawn: boolean;
+  } | null>;
   findAccountByStudent(studentId: string): Promise<IssuedAccount | null>;
   findAccountByLoginId(loginId: string): Promise<{ id: string } | null>;
   createAccount(data: {
@@ -113,7 +117,7 @@ async function ownedStudent(
 ): Promise<{ failure: IssueFailure } | { failure: null; withdrawn: boolean }> {
   const owner = await deps.findStudentOwner(studentId);
   if (!owner) return { failure: "student_not_found" };
-  if (!withinOwnerScope(director, owner.ownerId))
+  if (!withinOwnerScope(director, owner.ownerId, owner.ownerBranchId))
     return { failure: "not_owner" };
   return { failure: null, withdrawn: owner.withdrawn };
 }

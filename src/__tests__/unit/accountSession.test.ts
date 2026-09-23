@@ -103,6 +103,7 @@ describe("existing session access refresh", () => {
     mocks.findUnique.mockResolvedValue({
       ...user,
       isAdmin: true,
+      isSuperAdmin: true,
       disabledMenus: ["bank"],
     });
     expect(

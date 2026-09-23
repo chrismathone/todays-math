@@ -320,7 +320,7 @@ describe("묶음은 화면에서만 합친다 — AI 가 보는 것은 그대로
       (request: StudioFigureEditRequest) => Promise<StudioFigureEditResult>
     >(async () => ({ edits: [] }));
     editor({ onEdit });
-    expect(screenTags()).toEqual(["1", "2", "3"]);
+    await waitFor(() => expect(screenTags()).toEqual(["1", "2", "3"]));
     groupTwo();
     // 화면: 묶음 하나 + 남은 요소 하나
     expect(screenTags()).toEqual(["1", "3"]);

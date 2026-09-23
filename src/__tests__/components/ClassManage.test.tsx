@@ -27,12 +27,16 @@ const { connection } = vi.hoisted(() => ({
 }));
 
 vi.mock("next/server", () => ({ connection }));
+vi.mock("server-only", () => ({}));
+vi.mock("@/lib/session", () => ({
+  getSessionUser: vi.fn(async () => ({ id: "test-user", isAdmin: false })),
+}));
 
 function renderManage() {
   const user = userEvent.setup();
   const view = render(
     <AppChrome>
-      <ClassManage units={MOCK_UNITS} />
+      <ClassManage units={MOCK_UNITS} canManageRoster />
     </AppChrome>,
   );
   return { user, ...view };

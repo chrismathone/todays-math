@@ -11,15 +11,27 @@ export const managedAccountSelect = {
   email: true,
   role: true,
   isAdmin: true,
+  isSuperAdmin: true,
+  branchId: true,
+  branchRole: true,
   approvalStatus: true,
   disabledMenus: true,
   createdAt: true,
   updatedAt: true,
+  suspendedAt: true,
+  deletedAt: true,
 } satisfies Prisma.UserSelect;
 export function managedAccount(
   user: Prisma.UserGetPayload<{ select: typeof managedAccountSelect }>,
 ): ManagedAccount {
-  const { disabledMenus, createdAt, updatedAt, ...data } = user;
+  const {
+    disabledMenus,
+    createdAt,
+    updatedAt,
+    suspendedAt,
+    deletedAt,
+    ...data
+  } = user;
   return {
     ...data,
     menus: user.isAdmin
@@ -27,6 +39,8 @@ export function managedAccount(
       : ALL_WORKSPACE_MENUS.filter((menu) => !disabledMenus.includes(menu)),
     createdAt: createdAt.toISOString(),
     updatedAt: updatedAt.toISOString(),
+    suspendedAt: suspendedAt?.toISOString() ?? null,
+    deletedAt: deletedAt?.toISOString() ?? null,
   };
 }
 export function pagination(url: URL, defaultSize = 25) {

@@ -13,6 +13,7 @@ import {
   type KeyboardEvent,
 } from "react";
 import type { UnitNode } from "@/lib/units/groupUnits";
+import { canManageRoster } from "@/lib/ownerScope";
 import { TeachingAuthPanel } from "./teachingAuthPanel";
 import WorkProgress from "./WorkProgress";
 import s from "./TeachingView.module.css";
@@ -36,7 +37,14 @@ const MainScreen = dynamic(
 
 type TeachingTab = "classes" | "lessons";
 type TeachingData = {
-  user: { id: string; name: string; email: string };
+  user: {
+    id: string;
+    name: string;
+    email: string;
+    isAdmin: boolean;
+    branchId?: string | null;
+    branchRole?: "owner" | "manager" | "teacher" | null;
+  };
   units: UnitNode[];
 };
 type AccessState =
@@ -218,7 +226,10 @@ export default function TeachingView() {
               </div>
             </div>
             <div className={s.classContent}>
-              <ClassManage units={access.data.units} />
+              <ClassManage
+                units={access.data.units}
+                canManageRoster={canManageRoster(access.data.user)}
+              />
             </div>
           </section>
           <section

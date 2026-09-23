@@ -36,7 +36,12 @@ export default async function WorkspacePage({ user }: { user: SessionUser }) {
       key={user.id}
       initialData={initialData}
       storageScope={user.id}
-      currentUser={{ ...user, isAdmin: account?.isAdmin ?? false }}
+      currentUser={{
+        ...user,
+        isAdmin: account?.isAdmin ?? false,
+        isSuperAdmin: account?.isSuperAdmin ?? false,
+        canManageClasses: account?.menus.includes("teaching") ?? false,
+      }}
       allowedMenus={
         account?.role === "reviewer" && !account.isAdmin
           ? []

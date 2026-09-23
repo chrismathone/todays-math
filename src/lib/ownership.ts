@@ -24,6 +24,16 @@ import { isProblemAccessible } from "@/lib/problemPool";
 export type OwnershipResult<T> =
   { ok: true; data: T } | { ok: false; response: Response };
 
+async function ownerIsInScope(viewer: ScopeViewer, ownerUserId: string) {
+  if (viewer.id === ownerUserId || viewer.isSuperAdmin) return true;
+  if (!viewer.isAdmin || !viewer.branchId) return false;
+  const owner = await db.user.findUnique({
+    where: { id: ownerUserId },
+    select: { branchId: true },
+  });
+  return withinOwnerScope(viewer, ownerUserId, owner?.branchId);
+}
+
 /** 반이 존재하고, 로그인 사용자(viewer)의 소유 범위 안인지 확인한다. */
 export async function requireOwnedClass(
   classId: string,
@@ -31,7 +41,7 @@ export async function requireOwnedClass(
 ): Promise<OwnershipResult<ClassRow>> {
   const cls = await db.class.findUnique({ where: { id: classId } });
   if (!cls) return { ok: false, response: notFoundError("반") };
-  if (!withinOwnerScope(viewer, cls.userId)) {
+  if (!(await ownerIsInScope(viewer, cls.userId))) {
     return { ok: false, response: forbiddenError() };
   }
   return { ok: true, data: cls };
@@ -59,7 +69,7 @@ export async function requireOwnedStudent(
   if (!student) return { ok: false, response: notFoundError("학생") };
 
   const { class: ownerClass, ...row } = student;
-  if (!withinOwnerScope(viewer, ownerClass.userId)) {
+  if (!(await ownerIsInScope(viewer, ownerClass.userId))) {
     return { ok: false, response: forbiddenError() };
   }
 
@@ -113,7 +123,7 @@ export async function requireOwnedTest(
 ): Promise<OwnershipResult<TestRow>> {
   const test = await db.test.findUnique({ where: { id: testId } });
   if (!test) return { ok: false, response: notFoundError("테스트") };
-  if (!withinOwnerScope(viewer, test.userId)) {
+  if (!(await ownerIsInScope(viewer, test.userId))) {
     return { ok: false, response: forbiddenError() };
   }
   return { ok: true, data: test };

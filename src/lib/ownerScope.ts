@@ -33,11 +33,24 @@
 export interface ScopeViewer {
   readonly id: string;
   readonly isAdmin?: boolean;
+  readonly isSuperAdmin?: boolean;
+  readonly branchId?: string | null;
+  readonly branchRole?: "owner" | "manager" | "teacher" | null;
+}
+
+/** 지점 소속 강사는 명단과 계정을 발급하지 않는다. 독립 운영자는 본인 반을 직접 관리한다. */
+export function canManageRoster(viewer: ScopeViewer): boolean {
+  if (viewer.isSuperAdmin === true) return true;
+  if (viewer.branchRole === "teacher") return false;
+  return viewer.isAdmin === true || !viewer.branchId;
 }
 
 /** 🔴 **유일한 판정** — 이 사람은 학원 운영 데이터의 소유 울타리를 넘는가. */
 export function crossesOwnerFence(viewer: ScopeViewer): boolean {
-  return viewer.isAdmin === true;
+  return (
+    viewer.isSuperAdmin === true ||
+    (viewer.isAdmin === true && Boolean(viewer.branchId))
+  );
 }
 
 /**
@@ -48,23 +61,39 @@ export function crossesOwnerFence(viewer: ScopeViewer): boolean {
  */
 export function ownedRowsWhere(
   viewer: ScopeViewer,
-): { userId: string } | Record<string, never> {
-  return crossesOwnerFence(viewer) ? {} : { userId: viewer.id };
+): { userId: string } | { user: { branchId: string } } | Record<string, never> {
+  if (viewer.isSuperAdmin === true) return {};
+  if (viewer.isAdmin === true && viewer.branchId)
+    return { user: { branchId: viewer.branchId } };
+  return { userId: viewer.id };
 }
 
 /** 학생(`Student`)의 where 조각 — 학생은 `userId` 가 없어 소속 반을 거쳐 소유자에 닿는다. */
 export function ownedStudentsWhere(
   viewer: ScopeViewer,
-): { class: { userId: string } } | Record<string, never> {
-  return crossesOwnerFence(viewer) ? {} : { class: { userId: viewer.id } };
+):
+  | { class: { userId: string } }
+  | { class: { user: { branchId: string } } }
+  | Record<string, never> {
+  if (viewer.isSuperAdmin === true) return {};
+  if (viewer.isAdmin === true && viewer.branchId)
+    return { class: { user: { branchId: viewer.branchId } } };
+  return { class: { userId: viewer.id } };
 }
 
 /** 이미 읽어 온 행의 소유자(`ownerUserId`)가 이 사람의 범위 안인가 — 404/403 을 가르는 자리가 쓴다. */
 export function withinOwnerScope(
   viewer: ScopeViewer,
   ownerUserId: string,
+  ownerBranchId?: string | null,
 ): boolean {
-  return crossesOwnerFence(viewer) || ownerUserId === viewer.id;
+  return (
+    viewer.isSuperAdmin === true ||
+    ownerUserId === viewer.id ||
+    (viewer.isAdmin === true &&
+      Boolean(viewer.branchId) &&
+      viewer.branchId === ownerBranchId)
+  );
 }
 
 /**
@@ -72,5 +101,5 @@ export function withinOwnerScope(
  * 장바구니에서 시험지를 만드는 길(`api/basket/test`)이 반 소유를 물을 때 쓴다. 넓히려면 리드 결정이 먼저다.
  */
 export function personalViewer(viewer: ScopeViewer): ScopeViewer {
-  return { id: viewer.id, isAdmin: false };
+  return { id: viewer.id, isAdmin: false, isSuperAdmin: false };
 }

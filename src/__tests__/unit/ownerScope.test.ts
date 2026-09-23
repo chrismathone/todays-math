@@ -13,6 +13,7 @@
 import { describe, expect, it } from "vitest";
 
 import {
+  canManageRoster,
   crossesOwnerFence,
   ownedRowsWhere,
   ownedStudentsWhere,
@@ -24,7 +25,8 @@ const ME = "10000000-0000-4000-8000-0000000000ad";
 const ROLE_OWNER = "10000000-0000-4000-8000-000000000002";
 
 const PLAIN = { id: ME, isAdmin: false };
-const ADMIN = { id: ME, isAdmin: true };
+const ADMIN = { id: ME, isAdmin: true, isSuperAdmin: true };
+const MANAGER = { id: ME, isAdmin: true, branchId: "branch-1" };
 
 describe("crossesOwnerFence — 넘는가", () => {
   it("관리자만 넘는다", () => {
@@ -89,5 +91,25 @@ describe("personalViewer — 개인 작업물 라우트는 관리자여도 안 �
     expect(crossesOwnerFence(viewer)).toBe(false);
     expect(withinOwnerScope(viewer, ROLE_OWNER)).toBe(false);
     expect(ownedRowsWhere(viewer)).toEqual({ userId: ME });
+  });
+});
+
+describe("지점별 소유 범위", () => {
+  it("지점 강사만 명단 발급을 막고 독립 운영자는 자기 반을 관리한다", () => {
+    expect(
+      canManageRoster({ id: ME, branchId: "branch-1", isAdmin: false }),
+    ).toBe(false);
+    expect(canManageRoster(MANAGER)).toBe(true);
+    expect(canManageRoster(PLAIN)).toBe(true);
+    expect(canManageRoster({ id: ME, branchRole: "teacher" })).toBe(false);
+  });
+  it("지점장은 같은 지점의 반·학생만 조회하고 다른 지점은 거절한다", () => {
+    expect(ownedRowsWhere(MANAGER)).toEqual({ user: { branchId: "branch-1" } });
+    expect(ownedStudentsWhere(MANAGER)).toEqual({
+      class: { user: { branchId: "branch-1" } },
+    });
+    expect(withinOwnerScope(MANAGER, ROLE_OWNER, "branch-1")).toBe(true);
+    expect(withinOwnerScope(MANAGER, ROLE_OWNER, "branch-2")).toBe(false);
+    expect(withinOwnerScope({ id: ME, isAdmin: true }, ROLE_OWNER)).toBe(false);
   });
 });

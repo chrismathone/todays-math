@@ -22,6 +22,7 @@ import s from "./ClassManage.module.css";
 
 type ClassManageProps = {
   units: UnitNode[];
+  canManageRoster?: boolean;
 };
 
 type MutationFeedback = {
@@ -30,7 +31,10 @@ type MutationFeedback = {
   success: string | null;
 };
 
-export function ClassManage({ units }: ClassManageProps) {
+export function ClassManage({
+  units,
+  canManageRoster = false,
+}: ClassManageProps) {
   const manage = useClassManage();
   const current = findUnit(units, manage.currentUnitId);
   const selectedClass = manage.selectedClass;
@@ -66,11 +70,13 @@ export function ClassManage({ units }: ClassManageProps) {
             selectedClassId={manage.selectedClassId}
             onSelect={manage.selectClass}
           />
-          <AddClassForm
-            onAdd={manage.addClass}
-            feedback={manage.classMutation}
-            units={units}
-          />
+          {canManageRoster && (
+            <AddClassForm
+              onAdd={manage.addClass}
+              feedback={manage.classMutation}
+              units={units}
+            />
+          )}
         </section>
         <section aria-labelledby="class-students-heading" className={s.panel}>
           {selectedClass ? (
@@ -86,8 +92,9 @@ export function ClassManage({ units }: ClassManageProps) {
             selectedClass={selectedClass}
             status={manage.studentsStatus}
             onRetry={manage.retryDetails}
+            canManageAccounts={canManageRoster}
           />
-          {selectedClass ? (
+          {selectedClass && canManageRoster ? (
             <AddStudentForm
               classId={selectedClass.id}
               onAdd={manage.addStudent}

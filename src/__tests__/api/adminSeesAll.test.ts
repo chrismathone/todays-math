@@ -31,6 +31,7 @@ const sessionState = vi.hoisted(() => ({
     email: string;
     name: string;
     isAdmin: boolean;
+    isSuperAdmin?: boolean;
   } | null,
 }));
 vi.mock("@/lib/session", () => ({
@@ -292,7 +293,7 @@ afterEach(() => {
 
 describe.each(CASES)("D-130 읽기 — $who", ({ isAdmin }) => {
   beforeEach(() => {
-    sessionState.user = { ...VIEWER, isAdmin };
+    sessionState.user = { ...VIEWER, isAdmin, isSuperAdmin: isAdmin };
   });
 
   it("반 목록", async () => {
@@ -429,7 +430,7 @@ describe.each(CASES)("D-130 읽기 — $who", ({ isAdmin }) => {
 
 describe.each(CASES)("D-130 쓰기 — $who", ({ isAdmin }) => {
   beforeEach(() => {
-    sessionState.user = { ...VIEWER, isAdmin };
+    sessionState.user = { ...VIEWER, isAdmin, isSuperAdmin: isAdmin };
   });
 
   it("남의 반에 진도를 기록한다 · 1클릭 진행", async () => {
@@ -691,7 +692,9 @@ describe.each(CASES)(
   ({ isAdmin }) => {
     const SECRET = "cron-secret-for-admin-scope";
     beforeEach(() => {
-      seedUsers([{ ...VIEWER, isAdmin, deletedAt: null }]);
+      seedUsers([
+        { ...VIEWER, isAdmin, isSuperAdmin: isAdmin, deletedAt: null },
+      ]);
       process.env.CRON_SECRET = SECRET;
       process.env.AUTO_DRAFT_OWNER_EMAIL = VIEWER.email;
     });
@@ -736,7 +739,7 @@ describe.each(CASES)(
   "D-130 ⑶ 개인 작업물은 넘지 않는다 — $who",
   ({ isAdmin }) => {
     beforeEach(() => {
-      sessionState.user = { ...VIEWER, isAdmin };
+      sessionState.user = { ...VIEWER, isAdmin, isSuperAdmin: isAdmin };
     });
 
     it("장바구니 — 남의 바구니는 안 보이고, 내 바구니로 남의 반 시험지를 못 만든다", async () => {

@@ -1,0 +1,2 @@
+ALTER TABLE "user" ADD COLUMN "suspended_at" TIMESTAMP(3);
+ALTER TABLE "user" ADD COLUMN "session_version" INTEGER NOT NULL DEFAULT 0;

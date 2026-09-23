@@ -94,7 +94,9 @@ beforeEach(async () => {
     id: USER_TEACHER_ID,
     email: "teacher@example.test",
     name: "선생님",
-    isAdmin: false,
+    isAdmin: true,
+    branchId: "00000000-0000-4000-8000-000000000101",
+    branchRole: "owner",
   });
   const classes = await prismaTestDouble.class.findMany({
     where: { userId: USER_OTHER_ID },
@@ -152,6 +154,18 @@ function scrub(text: string): string {
 }
 
 describe("발급 — 원장만 · 한 명씩 (D-124 ⑷)", () => {
+  it("강사는 담당 반 학생의 로그인 아이디도 발급할 수 없다", async () => {
+    vi.mocked(getSessionUser).mockResolvedValue({
+      id: USER_TEACHER_ID,
+      email: "teacher@example.test",
+      name: "선생님",
+      isAdmin: false,
+      branchId: "20000000-0000-4000-8000-000000000002",
+      branchRole: "teacher",
+    });
+    expect((await issue(MOCK_STUDENT_1.id, "teacher-denied")).status).toBe(403);
+    expect(learnRows.studentAccounts()).toEqual([]);
+  });
   it("🔴 로그인 안 한 요청은 401 이고 아무것도 안 만든다", async () => {
     vi.mocked(getSessionUser).mockResolvedValue(null);
     expect((await issue(MOCK_STUDENT_1.id, "seo01")).status).toBe(401);
@@ -388,6 +402,7 @@ describe("D-130 — 관리자는 남의 반 학생에게도 발급 · 다시 발
       email: "teacher@example.test",
       name: "선생님",
       isAdmin: true,
+      isSuperAdmin: true,
     });
   });
 

@@ -33,6 +33,7 @@ import {
   toAccountStatus,
 } from "@/lib/learn/issueStudentAccount";
 import { getSessionUser } from "@/lib/session";
+import { canManageRoster } from "@/lib/ownerScope";
 import { withErrorLog } from "@/lib/errorLog/withErrorLog";
 
 type RouteContext = { params: Promise<{ id: string }> };
@@ -66,6 +67,16 @@ async function handleGet(_request: NextRequest, { params }: RouteContext) {
 async function handlePost(request: NextRequest, { params }: RouteContext) {
   const session = await getSessionUser();
   if (!session) return unauthorizedError();
+  if (!canManageRoster(session))
+    return Response.json(
+      {
+        error: {
+          code: "FORBIDDEN",
+          message: "학생 계정은 지점 관리자만 발급할 수 있습니다.",
+        },
+      },
+      { status: 403 },
+    );
   if (!sameOriginMutation(request)) return crossSiteError();
 
   const { id } = await params;
@@ -105,6 +116,16 @@ async function handlePost(request: NextRequest, { params }: RouteContext) {
 async function handlePatch(request: NextRequest, { params }: RouteContext) {
   const session = await getSessionUser();
   if (!session) return unauthorizedError();
+  if (!canManageRoster(session))
+    return Response.json(
+      {
+        error: {
+          code: "FORBIDDEN",
+          message: "학생 계정은 지점 관리자만 변경할 수 있습니다.",
+        },
+      },
+      { status: 403 },
+    );
   if (!sameOriginMutation(request)) return crossSiteError();
 
   const { id } = await params;

@@ -31,6 +31,7 @@ type StudentListProps = {
   selectedClass?: ClassEntity;
   status: "loading" | "ready" | "error";
   onRetry: () => void;
+  canManageAccounts?: boolean;
 };
 
 export function StudentList({
@@ -38,6 +39,7 @@ export function StudentList({
   selectedClass,
   status,
   onRetry,
+  canManageAccounts = false,
 }: StudentListProps) {
   // 고른 학생은 **그 반 안에서만** 산다 — 반을 바꾸면 칸이 닫힌다(초기 비밀번호도 같이 사라진다)
   const [picked, setPicked] = useState<{
@@ -88,7 +90,9 @@ export function StudentList({
         </div>
       ) : students.length === 0 ? (
         <p className="text-[12.5px] text-text-2">
-          등록된 학생이 없습니다. 아래에서 첫 학생을 등록해 주세요.
+          {canManageAccounts
+            ? "등록된 학생이 없습니다. 아래에서 첫 학생을 등록해 주세요."
+            : "이 반에 등록된 학생이 없습니다."}
         </p>
       ) : null}
       <ul aria-label="학생" className="flex flex-col">
@@ -100,28 +104,40 @@ export function StudentList({
                * 이름 단추 — 누르면 그 학생의 오늘의 개념 로그인 칸이 선다(한 번 더 누르면 닫힌다).
                * 고른 표시는 반 목록과 같은 어법(`rowSelection.ts`). ⚠️ D-30 — 행에는 손가락·hover 가 없다.
                */}
-              <button
-                type="button"
-                aria-pressed={selected}
-                aria-expanded={selected}
-                aria-controls={`student-account-${student.id}-panel`}
-                onClick={(event) => {
-                  opener.current = event.currentTarget;
-                  setPicked(
-                    selected || !selectedClass
-                      ? null
-                      : { classId: selectedClass.id, studentId: student.id },
-                  );
-                }}
-                className={`min-h-11 w-full py-2.5 text-left text-[12.5px] font-bold ${nameSelectionClass(selected)}`}
-              >
-                {student.name}
-              </button>
+              {canManageAccounts ? (
+                <button
+                  type="button"
+                  aria-pressed={selected}
+                  aria-expanded={selected}
+                  aria-controls={`student-account-${student.id}-panel`}
+                  onClick={(event) => {
+                    opener.current = event.currentTarget;
+                    setPicked(
+                      selected || !selectedClass
+                        ? null
+                        : { classId: selectedClass.id, studentId: student.id },
+                    );
+                  }}
+                  className={`flex min-h-11 w-full items-center justify-between gap-2 py-2.5 text-left text-[12.5px] font-bold ${nameSelectionClass(selected)}`}
+                >
+                  <span>{student.name}</span>
+                  <span
+                    aria-hidden="true"
+                    className="rounded-md border border-g-blue px-2 py-1 text-[11px] font-semibold text-g-blue"
+                  >
+                    학생 계정 {selected ? "닫기" : "발급·관리"}
+                  </span>
+                </button>
+              ) : (
+                <span className="flex min-h-11 items-center py-2.5 text-[12.5px] font-bold">
+                  {student.name}
+                </span>
+              )}
             </li>
           );
         })}
       </ul>
-      {pickedStudent ? (
+      {canManageAccounts && pickedStudent ? (
         <StudentAccountPanel
           key={pickedStudent.id}
           student={pickedStudent}

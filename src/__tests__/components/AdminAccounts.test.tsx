@@ -116,7 +116,7 @@ describe("admin account management", () => {
     expect(
       screen.getByRole("button", { name: "박지우 계정 검토" }),
     ).toBeDisabled();
-    fireEvent.click(screen.getByRole("button", { name: "메뉴 변경 저장" }));
+    fireEvent.click(screen.getByRole("button", { name: "변경 저장" }));
     await screen.findByText("사용 가능한 메뉴를 저장했습니다.");
     const patch = fetchMock.mock.calls.find(
       ([, init]) => init?.method === "PATCH",
@@ -228,7 +228,7 @@ describe("admin account management", () => {
       await screen.findByRole("button", { name: "김하늘 계정 검토" }),
     );
     fireEvent.click(screen.getByLabelText("자료 제작"));
-    fireEvent.click(screen.getByRole("button", { name: "메뉴 변경 저장" }));
+    fireEvent.click(screen.getByRole("button", { name: "변경 저장" }));
     await screen.findByText(/다른 관리자가 이 계정을 변경했습니다/);
     expect(
       screen.getByRole("button", { name: "계정 승인 · 메뉴 저장" }),
@@ -237,7 +237,7 @@ describe("admin account management", () => {
     await screen.findByText(/최신 정보를 불러왔습니다/);
     expect(screen.getByLabelText("시험지 만들기")).not.toBeChecked();
     fireEvent.click(screen.getByLabelText("자료 제작"));
-    fireEvent.click(screen.getByRole("button", { name: "메뉴 변경 저장" }));
+    fireEvent.click(screen.getByRole("button", { name: "변경 저장" }));
     await screen.findByText("사용 가능한 메뉴를 저장했습니다.");
     const patches = fetchMock.mock.calls.filter(
       ([, init]) => init?.method === "PATCH",

@@ -117,7 +117,7 @@ describe("account guards", () => {
     expect((await authorizeAccount(request(), true)).response?.status).toBe(
       403,
     );
-    login({ isAdmin: true });
+    login({ isAdmin: true, isSuperAdmin: true });
     expect((await authorizeAccount(request(), true)).account?.id).toBe(userId);
   });
   it("rejects cross-origin and missing-origin mutations", async () => {
@@ -197,7 +197,7 @@ describe("private material ownership and revision control", () => {
     expect(mocks.doc.findUnique).not.toHaveBeenCalled();
   });
   it("admin inspection uses target ownership and authenticated asset URLs", async () => {
-    login({ isAdmin: true });
+    login({ isAdmin: true, isSuperAdmin: true });
     mocks.doc.findUnique.mockResolvedValue({
       ...document,
       userId: otherId,
@@ -392,10 +392,11 @@ describe("immutable private assets", () => {
 
 describe("administrator changes and activity integrity", () => {
   it("refuses changing administrator privileges through the account form", async () => {
-    login({ isAdmin: true });
+    login({ isAdmin: true, isSuperAdmin: true });
     mocks.user.findFirst.mockResolvedValue({
       ...account,
       isAdmin: true,
+      isSuperAdmin: true,
       disabledMenus: [],
       createdAt: date,
       updatedAt: date,
@@ -414,7 +415,7 @@ describe("administrator changes and activity integrity", () => {
     expect(mocks.user.updateMany).not.toHaveBeenCalled();
   });
   it("rejects stale admin changes and does not record them as completed", async () => {
-    login({ isAdmin: true });
+    login({ isAdmin: true, isSuperAdmin: true });
     mocks.user.updateMany.mockResolvedValue({ count: 0 });
     expect(
       (
@@ -430,7 +431,7 @@ describe("administrator changes and activity integrity", () => {
     expect(mocks.audit.create).not.toHaveBeenCalled();
   });
   it("applies approval and menu change together with an audit record", async () => {
-    login({ isAdmin: true });
+    login({ isAdmin: true, isSuperAdmin: true });
     mocks.user.updateMany.mockResolvedValue({ count: 1 });
     mocks.user.findUniqueOrThrow.mockResolvedValue({
       ...account,

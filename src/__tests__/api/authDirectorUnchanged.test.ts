@@ -100,6 +100,9 @@ function seedDirector(overrides: Record<string, unknown> = {}) {
     passwordHash,
     role: "director",
     isAdmin: false,
+    isSuperAdmin: false,
+    branchId: null,
+    branchRole: null,
     approvalStatus: "approved",
     disabledMenus: ["studio"],
     deletedAt: null,
@@ -142,6 +145,10 @@ describe("① 원장 로그인 — 쿠키에 실리는 토큰 모양", () => {
       id: DIRECTOR_ID,
       role: "director",
       isAdmin: false,
+      isSuperAdmin: false,
+      branchId: null,
+      branchRole: null,
+      sessionVersion: 0,
       approvalStatus: "approved",
       menus: MENUS_WITHOUT_STUDIO,
     });
@@ -181,6 +188,9 @@ describe("① 원장 세션 — auth() 와 /api/auth/session 이 돌려주는 �
       id: DIRECTOR_ID,
       role: "director",
       isAdmin: false,
+      isSuperAdmin: false,
+      branchId: null,
+      branchRole: null,
       approvalStatus: "approved",
       menus,
     },
@@ -229,7 +239,7 @@ describe("① 원장 세션 — auth() 와 /api/auth/session 이 돌려주는 �
   });
 
   it("관리자는 꺼 둔 메뉴가 있어도 전 메뉴다", async () => {
-    seedDirector({ isAdmin: true });
+    seedDirector({ isAdmin: true, isSuperAdmin: true });
     resetRequest({ cookie: await cookieHeaderFor({ id: DIRECTOR_ID }) });
     expect((await auth())?.user?.menus).toEqual(ALL_WORKSPACE_MENUS);
   });
@@ -259,6 +269,20 @@ describe("① 원장 세션 — auth() 와 /api/auth/session 이 돌려주는 �
       /authjs\.session-token=;/,
     );
     resetRequest({ cookie });
+    expect(await auth()).toBeNull();
+  });
+
+  it("정지 또는 비밀번호 재발급 시 기존 세션을 즉시 끝낸다", async () => {
+    await signInDirector();
+    carryJarToNextRequest();
+    seedDirector({ suspendedAt: new Date() });
+    expect(await auth()).toBeNull();
+
+    resetRequest();
+    seedDirector();
+    await signInDirector();
+    carryJarToNextRequest();
+    seedDirector({ sessionVersion: 1 });
     expect(await auth()).toBeNull();
   });
 });

@@ -67,7 +67,7 @@ function studentForm() {
 
 function renderManage(units = MOCK_UNITS) {
   const user = userEvent.setup();
-  render(<ClassManage units={units} />);
+  render(<ClassManage units={units} canManageRoster />);
   return user;
 }
 

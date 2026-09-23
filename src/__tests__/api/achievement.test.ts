@@ -25,6 +25,7 @@ vi.mock("@/lib/session", () => ({
           email: "teacher@todaysmath.test",
           name: "테스트 강사",
           isAdmin: sessionState.isAdmin,
+          isSuperAdmin: sessionState.isAdmin,
         }
       : null,
   ),

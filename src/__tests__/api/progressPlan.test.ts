@@ -31,6 +31,7 @@ vi.mock("@/lib/session", () => ({
     email: "teacher@todaysmath.test",
     name: "테스트 강사",
     isAdmin: sessionState.isAdmin,
+    isSuperAdmin: sessionState.isAdmin,
   })),
 }));
 
@@ -621,6 +622,7 @@ describe("/api/students/{id}/progress-plan — 🔴 개별 진도 학생만 반 
 // ─────────────────────────────────────────────
 
 describe("POST /api/classes — 반을 만들 때 계획을 **같이** 받는다", () => {
+  beforeEach(() => asAdmin());
   const classBody = { name: "새 반", grade: "중2" };
   const post = (body: unknown) =>
     createClass(req("/api/classes", "POST", body));

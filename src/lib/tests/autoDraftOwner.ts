@@ -39,6 +39,9 @@ export async function resolveAutoDraftOwner(
       email: true,
       name: true,
       isAdmin: true,
+      isSuperAdmin: true,
+      branchId: true,
+      branchRole: true,
       deletedAt: true,
     },
   });
@@ -56,6 +59,9 @@ export async function resolveAutoDraftOwner(
       email: user.email,
       name: user.name,
       isAdmin: user.isAdmin === true,
+      isSuperAdmin: user.isSuperAdmin === true,
+      branchId: user.branchId,
+      branchRole: user.branchRole,
     },
   };
 }

@@ -15,6 +15,7 @@ import {
 } from "@/contracts/common.contract";
 import { jsonOk, unauthorizedError, validationError } from "@/lib/apiResponse";
 import { db } from "@/lib/db";
+import { canManageRoster } from "@/lib/ownerScope";
 import { requireOwnedClass } from "@/lib/ownership";
 import { serializeClass } from "@/lib/serializers";
 import { getSessionUser } from "@/lib/session";
@@ -41,6 +42,16 @@ async function handleGet(request: NextRequest, { params }: RouteContext) {
 async function handlePatch(request: NextRequest, { params }: RouteContext) {
   const session = await getSessionUser();
   if (!session) return unauthorizedError();
+  if (!canManageRoster(session))
+    return Response.json(
+      {
+        error: {
+          code: "FORBIDDEN",
+          message: "반 설정은 지점 관리자만 변경할 수 있습니다.",
+        },
+      },
+      { status: 403 },
+    );
 
   const { id } = await params;
   const idResult = idParamSchema.safeParse({ id });
@@ -61,6 +72,16 @@ async function handlePatch(request: NextRequest, { params }: RouteContext) {
 async function handleDelete(request: NextRequest, { params }: RouteContext) {
   const session = await getSessionUser();
   if (!session) return unauthorizedError();
+  if (!canManageRoster(session))
+    return Response.json(
+      {
+        error: {
+          code: "FORBIDDEN",
+          message: "반 삭제는 지점 관리자만 할 수 있습니다.",
+        },
+      },
+      { status: 403 },
+    );
 
   const { id } = await params;
   const idResult = idParamSchema.safeParse({ id });

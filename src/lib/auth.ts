@@ -99,7 +99,7 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
 
         const user = await db.user.findUnique({ where: { email } });
         // passwordHash가 없는 레코드(과거 구글 가입자 잔존분)는 로그인시키지 않는다.
-        if (!user?.passwordHash || user.deletedAt) {
+        if (!user?.passwordHash || user.deletedAt || user.suspendedAt) {
           return null;
         }
 
@@ -126,6 +126,7 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
           email: user.email,
           name: user.name,
           role: user.role,
+          sessionVersion: user.sessionVersion,
         };
       },
     }),
@@ -170,6 +171,7 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
         );
       if (user) {
         token.id = user.id;
+        token.sessionVersion = user.sessionVersion ?? 0;
       }
       const id = typeof token.id === "string" ? token.id : token.sub;
       if (!id) return null;
@@ -183,19 +185,33 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
           email: true,
           role: true,
           isAdmin: true,
+          isSuperAdmin: true,
+          branchId: true,
+          branchRole: true,
           approvalStatus: true,
           disabledMenus: true,
           deletedAt: true,
+          suspendedAt: true,
+          sessionVersion: true,
         },
       });
-      if (!current || current.deletedAt) return null;
+      if (!current || current.deletedAt || current.suspendedAt) return null;
+      if ((token.sessionVersion ?? 0) !== (current.sessionVersion ?? 0))
+        return null;
       token.id = current.id;
       token.name = current.name;
       token.email = current.email;
       token.role = current.role;
-      token.isAdmin = current.isAdmin;
+      token.isAdmin =
+        current.isSuperAdmin ||
+        (current.isAdmin &&
+          Boolean(current.branchId) &&
+          (current.branchRole === "owner" || current.branchRole === "manager"));
+      token.isSuperAdmin = current.isSuperAdmin;
+      token.branchId = current.branchId;
+      token.branchRole = current.branchRole;
       token.approvalStatus = current.approvalStatus;
-      token.menus = current.isAdmin
+      token.menus = token.isAdmin
         ? ALL_WORKSPACE_MENUS
         : ALL_WORKSPACE_MENUS.filter(
             (menu) => !current.disabledMenus.includes(menu),
@@ -209,6 +225,9 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
         session.user.id = token.id;
         session.user.role = token.role === "reviewer" ? "reviewer" : "director";
         session.user.isAdmin = token.isAdmin === true;
+        session.user.isSuperAdmin = token.isSuperAdmin === true;
+        session.user.branchId = token.branchId ?? null;
+        session.user.branchRole = token.branchRole ?? null;
         session.user.approvalStatus = token.approvalStatus ?? "pending";
         session.user.menus = token.menus ?? [];
       }
@@ -229,6 +248,9 @@ declare module "next-auth" {
       id: string;
       role: UserRole;
       isAdmin: boolean;
+      isSuperAdmin?: boolean;
+      branchId?: string | null;
+      branchRole?: "owner" | "manager" | "teacher" | null;
       approvalStatus: ApprovalStatus;
       menus: WorkspaceMenu[];
     } & DefaultSession["user"];
@@ -237,6 +259,7 @@ declare module "next-auth" {
   }
   interface User {
     role?: UserRole;
+    sessionVersion?: number;
   }
 }
 
@@ -246,6 +269,10 @@ declare module "next-auth/jwt" {
     /** Authorization is refreshed from the database for every session read. */
     role?: UserRole;
     isAdmin?: boolean;
+    isSuperAdmin?: boolean;
+    branchId?: string | null;
+    branchRole?: "owner" | "manager" | "teacher" | null;
+    sessionVersion?: number;
     approvalStatus?: ApprovalStatus;
     menus?: WorkspaceMenu[];
     /** 학생 토큰은 이 칸 **하나뿐**이다 — id·sub·role 이 없다(studentSession.ts) */

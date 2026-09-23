@@ -3,6 +3,7 @@ import { beforeEach, describe, expect, it, vi } from "vitest";
 import AdminPage from "@/app/admin/page";
 import AdminSrsPage from "@/app/admin/math-srs/page";
 import AdminUserPage from "@/app/admin/users/[id]/page";
+import BranchPage from "@/app/branch/page";
 import ApprovalPendingPage from "@/app/approval-pending/page";
 import {
   adminAccount,
@@ -33,6 +34,9 @@ vi.mock("@/components/admin/AdminUserDetail", () => ({
   default: ({ userId }: { userId: string }) => (
     <span>{`detail:${userId}`}</span>
   ),
+}));
+vi.mock("@/components/unified/TeachingView", () => ({
+  default: () => <span>branch-screen</span>,
 }));
 vi.mock("@/components/approval-pending/ApprovalPending", () => ({
   default: () => <span>pending-screen</span>,
@@ -75,6 +79,23 @@ describe("account page server gates", () => {
     access.mockResolvedValue(adminAccount);
     render(await AdminPage());
     expect(screen.getByText("admin-screen")).toBeInTheDocument();
+  });
+  it("gives branch managers their own page but not the higher management page", async () => {
+    access.mockResolvedValue({
+      ...adminAccount,
+      isSuperAdmin: false,
+      branchId: "55555555-5555-4555-8555-555555555555",
+      branchRole: "manager",
+    });
+    await expect(AdminPage()).rejects.toThrow("redirect:/");
+    render(await BranchPage());
+    expect(
+      screen.getByRole("heading", { name: "지점관리" }),
+    ).toBeInTheDocument();
+    expect(screen.getByRole("link", { name: "반 관리" })).toHaveAttribute(
+      "href",
+      "/classes/manage",
+    );
   });
   it("gates the detail page and selects the requested user's documents", async () => {
     access.mockResolvedValue(null);

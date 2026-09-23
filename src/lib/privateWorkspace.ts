@@ -52,7 +52,11 @@ export const privateError = (message: string, status: number) =>
     { status, headers: privateHeaders },
   );
 export async function authorizePrivate(request: Request, ownerId?: string) {
-  const access = await authorizeAccount(request, Boolean(ownerId));
+  const access = await authorizeAccount(
+    request,
+    Boolean(ownerId),
+    Boolean(ownerId),
+  );
   if (access.response) return { ...access, ownerId: null };
   if (
     !ownerId &&

@@ -24,6 +24,9 @@ export type SessionUser = {
    * 이 값을 **빠뜨리지 못하게** 타입이 막는다.
    */
   isAdmin: boolean;
+  isSuperAdmin?: boolean;
+  branchId?: string | null;
+  branchRole?: "owner" | "manager" | "teacher" | null;
 };
 
 /** 현재 요청의 로그인 사용자를 반환한다. 미인증이면 null. */
@@ -41,5 +44,8 @@ export async function getSessionUser(): Promise<SessionUser | null> {
     name: session.user.name ?? "",
     // 🔴 boolean `true` 만 관리자다 — jwt 콜백이 세션을 읽을 때마다 DB 에서 새로 싣는다(auth.ts).
     isAdmin: session.user.isAdmin === true,
+    isSuperAdmin: session.user.isSuperAdmin === true,
+    branchId: session.user.branchId ?? null,
+    branchRole: session.user.branchRole ?? null,
   };
 }

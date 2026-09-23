@@ -16,6 +16,9 @@ export const getAccountAccess = cache(
       email: session.user.email ?? "",
       role: session.user.role,
       isAdmin: session.user.isAdmin === true,
+      isSuperAdmin: session.user.isSuperAdmin === true,
+      branchId: session.user.branchId ?? null,
+      branchRole: session.user.branchRole ?? null,
       approvalStatus: session.user.approvalStatus ?? "pending",
       menus: session.user.menus ?? [],
     };
@@ -34,7 +37,11 @@ export function sameOriginMutation(request: Request): boolean {
   );
 }
 
-export async function authorizeAccount(request?: Request, adminOnly = false) {
+export async function authorizeAccount(
+  request?: Request,
+  adminOnly = false,
+  superAdminOnly = false,
+) {
   const account = await getAccountAccess();
   const fail = (status: number, message: string) => ({
     account: null,
@@ -50,6 +57,8 @@ export async function authorizeAccount(request?: Request, adminOnly = false) {
     return fail(403, "관리자의 가입 승인이 필요합니다.");
   if (adminOnly && !account.isAdmin)
     return fail(403, "관리자만 사용할 수 있습니다.");
+  if (superAdminOnly && !account.isSuperAdmin)
+    return fail(403, "최고관리자만 사용할 수 있습니다.");
   if (
     request &&
     !["GET", "HEAD", "OPTIONS"].includes(request.method) &&

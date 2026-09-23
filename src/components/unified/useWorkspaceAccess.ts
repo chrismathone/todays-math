@@ -42,7 +42,16 @@ export function useWorkspaceAccess(
       const timeout = window.setTimeout(() => controller.abort(), 10_000);
       const deny = (path: string) => {
         const user = JSON.parse(source)[0] as WorkspaceIdentity;
-        setSnapshot({ source, user: { ...user, isAdmin: false }, menus: [] });
+        setSnapshot({
+          source,
+          user: {
+            ...user,
+            isAdmin: false,
+            isSuperAdmin: false,
+            canManageClasses: false,
+          },
+          menus: [],
+        });
         router.replace(path);
       };
       try {
@@ -77,6 +86,8 @@ export function useWorkspaceAccess(
           name: access.name,
           email: access.email,
           isAdmin: access.isAdmin === true,
+          isSuperAdmin: access.isSuperAdmin === true,
+          canManageClasses: access.menus.includes("teaching"),
         };
         setSnapshot((previous) =>
           previous?.source === source &&

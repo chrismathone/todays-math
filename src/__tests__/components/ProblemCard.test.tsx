@@ -105,8 +105,10 @@ describe("[S-08] ProblemCard — 팔레트 정리", () => {
       // 알약이 아니다 — 둥근 테두리도 면색도 없다.
       expect(el.className).not.toMatch(/rounded|bg-/);
     }
-    // 마이크로 라벨 규격(10px·굵게·자간)은 묶는 부모가 준다.
-    expect(level.parentElement?.className).toMatch(/text-\[10px\].*tracking-/);
+    // 읽기 쉬운 12px 라벨 규격은 묶는 부모가 준다.
+    expect(level.parentElement?.className).toMatch(
+      /text-\[12px\].*font-semibold/,
+    );
     expect(level.parentElement).toBe(type.parentElement);
   });
 

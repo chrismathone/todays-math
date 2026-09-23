@@ -31,7 +31,11 @@ import {
   toClassOwner,
 } from "@/lib/class/classOwner";
 import { db } from "@/lib/db";
-import { ownedRowsWhere, type ScopeViewer } from "@/lib/ownerScope";
+import {
+  canManageRoster,
+  ownedRowsWhere,
+  type ScopeViewer,
+} from "@/lib/ownerScope";
 import { serializeClass } from "@/lib/serializers";
 import { getSessionUser } from "@/lib/session";
 import { withErrorLog } from "@/lib/errorLog/withErrorLog";
@@ -40,6 +44,11 @@ import { withErrorLog } from "@/lib/errorLog/withErrorLog";
 async function handlePost(request: NextRequest) {
   const session = await getSessionUser();
   if (!session) return unauthorizedError();
+  if (!canManageRoster(session))
+    return Response.json(
+      { error: { code: "FORBIDDEN", message: "지점관리 권한이 필요합니다." } },
+      { status: 403 },
+    );
 
   const body = await request.json().catch(() => undefined);
   const parsed = classCreateRequestSchema.safeParse(body);
@@ -158,7 +167,7 @@ async function listWithOwners(
   pageSize: number,
 ) {
   const mineWhere = { userId: viewer.id };
-  const othersWhere = { userId: { not: viewer.id } };
+  const othersWhere = { userId: { not: viewer.id }, ...ownedRowsWhere(viewer) };
   const orderBy = { createdAt: "desc" as const };
   const skip = (page - 1) * pageSize;
 

@@ -143,6 +143,23 @@ enum AccountApproval {
   @@map("account_approval")
 }
 
+enum BranchRole {
+  owner
+  manager
+  teacher
+
+  @@map("branch_role")
+}
+
+model Branch {
+  id        String   @id @default(uuid()) @db.Uuid
+  name      String   @db.VarChar(100)
+  createdAt DateTime @default(now()) @map("created_at")
+  users     User[]
+
+  @@map("branch")
+}
+
 // ─────────────────────────────────────────────
 // FEAT-0: 사용자 (강사) — 04 §2.1
 // ─────────────────────────────────────────────
@@ -161,6 +178,8 @@ model User {
   updatedAt     DateTime  @updatedAt @map("updated_at")
   /// Soft delete — 탈퇴 후 30일 뒤 배치로 Hard delete (04 §4)
   deletedAt     DateTime? @map("deleted_at")
+  suspendedAt   DateTime? @map("suspended_at")
+  sessionVersion Int     @default(0) @map("session_version")
 
   classes        Class[]
   problems       Problem[]
@@ -175,6 +194,11 @@ model User {
   /// 계정 역할. 기본값은 director — 기본값이 reviewer 면 기존 계정이 조용히 권한을 잃는다.
   role            UserRole           @default(director)
   isAdmin         Boolean            @default(false) @map("is_admin")
+  /// 전체 계정·서비스 관리는 최고관리자만. isAdmin 은 지점 운영 권한이다.
+  isSuperAdmin    Boolean            @default(false) @map("is_super_admin")
+  branchId        String?            @map("branch_id") @db.Uuid
+  branchRole      BranchRole?        @map("branch_role")
+  branch          Branch?            @relation(fields: [branchId], references: [id], onDelete: SetNull)
   /// Existing accounts retain access; the signup API explicitly creates pending accounts.
   approvalStatus  AccountApproval    @default(pending) @map("approval_status")
   disabledMenus   String[]           @default([]) @map("disabled_menus")

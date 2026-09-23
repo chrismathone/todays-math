@@ -31,6 +31,9 @@ describe("getSessionUser — isAdmin", () => {
       email: base.email,
       name: base.name,
       isAdmin: true,
+      isSuperAdmin: false,
+      branchId: null,
+      branchRole: null,
     });
   });
 

@@ -19,7 +19,7 @@ export default async function AdminUserPage({
       `/login?callbackUrl=${encodeURIComponent(`/admin/users/${encodeURIComponent(id)}`)}`,
     );
   if (account.approvalStatus !== "approved") redirect("/approval-pending");
-  if (!account.isAdmin) redirect("/");
+  if (!account.isSuperAdmin) redirect("/");
   return (
     <AdminUserDetail
       userId={id}

@@ -12,6 +12,7 @@ import {
 } from "@/contracts/class.contract";
 import { jsonOk, unauthorizedError, validationError } from "@/lib/apiResponse";
 import { db } from "@/lib/db";
+import { canManageRoster } from "@/lib/ownerScope";
 import { requireOwnedClass } from "@/lib/ownership";
 import { serializeStudent } from "@/lib/serializers";
 import { getSessionUser } from "@/lib/session";
@@ -21,6 +22,16 @@ import { withErrorLog } from "@/lib/errorLog/withErrorLog";
 async function handlePost(request: NextRequest) {
   const session = await getSessionUser();
   if (!session) return unauthorizedError();
+  if (!canManageRoster(session))
+    return Response.json(
+      {
+        error: {
+          code: "FORBIDDEN",
+          message: "학생 배정은 지점 관리자만 할 수 있습니다.",
+        },
+      },
+      { status: 403 },
+    );
 
   const body = await request.json().catch(() => undefined);
   const parsed = studentCreateRequestSchema.safeParse(body);

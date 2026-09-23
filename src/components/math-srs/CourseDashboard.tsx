@@ -11,6 +11,7 @@ import type {
   CourseSummary,
 } from "@/contracts/mathSrsCourse.contract";
 import { getCourseSection } from "@/lib/math-srs/elementary/catalog";
+import { solutionForDisplay } from "@/lib/solutionSteps";
 import { MathText } from "@/components/math/MathText";
 import { ProblemContent } from "@/components/math/ProblemContent";
 import Icon from "@/components/unified/WorkspaceIcon";
@@ -1084,7 +1085,10 @@ function StudentDetail({
                         {attempt.solution ? (
                           <details className={s.solution}>
                             <summary>해설 보기</summary>
-                            <MathText text={attempt.solution} as="div" />
+                            <MathText
+                              text={solutionForDisplay(attempt.solution) ?? ""}
+                              as="div"
+                            />
                           </details>
                         ) : null}
                       </li>

@@ -96,6 +96,7 @@ describe.each(ROUTES)("overview($route)", ({ GET, env }) => {
         name: "Teacher",
         email: "teacher@example.test",
         isAdmin,
+        isSuperAdmin: isAdmin,
       });
       // 관리자 아님이면 실제 DB 는 조인 칸을 안 준다 — 모킹도 그 모양으로
       vi.mocked(db.class.findMany).mockResolvedValue(

@@ -14,7 +14,7 @@ export default async function AdminSrsPage() {
   const account = await getAccountAccess();
   if (!account) redirect("/login?callbackUrl=%2Fadmin%2Fmath-srs");
   if (account.approvalStatus !== "approved") redirect("/approval-pending");
-  if (!account.isAdmin) redirect("/");
+  if (!account.isSuperAdmin) redirect("/");
 
   return (
     <div className={`${adminStyles.shell} ${styles.page}`}>

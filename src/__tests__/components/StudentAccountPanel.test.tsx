@@ -109,6 +109,7 @@ function renderList() {
       selectedClass={MOCK_CLASS_A}
       status="ready"
       onRetry={() => {}}
+      canManageAccounts
     />,
   );
   return user;

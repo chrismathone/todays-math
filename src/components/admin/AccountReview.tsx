@@ -23,7 +23,17 @@ export const STATUS_LABELS = {
 export function AccountStatus({ account }: { account: ManagedAccount }) {
   return (
     <span className={`${s.badge} ${s[account.approvalStatus]}`}>
-      {account.isAdmin ? "관리자" : STATUS_LABELS[account.approvalStatus]}
+      {account.deletedAt
+        ? "삭제됨"
+        : account.suspendedAt
+          ? "정지됨"
+          : account.isSuperAdmin
+            ? "최고관리자"
+            : account.isAdmin
+              ? account.branchRole === "owner"
+                ? "지점장"
+                : "지점 관리자"
+              : STATUS_LABELS[account.approvalStatus]}
     </span>
   );
 }
@@ -45,6 +55,16 @@ export default function AccountReview({
   onUpdate: (account: ManagedAccount) => void;
 }) {
   const [menus, setMenus] = useState<WorkspaceMenu[]>(account.menus);
+  const [name, setName] = useState(account.name);
+  const [email, setEmail] = useState(account.email);
+  const [branchManager, setBranchManager] = useState(account.isAdmin);
+  const [branchId, setBranchId] = useState(account.branchId ?? "");
+  const [branchRole, setBranchRole] = useState<"owner" | "manager" | "teacher">(
+    "teacher",
+  );
+  const [branches, setBranches] = useState<{ id: string; name: string }[]>([]);
+  const [confirmDelete, setConfirmDelete] = useState(false);
+  const [issuedPassword, setIssuedPassword] = useState<string | null>(null);
   const [busy, setBusy] = useState(false);
   const busyRef = useRef(false);
   const [error, setError] = useState<string | null>(null);
@@ -54,12 +74,32 @@ export default function AccountReview({
   const [confirmReject, setConfirmReject] = useState(false);
   const headingRef = useRef<HTMLHeadingElement>(null);
   const dirty =
+    name !== account.name ||
+    email !== account.email ||
+    branchManager !== account.isAdmin ||
+    branchId !== (account.branchId ?? "") ||
     menus.length !== account.menus.length ||
     menus.some((menu) => !account.menus.includes(menu));
 
   useEffect(() => {
     headingRef.current?.focus();
   }, []);
+
+  useEffect(() => {
+    if (account.branchId || account.isSuperAdmin) return;
+    const controller = new AbortController();
+    accountRequest<{ data: { id: string; name: string }[] }>(
+      "/api/admin/branches",
+      { signal: controller.signal },
+    )
+      .then((response) => {
+        if (!controller.signal.aborted) setBranches(response.data);
+      })
+      .catch(() => {
+        /* Account editing remains available when branch options cannot load. */
+      });
+    return () => controller.abort();
+  }, [account.branchId, account.isSuperAdmin]);
 
   function changeMenus(menu: WorkspaceMenu) {
     const next = menus.includes(menu)
@@ -69,12 +109,19 @@ export default function AccountReview({
     setNotice(null);
     onLockChange(
       next.length !== account.menus.length ||
-        next.some((item) => !account.menus.includes(item)),
+        next.some((item) => !account.menus.includes(item)) ||
+        branchId !== (account.branchId ?? ""),
     );
   }
 
   async function save(approvalStatus?: "approved" | "rejected") {
-    if (busyRef.current || conflict || account.isAdmin) return;
+    if (
+      busyRef.current ||
+      conflict ||
+      account.isSuperAdmin ||
+      account.deletedAt
+    )
+      return;
     busyRef.current = true;
     setBusy(true);
     onLockChange(true);
@@ -89,12 +136,20 @@ export default function AccountReview({
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({
             expectedUpdatedAt: account.updatedAt,
+            ...(name !== account.name ? { name } : {}),
+            ...(email !== account.email ? { email } : {}),
+            ...(account.branchId ? { isAdmin: branchManager } : {}),
+            ...(!account.branchId && branchId ? { branchId, branchRole } : {}),
             ...(approvalStatus ? { approvalStatus } : {}),
             ...(approvalStatus !== "rejected" ? { menus } : {}),
           }),
         },
       );
       setMenus(result.data.menus);
+      setName(result.data.name);
+      setEmail(result.data.email);
+      setBranchManager(result.data.isAdmin);
+      setBranchId(result.data.branchId ?? "");
       onUpdate(result.data);
       setNotice(
         approvalStatus === "approved"
@@ -132,6 +187,10 @@ export default function AccountReview({
     try {
       const latest = await reloadManagedAccount(account);
       setMenus(latest.menus);
+      setName(latest.name);
+      setEmail(latest.email);
+      setBranchManager(latest.isAdmin);
+      setBranchId(latest.branchId ?? "");
       onUpdate(latest);
       setConflict(false);
       setError(null);
@@ -146,6 +205,72 @@ export default function AccountReview({
     } finally {
       setBusy(false);
       busyRef.current = false;
+    }
+  }
+
+  async function changeLifecycle(
+    field: "suspended" | "deleted",
+    value: boolean,
+  ) {
+    if (busyRef.current || dirty || account.isSuperAdmin) return;
+    busyRef.current = true;
+    setBusy(true);
+    setError(null);
+    setIssuedPassword(null);
+    try {
+      const result = await accountRequest<{ data: ManagedAccount }>(
+        `/api/admin/users/${encodeURIComponent(account.id)}`,
+        {
+          method: "PATCH",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            expectedUpdatedAt: account.updatedAt,
+            [field]: value,
+          }),
+        },
+      );
+      onUpdate(result.data);
+      setNotice(
+        field === "suspended"
+          ? value
+            ? "계정을 정지했습니다. 기존 로그인도 종료됩니다."
+            : "계정 정지를 해제했습니다."
+          : value
+            ? "계정을 삭제 처리했습니다. 복원할 수 있습니다."
+            : "계정을 복원했습니다.",
+      );
+      setConfirmDelete(false);
+    } catch (cause) {
+      setError(requestMessage(cause));
+      setConflict(cause instanceof AccountRequestError && cause.status === 409);
+    } finally {
+      busyRef.current = false;
+      setBusy(false);
+    }
+  }
+
+  async function reissuePassword() {
+    if (busyRef.current || dirty || account.deletedAt || account.isSuperAdmin)
+      return;
+    busyRef.current = true;
+    setBusy(true);
+    setError(null);
+    setIssuedPassword(null);
+    try {
+      const result = await accountRequest<{
+        data: { initialPassword: string };
+      }>(`/api/admin/users/${encodeURIComponent(account.id)}/password`, {
+        method: "POST",
+      });
+      const latest = await reloadManagedAccount(account);
+      onUpdate(latest);
+      setIssuedPassword(result.data.initialPassword);
+      setNotice("임시 비밀번호를 발급했습니다. 현재 로그인은 모두 종료됩니다.");
+    } catch (cause) {
+      setError(requestMessage(cause));
+    } finally {
+      busyRef.current = false;
+      setBusy(false);
     }
   }
 
@@ -175,23 +300,135 @@ export default function AccountReview({
         </div>
         <div>
           <dt>계정 유형</dt>
-          <dd>{account.role === "reviewer" ? "검수자" : "원장·선생님"}</dd>
+          <dd>
+            {account.isSuperAdmin
+              ? "최고관리자"
+              : account.isAdmin
+                ? account.branchRole === "owner"
+                  ? "지점장"
+                  : "지점 관리자"
+                : account.role === "reviewer"
+                  ? "검수자"
+                  : "강사"}
+          </dd>
         </div>
       </dl>
-      {account.isAdmin ? (
+      {!account.isSuperAdmin && !account.deletedAt ? (
+        <div className="mb-4 grid gap-3">
+          <label className="grid gap-1 text-sm">
+            이름
+            <input
+              className="min-h-11 rounded-lg border border-slate-300 px-3"
+              value={name}
+              maxLength={50}
+              onChange={(event) => {
+                setName(event.target.value);
+                onLockChange(true);
+              }}
+              disabled={busy || conflict}
+            />
+          </label>
+          <label className="grid gap-1 text-sm">
+            이메일
+            <input
+              className="min-h-11 rounded-lg border border-slate-300 px-3"
+              type="email"
+              value={email}
+              maxLength={255}
+              onChange={(event) => {
+                setEmail(event.target.value);
+                onLockChange(true);
+              }}
+              disabled={busy || conflict}
+            />
+          </label>
+        </div>
+      ) : null}
+      {account.isSuperAdmin ? (
         <p className={s.note}>
-          관리자 계정은 보호됩니다. 승인 상태와 메뉴 권한을 이 화면에서 변경할
-          수 없습니다.
+          최고관리자 계정은 보호됩니다. 승인 상태와 메뉴 권한을 이 화면에서
+          변경할 수 없습니다.
         </p>
+      ) : null}
+      {!account.isSuperAdmin && account.branchId ? (
+        <label className={s.menuOption}>
+          <input
+            type="checkbox"
+            checked={branchManager}
+            disabled={busy || conflict || authError}
+            onChange={(event) => {
+              setBranchManager(event.target.checked);
+              setNotice(null);
+              onLockChange(true);
+            }}
+          />
+          <span>지점관리 권한 (반·학생 운영)</span>
+        </label>
+      ) : null}
+      {!account.isSuperAdmin && !account.branchId && !account.deletedAt ? (
+        <div className="mb-4 grid gap-3 rounded-lg border border-slate-200 bg-slate-50 p-3">
+          <p className="text-sm font-semibold">지점 소속 지정</p>
+          <label className="grid gap-1 text-sm">
+            지점
+            <select
+              className="min-h-11 rounded-lg border border-slate-300 bg-white px-3"
+              value={branchId}
+              disabled={busy || conflict}
+              onChange={(event) => {
+                setBranchId(event.target.value);
+                setBranchManager(
+                  Boolean(event.target.value) && branchRole !== "teacher",
+                );
+                onLockChange(true);
+              }}
+            >
+              <option value="">독립 계정</option>
+              {branches.map((branch) => (
+                <option key={branch.id} value={branch.id}>
+                  {branch.name}
+                </option>
+              ))}
+            </select>
+          </label>
+          {branchId && (
+            <label className="grid gap-1 text-sm">
+              계정 유형
+              <select
+                className="min-h-11 rounded-lg border border-slate-300 bg-white px-3"
+                value={branchRole}
+                disabled={busy || conflict}
+                onChange={(event) => {
+                  setBranchRole(event.target.value as typeof branchRole);
+                  setBranchManager(event.target.value !== "teacher");
+                  onLockChange(true);
+                }}
+              >
+                <option value="teacher">강사</option>
+                <option value="manager">관리자</option>
+                <option value="owner">원장</option>
+              </select>
+            </label>
+          )}
+          <p className="text-xs text-slate-600">
+            운영 중인 반이 없는 독립 계정만 지점에 소속시킬 수 있습니다.
+          </p>
+        </div>
       ) : null}
       <fieldset
         className={s.menuFieldset}
-        disabled={busy || conflict || authError || account.isAdmin}
+        disabled={
+          busy ||
+          conflict ||
+          authError ||
+          account.isSuperAdmin ||
+          Boolean(account.deletedAt) ||
+          branchManager
+        }
       >
         <legend>
           사용 가능한 메뉴{" "}
           <span>
-            {account.isAdmin ? WORKSPACE_MENUS.length : menus.length} /{" "}
+            {branchManager ? WORKSPACE_MENUS.length : menus.length} /{" "}
             {WORKSPACE_MENUS.length}
           </span>
         </legend>
@@ -203,7 +440,7 @@ export default function AccountReview({
             <label key={menu.id} className={s.menuOption}>
               <input
                 type="checkbox"
-                checked={account.isAdmin || menus.includes(menu.id)}
+                checked={branchManager || menus.includes(menu.id)}
                 onChange={() => changeMenus(menu.id)}
               />
               <span>{menu.label}</span>
@@ -211,7 +448,7 @@ export default function AccountReview({
           ))}
         </div>
       </fieldset>
-      {!account.isAdmin && menus.length === 0 ? (
+      {!branchManager && menus.length === 0 ? (
         <p className={s.note}>
           선택한 메뉴가 없습니다. 승인해도 작업실에서 사용할 수 있는 메뉴가
           없습니다.
@@ -247,12 +484,12 @@ export default function AccountReview({
           {notice}
         </p>
       ) : null}
-      {!account.isAdmin ? (
+      {!account.isSuperAdmin && !account.deletedAt ? (
         <div className={s.reviewActions}>
           {dirty ? (
             <p className={s.unsaved}>
-              저장하지 않은 메뉴 변경이 있습니다. 저장하거나 취소한 뒤 다른
-              계정을 선택하세요.
+              저장하지 않은 변경이 있습니다. 저장하거나 취소한 뒤 다른 계정을
+              선택하세요.
             </p>
           ) : null}
           <div className={s.buttonRow}>
@@ -263,7 +500,7 @@ export default function AccountReview({
               onClick={() => save()}
             >
               {" "}
-              {busy ? "처리 중…" : "메뉴 변경 저장"}
+              {busy ? "처리 중…" : "변경 저장"}
             </button>
             {dirty ? (
               <button
@@ -272,6 +509,9 @@ export default function AccountReview({
                 disabled={busy}
                 onClick={() => {
                   setMenus(account.menus);
+                  setName(account.name);
+                  setEmail(account.email);
+                  setBranchManager(account.isAdmin);
                   onLockChange(false);
                   setNotice(null);
                 }}
@@ -336,6 +576,86 @@ export default function AccountReview({
               ) : null}
             </div>
           ) : null}
+        </div>
+      ) : null}
+      {!account.isSuperAdmin ? (
+        <div className="mt-5 border-t border-slate-200 pt-4">
+          <h3 className="mb-2 font-semibold">계정 상태와 비밀번호</h3>
+          {account.deletedAt ? (
+            <button
+              type="button"
+              className={s.secondary}
+              disabled={busy || conflict}
+              onClick={() => void changeLifecycle("deleted", false)}
+            >
+              계정 복원
+            </button>
+          ) : (
+            <div className={s.buttonRow}>
+              <button
+                type="button"
+                className={s.secondary}
+                disabled={busy || conflict || dirty}
+                onClick={() =>
+                  void changeLifecycle("suspended", !account.suspendedAt)
+                }
+              >
+                {account.suspendedAt ? "정지 해제" : "계정 정지"}
+              </button>
+              <button
+                type="button"
+                className={s.secondary}
+                disabled={busy || conflict || dirty}
+                onClick={() => void reissuePassword()}
+              >
+                비밀번호 재발급
+              </button>
+              <button
+                type="button"
+                className={s.reject}
+                disabled={busy || conflict || dirty}
+                onClick={() => setConfirmDelete(true)}
+              >
+                계정 삭제
+              </button>
+            </div>
+          )}
+          {confirmDelete && (
+            <div className={s.confirm} role="group" aria-label="계정 삭제 확인">
+              <p>
+                이 계정을 삭제 처리할까요? 로그인은 즉시 종료되고, 계정은 삭제
+                목록에서 복원할 수 있습니다.
+              </p>
+              <div className={s.buttonRow}>
+                <button
+                  type="button"
+                  className={s.reject}
+                  disabled={busy}
+                  onClick={() => void changeLifecycle("deleted", true)}
+                >
+                  삭제 확정
+                </button>
+                <button
+                  type="button"
+                  className={s.secondary}
+                  onClick={() => setConfirmDelete(false)}
+                >
+                  취소
+                </button>
+              </div>
+            </div>
+          )}
+          {issuedPassword && (
+            <p
+              role="status"
+              className="mt-3 rounded-lg bg-amber-50 p-3 text-sm"
+            >
+              임시 비밀번호:{" "}
+              <strong className="select-all font-mono">{issuedPassword}</strong>
+              <br />
+              지금 한 번만 보입니다. 당사자에게 안전하게 전달해 주세요.
+            </p>
+          )}
         </div>
       ) : null}
     </section>

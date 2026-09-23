@@ -443,6 +443,7 @@ describe("teacher SRS dashboard authorization and real roster", () => {
     fixture.session = teacherSession({
       id: fixture.otherOwnerId,
       isAdmin: true,
+      isSuperAdmin: true,
     });
     expect((await teacherRead()).status).toBe(200);
   });

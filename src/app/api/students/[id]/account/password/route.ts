@@ -20,6 +20,7 @@ import {
 import { studentIssueDeps } from "@/lib/learn/issueDeps";
 import { reissueStudentPassword } from "@/lib/learn/issueStudentAccount";
 import { getSessionUser } from "@/lib/session";
+import { canManageRoster } from "@/lib/ownerScope";
 import { withErrorLog } from "@/lib/errorLog/withErrorLog";
 
 type RouteContext = { params: Promise<{ id: string }> };
@@ -27,6 +28,16 @@ type RouteContext = { params: Promise<{ id: string }> };
 async function handlePost(request: NextRequest, { params }: RouteContext) {
   const session = await getSessionUser();
   if (!session) return unauthorizedError();
+  if (!canManageRoster(session))
+    return Response.json(
+      {
+        error: {
+          code: "FORBIDDEN",
+          message: "학생 비밀번호는 지점 관리자만 재발급할 수 있습니다.",
+        },
+      },
+      { status: 403 },
+    );
   if (!sameOriginMutation(request)) return crossSiteError();
 
   const { id } = await params;

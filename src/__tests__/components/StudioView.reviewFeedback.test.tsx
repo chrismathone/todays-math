@@ -266,9 +266,9 @@ describe("4 · 결과가 있는 크롭을 지우면 경고", () => {
   const figureMessage =
     "도형 1-1은 SVG 생성이 끝났습니다. 삭제하면 생성 결과도 지워집니다. 삭제할까요?";
   const problemBox = () =>
-    screen.getByRole("button", { name: /^문제 1 영역( · 완료)?$/ });
+    screen.getByRole("button", { name: /^문제 1 영역( 삭제)? · 완료$/ });
   const figureBox = () =>
-    screen.getByRole("button", { name: /^도형 1-1 영역( · 완료)?$/ });
+    screen.getByRole("button", { name: /^도형 1-1 영역( 삭제)? · 완료$/ });
 
   // 삭제 길은 모두 deleteBox 로 모인다 — 길마다 같은 확인을 거치는지 본다.
   const paths: [string, () => void, string][] = [

@@ -360,7 +360,7 @@ describe("teacher course roster, plans and detail", () => {
       (await TEACHER_PLAN(request(teacherPath(), "POST", plan), context()))
         .status,
     ).toBe(403);
-    teacher({ id: f.otherId, isAdmin: true, menus: [] });
+    teacher({ id: f.otherId, isAdmin: true, isSuperAdmin: true, menus: [] });
     response = await TEACHER_PLAN(
       request(teacherPath(), "POST", plan),
       context(),

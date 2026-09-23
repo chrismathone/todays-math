@@ -8,13 +8,13 @@ export default function AdminHeader({
   active = "accounts",
 }: {
   identity: { name: string; email: string };
-  active?: "accounts" | "srs";
+  active?: "accounts" | "srs" | "branches";
 }) {
   return (
     <header className={s.header}>
       <Link href="/" className={s.brand}>
         <TodayMathMark size={28} />
-        오늘의수학<span className={s.adminLabel}>관리자</span>
+        오늘의수학<span className={s.adminLabel}>관리</span>
       </Link>
       <div className={s.headerRight}>
         <nav className={s.headerNav} aria-label="관리자 메뉴">
@@ -24,6 +24,13 @@ export default function AdminHeader({
             aria-current={active === "accounts" ? "page" : undefined}
           >
             계정 관리
+          </Link>
+          <Link
+            className={s.workroomLink}
+            href="/admin/branches"
+            aria-current={active === "branches" ? "page" : undefined}
+          >
+            지점 개설
           </Link>
           <Link
             className={s.workroomLink}

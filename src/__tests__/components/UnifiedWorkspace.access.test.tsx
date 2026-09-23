@@ -525,7 +525,7 @@ describe("per-account workspace menu access", () => {
     expect(mocks.overviewMount).not.toHaveBeenCalled();
   });
 
-  it("shows the admin link only for explicit admin identity, including zero-menu admins", () => {
+  it("shows the higher management link only for the superadmin", () => {
     const { rerender } = render(
       <UnifiedWorkspace
         initialData={initialData}
@@ -534,16 +534,16 @@ describe("per-account workspace menu access", () => {
       />,
     );
     expect(
-      screen.queryByRole("link", { name: "관리자" }),
+      screen.queryByRole("link", { name: "관리" }),
     ).not.toBeInTheDocument();
     rerender(
       <UnifiedWorkspace
         initialData={initialData}
         allowedMenus={[]}
-        currentUser={{ ...user, isAdmin: true }}
+        currentUser={{ ...user, isAdmin: true, isSuperAdmin: true }}
       />,
     );
-    expect(screen.getByRole("link", { name: "관리자" })).toHaveAttribute(
+    expect(screen.getByRole("link", { name: "관리" })).toHaveAttribute(
       "href",
       "/admin",
     );
@@ -684,7 +684,9 @@ describe("per-account workspace menu access", () => {
       await screen.findByRole("heading", { name: "자료 패널" }),
     ).toBeVisible();
     nextCheck();
-    fetchMock.mockImplementation(async () => response([], { isAdmin: true }));
+    fetchMock.mockImplementation(async () =>
+      response([], { isAdmin: true, isSuperAdmin: true }),
+    );
     fireEvent.focus(window);
     await waitFor(() => expect(nav().queryAllByRole("button")).toHaveLength(0));
     expect(
@@ -693,7 +695,7 @@ describe("per-account workspace menu access", () => {
     expect(
       screen.queryByRole("heading", { name: "자료 패널", hidden: true }),
     ).not.toBeInTheDocument();
-    expect(screen.getByRole("link", { name: "관리자" })).toHaveAttribute(
+    expect(screen.getByRole("link", { name: "관리" })).toHaveAttribute(
       "href",
       "/admin",
     );

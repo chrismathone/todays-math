@@ -131,6 +131,9 @@ interface UserRow {
   name: string;
   /** D-130 — 학원 운영 데이터의 소유 울타리를 넘는 계정인가. 픽스처 원장 둘은 아니다. */
   isAdmin: boolean;
+  isSuperAdmin?: boolean;
+  branchId?: string | null;
+  branchRole?: "owner" | "manager" | "teacher" | null;
   deletedAt: Date | null;
 }
 
@@ -666,6 +669,9 @@ export function resetPrismaTestDouble() {
     email: u.email,
     name: u.name,
     isAdmin: false,
+    isSuperAdmin: false,
+    branchId: null,
+    branchRole: null,
     deletedAt: null,
   }));
   progressRows = MOCK_PROGRESS.map(toProgressRow);
@@ -2634,7 +2640,14 @@ export function seedPredictionRuns(rows: PredictionRunRow[]) {
  * 🔴 `isAdmin` 은 기본값을 두지 않는다 — 빠지면 «관리자 아님»으로 조용히 읽혀 짝 시험이 한쪽만 돈다.
  */
 export function seedUsers(rows: UserRow[]) {
-  userRows.push(...rows.map((row) => ({ ...row })));
+  userRows.push(
+    ...rows.map((row) => ({
+      isSuperAdmin: false,
+      branchId: null,
+      branchRole: null,
+      ...row,
+    })),
+  );
 }
 
 export function seedActualExamScores(rows: ActualExamScoreRow[]) {

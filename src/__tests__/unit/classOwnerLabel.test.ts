@@ -93,7 +93,9 @@ describe("선택 상자 글자 · title", () => {
 
 describe("판정 · 조인 → 담당", () => {
   it("싣는 판정은 관리자 표시 하나 — 빈 값 · true 아닌 값은 안 싣는다", () => {
-    expect(showsClassOwner({ id: "a", isAdmin: true })).toBe(true);
+    expect(
+      showsClassOwner({ id: "a", isAdmin: true, branchId: "branch-1" }),
+    ).toBe(true);
     expect(showsClassOwner({ id: "a", isAdmin: false })).toBe(false);
     expect(showsClassOwner({ id: "a" })).toBe(false);
   });

@@ -27,8 +27,11 @@ export function accountRouteAllowed(
   )
     return true;
   if (account.approvalStatus !== "approved") return false;
+  if (under(path, "/admin") || under(path, "/api/admin"))
+    return account.isSuperAdmin === true;
+  if (under(path, "/branch")) return account.isAdmin;
+  if (under(path, "/api/branch")) return account.isAdmin;
   if (account.isAdmin) return true;
-  if (under(path, "/admin") || under(path, "/api/admin")) return false;
   const any = (...menus: WorkspaceMenu[]) =>
     menus.some((menu) => account.menus.includes(menu));
   // dev 빌드의 작업실 AI 는 구독 CLI 다리로 간다(`studio-ai/endpoints.ts`) — 운영의 `/api/studio/ai` 와 같은 기능이라

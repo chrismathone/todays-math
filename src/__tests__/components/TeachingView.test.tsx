@@ -35,6 +35,7 @@ const account = {
   id: "10000000-0000-4000-8000-000000000001",
   name: "수업 선생님",
   email: "teacher@example.com",
+  branchId: "20000000-0000-4000-8000-000000000002",
 };
 
 beforeEach(() => {
@@ -169,7 +170,7 @@ describe("embedded teaching authentication", () => {
     expect(classReads).toBe(0);
   });
 
-  it("signs up inline and opens the real class manager", async () => {
+  it("signs up inline and opens class management without roster creation rights", async () => {
     const user = await loginForm();
     await user.click(screen.getByRole("button", { name: "회원가입" }));
     await user.type(screen.getByLabelText("이름"), account.name);
@@ -178,8 +179,11 @@ describe("embedded teaching authentication", () => {
       screen.getByRole("button", { name: "가입하고 수업 시작하기" }),
     );
     expect(
-      await screen.findByRole("form", { name: "반 추가" }),
+      await screen.findByRole("region", { name: "학생" }),
     ).toBeInTheDocument();
+    expect(
+      screen.queryByRole("form", { name: "반 추가" }),
+    ).not.toBeInTheDocument();
     expect(signups).toBe(1);
     expect(signIn).toHaveBeenCalledTimes(1);
     expect(window.location.pathname).toBe("/dev/unified");

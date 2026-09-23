@@ -439,7 +439,7 @@ describe("[D-131] 반 관리 — 카드 자리 · 반 만들기의 접힌 계획
 
   async function readyManage() {
     const user = userEvent.setup();
-    render(<ClassManage units={MOCK_UNITS} />);
+    render(<ClassManage units={MOCK_UNITS} canManageRoster />);
     await screen.findByText("이서준");
     return user;
   }

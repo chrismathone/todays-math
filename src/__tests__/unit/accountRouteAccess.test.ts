@@ -14,16 +14,26 @@ const account: AccountAccess = {
   menus: [...ALL_WORKSPACE_MENUS],
 };
 describe("account approval and menu route policy", () => {
-  it.each([
-    "/admin",
-    "/api/admin/users",
-    "/dev/unified",
-    "/api/dev/unified/ai",
-  ])("keeps privileged path %s admin-only", (path) => {
-    expect(accountRouteAllowed(account, "GET", path)).toBe(false);
-    expect(
-      accountRouteAllowed({ ...account, isAdmin: true }, "GET", path),
-    ).toBe(true);
+  it.each(["/dev/unified", "/api/dev/unified/ai"])(
+    "keeps privileged path %s admin-only",
+    (path) => {
+      expect(accountRouteAllowed(account, "GET", path)).toBe(false);
+      expect(
+        accountRouteAllowed({ ...account, isAdmin: true }, "GET", path),
+      ).toBe(true);
+    },
+  );
+  it("separates branch management from top-level administration", () => {
+    const manager = { ...account, isAdmin: true };
+    const superAdmin = { ...manager, isSuperAdmin: true };
+    for (const path of ["/admin", "/api/admin/users", "/admin/math-srs"]) {
+      expect(accountRouteAllowed(account, "GET", path)).toBe(false);
+      expect(accountRouteAllowed(manager, "GET", path)).toBe(false);
+      expect(accountRouteAllowed(superAdmin, "GET", path)).toBe(true);
+    }
+    expect(accountRouteAllowed(account, "GET", "/branch")).toBe(false);
+    expect(accountRouteAllowed(manager, "GET", "/branch")).toBe(true);
+    expect(accountRouteAllowed(superAdmin, "GET", "/branch")).toBe(true);
   });
   it.each([
     "/api/library/documents",

@@ -151,6 +151,9 @@ export const proxy = auth(async (req) => {
       email: user.email ?? "",
       role: user.role,
       isAdmin: user.isAdmin === true,
+      isSuperAdmin: user.isSuperAdmin === true,
+      branchId: user.branchId ?? null,
+      branchRole: user.branchRole ?? null,
       approvalStatus: user.approvalStatus ?? "pending",
       menus: user.menus ?? [],
     };
