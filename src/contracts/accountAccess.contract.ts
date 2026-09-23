@@ -9,6 +9,7 @@ export const WORKSPACE_MENUS = [
   { id: "teaching", label: "수업 · 학생 관리" },
   // D-124 ⑽ — «수업 · 학생 관리» 바로 아래. 강의 목록은 서비스 공용, 쓰기는 isAdmin 만(⑼).
   { id: "concept", label: "오늘의 개념" },
+  { id: "srs", label: "오늘의 기억 · SRS" },
 ] as const;
 export const workspaceMenuSchema = z.enum([
   "home",
@@ -18,6 +19,7 @@ export const workspaceMenuSchema = z.enum([
   "library",
   "teaching",
   "concept",
+  "srs",
 ]);
 export type WorkspaceMenu = z.infer<typeof workspaceMenuSchema>;
 export const ALL_WORKSPACE_MENUS: WorkspaceMenu[] = WORKSPACE_MENUS.map(
