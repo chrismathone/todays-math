@@ -13,6 +13,8 @@ import type {
 import { getCourseSection } from "@/lib/math-srs/elementary/catalog";
 import { MathText } from "@/components/math/MathText";
 import { ProblemContent } from "@/components/math/ProblemContent";
+import Icon from "@/components/unified/WorkspaceIcon";
+import { nameSelectionClass } from "@/components/ui/rowSelection";
 import CoursePlanForm from "./CoursePlanForm";
 import {
   getCourseDashboard,
@@ -319,7 +321,7 @@ export default function CourseDashboard({
                     <tr>
                       <th scope="col">학생 / 반</th>
                       <th scope="col">상태 / 계정</th>
-                      <th scope="col">시작 → 현재 소단원</th>
+                      <th scope="col">학습 진도</th>
                       <th scope="col">오늘 풀이</th>
                       <th scope="col">복습</th>
                       <th scope="col">마지막 활동</th>
@@ -336,7 +338,7 @@ export default function CourseDashboard({
                         <th scope="row">
                           <button
                             type="button"
-                            className={s.studentButton}
+                            className={`${s.studentButton} ${nameSelectionClass(selected?.id === student.id)}`}
                             aria-label={`${student.name} 학습 현황 열기`}
                             aria-expanded={selected?.id === student.id}
                             aria-controls={panelId}
@@ -345,72 +347,106 @@ export default function CourseDashboard({
                               setSelected(student);
                             }}
                           >
-                            <strong>{student.name}</strong>
-                            <span className={s.subline}>
-                              {student.className}
+                            <span className={s.studentIdentity}>
+                              <strong>{student.name}</strong>
+                              <span className={s.subline}>
+                                {student.className}
+                              </span>
                             </span>
+                            <Icon name="chevron" size={15} />
                           </button>
                         </th>
                         <td>
-                          <span
-                            className={s.status}
-                            data-status={student.summary.status}
-                          >
-                            {STATUS[student.summary.status]}
-                          </span>
-                          <span className={s.subline}>
-                            {student.hasAccount ? (
-                              "계정 사용 가능"
-                            ) : (
+                          <div className={s.studentState}>
+                            <span
+                              className={s.status}
+                              data-status={student.summary.status}
+                            >
+                              {STATUS[student.summary.status]}
+                            </span>
+                            {!student.hasAccount ? (
                               <Link
+                                className={s.accountLink}
                                 href={`/classes/${encodeURIComponent(student.classId)}`}
+                                aria-label="계정 확인 필요 · 계정 관리 ↗"
                               >
-                                계정 확인 필요 · 계정 관리 ↗
+                                <Icon name="warning" size={14} />
+                                계정 확인
+                                <Icon name="chevron" size={12} />
                               </Link>
+                            ) : (
+                              <span className={s.srOnly}>계정 사용 가능</span>
                             )}
-                          </span>
+                          </div>
                         </td>
                         <td className={s.sectionCell}>
-                          <span className={s.subline}>
-                            시작 {sectionName(student.plan?.startSectionId)}
-                          </span>
-                          <strong>
-                            {sectionName(student.summary.currentSectionId)}
-                          </strong>
+                          {student.plan || student.summary.currentSectionId ? (
+                            <>
+                              <strong>
+                                {sectionName(student.summary.currentSectionId)}
+                              </strong>
+                              <span className={s.subline}>
+                                시작 {sectionName(student.plan?.startSectionId)}
+                              </span>
+                            </>
+                          ) : (
+                            <span className={s.unset}>진도 설정 전</span>
+                          )}
                         </td>
                         <td>
-                          <strong>
-                            {student.summary.todayAnswered} /{" "}
-                            {student.summary.todayGoal}
-                          </strong>
-                          <progress
-                            aria-label={`${student.name} 오늘 진행률`}
-                            value={Math.min(
-                              student.summary.todayAnswered,
-                              student.summary.todayGoal,
-                            )}
-                            max={student.summary.todayGoal}
-                          />
-                          <span className={s.subline}>
-                            정답 {student.summary.todayCorrect}문제
-                          </span>
+                          {student.plan || student.summary.todayAnswered > 0 ? (
+                            <>
+                              <strong>
+                                {student.summary.todayAnswered} /{" "}
+                                {student.summary.todayGoal}
+                              </strong>
+                              <progress
+                                aria-label={`${student.name} 오늘 진행률`}
+                                value={Math.min(
+                                  student.summary.todayAnswered,
+                                  student.summary.todayGoal,
+                                )}
+                                max={student.summary.todayGoal}
+                              />
+                              <span className={s.subline}>
+                                정답 {student.summary.todayCorrect}문제
+                              </span>
+                            </>
+                          ) : (
+                            <span className={s.unset}>학습 전</span>
+                          )}
                         </td>
                         <td>
-                          <strong
+                          <span
                             className={
-                              student.summary.dueCount ? s.due : undefined
+                              student.summary.dueCount ? s.reviewCount : s.unset
                             }
                           >
-                            {student.summary.dueCount}개
-                          </strong>
+                            {student.summary.dueCount
+                              ? `${student.summary.dueCount}개`
+                              : "없음"}
+                          </span>
                         </td>
-                        <td>{dateTime(student.summary.lastPracticedAt)}</td>
+                        <td
+                          className={
+                            !student.summary.lastPracticedAt
+                              ? s.unset
+                              : undefined
+                          }
+                        >
+                          {dateTime(student.summary.lastPracticedAt)}
+                        </td>
                         <td>
-                          {student.plan
-                            ? student.plan.enabled
-                              ? "켜짐"
-                              : "일시정지"
-                            : "미설정"}
+                          <span
+                            className={s.automation}
+                            data-enabled={student.plan?.enabled ?? false}
+                          >
+                            {student.plan
+                              ? student.plan.enabled
+                                ? "켜짐"
+                                : "일시정지"
+                              : "미설정"}
+                          </span>
                         </td>
                         <td>
                           <button
@@ -424,7 +460,7 @@ export default function CourseDashboard({
                               setSelected(student);
                             }}
                           >
-                            상세 보기 <span aria-hidden="true">↗</span>
+                            상세 보기 <Icon name="chevron" size={15} />
                           </button>
                         </td>
                       </tr>
@@ -633,7 +669,7 @@ function StudentDetail({
           onClick={onClose}
           aria-label="학생 상세 닫기"
         >
-          닫기 <span aria-hidden="true">×</span>
+          닫기 <Icon name="close" size={16} />
         </button>
       </header>
       <p className={s.detailHint}>
@@ -1065,8 +1101,11 @@ function AccountNotice({ student }: { student: CourseRosterStudent }) {
         계정 미발급 또는 사용 중지 상태입니다. 학습 계획은 미리 설정할 수
         있습니다. 반 관리에서 계정을 발급하거나 사용 상태를 확인해 주세요.
       </p>
-      <Link href={`/classes/${encodeURIComponent(student.classId)}`}>
-        {student.className} · 계정 확인하러 가기 →
+      <Link
+        className={s.noticeAction}
+        href={`/classes/${encodeURIComponent(student.classId)}`}
+      >
+        {student.className} · 계정 확인하러 가기 <Icon name="arrow" size={16} />
       </Link>
     </div>
   );
