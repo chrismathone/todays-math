@@ -77,20 +77,18 @@ function mission(answered = 0): MathSrsPublicMission {
     startedAt: "2026-09-21T08:00:00.000Z",
     completedAt: answered === 12 ? "2026-09-21T08:10:00.000Z" : null,
     problems,
-    attempts: problems
-      .slice(0, answered)
-      .map((problem) => ({
-        problemId: problem.id,
-        templateId: problem.templateId,
-        conceptId: problem.conceptId,
-        kind: problem.kind,
-        submittedAnswer: "1/3",
-        correct: true,
-        rating: "good",
-        usedHint: false,
-        elapsedSeconds: 20,
-        answeredAt: "2026-09-21T08:10:00.000Z",
-      })),
+    attempts: problems.slice(0, answered).map((problem) => ({
+      problemId: problem.id,
+      templateId: problem.templateId,
+      conceptId: problem.conceptId,
+      kind: problem.kind,
+      submittedAnswer: "1/3",
+      correct: true,
+      rating: "good",
+      usedHint: false,
+      elapsedSeconds: 20,
+      answeredAt: "2026-09-21T08:10:00.000Z",
+    })),
   };
 }
 
@@ -334,4 +332,105 @@ it("shows the actual class roster, individual progress, and unassessed concepts"
   expect(within(student).getByText("오늘 학습 기록 없음")).toBeInTheDocument();
   expect(within(student).getByText("일차방정식의 풀이")).toBeInTheDocument();
   expect(api.fetchClassMathSrs).toHaveBeenCalledWith(classId);
+});
+
+it("combines teacher name search with real learning status and resets an empty result", async () => {
+  const user = userEvent.setup();
+  const base = {
+    memories: createMemories(),
+    lastPracticedAt: null,
+    currentProgress: null,
+  };
+  const today = {
+    id: missionId,
+    date: "2026-09-21",
+    startedAt: "2026-09-21T08:00:00.000Z",
+    total: 12 as const,
+    answered: 4,
+    correct: 3,
+    completedAt: null,
+  };
+  vi.mocked(api.fetchClassMathSrs).mockResolvedValue({
+    ok: true,
+    data: {
+      class: { id: classId, name: "중1 A반" },
+      students: [
+        {
+          ...base,
+          id: "waiting",
+          name: "김하루",
+          hasAccount: false,
+          today: null,
+        },
+        { ...base, id: "practicing", name: "이수학", hasAccount: true, today },
+        {
+          ...base,
+          id: "completed",
+          name: "김수학",
+          hasAccount: true,
+          today: {
+            ...today,
+            answered: 12,
+            correct: 10,
+            completedAt: "2026-09-21T08:10:00.000Z",
+          },
+        },
+      ],
+      available: true,
+    },
+  });
+  render(<ClassMathSrs classId={classId} />);
+  await screen.findByRole("region", { name: "김하루 학습 현황" });
+  const filters = screen.getByRole("group", { name: "학습 상태 필터" });
+  await user.click(within(filters).getByRole("button", { name: "학습 중 1" }));
+  expect(
+    screen.getByRole("region", { name: "이수학 학습 현황" }),
+  ).toBeInTheDocument();
+  expect(
+    screen.queryByRole("region", { name: "김수학 학습 현황" }),
+  ).not.toBeInTheDocument();
+  await user.type(
+    screen.getByRole("searchbox", { name: "학생 이름 검색" }),
+    " 김 ",
+  );
+  expect(screen.getByText("조건에 맞는 학생이 없어요.")).toBeInTheDocument();
+  // Counts describe the entire roster, even when the name query has no match.
+  expect(
+    within(filters).getByRole("button", { name: "완료 1" }),
+  ).toBeInTheDocument();
+  await user.click(within(filters).getByRole("button", { name: "완료 1" }));
+  expect(
+    screen.getByRole("region", { name: "김수학 학습 현황" }),
+  ).toBeInTheDocument();
+  await user.click(
+    within(filters).getByRole("button", { name: "계정 미발급 1" }),
+  );
+  expect(
+    screen.getByRole("region", { name: "김하루 학습 현황" }),
+  ).toBeInTheDocument();
+  await user.click(within(filters).getByRole("button", { name: "미학습 1" }));
+  expect(
+    screen.getByRole("region", { name: "김하루 학습 현황" }),
+  ).toBeInTheDocument();
+  await user.clear(screen.getByRole("searchbox", { name: "학생 이름 검색" }));
+  await user.type(
+    screen.getByRole("searchbox", { name: "학생 이름 검색" }),
+    "없는 학생",
+  );
+  await user.click(screen.getByRole("button", { name: "필터 초기화" }));
+  expect(screen.getByRole("searchbox", { name: "학생 이름 검색" })).toHaveValue(
+    "",
+  );
+  expect(
+    within(filters).getByRole("button", { name: "전체 3" }),
+  ).toHaveAttribute("aria-pressed", "true");
+  expect(
+    screen.getByRole("region", { name: "김하루 학습 현황" }),
+  ).toBeInTheDocument();
+  expect(
+    screen.getByRole("region", { name: "이수학 학습 현황" }),
+  ).toBeInTheDocument();
+  expect(
+    screen.getByRole("region", { name: "김수학 학습 현황" }),
+  ).toBeInTheDocument();
 });

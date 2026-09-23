@@ -11,16 +11,18 @@ export function SrsMemoryGrid({
   now?: Date;
 }) {
   return (
-    <ul className={s.memories}>
+    <ul className={s.memories} aria-label="개념별 기억 추정치">
       {CONCEPTS.map((concept) => {
         const memory = memories.find((item) => item.conceptId === concept.id);
         const assessed = memory && memory.attempts > 0;
         const estimate = assessed ? estimatedRecall(memory, now) : null;
         const recall = estimate === null ? null : Math.round(estimate);
         return (
-          <li key={concept.id}>
+          <li key={concept.id} data-assessed={!!assessed}>
             <span>{concept.title}</span>
-            <strong>{recall === null ? "측정 전" : `${recall}%`}</strong>
+            <strong className={recall === null ? s.unassessed : undefined}>
+              {recall === null ? "측정 전" : `${recall}%`}
+            </strong>
             <span className={s.memoryTrack} aria-hidden="true">
               <span style={{ width: `${recall ?? 0}%` }} />
             </span>
