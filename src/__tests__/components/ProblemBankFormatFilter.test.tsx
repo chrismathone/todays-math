@@ -33,7 +33,7 @@ const FORMAT_BADGES = ["객", "단", "서", "?형식"] as const;
 async function renderBank() {
   const user = userEvent.setup();
   const view = render(<ProblemsPage />);
-  await screen.findByRole("heading", { name: "문제은행" }, RENDER_WAIT);
+  await screen.findByRole("heading", { name: "시험지 만들기" }, RENDER_WAIT);
   await screen.findByText(/를 유한소수로 나타내어라/, undefined, RENDER_WAIT);
   return { user, ...view };
 }

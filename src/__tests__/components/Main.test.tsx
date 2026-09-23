@@ -98,10 +98,9 @@ describe("[T4.3 S-03] 메인 — MSW 기본 데이터 (스택)", () => {
     expect(await screen.findByRole("alert")).toHaveTextContent(
       "목록을 불러오지 못했습니다",
     );
-    expect(screen.getByRole("link", { name: "반" })).toHaveAttribute(
-      "href",
-      "/classes",
-    );
+    expect(
+      screen.getByRole("link", { name: "수업·학생 관리" }),
+    ).toHaveAttribute("href", "/classes");
     server.resetHandlers();
     await user.click(screen.getByRole("button", { name: "다시 불러오기" }));
 

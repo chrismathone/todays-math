@@ -53,10 +53,9 @@ describe("[T2.3 S-07] 반/학생 관리 — 크롬·표·학생", () => {
       "href",
       "/",
     );
-    expect(screen.getByRole("link", { name: "반" })).toHaveAttribute(
-      "href",
-      "/classes",
-    );
+    expect(
+      screen.getByRole("link", { name: "수업·학생 관리" }),
+    ).toHaveAttribute("href", "/classes");
 
     expect(
       screen.getByRole("columnheader", { name: "반" }),
@@ -148,11 +147,10 @@ describe("[T2.3 S-07] 반/학생 관리 — 크롬·표·학생", () => {
       expect(connection.mock.invocationCallOrder[0]).toBeLessThan(
         findMany.mock.invocationCallOrder[0]!,
       );
-      expect(screen.getByRole("link", { name: "반" })).toHaveAttribute(
-        "href",
-        "/classes",
-      );
-      expect(screen.getByRole("link", { name: "메인" })).toHaveAttribute(
+      expect(
+        screen.getByRole("link", { name: "수업·학생 관리" }),
+      ).toHaveAttribute("href", "/classes");
+      expect(screen.getByRole("link", { name: "오늘의 작업" })).toHaveAttribute(
         "href",
         "/",
       );

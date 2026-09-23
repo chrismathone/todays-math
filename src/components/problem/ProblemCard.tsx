@@ -22,7 +22,7 @@ import { ProblemTransformPanel } from "./ProblemTransformPanelLazy";
 const paperVariables = PAPER_CSS_VARIABLES as CSSProperties;
 
 /** 마이크로 라벨 — 검수 카드(`ReviewProblemCard`)와 같은 규격을 쓴다. */
-const MICRO = "text-[10px] font-extrabold tracking-[1.2px]";
+const MICRO = "text-[12px] font-semibold";
 
 /**
  * 출처·그림·형식 배지의 겉모습 — 원장님 지시 2026-08-27:
@@ -49,7 +49,7 @@ const BADGE_CHIP = [
 
 /** 카드 바닥 액션 — 「정답 및 해설」과 「변형」이 같은 규격을 쓴다(둘 다 카드를 펼친다). */
 const CARD_ACTION_CLASS =
-  "inline-flex min-h-11 cursor-pointer items-center gap-2 border border-control bg-surface px-5 py-2.5 text-sm font-medium text-ink transition-colors hover:bg-side";
+  "inline-flex min-h-11 cursor-pointer items-center gap-2 rounded-lg border border-control bg-surface px-5 py-2.5 text-sm font-semibold text-ink transition-colors hover:bg-side";
 
 /**
  * 관리 동작(검수 승인·반려) — 테두리를 빼서 **무게만** 낮춘다 (UI-07, 2026-09-08).
@@ -59,7 +59,7 @@ const CARD_ACTION_CLASS =
  *    「못 찾게·못 누르게」로 만들면 그건 개선이 아니라 다른 결함이다.
  */
 const CARD_MANAGE_CLASS =
-  "inline-flex min-h-11 cursor-pointer items-center px-2 text-sm font-medium text-text-2 underline-offset-4 transition-colors hover:text-ink hover:underline";
+  "inline-flex min-h-11 cursor-pointer items-center rounded-lg px-2 text-sm font-semibold text-text-2 underline-offset-4 transition-colors hover:text-ink hover:underline";
 
 /**
  * 검수 상태에 기능색을 쓴다 (원장님 확정 2026-08-18 "검수 상태에도 색을 써서 더 명확하게").

@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { useCallback, useEffect, useMemo, useState } from "react";
+import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { DIFFICULTY_LADDER } from "@/contracts/difficulty";
 
 import { PROBLEM_CARD_WIDTH } from "@/components/print/tokens";
@@ -62,6 +62,7 @@ import {
 } from "./labels";
 import { ProblemCard } from "./ProblemCardLazy";
 import { ProblemGenerateForm, ProblemRegisterForm } from "./ProblemPanelsLazy";
+import styles from "./ProblemBank.module.css";
 
 /**
  * 위쪽 액션 패널 — 「변형」은 **여기 없다**(원장님 확정 2026-08-19).
@@ -184,6 +185,8 @@ export function ProblemBank() {
   const [unitsError, setUnitsError] = useState<string | null>(null);
   const [notice, setNotice] = useState<string | null>(null);
   const [panel, setPanel] = useState<Panel>(null);
+  const [listAttempt, setListAttempt] = useState(0);
+  const [unitsAttempt, setUnitsAttempt] = useState(0);
 
   // ── 담기 바구니 (원장님 확정 2026-09-04) ──────────────────────────
   //
@@ -210,6 +213,7 @@ export function ProblemBank() {
   const [basketError, setBasketError] = useState<string | null>(null);
   const [basketBusy, setBasketBusy] = useState(false);
   const [basketOpen, setBasketOpen] = useState(false);
+  const basketPending = useRef(false);
 
   // 단원은 **범위 하나**로만 좁힌다(시작·끝 소단원 id). 서버가 `orderIndex` 로 푼다.
   const filters: ProblemListFilters = useMemo(
@@ -260,7 +264,7 @@ export function ProblemBank() {
     return () => {
       cancelled = true;
     };
-  }, [filters, page]);
+  }, [filters, page, listAttempt]);
 
   useEffect(() => {
     let cancelled = false;
@@ -279,7 +283,7 @@ export function ProblemBank() {
     return () => {
       cancelled = true;
     };
-  }, []);
+  }, [unitsAttempt]);
 
   // 바구니는 **계정에 저장**된다 — 다른 기기에서 담은 것이 여기 그대로 있어야 한다.
   useEffect(() => {
@@ -305,7 +309,10 @@ export function ProblemBank() {
    *  같은 요청이 두 벌 나가는 것을 막는다. */
   const runBasket = useCallback(
     async (op: () => Promise<BasketState>, label: string) => {
+      if (basketPending.current) return;
+      basketPending.current = true;
       setBasketBusy(true);
+      setBasketError(null);
       try {
         setBasket(await op());
       } catch (e) {
@@ -313,6 +320,7 @@ export function ProblemBank() {
           e instanceof Error ? e.message : `${label}에 실패했습니다`,
         );
       } finally {
+        basketPending.current = false;
         setBasketBusy(false);
       }
     },
@@ -367,6 +375,21 @@ export function ProblemBank() {
   function goToPage(next: number) {
     startProblemReload();
     setPage(next);
+  }
+
+  function resetFilters() {
+    resetToFirstPage();
+    setRangeStart(null);
+    setRangeEnd(null);
+    setQuery("");
+    setDifficulty("");
+    setProblemFilter("");
+    setReviewStatus("");
+    setSource("");
+    setHasFigure(false);
+    setHasSolution(false);
+    setHasAnswer(false);
+    setListAttempt((value) => value + 1);
   }
 
   /**
@@ -477,9 +500,9 @@ export function ProblemBank() {
   );
 
   return (
-    <main className="px-[26px] py-6">
+    <main className={`${styles.page} px-4 py-6 sm:px-[26px]`}>
       <div className="flex flex-wrap items-baseline justify-between gap-3">
-        <h1 className="text-[15px] font-black">문제은행</h1>
+        <h1 className="text-[24px] font-bold">시험지 만들기</h1>
         <div className="flex flex-wrap gap-2">
           <Button
             variant="ink"
@@ -623,7 +646,7 @@ export function ProblemBank() {
           style={{ gridColumn: "span 2" }}
         >
           <span
-            className="text-[10.5px] font-black tracking-[1.5px] text-text-2"
+            className="text-[12px] font-black tracking-[1.5px] text-text-2"
             id="filter-assets-label"
           >
             자료
@@ -649,7 +672,7 @@ export function ProblemBank() {
                   }}
                   type="checkbox"
                 />
-                <span className="whitespace-nowrap text-[12.5px] text-ink">
+                <span className="whitespace-nowrap text-[14px] text-ink">
                   {label}
                 </span>
               </label>
@@ -665,14 +688,14 @@ export function ProblemBank() {
       {rangeEditing ? (
         <div className="mt-3" data-range-panel>
           <div className="flex flex-wrap items-baseline gap-3">
-            <span className="text-[12.5px] font-black text-ink">
+            <span className="text-[14px] font-black text-ink">
               {rangeSummary ? rangeSummary.text : "시작 소단원을 고르세요"}
             </span>
             {rangeStart ? (
               <button
                 type="button"
                 onClick={clearRange}
-                className="cursor-pointer text-[12.5px] font-bold text-text-3 underline-offset-4 hover:underline"
+                className="cursor-pointer text-[14px] font-bold text-text-3 underline-offset-4 hover:underline"
               >
                 전체로
               </button>
@@ -680,7 +703,7 @@ export function ProblemBank() {
             <button
               type="button"
               onClick={() => setRangeEditing(false)}
-              className="ml-auto cursor-pointer text-[12.5px] font-bold text-g-blue underline-offset-4 hover:underline"
+              className="ml-auto cursor-pointer text-[14px] font-bold text-g-blue underline-offset-4 hover:underline"
             >
               접기
             </button>
@@ -697,7 +720,7 @@ export function ProblemBank() {
                   }}
                 />
               </div>
-              <span className="text-[10.5px] font-bold tracking-normal text-text-3">
+              <span className="text-[12px] font-bold tracking-normal text-text-3">
                 {rangeSummary.label}
               </span>
             </>
@@ -731,7 +754,7 @@ export function ProblemBank() {
       ) : null}
 
       {notice ? (
-        <p className="mt-4 text-[12.5px] font-bold text-ink">
+        <p className="mt-4 text-[14px] font-bold text-ink">
           {notice}
           {madeTestId ? (
             <>
@@ -747,17 +770,45 @@ export function ProblemBank() {
         </p>
       ) : null}
       {error ? (
-        <p className="mt-4 text-[12.5px] font-bold text-g-red-text">{error}</p>
+        <div className={styles.error} role="alert">
+          <p>{error}</p>
+          <Button
+            variant="secondary"
+            onClick={() => {
+              startProblemReload();
+              setListAttempt((value) => value + 1);
+            }}
+          >
+            문제 목록 다시 불러오기
+          </Button>
+        </div>
       ) : null}
       {basketError ? (
-        <p className="mt-4 text-[12.5px] font-bold text-g-red-text">
-          담기 바구니 — {basketError}
-        </p>
+        <div className={styles.error} role="alert">
+          <p>담기 바구니 — {basketError}</p>
+          <Button
+            variant="secondary"
+            disabled={basketBusy}
+            onClick={() => void runBasket(loadBasket, "바구니 불러오기")}
+          >
+            담은 문제 다시 불러오기
+          </Button>
+        </div>
       ) : null}
       {unitsError ? (
-        <p className="mt-4 text-[12.5px] font-bold text-g-red-text">
-          {unitsError}
-        </p>
+        <div className={styles.error} role="alert">
+          <p>{unitsError}</p>
+          <Button
+            variant="secondary"
+            onClick={() => {
+              setUnitsLoading(true);
+              setUnitsError(null);
+              setUnitsAttempt((value) => value + 1);
+            }}
+          >
+            단원 다시 불러오기
+          </Button>
+        </div>
       ) : null}
       {!loading && !error ? (
         <PaginationRow
@@ -774,7 +825,16 @@ export function ProblemBank() {
         data-problem-grid
       >
         {!loading && !error && problems.length === 0 ? (
-          <p className="text-[12.5px] text-text-2">등록된 문제가 없습니다</p>
+          <div className={styles.empty}>
+            <p>등록된 문제가 없습니다</p>
+            {Object.values(filters).some(Boolean) ? (
+              <Button variant="secondary" onClick={resetFilters}>
+                검색 조건 초기화
+              </Button>
+            ) : (
+              <p>위의 등록 또는 생성 버튼으로 문제를 추가할 수 있습니다.</p>
+            )}
+          </div>
         ) : !loading && !error ? (
           problems.map((problem) => (
             <ProblemCard
@@ -879,7 +939,7 @@ function PaginationRow({
       aria-label="페이지"
       className="mt-4 flex flex-wrap items-center justify-between gap-3"
     >
-      <span className="text-[12.5px] text-text-2">
+      <span className="text-[14px] text-text-2">
         {`총 ${total.toLocaleString("ko-KR")}문제`}
       </span>
       <span className="flex items-center gap-3">
@@ -890,7 +950,7 @@ function PaginationRow({
         >
           이전
         </Button>
-        <span className="text-[12.5px] font-bold text-ink">
+        <span className="text-[14px] font-bold text-ink">
           {`${page} / ${totalPages} 페이지`}
         </span>
         <Button

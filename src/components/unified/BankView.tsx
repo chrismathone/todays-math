@@ -427,8 +427,10 @@ function DetailModal({
           event.clientX > bounds.right ||
           event.clientY < bounds.top ||
           event.clientY > bounds.bottom
-        )
+        ) {
+          event.preventDefault();
           onClose();
+        }
       }}
     >
       <header className={styles.cardHeader}>

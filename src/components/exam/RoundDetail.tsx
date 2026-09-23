@@ -122,7 +122,7 @@ export function RoundDetail({
     <AppChrome tab="exam">
       <div className="px-4 pt-4 pb-8 sm:px-6">
         <div className="flex flex-wrap items-baseline gap-x-4 gap-y-1 border-b border-divider pb-3">
-          <Link href="/exam" className="text-[12.5px] font-bold text-muted">
+          <Link href="/exam" className="text-[14px] font-bold text-muted">
             {/* 꺾쇠는 장식이다 — 링크 이름에 섞이면 스크린 리더가 "‹ 목록"으로 읽는다. */}
             <span aria-hidden="true">‹ </span>목록
           </Link>
@@ -166,7 +166,7 @@ export function RoundDetail({
           onActualSaved={applyActualScore}
         />
 
-        <p className="mt-4 border-t border-divider pt-3 text-[12.5px] text-muted tabular-nums">
+        <p className="mt-4 border-t border-divider pt-3 text-[14px] text-muted tabular-nums">
           {detail.engineVersion
             ? `엔진 ${detail.engineVersion} · 근거 ${summary.evidenceCount}회차`
             : "엔진 미실행"}

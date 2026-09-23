@@ -50,7 +50,7 @@ export function TestReview({ testId }: Props) {
   if (state.status === "notfound" || state.status === "error") {
     return (
       <main className="px-4 py-6 sm:px-8">
-        <p role="alert" className="text-[12.5px] text-g-red-text">
+        <p role="alert" className="text-[14px] text-g-red-text">
           {state.status === "notfound"
             ? "테스트를 찾을 수 없습니다"
             : state.message}
@@ -63,7 +63,7 @@ export function TestReview({ testId }: Props) {
           ) : null}
           <Link
             href="/"
-            className="inline-flex min-h-11 items-center px-3 text-[12.5px] font-bold text-ink underline-offset-2 hover:underline focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-g-blue"
+            className="inline-flex min-h-11 items-center px-3 text-[14px] font-bold text-ink underline-offset-2 hover:underline focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-g-blue"
           >
             오늘의 테스트로 돌아가기
           </Link>
@@ -164,7 +164,7 @@ export function TestReview({ testId }: Props) {
           ) : (
             <Link
               href={`/tests/${testId}/print`}
-              className="inline-flex min-h-11 min-w-[44px] items-center justify-center px-3 text-[12.5px] font-bold text-ink underline-offset-2 hover:underline focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-g-blue"
+              className="inline-flex min-h-11 min-w-[44px] items-center justify-center px-3 text-[14px] font-bold text-ink underline-offset-2 hover:underline focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-g-blue"
             >
               인쇄
             </Link>
@@ -181,7 +181,7 @@ export function TestReview({ testId }: Props) {
           {draft ? null : (
             <Link
               href={`/tests/${testId}/grade`}
-              className="inline-flex min-h-11 min-w-[44px] items-center justify-center px-3 text-[12.5px] font-bold text-ink underline-offset-2 hover:underline focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-g-blue"
+              className="inline-flex min-h-11 min-w-[44px] items-center justify-center px-3 text-[14px] font-bold text-ink underline-offset-2 hover:underline focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-g-blue"
             >
               채점
             </Link>

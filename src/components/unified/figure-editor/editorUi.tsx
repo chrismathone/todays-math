@@ -76,7 +76,10 @@ export function ModalShell({
     <div
       className={styles.backdrop}
       onPointerDown={(event) => {
-        if (event.target === event.currentTarget) onClose();
+        if (event.target === event.currentTarget) {
+          event.preventDefault();
+          onClose();
+        }
       }}
     >
       <dialog
@@ -98,8 +101,10 @@ export function ModalShell({
             event.clientX > bounds.right ||
             event.clientY < bounds.top ||
             event.clientY > bounds.bottom
-          )
+          ) {
+            event.preventDefault();
             latestClose.current();
+          }
         }}
       >
         {children}

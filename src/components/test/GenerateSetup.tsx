@@ -80,11 +80,11 @@ function RangeField({
     <div className={LABEL_CLASS}>
       범위
       <div className="flex items-baseline gap-3">
-        <span className="text-[12.5px] font-black text-ink">{headline}</span>
+        <span className="text-[14px] font-black text-ink">{headline}</span>
         <button
           type="button"
           onClick={onToggleEdit}
-          className="ml-auto cursor-pointer text-[12.5px] font-bold text-g-blue underline-offset-4 hover:underline"
+          className="ml-auto cursor-pointer text-[14px] font-bold text-g-blue underline-offset-4 hover:underline"
         >
           {editing ? "접기" : "고치기"}
         </button>
@@ -101,13 +101,13 @@ function RangeField({
               }}
             />
           </div>
-          <span className="text-[10.5px] font-bold tracking-normal text-text-3">
+          <span className="text-[12px] font-bold tracking-normal text-text-3">
             {summary.label}
           </span>
         </>
       ) : null}
       {(unknown || error) && !editing ? (
-        <span className="text-[10.5px] font-bold tracking-normal text-text-3">
+        <span className="text-[12px] font-bold tracking-normal text-text-3">
           {unknown
             ? "진도를 기록하거나 「고치기」로 직접 고르세요"
             : "「고치기」로 직접 고르세요"}
@@ -231,7 +231,7 @@ export function GenerateSetup({ initialClassId, initialStudentId }: Props) {
             <legend className="text-[14px] font-semibold text-[var(--learn-muted,#596c86)]">
               유형
             </legend>
-            <div className="flex gap-4 text-[12.5px] font-bold">
+            <div className="flex gap-4 text-[14px] font-bold">
               <label className="inline-flex min-h-11 items-center gap-2">
                 <input
                   type="radio"
@@ -296,7 +296,7 @@ export function GenerateSetup({ initialClassId, initialStudentId }: Props) {
             {DIFFICULTY_LADDER.map((tier) => (
               <label
                 key={tier}
-                className="grid gap-1 text-[10px] font-extrabold tracking-[1.2px] text-text-2"
+                className="grid gap-1 text-[12px] font-extrabold tracking-[1.2px] text-text-2"
               >
                 {tier}
                 <Input
@@ -319,7 +319,7 @@ export function GenerateSetup({ initialClassId, initialStudentId }: Props) {
             종전에는 제출해야만 알았다. 문구는 상태만 적고 지시하지 않는다(D-08).
           */}
           <p
-            className={`text-[11.5px] ${
+            className={`text-[14px] ${
               ratioSum === form.problemCount ? "text-text-2" : "text-g-red-text"
             }`}
           >
@@ -344,7 +344,7 @@ export function GenerateSetup({ initialClassId, initialStudentId }: Props) {
           {form.insufficient ? (
             <div
               role="alert"
-              className="border border-g-red bg-white px-4 py-3 text-[12.5px]"
+              className="border border-g-red bg-white px-4 py-3 text-[14px]"
             >
               <p>{form.insufficient.message}</p>
               <p className="mt-1 font-bold text-g-red-text">
@@ -401,7 +401,7 @@ export function GenerateSetup({ initialClassId, initialStudentId }: Props) {
 
           {form.submitError ? (
             // role 이 없으면 화면을 못 보는 사용자에겐 실패가 일어나지 않은 것과 같다.
-            <p className="text-[12.5px] text-g-red-text" role="alert">
+            <p className="text-[14px] text-g-red-text" role="alert">
               {form.submitError}
             </p>
           ) : null}

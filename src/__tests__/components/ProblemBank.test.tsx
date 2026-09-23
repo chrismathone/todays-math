@@ -26,6 +26,7 @@ import {
   MOCK_UNITS,
 } from "@/mocks/data";
 import { server } from "@/mocks/server";
+import { EMPTY_BASKET } from "@/lib/problem/basketApi";
 
 /**
  * 범위 피커로 **한 단원**을 고른다 (첫 클릭이 곧 `onChange(id, id)` 다 — 한 단원 범위).
@@ -79,12 +80,111 @@ const RENDER_WAIT = { timeout: 45_000 } as const;
 async function renderBank() {
   const user = userEvent.setup();
   const view = render(<ProblemsPage />);
-  await screen.findByRole("heading", { name: "문제은행" }, RENDER_WAIT);
+  await screen.findByRole("heading", { name: "시험지 만들기" }, RENDER_WAIT);
   await screen.findByText(/를 유한소수로 나타내어라/, undefined, RENDER_WAIT);
   return { user, ...view };
 }
 
 describe("[T3.3 S-08] 문제은행 — 크롬·필터·액션", () => {
+  it("검색 결과가 없을 때 조건을 초기화하고 다시 문제를 보여 준다", async () => {
+    const { user } = await renderBank();
+    const search = screen.getByRole("searchbox", {
+      name: "검색 — 본문·문항번호·정답·해설·학교",
+    });
+    // The common MSW catalogue does not implement full-text search.
+    server.use(
+      http.get("/api/problems", () =>
+        HttpResponse.json({
+          data: [],
+          meta: { total: 0, page: 1, pageSize: 20 },
+        }),
+      ),
+    );
+    await user.type(search, "uiux-no-match-4817");
+    await screen.findByText("등록된 문제가 없습니다", undefined, RENDER_WAIT);
+    server.resetHandlers();
+    await user.click(screen.getByRole("button", { name: "검색 조건 초기화" }));
+    expect(search).toHaveValue("");
+    await screen.findByText(/를 유한소수로 나타내어라/, undefined, RENDER_WAIT);
+  });
+
+  it("문제 목록 조회 실패에서 같은 조건으로 다시 불러온다", async () => {
+    const user = userEvent.setup();
+    server.use(
+      http.get("/api/problems", () => new HttpResponse(null, { status: 503 })),
+    );
+    render(<ProblemsPage />);
+    await screen.findByText(
+      "목록을 불러오지 못했습니다",
+      undefined,
+      RENDER_WAIT,
+    );
+    server.resetHandlers();
+    await user.click(
+      screen.getByRole("button", { name: "문제 목록 다시 불러오기" }),
+    );
+    await screen.findByText(/를 유한소수로 나타내어라/, undefined, RENDER_WAIT);
+    expect(
+      screen.queryByText("목록을 불러오지 못했습니다"),
+    ).not.toBeInTheDocument();
+  });
+
+  it("단원 실패를 다시 조회하면 등록 동작을 다시 사용할 수 있다", async () => {
+    const user = userEvent.setup();
+    server.use(
+      http.get("/api/units", () => new HttpResponse(null, { status: 503 })),
+    );
+    render(<ProblemsPage />);
+    await screen.findByText(
+      "단원 목록을 불러오지 못했습니다",
+      undefined,
+      RENDER_WAIT,
+    );
+    expect(screen.getByRole("button", { name: "등록" })).toBeDisabled();
+    server.resetHandlers();
+    await user.click(
+      screen.getByRole("button", { name: "단원 다시 불러오기" }),
+    );
+    await waitFor(
+      () => expect(screen.getByRole("button", { name: "등록" })).toBeEnabled(),
+      RENDER_WAIT,
+    );
+  });
+
+  it("담기 조회 실패가 문제 목록을 막지 않고 재시도로 회복된다", async () => {
+    server.use(
+      http.get("/api/basket", () =>
+        HttpResponse.json(
+          { error: { message: "임시 연결 실패" } },
+          { status: 503 },
+        ),
+      ),
+    );
+    const { user } = await renderBank();
+    await screen.findByText(/담기 바구니 — 임시 연결 실패/);
+    let reloaded = false;
+    server.use(
+      http.get("/api/basket", () => {
+        reloaded = true;
+        return HttpResponse.json({ data: EMPTY_BASKET });
+      }),
+    );
+    await user.click(
+      screen.getByRole("button", { name: "담은 문제 다시 불러오기" }),
+    );
+    await waitFor(() => {
+      expect(reloaded).toBe(true);
+      const approvedCard = screen
+        .getByText(/를 유한소수로 나타내어라/)
+        .closest("article")!;
+      expect(
+        within(approvedCard).getByRole("button", { name: "담기" }),
+      ).toBeEnabled();
+    });
+    expect(screen.queryByText(/담기 바구니 —/)).not.toBeInTheDocument();
+    expect(screen.getByText(/를 유한소수로 나타내어라/)).toBeInTheDocument();
+  });
+
   it("AppChrome 내비와 학년/중단원/소단원/난이도/유형/상태 필터, 등록·생성을 보여 준다", async () => {
     await renderBank();
 
@@ -92,7 +192,7 @@ describe("[T3.3 S-08] 문제은행 — 크롬·필터·액션", () => {
       "href",
       "/",
     );
-    expect(screen.getByRole("link", { name: "문제은행" })).toHaveAttribute(
+    expect(screen.getByRole("link", { name: "시험지 만들기" })).toHaveAttribute(
       "href",
       "/problems",
     );
