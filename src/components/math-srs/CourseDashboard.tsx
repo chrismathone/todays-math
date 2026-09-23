@@ -84,6 +84,7 @@ export default function CourseDashboard({
   const [classId, setClassId] = useState("");
   const [filter, setFilter] = useState<Filter>("all");
   const [selected, setSelected] = useState<CourseRosterStudent | null>(null);
+  const [detailView, setDetailView] = useState<DetailView>("overview");
   const opener = useRef<HTMLButtonElement | null>(null);
   const heading = useRef<HTMLHeadingElement | null>(null);
   const panelId = useId();
@@ -155,6 +156,16 @@ export default function CourseDashboard({
     setSelected(null);
     if (opener.current?.isConnected) opener.current.focus();
     else heading.current?.focus();
+  };
+  const openStudent = (
+    student: CourseRosterStudent,
+    trigger: HTMLButtonElement,
+  ) => {
+    opener.current = trigger;
+    setDetailView(student.plan ? "overview" : "plan");
+    setSelected(student);
+    if (selected?.id === student.id)
+      document.getElementById(`${panelId}-title`)?.focus();
   };
 
   return (
@@ -326,7 +337,7 @@ export default function CourseDashboard({
                       <th scope="col">복습</th>
                       <th scope="col">마지막 활동</th>
                       <th scope="col">자동 학습</th>
-                      <th scope="col">상세</th>
+                      <th scope="col">관리</th>
                     </tr>
                   </thead>
                   <tbody>
@@ -343,8 +354,7 @@ export default function CourseDashboard({
                             aria-expanded={selected?.id === student.id}
                             aria-controls={panelId}
                             onClick={(event) => {
-                              opener.current = event.currentTarget;
-                              setSelected(student);
+                              openStudent(student, event.currentTarget);
                             }}
                           >
                             <span className={s.studentIdentity}>
@@ -358,12 +368,30 @@ export default function CourseDashboard({
                         </th>
                         <td>
                           <div className={s.studentState}>
-                            <span
-                              className={s.status}
-                              data-status={student.summary.status}
-                            >
-                              {STATUS[student.summary.status]}
-                            </span>
+                            {!student.plan ? (
+                              <button
+                                type="button"
+                                className={`${s.status} ${s.setupStatus}`}
+                                aria-label={`${student.name} 시작 진도 설정`}
+                                aria-controls={panelId}
+                                aria-expanded={
+                                  selected?.id === student.id &&
+                                  detailView === "plan"
+                                }
+                                onClick={(event) =>
+                                  openStudent(student, event.currentTarget)
+                                }
+                              >
+                                설정 필요 <Icon name="chevron" size={13} />
+                              </button>
+                            ) : (
+                              <span
+                                className={s.status}
+                                data-status={student.summary.status}
+                              >
+                                {STATUS[student.summary.status]}
+                              </span>
+                            )}
                             {!student.hasAccount ? (
                               <Link
                                 className={s.accountLink}
@@ -451,16 +479,18 @@ export default function CourseDashboard({
                         <td>
                           <button
                             type="button"
-                            className={s.rowButton}
-                            aria-label={`${student.name} 상세 보기`}
+                            className={
+                              student.plan ? s.rowButton : s.setupButton
+                            }
+                            aria-label={`${student.name} ${student.plan ? "상세 보기" : "진도 설정"}`}
                             aria-expanded={selected?.id === student.id}
                             aria-controls={panelId}
                             onClick={(event) => {
-                              opener.current = event.currentTarget;
-                              setSelected(student);
+                              openStudent(student, event.currentTarget);
                             }}
                           >
-                            상세 보기 <Icon name="chevron" size={15} />
+                            {student.plan ? "상세 보기" : "진도 설정"}{" "}
+                            <Icon name="chevron" size={15} />
                           </button>
                         </td>
                       </tr>
@@ -477,6 +507,8 @@ export default function CourseDashboard({
             id={panelId}
             student={selected}
             admin={admin}
+            view={detailView}
+            onViewChange={setDetailView}
             onClose={close}
             onStudentUpdate={updateRow}
           />
@@ -499,12 +531,16 @@ function StudentDetail({
   id,
   student,
   admin,
+  view,
+  onViewChange: setView,
   onClose,
   onStudentUpdate,
 }: {
   id: string;
   student: CourseRosterStudent;
   admin: boolean;
+  view: DetailView;
+  onViewChange: (view: DetailView) => void;
   onClose: () => void;
   onStudentUpdate: (student: CourseRosterStudent) => void;
 }) {
@@ -520,7 +556,6 @@ function StudentDetail({
   const [conflict, setConflict] = useState(false);
   const [busy, setBusy] = useState(false);
   const [message, setMessage] = useState("");
-  const [view, setView] = useState<DetailView>("overview");
   const [wrongOnly, setWrongOnly] = useState(false);
   const [reload, setReload] = useState(0);
   const title = useRef<HTMLHeadingElement | null>(null);
@@ -1065,9 +1100,6 @@ function StudentDetail({
         {form ? (
           <section hidden={view !== "plan"} aria-label="학생 학습 계획">
             <h3>시작 진도와 자동 학습</h3>
-            {record && !record.hasAccount ? (
-              <AccountNotice student={record} />
-            ) : null}
             <fieldset
               className={s.planGuard}
               disabled={loading || conflict || !!loadError}
@@ -1086,6 +1118,9 @@ function StudentDetail({
               변경한 계획은 저장 후 적용됩니다. 최신 기록을 불러와도 저장 전
               입력은 유지됩니다.
             </p>
+            {record && !record.hasAccount ? (
+              <AccountNotice student={record} />
+            ) : null}
           </section>
         ) : null}
       </div>

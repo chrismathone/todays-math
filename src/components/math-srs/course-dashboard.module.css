@@ -482,6 +482,18 @@
   border-radius: 50%;
   background: currentColor;
 }
+.dashboard button.setupStatus {
+  min-height: 32px;
+  border: 1px solid var(--learn-control, #b8c4d6);
+  background: var(--learn-soft, #edf2ff);
+  color: var(--accent);
+  font-size: var(--text-caption, 12px);
+}
+.dashboard button.setupStatus:hover {
+  border-color: var(--accent);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
 .status[data-status="setup"],
 .status[data-status="paused"] {
   background: var(--learn-neutral, #edf0f6);
@@ -518,6 +530,7 @@
   background: var(--accent);
 }
 .dashboard .rowButton,
+.dashboard .setupButton,
 .dashboard .textButton {
   display: inline-flex;
   align-items: center;
@@ -544,6 +557,15 @@
   color: var(--accent);
   background: var(--learn-soft, #edf2ff);
   border-color: var(--learn-control, #b8c4d6);
+}
+.dashboard .setupButton {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: var(--learn-on-accent, #fff);
+}
+.dashboard .setupButton:hover {
+  background: var(--learn-accent-hover, #2448bd);
+  border-color: var(--learn-accent-hover, #2448bd);
 }
 .reviewCount {
   display: inline-block;

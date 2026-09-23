@@ -201,7 +201,9 @@ async function openStudent(
   name = learner.name,
 ) {
   await user.click(
-    await screen.findByRole("button", { name: `${name} 상세 보기` }),
+    await screen.findByRole("button", {
+      name: new RegExp(`^${name} (상세 보기|진도 설정)$`),
+    }),
   );
   const panel = screen.getByRole("region", { name: `${name} · 학습 상세` });
   await waitFor(() =>
@@ -265,7 +267,7 @@ describe("CourseDashboard", () => {
     ).toHaveTextContent("1명");
     await user.type(screen.getByRole("searchbox"), "나무");
     expect(
-      screen.getByRole("button", { name: "이바다 상세 보기" }),
+      screen.getByRole("button", { name: "이바다 진도 설정" }),
     ).toBeInTheDocument();
     expect(
       screen.queryByRole("button", { name: "김하늘 상세 보기" }),
@@ -288,7 +290,7 @@ describe("CourseDashboard", () => {
       ).getAllByRole("row"),
     ).toHaveLength(2);
     expect(
-      screen.getByRole("button", { name: "이바다 상세 보기" }),
+      screen.getByRole("button", { name: "이바다 진도 설정" }),
     ).toBeInTheDocument();
   });
 
@@ -326,7 +328,7 @@ describe("CourseDashboard", () => {
         screen.getByRole("button", { name: "김하늘 상세 보기" }),
       ).toBeInTheDocument();
       expect(
-        screen.queryByRole("button", { name: "이바다 상세 보기" }),
+        screen.queryByRole("button", { name: "이바다 진도 설정" }),
       ).not.toBeInTheDocument();
     },
   );
@@ -421,37 +423,68 @@ describe("CourseDashboard", () => {
     );
   });
 
-  it("sets up an accountless student's starting section and links account creation to their class", async () => {
+  it.each(["진도 설정", "시작 진도 설정", "학습 현황 열기"])(
+    "sets up an accountless student directly through %s",
+    async (action) => {
+      const user = userEvent.setup();
+      render(<CourseDashboard />);
+      await user.click(
+        await screen.findByRole("button", { name: `${other.name} ${action}` }),
+      );
+      const panel = within(
+        screen.getByRole("region", { name: `${other.name} · 학습 상세` }),
+      );
+      await panel.findByLabelText("학년");
+      expect(
+        panel.getByRole("link", { name: /계정 확인하러 가기/ }),
+      ).toHaveAttribute("href", "/classes/class-2");
+      expect(panel.getByRole("button", { name: "학습 설정" })).toHaveAttribute(
+        "aria-pressed",
+        "true",
+      );
+      await user.selectOptions(panel.getByLabelText("학년"), "3");
+      await user.selectOptions(panel.getByLabelText("학기"), "1");
+      await user.selectOptions(
+        panel.getByLabelText("단원", { exact: true }),
+        first.chapterId,
+      );
+      await user.selectOptions(
+        panel.getByLabelText("소단원", { exact: true }),
+        first.id,
+      );
+      const configured = { ...other, revision: 1, plan: learner.plan };
+      saveApi.mockResolvedValue({ ok: true, data: configured });
+      detailApi.mockResolvedValueOnce({ ok: true, data: detail(configured) });
+      await user.click(panel.getByRole("button", { name: "학습 계획 저장" }));
+      await waitFor(() =>
+        expect(saveApi).toHaveBeenCalledWith(
+          other.id,
+          expect.objectContaining({
+            startSectionId: first.id,
+            expectedRevision: 0,
+          }),
+        ),
+      );
+    },
+  );
+
+  it("returns to setup from the same student's status without discarding form choices", async () => {
     const user = userEvent.setup();
     render(<CourseDashboard />);
     const panel = await openStudent(user, other.name);
-    expect(
-      panel.getByRole("link", { name: /계정 확인하러 가기/ }),
-    ).toHaveAttribute("href", "/classes/class-2");
-    await user.click(panel.getByRole("button", { name: "시작 진도 설정" }));
-    await user.selectOptions(panel.getByLabelText("학년"), "3");
-    await user.selectOptions(panel.getByLabelText("학기"), "1");
-    await user.selectOptions(
-      panel.getByLabelText("단원", { exact: true }),
-      first.chapterId,
+    await user.selectOptions(panel.getByLabelText("학년"), "4");
+    await user.selectOptions(panel.getByLabelText("하루 학습량"), "20");
+    await user.click(panel.getByRole("button", { name: "개요" }));
+    await user.click(
+      screen.getByRole("button", { name: `${other.name} 시작 진도 설정` }),
     );
-    await user.selectOptions(
-      panel.getByLabelText("소단원", { exact: true }),
-      first.id,
+    expect(panel.getByLabelText("학년")).toHaveValue("4");
+    expect(panel.getByLabelText("하루 학습량")).toHaveValue("20");
+    expect(panel.getByRole("button", { name: "학습 설정" })).toHaveAttribute(
+      "aria-pressed",
+      "true",
     );
-    const configured = { ...other, revision: 1, plan: learner.plan };
-    saveApi.mockResolvedValue({ ok: true, data: configured });
-    detailApi.mockResolvedValueOnce({ ok: true, data: detail(configured) });
-    await user.click(panel.getByRole("button", { name: "학습 계획 저장" }));
-    await waitFor(() =>
-      expect(saveApi).toHaveBeenCalledWith(
-        other.id,
-        expect.objectContaining({
-          startSectionId: first.id,
-          expectedRevision: 0,
-        }),
-      ),
-    );
+    expect(detailApi).toHaveBeenCalledTimes(1);
   });
 
   it("preserves unsaved choices through 409 reload and retries only with the new revision", async () => {
@@ -520,7 +553,7 @@ describe("CourseDashboard", () => {
     await user.click(
       await screen.findByRole("button", { name: "김하늘 상세 보기" }),
     );
-    const opener = screen.getByRole("button", { name: "이바다 상세 보기" });
+    const opener = screen.getByRole("button", { name: "이바다 진도 설정" });
     await user.click(opener);
     const title = screen.getByRole("heading", { name: "이바다 · 학습 상세" });
     expect(title).toHaveFocus();
