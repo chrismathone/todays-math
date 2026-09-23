@@ -67,6 +67,7 @@ export interface CourseLearnerState {
   selectedSectionId: string;
   progress: Record<string, SectionProgress>;
   session: CourseSession | null;
+  pausedSessions?: Record<string, CourseSession>;
 }
 export interface CourseStore {
   version: 1;

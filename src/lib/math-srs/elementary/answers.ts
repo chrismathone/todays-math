@@ -182,13 +182,22 @@ export function getCourseProblemInput(
     };
   }
   const unit = expected.unit?.name;
+  const notation = `${problem.content} ${problem.answer}`;
+  const fraction = /\\(?:dfrac|frac|tfrac)|\d\s*\/\s*\d/.test(notation);
+  const decimalNotation = /\d\.\d/.test(notation);
   return {
     mode: "number",
     label: unit ? `나의 답 (${unit})` : "나의 답",
-    placeholder: "예: 12, 0.5, 1/2, 1 1/2",
-    help: unit
-      ? `${unit} 단위의 수를 입력해 주세요. 분수는 1/2, 대분수는 1 1/2로 쓸 수 있어요.`
-      : "분수는 1/2, 대분수는 1 1/2로 쓸 수 있어요.",
+    placeholder: fraction
+      ? "예: 1/2, 1 1/2"
+      : decimalNotation
+        ? "예: 0.5"
+        : "예: 123",
+    help: fraction
+      ? "분수는 1/2, 대분수는 1 1/2로 쓸 수 있어요."
+      : unit
+        ? `${unit} 단위의 수를 입력해 주세요.`
+        : "연습장에 계산한 답을 입력해 주세요.",
   };
 }
 

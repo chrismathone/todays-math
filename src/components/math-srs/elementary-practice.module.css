@@ -153,12 +153,15 @@
 }
 
 .problem :global([data-figure-svg]) {
-  max-width: 100%;
+  width: 100%;
+  max-width: 420px;
+  margin: 24px auto;
 }
 
 .problem :global([data-figure-svg] svg) {
   max-width: 100%;
   height: auto;
+  max-height: 340px;
 }
 
 .figureStatus {

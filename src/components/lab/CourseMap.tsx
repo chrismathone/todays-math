@@ -32,13 +32,13 @@ export function CourseMap() {
             ↺
           </span>
           <span>
-            <small>중등 1학년 · 일차방정식</small>
+            <small>초등 3–6학년 · 전체 학습 과정</small>
             <b>오늘의 기억</b>
             <span>
-              하루 12문제 · 나에게 맞는 복습 · 새로운 숫자로 다시 도전
+              차시별 5문제 · 학년별 진도 · 배운 내용을 다시 꺼내는 복습
             </span>
           </span>
-          <strong>미션 시작 →</strong>
+          <strong>학습 시작 →</strong>
         </Link>
         <Link href="/lab/cube-3-1" className={styles.cubeFeature}>
           <span className={styles.cubeFeatureBlocks} aria-hidden="true">
