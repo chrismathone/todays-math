@@ -140,10 +140,13 @@ export default function AdminAccounts({
       <main className={s.main} id="admin-main">
         <div className={s.titleRow}>
           <div>
-            <p className={s.eyebrow}>WORKSPACE ADMINISTRATION</p>
-            <h1>계정 관리</h1>
+            <p className={s.eyebrow}>ADMIN / ACCOUNTS</p>
+            <h1>
+              계정 관리 <span className={s.titleAccent}>/ 운영 현황</span>
+            </h1>
             <p className={s.subtitle}>
-              가입 승인, 지점 권한, 계정 상태와 비밀번호를 관리하세요.
+              가입 요청부터 지점 권한, 사용 메뉴, 계정 상태까지 한곳에서
+              관리합니다.
             </p>
           </div>
           <button
@@ -155,6 +158,52 @@ export default function AdminAccounts({
             목록 새로고침
           </button>
         </div>
+        <section className={s.summaryGrid} aria-label="계정 현황">
+          {(
+            [
+              {
+                id: "all",
+                label: "전체 계정",
+                value: result?.meta.counts.all,
+                hint: "활성 목록",
+              },
+              {
+                id: "pending",
+                label: "승인 대기",
+                value: result?.meta.counts.pending,
+                hint: "검토 필요",
+              },
+              {
+                id: "approved",
+                label: "승인 완료",
+                value: result?.meta.counts.approved,
+                hint: "사용 가능",
+              },
+              {
+                id: "suspended",
+                label: "정지 계정",
+                value: result?.meta.lifecycleCounts?.suspended,
+                hint: "접속 중지",
+              },
+            ] as const
+          ).map((item) => (
+            <button
+              key={item.id}
+              type="button"
+              className={s.summaryCard}
+              aria-pressed={query.status === item.id}
+              onClick={() =>
+                changeQuery({ ...query, status: item.id, page: 1 })
+              }
+            >
+              <span>{item.label}</span>
+              <strong>{item.value?.toLocaleString("ko-KR") ?? "—"}</strong>
+              <small>
+                {item.hint} <span aria-hidden="true">↗</span>
+              </small>
+            </button>
+          ))}
+        </section>
         <div className={s.workspace}>
           <section className={s.directory} aria-labelledby="directory-title">
             <div className={s.directoryHeading}>
@@ -254,8 +303,11 @@ export default function AdminAccounts({
                         <tr>
                           <th scope="col">계정</th>
                           <th scope="col">상태</th>
+                          <th scope="col" className={s.branchCell}>
+                            지점 / 권한
+                          </th>
                           <th scope="col" className={s.dateCell}>
-                            가입일
+                            변경일
                           </th>
                           <th scope="col">
                             <span className={s.srOnly}>검토</span>
@@ -280,8 +332,24 @@ export default function AdminAccounts({
                             <td>
                               <AccountStatus account={account} />
                             </td>
+                            <td className={s.branchCell}>
+                              <strong>
+                                {account.branchName || "독립 계정"}
+                              </strong>
+                              <span>
+                                {account.isSuperAdmin
+                                  ? "최고관리자"
+                                  : account.branchRole === "owner"
+                                    ? "원장"
+                                    : account.branchRole === "manager"
+                                      ? "지점 관리자"
+                                      : account.role === "reviewer"
+                                        ? "검수자"
+                                        : "강사"}
+                              </span>
+                            </td>
                             <td className={s.dateCell}>
-                              {accountDate(account.createdAt)}
+                              {accountDate(account.updatedAt)}
                             </td>
                             <td>
                               <button

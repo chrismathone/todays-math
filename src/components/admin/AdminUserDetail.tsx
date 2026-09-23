@@ -5,6 +5,7 @@ import { lazy, Suspense, useEffect, useRef, useState } from "react";
 import type { ManagedAccount } from "@/contracts/accountAccess.contract";
 import AdminHeader from "./AdminHeader";
 import { AccountStatus, accountDate } from "./AccountReview";
+import AccountReview from "./AccountReview";
 import { accountRequest, requestMessage } from "./accountRequests";
 import type {
   AuditEntry,
@@ -41,6 +42,7 @@ function useAdminResource<T>(url: string) {
       setState({ url });
       setRetry((value) => value + 1);
     },
+    update: (data: T) => setState({ url, data }),
   };
 }
 
@@ -407,17 +409,36 @@ export default function AdminUserDetail({
   identity: { name: string; email: string };
 }) {
   const [tab, setTab] = useState<"documents" | "audit">("documents");
+  const [locked, setLocked] = useState(false);
   const resource = useAdminResource<{ data: ManagedAccount }>(
     `/api/admin/users/${encodeURIComponent(userId)}`,
   );
   const account = resource.data?.data;
+  useEffect(() => {
+    if (!locked) return;
+    const preventLeave = (event: BeforeUnloadEvent) => event.preventDefault();
+    window.addEventListener("beforeunload", preventLeave);
+    return () => window.removeEventListener("beforeunload", preventLeave);
+  }, [locked]);
   return (
     <div className={s.shell}>
       <AdminHeader identity={identity} />
       <main className={s.main}>
-        <Link className={s.textLink} href="/admin">
+        <Link
+          className={s.textLink}
+          href="/admin"
+          onClick={(event) => {
+            if (locked) event.preventDefault();
+          }}
+          aria-disabled={locked}
+        >
           ← 계정 관리로 돌아가기
         </Link>
+        {locked ? (
+          <p className={s.unsaved}>
+            변경을 저장하거나 취소한 뒤 목록으로 이동하세요.
+          </p>
+        ) : null}
         {resource.error ? (
           <ResourceError message={resource.error} retry={resource.reload} />
         ) : !account ? (
@@ -435,29 +456,107 @@ export default function AdminUserDetail({
               <AccountStatus account={account} />
             </div>
             <p className={d.intro}>
-              이 계정의 시험지, 추출 자료와 활동 기록을 확인합니다.
+              계정 내정보, 사용 자료, 변경 이력과 관리 설정을 확인합니다.
             </p>
-            <div className={d.tabs} role="group" aria-label="계정 상세 보기">
-              <button
-                type="button"
-                aria-pressed={tab === "documents"}
-                onClick={() => setTab("documents")}
-              >
-                자료
-              </button>
-              <button
-                type="button"
-                aria-pressed={tab === "audit"}
-                onClick={() => setTab("audit")}
-              >
-                활동 기록
-              </button>
+            <section className={d.profile} aria-label="사용자 내정보">
+              <div className={d.profileHeading}>
+                <div>
+                  <p className={s.eyebrow}>ACCOUNT PROFILE</p>
+                  <h2>내정보</h2>
+                </div>
+                <span>관리자 열람</span>
+              </div>
+              <dl className={d.profileGrid}>
+                <div>
+                  <dt>이름</dt>
+                  <dd>{account.name || "이름 미등록"}</dd>
+                </div>
+                <div>
+                  <dt>이메일</dt>
+                  <dd>{account.email}</dd>
+                </div>
+                <div>
+                  <dt>지점</dt>
+                  <dd>{account.branchName || "독립 계정"}</dd>
+                </div>
+                <div>
+                  <dt>권한</dt>
+                  <dd>
+                    {account.isSuperAdmin
+                      ? "최고관리자"
+                      : account.branchRole === "owner"
+                        ? "원장"
+                        : account.branchRole === "manager"
+                          ? "지점 관리자"
+                          : account.role === "reviewer"
+                            ? "검수자"
+                            : "강사"}
+                  </dd>
+                </div>
+                <div>
+                  <dt>승인 상태</dt>
+                  <dd>
+                    <AccountStatus account={account} />
+                  </dd>
+                </div>
+                <div>
+                  <dt>가입 시각</dt>
+                  <dd>{accountDate(account.createdAt)}</dd>
+                </div>
+                <div>
+                  <dt>마지막 변경</dt>
+                  <dd>{accountDate(account.updatedAt)}</dd>
+                </div>
+                <div>
+                  <dt>접속 상태</dt>
+                  <dd>
+                    {account.deletedAt
+                      ? "삭제 처리"
+                      : account.suspendedAt
+                        ? "정지"
+                        : "정상"}
+                  </dd>
+                </div>
+              </dl>
+            </section>
+            <div className={d.detailWorkspace}>
+              <div className={d.detailContent}>
+                <div
+                  className={d.tabs}
+                  role="group"
+                  aria-label="계정 상세 보기"
+                >
+                  <button
+                    type="button"
+                    aria-pressed={tab === "documents"}
+                    onClick={() => setTab("documents")}
+                  >
+                    자료
+                  </button>
+                  <button
+                    type="button"
+                    aria-pressed={tab === "audit"}
+                    onClick={() => setTab("audit")}
+                  >
+                    활동 기록
+                  </button>
+                </div>
+                {tab === "documents" ? (
+                  <Documents userId={userId} />
+                ) : (
+                  <Audit userId={userId} />
+                )}
+              </div>
+              <aside className={d.settings} aria-label="계정 관리 설정">
+                <AccountReview
+                  key={account.id}
+                  account={account}
+                  autoFocus={false}
+                  onLockChange={setLocked}
+                  onUpdate={(updated) => resource.update({ data: updated })}
+                />
+              </aside>
             </div>
-            {tab === "documents" ? (
-              <Documents userId={userId} />
-            ) : (
-              <Audit userId={userId} />
-            )}
           </>
         )}
       </main>

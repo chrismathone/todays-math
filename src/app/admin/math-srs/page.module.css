@@ -4,9 +4,15 @@
   color: var(--learn-ink, #172b4d);
 }
 .main {
+  grid-column: 2;
   width: min(1600px, 100%);
   margin: 0 auto;
-  padding: 16px 20px;
+  padding: 36px 32px;
+}
+@media (max-width: 1320px) {
+  .main {
+    grid-column: 1;
+  }
 }
 @media (max-width: 760px) {
   .main {

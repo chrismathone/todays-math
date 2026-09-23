@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { useEffect, useState, type FormEvent } from "react";
 import AdminHeader from "./AdminHeader";
 import { accountRequest, requestMessage } from "./accountRequests";
@@ -35,7 +36,38 @@ export default function AdminBranches({
   const [issued, setIssued] = useState<Created | null>(null);
   const [loading, setLoading] = useState(true);
   const [busy, setBusy] = useState(false);
+  const [editingBranch, setEditingBranch] = useState<string | null>(null);
+  const [editingName, setEditingName] = useState("");
+  const [notice, setNotice] = useState("");
   const [error, setError] = useState("");
+
+  async function renameBranch(event: FormEvent<HTMLFormElement>, id: string) {
+    event.preventDefault();
+    if (busy) return;
+    setBusy(true);
+    setError("");
+    setNotice("");
+    try {
+      const response = await accountRequest<{
+        data: { id: string; name: string };
+      }>(`/api/admin/branches/${encodeURIComponent(id)}`, {
+        method: "PATCH",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ name: editingName }),
+      });
+      setBranches((current) =>
+        current.map((branch) =>
+          branch.id === id ? { ...branch, name: response.data.name } : branch,
+        ),
+      );
+      setEditingBranch(null);
+      setNotice("지점명을 변경했습니다.");
+    } catch (cause) {
+      setError(requestMessage(cause));
+    } finally {
+      setBusy(false);
+    }
+  }
 
   async function reload() {
     try {
@@ -84,6 +116,7 @@ export default function AdminBranches({
         },
       );
       setIssued(response.data);
+      setNotice("지점을 개설했습니다. 임시 비밀번호를 안전하게 전달해 주세요.");
       setBranchName("");
       setOwnerName("");
       setOwnerEmail("");
@@ -101,11 +134,12 @@ export default function AdminBranches({
       <main className={s.main}>
         <div className={s.titleRow}>
           <div>
-            <p className={s.eyebrow}>BRANCH SETUP</p>
-            <h1>지점 개설</h1>
+            <p className={s.eyebrow}>ADMIN / BRANCHES</p>
+            <h1>
+              지점 관리 <span className={s.titleAccent}>/ 조직 설정</span>
+            </h1>
             <p className={s.subtitle}>
-              지점과 첫 원장 계정을 함께 만들면 원장이 소속 직원·학생 계정을
-              발급할 수 있습니다.
+              지점을 개설하고 원장 계정을 발급하거나 지점명을 변경합니다.
             </p>
           </div>
         </div>
@@ -117,17 +151,19 @@ export default function AdminBranches({
             {error}
           </p>
         )}
+        {notice && (
+          <p className={s.notice} role="status">
+            {notice}
+          </p>
+        )}
         <section
           aria-labelledby="branch-create-heading"
-          className="mb-6 rounded-xl border border-slate-200 bg-white p-5"
+          className={s.branchPanel}
         >
           <h2 id="branch-create-heading" className="mb-3 text-lg font-bold">
             새 지점과 원장 계정
           </h2>
-          <form
-            onSubmit={createBranch}
-            className="grid gap-3 md:grid-cols-[1fr_1fr_1.5fr_auto] md:items-end"
-          >
+          <form onSubmit={createBranch} className={s.branchForm}>
             <label className="grid gap-1 text-sm">
               지점명
               <input
@@ -159,11 +195,7 @@ export default function AdminBranches({
                 maxLength={255}
               />
             </label>
-            <button
-              type="submit"
-              disabled={busy}
-              className="min-h-11 rounded-lg bg-blue-700 px-4 text-sm font-semibold text-white disabled:opacity-50"
-            >
+            <button type="submit" disabled={busy} className={s.primary}>
               지점 만들기
             </button>
           </form>
@@ -189,7 +221,7 @@ export default function AdminBranches({
         </section>
         <section
           aria-labelledby="branch-list-heading"
-          className="rounded-xl border border-slate-200 bg-white p-5"
+          className={s.branchPanel}
         >
           <div className="mb-3 flex items-center justify-between">
             <h2 id="branch-list-heading" className="text-lg font-bold">
@@ -210,26 +242,80 @@ export default function AdminBranches({
           ) : branches.length === 0 ? (
             <p className="text-sm text-slate-600">등록된 지점이 없습니다.</p>
           ) : (
-            <div className="grid gap-2">
+            <div className={s.branchGrid}>
               {branches.map((branch) => (
-                <div
-                  key={branch.id}
-                  className="rounded-lg border border-slate-200 p-3 text-sm"
-                >
+                <div key={branch.id} className={s.branchItem}>
                   <div className="flex flex-wrap items-center justify-between gap-2">
                     <strong>{branch.name}</strong>
-                    <span className="text-slate-500">
-                      직원 {branch._count.users}명
+                    <span className={s.branchMeta}>
+                      직원 {branch._count.users}명 · 개설{" "}
+                      {new Date(branch.createdAt).toLocaleDateString("ko-KR", {
+                        timeZone: "Asia/Seoul",
+                      })}
                     </span>
                   </div>
                   <p className="mt-1 text-slate-600">
                     원장{" "}
                     {branch.users.length
-                      ? branch.users
-                          .map((owner) => `${owner.name} (${owner.email})`)
-                          .join(", ")
+                      ? branch.users.map((owner, index) => (
+                          <span key={owner.id}>
+                            {index ? ", " : ""}
+                            <Link
+                              href={`/admin/users/${encodeURIComponent(owner.id)}`}
+                            >
+                              {owner.name} ({owner.email})
+                            </Link>
+                            {owner.suspendedAt ? " · 정지" : ""}
+                          </span>
+                        ))
                       : "없음"}
                   </p>
+                  {editingBranch === branch.id ? (
+                    <form
+                      className={s.branchRename}
+                      onSubmit={(event) => void renameBranch(event, branch.id)}
+                    >
+                      <label>
+                        지점명
+                        <input
+                          value={editingName}
+                          onChange={(event) =>
+                            setEditingName(event.target.value)
+                          }
+                          required
+                          maxLength={100}
+                          autoFocus
+                        />
+                      </label>
+                      <button
+                        className={s.primary}
+                        type="submit"
+                        disabled={busy}
+                      >
+                        저장
+                      </button>
+                      <button
+                        className={s.secondary}
+                        type="button"
+                        disabled={busy}
+                        onClick={() => setEditingBranch(null)}
+                      >
+                        취소
+                      </button>
+                    </form>
+                  ) : (
+                    <button
+                      type="button"
+                      className={s.secondary}
+                      onClick={() => {
+                        setEditingBranch(branch.id);
+                        setEditingName(branch.name);
+                        setError("");
+                      }}
+                    >
+                      지점명 변경
+                    </button>
+                  )}
                 </div>
               ))}
             </div>

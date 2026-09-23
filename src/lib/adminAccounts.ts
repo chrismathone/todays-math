@@ -14,6 +14,7 @@ export const managedAccountSelect = {
   isSuperAdmin: true,
   branchId: true,
   branchRole: true,
+  branch: { select: { name: true } },
   approvalStatus: true,
   disabledMenus: true,
   createdAt: true,
@@ -30,10 +31,12 @@ export function managedAccount(
     updatedAt,
     suspendedAt,
     deletedAt,
+    branch,
     ...data
   } = user;
   return {
     ...data,
+    branchName: branch?.name ?? null,
     menus: user.isAdmin
       ? ALL_WORKSPACE_MENUS
       : ALL_WORKSPACE_MENUS.filter((menu) => !disabledMenus.includes(menu)),
