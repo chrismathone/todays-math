@@ -2,7 +2,6 @@ import { notFound } from "next/navigation";
 import { connection } from "next/server";
 
 import { AuthLoading } from "@/components/auth/AuthLoading";
-import AccountLoading from "@/components/account/AccountLoading";
 import ApprovalPendingLoading from "@/app/approval-pending/loading";
 import {
   AuthFormSkeleton,
