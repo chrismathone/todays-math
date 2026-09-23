@@ -126,6 +126,9 @@ vi.mock("@/components/unified/ConceptView", () => ({
     return <h2>개념 패널</h2>;
   },
 }));
+vi.mock("@/components/math-srs/CourseDashboard", () => ({
+  default: () => <h2>SRS 패널</h2>,
+}));
 vi.mock("@/components/unified/TeachingOverview", () => ({
   default: function OverviewProbe() {
     useEffect(() => {
@@ -206,6 +209,132 @@ afterEach(() => {
 });
 
 describe("per-account workspace menu access", () => {
+  it.each(["home", "teaching", "concept", "srs"] as const)(
+    "does not load or save worksheets when entering %s directly",
+    async (tab) => {
+      const cloud = privateServer();
+      cloud.switchAccount("teacher-one");
+      cloud.documents.set("teacher-one:saved-draft", {
+        id: "saved-draft",
+        kind: "draft",
+        title: "기존 시험지",
+        problemCount: 1,
+        revision: 1,
+        createdAt: "2026-09-23T00:00:00.000Z",
+        updatedAt: "2026-09-23T00:00:00.000Z",
+        payload: {
+          version: 1,
+          title: "기존 시험지",
+          problems: [{ id: "p1", content: "1+1" }],
+          columns: 1,
+          answers: false,
+        },
+      });
+      const menus = WORKSPACE_MENUS.map((menu) => menu.id);
+      fetchMock.mockImplementation(async () => response(menus));
+      vi.stubGlobal("fetch", (url: RequestInfo | URL, init?: RequestInit) =>
+        String(url).startsWith("/api/library/")
+          ? cloud.transport(url, init)
+          : fetchMock(url, init),
+      );
+      window.history.replaceState(null, "", `/#${tab}`);
+      const get = vi.spyOn(Storage.prototype, "getItem");
+      render(
+        <UnifiedWorkspace
+          initialData={initialData}
+          currentUser={user}
+          storageScope="teacher-one"
+          allowedMenus={menus}
+        />,
+      );
+      const heading = {
+        home: "오늘의 작업",
+        teaching: "수업 패널",
+        concept: "개념 패널",
+        srs: "SRS 패널",
+      }[tab];
+      expect(
+        await screen.findByRole("heading", { name: heading }),
+      ).toBeInTheDocument();
+      expect(fireEvent.keyDown(window, { key: "s", ctrlKey: true })).toBe(true);
+      act(() => window.dispatchEvent(new Event("pagehide")));
+      expect(cloud.transport).not.toHaveBeenCalled();
+      expect(
+        get.mock.calls.some(([key]) => key.startsWith(DRAFT_STORE_KEY)),
+      ).toBe(false);
+      expect(screen.queryByText("계정에 저장됨")).not.toBeInTheDocument();
+      expect(
+        screen.queryByText(/저장한 시험지를 불러오고/),
+      ).not.toBeInTheDocument();
+
+      fireEvent.click(nav().getByRole("button", { name: "시험지 · 내보내기" }));
+      const title = await screen.findByRole("textbox", { name: "제목" });
+      expect(cloud.transport).toHaveBeenCalled();
+      expect(
+        within(screen.getByRole("banner")).queryByText(/저장|작업 준비/),
+      ).not.toBeInTheDocument();
+      fireEvent.change(title, { target: { value: "탭 이동 전 시험지" } });
+      fireEvent.click(nav().getByRole("button", { name: "오늘의 개념" }));
+      await waitFor(() =>
+        expect(
+          cloud.transport.mock.calls.some(([, init]) => init?.method === "PUT"),
+        ).toBe(true),
+      );
+      await act(async () => {});
+      cloud.transport.mockClear();
+      expect(fireEvent.keyDown(window, { key: "s", ctrlKey: true })).toBe(true);
+      act(() => window.dispatchEvent(new Event("pagehide")));
+      await act(async () => {});
+      expect(cloud.transport).not.toHaveBeenCalled();
+      fireEvent.click(nav().getByRole("button", { name: "시험지 · 내보내기" }));
+      expect(
+        await screen.findByDisplayValue("탭 이동 전 시험지"),
+      ).toBeVisible();
+      expect(cloud.transport).not.toHaveBeenCalled();
+    },
+  );
+
+  it("starts a new worksheet explicitly from SRS without requiring a prior worksheet visit", async () => {
+    const cloud = privateServer();
+    cloud.switchAccount("teacher-one");
+    const menus: WorkspaceMenu[] = ["srs", "export"];
+    fetchMock.mockImplementation(async () => response(menus));
+    vi.stubGlobal("fetch", (url: RequestInfo | URL, init?: RequestInit) =>
+      String(url).startsWith("/api/library/")
+        ? cloud.transport(url, init)
+        : fetchMock(url, init),
+    );
+    window.history.replaceState(null, "", "/#srs");
+    render(
+      <UnifiedWorkspace
+        initialData={initialData}
+        currentUser={user}
+        storageScope="teacher-one"
+        allowedMenus={menus}
+      />,
+    );
+    await screen.findByRole("heading", { name: "SRS 패널" });
+    fireEvent.click(screen.getByRole("button", { name: "새 시험지 만들기" }));
+    const dialog = screen.getByRole("dialog", {
+      name: "어디서부터 시작할까요?",
+    });
+    fireEvent.change(within(dialog).getByRole("textbox"), {
+      target: { value: "SRS에서 시작한 시험지" },
+    });
+    expect(cloud.transport).not.toHaveBeenCalled();
+    fireEvent.click(
+      within(dialog).getByRole("button", { name: /빈 시험지로 시작하기/ }),
+    );
+    await waitFor(() => expect(window.location.hash).toBe("#export"));
+    await waitFor(() =>
+      expect(
+        [...cloud.documents.values()].some(
+          (document) => document.title === "SRS에서 시작한 시험지",
+        ),
+      ).toBe(true),
+    );
+  });
+
   it("restores a stable extraction query after fresh login and ignores it without studio access", async () => {
     window.history.replaceState(
       null,
@@ -245,7 +374,9 @@ describe("per-account workspace menu access", () => {
     render(<UnifiedWorkspace initialData={initialData} />);
     for (const menu of WORKSPACE_MENUS)
       expect(
-        nav().getByRole("button", { name: menu.label }),
+        nav().getByRole("button", {
+          name: menu.id === "bank" ? "시험지 만들기" : menu.label,
+        }),
       ).toBeInTheDocument();
     expect(
       screen.getByRole("textbox", { name: "문제은행 바로 검색" }),
@@ -512,7 +643,7 @@ describe("per-account workspace menu access", () => {
       <UnifiedWorkspace initialData={initialData} allowedMenus={["library"]} />,
     );
     expect(
-      await screen.findByRole("heading", { name: "보관 중인 시험지" }),
+      await screen.findByText("보관 중인 시험지", { exact: true }),
     ).toBeVisible();
     expect(
       screen.queryByRole("button", { name: "보관 중인 시험지 편집" }),

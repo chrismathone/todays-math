@@ -156,6 +156,15 @@ function UnifiedWorkspaceContent({
   const defaultView = [...enabledMenus][0] ?? null;
   const hasMenus = enabledMenus.size > 0;
   const canCreate = can("bank") || can("studio") || can("export");
+  const [requestedView, setView] = useState<View | null>(defaultView);
+  const [navigationReady, setNavigationReady] = useState(false);
+  const view =
+    requestedView && can(requestedView) ? requestedView : defaultView;
+  const worksheetView =
+    view === "bank" ||
+    view === "studio" ||
+    view === "export" ||
+    view === "library";
   const permissionsRef = useRef(enabledMenus);
   useEffect(() => {
     permissionsRef.current = enabledMenus;
@@ -166,6 +175,7 @@ function UnifiedWorkspaceContent({
     recent,
     saveStatus,
     saveError,
+    prepare: prepareDrafts,
     setTitle,
     setProblems: setSelected,
     setRemoved: updateRemovals,
@@ -183,6 +193,7 @@ function UnifiedWorkspaceContent({
   } = useWorkspaceDrafts(
     storageScope,
     can("library") || can("studio") || can("export"),
+    navigationReady && worksheetView,
   );
   /**
    * `removed` — 이 시험지에서 뺀 문항과 그 자리. 어느 화면에서 뺐든(④·문제은행·작업실 목록) 여기 남는다.
@@ -200,9 +211,6 @@ function UnifiedWorkspaceContent({
     printMeta,
     updatedAt: savedAt,
   } = draft;
-  const [requestedView, setView] = useState<View | null>(defaultView);
-  const view =
-    requestedView && can(requestedView) ? requestedView : defaultView;
   /**
    * 작업실이 알려 주는 자른 문제 수 — 시험지 화면의 「OCR · 디지털화」 탭 배지가 쓴다(안 A).
    * 작업실이 아직 안 떠 있으면 0 이다(그 탭은 흐리다 — `WorksheetEditor` 의 `cropCount` 주석).
@@ -221,9 +229,7 @@ function UnifiedWorkspaceContent({
     id: number;
     crops: StudioCrop[];
   }>();
-  const [opened, setOpened] = useState<Set<View>>(
-    () => new Set(defaultView ? [defaultView] : []),
-  );
+  const [opened, setOpened] = useState<Set<View>>(() => new Set());
   const [bankEntry, setBankEntry] = useState<{
     q?: string;
     grade?: string;
@@ -306,6 +312,7 @@ function UnifiedWorkspaceContent({
       const value = window.location.hash.slice(1) || "home";
       const next = viewValid(value) && can(value) ? value : defaultView;
       setView(next);
+      setNavigationReady(true);
       setOpened(
         (current) => new Set([...current, ...(next ? [next] : [])].filter(can)),
       );
@@ -366,7 +373,12 @@ function UnifiedWorkspaceContent({
         event.preventDefault();
         setModal("search");
       }
-      if (event.key.toLowerCase() === "s" && canCreate) {
+      if (
+        event.key.toLowerCase() === "s" &&
+        canCreate &&
+        worksheetView &&
+        hydrated
+      ) {
         event.preventDefault();
         void Promise.resolve(saveNow()).then((saved) => {
           if (saved)
@@ -380,7 +392,16 @@ function UnifiedWorkspaceContent({
     };
     window.addEventListener("keydown", keydown);
     return () => window.removeEventListener("keydown", keydown);
-  }, [saveNow, setNotice, toggleSidebar, hasMenus, canCreate, storageScope]);
+  }, [
+    saveNow,
+    setNotice,
+    toggleSidebar,
+    hasMenus,
+    canCreate,
+    storageScope,
+    worksheetView,
+    hydrated,
+  ]);
   const openBank = (filters: { q?: string; grade?: string } = {}) => {
     if (!can("bank")) return;
     setBankEntry((current) => ({ ...filters, version: current.version + 1 }));
@@ -511,6 +532,8 @@ function UnifiedWorkspaceContent({
   }
   async function openSaved(id: string) {
     if (!can("export")) return;
+    await prepareDrafts();
+    if (!permissionsRef.current.has("export")) return;
     if (await openDraft(id)) {
       setUndo(null);
       navigate("export");
@@ -523,6 +546,8 @@ function UnifiedWorkspaceContent({
   }
   async function startNew(next: "bank" | "studio" | "export") {
     if (!can(next)) return;
+    await prepareDrafts();
+    if (!permissionsRef.current.has(next)) return;
     if (!(await createDraft())) return;
     setUndo(null);
     if (newTitle.trim()) setTitle(newTitle.trim());
@@ -541,6 +566,8 @@ function UnifiedWorkspaceContent({
       if (file.size > 20 * 1024 * 1024)
         return setNotice("20 MB 이하의 작업 파일을 선택해 주세요.", true);
       const value = JSON.parse(await file.text());
+      if (!permissionsRef.current.has("export")) return;
+      await prepareDrafts();
       if (!permissionsRef.current.has("export")) return;
       if (await importDraft(value)) {
         setUndo(null);
@@ -682,7 +709,6 @@ function UnifiedWorkspaceContent({
             className={s.newButton}
             aria-label="새 시험지 만들기"
             title={sidebarCollapsed ? "새 시험지 만들기" : undefined}
-            disabled={!hydrated}
             onClick={() => setModal("new")}
           >
             <Icon name="plus" />
@@ -715,7 +741,7 @@ function UnifiedWorkspaceContent({
             </div>
           ))}
         </nav>
-        {can("export") && (
+        {worksheetView && hydrated && can("export") && (
           <div className={s.sideDraft}>
             <div>
               <span className={s.sideDraftIcon}>
@@ -779,54 +805,17 @@ function UnifiedWorkspaceContent({
             </button>
           )}
           <div className={s.headerActions}>
-            {canCreate && (
-              <span className={s.saveState} data-state={saveStatus}>
-                {!hydrated || saveStatus === "saving" ? (
-                  <WorkProgress
-                    variant="inline"
-                    label={!hydrated ? "작업 불러오는 중" : "저장 중…"}
-                  />
-                ) : (
-                  <>
-                    <Icon
-                      name={saveStatus === "error" ? "warning" : "check"}
-                      size={15}
-                    />
-                    <span role="status">
-                      {saveStatus === "disabled" ? (
-                        "계정 저장 권한 없음"
-                      ) : saveStatus === "error" ? (
-                        <button
-                          type="button"
-                          className={s.saveErrorTrigger}
-                          onClick={() => setDismissedSaveError(null)}
-                          aria-label="저장 오류 자세히 보기"
-                        >
-                          저장 확인 필요
-                        </button>
-                      ) : selected.length ? (
-                        storageScope ? (
-                          "계정에 저장됨"
-                        ) : (
-                          "자동 저장됨"
-                        )
-                      ) : (
-                        "작업 준비 완료"
-                      )}
-                    </span>
-                  </>
-                )}
-              </span>
-            )}
             {can("export") && (
               <button
                 className={s.headerPaper}
                 onClick={() => navigate("export")}
-                aria-label={`담은 문제 ${selected.length}`}
+                aria-label={
+                  hydrated ? `담은 문제 ${selected.length}` : "시험지 편집 열기"
+                }
               >
                 <Icon name="paper" size={18} />
                 <span>시험지</span>
-                <b>{selected.length}</b>
+                {hydrated && <b>{selected.length}</b>}
               </button>
             )}
           </div>
@@ -837,29 +826,7 @@ function UnifiedWorkspaceContent({
           )}
         </header>
         <div className={s.notifications}>
-          {canCreate && saveError && dismissedSaveError !== saveErrorKey && (
-            <div
-              className={storageScope ? cloudStyles.cloudError : s.saveError}
-              role="alert"
-            >
-              <Icon name="warning" size={19} />
-              <p>{saveError}</p>
-              {can("export") && (
-                <button onClick={download}>작업 파일 내려받기</button>
-              )}
-              <button onClick={save}>다시 저장</button>
-              <button
-                type="button"
-                className={s.saveErrorDismiss}
-                aria-label="저장 오류 알림 닫기"
-                title="알림 닫기"
-                onClick={() => setDismissedSaveError(saveErrorKey)}
-              >
-                <Icon name="close" size={18} />
-              </button>
-            </div>
-          )}
-          {hasMenus && notice && (
+          {hasMenus && notice && (worksheetView || modal) && (
             <div
               className={s.notice}
               data-error={noticeError}
@@ -887,6 +854,44 @@ function UnifiedWorkspaceContent({
           )}
         </div>
         <div id="workspace-content" className={s.content} tabIndex={-1}>
+          {worksheetView && canCreate && saveError && (
+            <div className={s.draftFeedback}>
+              {dismissedSaveError === saveErrorKey ? (
+                <button
+                  type="button"
+                  className={s.saveErrorTrigger}
+                  onClick={() => setDismissedSaveError(null)}
+                  aria-label="저장 오류 자세히 보기"
+                >
+                  <Icon name="warning" size={16} />
+                  시험지 저장 확인 필요
+                </button>
+              ) : (
+                <div
+                  className={
+                    storageScope ? cloudStyles.cloudError : s.saveError
+                  }
+                  role="alert"
+                >
+                  <Icon name="warning" size={19} />
+                  <p>{saveError}</p>
+                  {can("export") && (
+                    <button onClick={download}>작업 파일 내려받기</button>
+                  )}
+                  <button onClick={save}>다시 저장</button>
+                  <button
+                    type="button"
+                    className={s.saveErrorDismiss}
+                    aria-label="저장 오류 알림 닫기"
+                    title="알림 닫기"
+                    onClick={() => setDismissedSaveError(saveErrorKey)}
+                  >
+                    <Icon name="close" size={18} />
+                  </button>
+                </div>
+              )}
+            </div>
+          )}
           {!hasMenus && (
             <main className={s.noMenus}>
               <h1>사용할 수 있는 메뉴가 없습니다</h1>
@@ -902,7 +907,6 @@ function UnifiedWorkspaceContent({
               draft={draft}
               recent={recent}
               hydrated={hydrated}
-              saveStatus={saveStatus}
               cloudStorage={Boolean(storageScope)}
               allowedMenus={allowedMenus}
               onNew={() => setModal("new")}
@@ -913,49 +917,62 @@ function UnifiedWorkspaceContent({
               onNavigate={navigate}
             />
           )}
-          {can("bank") && (opened.has("bank") || view === "bank") && (
-            <main hidden={view !== "bank"} className={s.viewContent}>
-              <BankView
-                key={`${draft.id}:${bankEntry.version}`}
-                initialData={initialData}
-                initialFilters={bankEntry}
-                selected={selected}
-                onToggle={toggle}
-                onSelectionChange={changeBankSelection}
-                onExport={() => navigate("export")}
-                canExport={can("export")}
-                canUseAi={can("studio")}
+          {navigationReady &&
+            worksheetView &&
+            view !== "library" &&
+            !hydrated && (
+              <WorkProgress
+                className={s.loading}
+                label="시험지 작업을 불러오는 중입니다…"
               />
-            </main>
-          )}
-          {can("studio") && (opened.has("studio") || view === "studio") && (
-            <main hidden={view !== "studio"} className={s.studioContent}>
-              <StudioView
-                key={`${storageScope ?? "preview"}:${extraction.version}`}
-                active={view === "studio"}
-                picked={selected}
-                removed={removed}
-                onAdd={add}
-                onRemove={remove}
-                onRestore={restoreRemoved}
-                onExport={() => navigate("export")}
-                canExport={can("export")}
-                importRequest={importRequest}
-                stepRequest={studioStepRequest}
-                onCropCountChange={setStudioCropCount}
-                restoreRequest={studioRestoreRequest}
-                storageScope={storageScope}
-                documentId={extraction.id}
-                onDocumentChange={(id) => {
-                  if (!storageScope) return;
-                  const url = new URL(window.location.href);
-                  if (id) url.searchParams.set("extraction", id);
-                  else url.searchParams.delete("extraction");
-                  window.history.replaceState(null, "", url);
-                }}
-              />
-            </main>
-          )}
+            )}
+          {hydrated &&
+            can("bank") &&
+            (opened.has("bank") || view === "bank") && (
+              <main hidden={view !== "bank"} className={s.viewContent}>
+                <BankView
+                  key={`${draft.id}:${bankEntry.version}`}
+                  initialData={initialData}
+                  initialFilters={bankEntry}
+                  selected={selected}
+                  onToggle={toggle}
+                  onSelectionChange={changeBankSelection}
+                  onExport={() => navigate("export")}
+                  canExport={can("export")}
+                  canUseAi={can("studio")}
+                />
+              </main>
+            )}
+          {hydrated &&
+            can("studio") &&
+            (opened.has("studio") || view === "studio") && (
+              <main hidden={view !== "studio"} className={s.studioContent}>
+                <StudioView
+                  key={`${storageScope ?? "preview"}:${extraction.version}`}
+                  active={view === "studio"}
+                  picked={selected}
+                  removed={removed}
+                  onAdd={add}
+                  onRemove={remove}
+                  onRestore={restoreRemoved}
+                  onExport={() => navigate("export")}
+                  canExport={can("export")}
+                  importRequest={importRequest}
+                  stepRequest={studioStepRequest}
+                  onCropCountChange={setStudioCropCount}
+                  restoreRequest={studioRestoreRequest}
+                  storageScope={storageScope}
+                  documentId={extraction.id}
+                  onDocumentChange={(id) => {
+                    if (!storageScope) return;
+                    const url = new URL(window.location.href);
+                    if (id) url.searchParams.set("extraction", id);
+                    else url.searchParams.delete("extraction");
+                    window.history.replaceState(null, "", url);
+                  }}
+                />
+              </main>
+            )}
           {can("teaching") &&
             (opened.has("teaching") || view === "teaching") && (
               <div hidden={view !== "teaching"} className={s.teachingContent}>
@@ -972,7 +989,7 @@ function UnifiedWorkspaceContent({
               <CourseDashboard />
             </main>
           )}
-          {view === "export" && (
+          {view === "export" && hydrated && (
             <WorksheetEditor
               selected={selected}
               title={title}

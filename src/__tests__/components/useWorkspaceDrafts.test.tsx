@@ -39,6 +39,80 @@ afterEach(() => {
 });
 
 describe("useWorkspaceDrafts browser lifecycle", () => {
+  it("defers account storage until a worksheet tab opens and keeps the draft when leaving", async () => {
+    const server = privateServer();
+    vi.stubGlobal("fetch", server.transport);
+    const get = vi.spyOn(Storage.prototype, "getItem");
+    const set = vi.spyOn(Storage.prototype, "setItem");
+    const { result, rerender, unmount } = renderHook(
+      ({ active }) => useWorkspaceDrafts("owner-a", true, active),
+      { initialProps: { active: false }, wrapper: StrictMode },
+    );
+    act(() => window.dispatchEvent(new Event("pagehide")));
+    await act(async () => {
+      await vi.advanceTimersByTimeAsync(2000);
+    });
+    expect(result.current.hydrated).toBe(false);
+    expect(server.transport).not.toHaveBeenCalled();
+    expect(get).not.toHaveBeenCalled();
+    expect(set).not.toHaveBeenCalled();
+
+    rerender({ active: true });
+    await act(async () => {
+      await vi.advanceTimersByTimeAsync(0);
+    });
+    expect(result.current.hydrated).toBe(true);
+    act(() => result.current.setProblems([problem("a")]));
+    const id = result.current.draft.id;
+    // Leaving before the debounce fires must still finish the pending edit.
+    rerender({ active: false });
+    await act(async () => {
+      await vi.advanceTimersByTimeAsync(0);
+    });
+    expect(result.current.saveStatus).toBe("saved");
+    expect(
+      server.transport.mock.calls.filter(([, init]) => init?.method === "PUT"),
+    ).toHaveLength(1);
+    server.transport.mockClear();
+    get.mockClear();
+    set.mockClear();
+    act(() => window.dispatchEvent(new Event("pagehide")));
+    await act(async () => {
+      await vi.advanceTimersByTimeAsync(30_000);
+    });
+    expect(server.transport).not.toHaveBeenCalled();
+    expect(get).not.toHaveBeenCalled();
+    expect(set).not.toHaveBeenCalled();
+
+    rerender({ active: true });
+    expect(result.current.draft).toMatchObject({
+      id,
+      problems: [problem("a")],
+    });
+    expect(server.transport).not.toHaveBeenCalled();
+    unmount();
+  });
+
+  it("can explicitly prepare a new worksheet from outside worksheet tabs", async () => {
+    const server = privateServer();
+    vi.stubGlobal("fetch", server.transport);
+    const { result } = renderHook(() =>
+      useWorkspaceDrafts("owner-a", true, false),
+    );
+    await act(async () => {
+      await result.current.prepare();
+    });
+    await act(async () => {
+      expect(await result.current.createDraft()).toBe(true);
+    });
+    act(() => result.current.setTitle("새 수학 시험지"));
+    await act(async () => {
+      expect(await result.current.saveNow()).toBe(true);
+    });
+    expect(result.current.draft.title).toBe("새 수학 시험지");
+    expect(result.current.saveStatus).toBe("saved");
+  });
+
   it("isolates signed-in cloud owners and does not adopt the unscoped development worksheet", async () => {
     const server = privateServer();
     vi.stubGlobal("fetch", server.transport);

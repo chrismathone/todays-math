@@ -31,7 +31,6 @@ interface Props {
   };
   recent: RecentWorksheet[];
   hydrated: boolean;
-  saveStatus: string;
   onNew: () => void;
   onBank: (filters?: { q?: string; grade?: string }) => void;
   onImport: () => void;
@@ -57,7 +56,6 @@ export default function WorkroomHome({
   draft,
   recent,
   hydrated,
-  saveStatus,
   cloudStorage = false,
   onNew,
   onBank,
@@ -71,13 +69,14 @@ export default function WorkroomHome({
   const canCreate = can("bank") || can("studio") || can("export");
   const showPrimary = can("bank") || can("studio") || can("library");
   const showSecondary = can("export") || can("teaching");
-  const continueView = draft.problems.length
-    ? "export"
-    : can("bank")
-      ? "bank"
-      : can("studio")
-        ? "studio"
-        : "export";
+  const continueView =
+    !hydrated || draft.problems.length
+      ? "export"
+      : can("bank")
+        ? "bank"
+        : can("studio")
+          ? "studio"
+          : "export";
   const [query, setQuery] = useState("");
   const [dragging, setDragging] = useState(false);
   const total = data.grades.reduce((sum, g) => sum + g.count, 0);
@@ -235,7 +234,7 @@ export default function WorkroomHome({
                   <div>
                     <Icon name="clock" size={21} />
                     <h2 id="recent-drafts-heading">최근 작업</h2>
-                    <span>{recent.length}</span>
+                    {hydrated && <span>{recent.length}</span>}
                   </div>
                   <button onClick={() => onNavigate("library")}>
                     모두 보기
@@ -243,8 +242,17 @@ export default function WorkroomHome({
                   </button>
                 </div>
                 {!hydrated ? (
-                  <div className={s.recentLoading}>
-                    <WorkProgress label="저장한 시험지를 불러오고 있어요…" />
+                  <div className={s.recentEmpty}>
+                    <span>
+                      <Icon name="folder" size={27} />
+                    </span>
+                    <div>
+                      <strong>저장한 시험지 이어하기</strong>
+                      <p>내 시험지에서 저장한 자료를 열어 보세요.</p>
+                    </div>
+                    <button onClick={() => onNavigate("library")}>
+                      내 시험지 <Icon name="arrow" size={17} />
+                    </button>
                   </div>
                 ) : visibleDrafts.length ? (
                   <div
@@ -320,26 +328,6 @@ export default function WorkroomHome({
               >
                 <div className={s.activeHeading}>
                   <h2 id="active-draft-heading">만들고 있는 시험지</h2>
-                  <span
-                    className={s.saveBadge}
-                    data-error={saveStatus === "error"}
-                  >
-                    {!hydrated || saveStatus === "saving" ? (
-                      <WorkProgress
-                        variant="inline"
-                        label={!hydrated ? "불러오는 중" : "저장 중"}
-                      />
-                    ) : (
-                      <>
-                        <i />
-                        {saveStatus === "error"
-                          ? "저장 확인 필요"
-                          : draft.problems.length
-                            ? "자동 저장"
-                            : "준비 중"}
-                      </>
-                    )}
-                  </span>
                 </div>
                 <div className={s.draftPreview}>
                   <div className={s.tinyPaper} aria-hidden="true">
@@ -352,12 +340,20 @@ export default function WorkroomHome({
                     <i />
                   </div>
                   <div>
-                    <span className={s.draftCaption}>현재 작업</span>
-                    <h3>{draft.title || "제목 없는 시험지"}</h3>
-                    <strong className={s.problemTotal}>
-                      {draft.problems.length}
-                      <small> 문항</small>
-                    </strong>
+                    <span className={s.draftCaption}>
+                      {hydrated ? "현재 작업" : "시험지 편집"}
+                    </span>
+                    <h3>
+                      {hydrated
+                        ? draft.title || "제목 없는 시험지"
+                        : "시험지 작업 이어하기"}
+                    </h3>
+                    {hydrated && (
+                      <strong className={s.problemTotal}>
+                        {draft.problems.length}
+                        <small> 문항</small>
+                      </strong>
+                    )}
                   </div>
                 </div>
                 {draft.problems.length > 0 ? (
@@ -385,7 +381,11 @@ export default function WorkroomHome({
                     </span>
                   </div>
                 ) : (
-                  <p className={s.draftEmptyText}>아직 담은 문제가 없습니다.</p>
+                  <p className={s.draftEmptyText}>
+                    {hydrated
+                      ? "아직 담은 문제가 없습니다."
+                      : "편집 화면에서 이전 작업을 불러옵니다."}
+                  </p>
                 )}
                 <button
                   className={s.primaryButton}

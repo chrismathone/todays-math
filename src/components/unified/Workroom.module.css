@@ -347,8 +347,7 @@
     padding: 0;
   }
   .workspace[data-authenticated="true"] .searchTrigger span,
-  .workspace[data-authenticated="true"] .searchTrigger kbd,
-  .workspace[data-authenticated="true"] .saveState {
+  .workspace[data-authenticated="true"] .searchTrigger kbd {
     display: none;
   }
 }
@@ -403,23 +402,6 @@
   display: flex;
   align-items: center;
   gap: 17px;
-}
-.saveState {
-  display: flex;
-  align-items: center;
-  gap: 5px;
-  font-size: var(--text-caption, 12px);
-  color: #4e6e5e;
-  white-space: nowrap;
-}
-.saveState svg {
-  color: #49937a;
-}
-.saveState[data-state="error"] {
-  color: #b34332;
-}
-.saveState[data-state="error"] svg {
-  color: #b34332;
 }
 .headerPaper {
   display: flex;
@@ -518,7 +500,22 @@
   text-decoration: underline;
   padding: 0 7px;
 }
-.saveState button.saveErrorTrigger {
+.draftFeedback {
+  padding: var(--workspace-page-padding);
+  padding-bottom: 0;
+  color: #963d2a;
+}
+.draftFeedback > div {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 9px;
+  margin: 0;
+}
+.draftFeedback button.saveErrorTrigger {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  min-height: var(--control-height, 44px);
   padding: 0;
   border: 0;
   background: transparent;
@@ -528,7 +525,7 @@
   text-underline-offset: 3px;
   cursor: pointer;
 }
-.notifications .saveErrorDismiss {
+.draftFeedback .saveErrorDismiss {
   display: grid;
   place-items: center;
   flex: 0 0 44px;
@@ -1026,9 +1023,6 @@
   .topbar {
     padding: 0 26px;
     gap: 15px;
-  }
-  .saveState {
-    display: none;
   }
   .libraryGrid {
     grid-template-columns: repeat(2, minmax(0, 1fr));

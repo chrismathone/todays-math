@@ -4,8 +4,12 @@ import { useEffect, useMemo, useSyncExternalStore } from "react";
 import { createWorkspaceDraftStore } from "./draftStore";
 import { createPrivateDraftStore } from "./privateDraftStore";
 
-/** Hydration-gated browser drafts shared by all views of one workspace. */
-export function useWorkspaceDrafts(storageScope?: string, enabled = true) {
+/** Keep drafts in memory across tabs; access storage only for worksheet work. */
+export function useWorkspaceDrafts(
+  storageScope?: string,
+  enabled = true,
+  active = true,
+) {
   const store = useMemo(
     () =>
       storageScope
@@ -26,20 +30,29 @@ export function useWorkspaceDrafts(storageScope?: string, enabled = true) {
 
   useEffect(() => {
     if ("retain" in store) store.retain();
-    store.hydrate();
-    window.addEventListener("pagehide", store.flush);
     return () => {
-      window.removeEventListener("pagehide", store.flush);
       store.flush();
       if ("release" in store) store.release();
     };
   }, [store]);
+
+  useEffect(() => {
+    if (!active) return;
+    store.hydrate();
+    window.addEventListener("pagehide", store.flush);
+    return () => {
+      window.removeEventListener("pagehide", store.flush);
+      // Finish edits already made before leaving, without discarding the draft.
+      store.flush();
+    };
+  }, [store, active]);
 
   return {
     ...snapshot,
     ...(storageScope && !enabled
       ? { saveStatus: "disabled" as const, saveError: null }
       : {}),
+    prepare: store.hydrate,
     setTitle: store.setTitle,
     setProblems: store.setProblems,
     setRemoved: store.setRemoved,
