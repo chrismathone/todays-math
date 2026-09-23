@@ -2,12 +2,9 @@ import withBundleAnalyzer from "@next/bundle-analyzer";
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-  // Enable only after Vercel Deployment Checks requires the GitHub Typecheck job.
-  // Local builds keep Next's typecheck, even when the deployment switch is set.
+  // Type errors must fail every production build, including Vercel builds.
   typescript: {
-    ignoreBuildErrors:
-      process.env.VERCEL === "1" &&
-      process.env.VERCEL_TYPECHECK_EXTERNALIZED === "1",
+    ignoreBuildErrors: false,
   },
   // Keep existing image URLs and same-origin PDF/canvas requests. Local public
   // files take precedence until a verified deployment excludes those files.

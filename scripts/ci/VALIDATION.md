@@ -1,5 +1,9 @@
 # Standalone Typecheck validation
 
+Historical record from the 2026-09-15 GitHub Actions rollout. The workflow and
+its required Vercel Deployment Check have since been retired. See
+[README.md](README.md) for the current local and Vercel checks.
+
 ## Delivery
 
 - Branch: `BIGSHOL/external-typecheck-ci`.

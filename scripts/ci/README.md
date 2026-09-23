@@ -1,52 +1,28 @@
-# Standalone Typecheck
+# Local and deployment type checking
 
-The GitHub Actions workflow runs on every push, pull request, and manual
-`workflow_dispatch`. The workflow name and stable job/check name are both
-**Typecheck** (job ID: `typecheck`). Select **Typecheck** when configuring a
-required status check; GitHub may display it under the Typecheck workflow.
+GitHub Actions is not used for this project. A push to `main` starts a Vercel
+production build, and `next build` fails on TypeScript errors because
+`next.config.ts` keeps `typescript.ignoreBuildErrors` set to `false`. Vercel
+automatically assigns the production domain only after a successful build.
 
-## Commands
-
-With the dependencies installed from `package-lock.json`:
+The local pre-push hook also runs `npm run type-check` for pushes to `main`.
+Before a push or when route types or Prisma schema have changed, run the complete
+standalone check:
 
 ```sh
 node scripts/ci/typecheck.mjs
-node scripts/ci/verify-typecheck.mjs
 ```
 
-The first command generates Prisma Client, runs `next typegen`, verifies that
-`next-env.d.ts`, `.next/types/routes.d.ts`, and `.next/types/validator.ts` exist
-and belong to the TypeScript project, then runs the local `tsc` with `--noEmit`
-and incremental caching disabled. It preserves the root `tsconfig.json` scope,
-including its existing exclusions. No separate, narrower CI config is used.
+This generates Prisma Client and Next route types, verifies that the generated
+types belong to the TypeScript project, and checks the complete `tsconfig.json`
+project with incremental caching disabled. It uses loopback placeholder database
+URLs and does not connect to production services. Use a checkout with its own
+`node_modules`, because Prisma generation writes there.
 
-The second command creates a temporary `.ts` source file assigning a string to
-a number, runs the **same CI command**, requires a nonzero exit and that file's
-TS2322 diagnostic, and removes the fixture in `finally`. Run the first command
-before the proof to establish that the original project passes. Manual workflow
-runs with the `verify_failure` input enabled do both, so unrelated failures cannot
-stand in for a passing baseline. Normal push/PR runs check the project once.
+To verify that the checker catches a real type error after a successful baseline,
+run `node scripts/ci/verify-typecheck.mjs`. It injects and then removes a
+temporary malformed source file. This is an optional maintenance check, not part
+of normal pushes or deployments.
 
-CI caches npm downloads only and installs with `npm ci --include=dev`.
-Prisma postinstall generation is disabled so generation happens explicitly in
-the checker. Run this command in a checkout with its **own node_modules**:
-Prisma generation writes there, so a shared dependency junction is unsuitable.
-
-Generation uses fixed loopback placeholder database URLs and requires no
-repository secrets, production database, AI calls, or deployment. It does not
-start the app, run database migrations/seeds, or run a production build.
-The script overrides inherited database URLs as well. Next type generation
-loads `next.config.ts`, which must remain safe to evaluate without services.
-
-## References
-
-- Installed Next 16.3.0 guide: `node_modules/next/dist/docs/01-app/03-api-reference/06-cli/next.md`, section `next typegen`.
-- [setup-node: npm dependency caching](https://github.com/actions/setup-node#caching-global-packages-data).
-- [checkout: token permissions and credentials](https://github.com/actions/checkout).
-
-Required-check/branch rules and Vercel deployment checks are configured separately
-by the coordinator. This workflow alone does not make a check mandatory or block
-a Vercel deployment. Hosted run
-[34918169862](https://github.com/chrismathone/todays-math/actions/runs/34918169862)
-passed both the complete typecheck and negative proof. See
-[rollout status](../../docs/qa/deployment-externalization.md) for activation steps.
+The previous GitHub Actions and Vercel Deployment Check arrangement is recorded
+as historical evidence in [deployment-externalization.md](../../docs/qa/deployment-externalization.md).

@@ -1,13 +1,21 @@
 # Deployment externalization
 
-The shared figure delivery path and separate GitHub Typecheck job are prepared.
-Production now requires the GitHub Typecheck result before assigning its domain.
-The inline typecheck switch was enabled on 2026-09-15 after the live promotion
-gate proof below. Shared figures remain local until storage upload and full
-verification are complete. Creating a workflow alone does not make Vercel wait
-for its result.
+> Historical rollout record (2026-09-15). As of 2026-09-23, the GitHub
+> `Typecheck` Deployment Check and `VERCEL_TYPECHECK_EXTERNALIZED` production
+> environment variable are absent from the live Vercel project. The GitHub
+> Actions workflow has been removed. `next.config.ts` now explicitly keeps
+> Next.js build-time type checking enabled in every environment. The local
+> `pre-push` hook checks types on pushes to `main`; a failed Vercel build cannot
+> be assigned the production domain. See
+> [current type-check instructions](../../scripts/ci/README.md).
 
-## Typecheck
+The shared figure delivery path and separate GitHub Typecheck job were prepared
+in September 2026. At the time, production required the GitHub Typecheck result
+before assigning its domain. The inline typecheck switch was enabled on
+2026-09-15 after the live promotion gate proof below. Creating a workflow alone
+did not make Vercel wait for its result.
+
+## Historical Typecheck rollout
 
 `.github/workflows/typecheck.yml` runs the stable **Typecheck** job on every push,
 pull request, and manual run. It generates Prisma and Next route types before
