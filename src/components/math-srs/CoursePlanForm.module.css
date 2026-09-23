@@ -1,0 +1,91 @@
+.form {
+  color: var(--learn-ink, #24342e);
+}
+.fields {
+  min-width: 0;
+  border: 0;
+  padding: 0;
+  margin: 20px 0;
+}
+.legend {
+  font-size: 15px;
+  font-weight: 700;
+  margin-bottom: 14px;
+}
+.grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 18px;
+}
+.form label {
+  display: grid;
+  gap: 8px;
+  font-size: 14px;
+  font-weight: 600;
+}
+.form select {
+  width: 100%;
+  min-width: 0;
+  min-height: 46px;
+  padding: 10px 12px;
+  border: 1px solid var(--learn-control, #c2cbc6);
+  border-radius: 8px;
+  background: var(--learn-surface, #fff);
+  color: inherit;
+  font: inherit;
+  cursor: pointer;
+}
+.form .daily {
+  margin-top: 22px;
+  max-width: 260px;
+}
+.form .toggle {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  min-height: 44px;
+}
+.toggle input {
+  width: 18px;
+  height: 18px;
+  accent-color: var(--learn-accent, #326e50);
+}
+.note,
+.selection {
+  font-size: 13px;
+  line-height: 1.8;
+  color: var(--learn-muted, #617068);
+  overflow-wrap: anywhere;
+}
+.selection {
+  padding: 14px;
+  border-radius: 8px;
+  background: var(--learn-soft, #f1f5f1);
+}
+.form .submit {
+  min-height: 48px;
+  padding: 12px 22px;
+  border: 0;
+  border-radius: 8px;
+  background: var(--learn-accent, #326e50);
+  color: var(--learn-on-accent, #fff);
+  font: inherit;
+  font-weight: 700;
+  cursor: pointer;
+}
+.form :disabled {
+  opacity: 0.55;
+  cursor: default;
+}
+.form :focus-visible {
+  outline: 3px solid var(--learn-focus, #568c70);
+  outline-offset: 3px;
+}
+@media (max-width: 560px) {
+  .grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .submit {
+    width: 100%;
+  }
+}
