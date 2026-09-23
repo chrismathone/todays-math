@@ -1,6 +1,102 @@
 .page {
   min-width: 0;
 }
+
+.page.practicePage {
+  height: 100dvh;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.practicePage .main {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  width: 100%;
+  max-width: none;
+  min-height: 0;
+  margin: 0;
+  padding: 0 clamp(24px, 3.2vw, 64px) 24px;
+}
+
+.practicePage .profileBar {
+  flex-shrink: 0;
+  min-height: 64px;
+}
+
+.practicePage .profileControls > button {
+  display: none;
+}
+
+.practiceStage {
+  flex: 1;
+  min-width: 0;
+  min-height: 0;
+}
+
+.practicePage .notice {
+  flex-shrink: 0;
+  margin: 0 0 10px;
+}
+
+@media (max-width: 1099px) {
+  .practicePage .navigation {
+    flex-shrink: 0;
+    min-height: 66px;
+    padding: 10px 24px;
+    gap: 0;
+    background: transparent;
+  }
+
+  .practicePage .navigation nav {
+    display: none;
+  }
+
+  .practicePage .profileBar {
+    position: absolute;
+    inset: 10px 24px auto auto;
+    min-height: 44px;
+  }
+
+  .practicePage .localBadge,
+  .practicePage .profileControls label {
+    display: none;
+  }
+
+  .practicePage .main {
+    padding: 0 24px 16px;
+  }
+}
+
+@media (max-width: 600px) {
+  .practicePage .navigation {
+    min-height: 64px;
+    padding: 8px 16px;
+  }
+
+  .practicePage .navigation a {
+    font-size: 16px;
+  }
+
+  .practicePage .navigation a b {
+    display: none;
+  }
+
+  .practicePage .profileBar {
+    inset: 10px 16px auto auto;
+  }
+
+  .practicePage .profileControls select {
+    max-width: 126px;
+    min-height: 44px;
+  }
+
+  .practicePage .main {
+    padding: 0 12px 12px;
+  }
+}
 .heading {
   margin: 24px 0 30px;
 }

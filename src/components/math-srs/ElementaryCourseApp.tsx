@@ -85,6 +85,7 @@ export default function ElementaryCourseApp() {
     active && !active.completedAt ? getCourseSection(active.sectionId) : null;
   const suggestion = resume ?? selected;
   const ready = profiles.ready && course.ready;
+  const practicing = view === "practice" && Boolean(active);
 
   function showHome() {
     setView("home");
@@ -103,6 +104,7 @@ export default function ElementaryCourseApp() {
     mode: "learn" | "review" = "learn",
   ) {
     if (busy) return;
+    setAdding(false);
     setError(null);
     if (active?.sectionId === section.id && !active.completedAt) {
       setView("practice");
@@ -161,11 +163,13 @@ export default function ElementaryCourseApp() {
   }
 
   return (
-    <div className={`${shell.page} ${s.page}`}>
+    <div
+      className={`${shell.page} ${s.page} ${practicing ? s.practicePage : ""}`}
+    >
       <a href="#srs-main" className={shell.skip}>
         본문으로 건너뛰기
       </a>
-      <header className={shell.header}>
+      <header className={`${shell.header} ${s.navigation}`}>
         <Link
           href="/lab"
           className={shell.brand}
@@ -207,12 +211,12 @@ export default function ElementaryCourseApp() {
           <span>초3부터 초6까지</span>
         </div>
       </header>
-      <main id="srs-main" className={shell.main}>
-        <div className={shell.profileBar}>
-          <span className={shell.localBadge}>
+      <main id="srs-main" className={`${shell.main} ${s.main}`}>
+        <div className={`${shell.profileBar} ${s.profileBar}`}>
+          <span className={`${shell.localBadge} ${s.localBadge}`}>
             <i />이 기기에 저장되는 학습 기록
           </span>
-          <div className={shell.profileControls}>
+          <div className={`${shell.profileControls} ${s.profileControls}`}>
             <label htmlFor="course-learner">학습자</label>
             <select
               id="course-learner"
@@ -270,12 +274,12 @@ export default function ElementaryCourseApp() {
           </form>
         ) : null}
         {profiles.warning || course.warning ? (
-          <p role="status" className={shell.warning}>
+          <p role="status" className={`${shell.warning} ${s.notice}`}>
             {course.warning ?? profiles.warning}
           </p>
         ) : null}
         {error ? (
-          <p role="alert" className={shell.warning}>
+          <p role="alert" className={`${shell.warning} ${s.notice}`}>
             {error}
           </p>
         ) : null}
@@ -284,33 +288,35 @@ export default function ElementaryCourseApp() {
             학습 기록을 불러오는 중…
           </p>
         ) : view === "practice" && active ? (
-          <ElementaryPractice
-            key={`${learner.id}-${active.id}`}
-            session={active}
-            section={getCourseSection(active.sectionId)!}
-            onAttempt={(attempt) =>
-              course.persist((current) =>
-                recordCourseAttempt(current, {
-                  ...attempt,
-                  answeredAt: new Date(
-                    Math.max(
-                      Date.parse(attempt.answeredAt),
-                      Date.parse(
-                        current.session?.attempts.at(-1)?.answeredAt ??
-                          current.session?.startedAt ??
-                          attempt.answeredAt,
+          <div className={s.practiceStage}>
+            <ElementaryPractice
+              key={`${learner.id}-${active.id}`}
+              session={active}
+              section={getCourseSection(active.sectionId)!}
+              onAttempt={(attempt) =>
+                course.persist((current) =>
+                  recordCourseAttempt(current, {
+                    ...attempt,
+                    answeredAt: new Date(
+                      Math.max(
+                        Date.parse(attempt.answeredAt),
+                        Date.parse(
+                          current.session?.attempts.at(-1)?.answeredAt ??
+                            current.session?.startedAt ??
+                            attempt.answeredAt,
+                        ),
                       ),
-                    ),
-                  ).toISOString(),
-                }),
-              )
-            }
-            onHint={(problemId) =>
-              course.persist((current) => markCourseHint(current, problemId))
-            }
-            onExit={showHome}
-            onContinue={continueCourse}
-          />
+                    ).toISOString(),
+                  }),
+                )
+              }
+              onHint={(problemId) =>
+                course.persist((current) => markCourseHint(current, problemId))
+              }
+              onExit={showHome}
+              onContinue={continueCourse}
+            />
+          </div>
         ) : view === "review" ? (
           <>
             <div className={s.heading}>
@@ -554,13 +560,15 @@ export default function ElementaryCourseApp() {
             </section>
           </>
         )}
-        <footer className={shell.footer}>
-          <Link href="/lab">← 개념 실험실</Link>
-          <span>
-            학습 기록은 이 브라우저에 저장돼요. 다른 기기와 공유되지 않아요.
-          </span>
-          <Link href="/lab/math-srs/algebra">중1 방정식 복습 →</Link>
-        </footer>
+        {!practicing ? (
+          <footer className={shell.footer}>
+            <Link href="/lab">← 개념 실험실</Link>
+            <span>
+              학습 기록은 이 브라우저에 저장돼요. 다른 기기와 공유되지 않아요.
+            </span>
+            <Link href="/lab/math-srs/algebra">중1 방정식 복습 →</Link>
+          </footer>
+        ) : null}
       </main>
     </div>
   );
