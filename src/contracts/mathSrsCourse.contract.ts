@@ -141,3 +141,51 @@ export const courseDashboardResponseSchema = dataResponseSchema(
 export const courseRosterStudentResponseSchema = dataResponseSchema(
   courseRosterStudentSchema,
 );
+
+export const courseSectionReportSchema = z.strictObject({
+  sectionId: courseSectionIdSchema,
+  completedSessions: z.number().int().nonnegative(),
+  attempts: z.number().int().nonnegative(),
+  correct: z.number().int().nonnegative(),
+  unaidedCorrect: z.number().int().nonnegative(),
+  hinted: z.number().int().nonnegative(),
+  selfAssessed: z.number().int().nonnegative(),
+  mastery: z.number().min(0).max(100),
+  estimatedRecall: z.number().min(0).max(100),
+  stabilityDays: z.number().positive(),
+  lastReviewedAt: isoDateTimeSchema,
+  nextReviewAt: isoDateTimeSchema,
+});
+export const courseActivityDaySchema = z.strictObject({
+  date: z.iso.date(),
+  answered: z.number().int().nonnegative(),
+  correct: z.number().int().nonnegative(),
+  unaidedCorrect: z.number().int().nonnegative(),
+  hinted: z.number().int().nonnegative(),
+});
+export const courseSessionReportSchema = z.strictObject({
+  id: uuidSchema,
+  sectionId: courseSectionIdSchema,
+  mode: z.enum(["learn", "review"]),
+  startedAt: isoDateTimeSchema,
+  completedAt: isoDateTimeSchema.nullable(),
+  answered: z.number().int().min(0).max(5),
+  correct: z.number().int().min(0).max(5),
+  hinted: z.number().int().min(0).max(5),
+});
+export const courseRecentAttemptSchema = coursePublicAttemptSchema.extend({
+  sessionId: uuidSchema,
+  sectionId: courseSectionIdSchema,
+  content: z.string(),
+});
+export const courseStudentDetailSchema = z.strictObject({
+  student: courseRosterStudentSchema,
+  sections: z.array(courseSectionReportSchema),
+  activity: z.array(courseActivityDaySchema),
+  recentSessions: z.array(courseSessionReportSchema),
+  recentAttempts: z.array(courseRecentAttemptSchema),
+});
+export type CourseStudentDetail = z.infer<typeof courseStudentDetailSchema>;
+export const courseStudentDetailResponseSchema = dataResponseSchema(
+  courseStudentDetailSchema,
+);
