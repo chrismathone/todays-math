@@ -1,7 +1,7 @@
 .previewShell {
   min-height: 100vh;
-  background: #c9c9c7;
-  color: #161616;
+  background: var(--learn-bg);
+  color: var(--learn-ink);
   padding: 24px 28px 64px;
 }
 
@@ -11,36 +11,35 @@
   top: 0;
   width: min(100%, 1000px);
   margin: 0 auto 28px;
-  border-top: 3px solid #161616;
-  border-bottom: 1px solid #c2c2c0;
-  background: #ececea;
+  border: 1px solid var(--learn-track);
+  border-radius: var(--learn-radius);
+  background: var(--learn-surface);
   padding: 14px 18px;
   display: grid;
   grid-template-columns: minmax(0, 1fr) auto;
   align-items: center;
   gap: 16px;
   font-family: Pretendard, "Apple SD Gothic Neo", "Malgun Gothic", sans-serif;
-  box-shadow: 0 8px 22px rgb(0 0 0 / 12%);
+  box-shadow: 0 6px 18px rgb(23 43 77 / 5%);
 }
 
 .previewToolbar h1 {
   margin: 2px 0;
-  font-size: 18px;
-  font-weight: 900;
+  font-size: 24px;
+  font-weight: 700;
   letter-spacing: -0.02em;
 }
 
 .previewToolbar p {
   margin: 0;
-  color: #6a6a68;
-  font-size: 12px;
+  color: var(--learn-muted);
+  font-size: 14px;
 }
 
 .previewEyebrow {
-  color: #6a6a68;
-  font-size: 9px;
-  font-weight: 800;
-  letter-spacing: 0.18em;
+  color: var(--learn-muted);
+  font-size: 12px;
+  font-weight: 600;
 }
 
 .toolbarActions,
@@ -51,29 +50,53 @@
 
 .toolbarActions {
   gap: 10px;
+  flex-wrap: wrap;
 }
 
 .modeSwitch button,
-.printButton {
+.printButton,
+.backLink {
   min-height: 44px;
-  border: 1px solid #161616;
+  border: 1px solid var(--learn-control);
+  border-radius: 8px;
   padding: 0 16px;
-  font-size: 12px;
-  font-weight: 800;
+  font-size: 14px;
+  font-weight: 600;
   cursor: pointer;
 }
 
 .modeSwitch button {
-  background: #ececea;
-  color: #161616;
+  background: var(--learn-surface);
+  color: var(--learn-ink);
 }
 
-.modeSwitch button + button {
-  border-left: 0;
+.modeSwitch {
+  gap: 6px;
 }
 
 .modeSwitch button[aria-pressed="true"] {
-  background: #161616;
+  background: var(--learn-soft);
+  border-color: var(--learn-accent);
+  color: var(--learn-accent);
+}
+
+.backLink {
+  display: inline-flex;
+  align-items: center;
+  color: var(--learn-ink);
+}
+
+.previewToolbar :is(button, a):focus-visible {
+  outline: 3px solid var(--learn-focus);
+  outline-offset: 3px;
+}
+
+.previewToolbar :is(button:not(:disabled), a):hover {
+  border-color: var(--learn-accent);
+}
+
+.printButton:enabled:hover {
+  background: var(--learn-accent-hover);
   color: #fff;
 }
 
@@ -90,14 +113,14 @@
 
 .printError {
   grid-column: 1 / -1;
-  color: #c5221f !important;
+  color: var(--learn-danger) !important;
   font-weight: 700;
 }
 
 /* 넘침 경고 — 오류(빨강)와 구분되게 주의색으로. 인쇄물에는 안 나간다(툴바 안). */
 .printWarning {
   grid-column: 1 / -1;
-  color: #8a5a00;
+  color: var(--learn-warning);
   font-weight: 600;
 }
 
@@ -586,15 +609,21 @@
   font-size: 10px;
 }
 
-@media (max-width: 860px) {
+@media screen and (max-width: 860px) {
   .previewShell {
-    overflow-x: auto;
     padding-inline: 16px;
   }
 
   .previewToolbar {
     position: static;
-    width: 210mm;
+    width: 100%;
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .pageGallery {
+    width: 100%;
+    overflow-x: auto;
+    align-items: flex-start;
   }
 }
 
@@ -616,6 +645,7 @@
 
   .pageGallery {
     display: block;
+    outline: none;
   }
 
   .a4Page {

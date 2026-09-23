@@ -1,6 +1,7 @@
 "use client";
 
 import { useMemo, useState } from "react";
+import Link from "next/link";
 
 import { PrintAnswerKeyPage } from "@/components/print/PrintAnswerKeyPage";
 import { JaseupTemplate } from "@/components/print/templates/JaseupTemplate";
@@ -129,6 +130,11 @@ export function TestPrint({ data, initialMode = "questions" }: TestPrintProps) {
           </p>
         </div>
         <div className={styles.toolbarActions}>
+          {data.testId ? (
+            <Link className={styles.backLink} href={`/tests/${data.testId}`}>
+              시험지로 돌아가기
+            </Link>
+          ) : null}
           <div
             aria-label="미리보기 종류"
             className={styles.modeSwitch}
@@ -194,7 +200,12 @@ export function TestPrint({ data, initialMode = "questions" }: TestPrintProps) {
         ) : null}
       </header>
 
-      <div className={styles.pageGallery}>
+      <div
+        className={styles.pageGallery}
+        role="region"
+        aria-label="시험지 미리보기"
+        tabIndex={0}
+      >
         {mode === "questions"
           ? questionPages.map((page, index) => (
               <JaseupTemplate
