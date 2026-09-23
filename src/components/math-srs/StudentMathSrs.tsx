@@ -436,13 +436,26 @@ function Question({
   const [rating, setRating] = useState<Rating>("good");
   const [validation, setValidation] = useState<string | null>(null);
   const [startedAt] = useState(() => Date.now());
+  const form = useRef<HTMLFormElement>(null);
+  function focusAnswer() {
+    form.current
+      ?.querySelector<HTMLInputElement>("#srs-answer")
+      ?.focus({ preventScroll: true });
+  }
+  useEffect(() => {
+    focusAnswer();
+  }, [problem.id]);
+
   function submit(event: FormEvent) {
     event.preventDefault();
     if (busy) return;
     if (parseSubmittedNumber(answer) === null) {
       setValidation(
-        "답을 숫자 또는 분수로 입력해 주세요. 분모는 0이 될 수 없어요.",
+        answer.trim()
+          ? "숫자 또는 분수로 입력해 주세요. 분모는 0이 될 수 없어요."
+          : "답을 먼저 입력해 주세요.",
       );
+      focusAnswer();
       return;
     }
     setValidation(null);
@@ -468,33 +481,42 @@ function Question({
           <MathText text={problem.equation} as="div" className={s.equation} />
         ) : null}
       </div>
-      <form onSubmit={submit}>
+      <form ref={form} onSubmit={submit}>
         <label className={s.label} htmlFor="srs-answer">
           나의 답
+          {problem.answerUnit ? (
+            <span className={s.answerUnit}> ({problem.answerUnit})</span>
+          ) : null}
         </label>
         <div className={s.answer}>
           <Input
             id="srs-answer"
-            autoFocus
             value={answer}
-            onChange={(event) => setAnswer(event.target.value)}
+            onChange={(event) => {
+              setAnswer(event.target.value);
+              setValidation(null);
+            }}
             disabled={busy}
-            placeholder="예: 3 또는 1/2"
+            placeholder="예: -3, 1/2"
             maxLength={200}
             autoComplete="off"
             enterKeyHint="done"
             autoCapitalize="off"
             spellCheck={false}
             aria-invalid={!!validation}
-            aria-describedby={validation ? "srs-answer-error" : undefined}
+            aria-describedby="srs-answer-help"
           />
-          {problem.answerUnit ? <span>{problem.answerUnit}</span> : null}
         </div>
-        {validation ? (
-          <p id="srs-answer-error" role="alert" className={s.review}>
-            {validation}
-          </p>
-        ) : null}
+        <p
+          id="srs-answer-help"
+          className={`${s.answerHelp} ${validation ? s.answerError : ""}`}
+        >
+          {validation ? (
+            <span role="alert">{validation}</span>
+          ) : (
+            "음수와 분수도 입력할 수 있어요."
+          )}
+        </p>
         <fieldset className={s.ratings} disabled={busy}>
           <legend>어떻게 풀었나요?</legend>
           <div>
@@ -519,7 +541,7 @@ function Question({
           </div>
         </fieldset>
         <div className={s.actions}>
-          <Button type="submit" disabled={busy}>
+          <Button type="submit" className={s.answerSubmit} disabled={busy}>
             {busy ? "저장하는 중…" : "정답 확인"}
           </Button>
           <Button

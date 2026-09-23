@@ -169,9 +169,20 @@ describe("account-based math practice", () => {
     await user.click(
       await screen.findByRole("button", { name: "오늘의 미션 시작" }),
     );
-    await user.type(screen.getByLabelText("나의 답"), "1/0");
+    const answer = screen.getByLabelText("나의 답");
+    expect(answer).toHaveAccessibleDescription("음수와 분수도 입력할 수 있어요.");
+    await user.click(screen.getByRole("button", { name: "정답 확인" }));
+    expect(screen.getByRole("alert")).toHaveTextContent("답을 먼저 입력");
+    expect(answer).toHaveFocus();
+    await user.type(answer, "1/0");
+    expect(screen.queryByRole("alert")).not.toBeInTheDocument();
     await user.click(screen.getByRole("button", { name: "정답 확인" }));
     expect(screen.getByRole("alert")).toHaveTextContent("분모는 0");
+    expect(answer).toHaveFocus();
+    expect(answer).toHaveAttribute("aria-invalid", "true");
+    expect(answer).toHaveAccessibleDescription(
+      "숫자 또는 분수로 입력해 주세요. 분모는 0이 될 수 없어요.",
+    );
     expect(api.submitMathSrsAttempt).not.toHaveBeenCalled();
     await user.click(screen.getByRole("button", { name: "힌트 보기" }));
     expect(
@@ -181,8 +192,11 @@ describe("account-based math practice", () => {
       missionId,
       problemId: initial.problems[0].id,
     });
-    await user.clear(screen.getByLabelText("나의 답"));
-    await user.type(screen.getByLabelText("나의 답"), "1/3");
+    await user.clear(answer);
+    expect(screen.queryByRole("alert")).not.toBeInTheDocument();
+    expect(answer).toHaveAttribute("aria-invalid", "false");
+    expect(answer).toHaveAccessibleDescription("음수와 분수도 입력할 수 있어요.");
+    await user.type(answer, "1/3");
     await user.click(screen.getByRole("button", { name: "정답 확인" }));
     expect(
       await screen.findByRole("heading", { name: "잘 풀었어요!" }),
