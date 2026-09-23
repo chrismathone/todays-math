@@ -68,6 +68,7 @@ export function useGenerateSetup({ initialClassId, initialStudentId }: Props) {
   const [students, setStudents] = useState<StudentEntity[]>([]);
   const [ready, setReady] = useState(false);
   const [loadError, setLoadError] = useState<string | null>(null);
+  const [loadAttempt, setLoadAttempt] = useState(0);
   const [classId, setClassId] = useState("");
   const [studentId, setStudentId] = useState("");
   const [testType, setTestType] = useState<TestType>("daily");
@@ -155,7 +156,13 @@ export function useGenerateSetup({ initialClassId, initialStudentId }: Props) {
     return () => {
       cancelled = true;
     };
-  }, [initialClassId]);
+  }, [initialClassId, loadAttempt]);
+
+  const retryLoad = useCallback(() => {
+    setLoadError(null);
+    setReady(false);
+    setLoadAttempt((value) => value + 1);
+  }, []);
 
   useEffect(() => {
     if (!classId) return;
@@ -492,6 +499,7 @@ export function useGenerateSetup({ initialClassId, initialStudentId }: Props) {
     students,
     ready,
     loadError,
+    retryLoad,
     classId,
     studentId,
     testType,

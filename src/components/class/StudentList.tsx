@@ -1,7 +1,7 @@
 "use client";
 
 import dynamic from "next/dynamic";
-import { useState } from "react";
+import { useRef, useState } from "react";
 
 import { Button } from "@/components/ui/Button";
 import { OwnerTag } from "@/components/ui/OwnerTag";
@@ -44,9 +44,13 @@ export function StudentList({
     classId: string;
     studentId: string;
   } | null>(null);
+  const opener = useRef<HTMLButtonElement | null>(null);
   const pickedId =
     picked && picked.classId === selectedClass?.id ? picked.studentId : null;
-  const pickedStudent = students.find((row) => row.id === pickedId) ?? null;
+  const pickedStudent =
+    status === "ready"
+      ? (students.find((row) => row.id === pickedId) ?? null)
+      : null;
 
   return (
     <div>
@@ -88,7 +92,7 @@ export function StudentList({
         </p>
       ) : null}
       <ul aria-label="학생" className="flex flex-col">
-        {students.map((student) => {
+        {(status === "ready" ? students : []).map((student) => {
           const selected = student.id === pickedId;
           return (
             <li key={student.id} className="border-b border-divider">
@@ -99,13 +103,16 @@ export function StudentList({
               <button
                 type="button"
                 aria-pressed={selected}
-                onClick={() =>
+                aria-expanded={selected}
+                aria-controls={`student-account-${student.id}-panel`}
+                onClick={(event) => {
+                  opener.current = event.currentTarget;
                   setPicked(
                     selected || !selectedClass
                       ? null
                       : { classId: selectedClass.id, studentId: student.id },
-                  )
-                }
+                  );
+                }}
                 className={`min-h-11 w-full py-2.5 text-left text-[12.5px] font-bold ${nameSelectionClass(selected)}`}
               >
                 {student.name}
@@ -115,7 +122,14 @@ export function StudentList({
         })}
       </ul>
       {pickedStudent ? (
-        <StudentAccountPanel key={pickedStudent.id} student={pickedStudent} />
+        <StudentAccountPanel
+          key={pickedStudent.id}
+          student={pickedStudent}
+          onClose={() => {
+            setPicked(null);
+            opener.current?.focus();
+          }}
+        />
       ) : null}
     </div>
   );

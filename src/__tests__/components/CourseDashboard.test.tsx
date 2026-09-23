@@ -374,6 +374,27 @@ describe("CourseDashboard", () => {
     expect(panel.getByText("24 + 16은 얼마인가요?")).toBeInTheDocument();
   });
 
+  it("offers a way back when the wrong-answer filter hides every recent attempt", async () => {
+    const user = userEvent.setup();
+    const record = detail();
+    detailApi.mockResolvedValue({
+      ok: true,
+      data: {
+        ...record,
+        recentAttempts: record.recentAttempts.filter(
+          (attempt) => attempt.correct,
+        ),
+      },
+    });
+    render(<CourseDashboard />);
+    const panel = await openStudent(user);
+    await user.click(panel.getByRole("button", { name: "풀이 기록" }));
+    await user.click(panel.getByRole("checkbox", { name: "오답만 보기" }));
+    expect(panel.getByText("최근 기록에 오답이 없습니다.")).toBeInTheDocument();
+    await user.click(panel.getByRole("button", { name: "전체 풀이 보기" }));
+    expect(panel.getByText("7 × 8은 얼마인가요?")).toBeInTheDocument();
+  });
+
   it("saves the actual form, updates the row and reloads detail; supports pause and resume", async () => {
     const user = userEvent.setup();
     const paused = student({

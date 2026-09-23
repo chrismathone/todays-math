@@ -133,6 +133,31 @@ async function renderSheet() {
 }
 
 describe("채점 입력 A안 — 표(학생 × 문항)", () => {
+  it("채점표 조회 실패 뒤 같은 화면에서 다시 불러온다", async () => {
+    let calls = 0;
+    server.use(
+      http.get(`/api/tests/${TEST_ID}/grade`, () => {
+        calls += 1;
+        return calls === 1
+          ? HttpResponse.json(
+              { error: { message: "잠시 실패했습니다" } },
+              { status: 503 },
+            )
+          : HttpResponse.json(sheet());
+      }),
+    );
+    const user = userEvent.setup();
+    render(<GradeSheet testId={TEST_ID} />);
+    expect(await screen.findByRole("alert")).toHaveTextContent(
+      "잠시 실패했습니다",
+    );
+    await user.click(screen.getByRole("button", { name: "다시 불러오기" }));
+    expect(
+      await screen.findByRole("rowheader", { name: "이서준" }),
+    ).toBeInTheDocument();
+    expect(calls).toBe(2);
+  });
+
   it("반 전체가 한 표에 선다 — 행은 학생, 열은 문항 번호", async () => {
     arm();
     await renderSheet();

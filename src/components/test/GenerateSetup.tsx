@@ -20,7 +20,7 @@ import { describeRange } from "./rangeSummary";
 import { useGenerateSetup } from "./useGenerateSetup";
 
 const LABEL_CLASS =
-  "grid gap-1 text-[10px] font-extrabold tracking-[1.2px] text-text-2";
+  "grid gap-1 text-[14px] font-semibold text-[var(--learn-muted,#596c86)]";
 
 /**
  * 확인테스트 범위 — **평소에는 한 줄, 고칠 때만 펼친다**(D-07 확정 2026-08-19:
@@ -149,13 +149,38 @@ export function GenerateSetup({ initialClassId, initialStudentId }: Props) {
   );
 
   return (
-    <main className="px-8 py-6">
-      <h1 className="text-[15px] font-black">출제 설정</h1>
+    <main className="px-4 py-6 sm:px-8">
+      <h1 className="text-[24px] font-bold text-[var(--learn-ink,#172b4d)]">
+        출제 설정
+      </h1>
       {form.loadError ? (
-        <p className="mt-4 text-[12.5px] text-g-red-text">{form.loadError}</p>
+        <div className="mt-4 rounded-xl border border-[var(--learn-track,#dde3ec)] bg-[var(--learn-surface,#fff)] p-5">
+          <p role="alert" className="text-[14px] text-g-red-text">
+            {form.loadError}
+          </p>
+          <Button
+            type="button"
+            variant="secondary"
+            className="mt-3"
+            onClick={form.retryLoad}
+          >
+            다시 불러오기
+          </Button>
+        </div>
       ) : null}
       {!form.ready && !form.loadError ? <TestSetupFieldsSkeleton /> : null}
-      {form.ready ? (
+      {form.ready && form.classes.length === 0 ? (
+        <div className="mt-4 rounded-xl border border-[var(--learn-track,#dde3ec)] bg-[var(--learn-surface,#fff)] p-5 text-[14px] text-[var(--learn-muted,#596c86)]">
+          <p>출제할 반이 없습니다. 반을 만든 뒤 시험지를 출제할 수 있습니다.</p>
+          <Link
+            href="/classes"
+            className="mt-3 inline-flex min-h-11 items-center font-semibold text-[var(--learn-accent,#3159df)] underline"
+          >
+            반 만들기
+          </Link>
+        </div>
+      ) : null}
+      {form.ready && form.classes.length > 0 ? (
         <form
           className="mt-6 grid max-w-none gap-4"
           onSubmit={(event) => {
@@ -163,7 +188,7 @@ export function GenerateSetup({ initialClassId, initialStudentId }: Props) {
             void form.generate();
           }}
         >
-          <label className="grid gap-1 text-[10px] font-extrabold tracking-[1.2px] text-text-2">
+          <label className={LABEL_CLASS}>
             반
             {/* 담당(관리자, D-132) — «반 이름 · 담당 6자», 전체는 `title`(닫힌 상자는 지금 고른 반) */}
             <select
@@ -186,7 +211,7 @@ export function GenerateSetup({ initialClassId, initialStudentId }: Props) {
             </select>
           </label>
 
-          <label className="grid gap-1 text-[10px] font-extrabold tracking-[1.2px] text-text-2">
+          <label className={LABEL_CLASS}>
             학생
             <select
               className={FIELD_CLASS}
@@ -203,7 +228,7 @@ export function GenerateSetup({ initialClassId, initialStudentId }: Props) {
           </label>
 
           <fieldset className="grid gap-2">
-            <legend className="text-[10px] font-extrabold tracking-[1.2px] text-text-2">
+            <legend className="text-[14px] font-semibold text-[var(--learn-muted,#596c86)]">
               유형
             </legend>
             <div className="flex gap-4 text-[12.5px] font-bold">
@@ -230,7 +255,7 @@ export function GenerateSetup({ initialClassId, initialStudentId }: Props) {
             </div>
           </fieldset>
 
-          <label className="grid gap-1 text-[10px] font-extrabold tracking-[1.2px] text-text-2">
+          <label className={LABEL_CLASS}>
             시행일
             <Input
               type="date"
@@ -239,7 +264,7 @@ export function GenerateSetup({ initialClassId, initialStudentId }: Props) {
             />
           </label>
 
-          <label className="grid gap-1 text-[10px] font-extrabold tracking-[1.2px] text-text-2">
+          <label className={LABEL_CLASS}>
             문항 수
             <Input
               type="number"

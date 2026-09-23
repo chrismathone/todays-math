@@ -1,0 +1,96 @@
+.manage {
+  min-width: 0;
+  padding: 20px clamp(16px, 2vw, 26px);
+  color: var(--learn-ink, #172b4d);
+  font-size: var(--text-body, 14px);
+  line-height: 1.55;
+}
+
+.panel {
+  min-width: 0;
+  padding: clamp(16px, 2vw, 22px);
+  border: 1px solid var(--learn-track, #dde3ec);
+  border-radius: 12px;
+  background: var(--learn-surface, #fff);
+}
+
+.panel :global(h2) {
+  border-color: var(--learn-ink, #172b4d);
+  color: var(--learn-ink, #172b4d);
+  font-size: var(--text-section, 18px);
+  font-weight: 750;
+  letter-spacing: -0.025em;
+}
+
+.panel :global(table) {
+  width: 100%;
+  table-layout: fixed;
+  color: var(--learn-ink, #172b4d);
+  font-size: var(--text-body, 14px);
+}
+
+.panel :global(th),
+.panel :global(td) {
+  border-color: var(--learn-track, #dde3ec);
+  overflow-wrap: anywhere;
+}
+
+.panel :global(thead th) {
+  padding-block: 10px;
+  color: var(--learn-muted, #596c86);
+  font-size: var(--text-caption, 12px);
+  letter-spacing: 0;
+}
+
+.panel :global(input) {
+  min-height: var(--control-height, 44px);
+  border-radius: var(--control-radius, 8px);
+  border-color: var(--learn-control, #b8c4d6);
+  background: var(--learn-surface, #fff);
+  color: var(--learn-ink, #172b4d);
+  font-size: var(--text-body, 14px);
+}
+
+.panel :global(button) {
+  border-radius: var(--control-radius, 8px);
+}
+
+.panel :global(button[aria-current="true"]) {
+  background: var(--learn-accent, #3159df);
+  color: var(--learn-on-accent, #fff);
+}
+
+.panel :global(button[aria-pressed="true"]:not([aria-current="true"])) {
+  background: var(--learn-soft, #edf2ff);
+  color: var(--learn-accent, #3159df);
+}
+
+.panel :global(:is(button, input, a):focus-visible) {
+  outline: 3px solid var(--learn-focus, #82a1ff);
+  outline-offset: 3px;
+}
+
+.formRow {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.formRow :global(input[aria-label="반 이름"]),
+.formRow :global(input[aria-label="학생 이름"]) {
+  flex: 1 1 150px;
+}
+
+.formRow :global(input[aria-label="학년"]) {
+  flex: 0 1 96px;
+}
+
+@media (max-width: 680px) {
+  .manage {
+    padding: 16px;
+  }
+
+  .formRow :global(button[type="submit"]) {
+    flex: 1 1 100%;
+  }
+}

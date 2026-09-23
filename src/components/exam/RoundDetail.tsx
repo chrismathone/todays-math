@@ -32,6 +32,7 @@ export function RoundDetail({
   today?: Date;
 }) {
   const [state, setState] = useState<LoadState>({ status: "loading" });
+  const [attempt, setAttempt] = useState(0);
 
   useEffect(() => {
     let cancelled = false;
@@ -47,7 +48,12 @@ export function RoundDetail({
     return () => {
       cancelled = true;
     };
-  }, [roundId]);
+  }, [roundId, attempt]);
+
+  function retry() {
+    setState({ status: "loading" });
+    setAttempt((value) => value + 1);
+  }
 
   /**
    * 저장된 점수를 그 자리에서 반영한다. 전체를 다시 조회하지 않는 이유는
@@ -77,7 +83,29 @@ export function RoundDetail({
   if (state.status === "error") {
     return (
       <AppChrome tab="exam">
-        <div className="px-7 py-8 text-[13px] text-muted">{state.message}</div>
+        <div className="mx-5 my-5 rounded-xl border border-[var(--learn-track,#dde3ec)] bg-[var(--learn-surface,#fff)] p-6 text-[14px] text-[var(--learn-ink,#172b4d)]">
+          <h1 className="text-[18px] font-bold">
+            회차 상세를 확인할 수 없습니다
+          </h1>
+          <p role="alert" className="mt-2 text-[var(--learn-muted,#596c86)]">
+            {state.message}
+          </p>
+          <div className="mt-4 flex flex-wrap gap-2">
+            <button
+              type="button"
+              onClick={retry}
+              className="min-h-11 rounded-lg border border-[var(--learn-accent,#3159df)] bg-[var(--learn-accent,#3159df)] px-4 font-semibold text-white hover:bg-[var(--learn-accent-hover,#2448bd)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--learn-focus,#82a1ff)]"
+            >
+              다시 불러오기
+            </button>
+            <Link
+              href="/exam"
+              className="inline-flex min-h-11 items-center rounded-lg border border-[var(--learn-control,#b8c4d6)] px-4 font-semibold text-[var(--learn-ink,#172b4d)]"
+            >
+              회차 목록
+            </Link>
+          </div>
+        </div>
       </AppChrome>
     );
   }
@@ -92,7 +120,7 @@ export function RoundDetail({
 
   return (
     <AppChrome tab="exam">
-      <div className="px-5 pt-4 pb-8">
+      <div className="px-4 pt-4 pb-8 sm:px-6">
         <div className="flex flex-wrap items-baseline gap-x-4 gap-y-1 border-b border-divider pb-3">
           <Link href="/exam" className="text-[12.5px] font-bold text-muted">
             {/* 꺾쇠는 장식이다 — 링크 이름에 섞이면 스크린 리더가 "‹ 목록"으로 읽는다. */}

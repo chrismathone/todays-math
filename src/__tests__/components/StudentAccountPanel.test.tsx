@@ -120,6 +120,23 @@ async function open(user: ReturnType<typeof userEvent.setup>, name: string) {
 }
 
 describe("학생 이름을 누르면 그 학생의 발급 칸이 선다 — 한 명씩 (D-124 ⑷)", () => {
+  it("계정 칸 닫기 버튼은 칸을 닫고 학생 이름으로 초점을 돌린다", async () => {
+    const user = renderList();
+    await open(user, SEO.name);
+    await screen.findByRole("button", { name: "계정 만들기" });
+    await user.click(
+      screen.getByRole("button", { name: `${SEO.name} 계정 정보 닫기` }),
+    );
+    expect(
+      screen.queryByRole("region", { name: /오늘의 개념 로그인/ }),
+    ).not.toBeInTheDocument();
+    expect(screen.getByRole("button", { name: SEO.name })).toHaveFocus();
+    expect(screen.getByRole("button", { name: SEO.name })).toHaveAttribute(
+      "aria-expanded",
+      "false",
+    );
+  });
+
   it("처음에는 칸이 없고 요청도 없다 · 이름을 누르면 그 학생 것만", async () => {
     const user = renderList();
     expect(
@@ -332,7 +349,15 @@ describe("🔴 ⑤ 끈 계정 · 퇴원 학생 · 남의 반 학생", () => {
     await open(user, SEO.name);
     await card().findByText("퇴원 — 로그인 막힘");
     expect(card().getByText("m1a-01")).toBeInTheDocument();
-    expect(card().queryAllByRole("button")).toEqual([]);
+    expect(
+      card().getByRole("button", { name: `${SEO.name} 계정 정보 닫기` }),
+    ).toBeInTheDocument();
+    expect(
+      card().queryByRole("button", { name: "비밀번호 다시 발급" }),
+    ).not.toBeInTheDocument();
+    expect(
+      card().queryByRole("button", { name: "계정 끄기" }),
+    ).not.toBeInTheDocument();
   });
 
   it("🔴 남의 반 학생(서버 403) — 칸을 안 그린다", async () => {

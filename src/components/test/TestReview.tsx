@@ -49,7 +49,7 @@ export function TestReview({ testId }: Props) {
 
   if (state.status === "notfound" || state.status === "error") {
     return (
-      <main className="px-8 py-6">
+      <main className="px-4 py-6 sm:px-8">
         <p role="alert" className="text-[12.5px] text-g-red-text">
           {state.status === "notfound"
             ? "테스트를 찾을 수 없습니다"
@@ -91,9 +91,9 @@ export function TestReview({ testId }: Props) {
           ⚠️ 「확정이 왜 비활성인가」는 여기 안 적는다. 그 답은 **버튼 옆**에 있어야
              한다 — 이 화면은 아래로 길어서 머리말은 스크롤 밖으로 나간다.
         */}
-        <div className="flex items-baseline justify-between px-8 py-4">
+        <div className="flex flex-wrap items-baseline justify-between gap-2 px-4 py-4 sm:px-8">
           <div>
-            <h1 className="text-[17px] font-black">
+            <h1 className="text-[22px] font-bold text-[var(--learn-ink,#172b4d)]">
               {state.studentName
                 ? `${state.className} · ${state.studentName}`
                 : state.className}
@@ -102,7 +102,7 @@ export function TestReview({ testId }: Props) {
                 <OwnerTag owner={state.classOwner} className="ml-2" />
               ) : null}
             </h1>
-            <p className="mt-1 text-[11.5px] text-text-2">
+            <p className="mt-1 text-[14px] text-[var(--learn-muted,#596c86)]">
               {state.test.testType === "review" ? "확인테스트" : "일일테스트"} ·{" "}
               {state.test.testDate} · {state.problems.length}문항 ·{" "}
               {TEST_STATUS_TEXT[state.test.status] ?? state.test.status}
@@ -122,12 +122,12 @@ export function TestReview({ testId }: Props) {
           ))}
         </div>
       </main>
-      <footer className="sticky bottom-0 flex flex-wrap items-center gap-4 border-t border-divider bg-side px-8 py-3">
-        <span className="text-[11.5px] text-text-2 tabular-nums">
+      <footer className="sticky bottom-0 flex flex-wrap items-center gap-4 border-t border-[var(--learn-track,#dde3ec)] bg-[var(--learn-soft,#edf2ff)] px-4 py-3 sm:px-8">
+        <span className="text-[14px] text-[var(--learn-muted,#596c86)] tabular-nums">
           교체 {replacedCount}
         </span>
         {actionError ? (
-          <p role="alert" className="text-[11.5px] font-bold text-g-red-text">
+          <p role="alert" className="text-[14px] font-semibold text-g-red-text">
             {actionError}
           </p>
         ) : null}
@@ -138,7 +138,10 @@ export function TestReview({ testId }: Props) {
 
             교체·확정은 서로 기다린다. 처리 중인 문항 번호도 여기서 알린다.
           */}
-          <p role="status" className="text-[11.5px] text-text-2">
+          <p
+            role="status"
+            className="text-[14px] text-[var(--learn-muted,#596c86)]"
+          >
             {replacingSeq !== null
               ? `문 ${replacingSeq} 교체 중입니다. 교체가 끝나면 확정할 수 있습니다`
               : confirming

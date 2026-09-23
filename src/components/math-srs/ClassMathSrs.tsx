@@ -187,9 +187,18 @@ export function ClassMathSrs({ classId }: { classId: string }) {
             푸는 개념은 측정 전으로 표시합니다.
           </p>
           {students.length === 0 ? (
-            <p className={s.card}>
-              등록된 학생이 없습니다. 반 관리에서 학생을 추가해 주세요.
-            </p>
+            <div className={s.emptyState}>
+              <h3>등록된 학생이 없습니다</h3>
+              <p className={s.muted}>
+                학생을 등록하면 여기에서 학습 기록과 진도를 확인할 수 있습니다.
+              </p>
+              <Link
+                href="/classes"
+                className={`${s.secondaryButton} inline-flex min-h-11 items-center rounded-lg px-4 font-semibold underline underline-offset-4`}
+              >
+                반 관리에서 학생 등록하기
+              </Link>
+            </div>
           ) : visibleStudents.length === 0 ? (
             <div className={s.emptyState}>
               <h3>조건에 맞는 학생이 없어요.</h3>

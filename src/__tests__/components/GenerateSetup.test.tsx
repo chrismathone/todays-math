@@ -49,6 +49,51 @@ async function renderSetup(search?: { classId?: string; studentId?: string }) {
 }
 
 describe("[T4.3 S-04] 출제 설정 — 폼 골격", () => {
+  it("반 목록이 비어 있으면 반 만들기 길을 보여 준다", async () => {
+    server.use(
+      http.get("/api/classes", () =>
+        HttpResponse.json({
+          data: [],
+          meta: { page: 1, pageSize: 100, total: 0 },
+        }),
+      ),
+    );
+    const ui = await NewTestPage({ searchParams: Promise.resolve({}) });
+    render(ui);
+    expect(
+      await screen.findByRole("link", { name: "반 만들기" }),
+    ).toHaveAttribute("href", "/classes");
+    expect(
+      screen.queryByRole("button", { name: "출제" }),
+    ).not.toBeInTheDocument();
+  });
+
+  it("목록 조회 오류에서 다시 불러올 수 있다", async () => {
+    let calls = 0;
+    server.use(
+      http.get("/api/classes", () => {
+        calls += 1;
+        return calls === 1
+          ? HttpResponse.json({}, { status: 503 })
+          : HttpResponse.json({
+              data: [MOCK_CLASS_A, MOCK_CLASS_B],
+              meta: { page: 1, pageSize: 100, total: 2 },
+            });
+      }),
+    );
+    const user = userEvent.setup();
+    const ui = await NewTestPage({ searchParams: Promise.resolve({}) });
+    render(ui);
+    expect(await screen.findByRole("alert")).toHaveTextContent(
+      "반 목록을 불러오지 못했습니다",
+    );
+    await user.click(screen.getByRole("button", { name: "다시 불러오기" }));
+    expect(
+      await screen.findByRole("button", { name: "출제" }),
+    ).toBeInTheDocument();
+    expect(calls).toBe(2);
+  });
+
   it("전폭 폼으로 반·유형·문항 수·난이도 배분·출제를 보여 준다", async () => {
     const { container } = await renderSetup();
 

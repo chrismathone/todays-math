@@ -95,6 +95,48 @@ describe("[T7.15] 실점수 입력 — 자리", () => {
 });
 
 describe("[T7.15] 실점수 입력 — 저장", () => {
+  it("터치로 저장하고 결과를 확인한 뒤 고치기 버튼으로 초점이 돌아온다", async () => {
+    const seen = captureSave();
+    const user = await renderDetail();
+    await user.click(
+      within(rowOf("이서준")).getByRole("button", { name: "실점수 입력" }),
+    );
+    await user.type(
+      within(rowOf("이서준")).getByRole("spinbutton", { name: /이서준/ }),
+      "91",
+    );
+    await user.click(
+      within(rowOf("이서준")).getByRole("button", { name: "저장" }),
+    );
+
+    expect(
+      await within(rowOf("이서준")).findByRole("status"),
+    ).toHaveTextContent("저장했습니다");
+    expect(
+      within(rowOf("이서준")).getByRole("button", { name: "실점수 고치기" }),
+    ).toHaveFocus();
+    expect(seen).toHaveLength(1);
+  });
+
+  it("빈 값을 저장하려 하면 이유를 알리고 입력을 유지한다", async () => {
+    const seen = captureSave();
+    const user = await renderDetail();
+    await user.click(
+      within(rowOf("이서준")).getByRole("button", { name: "실점수 입력" }),
+    );
+    await user.click(
+      within(rowOf("이서준")).getByRole("button", { name: "저장" }),
+    );
+
+    expect(await within(rowOf("이서준")).findByRole("alert")).toHaveTextContent(
+      "점수를 입력해 주세요",
+    );
+    expect(
+      within(rowOf("이서준")).getByRole("spinbutton", { name: /이서준/ }),
+    ).toBeInTheDocument();
+    expect(seen).toHaveLength(0);
+  });
+
   it("친 점수를 그 학생 것으로 보낸다", async () => {
     const seen = captureSave();
     const user = await renderDetail();

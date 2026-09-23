@@ -595,6 +595,11 @@ function StudentDetail({
       setLoadError(null);
       setSaveError(null);
       setConflict(false);
+      setMessage((previous) =>
+        previous === "학습 계획을 저장했습니다. 최신 상세 기록을 불러옵니다."
+          ? "학습 계획을 저장했습니다."
+          : previous,
+      );
       setNow(Date.now());
       setForm(
         (previous) =>
@@ -1086,11 +1091,22 @@ function StudentDetail({
                     ))}
                   </ol>
                 ) : (
-                  <p className={s.emptyReport}>
-                    {wrongOnly
-                      ? "최근 기록에 오답이 없습니다."
-                      : "아직 제출한 풀이가 없습니다."}
-                  </p>
+                  <div className={s.emptyReport}>
+                    <p>
+                      {wrongOnly
+                        ? "최근 기록에 오답이 없습니다."
+                        : "아직 제출한 풀이가 없습니다."}
+                    </p>
+                    {wrongOnly && detail.recentAttempts.length > 0 ? (
+                      <button
+                        type="button"
+                        className={s.button}
+                        onClick={() => setWrongOnly(false)}
+                      >
+                        전체 풀이 보기
+                      </button>
+                    ) : null}
+                  </div>
                 )}
               </section>
             ) : null}

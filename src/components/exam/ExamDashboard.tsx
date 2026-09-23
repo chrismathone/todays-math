@@ -23,6 +23,7 @@ type LoadState =
 
 export function ExamDashboard() {
   const [state, setState] = useState<LoadState>({ status: "loading" });
+  const [attempt, setAttempt] = useState(0);
 
   useEffect(() => {
     let cancelled = false;
@@ -38,7 +39,12 @@ export function ExamDashboard() {
     return () => {
       cancelled = true;
     };
-  }, []);
+  }, [attempt]);
+
+  function retry() {
+    setState({ status: "loading" });
+    setAttempt((value) => value + 1);
+  }
 
   if (state.status === "loading") {
     return <ExamListSkeleton />;
@@ -47,7 +53,19 @@ export function ExamDashboard() {
   if (state.status === "error") {
     return (
       <AppChrome tab="exam">
-        <div className="px-7 py-8 text-[13px] text-muted">{state.message}</div>
+        <div className="mx-5 my-5 rounded-xl border border-[var(--learn-track,#dde3ec)] bg-[var(--learn-surface,#fff)] p-6 text-[14px] text-[var(--learn-ink,#172b4d)]">
+          <h1 className="text-[18px] font-bold">회차를 확인할 수 없습니다</h1>
+          <p role="alert" className="mt-2 text-[var(--learn-muted,#596c86)]">
+            {state.message}
+          </p>
+          <button
+            type="button"
+            onClick={retry}
+            className="mt-4 min-h-11 rounded-lg border border-[var(--learn-accent,#3159df)] bg-[var(--learn-accent,#3159df)] px-4 font-semibold text-white hover:bg-[var(--learn-accent-hover,#2448bd)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--learn-focus,#82a1ff)]"
+          >
+            다시 불러오기
+          </button>
+        </div>
       </AppChrome>
     );
   }
@@ -56,10 +74,10 @@ export function ExamDashboard() {
 
   return (
     <AppChrome tab="exam">
-      <div className="px-5 pt-4 pb-6">
+      <div className="px-4 pt-4 pb-6 sm:px-6">
         {/* 시안의 우측 「+ 새 회차」는 회차 생성 API·폼이 없어 넣지 않았다.
             누르면 아무 일도 안 하는 컨트롤을 두는 것이 D-30 이 막는 바로 그 버그다. */}
-        <h1 className="border-b border-divider pb-2 text-xs font-black tracking-[0.08em] text-muted uppercase">
+        <h1 className="border-b border-[var(--learn-track,#dde3ec)] pb-2 text-[18px] font-bold text-[var(--learn-ink,#172b4d)]">
           진행 중인 내신
         </h1>
         {rounds.length === 0 ? (
@@ -76,7 +94,7 @@ export function ExamDashboard() {
             이 규칙이 막는 바로 그 버그다). 대신 **무엇이 있어야 회차가 생기는지**를 적는다.
             기출이 쌓이고 실행 경로가 생기면 그때 이 문구와 함께 진입점을 만든다.
           */
-          <div className="py-8 text-[13px] text-muted">
+          <div className="rounded-xl border border-[var(--learn-track,#dde3ec)] bg-[var(--learn-surface,#fff)] p-6 text-[14px] text-[var(--learn-muted,#596c86)]">
             <p>아직 회차가 없습니다.</p>
             <p className="mt-1">
               회차는 같은 학교·학년·과목의 지난 시험지를 근거로 예측을 실행할 때
