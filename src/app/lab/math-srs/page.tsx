@@ -1,11 +1,12 @@
 import type { Metadata } from "next";
-import MathSrsApp from "@/components/math-srs/MathSrsApp";
+import ElementaryCourseApp from "@/components/math-srs/ElementaryCourseApp";
 
 export const metadata: Metadata = {
   title: "오늘의 기억 | 오늘의수학",
-  description: "중1 일차방정식, 하루 12문제로 쌓는 나만의 수학 기억",
+  description:
+    "초3부터 초6까지, 학년·학기별 전체 과정과 차시별 복습으로 쌓는 수학 기억",
 };
 
 export default function MathSrsPage() {
-  return <MathSrsApp />;
+  return <ElementaryCourseApp />;
 }
