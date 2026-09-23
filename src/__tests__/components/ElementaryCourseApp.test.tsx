@@ -181,9 +181,7 @@ describe("elementary course app integration", () => {
       await screen.findByRole("button", { name: "아직 모르겠어요" }),
     );
     const a = currentCourse().session!;
-    await user.click(
-      screen.getByRole("button", { name: "학습 목록", exact: true }),
-    );
+    await user.click(screen.getByRole("button", { name: "학습 목록" }));
     await user.click(
       screen.getByRole("button", {
         name: new RegExp(escape(COURSE_SECTIONS[1].title)),
@@ -194,9 +192,7 @@ describe("elementary course app integration", () => {
     );
     const b = currentCourse().session!;
     expect(currentCourse().pausedSessions?.[a.sectionId]).toEqual(a);
-    await user.click(
-      screen.getByRole("button", { name: "학습 목록", exact: true }),
-    );
+    await user.click(screen.getByRole("button", { name: "학습 목록" }));
     await user.click(
       screen.getByRole("button", {
         name: new RegExp(escape(COURSE_SECTIONS[0].title)),

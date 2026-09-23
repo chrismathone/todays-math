@@ -206,6 +206,7 @@
   letter-spacing: -0.035em;
   word-break: keep-all;
   overflow-wrap: anywhere;
+  text-wrap: balance;
 }
 
 .problem {
@@ -225,15 +226,29 @@
 }
 
 .problem :global([data-figure-svg]) {
+  display: flex;
+  justify-content: center;
+  flex: 1 0 140px;
+  min-height: 140px;
   width: 100%;
   max-width: 560px;
   margin: 18px auto 0;
 }
 
+.problem:has(:global([data-figure-svg])) {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.problem:has(:global([data-figure-svg])) > :first-child {
+  flex-shrink: 0;
+}
+
 .problem :global([data-figure-svg] svg) {
   max-width: 100%;
-  height: auto;
-  max-height: clamp(220px, 36dvh, 360px);
+  height: 100%;
+  max-height: 360px;
 }
 
 .figureStatus {
@@ -705,7 +720,7 @@
   }
 
   .problem :global([data-figure-svg] svg) {
-    max-height: min(34dvh, 320px);
+    max-height: 320px;
   }
 
   .problem {
@@ -758,12 +773,13 @@
   }
 
   .selfCheckActions {
-    grid-template-columns: 1fr;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
     gap: 8px;
   }
 
   .selfCheckActions > button {
-    min-height: 48px;
+    min-height: 56px;
+    padding-inline: 10px;
   }
 }
 
