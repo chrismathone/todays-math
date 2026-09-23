@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import { Button } from "@/components/ui/Button";
+import { Input } from "@/components/ui/Input";
 import {
   formatDayWithWeekday,
   formatInstantDay,
@@ -12,6 +13,25 @@ import { fetchClassMathSrs } from "./mathSrsApi";
 import { SrsMemoryGrid } from "./SrsMemoryGrid";
 import s from "./authenticated.module.css";
 
+const FILTERS = [
+  ["all", "전체"],
+  ["waiting", "미학습"],
+  ["practicing", "학습 중"],
+  ["completed", "완료"],
+  ["account", "계정 미발급"],
+] as const;
+type Student = MathSrsClassDashboard["students"][number];
+type Filter = (typeof FILTERS)[number][0];
+
+function matchesStatus(student: Student, filter: Filter) {
+  if (filter === "account") return !student.hasAccount;
+  if (filter === "completed") return !!student.today?.completedAt;
+  if (filter === "practicing")
+    return (student.today?.answered ?? 0) > 0 && !student.today?.completedAt;
+  if (filter === "waiting") return (student.today?.answered ?? 0) === 0;
+  return true;
+}
+
 export function ClassMathSrs({ classId }: { classId: string }) {
   const [state, setState] = useState<MathSrsClassDashboard | null>(null);
   const [loading, setLoading] = useState(true);
@@ -20,6 +40,8 @@ export function ClassMathSrs({ classId }: { classId: string }) {
     message: string;
   } | null>(null);
   const [reload, setReload] = useState(0);
+  const [query, setQuery] = useState("");
+  const [filter, setFilter] = useState<Filter>("all");
   useEffect(() => {
     let current = true;
     void fetchClassMathSrs(classId).then((result) => {
@@ -41,6 +63,12 @@ export function ClassMathSrs({ classId }: { classId: string }) {
   const completed = students.filter(
     (student) => student.today?.completedAt,
   ).length;
+  const normalizedQuery = query.trim().toLocaleLowerCase("ko-KR");
+  const visibleStudents = students.filter(
+    (student) =>
+      student.name.toLocaleLowerCase("ko-KR").includes(normalizedQuery) &&
+      matchesStatus(student, filter),
+  );
   return (
     <main className={`${s.body} ${s.teacher}`}>
       <nav className={s.nav}>
@@ -56,6 +84,7 @@ export function ClassMathSrs({ classId }: { classId: string }) {
         </div>
         <Button
           variant="secondary"
+          className={s.secondaryButton}
           onClick={() => {
             setLoading(true);
             setReload((value) => value + 1);
@@ -65,7 +94,11 @@ export function ClassMathSrs({ classId }: { classId: string }) {
           새로고침
         </Button>
       </header>
-      {loading ? <p role="status">반 학습 기록을 불러오는 중…</p> : null}
+      {loading ? (
+        <p className={s.loading} role="status">
+          반 학습 기록을 불러오는 중…
+        </p>
+      ) : null}
       {error ? (
         <div role="alert" className={s.error}>
           <p>
@@ -78,6 +111,7 @@ export function ClassMathSrs({ classId }: { classId: string }) {
           ) : (
             <Button
               variant="secondary"
+              className={s.secondaryButton}
               onClick={() => {
                 setLoading(true);
                 setReload((value) => value + 1);
@@ -91,10 +125,7 @@ export function ClassMathSrs({ classId }: { classId: string }) {
       ) : null}
       {state && !error ? (
         <>
-          <section
-            className={`${s.card} ${s.summary}`}
-            aria-label="오늘의 반 학습 현황"
-          >
+          <section className={s.summary} aria-label="오늘의 반 학습 현황">
             <span>
               <small>등록 학생</small>
               <b>{students.length}명</b>
@@ -107,7 +138,50 @@ export function ClassMathSrs({ classId }: { classId: string }) {
               <small>미션 완료</small>
               <b>{completed}명</b>
             </span>
+            <span>
+              <small>시작을 기다리는 학생</small>
+              <b>{students.length - practiced}명</b>
+            </span>
           </section>
+          <div className={s.rosterTools}>
+            <div>
+              <p className={s.eyebrow}>STUDENT OVERVIEW</p>
+              <h2>학생별 학습 흐름</h2>
+            </div>
+            <label className={s.search}>
+              <span className={s.srOnly}>학생 이름 검색</span>
+              <Input
+                type="search"
+                value={query}
+                onChange={(event) => setQuery(event.target.value)}
+                placeholder="학생 이름 검색"
+              />
+            </label>
+          </div>
+          <div className={s.filters} role="group" aria-label="학습 상태 필터">
+            {FILTERS.map(([value, label]) => (
+              <button
+                key={value}
+                type="button"
+                aria-pressed={filter === value}
+                onClick={() => setFilter(value)}
+              >
+                {label}{" "}
+                <span>
+                  {
+                    students.filter((student) => matchesStatus(student, value))
+                      .length
+                  }
+                </span>
+              </button>
+            ))}
+          </div>
+          <p className={s.muted} aria-live="polite">
+            {visibleStudents.length}명의 학생 ·{" "}
+            {filter === "all" && !normalizedQuery
+              ? "전체 학습 기록"
+              : "필터에 맞는 학습 기록"}
+          </p>
           <p className={s.muted}>
             개념별 수치는 정답·힌트·학습 간격을 반영한 기억 추정치입니다. 처음
             푸는 개념은 측정 전으로 표시합니다.
@@ -116,21 +190,42 @@ export function ClassMathSrs({ classId }: { classId: string }) {
             <p className={s.card}>
               등록된 학생이 없습니다. 반 관리에서 학생을 추가해 주세요.
             </p>
+          ) : visibleStudents.length === 0 ? (
+            <div className={s.emptyState}>
+              <h3>조건에 맞는 학생이 없어요.</h3>
+              <p className={s.muted}>
+                이름이나 학습 상태를 바꿔 다시 찾아보세요.
+              </p>
+              <Button
+                className={s.secondaryButton}
+                onClick={() => {
+                  setQuery("");
+                  setFilter("all");
+                }}
+              >
+                필터 초기화
+              </Button>
+            </div>
           ) : (
             <div className={s.roster}>
-              {students.map((student) => (
+              {visibleStudents.map((student) => (
                 <section
-                  className={s.card}
+                  className={`${s.card} ${s.studentRow}`}
                   key={student.id}
                   aria-label={`${student.name} 학습 현황`}
                 >
                   <div className={s.studentHeading}>
-                    <h2>{student.name}</h2>
+                    <div className={s.studentIdentity}>
+                      <span className={s.avatar} aria-hidden="true">
+                        {student.name.slice(0, 1)}
+                      </span>
+                      <h2>{student.name}</h2>
+                    </div>
                     <span className={s.badge}>
                       {student.hasAccount ? "학생 계정 있음" : "계정 발급 필요"}
                     </span>
                   </div>
-                  <p>
+                  <p className={s.studentStatus}>
                     {student.today ? (
                       <>
                         <strong>

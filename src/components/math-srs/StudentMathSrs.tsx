@@ -107,6 +107,9 @@ export function StudentMathSrs() {
   }
 
   const mission = state?.mission;
+  const missionInProgress = !!mission && !mission.completedAt;
+  const finishedToday =
+    !!mission?.completedAt && mission.date === kstDateOf(new Date());
   const feedbackProblem = feedbackId
     ? mission?.problems.find((problem) => problem.id === feedbackId)
     : null;
@@ -121,17 +124,26 @@ export function StudentMathSrs() {
   return (
     <div className={s.student}>
       <LearnTopBar student={state?.student ?? null} />
-      <main className={s.body}>
+      <main className={`${s.body} ${practicing ? s.practiceBody : ""}`}>
         <nav className={s.nav} aria-label="학생 학습 메뉴">
           <Link href="/learn">개념 강의</Link>
           <span aria-current="page">매일 수학 복습</span>
         </nav>
-        <header>
-          <p className={s.eyebrow}>DAILY MATH</p>
-          <h1>잊기 전에, 한 번 더.</h1>
-          <p className={s.muted}>중1 일차방정식 · 오늘의 12문제</p>
-        </header>
-        {loading ? <p role="status">학습 기록을 불러오는 중…</p> : null}
+        {practicing ? <h1 className={s.srOnly}>오늘의 수학 복습</h1> : null}
+        {!practicing ? (
+          <header className={s.pageHeading}>
+            <p className={s.eyebrow}>DAILY MATH</p>
+            <h1>잊기 전에, 한 번 더.</h1>
+            <p className={s.muted}>
+              작은 복습이 쌓이면, 배운 수학이 오래 남아요.
+            </p>
+          </header>
+        ) : null}
+        {loading ? (
+          <p className={s.loading} role="status">
+            학습 기록을 불러오는 중…
+          </p>
+        ) : null}
         {error ? (
           <div role="alert" className={s.error}>
             <p>
@@ -144,6 +156,7 @@ export function StudentMathSrs() {
             ) : null}
             <Button
               variant="secondary"
+              className={s.secondaryButton}
               onClick={resetLoad}
               disabled={busy || loading}
             >
@@ -156,7 +169,10 @@ export function StudentMathSrs() {
             {practicing && mission ? (
               <>
                 <div className={s.progress}>
-                  <span>{formatDayWithWeekday(mission.date)}</span>
+                  <span>
+                    오늘의 복습{" "}
+                    <small>{formatDayWithWeekday(mission.date)}</small>
+                  </span>
                   <progress
                     aria-label="미션 진행"
                     value={mission.attempts.length}
@@ -227,6 +243,7 @@ export function StudentMathSrs() {
                 )}
                 <Button
                   variant="ghost"
+                  className={s.quietButton}
                   onClick={() => {
                     setPracticing(false);
                     setFeedbackId(null);
@@ -237,46 +254,96 @@ export function StudentMathSrs() {
                 </Button>
               </>
             ) : (
-              <>
+              <div className={s.homeGrid}>
                 <section
                   className={`${s.card} ${s.hero}`}
                   aria-labelledby="mission-heading"
                 >
-                  <p className={s.eyebrow}>TODAY&apos;S MISSION</p>
-                  <h2 id="mission-heading">
-                    {state.student.name}님의 복습 시간
-                  </h2>
-                  <p className={s.muted}>
-                    워밍업부터 다시 도전하는 문제까지, 풀이 기록에 맞춰
-                    복습해요.
-                  </p>
-                  {mission?.completedAt &&
-                  mission.date === kstDateOf(new Date()) ? (
-                    <>
-                      <p>오늘의 미션을 마쳤어요. 내일 새 문제로 만나요.</p>
-                      <Button onClick={() => setPracticing(true)}>
-                        오늘의 결과 보기
+                  <div className={s.heroCopy}>
+                    <p className={s.eyebrow}>
+                      TODAY&apos;S MISSION · 중1 일차방정식
+                    </p>
+                    <h2 id="mission-heading">
+                      {state.student.name}님의 복습 시간
+                    </h2>
+                    <p className={s.muted}>
+                      워밍업부터 다시 도전하는 문제까지, 풀이 기록에 맞춰
+                      복습해요.
+                    </p>
+                    <div className={s.heroMeta}>
+                      <span>12문제</span>
+                      <span>10–15분</span>
+                      <span>필요할 땐 힌트</span>
+                    </div>
+                    {finishedToday ? (
+                      <>
+                        <p>오늘의 미션을 마쳤어요. 내일 새 문제로 만나요.</p>
+                        <Button onClick={() => setPracticing(true)}>
+                          오늘의 결과 보기
+                        </Button>
+                      </>
+                    ) : (
+                      <Button
+                        disabled={busy}
+                        onClick={() =>
+                          void mutate(startMathSrs, () => {
+                            setPracticing(true);
+                            setFeedbackId(null);
+                          })
+                        }
+                      >
+                        {busy
+                          ? "미션을 준비하는 중…"
+                          : mission && !mission.completedAt
+                            ? `미션 이어하기 · ${mission.attempts.length}/12`
+                            : "오늘의 미션 시작"}
                       </Button>
-                    </>
-                  ) : (
-                    <Button
-                      disabled={busy}
-                      onClick={() =>
-                        void mutate(startMathSrs, () => {
-                          setPracticing(true);
-                          setFeedbackId(null);
-                        })
-                      }
-                    >
-                      {busy
-                        ? "미션을 준비하는 중…"
-                        : mission && !mission.completedAt
-                          ? `미션 이어하기 · ${mission.attempts.length}/12`
-                          : "오늘의 미션 시작"}
-                    </Button>
-                  )}
+                    )}
+                  </div>
+                  <div
+                    className={s.missionVisual}
+                    role="img"
+                    aria-label={
+                      missionInProgress
+                        ? `${mission.attempts.length}문제 풀이 완료`
+                        : finishedToday
+                          ? "오늘의 12문제 복습 완료"
+                          : "매일 12문제 복습"
+                    }
+                  >
+                    <span className={s.missionNumber}>
+                      {missionInProgress
+                        ? String(mission.attempts.length).padStart(2, "0")
+                        : "12"}
+                      <small>
+                        {missionInProgress || finishedToday ? " / 12" : " 문제"}
+                      </small>
+                    </span>
+                    <span>
+                      {missionInProgress
+                        ? "여기까지 풀었어요"
+                        : finishedToday
+                          ? "오늘의 복습 완료"
+                          : "오늘을 위한 작은 도전"}
+                    </span>
+                    <div className={s.missionDots} aria-hidden="true">
+                      {Array.from({ length: 12 }, (_, index) => (
+                        <i
+                          key={index}
+                          data-done={
+                            (missionInProgress || finishedToday) &&
+                            index < (mission?.attempts.length ?? 0)
+                          }
+                        />
+                      ))}
+                    </div>
+                  </div>
                 </section>
-                <section className={s.card} aria-labelledby="my-memory-heading">
+                <section
+                  className={`${s.card} ${s.memorySection}`}
+                  aria-labelledby="my-memory-heading"
+                >
+                  <p className={s.eyebrow}>MY MEMORY</p>
                   <h2 id="my-memory-heading">나의 개념 기억</h2>
                   <p className={s.muted}>
                     정답·힌트·지난 학습 시간을 바탕으로 추정한 값이에요. 처음
@@ -288,6 +355,7 @@ export function StudentMathSrs() {
                   className={s.card}
                   aria-labelledby="my-progress-heading"
                 >
+                  <p className={s.eyebrow}>KEEP LEARNING</p>
                   <h2 id="my-progress-heading">수업과 함께 복습하기</h2>
                   {state.currentProgress ? (
                     <p>
@@ -327,6 +395,7 @@ export function StudentMathSrs() {
                 </section>
                 {state.recentMissions.length ? (
                   <section className={s.card}>
+                    <p className={s.eyebrow}>YOUR RHYTHM</p>
                     <h2>최근 학습</h2>
                     <ul className={s.history}>
                       {state.recentMissions.slice(0, 7).map((item) => (
@@ -343,7 +412,7 @@ export function StudentMathSrs() {
                     </ul>
                   </section>
                 ) : null}
-              </>
+              </div>
             )}
           </>
         ) : null}
@@ -384,7 +453,11 @@ function Question({
     );
   }
   return (
-    <section className={s.card} aria-label="현재 문제" aria-busy={busy}>
+    <section
+      className={`${s.card} ${s.questionCard}`}
+      aria-label="현재 문제"
+      aria-busy={busy}
+    >
       <p className={s.eyebrow}>
         {CONCEPTS.find((concept) => concept.id === problem.conceptId)?.title}
         {problem.source ? ` · ${problem.source.tier}` : ""}
@@ -409,6 +482,7 @@ function Question({
             placeholder="예: 3 또는 1/2"
             maxLength={200}
             autoComplete="off"
+            enterKeyHint="done"
             autoCapitalize="off"
             spellCheck={false}
             aria-invalid={!!validation}
@@ -421,11 +495,7 @@ function Question({
             {validation}
           </p>
         ) : null}
-        <fieldset
-          className={s.ratings}
-          disabled={busy}
-          style={{ marginTop: 20 }}
-        >
+        <fieldset className={s.ratings} disabled={busy}>
           <legend>어떻게 풀었나요?</legend>
           <div>
             {(
@@ -448,12 +518,13 @@ function Question({
             ))}
           </div>
         </fieldset>
-        <div className={s.actions} style={{ marginTop: 20 }}>
+        <div className={s.actions}>
           <Button type="submit" disabled={busy}>
             {busy ? "저장하는 중…" : "정답 확인"}
           </Button>
           <Button
             variant="secondary"
+            className={s.secondaryButton}
             disabled={busy || problem.hint !== null}
             onClick={onHint}
           >
@@ -462,6 +533,7 @@ function Question({
         </div>
         <Button
           variant="ghost"
+          className={s.quietButton}
           disabled={busy}
           onClick={() =>
             onAnswer(
@@ -476,6 +548,7 @@ function Question({
       </form>
       {problem.hint !== null ? (
         <aside className={s.hint} aria-label="힌트">
+          <strong>한 걸음만 도와줄게요</strong>
           <MathText text={problem.hint} as="div" />
         </aside>
       ) : null}
@@ -501,7 +574,11 @@ function Feedback({
   );
   const feedback = problem.feedback!;
   return (
-    <section className={s.card} aria-labelledby="answer-feedback-heading">
+    <section
+      className={`${s.card} ${s.feedbackCard}`}
+      aria-labelledby="answer-feedback-heading"
+    >
+      <p className={s.eyebrow}>한 문제, 한 걸음</p>
       <h2
         id="answer-feedback-heading"
         ref={heading}
@@ -511,20 +588,26 @@ function Feedback({
         {attempt?.correct ? "잘 풀었어요!" : "풀이를 보며 다시 생각해 봐요."}
       </h2>
       <div className={s.answerFeedback}>
-        나의 답 <strong>{attempt?.submittedAnswer || "아직 모르겠어요"}</strong>{" "}
-        · 정답{" "}
-        <div className={s.exactAnswer}>
-          {feedback.answerText ? (
-            <MathText text={feedback.answerText} />
-          ) : (
-            `${feedback.answer}${problem.answerUnit ?? ""}`
-          )}
+        <div>
+          <span>나의 답</span>
+          <strong>{attempt?.submittedAnswer || "아직 모르겠어요"}</strong>
+        </div>
+        <div>
+          <span>정답</span>
+          <div className={s.exactAnswer}>
+            {feedback.answerText ? (
+              <MathText text={feedback.answerText} />
+            ) : (
+              `${feedback.answer}${problem.answerUnit ?? ""}`
+            )}
+          </div>
         </div>
       </div>
       {attempt?.usedHint ? (
         <p className={s.muted}>힌트를 참고한 풀이로 기록했어요.</p>
       ) : null}
       <div className={s.solution}>
+        <h3>이렇게 풀어요</h3>
         <ol>
           {feedback.solution.map((line, index) => (
             <li key={index}>
@@ -548,16 +631,32 @@ function Result({
   onHome: () => void;
 }) {
   const correct = mission.attempts.filter((attempt) => attempt.correct).length;
+  const reviewed = [
+    ...new Set(mission.attempts.map((attempt) => attempt.conceptId)),
+  ].length;
+  const heading = useRef<HTMLHeadingElement>(null);
+  useEffect(() => {
+    heading.current?.focus();
+  }, []);
   return (
-    <section className={s.card} aria-labelledby="mission-result-heading">
+    <section
+      className={`${s.card} ${s.resultCard}`}
+      aria-labelledby="mission-result-heading"
+    >
+      <span className={s.resultMark} aria-hidden="true">
+        ✓
+      </span>
       <p className={s.eyebrow}>{formatDayWithWeekday(mission.date)}</p>
-      <h2 id="mission-result-heading">미션을 마쳤어요</h2>
+      <h2 ref={heading} tabIndex={-1} id="mission-result-heading">
+        미션을 마쳤어요
+      </h2>
       <p>
         <strong className={s.stat}>
           {correct} / {mission.problems.length}
         </strong>
         문제를 맞혔어요.
       </p>
+      <p className={s.resultSummary}>{reviewed}개 개념을 다시 꺼내 봤어요.</p>
       <p className={s.muted}>
         어려웠던 개념은 다음 복습에 다시 반영해요. 학습 기록은 계정에
         저장됐어요.
