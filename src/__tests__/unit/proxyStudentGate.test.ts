@@ -79,6 +79,7 @@ const LEARN_PAGES = [
   "/learn/password",
   `/learn/watch/${UUID}`,
   "/learn/math-srs",
+  "/learn/math-srs/algebra",
 ];
 const LEARN_APIS = [
   "/api/learn/login",
@@ -90,6 +91,11 @@ const LEARN_APIS = [
   "/api/learn/math-srs",
   "/api/learn/math-srs/attempts",
   "/api/learn/math-srs/hint",
+  "/api/learn/math-srs/course",
+  "/api/learn/math-srs/course/plan",
+  "/api/learn/math-srs/course/attempts",
+  "/api/learn/math-srs/course/hint",
+  "/api/learn/math-srs/course/figure",
 ];
 const STATIC = [
   "/favicon.ico",
@@ -173,8 +179,13 @@ const LAB_PAGES = [
   // 큐브 3-1 개념 실험실(4d3429c1) — 같은 랩실 아래라 누구든 연다. 이 목록에 안 적혀 두 시험이 빨갰다(2026-09-22).
   "/lab/cube-3-1",
   "/lab/math-srs",
+  "/lab/math-srs/algebra",
 ];
-const LAB = LAB_PAGES.flatMap((p) => [`GET ${p}`, `HEAD ${p}`]);
+const LAB_ROUTES = ["/lab/math-srs/figure", "/lab/math-srs/session"];
+const LAB = [...LAB_PAGES, ...LAB_ROUTES].flatMap((p) => [
+  `GET ${p}`,
+  `HEAD ${p}`,
+]);
 
 beforeEach(() => {
   session.mockReset();
@@ -197,6 +208,7 @@ describe("모집단 — 파일 목록에서 뽑았다 (분모부터 검산)", ()
     expect(PAGES).toContain("/login");
     // 랩실 화면도 파일에서 뽑혔다 — 아래 «지나가는 집합»의 LAB 이 모집단에 실제로 있다.
     for (const lab of LAB_PAGES) expect(PAGES, lab).toContain(lab);
+    for (const lab of LAB_ROUTES) expect(APIS, lab).toContain(lab);
   });
 });
 
@@ -211,6 +223,7 @@ describe("🔴 첫 비밀번호를 바꾼 학생 — 지나가는 것의 집합�
           "/learn/password",
           `/learn/watch/${UUID}`,
           "/learn/math-srs",
+          "/learn/math-srs/algebra",
         ].flatMap((p) => [`GET ${p}`, `HEAD ${p}`]),
         "GET /api/learn/lectures",
         `GET /api/learn/lectures/${UUID}`,
@@ -220,6 +233,12 @@ describe("🔴 첫 비밀번호를 바꾼 학생 — 지나가는 것의 집합�
         "POST /api/learn/math-srs",
         "POST /api/learn/math-srs/attempts",
         "POST /api/learn/math-srs/hint",
+        "GET /api/learn/math-srs/course",
+        "POST /api/learn/math-srs/course",
+        "POST /api/learn/math-srs/course/plan",
+        "POST /api/learn/math-srs/course/attempts",
+        "POST /api/learn/math-srs/course/hint",
+        "GET /api/learn/math-srs/course/figure",
         ...REPORT,
         ...EXIT,
         ...brand,

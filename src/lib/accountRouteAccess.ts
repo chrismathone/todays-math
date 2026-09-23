@@ -45,6 +45,9 @@ export function accountRouteAllowed(
   )
     return any("studio");
   if (path === "/api/studio/overview") return any("home", "teaching");
+  if (path === "/api/math-srs/course") return method === "GET" && any("srs");
+  if (/^\/api\/students\/[^/]+\/math-srs\/course$/.test(path))
+    return ["GET", "POST"].includes(method) && any("srs");
   if (
     under(path, "/api/problems/transform") ||
     path === "/api/problems/generate"

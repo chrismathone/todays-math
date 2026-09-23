@@ -72,6 +72,36 @@ const ACTIVE_RULES: readonly Rule[] = [
     why: "학생 계정에 저장하는 오늘의 기억",
   },
   {
+    methods: PAGE,
+    path: "/learn/math-srs/algebra",
+    why: "중등 방정식 기억 학습",
+  },
+  {
+    methods: ["GET", "POST"],
+    path: "/api/learn/math-srs/course",
+    why: "초등 기억 학습 조회 · 자동 미션 시작",
+  },
+  {
+    methods: ["POST"],
+    path: "/api/learn/math-srs/course/plan",
+    why: "본인의 시작 진도와 하루 학습량 설정",
+  },
+  {
+    methods: ["POST"],
+    path: "/api/learn/math-srs/course/attempts",
+    why: "초등 현재 문제 답안 제출",
+  },
+  {
+    methods: ["POST"],
+    path: "/api/learn/math-srs/course/hint",
+    why: "초등 현재 문제 힌트 확인",
+  },
+  {
+    methods: ["GET"],
+    path: "/api/learn/math-srs/course/figure",
+    why: "본인 학습 문제의 도형",
+  },
+  {
     methods: ["GET", "POST"],
     path: "/api/learn/math-srs",
     why: "기억 학습 조회 · 오늘 미션 시작",
