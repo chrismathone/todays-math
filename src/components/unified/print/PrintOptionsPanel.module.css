@@ -2,7 +2,7 @@
 .fields.fields input:focus-visible,
 .fields.fields select:focus-visible,
 .fields.fields textarea:focus-visible {
-  outline: 3px solid #82a1ff;
+  outline: 3px solid var(--learn-focus, #82a1ff);
   outline-offset: -3px;
 }
 

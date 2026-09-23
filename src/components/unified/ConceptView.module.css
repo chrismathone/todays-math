@@ -5,22 +5,22 @@
  * 🔴 D-30 — 손가락 커서·hover 는 실제로 누르는 단추에만(행·카드·알약에는 없다).
  */
 .concept {
-  --c-line: #d4dce8;
+  --c-line: var(--learn-track, #dde3ec);
   --c-line-soft: #e6ebf2;
   --c-th: #f8fafc;
-  --c-ink: #172b4d;
-  --c-muted: #596c86;
-  --c-ctl: #b8c4d6;
-  --c-accent: #3159df;
-  --c-sel: #eef2fd;
+  --c-ink: var(--learn-ink, #172b4d);
+  --c-muted: var(--learn-muted, #596c86);
+  --c-ctl: var(--learn-control, #b8c4d6);
+  --c-accent: var(--learn-accent, #3159df);
+  --c-sel: var(--learn-soft, #edf2ff);
   --c-pub-bg: #e4eafc;
   --c-pub-ink: #2447b8;
   --c-draft-bg: #fbf0d4;
   --c-draft-ink: #86590a;
   --c-none-bg: #eef1f5;
   --c-none-ink: #6b7a90;
-  --c-warn: #8a5a06;
-  --c-bad: #b42318;
+  --c-warn: var(--learn-warning, #8a5a06);
+  --c-bad: var(--learn-danger, #b42318);
   container-type: inline-size;
   color: var(--c-ink);
 }

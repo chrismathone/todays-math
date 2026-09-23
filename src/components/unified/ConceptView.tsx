@@ -447,6 +447,16 @@ export default function ConceptView({
         ) : units?.status === "error" ? (
           <div className={s.errorPanel}>
             <p role="alert">{units.message}</p>
+            <button
+              type="button"
+              className={ws.outlineButton}
+              onClick={() => {
+                setUnits({ status: "loading" });
+                void loadUnits();
+              }}
+            >
+              전체 차시 다시 불러오기
+            </button>
           </div>
         ) : (
           <WorkProgress label="전체 차시를 불러오는 중입니다…" />
@@ -459,6 +469,17 @@ export default function ConceptView({
           lectures={panelLectures}
           watch={panelWatch}
           loading={panelLoading}
+          loadError={
+            view === "tree" && treeUnit?.status === "error"
+              ? treeUnit.message
+              : null
+          }
+          onRetry={() => {
+            if (treeUnitId) {
+              setTreeUnit({ status: "loading" });
+              void loadTreeUnit(treeUnitId);
+            }
+          }}
           emptyHint={
             view === "tree" && !treeUnitId
               ? "왼쪽에서 차시를 고르면 그 차시의 강의가 여기에 나옵니다."

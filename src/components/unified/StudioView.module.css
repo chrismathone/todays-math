@@ -1,12 +1,12 @@
 .studio {
-  --studio-primary: #3159df;
-  --studio-ink: #172b4d;
-  --studio-muted: #52617a;
-  --studio-line: #d4dce8;
+  --studio-primary: var(--learn-accent, #3159df);
+  --studio-ink: var(--learn-ink, #172b4d);
+  --studio-muted: var(--learn-muted, #596c86);
+  --studio-line: var(--learn-track, #dde3ec);
   container: studio / inline-size;
   min-width: 0;
   color: var(--studio-ink);
-  background: #f3f5f9;
+  background: var(--learn-bg, #f4f6fa);
   font-size: var(--text-body, 14px);
   line-height: 1.6;
 }

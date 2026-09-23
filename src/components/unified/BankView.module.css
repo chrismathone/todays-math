@@ -1,14 +1,14 @@
 .bank {
-  --bank-ink: #172b4d;
-  --bank-muted: #52617a;
-  --bank-primary: #3159df;
-  --bank-line: #dce3ed;
-  --bank-control: #7c8da7;
-  --bank-selected: #edf2ff;
+  --bank-ink: var(--learn-ink, #172b4d);
+  --bank-muted: var(--learn-muted, #596c86);
+  --bank-primary: var(--learn-accent, #3159df);
+  --bank-line: var(--learn-track, #dde3ec);
+  --bank-control: var(--learn-control, #b8c4d6);
+  --bank-selected: var(--learn-soft, #edf2ff);
   width: 100%;
   min-width: 0;
   padding-bottom: calc(100px + var(--workspace-bottom-inset, 0px));
-  background: #f4f6fa;
+  background: var(--learn-bg, #f4f6fa);
   color: var(--bank-ink);
   font-size: var(--text-body, 14px);
   line-height: 1.6;
@@ -33,7 +33,7 @@
   cursor: pointer;
 }
 .bank button:disabled {
-  cursor: default;
+  cursor: not-allowed;
   opacity: 0.55;
 }
 /* 범위 고르개의 칸은 **표의 행**이지 낱개 단추가 아니다. 위 `.bank button` 의 8px 이
@@ -48,7 +48,7 @@
 .bank button:focus-visible,
 .bank input:focus-visible,
 .bank select:focus-visible {
-  outline: 3px solid var(--bank-primary);
+  outline: 3px solid var(--learn-focus, #82a1ff);
   outline-offset: 3px;
 }
 .bank input[type="checkbox"] {
@@ -528,8 +528,15 @@ label.rowSelect {
   margin-top: auto;
 }
 .detailDialog {
-  position: relative;
-  inset: auto;
+  position: fixed;
+  inset: 0;
+  width: min(980px, calc(100vw - 32px));
+  margin: auto;
+  border-radius: var(--learn-radius, 14px);
+  box-shadow: 0 24px 70px #14243d40;
+}
+.detailDialog::backdrop {
+  background: #14243d99;
 }
 .detailDialog > header,
 .detailDialog > footer {

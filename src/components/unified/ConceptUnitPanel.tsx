@@ -85,6 +85,8 @@ export default function ConceptUnitPanel({
   lectures,
   watch,
   loading,
+  loadError,
+  onRetry,
   emptyHint,
   canEdit,
   videoEmbed,
@@ -102,6 +104,8 @@ export default function ConceptUnitPanel({
   /** 고른 반의 게시 강의별 «끝까지 본 학생» — 표에서 연 판에만 */
   watch: ReadonlyMap<string, ConceptWatch>;
   loading: boolean;
+  loadError: string | null;
+  onRetry: () => void;
   emptyHint: string | null;
   canEdit: boolean;
   videoEmbed: boolean;
@@ -161,6 +165,13 @@ export default function ConceptUnitPanel({
 
       {loading ? (
         <WorkProgress label="차시의 강의를 불러오는 중입니다…" />
+      ) : loadError ? (
+        <div className={s.errorPanel}>
+          <p role="alert">{loadError}</p>
+          <button type="button" className={ws.outlineButton} onClick={onRetry}>
+            차시 강의 다시 불러오기
+          </button>
+        </div>
       ) : !unit ? (
         <p className={s.sideNote}>
           {emptyHint ?? "고른 반의 진도 기록이 없어 차시를 보일 수 없습니다."}

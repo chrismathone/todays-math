@@ -21,9 +21,13 @@ export function ModalShell({
   }, [onClose]);
   useEffect(() => {
     const previous = document.activeElement as HTMLElement | null;
+    const currentDialog = dialog.current;
     const overflow = document.body.style.overflow;
     document.body.style.overflow = "hidden";
-    dialog.current?.focus();
+    if (currentDialog && typeof currentDialog.showModal === "function")
+      currentDialog.showModal();
+    else currentDialog?.setAttribute("open", "");
+    currentDialog?.focus();
     const key = (event: KeyboardEvent) => {
       if (event.defaultPrevented) return;
       if (event.key === "Escape") {
@@ -32,7 +36,7 @@ export function ModalShell({
       }
       if (event.key !== "Tab") return;
       const focusable = [
-        ...(dialog.current?.querySelectorAll<HTMLElement>(
+        ...(currentDialog?.querySelectorAll<HTMLElement>(
           'button:not(:disabled), input:not(:disabled), textarea:not(:disabled), select:not(:disabled), summary, [tabindex="0"]',
         ) ?? []),
       ].filter(
@@ -44,13 +48,13 @@ export function ModalShell({
         last = focusable.at(-1);
       if (!first) {
         event.preventDefault();
-        dialog.current?.focus();
+        currentDialog?.focus();
         return;
       }
       if (
         event.shiftKey &&
         (document.activeElement === first ||
-          document.activeElement === dialog.current)
+          document.activeElement === currentDialog)
       ) {
         event.preventDefault();
         last?.focus();
@@ -61,6 +65,8 @@ export function ModalShell({
     };
     document.addEventListener("keydown", key);
     return () => {
+      if (currentDialog?.open && typeof currentDialog.close === "function")
+        currentDialog.close();
       document.body.style.overflow = overflow;
       document.removeEventListener("keydown", key);
       previous?.focus();
@@ -74,13 +80,27 @@ export function ModalShell({
       }}
     >
       <dialog
-        open
         {...props}
         ref={dialog}
         role="dialog"
         aria-modal="true"
         tabIndex={-1}
         className={`${styles.dialog} ${className}`}
+        onCancel={(event) => {
+          event.preventDefault();
+          latestClose.current();
+        }}
+        onPointerDown={(event) => {
+          if (event.target !== event.currentTarget) return;
+          const bounds = event.currentTarget.getBoundingClientRect();
+          if (
+            event.clientX < bounds.left ||
+            event.clientX > bounds.right ||
+            event.clientY < bounds.top ||
+            event.clientY > bounds.bottom
+          )
+            latestClose.current();
+        }}
       >
         {children}
       </dialog>
