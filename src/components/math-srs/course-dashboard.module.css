@@ -325,9 +325,24 @@
   font-weight: 500;
   min-width: 120px;
 }
-.table tbody th > strong {
+.dashboard .studentButton {
+  display: block;
+  width: 100%;
+  min-height: 44px;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: var(--accent);
+  text-align: left;
+}
+.studentButton > strong {
   font-size: 15px;
   font-weight: 650;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+.studentButton:hover > strong {
+  color: var(--learn-accent-hover, #2448bd);
 }
 .table tbody tr:last-child > *,
 .reportTable tbody tr:last-child > * {

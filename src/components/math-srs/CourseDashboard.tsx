@@ -334,8 +334,22 @@ export default function CourseDashboard({
                         data-selected={selected?.id === student.id}
                       >
                         <th scope="row">
-                          <strong>{student.name}</strong>
-                          <span className={s.subline}>{student.className}</span>
+                          <button
+                            type="button"
+                            className={s.studentButton}
+                            aria-label={`${student.name} 학습 현황 열기`}
+                            aria-expanded={selected?.id === student.id}
+                            aria-controls={panelId}
+                            onClick={(event) => {
+                              opener.current = event.currentTarget;
+                              setSelected(student);
+                            }}
+                          >
+                            <strong>{student.name}</strong>
+                            <span className={s.subline}>
+                              {student.className}
+                            </span>
+                          </button>
                         </th>
                         <td>
                           <span
