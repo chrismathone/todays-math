@@ -14,6 +14,7 @@ import { checkAnswer } from "./generator";
 import { createMemories } from "./memory";
 import { createMission, recordAttempt } from "./mission";
 import { CONCEPT_IDS, type Learner, type Mission } from "./types";
+import { storedCourseSchema } from "./courseAutomation";
 
 const storedProblemSchema = mathSrsProblemSchema
   .omit({ hint: true, feedback: true })
@@ -42,6 +43,7 @@ const payloadSchema = z
     version: z.literal(1),
     memories: z.array(mathSrsMemorySchema).length(CONCEPT_IDS.length),
     missions: z.array(storedMissionSchema).max(90),
+    course: storedCourseSchema.optional(),
   })
   .superRefine((value, ctx) => {
     const invalid = (message: string) =>

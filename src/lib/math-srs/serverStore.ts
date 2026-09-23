@@ -63,9 +63,18 @@ export async function changeSrsState(
   studentId: string,
   change: (state: StoredSrsState) => StoredSrsState,
   table = srsStateTable(),
+  expectedRevision?: number,
 ): Promise<{ revision: number; state: StoredSrsState }> {
   for (let retry = 0; retry < 5; retry++) {
     const previous = await readSrsState(studentId, table);
+    // Settings are an explicit edit of a snapshot, never replayed over new learning.
+    if (
+      expectedRevision !== undefined &&
+      previous.revision !== expectedRevision
+    )
+      throw new SrsConflict(
+        "학습 기록이 변경되었습니다. 설정을 다시 불러와 주세요.",
+      );
     const state = change(previous.state);
     if (state === previous.state) return previous;
     const payload = parseSrsState(state);
