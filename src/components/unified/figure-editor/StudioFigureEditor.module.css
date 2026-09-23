@@ -11,19 +11,20 @@
 
 .dialog {
   /* The portal leaves Studio's DOM subtree, so provide its palette here. */
-  --figure-primary: #3159df;
+  --figure-primary: var(--learn-accent, #3159df);
   --figure-accent-ink: #284f93;
   --figure-accent-soft: #edf3ff;
   --figure-accent-line: #a9bdea;
-  --ink: #172b4d;
-  --text-2: #52617a;
+  --ink: var(--learn-ink, #172b4d);
+  --text-2: var(--learn-muted, #596c86);
   --text-3: #64748b;
   --surface: #ffffff;
-  --side: #f3f5f9;
-  --divider: #d4dce8;
-  --control: #b5c3d7;
+  --side: var(--learn-bg, #f4f6fa);
+  --divider: var(--learn-track, #dde3ec);
+  --control: var(--learn-control, #b8c4d6);
   --control-height: 34px;
-  position: relative;
+  position: fixed;
+  inset: 0;
   display: flex;
   flex-direction: column;
   /*
@@ -32,11 +33,11 @@
    * (1440×min(740, 86dvh) 그대로일 때, 브라우저 실측). 대화상자를 화면에 맞게 키워 그림을 되찾는다 —
    * 1516×730 424→459px · 1280×720 353→392px(넓히기 전보다 크다). 잰 값은 트랙 43 보고서.
    */
-  width: min(1600px, 100%);
+  width: min(1600px, calc(100vw - 32px));
   height: min(900px, calc(100dvh - 32px));
   max-height: calc(100dvh - 32px);
   min-width: 0;
-  margin: 0;
+  margin: auto;
   padding: 0;
   overflow: hidden;
   border: 1px solid var(--divider);
@@ -68,12 +69,12 @@
     summary,
     [tabindex="0"]
   ):focus-visible {
-  outline: 2px solid var(--figure-primary);
+  outline: 3px solid var(--learn-focus, #82a1ff);
   outline-offset: 2px;
 }
 
 .dialog :where(button):disabled {
-  cursor: default;
+  cursor: not-allowed;
   opacity: 0.4;
 }
 
@@ -100,7 +101,7 @@
 }
 
 .primary:hover:not(:disabled) {
-  background: #284bc0;
+  background: var(--learn-accent-hover, #2448bd);
 }
 
 .header {

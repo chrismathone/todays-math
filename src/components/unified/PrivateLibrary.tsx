@@ -229,6 +229,9 @@ function PrivateLibraryContent({
           <div className={s.empty}>
             <h2>자료 목록을 불러오지 못했습니다</h2>
             <p>연결 상태를 확인한 뒤 새로고침해 주세요.</p>
+            <button type="button" onClick={() => void refresh()}>
+              다시 불러오기
+            </button>
           </div>
         ) : (
           <div className={s.empty}>
@@ -244,12 +247,18 @@ function PrivateLibraryContent({
             </p>
             {hasFilters && (
               <button
+                type="button"
                 onClick={() => {
                   setQuery("");
                   setKind("all");
                 }}
               >
                 검색 조건 초기화
+              </button>
+            )}
+            {!hasFilters && onNew && (
+              <button type="button" onClick={onNew}>
+                새 시험지 만들기
               </button>
             )}
           </div>

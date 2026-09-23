@@ -119,6 +119,9 @@ export default function StudioCartPanel({
         </span>
       </div>
       <ol ref={list} className={s.list}>
+        {rows.length === 0 && (
+          <li className={s.empty}>검수한 문제를 담으면 여기에 모입니다.</li>
+        )}
         {rows.map((row) => {
           const cropIndex = crops.findIndex(
             (crop) => crop.id === row.problem.id,

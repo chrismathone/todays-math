@@ -1,8 +1,17 @@
 .exportContent {
+  --editor-ink: var(--learn-ink, #172b4d);
+  --editor-muted: var(--learn-muted, #596c86);
+  --editor-accent: var(--learn-accent, #3159df);
+  --editor-control: var(--learn-control, #b8c4d6);
+  --editor-line: var(--learn-track, #dde3ec);
   padding: var(--workspace-page-padding, 16px 20px);
   max-width: none;
   margin: 0;
-  color: #172b4d;
+  color: var(--editor-ink);
+}
+.exportContent button:disabled {
+  cursor: not-allowed;
+  opacity: 0.45;
 }
 .primaryButton,
 .secondaryButton {
@@ -20,24 +29,24 @@
   white-space: nowrap;
 }
 .primaryButton {
-  background: #3159df;
+  background: var(--editor-accent);
   color: #fff;
 }
-.primaryButton:hover {
-  background: #254abf;
+.primaryButton:hover:not(:disabled) {
+  background: var(--learn-accent-hover, #2448bd);
 }
 .secondaryButton {
   background: #fff;
-  color: #4f6a91;
-  border-color: #d3deed;
+  color: var(--editor-accent);
+  border-color: var(--editor-control);
 }
-.secondaryButton:hover {
-  background: #f7faff;
-  border-color: #9bb2e3;
+.secondaryButton:hover:not(:disabled) {
+  background: var(--learn-soft, #edf2ff);
+  border-color: var(--editor-accent);
 }
 .emptyExport {
   background: white;
-  border: 1px solid #dbe3ee;
+  border: 1px solid var(--editor-line);
   border-radius: 14px;
   padding: 32px 24px;
   display: flex;
@@ -52,7 +61,7 @@
 }
 .emptyExport > p {
   font-size: var(--text-body, 14px);
-  color: #52617a;
+  color: var(--editor-muted);
   margin: 8px 0 20px;
   line-height: 1.5;
 }
@@ -63,7 +72,7 @@
   gap: 10px;
 }
 .textButton {
-  color: #52617a;
+  color: var(--editor-accent);
   text-decoration: underline;
   text-underline-offset: 4px;
   min-height: var(--control-height, 44px);
@@ -79,7 +88,7 @@
 .exportInspector {
   padding: 16px;
   min-width: 0;
-  border: 1px solid #d8e2ef;
+  border: 1px solid var(--editor-line);
   border-radius: 12px;
   background: #fff;
   position: sticky;
@@ -103,18 +112,18 @@
   display: block;
   font-size: var(--text-caption, 12px);
   font-weight: 650;
-  color: #506a90;
+  color: var(--editor-muted);
   margin-bottom: 12px;
 }
 .field > input {
   display: block;
-  border: 1px solid #d5dfed;
+  border: 1px solid var(--editor-control);
   border-radius: 8px;
   width: 100%;
   height: 44px;
   padding: 0 11px;
   margin-top: 8px;
-  color: #243d62;
+  color: var(--editor-ink);
   font-size: var(--text-body, 14px);
   font-weight: 500;
 }
@@ -154,7 +163,7 @@ label.checkField {
 .checkField input {
   width: 16px;
   height: 16px;
-  accent-color: #3159df;
+  accent-color: var(--editor-accent);
 }
 .orderHeading {
   display: flex;
@@ -465,18 +474,18 @@ label.checkField {
 .choiceWrap button,
 .templateGrid button {
   min-height: 44px;
-  border: 1px solid #d5dfed;
+  border: 1px solid var(--editor-control);
   border-radius: 8px;
   padding: 0 12px;
   font-size: 14px;
-  color: #506a90;
+  color: var(--editor-muted);
 }
 .inspectorTabs [aria-selected="true"],
 .choiceWrap [aria-pressed="true"],
 .templateGrid [aria-pressed="true"] {
-  background: #edf2ff;
-  border-color: #3159df;
-  color: #3159df;
+  background: var(--learn-soft, #edf2ff);
+  border-color: var(--editor-accent);
+  color: var(--editor-accent);
 }
 .settingsPanel,
 .orderPanel {
@@ -596,11 +605,11 @@ label.checkField {
   width: 100%;
   min-width: 0;
   min-height: 44px;
-  border: 1px solid #d5dfed;
+  border: 1px solid var(--editor-control);
   border-radius: 8px;
   padding: 8px 10px;
   margin-top: 8px;
-  color: #243d62;
+  color: var(--editor-ink);
   font-size: 14px;
   font-weight: 400;
   background: #fff;
@@ -617,7 +626,7 @@ label.checkField {
 .paperToolbar select {
   min-height: 44px;
   padding: 0 8px;
-  border: 1px solid #d5dfed;
+  border: 1px solid var(--editor-control);
   border-radius: 8px;
   background: #fff;
   font-size: 14px;
@@ -625,8 +634,9 @@ label.checkField {
 .exportContent button:focus-visible,
 .exportContent summary:focus-visible,
 .exportContent input:focus-visible,
-.exportContent select:focus-visible {
-  outline: 3px solid #82a1ff;
+.exportContent select:focus-visible,
+.exportContent textarea:focus-visible {
+  outline: 3px solid var(--learn-focus, #82a1ff);
   outline-offset: 2px;
 }
 @media (max-width: 1050px) {
@@ -641,11 +651,11 @@ label.checkField {
     display: inline-flex;
     align-items: center;
     min-height: 44px;
-    border: 1px solid #d5dfed;
+    border: 1px solid var(--editor-control);
     border-radius: 8px;
     padding: 0 12px;
     font-size: 14px;
-    color: #3159df;
+    color: var(--editor-accent);
     margin-bottom: 12px;
   }
 }

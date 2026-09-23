@@ -52,7 +52,10 @@ function setup(overrides: Partial<StudioCropOverlayProps> = {}) {
   );
   const rendered = render(view());
   const overlay = screen.getByRole("button", {
-    name: /^문제 1 영역( · 완료)?$/,
+    name:
+      props.tool === "delete"
+        ? /^문제 1 영역 삭제( · 완료)?$/
+        : /^문제 1 영역( · 완료)?$/,
   });
   const page = screen.getByTestId("page");
   vi.spyOn(page, "getBoundingClientRect").mockReturnValue({
@@ -132,6 +135,16 @@ describe("StudioCropOverlay", () => {
     fireEvent.click(test.overlay);
     expect(test.onSelect).toHaveBeenCalledTimes(4);
     expect(test.onCommit).not.toHaveBeenCalled();
+    expect(test.parentEvent).not.toHaveBeenCalled();
+  });
+
+  it("uses the delete tool for keyboard activation, just as it does for a click", () => {
+    const test = setup({ tool: "delete" });
+    fireEvent.keyDown(test.overlay, { key: "Enter" });
+    fireEvent.keyDown(test.overlay, { key: " " });
+    expect(test.onDelete).toHaveBeenCalledTimes(2);
+    expect(test.onDelete).toHaveBeenCalledWith("crop-1");
+    expect(test.onSelect).not.toHaveBeenCalled();
     expect(test.parentEvent).not.toHaveBeenCalled();
   });
 

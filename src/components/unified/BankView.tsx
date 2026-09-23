@@ -392,212 +392,231 @@ function DetailModal({
    * 목록에 안 나타난다. 그건 거짓이 아니라 사실이고, 그래서 **말로 알린다.**
    */
   const [transformNotice, setTransformNotice] = useState<string | null>(null);
+  const dialogRef = useRef<HTMLDialogElement>(null);
+  const closeRef = useRef<HTMLButtonElement>(null);
+
+  useEffect(() => {
+    const dialog = dialogRef.current;
+    const opener = document.activeElement as HTMLElement | null;
+    if (!dialog) return;
+    if (typeof dialog.showModal === "function") dialog.showModal();
+    else dialog.setAttribute("open", "");
+    closeRef.current?.focus({ preventScroll: true });
+    return () => {
+      if (dialog.open && typeof dialog.close === "function") dialog.close();
+      if (opener?.isConnected) opener.focus({ preventScroll: true });
+    };
+  }, []);
 
   return (
-    <div
-      className="fixed inset-0 z-[100] flex items-center justify-center bg-ink/40 p-4"
+    <dialog
+      ref={dialogRef}
+      role="dialog"
+      aria-modal="true"
+      aria-label={`${problem.problemCode || "문항"} 상세`}
+      className={`${styles.detailDialog} flex max-h-[86vh] flex-col overflow-hidden border border-divider bg-surface p-0 text-ink`}
+      onCancel={(event) => {
+        event.preventDefault();
+        onClose();
+      }}
       onPointerDown={(event) => {
-        if (event.target === event.currentTarget) onClose();
+        if (event.target !== event.currentTarget) return;
+        const bounds = event.currentTarget.getBoundingClientRect();
+        if (
+          event.clientX < bounds.left ||
+          event.clientX > bounds.right ||
+          event.clientY < bounds.top ||
+          event.clientY > bounds.bottom
+        )
+          onClose();
       }}
     >
-      <dialog
-        open
-        role="dialog"
-        aria-modal="true"
-        aria-label={`${problem.problemCode || "문항"} 상세`}
-        className={`${styles.detailDialog} m-0 flex max-h-[86vh] w-full max-w-[980px] flex-col overflow-hidden border border-divider bg-surface p-0 text-ink`}
-      >
-        <header className={styles.cardHeader}>
-          <span className={styles.provenance}>
-            {provenanceBadges({
-              ...problem,
-              source: problem.source ?? "",
-              questionType: problem.questionTypeRaw,
-            }).map((badge) => (
-              <abbr
-                key={badge.axis}
-                title={badge.name}
-                data-provenance={badge.kind}
-                data-provenance-axis={badge.axis}
-                className={`${BADGE_CHIP} ${badge.className}`}
-              >
-                {badge.text}
-              </abbr>
-            ))}
+      <header className={styles.cardHeader}>
+        <span className={styles.provenance}>
+          {provenanceBadges({
+            ...problem,
+            source: problem.source ?? "",
+            questionType: problem.questionTypeRaw,
+          }).map((badge) => (
+            <abbr
+              key={badge.axis}
+              title={badge.name}
+              data-provenance={badge.kind}
+              data-provenance-axis={badge.axis}
+              className={`${BADGE_CHIP} ${badge.className}`}
+            >
+              {badge.text}
+            </abbr>
+          ))}
+        </span>
+        <div className={styles.problemMeta}>
+          {problem.grade ? (
+            <span className={styles.gradeBadge}>{problem.grade}</span>
+          ) : null}
+          <span>{problem.chapter || "단원 미지정"}</span>
+          {problem.problemType ? <span>{problem.problemType}</span> : null}
+          {problem.difficulty ? (
+            <span className={styles.difficultyBadge}>{problem.difficulty}</span>
+          ) : null}
+          <span className={styles.problemCode}>
+            {problem.problemCode || problem.id}
           </span>
-          <div className={styles.problemMeta}>
-            {problem.grade ? (
-              <span className={styles.gradeBadge}>{problem.grade}</span>
-            ) : null}
-            <span>{problem.chapter || "단원 미지정"}</span>
-            {problem.problemType ? <span>{problem.problemType}</span> : null}
-            {problem.difficulty ? (
-              <span className={styles.difficultyBadge}>
-                {problem.difficulty}
-              </span>
-            ) : null}
-            <span className={styles.problemCode}>
-              {problem.problemCode || problem.id}
-            </span>
-          </div>
-          <button type="button" className={styles.textButton} onClick={onClose}>
-            닫기
-          </button>
-        </header>
+        </div>
+        <button
+          ref={closeRef}
+          type="button"
+          className={styles.textButton}
+          onClick={onClose}
+        >
+          닫기
+        </button>
+      </header>
 
-        {/* 스크롤은 **이 바깥 상자**가 맡는다 — 2열 격자는 그 안에 있고 변형 패널은
+      {/* 스크롤은 **이 바깥 상자**가 맡는다 — 2열 격자는 그 안에 있고 변형 패널은
             격자 아래에 전폭으로 붙는다. 그래야 바닥 단추가 계속 고정된다
             (원장님 지시 2026-09-14 「문제 제외한 … 버튼은 하단 고정시켜」). */}
-        <div className="min-h-0 flex-1 overflow-y-auto p-5">
-          <div className={styles.detailColumns}>
-            <div
-              className={styles.problemBody}
-              style={{ width: PROBLEM_CARD_WIDTH, maxWidth: "100%" }}
-            >
-              <UnifiedProblem problem={problem} />
-            </div>
-            <div className="min-w-0">
-              <dl className={styles.detailMeta}>
-                <div>
-                  <dt>소단원</dt>
-                  <dd>{problem.section || "미지정"}</dd>
-                </div>
-                <div>
-                  <dt>출처</dt>
-                  <dd>
-                    {problem.sourceLabel ||
-                      SOURCE_LABEL[
-                        problem.source as keyof typeof SOURCE_LABEL
-                      ] ||
-                      "문제은행"}
-                  </dd>
-                </div>
-                <div>
-                  <dt>검수</dt>
-                  <dd>
-                    {REVIEW_STATUS_LABEL[
-                      problem.reviewStatus as keyof typeof REVIEW_STATUS_LABEL
-                    ] || "미정"}
-                  </dd>
-                </div>
-              </dl>
-              <div className={styles.answer}>
-                <span className={styles.answerLabel}>정답</span>
-                <MathText
-                  text={
-                    problem.answer
-                      ? shownFractions(problem.answer)
-                      : "등록된 정답이 없습니다."
-                  }
-                />
+      <div className="min-h-0 flex-1 overflow-y-auto p-5">
+        <div className={styles.detailColumns}>
+          <div
+            className={styles.problemBody}
+            style={{ width: PROBLEM_CARD_WIDTH, maxWidth: "100%" }}
+          >
+            <UnifiedProblem problem={problem} />
+          </div>
+          <div className="min-w-0">
+            <dl className={styles.detailMeta}>
+              <div>
+                <dt>소단원</dt>
+                <dd>{problem.section || "미지정"}</dd>
               </div>
-              <div className={styles.detail}>
-                <h4>풀이</h4>
-                {/* 풀이는 `solutionForDisplay` 를 지난다 — 안 거치면 이 화면에서만 해설이
+              <div>
+                <dt>출처</dt>
+                <dd>
+                  {problem.sourceLabel ||
+                    SOURCE_LABEL[problem.source as keyof typeof SOURCE_LABEL] ||
+                    "문제은행"}
+                </dd>
+              </div>
+              <div>
+                <dt>검수</dt>
+                <dd>
+                  {REVIEW_STATUS_LABEL[
+                    problem.reviewStatus as keyof typeof REVIEW_STATUS_LABEL
+                  ] || "미정"}
+                </dd>
+              </div>
+            </dl>
+            <div className={styles.answer}>
+              <span className={styles.answerLabel}>정답</span>
+              <MathText
+                text={
+                  problem.answer
+                    ? shownFractions(problem.answer)
+                    : "등록된 정답이 없습니다."
+                }
+              />
+            </div>
+            <div className={styles.detail}>
+              <h4>풀이</h4>
+              {/* 풀이는 `solutionForDisplay` 를 지난다 — 안 거치면 이 화면에서만 해설이
                     한 줄로 붙는다(solutionSteps.ts · solutionWiring.test.ts). 분수 표시를
                     먼저 하고 줄은 그리기 직전에 나눈다. */}
-                <MathText
-                  as="div"
-                  text={
-                    solutionForDisplay(
-                      problem.solution
-                        ? shownFractions(problem.solution)
-                        : null,
-                    ) || "등록된 풀이가 없습니다."
-                  }
-                />
-              </div>
+              <MathText
+                as="div"
+                text={
+                  solutionForDisplay(
+                    problem.solution ? shownFractions(problem.solution) : null,
+                  ) || "등록된 풀이가 없습니다."
+                }
+              />
             </div>
           </div>
+        </div>
 
-          {/* 변형은 **상세 안에서** 한다 (원장님 2026-09-14 「상세 화면에서 모든걸
+        {/* 변형은 **상세 안에서** 한다 (원장님 2026-09-14 「상세 화면에서 모든걸
               처리하는게 어떨지」). 2열 격자 **밖**, 전폭으로 붙인다 — 패널 안에 후보
               목록과 도형 미리보기가 들어와 좁은 단에서는 읽히지 않는다.
 
               ⚠️ 지연 청크로 연다(`ProblemTransformPanelLazy`) — 옛 카드와 같은 이유로
                  계약(zod)과 `problemApi` 가 첫 화면 청크에 딸려 들어오지 않게 한다. */}
-          {canUseAi && showTransform ? (
-            <ProblemTransformPanel
-              origin={problem}
-              onAdopted={(created) => {
-                setShowTransform(false);
-                setTransformNotice(
-                  `${created.length}건을 변형해 검수 대기로 저장했습니다. 승인해야 출제에 쓰입니다.`,
-                );
-                onTransformAdopted();
-              }}
-              onClose={() => setShowTransform(false)}
-            />
-          ) : null}
-        </div>
+        {canUseAi && showTransform ? (
+          <ProblemTransformPanel
+            origin={problem}
+            onAdopted={(created) => {
+              setShowTransform(false);
+              setTransformNotice(
+                `${created.length}건을 변형해 검수 대기로 저장했습니다. 승인해야 출제에 쓰입니다.`,
+              );
+              onTransformAdopted();
+            }}
+            onClose={() => setShowTransform(false)}
+          />
+        ) : null}
+      </div>
 
-        {/* 바닥은 **늘 선다** — 변형은 검수 상태와 무관하기 때문이다. 승인·반려만
+      {/* 바닥은 **늘 선다** — 변형은 검수 상태와 무관하기 때문이다. 승인·반려만
             검수 대기일 때 붙는다(이미 승인된 것에 「승인」을 다시 누를 일이 없다 —
             옛 카드와 같은 규칙). D-22: 승격은 사람이 누른다. */}
-        <footer className={styles.rowActions} style={{ padding: "12px 20px" }}>
-          {/* 🔴 담기가 **맨 앞**이다 (05 §8.6 확정). 카드 안에서는 오른쪽 끝으로 밀리는
+      <footer className={styles.rowActions} style={{ padding: "12px 20px" }}>
+        {/* 🔴 담기가 **맨 앞**이다 (05 §8.6 확정). 카드 안에서는 오른쪽 끝으로 밀리는
               단추(`.addButton` 의 `margin-left:auto`)라 그 밀림만 끈다 — 색·크기·아이콘은
               카드와 **같은 규격**을 쓴다. 두 자리가 달라 보이면 같은 동작으로 안 읽힌다. */}
+        <button
+          type="button"
+          className={`${styles.addButton} ${selected ? styles.addedButton : ""}`}
+          style={{ marginLeft: 0 }}
+          aria-pressed={selected}
+          disabled={addDisabled}
+          onClick={() => {
+            if (!addDisabled) onToggle(problem);
+          }}
+        >
+          <Icon name={selected ? "check" : "plus"} />
+          {selected
+            ? "담기 완료"
+            : problem.eligible === false
+              ? "담기 불가"
+              : replacing
+                ? "이 문제로 교체"
+                : "문제 담기"}
+        </button>
+        {canUseAi && (
           <button
             type="button"
-            className={`${styles.addButton} ${selected ? styles.addedButton : ""}`}
-            style={{ marginLeft: 0 }}
-            aria-pressed={selected}
-            disabled={addDisabled}
-            onClick={() => {
-              if (!addDisabled) onToggle(problem);
-            }}
+            className={styles.textButton}
+            aria-expanded={showTransform}
+            onClick={() => setShowTransform((current) => !current)}
           >
-            <Icon name={selected ? "check" : "plus"} />
-            {selected
-              ? "담기 완료"
-              : problem.eligible === false
-                ? "담기 불가"
-                : replacing
-                  ? "이 문제로 교체"
-                  : "문제 담기"}
+            {showTransform ? "변형 닫기" : "변형"}
           </button>
-          {canUseAi && (
+        )}
+        {problem.reviewStatus === "pending" ? (
+          <>
             <button
               type="button"
               className={styles.textButton}
-              aria-expanded={showTransform}
-              onClick={() => setShowTransform((current) => !current)}
+              disabled={busy}
+              onClick={() => onReviewStatusChange(problem.id, "approved")}
             >
-              {showTransform ? "변형 닫기" : "변형"}
+              승인
             </button>
-          )}
-          {problem.reviewStatus === "pending" ? (
-            <>
-              <button
-                type="button"
-                className={styles.textButton}
-                disabled={busy}
-                onClick={() => onReviewStatusChange(problem.id, "approved")}
-              >
-                승인
-              </button>
-              <button
-                type="button"
-                className={styles.textButton}
-                disabled={busy}
-                onClick={() => onReviewStatusChange(problem.id, "rejected")}
-              >
-                반려
-              </button>
-            </>
-          ) : null}
-          {transformNotice ? (
-            <p
-              role="status"
-              className="ml-auto text-[12.5px] font-bold text-ink"
+            <button
+              type="button"
+              className={styles.textButton}
+              disabled={busy}
+              onClick={() => onReviewStatusChange(problem.id, "rejected")}
             >
-              {transformNotice}
-            </p>
-          ) : null}
-        </footer>
-      </dialog>
-    </div>
+              반려
+            </button>
+          </>
+        ) : null}
+        {transformNotice ? (
+          <p role="status" className="ml-auto text-[12.5px] font-bold text-ink">
+            {transformNotice}
+          </p>
+        ) : null}
+      </footer>
+    </dialog>
   );
 }
 

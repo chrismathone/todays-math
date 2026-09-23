@@ -88,6 +88,11 @@
   overflow-y: auto;
   list-style: none;
 }
+.empty {
+  padding: 24px 12px;
+  color: var(--learn-muted, #596c86);
+  text-align: center;
+}
 /* 줄 자체는 누르는 표면이 아니다 — 이름(이 원본)·×·다시 담기만 단추다(D-30). */
 .row {
   display: grid;

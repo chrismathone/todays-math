@@ -605,6 +605,44 @@ describe("inspection rows cannot be added", () => {
  * 거짓말이고, 이 화면은 바로 그 실패를 한 번 겪었다.
  */
 describe("상세 모달이 변형까지 맡는다", () => {
+  it("opens a modal, puts focus on close and returns it after Escape", () => {
+    const showModal = vi.fn(function (this: HTMLDialogElement) {
+      this.setAttribute("open", "");
+    });
+    const original = Object.getOwnPropertyDescriptor(
+      HTMLDialogElement.prototype,
+      "showModal",
+    );
+    Object.defineProperty(HTMLDialogElement.prototype, "showModal", {
+      configurable: true,
+      value: showModal,
+    });
+    try {
+      mount();
+      const opener = screen.getByRole("button", { name: "문제 상세" });
+      opener.focus();
+      fireEvent.click(opener);
+      const dialog = screen.getByRole("dialog");
+      expect(showModal).toHaveBeenCalledOnce();
+      expect(
+        within(dialog).getByRole("button", { name: "닫기" }),
+      ).toHaveFocus();
+      fireEvent(
+        dialog,
+        new Event("cancel", { bubbles: true, cancelable: true }),
+      );
+      expect(screen.queryByRole("dialog")).not.toBeInTheDocument();
+      expect(opener).toHaveFocus();
+    } finally {
+      if (original)
+        Object.defineProperty(
+          HTMLDialogElement.prototype,
+          "showModal",
+          original,
+        );
+      else Reflect.deleteProperty(HTMLDialogElement.prototype, "showModal");
+    }
+  });
   const origin: BankProblem = { ...problem, id: ORIGIN_ID };
 
   it("hides export and AI transformation when those menus are disabled", () => {

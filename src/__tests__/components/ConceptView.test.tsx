@@ -534,6 +534,64 @@ describe("전체 차시 735 — 학년 › 단원 › 차시", () => {
 });
 
 describe("불러오기 실패", () => {
+  it("recovers the full unit tree from its own error panel", async () => {
+    const transport = globalThis.fetch;
+    let failed = false;
+    vi.stubGlobal(
+      "fetch",
+      async (input: RequestInfo | URL, init?: RequestInit) => {
+        if (String(input) === "/api/concept/units" && !failed) {
+          failed = true;
+          return json({ error: { message: "차시 목록 연결 실패" } }, 503);
+        }
+        return transport(input, init);
+      },
+    );
+    await renderView();
+    fireEvent.click(screen.getByRole("button", { name: "전체 차시 735" }));
+    expect(await screen.findByRole("alert")).toHaveTextContent(
+      "차시 목록 연결 실패",
+    );
+    fireEvent.click(
+      screen.getByRole("button", { name: "전체 차시 다시 불러오기" }),
+    );
+    expect(
+      await screen.findByRole("region", { name: "전체 차시" }),
+    ).toBeVisible();
+  });
+
+  it("shows a selected unit load failure and retries that unit", async () => {
+    const transport = globalThis.fetch;
+    let failed = false;
+    vi.stubGlobal(
+      "fetch",
+      async (input: RequestInfo | URL, init?: RequestInit) => {
+        if (String(input).startsWith("/api/concept/lectures?") && !failed) {
+          failed = true;
+          return json({ error: { message: "강의 연결 실패" } }, 503);
+        }
+        return transport(input, init);
+      },
+    );
+    await renderView();
+    fireEvent.click(screen.getByRole("button", { name: "전체 차시 735" }));
+    const tree = within(
+      await screen.findByRole("region", { name: "전체 차시" }),
+    );
+    fireEvent.click(tree.getByRole("button", { name: "공배수와 최소공배수" }));
+    expect(await panel().findByRole("alert")).toHaveTextContent(
+      "강의 연결 실패",
+    );
+    fireEvent.click(
+      panel().getByRole("button", { name: "차시 강의 다시 불러오기" }),
+    );
+    await waitFor(() =>
+      expect(
+        panel().getByRole("heading", { name: "공배수와 최소공배수" }),
+      ).toBeVisible(),
+    );
+  });
+
   it("로그인이 풀리면 서버 문구와 다시 불러오기", async () => {
     vi.stubGlobal("fetch", async () =>
       json(

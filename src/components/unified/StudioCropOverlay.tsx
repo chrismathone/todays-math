@@ -210,7 +210,8 @@ export default function StudioCropOverlay({
     if (disabled || event.altKey || event.ctrlKey || event.metaKey) return;
     if (event.key === "Enter" || event.key === " ") {
       event.preventDefault();
-      onSelect(id);
+      if (tool === "delete") onDelete(id);
+      else onSelect(id);
     } else if (event.key === "Delete" || event.key === "Backspace") {
       event.preventDefault();
       cancelDrag();
@@ -240,11 +241,11 @@ export default function StudioCropOverlay({
     <div
       ref={elementRef}
       role="button"
-      aria-label={`${label} 영역${done ? " · 완료" : ""}`}
+      aria-label={`${label} 영역${tool === "delete" ? " 삭제" : ""}${done ? " · 완료" : ""}`}
       aria-pressed={selected}
       aria-disabled={disabled || adding}
       tabIndex={disabled || adding ? -1 : 0}
-      title={done ? `${label} · 완료` : label}
+      title={`${label}${tool === "delete" ? " · 삭제" : ""}${done ? " · 완료" : ""}`}
       data-crop-id={id}
       data-crop-kind={kind}
       data-tool={tool}

@@ -1,11 +1,16 @@
 .comparison {
   --control-height: 34px;
+  --review-ink: var(--learn-ink, #172b4d);
+  --review-muted: var(--learn-muted, #596c86);
+  --review-accent: var(--learn-accent, #3159df);
+  --review-control: var(--learn-control, #b8c4d6);
+  --review-line: var(--learn-track, #dde3ec);
   display: grid;
   grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
   flex: 1;
   min-height: 0;
   overflow: hidden;
-  background: #f5f7fa;
+  background: var(--learn-bg, #f4f6fa);
 }
 .original,
 .results {
@@ -15,7 +20,7 @@
   min-height: 0;
 }
 .original {
-  border-right: 1px solid #d8e0eb;
+  border-right: 1px solid var(--review-line);
 }
 .comparison header {
   display: flex;
@@ -29,18 +34,18 @@
 }
 .comparison header span {
   font-size: 12px;
-  color: #64748b;
+  color: var(--review-muted);
 }
 .scoreToggle {
   display: flex;
   align-items: center;
   gap: 5px;
   font-size: 12px;
-  color: #52617a;
+  color: var(--review-muted);
   white-space: nowrap;
 }
 .scoreToggle input {
-  accent-color: #3159df;
+  accent-color: var(--review-accent);
 }
 .originalScroll,
 .resultScroll {
@@ -62,7 +67,7 @@
 .card {
   padding: 18px;
   background: white;
-  border: 1px solid #d8e0eb;
+  border: 1px solid var(--review-line);
   border-radius: 8px;
   margin-bottom: 12px;
   font-size: 14px;
@@ -93,10 +98,10 @@
 .comparison button,
 .comparison select {
   height: 34px;
-  border: 1px solid #d4deeb;
+  border: 1px solid var(--review-control);
   border-radius: 8px;
   background: white;
-  color: #284f93;
+  color: var(--review-accent);
   padding: 0 10px;
   cursor: pointer;
   font-size: 13px;
@@ -107,8 +112,10 @@
   cursor: default;
 }
 .comparison button:focus-visible,
-.comparison select:focus-visible {
-  outline: 2px solid #3059d9;
+.comparison select:focus-visible,
+.comparison input:focus-visible,
+.comparison textarea:focus-visible {
+  outline: 3px solid var(--learn-focus, #82a1ff);
   outline-offset: 2px;
 }
 .comparison .number {
@@ -125,8 +132,8 @@
   overflow-wrap: anywhere;
 }
 .comparison .saveEdit {
-  background: #3159df;
-  border-color: #3159df;
+  background: var(--review-accent);
+  border-color: var(--review-accent);
   color: white;
 }
 .visualEditor {

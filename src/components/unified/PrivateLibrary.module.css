@@ -1,4 +1,10 @@
 .library {
+  --library-ink: var(--learn-ink, #172b4d);
+  --library-muted: var(--learn-muted, #596c86);
+  --library-accent: var(--learn-accent, #3159df);
+  --library-control: var(--learn-control, #b8c4d6);
+  --library-line: var(--learn-track, #dde3ec);
+  --library-soft: var(--learn-soft, #edf2ff);
   width: 100%;
   max-width: 1480px;
   min-width: 0;
@@ -23,19 +29,19 @@
   display: flex;
   align-items: center;
   gap: 8px;
-  color: #52617a;
+  color: var(--library-muted);
   font-size: 13px;
   white-space: nowrap;
 }
 .library input,
 .library select {
-  border: 1px solid #cbd5e1;
-  border-radius: 6px;
+  border: 1px solid var(--library-control);
+  border-radius: 8px;
   background: white;
   padding: 9px 11px;
   min-width: 0;
-  min-height: 38px;
-  color: #172b42;
+  min-height: 44px;
+  color: var(--library-ink);
   font: inherit;
   font-size: 13px;
 }
@@ -43,10 +49,10 @@
   cursor: pointer;
 }
 .library button {
-  border: 1px solid #cbd5e1;
-  border-radius: 6px;
+  border: 1px solid var(--library-control);
+  border-radius: 8px;
   background: white;
-  color: #264861;
+  color: var(--library-accent);
   padding: 9px 12px;
   font: inherit;
   font-size: 13px;
@@ -54,51 +60,53 @@
   cursor: pointer;
 }
 .library button:hover:not(:disabled) {
-  background: #f1f5f9;
-  border-color: #94a3b8;
+  background: var(--library-soft);
+  border-color: var(--library-accent);
 }
 .library button:disabled {
   opacity: 0.55;
   cursor: default;
 }
 .library :is(button, input, select):focus-visible {
-  outline: 2px solid #2563eb;
+  outline: 3px solid var(--learn-focus, #82a1ff);
   outline-offset: 3px;
 }
 .resultCount {
   margin: 0 0 10px;
-  color: #607085;
+  color: var(--library-muted);
   font-size: 13px;
 }
 .resultCount strong {
-  color: #243a52;
+  color: var(--library-ink);
   font-variant-numeric: tabular-nums;
 }
 .board {
-  border-top: 2px solid #29496b;
-  border-bottom: 1px solid #dbe3ed;
+  border: 1px solid var(--library-line);
+  border-top: 2px solid var(--library-ink);
+  border-radius: var(--learn-radius-sm, 10px);
   background: white;
+  overflow: hidden;
 }
 .table {
   width: 100%;
   border-collapse: collapse;
   table-layout: fixed;
-  color: #243a52;
+  color: var(--library-ink);
   font-size: 14px;
 }
 .table th {
   padding: 12px 14px;
-  background: #f6f8fb;
-  color: #52617a;
+  background: var(--learn-bg, #f4f6fa);
+  color: var(--library-muted);
   font-size: 12px;
   font-weight: 600;
   text-align: left;
   white-space: nowrap;
-  border-bottom: 1px solid #dbe3ed;
+  border-bottom: 1px solid var(--library-line);
 }
 .table td {
   padding: 14px;
-  border-bottom: 1px solid #e8edf3;
+  border-bottom: 1px solid var(--library-line);
   vertical-align: middle;
 }
 .table tbody tr:last-child td {
@@ -107,7 +115,7 @@
 .table .numberCell {
   width: 58px;
   text-align: center;
-  color: #718096;
+  color: var(--library-muted);
   font-size: 12px;
   font-variant-numeric: tabular-nums;
 }
@@ -116,19 +124,19 @@
 }
 .kindBadge {
   display: inline-block;
-  border: 1px solid #dce6f3;
-  border-radius: 4px;
-  background: #f2f6fc;
+  border: 1px solid var(--library-control);
+  border-radius: 6px;
+  background: var(--library-soft);
   padding: 3px 7px;
-  color: #365b87;
+  color: var(--library-ink);
   font-size: 12px;
   font-weight: 600;
   white-space: nowrap;
 }
 .kindBadge[data-kind="extraction"] {
-  border-color: #e0e5eb;
-  background: #f6f7f9;
-  color: #52617a;
+  border-color: var(--library-line);
+  background: var(--learn-neutral, #edf0f6);
+  color: var(--library-muted);
 }
 .titleCell {
   min-width: 0;
@@ -140,7 +148,7 @@
   border-radius: 3px;
   background: transparent;
   padding: 4px 0;
-  color: #203f66;
+  color: var(--library-accent);
   font-size: 15px;
   font-weight: 650;
   line-height: 1.5;
@@ -149,7 +157,7 @@
 }
 .library .titleButton:hover:not(:disabled) {
   background: transparent;
-  color: #1d4ed8;
+  color: var(--learn-accent-hover, #2448bd);
   text-decoration: underline;
   text-underline-offset: 4px;
 }
@@ -160,7 +168,7 @@
 }
 .titleCell small {
   display: block;
-  color: #607085;
+  color: var(--library-muted);
   font-size: 12px;
   line-height: 1.6;
 }
@@ -171,7 +179,7 @@
 }
 .table .updatedCell {
   width: 175px;
-  color: #607085;
+  color: var(--library-muted);
   font-size: 12px;
   white-space: nowrap;
 }
@@ -186,7 +194,7 @@
 }
 .actions button {
   padding: 6px 9px;
-  min-height: 32px;
+  min-height: 36px;
   font-size: 12px;
   white-space: nowrap;
 }
@@ -194,7 +202,7 @@
   display: none;
 }
 .error {
-  color: #8a3636;
+  color: var(--learn-danger, #b42318);
   font-size: 13px;
   line-height: 1.6;
   overflow-wrap: anywhere;
@@ -206,11 +214,11 @@
 .empty {
   text-align: center;
   padding: 44px 16px;
-  color: #607085;
+  color: var(--library-muted);
 }
 .empty h2 {
   margin: 0 0 8px;
-  color: #243a52;
+  color: var(--library-ink);
   font-size: 17px;
 }
 .empty p {
@@ -220,7 +228,7 @@
 }
 .note {
   margin-top: 16px;
-  color: #607085;
+  color: var(--library-muted);
   font-size: 12px;
   line-height: 1.6;
 }
@@ -231,15 +239,15 @@
   gap: 12px;
   padding: 10px 18px;
   font-size: 13px;
-  color: #8a3636;
+  color: var(--learn-danger, #b42318);
 }
 .cloudError p {
   flex: 1;
   margin: 0;
 }
 .cloudError button {
-  border: 1px solid #dbe3ed;
-  border-radius: 6px;
+  border: 1px solid var(--library-control);
+  border-radius: 8px;
   background: white;
   padding: 7px 10px;
   cursor: pointer;
@@ -264,7 +272,7 @@
     grid-template-areas: "kind number" "title title" "count updated" "actions actions";
     gap: 6px 12px;
     padding: 14px 16px;
-    border-bottom: 1px solid #e8edf3;
+    border-bottom: 1px solid var(--library-line);
   }
   .table tbody tr:last-child {
     border-bottom: 0;
@@ -295,7 +303,7 @@
   .table .countCell {
     grid-area: count;
     text-align: left;
-    color: #607085;
+    color: var(--library-muted);
     font-size: 12px;
   }
   .table .updatedCell {

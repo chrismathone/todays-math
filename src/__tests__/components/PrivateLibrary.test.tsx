@@ -373,8 +373,20 @@ describe("private library", () => {
       screen.queryByText("아직 저장한 자료가 없어요"),
     ).not.toBeInTheDocument();
     server.fail(0);
-    fireEvent.click(screen.getByRole("button", { name: "새로고침" }));
+    fireEvent.click(screen.getByRole("button", { name: "다시 불러오기" }));
     expect(await screen.findByText("아직 저장한 자료가 없어요")).toBeVisible();
+  });
+
+  it("offers the new worksheet action from a genuinely empty library", async () => {
+    vi.stubGlobal(
+      "fetch",
+      vi.fn(async () => listResponse([])),
+    );
+    const onNew = vi.fn();
+    render(<PrivateLibrary {...boardProps()} onNew={onNew} />);
+    await screen.findByRole("heading", { name: "아직 저장한 자료가 없어요" });
+    fireEvent.click(screen.getByRole("button", { name: "새 시험지 만들기" }));
+    expect(onNew).toHaveBeenCalledOnce();
   });
 });
 
