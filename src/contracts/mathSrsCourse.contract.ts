@@ -177,6 +177,8 @@ export const courseRecentAttemptSchema = coursePublicAttemptSchema.extend({
   sessionId: uuidSchema,
   sectionId: courseSectionIdSchema,
   content: z.string(),
+  answer: z.string(),
+  solution: z.string(),
 });
 export const courseStudentDetailSchema = z.strictObject({
   student: courseRosterStudentSchema,
