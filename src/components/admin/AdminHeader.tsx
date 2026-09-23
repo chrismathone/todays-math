@@ -1,5 +1,6 @@
 import Link from "next/link";
 import TodayMathMark from "@/components/brand/TodayMathMark";
+import NavigationPending from "@/components/ui/NavigationPending";
 import AdminSignOut from "./AdminSignOut";
 import s from "./admin.module.css";
 
@@ -27,24 +28,27 @@ export default function AdminHeader({
             href="/admin"
             aria-current={active === "accounts" ? "page" : undefined}
           >
-            <span aria-hidden="true">◫</span> 계정 관리
+            <NavigationPending icon="◫" /> 계정 관리
           </Link>
           <Link
             className={s.workroomLink}
             href="/admin/branches"
             aria-current={active === "branches" ? "page" : undefined}
           >
-            <span aria-hidden="true">⌂</span> 지점 관리
+            <NavigationPending icon="⌂" /> 지점 관리
           </Link>
           <Link
             className={s.workroomLink}
             href="/admin/math-srs"
             aria-current={active === "srs" ? "page" : undefined}
           >
-            <span aria-hidden="true">◷</span> SRS 현황
+            <NavigationPending icon="◷" /> SRS 현황
           </Link>
           <Link className={s.workroomLink} href="/">
-            <span aria-hidden="true">↗</span> 작업실로 이동
+            <NavigationPending icon="↗" /> 작업실로 이동
+          </Link>
+          <Link className={s.workroomLink} href="/account">
+            <NavigationPending icon="◩" /> 내정보
           </Link>
         </nav>
         <div className={s.headerFooter}>

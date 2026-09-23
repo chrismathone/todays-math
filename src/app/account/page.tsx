@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { redirect } from "next/navigation";
 import TodayMathMark from "@/components/brand/TodayMathMark";
+import NavigationPending from "@/components/ui/NavigationPending";
 import AdminSignOut from "@/components/admin/AdminSignOut";
 import ChangePassword from "@/components/account/ChangePassword";
 import ProfileSettings from "@/components/account/ProfileSettings";
@@ -67,17 +68,17 @@ export default async function AccountPage() {
             <span aria-hidden="true">◩</span> 내정보
           </Link>
           {profile.isSuperAdmin && (
-            <Link href="/admin">
-              <span aria-hidden="true">◫</span> 관리 콘솔
+            <Link href="/admin" prefetch>
+              <NavigationPending icon="◫" /> 관리 콘솔
             </Link>
           )}
           {profile.isAdmin && !profile.isSuperAdmin && (
             <Link href="/branch">
-              <span aria-hidden="true">⌂</span> 지점 관리
+              <NavigationPending icon="⌂" /> 지점 관리
             </Link>
           )}
           <Link href="/">
-            <span aria-hidden="true">↗</span> 작업실로 이동
+            <NavigationPending icon="↗" /> 작업실로 이동
           </Link>
         </nav>
         <div className={s.sidebarFooter}>

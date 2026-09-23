@@ -13,7 +13,13 @@ import {
 } from "./adminFixtures";
 
 const access = vi.hoisted(() => vi.fn());
+const findUnique = vi.hoisted(() => vi.fn());
 vi.mock("@/lib/accountAccess", () => ({ getAccountAccess: access }));
+vi.mock("@/lib/db", () => ({ db: { user: { findUnique } } }));
+vi.mock("@/lib/adminAccounts", () => ({
+  managedAccountSelect: { id: true },
+  managedAccount: (account: unknown) => account,
+}));
 vi.mock("next/navigation", () => ({
   redirect: (path: string) => {
     throw new Error(`redirect:${path}`);
@@ -42,7 +48,11 @@ vi.mock("@/components/approval-pending/ApprovalPending", () => ({
   default: () => <span>pending-screen</span>,
 }));
 
-beforeEach(() => access.mockReset());
+beforeEach(() => {
+  access.mockReset();
+  findUnique.mockReset();
+  findUnique.mockResolvedValue(pendingAccount);
+});
 
 describe("account page server gates", () => {
   it("protects the SRS administrator page itself, independently of the proxy", async () => {

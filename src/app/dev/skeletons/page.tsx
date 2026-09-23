@@ -53,18 +53,6 @@ type Piece = {
  */
 const PIECES: Piece[] = [
   {
-    name: "관리자 계정 관리",
-    where: "admin/loading.tsx",
-    kind: "라우트",
-    node: <AccountLoading />,
-  },
-  {
-    name: "사용자 자료와 활동 기록",
-    where: "admin/users/[id]/loading.tsx",
-    kind: "라우트",
-    node: <AccountLoading detail />,
-  },
-  {
     name: "가입 승인 확인",
     where: "approval-pending/loading.tsx",
     kind: "라우트",

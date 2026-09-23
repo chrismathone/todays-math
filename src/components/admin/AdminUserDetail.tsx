@@ -18,9 +18,9 @@ import d from "./detail.module.css";
 
 const DocumentPreview = lazy(() => import("./AdminDocumentPreview"));
 
-function useAdminResource<T>(url: string) {
+function useAdminResource<T>(url: string, initialData?: T) {
   const [state, setState] = useState<{ url: string; data?: T; error?: string }>(
-    { url },
+    { url, data: initialData },
   );
   const [retry, setRetry] = useState(0);
   useEffect(() => {
@@ -404,14 +404,17 @@ function Audit({ userId }: { userId: string }) {
 export default function AdminUserDetail({
   userId,
   identity,
+  initialAccount,
 }: {
   userId: string;
   identity: { name: string; email: string };
+  initialAccount?: ManagedAccount;
 }) {
   const [tab, setTab] = useState<"documents" | "audit">("documents");
   const [locked, setLocked] = useState(false);
   const resource = useAdminResource<{ data: ManagedAccount }>(
     `/api/admin/users/${encodeURIComponent(userId)}`,
+    initialAccount ? { data: initialAccount } : undefined,
   );
   const account = resource.data?.data;
   useEffect(() => {

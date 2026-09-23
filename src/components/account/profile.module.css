@@ -53,7 +53,7 @@
   font-weight: 650;
   text-decoration: none;
 }
-.sidebarNav a > span { width: 18px; text-align: center; font-size: 17px; }
+.sidebarNav a > span:first-child { width: 18px; text-align: center; font-size: 17px; }
 .sidebarNav a:hover { color: white; background: #ffffff17; }
 .sidebarNav a[aria-current="page"] { color: white; background: var(--learn-accent); }
 .sidebarFooter { display: grid; gap: 12px; margin-top: auto; padding-top: 20px; border-top: 1px solid #ffffff26; }

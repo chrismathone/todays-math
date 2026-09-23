@@ -30,8 +30,27 @@ beforeEach(() => {
 afterEach(() => vi.unstubAllGlobals());
 
 describe("administrator user detail", () => {
+  it("shows the account immediately while detail requests are pending", () => {
+    fetchMock.mockImplementation(() => new Promise(() => {}));
+    render(
+      <AdminUserDetail
+        userId={pendingAccount.id}
+        identity={adminIdentity}
+        initialAccount={pendingAccount}
+      />,
+    );
+    expect(
+      screen.getByRole("heading", { name: pendingAccount.name, level: 1 }),
+    ).toBeInTheDocument();
+    expect(
+      screen.queryByText("계정 정보를 불러오는 중입니다."),
+    ).not.toBeInTheDocument();
+  });
+
   it("focuses a selected document preview and closes it back to the document", async () => {
     fetchMock.mockImplementation(async (url) => {
+      if (String(url).includes("/api/admin/branches"))
+        return Response.json({ data: [] });
       if (String(url).includes("/documents/"))
         return Response.json({ data: draft });
       if (String(url).includes("/documents?"))
@@ -58,6 +77,8 @@ describe("administrator user detail", () => {
   it("reads private worksheets, renders math and switches to paginated audit records", async () => {
     fetchMock.mockImplementation(async (url) => {
       const path = String(url);
+      if (path.includes("/api/admin/branches"))
+        return Response.json({ data: [] });
       if (path.includes("/documents/")) return Response.json({ data: draft });
       if (path.includes("/documents?"))
         return Response.json({
