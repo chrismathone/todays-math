@@ -85,6 +85,33 @@
 
   --background: var(--bg);
   --foreground: var(--ink);
+
+  /* Learning surfaces share the approved Workroom palette (05 §8.9, D-125).
+     Lab, student lectures and spaced review use the same source of values. */
+  --learn-ink: #172b4d;
+  --learn-muted: #596c86;
+  --learn-accent: #3159df;
+  --learn-accent-hover: #2448bd;
+  --learn-bg: #f4f6fa;
+  --learn-surface: #ffffff;
+  --learn-nav: #14243d;
+  --learn-soft: #edf2ff;
+  --learn-soft-hover: #e1e9ff;
+  --learn-neutral: #edf0f6;
+  --learn-track: #dde3ec;
+  --learn-control: #b8c4d6;
+  --learn-focus: #82a1ff;
+  --learn-done: #1d7550;
+  --learn-done-bg: #e9f5ee;
+  --learn-warning: #8a5a06;
+  --learn-warning-bg: #fff4df;
+  --learn-danger: #b42318;
+  --learn-danger-bg: #fff0ee;
+  --learn-on-accent: #ffffff;
+  --learn-on-nav: #ffffff;
+  --learn-on-nav-muted: #bdcbe3;
+  --learn-radius: 14px;
+  --learn-radius-sm: 10px;
 }
 
 /**

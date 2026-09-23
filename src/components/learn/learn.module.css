@@ -6,24 +6,24 @@
  * 🔴 왼쪽 색 막대 금지(workroom-entry 원장님 지시).
  */
 .page {
-  --s-bg: #f4f6fa;
-  --s-card: #fff;
-  --s-line: #dde3ec;
-  --s-ctl: #b8c4d6;
-  --s-ink: #172b4d;
-  --s-muted: #596c86;
-  --s-accent: #3159df;
-  --s-accent-ink: #fff;
-  --s-today-bg: #14243d;
-  --s-today-ink: #fff;
-  --s-tag-bg: #3159df;
-  --s-tag-ink: #fff;
-  --s-done: #1d7550;
-  --s-mid: #8a5a06;
-  --s-new: #3159df;
-  --s-bad: #b42318;
-  --s-r: 14px;
-  --s-r-sm: 10px;
+  --s-bg: var(--learn-bg);
+  --s-card: var(--learn-surface);
+  --s-line: var(--learn-track);
+  --s-ctl: var(--learn-control);
+  --s-ink: var(--learn-ink);
+  --s-muted: var(--learn-muted);
+  --s-accent: var(--learn-accent);
+  --s-accent-ink: var(--learn-on-accent);
+  --s-today-bg: var(--learn-nav);
+  --s-today-ink: var(--learn-on-nav);
+  --s-tag-bg: var(--learn-accent);
+  --s-tag-ink: var(--learn-on-accent);
+  --s-done: var(--learn-done);
+  --s-mid: var(--learn-warning);
+  --s-new: var(--learn-accent);
+  --s-bad: var(--learn-danger);
+  --s-r: var(--learn-radius);
+  --s-r-sm: var(--learn-radius-sm);
   min-height: 100dvh;
   background: var(--s-bg);
   color: var(--s-ink);

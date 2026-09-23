@@ -67,16 +67,16 @@
   }
 }
 .page {
-  --lab-ink: #172b4d;
-  --lab-muted: #596c86;
-  --lab-accent: #3159df;
-  --lab-bg: #f4f6fa;
-  --lab-card: #fff;
-  --lab-line: #dde3ec;
-  --lab-ctl: #b8c4d6;
-  --lab-done: #1d7550;
-  --lab-bad: #b42318;
-  --lab-radius: 14px;
+  --lab-ink: var(--learn-ink);
+  --lab-muted: var(--learn-muted);
+  --lab-accent: var(--learn-accent);
+  --lab-bg: var(--learn-bg);
+  --lab-card: var(--learn-surface);
+  --lab-line: var(--learn-track);
+  --lab-ctl: var(--learn-control);
+  --lab-done: var(--learn-done);
+  --lab-bad: var(--learn-danger);
+  --lab-radius: var(--learn-radius);
   min-height: 100dvh;
   background: var(--lab-bg);
   color: var(--lab-ink);

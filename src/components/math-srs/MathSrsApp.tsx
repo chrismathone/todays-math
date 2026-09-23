@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { useEffect, useState, type FormEvent } from "react";
 import TodayMathMark from "@/components/brand/TodayMathMark";
+import WorkspaceIcon from "@/components/unified/WorkspaceIcon";
 import { CONCEPTS } from "@/lib/math-srs/concepts";
 import { LearningHome } from "./LearningHome";
 import { QuestionCard, Feedback, Complete } from "./PracticeSession";
@@ -297,9 +298,10 @@ export default function MathSrsApp() {
       </a>
       <header className={s.header}>
         <Link href="/lab" className={s.brand}>
-          <TodayMathMark size={28} />
+          <TodayMathMark size={28} className={s.brandMark} />
+          <TodayMathMark size={28} inverse className={s.brandInverse} />
           <span>
-            오늘의수학 <b>기억을 쌓는 시간</b>
+            오늘의수학 <b>학생 학습 · 오늘의 기억</b>
           </span>
         </Link>
         <nav aria-label="기억 학습 메뉴">
@@ -308,14 +310,14 @@ export default function MathSrsApp() {
             aria-current={view !== "teacher" ? "page" : undefined}
             onClick={() => setView("home")}
           >
-            <span aria-hidden="true">⌂</span> 나의 학습
+            <WorkspaceIcon name="home" size={19} /> 나의 학습
           </button>
           <button
             type="button"
             aria-current={view === "teacher" ? "page" : undefined}
             onClick={() => setView("teacher")}
           >
-            <span aria-hidden="true">▥</span> 교사용 현황
+            <WorkspaceIcon name="class" size={19} /> 교사용 현황
           </button>
         </nav>
         <div className={s.sidebarNote}>

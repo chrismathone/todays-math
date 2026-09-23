@@ -63,8 +63,8 @@ export function LearningHome({
     <>
       <div className={s.greeting}>
         <div>
-          <p className={s.eyebrow}>MAKE IT STAY</p>
-          <h1>오늘도, 한 걸음.</h1>
+          <p className={s.eyebrow}>매일 수학 복습</p>
+          <h1>오늘의 기억</h1>
           <p>{learner.name}님의 수학이 오래 남도록.</p>
         </div>
         <p className={s.date}>
@@ -227,7 +227,7 @@ export function LearningHome({
         >
           <div className={s.panelHeading}>
             <div>
-              <p className={s.eyebrow}>MY MEMORY</p>
+              <p className={s.eyebrow}>개념별 복습 현황</p>
               <h2 id="memory-heading">지금, 나의 개념 기억</h2>
             </div>
             <span className={s.recallSummary}>
@@ -370,7 +370,7 @@ export function LearningHome({
 
         <aside className={s.learningAside}>
           <section className={s.rhythmNote} aria-labelledby="rhythm-heading">
-            <p className={s.eyebrow}>A LITTLE, EVERY DAY</p>
+            <p className={s.eyebrow}>오늘의 학습 흐름</p>
             <h2 id="rhythm-heading">
               잘하는 것보다,
               <br />
@@ -410,7 +410,7 @@ export function LearningHome({
         <section className={s.recentSection} aria-labelledby="recent-heading">
           <div className={s.panelHeading}>
             <div>
-              <p className={s.eyebrow}>ONE STEP AT A TIME</p>
+              <p className={s.eyebrow}>최근 학습</p>
               <h2 id="recent-heading">방금 쌓은 기억들</h2>
             </div>
             <span className={s.small}>최근 5문제</span>
