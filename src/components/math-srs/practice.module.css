@@ -39,6 +39,12 @@
   outline-offset: 4px;
 }
 
+/* Announce new feedback without drawing an interactive focus frame on a heading. */
+.question h2[tabindex="-1"]:focus,
+.complete h1[tabindex="-1"]:focus {
+  outline: none;
+}
+
 .questionTop,
 .questionActions,
 .feedbackFoot {
