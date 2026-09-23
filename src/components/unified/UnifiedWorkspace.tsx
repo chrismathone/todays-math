@@ -7,7 +7,7 @@ import PrivateLibrary from "./PrivateLibrary";
 import cloudStyles from "./PrivateLibrary.module.css";
 import { forgetPrivateExtraction } from "./privateStudioSessionStore";
 import dynamic from "next/dynamic";
-import Link from "next/link";
+import Link, { useLinkStatus } from "next/link";
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import {
   WORKSPACE_MENUS,
@@ -109,6 +109,16 @@ const navItems: {
 ];
 const viewValid = (value: string): value is View =>
   WORKSPACE_MENUS.some((item) => item.id === value);
+
+function AccountLinkDetail() {
+  const { pending } = useLinkStatus();
+  return (
+    <small aria-live="polite">
+      {pending ? "내정보를 여는 중…" : "프로필 · 비밀번호 설정"}
+    </small>
+  );
+}
+
 export default function UnifiedWorkspace({
   initialData,
   storageScope,
@@ -785,7 +795,7 @@ function UnifiedWorkspaceContent({
                 </span>
                 <span>
                   <strong>내정보</strong>
-                  <small>프로필 · 비밀번호 설정</small>
+                  <AccountLinkDetail />
                 </span>
                 <Icon name="chevron" size={16} />
               </Link>

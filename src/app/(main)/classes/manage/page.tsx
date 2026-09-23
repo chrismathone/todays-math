@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import { redirect } from "next/navigation";
 import Link from "next/link";
+import TodayMathMark from "@/components/brand/TodayMathMark";
+import RouteLinkStatus from "@/components/ui/RouteLinkStatus";
 import TeachingView from "@/components/unified/TeachingView";
 import { getAccountAccess } from "@/lib/accountAccess";
 import s from "@/components/admin/admin.module.css";
@@ -16,12 +18,41 @@ export default async function TeacherClassesPage() {
   return (
     <div className={s.shell}>
       <header className={s.header}>
-        <Link href="/" className={s.brand}>
-          오늘의수학 <span className={s.adminLabel}>반 관리</span>
-        </Link>
-        <Link href="/" className={s.workroomLink}>
-          작업실로 이동 ↗
-        </Link>
+        <div className={s.headerBrand}>
+          <Link href="/" className={s.brand}>
+            <TodayMathMark size={28} inverse />
+            <span>오늘의수학</span>
+          </Link>
+          <span className={s.adminLabel}>반 관리</span>
+        </div>
+        <div className={s.headerRight}>
+          <p className={s.navCaption}>수업 메뉴</p>
+          <nav className={s.headerNav} aria-label="반 관리 메뉴">
+            <Link
+              className={s.workroomLink}
+              href="/classes/manage"
+              aria-current="page"
+            >
+              <span aria-hidden="true">⌂</span> 반 관리
+              <RouteLinkStatus />
+            </Link>
+            <Link className={s.workroomLink} href="/">
+              <span aria-hidden="true">↗</span> 작업실로 이동
+              <RouteLinkStatus />
+            </Link>
+          </nav>
+          <div className={s.headerFooter}>
+            <div className={s.identity} aria-label="로그인한 계정">
+              <span className={s.avatar} aria-hidden="true">
+                {(account.name || "선").slice(0, 1)}
+              </span>
+              <span className={s.identityText}>
+                <strong>{account.name || "선생님"}</strong>
+                <span>{account.email}</span>
+              </span>
+            </div>
+          </div>
+        </div>
       </header>
       <main className={s.main}>
         <div className={s.titleRow}>

@@ -1,5 +1,6 @@
 import Link from "next/link";
 import TodayMathMark from "@/components/brand/TodayMathMark";
+import RouteLinkStatus from "@/components/ui/RouteLinkStatus";
 
 import { AccountBadge } from "@/components/chrome/AccountBadge";
 import { formatMastheadDate } from "@/lib/main/pipeline";
@@ -62,6 +63,7 @@ export function AppChrome({
           >
             <TodayMathMark size={32} />
             오늘의수학
+            <RouteLinkStatus />
           </Link>
           <span aria-hidden="true" className="mx-3 text-xl text-divider">
             │
@@ -72,6 +74,7 @@ export function AppChrome({
             className={`${WORDMARK} ${tab === "exam" ? "text-ink" : "text-text-3"}`}
           >
             오늘의시험
+            <RouteLinkStatus />
           </Link>
         </span>
         <span className="shrink-0 whitespace-nowrap text-xs text-text-2 tabular-nums">
@@ -106,6 +109,7 @@ export function AppChrome({
               className={`inline-flex min-h-11 items-center rounded-lg px-3 ${activeNav === key ? "bg-[var(--learn-soft)] text-g-blue" : "text-text-2 hover:bg-side hover:text-ink"}`}
             >
               {label}
+              <RouteLinkStatus />
             </Link>
           ))}
           <AccountBadge />

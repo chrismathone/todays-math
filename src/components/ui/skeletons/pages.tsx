@@ -446,7 +446,7 @@ export function AuthFormSkeleton({ fields = 2 }: { fields?: number } = {}) {
       <h1>{signup ? "선생님의 작업실을 열어요" : "다시 만나 반가워요"}</h1>
       <p className={s.authLead}>
         {signup
-          ? "계정을 만들고, 첫 학습지부터 시작해 보세요."
+          ? "가입을 신청하면 관리자 승인 후 작업실을 사용할 수 있어요."
           : "오늘의 수업 준비, 이어서 시작해 볼까요?"}
       </p>
       {Array.from({ length: fields }, (_, index) => (
