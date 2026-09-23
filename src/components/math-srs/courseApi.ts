@@ -12,9 +12,12 @@ async function request<T>(
   parse: (value: unknown) => Promise<T>,
   body?: unknown,
 ): Promise<Submitted<T>> {
+  const controller = new AbortController();
+  const timeout = setTimeout(() => controller.abort(), 15_000);
   try {
     const response = await fetch(url, {
       cache: "no-store",
+      signal: controller.signal,
       ...(body === undefined
         ? {}
         : {
@@ -23,14 +26,14 @@ async function request<T>(
             body: JSON.stringify(body),
           }),
     });
-    const json = await response.json();
+    const json = await response.json().catch(() => null);
     if (!response.ok)
       return {
         ok: false,
         status: response.status,
         message:
-          json.error?.details?.[0]?.message ??
-          json.error?.message ??
+          json?.error?.details?.[0]?.message ??
+          json?.error?.message ??
           "학습 기록을 불러오지 못했습니다.",
       };
     try {
@@ -43,7 +46,15 @@ async function request<T>(
       };
     }
   } catch {
-    return { ok: false, status: 0, message: LEARN_OFFLINE_MESSAGE };
+    return {
+      ok: false,
+      status: 0,
+      message: controller.signal.aborted
+        ? "응답이 늦어지고 있습니다. 연결을 확인한 뒤 다시 시도해 주세요."
+        : LEARN_OFFLINE_MESSAGE,
+    };
+  } finally {
+    clearTimeout(timeout);
   }
 }
 const state = async (value: unknown) =>

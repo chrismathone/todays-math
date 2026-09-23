@@ -72,6 +72,18 @@ const ConceptView = dynamic(() => import("./ConceptView"), {
     />
   ),
 });
+const CourseDashboard = dynamic(
+  () => import("@/components/math-srs/CourseDashboard"),
+  {
+    ssr: false,
+    loading: () => (
+      <WorkProgress
+        className={s.loading}
+        label="기억 학습 현황을 불러오는 중입니다…"
+      />
+    ),
+  },
+);
 type View = WorkspaceMenu;
 const navItems: {
   id: View;
@@ -92,6 +104,7 @@ const navItems: {
   },
   // D-124 ⑽ — «수업 · 학생 관리» 바로 아래
   { id: "concept", label: "오늘의 개념", short: "개념", icon: "play" },
+  { id: "srs", label: "오늘의 기억 · SRS", short: "기억 학습", icon: "clock" },
 ];
 const viewValid = (value: string): value is View =>
   WORKSPACE_MENUS.some((item) => item.id === value);
@@ -952,6 +965,11 @@ function UnifiedWorkspaceContent({
           {can("concept") && (opened.has("concept") || view === "concept") && (
             <main hidden={view !== "concept"} className={s.viewContent}>
               <ConceptView />
+            </main>
+          )}
+          {can("srs") && (opened.has("srs") || view === "srs") && (
+            <main hidden={view !== "srs"} className={s.viewContent}>
+              <CourseDashboard />
             </main>
           )}
           {view === "export" && (

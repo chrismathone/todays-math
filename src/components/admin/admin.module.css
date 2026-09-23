@@ -81,6 +81,14 @@
   text-decoration: none;
   white-space: nowrap;
 }
+.headerNav {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 4px 18px;
+  grid-column: 1 / -1;
+  grid-row: 2;
+}
 .identity {
   display: flex;
   flex-direction: column;

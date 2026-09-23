@@ -1,0 +1,10 @@
+.page {
+  min-height: 100dvh;
+  background: #f5f7fb;
+  color: #19334e;
+}
+.main {
+  width: min(1600px, 100%);
+  margin: 0 auto;
+  padding: clamp(16px, 3vw, 40px);
+}

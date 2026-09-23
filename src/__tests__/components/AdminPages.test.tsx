@@ -1,6 +1,7 @@
 import { render, screen } from "@testing-library/react";
 import { beforeEach, describe, expect, it, vi } from "vitest";
 import AdminPage from "@/app/admin/page";
+import AdminSrsPage from "@/app/admin/math-srs/page";
 import AdminUserPage from "@/app/admin/users/[id]/page";
 import ApprovalPendingPage from "@/app/approval-pending/page";
 import {
@@ -20,6 +21,14 @@ vi.mock("next/navigation", () => ({
 vi.mock("@/components/admin/AdminAccounts", () => ({
   default: () => <span>admin-screen</span>,
 }));
+vi.mock("@/components/admin/AdminHeader", () => ({
+  default: () => <span>admin-header</span>,
+}));
+vi.mock("@/components/math-srs/CourseDashboard", () => ({
+  default: ({ admin }: { admin?: boolean }) => (
+    <span>{admin ? "all-student-srs" : "owned-student-srs"}</span>
+  ),
+}));
 vi.mock("@/components/admin/AdminUserDetail", () => ({
   default: ({ userId }: { userId: string }) => (
     <span>{`detail:${userId}`}</span>
@@ -32,6 +41,19 @@ vi.mock("@/components/approval-pending/ApprovalPending", () => ({
 beforeEach(() => access.mockReset());
 
 describe("account page server gates", () => {
+  it("protects the SRS administrator page itself, independently of the proxy", async () => {
+    access.mockResolvedValue(null);
+    await expect(AdminSrsPage()).rejects.toThrow(
+      "redirect:/login?callbackUrl=%2Fadmin%2Fmath-srs",
+    );
+    access.mockResolvedValue(pendingAccount);
+    await expect(AdminSrsPage()).rejects.toThrow("redirect:/approval-pending");
+    access.mockResolvedValue(approvedAccount);
+    await expect(AdminSrsPage()).rejects.toThrow("redirect:/");
+    access.mockResolvedValue(adminAccount);
+    render(await AdminSrsPage());
+    expect(screen.getByText("all-student-srs")).toBeInTheDocument();
+  });
   it("redirects anonymous admin visitors to the admin callback login", async () => {
     access.mockResolvedValue(null);
     await expect(AdminPage()).rejects.toThrow(
