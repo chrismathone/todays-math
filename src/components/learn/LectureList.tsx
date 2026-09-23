@@ -73,9 +73,9 @@ export function LectureList({ now }: { now?: Date }) {
       <main className={s.body}>
         <Link href="/learn/math-srs" className={s.item}>
           <span>
-            <b className={s.it}>매일 수학 복습</b>
+            <b className={s.it}>초등 수학 자동 복습</b>
             <span className={s.meta}>
-              중1 일차방정식 · 하루 12문제로 기억 다지기 →
+              초등 3~6학년 · 내 진도에서 시작하는 매일 수학 →
             </span>
           </span>
         </Link>
