@@ -1,14 +1,12 @@
 .question,
 .complete {
-  --practice-ink: #183f34;
-  --practice-muted: #68786e;
   max-width: 880px;
   min-width: 0;
   margin: 0 auto;
   padding: 40px 52px 30px;
-  color: var(--practice-ink);
-  background: #fff;
-  border-radius: 28px;
+  color: var(--learn-ink);
+  background: var(--learn-surface);
+  border-radius: var(--learn-radius);
   animation: arrive 220ms ease-out both;
 }
 
@@ -27,15 +25,15 @@
 
 .question button:disabled,
 .complete button:disabled {
-  background: #edf0ea;
-  color: #6e7b72;
+  background: var(--learn-neutral);
+  color: var(--learn-muted);
   opacity: 1;
   cursor: default;
 }
 
 .question :focus-visible,
 .complete :focus-visible {
-  outline: 3px solid #57755f;
+  outline: 3px solid var(--learn-focus);
   outline-offset: 4px;
 }
 
@@ -69,14 +67,14 @@
   width: 7px;
   height: 7px;
   border-radius: 50%;
-  background: #81a551;
+  background: var(--learn-accent);
 }
 
 .time {
   display: inline-flex;
   align-items: center;
   gap: 7px;
-  color: var(--practice-muted);
+  color: var(--learn-muted);
   font-size: 13px;
   font-variant-numeric: tabular-nums;
 }
@@ -91,7 +89,7 @@
   flex-wrap: wrap;
   gap: 9px;
   margin: 0 0 14px;
-  color: var(--practice-muted);
+  color: var(--learn-muted);
   font-size: 12px;
   font-weight: 550;
   letter-spacing: 0.02em;
@@ -109,7 +107,7 @@
 
 .prompt {
   margin-top: 25px;
-  color: #2d4036;
+  color: var(--learn-ink);
   font-size: 18px;
   line-height: 1.95;
   overflow-wrap: anywhere;
@@ -163,14 +161,14 @@
   align-items: center;
   flex: 1;
   min-width: 0;
-  background: #f3f5ef;
-  border-radius: 14px;
+  background: var(--learn-neutral);
+  border-radius: var(--learn-radius-sm);
 }
 
 .answerField > span {
   flex: none;
   padding-left: 20px;
-  color: #748171;
+  color: var(--learn-muted);
   font-size: 14px;
 }
 
@@ -180,23 +178,23 @@
   min-height: 58px;
   padding: 15px;
   border: 0;
-  border-radius: 14px;
+  border-radius: var(--learn-radius-sm);
   background: transparent;
-  color: var(--practice-ink);
+  color: var(--learn-ink);
   font: inherit;
   font-size: 20px;
   font-variant-numeric: tabular-nums;
 }
 
 .answerField input::placeholder {
-  color: #798479;
+  color: var(--learn-muted);
   font-size: 14px;
 }
 
 .inputHelp,
 .small,
 .nextMission {
-  color: var(--practice-muted);
+  color: var(--learn-muted);
   font-size: 12px;
   line-height: 1.8;
 }
@@ -208,28 +206,28 @@
 .question .primary,
 .complete .primary {
   padding: 15px 24px;
-  border-radius: 14px;
-  background: #254d3c;
-  color: #fff;
+  border-radius: var(--learn-radius-sm);
+  background: var(--learn-accent);
+  color: var(--learn-on-accent);
   white-space: nowrap;
 }
 
 .question .primary:hover,
 .complete .primary:hover {
-  background: #183f30;
+  background: var(--learn-accent-hover);
   transform: translateY(-1px);
 }
 
 .question .primary:disabled,
 .complete .primary:disabled {
-  background: #e5eae1;
-  color: #6e7b72;
+  background: var(--learn-neutral);
+  color: var(--learn-muted);
   transform: none;
 }
 
 .error {
   margin: 10px 0 0;
-  color: #a13d2d;
+  color: var(--learn-danger);
   font-size: 13px;
   line-height: 1.8;
 }
@@ -239,9 +237,9 @@
   gap: 15px;
   padding: 23px 25px;
   margin: 0 0 20px;
-  border-radius: 16px;
-  background: #f6f4e6;
-  color: #5c583a;
+  border-radius: var(--learn-radius);
+  background: var(--learn-warning-bg);
+  color: var(--learn-warning);
   font-size: 15px;
   line-height: 1.9;
 }
@@ -269,26 +267,26 @@
 
 .question .secondary {
   padding: 10px 18px;
-  border-radius: 12px;
-  background: #edf3e8;
-  color: #3b5a36;
+  border-radius: var(--learn-radius-sm);
+  background: var(--learn-soft);
+  color: var(--learn-accent);
 }
 
 .question .secondary:hover:enabled {
-  background: #e1eccf;
+  background: var(--learn-soft-hover);
 }
 
 .question .textButton {
   padding: 10px 14px;
   background: transparent;
-  color: #69786e;
+  color: var(--learn-muted);
   font-weight: 500;
 }
 
 .question .textButton:hover:enabled {
-  color: #183f34;
-  background: #f4f6f0;
-  border-radius: 12px;
+  color: var(--learn-ink);
+  background: var(--learn-neutral);
+  border-radius: var(--learn-radius-sm);
 }
 
 .pause {
@@ -298,7 +296,7 @@
 .encouragement {
   margin: 25px 0 0;
   text-align: center;
-  color: #738071;
+  color: var(--learn-muted);
   font-size: 12px;
   line-height: 1.8;
 }
@@ -320,19 +318,19 @@
   place-items: center;
   width: 54px;
   height: 54px;
-  border-radius: 18px;
+  border-radius: var(--learn-radius);
   font-size: 29px;
   line-height: 1;
 }
 
 .success .feedbackMark {
-  background: #e7f3d5;
-  color: #41692f;
+  background: var(--learn-done-bg);
+  color: var(--learn-done);
 }
 
 .retry .feedbackMark {
-  background: #faeed9;
-  color: #966b32;
+  background: var(--learn-warning-bg);
+  color: var(--learn-warning);
 }
 
 .feedbackBanner .eyebrow {
@@ -352,7 +350,7 @@
 
 .feedbackNote {
   margin: 10px 0 0;
-  color: var(--practice-muted);
+  color: var(--learn-muted);
   font-size: 13px;
   line-height: 1.8;
 }
@@ -374,8 +372,8 @@
   grid-template-columns: 1.2fr 1fr;
   gap: 25px;
   padding: 24px 28px;
-  border-radius: 18px;
-  background: #f1f5e9;
+  border-radius: var(--learn-radius);
+  background: var(--learn-soft);
 }
 
 .answerResult > div {
@@ -387,7 +385,7 @@
 
 .resultLabel {
   font-size: 12px;
-  color: #69765f;
+  color: var(--learn-muted);
 }
 
 .answerValue {
@@ -397,7 +395,7 @@
 }
 
 .myAnswer > span:last-child {
-  color: #53694c;
+  color: var(--learn-muted);
   font-size: 20px;
   overflow-wrap: anywhere;
 }
@@ -424,7 +422,7 @@
   display: flex;
   align-items: flex-start;
   gap: 17px;
-  color: #425649;
+  color: var(--learn-ink);
   font-size: 15px;
   line-height: 1.9;
 }
@@ -437,7 +435,7 @@
 .stepNumber {
   flex: none;
   padding-top: 3px;
-  color: #87947d;
+  color: var(--learn-muted);
   font-size: 11px;
   font-weight: 600;
   font-variant-numeric: tabular-nums;
@@ -460,8 +458,9 @@
   width: 64px;
   height: 64px;
   margin: 0 auto 24px;
-  border-radius: 24px;
-  background: #d6f289;
+  border-radius: var(--learn-radius);
+  background: var(--learn-done-bg);
+  color: var(--learn-done);
   font-size: 32px;
 }
 
@@ -482,7 +481,7 @@
 
 .completeNote {
   margin: 15px 0 29px;
-  color: var(--practice-muted);
+  color: var(--learn-muted);
   font-size: 14px;
   line-height: 1.9;
 }
@@ -492,9 +491,9 @@
   grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 10px;
   padding: 29px 18px;
-  border-radius: 22px;
-  background: #254d3c;
-  color: #fff;
+  border-radius: var(--learn-radius);
+  background: var(--learn-nav);
+  color: var(--learn-on-nav);
 }
 
 .resultStats > div {
@@ -511,13 +510,13 @@
 }
 
 .resultStats small {
-  color: #c4d8c9;
+  color: var(--learn-on-nav-muted);
   font-size: 15px;
   font-weight: 400;
 }
 
 .resultStats > div > span {
-  color: #d1decf;
+  color: var(--learn-on-nav-muted);
   font-size: 12px;
 }
 
@@ -546,18 +545,18 @@
   place-items: center;
   width: 34px;
   height: 34px;
-  border-radius: 10px;
+  border-radius: var(--learn-radius-sm);
   font-size: 15px;
 }
 
 .correctOutcome {
-  background: #e6f2d2;
-  color: #426638;
+  background: var(--learn-done-bg);
+  color: var(--learn-done);
 }
 
 .reviewOutcome {
-  background: #f6ecd9;
-  color: #8b6836;
+  background: var(--learn-warning-bg);
+  color: var(--learn-warning);
 }
 
 .journey .small > span {
@@ -576,7 +575,7 @@
 
 .nextReview p {
   margin: 0;
-  color: var(--practice-muted);
+  color: var(--learn-muted);
   font-size: 13px;
   line-height: 1.8;
   word-break: keep-all;
@@ -603,7 +602,7 @@
   .question,
   .complete {
     padding: 25px 21px 23px;
-    border-radius: 22px;
+    border-radius: var(--learn-radius);
   }
   .problemBody {
     padding: 31px 0 28px;
@@ -652,7 +651,7 @@
   .feedbackMark {
     width: 46px;
     height: 46px;
-    border-radius: 16px;
+    border-radius: var(--learn-radius);
   }
   .answerResult {
     padding: 22px;
@@ -691,7 +690,7 @@
   .resultStats {
     padding: 24px 8px;
     gap: 5px;
-    border-radius: 18px;
+    border-radius: var(--learn-radius);
   }
   .resultStats small {
     font-size: 12px;
