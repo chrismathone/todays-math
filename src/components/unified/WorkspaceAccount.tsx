@@ -39,7 +39,7 @@ export default function WorkspaceAccount({
       {!user.isAdmin && user.canManageClasses && (
         <a href="/classes/manage">반 관리</a>
       )}
-      <a href="/account/password">비밀번호 변경</a>
+      <a href="/account">내정보</a>
       <form action={signOutAction}>
         <SignOutButton />
       </form>

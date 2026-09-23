@@ -280,7 +280,11 @@
   padding: 12px 7px 0;
   margin-top: 6px;
   border-top: 1px solid #2c3c55;
+  border-radius: 8px;
+  color: inherit;
+  text-decoration: none;
 }
+.accountButton:hover { background: #213655; }
 .accountButton > span:first-child {
   display: grid;
   place-items: center;
@@ -303,6 +307,10 @@
   font-size: var(--text-caption, 12px);
   color: #8196b7;
   margin-top: 3px;
+  max-width: 135px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 .accountButton > svg {
   margin-left: auto;
@@ -1423,9 +1431,17 @@
   .workspace[data-sidebar-collapsed="true"] .newButton > span,
   .workspace[data-sidebar-collapsed="true"] .navCaption,
   .workspace[data-sidebar-collapsed="true"] .navLabel,
-  .workspace[data-sidebar-collapsed="true"] .sideDraft,
-  .workspace[data-sidebar-collapsed="true"] .sidebarFooter {
+  .workspace[data-sidebar-collapsed="true"] .sideDraft {
     display: none;
+  }
+  .workspace[data-sidebar-collapsed="true"] .sidebarFooter > button,
+  .workspace[data-sidebar-collapsed="true"] .accountButton > span:nth-child(2),
+  .workspace[data-sidebar-collapsed="true"] .accountButton > svg {
+    display: none;
+  }
+  .workspace[data-sidebar-collapsed="true"] .accountButton {
+    justify-content: center;
+    padding: 10px 0 0;
   }
   .workspace[data-sidebar-collapsed="true"] .newButton {
     margin-top: 16px;

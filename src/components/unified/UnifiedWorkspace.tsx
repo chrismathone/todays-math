@@ -7,6 +7,7 @@ import PrivateLibrary from "./PrivateLibrary";
 import cloudStyles from "./PrivateLibrary.module.css";
 import { forgetPrivateExtraction } from "./privateStudioSessionStore";
 import dynamic from "next/dynamic";
+import Link from "next/link";
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import {
   WORKSPACE_MENUS,
@@ -763,25 +764,31 @@ function UnifiedWorkspaceContent({
             onExpand={toggleSidebar}
           />
         )}
-        {hasMenus && (
+        {(hasMenus || currentUser) && (
           <div className={s.sidebarFooter}>
-            <button onClick={() => setModal("help")}>
-              <Icon name="help" size={19} />
-              작업실 사용 안내
-              <Icon name="chevron" size={15} />
-            </button>
-            {can("teaching") && (
-              <button
+            {hasMenus && (
+              <button onClick={() => setModal("help")}>
+                <Icon name="help" size={19} />
+                작업실 사용 안내
+                <Icon name="chevron" size={15} />
+              </button>
+            )}
+            {currentUser && (
+              <Link
+                href="/account"
                 className={s.accountButton}
-                onClick={() => navigate("teaching")}
+                aria-label="내정보 열기"
+                title={sidebarCollapsed ? "내정보" : undefined}
               >
-                <span>수</span>
+                <span aria-hidden="true">
+                  {currentUser.name?.trim().charAt(0) || "내"}
+                </span>
                 <span>
-                  <strong>나의 수업 공간</strong>
-                  <small>계정 · 반 · 학생 관리</small>
+                  <strong>내정보</strong>
+                  <small>프로필 · 비밀번호 설정</small>
                 </span>
                 <Icon name="chevron" size={16} />
-              </button>
+              </Link>
             )}
           </div>
         )}

@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, type FormEvent } from "react";
+import s from "./profile.module.css";
 
 export default function ChangePassword() {
   const [currentPassword, setCurrentPassword] = useState("");
@@ -43,22 +44,14 @@ export default function ChangePassword() {
 
   if (done)
     return (
-      <div
-        role="status"
-        className="rounded-xl border border-green-200 bg-green-50 p-5"
-      >
+      <div role="status" className={s.passwordSuccess}>
         비밀번호를 변경했습니다. 다른 기기의 로그인도 종료됐습니다.{" "}
-        <a className="font-semibold text-blue-700 underline" href="/login">
-          새 비밀번호로 다시 로그인
-        </a>
+        <a href="/login">새 비밀번호로 다시 로그인</a>
       </div>
     );
   return (
-    <form
-      onSubmit={submit}
-      className="grid max-w-md gap-4 rounded-xl border border-slate-200 bg-white p-5"
-    >
-      <label className="grid gap-1 text-sm">
+    <form onSubmit={submit} className={s.passwordForm}>
+      <label>
         현재 비밀번호
         <input
           type="password"
@@ -66,10 +59,9 @@ export default function ChangePassword() {
           required
           value={currentPassword}
           onChange={(e) => setCurrentPassword(e.target.value)}
-          className="min-h-11 rounded-lg border border-slate-300 px-3"
         />
       </label>
-      <label className="grid gap-1 text-sm">
+      <label>
         새 비밀번호
         <input
           type="password"
@@ -79,10 +71,9 @@ export default function ChangePassword() {
           maxLength={72}
           value={nextPassword}
           onChange={(e) => setNextPassword(e.target.value)}
-          className="min-h-11 rounded-lg border border-slate-300 px-3"
         />
       </label>
-      <label className="grid gap-1 text-sm">
+      <label>
         새 비밀번호 확인
         <input
           type="password"
@@ -90,19 +81,14 @@ export default function ChangePassword() {
           required
           value={confirmPassword}
           onChange={(e) => setConfirmPassword(e.target.value)}
-          className="min-h-11 rounded-lg border border-slate-300 px-3"
         />
       </label>
       {error && (
-        <p role="alert" className="text-sm text-red-700">
+        <p role="alert" className={s.error}>
           {error}
         </p>
       )}
-      <button
-        type="submit"
-        disabled={busy}
-        className="min-h-11 rounded-lg bg-blue-700 px-4 font-semibold text-white disabled:opacity-50"
-      >
+      <button type="submit" disabled={busy} className={s.passwordSubmit}>
         {busy ? "변경 중…" : "비밀번호 변경"}
       </button>
     </form>
