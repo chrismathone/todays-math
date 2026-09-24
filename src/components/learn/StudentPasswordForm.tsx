@@ -176,7 +176,7 @@ function PinField({
         inputMode={allowExtendedPassword ? undefined : "numeric"}
         pattern={allowExtendedPassword ? undefined : "[0-9]*"}
         autoComplete={autoComplete}
-        maxLength={allowExtendedPassword ? 72 : 4}
+        maxLength={allowExtendedPassword ? 72 : undefined}
         value={value}
         onChange={(event) =>
           onChange(
