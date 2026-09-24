@@ -483,25 +483,46 @@ describe("[D-77] 검수 화면에도 계정·로그아웃이 있다", () => {
     );
   }
 
-  it("헤더에 지금 계정과 로그아웃이 보인다", async () => {
+  it("사이드바 내정보 메뉴에서 현재 계정·설정·로그아웃을 확인한다", async () => {
     arm();
     renderConsole();
 
     const header = screen.getByRole("banner");
+    const user = userEvent.setup();
     expect(
-      await within(header).findByRole("button", { name: "로그아웃" }),
-    ).toBeInTheDocument();
+      within(header).queryByRole("button", { name: "로그아웃" }),
+    ).toBeNull();
     expect(
       await within(header).findByTestId("account-email"),
     ).toHaveTextContent(/@/);
+    await user.click(
+      within(header).getByRole("button", { name: "내정보 메뉴" }),
+    );
+    expect(
+      within(header).getByRole("button", { name: "로그아웃" }),
+    ).toBeInTheDocument();
+    expect(
+      within(header).getByRole("link", { name: "내정보 설정" }),
+    ).toHaveAttribute("href", "/account");
+    const navigation = within(header).getByRole("navigation", {
+      name: "검수 메뉴",
+    });
+    expect(
+      within(navigation).getByRole("link", { name: "문제은행 검수" }),
+    ).toHaveAttribute("href", "/review");
+    expect(within(navigation).getAllByRole("link")).toHaveLength(1);
   });
 
-  it("세션 조회가 실패해도 로그아웃은 남는다 — 갇히면 안 된다", async () => {
+  it("세션 조회가 실패해도 내정보 메뉴에서 로그아웃할 수 있다", async () => {
     arm();
     server.use(http.get("/api/auth/session", () => HttpResponse.error()));
     renderConsole();
 
     const header = screen.getByRole("banner");
+    const user = userEvent.setup();
+    await user.click(
+      within(header).getByRole("button", { name: "내정보 메뉴" }),
+    );
     expect(
       await within(header).findByRole("button", { name: "로그아웃" }),
     ).toBeInTheDocument();

@@ -1,7 +1,7 @@
 import { readdirSync, readFileSync } from "node:fs";
 import path from "node:path";
 
-import { render, screen } from "@testing-library/react";
+import { render, screen, within } from "@testing-library/react";
 import { describe, expect, it } from "vitest";
 
 import {
@@ -104,6 +104,20 @@ describe("페이지 로딩 스켈레톤", () => {
     const { container } = render(<WorkroomHomeSkeleton />);
     expect(container.querySelectorAll("button")).toHaveLength(0);
     expect(container.querySelector("[class*='inset']")).toBeNull();
+  });
+
+  it("검수 로딩 화면도 검수 전용 사이드바를 유지한다", () => {
+    render(<ReviewConsoleSkeleton />);
+    const sidebar = screen.getByRole("banner");
+    expect(
+      within(sidebar).getByRole("link", { name: "문제은행 검수" }),
+    ).toHaveAttribute("href", "/review");
+    expect(
+      within(sidebar).queryByRole("link", { name: "시험지 만들기" }),
+    ).toBeNull();
+    expect(
+      screen.getByRole("heading", { name: "문제은행 검수" }),
+    ).toBeInTheDocument();
   });
 
   it("출제 설정 스켈레톤은 난이도 6칸을 미리 잡는다", () => {
