@@ -16,6 +16,7 @@ import {
 } from "@testing-library/react";
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 import UnifiedWorkspace from "@/components/unified/UnifiedWorkspace";
+import { signOutAction } from "@/app/actions/auth";
 import {
   WORKSPACE_MENUS,
   type WorkspaceMenu,
@@ -496,7 +497,7 @@ describe("per-account workspace menu access", () => {
     expect(mocks.teachingMount).not.toHaveBeenCalled();
   });
 
-  it("shows only the access notice and account actions when every menu is disabled", () => {
+  it("keeps account settings and sign-out in the sidebar when every menu is disabled", async () => {
     render(
       <UnifiedWorkspace
         initialData={initialData}
@@ -508,7 +509,17 @@ describe("per-account workspace menu access", () => {
       screen.getByRole("heading", { name: "사용할 수 있는 메뉴가 없습니다" }),
     ).toBeVisible();
     expect(nav().queryAllByRole("button")).toHaveLength(0);
+    expect(screen.queryByRole("button", { name: "로그아웃" })).toBeNull();
+    fireEvent.click(screen.getByLabelText("내정보 메뉴"));
+    expect(screen.getByRole("link", { name: "내정보 설정" })).toHaveAttribute(
+      "href",
+      "/account",
+    );
     expect(screen.getByRole("button", { name: "로그아웃" })).toBeVisible();
+    fireEvent.submit(
+      screen.getByRole("button", { name: "로그아웃" }).closest("form")!,
+    );
+    await waitFor(() => expect(signOutAction).toHaveBeenCalledOnce());
     expect(screen.getByText(user.email)).toBeVisible();
     expect(
       screen.queryByRole("button", { name: "빠른 검색 열기" }),
@@ -523,6 +534,24 @@ describe("per-account workspace menu access", () => {
     expect(screen.queryByRole("dialog")).not.toBeInTheDocument();
     expect(mocks.bankMount).not.toHaveBeenCalled();
     expect(mocks.overviewMount).not.toHaveBeenCalled();
+  });
+
+  it("shows worksheet access in the sidebar without a duplicate header button", () => {
+    render(
+      <UnifiedWorkspace
+        initialData={initialData}
+        allowedMenus={["export"]}
+        currentUser={user}
+      />,
+    );
+    expect(
+      nav().getByRole("button", { name: "시험지 · 내보내기" }),
+    ).toBeVisible();
+    expect(
+      within(screen.getByRole("banner")).queryByRole("button", {
+        name: /시험지 편집 열기|담은 문제/,
+      }),
+    ).toBeNull();
   });
 
   it("shows the higher management link only for the superadmin", () => {
@@ -785,9 +814,8 @@ describe("per-account workspace menu access", () => {
         expect(mocks.replace).toHaveBeenCalledWith(destination),
       );
       expect(nav().queryAllByRole("button")).toHaveLength(0);
-      expect(
-        screen.getByRole("button", { name: "로그아웃" }),
-      ).toBeInTheDocument();
+      fireEvent.click(screen.getByLabelText("내정보 메뉴"));
+      expect(screen.getByRole("button", { name: "로그아웃" })).toBeVisible();
     },
   );
 });

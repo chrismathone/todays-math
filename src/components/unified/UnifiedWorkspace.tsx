@@ -7,8 +7,11 @@ import PrivateLibrary from "./PrivateLibrary";
 import cloudStyles from "./PrivateLibrary.module.css";
 import { forgetPrivateExtraction } from "./privateStudioSessionStore";
 import dynamic from "next/dynamic";
-import Link, { useLinkStatus } from "next/link";
+import Link from "next/link";
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
+import { useFormStatus } from "react-dom";
+import { signOutAction } from "@/app/actions/auth";
+import RouteLinkStatus from "@/components/ui/RouteLinkStatus";
 import {
   WORKSPACE_MENUS,
   type WorkspaceMenu,
@@ -110,12 +113,12 @@ const navItems: {
 const viewValid = (value: string): value is View =>
   WORKSPACE_MENUS.some((item) => item.id === value);
 
-function AccountLinkDetail() {
-  const { pending } = useLinkStatus();
+function SidebarSignOutButton() {
+  const { pending } = useFormStatus();
   return (
-    <small aria-live="polite">
-      {pending ? "내정보를 여는 중…" : "프로필 · 비밀번호 설정"}
-    </small>
+    <button type="submit" disabled={pending} aria-busy={pending}>
+      {pending ? "로그아웃 중…" : "로그아웃"}
+    </button>
   );
 }
 
@@ -169,6 +172,7 @@ function UnifiedWorkspaceContent({
   const canCreate = can("bank") || can("studio") || can("export");
   const [requestedView, setView] = useState<View | null>(defaultView);
   const [navigationReady, setNavigationReady] = useState(false);
+  const [profileOpen, setProfileOpen] = useState(false);
   const view =
     requestedView && can(requestedView) ? requestedView : defaultView;
   const worksheetView =
@@ -784,21 +788,40 @@ function UnifiedWorkspaceContent({
               </button>
             )}
             {currentUser && (
-              <Link
-                href="/account"
-                className={s.accountButton}
-                aria-label="내정보 열기"
-                title={sidebarCollapsed ? "내정보" : undefined}
-              >
-                <span aria-hidden="true">
-                  {currentUser.name?.trim().charAt(0) || "내"}
-                </span>
-                <span>
-                  <strong>내정보</strong>
-                  <AccountLinkDetail />
-                </span>
-                <Icon name="chevron" size={16} />
-              </Link>
+              <div className={s.profileMenu}>
+                <button
+                  type="button"
+                  className={s.accountButton}
+                  aria-label="내정보 메뉴"
+                  aria-expanded={profileOpen}
+                  title={sidebarCollapsed ? "내정보 메뉴" : undefined}
+                  onClick={() => setProfileOpen((open) => !open)}
+                  onKeyDown={(event) => {
+                    if (event.key === "Escape") setProfileOpen(false);
+                  }}
+                >
+                  <span aria-hidden="true">
+                    {currentUser.name?.trim().charAt(0) || "내"}
+                  </span>
+                  <span>
+                    <strong>내정보</strong>
+                    <small>프로필 · 비밀번호 설정</small>
+                  </span>
+                  <Icon name="chevron" size={16} />
+                </button>
+                {profileOpen && (
+                  <div className={s.profilePanel}>
+                    <p className={s.profileHeading}>내 계정</p>
+                    <Link href="/account">
+                      내정보 설정
+                      <RouteLinkStatus />
+                    </Link>
+                    <form action={signOutAction}>
+                      <SidebarSignOutButton />
+                    </form>
+                  </div>
+                )}
+              </div>
             )}
           </div>
         )}
@@ -821,27 +844,11 @@ function UnifiedWorkspaceContent({
               <kbd>Ctrl K</kbd>
             </button>
           )}
-          <div className={s.headerActions}>
-            {can("export") && (
-              <button
-                className={s.headerPaper}
-                onClick={() => navigate("export")}
-                aria-label={
-                  hydrated ? `담은 문제 ${selected.length}` : "시험지 편집 열기"
-                }
-              >
-                <Icon name="paper" size={18} />
-                <span>시험지</span>
-                {hydrated && <b>{selected.length}</b>}
-              </button>
-            )}
-          </div>
           {currentUser && (
             <div className={s.accountSlot}>
               <WorkspaceAccount user={currentUser} />
             </div>
           )}
-          <span className={s.topbarSpacer} aria-hidden="true" />
         </header>
         <div className={s.notifications}>
           {hasMenus && notice && (worksheetView || modal) && (

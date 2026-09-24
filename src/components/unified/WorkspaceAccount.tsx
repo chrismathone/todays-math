@@ -1,8 +1,6 @@
 "use client";
 
 import Link from "next/link";
-import { useFormStatus } from "react-dom";
-import { signOutAction } from "@/app/actions/auth";
 import RouteLinkStatus from "@/components/ui/RouteLinkStatus";
 import s from "./WorkspaceAccount.module.css";
 
@@ -13,15 +11,6 @@ export type WorkspaceIdentity = {
   isSuperAdmin?: boolean;
   canManageClasses?: boolean;
 };
-
-function SignOutButton() {
-  const { pending } = useFormStatus();
-  return (
-    <button type="submit" disabled={pending} aria-busy={pending}>
-      {pending ? "로그아웃 중…" : "로그아웃"}
-    </button>
-  );
-}
 
 export default function WorkspaceAccount({
   user,
@@ -52,13 +41,6 @@ export default function WorkspaceAccount({
           <RouteLinkStatus />
         </Link>
       )}
-      <Link href="/account">
-        내정보
-        <RouteLinkStatus />
-      </Link>
-      <form action={signOutAction}>
-        <SignOutButton />
-      </form>
     </div>
   );
 }

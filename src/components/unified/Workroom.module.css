@@ -254,7 +254,7 @@
   }
 }
 @media (max-height: 850px) and (min-width: 761px) {
-  .sidebar:has([data-dev-ai-panel]) .sidebarFooter {
+  .sidebar:has([data-dev-ai-panel]) .sidebarFooter > button:first-child {
     display: none;
   }
 }
@@ -279,12 +279,65 @@
   width: 100%;
   padding: 12px 7px 0;
   margin-top: 6px;
+  border: 0;
   border-top: 1px solid #2c3c55;
   border-radius: 8px;
+  background: transparent;
   color: inherit;
   text-decoration: none;
+  cursor: pointer;
 }
 .accountButton:hover { background: #213655; }
+.profileMenu {
+  position: relative;
+}
+.profileMenu .accountButton[aria-expanded="true"] {
+  background: #213655;
+}
+.profilePanel {
+  position: absolute;
+  z-index: 70;
+  right: 0;
+  bottom: calc(100% + 8px);
+  left: 0;
+  display: grid;
+  gap: 4px;
+  padding: 10px;
+  border: 1px solid #d5dfed;
+  border-radius: 10px;
+  background: #fff;
+  box-shadow: 0 12px 30px #07162a33;
+  color: #172b4d;
+}
+.profileHeading {
+  margin: 0 0 4px;
+  padding: 5px 8px 10px;
+  border-bottom: 1px solid #dce3ed;
+  color: #596c86;
+  font-size: 12px;
+  font-weight: 700;
+}
+.profilePanel a,
+.profilePanel button {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  width: 100%;
+  min-height: 44px;
+  padding: 0 10px;
+  border: 0;
+  border-radius: 8px;
+  background: transparent;
+  color: #172b4d;
+  font-weight: 600;
+  text-decoration: none;
+  cursor: pointer;
+}
+.profilePanel a:hover,
+.profilePanel button:hover {
+  background: #edf2ff;
+  color: #3159df;
+}
 .accountButton > span:first-child {
   display: grid;
   place-items: center;
@@ -345,19 +398,11 @@
 }
 .workspace[data-authenticated="true"] .topbar {
   display: grid;
-  grid-template-columns: auto minmax(44px, 1fr) auto auto;
+  grid-template-columns: auto minmax(44px, 1fr) auto;
   gap: 16px;
 }
-.topbarSpacer {
-  display: none;
-}
-@media (min-width: 1500px) {
-  .workspace[data-authenticated="true"]:not([data-menu-count="0"]) .topbar {
-    grid-template-columns: minmax(0, 1fr) auto auto auto minmax(0, 1fr);
-  }
-  .workspace[data-authenticated="true"]:not([data-menu-count="0"]) .topbarSpacer {
-    display: block;
-  }
+.workspace[data-authenticated="true"] .accountSlot {
+  justify-self: end;
 }
 @media (max-width: 1320px) {
   .workspace[data-authenticated="true"] .searchTrigger {
@@ -372,7 +417,7 @@
 }
 @media (max-width: 760px) {
   .workspace[data-authenticated="true"] .topbar {
-    grid-template-columns: minmax(0, 1fr) 44px auto;
+    grid-template-columns: minmax(0, 1fr) 44px;
     gap: 0 12px;
     height: auto;
     padding-block: 4px;
@@ -403,7 +448,7 @@
   font-size: var(--text-body, 14px);
   color: var(--muted, #596c86);
   background: #f8fafd;
-  margin-left: auto;
+  justify-self: start;
 }
 .searchTrigger:hover {
   border-color: #a8bce9;
@@ -417,32 +462,6 @@
   border-radius: 3px;
   font-family: inherit;
   color: var(--muted, #596c86);
-}
-.headerActions {
-  display: flex;
-  align-items: center;
-  gap: 17px;
-}
-.headerPaper {
-  display: flex;
-  align-items: center;
-  gap: 7px;
-  min-height: var(--control-height, 44px);
-  padding: 0 11px;
-  border: 1px solid #d9e1ef;
-  border-radius: var(--control-radius, 8px);
-  background: #fff;
-  font-size: var(--text-body, 14px);
-  font-weight: 600;
-  color: #4e668d;
-}
-.headerPaper b {
-  font-size: var(--text-caption, 12px);
-  font-weight: 750;
-  padding: 1px 6px;
-  border-radius: 4px;
-  color: #3159df;
-  background: #edf2ff;
 }
 .content {
   outline: none;
@@ -1078,9 +1097,6 @@
     justify-content: center;
     padding: 0;
   }
-  .headerActions {
-    gap: 10px;
-  }
   .breadcrumb {
     font-size: var(--text-caption, 12px);
   }
@@ -1230,18 +1246,6 @@
   .searchTrigger kbd {
     display: none;
   }
-  .headerPaper {
-    padding: 0 9px;
-    min-height: var(--control-height, 44px);
-    gap: 5px;
-    font-size: var(--text-body, 14px);
-  }
-  .headerPaper svg {
-    width: 16px;
-  }
-  .headerActions {
-    gap: 0;
-  }
   .notice,
   .saveError {
     margin: 0;
@@ -1386,8 +1390,7 @@
 
 @media (max-width: 760px) {
   .newButton,
-  .searchTrigger,
-  .headerPaper {
+  .searchTrigger {
     min-height: var(--control-height, 44px);
     height: var(--control-height, 44px);
   }
@@ -1454,6 +1457,13 @@
   .workspace[data-sidebar-collapsed="true"] .accountButton {
     justify-content: center;
     padding: 10px 0 0;
+  }
+  .workspace[data-sidebar-collapsed="true"] .profilePanel {
+    position: fixed;
+    right: auto;
+    bottom: 18px;
+    left: 80px;
+    width: 220px;
   }
   .workspace[data-sidebar-collapsed="true"] .newButton {
     margin-top: 16px;
@@ -1594,8 +1604,7 @@
 .libraryCard > button {
   height: auto;
 }
-.searchTrigger,
-.headerPaper {
+.searchTrigger {
   min-height: var(--control-height, 44px);
 }
 .sideHeader .sidebarToggle {
@@ -1659,8 +1668,7 @@
   margin: 0;
   color: var(--muted);
 }
-.workspace[data-menu-count="0"] .navigation,
-.workspace[data-menu-count="0"] .headerActions {
+.workspace[data-menu-count="0"] .navigation {
   display: none;
 }
 .workspace[data-menu-count="0"] .topbar {
@@ -1671,7 +1679,7 @@
 }
 @media (min-width: 761px) and (max-width: 1320px) {
   .workspace[data-authenticated="true"]:not([data-menu-count="0"]) .topbar {
-    grid-template-columns: minmax(0, 1fr) 44px auto minmax(130px, 220px);
+    grid-template-columns: auto minmax(44px, 1fr) minmax(130px, 220px);
     gap: 10px;
   }
   .breadcrumb {
@@ -1694,5 +1702,53 @@
   .noMenus {
     margin: 20px 0;
     padding: 20px;
+  }
+}
+@media (max-width: 760px) {
+  .sidebar {
+    position: relative;
+  }
+  .sidebarFooter {
+    position: absolute;
+    z-index: 55;
+    top: 10px;
+    right: 12px;
+    display: block;
+    margin: 0;
+    padding: 0;
+  }
+  .sidebarFooter > button:first-child {
+    display: none;
+  }
+  .accountButton {
+    justify-content: center;
+    width: 44px;
+    height: 44px;
+    margin: 0;
+    padding: 0;
+    border: 0;
+  }
+  .accountButton > span:nth-child(2),
+  .accountButton > svg {
+    display: none;
+  }
+  .profilePanel {
+    right: 0;
+    bottom: auto;
+    left: auto;
+    top: calc(100% + 8px);
+    width: 230px;
+  }
+  .newButton {
+    margin-right: 50px;
+  }
+}
+@media (max-width: 420px) {
+  .newButton {
+    justify-content: center;
+    width: 44px;
+  }
+  .newButton > span {
+    display: none;
   }
 }

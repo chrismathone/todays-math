@@ -1,26 +1,27 @@
-import { fireEvent, render, screen, waitFor } from "@testing-library/react";
-import { beforeEach, describe, expect, it, vi } from "vitest";
-import { signOutAction } from "@/app/actions/auth";
+import { render, screen } from "@testing-library/react";
+import { describe, expect, it } from "vitest";
 import WorkspaceAccount from "@/components/unified/WorkspaceAccount";
 
-beforeEach(() => {
-  vi.clearAllMocks();
-});
-
 describe("workspace account access", () => {
-  it("shows the actual account identity and a working sign-out action", async () => {
+  it("keeps the account identity and management link at the right of the header", () => {
     render(
       <WorkspaceAccount
-        user={{ name: "김선생", email: "teacher@example.com" }}
+        user={{
+          name: "김선생",
+          email: "teacher@example.com",
+          isAdmin: true,
+        }}
       />,
     );
     expect(screen.getByText("김선생")).toBeInTheDocument();
     expect(
       screen.getByText("teacher@example.com").closest("button, a"),
     ).toBeNull();
-    fireEvent.submit(
-      screen.getByRole("button", { name: "로그아웃" }).closest("form")!,
+    expect(screen.getByRole("link", { name: "지점관리" })).toHaveAttribute(
+      "href",
+      "/branch",
     );
-    await waitFor(() => expect(signOutAction).toHaveBeenCalledOnce());
+    expect(screen.queryByRole("link", { name: "내정보" })).toBeNull();
+    expect(screen.queryByRole("button", { name: "로그아웃" })).toBeNull();
   });
 });
