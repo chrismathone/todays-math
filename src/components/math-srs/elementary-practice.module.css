@@ -783,6 +783,139 @@
   }
 }
 
+@media (max-width: 430px) {
+  .studentPractice {
+    height: auto;
+    min-height: 0;
+    overflow: visible;
+  }
+  .studentPractice .header {
+    display: grid;
+    grid-template-columns: auto minmax(0, 1fr);
+    gap: 0 8px;
+    margin-bottom: 10px;
+  }
+  .studentPractice .back {
+    min-height: 48px;
+  }
+  .studentPractice .breadcrumb {
+    min-width: 0;
+    text-align: right;
+    font-size: 11px;
+    line-height: 1.4;
+  }
+  .studentPractice .progressRow {
+    align-items: baseline;
+    margin-bottom: 4px;
+    font-size: 12px;
+  }
+  .studentPractice .progress {
+    height: 6px;
+    margin-bottom: 12px;
+  }
+  .studentPractice .question {
+    display: flex;
+    flex-direction: column;
+    flex: 1 0 auto;
+    gap: 14px;
+    min-height: 0;
+    padding: 16px;
+    overflow: visible;
+    scroll-margin-top: 10px;
+  }
+  .studentPractice .mobileSwitch {
+    position: sticky;
+    top: 0;
+    z-index: 2;
+    flex: 0 0 auto;
+  }
+  .studentPractice .mobileSwitch button {
+    min-height: 48px;
+  }
+  .studentPractice .problemPane,
+  .studentPractice .responsePane,
+  .studentPractice .feedback,
+  .studentPractice .selfCheck,
+  .studentPractice .automatic {
+    min-height: 0;
+  }
+  .studentPractice .problemScroll,
+  .studentPractice .responseScroll,
+  .studentPractice .completeBody {
+    flex: 0 1 auto;
+    min-height: 0;
+    overflow: visible;
+    overscroll-behavior: auto;
+    padding-right: 0;
+  }
+  .studentPractice .problemScroll,
+  .studentPractice .responseScroll {
+    overflow-x: auto;
+  }
+  .studentPractice .problem {
+    font-size: 17px;
+    line-height: 1.8;
+  }
+  .studentPractice .question h2 {
+    font-size: 20px;
+  }
+  .studentPractice .mobileProblemAction,
+  .studentPractice .paneAction {
+    padding-top: 18px;
+  }
+  .studentPractice .primary {
+    min-height: 56px;
+  }
+  .studentPractice .answerInput,
+  .studentPractice .noteInput {
+    font-size: 16px;
+  }
+  .studentPractice .answerInput {
+    min-height: 56px;
+  }
+  .studentPractice .questionActions {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  }
+  .studentPractice .questionActions > button {
+    min-width: 0;
+    min-height: 52px;
+    padding-inline: 8px;
+  }
+  .studentPractice .selfCheckActions > button {
+    min-width: 0;
+    min-height: 56px;
+    padding-inline: 8px;
+  }
+  .studentPractice.complete {
+    padding: 22px 18px;
+    overflow: visible;
+  }
+  .studentPractice .completeBody {
+    flex: 0 1 auto;
+  }
+  .studentPractice .results {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 12px;
+    margin: 22px 0;
+  }
+  .studentPractice .results strong {
+    font-size: 27px;
+  }
+  .studentPractice .results span {
+    font-size: 11px;
+  }
+  .studentPractice .completeActions {
+    position: sticky;
+    z-index: 2;
+    bottom: var(--srs-mobile-bottom);
+    margin-top: 12px;
+    padding-top: 8px;
+    background: var(--learn-surface);
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   .practice .answerInput,
   .practice .noteInput,

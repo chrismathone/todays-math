@@ -17,6 +17,7 @@ export interface CoursePlanFormProps {
   busy?: boolean;
   onSave: (input: CoursePlanInput) => void;
   submitLabel?: string;
+  studentView?: boolean;
 }
 
 export default function CoursePlanForm(props: CoursePlanFormProps) {
@@ -34,6 +35,7 @@ function PlanFields({
   busy = false,
   onSave,
   submitLabel = "학습 설정 저장",
+  studentView = false,
 }: CoursePlanFormProps) {
   const id = useId();
   const initial = plan ? getCourseSection(plan.startSectionId) : undefined;
@@ -67,7 +69,11 @@ function PlanFields({
   }
 
   return (
-    <form className={s.form} onSubmit={submit} aria-describedby={`${id}-scope`}>
+    <form
+      className={`${s.form} ${studentView ? s.studentForm : ""}`}
+      onSubmit={submit}
+      aria-describedby={`${id}-scope`}
+    >
       <p id={`${id}-scope`} className={s.note}>
         초등 3~6학년 교육과정에서 시작할 진도를 골라 주세요. 이후에는 복습
         시기와 다음 학습을 자동으로 안내해요.

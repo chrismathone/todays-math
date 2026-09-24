@@ -44,7 +44,7 @@ export default function StudentCoursePractice(props: Props) {
   if (!problem) return <CourseComplete {...props} />;
   const index = session.problems.findIndex((item) => item.id === problem.id);
   return (
-    <div className={s.practice}>
+    <div className={`${s.practice} ${s.studentPractice}`}>
       <header className={s.header}>
         <button
           className={s.back}
@@ -150,6 +150,7 @@ function CourseQuestion({
   const [answer, setAnswer] = useState("");
   const [validation, setValidation] = useState("");
   const [panel, setPanel] = useState<"problem" | "answer">("problem");
+  const questionSection = useRef<HTMLElement>(null);
   const questionHeading = useRef<HTMLHeadingElement>(null);
   const nextButton = useRef<HTMLButtonElement>(null);
   const input = useRef<HTMLInputElement>(null);
@@ -161,6 +162,14 @@ function CourseQuestion({
   const selfCheck = problem.input.mode === "self-check";
   const ready = figure.status === "ready";
   const locked = busy || !ready;
+
+  function showPanel(next: "problem" | "answer") {
+    setPanel(next);
+    if (window.matchMedia?.("(max-width: 430px)").matches)
+      requestAnimationFrame(() =>
+        questionSection.current?.scrollIntoView({ block: "start" }),
+      );
+  }
 
   useEffect(() => {
     if (
@@ -212,6 +221,7 @@ function CourseQuestion({
 
   return (
     <section
+      ref={questionSection}
       className={s.question}
       aria-labelledby="course-question-title"
       aria-busy={busy}
@@ -220,14 +230,14 @@ function CourseQuestion({
         <button
           type="button"
           aria-pressed={panel === "problem"}
-          onClick={() => setPanel("problem")}
+          onClick={() => showPanel("problem")}
         >
           문제
         </button>
         <button
           type="button"
           aria-pressed={panel === "answer"}
-          onClick={() => setPanel("answer")}
+          onClick={() => showPanel("answer")}
         >
           {feedback ? "결과 · 풀이" : "답안"}
         </button>
@@ -280,7 +290,7 @@ function CourseQuestion({
           <button
             type="button"
             className={s.primary}
-            onClick={() => setPanel("answer")}
+            onClick={() => showPanel("answer")}
           >
             {feedback ? "결과와 풀이 보기" : "답 입력하기"}
             <span aria-hidden="true">→</span>
@@ -557,7 +567,7 @@ function CourseComplete({ session, summary, busy, onContinue, onExit }: Props) {
       });
   }, [canContinue, busy]);
   return (
-    <section className={`${s.practice} ${s.complete}`}>
+    <section className={`${s.practice} ${s.studentPractice} ${s.complete}`}>
       <div
         className={s.completeBody}
         tabIndex={0}
