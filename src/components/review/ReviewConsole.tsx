@@ -15,8 +15,6 @@
  *    여기 안 붙였다 — **눌러도 아무 일도 안 하는 단추**는 검수자를 속인다.
  */
 import { useCallback, useEffect, useRef, useState } from "react";
-
-import { AccountBadge } from "@/components/chrome/AccountBadge";
 import { MathText } from "@/components/math/MathText";
 import { PaperProblemView } from "@/components/print/PaperProblemView";
 import {
@@ -32,6 +30,9 @@ import type {
   ReviewQueueKey,
   ReviewVerdict,
 } from "@/contracts/review.contract";
+import ReviewShell from "./ReviewShell";
+import ReviewAccountMenu from "./ReviewAccountMenu";
+import shell from "./ReviewShell.module.css";
 
 /**
  * 검수 콘솔이 받는 한 행.
@@ -236,23 +237,12 @@ export function ReviewConsole({
   }
 
   return (
-    <div className="app-chrome min-h-screen bg-bg text-ink">
-      <header className="border-b border-divider bg-surface px-6 py-3">
-        <div className="flex flex-wrap items-baseline gap-x-4 gap-y-1">
-          <h1 className="text-base font-semibold">문제은행 검수</h1>
-          <p className="text-sm text-text-2">지금까지 {n(total)}문항을 봤다.</p>
-          {/* 계정·로그아웃 (D-77). 이 화면은 `AppChrome` 을 안 쓴다 — 검수 계정은
-              메인·반·문제은행에 못 들어가므로 그 nav 를 그리면 **눌러도 「권한 없음」인
-              링크**가 된다(D-30). 그래서 크롬 전체가 아니라 **계정 구역만** 가져온다.
-              ⚠️ 베끼지 않고 같은 컴포넌트를 쓴다 — 두 벌이 되면 한쪽만 고쳐진다. */}
-          <div className="ml-auto flex items-center gap-3">
-            <AccountBadge />
-          </div>
-        </div>
-      </header>
-
-      <div className="grid gap-6 p-6 lg:grid-cols-[1fr_320px]">
-        <main className="mx-auto w-full max-w-2xl">
+    <ReviewShell
+      subtitle={`지금까지 ${n(total)}문항을 봤습니다.`}
+      account={<ReviewAccountMenu />}
+    >
+      <div className={shell.board}>
+        <section className={shell.problemColumn} aria-label="검수할 문항">
           <div className="flex flex-wrap items-center gap-x-3 gap-y-1">
             <span className="rounded-lg bg-side px-2 py-1 text-sm font-medium">
               {queue.label}
@@ -391,9 +381,9 @@ export function ReviewConsole({
                   : "이 대기열의 검수를 마쳤습니다. 다른 대기열을 선택해 주세요."}
             </p>
           )}
-        </main>
+        </section>
 
-        <aside className="lg:sticky lg:top-6 lg:self-start">
+        <aside className={shell.actions}>
           <div className="flex flex-col gap-2">
             <button
               type="button"
@@ -557,6 +547,6 @@ export function ReviewConsole({
           </div>
         </aside>
       </div>
-    </div>
+    </ReviewShell>
   );
 }

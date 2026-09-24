@@ -1,4 +1,6 @@
 import Link from "next/link";
+import ReviewShell from "@/components/review/ReviewShell";
+import reviewShell from "@/components/review/ReviewShell.module.css";
 
 import { Skeleton, SkeletonCircle, SkeletonText } from "../Skeleton";
 import s from "../skeleton.module.css";
@@ -501,21 +503,25 @@ export function OnboardingSkeleton() {
 
 export function ReviewConsoleSkeleton() {
   return (
-    <div
-      aria-busy="true"
-      aria-label="검수 대기열을 불러오는 중"
-      className="min-h-screen bg-bg text-ink"
-      role="status"
+    <ReviewShell
+      subtitle={<Skeleton className="h-3 w-36" />}
+      account={
+        <span className={reviewShell.accountButton}>
+          <span aria-hidden="true">내</span>
+          <span className={reviewShell.accountIdentity}>
+            <strong>내정보</strong>
+            <Skeleton className="mt-1 h-3 w-28" />
+          </span>
+        </span>
+      }
     >
-      <header className="border-b border-divider px-6 py-3">
-        <div className="flex items-center gap-4">
-          <Skeleton className="h-5 w-28" />
-          <Skeleton className="h-3 w-36" />
-          <Skeleton className="ml-auto h-4 w-20" />
-        </div>
-      </header>
-      <div className="grid gap-6 p-6 lg:grid-cols-[1fr_320px]">
-        <main className="mx-auto w-full max-w-2xl">
+      <div
+        aria-busy="true"
+        aria-label="검수 대기열을 불러오는 중"
+        className={reviewShell.board}
+        role="status"
+      >
+        <div className={reviewShell.problemColumn}>
           <div className="flex gap-3">
             <Skeleton className="h-7 w-20" />
             <Skeleton className="h-4 w-44" />
@@ -531,8 +537,8 @@ export function ReviewConsoleSkeleton() {
               <SkeletonText className="mt-4" lines={3} />
             </div>
           </article>
-        </main>
-        <aside aria-hidden="true">
+        </div>
+        <aside aria-hidden="true" className={reviewShell.actions}>
           <div className="grid gap-2">
             <Skeleton className="h-11 w-full" />
             <Skeleton className="h-11 w-full" />
@@ -544,7 +550,7 @@ export function ReviewConsoleSkeleton() {
           </div>
         </aside>
       </div>
-    </div>
+    </ReviewShell>
   );
 }
 
