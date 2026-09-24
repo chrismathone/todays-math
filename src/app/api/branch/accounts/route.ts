@@ -1,10 +1,10 @@
-import { randomBytes } from "node:crypto";
 import { hash } from "bcryptjs";
 import { z } from "zod";
 import { db } from "@/lib/db";
 import { authorizeAccount } from "@/lib/accountAccess";
 import { isPrismaErrorCode } from "@/lib/prismaErrors";
 import { recordAudit } from "@/lib/audit";
+import { BRANCH_INITIAL_PASSWORD } from "@/lib/branchInitialPassword";
 import { withErrorLog } from "@/lib/errorLog/withErrorLog";
 
 const createSchema = z.strictObject({
@@ -84,7 +84,7 @@ async function handlePost(request: Request) {
       },
       { status: 403 },
     );
-  const initialPassword = randomBytes(12).toString("base64url");
+  const initialPassword = BRANCH_INITIAL_PASSWORD;
   try {
     const user = await db.user.create({
       data: {

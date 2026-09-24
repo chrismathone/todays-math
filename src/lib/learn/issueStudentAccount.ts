@@ -24,6 +24,7 @@ import {
   type StudentAccountStatus,
 } from "@/contracts/studentAccount.contract";
 
+import { BRANCH_INITIAL_PASSWORD } from "@/lib/branchInitialPassword";
 import { type ScopeViewer, withinOwnerScope } from "@/lib/ownerScope";
 
 import { isLocked } from "./studentLogin";
@@ -58,9 +59,7 @@ export interface AccountAuditEntry {
 
 export interface IssueDeps {
   /** 학생의 반 소유자와 퇴원 여부 — 학생이 없으면 null */
-  findStudentOwner(
-    studentId: string,
-  ): Promise<{
+  findStudentOwner(studentId: string): Promise<{
     ownerId: string;
     ownerBranchId?: string | null;
     withdrawn: boolean;
@@ -153,7 +152,12 @@ export async function issueStudentAccount(
     return fail("account_exists");
   if (await deps.findAccountByLoginId(loginId)) return fail("login_id_taken");
 
-  const initialPassword = deps.generatePin();
+  const initialPassword =
+    input.director.branchId &&
+    (input.director.branchRole === "owner" ||
+      input.director.branchRole === "manager")
+      ? BRANCH_INITIAL_PASSWORD
+      : deps.generatePin();
   const passwordHash = await deps.hashPin(initialPassword);
   let account: IssuedAccount;
   try {

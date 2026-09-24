@@ -131,7 +131,7 @@ const expectNoAiNotice = () => {
 
 // ── 로그인 ────────────────────────────────────────────────────────────────
 describe("학생 로그인 (/learn/login — 시안 sLogin)", () => {
-  it("로고 · 아이디 · 비밀번호(숫자 4자리) · 들어가기 · 도움말 · 원장님 로그인", () => {
+  it("로고 · 아이디 · 비밀번호 · 들어가기 · 도움말 · 원장님 로그인", () => {
     render(<StudentLoginForm />);
     expect(screen.getByText("오늘의수학")).toBeInTheDocument();
     expect(screen.getByText("오늘의 개념 · 학생")).toBeInTheDocument();
@@ -141,9 +141,8 @@ describe("학생 로그인 (/learn/login — 시안 sLogin)", () => {
     );
     const pin = screen.getByLabelText("비밀번호");
     expect(pin).toHaveAttribute("type", "password");
-    expect(pin).toHaveAttribute("inputmode", "numeric");
     expect(pin).toHaveAttribute("autocomplete", "current-password");
-    expect(pin).toHaveAttribute("maxlength", "4");
+    expect(pin).toHaveAttribute("maxlength", "72");
     expect(
       screen.getByRole("button", { name: "들어가기" }),
     ).toBeInTheDocument();
@@ -158,12 +157,12 @@ describe("학생 로그인 (/learn/login — 시안 sLogin)", () => {
     expectNoAiNotice();
   });
 
-  it("비밀번호 칸은 숫자만 · 4자에서 멈춘다", async () => {
+  it("비밀번호 칸은 긴 비밀번호를 그대로 입력할 수 있다", async () => {
     const user = userEvent.setup();
     render(<StudentLoginForm />);
     const pin = screen.getByLabelText("비밀번호");
-    await user.type(pin, "12a345");
-    expect(pin).toHaveValue("1234");
+    await user.type(pin, "1234@@@@");
+    expect(pin).toHaveValue("1234@@@@");
   });
 
   it("맞으면 첫 로그인은 비밀번호 바꾸기로", async () => {
@@ -193,9 +192,13 @@ describe("학생 로그인 (/learn/login — 시안 sLogin)", () => {
     };
     render(<StudentLoginForm />);
     await user.type(screen.getByLabelText("아이디"), "m1a-01");
-    await user.type(screen.getByLabelText("비밀번호"), "5809");
+    await user.type(screen.getByLabelText("비밀번호"), "1234@@@@");
     await user.click(screen.getByRole("button", { name: "들어가기" }));
     await waitFor(() => expect(router.replace).toHaveBeenCalledWith("/learn"));
+    expect(calls.find((c) => c.method === "POST")?.body).toStrictEqual({
+      loginId: "m1a-01",
+      password: "1234@@@@",
+    });
   });
 
   it("🔴 틀림 · 잠금 문구는 서버 문구 그대로", async () => {
@@ -259,7 +262,7 @@ describe("첫 로그인 — 비밀번호 바꾸기 (/learn/password — 시안 s
     if (again) await user.type(screen.getByLabelText("한 번 더"), again);
   };
 
-  it("🔴 세 칸 — 받은 번호가 맨 위, 새 번호 · 한 번 더. 모두 숫자 4자리", () => {
+  it("🔴 세 칸 — 받은 번호가 맨 위, 새 번호 · 한 번 더. 새 번호는 숫자 4자리", () => {
     render(<StudentPasswordForm studentName="이서준" />);
     expect(screen.getByText("처음 들어왔습니다")).toBeInTheDocument();
     expect(
@@ -272,11 +275,13 @@ describe("첫 로그인 — 비밀번호 바꾸기 (/learn/password — 시안 s
     expect(
       inputs.map((i) => i.closest("label")?.firstElementChild?.textContent),
     ).toStrictEqual(["선생님께 받은 번호", "새 비밀번호", "한 번 더"]);
-    for (const input of inputs) {
+    for (const input of inputs.slice(1)) {
       expect(input).toHaveAttribute("inputmode", "numeric");
       expect(input).toHaveAttribute("maxlength", "4");
       expect(input).toHaveAttribute("type", "password");
     }
+    expect(inputs[0]).toHaveAttribute("maxlength", "72");
+    expect(inputs[0]).not.toHaveAttribute("inputmode", "numeric");
     expect(screen.getByLabelText("선생님께 받은 번호")).toHaveAttribute(
       "autocomplete",
       "current-password",

@@ -93,13 +93,25 @@ describe("🔴 비밀번호 숫자 4자리 (D-125 ⑶)", () => {
     expect(studentNewPinSchema.safeParse("7890").success).toBe(true);
   });
 
-  it("로그인 번호는 형식만 본다 — 쉬운 번호도 «틀린 번호»일 뿐 형식 오류가 아니다", () => {
+  it("로그인은 기존 4자리 번호와 별도로 설정된 긴 비밀번호를 모두 받는다", () => {
     expect(
       studentLoginRequestSchema.safeParse({
         loginId: "seo01",
         password: "1111",
       }).success,
     ).toBe(true);
+    expect(
+      studentLoginRequestSchema.safeParse({
+        loginId: "seo01",
+        password: "1234@@@@",
+      }).success,
+    ).toBe(true);
+    expect(
+      studentLoginRequestSchema.safeParse({
+        loginId: "seo01",
+        password: "12@@",
+      }).success,
+    ).toBe(false);
   });
 
   it("바꿀 때 지금 번호와 같은 번호는 안 된다", () => {
@@ -112,6 +124,12 @@ describe("🔴 비밀번호 숫자 4자리 (D-125 ⑶)", () => {
     expect(
       studentPasswordChangeRequestSchema.safeParse({
         currentPassword: "5809",
+        newPassword: "7314",
+      }).success,
+    ).toBe(true);
+    expect(
+      studentPasswordChangeRequestSchema.safeParse({
+        currentPassword: "1234@@@@",
         newPassword: "7314",
       }).success,
     ).toBe(true);

@@ -16,7 +16,7 @@ export function pinDigits(value: string): string {
 }
 
 /**
- * 학생 로그인 — 시안 `sLogin`(05 §8.9 · D-125 ⑴ 1안). 원장님이 발급한 아이디 + 숫자 4자리(D-124 ⑶).
+ * 학생 로그인 — 시안 `sLogin`(05 §8.9 · D-125 ⑴ 1안). 원장님이 발급한 아이디와 비밀번호.
  * 부르는 것은 `POST /api/learn/login` 하나(Auth.js 학생 공급자). 실패 문구는 서버 문구 그대로.
  */
 export function StudentLoginForm() {
@@ -96,12 +96,10 @@ export function StudentLoginForm() {
               className={s.input}
               name="password"
               type="password"
-              inputMode="numeric"
-              pattern="[0-9]*"
               autoComplete="current-password"
-              maxLength={4}
+              maxLength={72}
               value={pin}
-              onChange={(event) => setPin(pinDigits(event.target.value))}
+              onChange={(event) => setPin(event.target.value)}
               required
             />
           </label>

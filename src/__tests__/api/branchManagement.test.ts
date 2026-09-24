@@ -144,12 +144,12 @@ beforeEach(() => {
 });
 
 describe("지점 계정 발급과 반 배정", () => {
-  it("지점장은 소속 지점의 강사 계정을 임시 비밀번호로 만든다", async () => {
+  it("지점장은 소속 지점의 강사 계정을 기본 비밀번호로 만든다", async () => {
     const response = await post("teacher");
     expect(response.status).toBe(201);
     const { data } = await response.json();
     expect(data.email).toBe("new@example.com");
-    expect(data.initialPassword).toMatch(/^[-_A-Za-z0-9]{16}$/);
+    expect(data.initialPassword).toBe("q1w2e3r4");
     const saved = state.create.mock.calls[0][0].data;
     expect(saved).toMatchObject({
       branchId: state.account.branchId,
@@ -188,7 +188,7 @@ describe("지점 계정 발급과 반 배정", () => {
       classId,
       loginId: "new_student",
     });
-    expect(data.initialPassword).toMatch(/^\d{4}$/);
+    expect(data.initialPassword).toBe("q1w2e3r4");
     const saved = state.studentCreate.mock.calls[0][0].data;
     expect(saved).toMatchObject({
       classId,

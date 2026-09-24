@@ -11,7 +11,7 @@
  * learn-screens 브리프 §1.3 이 더한 것: GET 은 계정이 없어도 **퇴원 여부**를 준다(칸이 «퇴원 — 로그인 막힘»을
  * 그린다) · 계정 상태에 «지금 보는 원장님이 발급했나»(시안 «9월 15일 · 원장님»).
  *
- * 초기 비밀번호는 고정 난수로 뽑게 해서(`generateInitialPassword` 대역) **그 번호를 찾아 다닌다.**
+ * 다시 발급 번호는 고정 난수로 뽑게 해서(`generateInitialPassword` 대역) **그 번호를 찾아 다닌다.**
  * 네 자리 숫자는 UUID·bcrypt 해시·시각 안에 우연히 들어 있을 수 있어서, 그 셋을 먼저 걷어 내고 찾는다.
  */
 import { compare } from "bcryptjs";
@@ -68,6 +68,7 @@ import { prismaTestDouble } from "@/mocks/prismaTestDouble";
 const ORIGIN = "http://localhost:3000";
 const PIN = "7392";
 const PIN2 = "4816";
+const BRANCH_PASSWORD = "q1w2e3r4";
 
 /** 남의 반(USER_OTHER_ID 소유 CLASS_OTHER) 학생 — 픽스처에 없어 시험이 만든다 */
 let otherStudentId = "";
@@ -194,7 +195,7 @@ describe("발급 — 원장만 · 한 명씩 (D-124 ⑷)", () => {
     expect(body.data).toMatchObject({
       studentId: MOCK_STUDENT_1.id,
       loginId: "seo-01",
-      initialPassword: PIN,
+      initialPassword: BRANCH_PASSWORD,
       mustChangePassword: true,
     });
     const [row] = learnRows.studentAccounts();
@@ -205,7 +206,22 @@ describe("발급 — 원장만 · 한 명씩 (D-124 ⑷)", () => {
       mustChangePassword: true,
       disabledAt: null,
     });
-    expect(await compare(PIN, row!.passwordHash)).toBe(true);
+    expect(await compare(BRANCH_PASSWORD, row!.passwordHash)).toBe(true);
+  });
+
+  it("지점 밖 독립 운영자가 발급할 때는 기존 4자리 번호를 사용한다", async () => {
+    vi.mocked(getSessionUser).mockResolvedValue({
+      id: USER_TEACHER_ID,
+      email: "teacher@example.test",
+      name: "선생님",
+      isAdmin: false,
+      branchId: null,
+      branchRole: null,
+    });
+    const res = await issue(MOCK_STUDENT_1.id, "seo01");
+    expect(res.status).toBe(201);
+    const body = studentAccountIssueResponseSchema.parse(await res.json());
+    expect(body.data.initialPassword).toBe(PIN);
   });
 
   it("이미 계정이 있으면 409 «이미 계정이 있습니다.»", async () => {
@@ -258,7 +274,7 @@ describe("다시 발급 · 끄기 · 상태", () => {
     expect(res.status).toBe(200);
     expect(res.headers.get("cache-control")).toBe("no-store");
     const body = studentAccountIssueResponseSchema.parse(await res.json());
-    expect(body.data.initialPassword).toBe(PIN2);
+    expect(body.data.initialPassword).toBe(PIN);
     const [after] = learnRows.studentAccounts();
     expect(after).toMatchObject({
       id: before!.id,
@@ -267,8 +283,8 @@ describe("다시 발급 · 끄기 · 상태", () => {
       failedCount: 0,
       lockedUntil: null,
     });
-    expect(await compare(PIN2, after!.passwordHash)).toBe(true);
-    expect(await compare(PIN, after!.passwordHash)).toBe(false);
+    expect(await compare(PIN, after!.passwordHash)).toBe(true);
+    expect(await compare(BRANCH_PASSWORD, after!.passwordHash)).toBe(false);
   });
 
   it("계정이 없는 학생을 다시 발급하면 404", async () => {
@@ -528,7 +544,7 @@ describe("🔴 퇴원 학생에게는 발급 API 도 막는다 — 409 (D-127 ·
       failedCount: 5,
       lockedUntil,
     });
-    expect(pins.queue).toStrictEqual([PIN2]);
+    expect(pins.queue).toStrictEqual([PIN, PIN2]);
     expect(learnRows.audits().map((a) => a.action)).toStrictEqual([
       "student_account.issue",
     ]);
@@ -566,13 +582,13 @@ describe("🔴 ⑥ 초기 비밀번호는 응답에 한 번 — DB · 로그 · 
   it("발급과 다시 발급을 거친 뒤 모든 흔적을 뒤진다", async () => {
     const first = await issue(MOCK_STUDENT_1.id, "seo01");
     const firstText = scrub(await first.text());
-    expect(firstText.split(PIN).length - 1).toBe(1);
+    expect(firstText.split(BRANCH_PASSWORD).length - 1).toBe(1);
 
     const again = await reissueRoute(
       req("POST", MOCK_STUDENT_1.id, undefined, "/password"),
       ctx(MOCK_STUDENT_1.id),
     );
-    expect(scrub(await again.text()).split(PIN2).length - 1).toBe(1);
+    expect(scrub(await again.text()).split(PIN).length - 1).toBe(1);
 
     const status = await statusRoute(
       req("GET", MOCK_STUDENT_1.id),
@@ -589,6 +605,7 @@ describe("🔴 ⑥ 초기 비밀번호는 응답에 한 번 — DB · 로그 · 
       ["콘솔", console],
       ["상태 응답", statusText],
     ] as const) {
+      expect(text, where).not.toContain(BRANCH_PASSWORD);
       expect(text, where).not.toContain(PIN);
       expect(text, where).not.toContain(PIN2);
     }

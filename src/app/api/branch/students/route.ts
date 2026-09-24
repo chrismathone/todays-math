@@ -2,7 +2,7 @@ import { z } from "zod";
 import { studentLoginIdSchema } from "@/contracts/studentAccount.contract";
 import { authorizeAccount } from "@/lib/accountAccess";
 import { recordAudit } from "@/lib/audit";
-import { generateInitialPassword } from "@/lib/concept/initialPassword";
+import { BRANCH_INITIAL_PASSWORD } from "@/lib/branchInitialPassword";
 import { db } from "@/lib/db";
 import { withErrorLog } from "@/lib/errorLog/withErrorLog";
 import { hashStudentPin } from "@/lib/learn/pinHash";
@@ -60,7 +60,7 @@ async function handlePost(request: Request) {
       { status: 404 },
     );
 
-  const initialPassword = generateInitialPassword();
+  const initialPassword = BRANCH_INITIAL_PASSWORD;
   try {
     // Nested create keeps the roster and login together if the login ID is already taken.
     const student = await db.student.create({

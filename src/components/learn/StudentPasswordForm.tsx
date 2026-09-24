@@ -112,6 +112,7 @@ export function StudentPasswordForm({
             label="선생님께 받은 번호"
             name="currentPassword"
             autoComplete="current-password"
+            allowExtendedPassword
             value={current}
             onChange={setCurrent}
           />
@@ -154,12 +155,14 @@ function PinField({
   label,
   name,
   autoComplete,
+  allowExtendedPassword = false,
   value,
   onChange,
 }: {
   label: string;
   name: string;
   autoComplete: "current-password" | "new-password";
+  allowExtendedPassword?: boolean;
   value: string;
   onChange: (value: string) => void;
 }) {
@@ -170,12 +173,18 @@ function PinField({
         className={s.input}
         name={name}
         type="password"
-        inputMode="numeric"
-        pattern="[0-9]*"
+        inputMode={allowExtendedPassword ? undefined : "numeric"}
+        pattern={allowExtendedPassword ? undefined : "[0-9]*"}
         autoComplete={autoComplete}
-        maxLength={4}
+        maxLength={allowExtendedPassword ? 72 : 4}
         value={value}
-        onChange={(event) => onChange(pinDigits(event.target.value))}
+        onChange={(event) =>
+          onChange(
+            allowExtendedPassword
+              ? event.target.value
+              : pinDigits(event.target.value),
+          )
+        }
         required
       />
     </label>

@@ -1,8 +1,8 @@
 /**
- * **학생 계정 계약** — 원장님이 발급한 아이디 + 숫자 4자리 (D-124 ⑶⑷ · D-125 ⑵⑶⑷, 2026-09-15).
+ * **학생 계정 계약** — 원장님이 발급한 아이디 + 비밀번호 (D-124 ⑶⑷ · D-125 ⑵⑶⑷, 2026-09-15).
  *
- * 학생 로그인은 절대 규칙 7 의 **유일한 예외**다(이메일 대신 아이디). 그래서 원장·검수 계정 규칙
- * (`auth.contract.ts` — 이메일 · 8~72자)과 **따로** 둔다(브리프 §7). 소셜/OAuth 는 학생에게도 없다.
+ * 학생 로그인은 절대 규칙 7 의 **유일한 예외**다(이메일 대신 아이디). 발급·새 비밀번호는 숫자 4자리이며
+ * 로그인·현재 비밀번호 확인은 기존 번호와 별도로 설정한 8~72자 비밀번호도 받는다. 소셜/OAuth 는 학생에게도 없다.
  * 학생 로그인은 «오늘의 개념» 영상 시청 하나만 연다(D-123 ⑵) — 응시·성적·오답은 이 계약 밖이다.
  *
  * 대응 경로:
@@ -99,10 +99,19 @@ export const studentLoginIdSchema = z
     }),
   );
 
-/** 비밀번호 형식 — 네 자리 숫자(`isPinFormat`). 로그인은 이것만 본다. */
+/** 새로 발급하거나 설정하는 학생 비밀번호는 네 자리 숫자다. */
 export const studentPinSchema = z
   .string()
   .refine(isPinFormat, { error: "비밀번호는 숫자 4자리입니다." });
+
+/** 기존 4자리 번호와 별도로 설정한 긴 비밀번호도 로그인·현재 비밀번호 확인에 쓸 수 있다. */
+export const studentLoginPasswordSchema = z
+  .string()
+  .refine(
+    (password) =>
+      isPinFormat(password) || (password.length >= 8 && password.length <= 72),
+    { error: "비밀번호는 숫자 4자리 또는 8~72자입니다." },
+  );
 
 /** 새로 정하는 번호 — 형식 + 쉬운 번호 제외(`isEasyPin`, 발급과 같은 규칙 — D-125 ⑶). */
 export const studentNewPinSchema = studentPinSchema.refine(
@@ -114,7 +123,7 @@ export const studentNewPinSchema = studentPinSchema.refine(
 
 export const studentLoginRequestSchema = z.strictObject({
   loginId: studentLoginIdSchema,
-  password: studentPinSchema,
+  password: studentLoginPasswordSchema,
 });
 export type StudentLoginRequest = z.infer<typeof studentLoginRequestSchema>;
 
@@ -129,7 +138,7 @@ export const studentLogoutResponseSchema = dataResponseSchema(
 
 export const studentPasswordChangeRequestSchema = z
   .strictObject({
-    currentPassword: studentPinSchema,
+    currentPassword: studentLoginPasswordSchema,
     newPassword: studentNewPinSchema,
   })
   .refine((v) => v.currentPassword !== v.newPassword, {
@@ -218,7 +227,7 @@ export const studentAccountIssueResponseSchema = dataResponseSchema(
   z.strictObject({
     studentId: uuidSchema,
     loginId: z.string(),
-    initialPassword: studentPinSchema,
+    initialPassword: studentLoginPasswordSchema,
     mustChangePassword: z.literal(true),
     issuedAt: isoDateTimeSchema,
   }),

@@ -131,7 +131,7 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
       },
     }),
     /**
-     * 학생 — 원장님이 발급한 아이디 + 숫자 4자리 (D-124 ⑶ · D-125 ⑶). 잠금·문구 규칙은 전부
+     * 학생 — 원장님이 발급한 아이디 + 비밀번호 (D-124 ⑶ · D-125 ⑶). 잠금·문구 규칙은 전부
      * `src/lib/learn/studentLogin.ts`, 실패는 `StudentLoginError`(code `invalid`|`locked`)로 던진다.
      * 돌려주는 사용자는 **계정 id 하나뿐** — 토큰은 `jwt` 콜백의 학생 갈래가 새로 짓는다.
      */
