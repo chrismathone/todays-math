@@ -103,6 +103,24 @@ async function enterCredentials(user: ReturnType<typeof userEvent.setup>) {
 }
 
 describe("embedded teaching authentication", () => {
+  it.each(["/classes/manage", "/branch"])(
+    "uses the authorized studio teaching API on %s in development",
+    async (path) => {
+      authenticated = true;
+      window.history.replaceState(null, "", path);
+      server.use(
+        http.get("/api/studio/teaching", () => {
+          bootstrapReads += 1;
+          return HttpResponse.json({ data: { user: account, units } });
+        }),
+      );
+      render(<TeachingView embedded />);
+      await screen.findByRole("heading", { name: "우리 반 관리" });
+      expect(bootstrapReads).toBe(1);
+      await waitFor(() => expect(classReads).toBe(1));
+    },
+  );
+
   it("does not load classes anonymously and offers no external login or signup links", async () => {
     await loginForm();
     expect(bootstrapReads).toBe(1);
