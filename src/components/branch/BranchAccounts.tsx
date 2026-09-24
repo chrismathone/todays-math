@@ -36,8 +36,10 @@ async function dataFrom<T>(response: Response): Promise<T> {
 
 export default function BranchAccounts({
   canCreateManagers,
+  section = "accounts",
 }: {
   canCreateManagers: boolean;
+  section?: "accounts" | "classes";
 }) {
   const [staff, setStaff] = useState<Staff[]>([]);
   const [classes, setClasses] = useState<BranchClass[]>([]);
@@ -302,14 +304,17 @@ export default function BranchAccounts({
   return (
     <section
       className="mb-8 rounded-xl border border-slate-200 bg-white p-5"
-      aria-label="지점 계정과 반 배정"
+      aria-label={section === "accounts" ? "지점 계정 관리" : "반 배정 관리"}
     >
       <div className="mb-5 flex flex-wrap items-start justify-between gap-3">
         <div>
-          <h2 className="text-lg font-bold">지점 계정 관리</h2>
+          <h2 className="text-lg font-bold">
+            {section === "accounts" ? "지점 계정 관리" : "반 배정 관리"}
+          </h2>
           <p className="text-sm text-slate-600">
-            학생을 반에 등록하면서 로그인 계정을 발급하고, 직원과 담당 반을
-            관리하세요.
+            {section === "accounts"
+              ? "학생 로그인 계정과 직원 계정을 발급·관리하세요."
+              : "담당 강사와 학생의 소속 반을 관리하세요."}
           </p>
         </div>
         <button
@@ -320,233 +325,6 @@ export default function BranchAccounts({
           새로고침
         </button>
       </div>
-      <div className="mb-6 rounded-xl border border-blue-100 bg-blue-50/40 p-4">
-        <h3 className="mb-1 font-bold">학생 등록·로그인 발급</h3>
-        <p className="mb-4 text-sm text-slate-600">
-          반, 이름, 아이디를 입력하면 학생 명단과 로그인 계정이 함께
-          만들어집니다.
-        </p>
-        {classes.length === 0 ? (
-          <p className="text-sm">
-            먼저{" "}
-            <Link
-              href="/classes/manage"
-              className="font-semibold text-blue-700 underline"
-            >
-              반 관리에서 반을 만들어 주세요.
-            </Link>
-          </p>
-        ) : (
-          <form
-            onSubmit={createStudent}
-            className="grid gap-2 sm:grid-cols-2 lg:grid-cols-[minmax(150px,1fr)_minmax(140px,1fr)_minmax(180px,1fr)_auto] lg:items-end"
-          >
-            <label className="grid gap-1 text-sm">
-              소속 반
-              <select
-                className="min-h-11 rounded-lg border border-slate-300 bg-white px-3"
-                value={sourceClassId}
-                onChange={(e) => void chooseSource(e.target.value)}
-                required
-              >
-                {classes.map((group) => (
-                  <option key={group.id} value={group.id}>
-                    {group.name} · {group.grade}
-                  </option>
-                ))}
-              </select>
-            </label>
-            <label className="grid gap-1 text-sm">
-              학생 이름
-              <input
-                className="min-h-11 rounded-lg border border-slate-300 bg-white px-3"
-                value={studentName}
-                onChange={(e) => setStudentName(e.target.value)}
-                required
-                maxLength={50}
-                autoComplete="off"
-                placeholder="이름"
-              />
-            </label>
-            <label className="grid gap-1 text-sm">
-              로그인 아이디
-              <input
-                className="min-h-11 rounded-lg border border-slate-300 bg-white px-3"
-                value={studentLoginId}
-                onChange={(e) => setStudentLoginId(e.target.value)}
-                required
-                minLength={4}
-                maxLength={20}
-                pattern="[A-Za-z0-9_-]{4,20}"
-                autoCapitalize="none"
-                autoComplete="off"
-                spellCheck={false}
-                placeholder="영문·숫자 4~20자"
-              />
-            </label>
-            <button
-              type="submit"
-              disabled={busy || !sourceClassId}
-              className="min-h-11 rounded-lg bg-blue-700 px-4 font-semibold text-white disabled:opacity-50"
-            >
-              학생 등록·발급
-            </button>
-          </form>
-        )}
-        <p className="mt-2 text-xs text-slate-500">
-          아이디는 전체 학생 중 중복할 수 없습니다. 초기 비밀번호는 한 번만
-          표시됩니다.
-        </p>
-        {studentIssued && (
-          <div
-            role="status"
-            className="mt-3 rounded-lg border border-amber-200 bg-amber-50 p-3 text-sm"
-          >
-            <strong>{studentIssued.name} 학생 계정 발급 완료</strong>
-            <p>
-              아이디{" "}
-              <strong className="select-all font-mono">
-                {studentIssued.loginId}
-              </strong>{" "}
-              · 초기 비밀번호{" "}
-              <strong className="select-all font-mono">
-                {studentIssued.initialPassword}
-              </strong>
-            </p>
-            <p className="text-slate-600">
-              로그인 후 학생이 비밀번호를 변경하도록 안내해 주세요.
-            </p>
-          </div>
-        )}
-        {sourceClassId && (
-          <div className="mt-4 border-t border-blue-100 pt-3">
-            <h4 className="mb-2 text-sm font-semibold">
-              선택한 반 학생 {studentTotal}명
-            </h4>
-            {studentTotal > 100 && (
-              <div className="mb-3 flex items-center gap-2 text-sm">
-                <button
-                  type="button"
-                  disabled={studentPage === 1}
-                  onClick={() =>
-                    void chooseSource(sourceClassId, studentPage - 1)
-                  }
-                  className="rounded border border-slate-300 px-2 py-1 disabled:opacity-40"
-                >
-                  이전
-                </button>
-                <span>
-                  {studentPage} / {Math.ceil(studentTotal / 100)} 페이지
-                </span>
-                <button
-                  type="button"
-                  disabled={studentPage * 100 >= studentTotal}
-                  onClick={() =>
-                    void chooseSource(sourceClassId, studentPage + 1)
-                  }
-                  className="rounded border border-slate-300 px-2 py-1 disabled:opacity-40"
-                >
-                  다음
-                </button>
-              </div>
-            )}
-            {students.length === 0 ? (
-              <p className="text-sm text-slate-500">
-                아직 등록된 학생이 없습니다.
-              </p>
-            ) : (
-              <div className="flex flex-wrap gap-2">
-                {students.map((student) => (
-                  <button
-                    key={student.id}
-                    type="button"
-                    onClick={() =>
-                      setOpenStudentId((current) =>
-                        current === student.id ? null : student.id,
-                      )
-                    }
-                    className={`rounded-lg border px-3 py-2 text-sm ${openStudentId === student.id ? "border-blue-600 bg-white text-blue-800" : "border-slate-300 bg-white"}`}
-                  >
-                    {student.name} · 계정 관리
-                  </button>
-                ))}
-              </div>
-            )}
-            {students.find((student) => student.id === openStudentId) && (
-              <div className="mt-3">
-                <StudentAccountPanel
-                  key={openStudentId}
-                  student={students.find(
-                    (student) => student.id === openStudentId,
-                  )!}
-                  onClose={() => setOpenStudentId(null)}
-                />
-              </div>
-            )}
-          </div>
-        )}
-      </div>
-      <h3 className="mb-2 font-semibold">직원 계정 발급</h3>
-      <p className="mb-3 text-sm text-slate-600">
-        원장은 원장·관리자·강사를, 관리자는 강사 계정을 발급합니다.
-      </p>
-      <form
-        onSubmit={createStaff}
-        className="mb-5 flex flex-wrap items-end gap-2"
-      >
-        <label className="grid gap-1 text-sm">
-          이름
-          <input
-            className="min-h-11 rounded-lg border border-slate-300 px-3"
-            value={name}
-            onChange={(e) => setName(e.target.value)}
-            required
-            maxLength={50}
-          />
-        </label>
-        <label className="grid gap-1 text-sm">
-          이메일
-          <input
-            className="min-h-11 rounded-lg border border-slate-300 px-3"
-            type="email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            required
-            maxLength={255}
-          />
-        </label>
-        <label className="grid gap-1 text-sm">
-          계정 유형
-          <select
-            className="min-h-11 rounded-lg border border-slate-300 px-3"
-            value={role}
-            onChange={(e) => setRole(e.target.value as Staff["branchRole"])}
-          >
-            <option value="teacher">강사</option>
-            {canCreateManagers && (
-              <>
-                <option value="manager">관리자</option>
-                <option value="owner">원장</option>
-              </>
-            )}
-          </select>
-        </label>
-        <button
-          type="submit"
-          disabled={busy}
-          className="min-h-11 rounded-lg bg-blue-700 px-4 font-semibold text-white disabled:opacity-50"
-        >
-          계정 만들기
-        </button>
-      </form>
-      {issued && (
-        <p role="status" className="mb-4 rounded-lg bg-amber-50 p-3 text-sm">
-          {issued.email} 임시 비밀번호:{" "}
-          <strong className="select-all font-mono">{issued.password}</strong>
-          <br />
-          지금 한 번만 표시됩니다. 안전하게 전달하고 로그인 후 변경해 주세요.
-        </p>
-      )}
       {error && (
         <p role="alert" className="mb-3 text-sm text-red-700">
           {error}
@@ -557,104 +335,350 @@ export default function BranchAccounts({
           {notice}
         </p>
       )}
-      <div className="mb-5 flex flex-wrap gap-2" aria-label="지점 직원 목록">
-        {staff.map((person) => (
-          <span
-            key={person.id}
-            className="rounded-lg border border-slate-200 px-3 py-2 text-sm"
+      {section === "accounts" ? (
+        <>
+          <div className="mb-6 rounded-xl border border-blue-100 bg-blue-50/40 p-4">
+            <h3 className="mb-1 font-bold">학생 등록·로그인 발급</h3>
+            <p className="mb-4 text-sm text-slate-600">
+              반, 이름, 아이디를 입력하면 학생 명단과 로그인 계정이 함께
+              만들어집니다.
+            </p>
+            {classes.length === 0 ? (
+              <p className="text-sm">
+                먼저{" "}
+                <Link
+                  href="/branch?tab=classes"
+                  className="font-semibold text-blue-700 underline"
+                >
+                  반 관리에서 반을 만들어 주세요.
+                </Link>
+              </p>
+            ) : (
+              <form
+                onSubmit={createStudent}
+                className="grid gap-2 sm:grid-cols-2 lg:grid-cols-[minmax(150px,1fr)_minmax(140px,1fr)_minmax(180px,1fr)_auto] lg:items-end"
+              >
+                <label className="grid gap-1 text-sm">
+                  소속 반
+                  <select
+                    className="min-h-11 rounded-lg border border-slate-300 bg-white px-3"
+                    value={sourceClassId}
+                    onChange={(e) => void chooseSource(e.target.value)}
+                    required
+                  >
+                    {classes.map((group) => (
+                      <option key={group.id} value={group.id}>
+                        {group.name} · {group.grade}
+                      </option>
+                    ))}
+                  </select>
+                </label>
+                <label className="grid gap-1 text-sm">
+                  학생 이름
+                  <input
+                    className="min-h-11 rounded-lg border border-slate-300 bg-white px-3"
+                    value={studentName}
+                    onChange={(e) => setStudentName(e.target.value)}
+                    required
+                    maxLength={50}
+                    autoComplete="off"
+                    placeholder="이름"
+                  />
+                </label>
+                <label className="grid gap-1 text-sm">
+                  로그인 아이디
+                  <input
+                    className="min-h-11 rounded-lg border border-slate-300 bg-white px-3"
+                    value={studentLoginId}
+                    onChange={(e) => setStudentLoginId(e.target.value)}
+                    required
+                    minLength={4}
+                    maxLength={20}
+                    pattern="[A-Za-z0-9_-]{4,20}"
+                    autoCapitalize="none"
+                    autoComplete="off"
+                    spellCheck={false}
+                    placeholder="영문·숫자 4~20자"
+                  />
+                </label>
+                <button
+                  type="submit"
+                  disabled={busy || !sourceClassId}
+                  className="min-h-11 rounded-lg bg-blue-700 px-4 font-semibold text-white disabled:opacity-50"
+                >
+                  학생 등록·발급
+                </button>
+              </form>
+            )}
+            <p className="mt-2 text-xs text-slate-500">
+              아이디는 전체 학생 중 중복할 수 없습니다. 초기 비밀번호는 한 번만
+              표시됩니다.
+            </p>
+            {studentIssued && (
+              <div
+                role="status"
+                className="mt-3 rounded-lg border border-amber-200 bg-amber-50 p-3 text-sm"
+              >
+                <strong>{studentIssued.name} 학생 계정 발급 완료</strong>
+                <p>
+                  아이디{" "}
+                  <strong className="select-all font-mono">
+                    {studentIssued.loginId}
+                  </strong>{" "}
+                  · 초기 비밀번호{" "}
+                  <strong className="select-all font-mono">
+                    {studentIssued.initialPassword}
+                  </strong>
+                </p>
+                <p className="text-slate-600">
+                  로그인 후 학생이 비밀번호를 변경하도록 안내해 주세요.
+                </p>
+              </div>
+            )}
+            {sourceClassId && (
+              <div className="mt-4 border-t border-blue-100 pt-3">
+                <h4 className="mb-2 text-sm font-semibold">
+                  선택한 반 학생 {studentTotal}명
+                </h4>
+                {studentTotal > 100 && (
+                  <div className="mb-3 flex items-center gap-2 text-sm">
+                    <button
+                      type="button"
+                      disabled={studentPage === 1}
+                      onClick={() =>
+                        void chooseSource(sourceClassId, studentPage - 1)
+                      }
+                      className="rounded border border-slate-300 px-2 py-1 disabled:opacity-40"
+                    >
+                      이전
+                    </button>
+                    <span>
+                      {studentPage} / {Math.ceil(studentTotal / 100)} 페이지
+                    </span>
+                    <button
+                      type="button"
+                      disabled={studentPage * 100 >= studentTotal}
+                      onClick={() =>
+                        void chooseSource(sourceClassId, studentPage + 1)
+                      }
+                      className="rounded border border-slate-300 px-2 py-1 disabled:opacity-40"
+                    >
+                      다음
+                    </button>
+                  </div>
+                )}
+                {students.length === 0 ? (
+                  <p className="text-sm text-slate-500">
+                    아직 등록된 학생이 없습니다.
+                  </p>
+                ) : (
+                  <div className="flex flex-wrap gap-2">
+                    {students.map((student) => (
+                      <button
+                        key={student.id}
+                        type="button"
+                        onClick={() =>
+                          setOpenStudentId((current) =>
+                            current === student.id ? null : student.id,
+                          )
+                        }
+                        className={`rounded-lg border px-3 py-2 text-sm ${openStudentId === student.id ? "border-blue-600 bg-white text-blue-800" : "border-slate-300 bg-white"}`}
+                      >
+                        {student.name} · 계정 관리
+                      </button>
+                    ))}
+                  </div>
+                )}
+                {students.find((student) => student.id === openStudentId) && (
+                  <div className="mt-3">
+                    <StudentAccountPanel
+                      key={openStudentId}
+                      student={students.find(
+                        (student) => student.id === openStudentId,
+                      )!}
+                      onClose={() => setOpenStudentId(null)}
+                    />
+                  </div>
+                )}
+              </div>
+            )}
+          </div>
+          <h3 className="mb-2 font-semibold">직원 계정 발급</h3>
+          <p className="mb-3 text-sm text-slate-600">
+            원장은 원장·관리자·강사를, 관리자는 강사 계정을 발급합니다.
+          </p>
+          <form
+            onSubmit={createStaff}
+            className="mb-5 flex flex-wrap items-end gap-2"
           >
-            <strong>{person.name}</strong> · {labels[person.branchRole]}{" "}
-            <span className="text-slate-500">{person.email}</span>
-          </span>
-        ))}
-      </div>
-      <h3 className="mb-2 font-semibold">반 담당 강사 배정</h3>
-      <div className="grid gap-2">
-        {classes.map((group) => (
-          <label
-            key={group.id}
-            className="flex flex-wrap items-center justify-between gap-2 rounded-lg border border-slate-200 p-3 text-sm"
-          >
-            <span>
-              <strong>{group.name}</strong> · {group.grade} · 학생{" "}
-              {group._count.students}명
-            </span>
-            <select
-              className="min-h-11 rounded-lg border border-slate-300 px-3"
-              aria-label={`${group.name} 담당 강사`}
-              value={group.userId}
+            <label className="grid gap-1 text-sm">
+              이름
+              <input
+                className="min-h-11 rounded-lg border border-slate-300 px-3"
+                value={name}
+                onChange={(e) => setName(e.target.value)}
+                required
+                maxLength={50}
+              />
+            </label>
+            <label className="grid gap-1 text-sm">
+              이메일
+              <input
+                className="min-h-11 rounded-lg border border-slate-300 px-3"
+                type="email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                required
+                maxLength={255}
+              />
+            </label>
+            <label className="grid gap-1 text-sm">
+              계정 유형
+              <select
+                className="min-h-11 rounded-lg border border-slate-300 px-3"
+                value={role}
+                onChange={(e) => setRole(e.target.value as Staff["branchRole"])}
+              >
+                <option value="teacher">강사</option>
+                {canCreateManagers && (
+                  <>
+                    <option value="manager">관리자</option>
+                    <option value="owner">원장</option>
+                  </>
+                )}
+              </select>
+            </label>
+            <button
+              type="submit"
               disabled={busy}
-              onChange={(e) => void assign(group.id, e.target.value)}
+              className="min-h-11 rounded-lg bg-blue-700 px-4 font-semibold text-white disabled:opacity-50"
             >
-              {staff.map((person) => (
-                <option key={person.id} value={person.id}>
-                  {person.name} ({labels[person.branchRole]})
-                </option>
-              ))}
-            </select>
-          </label>
-        ))}
-      </div>
-      <h3 className="mb-2 mt-5 font-semibold">학생 반 배정</h3>
-      <form onSubmit={moveStudent} className="flex flex-wrap items-end gap-2">
-        <label className="grid gap-1 text-sm">
-          현재 반
-          <select
-            className="min-h-11 rounded-lg border border-slate-300 px-3"
-            value={sourceClassId}
-            onChange={(e) => void chooseSource(e.target.value)}
-            required
+              계정 만들기
+            </button>
+          </form>
+          {issued && (
+            <p
+              role="status"
+              className="mb-4 rounded-lg bg-amber-50 p-3 text-sm"
+            >
+              {issued.email} 임시 비밀번호:{" "}
+              <strong className="select-all font-mono">
+                {issued.password}
+              </strong>
+              <br />
+              지금 한 번만 표시됩니다. 안전하게 전달하고 로그인 후 변경해
+              주세요.
+            </p>
+          )}
+          <div
+            className="mb-5 flex flex-wrap gap-2"
+            aria-label="지점 직원 목록"
           >
-            <option value="">반 선택</option>
+            {staff.map((person) => (
+              <span
+                key={person.id}
+                className="rounded-lg border border-slate-200 px-3 py-2 text-sm"
+              >
+                <strong>{person.name}</strong> · {labels[person.branchRole]}{" "}
+                <span className="text-slate-500">{person.email}</span>
+              </span>
+            ))}
+          </div>
+        </>
+      ) : (
+        <>
+          <h3 className="mb-2 font-semibold">반 담당 강사 배정</h3>
+          <div className="grid gap-2">
             {classes.map((group) => (
-              <option key={group.id} value={group.id}>
-                {group.name}
-              </option>
+              <label
+                key={group.id}
+                className="flex flex-wrap items-center justify-between gap-2 rounded-lg border border-slate-200 p-3 text-sm"
+              >
+                <span>
+                  <strong>{group.name}</strong> · {group.grade} · 학생{" "}
+                  {group._count.students}명
+                </span>
+                <select
+                  className="min-h-11 rounded-lg border border-slate-300 px-3"
+                  aria-label={`${group.name} 담당 강사`}
+                  value={group.userId}
+                  disabled={busy}
+                  onChange={(e) => void assign(group.id, e.target.value)}
+                >
+                  {staff.map((person) => (
+                    <option key={person.id} value={person.id}>
+                      {person.name} ({labels[person.branchRole]})
+                    </option>
+                  ))}
+                </select>
+              </label>
             ))}
-          </select>
-        </label>
-        <label className="grid gap-1 text-sm">
-          학생
-          <select
-            className="min-h-11 rounded-lg border border-slate-300 px-3"
-            value={studentId}
-            onChange={(e) => setStudentId(e.target.value)}
-            required
+          </div>
+          <h3 className="mb-2 mt-5 font-semibold">학생 반 배정</h3>
+          <form
+            onSubmit={moveStudent}
+            className="flex flex-wrap items-end gap-2"
           >
-            <option value="">학생 선택</option>
-            {students.map((student) => (
-              <option key={student.id} value={student.id}>
-                {student.name}
-              </option>
-            ))}
-          </select>
-        </label>
-        <label className="grid gap-1 text-sm">
-          옮길 반
-          <select
-            className="min-h-11 rounded-lg border border-slate-300 px-3"
-            value={targetClassId}
-            onChange={(e) => setTargetClassId(e.target.value)}
-            required
-          >
-            <option value="">반 선택</option>
-            {classes
-              .filter((group) => group.id !== sourceClassId)
-              .map((group) => (
-                <option key={group.id} value={group.id}>
-                  {group.name}
-                </option>
-              ))}
-          </select>
-        </label>
-        <button
-          type="submit"
-          disabled={busy || !studentId || !targetClassId}
-          className="min-h-11 rounded-lg bg-blue-700 px-4 font-semibold text-white disabled:opacity-50"
-        >
-          학생 배정
-        </button>
-      </form>
+            <label className="grid gap-1 text-sm">
+              현재 반
+              <select
+                className="min-h-11 rounded-lg border border-slate-300 px-3"
+                value={sourceClassId}
+                onChange={(e) => void chooseSource(e.target.value)}
+                required
+              >
+                <option value="">반 선택</option>
+                {classes.map((group) => (
+                  <option key={group.id} value={group.id}>
+                    {group.name}
+                  </option>
+                ))}
+              </select>
+            </label>
+            <label className="grid gap-1 text-sm">
+              학생
+              <select
+                className="min-h-11 rounded-lg border border-slate-300 px-3"
+                value={studentId}
+                onChange={(e) => setStudentId(e.target.value)}
+                required
+              >
+                <option value="">학생 선택</option>
+                {students.map((student) => (
+                  <option key={student.id} value={student.id}>
+                    {student.name}
+                  </option>
+                ))}
+              </select>
+            </label>
+            <label className="grid gap-1 text-sm">
+              옮길 반
+              <select
+                className="min-h-11 rounded-lg border border-slate-300 px-3"
+                value={targetClassId}
+                onChange={(e) => setTargetClassId(e.target.value)}
+                required
+              >
+                <option value="">반 선택</option>
+                {classes
+                  .filter((group) => group.id !== sourceClassId)
+                  .map((group) => (
+                    <option key={group.id} value={group.id}>
+                      {group.name}
+                    </option>
+                  ))}
+              </select>
+            </label>
+            <button
+              type="submit"
+              disabled={busy || !studentId || !targetClassId}
+              className="min-h-11 rounded-lg bg-blue-700 px-4 font-semibold text-white disabled:opacity-50"
+            >
+              학생 배정
+            </button>
+          </form>
+        </>
+      )}
     </section>
   );
 }

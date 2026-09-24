@@ -4,13 +4,18 @@ import { redirect } from "next/navigation";
 import TodayMathMark from "@/components/brand/TodayMathMark";
 import BranchAccounts from "@/components/branch/BranchAccounts";
 import AdminSignOut from "@/components/admin/AdminSignOut";
+import TeachingView from "@/components/unified/TeachingView";
 import RouteLinkStatus from "@/components/ui/RouteLinkStatus";
 import { getAccountAccess } from "@/lib/accountAccess";
 import s from "@/components/admin/admin.module.css";
 
 export const metadata: Metadata = { title: "지점관리 | 오늘의수학" };
 
-export default async function BranchPage() {
+export default async function BranchPage({
+  searchParams,
+}: {
+  searchParams?: Promise<{ tab?: string | string[] }>;
+} = {}) {
   const account = await getAccountAccess();
   if (!account) redirect("/login?callbackUrl=%2Fbranch");
   if (account.approvalStatus !== "approved") redirect("/approval-pending");
@@ -19,6 +24,7 @@ export default async function BranchPage() {
     !["owner", "manager"].includes(account.branchRole ?? "")
   )
     redirect(account.isSuperAdmin ? "/admin" : "/");
+  const tab = (await searchParams)?.tab === "classes" ? "classes" : "accounts";
 
   return (
     <div className={s.shell}>
@@ -35,10 +41,6 @@ export default async function BranchPage() {
           <nav className={s.headerNav} aria-label="지점관리 메뉴">
             <Link className={s.workroomLink} href="/branch" aria-current="page">
               <span aria-hidden="true">◫</span> 지점관리
-              <RouteLinkStatus />
-            </Link>
-            <Link className={s.workroomLink} href="/classes/manage">
-              <span aria-hidden="true">⌂</span> 반 관리
               <RouteLinkStatus />
             </Link>
             <Link className={s.workroomLink} href="/">
@@ -66,12 +68,32 @@ export default async function BranchPage() {
             <p className={s.eyebrow}>BRANCH MANAGEMENT</p>
             <h1>지점관리</h1>
             <p className={s.subtitle}>
-              반과 학생을 등록하고 학생 계정을 발급·관리하세요.
+              반과 학생, 지점 계정을 한곳에서 관리하세요.
             </p>
           </div>
         </div>
+        <nav className={s.branchTabs} aria-label="지점관리 세부 메뉴">
+          <Link
+            href="/branch?tab=classes"
+            aria-current={tab === "classes" ? "page" : undefined}
+          >
+            반 관리
+            <RouteLinkStatus />
+          </Link>
+          <Link
+            href="/branch?tab=accounts"
+            aria-current={tab === "accounts" ? "page" : undefined}
+          >
+            계정 관리
+            <RouteLinkStatus />
+          </Link>
+        </nav>
+        {tab === "classes" && <TeachingView embedded />}
         {account.branchId && (
-          <BranchAccounts canCreateManagers={account.branchRole === "owner"} />
+          <BranchAccounts
+            canCreateManagers={account.branchRole === "owner"}
+            section={tab}
+          />
         )}
       </main>
     </div>

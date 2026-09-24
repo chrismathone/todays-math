@@ -1,4 +1,4 @@
-import { render, screen } from "@testing-library/react";
+import { render, screen, within } from "@testing-library/react";
 import { beforeEach, describe, expect, it, vi } from "vitest";
 import AdminPage from "@/app/admin/page";
 import AdminSrsPage from "@/app/admin/math-srs/page";
@@ -102,9 +102,35 @@ describe("account page server gates", () => {
     expect(
       screen.getByRole("heading", { name: "지점관리" }),
     ).toBeInTheDocument();
-    expect(screen.getByRole("link", { name: "반 관리" })).toHaveAttribute(
+    const branchTabs = within(
+      screen.getByRole("navigation", { name: "지점관리 세부 메뉴" }),
+    );
+    expect(branchTabs.getByRole("link", { name: "반 관리" })).toHaveAttribute(
       "href",
-      "/classes/manage",
+      "/branch?tab=classes",
+    );
+    expect(branchTabs.getByRole("link", { name: "계정 관리" })).toHaveAttribute(
+      "aria-current",
+      "page",
+    );
+  });
+  it("opens class management within the branch tabs", async () => {
+    access.mockResolvedValue({
+      ...adminAccount,
+      isSuperAdmin: false,
+      branchId: "55555555-5555-4555-8555-555555555555",
+      branchRole: "manager",
+    });
+    render(
+      await BranchPage({ searchParams: Promise.resolve({ tab: "classes" }) }),
+    );
+    expect(screen.getByText("branch-screen")).toBeInTheDocument();
+    const branchTabs = within(
+      screen.getByRole("navigation", { name: "지점관리 세부 메뉴" }),
+    );
+    expect(branchTabs.getByRole("link", { name: "반 관리" })).toHaveAttribute(
+      "aria-current",
+      "page",
     );
   });
   it("gates the detail page and selects the requested user's documents", async () => {

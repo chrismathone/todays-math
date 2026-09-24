@@ -841,6 +841,7 @@ function UnifiedWorkspaceContent({
               <WorkspaceAccount user={currentUser} />
             </div>
           )}
+          <span className={s.topbarSpacer} aria-hidden="true" />
         </header>
         <div className={s.notifications}>
           {hasMenus && notice && (worksheetView || modal) && (

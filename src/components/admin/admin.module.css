@@ -486,7 +486,7 @@
 /* The admin console shares the Workroom surface, navigation and control tokens. */
 .shell {
   display: grid;
-  grid-template-columns: 248px minmax(0, 1fr);
+  grid-template-columns: 240px minmax(0, 1fr);
   align-items: start;
 }
 .header {
@@ -497,10 +497,10 @@
   flex-direction: column;
   justify-content: flex-start;
   align-items: stretch;
-  width: 248px;
+  width: 240px;
   max-width: none;
   height: 100svh;
-  padding: 28px 14px 18px;
+  padding: 18px;
   color: var(--learn-on-nav);
   background: var(--learn-nav);
   border: 0;
@@ -562,7 +562,40 @@
 }
 .workroomLink[aria-current="page"] {
   color: white;
-  background: var(--learn-accent);
+  background: #304362;
+}
+.branchTabs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 20px;
+  border-bottom: 1px solid #d4dce8;
+}
+.branchTabs a {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 44px;
+  padding: 0 20px;
+  color: #52617a;
+  font-size: 14px;
+  font-weight: 600;
+  text-decoration: none;
+}
+.branchTabs a:hover,
+.branchTabs a[aria-current="page"] {
+  color: #3159df;
+}
+.branchTabs a[aria-current="page"]::after {
+  position: absolute;
+  right: 16px;
+  bottom: -1px;
+  left: 16px;
+  height: 3px;
+  border-radius: 3px 3px 0 0;
+  background: #3159df;
+  content: "";
 }
 .headerFooter {
   display: grid;

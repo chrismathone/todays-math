@@ -15,6 +15,11 @@ export default async function TeacherClassesPage() {
   if (account.approvalStatus !== "approved") redirect("/approval-pending");
   if (!account.menus.includes("teaching") || account.role === "reviewer")
     redirect("/");
+  if (
+    account.branchId &&
+    (account.branchRole === "owner" || account.branchRole === "manager")
+  )
+    redirect("/branch?tab=classes");
   return (
     <div className={s.shell}>
       <header className={s.header}>

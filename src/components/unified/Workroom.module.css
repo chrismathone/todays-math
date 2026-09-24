@@ -348,6 +348,17 @@
   grid-template-columns: auto minmax(44px, 1fr) auto auto;
   gap: 16px;
 }
+.topbarSpacer {
+  display: none;
+}
+@media (min-width: 1500px) {
+  .workspace[data-authenticated="true"]:not([data-menu-count="0"]) .topbar {
+    grid-template-columns: minmax(0, 1fr) auto auto auto minmax(0, 1fr);
+  }
+  .workspace[data-authenticated="true"]:not([data-menu-count="0"]) .topbarSpacer {
+    display: block;
+  }
+}
 @media (max-width: 1320px) {
   .workspace[data-authenticated="true"] .searchTrigger {
     width: 44px;
@@ -383,6 +394,7 @@
 .searchTrigger {
   display: flex;
   align-items: center;
+  justify-content: center;
   gap: 9px;
   height: var(--control-height, 44px);
   padding: 0 11px;

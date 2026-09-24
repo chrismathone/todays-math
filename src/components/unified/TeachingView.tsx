@@ -57,7 +57,11 @@ const tabs = [
   { id: "lessons", label: "수업 진행" },
 ] as const;
 
-export default function TeachingView() {
+export default function TeachingView({
+  embedded = false,
+}: {
+  embedded?: boolean;
+}) {
   const [tab, setTab] = useState<TeachingTab>("classes");
   const [access, setAccess] = useState<AccessState>({ status: "loading" });
   const [signingOut, setSigningOut] = useState(false);
@@ -157,35 +161,37 @@ export default function TeachingView() {
   }
 
   return (
-    <div className={s.teaching}>
-      <WorkspacePageHeader
-        title="수업 관리"
-        description="반과 학생을 살피고, 오늘의 수업을 준비하세요."
-      >
-        {access.status === "ready" ? (
-          <div className={s.account}>
-            <span className={s.avatar} aria-hidden="true">
-              {(access.data.user.name || "선생님").slice(0, 1)}
-            </span>
-            <span>
-              <strong>{access.data.user.name || "선생님"}</strong>
-              <small>내 수업 공간</small>
-            </span>
-            <button
-              type="button"
-              className={s.secondaryButton}
-              disabled={signingOut}
-              onClick={() => void logout()}
-            >
-              {signingOut ? (
-                <WorkProgress variant="inline" label="로그아웃 중…" />
-              ) : (
-                "로그아웃"
-              )}
-            </button>
-          </div>
-        ) : null}
-      </WorkspacePageHeader>
+    <div className={`${s.teaching} ${embedded ? s.embedded : ""}`}>
+      {!embedded && (
+        <WorkspacePageHeader
+          title="수업 관리"
+          description="반과 학생을 살피고, 오늘의 수업을 준비하세요."
+        >
+          {access.status === "ready" ? (
+            <div className={s.account}>
+              <span className={s.avatar} aria-hidden="true">
+                {(access.data.user.name || "선생님").slice(0, 1)}
+              </span>
+              <span>
+                <strong>{access.data.user.name || "선생님"}</strong>
+                <small>내 수업 공간</small>
+              </span>
+              <button
+                type="button"
+                className={s.secondaryButton}
+                disabled={signingOut}
+                onClick={() => void logout()}
+              >
+                {signingOut ? (
+                  <WorkProgress variant="inline" label="로그아웃 중…" />
+                ) : (
+                  "로그아웃"
+                )}
+              </button>
+            </div>
+          ) : null}
+        </WorkspacePageHeader>
+      )}
       {accountError ? (
         <p role="alert" className={s.fieldError}>
           {accountError}

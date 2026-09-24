@@ -1,6 +1,6 @@
 .shell {
   display: grid;
-  grid-template-columns: 248px minmax(0, 1fr);
+  grid-template-columns: 240px minmax(0, 1fr);
   align-items: start;
   min-height: 100dvh;
   background: var(--learn-bg);
@@ -20,9 +20,9 @@
   top: 0;
   display: flex;
   flex-direction: column;
-  width: 248px;
+  width: 240px;
   height: 100svh;
-  padding: 28px 14px 18px;
+  padding: 18px;
   color: var(--learn-on-nav);
   background: var(--learn-nav);
 }
@@ -55,7 +55,7 @@
 }
 .sidebarNav a > span:first-child { width: 18px; text-align: center; font-size: 17px; }
 .sidebarNav a:hover { color: white; background: #ffffff17; }
-.sidebarNav a[aria-current="page"] { color: white; background: var(--learn-accent); }
+.sidebarNav a[aria-current="page"] { color: white; background: #304362; }
 .sidebarFooter { display: grid; gap: 12px; margin-top: auto; padding-top: 20px; border-top: 1px solid #ffffff26; }
 .sidebarIdentity { display: flex; align-items: center; gap: 10px; min-width: 0; padding: 0 6px; }
 .sidebarAvatar {
