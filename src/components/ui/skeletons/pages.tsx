@@ -26,7 +26,7 @@ export function DailyReviewSkeleton() {
 
 export function DashboardSkeleton() {
   return (
-    <MastheadSkeleton>
+    <MastheadSkeleton activeNav="main">
       <div className="flex min-h-0 flex-1">
         <div className="min-w-0 flex-1">
           <DailyReviewSkeleton />
@@ -210,7 +210,7 @@ export function ProblemGridSkeleton() {
 
 export function ProblemBankSkeleton() {
   return (
-    <MastheadSkeleton>
+    <MastheadSkeleton activeNav="problems">
       <main className="px-[26px] py-6">
         <div className="flex items-center justify-between">
           <Skeleton className="h-4 w-20" />
@@ -281,7 +281,7 @@ export function ClassManageSkeleton() {
 
 export function ClassesSkeleton() {
   return (
-    <MastheadSkeleton>
+    <MastheadSkeleton activeNav="classes">
       <ClassManageSkeleton />
     </MastheadSkeleton>
   );

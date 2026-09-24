@@ -32,7 +32,13 @@ function matchesStatus(student: Student, filter: Filter) {
   return true;
 }
 
-export function ClassMathSrs({ classId }: { classId: string }) {
+export function ClassMathSrs({
+  classId,
+  manageHref = "/classes/manage",
+}: {
+  classId: string;
+  manageHref?: string;
+}) {
   const [state, setState] = useState<MathSrsClassDashboard | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<{
@@ -71,9 +77,6 @@ export function ClassMathSrs({ classId }: { classId: string }) {
   );
   return (
     <main className={`${s.body} ${s.teacher}`}>
-      <nav className={s.nav}>
-        <Link href="/classes">← 반 관리</Link>
-      </nav>
       <header className={s.teacherHeader}>
         <div>
           <p className={s.eyebrow}>CLASS PRACTICE</p>
@@ -193,7 +196,7 @@ export function ClassMathSrs({ classId }: { classId: string }) {
                 학생을 등록하면 여기에서 학습 기록과 진도를 확인할 수 있습니다.
               </p>
               <Link
-                href="/classes"
+                href={manageHref}
                 className={`${s.secondaryButton} inline-flex min-h-11 items-center rounded-lg px-4 font-semibold underline underline-offset-4`}
               >
                 반 관리에서 학생 등록하기

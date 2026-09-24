@@ -1,28 +1,35 @@
 import { render, screen, within } from "@testing-library/react";
+import userEvent from "@testing-library/user-event";
 import { describe, expect, it } from "vitest";
 
 import { AppChrome } from "@/components/chrome/AppChrome";
+import { MastheadSkeleton } from "@/components/ui/skeletons/shared";
 
-describe("[AppChrome]", () => {
-  it("현재 메뉴와 본문으로 건너뛸 목적지를 제공한다", () => {
+describe("AppChrome", () => {
+  it("places production navigation in the left sidebar and keeps the skip link", () => {
     render(
-      <AppChrome activeNav="classes">
+      <AppChrome activeNav="classes" classesHref="/branch?tab=classes">
         <main>반 관리 본문</main>
       </AppChrome>,
     );
 
-    const navigation = within(
-      screen.getByRole("navigation", { name: "주 메뉴" }),
-    );
+    const sidebar = screen.getByRole("complementary");
+    const navigation = within(sidebar).getByRole("navigation", {
+      name: "주 메뉴",
+    });
     expect(
-      navigation.getByRole("link", { name: "수업·학생 관리" }),
+      within(navigation).getByRole("link", { name: "수업·학생 관리" }),
     ).toHaveAttribute("aria-current", "page");
     expect(
-      navigation.getByRole("link", { name: "오늘의 작업" }),
-    ).not.toHaveAttribute("aria-current");
+      within(navigation).getByRole("link", { name: "수업·학생 관리" }),
+    ).toHaveAttribute("href", "/branch?tab=classes");
     expect(
-      navigation.getByRole("link", { name: "시험지 만들기" }),
-    ).not.toHaveAttribute("aria-current");
+      within(navigation).getByRole("link", { name: "오늘의시험" }),
+    ).toHaveAttribute("href", "/exam");
+    expect(screen.getByRole("link", { name: "오늘의수학" })).toHaveAttribute(
+      "href",
+      "/",
+    );
 
     const skip = screen.getByRole("link", { name: "본문으로 건너뛰기" });
     const target = document.querySelector(skip.getAttribute("href")!);
@@ -30,33 +37,10 @@ describe("[AppChrome]", () => {
     expect(target).toContainElement(screen.getByRole("main"));
   });
 
-  it("로고와 메인 탐색 링크를 보여 준다", () => {
-    render(
-      <AppChrome dateLabel="2026.08.14. 금">
-        <p>본문</p>
-      </AppChrome>,
-    );
-
-    const logo = screen.getByRole("link", { name: "오늘의수학" });
-    expect(logo).toHaveAttribute("href", "/");
-    expect(logo.className).toContain("text-2xl");
-    expect(screen.getByRole("link", { name: "오늘의 작업" })).toHaveAttribute(
-      "href",
-      "/",
-    );
-    expect(
-      screen.getByRole("link", { name: "수업·학생 관리" }),
-    ).toHaveAttribute("href", "/classes");
-    expect(screen.getByRole("link", { name: "시험지 만들기" })).toHaveAttribute(
-      "href",
-      "/problems",
-    );
-    expect(screen.getByText("본문")).toBeInTheDocument();
-  });
-
-  it("남은 작업 수와 추가 탐색을 보여 준다", () => {
+  it("keeps page actions on the right of the top bar", () => {
     render(
       <AppChrome
+        dateLabel="2026.08.14. 금"
         remaining={2}
         extraNav={<button type="button">전체 표 ⇄</button>}
       >
@@ -64,103 +48,65 @@ describe("[AppChrome]", () => {
       </AppChrome>,
     );
 
-    expect(screen.getByText("남은 작업 2")).toBeInTheDocument();
+    const header = screen.getByRole("banner");
     expect(
-      screen.getByRole("button", { name: "전체 표 ⇄" }),
+      within(header).getByRole("button", { name: "전체 표 ⇄" }),
     ).toBeInTheDocument();
+    expect(within(header).getByText("남은 작업 2")).toBeInTheDocument();
+    expect(within(header).getByText("2026.08.14. 금")).toBeInTheDocument();
   });
 
-  /**
-   * 2026-08-16 T7.14 추가 — 워드마크 분기(D-39).
-   *
-   * 위 두 테스트는 **한 줄도 바꾸지 않았다.** 워드마크가 둘로 갈렸지만 '오늘의수학'은
-   * 여전히 `/` 로 가는 링크이고 글자 크기도 그대로라, 기존 계약이 그대로 성립한다.
-   * 선택된 쪽을 링크에서 뺐다면 위 테스트를 고쳐야 했을 텐데, 그러지 않은 이유는
-   * AppChrome.tsx 머리주석에 적었다(워드마크=홈 링크 관례 + 색만으로 전달 금지).
-   *
-   * 이 분기가 없으면 '오늘의 시험' 탭에 들어갈 경로가 아예 없다 — T7.14 보고서 §4-3.
-   */
-  it("워드마크가 두 제품으로 갈리고 반대편 탭으로 건너간다 (D-39)", () => {
+  it("marks the exam menu when the exam is open", () => {
     render(
-      <AppChrome>
-        <p>본문</p>
-      </AppChrome>,
-    );
-
-    expect(screen.getByRole("link", { name: "오늘의시험" })).toHaveAttribute(
-      "href",
-      "/exam",
-    );
-  });
-
-  it("현재 탭을 색이 아니라 aria-current 로 알린다", () => {
-    const { rerender } = render(
-      <AppChrome>
-        <p>본문</p>
-      </AppChrome>,
-    );
-
-    // 기본값은 '오늘의 수학' 탭이다.
-    expect(screen.getByRole("link", { name: "오늘의수학" })).toHaveAttribute(
-      "aria-current",
-      "page",
-    );
-    expect(
-      screen.getByRole("link", { name: "오늘의시험" }),
-    ).not.toHaveAttribute("aria-current");
-
-    rerender(
       <AppChrome tab="exam">
-        <p>본문</p>
+        <p>시험 본문</p>
       </AppChrome>,
     );
-
-    expect(screen.getByRole("link", { name: "오늘의시험" })).toHaveAttribute(
-      "aria-current",
-      "page",
-    );
+    const navigation = screen.getByRole("navigation", { name: "주 메뉴" });
     expect(
-      screen.getByRole("link", { name: "오늘의수학" }),
+      within(navigation).getByRole("link", { name: "오늘의시험" }),
+    ).toHaveAttribute("aria-current", "page");
+    expect(
+      within(navigation).getByRole("link", { name: "오늘의 작업" }),
     ).not.toHaveAttribute("aria-current");
   });
 
-  /**
-   * 2026-08-24 D-77 — 계정 구역 **배선**을 잠근다.
-   *
-   * AccountBadge 자체의 계약은 AccountBadge.test.tsx 가 지킨다. 여기서 잠그는 것은
-   * **그것이 헤더에 실제로 걸려 있는가** 하나다 — 이게 없으면 `<AccountBadge />` 를
-   * 지워도 아무 테스트도 빨개지지 않는다.
-   *
-   * 그리고 이 기능이 존재하는 이유 자체가 «호출처 한 곳이 빠져 계정이 조용히 안 뜨는 것»
-   * 을 막는 것이다. 그 실패 모양을 테스트가 못 보면 안 된다.
-   */
-  it("계정 구역이 헤더에 걸려 있다 (D-77)", async () => {
+  it("opens account settings and sign out from the bottom profile menu", async () => {
     render(
       <AppChrome>
         <p>본문</p>
       </AppChrome>,
     );
-
+    const sidebar = screen.getByRole("complementary");
+    const profile = within(sidebar).getByRole("button", {
+      name: "내정보 메뉴",
+    });
+    expect(profile).toHaveAttribute("aria-expanded", "false");
     expect(
-      await screen.findByRole("button", { name: "로그아웃" }),
+      await within(sidebar).findByTestId("account-email"),
+    ).toHaveTextContent("teacher@example.com");
+    await userEvent.click(profile);
+    expect(profile).toHaveAttribute("aria-expanded", "true");
+    expect(
+      within(sidebar).getByRole("link", { name: "내정보 설정" }),
+    ).toHaveAttribute("href", "/account");
+    expect(
+      within(sidebar).getByRole("button", { name: "로그아웃" }),
     ).toBeInTheDocument();
-    expect(await screen.findByTestId("account-email")).toHaveTextContent(
-      "teacher@example.com",
-    );
   });
 
-  it("날짜·남은 작업 크롬은 두 탭이 공유한다", () => {
+  it("uses the same sidebar during route loading", () => {
     render(
-      <AppChrome tab="exam" dateLabel="2026-08-16 일" remaining={3}>
-        <p>본문</p>
-      </AppChrome>,
+      <MastheadSkeleton tab="exam">
+        <main>불러오는 중</main>
+      </MastheadSkeleton>,
     );
-
-    expect(screen.getByText("2026-08-16 일")).toBeInTheDocument();
-    expect(screen.getByText("남은 작업 3")).toBeInTheDocument();
-    // nav 는 그대로다 — D-39 는 'nav 항목 추가'안을 반려했다.
     expect(
-      screen.getByRole("link", { name: "시험지 만들기" }),
+      screen.getByRole("navigation", { name: "주 메뉴" }),
     ).toBeInTheDocument();
+    expect(screen.getByRole("link", { name: "오늘의시험" })).toHaveAttribute(
+      "aria-current",
+      "page",
+    );
   });
 });

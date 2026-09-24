@@ -1,9 +1,11 @@
 "use client";
 
+import Link from "next/link";
 import { useEffect, useState } from "react";
 
 import { signOutAction } from "@/app/actions/auth";
 import { Skeleton } from "@/components/ui/Skeleton";
+import s from "./AppChrome.module.css";
 
 /**
  * 헤더 계정 구역 — **누구로 로그인했는지 항상 보인다** (D-77).
@@ -22,9 +24,12 @@ import { Skeleton } from "@/components/ui/Skeleton";
  * ⚠️ **로그아웃은 세션 조회 성공 여부와 무관하게 늘 그린다.** 세션이 이상할 때
  *    로그아웃까지 같이 사라지면 잘못된 계정에 **갇힌다** — 오늘 사고가 그 상태였다.
  */
-export function AccountBadge() {
+export function AccountBadge({
+  variant = "header",
+}: { variant?: "header" | "sidebar" } = {}) {
   // undefined = 조회 중 · null = 세션 없음 · string = 이메일
   const [email, setEmail] = useState<string | null | undefined>(undefined);
+  const [profileOpen, setProfileOpen] = useState(false);
 
   useEffect(() => {
     let alive = true;
@@ -40,6 +45,49 @@ export function AccountBadge() {
       alive = false;
     };
   }, []);
+
+  if (variant === "sidebar") {
+    return (
+      <div className={s.sidebarAccount}>
+        <button
+          type="button"
+          className={s.accountLink}
+          aria-label="내정보 메뉴"
+          aria-expanded={profileOpen}
+          onClick={() => setProfileOpen((open) => !open)}
+          onKeyDown={(event) => {
+            if (event.key === "Escape") setProfileOpen(false);
+          }}
+        >
+          <span className={s.avatar} aria-hidden="true">
+            내
+          </span>
+          <span className={s.accountText}>
+            <strong>내정보</strong>
+            {email === undefined ? (
+              <Skeleton className="h-3 w-28" />
+            ) : email ? (
+              <small data-testid="account-email">{email}</small>
+            ) : null}
+          </span>
+          <span className={s.accountArrow} aria-hidden="true">
+            ›
+          </span>
+        </button>
+        {profileOpen && (
+          <div className={s.profilePanel}>
+            <p>내 계정</p>
+            <Link href="/account">내정보 설정</Link>
+            <form action={signOutAction}>
+              <button type="submit" className={s.signOut}>
+                로그아웃
+              </button>
+            </form>
+          </div>
+        )}
+      </div>
+    );
+  }
 
   return (
     <>
