@@ -21,9 +21,11 @@ const BASE = process.env.BASE ?? "http://localhost:3217";
 const OUT = path.resolve("scratch", "learn-screens");
 const MOCKUP = path.resolve("docs", "design", "mockups", "hifi-d124-todays-concept.html");
 
-/** 폭 — 작은 휴대폰(360) · 흔한 휴대폰(400) · 태블릿(768) · 흔한 노트북(1366) */
-const WIDTHS = [360, 400, 768, 1366];
-const HEIGHT = { 360: 780, 400: 860, 768: 1024, 1366: 768 };
+/** 폭 — WIDTHS=320,360,390,400,430 으로 휴대폰 범위를 따로 검수할 수 있다. */
+const WIDTHS = (process.env.WIDTHS ?? "360,400,768,1366")
+  .split(",")
+  .map(Number);
+const HEIGHT = { 320: 700, 360: 780, 390: 844, 400: 860, 430: 932, 768: 1024, 1366: 768 };
 
 /** `ONLY=password,issue-locked` — 고른 실행만(다시 찍을 캡처만). 비우면 전량. 결과는 `layout-<고른 것>.json` */
 const ONLY = (process.env.ONLY ?? "").split(",").map((s) => s.trim()).filter(Boolean);
@@ -101,7 +103,12 @@ function measure(page) {
 }
 
 async function open(width, query) {
-  const page = await browser.newPage({ viewport: { width, height: HEIGHT[width] ?? 900 }, deviceScaleFactor: 1 });
+  const page = await browser.newPage({
+    viewport: { width, height: HEIGHT[width] ?? 900 },
+    deviceScaleFactor: 1,
+    isMobile: width <= 600,
+    hasTouch: width <= 600,
+  });
   await page.goto(`${BASE}/dev/learn-hifi?${query}`, { waitUntil: "domcontentloaded", timeout: 180_000 });
   await page.waitForSelector("main", { timeout: 180_000 });
   await page.waitForFunction(() => !document.body.textContent?.includes("불러오는 중…"), null, { timeout: 60_000 });
@@ -257,7 +264,7 @@ await mock.close();
 // ── 나란히 — 왼쪽 시안 휴대폰, 오른쪽 구현(360 · 400) ──────────────────────────
 const img = (file) => `data:image/png;base64,${fs.readFileSync(path.join(OUT, file)).toString("base64")}`;
 const pair = await browser.newPage({ viewport: { width: 1800, height: 1000 }, deviceScaleFactor: 1 });
-for (const key of ["login", "password", "list", "watch"].filter(wanted)) {
+for (const key of ["login", "password", "list", "watch"].filter((key) => wanted(key) && WIDTHS.includes(360) && WIDTHS.includes(400))) {
   await pair.setContent(`<!doctype html><meta charset="utf-8">
 <style>body{margin:0;display:flex;gap:24px;align-items:flex-start;padding:20px;background:#e9edf3;font:14px system-ui}
 figure{margin:0;display:grid;gap:8px}figcaption{font-weight:700;color:#172b4d}img{display:block;border:1px solid #c9d2df}</style>
