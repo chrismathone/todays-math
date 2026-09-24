@@ -15,7 +15,7 @@ import type {
   TestResult as TestResultRow,
 } from "@prisma/client";
 
-import type { Difficulty, DifficultyRatio } from "@/contracts/common.contract";
+import type { Difficulty } from "@/contracts/common.contract";
 import type {
   ClassEntity,
   ProgressEntity,
@@ -30,6 +30,7 @@ import type {
   ProblemAnswerEntity,
   TestResultEntity,
 } from "@/contracts/testresult.contract";
+import { normalizeStoredDifficultyRatio } from "@/lib/class/normalizeDifficultyRatio";
 
 export function serializeClass(row: ClassRow): ClassEntity {
   return {
@@ -38,8 +39,7 @@ export function serializeClass(row: ClassRow): ClassEntity {
     name: row.name,
     grade: row.grade,
     defaultProblemCount: row.defaultProblemCount,
-    // Class.difficultyRatio는 jsonb — 계약의 difficultyRatioSchema 형태({easy,mid,hard})로 저장됨을 전제한다.
-    difficultyRatio: row.difficultyRatio as DifficultyRatio,
+    difficultyRatio: normalizeStoredDifficultyRatio(row.difficultyRatio),
     createdAt: row.createdAt.toISOString(),
     updatedAt: row.updatedAt.toISOString(),
   };

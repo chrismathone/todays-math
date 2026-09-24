@@ -22,6 +22,7 @@ import { createHash } from "node:crypto";
 
 import type { PrismaClient } from "@prisma/client";
 
+import { DEFAULT_DIFFICULTY_RATIO } from "@/contracts/difficulty";
 import { createEywaClient } from "@/lib/eywa/client";
 import { groupReportsByClassStudent, splitKey } from "@/lib/eywa/groupReports";
 import {
@@ -349,7 +350,7 @@ export async function runEywaSync(opts: {
             name: info.name,
             grade,
             userId: owner.id,
-            difficultyRatio: { easy: 3, mid: 4, hard: 1 },
+            difficultyRatio: DEFAULT_DIFFICULTY_RATIO,
           },
           update: { name: info.name, grade },
           select: { id: true },

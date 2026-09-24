@@ -2,7 +2,6 @@
  * POST /api/tests/generate — 진도 해석 + 출제 엔진 + draft TEST/TEST_PROBLEM 원자 생성.
  * 엔진(selectProblems)은 순수 함수이므로 여기서 DB 조회 결과만 조립해 넘긴다.
  */
-import type { DifficultyRatio } from "@/contracts/common.contract";
 import type { TestGenerateRequest } from "@/contracts/test.contract";
 import { noProgressReason } from "@/lib/progress/noProgressReason";
 import {
@@ -10,6 +9,7 @@ import {
   testGenerateResponseSchema,
 } from "@/contracts/test.contract";
 import { jsonError, jsonOk } from "@/lib/apiResponse";
+import { normalizeStoredDifficultyRatio } from "@/lib/class/normalizeDifficultyRatio";
 import { db } from "@/lib/db";
 import { findEligibleProblems } from "@/lib/findEligibleProblems";
 import { countFamilies } from "@/lib/generator/familyKey";
@@ -131,8 +131,9 @@ export async function generateDraftTest(
   }
 
   const count = input.problemCount ?? owned.data.defaultProblemCount;
-  const difficultyRatio = (input.difficultyRatio ??
-    owned.data.difficultyRatio) as DifficultyRatio;
+  const difficultyRatio =
+    input.difficultyRatio ??
+    normalizeStoredDifficultyRatio(owned.data.difficultyRatio);
 
   // 두 조회는 서로를 전혀 참조하지 않는다(풀은 단원, 최근 출제는 날짜로만 좁힌다).
   // 순차로 await 하면 그냥 두 왕복이 더해진다.

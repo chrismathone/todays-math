@@ -147,6 +147,27 @@ afterEach(() => {
 describe.each(CASES)("GET /api/classes — $who", ({ isAdmin }) => {
   beforeEach(() => loginAs(isAdmin));
 
+  it("옛 난이도 배분으로 저장된 반도 현재 계약으로 돌려준다", async () => {
+    await db.class.update({
+      where: { id: CLASS_OTHER_ID },
+      data: { difficultyRatio: { easy: 3, mid: 4, hard: 1 } },
+    });
+
+    const res = await listClasses(req("/api/classes?page=1&pageSize=100"));
+    expect(res.status).toBe(200);
+    const body = classListResponseSchema.parse(await res.json());
+    expect(
+      body.data.find((row) => row.id === CLASS_OTHER_ID)?.difficultyRatio,
+    ).toEqual({
+      연산: 1,
+      기본: 3,
+      응용: 3,
+      심화하: 1,
+      심화중: 0,
+      심화상: 0,
+    });
+  });
+
   it(
     isAdmin
       ? "모든 행에 담당(계정 이름 · 내 반) — 내 반이 맨 위"
