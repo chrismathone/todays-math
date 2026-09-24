@@ -29,10 +29,9 @@ import {
 } from "@/components/ui/PageSkeletons";
 
 /**
- * 로딩 스켈레톤 **전량 시안** (내부 화면).
+ * 현재 사용 중인 로딩 화면과 참고 시안을 함께 보는 내부 페이지.
  *
- * 왜 있나: 스켈레톤은 **화면이 느릴 때만** 보인다. 그래서 원장님이 실물로
- * 보시려면 느려지기를 기다려야 하고, 그러면 **모양을 확정할 수가 없다.**
+ * 실제 로딩 화면은 짧게 나타나므로 한곳에서 형태를 확인할 수 있게 한다.
  * 절대 규칙 1(D-07)은 형태를 정하는 작업에 원장님 확정을 요구한다.
  *
  * ⚠️ 다른 `/dev` 화면과 같은 가드를 쓴다. **`force-static` 을 쓰면 안 된다.**
@@ -43,7 +42,7 @@ const MICRO = "text-[10px] font-extrabold tracking-[1.2px]";
 type Piece = {
   name: string;
   where: string;
-  kind: "라우트" | "화면 안";
+  kind: "라우트" | "화면 안" | "참고";
   node: React.ReactNode;
 };
 
@@ -60,14 +59,14 @@ const PIECES: Piece[] = [
   },
   {
     name: "작업실 — 홈",
-    where: "작업실 미리보기",
-    kind: "화면 안",
+    where: "현재 라우트에서 사용하지 않는 시안",
+    kind: "참고",
     node: <WorkroomHomeSkeleton />,
   },
   {
     name: "소개 화면",
-    where: "LandingPage (비로그인 `/` 의 완성 화면)",
-    kind: "화면 안",
+    where: "현재 화면에서 사용하지 않는 시안",
+    kind: "참고",
     node: <LandingSkeleton />,
   },
   {
@@ -84,8 +83,8 @@ const PIECES: Piece[] = [
   },
   {
     name: "반 목록",
-    where: "반 목록 미리보기",
-    kind: "화면 안",
+    where: "현재 라우트에서 사용하지 않는 시안",
+    kind: "참고",
     node: <ClassesSkeleton />,
   },
   {
@@ -138,8 +137,8 @@ const PIECES: Piece[] = [
   },
   {
     name: "시험 검수 — 전체",
-    where: "시험 검수 미리보기",
-    kind: "화면 안",
+    where: "현재 라우트에서 사용하지 않는 시안",
+    kind: "참고",
     node: <TestReviewSkeleton />,
   },
   {
@@ -179,15 +178,27 @@ const PIECES: Piece[] = [
     node: <ReviewConsoleSkeleton />,
   },
   {
-    name: "로그인 (칸 2 · 편집 패널 포함)",
-    where: "(auth)/loading.tsx · login/loading.tsx",
+    name: "계정 화면 공통 (칸 2 · 편집 패널 포함)",
+    where: "(auth)/loading.tsx",
     kind: "라우트",
     node: <AuthLoading />,
   },
   {
-    name: "가입 폼만 (칸 3)",
-    where: "signup/loading.tsx · AuthFormSkeleton",
+    name: "로그인 (칸 2 · 편집 패널 포함)",
+    where: "(auth)/login/loading.tsx",
     kind: "라우트",
+    node: <AuthLoading />,
+  },
+  {
+    name: "가입 (칸 3 · 편집 패널 포함)",
+    where: "(auth)/signup/loading.tsx",
+    kind: "라우트",
+    node: <AuthLoading fields={3} />,
+  },
+  {
+    name: "가입 폼만 (칸 3)",
+    where: "AuthLoading 안의 AuthFormSkeleton",
+    kind: "화면 안",
     node: <AuthFormSkeleton fields={3} />,
   },
   {
@@ -208,6 +219,8 @@ export default async function SkeletonsPage() {
   }
 
   const routes = PIECES.filter((p) => p.kind === "라우트").length;
+  const embedded = PIECES.filter((p) => p.kind === "화면 안").length;
+  const references = PIECES.filter((p) => p.kind === "참고").length;
 
   return (
     <main className="mx-auto w-full max-w-[1600px] px-4 py-8 sm:px-6">
@@ -217,8 +230,8 @@ export default async function SkeletonsPage() {
           로딩 스켈레톤 시안
         </h1>
         <p className="mt-2 text-[13px] leading-[1.8] text-text-2">
-          스켈레톤은 <b>화면이 느릴 때만</b> 보인다. 이 화면은 그 자리를 한 장에
-          늘어놓은 것이다. 고칠 자리는 각 칸에 적어 두었다.
+          실제 라우트와 화면 안의 로딩 화면을 모았습니다. 참고 시안은 현재
+          페이지 전환에 사용되지 않습니다.
         </p>
         <p className="mt-2 text-[13px] leading-[1.8] text-text-2">
           작업실 자리는 paper/navy/cobalt/mint 를 쓰고, 알림·카드에 색 왼쪽 띠를
@@ -236,9 +249,15 @@ export default async function SkeletonsPage() {
         </div>
         <div>
           <div className="text-[26px] font-black leading-none tabular-nums">
-            {PIECES.length - routes}
+            {embedded}
           </div>
           <div className={`mt-1 ${MICRO} text-faint`}>화면 안 자리</div>
+        </div>
+        <div>
+          <div className="text-[26px] font-black leading-none tabular-nums">
+            {references}
+          </div>
+          <div className={`mt-1 ${MICRO} text-faint`}>참고 시안</div>
         </div>
       </section>
 
