@@ -80,7 +80,7 @@ export function WatchScreen({ lectureId }: { lectureId: string }) {
   return (
     <div className={s.column}>
       <LearnTopBar student={data?.student ?? null} />
-      <main className={s.body}>
+      <main className={`${s.body} ${s.watchBody}`}>
         <Link href="/learn" className={s.back}>
           ‹ 목록
         </Link>
@@ -117,7 +117,7 @@ export function WatchScreen({ lectureId }: { lectureId: string }) {
               onProgress={setProgress}
               onWatched={setWatch}
             />
-            <div>
+            <div className={s.watchHeading}>
               <h1 className={s.titleLine}>{data.lecture.title}</h1>
               <span className={s.meta}>
                 {data.unit.section} · {mmss(data.lecture.seconds)} ·{" "}

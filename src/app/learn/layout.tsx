@@ -1,7 +1,8 @@
 import type { Metadata } from "next";
-import type { ReactNode } from "react";
+import { Suspense, type ReactNode } from "react";
 
 import s from "@/components/learn/learn.module.css";
+import { StudentMobileNav } from "@/components/learn/StudentMobileNav";
 
 /**
  * «오늘의 개념» 학생 전용 주소(D-125 ⑷) — 로그인 · 첫 비밀번호 · 목록 · 재생 네 장.
@@ -14,5 +15,12 @@ export const metadata: Metadata = {
 };
 
 export default function LearnLayout({ children }: { children: ReactNode }) {
-  return <div className={s.page}>{children}</div>;
+  return (
+    <div className={s.page}>
+      {children}
+      <Suspense fallback={null}>
+        <StudentMobileNav />
+      </Suspense>
+    </div>
+  );
 }

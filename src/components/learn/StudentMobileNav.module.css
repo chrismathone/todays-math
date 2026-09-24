@@ -1,0 +1,53 @@
+.nav {
+  display: none;
+}
+
+@media (max-width: 600px) {
+  .nav {
+    position: fixed;
+    z-index: 20;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    width: min(100%, 480px);
+    margin: 0 auto;
+    padding: 7px 8px calc(7px + env(safe-area-inset-bottom, 0px));
+    border-top: 1px solid var(--learn-track);
+    background: var(--learn-surface);
+    box-shadow: 0 -8px 28px rgb(20 36 61 / 7%);
+  }
+
+  .tab {
+    display: grid;
+    justify-items: center;
+    align-content: center;
+    gap: 2px;
+    min-height: 54px;
+    border-radius: 10px;
+    color: var(--learn-muted);
+    font-size: 11px;
+    font-weight: 700;
+    text-decoration: none;
+  }
+
+  .tab svg {
+    width: 23px;
+    height: 23px;
+    stroke: currentColor;
+    stroke-width: 1.8;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+  }
+
+  .tab[aria-current="page"] {
+    color: var(--learn-accent);
+    background: var(--learn-soft);
+  }
+
+  .tab:focus-visible {
+    outline: 3px solid var(--learn-focus);
+    outline-offset: -3px;
+  }
+}

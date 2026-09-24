@@ -68,6 +68,14 @@ export function StudentLoginForm() {
           <b>오늘의수학</b>
           <span>오늘의 개념 · 학생</span>
         </div>
+        <div className={s.loginIntro}>
+          <p>내 수학 학습 공간</p>
+          <h1>
+            오늘 배운 내용을
+            <br /> 내 것으로 만들어요.
+          </h1>
+          <span>선생님께 받은 아이디와 비밀번호로 들어오세요.</span>
+        </div>
         <form
           className={s.form}
           onSubmit={(event) => void onSubmit(event)}

@@ -306,7 +306,10 @@ export function LecturePlayer({
         >
           {playing ? "멈춤" : "재생"}
         </button>
-        <span className={s.track}>
+        <span
+          className={s.track}
+          style={{ "--played": pct(position) } as CSSProperties}
+        >
           <input
             type="range"
             min={0}

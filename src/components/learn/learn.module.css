@@ -114,6 +114,58 @@
   gap: 14px;
   padding: 14px 14px 32px;
 }
+.mobileWelcome {
+  display: none;
+}
+.practiceShortcut {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  min-height: 72px;
+  padding: 12px;
+  border: 1px solid var(--s-line);
+  border-radius: var(--s-r-sm);
+  background: var(--s-card);
+  color: var(--s-ink);
+  text-decoration: none;
+}
+.practiceShortcut:hover {
+  border-color: var(--s-ctl);
+}
+.practiceIcon {
+  display: grid;
+  flex: none;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  border-radius: 12px;
+  background: var(--learn-soft);
+  color: var(--s-accent);
+  font-size: 17px;
+  font-weight: 800;
+}
+.practiceCopy {
+  display: grid;
+  gap: 2px;
+  min-width: 0;
+}
+.practiceCopy b {
+  font-size: 14px;
+}
+.practiceCopy > span {
+  color: var(--s-muted);
+  font-size: 12px;
+  overflow-wrap: anywhere;
+}
+.practiceArrow {
+  margin-left: auto;
+  color: var(--s-accent);
+  font-size: 27px;
+  line-height: 1;
+}
+.listHeading p {
+  display: none;
+}
 .h {
   margin: 0;
   font-size: 22px;
@@ -430,6 +482,9 @@ a.next:hover b {
   gap: 14px;
   padding: 48px 20px 24px;
 }
+.loginIntro {
+  display: none;
+}
 .brand {
   display: grid;
   gap: 2px;
@@ -536,4 +591,326 @@ a.next:hover b {
   font-size: 12px;
   font-weight: 600;
   color: var(--s-bad);
+}
+
+@media (max-width: 600px) {
+  .page {
+    padding-bottom: calc(72px + env(safe-area-inset-bottom, 0px));
+    font-size: 15px;
+  }
+
+  .top {
+    top: 0;
+    min-height: 62px;
+    padding: calc(10px + env(safe-area-inset-top, 0px)) 18px 10px;
+  }
+
+  .top > b {
+    font-size: 17px;
+  }
+
+  .who {
+    gap: 4px 7px;
+    font-size: 12px;
+  }
+
+  .textButton {
+    min-height: 44px;
+    margin: -8px -7px;
+    padding: 8px 7px;
+    font-size: 13px;
+  }
+
+  .body {
+    gap: 20px;
+    padding: 22px 18px 38px;
+  }
+
+  .mobileWelcome {
+    display: grid;
+    gap: 3px;
+    margin: 1px 0 3px;
+  }
+
+  .mobileWelcome p {
+    margin: 0;
+    color: var(--s-accent);
+    font-size: 12px;
+    font-weight: 750;
+  }
+
+  .mobileWelcome strong {
+    font-size: clamp(20px, 5.5vw, 25px);
+    font-weight: 800;
+    letter-spacing: -0.045em;
+    line-height: 1.35;
+    word-break: keep-all;
+  }
+
+  .practiceShortcut {
+    min-height: 90px;
+    gap: 14px;
+    padding: 16px;
+    border-radius: 16px;
+    box-shadow: 0 4px 16px rgb(20 36 61 / 4%);
+  }
+
+  .practiceIcon {
+    width: 50px;
+    height: 50px;
+    font-size: 19px;
+  }
+
+  .practiceCopy b {
+    font-size: 16px;
+  }
+
+  .practiceCopy > span {
+    font-size: 13px;
+    line-height: 1.35;
+  }
+
+  .listHeading {
+    display: grid;
+    gap: 3px;
+    margin-top: 5px;
+  }
+
+  .listHeading p {
+    display: block;
+    margin: 0;
+    color: var(--s-muted);
+    font-size: 13px;
+  }
+
+  .h {
+    font-size: 23px;
+  }
+
+  .today {
+    gap: 13px;
+    padding: 17px;
+    border-radius: 18px;
+  }
+
+  .past {
+    gap: 11px;
+    padding-top: 4px;
+  }
+
+  .date {
+    font-size: 13px;
+  }
+
+  .unit {
+    font-size: 18px;
+  }
+
+  .item {
+    min-height: 82px;
+    gap: 12px;
+    padding: 10px;
+    border-radius: 12px;
+  }
+
+  .it {
+    font-size: 14px;
+  }
+
+  .meta {
+    font-size: 13px;
+  }
+
+  .empty,
+  .line {
+    padding: 18px;
+    border-radius: 12px;
+    background: var(--s-card);
+    font-size: 14px;
+    line-height: 1.5;
+  }
+
+  .error {
+    font-size: 14px;
+  }
+
+  .watchBody {
+    gap: 18px;
+    padding-top: 18px;
+  }
+
+  .back {
+    min-height: 44px;
+    display: inline-flex;
+    align-items: center;
+    padding: 8px 0;
+    font-size: 14px;
+  }
+
+  .watchHeading {
+    display: grid;
+    gap: 5px;
+  }
+
+  .bar {
+    min-height: 60px;
+    gap: 5px;
+    padding: 7px 8px;
+  }
+
+  .playButton,
+  .rateButton {
+    display: inline-flex;
+    min-width: 44px;
+    min-height: 44px;
+    align-items: center;
+    justify-content: center;
+    margin: 0;
+    padding: 0 2px;
+  }
+
+  .track {
+    height: 44px;
+  }
+
+  .track::before {
+    position: absolute;
+    right: 0;
+    left: 0;
+    top: 19px;
+    height: 6px;
+    border-radius: 3px;
+    background: linear-gradient(
+      to right,
+      var(--s-accent) 0 var(--played, 0%),
+      var(--s-line) var(--played, 0%) 100%
+    );
+    content: "";
+    pointer-events: none;
+  }
+
+  .track input[type="range"] {
+    position: relative;
+    z-index: 1;
+    height: 44px;
+    background: transparent;
+  }
+
+  .track input[type="range"]::-webkit-slider-thumb {
+    width: 18px;
+    height: 18px;
+  }
+
+  .track input[type="range"]::-moz-range-thumb {
+    width: 18px;
+    height: 18px;
+  }
+
+  .seen {
+    z-index: 2;
+    top: 13px;
+    bottom: 13px;
+  }
+
+  .titleLine {
+    font-size: 21px;
+    font-weight: 800;
+  }
+
+  .note {
+    padding: 14px 16px;
+    border-radius: 12px;
+    font-size: 13px;
+    line-height: 1.55;
+  }
+
+  .next {
+    gap: 5px;
+    padding: 16px;
+    border: 1px solid var(--s-line);
+    border-radius: 12px;
+    background: var(--s-card);
+    font-size: 12px;
+  }
+
+  .next b {
+    font-size: 15px;
+  }
+
+  .login {
+    align-content: start;
+    gap: 22px;
+    min-height: 100dvh;
+    padding: calc(36px + env(safe-area-inset-top, 0px)) 24px 24px;
+    background:
+      radial-gradient(circle at 95% 1%, var(--learn-soft) 0, transparent 45%),
+      var(--s-bg);
+  }
+
+  .brand b {
+    font-size: 21px;
+  }
+
+  .brand span {
+    font-size: 12px;
+  }
+
+  .loginIntro {
+    display: grid;
+    gap: 8px;
+    margin: 42px 0 9px;
+  }
+
+  .loginIntro p {
+    width: fit-content;
+    margin: 0;
+    padding: 6px 10px;
+    border-radius: 999px;
+    background: var(--learn-soft);
+    color: var(--s-accent);
+    font-size: 12px;
+    font-weight: 750;
+  }
+
+  .loginIntro h1 {
+    margin: 0;
+    font-size: clamp(27px, 8vw, 34px);
+    font-weight: 800;
+    letter-spacing: -0.055em;
+    line-height: 1.28;
+    word-break: keep-all;
+  }
+
+  .loginIntro > span {
+    color: var(--s-muted);
+    font-size: 14px;
+    line-height: 1.5;
+  }
+
+  .form {
+    gap: 15px;
+  }
+
+  .field {
+    gap: 6px;
+    color: var(--s-ink);
+    font-size: 13px;
+    font-weight: 700;
+  }
+
+  .input {
+    height: 52px;
+  }
+
+  .primary {
+    min-height: 54px;
+    font-size: 16px;
+    font-weight: 750;
+  }
+
+  .help,
+  .alt,
+  .kick {
+    font-size: 13px;
+  }
 }

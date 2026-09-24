@@ -16,6 +16,7 @@ import {
   type CreatePlayer,
 } from "@/components/learn/playerAdapter";
 import { StudentLoginForm } from "@/components/learn/StudentLoginForm";
+import { StudentMobileNav } from "@/components/learn/StudentMobileNav";
 import { StudentPasswordForm } from "@/components/learn/StudentPasswordForm";
 import { WatchScreen } from "@/components/learn/WatchScreen";
 import { StudentList } from "@/components/class/StudentList";
@@ -326,6 +327,15 @@ export function LearnHifiClient({ options }: { options: LearnHifiOptions }) {
           <WatchScreen lectureId={lectureId} />
         ) : null}
       </PlayerFactoryContext.Provider>
+      <StudentMobileNav
+        previewPath={
+          options.screen === "watch"
+            ? `/learn/watch/${lectureId}`
+            : options.screen === "list"
+              ? "/learn"
+              : `/learn/${options.screen}`
+        }
+      />
     </div>
   );
 }

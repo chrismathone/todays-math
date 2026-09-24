@@ -71,15 +71,32 @@ export function LectureList({ now }: { now?: Date }) {
         student={state.status === "ready" ? state.data.student : null}
       />
       <main className={s.body}>
-        <Link href="/learn/math-srs" className={s.item}>
-          <span>
-            <b className={s.it}>초등 수학 자동 복습</b>
-            <span className={s.meta}>
-              초등 3~6학년 · 내 진도에서 시작하는 매일 수학 →
-            </span>
+        {state.status === "ready" ? (
+          <div className={s.mobileWelcome}>
+            <p>오늘도 한 걸음씩</p>
+            <strong>{state.data.student.name}님, 수학을 시작해 볼까요?</strong>
+          </div>
+        ) : null}
+        <Link
+          href="/learn/math-srs"
+          prefetch={false}
+          className={s.practiceShortcut}
+        >
+          <span className={s.practiceIcon} aria-hidden="true">
+            ∑
+          </span>
+          <span className={s.practiceCopy}>
+            <b>매일 수학 복습</b>
+            <span>내 진도에서 시작하는 오늘의 학습</span>
+          </span>
+          <span className={s.practiceArrow} aria-hidden="true">
+            ›
           </span>
         </Link>
-        <h1 className={s.h}>오늘의 개념</h1>
+        <div className={s.listHeading}>
+          <h1 className={s.h}>오늘의 개념</h1>
+          <p>수업에서 배운 강의를 이어서 봐요.</p>
+        </div>
         {state.status === "loading" ? (
           <p role="status" className={s.line}>
             불러오는 중…
