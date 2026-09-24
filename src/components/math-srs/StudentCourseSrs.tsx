@@ -142,8 +142,11 @@ export default function StudentCourseSrs() {
   const paused = summary?.status === "paused" || state?.plan?.enabled === false;
   const needsSetup = !!state && (!state.plan || summary?.status === "setup");
   useEffect(() => {
-    if (settings && !needsSetup)
+    if (settings && !needsSetup) {
       settingsHeading.current?.focus({ preventScroll: true });
+      if (window.matchMedia?.("(max-width: 430px)").matches)
+        settingsHeading.current?.scrollIntoView({ block: "start" });
+    }
     if (!settings && settingsOpener.current) {
       settingsOpener.current.focus({ preventScroll: true });
       settingsOpener.current = null;
@@ -174,7 +177,13 @@ export default function StudentCourseSrs() {
   return (
     <div className={`${s.page} ${practice ? s.practicePage : ""}`}>
       <LearnTopBar student={state?.student ?? null} />
-      <main className={practice ? s.practiceMain : s.main}>
+      <main
+        className={
+          practice
+            ? s.practiceMain
+            : `${s.main} ${needsSetup ? s.setupMain : ""}`
+        }
+      >
         {practice ? (
           <h1 className={s.srOnly}>초등 수학 자동 복습</h1>
         ) : (
@@ -392,6 +401,7 @@ export default function StudentCourseSrs() {
                   {needsSetup ? "나의 시작 진도" : "학습 설정"}
                 </h2>
                 <CoursePlanForm
+                  studentView
                   plan={state.plan}
                   revision={state.revision}
                   busy={blocked}

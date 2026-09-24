@@ -275,6 +275,20 @@ export function StudentMathSrs() {
                       <span>10–15분</span>
                       <span>필요할 땐 힌트</span>
                     </div>
+                    <div className={s.mobileMissionStatus}>
+                      <span>
+                        {finishedToday
+                          ? "오늘 12문제 완료"
+                          : missionInProgress
+                            ? `${mission.attempts.length} / 12문제 진행`
+                            : "오늘 0 / 12문제"}
+                      </span>
+                      <progress
+                        aria-label="오늘의 미션 진행"
+                        value={mission?.attempts.length ?? 0}
+                        max={12}
+                      />
+                    </div>
                     {finishedToday ? (
                       <>
                         <p>오늘의 미션을 마쳤어요. 내일 새 문제로 만나요.</p>
