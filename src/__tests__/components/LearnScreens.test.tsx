@@ -277,7 +277,8 @@ describe("첫 로그인 — 비밀번호 바꾸기 (/learn/password — 시안 s
     ).toStrictEqual(["선생님께 받은 번호", "새 비밀번호", "한 번 더"]);
     for (const input of inputs.slice(1)) {
       expect(input).toHaveAttribute("inputmode", "numeric");
-      expect(input).toHaveAttribute("maxlength", "4");
+      // 브라우저의 maxlength가 붙여넣기를 먼저 자르면 숫자 필터가 네 자리를 채우지 못한다.
+      expect(input).not.toHaveAttribute("maxlength");
       expect(input).toHaveAttribute("type", "password");
     }
     expect(inputs[0]).toHaveAttribute("maxlength", "72");
@@ -291,6 +292,17 @@ describe("첫 로그인 — 비밀번호 바꾸기 (/learn/password — 시안 s
       "new-password",
     );
     expectNoAiNotice();
+  });
+
+  it("문자가 섞인 번호를 붙여넣어도 숫자 네 자리로 정리한다", async () => {
+    const user = userEvent.setup();
+    render(<StudentPasswordForm studentName="이서준" />);
+    for (const label of ["새 비밀번호", "한 번 더"]) {
+      const input = screen.getByLabelText(label);
+      await user.click(input);
+      await user.paste("2a584");
+      expect(input).toHaveValue("2584");
+    }
   });
 
   it("규칙 줄은 숫자 4자리 · 반복·연속 안 됨 · 두 칸이 같음 — 맞으면 표시가 선다", async () => {
