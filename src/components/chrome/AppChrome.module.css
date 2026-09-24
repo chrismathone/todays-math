@@ -298,31 +298,69 @@
 }
 
 @media (max-width: 760px) {
+  .shell {
+    padding-bottom: calc(66px + env(safe-area-inset-bottom));
+  }
+
   .sidebar {
-    position: static;
+    position: relative;
+    flex-direction: row;
+    align-items: center;
     width: 100%;
-    padding: 12px 16px;
+    height: 60px;
+    padding: 8px 16px;
     overflow: visible;
   }
 
   .navBlock {
-    margin-top: 8px;
-    padding-top: 8px;
+    position: fixed;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 60;
+    margin: 0;
+    padding: 4px 4px calc(4px + env(safe-area-inset-bottom));
+    border-top: 1px solid #d5dfed;
+    background: #fff;
+    box-shadow: 0 -4px 18px #10213d0d;
   }
 
-  .navCaption,
-  .nav a:first-child {
+  .navCaption {
     display: none;
   }
 
   .nav {
-    display: flex;
-    flex-wrap: wrap;
+    display: grid;
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+    gap: 2px;
   }
 
   .nav a {
-    min-height: 40px;
-    padding: 0 12px;
+    flex-direction: column;
+    justify-content: center;
+    gap: 2px;
+    min-width: 0;
+    min-height: 56px;
+    padding: 4px 1px;
+    color: #52627d;
+    font-size: 10px;
+    line-height: 1.2;
+    text-align: center;
+  }
+
+  .nav a:hover,
+  .nav a[aria-current="page"] {
+    color: #3159df;
+    background: #edf2ff;
+  }
+
+  .nav .icon {
+    color: inherit;
+    font-size: 18px;
+  }
+
+  .nav a[aria-current="page"] .icon {
+    color: #3159df;
   }
 
   .mainArea {
@@ -334,21 +372,32 @@
   }
 
   .account {
-    margin-top: 10px;
-    padding-top: 8px;
+    margin: 0 0 0 auto;
+    padding: 0;
+    border: 0;
   }
 
   .sidebarAccount {
-    max-width: 280px;
+    width: 40px;
   }
 
   .accountLink {
-    min-width: 0;
+    width: 40px;
+    min-height: 40px;
+    padding: 3px;
+  }
+
+  .accountText,
+  .accountArrow {
+    display: none;
   }
 
   .profilePanel {
     top: calc(100% + 8px);
+    right: 0;
     bottom: auto;
+    left: auto;
+    width: min(240px, calc(100vw - 32px));
   }
 
   .signOut {

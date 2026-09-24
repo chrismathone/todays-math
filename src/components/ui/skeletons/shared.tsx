@@ -50,15 +50,17 @@ export function MastheadSkeleton({
   children,
   tab = "math",
   activeNav,
+  currentLabel,
 }: {
   children: React.ReactNode;
   tab?: "math" | "exam";
   activeNav?: "main" | "classes" | "problems" | "studio";
+  currentLabel?: string;
 }) {
   return (
     <div aria-busy="true">
       <Status label="화면을 불러오는 중" />
-      <AppChrome tab={tab} activeNav={activeNav}>
+      <AppChrome tab={tab} activeNav={activeNav} currentLabel={currentLabel}>
         {children}
       </AppChrome>
     </div>

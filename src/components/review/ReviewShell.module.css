@@ -289,6 +289,7 @@
 @media (max-width: 760px) {
   .shell {
     display: block;
+    padding-bottom: calc(66px + env(safe-area-inset-bottom));
   }
 
   .skipLink {
@@ -296,14 +297,19 @@
   }
 
   .sidebar {
-    position: static;
+    position: relative;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
     width: 100%;
-    height: auto;
-    padding: 14px 18px;
+    height: 60px;
+    padding: 8px 16px;
+    overflow: visible;
   }
 
   .brandBlock {
-    padding: 0 0 10px;
+    padding: 0;
+    border: 0;
   }
 
   .sidebarLabel,
@@ -312,17 +318,49 @@
   }
 
   .navigation {
-    margin-top: 10px;
+    position: fixed;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 60;
+    margin: 0;
+    padding: 4px 16px calc(4px + env(safe-area-inset-bottom));
+    border-top: 1px solid #d5dfed;
+    background: white;
+    box-shadow: 0 -4px 18px #10213d0d;
+  }
+
+  .navLink,
+  .navLink[aria-current="page"] {
+    justify-content: center;
+    min-height: 56px;
+    color: #3159df;
+    background: #edf2ff;
   }
 
   .accountFooter {
-    margin-top: 10px;
-    padding-top: 10px;
+    margin: 0 0 0 auto;
+    padding: 0;
+    border: 0;
+  }
+
+  .accountButton {
+    width: 40px;
+    min-height: 40px;
+    padding: 3px;
+  }
+
+  .accountIdentity,
+  .chevron {
+    display: none;
   }
 
   .profilePanel {
-    position: static;
-    margin-top: 8px;
+    top: calc(100% + 8px);
+    right: 0;
+    bottom: auto;
+    left: auto;
+    width: min(240px, calc(100vw - 32px));
   }
 
   .content {

@@ -8,7 +8,7 @@ export default async function NewTestPage({
 }) {
   const query = await searchParams;
   return (
-    <AppChrome>
+    <AppChrome activeNav="problems" currentLabel="시험지 만들기">
       <GenerateSetup
         initialClassId={query.classId}
         initialStudentId={query.studentId}

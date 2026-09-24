@@ -14,7 +14,7 @@ export default async function TestGradePage({
 }) {
   const { id } = await params;
   return (
-    <AppChrome>
+    <AppChrome activeNav="problems" currentLabel="채점">
       <GradeSheet testId={id} />
     </AppChrome>
   );

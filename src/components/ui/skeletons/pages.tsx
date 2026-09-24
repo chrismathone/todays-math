@@ -381,7 +381,7 @@ export function TestSetupFieldsSkeleton() {
 
 export function TestSetupSkeleton() {
   return (
-    <MastheadSkeleton>
+    <MastheadSkeleton activeNav="problems" currentLabel="시험지 만들기">
       <main className="px-8 py-6">
         <Skeleton className="h-4 w-20" />
         <TestSetupFieldsSkeleton />
@@ -427,7 +427,7 @@ export function TestReviewContentSkeleton() {
 
 export function TestReviewSkeleton() {
   return (
-    <MastheadSkeleton>
+    <MastheadSkeleton activeNav="problems" currentLabel="시험지 검토">
       <TestReviewContentSkeleton />
     </MastheadSkeleton>
   );

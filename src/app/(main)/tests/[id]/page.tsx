@@ -8,7 +8,7 @@ export default async function TestReviewPage({
 }) {
   const { id } = await params;
   return (
-    <AppChrome>
+    <AppChrome activeNav="problems" currentLabel="시험지 검토">
       <TestReview testId={id} />
     </AppChrome>
   );
