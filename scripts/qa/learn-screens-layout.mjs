@@ -15,7 +15,7 @@ import fs from "node:fs";
 import path from "node:path";
 import { pathToFileURL } from "node:url";
 
-import { chromium } from "@playwright/test";
+import { chromium, webkit } from "@playwright/test";
 
 const BASE = process.env.BASE ?? "http://localhost:3217";
 const OUT = path.resolve("scratch", "learn-screens");
@@ -42,7 +42,11 @@ const RUNS = [
 ];
 
 fs.mkdirSync(OUT, { recursive: true });
-const browser = await chromium.launch();
+const browserName = process.env.BROWSER ?? "chromium";
+if (browserName !== "chromium" && browserName !== "webkit") {
+  throw new Error(`Unsupported browser: ${browserName}`);
+}
+const browser = await (browserName === "webkit" ? webkit : chromium).launch();
 const results = [];
 const failures = [];
 

@@ -1,10 +1,14 @@
 /** Student concept screens in a touch-capable mobile browser, using the DB-free fixture. */
-import { chromium } from "@playwright/test";
+import { chromium, webkit } from "@playwright/test";
 
 const base = process.env.BASE ?? "http://localhost:3217";
 const widths = (process.env.WIDTHS ?? "320,360,390,430").split(",").map(Number);
 const heights = { 320: 700, 360: 780, 390: 844, 430: 932 };
-const browser = await chromium.launch();
+const browserName = process.env.BROWSER ?? "chromium";
+if (browserName !== "chromium" && browserName !== "webkit") {
+  throw new Error(`Unsupported browser: ${browserName}`);
+}
+const browser = await (browserName === "webkit" ? webkit : chromium).launch();
 
 async function screen(width, query) {
   const page = await browser.newPage({
@@ -100,7 +104,7 @@ try {
     }));
     check(watchBottom.last !== undefined && watchBottom.nav !== undefined && watchBottom.last <= watchBottom.nav, `${width}: next lecture obscured by mobile nav (${JSON.stringify(watchBottom)})`);
     await page.close();
-    console.log(`✓ ${width}px: keyboard login, PIN touch, final card, playback touch, seek guard, next card`);
+    console.log(`✓ ${browserName} ${width}px: keyboard login, PIN touch, final card, playback touch, seek guard, next card`);
   }
 } finally {
   await browser.close();
