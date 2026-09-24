@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { notFound, redirect } from "next/navigation";
-import { AppChrome } from "@/components/chrome/AppChrome";
 import { ClassMathSrs } from "@/components/math-srs/ClassMathSrs";
+import { AppChrome } from "@/components/chrome/AppChrome";
 import { uuidSchema } from "@/contracts/common.contract";
 import { getAccountAccess } from "@/lib/accountAccess";
 import { requireOwnedClass } from "@/lib/ownership";
@@ -21,9 +21,17 @@ export default async function ClassMathSrsPage({
   if (!uuidSchema.safeParse(id).success) notFound();
   const owned = await requireOwnedClass(id, account);
   if (!owned.ok) notFound();
+  const manageHref =
+    account.branchRole === "owner" || account.branchRole === "manager"
+      ? "/branch?tab=classes"
+      : "/classes/manage";
   return (
-    <AppChrome activeNav="classes">
-      <ClassMathSrs key={id} classId={id} />
+    <AppChrome
+      activeNav="classes"
+      currentLabel="반 수학 복습"
+      classesHref={manageHref}
+    >
+      <ClassMathSrs key={id} classId={id} manageHref={manageHref} />
     </AppChrome>
   );
 }
