@@ -1317,6 +1317,12 @@
   background: var(--learn-soft);
   transform: none;
 }
+@media (hover: none) {
+  .body .answerChoices button[aria-pressed="false"]:hover:enabled {
+    border-color: var(--learn-line, #dce3ed);
+    background: var(--learn-surface);
+  }
+}
 .body .answerChoices button[aria-pressed="true"] {
   border-color: var(--learn-accent);
   background: var(--learn-soft);

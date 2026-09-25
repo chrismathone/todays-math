@@ -116,6 +116,11 @@ for (const [name, engine] of Object.entries({ chromium, webkit })) {
       assert.equal(await choices.getByRole("button").count(), 4);
       assert.equal(await page.locator("input").count(), 0);
       const box = await choices.boundingBox();
+      const neutralColors = await choices
+        .getByRole("button")
+        .evaluateAll((buttons) =>
+          buttons.map((button) => getComputedStyle(button).backgroundColor),
+        );
       const nav = await page
         .getByRole("navigation", { name: "학생 학습 메뉴" })
         .boundingBox();
@@ -140,7 +145,7 @@ for (const [name, engine] of Object.entries({ chromium, webkit })) {
       await page.screenshot({
         path: resolve(output, `${name}-middle-${width}-ready.png`),
       });
-      await choices.getByRole("button").first().click();
+      await choices.getByRole("button").first().tap();
       assert.equal(calls, 1);
       await page.locator('[data-answer-feedback="correct"]').waitFor();
       assert.deepEqual(await choices.boundingBox(), box);
@@ -150,6 +155,16 @@ for (const [name, engine] of Object.entries({ chromium, webkit })) {
       });
       await page.waitForTimeout(1800);
       assert.deepEqual(await choices.boundingBox(), box);
+      assert.deepEqual(
+        await choices
+          .getByRole("button")
+          .evaluateAll((buttons) =>
+            buttons.map((button) => getComputedStyle(button).backgroundColor),
+          ),
+        neutralColors,
+        "the next question must not retain a touched choice highlight",
+      );
+      assert.equal(await choices.locator('[aria-pressed="true"]').count(), 0);
       const scroll = page.locator('[data-page-turn="true"]');
       assert.equal(
         await scroll.evaluate((el) => el.scrollHeight > el.clientHeight),
@@ -162,7 +177,7 @@ for (const [name, engine] of Object.entries({ chromium, webkit })) {
       await page.screenshot({
         path: resolve(output, `${name}-middle-${width}-long.png`),
       });
-      await choices.getByRole("button").nth(3).click();
+      await choices.getByRole("button").nth(3).tap();
       await page.locator('[data-answer-feedback="incorrect"]').waitFor();
       assert.deepEqual(await choices.boundingBox(), box);
       await page.waitForTimeout(350);
