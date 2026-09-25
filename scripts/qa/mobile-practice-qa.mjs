@@ -112,11 +112,14 @@ for (const [browserName, browserType] of [
         );
         await submit.click();
         await page.getByText("정확하게 풀었어요!").waitFor();
-        const renderedAnswer = page.locator('div[class*="submittedAnswer"]');
-        await renderedAnswer.locator(".katex-html").waitFor();
+        const renderedAnswer = group.getByRole("button").nth(2);
         assert.equal(
           await renderedAnswer.locator(".katex-html").innerText(),
           "23",
+        );
+        assert.equal(
+          await renderedAnswer.getAttribute("data-result"),
+          "correct",
         );
         assert.doesNotMatch(await renderedAnswer.innerText(), /\$23\$/);
         const digits = await renderedAnswer
@@ -139,29 +142,20 @@ for (const [browserName, browserType] of [
         const card = page.locator(
           'section[aria-labelledby="course-question-title"]',
         );
-        const cardBefore = await card.boundingBox();
-        const widthBefore = await page.evaluate(
-          () => document.documentElement.scrollWidth,
+        assert.ok(
+          await card.isVisible(),
+          "feedback replaced the question card",
         );
-        await page.getByRole("button", { name: "풀이 보기" }).click();
-        await page.getByRole("dialog", { name: "풀이" }).waitFor();
         assert.equal(
-          await page
-            .locator("dialog")
-            .evaluate((dialog) => dialog.matches(":modal")),
-          true,
-        );
-        assert.deepEqual(
-          await card.boundingBox(),
-          cardBefore,
-          "solution modal reflowed the question card",
+          await page.getByRole("button", { name: "풀이 보기" }).count(),
+          0,
         );
         assert.equal(
           await page.evaluate(() => document.documentElement.scrollWidth),
-          widthBefore,
+          width,
         );
         await page.screenshot({
-          path: resolve(root, `${browserName}-solution-modal-320.png`),
+          path: resolve(root, `${browserName}-inline-feedback-320.png`),
           fullPage: true,
         });
       }

@@ -131,6 +131,13 @@ for (const [name, engine] of [
     await page.getByRole("button", { name: /정답 확인/ }).click();
     await page.getByText(expected).waitFor();
     await page.waitForTimeout(450);
+    const nextBox = await page
+      .getByRole("button", { name: /다음 문제/ })
+      .boundingBox();
+    assert.ok(
+      nextBox && nextBox.y + nextBox.height <= 600,
+      `${name}: next button below 390x600 viewport`,
+    );
     assert.equal(await group.getByRole("button").count(), 4);
     assert.equal(
       await page.getByRole("button", { name: "풀이 보기" }).count(),
@@ -152,6 +159,28 @@ for (const [name, engine] of [
       fullPage: true,
     });
     await page.close();
+  }
+  for (const [kind, width] of [
+    ["choice", 320],
+    ["embedded", 320],
+    ["fraction12", 320],
+    ["embedded", 390],
+    ["fraction12", 390],
+  ]) {
+    const compact = await browser.newPage({
+      viewport: { width, height: 600 },
+      isMobile: true,
+      hasTouch: true,
+    });
+    await compact.goto(`${base}/dev/mobile-practice-qa?kind=${kind}`);
+    const submit = compact.getByRole("button", { name: /정답 확인/ });
+    await submit.waitFor();
+    const box = await submit.boundingBox();
+    assert.ok(
+      box && box.y + box.height <= 600,
+      `${name} ${kind}: submit below ${width}x600 viewport`,
+    );
+    await compact.close();
   }
   const selfCheck = await browser.newPage({
     viewport: { width: 390, height: 600 },

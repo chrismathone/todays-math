@@ -126,6 +126,7 @@ function state(run: CoursePublicSession | null = null): CourseStudentState {
 }
 beforeEach(() => {
   vi.clearAllMocks();
+  vi.stubGlobal("scrollTo", vi.fn());
   vi.mocked(api.getCourseState).mockResolvedValue({ ok: true, data: state() });
   vi.mocked(api.startCourse).mockResolvedValue({
     ok: true,
@@ -270,9 +271,8 @@ describe("one-screen student answers", () => {
       },
     });
     const { rerender, props } = view(run);
-    expect(screen.getByText("재도전 정답")).toBeInTheDocument();
     expect(screen.queryByText("완료 후 풀이")).not.toBeInTheDocument();
-    const opener = screen.getByRole("button", { name: "1번 풀이 보기" });
+    const opener = screen.getByRole("button", { name: "1번 완료, 풀이 보기" });
     await userEvent.click(opener);
     expect(props.onHint).toHaveBeenCalledWith(run.problems[0].id);
     expect(screen.getByRole("dialog", { name: "풀이" })).toBeInTheDocument();
@@ -292,7 +292,9 @@ afterEach(() => vi.unstubAllGlobals());
 describe("shared course plan", () => {
   it("moves focus into settings and returns it to the opener on Escape", async () => {
     render(<StudentCourseSrs />);
-    const opener = await screen.findByRole("button", { name: /학습 설정/ });
+    const opener = (
+      await screen.findAllByRole("button", { name: "학습 설정" })
+    )[0];
     await userEvent.click(opener);
     expect(screen.getByRole("heading", { name: "학습 설정" })).toHaveFocus();
     await userEvent.keyboard("{Escape}");
@@ -528,7 +530,7 @@ describe("persisted course practice", () => {
       await screen.findByRole("button", { name: "오늘의 추천 학습 시작" }),
     );
     const next = await screen.findByRole("button", {
-      name: "다음 추천 학습 · 5문제",
+      name: "6번부터 다음 5문제 시작",
     });
     expect(next).toHaveFocus();
     await userEvent.keyboard("{Enter}");
@@ -649,37 +651,27 @@ describe("persisted course practice", () => {
     );
   });
 
-  it("opens a separate explanation only after the first submitted answer", async () => {
+  it("keeps the first answer and feedback in the question without revealing the solution", async () => {
     const answered = session(1);
     vi.mocked(api.answerCourse).mockResolvedValue({
       ok: true,
       data: state(answered),
     });
-    const hinted = session(1);
-    hinted.problems[0].hint = { answer: "2", solution: "힌트 API의 풀이" };
-    vi.mocked(api.hintCourse).mockResolvedValue({
-      ok: true,
-      data: state(hinted),
-    });
     const input = await begin();
-    expect(screen.queryByText("힌트 API의 풀이")).not.toBeInTheDocument();
     expect(
       screen.queryByRole("button", { name: "풀이 보기" }),
     ).not.toBeInTheDocument();
     await userEvent.type(input, "2{Enter}");
     expect(await screen.findByText("정확하게 풀었어요!")).toBeInTheDocument();
-    expect(screen.queryByText("힌트 API의 풀이")).not.toBeInTheDocument();
-    await userEvent.click(screen.getByRole("button", { name: "풀이 보기" }));
-    expect(await screen.findByText("힌트 API의 풀이")).toBeInTheDocument();
-    expect(screen.getByRole("dialog", { name: "풀이" })).toBeInTheDocument();
-    expect(api.hintCourse).toHaveBeenCalledWith({
-      sessionId: answered.id,
-      problemId: answered.problems[0].id,
-    });
-    await userEvent.click(screen.getByRole("button", { name: "풀이 닫기" }));
+    expect(screen.getByText("문제 1: 1 + 1")).toBeInTheDocument();
+    expect(screen.getByRole("textbox", { name: "나의 답" })).toHaveValue("2");
     expect(
       screen.queryByRole("dialog", { name: "풀이" }),
     ).not.toBeInTheDocument();
+    expect(
+      screen.queryByRole("button", { name: "풀이 보기" }),
+    ).not.toBeInTheDocument();
+    expect(api.hintCourse).not.toHaveBeenCalled();
   });
 
   it("records giveUp explicitly without locally judging correctness", async () => {
@@ -701,26 +693,20 @@ describe("persisted course practice", () => {
       giveUp: true,
     });
     expect(
-      await screen.findByText("다시 풀 문제로 모았어요."),
+      await screen.findByText("다시 풀 문제로 모았어요"),
     ).toBeInTheDocument();
   });
 
-  it("opens first-pass self-check comparison only on request and records the learner's judgement", async () => {
+  it("records first-pass self-check without revealing an answer", async () => {
     const run = session();
     run.problems[0].input.mode = "self-check";
     vi.mocked(api.startCourse).mockResolvedValue({
       ok: true,
       data: state(run),
     });
-    const hinted = structuredClone(run);
-    hinted.problems[0].hint = { answer: "도형", solution: "직접 비교할 풀이" };
-    vi.mocked(api.hintCourse).mockResolvedValue({
-      ok: true,
-      data: state(hinted),
-    });
     const answered = session(1);
     answered.attempts[0].selfAssessed = true;
-    answered.attempts[0].usedHint = true;
+    answered.attempts[0].usedHint = false;
     vi.mocked(api.answerCourse).mockResolvedValue({
       ok: true,
       data: state(answered),
@@ -729,20 +715,19 @@ describe("persisted course practice", () => {
     await userEvent.click(
       await screen.findByRole("button", { name: "오늘의 추천 학습 시작" }),
     );
-    expect(screen.queryByText("직접 비교할 풀이")).not.toBeInTheDocument();
     expect(
       screen.queryByRole("textbox", { name: /메모/ }),
     ).not.toBeInTheDocument();
     await userEvent.click(
-      await screen.findByRole("button", { name: "다 풀었어요 · 정답 확인" }),
+      await screen.findByRole("button", { name: "다 풀었어요" }),
     );
-    expect(api.hintCourse).toHaveBeenCalledWith({
-      sessionId: run.id,
-      problemId: run.problems[0].id,
-    });
-    expect(await screen.findByText("직접 비교할 풀이")).toBeInTheDocument();
-    expect(screen.getByRole("dialog", { name: "풀이" })).toBeInTheDocument();
-    await userEvent.click(screen.getByRole("button", { name: "맞았어요" }));
+    expect(api.hintCourse).not.toHaveBeenCalled();
+    expect(
+      screen.queryByRole("dialog", { name: "풀이" }),
+    ).not.toBeInTheDocument();
+    await userEvent.click(
+      screen.getByRole("button", { name: "혼자 풀었다고 생각해요" }),
+    );
     expect(api.answerCourse).toHaveBeenCalledWith({
       sessionId: run.id,
       problemId: run.problems[0].id,
@@ -751,7 +736,7 @@ describe("persisted course practice", () => {
     });
   });
 
-  it("uses an explicit explanation and self assessment on a retry-only self-check item", async () => {
+  it("records retry self-check privately before optional explanation", async () => {
     const run = session(5);
     run.attempts[0].correct = false;
     run.problems[0].input.mode = "self-check";
@@ -767,13 +752,7 @@ describe("persisted course practice", () => {
       ok: true,
       data: state(run),
     });
-    const hinted = structuredClone(run);
-    hinted.problems[0].hint = { answer: "도형", solution: "직접 비교할 풀이" };
-    vi.mocked(api.hintCourse).mockResolvedValue({
-      ok: true,
-      data: state(hinted),
-    });
-    const answered = structuredClone(hinted);
+    const answered = structuredClone(run);
     Object.assign(answered.problems[0], { feedback: { correct: true } });
     Object.assign(answered, {
       retry: {
@@ -783,7 +762,7 @@ describe("persisted course practice", () => {
             ...answered.attempts[0],
             correct: true,
             selfAssessed: true,
-            usedHint: true,
+            usedHint: false,
           },
         ],
         completedAt: now,
@@ -798,19 +777,17 @@ describe("persisted course practice", () => {
       await screen.findByRole("button", { name: "오늘의 추천 학습 시작" }),
     );
     await userEvent.click(
-      await screen.findByRole("button", { name: "다 풀었어요 · 정답 확인" }),
+      await screen.findByRole("button", { name: "다 풀었어요" }),
     );
-    expect(await screen.findByText("직접 비교할 풀이")).toBeInTheDocument();
-    expect(api.hintCourse).toHaveBeenCalledWith({
-      sessionId: run.id,
-      problemId: run.problems[0].id,
-    });
-    await userEvent.click(screen.getByRole("button", { name: "맞았어요" }));
+    expect(api.hintCourse).not.toHaveBeenCalled();
+    await userEvent.click(
+      screen.getByRole("button", { name: "혼자 풀었다고 생각해요" }),
+    );
     expect(api.answerCourse).toHaveBeenCalledWith(
       expect.objectContaining({ selfCorrect: true, retryIndex: 0 }),
     );
     expect(
-      await screen.findByText("풀이를 참고해 확인했어요."),
+      await screen.findByText("내 풀이를 직접 확인했어요"),
     ).toBeInTheDocument();
   });
 
@@ -830,7 +807,7 @@ describe("persisted course practice", () => {
       await screen.findByRole("button", { name: /이번 학습 마치기/ }),
     );
     const next = await screen.findByRole("button", {
-      name: "다음 추천 학습 · 5문제",
+      name: "6번부터 다음 5문제 시작",
     });
     expect(api.startCourse).toHaveBeenCalledTimes(1);
     const nextRun = session(4);
@@ -858,11 +835,9 @@ describe("persisted course practice", () => {
     await userEvent.click(
       await screen.findByRole("button", { name: /이번 학습 마치기/ }),
     );
+    expect(await screen.findByText("오늘의 목표 도착!")).toBeInTheDocument();
     expect(
-      await screen.findByText("오늘의 수학을 마쳤어요."),
-    ).toBeInTheDocument();
-    expect(
-      screen.queryByRole("button", { name: "다음 추천 학습 · 5문제" }),
+      screen.queryByRole("button", { name: /다음 5문제 시작/ }),
     ).not.toBeInTheDocument();
     expect(api.startCourse).toHaveBeenCalledTimes(2);
   });

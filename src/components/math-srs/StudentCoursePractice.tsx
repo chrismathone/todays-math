@@ -816,7 +816,13 @@ function CourseComplete({
   const goalReached = summary.todayAnswered >= summary.todayGoal;
   const done = goalReached || summary.status === "done";
   useEffect(() => {
-    if (!busy) completeHeading.current?.focus({ preventScroll: true });
+    if (!busy) {
+      const next =
+        completeHeading.current?.parentElement?.querySelector<HTMLButtonElement>(
+          'button[aria-label$="다음 5문제 시작"]',
+        );
+      (next ?? completeHeading.current)?.focus({ preventScroll: true });
+    }
   }, [busy]);
   useEffect(() => {
     const dialog = explanationDialog.current;
