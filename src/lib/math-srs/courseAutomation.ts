@@ -511,14 +511,8 @@ function submitCourseRetryAttempt(
   const revealed =
     (session.revealedProblemIds ?? []).includes(problem.id) ||
     (session.hintedProblemIds ?? []).includes(problem.id);
-  if (
-    !input.giveUp &&
-    selfAssessed &&
-    (!revealed || input.selfCorrect === undefined)
-  )
-    throw new CourseInvalidInput(
-      "직접 확인하는 문제는 해설을 본 뒤 판단해 주세요.",
-    );
+  if (!input.giveUp && selfAssessed && input.selfCorrect === undefined)
+    throw new CourseInvalidInput("스스로 푼 결과를 선택해 주세요.");
   if (!selfAssessed && input.selfCorrect !== undefined)
     throw new CourseInvalidInput("이 문제는 선택한 답으로 채점합니다.");
   const invalid =
@@ -608,14 +602,8 @@ export function submitCourseAttempt(
   const problem = session.problems[session.attempts.length];
   const selfAssessed = problem.input.mode === "self-check";
   const hinted = (session.hintedProblemIds ?? []).includes(problem.id);
-  if (
-    !input.giveUp &&
-    selfAssessed &&
-    (!hinted || input.selfCorrect === undefined)
-  )
-    throw new CourseInvalidInput(
-      "정답·해설을 먼저 확인하고 풀이를 비교해 주세요.",
-    );
+  if (!input.giveUp && selfAssessed && input.selfCorrect === undefined)
+    throw new CourseInvalidInput("스스로 푼 결과를 선택해 주세요.");
   if (!selfAssessed && input.selfCorrect !== undefined)
     throw new CourseInvalidInput("이 문제는 입력한 답으로 채점합니다.");
   const invalid =

@@ -14,7 +14,6 @@ import { gradeCourseAnswer } from "@/lib/math-srs/elementary/answers";
 import { makeCourseAnswerChoices } from "@/lib/math-srs/elementary/choiceAnswers";
 import {
   CourseConflict,
-  CourseInvalidInput,
   courseSummary,
   emptyCourseState,
   estimatedCourseRecall,
@@ -490,7 +489,7 @@ describe("durable elementary scheduling", () => {
     expect(courseSummary(state, now).status).toBe("complete");
     expect(start(state)).toBe(state);
   });
-  it("requires a persisted reveal for self-check and never counts it as unaided evidence", () => {
+  it("records an unrevealed self-check without claiming the student saw a hint", () => {
     const state = start();
     const problem = state.learner.session!.problems[0];
     problem.content = "이유를 설명하시오.";
@@ -498,21 +497,51 @@ describe("durable elementary scheduling", () => {
     problem.answerChoices = null;
     problem.interactive = null;
     const input = { ...inputFor(state), selfCorrect: true };
-    expect(() => submitCourseAttempt(state, input, now)).toThrow(
-      CourseInvalidInput,
-    );
-    const answered = submitCourseAttempt(
-      revealCourseHint(state, input),
-      input,
-      now,
-    );
+    const answered = submitCourseAttempt(state, input, now);
+    expect(answered.learner.session!.attempts[0]).toMatchObject({
+      correct: true,
+      usedHint: false,
+      selfAssessed: true,
+    });
+    expect(
+      publicCourseSession(answered.learner.session!).problems[0].hint,
+    ).toBeNull();
     expect(answered.memories[problem.sectionId]).toMatchObject({
       attempts: 1,
       correct: 1,
       unaidedCorrect: 0,
-      hinted: 1,
+      hinted: 0,
       selfAssessed: 1,
       mastery: 0,
+    });
+  });
+  it("completes a self-check retry without disclosing the answer", () => {
+    let state = start();
+    const first = state.learner.session!.problems[0];
+    first.content = "이유를 설명하시오.";
+    first.input.mode = "self-check";
+    first.answerChoices = null;
+    first.interactive = null;
+    state = answer(state, now, true);
+    while (!state.learner.session!.completedAt) state = answer(state);
+    const session = state.learner.session!;
+    expect(publicCourseSession(session).problems[0].hint).toBeNull();
+    state = submitCourseAttempt(
+      state,
+      {
+        sessionId: session.id,
+        problemId: first.id,
+        submittedAnswer: "",
+        selfCorrect: true,
+        retryIndex: 0,
+      },
+      now,
+    );
+    expect(state.learner.session!.retry?.completedAt).not.toBeNull();
+    expect(state.learner.session!.retry?.attempts[0]).toMatchObject({
+      correct: true,
+      usedHint: false,
+      selfAssessed: true,
     });
   });
   it.each([2, 5])(

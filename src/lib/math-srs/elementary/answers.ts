@@ -178,7 +178,7 @@ export function getCourseProblemInput(
       mode: "self-check",
       label: "연습장에 풀어 주세요",
       placeholder: "",
-      help: "풀이를 마친 뒤 정답·해설과 비교해 스스로 확인해요.",
+      help: "풀이를 마친 뒤 스스로 확인해요. 정답과 풀이는 이번 학습을 마친 뒤 볼 수 있어요.",
     };
   }
   const unit = expected.unit?.name;
