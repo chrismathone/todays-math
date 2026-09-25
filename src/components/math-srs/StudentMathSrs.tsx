@@ -114,6 +114,16 @@ export function StudentMathSrs() {
     ? mission?.problems.find((problem) => problem.id === feedbackId)
     : null;
   const currentProblem = mission?.problems[mission.attempts.length];
+  const progressCount =
+    missionInProgress || finishedToday ? mission.attempts.length : 0;
+  const progressTitle =
+    missionInProgress && mission.date !== kstDateOf(new Date())
+      ? "진행 중인 복습"
+      : "오늘의 학습";
+  const nextConcept = missionInProgress
+    ? CONCEPTS.find((concept) => concept.id === currentProblem?.conceptId)
+        ?.title
+    : null;
   const resetLoad = () => {
     lastSubmission.current = null;
     setLoading(true);
@@ -132,10 +142,10 @@ export function StudentMathSrs() {
         {practicing ? <h1 className={s.srOnly}>오늘의 수학 복습</h1> : null}
         {!practicing ? (
           <header className={s.pageHeading}>
-            <p className={s.eyebrow}>DAILY MATH</p>
-            <h1>잊기 전에, 한 번 더.</h1>
+            <p className={s.eyebrow}>하루 한 걸음 · 중학교 1학년</p>
+            <h1>매일 쌓이는 수학</h1>
             <p className={s.muted}>
-              작은 복습이 쌓이면, 배운 수학이 오래 남아요.
+              일차방정식을 매일 조금씩 복습하고, 풀이 기록에 맞춰 이어 가요.
             </p>
           </header>
         ) : null}
@@ -261,34 +271,27 @@ export function StudentMathSrs() {
                 >
                   <div className={s.heroCopy}>
                     <p className={s.eyebrow}>
-                      TODAY&apos;S MISSION · 중1 일차방정식
+                      {finishedToday
+                        ? "오늘의 복습 완료"
+                        : missionInProgress
+                          ? "이어서 학습"
+                          : "오늘의 추천 복습"}
                     </p>
                     <h2 id="mission-heading">
-                      {state.student.name}님의 복습 시간
+                      {finishedToday
+                        ? "오늘의 복습을 마쳤어요."
+                        : missionInProgress
+                          ? "풀던 복습을 이어 가요."
+                          : "일차방정식을 복습해요."}
                     </h2>
-                    <p className={s.muted}>
-                      워밍업부터 다시 도전하는 문제까지, 풀이 기록에 맞춰
-                      복습해요.
+                    <p className={s.heroSection}>중1 · 일차방정식</p>
+                    <p className={s.heroReason}>
+                      {finishedToday
+                        ? "오늘 푼 문제를 돌아보고 다음 복습을 준비해요."
+                        : missionInProgress
+                          ? `${12 - mission.attempts.length}문제가 남았어요. 이어서 풀어 보세요.`
+                          : "워밍업부터 다시 도전하는 문제까지, 풀이 기록에 맞춰 복습해요."}
                     </p>
-                    <div className={s.heroMeta}>
-                      <span>12문제</span>
-                      <span>10–15분</span>
-                      <span>필요할 땐 힌트</span>
-                    </div>
-                    <div className={s.mobileMissionStatus}>
-                      <span>
-                        {finishedToday
-                          ? "오늘 12문제 완료"
-                          : missionInProgress
-                            ? `${mission.attempts.length} / 12문제 진행`
-                            : "오늘 0 / 12문제"}
-                      </span>
-                      <progress
-                        aria-label="오늘의 미션 진행"
-                        value={mission?.attempts.length ?? 0}
-                        max={12}
-                      />
-                    </div>
                     {finishedToday ? (
                       <>
                         <p>오늘의 미션을 마쳤어요. 내일 새 문제로 만나요.</p>
@@ -307,57 +310,46 @@ export function StudentMathSrs() {
                         }
                       >
                         {busy
-                          ? "미션을 준비하는 중…"
+                          ? "복습을 준비하는 중…"
                           : mission && !mission.completedAt
-                            ? `미션 이어하기 · ${mission.attempts.length}/12`
-                            : "오늘의 미션 시작"}
+                            ? `이어서 학습하기 · ${mission.attempts.length}/12`
+                            : "오늘의 복습 시작"}
                       </Button>
                     )}
-                  </div>
-                  <div
-                    className={s.missionVisual}
-                    role="img"
-                    aria-label={
-                      missionInProgress
-                        ? `${mission.attempts.length}문제 풀이 완료`
-                        : finishedToday
-                          ? "오늘의 12문제 복습 완료"
-                          : "매일 12문제 복습"
-                    }
-                  >
-                    <span className={s.missionNumber}>
-                      {missionInProgress
-                        ? String(mission.attempts.length).padStart(2, "0")
-                        : "12"}
-                      <small>
-                        {missionInProgress || finishedToday ? " / 12" : " 문제"}
-                      </small>
-                    </span>
-                    <span>
-                      {missionInProgress
-                        ? "여기까지 풀었어요"
-                        : finishedToday
-                          ? "오늘의 복습 완료"
-                          : "오늘을 위한 작은 도전"}
-                    </span>
-                    <div className={s.missionDots} aria-hidden="true">
-                      {Array.from({ length: 12 }, (_, index) => (
-                        <i
-                          key={index}
-                          data-done={
-                            (missionInProgress || finishedToday) &&
-                            index < (mission?.attempts.length ?? 0)
-                          }
-                        />
-                      ))}
-                    </div>
+                    <p className={s.heroNote}>한 번에 12문제 · 약 10~15분</p>
                   </div>
                 </section>
+                <aside className={s.todaySummary} aria-label={progressTitle}>
+                  <h2>{progressTitle}</h2>
+                  <p className={s.todayCount}>
+                    <strong>{progressCount}</strong> / 12문제
+                  </p>
+                  <progress
+                    aria-label="복습 진행"
+                    value={progressCount}
+                    max={12}
+                  />
+                  <dl>
+                    <div>
+                      <dt>남은 문제</dt>
+                      <dd>{12 - progressCount}문제</dd>
+                    </div>
+                    <div>
+                      <dt>다음 개념</dt>
+                      <dd>
+                        {nextConcept ??
+                          (finishedToday
+                            ? "내일 다시 만나요"
+                            : "시작하면 안내")}
+                      </dd>
+                    </div>
+                  </dl>
+                </aside>
                 <section
                   className={`${s.card} ${s.memorySection}`}
                   aria-labelledby="my-memory-heading"
                 >
-                  <p className={s.eyebrow}>MY MEMORY</p>
+                  <p className={s.eyebrow}>개념별 복습 현황</p>
                   <h2 id="my-memory-heading">나의 개념 기억</h2>
                   <p className={s.muted}>
                     정답·힌트·지난 학습 시간을 바탕으로 추정한 값이에요. 처음
@@ -369,7 +361,7 @@ export function StudentMathSrs() {
                   className={s.card}
                   aria-labelledby="my-progress-heading"
                 >
-                  <p className={s.eyebrow}>KEEP LEARNING</p>
+                  <p className={s.eyebrow}>수업과 연결하기</p>
                   <h2 id="my-progress-heading">수업과 함께 복습하기</h2>
                   {state.currentProgress ? (
                     <p>
@@ -409,7 +401,7 @@ export function StudentMathSrs() {
                 </section>
                 {state.recentMissions.length ? (
                   <section className={s.card}>
-                    <p className={s.eyebrow}>YOUR RHYTHM</p>
+                    <p className={s.eyebrow}>나의 학습 기록</p>
                     <h2>최근 학습</h2>
                     <ul className={s.history}>
                       {state.recentMissions.slice(0, 7).map((item) => (

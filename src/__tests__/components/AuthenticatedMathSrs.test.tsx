@@ -8,6 +8,7 @@ import type {
   MathSrsState,
 } from "@/contracts/mathSrs.contract";
 import { createMemories } from "@/lib/math-srs/memory";
+import { kstDateOf } from "@/lib/kstDate";
 import { STUDENT_MUST_CHANGE_MESSAGE } from "@/lib/studentRouteAccess";
 import * as api from "@/components/math-srs/mathSrsApi";
 
@@ -107,16 +108,19 @@ describe("account-based math practice", () => {
     render(<StudentMathSrs />);
     expect(await screen.findByRole("alert")).toHaveTextContent("선생님께 알려");
     expect(
-      screen.queryByRole("button", { name: "오늘의 미션 시작" }),
+      screen.queryByRole("button", { name: "오늘의 복습 시작" }),
     ).not.toBeInTheDocument();
     await userEvent.click(
       screen.getByRole("button", { name: "다시 불러오기" }),
     );
     expect(
-      await screen.findByRole("button", { name: "오늘의 미션 시작" }),
+      await screen.findByRole("button", { name: "오늘의 복습 시작" }),
     ).toBeEnabled();
     expect(screen.getAllByText("측정 전")).toHaveLength(6);
     expect(screen.getByText("일차방정식의 풀이")).toBeInTheDocument();
+    expect(
+      screen.getByRole("progressbar", { name: "복습 진행" }),
+    ).toHaveAttribute("value", "0");
   });
 
   it.each([
@@ -167,7 +171,7 @@ describe("account-based math practice", () => {
     });
     const view = render(<StudentMathSrs />);
     await user.click(
-      await screen.findByRole("button", { name: "오늘의 미션 시작" }),
+      await screen.findByRole("button", { name: "오늘의 복습 시작" }),
     );
     const answer = screen.getByLabelText("나의 답");
     expect(answer).toHaveAccessibleDescription(
@@ -239,7 +243,7 @@ describe("account-based math practice", () => {
     );
     render(<StudentMathSrs />);
     await user.click(
-      await screen.findByRole("button", { name: "오늘의 미션 시작" }),
+      await screen.findByRole("button", { name: "오늘의 복습 시작" }),
     );
     await user.type(screen.getByLabelText("나의 답"), "1/3");
     await user.click(screen.getByRole("button", { name: "정답 확인" }));
@@ -275,8 +279,14 @@ describe("account-based math practice", () => {
       data: state(finished),
     });
     render(<StudentMathSrs />);
+    expect(
+      await screen.findByRole("complementary", { name: "진행 중인 복습" }),
+    ).toBeInTheDocument();
+    expect(
+      screen.getByRole("progressbar", { name: "복습 진행" }),
+    ).toHaveAttribute("value", "11");
     await user.click(
-      await screen.findByRole("button", { name: "미션 이어하기 · 11/12" }),
+      await screen.findByRole("button", { name: "이어서 학습하기 · 11/12" }),
     );
     await user.click(screen.getByRole("button", { name: "아직 모르겠어요" }));
     expect(
@@ -295,6 +305,25 @@ describe("account-based math practice", () => {
     expect(api.startMathSrs).toHaveBeenCalledTimes(1);
   });
 
+  it("keeps a completed today's mission in the same card hierarchy", async () => {
+    const today = mission(12);
+    today.date = kstDateOf(new Date());
+    vi.mocked(api.fetchMathSrs).mockResolvedValue({
+      ok: true,
+      data: state(today),
+    });
+    render(<StudentMathSrs />);
+    expect(
+      await screen.findByRole("heading", { name: "오늘의 복습을 마쳤어요." }),
+    ).toBeInTheDocument();
+    expect(
+      screen.getByRole("button", { name: "오늘의 결과 보기" }),
+    ).toBeEnabled();
+    expect(
+      screen.getByRole("progressbar", { name: "복습 진행" }),
+    ).toHaveAttribute("value", "12");
+  });
+
   it("requires a refresh after an ordered-attempt conflict and resumes from server progress", async () => {
     const user = userEvent.setup();
     vi.mocked(api.startMathSrs).mockResolvedValue({
@@ -308,7 +337,7 @@ describe("account-based math practice", () => {
     });
     render(<StudentMathSrs />);
     await user.click(
-      await screen.findByRole("button", { name: "오늘의 미션 시작" }),
+      await screen.findByRole("button", { name: "오늘의 복습 시작" }),
     );
     await user.click(screen.getByRole("button", { name: "아직 모르겠어요" }));
     expect(await screen.findByRole("alert")).toHaveTextContent("다른 화면");
