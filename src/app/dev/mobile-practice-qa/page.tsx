@@ -1,5 +1,7 @@
 import { notFound } from "next/navigation";
 import { connection } from "next/server";
+import { StudentMobileNav } from "@/components/learn/StudentMobileNav";
+import learn from "@/components/learn/learn.module.css";
 import MobilePracticeQaClient from "./MobilePracticeQaClient";
 
 export default async function MobilePracticeQaPage({
@@ -28,5 +30,10 @@ export default async function MobilePracticeQaPage({
     ].includes(rawKind)
       ? rawKind
       : "choice";
-  return <MobilePracticeQaClient kind={kind} />;
+  return (
+    <div className={learn.page}>
+      <MobilePracticeQaClient kind={kind} />
+      <StudentMobileNav previewPath="/learn/math-srs" />
+    </div>
+  );
 }

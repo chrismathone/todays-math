@@ -65,7 +65,10 @@ export function StudentReviewPage({
   children: ReactNode;
 }) {
   return (
-    <div className={practicing ? practicePageClassName : s.page}>
+    <div
+      className={practicing ? practicePageClassName : s.page}
+      data-student-practice={practicing ? "true" : undefined}
+    >
       <LearnTopBar student={student} />
       <main
         className={

@@ -1,7 +1,6 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import { StudentMobileNav } from "@/components/learn/StudentMobileNav";
 import { LearnTopBar } from "@/components/learn/LearnTopBar";
 import StudentCoursePractice from "@/components/math-srs/StudentCoursePractice";
 import type {
@@ -136,7 +135,11 @@ export default function MobilePracticeQa({ kind }: { kind: string }) {
   const [session, setSession] = useState(() => makeSession(kind));
   const [feedbackId, setFeedbackId] = useState<string | null>(null);
   return (
-    <div ref={frame} className={`${s.page} ${s.practicePage}`}>
+    <div
+      ref={frame}
+      data-student-practice="true"
+      className={`${s.page} ${s.practicePage}`}
+    >
       <LearnTopBar student={{ name: "test_s", className: "테스트반" }} />
       <main className={s.practiceMain}>
         <div className={s.practiceStage}>
@@ -217,7 +220,6 @@ export default function MobilePracticeQa({ kind }: { kind: string }) {
           />
         </div>
       </main>
-      <StudentMobileNav previewPath="/learn/math-srs" />
     </div>
   );
 }

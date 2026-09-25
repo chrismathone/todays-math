@@ -1,4 +1,5 @@
 import { notFound } from "next/navigation";
+import learn from "@/components/learn/learn.module.css";
 import { connection } from "next/server";
 import { StudentMathSrs } from "@/components/math-srs/StudentMathSrs";
 import { StudentMobileNav } from "@/components/learn/StudentMobileNav";
@@ -12,9 +13,9 @@ export default async function MobileMiddleReviewQaPage() {
     notFound();
   }
   return (
-    <>
+    <div className={learn.page}>
       <StudentMathSrs />
       <StudentMobileNav previewPath="/learn/math-srs/algebra" />
-    </>
+    </div>
   );
 }
