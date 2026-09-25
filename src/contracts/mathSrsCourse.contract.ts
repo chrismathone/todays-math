@@ -65,6 +65,14 @@ export const coursePublicProblemSchema = z.strictObject({
   tier: difficultySchema,
   content: z.string(),
   figureUrl: z.string().nullable(),
+  answerChoices: z.array(z.string()).length(4).nullable(),
+  interactive: z
+    .strictObject({
+      kind: z.literal("fraction-parts"),
+      denominator: z.number().int().min(2).max(12),
+      shape: z.literal("bar"),
+    })
+    .nullable(),
   input: z.strictObject({
     mode: z.enum(["number", "text", "self-check"]),
     label: z.string(),
@@ -72,7 +80,7 @@ export const coursePublicProblemSchema = z.strictObject({
     help: z.string(),
   }),
   hint: solutionSchema.nullable(),
-  feedback: solutionSchema.extend({ correct: z.boolean() }).nullable(),
+  feedback: z.strictObject({ correct: z.boolean() }).nullable(),
 });
 export type CoursePublicProblem = z.infer<typeof coursePublicProblemSchema>;
 export const coursePublicAttemptSchema = z.strictObject({
@@ -89,6 +97,13 @@ export const coursePublicSessionSchema = z.strictObject({
   mode: z.enum(["learn", "review"]),
   problems: z.array(coursePublicProblemSchema).length(5),
   attempts: z.array(coursePublicAttemptSchema).max(5),
+  retry: z
+    .strictObject({
+      pendingProblemIds: z.array(uuidSchema).max(5),
+      attempts: z.array(coursePublicAttemptSchema),
+      completedAt: isoDateTimeSchema.nullable(),
+    })
+    .nullable(),
   startedAt: isoDateTimeSchema,
   completedAt: isoDateTimeSchema.nullable(),
 });
@@ -102,6 +117,7 @@ export const courseAttemptInputSchema = courseHintInputSchema.extend({
   submittedAnswer: z.string().trim().max(2000),
   selfCorrect: z.boolean().optional(),
   giveUp: z.boolean().optional(),
+  retryIndex: z.number().int().min(0).optional(),
 });
 export type CourseAttemptInput = z.infer<typeof courseAttemptInputSchema>;
 export const courseStudentStateSchema = z.strictObject({

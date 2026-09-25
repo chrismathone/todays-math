@@ -9,6 +9,8 @@ import {
   type CourseAttemptInput,
 } from "@/contracts/mathSrsCourse.contract";
 import { COURSE_SECTIONS } from "@/lib/math-srs/elementary/catalog";
+import { generateCourseSession } from "@/lib/math-srs/elementary/generator";
+import { gradeCourseAnswer } from "@/lib/math-srs/elementary/answers";
 import {
   CourseConflict,
   CourseInvalidInput,
@@ -82,6 +84,29 @@ function answer(state: StoredCourse, at = now, wrong = false) {
 }
 function finish(state: StoredCourse, at = now, wrong = false) {
   while (!state.learner.session!.completedAt) state = answer(state, at, wrong);
+  while (
+    state.learner.session!.retry &&
+    !state.learner.session!.retry.completedAt
+  ) {
+    const session = state.learner.session!;
+    const problem = session.problems.find(
+      (p) => p.id === session.retry!.pendingProblemIds[0],
+    )!;
+    const input: CourseAttemptInput = {
+      sessionId: session.id,
+      problemId: problem.id,
+      submittedAnswer: wrong ? "" : problem.answer,
+      retryIndex: session.retry!.attempts.length,
+      ...(wrong
+        ? { giveUp: true }
+        : problem.input.mode === "self-check"
+          ? { selfCorrect: true }
+          : {}),
+    };
+    if (!wrong && problem.input.mode === "self-check")
+      state = revealCourseHint(state, input);
+    state = submitCourseAttempt(state, input, at);
+  }
   return storedCourseSchema.parse(state);
 }
 function tableFixture(initial: StoredSrsState | null = null) {
@@ -116,6 +141,114 @@ function tableFixture(initial: StoredSrsState | null = null) {
 }
 
 describe("durable elementary scheduling", () => {
+  it("prefers eligible bank candidates by tier and persists four distinct graded choices", () => {
+    const section = COURSE_SECTIONS[0];
+    const bank = [
+      {
+        tier: "연산" as const,
+        content: "43 + 17을 계산하시오.",
+        answer: "60",
+        solution: "43에 17을 더하면 60입니다.",
+      },
+    ];
+    const first = generateCourseSession(section.id, 123, now, "learn", bank);
+    const again = generateCourseSession(section.id, 123, now, "learn", bank);
+    expect(first).toEqual(again);
+    expect(first.problems[0].content).toBe(bank[0].content);
+    expect(first.problems[1].content).not.toBe(bank[0].content);
+    const choices = first.problems[0].answerChoices!;
+    expect(choices).toHaveLength(4);
+    expect(new Set(choices).size).toBe(4);
+    expect(
+      choices.filter((choice) => gradeCourseAnswer(first.problems[0], choice)),
+    ).toHaveLength(1);
+  });
+
+  it("retries wrong problems until correct or explicitly skipped without changing first-round evidence", () => {
+    let state = start();
+    const firstId = state.learner.session!.problems[0].id;
+    state = answer(state, now, true);
+    while (!state.learner.session!.completedAt) state = answer(state);
+    const baseAttempts = state.learner.session!.attempts;
+    const baseMemory = state.memories[state.learner.session!.sectionId];
+    const sessionId = state.learner.session!.id;
+    const problem = state.learner.session!.problems[0];
+    expect(state.learner.session!.retry?.pendingProblemIds).toEqual([firstId]);
+    expect(courseSummary(state, now).status).toBe("learning");
+    expect(
+      publicCourseSession(state.learner.session!).problems[0].hint,
+    ).toBeNull();
+    const wrongChoice =
+      problem.answerChoices?.find(
+        (choice) => gradeCourseAnswer(problem, choice) === false,
+      ) ?? "-999";
+    const wrong = {
+      sessionId,
+      problemId: firstId,
+      submittedAnswer: wrongChoice,
+      retryIndex: 0,
+    };
+    state = submitCourseAttempt(state, wrong, now);
+    expect(state.learner.session!.retry?.pendingProblemIds).toEqual([firstId]);
+    expect(state.learner.session!.retry?.attempts).toHaveLength(1);
+    expect(
+      publicCourseSession(state.learner.session!).problems[0].feedback,
+    ).toEqual({ correct: false });
+    expect(submitCourseAttempt(state, wrong, now)).toBe(state);
+    state = revealCourseHint(state, { sessionId, problemId: firstId });
+    expect(state.learner.session!.attempts[0].usedHint).toBe(false);
+    expect(
+      publicCourseSession(state.learner.session!).problems[0].hint,
+    ).not.toBeNull();
+    state = submitCourseAttempt(
+      state,
+      {
+        sessionId,
+        problemId: firstId,
+        submittedAnswer: problem.answer,
+        retryIndex: 1,
+      },
+      now,
+    );
+    expect(state.learner.session!.retry?.pendingProblemIds).toEqual([]);
+    expect(state.learner.session!.retry?.completedAt).not.toBeNull();
+    expect(state.learner.session!.attempts).toEqual(baseAttempts);
+    expect(state.memories[state.learner.session!.sectionId]).toEqual(
+      baseMemory,
+    );
+    expect(storedCourseSchema.parse(state)).toEqual(state);
+  });
+  it("keeps an empty-note self-check mistake in the retry queue", () => {
+    let state = start();
+    const first = state.learner.session!.problems[0];
+    first.content = "이유를 설명하시오.";
+    first.input.mode = "self-check";
+    first.answerChoices = null;
+    first.interactive = null;
+    state = answer(state, now, true);
+    while (!state.learner.session!.completedAt) state = answer(state);
+    state = revealCourseHint(state, {
+      sessionId: state.learner.session!.id,
+      problemId: first.id,
+    });
+    const retryInput = {
+      sessionId: state.learner.session!.id,
+      problemId: first.id,
+      submittedAnswer: "",
+      selfCorrect: false,
+      retryIndex: 0,
+    };
+    state = submitCourseAttempt(state, retryInput, now);
+    expect(state.learner.session!.retry?.pendingProblemIds).toEqual([first.id]);
+    expect(storedCourseSchema.parse(state)).toEqual(state);
+    state = submitCourseAttempt(
+      state,
+      { ...retryInput, selfCorrect: true, retryIndex: 1 },
+      now,
+    );
+    expect(state.learner.session!.retry?.completedAt).not.toBeNull();
+    expect(storedCourseSchema.parse(state)).toEqual(state);
+  });
   it("starts in setup with a default goal and no fabricated earlier progress", () => {
     expect(courseSummary(emptyCourseState(), now)).toMatchObject({
       status: "setup",
@@ -144,7 +277,7 @@ describe("durable elementary scheduling", () => {
       state.learner.session?.id,
     );
   });
-  it("persists hints and exposes only earned answer/solution feedback with opaque IDs", () => {
+  it("keeps solutions hidden until an explicit request after submission", () => {
     const state = start();
     const dto = publicCourseSession(state.learner.session!);
     expect(
@@ -156,15 +289,24 @@ describe("durable elementary scheduling", () => {
     expect(JSON.stringify(dto)).not.toMatch(
       /"(?:seed|figureSpec|answer|solution)":/,
     );
-    const hinted = revealCourseHint(state, inputFor(state));
+    expect(() => revealCourseHint(state, inputFor(state))).toThrow(
+      CourseConflict,
+    );
+    const attempted = answer(state);
+    expect(
+      publicCourseSession(attempted.learner.session!).problems[0].feedback,
+    ).toEqual({ correct: true });
+    expect(
+      publicCourseSession(attempted.learner.session!).problems[0].hint,
+    ).toBeNull();
+    const hinted = revealCourseHint(attempted, inputFor(state));
     expect(storedCourseSchema.parse(hinted)).toEqual(hinted);
     expect(
       publicCourseSession(hinted.learner.session!).problems[0].hint,
     ).not.toBeNull();
-    const attempted = answer(hinted);
-    expect(attempted.learner.session?.attempts[0].usedHint).toBe(true);
+    expect(hinted.learner.session?.attempts[0].usedHint).toBe(false);
     expect(
-      publicCourseSession(attempted.learner.session!).problems[1].feedback,
+      publicCourseSession(hinted.learner.session!).problems[1].feedback,
     ).toBeNull();
     expect(() => revealCourseHint(state, inputFor(state, 2))).toThrow(
       CourseConflict,
@@ -230,6 +372,8 @@ describe("durable elementary scheduling", () => {
         content: "1+1을 계산하시오.",
         answer: "2",
         solution: "2입니다.",
+        answerChoices: null,
+        interactive: null,
         input: { mode: "number", label: "답", placeholder: "", help: "" },
       }),
     );
@@ -242,6 +386,8 @@ describe("durable elementary scheduling", () => {
     const problem = state.learner.session!.problems[0];
     problem.content = "이유를 설명하시오.";
     problem.input.mode = "self-check";
+    problem.answerChoices = null;
+    problem.interactive = null;
     const input = { ...inputFor(state), selfCorrect: true };
     expect(() => submitCourseAttempt(state, input, now)).toThrow(
       CourseInvalidInput,
@@ -271,6 +417,8 @@ describe("durable elementary scheduling", () => {
       )) {
         problem.content = "이유를 설명하시오.";
         problem.input.mode = "self-check";
+        problem.answerChoices = null;
+        problem.interactive = null;
       }
       state = finish(state);
       expect(state.completedSectionIds).toContain(id);
@@ -294,6 +442,8 @@ describe("durable elementary scheduling", () => {
     for (const problem of state.learner.session!.problems.slice(0, 3)) {
       problem.content = "이유를 설명하시오.";
       problem.input.mode = "self-check";
+      problem.answerChoices = null;
+      problem.interactive = null;
     }
     for (let i = 0; i < 3; i++) state = answer(state);
     state = answer(state, now, true);
@@ -346,9 +496,9 @@ describe("durable elementary scheduling", () => {
       ),
     ).toBeLessThan(estimatedCourseRecall(good.memories[id], now));
     const initial = start();
-    const hinted = finish(revealCourseHint(initial, inputFor(initial)));
+    const hinted = finish(revealCourseHint(answer(initial), inputFor(initial)));
     expect(hinted.memories[id].nextReviewAt).toBe(
-      new Date(now.getTime() + 86_400_000).toISOString(),
+      new Date(now.getTime() + 3 * 86_400_000).toISOString(),
     );
   });
   it("grows stability once per spaced session, with a first perfect interval of three days", () => {

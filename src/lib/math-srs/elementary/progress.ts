@@ -88,6 +88,34 @@ const problemSchema = z.strictObject({
     placeholder: z.string().max(200),
     help: z.string().max(1_000),
   }),
+  answerChoices: z
+    .array(z.string().min(1).max(100))
+    .length(4)
+    .nullable()
+    .optional(),
+  interactive: z
+    .strictObject({
+      kind: z.literal("fraction-parts"),
+      denominator: z.number().int().min(2).max(12),
+      shape: z.literal("bar"),
+    })
+    .nullable()
+    .optional(),
+});
+
+const retryRequestSchema = z.strictObject({
+  sessionId: identifier,
+  problemId: identifier,
+  submittedAnswer: z.string().max(2_000),
+  selfCorrect: z.boolean().optional(),
+  giveUp: z.boolean().optional(),
+  retryIndex: z.number().int().min(0).optional(),
+});
+const retrySchema = z.strictObject({
+  pendingProblemIds: z.array(identifier).max(SESSION_SIZE),
+  attempts: z.array(attemptSchema),
+  requests: z.array(retryRequestSchema),
+  completedAt: timestamp.nullable(),
 });
 
 function matchesProblem(
@@ -115,6 +143,8 @@ const sessionSchema = z
     startedAt: timestamp,
     completedAt: timestamp.nullable(),
     hintedProblemIds: z.array(identifier).max(SESSION_SIZE).optional(),
+    revealedProblemIds: z.array(identifier).max(SESSION_SIZE).optional(),
+    retry: retrySchema.optional(),
   })
   .superRefine((session, context) => {
     const fail = (message: string) =>
@@ -130,8 +160,18 @@ const sessionSchema = z
         problem.input.mode !== getCourseProblemInput(problem).mode
       )
         fail("문제와 소단원 또는 답안 형식이 일치하지 않습니다.");
+      if (
+        problem.answerChoices &&
+        (problem.input.mode !== "number" ||
+          new Set(problem.answerChoices).size !== 4 ||
+          problem.answerChoices.filter(
+            (choice) => gradeCourseAnswer(problem, choice) === true,
+          ).length !== 1)
+      )
+        fail("답 선택지가 문제의 정답과 일치하지 않습니다.");
     }
     const hinted = session.hintedProblemIds ?? [];
+    const revealed = session.revealedProblemIds ?? [];
     const availableIds = session.problems
       .slice(0, Math.min(session.attempts.length + 1, SESSION_SIZE))
       .map((problem) => problem.id);
@@ -140,6 +180,11 @@ const sessionSchema = z
       hinted.some((id) => !availableIds.includes(id))
     )
       fail("힌트 기록이 문제 순서와 일치하지 않습니다.");
+    if (
+      new Set(revealed).size !== revealed.length ||
+      revealed.some((id) => !session.attempts.some((a) => a.problemId === id))
+    )
+      fail("해설 확인 기록이 제출된 문제와 일치하지 않습니다.");
     let previousTime = Date.parse(session.startedAt);
     for (const [index, attempt] of session.attempts.entries()) {
       if (
@@ -155,6 +200,48 @@ const sessionSchema = z
         fail("학습 완료 시각이 일치하지 않습니다.");
     } else if (session.completedAt !== null) {
       fail("진행 중인 학습을 완료 처리할 수 없습니다.");
+    }
+    if (session.retry) {
+      if (!session.completedAt)
+        fail("첫 풀이가 끝나기 전에 오답 복습을 시작할 수 없습니다.");
+      const wrong = session.attempts
+        .filter((a) => !a.correct)
+        .map((a) => a.problemId);
+      if (
+        !wrong.length ||
+        session.retry.attempts.length !== session.retry.requests.length
+      )
+        fail("오답 복습 기록이 일치하지 않습니다.");
+      const pending = [...wrong];
+      let retryTime = Date.parse(session.completedAt ?? session.startedAt);
+      for (const [index, attempt] of session.retry.attempts.entries()) {
+        const request = session.retry.requests[index];
+        const current = pending.shift();
+        const problem = session.problems.find((p) => p.id === current);
+        if (
+          !problem ||
+          !request ||
+          request.retryIndex !== index ||
+          request.sessionId !== session.id ||
+          request.problemId !== current ||
+          !matchesProblem(problem, attempt) ||
+          attempt.submittedAnswer !==
+            (request.giveUp ? "" : request.submittedAnswer) ||
+          Date.parse(attempt.answeredAt) < retryTime
+        )
+          fail("오답 복습의 문제 순서가 일치하지 않습니다.");
+        retryTime = Date.parse(attempt.answeredAt);
+        if (!attempt.correct && !request?.giveUp)
+          pending.push(attempt.problemId);
+      }
+      if (
+        pending.join("|") !== session.retry.pendingProblemIds.join("|") ||
+        (pending.length === 0
+          ? session.retry.completedAt !==
+            session.retry.attempts.at(-1)?.answeredAt
+          : session.retry.completedAt !== null)
+      )
+        fail("오답 복습의 남은 문제가 일치하지 않습니다.");
     }
   });
 

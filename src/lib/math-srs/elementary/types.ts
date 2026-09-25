@@ -29,6 +29,13 @@ export interface CourseProblem {
   answer: string;
   solution: string;
   figureSpec: Record<string, unknown> | null;
+  /** Fixed for the life of the session; null falls back to manual input. */
+  answerChoices?: string[] | null;
+  interactive?: {
+    kind: "fraction-parts";
+    denominator: number;
+    shape: "bar";
+  } | null;
   input: {
     mode: "number" | "text" | "self-check";
     label: string;
@@ -53,6 +60,20 @@ export interface CourseSession {
   startedAt: string;
   completedAt: string | null;
   hintedProblemIds?: string[];
+  revealedProblemIds?: string[];
+  retry?: {
+    pendingProblemIds: string[];
+    attempts: CourseAttempt[];
+    requests: {
+      sessionId: string;
+      problemId: string;
+      submittedAnswer: string;
+      giveUp?: boolean;
+      selfCorrect?: boolean;
+      retryIndex?: number;
+    }[];
+    completedAt: string | null;
+  };
 }
 export interface SectionProgress {
   sectionId: string;

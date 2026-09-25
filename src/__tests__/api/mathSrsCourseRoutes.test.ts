@@ -41,6 +41,8 @@ vi.mock("@/lib/db", () => {
   });
   return {
     db: {
+      unit: { findFirst: vi.fn(async () => null) },
+      problem: { findMany: vi.fn(async () => []) },
       student: {
         findUnique: vi.fn(async ({ where }: { where: { id: string } }) =>
           [f.studentId, f.otherId].includes(where.id)
@@ -248,7 +250,7 @@ describe("student course API", () => {
     const input = { sessionId: session.id, problemId: session.problems[0].id };
     expect(
       (await HINT(request(`${coursePath}/hint`, "POST", input))).status,
-    ).toBe(200);
+    ).toBe(409);
     const stored = parseSrsState(f.rows.get(f.studentId)!.payload).course!;
     const answer = {
       ...input,
@@ -260,14 +262,20 @@ describe("student course API", () => {
     expect(first.status).toBe(200);
     const result = await first.json();
     expect(result.data.session.attempts[0]).toMatchObject({
-      usedHint: true,
+      usedHint: false,
       correct: true,
     });
+    expect(result.data.session.problems[0].hint).toBeNull();
     const revision = result.data.revision;
     const duplicate = await ATTEMPT(
       request(`${coursePath}/attempts`, "POST", answer),
     );
     expect((await duplicate.json()).data.revision).toBe(revision);
+    const revealed = await HINT(request(`${coursePath}/hint`, "POST", input));
+    expect(revealed.status).toBe(200);
+    expect(
+      (await revealed.json()).data.session.problems[0].hint,
+    ).not.toBeNull();
     expect(
       (
         await ATTEMPT(

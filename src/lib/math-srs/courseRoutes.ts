@@ -21,6 +21,7 @@ import { requireStudent } from "@/lib/learn/studentRequest";
 import {
   CourseConflict,
   CourseInvalidInput,
+  courseSummary,
   emptyCourseState,
   findStoredCourseSession,
   revealCourseHint,
@@ -29,6 +30,7 @@ import {
   submitCourseAttempt,
   type StoredCourse,
 } from "./courseAutomation";
+import { loadCourseBankCandidates } from "./courseBank";
 import { courseStudentDto, loadCourseStudent } from "./courseServer";
 import { SrsUnavailable } from "./serverState";
 import { changeSrsState, readSrsState } from "./serverStore";
@@ -75,7 +77,26 @@ export async function handleCourseStudentRequest(
         const parsed = z.strictObject({}).safeParse(body);
         if (!parsed.success) return noStore(validationError(parsed.error));
         const seed = randomInt(0, 0x1_0000_0000);
-        change = (c) => startAutomaticCourse(c, now, seed, randomUUID);
+        const current = await readSrsState(student.id);
+        const recommended = courseSummary(
+          current.state.course ?? emptyCourseState(),
+          now,
+        ).recommendation;
+        const bankSectionId =
+          recommended?.mode === "resume" ? null : recommended?.sectionId;
+        const bankCandidates = bankSectionId
+          ? await loadCourseBankCandidates(bankSectionId)
+          : [];
+        change = (c) =>
+          startAutomaticCourse(
+            c,
+            now,
+            seed,
+            randomUUID,
+            courseSummary(c, now).recommendation?.sectionId === bankSectionId
+              ? bankCandidates
+              : [],
+          );
       } else if (operation === "hint") {
         const parsed = courseHintInputSchema.safeParse(body);
         if (!parsed.success) return noStore(validationError(parsed.error));
