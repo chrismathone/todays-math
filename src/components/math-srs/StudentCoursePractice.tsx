@@ -35,14 +35,40 @@ interface Props {
 export default function StudentCoursePractice(props: Props) {
   const { session, feedbackId, onExit } = props;
   const section = getCourseSection(session.sectionId);
+  const retry = (
+    session as CoursePublicSession & {
+      retry?: {
+        pendingProblemIds: string[];
+        attempts: CoursePublicSession["attempts"];
+        completedAt: string | null;
+      } | null;
+    }
+  ).retry;
+  const retryActive = !!retry && !retry.completedAt;
   const problem = feedbackId
     ? session.problems.find((item) => item.id === feedbackId)
-    : session.problems.find(
-        (item) =>
-          !session.attempts.some((attempt) => attempt.problemId === item.id),
-      );
+    : retryActive
+      ? session.problems.find((item) => item.id === retry.pendingProblemIds[0])
+      : session.problems.find(
+          (item) =>
+            !session.attempts.some((attempt) => attempt.problemId === item.id),
+        );
   if (!problem) return <CourseComplete {...props} />;
   const index = session.problems.findIndex((item) => item.id === problem.id);
+  const inRetry =
+    !!retry &&
+    (feedbackId
+      ? retry.attempts.some((item) => item.problemId === feedbackId)
+      : retryActive);
+  const nextIsRetry =
+    !!retry &&
+    retry.pendingProblemIds.length > 0 &&
+    retry.attempts.length === 0 &&
+    !!feedbackId &&
+    session.attempts.length === session.problems.length;
+  const initialWrongCount = session.attempts.filter(
+    (attempt) => !attempt.correct,
+  ).length;
   return (
     <div className={`${s.practice} ${s.studentPractice}`}>
       <header className={s.header}>
@@ -60,26 +86,58 @@ export default function StudentCoursePractice(props: Props) {
       </header>
       <div className={s.progressRow}>
         <span>
-          {session.mode === "review"
-            ? "기억을 꺼내는 복습"
-            : "차근차근 새 학습"}
+          {inRetry
+            ? "틀린 문제 다시 풀기"
+            : session.mode === "review"
+              ? "기억을 꺼내는 복습"
+              : "차근차근 새 학습"}
         </span>
         <span>
-          <strong>{index + 1}</strong> / {session.problems.length} 문제
+          {inRetry ? (
+            <>
+              남은 <strong>{retry?.pendingProblemIds.length}</strong>문제
+            </>
+          ) : (
+            <>
+              <strong>{index + 1}</strong> / {session.problems.length} 문제
+            </>
+          )}
         </span>
       </div>
       <progress
         className={s.progress}
-        value={session.attempts.length}
-        max={session.problems.length}
-        aria-label="이번 학습 진행"
+        value={
+          inRetry
+            ? initialWrongCount - retry!.pendingProblemIds.length
+            : session.attempts.length
+        }
+        max={inRetry ? initialWrongCount : session.problems.length}
+        aria-label={inRetry ? "틀린 문제 다시 풀기 진행" : "이번 학습 진행"}
       />
       <CourseQuestion
-        key={problem.id}
+        key={`${problem.id}:${inRetry ? retry?.attempts.length : "first"}`}
         {...props}
         problem={problem}
         title={section?.title ?? "오늘의 수학"}
-        last={index === session.problems.length - 1}
+        last={
+          inRetry
+            ? retry?.pendingProblemIds.length === 0
+            : index === session.problems.length - 1 && !nextIsRetry
+        }
+        nextIsRetry={nextIsRetry}
+        repeatNext={
+          inRetry &&
+          !!feedbackId &&
+          retry?.pendingProblemIds[0] === problem.id &&
+          problem.feedback?.correct === false
+        }
+        retryAttempt={
+          retry?.attempts
+            .slice()
+            .reverse()
+            .find((item) => item.problemId === problem.id) ?? null
+        }
+        retryIndex={inRetry ? retry!.attempts.length : null}
       />
       <p className={s.footerNote}>
         종이와 펜으로 편하게 풀어요. 시간은 재지 않아요.
@@ -140,69 +198,134 @@ function CourseQuestion({
   problem,
   title,
   last,
+  nextIsRetry,
+  repeatNext,
+  retryAttempt,
+  retryIndex,
   session,
+  feedbackId,
   busy,
   onAnswer,
   onHint,
   onNext,
   onAuthFailure,
-}: Props & { problem: CoursePublicProblem; title: string; last: boolean }) {
+}: Props & {
+  problem: CoursePublicProblem;
+  title: string;
+  last: boolean;
+  nextIsRetry: boolean;
+  repeatNext: boolean;
+  retryAttempt: CoursePublicSession["attempts"][number] | null;
+  retryIndex: number | null;
+}) {
   const [answer, setAnswer] = useState("");
   const [validation, setValidation] = useState("");
-  const [panel, setPanel] = useState<"problem" | "answer">("problem");
-  const questionSection = useRef<HTMLElement>(null);
+  const [explanationOpen, setExplanationOpen] = useState(false);
+  const [selectedParts, setSelectedParts] = useState<number[]>([]);
+  const explanationDialog = useRef<HTMLDialogElement>(null);
+  const explanationOpener = useRef<HTMLButtonElement>(null);
+  const explanationClose = useRef<HTMLButtonElement>(null);
   const questionHeading = useRef<HTMLHeadingElement>(null);
   const nextButton = useRef<HTMLButtonElement>(null);
   const input = useRef<HTMLInputElement>(null);
   const figure = useProblemFigure(problem.figureUrl, onAuthFailure);
-  const attempt = session.attempts.find(
+  const attempt =
+    retryAttempt ??
+    session.attempts.find((item) => item.problemId === problem.id);
+  const feedback = feedbackId === problem.id ? problem.feedback : null;
+  const selfCheck = problem.input.mode === "self-check";
+  const answeredInFirstRound = session.attempts.some(
     (item) => item.problemId === problem.id,
   );
-  const feedback = problem.feedback;
-  const selfCheck = problem.input.mode === "self-check";
+  const answerChoices = (
+    problem as CoursePublicProblem & { answerChoices?: string[] | null }
+  ).answerChoices;
+  const interactive = (
+    problem as CoursePublicProblem & {
+      interactive?: {
+        kind: "fraction-parts";
+        denominator: number;
+        shape: "bar";
+      } | null;
+    }
+  ).interactive;
+  const useChoices = !selfCheck && !interactive && answerChoices?.length === 4;
+  const useInteractive = !selfCheck && interactive?.kind === "fraction-parts";
   const ready = figure.status === "ready";
   const locked = busy || !ready;
 
-  function showPanel(next: "problem" | "answer") {
-    setPanel(next);
-    if (window.matchMedia?.("(max-width: 430px)").matches)
-      requestAnimationFrame(() =>
-        questionSection.current?.scrollIntoView({ block: "start" }),
-      );
-  }
+  useEffect(() => {
+    if (feedback) nextButton.current?.focus({ preventScroll: true });
+    else questionHeading.current?.focus({ preventScroll: true });
+  }, [feedback]);
 
   useEffect(() => {
-    if (
-      panel === "problem" &&
-      window.matchMedia?.("(max-width: 900px)").matches
-    )
-      questionHeading.current?.focus({ preventScroll: true });
-    else if (feedback) nextButton.current?.focus({ preventScroll: true });
-    else if (ready && !selfCheck) input.current?.focus({ preventScroll: true });
-    else questionHeading.current?.focus({ preventScroll: true });
-  }, [panel, feedback, ready, selfCheck]);
+    const dialog = explanationDialog.current;
+    if (!dialog) return;
+    if (explanationOpen) {
+      if (!dialog.open) {
+        if (dialog.showModal) dialog.showModal();
+        else dialog.setAttribute("open", "");
+      }
+      explanationClose.current?.focus({ preventScroll: true });
+    } else if (dialog.open) {
+      if (dialog.close) dialog.close();
+      else dialog.removeAttribute("open");
+      explanationOpener.current?.focus({ preventScroll: true });
+    }
+  }, [explanationOpen]);
+
+  function closeExplanation() {
+    setExplanationOpen(false);
+  }
+
+  function showExplanation() {
+    if (locked || (!answeredInFirstRound && !selfCheck)) return;
+    setExplanationOpen(true);
+    if (!problem.hint) onHint(problem.id);
+  }
+
+  function sendAnswer(
+    payload: Omit<CourseAttemptInput, "sessionId" | "problemId">,
+  ) {
+    const request = {
+      sessionId: session.id,
+      problemId: problem.id,
+      ...payload,
+      ...(retryIndex === null ? {} : { retryIndex }),
+    };
+    onAnswer(request);
+  }
 
   function submit(event: FormEvent) {
     event.preventDefault();
     if (locked || feedback || selfCheck) return;
-    if (!answer.trim()) {
-      setValidation("생각한 답을 입력해 주세요.");
+    const submittedAnswer = useInteractive
+      ? selectedParts.length > 0
+        ? `${selectedParts.length}/${interactive.denominator}`
+        : ""
+      : answer.trim();
+    if (!submittedAnswer) {
+      setValidation(
+        useChoices
+          ? "답 하나를 골라 주세요."
+          : useInteractive
+            ? "칠할 칸을 골라 주세요."
+            : "생각한 답을 입력해 주세요.",
+      );
       input.current?.focus();
       return;
     }
     setValidation("");
-    onAnswer({
-      sessionId: session.id,
-      problemId: problem.id,
-      submittedAnswer: answer.trim(),
+    sendAnswer({
+      submittedAnswer,
     });
   }
 
   function recordSelf(selfCorrect: boolean) {
     if (locked || !problem.hint) return;
-    onAnswer({
-      sessionId: session.id,
-      problemId: problem.id,
+    closeExplanation();
+    sendAnswer({
       submittedAnswer: answer.trim(),
       selfCorrect,
     });
@@ -210,10 +333,7 @@ function CourseQuestion({
 
   function giveUp() {
     if (locked) return;
-    setPanel("answer");
-    onAnswer({
-      sessionId: session.id,
-      problemId: problem.id,
+    sendAnswer({
       submittedAnswer: answer.trim(),
       giveUp: true,
     });
@@ -221,28 +341,11 @@ function CourseQuestion({
 
   return (
     <section
-      ref={questionSection}
-      className={s.question}
+      className={`${s.question} ${s.studentQuestion}`}
       aria-labelledby="course-question-title"
       aria-busy={busy}
     >
-      <div className={s.mobileSwitch} role="group" aria-label="학습 화면">
-        <button
-          type="button"
-          aria-pressed={panel === "problem"}
-          onClick={() => showPanel("problem")}
-        >
-          문제
-        </button>
-        <button
-          type="button"
-          aria-pressed={panel === "answer"}
-          onClick={() => showPanel("answer")}
-        >
-          {feedback ? "결과 · 풀이" : "답안"}
-        </button>
-      </div>
-      <div className={s.problemPane} data-active={panel === "problem"}>
+      <div className={s.problemPane}>
         <div className={s.problemTitle}>
           <div className={s.problemHeading}>
             <span className={s.tier}>{problem.tier}</span>
@@ -286,18 +389,8 @@ function CourseQuestion({
             </div>
           ) : null}
         </div>
-        <div className={s.mobileProblemAction}>
-          <button
-            type="button"
-            className={s.primary}
-            onClick={() => showPanel("answer")}
-          >
-            {feedback ? "결과와 풀이 보기" : "답 입력하기"}
-            <span aria-hidden="true">→</span>
-          </button>
-        </div>
       </div>
-      <div className={s.responsePane} data-active={panel === "answer"}>
+      <div className={s.responsePane}>
         {feedback && attempt ? (
           <div className={s.feedback}>
             <div
@@ -306,10 +399,10 @@ function CourseQuestion({
               role="region"
               aria-label="풀이 결과 내용"
             >
-              <p className={s.feedbackLabel}>저장된 학습 결과</p>
+              <p className={s.feedbackLabel}>이번 문제의 결과</p>
               <h3>
                 {!feedback.correct
-                  ? "괜찮아요, 풀이를 살펴봐요."
+                  ? "다시 풀 문제로 모았어요."
                   : attempt.usedHint
                     ? "풀이를 참고해 확인했어요."
                     : attempt.selfAssessed
@@ -326,7 +419,15 @@ function CourseQuestion({
                   나의 답 <span>{attempt.submittedAnswer}</span>
                 </p>
               ) : null}
-              <Solution solution={feedback} />
+              <button
+                ref={explanationOpener}
+                type="button"
+                className={s.secondary}
+                disabled={busy}
+                onClick={showExplanation}
+              >
+                풀이 보기
+              </button>
             </div>
             <div className={s.paneAction}>
               <button
@@ -336,7 +437,13 @@ function CourseQuestion({
                 onClick={onNext}
                 disabled={busy}
               >
-                {last ? "이번 학습 마치기" : "다음 문제"}
+                {repeatNext
+                  ? "다시 도전하기"
+                  : nextIsRetry
+                    ? "틀린 문제 다시 풀기"
+                    : last
+                      ? "이번 학습 마치기"
+                      : "다음 문제"}
                 <span aria-hidden="true">→</span>
               </button>
             </div>
@@ -370,39 +477,10 @@ function CourseQuestion({
               aria-label="내 풀이 확인"
             >
               <p className={s.feedbackLabel}>연습장에 차근차근</p>
-              <h3>
-                {problem.hint
-                  ? "연습장의 풀이와 비교해 보세요."
-                  : "나의 풀이를 남겨요."}
-              </h3>
-              {!problem.hint ? (
-                <>
-                  <p className={s.paperHint}>
-                    연습장에 답과 풀이를 적어 주세요. 다 풀고 나면 정답과
-                    비교해요.
-                  </p>
-                  <label htmlFor="course-answer-note">
-                    나의 답 또는 풀이 메모 (선택)
-                  </label>
-                  <textarea
-                    id="course-answer-note"
-                    className={s.noteInput}
-                    value={answer}
-                    onChange={(event) => setAnswer(event.target.value)}
-                    maxLength={2000}
-                    rows={3}
-                    disabled={locked}
-                  />
-                </>
-              ) : (
-                <>
-                  <Solution solution={problem.hint} />
-                  <p className={s.help}>
-                    정답을 보고 직접 확인한 문제로 기록해요. 혼자 맞힌 문제로
-                    계산하지 않아요.
-                  </p>
-                </>
-              )}
+              <h3>연습장에서 풀어 보세요.</h3>
+              <p className={s.paperHint}>
+                다 풀었다면 풀이를 열어 내 풀이와 비교하고 결과를 골라 주세요.
+              </p>
               <button
                 type="button"
                 className={s.textButton}
@@ -413,35 +491,15 @@ function CourseQuestion({
               </button>
             </div>
             <div className={s.paneAction}>
-              {problem.hint ? (
-                <div className={s.selfCheckActions}>
-                  <button
-                    type="button"
-                    className={s.primary}
-                    disabled={locked}
-                    onClick={() => recordSelf(true)}
-                  >
-                    맞았어요
-                  </button>
-                  <button
-                    type="button"
-                    className={s.secondary}
-                    disabled={locked}
-                    onClick={() => recordSelf(false)}
-                  >
-                    다시 연습할래요
-                  </button>
-                </div>
-              ) : (
-                <button
-                  type="button"
-                  className={s.primary}
-                  disabled={locked}
-                  onClick={() => onHint(problem.id)}
-                >
-                  {busy ? "저장 중…" : "다 풀었어요 · 정답 확인"}
-                </button>
-              )}
+              <button
+                ref={explanationOpener}
+                type="button"
+                className={s.primary}
+                disabled={locked}
+                onClick={showExplanation}
+              >
+                다 풀었어요 · 정답 확인
+              </button>
             </div>
           </div>
         ) : (
@@ -452,53 +510,125 @@ function CourseQuestion({
               role="region"
               aria-label="답안 작성"
             >
-              <p className={s.feedbackLabel}>생각한 답을 적어 주세요</p>
-              <h3 className={s.answerTitle}>어떤 답이 나왔나요?</h3>
+              <p className={s.feedbackLabel}>
+                {useInteractive
+                  ? "모양을 눌러 답을 만드세요"
+                  : useChoices
+                    ? "답 하나를 골라 주세요"
+                    : "생각한 답을 적어 주세요"}
+              </p>
               <form
                 id="course-answer-form"
                 className={s.answerForm}
                 onSubmit={submit}
               >
-                <label htmlFor="course-answer">{problem.input.label}</label>
-                <input
-                  ref={input}
-                  id="course-answer"
-                  className={s.answerInput}
-                  value={answer}
-                  onChange={(event) => {
-                    setAnswer(event.target.value);
-                    setValidation("");
-                  }}
-                  placeholder={problem.input.placeholder}
-                  aria-describedby="course-answer-help"
-                  aria-invalid={!!validation}
-                  autoComplete="off"
-                  spellCheck={false}
-                  enterKeyHint="done"
-                  maxLength={2000}
-                  disabled={locked}
-                />
+                {useInteractive ? (
+                  <div
+                    className={s.fractionAnswer}
+                    role="group"
+                    aria-label={`${interactive.denominator}칸 중 칠할 칸 선택`}
+                  >
+                    <div
+                      className={s.fractionBar}
+                      data-many={interactive.denominator > 6}
+                    >
+                      {Array.from(
+                        { length: interactive.denominator },
+                        (_, part) => (
+                          <button
+                            key={part}
+                            type="button"
+                            aria-label={`${part + 1}번째 칸`}
+                            aria-pressed={selectedParts.includes(part)}
+                            className={s.fractionPart}
+                            disabled={locked}
+                            onClick={() => {
+                              setSelectedParts((current) =>
+                                current.includes(part)
+                                  ? current.filter((item) => item !== part)
+                                  : [...current, part],
+                              );
+                              setValidation("");
+                            }}
+                          />
+                        ),
+                      )}
+                    </div>
+                    <p className={s.fractionCount}>
+                      {selectedParts.length} / {interactive.denominator}
+                    </p>
+                  </div>
+                ) : useChoices ? (
+                  <div
+                    className={s.answerChoices}
+                    role="group"
+                    aria-label="답 고르기"
+                  >
+                    {answerChoices.map((choice, choiceIndex) => (
+                      <button
+                        key={`${choiceIndex}-${choice}`}
+                        type="button"
+                        className={s.answerChoice}
+                        aria-pressed={answer === choice}
+                        disabled={locked}
+                        onClick={() => {
+                          setAnswer(choice);
+                          setValidation("");
+                        }}
+                      >
+                        <span className={s.choiceNumber}>
+                          {choiceIndex + 1}
+                        </span>
+                        <MathText text={choice} as="span" />
+                      </button>
+                    ))}
+                  </div>
+                ) : (
+                  <>
+                    <label htmlFor="course-answer">{problem.input.label}</label>
+                    <input
+                      ref={input}
+                      id="course-answer"
+                      className={s.answerInput}
+                      value={answer}
+                      onChange={(event) => {
+                        setAnswer(event.target.value);
+                        setValidation("");
+                      }}
+                      placeholder={problem.input.placeholder}
+                      aria-describedby="course-answer-help"
+                      aria-invalid={!!validation}
+                      autoComplete="off"
+                      spellCheck={false}
+                      enterKeyHint="done"
+                      maxLength={2000}
+                      disabled={locked}
+                    />
+                  </>
+                )}
                 <div className={s.inputMessage}>
                   <p
                     id="course-answer-help"
                     className={validation ? s.error : s.help}
                     role={validation ? "alert" : undefined}
                   >
-                    {validation || problem.input.help}
+                    {validation ||
+                      (useChoices || useInteractive ? "" : problem.input.help)}
                   </p>
                 </div>
               </form>
               <div className={s.questionActions}>
-                <button
-                  type="button"
-                  className={s.secondary}
-                  disabled={locked || !!problem.hint}
-                  onClick={() => onHint(problem.id)}
-                  aria-expanded={!!problem.hint}
-                  aria-controls="course-solution"
-                >
-                  {problem.hint ? "풀이를 확인했어요" : "풀이 보기"}
-                </button>
+                {answeredInFirstRound ? (
+                  <button
+                    type="button"
+                    ref={explanationOpener}
+                    className={s.secondary}
+                    disabled={locked}
+                    onClick={showExplanation}
+                  >
+                    풀이 보기
+                  </button>
+                ) : null}
                 <button
                   type="button"
                   className={s.textButton}
@@ -508,12 +638,6 @@ function CourseQuestion({
                   아직 모르겠어요
                 </button>
               </div>
-              {problem.hint ? (
-                <div id="course-solution" className={s.revealedSolution}>
-                  <p className={s.help}>풀이를 참고한 문제로 기록해요.</p>
-                  <Solution solution={problem.hint} />
-                </div>
-              ) : null}
             </div>
             <div className={s.paneAction}>
               <button
@@ -529,6 +653,60 @@ function CourseQuestion({
           </div>
         )}
       </div>
+      <dialog
+        ref={explanationDialog}
+        className={s.explanationDialog}
+        aria-labelledby="course-explanation-title"
+        onCancel={() => setExplanationOpen(false)}
+        onClose={() => {
+          setExplanationOpen(false);
+          explanationOpener.current?.focus({ preventScroll: true });
+        }}
+      >
+        <div className={s.dialogHeader}>
+          <h3 id="course-explanation-title">풀이</h3>
+          <button
+            ref={explanationClose}
+            type="button"
+            className={s.dialogClose}
+            onClick={closeExplanation}
+            aria-label="풀이 닫기"
+          >
+            ×
+          </button>
+        </div>
+        <div className={s.dialogBody}>
+          {problem.hint ? (
+            <Solution solution={problem.hint} />
+          ) : (
+            <p role={busy ? "status" : "alert"}>
+              {busy
+                ? "풀이를 불러오고 있어요…"
+                : "풀이를 불러오지 못했어요. 닫고 다시 시도해 주세요."}
+            </p>
+          )}
+        </div>
+        {selfCheck && problem.hint && !feedback ? (
+          <div className={s.dialogActions}>
+            <button
+              type="button"
+              className={s.primary}
+              disabled={busy}
+              onClick={() => recordSelf(true)}
+            >
+              맞았어요
+            </button>
+            <button
+              type="button"
+              className={s.secondary}
+              disabled={busy}
+              onClick={() => recordSelf(false)}
+            >
+              다시 연습할래요
+            </button>
+          </div>
+        ) : null}
+      </dialog>
     </section>
   );
 }
@@ -553,9 +731,41 @@ function Solution({
   );
 }
 
-function CourseComplete({ session, summary, busy, onContinue, onExit }: Props) {
+function CourseComplete({
+  session,
+  summary,
+  busy,
+  onContinue,
+  onExit,
+  onHint,
+}: Props) {
   const nextAction = useRef<HTMLButtonElement>(null);
   const homeAction = useRef<HTMLButtonElement>(null);
+  const explanationDialog = useRef<HTMLDialogElement>(null);
+  const explanationClose = useRef<HTMLButtonElement>(null);
+  const explanationOpener = useRef<HTMLButtonElement | null>(null);
+  const [explanationProblemId, setExplanationProblemId] = useState<
+    string | null
+  >(null);
+  const explanationProblem = session.problems.find(
+    (problem) => problem.id === explanationProblemId,
+  );
+  const retry = (
+    session as CoursePublicSession & {
+      retry?: { attempts: CoursePublicSession["attempts"] } | null;
+    }
+  ).retry;
+  const finalAttempts = session.problems.map(
+    (problem) =>
+      retry?.attempts
+        .slice()
+        .reverse()
+        .find((item) => item.problemId === problem.id) ??
+      session.attempts.find((item) => item.problemId === problem.id),
+  );
+  const remainingWrong = finalAttempts.filter(
+    (attempt) => attempt && !attempt.correct,
+  ).length;
   const goalReached = summary.todayAnswered >= summary.todayGoal;
   const done = goalReached || summary.status === "done";
   const canContinue =
@@ -566,6 +776,32 @@ function CourseComplete({ session, summary, busy, onContinue, onExit }: Props) {
         preventScroll: true,
       });
   }, [canContinue, busy]);
+  useEffect(() => {
+    const dialog = explanationDialog.current;
+    if (!dialog) return;
+    if (explanationProblemId) {
+      if (!dialog.open) {
+        if (dialog.showModal) dialog.showModal();
+        else dialog.setAttribute("open", "");
+      }
+      explanationClose.current?.focus({ preventScroll: true });
+    } else if (dialog.open) {
+      if (dialog.close) dialog.close();
+      else dialog.removeAttribute("open");
+      explanationOpener.current?.focus({ preventScroll: true });
+    }
+  }, [explanationProblemId]);
+  function showExplanation(problemId: string, opener: HTMLButtonElement) {
+    if (busy) return;
+    explanationOpener.current = opener;
+    setExplanationProblemId(problemId);
+    if (
+      !session.problems.some(
+        (problem) => problem.id === problemId && problem.hint,
+      )
+    )
+      onHint(problemId);
+  }
   return (
     <section className={`${s.practice} ${s.studentPractice} ${s.complete}`}>
       <div
@@ -596,9 +832,9 @@ function CourseComplete({ session, summary, busy, onContinue, onExit }: Props) {
           <div>
             <strong>
               {
-                session.attempts.filter(
+                finalAttempts.filter(
                   (attempt) =>
-                    attempt.correct &&
+                    attempt?.correct &&
                     !attempt.usedHint &&
                     !attempt.selfAssessed,
                 ).length
@@ -609,8 +845,8 @@ function CourseComplete({ session, summary, busy, onContinue, onExit }: Props) {
           <div>
             <strong>
               {
-                session.attempts.filter(
-                  (attempt) => attempt.usedHint || attempt.selfAssessed,
+                finalAttempts.filter(
+                  (attempt) => attempt?.usedHint || attempt?.selfAssessed,
                 ).length
               }
             </strong>
@@ -618,14 +854,20 @@ function CourseComplete({ session, summary, busy, onContinue, onExit }: Props) {
           </div>
         </div>
         <ol className={s.outcomes} aria-label="문제별 학습 결과">
-          {session.attempts.map((attempt, index) => {
+          {finalAttempts.map((attempt, index) => {
+            if (!attempt) return null;
+            const retried = retry?.attempts.some(
+              (item) => item.problemId === attempt.problemId,
+            );
             const label = !attempt.correct
-              ? "다시 연습"
+              ? "다음 복습"
               : attempt.usedHint
                 ? "풀이 참고"
                 : attempt.selfAssessed
                   ? "직접 확인"
-                  : "정답";
+                  : retried
+                    ? "재도전 정답"
+                    : "정답";
             return (
               <li
                 key={attempt.problemId}
@@ -636,15 +878,28 @@ function CourseComplete({ session, summary, busy, onContinue, onExit }: Props) {
               >
                 <strong>{index + 1}</strong>
                 <span>{label}</span>
+                <button
+                  type="button"
+                  className={s.outcomeHint}
+                  disabled={busy}
+                  onClick={(event) =>
+                    showExplanation(attempt.problemId, event.currentTarget)
+                  }
+                  aria-label={`${index + 1}번 풀이 보기`}
+                >
+                  풀이 보기
+                </button>
               </li>
             );
           })}
         </ol>
         <p className={s.completeMessage}>
-          {done
-            ? "오늘은 여기까지! 다음 학습 때 필요한 복습을 안내할게요."
-            : (summary.recommendation?.reason ??
-              "지금 필요한 학습을 모두 마쳤어요. 다음 복습 때 다시 만나요.")}
+          {remainingWrong > 0
+            ? "아직 어려운 문제는 다음 복습에서 다시 만나요."
+            : done
+              ? "오늘은 여기까지! 다음 학습 때 필요한 복습을 안내할게요."
+              : (summary.recommendation?.reason ??
+                "지금 필요한 학습을 모두 마쳤어요. 다음 복습 때 다시 만나요.")}
         </p>
       </div>
       <div className={s.completeActions}>
@@ -671,6 +926,40 @@ function CourseComplete({ session, summary, busy, onContinue, onExit }: Props) {
           학습 홈으로
         </button>
       </div>
+      <dialog
+        ref={explanationDialog}
+        className={s.explanationDialog}
+        aria-labelledby="course-complete-explanation-title"
+        onCancel={() => setExplanationProblemId(null)}
+        onClose={() => {
+          setExplanationProblemId(null);
+          explanationOpener.current?.focus({ preventScroll: true });
+        }}
+      >
+        <div className={s.dialogHeader}>
+          <h3 id="course-complete-explanation-title">풀이</h3>
+          <button
+            ref={explanationClose}
+            type="button"
+            className={s.dialogClose}
+            onClick={() => setExplanationProblemId(null)}
+            aria-label="풀이 닫기"
+          >
+            ×
+          </button>
+        </div>
+        <div className={s.dialogBody}>
+          {explanationProblem?.hint ? (
+            <Solution solution={explanationProblem.hint} />
+          ) : (
+            <p role={busy ? "status" : "alert"}>
+              {busy
+                ? "풀이를 불러오고 있어요…"
+                : "풀이를 불러오지 못했어요. 닫고 다시 시도해 주세요."}
+            </p>
+          )}
+        </div>
+      </dialog>
     </section>
   );
 }

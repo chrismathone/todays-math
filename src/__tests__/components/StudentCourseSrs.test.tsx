@@ -4,11 +4,13 @@ import {
   render,
   screen,
   waitFor,
+  within,
 } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 import CoursePlanForm from "@/components/math-srs/CoursePlanForm";
 import StudentCourseSrs from "@/components/math-srs/StudentCourseSrs";
+import StudentCoursePractice from "@/components/math-srs/StudentCoursePractice";
 import type {
   CoursePublicSession,
   CourseStudentState,
@@ -51,24 +53,24 @@ const now = "2026-09-23T01:00:00.000Z";
 function session(answered = 0): CoursePublicSession {
   const problems: CoursePublicSession["problems"] = Array.from(
     { length: 5 },
-    (_, index) => ({
-      id: `55555555-5555-4555-8555-${String(index + 1).padStart(12, "0")}`,
-      sectionId: section.id,
-      tier: "기본",
-      content: `문제 ${index + 1}: 1 + 1`,
-      figureUrl: null,
-      input: {
-        mode: "number" as const,
-        label: "나의 답",
-        placeholder: "답 입력",
-        help: "숫자로 적어 주세요.",
-      },
-      hint: null,
-      feedback:
-        index < answered
-          ? { answer: "2", solution: "서버가 알려 준 풀이", correct: true }
-          : null,
-    }),
+    (_, index) =>
+      ({
+        id: `55555555-5555-4555-8555-${String(index + 1).padStart(12, "0")}`,
+        sectionId: section.id,
+        tier: "기본",
+        content: `문제 ${index + 1}: 1 + 1`,
+        figureUrl: null,
+        answerChoices: null,
+        interactive: null,
+        input: {
+          mode: "number" as const,
+          label: "나의 답",
+          placeholder: "답 입력",
+          help: "숫자로 적어 주세요.",
+        },
+        hint: null,
+        feedback: index < answered ? { correct: true } : null,
+      }) as CoursePublicSession["problems"][number],
   );
   return {
     id: "44444444-4444-4444-8444-444444444444",
@@ -76,6 +78,7 @@ function session(answered = 0): CoursePublicSession {
     mode: "learn",
     startedAt: now,
     completedAt: answered === 5 ? now : null,
+    retry: null,
     problems,
     attempts: problems.slice(0, answered).map((problem) => ({
       problemId: problem.id,
@@ -85,7 +88,7 @@ function session(answered = 0): CoursePublicSession {
       selfAssessed: false,
       answeredAt: now,
     })),
-  };
+  } as CoursePublicSession;
 }
 function state(run: CoursePublicSession | null = null): CourseStudentState {
   return {
@@ -127,6 +130,161 @@ beforeEach(() => {
   vi.mocked(api.startCourse).mockResolvedValue({
     ok: true,
     data: state(session()),
+  });
+});
+
+describe("one-screen student answers", () => {
+  function view(run: CoursePublicSession, onAnswer = vi.fn()) {
+    const props = {
+      session: run,
+      summary: state(run).summary,
+      feedbackId: null,
+      busy: false,
+      onAnswer,
+      onHint: vi.fn(),
+      onNext: vi.fn(),
+      onContinue: vi.fn(),
+      onExit: vi.fn(),
+      onAuthFailure: vi.fn(),
+    };
+    return { ...render(<StudentCoursePractice {...props} />), props };
+  }
+
+  it("shows the question and four server choices together and submits the selected string", async () => {
+    const run = session();
+    Object.assign(run.problems[0], { answerChoices: ["1", "2", "3", "4"] });
+    const onAnswer = vi.fn();
+    view(run, onAnswer);
+    expect(await screen.findByText("문제 1: 1 + 1")).toBeInTheDocument();
+    expect(
+      screen.queryByRole("button", { name: "답안" }),
+    ).not.toBeInTheDocument();
+    expect(
+      screen.queryByRole("textbox", { name: "나의 답" }),
+    ).not.toBeInTheDocument();
+    const choices = within(
+      screen.getByRole("group", { name: "답 고르기" }),
+    ).getAllByRole("button");
+    expect(choices).toHaveLength(4);
+    await userEvent.click(choices[1]);
+    expect(choices[1]).toHaveAttribute("aria-pressed", "true");
+    await userEvent.click(screen.getByRole("button", { name: /정답 확인/ }));
+    expect(onAnswer).toHaveBeenCalledWith({
+      sessionId: run.id,
+      problemId: run.problems[0].id,
+      submittedAnswer: "2",
+    });
+  });
+
+  it("lets the student shade fraction parts and submits the part count", async () => {
+    const run = session();
+    Object.assign(run.problems[0], {
+      interactive: { kind: "fraction-parts", denominator: 4, shape: "bar" },
+    });
+    const onAnswer = vi.fn();
+    view(run, onAnswer);
+    const parts = within(
+      screen.getByRole("group", { name: "4칸 중 칠할 칸 선택" }),
+    ).getAllByRole("button");
+    expect(parts).toHaveLength(4);
+    await userEvent.click(parts[0]);
+    await userEvent.click(parts[2]);
+    expect(parts[0]).toHaveAttribute("aria-pressed", "true");
+    expect(parts[2]).toHaveAttribute("aria-pressed", "true");
+    await userEvent.click(screen.getByRole("button", { name: /정답 확인/ }));
+    expect(onAnswer).toHaveBeenCalledWith({
+      sessionId: run.id,
+      problemId: run.problems[0].id,
+      submittedAnswer: "2/4",
+    });
+  });
+
+  it("keeps wrong questions in the retry queue and sends the retry sequence", async () => {
+    const run = session(5);
+    run.attempts[0].correct = false;
+    run.attempts[2].correct = false;
+    Object.assign(run, {
+      retry: {
+        pendingProblemIds: [run.problems[0].id, run.problems[2].id],
+        attempts: [],
+        completedAt: null,
+      },
+    });
+    Object.assign(run.problems[0], { answerChoices: ["1", "2", "3", "4"] });
+    Object.assign(run.problems[2], { answerChoices: ["1", "2", "3", "4"] });
+    const onAnswer = vi.fn();
+    const { rerender, props } = view(run, onAnswer);
+    expect(screen.getByText("틀린 문제 다시 풀기")).toBeInTheDocument();
+    expect(
+      screen.getByRole("progressbar", { name: "틀린 문제 다시 풀기 진행" }),
+    ).toHaveAttribute("max", "2");
+    expect(
+      screen.getByRole("progressbar", { name: "틀린 문제 다시 풀기 진행" }),
+    ).toHaveAttribute("value", "0");
+    expect(screen.getByText("문제 1: 1 + 1")).toBeInTheDocument();
+    await userEvent.click(
+      within(screen.getByRole("group", { name: "답 고르기" })).getAllByRole(
+        "button",
+      )[0],
+    );
+    await userEvent.click(screen.getByRole("button", { name: /정답 확인/ }));
+    expect(onAnswer).toHaveBeenCalledWith(
+      expect.objectContaining({
+        problemId: run.problems[0].id,
+        retryIndex: 0,
+        submittedAnswer: "1",
+      }),
+    );
+    const next = structuredClone(run);
+    Object.assign(next, {
+      retry: {
+        pendingProblemIds: [next.problems[2].id, next.problems[0].id],
+        attempts: [{ ...next.attempts[0], correct: false }],
+        completedAt: null,
+      },
+    });
+    rerender(<StudentCoursePractice {...props} session={next} />);
+    expect(screen.getByText("문제 3: 1 + 1")).toBeInTheDocument();
+    await userEvent.click(
+      within(screen.getByRole("group", { name: "답 고르기" })).getAllByRole(
+        "button",
+      )[1],
+    );
+    await userEvent.click(screen.getByRole("button", { name: /정답 확인/ }));
+    expect(onAnswer).toHaveBeenLastCalledWith(
+      expect.objectContaining({
+        problemId: run.problems[2].id,
+        retryIndex: 1,
+      }),
+    );
+  });
+
+  it("offers a separate requested explanation after retry completion", async () => {
+    const run = session(5);
+    run.attempts[0].correct = false;
+    Object.assign(run, {
+      retry: {
+        pendingProblemIds: [],
+        attempts: [{ ...run.attempts[0], correct: true, answeredAt: now }],
+        completedAt: now,
+      },
+    });
+    const { rerender, props } = view(run);
+    expect(screen.getByText("재도전 정답")).toBeInTheDocument();
+    expect(screen.queryByText("완료 후 풀이")).not.toBeInTheDocument();
+    const opener = screen.getByRole("button", { name: "1번 풀이 보기" });
+    await userEvent.click(opener);
+    expect(props.onHint).toHaveBeenCalledWith(run.problems[0].id);
+    expect(screen.getByRole("dialog", { name: "풀이" })).toBeInTheDocument();
+    const hinted = structuredClone(run);
+    hinted.problems[0].hint = { answer: "2", solution: "완료 후 풀이" };
+    rerender(<StudentCoursePractice {...props} session={hinted} />);
+    expect(await screen.findByText("완료 후 풀이")).toBeInTheDocument();
+    await userEvent.click(screen.getByRole("button", { name: "풀이 닫기" }));
+    expect(
+      screen.queryByRole("dialog", { name: "풀이" }),
+    ).not.toBeInTheDocument();
+    expect(opener).toHaveFocus();
   });
 });
 afterEach(() => vi.unstubAllGlobals());
@@ -394,7 +552,7 @@ describe("persisted course practice", () => {
     await userEvent.keyboard("{Enter}");
     expect(api.answerCourse).toHaveBeenCalledTimes(1);
     await act(async () => resolve({ ok: true, data: state(session(1)) }));
-    expect(await screen.findByText("서버가 알려 준 풀이")).toBeInTheDocument();
+    expect(screen.queryByText("서버가 알려 준 풀이")).not.toBeInTheDocument();
     expect(screen.getByRole("button", { name: /다음 문제/ })).toHaveFocus();
     await userEvent.keyboard("{Enter}");
     expect(await screen.findByText("문제 2: 1 + 1")).toBeInTheDocument();
@@ -491,8 +649,13 @@ describe("persisted course practice", () => {
     );
   });
 
-  it("only reveals server-provided solutions after hint persistence", async () => {
-    const hinted = session();
+  it("opens a separate explanation only after the first submitted answer", async () => {
+    const answered = session(1);
+    vi.mocked(api.answerCourse).mockResolvedValue({
+      ok: true,
+      data: state(answered),
+    });
+    const hinted = session(1);
     hinted.problems[0].hint = { answer: "2", solution: "힌트 API의 풀이" };
     vi.mocked(api.hintCourse).mockResolvedValue({
       ok: true,
@@ -500,23 +663,23 @@ describe("persisted course practice", () => {
     });
     const input = await begin();
     expect(screen.queryByText("힌트 API의 풀이")).not.toBeInTheDocument();
+    expect(
+      screen.queryByRole("button", { name: "풀이 보기" }),
+    ).not.toBeInTheDocument();
+    await userEvent.type(input, "2{Enter}");
+    expect(await screen.findByText("정확하게 풀었어요!")).toBeInTheDocument();
+    expect(screen.queryByText("힌트 API의 풀이")).not.toBeInTheDocument();
     await userEvent.click(screen.getByRole("button", { name: "풀이 보기" }));
     expect(await screen.findByText("힌트 API의 풀이")).toBeInTheDocument();
-    expect(
-      screen.getByText("풀이를 참고한 문제로 기록해요."),
-    ).toBeInTheDocument();
-    expect(api.answerCourse).not.toHaveBeenCalled();
-    const answered = session(1);
-    answered.attempts[0].usedHint = true;
-    vi.mocked(api.answerCourse).mockResolvedValue({
-      ok: true,
-      data: state(answered),
+    expect(screen.getByRole("dialog", { name: "풀이" })).toBeInTheDocument();
+    expect(api.hintCourse).toHaveBeenCalledWith({
+      sessionId: answered.id,
+      problemId: answered.problems[0].id,
     });
-    await userEvent.type(input, "2{Enter}");
+    await userEvent.click(screen.getByRole("button", { name: "풀이 닫기" }));
     expect(
-      await screen.findByText("풀이를 참고해 확인했어요."),
-    ).toBeInTheDocument();
-    expect(screen.queryByText("정확하게 풀었어요!")).not.toBeInTheDocument();
+      screen.queryByRole("dialog", { name: "풀이" }),
+    ).not.toBeInTheDocument();
   });
 
   it("records giveUp explicitly without locally judging correctness", async () => {
@@ -538,11 +701,11 @@ describe("persisted course practice", () => {
       giveUp: true,
     });
     expect(
-      await screen.findByText("괜찮아요, 풀이를 살펴봐요."),
+      await screen.findByText("다시 풀 문제로 모았어요."),
     ).toBeInTheDocument();
   });
 
-  it("gets self-check solutions through the hint endpoint and labels assistance", async () => {
+  it("opens first-pass self-check comparison only on request and records the learner's judgement", async () => {
     const run = session();
     run.problems[0].input.mode = "self-check";
     vi.mocked(api.startCourse).mockResolvedValue({
@@ -556,8 +719,76 @@ describe("persisted course practice", () => {
       data: state(hinted),
     });
     const answered = session(1);
-    answered.attempts[0].usedHint = true;
     answered.attempts[0].selfAssessed = true;
+    answered.attempts[0].usedHint = true;
+    vi.mocked(api.answerCourse).mockResolvedValue({
+      ok: true,
+      data: state(answered),
+    });
+    render(<StudentCourseSrs />);
+    await userEvent.click(
+      await screen.findByRole("button", { name: "오늘의 추천 학습 시작" }),
+    );
+    expect(screen.queryByText("직접 비교할 풀이")).not.toBeInTheDocument();
+    expect(
+      screen.queryByRole("textbox", { name: /메모/ }),
+    ).not.toBeInTheDocument();
+    await userEvent.click(
+      await screen.findByRole("button", { name: "다 풀었어요 · 정답 확인" }),
+    );
+    expect(api.hintCourse).toHaveBeenCalledWith({
+      sessionId: run.id,
+      problemId: run.problems[0].id,
+    });
+    expect(await screen.findByText("직접 비교할 풀이")).toBeInTheDocument();
+    expect(screen.getByRole("dialog", { name: "풀이" })).toBeInTheDocument();
+    await userEvent.click(screen.getByRole("button", { name: "맞았어요" }));
+    expect(api.answerCourse).toHaveBeenCalledWith({
+      sessionId: run.id,
+      problemId: run.problems[0].id,
+      submittedAnswer: "",
+      selfCorrect: true,
+    });
+  });
+
+  it("uses an explicit explanation and self assessment on a retry-only self-check item", async () => {
+    const run = session(5);
+    run.attempts[0].correct = false;
+    run.problems[0].input.mode = "self-check";
+    Object.assign(run, {
+      retry: {
+        pendingProblemIds: [run.problems[0].id],
+        attempts: [],
+        completedAt: null,
+      },
+    });
+    run.problems[0].feedback = null;
+    vi.mocked(api.startCourse).mockResolvedValue({
+      ok: true,
+      data: state(run),
+    });
+    const hinted = structuredClone(run);
+    hinted.problems[0].hint = { answer: "도형", solution: "직접 비교할 풀이" };
+    vi.mocked(api.hintCourse).mockResolvedValue({
+      ok: true,
+      data: state(hinted),
+    });
+    const answered = structuredClone(hinted);
+    Object.assign(answered.problems[0], { feedback: { correct: true } });
+    Object.assign(answered, {
+      retry: {
+        pendingProblemIds: [],
+        attempts: [
+          {
+            ...answered.attempts[0],
+            correct: true,
+            selfAssessed: true,
+            usedHint: true,
+          },
+        ],
+        completedAt: now,
+      },
+    });
     vi.mocked(api.answerCourse).mockResolvedValue({
       ok: true,
       data: state(answered),
@@ -576,7 +807,7 @@ describe("persisted course practice", () => {
     });
     await userEvent.click(screen.getByRole("button", { name: "맞았어요" }));
     expect(api.answerCourse).toHaveBeenCalledWith(
-      expect.objectContaining({ selfCorrect: true }),
+      expect.objectContaining({ selfCorrect: true, retryIndex: 0 }),
     );
     expect(
       await screen.findByText("풀이를 참고해 확인했어요."),
