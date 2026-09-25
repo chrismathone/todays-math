@@ -11,7 +11,7 @@ for (const [browserName, browserType] of [
   ["webkit", webkit],
 ]) {
   const browser = await browserType.launch({ headless: true });
-  for (const kind of ["choice", "fraction4", "fraction12"]) {
+  for (const kind of ["choice", "embedded", "fraction4", "fraction12"]) {
     for (const width of [320, 390, 430]) {
       const page = await browser.newPage({
         viewport: { width, height: 700 },
@@ -23,16 +23,23 @@ for (const [browserName, browserType] of [
       await page.addStyleTag({
         content: "nextjs-portal { display: none !important; }",
       });
-      await page
-        .getByText(
-          kind === "choice"
-            ? "36의 약수 중에서 두 번째로 작은 수를 구하시오."
-            : /아래 막대에서 전체의/,
-        )
-        .waitFor();
+      if (kind === "embedded") {
+        const question = page.getByRole("region", { name: "문제 내용" });
+        await question.waitFor();
+        assert.match(await question.innerText(), /28/);
+        assert.match(await question.innerText(), /약수가 아닌 수/);
+      } else {
+        await page
+          .getByText(
+            kind === "choice"
+              ? "36의 약수 중에서 두 번째로 작은 수를 구하시오."
+              : /아래 막대에서 전체의/,
+          )
+          .waitFor();
+      }
       const group = page.getByRole("group", {
         name:
-          kind === "choice"
+          kind === "choice" || kind === "embedded"
             ? "답 고르기"
             : `${kind === "fraction12" ? 12 : 4}칸 중 칠할 칸 선택`,
       });
@@ -44,7 +51,11 @@ for (const [browserName, browserType] of [
       );
       assert.equal(
         await group.getByRole("button").count(),
-        kind === "choice" ? 4 : kind === "fraction12" ? 12 : 4,
+        kind === "choice" || kind === "embedded"
+          ? 4
+          : kind === "fraction12"
+            ? 12
+            : 4,
       );
       const boxes = {
         question: await page
@@ -78,6 +89,30 @@ for (const [browserName, browserType] of [
         path: resolve(root, `${browserName}-${kind}-${width}.png`),
         fullPage: true,
       });
+      if (kind === "embedded") {
+        assert.equal(
+          await page.getByRole("textbox", { name: "나의 답" }).count(),
+          0,
+        );
+        assert.deepEqual(
+          (await group.getByRole("button").allTextContents()).map((text) =>
+            text.slice(1),
+          ),
+          ["2", "7", "23", "14"],
+        );
+        assert.match(await page.getByRole("main").innerText(), /3\s*\/\s*5/);
+        assert.equal(
+          await page.getByRole("button", { name: "풀이 보기" }).count(),
+          0,
+        );
+        await group.getByRole("button").nth(2).click();
+        assert.equal(
+          await group.getByRole("button").nth(2).getAttribute("aria-pressed"),
+          "true",
+        );
+        await submit.click();
+        await page.getByText("정확하게 풀었어요!").waitFor();
+      }
       if (kind === "choice" && width === 320) {
         await group.getByRole("button").first().click();
         await page.screenshot({

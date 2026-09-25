@@ -21,18 +21,32 @@ const ids = Array.from(
     `55555555-5555-4555-8555-${String(index + 1).padStart(12, "0")}`,
 );
 
+const answerFor = (kind: string) =>
+  kind === "fraction12"
+    ? "5/12"
+    : kind === "fraction4"
+      ? "2/4"
+      : kind === "embedded"
+        ? "23"
+        : "2";
+
 function makeSession(kind: string): CoursePublicSession {
   const denominator = kind === "fraction12" ? 12 : 4;
   const problems = ids.map((id, index) => ({
     id,
     sectionId: section.id,
-    tier: "연산" as const,
+    tier:
+      kind === "embedded" && index === 2
+        ? ("기본" as const)
+        : ("연산" as const),
     content:
-      index === 0
-        ? kind.startsWith("fraction")
-          ? `아래 막대에서 전체의 ${denominator === 12 ? "5/12" : "2/4"}만큼 칠해 보세요.`
-          : "36의 약수 중에서 두 번째로 작은 수를 구하시오."
-        : "1 + 1 = ?",
+      kind === "embedded" && index === 2
+        ? "다음 수 중에서 $28$의 약수가 아닌 수를 찾아 쓰시오."
+        : index === 0
+          ? kind.startsWith("fraction")
+            ? `아래 막대에서 전체의 ${denominator === 12 ? "5/12" : "2/4"}만큼 칠해 보세요.`
+            : "36의 약수 중에서 두 번째로 작은 수를 구하시오."
+          : "1 + 1 = ?",
     figureUrl: null,
     input: {
       mode: "number" as const,
@@ -41,7 +55,11 @@ function makeSession(kind: string): CoursePublicSession {
       help: "숫자로 적어 주세요.",
     },
     answerChoices:
-      index === 0 && !kind.startsWith("fraction") ? ["2", "3", "4", "6"] : null,
+      kind === "embedded" && index === 2
+        ? ["2", "7", "23", "14"]
+        : index === 0 && !kind.startsWith("fraction") && kind !== "embedded"
+          ? ["2", "3", "4", "6"]
+          : null,
     interactive:
       index === 0 && kind.startsWith("fraction")
         ? {
@@ -58,7 +76,17 @@ function makeSession(kind: string): CoursePublicSession {
     sectionId: section.id,
     mode: "learn",
     problems,
-    attempts: [],
+    attempts:
+      kind === "embedded"
+        ? problems.slice(0, 2).map((problem) => ({
+            problemId: problem.id,
+            submittedAnswer: "2",
+            correct: true,
+            usedHint: false,
+            selfAssessed: false,
+            answeredAt: now,
+          }))
+        : [],
     startedAt: now,
     completedAt: null,
     retry: null,
@@ -101,13 +129,7 @@ export default function MobilePracticeQa({ kind }: { kind: string }) {
                       {
                         problemId: input.problemId,
                         submittedAnswer: input.submittedAnswer,
-                        correct:
-                          input.submittedAnswer ===
-                          (kind === "fraction12"
-                            ? "5/12"
-                            : kind === "fraction4"
-                              ? "2/4"
-                              : "2"),
+                        correct: input.submittedAnswer === answerFor(kind),
                         usedHint: false,
                         selfAssessed: false,
                         answeredAt: now,
@@ -119,12 +141,7 @@ export default function MobilePracticeQa({ kind }: { kind: string }) {
                             ...problem,
                             feedback: {
                               correct:
-                                input.submittedAnswer ===
-                                (kind === "fraction12"
-                                  ? "5/12"
-                                  : kind === "fraction4"
-                                    ? "2/4"
-                                    : "2"),
+                                input.submittedAnswer === answerFor(kind),
                             },
                           }
                         : problem,
@@ -141,11 +158,7 @@ export default function MobilePracticeQa({ kind }: { kind: string }) {
                     ? {
                         ...problem,
                         hint: {
-                          answer: kind.startsWith("fraction")
-                            ? kind === "fraction12"
-                              ? "5/12"
-                              : "2/4"
-                            : "2",
+                          answer: answerFor(kind),
                           solution: "문제를 차근차근 다시 살펴보세요.",
                         },
                       }
