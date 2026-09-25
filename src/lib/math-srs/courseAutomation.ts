@@ -17,6 +17,7 @@ import { kstDateOf } from "@/lib/kstDate";
 import { gradeCourseAnswer, validateCourseAnswer } from "./elementary/answers";
 import { COURSE_SECTIONS, getCourseSection } from "./elementary/catalog";
 import { generateCourseSession } from "./elementary/generator";
+import type { BankCourseCandidate } from "./courseBank";
 import {
   courseLearnerSchema,
   courseRecord,
@@ -225,7 +226,8 @@ export function setCoursePlan(
   if (
     changingStart &&
     state.learner.session &&
-    !state.learner.session.completedAt
+    (!state.learner.session.completedAt ||
+      (state.learner.session.retry && !state.learner.session.retry.completedAt))
   )
     throw new CourseConflict(
       "진행 중인 학습을 마친 뒤 시작 소단원을 바꿔 주세요.",
@@ -266,7 +268,9 @@ export function courseSummary(state: StoredCourse, now: Date): CourseSummary {
           getCourseSection(b.sectionId)!.order,
     );
   const session = state.learner.session;
-  const active = session && !session.completedAt;
+  const active =
+    session &&
+    (!session.completedAt || (session.retry && !session.retry.completedAt));
   const next = nextLearning(state);
   const learnedToday = [
     ...state.history.map((s) => s.session),
@@ -343,6 +347,7 @@ export function startAutomaticCourse(
   now: Date,
   seed: number,
   newId: () => string,
+  bankCandidates: readonly BankCourseCandidate[] = [],
 ): StoredCourse {
   const next = courseSummary(state, now).recommendation;
   if (!next || next.mode === "resume") return state;
@@ -358,6 +363,7 @@ export function startAutomaticCourse(
     seed,
     startedAt,
     next.mode,
+    bankCandidates,
   );
   const session = sessionSchema.parse({
     ...generated,
@@ -402,13 +408,53 @@ export function revealCourseHint(
   state: StoredCourse,
   input: CourseHintInput,
 ): StoredCourse {
-  const previous = findStoredCourseSession(state, input.sessionId);
-  if (previous?.hintedProblemIds?.includes(input.problemId)) return state;
-  requireCurrent(state, input);
+  const current = state.learner.session;
+  const historyIndex = state.history.findIndex(
+    (entry) => entry.session.id === input.sessionId,
+  );
+  const session =
+    current?.id === input.sessionId
+      ? current
+      : state.history[historyIndex]?.session;
+  if (!session || !session.problems.some((p) => p.id === input.problemId))
+    throw new CourseConflict("문제 또는 학습 기록을 찾을 수 없습니다.");
+  if (
+    !session.attempts.some((attempt) => attempt.problemId === input.problemId)
+  ) {
+    const problem = session.problems.find((p) => p.id === input.problemId)!;
+    if (
+      current?.id !== input.sessionId ||
+      current.completedAt ||
+      current.problems[current.attempts.length]?.id !== input.problemId ||
+      problem.input.mode !== "self-check"
+    )
+      throw new CourseConflict("답을 제출한 뒤 해설을 볼 수 있어요.");
+    if (current.hintedProblemIds?.includes(input.problemId)) return state;
+    return {
+      ...state,
+      learner: markCourseHint(state.learner, input.problemId),
+    } as StoredCourse;
+  }
+  if (
+    session.revealedProblemIds?.includes(input.problemId) ||
+    session.hintedProblemIds?.includes(input.problemId)
+  )
+    return state;
+  const updated = {
+    ...session,
+    revealedProblemIds: [
+      ...(session.revealedProblemIds ?? []),
+      input.problemId,
+    ],
+  };
+  if (current?.id === input.sessionId)
+    return { ...state, learner: { ...state.learner, session: updated } };
   return {
     ...state,
-    learner: markCourseHint(state.learner, input.problemId),
-  } as StoredCourse;
+    history: state.history.map((entry, index) =>
+      index === historyIndex ? { ...entry, session: updated } : entry,
+    ),
+  };
 }
 
 export function estimatedCourseRecall(
@@ -424,11 +470,121 @@ export function estimatedCourseRecall(
   );
 }
 
+function submitCourseRetryAttempt(
+  state: StoredCourse,
+  input: CourseAttemptInput,
+  now: Date,
+): StoredCourse {
+  const session = state.learner.session;
+  const retry = session?.retry;
+  if (!session || session.id !== input.sessionId || !retry)
+    throw new CourseConflict("오답 복습 기록을 다시 불러와 주세요.");
+  if (input.retryIndex === undefined)
+    throw new CourseInvalidInput("오답 복습 순서를 다시 불러와 주세요.");
+  const previous = retry.requests[input.retryIndex];
+  if (previous) {
+    if (
+      previous.sessionId === input.sessionId &&
+      previous.problemId === input.problemId &&
+      previous.submittedAnswer === input.submittedAnswer &&
+      previous.selfCorrect === input.selfCorrect &&
+      previous.giveUp === input.giveUp
+    )
+      return state;
+    throw new CourseConflict("이미 제출한 오답 복습을 변경할 수 없습니다.");
+  }
+  if (
+    retry.completedAt ||
+    input.retryIndex !== retry.attempts.length ||
+    retry.pendingProblemIds[0] !== input.problemId
+  )
+    throw new CourseConflict(
+      "오답 복습 문제 순서가 변경되었습니다. 다시 불러와 주세요.",
+    );
+  const problem = session.problems.find((p) => p.id === input.problemId)!;
+  const selfAssessed = problem.input.mode === "self-check";
+  const revealed =
+    (session.revealedProblemIds ?? []).includes(problem.id) ||
+    (session.hintedProblemIds ?? []).includes(problem.id);
+  if (
+    !input.giveUp &&
+    selfAssessed &&
+    (!revealed || input.selfCorrect === undefined)
+  )
+    throw new CourseInvalidInput(
+      "직접 확인하는 문제는 해설을 본 뒤 판단해 주세요.",
+    );
+  if (!selfAssessed && input.selfCorrect !== undefined)
+    throw new CourseInvalidInput("이 문제는 선택한 답으로 채점합니다.");
+  const invalid =
+    !input.giveUp &&
+    !selfAssessed &&
+    validateCourseAnswer(problem, input.submittedAnswer);
+  if (invalid) throw new CourseInvalidInput(invalid);
+  const answeredAt = new Date(
+    Math.max(
+      now.getTime(),
+      Date.parse(
+        retry.attempts.at(-1)?.answeredAt ??
+          session.completedAt ??
+          session.startedAt,
+      ),
+    ),
+  ).toISOString();
+  const attempt = {
+    problemId: problem.id,
+    submittedAnswer: input.giveUp ? "" : input.submittedAnswer,
+    correct:
+      !input.giveUp &&
+      (selfAssessed
+        ? input.selfCorrect === true
+        : gradeCourseAnswer(problem, input.submittedAnswer) === true),
+    usedHint: revealed,
+    selfAssessed,
+    answeredAt,
+  };
+  const pendingProblemIds = retry.pendingProblemIds.slice(1);
+  if (!attempt.correct && !input.giveUp) pendingProblemIds.push(problem.id);
+  return {
+    ...state,
+    learner: {
+      ...state.learner,
+      session: {
+        ...session,
+        retry: {
+          pendingProblemIds,
+          attempts: [...retry.attempts, attempt],
+          requests: [...retry.requests, input],
+          completedAt: pendingProblemIds.length ? null : answeredAt,
+        },
+      },
+    },
+  };
+}
+
 export function submitCourseAttempt(
   state: StoredCourse,
   input: CourseAttemptInput,
   now: Date,
 ): StoredCourse {
+  const activeSession = state.learner.session;
+  if (activeSession?.id === input.sessionId && activeSession.retry) {
+    if (input.retryIndex !== undefined)
+      return submitCourseRetryAttempt(state, input, now);
+    const old = state.requests.find(
+      (request) => request.problemId === input.problemId,
+    );
+    if (
+      old &&
+      old.submittedAnswer === input.submittedAnswer &&
+      old.selfCorrect === input.selfCorrect &&
+      old.giveUp === input.giveUp
+    )
+      return state;
+    throw new CourseInvalidInput("오답 복습 순서를 다시 불러와 주세요.");
+  }
+  if (input.retryIndex !== undefined)
+    throw new CourseInvalidInput("첫 풀이에는 오답 복습 순서를 보내지 마세요.");
   const saved =
     state.learner.session?.id === input.sessionId
       ? { session: state.learner.session, requests: state.requests }
@@ -482,6 +638,24 @@ export function submitCourseAttempt(
   };
   let learner = recordCourseAttempt(state.learner, attempt);
   const finished = !!learner.session?.completedAt;
+  if (finished) {
+    const pendingProblemIds = learner
+      .session!.attempts.filter((entry) => !entry.correct)
+      .map((entry) => entry.problemId);
+    if (pendingProblemIds.length)
+      learner = {
+        ...learner,
+        session: {
+          ...learner.session!,
+          retry: {
+            pendingProblemIds,
+            attempts: [],
+            requests: [],
+            completedAt: null,
+          },
+        },
+      };
+  }
   const independent =
     attempt.correct && !attempt.usedHint && !attempt.selfAssessed;
   const prior = state.memories[session.sectionId];
@@ -644,8 +818,22 @@ export function publicCourseSession(
     startedAt: session.startedAt,
     completedAt: session.completedAt,
     attempts: session.attempts,
+    retry: session.retry
+      ? {
+          pendingProblemIds: session.retry.pendingProblemIds,
+          attempts: session.retry.attempts,
+          completedAt: session.retry.completedAt,
+        }
+      : null,
     problems: session.problems.map((p) => {
       const attempt = session.attempts.find((a) => a.problemId === p.id);
+      const activeRetry =
+        session.retry &&
+        !session.retry.completedAt &&
+        session.retry.pendingProblemIds[0] === p.id;
+      const latestRetry = session.retry?.attempts
+        .filter((a) => a.problemId === p.id)
+        .at(-1);
       const solution = { answer: p.answer, solution: p.solution };
       return {
         id: p.id,
@@ -653,11 +841,27 @@ export function publicCourseSession(
         tier: p.tier,
         content: p.content,
         input: p.input,
+        answerChoices: p.answerChoices ?? null,
+        interactive: p.interactive ?? null,
         figureUrl: p.figureSpec
           ? `/api/learn/math-srs/course/figure?sessionId=${session.id}&problemId=${p.id}`
           : null,
-        hint: session.hintedProblemIds?.includes(p.id) ? solution : null,
-        feedback: attempt ? { ...solution, correct: attempt.correct } : null,
+        hint:
+          (session.hintedProblemIds?.includes(p.id) &&
+            (attempt ||
+              (p.input.mode === "self-check" &&
+                !session.completedAt &&
+                session.problems[session.attempts.length]?.id === p.id))) ||
+          session.revealedProblemIds?.includes(p.id)
+            ? solution
+            : null,
+        feedback: latestRetry
+          ? { correct: latestRetry.correct }
+          : activeRetry
+            ? null
+            : attempt
+              ? { correct: attempt.correct }
+              : null,
       };
     }),
   };
