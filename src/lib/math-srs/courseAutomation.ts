@@ -15,6 +15,10 @@ import {
 } from "@/contracts/mathSrsCourse.contract";
 import { kstDateOf } from "@/lib/kstDate";
 import { gradeCourseAnswer, validateCourseAnswer } from "./elementary/answers";
+import {
+  embeddedCourseAnswerChoices,
+  makeCourseAnswerChoices,
+} from "./elementary/choiceAnswers";
 import { COURSE_SECTIONS, getCourseSection } from "./elementary/catalog";
 import { generateCourseSession } from "./elementary/generator";
 import type { BankCourseCandidate } from "./courseBank";
@@ -811,6 +815,9 @@ export function submitCourseAttempt(
 export function publicCourseSession(
   session: CourseSession,
 ): CoursePublicSession {
+  // Older persisted sessions predate answerChoices. Derive their options from
+  // stable problem seeds and the session's own answers without changing records.
+  const sessionAnswers = session.problems.map((problem) => problem.answer);
   return {
     id: session.id,
     sectionId: session.sectionId,
@@ -834,15 +841,24 @@ export function publicCourseSession(
       const latestRetry = session.retry?.attempts
         .filter((a) => a.problemId === p.id)
         .at(-1);
+      const embedded = embeddedCourseAnswerChoices(p);
+      const derived =
+        !p.answerChoices || p.interactive === undefined
+          ? makeCourseAnswerChoices(p, sessionAnswers)
+          : null;
       const solution = { answer: p.answer, solution: p.solution };
       return {
         id: p.id,
         sectionId: p.sectionId,
         tier: p.tier,
-        content: p.content,
+        content: embedded?.content ?? p.content,
         input: p.input,
-        answerChoices: p.answerChoices ?? null,
-        interactive: p.interactive ?? null,
+        answerChoices:
+          embedded?.answerChoices ??
+          p.answerChoices ??
+          derived?.answerChoices ??
+          null,
+        interactive: p.interactive ?? derived?.interactive ?? null,
         figureUrl: p.figureSpec
           ? `/api/learn/math-srs/course/figure?sessionId=${session.id}&problemId=${p.id}`
           : null,
