@@ -795,24 +795,8 @@ function Solution({
   );
 }
 
-function CourseComplete({
-  session,
-  summary,
-  busy,
-  onContinue,
-  onExit,
-  onHint,
-}: Props) {
+function CourseComplete({ session, summary, busy, onContinue, onExit }: Props) {
   const completeHeading = useRef<HTMLHeadingElement>(null);
-  const explanationDialog = useRef<HTMLDialogElement>(null);
-  const explanationClose = useRef<HTMLButtonElement>(null);
-  const explanationOpener = useRef<HTMLButtonElement | null>(null);
-  const [explanationProblemId, setExplanationProblemId] = useState<
-    string | null
-  >(null);
-  const explanationProblem = session.problems.find(
-    (problem) => problem.id === explanationProblemId,
-  );
   const goalReached = summary.todayAnswered >= summary.todayGoal;
   const done = goalReached || summary.status === "done";
   useEffect(() => {
@@ -824,32 +808,6 @@ function CourseComplete({
       (next ?? completeHeading.current)?.focus({ preventScroll: true });
     }
   }, [busy]);
-  useEffect(() => {
-    const dialog = explanationDialog.current;
-    if (!dialog) return;
-    if (explanationProblemId) {
-      if (!dialog.open) {
-        if (dialog.showModal) dialog.showModal();
-        else dialog.setAttribute("open", "");
-      }
-      explanationClose.current?.focus({ preventScroll: true });
-    } else if (dialog.open) {
-      if (dialog.close) dialog.close();
-      else dialog.removeAttribute("open");
-      explanationOpener.current?.focus({ preventScroll: true });
-    }
-  }, [explanationProblemId]);
-  function showExplanation(problemId: string, opener: HTMLButtonElement) {
-    if (busy) return;
-    explanationOpener.current = opener;
-    setExplanationProblemId(problemId);
-    if (
-      !session.problems.some(
-        (problem) => problem.id === problemId && problem.hint,
-      )
-    )
-      onHint(problemId);
-  }
   return (
     <section className={`${s.practice} ${s.studentPractice} ${s.complete}`}>
       <div
@@ -869,7 +827,6 @@ function CourseComplete({
           session={session}
           busy={busy}
           onNext={onContinue}
-          onHint={showExplanation}
         />
         <p className={s.completeMessage}>
           {done
@@ -888,40 +845,6 @@ function CourseComplete({
           학습 홈으로
         </button>
       </div>
-      <dialog
-        ref={explanationDialog}
-        className={s.explanationDialog}
-        aria-labelledby="course-complete-explanation-title"
-        onCancel={() => setExplanationProblemId(null)}
-        onClose={() => {
-          setExplanationProblemId(null);
-          explanationOpener.current?.focus({ preventScroll: true });
-        }}
-      >
-        <div className={s.dialogHeader}>
-          <h3 id="course-complete-explanation-title">풀이</h3>
-          <button
-            ref={explanationClose}
-            type="button"
-            className={s.dialogClose}
-            onClick={() => setExplanationProblemId(null)}
-            aria-label="풀이 닫기"
-          >
-            ×
-          </button>
-        </div>
-        <div className={s.dialogBody}>
-          {explanationProblem?.hint ? (
-            <Solution solution={explanationProblem.hint} />
-          ) : (
-            <p role={busy ? "status" : "alert"}>
-              {busy
-                ? "풀이를 불러오고 있어요…"
-                : "풀이를 불러오지 못했어요. 닫고 다시 시도해 주세요."}
-            </p>
-          )}
-        </div>
-      </dialog>
     </section>
   );
 }

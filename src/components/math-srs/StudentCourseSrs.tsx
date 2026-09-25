@@ -1,10 +1,8 @@
 "use client";
 
 import dynamic from "next/dynamic";
-import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useCallback, useEffect, useRef, useState } from "react";
-import { LearnTopBar } from "@/components/learn/LearnTopBar";
 import type { Submitted } from "@/components/learn/learnApi";
 import type { CourseStudentState } from "@/contracts/mathSrsCourse.contract";
 import { getCourseSection } from "@/lib/math-srs/elementary/catalog";
@@ -12,7 +10,8 @@ import { STUDENT_MUST_CHANGE_MESSAGE } from "@/lib/studentRouteAccess";
 import CoursePlanForm from "./CoursePlanForm";
 import CourseProgressBoard from "./CourseProgressBoard";
 import {
-  StudentReviewHeading,
+  StudentReviewPage,
+  StudentReviewStatus,
   StudentReviewOverview,
 } from "./StudentReviewHome";
 import homeStyles from "./student-review-home.module.css";
@@ -181,292 +180,225 @@ export default function StudentCourseSrs() {
                   : "지금은 예정된 학습이 없어요.";
 
   return (
-    <div className={`${s.page} ${practice ? s.practicePage : ""}`}>
-      <LearnTopBar student={state?.student ?? null} />
-      <main
-        className={
-          practice
-            ? s.practiceMain
-            : `${homeStyles.main} ${needsSetup ? `${s.setupMain} ${homeStyles.setupMain}` : ""}`
+    <StudentReviewPage
+      kind="elementary"
+      student={state?.student ?? null}
+      practicing={!!practice}
+      boardReady={!!state && !loading && !needsSetup && error?.status !== 503}
+      practiceTitle="초등 수학 자동 복습"
+      practicePageClassName={`${s.page} ${s.practicePage}`}
+      practiceMainClassName={s.practiceMain}
+      setupClassName={
+        needsSetup ? `${s.setupMain} ${homeStyles.setupMain}` : undefined
+      }
+    >
+      <StudentReviewStatus
+        loading={loading}
+        error={error}
+        busy={busy}
+        onReload={loadAgain}
+        onRetry={
+          retryAction && error && error.status !== 409 && error.status !== 400
+            ? () => void mutate(retryAction)
+            : undefined
         }
-      >
-        {practice ? (
-          <h1 className={s.srOnly}>초등 수학 자동 복습</h1>
-        ) : (
-          <>
-            <nav className={s.nav} aria-label="학생 학습 메뉴">
-              <Link href="/learn">개념 강의</Link>
-              <span aria-current="page">초등 수학 자동 복습</span>
-              <Link href="/learn/math-srs/algebra">중등 일차방정식 연습</Link>
-            </nav>
-            <StudentReviewHeading
-              grade="초등 3~6학년"
-              description="시작 진도를 정하면, 필요한 복습과 새 학습을 차례로 안내해요."
-            />
-          </>
-        )}
-        {loading ? (
-          <p className={s.notice} role="status">
-            내 학습 기록을 불러오고 있어요…
-          </p>
-        ) : null}
-        {error ? (
-          <div className={s.error} role="alert">
-            <p>
-              {error.status === 409
-                ? "다른 화면에서 학습 기록이 바뀌었어요. 최신 기록을 불러온 뒤 이어 가 주세요."
-                : error.status === 503
-                  ? "학습 저장소가 아직 준비되지 않았어요. 잠시 후 다시 시도하고, 계속되면 선생님께 알려 주세요."
-                  : error.message}
-            </p>
-            <div className={s.actions}>
-              {retryAction && error.status !== 409 && error.status !== 400 ? (
-                <button
-                  className={s.secondary}
-                  type="button"
-                  disabled={busy}
-                  onClick={() => {
-                    if (retryAction) void mutate(retryAction);
-                  }}
-                >
-                  같은 요청 다시 시도
-                </button>
-              ) : null}
-              <button
-                className={s.secondary}
-                type="button"
-                disabled={busy}
-                onClick={loadAgain}
-              >
-                최신 기록 불러오기
-              </button>
-            </div>
-          </div>
-        ) : null}
-        {practice && state ? (
-          <div className={s.practiceStage}>
-            <StudentCoursePractice
-              key={practice.id}
-              session={practice}
-              summary={state.summary}
-              feedbackId={feedbackId}
-              busy={blocked}
-              onAuthFailure={authFailure}
-              onExit={() => {
-                setPracticing(false);
-                setFeedbackId(null);
-              }}
-              onContinue={start}
-              onNext={() => setFeedbackId(null)}
-              onHint={(problemId) => {
-                void mutate({
-                  run: () => hintCourse({ sessionId: practice.id, problemId }),
-                });
-              }}
-              onAnswer={(input) => {
-                void mutate({
-                  run: () => answerCourse(input),
-                  after: () => setFeedbackId(input.problemId),
-                });
-              }}
-            />
-          </div>
-        ) : state && !loading ? (
-          <>
-            {!needsSetup && summary ? (
-              <section
-                className={s.boardSection}
-                aria-labelledby="course-board-title"
-              >
-                <h2 id="course-board-title">오늘의 진도판</h2>
-                {section ? (
-                  <p className={s.boardTopic}>
-                    {paused
-                      ? "학습을 다시 시작하려면 설정을 열어 주세요."
-                      : `다음 단원 · 초${section.grade} ${section.semester}학기 · ${section.title}`}
-                  </p>
-                ) : null}
+      />
+      {practice && state ? (
+        <div className={s.practiceStage}>
+          <StudentCoursePractice
+            key={practice.id}
+            session={practice}
+            summary={state.summary}
+            feedbackId={feedbackId}
+            busy={blocked}
+            onAuthFailure={authFailure}
+            onExit={() => {
+              setPracticing(false);
+              setFeedbackId(null);
+            }}
+            onContinue={start}
+            onNext={() => setFeedbackId(null)}
+            onHint={(problemId) => {
+              void mutate({
+                run: () => hintCourse({ sessionId: practice.id, problemId }),
+              });
+            }}
+            onAnswer={(input) => {
+              void mutate({
+                run: () => answerCourse(input),
+                after: () => setFeedbackId(input.problemId),
+              });
+            }}
+          />
+        </div>
+      ) : state && !loading ? (
+        <>
+          <StudentReviewOverview
+            board={
+              !needsSetup && summary ? (
                 <CourseProgressBoard
                   summary={summary}
                   busy={blocked}
-                  pageScroll
+                  nextLabel={
+                    recommendation?.mode === "resume"
+                      ? "이어서 학습하기"
+                      : "오늘의 추천 학습 시작"
+                  }
+                  nextAriaLabel={
+                    recommendation?.mode === "resume"
+                      ? "이어서 학습하기"
+                      : "오늘의 추천 학습 시작"
+                  }
                   onNext={
                     !paused && !done && recommendation ? start : undefined
                   }
                 />
-                {state.session?.completedAt &&
-                (!state.session.retry || state.session.retry.completedAt) ? (
-                  <button
-                    type="button"
-                    className={s.boardReview}
-                    disabled={blocked}
-                    onClick={() => setPracticing(true)}
-                  >
-                    방금 푼 문제의 풀이 보기
-                  </button>
-                ) : null}
-                <button
-                  type="button"
-                  className={s.boardReview}
-                  disabled={blocked}
-                  onClick={(event) => openSettings(event.currentTarget)}
-                >
-                  학습 설정
-                </button>
-              </section>
-            ) : null}
-            <div className={s.reviewOverview} data-board={!needsSetup}>
-              <StudentReviewOverview
-                recommendation={{
-                  id: "course-recommendation",
-                  eyebrow: paused
-                    ? "잠시 쉬는 중"
-                    : done
-                      ? goalReached
-                        ? "오늘의 목표 완료"
-                        : "오늘의 추천 학습 완료"
-                      : recommendation?.mode === "resume"
-                        ? "이어서 학습"
-                        : recommendation?.mode === "review"
-                          ? "오늘의 추천 복습"
-                          : "오늘의 추천 학습",
-                  title,
-                  section:
-                    section && !needsSetup && !paused
-                      ? `초${section.grade} · ${section.semester}학기 · ${section.chapterTitle}`
-                      : undefined,
-                  sectionTitle:
-                    section && !needsSetup && !paused
-                      ? section.title
-                      : undefined,
-                  reason: needsSetup
-                    ? "학교나 학원에서 배우는 소단원을 선택해 주세요. 내 계정에 학습 기록이 쌓여요."
-                    : paused
-                      ? "설정에서 자동 학습을 켜면 저장된 기록에 맞춰 다시 시작해요."
-                      : done
-                        ? "오늘은 여기까지! 다음 학습 때 필요한 복습부터 만나요."
-                        : (recommendation?.reason ??
-                          "복습할 시기가 되면 여기에 다음 학습이 나타나요."),
-                  action:
-                    needsSetup || paused
-                      ? {
-                          label: needsSetup
-                            ? "시작 진도 설정"
-                            : "학습 설정 열기",
-                          disabled: blocked,
-                          onClick: (event) => openSettings(event.currentTarget),
-                        }
-                      : recommendation && !done
-                        ? {
-                            label: busy
-                              ? "학습 준비 중…"
-                              : recommendation.mode === "resume"
-                                ? "이어서 학습하기"
-                                : "오늘의 추천 학습 시작",
-                            disabled: blocked,
-                            onClick: start,
-                            arrow: true,
-                          }
-                        : undefined,
-                  completedLabel: done
-                    ? "오늘 학습 완료"
-                    : "지금 필요한 학습 완료",
-                  note:
-                    !needsSetup && !paused && !done && recommendation
-                      ? "한 번에 5문제 · 하루 목표까지 차례로 풀어요"
-                      : undefined,
-                }}
-                progress={{
-                  title: "오늘의 학습",
-                  ariaLabel: "오늘 목표 진행",
-                  completed: summary?.todayAnswered ?? 0,
-                  goal: summary?.todayGoal ?? 10,
-                  rows: [
+              ) : undefined
+            }
+            boardActions={[
+              ...(state.session?.completedAt &&
+              (!state.session.retry || state.session.retry.completedAt)
+                ? [
                     {
-                      label: "복습할 소단원",
-                      value: `${summary?.dueCount ?? 0}개`,
+                      label: "완료한 문제 다시 풀기",
+                      disabled: blocked,
+                      onClick: () => setPracticing(true),
                     },
-                    {
-                      label: "완료한 소단원",
-                      value: `${summary?.completedSections ?? 0}개`,
-                    },
-                    {
-                      label: "다음 복습",
-                      value: formatReview(summary?.nextReviewAt ?? null),
-                    },
-                  ],
-                  footer: (
-                    <button
-                      type="button"
-                      className={s.settingsButton}
-                      disabled={blocked}
-                      onClick={(event) => {
-                        if (settings) setSettings(false);
-                        else openSettings(event.currentTarget);
-                      }}
-                      aria-expanded={settings}
-                      aria-controls="course-settings"
-                    >
-                      학습 설정 <span aria-hidden="true">→</span>
-                    </button>
-                  ),
+                  ]
+                : []),
+              {
+                label: paused ? "학습 설정 열기" : "학습 설정",
+                disabled: blocked,
+                onClick: (event) => openSettings(event.currentTarget),
+              },
+            ]}
+            recommendation={{
+              id: "course-recommendation",
+              eyebrow: paused
+                ? "잠시 쉬는 중"
+                : done
+                  ? goalReached
+                    ? "오늘의 목표 완료"
+                    : "오늘의 추천 학습 완료"
+                  : recommendation?.mode === "resume"
+                    ? "이어서 학습"
+                    : recommendation?.mode === "review"
+                      ? "오늘의 추천 복습"
+                      : "오늘의 추천 학습",
+              title,
+              section:
+                section && !needsSetup && !paused
+                  ? `초${section.grade} · ${section.semester}학기 · ${section.chapterTitle}`
+                  : undefined,
+              sectionTitle:
+                section && !needsSetup && !paused ? section.title : undefined,
+              reason: needsSetup
+                ? "학교나 학원에서 배우는 소단원을 선택해 주세요. 내 계정에 학습 기록이 쌓여요."
+                : paused
+                  ? "설정에서 자동 학습을 켜면 저장된 기록에 맞춰 다시 시작해요."
+                  : done
+                    ? "오늘은 여기까지! 다음 학습 때 필요한 복습부터 만나요."
+                    : (recommendation?.reason ??
+                      "복습할 시기가 되면 여기에 다음 학습이 나타나요."),
+              action:
+                needsSetup || paused
+                  ? {
+                      label: needsSetup ? "시작 진도 설정" : "학습 설정 열기",
+                      disabled: blocked,
+                      onClick: (event) => openSettings(event.currentTarget),
+                    }
+                  : recommendation && !done
+                    ? {
+                        label: busy
+                          ? "학습 준비 중…"
+                          : recommendation.mode === "resume"
+                            ? "이어서 학습하기"
+                            : "오늘의 추천 학습 시작",
+                        disabled: blocked,
+                        onClick: start,
+                        arrow: true,
+                      }
+                    : undefined,
+              completedLabel: done ? "오늘 학습 완료" : "지금 필요한 학습 완료",
+              note:
+                !needsSetup && !paused && !done && recommendation
+                  ? "한 번에 5문제 · 하루 목표까지 차례로 풀어요"
+                  : undefined,
+            }}
+            progress={{
+              title: "오늘의 학습",
+              ariaLabel: "오늘 목표 진행",
+              completed: summary?.todayAnswered ?? 0,
+              goal: summary?.todayGoal ?? 10,
+              rows: [
+                {
+                  label: "복습할 소단원",
+                  value: `${summary?.dueCount ?? 0}개`,
+                },
+                {
+                  label: "완료한 소단원",
+                  value: `${summary?.completedSections ?? 0}개`,
+                },
+                {
+                  label: "다음 복습",
+                  value: formatReview(summary?.nextReviewAt ?? null),
+                },
+              ],
+            }}
+          />
+          {settings || needsSetup ? (
+            <section
+              id="course-settings"
+              className={s.settings}
+              aria-labelledby="course-settings-title"
+              onKeyDown={(event) => {
+                if (event.key === "Escape" && !needsSetup && !busy) {
+                  event.stopPropagation();
+                  setSettings(false);
+                }
+              }}
+            >
+              <h2
+                id="course-settings-title"
+                ref={settingsHeading}
+                tabIndex={-1}
+              >
+                {needsSetup ? "나의 시작 진도" : "학습 설정"}
+              </h2>
+              <CoursePlanForm
+                studentView
+                plan={state.plan}
+                revision={state.revision}
+                busy={blocked}
+                submitLabel={
+                  needsSetup ? "저장하고 학습 준비" : "변경 내용 저장"
+                }
+                onSave={(input) => {
+                  void mutate({
+                    run: () => saveOwnCoursePlan(input),
+                    after: () => setSettings(false),
+                  });
                 }}
               />
-            </div>
-            {settings || needsSetup ? (
-              <section
-                id="course-settings"
-                className={s.settings}
-                aria-labelledby="course-settings-title"
-                onKeyDown={(event) => {
-                  if (event.key === "Escape" && !needsSetup && !busy) {
-                    event.stopPropagation();
-                    setSettings(false);
-                  }
-                }}
-              >
-                <h2
-                  id="course-settings-title"
-                  ref={settingsHeading}
-                  tabIndex={-1}
+              {!needsSetup ? (
+                <button
+                  className={s.settingsButton}
+                  type="button"
+                  onClick={() => setSettings(false)}
+                  disabled={busy}
                 >
-                  {needsSetup ? "나의 시작 진도" : "학습 설정"}
-                </h2>
-                <CoursePlanForm
-                  studentView
-                  plan={state.plan}
-                  revision={state.revision}
-                  busy={blocked}
-                  submitLabel={
-                    needsSetup ? "저장하고 학습 준비" : "변경 내용 저장"
-                  }
-                  onSave={(input) => {
-                    void mutate({
-                      run: () => saveOwnCoursePlan(input),
-                      after: () => setSettings(false),
-                    });
-                  }}
-                />
-                {!needsSetup ? (
-                  <button
-                    className={s.settingsButton}
-                    type="button"
-                    onClick={() => setSettings(false)}
-                    disabled={busy}
-                  >
-                    설정 닫기
-                  </button>
-                ) : null}
-              </section>
-            ) : null}
-            <p className={s.note}>
-              풀어 본 문제와 풀이를 참고한 기록에 따라 다음 복습을 정해요. 한
-              번의 학습을 마치면 다음 추천 학습을 확인할 수 있어요.
-            </p>
-          </>
-        ) : null}
-      </main>
-    </div>
+                  설정 닫기
+                </button>
+              ) : null}
+            </section>
+          ) : null}
+          <p className={s.note}>
+            풀어 본 문제와 풀이를 참고한 기록에 따라 다음 복습을 정해요. 한 번의
+            학습을 마치면 다음 추천 학습을 확인할 수 있어요.
+          </p>
+        </>
+      ) : null}
+    </StudentReviewPage>
   );
 }
 

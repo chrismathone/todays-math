@@ -1,7 +1,17 @@
 "use client";
 
-import { useEffect, useMemo, useRef, type CSSProperties } from "react";
+import {
+  useEffect,
+  useMemo,
+  useRef,
+  useState,
+  type CSSProperties,
+} from "react";
+import dynamic from "next/dynamic";
+import type { MathSrsReplayKind } from "@/contracts/mathSrsReplay.contract";
 import s from "./student-progress-board.module.css";
+
+const StudentReplayDialog = dynamic(() => import("./StudentReplayDialog"));
 
 export interface StudentProgressBoardProps {
   completed: number;
@@ -14,6 +24,7 @@ export interface StudentProgressBoardProps {
   busy?: boolean;
   reviewableSteps?: ReadonlyArray<number>;
   onReviewStep?: (step: number, opener: HTMLButtonElement) => void;
+  replayKind?: MathSrsReplayKind;
   ariaLabel?: string;
 }
 
@@ -77,12 +88,14 @@ export default function StudentProgressBoard({
   busy = false,
   reviewableSteps = [],
   onReviewStep,
+  replayKind,
   ariaLabel = "오늘의 학습 보드",
 }: StudentProgressBoardProps) {
   const answered = Math.max(0, Math.floor(completed));
   const target = Math.max(1, Math.floor(goal));
   const totalSteps = Math.max(target, answered);
-  const size = Math.max(4, Math.ceil(totalSteps / 4) + 1);
+  // Reserve a departure square so even the first answer moves the pawn.
+  const size = Math.max(4, Math.ceil((totalSteps + 1) / 4) + 1);
   const cells = useMemo(() => perimeter(size), [size]);
   const startOffset = cells.length > totalSteps ? 1 : 0;
   const pawnIndex = Math.max(0, answered - 1 + startOffset);
@@ -92,6 +105,8 @@ export default function StudentProgressBoard({
   const pawnRef = useRef<HTMLSpanElement>(null);
   const previousStep = useRef(Math.max(0, answered - 1));
   const reviewable = new Set(reviewableSteps);
+  const [replayStep, setReplayStep] = useState<number | null>(null);
+  const replayOpener = useRef<HTMLButtonElement | null>(null);
 
   function pawnPosition(index: number) {
     const cell = cells[Math.min(index, cells.length - 1)];
@@ -152,6 +167,7 @@ export default function StudentProgressBoard({
       </header>
       <div
         className={s.board}
+        data-compact={size >= 6 ? true : undefined}
         style={{ "--board-size": size } as CSSProperties}
       >
         <ol className={s.ring} aria-label="시계 방향으로 이동하는 문제 칸">
@@ -161,7 +177,8 @@ export default function StudentProgressBoard({
             const isComplete = isProblem && step <= answered;
             const isNext = isProblem && step === nextStep && canContinue;
             const isReviewable =
-              isComplete && reviewable.has(step) && !!onReviewStep;
+              isComplete &&
+              (!!replayKind || (reviewable.has(step) && !!onReviewStep));
             const isStart = index === 0 && startOffset === 1;
             const content = isProblem ? (
               <>
@@ -236,10 +253,13 @@ export default function StudentProgressBoard({
                     type="button"
                     className={s.tile}
                     disabled={busy}
-                    onClick={(event) =>
-                      onReviewStep?.(step, event.currentTarget)
-                    }
-                    aria-label={`${step}번 완료, 풀이 보기`}
+                    onClick={(event) => {
+                      if (replayKind) {
+                        replayOpener.current = event.currentTarget;
+                        setReplayStep(step);
+                      } else onReviewStep?.(step, event.currentTarget);
+                    }}
+                    aria-label={`${step}번 완료, ${replayKind ? "다시 풀기" : "풀이 보기"}`}
                   >
                     {content}
                   </button>
@@ -340,6 +360,20 @@ export default function StudentProgressBoard({
         <span className={s.legendPawn} aria-hidden="true" />한 문제를 풀 때마다
         말이 한 칸 이동해요.
       </p>
+      {replayKind && answered > 0 ? (
+        <p className={s.replayNote}>완료한 칸을 누르면 다시 풀 수 있어요.</p>
+      ) : null}
+      {replayKind && replayStep !== null ? (
+        <StudentReplayDialog
+          key={`${replayKind}:${replayStep}`}
+          kind={replayKind}
+          step={replayStep}
+          onClose={() => {
+            setReplayStep(null);
+            replayOpener.current?.focus({ preventScroll: true });
+          }}
+        />
+      ) : null}
     </section>
   );
 }

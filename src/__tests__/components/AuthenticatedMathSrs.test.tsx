@@ -314,7 +314,7 @@ describe("account-based math practice", () => {
     });
     render(<StudentMathSrs />);
     expect(
-      await screen.findByRole("heading", { name: "오늘의 복습을 마쳤어요." }),
+      await screen.findByText("오늘의 복습을 마쳤어요."),
     ).toBeInTheDocument();
     expect(
       screen.getByRole("button", { name: "오늘의 결과 보기" }),

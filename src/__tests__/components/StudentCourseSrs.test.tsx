@@ -260,7 +260,7 @@ describe("one-screen student answers", () => {
     );
   });
 
-  it("offers a separate requested explanation after retry completion", async () => {
+  it("offers completed tiles for replay without automatically requesting explanations", () => {
     const run = session(5);
     run.attempts[0].correct = false;
     Object.assign(run, {
@@ -270,21 +270,15 @@ describe("one-screen student answers", () => {
         completedAt: now,
       },
     });
-    const { rerender, props } = view(run);
+    const { props } = view(run);
     expect(screen.queryByText("완료 후 풀이")).not.toBeInTheDocument();
-    const opener = screen.getByRole("button", { name: "1번 완료, 풀이 보기" });
-    await userEvent.click(opener);
-    expect(props.onHint).toHaveBeenCalledWith(run.problems[0].id);
-    expect(screen.getByRole("dialog", { name: "풀이" })).toBeInTheDocument();
-    const hinted = structuredClone(run);
-    hinted.problems[0].hint = { answer: "2", solution: "완료 후 풀이" };
-    rerender(<StudentCoursePractice {...props} session={hinted} />);
-    expect(await screen.findByText("완료 후 풀이")).toBeInTheDocument();
-    await userEvent.click(screen.getByRole("button", { name: "풀이 닫기" }));
+    expect(
+      screen.getByRole("button", { name: "1번 완료, 다시 풀기" }),
+    ).toBeEnabled();
+    expect(props.onHint).not.toHaveBeenCalled();
     expect(
       screen.queryByRole("dialog", { name: "풀이" }),
     ).not.toBeInTheDocument();
-    expect(opener).toHaveFocus();
   });
 });
 afterEach(() => vi.unstubAllGlobals());
@@ -438,7 +432,7 @@ describe("student course home", () => {
     expect(await screen.findByRole("alert")).toHaveTextContent("선생님께 알려");
     expect(screen.queryByLabelText("학년")).not.toBeInTheDocument();
     await userEvent.click(
-      screen.getByRole("button", { name: "최신 기록 불러오기" }),
+      screen.getByRole("button", { name: "다시 불러오기" }),
     );
     expect(
       await screen.findByRole("button", { name: "오늘의 추천 학습 시작" }),
@@ -600,7 +594,7 @@ describe("persisted course practice", () => {
       screen.queryByRole("button", { name: "같은 요청 다시 시도" }),
     ).not.toBeInTheDocument();
     await userEvent.click(
-      screen.getByRole("button", { name: "최신 기록 불러오기" }),
+      screen.getByRole("button", { name: "다시 불러오기" }),
     );
     expect(
       await screen.findByRole("button", { name: "오늘의 추천 학습 시작" }),

@@ -12,7 +12,6 @@ interface Props {
   session?: CoursePublicSession | null;
   busy?: boolean;
   onNext?: () => void;
-  onHint?: (problemId: string, opener: HTMLButtonElement) => void;
   nextLabel?: string;
   nextAriaLabel?: string;
   /** Kept for existing callers; the whole board now fits without scrolling. */
@@ -24,7 +23,6 @@ export default function CourseProgressBoard({
   session,
   busy = false,
   onNext,
-  onHint,
   nextLabel,
   nextAriaLabel,
 }: Props) {
@@ -40,24 +38,10 @@ export default function CourseProgressBoard({
     summary.status !== "paused" &&
     summary.status !== "done" &&
     completed < summary.todayGoal;
-  const sessionStart = session
-    ? Math.max(0, completed - session.attempts.length)
-    : 0;
-  const canShowHint =
-    !!onHint &&
-    !!session?.completedAt &&
-    (!session.retry || !!session.retry.completedAt);
-  const reviewableSteps =
-    canShowHint && session
-      ? session.problems.flatMap((problem, index) =>
-          session.attempts.some((attempt) => attempt.problemId === problem.id)
-            ? [sessionStart + index + 1]
-            : [],
-        )
-      : [];
 
   return (
     <StudentProgressBoard
+      replayKind="elementary"
       completed={completed}
       goal={summary.todayGoal}
       title={section?.title ?? "오늘의 수학"}
@@ -70,15 +54,6 @@ export default function CourseProgressBoard({
       nextAriaLabel={nextAriaLabel ?? `${completed + 1}번부터 다음 5문제 시작`}
       onNext={canContinue ? onNext : undefined}
       busy={busy}
-      reviewableSteps={reviewableSteps}
-      onReviewStep={
-        canShowHint
-          ? (step, opener) => {
-              const problem = session?.problems[step - sessionStart - 1];
-              if (problem) onHint?.(problem.id, opener);
-            }
-          : undefined
-      }
     />
   );
 }

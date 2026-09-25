@@ -1,4 +1,6 @@
-import type { MouseEventHandler, ReactNode } from "react";
+import Link from "next/link";
+import type { ComponentProps, MouseEventHandler, ReactNode } from "react";
+import { LearnTopBar } from "@/components/learn/LearnTopBar";
 import s from "./student-review-home.module.css";
 
 type Action = {
@@ -29,6 +31,131 @@ type Progress = {
   footer?: ReactNode;
 };
 
+const reviewCopy = {
+  elementary: {
+    grade: "초등 3~6학년",
+    description: "시작 진도를 정하면, 필요한 복습과 새 학습을 차례로 안내해요.",
+  },
+  middle: {
+    grade: "중학교 1학년",
+    description:
+      "일차방정식을 매일 조금씩 복습하고, 풀이 기록에 맞춰 이어 가요.",
+  },
+};
+
+export function StudentReviewPage({
+  kind,
+  student,
+  practicing = false,
+  boardReady = false,
+  practiceTitle,
+  practicePageClassName,
+  practiceMainClassName,
+  setupClassName,
+  children,
+}: {
+  kind: keyof typeof reviewCopy;
+  student: ComponentProps<typeof LearnTopBar>["student"];
+  practicing?: boolean;
+  boardReady?: boolean;
+  practiceTitle: string;
+  practicePageClassName?: string;
+  practiceMainClassName?: string;
+  setupClassName?: string;
+  children: ReactNode;
+}) {
+  return (
+    <div className={practicing ? practicePageClassName : s.page}>
+      <LearnTopBar student={student} />
+      <main
+        className={
+          practicing
+            ? practiceMainClassName
+            : `${s.main} ${boardReady ? s.boardMain : ""} ${setupClassName ?? ""}`
+        }
+      >
+        {practicing ? (
+          <h1 className={s.srOnly}>{practiceTitle}</h1>
+        ) : (
+          <>
+            <nav className={s.nav} aria-label="학생 학습 메뉴">
+              <Link href="/learn">개념 강의</Link>
+              <Link
+                href="/learn/math-srs"
+                aria-current={kind === "elementary" ? "page" : undefined}
+              >
+                초등 수학 자동 복습
+              </Link>
+              <Link
+                href="/learn/math-srs/algebra"
+                aria-current={kind === "middle" ? "page" : undefined}
+              >
+                중등 일차방정식 연습
+              </Link>
+            </nav>
+            <StudentReviewHeading {...reviewCopy[kind]} />
+          </>
+        )}
+        {children}
+      </main>
+    </div>
+  );
+}
+
+export function StudentReviewStatus({
+  loading,
+  error,
+  busy,
+  onReload,
+  onRetry,
+}: {
+  loading: boolean;
+  error: { status: number; message: string } | null;
+  busy: boolean;
+  onReload: () => void;
+  onRetry?: () => void;
+}) {
+  if (loading)
+    return (
+      <div className={s.status} role="status">
+        <span className={s.spinner} aria-hidden="true" />
+        학습 기록을 불러오는 중…
+      </div>
+    );
+  if (!error) return null;
+  const message =
+    error.status === 409
+      ? "다른 화면에서 학습 기록이 바뀌었어요. 최신 기록을 불러온 뒤 이어 가 주세요."
+      : error.status === 503
+        ? "학습 저장소가 아직 준비되지 않았어요. 잠시 후 다시 시도하고, 계속되면 선생님께 알려 주세요."
+        : error.message;
+  return (
+    <div className={`${s.status} ${s.error}`} role="alert">
+      <p>{message}</p>
+      <div className={s.statusActions}>
+        {onRetry ? (
+          <button
+            type="button"
+            className={s.secondary}
+            onClick={onRetry}
+            disabled={busy}
+          >
+            같은 요청 다시 시도
+          </button>
+        ) : null}
+        <button
+          type="button"
+          className={s.secondary}
+          onClick={onReload}
+          disabled={busy}
+        >
+          다시 불러오기
+        </button>
+      </div>
+    </div>
+  );
+}
+
 export function StudentReviewHeading({
   grade,
   description,
@@ -48,41 +175,74 @@ export function StudentReviewHeading({
 export function StudentReviewOverview({
   recommendation,
   progress,
+  board,
+  boardActions,
 }: {
   recommendation: Recommendation;
   progress: Progress;
+  board?: ReactNode;
+  boardActions?: ReadonlyArray<Action>;
 }) {
   return (
     <div className={s.overview}>
-      <section className={s.hero} aria-labelledby={recommendation.id}>
-        <p className={s.eyebrow}>{recommendation.eyebrow}</p>
-        <h2 id={recommendation.id}>{recommendation.title}</h2>
-        {recommendation.section ? (
-          <p className={s.section}>
-            {recommendation.section}
-            {recommendation.sectionTitle ? (
-              <strong>{recommendation.sectionTitle}</strong>
-            ) : null}
+      {board ? (
+        <section
+          className={s.boardSection}
+          aria-labelledby="review-board-title"
+        >
+          <h2 id="review-board-title">오늘의 진도판</h2>
+          {board}
+          <p className={s.boardNote}>
+            <strong>{recommendation.title}</strong>
+            <span>{recommendation.reason}</span>
           </p>
-        ) : null}
-        <p className={s.reason}>{recommendation.reason}</p>
-        {recommendation.action ? (
-          <button
-            className={s.primary}
-            type="button"
-            disabled={recommendation.action.disabled}
-            onClick={recommendation.action.onClick}
-          >
-            {recommendation.action.label}
-            {recommendation.action.arrow ? (
-              <span aria-hidden="true"> →</span>
-            ) : null}
-          </button>
-        ) : recommendation.completedLabel ? (
-          <p className={s.finish}>✓ {recommendation.completedLabel}</p>
-        ) : null}
-        {recommendation.note ? <small>{recommendation.note}</small> : null}
-      </section>
+          {boardActions?.length ? (
+            <div className={s.boardActions}>
+              {boardActions.map((action) => (
+                <button
+                  key={action.label}
+                  type="button"
+                  className={s.secondary}
+                  onClick={action.onClick}
+                  disabled={action.disabled}
+                >
+                  {action.label}
+                </button>
+              ))}
+            </div>
+          ) : null}
+        </section>
+      ) : (
+        <section className={s.hero} aria-labelledby={recommendation.id}>
+          <p className={s.eyebrow}>{recommendation.eyebrow}</p>
+          <h2 id={recommendation.id}>{recommendation.title}</h2>
+          {recommendation.section ? (
+            <p className={s.section}>
+              {recommendation.section}
+              {recommendation.sectionTitle ? (
+                <strong>{recommendation.sectionTitle}</strong>
+              ) : null}
+            </p>
+          ) : null}
+          <p className={s.reason}>{recommendation.reason}</p>
+          {recommendation.action ? (
+            <button
+              className={s.primary}
+              type="button"
+              disabled={recommendation.action.disabled}
+              onClick={recommendation.action.onClick}
+            >
+              {recommendation.action.label}
+              {recommendation.action.arrow ? (
+                <span aria-hidden="true"> →</span>
+              ) : null}
+            </button>
+          ) : recommendation.completedLabel ? (
+            <p className={s.finish}>✓ {recommendation.completedLabel}</p>
+          ) : null}
+          {recommendation.note ? <small>{recommendation.note}</small> : null}
+        </section>
+      )}
       <aside className={s.summary} aria-label={progress.title}>
         <h2>{progress.title}</h2>
         <p className={s.count}>

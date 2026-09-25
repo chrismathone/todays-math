@@ -25,44 +25,77 @@ for (const [name, engine] of [
       isMobile: true,
       hasTouch: true,
     });
+    await page.route("**/api/learn/math-srs/replay**", (route) => {
+      const input =
+        route.request().method() === "POST"
+          ? route.request().postDataJSON()
+          : null;
+      return route.fulfill({
+        status: 200,
+        contentType: "application/json",
+        body: JSON.stringify({
+          data: {
+            kind: "elementary",
+            step: 5,
+            problemId: "55555555-5555-4555-8555-555555555555",
+            title: "약수와 배수",
+            subtitle: "초5 · 1학기 · 약수와 배수",
+            content: "36의 약수 중에서 두 번째로 작은 수를 구하시오.",
+            figureUrl: null,
+            answerChoices: ["$2$", "$3$", "$4$", "$6$"],
+            interactive: null,
+            correct: input ? true : null,
+            canRevealSolution: true,
+            solution: input?.revealSolution
+              ? {
+                  answer: "$2$",
+                  solution:
+                    "36의 약수를 작은 수부터 쓰면 $1, 2, 3, 4, 6, 9, 12, 18, 36$입니다.",
+                }
+              : null,
+          },
+        }),
+      });
+    });
     await page.goto(`${base}/dev/mobile-practice-qa?kind=path`);
     await page
       .locator("nextjs-portal")
       .evaluateAll((items) => items.forEach((item) => item.remove()));
-    const path = page.getByRole("list", { name: "오늘의 세로 진도 길" });
+    const path = page.getByLabel("오늘의 학습 보드", { exact: true });
     await path.waitFor();
-    assert.equal(await path.locator("li").count(), 10);
+    assert.equal(await path.locator("li[data-step]").count(), 10);
     assert.equal(
-      await path.getByRole("button", { name: /풀이 보기/ }).count(),
+      await path.getByRole("button", { name: /다시 풀기/ }).count(),
       5,
     );
     const current = path.getByRole("button", {
       name: "6번부터 다음 5문제 시작",
     });
     await current.waitFor();
-    await page.waitForFunction(() => {
-      const board = document.querySelector(
-        'ol[aria-label="오늘의 세로 진도 길"]',
-      );
-      return board && board.scrollTop > 100;
-    });
     await page.waitForTimeout(700);
-    const pathBox = await path.boundingBox();
+    const ring = path.getByRole("list", {
+      name: "시계 방향으로 이동하는 문제 칸",
+    });
+    const pathBox = await ring.boundingBox();
     const currentBox = await current.boundingBox();
-    console.log(
-      JSON.stringify({
-        name,
-        width,
-        pathBox,
-        currentBox,
-        scroll: await path.evaluate((node) => ({
-          top: node.scrollTop,
-          height: node.clientHeight,
-          full: node.scrollHeight,
-        })),
-      }),
-    );
     assert.ok(pathBox && currentBox);
+    assert.ok(
+      Math.abs(pathBox.width - pathBox.height) < 2,
+      "board perimeter must be square",
+    );
+    const cells = await ring.locator("li[data-step]").evaluateAll((items) =>
+      items.map((item) => ({
+        row: Number(item.style.gridRow),
+        column: Number(item.style.gridColumn),
+      })),
+    );
+    assert.ok(
+      cells.every(
+        ({ row, column }) =>
+          row === 1 || row === 4 || column === 1 || column === 4,
+      ),
+      "problem tiles must follow the outer four edges",
+    );
     assert.ok(
       currentBox.y >= pathBox.y - 2 &&
         currentBox.y + currentBox.height <= pathBox.y + pathBox.height + 2,
@@ -85,9 +118,56 @@ for (const [name, engine] of [
       path: resolve(output, `${name}-path-${width}x${height}.png`),
       fullPage: true,
     });
-    await path.getByRole("button", { name: "5번 완료, 풀이 보기" }).click();
-    await page.getByRole("dialog", { name: "풀이" }).waitFor();
+    await path.getByRole("button", { name: "5번 완료, 다시 풀기" }).click();
+    const replay = page.getByRole("dialog", { name: "5번 문제 다시 풀기" });
+    await replay.waitFor();
+    const choices = replay
+      .getByRole("group", { name: "복습 답 고르기" })
+      .getByRole("button");
+    await choices.first().waitFor();
+    assert.equal(await choices.count(), 4);
+    assert.equal(await replay.getByRole("textbox").count(), 0);
+    const replaySubmit = await replay
+      .getByRole("button", { name: "정답 확인" })
+      .boundingBox();
+    assert.ok(
+      replaySubmit && replaySubmit.y + replaySubmit.height <= height - 5,
+      "replay submit must fit on screen",
+    );
+    const choiceBoxes = await Promise.all(
+      [0, 1, 2, 3].map((index) => choices.nth(index).boundingBox()),
+    );
+    assert.equal(choiceBoxes[0].y, choiceBoxes[1].y);
+    assert.equal(choiceBoxes[2].y, choiceBoxes[3].y);
+    assert.ok(choiceBoxes.every((box) => box.height >= 44));
+    if (height === 600)
+      await page.screenshot({
+        path: resolve(output, `${name}-replay-${width}x${height}.png`),
+      });
+    await choices.first().click();
+    await replay.getByRole("button", { name: "정답 확인" }).click();
+    await replay.getByText("✓ 정확하게 풀었어요!").waitFor();
+    await replay.getByRole("button", { name: "풀이 보기" }).click();
+    const solution = page.getByRole("dialog", { name: "복습 풀이" });
+    await solution.waitFor();
+    await solution.locator(".katex").first().waitFor();
+    assert.equal(
+      (await solution.innerText()).includes("$"),
+      false,
+      "answer must render as math",
+    );
+    assert.deepEqual(
+      await ring.boundingBox(),
+      pathBox,
+      "solution modal must not reflow the board",
+    );
     await page.getByRole("button", { name: "풀이 닫기" }).click();
+    await replay.getByRole("button", { name: "진도판으로" }).click();
+    assert.equal(
+      await path.locator('[data-state="complete"]').count(),
+      5,
+      "replay must preserve board progress",
+    );
     await current.click();
     await page.getByRole("group", { name: "답 고르기" }).waitFor();
     await page.close();
@@ -259,24 +339,23 @@ for (const [name, engine] of [
   await home
     .locator("nextjs-portal")
     .evaluateAll((items) => items.forEach((item) => item.remove()));
-  const homePath = home.getByRole("list", { name: "오늘의 세로 진도 길" });
+  const homePath = home.getByLabel("오늘의 학습 보드", { exact: true });
   await homePath.waitFor();
-  await home.waitForFunction(() => window.scrollY > 100);
   await home.waitForTimeout(700);
-  assert.equal(await homePath.locator("li").count(), 10);
+  assert.equal(await homePath.locator("li[data-step]").count(), 10);
   assert.equal(
     await homePath
-      .getByRole("button", { name: "6번부터 다음 5문제 시작" })
+      .getByRole("button", { name: "오늘의 추천 학습 시작" })
       .count(),
     1,
   );
-  assert.equal(await homePath.evaluate((node) => node.scrollTop), 0);
+  assert.equal(await home.evaluate(() => scrollY), 0);
   assert.equal(
     await home.evaluate(() => document.documentElement.scrollWidth),
     390,
   );
   const homeCurrent = await homePath
-    .getByRole("button", { name: "6번부터 다음 5문제 시작" })
+    .getByRole("button", { name: "오늘의 추천 학습 시작" })
     .boundingBox();
   assert.ok(
     homeCurrent &&
@@ -298,15 +377,11 @@ for (const [name, engine] of [
       reducedMotion: "reduce",
     });
     await reduced.goto(`${base}/dev/mobile-practice-qa?kind=path`);
-    await reduced.getByRole("list", { name: "오늘의 세로 진도 길" }).waitFor();
+    await reduced.getByLabel("오늘의 학습 보드", { exact: true }).waitFor();
     const animation = await reduced
-      .locator('[class*="playerPiece"]')
-      .evaluate((node) => getComputedStyle(node).animationName);
-    assert.equal(
-      animation,
-      "none",
-      "reduced motion must disable piece movement",
-    );
+      .getByLabel("내 말, 5번까지 완료", { exact: true })
+      .evaluate((node) => node.getAnimations().length);
+    assert.equal(animation, 0, "reduced motion must disable piece movement");
     await reduced.close();
   }
   await browser.close();

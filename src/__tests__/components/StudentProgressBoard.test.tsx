@@ -102,6 +102,23 @@ describe("StudentProgressBoard", () => {
     for (const button of screen.getAllByRole("button"))
       expect(button).toBeDisabled();
   });
+
+  it.each([12, 20])(
+    "moves from departure after the first of %i problems",
+    (goal) => {
+      const { rerender } = render(
+        <StudentProgressBoard completed={0} goal={goal} title="복습" />,
+      );
+      expect(screen.getByLabelText("출발 칸")).toBeVisible();
+      const departure = screen
+        .getByLabelText("내 말, 출발 전")
+        .getAttribute("style");
+      rerender(<StudentProgressBoard completed={1} goal={goal} title="복습" />);
+      expect(
+        screen.getByLabelText("내 말, 1번까지 완료").getAttribute("style"),
+      ).not.toBe(departure);
+    },
+  );
 });
 
 const summary: CourseSummary = {
@@ -171,11 +188,7 @@ describe("CourseProgressBoard adapter", () => {
 
   it("keeps explanations unavailable until the wrong-answer round ends", () => {
     const { rerender } = render(
-      <CourseProgressBoard
-        summary={summary}
-        session={session}
-        onHint={vi.fn()}
-      />,
+      <CourseProgressBoard summary={summary} session={session} />,
     );
     expect(
       screen.queryByRole("button", { name: /풀이 보기/ }),
@@ -187,10 +200,9 @@ describe("CourseProgressBoard adapter", () => {
           ...session,
           retry: { ...session.retry!, completedAt: "2026-09-25T10:10:00.000Z" },
         }}
-        onHint={vi.fn()}
       />,
     );
-    expect(screen.getAllByRole("button", { name: /풀이 보기/ })).toHaveLength(
+    expect(screen.getAllByRole("button", { name: /다시 풀기/ })).toHaveLength(
       5,
     );
   });
@@ -200,7 +212,6 @@ describe("CourseProgressBoard adapter", () => {
       <CourseProgressBoard
         summary={{ ...summary, todayAnswered: 2 }}
         session={{ ...session, completedAt: null, retry: null }}
-        onHint={vi.fn()}
       />,
     );
     expect(

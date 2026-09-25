@@ -4,7 +4,9 @@ import { mkdir } from "node:fs/promises";
 import { resolve } from "node:path";
 
 const base = process.env.BASE ?? "http://localhost:3000";
-const output = resolve(process.env.QA_OUTPUT ?? ".qa-artifacts/mobile-review-home");
+const output = resolve(
+  process.env.QA_OUTPUT ?? ".qa-artifacts/mobile-review-home",
+);
 await mkdir(output, { recursive: true });
 
 const student = {
@@ -41,7 +43,27 @@ const elementary = {
   },
   session: null,
 };
-const concepts = ["balance", "two-step", "distribute", "both-sides", "fractions", "word"];
+const concepts = [
+  "balance",
+  "two-step",
+  "distribute",
+  "both-sides",
+  "fractions",
+  "word",
+];
+const middleProblems = Array.from({ length: 12 }, (_, index) => ({
+  id: `55555555-5555-4555-8555-${String(index + 1).padStart(12, "0")}`,
+  templateId: "replay-qa",
+  conceptId: "balance",
+  conceptWeights: [{ conceptId: "balance", weight: 1 }],
+  difficulty: 1,
+  kind: "warmup",
+  prompt: "방정식을 풀어 보세요.",
+  equation: "$x+1=3$",
+  expectedSeconds: 30,
+  hint: null,
+  feedback: null,
+}));
 const middle = {
   student,
   revision: 0,
@@ -54,39 +76,118 @@ const middle = {
     attempts: 0,
     successes: 0,
   })),
-  mission: null,
+  mission: {
+    id: "44444444-4444-4444-8444-444444444444",
+    date: new Intl.DateTimeFormat("en-CA", { timeZone: "Asia/Seoul" }).format(
+      new Date(),
+    ),
+    startedAt: new Date().toISOString(),
+    completedAt: null,
+    problems: middleProblems,
+    attempts: middleProblems
+      .slice(0, 2)
+      .map((problem) => ({
+        problemId: problem.id,
+        templateId: problem.templateId,
+        conceptId: problem.conceptId,
+        kind: problem.kind,
+        submittedAnswer: "2",
+        correct: true,
+        rating: "good",
+        usedHint: false,
+        elapsedSeconds: 20,
+        answeredAt: new Date().toISOString(),
+      })),
+  },
   recentMissions: [],
   currentProgress: null,
   lectures: [],
   available: true,
 };
 
-async function capture(browser, browserName, width, kind, state) {
+async function capture(browser, browserName, width, kind, state, phase) {
   const page = await browser.newPage({
     viewport: { width, height: 780 },
     deviceScaleFactor: 1,
     isMobile: true,
     hasTouch: true,
   });
-  await page.route("**/api/learn/math-srs**", (route) =>
-    route.fulfill({
-      status: 200,
+  let release;
+  const responseGate = new Promise((resolve) => {
+    release = resolve;
+  });
+  await page.route("**/api/learn/math-srs**", async (route) => {
+    if (route.request().url().includes("/replay")) {
+      const submitted =
+        route.request().method() === "POST"
+          ? route.request().postDataJSON()
+          : null;
+      await route.fulfill({
+        status: 200,
+        contentType: "application/json",
+        body: JSON.stringify({
+          data: {
+            kind,
+            step: 1,
+            problemId: middleProblems[0].id,
+            title: kind === "elementary" ? "약수와 배수" : "등식의 성질",
+            subtitle:
+              kind === "elementary" ? "초5 · 1학기" : "중1 · 일차방정식",
+            content: "다음 식을 계산하세요. $1+1$",
+            figureUrl: null,
+            answerChoices: ["$2$", "$3$", "$4$", "$5$"],
+            interactive: null,
+            correct: submitted ? submitted.submittedAnswer === "$2$" : null,
+            canRevealSolution: false,
+            solution: null,
+          },
+        }),
+      });
+      return;
+    }
+    if (phase === "loading") await responseGate;
+    await route.fulfill({
+      status: phase === "error" ? 503 : 200,
       contentType: "application/json",
-      body: JSON.stringify({ data: state }),
-    }),
-  );
-  await page.goto(`${base}/dev/mobile-${kind}-review-qa`, { waitUntil: "networkidle" });
+      body: JSON.stringify(
+        phase === "error"
+          ? { error: { message: "저장소 준비 중" } }
+          : { data: state },
+      ),
+    });
+  });
+  await page.goto(`${base}/dev/mobile-${kind}-review-qa`, {
+    waitUntil: "domcontentloaded",
+  });
   await page.getByRole("heading", { name: "매일 쌓이는 수학" }).waitFor();
-  await page.getByRole("heading", { name: "오늘의 학습" }).waitFor();
-  await page.addStyleTag({ content: "nextjs-portal { display: none !important; }" });
-  const result = await page.evaluate(() => {
+  if (phase === "ready")
+    await page.getByRole("heading", { name: "오늘의 진도판" }).waitFor();
+  else
+    await page
+      .getByRole("main")
+      .getByRole(phase === "loading" ? "status" : "alert")
+      .waitFor();
+  await page.addStyleTag({
+    content: "nextjs-portal { display: none !important; }",
+  });
+  const result = await page.evaluate((phase) => {
     const main = document.querySelector("main");
     const heading = document.querySelector("main header");
-    const card = document.querySelector("main section[aria-labelledby]");
-    const summary = document.querySelector("main aside[aria-label]");
+    const card =
+      phase === "ready"
+        ? document.querySelector(
+            'section[aria-labelledby="review-board-title"]',
+          )
+        : document.querySelector(
+            phase === "loading"
+              ? 'main [role="status"]'
+              : 'main [role="alert"]',
+          );
     const style = (element, properties) => {
       const computed = getComputedStyle(element);
-      return Object.fromEntries(properties.map((property) => [property, computed[property]]));
+      return Object.fromEntries(
+        properties.map((property) => [property, computed[property]]),
+      );
     };
     const box = (element) => {
       const rect = element.getBoundingClientRect();
@@ -96,36 +197,137 @@ async function capture(browser, browserName, width, kind, state) {
       viewport: innerWidth,
       scrollWidth: document.documentElement.scrollWidth,
       main: style(main, ["paddingLeft", "paddingRight", "fontFamily"]),
-      heading: style(heading.querySelector("h1"), ["fontSize", "fontWeight", "lineHeight", "letterSpacing", "marginBottom"]),
-      eyebrow: style(card.querySelector("p"), ["fontSize", "fontWeight", "color", "marginBottom"]),
-      reason: style(card.querySelector("p:nth-of-type(3)"), ["fontSize", "fontWeight", "lineHeight", "marginTop", "marginBottom"]),
-      card: style(card, ["paddingTop", "paddingLeft", "borderRadius", "backgroundColor"]),
-      cardTitle: style(card.querySelector("h2"), ["fontSize", "fontWeight", "lineHeight", "letterSpacing", "marginBottom"]),
-      button: style(card.querySelector("button"), ["fontSize", "fontWeight", "height", "borderRadius", "backgroundColor"]),
-      summary: style(summary, ["paddingTop", "paddingLeft", "borderRadius", "backgroundColor"]),
-      summaryTitle: style(summary.querySelector("h2"), ["fontSize", "fontWeight", "lineHeight"]),
-      summaryCount: style(summary.querySelector("p strong"), ["fontSize", "fontWeight", "color"]),
-      boxes: { heading: box(heading), card: box(card), summary: box(summary) },
+      heading: style(heading.querySelector("h1"), [
+        "fontSize",
+        "fontWeight",
+        "lineHeight",
+        "letterSpacing",
+        "marginBottom",
+      ]),
+      card: style(card, [
+        "paddingTop",
+        "paddingLeft",
+        "borderRadius",
+        "backgroundColor",
+        "fontSize",
+        "lineHeight",
+        "color",
+      ]),
+      className: card.className,
+      boxes: { heading: box(heading), card: box(card) },
     };
+  }, phase);
+  assert.equal(
+    result.scrollWidth,
+    result.viewport,
+    `${browserName}/${width}/${kind}: horizontal overflow`,
+  );
+  if (phase === "loading")
+    assert.equal(
+      await page.getByRole("main").getByRole("status").innerText(),
+      "학습 기록을 불러오는 중…",
+    );
+  if (phase === "ready") {
+    const board = page.getByLabel("오늘의 학습 보드", { exact: true });
+    await board.waitFor();
+    assert.ok(
+      await board
+        .getByText(kind === "elementary" ? "약수와 배수" : "등식의 성질", {
+          exact: true,
+        })
+        .count(),
+    );
+    assert.equal(
+      await page.evaluate(() => scrollY),
+      0,
+      "home must not hide the unit by auto-scrolling",
+    );
+  }
+  await page.screenshot({
+    path: resolve(output, `${browserName}-${kind}-${phase}-${width}.png`),
+    fullPage: true,
   });
-  assert.equal(result.scrollWidth, result.viewport, `${browserName}/${width}/${kind}: horizontal overflow`);
-  await page.screenshot({ path: resolve(output, `${browserName}-${kind}-${width}.png`), fullPage: true });
+  if (phase === "ready") {
+    const opener = page.getByRole("button", { name: "1번 완료, 다시 풀기" });
+    await opener.click();
+    const replay = page.getByRole("dialog", { name: "1번 문제 다시 풀기" });
+    const choices = replay
+      .getByRole("group", { name: "복습 답 고르기" })
+      .getByRole("button");
+    await choices.nth(1).click();
+    await replay.getByRole("button", { name: "정답 확인" }).click();
+    await replay.getByText("↻ 한 번 더 생각해 보세요").waitFor();
+    assert.equal(
+      await replay.getByRole("button", { name: "풀이 보기" }).count(),
+      0,
+    );
+    await replay.getByRole("button", { name: "다시 풀기" }).click();
+    await choices.first().click();
+    await replay.getByRole("button", { name: "정답 확인" }).click();
+    await replay.getByText("✓ 정확하게 풀었어요!").waitFor();
+    await replay.getByRole("button", { name: "진도판으로" }).click();
+    assert.equal(
+      await page.locator('li[data-state="complete"]').count(),
+      2,
+      "replay must not count another completed problem",
+    );
+    assert.equal(
+      await opener.evaluate((node) => document.activeElement === node),
+      true,
+      "closing replay must return focus to its tile",
+    );
+  }
+  release();
+  await page.unrouteAll({ behavior: "wait" });
   await page.close();
   return result;
 }
 
-for (const [browserName, engine] of [["chromium", chromium], ["webkit", webkit]]) {
+for (const [browserName, engine] of [
+  ["chromium", chromium],
+  ["webkit", webkit],
+]) {
   const browser = await engine.launch();
   for (const width of [320, 390, 430]) {
-    const elementaryResult = await capture(browser, browserName, width, "elementary", elementary);
-    const middleResult = await capture(browser, browserName, width, "middle", middle);
-    for (const key of ["main", "heading", "eyebrow", "reason", "card", "cardTitle", "button", "summary", "summaryTitle", "summaryCount"])
-      assert.deepEqual(middleResult[key], elementaryResult[key], `${browserName}/${width}: ${key} differs`);
-    for (const key of ["heading", "card", "summary"]) {
-      assert.equal(middleResult.boxes[key].x, elementaryResult.boxes[key].x, `${browserName}/${width}: ${key} alignment differs`);
-      assert.equal(middleResult.boxes[key].width, elementaryResult.boxes[key].width, `${browserName}/${width}: ${key} width differs`);
+    for (const phase of ["loading", "error", "ready"]) {
+      const elementaryResult = await capture(
+        browser,
+        browserName,
+        width,
+        "elementary",
+        elementary,
+        phase,
+      );
+      const middleResult = await capture(
+        browser,
+        browserName,
+        width,
+        "middle",
+        middle,
+        phase,
+      );
+      for (const key of ["main", "heading", "card", "className"])
+        assert.deepEqual(
+          middleResult[key],
+          elementaryResult[key],
+          `${browserName}/${width}: ${key} differs`,
+        );
+      for (const key of ["heading", "card"]) {
+        assert.equal(
+          middleResult.boxes[key].x,
+          elementaryResult.boxes[key].x,
+          `${browserName}/${width}: ${key} alignment differs`,
+        );
+        assert.equal(
+          middleResult.boxes[key].width,
+          elementaryResult.boxes[key].width,
+          `${browserName}/${width}: ${key} width differs`,
+        );
+      }
+      console.log(
+        `${browserName} ${width} ${phase}: shared layout, typography and alignment match`,
+      );
     }
-    console.log(`${browserName} ${width}: shared typography, cards and alignment match`);
   }
   await browser.close();
 }

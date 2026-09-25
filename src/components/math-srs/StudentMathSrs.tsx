@@ -4,7 +4,6 @@ import dynamic from "next/dynamic";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useEffect, useRef, useState, type FormEvent } from "react";
-import { LearnTopBar } from "@/components/learn/LearnTopBar";
 import type { Submitted } from "@/components/learn/learnApi";
 import { Button } from "@/components/ui/Button";
 import { Input } from "@/components/ui/Input";
@@ -28,11 +27,12 @@ import {
 } from "./mathSrsApi";
 import { SrsMemoryGrid } from "./SrsMemoryGrid";
 import {
-  StudentReviewHeading,
+  StudentReviewPage,
+  StudentReviewStatus,
   StudentReviewOverview,
 } from "./StudentReviewHome";
 import s from "./authenticated.module.css";
-import homeStyles from "./student-review-home.module.css";
+import StudentProgressBoard from "./StudentProgressBoard";
 
 const ProblemContent = dynamic(() =>
   import("@/components/math/ProblemContent").then((mod) => mod.ProblemContent),
@@ -132,286 +132,290 @@ export function StudentMathSrs() {
   const resetLoad = () => {
     lastSubmission.current = null;
     setLoading(true);
+    setError(null);
     setFeedbackId(null);
     setReload((value) => value + 1);
   };
 
   return (
-    <div className={s.student}>
-      <LearnTopBar student={state?.student ?? null} />
-      <main
-        className={practicing ? `${s.body} ${s.practiceBody}` : homeStyles.main}
-      >
-        <nav className={s.nav} aria-label="학생 학습 메뉴">
-          <Link href="/learn">개념 강의</Link>
-          <span aria-current="page">매일 수학 복습</span>
-        </nav>
-        {practicing ? <h1 className={s.srOnly}>오늘의 수학 복습</h1> : null}
-        {!practicing ? (
-          <StudentReviewHeading
-            grade="중학교 1학년"
-            description="일차방정식을 매일 조금씩 복습하고, 풀이 기록에 맞춰 이어 가요."
-          />
-        ) : null}
-        {loading ? (
-          <p className={s.loading} role="status">
-            학습 기록을 불러오는 중…
-          </p>
-        ) : null}
-        {error ? (
-          <div role="alert" className={s.error}>
-            <p>
-              {error.status === 503
-                ? "학습 기록 저장 기능을 준비하고 있습니다. 선생님께 알려 주세요. 준비가 끝나면 이곳에서 학습할 수 있어요."
-                : error.message}
-            </p>
-            {error.status === 409 ? (
-              <p>다른 화면에서 학습한 기록을 다시 불러온 뒤 이어가세요.</p>
-            ) : null}
-            <Button
-              variant="secondary"
-              className={s.secondaryButton}
-              onClick={resetLoad}
-              disabled={busy || loading}
-            >
-              다시 불러오기
-            </Button>
-          </div>
-        ) : null}
-        {!loading && state && error?.status !== 503 ? (
-          <>
-            {practicing && mission ? (
-              <>
-                <div className={s.progress}>
-                  <span>
-                    오늘의 복습{" "}
-                    <small>{formatDayWithWeekday(mission.date)}</small>
-                  </span>
-                  <progress
-                    aria-label="미션 진행"
-                    value={mission.attempts.length}
-                    max={mission.problems.length}
-                  />
-                  <span>
-                    {mission.attempts.length}/{mission.problems.length}
-                  </span>
-                </div>
-                {feedbackProblem?.feedback ? (
-                  <Feedback
-                    problem={feedbackProblem}
-                    mission={mission}
-                    onNext={() => setFeedbackId(null)}
-                  />
-                ) : !mission.completedAt && currentProblem ? (
-                  <Question
-                    key={`${mission.id}:${currentProblem.id}`}
-                    problem={currentProblem}
-                    busy={busy || error?.status === 409}
-                    onHint={() =>
-                      void mutate(() =>
-                        revealMathSrsHint({
-                          missionId: mission.id,
-                          problemId: currentProblem.id,
-                        }),
-                      )
+    <StudentReviewPage
+      kind="middle"
+      student={state?.student ?? null}
+      practicing={practicing}
+      boardReady={!!state && !loading && error?.status !== 503}
+      practiceTitle="오늘의 수학 복습"
+      practicePageClassName={s.student}
+      practiceMainClassName={`${s.body} ${s.practiceBody}`}
+    >
+      <StudentReviewStatus
+        loading={loading}
+        error={error}
+        busy={busy}
+        onReload={resetLoad}
+      />
+      {!loading && state && error?.status !== 503 ? (
+        <>
+          {practicing && mission ? (
+            <>
+              <div className={s.progress}>
+                <span>
+                  오늘의 복습{" "}
+                  <small>{formatDayWithWeekday(mission.date)}</small>
+                </span>
+                <progress
+                  aria-label="미션 진행"
+                  value={mission.attempts.length}
+                  max={mission.problems.length}
+                />
+                <span>
+                  {mission.attempts.length}/{mission.problems.length}
+                </span>
+              </div>
+              {feedbackProblem?.feedback ? (
+                <Feedback
+                  problem={feedbackProblem}
+                  mission={mission}
+                  onNext={() => setFeedbackId(null)}
+                />
+              ) : !mission.completedAt && currentProblem ? (
+                <Question
+                  key={`${mission.id}:${currentProblem.id}`}
+                  problem={currentProblem}
+                  busy={busy || error?.status === 409}
+                  onHint={() =>
+                    void mutate(() =>
+                      revealMathSrsHint({
+                        missionId: mission.id,
+                        problemId: currentProblem.id,
+                      }),
+                    )
+                  }
+                  onAnswer={(submittedAnswer, elapsedSeconds, rating) =>
+                    void mutate(
+                      () => {
+                        const previous = lastSubmission.current;
+                        const payload =
+                          previous &&
+                          previous.missionId === mission.id &&
+                          previous.problemId === currentProblem.id &&
+                          previous.submittedAnswer === submittedAnswer &&
+                          previous.rating === rating
+                            ? previous
+                            : {
+                                missionId: mission.id,
+                                problemId: currentProblem.id,
+                                submittedAnswer,
+                                elapsedSeconds,
+                                rating,
+                              };
+                        lastSubmission.current = payload;
+                        return submitMathSrsAttempt(payload);
+                      },
+                      (next) => {
+                        lastSubmission.current = null;
+                        if (
+                          next.mission?.id === mission.id &&
+                          next.mission.problems.find(
+                            (problem) => problem.id === currentProblem.id,
+                          )?.feedback
+                        )
+                          setFeedbackId(currentProblem.id);
+                      },
+                    )
+                  }
+                />
+              ) : (
+                <Result mission={mission} onHome={() => setPracticing(false)} />
+              )}
+              <Button
+                variant="ghost"
+                className={s.quietButton}
+                onClick={() => {
+                  setPracticing(false);
+                  setFeedbackId(null);
+                }}
+                disabled={busy}
+              >
+                학습 현황으로
+              </Button>
+            </>
+          ) : (
+            <>
+              <StudentReviewOverview
+                board={
+                  <StudentProgressBoard
+                    replayKind="middle"
+                    completed={progressCount}
+                    goal={mission?.problems.length ?? 12}
+                    title={nextConcept ?? "일차방정식"}
+                    subtitle="중1 · 일차방정식"
+                    nextLabel={
+                      missionInProgress ? "이어서 학습하기" : "오늘의 복습 시작"
                     }
-                    onAnswer={(submittedAnswer, elapsedSeconds, rating) =>
-                      void mutate(
-                        () => {
-                          const previous = lastSubmission.current;
-                          const payload =
-                            previous &&
-                            previous.missionId === mission.id &&
-                            previous.problemId === currentProblem.id &&
-                            previous.submittedAnswer === submittedAnswer &&
-                            previous.rating === rating
-                              ? previous
-                              : {
-                                  missionId: mission.id,
-                                  problemId: currentProblem.id,
-                                  submittedAnswer,
-                                  elapsedSeconds,
-                                  rating,
-                                };
-                          lastSubmission.current = payload;
-                          return submitMathSrsAttempt(payload);
-                        },
-                        (next) => {
-                          lastSubmission.current = null;
-                          if (
-                            next.mission?.id === mission.id &&
-                            next.mission.problems.find(
-                              (problem) => problem.id === currentProblem.id,
-                            )?.feedback
-                          )
-                            setFeedbackId(currentProblem.id);
-                        },
-                      )
+                    nextAriaLabel={
+                      missionInProgress
+                        ? `이어서 학습하기 · ${mission.attempts.length}/12`
+                        : "오늘의 복습 시작"
                     }
-                  />
-                ) : (
-                  <Result
-                    mission={mission}
-                    onHome={() => setPracticing(false)}
-                  />
-                )}
-                <Button
-                  variant="ghost"
-                  className={s.quietButton}
-                  onClick={() => {
-                    setPracticing(false);
-                    setFeedbackId(null);
-                  }}
-                  disabled={busy}
-                >
-                  학습 현황으로
-                </Button>
-              </>
-            ) : (
-              <>
-                <StudentReviewOverview
-                  recommendation={{
-                    id: "mission-heading",
-                    eyebrow: finishedToday
-                      ? "오늘의 복습 완료"
-                      : missionInProgress
-                        ? "이어서 학습"
-                        : "오늘의 추천 복습",
-                    title: finishedToday
-                      ? "오늘의 복습을 마쳤어요."
-                      : missionInProgress
-                        ? "풀던 복습을 이어 가요."
-                        : "일차방정식을 복습해요.",
-                    section: "중1 · 일차방정식",
-                    reason: finishedToday
-                      ? "오늘 푼 문제를 돌아보고 다음 복습을 준비해요."
-                      : missionInProgress
-                        ? `${12 - mission.attempts.length}문제가 남았어요. 이어서 풀어 보세요.`
-                        : "워밍업부터 다시 도전하는 문제까지, 풀이 기록에 맞춰 복습해요.",
-                    action: finishedToday
-                      ? {
-                          label: "오늘의 결과 보기",
-                          onClick: () => setPracticing(true),
-                        }
-                      : {
-                          label: busy
-                            ? "복습을 준비하는 중…"
-                            : mission && !mission.completedAt
-                              ? `이어서 학습하기 · ${mission.attempts.length}/12`
-                              : "오늘의 복습 시작",
-                          disabled: busy,
-                          onClick: () =>
+                    busy={busy}
+                    onNext={
+                      finishedToday
+                        ? undefined
+                        : () =>
                             void mutate(startMathSrs, () => {
                               setPracticing(true);
                               setFeedbackId(null);
-                            }),
+                            })
+                    }
+                  />
+                }
+                boardActions={
+                  finishedToday
+                    ? [
+                        {
+                          label: "오늘의 결과 보기",
+                          onClick: () => setPracticing(true),
                         },
-                    note: "한 번에 12문제 · 약 10~15분",
-                  }}
-                  progress={{
-                    title: progressTitle,
-                    ariaLabel: "복습 진행",
-                    completed: progressCount,
-                    goal: 12,
-                    rows: [
-                      {
-                        label: "남은 문제",
-                        value: `${12 - progressCount}문제`,
+                      ]
+                    : undefined
+                }
+                recommendation={{
+                  id: "mission-heading",
+                  eyebrow: finishedToday
+                    ? "오늘의 복습 완료"
+                    : missionInProgress
+                      ? "이어서 학습"
+                      : "오늘의 추천 복습",
+                  title: finishedToday
+                    ? "오늘의 복습을 마쳤어요."
+                    : missionInProgress
+                      ? "풀던 복습을 이어 가요."
+                      : "일차방정식을 복습해요.",
+                  section: "중1 · 일차방정식",
+                  reason: finishedToday
+                    ? "오늘 푼 문제를 돌아보고 다음 복습을 준비해요."
+                    : missionInProgress
+                      ? `${12 - mission.attempts.length}문제가 남았어요. 이어서 풀어 보세요.`
+                      : "워밍업부터 다시 도전하는 문제까지, 풀이 기록에 맞춰 복습해요.",
+                  action: finishedToday
+                    ? {
+                        label: "오늘의 결과 보기",
+                        onClick: () => setPracticing(true),
+                      }
+                    : {
+                        label: busy
+                          ? "복습을 준비하는 중…"
+                          : mission && !mission.completedAt
+                            ? `이어서 학습하기 · ${mission.attempts.length}/12`
+                            : "오늘의 복습 시작",
+                        disabled: busy,
+                        onClick: () =>
+                          void mutate(startMathSrs, () => {
+                            setPracticing(true);
+                            setFeedbackId(null);
+                          }),
                       },
-                      {
-                        label: "다음 개념",
-                        value:
-                          nextConcept ??
-                          (finishedToday
-                            ? "내일 다시 만나요"
-                            : "시작하면 안내"),
-                      },
-                    ],
-                  }}
-                />
-                <div className={s.homeGrid}>
-                  <section
-                    className={`${s.card} ${s.memorySection}`}
-                    aria-labelledby="my-memory-heading"
-                  >
-                    <p className={s.eyebrow}>개념별 복습 현황</p>
-                    <h2 id="my-memory-heading">나의 개념 기억</h2>
-                    <p className={s.muted}>
-                      정답·힌트·지난 학습 시간을 바탕으로 추정한 값이에요. 처음
-                      푸는 개념은 측정 전으로 표시해요.
+                  note: "한 번에 12문제 · 약 10~15분",
+                }}
+                progress={{
+                  title: progressTitle,
+                  ariaLabel: "복습 진행",
+                  completed: progressCount,
+                  goal: 12,
+                  rows: [
+                    {
+                      label: "남은 문제",
+                      value: `${12 - progressCount}문제`,
+                    },
+                    {
+                      label: "다음 개념",
+                      value:
+                        nextConcept ??
+                        (finishedToday ? "내일 다시 만나요" : "시작하면 안내"),
+                    },
+                  ],
+                }}
+              />
+              <div className={s.homeGrid}>
+                <section
+                  className={`${s.card} ${s.memorySection}`}
+                  aria-labelledby="my-memory-heading"
+                >
+                  <p className={s.eyebrow}>개념별 복습 현황</p>
+                  <h2 id="my-memory-heading">나의 개념 기억</h2>
+                  <p className={s.muted}>
+                    정답·힌트·지난 학습 시간을 바탕으로 추정한 값이에요. 처음
+                    푸는 개념은 측정 전으로 표시해요.
+                  </p>
+                  <SrsMemoryGrid memories={state.memories} />
+                </section>
+                <section
+                  className={s.card}
+                  aria-labelledby="my-progress-heading"
+                >
+                  <p className={s.eyebrow}>수업과 연결하기</p>
+                  <h2 id="my-progress-heading">수업과 함께 복습하기</h2>
+                  {state.currentProgress ? (
+                    <p>
+                      <strong>{state.currentProgress.section}</strong>
+                      <br />
+                      <span className={s.muted}>
+                        {state.currentProgress.source === "individual"
+                          ? "개인 진도"
+                          : "반 진도"}{" "}
+                        ·{" "}
+                        {formatDayWithWeekday(state.currentProgress.recordedAt)}
+                      </span>
                     </p>
-                    <SrsMemoryGrid memories={state.memories} />
-                  </section>
-                  <section
-                    className={s.card}
-                    aria-labelledby="my-progress-heading"
-                  >
-                    <p className={s.eyebrow}>수업과 연결하기</p>
-                    <h2 id="my-progress-heading">수업과 함께 복습하기</h2>
-                    {state.currentProgress ? (
-                      <p>
-                        <strong>{state.currentProgress.section}</strong>
-                        <br />
-                        <span className={s.muted}>
-                          {state.currentProgress.source === "individual"
-                            ? "개인 진도"
-                            : "반 진도"}{" "}
-                          ·{" "}
-                          {formatDayWithWeekday(
-                            state.currentProgress.recordedAt,
-                          )}
-                        </span>
-                      </p>
-                    ) : (
-                      <p className={s.muted}>아직 등록된 수업 진도가 없어요.</p>
-                    )}
-                    {state.lectures.length ? (
-                      <ul className={s.links}>
-                        {state.lectures.map((lecture) => (
-                          <li key={lecture.id}>
-                            <Link
-                              href={`/learn/watch/${encodeURIComponent(lecture.id)}`}
-                            >
-                              <strong>{lecture.title}</strong>
-                              <span className={s.muted}>
-                                {lecture.section} · 개념 강의 보기 →
-                              </span>
-                            </Link>
-                          </li>
-                        ))}
-                      </ul>
-                    ) : (
-                      <p className={s.muted}>
-                        열린 개념 강의는 강의 목록에서 확인할 수 있어요.
-                      </p>
-                    )}
-                  </section>
-                  {state.recentMissions.length ? (
-                    <section className={s.card}>
-                      <p className={s.eyebrow}>나의 학습 기록</p>
-                      <h2>최근 학습</h2>
-                      <ul className={s.history}>
-                        {state.recentMissions.slice(0, 7).map((item) => (
-                          <li key={item.id}>
-                            <span>{formatDayWithWeekday(item.date)}</span>
-                            <span>
-                              {item.completedAt
-                                ? "완료"
-                                : `${item.answered}/${item.total} 진행`}{" "}
-                              · {item.correct}문제 정답
+                  ) : (
+                    <p className={s.muted}>아직 등록된 수업 진도가 없어요.</p>
+                  )}
+                  {state.lectures.length ? (
+                    <ul className={s.links}>
+                      {state.lectures.map((lecture) => (
+                        <li key={lecture.id}>
+                          <Link
+                            href={`/learn/watch/${encodeURIComponent(lecture.id)}`}
+                          >
+                            <strong>{lecture.title}</strong>
+                            <span className={s.muted}>
+                              {lecture.section} · 개념 강의 보기 →
                             </span>
-                          </li>
-                        ))}
-                      </ul>
-                    </section>
-                  ) : null}
-                </div>
-              </>
-            )}
-          </>
-        ) : null}
-      </main>
-    </div>
+                          </Link>
+                        </li>
+                      ))}
+                    </ul>
+                  ) : (
+                    <p className={s.muted}>
+                      열린 개념 강의는 강의 목록에서 확인할 수 있어요.
+                    </p>
+                  )}
+                </section>
+                {state.recentMissions.length ? (
+                  <section className={s.card}>
+                    <p className={s.eyebrow}>나의 학습 기록</p>
+                    <h2>최근 학습</h2>
+                    <ul className={s.history}>
+                      {state.recentMissions.slice(0, 7).map((item) => (
+                        <li key={item.id}>
+                          <span>{formatDayWithWeekday(item.date)}</span>
+                          <span>
+                            {item.completedAt
+                              ? "완료"
+                              : `${item.answered}/${item.total} 진행`}{" "}
+                            · {item.correct}문제 정답
+                          </span>
+                        </li>
+                      ))}
+                    </ul>
+                  </section>
+                ) : null}
+              </div>
+            </>
+          )}
+        </>
+      ) : null}
+    </StudentReviewPage>
   );
 }
 
