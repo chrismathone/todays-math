@@ -9,6 +9,7 @@ import type {
 } from "@/contracts/mathSrsReplay.contract";
 import { STUDENT_MUST_CHANGE_MESSAGE } from "@/lib/studentRouteAccess";
 import { solutionForDisplay } from "@/lib/solutionSteps";
+import AnswerFeedbackEffect from "./AnswerFeedbackEffect";
 import s from "./student-replay.module.css";
 
 const ProblemContent = dynamic(() =>
@@ -38,6 +39,7 @@ export default function StudentReplayDialog({
   const [answer, setAnswer] = useState<string | null>(null);
   const [parts, setParts] = useState<number[]>([]);
   const [solutionOpen, setSolutionOpen] = useState(false);
+  const [feedbackEvent, setFeedbackEvent] = useState(0);
 
   const perform = useCallback(
     async (input?: {
@@ -95,6 +97,8 @@ export default function StudentReplayDialog({
         const replay = parsed.data.data;
         if (request.current !== controller) return;
         setData(replay);
+        if (input && !input.revealSolution && replay.correct !== null)
+          setFeedbackEvent((current) => current + 1);
         if (input?.revealSolution && replay.solution) setSolutionOpen(true);
       } catch (failure) {
         if (request.current === controller)
@@ -137,6 +141,17 @@ export default function StudentReplayDialog({
   }, [perform]);
 
   useEffect(() => {
+    const documentOverflow = document.documentElement.style.overflow;
+    const bodyOverflow = document.body.style.overflow;
+    document.documentElement.style.overflow = "hidden";
+    document.body.style.overflow = "hidden";
+    return () => {
+      document.documentElement.style.overflow = documentOverflow;
+      document.body.style.overflow = bodyOverflow;
+    };
+  }, []);
+
+  useEffect(() => {
     const modal = solutionDialog.current;
     if (!modal) return;
     if (solutionOpen && !modal.open) {
@@ -153,6 +168,18 @@ export default function StudentReplayDialog({
     ? `${parts.length}/${data.interactive.denominator}`
     : answer;
   const correct = data?.correct ?? null;
+  useEffect(() => {
+    if (correct !== false) return;
+    const retry = setTimeout(() => {
+      setAnswer(null);
+      setParts([]);
+      setData((previous) =>
+        previous ? { ...previous, correct: null, solution: null } : null,
+      );
+    }, 1200);
+    return () => clearTimeout(retry);
+  }, [correct, feedbackEvent]);
+
   const closeReplay = () => {
     const modal = dialog.current;
     if (modal?.open) {
@@ -160,13 +187,6 @@ export default function StudentReplayDialog({
       else modal.removeAttribute("open");
     }
     onClose();
-  };
-  const reset = () => {
-    setAnswer(null);
-    setParts([]);
-    setData((previous) =>
-      previous ? { ...previous, correct: null, solution: null } : null,
-    );
   };
   return (
     <dialog
@@ -190,7 +210,7 @@ export default function StudentReplayDialog({
         </button>
       </header>
       {data ? (
-        <div className={s.body}>
+        <div className={s.body} aria-busy={busy}>
           <p className={s.subtitle}>{data.subtitle}</p>
           <div
             className={s.question}
@@ -204,18 +224,11 @@ export default function StudentReplayDialog({
               deferFigures={false}
             />
           </div>
-          <div
-            className={s.answers}
-            data-result={correct === null ? undefined : correct}
-          >
-            <p className={s.result} role="status" aria-live="polite">
-              {correct === true
-                ? "✓ 정확하게 풀었어요!"
-                : correct === false
-                  ? "↻ 한 번 더 생각해 보세요"
-                  : data.interactive
-                    ? "조각을 눌러 답을 만드세요"
-                    : "답 하나를 골라 주세요"}
+          <div className={s.answers}>
+            <p className={s.answerPrompt}>
+              {data.interactive
+                ? "조각을 눌러 답을 만드세요"
+                : "답 하나를 눌러 주세요"}
             </p>
             {data.interactive ? (
               <div
@@ -265,7 +278,14 @@ export default function StudentReplayDialog({
                     type="button"
                     aria-pressed={answer === choice}
                     disabled={busy || correct !== null}
-                    onClick={() => setAnswer(choice)}
+                    onClick={() => {
+                      if (request.current || correct !== null) return;
+                      setAnswer(choice);
+                      void perform({
+                        problemId: data.problemId,
+                        submittedAnswer: choice,
+                      });
+                    }}
                   >
                     <span className={s.index} aria-hidden="true">
                       {index + 1}
@@ -276,11 +296,6 @@ export default function StudentReplayDialog({
               </div>
             )}
           </div>
-          {error ? (
-            <p className={s.error} role="alert">
-              {error}
-            </p>
-          ) : null}
           <footer className={s.actions}>
             {correct === true ? (
               <>
@@ -309,15 +324,11 @@ export default function StudentReplayDialog({
                   진도판으로
                 </button>
               </>
-            ) : correct === false ? (
-              <button type="button" className={s.primary} onClick={reset}>
-                다시 풀기
-              </button>
-            ) : (
+            ) : data.interactive ? (
               <button
                 type="button"
                 className={s.primary}
-                disabled={busy || submittedAnswer === null}
+                disabled={busy || correct !== null || submittedAnswer === null}
                 onClick={() =>
                   void perform({
                     problemId: data.problemId,
@@ -325,10 +336,20 @@ export default function StudentReplayDialog({
                   })
                 }
               >
-                {busy ? "확인 중…" : "정답 확인"}
+                {busy ? "확인 중…" : "완성했어요"}
               </button>
-            )}
+            ) : busy ? (
+              <span className={s.pending} role="status">
+                확인 중…
+              </span>
+            ) : null}
           </footer>
+          {error ? (
+            <p className={s.error} role="alert">
+              {error}
+            </p>
+          ) : null}
+          <AnswerFeedbackEffect correct={correct} eventKey={feedbackEvent} />
         </div>
       ) : (
         <div className={s.empty}>

@@ -39,7 +39,7 @@ const response = (data: MathSrsReplay) =>
   });
 
 describe("completed tile replay", () => {
-  it("keeps the question and four options in place through a wrong answer, retry and requested solution", async () => {
+  it("grades a tapped answer immediately and permits a new choice after the wrong-answer effect", async () => {
     const fetcher = vi
       .fn()
       .mockResolvedValueOnce(response(problem))
@@ -66,22 +66,34 @@ describe("completed tile replay", () => {
     expect(within(options).getAllByRole("button")).toHaveLength(4);
     expect(screen.queryByRole("textbox")).not.toBeInTheDocument();
     expect(
+      screen.queryByRole("button", { name: "정답 확인" }),
+    ).not.toBeInTheDocument();
+    expect(
       screen.queryByRole("button", { name: "풀이 보기" }),
     ).not.toBeInTheDocument();
     fireEvent.click(within(options).getAllByRole("button")[1]);
-    fireEvent.click(screen.getByRole("button", { name: "정답 확인" }));
     expect(
-      await screen.findByText("↻ 한 번 더 생각해 보세요"),
+      await screen.findByText("다시 풀 문제로 모았어요"),
     ).toBeInTheDocument();
     expect(screen.getByText(problem.content)).toBeVisible();
     expect(screen.queryByText("$2$")).not.toBeInTheDocument();
     expect(
       screen.queryByRole("button", { name: "풀이 보기" }),
     ).not.toBeInTheDocument();
-    fireEvent.click(screen.getByRole("button", { name: "다시 풀기" }));
+    expect(
+      screen.queryByRole("button", { name: "다시 풀기" }),
+    ).not.toBeInTheDocument();
+    expect(within(options).getAllByRole("button")[0]).toBeDisabled();
+    await waitFor(
+      () => expect(within(options).getAllByRole("button")[0]).toBeEnabled(),
+      { timeout: 2000 },
+    );
+    expect(within(options).getAllByRole("button")[1]).toHaveAttribute(
+      "aria-pressed",
+      "false",
+    );
     fireEvent.click(within(options).getAllByRole("button")[0]);
-    fireEvent.click(screen.getByRole("button", { name: "정답 확인" }));
-    expect(await screen.findByText("✓ 정확하게 풀었어요!")).toBeInTheDocument();
+    expect(await screen.findByText("정확하게 풀었어요!")).toBeInTheDocument();
     expect(
       screen.queryByRole("dialog", { name: "복습 풀이" }),
     ).not.toBeInTheDocument();
@@ -139,14 +151,58 @@ describe("completed tile replay", () => {
     });
     fireEvent.click(within(parts).getAllByRole("button")[0]);
     fireEvent.click(within(parts).getAllByRole("button")[1]);
-    fireEvent.click(screen.getByRole("button", { name: "정답 확인" }));
-    await screen.findByText("✓ 정확하게 풀었어요!");
+    expect(fetcher).toHaveBeenCalledOnce();
+    fireEvent.click(screen.getByRole("button", { name: "완성했어요" }));
+    await screen.findByText("정확하게 풀었어요!");
     expect(JSON.parse(fetcher.mock.calls[1][1].body).submittedAnswer).toBe(
       "2/4",
     );
     expect(
       screen.queryByRole("button", { name: "풀이 보기" }),
     ).not.toBeInTheDocument();
+  });
+
+  it("blocks duplicate taps while grading and enables answer selection after a server error", async () => {
+    let failSubmission: (response: Response) => void = () => {};
+    const fetcher = vi
+      .fn()
+      .mockResolvedValueOnce(response(problem))
+      .mockImplementationOnce(
+        () =>
+          new Promise<Response>((resolve) => {
+            failSubmission = resolve;
+          }),
+      )
+      .mockResolvedValueOnce(response({ ...problem, correct: true }));
+    vi.stubGlobal("fetch", fetcher);
+    render(
+      <StudentReplayDialog kind="elementary" step={2} onClose={vi.fn()} />,
+    );
+    const options = await screen.findByRole("group", {
+      name: "복습 답 고르기",
+    });
+    const buttons = within(options).getAllByRole("button");
+    fireEvent.click(buttons[0]);
+    fireEvent.click(buttons[1]);
+    expect(fetcher).toHaveBeenCalledTimes(2);
+    buttons.forEach((button) => expect(button).toBeDisabled());
+    failSubmission(
+      new Response(
+        JSON.stringify({ error: { message: "잠시 후 다시 시도해 주세요." } }),
+        {
+          status: 503,
+          headers: { "content-type": "application/json" },
+        },
+      ),
+    );
+    expect(await screen.findByRole("alert")).toHaveTextContent(
+      "잠시 후 다시 시도해 주세요.",
+    );
+    buttons.forEach((button) => expect(button).toBeEnabled());
+    fireEvent.click(buttons[0]);
+    expect(await screen.findByText("정확하게 풀었어요!")).toBeInTheDocument();
+    expect(fetcher).toHaveBeenCalledTimes(3);
+    expect(screen.queryByRole("alert")).not.toBeInTheDocument();
   });
 
   it("aborts an in-flight request when the replay window is removed", async () => {
@@ -162,7 +218,11 @@ describe("completed tile replay", () => {
       <StudentReplayDialog kind="middle" step={1} onClose={vi.fn()} />,
     );
     await waitFor(() => expect(signal).toBeDefined());
+    expect(document.documentElement.style.overflow).toBe("hidden");
+    expect(document.body.style.overflow).toBe("hidden");
     unmount();
     expect(signal?.aborted).toBe(true);
+    expect(document.documentElement.style.overflow).toBe("");
+    expect(document.body.style.overflow).toBe("");
   });
 });
