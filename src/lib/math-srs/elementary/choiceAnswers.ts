@@ -106,12 +106,84 @@ function nearbyAnswers(answer: string): string[] {
     );
 }
 
+/** Reuse a generator's own four candidates when its question asks to select one. */
+export function embeddedCourseAnswerChoices(
+  problem: CourseProblem,
+): { content: string; answerChoices: string[] } | null {
+  if (problem.input.mode !== "number") return null;
+
+  // These are the number-list forms emitted by the grade-five factor/multiple
+  // generators. Only remove a list when the exact mathematical predicate is
+  // recognized and has the same unique answer as the persisted problem.
+  const list = /\s+(\$([1-9]\d*(?:,\s*\\\s*[1-9]\d*){3})\$)\s*$/.exec(
+    problem.content,
+  );
+  if (!list) return null;
+  const content = problem.content.slice(0, list.index).trimEnd();
+  const values = list[2].split(/,\s*\\\s*/).map(Number);
+  if (
+    new Set(values).size !== 4 ||
+    values.some((value) => !Number.isSafeInteger(value))
+  )
+    return null;
+
+  const one =
+    /^다음 수 중에서 \$(\d+)\$의 (약수가 아닌 수|배수)를 찾아 쓰시오\.$/.exec(
+      content,
+    );
+  const two =
+    /^다음 수 중에서 \$(\d+)\$(?:과|와) \$(\d+)\$의 (공약수가 아닌 수|공배수)를 찾아 쓰시오\.$/.exec(
+      content,
+    );
+  let matches: ((value: number) => boolean) | null = null;
+  if (one) {
+    const base = Number(one[1]);
+    if (!Number.isSafeInteger(base) || base < 1) return null;
+    matches =
+      one[2] === "배수"
+        ? (value) => value % base === 0
+        : (value) => base % value !== 0;
+  } else if (two) {
+    const a = Number(two[1]);
+    const b = Number(two[2]);
+    if (![a, b].every((value) => Number.isSafeInteger(value) && value > 0))
+      return null;
+    matches =
+      two[3] === "공배수"
+        ? (value) => value % a === 0 && value % b === 0
+        : (value) => a % value !== 0 || b % value !== 0;
+  }
+  if (!matches) return null;
+
+  const answerChoices = values.map((value) => `$${value}$`);
+  const correct = answerChoices.map(
+    (choice) => gradeCourseAnswer(problem, choice) === true,
+  );
+  if (
+    correct.filter(Boolean).length !== 1 ||
+    values.some((value, index) => matches!(value) !== correct[index])
+  )
+    return null;
+  return { content, answerChoices };
+}
+
 /** The student sees only this persisted list; grading still compares the answer on the server. */
 export function makeCourseAnswerChoices(
   problem: CourseProblem,
   sameSectionAnswers: readonly string[],
 ): Pick<CourseProblem, "answerChoices" | "interactive"> {
   if (problem.input.mode !== "number")
+    return { answerChoices: null, interactive: null };
+
+  const embedded = embeddedCourseAnswerChoices(problem);
+  if (embedded)
+    return { answerChoices: embedded.answerChoices, interactive: null };
+  // An unrecognized or ambiguous "choose from these numbers" prompt must not
+  // show a different random set of choices alongside its printed candidates.
+  if (
+    /^다음 수 중에서/.test(problem.content) &&
+    /\$[1-9]\d*(?:,\s*\\\s*[1-9]\d*){3}\$\s*$/.test(problem.content)
+  )
     return { answerChoices: null, interactive: null };
 
   const choices = [problem.answer];

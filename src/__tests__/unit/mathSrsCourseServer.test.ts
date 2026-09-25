@@ -11,6 +11,7 @@ import {
 import { COURSE_SECTIONS } from "@/lib/math-srs/elementary/catalog";
 import { generateCourseSession } from "@/lib/math-srs/elementary/generator";
 import { gradeCourseAnswer } from "@/lib/math-srs/elementary/answers";
+import { makeCourseAnswerChoices } from "@/lib/math-srs/elementary/choiceAnswers";
 import {
   CourseConflict,
   CourseInvalidInput,
@@ -141,6 +142,109 @@ function tableFixture(initial: StoredSrsState | null = null) {
 }
 
 describe("durable elementary scheduling", () => {
+  it("uses the four printed factor candidates as the choices in newly generated sessions", () => {
+    const content =
+      "다음 수 중에서 $28$의 약수가 아닌 수를 찾아 쓰시오.  $2,\\ 7,\\ 23,\\ 14$";
+    const session = generateCourseSession("5-1-2-1", 123, now, "learn", [
+      {
+        tier: "기본",
+        content,
+        answer: "$23$",
+        solution: "23은 28의 약수가 아닙니다.",
+      },
+    ]);
+    const problem = session.problems.find((p) => p.content === content)!;
+    expect(problem.answerChoices).toEqual(["$2$", "$7$", "$23$", "$14$"]);
+    expect(
+      problem.answerChoices!.filter((choice) =>
+        gradeCourseAnswer(problem, choice),
+      ),
+    ).toHaveLength(1);
+    const publicProblem = publicCourseSession(session).problems.find(
+      (p) => p.id === problem.id,
+    )!;
+    expect(publicProblem.content).toBe(
+      "다음 수 중에서 $28$의 약수가 아닌 수를 찾아 쓰시오.",
+    );
+    expect(publicProblem.answerChoices).toEqual(problem.answerChoices);
+    expect(publicProblem.hint).toBeNull();
+  });
+
+  it.each([
+    [
+      "다음 수 중에서 $7$의 배수를 찾아 쓰시오.  $12,\\ 14,\\ 15,\\ 16$",
+      "$14$",
+      ["$12$", "$14$", "$15$", "$16$"],
+    ],
+    [
+      "다음 수 중에서 $12$와 $18$의 공약수가 아닌 수를 찾아 쓰시오.  $1,\\ 2,\\ 3,\\ 4$",
+      "$4$",
+      ["$1$", "$2$", "$3$", "$4$"],
+    ],
+    [
+      "다음 수 중에서 $4$와 $6$의 공배수를 찾아 쓰시오.  $8,\\ 12,\\ 18,\\ 20$",
+      "$12$",
+      ["$8$", "$12$", "$18$", "$20$"],
+    ],
+  ])(
+    "keeps the embedded factor/multiple choices for %s",
+    (content, answer, choices) => {
+      const problem = generateCourseSession("5-1-2-1", 120, now).problems[1];
+      problem.content = content;
+      problem.answer = answer;
+      expect(makeCourseAnswerChoices(problem, [])).toMatchObject({
+        answerChoices: choices,
+      });
+    },
+  );
+
+  it("upgrades an in-progress stored 3/5 input question to stable choices without changing its record", () => {
+    let state = start(configured("5-1-2-1"));
+    state = answer(state);
+    state = answer(state);
+    const problem = state.learner.session!.problems[2];
+    problem.content =
+      "다음 수 중에서 $28$의 약수가 아닌 수를 찾아 쓰시오.  $2,\\ 7,\\ 23,\\ 14$";
+    problem.answer = "$23$";
+    problem.solution = "23은 28의 약수가 아닙니다.";
+    delete problem.answerChoices;
+    delete problem.interactive;
+    const stored = storedCourseSchema.parse(state);
+    const first = publicCourseSession(stored.learner.session!);
+    const resumed = publicCourseSession(
+      storedCourseSchema.parse(stored).learner.session!,
+    );
+    expect(first).toEqual(resumed);
+    expect(first.attempts).toHaveLength(2);
+    expect(first.problems[2]).toMatchObject({
+      content: "다음 수 중에서 $28$의 약수가 아닌 수를 찾아 쓰시오.",
+      answerChoices: ["$2$", "$7$", "$23$", "$14$"],
+      hint: null,
+    });
+    expect(stored.learner.session!.problems[2].answerChoices).toBeUndefined();
+    const submitted = submitCourseAttempt(
+      stored,
+      {
+        sessionId: stored.learner.session!.id,
+        problemId: problem.id,
+        submittedAnswer: first.problems[2].answerChoices![2],
+      },
+      now,
+    );
+    expect(submitted.learner.session!.attempts[2].correct).toBe(true);
+  });
+
+  it("does not invent choices when a printed number list has two valid answers", () => {
+    const section = COURSE_SECTIONS.find((s) => s.id === "5-1-2-1")!;
+    const problem = generateCourseSession(section.id, 99, now).problems[1];
+    problem.content =
+      "다음 수 중에서 $28$의 약수가 아닌 수를 찾아 쓰시오.  $2,\\ 7,\\ 23,\\ 15$";
+    problem.answer = "$23$";
+    expect(makeCourseAnswerChoices(problem, [])).toMatchObject({
+      answerChoices: null,
+    });
+  });
+
   it("prefers eligible bank candidates by tier and persists four distinct graded choices", () => {
     const section = COURSE_SECTIONS[0];
     const bank = [
