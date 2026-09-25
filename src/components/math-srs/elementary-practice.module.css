@@ -433,6 +433,164 @@
   margin-top: 28px;
 }
 
+.answerChoices {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 10px;
+}
+
+.practice .answerChoice {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  min-width: 0;
+  min-height: 72px;
+  padding: 10px;
+  border: 2px solid var(--learn-track);
+  border-radius: var(--learn-radius-sm);
+  background: var(--learn-surface);
+  color: var(--learn-ink);
+  font-size: 18px;
+  font-weight: 700;
+  overflow-wrap: anywhere;
+}
+
+.practice .answerChoice[aria-pressed="true"] {
+  border-color: var(--learn-accent);
+  background: var(--learn-soft);
+  color: var(--learn-accent);
+}
+
+.answerChoice > :last-child {
+  min-width: 0;
+}
+
+.choiceNumber {
+  display: grid;
+  flex: 0 0 24px;
+  place-items: center;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background: var(--learn-neutral);
+  color: var(--learn-muted);
+  font-size: 12px;
+}
+
+.fractionAnswer {
+  width: 100%;
+  min-width: 0;
+}
+
+.fractionBar {
+  display: flex;
+  width: 100%;
+  overflow: hidden;
+  border: 2px solid var(--learn-accent);
+  border-radius: var(--learn-radius-sm);
+}
+
+.fractionBar[data-many="true"] {
+  display: grid;
+  grid-template-columns: repeat(6, minmax(0, 1fr));
+}
+
+.practice .fractionPart {
+  flex: 1 0 36px;
+  min-height: 76px;
+  padding: 0;
+  background: var(--learn-surface);
+  border-right: 2px solid var(--learn-accent);
+}
+
+.practice .fractionPart:last-child {
+  border-right: 0;
+}
+
+.fractionBar[data-many="true"] .fractionPart {
+  min-width: 0;
+  min-height: 64px;
+  border-bottom: 0;
+}
+
+.fractionBar[data-many="true"] .fractionPart:nth-child(6n) {
+  border-right: 0;
+}
+
+.fractionBar[data-many="true"] .fractionPart:nth-child(-n + 6) {
+  border-bottom: 2px solid var(--learn-accent);
+}
+
+.practice .fractionPart[aria-pressed="true"] {
+  background: var(--learn-accent);
+}
+
+.fractionCount {
+  margin: 8px 0 0;
+  color: var(--learn-accent);
+  font-size: 18px;
+  font-weight: 700;
+  text-align: center;
+}
+
+.explanationDialog {
+  box-sizing: border-box;
+  width: min(560px, calc(100vw - 32px));
+  max-height: min(80dvh, 760px);
+  margin: auto;
+  padding: 0;
+  overflow: hidden;
+  border: 0;
+  border-radius: var(--learn-radius);
+  background: var(--learn-surface);
+  color: var(--learn-ink);
+  box-shadow: 0 20px 60px rgb(0 0 0 / 20%);
+}
+
+.explanationDialog::backdrop {
+  background: rgb(15 23 42 / 60%);
+}
+
+.dialogHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 16px 20px;
+  border-bottom: 1px solid var(--learn-track);
+}
+
+.dialogHeader h3 {
+  margin: 0;
+  font-size: 19px;
+}
+
+.practice .dialogClose {
+  display: grid;
+  flex: 0 0 44px;
+  place-items: center;
+  min-height: 44px;
+  border-radius: var(--learn-radius-sm);
+  background: var(--learn-neutral);
+  color: var(--learn-ink);
+  font-size: 28px;
+  line-height: 1;
+}
+
+.dialogBody {
+  max-height: calc(80dvh - 190px);
+  padding: 8px 20px 20px;
+  overflow: auto;
+}
+
+.dialogActions {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 8px;
+  padding: 12px 20px 20px;
+}
+
 .solution {
   margin: 20px 0 28px;
   line-height: 1.85;
@@ -610,6 +768,17 @@
   font-size: 12px;
 }
 
+.practice .outcomeHint {
+  width: 100%;
+  min-height: 44px;
+  padding: 4px;
+  border-radius: var(--learn-radius-sm);
+  background: var(--learn-surface);
+  color: var(--learn-accent);
+  font-size: 12px;
+  font-weight: 700;
+}
+
 .completeActions {
   flex-shrink: 0;
   margin-top: 28px;
@@ -631,6 +800,37 @@
 }
 
 @media (max-width: 900px) {
+  .studentPractice .studentQuestion {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    overflow: auto;
+  }
+
+  .studentPractice .studentQuestion .problemPane,
+  .studentPractice .studentQuestion .responsePane {
+    flex: 0 0 auto;
+  }
+
+  .studentPractice .studentQuestion .problemScroll,
+  .studentPractice .studentQuestion .responseScroll {
+    flex: 0 1 auto;
+    max-height: min(35dvh, 300px);
+  }
+
+  .studentPractice .studentQuestion .mobileProblemAction,
+  .studentPractice .studentQuestion .mobileSwitch {
+    display: none;
+  }
+
+  .studentPractice .studentQuestion .questionActions {
+    margin-top: 0;
+  }
+
+  .studentPractice .studentQuestion .paneAction {
+    padding-top: 10px;
+  }
+
   .header {
     gap: 12px;
     margin-bottom: 0;
@@ -822,6 +1022,39 @@
     padding: 16px;
     overflow: visible;
     scroll-margin-top: 10px;
+  }
+  .studentPractice .studentQuestion {
+    gap: 10px;
+    padding: 14px;
+  }
+  .studentPractice .studentQuestion .problemScroll,
+  .studentPractice .studentQuestion .responseScroll {
+    max-height: none;
+  }
+  .studentPractice .studentQuestion .problemHeading {
+    margin-bottom: 5px;
+  }
+  .studentPractice .studentQuestion .question h2,
+  .studentPractice .studentQuestion h2 {
+    margin-bottom: 8px;
+    font-size: 19px;
+  }
+  .studentPractice .studentQuestion .feedbackLabel {
+    margin-bottom: 8px;
+  }
+  .studentPractice .studentQuestion .inputMessage {
+    min-height: 0;
+    padding-top: 4px;
+  }
+  .studentPractice .studentQuestion .questionActions > button {
+    min-height: 44px;
+  }
+  .studentPractice .studentQuestion .paneAction {
+    padding-top: 8px;
+  }
+  .studentPractice .studentQuestion .answerChoice {
+    min-height: 70px;
+    font-size: 16px;
   }
   .studentPractice .mobileSwitch {
     position: sticky;
