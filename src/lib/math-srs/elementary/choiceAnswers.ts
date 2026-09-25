@@ -167,6 +167,13 @@ export function embeddedCourseAnswerChoices(
   return { content, answerChoices };
 }
 
+export function hasPrintedFourNumberCandidates(content: string): boolean {
+  return (
+    /^다음 수 중에서/.test(content) &&
+    /\$[1-9]\d*(?:,\s*\\\s*[1-9]\d*){3}\$\s*$/.test(content)
+  );
+}
+
 /** The student sees only this persisted list; grading still compares the answer on the server. */
 export function makeCourseAnswerChoices(
   problem: CourseProblem,
@@ -180,10 +187,7 @@ export function makeCourseAnswerChoices(
     return { answerChoices: embedded.answerChoices, interactive: null };
   // An unrecognized or ambiguous "choose from these numbers" prompt must not
   // show a different random set of choices alongside its printed candidates.
-  if (
-    /^다음 수 중에서/.test(problem.content) &&
-    /\$[1-9]\d*(?:,\s*\\\s*[1-9]\d*){3}\$\s*$/.test(problem.content)
-  )
+  if (hasPrintedFourNumberCandidates(problem.content))
     return { answerChoices: null, interactive: null };
 
   const choices = [problem.answer];

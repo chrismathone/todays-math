@@ -17,6 +17,7 @@ import { kstDateOf } from "@/lib/kstDate";
 import { gradeCourseAnswer, validateCourseAnswer } from "./elementary/answers";
 import {
   embeddedCourseAnswerChoices,
+  hasPrintedFourNumberCandidates,
   makeCourseAnswerChoices,
 } from "./elementary/choiceAnswers";
 import { COURSE_SECTIONS, getCourseSection } from "./elementary/catalog";
@@ -842,6 +843,8 @@ export function publicCourseSession(
         .filter((a) => a.problemId === p.id)
         .at(-1);
       const embedded = embeddedCourseAnswerChoices(p);
+      const conflictingPrintedChoices =
+        !embedded && hasPrintedFourNumberCandidates(p.content);
       const derived =
         !p.answerChoices || p.interactive === undefined
           ? makeCourseAnswerChoices(p, sessionAnswers)
@@ -853,11 +856,12 @@ export function publicCourseSession(
         tier: p.tier,
         content: embedded?.content ?? p.content,
         input: p.input,
-        answerChoices:
-          embedded?.answerChoices ??
-          p.answerChoices ??
-          derived?.answerChoices ??
-          null,
+        answerChoices: conflictingPrintedChoices
+          ? null
+          : (embedded?.answerChoices ??
+            p.answerChoices ??
+            derived?.answerChoices ??
+            null),
         interactive: p.interactive ?? derived?.interactive ?? null,
         figureUrl: p.figureSpec
           ? `/api/learn/math-srs/course/figure?sessionId=${session.id}&problemId=${p.id}`

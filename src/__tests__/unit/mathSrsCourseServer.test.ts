@@ -243,6 +243,11 @@ describe("durable elementary scheduling", () => {
     expect(makeCourseAnswerChoices(problem, [])).toMatchObject({
       answerChoices: null,
     });
+    // Older releases could persist unrelated random options for this prompt.
+    problem.answerChoices = ["$23$", "$4$", "$5$", "$6$"];
+    const session = generateCourseSession(section.id, 99, now);
+    session.problems[1] = problem;
+    expect(publicCourseSession(session).problems[1].answerChoices).toBeNull();
   });
 
   it("prefers eligible bank candidates by tier and persists four distinct graded choices", () => {
