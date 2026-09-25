@@ -11,6 +11,7 @@ import type {
 import { getCourseSection } from "@/lib/math-srs/elementary/catalog";
 import { solutionForDisplay } from "@/lib/solutionSteps";
 import CourseProgressBoard from "./CourseProgressBoard";
+import AnswerFeedbackEffect from "./AnswerFeedbackEffect";
 import s from "./elementary-practice.module.css";
 
 const ProblemContent = dynamic(() =>
@@ -71,7 +72,7 @@ export default function StudentCoursePractice(props: Props) {
     (attempt) => !attempt.correct,
   ).length;
   return (
-    <div className={`${s.practice} ${s.studentPractice}`}>
+    <div className={`${s.practice} ${s.studentPractice} ${s.fixedPractice}`}>
       <header className={s.header}>
         <button
           className={s.back}
@@ -116,7 +117,7 @@ export default function StudentCoursePractice(props: Props) {
         aria-label={inRetry ? "틀린 문제 다시 풀기 진행" : "이번 학습 진행"}
       />
       <CourseQuestion
-        key={`${problem.id}:${inRetry ? retry?.attempts.length : "first"}`}
+        key={`${problem.id}:${inRetry ? retry!.attempts.length - (feedbackId ? 1 : 0) : "first"}`}
         {...props}
         problem={problem}
         title={section?.title ?? "오늘의 수학"}
@@ -220,6 +221,7 @@ function CourseQuestion({
   retryIndex: number | null;
 }) {
   const [answer, setAnswer] = useState("");
+  const [turnPage] = useState(() => session.attempts.length > 0);
   const [validation, setValidation] = useState("");
   const [explanationOpen, setExplanationOpen] = useState(false);
   const [selfReady, setSelfReady] = useState(false);
@@ -230,11 +232,18 @@ function CourseQuestion({
   const questionHeading = useRef<HTMLHeadingElement>(null);
   const nextButton = useRef<HTMLButtonElement>(null);
   const input = useRef<HTMLInputElement>(null);
+  const submitted = useRef(false);
   const figure = useProblemFigure(problem.figureUrl, onAuthFailure);
   const attempt =
     retryAttempt ??
     session.attempts.find((item) => item.problemId === problem.id);
-  const feedback = feedbackId === problem.id ? problem.feedback : null;
+  // Opening the retry queue can redact problem.feedback in the same response
+  // that saved the final first attempt. Its persisted grade still drives the
+  // brief overlay before we move into that queue.
+  const feedback =
+    feedbackId === problem.id
+      ? (problem.feedback ?? (attempt ? { correct: attempt.correct } : null))
+      : null;
   const selfCheck = problem.input.mode === "self-check";
   const answeredInFirstRound = session.attempts.some(
     (item) => item.problemId === problem.id,
@@ -257,6 +266,17 @@ function CourseQuestion({
   const selectedAnswer = hasFeedback ? attempt.submittedAnswer : answer;
   const ready = figure.status === "ready";
   const locked = busy || !ready;
+  const instantAnswer = useChoices || useInteractive;
+
+  useEffect(() => {
+    if (!busy && !hasFeedback) submitted.current = false;
+  }, [busy, hasFeedback]);
+
+  useEffect(() => {
+    if (!hasFeedback || busy || !instantAnswer) return;
+    const timer = window.setTimeout(onNext, 1200);
+    return () => window.clearTimeout(timer);
+  }, [hasFeedback, busy, instantAnswer, onNext]);
 
   useEffect(() => {
     if (feedback) nextButton.current?.focus({ preventScroll: true });
@@ -292,6 +312,8 @@ function CourseQuestion({
   function sendAnswer(
     payload: Omit<CourseAttemptInput, "sessionId" | "problemId">,
   ) {
+    if (submitted.current || locked || hasFeedback) return;
+    submitted.current = true;
     const request = {
       sessionId: session.id,
       problemId: problem.id,
@@ -345,11 +367,21 @@ function CourseQuestion({
 
   return (
     <section
-      className={`${s.question} ${s.studentQuestion}`}
+      className={`${s.question} ${s.studentQuestion} ${s.fixedQuestion}`}
+      data-answer-mode={
+        useChoices ? "choices" : useInteractive ? "fraction" : "written"
+      }
       aria-labelledby="course-question-title"
       aria-busy={busy}
     >
-      <div className={s.problemPane}>
+      <AnswerFeedbackEffect
+        correct={hasFeedback ? feedback.correct : null}
+        eventKey={`${problem.id}:${retryIndex ?? "first"}`}
+      />
+      <div
+        className={s.problemPane}
+        data-page-turn={turnPage ? "true" : undefined}
+      >
         <div className={s.problemTitle}>
           <div className={s.problemHeading}>
             <span className={s.tier}>{problem.tier}</span>
@@ -402,26 +434,7 @@ function CourseQuestion({
               tabIndex={0}
               role="region"
               aria-label="풀이 결과 내용"
-            >
-              <div
-                className={s.inlineResult}
-                data-correct={feedback.correct}
-                role="status"
-              >
-                <span className={s.resultIcon} aria-hidden="true">
-                  {feedback.correct ? "✓" : "↻"}
-                </span>
-                <strong>
-                  {!feedback.correct
-                    ? "다시 풀 문제로 모았어요"
-                    : attempt.usedHint
-                      ? "풀이를 참고해 확인했어요"
-                      : attempt.selfAssessed
-                        ? "내 풀이를 직접 확인했어요"
-                        : "정확하게 풀었어요!"}
-                </strong>
-              </div>
-            </div>
+            ></div>
             <div className={s.paneAction}>
               <button
                 ref={nextButton}
@@ -538,32 +551,23 @@ function CourseQuestion({
               role="region"
               aria-label="답안 작성"
             >
-              {hasFeedback ? (
-                <div
-                  className={s.inlineResult}
-                  data-correct={feedback.correct}
-                  role="status"
-                  aria-live="polite"
-                >
-                  <span className={s.resultIcon} aria-hidden="true">
-                    {feedback.correct ? "✓" : "↻"}
-                  </span>
-                  <strong>
-                    {feedback.correct
-                      ? "정확하게 풀었어요!"
-                      : "다시 풀 문제로 모았어요"}
-                  </strong>
-                </div>
-              ) : null}
-              <p className={s.feedbackLabel}>
-                {hasFeedback
-                  ? "고른 답을 확인했어요"
-                  : useInteractive
+              <div className={s.answerDockHeader}>
+                <p className={s.feedbackLabel}>
+                  {useInteractive
                     ? "모양을 눌러 답을 만드세요"
                     : useChoices
-                      ? "답 하나를 골라 주세요"
+                      ? "답을 누르면 바로 확인해요"
                       : "생각한 답을 적어 주세요"}
-              </p>
+                </p>
+                <button
+                  type="button"
+                  className={s.textButton}
+                  disabled={locked || hasFeedback}
+                  onClick={giveUp}
+                >
+                  아직 모르겠어요
+                </button>
+              </div>
               <form
                 id="course-answer-form"
                 className={s.answerForm}
@@ -626,8 +630,10 @@ function CourseQuestion({
                         }
                         disabled={locked || hasFeedback}
                         onClick={() => {
+                          if (submitted.current) return;
                           setAnswer(choice);
                           setValidation("");
+                          sendAnswer({ submittedAnswer: choice });
                         }}
                       >
                         <span className={s.choiceNumber}>
@@ -671,49 +677,43 @@ function CourseQuestion({
                   </p>
                 </div>
               </form>
-              <div className={s.questionActions}>
-                {!hasFeedback ? (
+            </div>
+            {!useChoices ? (
+              <div className={s.paneAction}>
+                {hasFeedback && !instantAnswer ? (
                   <button
+                    ref={nextButton}
                     type="button"
-                    className={s.textButton}
-                    disabled={locked}
-                    onClick={giveUp}
+                    className={s.primary}
+                    onClick={onNext}
+                    disabled={busy}
                   >
-                    아직 모르겠어요
+                    {repeatNext
+                      ? "다시 도전하기"
+                      : nextIsRetry
+                        ? "틀린 문제 다시 풀기"
+                        : last
+                          ? "이번 학습 마치기"
+                          : "다음 문제"}
+                    <span aria-hidden="true">→</span>
                   </button>
-                ) : null}
+                ) : (
+                  <button
+                    type="submit"
+                    form="course-answer-form"
+                    className={s.primary}
+                    disabled={locked || hasFeedback}
+                  >
+                    {busy
+                      ? "저장 중…"
+                      : useInteractive
+                        ? "완성했어요"
+                        : "정답 확인"}
+                    <span aria-hidden="true">→</span>
+                  </button>
+                )}
               </div>
-            </div>
-            <div className={s.paneAction}>
-              {hasFeedback ? (
-                <button
-                  ref={nextButton}
-                  type="button"
-                  className={s.primary}
-                  onClick={onNext}
-                  disabled={busy}
-                >
-                  {repeatNext
-                    ? "다시 도전하기"
-                    : nextIsRetry
-                      ? "틀린 문제 다시 풀기"
-                      : last
-                        ? "이번 학습 마치기"
-                        : "다음 문제"}
-                  <span aria-hidden="true">→</span>
-                </button>
-              ) : (
-                <button
-                  type="submit"
-                  form="course-answer-form"
-                  className={s.primary}
-                  disabled={locked}
-                >
-                  {busy ? "저장 중…" : "정답 확인"}
-                  <span aria-hidden="true">→</span>
-                </button>
-              )}
-            </div>
+            ) : null}
           </div>
         )}
       </div>

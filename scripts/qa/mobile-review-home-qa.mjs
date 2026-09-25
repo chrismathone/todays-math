@@ -84,20 +84,18 @@ const middle = {
     startedAt: new Date().toISOString(),
     completedAt: null,
     problems: middleProblems,
-    attempts: middleProblems
-      .slice(0, 2)
-      .map((problem) => ({
-        problemId: problem.id,
-        templateId: problem.templateId,
-        conceptId: problem.conceptId,
-        kind: problem.kind,
-        submittedAnswer: "2",
-        correct: true,
-        rating: "good",
-        usedHint: false,
-        elapsedSeconds: 20,
-        answeredAt: new Date().toISOString(),
-      })),
+    attempts: middleProblems.slice(0, 2).map((problem) => ({
+      problemId: problem.id,
+      templateId: problem.templateId,
+      conceptId: problem.conceptId,
+      kind: problem.kind,
+      submittedAnswer: "2",
+      correct: true,
+      rating: "good",
+      usedHint: false,
+      elapsedSeconds: 20,
+      answeredAt: new Date().toISOString(),
+    })),
   },
   recentMissions: [],
   currentProgress: null,
@@ -255,16 +253,17 @@ async function capture(browser, browserName, width, kind, state, phase) {
       .getByRole("group", { name: "복습 답 고르기" })
       .getByRole("button");
     await choices.nth(1).click();
-    await replay.getByRole("button", { name: "정답 확인" }).click();
-    await replay.getByText("↻ 한 번 더 생각해 보세요").waitFor();
+    await replay.getByText("다시 풀 문제로 모았어요").waitFor();
     assert.equal(
       await replay.getByRole("button", { name: "풀이 보기" }).count(),
       0,
     );
-    await replay.getByRole("button", { name: "다시 풀기" }).click();
+    await choices.first().waitFor({ state: "visible" });
+    await page.waitForFunction(
+      () => !document.querySelector('[data-answer-feedback="incorrect"]'),
+    );
     await choices.first().click();
-    await replay.getByRole("button", { name: "정답 확인" }).click();
-    await replay.getByText("✓ 정확하게 풀었어요!").waitFor();
+    await replay.getByText("정확하게 풀었어요!").waitFor();
     await replay.getByRole("button", { name: "진도판으로" }).click();
     assert.equal(
       await page.locator('li[data-state="complete"]').count(),

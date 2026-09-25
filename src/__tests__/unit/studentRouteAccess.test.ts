@@ -16,6 +16,7 @@ import {
 describe("🔴 학생이 할 수 있는 것 전부 — 늘거나 넓어지면 빨개져 리뷰에 보인다", () => {
   it("첫 비밀번호를 바꾼 학생", () => {
     expect(STUDENT_CAPABILITIES).toStrictEqual([
+      "GET|POST /api/learn/math-srs/replay",
       "GET|HEAD /learn",
       "GET|HEAD /learn/password",
       "GET|HEAD /learn/watch/{id}",

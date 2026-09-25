@@ -19,6 +19,7 @@ export default async function MobilePracticeQaPage({
     typeof rawKind === "string" &&
     [
       "choice",
+      "long",
       "embedded",
       "fraction4",
       "fraction12",

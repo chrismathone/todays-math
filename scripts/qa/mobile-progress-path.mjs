@@ -127,13 +127,6 @@ for (const [name, engine] of [
     await choices.first().waitFor();
     assert.equal(await choices.count(), 4);
     assert.equal(await replay.getByRole("textbox").count(), 0);
-    const replaySubmit = await replay
-      .getByRole("button", { name: "정답 확인" })
-      .boundingBox();
-    assert.ok(
-      replaySubmit && replaySubmit.y + replaySubmit.height <= height - 5,
-      "replay submit must fit on screen",
-    );
     const choiceBoxes = await Promise.all(
       [0, 1, 2, 3].map((index) => choices.nth(index).boundingBox()),
     );
@@ -145,8 +138,7 @@ for (const [name, engine] of [
         path: resolve(output, `${name}-replay-${width}x${height}.png`),
       });
     await choices.first().click();
-    await replay.getByRole("button", { name: "정답 확인" }).click();
-    await replay.getByText("✓ 정확하게 풀었어요!").waitFor();
+    await replay.getByText("정확하게 풀었어요!").waitFor();
     await replay.getByRole("button", { name: "풀이 보기" }).click();
     const solution = page.getByRole("dialog", { name: "복습 풀이" });
     await solution.waitFor();
@@ -173,95 +165,6 @@ for (const [name, engine] of [
     await page.close();
   }
 
-  for (const [answerIndex, expected] of [
-    [0, "정확하게 풀었어요!"],
-    [1, "다시 풀 문제로 모았어요"],
-  ]) {
-    const page = await browser.newPage({
-      viewport: { width: 390, height: 600 },
-      isMobile: true,
-      hasTouch: true,
-    });
-    await page.goto(`${base}/dev/mobile-practice-qa?kind=choice`);
-    await page
-      .locator("nextjs-portal")
-      .evaluateAll((items) => items.forEach((item) => item.remove()));
-    const group = page.getByRole("group", { name: "답 고르기" });
-    const choice = group.getByRole("button").nth(answerIndex);
-    for (let attempt = 0; attempt < 5; attempt++) {
-      await choice.click();
-      if ((await choice.getAttribute("aria-pressed")) === "true") break;
-      await page.waitForTimeout(300);
-    }
-    assert.equal(await choice.getAttribute("aria-pressed"), "true");
-    await page.screenshot({
-      path: resolve(
-        output,
-        `${name}-${answerIndex === 0 ? "correct" : "incorrect"}-before-390x600.png`,
-      ),
-      fullPage: true,
-    });
-    const submitBox = await page
-      .getByRole("button", { name: /정답 확인/ })
-      .boundingBox();
-    assert.ok(
-      submitBox && submitBox.y + submitBox.height <= 600,
-      `${name}: submit below 600px viewport`,
-    );
-    await page.getByRole("button", { name: /정답 확인/ }).click();
-    await page.getByText(expected).waitFor();
-    await page.waitForTimeout(450);
-    const nextBox = await page
-      .getByRole("button", { name: /다음 문제/ })
-      .boundingBox();
-    assert.ok(
-      nextBox && nextBox.y + nextBox.height <= 600,
-      `${name}: next button below 390x600 viewport`,
-    );
-    assert.equal(await group.getByRole("button").count(), 4);
-    assert.equal(
-      await page.getByRole("button", { name: "풀이 보기" }).count(),
-      0,
-    );
-    assert.equal(await page.getByText("나의 답").count(), 0);
-    if (answerIndex === 1) {
-      assert.equal(
-        await group.getByRole("button").first().getAttribute("data-result"),
-        null,
-        "wrong answer must not reveal the correct choice",
-      );
-    }
-    await page.screenshot({
-      path: resolve(
-        output,
-        `${name}-${answerIndex === 0 ? "correct" : "incorrect"}-after-390x600.png`,
-      ),
-      fullPage: true,
-    });
-    await page.close();
-  }
-  for (const [kind, width] of [
-    ["choice", 320],
-    ["embedded", 320],
-    ["fraction12", 320],
-    ["embedded", 390],
-    ["fraction12", 390],
-  ]) {
-    const compact = await browser.newPage({
-      viewport: { width, height: 600 },
-      isMobile: true,
-      hasTouch: true,
-    });
-    await compact.goto(`${base}/dev/mobile-practice-qa?kind=${kind}`);
-    const submit = compact.getByRole("button", { name: /정답 확인/ });
-    await submit.waitFor();
-    const box = await submit.boundingBox();
-    assert.ok(
-      box && box.y + box.height <= 600,
-      `${name} ${kind}: submit below ${width}x600 viewport`,
-    );
-    await compact.close();
-  }
   const selfCheck = await browser.newPage({
     viewport: { width: 390, height: 600 },
     isMobile: true,
@@ -386,4 +289,4 @@ for (const [name, engine] of [
   }
   await browser.close();
 }
-console.log(`Mobile progress path and inline feedback passed: ${output}`);
+console.log(`Mobile board replay and overlay feedback passed: ${output}`);

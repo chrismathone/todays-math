@@ -20,6 +20,8 @@ import {
   COURSE_SECTIONS,
 } from "@/lib/math-srs/elementary/catalog";
 import { STUDENT_MUST_CHANGE_MESSAGE } from "@/lib/studentRouteAccess";
+import { publicCourseSession } from "@/lib/math-srs/courseAutomation";
+import type { CourseSession } from "@/lib/math-srs/elementary/types";
 import * as api from "@/components/math-srs/courseApi";
 
 const router = vi.hoisted(() => ({ replace: vi.fn(), refresh: vi.fn() }));
@@ -169,12 +171,106 @@ describe("one-screen student answers", () => {
     expect(choices).toHaveLength(4);
     await userEvent.click(choices[1]);
     expect(choices[1]).toHaveAttribute("aria-pressed", "true");
-    await userEvent.click(screen.getByRole("button", { name: /정답 확인/ }));
+    expect(
+      screen.queryByRole("button", { name: /정답 확인/ }),
+    ).not.toBeInTheDocument();
     expect(onAnswer).toHaveBeenCalledWith({
       sessionId: run.id,
       problemId: run.problems[0].id,
       submittedAnswer: "2",
     });
+  });
+
+  it("guards repeated taps and advances only after saved feedback, cancelling the timer on exit", async () => {
+    const run = session();
+    Object.assign(run.problems[0], { answerChoices: ["1", "2", "3", "4"] });
+    const { rerender, unmount, props } = view(run);
+    await screen.findByText("문제 1: 1 + 1");
+    const choices = within(
+      screen.getByRole("group", { name: "답 고르기" }),
+    ).getAllByRole("button");
+    fireEvent.click(choices[1]);
+    fireEvent.click(choices[2]);
+    expect(props.onAnswer).toHaveBeenCalledTimes(1);
+    expect(props.onNext).not.toHaveBeenCalled();
+    const saved = session(1);
+    Object.assign(saved.problems[0], { answerChoices: ["1", "2", "3", "4"] });
+    vi.useFakeTimers();
+    try {
+      rerender(
+        <StudentCoursePractice
+          {...props}
+          session={saved}
+          feedbackId={saved.problems[0].id}
+        />,
+      );
+      expect(screen.getByText("정확하게 풀었어요!")).toBeInTheDocument();
+      expect(screen.queryByText("서버가 알려 준 풀이")).not.toBeInTheDocument();
+      act(() => vi.advanceTimersByTime(1199));
+      expect(props.onNext).not.toHaveBeenCalled();
+      act(() => vi.advanceTimersByTime(1));
+      expect(props.onNext).toHaveBeenCalledTimes(1);
+      unmount();
+      act(() => vi.advanceTimersByTime(5000));
+      expect(props.onNext).toHaveBeenCalledTimes(1);
+    } finally {
+      vi.useRealTimers();
+    }
+  });
+
+  it("advances into retry when the final first-round answer is the only wrong answer", async () => {
+    const run = session(5);
+    run.attempts[4].correct = false;
+    const stored: CourseSession = {
+      ...run,
+      problems: run.problems.map((problem, index) => ({
+        ...problem,
+        seed: index,
+        answer: "2",
+        solution: "비공개 풀이",
+        figureSpec: null,
+        answerChoices: ["1", "2", "3", "4"],
+        interactive: null,
+      })),
+      retry: {
+        pendingProblemIds: [run.problems[4].id],
+        attempts: [],
+        requests: [],
+        completedAt: null,
+      },
+    };
+    const response = publicCourseSession(stored);
+    expect(response.problems[4].feedback).toBeNull();
+    const { props, rerender } = view(response);
+    await screen.findByText("문제 5: 1 + 1");
+    vi.useFakeTimers();
+    try {
+      rerender(
+        <StudentCoursePractice
+          {...props}
+          feedbackId={response.problems[4].id}
+        />,
+      );
+      expect(screen.getByText("다시 풀 문제로 모았어요")).toBeInTheDocument();
+      expect(screen.queryByText("비공개 풀이")).not.toBeInTheDocument();
+      act(() => vi.advanceTimersByTime(1200));
+      expect(props.onNext).toHaveBeenCalledTimes(1);
+      rerender(<StudentCoursePractice {...props} feedbackId={null} />);
+      expect(screen.getByText("틀린 문제 다시 풀기")).toBeInTheDocument();
+      fireEvent.click(
+        within(screen.getByRole("group", { name: "답 고르기" })).getAllByRole(
+          "button",
+        )[1],
+      );
+      expect(props.onAnswer).toHaveBeenLastCalledWith(
+        expect.objectContaining({
+          problemId: response.problems[4].id,
+          retryIndex: 0,
+        }),
+      );
+    } finally {
+      vi.useRealTimers();
+    }
   });
 
   it("lets the student shade fraction parts and submits the part count", async () => {
@@ -192,7 +288,7 @@ describe("one-screen student answers", () => {
     await userEvent.click(parts[2]);
     expect(parts[0]).toHaveAttribute("aria-pressed", "true");
     expect(parts[2]).toHaveAttribute("aria-pressed", "true");
-    await userEvent.click(screen.getByRole("button", { name: /정답 확인/ }));
+    await userEvent.click(screen.getByRole("button", { name: "완성했어요" }));
     expect(onAnswer).toHaveBeenCalledWith({
       sessionId: run.id,
       problemId: run.problems[0].id,
@@ -228,7 +324,6 @@ describe("one-screen student answers", () => {
         "button",
       )[0],
     );
-    await userEvent.click(screen.getByRole("button", { name: /정답 확인/ }));
     expect(onAnswer).toHaveBeenCalledWith(
       expect.objectContaining({
         problemId: run.problems[0].id,
@@ -251,7 +346,6 @@ describe("one-screen student answers", () => {
         "button",
       )[1],
     );
-    await userEvent.click(screen.getByRole("button", { name: /정답 확인/ }));
     expect(onAnswer).toHaveBeenLastCalledWith(
       expect.objectContaining({
         problemId: run.problems[2].id,
@@ -780,9 +874,7 @@ describe("persisted course practice", () => {
     expect(api.answerCourse).toHaveBeenCalledWith(
       expect.objectContaining({ selfCorrect: true, retryIndex: 0 }),
     );
-    expect(
-      await screen.findByText("내 풀이를 직접 확인했어요"),
-    ).toBeInTheDocument();
+    expect(await screen.findByText("정확하게 풀었어요!")).toBeInTheDocument();
   });
 
   it("requests the next recommendation after five problems and stops at the daily goal", async () => {

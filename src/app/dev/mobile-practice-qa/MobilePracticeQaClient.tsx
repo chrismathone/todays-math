@@ -1,6 +1,7 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
+import { StudentMobileNav } from "@/components/learn/StudentMobileNav";
 import { LearnTopBar } from "@/components/learn/LearnTopBar";
 import StudentCoursePractice from "@/components/math-srs/StudentCoursePractice";
 import type {
@@ -46,7 +47,13 @@ function makeSession(kind: string): CoursePublicSession {
           ? kind.startsWith("fraction")
             ? `아래 막대에서 전체의 ${denominator === 12 ? "5/12" : "2/4"}만큼 칠해 보세요.`
             : "36의 약수 중에서 두 번째로 작은 수를 구하시오."
-          : "1 + 1 = ?",
+          : kind === "long" && index === 1
+            ? "다음 조건을 읽고 알맞은 답을 고르세요.\n\n" +
+              "사과가 한 상자에 6개씩 들어 있습니다. 상자에 있는 사과의 수를 차례로 세어 봅시다.\n\n".repeat(
+                12,
+              ) +
+              "마지막으로 1 + 1의 값을 고르세요."
+            : "1 + 1 = ?",
     figureUrl: null,
     input: {
       mode:
@@ -60,7 +67,7 @@ function makeSession(kind: string): CoursePublicSession {
     answerChoices:
       kind === "embedded" && index === 2
         ? ["$2$", "$7$", "$23$", "$14$"]
-        : index === 0 && !kind.startsWith("fraction") && kind !== "embedded"
+        : !(index === 0 && kind.startsWith("fraction")) && kind !== "selfcheck"
           ? ["2", "3", "4", "6"]
           : null,
     interactive:
@@ -122,10 +129,14 @@ const summary = {
 } as CourseSummary;
 
 export default function MobilePracticeQa({ kind }: { kind: string }) {
+  const frame = useRef<HTMLDivElement>(null);
+  useEffect(() => {
+    if (frame.current) frame.current.dataset.qaReady = "true";
+  }, []);
   const [session, setSession] = useState(() => makeSession(kind));
   const [feedbackId, setFeedbackId] = useState<string | null>(null);
   return (
-    <div className={`${s.page} ${s.practicePage}`}>
+    <div ref={frame} className={`${s.page} ${s.practicePage}`}>
       <LearnTopBar student={{ name: "test_s", className: "테스트반" }} />
       <main className={s.practiceMain}>
         <div className={s.practiceStage}>
@@ -206,6 +217,7 @@ export default function MobilePracticeQa({ kind }: { kind: string }) {
           />
         </div>
       </main>
+      <StudentMobileNav previewPath="/learn/math-srs" />
     </div>
   );
 }
