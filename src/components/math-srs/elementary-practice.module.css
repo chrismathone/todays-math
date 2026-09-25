@@ -462,6 +462,107 @@
   color: var(--learn-accent);
 }
 
+.practice .answerChoice[data-result="correct"] {
+  border-color: #20845f;
+  background: #e7f7ee;
+  color: #166346;
+  animation: answerPop 440ms ease-out;
+}
+
+.practice .answerChoice:disabled {
+  opacity: 1;
+}
+
+.practice .answerChoice[data-result="incorrect"] {
+  border-color: #d26163;
+  background: #fff0ef;
+  color: #a94247;
+  animation: answerShake 360ms ease-in-out;
+}
+
+.answered .inputMessage,
+.answered .questionActions {
+  display: none;
+}
+
+.answered[data-correct="true"] .fractionPart[aria-pressed="true"] {
+  background: #20845f;
+}
+
+.answered[data-correct="false"] .fractionPart[aria-pressed="true"] {
+  background: #d26163;
+}
+
+.inlineResult {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 12px;
+  padding: 10px 14px;
+  border: 1px solid #a5ddc1;
+  border-radius: 14px;
+  background: #eaf8f0;
+  color: #166346;
+  font-size: 15px;
+  line-height: 1.4;
+  animation: resultAppear 350ms ease-out both;
+}
+
+.inlineResult[data-correct="false"] {
+  border-color: #f1b5b5;
+  background: #fff0ef;
+  color: #a94247;
+}
+
+.inlineResult strong {
+  color: inherit;
+  opacity: 1;
+}
+
+.resultIcon {
+  display: grid;
+  flex: 0 0 30px;
+  place-items: center;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background: #20845f;
+  color: white;
+  font-size: 18px;
+  font-weight: 800;
+}
+
+.inlineResult[data-correct="false"] .resultIcon {
+  background: #d26163;
+}
+
+@keyframes resultAppear {
+  from {
+    opacity: 0;
+    transform: translateY(8px) scale(0.98);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes answerPop {
+  50% {
+    transform: scale(1.045);
+  }
+}
+
+@keyframes answerShake {
+  25%,
+  75% {
+    transform: translateX(-3px);
+  }
+  50% {
+    transform: translateX(3px);
+  }
+}
+
 .answerChoice > :last-child {
   min-width: 0;
 }
@@ -709,6 +810,230 @@
   font-size: 14px;
   line-height: 1.7;
   word-break: keep-all;
+}
+
+.completeSection strong {
+  color: var(--learn-accent);
+  font-size: 1.15em;
+}
+
+.pathIntro {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin: 20px 0 4px;
+  color: var(--learn-muted);
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.pathIntro > :first-child {
+  color: #eda93f;
+  font-size: 22px;
+}
+
+.progressPath {
+  position: relative;
+  width: min(100%, 520px);
+  max-height: min(58dvh, 480px);
+  margin: 0 auto 12px;
+  padding: 24px 0 0;
+  list-style: none;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  scrollbar-width: thin;
+  scroll-behavior: auto;
+  border-radius: 18px;
+  background-color: #fbfcff;
+  background-image:
+    linear-gradient(#edf1f8 1px, transparent 1px),
+    linear-gradient(90deg, #edf1f8 1px, transparent 1px);
+  background-size: 22px 22px;
+}
+
+.progressPath:focus-visible {
+  outline: 2px solid var(--learn-accent);
+  outline-offset: -2px;
+}
+
+.progressPathPage {
+  max-height: none;
+  overflow: visible;
+}
+
+.pathStep {
+  position: relative;
+  height: 100px;
+  isolation: isolate;
+}
+
+.pathStep:last-child {
+  height: 78px;
+}
+
+.pathConnector {
+  position: absolute;
+  z-index: -1;
+  inset: 0;
+  width: 100%;
+  height: 140px;
+  overflow: visible;
+  pointer-events: none;
+}
+
+.pathConnector path {
+  fill: none;
+  stroke: #cbd6e7;
+  stroke-width: 8;
+  stroke-linecap: round;
+}
+
+.pathStep[data-state="complete"] .pathConnector path {
+  stroke: #91b9e4;
+}
+
+.pathNode {
+  position: absolute;
+  top: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1px;
+  width: 78px;
+  height: 72px;
+  padding: 0;
+  transform: translateX(-50%);
+  border: 3px solid #fff;
+  border-radius: 17px;
+  background: #e8edf5;
+  box-shadow:
+    0 7px 0 #cdd6e4,
+    0 9px 18px rgb(33 54 88 / 10%);
+  color: #73839a;
+  text-align: center;
+}
+
+.pathStep[data-side="left"] .pathNode {
+  left: 23.333%;
+}
+.pathStep[data-side="right"] .pathNode {
+  left: 76.667%;
+}
+
+.pathStep[data-state="complete"] .pathNode {
+  background: #dceafc;
+  box-shadow:
+    0 7px 0 #94b8e2,
+    0 9px 18px rgb(33 54 88 / 12%);
+  color: #235693;
+}
+
+.pathStep[data-state="current"] .pathNode {
+  background: var(--learn-accent);
+  box-shadow:
+    0 7px 0 #183aa2,
+    0 9px 22px rgb(43 85 209 / 25%);
+  color: white;
+}
+
+.pathStep[data-state="current"] .pathNode::after {
+  position: absolute;
+  inset: -7px;
+  border: 2px solid #92adff;
+  border-radius: 21px;
+  content: "";
+}
+
+.playerPiece {
+  position: absolute;
+  z-index: 4;
+  top: -21px;
+  display: grid;
+  place-items: center;
+  width: 36px;
+  height: 36px;
+  transform: translateX(-50%);
+  border: 3px solid white;
+  border-radius: 50%;
+  background: #f9c467;
+  box-shadow:
+    0 3px 0 #c78a2d,
+    0 5px 12px rgb(33 54 88 / 20%);
+  color: #674316;
+  font-size: 25px;
+  line-height: 1;
+}
+
+.pathStep[data-side="left"] .playerPiece {
+  left: 23.333%;
+}
+.pathStep[data-side="right"] .playerPiece {
+  left: 76.667%;
+}
+
+.pathStep[data-side="left"] .playerPiece[data-moved="true"] {
+  animation: pieceFromRight 650ms cubic-bezier(0.22, 0.72, 0.25, 1) both;
+}
+
+.pathStep[data-side="right"] .playerPiece[data-moved="true"] {
+  animation: pieceFromLeft 650ms cubic-bezier(0.22, 0.72, 0.25, 1) both;
+}
+
+@keyframes pieceFromRight {
+  from {
+    top: -121px;
+    left: 76.667%;
+    opacity: 0.4;
+  }
+  to {
+    top: -21px;
+    left: 23.333%;
+    opacity: 1;
+  }
+}
+
+@keyframes pieceFromLeft {
+  from {
+    top: -121px;
+    left: 23.333%;
+    opacity: 0.4;
+  }
+  to {
+    top: -21px;
+    left: 76.667%;
+    opacity: 1;
+  }
+}
+
+.pathNodeIcon {
+  font-size: 24px;
+  font-weight: 800;
+  line-height: 1;
+}
+
+.pathNodeCaption {
+  font-size: 10px;
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+.pathCallout {
+  position: absolute;
+  top: 19px;
+  left: 47%;
+  padding: 9px 12px;
+  border-radius: 12px;
+  background: #edf2ff;
+  color: var(--learn-accent);
+  font-size: 12px;
+  font-weight: 800;
+  white-space: nowrap;
+}
+
+.pathStep[data-side="right"] .pathCallout {
+  right: 47%;
+  left: auto;
 }
 
 .results {
@@ -1128,6 +1453,8 @@
   .studentPractice.complete {
     padding: 22px 18px;
     overflow: visible;
+    height: auto;
+    flex: 0 0 auto;
   }
   .studentPractice .completeBody {
     flex: 0 1 auto;
@@ -1145,16 +1472,21 @@
     font-size: 11px;
   }
   .studentPractice .completeActions {
-    position: sticky;
-    z-index: 2;
-    bottom: var(--srs-mobile-bottom);
-    margin-top: 12px;
-    padding-top: 8px;
-    background: var(--learn-surface);
+    margin-top: 8px;
   }
 }
 
 @media (prefers-reduced-motion: reduce) {
+  .progressPath {
+    scroll-behavior: auto;
+  }
+  .pathStep[data-state="current"] .pathNode,
+  .pathStep[data-side="left"] .playerPiece[data-moved="true"],
+  .pathStep[data-side="right"] .playerPiece[data-moved="true"],
+  .inlineResult,
+  .practice .answerChoice[data-result] {
+    animation: none;
+  }
   .practice .answerInput,
   .practice .noteInput,
   .practice button {

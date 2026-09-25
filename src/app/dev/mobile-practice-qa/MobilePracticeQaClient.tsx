@@ -49,7 +49,10 @@ function makeSession(kind: string): CoursePublicSession {
           : "1 + 1 = ?",
     figureUrl: null,
     input: {
-      mode: "number" as const,
+      mode:
+        kind === "selfcheck" && index === 0
+          ? ("self-check" as const)
+          : ("number" as const),
       label: "나의 답",
       placeholder: "답 입력",
       help: "숫자로 적어 주세요.",
@@ -77,8 +80,8 @@ function makeSession(kind: string): CoursePublicSession {
     mode: "learn",
     problems,
     attempts:
-      kind === "embedded"
-        ? problems.slice(0, 2).map((problem) => ({
+      kind === "path"
+        ? problems.map((problem) => ({
             problemId: problem.id,
             submittedAnswer: "2",
             correct: true,
@@ -86,10 +89,22 @@ function makeSession(kind: string): CoursePublicSession {
             selfAssessed: false,
             answeredAt: now,
           }))
-        : [],
+        : kind === "embedded"
+          ? problems.slice(0, 2).map((problem) => ({
+              problemId: problem.id,
+              submittedAnswer: "2",
+              correct: true,
+              usedHint: false,
+              selfAssessed: false,
+              answeredAt: now,
+            }))
+          : [],
     startedAt: now,
-    completedAt: null,
-    retry: null,
+    completedAt: kind === "path" ? now : null,
+    retry:
+      kind === "path"
+        ? { pendingProblemIds: [], attempts: [], completedAt: now }
+        : null,
   } as CoursePublicSession;
 }
 
@@ -116,10 +131,26 @@ export default function MobilePracticeQa({ kind }: { kind: string }) {
         <div className={s.practiceStage}>
           <StudentCoursePractice
             session={session}
-            summary={summary}
+            summary={
+              kind === "path"
+                ? {
+                    ...summary,
+                    todayAnswered: 5,
+                    todayCorrect: 5,
+                    todayGoal: 10,
+                    recommendation: {
+                      sectionId: section.id,
+                      mode: "learn",
+                      reason: "다음 5문제로 이어가요.",
+                    },
+                  }
+                : summary
+            }
             feedbackId={feedbackId}
             busy={false}
             onAnswer={(input) => {
+              const correct =
+                input.selfCorrect ?? input.submittedAnswer === answerFor(kind);
               setSession(
                 (current) =>
                   ({
@@ -129,7 +160,7 @@ export default function MobilePracticeQa({ kind }: { kind: string }) {
                       {
                         problemId: input.problemId,
                         submittedAnswer: input.submittedAnswer,
-                        correct: input.submittedAnswer === answerFor(kind),
+                        correct,
                         usedHint: false,
                         selfAssessed: false,
                         answeredAt: now,
@@ -140,8 +171,7 @@ export default function MobilePracticeQa({ kind }: { kind: string }) {
                         ? {
                             ...problem,
                             feedback: {
-                              correct:
-                                input.submittedAnswer === answerFor(kind),
+                              correct,
                             },
                           }
                         : problem,
@@ -167,7 +197,10 @@ export default function MobilePracticeQa({ kind }: { kind: string }) {
               }))
             }
             onNext={() => setFeedbackId(null)}
-            onContinue={() => {}}
+            onContinue={() => {
+              setSession(makeSession("choice"));
+              setFeedbackId(null);
+            }}
             onExit={() => {}}
             onAuthFailure={() => {}}
           />
