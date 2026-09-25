@@ -13,6 +13,7 @@ import { solutionForDisplay } from "@/lib/solutionSteps";
 import CourseProgressBoard from "./CourseProgressBoard";
 import AnswerFeedbackEffect from "./AnswerFeedbackEffect";
 import s from "./elementary-practice.module.css";
+import pageTurn from "./question-page-turn.module.css";
 
 const ProblemContent = dynamic(() =>
   import("@/components/math/ProblemContent").then((mod) => mod.ProblemContent),
@@ -379,7 +380,7 @@ function CourseQuestion({
         eventKey={`${problem.id}:${retryIndex ?? "first"}`}
       />
       <div
-        className={s.problemPane}
+        className={`${s.problemPane} ${pageTurn.page}`}
         data-page-turn={turnPage ? "true" : undefined}
       >
         <div className={s.problemTitle}>
