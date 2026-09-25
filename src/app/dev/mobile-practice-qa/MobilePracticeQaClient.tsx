@@ -27,7 +27,7 @@ const answerFor = (kind: string) =>
     : kind === "fraction4"
       ? "2/4"
       : kind === "embedded"
-        ? "23"
+        ? "$23$"
         : "2";
 
 function makeSession(kind: string): CoursePublicSession {
@@ -56,7 +56,7 @@ function makeSession(kind: string): CoursePublicSession {
     },
     answerChoices:
       kind === "embedded" && index === 2
-        ? ["2", "7", "23", "14"]
+        ? ["$2$", "$7$", "$23$", "$14$"]
         : index === 0 && !kind.startsWith("fraction") && kind !== "embedded"
           ? ["2", "3", "4", "6"]
           : null,

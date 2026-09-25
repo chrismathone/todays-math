@@ -94,12 +94,12 @@ for (const [browserName, browserType] of [
           await page.getByRole("textbox", { name: "나의 답" }).count(),
           0,
         );
-        assert.deepEqual(
-          (await group.getByRole("button").allTextContents()).map((text) =>
-            text.slice(1),
-          ),
-          ["2", "7", "23", "14"],
-        );
+        assert.deepEqual(await group.locator(".katex-html").allTextContents(), [
+          "2",
+          "7",
+          "23",
+          "14",
+        ]);
         assert.match(await page.getByRole("main").innerText(), /3\s*\/\s*5/);
         assert.equal(
           await page.getByRole("button", { name: "풀이 보기" }).count(),
@@ -112,6 +112,21 @@ for (const [browserName, browserType] of [
         );
         await submit.click();
         await page.getByText("정확하게 풀었어요!").waitFor();
+        const renderedAnswer = page.locator('div[class*="submittedAnswer"]');
+        await renderedAnswer.locator(".katex-html").waitFor();
+        assert.equal(
+          await renderedAnswer.locator(".katex-html").innerText(),
+          "23",
+        );
+        assert.doesNotMatch(await renderedAnswer.innerText(), /\$23\$/);
+        const digits = await renderedAnswer
+          .locator(".katex-html .mord")
+          .boundingBox();
+        assert.ok(digits && digits.width >= 12 && digits.height <= 25);
+        await page.screenshot({
+          path: resolve(root, `${browserName}-embedded-result-${width}.png`),
+          fullPage: true,
+        });
       }
       if (kind === "choice" && width === 320) {
         await group.getByRole("button").first().click();

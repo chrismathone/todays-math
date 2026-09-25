@@ -415,9 +415,14 @@ function CourseQuestion({
                 </p>
               ) : null}
               {attempt.submittedAnswer ? (
-                <p className={s.submittedAnswer}>
-                  나의 답 <span>{attempt.submittedAnswer}</span>
-                </p>
+                <div className={s.submittedAnswer}>
+                  <span>나의 답</span>
+                  <MathText
+                    text={attempt.submittedAnswer}
+                    as="span"
+                    className={s.submittedValue}
+                  />
+                </div>
               ) : null}
               <button
                 ref={explanationOpener}

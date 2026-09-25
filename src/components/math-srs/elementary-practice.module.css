@@ -652,12 +652,17 @@
   color: var(--learn-muted);
 }
 
-.submittedAnswer span {
+.submittedValue {
   min-width: 0;
   color: var(--learn-ink);
   font-size: 16px;
   white-space: pre-wrap;
   overflow-wrap: anywhere;
+}
+
+.submittedValue :global(.katex) {
+  white-space: nowrap;
+  overflow-wrap: normal;
 }
 
 .footerNote {

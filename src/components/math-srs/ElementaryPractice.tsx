@@ -370,9 +370,14 @@ function CourseQuestion({
                   : "괜찮아요, 풀이를 살펴봐요."}
               </h3>
               {attempt.submittedAnswer ? (
-                <p className={s.submittedAnswer}>
-                  나의 답 <span>{attempt.submittedAnswer}</span>
-                </p>
+                <div className={s.submittedAnswer}>
+                  <span>나의 답</span>
+                  <MathText
+                    text={attempt.submittedAnswer}
+                    as="span"
+                    className={s.submittedValue}
+                  />
+                </div>
               ) : null}
               <Solution problem={problem} />
             </div>
