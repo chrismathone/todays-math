@@ -524,6 +524,21 @@ describe("completed board tile replay API", () => {
     expect(f.rows).toEqual(before);
   });
 
+  it.each([
+    ["x + 3 = 5", "$x + 3 = 5$"],
+    ["\\frac{x}{2} = 3", "$\\frac{x}{2} = 3$"],
+    ["$2x = 1$", "$2x = 1$"],
+    ["\\(2x = 1\\)", "$2x = 1$"],
+    ["\\[2x = 1\\]", "$2x = 1$"],
+  ])("adds math boundaries to the saved equation %s", (equation, displayed) => {
+    const state = middle(1);
+    const problem = state.missions[0].problems[0];
+    problem.equation = equation;
+    const data = replayProblem(state, "middle", 1, now);
+    expect(data.content).toContain(`\n\n${displayed}`);
+    expect(problem.equation).toBe(equation);
+  });
+
   it.each([0, -3, 0.5, -2 / 3, 1.25, 1000000])(
     "keeps middle distractors numerically distinct for answer %s",
     (answer) => {
