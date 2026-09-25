@@ -72,8 +72,8 @@
   align-items: center;
   gap: 12px;
   padding: 11px 14px;
-  background: var(--s-card);
-  border-bottom: 1px solid var(--s-line);
+  background: var(--s-card, #fff);
+  border-bottom: 1px solid var(--s-line, #dce5f1);
 }
 .top > b {
   flex: none;

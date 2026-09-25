@@ -10,6 +10,7 @@ import type {
 } from "@/contracts/mathSrsCourse.contract";
 import { getCourseSection } from "@/lib/math-srs/elementary/catalog";
 import { solutionForDisplay } from "@/lib/solutionSteps";
+import CourseProgressBoard from "./CourseProgressBoard";
 import s from "./elementary-practice.module.css";
 
 const ProblemContent = dynamic(() =>
@@ -221,6 +222,7 @@ function CourseQuestion({
   const [answer, setAnswer] = useState("");
   const [validation, setValidation] = useState("");
   const [explanationOpen, setExplanationOpen] = useState(false);
+  const [selfReady, setSelfReady] = useState(false);
   const [selectedParts, setSelectedParts] = useState<number[]>([]);
   const explanationDialog = useRef<HTMLDialogElement>(null);
   const explanationOpener = useRef<HTMLButtonElement>(null);
@@ -251,6 +253,8 @@ function CourseQuestion({
   ).interactive;
   const useChoices = !selfCheck && !interactive && answerChoices?.length === 4;
   const useInteractive = !selfCheck && interactive?.kind === "fraction-parts";
+  const hasFeedback = !!feedback && !!attempt;
+  const selectedAnswer = hasFeedback ? attempt.submittedAnswer : answer;
   const ready = figure.status === "ready";
   const locked = busy || !ready;
 
@@ -323,7 +327,7 @@ function CourseQuestion({
   }
 
   function recordSelf(selfCorrect: boolean) {
-    if (locked || !problem.hint) return;
+    if (locked) return;
     closeExplanation();
     sendAnswer({
       submittedAnswer: answer.trim(),
@@ -391,7 +395,7 @@ function CourseQuestion({
         </div>
       </div>
       <div className={s.responsePane}>
-        {feedback && attempt ? (
+        {hasFeedback && selfCheck ? (
           <div className={s.feedback}>
             <div
               className={s.responseScroll}
@@ -399,40 +403,24 @@ function CourseQuestion({
               role="region"
               aria-label="풀이 결과 내용"
             >
-              <p className={s.feedbackLabel}>이번 문제의 결과</p>
-              <h3>
-                {!feedback.correct
-                  ? "다시 풀 문제로 모았어요."
-                  : attempt.usedHint
-                    ? "풀이를 참고해 확인했어요."
-                    : attempt.selfAssessed
-                      ? "내 풀이를 직접 확인했어요."
-                      : "정확하게 풀었어요!"}
-              </h3>
-              {attempt.usedHint || attempt.selfAssessed ? (
-                <p className={s.help}>
-                  풀이 참고와 직접 확인은 혼자 맞힌 문제와 구분해 기록해요.
-                </p>
-              ) : null}
-              {attempt.submittedAnswer ? (
-                <div className={s.submittedAnswer}>
-                  <span>나의 답</span>
-                  <MathText
-                    text={attempt.submittedAnswer}
-                    as="span"
-                    className={s.submittedValue}
-                  />
-                </div>
-              ) : null}
-              <button
-                ref={explanationOpener}
-                type="button"
-                className={s.secondary}
-                disabled={busy}
-                onClick={showExplanation}
+              <div
+                className={s.inlineResult}
+                data-correct={feedback.correct}
+                role="status"
               >
-                풀이 보기
-              </button>
+                <span className={s.resultIcon} aria-hidden="true">
+                  {feedback.correct ? "✓" : "↻"}
+                </span>
+                <strong>
+                  {!feedback.correct
+                    ? "다시 풀 문제로 모았어요"
+                    : attempt.usedHint
+                      ? "풀이를 참고해 확인했어요"
+                      : attempt.selfAssessed
+                        ? "내 풀이를 직접 확인했어요"
+                        : "정확하게 풀었어요!"}
+                </strong>
+              </div>
             </div>
             <div className={s.paneAction}>
               <button
@@ -484,8 +472,20 @@ function CourseQuestion({
               <p className={s.feedbackLabel}>연습장에 차근차근</p>
               <h3>연습장에서 풀어 보세요.</h3>
               <p className={s.paperHint}>
-                다 풀었다면 풀이를 열어 내 풀이와 비교하고 결과를 골라 주세요.
+                다 풀었다면 정답을 보지 않고 내 풀이를 평가해 주세요. 풀이는
+                재도전까지 마친 뒤 볼 수 있어요.
               </p>
+              {session.retry?.completedAt ? (
+                <button
+                  ref={explanationOpener}
+                  type="button"
+                  className={s.secondary}
+                  disabled={locked}
+                  onClick={showExplanation}
+                >
+                  풀이 보기
+                </button>
+              ) : null}
               <button
                 type="button"
                 className={s.textButton}
@@ -496,31 +496,73 @@ function CourseQuestion({
               </button>
             </div>
             <div className={s.paneAction}>
-              <button
-                ref={explanationOpener}
-                type="button"
-                className={s.primary}
-                disabled={locked}
-                onClick={showExplanation}
-              >
-                다 풀었어요 · 정답 확인
-              </button>
+              {selfReady ? (
+                <div className={s.selfCheckActions}>
+                  <button
+                    type="button"
+                    className={s.secondary}
+                    disabled={locked}
+                    onClick={() => recordSelf(true)}
+                  >
+                    혼자 풀었다고 생각해요
+                  </button>
+                  <button
+                    type="button"
+                    className={s.secondary}
+                    disabled={locked}
+                    onClick={() => recordSelf(false)}
+                  >
+                    다시 연습할래요
+                  </button>
+                </div>
+              ) : (
+                <button
+                  type="button"
+                  className={s.primary}
+                  disabled={locked}
+                  onClick={() => setSelfReady(true)}
+                >
+                  다 풀었어요
+                </button>
+              )}
             </div>
           </div>
         ) : (
-          <div className={s.automatic}>
+          <div
+            className={`${s.automatic} ${hasFeedback ? s.answered : ""}`}
+            data-correct={hasFeedback ? feedback.correct : undefined}
+          >
             <div
               className={s.responseScroll}
               tabIndex={0}
               role="region"
               aria-label="답안 작성"
             >
+              {hasFeedback ? (
+                <div
+                  className={s.inlineResult}
+                  data-correct={feedback.correct}
+                  role="status"
+                  aria-live="polite"
+                >
+                  <span className={s.resultIcon} aria-hidden="true">
+                    {feedback.correct ? "✓" : "↻"}
+                  </span>
+                  <strong>
+                    {feedback.correct
+                      ? "정확하게 풀었어요!"
+                      : "다시 풀 문제로 모았어요"}
+                  </strong>
+                </div>
+              ) : null}
               <p className={s.feedbackLabel}>
-                {useInteractive
-                  ? "모양을 눌러 답을 만드세요"
-                  : useChoices
-                    ? "답 하나를 골라 주세요"
-                    : "생각한 답을 적어 주세요"}
+                {hasFeedback
+                  ? "고른 답을 확인했어요"
+                  : useInteractive
+                    ? "모양을 눌러 답을 만드세요"
+                    : useChoices
+                      ? "답 하나를 골라 주세요"
+                      : "생각한 답을 적어 주세요"}
               </p>
               <form
                 id="course-answer-form"
@@ -546,7 +588,7 @@ function CourseQuestion({
                             aria-label={`${part + 1}번째 칸`}
                             aria-pressed={selectedParts.includes(part)}
                             className={s.fractionPart}
-                            disabled={locked}
+                            disabled={locked || hasFeedback}
                             onClick={() => {
                               setSelectedParts((current) =>
                                 current.includes(part)
@@ -574,8 +616,15 @@ function CourseQuestion({
                         key={`${choiceIndex}-${choice}`}
                         type="button"
                         className={s.answerChoice}
-                        aria-pressed={answer === choice}
-                        disabled={locked}
+                        aria-pressed={selectedAnswer === choice}
+                        data-result={
+                          hasFeedback && selectedAnswer === choice
+                            ? feedback.correct
+                              ? "correct"
+                              : "incorrect"
+                            : undefined
+                        }
+                        disabled={locked || hasFeedback}
                         onClick={() => {
                           setAnswer(choice);
                           setValidation("");
@@ -607,7 +656,7 @@ function CourseQuestion({
                       spellCheck={false}
                       enterKeyHint="done"
                       maxLength={2000}
-                      disabled={locked}
+                      disabled={locked || hasFeedback}
                     />
                   </>
                 )}
@@ -623,37 +672,47 @@ function CourseQuestion({
                 </div>
               </form>
               <div className={s.questionActions}>
-                {answeredInFirstRound ? (
+                {!hasFeedback ? (
                   <button
                     type="button"
-                    ref={explanationOpener}
-                    className={s.secondary}
+                    className={s.textButton}
                     disabled={locked}
-                    onClick={showExplanation}
+                    onClick={giveUp}
                   >
-                    풀이 보기
+                    아직 모르겠어요
                   </button>
                 ) : null}
-                <button
-                  type="button"
-                  className={s.textButton}
-                  disabled={locked}
-                  onClick={giveUp}
-                >
-                  아직 모르겠어요
-                </button>
               </div>
             </div>
             <div className={s.paneAction}>
-              <button
-                type="submit"
-                form="course-answer-form"
-                className={s.primary}
-                disabled={locked}
-              >
-                {busy ? "저장 중…" : "정답 확인"}
-                <span aria-hidden="true">→</span>
-              </button>
+              {hasFeedback ? (
+                <button
+                  ref={nextButton}
+                  type="button"
+                  className={s.primary}
+                  onClick={onNext}
+                  disabled={busy}
+                >
+                  {repeatNext
+                    ? "다시 도전하기"
+                    : nextIsRetry
+                      ? "틀린 문제 다시 풀기"
+                      : last
+                        ? "이번 학습 마치기"
+                        : "다음 문제"}
+                  <span aria-hidden="true">→</span>
+                </button>
+              ) : (
+                <button
+                  type="submit"
+                  form="course-answer-form"
+                  className={s.primary}
+                  disabled={locked}
+                >
+                  {busy ? "저장 중…" : "정답 확인"}
+                  <span aria-hidden="true">→</span>
+                </button>
+              )}
             </div>
           </div>
         )}
@@ -744,8 +803,7 @@ function CourseComplete({
   onExit,
   onHint,
 }: Props) {
-  const nextAction = useRef<HTMLButtonElement>(null);
-  const homeAction = useRef<HTMLButtonElement>(null);
+  const completeHeading = useRef<HTMLHeadingElement>(null);
   const explanationDialog = useRef<HTMLDialogElement>(null);
   const explanationClose = useRef<HTMLButtonElement>(null);
   const explanationOpener = useRef<HTMLButtonElement | null>(null);
@@ -755,32 +813,11 @@ function CourseComplete({
   const explanationProblem = session.problems.find(
     (problem) => problem.id === explanationProblemId,
   );
-  const retry = (
-    session as CoursePublicSession & {
-      retry?: { attempts: CoursePublicSession["attempts"] } | null;
-    }
-  ).retry;
-  const finalAttempts = session.problems.map(
-    (problem) =>
-      retry?.attempts
-        .slice()
-        .reverse()
-        .find((item) => item.problemId === problem.id) ??
-      session.attempts.find((item) => item.problemId === problem.id),
-  );
-  const remainingWrong = finalAttempts.filter(
-    (attempt) => attempt && !attempt.correct,
-  ).length;
   const goalReached = summary.todayAnswered >= summary.todayGoal;
   const done = goalReached || summary.status === "done";
-  const canContinue =
-    !done && summary.status !== "paused" && !!summary.recommendation;
   useEffect(() => {
-    if (!busy)
-      (canContinue ? nextAction : homeAction).current?.focus({
-        preventScroll: true,
-      });
-  }, [canContinue, busy]);
+    if (!busy) completeHeading.current?.focus({ preventScroll: true });
+  }, [busy]);
   useEffect(() => {
     const dialog = explanationDialog.current;
     if (!dialog) return;
@@ -816,112 +853,26 @@ function CourseComplete({
         aria-label="이번 학습 결과"
       >
         <p className={s.completionLabel}>
-          {goalReached
-            ? "오늘의 목표 완료"
-            : done
-              ? "오늘의 추천 학습 완료"
-              : "5문제 학습 완료"}
+          {done ? "오늘의 길을 완주했어요" : "한 걸음 더 앞으로"}
         </p>
-        <h2 id="course-complete-title" tabIndex={-1}>
-          {done ? "오늘의 수학을 마쳤어요." : "차근차근, 한 걸음 배웠어요."}
+        <h2 id="course-complete-title" ref={completeHeading} tabIndex={-1}>
+          {done ? "오늘의 목표 도착!" : "다음 발걸음이 기다려요"}
         </h2>
-        <p className={s.completeSection}>
-          오늘 {summary.todayAnswered} / {summary.todayGoal}문제 · 학습 기록이
-          저장되었어요.
-        </p>
-        <div className={s.results}>
-          <div>
-            <strong>{session.attempts.length}</strong>
-            <span>풀어 본 문제</span>
-          </div>
-          <div>
-            <strong>
-              {
-                finalAttempts.filter(
-                  (attempt) =>
-                    attempt?.correct &&
-                    !attempt.usedHint &&
-                    !attempt.selfAssessed,
-                ).length
-              }
-            </strong>
-            <span>혼자 맞힌 문제</span>
-          </div>
-          <div>
-            <strong>
-              {
-                finalAttempts.filter(
-                  (attempt) => attempt?.usedHint || attempt?.selfAssessed,
-                ).length
-              }
-            </strong>
-            <span>풀이 참고 · 직접 확인</span>
-          </div>
-        </div>
-        <ol className={s.outcomes} aria-label="문제별 학습 결과">
-          {finalAttempts.map((attempt, index) => {
-            if (!attempt) return null;
-            const retried = retry?.attempts.some(
-              (item) => item.problemId === attempt.problemId,
-            );
-            const label = !attempt.correct
-              ? "다음 복습"
-              : attempt.usedHint
-                ? "풀이 참고"
-                : attempt.selfAssessed
-                  ? "직접 확인"
-                  : retried
-                    ? "재도전 정답"
-                    : "정답";
-            return (
-              <li
-                key={attempt.problemId}
-                data-review={
-                  !attempt.correct || attempt.usedHint || attempt.selfAssessed
-                }
-                aria-label={`${index + 1}번: ${label}`}
-              >
-                <strong>{index + 1}</strong>
-                <span>{label}</span>
-                <button
-                  type="button"
-                  className={s.outcomeHint}
-                  disabled={busy}
-                  onClick={(event) =>
-                    showExplanation(attempt.problemId, event.currentTarget)
-                  }
-                  aria-label={`${index + 1}번 풀이 보기`}
-                >
-                  풀이 보기
-                </button>
-              </li>
-            );
-          })}
-        </ol>
+        <CourseProgressBoard
+          summary={summary}
+          session={session}
+          busy={busy}
+          onNext={onContinue}
+          onHint={showExplanation}
+        />
         <p className={s.completeMessage}>
-          {remainingWrong > 0
-            ? "아직 어려운 문제는 다음 복습에서 다시 만나요."
-            : done
-              ? "오늘은 여기까지! 다음 학습 때 필요한 복습을 안내할게요."
-              : (summary.recommendation?.reason ??
-                "지금 필요한 학습을 모두 마쳤어요. 다음 복습 때 다시 만나요.")}
+          {done
+            ? "오늘의 발걸음을 모두 채웠어요."
+            : "길을 따라 다음 5문제로 이어가요."}
         </p>
       </div>
       <div className={s.completeActions}>
-        {canContinue ? (
-          <button
-            ref={nextAction}
-            type="button"
-            className={s.primary}
-            onClick={onContinue}
-            disabled={busy}
-            aria-describedby="course-complete-title"
-          >
-            {busy ? "다음 학습 준비 중…" : "다음 추천 학습 · 5문제"}
-          </button>
-        ) : null}
         <button
-          ref={homeAction}
           type="button"
           className={s.secondary}
           onClick={onExit}

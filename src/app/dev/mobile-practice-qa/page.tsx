@@ -17,7 +17,14 @@ export default async function MobilePracticeQaPage({
   const rawKind = (await searchParams).kind;
   const kind =
     typeof rawKind === "string" &&
-    ["choice", "embedded", "fraction4", "fraction12"].includes(rawKind)
+    [
+      "choice",
+      "embedded",
+      "fraction4",
+      "fraction12",
+      "path",
+      "selfcheck",
+    ].includes(rawKind)
       ? rawKind
       : "choice";
   return <MobilePracticeQaClient kind={kind} />;
