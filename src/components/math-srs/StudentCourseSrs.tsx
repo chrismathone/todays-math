@@ -11,6 +11,11 @@ import { getCourseSection } from "@/lib/math-srs/elementary/catalog";
 import { STUDENT_MUST_CHANGE_MESSAGE } from "@/lib/studentRouteAccess";
 import CoursePlanForm from "./CoursePlanForm";
 import {
+  StudentReviewHeading,
+  StudentReviewOverview,
+} from "./StudentReviewHome";
+import homeStyles from "./student-review-home.module.css";
+import {
   answerCourse,
   getCourseState,
   hintCourse,
@@ -181,7 +186,7 @@ export default function StudentCourseSrs() {
         className={
           practice
             ? s.practiceMain
-            : `${s.main} ${needsSetup ? s.setupMain : ""}`
+            : `${homeStyles.main} ${needsSetup ? `${s.setupMain} ${homeStyles.setupMain}` : ""}`
         }
       >
         {practice ? (
@@ -193,13 +198,10 @@ export default function StudentCourseSrs() {
               <span aria-current="page">초등 수학 자동 복습</span>
               <Link href="/learn/math-srs/algebra">중등 일차방정식 연습</Link>
             </nav>
-            <header className={s.heading}>
-              <p>하루 한 걸음 · 초등 3~6학년</p>
-              <h1>매일 쌓이는 수학</h1>
-              <span>
-                시작 진도를 정하면, 필요한 복습과 새 학습을 차례로 안내해요.
-              </span>
-            </header>
+            <StudentReviewHeading
+              grade="초등 3~6학년"
+              description="시작 진도를 정하면, 필요한 복습과 새 학습을 차례로 안내해요."
+            />
           </>
         )}
         {loading ? (
@@ -270,117 +272,98 @@ export default function StudentCourseSrs() {
           </div>
         ) : state && !loading ? (
           <>
-            <div className={s.overview}>
-              <section
-                className={s.hero}
-                aria-labelledby="course-recommendation"
-              >
-                <p className={s.eyebrow}>
-                  {paused
-                    ? "잠시 쉬는 중"
+            <StudentReviewOverview
+              recommendation={{
+                id: "course-recommendation",
+                eyebrow: paused
+                  ? "잠시 쉬는 중"
+                  : done
+                    ? goalReached
+                      ? "오늘의 목표 완료"
+                      : "오늘의 추천 학습 완료"
+                    : recommendation?.mode === "resume"
+                      ? "이어서 학습"
+                      : recommendation?.mode === "review"
+                        ? "오늘의 추천 복습"
+                        : "오늘의 추천 학습",
+                title,
+                section:
+                  section && !needsSetup && !paused
+                    ? `초${section.grade} · ${section.semester}학기 · ${section.chapterTitle}`
+                    : undefined,
+                sectionTitle:
+                  section && !needsSetup && !paused ? section.title : undefined,
+                reason: needsSetup
+                  ? "학교나 학원에서 배우는 소단원을 선택해 주세요. 내 계정에 학습 기록이 쌓여요."
+                  : paused
+                    ? "설정에서 자동 학습을 켜면 저장된 기록에 맞춰 다시 시작해요."
                     : done
-                      ? goalReached
-                        ? "오늘의 목표 완료"
-                        : "오늘의 추천 학습 완료"
-                      : recommendation?.mode === "resume"
-                        ? "이어서 학습"
-                        : recommendation?.mode === "review"
-                          ? "오늘의 추천 복습"
-                          : "오늘의 추천 학습"}
-                </p>
-                <h2 id="course-recommendation">{title}</h2>
-                {section && !needsSetup && !paused ? (
-                  <p className={s.section}>
-                    초{section.grade} · {section.semester}학기 ·{" "}
-                    {section.chapterTitle}
-                    <strong>{section.title}</strong>
-                  </p>
-                ) : null}
-                <p className={s.reason}>
-                  {needsSetup
-                    ? "학교나 학원에서 배우는 소단원을 선택해 주세요. 내 계정에 학습 기록이 쌓여요."
-                    : paused
-                      ? "설정에서 자동 학습을 켜면 저장된 기록에 맞춰 다시 시작해요."
-                      : done
-                        ? "오늘은 여기까지! 다음 학습 때 필요한 복습부터 만나요."
-                        : (recommendation?.reason ??
-                          "복습할 시기가 되면 여기에 다음 학습이 나타나요.")}
-                </p>
-                {needsSetup || paused ? (
+                      ? "오늘은 여기까지! 다음 학습 때 필요한 복습부터 만나요."
+                      : (recommendation?.reason ??
+                        "복습할 시기가 되면 여기에 다음 학습이 나타나요."),
+                action:
+                  needsSetup || paused
+                    ? {
+                        label: needsSetup ? "시작 진도 설정" : "학습 설정 열기",
+                        disabled: blocked,
+                        onClick: (event) => openSettings(event.currentTarget),
+                      }
+                    : recommendation && !done
+                      ? {
+                          label: busy
+                            ? "학습 준비 중…"
+                            : recommendation.mode === "resume"
+                              ? "이어서 학습하기"
+                              : "오늘의 추천 학습 시작",
+                          disabled: blocked,
+                          onClick: start,
+                          arrow: true,
+                        }
+                      : undefined,
+                completedLabel: done
+                  ? "오늘 학습 완료"
+                  : "지금 필요한 학습 완료",
+                note:
+                  !needsSetup && !paused && !done && recommendation
+                    ? "한 번에 5문제 · 하루 목표까지 차례로 풀어요"
+                    : undefined,
+              }}
+              progress={{
+                title: "오늘의 학습",
+                ariaLabel: "오늘 목표 진행",
+                completed: summary?.todayAnswered ?? 0,
+                goal: summary?.todayGoal ?? 10,
+                rows: [
+                  {
+                    label: "복습할 소단원",
+                    value: `${summary?.dueCount ?? 0}개`,
+                  },
+                  {
+                    label: "완료한 소단원",
+                    value: `${summary?.completedSections ?? 0}개`,
+                  },
+                  {
+                    label: "다음 복습",
+                    value: formatReview(summary?.nextReviewAt ?? null),
+                  },
+                ],
+                footer: (
                   <button
-                    className={s.primary}
                     type="button"
+                    className={s.settingsButton}
                     disabled={blocked}
-                    onClick={(event) => openSettings(event.currentTarget)}
+                    onClick={(event) => {
+                      if (settings) setSettings(false);
+                      else openSettings(event.currentTarget);
+                    }}
+                    aria-expanded={settings}
+                    aria-controls="course-settings"
                   >
-                    {needsSetup ? "시작 진도 설정" : "학습 설정 열기"}
+                    학습 설정 <span aria-hidden="true">→</span>
                   </button>
-                ) : recommendation && !done ? (
-                  <button
-                    className={s.primary}
-                    type="button"
-                    disabled={blocked}
-                    onClick={start}
-                  >
-                    {busy
-                      ? "학습 준비 중…"
-                      : recommendation.mode === "resume"
-                        ? "이어서 학습하기"
-                        : "오늘의 추천 학습 시작"}
-                    <span aria-hidden="true"> →</span>
-                  </button>
-                ) : (
-                  <p className={s.finish}>
-                    ✓ {done ? "오늘 학습 완료" : "지금 필요한 학습 완료"}
-                  </p>
-                )}
-                {!needsSetup && !paused && !done && recommendation ? (
-                  <small>한 번에 5문제 · 하루 목표까지 차례로 풀어요</small>
-                ) : null}
-              </section>
-              <aside className={s.summary} aria-label="오늘의 학습 현황">
-                <h2>오늘의 학습</h2>
-                <p className={s.count}>
-                  <strong>{summary?.todayAnswered ?? 0}</strong> /{" "}
-                  {summary?.todayGoal ?? 10}문제
-                </p>
-                <progress
-                  aria-label="오늘 목표 진행"
-                  value={Math.min(
-                    summary?.todayAnswered ?? 0,
-                    summary?.todayGoal ?? 10,
-                  )}
-                  max={summary?.todayGoal ?? 10}
-                />
-                <dl>
-                  <div>
-                    <dt>복습할 소단원</dt>
-                    <dd>{summary?.dueCount ?? 0}개</dd>
-                  </div>
-                  <div>
-                    <dt>완료한 소단원</dt>
-                    <dd>{summary?.completedSections ?? 0}개</dd>
-                  </div>
-                  <div>
-                    <dt>다음 복습</dt>
-                    <dd>{formatReview(summary?.nextReviewAt ?? null)}</dd>
-                  </div>
-                </dl>
-                <button
-                  type="button"
-                  className={s.settingsButton}
-                  disabled={blocked}
-                  onClick={(event) => {
-                    if (settings) setSettings(false);
-                    else openSettings(event.currentTarget);
-                  }}
-                  aria-expanded={settings}
-                  aria-controls="course-settings"
-                >
-                  학습 설정 <span aria-hidden="true">→</span>
-                </button>
-              </aside>
-            </div>
+                ),
+              }}
+            />
             {settings || needsSetup ? (
               <section
                 id="course-settings"
