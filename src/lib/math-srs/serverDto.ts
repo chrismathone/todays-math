@@ -1,3 +1,4 @@
+import { numericAnswerChoices } from "./numericAnswerChoices";
 import type {
   MathSrsMissionSummary,
   MathSrsPublicMission,
@@ -43,6 +44,7 @@ export function publicSrsMission(
       kind: p.kind,
       prompt: p.prompt,
       equation: p.equation,
+      answerChoices: numericAnswerChoices(p, mission.problems),
       expectedSeconds: p.expectedSeconds,
       ...(p.answerUnit ? { answerUnit: p.answerUnit } : {}),
       ...(p.source

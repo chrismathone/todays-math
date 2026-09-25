@@ -524,6 +524,31 @@ describe("completed board tile replay API", () => {
     expect(f.rows).toEqual(before);
   });
 
+  it("regrades an explicitly owned older mission without advancing or modifying its first result", () => {
+    const state = middle(12, new Date("2026-09-20T09:00:00Z"));
+    const mission = state.missions[0];
+    const before = structuredClone(state);
+    const data = replayProblem(state, "middle", 12, now, {
+      kind: "middle",
+      step: 12,
+      missionId: mission.id,
+      problemId: mission.problems[11].id,
+      submittedAnswer: String(mission.problems[11].answer),
+    });
+    expect(data.correct).toBe(true);
+    expect(data.solution).toBeNull();
+    expect(state).toEqual(before);
+    expect(() =>
+      replayProblem(state, "middle", 12, now, {
+        kind: "middle",
+        step: 12,
+        missionId: randomUUID(),
+        problemId: mission.problems[11].id,
+        submittedAnswer: String(mission.problems[11].answer),
+      }),
+    ).toThrow();
+  });
+
   it.each([
     ["x + 3 = 5", "$x + 3 = 5$"],
     ["\\frac{x}{2} = 3", "$\\frac{x}{2} = 3$"],

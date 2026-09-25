@@ -19,6 +19,7 @@ vi.mock("@/components/math-srs/mathSrsApi", () => ({
   startMathSrs: vi.fn(),
   submitMathSrsAttempt: vi.fn(),
   revealMathSrsHint: vi.fn(),
+  submitMathSrsReplay: vi.fn(),
   fetchClassMathSrs: vi.fn(),
 }));
 
@@ -58,7 +59,8 @@ function mission(answered = 0): MathSrsPublicMission {
       conceptWeights: [{ conceptId: "balance", weight: 1 }],
       difficulty: 1,
       kind: "warmup",
-      prompt: "$3x=1$을 풀어라.",
+      prompt: `${i + 1}번. $3x=1$을 풀어라.`,
+      answerChoices: ["$\\frac{1}{3}$", "$\\frac{2}{3}$", "$-1$", "$3$"],
       equation: "",
       hint: null,
       feedback:
@@ -95,6 +97,7 @@ function mission(answered = 0): MathSrsPublicMission {
 
 beforeEach(() => {
   vi.clearAllMocks();
+  localStorage.clear();
   vi.mocked(api.fetchMathSrs).mockResolvedValue({ ok: true, data: state() });
 });
 
@@ -149,76 +152,72 @@ describe("account-based math practice", () => {
     expect(router.replace).not.toHaveBeenCalled();
   });
 
-  it("validates a numeric answer, waits for the saved hint, then renders exact fraction feedback", async () => {
+  it("grades a choice immediately, holds the problem for the overlay, then advances without revealing the answer", async () => {
     const user = userEvent.setup();
     const initial = mission();
     vi.mocked(api.startMathSrs).mockResolvedValue({
       ok: true,
       data: state(initial),
     });
-    const hinted = structuredClone(initial);
-    hinted.problems[0].hint = "양변을 $3$으로 나누세요.";
-    vi.mocked(api.revealMathSrsHint).mockResolvedValue({
-      ok: true,
-      data: state(hinted),
-    });
-    const graded = mission(1);
-    graded.attempts[0].usedHint = true;
-    graded.attempts[0].rating = "hard";
-    vi.mocked(api.submitMathSrsAttempt).mockResolvedValue({
-      ok: true,
-      data: state(graded),
-    });
-    const view = render(<StudentMathSrs />);
+    let finish!: (
+      value: Awaited<ReturnType<typeof api.submitMathSrsAttempt>>,
+    ) => void;
+    vi.mocked(api.submitMathSrsAttempt).mockImplementation(
+      () =>
+        new Promise((resolve) => {
+          finish = resolve;
+        }),
+    );
+    render(<StudentMathSrs />);
     await user.click(
       await screen.findByRole("button", { name: "오늘의 복습 시작" }),
     );
-    const answer = screen.getByLabelText("나의 답");
-    expect(answer).toHaveAccessibleDescription(
-      "음수와 분수도 입력할 수 있어요.",
-    );
-    await user.click(screen.getByRole("button", { name: "정답 확인" }));
-    expect(screen.getByRole("alert")).toHaveTextContent("답을 먼저 입력");
-    expect(answer).toHaveFocus();
-    await user.type(answer, "1/0");
-    expect(screen.queryByRole("alert")).not.toBeInTheDocument();
-    await user.click(screen.getByRole("button", { name: "정답 확인" }));
-    expect(screen.getByRole("alert")).toHaveTextContent("분모는 0");
-    expect(answer).toHaveFocus();
-    expect(answer).toHaveAttribute("aria-invalid", "true");
-    expect(answer).toHaveAccessibleDescription(
-      "숫자 또는 분수로 입력해 주세요. 분모는 0이 될 수 없어요.",
-    );
-    expect(api.submitMathSrsAttempt).not.toHaveBeenCalled();
-    await user.click(screen.getByRole("button", { name: "힌트 보기" }));
+    const question = screen.getByRole("region", { name: "현재 문제" });
+    const choices = within(
+      screen.getByRole("group", { name: "답 고르기" }),
+    ).getAllByRole("button");
+    expect(choices).toHaveLength(4);
+    expect(screen.queryByRole("textbox")).not.toBeInTheDocument();
     expect(
-      await screen.findByRole("button", { name: "힌트를 확인했어요" }),
-    ).toBeDisabled();
-    expect(api.revealMathSrsHint).toHaveBeenCalledWith({
-      missionId,
-      problemId: initial.problems[0].id,
-    });
-    await user.clear(answer);
-    expect(screen.queryByRole("alert")).not.toBeInTheDocument();
-    expect(answer).toHaveAttribute("aria-invalid", "false");
-    expect(answer).toHaveAccessibleDescription(
-      "음수와 분수도 입력할 수 있어요.",
-    );
-    await user.type(answer, "1/3");
-    await user.click(screen.getByRole("button", { name: "정답 확인" }));
+      screen.queryByRole("button", { name: "정답 확인" }),
+    ).not.toBeInTheDocument();
     expect(
-      await screen.findByRole("heading", { name: "잘 풀었어요!" }),
-    ).toBeInTheDocument();
-    expect(
-      screen.getByText("힌트를 참고한 풀이로 기록했어요."),
-    ).toBeInTheDocument();
-    await waitFor(() =>
-      expect(view.container.querySelector(".katex")).not.toBeNull(),
+      screen.queryByRole("button", { name: "힌트 보기" }),
+    ).not.toBeInTheDocument();
+    await user.click(choices[0]);
+    expect(api.submitMathSrsAttempt).toHaveBeenCalledTimes(1);
+    expect(api.submitMathSrsAttempt).toHaveBeenCalledWith(
+      expect.objectContaining({
+        submittedAnswer: "$\\frac{1}{3}$",
+        rating: "good",
+      }),
     );
-    expect(screen.queryByText("0.3333333333333333")).not.toBeInTheDocument();
-    expect(screen.getByRole("button", { name: "다음 문제" })).toHaveFocus();
-    await user.keyboard("{Enter}");
+    expect(choices.every((choice) => choice.hasAttribute("disabled"))).toBe(
+      true,
+    );
+    expect(screen.queryByText("정확하게 풀었어요!")).not.toBeInTheDocument();
+    const graded = mission(1);
+    graded.problems[0].feedback = null;
+    await act(async () => finish({ ok: true, data: state(graded) }));
+    expect(await screen.findByText("정확하게 풀었어요!")).toBeInTheDocument();
+    expect(screen.getByRole("region", { name: "현재 문제" })).toBe(question);
+    expect(screen.queryByText("이렇게 풀어요")).not.toBeInTheDocument();
+    expect(
+      screen.queryByRole("button", { name: "다음 문제" }),
+    ).not.toBeInTheDocument();
+    await waitFor(
+      () =>
+        expect(screen.getByRole("region", { name: "현재 문제" })).not.toBe(
+          question,
+        ),
+      { timeout: 2200 },
+    );
     expect(screen.getByRole("progressbar")).toHaveAttribute("value", "1");
+    expect(
+      within(screen.getByRole("group", { name: "답 고르기" })).getAllByRole(
+        "button",
+      )[0],
+    ).toBeEnabled();
   });
 
   it("retries the exact submission after a lost response, and blocks a duplicate click", async () => {
@@ -245,22 +244,22 @@ describe("account-based math practice", () => {
     await user.click(
       await screen.findByRole("button", { name: "오늘의 복습 시작" }),
     );
-    await user.type(screen.getByLabelText("나의 답"), "1/3");
-    await user.click(screen.getByRole("button", { name: "정답 확인" }));
+    const answer = within(
+      screen.getByRole("group", { name: "답 고르기" }),
+    ).getAllByRole("button")[0];
+    await user.click(answer);
     expect(await screen.findByRole("alert")).toHaveTextContent(
       "연결되지 않았습니다",
     );
     const first = vi.mocked(api.submitMathSrsAttempt).mock.calls[0][0];
-    await user.dblClick(screen.getByRole("button", { name: "정답 확인" }));
+    await user.dblClick(answer);
     expect(api.submitMathSrsAttempt).toHaveBeenCalledTimes(2);
     expect(vi.mocked(api.submitMathSrsAttempt).mock.calls[1][0]).toEqual(first);
     await act(async () => finish({ ok: true, data: state(mission(1)) }));
-    expect(
-      await screen.findByRole("heading", { name: "잘 풀었어요!" }),
-    ).toBeInTheDocument();
+    expect(await screen.findByText("정확하게 풀었어요!")).toBeInTheDocument();
   });
 
-  it("keeps the previous day's final feedback before showing its result", async () => {
+  it("collects wrong answers after the first pass and regrades them without changing the saved progress", async () => {
     const user = userEvent.setup();
     vi.mocked(api.fetchMathSrs).mockResolvedValue({
       ok: true,
@@ -271,38 +270,85 @@ describe("account-based math practice", () => {
       data: state(mission(11)),
     });
     const finished = mission(12);
-    finished.attempts[11].submittedAnswer = "";
+    finished.attempts[11].submittedAnswer = "3";
     finished.attempts[11].correct = false;
-    finished.attempts[11].rating = "again";
     vi.mocked(api.submitMathSrsAttempt).mockResolvedValue({
       ok: true,
       data: state(finished),
     });
+    const replay = {
+      kind: "middle" as const,
+      step: 12,
+      problemId: finished.problems[11].id,
+      title: "등식의 성질",
+      subtitle: "중1",
+      content: finished.problems[11].prompt,
+      figureUrl: null,
+      answerChoices: finished.problems[11].answerChoices!,
+      interactive: null,
+      canRevealSolution: true,
+      solution: null,
+    };
+    vi.mocked(api.submitMathSrsReplay)
+      .mockResolvedValueOnce({ ok: true, data: { ...replay, correct: false } })
+      .mockResolvedValueOnce({ ok: true, data: { ...replay, correct: true } });
     render(<StudentMathSrs />);
-    expect(
-      await screen.findByRole("complementary", { name: "진행 중인 복습" }),
-    ).toBeInTheDocument();
-    expect(
-      screen.getByRole("progressbar", { name: "복습 진행" }),
-    ).toHaveAttribute("value", "11");
     await user.click(
       await screen.findByRole("button", { name: "이어서 학습하기 · 11/12" }),
     );
-    await user.click(screen.getByRole("button", { name: "아직 모르겠어요" }));
+    await user.click(
+      within(screen.getByRole("group", { name: "답 고르기" })).getAllByRole(
+        "button",
+      )[3],
+    );
     expect(
-      await screen.findByRole("heading", {
-        name: "풀이를 보며 다시 생각해 봐요.",
-      }),
+      await screen.findByText("다시 풀 문제로 모았어요"),
     ).toBeInTheDocument();
     expect(
       screen.queryByRole("heading", { name: "미션을 마쳤어요" }),
     ).not.toBeInTheDocument();
-    await user.click(screen.getByRole("button", { name: "미션 결과 보기" }));
+    await screen.findByText("모아 둔 오답 다시 풀기", {}, { timeout: 2200 });
+    expect(screen.getByRole("progressbar")).toHaveAttribute("value", "12");
+    await user.click(
+      within(screen.getByRole("group", { name: "답 고르기" })).getAllByRole(
+        "button",
+      )[3],
+    );
     expect(
-      screen.getByRole("heading", { name: "미션을 마쳤어요" }),
+      await screen.findByText("다시 풀 문제로 모았어요"),
     ).toBeInTheDocument();
+    expect(api.submitMathSrsReplay).toHaveBeenCalledWith(
+      expect.objectContaining({
+        missionId,
+        step: 12,
+        problemId: finished.problems[11].id,
+        submittedAnswer: "$3$",
+      }),
+    );
+    await waitFor(
+      () =>
+        expect(
+          within(screen.getByRole("group", { name: "답 고르기" })).getAllByRole(
+            "button",
+          )[0],
+        ).toBeEnabled(),
+      { timeout: 2200 },
+    );
+    await user.click(
+      within(screen.getByRole("group", { name: "답 고르기" })).getAllByRole(
+        "button",
+      )[0],
+    );
+    expect(await screen.findByText("정확하게 풀었어요!")).toBeInTheDocument();
+    expect(screen.queryByText("이렇게 풀어요")).not.toBeInTheDocument();
+    await screen.findByRole(
+      "heading",
+      { name: "미션을 마쳤어요" },
+      { timeout: 2200 },
+    );
     expect(screen.getByText("11 / 12")).toBeInTheDocument();
-    expect(api.startMathSrs).toHaveBeenCalledTimes(1);
+    expect(api.submitMathSrsAttempt).toHaveBeenCalledTimes(1);
+    expect(api.submitMathSrsReplay).toHaveBeenCalledTimes(2);
   });
 
   it("keeps a completed today's mission in the same card hierarchy", async () => {
@@ -324,6 +370,70 @@ describe("account-based math practice", () => {
     ).toHaveAttribute("value", "12");
   });
 
+  it("restores unfinished wrong-answer practice after leaving and reloading, then unlocks review after it is solved", async () => {
+    const user = userEvent.setup();
+    const finished = mission(12);
+    finished.date = kstDateOf(new Date());
+    finished.attempts[0].correct = false;
+    finished.attempts[1].correct = false;
+    const key = `math-srs-resolved-retries:${studentId}:${missionId}`;
+    localStorage.setItem(key, JSON.stringify([1]));
+    vi.mocked(api.fetchMathSrs).mockResolvedValue({
+      ok: true,
+      data: state(finished),
+    });
+    vi.mocked(api.submitMathSrsReplay).mockResolvedValue({
+      ok: true,
+      data: {
+        kind: "middle",
+        step: 2,
+        problemId: finished.problems[1].id,
+        title: "등식",
+        subtitle: "중1",
+        content: finished.problems[1].prompt,
+        figureUrl: null,
+        answerChoices: finished.problems[1].answerChoices!,
+        interactive: null,
+        correct: true,
+        canRevealSolution: true,
+        solution: null,
+      },
+    });
+    const first = render(<StudentMathSrs />);
+    await user.click(
+      await screen.findByRole("button", { name: "오답 다시 풀기 · 1문제" }),
+    );
+    expect(screen.getByText("모아 둔 오답 다시 풀기")).toBeInTheDocument();
+    await user.click(screen.getByText("← 학습 홈"));
+    expect(
+      await screen.findByRole("button", { name: "오답 다시 풀기 · 1문제" }),
+    ).toBeInTheDocument();
+    first.unmount();
+    const second = render(<StudentMathSrs />);
+    await user.click(
+      await screen.findByRole("button", { name: "오답 다시 풀기 · 1문제" }),
+    );
+    await user.click(
+      within(screen.getByRole("group", { name: "답 고르기" })).getAllByRole(
+        "button",
+      )[0],
+    );
+    await screen.findByText("정확하게 풀었어요!");
+    expect(api.submitMathSrsReplay).toHaveBeenCalledWith(
+      expect.objectContaining({ step: 2 }),
+    );
+    expect(JSON.parse(localStorage.getItem(key)!)).toEqual([1, 2]);
+    second.unmount();
+    render(<StudentMathSrs />);
+    expect(
+      await screen.findByRole("button", { name: "오늘의 결과 보기" }),
+    ).toBeInTheDocument();
+    expect(
+      screen.queryByText("오답 다시 풀기 · 1문제"),
+    ).not.toBeInTheDocument();
+    expect(api.submitMathSrsAttempt).not.toHaveBeenCalled();
+  });
+
   it("requires a refresh after an ordered-attempt conflict and resumes from server progress", async () => {
     const user = userEvent.setup();
     vi.mocked(api.startMathSrs).mockResolvedValue({
@@ -339,15 +449,27 @@ describe("account-based math practice", () => {
     await user.click(
       await screen.findByRole("button", { name: "오늘의 복습 시작" }),
     );
-    await user.click(screen.getByRole("button", { name: "아직 모르겠어요" }));
+    await user.click(screen.getByText("아직 모르겠어요"));
     expect(await screen.findByRole("alert")).toHaveTextContent("다른 화면");
-    expect(screen.getByLabelText("나의 답")).toBeDisabled();
+    expect(
+      within(screen.getByRole("group", { name: "답 고르기" })).getAllByRole(
+        "button",
+      )[0],
+    ).toBeDisabled();
     vi.mocked(api.fetchMathSrs).mockResolvedValue({
       ok: true,
       data: state(mission(1)),
     });
-    await user.click(screen.getByRole("button", { name: "다시 불러오기" }));
-    expect(await screen.findByLabelText("나의 답")).toBeEnabled();
+    await user.click(
+      within(screen.getByRole("alert")).getByRole("button", {
+        name: "다시 불러오기",
+      }),
+    );
+    expect(
+      within(
+        await screen.findByRole("group", { name: "답 고르기" }),
+      ).getAllByRole("button")[0],
+    ).toBeEnabled();
     expect(screen.getByRole("progressbar")).toHaveAttribute("value", "1");
   });
 });

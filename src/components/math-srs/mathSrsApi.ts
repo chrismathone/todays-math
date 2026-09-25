@@ -1,4 +1,8 @@
 import type {
+  MathSrsReplay,
+  MathSrsReplaySubmitInput,
+} from "@/contracts/mathSrsReplay.contract";
+import type {
   MathSrsAttemptInput,
   MathSrsClassDashboard,
   MathSrsHintInput,
@@ -73,4 +77,15 @@ export const fetchClassMathSrs = (classId: string) =>
     `/api/classes/${encodeURIComponent(classId)}/math-srs`,
     async (json) =>
       (await contract()).mathSrsClassResponseSchema.parse(json).data,
+  );
+
+/** Regrade a completed problem without changing its original attempt or daily progress. */
+export const submitMathSrsReplay = (body: MathSrsReplaySubmitInput) =>
+  request<MathSrsReplay>(
+    "/api/learn/math-srs/replay",
+    async (json) =>
+      (
+        await import("@/contracts/mathSrsReplay.contract")
+      ).mathSrsReplayResponseSchema.parse(json).data,
+    body,
   );

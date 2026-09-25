@@ -6,6 +6,7 @@ import {
   mathSrsAttemptInputSchema,
   mathSrsStateResponseSchema,
 } from "@/contracts/mathSrs.contract";
+import { checkAnswer } from "@/lib/math-srs/sharedAnswers";
 import { publicSrsMission, srsStateDto } from "@/lib/math-srs/serverDto";
 import {
   emptySrsState,
@@ -82,6 +83,29 @@ describe("server practice transitions", () => {
     ).toBe(true);
     expect(start(state)).toBe(state);
     expect(start(state, new Date("2026-09-24T10:00:00.000Z"))).toBe(state);
+  });
+
+  it("derives four stable answer choices for older stored missions without adding an answer key", () => {
+    const saved = start();
+    const before = structuredClone(saved);
+    const result = publicSrsMission(saved.missions[0]);
+    for (const [index, problem] of result.problems.entries()) {
+      expect(problem.answerChoices).toHaveLength(4);
+      expect(new Set(problem.answerChoices).size).toBe(4);
+      expect(
+        problem.answerChoices!.filter((choice) =>
+          checkAnswer(choice, saved.missions[0].problems[index].answer),
+        ),
+      ).toHaveLength(1);
+      expect(problem).not.toHaveProperty("correctChoice");
+    }
+    expect(
+      publicSrsMission(saved.missions[0]).problems.map(
+        (problem) => problem.answerChoices,
+      ),
+    ).toEqual(result.problems.map((problem) => problem.answerChoices));
+    expect(saved).toEqual(before);
+    expect(parseSrsState(saved)).toEqual(before);
   });
 
   it("hides answer keys, solution text, original answer text, hints and source seeds until earned", () => {

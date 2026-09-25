@@ -1,0 +1,55 @@
+.page {
+  position: relative;
+  transform-origin: left center;
+  backface-visibility: hidden;
+}
+
+.page[data-page-turn="true"] {
+  animation: turnPaper 520ms cubic-bezier(0.2, 0.65, 0.2, 1) both;
+}
+
+.page[data-page-turn="true"]::after {
+  position: absolute;
+  inset: 0;
+  content: "";
+  pointer-events: none;
+  background: linear-gradient(
+    100deg,
+    transparent 15%,
+    #c1cee945 48%,
+    #fff9 57%,
+    transparent 72%
+  );
+  animation: paperLight 520ms ease-out both;
+}
+
+@keyframes turnPaper {
+  from {
+    opacity: 0.35;
+    transform: perspective(1200px) rotateY(-65deg);
+  }
+  to {
+    opacity: 1;
+    transform: perspective(1200px) rotateY(0);
+  }
+}
+
+@keyframes paperLight {
+  from {
+    opacity: 0.9;
+    transform: translateX(-35%);
+  }
+  to {
+    opacity: 0;
+    transform: translateX(35%);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .page[data-page-turn="true"] {
+    animation: none;
+  }
+  .page[data-page-turn="true"]::after {
+    display: none;
+  }
+}

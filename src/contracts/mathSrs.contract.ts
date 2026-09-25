@@ -77,6 +77,7 @@ export const mathSrsProblemSchema = z.strictObject({
   kind: kindSchema,
   prompt: z.string().max(8_000),
   equation: z.string().max(4_000),
+  answerChoices: z.array(z.string().max(2_000)).length(4).optional(),
   answerUnit: z.string().max(100).optional(),
   expectedSeconds: z.number().positive().max(3_600),
   source: mathSrsSourceSchema.optional(),
