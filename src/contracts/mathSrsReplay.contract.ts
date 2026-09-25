@@ -11,6 +11,7 @@ export const mathSrsReplaySubmitInputSchema = z.strictObject({
   kind: mathSrsReplayKindSchema,
   step: z.number().int().min(1).max(500),
   problemId: uuidSchema,
+  missionId: uuidSchema.optional(),
   submittedAnswer: z.string().trim().min(1).max(2000),
   revealSolution: z.boolean().optional(),
 });

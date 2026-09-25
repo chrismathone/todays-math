@@ -17,7 +17,7 @@ import { CONCEPT_IDS, type Learner, type Mission } from "./types";
 import { storedCourseSchema } from "./courseAutomation";
 
 const storedProblemSchema = mathSrsProblemSchema
-  .omit({ hint: true, feedback: true })
+  .omit({ hint: true, feedback: true, answerChoices: true })
   .extend({
     hint: z.string().max(8_000),
     answer: z.number().finite(),

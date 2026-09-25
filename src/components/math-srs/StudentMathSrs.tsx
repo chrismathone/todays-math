@@ -3,10 +3,9 @@
 import dynamic from "next/dynamic";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import { useEffect, useRef, useState, type FormEvent } from "react";
+import { useEffect, useRef, useState } from "react";
 import type { Submitted } from "@/components/learn/learnApi";
 import { Button } from "@/components/ui/Button";
-import { Input } from "@/components/ui/Input";
 import { formatDayWithWeekday } from "@/components/unified/conceptFormat";
 import type {
   MathSrsAttemptInput,
@@ -16,14 +15,13 @@ import type {
 } from "@/contracts/mathSrs.contract";
 import { kstDateOf } from "@/lib/kstDate";
 import { CONCEPTS } from "@/lib/math-srs/concepts";
-import { parseSubmittedNumber } from "@/lib/math-srs/sharedAnswers";
 import type { Rating } from "@/lib/math-srs/types";
 import { STUDENT_MUST_CHANGE_MESSAGE } from "@/lib/studentRouteAccess";
 import {
   fetchMathSrs,
-  revealMathSrsHint,
   startMathSrs,
   submitMathSrsAttempt,
+  submitMathSrsReplay,
 } from "./mathSrsApi";
 import { SrsMemoryGrid } from "./SrsMemoryGrid";
 import {
@@ -32,7 +30,9 @@ import {
   StudentReviewOverview,
 } from "./StudentReviewHome";
 import s from "./authenticated.module.css";
+import pageTurn from "./question-page-turn.module.css";
 import StudentProgressBoard from "./StudentProgressBoard";
+import AnswerFeedbackEffect from "./AnswerFeedbackEffect";
 
 const ProblemContent = dynamic(() =>
   import("@/components/math/ProblemContent").then((mod) => mod.ProblemContent),
@@ -41,6 +41,49 @@ const MathText = dynamic(() =>
   import("@/components/math/MathText").then((mod) => mod.MathText),
 );
 type Failure = { status: number; message: string };
+
+function retryStorageKey(studentId: string, missionId: string) {
+  return `math-srs-resolved-retries:${studentId}:${missionId}`;
+}
+function resolvedRetrySteps(studentId: string, missionId: string): number[] {
+  try {
+    const saved: unknown = JSON.parse(
+      localStorage.getItem(retryStorageKey(studentId, missionId)) ?? "[]",
+    );
+    return Array.isArray(saved) &&
+      saved.every((step) => Number.isInteger(step) && step >= 1 && step <= 12)
+      ? saved
+      : [];
+  } catch {
+    return [];
+  }
+}
+function remainingRetrySteps(
+  mission: MathSrsPublicMission | null,
+  studentId: string,
+): number[] | null {
+  if (!mission?.completedAt) return null;
+  const resolved = new Set(resolvedRetrySteps(studentId, mission.id));
+  return mission.attempts.flatMap((attempt, index) =>
+    !attempt.correct && !resolved.has(index + 1) ? [index + 1] : [],
+  );
+}
+function rememberResolvedRetry(
+  studentId: string,
+  missionId: string,
+  step: number,
+) {
+  try {
+    localStorage.setItem(
+      retryStorageKey(studentId, missionId),
+      JSON.stringify([
+        ...new Set([...resolvedRetrySteps(studentId, missionId), step]),
+      ]),
+    );
+  } catch {
+    /* A failed local write safely repeats the unresolved problems after reload. */
+  }
+}
 
 export function StudentMathSrs() {
   const router = useRouter();
@@ -55,6 +98,9 @@ export function StudentMathSrs() {
   const alive = useRef(true);
   const [practicing, setPracticing] = useState(false);
   const [feedbackId, setFeedbackId] = useState<string | null>(null);
+  const [retrySteps, setRetrySteps] = useState<number[] | null>(null);
+  const [retryFeedback, setRetryFeedback] = useState<boolean | null>(null);
+  const [retryTurn, setRetryTurn] = useState(0);
 
   useEffect(() => {
     alive.current = true;
@@ -70,6 +116,9 @@ export function StudentMathSrs() {
       setLoading(false);
       if (result.ok) {
         setState(result.data);
+        setRetrySteps(
+          remainingRetrySteps(result.data.mission, result.data.student.id),
+        );
         setError(null);
       } else if (result.status === 401) router.replace("/learn/login");
       else if (
@@ -118,9 +167,80 @@ export function StudentMathSrs() {
   const feedbackProblem = feedbackId
     ? mission?.problems.find((problem) => problem.id === feedbackId)
     : null;
-  const currentProblem = mission?.problems[mission.attempts.length];
+  const hasPendingRetry = !!mission?.completedAt && !!retrySteps?.length;
+  const retryStep = retrySteps?.[0];
+  const currentProblem = retryStep
+    ? mission?.problems[retryStep - 1]
+    : mission?.problems[mission.attempts.length];
+  const displayedProblem = feedbackProblem ?? currentProblem;
+  const correct = retryStep
+    ? retryFeedback
+    : feedbackId
+      ? (mission?.attempts.find((attempt) => attempt.problemId === feedbackId)
+          ?.correct ?? null)
+      : null;
+
+  useEffect(() => {
+    if (!practicing || (!feedbackId && retryFeedback === null)) return;
+    const timer = window.setTimeout(() => {
+      if (retryFeedback !== null) {
+        setRetrySteps((steps) => {
+          if (!steps?.length) return steps;
+          return retryFeedback ? steps.slice(1) : [...steps.slice(1), steps[0]];
+        });
+        setRetryFeedback(null);
+        setRetryTurn((turn) => turn + 1);
+      } else {
+        setFeedbackId(null);
+        if (mission?.completedAt) {
+          setRetrySteps(remainingRetrySteps(mission, state!.student.id));
+        }
+      }
+    }, 1200);
+    return () => window.clearTimeout(timer);
+  }, [feedbackId, retryFeedback, practicing, mission, state]);
+
+  async function retryAnswer(answer: string) {
+    if (
+      pending.current ||
+      !mission ||
+      !retryStep ||
+      !currentProblem ||
+      retryFeedback !== null
+    )
+      return;
+    pending.current = true;
+    setBusy(true);
+    setError(null);
+    try {
+      const result = await submitMathSrsReplay({
+        kind: "middle",
+        step: retryStep,
+        missionId: mission.id,
+        problemId: currentProblem.id,
+        submittedAnswer: answer,
+      });
+      if (!alive.current) return;
+      if (result.ok) {
+        if (result.data.correct && state)
+          rememberResolvedRetry(state.student.id, mission.id, retryStep);
+        setRetryFeedback(result.data.correct);
+      } else if (result.status === 401) router.replace("/learn/login");
+      else if (
+        result.status === 403 &&
+        result.message === STUDENT_MUST_CHANGE_MESSAGE
+      )
+        router.replace("/learn/password");
+      else setError(result);
+    } finally {
+      pending.current = false;
+      if (alive.current) setBusy(false);
+    }
+  }
   const progressCount =
-    missionInProgress || finishedToday ? mission.attempts.length : 0;
+    missionInProgress || finishedToday || hasPendingRetry
+      ? mission!.attempts.length
+      : 0;
   const progressTitle =
     missionInProgress && mission.date !== kstDateOf(new Date())
       ? "진행 중인 복습"
@@ -134,6 +254,7 @@ export function StudentMathSrs() {
     setLoading(true);
     setError(null);
     setFeedbackId(null);
+    setRetryFeedback(null);
     setReload((value) => value + 1);
   };
 
@@ -144,7 +265,7 @@ export function StudentMathSrs() {
       practicing={practicing}
       boardReady={!!state && !loading && error?.status !== 503}
       practiceTitle="오늘의 수학 복습"
-      practicePageClassName={s.student}
+      practicePageClassName={`${s.student} ${s.practiceViewport}`}
       practiceMainClassName={`${s.body} ${s.practiceBody}`}
     >
       <StudentReviewStatus
@@ -153,14 +274,31 @@ export function StudentMathSrs() {
         busy={busy}
         onReload={resetLoad}
       />
-      {!loading && state && error?.status !== 503 ? (
+      {!loading && state && (practicing || error?.status !== 503) ? (
         <>
           {practicing && mission ? (
             <>
+              <div className={s.practiceHeader}>
+                <Button
+                  variant="ghost"
+                  className={s.quietButton}
+                  disabled={busy}
+                  onClick={() => {
+                    setPracticing(false);
+                    setFeedbackId(null);
+                    setRetryFeedback(null);
+                    setRetrySteps(
+                      remainingRetrySteps(mission, state.student.id),
+                    );
+                  }}
+                >
+                  ← 학습 홈
+                </Button>
+                <span>중1 · 일차방정식</span>
+              </div>
               <div className={s.progress}>
                 <span>
-                  오늘의 복습{" "}
-                  <small>{formatDayWithWeekday(mission.date)}</small>
+                  {retryStep ? "모아 둔 오답 다시 풀기" : "오늘의 복습"}
                 </span>
                 <progress
                   aria-label="미션 진행"
@@ -168,29 +306,27 @@ export function StudentMathSrs() {
                   max={mission.problems.length}
                 />
                 <span>
-                  {mission.attempts.length}/{mission.problems.length}
+                  {retryStep
+                    ? `${retrySteps!.length}문제 남음`
+                    : `${Math.min(mission.attempts.length + (feedbackId ? 0 : 1), mission.problems.length)}/${mission.problems.length}`}
                 </span>
               </div>
-              {feedbackProblem?.feedback ? (
-                <Feedback
-                  problem={feedbackProblem}
-                  mission={mission}
-                  onNext={() => setFeedbackId(null)}
-                />
-              ) : !mission.completedAt && currentProblem ? (
+              {displayedProblem &&
+              (retryStep || feedbackId || !mission.completedAt) ? (
                 <Question
-                  key={`${mission.id}:${currentProblem.id}`}
-                  problem={currentProblem}
+                  key={`${mission.id}:${displayedProblem.id}:${retryTurn}`}
+                  problem={displayedProblem}
                   busy={busy || error?.status === 409}
-                  onHint={() =>
-                    void mutate(() =>
-                      revealMathSrsHint({
-                        missionId: mission.id,
-                        problemId: currentProblem.id,
-                      }),
-                    )
-                  }
-                  onAnswer={(submittedAnswer, elapsedSeconds, rating) =>
+                  correct={correct}
+                  retry={!!retryStep}
+                  eventKey={`${displayedProblem.id}:${retryTurn}`}
+                  onReload={resetLoad}
+                  onAnswer={(submittedAnswer, elapsedSeconds, rating) => {
+                    if (retryStep) {
+                      void retryAnswer(submittedAnswer);
+                      return;
+                    }
+                    if (!currentProblem || feedbackId) return;
                     void mutate(
                       () => {
                         const previous = lastSubmission.current;
@@ -215,36 +351,26 @@ export function StudentMathSrs() {
                         lastSubmission.current = null;
                         if (
                           next.mission?.id === mission.id &&
-                          next.mission.problems.find(
-                            (problem) => problem.id === currentProblem.id,
-                          )?.feedback
+                          next.mission.attempts.some(
+                            (attempt) =>
+                              attempt.problemId === currentProblem.id,
+                          )
                         )
                           setFeedbackId(currentProblem.id);
                       },
-                    )
-                  }
+                    );
+                  }}
                 />
               ) : (
                 <Result mission={mission} onHome={() => setPracticing(false)} />
               )}
-              <Button
-                variant="ghost"
-                className={s.quietButton}
-                onClick={() => {
-                  setPracticing(false);
-                  setFeedbackId(null);
-                }}
-                disabled={busy}
-              >
-                학습 현황으로
-              </Button>
             </>
           ) : (
             <>
               <StudentReviewOverview
                 board={
                   <StudentProgressBoard
-                    replayKind="middle"
+                    replayKind={hasPendingRetry ? undefined : "middle"}
                     completed={progressCount}
                     goal={mission?.problems.length ?? 12}
                     title={nextConcept ?? "일차방정식"}
@@ -259,21 +385,25 @@ export function StudentMathSrs() {
                     }
                     busy={busy}
                     onNext={
-                      finishedToday
+                      finishedToday || hasPendingRetry
                         ? undefined
                         : () =>
                             void mutate(startMathSrs, () => {
                               setPracticing(true);
                               setFeedbackId(null);
+                              setRetrySteps(null);
+                              setRetryFeedback(null);
                             })
                     }
                   />
                 }
                 boardActions={
-                  finishedToday
+                  finishedToday || hasPendingRetry
                     ? [
                         {
-                          label: "오늘의 결과 보기",
+                          label: hasPendingRetry
+                            ? `오답 다시 풀기 · ${retrySteps!.length}문제`
+                            : "오늘의 결과 보기",
                           onClick: () => setPracticing(true),
                         },
                       ]
@@ -313,6 +443,8 @@ export function StudentMathSrs() {
                           void mutate(startMathSrs, () => {
                             setPracticing(true);
                             setFeedbackId(null);
+                            setRetrySteps(null);
+                            setRetryFeedback(null);
                           }),
                       },
                   note: "한 번에 12문제 · 약 10~15분",
@@ -422,225 +554,116 @@ export function StudentMathSrs() {
 function Question({
   problem,
   busy,
-  onHint,
+  correct,
+  retry,
+  eventKey,
+  onReload,
   onAnswer,
 }: {
   problem: MathSrsPublicProblem;
   busy: boolean;
-  onHint: () => void;
+  correct: boolean | null;
+  retry: boolean;
+  eventKey: string;
+  onReload: () => void;
   onAnswer: (answer: string, elapsed: number, rating: Rating) => void;
 }) {
-  const [answer, setAnswer] = useState("");
-  const [rating, setRating] = useState<Rating>("good");
-  const [validation, setValidation] = useState<string | null>(null);
+  const [selected, setSelected] = useState<string | null>(null);
   const [startedAt] = useState(() => Date.now());
-  const form = useRef<HTMLFormElement>(null);
-  function focusAnswer() {
-    form.current
-      ?.querySelector<HTMLInputElement>("#srs-answer")
-      ?.focus({ preventScroll: true });
-  }
+  const heading = useRef<HTMLParagraphElement>(null);
   useEffect(() => {
-    focusAnswer();
+    heading.current?.focus({ preventScroll: true });
   }, [problem.id]);
-
-  function submit(event: FormEvent) {
-    event.preventDefault();
-    if (busy) return;
-    if (parseSubmittedNumber(answer) === null) {
-      setValidation(
-        answer.trim()
-          ? "숫자 또는 분수로 입력해 주세요. 분모는 0이 될 수 없어요."
-          : "답을 먼저 입력해 주세요.",
-      );
-      focusAnswer();
-      return;
-    }
-    setValidation(null);
+  const disabled = busy || correct !== null;
+  const choices = problem.answerChoices;
+  function choose(answer: string) {
+    if (disabled) return;
+    setSelected(answer);
     onAnswer(
-      answer.trim(),
+      answer,
       Math.min(86_400, Math.max(0, (Date.now() - startedAt) / 1000)),
-      rating,
+      answer ? "good" : "again",
     );
   }
   return (
     <section
-      className={`${s.card} ${s.questionCard}`}
+      className={`${s.card} ${s.questionCard} ${s.fixedQuestion}`}
       aria-label="현재 문제"
       aria-busy={busy}
     >
-      <p className={s.eyebrow}>
-        {CONCEPTS.find((concept) => concept.id === problem.conceptId)?.title}
-        {problem.source ? ` · ${problem.source.tier}` : ""}
-      </p>
-      <div className={s.question}>
-        <ProblemContent content={problem.prompt} />
-        {problem.equation ? (
-          <MathText text={problem.equation} as="div" className={s.equation} />
-        ) : null}
-      </div>
-      <form ref={form} onSubmit={submit}>
-        <label className={s.label} htmlFor="srs-answer">
-          나의 답
-          {problem.answerUnit ? (
-            <span className={s.answerUnit}> ({problem.answerUnit})</span>
-          ) : null}
-        </label>
-        <div className={s.answer}>
-          <Input
-            id="srs-answer"
-            value={answer}
-            onChange={(event) => {
-              setAnswer(event.target.value);
-              setValidation(null);
-            }}
-            disabled={busy}
-            placeholder="예: -3, 1/2"
-            maxLength={200}
-            autoComplete="off"
-            enterKeyHint="done"
-            autoCapitalize="off"
-            spellCheck={false}
-            aria-invalid={!!validation}
-            aria-describedby="srs-answer-help"
-          />
-        </div>
-        <p
-          id="srs-answer-help"
-          className={`${s.answerHelp} ${validation ? s.answerError : ""}`}
-        >
-          {validation ? (
-            <span role="alert">{validation}</span>
-          ) : (
-            "음수와 분수도 입력할 수 있어요."
-          )}
-        </p>
-        <fieldset className={s.ratings} disabled={busy}>
-          <legend>어떻게 풀었나요?</legend>
-          <div>
-            {(
-              [
-                ["hard", "어려웠어요"],
-                ["good", "풀 만했어요"],
-                ["easy", "쉬웠어요"],
-              ] as const
-            ).map(([value, label]) => (
-              <label key={value}>
-                <input
-                  type="radio"
-                  name="srs-rating"
-                  value={value}
-                  checked={rating === value}
-                  onChange={() => setRating(value)}
-                />
-                {label}
-              </label>
-            ))}
-          </div>
-        </fieldset>
-        <div className={s.actions}>
-          <Button type="submit" className={s.answerSubmit} disabled={busy}>
-            {busy ? "저장하는 중…" : "정답 확인"}
-          </Button>
-          <Button
-            variant="secondary"
-            className={s.secondaryButton}
-            disabled={busy || problem.hint !== null}
-            onClick={onHint}
-          >
-            {problem.hint !== null ? "힌트를 확인했어요" : "힌트 보기"}
-          </Button>
-        </div>
-        <Button
-          variant="ghost"
-          className={s.quietButton}
-          disabled={busy}
-          onClick={() =>
-            onAnswer(
-              "",
-              Math.min(86_400, Math.max(0, (Date.now() - startedAt) / 1000)),
-              "again",
-            )
-          }
-        >
-          아직 모르겠어요
-        </Button>
-      </form>
-      {problem.hint !== null ? (
-        <aside className={s.hint} aria-label="힌트">
-          <strong>한 걸음만 도와줄게요</strong>
-          <MathText text={problem.hint} as="div" />
-        </aside>
-      ) : null}
-    </section>
-  );
-}
-
-function Feedback({
-  problem,
-  mission,
-  onNext,
-}: {
-  problem: MathSrsPublicProblem;
-  mission: MathSrsPublicMission;
-  onNext: () => void;
-}) {
-  const feedbackSection = useRef<HTMLElement>(null);
-  useEffect(() => {
-    feedbackSection.current
-      ?.querySelector("button")
-      ?.focus({ preventScroll: true });
-  }, [problem.id]);
-  const attempt = mission.attempts.find(
-    (item) => item.problemId === problem.id,
-  );
-  const feedback = problem.feedback!;
-  return (
-    <section
-      ref={feedbackSection}
-      className={`${s.card} ${s.feedbackCard}`}
-      aria-labelledby="answer-feedback-heading"
-    >
-      <p className={s.eyebrow}>한 문제, 한 걸음</p>
-      <h2
-        id="answer-feedback-heading"
-        tabIndex={-1}
-        className={attempt?.correct ? s.correct : s.review}
+      <div
+        className={`${s.problemScroll} ${pageTurn.page}`}
+        data-page-turn="true"
+        key={eventKey}
       >
-        {attempt?.correct ? "잘 풀었어요!" : "풀이를 보며 다시 생각해 봐요."}
-      </h2>
-      <div className={s.answerFeedback}>
-        <div>
-          <span>나의 답</span>
-          <strong>{attempt?.submittedAnswer || "아직 모르겠어요"}</strong>
+        <p ref={heading} tabIndex={-1} className={s.eyebrow}>
+          {CONCEPTS.find((concept) => concept.id === problem.conceptId)?.title}
+          {problem.source ? ` · ${problem.source.tier}` : ""}
+        </p>
+        <div className={s.question}>
+          <ProblemContent content={problem.prompt} />
+          {problem.equation ? (
+            <MathText text={problem.equation} as="div" className={s.equation} />
+          ) : null}
+          {problem.answerUnit ? (
+            <p className={s.unitNote}>답의 단위: {problem.answerUnit}</p>
+          ) : null}
         </div>
-        <div>
-          <span>정답</span>
-          <div className={s.exactAnswer}>
-            {feedback.answerText ? (
-              <MathText text={feedback.answerText} />
-            ) : (
-              `${feedback.answer}${problem.answerUnit ?? ""}`
-            )}
+      </div>
+      <div className={s.answerDock}>
+        {choices?.length === 4 ? (
+          <>
+            <div className={s.answerDockHeading}>
+              <span>{busy ? "확인하고 있어요…" : "답을 하나 골라 주세요"}</span>
+              {!retry ? (
+                <button
+                  type="button"
+                  className={s.skipAnswer}
+                  disabled={disabled}
+                  onClick={() => choose("")}
+                >
+                  아직 모르겠어요
+                </button>
+              ) : null}
+            </div>
+            <div
+              className={s.answerChoices}
+              role="group"
+              aria-label="답 고르기"
+            >
+              {choices.map((choice, index) => (
+                <button
+                  key={choice}
+                  type="button"
+                  disabled={disabled}
+                  aria-pressed={selected === choice}
+                  onClick={() => choose(choice)}
+                  data-result={
+                    selected === choice && correct !== null
+                      ? correct
+                        ? "correct"
+                        : "incorrect"
+                      : undefined
+                  }
+                >
+                  <span className={s.choiceNumber} aria-hidden="true">
+                    {index + 1}
+                  </span>
+                  <MathText text={choice} />
+                </button>
+              ))}
+            </div>
+          </>
+        ) : (
+          <div role="alert" className={s.choiceError}>
+            <p>보기를 불러오지 못했어요.</p>
+            <Button onClick={onReload} disabled={busy}>
+              보기를 다시 불러오기
+            </Button>
           </div>
-        </div>
+        )}
       </div>
-      {attempt?.usedHint ? (
-        <p className={s.muted}>힌트를 참고한 풀이로 기록했어요.</p>
-      ) : null}
-      <div className={s.solution}>
-        <h3>이렇게 풀어요</h3>
-        <ol>
-          {feedback.solution.map((line, index) => (
-            <li key={index}>
-              <MathText text={line} as="div" />
-            </li>
-          ))}
-        </ol>
-      </div>
-      <Button onClick={onNext} aria-describedby="answer-feedback-heading">
-        {mission.completedAt ? "미션 결과 보기" : "다음 문제"}
-      </Button>
+      <AnswerFeedbackEffect correct={correct} eventKey={eventKey} />
     </section>
   );
 }
