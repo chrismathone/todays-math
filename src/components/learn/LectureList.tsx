@@ -85,9 +85,9 @@ export function LectureList({ now }: { now?: Date }) {
           <span className={s.practiceIcon} aria-hidden="true">
             ∑
           </span>
-          <span className={s.practiceCopy}>
-            <b>매일 수학 복습</b>
-            <span>내 진도에서 시작하는 오늘의 학습</span>
+          <b className={s.practiceTitle}>매일 수학 복습</b>
+          <span className={s.practiceDescription}>
+            내 진도에서 시작하는 오늘의 학습
           </span>
           <span className={s.practiceArrow} aria-hidden="true">
             ›
