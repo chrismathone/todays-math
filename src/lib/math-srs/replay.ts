@@ -164,9 +164,18 @@ function middleSource(
     !mission.attempts.some((a) => a.problemId === problem.id)
   )
     throw missing();
+  const equation = problem.equation.trim();
+  // Legacy stored missions used bare TeX; the common problem renderer needs
+  // explicit math boundaries, while current missions put equations in prompt.
+  const equationContent =
+    !equation || equation.startsWith("$")
+      ? equation
+      : /^\\\([\s\S]*\\\)$/.test(equation) || /^\\\[[\s\S]*\\\]$/.test(equation)
+        ? `$${equation.slice(2, -2)}$`
+        : `$${equation}$`;
   const content = [
     problem.prompt,
-    problem.equation,
+    equationContent,
     problem.answerUnit ? `답의 단위: ${problem.answerUnit}` : "",
   ]
     .filter(Boolean)
