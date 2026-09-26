@@ -196,7 +196,10 @@ describe("실물 출력 검수 목록 — 데이터", () => {
     //     선에 구멍(마스크)을 낸다. 배경색이 아니다).
     // 77: side-by-side-columns 추가 (2026-09-22 — «나란히» 칸 묶음. 서답형 소문항·그림을 제목·테두리 없이
     //     1~4열로. 좁은 단은 4 → 3 → 2 → 1 로 줄여 그린다. 새 표기라 기존 문항은 0건).
-    expect(ITEMS.length).toBe(77);
+    // 78: answer-sheet-solution-postprocess 추가 (2026-09-26 후보정 T3 — 학습지 정답지 해설이 `SolutionText`
+    //     (줄 나눔)를 지나고, 붙은 수식·여러 줄 수식·`\$` 가 새지 않는다).
+    // 79: hwpx-repeat-dot 추가 (2026-09-26 후보정 T3 — HWPX 순환소수 점이 `dot {d}` 로. 한글에서 여는 것까지가 검수).
+    expect(ITEMS.length).toBe(79);
   });
 
   /**

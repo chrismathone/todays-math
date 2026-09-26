@@ -2427,6 +2427,64 @@ export const ITEMS: PrintCheckItem[] = [
       "옮긴다. 그 문항을 학습지에 담아 인쇄 · PDF · HWPX 로 한 장씩 뽑는다.",
     changedOn: "2026-09-22",
   },
+  {
+    id: "answer-sheet-solution-postprocess",
+    title:
+      "학습지 정답지 해설 — 문장마다 줄이 갈리고, 붙은 수식·여러 줄 수식이 새지 않는다",
+    changed:
+      "원장님 신고(작업실 해설에 `\\displaystyle $$이동 거리= …` 가 날 글자로 샘)를 조사하다 나온 해설지 쪽 결함(후보정 트랙 T3). " +
+      "① 학습지 정답지(`AnswerPage`)가 해설 줄 나눔(`solutionForDisplay`)을 빠뜨려 해설이 한 덩어리였다 — 이제 인쇄 " +
+      "정답지·문제은행과 같은 조합(`SolutionText`)이라 **문장마다 줄이 갈린다(지면 높이가 늘어난다).** " +
+      "② 정상 해설 `이동 거리는 $8$ 이고 $$s=8$$` 가 `$ $$\\displaystyle s=8$$$` 로 새던 것 — 붙은 수식 떼기가 앞 수식의 " +
+      "**닫는** `$` 부터 읽었다. ③ 여러 줄 `$$…$$`·`\\begin{aligned}` 의 첫 줄 식이 사라지고 뒤 한글이 수식으로 들어가던 것 " +
+      "— 수식 안 줄바꿈을 공백으로 접는다(TeX 에서 같은 뜻). ④ `8\\,\\mathrm{m}` · 코드 따옴표 안 TeX · `\\text{…$x$…}` · " +
+      "`\\$` 화폐가 날 글자·붉은 오류로 나가던 것. PDF·HWPX 는 이 미리보기에서 나가므로 같이 바뀐다.",
+    look:
+      "(제안) ① 해설이 한 줄로 이어 붙지 않고 **문장마다 줄이 갈리는가**(인쇄 정답지와 같은 모양인가). " +
+      "② 해설 어디에도 `$` · `\\displaystyle` · `\\=` 같은 **날 글자**가 없는가. ③ 여러 줄로 쓴 계산식(`=` 로 이어지는 " +
+      "줄)이 첫 줄까지 다 찍히는가 — 한 줄로 이어져 나오는 것이 정상이다(울타리 `$$` 가 제 줄에 선 식만 가운데 정렬). " +
+      "④ 해설이 늘어나 다음 쪽으로 넘어갈 때 **잘리지 않고** 넘어가는가. ⑤ 같은 해설을 PDF·HWPX 로 뽑아도 같은가.",
+    lookFromSource: false,
+    evidence: [
+      "src/lib/math/segments.ts (findMathSpans · canonicalizeMathSpans)",
+      "src/lib/math/textPreprocess.ts (preprocessMathText — 첫 단계·step 9)",
+      "src/components/math/MathText.tsx (SolutionText)",
+      "src/components/unified/print/AnswerPage.tsx",
+      "src/__tests__/unit/renderPostprocessLeaks.test.tsx",
+      "src/__tests__/components/solutionExits.test.tsx",
+    ],
+    scale:
+      "학습지 정답지의 모든 해설(줄 나눔) · 붙은 수식/여러 줄 수식/`\\$` 가 든 해설(모양) — 문제 표에서 확인된 붙은 해설 4행 포함",
+    status: "대기",
+    needs:
+      "여러 문장짜리 해설, `$8$ 이고 $$s=8$$` 처럼 인라인 뒤 표시식이 든 해설, `$$x(b)-x(a)` ⏎ `= 8$$` 처럼 여러 줄 " +
+      "표시식 해설을 한 학습지에 담아 정답지를 인쇄 · PDF · HWPX 로 한 장씩 뽑는다.",
+    changedOn: "2026-09-26",
+  },
+  {
+    id: "hwpx-repeat-dot",
+    title:
+      "HWPX — 순환소수 점이 한글 수식 `dot` 으로(클래스 이름이 글자로 안 나간다)",
+    changed:
+      "지면은 순환마디 점을 `\\htmlClass{repeat-dot}{3}` 로 그리는데(중2 교과서 점 표기), HWPX 옮김이 그 표기를 몰라 " +
+      "`0.{repeat-dot}{3}` — **클래스 이름이 글자로** — 한글에 나갔다(후보정 조사 G). 이제 옮기기 전에 `\\dot{3}` 로 " +
+      "되돌려 `0. dot {3}` 이 된다. 호(⌒)는 전부터 같은 자리에서 옮기고 있었다.",
+    look:
+      "(제안) 순환소수(`0.3̇` · `0.1̇2̇` · `1.23̇4̇`)가 든 문항을 HWPX 로 내보내 **한글에서 연다**. ① 점이 순환마디 " +
+      "첫·끝 숫자 **위에** 찍히는가. ② `repeat-dot` 같은 글자가 어디에도 없는가. ③ 수식 상자 폭이 옆 글자와 겹치지 않는가.",
+    lookFromSource: false,
+    evidence: [
+      "scripts/hwpx/writer.py (hancom_equation)",
+      "src/__tests__/unit/hwpxRepeatDot.test.ts",
+    ],
+    scale:
+      "순환소수 점·막대(`\\dot` · `\\overline{숫자}`)가 든 문항의 HWPX 내보내기",
+    status: "대기",
+    needs:
+      "순환소수가 든 중2 문항 하나 — HWPX 로 내보내 한글에서 연다. " +
+      "🔴 한글에서 여는 것까지가 검수다(시험은 변환 문자열까지만 봤다 — 규칙 9 로 한글 COM 을 안 돌렸다).",
+    changedOn: "2026-09-26",
+  },
 ];
 
 /** 한 번에 다 보려면 어떤 시험지를 뽑아야 하나. */
