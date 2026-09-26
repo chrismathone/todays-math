@@ -15,6 +15,7 @@ import { createMemories } from "./memory";
 import { createMission, recordAttempt } from "./mission";
 import { CONCEPT_IDS, type Learner, type Mission } from "./types";
 import { storedCourseSchema } from "./courseAutomation";
+import { storedDailyJourneySchema, updateDailyJourney } from "./dailyJourney";
 
 const storedProblemSchema = mathSrsProblemSchema
   .omit({ hint: true, feedback: true, answerChoices: true })
@@ -37,6 +38,8 @@ const storedMissionSchema = z.strictObject({
   attempts: z.array(mathSrsAttemptSchema).max(12),
   hintedProblemIds: z.array(z.uuid()).max(12),
   requests: z.array(mathSrsAttemptInputSchema).max(12),
+  resolvedRetryProblemIds: z.array(z.uuid()).max(12).optional(),
+  retryCompletedAt: z.iso.datetime().optional(),
 });
 const payloadSchema = z
   .strictObject({
@@ -44,6 +47,7 @@ const payloadSchema = z
     memories: z.array(mathSrsMemorySchema).length(CONCEPT_IDS.length),
     missions: z.array(storedMissionSchema).max(90),
     course: storedCourseSchema.optional(),
+    dailyJourney: storedDailyJourneySchema.optional(),
   })
   .superRefine((value, ctx) => {
     const invalid = (message: string) =>
@@ -74,6 +78,23 @@ const payloadSchema = z
         invalid("개념 복습 시각이 올바르지 않습니다.");
     }
     for (const m of value.missions) {
+      const resolved = m.resolvedRetryProblemIds ?? [];
+      if (
+        new Set(resolved).size !== resolved.length ||
+        resolved.some(
+          (id) =>
+            !m.completedAt ||
+            !m.attempts.some((a) => a.problemId === id && !a.correct),
+        )
+      )
+        invalid("오답 재풀이 기록이 올바르지 않습니다.");
+      if (
+        m.retryCompletedAt &&
+        (!m.completedAt ||
+          m.retryCompletedAt < m.completedAt ||
+          m.attempts.some((a) => !a.correct && !resolved.includes(a.problemId)))
+      )
+        invalid("오답 재풀이 완료 시각이 올바르지 않습니다.");
       const ids = new Set(m.problems.map((p) => p.id));
       if (ids.size !== 12 || m.hintedProblemIds.some((id) => !ids.has(id)))
         invalid("미션 문제 식별자가 올바르지 않습니다.");
@@ -131,7 +152,18 @@ export function currentSrsMission(
 ): StoredSrsMission | null {
   return (
     state.missions.find((m) => !m.completedAt) ??
+    state.missions.find((m) =>
+      m.attempts.some(
+        (a) => !a.correct && !m.resolvedRetryProblemIds?.includes(a.problemId),
+      ),
+    ) ??
     state.missions.find((m) => m.date === kstDateOf(now)) ??
+    state.missions.find(
+      (m) =>
+        kstDateOf(
+          new Date(m.retryCompletedAt ?? m.completedAt ?? m.startedAt),
+        ) === kstDateOf(now),
+    ) ??
     null
   );
 }
@@ -163,7 +195,10 @@ export function startSrsMission(
     hintedProblemIds: [],
     requests: [],
   };
-  return { ...state, missions: [saved, ...state.missions].slice(0, 90) };
+  return updateDailyJourney(state, {
+    ...state,
+    missions: [saved, ...state.missions].slice(0, 90),
+  });
 }
 
 function getMission(
@@ -248,7 +283,7 @@ export function submitSrsAttempt(
     rating: input.rating,
     answeredAt: answeredAt.toISOString(),
   });
-  return {
+  return updateDailyJourney(state, {
     ...state,
     memories: learner.memories,
     missions: state.missions.map((m) =>
@@ -257,8 +292,53 @@ export function submitSrsAttempt(
             ...(learner.missions.find((saved) => saved.id === m.id) as Mission),
             hintedProblemIds: m.hintedProblemIds,
             requests: [...m.requests, input],
+            ...(m.resolvedRetryProblemIds
+              ? { resolvedRetryProblemIds: m.resolvedRetryProblemIds }
+              : {}),
           }
         : m,
     ),
-  };
+  });
+}
+
+/** Retry correctness is server-owned; repeated submissions do not change scores or memory. */
+export function recordSrsRetry(
+  state: StoredSrsState,
+  missionId: string,
+  problemId: string,
+  submittedAnswer: string,
+  now: Date,
+): StoredSrsState {
+  const mission = state.missions.find((m) => m.id === missionId);
+  const attempt = mission?.attempts.find((a) => a.problemId === problemId);
+  const problem = mission?.problems.find((p) => p.id === problemId);
+  if (!mission?.completedAt || !attempt || attempt.correct || !problem)
+    throw new SrsConflict("첫 풀이를 마친 오답만 다시 풀 수 있어요.");
+  if (
+    !checkAnswer(submittedAnswer, problem.answer) ||
+    mission.resolvedRetryProblemIds?.includes(problemId)
+  )
+    return state;
+  const resolved = [...(mission.resolvedRetryProblemIds ?? []), problemId];
+  const complete = mission.attempts.every(
+    (a) => a.correct || resolved.includes(a.problemId),
+  );
+  return updateDailyJourney(state, {
+    ...state,
+    missions: state.missions.map((m) =>
+      m.id === mission.id
+        ? {
+            ...m,
+            resolvedRetryProblemIds: resolved,
+            ...(complete
+              ? {
+                  retryCompletedAt: new Date(
+                    Math.max(now.getTime(), Date.parse(mission.completedAt!)),
+                  ).toISOString(),
+                }
+              : {}),
+          }
+        : m,
+    ),
+  });
 }

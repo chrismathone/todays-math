@@ -1,4 +1,5 @@
 import { z } from "zod";
+import { mathSrsJourneySchema } from "./mathSrsJourney.contract";
 import { CONCEPT_IDS } from "@/lib/math-srs/types";
 import {
   dataResponseSchema,
@@ -99,6 +100,7 @@ export const mathSrsMissionSchema = z.strictObject({
   completedAt: isoDateTimeSchema.nullable(),
   problems: z.array(mathSrsProblemSchema).length(12),
   attempts: z.array(mathSrsAttemptSchema).max(12),
+  resolvedRetryProblemIds: z.array(uuidSchema).max(12).optional(),
 });
 export type MathSrsPublicMission = z.infer<typeof mathSrsMissionSchema>;
 
@@ -122,6 +124,7 @@ export const mathSrsProgressSchema = z.strictObject({
 export type MathSrsProgress = z.infer<typeof mathSrsProgressSchema>;
 
 export const mathSrsStateSchema = z.strictObject({
+  journey: mathSrsJourneySchema.optional(),
   student: z.strictObject({
     id: uuidSchema,
     name: z.string(),

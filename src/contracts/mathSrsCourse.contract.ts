@@ -1,4 +1,5 @@
 import { z } from "zod";
+import { mathSrsJourneySchema } from "./mathSrsJourney.contract";
 import {
   dataResponseSchema,
   difficultySchema,
@@ -121,6 +122,7 @@ export const courseAttemptInputSchema = courseHintInputSchema.extend({
 });
 export type CourseAttemptInput = z.infer<typeof courseAttemptInputSchema>;
 export const courseStudentStateSchema = z.strictObject({
+  journey: mathSrsJourneySchema.optional(),
   student: z.strictObject({
     id: uuidSchema,
     name: z.string(),
@@ -137,7 +139,7 @@ export const courseStudentResponseSchema = dataResponseSchema(
   courseStudentStateSchema,
 );
 export const courseRosterStudentSchema = courseStudentStateSchema
-  .omit({ student: true, session: true })
+  .omit({ student: true, session: true, journey: true })
   .extend({
     id: uuidSchema,
     name: z.string(),

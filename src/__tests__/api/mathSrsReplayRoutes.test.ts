@@ -13,6 +13,7 @@ const f = vi.hoisted(() => ({
   withdrawn: false,
   disabled: false,
   missing: false,
+  allowRetryWrites: false,
   create: vi.fn(),
   update: vi.fn(),
   read: vi.fn(),
@@ -171,6 +172,7 @@ beforeEach(() => {
   f.withdrawn = false;
   f.disabled = false;
   f.missing = false;
+  f.allowRetryWrites = false;
   f.create.mockClear();
   f.update.mockClear();
   f.read.mockClear();
@@ -183,12 +185,103 @@ beforeEach(() => {
 });
 afterEach(() => {
   expect(f.create).not.toHaveBeenCalled();
-  expect(f.update).not.toHaveBeenCalled();
+  if (!f.allowRetryWrites) expect(f.update).not.toHaveBeenCalled();
   vi.useRealTimers();
   vi.unstubAllEnvs();
 });
 
 describe("completed board tile replay API", () => {
+  it("persists only explicit original-wrong retry success and returns the awarded daily milestone", async () => {
+    f.allowRetryWrites = true;
+    f.update.mockImplementation(
+      async ({
+        where,
+        data,
+      }: {
+        where: { studentId: string; revision: number };
+        data: { payload: unknown };
+      }) => {
+        const row = f.rows.get(where.studentId);
+        if (!row || row.revision !== where.revision) return { count: 0 };
+        f.rows.set(where.studentId, {
+          ...row,
+          revision: row.revision + 1,
+          payload: data.payload,
+        });
+        return { count: 1 };
+      },
+    );
+    let state = startSrsMission(
+      emptySrsState(),
+      f.studentId,
+      now,
+      71,
+      randomUUID,
+    );
+    const missionId = state.missions[0].id;
+    for (let index = 0; index < 12; index++) {
+      const problem = state.missions[0].problems[index];
+      state = submitSrsAttempt(
+        state,
+        f.studentId,
+        {
+          missionId,
+          problemId: problem.id,
+          submittedAnswer: String(problem.answer + (index === 0 ? 999 : 0)),
+          elapsedSeconds: 10,
+          rating: "good",
+        },
+        now,
+      );
+    }
+    save(state);
+    const wrong = state.missions[0].problems[0];
+    const retry = (answer: string, extra = {}) =>
+      POST(
+        new Request(`${base}${path}`, {
+          method: "POST",
+          headers: { origin: base, "Content-Type": "application/json" },
+          body: JSON.stringify({
+            kind: "middle",
+            step: 1,
+            missionId,
+            problemId: wrong.id,
+            submittedAnswer: answer,
+            recordRetry: true,
+            ...extra,
+          }),
+        }),
+      );
+    expect(
+      (await retry(String(wrong.answer), { dayId: "middle:2026-09-25" }))
+        .status,
+    ).toBe(400);
+    expect(
+      (await retry(String(wrong.answer), { missionId: f.otherId })).status,
+    ).toBe(409);
+    const incorrect = await readData(await retry(String(wrong.answer + 10)));
+    expect(incorrect.correct).toBe(false);
+    expect(incorrect.journey?.completedDays).toBe(0);
+    expect(f.update).not.toHaveBeenCalled();
+    const correct = await readData(await retry(String(wrong.answer)));
+    expect(correct.correct).toBe(true);
+    expect(correct.solution).toBeNull();
+    expect(correct.journey?.completedDays).toBe(1);
+    expect(correct.journey?.todayComplete).toBe(true);
+    expect(f.update).toHaveBeenCalledTimes(1);
+    const stored = parseSrsState(f.rows.get(f.studentId)!.payload);
+    expect(stored.missions[0].resolvedRetryProblemIds).toEqual([wrong.id]);
+    expect(stored.memories).toEqual(state.memories);
+    expect(stored.missions[0].attempts).toEqual(state.missions[0].attempts);
+    await readData(await retry(String(wrong.answer)));
+    expect(f.update).toHaveBeenCalledTimes(1);
+    const boardReview = await readData(
+      await get("middle", 1, "&dayId=middle%3A2026-09-25"),
+    );
+    expect(boardReview.problemId).toBe(wrong.id);
+    expect(f.update).toHaveBeenCalledTimes(1);
+  });
+
   it("maps today's earlier session and current partial session to the actual saved questions", async () => {
     let c = firstSession();
     const previous = c.learner.session!;

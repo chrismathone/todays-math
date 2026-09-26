@@ -5,6 +5,7 @@ import type {
   CourseStudentState,
 } from "@/contracts/mathSrsCourse.contract";
 import { db } from "@/lib/db";
+import { dailyJourneyDto } from "./dailyJourney";
 import {
   ownedRowsWhere,
   ownedStudentsWhere,
@@ -61,6 +62,7 @@ export function courseStudentDto(
     ? findStoredCourseSession(course, requestedSessionId)
     : course.learner.session;
   return {
+    journey: dailyJourneyDto(saved.state, "elementary", now),
     student: {
       id: student.id,
       name: student.name,
