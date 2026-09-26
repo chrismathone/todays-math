@@ -78,7 +78,8 @@ export function checkPaperRender(text: string): PaperRenderCheck {
 
   const why: string[] = [];
   if (failed > 0) why.push("붉은 KaTeX");
-  if (/\\(?:[A-Za-z]+|[()[\]{}])|\$/.test(visible))
+  // 외톨이 역슬래시도 샘이다(`\\$x$` → 지면 `\ ⟦x⟧`) — 시험의 지면 자(paperView LEAK)와 같은 규칙.
+  if (/\\(?:[A-Za-z]+|[()[\]{}])|\\(?![A-Za-z()[\]{}])|\$/.test(visible))
     why.push("수식 밖에 명령·구분자가 남았다");
   if (shownHangul < countHangul(text)) why.push("한글이 지면에서 사라졌다");
   return { html, safe: why.length === 0, why };

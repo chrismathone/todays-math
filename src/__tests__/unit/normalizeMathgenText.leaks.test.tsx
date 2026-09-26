@@ -403,3 +403,25 @@ describe("대조군 — 이미 멀쩡하던 글은 그대로 (report-code.md §5
     expect(normalizeMathgenText(intake)).toBe(intake);
   });
 });
+
+describe("🔴 글 모드 묶음 안의 `\(…\)` 는 수식이다 — 괄호로 풀지 않는다 (트랙 합치기 2026-09-26)", () => {
+  // 렌더 후보정(T3)은 중첩 `$\text{값이 $x$ 일 때}=3$` 의 속 수식을 `\(x\)` 로 옮긴다(KaTeX 가 글 속 수식으로
+  // 그린다). 입구 후보정이 수식 안 `\(` 를 전부 괄호로 풀면 두 번째 회차에 속 수식이 글자 `(x)` 가 된다.
+  const R = String.raw;
+  it.each([
+    R`$\text{값이 \(x\) 일 때}=3$`,
+    R`$\mbox{단, \(a \ne 0\)}$`,
+    R`$\textrm{넓이 \(S\)}+1$`,
+    R`$\text{중괄호 {안} \(y\)}$`,
+  ])("%s 그대로 · 멱등", (text) => {
+    expect(normalizeMathgenText(text)).toBe(text);
+  });
+  it("글 모드 묶음 밖의 `\(` 는 전처럼 괄호로 푼다", () => {
+    expect(normalizeMathgenText(R`값은 $f\(x\)=1$ 이다.`)).toBe(
+      R`값은 $f(x)=1$ 이다.`,
+    );
+    expect(normalizeMathgenText(R`$\text{값} f\(x\)$`)).toBe(
+      R`$\text{값} f(x)$`,
+    );
+  });
+});

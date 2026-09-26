@@ -3,6 +3,7 @@
  * Keep source notation here; sizing, geometry labels and Hangul extraction belong
  * to textPreprocess. Repairs require structural evidence, not English keywords.
  */
+import { reviveEscapedStyleLeak } from "./escapedStyleLeak";
 import { canonicalCircled } from "./circledNumber";
 import {
   KATEX_COMMAND_NAMES,
@@ -528,8 +529,10 @@ function isKnownCommand(command: string): boolean {
 
 export function normalizeMathgenText(text: string): string {
   if (!text) return text;
+  // 편집 칸이 굳혀 저장한 `\\displaystyle \$\$…` 를 먼저 되살린다 — 편집기만 되살리면 해설 읽기·정답지는
+  // 역슬래시와 달러를 그린다(모든 화면 일치, 2026-09-26). 되살린 뒤엔 대상이 없어 멱등이다.
   return mapSpans(
-    text,
+    reviveEscapedStyleLeak(text),
     (prose) => {
       const fixed = fixLatexEscaping(prose, false)
         .replace(STYLE, "")
@@ -541,13 +544,38 @@ export function normalizeMathgenText(text: string): string {
         .replace(/(?<!\\)\\t(?![A-Za-z])/g, "\t");
       return protectLooseLatex(fixed);
     },
-    // `\(` `\)` are not KaTeX commands: inside math they are only parentheses.
+    // `\(` `\)` are not KaTeX commands: inside math they are only parentheses —
+    // except inside a text-mode group, where KaTeX draws `\(…\)` as inline math
+    // (the renderer moves nested `$x$` there; unwrapping it broke idempotence).
     (math) =>
-      fixLatexEscaping(math, true).replace(
-        /(?<!\\)((?:\\\\)*)\\([()])/g,
-        "$1$2",
+      outsideTextGroups(fixLatexEscaping(math, true), (part) =>
+        part.replace(/(?<!\\)((?:\\\\)*)\\([()])/g, "$1$2"),
       ),
   );
+}
+
+const TEXT_GROUP = /\\(?:text(?:rm|bf|it|sf|tt|up|md|normal)?|mbox|hbox)\s*\{/g;
+
+/** Apply `fn` to the parts of a formula that are not inside `\text{…}`-like groups. */
+function outsideTextGroups(math: string, fn: (part: string) => string): string {
+  let out = "";
+  let last = 0;
+  TEXT_GROUP.lastIndex = 0;
+  for (let match; (match = TEXT_GROUP.exec(math));) {
+    let depth = 1;
+    let end = TEXT_GROUP.lastIndex;
+    for (; end < math.length && depth > 0; end++) {
+      const ch = math[end];
+      if (ch === "\\") end++;
+      else if (ch === "{") depth++;
+      else if (ch === "}") depth--;
+    }
+    if (depth > 0) break;
+    out += fn(math.slice(last, match.index)) + math.slice(match.index, end);
+    last = end;
+    TEXT_GROUP.lastIndex = end;
+  }
+  return out + fn(math.slice(last));
 }
 
 export function normalizeMathgenAnswer(text: string): string {
