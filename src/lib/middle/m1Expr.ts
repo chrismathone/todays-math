@@ -1260,15 +1260,6 @@ const EXPR_TYPES: TypeEntry[] = [
         const d = intBetween(rng, 1, 9);
         const e = intBetween(rng, 1, 4);
         const f = intBetween(rng, 1, 9);
-        // 「세 변의 길이가 각각 $3x+6$ cm, $x+9$ cm, $3x+6$ cm」 — 「각각」 뒤에 같은 식을
-        // 되풀이하지 않는다(톱니 수 「각각 $10$개, $10$개」와 같은 꼴).
-        if (
-          (a === c && b === d) ||
-          (a === e && b === f) ||
-          (c === e && d === f)
-        ) {
-          return null;
-        }
         const p = a + c + e;
         const q = b + d + f;
         return {

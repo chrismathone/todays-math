@@ -14,7 +14,7 @@
  *
  * | 규칙 | 뜻 |
  * | --- | --- |
- * | `비의 두 항이 같다` | `$a:a$` — 비를 줄 까닭이 없다 |
+ * | `비의 두 항이 같다` | `$a:a$`($a\ge2$) — 비를 줄 까닭이 없다. `$1:1$` 은 옳은 비라 안 본다 |
  * | `비가 기약이 아니다` | `$2:4$` — 교과서는 가장 간단한 자연수의 비로 준다 |
  * | `각각 뒤 두 값이 같다` | 「각각 $10$개, $10$개」 |
  * | `나란한 두 자리의 값이 같다` | 「A는 $14$일, B는 $14$일」·「한 사람은 분속 $60\,\mathrm{m}$로, 다른 사람은 분속 $60\,\mathrm{m}$로」 |
@@ -39,9 +39,14 @@
  *
  * - **결함 아님**: 문장이 다르다 — 「형의 예금액은 $1000$원, …이다. 매달 …, 동생은 $1000$원씩」
  *   (잔액과 적립액). 나란한 짝은 한 문장 안에 선다.
+ * - **결함 아님**: 셋 이상 늘어놓은 자료 — 「목요일 $+200$명, 금요일 $+150$명, 토요일 $+150$명, …」·
+ *   「세 모서리의 길이가 각각 $12$, $12$, $8$」. 자료 안에서 값이 겹치는 것은 자연스럽다
+ *   (중1 밖 모듈을 훑다가 거짓 경보로 나온 것 — `LIST_GAP`·`PARTICLE_HEAD` 주석).
  *
- * 그래서 `나란한` 은 «한 문장 안·값·단위·앞 두 글자»가 같고 «생략·같은 술어·같은 앞 토큰» 중
- * 하나가 있을 때만 센다. 이 경계는 아래 `CALIBRATION` 이 **양성·음성을 같은 자리에** 놓고 잠근다
+ * - **결함 아님**: 속성이 다르다 — 「반지름의 길이가 $9$ cm, 높이가 $9$ cm」. 앞 낱말이 다르다.
+ *
+ * 그래서 `나란한` 은 «한 문장 안·이웃한 두 자리·값·단위»가 같고, «앞 낱말이 같거나 둘 다
+ * 은/는 주제어»이며, «생략·같은 술어·같은 앞 토큰» 중 하나가 있을 때만 센다. 이 경계는 아래 `CALIBRATION` 이 **양성·음성을 같은 자리에** 놓고 잠근다
  * (§2-8 「진짜 위반과 멀쩡한 것을 같은 파일에 놓고 하나만 잡히는지」).
  *
  * `답이 발문에` 는 **단위가 있는 수량**만 본다. 맨 숫자·목록 줄(「다음 수 중에서 …\n$3$, $-2$, …」
@@ -96,6 +101,11 @@ export type Quantity = {
   attached: string;
   /** 토큰 바로 앞 두 글자 */
   pre2: string;
+  /**
+   * 토큰 바로 앞 낱말 — 그 안의 수식 토큰은 `$…$` 자리표로 바꾼다. 「분속」·「예산의」·
+   * 「$x$의」→「$…$의」·「$\mathrm{A}$는」→「$…$는」(A·B 는 이름표라 같은 자리로 본다).
+   */
+  preWord: string;
   /** 바로 앞 토큰(사이가 세 글자 이하일 때만) */
   prevToken: string | null;
   /** 붙은 덩어리 다음의 첫 한글 낱말 — 다음 토큰·쉼표·마침표 전까지 */
@@ -114,6 +124,22 @@ const LATIN_UNIT = /^ (°[CF]|[a-zA-Z]{1,3}(?:\^\{?2\}?|²)?|%)(?![a-zA-Z])/;
 
 /** 생략된 술어 뒤에 오는 한 낱말 — 부사격·목적격 조사로 끝나면 술어가 아니다. */
 const COMPLEMENT_END = /(?:으로|로|에게|에서|에|와|과|의|을|를)$/;
+
+/**
+ * 붙은 덩어리가 **조사·서술격으로 시작하면 단위가 아니다** — 「$6$이고」·「$6$이다」·「$2$인」.
+ * 이걸 안 막으면 맨 수 둘이 「이」라는 단위를 나눠 가져 「거리가 $6$이고 … 수가 $6$이다」가
+ * 나란한 짝으로 걸렸다(중1 정수와 유리수 06, 2026-09-27 실측 — 거짓 경보).
+ * ⚠️ 「가지」·「도」 같은 단위도 여기서 빠진다 — 새는 방향이 «못 잡는 쪽»이라 받아들인다.
+ */
+const PARTICLE_HEAD =
+  /^(?:이|가|을|를|은|는|과|와|의|으로|로|에|도|만|보다|부터|까지|라|인)/;
+
+/**
+ * 셋 이상 늘어놓은 자료 사이의 틈 — 「$+200$명, 금요일 $+150$명」·「$12$ cm, $12$ cm, $8$ cm」.
+ * 요일별 증감·세 모서리·합동인 세 변처럼 **자료 목록 안에서 값이 겹치는 것은 자연스럽다.**
+ * 「A는 $14$일, B는 $14$일」은 둘뿐이라 목록이 아니다.
+ */
+const LIST_GAP = /^[^$.\n]{0,8},\s*[^$,.\n]{0,8}$/;
 
 function normalizeBody(body: string): string {
   return body
@@ -171,7 +197,9 @@ export function quantities(text: string): Quantity[] {
     const rest = after.slice(attached.length);
     const before = text.slice(0, start);
     const speed = /(?:시속|분속|초속)\s*$/.test(before) ? "속력:" : "";
-    const unit = speed + (mathUnit || latin || (attached ? attached[0]! : ""));
+    const counter =
+      attached && !PARTICLE_HEAD.test(attached) ? attached[0]! : "";
+    const unit = speed + (mathUnit || latin || counter);
     // 붙은 덩어리 뒤 — 「,」면 생략, 「 낱말,」이고 낱말이 조사로 끝나면 생략
     const restToStop = /^[^$,.\n]*/.exec(rest)?.[0] ?? "";
     const words = restToStop.trim().split(/\s+/).filter(Boolean);
@@ -189,6 +217,10 @@ export function quantities(text: string): Quantity[] {
       unit,
       attached,
       pre2: before.slice(-2),
+      preWord: (/(\S*)\s*$/.exec(before)?.[1] ?? "").replace(
+        /\$[^$]*\$/g,
+        "$…$",
+      ),
       prevToken: prev && gap !== null && gap.length <= 3 ? prev.body : null,
       nextWord,
       ellipsis,
@@ -223,7 +255,9 @@ export function degenerateFindings(
   for (const q of qs) {
     if (q.kind !== "ratio" || q.skip) continue;
     const terms = q.value.split(":").map(Number);
-    if (new Set(terms).size < terms.length) {
+    // `$1:1$` 은 옳은 비다(두 점 사이를 $1:1$로 나누는 점, 겉넓이와 부피의 비가 $1:1$인 구).
+    // 세 항 비에서 두 항이 같은 것(`$2:2:5$`)도 이등변 꼴이라 자연스럽다 — 기약 여부만 본다.
+    if (terms.length === 2 && terms[0] === terms[1] && terms[0]! > 1) {
       found.push({ rule: "비의 두 항이 같다", detail: `$${q.body}$` });
     } else if (terms.reduce(gcd) > 1) {
       found.push({ rule: "비가 기약이 아니다", detail: `$${q.body}$` });
@@ -244,6 +278,8 @@ export function degenerateFindings(
       }
       group.push(q);
     }
+    // 셋 이상이면 자료 목록이다(「세 모서리의 길이가 각각 $12$, $12$, $8$」) — 겹쳐도 된다.
+    if (group.length > 2) continue;
     for (let i = 0; i < group.length; i += 1) {
       for (let j = i + 1; j < group.length; j += 1) {
         if (hasDigit(group[i]!) && sameAmount(group[i]!, group[j]!)) {
@@ -257,19 +293,50 @@ export function degenerateFindings(
   }
 
   const live = qs.filter((q) => !q.skip && hasDigit(q) && q.kind !== "ratio");
+  // 같은 단위로 쉼표를 두고 셋 이상 이어진 자료 목록 — 번호가 같으면 한 목록이다
+  const runOf = new Map<Quantity, number>();
+  const runSize = new Map<number, number>();
+  let run = 0;
+  live.forEach((q, i) => {
+    const p = live[i - 1];
+    if (
+      !p ||
+      p.unit !== q.unit ||
+      !LIST_GAP.test(content.slice(p.end, q.start))
+    ) {
+      run += 1;
+    }
+    runOf.set(q, run);
+    runSize.set(run, (runSize.get(run) ?? 0) + 1);
+  });
   for (let i = 0; i < live.length; i += 1) {
     for (let j = i + 1; j < live.length; j += 1) {
       const a = live[i]!;
       const b = live[j]!;
       if (!sameAmount(a, b)) continue;
+      if (runOf.get(a) === runOf.get(b) && runSize.get(runOf.get(a)!)! > 2) {
+        continue;
+      }
       // 한글 단위(「일」·「원」)는 붙은 첫 글자가 곧 단위다 — 단위가 없으면 비교하지 않는다
       if (a.unit === "") continue;
       // 나란한 짝은 **한 문장 안**에 선다. 문장이 바뀌면 다른 말이다 — 「형의 예금액은
       // $1000$원, …이다. 매달 형은 …, 동생은 $1000$원씩」의 두 $1000$원은 잔액과 적립액이다.
       const between = content.slice(a.end, b.start);
       if (/[.?!](?:\s|$)|\n/.test(between)) continue;
+      // 짝은 **이웃한** 두 자리다 — 같은 단위의 수가 사이에 끼면 짝이 아니다. 「A를 $300$g,
+      // B를 $150$g …, A를 $150$g, B를 $300$g」의 두 $300$g 은 서로 다른 경우의 자리다.
+      const adjacent = live.slice(i + 1, j).every((m) => m.unit !== a.unit);
+      // 앞 낱말이 같거나(「분속」·「예산의」·「$…$의」·「$…$는」), 둘 다 「X은/는」 주제어로
+      // 맞서는 꼴(「형은 …, 동생은 …」)이어야 한다. 앞 두 글자만 보면 흔한 주격 「가 」 하나로
+      // 「반지름의 길이가 $9$ cm, 높이가 $9$ cm」 같은 다른 속성이 짝으로 걸렸다(중1 밖 실측).
+      const sameSlot =
+        (a.preWord !== "" && a.preWord === b.preWord) ||
+        (a.pre2 === b.pre2 &&
+          /[은는]$/.test(a.preWord) &&
+          /[은는]$/.test(b.preWord));
       if (
-        a.pre2 === b.pre2 &&
+        adjacent &&
+        sameSlot &&
         (a.ellipsis ||
           (a.nextWord !== "" && a.nextWord === b.nextWord) ||
           (a.prevToken !== null && a.prevToken === b.prevToken))
@@ -375,7 +442,62 @@ export const CALIBRATION: readonly {
     rules: ["나란한 두 자리의 값이 같다"],
     why: "가로와 세로가 같은 식 — 수식 밖 로마자 단위",
   },
+  {
+    content:
+      "정다각형의 한 내각의 크기와 한 외각의 크기의 비가 $42:6$일 때, 이 정다각형의 변의 개수를 구하시오.",
+    rules: ["비가 기약이 아니다"],
+    why: "중1 밖(1-2 다각형 20) 실제 지면 — 교과서는 $7:1$ 로 준다",
+  },
+  {
+    content:
+      "다음 달부터 매달 형은 $3000$원씩, 동생은 $3000$원씩 예금한다면 형의 예금액이 동생의 예금액의 $2$배가 되는 것은 몇 개월 후인지 구하시오.",
+    rules: ["나란한 두 자리의 값이 같다"],
+    why: "한글 이름 주제어 「형은 …, 동생은 …」 — 앞 낱말은 달라도 은/는 으로 맞선다",
+  },
   // ── 음성 — 같은 값이 두 번 나와도 결함이 아니다 ──
+  {
+    content:
+      "밑면인 원의 반지름의 길이가 $9$ cm, 높이가 $9$ cm인 원뿔 모양의 빈 그릇이 있다.",
+    rules: [],
+    why: "반지름과 높이는 다른 속성 — 앞 두 글자 「가 」만 같다",
+  },
+  {
+    content:
+      "소금물 $\\mathrm{A}$를 $300\\,\\mathrm{g}$, 소금물 $\\mathrm{B}$를 $150\\,\\mathrm{g}$ 섞으면 $12\\%$의 소금물이 되고, 소금물 $\\mathrm{A}$를 $150\\,\\mathrm{g}$, 소금물 $\\mathrm{B}$를 $300\\,\\mathrm{g}$ 섞으면 $9\\%$의 소금물이 된다.",
+    rules: [],
+    why: "두 $300\\,\\mathrm{g}$ 은 이웃한 자리가 아니다 — 서로 다른 경우",
+  },
+  {
+    content:
+      "수직선 위에서 두 수 $a$, $b$를 나타내는 두 점 사이의 거리가 $6$이고, 두 점으로부터 같은 거리에 있는 점이 나타내는 수가 $6$이다. 두 수 중 큰 수를 구하시오.",
+    answer: "$9$",
+    rules: [],
+    why: "「$6$이고」·「$6$이다」의 「이」는 단위가 아니다 — 거리와 좌표는 다른 양",
+  },
+  {
+    content:
+      "어느 박물관의 입장객 수를 전날과 비교하여 나타내면 목요일 $+200$명, 금요일 $+150$명, 토요일 $+150$명, 일요일 $-300$명이다.",
+    rules: [],
+    why: "넷을 늘어놓은 자료 — 두 요일의 증감이 같아도 된다",
+  },
+  {
+    content:
+      "직육면체의 한 꼭짓점에 모인 세 모서리의 길이가 각각 $12\\,\\mathrm{cm}$, $12\\,\\mathrm{cm}$, $8\\,\\mathrm{cm}$이다.",
+    rules: [],
+    why: "「각각」 뒤 셋 — 자료 목록",
+  },
+  {
+    content:
+      "어떤 구의 겉넓이와 부피의 비가 $1:1$일 때, 이 구의 반지름의 길이를 구하시오.",
+    rules: [],
+    why: "$1:1$ 은 옳은 비다",
+  },
+  {
+    content:
+      "원 O의 둘레 위의 세 점 A, B, C에 대하여 호 AB, 호 BC, 호 CA의 길이의 비가 $2:2:5$이다.",
+    rules: [],
+    why: "세 항 비의 두 항이 같은 것은 이등변 꼴 — 기약이면 조용하다",
+  },
   {
     content:
       "작년 어느 중학교의 전체 학생 수는 $620$명이었다. 올해는 작년보다 남학생이 $10\\%$ 늘고 여학생이 $10\\%$ 줄어서 전체 학생 수가 $22$명 늘었다. 작년 남학생 수를 구하시오.",
