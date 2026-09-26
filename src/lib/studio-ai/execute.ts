@@ -6,7 +6,11 @@ import { editDevAiFigure } from "@/lib/dev-ai/figure-edit";
 import { dataUrlBytes } from "@/lib/errorLog/describe";
 import { noteErrorLog } from "@/lib/errorLog/scope";
 import { runModelApi, StudioApiError } from "./api";
-import { API_KEY_NAMES, resolveApiModel } from "./routing";
+import {
+  API_KEY_NAMES,
+  autoFigureReviewModel,
+  resolveApiModel,
+} from "./routing";
 
 /** Both transports execute the same prompts, parser, and deterministic figure engine. */
 export async function executeStudioTask(
@@ -77,7 +81,7 @@ export async function executeStudioTask(
   );
   const reviewRoute =
     transport.provider === "auto" && request.action === "figure-redraw"
-      ? resolveApiModel("gemini", "figure-redraw", process.env)
+      ? autoFigureReviewModel(process.env)
       : route;
   noteErrorLog({
     context: {

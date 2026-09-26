@@ -76,6 +76,56 @@ export function resolveApiModel(
     throw new Error("서버의 AI 모델 설정을 확인해 주세요.");
   return { vendor, model };
 }
+/** 자동 배정의 도형 재작도는 그린 뒤 Gemini 가 한 번 더 본다 — 실행(`execute.ts`)과 화면 설명이 같이 쓴다 */
+export function autoFigureReviewModel(env: NodeJS.ProcessEnv) {
+  return resolveApiModel("gemini", "figure-redraw", env);
+}
+
+const WORD_LABELS: Record<string, string> = {
+  gemini: "Gemini",
+  deepseek: "DeepSeek",
+  claude: "Claude",
+};
+/** `gemini-3.8-flash` → `Gemini 3.8 Flash` · `gpt-5.5-pro` → `GPT-5.5 Pro` */
+export function modelLabel(model: string) {
+  const gpt = /^gpt-([\d.]+)(?:-(.+))?$/.exec(model);
+  if (gpt)
+    return [`GPT-${gpt[1]}`, ...(gpt[2]?.split("-") ?? [])]
+      .map((word, i) => (i ? word[0].toUpperCase() + word.slice(1) : word))
+      .join(" ");
+  return model
+    .split("-")
+    .map(
+      (word) =>
+        WORD_LABELS[word] ??
+        (/^[a-z]/.test(word) && !/^o\d/.test(word)
+          ? word[0].toUpperCase() + word.slice(1)
+          : word),
+    )
+    .join(" ");
+}
+
+/**
+ * 작업실 «원본 기본 모델» 설명 — 손으로 적지 않고 **지금 배선**에서 뽑는다. 2026-09-26 설명은 «도형 Opus 5»
+ * 였는데 도형 기본은 9-18 에 이미 Gemini 로 바뀌어 있었다(원장님 신고). 설정이 틀렸으면 그 문구를 낸다.
+ */
+export function describeAutoRoutes(env: NodeJS.ProcessEnv) {
+  try {
+    const label = (action: DevAiAction) =>
+      modelLabel(resolveApiModel("auto", action, env).model);
+    const figure = resolveApiModel("auto", "figure-redraw", env);
+    const review = autoFigureReviewModel(env);
+    const figureText =
+      review.vendor === figure.vendor && review.model === figure.model
+        ? modelLabel(figure.model)
+        : `${modelLabel(figure.model)} · 검토 ${modelLabel(review.model)}`;
+    return `문항 인식 ${label("page-ocr")} · 해설 ${label("solution")} · 도형 ${figureText} (작업별 서버 키 필요)`;
+  } catch (error) {
+    return error instanceof Error
+      ? error.message
+      : "서버의 AI 모델 설정을 확인해 주세요.";
+  }
+}
 export const usesCompletionTokens = (model: string) =>
   /^(?:gpt-5(?:[.-]|$)|o[134](?:-|$))/.test(model);
 export const requiresResponsesApi = (model: string) => model === "gpt-5.5-pro";

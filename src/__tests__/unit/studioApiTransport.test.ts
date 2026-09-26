@@ -264,6 +264,26 @@ describe("source model API routing and compatibility", () => {
       status.providers.find((provider) => provider.id === "openai")?.status,
     ).toBe("unverified");
   });
+  it("describes the auto route from the live routing table, not a hand-written list", () => {
+    // 2026-09-26 원장님 신고: 설명은 «도형 Opus 5» 인데 9-18 부터 도형 기본은 Gemini 였다
+    const detail = () =>
+      getModelApiStatus().providers.find((provider) => provider.id === "auto")
+        ?.detail;
+    expect(detail()).toBe(
+      "문항 인식 Gemini 3.8 Flash · 해설 DeepSeek V4 Pro · 도형 Gemini 3.8 Flash (작업별 서버 키 필요)",
+    );
+    vi.stubEnv("STUDIO_AI_FIGURE_VENDOR", "anthropic");
+    expect(detail()).toBe(
+      "문항 인식 Gemini 3.8 Flash · 해설 DeepSeek V4 Pro · 도형 Claude Opus 5 · 검토 Gemini 3.8 Flash (작업별 서버 키 필요)",
+    );
+    vi.stubEnv("STUDIO_AI_FIGURE_VENDOR", "");
+    vi.stubEnv("STUDIO_AI_GEMINI_MODEL", "gemini-2.5-pro");
+    expect(detail()).toBe(
+      "문항 인식 Gemini 2.5 Pro · 해설 DeepSeek V4 Pro · 도형 Gemini 2.5 Pro (작업별 서버 키 필요)",
+    );
+    vi.stubEnv("STUDIO_AI_FIGURE_VENDOR", "deepseek");
+    expect(detail()).toBe("서버의 AI 모델 설정을 확인해 주세요.");
+  });
   it("never leaks provider secrets or accepts partial output", async () => {
     sdk.chat.mockRejectedValueOnce(new Error("private-test-key raw source"));
     await expect(

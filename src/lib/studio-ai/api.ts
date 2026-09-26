@@ -11,6 +11,7 @@ import {
   requiresResponsesApi,
   usesCompletionTokens,
   type ApiVendor,
+  describeAutoRoutes,
 } from "./routing";
 
 import { pushErrorLogContext } from "@/lib/errorLog/scope";
@@ -385,8 +386,7 @@ export function getModelApiStatus(): DevAiStatus {
         id: "auto" as StudioApiProvider,
         label: "원본 기본 모델",
         status: ready("gemini") || ready("deepseek") ? "unverified" : "error",
-        detail:
-          "문항 인식 Gemini 3.8 · 해설 DeepSeek V4 Pro · 도형 Opus 5 (작업별 서버 키 필요)",
+        detail: describeAutoRoutes(process.env),
         image: ready("gemini"),
       },
       ...vendors.map((vendor) => ({
