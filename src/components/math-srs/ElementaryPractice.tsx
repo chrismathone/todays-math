@@ -366,7 +366,7 @@ function CourseQuestion({
                     ? "풀이를 보고 확인했어요."
                     : attempt.selfAssessed
                       ? "스스로 풀이를 확인했어요."
-                      : "정확하게 풀었어요!"
+                      : "정확하게 풀었어요"
                   : "괜찮아요, 풀이를 살펴봐요."}
               </h3>
               {attempt.submittedAnswer ? (

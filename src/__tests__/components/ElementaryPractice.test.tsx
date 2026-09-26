@@ -132,7 +132,7 @@ describe("elementary practice", () => {
       }),
     );
     expect(
-      screen.getByRole("heading", { name: "정확하게 풀었어요!" }),
+      screen.getByRole("heading", { name: "정확하게 풀었어요" }),
     ).toHaveFocus();
     expect(screen.queryByText(second.content)).not.toBeInTheDocument();
     await user.click(screen.getByRole("button", { name: "다음 문제" }));
@@ -291,7 +291,7 @@ describe("elementary practice", () => {
     await user.keyboard("{Enter}{Enter}");
     expect(record).toHaveBeenCalledTimes(2);
     expect(
-      screen.getByRole("heading", { name: "정확하게 풀었어요!" }),
+      screen.getByRole("heading", { name: "정확하게 풀었어요" }),
     ).toBeInTheDocument();
   });
 });

@@ -69,7 +69,7 @@ export default function AnswerFeedbackEffect({
         </div>
         <p className={s.message}>
           {message ??
-            (correct ? "정확하게 풀었어요!" : "다시 풀 문제로 모았어요")}
+            (correct ? "정확하게 풀었어요" : "다시 풀 문제로 모았어요")}
         </p>
       </div>
     </div>

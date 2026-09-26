@@ -142,7 +142,7 @@ describe("completed tile replay", () => {
       "false",
     );
     fireEvent.click(within(options).getAllByRole("button")[0]);
-    expect(await screen.findByText("정확하게 풀었어요!")).toBeInTheDocument();
+    expect(await screen.findByText("정확하게 풀었어요")).toBeInTheDocument();
     expect(
       screen.queryByRole("dialog", { name: "복습 풀이" }),
     ).not.toBeInTheDocument();
@@ -202,7 +202,7 @@ describe("completed tile replay", () => {
     fireEvent.click(within(parts).getAllByRole("button")[1]);
     expect(fetcher).toHaveBeenCalledOnce();
     fireEvent.click(screen.getByRole("button", { name: "완성했어요" }));
-    await screen.findByText("정확하게 풀었어요!");
+    await screen.findByText("정확하게 풀었어요");
     expect(JSON.parse(fetcher.mock.calls[1][1].body).submittedAnswer).toBe(
       "2/4",
     );
@@ -249,7 +249,7 @@ describe("completed tile replay", () => {
     );
     buttons.forEach((button) => expect(button).toBeEnabled());
     fireEvent.click(buttons[0]);
-    expect(await screen.findByText("정확하게 풀었어요!")).toBeInTheDocument();
+    expect(await screen.findByText("정확하게 풀었어요")).toBeInTheDocument();
     expect(fetcher).toHaveBeenCalledTimes(3);
     expect(screen.queryByRole("alert")).not.toBeInTheDocument();
   });

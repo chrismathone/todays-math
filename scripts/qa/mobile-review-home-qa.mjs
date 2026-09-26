@@ -284,7 +284,7 @@ async function capture(browser, browserName, width, kind, state, phase) {
       () => !document.querySelector('[data-answer-feedback="incorrect"]'),
     );
     await choices.first().click();
-    await replay.getByText("정확하게 풀었어요!").waitFor();
+    await replay.getByText("정확하게 풀었어요").waitFor();
     assert.equal(
       await replay.getByRole("button", { name: "다음 복습 문제" }).count(),
       1,

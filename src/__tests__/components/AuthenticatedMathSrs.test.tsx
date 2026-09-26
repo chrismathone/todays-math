@@ -240,11 +240,11 @@ describe("account-based math practice", () => {
     expect(choices.every((choice) => choice.hasAttribute("disabled"))).toBe(
       true,
     );
-    expect(screen.queryByText("정확하게 풀었어요!")).not.toBeInTheDocument();
+    expect(screen.queryByText("정확하게 풀었어요")).not.toBeInTheDocument();
     const graded = mission(1);
     graded.problems[0].feedback = null;
     await act(async () => finish({ ok: true, data: state(graded) }));
-    expect(await screen.findByText("정확하게 풀었어요!")).toBeInTheDocument();
+    expect(await screen.findByText("정확하게 풀었어요")).toBeInTheDocument();
     expect(screen.getByRole("region", { name: "현재 문제" })).toBe(question);
     expect(screen.queryByText("이렇게 풀어요")).not.toBeInTheDocument();
     expect(
@@ -301,7 +301,7 @@ describe("account-based math practice", () => {
     expect(api.submitMathSrsAttempt).toHaveBeenCalledTimes(2);
     expect(vi.mocked(api.submitMathSrsAttempt).mock.calls[1][0]).toEqual(first);
     await act(async () => finish({ ok: true, data: state(mission(1)) }));
-    expect(await screen.findByText("정확하게 풀었어요!")).toBeInTheDocument();
+    expect(await screen.findByText("정확하게 풀었어요")).toBeInTheDocument();
   });
 
   it("collects wrong answers after the first pass and regrades them without changing the saved progress", async () => {
@@ -394,7 +394,7 @@ describe("account-based math practice", () => {
         "button",
       )[0],
     );
-    expect(await screen.findByText("정확하게 풀었어요!")).toBeInTheDocument();
+    expect(await screen.findByText("정확하게 풀었어요")).toBeInTheDocument();
     expect(screen.queryByText("이렇게 풀어요")).not.toBeInTheDocument();
     await screen.findByRole(
       "heading",
@@ -481,7 +481,7 @@ describe("account-based math practice", () => {
         "button",
       )[0],
     );
-    await screen.findByText("정확하게 풀었어요!");
+    await screen.findByText("정확하게 풀었어요");
     expect(api.submitMathSrsReplay).toHaveBeenCalledWith(
       expect.objectContaining({ step: 2, recordRetry: true }),
     );

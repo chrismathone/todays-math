@@ -241,7 +241,7 @@ describe("one-screen student answers", () => {
           feedbackId={saved.problems[0].id}
         />,
       );
-      expect(screen.getByText("정확하게 풀었어요!")).toBeInTheDocument();
+      expect(screen.getByText("정확하게 풀었어요")).toBeInTheDocument();
       expect(screen.queryByText("서버가 알려 준 풀이")).not.toBeInTheDocument();
       act(() => vi.advanceTimersByTime(1199));
       expect(props.onNext).not.toHaveBeenCalled();
@@ -804,7 +804,7 @@ describe("persisted course practice", () => {
       screen.queryByRole("button", { name: "풀이 보기" }),
     ).not.toBeInTheDocument();
     await userEvent.type(input, "2{Enter}");
-    expect(await screen.findByText("정확하게 풀었어요!")).toBeInTheDocument();
+    expect(await screen.findByText("정확하게 풀었어요")).toBeInTheDocument();
     expect(screen.getByText("문제 1: 1 + 1")).toBeInTheDocument();
     expect(screen.getByRole("textbox", { name: "나의 답" })).toHaveValue("2");
     expect(
@@ -928,7 +928,7 @@ describe("persisted course practice", () => {
     expect(api.answerCourse).toHaveBeenCalledWith(
       expect.objectContaining({ selfCorrect: true, retryIndex: 0 }),
     );
-    expect(await screen.findByText("정확하게 풀었어요!")).toBeInTheDocument();
+    expect(await screen.findByText("정확하게 풀었어요")).toBeInTheDocument();
   });
 
   it("requests the next recommendation after five problems and stops at the daily goal", async () => {
