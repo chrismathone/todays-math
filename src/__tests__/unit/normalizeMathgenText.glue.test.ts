@@ -11,7 +11,6 @@ const handoff = [
   String.raw`따라서 $\frac{N}{M}$$\angle CAM=15°$ 이다.`,
   String.raw`따라서 $\frac{N}{M}$$\angle CAM=15$ 이다.`,
   String.raw`$a=1$$b=2$$c=3$ 이다.`,
-  String.raw`값은 $$\angle CAM=15° 이다.`,
   String.raw`따라서 $\frac{N}{M}$ $\angle CAM=15°$ 이다.`,
   String.raw`$$\frac{N}{M}$$ 이다.`,
 ];
@@ -29,6 +28,22 @@ describe("adjacent inline math intake regression", () => {
       }
     },
   );
+
+  // 닫히지 않은 `$$` 는 예전엔 «그대로 둔다»였다 — 매 회차 `$` 가 불어나는 것을
+  // 막으려고. 2026-09-26 후보정 지시로 «뒤가 수식이면 닫는다»로 바뀌었다: 한 번
+  // 닫고, 그 뒤로는 몇 번을 돌려도 같다(불어나지 않는다).
+  it("closes an unclosed display once, then every pass is stable", () => {
+    const input = String.raw`값은 $$\angle CAM=15° 이다.`;
+    const closed = String.raw`값은 $$\angle CAM=15°$$ 이다.`;
+    for (const normalize of [normalizeMathgenText, normalizeMathgenAnswer]) {
+      let output = normalize(input);
+      expect(output).toBe(closed);
+      for (let pass = 0; pass < 10; pass++) {
+        output = normalize(output);
+        expect(output).toBe(closed);
+      }
+    }
+  });
 
   it.each([
     [String.raw`$A$$\sqrt{2}$`, ["A", String.raw`\sqrt{2}`]],

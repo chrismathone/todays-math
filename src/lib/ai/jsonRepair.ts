@@ -13,6 +13,11 @@
  */
 import type { z, ZodType } from "zod";
 
+import {
+  normalizeMathgenAnswer,
+  normalizeMathgenText,
+} from "@/lib/math/normalizeMathgenText";
+
 import { AiParseError } from "./errors";
 
 /** JSON 문자열 리터럴에서 백슬래시 다음에 와도 되는 유효한 이스케이프 문자 집합. */
@@ -53,6 +58,21 @@ function isAmbiguousLatexCommand(text: string, slashIndex: number): boolean {
 /** `\dfrac` → `\frac` 정규화(인라인 위치 과대 렌더링 방지, 07-coding-convention.md 참조). */
 export function normalizeLatex(text: string): string {
   return text.replace(/\\dfrac/g, "\\frac");
+}
+
+/**
+ * 문제은행에 들어갈 AI 글(본문·해설)의 저장 전 후보정 — 작업실 입구
+ * (`src/lib/dev-ai/tasks.ts`)와 **같은 함수**를 거친다(2026-09-26 후보정 감사 K).
+ * 화면은 렌더 때 다시 후보정하지만 DB 값이 날것이면 DB 를 읽는 다른 자리가 다른 글을
+ * 본다. 후보정은 멱등이라 렌더가 한 번 더 돌려도 모양이 안 바뀐다.
+ */
+export function normalizeAiText(text: string): string {
+  return normalizeMathgenText(normalizeLatex(text));
+}
+
+/** 정답 칸 — 작업실 입구의 정답 후보정(목록 쉼표 띄어쓰기 포함)과 같다. */
+export function normalizeAiAnswer(text: string): string {
+  return normalizeMathgenAnswer(normalizeLatex(text));
 }
 
 /** 마크다운 코드펜스(```json ... ``` 또는 ``` ... ```)를 제거하고 내용만 남긴다. */
