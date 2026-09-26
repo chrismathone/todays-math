@@ -45,6 +45,10 @@ def equation_width(item, script):
 def hancom_equation(item):
     """``item`` with Hancom's own box: script, width, height and baseline at the same text baseline."""
     native_latex=re.sub(r'\\htmlClass\{geom-arc-wrap\}',r'\\widehat',str(item.get('latex','')))
+    # The render preprocessor draws repeating-decimal dots as \htmlClass{repeat-dot}{d} (CSS dot);
+    # the converter knows \dot{d} -> ``dot {d}``. Without this the class name went out as text:
+    # ``0.{repeat-dot}{3}`` (post-processing audit G, 2026-09-26).
+    native_latex=re.sub(r'\\htmlClass\{repeat-dot\}\{([^{}]*)\}',r'\\dot{\1}',native_latex)
     script=latex_to_hwpeq(native_latex)
     height,percent=hwpeq_extent(script, units(item.get('fontSize') or 14))
     h=height/75;baseline=item.get('baseline',item['y']+item['h']*.85)

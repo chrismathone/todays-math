@@ -4,6 +4,7 @@ import { connection } from "next/server";
 
 import { MathText } from "@/components/math/MathText";
 import { PaperProblemView } from "@/components/print/PaperProblemView";
+import { solutionForDisplay } from "@/lib/solutionSteps";
 import { ELEM_TIERS, TIER_PRESETS } from "@/lib/elementary/difficulty";
 import {
   elementaryUnits,
@@ -386,7 +387,10 @@ export default async function TierBenchG5Page({
                                 해설
                               </p>
                               <PaperProblemView
-                                content={cell.problem.solution}
+                                content={
+                                  solutionForDisplay(cell.problem.solution) ??
+                                  ""
+                                }
                                 framed={false}
                               />
                             </div>

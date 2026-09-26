@@ -2,7 +2,7 @@
 
 import dynamic from "next/dynamic";
 import { useState } from "react";
-import { MathText } from "@/components/math/MathText";
+import { MathText, SolutionText } from "@/components/math/MathText";
 import UnifiedProblem from "./UnifiedProblem";
 import { fractionViewFor } from "./fractionDisplay";
 import type { BankData, StudioProblem } from "./types";
@@ -903,9 +903,8 @@ export default function LegacyUnifiedWorkspace({
                                 )}
                               />
                               {p.solution && (
-                                <MathText
+                                <SolutionText
                                   text={fractionViewFor(p)(p.solution)}
-                                  as="div"
                                 />
                               )}
                             </section>

@@ -43,7 +43,9 @@ const normalizeTextSegment = (s: string): string =>
     // 연속 공백 정리
     .replace(/[ \t]{2,}/g, " ")
     // 구두점 앞 불필요한 공백 제거(예: "$a$ ," → "$a$,")
-    .replace(/[ \t]+([,)\]?!。，、])/g, "$1");
+    .replace(/[ \t]+([,)\]?!。，、])/g, "$1")
+    // 글 속 `\$`(화폐) — 마크다운 지면은 이스케이프를 풀어 `$` 로 그린다. 이 문자열 경로도 같게.
+    .replace(/\\\$/g, "$");
 
 /** 문제 본문·정답·해설을 KaTeX HTML 로 변환. katex-error 를 절대 포함하지 않는다. */
 export function renderMathHtml(text: string): string {

@@ -50,12 +50,43 @@ function walk(dir: string): string[] {
   });
 }
 
+/** 해설로 **끝나는** 참조 — `p.solution` · `solution`. `data.solution.answer`(정답)·`solutionSource` 는 아니다. */
+const SOLUTION_REF = /(?<![\w$])solution(?![\w$])(?!\s*\??\.)/;
+
 /**
- * 해설을 **렌더러에 그대로 넘기는** 모양. `text={x.solution}` · `content={x.solution}`
- * · `text={x.solution ?? …}` 를 잡는다. `solutionForDisplay(...)` 를 거치면 안 걸린다.
+ * 해설을 **렌더러에 손질 없이 넘기는** 자리를 찾는다.
+ *
+ * 규칙: `text={…}`·`content={…}` 식이 해설을 가리키면, 그 식이 `solutionForDisplay(` 를 부르거나
+ * 받는 쪽이 `<SolutionText`(줄 나눔 → MathText, `MathText.tsx`)여야 한다.
+ *
+ * 🔴 2026-09-26 — 예전 식(`/text=\{x\.solution/` 모양)은 **감싼 호출**을 못 봤다:
+ *    `shown(p.solution)` · `fractionViewFor(p)(p.solution)` · `preview(crop.solution)` · `text={solution}`.
+ *    그래서 시험지 해설지(`AnswerPage`)·관리자 미리보기·옛 작업 화면·작업실이 줄 나눔 없이 그렸는데
+ *    이 검사는 초록이었다(후보정 조사 D). 반대로 `data.solution.answer`(정답)를 해설로 읽어
+ *    수정 전부터 **늘 빨갰다** — 늘 우는 가드는 침묵하는 가드와 같다.
  */
-const RAW_PASS =
-  /\b(?:text|content)=\{\s*[A-Za-z_$][\w$]*\.solution\b(?!\s*\))/g;
+function rawSolutionPasses(source: string): string[] {
+  const found: string[] = [];
+  for (const m of source.matchAll(/\b(?:text|content)=\{/g)) {
+    // 식은 균형 잡힌 중괄호로 읽는다 — `?? ""` · 삼항 · 호출이 섞여 있다.
+    const from = m.index! + m[0].length;
+    let depth = 1;
+    let i = from;
+    for (; i < source.length && depth > 0; i += 1) {
+      if (source[i] === "{") depth += 1;
+      else if (source[i] === "}") depth -= 1;
+    }
+    const expr = source.slice(from, i - 1);
+    if (!SOLUTION_REF.test(expr)) continue;
+    if (/solutionForDisplay\s*\(/.test(expr)) continue;
+    const element = [
+      ...source.slice(0, m.index).matchAll(/<([A-Z][\w.]*)/g),
+    ].at(-1)?.[1];
+    if (element === "SolutionText") continue;
+    found.push(`<${element ?? "?"} ${m[0]}${expr}}`);
+  }
+  return found;
+}
 
 describe("[배선] 해설은 전부 solutionForDisplay 를 지난다", () => {
   const files = [...walk(ROOT), ...walk(PROBE_ROOT)];
@@ -64,30 +95,52 @@ describe("[배선] 해설은 전부 solutionForDisplay 를 지난다", () => {
     const offenders: string[] = [];
     for (const file of files) {
       const text = readFileSync(file, "utf8");
-      for (const m of text.matchAll(RAW_PASS))
+      for (const hit of rawSolutionPasses(text))
         offenders.push(
-          `${file.replace(ROOT, "src").replace(PROBE_ROOT, "scripts/qa")}: ${m[0]}`,
+          `${file.replace(ROOT, "src").replace(PROBE_ROOT, "scripts/qa")}: ${hit}`,
         );
     }
     expect(
       offenders,
-      "해설을 손질 없이 그리고 있다 — `solutionForDisplay()` 를 거칠 것. " +
+      "해설을 손질 없이 그리고 있다 — `<SolutionText>` 를 쓰거나 `solutionForDisplay()` 를 거칠 것. " +
         "한 자리만 빠져도 그 화면에서만 한 줄로 나가고 아무도 모른다",
     ).toEqual([]);
   });
 
   it("🔴 이 검사가 «아니오»를 낼 수 있다 — 음성 대조", () => {
     // 도장은 초록을 못 낸다. 일부러 걸리는 글을 대 본다.
-    expect([
-      ..."<MathText text={problem.solution} />".matchAll(RAW_PASS),
-    ]).toHaveLength(1);
-    expect([
-      ...'<View content={row.solution ?? ""} />'.matchAll(RAW_PASS),
-    ]).toHaveLength(1);
+    expect(
+      rawSolutionPasses("<MathText text={problem.solution} />"),
+    ).toHaveLength(1);
+    expect(
+      rawSolutionPasses('<View content={row.solution ?? ""} />'),
+    ).toHaveLength(1);
+    // 감싼 호출도 해설이다 — 2026-09-26 전에는 여기가 전부 초록이었다.
+    expect(
+      rawSolutionPasses('<MathText as="div" text={shown(p.solution)} />'),
+    ).toHaveLength(1);
+    expect(
+      rawSolutionPasses(
+        '<MathText text={fractionViewFor(p)(p.solution)} as="div" />',
+      ),
+    ).toHaveLength(1);
+    expect(
+      rawSolutionPasses('<MathText text={solution} as="div" />'),
+    ).toHaveLength(1);
+    expect(
+      rawSolutionPasses("<ProblemContent content={preview(crop.solution)} />"),
+    ).toHaveLength(1);
     // 거쳐 가는 자리는 안 걸려야 한다 — 안 그러면 늘 우는 가드가 된다.
-    expect([
-      ...'text={solutionForDisplay(problem.solution) ?? ""}'.matchAll(RAW_PASS),
-    ]).toHaveLength(0);
+    expect(
+      rawSolutionPasses('text={solutionForDisplay(problem.solution) ?? ""}'),
+    ).toHaveLength(0);
+    expect(
+      rawSolutionPasses("<SolutionText text={shown(p.solution)} />"),
+    ).toHaveLength(0);
+    // 정답은 해설이 아니다(`StudentReplayDialog` 의 `data.solution.answer`).
+    expect(
+      rawSolutionPasses('<MathText text={data.solution.answer} as="div" />'),
+    ).toHaveLength(0);
   });
 
   it("실제로 네 자리가 그 함수를 부른다 — 0 은 「깨끗」이 아니라 「못 셈」일 수 있다", () => {

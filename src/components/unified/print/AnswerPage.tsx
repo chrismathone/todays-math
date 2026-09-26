@@ -1,4 +1,4 @@
-import { MathText } from "@/components/math/MathText";
+import { MathText, SolutionText } from "@/components/math/MathText";
 import { fractionViewFor } from "../fractionDisplay";
 import { A4_DIM } from "./tokens";
 import { printPagePadding, scaledItemStyle } from "./geometry";
@@ -41,7 +41,8 @@ export function AnswerPage({
           <MathText text={shown(p.answer || "정답 미입력")} />
         </div>
         {!options.quickAnswerOnly && p.solution && (
-          <MathText as="div" text={shown(p.solution)} />
+          // 해설은 한 조합(`SolutionText` — 줄 나눔 → MathText)만 지난다. 화면·정답지와 같은 줄.
+          <SolutionText text={shown(p.solution)} />
         )}
       </section>
     );

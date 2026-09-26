@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { ProblemContent } from "@/components/math/ProblemContent";
-import { MathText } from "@/components/math/MathText";
+import { MathText, SolutionText } from "@/components/math/MathText";
 import { fractionViewFor } from "@/components/unified/fractionDisplay";
 import { svgDataUrl } from "@/lib/svgDataUrl";
 import { accountDate } from "./AccountReview";
@@ -129,7 +129,7 @@ function ProblemPreview({
           {solution ? (
             <>
               <h4>해설</h4>
-              <MathText text={solution} as="div" />
+              <SolutionText text={solution} />
             </>
           ) : null}
         </div>
