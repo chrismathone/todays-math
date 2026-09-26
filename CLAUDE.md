@@ -15,7 +15,7 @@
 | `docs/planning/06-tasks.md` | 태스크 목록 (M0~M6, 21개) — `/orchestrate`가 사용 |
 | `docs/planning/07-coding-convention.md` | 컨벤션, 도메인 용어 SSOT, Decision Log D-01~81 · **D-100~112** |
 | `docs/planning/09-figure-engine-guide.md` | **도형 SVG 엔진 사용 지침** — testchanger 호출법, elem-1(D-61),<br>재발 금지 §4. **초등·큐브 그림 작업 전 필독** |
-| `docs/planning/10-handoff.md` | **인수인계 — 이어할 때 여기부터. 맨 위 절이 최신(2026-09-13 — §0-W 기출 대량 이관 · §0-V 고등 엔진).**<br>새 컴퓨터에서 칠 명령 · **저장소 밖 의존물**(말뭉치는 다시 만들어야 한다) · 잔고 · 오늘의 함정 |
+| `docs/planning/10-handoff.md` | **인수인계 — 이어할 때 여기부터. 맨 위 절이 최신(2026-09-26 — §0-X 통합 탐험 · eywa SSO · 작업실 후보정 · 강사 화면).**<br>새 컴퓨터에서 칠 명령 · **저장소 밖 의존물**(말뭉치는 다시 만들어야 한다) · 잔고 · 오늘의 함정 |
 | `docs/planning/11-score-predictor.md` | **기출 예상 점수 판독기 설계 SSOT** — 실측 근거·엔진 계층<br>·backtest 결과·배점 보정기(§10). '오늘의 시험' 작업 전 필독 |
 | `docs/planning/12-discard-candidates.md` | 폐기 후보 문항 목록 (`build-discard-list.ts` 가 생성) |
 | `docs/planning/15-remaining-defects-review.md` | 적대적 리뷰 잔여 결함 해결 방안 검토 — 우선순위·원장님 결정 대기 항목 |

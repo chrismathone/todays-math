@@ -3,13 +3,66 @@
 작성: **2026-08-15** · 큐브 QA 갱신: **2026-08-21**
 
 > **다른 컴퓨터에서 이 문서 하나만 읽고 이어할 수 있게 쓴 문서다.**
-> 순서: **§0-T(2026-09-07 심야, 최신)** → §0-S → §0-R → §0-Q → §0-P → §0-O → §0-N → §0-M → §0-L → §0-K → §0-J → §0-I → §0-F → §0-E → §1 환경 준비 → 이관은 08, 도형은 09.
+> 순서: **§0-X(2026-09-26, 최신)** → §0-W·§0-V(2026-09-13) → §0-T(2026-09-07 심야) → §0-S → §0-R → §0-Q → §0-P → §0-O → §0-N → §0-M → §0-L → §0-K → §0-J → §0-I → §0-F → §0-E → §1 환경 준비 → 이관은 08, 도형은 09.
 
 ---
 
 > 📌 **그림 유실 회수 작업을 이어받는다면** →
 > [`tracks/brief-handoff-20260820.md`](tracks/brief-handoff-20260820.md) (2026-08-20).
 > 이 문서(§2·§3)는 그보다 앞선 기출 이관 단계 기준이다.
+
+## 0-X. 인수인계 (2026-09-26 — **최신**) — 통합 탐험 · eywa 자동 로그인 · 작업실 후보정 · 강사 화면
+
+한 날에 네 갈래를 **운영까지** 올렸다. 전부 main = `origin/main` = 운영(Vercel success). 미커밋 없음.
+
+| 운영 커밋 | 내용 |
+|---|---|
+| `b8af2e605` (20:09) | 통합 탐험(화면 board + 서버 state 병합) · SSO 1판 · 작업실 AI 설명 정정 · 모바일 검수 스크립트 |
+| `e686c6a4e` (20:23) | 🔴 SSO **잠금**(이메일로 계정 찾기 = 탈취 구멍 — 아래 0-X.2) |
+| `c95c03992` (21:53) | 후보정 세 트랙(T1 편집기 · T2 입구 · T3 렌더·인쇄) 병합 + 합치기 수정 |
+| `f77c5dd5d` (22:17) | SSO 2판 «처음 한 번 비밀번호로 연결» — **공유 DB 먼저 적용**(0-X.2) |
+| `191c7d221` (22:40) | 강사 화면(D-140) + eywa 로그인도 같은 «로그인 직후» 표지 |
+
+### 0-X.1 통합 수학 탐험 (학생 `/learn` 하나의 게임)
+- 기준 문서 `docs/reviews/unified-expedition-decision.md`. 원본 앱 패키지 `C:\Users\user\Downloads\Math_Explorers_Codex_Package.zip`·`Math_Explorers_Codex_Handoff.md`.
+- 서버: 고정된 «오늘의 탐험»(`src/lib/math-explorers/expedition.ts`·`expeditionStart.ts`), 모든 저장이 `changeSrsState → updateExpedition` 중앙 가드를 지난다. 하루 한 칸은 **실제 완료한 한국 날짜**, 3바퀴 뒤 남은 오답은 완료 아님 → `retry-unresolved`.
+- 모바일 검수 `node scripts/qa/mobile-explorers-qa.mjs`(dev 서버 필요, `/api/**` 전부 가로채 DB 안 씀) — Chromium·WebKit × 320/390/430/1280 **326항목 실패 0**.
+- 남은 것: 선수개념(repair) 미션 **자동 배정 없음** · 오래된 중등 미해결 오답이 있으면 중등 날이 이어짐 · 옛 엔진별 진도판을 쓰는 곳이 있으면 미래 칸 단원명이 보일 수 있음(통합 홈은 안 씀).
+- 브랜치 `BIGSHOL/unified-game-claude-review`(`e6087989f`)는 **일부러 병합 안 함** — «3바퀴 뒤 칸 지급·배정 날짜 칸»이 결정 문서와 반대. 이름이 final 이라도 기준 아님.
+
+### 0-X.2 eywa 자동 로그인(SSO) — D-139 ⑴~⑹ · CLAUDE.md 규칙 7
+- 1판(이메일로 기존 계정 찾기)을 올린 뒤 eywa 세션 답: **eywa 이메일은 본인 확인 값이 아니다**(직원이 확인 없이 자기 이메일을 바꾼다) → 같은 날 잠금 → 2판.
+- 2판: 표 `v1.<payloadB64>.<sigB64>`(HMAC-SHA256 `EYWA_SSO_SECRET`, `sub` = eywa users.id 필수, 60초). `sub` 가 연결된 계정만 로그인. 처음이면 연결 대기 쿠키(10분, `AUTH_SECRET` 유도 열쇠) + 지금 세션 끊고 `/login`(확정 안내 문구) → 비밀번호 로그인 → `/account/eywa-link` **[연결]을 눌러야만** 연결. 양방향 유일. 이메일 조회 없음.
+- 해제는 뒷단만: `DELETE /api/account/eywa-link`(본인) · `DELETE /api/admin/users/[id]/eywa-link`(최고관리자).
+- DB: `user.eywa_user_id`(uuid UNIQUE)·`eywa_linked_at` — `scripts/qa/apply-eywa-link-migration.ts` 로 드라이런 → 적용(기존 3행 무변경). 🔴 **DB 먼저 · 코드 나중**(거꾸로면 이메일 로그인이 전부 500).
+- 🔴 **아직 꺼져 있다** — 원장님이 두 Vercel(eywa·todays-math)에 **같은** `EYWA_SSO_SECRET`(32자+)을 넣고 → 침산 «오늘의 수학 연결» 스위치. eywa 쪽은 main `478ce6bd` 반영 끝.
+- 대기: 확인 화면 [연결]·[연결 안 함]이 같은 파란 버튼(보조 버튼 모양은 D-07) · 검수 계정은 연결 화면 못 감(필요하면 `routeAccess.ts` 한 줄) · 해제 화면 없음.
+
+### 0-X.3 작업실(«자료 제작») 후보정 — 원장님 캡처 `\displaystyle $$이동 거리=…`
+- 뿌리: ⑴ 작업실 **편집 칸·카드 본문만** 후보정을 건너뜀(`SourceEditorRenderer` editorTokens) ⑵ 카드가 날 `ocr.blocks` 로 그림 ⑶ 편집·저장이 `\\displaystyle \$\$` 로 굳힘 ⑷ 입구 명령 목록이 손 목록 140개(KaTeX 가 그리는 명령 775개가 샘) ⑸ 렌더의 `$` 짝 정규식이 «짝의 시작 자리»를 모름 ⑹ 해설 출구마다 다른 함수.
+- 고친 뒤(93사례 × 6경로, 결함 사례 수): 해설 읽기 37→**3** · 정답지 41→**3** · 편집 칸 31→**7** · 카드 본문 48→**11** · 편집·저장 뒤 44→**6**. 해설·정답지의 3 중 둘은 화폐 `$5`(옳은 모양, 판정기 거짓 경보), 하나는 `\\$x$`(뜻을 몰라 둠).
+- 새 것: `src/components/math/editor/sourceRepair.ts`(수식 밖만 입구 후보정) · `src/lib/math/escapedStyleLeak.ts` · `katexCommands.generated.ts`(재생성 `npx tsx scripts/qa/gen-katex-commands.ts`, 동기화 시험이 KaTeX 버전과 견줌) · `segments.ts` `findMathSpans`/`canonicalizeMathSpans` · 해설 출구 한 함수 `SolutionText` · 판정 자 `mathRenderQa.ts` 가 지면 조합으로 · 문제은행 AI 입구도 같은 후보정.
+- 🔴 원장님 눈 확인: 작업실 카드 해설·검수 «해설 보기»가 해설 렌더러로 바뀌어 줄 나눔·글꼴이 달라짐 · 정답지는 해설이 문장마다 갈려 **길어짐** → `/dev/print-check` 두 항목 «대기»(`answer-sheet-solution-postprocess`, `hwpx-repeat-dot` — 한컴 실물 확인은 원장님 자리 비우실 때).
+- 대기 결정: 해설의 표시식(`$$…$$`)을 제 줄에 세울지(`keepMeaningfulParagraphs` — 정답지 높이가 움직임).
+- 남은 것(편집기 쪽, 원래부터): 코드 따옴표 안 TeX · `&#36;` · 수식 안 빈 줄 · 제어문자 손상 옛 저장본 · 편집 저장의 `\[` `\]` 모호성(글의 `[1, 2]` 가 저장 뒤 수식이 됨 — 근본책은 `]` 만 이스케이프, 범위 커서 보류).
+- 조사 원자료(재현기 93사례·보고서)는 이 PC 스크래치(`…\scratchpad\ocr-audit\`)에만 있다 — 다른 PC 에선 없다. 결과는 새 시험(`*leaks*`, `editorSourceRepair`, `renderPostprocessLeaks`, `frozenEditorLeakExits` 등)이 잠근다.
+
+### 0-X.4 강사 화면 — D-140
+- 강사(`branchRole = teacher`)는 로그인하면 `/classes/manage`(내 반 · 학생 명단). 방법: 로그인만 `/?entry=login` 표지로 보내고 `/` 가 역할로 고른다(`src/lib/loginLanding.ts`) — `/` 는 누구에게나 작업실로 남긴다.
+- 자기 반 학생에 한해 등록 · 발급 · 다시 발급 · 끄기(`canManageClassStudents`), 첫 비밀번호는 원장과 같은 고정값. 반 만들기·반 설정·다른 반·`/branch` 는 여전히 막힘.
+- 대기: 원장님 실제 한 바퀴(강사 계정 로그인 → 내 반 → 학생 등록 → 계정 만들기 → 작업실로 이동) · 학생 이름 고치기·삭제를 강사에게 열지 · 반 없는 강사의 «반을 추가하면…» 문구 · «늘 내 반 먼저»(지금은 로그인 순간만).
+
+### 0-X.5 그 밖
+- **Gemini 월 지출 한도 초과**(도형 다시 그리기·문항 인식 429 «monthly spending cap») — 원장님이 https://ai.studio/spend 에서 올림. 작업실 «원본 기본 모델» 설명은 이제 **실제 배선에서 뽑는다**(`describeAutoRoutes`) — 전부 Gemini 로 바꿔도 따라감.
+- 알려진 빨간 시험(오늘 전부터 — 되돌려 확인): `DailyReviewSection`(1) · `StudentProgressBoard`(2, 9-25 이후) · `TodaysExam`(1) · `AuthenticatedMathSrs`(부하에서 흔들림). 전체 시험은 `npm run test`(기본 설정) — `--pool=threads` 로 전체를 돌리면 Node 가 segfault(139)로 죽는다.
+- 오르카 워크트리: 오늘 것은 전부 병합·정리. 남은 `lab-mobile-ux-tests` 는 이 작업 소유 아님.
+
+### 0-X.6 오늘의 함정
+- 🔴 **`orca worktree rm` 이 main 의 `node_modules` 를 통째로 비웠다** — 워크트리의 `node_modules` 가 main 을 가리키는 연결이었다. 복구 `npm ci` + `npx prisma generate`. 지우기 전 `ls -la <wt>` 로 연결인지 보고, 연결이면 `cmd //c rmdir <wt>\node_modules` 로 연결만 먼저 끊는다. (오늘 새로 만든 워크트리는 Orca 설정 훅이 **따로 설치**했다 — 그때는 안전.)
+- `orca … runtime_unavailable` 는 거짓 실패였다(세 번) — 다시 만들기 전에 `git worktree list` 로 확인.
+- pre-push 는 시험을 안 돌린다 — 오늘 SSO 1판이 전수 가드(`errorLogRouteCoverage`)를 빨갛게 둔 채 나갔다(`withErrorLog` 첫 인자는 **글자 그대로**).
+- 트랙을 따로 초록으로 만들어도 **합치면 부딪친다** — T2(수식 안 `\(`→괄호)와 T3(글 속 수식을 `\(x\)` 로)가 멱등을 깼다. 병합 뒤 main 에서 전체를 한 번 돌릴 것.
+- 파이썬 heredoc 안의 역슬래시는 한 겹 먹힌다 — 시험 표본 `\\$x=2$` 가 `\$` 로 들어가 헛초록. 역슬래시가 든 글은 Edit 로 쓰고 `od -c` 로 셀 것.
 
 ## 0-0. eywa 연계 (2026-08-21 — 이 주제의 최신)
 
