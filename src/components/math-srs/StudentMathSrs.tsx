@@ -33,6 +33,7 @@ import s from "./authenticated.module.css";
 import pageTurn from "./question-page-turn.module.css";
 import StudentJourney from "./StudentJourney";
 import AnswerFeedbackEffect from "./AnswerFeedbackEffect";
+import type { ExpeditionActivityCallbacks } from "@/components/math-explorers/ExplorerBankActivity";
 
 const ProblemContent = dynamic(() =>
   import("@/components/math/ProblemContent").then((mod) => mod.ProblemContent),
@@ -52,7 +53,9 @@ function remainingRetrySteps(
   );
 }
 
-export function StudentMathSrs() {
+export function StudentMathSrs({
+  expedition,
+}: { expedition?: ExpeditionActivityCallbacks } = {}) {
   const router = useRouter();
   const [state, setState] = useState<MathSrsState | null>(null);
   const [loading, setLoading] = useState(true);
@@ -68,6 +71,10 @@ export function StudentMathSrs() {
   const [retrySteps, setRetrySteps] = useState<number[] | null>(null);
   const [retryFeedback, setRetryFeedback] = useState<boolean | null>(null);
   const [retryTurn, setRetryTurn] = useState(0);
+  const expeditionRef = useRef(expedition);
+  useEffect(() => {
+    expeditionRef.current = expedition;
+  }, [expedition]);
 
   useEffect(() => {
     alive.current = true;
@@ -78,13 +85,31 @@ export function StudentMathSrs() {
 
   useEffect(() => {
     let current = true;
-    void fetchMathSrs().then((result) => {
+    void fetchMathSrs().then(async (result) => {
       if (!current) return;
-      setLoading(false);
       if (result.ok) {
         setState(result.data);
         setRetrySteps(remainingRetrySteps(result.data.mission));
         setError(null);
+        if (expeditionRef.current) {
+          const session = result.data.mission;
+          if (
+            session &&
+            (!session.completedAt || remainingRetrySteps(session)?.length)
+          )
+            setPracticing(true);
+          else if (result.data.journey?.todayComplete)
+            expeditionRef.current.onComplete();
+          else {
+            const started = await startMathSrs();
+            if (!current) return;
+            if (started.ok) {
+              setState(started.data);
+              setRetrySteps(remainingRetrySteps(started.data.mission));
+              setPracticing(!!started.data.mission);
+            } else setError(started);
+          }
+        }
       } else if (result.status === 401) router.replace("/learn/login");
       else if (
         result.status === 403 &&
@@ -92,6 +117,7 @@ export function StudentMathSrs() {
       )
         router.replace("/learn/password");
       else setError(result);
+      setLoading(false);
     });
     return () => {
       current = false;
@@ -152,7 +178,10 @@ export function StudentMathSrs() {
     if (!practicing || (!feedbackId && retryFeedback === null)) return;
     const timer = window.setTimeout(() => {
       if (retryFeedback !== null) {
-        if (retryFeedback && retrySteps?.length === 1) setPracticing(false);
+        if (retryFeedback && retrySteps?.length === 1) {
+          setPracticing(false);
+          expeditionRef.current?.onComplete();
+        }
         setRetrySteps((steps) => {
           if (!steps?.length) return steps;
           return retryFeedback ? steps.slice(1) : [...steps.slice(1), steps[0]];
@@ -164,7 +193,10 @@ export function StudentMathSrs() {
         if (mission?.completedAt) {
           const remaining = remainingRetrySteps(mission);
           setRetrySteps(remaining);
-          if (!remaining?.length) setPracticing(false);
+          if (!remaining?.length) {
+            setPracticing(false);
+            expeditionRef.current?.onComplete();
+          }
         }
       }
     }, 1200);
@@ -296,9 +328,9 @@ export function StudentMathSrs() {
 
   return (
     <StudentReviewPage
-      kind="middle"
+      kind={expedition ? "explorers" : "middle"}
       student={state?.student ?? null}
-      practicing={practicing}
+      practicing={practicing || !!expedition}
       boardReady={!!state && !loading && error?.status !== 503}
       practiceTitle="오늘의 수학 복습"
       practicePageClassName={`${s.student} ${s.practiceViewport}`}
@@ -324,6 +356,7 @@ export function StudentMathSrs() {
                     setFeedbackId(null);
                     setRetryFeedback(null);
                     setRetrySteps(remainingRetrySteps(mission));
+                    expedition?.onExit();
                   }}
                 >
                   ← 학습 홈
@@ -399,6 +432,11 @@ export function StudentMathSrs() {
                 <div className={s.resultCard}>{journeyBoard}</div>
               )}
             </>
+          ) : expedition ? (
+            <div className={s.resultCard}>
+              <p>같은 탐험을 이어 갈 수 있어요.</p>
+              <Button onClick={expedition.onExit}>탐험판으로</Button>
+            </div>
           ) : (
             <>
               <StudentReviewOverview

@@ -126,6 +126,26 @@ beforeEach(() => {
   vi.mocked(api.fetchMathSrs).mockResolvedValue({ ok: true, data: state() });
 });
 
+describe("embedded expedition algebra activity", () => {
+  it("resumes the server lesson directly without a separate home", async () => {
+    vi.mocked(api.fetchMathSrs).mockResolvedValue({
+      ok: true,
+      data: state(mission(2)),
+    });
+    const onExit = vi.fn();
+    render(<StudentMathSrs expedition={{ onExit, onComplete: vi.fn() }} />);
+    expect(
+      await screen.findByRole("group", { name: "답 고르기" }),
+    ).toBeVisible();
+    expect(api.startMathSrs).not.toHaveBeenCalled();
+    expect(
+      screen.queryByRole("heading", { name: "전체 학습 진도" }),
+    ).not.toBeInTheDocument();
+    await userEvent.click(screen.getByRole("button", { name: /학습 홈/ }));
+    expect(onExit).toHaveBeenCalledOnce();
+  });
+});
+
 describe("account-based math practice", () => {
   it("shows storage setup failure without inventing local progress, and retries", async () => {
     vi.mocked(api.fetchMathSrs).mockResolvedValueOnce({

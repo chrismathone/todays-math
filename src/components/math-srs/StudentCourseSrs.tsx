@@ -23,6 +23,7 @@ import {
   startCourse,
 } from "./courseApi";
 import s from "./student-course.module.css";
+import type { ExpeditionActivityCallbacks } from "@/components/math-explorers/ExplorerBankActivity";
 
 const StudentCoursePractice = dynamic(() => import("./StudentCoursePractice"), {
   loading: () => <p role="status">학습 화면을 준비하고 있어요…</p>,
@@ -33,7 +34,9 @@ type Action = {
   after?: (data: CourseStudentState) => void;
 };
 
-export default function StudentCourseSrs() {
+export default function StudentCourseSrs({
+  expedition,
+}: { expedition?: ExpeditionActivityCallbacks } = {}) {
   const router = useRouter();
   const [state, setState] = useState<CourseStudentState | null>(null);
   const [loading, setLoading] = useState(true);
@@ -48,6 +51,10 @@ export default function StudentCourseSrs() {
   const settingsHeading = useRef<HTMLHeadingElement>(null);
   const settingsOpener = useRef<HTMLElement | null>(null);
   const [retryAction, setRetryAction] = useState<Action | null>(null);
+  const expeditionRef = useRef(expedition);
+  useEffect(() => {
+    expeditionRef.current = expedition;
+  }, [expedition]);
 
   const authFailure = useCallback(
     (status: number) => {
@@ -76,13 +83,34 @@ export default function StudentCourseSrs() {
   }, []);
   useEffect(() => {
     let current = true;
-    void getCourseState().then((result) => {
+    void getCourseState().then(async (result) => {
       if (!current) return;
-      setLoading(false);
       if (result.ok) {
         setState(result.data);
         setError(null);
+        if (expeditionRef.current) {
+          const session = result.data.session;
+          const unfinished =
+            session &&
+            (!session.completedAt ||
+              (session.retry && !session.retry.completedAt));
+          if (unfinished) setPracticing(true);
+          else if (result.data.journey?.todayComplete)
+            expeditionRef.current.onComplete();
+          else if (
+            result.data.plan?.enabled &&
+            result.data.summary.recommendation
+          ) {
+            const started = await startCourse();
+            if (!current) return;
+            if (started.ok) {
+              setState(started.data);
+              setPracticing(!!started.data.session);
+            } else handleFailure(started);
+          }
+        }
       } else handleFailure(result);
+      setLoading(false);
     });
     return () => {
       current = false;
@@ -184,9 +212,9 @@ export default function StudentCourseSrs() {
 
   return (
     <StudentReviewPage
-      kind="elementary"
+      kind={expedition ? "explorers" : "elementary"}
       student={state?.student ?? null}
-      practicing={!!practice}
+      practicing={!!practice || !!expedition}
       boardReady={!!state && !loading && !needsSetup && error?.status !== 503}
       practiceTitle="초등 수학 자동 복습"
       practicePageClassName={`${s.page} ${s.practicePage}`}
@@ -219,6 +247,7 @@ export default function StudentCourseSrs() {
             onExit={() => {
               setPracticing(false);
               setFeedbackId(null);
+              expedition?.onExit();
             }}
             onContinue={start}
             onNext={() => {
@@ -232,7 +261,10 @@ export default function StudentCourseSrs() {
                   !state.journey?.todayComplete
                 )
                   start();
-                else setPracticing(false);
+                else {
+                  setPracticing(false);
+                  expedition?.onComplete();
+                }
               }
             }}
             onHint={(problemId) => {
@@ -248,6 +280,18 @@ export default function StudentCourseSrs() {
             }}
           />
         </div>
+      ) : expedition && !loading ? (
+        <section className={s.settings}>
+          <h2>탐험을 준비하고 있어요</h2>
+          <p>학습 설정을 확인한 뒤 같은 탐험을 이어 갈 수 있어요.</p>
+          <button
+            type="button"
+            className={s.settingsButton}
+            onClick={expedition.onExit}
+          >
+            탐험판으로
+          </button>
+        </section>
       ) : state && !loading ? (
         <>
           <StudentReviewOverview

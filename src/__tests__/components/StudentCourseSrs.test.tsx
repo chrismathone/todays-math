@@ -137,6 +137,37 @@ beforeEach(() => {
   });
 });
 
+describe("embedded expedition bank activity", () => {
+  it("opens the current problem directly and exits to the parent board", async () => {
+    vi.mocked(api.getCourseState).mockResolvedValue({
+      ok: true,
+      data: state(session(2)),
+    });
+    const onExit = vi.fn();
+    render(<StudentCourseSrs expedition={{ onExit, onComplete: vi.fn() }} />);
+    expect(await screen.findByText("문제 3: 1 + 1")).toBeVisible();
+    expect(api.startCourse).not.toHaveBeenCalled();
+    expect(
+      screen.queryByRole("heading", { name: "전체 학습 진도" }),
+    ).not.toBeInTheDocument();
+    await userEvent.click(screen.getByRole("button", { name: /학습 홈/ }));
+    expect(onExit).toHaveBeenCalledOnce();
+  });
+
+  it("starts the assigned bank lesson without a second home/start button", async () => {
+    render(
+      <StudentCourseSrs
+        expedition={{ onExit: vi.fn(), onComplete: vi.fn() }}
+      />,
+    );
+    expect(await screen.findByText("문제 1: 1 + 1")).toBeVisible();
+    expect(api.startCourse).toHaveBeenCalledOnce();
+    expect(
+      screen.queryByRole("button", { name: "오늘의 추천 학습 시작" }),
+    ).not.toBeInTheDocument();
+  });
+});
+
 describe("one-screen student answers", () => {
   function view(
     run: CoursePublicSession,
@@ -485,13 +516,14 @@ describe("student course home", () => {
       screen.getByRole("progressbar", { name: "오늘 목표 진행" }),
     ).toHaveAttribute("max", "10");
     expect(screen.getByText("2개")).toBeInTheDocument();
-    expect(screen.getByRole("link", { name: "개념 강의" })).toHaveAttribute(
+    expect(screen.getByRole("link", { name: "강의" })).toHaveAttribute(
       "href",
-      "/learn",
+      "/learn/lectures",
     );
-    expect(
-      screen.getByRole("link", { name: "중등 일차방정식 연습" }),
-    ).toHaveAttribute("href", "/learn/math-srs/algebra");
+    expect(screen.getByRole("link", { name: "도감" })).toHaveAttribute(
+      "href",
+      "/learn?view=collection",
+    );
     expect(screen.queryByText(/기억률|%/)).not.toBeInTheDocument();
   });
 

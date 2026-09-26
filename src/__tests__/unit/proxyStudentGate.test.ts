@@ -75,6 +75,7 @@ const AUTH_ACTIONS = [
 /** 학생 화면(D-125 ⑷)과 학생 API — 화면 파일은 아직 없다(D-07 Hi-fi 뒤). 그래도 관문은 먼저 선다 */
 const LEARN_PAGES = [
   "/learn",
+  "/learn/lectures",
   "/learn/login",
   "/learn/password",
   `/learn/watch/${UUID}`,
@@ -216,13 +217,14 @@ describe("모집단 — 파일 목록에서 뽑았다 (분모부터 검산)", ()
 });
 
 describe("🔴 첫 비밀번호를 바꾼 학생 — 지나가는 것의 집합이 정확히 이것이다", () => {
-  it("화면 셋 · 학생 API · 나가기 · 세션 · 브랜드 이미지 · 랩실 읽기뿐", async () => {
+  it("학생 학습 화면 · 학생 API · 나가기 · 세션 · 브랜드 이미지 · 랩실 읽기뿐", async () => {
     session.mockReturnValue(studentSession(false));
     const { pass } = await sweep();
     expect(pass.sort()).toStrictEqual(
       [
         ...[
           "/learn",
+          "/learn/lectures",
           "/learn/password",
           `/learn/watch/${UUID}`,
           "/learn/math-srs",

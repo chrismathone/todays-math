@@ -20,6 +20,7 @@ describe("🔴 학생이 할 수 있는 것 전부 — 늘거나 넓어지면 �
       "GET|POST /api/learn/math-explorers",
       "GET|POST /api/learn/math-srs/replay",
       "GET|HEAD /learn",
+      "GET|HEAD /learn/lectures",
       "GET|HEAD /learn/password",
       "GET|HEAD /learn/watch/{id}",
       "GET|HEAD /learn/math-srs",

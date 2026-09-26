@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
 import { redirect } from "next/navigation";
-import StudentMathExplorers from "@/components/math-explorers/StudentMathExplorers";
 import { getStudentSession } from "@/lib/learn/studentRequest";
 
 export const metadata: Metadata = { title: "개념 탐험 · 오늘의수학" };
@@ -9,5 +8,5 @@ export default async function StudentMathExplorersPage() {
   const student = await getStudentSession();
   if (!student) redirect("/learn/login");
   if (student.mustChangePassword) redirect("/learn/password");
-  return <StudentMathExplorers />;
+  redirect("/learn");
 }

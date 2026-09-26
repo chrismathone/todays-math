@@ -78,7 +78,8 @@ const ACTIVE_RULES: readonly Rule[] = [
     path: "/api/learn/math-srs/replay",
     why: "본인이 완료한 문제 다시 풀기 · 요청한 풀이 보기",
   },
-  { methods: PAGE, path: STUDENT_HOME, why: "강의 목록 화면" },
+  { methods: PAGE, path: STUDENT_HOME, why: "하나의 수학 탐험 홈" },
+  { methods: PAGE, path: "/learn/lectures", why: "내 강의 자료" },
   { methods: PAGE, path: STUDENT_PASSWORD_PAGE, why: "비밀번호 바꾸기 화면" },
   { methods: PAGE, path: "/learn/watch/{id}", why: "재생 화면" },
   {
