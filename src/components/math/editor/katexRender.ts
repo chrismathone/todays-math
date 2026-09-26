@@ -19,6 +19,7 @@
  * 함정(§2-17) 을 구조적으로 차단.
  */
 import katex from "katex";
+import { isFailedKatexHtml } from "@/lib/math/katexRender";
 import { applyMathInnerNormalization } from "./textPreprocess";
 
 const KATEX_METRIC_WARN_RE = /No character metrics for/;
@@ -42,20 +43,22 @@ const aggressiveRepair = (s: string): string =>
     .replace(/\\right(?!\s*(?:[)\].|]|\\[}|]))/g, "");
 
 const escapeHtml = (s: string): string =>
-  s
-    .replace(/&/g, "&amp;")
-    .replace(/</g, "&lt;")
-    .replace(/>/g, "&gt;");
+  s.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
 
 const tryRender = (input: string, displayMode: boolean): string =>
-  katex.renderToString(input, {
-    throwOnError: false,
-    strict: false,
-    output: "html",
-    displayMode,
-    // `\htmlClass` 만 허용 — uprightGeometryLabels 의 호(⌒) span 용.
-    trust: (ctx) => ctx.command === "\\htmlClass",
-  }).replace('class="katex"', `class="katex" data-export-tex="${encodeURIComponent(input)}"`);
+  katex
+    .renderToString(input, {
+      throwOnError: false,
+      strict: false,
+      output: "html",
+      displayMode,
+      // `\htmlClass` 만 허용 — uprightGeometryLabels 의 호(⌒) span 용.
+      trust: (ctx) => ctx.command === "\\htmlClass",
+    })
+    .replace(
+      'class="katex"',
+      `class="katex" data-export-tex="${encodeURIComponent(input)}"`,
+    );
 
 /**
  * 절대 붉은 글씨를 반환하지 않는 KaTeX 렌더. 반환값은 항상 안전한 HTML —
@@ -64,26 +67,34 @@ const tryRender = (input: string, displayMode: boolean): string =>
 export const renderKatexSafe = (tex: string, displayMode: boolean): string => {
   const origWarn = console.warn;
   console.warn = (...args: unknown[]) => {
-    if (typeof args[0] === "string" && KATEX_METRIC_WARN_RE.test(args[0])) return;
+    if (typeof args[0] === "string" && KATEX_METRIC_WARN_RE.test(args[0]))
+      return;
     origWarn.apply(console, args);
   };
   try {
     // 1차 — preprocessMathText 가 어떤 path 로 와도 못 잡은 모델 typo
     // (\left\left, \Bigl\left, \approx, 빈 분수 등) 를 한 번 더 정리 + 중첩/
     // leak 된 `$` 제거(`\$` 리터럴은 보존).
-    const placeholders = tex.replace(/\\placeholder\{[^}]*\}/g, "\\square")
-      .replace(/\\([dt]?frac)\s*\{([^{}]*)\}\s*\{([^{}]*)\}/g,
+    const placeholders = tex
+      .replace(/\\placeholder\{[^}]*\}/g, "\\square")
+      .replace(
+        /\\([dt]?frac)\s*\{([^{}]*)\}\s*\{([^{}]*)\}/g,
         (_match, command: string, numerator: string, denominator: string) =>
-          `\\${command}{${numerator.trim() ? numerator : "\\square"}}{${denominator.trim() ? denominator : "\\square"}}`);
+          `\\${command}{${numerator.trim() ? numerator : "\\square"}}{${denominator.trim() ? denominator : "\\square"}}`,
+      );
     // Normalize the visible math without changing the editor's raw LaTeX token.
     // This preserves the source's full-size fractions and geometry typography
     // while opening a document remains a lossless operation.
-    const base = applyMathInnerNormalization(placeholders).replace(/(?<!\\)\$/g, "");
+    const base = applyMathInnerNormalization(placeholders).replace(
+      /(?<!\\)\$/g,
+      "",
+    );
+    // 실패 판정은 지면(lib)과 **한 함수** — `katex-error` 만 보면 모르는 명령(`#cc0000`)이 붉게 샌다.
     let html = tryRender(base, displayMode);
-    if (!html.includes("katex-error")) return html;
+    if (!isFailedKatexHtml(html)) return html;
     // 2차 — 공격적 정리 후 재시도.
     html = tryRender(aggressiveRepair(base), displayMode);
-    if (!html.includes("katex-error")) return html;
+    if (!isFailedKatexHtml(html)) return html;
     // 폴백 — 빨강 대신 중립 code. 사용자는 알람 같은 붉은 글씨 대신 회색
     // 모노스페이스로 "이 식은 렌더 못 함" 을 인지 (드물어야 정상).
     return `<code class="math-raw">${escapeHtml(tex)}</code>`;
