@@ -84,6 +84,7 @@ export const explorerCardProgressSchema = z.strictObject({
   lastRecall: z.enum(["new", "remembered", "supported", "retry"]).optional(),
 });
 const historyEntry = z.strictObject({
+  sessionId: id.optional(),
   route: route.optional(),
   targetCardId: id.optional(),
   date: isoDateSchema,
@@ -102,6 +103,8 @@ export const explorerDefinitionSessionSchema = z.strictObject({
   queue: z.array(task).min(1).max(15),
   index: z.number().int().min(0).max(15),
   round: z.number().int().min(0).max(3),
+  continuation: count.optional(),
+  continuationCardIds: z.array(id).min(1).max(5).optional(),
   next: z.array(task).max(15),
   seen: z.array(id).max(5),
   hinted: z.array(id).max(5),
@@ -181,6 +184,7 @@ export const explorerActionSchema = z.discriminatedUnion("type", [
     parts: z.array(z.number().int().min(0).max(21)).min(1).max(2),
   }),
   z.strictObject({ type: z.literal("lab-solution") }),
+  z.strictObject({ type: z.literal("retry-unresolved") }),
 ]);
 export const explorerRequestSchema = z.strictObject({
   requestId: uuidSchema,
@@ -336,6 +340,7 @@ export const explorerViewSchema = z.strictObject({
       index: count,
       total: z.number().int().min(1).max(15),
       round: z.number().int().min(0).max(3),
+      continuation: count.default(0),
       done: z.boolean(),
       reviewOnly: z.boolean(),
       first: count,
