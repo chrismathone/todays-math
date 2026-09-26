@@ -104,6 +104,23 @@ const middle = {
 };
 
 async function capture(browser, browserName, width, kind, state, phase) {
+  const title = kind === "elementary" ? "약수와 배수" : "등식의 성질";
+  const subtitle = kind === "elementary" ? "초5 · 1학기" : "중1 · 일차방정식";
+  const journey = {
+    completedDays: 2,
+    todayComplete: false,
+    todayAnswered: 2,
+    todayGoal: kind === "elementary" ? 10 : 12,
+    days: ["2026-09-23", "2026-09-24"].map((date) => ({
+      id: `${kind}:${date}`,
+      date,
+      completedAt: `${date}T01:00:00.000Z`,
+      title,
+      subtitle,
+      reviewCount: 2,
+    })),
+    upcoming: Array.from({ length: 12 }, () => ({ title, subtitle })),
+  };
   const page = await browser.newPage({
     viewport: { width, height: 780 },
     deviceScaleFactor: 1,
@@ -120,6 +137,12 @@ async function capture(browser, browserName, width, kind, state, phase) {
         route.request().method() === "POST"
           ? route.request().postDataJSON()
           : null;
+      assert.equal(
+        submitted?.dayId ??
+          new URL(route.request().url()).searchParams.get("dayId"),
+        `${kind}:2026-09-23`,
+      );
+      assert.ok(!submitted?.recordRetry, "past-day review must be read-only");
       await route.fulfill({
         status: 200,
         contentType: "application/json",
@@ -150,7 +173,7 @@ async function capture(browser, browserName, width, kind, state, phase) {
       body: JSON.stringify(
         phase === "error"
           ? { error: { message: "저장소 준비 중" } }
-          : { data: state },
+          : { data: { ...state, journey } },
       ),
     });
   });
@@ -159,7 +182,7 @@ async function capture(browser, browserName, width, kind, state, phase) {
   });
   await page.getByRole("heading", { name: "매일 쌓이는 수학" }).waitFor();
   if (phase === "ready")
-    await page.getByRole("heading", { name: "오늘의 진도판" }).waitFor();
+    await page.getByRole("heading", { name: "전체 학습 진도" }).waitFor();
   else
     await page
       .getByRole("main")
@@ -173,9 +196,7 @@ async function capture(browser, browserName, width, kind, state, phase) {
     const heading = document.querySelector("main header");
     const card =
       phase === "ready"
-        ? document.querySelector(
-            'section[aria-labelledby="review-board-title"]',
-          )
+        ? document.querySelector('section[aria-label="전체 학습 진도판"]')
         : document.querySelector(
             phase === "loading"
               ? 'main [role="status"]'
@@ -226,7 +247,7 @@ async function capture(browser, browserName, width, kind, state, phase) {
       "학습 기록을 불러오는 중…",
     );
   if (phase === "ready") {
-    const board = page.getByLabel("오늘의 학습 보드", { exact: true });
+    const board = page.getByLabel("전체 학습 진도", { exact: true });
     await board.waitFor();
     assert.ok(
       await board
@@ -246,7 +267,7 @@ async function capture(browser, browserName, width, kind, state, phase) {
     fullPage: true,
   });
   if (phase === "ready") {
-    const opener = page.getByRole("button", { name: "1번 완료, 다시 풀기" });
+    const opener = page.getByRole("button", { name: /^1일차,.*다시 풀기/ });
     await opener.click();
     const replay = page.getByRole("dialog", { name: "1번 문제 다시 풀기" });
     const choices = replay
@@ -264,11 +285,15 @@ async function capture(browser, browserName, width, kind, state, phase) {
     );
     await choices.first().click();
     await replay.getByText("정확하게 풀었어요!").waitFor();
-    await replay.getByRole("button", { name: "진도판으로" }).click();
+    assert.equal(
+      await replay.getByRole("button", { name: "다음 복습 문제" }).count(),
+      1,
+    );
+    await replay.getByRole("button", { name: "복습 닫기" }).click();
     assert.equal(
       await page.locator('li[data-state="complete"]').count(),
       2,
-      "replay must not count another completed problem",
+      "replay must not advance another daily stage",
     );
     assert.equal(
       await opener.evaluate((node) => document.activeElement === node),

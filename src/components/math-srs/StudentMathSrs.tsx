@@ -31,7 +31,7 @@ import {
 } from "./StudentReviewHome";
 import s from "./authenticated.module.css";
 import pageTurn from "./question-page-turn.module.css";
-import StudentProgressBoard from "./StudentProgressBoard";
+import StudentJourney from "./StudentJourney";
 import AnswerFeedbackEffect from "./AnswerFeedbackEffect";
 
 const ProblemContent = dynamic(() =>
@@ -42,47 +42,14 @@ const MathText = dynamic(() =>
 );
 type Failure = { status: number; message: string };
 
-function retryStorageKey(studentId: string, missionId: string) {
-  return `math-srs-resolved-retries:${studentId}:${missionId}`;
-}
-function resolvedRetrySteps(studentId: string, missionId: string): number[] {
-  try {
-    const saved: unknown = JSON.parse(
-      localStorage.getItem(retryStorageKey(studentId, missionId)) ?? "[]",
-    );
-    return Array.isArray(saved) &&
-      saved.every((step) => Number.isInteger(step) && step >= 1 && step <= 12)
-      ? saved
-      : [];
-  } catch {
-    return [];
-  }
-}
 function remainingRetrySteps(
   mission: MathSrsPublicMission | null,
-  studentId: string,
 ): number[] | null {
   if (!mission?.completedAt) return null;
-  const resolved = new Set(resolvedRetrySteps(studentId, mission.id));
+  const resolved = new Set(mission.resolvedRetryProblemIds ?? []);
   return mission.attempts.flatMap((attempt, index) =>
-    !attempt.correct && !resolved.has(index + 1) ? [index + 1] : [],
+    !attempt.correct && !resolved.has(attempt.problemId) ? [index + 1] : [],
   );
-}
-function rememberResolvedRetry(
-  studentId: string,
-  missionId: string,
-  step: number,
-) {
-  try {
-    localStorage.setItem(
-      retryStorageKey(studentId, missionId),
-      JSON.stringify([
-        ...new Set([...resolvedRetrySteps(studentId, missionId), step]),
-      ]),
-    );
-  } catch {
-    /* A failed local write safely repeats the unresolved problems after reload. */
-  }
 }
 
 export function StudentMathSrs() {
@@ -116,9 +83,7 @@ export function StudentMathSrs() {
       setLoading(false);
       if (result.ok) {
         setState(result.data);
-        setRetrySteps(
-          remainingRetrySteps(result.data.mission, result.data.student.id),
-        );
+        setRetrySteps(remainingRetrySteps(result.data.mission));
         setError(null);
       } else if (result.status === 401) router.replace("/learn/login");
       else if (
@@ -163,7 +128,10 @@ export function StudentMathSrs() {
   const mission = state?.mission;
   const missionInProgress = !!mission && !mission.completedAt;
   const finishedToday =
-    !!mission?.completedAt && mission.date === kstDateOf(new Date());
+    state?.journey?.todayComplete ??
+    (!!mission?.completedAt &&
+      !remainingRetrySteps(mission)?.length &&
+      mission.date === kstDateOf(new Date()));
   const feedbackProblem = feedbackId
     ? mission?.problems.find((problem) => problem.id === feedbackId)
     : null;
@@ -184,6 +152,7 @@ export function StudentMathSrs() {
     if (!practicing || (!feedbackId && retryFeedback === null)) return;
     const timer = window.setTimeout(() => {
       if (retryFeedback !== null) {
+        if (retryFeedback && retrySteps?.length === 1) setPracticing(false);
         setRetrySteps((steps) => {
           if (!steps?.length) return steps;
           return retryFeedback ? steps.slice(1) : [...steps.slice(1), steps[0]];
@@ -193,12 +162,14 @@ export function StudentMathSrs() {
       } else {
         setFeedbackId(null);
         if (mission?.completedAt) {
-          setRetrySteps(remainingRetrySteps(mission, state!.student.id));
+          const remaining = remainingRetrySteps(mission);
+          setRetrySteps(remaining);
+          if (!remaining?.length) setPracticing(false);
         }
       }
     }, 1200);
     return () => window.clearTimeout(timer);
-  }, [feedbackId, retryFeedback, practicing, mission, state]);
+  }, [feedbackId, retryFeedback, practicing, mission, retrySteps]);
 
   async function retryAnswer(answer: string) {
     if (
@@ -219,11 +190,35 @@ export function StudentMathSrs() {
         missionId: mission.id,
         problemId: currentProblem.id,
         submittedAnswer: answer,
+        recordRetry: true,
       });
       if (!alive.current) return;
       if (result.ok) {
-        if (result.data.correct && state)
-          rememberResolvedRetry(state.student.id, mission.id, retryStep);
+        if (result.data.correct) {
+          setState((previous) =>
+            previous
+              ? {
+                  ...previous,
+                  ...(result.data.journey
+                    ? { journey: result.data.journey }
+                    : {}),
+                  mission:
+                    previous.mission?.id === mission.id
+                      ? {
+                          ...previous.mission,
+                          resolvedRetryProblemIds: [
+                            ...new Set([
+                              ...(previous.mission.resolvedRetryProblemIds ??
+                                []),
+                              currentProblem.id,
+                            ]),
+                          ],
+                        }
+                      : previous.mission,
+                }
+              : previous,
+          );
+        }
         setRetryFeedback(result.data.correct);
       } else if (result.status === 401) router.replace("/learn/login");
       else if (
@@ -257,6 +252,47 @@ export function StudentMathSrs() {
     setRetryFeedback(null);
     setReload((value) => value + 1);
   };
+  const beginPractice = () => {
+    if (hasPendingRetry) {
+      setPracticing(true);
+      setFeedbackId(null);
+      setRetryFeedback(null);
+    } else {
+      void mutate(startMathSrs, (next) => {
+        setPracticing(true);
+        setFeedbackId(null);
+        setRetrySteps(remainingRetrySteps(next.mission));
+        setRetryFeedback(null);
+      });
+    }
+  };
+  const journeyBoard = state ? (
+    <StudentJourney
+      kind="middle"
+      journey={
+        state.journey ?? {
+          completedDays: 0,
+          todayComplete: false,
+          todayAnswered: progressCount,
+          todayGoal: 12,
+          days: [],
+          upcoming: CONCEPTS.map((concept) => ({
+            title: concept.title,
+            subtitle: "중1 · 일차방정식",
+          })),
+        }
+      }
+      busy={busy}
+      onNext={finishedToday ? undefined : beginPractice}
+      nextLabel={
+        hasPendingRetry
+          ? `오답 다시 풀기 · ${retrySteps!.length}문제`
+          : missionInProgress
+            ? "이어서 학습하기"
+            : "오늘의 복습 시작"
+      }
+    />
+  ) : null;
 
   return (
     <StudentReviewPage
@@ -287,9 +323,7 @@ export function StudentMathSrs() {
                     setPracticing(false);
                     setFeedbackId(null);
                     setRetryFeedback(null);
-                    setRetrySteps(
-                      remainingRetrySteps(mission, state.student.id),
-                    );
+                    setRetrySteps(remainingRetrySteps(mission));
                   }}
                 >
                   ← 학습 홈
@@ -362,53 +396,13 @@ export function StudentMathSrs() {
                   }}
                 />
               ) : (
-                <Result mission={mission} onHome={() => setPracticing(false)} />
+                <div className={s.resultCard}>{journeyBoard}</div>
               )}
             </>
           ) : (
             <>
               <StudentReviewOverview
-                board={
-                  <StudentProgressBoard
-                    replayKind={hasPendingRetry ? undefined : "middle"}
-                    completed={progressCount}
-                    goal={mission?.problems.length ?? 12}
-                    title={nextConcept ?? "일차방정식"}
-                    subtitle="중1 · 일차방정식"
-                    nextLabel={
-                      missionInProgress ? "이어서 학습하기" : "오늘의 복습 시작"
-                    }
-                    nextAriaLabel={
-                      missionInProgress
-                        ? `이어서 학습하기 · ${mission.attempts.length}/12`
-                        : "오늘의 복습 시작"
-                    }
-                    busy={busy}
-                    onNext={
-                      finishedToday || hasPendingRetry
-                        ? undefined
-                        : () =>
-                            void mutate(startMathSrs, () => {
-                              setPracticing(true);
-                              setFeedbackId(null);
-                              setRetrySteps(null);
-                              setRetryFeedback(null);
-                            })
-                    }
-                  />
-                }
-                boardActions={
-                  finishedToday || hasPendingRetry
-                    ? [
-                        {
-                          label: hasPendingRetry
-                            ? `오답 다시 풀기 · ${retrySteps!.length}문제`
-                            : "오늘의 결과 보기",
-                          onClick: () => setPracticing(true),
-                        },
-                      ]
-                    : undefined
-                }
+                board={journeyBoard}
                 recommendation={{
                   id: "mission-heading",
                   eyebrow: finishedToday
@@ -418,20 +412,21 @@ export function StudentMathSrs() {
                       : "오늘의 추천 복습",
                   title: finishedToday
                     ? "오늘의 복습을 마쳤어요."
-                    : missionInProgress
-                      ? "풀던 복습을 이어 가요."
-                      : "일차방정식을 복습해요.",
+                    : hasPendingRetry
+                      ? "모아 둔 오답을 다시 풀어요."
+                      : missionInProgress
+                        ? "풀던 복습을 이어 가요."
+                        : "일차방정식을 복습해요.",
                   section: "중1 · 일차방정식",
                   reason: finishedToday
-                    ? "오늘 푼 문제를 돌아보고 다음 복습을 준비해요."
-                    : missionInProgress
-                      ? `${12 - mission.attempts.length}문제가 남았어요. 이어서 풀어 보세요.`
-                      : "워밍업부터 다시 도전하는 문제까지, 풀이 기록에 맞춰 복습해요.",
+                    ? "하루 학습을 마쳐 진도판에서 한 칸 전진했어요."
+                    : hasPendingRetry
+                      ? "오답 재풀이까지 마치면 한 칸 전진해요."
+                      : missionInProgress
+                        ? `${12 - mission.attempts.length}문제가 남았어요. 이어서 풀어 보세요.`
+                        : "워밍업부터 다시 도전하는 문제까지, 풀이 기록에 맞춰 복습해요.",
                   action: finishedToday
-                    ? {
-                        label: "오늘의 결과 보기",
-                        onClick: () => setPracticing(true),
-                      }
+                    ? undefined
                     : {
                         label: busy
                           ? "복습을 준비하는 중…"
@@ -439,13 +434,7 @@ export function StudentMathSrs() {
                             ? `이어서 학습하기 · ${mission.attempts.length}/12`
                             : "오늘의 복습 시작",
                         disabled: busy,
-                        onClick: () =>
-                          void mutate(startMathSrs, () => {
-                            setPracticing(true);
-                            setFeedbackId(null);
-                            setRetrySteps(null);
-                            setRetryFeedback(null);
-                          }),
+                        onClick: beginPractice,
                       },
                   note: "한 번에 12문제 · 약 10~15분",
                 }}
@@ -664,54 +653,6 @@ function Question({
         )}
       </div>
       <AnswerFeedbackEffect correct={correct} eventKey={eventKey} />
-    </section>
-  );
-}
-
-function Result({
-  mission,
-  onHome,
-}: {
-  mission: MathSrsPublicMission;
-  onHome: () => void;
-}) {
-  const correct = mission.attempts.filter((attempt) => attempt.correct).length;
-  const reviewed = [
-    ...new Set(mission.attempts.map((attempt) => attempt.conceptId)),
-  ].length;
-  const resultSection = useRef<HTMLElement>(null);
-  useEffect(() => {
-    resultSection.current
-      ?.querySelector("button")
-      ?.focus({ preventScroll: true });
-  }, []);
-  return (
-    <section
-      ref={resultSection}
-      className={`${s.card} ${s.resultCard}`}
-      aria-labelledby="mission-result-heading"
-    >
-      <span className={s.resultMark} aria-hidden="true">
-        ✓
-      </span>
-      <p className={s.eyebrow}>{formatDayWithWeekday(mission.date)}</p>
-      <h2 tabIndex={-1} id="mission-result-heading">
-        미션을 마쳤어요
-      </h2>
-      <p>
-        <strong className={s.stat}>
-          {correct} / {mission.problems.length}
-        </strong>
-        문제를 맞혔어요.
-      </p>
-      <p className={s.resultSummary}>{reviewed}개 개념을 다시 꺼내 봤어요.</p>
-      <p className={s.muted}>
-        어려웠던 개념은 다음 복습에 다시 반영해요. 학습 기록은 계정에
-        저장됐어요.
-      </p>
-      <Button onClick={onHome} aria-describedby="mission-result-heading">
-        학습 현황 보기
-      </Button>
     </section>
   );
 }

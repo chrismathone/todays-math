@@ -9,9 +9,17 @@ const tabs = [
   { href: "/learn", label: "강의", icon: "play" },
   { href: "/learn/math-srs", label: "초등 복습", icon: "book" },
   { href: "/learn/math-srs/algebra", label: "중등 복습", icon: "grid" },
+  { href: "/learn/math-explorers", label: "개념 탐험", icon: "compass" },
 ] as const;
 
 function TabIcon({ name }: { name: (typeof tabs)[number]["icon"] }) {
+  if (name === "compass")
+    return (
+      <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+        <circle cx="12" cy="12" r="8.5" />
+        <path d="m16 8-2.5 5.5L8 16l2.5-5.5L16 8Z" />
+      </svg>
+    );
   if (name === "play")
     return (
       <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">

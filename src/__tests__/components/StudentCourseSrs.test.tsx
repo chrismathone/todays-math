@@ -15,6 +15,7 @@ import type {
   CoursePublicSession,
   CourseStudentState,
 } from "@/contracts/mathSrsCourse.contract";
+import type { MathSrsJourney } from "@/contracts/mathSrsJourney.contract";
 import {
   COURSE_CHAPTERS,
   COURSE_SECTIONS,
@@ -137,10 +138,15 @@ beforeEach(() => {
 });
 
 describe("one-screen student answers", () => {
-  function view(run: CoursePublicSession, onAnswer = vi.fn()) {
+  function view(
+    run: CoursePublicSession,
+    onAnswer = vi.fn(),
+    journey?: MathSrsJourney,
+  ) {
     const props = {
       session: run,
       summary: state(run).summary,
+      journey,
       feedbackId: null,
       busy: false,
       onAnswer,
@@ -364,10 +370,26 @@ describe("one-screen student answers", () => {
         completedAt: now,
       },
     });
-    const { props } = view(run);
+    const { props } = view(run, vi.fn(), {
+      completedDays: 1,
+      todayComplete: true,
+      todayAnswered: 10,
+      todayGoal: 10,
+      days: [
+        {
+          id: "elementary:2026-09-23",
+          date: "2026-09-23",
+          completedAt: now,
+          title: section.title,
+          subtitle: "초등 수학",
+          reviewCount: 10,
+        },
+      ],
+      upcoming: [{ title: "다음 단원", subtitle: "초등 수학" }],
+    });
     expect(screen.queryByText("완료 후 풀이")).not.toBeInTheDocument();
     expect(
-      screen.getByRole("button", { name: "1번 완료, 다시 풀기" }),
+      screen.getByRole("button", { name: /1일차.*다시 풀기/ }),
     ).toBeEnabled();
     expect(props.onHint).not.toHaveBeenCalled();
     expect(
@@ -618,7 +640,7 @@ describe("persisted course practice", () => {
       await screen.findByRole("button", { name: "오늘의 추천 학습 시작" }),
     );
     const next = await screen.findByRole("button", {
-      name: "6번부터 다음 5문제 시작",
+      name: "다음 5문제",
     });
     expect(next).toHaveFocus();
     await userEvent.keyboard("{Enter}");
@@ -889,13 +911,6 @@ describe("persisted course practice", () => {
     });
     const input = await begin();
     await userEvent.type(input, "2{Enter}");
-    await userEvent.click(
-      await screen.findByRole("button", { name: /이번 학습 마치기/ }),
-    );
-    const next = await screen.findByRole("button", {
-      name: "6번부터 다음 5문제 시작",
-    });
-    expect(api.startCourse).toHaveBeenCalledTimes(1);
     const nextRun = session(4);
     nextRun.id = "66666666-6666-4666-8666-666666666666";
     const nextState = state(nextRun);
@@ -904,7 +919,9 @@ describe("persisted course practice", () => {
       ok: true,
       data: nextState,
     });
-    await userEvent.click(next);
+    await userEvent.click(
+      await screen.findByRole("button", { name: /이번 학습 마치기/ }),
+    );
     expect(api.startCourse).toHaveBeenCalledTimes(2);
     const finished = state({ ...session(5), id: nextRun.id });
     finished.summary.todayAnswered = 10;
@@ -921,7 +938,10 @@ describe("persisted course practice", () => {
     await userEvent.click(
       await screen.findByRole("button", { name: /이번 학습 마치기/ }),
     );
-    expect(await screen.findByText("오늘의 목표 도착!")).toBeInTheDocument();
+    expect(
+      await screen.findByRole("heading", { name: "전체 학습 진도" }),
+    ).toBeInTheDocument();
+    expect(screen.queryByText("오늘의 목표 도착!")).not.toBeInTheDocument();
     expect(
       screen.queryByRole("button", { name: /다음 5문제 시작/ }),
     ).not.toBeInTheDocument();

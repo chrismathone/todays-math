@@ -10,6 +10,7 @@ import type {
 import { STUDENT_MUST_CHANGE_MESSAGE } from "@/lib/studentRouteAccess";
 import { solutionForDisplay } from "@/lib/solutionSteps";
 import AnswerFeedbackEffect from "./AnswerFeedbackEffect";
+import pageTurn from "./question-page-turn.module.css";
 import s from "./student-replay.module.css";
 
 const ProblemContent = dynamic(() =>
@@ -22,10 +23,16 @@ const MathText = dynamic(() =>
 export default function StudentReplayDialog({
   kind,
   step,
+  dayId,
+  dayTitle,
+  total = 1,
   onClose,
 }: {
   kind: MathSrsReplayKind;
   step: number;
+  dayId?: string;
+  dayTitle?: string;
+  total?: number;
   onClose: () => void;
 }) {
   const router = useRouter();
@@ -40,6 +47,7 @@ export default function StudentReplayDialog({
   const [parts, setParts] = useState<number[]>([]);
   const [solutionOpen, setSolutionOpen] = useState(false);
   const [feedbackEvent, setFeedbackEvent] = useState(0);
+  const [currentStep, setCurrentStep] = useState(step);
 
   const perform = useCallback(
     async (input?: {
@@ -57,7 +65,7 @@ export default function StudentReplayDialog({
         const response = await fetch(
           input
             ? "/api/learn/math-srs/replay"
-            : `/api/learn/math-srs/replay?kind=${kind}&step=${step}`,
+            : `/api/learn/math-srs/replay?kind=${kind}&step=${currentStep}${dayId ? `&dayId=${encodeURIComponent(dayId)}` : ""}`,
           {
             cache: "no-store",
             signal: controller.signal,
@@ -65,7 +73,12 @@ export default function StudentReplayDialog({
               ? {
                   method: "POST",
                   headers: { "content-type": "application/json" },
-                  body: JSON.stringify({ kind, step, ...input }),
+                  body: JSON.stringify({
+                    kind,
+                    step: currentStep,
+                    ...(dayId ? { dayId } : {}),
+                    ...input,
+                  }),
                 }
               : {}),
           },
@@ -119,7 +132,7 @@ export default function StudentReplayDialog({
         }
       }
     },
-    [kind, step, router],
+    [kind, currentStep, dayId, router],
   );
 
   useEffect(() => {
@@ -192,12 +205,15 @@ export default function StudentReplayDialog({
     <dialog
       ref={dialog}
       className={s.dialog}
-      aria-label={`${step}번 문제 다시 풀기`}
+      aria-label={`${currentStep}번 문제 다시 풀기`}
       onCancel={closeReplay}
     >
       <header className={s.header}>
         <div>
-          <p>완료한 칸 복습 · {step}번 문제</p>
+          <p>
+            완료한 칸 복습 ·{" "}
+            {dayId ? `${currentStep} / ${total}` : `${currentStep}번 문제`}
+          </p>
           <h2>{data?.title ?? "다시 풀기"}</h2>
         </div>
         <button
@@ -211,9 +227,15 @@ export default function StudentReplayDialog({
       </header>
       {data ? (
         <div className={s.body} aria-busy={busy}>
-          <p className={s.subtitle}>{data.subtitle}</p>
+          <p className={s.subtitle}>
+            {dayTitle ? `${dayTitle} · ` : ""}
+            {data.subtitle}
+            {data.regenerated ? " · 같은 단원 새 문제" : ""}
+          </p>
           <div
-            className={s.question}
+            key={data.problemId}
+            className={`${s.question} ${pageTurn.page}`}
+            data-page-turn="true"
             role="region"
             aria-label="복습 문제 내용"
             tabIndex={0}
@@ -320,9 +342,21 @@ export default function StudentReplayDialog({
                 <button
                   type="button"
                   className={s.primary}
-                  onClick={closeReplay}
+                  onClick={() => {
+                    if (!dayId || currentStep >= total) {
+                      closeReplay();
+                      return;
+                    }
+                    setData(null);
+                    setAnswer(null);
+                    setParts([]);
+                    setSolutionOpen(false);
+                    setCurrentStep((value) => value + 1);
+                  }}
                 >
-                  진도판으로
+                  {dayId && currentStep < total
+                    ? "다음 복습 문제"
+                    : "진도판으로"}
                 </button>
               </>
             ) : data.interactive ? (

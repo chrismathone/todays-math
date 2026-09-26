@@ -356,6 +356,7 @@ export default function DailyJourneyBoard({
             <button
               type="button"
               className={s.next}
+              data-journey-continue
               disabled={busy}
               onClick={onNext}
             >

@@ -24,17 +24,22 @@ const problems = Array.from({ length: 12 }, (_, index) => ({
   difficulty: 1,
   kind: "warmup",
   prompt:
-    index === 1
-      ? "2번. 다음 이야기를 읽고 물음에 답하세요.\n\n" +
-        Array(20)
-          .fill(
-            "수학 모임에서 친구들이 같은 수의 카드를 나누어 갖고 남은 카드를 세어 보았습니다.",
-          )
-          .join("\n\n") +
-        "\n\n마지막 조건은 $3x=1$입니다. $x$를 구하시오."
-      : `${index + 1}번. $3x=1$을 풀어라.`,
+    index === 0
+      ? "다음 중 등식인 것의 개수를 구하시오.\n\n$-3x - 7$, $-2x - 9 = -4$, $6x + 2y - 6$, $-6x - 1 = 1$, $-5x + 6y + 2$"
+      : index === 1
+        ? "2번. 다음 이야기를 읽고 물음에 답하세요.\n\n" +
+          Array(20)
+            .fill(
+              "수학 모임에서 친구들이 같은 수의 카드를 나누어 갖고 남은 카드를 세어 보았습니다.",
+            )
+            .join("\n\n") +
+          "\n\n마지막 조건은 $3x=1$입니다. $x$를 구하시오."
+        : `${index + 1}번. $3x=1$을 풀어라.`,
   equation: "",
-  answerChoices: ["$\\frac{1}{3}$", "$\\frac{2}{3}$", "$-1$", "$3$"],
+  answerChoices:
+    index === 0
+      ? ["$2$", "$3$", "$0$", "$1$"]
+      : ["$\\frac{1}{3}$", "$\\frac{2}{3}$", "$-1$", "$3$"],
   hint: null,
   feedback: null,
   expectedSeconds: 30,
@@ -114,6 +119,25 @@ for (const [name, engine] of Object.entries({ chromium, webkit })) {
       await choices.getByRole("button").first().waitFor();
       await page.waitForTimeout(700);
       assert.equal(await choices.getByRole("button").count(), 4);
+      const rows = page.locator("[data-problem-items] > li");
+      assert.equal(
+        await rows.count(),
+        5,
+        "expression list has five independent rows",
+      );
+      const rowBoxes = await rows.evaluateAll((items) =>
+        items.map((item) => item.getBoundingClientRect().toJSON()),
+      );
+      assert.ok(
+        rowBoxes.every(
+          (box, index) => index === 0 || box.y > rowBoxes[index - 1].y,
+        ),
+        "each complete expression occupies its own row",
+      );
+      assert.ok(
+        rowBoxes.every((box) => Math.abs(box.x - rowBoxes[0].x) < 1),
+        "expression rows align left",
+      );
       assert.equal(await page.locator("input").count(), 0);
       const box = await choices.boundingBox();
       const neutralColors = await choices

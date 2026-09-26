@@ -1,5 +1,7 @@
 import { chromium, webkit } from "@playwright/test";
 import { mkdir } from "node:fs/promises";
+import assert from "node:assert/strict";
+const base = process.env.BASE ?? "http://localhost:3000";
 await mkdir(".qa-artifacts/daily-journey-board", { recursive: true });
 for (const [name, engine] of [
   ["chromium", chromium],
@@ -12,7 +14,7 @@ for (const [name, engine] of [
       isMobile: true,
       hasTouch: true,
     });
-    await page.goto("http://localhost:4316/dev/daily-journey-qa?days=17");
+    await page.goto(`${base}/dev/daily-journey-qa?days=17`);
     await page.waitForSelector("[data-qa-ready=true]");
     const measurements = await page
       .locator("[data-day-step]")
@@ -31,6 +33,12 @@ for (const [name, engine] of [
     const overflow = await page.evaluate(
       () => document.documentElement.scrollWidth > innerWidth,
     );
+    assert.equal(overflow, false, `${name} ${width}: page overflows`);
+    assert.deepEqual(
+      measurements.filter((t) => t.sh > t.h + 1 || t.sw > t.w + 1),
+      [],
+      `${name} ${width}: tile content clipped`,
+    );
     console.log(
       name,
       width,
@@ -41,11 +49,9 @@ for (const [name, engine] of [
         measurements.filter((t) => t.sh > t.h + 1 || t.sw > t.w + 1),
       ),
     );
-    await page
-      .locator("[data-daily-journey]")
-      .screenshot({
-        path: `.qa-artifacts/daily-journey-board/${name}-${width}.png`,
-      });
+    await page.locator("[data-daily-journey]").screenshot({
+      path: `.qa-artifacts/daily-journey-board/${name}-${width}.png`,
+    });
     await page.getByRole("button", { name: "이전 진도판" }).click();
     await page.getByRole("button", { name: /^1일차, .*다시 풀기/ }).click();
     if ((await page.getByLabel("검수 복습 일차").textContent()) !== "qa-day-1")

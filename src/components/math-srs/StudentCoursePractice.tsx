@@ -8,6 +8,7 @@ import type {
   CoursePublicSession,
   CourseSummary,
 } from "@/contracts/mathSrsCourse.contract";
+import type { MathSrsJourney } from "@/contracts/mathSrsJourney.contract";
 import { getCourseSection } from "@/lib/math-srs/elementary/catalog";
 import { solutionForDisplay } from "@/lib/solutionSteps";
 import CourseProgressBoard from "./CourseProgressBoard";
@@ -25,6 +26,7 @@ const MathText = dynamic(() =>
 interface Props {
   session: CoursePublicSession;
   summary: CourseSummary;
+  journey?: MathSrsJourney;
   feedbackId: string | null;
   busy: boolean;
   onAnswer: (input: CourseAttemptInput) => void;
@@ -797,7 +799,14 @@ function Solution({
   );
 }
 
-function CourseComplete({ session, summary, busy, onContinue, onExit }: Props) {
+function CourseComplete({
+  session,
+  summary,
+  journey,
+  busy,
+  onContinue,
+  onExit,
+}: Props) {
   const completeHeading = useRef<HTMLHeadingElement>(null);
   const goalReached = summary.todayAnswered >= summary.todayGoal;
   const done = goalReached || summary.status === "done";
@@ -805,7 +814,7 @@ function CourseComplete({ session, summary, busy, onContinue, onExit }: Props) {
     if (!busy) {
       const next =
         completeHeading.current?.parentElement?.querySelector<HTMLButtonElement>(
-          'button[aria-label$="다음 5문제 시작"]',
+          "button[data-journey-continue]",
         );
       (next ?? completeHeading.current)?.focus({ preventScroll: true });
     }
@@ -825,6 +834,7 @@ function CourseComplete({ session, summary, busy, onContinue, onExit }: Props) {
           {done ? "오늘의 목표 도착!" : "다음 발걸음이 기다려요"}
         </h2>
         <CourseProgressBoard
+          journey={journey}
           summary={summary}
           session={session}
           busy={busy}

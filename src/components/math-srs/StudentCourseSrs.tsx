@@ -142,8 +142,11 @@ export default function StudentCourseSrs() {
     : summary?.currentSectionId
       ? getCourseSection(summary.currentSectionId)
       : undefined;
-  const goalReached = !!summary && summary.todayAnswered >= summary.todayGoal;
-  const done = summary?.status === "done" || goalReached;
+  const retryPending =
+    !!state?.session?.retry && !state.session.retry.completedAt;
+  const goalReached =
+    !!summary && summary.todayAnswered >= summary.todayGoal && !retryPending;
+  const done = (summary?.status === "done" || goalReached) && !retryPending;
   const paused = summary?.status === "paused" || state?.plan?.enabled === false;
   const needsSetup = !!state && (!state.plan || summary?.status === "setup");
   useEffect(() => {
@@ -209,6 +212,7 @@ export default function StudentCourseSrs() {
             key={practice.id}
             session={practice}
             summary={state.summary}
+            journey={state.journey}
             feedbackId={feedbackId}
             busy={blocked}
             onAuthFailure={authFailure}
@@ -217,7 +221,20 @@ export default function StudentCourseSrs() {
               setFeedbackId(null);
             }}
             onContinue={start}
-            onNext={() => setFeedbackId(null)}
+            onNext={() => {
+              setFeedbackId(null);
+              if (
+                practice.completedAt &&
+                (!practice.retry || practice.retry.completedAt)
+              ) {
+                if (
+                  state.summary.recommendation &&
+                  !state.journey?.todayComplete
+                )
+                  start();
+                else setPracticing(false);
+              }
+            }}
             onHint={(problemId) => {
               void mutate({
                 run: () => hintCourse({ sessionId: practice.id, problemId }),
@@ -238,6 +255,7 @@ export default function StudentCourseSrs() {
               !needsSetup && summary ? (
                 <CourseProgressBoard
                   summary={summary}
+                  journey={state.journey}
                   busy={blocked}
                   nextLabel={
                     recommendation?.mode === "resume"

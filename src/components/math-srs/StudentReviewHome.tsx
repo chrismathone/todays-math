@@ -41,6 +41,10 @@ const reviewCopy = {
     description:
       "일차방정식을 매일 조금씩 복습하고, 풀이 기록에 맞춰 이어 가요.",
   },
+  explorers: {
+    grade: "초3~중3 개념 탐험",
+    description: "뜻을 조립하고, 예를 고르며 배운 개념을 오래 기억해요.",
+  },
 };
 
 export function StudentReviewPage({
@@ -94,6 +98,12 @@ export function StudentReviewPage({
                 aria-current={kind === "middle" ? "page" : undefined}
               >
                 중등 일차방정식 연습
+              </Link>
+              <Link
+                href="/learn/math-explorers"
+                aria-current={kind === "explorers" ? "page" : undefined}
+              >
+                개념 탐험
               </Link>
             </nav>
             <StudentReviewHeading {...reviewCopy[kind]} />
@@ -189,11 +199,7 @@ export function StudentReviewOverview({
   return (
     <div className={s.overview}>
       {board ? (
-        <section
-          className={s.boardSection}
-          aria-labelledby="review-board-title"
-        >
-          <h2 id="review-board-title">오늘의 진도판</h2>
+        <section className={s.boardSection} aria-label="전체 학습 진도판">
           {board}
           <p className={s.boardNote}>
             <strong>{recommendation.title}</strong>

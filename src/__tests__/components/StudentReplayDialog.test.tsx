@@ -39,6 +39,55 @@ const response = (data: MathSrsReplay) =>
   });
 
 describe("completed tile replay", () => {
+  it("keeps the completed day identity while progressing through its review questions", async () => {
+    const dayId = "elementary:2026-09-21";
+    const fetcher = vi
+      .fn()
+      .mockResolvedValueOnce(response({ ...problem, step: 1 }))
+      .mockResolvedValueOnce(response({ ...problem, step: 1, correct: true }))
+      .mockResolvedValueOnce(
+        response({
+          ...problem,
+          step: 2,
+          regenerated: true,
+          problemId: "66666666-6666-4666-8666-666666666666",
+        }),
+      );
+    vi.stubGlobal("fetch", fetcher);
+    render(
+      <StudentReplayDialog
+        kind="elementary"
+        step={1}
+        dayId={dayId}
+        total={2}
+        onClose={vi.fn()}
+      />,
+    );
+    const choices = await screen.findByRole("group", {
+      name: "복습 답 고르기",
+    });
+    fireEvent.click(within(choices).getAllByRole("button")[0]);
+    fireEvent.click(
+      await screen.findByRole("button", { name: "다음 복습 문제" }),
+    );
+    await screen.findByText(/같은 단원 새 문제/);
+    expect(fetcher.mock.calls[0][0]).toContain(
+      `dayId=${encodeURIComponent(dayId)}`,
+    );
+    expect(JSON.parse(fetcher.mock.calls[1][1].body)).toMatchObject({
+      dayId,
+      step: 1,
+    });
+    expect(JSON.parse(fetcher.mock.calls[1][1].body)).not.toHaveProperty(
+      "recordRetry",
+    );
+    expect(fetcher.mock.calls[2][0]).toContain(
+      `step=2&dayId=${encodeURIComponent(dayId)}`,
+    );
+    expect(
+      screen.queryByRole("button", { name: "풀이 보기" }),
+    ).not.toBeInTheDocument();
+  });
   it("grades a tapped answer immediately and permits a new choice after the wrong-answer effect", async () => {
     const fetcher = vi
       .fn()
