@@ -1,3 +1,4 @@
+import { normalizeMathgenText } from "@/lib/math/normalizeMathgenText";
 import { blocksToMarkdown } from "@/lib/mathgen/blocksToMarkdown";
 import {
   repositionScore,
@@ -14,11 +15,16 @@ export function studioReviewContent(
   crop: Pick<StudioCrop, "content" | "ocr">,
 ): string {
   const native = crop.ocr && !crop.ocr.contentEdited;
+  // 인식 블록은 날것으로 저장된다(정본 — 시험지·HWPX 가 그대로 읽는다). 이어 붙인 글에는 입구
+  // (`normalizeNativeOcr`)·시험지(`NativeProblem` → 렌더러 전처리)와 **같은 한 함수**를 건다 —
+  // 안 걸면 카드에서만 `\displaystyle …` 가 날것으로, `\(f(x)\)` 가 괄호 글로 보였다(2026-09-26).
   const content = native
-    ? blocksToMarkdown(
-        crop.ocr!.blocks,
-        crop.ocr!.choiceGroups,
-        crop.ocr!.subQuestions,
+    ? normalizeMathgenText(
+        blocksToMarkdown(
+          crop.ocr!.blocks,
+          crop.ocr!.choiceGroups,
+          crop.ocr!.subQuestions,
+        ),
       )
     : crop.content;
   const text = stripLeadingProblemNumber(

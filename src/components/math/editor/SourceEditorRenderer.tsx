@@ -10,13 +10,10 @@ import {
   type BoxColumns,
 } from "@/lib/math/boxHeader";
 import { layoutQuotedBoxes, type FigureRect } from "@/lib/math/boxLayout";
-import {
-  parseImageTitle,
-  preprocessMathText,
-  wrapBareConditionBoxes,
-} from "./textPreprocess";
+import { parseImageTitle, wrapBareConditionBoxes } from "./textPreprocess";
 import { renderKatexSafe } from "./katexRender";
 import { splitMathSegments } from "./mathSegments";
+import { repairEditorSource } from "./sourceRepair";
 import {
   groupFigureRows,
   assignBoxesByReadingOrder,
@@ -776,11 +773,12 @@ const MarkdownRenderer: React.FC<MarkdownRendererProps> = ({
   // commentary 에 `> ` literal 이 새는 일 없음 (조건 박스는 문제 영역 전용).
   svgReplacedContent = wrapBareConditionBoxes(svgReplacedContent);
 
-  // Stage 2: normalize LaTeX delimiters, `\dfrac`, unicode → LaTeX commands.
-  // The reader may normalize display, but editable tokens must retain the stored
-  // formula (including empty fraction fields and explicit math styles).
-  if (!editorTokens)
-    svgReplacedContent = preprocessMathText(svgReplacedContent);
+  // Stage 2: 문서 단위 복구 — 입구 후보정 한 함수를 **수식 밖에만** 건다(`repairEditorSource`).
+  // Editable tokens must retain the stored formula (including empty fraction fields and
+  // explicit math styles); the visible math is normalized per token at KaTeX render time.
+  // 전에는 편집 토큰이면 여기를 통째로 건너뛰어 작업실 편집 칸·본문 읽기 칸에서만
+  // `\displaystyle $$…` 가 샜고, 토큰이 없으면 규칙이 다른 옛 사본을 불렀다(2026-09-26 — 한 벌로).
+  svgReplacedContent = repairEditorSource(svgReplacedContent);
 
   // Stage 2.5: pre-render EVERY `$...$` / `$$...$$` to HTML and stash in a Map.
   //

@@ -79,8 +79,12 @@ const tryRender = (input: string, displayMode: boolean): string =>
     displayMode,
   });
 
-/** KaTeX 0.16 은 unknown command 를 .katex-error 대신 color:#cc0000 으로 그린다. */
-const isFailedKatexHtml = (html: string): boolean =>
+/**
+ * KaTeX 0.16 은 unknown command 를 .katex-error 대신 color:#cc0000 으로 그린다.
+ * 편집기 판(`components/math/editor/katexRender.ts`)도 **이 판정**을 쓴다 — 전에는 `katex-error` 만 봐서
+ * 편집 칸·검수 카드에서만 모르는 명령이 붉게 떴다(2026-09-26).
+ */
+export const isFailedKatexHtml = (html: string): boolean =>
   html.includes("katex-error") || /#cc0000/i.test(html);
 
 /**

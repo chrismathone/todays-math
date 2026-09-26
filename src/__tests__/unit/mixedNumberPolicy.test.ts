@@ -20,10 +20,8 @@
 import { describe, expect, it } from "vitest";
 
 import { renderKatexSafe as renderEditorKatex } from "../../components/math/editor/katexRender";
-import {
-  applyMathInnerNormalization as normalizeEditorMath,
-  preprocessMathText as preprocessEditorText,
-} from "../../components/math/editor/textPreprocess";
+import { repairEditorSource } from "../../components/math/editor/sourceRepair";
+import { applyMathInnerNormalization as normalizeEditorMath } from "../../components/math/editor/textPreprocess";
 import {
   elementaryUnits,
   generateElementaryProblem,
@@ -142,8 +140,10 @@ describe("편집기 렌더러도 가분수를 대분수로 바꾸지 않는다",
     expect(visible(String.raw`\frac{1}{3}`)).toContain("1");
   });
 
-  it("편집기 판 전처리도 지면의 수를 고쳐 쓰지 않는다", () => {
+  // 편집기의 문서 단위 전처리 사본은 2026-09-26 에 걷었다 — 지금 편집기 문서 단계는 입구 후보정을
+  // 수식 밖에만 거는 `repairEditorSource` 다. 그것도 수를 고쳐 쓰지 않는다.
+  it("편집기 판 문서 복구도 지면의 수를 고쳐 쓰지 않는다", () => {
     const before = String.raw`부피는 $\dfrac{4}{3}\pi r^{3}$이다. $\frac{10}{3}$`;
-    expect(countMixed(preprocessEditorText(before))).toBe(0);
+    expect(countMixed(repairEditorSource(before))).toBe(0);
   });
 });
