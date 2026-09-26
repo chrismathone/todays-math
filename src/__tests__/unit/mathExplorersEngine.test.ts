@@ -26,6 +26,10 @@ import {
   definitionRepairCards,
   definitionUnits,
 } from "@/lib/math-explorers/definition-cards";
+import {
+  workshopOptions,
+  workshopQuestionId,
+} from "@/lib/math-explorers/workshop";
 
 function fixture(grade = 3) {
   let state = createExplorerState("student-a", grade);
@@ -42,6 +46,42 @@ function fixture(grade = 3) {
       act({ type: "read", questionId: definitionQuestionId(current) });
       current = session();
     }
+    while (
+      state.profile.workshop?.session &&
+      state.profile.workshop.session.stage !== "complete"
+    ) {
+      const lab = state.profile.workshop.session;
+      const questionId = workshopQuestionId(lab);
+      if (lab.stage === "predict")
+        act({
+          type: "lab-predict",
+          questionId,
+          choiceId: workshopOptions(lab).indexOf(1),
+        });
+      else if (lab.stage === "split")
+        act({ type: "lab-split", questionId, factor: 3 });
+      else if (lab.stage === "match")
+        act({ type: "lab-match", questionId, factors: [3, 2] });
+      else if (lab.stage === "rule")
+        act({
+          type: "lab-rule",
+          questionId,
+          choiceId: workshopOptions(lab).indexOf(1),
+        });
+      else {
+        const question = lab.questions[lab.checkIndex]!;
+        act({
+          type: "lab-check",
+          questionId,
+          parts: question.fractions.map(
+            (fraction) =>
+              (fraction.numerator * question.denominator) /
+              fraction.denominator,
+          ),
+        });
+      }
+    }
+    current = session();
     const task = current.queue[current.index]!;
     const card = definitionCard(task.cardId);
     const sourceIds =
@@ -127,7 +167,9 @@ describe("Math Explorers imported curriculum", () => {
       f.start(unit.id);
       f.finish();
       expect(f.session().first, unit.id).toBe(15);
-      expect(f.state.profile.stars, unit.id).toBe(5);
+      expect(f.state.profile.stars, unit.id).toBe(
+        5 + (f.state.profile.workshop?.blueprintAt ? 1 : 0),
+      );
       expect(f.state.completedDays, unit.id).toHaveLength(1);
     }
   });

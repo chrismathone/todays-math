@@ -5,10 +5,11 @@ Imported from the user-provided `Math_Explorers_Codex_Package.zip`, source snaps
 
 Original SHA-256:
 
-| File                        | SHA-256                                                            |
-| --------------------------- | ------------------------------------------------------------------ |
-| `lib/definition-content.ts` | `b58df583ee469dfc69b8a565794a1435675be17dcc8ff12c4fbbecf0f0a75633` |
-| `lib/definition-cards.ts`   | `11753bf8628fd84d8394f2b918c6fa06b378cd109d98ca4de3fcac9e4ed116ac` |
+| File                                                 | SHA-256                                                            |
+| ---------------------------------------------------- | ------------------------------------------------------------------ |
+| `lib/definition-content.ts`                          | `b58df583ee469dfc69b8a565794a1435675be17dcc8ff12c4fbbecf0f0a75633` |
+| `lib/definition-cards.ts`                            | `11753bf8628fd84d8394f2b918c6fa06b378cd109d98ca4de3fcac9e4ed116ac` |
+| `lib/game.ts` (fraction manipulation, lines 334–397) | `7ba0009b4732ebc8bf8341b0afda70f42f4dcba8265ae9a1e77298b2b53b3eac` |
 
 ## Preserved
 
@@ -37,3 +38,17 @@ Original SHA-256:
 
 The scope remains core concepts, not every textbook standard or an exhaustive problem
 bank. The existing generated problem-bank practice continues separately.
+
+## Embedded fraction manipulation
+
+The package's common-denominator experiment is integrated into the first activity of
+`g5-common-denominator`, after the introductory definition. It has no separate launch
+route or menu. Prediction, splitting, equal-size pieces, rule discovery and two new
+checks run in the same practice frame, then resume the original definition activity.
+The 15-activity count and daily journey do not move during this interlude.
+
+The original five pairs of check variants, non-minimal common denominators, one-time
+blueprint star, discovery badge and three-day memory revisit are preserved. Subsequent
+study selects checks or due memory automatically. Historical replay does not insert it
+again. Ordinary feedback contains no answer or automatic explanation; explicit solutions
+are available only after both the manipulation and the concept session finish.
