@@ -13,6 +13,93 @@
   gap: 12px;
   margin-bottom: 18px;
 }
+.map .header {
+  margin-bottom: 5px;
+}
+.map .heading {
+  font-size: 18px !important;
+}
+.map .total {
+  flex-direction: row;
+  align-items: baseline;
+  gap: 4px;
+}
+.map .total strong {
+  font-size: 18px;
+}
+.map .total span {
+  font-size: 9px;
+}
+.map .navigation {
+  margin-bottom: 6px;
+}
+.map .pageRange {
+  font-size: 11px !important;
+}
+.map .pageRange span {
+  display: none;
+}
+.map .pageButton {
+  width: 44px;
+  height: 44px;
+  border: 0;
+  background: #f3f6fc;
+}
+.map .board {
+  aspect-ratio: 0.95;
+}
+.map .tile {
+  padding: 10px 3px 5px;
+  gap: 3px;
+}
+.map .dayNumber {
+  font-size: 13px;
+}
+.map .dayNumber small {
+  font-size: 7px;
+}
+.map .tileTitle {
+  font-size: 10px;
+  -webkit-line-clamp: 2;
+}
+.map .tileStatus {
+  display: none;
+}
+.mapCenter {
+  position: absolute;
+  inset: 27%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  text-align: center;
+}
+.mapCenter > span {
+  font-size: 28px;
+  color: #d3ae5f;
+  line-height: 1.1;
+}
+.mapCenter strong {
+  font-size: 16px;
+  font-weight: 750;
+  color: #31547e;
+}
+.mapCenter p {
+  margin: 0 !important;
+  font-size: 10px !important;
+  line-height: 1.7 !important;
+  color: #8092ae;
+  word-break: keep-all;
+}
+.map .boardFooter {
+  padding-top: 7px;
+  min-height: 35px;
+}
+.map .reviewNote {
+  font-size: 10px !important;
+  margin-top: 2px !important;
+}
 .eyebrow {
   margin: 0 0 5px !important;
   font-size: 11px !important;

@@ -28,6 +28,7 @@ export interface DailyJourneyBoardProps {
   onNext?: () => void;
   nextLabel?: string;
   busy?: boolean;
+  variant?: "full" | "map";
   onReviewDay: (day: DailyJourneyDay, opener: HTMLButtonElement) => void;
 }
 
@@ -99,6 +100,7 @@ export default function DailyJourneyBoard({
   onNext,
   nextLabel = "이어서 학습하기",
   busy = false,
+  variant = "full",
   onReviewDay,
 }: DailyJourneyBoardProps) {
   const completed = Math.max(0, Math.floor(journey.completedDays));
@@ -197,14 +199,19 @@ export default function DailyJourneyBoard({
 
   return (
     <section
-      className={s.root}
+      className={`${s.root} ${variant === "map" ? s.map : ""}`}
       aria-label="전체 학습 진도"
       data-daily-journey="true"
+      data-journey-variant={variant}
     >
       <header className={s.header}>
         <div>
-          <p className={s.eyebrow}>하루 한 칸, 차곡차곡</p>
-          <h2 className={s.heading}>전체 학습 진도</h2>
+          {variant === "full" ? (
+            <p className={s.eyebrow}>하루 한 칸, 차곡차곡</p>
+          ) : null}
+          <h2 className={s.heading}>
+            {variant === "map" ? "나의 수학 여정" : "전체 학습 진도"}
+          </h2>
         </div>
         <p className={s.total} aria-live="polite">
           <strong>{completed}</strong>
@@ -212,7 +219,7 @@ export default function DailyJourneyBoard({
         </p>
       </header>
 
-      {currentUnit ? (
+      {currentUnit && variant === "full" ? (
         <div className={s.unit}>
           <span className={s.unitIcon} aria-hidden="true">
             <svg viewBox="0 0 24 24" fill="none">
@@ -271,10 +278,17 @@ export default function DailyJourneyBoard({
             const done = ordinal <= completed;
             const next = ordinal === completed + 1 && !journey.todayComplete;
             const planned = journey.upcoming[ordinal - completed - 1];
-            const topic = done ? day : planned;
+            const topic = done
+              ? day
+              : variant === "map" && !next
+                ? undefined
+                : planned;
             const reviewable = done && !!day && day.reviewCount > 0;
             const clickable = reviewable || (next && canContinue);
-            const title = topic?.title ?? (done ? "완료한 학습" : "다음 학습");
+            const title =
+              variant === "map" && !done && !next
+                ? "다음 여정"
+                : (topic?.title ?? (done ? "완료한 학습" : "다음 학습"));
             const state = done ? "complete" : next ? "current" : "upcoming";
             const label = `${ordinal}일차, ${title}, ${done ? "학습 완료" : next ? "오늘의 학습" : "예정"}${reviewable ? ", 다시 풀기" : ""}`;
             const content = (
@@ -332,49 +346,60 @@ export default function DailyJourneyBoard({
           })}
         </ol>
 
-        <div className={s.center}>
-          <span className={s.centerMark} aria-hidden="true">
-            {journey.todayComplete ? "✓" : "✦"}
-          </span>
-          <p className={s.centerLabel}>
-            {journey.todayComplete ? "오늘의 한 칸 완료!" : "오늘의 학습"}
-          </p>
-          <p className={s.count}>
-            <strong>{answered}</strong>
-            <span>
-              / {goal}
-              <small>문제</small>
-            </span>
-          </p>
-          <progress
-            className={s.progress}
-            value={Math.min(answered, goal)}
-            max={goal}
-            aria-label="오늘의 학습 문제 진행률"
-          />
-          {canContinue ? (
-            <button
-              type="button"
-              className={s.next}
-              data-journey-continue
-              disabled={busy}
-              onClick={onNext}
-            >
-              {busy ? "준비 중…" : nextLabel}
-              <span aria-hidden="true">→</span>
-            </button>
-          ) : (
-            <p className={s.centerNote}>
-              {journey.todayComplete
-                ? "한 칸 전진했어요"
-                : "학습할 준비를 해요"}
+        {variant === "map" ? (
+          <div className={s.mapCenter}>
+            <span aria-hidden="true">✦</span>
+            <strong>하루 한 칸</strong>
+            <p>
+              오늘의 학습을 마치면
+              <br />
+              말이 앞으로 이동해요.
             </p>
-          )}
-          {!journey.todayComplete && answered >= goal ? (
-            <p className={s.retryNote}>오답 복습을 마치면 전진해요</p>
-          ) : null}
-        </div>
-
+          </div>
+        ) : (
+          <div className={s.center}>
+            <span className={s.centerMark} aria-hidden="true">
+              {journey.todayComplete ? "✓" : "✦"}
+            </span>
+            <p className={s.centerLabel}>
+              {journey.todayComplete ? "오늘의 한 칸 완료!" : "오늘의 학습"}
+            </p>
+            <p className={s.count}>
+              <strong>{answered}</strong>
+              <span>
+                / {goal}
+                <small>문제</small>
+              </span>
+            </p>
+            <progress
+              className={s.progress}
+              value={Math.min(answered, goal)}
+              max={goal}
+              aria-label="오늘의 학습 문제 진행률"
+            />
+            {canContinue ? (
+              <button
+                type="button"
+                className={s.next}
+                data-journey-continue
+                disabled={busy}
+                onClick={onNext}
+              >
+                {busy ? "준비 중…" : nextLabel}
+                <span aria-hidden="true">→</span>
+              </button>
+            ) : (
+              <p className={s.centerNote}>
+                {journey.todayComplete
+                  ? "한 칸 전진했어요"
+                  : "학습할 준비를 해요"}
+              </p>
+            )}
+            {!journey.todayComplete && answered >= goal ? (
+              <p className={s.retryNote}>오답 복습을 마치면 전진해요</p>
+            ) : null}
+          </div>
+        )}
         {pawnVisible ? (
           <span
             ref={pawnRef}
@@ -409,17 +434,21 @@ export default function DailyJourneyBoard({
           <span className={s.direction}>시계 방향으로 한 칸씩</span>
         )}
       </div>
-      <p className={s.legend}>
-        오늘의 학습과 오답 복습을 마치면 한 칸 전진해요.
-      </p>
+      {variant === "full" ? (
+        <p className={s.legend}>
+          오늘의 학습과 오답 복습을 마치면 한 칸 전진해요.
+        </p>
+      ) : null}
       {completed > 0 ? (
         <p className={s.reviewNote}>
           완료한 날짜의 칸을 눌러 다시 풀 수 있어요.
         </p>
       ) : null}
-      <p className={s.planNote}>
-        앞으로 배울 단원은 학습 진도에 맞춰 안내해요.
-      </p>
+      {variant === "full" ? (
+        <p className={s.planNote}>
+          앞으로 배울 단원은 학습 진도에 맞춰 안내해요.
+        </p>
+      ) : null}
     </section>
   );
 }
