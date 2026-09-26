@@ -14,8 +14,14 @@ export interface QuickItem {
   conceptId: ConceptId;
   /** 1..5 — 한 걸음 안에서 수 크기·음수·분수로 오른다 */
   difficulty: Difficulty;
-  /** 발문 + 식. `$…$` 수식. 320px 폭에서 두 줄 이내 */
+  /** 발문. `$…$` 수식. 320px 폭에서 두 줄 이내 — 핵심 식은 `equation` 으로 뺀다 */
   prompt: string;
+  /**
+   * 발문 아래 줄에 따로 크게 보일 핵심 식, `"$…$"` 한 덩이(학생 화면의 식 칸 — `StudentMathSrs` 가
+   * `MathText` 로 그린다). 320px 에서 한 줄. 식이 없는 문항(문장제)은 `""`.
+   * (원장님 확정 2026-09-27 «식은 발문 아래 줄에 따로 크게»)
+   */
+  equation: string;
   /** 정확히 4개, 이미 섞은 표시 순서. 각 보기는 `"$…$"` 한 덩이 */
   choices: string[];
   /** 0..3 */

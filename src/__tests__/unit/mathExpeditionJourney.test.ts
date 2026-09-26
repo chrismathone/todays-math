@@ -30,6 +30,13 @@ import {
   type StoredSrsState,
 } from "@/lib/math-srs/serverState";
 import { replayProblem } from "@/lib/math-srs/replay";
+import { correctSrsChoice } from "@/lib/math-srs/sharedAnswers";
+
+type MiddleProblem = StoredSrsState["missions"][number]["problems"][number];
+/** 학생 미션은 폰 «한 걸음» 보기형(2026-09-27) — 정답·오답 제출을 문항 종류에 맞춘다 */
+const right = (p: MiddleProblem) => correctSrsChoice(p) ?? String(p.answer);
+const wrongOf = (p: MiddleProblem) =>
+  p.choices ? p.choices[(p.answer + 1) % 4]! : String(p.answer + 999);
 
 const now = new Date("2026-09-27T03:00:00.000Z");
 const tomorrow = new Date("2026-09-28T03:00:00.000Z");
@@ -84,9 +91,8 @@ function withMiddle(
       {
         missionId: mission.id,
         problemId: problem.id,
-        submittedAnswer: String(
-          problem.answer + (wrong && index === 0 ? 999 : 0),
-        ),
+        submittedAnswer:
+          wrong && index === 0 ? wrongOf(problem) : right(problem),
         elapsedSeconds: 10,
         rating: "good",
       },
@@ -208,7 +214,7 @@ describe("conservative unified expedition history", () => {
       state,
       mission.id,
       mission.problems[0].id,
-      String(mission.problems[0].answer),
+      right(mission.problems[0]),
       now,
     ) as typeof state;
     expect(expeditionJourney(state, now).completedDays).toBe(1);

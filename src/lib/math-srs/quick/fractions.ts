@@ -80,7 +80,8 @@ const lcd: QuickShape = {
     if (!correct) return null;
     const product = dens.reduce((x, y) => x * y, 1);
     return {
-      prompt: `$${equation}$ 의 양변에 곱할 가장 작은 자연수는?`,
+      prompt: "양변에 곱할 가장 작은 자연수는?",
+      equation,
       correct,
       wrong: [
         wrong(product !== least ? numChoice(product) : null, "분모끼리 곱함"),
@@ -179,7 +180,8 @@ const clear: QuickShape = {
     }
     if (!correct) return null;
     return {
-      prompt: `$${left}=${right}$ 의 양변에 ${withJosa(String(M), "을/를")} 곱하면 좌변은?`,
+      prompt: `양변에 ${withJosa(String(M), "을/를")} 곱하면 좌변은?`,
+      equation: `${left}=${right}`,
       correct,
       wrong: wrongs,
       solution: [`$${M}\\times(${left})=${correct.tex}$`],
@@ -222,7 +224,8 @@ const proportion: QuickShape = {
     const correct = eqChoice(P, product);
     if (!correct) return null;
     return {
-      prompt: `비례식 ${withJosa(ratio, "을/를")} 방정식으로 바꾸면?`,
+      prompt: "비례식을 방정식으로 바꾸면?",
+      equation: ratio,
       correct,
       wrong: [
         wrong(eqChoice(Q, P * R), "짝을 잘못 지음"),

@@ -1,6 +1,6 @@
 import { intBetween } from "../../elementary/rng";
 import { eqChoice, nonZero, numChoice, wrong, type QuickShape } from "./shape";
-import { eq, lin, tail, tailTerm, term, withJosa } from "./tex";
+import { eq, lin, tail, tailTerm, term } from "./tex";
 
 /** `Ax+B=Cx+D` 의 네 수를 난이도에 맞춰 뽑는다. `A-C` 는 늘 양수. */
 function pickSides(
@@ -60,7 +60,8 @@ const collect: QuickShape = {
     const correct = eqChoice(A - C, D - B);
     if (!correct) return null;
     return {
-      prompt: `${withJosa(equation, "을/를")} 이항해 정리하면?`,
+      prompt: "이항해 정리하면?",
+      equation,
       correct,
       wrong: [
         wrong(eqChoice(A + C, D - B), "x 항의 부호를 바꾸지 않음"),
@@ -119,7 +120,8 @@ const solve: QuickShape = {
     const correct = numChoice(s);
     if (!correct) return null;
     return {
-      prompt: `$${lin(A, B)}=${lin(C, D)}$ 일 때 $x$ 의 값은?`,
+      prompt: "$x$ 의 값은?",
+      equation: `${lin(A, B)}=${lin(C, D)}`,
       correct,
       wrong: [
         wrong(numChoice((D + B) / (A - C)), "상수항의 부호를 바꾸지 않음"),
@@ -211,7 +213,8 @@ const noSolution: QuickShape = {
     const correct = numChoice(answer);
     if (!correct) return null;
     return {
-      prompt: `$${equation}$ 의 해가 ${kind} 때 $a$ 의 값은?`,
+      prompt: `해가 ${kind} 때 $a$ 의 값은?`,
+      equation,
       correct,
       wrong: wrongs,
       solution: [

@@ -112,6 +112,7 @@ const phrase: QuickShape = {
     if (!correct) return null;
     return {
       prompt,
+      equation: "",
       correct,
       wrong: wrongs,
       solution: [`식으로 나타내면 $${correct.tex}$`],
@@ -152,6 +153,7 @@ const consecutive: QuickShape = {
     const correct = linChoice(n, dir * step * tri);
     if (!correct) return null;
     return {
+      equation: "",
       prompt: `연속하는 ${COUNT_WORD[n]} ${kind} 중 ${endWord} 수가 $x$ 일 때 ${COUNT_WORD[n]} 수의 합은?`,
       correct,
       wrong: [
@@ -193,9 +195,12 @@ const age: QuickShape = {
           later ? "후를 전으로 읽음" : "전을 후로 읽음",
         ),
         wrong(linChoice(k, 0), "배로 읽음"),
+        // «후»에 «$k-x$ 순서를 바꿔 뺌»은 어색하다(원장님 2026-09-27) — «후»는 나누기로 읽은 실수
         wrong(
-          exprChoice(`${k}-x`, (t) => k - t),
-          "순서를 바꿔 뺌",
+          later
+            ? exprChoice(`\\frac{x}{${k}}`, (t) => t / k)
+            : exprChoice(`${k}-x`, (t) => k - t),
+          later ? "나누기로 읽음" : "순서를 바꿔 뺌",
         ),
       ];
     } else if (difficulty === 2) {
@@ -237,6 +242,7 @@ const age: QuickShape = {
     if (!correct) return null;
     return {
       prompt,
+      equation: "",
       correct,
       wrong: wrongs,
       solution: [`식으로 나타내면 $${correct.tex}$`],
@@ -327,6 +333,7 @@ const speed: QuickShape = {
     if (!correct) return null;
     return {
       prompt,
+      equation: "",
       correct,
       wrong: wrongs,
       solution: [`식으로 나타내면 $${correct.tex}$`],

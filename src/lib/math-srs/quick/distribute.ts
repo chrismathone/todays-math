@@ -6,7 +6,7 @@ import {
   wrong,
   type QuickShape,
 } from "./shape";
-import { fracTerm, lin, tail, tailTerm, term, withJosa } from "./tex";
+import { fracTerm, lin, tail, tailTerm, term } from "./tex";
 
 /** `-(A+B)` — 괄호 앞 `-` 를 모든 항에 */
 const sign: QuickShape = {
@@ -41,7 +41,8 @@ const sign: QuickShape = {
     const correct = fracLinChoice(-p, q, -b);
     if (!correct) return null;
     return {
-      prompt: `$-(${inner})$ 의 괄호를 풀면?`,
+      prompt: "괄호를 풀면?",
+      equation: `-(${inner})`,
       correct,
       wrong: [
         wrong(fracLinChoice(-p, q, b), "뒤 항의 부호를 바꾸지 않음"),
@@ -112,7 +113,8 @@ const times: QuickShape = {
             wrong(linChoice(-ka, kb), "앞 항에 − 를 곱하지 않음"),
           ];
     return {
-      prompt: `$${expr}$ 의 괄호를 풀면?`,
+      prompt: "괄호를 풀면?",
+      equation: expr,
       correct,
       wrong: wrongs,
       solution: [`$${expr}=${correct.tex}$`],
@@ -142,7 +144,8 @@ const simplify: QuickShape = {
       const correct = linChoice(a + b, c);
       if (!correct) return null;
       return {
-        prompt: `${withJosa(expr, "을/를")} 간단히 하면?`,
+        prompt: "간단히 하면?",
+        equation: expr,
         correct,
         wrong: [
           wrong(linChoice(a + b, -c), "상수항의 부호를 바꿈"),
@@ -190,7 +193,8 @@ const simplify: QuickShape = {
             wrong(linChoice(a + k * b, -k * c), "앞 항의 부호를 바꾸지 않음"),
           ];
     return {
-      prompt: `${withJosa(expr, "을/를")} 간단히 하면?`,
+      prompt: "간단히 하면?",
+      equation: expr,
       correct,
       wrong: wrongs,
       solution: [
