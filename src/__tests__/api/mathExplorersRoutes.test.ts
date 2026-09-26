@@ -236,6 +236,8 @@ describe("authenticated math explorer persistence", () => {
     });
     const view = await data(await read(`?studentId=${f.otherId}`));
     expect(view.student.id).toBe(f.studentId);
+    expect(view.today).toBe("2026-09-27");
+    expect(view.journey?.completedDays).toBe(0);
     expect(view.profile.id).toBe(f.studentId);
     expect(view.profile.stars).toBe(0);
     expect(view.units).toHaveLength(46);
@@ -374,6 +376,11 @@ describe("authenticated math explorer persistence", () => {
     ).toBe(409);
     view = await finish(view);
     expect(view.completedDays).toHaveLength(1);
+    expect(view.journey?.completedDays).toBe(1);
+    expect(view.journey?.days[0].reviews[0]).toMatchObject({
+      kind: "explorers",
+      dayId: "2026-09-27",
+    });
     expect(view.completedDays[0].date).toBe("2026-09-27");
     const solution = await action(view, {
       type: "solution",

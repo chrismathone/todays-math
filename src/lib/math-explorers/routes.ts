@@ -33,6 +33,7 @@ import {
   explorerReceipt,
   explorerView,
 } from "./engine";
+import { expeditionJourney } from "./expeditionJourney";
 
 const responseSchema = dataResponseSchema(explorerStateSchema);
 
@@ -107,7 +108,8 @@ export async function handleExplorerRequest(
     const student = await loadCourseStudent(studentId);
     if (!student?.studentAccount || student.studentAccount.disabledAt)
       return noStore(unauthorizedError());
-    const date = kstDateOf(new Date());
+    const now = new Date();
+    const date = kstDateOf(now);
     let saved: Awaited<ReturnType<typeof readSrsState>>;
     let feedback: ExplorerFeedback | null = null;
     if (operation === "read") saved = await readSrsState(studentId);
@@ -124,6 +126,8 @@ export async function handleExplorerRequest(
       jsonOk(responseSchema, {
         data: {
           ...explorerView(ownedExplorer(saved.state, studentId), date),
+          today: date,
+          journey: expeditionJourney(saved.state, now),
           student: {
             id: student.id,
             name: student.name,
