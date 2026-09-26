@@ -55,6 +55,23 @@ const SEC = {
   비율: "일차방정식의 활용(비율, 시계, 규칙)",
 } as const;
 
+function gcd(a: number, b: number): number {
+  let x = Math.abs(a);
+  let y = Math.abs(b);
+  while (y !== 0) [x, y] = [y, x % y];
+  return x;
+}
+
+/*
+ * ## 말이 안 되는 수치를 막는다 (원장님 2026-09-27)
+ *
+ * 씨앗에 따라 「비가 $2:2$」·「톱니 수가 각각 $10$개, $10$개」·「A는 $14$일, B는 $14$일」이
+ * 나왔다. 값은 맞아서 `middleLinearApply.test.ts` 의 `VERIFY` 같은 값 검산은 **구조적으로
+ * 못 본다.** 그래서 각 생성기가 「서로 달라야 할 두 값」과 「답이 발문에 그대로 있는 경우」를
+ * 직접 거른다. 전수 판정은 `scripts/qa/census-middle-degenerate.ts`,
+ * 잠금은 `middleM1Degenerate.test.ts`.
+ */
+
 /** 조건을 만족할 때까지 다시 뽑는다 — 못 찾으면 던진다(조용히 기본값 금지). */
 function attempt<T>(tries: number, f: () => T | null): T {
   for (let i = 0; i < tries; i += 1) {
@@ -332,6 +349,9 @@ export const M1_LINEAR_APPLY: TypeEntry[] = [
         if ((du * x) % u !== 0) return null;
         const t = (du * x) / u;
         if (t < 2 || t > 30) return null;
+        // 형이 동생의 딱 두 배로 빠르면($du=u$) 따라잡는 시간이 먼저 나선 시간과 같다 —
+        // 답이 발문의 「$t$분」 그대로다(씨앗 1000 중 227).
+        if (x === t) return null;
         const w = u + du;
         return {
           content: `동생이 분속 $${u}\\,\\mathrm{m}$로 걸어서 집을 나선 지 $${t}$분 후에 형이 분속 $${w}\\,\\mathrm{m}$로 같은 길을 따라갔다. 형이 출발한 지 몇 분 후에 동생을 만나는지 구하시오.`,
@@ -347,18 +367,21 @@ export const M1_LINEAR_APPLY: TypeEntry[] = [
     "거리 속력 시간에 대한 문제 마주 보고 가거나 둘레를 도는 경우",
     SEC.거리,
     "응용",
-    (rng) => {
-      const t = intBetween(rng, 4, 15);
-      const p = intBetween(rng, 5, 9) * 10;
-      const q = intBetween(rng, 5, 9) * 10;
-      const C = (p + q) * t;
-      return {
-        content: `둘레의 길이가 $${C}\\,\\mathrm{m}$인 호수의 같은 지점에서 두 사람이 동시에 반대 방향으로 출발하였다. 한 사람은 분속 $${p}\\,\\mathrm{m}$로, 다른 사람은 분속 $${q}\\,\\mathrm{m}$로 걸을 때, 두 사람은 출발한 지 몇 분 후에 처음으로 다시 만나는지 구하시오.`,
-        answer: `$${t}$분 후`,
-        solution: `$x$분 후에 처음 만난다고 하면 두 사람이 걸은 거리의 합이 둘레의 길이와 같으므로 $${p}x+${q}x=${C}$이다.\n$${p + q}x=${C}$이므로 $x=${t}$이다.\n따라서 $${t}$분 후에 처음으로 다시 만난다.`,
-        facts: { t, p, q, C },
-      };
-    },
+    (rng) =>
+      attempt(80, () => {
+        const t = intBetween(rng, 4, 15);
+        const p = intBetween(rng, 5, 9) * 10;
+        const q = intBetween(rng, 5, 9) * 10;
+        // 「한 사람은 분속 $60\,\mathrm{m}$로, 다른 사람은 분속 $60\,\mathrm{m}$로」 — 53 과 같은 거름.
+        if (p === q) return null;
+        const C = (p + q) * t;
+        return {
+          content: `둘레의 길이가 $${C}\\,\\mathrm{m}$인 호수의 같은 지점에서 두 사람이 동시에 반대 방향으로 출발하였다. 한 사람은 분속 $${p}\\,\\mathrm{m}$로, 다른 사람은 분속 $${q}\\,\\mathrm{m}$로 걸을 때, 두 사람은 출발한 지 몇 분 후에 처음으로 다시 만나는지 구하시오.`,
+          answer: `$${t}$분 후`,
+          solution: `$x$분 후에 처음 만난다고 하면 두 사람이 걸은 거리의 합이 둘레의 길이와 같으므로 $${p}x+${q}x=${C}$이다.\n$${p + q}x=${C}$이므로 $x=${t}$이다.\n따라서 $${t}$분 후에 처음으로 다시 만난다.`,
+          facts: { t, p, q, C },
+        };
+      }),
   ),
 
   def(
@@ -386,37 +409,45 @@ export const M1_LINEAR_APPLY: TypeEntry[] = [
   ),
 
   // ── (도형, 농도, 일) ─────────────────────────────────
-  def("07", "도형에 대한 문제", SEC.도형, "기본", (rng) => {
-    const h = intBetween(rng, 4, 15);
-    const d = intBetween(rng, 2, 8);
-    const w = h + d;
-    const P = 2 * (w + h);
-    return {
-      content: `가로의 길이가 세로의 길이보다 $${d}\\,\\mathrm{cm}$만큼 더 긴 직사각형의 둘레의 길이가 $${P}\\,\\mathrm{cm}$일 때, 세로의 길이를 구하시오.`,
-      answer: `$${h}\\,\\mathrm{cm}$`,
-      solution: `세로의 길이를 $x\\,\\mathrm{cm}$라 하면 가로의 길이는 $(x+${d})\\,\\mathrm{cm}$이다.\n$2\\{(x+${d})+x\\}=${P}$${nEul(P)} 풀면 $x=${h}$이다.\n따라서 세로의 길이는 $${h}\\,\\mathrm{cm}$이다.`,
-      facts: { h, d, w, P },
-    };
-  }),
+  def("07", "도형에 대한 문제", SEC.도형, "기본", (rng) =>
+    attempt(80, () => {
+      const h = intBetween(rng, 4, 15);
+      const d = intBetween(rng, 2, 8);
+      // 답(세로)이 발문의 「$d\,\mathrm{cm}$만큼 더 긴」과 같으면 답이 발문에 그대로 있다.
+      if (h === d) return null;
+      const w = h + d;
+      const P = 2 * (w + h);
+      return {
+        content: `가로의 길이가 세로의 길이보다 $${d}\\,\\mathrm{cm}$만큼 더 긴 직사각형의 둘레의 길이가 $${P}\\,\\mathrm{cm}$일 때, 세로의 길이를 구하시오.`,
+        answer: `$${h}\\,\\mathrm{cm}$`,
+        solution: `세로의 길이를 $x\\,\\mathrm{cm}$라 하면 가로의 길이는 $(x+${d})\\,\\mathrm{cm}$이다.\n$2\\{(x+${d})+x\\}=${P}$${nEul(P)} 풀면 $x=${h}$이다.\n따라서 세로의 길이는 $${h}\\,\\mathrm{cm}$이다.`,
+        facts: { h, d, w, P },
+      };
+    }),
+  ),
 
   def(
     "15",
     "농도에 대한 문제 물을 넣거나 증발시키는 경우",
     SEC.도형,
     "응용",
-    (rng) => {
-      const C = pick(rng, [4, 5, 6, 8, 10] as const);
-      const A = C + intBetween(rng, 2, 6);
-      const m = intBetween(rng, 20, 60);
-      const B = C * m;
-      const W = m * (A - C);
-      return {
-        content: `$${A}\\%$의 소금물 $${B}\\,\\mathrm{g}$이 있다. 여기에 물을 몇 $\\mathrm{g}$ 더 넣으면 $${C}\\%$의 소금물이 되는지 구하시오.`,
-        answer: `$${W}\\,\\mathrm{g}$`,
-        solution: `물을 $x\\,\\mathrm{g}$ 더 넣는다고 하면 소금의 양은 변하지 않으므로 $\\dfrac{${A}}{100}\\times${B}=\\dfrac{${C}}{100}\\times(${B}+x)$이다.\n풀면 $x=${W}$이므로 물을 $${W}\\,\\mathrm{g}$ 더 넣어야 한다.`,
-        facts: { A, B, C, W },
-      };
-    },
+    (rng) =>
+      attempt(80, () => {
+        const C = pick(rng, [4, 5, 6, 8, 10] as const);
+        const A = C + intBetween(rng, 2, 6);
+        const m = intBetween(rng, 20, 60);
+        const B = C * m;
+        const W = m * (A - C);
+        // 농도를 절반으로($A=2C$) 낮추면 넣을 물이 처음 소금물의 양과 같다 — 답이 발문의
+        // 「$B\,\mathrm{g}$」 그대로다(씨앗 1000 중 130).
+        if (W === B) return null;
+        return {
+          content: `$${A}\\%$의 소금물 $${B}\\,\\mathrm{g}$이 있다. 여기에 물을 몇 $\\mathrm{g}$ 더 넣으면 $${C}\\%$의 소금물이 되는지 구하시오.`,
+          answer: `$${W}\\,\\mathrm{g}$`,
+          solution: `물을 $x\\,\\mathrm{g}$ 더 넣는다고 하면 소금의 양은 변하지 않으므로 $\\dfrac{${A}}{100}\\times${B}=\\dfrac{${C}}{100}\\times(${B}+x)$이다.\n풀면 $x=${W}$이므로 물을 $${W}\\,\\mathrm{g}$ 더 넣어야 한다.`,
+          facts: { A, B, C, W },
+        };
+      }),
   ),
 
   def("16", "농도에 대한 문제 소금을 더 넣는 경우", SEC.도형, "심화하", (rng) =>
@@ -508,33 +539,43 @@ export const M1_LINEAR_APPLY: TypeEntry[] = [
     };
   }),
 
-  def("23", "비례배분으로 전체 구하기", SEC.비율, "기본", (rng) => {
-    const a = intBetween(rng, 2, 7);
-    const b = intBetween(rng, 2, 7);
-    const k = intBetween(rng, 3, 15);
-    const part = a * k;
-    const total = (a + b) * k;
-    return {
-      content: `남학생 수와 여학생 수의 비가 $${a}:${b}$인 모둠에서 남학생이 $${part}$명이다. 이 모둠의 전체 학생 수를 구하시오.`,
-      answer: `$${total}$명`,
-      solution: `비의 한 칸은 $${part}\\div${a}=${k}$(명)이다.\n따라서 전체 학생 수는 $(${a}+${b})\\times${k}=${total}$(명)이다.`,
-      facts: { a, b, k, part, total },
-    };
-  }),
+  def("23", "비례배분으로 전체 구하기", SEC.비율, "기본", (rng) =>
+    attempt(80, () => {
+      const a = intBetween(rng, 2, 7);
+      const b = intBetween(rng, 2, 7);
+      // 비는 가장 간단한 자연수의 비로 준다 — $2:2$ 는 비를 줄 까닭이 없고(원장님 2026-09-27),
+      // $2:6$ 은 교과서가 $1:3$ 으로 쓴다. 둘 다 $2$ 이상이라 서로소면 $a=b$ 도 함께 막힌다.
+      if (gcd(a, b) !== 1) return null;
+      const k = intBetween(rng, 3, 15);
+      const part = a * k;
+      const total = (a + b) * k;
+      return {
+        content: `남학생 수와 여학생 수의 비가 $${a}:${b}$인 모둠에서 남학생이 $${part}$명이다. 이 모둠의 전체 학생 수를 구하시오.`,
+        answer: `$${total}$명`,
+        solution: `비의 한 칸은 $${part}\\div${a}=${k}$(명)이다.\n따라서 전체 학생 수는 $(${a}+${b})\\times${k}=${total}$(명)이다.`,
+        facts: { a, b, k, part, total },
+      };
+    }),
+  ),
 
-  def("24", "일정량을 더한 뒤의 비", SEC.비율, "응용", (rng) => {
-    const a = intBetween(rng, 2, 6);
-    const b = intBetween(rng, a + 1, 9);
-    const k = intBetween(rng, 3, 12);
-    const added = (b - a) * k;
-    const first = a * k;
-    return {
-      content: `두 상자 $\\mathrm{A}$, $\\mathrm{B}$에 들어 있는 공의 수의 비가 $${a}:${b}$이다. $\\mathrm{A}$ 상자에 공을 $${added}$개 더 넣었더니 두 상자의 공의 수가 같아졌다. 처음 $\\mathrm{A}$ 상자에 있던 공의 수를 구하시오.`,
-      answer: `$${first}$개`,
-      solution: `처음 공의 수를 각각 $${a}x$, $${b}x$라 하면 $${a}x+${added}=${b}x$이다.\n$x=${k}$이므로 처음 $\\mathrm{A}$ 상자의 공은 $${a}\\times${k}=${first}$(개)이다.`,
-      facts: { a, b, k, added, first },
-    };
-  }),
+  def("24", "일정량을 더한 뒤의 비", SEC.비율, "응용", (rng) =>
+    attempt(80, () => {
+      const a = intBetween(rng, 2, 6);
+      const b = intBetween(rng, a + 1, 9);
+      // 23 과 같은 까닭으로 서로소만 쓴다. 게다가 $b=2a$ 면 더 넣은 수 $(b-a)k$ 가 곧 답 $ak$ 라
+      // 답이 발문에 그대로 있었다(씨앗 1000 중 101) — 서로소면 $b=2a$ 는 $a=1$ 뿐이라 함께 막힌다.
+      if (gcd(a, b) !== 1) return null;
+      const k = intBetween(rng, 3, 12);
+      const added = (b - a) * k;
+      const first = a * k;
+      return {
+        content: `두 상자 $\\mathrm{A}$, $\\mathrm{B}$에 들어 있는 공의 수의 비가 $${a}:${b}$이다. $\\mathrm{A}$ 상자에 공을 $${added}$개 더 넣었더니 두 상자의 공의 수가 같아졌다. 처음 $\\mathrm{A}$ 상자에 있던 공의 수를 구하시오.`,
+        answer: `$${first}$개`,
+        solution: `처음 공의 수를 각각 $${a}x$, $${b}x$라 하면 $${a}x+${added}=${b}x$이다.\n$x=${k}$이므로 처음 $\\mathrm{A}$ 상자의 공은 $${a}\\times${k}=${first}$(개)이다.`,
+        facts: { a, b, k, added, first },
+      };
+    }),
+  ),
 
   def("25", "전체에 대한 백분율", SEC.비율, "기본", (rng) => {
     const rate = pick(rng, [20, 25, 40, 50] as const);
@@ -587,7 +628,8 @@ export const M1_LINEAR_APPLY: TypeEntry[] = [
   }),
 
   def("29", "정사각형을 이어 붙인 규칙", SEC.비율, "응용", (rng) => {
-    const n = intBetween(rng, 4, 18);
+    // $5$ 부터 — $n=4$ 면 답 「$4$개」가 발문의 「$1$개에는 $4$개가 필요」와 같다.
+    const n = intBetween(rng, 5, 18);
     const sticks = 3 * n + 1;
     return {
       content: `성냥개비로 정사각형을 한 줄로 이어 붙인다. 정사각형 $1$개에는 $4$개가 필요하고 하나를 더 이어 붙일 때마다 $3$개씩 더 필요하다. 성냥개비 $${sticks}$개로 만들 수 있는 정사각형의 개수를 구하시오.`,
@@ -597,18 +639,23 @@ export const M1_LINEAR_APPLY: TypeEntry[] = [
     };
   }),
 
-  def("30", "톱니바퀴의 회전수 비", SEC.비율, "심화하", (rng) => {
-    const a = intBetween(rng, 2, 6) * 5;
-    const b = intBetween(rng, 2, 6) * 5;
-    const turnsA = intBetween(rng, 3, 12) * b;
-    const turnsB = (a * turnsA) / b;
-    return {
-      content: `서로 맞물린 두 톱니바퀴 $\\mathrm{A}$, $\\mathrm{B}$의 톱니 수는 각각 $${a}$개, $${b}$개이다. $\\mathrm{A}$가 $${turnsA}$바퀴 도는 동안 $\\mathrm{B}$가 도는 바퀴 수를 구하시오.`,
-      answer: `$${turnsB}$바퀴`,
-      solution: `두 톱니바퀴가 맞물려 움직인 톱니 수는 같으므로 $${a}\\times${turnsA}=${b}\\times x$이다.\n따라서 $x=${turnsB}$이다.`,
-      facts: { a, b, turnsA, turnsB },
-    };
-  }),
+  def("30", "톱니바퀴의 회전수 비", SEC.비율, "심화하", (rng) =>
+    attempt(80, () => {
+      const a = intBetween(rng, 2, 6) * 5;
+      const b = intBetween(rng, 2, 6) * 5;
+      // 「톱니 수는 각각 $10$개, $10$개」면 두 바퀴가 똑같이 돌아 답이 발문의 바퀴 수 그대로다
+      // (원장님 2026-09-27, 씨앗 1000 중 217).
+      if (a === b) return null;
+      const turnsA = intBetween(rng, 3, 12) * b;
+      const turnsB = (a * turnsA) / b;
+      return {
+        content: `서로 맞물린 두 톱니바퀴 $\\mathrm{A}$, $\\mathrm{B}$의 톱니 수는 각각 $${a}$개, $${b}$개이다. $\\mathrm{A}$가 $${turnsA}$바퀴 도는 동안 $\\mathrm{B}$가 도는 바퀴 수를 구하시오.`,
+        answer: `$${turnsB}$바퀴`,
+        solution: `두 톱니바퀴가 맞물려 움직인 톱니 수는 같으므로 $${a}\\times${turnsA}=${b}\\times x$이다.\n따라서 $x=${turnsB}$이다.`,
+        facts: { a, b, turnsA, turnsB },
+      };
+    }),
+  ),
 
   def("31", "증가한 양으로 처음 값 구하기", SEC.증감, "기본", (rng) => {
     const rate = pick(rng, [10, 20, 25, 50] as const);
@@ -667,6 +714,8 @@ export const M1_LINEAR_APPLY: TypeEntry[] = [
       // 제품 개수는 정수여야 한다 — $25\%$ 올렸다 $25\%$ 내리면 $\frac{15}{16}$ 배라
       // $700$개가 $656.25$개가 된다. 값은 맞고 **지면만 말이 안 된다**.
       if (!Number.isInteger(after)) return null;
+      // $25\%$ 올렸다 $20\%$ 내리면 $1.25\times0.8=1$ 이라 제자리다 — 답이 발문의 개수 그대로다.
+      if (after === before) return null;
       return {
         content: `어떤 제품의 생산량이 첫 달에는 $${up}\\%$ 증가하고 다음 달에는 $${down}\\%$ 감소하여 $${after}$개가 되었다. 증가하기 전 생산량을 구하시오.`,
         answer: `$${before}$개`,
@@ -700,19 +749,24 @@ export const M1_LINEAR_APPLY: TypeEntry[] = [
     };
   }),
 
-  def("38", "일부를 쓰고 남은 양", SEC.증감, "응용", (rng) => {
-    const firstRate = pick(rng, [10, 20, 25] as const);
-    const secondRate = pick(rng, [10, 20, 25] as const);
-    const total = intBetween(rng, 4, 20) * 100;
-    const spent = (total * (firstRate + secondRate)) / 100;
-    const left = total - spent;
-    return {
-      content: `예산의 $${firstRate}\\%$를 교재비로, 전체 예산의 $${secondRate}\\%$를 준비물비로 사용하였더니 $${left}$원이 남았다. 처음 예산을 구하시오.`,
-      answer: `$${total}$원`,
-      solution: `처음 예산을 $x$원이라 하면 남은 돈은 $\\dfrac{${100 - firstRate - secondRate}}{100}x$원이다.\n$\\dfrac{${100 - firstRate - secondRate}}{100}x=${left}$이므로 $x=${total}$이다.`,
-      facts: { firstRate, secondRate, total, spent, left },
-    };
-  }),
+  def("38", "일부를 쓰고 남은 양", SEC.증감, "응용", (rng) =>
+    attempt(80, () => {
+      const firstRate = pick(rng, [10, 20, 25] as const);
+      const secondRate = pick(rng, [10, 20, 25] as const);
+      // 「예산의 $25\%$를 교재비로, 전체 예산의 $25\%$를 준비물비로」 — 같은 몫을 두 번 따로 적을
+      // 까닭이 없다(「A는 $14$일, B는 $14$일」과 같은 꼴, 씨앗 1000 중 342).
+      if (firstRate === secondRate) return null;
+      const total = intBetween(rng, 4, 20) * 100;
+      const spent = (total * (firstRate + secondRate)) / 100;
+      const left = total - spent;
+      return {
+        content: `예산의 $${firstRate}\\%$를 교재비로, 전체 예산의 $${secondRate}\\%$를 준비물비로 사용하였더니 $${left}$원이 남았다. 처음 예산을 구하시오.`,
+        answer: `$${total}$원`,
+        solution: `처음 예산을 $x$원이라 하면 남은 돈은 $\\dfrac{${100 - firstRate - secondRate}}{100}x$원이다.\n$\\dfrac{${100 - firstRate - secondRate}}{100}x=${left}$이므로 $x=${total}$이다.`,
+        facts: { firstRate, secondRate, total, spent, left },
+      };
+    }),
+  ),
 
   // ── 39~44 「나이, 과부족, 예금」을 10유형으로 채운 몫 (갈래 D) ──
   // 이 소단원은 **연산이 없다** — 「식이 따로 주어지고 지시가 하나」인 모양이
@@ -1014,6 +1068,8 @@ export const M1_LINEAR_APPLY: TypeEntry[] = [
       const b = intBetween(rng, 4, 24);
       const h = intBetween(rng, 4, 20);
       if ((b * h) % 2 !== 0) return null;
+      // 답(밑변)이 발문의 높이와 같으면 답이 발문에 그대로 있다.
+      if (b === h) return null;
       const S = (b * h) / 2;
       return {
         content: `높이가 $${h}\\,\\mathrm{cm}$인 삼각형의 넓이가 $${S}\\,\\mathrm{cm}^{2}$일 때, 밑변의 길이를 구하시오.`,
@@ -1031,6 +1087,8 @@ export const M1_LINEAR_APPLY: TypeEntry[] = [
       const h = intBetween(rng, 4, 16);
       const S = ((2 * a + d) * h) / 2;
       if (!Number.isInteger(S)) return null;
+      // 답(윗변)이 발문의 높이나 「$d\,\mathrm{cm}$만큼 긴」과 같으면 답이 발문에 그대로 있다.
+      if (a === h || a === d) return null;
       return {
         content: `아랫변의 길이가 윗변의 길이보다 $${d}\\,\\mathrm{cm}$만큼 긴 사다리꼴이 있다. 높이가 $${h}\\,\\mathrm{cm}$이고 넓이가 $${S}\\,\\mathrm{cm}^{2}$일 때, 윗변의 길이를 구하시오.`,
         answer: `$${a}\\,\\mathrm{cm}$`,
@@ -1063,13 +1121,20 @@ export const M1_LINEAR_APPLY: TypeEntry[] = [
     SEC.도형,
     "응용",
     (rng) =>
-      attempt(300, () => {
+      // 예산이 300 에서 800 이 된 까닭: 아래 두 거름이 통과율을 6.6% → 3.6% 로 낮춘다.
+      // 300 이면 던질 확률이 1.6e-5 라 미션을 많이 뽑으면 실제로 던진다(800 이면 1e-13).
+      attempt(800, () => {
         const a = intBetween(rng, 6, 24);
         const b = intBetween(rng, 6, 24);
+        // 「A는 $14$일, B는 $14$일」 — 두 사람이 똑같으면 따로 적을 까닭이 없다
+        // (원장님 2026-09-27, 씨앗 1000 중 397).
+        if (a === b) return null;
         const k = intBetween(rng, 1, a - 2);
         if (((a - k) * b) % (a + b) !== 0) return null;
         const n = ((a - k) * b) / (a + b);
         if (n < 1) return null;
+        // 답(함께 한 날수)이 「A가 혼자 $k$일」과 같으면 답이 발문에 그대로 있다.
+        if (n === k) return null;
         return {
           content: `어떤 일을 완성하는 데 $\\mathrm{A}$는 $${a}$일, $\\mathrm{B}$는 $${b}$일이 걸린다. 이 일을 $\\mathrm{A}$가 혼자 $${k}$일 동안 한 뒤 나머지를 두 사람이 함께 하여 완성하였다. 두 사람이 함께 한 날수를 구하시오.`,
           answer: `$${n}$일`,
