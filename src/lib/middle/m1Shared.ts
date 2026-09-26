@@ -25,6 +25,15 @@ export type Body = Pick<
   "content" | "answer" | "solution" | "facts"
 >;
 
+/**
+ * $\pi$ 의 계수 — $1$ 은 안 쓴다(`1\pi` 가 아니라 `\pi`). 입체(`m1Solid`)·원과 부채꼴
+ * (`m1Geo3`·`m1Book2`)이 **같은 함수**를 쓴다 — 전에는 `m1Solid` 에만 있어 나머지 둘이
+ * 「$1\pi$」를 냈다(2026-09-27, `pageSmells` 「π·√ 앞에 계수 1」 이 지킨다).
+ */
+export function piTerm(k: number): string {
+  return k === 1 ? "\\pi" : `${k}\\pi`;
+}
+
 export function defType(
   book: string,
   minor: string,

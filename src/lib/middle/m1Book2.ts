@@ -16,6 +16,7 @@ import {
   defType,
   intNonzero,
   pickDistinct,
+  piTerm,
   shuffle,
 } from "./m1Shared";
 import type { TypeEntry } from "./types";
@@ -673,8 +674,8 @@ export const M1_BOOK2: TypeEntry[] = [
         const S = (r * r * deg) / 360;
         return {
           content: `반지름의 길이가 $${r}\\,\\mathrm{cm}$, 중심각의 크기가 $${deg}^\\circ$인 부채꼴의 호의 길이와 넓이를 차례대로 구하시오.`,
-          answer: `호의 길이 $${L}\\pi\\,\\mathrm{cm}$, 넓이 $${S}\\pi\\,\\mathrm{cm}^2$`,
-          solution: `호의 길이는 $2\\pi\\times${r}\\times\\dfrac{${deg}}{360}=${L}\\pi\\,(\\mathrm{cm})$이다.\n넓이는 $\\pi\\times${r}^{2}\\times\\dfrac{${deg}}{360}=${S}\\pi\\,(\\mathrm{cm}^2)$이다.`,
+          answer: `호의 길이 $${piTerm(L)}\\,\\mathrm{cm}$, 넓이 $${piTerm(S)}\\,\\mathrm{cm}^2$`,
+          solution: `호의 길이는 $2\\pi\\times${r}\\times\\dfrac{${deg}}{360}=${piTerm(L)}\\,(\\mathrm{cm})$이다.\n넓이는 $\\pi\\times${r}^{2}\\times\\dfrac{${deg}}{360}=${piTerm(S)}\\,(\\mathrm{cm}^2)$이다.`,
           facts: { r, deg, L, S },
         };
       }),
