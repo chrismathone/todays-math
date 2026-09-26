@@ -23,6 +23,7 @@ vi.mock("@/lib/errorLog/withErrorLog", () => ({
 }));
 vi.mock("@/lib/db", () => ({
   db: {
+    unit: { findFirst: async () => null },
     student: {
       findUnique: async ({ where }: { where: { id: string } }) => ({
         id: where.id,
@@ -75,6 +76,13 @@ vi.mock("@/lib/db", () => ({
 }));
 
 import { GET, POST } from "@/app/api/learn/math-explorers/route";
+import { GET as COURSE_GET, POST as COURSE_START } from "@/app/api/learn/math-srs/course/route";
+import { POST as COURSE_PLAN } from "@/app/api/learn/math-srs/course/plan/route";
+import { POST as COURSE_ATTEMPT } from "@/app/api/learn/math-srs/course/attempts/route";
+import { POST as REPLAY_POST, GET as REPLAY_GET } from "@/app/api/learn/math-srs/replay/route";
+import { changeSrsState } from "@/lib/math-srs/serverStore";
+import { emptyCourseState, setCoursePlan, startAutomaticCourse } from "@/lib/math-srs/courseAutomation";
+import { courseStudentResponseSchema } from "@/contracts/mathSrsCourse.contract";
 import {
   explorerStateSchema,
   type ExplorerAction,
@@ -87,6 +95,7 @@ import {
   emptySrsState,
   parseSrsState,
   startSrsMission,
+  submitSrsAttempt,
 } from "@/lib/math-srs/serverState";
 
 const base = "http://localhost:3000";
@@ -170,6 +179,138 @@ afterEach(() => {
 });
 
 describe("authenticated math explorer persistence", () => {
+  it("freezes one assignment atomically and replays exact concurrent start receipts across reload and midnight", async () => {
+    const body = { requestId: randomUUID(), expectedRevision: 0, action: { type: "expedition-start" } };
+    const [first, duplicate] = await Promise.all([post(body), post(body)]).then((responses) => Promise.all(responses.map(data)));
+    expect(first.expedition?.mission).toEqual(duplicate.expedition?.mission);
+    expect(first.expedition?.mission).toMatchObject({ kind: "explorers", goal: 15, status: "active", answered: 0 });
+    expect(first.expedition?.mission?.sourceSessionId).toBe(first.session?.id);
+    expect(f.writes).toBe(1);
+    vi.setSystemTime(new Date("2026-09-28T03:00:00.000Z"));
+    expect((await data(await post(body))).expedition?.mission).toEqual(first.expedition?.mission);
+    expect((await action(await data(await read()), { type: "expedition-start" })).session?.id).toBe(first.session?.id);
+    expect((await post({ ...body, action: { type: "goal", unitId: first.units[0].id } })).status).toBe(409);
+    expect((await post({ ...body, requestId: randomUUID() })).status).toBe(409);
+  });
+
+  it("blocks settings, alternate course starts and another bank through the shared CAS guard", async () => {
+    const course = setCoursePlan(emptyCourseState(), { startSectionId: "3-1-1-1", dailyQuestionCount: 10, enabled: true, expectedRevision: 0 }, now);
+    f.rows.set(f.studentId, { studentId: f.studentId, revision: 1, payload: { ...emptySrsState(), course } });
+    const view = await action(await data(await read()), { type: "expedition-start" });
+    const snapshot = structuredClone(f.rows.get(f.studentId));
+    for (const value of [{ type: "goal", unitId: "g4-numbers" }, { type: "course", grade: 4 }, { type: "start", route: "memory" }]) {
+      expect([400, 409]).toContain((await post({ requestId: randomUUID(), expectedRevision: view.revision, action: value })).status);
+    }
+    const request = (body: unknown) => new Request(`${base}/api/learn/math-srs/course`, { method: "POST", headers: { origin: base, "Content-Type": "application/json" }, body: JSON.stringify(body) });
+    expect((await COURSE_START(request({}))).status).toBe(409);
+    expect((await COURSE_PLAN(request({ startSectionId: "3-1-1-1", dailyQuestionCount: 5, enabled: false, expectedRevision: view.revision }))).status).toBe(409);
+    await expect(changeSrsState(f.studentId, (state) => startSrsMission(state, f.studentId, now, 71, randomUUID))).rejects.toThrow("진행 중");
+    expect(f.rows.get(f.studentId)).toEqual(snapshot);
+  });
+
+  it("awards the actual Korea completion day once and keeps historical replay read only", async () => {
+    vi.setSystemTime(new Date("2026-09-27T14:59:00.000Z"));
+    let view = await action(await data(await read()), { type: "expedition-start" });
+    const frozen = view.expedition!.mission!;
+    view = await action(view, correctAction(view));
+    vi.setSystemTime(new Date("2026-09-27T15:01:00.000Z"));
+    view = await finish(view);
+    expect(view.expedition?.mission).toMatchObject({ id: frozen.id, date: "2026-09-27", status: "complete", goal: 15, answered: 15 });
+    expect(view.journey?.days.map((day) => day.date)).toEqual(["2026-09-28"]);
+    expect(view.expedition?.canStart).toBe(false);
+    const before = parseSrsState(f.rows.get(f.studentId)!.payload);
+    vi.setSystemTime(new Date("2026-09-29T03:00:00.000Z"));
+    view = await action(view, { type: "start", route: "unit", dayId: "2026-09-28" });
+    expect(view.session?.cardIds).toEqual(before.explorers!.completedDays[0].cardIds);
+    view = await finish(view);
+    const after = parseSrsState(f.rows.get(f.studentId)!.payload);
+    expect(after.expedition).toEqual(before.expedition);
+    expect(after.explorers!.profile.stars).toBe(before.explorers!.profile.stars);
+    expect(after.explorers!.profile.definitions!.cards).toEqual(before.explorers!.profile.definitions!.cards);
+    expect(after.explorers!.completedDays).toEqual(before.explorers!.completedDays);
+  });
+
+  it("retains an exhausted unresolved source and cannot replace it at midnight", async () => {
+    let view = await action(await data(await read()), { type: "expedition-start" });
+    const id = view.session!.id;
+    for (let count = 0; view.currentActivity && count < 100; count++) {
+      const correct = correctAction(view);
+      view = await action(view, correct.type === "read" ? correct : { type: "answer", questionId: view.currentActivity.questionId, choiceIds: [] });
+    }
+    expect(view.session?.done).toBe(true);
+    expect(view.session?.unresolved.length).toBeGreaterThan(0);
+    expect(view.expedition?.mission).toMatchObject({ status: "retry", answered: 15, sourceSessionId: id, completedAt: null });
+    expect(view.journey?.completedDays).toBe(0);
+    vi.setSystemTime(new Date("2026-09-28T03:00:00.000Z"));
+    view = await action(view, { type: "expedition-start" });
+    expect(view.session?.id).toBe(id);
+    expect((await post({ requestId: randomUUID(), expectedRevision: view.revision, action: { type: "start", route: "unit", unitId: "g4-numbers" } })).status).toBe(409);
+    expect((await post({ requestId: randomUUID(), expectedRevision: view.revision, action: { type: "goal", unitId: "g4-numbers" } })).status).toBe(409);
+  });
+
+  it("continues elementary ten across five-question sessions and midnight despite a source daily limit of five", async () => {
+    const course = startAutomaticCourse(setCoursePlan(emptyCourseState(), { startSectionId: "3-1-1-1", dailyQuestionCount: 5, enabled: true, expectedRevision: 0 }, now), now, 71, randomUUID);
+    f.rows.set(f.studentId, { studentId: f.studentId, revision: 1, payload: { ...emptySrsState(), course } });
+    let view = await action(await data(await read()), { type: "expedition-start" });
+    expect(view.expedition?.mission).toMatchObject({ kind: "elementary", goal: 10 });
+    const request = (body: unknown) => new Request(`${base}/api/learn/math-srs/course`, { method: "POST", headers: { origin: base, "Content-Type": "application/json" }, body: JSON.stringify(body) });
+    const answerNext = async (wrong = false) => {
+      const session = parseSrsState(f.rows.get(f.studentId)!.payload).course!.learner.session!;
+      const retry = session.retry && !session.retry.completedAt;
+      const problem = retry ? session.problems.find((p) => p.id === session.retry!.pendingProblemIds[0])! : session.problems[session.attempts.length];
+      const response = await COURSE_ATTEMPT(request({ sessionId: session.id, problemId: problem.id, submittedAnswer: wrong ? "" : problem.answer, ...(wrong ? { giveUp: true } : {}), ...(retry ? { retryIndex: session.retry!.attempts.length } : {}) }));
+      expect(response.status).toBe(200);
+      return courseStudentResponseSchema.parse(await response.json()).data;
+    };
+    for (let index = 0; index < 5; index++) await answerNext();
+    const halfway = courseStudentResponseSchema.parse(await (await COURSE_GET(new Request(`${base}/api/learn/math-srs/course`))).json()).data;
+    expect(halfway.journey).toMatchObject({ todayGoal: 10, todayAnswered: 5, todayComplete: false });
+    expect(halfway.summary.recommendation?.mode).toBe("review");
+    expect((await COURSE_START(request({}))).status).toBe(200);
+    vi.setSystemTime(new Date("2026-09-28T03:00:00.000Z"));
+    for (let index = 0; index < 5; index++) await answerNext(index === 4);
+    view = await data(await read());
+    expect(view.expedition?.mission).toMatchObject({ answered: 10, retryRemaining: 1, status: "retry" });
+    expect(view.journey?.completedDays).toBe(0);
+    const complete = await answerNext();
+    expect(complete.journey).toMatchObject({ todayComplete: true, todayAnswered: 10, todayGoal: 10 });
+    const saved = parseSrsState(f.rows.get(f.studentId)!.payload);
+    expect(saved.course!.plan).toEqual(course.plan);
+    expect(saved.expedition!.awards.map((a) => a.day.date)).toEqual(["2026-09-28"]);
+    expect(saved.expedition!.mission!.sourceSessionIds).toHaveLength(2);
+    const dayId = saved.expedition!.awards[0].day.dayId;
+    const replay = await REPLAY_GET(new Request(`${base}/api/learn/math-srs/replay?kind=elementary&step=6&dayId=${encodeURIComponent(dayId)}`));
+    expect(replay.status).toBe(200);
+    const replayData = (await replay.json()).data;
+    expect(replayData.problemId).toBe(saved.course!.learner.session!.problems[0].id);
+    const before = structuredClone(f.rows.get(f.studentId));
+    const graded = await REPLAY_POST(new Request(`${base}/api/learn/math-srs/replay`, { method: "POST", headers: { origin: base, "Content-Type": "application/json" }, body: JSON.stringify({ kind: "elementary", step: 6, dayId, problemId: replayData.problemId, submittedAnswer: saved.course!.learner.session!.problems[0].answer }) }));
+    expect(graded.status).toBe(200);
+    expect(f.rows.get(f.studentId)).toEqual(before);
+  });
+
+  it("keeps the actual middle twelve unresolved until the server grades its last retry", async () => {
+    const source = startSrsMission(emptySrsState(), f.studentId, now, 71, randomUUID);
+    f.rows.set(f.studentId, { studentId: f.studentId, revision: 1, payload: source });
+    const view = await action(await data(await read()), { type: "expedition-start" });
+    expect(view.expedition?.mission).toMatchObject({ kind: "middle", goal: 12 });
+    for (let index = 0; index < 12; index++) await changeSrsState(f.studentId, (state) => {
+      const mission = state.missions[0];
+      const problem = mission.problems[index];
+      return submitSrsAttempt(state, f.studentId, { missionId: mission.id, problemId: problem.id, submittedAnswer: String(problem.answer + (index === 11 ? 999 : 0)), elapsedSeconds: 10, rating: "good" }, now);
+    });
+    expect((await data(await read())).expedition?.mission).toMatchObject({ status: "retry", answered: 12, retryRemaining: 1 });
+    vi.setSystemTime(new Date("2026-09-28T03:00:00.000Z"));
+    const mission = parseSrsState(f.rows.get(f.studentId)!.payload).missions[0];
+    const request = () => new Request(`${base}/api/learn/math-srs/replay`, { method: "POST", headers: { origin: base, "Content-Type": "application/json" }, body: JSON.stringify({ kind: "middle", step: 12, missionId: mission.id, problemId: mission.problems[11].id, submittedAnswer: String(mission.problems[11].answer), recordRetry: true }) });
+    const response = await REPLAY_POST(request());
+    expect(response.status).toBe(200);
+    expect((await response.json()).data.journey).toMatchObject({ todayGoal: 12, todayAnswered: 12, todayComplete: true });
+    const writes = f.writes;
+    expect((await REPLAY_POST(request())).status).toBe(200);
+    expect(f.writes).toBe(writes);
+    expect((await data(await read())).journey?.days.map((day) => day.date)).toEqual(["2026-09-28"]);
+  });
   it("stores selected grade and goal, then supports due-memory and prerequisite-repair sessions", async () => {
     let view = await data(await read());
     view = await action(view, { type: "course", grade: 4 });
@@ -349,7 +490,7 @@ describe("authenticated math explorer persistence", () => {
   });
 
   it("collects wrong answers, awards one completed day, unlocks chests, and replays old days without rewards", async () => {
-    let view = await unitStart();
+    let view = await action(await data(await read()), { type: "expedition-start" });
     view = await action(view, correctAction(view));
     const initialActivity = view.currentActivity!;
     const correct = correctAction(view);

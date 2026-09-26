@@ -6,6 +6,7 @@ import type {
 } from "@/contracts/mathSrsCourse.contract";
 import { db } from "@/lib/db";
 import { dailyJourneyDto } from "./dailyJourney";
+import { expeditionCourseRecommendation } from "@/lib/math-explorers/expedition";
 import {
   ownedRowsWhere,
   ownedStudentsWhere,
@@ -71,7 +72,14 @@ export function courseStudentDto(
     },
     revision: saved.revision,
     plan: course.plan,
-    summary: courseSummary(course, now),
+    summary: {
+      ...courseSummary(course, now),
+      recommendation: expeditionCourseRecommendation(saved.state, now),
+      ...(saved.state.expedition?.mission?.kind === "elementary" ? {
+        todayAnswered: saved.state.expedition.mission.answered,
+        todayGoal: 10 as const,
+      } : {}),
+    },
     session: session ? publicCourseSession(session) : null,
   };
 }

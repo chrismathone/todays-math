@@ -17,7 +17,7 @@ type SourceDay = Omit<MathExpeditionDay, "reviews">;
  * date. It does not certify an unfinished workload in another mode, freeze a
  * grade/goal, or grant permission to skip any source's required retries.
  */
-export function expeditionJourney(
+export function legacyExpeditionJourney(
   state: StoredSrsState,
   now: Date,
 ): MathExpeditionJourney {
@@ -133,5 +133,23 @@ export function expeditionJourney(
     todayGoal: 15,
     days,
     upcoming,
+  };
+}
+
+/** Once migrated, only frozen, fully resolved missions can add a board tile. */
+export function expeditionJourney(state: StoredSrsState, now: Date): MathExpeditionJourney {
+  const ledger = state.expedition;
+  if (!ledger) return { ...legacyExpeditionJourney(state, now), upcoming: [] };
+  const days = [...ledger.legacyDays, ...ledger.awards.map((award) => award.day)]
+    .sort((a, b) => a.date.localeCompare(b.date));
+  const mission = ledger.mission;
+  return {
+    activeKind: mission?.kind ?? "explorers",
+    completedDays: days.length,
+    todayComplete: days.some((day) => day.date === kstDateOf(now)),
+    todayAnswered: mission?.answered ?? 0,
+    todayGoal: mission?.goal ?? 15,
+    days,
+    upcoming: mission && mission.status !== "complete" ? [{ title: mission.title, subtitle: mission.subtitle }] : [],
   };
 }

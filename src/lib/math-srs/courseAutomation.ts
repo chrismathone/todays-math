@@ -361,7 +361,20 @@ export function startAutomaticCourse(
   newId: () => string,
   bankCandidates: readonly BankCourseCandidate[] = [],
 ): StoredCourse {
-  const next = courseSummary(state, now).recommendation;
+  return startRecommendedCourse(state, courseSummary(state, now).recommendation, now, seed, newId, bankCandidates);
+}
+
+/** Server-owned recommendation also supports a frozen expedition spanning days. */
+export function startRecommendedCourse(
+  state: StoredCourse,
+  next: CourseSummary["recommendation"],
+  now: Date,
+  seed: number,
+  newId: () => string,
+  bankCandidates: readonly BankCourseCandidate[] = [],
+): StoredCourse {
+  const active = state.learner.session;
+  if (active && (!active.completedAt || (active.retry && !active.retry.completedAt))) return state;
   if (!next || next.mode === "resume") return state;
   const previous = state.learner.session;
   const startedAt = new Date(

@@ -301,9 +301,11 @@ export function dailyJourneyDto(
   }
   return {
     completedDays: days.length,
-    todayComplete,
-    todayAnswered,
-    todayGoal,
+    // Embedded bank UI must finish the frozen workload, even when a source day
+    // completed before midnight or a previous source already completed today.
+    todayComplete: state.expedition?.mission?.kind === kind ? state.expedition.mission.status === "complete" : todayComplete,
+    todayAnswered: state.expedition?.mission?.kind === kind ? state.expedition.mission.answered : todayAnswered,
+    todayGoal: state.expedition?.mission?.kind === kind ? state.expedition.mission.goal : todayGoal,
     days,
     upcoming,
   };
@@ -314,6 +316,11 @@ export function findJourneyDay(
   kind: JourneyKind,
   dayId: string,
 ): StoredJourneyDay | undefined {
+  const award = state.expedition?.awards.find((entry) => entry.day.kind === kind && entry.day.dayId === dayId);
+  if (award) return {
+    date: award.day.date, goal: award.day.reviewCount, answered: award.day.reviewCount,
+    completedAt: award.day.completedAt, references: award.references,
+  };
   return dailyJourneyLedger(state)[kind].find(
     (day) => `${kind}:${day.date}` === dayId && day.completedAt !== null,
   );
