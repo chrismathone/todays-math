@@ -17,7 +17,7 @@ export default function ExplorerCardDialog({
   onInspect,
   onSolution,
   onWorkshopSolution,
-  onRepair,
+  onSetGoal,
   onClose,
 }: {
   card: ExplorerCard;
@@ -28,15 +28,22 @@ export default function ExplorerCardDialog({
   onInspect: (card: ExplorerCard) => void;
   onSolution: () => void;
   onWorkshopSolution?: () => void;
-  onRepair: () => void;
+  onSetGoal: () => void;
   onClose: () => void;
 }) {
   const dialog = useRef<HTMLDialogElement>(null);
   const cards = state.units.flatMap((unit) => unit.cards);
   const unit = state.units.find((item) => item.id === card.unitId);
-  const active = !!state.session && !state.session.done;
+  const active =
+    (!!state.session && !state.session.done) ||
+    (!!state.expedition?.mission &&
+      state.expedition.mission.status !== "complete");
   const canReveal =
-    !active &&
+    (!active ||
+      (!!state.session?.done &&
+        state.session.unresolved.some((item) => item.cardId === card.id) &&
+        state.expedition?.mission?.kind !== "elementary" &&
+        state.expedition?.mission?.kind !== "middle")) &&
     ((card.progress?.level ?? 0) > 0 ||
       !!state.session?.unresolved.some((item) => item.cardId === card.id));
 
@@ -114,7 +121,7 @@ export default function ExplorerCardDialog({
         ) : (
           <>
             <p className={s.quietNote}>
-              {active
+              {active && !canReveal
                 ? "탐험과 오답 복습을 마친 뒤 해설을 볼 수 있어요."
                 : canReveal
                   ? "필요할 때 정의와 해설을 열어 확인해 보세요."
@@ -190,10 +197,12 @@ export default function ExplorerCardDialog({
         <button
           type="button"
           className={s.secondary}
-          disabled={busy || active}
-          onClick={onRepair}
+          disabled={busy || active || state.profile.goalUnitId === card.unitId}
+          onClick={onSetGoal}
         >
-          이 개념과 앞개념 복습하기 →
+          {state.profile.goalUnitId === card.unitId
+            ? "목표 단원으로 설정했어요"
+            : "이 단원을 다음 탐험 목표로"}
         </button>
       </div>
     </dialog>

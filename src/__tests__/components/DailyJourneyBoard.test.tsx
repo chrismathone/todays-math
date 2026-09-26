@@ -26,6 +26,35 @@ function journey(completedDays = 0): DailyJourney {
 }
 
 describe("DailyJourneyBoard", () => {
+  it("uses a compact perimeter without a duplicate start and conceals unplanned future units", () => {
+    const value = journey(2);
+    const { container } = render(
+      <DailyJourneyBoard journey={value} variant="map" onReviewDay={vi.fn()} />,
+    );
+    expect(
+      container.querySelector('[data-journey-variant="map"]'),
+    ).toBeInTheDocument();
+    expect(
+      screen.getByRole("button", { name: /1일차, 약수와 배수, 학습 완료/ }),
+    ).toBeVisible();
+    expect(
+      screen.getByRole("button", { name: /2일차, 약분과 통분, 학습 완료/ }),
+    ).toBeVisible();
+    expect(
+      screen.getByLabelText("3일차, 약수와 배수, 오늘의 학습"),
+    ).toBeVisible();
+    for (const tile of container.querySelectorAll('[data-state="upcoming"]')) {
+      expect(tile).toHaveTextContent("다음 여정");
+      expect(tile).not.toHaveTextContent("분수의 덧셈과 뺄셈");
+      expect(tile.querySelector("[title]")).toHaveAttribute(
+        "title",
+        "다음 여정",
+      );
+      expect(tile.querySelector("button")).toBeNull();
+    }
+    expect(container.querySelector("[data-journey-continue]")).toBeNull();
+  });
+
   it("keeps the pawn in place while individual problems and retries are answered", () => {
     const initial = journey(2);
     const { rerender } = render(
