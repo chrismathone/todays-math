@@ -220,6 +220,7 @@ export default function StudentReplayDialog({
           >
             <ProblemContent
               content={data.content}
+              practiceLayout
               figureUrls={data.figureUrl ? [data.figureUrl] : undefined}
               deferFigures={false}
             />

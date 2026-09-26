@@ -7,6 +7,7 @@
  * 보기 마커가 없는 문항(OCR 유실 등)은 지문만 렌더한다 — 임의로 쪼개지 않는다.
  */
 import { MarkdownRenderer } from "@/components/math/MarkdownRenderer";
+import { PracticeProblemText } from "@/components/math/PracticeProblemText";
 import {
   figureSvgFrameClass,
   figureSvgSize,
@@ -92,6 +93,8 @@ export interface ProblemContentProps {
    *    규칙은 `src/lib/math/choiceLayout.ts` 한 곳에 있고 `NativeProblem` 도 같은 함수를 쓴다.
    */
   choiceLayout?: PrintChoiceLayout;
+  /** Readable formula lists in the student practice frame; source/print stay unchanged. */
+  practiceLayout?: boolean;
 }
 
 export function ProblemContent({
@@ -103,6 +106,7 @@ export function ProblemContent({
   className = "",
   deferFigures = true,
   choiceLayout = "auto",
+  practiceLayout = false,
 }: ProblemContentProps) {
   const { question: rawQuestion, choices } = parseProblemContent(content);
   const figures = figureUrls ?? [];
@@ -151,7 +155,11 @@ export function ProblemContent({
 
   return (
     <div className={className}>
-      <MarkdownRenderer content={question} />
+      {practiceLayout ? (
+        <PracticeProblemText content={question} />
+      ) : (
+        <MarkdownRenderer content={question} />
+      )}
       {figureSvg ? (
         // 발문 뒤 — 스캔 그림과 같은 자리다. 장식 없음(05 §0).
         // 작은·중간 viewBox 는 360 으로 늘리지 않는다. 근거는 figureSvgFrame.ts.

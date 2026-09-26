@@ -402,6 +402,7 @@ function CourseQuestion({
         >
           <ProblemContent
             content={problem.content}
+            practiceLayout
             figureSvg={figure.svg}
             className={s.problem}
             deferFigures={false}

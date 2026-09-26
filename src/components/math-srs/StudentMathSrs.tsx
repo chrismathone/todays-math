@@ -601,7 +601,7 @@ function Question({
           {problem.source ? ` · ${problem.source.tier}` : ""}
         </p>
         <div className={s.question}>
-          <ProblemContent content={problem.prompt} />
+          <ProblemContent content={problem.prompt} practiceLayout />
           {problem.equation ? (
             <MathText text={problem.equation} as="div" className={s.equation} />
           ) : null}
