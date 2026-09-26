@@ -45,7 +45,7 @@ const probe = () => {
   return JSON.parse(result.stdout);
 };
 const baseline = probe();
-assert.ok(baseline.every((row) => row.preserved && row.idempotent));
+assert.ok(baseline.every((row) => row.asExpected && row.idempotent));
 const baselineTests = run([
   "node_modules/vitest/vitest.mjs",
   "run",
@@ -65,9 +65,11 @@ const mutations = [
     to: 'while (end >= 0 && (escaped(text, end) || (open === "$" && text[end + 1] === "$"))) {',
   },
   {
-    name: "wrap-unclosed-display-as-prose",
-    from: 'if (open === "$$")\n        return out + prose(text.slice(plainStart, i)) + text.slice(i);',
-    to: "",
+    // 닫히지 않은 `$$` 를 예전처럼 날 글로 남긴다(2026-09-26 후보정 전 동작).
+    // ⚠️ `replace` 의 치환 문자열에서 `$$` 는 `$` 가 된다 — 그래서 `open[1]` 로 쓴다.
+    name: "keep-unclosed-display-literal",
+    from: "    let runStart = bodyStart;",
+    to: '    if (open[1] === "$")\n      return out + prose(text.slice(plainStart, i)) + text.slice(i);\n    let runStart = bodyStart;',
   },
 ];
 const results = [];

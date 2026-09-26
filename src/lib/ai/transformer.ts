@@ -22,7 +22,12 @@ import { z } from "zod";
 
 import { callAi } from "./client";
 import { AiGenerationError } from "./errors";
-import { normalizeLatex, parseAiJsonArray } from "./jsonRepair";
+import {
+  normalizeAiAnswer,
+  normalizeAiText,
+  normalizeLatex,
+  parseAiJsonArray,
+} from "./jsonRepair";
 import { verifiesOriginalReproduction } from "./originalReproduction";
 import {
   buildTransformSystemPrompt,
@@ -152,10 +157,11 @@ export async function transformProblem(
     .slice(0, count)
     .map((item) => ({
       // 「말 대신 기호」를 말로 (원장님 지시 2026-08-26) — 생성 쪽과 **같은 함수**다.
-      content: speakWordyOperators(normalizeLatex(item.content)).out,
-      answer: speakWordyOperators(normalizeLatex(item.answer)).out,
+      // 후보정도 생성 쪽·작업실 입구와 같다(2026-09-26 후보정 감사 K).
+      content: speakWordyOperators(normalizeAiText(item.content)).out,
+      answer: speakWordyOperators(normalizeAiAnswer(item.answer)).out,
       solution: speakWordyOperatorsOrNull(
-        item.solution ? normalizeLatex(item.solution) : null,
+        item.solution ? normalizeAiText(item.solution) : null,
       ).out,
       verified: verifiesOriginalReproduction(origin, item),
       // ⚠️ **여기는 안 건드린다.** 이 값은 「원본 정답을 스스로 다시 계산한 것」이라

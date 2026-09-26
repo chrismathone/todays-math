@@ -14,7 +14,11 @@ import { z } from "zod";
 
 import { callAi } from "./client";
 import { AiParseError } from "./errors";
-import { normalizeLatex, parseAiJsonArray } from "./jsonRepair";
+import {
+  normalizeAiAnswer,
+  normalizeAiText,
+  parseAiJsonArray,
+} from "./jsonRepair";
 import {
   buildGenerateSystemPrompt,
   buildGenerateUserPrompt,
@@ -123,17 +127,17 @@ export async function generateProblems(
     // ⚠️ **정규화한 뒤에** 형식을 읽는다. 판정이 보는 본문과 DB·지면이 쓰는 본문이
     //    같아야 보기 칸 수가 갈리지 않는다(CLAUDE.md 2026-08-18).
     //
-    //    🔴 **이 순서는 오늘 시험이 못 지킨다** — 숨기지 않으려고 적는다.
-    //       `normalizeLatex` 는 `\dfrac`→`\frac` 하나뿐이고 그 치환은 보기 표식도
-    //       정답 모양도 안 건드려서, 정규화 **전**으로 판정해도 산출물이 똑같다.
-    //       변이 하네스가 그것을 «초록»으로 찍는 것을 보고 확인했다
-    //       (`scripts/qa/mutate-ai-question-type.sh` 의 같은 자리 주석 참조).
-    //       정규화가 보기·정답을 건드리는 규칙을 갖게 되면 그때 가드를 세워야 한다.
+    //    정규화는 작업실 입구와 같은 후보정이다(`normalizeAiText`/`normalizeAiAnswer`,
+    //    2026-09-26 후보정 감사 K). 이제 보기·정답을 **건드린다** — `\textcircled{3}`
+    //    이 `③` 이 되어야 정답이 보기 번호로 읽힌다. 그래서 순서를 시험이 지킨다:
+    //    `aiBankIntakeNormalize.test.ts` 「보기 번호를 정규화한 뒤에 형식을 읽는다」.
+    //    (전에는 `\dfrac`→`\frac` 하나뿐이라 순서를 바꿔도 산출물이 같았다 —
+    //    `scripts/qa/mutate-ai-question-type.sh` 의 같은 자리 주석 참조.)
     // 「말 대신 기호」를 말로 (원장님 지시 2026-08-26). 프롬프트가 이미 이르지만
     // **AI 는 지시를 어긴다** — 받은 것을 검사하는 쪽이 여기다. 규칙은 한 곳
     // (`scripts/qa/wordyOperator.ts`)이 정하고, 못 미더우면 원문을 그대로 둔다.
-    const content = speakWordyOperators(normalizeLatex(item.content)).out;
-    const answer = speakWordyOperators(normalizeLatex(item.answer)).out;
+    const content = speakWordyOperators(normalizeAiText(item.content)).out;
+    const answer = speakWordyOperators(normalizeAiAnswer(item.answer)).out;
     return {
       unitId,
       difficulty,
@@ -146,7 +150,7 @@ export async function generateProblems(
       content,
       answer,
       solution: speakWordyOperatorsOrNull(
-        item.solution ? normalizeLatex(item.solution) : null,
+        item.solution ? normalizeAiText(item.solution) : null,
       ).out,
       source: "ai_generated" as const,
       originProblemId: null,
