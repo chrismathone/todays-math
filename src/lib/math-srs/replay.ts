@@ -13,8 +13,8 @@ import {
 } from "./courseAutomation";
 import { gradeCourseAnswer } from "./elementary/answers";
 import { getCourseSection } from "./elementary/catalog";
-import { checkAnswer } from "./sharedAnswers";
-import { numericAnswerChoices } from "./numericAnswerChoices";
+import { correctSrsChoice, gradeSrsAnswer } from "./sharedAnswers";
+import { srsAnswerChoices } from "./serverDto";
 import { currentSrsMission, type StoredSrsState } from "./serverState";
 import { findJourneyDay } from "./dailyJourney";
 import { generateCourseSession } from "./elementary/generator";
@@ -105,7 +105,9 @@ function elementarySource(
       const generated = generateCourseSession(
         archived.unitId,
         stableSeed(`${dayId}:${step}:${offset}`),
-        new Date(`${findJourneyDay(state, "elementary", dayId)!.date}T00:00:00.000Z`),
+        new Date(
+          `${findJourneyDay(state, "elementary", dayId)!.date}T00:00:00.000Z`,
+        ),
         "review",
       );
       generated.id = stableId(`${dayId}:${step}:session`);
@@ -250,10 +252,7 @@ function middleSource(
       subtitle: "중1 · 일차방정식",
       content,
       figureUrl: null,
-      answerChoices: numericAnswerChoices(
-        problem,
-        mission?.problems ?? [problem],
-      ),
+      answerChoices: srsAnswerChoices(problem, mission?.problems ?? [problem]),
       interactive: null,
       canRevealSolution:
         regenerated ||
@@ -265,10 +264,12 @@ function middleSource(
           )),
       ...(regenerated ? { regenerated: true } : {}),
     },
-    grade: (answer) => checkAnswer(answer, problem.answer),
+    grade: (answer) => gradeSrsAnswer(problem, answer),
     solution: {
       answer:
-        problem.answerText ?? `$${problem.answer}$${problem.answerUnit ?? ""}`,
+        correctSrsChoice(problem) ??
+        problem.answerText ??
+        `$${problem.answer}$${problem.answerUnit ?? ""}`,
       solution: problem.solution.join("\n"),
     },
   };

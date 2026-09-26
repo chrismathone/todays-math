@@ -7,7 +7,8 @@ import { CONCEPTS } from "@/lib/math-srs/concepts";
 import { clearDraft, readDraft, writeDraft } from "@/lib/math-srs/draft";
 import { suggestedRating } from "@/lib/math-srs/mission";
 import {
-  checkAnswer,
+  correctSrsChoice,
+  gradeSrsAnswer,
   parseSubmittedNumber,
 } from "@/lib/math-srs/sharedAnswers";
 import type {
@@ -126,7 +127,11 @@ export function QuestionCard({
       input.current?.focus();
       return;
     }
-    if (!skipped && parseSubmittedNumber(answer) === null) {
+    if (
+      !skipped &&
+      problem.choices === undefined &&
+      parseSubmittedNumber(answer) === null
+    ) {
       setError(
         "정수, 소수 또는 분수로 입력해 주세요. 분모는 0이 될 수 없어요.",
       );
@@ -136,7 +141,7 @@ export function QuestionCard({
     submitted.current = true;
     setLocked(true);
     const seconds = Math.max(1, Math.round(time.current.activeMs / 1000));
-    const correct = !skipped && checkAnswer(answer, problem.answer);
+    const correct = !skipped && gradeSrsAnswer(problem, answer.trim());
     const accepted = onSubmit({
       problemId: problem.id,
       conceptId: problem.conceptId,
@@ -356,7 +361,9 @@ export function Feedback({
         <div>
           <span className={s.resultLabel}>정답</span>
           <div className={s.answerValue}>
-            {problem.answerText ? (
+            {problem.choices !== undefined ? (
+              <MathText text={correctSrsChoice(problem) ?? ""} />
+            ) : problem.answerText ? (
               <MathText text={problem.answerText} />
             ) : (
               <>
