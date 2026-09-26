@@ -137,15 +137,18 @@ describe("경계 — 수식 토큰은 한 글자도 안 바뀌고, 수식 밖만
   );
 
   it("밖을 고치는 같은 글 안에서도 토큰은 그대로다 — 편집 칸이 싣는 식(`data-math-tex`)이 원문과 같다", () => {
+    // 둘째 식의 `sqrt{2}` 는 입구 후보정이 `\sqrt{2}` 로 바꾸는 모양이다 — 가리지 않고 돌리면 토큰이 바뀌어
+    // 복구를 통째로 버려야 하고(밖의 누출이 남는다), 가리면 밖만 고쳐진다.
     const raw =
-      `${L1}\n` + R`\displaystyle $$이동 거리= $\frac{}{2}+\displaystyle x$`;
+      `${L1}\n` +
+      R`\displaystyle $$이동 거리= $\frac{}{2}+\displaystyle x+sqrt{2}$`;
     const html = renderToStaticMarkup(
       <SourceEditorRenderer content={raw} editorTokens />,
     );
     const tex = [...html.matchAll(/data-math-tex="([^"]*)"/g)].map((m) =>
       decodeURIComponent(m[1]!),
     );
-    expect(tex).toEqual(["[a,b]", R`\frac{}{2}+\displaystyle x`]);
+    expect(tex).toEqual(["[a,b]", R`\frac{}{2}+\displaystyle x+sqrt{2}`]);
     expect(visibleMath(html).leaks).toEqual([]);
   });
 });
