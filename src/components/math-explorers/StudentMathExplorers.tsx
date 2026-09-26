@@ -16,11 +16,11 @@ import {
 } from "@/components/math-srs/StudentReviewHome";
 import ExplorerHome, { type ExplorerCard } from "./ExplorerHome";
 import ExplorerPractice from "./ExplorerPractice";
+import ExplorerWorkshop from "./ExplorerWorkshop";
 import { ChestRewardEffect } from "./ExplorerPieces";
 import s from "./math-explorers.module.css";
 
 const ExplorerCardDialog = dynamic(() => import("./ExplorerCardDialog"));
-const ExplorerWorkshop = dynamic(() => import("./ExplorerWorkshop"));
 const EFFECT_MS = 1200;
 type Failure = { status: number; message: string; request?: ExplorerRequest };
 
