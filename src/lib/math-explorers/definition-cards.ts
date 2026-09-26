@@ -493,6 +493,8 @@ export type DefinitionSession = {
   queue: DefinitionTask[];
   index: number;
   round: number;
+  continuation?: number;
+  continuationCardIds?: string[];
   next: DefinitionTask[];
   seen: string[];
   hinted: string[];
@@ -513,6 +515,7 @@ export type DefinitionRecord = {
   cards: Record<string, DefinitionProgress>;
   session?: DefinitionSession;
   history: {
+    sessionId?: string;
     route?: "unit" | "memory" | "repair";
     targetCardId?: string;
     date: string;
@@ -537,7 +540,8 @@ export function definitionTaskKey(t: DefinitionTask) {
   return `${t.cardId}:${t.kind}`;
 }
 export function definitionQuestionId(s: DefinitionSession) {
-  return `${s.id}:${s.round}:${s.index}`;
+  const continuation = s.continuation ? `:retry-${s.continuation}` : "";
+  return `${s.id}${continuation}:${s.round}:${s.index}`;
 }
 export function definitionDue(p: Profile, date: string) {
   return definitionCards
@@ -560,6 +564,7 @@ export function definitionNeedsRead(p: Profile, s: DefinitionSession) {
   const t = s.queue[s.index];
   return (
     !!t &&
+    !s.continuation &&
     s.round === 0 &&
     t.kind === 0 &&
     !p.definitions?.cards[t.cardId]?.level &&
@@ -571,7 +576,7 @@ export function definitionOptions(s: DefinitionSession, t: DefinitionTask) {
     n = t.kind === 0 ? c.words.length : t.kind === 1 ? c.examples.length : 2;
   const a = Array.from({ length: n }, (_, i) => i);
   let seed = 0;
-  for (const ch of `${s.id}:${t.cardId}:${t.kind}:${s.round}`)
+  for (const ch of `${s.id}:${t.cardId}:${t.kind}:${s.round}${s.continuation ? `:retry-${s.continuation}` : ""}`)
     seed = (Math.imul(seed, 31) + ch.charCodeAt(0)) >>> 0;
   for (let i = n - 1; i > 0; i--) {
     seed = (Math.imul(seed, 1664525) + 1013904223) >>> 0;
@@ -612,12 +617,17 @@ export function applyDefinitionAction(
   a: Action,
   date: string,
 ): Feedback {
+  const starsBefore = p.stars;
   const record = (p.definitions ??= { runs: 0, cards: {}, history: [] });
   record.courseGrade ??= definitionCourseGrade(p);
   if (a.definitionAction === "course") {
     if (!courseGrades.includes(a.grade!))
       throw new Error("학년을 다시 골라주세요.");
-    if (record.session && !record.session.done)
+    if (
+      record.session &&
+      (!record.session.done ||
+        (!record.session.reviewOnly && record.session.unresolved.length))
+    )
       throw new Error("진행 중 퀘스트를 마치고 학년을 바꿔주세요.");
     record.courseGrade = a.grade;
     return { message: `${gradeLabel(a.grade!)} 보드로 이동했어요.` };
@@ -646,6 +656,8 @@ export function applyDefinitionAction(
   if (a.definitionAction === "start") {
     if (record.session && !record.session.done)
       return { message: "진행 중인 도전을 이어가요." };
+    if (record.session?.unresolved.length && !record.session.reviewOnly)
+      return { message: "남은 문제 다시 풀기로 현재 도전을 마쳐 주세요." };
     const route = a.definitionRoute ?? "unit";
     if (!["unit", "memory", "repair"].includes(route))
       throw new Error("퀘스트 종류를 다시 확인해주세요.");
@@ -699,6 +711,37 @@ export function applyDefinitionAction(
     return { message: "개념 5개, 15문항을 시작해요." };
   }
   const s = record.session;
+  if (a.definitionAction === "retry-unresolved") {
+    if (!s?.done || !s.unresolved.length)
+      throw new Error("남은 오답이 있는 도전을 마친 뒤 다시 풀 수 있어요.");
+    // Older saved sessions did not identify their history row. The latest row
+    // belongs to the current completed session; attach its ID before reopening.
+    const history = record.history.at(-1);
+    if (
+      !s.reviewOnly &&
+      history &&
+      !history.sessionId &&
+      history.unit === s.unit &&
+      history.first === s.first &&
+      history.unresolved === s.unresolved.length &&
+      history.stars === s.stars
+    )
+      history.sessionId = s.id;
+    s.cardIds ??= definitionSessionCards(s).map((card) => card.id);
+    s.continuation = (s.continuation ?? 0) + 1;
+    s.continuationCardIds = [
+      ...new Set(s.unresolved.map((task) => task.cardId)),
+    ];
+    s.queue = s.unresolved.map((task) => ({ ...task }));
+    s.index = 0;
+    s.round = 0;
+    s.next = [];
+    s.unresolved = [];
+    s.done = false;
+    // Keep the original five cards, first-attempt score, passed tasks and ID.
+    // A fresh question ID prevents old answers from addressing the new batch.
+    return { message: "남은 문제를 다시 풀어요." };
+  }
   if (!s || s.done || a.questionId !== definitionQuestionId(s))
     throw new Error("이미 넘어간 카드예요. 현재 문항을 확인해주세요.");
   const task = s.queue[s.index],
@@ -743,10 +786,10 @@ export function applyDefinitionAction(
         : values[0] === (c.truth ? 1 : 0);
   if (correct) {
     if (!s.passed.includes(key)) s.passed.push(key);
-    if (s.round === 0) s.first++;
+    if (s.round === 0 && !s.continuation) s.first++;
   } else {
     s.next.push(task);
-    if (s.round === 0 && !s.initialWrong.includes(c.id))
+    if (s.round === 0 && !s.continuation && !s.initialWrong.includes(c.id))
       s.initialWrong.push(c.id);
   }
   s.index++;
@@ -759,12 +802,16 @@ export function applyDefinitionAction(
     } else {
       s.done = true;
       s.unresolved = s.next;
-      for (const card of definitionSessionCards(s)) {
+      const affectedCards = s.continuation
+        ? (s.continuationCardIds ?? []).map(definitionCard)
+        : definitionSessionCards(s);
+      for (const card of affectedCards) {
         const old = record.cards[card.id],
           all = [0, 1, 2].every((kind) =>
             s.passed.includes(`${card.id}:${kind}`),
           ),
           clean =
+            !s.continuation &&
             all &&
             !s.initialWrong.includes(card.id) &&
             !s.hinted.includes(card.id);
@@ -800,12 +847,14 @@ export function applyDefinitionAction(
             : s.hinted.includes(card.id)
               ? "supported"
               : "retry";
-        } else if (!clean) {
+        } else if (!clean && !s.continuation) {
+          // Record a recall failure once for this session. Explicit retries
+          // only resolve misses; they do not restart or advance this schedule.
           step = 0;
           due = addDays(date, 1);
           reviewedAt = date;
           lastRecall = s.hinted.includes(card.id) ? "supported" : "retry";
-        } else if (eligible) {
+        } else if (clean && eligible) {
           step = Math.min(4, step + 1);
           due = addDays(date, reviewIntervals[step]);
           reviewedAt = date;
@@ -822,23 +871,32 @@ export function applyDefinitionAction(
           lastRecall,
         };
       }
-      record.history.push({
-        date,
-        route: s.route,
-        targetCardId: s.targetCardId,
-        unit: s.unit,
-        first: s.first,
-        unresolved: s.unresolved.length,
-        stars: s.stars,
-      });
+      const history = record.history.find((entry) => entry.sessionId === s.id);
+      if (history) {
+        // Preserve the first attempt's date/score. The daily ledger separately
+        // records the actual server date on which every remaining task is solved.
+        history.unresolved = s.unresolved.length;
+        history.stars = s.stars;
+      } else {
+        record.history.push({
+          sessionId: s.id,
+          date,
+          route: s.route,
+          targetCardId: s.targetCardId,
+          unit: s.unit,
+          first: s.first,
+          unresolved: s.unresolved.length,
+          stars: s.stars,
+        });
+      }
       record.history = record.history.slice(-60);
     }
   }
   return {
     correct,
     advance: true,
-    complete: s.done,
-    stars: s.done ? s.stars : 0,
+    complete: s.done && s.unresolved.length === 0,
+    stars: s.done ? p.stars - starsBefore : 0,
     message: correct
       ? "정확해! 다음으로."
       : s.done
