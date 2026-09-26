@@ -2,7 +2,7 @@
  * GET /api/sso/eywa?token=<표> — eywa 에서 넘어오는 자동 로그인 (원장님 2026-09-26, D-139 ⑹ 2판).
  *
  * 판정은 Auth.js 의 `eywa-sso` 공급자(`src/lib/auth.ts` → `src/lib/eywaSso.ts`)가 한다. 세 갈래:
- *  ⑴ 표의 `sub` 가 연결된 계정 → 로그인하고 `/`(역할·승인 대기 갈래는 관문과 첫 화면이 원장 로그인과 같게 정한다).
+ *  ⑴ 표의 `sub` 가 연결된 계정 → 로그인하고 `/?entry=login`(이메일 로그인과 같은 표지 — 강사는 내 반, D-140 ⑶).
  *     이미 다른 계정·학생으로 로그인돼 있어도 **표의 계정으로 바꾼다** — eywa 에서 누른 사람이 곧 그 사람이다.
  *  ⑵ 표는 올바른데 그 `sub` 에 연결된 계정이 **아무 데도 없다** → 연결 대기 쿠키(`src/lib/eywaLinkPending.ts`)를
  *     심고, 🔴 **지금 세션(원장·학생 누구든)을 끝낸 뒤** `/login?callbackUrl=/account/eywa-link` 로. 연결은 반드시
@@ -23,6 +23,7 @@ import { EYWA_LINK_PAGE_PATH } from "@/contracts/eywaLink.contract";
 import { signIn, signOut } from "@/lib/auth";
 import { db } from "@/lib/db";
 import { withErrorLog } from "@/lib/errorLog/withErrorLog";
+import { LOGIN_LANDING } from "@/lib/loginLanding";
 import {
   clearedEywaLinkPendingCookie,
   EYWA_LINK_PENDING_COOKIE,
@@ -75,7 +76,11 @@ async function handleGet(request: NextRequest) {
     response.cookies.set(eywaLinkPendingCookie(pending, secure));
     return response;
   }
-  const response = NextResponse.redirect(new URL("/", request.nextUrl), 303);
+  // 이메일 로그인과 같은 «로그인 직후» 표지 — 강사는 내 반, 나머지는 `/`(D-140 ⑶, `loginLanding.ts`)
+  const response = NextResponse.redirect(
+    new URL(LOGIN_LANDING, request.nextUrl),
+    303,
+  );
   // 연결된 계정으로 들어왔다 — 남아 있던 연결 대기는 더 물을 것이 없다
   if (request.cookies.has(EYWA_LINK_PENDING_COOKIE))
     response.cookies.set(clearedEywaLinkPendingCookie(secure));

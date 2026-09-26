@@ -137,6 +137,7 @@ import { ALL_WORKSPACE_MENUS } from "@/contracts/accountAccess.contract";
 import { POST as linkPost } from "@/app/api/account/eywa-link/route";
 import { GET } from "@/app/api/sso/eywa/route";
 import { signIn } from "@/lib/auth";
+import { LOGIN_LANDING } from "@/lib/loginLanding";
 import { db } from "@/lib/db";
 import {
   EYWA_LINK_PENDING_COOKIE,
@@ -370,7 +371,7 @@ describe("⑵ GET /api/sso/eywa — 보냄", () => {
   it("연결된 계정 → / 로 303, 세션 쿠키가 실리고 연결 대기 쿠키는 없다", async () => {
     const res = await get(`?token=${ssoToken()}`);
     expect(res.status).toBe(303);
-    expect(res.headers.get("location")).toBe(`${TEST_ORIGIN}/`);
+    expect(res.headers.get("location")).toBe(`${TEST_ORIGIN}${LOGIN_LANDING}`);
     const token = await decodeSessionToken(sessionCookieFromJar()!);
     expect(token?.id).toBe(DIRECTOR_ID);
     expect(pendingOf(res)).toBeUndefined();
@@ -381,7 +382,7 @@ describe("⑵ GET /api/sso/eywa — 보냄", () => {
       `?token=${ssoToken()}`,
       `${EYWA_LINK_PENDING_COOKIE}=v1.stale.value`,
     );
-    expect(res.headers.get("location")).toBe(`${TEST_ORIGIN}/`);
+    expect(res.headers.get("location")).toBe(`${TEST_ORIGIN}${LOGIN_LANDING}`);
     expect(pendingOf(res)).toMatchObject({ value: "", path: "/", maxAge: 0 });
   });
 
@@ -554,7 +555,7 @@ describe("⑷ 끝에서 끝 — 연결 안 된 SSO → 비밀번호 로그인 �
     // ④ 다른 브라우저(쿠키 없음)에서 다음 표 → 곧장 로그인
     resetRequest();
     const next = await get(`?token=${ssoToken()}`);
-    expect(next.headers.get("location")).toBe(`${TEST_ORIGIN}/`);
+    expect(next.headers.get("location")).toBe(`${TEST_ORIGIN}${LOGIN_LANDING}`);
     const token = await decodeSessionToken(sessionCookieFromJar()!);
     expect(token?.id).toBe(DIRECTOR_ID);
     expect(emailLookups().length).toBe(1); // ② 비밀번호 로그인의 한 번뿐 — SSO 쪽은 0
