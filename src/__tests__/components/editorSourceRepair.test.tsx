@@ -22,15 +22,13 @@ import { renderKatexSafe as renderEditorKatex } from "@/components/math/editor/k
 import { splitMathSegments } from "@/components/math/editor/mathSegments";
 import { SourceEditorDisplay } from "@/components/math/editor/SourceEditorDisplay";
 import SourceEditorRenderer from "@/components/math/editor/SourceEditorRenderer";
-import {
-  repairEditorSource,
-  reviveEscapedStyleLeak,
-} from "@/components/math/editor/sourceRepair";
+import { repairEditorSource } from "@/components/math/editor/sourceRepair";
 import {
   documentMarkdown,
   prepareVisualDocument,
 } from "@/components/math/editor/visualDocument";
 import { ProblemContent } from "@/components/math/ProblemContent";
+import { reviveEscapedStyleLeak } from "@/lib/math/escapedStyleLeak";
 import { renderKatexSafe as renderLibKatex } from "@/lib/math/katexRender";
 import { normalizeMathgenText } from "@/lib/math/normalizeMathgenText";
 

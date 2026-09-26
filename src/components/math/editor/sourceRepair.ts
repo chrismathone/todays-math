@@ -1,3 +1,4 @@
+import { reviveEscapedStyleLeak } from "@/lib/math/escapedStyleLeak";
 import { normalizeMathgenText } from "@/lib/math/normalizeMathgenText";
 import { splitMathSegments } from "./mathSegments";
 
@@ -42,24 +43,6 @@ function repairOutsideMath(text: string): string | undefined {
   );
   return keepsTokens(repaired, tokens) ? repaired : undefined;
 }
-
-/**
- * 🔴 편집 칸에서 한 번 저장하면 글 노드의 `\`·`$` 가 이스케이프돼(`documentMarkdown`) 누출이
- * `\\displaystyle \$\$이동 거리=` 로 **굳는다** — 그 뒤 모든 출구가 역슬래시와 달러를 그린다.
- * 사람이 글로 `\displaystyle`(뒤에 `$$`)을 칠 리 없으니 이 모양은 편집기 이스케이프가 만든 것이 분명하다 —
- * 이스케이프만 풀어 입구 후보정에 넘긴다(지시어를 지우고 가짜 `$$` 를 걷는 판단은 그쪽이 한다).
- * 역슬래시가 정확히 둘일 때만 — 셋이면 «친 역슬래시 + 진짜 명령»이다. 화폐 `\$` 는 지시어 뒤가 아니면 그대로.
- */
-export function reviveEscapedStyleLeak(source: string): string {
-  return source.replace(
-    ESCAPED_STYLE,
-    (_match, word: string, space: string, display: string | undefined) =>
-      `\\${word}${space}${display ? "$$" : ""}`,
-  );
-}
-
-const ESCAPED_STYLE =
-  /(?<!\\)\\\\(displaystyle|textstyle|scriptstyle|scriptscriptstyle)\b([ \t]*)(\\\$\\\$)?/g;
 
 /** 사용자 글에 나올 일 없는 사용 영역 글자 — 수식 토큰 자리표. */
 const OPEN = String.fromCharCode(0xe000);
