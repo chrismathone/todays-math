@@ -38,11 +38,26 @@ export interface ScopeViewer {
   readonly branchRole?: "owner" | "manager" | "teacher" | null;
 }
 
-/** 지점 소속 강사는 명단과 계정을 발급하지 않는다. 독립 운영자는 본인 반을 직접 관리한다. */
+/**
+ * **반 만들기 · 반 설정 · 학생 삭제·이름 바꾸기 — 지점 전체** 판정. 지점 소속 강사는 못 한다.
+ * 독립 운영자는 본인 반을 직접 관리한다. 자기 반 학생 명단·계정은 `canManageClassStudents`(D-140).
+ */
 export function canManageRoster(viewer: ScopeViewer): boolean {
   if (viewer.isSuperAdmin === true) return true;
   if (viewer.branchRole === "teacher") return false;
   return viewer.isAdmin === true || !viewer.branchId;
+}
+
+/**
+ * **자기 반 학생 등록 · 로그인 발급 · 다시 발급 · 끄기** 판정 — 위 판정에 **담당 강사**를 더한다
+ * (D-140, 원장님 2026-09-26 «강사가 로그인했을 때 자신의 반이 뜨고 … 학생들 계정 생성 가능하게»).
+ *
+ * 🔴 «자기 반»은 여기서 정하지 않는다 — 라우트가 반·학생을 읽은 뒤 `withinOwnerScope`(`ownership.ts` 헬퍼)로
+ *    거른다. 강사는 소유 울타리를 넘지 않으므로(`crossesOwnerFence` 거짓) `Class.userId` 가 나인 반만 안이다.
+ *    역할이 비었거나 모르는 값이면 위 판정 그대로다(빈 값은 열지 않는다).
+ */
+export function canManageClassStudents(viewer: ScopeViewer): boolean {
+  return canManageRoster(viewer) || viewer.branchRole === "teacher";
 }
 
 /** 🔴 **유일한 판정** — 이 사람은 학원 운영 데이터의 소유 울타리를 넘는가. */

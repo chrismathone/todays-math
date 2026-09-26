@@ -19,6 +19,7 @@ import { beforeEach, describe, expect, it, vi } from "vitest";
 import { LoginForm } from "@/components/auth/LoginForm";
 import { SignupForm } from "@/components/auth/SignupForm";
 import { normalizeCallbackUrl, requestedCallbackUrl } from "@/lib/callbackUrl";
+import { LOGIN_LANDING } from "@/lib/loginLanding";
 import { MOCK_EXISTING_SIGNUP_EMAIL } from "@/mocks/data";
 import { http, HttpResponse } from "msw";
 import { server } from "@/mocks/server";
@@ -50,7 +51,9 @@ describe("[T1.2] LoginForm", () => {
     expect(screen.queryByLabelText("이름")).not.toBeInTheDocument();
   });
 
-  it('로그인 제출 시 signIn("credentials")를 호출하고 / 로 이동한다', async () => {
+  // D-140 ⑶ — 기본 목적지(`/`)로 가는 로그인은 `/` 에 표지를 달아 보낸다. 첫 화면은 `/` 가 역할로 정한다
+  // (강사 → 내 반, 나머지 → 표지를 떼고 `/` — `LoginLanding.test.tsx`). 예전 단정은 `push("/")`.
+  it('로그인 제출 시 signIn("credentials")를 호출하고 / (로그인 표지)로 이동한다', async () => {
     const user = userEvent.setup();
     signIn.mockResolvedValue({
       ok: true,
@@ -73,7 +76,7 @@ describe("[T1.2] LoginForm", () => {
           redirect: false,
         }),
       );
-      expect(push).toHaveBeenCalledWith("/");
+      expect(push).toHaveBeenCalledWith(LOGIN_LANDING);
     });
   });
 
@@ -435,7 +438,8 @@ describe("auth recovery and accessibility", () => {
       "연결이 원활하지 않아요",
     );
     await user.click(screen.getByRole("button", { name: "로그인" }));
-    await waitFor(() => expect(push).toHaveBeenCalledWith("/"));
+    // D-140 ⑶ — 기본 목적지 로그인은 로그인 표지가 달린 `/` (예전 단정은 `push("/")`)
+    await waitFor(() => expect(push).toHaveBeenCalledWith(LOGIN_LANDING));
     expect(signIn).toHaveBeenCalledTimes(2);
   });
 
