@@ -1,6 +1,7 @@
 import "server-only";
 import { db } from "@/lib/db";
 import { updateDailyJourney } from "./dailyJourney";
+import { updateExpedition, type ExpeditionWriter } from "@/lib/math-explorers/expedition";
 import {
   emptySrsState,
   parseSrsState,
@@ -65,6 +66,7 @@ export async function changeSrsState(
   change: (state: StoredSrsState) => StoredSrsState,
   table = srsStateTable(),
   expectedRevision?: number,
+  writer: ExpeditionWriter = {},
 ): Promise<{ revision: number; state: StoredSrsState }> {
   for (let retry = 0; retry < 5; retry++) {
     const previous = await readSrsState(studentId, table);
@@ -78,7 +80,12 @@ export async function changeSrsState(
       );
     const state = change(previous.state);
     if (state === previous.state) return previous;
-    const payload = parseSrsState(updateDailyJourney(previous.state, state));
+    const payload = parseSrsState(updateExpedition(
+        previous.state,
+        updateDailyJourney(previous.state, state),
+        new Date(),
+        writer,
+      ));
     try {
       if (previous.revision === 0) {
         await table.create({ data: { studentId, revision: 1, payload } });

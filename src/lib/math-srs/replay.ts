@@ -105,7 +105,7 @@ function elementarySource(
       const generated = generateCourseSession(
         archived.unitId,
         stableSeed(`${dayId}:${step}:${offset}`),
-        new Date(`${dayId.split(":")[1]}T00:00:00.000Z`),
+        new Date(`${findJourneyDay(state, "elementary", dayId)!.date}T00:00:00.000Z`),
         "review",
       );
       generated.id = stableId(`${dayId}:${step}:session`);

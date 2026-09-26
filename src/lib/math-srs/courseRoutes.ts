@@ -21,12 +21,11 @@ import { requireStudent } from "@/lib/learn/studentRequest";
 import {
   CourseConflict,
   CourseInvalidInput,
-  courseSummary,
   emptyCourseState,
   findStoredCourseSession,
   revealCourseHint,
   setCoursePlan,
-  startAutomaticCourse,
+  startRecommendedCourse,
   submitCourseAttempt,
   type StoredCourse,
 } from "./courseAutomation";
@@ -35,6 +34,8 @@ import { courseStudentDto, loadCourseStudent } from "./courseServer";
 import { SrsUnavailable } from "./serverState";
 import { changeSrsState, readSrsState } from "./serverStore";
 import { srsFailureResponse } from "./serverRoutes";
+import { expeditionCourseRecommendation } from "@/lib/math-explorers/expedition";
+import type { StoredSrsState } from "./serverState";
 
 export function courseFailureResponse(error: unknown) {
   if (error instanceof CourseConflict)
@@ -66,7 +67,7 @@ export async function handleCourseStudentRequest(
     if (operation === "read") saved = await readSrsState(student.id);
     else {
       const body = await request.json().catch(() => undefined);
-      let change: (course: StoredCourse) => StoredCourse;
+      let change: (course: StoredCourse, state: StoredSrsState) => StoredCourse;
       let expectedRevision: number | undefined;
       if (operation === "plan") {
         const parsed = coursePlanInputSchema.safeParse(body);
@@ -78,22 +79,20 @@ export async function handleCourseStudentRequest(
         if (!parsed.success) return noStore(validationError(parsed.error));
         const seed = randomInt(0, 0x1_0000_0000);
         const current = await readSrsState(student.id);
-        const recommended = courseSummary(
-          current.state.course ?? emptyCourseState(),
-          now,
-        ).recommendation;
+        const recommended = expeditionCourseRecommendation(current.state, now);
         const bankSectionId =
           recommended?.mode === "resume" ? null : recommended?.sectionId;
         const bankCandidates = bankSectionId
           ? await loadCourseBankCandidates(bankSectionId)
           : [];
-        change = (c) =>
-          startAutomaticCourse(
+        change = (c, state) =>
+          startRecommendedCourse(
             c,
+            expeditionCourseRecommendation(state, now),
             now,
             seed,
             randomUUID,
-            courseSummary(c, now).recommendation?.sectionId === bankSectionId
+            expeditionCourseRecommendation(state, now)?.sectionId === bankSectionId
               ? bankCandidates
               : [],
           );
@@ -112,7 +111,7 @@ export async function handleCourseStudentRequest(
         student.id,
         (state) => {
           const previous = state.course ?? emptyCourseState();
-          const course = change(previous);
+          const course = change(previous, state);
           return course === previous ? state : { ...state, course };
         },
         undefined,

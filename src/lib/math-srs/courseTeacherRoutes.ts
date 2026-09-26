@@ -96,6 +96,8 @@ export async function handleCourseTeacherStudent(
       }),
       undefined,
       input.data.expectedRevision,
+      // A frozen student mission must not lock the teacher out of the plan.
+      { teacher: true },
     );
     return noStore(
       jsonOk(courseRosterStudentResponseSchema, {

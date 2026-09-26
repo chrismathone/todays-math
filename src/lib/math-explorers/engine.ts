@@ -82,6 +82,8 @@ export function applyExplorerAction(
   requestId: string,
 ): { state: StoredExplorer; feedback: ExplorerFeedback; duplicate: boolean } {
   const date = isoDateSchema.parse(serverDate);
+  if (action.type === "expedition-start")
+    throw new ExplorerActionInvalid("오늘의 학습은 통합 학습 화면에서 시작해 주세요.");
   uuidSchema.parse(requestId);
   const key = actionKey(action);
   const duplicate = explorerReceipt(stored, action, requestId);
