@@ -29,3 +29,65 @@ export const mathExpeditionJourneySchema = mathSrsJourneySchema.extend({
   days: z.array(mathExpeditionDaySchema),
 });
 export type MathExpeditionJourney = z.infer<typeof mathExpeditionJourneySchema>;
+
+export const expeditionRouteSchema = z.enum(["bank", "unit", "memory", "repair"]);
+export const expeditionPlanSchema = z.strictObject({
+  kind: mathExpeditionKindSchema,
+  route: expeditionRouteSchema,
+  unitId: z.string().min(1),
+  title: z.string(),
+  subtitle: z.string(),
+  goal: z.number().int().min(1).max(500),
+});
+export const expeditionMissionSchema = expeditionPlanSchema.extend({
+  id: z.uuid(),
+  date: z.iso.date(),
+  answered: z.number().int().nonnegative(),
+  retryRemaining: z.number().int().nonnegative(),
+  status: z.enum(["active", "retry", "complete"]),
+  sourceSessionId: z.string().nullable(),
+  sourceSessionIds: z.array(z.string()),
+  startedAt: z.iso.datetime(),
+  completedAt: z.iso.datetime().nullable(),
+});
+export const mathExpeditionSchema = z.strictObject({
+  mission: expeditionMissionSchema.nullable(),
+  next: expeditionPlanSchema.nullable(),
+  completedToday: z.boolean(),
+  canStart: z.boolean(),
+});
+export type ExpeditionPlan = z.infer<typeof expeditionPlanSchema>;
+export type ExpeditionMission = z.infer<typeof expeditionMissionSchema>;
+export type MathExpedition = z.infer<typeof mathExpeditionSchema>;
+
+const sourceReferenceSchema = z.strictObject({
+  id: z.string().min(1),
+  unitIds: z.array(z.string()),
+  problemIds: z.array(z.uuid()),
+});
+export const storedExpeditionMissionSchema = expeditionMissionSchema.extend({
+  awardEligible: z.boolean(),
+  references: z.array(sourceReferenceSchema),
+});
+export const storedExpeditionSchema = z.strictObject({
+  version: z.literal(1),
+  initializedAt: z.iso.datetime(),
+  mission: storedExpeditionMissionSchema.nullable(),
+  legacyDays: z.array(mathExpeditionDaySchema),
+  awards: z.array(z.strictObject({
+    day: mathExpeditionDaySchema,
+    missionId: z.uuid(),
+    references: z.array(sourceReferenceSchema),
+  })),
+  receipts: z.array(z.strictObject({
+    requestId: z.uuid(),
+    actionKey: z.string(),
+    missionId: z.uuid().nullable(),
+  })).max(128),
+}).superRefine((value, ctx) => {
+  const dates = [...value.legacyDays.map((d) => d.date), ...value.awards.map((a) => a.day.date)];
+  if (new Set(dates).size !== dates.length)
+    ctx.addIssue({code: "custom", message: "하루에는 한 칸만 전진할 수 있습니다."});
+});
+export type StoredExpedition = z.infer<typeof storedExpeditionSchema>;
+export type StoredExpeditionMission = z.infer<typeof storedExpeditionMissionSchema>;
