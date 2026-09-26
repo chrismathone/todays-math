@@ -1505,11 +1505,20 @@ export const M2_GEO_SIM: TypeEntry[] = [
     if (mode === 0) {
       // 나무 높이를 cm 로 재면 지면이 우스워진다 — 전부 m 로 쓰고,
       // 그림자 비를 정수배로 **구성**해 답이 항상 정수가 되게 한다.
-      const poleH = intBetween(rng, 1, 3);
-      const poleS = intBetween(rng, 2, 6);
-      const j = intBetween(rng, 4, 12);
-      const treeS = poleS * j;
-      const x = poleH * j;
+      //
+      // 막대의 높이와 그림자가 같으면($1:1$) 나무의 높이가 곧 나무의 그림자라 답이 발문에
+      // 그대로 있고, 우연히 막대의 그림자와 같아도 마찬가지다(씨앗 1,000 중 8.6%,
+      // 2026-09-27 — 중1 활용 07·56·57 처럼 답이 발문의 다른 길이와 겹치지 않게).
+      // 통과율 84.4% — 100번이면 던질 확률 $0.156^{100}\approx10^{-81}$.
+      const { poleH, poleS, treeS, x } = attempt(100, () => {
+        const poleH = intBetween(rng, 1, 3);
+        const poleS = intBetween(rng, 2, 6);
+        const j = intBetween(rng, 4, 12);
+        const treeS = poleS * j;
+        const x = poleH * j;
+        if (poleH === poleS || [poleH, poleS, treeS].includes(x)) return null;
+        return { poleH, poleS, treeS, x };
+      });
       return {
         content: `높이가 $${poleH}\\,\\mathrm{m}$인 막대를 지면에 수직으로 세웠더니 그림자의 길이가 $${poleS}\\,\\mathrm{m}$였다. 같은 시각에 어떤 나무의 그림자의 길이가 $${treeS}\\,\\mathrm{m}$일 때, 이 나무의 높이를 구하시오.`,
         answer: `$${x}\\,\\mathrm{m}$`,

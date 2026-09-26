@@ -368,11 +368,18 @@ export const M3_STAT2: TypeEntry[] = [
     SEC.산포도,
     "응용",
     (rng) =>
-      attempt(200, () => {
+      // 🔴 「전체 평균이 정수」 거름이 **치우침**을 만들었다 — $n_1=n_2$ 면 $m_1-m_2$ 가 짝수이기만
+      //    하면 되고, $m_1=m_2$ 면 늘 나누어떨어진다. 그래서 통과한 판의 49.2% 가 두 반 학생 수가
+      //    같고 15.9% 가 두 평균이 같았다(씨앗 1,000 중 62.7% 가 「$8$명 … $8$명」·「$63$점 … $63$점」,
+      //    전체 평균이 곧 주어진 평균 15.1% — 2026-09-27 전수). 학생 수가 같으면 가중평균이 그냥
+      //    두 평균의 평균이 되고, 평균이 같으면 답이 발문에 있다 — 둘 다 다르게 뽑는다.
+      //    한 번 시도의 통과율이 20.4% → 7.8% 라 시도 200 → 400(던질 확률 $9\times10^{-15}$).
+      attempt(400, () => {
         const n1 = intBetween(rng, 4, 8);
         const n2 = intBetween(rng, 4, 8);
         const m1 = intBetween(rng, 60, 90);
         const m2 = intBetween(rng, 60, 90);
+        if (n1 === n2 || m1 === m2) return null;
         const total = n1 * m1 + n2 * m2;
         if (total % (n1 + n2) !== 0) return null;
         const combined = total / (n1 + n2);
