@@ -85,7 +85,7 @@ const sameOp: QuickShape = {
     }
     if (!correct) return null;
     return {
-      prompt: "$a=b$ 일 때 같은 식은?",
+      prompt: "$a=b$ 일 때 이 식과 같은 것은?",
       equation: left,
       correct,
       wrong: wrongs,

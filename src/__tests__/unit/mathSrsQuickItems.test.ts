@@ -353,7 +353,7 @@ function read(item: QuickItem, re: RegExp): { eq: string; m: RegExpExecArray } {
 
 const JUDGES: Record<string, Judge> = {
   "quick:balance:same-op": (item) => {
-    const { eq } = read(item, /^\$a=b\$ 일 때 같은 식은\?$/);
+    const { eq } = read(item, /^\$a=b\$ 일 때 이 식과 같은 것은\?$/);
     const left = parseTex(eq);
     return (choice) => {
       const c = bare(choice);
