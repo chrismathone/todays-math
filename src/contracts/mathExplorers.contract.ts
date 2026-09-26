@@ -67,7 +67,7 @@ export const explorerProfileSchema = z.strictObject({
   grade,
   stars: count,
   earned: count,
-  level: z.number().int().min(0).max(10),
+  level: z.number().int().min(0).max(3),
   definitions: explorerDefinitionsSchema.optional(),
 });
 
@@ -89,6 +89,7 @@ export const explorerActionSchema = z.discriminatedUnion("type", [
   z.strictObject({ type: z.literal("goal"), unitId: id }),
   z.strictObject({ type: z.literal("chest"), chestId: id }),
   z.strictObject({ type: z.literal("solution"), cardId: id }),
+  z.strictObject({ type: z.literal("upgrade") }),
 ]);
 export const explorerRequestSchema = z.strictObject({
   requestId: uuidSchema,
@@ -124,6 +125,9 @@ const completedDay = z.strictObject({
   date: isoDateSchema,
   unitId: id,
   sessionId: id,
+  cardIds: z.array(id).length(5).optional(),
+  route: route.optional(),
+  targetCardId: id.optional(),
 });
 export const storedExplorerSchema = z.strictObject({
   version: z.literal(1),
