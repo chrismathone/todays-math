@@ -704,7 +704,7 @@ describe("재생 (/learn/watch/<id> — 시안 sPlay)", () => {
     await renderWatch(L.l4);
     expect(screen.getByRole("link", { name: "‹ 목록" })).toHaveAttribute(
       "href",
-      "/learn",
+      "/learn/lectures",
     );
     expect(
       screen.getByText("약수를 빠짐없이 세는 법", { selector: "h1" }),
@@ -871,7 +871,7 @@ describe("재생 (/learn/watch/<id> — 시안 sPlay)", () => {
     ).toBeInTheDocument();
     expect(screen.getByRole("link", { name: "‹ 목록" })).toHaveAttribute(
       "href",
-      "/learn",
+      "/learn/lectures",
     );
   });
 

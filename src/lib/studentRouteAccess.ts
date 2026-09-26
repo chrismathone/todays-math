@@ -64,11 +64,22 @@ const BRAND_RULES: readonly Rule[] = [
 /** 첫 비밀번호를 바꾼 학생 — 목록 → 재생(D-124 ⑵) */
 const ACTIVE_RULES: readonly Rule[] = [
   {
+    methods: PAGE,
+    path: "/learn/math-explorers",
+    why: "학생별 개념 탐험과 기억 복습",
+  },
+  {
+    methods: ["GET", "POST"],
+    path: "/api/learn/math-explorers",
+    why: "본인의 개념 학습 조회·제출·보상 저장",
+  },
+  {
     methods: ["GET", "POST"],
     path: "/api/learn/math-srs/replay",
     why: "본인이 완료한 문제 다시 풀기 · 요청한 풀이 보기",
   },
-  { methods: PAGE, path: STUDENT_HOME, why: "강의 목록 화면" },
+  { methods: PAGE, path: STUDENT_HOME, why: "하나의 수학 탐험 홈" },
+  { methods: PAGE, path: "/learn/lectures", why: "내 강의 자료" },
   { methods: PAGE, path: STUDENT_PASSWORD_PAGE, why: "비밀번호 바꾸기 화면" },
   { methods: PAGE, path: "/learn/watch/{id}", why: "재생 화면" },
   {

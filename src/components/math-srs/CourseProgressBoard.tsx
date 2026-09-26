@@ -5,10 +5,12 @@ import type {
   CourseSummary,
 } from "@/contracts/mathSrsCourse.contract";
 import { getCourseSection } from "@/lib/math-srs/elementary/catalog";
-import StudentProgressBoard from "./StudentProgressBoard";
+import type { MathSrsJourney } from "@/contracts/mathSrsJourney.contract";
+import StudentJourney from "./StudentJourney";
 
 interface Props {
   summary: CourseSummary;
+  journey?: MathSrsJourney;
   session?: CoursePublicSession | null;
   busy?: boolean;
   onNext?: () => void;
@@ -20,11 +22,11 @@ interface Props {
 
 export default function CourseProgressBoard({
   summary,
+  journey,
   session,
   busy = false,
   onNext,
   nextLabel,
-  nextAriaLabel,
 }: Props) {
   const sectionId =
     session?.sectionId ??
@@ -36,22 +38,29 @@ export default function CourseProgressBoard({
     !!onNext &&
     !!summary.recommendation &&
     summary.status !== "paused" &&
-    summary.status !== "done" &&
-    completed < summary.todayGoal;
+    (summary.status !== "done" || summary.recommendation.mode === "resume");
 
   return (
-    <StudentProgressBoard
-      replayKind="elementary"
-      completed={completed}
-      goal={summary.todayGoal}
-      title={section?.title ?? "오늘의 수학"}
-      subtitle={
-        section
-          ? `초${section.grade} · ${section.semester}학기 · ${section.chapterTitle}`
-          : "초등 복습"
+    <StudentJourney
+      kind="elementary"
+      journey={
+        journey ?? {
+          completedDays: 0,
+          todayComplete: false,
+          todayAnswered: completed,
+          todayGoal: summary.todayGoal,
+          days: [],
+          upcoming: [
+            {
+              title: section?.title ?? "오늘의 수학",
+              subtitle: section
+                ? `초${section.grade} · ${section.semester}학기 · ${section.chapterTitle}`
+                : "초등 복습",
+            },
+          ],
+        }
       }
       nextLabel={nextLabel ?? (completed ? "다음 5문제" : "학습 시작")}
-      nextAriaLabel={nextAriaLabel ?? `${completed + 1}번부터 다음 5문제 시작`}
       onNext={canContinue ? onNext : undefined}
       busy={busy}
     />

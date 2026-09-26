@@ -81,7 +81,7 @@ export function WatchScreen({ lectureId }: { lectureId: string }) {
     <div className={s.column}>
       <LearnTopBar student={data?.student ?? null} />
       <main className={`${s.body} ${s.watchBody}`}>
-        <Link href="/learn" className={s.back}>
+        <Link href="/learn/lectures" className={s.back}>
           ‹ 목록
         </Link>
         {detail === null ? (

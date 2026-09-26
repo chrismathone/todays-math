@@ -14,7 +14,14 @@ export type ExplorerProfile = {
 
 export type DefinitionAction = {
   definitionAction:
-    "start" | "read" | "answer" | "hint" | "course" | "goal" | "chest";
+    | "start"
+    | "read"
+    | "answer"
+    | "hint"
+    | "course"
+    | "goal"
+    | "chest"
+    | "retry-unresolved";
   definitionRoute?: "unit" | "memory" | "repair";
   questionId?: string;
   grade?: number;

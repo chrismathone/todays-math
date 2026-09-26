@@ -75,11 +75,13 @@ const AUTH_ACTIONS = [
 /** 학생 화면(D-125 ⑷)과 학생 API — 화면 파일은 아직 없다(D-07 Hi-fi 뒤). 그래도 관문은 먼저 선다 */
 const LEARN_PAGES = [
   "/learn",
+  "/learn/lectures",
   "/learn/login",
   "/learn/password",
   `/learn/watch/${UUID}`,
   "/learn/math-srs",
   "/learn/math-srs/algebra",
+  "/learn/math-explorers",
 ];
 const LEARN_APIS = [
   "/api/learn/login",
@@ -97,6 +99,7 @@ const LEARN_APIS = [
   "/api/learn/math-srs/course/hint",
   "/api/learn/math-srs/course/figure",
   "/api/learn/math-srs/replay",
+  "/api/learn/math-explorers",
 ];
 const STATIC = [
   "/favicon.ico",
@@ -214,17 +217,19 @@ describe("모집단 — 파일 목록에서 뽑았다 (분모부터 검산)", ()
 });
 
 describe("🔴 첫 비밀번호를 바꾼 학생 — 지나가는 것의 집합이 정확히 이것이다", () => {
-  it("화면 셋 · 학생 API · 나가기 · 세션 · 브랜드 이미지 · 랩실 읽기뿐", async () => {
+  it("학생 학습 화면 · 학생 API · 나가기 · 세션 · 브랜드 이미지 · 랩실 읽기뿐", async () => {
     session.mockReturnValue(studentSession(false));
     const { pass } = await sweep();
     expect(pass.sort()).toStrictEqual(
       [
         ...[
           "/learn",
+          "/learn/lectures",
           "/learn/password",
           `/learn/watch/${UUID}`,
           "/learn/math-srs",
           "/learn/math-srs/algebra",
+          "/learn/math-explorers",
         ].flatMap((p) => [`GET ${p}`, `HEAD ${p}`]),
         "GET /api/learn/lectures",
         `GET /api/learn/lectures/${UUID}`,
@@ -242,6 +247,8 @@ describe("🔴 첫 비밀번호를 바꾼 학생 — 지나가는 것의 집합�
         "GET /api/learn/math-srs/course/figure",
         "GET /api/learn/math-srs/replay",
         "POST /api/learn/math-srs/replay",
+        "GET /api/learn/math-explorers",
+        "POST /api/learn/math-explorers",
         ...REPORT,
         ...EXIT,
         ...brand,

@@ -122,6 +122,9 @@ function fixture(grade = 3) {
     date: (day: string) => {
       date = day;
     },
+    reload: () => {
+      state = storedExplorerSchema.parse(JSON.parse(JSON.stringify(state)));
+    },
     get state() {
       return state;
     },
@@ -319,6 +322,343 @@ describe("account-owned concept transitions", () => {
     expect(solution?.explanation).toBe(definitionCard("prime").explanation);
     expect(g.state.completedDays).toHaveLength(0);
     expect(JSON.stringify(g.view)).not.toContain('"explanation"');
+  });
+
+  it("requires an explicit unresolved-only retry and preserves the original session and first score", () => {
+    const f = fixture();
+    expect(explorerActionSchema.parse({ type: "retry-unresolved" })).toEqual({
+      type: "retry-unresolved",
+    });
+    expect(() => f.act({ type: "retry-unresolved" })).toThrow(
+      ExplorerActionInvalid,
+    );
+    f.start();
+    expect(() => f.act({ type: "retry-unresolved" })).toThrow(
+      ExplorerActionInvalid,
+    );
+    const staleQuestionId = f.view.currentActivity!.questionId;
+    f.finish((session) => session.queue[session.index]?.cardId === "prime");
+    const paused = structuredClone(f.session());
+    const record = structuredClone(f.state.profile.definitions!);
+    expect(paused).toMatchObject({ round: 3, first: 12, done: true, stars: 4 });
+    expect(f.state.receipts.at(-1)!.feedback.complete).toBe(false);
+    expect(f.state.completedDays).toEqual([]);
+    f.start("numbers");
+    expect(f.state.profile.definitions).toEqual(record);
+    expect(() => f.act({ type: "course", grade: 5 })).toThrow(
+      ExplorerActionInvalid,
+    );
+
+    const requestId = randomUUID();
+    f.act({ type: "retry-unresolved" }, requestId);
+    expect(f.act({ type: "retry-unresolved" }, requestId).duplicate).toBe(true);
+    expect(f.session()).toMatchObject({
+      id: paused.id,
+      date: paused.date,
+      cardIds: paused.cardIds,
+      first: paused.first,
+      initialWrong: paused.initialWrong,
+      passed: paused.passed,
+      eligible: paused.eligible,
+      continuation: 1,
+      queue: paused.unresolved,
+      index: 0,
+      round: 0,
+      done: false,
+      unresolved: [],
+    });
+    expect(f.state.profile.definitions!.runs).toBe(1);
+    expect(f.view.session).toMatchObject({
+      total: 3,
+      first: 12,
+      continuation: 1,
+    });
+    expect(f.view.session!.cardIds).toHaveLength(5);
+    expect(f.view.currentActivity!.kind).toBe("assemble");
+    expect(() => f.act({ type: "retry-unresolved" })).toThrow(
+      ExplorerActionInvalid,
+    );
+    expect(() =>
+      f.act({ type: "answer", questionId: staleQuestionId, choiceIds: [0, 1] }),
+    ).toThrow(ExplorerActionConflict);
+    expect(() => f.act({ type: "solution", cardId: "prime" })).toThrow(
+      ExplorerActionInvalid,
+    );
+
+    f.date("2026-09-27");
+    f.reload();
+    f.finish();
+    expect(f.session()).toMatchObject({
+      id: paused.id,
+      first: 12,
+      stars: 5,
+      unresolved: [],
+    });
+    expect(f.state.profile.definitions!.history).toEqual([
+      {
+        ...record.history[0],
+        unresolved: 0,
+        stars: 5,
+      },
+    ]);
+    expect(f.state.completedDays).toEqual([
+      {
+        date: "2026-09-27",
+        unitId: "factors",
+        sessionId: paused.id,
+        cardIds: paused.cardIds,
+        route: "unit",
+      },
+    ]);
+    for (const cardId of paused.cardIds!.filter((id) => id !== "prime")) {
+      expect(f.state.profile.definitions!.cards[cardId]).toEqual(
+        record.cards[cardId],
+      );
+    }
+    expect(f.state.profile.definitions!.cards.prime).toMatchObject({
+      level: 1,
+      due: "2026-09-28",
+      lastRecall: "retry",
+      missed: 0,
+    });
+    const receipt = f.state.receipts.at(-1)!;
+    expect(receipt.feedback).toMatchObject({ complete: true, stars: 1 });
+    const completed = structuredClone(f.state);
+    expect(
+      f.act(JSON.parse(receipt.actionKey), receipt.requestId).duplicate,
+    ).toBe(true);
+    expect(f.state).toEqual(completed);
+    expect(() => f.act({ type: "retry-unresolved" })).toThrow(
+      ExplorerActionInvalid,
+    );
+  });
+
+  it("can pause and resume repeatedly without duplicating history, rewards or schedules", () => {
+    const f = fixture();
+    f.start();
+    f.finish((session) =>
+      ["prime", "factorization"].includes(session.queue[session.index]!.cardId),
+    );
+    const original = structuredClone(f.session());
+    expect(original.first).toBe(9);
+    f.date("2026-09-27");
+    f.act({ type: "retry-unresolved" });
+    f.finish(
+      (session) => session.queue[session.index]!.cardId === "factorization",
+    );
+    expect(f.session()).toMatchObject({
+      first: 9,
+      stars: 4,
+      continuation: 1,
+      round: 3,
+    });
+    expect(f.session().unresolved).toHaveLength(3);
+    expect(f.state.profile.definitions!.history).toHaveLength(1);
+    expect(f.state.receipts.at(-1)!.feedback).toMatchObject({
+      stars: 1,
+      complete: false,
+    });
+    const progress = structuredClone(f.state.profile.definitions!.cards);
+
+    f.date("2026-09-28");
+    f.act({ type: "retry-unresolved" });
+    const staleQuestionId = f.view.currentActivity!.questionId;
+    f.finish(() => true);
+    expect(f.state.receipts.at(-1)!.feedback).toMatchObject({
+      stars: 0,
+      complete: false,
+    });
+    expect(f.state.profile.definitions!.cards.factorization).toEqual({
+      ...progress.factorization,
+      attemptedAt: "2026-09-28",
+    });
+    expect(f.state.profile.definitions!.cards.prime).toEqual(progress.prime);
+    expect(f.state.profile.definitions!.history).toHaveLength(1);
+    expect(f.state.completedDays).toEqual([]);
+
+    f.date("2026-09-29");
+    f.act({ type: "retry-unresolved" });
+    expect(f.view.currentActivity!.questionId).not.toBe(staleQuestionId);
+    expect(() =>
+      f.act({ type: "answer", questionId: staleQuestionId, choiceIds: [0, 1] }),
+    ).toThrow(ExplorerActionConflict);
+    f.reload();
+    f.finish();
+    expect(f.session()).toMatchObject({
+      id: original.id,
+      cardIds: original.cardIds,
+      first: 9,
+      stars: 5,
+      continuation: 3,
+    });
+    expect(f.state.profile.stars).toBe(5);
+    expect(f.state.profile.earned).toBe(5);
+    expect(f.state.profile.definitions!.runs).toBe(1);
+    expect(f.state.profile.definitions!.cards.prime).toEqual(progress.prime);
+    expect(f.state.profile.definitions!.cards.factorization).toMatchObject({
+      level: 1,
+      due: "2026-09-30",
+    });
+    expect(f.state.profile.definitions!.history).toHaveLength(1);
+    expect(f.state.profile.definitions!.history[0]).toMatchObject({
+      first: 9,
+      stars: 5,
+      unresolved: 0,
+      date: "2026-09-26",
+    });
+    expect(f.state.completedDays).toHaveLength(1);
+    expect(f.state.completedDays[0]!.date).toBe("2026-09-29");
+  });
+
+  it("does not advance an existing card's memory schedule or reward its continued recall", () => {
+    const f = fixture();
+    f.start();
+    f.finish();
+    f.date("2026-09-27");
+    f.act({ type: "start", route: "memory" });
+    f.finish((session) => session.queue[session.index]!.cardId === "prime");
+    const record = structuredClone(f.state.profile.definitions!);
+    const stars = f.state.profile.stars;
+    expect(record.cards.prime).toMatchObject({
+      level: 1,
+      reviewStep: 0,
+      due: "2026-09-28",
+      lastRecall: "retry",
+    });
+    f.date("2026-09-28");
+    f.act({ type: "retry-unresolved" });
+    f.finish();
+    expect(f.state.profile.definitions!.cards).toEqual({
+      ...record.cards,
+      prime: { ...record.cards.prime, missed: 0, attemptedAt: "2026-09-28" },
+    });
+    expect(f.state.profile.stars).toBe(stars);
+    expect(f.state.receipts.at(-1)!.feedback).toMatchObject({
+      complete: true,
+      stars: 0,
+    });
+    expect(f.state.profile.definitions!.history).toHaveLength(2);
+    expect(f.state.completedDays.at(-1)).toMatchObject({
+      date: "2026-09-28",
+      route: "memory",
+      sessionId: record.session!.id,
+    });
+  });
+
+  it.each(["memory", "repair"] as const)(
+    "retains the original five mixed-unit cards in a %s retry",
+    (route) => {
+      const f = fixture();
+      if (route === "memory") {
+        f.start("factors");
+        f.finish();
+        f.start("numbers");
+        f.finish();
+        for (const progress of Object.values(
+          f.state.profile.definitions!.cards,
+        ))
+          progress.due = "2026-10-01";
+        f.state.profile.definitions!.cards.prime!.due = "2026-09-27";
+        f.state.profile.definitions!.cards[
+          definitionCards.find((card) => card.unit === "numbers")!.id
+        ]!.due = "2026-09-27";
+      }
+      f.date("2026-09-27");
+      f.act({
+        type: "start",
+        route,
+        ...(route === "repair" ? { cardId: "factorization" } : {}),
+      });
+      const original = structuredClone(f.session());
+      expect(
+        new Set(original.cardIds!.map((id) => definitionCard(id).unit)).size,
+      ).toBeGreaterThan(1);
+      const unresolvedCard = original.cardIds![0]!;
+      f.finish(
+        (session) => session.queue[session.index]!.cardId === unresolvedCard,
+      );
+      f.act({ type: "retry-unresolved" });
+      f.reload();
+      f.finish();
+      expect(f.session()).toMatchObject({
+        id: original.id,
+        route,
+        cardIds: original.cardIds,
+        first: 12,
+      });
+      expect(f.session().targetCardId).toBe(original.targetCardId);
+      expect(f.state.completedDays.at(-1)).toMatchObject({
+        sessionId: original.id,
+        route,
+        cardIds: original.cardIds,
+      });
+    },
+  );
+
+  it("resumes common-denominator misses without repeating the embedded workshop", () => {
+    const f = fixture(5);
+    f.start(definitionCard("g5-common-denominator").unit);
+    f.finish(
+      (session) =>
+        session.queue[session.index]!.cardId === "g5-common-denominator",
+    );
+    const workshop = structuredClone(f.state.profile.workshop);
+    const stars = f.state.profile.stars;
+    f.date("2026-09-30");
+    f.act({ type: "retry-unresolved" });
+    expect(f.view.currentActivity!.kind).toBe("assemble");
+    f.finish();
+    expect(f.state.profile.workshop).toEqual(workshop);
+    expect(f.state.profile.stars).toBe(stars + 1);
+    expect(f.state.completedDays.at(-1)!.date).toBe("2026-09-30");
+  });
+
+  it("adopts a legacy history row and keeps the original five cards when reopening", () => {
+    const f = fixture();
+    f.start();
+    f.finish((session) => session.queue[session.index]!.cardId === "prime");
+    const cardIds = f.session().cardIds;
+    delete f.session().cardIds;
+    delete f.state.profile.definitions!.history[0]!.sessionId;
+    f.reload();
+    f.act({ type: "retry-unresolved" });
+    expect(f.session().cardIds).toEqual(cardIds);
+    f.finish();
+    expect(f.state.profile.definitions!.history).toHaveLength(1);
+    expect(f.state.profile.definitions!.history[0]).toMatchObject({
+      sessionId: f.session().id,
+      first: 12,
+      unresolved: 0,
+    });
+  });
+
+  it("keeps unresolved historical replay and its retry read-only", () => {
+    const f = fixture();
+    f.start();
+    f.finish();
+    const original = structuredClone(f.state);
+    f.date("2026-09-27");
+    f.act({ type: "start", route: "unit", dayId: "2026-09-26" });
+    f.finish((session) => session.queue[session.index]!.cardId === "prime");
+    const id = f.session().id;
+    f.act({ type: "retry-unresolved" });
+    f.reload();
+    f.finish();
+    expect(f.session()).toMatchObject({
+      id,
+      reviewOnly: true,
+      first: 12,
+      stars: 0,
+    });
+    expect(f.state.profile.definitions!.cards).toEqual(
+      original.profile.definitions!.cards,
+    );
+    expect(f.state.profile.definitions!.history).toEqual(
+      original.profile.definitions!.history,
+    );
+    expect(f.state.profile.stars).toBe(original.profile.stars);
+    expect(f.state.profile.earned).toBe(original.profile.earned);
+    expect(f.state.completedDays).toEqual(original.completedDays);
   });
 
   it("keeps 1/3/7/14/30-day recall separate from capped card stars and prevents early farming", () => {

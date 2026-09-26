@@ -1,8 +1,7 @@
 import { beforeEach, describe, expect, it, vi } from "vitest";
 import StudentCoursePage from "@/app/learn/math-srs/page";
 import StudentAlgebraPage from "@/app/learn/math-srs/algebra/page";
-import StudentCourseSrs from "@/components/math-srs/StudentCourseSrs";
-import { StudentMathSrs } from "@/components/math-srs/StudentMathSrs";
+import StudentExplorersPage from "@/app/learn/math-explorers/page";
 import { getStudentSession } from "@/lib/learn/studentRequest";
 
 vi.mock("@/lib/learn/studentRequest", () => ({ getStudentSession: vi.fn() }));
@@ -20,9 +19,10 @@ vi.mock("next/navigation", () => ({
 beforeEach(() => vi.clearAllMocks());
 
 describe.each([
-  ["elementary course", StudentCoursePage, StudentCourseSrs],
-  ["legacy algebra", StudentAlgebraPage, StudentMathSrs],
-] as const)("%s route", (_name, Page, Component) => {
+  ["elementary course", StudentCoursePage],
+  ["legacy algebra", StudentAlgebraPage],
+  ["legacy concept entry", StudentExplorersPage],
+] as const)("%s route", (_name, Page) => {
   it("requires a student account", async () => {
     vi.mocked(getStudentSession).mockResolvedValue(null);
     await expect(Page()).rejects.toThrow("redirect:/learn/login");
@@ -33,10 +33,10 @@ describe.each([
     } as NonNullable<Awaited<ReturnType<typeof getStudentSession>>>);
     await expect(Page()).rejects.toThrow("redirect:/learn/password");
   });
-  it("renders the designated practice for authenticated students", async () => {
+  it("opens the same expedition home for authenticated students", async () => {
     vi.mocked(getStudentSession).mockResolvedValue({
       mustChangePassword: false,
     } as NonNullable<Awaited<ReturnType<typeof getStudentSession>>>);
-    expect((await Page()).type).toBe(Component);
+    await expect(Page()).rejects.toThrow("redirect:/learn");
   });
 });

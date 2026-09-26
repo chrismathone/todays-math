@@ -28,7 +28,32 @@ const classId = "22222222-2222-4222-8222-222222222222";
 const unitId = "33333333-3333-4333-8333-333333333333";
 const missionId = "44444444-4444-4444-8444-444444444444";
 function state(mission: MathSrsPublicMission | null = null): MathSrsState {
+  const complete =
+    !!mission?.completedAt &&
+    mission.attempts.every(
+      (a) =>
+        a.correct || mission.resolvedRetryProblemIds?.includes(a.problemId),
+    );
   return {
+    journey: {
+      completedDays: complete ? 1 : 0,
+      todayComplete: complete && mission?.date === kstDateOf(new Date()),
+      todayAnswered: mission?.attempts.length ?? 0,
+      todayGoal: 12,
+      days: complete
+        ? [
+            {
+              id: `middle:${mission!.date}`,
+              date: mission!.date,
+              completedAt: mission!.completedAt!,
+              title: "등식의 성질",
+              subtitle: "중1 · 일차방정식",
+              reviewCount: 12,
+            },
+          ]
+        : [],
+      upcoming: [{ title: "등식의 성질", subtitle: "중1 · 일차방정식" }],
+    },
     student: {
       id: studentId,
       name: "실제 학생",
@@ -99,6 +124,26 @@ beforeEach(() => {
   vi.clearAllMocks();
   localStorage.clear();
   vi.mocked(api.fetchMathSrs).mockResolvedValue({ ok: true, data: state() });
+});
+
+describe("embedded expedition algebra activity", () => {
+  it("resumes the server lesson directly without a separate home", async () => {
+    vi.mocked(api.fetchMathSrs).mockResolvedValue({
+      ok: true,
+      data: state(mission(2)),
+    });
+    const onExit = vi.fn();
+    render(<StudentMathSrs expedition={{ onExit, onComplete: vi.fn() }} />);
+    expect(
+      await screen.findByRole("group", { name: "답 고르기" }),
+    ).toBeVisible();
+    expect(api.startMathSrs).not.toHaveBeenCalled();
+    expect(
+      screen.queryByRole("heading", { name: "전체 학습 진도" }),
+    ).not.toBeInTheDocument();
+    await userEvent.click(screen.getByRole("button", { name: /학습 홈/ }));
+    expect(onExit).toHaveBeenCalledOnce();
+  });
 });
 
 describe("account-based math practice", () => {
@@ -291,10 +336,20 @@ describe("account-based math practice", () => {
     };
     vi.mocked(api.submitMathSrsReplay)
       .mockResolvedValueOnce({ ok: true, data: { ...replay, correct: false } })
-      .mockResolvedValueOnce({ ok: true, data: { ...replay, correct: true } });
+      .mockResolvedValueOnce({
+        ok: true,
+        data: {
+          ...replay,
+          correct: true,
+          journey: state({
+            ...finished,
+            resolvedRetryProblemIds: [finished.problems[11].id],
+          }).journey,
+        },
+      });
     render(<StudentMathSrs />);
     await user.click(
-      await screen.findByRole("button", { name: "이어서 학습하기 · 11/12" }),
+      await screen.findByRole("button", { name: "이어서 학습하기" }),
     );
     await user.click(
       within(screen.getByRole("group", { name: "답 고르기" })).getAllByRole(
@@ -343,10 +398,12 @@ describe("account-based math practice", () => {
     expect(screen.queryByText("이렇게 풀어요")).not.toBeInTheDocument();
     await screen.findByRole(
       "heading",
-      { name: "미션을 마쳤어요" },
+      { name: "전체 학습 진도" },
       { timeout: 2200 },
     );
-    expect(screen.getByText("11 / 12")).toBeInTheDocument();
+    expect(
+      screen.queryByRole("heading", { name: "미션을 마쳤어요" }),
+    ).not.toBeInTheDocument();
     expect(api.submitMathSrsAttempt).toHaveBeenCalledTimes(1);
     expect(api.submitMathSrsReplay).toHaveBeenCalledTimes(2);
   });
@@ -363,8 +420,11 @@ describe("account-based math practice", () => {
       await screen.findByText("오늘의 복습을 마쳤어요."),
     ).toBeInTheDocument();
     expect(
-      screen.getByRole("button", { name: "오늘의 결과 보기" }),
-    ).toBeEnabled();
+      screen.queryByRole("button", { name: "오늘의 결과 보기" }),
+    ).not.toBeInTheDocument();
+    expect(
+      screen.getByRole("heading", { name: "전체 학습 진도" }),
+    ).toBeVisible();
     expect(
       screen.getByRole("progressbar", { name: "복습 진행" }),
     ).toHaveAttribute("value", "12");
@@ -376,8 +436,11 @@ describe("account-based math practice", () => {
     finished.date = kstDateOf(new Date());
     finished.attempts[0].correct = false;
     finished.attempts[1].correct = false;
-    const key = `math-srs-resolved-retries:${studentId}:${missionId}`;
-    localStorage.setItem(key, JSON.stringify([1]));
+    finished.resolvedRetryProblemIds = [finished.problems[0].id];
+    localStorage.setItem(
+      `math-srs-resolved-retries:${studentId}:${missionId}`,
+      JSON.stringify([1, 2]),
+    );
     vi.mocked(api.fetchMathSrs).mockResolvedValue({
       ok: true,
       data: state(finished),
@@ -420,13 +483,17 @@ describe("account-based math practice", () => {
     );
     await screen.findByText("정확하게 풀었어요!");
     expect(api.submitMathSrsReplay).toHaveBeenCalledWith(
-      expect.objectContaining({ step: 2 }),
+      expect.objectContaining({ step: 2, recordRetry: true }),
     );
-    expect(JSON.parse(localStorage.getItem(key)!)).toEqual([1, 2]);
     second.unmount();
+    finished.resolvedRetryProblemIds.push(finished.problems[1].id);
+    vi.mocked(api.fetchMathSrs).mockResolvedValue({
+      ok: true,
+      data: state(finished),
+    });
     render(<StudentMathSrs />);
     expect(
-      await screen.findByRole("button", { name: "오늘의 결과 보기" }),
+      await screen.findByText("오늘의 복습을 마쳤어요."),
     ).toBeInTheDocument();
     expect(
       screen.queryByText("오답 다시 풀기 · 1문제"),

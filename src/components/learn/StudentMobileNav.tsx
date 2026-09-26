@@ -1,17 +1,24 @@
 "use client";
 
 import Link from "next/link";
-import { usePathname } from "next/navigation";
+import { usePathname, useSearchParams } from "next/navigation";
 
 import s from "./StudentMobileNav.module.css";
 
 const tabs = [
-  { href: "/learn", label: "강의", icon: "play" },
-  { href: "/learn/math-srs", label: "초등 복습", icon: "book" },
-  { href: "/learn/math-srs/algebra", label: "중등 복습", icon: "grid" },
+  { href: "/learn", label: "탐험", icon: "compass" },
+  { href: "/learn?view=collection", label: "도감", icon: "book" },
+  { href: "/learn/lectures", label: "강의", icon: "play" },
 ] as const;
 
 function TabIcon({ name }: { name: (typeof tabs)[number]["icon"] }) {
+  if (name === "compass")
+    return (
+      <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+        <circle cx="12" cy="12" r="8.5" />
+        <path d="m16 8-2.5 5.5L8 16l2.5-5.5L16 8Z" />
+      </svg>
+    );
   if (name === "play")
     return (
       <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
@@ -36,7 +43,11 @@ function TabIcon({ name }: { name: (typeof tabs)[number]["icon"] }) {
 
 export function StudentMobileNav({ previewPath }: { previewPath?: string }) {
   const actualPathname = usePathname();
+  const searchParams = useSearchParams();
   const pathname = previewPath ?? actualPathname;
+  const collection = !previewPath && searchParams.get("view") === "collection";
+  const lectures =
+    pathname === "/learn/lectures" || pathname.startsWith("/learn/watch/");
   if (pathname === "/learn/login" || pathname === "/learn/password")
     return null;
 
@@ -44,11 +55,11 @@ export function StudentMobileNav({ previewPath }: { previewPath?: string }) {
     <nav className={s.nav} aria-label="학생 학습 메뉴">
       {tabs.map((tab) => {
         const current =
-          tab.href === "/learn"
-            ? pathname === "/learn" || pathname.startsWith("/learn/watch/")
-            : tab.href === "/learn/math-srs"
-              ? pathname === tab.href
-              : pathname.startsWith(tab.href);
+          tab.icon === "play"
+            ? lectures
+            : tab.icon === "book"
+              ? collection
+              : !lectures && !collection;
         return (
           <Link
             key={tab.href}

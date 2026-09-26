@@ -77,22 +77,6 @@ export function LectureList({ now }: { now?: Date }) {
             <strong>{state.data.student.name}님, 수학을 시작해 볼까요?</strong>
           </div>
         ) : null}
-        <Link
-          href="/learn/math-srs"
-          prefetch={false}
-          className={s.practiceShortcut}
-        >
-          <span className={s.practiceIcon} aria-hidden="true">
-            ∑
-          </span>
-          <b className={s.practiceTitle}>매일 수학 복습</b>
-          <span className={s.practiceDescription}>
-            내 진도에서 시작하는 오늘의 학습
-          </span>
-          <span className={s.practiceArrow} aria-hidden="true">
-            ›
-          </span>
-        </Link>
         <div className={s.listHeading}>
           <h1 className={s.h}>오늘의 개념</h1>
           <p>수업에서 배운 강의를 이어서 봐요.</p>

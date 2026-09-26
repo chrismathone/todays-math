@@ -4,12 +4,17 @@ import s from "./answer-feedback-effect.module.css";
 interface Props {
   correct: boolean | null;
   eventKey: string | number;
+  message?: string;
 }
 
 const sparkAngles = [0, 45, 90, 135, 180, 225, 270, 315];
 
 /** Place inside a positioned practice area. It never intercepts an answer tap. */
-export default function AnswerFeedbackEffect({ correct, eventKey }: Props) {
+export default function AnswerFeedbackEffect({
+  correct,
+  eventKey,
+  message,
+}: Props) {
   if (correct === null) return null;
 
   return (
@@ -63,7 +68,8 @@ export default function AnswerFeedbackEffect({ correct, eventKey }: Props) {
           </span>
         </div>
         <p className={s.message}>
-          {correct ? "정확하게 풀었어요!" : "다시 풀 문제로 모았어요"}
+          {message ??
+            (correct ? "정확하게 풀었어요!" : "다시 풀 문제로 모았어요")}
         </p>
       </div>
     </div>

@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
 import { redirect } from "next/navigation";
-import { StudentMathSrs } from "@/components/math-srs/StudentMathSrs";
 import { getStudentSession } from "@/lib/learn/studentRequest";
 
 export const metadata: Metadata = {
@@ -11,5 +10,5 @@ export default async function StudentAlgebraSrsPage() {
   const student = await getStudentSession();
   if (!student) redirect("/learn/login");
   if (student.mustChangePassword) redirect("/learn/password");
-  return <StudentMathSrs />;
+  redirect("/learn");
 }

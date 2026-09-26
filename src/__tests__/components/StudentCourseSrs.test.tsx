@@ -15,6 +15,7 @@ import type {
   CoursePublicSession,
   CourseStudentState,
 } from "@/contracts/mathSrsCourse.contract";
+import type { MathSrsJourney } from "@/contracts/mathSrsJourney.contract";
 import {
   COURSE_CHAPTERS,
   COURSE_SECTIONS,
@@ -136,11 +137,47 @@ beforeEach(() => {
   });
 });
 
+describe("embedded expedition bank activity", () => {
+  it("opens the current problem directly and exits to the parent board", async () => {
+    vi.mocked(api.getCourseState).mockResolvedValue({
+      ok: true,
+      data: state(session(2)),
+    });
+    const onExit = vi.fn();
+    render(<StudentCourseSrs expedition={{ onExit, onComplete: vi.fn() }} />);
+    expect(await screen.findByText("문제 3: 1 + 1")).toBeVisible();
+    expect(api.startCourse).not.toHaveBeenCalled();
+    expect(
+      screen.queryByRole("heading", { name: "전체 학습 진도" }),
+    ).not.toBeInTheDocument();
+    await userEvent.click(screen.getByRole("button", { name: /학습 홈/ }));
+    expect(onExit).toHaveBeenCalledOnce();
+  });
+
+  it("starts the assigned bank lesson without a second home/start button", async () => {
+    render(
+      <StudentCourseSrs
+        expedition={{ onExit: vi.fn(), onComplete: vi.fn() }}
+      />,
+    );
+    expect(await screen.findByText("문제 1: 1 + 1")).toBeVisible();
+    expect(api.startCourse).toHaveBeenCalledOnce();
+    expect(
+      screen.queryByRole("button", { name: "오늘의 추천 학습 시작" }),
+    ).not.toBeInTheDocument();
+  });
+});
+
 describe("one-screen student answers", () => {
-  function view(run: CoursePublicSession, onAnswer = vi.fn()) {
+  function view(
+    run: CoursePublicSession,
+    onAnswer = vi.fn(),
+    journey?: MathSrsJourney,
+  ) {
     const props = {
       session: run,
       summary: state(run).summary,
+      journey,
       feedbackId: null,
       busy: false,
       onAnswer,
@@ -364,10 +401,26 @@ describe("one-screen student answers", () => {
         completedAt: now,
       },
     });
-    const { props } = view(run);
+    const { props } = view(run, vi.fn(), {
+      completedDays: 1,
+      todayComplete: true,
+      todayAnswered: 10,
+      todayGoal: 10,
+      days: [
+        {
+          id: "elementary:2026-09-23",
+          date: "2026-09-23",
+          completedAt: now,
+          title: section.title,
+          subtitle: "초등 수학",
+          reviewCount: 10,
+        },
+      ],
+      upcoming: [{ title: "다음 단원", subtitle: "초등 수학" }],
+    });
     expect(screen.queryByText("완료 후 풀이")).not.toBeInTheDocument();
     expect(
-      screen.getByRole("button", { name: "1번 완료, 다시 풀기" }),
+      screen.getByRole("button", { name: /1일차.*다시 풀기/ }),
     ).toBeEnabled();
     expect(props.onHint).not.toHaveBeenCalled();
     expect(
@@ -463,13 +516,14 @@ describe("student course home", () => {
       screen.getByRole("progressbar", { name: "오늘 목표 진행" }),
     ).toHaveAttribute("max", "10");
     expect(screen.getByText("2개")).toBeInTheDocument();
-    expect(screen.getByRole("link", { name: "개념 강의" })).toHaveAttribute(
+    expect(screen.getByRole("link", { name: "강의" })).toHaveAttribute(
       "href",
-      "/learn",
+      "/learn/lectures",
     );
-    expect(
-      screen.getByRole("link", { name: "중등 일차방정식 연습" }),
-    ).toHaveAttribute("href", "/learn/math-srs/algebra");
+    expect(screen.getByRole("link", { name: "도감" })).toHaveAttribute(
+      "href",
+      "/learn?view=collection",
+    );
     expect(screen.queryByText(/기억률|%/)).not.toBeInTheDocument();
   });
 
@@ -618,7 +672,7 @@ describe("persisted course practice", () => {
       await screen.findByRole("button", { name: "오늘의 추천 학습 시작" }),
     );
     const next = await screen.findByRole("button", {
-      name: "6번부터 다음 5문제 시작",
+      name: "다음 5문제",
     });
     expect(next).toHaveFocus();
     await userEvent.keyboard("{Enter}");
@@ -889,13 +943,6 @@ describe("persisted course practice", () => {
     });
     const input = await begin();
     await userEvent.type(input, "2{Enter}");
-    await userEvent.click(
-      await screen.findByRole("button", { name: /이번 학습 마치기/ }),
-    );
-    const next = await screen.findByRole("button", {
-      name: "6번부터 다음 5문제 시작",
-    });
-    expect(api.startCourse).toHaveBeenCalledTimes(1);
     const nextRun = session(4);
     nextRun.id = "66666666-6666-4666-8666-666666666666";
     const nextState = state(nextRun);
@@ -904,7 +951,9 @@ describe("persisted course practice", () => {
       ok: true,
       data: nextState,
     });
-    await userEvent.click(next);
+    await userEvent.click(
+      await screen.findByRole("button", { name: /이번 학습 마치기/ }),
+    );
     expect(api.startCourse).toHaveBeenCalledTimes(2);
     const finished = state({ ...session(5), id: nextRun.id });
     finished.summary.todayAnswered = 10;
@@ -921,7 +970,10 @@ describe("persisted course practice", () => {
     await userEvent.click(
       await screen.findByRole("button", { name: /이번 학습 마치기/ }),
     );
-    expect(await screen.findByText("오늘의 목표 도착!")).toBeInTheDocument();
+    expect(
+      await screen.findByRole("heading", { name: "전체 학습 진도" }),
+    ).toBeInTheDocument();
+    expect(screen.queryByText("오늘의 목표 도착!")).not.toBeInTheDocument();
     expect(
       screen.queryByRole("button", { name: /다음 5문제 시작/ }),
     ).not.toBeInTheDocument();

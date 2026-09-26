@@ -1,6 +1,22 @@
-import { LectureList } from "@/components/learn/LectureList";
+import type { Metadata } from "next";
+import { redirect } from "next/navigation";
+import StudentMathExplorers from "@/components/math-explorers/StudentMathExplorers";
+import { getStudentSession } from "@/lib/learn/studentRequest";
 
-/** 학생 목록 — 그 학생의 반 · 개인 진도에 있던 차시의 게시 강의(D-125 ⑸), 수업한 날로 묶는다 */
-export default function LearnHomePage() {
-  return <LectureList />;
+export const metadata: Metadata = { title: "수학 탐험 · 오늘의수학" };
+
+/** One entry for bank practice, concepts and review, sharing the same expedition. */
+export default async function LearnHomePage({
+  searchParams,
+}: {
+  searchParams: Promise<{ view?: string | string[] }>;
+}) {
+  const [student, query] = await Promise.all([
+    getStudentSession(),
+    searchParams,
+  ]);
+  if (!student) redirect("/learn/login");
+  if (student.mustChangePassword) redirect("/learn/password");
+  const view = query.view === "collection" ? "collection" : undefined;
+  return <StudentMathExplorers key={view ?? "home"} initialView={view} />;
 }
