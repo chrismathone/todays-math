@@ -35,7 +35,7 @@ function fixture(grade = 3) {
   let state = createExplorerState("student-a", grade);
   let date = "2026-09-26";
   const session = () => state.profile.definitions!.session!;
-  const act = (action: ExplorerAction, requestId = randomUUID()) => {
+  const act = (action: ExplorerAction, requestId: string = randomUUID()) => {
     const result = applyExplorerAction(state, action, date, requestId);
     state = result.state;
     return result;

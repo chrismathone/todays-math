@@ -15,6 +15,7 @@ const session: NonNullable<ExplorerState["session"]> = {
   index: 0,
   total: 15,
   round: 0,
+  continuation: 0,
   done: false,
   first: 0,
   stars: 0,
