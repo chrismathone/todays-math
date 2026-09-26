@@ -15,16 +15,31 @@ import {
   StudentReviewStatus,
 } from "@/components/math-srs/StudentReviewHome";
 import ExplorerHome, { type ExplorerCard } from "./ExplorerHome";
+import { ExplorerSheet } from "./ExplorerHome";
+import type { DailyJourneyDay } from "@/components/math-srs/DailyJourneyBoard";
+import type { MathExpeditionReview } from "@/contracts/mathExpedition.contract";
+import ExplorerBankActivity from "./ExplorerBankActivity";
 import ExplorerPractice from "./ExplorerPractice";
 import ExplorerWorkshop from "./ExplorerWorkshop";
 import { ChestRewardEffect } from "./ExplorerPieces";
 import s from "./math-explorers.module.css";
 
 const ExplorerCardDialog = dynamic(() => import("./ExplorerCardDialog"));
+const StudentReplayDialog = dynamic(
+  () => import("@/components/math-srs/StudentReplayDialog"),
+);
 const EFFECT_MS = 1200;
 type Failure = { status: number; message: string; request?: ExplorerRequest };
 
-export default function StudentMathExplorers() {
+export default function StudentMathExplorers({
+  initialView,
+}: { initialView?: "collection" } = {}) {
+  return (
+    <ExplorerGame key={initialView ?? "expedition"} initialView={initialView} />
+  );
+}
+
+function ExplorerGame({ initialView }: { initialView?: "collection" }) {
   const router = useRouter();
   const [state, setState] = useState<ExplorerState | null>(null);
   const [loading, setLoading] = useState(true);
@@ -32,6 +47,15 @@ export default function StudentMathExplorers() {
   const [reload, setReload] = useState(0);
   const [busy, setBusy] = useState(false);
   const [practicing, setPracticing] = useState(false);
+  const [bankKind, setBankKind] = useState<"elementary" | "middle" | null>(
+    null,
+  );
+  const [replay, setReplay] = useState<MathExpeditionReview | null>(null);
+  const [replayStep, setReplayStep] = useState(1);
+  const [reviewChoices, setReviewChoices] = useState<
+    MathExpeditionReview[] | null
+  >(null);
+  const reviewOpener = useRef<HTMLButtonElement | null>(null);
   const [correct, setCorrect] = useState<boolean | null>(null);
   const [effectKey, setEffectKey] = useState("");
   const [chestStars, setChestStars] = useState<number | null>(null);
@@ -182,15 +206,28 @@ export default function StudentMathExplorers() {
           pending.current = false;
           if (data.session?.done || !data.currentActivity) {
             setPracticing(false);
+            setLoading(true);
+            setReload((value) => value + 1);
             window.scrollTo({ top: 0, behavior: "instant" });
           }
         }, EFFECT_MS);
       } else {
         setState(data);
-        if (action.type === "start") {
+        if (
+          action.type === "start" ||
+          action.type === "expedition-start" ||
+          action.type === "retry-unresolved"
+        ) {
           setDetailId(null);
           setSolution(null);
-          setPracticing(!!data.currentActivity);
+          const kind =
+            action.type === "expedition-start"
+              ? data.expedition?.mission?.kind
+              : "explorers";
+          if (kind === "elementary" || kind === "middle") {
+            setBankKind(kind);
+            setPracticing(false);
+          } else setPracticing(!!data.currentActivity);
           window.scrollTo({ top: 0, behavior: "instant" });
         }
         if (action.type === "solution" && data.feedback?.solution)
@@ -256,13 +293,67 @@ export default function StudentMathExplorers() {
     window.scrollTo({ top: 0, behavior: "instant" });
   }
 
+  function openReview(review: MathExpeditionReview) {
+    setReviewChoices(null);
+    if (review.kind === "explorers") {
+      void send({
+        type: "start",
+        route: "unit",
+        dayId: review.dayId.replace(/^explorers:/, ""),
+      });
+    } else setReplay(review);
+  }
+  function reviewDay(day: DailyJourneyDay, opener: HTMLButtonElement) {
+    reviewOpener.current = opener;
+    setReplayStep(
+      (state?.journey?.days.findIndex((item) => item.id === day.id) ?? 0) + 1,
+    );
+    const globalDay = state?.journey?.days.find((item) => item.id === day.id);
+    if (globalDay?.reviews.length) {
+      if (globalDay.reviews.length === 1) openReview(globalDay.reviews[0]);
+      else setReviewChoices(globalDay.reviews);
+    } else
+      openReview({
+        kind: "explorers",
+        dayId: day.date,
+        title: day.title,
+        subtitle: day.subtitle,
+        reviewCount: day.reviewCount,
+      });
+  }
+  function closeReview() {
+    setReplay(null);
+    setReviewChoices(null);
+    reviewOpener.current?.focus({ preventScroll: true });
+  }
+  function exitBank() {
+    setBankKind(null);
+    refresh();
+    window.scrollTo({ top: 0, behavior: "instant" });
+  }
+  function exitPractice() {
+    if (pending.current) return;
+    setPracticing(false);
+    refresh();
+    window.scrollTo({ top: 0, behavior: "instant" });
+  }
+
+  if (bankKind)
+    return (
+      <ExplorerBankActivity
+        kind={bankKind}
+        onExit={exitBank}
+        onComplete={exitBank}
+      />
+    );
+
   return (
     <StudentReviewPage
       kind="explorers"
       student={state?.student ?? null}
-      practicing={inPractice}
+      practicing={inPractice || !state}
       boardReady={!!state}
-      practiceTitle="개념 탐험"
+      practiceTitle="수학 탐험"
       practicePageClassName={s.practicePage}
       practiceMainClassName={s.practiceMain}
     >
@@ -304,36 +395,35 @@ export default function StudentMathExplorers() {
             <ExplorerWorkshop
               workshop={workshop}
               session={state.session}
-              busy={busy}
+              busy={busy || !!error || loading}
               correct={correct}
               eventKey={effectKey}
               onAction={(action) => void send(action)}
-              onHome={() => {
-                setPracticing(false);
-                window.scrollTo({ top: 0, behavior: "instant" });
-              }}
+              onHome={exitPractice}
             />
           ) : (
             <ExplorerPractice
               activity={state.currentActivity}
               session={state.session}
-              busy={busy}
+              busy={busy || !!error || loading}
               correct={correct}
               eventKey={effectKey}
               onAction={(action) => void send(action)}
-              onHome={() => {
-                setPracticing(false);
-                window.scrollTo({ top: 0, behavior: "instant" });
-              }}
+              onHome={exitPractice}
             />
           )
         ) : (
           <ExplorerHome
             state={state}
-            busy={busy}
+            busy={busy || !!error}
             onAction={(action) => void send(action)}
             onResume={resume}
+            onStart={() => void send({ type: "expedition-start" })}
+            onRetry={() => void send({ type: "retry-unresolved" })}
             onInspect={inspect}
+            onReviewDay={reviewDay}
+            initialView={initialView}
+            onCloseView={() => router.replace("/learn")}
           />
         )
       ) : null}
@@ -347,14 +437,41 @@ export default function StudentMathExplorers() {
           onInspect={inspect}
           onSolution={() => void send({ type: "solution", cardId: detail.id })}
           onWorkshopSolution={() => void send({ type: "lab-solution" })}
-          onRepair={() =>
-            void send({ type: "start", route: "repair", cardId: detail.id })
-          }
+          onSetGoal={() => void send({ type: "goal", unitId: detail.unitId })}
           onClose={() => {
             setDetailId(null);
             setSolution(null);
             setWorkshopSolution(null);
           }}
+        />
+      ) : null}
+      {reviewChoices ? (
+        <ExplorerSheet title="지난 학습 다시 풀기" onClose={closeReview}>
+          <div className={s.settingUnits}>
+            {reviewChoices.map((review) => (
+              <button
+                type="button"
+                key={`${review.kind}:${review.dayId}`}
+                onClick={() => openReview(review)}
+                disabled={busy}
+              >
+                <span>{review.title}</span>
+                <small>
+                  {review.subtitle} · {review.reviewCount}문제
+                </small>
+              </button>
+            ))}
+          </div>
+        </ExplorerSheet>
+      ) : null}
+      {replay && replay.kind !== "explorers" ? (
+        <StudentReplayDialog
+          kind={replay.kind}
+          step={replayStep}
+          dayId={replay.dayId}
+          dayTitle={replay.title}
+          total={replay.reviewCount}
+          onClose={closeReview}
         />
       ) : null}
       <ChestRewardEffect key={effectKey} stars={chestStars} />
