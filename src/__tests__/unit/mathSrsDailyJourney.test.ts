@@ -91,6 +91,21 @@ function elementaryAnswer(state: StoredSrsState, wrong = false) {
 }
 
 describe("permanent daily learning journey", () => {
+  it("does not invent a completed legacy day when part of that day's retry history is missing", () => {
+    let state = elementaryStart(10);
+    for (let index = 0; index < 5; index++) state = elementaryAnswer(state);
+    state = courseChange(state, (course) =>
+      startAutomaticCourse(course, now, 82, randomUUID),
+    );
+    for (let index = 0; index < 5; index++) state = elementaryAnswer(state);
+    const legacy = {
+      ...state,
+      dailyJourney: undefined,
+      course: { ...state.course!, history: [] },
+    };
+    expect(dailyJourneyDto(legacy, "elementary", now).completedDays).toBe(0);
+    expect(dailyJourneyDto(state, "elementary", now).completedDays).toBe(1);
+  });
   it("moves one tile only after twelve first attempts and every wrong answer is retried", () => {
     let state = middleStart();
     for (let index = 0; index < 12; index++) {

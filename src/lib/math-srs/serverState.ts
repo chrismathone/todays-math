@@ -1,5 +1,6 @@
 /** Server practice transitions share the existing mission/grading/memory engine. No database here. */
 import { z } from "zod";
+import { storedExplorerSchema } from "@/contracts/mathExplorers.contract";
 import {
   mathSrsAttemptInputSchema,
   mathSrsAttemptSchema,
@@ -48,6 +49,7 @@ const payloadSchema = z
     missions: z.array(storedMissionSchema).max(90),
     course: storedCourseSchema.optional(),
     dailyJourney: storedDailyJourneySchema.optional(),
+    explorers: storedExplorerSchema.optional(),
   })
   .superRefine((value, ctx) => {
     const invalid = (message: string) =>
