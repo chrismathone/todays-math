@@ -2,21 +2,28 @@
 /**
  * eywa 자동 로그인 표 판정 (`src/lib/eywaSso.ts`) — 순수 함수.
  * 표는 eywa 세션 브리프의 형식 그대로 여기서 직접 서명해 만든다(`sign`).
+ * 2판(D-139 ⑹): 표에 바뀌지 않는 eywa 사용자 id `sub` 가 **늘** 실린다 — authorize 는 이 값으로만 계정을 찾는다.
  */
 import { createHmac } from "node:crypto";
 
-import { describe, expect, it } from "vitest";
+import { describe, expect, it, vi } from "vitest";
 
-import { authorizeEywaSso, verifyEywaSsoToken } from "@/lib/eywaSso";
+import {
+  authorizeEywaSso,
+  verifyEywaSsoToken,
+  type EywaSsoDeps,
+} from "@/lib/eywaSso";
 
 const SECRET = "eywa-sso-test-secret-0123456789abcdef";
 const NOW = new Date("2026-09-26T08:00:00.000Z");
 const NOW_S = Math.floor(NOW.getTime() / 1000);
 const TENANT = "0f0e0d0c-0b0a-4908-8706-050403020100";
+const SUB = "5b1c7e9a-2d4f-4a6b-9c8d-0e1f2a3b4c5d";
 
 const claims = (over: Record<string, unknown> = {}) => ({
   iss: "aywa",
   aud: "todays-math",
+  sub: SUB,
   email: "teacher@example.test",
   name: "김선생",
   tenantId: TENANT,
@@ -65,6 +72,11 @@ describe("표 판정 — 받는 것", () => {
     );
     expect(verify(token, { allowedTenants: "" }).ok).toBe(true);
   });
+
+  it("대문자로 온 sub 는 소문자로 돌려준다 (DB 의 uuid 는 소문자로 읽힌다)", () => {
+    const verified = verify(sign(claims({ sub: SUB.toUpperCase() })));
+    expect(verified.ok && verified.claims.sub).toBe(SUB);
+  });
 });
 
 describe("표 판정 — 거절 (이유까지 가른다)", () => {
@@ -96,7 +108,7 @@ describe("표 판정 — 거절 (이유까지 가른다)", () => {
     });
     const [, , sig] = sign(claims()).split(".");
     const forged = Buffer.from(
-      JSON.stringify(claims({ email: "admin@example.test" })),
+      JSON.stringify(claims({ sub: "6c2d8f0b-3e5a-4b7c-8d9e-1f2a3b4c5d6e" })),
     ).toString("base64url");
     expect(verify(`v1.${forged}.${sig}`)).toEqual({
       ok: false,
@@ -108,6 +120,10 @@ describe("표 판정 — 거절 (이유까지 가른다)", () => {
   it.each([
     ["발급자", { iss: "someone" }],
     ["받는 곳", { aud: "eywa" }],
+    ["🔴 sub 없음", { sub: undefined }],
+    ["🔴 sub 가 uuid 아님", { sub: "teacher@example.test" }],
+    ["🔴 sub 가 빈 칸", { sub: "" }],
+    ["🔴 sub 가 숫자", { sub: 42 }],
     ["이메일 형식", { email: "not-an-email" }],
     ["대문자 이메일", { email: "Teacher@example.test" }],
     ["앞뒤 공백 이메일", { email: " teacher@example.test" }],
@@ -149,12 +165,88 @@ describe("표 판정 — 거절 (이유까지 가른다)", () => {
   });
 });
 
-describe("🔴 authorize — 잠금: 표가 맞아도 늘 거절 (2026-09-26)", () => {
-  // eywa 이메일은 본인 확인 값이 아니다 — eywa 직원이 확인 없이 자기 이메일을 아무 주소로 바꿀 수 있어,
-  // 이메일로 계정을 찾으면 오늘의 수학에만 있는 원장·관리자 계정을 가져갈 수 있다(eywa 세션 답변).
-  it("규약대로 서명한 올바른 표도 null — 계정을 찾을 입력 자체를 받지 않는다", async () => {
-    expect(verify(sign(claims())).ok).toBe(true);
-    await expect(authorizeEywaSso(sign(claims()))).resolves.toBeNull();
-    expect(authorizeEywaSso.length).toBe(1);
+type Row = Awaited<ReturnType<EywaSsoDeps["findLinkedUser"]>>;
+const DIRECTOR_ID = "10000000-0000-4000-8000-000000000001";
+const linkedRow = (over: Partial<NonNullable<Row>> = {}): Row => ({
+  id: DIRECTOR_ID,
+  email: "director@example.test",
+  name: "선생님",
+  role: "director",
+  passwordHash: "$2a$04$hash",
+  deletedAt: null,
+  suspendedAt: null,
+  sessionVersion: 3,
+  ...over,
+});
+
+function deps(row: Row) {
+  return {
+    secret: SECRET,
+    now: NOW,
+    findLinkedUser: vi.fn(async (eywaUserId: string) => {
+      void eywaUserId;
+      return row;
+    }),
+    audit: vi.fn(async (entry: unknown) => {
+      void entry;
+    }),
+  };
+}
+
+describe("authorize — eywa 사용자 id(sub)로 연결된 계정만 (D-139 ⑹)", () => {
+  it("🔴 표의 sub 로만 찾는다 — 찾는 입구가 하나뿐이고 표의 이메일이 넘어가지 않는다", async () => {
+    const d = deps(linkedRow());
+    await authorizeEywaSso(sign(claims()), d);
+    expect(d.findLinkedUser.mock.calls).toStrictEqual([[SUB]]);
+    expect(JSON.stringify(d.findLinkedUser.mock.calls)).not.toContain(
+      "teacher@example.test",
+    );
+  });
+
+  it("연결된 계정 → 이메일 로그인과 같은 모양 {id,email,name,role,sessionVersion} · 감사 auth.login + eywa-sso", async () => {
+    const d = deps(linkedRow());
+    await expect(authorizeEywaSso(sign(claims()), d)).resolves.toStrictEqual({
+      id: DIRECTOR_ID,
+      email: "director@example.test",
+      name: "선생님",
+      role: "director",
+      sessionVersion: 3,
+    });
+    expect(d.audit.mock.calls).toStrictEqual([
+      [
+        {
+          userId: DIRECTOR_ID,
+          actorId: DIRECTOR_ID,
+          action: "auth.login",
+          outcome: "success",
+          details: { method: "eywa-sso", tenantId: TENANT },
+        },
+      ],
+    ]);
+  });
+
+  it.each([
+    ["연결된 계정 없음", null],
+    ["비밀번호 없는 계정", linkedRow({ passwordHash: null })],
+    ["지워진 계정", linkedRow({ deletedAt: NOW })],
+    ["정지된 계정", linkedRow({ suspendedAt: NOW })],
+  ])("🔴 %s → null · 감사 없음", async (_label, row) => {
+    const d = deps(row);
+    await expect(authorizeEywaSso(sign(claims()), d)).resolves.toBeNull();
+    expect(d.audit).not.toHaveBeenCalled();
+  });
+
+  it("🔴 표가 틀리면 계정을 찾지도 않는다 (서명 · sub 없음 · 비밀 없음)", async () => {
+    const d = deps(linkedRow());
+    await expect(
+      authorizeEywaSso(sign(claims(), "another-secret-0123456789abcdef"), d),
+    ).resolves.toBeNull();
+    await expect(
+      authorizeEywaSso(sign(claims({ sub: undefined })), d),
+    ).resolves.toBeNull();
+    await expect(
+      authorizeEywaSso(sign(claims()), { ...d, secret: undefined }),
+    ).resolves.toBeNull();
+    expect(d.findLinkedUser).not.toHaveBeenCalled();
   });
 });

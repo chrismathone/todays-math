@@ -29,9 +29,11 @@
  *
  * eywa 에 로그인한 사람이 «연결 앱 → 오늘의 수학»을 누르면 eywa 가 서명한 60초짜리 표를 들고
  * `GET /api/sso/eywa` 로 온다(공급자 `eywa-sso`, 판정은 `src/lib/eywaSso.ts`). 계정은 만들지 않는다.
- * 🔴 **잠금(같은 날)** — eywa 이메일은 본인 확인 값이 아니라(직원이 확인 없이 자기 이메일을 바꿀 수 있다)
- * 이메일로 계정을 찾으면 계정 탈취다. 그래서 지금은 **아무도 들이지 않는다**. 다음 판은 바뀌지 않는 eywa
- * 사용자 id 를 비밀번호로 한 번 연결하는 방식(원장님 결정 대기). 구글/OAuth 금지는 그대로다.
+ * 🔴 **2판(D-139 ⑹)** — eywa 이메일은 본인 확인 값이 아니라(직원이 확인 없이 자기 이메일을 바꿀 수 있다)
+ * **이메일로 계정을 찾지 않는다.** 바뀌지 않는 eywa 사용자 id(`sub`)가 이미 연결된 계정만 들인다. 연결은
+ * 계정 주인이 비밀번호로 로그인한 뒤 확인 화면에서 [연결]을 눌러야만 생긴다 — 아래 어느 authorize 도 연결을
+ * 쓰지 않는다. 돌려주는 모양이 이메일 로그인과 같아서 토큰·세션은 아래 원장 줄이 그대로 짓는다.
+ * 구글/OAuth 금지는 그대로다.
  */
 import { compare } from "bcryptjs";
 import NextAuth, { type DefaultSession } from "next-auth";
@@ -55,7 +57,11 @@ import {
   type StudentSession,
 } from "@/contracts/studentAccount.contract";
 import { recordAudit } from "@/lib/audit";
-import { authorizeEywaSso, EYWA_SSO_PROVIDER_ID } from "@/lib/eywaSso";
+import {
+  authorizeEywaSso,
+  EYWA_SSO_PROVIDER_ID,
+  eywaSsoOptionsFromEnv,
+} from "@/lib/eywaSso";
 import { studentLoginDeps } from "@/lib/learn/loginDeps";
 import { attemptStudentLogin } from "@/lib/learn/studentLogin";
 import {
@@ -166,15 +172,33 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
         return { id: outcome.account.id };
       },
     }),
-    /** eywa 자동 로그인 — 🔴 잠금 중(머리말 «eywa 자동 로그인»). 입구만 서 있다. */
+    /** eywa 자동 로그인 — `sub` 로 연결된 계정만, 가입 없음(머리말 «eywa 자동 로그인»). */
     Credentials({
       id: EYWA_SSO_PROVIDER_ID,
       name: "eywa",
       credentials: {
         token: { label: "eywa", type: "text" },
       },
-      // 🔴 잠금(2026-09-26) — 표가 맞아도 들이지 않는다. 까닭은 `authorizeEywaSso` 머리말.
-      authorize: (credentials) => authorizeEywaSso(credentials?.token),
+      authorize: (credentials) =>
+        authorizeEywaSso(credentials?.token, {
+          ...eywaSsoOptionsFromEnv(),
+          // 🔴 eywa 사용자 id 로만 찾는다 — 이메일로 찾지 않는다(eywa 이메일은 본인 확인 값이 아니다)
+          findLinkedUser: (eywaUserId) =>
+            db.user.findUnique({
+              where: { eywaUserId },
+              select: {
+                id: true,
+                email: true,
+                name: true,
+                role: true,
+                passwordHash: true,
+                deletedAt: true,
+                suspendedAt: true,
+                sessionVersion: true,
+              },
+            }),
+          audit: (entry) => recordAudit(entry),
+        }),
     }),
   ],
   callbacks: {

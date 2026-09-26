@@ -11,6 +11,10 @@ const redirect = vi.hoisted(() =>
 );
 vi.mock("@/lib/auth", () => ({ auth }));
 vi.mock("next-auth/react", () => ({ signIn: vi.fn() }));
+// 로그인 화면은 eywa 연결 대기 쿠키를 읽는다(D-139 ⑹) — 여기서는 늘 없다
+vi.mock("next/headers", () => ({
+  cookies: async () => ({ get: () => undefined }),
+}));
 vi.mock("next/navigation", () => ({
   redirect,
   useRouter: () => ({ push: vi.fn(), refresh: vi.fn() }),

@@ -14,11 +14,16 @@ import { AuthField } from "./AuthField";
 import { normalizeCallbackUrl } from "@/lib/callbackUrl";
 import styles from "./auth.module.css";
 
-type AuthFormProps = { mode: "login" | "signup"; callbackUrl?: string };
+type AuthFormProps = {
+  mode: "login" | "signup";
+  callbackUrl?: string;
+  /** 초록 안내 줄 자리에 띄울 한 줄 — eywa 연결 대기 안내(D-139 ⑹). 가입 접수 안내가 뜨면 그쪽이 앞선다 */
+  notice?: string;
+};
 const RETRY_LOGIN =
   "가입은 완료됐지만 로그인하지 못했어요. 아래에서 다시 로그인해 주세요.";
 
-export function AuthForm({ mode, callbackUrl }: AuthFormProps) {
+export function AuthForm({ mode, callbackUrl, notice }: AuthFormProps) {
   const router = useRouter();
   const isSignup = mode === "signup";
   const destination = normalizeCallbackUrl(callbackUrl);
@@ -169,6 +174,10 @@ export function AuthForm({ mode, callbackUrl }: AuthFormProps) {
       {created ? (
         <p role="status" className={styles.success}>
           가입 신청이 접수됐어요. 로그인 후 승인 상태를 확인할 수 있어요.
+        </p>
+      ) : notice ? (
+        <p role="status" className={styles.success}>
+          {notice}
         </p>
       ) : null}
       {alert ? (

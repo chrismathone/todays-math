@@ -180,6 +180,10 @@ model User {
   deletedAt     DateTime? @map("deleted_at")
   suspendedAt   DateTime? @map("suspended_at")
   sessionVersion Int     @default(0) @map("session_version")
+  /// eywa 자동 로그인(D-139 ⑹) — eywa `users.id`(표의 `sub`). 계정 주인이 비밀번호로 로그인한 뒤
+  /// 확인 화면에서 [연결]을 눌러야만 채워진다. 🔴 이메일로 채우지 않는다(eywa 이메일은 본인 확인 값이 아니다)
+  eywaUserId    String?   @unique @map("eywa_user_id") @db.Uuid
+  eywaLinkedAt  DateTime? @map("eywa_linked_at")
 
   classes        Class[]
   problems       Problem[]
