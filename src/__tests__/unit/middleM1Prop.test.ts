@@ -131,7 +131,8 @@ const BRANCHES: Record<string, Set<number>> = {
   좌표02: new Set([0, 1, 2, 3]),
   좌표07: new Set([0, 1, 2]),
   좌표08: new Set([0, 1, 2]),
-  좌표09: new Set([0, 1, 2]),
+  // 갈래 2(「탄 지 $x$분 후의 높이」)는 뺐다 — 원장님 결정 ㈏, 2026-09-27
+  좌표09: new Set([0, 1]),
   좌표11: new Set([0, 1, 2]),
   정비01: new Set([0, 1]),
   정비02: new Set([0, 1, 2]),
@@ -268,8 +269,8 @@ const COORD_VERIFY: Record<string, Check> = {
       expect(cnt).toBe(f.m);
       return;
     }
-    expect(f.x! % f.period!).toBe(f.top === 1 ? f.half! : 0);
-    expect(ansInt(p.answer)).toBe(f.top === 1 ? f.high! : f.low!);
+    // 「탄 지 $x$분 후의 높이」 갈래는 뺐다 — 답이 늘 발문의 높이였다(원장님 결정 ㈏, 2026-09-27).
+    expect.fail(`갈래 ${f.branch} 는 없어야 한다 — 갈래는 0·1 둘뿐이다`);
   },
   "11": (f, p) => {
     expect(f.v1! * f.t1!).toBe(60 * f.d1!);

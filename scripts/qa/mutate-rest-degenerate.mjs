@@ -28,6 +28,7 @@ const SHARED = "src/lib/middle/m1Shared.ts";
 const QUAD = "src/lib/middle/m3Quad.ts";
 const ROOT3 = "src/lib/middle/m3Root.ts";
 const PAGE = "src/__tests__/helpers/midPage.ts";
+const PROP = "src/lib/middle/m1Prop.ts";
 const CENSUS = "scripts/qa/census-middle-degenerate.ts";
 const TEST = "src/__tests__/unit/middleRestDegenerate.test.ts";
 
@@ -115,6 +116,29 @@ const MUTATIONS = [
     find: "전개하면 $${sqrtTerm(k * q, p)}-",
     to: "전개하면 $${k * q}\\\\sqrt{${p}}-",
     expect: "3-1|근호를 포함한 식의 계산|17",
+  },
+  // ── 원장님 결정 ㈏ — 대관람차 갈래 2 를 뺐다 ──
+  // 갈래 뽑기 범위만 0~2 로 되돌리면 새 갈래가 갈래 1 로 떨어져 **아무것도 안 바뀐다** —
+  // 그래서 갈래 2 코드(답이 발문의 최고 높이)를 통째로 다시 끼운다.
+  {
+    name: "좌표09-높이갈래되살리기",
+    file: PROP,
+    why: "「탄 지 $x$분 후의 높이」(답=발문의 최고 높이)를 되살린다",
+    find: "m로 돌아온다. `;\n        if (branch === 0) {\n",
+    to:
+      "m로 돌아온다. `;\n" +
+      "        if (intBetween(rng, 0, 2) === 2) {\n" +
+      "          const m = intBetween(rng, 2, 6);\n" +
+      "          const x = half + m * period;\n" +
+      "          return {\n" +
+      "            content: `${head}대관람차에 탄 지 $${x}$분 후의 높이를 구하시오.`,\n" +
+      "            answer: `$${high}$ m`,\n" +
+      "            solution: `$${x}$분 후는 가장 높은 지점이다.`,\n" +
+      "            facts: { half, period, low, high, m, x, branch: 2, ans: high },\n" +
+      "          };\n" +
+      "        }\n" +
+      "        if (branch === 0) {\n",
+    expect: "1-1|좌표와 그래프|09",
   },
 ];
 
