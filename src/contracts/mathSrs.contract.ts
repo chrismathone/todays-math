@@ -85,7 +85,8 @@ export const mathSrsProblemSchema = z.strictObject({
   hint: z.string().max(8_000).nullable(),
   feedback: z
     .strictObject({
-      answer: z.number().finite(),
+      /** Numeric problem: the number. Choice problem: the correct choice's text, exactly as in answerChoices. */
+      answer: z.union([z.number().finite(), z.string().max(2_000)]),
       answerText: z.string().max(4_000).optional(),
       solution: z.array(z.string().max(8_000)).max(30),
     })

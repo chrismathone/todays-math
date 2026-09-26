@@ -35,10 +35,21 @@ export interface GeneratedProblem {
   kind: MissionKind;
   prompt: string;
   equation: string;
+  /**
+   * Numeric problem: the value graded as one number.
+   * Choice problem (`choices` present): the 0-based index of the correct choice.
+   * Grade only through `gradeSrsAnswer` — never compare this to a submission directly.
+   */
   answer: number;
   /** Original engine notation, revealed only after grading in authenticated APIs. */
   answerText?: string;
   answerUnit?: string;
+  /**
+   * Phone «one step» problem: exactly four choices, stored in display order and
+   * sent as they are. The submission is the chosen choice's text. Such a problem
+   * has no answerText/answerUnit (`srsChoiceIssue`).
+   */
+  choices?: string[];
   hint: string;
   solution: string[];
   expectedSeconds: number;
@@ -87,6 +98,8 @@ export interface SrsStore {
 // Engine contract: generator.ts exports CONCEPTS, TEMPLATE_COUNT,
 // generateProblem({conceptId, difficulty, seed, kind?}): GeneratedProblem,
 // checkAnswer(input: string, expected: number): boolean.
+// sharedAnswers.ts gradeSrsAnswer(problem, submitted): boolean grades every
+// middle review path (numeric or choice); checkAnswer is its numeric half.
 // memory.ts exports retention(memory, now: Date): number (0..100),
 // applyAttempt(memories, problem, attempt): ConceptMemory[],
 // dueConcepts(memories, now: Date): ConceptMemory[],

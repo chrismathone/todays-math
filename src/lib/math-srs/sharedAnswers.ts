@@ -99,3 +99,70 @@ export function checkAnswer(input: string, expected: number): boolean {
     Math.abs(result - expected) <= 1e-9 * Math.max(1, Math.abs(expected))
   );
 }
+
+/** A submitted answer is at most 200 characters (`mathSrsAttemptInputSchema`). */
+const SRS_CHOICE_MAX = 200;
+
+type SrsGradable = { answer: number; choices?: readonly string[] };
+
+/** The correct choice's text; null for a numeric problem or a broken index. */
+export function correctSrsChoice(problem: SrsGradable): string | null {
+  if (problem.choices === undefined || !Number.isInteger(problem.answer))
+    return null;
+  return problem.choices[problem.answer] ?? null;
+}
+
+/**
+ * The one grader for middle review. A choice problem is right only for the
+ * exact stored text of its correct choice — there `answer` is that choice's
+ * index, never a value to compare, so a typed "1" is wrong. Otherwise one number.
+ */
+export function gradeSrsAnswer(
+  problem: SrsGradable,
+  submitted: string,
+): boolean {
+  if (problem.choices !== undefined)
+    return (
+      typeof submitted === "string" && correctSrsChoice(problem) === submitted
+    );
+  return checkAnswer(submitted, problem.answer);
+}
+
+/** Why a stored choice problem cannot be shown and graded fairly; null when it can. */
+export function srsChoiceIssue(problem: {
+  answer?: unknown;
+  choices?: unknown;
+  answerText?: unknown;
+  answerUnit?: unknown;
+}): string | null {
+  const { choices, answer } = problem;
+  if (choices === undefined) return null;
+  if (!Array.isArray(choices) || choices.length !== 4)
+    return "보기형 문제에는 보기가 4개 있어야 합니다.";
+  if (
+    choices.some(
+      (choice) =>
+        typeof choice !== "string" ||
+        !choice ||
+        choice !== choice.trim() ||
+        choice.length > SRS_CHOICE_MAX,
+    )
+  )
+    return "보기 글자가 올바르지 않습니다.";
+  // Spacing inside TeX does not change what the student sees.
+  if (
+    new Set(choices.map((choice: string) => choice.replace(/\s+/g, "")))
+      .size !== choices.length
+  )
+    return "보기가 중복되었습니다.";
+  if (
+    typeof answer !== "number" ||
+    !Number.isInteger(answer) ||
+    answer < 0 ||
+    answer >= choices.length
+  )
+    return "보기형 문제의 정답이 보기 밖입니다.";
+  if (problem.answerText !== undefined || problem.answerUnit !== undefined)
+    return "보기형 문제에는 숫자 정답 표기를 두지 않습니다.";
+  return null;
+}

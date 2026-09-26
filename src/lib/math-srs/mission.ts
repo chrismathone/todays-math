@@ -1,4 +1,5 @@
-import { checkAnswer, generateProblem } from "./generator";
+import { generateProblem } from "./generator";
+import { gradeSrsAnswer } from "./sharedAnswers";
 import { kstDateOf } from "@/lib/kstDate";
 import { applyAttempt, createMemories, dueConcepts } from "./memory";
 import type {
@@ -184,7 +185,7 @@ export function recordAttempt(
     !Number.isFinite(time) ||
     time < previousTime ||
     new Date(time).toISOString() !== attempt.answeredAt ||
-    checkAnswer(attempt.submittedAnswer, problem.answer) !== attempt.correct
+    gradeSrsAnswer(problem, attempt.submittedAnswer) !== attempt.correct
   ) {
     throw new Error("현재 문제와 답안 기록이 일치하지 않아요.");
   }

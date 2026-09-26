@@ -1,6 +1,7 @@
 import { CONCEPT_IDS, type Learner, type SrsStore } from "./types";
 import { DIFFICULTY_LADDER } from "@/contracts/difficulty";
 import { createMemories } from "./memory";
+import { srsChoiceIssue } from "./sharedAnswers";
 
 export const STORAGE_KEY = "todays-math:srs:v1";
 
@@ -151,7 +152,7 @@ function validateProblem(value: unknown): Record<string, unknown> {
       "solution",
       "expectedSeconds",
     ],
-    ["answerUnit", "answerText", "source"],
+    ["answerUnit", "answerText", "choices", "source"],
   );
   text(problem.id, 200);
   text(problem.templateId, 200);
@@ -172,6 +173,8 @@ function validateProblem(value: unknown): Record<string, unknown> {
   number(problem.answer, -1e12, 1e12);
   if (problem.answerText !== undefined) text(problem.answerText, 4_000);
   if (problem.answerUnit !== undefined) text(problem.answerUnit, 100);
+  // Same rule as the server record: four distinct choices, `answer` an index.
+  if (srsChoiceIssue(problem)) invalid();
   text(problem.hint, 4_000);
   array(problem.solution, 1, 20).forEach((step) => text(step, 4_000));
   number(problem.expectedSeconds, Number.MIN_VALUE, 3_600);

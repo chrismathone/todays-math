@@ -12,7 +12,7 @@ import {
   type MathSrsHintInput,
 } from "@/contracts/mathSrs.contract";
 import { kstDateOf } from "@/lib/kstDate";
-import { checkAnswer } from "./generator";
+import { gradeSrsAnswer, srsChoiceIssue } from "./sharedAnswers";
 import { createMemories } from "./memory";
 import { createMission, recordAttempt } from "./mission";
 import { CONCEPT_IDS, type Learner, type Mission } from "./types";
@@ -25,10 +25,16 @@ const storedProblemSchema = mathSrsProblemSchema
     hint: z.string().max(8_000),
     answer: z.number().finite(),
     answerText: z.string().max(4_000).optional(),
+    // Choice problems: `answer` is the correct index; checked by srsChoiceIssue.
+    choices: z.array(z.string()).optional(),
     solution: z.array(z.string().max(8_000)).min(1).max(30),
     source: mathSrsSourceSchema
       .extend({ seed: z.number().finite() })
       .optional(),
+  })
+  .superRefine((problem, ctx) => {
+    const issue = srsChoiceIssue(problem);
+    if (issue) ctx.addIssue({ code: "custom", message: issue });
   });
 const storedMissionSchema = z.strictObject({
   id: z.uuid(),
@@ -124,7 +130,7 @@ const payloadSchema = z
               Date.parse(
                 i === 0 ? m.startedAt : m.attempts[i - 1].answeredAt,
               ) ||
-            a.correct !== checkAnswer(a.submittedAnswer, m.problems[i].answer),
+            a.correct !== gradeSrsAnswer(m.problems[i], a.submittedAnswer),
         )
       )
         invalid("미션 답안 순서가 올바르지 않습니다.");
@@ -281,7 +287,7 @@ export function submitSrsAttempt(
     templateId: problem.templateId,
     kind: problem.kind,
     submittedAnswer: input.submittedAnswer,
-    correct: checkAnswer(input.submittedAnswer, problem.answer),
+    correct: gradeSrsAnswer(problem, input.submittedAnswer),
     usedHint: mission.hintedProblemIds.includes(problem.id),
     elapsedSeconds,
     rating: input.rating,
@@ -319,7 +325,7 @@ export function recordSrsRetry(
   if (!mission?.completedAt || !attempt || attempt.correct || !problem)
     throw new SrsConflict("첫 풀이를 마친 오답만 다시 풀 수 있어요.");
   if (
-    !checkAnswer(submittedAnswer, problem.answer) ||
+    !gradeSrsAnswer(problem, submittedAnswer) ||
     mission.resolvedRetryProblemIds?.includes(problemId)
   )
     return state;

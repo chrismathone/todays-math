@@ -1,4 +1,5 @@
 import { numericAnswerChoices } from "./numericAnswerChoices";
+import { correctSrsChoice } from "./sharedAnswers";
 import { dailyJourneyDto } from "./dailyJourney";
 import type {
   MathSrsMissionSummary,
@@ -25,6 +26,29 @@ export function srsMissionSummary(
   };
 }
 
+type ChoiceSource = {
+  id: string;
+  answer: number;
+  conceptId: string;
+  answerUnit?: string;
+  choices?: readonly string[];
+};
+/**
+ * The choices a student sees. Stored choices go out as saved (a copy, same
+ * order); a numeric problem derives its four from the mission's other numeric
+ * answers — a choice problem's `answer` is an index, never a distractor.
+ */
+export function srsAnswerChoices(
+  problem: ChoiceSource,
+  pool: readonly ChoiceSource[],
+): string[] {
+  if (problem.choices !== undefined) return [...problem.choices];
+  return numericAnswerChoices(
+    problem,
+    pool.filter((other) => other.choices === undefined),
+  );
+}
+
 /** Explicit projection: pending answer keys, hints, solutions and seeds are never serialized. */
 export function publicSrsMission(
   mission: StoredSrsMission,
@@ -46,7 +70,7 @@ export function publicSrsMission(
       kind: p.kind,
       prompt: p.prompt,
       equation: p.equation,
-      answerChoices: numericAnswerChoices(p, mission.problems),
+      answerChoices: srsAnswerChoices(p, mission.problems),
       expectedSeconds: p.expectedSeconds,
       ...(p.answerUnit ? { answerUnit: p.answerUnit } : {}),
       ...(p.source
@@ -63,7 +87,8 @@ export function publicSrsMission(
       hint: mission.hintedProblemIds.includes(p.id) ? p.hint : null,
       feedback: attempted.has(p.id)
         ? {
-            answer: p.answer,
+            // A choice problem's answer is its correct choice's text.
+            answer: correctSrsChoice(p) ?? p.answer,
             ...(p.answerText ? { answerText: p.answerText } : {}),
             solution: p.solution,
           }
