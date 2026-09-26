@@ -146,7 +146,15 @@ function collect(
   }
   for (const kind of ["elementary", "middle"] as const) {
     for (const day of result[kind]) {
-      if (day.completedAt || day.answered < day.goal || !day.references.length)
+      if (
+        day.completedAt ||
+        day.answered < day.goal ||
+        !day.references.length ||
+        day.references.reduce(
+          (count, ref) => count + ref.problemIds.length,
+          0,
+        ) < day.answered
+      )
         continue;
       const completedTimes = day.references.map((ref) => {
         if (kind === "elementary") {
