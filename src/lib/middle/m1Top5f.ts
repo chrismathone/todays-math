@@ -919,6 +919,12 @@ const SECTION_COMPARE: TypeEntry[] = [
       attempt(6000, (): Body | null => {
         const cylR = intBetween(rng, 2, 12);
         const cylH = intBetween(rng, 3, 16);
+        // 원기둥을 만드는 직사각형의 가로와 세로가 같으면 목록에 「가로 $11$cm, 세로 $11$cm인
+        // 직사각형」이 선다 — 정사각형을 직사각형이라 부르는 꼴이다(씨앗 1,000 중 5.5%,
+        // 2026-09-27). 직각삼각형의 두 변이 같은 것(직각이등변)은 옳은 도형이라 둔다.
+        // 잃은 것(표본 400,000판, 아래 가드를 다 켠 뒤): 판 **66,591 → 62,361**(6.35%) ·
+        // 답 **171 → 171**. 통과율 16.65% → 15.59% — 6,000번이면 던질 확률은 0 으로 읽힌다.
+        if (cylR === cylH) return null;
         const conR = intBetween(rng, 3, 18);
         const conH = intBetween(rng, 3, 18);
         const top = intBetween(rng, 2, 10);
