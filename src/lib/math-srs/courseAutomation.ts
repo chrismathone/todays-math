@@ -3,6 +3,7 @@ import { z } from "zod";
 import {
   courseActivityDaySchema,
   courseAttemptInputSchema,
+  courseDailyGoalSchema,
   coursePlanSchema,
   courseRecentAttemptSchema,
   courseSectionIdSchema,
@@ -56,6 +57,9 @@ export const storedCourseSchema = z
     activity: z.array(courseActivityDaySchema).max(90),
     recentAttempts: z.array(courseRecentAttemptSchema).max(100),
     memories: courseRecord(z.string(), memorySchema),
+    dailyGoalSnapshot: z
+      .strictObject({ date: z.iso.date(), goal: courseDailyGoalSchema })
+      .optional(),
   })
   .superRefine((state, ctx) => {
     const fail = () =>
@@ -264,6 +268,10 @@ function nextLearning(state: StoredCourse) {
 export function courseSummary(state: StoredCourse, now: Date): CourseSummary {
   const today = kstDateOf(now);
   const activity = state.activity.find((d) => d.date === today);
+  const todayGoal =
+    state.dailyGoalSnapshot?.date === today && (activity?.answered ?? 0) > 0
+      ? state.dailyGoalSnapshot.goal
+      : (state.plan?.dailyQuestionCount ?? 10);
   const due = Object.values(state.memories)
     .filter((m) => Date.parse(m.nextReviewAt) <= now.getTime())
     .sort(
@@ -294,8 +302,7 @@ export function courseSummary(state: StoredCourse, now: Date): CourseSummary {
         mode: "resume",
         reason: "풀던 문제부터 이어서 학습해요.",
       }
-    : !state.plan?.enabled ||
-        (activity?.answered ?? 0) >= state.plan.dailyQuestionCount
+    : !state.plan?.enabled || (activity?.answered ?? 0) >= todayGoal
       ? null
       : due.length
         ? {
@@ -335,7 +342,7 @@ export function courseSummary(state: StoredCourse, now: Date): CourseSummary {
     dueCount: due.length,
     todayAnswered: activity?.answered ?? 0,
     todayCorrect: activity?.correct ?? 0,
-    todayGoal: state.plan?.dailyQuestionCount ?? 10,
+    todayGoal,
     completedSections: state.completedSectionIds.length,
     lastPracticedAt:
       memories
@@ -378,6 +385,10 @@ export function startAutomaticCourse(
   return {
     ...state,
     learner: { ...state.learner, session },
+    dailyGoalSnapshot: {
+      date: kstDateOf(now),
+      goal: courseSummary(state, now).todayGoal,
+    },
     requests: [],
     history: previous
       ? [
@@ -784,6 +795,10 @@ export function submitCourseAttempt(
     ...state,
     learner,
     completedSectionIds,
+    dailyGoalSnapshot: {
+      date,
+      goal: courseSummary(state, new Date(answeredAt)).todayGoal,
+    },
     requests: [...state.requests, input],
     activity,
     memories: { ...state.memories, [session.sectionId]: memory },

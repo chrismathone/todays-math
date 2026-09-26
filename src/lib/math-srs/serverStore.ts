@@ -1,5 +1,6 @@
 import "server-only";
 import { db } from "@/lib/db";
+import { updateDailyJourney } from "./dailyJourney";
 import {
   emptySrsState,
   parseSrsState,
@@ -77,7 +78,7 @@ export async function changeSrsState(
       );
     const state = change(previous.state);
     if (state === previous.state) return previous;
-    const payload = parseSrsState(state);
+    const payload = parseSrsState(updateDailyJourney(previous.state, state));
     try {
       if (previous.revision === 0) {
         await table.create({ data: { studentId, revision: 1, payload } });

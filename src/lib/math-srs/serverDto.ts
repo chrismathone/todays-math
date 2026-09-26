@@ -1,4 +1,5 @@
 import { numericAnswerChoices } from "./numericAnswerChoices";
+import { dailyJourneyDto } from "./dailyJourney";
 import type {
   MathSrsMissionSummary,
   MathSrsPublicMission,
@@ -35,6 +36,7 @@ export function publicSrsMission(
     startedAt: mission.startedAt,
     completedAt: mission.completedAt,
     attempts: mission.attempts,
+    resolvedRetryProblemIds: mission.resolvedRetryProblemIds ?? [],
     problems: mission.problems.map((p) => ({
       id: p.id,
       templateId: p.templateId,
@@ -85,6 +87,7 @@ export function srsStateDto(
     : currentSrsMission(saved.state, now);
   return {
     ...context,
+    journey: dailyJourneyDto(saved.state, "middle", now),
     revision: saved.revision,
     memories: saved.state.memories,
     mission: mission ? publicSrsMission(mission) : null,

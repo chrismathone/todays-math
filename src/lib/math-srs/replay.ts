@@ -3,6 +3,7 @@ import type {
   MathSrsReplayKind,
   MathSrsReplaySubmitInput,
 } from "@/contracts/mathSrsReplay.contract";
+import { createHash } from "node:crypto";
 import { kstDateOf } from "@/lib/kstDate";
 import { CONCEPTS } from "./concepts";
 import {
@@ -15,11 +16,16 @@ import { getCourseSection } from "./elementary/catalog";
 import { checkAnswer } from "./sharedAnswers";
 import { numericAnswerChoices } from "./numericAnswerChoices";
 import { currentSrsMission, type StoredSrsState } from "./serverState";
+import { findJourneyDay } from "./dailyJourney";
+import { generateCourseSession } from "./elementary/generator";
+import { generateProblem } from "./generator";
+import type { ConceptId } from "./types";
 
 type ReplaySource = {
   public: Omit<MathSrsReplay, "correct" | "solution">;
   grade: (answer: string) => boolean;
   solution: NonNullable<MathSrsReplay["solution"]>;
+  figureSpec?: Record<string, unknown> | null;
 };
 
 const missing = () =>
@@ -29,25 +35,123 @@ const missing = () =>
 const unsupported = () =>
   new CourseInvalidInput("이 문제는 선생님과 함께 다시 확인해 주세요.");
 
+function archivedReference(
+  state: StoredSrsState,
+  kind: MathSrsReplayKind,
+  dayId: string,
+  step: number,
+) {
+  const day = findJourneyDay(state, kind, dayId);
+  const entry = day?.references.flatMap((ref) =>
+    ref.problemIds.map((problemId, index) => ({
+      sessionId: ref.id,
+      problemId,
+      unitId: ref.unitIds[index],
+    })),
+  )[step - 1];
+  if (!entry) throw missing();
+  return entry;
+}
+const stableSeed = (key: string) =>
+  createHash("sha256").update(key).digest().readUInt32LE(0);
+function stableId(key: string) {
+  const hash = createHash("sha256").update(key).digest("hex");
+  return `${hash.slice(0, 8)}-${hash.slice(8, 12)}-4${hash.slice(13, 16)}-8${hash.slice(17, 20)}-${hash.slice(20, 32)}`;
+}
+
 function elementarySource(
   state: StoredSrsState,
   step: number,
   now: Date,
+  dayId?: string,
 ): ReplaySource {
   const course = state.course;
   if (!course) throw missing();
   const today = kstDateOf(now);
   // Match the daily board's first-attempt count, including older completed sessions.
   // Retry attempts never occupy another tile and never change this mapping.
-  const entries = [
+  const sessions = [
     ...course.history.map(({ session }) => session),
     ...(course.learner.session ? [course.learner.session] : []),
-  ].flatMap((session) =>
+  ];
+  const entries = sessions.flatMap((session) =>
     session.attempts
       .filter((attempt) => kstDateOf(new Date(attempt.answeredAt)) === today)
       .map((attempt) => ({ session, attempt })),
   );
-  const entry = entries[step - 1];
+  const archived = dayId
+    ? archivedReference(state, "elementary", dayId, step)
+    : null;
+  const retained = archived
+    ? sessions.find((session) => session.id === archived.sessionId)
+    : null;
+  const entry = archived
+    ? retained &&
+      retained.attempts.find(
+        (attempt) => attempt.problemId === archived.problemId,
+      )
+      ? {
+          session: retained,
+          attempt: retained.attempts.find(
+            (attempt) => attempt.problemId === archived.problemId,
+          )!,
+        }
+      : null
+    : entries[step - 1];
+  if (!entry && archived && dayId) {
+    // Detailed sessions are bounded. Revisit the recorded unit with a stable
+    // generated question, explicitly labelled as such instead of claiming an original.
+    for (let offset = 0; offset < 20; offset++) {
+      const generated = generateCourseSession(
+        archived.unitId,
+        stableSeed(`${dayId}:${step}:${offset}`),
+        new Date(`${dayId.split(":")[1]}T00:00:00.000Z`),
+        "review",
+      );
+      generated.id = stableId(`${dayId}:${step}:session`);
+      generated.problems = generated.problems.map((p, index) => ({
+        ...p,
+        id: stableId(`${dayId}:${step}:${offset}:${index}`),
+      }));
+      for (const problem of generated.problems) {
+        const view = publicCourseSession(generated).problems.find(
+          (p) => p.id === problem.id,
+        )!;
+        if (
+          !view.answerChoices ||
+          view.answerChoices.filter(
+            (choice) => gradeCourseAnswer(problem, choice) === true,
+          ).length !== 1 ||
+          view.answerChoices.some(
+            (choice) => gradeCourseAnswer(problem, choice) === null,
+          )
+        )
+          continue;
+        const section = getCourseSection(problem.sectionId)!;
+        return {
+          public: {
+            kind: "elementary",
+            step,
+            problemId: problem.id,
+            title: section.title,
+            subtitle: `초${section.grade} · ${section.semester}학기 · ${section.chapterTitle}`,
+            content: view.content,
+            figureUrl: problem.figureSpec
+              ? `/api/learn/math-srs/replay?kind=elementary&step=${step}&dayId=${encodeURIComponent(dayId)}&figure=true`
+              : null,
+            answerChoices: view.answerChoices,
+            interactive: view.interactive,
+            canRevealSolution: true,
+            regenerated: true,
+          },
+          grade: (answer) => gradeCourseAnswer(problem, answer) === true,
+          solution: { answer: problem.answer, solution: problem.solution },
+          figureSpec: problem.figureSpec,
+        };
+      }
+    }
+    throw unsupported();
+  }
   if (!entry) throw missing();
   const { session, attempt } = entry;
   const problem = session.problems.find((p) => p.id === attempt.problemId);
@@ -82,6 +186,7 @@ function elementarySource(
     },
     grade: (answer) => gradeCourseAnswer(problem, answer) === true,
     solution: { answer: problem.answer, solution: problem.solution },
+    figureSpec: problem.figureSpec,
   };
 }
 
@@ -90,16 +195,33 @@ function middleSource(
   step: number,
   now: Date,
   missionId?: string,
+  dayId?: string,
 ): ReplaySource {
   // A mission started yesterday can still be the board's active mission today.
-  const mission = missionId
-    ? state.missions.find((item) => item.id === missionId)
+  const archived = dayId
+    ? archivedReference(state, "middle", dayId, step)
+    : null;
+  const targetId = archived?.sessionId ?? missionId;
+  const mission = targetId
+    ? state.missions.find((item) => item.id === targetId)
     : currentSrsMission(state, now);
-  const problem = mission?.problems[step - 1];
+  let problem = archived
+    ? mission?.problems.find((p) => p.id === archived.problemId)
+    : mission?.problems[step - 1];
+  let regenerated = false;
+  if (!problem && archived && dayId) {
+    const generated = generateProblem({
+      conceptId: archived.unitId as ConceptId,
+      difficulty: 2,
+      seed: stableSeed(`${dayId}:${step}`),
+    });
+    problem = { ...generated, id: stableId(`${dayId}:${step}:middle`) };
+    regenerated = true;
+  }
   if (
-    !mission ||
     !problem ||
-    !mission.attempts.some((a) => a.problemId === problem.id)
+    (!regenerated &&
+      (!mission || !mission.attempts.some((a) => a.problemId === problem.id)))
   )
     throw missing();
   const equation = problem.equation.trim();
@@ -128,9 +250,20 @@ function middleSource(
       subtitle: "중1 · 일차방정식",
       content,
       figureUrl: null,
-      answerChoices: numericAnswerChoices(problem, mission.problems),
+      answerChoices: numericAnswerChoices(
+        problem,
+        mission?.problems ?? [problem],
+      ),
       interactive: null,
-      canRevealSolution: !!mission.completedAt,
+      canRevealSolution:
+        regenerated ||
+        (!!mission?.completedAt &&
+          mission.attempts.every(
+            (a) =>
+              a.correct ||
+              mission.resolvedRetryProblemIds?.includes(a.problemId),
+          )),
+      ...(regenerated ? { regenerated: true } : {}),
     },
     grade: (answer) => checkAnswer(answer, problem.answer),
     solution: {
@@ -148,11 +281,12 @@ export function replayProblem(
   step: number,
   now: Date,
   input?: MathSrsReplaySubmitInput,
+  dayId?: string,
 ): MathSrsReplay {
   const source =
     kind === "elementary"
-      ? elementarySource(state, step, now)
-      : middleSource(state, step, now, input?.missionId);
+      ? elementarySource(state, step, now, dayId ?? input?.dayId)
+      : middleSource(state, step, now, input?.missionId, dayId ?? input?.dayId);
   if (
     input &&
     (input.kind !== kind ||
@@ -169,4 +303,15 @@ export function replayProblem(
         ? source.solution
         : null,
   };
+}
+
+export function replayFigureSpec(
+  state: StoredSrsState,
+  kind: MathSrsReplayKind,
+  step: number,
+  dayId: string,
+  now: Date,
+) {
+  if (kind !== "elementary") throw missing();
+  return elementarySource(state, step, now, dayId).figureSpec ?? null;
 }
