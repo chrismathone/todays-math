@@ -276,6 +276,7 @@ export function applyExplorerAction(
       !session.done &&
       !session.reviewOnly &&
       session.round === 0 &&
+      !session.continuation &&
       session.queue[session.index]?.cardId === "g5-common-denominator" &&
       session.queue[session.index]?.kind === 0 &&
       !definitionNeedsRead(profile, session) &&
@@ -400,6 +401,7 @@ export function explorerView(
           index: session.index,
           total: session.queue.length,
           round: session.round,
+          continuation: session.continuation ?? 0,
           done: session.done,
           reviewOnly: session.reviewOnly ?? false,
           first: session.first,
