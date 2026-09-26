@@ -5,13 +5,9 @@
  */
 import { createHmac } from "node:crypto";
 
-import { describe, expect, it, vi } from "vitest";
+import { describe, expect, it } from "vitest";
 
-import {
-  authorizeEywaSso,
-  verifyEywaSsoToken,
-  type EywaSsoDeps,
-} from "@/lib/eywaSso";
+import { authorizeEywaSso, verifyEywaSsoToken } from "@/lib/eywaSso";
 
 const SECRET = "eywa-sso-test-secret-0123456789abcdef";
 const NOW = new Date("2026-09-26T08:00:00.000Z");
@@ -153,59 +149,12 @@ describe("표 판정 — 거절 (이유까지 가른다)", () => {
   });
 });
 
-describe("authorize — 기존 계정만, 가입 없음", () => {
-  const USER = {
-    id: "10000000-0000-4000-8000-000000000001",
-    email: "teacher@example.test",
-    name: "선생님",
-    role: "director" as const,
-    passwordHash: "$2a$04$hash",
-    deletedAt: null,
-    suspendedAt: null,
-    sessionVersion: 3,
-  };
-  const deps = (row: typeof USER | null): EywaSsoDeps => ({
-    secret: SECRET,
-    now: NOW,
-    findUser: vi.fn(async () => row),
-    audit: vi.fn(async () => {}),
-  });
-
-  it("이메일로 찾은 계정을 이메일 로그인과 같은 모양으로 돌려주고, SSO 표시로 감사를 남긴다", async () => {
-    const d = deps(USER);
-    await expect(authorizeEywaSso(sign(claims()), d)).resolves.toStrictEqual({
-      id: USER.id,
-      email: USER.email,
-      name: USER.name,
-      role: "director",
-      sessionVersion: 3,
-    });
-    expect(d.findUser).toHaveBeenCalledWith("teacher@example.test");
-    expect(d.audit).toHaveBeenCalledWith({
-      userId: USER.id,
-      actorId: USER.id,
-      action: "auth.login",
-      outcome: "success",
-      details: { method: "eywa-sso", tenantId: TENANT },
-    });
-  });
-
-  it.each([
-    ["계정 없음", null],
-    ["비밀번호 없는 계정", { ...USER, passwordHash: null }],
-    ["지워진 계정", { ...USER, deletedAt: new Date() }],
-    ["정지된 계정", { ...USER, suspendedAt: new Date() }],
-  ])("🔴 %s — null, 감사 없음", async (_label, row) => {
-    const d = deps(row as typeof USER | null);
-    await expect(authorizeEywaSso(sign(claims()), d)).resolves.toBeNull();
-    expect(d.audit).not.toHaveBeenCalled();
-  });
-
-  it("표가 틀리면 계정을 찾아보지도 않는다", async () => {
-    const d = deps(USER);
-    await expect(
-      authorizeEywaSso(sign(claims(), "wrong-secret-0123456789abcdef"), d),
-    ).resolves.toBeNull();
-    expect(d.findUser).not.toHaveBeenCalled();
+describe("🔴 authorize — 잠금: 표가 맞아도 늘 거절 (2026-09-26)", () => {
+  // eywa 이메일은 본인 확인 값이 아니다 — eywa 직원이 확인 없이 자기 이메일을 아무 주소로 바꿀 수 있어,
+  // 이메일로 계정을 찾으면 오늘의 수학에만 있는 원장·관리자 계정을 가져갈 수 있다(eywa 세션 답변).
+  it("규약대로 서명한 올바른 표도 null — 계정을 찾을 입력 자체를 받지 않는다", async () => {
+    expect(verify(sign(claims())).ok).toBe(true);
+    await expect(authorizeEywaSso(sign(claims()))).resolves.toBeNull();
+    expect(authorizeEywaSso.length).toBe(1);
   });
 });

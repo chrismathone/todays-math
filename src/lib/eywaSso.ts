@@ -6,9 +6,9 @@
  *   `v1.<payloadB64>.<sigB64>` · sig = base64url(HMAC-SHA256(secret, "v1." + payloadB64))
  *   payload = { iss:"aywa", aud:"todays-math", email, name, tenantId, iat, exp, jti }
  *
- * 🔴 **자동 가입 없음** — 같은 이메일의 기존 계정만 들어온다. 없으면 평소 로그인 화면으로.
- * 🔴 **로그인 규칙을 넓히지 않는다** — 비밀번호 없는 계정 · 지워진 계정 · 정지된 계정은 이메일 로그인과
- *    똑같이 못 들어온다. 승인 대기·메뉴·세션 버전은 Auth.js `jwt` 콜백이 원장 로그인과 같은 줄로 판정한다.
+ * 🔴 **잠금 (2026-09-26)** — eywa 이메일은 본인 확인 값이 아니라 «이메일로 계정 찾기»는 계정 탈취 구멍이다
+ *    (아래 `authorizeEywaSso`). 입구·표 판정은 남겨 두고 **아무도 들이지 않는다.** `EYWA_SSO_SECRET` 도 넣지 않는다.
+ * 🔴 **자동 가입 없음** — 다음 판(`sub` 연결)에서도 계정을 만들지 않는다.
  * 🔴 비밀이 없거나 16자 미만이면 **늘 거절**한다(기능 꺼짐). 값은 코드·로그에 남기지 않는다.
  *
  * 1회용은 60초 만료로 대신한다(jti 기록 표 없음 — 1차안). 만료 판정에는 시계 오차 30초를 준다.
@@ -17,8 +17,6 @@
 import { createHmac, timingSafeEqual } from "node:crypto";
 
 import { z } from "zod";
-
-import type { UserRole } from "@/contracts/problemReport.contract";
 
 export const EYWA_SSO_PROVIDER_ID = "eywa-sso";
 export const EYWA_SSO_PATH = "/api/sso/eywa";
@@ -117,54 +115,18 @@ export function verifyEywaSsoToken(
   return { ok: true, claims };
 }
 
-type SsoUserRow = {
-  id: string;
-  email: string;
-  name: string | null;
-  role: UserRole;
-  passwordHash: string | null;
-  deletedAt: Date | null;
-  suspendedAt: Date | null;
-  sessionVersion: number;
-};
-
-export type EywaSsoDeps = EywaSsoOptions & {
-  findUser: (email: string) => Promise<SsoUserRow | null>;
-  audit: (entry: {
-    userId: string;
-    actorId: string;
-    action: "auth.login";
-    outcome: "success";
-    details: { method: typeof EYWA_SSO_PROVIDER_ID; tenantId: string };
-  }) => Promise<void>;
-};
-
 /**
- * Auth.js `eywa-sso` 공급자의 authorize — 돌려주는 모양은 이메일 로그인과 **같다**
- * ({id,email,name,role,sessionVersion}). 그 뒤는 `jwt` 콜백의 원장 줄이 그대로 처리한다.
- * 계정을 만들지 않는다 — 부르는 것은 `findUser` 하나뿐이다.
+ * Auth.js `eywa-sso` 공급자의 authorize — 🔴 **잠금: 표가 맞아도 늘 null** (2026-09-26).
+ *
+ * eywa 이메일은 본인 확인 값이 아니다(eywa 세션 답변): 로그인한 eywa 직원 누구나 확인 메일 없이 자기 이메일을
+ * 아무 주소로 바꿀 수 있고, 지점 관리자·공개 등록 QR 도 남의 이메일로 계정을 만든다. 그래서 «표의 이메일 =
+ * 오늘의 수학 계정»으로 들이면, 오늘의 수학에만 있는 원장·관리자 이메일로 바꾼 eywa 직원이 그 계정에 들어온다.
+ * 지점(`EYWA_SSO_TENANT_IDS`)을 좁혀도 막히지 않는다. 그러므로 이메일로 계정을 찾는 코드를 두지 않는다.
+ *
+ * 다음 판(원장님 결정 대기): 바뀌지 않는 eywa 사용자 id(`sub`)를 싣고, 처음 한 번 오늘의 수학 비밀번호로
+ * 로그인해 그 계정에 `sub` 를 연결한 경우에만 들인다. 표 판정(`verifyEywaSsoToken`)은 그때 그대로 쓴다.
  */
-export async function authorizeEywaSso(token: unknown, deps: EywaSsoDeps) {
-  const verified = verifyEywaSsoToken(token, deps);
-  if (!verified.ok) return null;
-  const user = await deps.findUser(verified.claims.email);
-  // 이메일 로그인과 같은 문턱 — 비밀번호 없는 계정(과거 구글 가입자 잔존분)도 못 들어온다
-  if (!user?.passwordHash || user.deletedAt || user.suspendedAt) return null;
-  await deps.audit({
-    userId: user.id,
-    actorId: user.id,
-    action: "auth.login",
-    outcome: "success",
-    details: {
-      method: EYWA_SSO_PROVIDER_ID,
-      tenantId: verified.claims.tenantId,
-    },
-  });
-  return {
-    id: user.id,
-    email: user.email,
-    name: user.name,
-    role: user.role,
-    sessionVersion: user.sessionVersion,
-  };
+export async function authorizeEywaSso(token: unknown): Promise<null> {
+  void token;
+  return null;
 }

@@ -1,10 +1,11 @@
 // @vitest-environment node
 /**
- * eywa 자동 로그인 — **진짜** next-auth·@auth/core 를 태워, `eywa-sso` 로 들어온 원장 토큰이
- * 이메일 로그인과 **칸 이름까지 같은지**, 그리고 라우트 `GET /api/sso/eywa` 의 보냄을 본다.
+ * eywa 자동 로그인 — 🔴 **잠금 확인** (2026-09-26). **진짜** next-auth·@auth/core 를 태워, 비밀이 켜져 있고
+ * 서명·계정이 모두 멀쩡한 표도 `eywa-sso` 공급자와 `GET /api/sso/eywa` 가 **들이지 않는지** 본다.
+ * 까닭: eywa 이메일은 본인 확인 값이 아니다(eywa 직원이 확인 없이 자기 이메일을 바꿀 수 있다 — eywa 세션 답변).
+ * 이메일로 계정을 찾으면 오늘의 수학에만 있는 원장·관리자 계정을 가져갈 수 있다. 다음 판은 바뀌지 않는
+ * eywa 사용자 id(`sub`)를 비밀번호로 한 번 연결하는 방식(원장님 결정 대기).
  * 요청 맥락은 `authDirectorUnchanged.test.ts` 와 같은 대역(`../helpers/authRequestContext.ts`)이다.
- *
- * 🔴 가입 없음: db 대역에 `user.create`·`upsert` 가 **없다** — 불리면 TypeError 로 빨개진다.
  */
 import { createHmac } from "node:crypto";
 
@@ -72,17 +73,15 @@ vi.mock("@/lib/db", () => ({
 
 import { CredentialsSignin } from "next-auth";
 
-import { ALL_WORKSPACE_MENUS } from "@/contracts/accountAccess.contract";
 import { GET } from "@/app/api/sso/eywa/route";
 import { signIn } from "@/lib/auth";
+import { db } from "@/lib/db";
 
 import {
   assertTestAuthEnv,
   cookieHeaderFor,
-  decodeSessionToken,
   resetRequest,
   sessionCookieFromJar,
-  withoutJwtClaims,
 } from "../helpers/authRequestContext";
 
 const SSO_SECRET = "eywa-sso-test-secret-0123456789abcdef";
@@ -166,85 +165,29 @@ afterAll(() => {
   }
 });
 
-describe("eywa-sso 공급자 — 이메일 로그인과 같은 원장 토큰", () => {
-  it("🔴 토큰 칸이 이메일 로그인(authDirectorUnchanged)과 정확히 같다 · 감사에 SSO 표시", async () => {
-    await signInSso(ssoToken());
-    const cookie = sessionCookieFromJar();
-    expect(cookie, "세션 쿠키가 안 실렸다").not.toBeNull();
-    expect(withoutJwtClaims(await decodeSessionToken(cookie!))).toStrictEqual({
-      name: "선생님",
-      email: EMAIL,
-      sub: DIRECTOR_ID,
-      id: DIRECTOR_ID,
-      role: "director",
-      isAdmin: false,
-      isSuperAdmin: false,
-      branchId: null,
-      branchRole: null,
-      sessionVersion: 0,
-      approvalStatus: "approved",
-      menus: ALL_WORKSPACE_MENUS.filter((m) => m !== "studio"),
-    });
-    expect(store.audits).toStrictEqual([
-      {
-        userId: DIRECTOR_ID,
-        actorId: DIRECTOR_ID,
-        action: "auth.login",
-        outcome: "success",
-        details: { method: "eywa-sso", tenantId: TENANT },
-      },
-    ]);
-  });
-
-  it("승인 대기 계정도 그대로 들어오고 토큰이 «대기»를 싣는다 — 대기 갈래는 관문이 정한다", async () => {
-    seed({ approvalStatus: "pending" });
-    await signInSso(ssoToken());
-    const token = await decodeSessionToken(sessionCookieFromJar()!);
-    expect(token?.approvalStatus).toBe("pending");
-  });
-
-  it.each([
-    ["계정 없는 이메일", {}, { email: "nobody@example.test" }],
-    ["비밀번호 없는 계정", { passwordHash: null }, {}],
-    ["지워진 계정", { deletedAt: new Date() }, {}],
-    ["정지된 계정", { suspendedAt: new Date() }, {}],
-  ])(
-    "🔴 %s — CredentialsSignin · 쿠키 없음 · 계정 수 그대로",
-    async (_label, row, claims) => {
-      seed(row);
-      const before = store.users.size;
-      const error = await signInSso(ssoToken(claims)).catch((e: unknown) => e);
-      expect(error).toBeInstanceOf(CredentialsSignin);
-      expect(sessionCookieFromJar()).toBeNull();
-      expect(store.users.size).toBe(before);
-      expect(store.audits).toStrictEqual([]);
-    },
-  );
-
-  it("🔴 EYWA_SSO_SECRET 이 없으면 올바른 표도 거절한다 (기능 꺼짐)", async () => {
-    delete process.env.EYWA_SSO_SECRET;
+describe("🔴 eywa-sso 공급자 — 잠금: 올바른 표도 들이지 않는다 (2026-09-26)", () => {
+  // eywa 이메일은 본인 확인 값이 아니다 — eywa 직원이 확인 없이 자기 이메일을 이 계정의 이메일로 바꿀 수 있다.
+  // 비밀이 켜져 있고 표가 완벽해도, 이메일로 계정을 찾아 들이면 그대로 계정 탈취다.
+  it("비밀이 켜져 있고 표·계정이 모두 멀쩡해도 CredentialsSignin · 쿠키 없음 · 감사 없음 · 이메일 조회 없음", async () => {
+    const findUnique = vi.mocked(db.user.findUnique);
+    findUnique.mockClear();
     const error = await signInSso(ssoToken()).catch((e: unknown) => e);
     expect(error).toBeInstanceOf(CredentialsSignin);
     expect(sessionCookieFromJar()).toBeNull();
-  });
-
-  it("EYWA_SSO_TENANT_IDS 가 있으면 그 밖의 지점 표를 거절한다", async () => {
-    process.env.EYWA_SSO_TENANT_IDS = "some-other-tenant";
-    const error = await signInSso(ssoToken()).catch((e: unknown) => e);
-    expect(error).toBeInstanceOf(CredentialsSignin);
+    expect(store.audits).toStrictEqual([]);
+    expect(findUnique).not.toHaveBeenCalled();
   });
 });
 
-describe("GET /api/sso/eywa — 보냄", () => {
-  it("올바른 표 → / 로 303, 세션 쿠키가 실린다", async () => {
+describe("GET /api/sso/eywa — 잠금 중 보냄", () => {
+  it("🔴 올바른 표도 /login 으로 303, 세션 쿠키 없음", async () => {
     const res = await get(`?token=${ssoToken()}`);
     expect(res.status).toBe(303);
-    expect(res.headers.get("location")).toBe("http://localhost:3000/");
-    const token = await decodeSessionToken(sessionCookieFromJar()!);
-    expect(token?.id).toBe(DIRECTOR_ID);
+    expect(res.headers.get("location")).toBe("http://localhost:3000/login");
+    expect(sessionCookieFromJar()).toBeNull();
   });
 
-  it("🔴 다른 계정으로 로그인돼 있어도 표의 계정으로 바뀐다", async () => {
+  it("🔴 다른 계정으로 로그인돼 있으면 그 세션은 그대로다(표의 계정으로 바뀌지 않는다)", async () => {
     resetRequest({
       cookie: await cookieHeaderFor({
         sub: OTHER_ID,
@@ -253,16 +196,15 @@ describe("GET /api/sso/eywa — 보냄", () => {
         sessionVersion: 0,
       }),
     });
-    await get(`?token=${ssoToken()}`);
-    const token = await decodeSessionToken(sessionCookieFromJar()!);
-    expect(token?.id).toBe(DIRECTOR_ID);
+    const res = await get(`?token=${ssoToken()}`);
+    expect(res.headers.get("location")).toBe("http://localhost:3000/login");
+    expect(sessionCookieFromJar()).toBeNull();
   });
 
   it.each([
     ["표 없음", ""],
     ["빈 표", "?token="],
     ["틀린 서명", `?token=${ssoToken({}, "wrong-secret-0123456789abcdef")}`],
-    ["없는 계정", `?token=${ssoToken({ email: "nobody@example.test" })}`],
   ])("%s → /login 으로 303, 쿠키 없음", async (_label, query) => {
     const res = await get(query);
     expect(res.status).toBe(303);

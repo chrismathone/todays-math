@@ -28,9 +28,10 @@
  * ## eywa 자동 로그인(SSO) — 절대 규칙 7 의 두 번째 예외 (원장님 2026-09-26)
  *
  * eywa 에 로그인한 사람이 «연결 앱 → 오늘의 수학»을 누르면 eywa 가 서명한 60초짜리 표를 들고
- * `GET /api/sso/eywa` 로 온다(공급자 `eywa-sso`, 판정은 `src/lib/eywaSso.ts`). **같은 이메일의 기존
- * 계정만** 들어오고 **계정을 만들지 않는다**. 돌려주는 모양이 이메일 로그인과 같아서, 그 뒤 토큰·세션은
- * 아래 원장 줄이 그대로 짓는다. 구글/OAuth 금지는 그대로다.
+ * `GET /api/sso/eywa` 로 온다(공급자 `eywa-sso`, 판정은 `src/lib/eywaSso.ts`). 계정은 만들지 않는다.
+ * 🔴 **잠금(같은 날)** — eywa 이메일은 본인 확인 값이 아니라(직원이 확인 없이 자기 이메일을 바꿀 수 있다)
+ * 이메일로 계정을 찾으면 계정 탈취다. 그래서 지금은 **아무도 들이지 않는다**. 다음 판은 바뀌지 않는 eywa
+ * 사용자 id 를 비밀번호로 한 번 연결하는 방식(원장님 결정 대기). 구글/OAuth 금지는 그대로다.
  */
 import { compare } from "bcryptjs";
 import NextAuth, { type DefaultSession } from "next-auth";
@@ -165,21 +166,15 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
         return { id: outcome.account.id };
       },
     }),
-    /** eywa 자동 로그인 — 기존 계정만, 가입 없음(머리말 «eywa 자동 로그인»). */
+    /** eywa 자동 로그인 — 🔴 잠금 중(머리말 «eywa 자동 로그인»). 입구만 서 있다. */
     Credentials({
       id: EYWA_SSO_PROVIDER_ID,
       name: "eywa",
       credentials: {
         token: { label: "eywa", type: "text" },
       },
-      authorize: (credentials) =>
-        authorizeEywaSso(credentials?.token, {
-          secret: process.env.EYWA_SSO_SECRET,
-          allowedTenants: process.env.EYWA_SSO_TENANT_IDS,
-          now: new Date(),
-          findUser: (email) => db.user.findUnique({ where: { email } }),
-          audit: (entry) => recordAudit(entry),
-        }),
+      // 🔴 잠금(2026-09-26) — 표가 맞아도 들이지 않는다. 까닭은 `authorizeEywaSso` 머리말.
+      authorize: (credentials) => authorizeEywaSso(credentials?.token),
     }),
   ],
   callbacks: {
