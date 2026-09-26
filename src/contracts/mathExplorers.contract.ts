@@ -1,5 +1,6 @@
 import { z } from "zod";
 import { isoDateSchema, uuidSchema } from "./common.contract";
+import { mathExpeditionJourneySchema } from "./mathExpedition.contract";
 
 const id = z.string().min(1).max(200);
 const text = z.string().max(4000);
@@ -11,6 +12,66 @@ const task = z.strictObject({
   kind: z.union([z.literal(0), z.literal(1), z.literal(2)]),
 });
 const optionalDate = z.union([isoDateSchema, z.literal("")]);
+
+const workshopRoute = z.enum(["explore", "check", "memory"]);
+const workshopAttachment = z.strictObject({
+  sessionId: id,
+  questionId: id,
+  cardId: z.literal("g5-common-denominator"),
+});
+const workshopStage = z.enum([
+  "predict",
+  "split",
+  "match",
+  "rule",
+  "check",
+  "complete",
+]);
+const fraction = z.strictObject({
+  numerator: z.number().int().min(1).max(21),
+  denominator: z.number().int().min(2).max(21),
+});
+const workshopCheck = z.strictObject({
+  fractions: z.array(fraction).min(1).max(2),
+  denominator: z.number().int().min(2).max(21),
+});
+export const workshopRecordSchema = z.strictObject({
+  runs: count,
+  blueprintAt: isoDateSchema.optional(),
+  discoveredAt: isoDateSchema.optional(),
+  rememberedAt: isoDateSchema.optional(),
+  memoryAttemptDate: isoDateSchema.optional(),
+  lastCheck: z
+    .strictObject({
+      date: isoDateSchema,
+      score: z.number().int().min(0).max(2),
+      route: workshopRoute,
+    })
+    .optional(),
+  session: z
+    .strictObject({
+      id,
+      route: workshopRoute,
+      stage: workshopStage,
+      attachedTo: workshopAttachment,
+      prediction: z.number().int().min(0).max(2).optional(),
+      factors: z.tuple([
+        z.number().int().min(1).max(6),
+        z.number().int().min(1).max(6),
+      ]),
+      checkIndex: z.number().int().min(0).max(2),
+      questions: z.array(workshopCheck).length(2),
+      answers: z
+        .array(z.array(z.number().int().min(0).max(21)).min(1).max(2))
+        .max(2),
+      passed: z.array(z.boolean()).max(2),
+      date: isoDateSchema,
+      stars: z.number().int().min(0).max(1),
+    })
+    .optional(),
+});
+export type WorkshopRecord = z.infer<typeof workshopRecordSchema>;
+export type WorkshopSession = NonNullable<WorkshopRecord["session"]>;
 
 export const explorerCardProgressSchema = z.strictObject({
   level: z.number().int().min(0).max(3),
@@ -69,6 +130,7 @@ export const explorerProfileSchema = z.strictObject({
   earned: count,
   level: z.number().int().min(0).max(3),
   definitions: explorerDefinitionsSchema.optional(),
+  workshop: workshopRecordSchema.optional(),
 });
 
 export const explorerActionSchema = z.discriminatedUnion("type", [
@@ -90,6 +152,35 @@ export const explorerActionSchema = z.discriminatedUnion("type", [
   z.strictObject({ type: z.literal("chest"), chestId: id }),
   z.strictObject({ type: z.literal("solution"), cardId: id }),
   z.strictObject({ type: z.literal("upgrade") }),
+  z.strictObject({
+    type: z.literal("lab-predict"),
+    questionId: id,
+    choiceId: z.number().int().min(0).max(2),
+  }),
+  z.strictObject({
+    type: z.literal("lab-split"),
+    questionId: id,
+    factor: z.number().int().min(1).max(4),
+  }),
+  z.strictObject({
+    type: z.literal("lab-match"),
+    questionId: id,
+    factors: z.tuple([
+      z.number().int().min(1).max(6),
+      z.number().int().min(1).max(6),
+    ]),
+  }),
+  z.strictObject({
+    type: z.literal("lab-rule"),
+    questionId: id,
+    choiceId: z.number().int().min(0).max(2),
+  }),
+  z.strictObject({
+    type: z.literal("lab-check"),
+    questionId: id,
+    parts: z.array(z.number().int().min(0).max(21)).min(1).max(2),
+  }),
+  z.strictObject({ type: z.literal("lab-solution") }),
 ]);
 export const explorerRequestSchema = z.strictObject({
   requestId: uuidSchema,
@@ -98,6 +189,53 @@ export const explorerRequestSchema = z.strictObject({
 });
 export type ExplorerAction = z.infer<typeof explorerActionSchema>;
 export type ExplorerRequest = z.infer<typeof explorerRequestSchema>;
+export type WorkshopAction = Extract<ExplorerAction, { type: `lab-${string}` }>;
+
+export const workshopSolutionSchema = z.strictObject({
+  title: text,
+  explanation: text,
+  examples: z
+    .array(
+      workshopCheck.extend({
+        numerators: z.array(z.number().int().min(1).max(21)).min(1).max(2),
+      }),
+    )
+    .length(2),
+});
+export const workshopViewSchema = z.strictObject({
+  memoryDate: isoDateSchema.nullable(),
+  memoryDue: z.boolean(),
+  blueprintAt: isoDateSchema.nullable(),
+  discoveredAt: isoDateSchema.nullable(),
+  rememberedAt: isoDateSchema.nullable(),
+  session: z
+    .strictObject({
+      id,
+      route: workshopRoute,
+      stage: workshopStage,
+      attachedTo: workshopAttachment,
+      questionId: id,
+      checkIndex: z.number().int().min(0).max(2),
+      checkTotal: z.literal(2),
+      done: z.boolean(),
+      prompt: text,
+      fractions: z.array(fraction).max(2),
+      targetDenominator: z.number().int().min(2).max(21).nullable(),
+      factors: z.tuple([
+        z.number().int().min(1).max(6),
+        z.number().int().min(1).max(6),
+      ]),
+      choices: z
+        .array(
+          z.strictObject({ id: z.number().int().min(0).max(2), label: text }),
+        )
+        .max(3),
+      predictionLabel: text.nullable(),
+      stars: z.number().int().min(0).max(1),
+    })
+    .nullable(),
+});
+export type WorkshopView = z.infer<typeof workshopViewSchema>;
 
 export const explorerSolutionSchema = z.strictObject({
   cardId: id,
@@ -119,6 +257,7 @@ export const explorerFeedbackSchema = z.strictObject({
   stars: count.optional(),
   chestId: id.optional(),
   solution: explorerSolutionSchema.optional(),
+  workshopSolution: workshopSolutionSchema.optional(),
 });
 export type ExplorerFeedback = z.infer<typeof explorerFeedbackSchema>;
 const completedDay = z.strictObject({
@@ -228,11 +367,14 @@ export const explorerViewSchema = z.strictObject({
     .length(92),
   completedDays: z.array(completedDay).max(36600),
   history: z.array(historyEntry).max(60),
+  workshop: workshopViewSchema.optional(),
 });
 export const explorerStateSchema = explorerViewSchema.extend({
   student: z.strictObject({ id, name: z.string(), className: z.string() }),
   revision: count,
   feedback: explorerFeedbackSchema.nullable(),
+  today: isoDateSchema.optional(),
+  journey: mathExpeditionJourneySchema.optional(),
 });
 export type ExplorerView = z.infer<typeof explorerViewSchema>;
 export type ExplorerState = z.infer<typeof explorerStateSchema>;

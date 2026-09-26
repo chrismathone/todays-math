@@ -1,4 +1,5 @@
 import type { DefinitionRecord } from "./definition-cards";
+import type { WorkshopRecord } from "@/contracts/mathExplorers.contract";
 
 /** Account-owned concept progress. The imported demo profiles/game store are not used. */
 export type ExplorerProfile = {
@@ -8,6 +9,7 @@ export type ExplorerProfile = {
   earned: number;
   level: number;
   definitions?: DefinitionRecord;
+  workshop?: WorkshopRecord;
 };
 
 export type DefinitionAction = {
