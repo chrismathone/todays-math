@@ -23,7 +23,10 @@ import s from "./ClassManage.module.css";
 
 type ClassManageProps = {
   units: UnitNode[];
+  /** 반 추가 — 지점 전체(원장·관리자). `ownerScope.canManageRoster` */
   canManageRoster?: boolean;
+  /** 학생 등록 · 계정 발급 칸 — 자기 반 학생(담당 강사도, D-140). 빼면 위 값을 따른다 */
+  canManageStudents?: boolean;
 };
 
 type MutationFeedback = {
@@ -35,6 +38,7 @@ type MutationFeedback = {
 export function ClassManage({
   units,
   canManageRoster = false,
+  canManageStudents = canManageRoster,
 }: ClassManageProps) {
   const manage = useClassManage();
   const current = findUnit(units, manage.currentUnitId);
@@ -94,9 +98,9 @@ export function ClassManage({
             selectedClass={selectedClass}
             status={manage.studentsStatus}
             onRetry={manage.retryDetails}
-            canManageAccounts={canManageRoster}
+            canManageAccounts={canManageStudents}
           />
-          {selectedClass && canManageRoster ? (
+          {selectedClass && canManageStudents ? (
             <AddStudentForm
               classId={selectedClass.id}
               onAdd={manage.addStudent}

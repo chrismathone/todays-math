@@ -12,7 +12,8 @@
  *  3. 아이디는 원장님이 적은 것을 정규화해 쓴다(자동 제안 없음 — D-125 ⑵). 겹치면 «이미 쓰는 아이디입니다».
  *  4. 🔴 초기 비밀번호는 **해시만** 저장하고 부르는 쪽에 **한 번** 돌려준다. 감사 기록에 싣지 않는다(⑥).
  *  5. 끄기는 `disabledAt` 만 찍고 지우지 않는다(수맥 규칙). 켜면 비운다.
- *  6. 모두 `AccountAuditLog` 에 남긴다(기존 `recordAudit`) — 원장이 한 일이라 `userId`·`actorId` 가 원장이다.
+ *  6. 모두 `AccountAuditLog` 에 남긴다(기존 `recordAudit`) — 발급한 사람이 `userId`·`actorId` 다
+ *     (원장 · 관리자 · 담당 강사 — D-140. 강사가 발급하면 강사 계정이 남는다).
  *  7. 상태를 읽을 때 그 학생의 **퇴원 여부**를 같이 준다 — 발급 칸이 «퇴원 — 로그인 막힘»을 그린다
  *     (learn-screens 브리프 §1.3 · D-126 ⑺). 소유 판정과 같은 한 번의 조회에서 나온다.
  *  8. 🔴 **퇴원한 학생에게는 발급 · 다시 발급 · 켜기를 안 한다**(D-127 · 리드 결정) — 409. 끄기는 된다(막는 쪽이다).
@@ -152,10 +153,12 @@ export async function issueStudentAccount(
     return fail("account_exists");
   if (await deps.findAccountByLoginId(loginId)) return fail("login_id_taken");
 
+  // 지점 계정(원장·관리자·강사 — D-140)이 발급하면 고정값, 독립 운영자는 네 자리 번호
   const initialPassword =
     input.director.branchId &&
     (input.director.branchRole === "owner" ||
-      input.director.branchRole === "manager")
+      input.director.branchRole === "manager" ||
+      input.director.branchRole === "teacher")
       ? BRANCH_INITIAL_PASSWORD
       : deps.generatePin();
   const passwordHash = await deps.hashPin(initialPassword);

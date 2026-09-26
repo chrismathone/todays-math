@@ -12,6 +12,7 @@ import {
 } from "./authErrors";
 import { AuthField } from "./AuthField";
 import { normalizeCallbackUrl } from "@/lib/callbackUrl";
+import { LOGIN_LANDING } from "@/lib/loginLanding";
 import styles from "./auth.module.css";
 
 type AuthFormProps = { mode: "login" | "signup"; callbackUrl?: string };
@@ -113,7 +114,10 @@ export function AuthForm({ mode, callbackUrl }: AuthFormProps) {
         setAlert(accountCreated.current ? RETRY_LOGIN : CREDENTIALS_ERROR);
         return;
       }
-      router.push(destination);
+      // D-140 ⑶ — 기본 목적지 로그인은 `/` 가 역할로 첫 화면을 고른다(강사 → 내 반, `loginLanding.ts`)
+      router.push(
+        !isSignup && destination === "/" ? LOGIN_LANDING : destination,
+      );
       router.refresh();
       succeeded = true;
       setNavigating(true);

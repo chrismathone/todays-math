@@ -13,7 +13,7 @@ import {
   type KeyboardEvent,
 } from "react";
 import type { UnitNode } from "@/lib/units/groupUnits";
-import { canManageRoster } from "@/lib/ownerScope";
+import { canManageClassStudents, canManageRoster } from "@/lib/ownerScope";
 import { TeachingAuthPanel } from "./teachingAuthPanel";
 import WorkProgress from "./WorkProgress";
 import s from "./TeachingView.module.css";
@@ -235,6 +235,7 @@ export default function TeachingView({
               <ClassManage
                 units={access.data.units}
                 canManageRoster={canManageRoster(access.data.user)}
+                canManageStudents={canManageClassStudents(access.data.user)}
               />
             </div>
           </section>

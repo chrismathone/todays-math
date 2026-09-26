@@ -13,6 +13,7 @@
 import { describe, expect, it } from "vitest";
 
 import {
+  canManageClassStudents,
   canManageRoster,
   crossesOwnerFence,
   ownedRowsWhere,
@@ -95,7 +96,8 @@ describe("personalViewer — 개인 작업물 라우트는 관리자여도 안 �
 });
 
 describe("지점별 소유 범위", () => {
-  it("지점 강사만 명단 발급을 막고 독립 운영자는 자기 반을 관리한다", () => {
+  // D-140 — 이 판정은 «반 만들기·반 설정·지점 전체»만 뜻한다. 자기 반 학생 명단·계정은 아래 `canManageClassStudents`.
+  it("지점 강사만 반 만들기·지점 명단을 막고 독립 운영자는 자기 반을 관리한다", () => {
     expect(
       canManageRoster({ id: ME, branchId: "branch-1", isAdmin: false }),
     ).toBe(false);
@@ -111,5 +113,47 @@ describe("지점별 소유 범위", () => {
     expect(withinOwnerScope(MANAGER, ROLE_OWNER, "branch-1")).toBe(true);
     expect(withinOwnerScope(MANAGER, ROLE_OWNER, "branch-2")).toBe(false);
     expect(withinOwnerScope({ id: ME, isAdmin: true }, ROLE_OWNER)).toBe(false);
+  });
+});
+
+describe("D-140 — 자기 반 학생 명단·계정은 담당 강사도 (원장님 2026-09-26)", () => {
+  const TEACHER = {
+    id: ME,
+    isAdmin: false,
+    branchId: "branch-1",
+    branchRole: "teacher" as const,
+  };
+
+  it("강사는 자기 반 학생 명단·계정을 다룬다 — 반 만들기·지점 전체는 여전히 못 한다", () => {
+    expect(canManageClassStudents(TEACHER)).toBe(true);
+    expect(canManageRoster(TEACHER)).toBe(false);
+  });
+
+  it("원장·관리자·독립 운영자·서비스 관리자는 둘 다 된다 — 넓힌 쪽이 좁아지지 않는다", () => {
+    for (const viewer of [MANAGER, PLAIN, ADMIN]) {
+      expect(canManageClassStudents(viewer)).toBe(true);
+      expect(canManageRoster(viewer)).toBe(true);
+    }
+  });
+
+  it("🔴 «자기 반»은 이 판정이 아니라 소유 범위가 정한다 — 강사에게 남의 반은 여전히 밖", () => {
+    expect(withinOwnerScope(TEACHER, ME)).toBe(true);
+    expect(withinOwnerScope(TEACHER, ROLE_OWNER, "branch-1")).toBe(false);
+    expect(crossesOwnerFence(TEACHER)).toBe(false);
+    expect(ownedStudentsWhere(TEACHER)).toEqual({ class: { userId: ME } });
+  });
+
+  it("🔴 빈 값은 열지 않는다 — 지점에 속했는데 역할이 비었거나 모르는 값이면 닫힌다", () => {
+    expect(
+      canManageClassStudents({ id: ME, isAdmin: false, branchId: "branch-1" }),
+    ).toBe(false);
+    expect(
+      canManageClassStudents({
+        id: ME,
+        isAdmin: false,
+        branchId: "branch-1",
+        branchRole: "Teacher" as unknown as "teacher",
+      }),
+    ).toBe(false);
   });
 });

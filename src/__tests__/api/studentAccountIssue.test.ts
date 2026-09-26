@@ -155,7 +155,9 @@ function scrub(text: string): string {
 }
 
 describe("발급 — 원장만 · 한 명씩 (D-124 ⑷)", () => {
-  it("강사는 담당 반 학생의 로그인 아이디도 발급할 수 없다", async () => {
+  // D-140(원장님 2026-09-26)이 뒤집었다 — 예전 단정은 «강사는 담당 반 학생도 발급할 수 없다 · 403».
+  // 남의 반 학생 거부 · 반 만들기 거부 짝은 `teacherRoster.test.ts` 가 본다.
+  it("강사도 담당 반 학생의 로그인 아이디를 발급한다 — 첫 비밀번호는 지점 고정값 (D-140)", async () => {
     vi.mocked(getSessionUser).mockResolvedValue({
       id: USER_TEACHER_ID,
       email: "teacher@example.test",
@@ -164,8 +166,13 @@ describe("발급 — 원장만 · 한 명씩 (D-124 ⑷)", () => {
       branchId: "20000000-0000-4000-8000-000000000002",
       branchRole: "teacher",
     });
-    expect((await issue(MOCK_STUDENT_1.id, "teacher-denied")).status).toBe(403);
-    expect(learnRows.studentAccounts()).toEqual([]);
+    const res = await issue(MOCK_STUDENT_1.id, "teacher-issued");
+    expect(res.status).toBe(201);
+    expect(
+      studentAccountIssueResponseSchema.parse(await res.json()).data
+        .initialPassword,
+    ).toBe(BRANCH_PASSWORD);
+    expect(learnRows.studentAccounts()).toHaveLength(1);
   });
   it("🔴 로그인 안 한 요청은 401 이고 아무것도 안 만든다", async () => {
     vi.mocked(getSessionUser).mockResolvedValue(null);

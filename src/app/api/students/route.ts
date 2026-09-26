@@ -12,7 +12,7 @@ import {
 } from "@/contracts/class.contract";
 import { jsonOk, unauthorizedError, validationError } from "@/lib/apiResponse";
 import { db } from "@/lib/db";
-import { canManageRoster } from "@/lib/ownerScope";
+import { canManageClassStudents } from "@/lib/ownerScope";
 import { requireOwnedClass } from "@/lib/ownership";
 import { serializeStudent } from "@/lib/serializers";
 import { getSessionUser } from "@/lib/session";
@@ -22,7 +22,7 @@ import { withErrorLog } from "@/lib/errorLog/withErrorLog";
 async function handlePost(request: NextRequest) {
   const session = await getSessionUser();
   if (!session) return unauthorizedError();
-  if (!canManageRoster(session))
+  if (!canManageClassStudents(session))
     return Response.json(
       {
         error: {
