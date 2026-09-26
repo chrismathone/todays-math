@@ -15,7 +15,7 @@
  *    여기 안 붙였다 — **눌러도 아무 일도 안 하는 단추**는 검수자를 속인다.
  */
 import { useCallback, useEffect, useRef, useState } from "react";
-import { MathText } from "@/components/math/MathText";
+import { MathText, SolutionText } from "@/components/math/MathText";
 import { PaperProblemView } from "@/components/print/PaperProblemView";
 import {
   SOLUTION_SOURCE_LABELS,
@@ -24,7 +24,6 @@ import {
 } from "@/lib/review/consoleRow";
 import { REASON_LABELS, REASON_ORDER } from "@/components/review/reasonLabels";
 import { fractionViewFor } from "@/components/unified/fractionDisplay";
-import { solutionForDisplay } from "@/lib/solutionSteps";
 import type { ReportReason } from "@/contracts/problemReport.contract";
 import type {
   ReviewQueueKey,
@@ -316,11 +315,9 @@ export function ReviewConsole({
                       해설 보기
                     </summary>
                     <div className="mt-2 text-[14px] leading-relaxed text-text-2">
-                      <PaperProblemView
-                        content={
-                          solutionForDisplay(shownFractions(row.solution)) ?? ""
-                        }
-                      />
+                      {/* 해설은 해설 조합(`SolutionText`)으로 — 본문 렌더러는 해설 속 `1.`·`①`
+                          줄을 보기 격자로 잘랐다(2026-09-26 후보정 조사 L). */}
+                      <SolutionText text={shownFractions(row.solution)} />
                     </div>
                   </details>
                 ) : (

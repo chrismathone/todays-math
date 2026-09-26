@@ -24,6 +24,7 @@ import {
   LATEX_WRAP_TRIGGER_SOURCE,
   normalizeMathgenText,
 } from "./normalizeMathgenText";
+import { canonicalizeMathSpans, findMathSpans } from "./segments";
 
 /** HTML entity 디코딩. */
 export const decodeHtmlEntities = (text: string): string =>
@@ -1120,6 +1121,24 @@ export const extractHangulFromMath = (content: string): string => {
  */
 export { LATEX_WRAP_TRIGGER_SOURCE } from "./normalizeMathgenText";
 
+/** 글 속 `\$`(화폐)를 전처리 동안 가려 두는 자리표시(U+E003). 본문에 나오지 않는 사용자 영역 글자다. */
+const PROSE_DOLLAR = String.fromCharCode(0xe003);
+const PROSE_DOLLAR_G = new RegExp(PROSE_DOLLAR, "g");
+/** step 9 가 식 안에 가려 둔 인라인 수식을 합칠 때 쓰는 자리(U+E100~). 정규화가 건드리지 않는 글자다. */
+const ATOM_BASE = 0xe100;
+const ATOM_G = /[-]/g;
+/**
+ * step 9 가 찾는 낱말 명령. 공유 목록의 끝 경계 `\b` 는 `_` 를 낱말 글자로 봐서 `\int_0^2` ·
+ * `\sum_{k}` 를 **명령으로 못 봤다** — 명령 이름은 글자에서 끝나므로 «뒤에 글자가 없다»로 끊는다.
+ */
+const LOOSE_WORD_COMMAND = new RegExp(
+  LATEX_WRAP_TRIGGER_SOURCE.replace(/\\b$/, "(?![A-Za-z])"),
+);
+/** 가림 자리(표시식 U+E000 · 인라인 U+E001)에 맞닿은 맨 `$` 뭉치. */
+const MASK_TOKEN = "[\\uE000\\uE001]\\d+[\\uE000\\uE001]";
+const STRAY_BEFORE_MASK = new RegExp(`\\$+(?=${MASK_TOKEN})`, "g");
+const STRAY_AFTER_MASK = new RegExp(`(${MASK_TOKEN})\\$+`, "g");
+
 /**
  * 수식 정규화 — KaTeX 입력 전 안전 변환.
  *  1) `\(\)` / `\[\]` → `$...$` / `$$...$$`
@@ -1136,16 +1155,15 @@ export { LATEX_WRAP_TRIGGER_SOURCE } from "./normalizeMathgenText";
  *     해서 괄호 높이가 내용에 맞게 늘어난다.
  */
 export const preprocessMathText = (content: string): string => {
-  let out = normalizeMathgenText(content);
-
-  for (let i = 0; i < 5; i++) {
-    const next = out.replace(
-      /\$([^$\n]+)\$\$([^$\n]+)\$/g,
-      (_m, a, b) => `$${a}$ $${b}$`,
-    );
-    if (next === out) break;
-    out = next;
-  }
+  // 2) 붙은 수식 떼기·수식 안 줄바꿈·수식 안 `\$` — **짝의 시작 자리를 아는** 한 벌(`segments.ts`).
+  //    🔴 예전 `/\$([^$\n]+)\$\$([^$\n]+)\$/` 5회 반복은 앞 인라인의 **닫는** `$` 부터 읽어
+  //    정상 해설 `이동 거리는 $8$ 이고 $$s=8$$` 를 `$ $$\displaystyle s=8$$$` 로 만들었다
+  //    (해설지·PDF·HWPX, 2026-09-26 후보정 트랙 T3).
+  let out = canonicalizeMathSpans(normalizeMathgenText(content));
+  // 글 속 `\$`(화폐)는 끝까지 가려 둔다 — 아래 정규식들은 이스케이프를 몰라 `\$5 이고 $x$` 의
+  // `$5 이고 $` 를 수식으로 읽었고, step 9 는 `\$` 를 명령으로 감싸 `\displaystyle \5$` 를 만들었다.
+  // (수식 **안**의 `\$` 는 위에서 이미 `{\char36}` 이 됐다 — 남은 것은 전부 글 속이다.)
+  out = out.replace(/(?<!\\)((?:\\\\)*)\\\$/g, `$1${PROSE_DOLLAR}`);
 
   out = out.replace(
     /(?<!\$)\$(?!\$)((?:[^$\\]|\\.)+?)(?<!\$)\$(?!\$)/g,
@@ -1180,17 +1198,50 @@ export const preprocessMathText = (content: string): string => {
   //     strip 한 뒤 복원. sentinel 은 일반 사용자 입력에 절대 등장 안 함.
   const SENTINEL_BLOCK = String.fromCharCode(57344); // U+E000
   const SENTINEL_INLINE = String.fromCharCode(57345); // U+E001
+  const SENTINEL_CODE = String.fromCharCode(57346); // U+E002
   const blocks: string[] = [];
   const inlines: string[] = [];
-  let masked = out
-    .replace(/\$\$([\s\S]*?)\$\$/g, (_m, inner: string) => {
-      blocks.push(inner);
-      return `${SENTINEL_BLOCK}${blocks.length - 1}${SENTINEL_BLOCK}`;
-    })
-    .replace(/\$([^$\n]+?)\$/g, (_m, inner: string) => {
-      inlines.push(inner);
-      return `${SENTINEL_INLINE}${inlines.length - 1}${SENTINEL_INLINE}`;
-    });
+  const codes: string[] = [];
+  const INLINE_ATOM = new RegExp(
+    `${SENTINEL_INLINE}(\\d+)${SENTINEL_INLINE}`,
+    "g",
+  );
+  const inlineSentinel = (inner: string): string => {
+    inlines.push(inner);
+    return `${SENTINEL_INLINE}${inlines.length - 1}${SENTINEL_INLINE}`;
+  };
+  // 코드 따옴표 — 마크다운이 글자 그대로 그리는 구간이다. 예전엔 가리지 않아 step 9 가 그 안을
+  // 감싸 `` `$\displaystyle \dfrac{1}{2}`$ `` 가 됐다. 수학 지면에 코드는 없다 — 모델이 TeX 를
+  // 따옴표로 감싼 것이므로 **안에 LaTeX 명령이 있으면 수식으로** 세우고, 아니면 그대로 둔다.
+  let masked = out.replace(
+    /(?<!`)(`+)(?!`)([^\n]*?[^`\n])\1(?!`)/g,
+    (whole: string, _ticks: string, inner: string) => {
+      if (
+        !inner.includes("$") &&
+        new RegExp(LATEX_WRAP_TRIGGER_SOURCE).test(inner)
+      )
+        return inlineSentinel(applyMathInnerNormalization(inner.trim()));
+      codes.push(whole);
+      return `${SENTINEL_CODE}${codes.length - 1}${SENTINEL_CODE}`;
+    },
+  );
+  // 수식 가리기도 **짝의 시작 자리를 아는** 한 벌로(`findMathSpans`). 예전 두 정규식
+  // (`/\$\$…\$\$/` · `/\$([^$\n]+?)\$/`)은 붙은 수식의 닫는 `$` 부터 짝을 지었다.
+  {
+    let rebuilt = "";
+    let last = 0;
+    for (const span of findMathSpans(masked)) {
+      rebuilt += masked.slice(last, span.start);
+      if (span.type === "display") {
+        blocks.push(span.value);
+        rebuilt += `${SENTINEL_BLOCK}${blocks.length - 1}${SENTINEL_BLOCK}`;
+      } else {
+        rebuilt += inlineSentinel(span.value);
+      }
+      last = span.end;
+    }
+    masked = rebuilt + masked.slice(last);
+  }
   // math-mode-only directive 제거. 인접 공백/줄바꿈 정리.
   masked = masked.replace(
     /\\(?:displaystyle|textstyle|scriptstyle|scriptscriptstyle)\b[ \t]*/g,
@@ -1245,10 +1296,13 @@ export const preprocessMathText = (content: string): string => {
     return -1;
   };
   const firstLooseLatexCommand = (value: string): number => {
-    const wordCommand = value.search(new RegExp(LATEX_WRAP_TRIGGER_SOURCE));
+    const wordCommand = value.search(LOOSE_WORD_COMMAND);
     // `15\.` is the problem parser's escaped Markdown list leader. Treating
     // that period as a LaTeX command creates `$\displaystyle 15\.$` errors.
-    const symbolCommand = value.search(/(?<!\\)\\[{},;:!%#$&_ |]/u);
+    // ⚠️ `\$` 는 명령이 아니다 — 글 속 화폐다(위에서 이미 가려 뒀다). 예전엔 여기 있어서
+    //    `가격은 \$5` 가 `$\displaystyle \$5$` 로 감싸였고, remark-math 가 수식 안 `\$` 에서
+    //    수식을 닫아 `\displaystyle \5$` + 붉은 오류가 됐다.
+    const symbolCommand = value.search(/(?<!\\)\\[{},;:!%#&_ |]/u);
     if (wordCommand < 0) return symbolCommand;
     if (symbolCommand < 0) return wordCommand;
     return Math.min(wordCommand, symbolCommand);
@@ -1271,16 +1325,26 @@ export const preprocessMathText = (content: string): string => {
         .slice(0, firstCmdIdx)
         .match(/[\\A-Za-z0-9_^[\]{}()+\-=|][\\A-Za-z0-9_^[\]{}()+\-=|.,\s]*$/u);
       const mathStart = firstCmdIdx - (prefixMatch?.[0].length ?? 0);
-      const leading = remaining.slice(0, mathStart);
+      // 🔴 이 식을 열려다 **짝 없이 남은** `$`·`$$` 는 지운다 — 그대로 두고 감싸면 `$$$\displaystyle …`
+      //    가 된다. 짝 있는 수식은 전부 위에서 가려 뒀으니 여기 남은 `$` 는 떠돌이뿐이다
+      //    (글 속 `\$` 도 가려 뒀다). 식 **안**의 떠돌이는 `applyMathInnerNormalization` 이 지운다.
+      const leading = remaining.slice(0, mathStart).replace(/\$+[ \t]*$/, "");
       const mathTail = remaining.slice(mathStart);
 
+      // 가려 둔 **표시식**은 경계다 — 인라인 식 안으로 끌어들이면 `$…$$…$$$` 가 된다.
+      const blockAt = mathTail.indexOf(SENTINEL_BLOCK);
+      const bounded = blockAt >= 0 ? mathTail.slice(0, blockAt) : mathTail;
       // brace 안 `\\text{개}`는 수식 일부이고, top-level 한글만 경계다.
-      const hangulInTail = findTopLevelHangul(mathTail);
+      const hangulInTail = findTopLevelHangul(bounded);
       const mathSpan = (
-        hangulInTail >= 0 ? mathTail.slice(0, hangulInTail) : mathTail
+        hangulInTail >= 0 ? bounded.slice(0, hangulInTail) : bounded
       ).trimEnd();
       const trailingText =
-        hangulInTail >= 0 ? mathTail.slice(hangulInTail) : "";
+        hangulInTail >= 0
+          ? mathTail.slice(hangulInTail)
+          : blockAt >= 0
+            ? mathTail.slice(mathSpan.length)
+            : "";
       if (!mathSpan) {
         // 최소 한 글자를 소비해 다음 반복에서 같은 명령을 다시 찾지 않는다.
         wrapped += remaining.slice(0, firstCmdIdx + 1);
@@ -1288,9 +1352,19 @@ export const preprocessMathText = (content: string): string => {
         continue;
       }
 
-      const hasDisplay = /\\displaystyle\b/.test(mathSpan);
-      const innerRaw = hasDisplay ? mathSpan : `\\displaystyle ${mathSpan}`;
-      const innerNormalized = applyMathInnerNormalization(innerRaw);
+      // 🔴 가려 둔 **인라인 수식**이 이 식 안에 있으면 한 식으로 합친다. 따로 감싸면 가림을 되살릴 때
+      //    `$\displaystyle 8\,$\displaystyle \mathrm{m}$$` 처럼 수식이 겹쳤다(`8\,\mathrm{m}` ·
+      //    `\int … \,dt = 8`). 가려 둔 식은 이미 정규화됐으니 **다시 정규화하지 않고** 자리만 잡아 둔다.
+      const atoms: string[] = [];
+      const withAtoms = mathSpan.replace(INLINE_ATOM, (_m, n: string) => {
+        atoms.push(inlines[Number(n)] ?? "");
+        return String.fromCharCode(ATOM_BASE + atoms.length - 1);
+      });
+      const hasDisplay = /\\displaystyle\b/.test(withAtoms);
+      const innerRaw = hasDisplay ? withAtoms : `\\displaystyle ${withAtoms}`;
+      const innerNormalized = applyMathInnerNormalization(
+        innerRaw.replace(PROSE_DOLLAR_G, "{\\char36}"),
+      ).replace(ATOM_G, (atom) => ` ${atoms[atom.charCodeAt(0) - ATOM_BASE]} `);
       wrapped += `${leading}$${innerNormalized}$`;
       remaining = trailingText;
     }
@@ -1314,6 +1388,13 @@ export const preprocessMathText = (content: string): string => {
     })
     .join("\n");
 
+  // 가려 둔 수식에 **맞닿아** 남은 `$` 는 그 수식의 깨진 구분자다(`$$x=2$` · `$x=2$$` — 짝 있는
+  // 수식은 전부 가려 뒀고 붙은 수식은 첫 단계에서 띄웠으니, 맞닿은 맨 `$` 는 떠돌이뿐이다).
+  // 되살리면 `$$$\displaystyle x=2$$` 가 된다 — 식은 이미 섰으니 떠돌이만 지운다.
+  masked = masked
+    .replace(STRAY_BEFORE_MASK, "")
+    .replace(STRAY_AFTER_MASK, "$1");
+
   // 복원.
   out = masked
     .replace(
@@ -1323,6 +1404,10 @@ export const preprocessMathText = (content: string): string => {
     .replace(
       new RegExp(`${SENTINEL_INLINE}(\\d+)${SENTINEL_INLINE}`, "g"),
       (_m, i: string) => `$${inlines[Number(i)]}$`,
+    )
+    .replace(
+      new RegExp(`${SENTINEL_CODE}(\\d+)${SENTINEL_CODE}`, "g"),
+      (_m, i: string) => codes[Number(i)] ?? "",
     );
 
   // (10) Final guard — 모든 변환이 끝난 뒤 모든 `$...$` / `$$...$$` 를 한
@@ -1340,5 +1425,8 @@ export const preprocessMathText = (content: string): string => {
     (_m, inner: string) => `$$${cleanMalformedLatex(inner)}$$`,
   );
 
-  return out;
+  // (11) 마지막으로 다시 맞춘다 — step 9 가 감싼 식이 가려 뒀던 식과 **맞닿아** 되살아날 수 있다
+  //      (`\therefore$$x$$` → `$…$$$x$$`). 첫 단계와 같은 함수라 이미 맞은 글은 그대로다(멱등).
+  out = canonicalizeMathSpans(out);
+  return out.replace(PROSE_DOLLAR_G, () => "\\$");
 };

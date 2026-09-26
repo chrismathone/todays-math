@@ -4,6 +4,7 @@ import { connection } from "next/server";
 
 import { MathText } from "@/components/math/MathText";
 import { PaperProblemView } from "@/components/print/PaperProblemView";
+import { solutionForDisplay } from "@/lib/solutionSteps";
 import { CORE_DIFFICULTIES } from "@/contracts/difficulty";
 import { renderFigureSpec } from "@/lib/figure/renderFigureSpec";
 import { generateMiddleProblem, registeredTypes } from "@/lib/middle/generate";
@@ -307,7 +308,10 @@ export default async function TierBenchM2Page({
                                 해설
                               </p>
                               <PaperProblemView
-                                content={cell.problem.solution}
+                                content={
+                                  solutionForDisplay(cell.problem.solution) ??
+                                  ""
+                                }
                                 framed={false}
                               />
                             </div>

@@ -3,6 +3,7 @@
 /* eslint-disable @next/next/no-img-element */
 import { useEffect, useMemo, useRef, useState } from "react";
 import { ProblemContent } from "@/components/math/ProblemContent";
+import { SolutionText } from "@/components/math/MathText";
 import { fractionViewFor } from "./fractionDisplay";
 import {
   STUDIO_QUESTION_TYPES,
@@ -588,7 +589,9 @@ function ReviewCard({
       {!editing && crop.solution.trim() && (
         <div className={styles.answer}>
           <strong>해설</strong>
-          <ProblemContent content={preview(crop.solution)} />
+          {/* 해설은 본문 렌더러가 아니라 해설 조합으로 — 본문 렌더러는 해설 속 `1.`·`①` 줄을
+              보기 격자로 자른다(2026-09-26 후보정 조사 L). */}
+          <SolutionText text={preview(crop.solution)} />
         </div>
       )}
       <div className={styles.cardFooter}>

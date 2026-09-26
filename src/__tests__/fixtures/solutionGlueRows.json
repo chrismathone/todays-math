@@ -1,0 +1,21 @@
+{
+  "_note": "문제 표 참고 행 4건의 solution 칸 원문(2026-09-26 공유 DB 읽기 전용 덤프). 붙은 인라인 수식 $A$$B$ 가 ProblemContent 에서만 새던 행 — report-data.md §문제 표. 학생 정보 없음(해설 글뿐).",
+  "rows": [
+    {
+      "id": "6c471314-469b-4310-9a39-275b0fd9e64f",
+      "solution": "정사각형 $\\mathrm{ABCD}$의 한 변의 길이를 $6k$라 두고 점 $\\mathrm{N}$에서 선분 $\\mathrm{A}M$에 수선을 내리고 그 점을 $\\mathrm{H}$라 하자.직각삼각형 $\\mathrm{ABM}$에서 피타고라스 정리에 의해 $\\overline{AM}=3\\sqrt{5}k$직각삼각형 $\\mathrm{ADN}$에서 피타고라스 정리에 의해 $\\overline{AN}=2\\sqrt{10}k$직각삼각형 $\\mathrm{MNC}$에서 피타고라스 정리에 의해 $\\overline{MN}=5k$$\\triangle ANM$에서 $\\overline{AH}=\\,a$라 두고 $\\overline{NH}$에 대한 피타고라스 정리를 쓰면$\\left( 2\\sqrt{10}k\\right) ^{2}-a^{2}=\\left( 5k\\right) ^{2}-\\left( 3\\sqrt{5}k-a\\right) ^{2}$$60k^{2}-6\\sqrt{5}ak=0,~6k\\left( 10k-\\sqrt{5}a\\right) =0$$\\therefore$ $a=2\\sqrt{5}k$따라서 $\\tan x=\\frac{\\overline{NH}}{\\overline{AH}}=\\frac{2\\sqrt{5}k}{2\\sqrt{5}k}=1$"
+    },
+    {
+      "id": "260c9745-8b32-4aa3-9f3b-9418d503fa48",
+      "solution": "$44$점 $A$에서 $\\overline{BC}$에 수선을 내려 발을 $\\mathrm{H}$라고 하면 $\\angle HAC=45°$, $\\angle BAH=37°$$\\overline{AC}=10\\sqrt{2}$, $\\overline{AH}=\\overline{CH}=10$$\\overline{AB}=\\frac{10}{coc37°}=\\frac{10}{0.8}=12.5$, $\\overline{BH}=10\\,\\tan 37°=10\\times 0.75=7.5$$\\overline{AB}+\\overline{BC}+\\overline{CA}=12.5+17.5+14=44$"
+    },
+    {
+      "id": "3cf2e790-e78e-4b49-a209-992c37c11206",
+      "solution": "$\\frac{\\mathrm{9}}{4}\\,cm^{2}$원 밖의 한 점에서 접선을 그으면 두 접점까지 거리가 같으므로  $\\overline{PA}=\\overline{PB}$, $\\angle APB=60°$이므로 $\\triangle ABP$는 정삼각형이고 $\\overline{AB}=3\\,cm$, $\\angle AOB=120°$$\\triangle OAB$에서 점 $\\mathrm{O}$에서 $\\overline{AB}$에 수선을 내려 그 발을 $M$이라 하면 $\\overline{AO}=\\frac{\\overline{AM}}{\\sin 60°}=\\sqrt{3}$$\\angle QOA=240°\\times \\frac{3}{8}=90°$, $\\angle QOB=240°\\times \\frac{5}{8}=150°$어두운 부분의 넓이는 $\\triangle AOQ+\\triangle BOQ$$\\frac{\\mathrm{1}}{2}\\times \\sqrt{3}\\times \\sqrt{3}\\times \\,\\sin 90°+\\frac{1}{2}\\times \\sqrt{3}\\times \\sqrt{3}\\times \\,\\sin 30°=\\frac{9}{4}$"
+    },
+    {
+      "id": "c52751aa-aeb7-492b-847e-2c6daaf94c4f",
+      "solution": "$2.05$$\\angle \\mathrm{B}=62°$이므로 $\\sin \\,62°=\\frac{x}{5}=0.88$ $\\therefore \\,x=4.4$$\\angle \\mathrm{A}=28°$이므로 $\\sin \\,28°=\\frac{y}{5}=0.47$ $\\therefore \\,y=2.35$$\\therefore \\,x-y=4.4-2.35=2.05$"
+    }
+  ]
+}
