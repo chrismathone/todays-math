@@ -24,6 +24,13 @@
  *    `student` 칸에만 싣는다(`src/lib/learn/studentSession.ts`). `jwt`·`session` 콜백 **맨 앞**에서
  *    학생 갈래를 끝내고, 원장 갈래는 원래 줄을 한 줄도 안 바꿨다
  *    (`src/__tests__/api/authDirectorUnchanged.test.ts` 가 토큰·세션 모양째 잠근다).
+ *
+ * ## eywa 자동 로그인(SSO) — 절대 규칙 7 의 두 번째 예외 (원장님 2026-09-26)
+ *
+ * eywa 에 로그인한 사람이 «연결 앱 → 오늘의 수학»을 누르면 eywa 가 서명한 60초짜리 표를 들고
+ * `GET /api/sso/eywa` 로 온다(공급자 `eywa-sso`, 판정은 `src/lib/eywaSso.ts`). **같은 이메일의 기존
+ * 계정만** 들어오고 **계정을 만들지 않는다**. 돌려주는 모양이 이메일 로그인과 같아서, 그 뒤 토큰·세션은
+ * 아래 원장 줄이 그대로 짓는다. 구글/OAuth 금지는 그대로다.
  */
 import { compare } from "bcryptjs";
 import NextAuth, { type DefaultSession } from "next-auth";
@@ -47,6 +54,7 @@ import {
   type StudentSession,
 } from "@/contracts/studentAccount.contract";
 import { recordAudit } from "@/lib/audit";
+import { authorizeEywaSso, EYWA_SSO_PROVIDER_ID } from "@/lib/eywaSso";
 import { studentLoginDeps } from "@/lib/learn/loginDeps";
 import { attemptStudentLogin } from "@/lib/learn/studentLogin";
 import {
@@ -156,6 +164,22 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
         if (!outcome.ok) throw new StudentLoginError(outcome.reason);
         return { id: outcome.account.id };
       },
+    }),
+    /** eywa 자동 로그인 — 기존 계정만, 가입 없음(머리말 «eywa 자동 로그인»). */
+    Credentials({
+      id: EYWA_SSO_PROVIDER_ID,
+      name: "eywa",
+      credentials: {
+        token: { label: "eywa", type: "text" },
+      },
+      authorize: (credentials) =>
+        authorizeEywaSso(credentials?.token, {
+          secret: process.env.EYWA_SSO_SECRET,
+          allowedTenants: process.env.EYWA_SSO_TENANT_IDS,
+          now: new Date(),
+          findUser: (email) => db.user.findUnique({ where: { email } }),
+          audit: (entry) => recordAudit(entry),
+        }),
     }),
   ],
   callbacks: {

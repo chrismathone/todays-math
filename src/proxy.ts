@@ -18,6 +18,7 @@ import { routeAccessFor } from "@/lib/routeAccess";
 import { accountRouteAllowed } from "@/lib/accountRouteAccess";
 import { recordAudit } from "@/lib/audit";
 import { isLabPath } from "@/lib/labPath";
+import { EYWA_SSO_PATH } from "@/lib/eywaSso";
 import {
   anonymousLearnGate,
   studentGateFor,
@@ -84,6 +85,13 @@ export const proxy = auth(async (req) => {
    * 쓰기와 `/lab` 밖은 아래 규칙 그대로다 — 학생 세션이 `/lab` 밖에서 얻는 것은 늘지 않는다.
    */
   if (isLabRead(req.method, pathname)) return NextResponse.next();
+  /**
+   * eywa 자동 로그인 입구 — 로그인 안 한 사람·다른 원장·학생 세션 누구든 지나간다(원장님 2026-09-26).
+   * 누른 사람을 표의 계정으로 **바꿔** 들이는 곳이라, 학생 갈래나 승인 대기 갈래에 걸리면 안 된다.
+   * 표가 틀리면 라우트가 `/login` 으로 돌려보낸다 — 이 경로가 주는 것은 로그인 시도뿐이다.
+   */
+  if (req.method === "GET" && pathname === EYWA_SSO_PATH)
+    return NextResponse.next();
   /**
    * 🔴 학생 세션 — **원장 갈래보다 먼저** 가둔다 (D-124 ⑶ · D-125 ⑷).
    * 학생 세션에는 `user` 가 없다(src/lib/learn/studentSession.ts). 아래로 흘러가면 «로그인 안 한
