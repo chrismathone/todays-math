@@ -156,15 +156,18 @@ export function expeditionCourseRecommendation(state: StoredSrsState, now: Date)
   return sectionId ? { sectionId, mode: "review" as const, reason: "오늘 시작한 학습의 남은 문제를 이어 풀어요." } : null;
 }
 
+/** A teacher may edit the course plan; the frozen mission keeps its own unit and goal. */
+export type ExpeditionWriter = { teacher?: boolean };
+
 /** Central write guard and progress evaluator: source completion alone never awards. */
-export function updateExpedition(previous: StoredSrsState, next: StoredSrsState, now: Date): StoredSrsState {
+export function updateExpedition(previous: StoredSrsState, next: StoredSrsState, now: Date, writer: ExpeditionWriter = {}): StoredSrsState {
   const expedition = next.expedition ?? initialExpedition(previous, now);
   next = { ...next, expedition };
   let mission = expedition.mission;
   if (!mission || mission.status === "complete") return next;
   const prior = open(previous);
   if (prior) {
-    const settingsChanged = !equal(previous.course?.plan, next.course?.plan) || previous.explorers?.profile.grade !== next.explorers?.profile.grade ||
+    const settingsChanged = (!writer.teacher && !equal(previous.course?.plan, next.course?.plan)) || previous.explorers?.profile.grade !== next.explorers?.profile.grade ||
       previous.explorers?.profile.definitions?.courseGrade !== next.explorers?.profile.definitions?.courseGrade || previous.explorers?.profile.definitions?.goalUnitId !== next.explorers?.profile.definitions?.goalUnitId;
     if (settingsChanged) throw new SrsConflict("시작한 오늘의 학습과 오답 복습을 마친 뒤 목표를 바꿔 주세요.");
     if (prior.kind !== "elementary" && !equal(previous.course, next.course)) throw new SrsConflict("진행 중인 오늘의 학습을 먼저 마쳐 주세요.");
@@ -187,8 +190,11 @@ export function updateExpedition(previous: StoredSrsState, next: StoredSrsState,
   if (mission.kind === "explorers") {
     const session = next.explorers?.profile.definitions?.session;
     if (!session || session.id !== mission.sourceSessionId) throw new SrsConflict("개념 학습 기록을 다시 불러와 주세요.");
-    answered = session.round > 0 || session.done ? mission.goal : session.index;
-    remaining = session.done ? session.unresolved.length : session.round > 0 ? session.queue.length - session.index + session.next.length : session.next.length;
+    // An explicit retry-unresolved continuation reopens only the leftover tasks:
+    // the original 15 stay answered, and the reopened queue is still owed.
+    const reopened = session.round > 0 || !!session.continuation;
+    answered = reopened || session.done ? mission.goal : session.index;
+    remaining = session.done ? session.unresolved.length : reopened ? session.queue.length - session.index + session.next.length : session.next.length;
     finished = !session.reviewOnly && session.done && !session.unresolved.length;
   } else for (const ref of mission.references) {
     if (mission.kind === "middle") {
@@ -210,7 +216,13 @@ export function updateExpedition(previous: StoredSrsState, next: StoredSrsState,
   const ledger = { ...expedition, mission };
   const date = kstDateOf(now);
   if (complete && mission.awardEligible && !completionDates(ledger).includes(date)) {
-    const dayId = mission.kind === "explorers" ? next.explorers!.completedDays.find((d) => d.sessionId === mission.sourceSessionId)?.date : `expedition:${mission.id}`;
+    // The concept engine keys its replay days by date, one per date. If an
+    // unassigned session already filled today's slot, replay that day instead
+    // of refusing a genuinely finished mission forever.
+    const engineDays = next.explorers?.completedDays ?? [];
+    const dayId = mission.kind === "explorers"
+      ? (engineDays.find((d) => d.sessionId === mission.sourceSessionId) ?? engineDays.find((d) => d.date === date))?.date
+      : `expedition:${mission.id}`;
     if (!dayId) throw new SrsConflict("완료한 학습 기록을 확인할 수 없어요.");
     const review = { kind: mission.kind, dayId, title: mission.title, subtitle: mission.subtitle, reviewCount: mission.goal };
     ledger.awards = [...ledger.awards, { missionId: mission.id, references: mission.references, day: { ...review, id: `expedition:${date}`, date, completedAt: now.toISOString(), reviews: [review] } }];

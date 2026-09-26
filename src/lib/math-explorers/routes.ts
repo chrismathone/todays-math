@@ -88,7 +88,8 @@ async function changeExplorer(
       (state) => {
         if (expeditionStart) {
           feedback = startFeedback;
-          return startExpedition(state, studentId, now, input.requestId, seed, randomUUID, candidates);
+          return startExpedition(state, studentId, now, input.requestId, seed, randomUUID,
+            recommendation ? { sectionId: recommendation.sectionId, candidates } : null);
         }
         const result = applyExplorerAction(
           ownedExplorer(state, studentId, now),

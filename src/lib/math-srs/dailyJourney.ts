@@ -219,6 +219,21 @@ function unitLabel(kind: JourneyKind, unitId: string) {
     : { title: "수학 복습", subtitle: "초등 복습" };
 }
 
+/**
+ * The expedition mission an embedded source screen reports: the open one, or
+ * the one finished today. A mission finished on an earlier day no longer
+ * speaks for today (the student starts the next one from the game home).
+ */
+export function visibleExpeditionMission(state: StoredSrsState, now: Date) {
+  const mission = state.expedition?.mission;
+  if (!mission) return null;
+  if (mission.status !== "complete") return mission;
+  return mission.completedAt &&
+    kstDateOf(new Date(mission.completedAt)) === kstDateOf(now)
+    ? mission
+    : null;
+}
+
 export function dailyJourneyDto(
   state: StoredSrsState,
   kind: JourneyKind,
@@ -299,13 +314,18 @@ export function dailyJourneyDto(
       unitLabel(kind, CONCEPTS[(firstIndex + index) % CONCEPTS.length].id),
     );
   }
+  const mission = visibleExpeditionMission(state, now);
   return {
     completedDays: days.length,
     // Embedded bank UI must finish the frozen workload, even when a source day
     // completed before midnight or a previous source already completed today.
-    todayComplete: state.expedition?.mission?.kind === kind ? state.expedition.mission.status === "complete" : todayComplete,
-    todayAnswered: state.expedition?.mission?.kind === kind ? state.expedition.mission.answered : todayAnswered,
-    todayGoal: state.expedition?.mission?.kind === kind ? state.expedition.mission.goal : todayGoal,
+    ...(mission?.kind === kind
+      ? {
+          todayComplete: mission.status === "complete",
+          todayAnswered: mission.answered,
+          todayGoal: mission.goal,
+        }
+      : { todayComplete, todayAnswered, todayGoal }),
     days,
     upcoming,
   };

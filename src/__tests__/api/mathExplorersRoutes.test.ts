@@ -193,19 +193,56 @@ describe("authenticated math explorer persistence", () => {
     expect((await post({ ...body, requestId: randomUUID() })).status).toBe(409);
   });
 
-  it("blocks settings, alternate course starts and another bank through the shared CAS guard", async () => {
-    const course = setCoursePlan(emptyCourseState(), { startSectionId: "3-1-1-1", dailyQuestionCount: 10, enabled: true, expectedRevision: 0 }, now);
+  it("blocks settings, other concept sessions, another bank and course plans while a bank mission is open", async () => {
+    // An already started course session is unfinished work, so it is frozen first.
+    const course = startAutomaticCourse(setCoursePlan(emptyCourseState(), { startSectionId: "3-1-1-1", dailyQuestionCount: 5, enabled: true, expectedRevision: 0 }, now), now, 71, randomUUID);
     f.rows.set(f.studentId, { studentId: f.studentId, revision: 1, payload: { ...emptySrsState(), course } });
     const view = await action(await data(await read()), { type: "expedition-start" });
+    expect(view.expedition?.mission).toMatchObject({ kind: "elementary", goal: 10, status: "active" });
     const snapshot = structuredClone(f.rows.get(f.studentId));
-    for (const value of [{ type: "goal", unitId: "g4-numbers" }, { type: "course", grade: 4 }, { type: "start", route: "memory" }]) {
-      expect([400, 409]).toContain((await post({ requestId: randomUUID(), expectedRevision: view.revision, action: value })).status);
-    }
+    for (const value of [
+      { type: "goal", unitId: "g4-numbers" },
+      { type: "course", grade: 4 },
+      { type: "start", route: "unit", unitId: "g3-add" },
+    ]) expect((await post({ requestId: randomUUID(), expectedRevision: view.revision, action: value })).status).toBe(409);
+    const request = (body: unknown) => new Request(`${base}/api/learn/math-srs/course`, { method: "POST", headers: { origin: base, "Content-Type": "application/json" }, body: JSON.stringify(body) });
+    expect((await COURSE_PLAN(request({ startSectionId: "3-1-1-1", dailyQuestionCount: 10, enabled: true, expectedRevision: view.revision }))).status).toBe(409);
+    await expect(changeSrsState(f.studentId, (state) => startSrsMission(state, f.studentId, now, 71, randomUUID))).rejects.toThrow("진행 중");
+    expect(f.rows.get(f.studentId)).toEqual(snapshot);
+  });
+
+  it("blocks another bank and course start while a concept mission is open", async () => {
+    const course = setCoursePlan(emptyCourseState(), { startSectionId: "3-1-1-1", dailyQuestionCount: 10, enabled: true, expectedRevision: 0 }, now);
+    f.rows.set(f.studentId, { studentId: f.studentId, revision: 1, payload: { ...emptySrsState(), course } });
+    let view = await action(await data(await read()), { type: "expedition-start" });
+    // The current unit still has uncollected concepts, so concepts come first.
+    expect(view.expedition?.mission).toMatchObject({ kind: "explorers", unitId: "g3-add", goal: 15 });
+    const frozen = view.expedition!.mission!;
+    expect((await post({ requestId: randomUUID(), expectedRevision: view.revision, action: { type: "goal", unitId: "g4-numbers" } })).status).toBe(409);
+    expect((await post({ requestId: randomUUID(), expectedRevision: view.revision, action: { type: "course", grade: 4 } })).status).toBe(400);
+    // Asking the concept engine for another route only resumes the frozen session.
+    view = await action(view, { type: "start", route: "memory" });
+    expect(view.session?.id).toBe(frozen.sourceSessionId);
+    const snapshot = structuredClone(f.rows.get(f.studentId));
     const request = (body: unknown) => new Request(`${base}/api/learn/math-srs/course`, { method: "POST", headers: { origin: base, "Content-Type": "application/json" }, body: JSON.stringify(body) });
     expect((await COURSE_START(request({}))).status).toBe(409);
     expect((await COURSE_PLAN(request({ startSectionId: "3-1-1-1", dailyQuestionCount: 5, enabled: false, expectedRevision: view.revision }))).status).toBe(409);
     await expect(changeSrsState(f.studentId, (state) => startSrsMission(state, f.studentId, now, 71, randomUUID))).rejects.toThrow("진행 중");
     expect(f.rows.get(f.studentId)).toEqual(snapshot);
+    expect((await data(await read())).expedition?.mission).toEqual(frozen);
+  });
+
+  it("lets a teacher edit the plan without unfreezing the student's mission", async () => {
+    const course = startAutomaticCourse(setCoursePlan(emptyCourseState(), { startSectionId: "3-1-1-1", dailyQuestionCount: 5, enabled: true, expectedRevision: 0 }, now), now, 71, randomUUID);
+    f.rows.set(f.studentId, { studentId: f.studentId, revision: 1, payload: { ...emptySrsState(), course } });
+    const view = await action(await data(await read()), { type: "expedition-start" });
+    const frozen = view.expedition!.mission!;
+    const edit = (state: ReturnType<typeof parseSrsState>) => ({ ...state, course: setCoursePlan(state.course!, { startSectionId: "3-1-1-1", dailyQuestionCount: 10, enabled: true, expectedRevision: view.revision }, now) });
+    await expect(changeSrsState(f.studentId, edit)).rejects.toThrow("목표를 바꿔");
+    await changeSrsState(f.studentId, edit, undefined, undefined, { teacher: true });
+    const saved = parseSrsState(f.rows.get(f.studentId)!.payload);
+    expect(saved.course!.plan!.dailyQuestionCount).toBe(10);
+    expect(saved.expedition!.mission).toEqual(expect.objectContaining({ id: frozen.id, unitId: frozen.unitId, goal: 10, status: "active" }));
   });
 
   it("awards the actual Korea completion day once and keeps historical replay read only", async () => {
@@ -230,22 +267,113 @@ describe("authenticated math explorer persistence", () => {
     expect(after.explorers!.completedDays).toEqual(before.explorers!.completedDays);
   });
 
-  it("retains an exhausted unresolved source and cannot replace it at midnight", async () => {
+  it("keeps an exhausted concept mission open across midnight until retry-unresolved solves the rest", async () => {
     let view = await action(await data(await read()), { type: "expedition-start" });
     const id = view.session!.id;
+    const missionId = view.expedition!.mission!.id;
+    let lastRequestId = "";
     for (let count = 0; view.currentActivity && count < 100; count++) {
       const correct = correctAction(view);
-      view = await action(view, correct.type === "read" ? correct : { type: "answer", questionId: view.currentActivity.questionId, choiceIds: [] });
+      const activity = view.currentActivity;
+      // Assembly needs two pieces: the right pieces in the wrong order are wrong.
+      const wrong: ExplorerAction = correct.type !== "answer" ? correct : {
+        type: "answer", questionId: activity.questionId,
+        choiceIds: activity.kind === "assemble" ? [...correct.choiceIds].reverse()
+          : [activity.choices.find((choice) => !correct.choiceIds.includes(choice.id))!.id],
+      };
+      lastRequestId = randomUUID();
+      view = await data(await post({ requestId: lastRequestId, expectedRevision: view.revision, action: wrong }));
     }
-    expect(view.session?.done).toBe(true);
-    expect(view.session?.unresolved.length).toBeGreaterThan(0);
-    expect(view.expedition?.mission).toMatchObject({ status: "retry", answered: 15, sourceSessionId: id, completedAt: null });
+    // Three automatic rounds are exhausted and wrong tasks remain.
+    expect(view.session).toMatchObject({ id, done: true, round: 3 });
+    expect(view.session!.unresolved.length).toBeGreaterThan(0);
+    expect(view.expedition?.mission).toMatchObject({ id: missionId, status: "retry", answered: 15, sourceSessionId: id, completedAt: null });
+    expect(view.expedition?.mission?.retryRemaining).toBe(view.session!.unresolved.length);
     expect(view.journey?.completedDays).toBe(0);
+    const firstCorrect = view.session!.first;
+    const before = parseSrsState(f.rows.get(f.studentId)!.payload);
+    // A request ID already used for an answer cannot be replayed as a start.
+    expect((await post({ requestId: lastRequestId, expectedRevision: view.revision, action: { type: "expedition-start" } })).status).toBe(409);
+
     vi.setSystemTime(new Date("2026-09-28T03:00:00.000Z"));
     view = await action(view, { type: "expedition-start" });
     expect(view.session?.id).toBe(id);
-    expect((await post({ requestId: randomUUID(), expectedRevision: view.revision, action: { type: "start", route: "unit", unitId: "g4-numbers" } })).status).toBe(409);
+    expect(view.expedition?.mission?.id).toBe(missionId);
+    view = await action(view, { type: "start", route: "unit", unitId: "g4-numbers" });
+    expect(view.session?.id).toBe(id);
     expect((await post({ requestId: randomUUID(), expectedRevision: view.revision, action: { type: "goal", unitId: "g4-numbers" } })).status).toBe(409);
+
+    const retryBody = { requestId: randomUUID(), expectedRevision: view.revision, action: { type: "retry-unresolved" } };
+    view = await data(await post(retryBody));
+    expect(view.session).toMatchObject({ id, done: false, continuation: 1 });
+    // While reopened, the mission still owes the leftovers and keeps its 15 answered.
+    expect(view.expedition?.mission).toMatchObject({ id: missionId, answered: 15, status: "retry" });
+    const writes = f.writes;
+    expect((await data(await post(retryBody))).session?.continuation).toBe(1);
+    expect(f.writes).toBe(writes);
+    view = await finish(view);
+    expect(view.session).toMatchObject({ id, done: true, unresolved: [], first: firstCorrect });
+    expect(view.expedition?.mission).toMatchObject({ id: missionId, date: "2026-09-27", status: "complete", retryRemaining: 0 });
+    expect(view.journey?.days.map((day) => day.date)).toEqual(["2026-09-28"]);
+    const after = parseSrsState(f.rows.get(f.studentId)!.payload);
+    // First-attempt statistics are kept; the resolution is recorded, not re-counted.
+    const history = after.explorers!.profile.definitions!.history.filter((entry) => entry.sessionId === id);
+    expect(history).toHaveLength(1);
+    expect(history[0]).toMatchObject({ date: "2026-09-27", first: firstCorrect, unresolved: 0 });
+    expect(after.explorers!.completedDays.filter((day) => day.sessionId === id)).toHaveLength(1);
+    // Explicit retries do not advance any memory schedule.
+    // A card solved only on the retry is collected then, due the day after the
+    // actual completion; the explicit retry never advances a review step.
+    const cardsBefore = before.explorers!.profile.definitions!.cards;
+    const cardsAfter = after.explorers!.profile.definitions!.cards;
+    expect(Object.keys(cardsBefore).length).toBeGreaterThan(0);
+    for (const [cardId, progress] of Object.entries(cardsBefore)) {
+      expect(cardsAfter[cardId].reviewStep ?? 0).toBe(progress.reviewStep ?? 0);
+      if (cardsAfter[cardId].due !== progress.due) expect(cardsAfter[cardId].due).toBe("2026-09-29");
+    }
+    const stars = after.explorers!.profile.stars;
+    expect((await post({ requestId: randomUUID(), expectedRevision: view.revision, action: { type: "retry-unresolved" } })).status).toBe(400);
+    // One tile per Korea day: a finished day cannot start another assignment.
+    expect(view.expedition?.canStart).toBe(false);
+    expect((await post({ requestId: randomUUID(), expectedRevision: view.revision, action: { type: "expedition-start" } })).status).toBe(409);
+    expect(parseSrsState(f.rows.get(f.studentId)!.payload).explorers!.profile.stars).toBe(stars);
+  });
+
+  it("never adds a second tile on a day that already has one", async () => {
+    vi.setSystemTime(new Date("2026-09-27T01:00:00.000Z"));
+    const middle = startSrsMission(emptySrsState(), f.studentId, new Date("2026-09-27T00:00:00.000Z"), 71, randomUUID);
+    const course = startAutomaticCourse(setCoursePlan(emptyCourseState(), { startSectionId: "3-1-1-1", dailyQuestionCount: 5, enabled: true, expectedRevision: 0 }, now), new Date("2026-09-27T01:00:00.000Z"), 71, randomUUID);
+    f.rows.set(f.studentId, { studentId: f.studentId, revision: 1, payload: { ...middle, course } });
+    // Two unfinished sources: the older one is frozen first.
+    let view = await action(await data(await read()), { type: "expedition-start" });
+    expect(view.expedition?.mission).toMatchObject({ kind: "middle", goal: 12 });
+    for (let index = 0; index < 12; index++) await changeSrsState(f.studentId, (state) => {
+      const mission = state.missions[0];
+      const problem = mission.problems[index];
+      return submitSrsAttempt(state, f.studentId, { missionId: mission.id, problemId: problem.id, submittedAnswer: String(problem.answer), elapsedSeconds: 10, rating: "good" }, new Date());
+    });
+    view = await data(await read());
+    expect(view.expedition?.mission).toMatchObject({ kind: "middle", status: "complete" });
+    expect(view.journey?.days.map((day) => day.date)).toEqual(["2026-09-27"]);
+    // The started course session is still owed, so it may be finished today...
+    expect(view.expedition?.canStart).toBe(true);
+    view = await action(view, { type: "expedition-start" });
+    expect(view.expedition?.mission).toMatchObject({ kind: "elementary", status: "active" });
+    const request = (body: unknown) => new Request(`${base}/api/learn/math-srs/course`, { method: "POST", headers: { origin: base, "Content-Type": "application/json" }, body: JSON.stringify(body) });
+    const answerCurrent = async () => {
+      const session = parseSrsState(f.rows.get(f.studentId)!.payload).course!.learner.session!;
+      const problem = session.problems[session.attempts.length];
+      expect((await COURSE_ATTEMPT(request({ sessionId: session.id, problemId: problem.id, submittedAnswer: problem.answer }))).status).toBe(200);
+    };
+    for (let index = 0; index < 5; index++) await answerCurrent();
+    expect((await COURSE_START(request({}))).status).toBe(200);
+    for (let index = 0; index < 5; index++) await answerCurrent();
+    view = await data(await read());
+    // ...but it earns no second tile for the same Korea date.
+    expect(view.expedition?.mission).toMatchObject({ kind: "elementary", status: "complete", answered: 10 });
+    expect(view.journey?.days.map((day) => day.date)).toEqual(["2026-09-27"]);
+    expect(parseSrsState(f.rows.get(f.studentId)!.payload).expedition!.awards).toHaveLength(1);
+    expect(view.expedition?.canStart).toBe(false);
   });
 
   it("continues elementary ten across five-question sessions and midnight despite a source daily limit of five", async () => {

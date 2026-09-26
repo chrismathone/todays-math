@@ -5,7 +5,7 @@ import type {
   CourseStudentState,
 } from "@/contracts/mathSrsCourse.contract";
 import { db } from "@/lib/db";
-import { dailyJourneyDto } from "./dailyJourney";
+import { dailyJourneyDto, visibleExpeditionMission } from "./dailyJourney";
 import { expeditionCourseRecommendation } from "@/lib/math-explorers/expedition";
 import {
   ownedRowsWhere,
@@ -62,6 +62,7 @@ export function courseStudentDto(
   const session = requestedSessionId
     ? findStoredCourseSession(course, requestedSessionId)
     : course.learner.session;
+  const mission = visibleExpeditionMission(saved.state, now);
   return {
     journey: dailyJourneyDto(saved.state, "elementary", now),
     student: {
@@ -75,10 +76,9 @@ export function courseStudentDto(
     summary: {
       ...courseSummary(course, now),
       recommendation: expeditionCourseRecommendation(saved.state, now),
-      ...(saved.state.expedition?.mission?.kind === "elementary" ? {
-        todayAnswered: saved.state.expedition.mission.answered,
-        todayGoal: 10 as const,
-      } : {}),
+      ...(mission?.kind === "elementary"
+        ? { todayAnswered: mission.answered, todayGoal: 10 as const }
+        : {}),
     },
     session: session ? publicCourseSession(session) : null,
   };

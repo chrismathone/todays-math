@@ -21,7 +21,8 @@ export function expeditionInitialCourseRecommendation(state: StoredSrsState, pla
 /** Source creation and frozen assignment are committed together by the route's CAS. */
 export function startExpedition(
   state: StoredSrsState, studentId: string, now: Date, requestId: string,
-  seed: number, newId: () => string, bankCandidates: readonly BankCourseCandidate[] = [],
+  seed: number, newId: () => string,
+  bank: { sectionId: string; candidates: readonly BankCourseCandidate[] } | null = null,
 ): StoredSrsState {
   const plan = planExpedition(state, studentId, now);
   if (state.expedition?.mission && state.expedition.mission.status !== "complete")
@@ -36,7 +37,10 @@ export function startExpedition(
   }
   else if (plan.kind === "elementary") {
     const course = source.course ?? emptyCourseState();
-    source = { ...source, course: startRecommendedCourse(course, expeditionInitialCourseRecommendation(source, plan, now), now, seed, newId, bankCandidates) };
+    const recommendation = expeditionInitialCourseRecommendation(source, plan, now);
+    // Candidates were loaded before the CAS read; use them only for that section.
+    const candidates = bank && recommendation?.sectionId === bank.sectionId ? bank.candidates : [];
+    source = { ...source, course: startRecommendedCourse(course, recommendation, now, seed, newId, candidates) };
   } else {
     let explorer = source.explorers!;
     const session = explorer.profile.definitions?.session;
