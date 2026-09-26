@@ -69,16 +69,18 @@ const now = "2026-09-26";
 const student = { id: "student-ui", name: "학생", className: "테스트반" };
 
 beforeEach(() => {
-  Object.defineProperty(HTMLDialogElement.prototype, "showModal", { configurable: true, value:
-    function (this: HTMLDialogElement) {
+  Object.defineProperty(HTMLDialogElement.prototype, "showModal", {
+    configurable: true,
+    value: function (this: HTMLDialogElement) {
       this.setAttribute("open", "");
     },
   });
-  Object.defineProperty(HTMLDialogElement.prototype, "close", { configurable: true, value: function (
-    this: HTMLDialogElement,
-  ) {
-    this.removeAttribute("open");
-  }});
+  Object.defineProperty(HTMLDialogElement.prototype, "close", {
+    configurable: true,
+    value: function (this: HTMLDialogElement) {
+      this.removeAttribute("open");
+    },
+  });
   vi.spyOn(window, "scrollTo").mockImplementation(() => {});
 });
 
@@ -165,6 +167,7 @@ describe("StudentMathExplorers", () => {
         index: 8,
         total: 15,
         round: 0,
+        continuation: 0,
         done: false,
         first: 5,
         stars: 0,
@@ -256,35 +259,85 @@ describe("StudentMathExplorers", () => {
     expect(screen.queryByText("오늘의 한 칸 완료")).not.toBeInTheDocument();
   });
 
-  it.each([false, true])("re-fetches the canonical mission when concept practice exits or completes: %s", async (complete) => {
-    const initial = stateView();
-    initial.expedition!.next = plan("explorers");
-    const active = { ...initial, session: { ...afterAnswerSession(), index: 14 }, currentActivity: { questionId: "last-question", cardId: initial.units[0].cards[0].id, cardName: "자릿값", unitId: initial.units[0].id, unitTitle: "덧셈과 뺄셈", kind: "truth" as const, prompt: "이 설명이 맞나요?", statement: "수를 자리에 맞게 살펴보세요.", choices: [{ id: 0, label: "맞아요" }, { id: 1, label: "아니에요" }] }, expedition: { ...initial.expedition!, mission: mission() } };
-    const finished = { ...active, currentActivity: null, session: { ...active.session, done: true }, feedback: { correct: true }, expedition: { ...active.expedition, completedToday: true, mission: { ...mission(), status: "complete", answered: 15 } } };
-    let reads = 0;
-    const requests: ExplorerRequest[] = [];
-    vi.stubGlobal("fetch", vi.fn(async (_url, options) => {
-      if (!options?.body) { reads++; return response(reads === 1 ? initial : complete ? finished : active); }
-      const request = JSON.parse(options.body) as ExplorerRequest;
-      requests.push(request);
-      return response(request.action.type === "answer" ? finished : active);
-    }));
-    const { container } = render(<StudentMathExplorers />);
-    fireEvent.click(await screen.findByRole("button", { name: /오늘의 탐험 시작/ }));
-    await screen.findByRole("button", { name: "1 맞아요" });
-    if (complete) {
-      fireEvent.click(screen.getByRole("button", { name: "1 맞아요" }));
-      await waitFor(() => expect(screen.getByRole("button", { name: "1 맞아요" })).toBeDisabled());
-      expect(container.querySelector("[data-explorer-dock]")).toBeInTheDocument();
-      expect(screen.queryByText("오늘의 한 칸 완료")).not.toBeInTheDocument();
-      expect(await screen.findByText("오늘의 한 칸 완료")).toBeVisible();
-    } else {
-      fireEvent.click(screen.getByRole("button", { name: "← 진도판" }));
-      expect(await screen.findByRole("button", { name: /이어서 탐험하기/ })).toBeVisible();
-    }
-    expect(reads).toBe(2);
-    expect(requests.map((request) => request.action.type)).toEqual(complete ? ["expedition-start", "answer"] : ["expedition-start"]);
-  });
+  it.each([false, true])(
+    "re-fetches the canonical mission when concept practice exits or completes: %s",
+    async (complete) => {
+      const initial = stateView();
+      initial.expedition!.next = plan("explorers");
+      const active = {
+        ...initial,
+        session: { ...afterAnswerSession(), index: 14 },
+        currentActivity: {
+          questionId: "last-question",
+          cardId: initial.units[0].cards[0].id,
+          cardName: "자릿값",
+          unitId: initial.units[0].id,
+          unitTitle: "덧셈과 뺄셈",
+          kind: "truth" as const,
+          prompt: "수를 자리에 맞게 살펴보세요. 이 설명이 맞나요?",
+          choices: [
+            { id: 0, label: "맞아요" },
+            { id: 1, label: "아니에요" },
+          ],
+        },
+        expedition: { ...initial.expedition!, mission: mission() },
+      };
+      const finished = {
+        ...active,
+        currentActivity: null,
+        session: { ...active.session, done: true },
+        feedback: { message: "정답", correct: true },
+        expedition: {
+          ...active.expedition,
+          completedToday: true,
+          mission: { ...mission(), status: "complete", answered: 15 },
+        },
+      };
+      let reads = 0;
+      const requests: ExplorerRequest[] = [];
+      vi.stubGlobal(
+        "fetch",
+        vi.fn(async (_url, options) => {
+          if (!options?.body) {
+            reads++;
+            return response(
+              reads === 1 ? initial : complete ? finished : active,
+            );
+          }
+          const request = JSON.parse(options.body) as ExplorerRequest;
+          requests.push(request);
+          return response(request.action.type === "answer" ? finished : active);
+        }),
+      );
+      const { container } = render(<StudentMathExplorers />);
+      fireEvent.click(
+        await screen.findByRole("button", { name: /오늘의 탐험 시작/ }),
+      );
+      await screen.findByRole("button", { name: "1 맞아요" });
+      if (complete) {
+        fireEvent.click(screen.getByRole("button", { name: "1 맞아요" }));
+        await waitFor(() =>
+          expect(
+            screen.getByRole("button", { name: "1 맞아요" }),
+          ).toBeDisabled(),
+        );
+        expect(
+          container.querySelector("[data-explorer-dock]"),
+        ).toBeInTheDocument();
+        expect(screen.queryByText("오늘의 한 칸 완료")).not.toBeInTheDocument();
+        expect(await screen.findByText("오늘의 한 칸 완료")).toBeVisible();
+      } else {
+        fireEvent.click(screen.getByRole("button", { name: "← 진도판" }));
+        expect(
+          await screen.findByRole("button", { name: /이어서 탐험하기/ }),
+        ).toBeVisible();
+      }
+      expect(reads).toBe(2);
+      expect(requests.map((request) => request.action.type)).toEqual(
+        complete ? ["expedition-start", "answer"] : ["expedition-start"],
+      );
+    },
+  );
 
   it("opens and closes the collection when the route view changes", async () => {
     vi.stubGlobal(
@@ -378,6 +431,74 @@ describe("StudentMathExplorers", () => {
     fireEvent.click(screen.getByRole("button", { name: "다시 풀기 닫기" }));
     expect(fetcher).toHaveBeenCalledTimes(1);
     expect(screen.getByLabelText("내 말, 2일 학습 완료")).toBeVisible();
+  });
+
+  it("replays a past concept day read-only in the same frame without starting today's mission", async () => {
+    const value = stateView();
+    const review = {
+      kind: "explorers" as const,
+      dayId: "explorers:2026-09-24",
+      title: "덧셈과 뺄셈",
+      subtitle: "초등 3학년",
+      reviewCount: 15,
+    };
+    value.journey = {
+      activeKind: "explorers",
+      completedDays: 1,
+      todayComplete: false,
+      todayAnswered: 0,
+      todayGoal: 15,
+      upcoming: [{ title: "곱셈", subtitle: "초등 3학년" }],
+      days: [
+        {
+          ...review,
+          id: "global:2026-09-24",
+          date: "2026-09-24",
+          completedAt: "2026-09-24T10:00:00.000Z",
+          reviews: [review],
+        },
+      ],
+    };
+    const card = value.units[0].cards[0];
+    const replaying: ExplorerState = {
+      ...value,
+      session: { ...afterAnswerSession(), index: 0, reviewOnly: true },
+      currentActivity: {
+        questionId: "replay-question",
+        cardId: card.id,
+        cardName: card.name,
+        unitId: value.units[0].id,
+        unitTitle: value.units[0].title,
+        kind: "truth",
+        prompt: "이 설명이 맞나요?",
+        choices: [
+          { id: 0, label: "맞아요" },
+          { id: 1, label: "아니에요" },
+        ],
+      },
+    };
+    const requests: ExplorerRequest[] = [];
+    vi.stubGlobal(
+      "fetch",
+      vi.fn(async (_url, options) => {
+        if (!options?.body) return response(value);
+        requests.push(JSON.parse(options.body));
+        return response(replaying);
+      }),
+    );
+    const { container } = render(<StudentMathExplorers />);
+    fireEvent.click(
+      await screen.findByRole("button", {
+        name: /1일차, 덧셈과 뺄셈, 학습 완료, 다시 풀기/,
+      }),
+    );
+    expect(
+      await screen.findByRole("button", { name: "1 맞아요" }),
+    ).toBeVisible();
+    expect(requests.map((request) => request.action)).toEqual([
+      { type: "start", route: "unit", dayId: "2026-09-24" },
+    ]);
+    expect(container.querySelector("[data-explorer-dock]")).toBeInTheDocument();
   });
 });
 
@@ -561,6 +682,7 @@ function afterAnswerSession() {
     index: 8,
     total: 15,
     round: 0,
+    continuation: 0,
     done: false,
     first: 5,
     stars: 0,

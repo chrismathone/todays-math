@@ -256,8 +256,8 @@ export default function ExplorerHome({
           </button>
         ) : (
           <p className={s.missionComplete}>
-            <span aria-hidden="true">✓</span> 한 칸 전진했어요. 다음 여정에서
-            만나요!
+            <span aria-hidden="true">✓</span> 한 칸 전진했어요. 다음 탐험은 내일
+            열려요.
           </p>
         )}
       </section>
