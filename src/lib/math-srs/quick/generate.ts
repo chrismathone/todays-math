@@ -9,7 +9,11 @@ import type { Choice, QuickShape, Wrong } from "./shape";
 import { m } from "./tex";
 import { TWO_STEP_SHAPES } from "./twoStep";
 import type { QuickItem } from "./types";
-import { QUICK_CHOICE_MAX_EM, choiceWidthEm } from "./width";
+import {
+  QUICK_CHOICE_MAX_EM,
+  QUICK_EQUATION_MAX_EM,
+  choiceWidthEm,
+} from "./width";
 import { WORD_SHAPES } from "./word";
 
 /**
@@ -98,7 +102,10 @@ function assemble(
   for (let attempt = 0; attempt < MAX_ATTEMPTS; attempt += 1) {
     const draft = shape.build(rng, difficulty);
     if (!draft || !fits(draft.correct)) continue;
-    if (!numbersFit(draft.prompt)) continue;
+    if (!numbersFit(draft.prompt) || !numbersFit(draft.equation)) continue;
+    // 식 칸은 320px 에서 한 줄
+    if (draft.equation && choiceWidthEm(draft.equation) > QUICK_EQUATION_MAX_EM)
+      continue;
     const kind = kindOf(draft.correct.tex);
     const picked: Wrong[] = [];
     for (const w of draft.wrong) {
@@ -128,13 +135,15 @@ function assemble(
         mistakes.push(w.mistake);
       }
     }
-    for (const text of [draft.prompt, ...choices, ...draft.solution])
+    const equation = draft.equation ? m(draft.equation) : "";
+    for (const text of [draft.prompt, equation, ...choices, ...draft.solution])
       assertTidy(templateId, text);
     return {
       templateId,
       conceptId: shape.conceptId,
       difficulty,
       prompt: draft.prompt,
+      equation,
       choices,
       answerIndex,
       solution: draft.solution,
@@ -167,6 +176,7 @@ export function toQuickItem(preview: QuickItemPreview): QuickItem {
     conceptId: preview.conceptId,
     difficulty: preview.difficulty,
     prompt: preview.prompt,
+    equation: preview.equation,
     choices: preview.choices,
     answerIndex: preview.answerIndex,
     solution: preview.solution,

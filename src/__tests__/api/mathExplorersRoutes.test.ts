@@ -87,6 +87,7 @@ import {
   GET as REPLAY_GET,
 } from "@/app/api/learn/math-srs/replay/route";
 import { changeSrsState } from "@/lib/math-srs/serverStore";
+import { correctSrsChoice } from "@/lib/math-srs/sharedAnswers";
 import {
   emptyCourseState,
   setCoursePlan,
@@ -187,6 +188,12 @@ afterEach(() => {
   vi.useRealTimers();
   vi.unstubAllEnvs();
 });
+
+/** 학생 미션은 폰 «한 걸음» 보기형(2026-09-27) — 정답·오답 제출을 문항 종류에 맞춘다 */
+type MiddleProblem = { answer: number; choices?: string[] };
+const right = (p: MiddleProblem) => correctSrsChoice(p) ?? String(p.answer);
+const wrongOf = (p: MiddleProblem) =>
+  p.choices ? p.choices[(p.answer + 1) % 4]! : String(p.answer + 999);
 
 describe("authenticated math explorer persistence", () => {
   it("freezes one assignment atomically and replays exact concurrent start receipts across reload and midnight", async () => {
@@ -681,7 +688,7 @@ describe("authenticated math explorer persistence", () => {
           {
             missionId: mission.id,
             problemId: problem.id,
-            submittedAnswer: String(problem.answer),
+            submittedAnswer: right(problem),
             elapsedSeconds: 10,
             rating: "good",
           },
@@ -888,7 +895,7 @@ describe("authenticated math explorer persistence", () => {
           {
             missionId: mission.id,
             problemId: problem.id,
-            submittedAnswer: String(problem.answer + (index === 11 ? 999 : 0)),
+            submittedAnswer: index === 11 ? wrongOf(problem) : right(problem),
             elapsedSeconds: 10,
             rating: "good",
           },
@@ -911,7 +918,7 @@ describe("authenticated math explorer persistence", () => {
           step: 12,
           missionId: mission.id,
           problemId: mission.problems[11].id,
-          submittedAnswer: String(mission.problems[11].answer),
+          submittedAnswer: right(mission.problems[11]),
           recordRetry: true,
         }),
       });

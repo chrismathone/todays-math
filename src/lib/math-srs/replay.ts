@@ -18,7 +18,7 @@ import { srsAnswerChoices } from "./serverDto";
 import { currentSrsMission, type StoredSrsState } from "./serverState";
 import { findJourneyDay } from "./dailyJourney";
 import { generateCourseSession } from "./elementary/generator";
-import { generateProblem } from "./generator";
+import { quickMissionProblem } from "./quickMission";
 import type { ConceptId } from "./types";
 
 type ReplaySource = {
@@ -212,7 +212,9 @@ function middleSource(
     : mission?.problems[step - 1];
   let regenerated = false;
   if (!problem && archived && dayId) {
-    const generated = generateProblem({
+    // 미션이 90개를 넘어 잘린 옛 일차 — 원래 문항이 없으니 새로 만든다. 학생 복습 미션과 같은
+    // 폰 «한 걸음» 문항으로(원장님 확정 2026-09-27 · B2 §8.5). 채점·보기 경로는 보기형도 탄다.
+    const generated = quickMissionProblem({
       conceptId: archived.unitId as ConceptId,
       difficulty: 2,
       seed: stableSeed(`${dayId}:${step}`),

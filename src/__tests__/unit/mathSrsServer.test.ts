@@ -6,7 +6,8 @@ import {
   mathSrsAttemptInputSchema,
   mathSrsStateResponseSchema,
 } from "@/contracts/mathSrs.contract";
-import { checkAnswer } from "@/lib/math-srs/sharedAnswers";
+import { generateProblem } from "@/lib/math-srs/generator";
+import { checkAnswer, correctSrsChoice } from "@/lib/math-srs/sharedAnswers";
 import { publicSrsMission, srsStateDto } from "@/lib/math-srs/serverDto";
 import {
   emptySrsState,
@@ -31,10 +32,16 @@ const classId = "af5d2d3b-a937-4f2b-9cc5-2d616b86642a";
 const now = new Date("2026-09-22T16:00:00.000Z"); // already Sep 23 in the academy
 const start = (state = emptySrsState(), at = now) =>
   startSrsMission(state, studentId, at, 71, randomUUID);
+/** 한 걸음 문항 연결(2026-09-27) 전에 저장된 숫자형 미션 — 숫자 엔진 공급으로 재현한다 */
+const startOld = (state = emptySrsState(), at = now) =>
+  startSrsMission(state, studentId, at, 71, randomUUID, generateProblem);
+const rightAnswer = (
+  problem: StoredSrsState["missions"][number]["problems"][number],
+) => correctSrsChoice(problem) ?? String(problem.answer);
 const requestFor = (state: StoredSrsState, index = 0) => ({
   missionId: state.missions[0].id,
   problemId: state.missions[0].problems[index].id,
-  submittedAnswer: String(state.missions[0].problems[index].answer),
+  submittedAnswer: rightAnswer(state.missions[0].problems[index]),
   elapsedSeconds: 10,
   rating: "easy" as const,
 });
@@ -86,7 +93,7 @@ describe("server practice transitions", () => {
   });
 
   it("derives four stable answer choices for older stored missions without adding an answer key", () => {
-    const saved = start();
+    const saved = startOld();
     const before = structuredClone(saved);
     const result = publicSrsMission(saved.missions[0]);
     for (const [index, problem] of result.problems.entries()) {
@@ -109,7 +116,7 @@ describe("server practice transitions", () => {
   });
 
   it("hides answer keys, solution text, original answer text, hints and source seeds until earned", () => {
-    const state = start();
+    const state = startOld();
     const problem = state.missions[0].problems[0];
     problem.answerText = "$\\frac{1}{2}$";
     problem.source = {

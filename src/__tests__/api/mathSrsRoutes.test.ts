@@ -213,6 +213,7 @@ import {
 } from "@/contracts/mathSrs.contract";
 import { studentGateFor } from "@/lib/studentRouteAccess";
 import { parseSrsState } from "@/lib/math-srs/serverState";
+import { correctSrsChoice } from "@/lib/math-srs/sharedAnswers";
 
 const origin = "http://localhost:3000";
 const req = (
@@ -382,7 +383,10 @@ describe("student SRS routes", () => {
     const stored = parseSrsState(fixture.rows.get(fixture.studentId)!.payload);
     const submission = {
       ...target,
-      submittedAnswer: String(stored.missions[0].problems[0].answer),
+      // 학생 미션은 폰 «한 걸음» 보기형(2026-09-27) — 정답 보기 글자를 낸다
+      submittedAnswer:
+        correctSrsChoice(stored.missions[0].problems[0]) ??
+        String(stored.missions[0].problems[0].answer),
       elapsedSeconds: 10,
       rating: "easy",
     };

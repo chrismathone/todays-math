@@ -42,6 +42,12 @@ export function QuickQuestionCard({
         <p className={s.eyebrow}>{conceptTitle}</p>
         <div className={s.question} data-quick-prompt="true">
           <ProblemContent content={item.prompt} practiceLayout />
+          {/* 학생 화면(`StudentMathSrs` Question)의 식 칸과 같은 렌더러·같은 클래스 */}
+          {item.equation ? (
+            <div data-quick-equation="true">
+              <MathText text={item.equation} as="div" className={s.equation} />
+            </div>
+          ) : null}
         </div>
       </div>
       <div className={s.answerDock}>

@@ -31,7 +31,13 @@ export interface Wrong extends Choice {
 }
 
 export interface Draft {
+  /** 발문 — 식 칸으로 뺀 식은 넣지 않는다 */
   prompt: string;
+  /**
+   * 발문 아래 줄에 따로 크게 보일 핵심 식(`$` 없는 TeX). 없으면 `""` — 문장제는 식을 세우는 것이
+   * 문제라 비운다(원장님 2026-09-27 «식은 발문 아래 줄에 따로 크게»).
+   */
+  equation: string;
   correct: Choice;
   /** 앞에서부터 «값이 안 겹치고 칸에 드는» 셋을 쓴다. 넉넉히 둔다. */
   wrong: (Wrong | null)[];

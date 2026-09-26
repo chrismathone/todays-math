@@ -25,12 +25,14 @@ import {
 } from "../../lib/math-srs/quick/types";
 import {
   QUICK_CHOICE_MAX_EM,
+  QUICK_EQUATION_MAX_EM,
   choiceWidthEm,
 } from "../../lib/math-srs/quick/width";
+import { srsChoiceIssue } from "../../lib/math-srs/sharedAnswers";
 import { CONCEPT_IDS, type Difficulty } from "../../lib/math-srs/types";
 
 const DIFFICULTIES: Difficulty[] = [1, 2, 3, 4, 5];
-/** 모양 × 난이도마다 도는 씨앗 수. 20모양 × 5 × 60 = 6,000문항. */
+/** 모양 × 난이도마다 도는 씨앗 수. 19모양 × 5 × 60 = 5,700문항. */
 const SEEDS = Array.from({ length: 60 }, (_, i) => 20260927 + i * 7919);
 
 // ── 독립 계산기: `$…$` 속 TeX 를 수로 읽는다 ──────────────────────────────────
@@ -199,6 +201,9 @@ const slopeOf = (eq: string) => {
   return l({ x: 1 }) - r({ x: 1 }) - (l({ x: 0 }) - r({ x: 0 }));
 };
 
+/** 미션이 중복을 가르는 열쇠(`mission.ts` 의 `contentKey` 와 같은 모양 — 발문+식) */
+const contentKey = (item: { prompt: string; equation: string }) =>
+  `${item.prompt}\n${item.equation}`;
 const spans = (text: string) =>
   [...text.matchAll(/\$([^$]+)\$/g)].map((m) => m[1]!);
 function bare(choice: string): string {
@@ -335,13 +340,21 @@ function wordExpr(prompt: string): Fn {
   throw new Error(`문장제 판정기가 모르는 발문 — ${prompt}`);
 }
 
+/**
+ * 발문이 `re` 꼴인지 보고, 식 칸(`$…$`)의 TeX 를 돌려준다. 식 칸이 비었으면 던진다 —
+ * 식이 있어야 하는 모양이 식을 잃으면 여기서 드러난다.
+ */
+function read(item: QuickItem, re: RegExp): { eq: string; m: RegExpExecArray } {
+  const m = re.exec(item.prompt);
+  if (!m) throw new Error(`발문 꼴 — ${item.prompt}`);
+  if (!item.equation) throw new Error(`식 칸이 비었다 — ${item.prompt}`);
+  return { eq: bare(item.equation), m };
+}
+
 const JUDGES: Record<string, Judge> = {
   "quick:balance:same-op": (item) => {
-    const m = /^\$a=b\$ 일 때 \$([^$]+)\$ [과와] 같은 식은\?$/.exec(
-      item.prompt,
-    );
-    if (!m) throw new Error(`발문 꼴 — ${item.prompt}`);
-    const left = parseTex(m[1]!);
+    const { eq } = read(item, /^\$a=b\$ 일 때 같은 식은\?$/);
+    const left = parseTex(eq);
     return (choice) => {
       const c = bare(choice);
       // `\frac` 속 글자는 문자가 아니다
@@ -350,13 +363,12 @@ const JUDGES: Record<string, Judge> = {
     };
   },
   "quick:balance:undo": (item) => {
-    const m =
-      /^\$([^$]+)\$ 에서 \$x\$ 만 남기려면 (양변에서 뺄|양변에 더할|양변을 나눌|양변에 곱할) 수는\?$/.exec(
-        item.prompt,
-      );
-    if (!m) throw new Error(`발문 꼴 — ${item.prompt}`);
-    const [left] = sides(m[1]!);
-    const op = m[2]!;
+    const { eq, m } = read(
+      item,
+      /^\$x\$ 만 남기려면 (양변에서 뺄|양변에 더할|양변을 나눌|양변에 곱할) 수는\?$/,
+    );
+    const [left] = sides(eq);
+    const op = m[1]!;
     return (choice) => {
       const v = numberOf(choice);
       const after = (x: number) => {
@@ -370,122 +382,92 @@ const JUDGES: Record<string, Judge> = {
     };
   },
   "quick:balance:root-constant": (item) => {
-    const m = /^\$([^$]+)\$ 의 해가 \$x=(-?\d+)\$ 일 때 \$a\$ 의 값은\?$/.exec(
-      item.prompt,
-    );
-    if (!m) throw new Error(`발문 꼴 — ${item.prompt}`);
-    const [l, r] = sides(m[1]!);
-    const x = Number(m[2]);
+    const { eq, m } = read(item, /^해가 \$x=(-?\d+)\$ 일 때 \$a\$ 의 값은\?$/);
+    const [l, r] = sides(eq);
+    const x = Number(m[1]);
     const g = (a: number) => l({ x, a }) - r({ x, a });
     const a = -g(0) / (g(1) - g(0));
     return isNumber(a);
   },
   "quick:two-step:transpose": (item) => {
-    const m = /^\$([^$]+)\$ 에서 \$(-?\d+)\$ [을를] 이항하면\?$/.exec(
-      item.prompt,
-    );
-    if (!m) throw new Error(`발문 꼴 — ${item.prompt}`);
-    const eq = m[1]!;
+    const { eq, m } = read(item, /^\$(-?\d+)\$ [을를] 이항하면\?$/);
     // 옮기는 항이 정말 좌변의 상수항인가 — 좌변을 x=0 에서 재면 그 수다.
     const [left] = sides(eq);
-    if (!near(left({ x: 0 }), Number(m[2])))
+    if (!near(left({ x: 0 }), Number(m[1])))
       throw new Error(`이항하는 항이 좌변의 상수항이 아니다 — ${item.prompt}`);
     return isCollected(eq, slopeOf(eq));
   },
   "quick:two-step:coef": (item) => {
-    const m = /^\$([^$]+)\$ 일 때 \$x\$ 의 값은\?$/.exec(item.prompt);
-    if (!m) throw new Error(`발문 꼴 — ${item.prompt}`);
-    const s = solve(m[1]!);
-    if (s.kind !== "one")
-      throw new Error(`해가 하나가 아니다 — ${item.prompt}`);
+    const { eq } = read(item, /^\$x\$ 의 값은\?$/);
+    const s = solve(eq);
+    if (s.kind !== "one") throw new Error(`해가 하나가 아니다 — ${eq}`);
     // 한 걸음 — 좌변은 항 하나(상수항 없음)
-    const [left] = sides(m[1]!);
-    if (!near(left({ x: 0 }), 0))
-      throw new Error(`계수 문항에 상수항 — ${item.prompt}`);
+    const [left] = sides(eq);
+    if (!near(left({ x: 0 }), 0)) throw new Error(`계수 문항에 상수항 — ${eq}`);
     return isNumber(s.x);
   },
   "quick:two-step:solve": (item) => {
-    const m = /^\$([^$]+)\$ 일 때 \$x\$ 의 값은\?$/.exec(item.prompt);
-    if (!m) throw new Error(`발문 꼴 — ${item.prompt}`);
-    const s = solve(m[1]!);
-    if (s.kind !== "one")
-      throw new Error(`해가 하나가 아니다 — ${item.prompt}`);
+    const { eq } = read(item, /^\$x\$ 의 값은\?$/);
+    const s = solve(eq);
+    if (s.kind !== "one") throw new Error(`해가 하나가 아니다 — ${eq}`);
     return isNumber(s.x);
   },
   "quick:distribute:sign": (item) => {
-    const m = /^\$([^$]+)\$ 의 괄호를 풀면\?$/.exec(item.prompt);
-    if (!m) throw new Error(`발문 꼴 — ${item.prompt}`);
-    return isExprOf(parseTex(m[1]!), xEnv);
+    const { eq } = read(item, /^괄호를 풀면\?$/);
+    if (!eq.startsWith("-(")) throw new Error(`괄호 앞 − 가 아니다 — ${eq}`);
+    return isExprOf(parseTex(eq), xEnv);
   },
   "quick:distribute:times": (item) => {
-    const m = /^\$([^$]+)\$ 의 괄호를 풀면\?$/.exec(item.prompt);
-    if (!m) throw new Error(`발문 꼴 — ${item.prompt}`);
-    return isExprOf(parseTex(m[1]!), xEnv);
+    const { eq } = read(item, /^괄호를 풀면\?$/);
+    return isExprOf(parseTex(eq), xEnv);
   },
   "quick:distribute:simplify": (item) => {
-    const m = /^\$([^$]+)\$ [을를] 간단히 하면\?$/.exec(item.prompt);
-    if (!m) throw new Error(`발문 꼴 — ${item.prompt}`);
-    return isExprOf(parseTex(m[1]!), xEnv);
+    const { eq } = read(item, /^간단히 하면\?$/);
+    return isExprOf(parseTex(eq), xEnv);
   },
   "quick:both-sides:collect": (item) => {
-    const m = /^\$([^$]+)\$ [을를] 이항해 정리하면\?$/.exec(item.prompt);
-    if (!m) throw new Error(`발문 꼴 — ${item.prompt}`);
-    return isCollected(m[1]!, slopeOf(m[1]!));
+    const { eq } = read(item, /^이항해 정리하면\?$/);
+    return isCollected(eq, slopeOf(eq));
   },
   "quick:both-sides:solve": (item) => {
-    const m = /^\$([^$]+)\$ 일 때 \$x\$ 의 값은\?$/.exec(item.prompt);
-    if (!m) throw new Error(`발문 꼴 — ${item.prompt}`);
-    const s = solve(m[1]!);
-    if (s.kind !== "one")
-      throw new Error(`해가 하나가 아니다 — ${item.prompt}`);
+    const { eq } = read(item, /^\$x\$ 의 값은\?$/);
+    const s = solve(eq);
+    if (s.kind !== "one") throw new Error(`해가 하나가 아니다 — ${eq}`);
     return isNumber(s.x);
   },
   "quick:both-sides:no-solution": (item) => {
-    const m =
-      /^\$([^$]+)\$ 의 해가 (없을|무수히 많을) 때 \$a\$ 의 값은\?$/.exec(
-        item.prompt,
-      );
-    if (!m) throw new Error(`발문 꼴 — ${item.prompt}`);
-    const want = m[2] === "없을" ? "none" : "all";
-    return (choice) => solve(m[1]!, { a: numberOf(choice) }).kind === want;
+    const { eq, m } = read(
+      item,
+      /^해가 (없을|무수히 많을) 때 \$a\$ 의 값은\?$/,
+    );
+    const want = m[1] === "없을" ? "none" : "all";
+    return (choice) => solve(eq, { a: numberOf(choice) }).kind === want;
   },
   "quick:fractions:lcd": (item) => {
-    const m = /^\$([^$]+)\$ 의 양변에 곱할 가장 작은 자연수는\?$/.exec(
-      item.prompt,
-    );
-    if (!m) throw new Error(`발문 꼴 — ${item.prompt}`);
-    const dens = [...m[1]!.matchAll(/\\frac\{[^{}]*\}\{(\d+)\}/g)].map((d) =>
+    const { eq } = read(item, /^양변에 곱할 가장 작은 자연수는\?$/);
+    const dens = [...eq.matchAll(/\\frac\{[^{}]*\}\{(\d+)\}/g)].map((d) =>
       Number(d[1]),
     );
-    if (dens.length < 2)
-      throw new Error(`분모가 둘 이상이어야 — ${item.prompt}`);
+    if (dens.length < 2) throw new Error(`분모가 둘 이상이어야 — ${eq}`);
     return isNumber(dens.reduce(lcm));
   },
   "quick:fractions:clear": (item) => {
-    const m = /^\$([^$]+)\$ 의 양변에 \$(\d+)\$ [을를] 곱하면 좌변은\?$/.exec(
-      item.prompt,
-    );
-    if (!m) throw new Error(`발문 꼴 — ${item.prompt}`);
-    const [left] = sides(m[1]!);
-    const k = Number(m[2]);
+    const { eq, m } = read(item, /^양변에 \$(\d+)\$ [을를] 곱하면 좌변은\?$/);
+    const [left] = sides(eq);
+    const k = Number(m[1]);
     // 곱하는 수가 정말 모든 분모의 공배수인가
-    for (const d of m[1]!.matchAll(/\\frac\{[^{}]*\}\{(\d+)\}/g))
+    for (const d of eq.matchAll(/\\frac\{[^{}]*\}\{(\d+)\}/g))
       if (k % Number(d[1]) !== 0)
-        throw new Error(
-          `곱하는 수가 분모 ${d[1]} 의 배수가 아니다 — ${item.prompt}`,
-        );
+        throw new Error(`곱하는 수가 분모 ${d[1]} 의 배수가 아니다 — ${eq}`);
     return isExprOf((e) => k * left(e), xEnv);
   },
   "quick:fractions:proportion": (item) => {
-    const m = /^비례식 \$([^$]+)\$ [을를] 방정식으로 바꾸면\?$/.exec(
-      item.prompt,
-    );
-    if (!m) throw new Error(`발문 꼴 — ${item.prompt}`);
-    const [left, right] = m[1]!.split("=");
+    const { eq } = read(item, /^비례식을 방정식으로 바꾸면\?$/);
+    const [left, right] = eq.split("=");
     const terms = [...left!.split(":"), ...right!.split(":")];
-    if (terms.length !== 4) throw new Error(`비례식 꼴 — ${item.prompt}`);
+    if (terms.length !== 4) throw new Error(`비례식 꼴 — ${eq}`);
     const at = terms.indexOf("x");
-    if (at < 0) throw new Error(`x 가 없다 — ${item.prompt}`);
+    if (at < 0) throw new Error(`x 가 없다 — ${eq}`);
     const n = terms.map((t) => (t === "x" ? Number.NaN : Number(t)));
     // 외항의 곱 = 내항의 곱
     const partner = [3, 2, 1, 0][at]!;
@@ -500,12 +482,18 @@ const JUDGES: Record<string, Judge> = {
       return p === coef && Number(mm[2]) === product;
     };
   },
-  "quick:word:phrase": (item) => isExprOf(wordExpr(item.prompt), xEnv),
-  "quick:word:consecutive": (item) => isExprOf(wordExpr(item.prompt), xEnv),
-  "quick:word:age": (item) => isExprOf(wordExpr(item.prompt), xEnv),
-  "quick:word:speed": (item) =>
-    isExprOf(wordExpr(item.prompt), (t) => ({ x: t })),
+  // 문장제는 식을 세우는 것이 문제라 식 칸이 비어 있어야 한다(모범 식을 보여 주면 안 된다)
+  "quick:word:phrase": (item) => wordJudge(item),
+  "quick:word:consecutive": (item) => wordJudge(item),
+  "quick:word:age": (item) => wordJudge(item),
+  "quick:word:speed": (item) => wordJudge(item),
 };
+
+function wordJudge(item: QuickItem) {
+  if (item.equation !== "")
+    throw new Error(`문장제에 식 칸이 있다 — ${item.equation}`);
+  return isExprOf(wordExpr(item.prompt), xEnv);
+}
 
 /** 보기끼리 «값으로» 다른가. 방정식은 해로, 식은 여러 값에서, 수는 수로 견준다. */
 function valueKey(choice: string): string {
@@ -670,6 +658,11 @@ describe("한 걸음 문항 — 정답과 보기", () => {
   it("B2 저장 규칙 — 빈 글자·앞뒤 공백 없음 · 200자 이하 · 공백만 다른 보기도 서로 다름", () => {
     const squash = (c: string) => c.replace(/\s+/g, "");
     for (const { item } of ITEMS) {
+      // 제품의 저장 규칙 함수를 그대로 부른다(B2 §8.2 — 어기면 미션 시작 저장이 통째로 거절된다)
+      expect(
+        srsChoiceIssue({ answer: item.answerIndex, choices: item.choices }),
+        item.prompt,
+      ).toBeNull();
       for (const c of item.choices) {
         expect(c.trim(), item.prompt).toBe(c);
         expect(c.length).toBeGreaterThan(2);
@@ -677,26 +670,39 @@ describe("한 걸음 문항 — 정답과 보기", () => {
       }
       expect(new Set(item.choices.map(squash)).size, item.prompt).toBe(4);
       expect(item.prompt.trim()).toBe(item.prompt);
+      expect(item.equation.trim()).toBe(item.equation);
     }
   });
 
-  it("같은 발문이면 정답도 같다 (미션은 발문으로 중복을 가른다)", () => {
+  it("식 칸 — 문장제만 비어 있고, 나머지는 «$…$» 한 덩이이며 발문에 같은 식을 되풀이하지 않는다", () => {
+    for (const { item } of ITEMS) {
+      if (item.conceptId === "word") {
+        expect(item.equation, item.prompt).toBe("");
+        continue;
+      }
+      expect(item.equation, item.prompt).toMatch(/^\$[^$]+\$$/);
+      expect(item.prompt.includes(item.equation), item.prompt).toBe(false);
+    }
+  });
+
+  it("같은 발문·식이면 정답도 같다 (미션은 발문+식으로 중복을 가른다)", () => {
     const answerOf = new Map<string, string>();
     for (const { item } of ITEMS) {
       const answer = item.choices[item.answerIndex]!;
-      const seen = answerOf.get(item.prompt);
-      if (seen !== undefined) expect(answer, item.prompt).toBe(seen);
-      else answerOf.set(item.prompt, answer);
+      const key = contentKey(item);
+      const seen = answerOf.get(key);
+      if (seen !== undefined) expect(answer, key).toBe(seen);
+      else answerOf.set(key, answer);
     }
   });
 
-  it("발문이 잘 겹치지 않는다 — 개념 × 난이도마다 씨앗 400 에서 서로 다른 발문 30 이상", () => {
+  it("발문이 잘 겹치지 않는다 — 개념 × 난이도마다 씨앗 400 에서 서로 다른 발문+식 30 이상", () => {
     for (const conceptId of CONCEPT_IDS)
       for (const difficulty of DIFFICULTIES) {
         const prompts = new Set<string>();
         for (let seed = 1; seed <= 400; seed += 1)
           prompts.add(
-            generateQuickItem({ conceptId, difficulty, seed }).prompt,
+            contentKey(generateQuickItem({ conceptId, difficulty, seed })),
           );
         expect(
           prompts.size,
@@ -742,11 +748,12 @@ describe("한 걸음 문항 — 지면", () => {
     for (const { item } of ITEMS)
       for (const part of [
         item.prompt,
+        item.equation,
         ...item.choices,
         ...item.solution,
         item.hint,
       ]) {
-        if (seen.has(part)) continue;
+        if (!part || seen.has(part)) continue;
         seen.add(part);
         const html = renderMathHtml(part);
         expect(/#cc0000/i.test(html), part).toBe(false);
@@ -757,14 +764,24 @@ describe("한 걸음 문항 — 지면", () => {
 
   it("숫자는 모두 수식 안에 있다", () => {
     for (const { item } of ITEMS)
-      for (const part of [item.prompt, ...item.solution, item.hint])
+      for (const part of [
+        item.prompt,
+        item.equation,
+        ...item.solution,
+        item.hint,
+      ])
         expect(bareNumbers(part), part).toEqual([]);
   });
 
   it("계수 0·1, 부호 겹침, 음수 분모, 가분수가 찍히지 않는다", () => {
     const failures: string[] = [];
     for (const { item } of ITEMS) {
-      for (const part of [item.prompt, ...item.choices, ...item.solution])
+      for (const part of [
+        item.prompt,
+        item.equation,
+        ...item.choices,
+        ...item.solution,
+      ])
         for (const span of spans(part)) {
           failures.push(...degenerate(span));
           // 정수끼리의 가분수는 제품 전처리가 대분수로 바꾼다(2026-08-23) — 아예 안 낸다
@@ -775,9 +792,9 @@ describe("한 걸음 문항 — 지면", () => {
     expect(failures.slice(0, 8)).toEqual([]);
   });
 
-  it("수는 두 자리 안이다 (발문·보기)", () => {
+  it("수는 두 자리 안이다 (발문·식·보기)", () => {
     for (const { item } of ITEMS)
-      for (const part of [item.prompt, ...item.choices])
+      for (const part of [item.prompt, item.equation, ...item.choices])
         for (const span of spans(part))
           for (const n of span.match(/\d+/g) ?? [])
             expect(Number(n), `${item.templateId} ${part}`).toBeLessThanOrEqual(
@@ -804,6 +821,16 @@ describe("한 걸음 문항 — 지면", () => {
         );
       }
     expect(widest.em).toBeGreaterThan(2);
+  });
+
+  it(`식 칸이 320px 에서 한 줄이다 (어림 ${QUICK_EQUATION_MAX_EM}em 이하 — 실측은 Playwright)`, () => {
+    // 학생 화면 식 칸: 22px × KaTeX 1.15 = 25.3px/em, 문제 칸 폭 약 257px
+    for (const { item } of ITEMS) {
+      if (!item.equation) continue;
+      const em = choiceWidthEm(bare(item.equation));
+      expect(em, item.equation).toBeLessThanOrEqual(QUICK_EQUATION_MAX_EM);
+      expect(em * 25.3, item.equation).toBeLessThanOrEqual(257);
+    }
   });
 
   it("발문이 320px 에서 두 줄 안이다 (어림 — 실측은 Playwright)", () => {
@@ -878,7 +905,7 @@ describe("한 걸음 문항 — 씨앗과 난이도", () => {
       }
   });
 
-  it("씨앗이 바뀌면 문항이 바뀐다 (모양 × 난이도마다 서로 다른 발문 둘 이상)", () => {
+  it("씨앗이 바뀌면 문항이 바뀐다 (모양 × 난이도마다 서로 다른 발문+식 둘 이상)", () => {
     for (const shape of QUICK_SHAPES) {
       const all = new Set<string>();
       for (const difficulty of DIFFICULTIES) {
@@ -887,7 +914,7 @@ describe("한 걸음 문항 — 씨앗과 난이도", () => {
             (x) =>
               x.item.templateId === shape.templateId &&
               x.item.difficulty === difficulty,
-          ).map((x) => x.item.prompt),
+          ).map((x) => contentKey(x.item)),
         );
         expect(
           prompts.size,
@@ -907,6 +934,7 @@ describe("한 걸음 문항 — 씨앗과 난이도", () => {
     const score = (item: QuickItem) => {
       const parts = [
         ...spans(item.prompt),
+        ...spans(item.equation),
         bare(item.choices[item.answerIndex]!),
       ];
       const ints = parts.flatMap((s) => (s.match(/\d+/g) ?? []).map(Number));
@@ -930,6 +958,21 @@ describe("한 걸음 문항 — 씨앗과 난이도", () => {
       expect(mean[4]! > mean[2]!, label).toBe(true);
       expect(mean[4]! - mean[0]!, label).toBeGreaterThanOrEqual(1.5);
     }
+  });
+
+  it("18번 나이 — «몇 년 후» 문항에는 «$k-x$ (순서를 바꿔 뺌)» 오답이 없다 (원장님 2026-09-27)", () => {
+    let later = 0;
+    for (const { item } of ITEMS) {
+      if (
+        item.templateId !== "quick:word:age" ||
+        !/년 후 나이는\?$/.test(item.prompt)
+      )
+        continue;
+      later += 1;
+      for (const c of item.choices)
+        expect(/^\$\d+-x\$$/.test(c), `${item.prompt} ${c}`).toBe(false);
+    }
+    expect(later).toBeGreaterThan(50);
   });
 
   it("목표 시간은 난이도와 함께 늘거나 같다", () => {

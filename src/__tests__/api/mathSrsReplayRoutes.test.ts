@@ -64,6 +64,7 @@ import {
   type StoredCourse,
 } from "@/lib/math-srs/courseAutomation";
 import { gradeCourseAnswer } from "@/lib/math-srs/elementary/answers";
+import { generateProblem } from "@/lib/math-srs/generator";
 import { replayProblem } from "@/lib/math-srs/replay";
 import { checkAnswer } from "@/lib/math-srs/sharedAnswers";
 import {
@@ -148,8 +149,16 @@ function firstSession(count = 5, wrongFirst = false, at = now) {
     state = answerCourse(state, wrongFirst && i === 0, at);
   return state;
 }
+/** 숫자형 중등 미션(한 걸음 문항 연결 전의 옛 미션) — 숫자 엔진 공급을 밝혀 만든다 */
 function middle(count = 1, at = now) {
-  let state = startSrsMission(emptySrsState(), f.studentId, at, 71, randomUUID);
+  let state = startSrsMission(
+    emptySrsState(),
+    f.studentId,
+    at,
+    71,
+    randomUUID,
+    generateProblem,
+  );
   for (let i = 0; i < count; i++) {
     const mission = state.missions[0];
     state = submitSrsAttempt(
@@ -217,6 +226,7 @@ describe("completed board tile replay API", () => {
       now,
       71,
       randomUUID,
+      generateProblem,
     );
     const missionId = state.missions[0].id;
     for (let index = 0; index < 12; index++) {

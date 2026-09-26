@@ -65,7 +65,12 @@ window.__qaCard = (card) => {
   const choices = [...card.querySelectorAll('[data-quick-choice]')].map((btn) => {
     const math = btn.lastElementChild;
     const b = btn.getBoundingClientRect();
-    const m = math.getBoundingClientRect();
+    // 🔴 인라인 span 의 상자는 글꼴 높이뿐이라 큰 분수(\dfrac)가 삐져나와도 안 보인다 —
+    //    KaTeX 조각(.base, inline-block)의 상자를 합쳐 잰다
+    const bases = [...math.querySelectorAll('.katex-html > .base')].map((e) => e.getBoundingClientRect());
+    const m = bases.length
+      ? { top: Math.min(...bases.map((r) => r.top)), bottom: Math.max(...bases.map((r) => r.bottom)), width: Math.max(...bases.map((r) => r.right)) - Math.min(...bases.map((r) => r.left)) }
+      : math.getBoundingClientRect();
     const border = 2;
     return {
       text: math.textContent,
@@ -75,9 +80,14 @@ window.__qaCard = (card) => {
       width: Math.round(m.width),
     };
   });
+  const eqWrap = card.querySelector('[data-quick-equation]');
+  const eq = eqWrap ? eqWrap.firstElementChild : null;
   return {
-    promptLines: window.__qaLines(prompt),
+    promptLines: window.__qaLines(prompt.firstElementChild),
     promptOverflowX: Math.max(0, prompt.scrollWidth - prompt.clientWidth),
+    equationLines: eq ? window.__qaLines(eq) : 0,
+    equationOverflowX: eq ? Math.max(0, eq.scrollWidth - eq.clientWidth) : 0,
+    equationWidth: eq ? Math.round(Math.max(0, ...[...eq.querySelectorAll('.katex-html > .base')].map((e) => e.getBoundingClientRect().right)) - eq.getBoundingClientRect().left) : 0,
     scrollOverflowY: Math.max(0, scroll.scrollHeight - scroll.clientHeight),
     choices,
   };
@@ -164,6 +174,11 @@ for (const engineName of engines) {
         problems.push(
           `${engineName} ${width} 발문 ${card.promptLines}줄 넘침 ${card.promptOverflowX} — ${card.key}`,
         );
+      // 식 칸은 한 줄(원장님 확정 — 발문 아래 줄에 따로 크게)
+      if (card.equationLines > 1 || card.equationOverflowX > 0.5)
+        problems.push(
+          `${engineName} ${width} 식 칸 ${card.equationLines}줄 넘침 ${card.equationOverflowX} — ${card.key}`,
+        );
     }
     if (stress.docOverflowX > 0)
       problems.push(
@@ -180,6 +195,14 @@ for (const engineName of engines) {
         (acc, c) => ({
           ...acc,
           [c.promptLines]: (acc[c.promptLines] ?? 0) + 1,
+        }),
+        {},
+      ),
+      widestEquationPx: Math.max(...stress.cards.map((c) => c.equationWidth)),
+      equationLines: stress.cards.reduce(
+        (acc, c) => ({
+          ...acc,
+          [c.equationLines]: (acc[c.equationLines] ?? 0) + 1,
         }),
         {},
       ),
@@ -209,6 +232,10 @@ for (const engineName of engines) {
         );
       if (m.promptLines > 2)
         problems.push(`${engineName} ${width} ${name} 발문 ${m.promptLines}줄`);
+      if (m.equationLines > 1 || m.equationOverflowX > 0.5)
+        problems.push(
+          `${engineName} ${width} ${name} 식 칸 ${m.equationLines}줄 넘침 ${m.equationOverflowX}`,
+        );
       for (const c of m.choices)
         if (c.lines > 2 || c.overflowX > 0.5 || c.clipY > 0.5)
           problems.push(
@@ -240,7 +267,7 @@ for (const engineName of engines) {
 
     summary.runs.push(run);
     console.log(
-      `${engineName} ${width}×${height}: 넘침 표본 ${run.stress.cards}장 · 보기 줄 ${JSON.stringify(run.stress.choiceLines)} · 발문 줄 ${JSON.stringify(run.stress.promptLines)} · 가장 넓은 보기 ${run.stress.widestChoicePx}px · 폰 화면 ${run.frames.length}장`,
+      `${engineName} ${width}×${height}: 넘침 표본 ${run.stress.cards}장 · 보기 줄 ${JSON.stringify(run.stress.choiceLines)} · 발문 줄 ${JSON.stringify(run.stress.promptLines)} · 가장 넓은 보기 ${run.stress.widestChoicePx}px · 식 칸 줄 ${JSON.stringify(run.stress.equationLines)} · 가장 넓은 식 ${run.stress.widestEquationPx}px · 폰 화면 ${run.frames.length}장`,
     );
     await context.close();
   }

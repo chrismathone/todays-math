@@ -10,7 +10,7 @@ import {
   type QuickShape,
   type Wrong,
 } from "./shape";
-import { factor, tail, term, withJosa } from "./tex";
+import { factor, tail, term } from "./tex";
 
 /** 등식의 성질 — `a=b` 일 때 `a` 쪽 식과 같은 `b` 쪽 식 */
 const sameOp: QuickShape = {
@@ -85,7 +85,8 @@ const sameOp: QuickShape = {
     }
     if (!correct) return null;
     return {
-      prompt: `$a=b$ 일 때 ${withJosa(left, "과/와")} 같은 식은?`,
+      prompt: "$a=b$ 일 때 같은 식은?",
+      equation: left,
       correct,
       wrong: wrongs,
       solution: [`$a=b$ 이므로 $${left}=${correct.tex}$`],
@@ -177,7 +178,8 @@ const undo: QuickShape = {
     const correct = numChoice(answer);
     if (!correct) return null;
     return {
-      prompt: `$${equation}$ 에서 $x$ 만 남기려면 ${phrase} 수는?`,
+      prompt: `$x$ 만 남기려면 ${phrase} 수는?`,
+      equation,
       correct,
       wrong: wrongs,
       solution: [solution],
@@ -234,7 +236,8 @@ const rootConstant: QuickShape = {
     const correct = numChoice(a);
     if (!correct) return null;
     return {
-      prompt: `$${equation}$ 의 해가 $x=${s}$ 일 때 $a$ 의 값은?`,
+      prompt: `해가 $x=${s}$ 일 때 $a$ 의 값은?`,
+      equation,
       correct,
       wrong: [
         wrong(numChoice(c + xPart), "옮길 때 부호를 바꾸지 않음"),

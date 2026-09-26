@@ -36,7 +36,8 @@ const transpose: QuickShape = {
     const correct = eqChoice(a, c - b);
     if (!correct) return null;
     return {
-      prompt: `$${equation}$ 에서 ${withJosa(String(b), "을/를")} 이항하면?`,
+      prompt: `${withJosa(String(b), "을/를")} 이항하면?`,
+      equation,
       correct,
       wrong: [
         wrong(eqChoice(a, c + b), "부호를 바꾸지 않음"),
@@ -72,7 +73,8 @@ const coef: QuickShape = {
       const correct = numChoice(s);
       if (!correct) return null;
       return {
-        prompt: `$${fracTerm(p, q)}=${c}$ 일 때 $x$ 의 값은?`,
+        prompt: "$x$ 의 값은?",
+        equation: `${fracTerm(p, q)}=${c}`,
         correct,
         wrong: [
           wrong(numChoice(c * q), "분모만 곱함"),
@@ -101,7 +103,8 @@ const coef: QuickShape = {
     const correct = numChoice(s);
     if (!correct) return null;
     return {
-      prompt: `$${term(a)}=${c}$ 일 때 $x$ 의 값은?`,
+      prompt: "$x$ 의 값은?",
+      equation: `${term(a)}=${c}`,
       correct,
       wrong: [
         wrong(numChoice(-s), "부호를 반대로 함"),
@@ -154,7 +157,8 @@ const solve: QuickShape = {
     const correct = numChoice(s);
     if (!correct) return null;
     return {
-      prompt: `$${lin(a, b)}=${c}$ 일 때 $x$ 의 값은?`,
+      prompt: "$x$ 의 값은?",
+      equation: `${lin(a, b)}=${c}`,
       correct,
       wrong: [
         wrong(numChoice((c + b) / a), "이항할 때 부호를 바꾸지 않음"),
