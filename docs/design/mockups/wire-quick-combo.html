@@ -1,0 +1,569 @@
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>콤보 표시 와이어</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nanum+Myeongjo:wght@800&family=Noto+Sans+KR:wght@400;500;700&display=swap">
+<style>
+/* 와이어 — 흑백·상자·실제 글자 크기만. 색·글꼴·움직임은 Hi-fi 단계(05 §0-3).
+   바깥 틀(제목·탭·표)은 wire-d129 와 같은 토큰. 폰 안은 회색조만 쓴다. */
+:root {
+  color-scheme: light;
+  --paper: #fafaf8; --ink: #161616; --ink-2: #61615e;
+  --rule: #b9b9b6; --pick: #2064b3;
+  --w-fill: #efefed; --w-line: #b9b9b6; --w-dark: #2b2b2b;
+  --sans: "Pretendard Variable", Pretendard, "Noto Sans KR", "Malgun Gothic", system-ui, sans-serif;
+  --serif: "Nanum Myeongjo", "Noto Serif KR", Batang, serif;
+  --math: "Times New Roman", "KaTeX_Main", serif;
+  /* 폰 폭 — 위 단추로 320 ↔ 390 */
+  --pw: 320px; --ph: 568px; --row: 60px; --choice: 18px;
+}
+body.w390 { --pw: 390px; --ph: 700px; --row: 70px; --choice: 20px; }
+body { margin: 0; background: var(--paper); color: var(--ink); font-family: var(--sans); font-size: 14px; line-height: 1.55; }
+* { box-sizing: border-box; }
+[hidden] { display: none !important; }
+button { font: inherit; color: inherit; }
+:is(button):focus-visible { outline: 3px solid #82a1ff; outline-offset: 2px; }
+.tab, .wbtn { cursor: pointer; }
+
+.board { max-width: 1180px; margin: 0 auto; padding-inline: 24px; padding-block: 28px 72px; }
+@media (max-width: 600px) { .board { padding-inline: 16px; } }
+.head { display: grid; gap: 10px; padding-bottom: 18px; }
+.eyebrow { margin: 0; font-size: 12px; letter-spacing: .06em; color: var(--ink-2); }
+h1 { margin: 0; font-family: var(--serif); font-weight: 800; font-size: 30px; line-height: 1.25; letter-spacing: -.02em; text-wrap: balance; }
+.lede { margin: 0; max-width: 70ch; color: var(--ink-2); font-size: 15px; }
+.lede b { color: var(--ink); }
+.facts { display: flex; flex-wrap: wrap; gap: 6px 22px; margin: 4px 0 0; padding: 0; list-style: none; font-size: 13px; color: var(--ink-2); }
+.facts b { color: var(--ink); font-weight: 600; }
+
+.ask { border: 1px solid var(--rule); border-radius: 8px; background: #fff; padding: 18px 20px; display: grid; gap: 10px; margin-bottom: 22px; }
+.ask h2 { margin: 0; font-family: var(--serif); font-size: 20px; font-weight: 800; }
+.ask ol { margin: 0; padding-left: 20px; display: grid; gap: 11px; color: var(--ink-2); }
+.ask li b { color: var(--ink); }
+.opts { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 5px; }
+.opt { border: 1px solid var(--rule); border-radius: 999px; padding: 2px 10px; font-size: 12px; background: #fff; color: var(--ink-2); }
+.note { margin: 0; max-width: 72ch; font-size: 13px; color: var(--ink-2); }
+.note b { color: var(--ink); }
+
+h2.sec { margin: 30px 0 8px; font-family: var(--serif); font-size: 22px; font-weight: 800; letter-spacing: -.01em; }
+.tablewrap { overflow-x: auto; }
+table.t { border-collapse: collapse; font-size: 12.5px; background: #fff; }
+table.t th, table.t td { border: 1px solid #d6d6d3; padding: 6px 9px; text-align: left; vertical-align: top; }
+table.t th { font-weight: 700; background: #f3f3f1; white-space: nowrap; }
+table.t td.n { text-align: right; font-variant-numeric: tabular-nums; white-space: nowrap; }
+table.t td.c { text-align: center; font-variant-numeric: tabular-nums; }
+table.t td.c.zero { color: #9a9a96; }
+table.t tr.sum td { font-weight: 700; background: #f3f3f1; }
+table.t code, .note code, .meta code { font-size: 11.5px; background: #f0f0ee; padding: 0 4px; border-radius: 3px; }
+.late { font-size: 11px; border: 1px solid var(--ink-2); border-radius: 3px; padding: 0 4px; margin-left: 4px; }
+
+.toolbar { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 20; display: flex; flex-wrap: wrap; align-items: center; gap: 4px 10px; padding-block: 10px; background: var(--paper); border-block: 1px solid var(--rule); margin-top: 30px; }
+.tabs { display: flex; flex-wrap: wrap; gap: 4px; }
+.tab { display: flex; gap: 8px; align-items: baseline; padding: 7px 12px; border: 1px solid transparent; border-radius: 6px; background: none; color: var(--ink-2); }
+.tab .k { font-weight: 700; color: var(--ink); }
+.tab:hover { background: #fff; }
+.tab[aria-selected="true"] { background: #fff; border-color: var(--rule); color: var(--ink); box-shadow: inset 0 -2px 0 var(--pick); }
+.widths { margin-left: auto; display: flex; gap: 4px; align-items: center; font-size: 12px; color: var(--ink-2); }
+.wbtn { border: 1px solid var(--rule); background: #fff; border-radius: 6px; padding: 4px 10px; font-size: 12px; }
+.wbtn:hover { border-color: var(--ink-2); }
+.wbtn[aria-pressed="true"] { border-color: var(--ink); font-weight: 700; box-shadow: inset 0 -2px 0 var(--pick); }
+
+.panel { padding-top: 22px; display: grid; gap: 18px; }
+.thesis h2 { margin: 0 0 6px; font-family: var(--serif); font-size: 22px; font-weight: 800; letter-spacing: -.01em; }
+.thesis p { margin: 0; max-width: 70ch; color: var(--ink-2); }
+.meta { margin: 0; display: grid; grid-template-columns: max-content minmax(0, 1fr); gap: 5px 14px; font-size: 13px; max-width: 900px; }
+.meta dt { font-weight: 700; }
+.meta dd { margin: 0; color: var(--ink-2); }
+.cuts { display: flex; flex-wrap: wrap; gap: 18px; align-items: flex-start; overflow-x: auto; padding-bottom: 6px; }
+.cut { margin: 0; display: grid; gap: 8px; width: calc(var(--pw) + 12px); flex: none; }
+.cut figcaption { font-size: 12.5px; color: var(--ink-2); }
+.cut figcaption b { color: var(--ink); }
+.list { margin: 0; padding-left: 18px; display: grid; gap: 6px; color: var(--ink-2); max-width: 900px; }
+.list b { color: var(--ink); }
+
+/* ── 폰 — 학생 복습 화면(StudentMathSrs · 폰 폭 CSS)을 상자로만 ─────────────── */
+.phone { width: calc(var(--pw) + 12px); border: 6px solid #232323; border-radius: 26px; background: #fff; overflow: hidden; }
+.scr { position: relative; width: var(--pw); height: var(--ph); display: flex; flex-direction: column; overflow: hidden; background: #f6f6f5; font-family: var(--sans); }
+.ph-top { flex: none; display: flex; justify-content: space-between; align-items: center; padding: 13px 14px; background: #fff; border-bottom: 1px solid #dcdcda; }
+.ph-top b { font-size: 15px; font-weight: 800; letter-spacing: -.4px; }
+.ph-top span { font-size: 12px; color: #6b6b68; }
+.ph-body { flex: 1; min-height: 0; display: flex; flex-direction: column; gap: 8px; padding: 6px 12px 0; }
+.ph-head { flex: none; min-height: 40px; display: flex; justify-content: space-between; align-items: center; font-size: 12px; color: #6b6b68; }
+.ph-head .back { font-size: 13px; color: #2b2b2b; }
+.ph-prog { flex: none; display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 6px; font-size: 12px; color: #4a4a47; padding-bottom: 2px; }
+.ph-prog .r { font-variant-numeric: tabular-nums; }
+.ph-prog .r .combo { font-weight: 700; color: #161616; border: 1px solid #161616; border-radius: 3px; padding: 0 5px; margin-right: 6px; }
+.ph-prog .bar { grid-column: 1 / -1; height: 5px; border-radius: 3px; background: #dededb; overflow: hidden; }
+.ph-prog .bar i { display: block; height: 100%; background: #2b2b2b; }
+/* D 안의 마디 막대 */
+.ph-prog .chain { grid-column: 1 / -1; display: flex; gap: 3px; height: 8px; }
+.ph-prog .chain .grp { display: flex; gap: 0; flex: var(--n) 1 0; outline: 1px solid #161616; outline-offset: 0; border-radius: 2px; overflow: hidden; }
+.ph-prog .chain .cell { flex: 1 1 0; height: 8px; background: #dededb; border-radius: 2px; }
+.ph-prog .chain .grp .cell { border-radius: 0; }
+.ph-prog .chain .ok { background: #2b2b2b; }
+.ph-prog .chain .skip { background: repeating-linear-gradient(135deg, #2b2b2b 0 2px, #fff 2px 4px); }
+.ph-prog .chain .wrong { background: #fff; outline: 1px dashed #161616; outline-offset: -1px; }
+.ph-prog .chain .now { background: #fff; outline: 2px solid #161616; outline-offset: -2px; }
+
+.ph-card { position: relative; flex: 1; min-height: 0; display: flex; flex-direction: column; background: #fff; border: 1px solid #d6d6d3; border-radius: 20px; padding: 14px 12px 10px; overflow: hidden; }
+.ph-q { flex: 1 1 auto; min-height: 0; overflow: hidden; }
+.ph-q .ey { margin: 0; font-size: 12px; color: #6b6b68; }
+.ph-q .pr { margin: 0; padding: 10px 0 4px; font-size: 17px; line-height: 1.65; }
+.ph-q .eq { margin: 0; padding: 8px 0; font-size: 22px; font-family: var(--math); }
+.m { font-family: var(--math); font-size: 1.08em; }
+.m i, .eq i { font-style: italic; }
+.fr { display: inline-grid; vertical-align: middle; text-align: center; font-size: .82em; line-height: 1.15; margin: 0 2px; }
+.fr > span:first-child { border-bottom: 1px solid currentColor; padding: 0 2px; }
+.ph-dock { flex: none; margin-top: auto; padding-top: 6px; border-top: 1px solid #ececea; }
+.ph-dh { min-height: 32px; display: flex; justify-content: space-between; align-items: center; font-size: 11px; color: #6b6b68; }
+.ph-ch { display: grid; grid-template-columns: 1fr 1fr; grid-template-rows: repeat(2, var(--row)); gap: 8px; }
+.ph-ch > span { display: flex; align-items: center; justify-content: center; gap: 8px; border: 2px solid #d6d6d3; border-radius: 12px; font-family: var(--math); font-size: var(--choice); min-width: 0; overflow: hidden; white-space: nowrap; }
+.ph-ch > span .no { flex: none; display: grid; place-items: center; width: 23px; height: 23px; border-radius: 50%; background: #ececea; font-family: var(--sans); font-size: 11px; font-weight: 700; color: #6b6b68; }
+.ph-ch > span.okpick { border: 3px solid #161616; }
+.ph-ch > span.badpick { border: 3px dashed #161616; }
+.ph-tabs { flex: none; height: 60px; display: grid; grid-template-columns: repeat(3, 1fr); align-items: center; text-align: center; font-size: 12px; color: #6b6b68; background: #fff; border-top: 1px solid #dcdcda; margin-top: 8px; }
+.ph-tabs b { color: #161616; }
+
+/* 정오 연출(AnswerFeedbackEffect) 자리 — 모양만. 지금은 1.2초 동안 떠 있다 */
+.fx { position: absolute; inset: 0; z-index: 5; display: grid; place-items: center; background: rgba(255,255,255,.86); }
+.fx .in { display: grid; justify-items: center; gap: 14px; padding: 0 16px; text-align: center; }
+.fx .em { width: 88px; height: 88px; border-radius: 50%; border: 3px solid #161616; display: grid; place-items: center; font-size: 40px; font-weight: 700; background: #fff; }
+.fx.bad .em { border-style: dashed; }
+.fx.small .em { width: 64px; height: 64px; font-size: 30px; }
+.fx .msg { margin: 0; font-size: 16px; font-weight: 700; }
+.fx .big { margin: 0; font-size: 24px; font-weight: 800; letter-spacing: -.02em; }
+.fx .sub { margin: 0; font-size: 13px; color: #4a4a47; }
+.fx .tag { font-size: 11px; color: #6b6b68; border: 1px solid #b9b9b6; border-radius: 3px; padding: 1px 6px; background: #fff; }
+
+/* E 안의 끝 한 장 */
+.endc { flex: 1; min-height: 0; display: flex; flex-direction: column; gap: 12px; background: #fff; border: 1px solid #d6d6d3; border-radius: 20px; padding: 22px 18px; }
+.endc .ey { margin: 0; font-size: 12px; color: #6b6b68; }
+.endc h3 { margin: 0; font-size: 21px; line-height: 1.35; }
+.endc dl { margin: 0; display: grid; gap: 8px; }
+.endc dl div { display: flex; justify-content: space-between; border-bottom: 1px solid #ececea; padding-bottom: 8px; font-size: 14px; }
+.endc dl dd { margin: 0; font-weight: 700; font-variant-numeric: tabular-nums; }
+.endc .go { margin-top: auto; min-height: 52px; display: grid; place-items: center; border-radius: 12px; background: #2b2b2b; color: #fff; font-weight: 700; font-size: 15px; }
+.legend { display: flex; flex-wrap: wrap; gap: 4px 14px; font-size: 12px; color: var(--ink-2); align-items: center; }
+.legend i { display: inline-block; width: 18px; height: 8px; vertical-align: middle; margin-right: 5px; }
+</style>
+
+<div class="board">
+  <header class="head">
+    <p class="eyebrow">한 걸음 복습 · 콤보 표시 · Wire 5안 (2026-09-27)</p>
+    <h1>연속으로 맞히는 흐름을 폰 화면에 어떻게 보일까</h1>
+    <p class="lede">
+      학생 폰 «오늘의 복습»이 <b>한 걸음 문항</b>(암산 8~18초 · 보기 넷)으로 바뀝니다. 원장님 말씀
+      «스피드함과 콤보성» 중 <b>콤보를 화면에 보일지, 보인다면 어디에 · 언제</b>를 고르시는 시안입니다.
+      와이어라 흑백 상자와 실제 글자 크기만 그렸습니다 — 색 · 글꼴 · 움직임은 고르신 뒤 Hi-fi 에서 봅니다.
+    </p>
+    <ul class="facts">
+      <li>하루 <b>12문제</b> · 문제마다 목표 <b>8~18초</b></li>
+      <li>콤보는 <b>서버에 이미 있는 값</b>으로 셉니다 — 새 칸 · 새 표 없음</li>
+      <li>콤보는 <b>별 · 상자 · 진도판 칸에 아무것도 더하지 않습니다</b> — 화면 표시만</li>
+      <li>폰 폭은 아래 단추로 <b>320 ↔ 390</b></li>
+    </ul>
+  </header>
+
+  <section class="ask" aria-labelledby="ask-h">
+    <h2 id="ask-h">정할 것</h2>
+    <ol>
+      <li><b>어느 안으로 갈까요.</b> 자리가 겹치지 않는 안끼리는 섞을 수 있습니다(예: C + E · D + C · A + E).
+        <div class="opts"><span class="opt">A 리듬만</span><span class="opt">B 진행 줄에 숫자</span><span class="opt">C 정답 순간에만</span><span class="opt">D 진행 막대가 사슬</span><span class="opt">E 끝에 한 번</span><span class="opt">섞기 — 적어 주세요</span></div>
+      </li>
+      <li><b>무엇을 한 개로 셀까요.</b> «시간 안»은 늦게 맞힌 문제를 <b>끊지 않고 더하지도 않습니다</b>(그대로 둠).
+        <div class="opts"><span class="opt">맞히면 하나</span><span class="opt">목표 시간 안에 맞히면 하나</span></div>
+      </li>
+      <li><b>틀리면.</b>
+        <div class="opts"><span class="opt">0 으로</span><span class="opt">반으로(내림)</span></div>
+      </li>
+      <li><b>«아직 모르겠어요»를 누르면.</b> «그대로 둠»이면 찍기보다 모르겠어요를 누르는 쪽이 낫습니다 —
+        모른다고 한 문제는 어차피 다시 풀 문제로 모입니다.
+        <div class="opts"><span class="opt">틀린 것과 같이</span><span class="opt">그대로 둠(끊지 않음)</span></div>
+      </li>
+      <li><b>«목표 시간 안»의 잣대</b>(2에서 시간 안을 고르시면). 서버가 재는 시간에는 앞 문제의
+        정오 연출(약 1.7초)이 들어 있습니다.
+        <div class="opts"><span class="opt">목표 초 그대로(8~18초)</span><span class="opt">1.5배 — 기억 판정과 같은 잣대(12~27초)</span></div>
+      </li>
+      <li><b>몇 문제부터 보일까요</b>(B · C).
+        <div class="opts"><span class="opt">2문제부터</span><span class="opt">3문제부터</span></div>
+      </li>
+      <li><b>힌트를 쓰고 맞히면.</b> 지금 폰 복습에는 힌트 단추가 없습니다 — 생길 때를 위한 규칙입니다.
+        <div class="opts"><span class="opt">늦은 정답처럼 그대로 둠</span><span class="opt">정답과 같이 더함</span><span class="opt">끊음</span></div>
+      </li>
+      <li><b>공통으로 두려는 것 셋</b> — 콤보는 별 · 상자 · 진도판에 아무것도 더하지 않는다 ·
+        «모아 둔 오답 다시 풀기»에서는 세지 않는다 · 개념 탐험 활동(뜻 만나기 · 정의 조립 …)에는 넣지 않는다.
+        <div class="opts"><span class="opt">셋 다 그대로</span><span class="opt">다르게 — 적어 주세요</span></div>
+      </li>
+      <li><b>새로 넣는 콤보 문구에는 느낌표를 쓰지 않습니다</b>(D-08). 지금 정답 연출의 «정확하게 풀었어요!»도 이참에 맞출까요.
+        <div class="opts"><span class="opt">느낌표 뺀다</span><span class="opt">지금 문구 그대로</span></div>
+      </li>
+    </ol>
+    <p class="note">고르신 안과 규칙으로 Hi-fi 4~5안을 만들어 색 · 글자 · 움직임까지 보여 드리겠습니다(05 §0-3).
+      문항은 한 걸음 엔진의 실제 표본이고, 가장 긴 문항(분수 식 · 5번)을 연속 중 컷에 넣어 화면이 가장 빡빡할 때를 봅니다.</p>
+  </section>
+
+  <h2 class="sec">한눈에</h2>
+  <div class="tablewrap">
+    <table class="t">
+      <tr><th>안</th><th>어디에</th><th>언제</th><th>기본 규칙</th><th>문제 푸는 동안 더 보이는 것</th><th>틀리면</th></tr>
+      <tr><td><b>A</b> 리듬만</td><td>없음</td><td>—</td><td>세지 않음</td><td>없음</td><td>지금 연출 그대로(맞히면 연출이 짧아짐)</td></tr>
+      <tr><td><b>B</b> 진행 줄에 숫자</td><td>진행 줄 오른쪽 «연속 4»</td><td>문제 중 늘</td><td>맞히면 하나 · 틀리거나 모르면 0</td><td>글자 한 덩이(높이 0)</td><td>숫자가 사라짐 — 말 없음</td></tr>
+      <tr><td><b>C</b> 정답 순간에만</td><td>정답 연출 안</td><td>정답 연출 1.2초</td><td>시간 안에 맞히면 하나</td><td>없음</td><td>지금 연출 그대로 — 끊김은 말하지 않음</td></tr>
+      <tr><td><b>D</b> 진행 막대가 사슬</td><td>진행 막대를 12칸으로</td><td>문제 중 늘</td><td>맞히면 하나 · 모르면 그대로 · 틀리면 끊김</td><td>막대 모양만 바뀜(높이 +3px)</td><td>사슬이 끊긴 칸이 남음</td></tr>
+      <tr><td><b>E</b> 끝에 한 번</td><td>첫 풀이 뒤 한 장</td><td>12문제 끝</td><td>가장 긴 연속</td><td>없음</td><td>문제 중엔 지금 그대로</td></tr>
+    </table>
+  </div>
+
+  <h2 class="sec">규칙이 다르면 숫자가 어떻게 다른가 — 같은 12문제로</h2>
+  <p class="note">한 학생이 오늘 이렇게 풀었다고 치고, 규칙마다 그 문제를 낸 뒤의 콤보를 셌습니다.
+    <b>초</b>는 서버가 잰 값(앞 답을 낸 때부터 — 앞 문제 정오 연출 약 1.7초가 들어 있음)입니다. 7번은 틀림, 9번은 «아직 모르겠어요».</p>
+  <div class="tablewrap"><table class="t" id="rules-table"></table></div>
+  <p class="note" style="margin-top:8px">규칙 ① 맞히면 하나 · 틀리거나 모르면 0 &nbsp;·&nbsp; ② 시간 안에 맞히면 하나 · 늦으면 그대로 · 틀리거나 모르면 0
+    (ㄱ 목표 초 · ㄴ 1.5배) &nbsp;·&nbsp; ③ 맞히면 하나 · 모르면 그대로 · 틀리면 0 &nbsp;·&nbsp; ④ 맞히면 하나 · 틀리거나 모르면 반으로.</p>
+
+  <h2 class="sec">서버가 이미 가진 값으로 셀 수 있나</h2>
+  <div class="tablewrap">
+    <table class="t">
+      <tr><th>값</th><th>어디 있나</th><th>콤보에 쓰기</th></tr>
+      <tr><td>맞음 · 틀림</td><td><code>attempts[].correct</code> — 서버가 채점</td><td>된다. 모든 규칙의 바탕</td></tr>
+      <tr><td>«아직 모르겠어요»</td><td><code>attempts[].submittedAnswer</code> 가 빈 글자</td><td>된다. 틀림과 가를 수 있다(③ · ④)</td></tr>
+      <tr><td>서버가 잰 풀이 시간</td><td><code>attempts[].elapsedSeconds</code> — 앞 답(첫 문제는 복습 시작)부터 이 답까지</td><td>된다(②). 앞 문제 연출 · 쉬었다 온 시간이 들어 있다 — 쉬었다 오면 그 문제는 «늦은 정답»이 되어 콤보는 <b>그대로</b>(끊기지 않음)</td></tr>
+      <tr><td>목표 초</td><td><code>problems[].expectedSeconds</code> — 한 걸음 문항 8~18초</td><td>된다(②)</td></tr>
+      <tr><td>서버 기록 등급</td><td><code>attempts[].rating</code> — «good» = 맞힘 · 힌트 없음 · 목표 1.5배 안</td><td>②ㄴ 은 이 값 하나로 바로 센다 — 기억 판정과 «빠르다»의 뜻이 하나가 된다</td></tr>
+      <tr><td>힌트 사용</td><td><code>attempts[].usedHint</code></td><td>칸은 있다. 지금 폰 복습에는 힌트 단추가 없어 늘 «안 씀»</td></tr>
+      <tr><td>오답 다시 풀기</td><td>«풀었다» 표시만 남고 시간 · 시도 줄이 없다</td><td>② 는 못 센다 → 다시 풀기에서는 세지 않기를 권함</td></tr>
+    </table>
+  </div>
+  <p class="note" style="margin-top:8px">학생 화면이 받는 복습 기록에 이 값이 <b>차례대로 다 실려 있어</b>, 화면이 그 자리에서 다시 셉니다.
+    새로 저장할 것이 없고, 새로고침하거나 다른 기기로 이어 풀어도 같은 숫자가 나옵니다. 강사 화면으로 새로 나가는 길도 없습니다.</p>
+
+  <div class="toolbar">
+    <div class="tabs" role="tablist" aria-label="안">
+      <button class="tab" role="tab" aria-selected="true" data-tab="a"><span class="k">A</span> 리듬만</button>
+      <button class="tab" role="tab" aria-selected="false" data-tab="b"><span class="k">B</span> 진행 줄에 숫자</button>
+      <button class="tab" role="tab" aria-selected="false" data-tab="c"><span class="k">C</span> 정답 순간에만</button>
+      <button class="tab" role="tab" aria-selected="false" data-tab="d"><span class="k">D</span> 진행 막대가 사슬</button>
+      <button class="tab" role="tab" aria-selected="false" data-tab="e"><span class="k">E</span> 끝에 한 번</button>
+    </div>
+    <div class="widths" role="group" aria-label="폰 폭">
+      <span>폰 폭</span>
+      <button class="wbtn" type="button" aria-pressed="true" data-w="320">320 × 568</button>
+      <button class="wbtn" type="button" aria-pressed="false" data-w="390">390 × 700</button>
+    </div>
+  </div>
+
+  <section class="panel" data-panel="a">
+    <div class="thesis">
+      <h2>A · 표시 없음 — 리듬만</h2>
+      <p>숫자도 말도 더하지 않습니다. 대신 <b>맞히면 ✓ 만 짧게 보이고 곧바로 다음 문제</b>로 넘어갑니다.
+        틀리면 지금처럼 «다시 풀 문제로 모았어요»가 제 시간만큼 머뭅니다. 연속으로 맞히는 동안 문제가 빠르게
+        넘어가는 것 자체가 콤보입니다.</p>
+    </div>
+    <dl class="meta">
+      <dt>세는 것</dt><dd>세지 않음</dd>
+      <dt>서버 값</dt><dd>필요 없음 — 화면이 넘어가는 빠르기만 바꿉니다</dd>
+      <dt>어디에 · 언제</dt><dd>어디에도 없음. 정답 연출이 짧아지는 것(지금 1.2초 → 절반 안팎, 길이는 Hi-fi 에서)</dd>
+      <dt>틀리면</dt><dd>지금 연출 그대로 — 정답 때보다 길게 머물러 «멈칫»이 생깁니다</dd>
+    </dl>
+    <div class="cuts" id="cuts-a"></div>
+    <ul class="list">
+      <li><b>좋은 점</b> — 가장 조용합니다. 12문제 중 10문제를 맞히면 연출 기다림이 6초쯤 줄어 한 판이 짧아집니다.</li>
+      <li><b>걸리는 점</b> — 학생이 «콤보»라고 느낄지는 미지수입니다. 맞힌 기쁨(연출)도 같이 짧아집니다.</li>
+      <li><b>속도 · 집중</b> — 해치지 않습니다. 눈이 갈 새 자리가 없습니다.</li>
+    </ul>
+  </section>
+
+  <section class="panel" data-panel="b" hidden>
+    <div class="thesis">
+      <h2>B · 진행 줄에 숫자 — 문제 중 늘</h2>
+      <p>«오늘의 복습 · 5/12» 줄 오른쪽에 <b>«연속 4»</b>를 붙입니다. 2문제부터 보이고, 틀리거나 모르겠어요를
+        누르면 조용히 사라집니다. «끊겼어요» 같은 말은 하지 않습니다. 새 줄이 아니라 있던 줄에 글자 한 덩이라
+        보기 칸이 밀리지 않습니다.</p>
+    </div>
+    <dl class="meta">
+      <dt>세는 것</dt><dd>규칙 ① — 맞히면 하나 · 틀리거나 모르면 0 (시간은 보지 않음)</dd>
+      <dt>서버 값</dt><dd><code>correct</code> 만 — 된다</dd>
+      <dt>어디에 · 언제</dt><dd>진행 줄 오른쪽 · 문제 푸는 내내</dd>
+      <dt>틀리면</dt><dd>정오 연출은 지금 그대로, 뒤에서 «연속»이 사라짐</dd>
+    </dl>
+    <div class="cuts" id="cuts-b"></div>
+    <ul class="list">
+      <li><b>좋은 점</b> — 언제든 보여 «이어 가자»가 섭니다. 가장 흔한 모양이라 설명이 필요 없습니다.</li>
+      <li><b>걸리는 점</b> — 문제를 푸는 동안 눈이 숫자로 갑니다. 0 으로 돌아가는 것이 매번 보입니다.</li>
+      <li><b>속도 · 집중</b> — 조금 해칩니다. 진행 줄은 문제 바로 위라 시선 안에 늘 있습니다.</li>
+    </ul>
+  </section>
+
+  <section class="panel" data-panel="c" hidden>
+    <div class="thesis">
+      <h2>C · 정답 순간에만</h2>
+      <p>문제 푸는 화면에는 아무것도 더하지 않습니다. 맞힌 순간의 정답 연출 안에서만 <b>«4문제 연속 정답»</b>이라고
+        말합니다. 3문제부터 말하고, 그 아래는 지금 문구 그대로입니다. 늦게 맞힌 문제는 지금 문구로 넘어가고
+        숫자는 그대로 둡니다. 틀리면 지금 연출 그대로 — 끊긴 것은 말하지 않고 다음 정답부터 다시 셉니다.</p>
+    </div>
+    <dl class="meta">
+      <dt>세는 것</dt><dd>규칙 ② — 목표 시간 안에 맞히면 하나 · 늦으면 그대로 · 틀리거나 모르면 0</dd>
+      <dt>서버 값</dt><dd><code>correct</code> · <code>elapsedSeconds</code> · <code>expectedSeconds</code> — 된다(1.5배 잣대면 <code>rating</code> 하나로)</dd>
+      <dt>어디에 · 언제</dt><dd>정답 연출 안 · 1.2초</dd>
+      <dt>틀리면</dt><dd>«다시 풀 문제로 모았어요» 그대로</dd>
+    </dl>
+    <div class="cuts" id="cuts-c"></div>
+    <ul class="list">
+      <li><b>좋은 점</b> — 푸는 동안은 지금과 똑같아 집중이 그대로입니다. 학생이 이미 보는 순간(맞힌 직후)을 씁니다.
+        «빠르게 맞힘»을 칭찬해 스피드와 콤보가 한 말이 됩니다.</li>
+      <li><b>걸리는 점</b> — 1.2초만 보여 놓치기 쉽습니다. 끊긴 줄 몰라 «이어 가자»의 긴장은 약합니다.</li>
+      <li><b>속도 · 집중</b> — 해치지 않습니다. 연출 길이도 지금 그대로입니다.</li>
+    </ul>
+  </section>
+
+  <section class="panel" data-panel="d" hidden>
+    <div class="thesis">
+      <h2>D · 진행 막대가 사슬</h2>
+      <p>새 자리를 만들지 않고, 이미 보는 <b>진행 막대를 12칸</b>으로 나눕니다. 연속으로 맞힌 칸은 <b>하나로 붙어</b>
+        사슬이 되고, 틀린 칸에서 끊깁니다. «아직 모르겠어요» 칸은 빗금으로 남되 사슬을 끊지 않습니다. 숫자는 없습니다.
+        한 판이 끝나면 그 막대가 그대로 그날의 기록이 됩니다.</p>
+    </div>
+    <dl class="meta">
+      <dt>세는 것</dt><dd>규칙 ③ — 맞히면 하나 · 모르면 그대로 · 틀리면 끊김</dd>
+      <dt>서버 값</dt><dd><code>correct</code> · <code>submittedAnswer</code> — 된다</dd>
+      <dt>어디에 · 언제</dt><dd>진행 막대 · 문제 푸는 내내</dd>
+      <dt>틀리면</dt><dd>그 칸이 점선 빈칸으로 남고 사슬이 끊김</dd>
+    </dl>
+    <div class="legend"><span><i style="background:#2b2b2b"></i>맞힘</span><span><i style="background:repeating-linear-gradient(135deg,#2b2b2b 0 2px,#fff 2px 4px)"></i>모르겠어요</span><span><i style="outline:1px dashed #161616;outline-offset:-1px;background:#fff"></i>틀림</span><span><i style="outline:2px solid #161616;outline-offset:-2px;background:#fff"></i>지금 문제</span><span><i style="background:#dededb"></i>남은 문제</span><span>테두리로 묶인 칸 = 이어진 콤보</span></div>
+    <div class="cuts" id="cuts-d"></div>
+    <ul class="list">
+      <li><b>좋은 점</b> — 새 요소 없이 콤보가 늘 보입니다. 숫자가 아니라 모양이라 덜 시끄럽고, 오늘의수학만의 틀이 될 수 있습니다.</li>
+      <li><b>걸리는 점</b> — 틀린 칸이 끝까지 남아 보입니다. 개념 탐험 활동의 진행 막대(이어진 한 줄)와 모양이 갈립니다 —
+        같은 게임 안에서 막대가 둘이 됩니다. 막대 높이가 3px 늘어납니다.</li>
+      <li><b>속도 · 집중</b> — 거의 해치지 않습니다. 이미 보던 자리의 모양만 바뀝니다.</li>
+    </ul>
+  </section>
+
+  <section class="panel" data-panel="e" hidden>
+    <div class="thesis">
+      <h2>E · 끝에 한 번</h2>
+      <p>푸는 동안은 지금과 똑같습니다. 12문제를 다 푼 뒤 <b>한 장</b>을 세워 «가장 긴 연속 6문제»를 보입니다.
+        가장 긴 것은 틀려도 줄지 않아 부담이 적습니다. 틀린 문제가 있으면 그 장의 단추가 «오답 다시 풀기»로,
+        없으면 «탐험판으로»로 갑니다.</p>
+    </div>
+    <dl class="meta">
+      <dt>세는 것</dt><dd>가장 긴 연속 — 규칙 ①(또는 고르신 규칙)의 한 판 최댓값</dd>
+      <dt>서버 값</dt><dd><code>correct</code> — 된다</dd>
+      <dt>어디에 · 언제</dt><dd>첫 풀이 12문제가 끝난 뒤 한 장</dd>
+      <dt>틀리면</dt><dd>문제 중에는 지금 그대로</dd>
+    </dl>
+    <div class="cuts" id="cuts-e"></div>
+    <ul class="list">
+      <li><b>좋은 점</b> — 푸는 동안 방해가 0 입니다. «가장 긴 연속»은 다음 날 넘을 목표가 됩니다.</li>
+      <li><b>걸리는 점</b> — 지금 탐험 길에는 끝 화면이 없습니다(마지막 문제 뒤 곧바로 오답 다시 풀기나 탐험판으로 갑니다).
+        한 장이 새로 서고 누름이 하나 늡니다. 콤보를 «하는 동안» 느끼지는 못합니다.
+        한 장 대신 12번 정답 연출 안에 한 줄로 넣을 수도 있습니다(누름은 안 늘지만 1.2초만 보입니다).</li>
+      <li><b>속도 · 집중</b> — 해치지 않습니다.</li>
+    </ul>
+  </section>
+</div>
+
+<script>
+// 한 걸음 엔진 표본(식은 발문 아래 줄에 따로) 12문제 — 한 학생의 한 판. 초 = 서버가 잰 값.
+// res: ok 맞힘 · wrong 틀림 · skip «아직 모르겠어요»
+const FRAC5 = '<span class="fr"><span>3<i>x</i>−1</span><span>9</span></span> = <span class="fr"><span><i>x</i>+5</span><span>8</span></span>';
+const RUN = [
+  { concept: "괄호 풀기", prompt: "괄호를 풀면?", eq: "−(x + 8)", ch: ["−x − 8", "x − 8", "−x + 8", "x + 8"], ans: 0, exp: 8, t: 6.1, res: "ok" },
+  { concept: "등식의 성질", prompt: "$x$ 만 남기려면 양변에서 뺄 수는?", eq: "x + 5 = 12", ch: ["7", "5", "−5", "12"], ans: 1, exp: 8, t: 9.1, res: "ok" },
+  { concept: "두 단계 방정식", prompt: "$x$ 의 값은?", eq: "5x = 25", ch: ["30", "5", "−5", "20"], ans: 1, exp: 8, t: 5.2, res: "ok" },
+  { concept: "괄호 풀기", prompt: "간단히 하면?", eq: "6x − (x − 3)", ch: ["7x − 3", "7x + 3", "5x − 3", "5x + 3"], ans: 3, exp: 12, t: 9.8, res: "ok" },
+  { concept: "분수가 있는 식", prompt: "양변에 $72$ 를 곱하면 좌변은?", eqHtml: FRAC5, ch: ["24x − 8", "24x + 8", "24x − 1", "27x − 9"], ans: 0, exp: 14, t: 23.0, res: "ok" },
+  { concept: "양변에 x가 있는 식", prompt: "이항해 정리하면?", eq: "4x − 2 = 3x + 12", ch: ["x = 10", "x = 14", "7x = 14", "7x = 10"], ans: 1, exp: 12, t: 8.4, res: "ok" },
+  { concept: "문장제", prompt: "$x$ 살인 사람의 $5$ 년 전 나이는?", eq: "", ch: ["5x", "x + 5", "5 − x", "x − 5"], ans: 3, exp: 10, t: 7.7, res: "wrong", pick: 1 },
+  { concept: "두 단계 방정식", prompt: "$x$ 의 값은?", eq: "3x − 3 = 9", ch: ["4", "12", "−4", "2"], ans: 0, exp: 14, t: 11.0, res: "ok" },
+  { concept: "등식의 성질", prompt: "해가 $x=−1$ 일 때 $a$ 의 값은?", eq: "2x + a = 1", ch: ["3", "−1", "−3", "2"], ans: 0, exp: 12, t: 15.2, res: "skip" },
+  { concept: "양변에 x가 있는 식", prompt: "$x$ 의 값은?", eq: "7x − 3 = 3x + 17", ch: ["5", "20", "2", "−5"], ans: 0, exp: 16, t: 13.0, res: "ok" },
+  { concept: "괄호 풀기", prompt: "괄호를 풀면?", eq: "−3(2x − 3)", ch: ["−6x + 9", "−6x − 9", "−6x − 3", "6x + 9"], ans: 0, exp: 10, t: 7.0, res: "ok" },
+  { concept: "문장제", prompt: "시속 $x$ km 로 $8$ 시간 동안 간 거리는?", eq: "", ch: ["8x", "x/8", "x + 8", "8/x"], ans: 0, exp: 10, t: 6.0, res: "ok" },
+];
+
+// 규칙 — 앞 콤보 c 와 이번 풀이 a 로 다음 콤보
+const RULES = [
+  { key: "r1", head: "①", step: (c, a) => (a.res === "ok" ? c + 1 : 0) },
+  { key: "r2a", head: "②ㄱ 목표 초", step: (c, a) => (a.res === "ok" ? (a.t <= a.exp ? c + 1 : c) : 0) },
+  { key: "r2b", head: "②ㄴ 1.5배", step: (c, a) => (a.res === "ok" ? (a.t >= 2 && a.t <= a.exp * 1.5 ? c + 1 : c) : 0) },
+  { key: "r3", head: "③", step: (c, a) => (a.res === "ok" ? c + 1 : a.res === "skip" ? c : 0) },
+  { key: "r4", head: "④", step: (c, a) => (a.res === "ok" ? c + 1 : Math.floor(c / 2)) },
+];
+const rule = (key) => RULES.find((r) => r.key === key);
+/** n 문제를 낸 뒤의 콤보 */
+function comboAfter(key, n) {
+  let c = 0;
+  for (let i = 0; i < n; i++) c = rule(key).step(c, RUN[i]);
+  return c;
+}
+function longest(key) {
+  let best = 0;
+  for (let n = 1; n <= RUN.length; n++) best = Math.max(best, comboAfter(key, n));
+  return best;
+}
+
+const esc = (s) => s.replace(/&/g, "&amp;").replace(/</g, "&lt;");
+const italic = (s) => esc(s).replace(/([a-z])/g, "<i>$1</i>");
+const tex = (s) => esc(s).replace(/\$([^$]+)\$/g, (_, e) => `<span class="m">${e.replace(/([a-z])/g, "<i>$1</i>")}</span>`);
+const resName = { ok: "맞힘", wrong: "틀림", skip: "모르겠어요" };
+
+// ── 규칙 비교 표 ────────────────────────────────────────────────────────
+(function rulesTable() {
+  const head = `<tr><th>번호</th><th>개념</th><th>결과</th><th>초 / 목표</th>${RULES.map((r) => `<th>${r.head}</th>`).join("")}</tr>`;
+  const rows = RUN.map((a, i) => {
+    const late = a.res === "ok" && a.t > a.exp ? `<span class="late">${a.t > a.exp * 1.5 ? "1.5배도 넘음" : "목표 넘음"}</span>` : "";
+    const cells = RULES.map((r) => {
+      const v = comboAfter(r.key, i + 1);
+      return `<td class="c${v === 0 ? " zero" : ""}">${v}</td>`;
+    }).join("");
+    return `<tr><td class="n">${i + 1}</td><td>${esc(a.concept)}</td><td>${resName[a.res]}</td><td class="n">${a.t.toFixed(1)} / ${a.exp}${late}</td>${cells}</tr>`;
+  }).join("");
+  const sum = `<tr class="sum"><td colspan="4">한 판에서 가장 긴 연속</td>${RULES.map((r) => `<td class="c">${longest(r.key)}</td>`).join("")}</tr>`;
+  document.getElementById("rules-table").innerHTML = head + rows + sum;
+})();
+
+// ── 폰 한 화면 ─────────────────────────────────────────────────────────
+// o.n: 보이는 문제(1부터) · o.answered: 그 문제의 정오 연출 중인가 · o.progRight · o.bar · o.fx · o.endCard
+function bar(done) {
+  return `<span class="bar"><i style="width:${(done / 12) * 100}%"></i></span>`;
+}
+function chainBar(done, current) {
+  // 규칙 ③ — 맞힘·모르겠어요는 이어지고, 틀림에서 끊긴다
+  const cells = [];
+  for (let i = 0; i < 12; i++) {
+    const a = RUN[i];
+    const st = i < done ? a.res : i === current ? "now" : "rest";
+    cells.push(st);
+  }
+  let html = "";
+  let group = [];
+  const flush = () => {
+    if (!group.length) return;
+    html += `<span class="grp" style="--n:${group.length}">${group.map((st) => `<span class="cell ${st}"></span>`).join("")}</span>`;
+    group = [];
+  };
+  cells.forEach((st) => {
+    if (st === "ok" || (st === "skip" && group.length)) group.push(st);
+    else {
+      flush();
+      html += `<span class="cell ${st === "rest" ? "" : st}" style="flex:1 1 0"></span>`;
+    }
+  });
+  flush();
+  return `<span class="chain" aria-hidden="true">${html}</span>`;
+}
+function phone(o) {
+  const a = RUN[o.n - 1];
+  const done = o.answered ? o.n : o.n - 1;
+  const right = o.progRight ?? `${o.n}/12`;
+  const barHtml = o.bar ?? bar(done);
+  const choices = a.ch
+    .map((c, i) => {
+      let cls = "";
+      if (o.answered) {
+        if (a.res === "ok" && i === a.ans) cls = "okpick";
+        if (a.res === "wrong" && i === a.pick) cls = "badpick";
+      }
+      return `<span class="${cls}"><span class="no">${i + 1}</span><span>${italic(c)}</span></span>`;
+    })
+    .join("");
+  const eq = a.eqHtml ? `<p class="eq">${a.eqHtml}</p>` : a.eq ? `<p class="eq">${italic(a.eq)}</p>` : "";
+  const card = o.endCard
+    ? o.endCard
+    : `<div class="ph-card">
+        <div class="ph-q"><p class="ey">${esc(a.concept)}</p><p class="pr">${tex(a.prompt)}</p>${eq}</div>
+        <div class="ph-dock">
+          <div class="ph-dh"><span>답을 하나 골라 주세요</span><span>아직 모르겠어요</span></div>
+          <div class="ph-ch">${choices}</div>
+        </div>
+        ${o.fx ?? ""}
+      </div>`;
+  return `<div class="phone"><div class="scr">
+    <div class="ph-top"><b>오늘의수학</b><span>김도윤 · 나가기</span></div>
+    <div class="ph-body">
+      <div class="ph-head"><span class="back">← 학습 홈</span><span>중1 · 일차방정식</span></div>
+      <div class="ph-prog"><span>${o.progLeft ?? "오늘의 복습"}</span><span class="r">${right}</span>${barHtml}</div>
+      ${card}
+    </div>
+    <div class="ph-tabs"><b>탐험</b><span>도감</span><span>강의</span></div>
+  </div></div>`;
+}
+const fxOk = (msg) => `<div class="fx"><div class="in"><span class="em">✓</span><p class="msg">${msg}</p></div></div>`;
+const fxBad = () => `<div class="fx bad"><div class="in"><span class="em">×</span><p class="msg">다시 풀 문제로 모았어요</p></div></div>`;
+const cut = (title, cap, body) => `<figure class="cut">${body}<figcaption><b>${title}</b> — ${cap}</figcaption></figure>`;
+const fill = (id, html) => (document.getElementById(id).innerHTML = html);
+
+// A 리듬만
+fill("cuts-a", [
+  cut("① 보통", "2번 문제. 지금 화면과 같습니다.", phone({ n: 2 })),
+  cut("② 연속 정답 중", "4번을 맞힌 순간. ✓ 만 작게, 짧게 보이고 곧바로 5번으로 넘어갑니다. 연속이 길어도 모양은 같습니다.",
+    phone({ n: 4, answered: true, fx: `<div class="fx small"><div class="in"><span class="em">✓</span><span class="tag">짧게 — 곧바로 다음</span></div></div>` })),
+  cut("③ 끊김(오답)", "7번을 틀린 순간. 지금 연출 그대로, 정답 때보다 길게 머뭅니다.", phone({ n: 7, answered: true, fx: fxBad() })),
+].join(""));
+
+// B 진행 줄에 숫자 — 규칙 ①, 2문제부터
+const bRight = (n, answered) => {
+  const c = comboAfter("r1", answered ? n : n - 1);
+  return `${c >= 2 ? `<span class="combo">연속 ${c}</span>` : ""}${n}/12`;
+};
+fill("cuts-b", [
+  cut("① 보통", "2번 문제. 1문제 맞힌 뒤라 아직 숫자가 없습니다.", phone({ n: 2, progRight: bRight(2, false) })),
+  cut("② 연속 정답 중", `5번 문제(가장 긴 문항). 4문제 연속 — «연속 4».`, phone({ n: 5, progRight: bRight(5, false) })),
+  cut("③ 끊김(오답)", "7번을 틀린 순간. 연출은 지금 그대로이고, 진행 줄의 «연속 6»이 사라집니다.", phone({ n: 7, answered: true, progRight: bRight(7, true), fx: fxBad() })),
+].join(""));
+
+// C 정답 순간에만 — 규칙 ②ㄴ, 3문제부터
+const cFx = (n) => {
+  const c = comboAfter("r2b", n);
+  const prev = comboAfter("r2b", n - 1);
+  if (c >= 3 && c > prev)
+    return `<div class="fx"><div class="in"><span class="em">✓</span><p class="big">${c}문제 연속 정답</p><p class="sub">목표 시간 안에 풀었어요</p></div></div>`;
+  return fxOk("정확하게 풀었어요!");
+};
+fill("cuts-c", [
+  cut("① 보통", "2번을 맞힌 순간. 아직 2문제라 지금 문구 그대로입니다.", phone({ n: 2, answered: true, fx: cFx(2) })),
+  cut("② 연속 정답 중", "4번을 맞힌 순간 — «4문제 연속 정답». 5번처럼 늦게 맞히면 지금 문구로 넘어가고 숫자는 그대로 둡니다.", phone({ n: 4, answered: true, fx: cFx(4) })),
+  cut("③ 끊김(오답)", "7번을 틀린 순간. 지금 연출 그대로 — 끊긴 것은 말하지 않습니다. 다음 정답부터 다시 1.", phone({ n: 7, answered: true, fx: fxBad() })),
+].join(""));
+
+// D 진행 막대가 사슬 — 규칙 ③
+fill("cuts-d", [
+  cut("① 보통", "2번 문제. 1번 칸이 차 있고 2번 칸이 지금 문제입니다.", phone({ n: 2, bar: chainBar(1, 1) })),
+  cut("② 연속 정답 중", "5번 문제(가장 긴 문항). 1~4번이 하나로 묶여 사슬이 됐습니다.", phone({ n: 5, bar: chainBar(4, 4) })),
+  cut("③ 끊김(오답) 뒤", "10번 문제. 1~6번 사슬은 7번(틀림)에서 끊겼고, 8번부터 새 사슬 — 9번 «모르겠어요»는 빗금으로 남되 끊지 않습니다.", phone({ n: 10, bar: chainBar(9, 9) })),
+].join(""));
+
+// E 끝에 한 번
+const eEnd = `<div class="endc">
+  <p class="ey">오늘의 복습 · 첫 풀이</p>
+  <h3>12문제를 다 풀었어요</h3>
+  <dl>
+    <div><dt>맞힌 문제</dt><dd>10 / 12</dd></div>
+    <div><dt>가장 긴 연속</dt><dd>${longest("r1")}문제</dd></div>
+  </dl>
+  <span class="go">오답 2문제 다시 풀기</span>
+</div>`;
+fill("cuts-e", [
+  cut("① 보통 · 연속 정답 중", "5번 문제. 4문제 연속이지만 푸는 동안은 지금 화면과 같습니다.", phone({ n: 5 })),
+  cut("② 끊김(오답)", "7번을 틀린 순간. 지금 연출 그대로입니다.", phone({ n: 7, answered: true, fx: fxBad() })),
+  cut("③ 끝 한 장", "12번까지 푼 뒤. 틀린 문제가 없으면 단추가 «탐험판으로»입니다.", phone({ n: 12, answered: true, progRight: "12/12", endCard: eEnd })),
+].join(""));
+
+// ── 탭 · 폰 폭 ─────────────────────────────────────────────────────────
+const tabs = [...document.querySelectorAll(".tab")];
+const panels = [...document.querySelectorAll("[data-panel]")];
+tabs.forEach((tab) =>
+  tab.addEventListener("click", () => {
+    tabs.forEach((t) => t.setAttribute("aria-selected", String(t === tab)));
+    panels.forEach((p) => (p.hidden = p.dataset.panel !== tab.dataset.tab));
+  }),
+);
+const wbtns = [...document.querySelectorAll(".wbtn")];
+wbtns.forEach((b) =>
+  b.addEventListener("click", () => {
+    wbtns.forEach((x) => x.setAttribute("aria-pressed", String(x === b)));
+    document.body.classList.toggle("w390", b.dataset.w === "390");
+  }),
+);
+</script>
