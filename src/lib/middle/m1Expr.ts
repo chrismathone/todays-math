@@ -34,7 +34,7 @@
 import { intBetween, pick } from "../elementary/rng";
 import type { Rng } from "../elementary/types";
 
-import { eulReul, euroRo } from "./m2Josa";
+import { eulReul, euroRo, waGwa } from "./m2Josa";
 import type { MidProblem, TypeEntry } from "./types";
 
 const GRADE = "중1";
@@ -325,6 +325,7 @@ const EQUATION_MEANING_SUPPLEMENTS: TypeEntry[] = [
         const b = intNonzero(rng, -9, 9);
         const c = intNonzero(rng, -7, 7);
         if (t === 0) {
+          if (Math.abs(a) === 1) return null; // `1\left(`·`-1\left(` 냄새
           items.push(`${a}\\left(x${signed(c)}\\right)=${lin(a, a * c)}`);
         } else if (t === 1) {
           const p = Math.abs(a);
@@ -924,8 +925,12 @@ const EXPR_TYPES: TypeEntry[] = [
       if (mode === 0) {
         const c = intBetween(rng, 2, 9) * 5;
         const T = intBetween(rng, 2, 9);
-        const H = c * T + intBetween(rng, 2, 20) * 10;
-        const V = H - c * T;
+        // 답(남은 높이)이 「$1$시간에 $c$ cm씩」과 같으면 답이 발문에 그대로 있다.
+        const V = attempt(40, () => {
+          const v = intBetween(rng, 2, 20) * 10;
+          return v === c ? null : v;
+        });
+        const H = c * T + V;
         return {
           content: `물의 높이가 $1$시간에 $${c}$ cm씩 줄어드는 물탱크가 있다. 현재 물의 높이가 $${H}$ cm일 때, 지금부터 $${T}$시간 후의 물의 높이를 구하시오.`,
           answer: `$${V}$ cm`,
@@ -991,7 +996,8 @@ const EXPR_TYPES: TypeEntry[] = [
         return {
           content: `다음 식을 계산하시오.\n$${expr}$`,
           answer: `$${lin(p, q)}$`,
-          solution: `분배법칙을 이용하여 일차식의 각 항에 $${fracRaw(m, n)}$을 곱한다.\n$${expr}=${lin(p, q)}$이다.`,
+          // 분수는 「$n$분의 $m$」으로 읽으니 조사는 분자 $m$ 이 정한다.
+          solution: `분배법칙을 이용하여 일차식의 각 항에 $${fracRaw(m, n)}$${eulReul(m)} 곱한다.\n$${expr}=${lin(p, q)}$이다.`,
           facts: { mode, m, n, a, b, p, q },
         };
       }
@@ -1022,7 +1028,7 @@ const EXPR_TYPES: TypeEntry[] = [
       return {
         content: `다음 식을 계산하시오.\n$${expr}$`,
         answer: `$${lin(k * a, k * b)}$`,
-        solution: `분배법칙을 이용하여 일차식의 각 항에 $${k}$를 곱한다.\n$${expr}=${lin(k * a, k * b)}$이다.`,
+        solution: `분배법칙을 이용하여 일차식의 각 항에 $${k}$${eulReul(k)} 곱한다.\n$${expr}=${lin(k * a, k * b)}$이다.`,
         facts: { mode, k, a, b, p: k * a, q: k * b },
       };
     }),
@@ -1133,7 +1139,8 @@ const EXPR_TYPES: TypeEntry[] = [
       return {
         content: `$A=${lin(a, b)}$, $B=${lin(c, d)}$일 때, $${comb}$를 계산하시오.`,
         answer: `$${lin(p, q)}$`,
-        solution: `${step}\n$A=${lin(a, b)}$, $B=${lin(c, d)}$를 대입하여 동류항끼리 모으면 $${lin(p, q)}$이다.`,
+        // $B$ 의 식은 상수항 $d$(0 아님)로 끝나니 조사는 $d$ 가 정한다.
+        solution: `${step}\n$A=${lin(a, b)}$, $B=${lin(c, d)}$${eulReul(d)} 대입하여 동류항끼리 모으면 $${lin(p, q)}$이다.`,
         facts: { mode, a, b, c, d, mCo, nCo, p, q },
       };
     }),
@@ -1223,6 +1230,8 @@ const EXPR_TYPES: TypeEntry[] = [
           const b = intBetween(rng, 1, 9);
           const c = intBetween(rng, 1, 5);
           const d = intBetween(rng, 1, 9);
+          // 가로와 세로가 같은 식이면 「직사각형」이 아니라 정사각형이다.
+          if (a === c && b === d) return null;
           const p = 2 * (a + c);
           const q = 2 * (b + d);
           return {
@@ -1399,7 +1408,11 @@ const EQ_TYPES: TypeEntry[] = [
       if (mode === 0) {
         const a = intBetween(rng, 2, 9);
         const b = intBetween(rng, 2, 15);
-        const c = intBetween(rng, 2, 9);
+        // 「$x$의 $9$배에서 $11$을 뺀 수는 $x$의 $9$배와 같다」는 해가 없는 등식이다.
+        const c = attempt(40, () => {
+          const v = intBetween(rng, 2, 9);
+          return v === a ? null : v;
+        });
         return {
           content: `어떤 수 $x$의 $${a}$배에서 $${b}$${eulReul(b)} 뺀 수는 $x$의 $${c}$배와 같다. 이를 등식으로 나타내시오.`,
           answer: `$${a}x-${b}=${c}x$`,
@@ -1439,7 +1452,7 @@ const EQ_TYPES: TypeEntry[] = [
         return {
           content: `$x$명의 학생에게 귤을 $${a}$개씩 나누어 주면 $${r}$개가 남고, $${b}$개씩 나누어 주면 $${s}$개가 부족하다. 이를 등식으로 나타내시오.`,
           answer: `$${a}x+${r}=${b}x-${s}$`,
-          solution: `귤의 개수를 두 가지로 나타내면 $${a}x+${r}$과 $${b}x-${s}$이다.\n따라서 $${a}x+${r}=${b}x-${s}$이다.`,
+          solution: `귤의 개수를 두 가지로 나타내면 $${a}x+${r}$${waGwa(r)} $${b}x-${s}$이다.\n따라서 $${a}x+${r}=${b}x-${s}$이다.`,
           facts: { mode, a, b, r, s },
         };
       }
@@ -1470,7 +1483,7 @@ const EQ_TYPES: TypeEntry[] = [
       return {
         content: `$x$가 절댓값이 $${k}$인 수일 때, 방정식 $${lhs}=${d}$의 해를 구하시오.`,
         answer: `$x=${r}$`,
-        solution: `절댓값이 $${k}$인 수는 $${k}$와 $${-k}$이다.\n$x=${r}$${eulReul(r)} 대입하면 좌변과 우변이 모두 $${d}$로 같고, $x=${-r}$${eulReul(-r)} 대입하면 등식이 성립하지 않는다.\n따라서 해는 $x=${r}$이다.`,
+        solution: `절댓값이 $${k}$인 수는 $${k}$${waGwa(k)} $${-k}$이다.\n$x=${r}$${eulReul(r)} 대입하면 좌변과 우변이 모두 $${d}$로 같고, $x=${-r}$${eulReul(-r)} 대입하면 등식이 성립하지 않는다.\n따라서 해는 $x=${r}$이다.`,
         facts: { k, r, m, n, c, d },
       };
     }),
@@ -1492,6 +1505,8 @@ const EQ_TYPES: TypeEntry[] = [
             `${lin(a, 0)}${b < 0 ? "-" : "+"}${Math.abs(b) === 1 ? "" : Math.abs(b)}x=${lin(a + b, 0)}`,
           );
         } else if (t === 1) {
+          // 괄호 앞 계수 $\pm1$ 은 지면에 `1\left(`·`-1\left(` 로 나간다(`pageSmells`).
+          if (Math.abs(a) === 1) return null;
           items.push(`${a}\\left(x${signed(c)}\\right)=${lin(a, a * c)}`);
         } else {
           if (a - e === 0) return null;
@@ -1512,7 +1527,7 @@ const EQ_TYPES: TypeEntry[] = [
           if (a === b) return null;
           items.push(`${lin(a, 0)}=${lin(b, 0)}`);
         } else {
-          if (d === a * c) return null;
+          if (d === a * c || Math.abs(a) === 1) return null;
           items.push(`${a}\\left(x${signed(c)}\\right)=${lin(a, d)}`);
         }
       }
@@ -1610,7 +1625,7 @@ const EQ_TYPES: TypeEntry[] = [
         return {
           content: `등식의 성질을 이용하여 다음 방정식을 푸시오.\n$\\dfrac{x${signed(p)}}{${n}}=${j}$`,
           answer: `$x=${r}$`,
-          solution: `양변에 $${n}$${eulReul(n)} 곱하면 $x${signed(p)}=${n * j}$이다.\n양변에서 $${p}$를 빼면 $x=${r}$이다.`,
+          solution: `양변에 $${n}$${eulReul(n)} 곱하면 $x${signed(p)}=${n * j}$이다.\n양변에서 $${p}$${eulReul(p)} 빼면 $x=${r}$이다.`,
           facts: { mode, n, p, j, r },
         };
       }),
@@ -1654,6 +1669,7 @@ const EQ_TYPES: TypeEntry[] = [
         const c = intNonzero(rng, -7, 7);
         const d = intNonzero(rng, -9, 9);
         if (t === 0) {
+          if (Math.abs(a) === 1) return null; // `1\left(`·`-1\left(` 냄새
           items.push(`${a}\\left(x${signed(c)}\\right)=${lin(a, a * c)}`);
         } else if (t === 1) {
           if (b === d) return null;
@@ -1807,7 +1823,7 @@ const EQ_TYPES: TypeEntry[] = [
         const d = dNum / q;
         if (d === 0 || Math.abs(d) > 40) return null;
         return {
-          content: `비례식 $\\left(x${signed(p)}\\right):${q}=\\left(${lin(c, d)}\\right):${e}$를 만족시키는 $x$의 값을 구하시오.`,
+          content: `비례식 $\\left(x${signed(p)}\\right):${q}=\\left(${lin(c, d)}\\right):${e}$${eulReul(e)} 만족시키는 $x$의 값을 구하시오.`,
           answer: `$x=${r}$`,
           solution: `비례식 $a:b=c:d$에서 $ad=bc$이다.\n$${e}\\left(x${signed(p)}\\right)=${q}\\left(${lin(c, d)}\\right)$이므로 정리하면 $${lin(xc, 0)}=${q * d - e * p}$이다.\n따라서 $x=${r}$이다.`,
           facts: { r, p, q, c, d, e },
@@ -1878,7 +1894,8 @@ const EQ_TYPES: TypeEntry[] = [
         const aVal = g * (r + t) - ss * r;
         if (aVal === 0) return null;
         const eq1 = `${lin(A, B)}=${lin(C, D)}`;
-        const eq2 = `${g}\\left(x${signed(t)}\\right)=a${signed(ss)}x`;
+        // `a${signed(ss)}x` 로 이으면 $ss=\pm1$ 일 때 지면에 `a-1x` 가 나갔다(씨앗 1000 중 약 200).
+        const eq2 = `${g}\\left(x${signed(t)}\\right)=a${ss < 0 ? "-" : "+"}${Math.abs(ss) === 1 ? "" : Math.abs(ss)}x`;
         return {
           content: `$x$에 대한 두 일차방정식 $${eq1}$, $${eq2}$의 해가 서로 같을 때, 상수 $a$의 값을 구하시오.`,
           answer: `$${aVal}$`,

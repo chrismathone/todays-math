@@ -677,6 +677,10 @@ export const M1_CALC: TypeEntry[] = [
       const ds = [d1, d2, d3, d4];
       if (ds.some((v) => v === 0)) return null;
       if (Math.abs(d4) > 400 || d4 % 50 !== 0) return null;
+      // 증감의 합이 $0$ 이면 일요일이 수요일과 같아 답이 발문에 그대로 있다. 증감 하나
+      // (「$+300$명」)와 우연히 같아도 마찬가지다(씨앗 1,000 중 13.4%, 2026-09-27).
+      // 통과율 37.1% → 32.2%(전수) — 200번이면 던질 확률 $10^{-34}$.
+      if (final === base || ds.includes(final)) return null;
       // 중간 어느 날도 사람 수가 음수가 되면 안 된다
       let run = base;
       for (const v of ds) {

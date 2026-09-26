@@ -680,19 +680,24 @@ export const M2_INEQ_APPLY: TypeEntry[] = [
     "농도에 대한 문제 물을 넣거나 증발시키는 경우",
     SEC.농도,
     "응용",
-    (rng) => {
-      const C = pick(rng, [4, 5, 6, 8, 10] as const);
-      const A = C + intBetween(rng, 2, 6);
-      const m = intBetween(rng, 20, 60);
-      const B = C * m;
-      const W = m * (A - C);
-      return {
-        content: `$${A}\\%$의 소금물 $${B}\\,\\mathrm{g}$이 있다. 여기에 물을 몇 $\\mathrm{g}$ 이상 넣으면 농도가 $${C}\\%$ 이하인 소금물이 되는지 구하시오.`,
-        answer: `$${W}\\,\\mathrm{g}$`,
-        solution: `물을 $x\\,\\mathrm{g}$ 넣는다고 하면 소금의 양은 변하지 않으므로 $\\dfrac{${A}}{100}\\times${B}\\le\\dfrac{${C}}{100}\\times(${B}+x)$이다.\n풀면 $x\\ge${W}$이므로 물을 $${W}\\,\\mathrm{g}$ 이상 넣어야 한다.`,
-        facts: { A, B, C, W },
-      };
-    },
+    (rng) =>
+      // 농도를 딱 절반으로($A=2C$) 만들면 넣을 물이 처음 소금물과 같아 답이 발문에 그대로
+      // 있다(씨앗 1,000 중 12.5%, 2026-09-27 — 중1 활용 15 와 같은 꼴). 통과율 88% —
+      // 100번이면 던질 확률 $0.12^{100}\approx10^{-92}$.
+      attempt(100, () => {
+        const C = pick(rng, [4, 5, 6, 8, 10] as const);
+        const A = C + intBetween(rng, 2, 6);
+        if (A === 2 * C) return null;
+        const m = intBetween(rng, 20, 60);
+        const B = C * m;
+        const W = m * (A - C);
+        return {
+          content: `$${A}\\%$의 소금물 $${B}\\,\\mathrm{g}$이 있다. 여기에 물을 몇 $\\mathrm{g}$ 이상 넣으면 농도가 $${C}\\%$ 이하인 소금물이 되는지 구하시오.`,
+          answer: `$${W}\\,\\mathrm{g}$`,
+          solution: `물을 $x\\,\\mathrm{g}$ 넣는다고 하면 소금의 양은 변하지 않으므로 $\\dfrac{${A}}{100}\\times${B}\\le\\dfrac{${C}}{100}\\times(${B}+x)$이다.\n풀면 $x\\ge${W}$이므로 물을 $${W}\\,\\mathrm{g}$ 이상 넣어야 한다.`,
+          facts: { A, B, C, W },
+        };
+      }),
   ),
 
   def(
@@ -814,19 +819,23 @@ export const M2_INEQ_APPLY: TypeEntry[] = [
     "농도를 유지하며 넣을 물의 최대량",
     SEC.농도,
     "기본",
-    (rng) => {
-      const C = pick(rng, [4, 5, 8, 10] as const);
-      const A = C + intBetween(rng, 2, 6);
-      const scale = intBetween(rng, 20, 50);
-      const B = C * scale;
-      const x = scale * (A - C);
-      return {
-        content: `$${A}\\%$의 소금물 $${B}\\,\\mathrm{g}$에 물을 넣은 뒤에도 농도가 $${C}\\%$ 이상이 되게 하려고 한다. 물은 최대 몇 $\\mathrm{g}$까지 넣을 수 있는지 계산하시오.`,
-        answer: `$${x}\\,\\mathrm{g}$`,
-        solution: `물 $x\\,\\mathrm{g}$을 넣으면 $\\dfrac{${A * B}}{${B}+x}\\ge${C}$이다. 풀면 $x\\le${x}$이므로 물은 최대 $${x}\\,\\mathrm{g}$까지 넣을 수 있다.`,
-        facts: { A, B, C, x },
-      };
-    },
+    (rng) =>
+      // 12 와 같은 꼴 — $A=2C$ 면 최대로 넣을 물이 처음 소금물과 같다(씨앗 1,000 중 9.1%).
+      // 통과율 90% — 100번이면 던질 확률 $0.1^{100}$.
+      attempt(100, () => {
+        const C = pick(rng, [4, 5, 8, 10] as const);
+        const A = C + intBetween(rng, 2, 6);
+        if (A === 2 * C) return null;
+        const scale = intBetween(rng, 20, 50);
+        const B = C * scale;
+        const x = scale * (A - C);
+        return {
+          content: `$${A}\\%$의 소금물 $${B}\\,\\mathrm{g}$에 물을 넣은 뒤에도 농도가 $${C}\\%$ 이상이 되게 하려고 한다. 물은 최대 몇 $\\mathrm{g}$까지 넣을 수 있는지 계산하시오.`,
+          answer: `$${x}\\,\\mathrm{g}$`,
+          solution: `물 $x\\,\\mathrm{g}$을 넣으면 $\\dfrac{${A * B}}{${B}+x}\\ge${C}$이다. 풀면 $x\\le${x}$이므로 물은 최대 $${x}\\,\\mathrm{g}$까지 넣을 수 있다.`,
+          facts: { A, B, C, x },
+        };
+      }),
   ),
 
   def(

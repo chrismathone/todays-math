@@ -861,6 +861,10 @@ export const M1_POLY: TypeEntry[] = [
       const shape = pick(rng, [0, 1, 2] as const); // 0 직사각형 · 1 직각삼각형 · 2 사다리꼴
       const a = intBetween(rng, 2, 9); // 축에서 가장 먼 거리 = 반지름
       const b = intBetween(rng, 3, 12); // 축에 나란한 변 = 높이
+      // 직사각형의 가로와 세로가 같으면 정사각형을 직사각형이라 부르는 꼴이다(씨앗 1,000 중
+      // 2.7%, 2026-09-27). 직각삼각형의 두 변이 같은 것(직각이등변삼각형)은 옳은 도형이라 둔다.
+      // 통과율 100% → 97.1% — 120번이면 던질 확률 $10^{-184}$.
+      if (shape === 0 && a === b) return null;
       const w2 = shape === 2 ? intBetween(rng, 1, a - 1) : 0;
       if (shape === 2 && (w2 <= 0 || w2 >= a)) return null;
       // 회전축을 포함하는 평면으로 자른 단면 = 회전 전 도형과 그 거울상을 이어 붙인 것.
@@ -1114,6 +1118,10 @@ export const M1_SOLID_AREA: TypeEntry[] = [
         // 직육면체 — `netCuboid` 가 치수를 그리므로 발문은 수를 안 적는다 (09 §4-20-b).
         const w = intBetween(rng, 3, 12);
         const d = intBetween(rng, 3, 12);
+        // 밑면의 가로와 세로가 같으면 「가로 $5$cm, 세로 $5$cm인 직사각형」 — 정사각형을
+        // 직사각형이라 부르는 꼴이다(씨앗 1,000 중 3.6%, 2026-09-27). 이 갈래의 통과율
+        // 98.4% → 88.8%(전수)이고 세 갈래 모두 합쳐도 120번이면 던질 확률이 $10^{-18}$ 아래다.
+        if (w === d) return null;
         const h = intBetween(rng, 3, 12);
         const S = 2 * (w * d + d * h + h * w);
         const V = w * d * h;
@@ -1297,6 +1305,9 @@ export const M1_SOLID_AREA: TypeEntry[] = [
         const g = intBetween(rng, 1, 6);
         const t = intBetween(rng, 1, 6);
         const h = intBetween(rng, 3, 12);
+        // 갈래 0 의 `r === h` 와 같다 — 「가로 $6$cm, 세로 $6$cm인 직사각형」(씨앗 1,000 중
+        // 2.8%, 2026-09-27). 이 갈래의 통과율 95.0% → 90.0%(전수).
+        if (t === h) return null;
         const R = g + t;
         const S = 2 * (R * R - g * g) + 2 * R * h + 2 * g * h;
         const V = (R * R - g * g) * h;

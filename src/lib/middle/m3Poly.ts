@@ -541,6 +541,10 @@ const MUL: TypeEntry[] = [
     attempt<Gen>(80, () => {
       const a = intBetween(rng, 2, 6);
       const b = intBetween(rng, 2, 6);
+      // 가로와 세로가 같은 식이면 「가로 $3x$, 세로 $3x$인 직사각형」 — 정사각형을 직사각형이라
+      // 부르는 꼴이다(씨앗 1,000 중 18.3%, 2026-09-27). 09 가 이미 막는 것과 같다.
+      // 통과율 92.9% → 76.2%(전수) — 80번이면 던질 확률 $10^{-50}$.
+      if (a === b) return null;
       const p = intBetween(rng, 1, 6);
       const q = intBetween(rng, 1, 6);
       if (b * p - a * q === 0) return null;

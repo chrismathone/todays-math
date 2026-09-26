@@ -138,7 +138,7 @@ for (const [name, engine] of [
         path: resolve(output, `${name}-replay-${width}x${height}.png`),
       });
     await choices.first().click();
-    await replay.getByText("정확하게 풀었어요!").waitFor();
+    await replay.getByText("정확하게 풀었어요").waitFor();
     await replay.getByRole("button", { name: "풀이 보기" }).click();
     const solution = page.getByRole("dialog", { name: "복습 풀이" });
     await solution.waitFor();

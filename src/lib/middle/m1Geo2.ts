@@ -1270,14 +1270,17 @@ const M1_POLY_ANGLE: TypeEntry[] = [
     "응용",
     (rng): Body => {
       const n = intBetween(rng, 4, 20);
-      const m = intBetween(rng, 1, 4);
-      const a = m * (n - 2);
-      const b = m * 2;
+      // 비는 **가장 간단한 자연수의 비**로 준다 — 전에는 $(n-2):2$ 에 $1$~$4$배를 곱해
+      // 「$42:6$」·「$4:4$」가 나갔다(씨앗 1,000 중 86.9%, 2026-09-27 실측).
+      // $n=4$ 는 $1:1$ 이 된다(정사각형 — 옳은 비).
+      const g = n % 2 === 0 ? 2 : 1; // gcd(n-2, 2)
+      const a = (n - 2) / g;
+      const b = 2 / g;
       return {
         content: `정다각형의 한 내각의 크기와 한 외각의 크기의 비가 $${a}:${b}$일 때, 이 정다각형의 변의 개수를 구하시오.`,
         answer: `$${n}$`,
         solution: `한 내각과 한 외각의 크기의 합은 $180^\\circ$이므로 한 외각의 크기는 $180^\\circ\\times\\dfrac{${b}}{${a + b}}$이다.\n$n=\\dfrac{360^\\circ}{180^\\circ\\times\\frac{${b}}{${a + b}}}=\\dfrac{360^\\circ\\times(${a}+${b})}{180^\\circ\\times${b}}=${n}$이다.`,
-        facts: { n, m, a, b },
+        facts: { n, a, b },
       };
     },
   ),

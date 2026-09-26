@@ -727,6 +727,9 @@ export const M1_BOOK1: TypeEntry[] = [
         if (Math.abs(ax) > 12 || Math.abs(ay) > 12) return null;
         if (Math.abs(bx) > 12 || Math.abs(by) > 12) return null;
         if (ax === bx && ay === by) return null;
+        // 해설이 $\dfrac{a_x+b_x}{2}$ 에 그대로 넣으므로 $\mathrm{B}$ 의 좌표가 $0$ 이면 지면에
+        // `\dfrac{-6+0}{2}` 가 나간다(`pageSmells` 「상수 0 을 더했다」, 씨앗 2000 중 294).
+        if (bx === 0 || by === 0) return null;
         return {
           content: `두 점 $\\mathrm{A}(${ax}, ${ay})$, $\\mathrm{B}(${bx}, ${by})$의 중점의 좌표를 구하시오.`,
           answer: `$(${m}, ${n})$`,

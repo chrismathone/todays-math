@@ -56,6 +56,10 @@ function r2(v: number): number {
   return Math.round(v * 100) / 100;
 }
 
+function gcd(a: number, b: number): number {
+  return b === 0 ? a : gcd(b, a % b);
+}
+
 /** attempt — 조건을 만족할 때까지 다시 뽑는다. 소진되면 던진다. */
 function attempt<T>(tries: number, f: () => T | null): T {
   for (let i = 0; i < tries; i += 1) {
@@ -640,6 +644,10 @@ const SECTOR_TYPES: TypeEntry[] = [
         const q = intBetween(rng, 1, total - p - 2);
         const r = total - p - q;
         if (r < 1) return null;
+        // 비는 **가장 간단한 자연수의 비**로 준다 — 「$8:2:2$」(씨앗 1,000 중 18.6%,
+        // 2026-09-27). 두 항이 같은 것($2:2:5$)은 이등변 꼴이라 둔다. 통과율 78.2%(전수)
+        // — 300번이면 던질 확률 $10^{-199}$.
+        if (gcd(gcd(p, q), r) !== 1) return null;
         const target = intBetween(rng, 0, 2) as 0 | 1 | 2;
         const vals = [p, q, r] as const;
         const x = (360 * vals[target]) / total;
@@ -887,8 +895,14 @@ const SECTOR_TYPES: TypeEntry[] = [
     // − (원래 직사각형)」로 독립 재도출해 확인했다: (p+2r)(q+2r)+πr² − pq
     // = 2r(p+q) + πr². 종이/화이트보드 재검증은 안 했으나 두 방법(둘레×반지름
     // + 모서리 부채꼴 넷 / 부푼 사각형 차)이 같은 식으로 귀결되는 것을 확인했다.
-    const p = intBetween(rng, 4, 12);
-    const q = intBetween(rng, 4, 12);
+    // 가로와 세로가 같으면 「가로 $9$cm, 세로 $9$cm인 직사각형」 — 정사각형을 직사각형이라
+    // 부르는 꼴이다(씨앗 1,000 중 11.6%, 2026-09-27). 그림(`figRectSimple`)도 같은 두 값을
+    // 그리므로 함께 맞는다. 통과율 88.9% — 100번이면 던질 확률 $0.111^{100}\approx10^{-96}$.
+    const [p, q] = attempt(100, () => {
+      const p = intBetween(rng, 4, 12);
+      const q = intBetween(rng, 4, 12);
+      return p === q ? null : ([p, q] as const);
+    });
     const r = intBetween(rng, 1, 5);
     const linCoef = 2 * r * (p + q);
     const piCoef = r * r;

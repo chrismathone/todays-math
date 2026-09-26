@@ -1625,6 +1625,9 @@ $x=${t2}$는 내려오면서 다시 그 높이가 되는 때이므로 버린다.
         if (mode === 0) {
           const a = intBetween(rng, 5, 15);
           const b = intBetween(rng, 5, 15);
+          // 「가로, 세로의 길이가 각각 $7$m, $7$m인 직사각형」 — 정사각형이다(씨앗 1,000 중 3.1%,
+          // 2026-09-27). 한 번 시도의 통과율 100% → 97.0% — 200번이면 던질 확률 $10^{-304}$.
+          if (a === b) return null;
           const inc = intBetween(rng, 1, 6);
           const bigS = inc * inc + (a + b) * inc;
           return body(
