@@ -12,18 +12,22 @@ export default function ExplorerCardDialog({
   card,
   state,
   solution,
+  workshopSolution,
   busy,
   onInspect,
   onSolution,
+  onWorkshopSolution,
   onRepair,
   onClose,
 }: {
   card: ExplorerCard;
   state: ExplorerState;
   solution: ExplorerFeedback["solution"] | null;
+  workshopSolution?: ExplorerFeedback["workshopSolution"] | null;
   busy: boolean;
   onInspect: (card: ExplorerCard) => void;
   onSolution: () => void;
+  onWorkshopSolution?: () => void;
   onRepair: () => void;
   onClose: () => void;
 }) {
@@ -128,6 +132,37 @@ export default function ExplorerCardDialog({
             ) : null}
           </>
         )}
+        {card.id === "g5-common-denominator" &&
+        !active &&
+        state.workshop?.session?.done ? (
+          <section className={s.solutionContent}>
+            {workshopSolution ? (
+              <>
+                <h3>{workshopSolution.title}</h3>
+                <p>{workshopSolution.explanation}</p>
+                {workshopSolution.examples.map((example, index) => (
+                  <p key={index}>
+                    {example.fractions
+                      .map(
+                        (fraction, fractionIndex) =>
+                          `${fraction.numerator}/${fraction.denominator} = ${example.numerators[fractionIndex]}/${example.denominator}`,
+                      )
+                      .join(" · ")}
+                  </p>
+                ))}
+              </>
+            ) : (
+              <button
+                type="button"
+                className={s.secondary}
+                disabled={busy}
+                onClick={onWorkshopSolution}
+              >
+                조각 활동 해설 보기
+              </button>
+            )}
+          </section>
+        ) : null}
         {card.prerequisiteIds.length ? (
           <section className={s.prerequisites}>
             <h3>연결된 앞개념</h3>

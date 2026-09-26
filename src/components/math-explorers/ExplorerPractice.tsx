@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, type ReactNode } from "react";
 import type {
   ExplorerAction,
   ExplorerActivity,
@@ -35,6 +35,42 @@ export default function ExplorerPractice({
   onHome: () => void;
 }) {
   return (
+    <ExplorerPracticeFrame
+      session={session}
+      busy={busy}
+      correct={correct}
+      eventKey={eventKey}
+      onHome={onHome}
+    >
+      <Activity
+        key={`${activity.questionId}:${activity.kind}`}
+        activity={activity}
+        busy={busy}
+        correct={correct}
+        onAction={onAction}
+      />
+    </ExplorerPracticeFrame>
+  );
+}
+
+export function ExplorerPracticeFrame({
+  session,
+  busy,
+  correct,
+  eventKey,
+  onHome,
+  children,
+  feedbackMessage,
+}: {
+  session: NonNullable<ExplorerState["session"]>;
+  busy: boolean;
+  correct: boolean | null;
+  eventKey: string;
+  onHome: () => void;
+  children: ReactNode;
+  feedbackMessage?: string;
+}) {
+  return (
     <>
       <div className={s.practiceToolbar}>
         <button type="button" disabled={busy} onClick={onHome}>
@@ -62,14 +98,12 @@ export default function ExplorerPractice({
         />
       </div>
       <section className={s.practiceFrame} aria-label="개념 문제와 답 고르기">
-        <Activity
-          key={`${activity.questionId}:${activity.kind}`}
-          activity={activity}
-          busy={busy}
+        {children}
+        <AnswerFeedbackEffect
           correct={correct}
-          onAction={onAction}
+          eventKey={eventKey}
+          message={feedbackMessage}
         />
-        <AnswerFeedbackEffect correct={correct} eventKey={eventKey} />
       </section>
     </>
   );

@@ -20,6 +20,7 @@ import { ChestRewardEffect } from "./ExplorerPieces";
 import s from "./math-explorers.module.css";
 
 const ExplorerCardDialog = dynamic(() => import("./ExplorerCardDialog"));
+const ExplorerWorkshop = dynamic(() => import("./ExplorerWorkshop"));
 const EFFECT_MS = 1200;
 type Failure = { status: number; message: string; request?: ExplorerRequest };
 
@@ -38,6 +39,9 @@ export default function StudentMathExplorers() {
   const [solution, setSolution] = useState<ExplorerFeedback["solution"] | null>(
     null,
   );
+  const [workshopSolution, setWorkshopSolution] = useState<
+    ExplorerFeedback["workshopSolution"] | null
+  >(null);
   const inFlight = useRef<AbortController | null>(null);
   const lastRequest = useRef<ExplorerRequest | null>(null);
   const pending = useRef(false);
@@ -164,7 +168,7 @@ export default function StudentMathExplorers() {
       if (!alive.current) return;
       lastRequest.current = null;
       if (
-        action.type === "answer" &&
+        (action.type === "answer" || action.type.startsWith("lab-")) &&
         typeof data.feedback?.correct === "boolean"
       ) {
         held = true;
@@ -191,7 +195,11 @@ export default function StudentMathExplorers() {
         }
         if (action.type === "solution" && data.feedback?.solution)
           setSolution(data.feedback.solution);
+        if (action.type === "lab-solution" && data.feedback?.workshopSolution)
+          setWorkshopSolution(data.feedback.workshopSolution);
         if (action.type === "chest" && data.feedback?.chestId) {
+          if (timer.current) clearTimeout(timer.current);
+          setEffectKey(input.requestId);
           setChestStars(data.feedback.stars ?? 1);
           timer.current = setTimeout(() => {
             if (alive.current) setChestStars(null);
@@ -222,6 +230,11 @@ export default function StudentMathExplorers() {
     !!state?.currentActivity &&
     !!state.session &&
     !state.session.done;
+  const workshop = state?.workshop?.session;
+  const attachedWorkshop =
+    workshop &&
+    !workshop.done &&
+    workshop.attachedTo.sessionId === state?.session?.id;
   const detail = detailId
     ? state?.units
         .flatMap((unit) => unit.cards)
@@ -229,6 +242,7 @@ export default function StudentMathExplorers() {
     : null;
   function inspect(card: ExplorerCard) {
     setSolution(null);
+    setWorkshopSolution(null);
     setDetailId(card.id);
   }
   function refresh() {
@@ -286,18 +300,33 @@ export default function StudentMathExplorers() {
       )}
       {state && !loading ? (
         inPractice && state.currentActivity && state.session ? (
-          <ExplorerPractice
-            activity={state.currentActivity}
-            session={state.session}
-            busy={busy}
-            correct={correct}
-            eventKey={effectKey}
-            onAction={(action) => void send(action)}
-            onHome={() => {
-              setPracticing(false);
-              window.scrollTo({ top: 0, behavior: "instant" });
-            }}
-          />
+          attachedWorkshop ? (
+            <ExplorerWorkshop
+              workshop={workshop}
+              session={state.session}
+              busy={busy}
+              correct={correct}
+              eventKey={effectKey}
+              onAction={(action) => void send(action)}
+              onHome={() => {
+                setPracticing(false);
+                window.scrollTo({ top: 0, behavior: "instant" });
+              }}
+            />
+          ) : (
+            <ExplorerPractice
+              activity={state.currentActivity}
+              session={state.session}
+              busy={busy}
+              correct={correct}
+              eventKey={effectKey}
+              onAction={(action) => void send(action)}
+              onHome={() => {
+                setPracticing(false);
+                window.scrollTo({ top: 0, behavior: "instant" });
+              }}
+            />
+          )
         ) : (
           <ExplorerHome
             state={state}
@@ -313,19 +342,22 @@ export default function StudentMathExplorers() {
           card={detail}
           state={state}
           solution={solution}
+          workshopSolution={workshopSolution}
           busy={busy}
           onInspect={inspect}
           onSolution={() => void send({ type: "solution", cardId: detail.id })}
+          onWorkshopSolution={() => void send({ type: "lab-solution" })}
           onRepair={() =>
             void send({ type: "start", route: "repair", cardId: detail.id })
           }
           onClose={() => {
             setDetailId(null);
             setSolution(null);
+            setWorkshopSolution(null);
           }}
         />
       ) : null}
-      <ChestRewardEffect stars={chestStars} />
+      <ChestRewardEffect key={effectKey} stars={chestStars} />
     </StudentReviewPage>
   );
 }

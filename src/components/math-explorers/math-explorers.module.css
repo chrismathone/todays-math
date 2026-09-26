@@ -1040,6 +1040,182 @@ button.confirm {
   background: #fff8eb;
   box-shadow: 0 5px 15px #182b4517;
 }
+.fractionModels {
+  display: grid;
+  gap: 19px;
+}
+.fractionModel {
+  min-width: 0;
+}
+.fractionLabel {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 10px;
+  color: #345b94;
+}
+.fractionLabel > span:first-child {
+  font-size: 12px;
+  color: #8098b9;
+  margin-right: auto;
+}
+.fraction {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-width: 24px;
+  padding-inline: 3px;
+  vertical-align: middle;
+  font-size: 20px;
+  line-height: 1.3;
+  font-variant-numeric: tabular-nums;
+  color: #2c548c;
+}
+.fraction > span:first-child {
+  padding: 0 6px 2px;
+  border-bottom: 1.5px solid currentColor;
+}
+.fraction > span:last-child {
+  padding: 2px 6px 0;
+}
+.fractionStrip {
+  display: grid;
+  grid-template-columns: repeat(var(--parts), minmax(0, 1fr));
+  height: 47px;
+  overflow: hidden;
+  border: 2px solid #83a2d3;
+  border-radius: 8px;
+  background: #f6f9ff;
+}
+.fractionStrip > span {
+  border-right: 1px solid #aac0e2;
+}
+.fractionStrip > span:last-child {
+  border-right: 0;
+}
+.fractionStrip > span[data-filled] {
+  background: #6f99e6;
+}
+.paintInstruction {
+  margin: 8px 0 10px;
+  font-size: 12px;
+  color: #7a90ad;
+  line-height: 1.6;
+  word-break: keep-all;
+}
+.paintGrid {
+  display: grid;
+  grid-template-columns: repeat(var(--paint-columns), minmax(44px, 1fr));
+  gap: 3px;
+  padding: 4px;
+  border: 2px solid #9fb8dd;
+  border-radius: 10px;
+  background: #edf3fc;
+}
+.paintGrid button {
+  min-width: 44px;
+  min-height: 44px;
+  padding: 0;
+  border: 1px solid #cbd9ee;
+  border-radius: 4px;
+  background: #fff;
+  color: transparent;
+  font: inherit;
+  font-size: 18px;
+  cursor: pointer;
+  touch-action: manipulation;
+}
+.paintGrid button[aria-pressed="true"] {
+  color: #eef6ff;
+  background: #628fde;
+  border-color: #5784d3;
+}
+.factorControls {
+  display: flex;
+  justify-content: center;
+  gap: 18px;
+  margin-bottom: 14px;
+}
+.factorControls > div {
+  flex: 1;
+  min-width: 0;
+  max-width: 210px;
+  text-align: center;
+}
+.factorControls > div > span {
+  display: block;
+  color: #8198b9;
+  font-size: 11px;
+  margin-bottom: 10px;
+}
+.factorControls > div > div {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 4px;
+}
+.factorControls button {
+  display: grid;
+  place-items: center;
+  flex: 0 0 44px;
+  height: 44px;
+  border: 1px solid #cddcf3;
+  border-radius: 11px;
+  background: #edf3ff;
+  color: #456abd;
+  font: inherit;
+  font-size: 23px;
+  cursor: pointer;
+  touch-action: manipulation;
+}
+.factorControls strong {
+  font-size: 23px;
+  font-weight: 750;
+  color: #315c9b;
+}
+.factorControls small {
+  display: block;
+  color: #91a4bf;
+  font-size: 9px;
+  font-weight: 500;
+}
+.manipulationNote {
+  margin: 4px 0 11px;
+  font-size: 11px;
+  line-height: 1.5;
+  color: #8296b1;
+  text-align: center;
+  word-break: keep-all;
+}
+.paintedCounts {
+  display: flex;
+  justify-content: center;
+  gap: 34px;
+  margin-bottom: 16px;
+}
+.paintedCounts > span {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  color: #8aa1c0;
+  font-size: 12px;
+}
+.workshopChoices button {
+  font-size: 13px;
+}
+@media (max-width: 350px) {
+  .factorControls {
+    gap: 10px;
+  }
+  .factorControls button {
+    flex-basis: 44px;
+    min-width: 44px;
+  }
+  .factorControls strong {
+    font-size: 19px;
+  }
+}
 .practiceError p {
   margin: 0 0 8px;
   font-size: 12px;
