@@ -25,9 +25,15 @@ import {
   definitionWeak,
 } from "./definition-cards";
 import type { DefinitionAction } from "./types";
+import { ExplorerActionConflict, ExplorerActionInvalid } from "./errors";
+import {
+  applyWorkshopAction,
+  isWorkshopAction,
+  workshopMemoryDue,
+  workshopView,
+} from "./workshop";
 
-export class ExplorerActionConflict extends Error {}
-export class ExplorerActionInvalid extends Error {}
+export { ExplorerActionConflict, ExplorerActionInvalid } from "./errors";
 
 export const explorerUpgradeCosts = [3, 6, 12] as const;
 
@@ -83,9 +89,28 @@ export function applyExplorerAction(
   const state = structuredClone(stored);
   const profile = state.profile;
   const before = profile.definitions?.session;
+  const activeWorkshop = profile.workshop?.session;
   let feedback: ExplorerFeedback;
 
-  if (action.type === "upgrade") {
+  if (isWorkshopAction(action)) {
+    if (action.type === "lab-solution") {
+      if (before && !before.done)
+        throw new ExplorerActionInvalid(
+          "개념 퀘스트와 오답 다시 풀기를 마친 뒤 해설을 볼 수 있어요.",
+        );
+    } else if (
+      !before ||
+      before.done ||
+      !activeWorkshop ||
+      activeWorkshop.attachedTo.sessionId !== before.id ||
+      activeWorkshop.attachedTo.questionId !== definitionQuestionId(before)
+    ) {
+      throw new ExplorerActionConflict(
+        "현재 개념의 조각 활동에서 다시 시도해 주세요.",
+      );
+    }
+    feedback = applyWorkshopAction(profile, action, date);
+  } else if (action.type === "upgrade") {
     const cost = explorerUpgradeCosts[profile.level];
     if (cost === undefined)
       throw new ExplorerActionInvalid("기지를 모두 완성했어요.");
@@ -125,6 +150,15 @@ export function applyExplorerAction(
       },
     };
   } else {
+    if (
+      (action.type === "answer" || action.type === "read") &&
+      activeWorkshop?.stage !== "complete" &&
+      activeWorkshop?.attachedTo.sessionId === before?.id
+    ) {
+      throw new ExplorerActionConflict(
+        "현재 개념의 조각 활동을 먼저 마쳐 주세요.",
+      );
+    }
     if (
       (action.type === "answer" || action.type === "read") &&
       (!before ||
@@ -234,6 +268,37 @@ export function applyExplorerAction(
     if (session?.done && session.unresolved.length) {
       feedback.message =
         "다시 확인할 개념을 모았어요. 원할 때 해설을 열어 볼 수 있어요.";
+    }
+    // The manipulation is an interlude inside this concept's first activity.
+    // It never increments the 15-activity index or creates a separate daily tile.
+    if (
+      session &&
+      !session.done &&
+      !session.reviewOnly &&
+      session.round === 0 &&
+      session.queue[session.index]?.cardId === "g5-common-denominator" &&
+      session.queue[session.index]?.kind === 0 &&
+      !definitionNeedsRead(profile, session) &&
+      profile.workshop?.session?.attachedTo.sessionId !== session.id
+    ) {
+      const labRoute = !profile.workshop?.blueprintAt
+        ? "explore"
+        : workshopMemoryDue(profile.workshop, date)
+          ? "memory"
+          : "check";
+      applyWorkshopAction(
+        profile,
+        {
+          type: "lab-start",
+          route: labRoute,
+          attachedTo: {
+            sessionId: session.id,
+            questionId: definitionQuestionId(session),
+            cardId: "g5-common-denominator",
+          },
+        },
+        date,
+      );
     }
   }
   state.receipts.push({ requestId, actionKey: key, feedback });
@@ -350,5 +415,6 @@ export function explorerView(
     chests: definitionChests(profile),
     completedDays: stored.completedDays,
     history: record?.history ?? [],
+    workshop: workshopView(profile.workshop, serverDate),
   });
 }
