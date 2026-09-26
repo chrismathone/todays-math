@@ -1,6 +1,6 @@
 import { z } from "zod";
 import { isoDateSchema, uuidSchema } from "./common.contract";
-import { mathExpeditionJourneySchema } from "./mathExpedition.contract";
+import { mathExpeditionJourneySchema, mathExpeditionSchema } from "./mathExpedition.contract";
 
 const id = z.string().min(1).max(200);
 const text = z.string().max(4000);
@@ -134,6 +134,7 @@ export const explorerProfileSchema = z.strictObject({
 });
 
 export const explorerActionSchema = z.discriminatedUnion("type", [
+  z.strictObject({ type: z.literal("expedition-start") }),
   z.strictObject({
     type: z.literal("start"),
     route: route.default("unit"),
@@ -375,6 +376,7 @@ export const explorerStateSchema = explorerViewSchema.extend({
   feedback: explorerFeedbackSchema.nullable(),
   today: isoDateSchema.optional(),
   journey: mathExpeditionJourneySchema.optional(),
+  expedition: mathExpeditionSchema.optional(),
 });
 export type ExplorerView = z.infer<typeof explorerViewSchema>;
 export type ExplorerState = z.infer<typeof explorerStateSchema>;
