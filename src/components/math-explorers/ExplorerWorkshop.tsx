@@ -21,6 +21,12 @@ const stageNames: Record<Workshop["stage"], string> = {
   complete: "조작 활동 완료",
 };
 
+/**
+ * 조각 활동의 세로 분수(처음 분수 · 나눈 분수 · 칠한 칸 수) — 카드 글과 같은 KaTeX `\frac` 로 그린다
+ * (원장님 확정 2026-09-27 «작업실 세로 분수도 KaTeX», 05 §8.16 옆). 분수 글은 카드 글과 같은 변환 함수를 지난다
+ * (`plainMathToTex` — `1/2` → `\frac{1}{2}`). 칸의 크기·자리는 옛 CSS 판과 같게 `.fraction` 이 잡는다.
+ * 읽기용 이름표 «d분의 n» 은 그대로.
+ */
 function Fraction({
   numerator,
   denominator,
@@ -30,8 +36,7 @@ function Fraction({
 }) {
   return (
     <span className={s.fraction} aria-label={`${denominator}분의 ${numerator}`}>
-      <span>{numerator}</span>
-      <span>{denominator}</span>
+      <ExplorerMath text={`${numerator}/${denominator}`} />
     </span>
   );
 }
