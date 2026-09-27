@@ -212,8 +212,32 @@ describe("account-owned concept transitions", () => {
     expect(f.state.profile.level).toBe(3);
     expect(f.state.profile.stars).toBe(0);
     expect(f.state.profile.earned).toBe(21);
-    expect(() => f.act({ type: "upgrade" })).toThrow(ExplorerActionInvalid);
+    expect(() => f.act({ type: "upgrade" })).toThrow(
+      "별 12개를 더 모아 주세요.",
+    );
     expect(f.state.completedDays).toHaveLength(0);
+  });
+
+  it("keeps growing the base past the third stage for 12 stars each, with no end (D-144)", () => {
+    const f = fixture();
+    // 옛 판에서 «성장 완료»였던 학생 — 쌓인 별이 새 단계에 바로 쓰인다(누를 때마다 한 단계, 자동으로 쓰지 않음)
+    f.state.profile.level = 3;
+    f.state.profile.stars = 30;
+    f.state.profile.earned = 51;
+    const first = f.act({ type: "upgrade" });
+    expect(first.feedback.message).toBe("별 12개로 기지가 4단계로 자랐어요.");
+    expect(f.state.profile).toMatchObject({ level: 4, stars: 18, earned: 51 });
+    f.act({ type: "upgrade" });
+    expect(f.state.profile).toMatchObject({ level: 5, stars: 6 });
+    expect(() => f.act({ type: "upgrade" })).toThrow(
+      "별 6개를 더 모아 주세요.",
+    );
+    f.state.profile.level = 40;
+    f.state.profile.stars = 12;
+    f.act({ type: "upgrade" });
+    expect(f.state.profile).toMatchObject({ level: 41, stars: 0 });
+    expect(storedExplorerSchema.parse(f.state).profile.level).toBe(41);
+    expect(explorerView(f.state, "2026-09-26").profile.level).toBe(41);
   });
 
   it("replays the original five mixed-route concepts and keeps independent chest transactions", () => {
