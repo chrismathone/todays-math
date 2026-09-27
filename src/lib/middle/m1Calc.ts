@@ -1088,10 +1088,12 @@ export const M1_CALC: TypeEntry[] = [
       const B = A * (T - E) + brace.n; // 대괄호 앞의 수를 역산
       if (Math.abs(B) > 90 || B === 0) return null;
       if (Math.abs(innerTimesD.n) > 20) return null;
+      // $E=0$ 이면 끝의 「$+0$」을 안 적는다 — 값은 같고 지면만 흉하다.
+      const eTail = E === 0 ? "" : E > 0 ? `+${E}` : `-${-E}`;
       const expr =
         `\\dfrac{1}{${A}}\\times\\left[${B}-\\left\\{${C}^{2}+` +
         `\\left(\\dfrac{${p}}{${u}}-\\dfrac{${r}}{${w}}\\right)\\times${D}\\right\\}\\right]` +
-        `${E >= 0 ? `+${E}` : `-${-E}`}`;
+        eTail;
       const bracket = B - brace.n;
       return {
         content: `다음을 계산하시오. $${expr}$`,
@@ -1101,7 +1103,7 @@ export const M1_CALC: TypeEntry[] = [
           `여기에 $${D}$${eulReul(D)} 곱하면 $${innerTimesD.n}$이다.\n` +
           `중괄호 안은 $${C}^{2}+${texSigned(innerTimesD)}=${C * C}${innerTimesD.n >= 0 ? `+${innerTimesD.n}` : `-${-innerTimesD.n}`}=${brace.n}$이다.\n` +
           `대괄호 안은 $${B}-${texSigned(brace)}=${bracket}$이다.\n` +
-          `따라서 $\\dfrac{1}{${A}}\\times${texSigned(q(bracket))}${E >= 0 ? `+${E}` : `-${-E}`}=${bracket / A}${E >= 0 ? `+${E}` : `-${-E}`}=${T}$이다.`,
+          `따라서 $\\dfrac{1}{${A}}\\times${texSigned(q(bracket))}${E === 0 ? "" : `${eTail}=${bracket / A}${eTail}`}=${T}$이다.`,
         facts: { T, E, A, C, p, u, r, w, D, B },
       };
     }),
