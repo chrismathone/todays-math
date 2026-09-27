@@ -4,6 +4,9 @@
  * 끝 자리가 2(이)·4(사)·5(오)·9(구)면 모음으로 끝나고, 0(십/백/천/만의 받침 포함)·
  * 1(일)·3(삼)·6(육)·7(칠)·8(팔)이면 받침으로 끝난다. 끝 자리가 0이면 마지막으로
  * 읽는 글자가 십·백·천·만이라 항상 받침이다. 음수는 절댓값과 같게 읽힌다.
+ *
+ * 좌표·식 뒤에서는 **읽을 때 마지막에 오는 수**를 넘긴다 — 「점 $(6, 8)$은」은 `eunNeun(8)`,
+ * 「$y=2x+3$과」는 `waGwa(3)`. 닫는 괄호는 소리 내어 읽지 않는다.
  */
 function vowelFinal(n: number): boolean {
   const d = Math.abs(n) % 10;
@@ -18,6 +21,16 @@ export function eulReul(n: number): "을" | "를" {
 /** 접속 조사: $2$와 · $3$과 */
 export function waGwa(n: number): "와" | "과" {
   return vowelFinal(n) ? "와" : "과";
+}
+
+/** 보조사: $2$는 · $3$은 */
+export function eunNeun(n: number): "은" | "는" {
+  return vowelFinal(n) ? "는" : "은";
+}
+
+/** 주격 조사: $2$가 · $3$이 */
+export function iGa(n: number): "이" | "가" {
+  return vowelFinal(n) ? "가" : "이";
 }
 
 /**

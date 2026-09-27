@@ -261,7 +261,7 @@ export const M2_INEQ_APPLY: TypeEntry[] = [
       const n = intBetween(rng, 3, 15);
       const limit = a * n - b;
       return {
-        content: `어떤 자연수의 $${a}$배에서 $${b}$를 뺀 수가 $${limit}$ 이상일 때, 이러한 자연수의 최솟값을 계산하시오.`,
+        content: `어떤 자연수의 $${a}$배에서 $${b}$${eulReul(b)} 뺀 수가 $${limit}$ 이상일 때, 이러한 자연수의 최솟값을 계산하시오.`,
         answer: `$${n}$`,
         solution: `어떤 자연수를 $x$라 하면 $${a}x-${b}\\ge${limit}$이다. 풀면 $x\\ge${n}$이므로 가장 작은 자연수는 $${n}$이다.`,
         facts: { a, b, n, limit },
@@ -783,7 +783,7 @@ export const M2_INEQ_APPLY: TypeEntry[] = [
       return {
         content: `$${A}\\%$의 소금물 $${B}\\,\\mathrm{g}$을 끓여서 농도가 $${C}\\%$ 이상이 되게 하려고 한다. 물을 몇 $\\mathrm{g}$ 이상 증발시켜야 하는지 구하시오.`,
         answer: `$${x}\\,\\mathrm{g}$`,
-        solution: `물 $x\\,\\mathrm{g}$을 증발시키면 소금의 양은 그대로이고 전체 양은 $(${B}-x)\\,\\mathrm{g}$이다. $\\dfrac{${A * B}}{${B}-x}\\ge${C}$을 풀면 $x\\ge${x}$이다.`,
+        solution: `물 $x\\,\\mathrm{g}$을 증발시키면 소금의 양은 그대로이고 전체 양은 $(${B}-x)\\,\\mathrm{g}$이다. $\\dfrac{${A * B}}{${B}-x}\\ge${C}$${eulReul(C)} 풀면 $x\\ge${x}$이다.`,
         facts: { A, B, C, x },
       };
     },

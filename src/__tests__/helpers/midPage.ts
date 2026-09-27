@@ -64,11 +64,25 @@ const JOSA_PAIR: Record<string, readonly [string, string]> = {
   가: ["이", "가"],
 };
 
-/** 수 뒤 조사가 읽기와 어긋난 자리 — 없으면 빈 배열. */
+/**
+ * 수 뒤 조사가 읽기와 어긋난 자리 — 없으면 빈 배열.
+ *
+ * 「$3$가지」의 「가」·「$4$과목」의 「과」는 조사가 아니라 **낱말의 첫 글자**다 — 예전 판은
+ * 이것을 주격·접속 조사로 읽어 전 중등 29유형 34행(유형×필드)에서 거짓 경보를 냈다
+ * (2026-09-27 전수, 씨앗 200 에 「가지」 8,964건·「과목」 400건). 그래서 뒤에 「지」·「목」이
+ * 오면 안 본다. 「$4$과의」처럼 조사 뒤에 조사가 붙은 것은 그대로 본다.
+ *
+ * 닫는 괄호는 **소리 내어 읽지 않는다** — 「점 $(6, 8)$」은 「… 팔」로 끝난다. 예전 판은
+ * 「)」로 끝나면 판정하지 않아 좌표·함숫값 뒤 조사가 통째로 0 이었다(같은 날 전수 33행 —
+ * 모바일 복습이 쓰는 중1 「좌표와 그래프」도 여기서 샜다).
+ */
 export function josaMismatches(text: string): string[] {
   const out: string[] = [];
-  for (const m of text.matchAll(/\$([^$]*)\$(을|를|은|는|와|과|가)/g)) {
-    const n = trailingReadNumber(m[1]!);
+  for (const m of text.matchAll(
+    /\$([^$]*)\$(을|를|은|는|와|과(?!목)|가(?!지))/g,
+  )) {
+    const read = m[1]!.replace(/(?:\\right\)|\\right\]|\)|\])+$/, "");
+    const n = trailingReadNumber(read);
     if (n === null) continue; // 문자·지수로 끝나면 읽기를 알 수 없다
     const pair = JOSA_PAIR[m[2]!]!;
     const want = numVowelFinal(n) ? pair[1] : pair[0];

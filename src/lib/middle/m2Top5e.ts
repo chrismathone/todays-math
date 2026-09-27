@@ -727,7 +727,7 @@ const LINE_FROM_FOUR: TypeEntry[] = [
           `평행한 두 직선의 기울기는 같으므로 구하는 직선의 기울기도 $${m}$이다.`,
         );
         lines.push(
-          `구하는 직선의 식을 $y=${coefTex(m)}+b$라 하면 이 직선이 점 $\\mathrm{${LABELS[oddAt]}}(${x4}, ${y4})$를 지나므로 $${y4}=${m}\\times${x4 < 0 ? `(${x4})` : x4}+b$이다.`,
+          `구하는 직선의 식을 $y=${coefTex(m)}+b$라 하면 이 직선이 점 $\\mathrm{${LABELS[oddAt]}}(${x4}, ${y4})$${eulReul(y4)} 지나므로 $${y4}=${m}\\times${x4 < 0 ? `(${x4})` : x4}+b$이다.`,
         );
         lines.push(
           `따라서 $b=${y4}${signed(-m * x4)}=${ans}$이고, 구하는 $y$절편은 $${ans}$이다.`,

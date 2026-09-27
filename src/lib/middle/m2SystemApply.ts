@@ -306,7 +306,7 @@ export const M2_SYSTEM_APPLY: TypeEntry[] = [
     const answer = nonzero(rng, 2, 6);
     const target = answer * x + y;
     return {
-      content: `연립방정식 $\\begin{cases}x+y=${sum}\\\\${mc(p, "x")}-y=${c}\\end{cases}$의 해가 일차방정식 $ax+y=${target}$를 만족시킬 때, 상수 $a$의 값을 구하시오.`,
+      content: `연립방정식 $\\begin{cases}x+y=${sum}\\\\${mc(p, "x")}-y=${c}\\end{cases}$의 해가 일차방정식 $ax+y=${target}$${eulReul(target)} 만족시킬 때, 상수 $a$의 값을 구하시오.`,
       answer: `$${answer}$`,
       // ⚠️ `${x}a+${y}` 로 적으면 $y$ 가 음수일 때 지면에 `3a+-4` 가 나가고,
       //    $x=1$ 이면 `1a` 가 나간다. 부호·계수는 `mc`·`sg` 가 한 곳에서 정한다.

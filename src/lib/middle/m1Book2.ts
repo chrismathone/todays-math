@@ -20,6 +20,7 @@ import {
   shuffle,
 } from "./m1Shared";
 import type { TypeEntry } from "./types";
+import { iGa, waGwa } from "./m2Josa";
 
 const BOOK = "1-2";
 
@@ -470,7 +471,7 @@ export const M1_BOOK2: TypeEntry[] = [
       return {
         content: `다음 자료의 최빈값을 모두 구하시오.\n${vals.map((v) => `$${v}$`).join(", ")}`,
         answer: `$${lo}$, $${hi}$`,
-        solution: `$${lo}$과 $${hi}$가 각각 $2$번씩 나타나고 나머지 값은 $1$번씩 나타난다.\n따라서 최빈값은 $${lo}$, $${hi}$의 두 개이다.`,
+        solution: `$${lo}$${waGwa(lo)} $${hi}$${iGa(hi)} 각각 $2$번씩 나타나고 나머지 값은 $1$번씩 나타난다.\n따라서 최빈값은 $${lo}$, $${hi}$의 두 개이다.`,
         facts,
       };
     },
@@ -543,7 +544,7 @@ export const M1_BOOK2: TypeEntry[] = [
           .map((v) => `$${v}$`)
           .join(
             ", ",
-          )}이다.\n자료의 개수가 $7$이므로 중앙값은 가운데 값인 $a=${median}$이고, $3$번 나타나는 $b=${mode}$가 최빈값이다.\n따라서 $a+b=${median}+${mode}=${sum}$이다.`,
+          )}이다.\n자료의 개수가 $7$이므로 중앙값은 가운데 값인 $a=${median}$이고, $3$번 나타나는 $b=${mode}$${iGa(mode)} 최빈값이다.\n따라서 $a+b=${median}+${mode}=${sum}$이다.`,
         facts,
       };
     },

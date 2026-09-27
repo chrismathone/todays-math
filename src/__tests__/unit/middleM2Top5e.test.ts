@@ -1131,9 +1131,12 @@ describe("중2 확대 갈래 5차 e — 🔴 해설의 중간값·말을 다른 
       expect(slope[1], p.content).toBe(1);
       expect(par, p.content).toContain(`기울기도 $${slope[0]}$이다.`);
       const sub = lineWith(p.solution, "구하는 직선의 식을", "119X");
-      expect(sub, p.content).toContain(
-        `점 $\\mathrm{${names[oddAt]}}(${pts[oddAt]![0]}, ${pts[oddAt]![1]})$를 지나므로`,
-      );
+      // 조사(을/를)는 끝 수의 읽기로 갈린다 — 맞는지는 `middleJosaAll.test.ts` 가 본다.
+      const via = `점 $\\mathrm{${names[oddAt]}}(${pts[oddAt]![0]}, ${pts[oddAt]![1]})$`;
+      expect(
+        [`${via}을 지나므로`, `${via}를 지나므로`].some((s) => sub.includes(s)),
+        `${p.content}\n${sub}`,
+      ).toBe(true);
       const ans = pts[oddAt]![1] - slope[0] * pts[oddAt]![0];
       expect(plainAnswer(p.answer), p.content).toBe(String(ans));
       expect(

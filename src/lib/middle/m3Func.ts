@@ -45,7 +45,7 @@ import type { Rng } from "../elementary/types";
 import { CHOOSE_ALL_ANSWER_COUNT } from "../problem/chooseAllRule";
 import { CHOICE_COUNT, CHOICE_MARKS } from "../problem/choiceCountRule";
 
-import { eulReul } from "./m2Josa";
+import { eulReul, waGwa } from "./m2Josa";
 import type { MidProblem, TypeEntry } from "./types";
 
 const GRADE = "중3";
@@ -1300,7 +1300,7 @@ const TYPES_G1: TypeEntry[] = [
       return {
         content: `이차함수 $y=${stdRhs(a, p, q)}$의 그래프를 $x$축의 방향으로 $m$만큼, $y$축의 방향으로 $n$만큼 평행이동하였더니 이차함수 $y=${stdRhs(a, p2, q2)}$의 그래프와 일치하였다. 이때 $m+n$의 값을 구하시오.`,
         answer: `$${mx + my}$`,
-        solution: `평행이동한 그래프의 식은 $y=${termTex(a, `\\{x-(${p}+m)\\}^2`, true)}${termTex(rInt(q), "")}+n$이므로 꼭짓점은 $(${p}+m, ${q}+n)$이다.\n이것이 $${pt(p2, q2)}$와 같으므로 $m=${mx}$, $n=${my}$이다.\n따라서 $m+n=${mx + my}$이다.`,
+        solution: `평행이동한 그래프의 식은 $y=${termTex(a, `\\{x-(${p}+m)\\}^2`, true)}${termTex(rInt(q), "")}+n$이므로 꼭짓점은 $(${p}+m, ${q}+n)$이다.\n이것이 $${pt(p2, q2)}$${waGwa(q2)} 같으므로 $m=${mx}$, $n=${my}$이다.\n따라서 $m+n=${mx + my}$이다.`,
         facts: { mode, aN: a[0], aD: a[1], p, q, mx, my, p2, q2 },
         figureSpec: null,
       };
@@ -2181,7 +2181,7 @@ const TYPES_G2: TypeEntry[] = [
       return {
         content: `이차함수 $y=${a === 1 ? "" : a === -1 ? "-" : a}(x${p >= 0 ? `-${p}` : `+${-p}`})^2${qv >= 0 ? `+${qv}` : qv}$의 ${isMax ? "최댓값" : "최솟값"}을 구하시오.`,
         answer: `$${qv}$`,
-        solution: `꼭짓점의 좌표가 $(${p}, ${qv})$이고 $x^2$의 계수가 ${a < 0 ? "음수이므로 위로 볼록하다" : "양수이므로 아래로 볼록하다"}.\n따라서 $x=${p}$일 때 ${isMax ? "최댓값" : "최솟값"} $${qv}$를 갖는다.`,
+        solution: `꼭짓점의 좌표가 $(${p}, ${qv})$이고 $x^2$의 계수가 ${a < 0 ? "음수이므로 위로 볼록하다" : "양수이므로 아래로 볼록하다"}.\n따라서 $x=${p}$일 때 ${isMax ? "최댓값" : "최솟값"} $${qv}$${eulReul(qv)} 갖는다.`,
         facts: { a, p, q: qv, ans: qv, isMax: isMax ? 1 : 0 },
       };
     },

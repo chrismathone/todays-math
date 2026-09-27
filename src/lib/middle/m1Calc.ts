@@ -40,6 +40,7 @@ import { intBetween, pick } from "../elementary/rng";
 import type { Rng } from "../elementary/types";
 
 import type { MidProblem, TypeEntry } from "./types";
+import { eulReul, iGa } from "./m2Josa";
 
 const GRADE = "중1";
 const BOOK = "1-1";
@@ -600,8 +601,8 @@ export const M1_CALC: TypeEntry[] = [
       if (X.n === 0 || R.n === 0 || S.n === 0) return null;
       if (!nice(R) || !nice(S) || !nice(X)) return null;
       const told = wrongIsAdd
-        ? `어떤 유리수에서 $${texQ(A)}$를 빼야 할 것을 잘못하여 더했더니 그 결과가 $${texQ(R)}$이 되었다.`
-        : `어떤 유리수에 $${texQ(A)}$를 더해야 할 것을 잘못하여 뺐더니 그 결과가 $${texQ(R)}$이 되었다.`;
+        ? `어떤 유리수에서 $${texQ(A)}$${eulReul(A.n)} 빼야 할 것을 잘못하여 더했더니 그 결과가 $${texQ(R)}$${iGa(R.n)} 되었다.`
+        : `어떤 유리수에 $${texQ(A)}$${eulReul(A.n)} 더해야 할 것을 잘못하여 뺐더니 그 결과가 $${texQ(R)}$${iGa(R.n)} 되었다.`;
       const undo = wrongIsAdd
         ? `$\\square+${texSigned(A)}=${texQ(R)}$이므로 $\\square=${texQ(R)}-${texSigned(A)}=${texQ(X)}$이다.`
         : `$\\square-${texSigned(A)}=${texQ(R)}$이므로 $\\square=${texQ(R)}+${texSigned(A)}=${texQ(X)}$이다.`;
@@ -1097,7 +1098,7 @@ export const M1_CALC: TypeEntry[] = [
         answer: `$${T}$`,
         solution:
           `소괄호 안을 먼저 계산하면 $\\dfrac{${p}}{${u}}-\\dfrac{${r}}{${w}}=${texQ(inner)}$이고, ` +
-          `여기에 $${D}$를 곱하면 $${innerTimesD.n}$이다.\n` +
+          `여기에 $${D}$${eulReul(D)} 곱하면 $${innerTimesD.n}$이다.\n` +
           `중괄호 안은 $${C}^{2}+${texSigned(innerTimesD)}=${C * C}${innerTimesD.n >= 0 ? `+${innerTimesD.n}` : `-${-innerTimesD.n}`}=${brace.n}$이다.\n` +
           `대괄호 안은 $${B}-${texSigned(brace)}=${bracket}$이다.\n` +
           `따라서 $\\dfrac{1}{${A}}\\times${texSigned(q(bracket))}${E >= 0 ? `+${E}` : `-${-E}`}=${bracket / A}${E >= 0 ? `+${E}` : `-${-E}`}=${T}$이다.`,
@@ -1149,8 +1150,8 @@ export const M1_CALC: TypeEntry[] = [
       if (X.n === 0 || !nice(R, 200, 48) || !nice(S, 200, 48)) return null;
       if (eqQ(R, S)) return null;
       const told = wrongIsMul
-        ? `어떤 유리수를 $${texQ(A)}$로 나누어야 할 것을 잘못하여 곱했더니 그 결과가 $${texQ(R)}$이 되었다.`
-        : `어떤 유리수에 $${texQ(A)}$를 곱해야 할 것을 잘못하여 나누었더니 그 결과가 $${texQ(R)}$이 되었다.`;
+        ? `어떤 유리수를 $${texQ(A)}$로 나누어야 할 것을 잘못하여 곱했더니 그 결과가 $${texQ(R)}$${iGa(R.n)} 되었다.`
+        : `어떤 유리수에 $${texQ(A)}$${eulReul(A.n)} 곱해야 할 것을 잘못하여 나누었더니 그 결과가 $${texQ(R)}$${iGa(R.n)} 되었다.`;
       const undo = wrongIsMul
         ? `$\\square\\times${texSigned(A)}=${texQ(R)}$이므로 $\\square=${texQ(R)}\\div${texSigned(A)}=${texQ(X)}$이다.`
         : `$\\square\\div${texSigned(A)}=${texQ(R)}$이므로 $\\square=${texQ(R)}\\times${texSigned(A)}=${texQ(X)}$이다.`;
@@ -1266,7 +1267,7 @@ export const M1_CALC: TypeEntry[] = [
         answer: `$${cands[winner]!.tex}$`,
         solution:
           `조건을 만족시키는 수를 하나 골라 대신 넣어 크기를 비교한다.\n` +
-          `$a=${texQ(r.probe)}$를 넣으면 ` +
+          `$a=${texQ(r.probe)}$${eulReul(r.probe.n)} 넣으면 ` +
           `${cands.map((c) => `$${c.tex}=${texQ(c.q(r.probe))}$`).join(", ")}이다.\n` +
           `따라서 ${wantMax ? "가장 큰" : "가장 작은"} 수는 $${cands[winner]!.tex}$이다.`,
         facts: {
@@ -1414,7 +1415,7 @@ export const M1_CALC: TypeEntry[] = [
       return {
         content: `$${texSigned(a)}\\times\\square=${texQ(S)}$일 때, $\\square$에 알맞은 수를 구하시오.`,
         answer: `$${texQ(x)}$`,
-        solution: `$\\square$는 $${texQ(S)}$를 $${texQ(a)}$로 나눈 값이므로 $${texQ(a)}$의 역수를 곱한다.\n따라서 $\\square=${texQ(x)}$이다.`,
+        solution: `$\\square$는 $${texQ(S)}$${eulReul(S.n)} $${texQ(a)}$로 나눈 값이므로 $${texQ(a)}$의 역수를 곱한다.\n따라서 $\\square=${texQ(x)}$이다.`,
         facts: { ...fq("a", a), ...fq("x", x), ...fq("S", S) },
       };
     }),

@@ -23,6 +23,7 @@ import { M1_BOOK2 } from "./m1Book2";
 import { intBetween, pick } from "../elementary/rng";
 import { defType, shuffle, signed } from "./m1Shared";
 import type { TypeEntry } from "./types";
+import { eulReul, eunNeun, iGa, waGwa } from "./m2Josa";
 
 const BOOK2 = "1-2";
 const DATA_MINOR = "도수분포표와 상대도수";
@@ -177,7 +178,7 @@ const STEM_LEAF_TYPES: TypeEntry[] = [
       return {
         content: `다음 줄기와 잎 그림에 나타난 자료의 중앙값을 구하시오.\n(줄기 | 잎)\n${stemAndLeaf(values)}`,
         answer: `$${median}$`,
-        solution: `자료가 $7$개이므로 크기순으로 나열했을 때 네 번째 값인 $${median}$이 중앙값이다.`,
+        solution: `자료가 $7$개이므로 크기순으로 나열했을 때 네 번째 값인 $${median}$${iGa(median)} 중앙값이다.`,
         facts: dataFacts(values, median),
       };
     },
@@ -203,7 +204,7 @@ const STEM_LEAF_TYPES: TypeEntry[] = [
       return {
         content: `다음 줄기와 잎 그림에 나타난 자료의 최빈값을 구하시오.\n(줄기 | 잎)\n${stemAndLeaf(values)}`,
         answer: `$${mode}$`,
-        solution: `$${mode}$이 $3$번으로 가장 많이 나타나므로 최빈값은 $${mode}$이다.`,
+        solution: `$${mode}$${iGa(mode)} $3$번으로 가장 많이 나타나므로 최빈값은 $${mode}$이다.`,
         facts: dataFacts(values, mode),
       };
     },
@@ -520,7 +521,7 @@ const BASIC_COORDINATE_TYPES: TypeEntry[] = [
       const y = intBetween(rng, 1, 9) * (rng() < 0.5 ? -1 : 1);
       const quadrant = x > 0 ? (y > 0 ? 1 : 4) : y > 0 ? 2 : 3;
       return {
-        content: `점 $C(${x}, ${y})$는 제몇 사분면 위의 점인지 구하시오.`,
+        content: `점 $C(${x}, ${y})$${eunNeun(y)} 제몇 사분면 위의 점인지 구하시오.`,
         answer: `제$${quadrant}$사분면`,
         solution: `$x$좌표의 부호는 ${x > 0 ? "양수" : "음수"}, $y$좌표의 부호는 ${y > 0 ? "양수" : "음수"}이므로 제$${quadrant}$사분면이다.`,
         facts: { x, y, answer: quadrant },
@@ -539,7 +540,7 @@ const BASIC_COORDINATE_TYPES: TypeEntry[] = [
       // $a$ 가 $0$ 이면 지면에 `a+0=0` 이 나간다 — 17·18 과 같은 방식으로 뺀다.
       const a = intBetween(rng, 1, 7) * (rng() < 0.5 ? -1 : 1);
       return {
-        content: `점 $D(${x}, a${signed(-a)})$가 $x$축 위에 있을 때, $a$의 값을 구하시오.`,
+        content: `점 $D(${x}, a${signed(-a)})$${iGa(a)} $x$축 위에 있을 때, $a$의 값을 구하시오.`,
         answer: `$${a}$`,
         solution: `$x$축 위의 점의 $y$좌표는 $0$이므로 $a${signed(-a)}=0$에서 $a=${a}$이다.`,
         facts: { x, a, answer: a },
@@ -557,7 +558,7 @@ const BASIC_COORDINATE_TYPES: TypeEntry[] = [
       const y = intBetween(rng, -9, 9);
       const a = intBetween(rng, 1, 7) * (rng() < 0.5 ? -1 : 1);
       return {
-        content: `점 $E(a${signed(-a)}, ${y})$가 $y$축 위에 있을 때, $a$의 값을 구하시오.`,
+        content: `점 $E(a${signed(-a)}, ${y})$${iGa(y)} $y$축 위에 있을 때, $a$의 값을 구하시오.`,
         answer: `$${a}$`,
         solution: `$y$축 위의 점의 $x$좌표는 $0$이므로 $a${signed(-a)}=0$에서 $a=${a}$이다.`,
         facts: { y, a, answer: a },
@@ -575,7 +576,7 @@ const BASIC_COORDINATE_TYPES: TypeEntry[] = [
       const x = intBetween(rng, -9, 9);
       const y = intBetween(rng, 1, 9) * (rng() < 0.5 ? -1 : 1);
       return {
-        content: `점 $P(${x}, ${y})$와 $x$축 사이의 거리를 구하시오.`,
+        content: `점 $P(${x}, ${y})$${waGwa(y)} $x$축 사이의 거리를 구하시오.`,
         answer: `$${Math.abs(y)}$`,
         solution: `$x$축까지의 거리는 $y$좌표의 절댓값이므로 $|${y}|=${Math.abs(y)}$이다.`,
         facts: { x, y, answer: Math.abs(y) },
@@ -593,7 +594,7 @@ const BASIC_COORDINATE_TYPES: TypeEntry[] = [
       const x = intBetween(rng, 1, 9) * (rng() < 0.5 ? -1 : 1);
       const y = intBetween(rng, -9, 9);
       return {
-        content: `점 $Q(${x}, ${y})$와 $y$축 사이의 거리를 구하시오.`,
+        content: `점 $Q(${x}, ${y})$${waGwa(y)} $y$축 사이의 거리를 구하시오.`,
         answer: `$${Math.abs(x)}$`,
         solution: `$y$축까지의 거리는 $x$좌표의 절댓값이므로 $|${x}|=${Math.abs(x)}$이다.`,
         facts: { x, y, answer: Math.abs(x) },
@@ -611,7 +612,7 @@ const BASIC_COORDINATE_TYPES: TypeEntry[] = [
       const x = intBetween(rng, -9, 9);
       const y = intBetween(rng, -9, 9);
       return {
-        content: `점 $R(${x}, ${y})$와 원점에 대하여 대칭인 점의 두 좌표의 합을 구하시오.`,
+        content: `점 $R(${x}, ${y})$${waGwa(y)} 원점에 대하여 대칭인 점의 두 좌표의 합을 구하시오.`,
         answer: `$${-x - y}$`,
         // ⚠️ `-${x}` 로 적으면 $x$ 가 음수일 때 지면에 `--5` 가 나간다.
         //    부호를 붙인 **값**을 적어야 한다.
@@ -847,7 +848,7 @@ const GRAPH_UNDERSTANDING_TYPES: TypeEntry[] = [
       const increase = intBetween(rng, 2, 10);
       const y2 = y1 + increase;
       return {
-        content: `어떤 관계의 그래프가 두 점 $(${x1}, ${y1})$, $(${x2}, ${y2})$를 지난다. $x$가 $${x1}$에서 $${x2}$까지 변할 때 $y$가 증가한 양을 구하시오.`,
+        content: `어떤 관계의 그래프가 두 점 $(${x1}, ${y1})$, $(${x2}, ${y2})$${eulReul(y2)} 지난다. $x$가 $${x1}$에서 $${x2}$까지 변할 때 $y$가 증가한 양을 구하시오.`,
         answer: `$${increase}$`,
         solution: `$y$좌표는 $${y1}$에서 $${y2}$로 변하므로 증가한 양은 $${y2}-${y1}=${increase}$이다.`,
         facts: { x1, x2, y1, y2, answer: increase },
@@ -869,7 +870,7 @@ const GRAPH_UNDERSTANDING_TYPES: TypeEntry[] = [
       const y1 = slope * x1 + intercept;
       const y2 = slope * x2 + intercept;
       return {
-        content: `한 직선 모양의 그래프 위에 점 $A(${x1}, ${y1})$가 있다. 이 그래프에서 $x$가 $1$만큼 증가할 때마다 $y$는 $${slope}$만큼 증가한다. $x$좌표가 $${x2}$인 점의 $y$좌표를 구하시오.`,
+        content: `한 직선 모양의 그래프 위에 점 $A(${x1}, ${y1})$${iGa(y1)} 있다. 이 그래프에서 $x$가 $1$만큼 증가할 때마다 $y$는 $${slope}$만큼 증가한다. $x$좌표가 $${x2}$인 점의 $y$좌표를 구하시오.`,
         answer: `$${y2}$`,
         solution: `$x$는 $${x2 - x1}$만큼 증가하므로 $y$는 $${slope}\\times${x2 - x1}=${slope * (x2 - x1)}$만큼 증가한다. 따라서 구하는 $y$좌표는 $${y1}+${slope * (x2 - x1)}=${y2}$이다.`,
         facts: { slope, intercept, x1, x2, y1, y2, answer: y2 },
