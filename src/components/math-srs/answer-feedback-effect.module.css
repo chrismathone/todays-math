@@ -137,6 +137,22 @@
   animation: messageEnter 260ms ease-out 90ms both;
 }
 
+/* 한 걸음 복습 콤보(05 §8.15 «숫자 강조 한 줄») — 알약은 그대로, 숫자만 22px.
+   기준선 맞춤은 22px 숫자가 줄을 키워 알약이 3px 커진다 → 가운데 맞춤으로 높이를 지금과 같게. */
+.streak {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 3px;
+}
+
+.streakNumber {
+  font-size: 22px;
+  line-height: 1;
+  letter-spacing: -0.02em;
+  font-variant-numeric: tabular-nums;
+}
+
 .incorrect .medallion {
   animation-timing-function: ease-out;
 }
