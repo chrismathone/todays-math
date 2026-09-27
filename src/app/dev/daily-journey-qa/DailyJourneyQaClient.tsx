@@ -158,10 +158,13 @@ export default function DailyJourneyQaClient({
   days,
   set,
   variant,
+  part,
 }: {
   days: number;
   set: "middle" | "elementary" | "all";
   variant: "full" | "map";
+  /** `set=all` 을 네 조각으로 — 한 페이지에 판 410여 개면 PC 폭에서 몇 분 걸린다. 0 이면 전부. */
+  part: number;
 }) {
   const [journey, setJourney] = useState(() =>
     makeJourney(days, set === "all" ? "middle" : set),
@@ -178,20 +181,25 @@ export default function DailyJourneyQaClient({
         data-qa-all="true"
         style={{ display: "grid", gap: 16, padding: 16 }}
       >
-        {allBoards().map((board) => (
-          // 탐험 홈과 같은 판 틀(`journeyPanel`) — 폰 390 에서 판 334px · 320 에서 272px.
-          <div
-            key={board.key}
-            data-qa-board={board.key}
-            className={explorer.journeyPanel}
-          >
-            <DailyJourneyBoard
-              journey={board.journey}
-              variant={variant}
-              onReviewDay={() => {}}
-            />
-          </div>
-        ))}
+        {allBoards()
+          .filter(
+            (_, index, all) =>
+              !part || Math.floor((index * 4) / all.length) === part - 1,
+          )
+          .map((board) => (
+            // 탐험 홈과 같은 판 틀(`journeyPanel`) — 폰 390 에서 판 334px · 320 에서 272px.
+            <div
+              key={board.key}
+              data-qa-board={board.key}
+              className={explorer.journeyPanel}
+            >
+              <DailyJourneyBoard
+                journey={board.journey}
+                variant={variant}
+                onReviewDay={() => {}}
+              />
+            </div>
+          ))}
       </div>
     );
   return (

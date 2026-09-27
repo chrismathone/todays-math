@@ -8,6 +8,7 @@ import { describe, expect, it } from "vitest";
 import { titlePieces } from "@/components/math-srs/journeyTitle";
 import { definitionUnits } from "@/lib/math-explorers/definition-cards";
 import { COURSE_SECTIONS } from "@/lib/math-srs/elementary/catalog";
+import { SECTION_SHORT_TITLES } from "@/lib/math-srs/elementary/sectionShortTitles";
 
 const names = [
   ...new Set([
@@ -18,6 +19,7 @@ const names = [
     "기억 복습",
     "다음 여정",
     "다음 학습",
+    ...SECTION_SHORT_TITLES.map((row) => row.short),
   ]),
 ];
 // 10px Pretendard 기준 대략의 폭(한글 한 자 = 1). 괄호·쉼표·가운뎃점은 좁고 숫자·로마자는 중간.

@@ -100,6 +100,63 @@ describe("DailyJourneyBoard", () => {
     expect(title.textContent).toBe("연립일차방정식");
   });
 
+  it("writes the agreed short name in a tile only — the tile's label, tooltip and the centre keep the original (D-142 ⑺)", () => {
+    const original = "몫의 소수 첫째 자리에 0이 있는 (소수)÷(자연수) 알아보기";
+    const value: DailyJourney = {
+      ...journey(0),
+      upcoming: [
+        {
+          title: "진분수의 덧셈",
+          subtitle: "초4 · 2학기 · 분수의 덧셈과 뺄셈",
+        },
+        { title: original, subtitle: "초6 · 1학기 · 소수의 나눗셈" },
+      ],
+      position: {
+        caption: "소단원 5개 중",
+        ordinal: 4,
+        title: "소수의 나눗셈",
+        note: original,
+        collected: 0,
+        total: 30,
+        due: 0,
+      },
+    };
+    for (const variant of ["map", "full"] as const) {
+      const { container, unmount } = render(
+        <DailyJourneyBoard
+          journey={value}
+          variant={variant}
+          onReviewDay={vi.fn()}
+        />,
+      );
+      const tile = container.querySelector('[data-day-step="2"]')!;
+      expect(tile.querySelector("[data-tile-title]")!.textContent).toBe(
+        "소수÷자연수 몫의 소수 첫째 자리 0",
+      );
+      expect(tile.querySelector("[data-tile-title]")).toHaveAttribute(
+        "data-short",
+        "true",
+      );
+      expect(tile.querySelector("[aria-label]")).toHaveAttribute(
+        "aria-label",
+        `2일차, ${original}, 예정`,
+      );
+      expect(tile.querySelector("[title]")).toHaveAttribute(
+        "title",
+        `초6 · 1학기 · 소수의 나눗셈 · ${original}`,
+      );
+      expect(
+        container.querySelector('[data-day-step="1"] [data-tile-title]')!
+          .textContent,
+      ).toBe("진분수의 덧셈");
+      if (variant === "map")
+        expect(
+          container.querySelector("[data-journey-progress]"),
+        ).toHaveTextContent(original);
+      unmount();
+    }
+  });
+
   it("shows my current progress in the map centre as plain text, never as a control (D-30)", () => {
     const value: DailyJourney = {
       ...journey(2),

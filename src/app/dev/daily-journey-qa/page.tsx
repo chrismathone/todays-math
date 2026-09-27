@@ -7,7 +7,12 @@ import DailyJourneyQaClient from "./DailyJourneyQaClient";
 export default async function DailyJourneyQaPage({
   searchParams,
 }: {
-  searchParams: Promise<{ days?: string; set?: string; variant?: string }>;
+  searchParams: Promise<{
+    days?: string;
+    set?: string;
+    variant?: string;
+    part?: string;
+  }>;
 }) {
   await connection();
   if (
@@ -29,6 +34,9 @@ export default async function DailyJourneyQaPage({
         }
         set={set}
         variant={query.variant === "map" ? "map" : "full"}
+        part={
+          [1, 2, 3, 4].includes(Number(query.part)) ? Number(query.part) : 0
+        }
       />
       <StudentMobileNav previewPath="/learn/math-srs" />
     </div>
