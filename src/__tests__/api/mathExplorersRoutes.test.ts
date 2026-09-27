@@ -12,6 +12,7 @@ const f = vi.hoisted(() => ({
     { studentId: string; revision: number; payload: unknown }
   >(),
   writes: 0,
+  reads: 0,
   withdrawn: false,
   disabled: false,
   missing: false,
@@ -40,6 +41,7 @@ vi.mock("@/lib/db", () => ({
     studentSrsState: {
       findUnique: async ({ where }: { where: { studentId: string } }) => {
         if (f.missing) throw { code: "P2021" };
+        f.reads++;
         const row = structuredClone(f.rows.get(where.studentId) ?? null);
         await Promise.resolve();
         return row;
@@ -174,6 +176,7 @@ async function finish(view: ExplorerState) {
 beforeEach(() => {
   f.rows.clear();
   f.writes = 0;
+  f.reads = 0;
   f.withdrawn = false;
   f.disabled = false;
   f.missing = false;
@@ -1192,5 +1195,85 @@ describe("authenticated math explorer persistence", () => {
     });
     expect((await read()).status).toBe(503);
     expect(f.writes).toBe(0);
+  });
+});
+
+/**
+ * 상자 누름 속도 (2026-09-28, reward-speed ①) — 시작이 아닌 동작은 상태 행을 **미리 읽지 않고**
+ * 바로 revision 비교 저장으로 간다. 미리 읽기가 하던 일(영수증 되돌려주기 · 탐험 시작 요청 번호
+ * 재사용 막기)은 엔진 영수증과 저장 실패 뒤 다시 읽기가 받는다 — 그 셋을 여기서 지킨다.
+ */
+describe("chest press without a pre-read", () => {
+  async function readyChest() {
+    const view = await finish(await unitStart());
+    const chest = view.chests.find((item) => item.ready && !item.claimed);
+    if (!chest) throw new Error("Expected a ready chest");
+    return { view, chest };
+  }
+  const chestBody = (
+    view: ExplorerState,
+    chestId: string,
+  ): ExplorerRequest => ({
+    requestId: randomUUID(),
+    expectedRevision: view.revision,
+    action: { type: "chest", chestId },
+  });
+
+  it("reads the state row once and writes once", async () => {
+    const { view, chest } = await readyChest();
+    f.reads = 0;
+    f.writes = 0;
+    const opened = await data(await post(chestBody(view, chest.id)));
+    expect(opened.feedback).toMatchObject({ chestId: chest.id, stars: 1 });
+    expect(opened.profile.stars).toBe(view.profile.stars + 1);
+    expect(f.reads).toBe(1);
+    expect(f.writes).toBe(1);
+  });
+
+  it("replays a lost response with the same receipt and no second star", async () => {
+    const { view, chest } = await readyChest();
+    const body = chestBody(view, chest.id);
+    const first = await data(await post(body));
+    f.writes = 0;
+    const retry = await data(await post(body));
+    expect(retry.feedback).toEqual(first.feedback);
+    expect(retry.revision).toBe(first.revision);
+    expect(retry.profile.stars).toBe(view.profile.stars + 1);
+    expect(f.writes).toBe(0);
+  });
+
+  it("gives one star when two tabs send the very same press", async () => {
+    const { view, chest } = await readyChest();
+    const body = chestBody(view, chest.id);
+    f.writes = 0;
+    const [a, b] = await Promise.all([post(body), post(body)]).then(
+      (responses) => Promise.all(responses.map(data)),
+    );
+    expect(a.feedback).toEqual(b.feedback);
+    expect(a.feedback?.chestId).toBe(chest.id);
+    expect(a.revision).toBe(b.revision);
+    expect(a.profile.stars).toBe(view.profile.stars + 1);
+    expect(b.profile.stars).toBe(view.profile.stars + 1);
+    expect(f.writes).toBe(1);
+  });
+
+  it("rejects an answer that reuses the expedition start request id", async () => {
+    const view = await data(await read());
+    const startId = randomUUID();
+    const started = await data(
+      await post({
+        requestId: startId,
+        expectedRevision: view.revision,
+        action: { type: "expedition-start" },
+      }),
+    );
+    const writes = f.writes;
+    const reused = await post({
+      requestId: startId,
+      expectedRevision: started.revision,
+      action: correctAction(started),
+    });
+    expect(reused.status).toBe(409);
+    expect(f.writes).toBe(writes);
   });
 });
