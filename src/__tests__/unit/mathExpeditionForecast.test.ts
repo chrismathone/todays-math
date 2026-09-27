@@ -24,6 +24,8 @@ import {
 } from "@/lib/math-srs/courseAutomation";
 import { dailyJourneyDto } from "@/lib/math-srs/dailyJourney";
 import { emptySrsState, type StoredSrsState } from "@/lib/math-srs/serverState";
+import { createMemories } from "@/lib/math-srs/memory";
+import { BANK_REVIEW } from "@/lib/math-explorers/journeyForecast";
 
 const student = randomUUID();
 const now = new Date("2026-09-27T03:00:00.000Z"); // 한국 9월 27일 12시
@@ -441,6 +443,257 @@ describe("중1 일차방정식 — 끝낸 은행 날 3일 뒤 다음 단원 (D-1
         planExpedition(after, student, now).title,
       );
     }
+  });
+});
+
+describe("중1 은행 복습 — 넘어간 뒤 기억 복습처럼 끼운다 (D-142 ⑼)", () => {
+  const bankReview = {
+    kind: "middle",
+    route: "memory",
+    unitId: "g7-equation",
+    title: "일차방정식 복습",
+    subtitle: "중학교 1학년",
+    goal: 12,
+  };
+  const DUE = "2026-09-27T00:00:00.000Z"; // 3시간 전 — 만기
+  const LATE = "2026-09-23T00:00:00.000Z"; // 4일 3시간 전 — 3일 초과
+  const SOON = "2026-09-30T00:00:00.000Z"; // 아직
+  /** 개념 다섯 장 + 끝낸 은행 날 셋 → 좌표와 비례관계로 넘어간 중1. `bank` 는 은행 개념 6개의 다음 만기, `cardsDue` 는 모은 카드 만기. */
+  function handedOver(
+    bank: (string | null)[],
+    options: {
+      cardsDue?: string;
+      bankDays?: string[];
+      lastMemory?: string;
+      mission?: StoredExpeditionMission | null;
+    } = {},
+  ) {
+    const base = explorerState(
+      7,
+      "g7-equation",
+      ["g7-equation"],
+      options.cardsDue,
+    );
+    if (options.lastMemory)
+      base.explorers!.completedDays = [
+        {
+          date: options.lastMemory,
+          unitId: "g7-equation",
+          sessionId: "definitions-x-9",
+          route: "memory",
+        },
+      ];
+    const state = withDays(
+      base,
+      options.mission ?? null,
+      (options.bankDays ?? ["2026-09-18", "2026-09-19", "2026-09-20"]).map(
+        (d) => [d, "middle"] as [string, Kind],
+      ),
+    );
+    return {
+      ...state,
+      memories: createMemories().map((memory, i) => ({
+        ...memory,
+        attempts: bank[i] ? 4 : 0,
+        lastReviewedAt: bank[i] ? "2026-09-20T03:00:00.000Z" : null,
+        nextReviewAt: bank[i] ?? null,
+      })),
+    };
+  }
+  it("여는 기준(원장님 확정): 은행 개념 만기 3개 이상 또는 하나라도 3일 초과면 그날은 은행 복습", () => {
+    expect(BANK_REVIEW).toEqual({
+      dueConcepts: 3,
+      overdueDays: 3,
+      minGapDays: 4,
+    });
+    expect(
+      planExpedition(
+        handedOver([DUE, DUE, DUE, SOON, SOON, SOON]),
+        student,
+        now,
+      ),
+    ).toEqual(bankReview);
+    expect(
+      planExpedition(
+        handedOver([DUE, DUE, SOON, SOON, SOON, SOON]),
+        student,
+        now,
+      ),
+    ).toEqual(conceptPlan("g7-coordinate"));
+    expect(
+      planExpedition(
+        handedOver([LATE, SOON, SOON, SOON, SOON, SOON]),
+        student,
+        now,
+      ),
+    ).toEqual(bankReview);
+    expect(
+      planExpedition(
+        handedOver(["2026-09-24T03:00:00.000Z", SOON, SOON, SOON, SOON, SOON]),
+        student,
+        now,
+      ),
+    ).toEqual(conceptPlan("g7-coordinate"));
+  });
+  it("만기는 `nextReviewAt ≤ 지금`만 센다 — 한 번도 안 푼 개념(null)은 만기가 아니다", () => {
+    expect(
+      planExpedition(
+        handedOver([null, null, null, null, null, null]),
+        student,
+        now,
+      ),
+    ).toEqual(conceptPlan("g7-coordinate"));
+    expect(
+      planExpedition(
+        handedOver([DUE, DUE, null, null, null, null]),
+        student,
+        now,
+      ),
+    ).toEqual(conceptPlan("g7-coordinate"));
+  });
+  it("넘어가기 전(끝낸 은행 날 2일)에는 은행 복습이 아니라 원래 은행 날", () => {
+    const state = handedOver([DUE, DUE, DUE, DUE, SOON, SOON], {
+      bankDays: ["2026-09-18", "2026-09-19"],
+    });
+    expect(planExpedition(state, student, now)).toEqual({
+      ...bankReview,
+      route: "bank",
+      title: "일차방정식",
+    });
+  });
+  it("진도 보호: 복습(개념 기억 복습 · 은행 복습) 다음 날은 학습 목표 한 번", () => {
+    const concept = {
+      ...openMission(
+        {
+          ...conceptPlan("g7-equation"),
+          route: "memory" as const,
+          title: "기억 복습",
+        },
+        15,
+      ),
+      status: "complete" as const,
+      completedAt: "2026-09-26T02:00:00.000Z",
+    };
+    expect(
+      planExpedition(
+        handedOver([DUE, DUE, DUE], { mission: concept }),
+        student,
+        now,
+      ),
+    ).toEqual(conceptPlan("g7-coordinate"));
+    const bank = {
+      ...openMission(bankReview as Parameters<typeof openMission>[0], 12),
+      status: "complete" as const,
+      completedAt: "2026-09-26T02:00:00.000Z",
+    };
+    expect(
+      planExpedition(
+        handedOver([DUE, DUE, DUE], { mission: bank }),
+        student,
+        now,
+      ),
+    ).toEqual(conceptPlan("g7-coordinate"));
+  });
+  it("진도 보호: 은행 날끼리 최소 4일 — 마지막 은행 날이 3일 전이면 아직", () => {
+    expect(
+      planExpedition(
+        handedOver([DUE, DUE, DUE], {
+          bankDays: ["2026-09-18", "2026-09-20", "2026-09-24"],
+        }),
+        student,
+        now,
+      ),
+    ).toEqual(conceptPlan("g7-coordinate"));
+    expect(
+      planExpedition(
+        handedOver([DUE, DUE, DUE], {
+          bankDays: ["2026-09-18", "2026-09-20", "2026-09-23"],
+        }),
+        student,
+        now,
+      ),
+    ).toEqual(bankReview);
+  });
+  it("겹칠 때: 3일 넘게 밀린 쪽 → 더 오래 쉰 종류 → 개념", () => {
+    const conceptMemory = {
+      kind: "explorers",
+      route: "memory",
+      unitId: "g7-equation",
+      title: "기억 복습",
+    };
+    // 개념만 3일 넘게 밀림 → 개념 기억 복습
+    expect(
+      planExpedition(
+        handedOver([DUE, DUE, DUE], { cardsDue: "2026-09-23" }),
+        student,
+        now,
+      ),
+    ).toMatchObject(conceptMemory);
+    // 은행만 3일 넘게 밀림 → 은행 복습
+    expect(
+      planExpedition(
+        handedOver([LATE, DUE, DUE], { cardsDue: today }),
+        student,
+        now,
+      ),
+    ).toEqual(bankReview);
+    // 둘 다 안 밀림 — 개념 기억 복습을 더 오래 쉼(9-10) · 은행은 9-20 → 개념
+    expect(
+      planExpedition(
+        handedOver([DUE, DUE, DUE], {
+          cardsDue: today,
+          lastMemory: "2026-09-10",
+        }),
+        student,
+        now,
+      ),
+    ).toMatchObject(conceptMemory);
+    // 은행을 더 오래 쉼(9-20) · 개념 기억 복습은 9-22 → 은행
+    expect(
+      planExpedition(
+        handedOver([DUE, DUE, DUE], {
+          cardsDue: today,
+          lastMemory: "2026-09-22",
+        }),
+        student,
+        now,
+      ),
+    ).toEqual(bankReview);
+    // 같은 날 → 개념
+    expect(
+      planExpedition(
+        handedOver([DUE, DUE, DUE], {
+          cardsDue: today,
+          lastMemory: "2026-09-20",
+        }),
+        student,
+        now,
+      ),
+    ).toMatchObject(conceptMemory);
+  });
+  it("열린 탐험은 그대로 — 은행 만기가 있어도 오늘 시작한 학습을 끝까지", () => {
+    const mission = openMission(conceptPlan("g7-coordinate"));
+    expect(
+      planExpedition(handedOver([DUE, DUE, DUE], { mission }), student, now),
+    ).toMatchObject({ unitId: "g7-coordinate", status: "active" });
+  });
+  it("진도판은 미리 안 그린다 — 그날 오늘 칸만 «일차방정식 복습», 예정은 다음 단원부터 한 칸 밀림", () => {
+    const journey = expeditionJourney(
+      handedOver([DUE, DUE, DUE]),
+      now,
+      student,
+    );
+    expect(journey.upcoming[0]).toMatchObject({
+      title: "일차방정식 복습",
+      subtitle: "중학교 1학년",
+    });
+    expect(titles(journey.upcoming).slice(1, 3)).toEqual([
+      "좌표와 비례관계",
+      "기본 도형과 작도",
+    ]);
+    expect(
+      titles(journey.upcoming).filter((t) => t === "일차방정식 복습"),
+    ).toHaveLength(1);
   });
 });
 
