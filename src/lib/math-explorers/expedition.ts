@@ -30,7 +30,12 @@ import {
 } from "./curriculumBridge";
 import { createExplorerState } from "./engine";
 import { legacyExpeditionJourney } from "./expeditionJourney";
-import { conceptTarget, type ForecastUnit } from "./journeyForecast";
+import {
+  BANK_REVIEW,
+  conceptTarget,
+  MIDDLE_BANK_DAYS,
+  type ForecastUnit,
+} from "./journeyForecast";
 
 const equal = (a: unknown, b: unknown) =>
   JSON.stringify(a) === JSON.stringify(b);
@@ -269,6 +274,56 @@ export function expeditionLearning(
   return { unitId, sectionId, plan: unitPlan(unitId) };
 }
 
+/** D-142 ⑼ 은행 복습 날 — 문제은행 12문제 그대로, 이름만 복습(route «memory» 라 «복습 다음엔 학습 목표 한 번»에 같이 걸린다). */
+const bankReviewPlan = (): ExpeditionPlan => ({
+  ...middlePlan(),
+  route: "memory",
+  title: "일차방정식 복습",
+});
+const DAY_MS = 86_400_000;
+const dayGap = (from: string, to: string) =>
+  Math.round(
+    (Date.parse(`${to}T00:00:00Z`) - Date.parse(`${from}T00:00:00Z`)) / DAY_MS,
+  );
+
+/**
+ * 넘어간 뒤(학습 목표가 중1 일차방정식 뒤 · 끝낸 은행 날 3일) 중1 은행 만기가 차면 은행 복습 날 후보.
+ * 만기는 `nextReviewAt ≤ 지금`만 센다 — 한 번도 안 푼 개념(null)은 만기가 아니다(`dueConcepts` 는 6개를 다 정렬해 돌려준다).
+ * 마지막 은행 날(영구 칸 기록)에서 `minGapDays` 가 안 지났으면 아직.
+ */
+function middleBankReview(
+  state: StoredSrsState,
+  targetUnitId: string,
+  now: Date,
+): { overdue: boolean; lastDate: string } | null {
+  const equation = definitionUnits.findIndex((u) => u.id === "g7-equation");
+  if (definitionUnits.findIndex((u) => u.id === targetUnitId) <= equation)
+    return null;
+  const ledger = initialExpedition(state, now);
+  const bankDays = [
+    ...ledger.legacyDays,
+    ...ledger.awards.map((award) => award.day),
+  ]
+    .filter((day) => day.reviews.some((review) => review.kind === "middle"))
+    .map((day) => day.date)
+    .sort();
+  if (bankDays.length < MIDDLE_BANK_DAYS) return null;
+  const due = state.memories.filter(
+    (memory) =>
+      memory.nextReviewAt !== null &&
+      Date.parse(memory.nextReviewAt) <= now.getTime(),
+  );
+  const overdue = due.some(
+    (memory) =>
+      now.getTime() - Date.parse(memory.nextReviewAt!) >
+      BANK_REVIEW.overdueDays * DAY_MS,
+  );
+  if (due.length < BANK_REVIEW.dueConcepts && !overdue) return null;
+  const lastDate = bankDays.at(-1)!;
+  if (dayGap(lastDate, kstDateOf(now)) < BANK_REVIEW.minGapDays) return null;
+  return { overdue, lastDate };
+}
+
 /** Today's frozen or next plan, with the course section an elementary bank day practises. */
 export function expeditionToday(
   state: StoredSrsState,
@@ -297,12 +352,28 @@ export function expeditionToday(
         Date.parse(`${record!.cards[card.id].due}T00:00:00Z`) >=
       3 * 86_400_000,
   );
-  if (
-    state.expedition?.mission?.route !== "memory" &&
-    (due.length >= 5 || overdue)
-  )
-    return { plan: unitPlan(due[0].unit, "memory"), sectionId: null };
   const learning = expeditionLearning(state, studentId, now);
+  // 진도 보호: 복습(개념 기억 복습 · 은행 복습 — 둘 다 route «memory») 다음 날은 학습 목표 한 번.
+  const rested = state.expedition?.mission?.route !== "memory";
+  const concept = rested && (due.length >= 5 || overdue);
+  const bank = rested ? middleBankReview(state, learning.unitId, now) : null;
+  if (concept || bank) {
+    // 겹치면: 3일 넘게 밀린 쪽 → 더 오래 쉰 종류 → 개념(D-142 ⑼ 합의안).
+    const lastConcept =
+      explorer.completedDays
+        .filter((day) => day.route === "memory")
+        .map((day) => day.date)
+        .sort()
+        .at(-1) ?? "";
+    const bankFirst =
+      !!bank &&
+      (!concept ||
+        (bank.overdue !== overdue
+          ? bank.overdue
+          : bank.lastDate < lastConcept));
+    if (bankFirst) return { plan: bankReviewPlan(), sectionId: null };
+    return { plan: unitPlan(due[0].unit, "memory"), sectionId: null };
+  }
   return {
     plan: learning.plan,
     sectionId: learning.plan.kind === "elementary" ? learning.sectionId : null,

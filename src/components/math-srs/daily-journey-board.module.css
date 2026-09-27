@@ -111,13 +111,15 @@
 .word {
   white-space: nowrap;
 }
-.map .cell[data-state="upcoming"] .tile {
+/* 예정 칸 = 투명 칸 — 첫 화면 판(map)과 초등 은행 끝 화면 판(full)이 같다(05 §8.17, 2026-09-28 원장님 «예정 칸 모양만 맞춰»).
+   full 판의 가운데 · 여백 · «예정» 글자는 그대로. */
+.cell[data-state="upcoming"] .tile {
   background: transparent;
   border: 1px dashed #a9bad6;
   box-shadow: none;
   color: #5b6f8f;
 }
-.map .cell[data-state="upcoming"] .tile::before {
+.cell[data-state="upcoming"] .tile::before {
   display: none;
 }
 .gradeTag {
@@ -678,15 +680,18 @@ button.next {
   min-height: 44px;
   padding-top: 10px;
 }
+/* 출발 표시는 오른쪽 1일차 칸 밑 — 출발 자리의 말(가운데가 판 폭 91% · 폭 clamp(22px, 7cqi, 37px))의 왼쪽 4px 에서 끝나
+   말과 겹치지 않는다. */
 .departure {
+  margin-right: calc(9% + clamp(11px, 3.5cqi, 18.5px) + 4px);
   font-size: 10px;
   font-weight: 650;
   color: #7d8d81;
+  white-space: nowrap;
 }
 .direction {
   font-size: 10px;
   color: #8b998e;
-  margin-right: 13%;
 }
 button.currentPosition {
   min-height: 44px;

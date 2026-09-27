@@ -48,6 +48,16 @@ export const unitHasBank = (unit: { id: string; grade: number }) =>
 
 /** 중1 일차방정식은 개념을 다 모은 뒤 은행 날을 이만큼 끝내야 다음 단원으로 넘긴다(D-142 ⑹, 원장님 2026-09-27). */
 export const MIDDLE_BANK_DAYS = 3;
+/**
+ * D-142 ⑼ 중1 은행 복습 — 넘어간 뒤 은행 날을 «기억 복습처럼» 끼운다. 수치는 여기 한 곳.
+ * `dueConcepts` · `overdueDays`: 은행 개념 6개 중 만기 3개 이상 또는 하나라도 3일 초과면 은행 복습(원장님 2026-09-28 확정).
+ * `minGapDays` 와 «복습 다음엔 학습 목표 한 번» · 겹칠 때 순서는 **원장님 미답 — 그록 · Claude 합의안(2:1)으로 진행**.
+ */
+export const BANK_REVIEW = {
+  dueConcepts: 3,
+  overdueDays: 3,
+  minGapDays: 4,
+} as const;
 const middleBank = (unit: ForecastUnit) => unitHasBank(unit) && unit.grade >= 7;
 const finished = (unit: ForecastUnit) => unit.collected >= unit.cards;
 const bankLeft = (unit: ForecastUnit) =>
