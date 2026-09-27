@@ -1563,7 +1563,8 @@ export const M2_GEO_SIM: TypeEntry[] = [
       return {
         content: `그림은 직사각형 모양의 종이 $ABCD$를 $\\overline{EC}$를 접는 선으로 하여 꼭짓점 $B$가 $\\overline{AD}$ 위의 점 $B'$에 오도록 접은 것이다. $\\overline{AE}=${p}\\,\\mathrm{cm}$, $\\overline{AB'}=${q}\\,\\mathrm{cm}$, $\\overline{CD}=${cd}\\,\\mathrm{cm}$일 때, $\\overline{B'D}$의 길이를 구하시오.`,
         answer: `$${x}\\,\\mathrm{cm}$`,
-        solution: `$\\angle A=\\angle D=90^\\circ$이고 $\\angle AEB'=90^\\circ-\\angle AB'E=\\angle DB'C$이므로 삼각형 $AEB'$와 삼각형 $DB'C$는 $\\mathrm{AA}$ 닮음이다.\n$\\overline{AE}:\\overline{DB'}=\\overline{AB'}:\\overline{DC}$이므로 $${p}\\times${cd}=${q}\\times\\overline{B'D}$이다.\n따라서 $\\overline{B'D}=${x}\\,\\mathrm{cm}$이다.`,
+        // `B'` 은 「비 프라임」(받침 ㅁ)으로 읽는다 — 「$AEB'$과」(원장님 2026-09-27 「프라임으로 통일」).
+        solution: `$\\angle A=\\angle D=90^\\circ$이고 $\\angle AEB'=90^\\circ-\\angle AB'E=\\angle DB'C$이므로 삼각형 $AEB'$과 삼각형 $DB'C$는 $\\mathrm{AA}$ 닮음이다.\n$\\overline{AE}:\\overline{DB'}=\\overline{AB'}:\\overline{DC}$이므로 $${p}\\times${cd}=${q}\\times\\overline{B'D}$이다.\n따라서 $\\overline{B'D}=${x}\\,\\mathrm{cm}$이다.`,
         facts: { mode: 0, p, q, cd, x },
         figureSpec: figFoldRect15(p, q, cd, x, {
           ae: `${p} cm`,
