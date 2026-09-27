@@ -1,4 +1,4 @@
-// D-144 · 05 §8.19 — 한 칸 별 · 끝없는 기지가 학생 화면에 보이는 모양(Hi-fi 2안, 3자 합의).
+// D-144 · 05 §8.20 — 한 칸 별 · 끝없는 기지가 학생 화면에 보이는 모양(Hi-fi 2안, 3자 합의).
 import { fireEvent, render, screen, within } from "@testing-library/react";
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 import StudentMathExplorers from "@/components/math-explorers/StudentMathExplorers";

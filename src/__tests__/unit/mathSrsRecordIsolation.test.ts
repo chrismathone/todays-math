@@ -62,6 +62,7 @@ const ALLOWED = [
   "src/app/api/math-srs/",
   "src/app/api/students/[id]/math-srs/",
   "scripts/qa/mobile-explorers-qa.mjs",
+  "scripts/qa/star-economy/", // 원장님 2026-09-28 허용 · DB 없는 별 경제 시뮬레이터(D-144)
 ];
 // 정적 import · 재수출 · 동적 import · require · QA 의 src("…ts") 까지 — 문자열 안의 경로로 잡는다.
 // «/» 로 시작하는 문자열은 화면·API 주소(`/api/learn/math-srs/replay`)라 모듈 참조가 아니다.

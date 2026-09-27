@@ -88,7 +88,7 @@ export function ExplorerChests({
   );
 }
 
-/** D-144 · 05 §8.19 — 그 칸이 준 별(카드 레벨 + 한 칸 보장). 금색은 상자 보상의 금색 그대로. */
+/** D-144 · 05 §8.20 — 그 칸이 준 별(카드 레벨 + 한 칸 보장). 금색은 상자 보상의 금색 그대로. */
 export function TileStars({ cards, bonus }: { cards: number; bonus: number }) {
   const total = cards + bonus;
   return (
