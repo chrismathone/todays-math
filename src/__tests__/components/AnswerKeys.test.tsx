@@ -16,6 +16,7 @@ import ExplorerWorkshop from "@/components/math-explorers/ExplorerWorkshop";
 import { StudentMathSrs } from "@/components/math-srs/StudentMathSrs";
 import StudentCoursePractice from "@/components/math-srs/StudentCoursePractice";
 import StudentReplayDialog from "@/components/math-srs/StudentReplayDialog";
+import { NumberKey } from "@/components/math-srs/AnswerKeyCaps";
 import * as srsApi from "@/components/math-srs/mathSrsApi";
 import type {
   ExplorerAction,
@@ -1042,6 +1043,23 @@ describe("키 모양 — 번호 키 · ⏎ 키는 그 단추의 실제 키 (05 �
     );
     await screen.findByRole("button", { name: "완성했어요" });
     expect(expectKeyCaps()).toEqual(["Enter"]);
+  });
+
+  it("키가 없는 번호(열째 보기부터)는 키 모양을 입지 않는다 — 번호만 지금 그대로", () => {
+    render(
+      <>
+        <button type="button" aria-keyshortcuts="9">
+          <NumberKey index={8} className="n" />
+        </button>
+        <button type="button">
+          <NumberKey index={9} className="n" />
+        </button>
+      </>,
+    );
+    expect(expectKeyCaps()).toEqual(["9"]);
+    const tenth = screen.getByText("10");
+    expect(tenth).not.toHaveAttribute("data-answer-key");
+    expect(tenth).toHaveAttribute("class", "n");
   });
 
   it("키 모양은 마우스가 주 포인터인 기기에서만 — 모양을 주는 규칙은 모두 가르는 조건 안에 있고, 밖에서는 ⏎ 를 숨긴다", () => {
