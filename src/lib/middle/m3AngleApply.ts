@@ -1391,8 +1391,9 @@ $\\square ABQP$가 원에 내접하므로 $\\angle PQC=\\angle PAB$이고, $\\sq
         const x = intBetween(rng, 12, 28);
         const a = k * x;
         if (a > 84) return null;
+        // `TT'` 은 「티 티 프라임」(받침 ㅁ) — 「$TT'$이라」(원장님 2026-09-27 「프라임으로 통일」).
         return {
-          content: `원 위의 점 $B$에서의 접선을 $TT'$라 하고 원 위에 두 점 $A$, $C$가 있다. 호 $AB$의 길이가 호 $BC$의 길이의 $${k}$배이고 $\\angle ABT=${a}^\\circ$일 때, $\\angle CAB$의 크기를 구하시오.`,
+          content: `원 위의 점 $B$에서의 접선을 $TT'$이라 하고 원 위에 두 점 $A$, $C$가 있다. 호 $AB$의 길이가 호 $BC$의 길이의 $${k}$배이고 $\\angle ABT=${a}^\\circ$일 때, $\\angle CAB$의 크기를 구하시오.`,
           answer: angAnswer(x),
           solution: `접선과 현이 이루는 각의 크기는 그 현에 대한 원주각의 크기와 같으므로 호 $AB$에 대한 원주각은 $${a}^\\circ$이다.
 한 원에서 원주각의 크기는 호의 길이에 정비례하므로 호 $BC$에 대한 원주각의 크기는 $\\dfrac{${a}^\\circ}{${k}}=${x}^\\circ$이다.
@@ -1412,7 +1413,7 @@ $\\angle CAB$는 호 $BC$에 대한 원주각이므로 $\\angle CAB=${x}^\\circ$
       const a = intBetween(rng, 30, 75);
       const x = 90 - a;
       return {
-        content: `원 $O$ 위의 점 $B$에서의 접선을 $TT'$라 하고 원 위의 점 $A$에 대하여 $\\angle ABT=${a}^\\circ$일 때, $\\angle OAB$의 크기를 구하시오.`,
+        content: `원 $O$ 위의 점 $B$에서의 접선을 $TT'$이라 하고 원 위의 점 $A$에 대하여 $\\angle ABT=${a}^\\circ$일 때, $\\angle OAB$의 크기를 구하시오.`,
         answer: angAnswer(x),
         solution: `접선과 현이 이루는 각의 크기는 그 현에 대한 원주각의 크기와 같으므로 호 $AB$에 대한 원주각은 $${a}^\\circ$이고, 중심각 $\\angle AOB=2\\times${a}^\\circ=${2 * a}^\\circ$이다.
 $\\overline{OA}=\\overline{OB}$이므로 삼각형 $OAB$는 이등변삼각형이다.
@@ -1462,7 +1463,7 @@ $\\overline{OA}=\\overline{OB}$이므로 삼각형 $OAB$는 이등변삼각형�
       ][mode]!;
       const ask = ["\\angle ACB", "\\angle CBT", "\\angle ADC"][mode]!;
       return {
-        content: `원에 내접하는 $\\square ABCD$에서 점 $B$를 접점으로 하는 접선을 $TT'$라 하자. ${given}일 때, $${ask}$의 크기를 구하시오.`,
+        content: `원에 내접하는 $\\square ABCD$에서 점 $B$를 접점으로 하는 접선을 $TT'$이라 하자. ${given}일 때, $${ask}$의 크기를 구하시오.`,
         answer: angAnswer(value),
         solution: `원에 내접하는 사각형에서 대각의 크기의 합은 $180^\\circ$이므로 $\\angle ABC=180^\\circ-${d}^\\circ=${180 - d}^\\circ$이다.
 접선과 현이 이루는 각의 크기는 그 현에 대한 원주각의 크기와 같으므로 $\\angle CAB=\\angle CBT=${t}^\\circ$이다.

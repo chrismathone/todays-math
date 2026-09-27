@@ -40,11 +40,13 @@ const SEEDS = 200;
  *     「이」 뒤가 빈칸·쉼표·마침표·닫는 괄호·끝일 때만 조사로 본다.
  *  ⑵ **문자·제곱**으로 끝나는 수식 뒤 — 「점 $B$이 있고」·「$R$가」·「$2x^{2}$를」.
  *     영문자는 이름으로 읽는다: 받침은 엘·엠·엔·알(l·m·n·r)뿐, 나머지(엑스·와이·에이 …)는 없다.
- *     제곱·세제곱(`^2`·`^{3}`)은 받침이 있다.
- *  ⑶ 「로/으로」 — 수·문자·제곱 뒤. 받침이 없거나 ㄹ 받침(1·7·8·l·r)이면 「로」, 그 밖의
- *     받침(0·3·6·m·n·제곱)이면 「으로」다(`m2Josa` 의 `euroRo` 와 같은 표를 여기 다시 적는다).
- * 안 보는 것: 단위(`\mathrm{g}`·` cm` — 그램·센티미터가 소리를 정한다), 프라임(`B'` — 「프라임」·
- * 「대시」로 갈린다), 줄이 바뀐 뒤의 「이」(「⏎이 자료의」 — 지시어), 도(°).
+ *     제곱·세제곱(`^2`·`^{3}`)은 받침이 있다. 프라임(`B'`·`\overline{BA'}`)은 「프라임」으로
+ *     읽어 받침(ㅁ)이 있다 — 「대시」로 읽던 자리가 섞여 있어 원장님이 2026-09-27 「프라임으로
+ *     통일」을 정하셨다(「$AEB'$와」→「과」, 「$TT'$라」→「이라」).
+ *  ⑶ 「로/으로」 — 수·문자·제곱·프라임 뒤. 받침이 없거나 ㄹ 받침(1·7·8·l·r)이면 「로」, 그 밖의
+ *     받침(0·3·6·m·n·제곱·프라임)이면 「으로」다(`m2Josa` 의 `euroRo` 와 같은 표를 여기 다시 적는다).
+ * 안 보는 것: 단위(`\mathrm{g}`·` cm` — 그램·센티미터가 소리를 정한다), 줄이 바뀐 뒤의
+ * 「이」(「⏎이 자료의」 — 지시어), 도(°).
  */
 const JOSA_PAIR: Record<string, readonly [string, string]> = {
   은: ["은", "는"],
@@ -57,14 +59,16 @@ const JOSA_PAIR: Record<string, readonly [string, string]> = {
   와: ["과", "와"],
 };
 
-type Ending = { kind: "수" | "문자" | "제곱"; last: string } | null;
+type Ending = { kind: "수" | "문자" | "제곱" | "프라임"; last: string } | null;
 
 /** 수식을 소리 내어 읽을 때의 끝 — 판정할 수 없으면 `null`. */
 function endingOf(math: string): Ending {
   let s = math.replace(/(?:\\right\)|\\right\]|\)|\]|\s)+$/, "");
-  if (/\\mathrm\{[^{}]*\}(?:\^\{?\d\}?)?$|\\degree$|\^\\circ$|'$/.test(s)) {
+  if (/\\mathrm\{[^{}]*\}(?:\^\{?\d\}?)?$|\\degree$|\^\\circ$/.test(s)) {
     return null;
   }
+  // 프라임 — `B'`·`\overline{BA'}` 의 끝은 「프라임」(받침 ㅁ)
+  if (/'\}?$/.test(s)) return { kind: "프라임", last: "" };
   // 띄어 쓴 단위 — `$20 cm$`·`$x cm$`. 앞이 명령(`\le x`)이면 단위가 아니다.
   if (
     /(?:\d|(?<![\\A-Za-z])[A-Za-z]|\})(?:\s|\\,)+(?:[a-z]{1,2}|m?L)(?:\^\{?\d\}?)?$/.test(
@@ -84,13 +88,13 @@ function endingOf(math: string): Ending {
 }
 
 function hasBatchim(e: NonNullable<Ending>): boolean {
-  if (e.kind === "제곱") return true;
+  if (e.kind === "제곱" || e.kind === "프라임") return true;
   if (e.kind === "문자") return "lmnr".includes(e.last);
   return !"2459".includes(e.last);
 }
 
 function takesRo(e: NonNullable<Ending>): boolean {
-  if (e.kind === "제곱") return false;
+  if (e.kind === "제곱" || e.kind === "프라임") return false;
   if (e.kind === "문자") return !"mn".includes(e.last);
   return !"036".includes(e.last);
 }
@@ -156,12 +160,17 @@ describe("사각 판정기(blindJosa) 눈금 — 양성은 잡고 음성은 안 
       ["구하는 식을 $y=mx+8$라 하자.", "$…y=mx+8$라 → 이라"],
       ["두 수를 $x$, $x+14$이라 하고", "$…x+14$이라 → 라"],
       ["$-2\\le x$을 만족시키는", "$…-2\\le x$을 → 를"],
+      // 프라임 — 「프라임」(받침 ㅁ)으로 읽는다
+      ["삼각형 $AEB'$와 삼각형 $DB'C$", "$…AEB'$와 → 과"],
+      ["접선을 $TT'$라 하고", "$…TT'$라 → 이라"],
+      ["$\\overline{BA'}$가 지름이므로", "$…verline{BA'}$가 → 이"],
+      ["$A'$로 옮긴 점", "$…A'$로 → 으로"],
     ] as const) {
       expect(blindJosa(t), t).toEqual([want]);
     }
   });
 
-  it("서술격·단위·프라임·지시어·옳은 조사는 조용하다", () => {
+  it("서술격·단위·지시어·옳은 조사(프라임 포함)는 조용하다", () => {
     for (const t of [
       "합은 $75$이다.",
       "$5$이고 $x$이므로",
@@ -171,6 +180,9 @@ describe("사각 판정기(blindJosa) 눈금 — 양성은 잡고 음성은 안 
       "넓이가 $16\\,\\mathrm{cm^2}$가 되는",
       "물 $5\\,\\mathrm{L}$를 부었더니", // 리터를
       "지름 $BA'$을 그으면", // 프라임을
+      "무게중심을 $G'$이라 하면",
+      "$\\overline{BA'}$이 지름이므로",
+      "삼각형 $AEB'$과 삼각형",
       "$10$, $11$, $15$⏎이 자료의".replace("⏎", "\n"),
       "$252$가 되어야",
       "점 $A$, $B$가 있고",
