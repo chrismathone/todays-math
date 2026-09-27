@@ -1,11 +1,33 @@
 import type {
   MathExpeditionDay,
   MathExpeditionJourney,
+  StoredExpedition,
 } from "@/contracts/mathExpedition.contract";
 import { kstDateOf } from "@/lib/kstDate";
-import { dailyJourneyDto } from "@/lib/math-srs/dailyJourney";
+import { dailyJourneyDto, journeyDayLabel } from "@/lib/math-srs/dailyJourney";
+import {
+  sectionForecast,
+  sectionLabel,
+  sectionPosition,
+} from "@/lib/math-srs/elementary/sectionForecast";
 import type { StoredSrsState } from "@/lib/math-srs/serverState";
-import { definitionCards, definitionUnits } from "./definition-cards";
+import {
+  definitionCards,
+  definitionDue,
+  definitionUnits,
+} from "./definition-cards";
+import {
+  conceptUnits,
+  expeditionLearning,
+  expeditionToday,
+  initialOwnedExplorer,
+} from "./expedition";
+import {
+  planSlots,
+  unitForecast,
+  unitPosition,
+  type ForecastItem,
+} from "./journeyForecast";
 
 const gradeLabel = (grade: number) =>
   grade < 7 ? `초등 ${grade}학년` : `중학교 ${grade - 6}학년`;
@@ -136,20 +158,117 @@ export function legacyExpeditionJourney(
   };
 }
 
+/**
+ * 진도판의 오늘 칸 · 예정 칸 · 가운데 «나의 진행» (D-142). 오늘 칸은 `planExpedition` 이 내는 것(열린 미션이면 그것),
+ * 예정은 같은 학습 목표(`expeditionLearning`)에서 같은 넘김 규칙으로 뽑는다 — 오늘과 예정이 다른 규칙으로 갈리지 않게.
+ * 지금 판(12칸)의 끝까지만 싣는다. 초등은 원장님 진도 계획이 있으면 소단원 칸.
+ */
+export function expeditionOutlook(
+  state: StoredSrsState,
+  studentId: string,
+  now: Date,
+  completedDays: number,
+  todayComplete: boolean,
+): { upcoming: ForecastItem[]; position: MathExpeditionJourney["position"] } {
+  const explorer = initialOwnedExplorer(state, studentId, now);
+  const units = conceptUnits(explorer.profile.definitions);
+  const learning = expeditionLearning(state, studentId, now);
+  const today = todayComplete ? null : expeditionToday(state, studentId, now);
+  const slots = planSlots(completedDays) - (today ? 1 : 0);
+  const todayItem = today
+    ? today.plan.kind === "elementary" && today.sectionId
+      ? sectionLabel(today.sectionId)
+      : { title: today.plan.title, subtitle: today.plan.subtitle }
+    : null;
+  // Elementary bank units follow 원장님's course plan cursor, one lesson (소단원) per tile.
+  const course = learning.sectionId ? state.course : undefined;
+  const bySection = !!course?.plan;
+  const forecast = bySection
+    ? sectionForecast(
+        learning.sectionId!,
+        course!.completedSectionIds,
+        slots,
+        !(
+          today?.plan.kind === "elementary" &&
+          today.sectionId === learning.sectionId
+        ),
+      )
+    : unitForecast(
+        units,
+        learning.unitId,
+        !(
+          today &&
+          today.plan.unitId === learning.unitId &&
+          today.plan.route !== "memory" &&
+          today.plan.route !== "repair"
+        ),
+        slots,
+      );
+  const due = definitionDue(explorer.profile, kstDateOf(now)).length;
+  const byUnit = unitPosition(units, learning.unitId, due);
+  const section = bySection ? sectionPosition(learning.sectionId!) : null;
+  const position = byUnit
+    ? section
+      ? { ...byUnit, ...section }
+      : byUnit
+    : undefined;
+  return {
+    upcoming: [...(todayItem ? [todayItem] : []), ...forecast],
+    position,
+  };
+}
+
+/** 초등 은행 날 칸은 그날 푼 소단원 이름으로 — 옛 full 판과 같은 이름(D-142). 저장된 기록은 바꾸지 않는다. */
+function sectionNamedDay(
+  award: StoredExpedition["awards"][number],
+): MathExpeditionDay {
+  const day = award.day;
+  if (day.kind !== "elementary") return day;
+  const sections = award.references.flatMap((reference) => reference.unitIds);
+  if (!sections.length) return day;
+  const label = journeyDayLabel("elementary", sections);
+  return {
+    ...day,
+    ...label,
+    reviews: day.reviews.map((review) =>
+      review.kind === "elementary" ? { ...review, ...label } : review,
+    ),
+  };
+}
+
 /** Once migrated, only frozen, fully resolved missions can add a board tile. */
-export function expeditionJourney(state: StoredSrsState, now: Date): MathExpeditionJourney {
+export function expeditionJourney(
+  state: StoredSrsState,
+  now: Date,
+  studentId: string,
+): MathExpeditionJourney {
   const ledger = state.expedition;
-  if (!ledger) return { ...legacyExpeditionJourney(state, now), upcoming: [] };
-  const days = [...ledger.legacyDays, ...ledger.awards.map((award) => award.day)]
-    .sort((a, b) => a.date.localeCompare(b.date));
+  if (!ledger) {
+    const legacy = legacyExpeditionJourney(state, now);
+    return {
+      ...legacy,
+      ...expeditionOutlook(
+        state,
+        studentId,
+        now,
+        legacy.completedDays,
+        legacy.todayComplete,
+      ),
+    };
+  }
+  const days = [
+    ...ledger.legacyDays,
+    ...ledger.awards.map(sectionNamedDay),
+  ].sort((a, b) => a.date.localeCompare(b.date));
   const mission = ledger.mission;
+  const todayComplete = days.some((day) => day.date === kstDateOf(now));
   return {
     activeKind: mission?.kind ?? "explorers",
     completedDays: days.length,
-    todayComplete: days.some((day) => day.date === kstDateOf(now)),
+    todayComplete,
     todayAnswered: mission?.answered ?? 0,
     todayGoal: mission?.goal ?? 15,
     days,
-    upcoming: mission && mission.status !== "complete" ? [{ title: mission.title, subtitle: mission.subtitle }] : [],
+    ...expeditionOutlook(state, studentId, now, days.length, todayComplete),
   };
 }

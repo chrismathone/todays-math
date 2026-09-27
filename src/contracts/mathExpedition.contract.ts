@@ -24,13 +24,29 @@ export const mathExpeditionDaySchema = mathSrsJourneyDaySchema.extend({
   reviews: z.array(mathExpeditionReviewSchema).min(1).max(3),
 });
 export type MathExpeditionDay = z.infer<typeof mathExpeditionDaySchema>;
+/** The board centre «나의 진행» (D-142): the n-th unit of the grade (elementary: lesson of the chapter). */
+export const mathExpeditionPositionSchema = z.strictObject({
+  caption: z.string(),
+  ordinal: z.number().int().positive(),
+  title: z.string(),
+  note: z.string().optional(),
+  collected: z.number().int().nonnegative(),
+  total: z.number().int().nonnegative(),
+  due: z.number().int().nonnegative(),
+});
 export const mathExpeditionJourneySchema = mathSrsJourneySchema.extend({
   activeKind: mathExpeditionKindSchema,
   days: z.array(mathExpeditionDaySchema),
+  position: mathExpeditionPositionSchema.optional(),
 });
 export type MathExpeditionJourney = z.infer<typeof mathExpeditionJourneySchema>;
 
-export const expeditionRouteSchema = z.enum(["bank", "unit", "memory", "repair"]);
+export const expeditionRouteSchema = z.enum([
+  "bank",
+  "unit",
+  "memory",
+  "repair",
+]);
 export const expeditionPlanSchema = z.strictObject({
   kind: mathExpeditionKindSchema,
   route: expeditionRouteSchema,
@@ -69,25 +85,41 @@ export const storedExpeditionMissionSchema = expeditionMissionSchema.extend({
   awardEligible: z.boolean(),
   references: z.array(sourceReferenceSchema),
 });
-export const storedExpeditionSchema = z.strictObject({
-  version: z.literal(1),
-  initializedAt: z.iso.datetime(),
-  mission: storedExpeditionMissionSchema.nullable(),
-  legacyDays: z.array(mathExpeditionDaySchema),
-  awards: z.array(z.strictObject({
-    day: mathExpeditionDaySchema,
-    missionId: z.uuid(),
-    references: z.array(sourceReferenceSchema),
-  })),
-  receipts: z.array(z.strictObject({
-    requestId: z.uuid(),
-    actionKey: z.string(),
-    missionId: z.uuid().nullable(),
-  })).max(128),
-}).superRefine((value, ctx) => {
-  const dates = [...value.legacyDays.map((d) => d.date), ...value.awards.map((a) => a.day.date)];
-  if (new Set(dates).size !== dates.length)
-    ctx.addIssue({code: "custom", message: "하루에는 한 칸만 전진할 수 있습니다."});
-});
+export const storedExpeditionSchema = z
+  .strictObject({
+    version: z.literal(1),
+    initializedAt: z.iso.datetime(),
+    mission: storedExpeditionMissionSchema.nullable(),
+    legacyDays: z.array(mathExpeditionDaySchema),
+    awards: z.array(
+      z.strictObject({
+        day: mathExpeditionDaySchema,
+        missionId: z.uuid(),
+        references: z.array(sourceReferenceSchema),
+      }),
+    ),
+    receipts: z
+      .array(
+        z.strictObject({
+          requestId: z.uuid(),
+          actionKey: z.string(),
+          missionId: z.uuid().nullable(),
+        }),
+      )
+      .max(128),
+  })
+  .superRefine((value, ctx) => {
+    const dates = [
+      ...value.legacyDays.map((d) => d.date),
+      ...value.awards.map((a) => a.day.date),
+    ];
+    if (new Set(dates).size !== dates.length)
+      ctx.addIssue({
+        code: "custom",
+        message: "하루에는 한 칸만 전진할 수 있습니다.",
+      });
+  });
 export type StoredExpedition = z.infer<typeof storedExpeditionSchema>;
-export type StoredExpeditionMission = z.infer<typeof storedExpeditionMissionSchema>;
+export type StoredExpeditionMission = z.infer<
+  typeof storedExpeditionMissionSchema
+>;

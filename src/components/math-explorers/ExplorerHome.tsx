@@ -10,6 +10,13 @@ import DailyJourneyBoard, {
   type DailyJourneyDay,
 } from "@/components/math-srs/DailyJourneyBoard";
 import { kstDateOf } from "@/lib/kstDate";
+import {
+  conceptTarget,
+  planSlots,
+  unitForecast,
+  unitPosition,
+  type ForecastUnit,
+} from "@/lib/math-explorers/journeyForecast";
 import { ExplorerMath } from "./ExplorerMath";
 import { ExplorerChests } from "./ExplorerPieces";
 import s from "./math-explorers.module.css";
@@ -25,14 +32,25 @@ export function explorerJourney(state: ExplorerState): DailyJourney {
     a.date.localeCompare(b.date),
   );
   const todayComplete = completed.some((day) => day.date === today);
-  const unit =
-    state.units.find(
-      (candidate) =>
-        candidate.id === (state.session?.unitId ?? state.profile.goalUnitId),
-    ) ??
+  // Without the server's journey, the same D-142 hand-over and forecast rules
+  // run on the unit list this screen already has.
+  const units: ForecastUnit[] = state.units.map((unit) => ({
+    id: unit.id,
+    grade: unit.grade,
+    title: unit.title,
+    cards: unit.cards.length,
+    collected: unit.cards.filter((card) => (card.progress?.level ?? 0) > 0)
+      .length,
+  }));
+  const start =
+    state.session?.unitId ??
+    state.profile.goalUnitId ??
     state.units.find(
       (candidate) => candidate.grade === state.profile.courseGrade,
-    )!;
+    )!.id;
+  const target = state.session ? start : conceptTarget(units, start);
+  const unit = state.units.find((candidate) => candidate.id === target);
+  const slots = planSlots(completed.length) - (todayComplete ? 0 : 1);
   return {
     completedDays: completed.length,
     todayComplete,
@@ -57,9 +75,13 @@ export function explorerJourney(state: ExplorerState): DailyJourney {
         reviewCount: 15,
       };
     }),
-    upcoming: unit
-      ? [{ title: unit.title, subtitle: gradeLabel(unit.grade) }]
-      : [],
+    upcoming: [
+      ...(unit && !todayComplete
+        ? [{ title: unit.title, subtitle: gradeLabel(unit.grade) }]
+        : []),
+      ...unitForecast(units, target, todayComplete, slots),
+    ],
+    position: unitPosition(units, target, state.dueCardIds.length) ?? undefined,
   };
 }
 

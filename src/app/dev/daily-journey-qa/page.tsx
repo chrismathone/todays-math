@@ -7,7 +7,7 @@ import DailyJourneyQaClient from "./DailyJourneyQaClient";
 export default async function DailyJourneyQaPage({
   searchParams,
 }: {
-  searchParams: Promise<{ days?: string }>;
+  searchParams: Promise<{ days?: string; set?: string; variant?: string }>;
 }) {
   await connection();
   if (
@@ -15,7 +15,10 @@ export default async function DailyJourneyQaPage({
     process.env.ENABLE_RENDER_QA !== "1"
   )
     notFound();
-  const count = Number((await searchParams).days ?? 3);
+  const query = await searchParams;
+  const count = Number(query.days ?? 3);
+  const set =
+    query.set === "elementary" || query.set === "all" ? query.set : "middle";
   return (
     <div className={learn.page}>
       <DailyJourneyQaClient
@@ -24,6 +27,8 @@ export default async function DailyJourneyQaPage({
             ? Math.min(60, Math.max(0, Math.floor(count)))
             : 3
         }
+        set={set}
+        variant={query.variant === "map" ? "map" : "full"}
       />
       <StudentMobileNav previewPath="/learn/math-srs" />
     </div>

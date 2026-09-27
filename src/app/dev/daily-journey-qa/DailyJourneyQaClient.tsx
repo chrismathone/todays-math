@@ -3,18 +3,87 @@
 import { useEffect, useRef, useState } from "react";
 import DailyJourneyBoard, {
   type DailyJourney,
+  type DailyJourneyPosition,
 } from "@/components/math-srs/DailyJourneyBoard";
 import { StudentReviewPage } from "@/components/math-srs/StudentReviewHome";
 import s from "@/components/math-srs/student-review-home.module.css";
+import explorer from "@/components/math-explorers/math-explorers.module.css";
+import { definitionUnits } from "@/lib/math-explorers/definition-cards";
+import { longGrade, shortGrade } from "@/lib/math-explorers/journeyForecast";
+import { COURSE_SECTIONS } from "@/lib/math-srs/elementary/catalog";
 
-const units = [
-  "약수와 배수",
-  "약분과 통분",
-  "분수의 덧셈과 뺄셈",
-  "분수의 곱셈",
-  "여러 가지 도형의 넓이",
+/**
+ * 진도판 검수 — 작은 픽스처 금지(2026-08-19 교훈). 이름은 전부 실제 단원 · 소단원이다.
+ *  - `set=middle`   중2 목표 «연립일차방정식»: 학년 단원 → 중3 (기본)
+ *  - `set=elementary` 초4 진도 계획 «꺾은선그래프»부터 소단원 → 초5
+ *  - `set=all`      판에 나올 수 있는 이름 전부를 예정 · 완료 · 오늘 칸에 올린다(잘림 · 쪼개짐 전수 실측)
+ */
+type Item = { title: string; subtitle: string; grade: number };
+const middle: Item[] = definitionUnits
+  .filter((unit) => unit.grade >= 8)
+  .map((unit) => ({
+    title: unit.title,
+    subtitle: longGrade(unit.grade),
+    grade: unit.grade,
+  }));
+const middleStart = middle.findIndex((item) => item.title === "연립일차방정식");
+const elementary: Item[] = COURSE_SECTIONS.slice(
+  COURSE_SECTIONS.findIndex((section) => section.id === "4-2-5-1"),
+).map((section) => ({
+  title: section.title,
+  subtitle: `초${section.grade} · ${section.semester}학기 · ${section.chapterTitle}`,
+  grade: section.grade,
+}));
+const positions: Record<"middle" | "elementary", DailyJourneyPosition> = {
+  middle: {
+    caption: "중2 · 7단원 중",
+    ordinal: 3,
+    title: "연립일차방정식",
+    collected: 5,
+    total: 35,
+    due: 0,
+  },
+  elementary: {
+    caption: "소단원 3개 중",
+    ordinal: 1,
+    title: "꺾은선그래프",
+    note: "꺾은선그래프 알아보기",
+    collected: 5,
+    total: 30,
+    due: 0,
+  },
+};
+const allNames = [
+  ...new Set([
+    ...definitionUnits.map((unit) => unit.title),
+    ...definitionUnits.map((unit) => `${unit.title} 연결 복습`),
+    ...COURSE_SECTIONS.map((section) => section.title),
+    ...COURSE_SECTIONS.map((section) => section.chapterTitle),
+    "기억 복습",
+  ]),
 ];
-function makeJourney(count: number): DailyJourney {
+
+function planned(list: readonly Item[], from: number, count: number) {
+  return list.slice(from, from + count).map((item, index, all) => {
+    const before = index
+      ? all[index - 1].grade
+      : list[Math.max(0, from - 1)].grade;
+    return item.grade !== before
+      ? {
+          title: item.title,
+          subtitle: item.subtitle,
+          gradeStart: shortGrade(item.grade),
+        }
+      : { title: item.title, subtitle: item.subtitle };
+  });
+}
+
+function makeJourney(
+  count: number,
+  set: "middle" | "elementary",
+): DailyJourney {
+  const list = set === "middle" ? middle : elementary;
+  const start = set === "middle" ? middleStart : 0;
   return {
     completedDays: count,
     todayComplete: false,
@@ -22,26 +91,109 @@ function makeJourney(count: number): DailyJourney {
     todayGoal: 10,
     days: Array.from({ length: count }, (_, index) => ({
       id: `qa-day-${index + 1}`,
-      date: `2026-09-${String(index + 1).padStart(2, "0")}`,
+      date: `2026-09-${String((index % 28) + 1).padStart(2, "0")}`,
       completedAt: "2026-09-26T09:00:00.000Z",
-      title: units[index % units.length],
-      subtitle: "초5 · 1학기",
+      title:
+        index % 3 === 1
+          ? "기억 복습"
+          : list[(start + index) % list.length].title,
+      subtitle: list[(start + index) % list.length].subtitle,
       reviewCount: 10,
     })),
-    upcoming: Array.from({ length: 12 }, (_, index) => ({
-      title: units[(index + count) % units.length],
-      subtitle: "초5 · 1학기",
-    })),
+    upcoming: planned(list, (start + count) % list.length, 12 - (count % 12)),
+    position: positions[set],
   };
 }
 
-export default function DailyJourneyQaClient({ days }: { days: number }) {
-  const [journey, setJourney] = useState(() => makeJourney(days));
+/** 이름 전부 — 예정 칸(12개씩), 완료 칸(12개씩), 오늘 칸(이름 하나씩). */
+function allBoards(): { key: string; journey: DailyJourney }[] {
+  const boards: { key: string; journey: DailyJourney }[] = [];
+  const base = { todayAnswered: 0, todayGoal: 15, position: positions.middle };
+  for (let i = 0; i < allNames.length; i += 12) {
+    const names = allNames.slice(i, i + 12);
+    boards.push({
+      key: `planned-${i}`,
+      journey: {
+        ...base,
+        completedDays: 0,
+        todayComplete: true,
+        days: [],
+        upcoming: names.map((title) => ({ title, subtitle: "검수" })),
+      },
+    });
+    boards.push({
+      key: `done-${i}`,
+      journey: {
+        ...base,
+        completedDays: names.length,
+        todayComplete: true,
+        upcoming: [],
+        days: names.map((title, index) => ({
+          id: `qa-${i + index}`,
+          date: "2026-09-01",
+          completedAt: "2026-09-01T09:00:00.000Z",
+          title,
+          subtitle: "검수",
+          reviewCount: 0,
+        })),
+      },
+    });
+  }
+  allNames.forEach((title, index) =>
+    boards.push({
+      key: `current-${index}`,
+      journey: {
+        ...base,
+        completedDays: 0,
+        todayComplete: false,
+        days: [],
+        upcoming: [{ title, subtitle: "검수" }],
+      },
+    }),
+  );
+  return boards;
+}
+
+export default function DailyJourneyQaClient({
+  days,
+  set,
+  variant,
+}: {
+  days: number;
+  set: "middle" | "elementary" | "all";
+  variant: "full" | "map";
+}) {
+  const [journey, setJourney] = useState(() =>
+    makeJourney(days, set === "all" ? "middle" : set),
+  );
   const [review, setReview] = useState("");
   const readyRef = useRef<HTMLDivElement>(null);
   useEffect(() => {
     readyRef.current?.setAttribute("data-qa-ready", "true");
   }, []);
+  if (set === "all")
+    return (
+      <div
+        ref={readyRef}
+        data-qa-all="true"
+        style={{ display: "grid", gap: 16, padding: 16 }}
+      >
+        {allBoards().map((board) => (
+          // 탐험 홈과 같은 판 틀(`journeyPanel`) — 폰 390 에서 판 334px · 320 에서 272px.
+          <div
+            key={board.key}
+            data-qa-board={board.key}
+            className={explorer.journeyPanel}
+          >
+            <DailyJourneyBoard
+              journey={board.journey}
+              variant={variant}
+              onReviewDay={() => {}}
+            />
+          </div>
+        ))}
+      </div>
+    );
   return (
     <StudentReviewPage
       kind="elementary"
@@ -52,6 +204,7 @@ export default function DailyJourneyQaClient({ days }: { days: number }) {
       <div className={s.boardSection} ref={readyRef}>
         <DailyJourneyBoard
           journey={journey}
+          variant={variant}
           onNext={() =>
             setJourney((current) => ({
               ...current,
@@ -69,7 +222,7 @@ export default function DailyJourneyQaClient({ days }: { days: number }) {
           style={{ cursor: "pointer" }}
           onClick={() =>
             setJourney({
-              ...makeJourney(journey.completedDays + 1),
+              ...makeJourney(journey.completedDays + 1, set),
               todayComplete: true,
               todayAnswered: 10,
             })

@@ -153,7 +153,7 @@ describe("conservative unified expedition history", () => {
   it("combines three completed modes on one date into one permanent tile with every replay reference", () => {
     const state = withExplorer(withMiddle(withElementary()));
     const before = structuredClone(state);
-    const journey = expeditionJourney(state, now);
+    const journey = expeditionJourney(state, now, student);
     expect(mathExpeditionJourneySchema.safeParse(journey).success).toBe(true);
     expect(journey.completedDays).toBe(1);
     expect(journey.todayComplete).toBe(true);
@@ -174,14 +174,16 @@ describe("conservative unified expedition history", () => {
     ).toBe("2026-09-27");
     expect(state).toEqual(before);
     expect(
-      expeditionJourney(parseSrsState(state), tomorrow).completedDays,
+      expeditionJourney(parseSrsState(state), tomorrow, student).completedDays,
     ).toBe(1);
-    expect(expeditionJourney(state, tomorrow).todayComplete).toBe(false);
+    expect(expeditionJourney(state, tomorrow, student).todayComplete).toBe(
+      false,
+    );
   });
 
   it("keeps past question-bank days replayable and adds only one tile on the next learning date", () => {
     const state = withMiddle(withMiddle(withElementary()), false, 12, tomorrow);
-    const journey = expeditionJourney(state, tomorrow);
+    const journey = expeditionJourney(state, tomorrow, student);
     expect(journey.days.map((day) => day.date)).toEqual([
       "2026-09-27",
       "2026-09-28",
@@ -208,7 +210,7 @@ describe("conservative unified expedition history", () => {
       withMiddle(withElementary(undefined, true), true),
       2,
     );
-    expect(expeditionJourney(state, now).completedDays).toBe(0);
+    expect(expeditionJourney(state, now, student).completedDays).toBe(0);
     const mission = state.missions[0];
     state = recordSrsRetry(
       state,
@@ -217,22 +219,22 @@ describe("conservative unified expedition history", () => {
       right(mission.problems[0]),
       now,
     ) as typeof state;
-    expect(expeditionJourney(state, now).completedDays).toBe(1);
+    expect(expeditionJourney(state, now, student).completedDays).toBe(1);
     // The union is a history metric. It must not alter or certify the unfinished
     // elementary/explorer sessions as a newly invented combined daily mission.
     expect(state.course!.learner.session!.retry?.completedAt).toBeNull();
     expect(state.explorers.profile.definitions!.session!.done).toBe(false);
     expect(
-      expeditionJourney(state, now).days[0].reviews.map(
+      expeditionJourney(state, now, student).days[0].reviews.map(
         (review) => review.kind,
       ),
     ).toEqual(["middle"]);
-    expect(expeditionJourney(state, now).activeKind).toBe("explorers");
+    expect(expeditionJourney(state, now, student).activeKind).toBe("explorers");
   });
 
   it("does not create new milestones from grade changes, duplicate legacy day rows or ordinary replay", () => {
     let state: StoredSrsState = withExplorer();
-    const original = expeditionJourney(state, now).days;
+    const original = expeditionJourney(state, now, student).days;
     const changed = applyExplorerAction(
       state.explorers!,
       { type: "course", grade: 4 },
@@ -249,12 +251,16 @@ describe("conservative unified expedition history", () => {
         ],
       },
     };
-    const journey = expeditionJourney(state, now);
+    const journey = expeditionJourney(state, now, student);
     expect(journey.completedDays).toBe(1);
     expect(journey.days).toEqual(original);
+    // D-142: the planned tiles start from the new grade and continue into the next one.
+    expect(journey.upcoming.slice(0, 6).map((unit) => unit.subtitle)).toEqual(
+      Array(6).fill("초등 4학년"),
+    );
     expect(
-      journey.upcoming.every((unit) => unit.subtitle === "초등 4학년"),
-    ).toBe(true);
+      journey.upcoming.some((unit) => unit.subtitle === "초등 3학년"),
+    ).toBe(false);
     const replay = applyExplorerAction(
       changed.state,
       { type: "start", route: "unit", dayId: "2026-09-27" },
@@ -263,20 +269,24 @@ describe("conservative unified expedition history", () => {
     );
     expect(replay.state.profile.definitions?.session?.reviewOnly).toBe(true);
     expect(
-      expeditionJourney({ ...state, explorers: replay.state }, tomorrow).days,
+      expeditionJourney(
+        { ...state, explorers: replay.state },
+        tomorrow,
+        student,
+      ).days,
     ).toEqual(original);
   });
 
   it("does not invent old completion from absent or partially retained records", () => {
-    const empty = expeditionJourney(emptySrsState(), now);
+    const empty = expeditionJourney(emptySrsState(), now, student);
     expect(empty.days).toEqual([]);
     expect(empty.completedDays).toBe(0);
     expect(
-      expeditionJourney(withMiddle(emptySrsState(), false, 11), now)
+      expeditionJourney(withMiddle(emptySrsState(), false, 11), now, student)
         .completedDays,
     ).toBe(0);
     expect(
-      expeditionJourney(withElementary(emptySrsState(), false, 4), now)
+      expeditionJourney(withElementary(emptySrsState(), false, 4), now, student)
         .completedDays,
     ).toBe(0);
   });
