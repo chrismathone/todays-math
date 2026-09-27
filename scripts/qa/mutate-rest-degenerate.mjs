@@ -24,6 +24,11 @@ const STAT = "src/lib/middle/m3Stat2.ts";
 const SIM = "src/lib/middle/m2GeoSim.ts";
 const TOP5F = "src/lib/middle/m1Top5f.ts";
 const NUM = "src/lib/middle/m1Num.ts";
+const SHARED = "src/lib/middle/m1Shared.ts";
+const QUAD = "src/lib/middle/m3Quad.ts";
+const ROOT3 = "src/lib/middle/m3Root.ts";
+const PAGE = "src/__tests__/helpers/midPage.ts";
+const PROP = "src/lib/middle/m1Prop.ts";
 const CENSUS = "scripts/qa/census-middle-degenerate.ts";
 const TEST = "src/__tests__/unit/middleRestDegenerate.test.ts";
 
@@ -79,6 +84,62 @@ const MUTATIONS = [
     to: "",
     expect: "1-1|최대공약수와 최소공배수|30",
   },
+  // ── 지면 표기(원래 있던 결함 — 2회차, «알아서 추천 방향으로» 지시로 함께 고침) ──
+  {
+    name: "piTerm-계수1되살리기",
+    file: SHARED,
+    why: "「$(28+1\\pi)$」 — 원과 부채꼴·입체가 같이 쓰는 한 함수를 되돌린다",
+    find: '  return k === 1 ? "\\\\pi" : `${k}\\\\pi`;\n',
+    to: "  return `${k}\\\\pi`;\n",
+    expect: "1-2|원과 부채꼴|17",
+  },
+  {
+    name: "가드-π√앞계수1규칙끄기",
+    file: PAGE,
+    why: "`pageSmells` 가 `1\\pi` 를 다시 못 본다 — 규칙 단정이 잡아야 한다",
+    find: '  ["π·√ 앞에 계수 1 을 적었다", /(?<![\\d.])1\\\\(?:pi|sqrt)(?![a-zA-Z])/],\n',
+    to: "",
+    expect: "계수 1 은 냄새고",
+  },
+  {
+    name: "이차12-조사못박기",
+    file: QUAD,
+    why: "「$k=4$은 버린다」를 되살린다",
+    find: '$k=${small}$${josaNum(small, "은", "는")} 버린다.',
+    to: "$k=${small}$은 버린다.",
+    expect: "3-1|이차방정식의 활용|12",
+  },
+  {
+    name: "근호17-계수1되살리기",
+    file: ROOT3,
+    why: "「$1\\sqrt{15}$」를 되살린다",
+    find: "전개하면 $${sqrtTerm(k * q, p)}-",
+    to: "전개하면 $${k * q}\\\\sqrt{${p}}-",
+    expect: "3-1|근호를 포함한 식의 계산|17",
+  },
+  // ── 원장님 결정 ㈏ — 대관람차 갈래 2 를 뺐다 ──
+  // 갈래 뽑기 범위만 0~2 로 되돌리면 새 갈래가 갈래 1 로 떨어져 **아무것도 안 바뀐다** —
+  // 그래서 갈래 2 코드(답이 발문의 최고 높이)를 통째로 다시 끼운다.
+  {
+    name: "좌표09-높이갈래되살리기",
+    file: PROP,
+    why: "「탄 지 $x$분 후의 높이」(답=발문의 최고 높이)를 되살린다",
+    find: "m로 돌아온다. `;\n        if (branch === 0) {\n",
+    to:
+      "m로 돌아온다. `;\n" +
+      "        if (intBetween(rng, 0, 2) === 2) {\n" +
+      "          const m = intBetween(rng, 2, 6);\n" +
+      "          const x = half + m * period;\n" +
+      "          return {\n" +
+      "            content: `${head}대관람차에 탄 지 $${x}$분 후의 높이를 구하시오.`,\n" +
+      "            answer: `$${high}$ m`,\n" +
+      "            solution: `$${x}$분 후는 가장 높은 지점이다.`,\n" +
+      "            facts: { half, period, low, high, m, x, branch: 2, ans: high },\n" +
+      "          };\n" +
+      "        }\n" +
+      "        if (branch === 0) {\n",
+    expect: "1-1|좌표와 그래프|09",
+  },
 ];
 
 function sh(cmd, args) {
@@ -88,10 +149,11 @@ function sh(cmd, args) {
 function digest() {
   const r = spawnSync(
     "npx",
-    ["tsx", CENSUS, "--module", "rest", "--seeds", "200", "--tsv"],
+    ["tsx", CENSUS, "--module", "rest", "--seeds", "200", "--smells", "--tsv"],
     { encoding: "utf8", shell: process.platform === "win32" },
   );
   // 훑개는 결함이 있으면 종료 1 이다(B·C 행이 남아 있어 늘 1) — **출력**을 지문으로 쓴다.
+  // `--smells` 를 켠다 — 지면 표기 변이(π 계수·조사)는 발문이 아니라 답·해설을 바꾼다.
   return `${r.stdout}\n${r.stderr}`.trim();
 }
 

@@ -30,6 +30,7 @@ import { intBetween, pick } from "../elementary/rng";
 import { drawScale } from "../figure/drawScale";
 import type { Rng } from "../elementary/types";
 
+import { piTerm } from "./m1Shared";
 import { attempt as attemptStat, def as defStat, obj } from "./m1Stat";
 import type { Body as StatBody } from "./m1Stat";
 import type { MidProblem, TypeEntry } from "./types";
@@ -816,8 +817,8 @@ const SECTOR_TYPES: TypeEntry[] = [
       const areaCoef = (r * r * x) / 360;
       return {
         content: `그림과 같이 반지름의 길이가 $${r}\\,\\mathrm{cm}$이고 중심각의 크기가 $${x}^\\circ$인 부채꼴 $OAB$가 있다. 이 부채꼴의 둘레의 길이와 넓이를 차례대로 구하시오.`,
-        answer: `둘레의 길이 $(${2 * r}+${arcCoef}\\pi)\\,\\mathrm{cm}$, 넓이 $${areaCoef}\\pi\\,\\mathrm{cm}^2$`,
-        solution: `호의 길이는 $2\\pi\\times${r}\\times\\dfrac{${x}}{360}=${arcCoef}\\pi\\,(\\mathrm{cm})$이다.\n둘레의 길이는 반지름 두 개와 호의 길이의 합이므로 $2\\times${r}+${arcCoef}\\pi=(${2 * r}+${arcCoef}\\pi)\\,(\\mathrm{cm})$이다.\n넓이는 $\\pi\\times${r}^{2}\\times\\dfrac{${x}}{360}=${areaCoef}\\pi\\,(\\mathrm{cm}^2)$이다.`,
+        answer: `둘레의 길이 $(${2 * r}+${piTerm(arcCoef)})\\,\\mathrm{cm}$, 넓이 $${piTerm(areaCoef)}\\,\\mathrm{cm}^2$`,
+        solution: `호의 길이는 $2\\pi\\times${r}\\times\\dfrac{${x}}{360}=${piTerm(arcCoef)}\\,(\\mathrm{cm})$이다.\n둘레의 길이는 반지름 두 개와 호의 길이의 합이므로 $2\\times${r}+${piTerm(arcCoef)}=(${2 * r}+${piTerm(arcCoef)})\\,(\\mathrm{cm})$이다.\n넓이는 $\\pi\\times${r}^{2}\\times\\dfrac{${x}}{360}=${piTerm(areaCoef)}\\,(\\mathrm{cm}^2)$이다.`,
         facts: { r, x, arcCoef, areaCoef },
         figureSpec: figSectorShaded(x),
       };
@@ -832,8 +833,8 @@ const SECTOR_TYPES: TypeEntry[] = [
     const arcSum = outerCoef + innerCoef;
     return {
       content: `그림과 같이 중심이 같고 반지름의 길이가 각각 $${r1}\\,\\mathrm{cm}$, $${r2}\\,\\mathrm{cm}$인 두 부채꼴이 크기가 $${x}^\\circ$로 같은 중심각을 공유한다. 색칠한 부분의 둘레의 길이를 구하시오.`,
-      answer: `$(${straight}+${arcSum}\\pi)\\,\\mathrm{cm}$`,
-      solution: `큰 부채꼴의 호의 길이는 $2\\pi\\times${r2}\\times\\dfrac{${x}}{360}=${outerCoef}\\pi\\,(\\mathrm{cm})$, 작은 부채꼴의 호의 길이는 $2\\pi\\times${r1}\\times\\dfrac{${x}}{360}=${innerCoef}\\pi\\,(\\mathrm{cm})$이다.\n색칠한 부분의 둘레의 길이는 두 호의 길이의 합과 두 반지름의 차의 $2$배의 합이므로 $${outerCoef}\\pi+${innerCoef}\\pi+2\\times(${r2}-${r1})=(${straight}+${arcSum}\\pi)\\,(\\mathrm{cm})$이다.`,
+      answer: `$(${straight}+${piTerm(arcSum)})\\,\\mathrm{cm}$`,
+      solution: `큰 부채꼴의 호의 길이는 $2\\pi\\times${r2}\\times\\dfrac{${x}}{360}=${piTerm(outerCoef)}\\,(\\mathrm{cm})$, 작은 부채꼴의 호의 길이는 $2\\pi\\times${r1}\\times\\dfrac{${x}}{360}=${piTerm(innerCoef)}\\,(\\mathrm{cm})$이다.\n색칠한 부분의 둘레의 길이는 두 호의 길이의 합과 두 반지름의 차의 $2$배의 합이므로 $${piTerm(outerCoef)}+${piTerm(innerCoef)}+2\\times(${r2}-${r1})=(${straight}+${piTerm(arcSum)})\\,(\\mathrm{cm})$이다.`,
       facts: { r1, r2, x, outerCoef, innerCoef, straight, arcSum },
       figureSpec: figAnnulus(r1, r2, x),
     };
@@ -908,8 +909,8 @@ const SECTOR_TYPES: TypeEntry[] = [
     const piCoef = r * r;
     return {
       content: `그림과 같이 가로의 길이가 $${p}\\,\\mathrm{cm}$, 세로의 길이가 $${q}\\,\\mathrm{cm}$인 직사각형 $ABCD$의 둘레를 반지름의 길이가 $${r}\\,\\mathrm{cm}$인 원이 한 바퀴 돌 때, 원이 지나간 자리의 넓이를 구하시오. (단, 원은 직사각형의 바깥쪽을 돈다.)`,
-      answer: `$(${linCoef}+${piCoef}\\pi)\\,\\mathrm{cm}^2$`,
-      solution: `원이 지나간 자리는 직사각형의 네 변을 따라 생기는 폭 $${r}\\,\\mathrm{cm}$인 직사각형 넷과, 네 꼭짓점에서 생기는 부채꼴 넷(모으면 반지름 $${r}\\,\\mathrm{cm}$인 원 하나)으로 이루어진다.\n네 변을 따라 생기는 부분의 넓이의 합은 (반지름)$\\times$(직사각형의 둘레)$=${r}\\times2\\times(${p}+${q})=${linCoef}\\,(\\mathrm{cm}^2)$이다.\n네 꼭짓점에서 생기는 부채꼴의 넓이의 합은 $\\pi\\times${r}^{2}=${piCoef}\\pi\\,(\\mathrm{cm}^2)$이다.\n따라서 원이 지나간 자리의 넓이는 $(${linCoef}+${piCoef}\\pi)\\,\\mathrm{cm}^2$이다.`,
+      answer: `$(${linCoef}+${piTerm(piCoef)})\\,\\mathrm{cm}^2$`,
+      solution: `원이 지나간 자리는 직사각형의 네 변을 따라 생기는 폭 $${r}\\,\\mathrm{cm}$인 직사각형 넷과, 네 꼭짓점에서 생기는 부채꼴 넷(모으면 반지름 $${r}\\,\\mathrm{cm}$인 원 하나)으로 이루어진다.\n네 변을 따라 생기는 부분의 넓이의 합은 (반지름)$\\times$(직사각형의 둘레)$=${r}\\times2\\times(${p}+${q})=${linCoef}\\,(\\mathrm{cm}^2)$이다.\n네 꼭짓점에서 생기는 부채꼴의 넓이의 합은 $\\pi\\times${r}^{2}=${piTerm(piCoef)}\\,(\\mathrm{cm}^2)$이다.\n따라서 원이 지나간 자리의 넓이는 $(${linCoef}+${piTerm(piCoef)})\\,\\mathrm{cm}^2$이다.`,
       facts: { p, q, r, linCoef, piCoef },
       figureSpec: figRectSimple(p, q),
     };
@@ -924,8 +925,8 @@ const SECTOR_TYPES: TypeEntry[] = [
       const coef = (a * theta) / 180;
       return {
         content: `그림과 같이 $\\angle O=90^\\circ$인 직각삼각형 $OAB$에서 $\\overline{OA}=${a}\\,\\mathrm{cm}$, $\\overline{OB}=${b}\\,\\mathrm{cm}$이다. 이 삼각형을 점 $O$를 중심으로 반시계 방향으로 $${theta}^\\circ$만큼 회전시킬 때, 점 $A$가 움직인 거리를 구하시오.`,
-        answer: `$${coef}\\pi\\,\\mathrm{cm}$`,
-        solution: `점 $A$는 점 $O$를 중심으로 반지름이 $\\overline{OA}=${a}\\,\\mathrm{cm}$인 원 위를 움직이므로 그 이동 거리는 $2\\pi\\times${a}\\times\\dfrac{${theta}}{360}=${coef}\\pi\\,(\\mathrm{cm})$이다.`,
+        answer: `$${piTerm(coef)}\\,\\mathrm{cm}$`,
+        solution: `점 $A$는 점 $O$를 중심으로 반지름이 $\\overline{OA}=${a}\\,\\mathrm{cm}$인 원 위를 움직이므로 그 이동 거리는 $2\\pi\\times${a}\\times\\dfrac{${theta}}{360}=${piTerm(coef)}\\,(\\mathrm{cm})$이다.`,
         facts: { a, b, theta, coef },
         figureSpec: figRotate(a, b, theta),
       };

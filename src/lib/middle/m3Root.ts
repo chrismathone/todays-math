@@ -1457,7 +1457,8 @@ const CALC_TYPES: TypeEntry[] = [
         return {
           content: `다음 식이 유리수가 되도록 하는 유리수 $a$ 의 값을 구하시오.\n$${sqrtTerm(k, p)}(${q}-\\sqrt{${p}})+a(\\sqrt{${p}}+${r})$`,
           answer: `$${a}$`,
-          solution: `전개하면 $${k * q}\\sqrt{${p}}-${k * p}+a\\sqrt{${p}}+${r}a=(${k * q}+a)\\sqrt{${p}}+(${r}a-${k * p})$ 이다.\n무리수 $\\sqrt{${p}}$ 의 계수가 $0$ 이어야 하므로 $${k * q}+a=0$, 즉 $a=${a}$ 이다.`,
+          // 계수 $1$ 은 안 쓴다 — 「$1\sqrt{15}$」·「$+1a$」가 나갔다(2026-09-27, `pageSmells`).
+          solution: `전개하면 $${sqrtTerm(k * q, p)}-${k * p}+a\\sqrt{${p}}+${coefLetter(r, "a")}=(${k * q}+a)\\sqrt{${p}}+(${coefLetter(r, "a")}-${k * p})$ 이다.\n무리수 $\\sqrt{${p}}$ 의 계수가 $0$ 이어야 하므로 $${k * q}+a=0$, 즉 $a=${a}$ 이다.`,
           facts: { k, p, q, r, a },
           figureSpec: null,
         };

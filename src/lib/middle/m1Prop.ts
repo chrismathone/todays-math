@@ -499,7 +499,10 @@ const COORD: TypeEntry[] = [
         const period = 2 * half;
         const low = intBetween(rng, 1, 5);
         const high = low + intBetween(rng, 4, 12) * 5;
-        const branch = intBetween(rng, 0, 2);
+        // 갈래는 둘이다. 「탄 지 $x$분 후의 높이」 갈래는 **뺐다**(원장님 결정 ㈏, 2026-09-27) —
+        // $x$ 가 늘 최고점이나 출발점과 같은 때라 답이 언제나 아래 머리에 적힌 높이였다
+        // (씨앗 1,000 중 32.4%, `census-middle-degenerate.ts` 「답이 발문에 그대로」).
+        const branch = intBetween(rng, 0, 1);
         const head =
           `어떤 대관람차가 일정한 속력으로 돌고 있다. 대관람차에 탄 지 $x$분 후의 지면으로부터의 높이를 $y$ m라 하면, ` +
           `$y$의 값은 $${period}$분마다 같은 변화를 되풀이한다. 탄 지 $${half}$분 후에 가장 높은 $${high}$ m에 이르고, ` +
@@ -516,42 +519,16 @@ const COORD: TypeEntry[] = [
             facts: { half, period, low, high, k, branch, ans },
           };
         }
-        if (branch === 1) {
-          const m = intBetween(rng, 2, 6);
-          const total = m * period;
-          return {
-            content: `${head}대관람차에 탄 지 $${total}$분 동안 가장 높은 지점을 몇 번 지나는지 구하시오.`,
-            answer: `$${m}$번`,
-            solution:
-              `가장 높은 지점을 지나는 것은 탄 지 $${half}$분 후부터 $${period}$분마다이므로 $${half}$분, $${half + period}$분, $\\ldots$ 후이다.\n` +
-              `$${total}$분까지 이 중 몇 개가 있는지 세면 $${m}$개이다.\n` +
-              `따라서 가장 높은 지점을 $${m}$번 지난다.`,
-            facts: { half, period, low, high, m, total, branch, ans: m },
-          };
-        }
         const m = intBetween(rng, 2, 6);
-        const atTop = intBetween(rng, 0, 1) === 1;
-        const x = atTop ? half + m * period : m * period;
-        const ans = atTop ? high : low;
+        const total = m * period;
         return {
-          content: `${head}대관람차에 탄 지 $${x}$분 후의 높이를 구하시오.`,
-          answer: `$${ans}$ m`,
+          content: `${head}대관람차에 탄 지 $${total}$분 동안 가장 높은 지점을 몇 번 지나는지 구하시오.`,
+          answer: `$${m}$번`,
           solution:
-            (atTop
-              ? `$${x}=${half}+${period}\\times${m}$이므로 탄 지 $${half}$분 후와 같은 높이이다.\n`
-              : `$${x}=${period}\\times${m}$이므로 탄 지 $0$분일 때와 같은 높이이다.\n`) +
-            `$y$의 값은 $${period}$분마다 같은 변화를 되풀이하므로 높이는 $${ans}$ m이다.`,
-          facts: {
-            half,
-            period,
-            low,
-            high,
-            m,
-            x,
-            top: atTop ? 1 : 0,
-            branch,
-            ans,
-          },
+            `가장 높은 지점을 지나는 것은 탄 지 $${half}$분 후부터 $${period}$분마다이므로 $${half}$분, $${half + period}$분, $\\ldots$ 후이다.\n` +
+            `$${total}$분까지 이 중 몇 개가 있는지 세면 $${m}$개이다.\n` +
+            `따라서 가장 높은 지점을 $${m}$번 지난다.`,
+          facts: { half, period, low, high, m, total, branch, ans: m },
         };
       }),
   ),

@@ -587,6 +587,15 @@ export function calibrationMisses(): string[] {
   return misses;
 }
 
+/** `--smells` 때 찍는 냄새 가드 표본 — 양성(계수 1 셋)과 음성(두 자리 수) */
+const SMELL_PROBES = [
+  "$(28+1\\pi)$",
+  "$1\\sqrt{15}-15$",
+  "$-1\\left(x-5\\right)$",
+  "$a-1x$",
+  "$21\\pi$",
+];
+
 function argValue(name: string): string | undefined {
   const i = process.argv.indexOf(name);
   return i >= 0 ? process.argv[i + 1] : undefined;
@@ -609,6 +618,13 @@ function main(): void {
   const prefix = argValue("--prefix");
   const mod = argValue("--module"); // m1core · rest
   const smells = process.argv.includes("--smells");
+  if (smells) {
+    // 냄새 가드의 지문 — 결함을 다 고치면 전수 표는 가드 규칙을 꺼도 안 바뀐다. 그래서 가드가
+    // 무엇을 보는지를 표본으로 찍어 둔다(변이 하네스가 «산출물이 바뀌었나»를 여기서 본다).
+    for (const probe of SMELL_PROBES) {
+      console.log(`냄새 표본 ${probe} → [${pageSmells(probe).join(", ")}]`);
+    }
+  }
   const types = registeredTypes().filter(
     (t) =>
       (!grade || t.grade === grade) &&

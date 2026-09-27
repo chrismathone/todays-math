@@ -756,7 +756,10 @@ const CHECKS: Record<string, (p: MidProblem) => void> = {
     const f = p.facts;
     expect(f.L! * 180).toBe(f.r! * f.deg!);
     expect(f.S! * 360).toBe(f.r! * f.r! * f.deg!);
-    const ms = [...p.answer.matchAll(/\$(\d+)\\pi/g)].map((m) => Number(m[1]));
+    // 계수 $1$ 은 지면에 안 쓴다(`\pi`) — 빈 계수는 $1$ 로 읽는다(2026-09-27).
+    const ms = [...p.answer.matchAll(/\$(\d*)\\pi/g)].map((m) =>
+      m[1] === "" ? 1 : Number(m[1]),
+    );
     expect(ms).toEqual([f.L, f.S]);
   },
   "1-2|위치 관계|06": (p) => {

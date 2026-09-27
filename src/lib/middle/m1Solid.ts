@@ -65,6 +65,7 @@
 import { intBetween, pick } from "../elementary/rng";
 import type { Rng } from "../elementary/types";
 
+import { piTerm } from "./m1Shared";
 import { attempt, def, subj } from "./m1Stat";
 import type { Body } from "./m1Stat";
 import type { TypeEntry } from "./types";
@@ -176,11 +177,6 @@ function distinctIndices(rng: Rng, total: number, count: number): number[] {
     bag[j] = t;
   }
   return bag.slice(0, count).sort((a, b) => a - b);
-}
-
-/** 계수 $1$ 은 안 쓴다 — `1\pi` 가 아니라 `\pi`. */
-function piTerm(k: number): string {
-  return k === 1 ? "\\pi" : `${k}\\pi`;
 }
 
 /**
