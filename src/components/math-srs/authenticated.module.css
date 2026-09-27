@@ -1337,11 +1337,18 @@
   border-color: #168360;
   background: #e8f7ef;
   color: #14694e;
+  /* 번호 키(05 §8.18) — 결과색 테두리 · 두께 */
+  --answer-key-ink: #14694e;
+  --answer-key-edge: #168360;
+  --answer-key-depth: #168360;
 }
 .body .answerChoices button[data-result="incorrect"] {
   border-color: #c95146;
   background: #fff0ed;
   color: #a13b32;
+  --answer-key-ink: #a13b32;
+  --answer-key-edge: #c95146;
+  --answer-key-depth: #c95146;
 }
 .choiceNumber {
   display: grid;
