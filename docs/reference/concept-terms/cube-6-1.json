@@ -1,0 +1,1121 @@
+{
+  "source": "큐브수학 개념 6-1 진도북",
+  "file": "N:\\개인\\강아\\교재자료\\큐브수학 개념\\큐브수학 개념\\진도북\\큐브수학 개념 6-1_진도북.pdf",
+  "pages": 152,
+  "extractedAt": "2026-09-28",
+  "extractor": "scripts/qa/concept-terms/extract-terms-elem56.py",
+  "toc": [
+    {
+      "chapter": "1. 분수의 나눗셈",
+      "sections": [
+        "(자연수)÷(자연수)의 몫을 분수로 나타내기",
+        "(분수)÷(자연수)",
+        "(분수)÷(자연수)를 분수의 곱셈으로 나타내기",
+        "(대분수)÷(자연수)"
+      ],
+      "pdfPages": [
+        6,
+        23
+      ]
+    },
+    {
+      "chapter": "2. 각기둥과 각뿔",
+      "sections": [
+        "각기둥⑴",
+        "각기둥⑵",
+        "각기둥의 전개도",
+        "각기둥의 전개도 그리기",
+        "각뿔⑴",
+        "각뿔⑵"
+      ],
+      "pdfPages": [
+        24,
+        47
+      ]
+    },
+    {
+      "chapter": "3. 소수의 나눗셈",
+      "sections": [
+        "자연수의 나눗셈을 이용한 (소수)÷(자연수)",
+        "각 자리에서 나누어떨어지지 않는 (소수)÷(자연수)",
+        "몫이 1보다 작은 소수인 (소수)÷(자연수)",
+        "소수점 아래 0을 내려 계산하는 (소수)÷(자연수)",
+        "몫의 소수 첫째 자리에 0이 있는 (소수)÷(자연수)",
+        "(자연수)÷(자연수)의 몫을 소수로 나타내기",
+        "몫의 소수점 위치 확인하기"
+      ],
+      "pdfPages": [
+        48,
+        75
+      ]
+    },
+    {
+      "chapter": "4. 비와 비율",
+      "sections": [
+        "두 수 비교하기",
+        "비",
+        "비율",
+        "비율이 사용되는 경우",
+        "백분율",
+        "백분율이 사용되는 경우"
+      ],
+      "pdfPages": [
+        76,
+        99
+      ]
+    },
+    {
+      "chapter": "5. 여러 가지 그래프",
+      "sections": [
+        "그림그래프로 나타내기",
+        "띠그래프",
+        "띠그래프로 나타내기",
+        "원그래프",
+        "원그래프로 나타내기",
+        "그래프 해석하기",
+        "여러 가지 그래프 비교"
+      ],
+      "pdfPages": [
+        100,
+        125
+      ]
+    },
+    {
+      "chapter": "6. 직육면체의 부피와 겉넓이",
+      "sections": [
+        "직육면체의 부피 비교",
+        "직육면체의 부피 구하는 방법",
+        "m³  알아보기",
+        "직육면체의 겉넓이 구하는 방법"
+      ],
+      "pdfPages": [
+        126,
+        147
+      ]
+    }
+  ],
+  "sentenceStore": "문장(교재 원문)은 저장소 밖 C:\\Creative\\testautocreator-data\\I-개념용어\\cube-6-1.json — 용어마다 sentenceRef.key 로 찾는다",
+  "terms": [
+    {
+      "term": "(대분수)÷(자연수)",
+      "kind": "기타",
+      "grade": "6-1",
+      "chapter": "1. 분수의 나눗셈",
+      "section": "(대분수)÷(자연수)",
+      "pdfPage": 12,
+      "bookPage": "012쪽",
+      "key": "6-1/p012/(대분수)÷(자연수)",
+      "first": true,
+      "aliases": [],
+      "mathGarbled": false,
+      "note": "계산 방법 — 핵심 문장 상자",
+      "explorer": {
+        "match": "related",
+        "cardId": "g6-fraction-divide",
+        "cardName": "분수의 나눗셈",
+        "why": "카드 «분수의 나눗셈» 은 분수÷분수(역수) — 교재 6-1 은 분수÷자연수만"
+      },
+      "sentenceRef": {
+        "store": "testautocreator-data",
+        "file": "I-개념용어/cube-6-1.json",
+        "key": "6-1/p012/(대분수)÷(자연수)"
+      }
+    },
+    {
+      "term": "각기둥",
+      "kind": "정의",
+      "grade": "6-1",
+      "chapter": "2. 각기둥과 각뿔",
+      "section": "각기둥⑴",
+      "pdfPage": 26,
+      "bookPage": "026쪽",
+      "key": "6-1/p026/각기둥",
+      "first": true,
+      "aliases": [],
+      "mathGarbled": false,
+      "note": "",
+      "explorer": {
+        "match": "exact",
+        "cardId": "g6-prism",
+        "cardName": "각기둥",
+        "why": ""
+      },
+      "sentenceRef": {
+        "store": "testautocreator-data",
+        "file": "I-개념용어/cube-6-1.json",
+        "key": "6-1/p026/각기둥"
+      }
+    },
+    {
+      "term": "밑면",
+      "kind": "정의",
+      "grade": "6-1",
+      "chapter": "2. 각기둥과 각뿔",
+      "section": "각기둥⑴",
+      "pdfPage": 26,
+      "bookPage": "026쪽",
+      "key": "6-1/p026/밑면",
+      "first": false,
+      "aliases": [],
+      "mathGarbled": false,
+      "note": "각기둥의 밑면 · 처음: 5-2 p108",
+      "explorer": {
+        "match": "none",
+        "cardId": "",
+        "cardName": "",
+        "why": "밑면·옆면 카드 없음"
+      },
+      "sentenceRef": {
+        "store": "testautocreator-data",
+        "file": "I-개념용어/cube-6-1.json",
+        "key": "6-1/p026/밑면"
+      }
+    },
+    {
+      "term": "옆면",
+      "kind": "정의",
+      "grade": "6-1",
+      "chapter": "2. 각기둥과 각뿔",
+      "section": "각기둥⑴",
+      "pdfPage": 26,
+      "bookPage": "026쪽",
+      "key": "6-1/p026/옆면",
+      "first": false,
+      "aliases": [],
+      "mathGarbled": false,
+      "note": "각기둥의 옆면 · 처음: 5-2 p108",
+      "explorer": {
+        "match": "none",
+        "cardId": "",
+        "cardName": "",
+        "why": "밑면·옆면 카드 없음"
+      },
+      "sentenceRef": {
+        "store": "testautocreator-data",
+        "file": "I-개념용어/cube-6-1.json",
+        "key": "6-1/p026/옆면"
+      }
+    },
+    {
+      "term": "각기둥의 이름",
+      "kind": "정의",
+      "grade": "6-1",
+      "chapter": "2. 각기둥과 각뿔",
+      "section": "각기둥⑵",
+      "pdfPage": 28,
+      "bookPage": "028쪽",
+      "key": "6-1/p028/각기둥의 이름",
+      "first": true,
+      "aliases": [
+        "삼각기둥",
+        "사각기둥",
+        "오각기둥"
+      ],
+      "mathGarbled": false,
+      "note": "",
+      "explorer": {
+        "match": "none",
+        "cardId": "",
+        "cardName": "",
+        "why": "카드 없음"
+      },
+      "sentenceRef": {
+        "store": "testautocreator-data",
+        "file": "I-개념용어/cube-6-1.json",
+        "key": "6-1/p028/각기둥의 이름"
+      }
+    },
+    {
+      "term": "모서리",
+      "kind": "정의",
+      "grade": "6-1",
+      "chapter": "2. 각기둥과 각뿔",
+      "section": "각기둥⑵",
+      "pdfPage": 28,
+      "bookPage": "028쪽",
+      "key": "6-1/p028/모서리",
+      "first": false,
+      "aliases": [],
+      "mathGarbled": false,
+      "note": "각기둥의 구성 요소 · 처음: 5-2 p104",
+      "explorer": {
+        "match": "none",
+        "cardId": "",
+        "cardName": "",
+        "why": "구성 요소 카드 없음"
+      },
+      "sentenceRef": {
+        "store": "testautocreator-data",
+        "file": "I-개념용어/cube-6-1.json",
+        "key": "6-1/p028/모서리"
+      }
+    },
+    {
+      "term": "꼭짓점",
+      "kind": "정의",
+      "grade": "6-1",
+      "chapter": "2. 각기둥과 각뿔",
+      "section": "각기둥⑵",
+      "pdfPage": 28,
+      "bookPage": "028쪽",
+      "key": "6-1/p028/꼭짓점",
+      "first": false,
+      "aliases": [],
+      "mathGarbled": false,
+      "note": "각기둥의 구성 요소 · 처음: 5-2 p104",
+      "explorer": {
+        "match": "none",
+        "cardId": "",
+        "cardName": "",
+        "why": "구성 요소 카드 없음"
+      },
+      "sentenceRef": {
+        "store": "testautocreator-data",
+        "file": "I-개념용어/cube-6-1.json",
+        "key": "6-1/p028/꼭짓점"
+      }
+    },
+    {
+      "term": "높이",
+      "kind": "정의",
+      "grade": "6-1",
+      "chapter": "2. 각기둥과 각뿔",
+      "section": "각기둥⑵",
+      "pdfPage": 28,
+      "bookPage": "028쪽",
+      "key": "6-1/p028/높이",
+      "first": false,
+      "aliases": [],
+      "mathGarbled": false,
+      "note": "각기둥의 높이 · 처음: 5-1 p126",
+      "explorer": {
+        "match": "related",
+        "cardId": "g6-prism-height",
+        "cardName": "각기둥의 높이",
+        "why": "카드 이름은 «각기둥의 높이», 교재 낱말은 «높이»(각기둥 문맥)"
+      },
+      "sentenceRef": {
+        "store": "testautocreator-data",
+        "file": "I-개념용어/cube-6-1.json",
+        "key": "6-1/p028/높이"
+      }
+    },
+    {
+      "term": "각기둥의 구성 요소의 수",
+      "kind": "공식",
+      "grade": "6-1",
+      "chapter": "2. 각기둥과 각뿔",
+      "section": "각기둥⑵",
+      "pdfPage": 28,
+      "bookPage": "028쪽",
+      "key": "6-1/p028/각기둥의 구성 요소의 수",
+      "first": true,
+      "aliases": [],
+      "mathGarbled": false,
+      "note": "여백 도움말",
+      "explorer": {
+        "match": "none",
+        "cardId": "",
+        "cardName": "",
+        "why": "카드 없음"
+      },
+      "sentenceRef": {
+        "store": "testautocreator-data",
+        "file": "I-개념용어/cube-6-1.json",
+        "key": "6-1/p028/각기둥의 구성 요소의 수"
+      }
+    },
+    {
+      "term": "전개도",
+      "kind": "정의",
+      "grade": "6-1",
+      "chapter": "2. 각기둥과 각뿔",
+      "section": "각기둥의 전개도",
+      "pdfPage": 30,
+      "bookPage": "030쪽",
+      "key": "6-1/p030/전개도",
+      "first": false,
+      "aliases": [],
+      "mathGarbled": false,
+      "note": "각기둥의 전개도 · 처음: 5-2 p112",
+      "explorer": {
+        "match": "exact",
+        "cardId": "g6-net",
+        "cardName": "전개도",
+        "why": ""
+      },
+      "sentenceRef": {
+        "store": "testautocreator-data",
+        "file": "I-개념용어/cube-6-1.json",
+        "key": "6-1/p030/전개도"
+      }
+    },
+    {
+      "term": "각뿔",
+      "kind": "정의",
+      "grade": "6-1",
+      "chapter": "2. 각기둥과 각뿔",
+      "section": "각뿔⑴",
+      "pdfPage": 34,
+      "bookPage": "034쪽",
+      "key": "6-1/p034/각뿔",
+      "first": true,
+      "aliases": [],
+      "mathGarbled": false,
+      "note": "",
+      "explorer": {
+        "match": "exact",
+        "cardId": "g6-pyramid",
+        "cardName": "각뿔",
+        "why": ""
+      },
+      "sentenceRef": {
+        "store": "testautocreator-data",
+        "file": "I-개념용어/cube-6-1.json",
+        "key": "6-1/p034/각뿔"
+      }
+    },
+    {
+      "term": "밑면",
+      "kind": "정의",
+      "grade": "6-1",
+      "chapter": "2. 각기둥과 각뿔",
+      "section": "각뿔⑴",
+      "pdfPage": 34,
+      "bookPage": "034쪽",
+      "key": "6-1/p034/밑면",
+      "first": false,
+      "aliases": [],
+      "mathGarbled": false,
+      "note": "각뿔의 밑면 · 처음: 5-2 p108",
+      "explorer": {
+        "match": "none",
+        "cardId": "",
+        "cardName": "",
+        "why": "밑면·옆면 카드 없음"
+      },
+      "sentenceRef": {
+        "store": "testautocreator-data",
+        "file": "I-개념용어/cube-6-1.json",
+        "key": "6-1/p034/밑면"
+      }
+    },
+    {
+      "term": "옆면",
+      "kind": "정의",
+      "grade": "6-1",
+      "chapter": "2. 각기둥과 각뿔",
+      "section": "각뿔⑴",
+      "pdfPage": 34,
+      "bookPage": "034쪽",
+      "key": "6-1/p034/옆면",
+      "first": false,
+      "aliases": [],
+      "mathGarbled": false,
+      "note": "각뿔의 옆면 · 처음: 5-2 p108",
+      "explorer": {
+        "match": "none",
+        "cardId": "",
+        "cardName": "",
+        "why": "밑면·옆면 카드 없음"
+      },
+      "sentenceRef": {
+        "store": "testautocreator-data",
+        "file": "I-개념용어/cube-6-1.json",
+        "key": "6-1/p034/옆면"
+      }
+    },
+    {
+      "term": "각뿔의 이름",
+      "kind": "정의",
+      "grade": "6-1",
+      "chapter": "2. 각기둥과 각뿔",
+      "section": "각뿔⑵",
+      "pdfPage": 36,
+      "bookPage": "036쪽",
+      "key": "6-1/p036/각뿔의 이름",
+      "first": true,
+      "aliases": [
+        "삼각뿔",
+        "사각뿔",
+        "오각뿔"
+      ],
+      "mathGarbled": false,
+      "note": "",
+      "explorer": {
+        "match": "none",
+        "cardId": "",
+        "cardName": "",
+        "why": "카드 없음"
+      },
+      "sentenceRef": {
+        "store": "testautocreator-data",
+        "file": "I-개념용어/cube-6-1.json",
+        "key": "6-1/p036/각뿔의 이름"
+      }
+    },
+    {
+      "term": "모서리",
+      "kind": "정의",
+      "grade": "6-1",
+      "chapter": "2. 각기둥과 각뿔",
+      "section": "각뿔⑵",
+      "pdfPage": 36,
+      "bookPage": "036쪽",
+      "key": "6-1/p036/모서리",
+      "first": false,
+      "aliases": [],
+      "mathGarbled": false,
+      "note": "각뿔의 구성 요소 · 처음: 5-2 p104",
+      "explorer": {
+        "match": "none",
+        "cardId": "",
+        "cardName": "",
+        "why": "구성 요소 카드 없음"
+      },
+      "sentenceRef": {
+        "store": "testautocreator-data",
+        "file": "I-개념용어/cube-6-1.json",
+        "key": "6-1/p036/모서리"
+      }
+    },
+    {
+      "term": "꼭짓점",
+      "kind": "정의",
+      "grade": "6-1",
+      "chapter": "2. 각기둥과 각뿔",
+      "section": "각뿔⑵",
+      "pdfPage": 36,
+      "bookPage": "036쪽",
+      "key": "6-1/p036/꼭짓점",
+      "first": false,
+      "aliases": [],
+      "mathGarbled": false,
+      "note": "각뿔의 구성 요소 · 처음: 5-2 p104",
+      "explorer": {
+        "match": "none",
+        "cardId": "",
+        "cardName": "",
+        "why": "구성 요소 카드 없음"
+      },
+      "sentenceRef": {
+        "store": "testautocreator-data",
+        "file": "I-개념용어/cube-6-1.json",
+        "key": "6-1/p036/꼭짓점"
+      }
+    },
+    {
+      "term": "각뿔의 꼭짓점",
+      "kind": "정의",
+      "grade": "6-1",
+      "chapter": "2. 각기둥과 각뿔",
+      "section": "각뿔⑵",
+      "pdfPage": 36,
+      "bookPage": "036쪽",
+      "key": "6-1/p036/각뿔의 꼭짓점",
+      "first": true,
+      "aliases": [],
+      "mathGarbled": false,
+      "note": "",
+      "explorer": {
+        "match": "related",
+        "cardId": "g6-pyramid",
+        "cardName": "각뿔",
+        "why": "카드 «각뿔» 정의에 «한 꼭짓점에서 만나는» 으로만"
+      },
+      "sentenceRef": {
+        "store": "testautocreator-data",
+        "file": "I-개념용어/cube-6-1.json",
+        "key": "6-1/p036/각뿔의 꼭짓점"
+      }
+    },
+    {
+      "term": "높이",
+      "kind": "정의",
+      "grade": "6-1",
+      "chapter": "2. 각기둥과 각뿔",
+      "section": "각뿔⑵",
+      "pdfPage": 36,
+      "bookPage": "036쪽",
+      "key": "6-1/p036/높이",
+      "first": false,
+      "aliases": [],
+      "mathGarbled": false,
+      "note": "각뿔의 높이 · 처음: 5-1 p126",
+      "explorer": {
+        "match": "none",
+        "cardId": "",
+        "cardName": "",
+        "why": "각뿔의 높이 카드 없음(각기둥의 높이 카드만)"
+      },
+      "sentenceRef": {
+        "store": "testautocreator-data",
+        "file": "I-개념용어/cube-6-1.json",
+        "key": "6-1/p036/높이"
+      }
+    },
+    {
+      "term": "각뿔의 구성 요소의 수",
+      "kind": "공식",
+      "grade": "6-1",
+      "chapter": "2. 각기둥과 각뿔",
+      "section": "각뿔⑵",
+      "pdfPage": 36,
+      "bookPage": "036쪽",
+      "key": "6-1/p036/각뿔의 구성 요소의 수",
+      "first": true,
+      "aliases": [],
+      "mathGarbled": false,
+      "note": "여백 도움말",
+      "explorer": {
+        "match": "none",
+        "cardId": "",
+        "cardName": "",
+        "why": "카드 없음"
+      },
+      "sentenceRef": {
+        "store": "testautocreator-data",
+        "file": "I-개념용어/cube-6-1.json",
+        "key": "6-1/p036/각뿔의 구성 요소의 수"
+      }
+    },
+    {
+      "term": "두 수 비교하기(뺄셈·나눗셈)",
+      "kind": "기타",
+      "grade": "6-1",
+      "chapter": "4. 비와 비율",
+      "section": "두 수 비교하기",
+      "pdfPage": 78,
+      "bookPage": "078쪽",
+      "key": "6-1/p078/두 수 비교하기(뺄셈·나눗셈)",
+      "first": true,
+      "aliases": [],
+      "mathGarbled": false,
+      "note": "핵심 문장 상자 — 뺄셈 비교와 나눗셈 비교를 견주는 두 문장(비의 도입). 문장은 첫째만",
+      "explorer": {
+        "match": "related",
+        "cardId": "g6-ratio",
+        "cardName": "비",
+        "why": "비를 나눗셈 비교로 여는 까닭 — 카드 «비» 정의에는 «나눗셈» 이 빠져 있다"
+      },
+      "sentenceRef": {
+        "store": "testautocreator-data",
+        "file": "I-개념용어/cube-6-1.json",
+        "key": "6-1/p078/두 수 비교하기(뺄셈·나눗셈)"
+      }
+    },
+    {
+      "term": "비",
+      "kind": "정의",
+      "grade": "6-1",
+      "chapter": "4. 비와 비율",
+      "section": "비",
+      "pdfPage": 80,
+      "bookPage": "080쪽",
+      "key": "6-1/p080/비",
+      "first": true,
+      "aliases": [],
+      "mathGarbled": false,
+      "note": "핵심 문장 상자",
+      "explorer": {
+        "match": "exact",
+        "cardId": "g6-ratio",
+        "cardName": "비",
+        "why": ""
+      },
+      "sentenceRef": {
+        "store": "testautocreator-data",
+        "file": "I-개념용어/cube-6-1.json",
+        "key": "6-1/p080/비"
+      }
+    },
+    {
+      "term": "기호 :",
+      "kind": "기호",
+      "grade": "6-1",
+      "chapter": "4. 비와 비율",
+      "section": "비",
+      "pdfPage": 80,
+      "bookPage": "080쪽",
+      "key": "6-1/p080/기호 :",
+      "first": true,
+      "aliases": [
+        ":",
+        "대"
+      ],
+      "mathGarbled": false,
+      "note": "비의 기호와 읽는 법",
+      "explorer": {
+        "match": "related",
+        "cardId": "g6-ratio",
+        "cardName": "비",
+        "why": "카드 «비» 정의에 a:b 로만"
+      },
+      "sentenceRef": {
+        "store": "testautocreator-data",
+        "file": "I-개념용어/cube-6-1.json",
+        "key": "6-1/p080/기호 :"
+      }
+    },
+    {
+      "term": "기준량",
+      "kind": "정의",
+      "grade": "6-1",
+      "chapter": "4. 비와 비율",
+      "section": "비율",
+      "pdfPage": 80,
+      "bookPage": "080쪽",
+      "key": "6-1/p080/기준량",
+      "first": true,
+      "aliases": [],
+      "mathGarbled": false,
+      "note": "지면은 중괄호 그림이라 글자층에 쉼표가 없다",
+      "explorer": {
+        "match": "related",
+        "cardId": "g6-rate",
+        "cardName": "비율",
+        "why": "카드 «비율» 정의 안에 낱말로만"
+      },
+      "sentenceRef": {
+        "store": "testautocreator-data",
+        "file": "I-개념용어/cube-6-1.json",
+        "key": "6-1/p080/기준량"
+      }
+    },
+    {
+      "term": "비교하는 양",
+      "kind": "정의",
+      "grade": "6-1",
+      "chapter": "4. 비와 비율",
+      "section": "비율",
+      "pdfPage": 80,
+      "bookPage": "080쪽",
+      "key": "6-1/p080/비교하는 양",
+      "first": true,
+      "aliases": [],
+      "mathGarbled": false,
+      "note": "지면은 중괄호 그림이라 글자층에 쉼표가 없다",
+      "explorer": {
+        "match": "related",
+        "cardId": "g6-rate-amount",
+        "cardName": "비교하는 양 구하기",
+        "why": "카드는 «비교하는 양 구하기»(기준량×비율) — 교재는 이름만 정한다"
+      },
+      "sentenceRef": {
+        "store": "testautocreator-data",
+        "file": "I-개념용어/cube-6-1.json",
+        "key": "6-1/p080/비교하는 양"
+      }
+    },
+    {
+      "term": "비율",
+      "kind": "정의",
+      "grade": "6-1",
+      "chapter": "4. 비와 비율",
+      "section": "비율",
+      "pdfPage": 80,
+      "bookPage": "080쪽",
+      "key": "6-1/p080/비율",
+      "first": true,
+      "aliases": [],
+      "mathGarbled": false,
+      "note": "",
+      "explorer": {
+        "match": "exact",
+        "cardId": "g6-rate",
+        "cardName": "비율",
+        "why": ""
+      },
+      "sentenceRef": {
+        "store": "testautocreator-data",
+        "file": "I-개념용어/cube-6-1.json",
+        "key": "6-1/p080/비율"
+      }
+    },
+    {
+      "term": "비율을 구하는 식",
+      "kind": "공식",
+      "grade": "6-1",
+      "chapter": "4. 비와 비율",
+      "section": "비율",
+      "pdfPage": 80,
+      "bookPage": "080쪽",
+      "key": "6-1/p080/비율을 구하는 식",
+      "first": true,
+      "aliases": [],
+      "mathGarbled": false,
+      "note": "뒤에 분수꼴 =(비교하는 양)/(기준량) 이 이어진다",
+      "explorer": {
+        "match": "related",
+        "cardId": "g6-rate",
+        "cardName": "비율",
+        "why": "카드 «비율» 정의가 이 식을 말로 적은 것"
+      },
+      "sentenceRef": {
+        "store": "testautocreator-data",
+        "file": "I-개념용어/cube-6-1.json",
+        "key": "6-1/p080/비율을 구하는 식"
+      }
+    },
+    {
+      "term": "백분율",
+      "kind": "정의",
+      "grade": "6-1",
+      "chapter": "4. 비와 비율",
+      "section": "백분율",
+      "pdfPage": 86,
+      "bookPage": "086쪽",
+      "key": "6-1/p086/백분율",
+      "first": true,
+      "aliases": [],
+      "mathGarbled": false,
+      "note": "핵심 문장 상자",
+      "explorer": {
+        "match": "exact",
+        "cardId": "g6-percent",
+        "cardName": "백분율",
+        "why": ""
+      },
+      "sentenceRef": {
+        "store": "testautocreator-data",
+        "file": "I-개념용어/cube-6-1.json",
+        "key": "6-1/p086/백분율"
+      }
+    },
+    {
+      "term": "%",
+      "kind": "기호",
+      "grade": "6-1",
+      "chapter": "4. 비와 비율",
+      "section": "백분율",
+      "pdfPage": 86,
+      "bookPage": "086쪽",
+      "key": "6-1/p086/%",
+      "first": true,
+      "aliases": [
+        "퍼센트"
+      ],
+      "mathGarbled": false,
+      "note": "핵심 문장 상자. 여백에 %가 단위인지 기호인지 짚는 풀이",
+      "explorer": {
+        "match": "related",
+        "cardId": "g6-percent",
+        "cardName": "백분율",
+        "why": "카드 «백분율» 정의 끝에 «기호 %로 나타낸다»"
+      },
+      "sentenceRef": {
+        "store": "testautocreator-data",
+        "file": "I-개념용어/cube-6-1.json",
+        "key": "6-1/p086/%"
+      }
+    },
+    {
+      "term": "띠그래프",
+      "kind": "정의",
+      "grade": "6-1",
+      "chapter": "5. 여러 가지 그래프",
+      "section": "띠그래프",
+      "pdfPage": 104,
+      "bookPage": "104쪽",
+      "key": "6-1/p104/띠그래프",
+      "first": true,
+      "aliases": [],
+      "mathGarbled": false,
+      "note": "핵심 문장 상자",
+      "explorer": {
+        "match": "exact",
+        "cardId": "g6-band-graph",
+        "cardName": "띠그래프",
+        "why": ""
+      },
+      "sentenceRef": {
+        "store": "testautocreator-data",
+        "file": "I-개념용어/cube-6-1.json",
+        "key": "6-1/p104/띠그래프"
+      }
+    },
+    {
+      "term": "원그래프",
+      "kind": "정의",
+      "grade": "6-1",
+      "chapter": "5. 여러 가지 그래프",
+      "section": "원그래프",
+      "pdfPage": 108,
+      "bookPage": "108쪽",
+      "key": "6-1/p108/원그래프",
+      "first": true,
+      "aliases": [],
+      "mathGarbled": false,
+      "note": "핵심 문장 상자",
+      "explorer": {
+        "match": "exact",
+        "cardId": "g6-pie-graph",
+        "cardName": "원그래프",
+        "why": ""
+      },
+      "sentenceRef": {
+        "store": "testautocreator-data",
+        "file": "I-개념용어/cube-6-1.json",
+        "key": "6-1/p108/원그래프"
+      }
+    },
+    {
+      "term": "비율그래프",
+      "kind": "기타",
+      "grade": "6-1",
+      "chapter": "5. 여러 가지 그래프",
+      "section": "원그래프",
+      "pdfPage": 108,
+      "bookPage": "108쪽",
+      "key": "6-1/p108/비율그래프",
+      "first": true,
+      "aliases": [],
+      "mathGarbled": false,
+      "note": "두 비율 그래프를 견주는 여백에 이름만 나온다 — 뜻 문장 없음",
+      "explorer": {
+        "match": "none",
+        "cardId": "",
+        "cardName": "",
+        "why": "카드 없음"
+      },
+      "sentenceRef": {
+        "store": "testautocreator-data",
+        "file": "I-개념용어/cube-6-1.json",
+        "key": "6-1/p108/비율그래프"
+      }
+    },
+    {
+      "term": "막대그래프와 띠그래프 비교",
+      "kind": "기타",
+      "grade": "6-1",
+      "chapter": "5. 여러 가지 그래프",
+      "section": "여러 가지 그래프 비교",
+      "pdfPage": 112,
+      "bookPage": "112쪽",
+      "key": "6-1/p112/막대그래프와 띠그래프 비교",
+      "first": true,
+      "aliases": [],
+      "mathGarbled": false,
+      "note": "핵심 문장 상자 — 그래프 고르기",
+      "explorer": {
+        "match": "none",
+        "cardId": "",
+        "cardName": "",
+        "why": "카드 없음"
+      },
+      "sentenceRef": {
+        "store": "testautocreator-data",
+        "file": "I-개념용어/cube-6-1.json",
+        "key": "6-1/p112/막대그래프와 띠그래프 비교"
+      }
+    },
+    {
+      "term": "부피",
+      "kind": "정의",
+      "grade": "6-1",
+      "chapter": "6. 직육면체의 부피와 겉넓이",
+      "section": "직육면체의 부피 비교",
+      "pdfPage": 128,
+      "bookPage": "128쪽",
+      "key": "6-1/p128/부피",
+      "first": true,
+      "aliases": [],
+      "mathGarbled": false,
+      "note": "소제목 «직육면체의 부피 비교» 의 «부피» 에 붙은 말풍선 뜻풀이 — 문장꼴 정의 없음",
+      "explorer": {
+        "match": "exact",
+        "cardId": "g6-volume",
+        "cardName": "부피",
+        "why": ""
+      },
+      "sentenceRef": {
+        "store": "testautocreator-data",
+        "file": "I-개념용어/cube-6-1.json",
+        "key": "6-1/p128/부피"
+      }
+    },
+    {
+      "term": "직육면체의 부피 직접 비교",
+      "kind": "기타",
+      "grade": "6-1",
+      "chapter": "6. 직육면체의 부피와 겉넓이",
+      "section": "직육면체의 부피 비교",
+      "pdfPage": 128,
+      "bookPage": "128쪽",
+      "key": "6-1/p128/직육면체의 부피 직접 비교",
+      "first": true,
+      "aliases": [],
+      "mathGarbled": false,
+      "note": "핵심 문장 상자",
+      "explorer": {
+        "match": "none",
+        "cardId": "",
+        "cardName": "",
+        "why": "카드 없음"
+      },
+      "sentenceRef": {
+        "store": "testautocreator-data",
+        "file": "I-개념용어/cube-6-1.json",
+        "key": "6-1/p128/직육면체의 부피 직접 비교"
+      }
+    },
+    {
+      "term": "1 cm³",
+      "kind": "기호",
+      "grade": "6-1",
+      "chapter": "6. 직육면체의 부피와 겉넓이",
+      "section": "직육면체의 부피 구하는 방법",
+      "pdfPage": 130,
+      "bookPage": "130쪽",
+      "key": "6-1/p130/1 cm³",
+      "first": true,
+      "aliases": [
+        "cm³",
+        "세제곱센티미터",
+        "1 세제곱센티미터"
+      ],
+      "mathGarbled": false,
+      "note": "",
+      "explorer": {
+        "match": "related",
+        "cardId": "g6-volume",
+        "cardName": "부피",
+        "why": "카드 «부피» 정의 끝에 «cm³ 같은 단위» 로만"
+      },
+      "sentenceRef": {
+        "store": "testautocreator-data",
+        "file": "I-개념용어/cube-6-1.json",
+        "key": "6-1/p130/1 cm³"
+      }
+    },
+    {
+      "term": "직육면체의 부피",
+      "kind": "공식",
+      "grade": "6-1",
+      "chapter": "6. 직육면체의 부피와 겉넓이",
+      "section": "직육면체의 부피 구하는 방법",
+      "pdfPage": 130,
+      "bookPage": "130쪽",
+      "key": "6-1/p130/직육면체의 부피",
+      "first": true,
+      "aliases": [],
+      "mathGarbled": false,
+      "note": "핵심 문장 상자",
+      "explorer": {
+        "match": "exact",
+        "cardId": "g6-cuboid-volume",
+        "cardName": "직육면체의 부피",
+        "why": ""
+      },
+      "sentenceRef": {
+        "store": "testautocreator-data",
+        "file": "I-개념용어/cube-6-1.json",
+        "key": "6-1/p130/직육면체의 부피"
+      }
+    },
+    {
+      "term": "정육면체의 부피",
+      "kind": "공식",
+      "grade": "6-1",
+      "chapter": "6. 직육면체의 부피와 겉넓이",
+      "section": "직육면체의 부피 구하는 방법",
+      "pdfPage": 130,
+      "bookPage": "130쪽",
+      "key": "6-1/p130/정육면체의 부피",
+      "first": true,
+      "aliases": [],
+      "mathGarbled": false,
+      "note": "핵심 문장 상자",
+      "explorer": {
+        "match": "none",
+        "cardId": "",
+        "cardName": "",
+        "why": "카드 없음(직육면체의 부피 카드만)"
+      },
+      "sentenceRef": {
+        "store": "testautocreator-data",
+        "file": "I-개념용어/cube-6-1.json",
+        "key": "6-1/p130/정육면체의 부피"
+      }
+    },
+    {
+      "term": "1 m³",
+      "kind": "기호",
+      "grade": "6-1",
+      "chapter": "6. 직육면체의 부피와 겉넓이",
+      "section": "m³  알아보기",
+      "pdfPage": 134,
+      "bookPage": "134쪽",
+      "key": "6-1/p134/1 m³",
+      "first": true,
+      "aliases": [
+        "m³",
+        "세제곱미터",
+        "1 세제곱미터"
+      ],
+      "mathGarbled": false,
+      "note": "",
+      "explorer": {
+        "match": "none",
+        "cardId": "",
+        "cardName": "",
+        "why": "카드 없음"
+      },
+      "sentenceRef": {
+        "store": "testautocreator-data",
+        "file": "I-개념용어/cube-6-1.json",
+        "key": "6-1/p134/1 m³"
+      }
+    },
+    {
+      "term": "1 m³와 1 cm³의 관계",
+      "kind": "기타",
+      "grade": "6-1",
+      "chapter": "6. 직육면체의 부피와 겉넓이",
+      "section": "m³  알아보기",
+      "pdfPage": 134,
+      "bookPage": "134쪽",
+      "key": "6-1/p134/1 m³와 1 cm³의 관계",
+      "first": true,
+      "aliases": [],
+      "mathGarbled": false,
+      "note": "핵심 문장 상자 — 단위 사이의 관계",
+      "explorer": {
+        "match": "none",
+        "cardId": "",
+        "cardName": "",
+        "why": "카드 없음"
+      },
+      "sentenceRef": {
+        "store": "testautocreator-data",
+        "file": "I-개념용어/cube-6-1.json",
+        "key": "6-1/p134/1 m³와 1 cm³의 관계"
+      }
+    },
+    {
+      "term": "정육면체의 겉넓이",
+      "kind": "공식",
+      "grade": "6-1",
+      "chapter": "6. 직육면체의 부피와 겉넓이",
+      "section": "직육면체의 겉넓이 구하는 방법",
+      "pdfPage": 136,
+      "bookPage": "136쪽",
+      "key": "6-1/p136/정육면체의 겉넓이",
+      "first": true,
+      "aliases": [],
+      "mathGarbled": false,
+      "note": "«겉넓이» 낱말 자체의 정의 문장은 없다",
+      "explorer": {
+        "match": "related",
+        "cardId": "g6-surface-area",
+        "cardName": "겉넓이",
+        "why": "카드는 «겉넓이» 정의 — 교재는 구하는 방법만"
+      },
+      "sentenceRef": {
+        "store": "testautocreator-data",
+        "file": "I-개념용어/cube-6-1.json",
+        "key": "6-1/p136/정육면체의 겉넓이"
+      }
+    }
+  ]
+}
