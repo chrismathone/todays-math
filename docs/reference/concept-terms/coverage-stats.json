@@ -1,0 +1,529 @@
+{
+ "rows_by_grade": {
+  "초3": {
+   "exact": 22,
+   "alias": 9,
+   "partial": 4,
+   "word": 13,
+   "none": 11
+  },
+  "초4": {
+   "exact": 19,
+   "alias": 1,
+   "partial": 6,
+   "word": 1,
+   "none": 27
+  },
+  "초5": {
+   "exact": 27,
+   "alias": 8,
+   "partial": 32,
+   "word": 15,
+   "none": 24
+  },
+  "초6": {
+   "exact": 26,
+   "alias": 4,
+   "partial": 22,
+   "word": 14,
+   "none": 16
+  },
+  "중1": {
+   "exact": 60,
+   "alias": 6,
+   "partial": 11,
+   "word": 40,
+   "none": 117
+  },
+  "중2": {
+   "exact": 32,
+   "alias": 9,
+   "partial": 25,
+   "word": 19,
+   "none": 88
+  },
+  "중3": {
+   "exact": 27,
+   "alias": 10,
+   "partial": 29,
+   "word": 1,
+   "none": 69
+  }
+ },
+ "rows_by_kind": {
+  "정의": {
+   "exact": 186,
+   "alias": 9,
+   "partial": 25,
+   "word": 98,
+   "none": 144
+  },
+  "성질": {
+   "exact": 4,
+   "alias": 15,
+   "partial": 41,
+   "word": 0,
+   "none": 99
+  },
+  "정리": {
+   "exact": 1,
+   "alias": 2,
+   "partial": 0,
+   "word": 0,
+   "none": 4
+  },
+  "공식": {
+   "exact": 10,
+   "alias": 10,
+   "partial": 21,
+   "word": 0,
+   "none": 34
+  },
+  "법칙": {
+   "exact": 3,
+   "alias": 2,
+   "partial": 2,
+   "word": 0,
+   "none": 4
+  },
+  "기호": {
+   "exact": 2,
+   "alias": 5,
+   "partial": 6,
+   "word": 4,
+   "none": 45
+  },
+  "기타": {
+   "exact": 7,
+   "alias": 4,
+   "partial": 34,
+   "word": 1,
+   "none": 22
+  }
+ },
+ "rows_by_book": {
+  "cube-3-1": {
+   "exact": 12,
+   "alias": 2,
+   "partial": 3,
+   "word": 11,
+   "none": 6
+  },
+  "cube-3-2": {
+   "exact": 10,
+   "alias": 7,
+   "partial": 1,
+   "word": 2,
+   "none": 5
+  },
+  "cube-4-1": {
+   "exact": 10,
+   "alias": 1,
+   "partial": 2,
+   "word": 0,
+   "none": 5
+  },
+  "cube-4-2": {
+   "exact": 9,
+   "alias": 0,
+   "partial": 4,
+   "word": 1,
+   "none": 22
+  },
+  "cube-5-1": {
+   "exact": 13,
+   "alias": 2,
+   "partial": 15,
+   "word": 10,
+   "none": 12
+  },
+  "cube-5-2": {
+   "exact": 14,
+   "alias": 6,
+   "partial": 17,
+   "word": 5,
+   "none": 12
+  },
+  "cube-6-1": {
+   "exact": 11,
+   "alias": 1,
+   "partial": 9,
+   "word": 8,
+   "none": 11
+  },
+  "cube-6-2": {
+   "exact": 15,
+   "alias": 3,
+   "partial": 13,
+   "word": 6,
+   "none": 5
+  },
+  "gaenyeom-1-1": {
+   "exact": 30,
+   "alias": 1,
+   "partial": 2,
+   "word": 23,
+   "none": 36
+  },
+  "gaenyeom-1-2": {
+   "exact": 30,
+   "alias": 5,
+   "partial": 9,
+   "word": 17,
+   "none": 81
+  },
+  "gaenyeom-2-1": {
+   "exact": 18,
+   "alias": 1,
+   "partial": 7,
+   "word": 9,
+   "none": 24
+  },
+  "gaenyeom-2-2": {
+   "exact": 14,
+   "alias": 8,
+   "partial": 18,
+   "word": 10,
+   "none": 64
+  },
+  "gaenyeom-3-1": {
+   "exact": 17,
+   "alias": 5,
+   "partial": 23,
+   "word": 1,
+   "none": 33
+  },
+  "gaenyeom-3-2": {
+   "exact": 10,
+   "alias": 5,
+   "partial": 6,
+   "word": 0,
+   "none": 36
+  }
+ },
+ "concepts_by_grade": {
+  "초3": {
+   "exact": 22,
+   "alias": 9,
+   "partial": 3,
+   "word": 13,
+   "none": 10
+  },
+  "초4": {
+   "exact": 18,
+   "alias": 2,
+   "partial": 8,
+   "word": 1,
+   "none": 24
+  },
+  "초5": {
+   "exact": 28,
+   "alias": 8,
+   "partial": 31,
+   "word": 9,
+   "none": 18
+  },
+  "초6": {
+   "exact": 19,
+   "alias": 3,
+   "partial": 22,
+   "word": 1,
+   "none": 14
+  },
+  "중1": {
+   "exact": 41,
+   "alias": 6,
+   "partial": 5,
+   "word": 33,
+   "none": 108
+  },
+  "중2": {
+   "exact": 25,
+   "alias": 7,
+   "partial": 20,
+   "word": 10,
+   "none": 80
+  },
+  "중3": {
+   "exact": 24,
+   "alias": 9,
+   "partial": 25,
+   "word": 0,
+   "none": 66
+  }
+ },
+ "concepts_by_kind": {
+  "정의": {
+   "exact": 151,
+   "alias": 9,
+   "partial": 18,
+   "word": 63,
+   "none": 120
+  },
+  "성질": {
+   "exact": 4,
+   "alias": 13,
+   "partial": 36,
+   "word": 0,
+   "none": 92
+  },
+  "정리": {
+   "exact": 1,
+   "alias": 2,
+   "partial": 0,
+   "word": 0,
+   "none": 4
+  },
+  "공식": {
+   "exact": 10,
+   "alias": 9,
+   "partial": 19,
+   "word": 0,
+   "none": 34
+  },
+  "법칙": {
+   "exact": 2,
+   "alias": 2,
+   "partial": 2,
+   "word": 0,
+   "none": 4
+  },
+  "기호": {
+   "exact": 2,
+   "alias": 5,
+   "partial": 6,
+   "word": 3,
+   "none": 45
+  },
+  "기타": {
+   "exact": 7,
+   "alias": 4,
+   "partial": 33,
+   "word": 1,
+   "none": 21
+  }
+ },
+ "rows_total": {
+  "exact": 213,
+  "alias": 47,
+  "partial": 129,
+  "word": 103,
+  "none": 352
+ },
+ "concepts_total": {
+  "exact": 177,
+  "alias": 44,
+  "partial": 114,
+  "word": 67,
+  "none": 320
+ },
+ "n_rows": 844,
+ "n_concepts": 722,
+ "changed_from_track": {
+  "cover→partial": 3,
+  "none→cover": 9,
+  "none→partial": 32,
+  "none→word": 87,
+  "partial→cover": 39,
+  "partial→none": 4,
+  "partial→word": 16
+ },
+ "changed_cover_status": 51,
+ "cards_by_grade": {
+  "초3": {
+   "exact": 19,
+   "alias": 4,
+   "partial": 0,
+   "word": 0,
+   "none": 7
+  },
+  "초4": {
+   "exact": 19,
+   "alias": 1,
+   "partial": 2,
+   "word": 3,
+   "none": 5
+  },
+  "초5": {
+   "exact": 23,
+   "alias": 5,
+   "partial": 2,
+   "word": 0,
+   "none": 0
+  },
+  "초6": {
+   "exact": 21,
+   "alias": 1,
+   "partial": 7,
+   "word": 0,
+   "none": 1
+  },
+  "중1": {
+   "exact": 38,
+   "alias": 1,
+   "partial": 1,
+   "word": 0,
+   "none": 0
+  },
+  "중2": {
+   "exact": 26,
+   "alias": 4,
+   "partial": 5,
+   "word": 0,
+   "none": 0
+  },
+  "중3": {
+   "exact": 27,
+   "alias": 8,
+   "partial": 0,
+   "word": 0,
+   "none": 0
+  }
+ },
+ "cards_total": {
+  "exact": 173,
+  "alias": 24,
+  "partial": 17,
+  "word": 3,
+  "none": 13
+ },
+ "cards_grade_shift": {
+  "earlier": [
+   {
+    "id": "g3-decimal",
+    "name": "소수 첫째 자리",
+    "card": 3,
+    "book": 4
+   },
+   {
+    "id": "g6-reciprocal",
+    "name": "역수",
+    "card": 6,
+    "book": 7
+   }
+  ],
+  "later_no_same": [
+   {
+    "id": "g4-proper",
+    "name": "진분수",
+    "card": 4,
+    "book": [
+     3
+    ]
+   },
+   {
+    "id": "g4-improper",
+    "name": "가분수",
+    "card": 4,
+    "book": [
+     3
+    ]
+   },
+   {
+    "id": "g4-mixed",
+    "name": "대분수",
+    "card": 4,
+    "book": [
+     3
+    ]
+   },
+   {
+    "id": "g8-distribution",
+    "name": "분배법칙",
+    "card": 8,
+    "book": [
+     7,
+     9
+    ]
+   },
+   {
+    "id": "g8-midpoint",
+    "name": "중점",
+    "card": 8,
+    "book": [
+     7
+    ]
+   },
+   {
+    "id": "g9-hypotenuse",
+    "name": "빗변",
+    "card": 9,
+    "book": [
+     8
+    ]
+   },
+   {
+    "id": "g9-chord",
+    "name": "현",
+    "card": 9,
+    "book": [
+     7
+    ]
+   },
+   {
+    "id": "g9-tangent-line",
+    "name": "접선",
+    "card": 9,
+    "book": [
+     8
+    ]
+   }
+  ],
+  "later_but_revisited": [
+   {
+    "id": "g6-net",
+    "name": "전개도",
+    "card": 6,
+    "book": [
+     5,
+     6
+    ]
+   },
+   {
+    "id": "g7-ray",
+    "name": "반직선",
+    "card": 7,
+    "book": [
+     3,
+     7
+    ]
+   },
+   {
+    "id": "g7-perpendicular",
+    "name": "수직",
+    "card": 7,
+    "book": [
+     4,
+     7
+    ]
+   },
+   {
+    "id": "g8-power",
+    "name": "거듭제곱",
+    "card": 8,
+    "book": [
+     7,
+     8
+    ]
+   },
+   {
+    "id": "g9-trig-similarity",
+    "name": "삼각비와 닮음",
+    "card": 9,
+    "book": [
+     8,
+     9
+    ]
+   },
+   {
+    "id": "g9-radius-tangent",
+    "name": "반지름과 접선",
+    "card": 9,
+    "book": [
+     8,
+     9
+    ]
+   }
+  ]
+ }
+}
