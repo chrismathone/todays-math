@@ -468,7 +468,7 @@ async function tap(locator, mobile) {
   else await locator.click();
 }
 const nav = (page) => page.locator('nav[aria-label="학생 학습 메뉴"]:visible');
-/** 눈에 보이는 글자 — KaTeX 의 스크린리더용 MathML 을 뺀다. */
+// 눈에 보이는 글자 — KaTeX 의 스크린리더용 MathML 을 뺀다.
 async function visibleText(locator) {
   return locator.evaluate((el) => {
     const clone = el.cloneNode(true);
@@ -1140,21 +1140,21 @@ const KATEX_UNITS = (
 ).split(",");
 const katexFindings = [];
 
-/**
- * 한 화면의 넘침·잘림. 판정:
- *  ① 숨은 스크롤 칸(보기 글 — `scrollbar-width: none` 이거나 단추 안)이 넘치면 **잉크가 잘리는지 픽셀로** 본다:
- *     칸과 단추의 `overflow` 를 풀었을 때 그 둘레 그림이 달라지면 잘린 것이다.
- *     ⚠️ 상자로 재지 않는다 — KaTeX 는 글자 없는 받침 상자(`.strut`)로 줄 높이를 잡고, 글자 줄 상자(em)도 실제
- *     잉크보다 위아래로 약 0.2em 크다. 그래서 분수 하나(«3/4»)도 «세로 4px 잘림»으로 잡혔는데 화면은 멀쩡했다(거짓 경보).
- *  ② 요소 상자가 가장 가까운 «잘리는 조상»(overflow ≠ visible)의 가로 범위 밖으로 나가면 안 된다.
- *     ⚠️ 조상의 `scrollWidth` 로 재지 않는다 — 책장 넘김 빛 띠(`::after`, 투명·`translateX(35%)`)가
- *     문제 칸의 scrollWidth 를 104px 늘려, 한글만 있는 활동에서도 늘 «넘침»이 났다(거짓 경보).
- *     KaTeX 내부(`.katex` 안)와 화면 읽기용 1px 글은 뺀다.
- *  ③ 수식(`.katex`)은 가장 가까운 잘리는 조상의 가로 범위와 화면 폭 안에 있어야 한다.
- *  ④ 단추(보기·빈칸) 안 글 상자가 단추 밖으로 나가면 안 된다.
- *  ⑤ 문서 가로 스크롤 0.
- *  ⑥ 보기 글의 수식이 가로로 글자 칸 밖(단추 안쪽 여백)을 먹지 않는다 — 잘리지는 않아도 테두리에 닿는다.
- */
+// 한 화면의 넘침·잘림. 판정:
+//  ① 숨은 스크롤 칸(보기 글 — `scrollbar-width: none` 이거나 단추 안)이 넘치면 **잉크가 잘리는지 픽셀로** 본다:
+//     칸과 단추의 `overflow` 를 풀었을 때 그 둘레 그림이 달라지면 잘린 것이다.
+//     ⚠️ 상자로 재지 않는다 — KaTeX 는 글자 없는 받침 상자(`.strut`)로 줄 높이를 잡고, 글자 줄 상자(em)도 실제
+//     잉크보다 위아래로 약 0.2em 크다. 그래서 분수 하나(«3/4»)도 «세로 4px 잘림»으로 잡혔는데 화면은 멀쩡했다(거짓 경보).
+//  ② 요소 상자가 가장 가까운 «잘리는 조상»(overflow ≠ visible)의 가로 범위 밖으로 나가면 안 된다.
+//     ⚠️ 조상의 `scrollWidth` 로 재지 않는다 — 책장 넘김 빛 띠(`::after`, 투명·`translateX(35%)`)가
+//     문제 칸의 scrollWidth 를 104px 늘려, 한글만 있는 활동에서도 늘 «넘침»이 났다(거짓 경보).
+//     KaTeX 내부(`.katex` 안)와 화면 읽기용 1px 글은 뺀다.
+//  ③ 수식(`.katex`)은 가장 가까운 잘리는 조상의 가로 범위와 화면 폭 안에 있어야 한다.
+//  ④ 단추(보기·빈칸) 안 글 상자가 단추 밖으로 나가면 안 된다.
+//  ⑤ 문서 가로 스크롤 0.
+//  ⑥ 보기 글의 수식이 가로로 글자 칸 밖(단추 안쪽 여백)을 먹지 않는다 — 잘리지는 않아도 테두리에 닿는다.
+// ⚠️ 이 파일에는 블록 주석을 쓰지 않는다 — 13행 줄 주석의 «/api/ 뒤 별 두 개»에서 격리 시험(`mathSrsRecordIsolation`)의
+//    블록 주석 제거가 시작해, 다음 블록 주석 끝까지(2만여 글자, 기록 모듈을 부르는 줄 포함)를 지웠다(2026-09-27).
 async function katexFit(page, rootSelector) {
   const problems = await katexBoxes(page, rootSelector);
   const candidates = page.locator("[data-qa-clip]");
@@ -1165,7 +1165,7 @@ async function katexFit(page, rootSelector) {
   await page.evaluate(() => document.querySelectorAll("[data-qa-clip]").forEach((node) => node.removeAttribute("data-qa-clip")));
   return problems;
 }
-/** 칸(과 그 단추)의 `overflow` 를 풀기 전후 둘레 그림을 견준다. 다르면 잘린 잉크가 있다. */
+// 칸(과 그 단추)의 `overflow` 를 풀기 전후 둘레 그림을 견준다. 칸 밖에 새 잉크가 나타나면 잘린 것이다.
 async function inkClipped(page, locator) {
   const box = await locator.boundingBox();
   const viewport = page.viewportSize();
