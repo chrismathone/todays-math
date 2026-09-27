@@ -144,6 +144,13 @@ function stdRhs(a: Rat, p: number, q: number): string {
   return `${termTex(a, sqTex(p), true)}${termTex(rInt(q), "")}`;
 }
 
+/**
+ * `표준형=일반형` — 꼭짓점이 $y$축 위($p=0$)면 두 꼴이 같아 `x^2-2=x^2-2` 가 되므로 한 번만 적는다.
+ */
+function stdEqGen(std: string, gen: string): string {
+  return std === gen ? gen : `${std}=${gen}`;
+}
+
 /** 일반형 우변 `ax^2+bx+c`. */
 function genRhs(A: Rat, B: Rat, C: Rat): string {
   const head = termTex(A, "x^2", true);
@@ -1790,7 +1797,7 @@ const TYPES_G2: TypeEntry[] = [
         return {
           content: `꼭짓점의 좌표가 $${pt(p, q)}$이고 점 $${pt(m, v)}$${eulReul(v)} 지나는 포물선을 그래프로 하는 이차함수의 식을 $y=ax^2+bx+c$ 꼴로 나타내시오. (단, $a$, $b$, $c$는 상수이다.)`,
           answer: `$y=${genRhs(A, B, C)}$`,
-          solution: `꼭짓점의 좌표가 $${pt(p, q)}$이므로 구하는 식을 $y=a${sqTex(p)}${termTex(rInt(q), "")}$ 꼴로 놓는다.\n$x=${m}$, $y=${v}$${eulReul(v)} 대입하면 $${termTex(rInt(s * s), "a", true)}${termTex(rInt(q), "")}=${v}$이므로 $a=${a}$이다.\n따라서 $y=${stdRhs(rInt(a), p, q)}=${genRhs(A, B, C)}$이다.`,
+          solution: `꼭짓점의 좌표가 $${pt(p, q)}$이므로 구하는 식을 $y=a${sqTex(p)}${termTex(rInt(q), "")}$ 꼴로 놓는다.\n$x=${m}$, $y=${v}$${eulReul(v)} 대입하면 $${termTex(rInt(s * s), "a", true)}${termTex(rInt(q), "")}=${v}$이므로 $a=${a}$이다.\n따라서 $y=${stdEqGen(stdRhs(rInt(a), p, q), genRhs(A, B, C))}$이다.`,
           facts: { a, p, q, m, v, A: A[0], B: B[0], C: C[0] },
           figureSpec: null,
         };
@@ -1824,7 +1831,7 @@ const TYPES_G2: TypeEntry[] = [
         return {
           content: `축의 방정식이 $x=${p}$이고 두 점 $${pt(m1, v1)}$, $${pt(m2, v2)}$${eulReul(v2)} 지나는 포물선을 그래프로 하는 이차함수의 식을 $y=ax^2+bx+c$ 꼴로 나타내시오. (단, $a$, $b$, $c$는 상수이다.)`,
           answer: `$y=${genRhs(A, B, C)}$`,
-          solution: `축의 방정식이 $x=${p}$이므로 구하는 식을 $y=a${sqTex(p)}+q$로 놓는다.\n두 점의 좌표를 대입하면 $${termTex(rInt(s1 * s1), "a", true)}+q=${v1}$, $${termTex(rInt(s2 * s2), "a", true)}+q=${v2}$이다.\n두 식을 연립하여 풀면 $a=${a}$, $q=${q}$이다.\n따라서 $y=${stdRhs(rInt(a), p, q)}=${genRhs(A, B, C)}$이다.`,
+          solution: `축의 방정식이 $x=${p}$이므로 구하는 식을 $y=a${sqTex(p)}+q$로 놓는다.\n두 점의 좌표를 대입하면 $${termTex(rInt(s1 * s1), "a", true)}+q=${v1}$, $${termTex(rInt(s2 * s2), "a", true)}+q=${v2}$이다.\n두 식을 연립하여 풀면 $a=${a}$, $q=${q}$이다.\n따라서 $y=${stdEqGen(stdRhs(rInt(a), p, q), genRhs(A, B, C))}$이다.`,
           facts: { a, p, q, m1, v1, m2, v2, A: A[0], B: B[0], C: C[0] },
           figureSpec: null,
         };

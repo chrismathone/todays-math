@@ -118,6 +118,16 @@ function facTex(f: Fac): string {
   return parts.join("\\times");
 }
 
+/**
+ * `소인수분해=N` — 소수 하나뿐이면 `$7=7$` 이 되어 뜻이 없으므로 수만 적는다.
+ * `numFirst` 면 `N=소인수분해` 순서다.
+ */
+function facEq(f: Fac, n: number, numFirst = false): string {
+  const t = facTex(f);
+  if (t === String(n)) return t;
+  return numFirst ? `${n}=${t}` : `${t}=${n}`;
+}
+
 function mulFac(a: Fac, b: Fac): [number, number][] {
   const m = new Map<number, number>();
   for (const [p, e] of [...a, ...b]) m.set(p, (m.get(p) ?? 0) + e);
@@ -536,7 +546,7 @@ const 소인수분해_TYPES: TypeEntry[] = [
       return {
         content: `$${N}$의 ${ask}${wEul(ask)} 구하시오.`,
         answer: `$${answer}$${unit}`,
-        solution: `$${N}=${facTex(f)}$이므로 $${N}$의 소인수는 ${primes
+        solution: `${facTex(f) === String(N) ? "" : `$${N}=${facTex(f)}$이므로 `}$${N}$의 소인수는 ${primes
           .map((p) => `$${p}$`)
           .join(", ")}이다.\n따라서 ${ask}${wEun(ask)} $${answer}$${unit}이다.`,
         facts: {
@@ -885,7 +895,7 @@ const 최대최소_TYPES: TypeEntry[] = [
       return {
         content: `$${limit}$ 이하의 자연수 중에서 $${N}$${waGwa(N)} 서로소인 수의 개수를 구하시오.`,
         answer: `$${count}$개`,
-        solution: `$${N}=${facTex(f)}$이므로 $${N}$의 소인수는 ${primes
+        solution: `${facTex(f) === String(N) ? "" : `$${N}=${facTex(f)}$이므로 `}$${N}$의 소인수는 ${primes
           .map((p) => `$${p}$`)
           .join(
             ", ",
@@ -924,9 +934,7 @@ const 최대최소_TYPES: TypeEntry[] = [
         return {
           content: `두 수 $${shownA}$, $${shownB}$의 최대공약수를 구하시오.`,
           answer: `$${ansTex}$`,
-          solution: `$${g.A}=${facTex(g.facA)}$, $${g.B}=${facTex(g.facB)}$이다.\n최대공약수는 공통인 소인수를 지수가 작거나 같은 것으로 택하여 곱한 $${facTex(
-            g.g,
-          )}=${g.G}$이다.`,
+          solution: `$${g.A}=${facTex(g.facA)}$, $${g.B}=${facTex(g.facB)}$이다.\n최대공약수는 공통인 소인수를 지수가 작거나 같은 것으로 택하여 곱한 $${facEq(g.g, g.G)}$이다.`,
           facts: { kind, A: g.A, B: g.B, G: g.G },
         };
       }),
@@ -959,9 +967,9 @@ const 최대최소_TYPES: TypeEntry[] = [
         const unit = kind === 0 ? "개" : "";
         const tail =
           kind === 0
-            ? `공약수는 최대공약수 $${g.G}$의 약수이므로 그 개수는 $${g.G}=${facTex(
+            ? `공약수는 최대공약수 $${g.G}$의 약수이므로 그 개수는 $${facEq(g.g, g.G, true)}$의 약수의 개수인 $${normFac(
                 g.g,
-              )}$의 약수의 개수인 $${normFac(g.g)
+              )
                 .map(([, e]) => `(${e}+1)`)
                 .join("\\times")}=${dc}$(개)이다.`
             : kind === 1
@@ -972,7 +980,7 @@ const 최대최소_TYPES: TypeEntry[] = [
           answer: `$${answer}$${unit}`,
           solution: `$${g.A}=${facTex(g.facA)}$, $${g.B}=${facTex(
             g.facB,
-          )}$이므로 최대공약수는 $${facTex(g.g)}=${g.G}$이다.\n${tail}`,
+          )}$이므로 최대공약수는 $${facEq(g.g, g.G)}$이다.\n${tail}`,
           facts: { kind, A: g.A, B: g.B, G: g.G, answer },
         };
       }),

@@ -426,6 +426,8 @@ const FACTOR_SUPPLEMENTS: TypeEntry[] = [
  *    그래서 «$A$, $B$ 로 놓고» 묻는다 — 실제로 한 단계(치환)가 더 있다.
  */
 function polyTerm(cx: number, cy: number): string {
+  // $x$ 의 계수가 $0$ 이면 `0x+3y` 가 아니라 `3y`, 둘 다 $0$ 이면 `0` 이다.
+  if (cx === 0) return cy === 0 ? "0" : coefTerm(cy, "y");
   const head = coefTerm(cx, "x");
   if (cy === 0) return head;
   return `${head}${cy > 0 ? "+" : "-"}${coefTerm(Math.abs(cy), "y")}`;
@@ -467,9 +469,11 @@ const POLY_SUPPLEMENTS: TypeEntry[] = [
           };
         }
         return {
-          content: `어떤 식에 $${polyTerm(a, b)}$${VAR_EUL} 더했더니 $${polyTerm(a + c, b + d)}$${VAR_IGA} 되었다. 어떤 식을 구하시오.`,
+          // 합이 $0$ 이면 문자로 끝나지 않는다 — 「$0$이」(영이).
+          content: `어떤 식에 $${polyTerm(a, b)}$${VAR_EUL} 더했더니 $${polyTerm(a + c, b + d)}$${polyTerm(a + c, b + d) === "0" ? "이" : VAR_IGA} 되었다. 어떤 식을 구하시오.`,
           answer: `$${polyTerm(c, d)}$`,
-          solution: `(어떤 식)$=(${polyTerm(a + c, b + d)})-(${polyTerm(a, b)})$이다.\n동류항끼리 계산하면 $${polyTerm(c, d)}$이다.`,
+          // 합이 한 항(`y`)이나 `0` 이면 괄호로 싸지 않는다 — `(y)-(3x-3y)` 가 아니라 `y-(3x-3y)`.
+          solution: `(어떤 식)$=${a + c === 0 ? polyTerm(a + c, b + d) : `(${polyTerm(a + c, b + d)})`}-(${polyTerm(a, b)})$이다.\n동류항끼리 계산하면 $${polyTerm(c, d)}$이다.`,
           facts: { mode, a, b, c, d },
         };
       },
@@ -821,7 +825,12 @@ const INEQUALITY_SUPPLEMENTS: TypeEntry[] = [
           return {
             content: `일차부등식 $\\dfrac{x}{${p}}-\\dfrac{x}{${q}}\\le${rr}$의 해를 구하시오.`,
             answer: `$x${flip ? IN.ge : IN.le}${bound}$`,
-            solution: `양변에 두 분모의 최소공배수 $${lcm}$${eulReul(lcm)} 곱하면 $${coefTerm(lcm / p, "x")}-${coefTerm(lcm / q, "x")}\\le${lcm * rr}$, 즉 $${coefTerm(coef, "x")}\\le${lcm * rr}$이다.\n양변을 $${coef}$${euroRo(Math.abs(coef))} 나누면 ${flip ? "부등호의 방향이 바뀌어 " : ""}$x${flip ? IN.ge : IN.le}${bound}$이다.`,
+            solution: `양변에 두 분모의 최소공배수 $${lcm}$${eulReul(lcm)} 곱하면 $${coefTerm(lcm / p, "x")}-${coefTerm(lcm / q, "x")}\\le${lcm * rr}$, 즉 $${coefTerm(coef, "x")}\\le${lcm * rr}$이다.${
+              // 계수가 $1$ 이면 앞 줄이 이미 답이다 — 「양변을 $1$로 나누면」을 적지 않는다.
+              coef === 1
+                ? ""
+                : `\n양변을 $${coef}$${euroRo(Math.abs(coef))} 나누면 ${flip ? "부등호의 방향이 바뀌어 " : ""}$x${flip ? IN.ge : IN.le}${bound}$이다.`
+            }`,
             facts: { mode, p, q, lcm, r: rr, coef },
           };
         }

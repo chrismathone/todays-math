@@ -657,7 +657,8 @@ const CHECKS: Record<string, Check> = {
   },
   "2-1|유리수와 순환소수|44": ({ content, answer }) => {
     const a = Number(content.match(/\\overline\{(\d+)\}/)![1]);
-    const [n, d] = nums(answer);
+    // $0.\overline{1}$ 의 역수는 자연수 $9$ 라 정답에 분모가 없다(`\dfrac{9}{1}` 을 안 적는다).
+    const [n, d = 1] = nums(answer);
     // 역수 — 원래 수와 곱하면 $1$ 이어야 한다
     expect(a * n!).toBe(9 * d!);
     expect(gcd2(n!, d!)).toBe(1);

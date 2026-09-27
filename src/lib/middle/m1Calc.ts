@@ -1383,10 +1383,12 @@ export const M1_CALC: TypeEntry[] = [
       if (a.n === 0 || b.n === 0) return null;
       const S = mulQ(a, b);
       if (!nice(S) || S.d === 1) return null;
+      // 약분할 것이 없으면 `\dfrac{1}{4}=\dfrac{1}{4}` 가 된다 — 한 번만 적는다.
+      const raw = texRawFrac(a.n * b.n, a.d * b.d);
       return {
         content: `다음을 계산하시오.\n$${texSigned(a)}\\times${texSigned(b)}$`,
         answer: `$${texQ(S)}$`,
-        solution: `분자는 분자끼리, 분모는 분모끼리 곱한다.\n$${texSigned(a)}\\times${texSigned(b)}=${texRawFrac(a.n * b.n, a.d * b.d)}=${texQ(S)}$이다.`,
+        solution: `분자는 분자끼리, 분모는 분모끼리 곱한다.\n$${texSigned(a)}\\times${texSigned(b)}=${raw === texQ(S) ? raw : `${raw}=${texQ(S)}`}$이다.`,
         facts: { ...fq("a", a), ...fq("b", b), ...fq("S", S) },
       };
     }),

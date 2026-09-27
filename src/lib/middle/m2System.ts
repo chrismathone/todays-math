@@ -130,6 +130,15 @@ function euro(n: number): "로" | "으로" {
   return d === 0 || d === 3 || d === 6 ? "으로" : "로";
 }
 
+/**
+ * 부등식 풀이의 마지막 줄 「양변을 $a$로 나누면 …」. $a=1$ 이면 앞 줄이 이미 $x$ 에 대한 답이라
+ * 「양변을 $1$로 나누면」은 아무 일도 안 하는 줄이다 — 그때는 적지 않는다.
+ */
+function divStep(a: number, ansRel: number, s: number): string {
+  if (a === 1) return "";
+  return `\n양변을 $${a}$${euro(a)} 나누면 ${a < 0 ? "부등호의 방향이 바뀌어 " : ""}$x${relTex(ansRel)}${s}$이다.`;
+}
+
 function relHolds(r: number, lhs: number, rhs: number): boolean {
   if (r === 0) return lhs < rhs;
   if (r === 1) return lhs > rhs;
@@ -537,7 +546,7 @@ export const M2_SYSTEM: TypeEntry[] = [
       return {
         content: `일차부등식 $${tex}$ 의 해를 구하시오.`,
         answer: `$x${relTex(ansRel)}${s}$`,
-        solution: `$x$를 포함하는 항은 좌변으로, 상수항은 우변으로 이항하면 $${moved}$이다.\n양변을 $${a}$${euro(a)} 나누면 ${a < 0 ? "부등호의 방향이 바뀌어 " : ""}$x${relTex(ansRel)}${s}$이다.`,
+        solution: `$x$를 포함하는 항은 좌변으로, 상수항은 우변으로 이항하면 $${moved}$이다.${divStep(a, ansRel, s)}`,
         facts: { p, b, q, c, prel, a, s, ansRel },
       };
     }),
@@ -569,7 +578,7 @@ export const M2_SYSTEM: TypeEntry[] = [
         return {
           content: `일차부등식 $${lhs}${relTex(prel)}${rhs}$ 의 해를 구하시오.`,
           answer: `$x${relTex(ansRel)}${s}$`,
-          solution: `괄호를 풀면 $${expL}${relTex(prel)}${expR}$이다.\n이항하여 정리하면 $${mc(a, "x")}${relTex(prel)}${a * s}$이다.\n양변을 $${a}$${euro(a)} 나누면 ${a < 0 ? "부등호의 방향이 바뀌어 " : ""}$x${relTex(ansRel)}${s}$이다.`,
+          solution: `괄호를 풀면 $${expL}${relTex(prel)}${expR}$이다.\n이항하여 정리하면 $${mc(a, "x")}${relTex(prel)}${a * s}$이다.${divStep(a, ansRel, s)}`,
           facts: { p, u, q, v, w, prel, a, s, ansRel },
         };
       }),
@@ -601,7 +610,7 @@ export const M2_SYSTEM: TypeEntry[] = [
           return {
             content: `일차부등식 $${tex}$ 의 해를 구하시오.`,
             answer: `$x${relTex(ansRel)}${s}$`,
-            solution: `양변에 $${10 ** k}$${eulReul(10 ** k)} 곱하여 계수를 정수로 고치면 $${scaled}$이다.\n이항하여 정리하면 $${mc(a, "x")}${relTex(prel)}${a * s}$이다.\n양변을 $${a}$${euro(a)} 나누면 ${a < 0 ? "부등호의 방향이 바뀌어 " : ""}$x${relTex(ansRel)}${s}$이다.`,
+            solution: `양변에 $${10 ** k}$${eulReul(10 ** k)} 곱하여 계수를 정수로 고치면 $${scaled}$이다.\n이항하여 정리하면 $${mc(a, "x")}${relTex(prel)}${a * s}$이다.${divStep(a, ansRel, s)}`,
             facts: { P, Q, R, S, k, prel, a, s, ansRel },
           };
         });
@@ -629,7 +638,7 @@ export const M2_SYSTEM: TypeEntry[] = [
         return {
           content: `일차부등식 $${tex}$ 의 해를 구하시오.`,
           answer: `$x${relTex(ansRel)}${s}$`,
-          solution: `양변에 분모의 공배수 $${D}$${eulReul(D)} 곱하면 $${cleared}$이다.\n정리하면 $${side(A, B)}${relTex(prel)}${D * w}$, 곧 $${mc(A, "x")}${relTex(prel)}${A * s}$이다.\n양변을 $${A}$${euro(A)} 나누면 ${A < 0 ? "부등호의 방향이 바뀌어 " : ""}$x${relTex(ansRel)}${s}$이다.`,
+          solution: `양변에 분모의 공배수 $${D}$${eulReul(D)} 곱하면 $${cleared}$이다.\n정리하면 $${side(A, B)}${relTex(prel)}${D * w}$, 곧 $${mc(A, "x")}${relTex(prel)}${A * s}$이다.${divStep(A, ansRel, s)}`,
           facts: { d, e, m, s2, u, v, w, A, B, prel, s, ansRel },
         };
       });

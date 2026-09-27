@@ -140,7 +140,8 @@ function coef(a: number, sym: string): string {
  */
 function evalTex(a: number, x: number, ans: number): string {
   if (a === 1) return `${ans}`;
-  if (a === -1) return `-${paren(x)}=${ans}`;
+  // $a=-1$ 에 양수를 넣으면 `-3=-3` 이 된다 — 바뀌는 것이 없으니 값만.
+  if (a === -1) return x >= 0 ? `${ans}` : `-${paren(x)}=${ans}`;
   return `${a}\\times${paren(x)}=${ans}`;
 }
 

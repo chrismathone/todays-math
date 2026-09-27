@@ -7,6 +7,12 @@
  *     다른 단원의 지수 $1$ 은 일부러 쓴 것이 많아 보지 않는다 — 지수법칙 설명(「$3=3^{1}$ 이므로」·
  *     「$x^{2}\times x^{1}=x^{3}$」), 10의 거듭제곱 강조(「분모가 $10^{1}$이 된다」), 소인수(「$2^{1}$을 뺀 부분」).
  *     어느 것을 고칠지는 2026-09-27 이 세션에서 **경우의 수 공식만**으로 정해졌다.
+ *  ㈃ 뜻 없는 등식을 적지 않는다 — 등호 사슬에서 이웃한 두 변이 같다(`$5=5$ 이므로`·`$y=-3=-3$`·
+ *     `$\sqrt{38}=\sqrt{38}$`·`$4:7=4:7$`). 소인수분해·약분·근호 정리가 할 일이 없을 때 생긴다.
+ *  ㈄ 계수 $0$ 을 적지 않는다(`$0x+3y$` 가 아니라 `$3y$`) — 공용 가드 「계수 0 을 적었다」.
+ *  ㈅ 분모 $1$ 인 분수를 **정답**에 적거나 **곱하지** 않는다(`$\dfrac{7}{1}$`·`$3\times\dfrac{3}{1}$`).
+ *     대입을 보이는 줄(`$-6=\dfrac{a}{1}$`)·기울기 공식(`$\dfrac{-3}{1}=-3$`)은 풀이라 보지 않는다.
+ *  ㈆ 「양변을 $1$로 나누면」을 적지 않는다 — 계수가 $1$ 이면 나눌 것이 없다.
  *
  * 값 검산은 이 부류를 구조적으로 못 본다. 판정:
  *  ㈀-⑴ 공용 가드 `pageSmells`(`../helpers/midPage.ts`)의 계수 $1$ 규칙 셋 — 「계수 1 을 적었다」(`1x`)·
@@ -23,7 +29,11 @@
  *  둔 것과 같은 까닭이다(공용 후보).
  *
  * 2026-09-27 고친 것: ㈀ 31유형(원과 부채꼴 04·06 은 먼저) · ㈁ 8유형(기본 도형 07·10·11, 위치 관계 11,
- * 연립 23, 이차함수의 그래프 ⑵ 70·71, 정수와 유리수의 계산 21).
+ * 연립 23, 이차함수의 그래프 ⑵ 70·71, 정수와 유리수의 계산 21) · ㈂ 경우의 수 07·71 ·
+ * ㈃ 22유형(정비례와 반비례 02·05·07·09, 정수와 유리수의 계산 71, 최대공약수와 최소공배수 01~03,
+ * 유리수와 순환소수 01·05·06·08·14·37, 평행선 53, 확률 01, 근호 06·19, 이차함수의 그래프 ⑵ 10·11,
+ * 산포도 03, 삼각비 07) · ㈄ 다항식의 계산 50~52 · ㈅ 순환소수 44(정답)·닮음 02~07·평행선 01·19 ·
+ * ㈆ 일차부등식 07·08·09·61, 일차함수와 일차방정식의 관계 74.
  * (이 파일은 처음에 `middleCoefOneAll.test.ts` 로 ㈀ 만 잠갔다.)
  */
 import { describe, expect, it } from "vitest";
@@ -50,11 +60,31 @@ const ALGEBRAIC_ZERO = /(?:[a-zA-Z)}\]]|\^\{?\d+\}?)[+-]0(?![\d.^])/;
 /** ㈂ 지수 1 을 보는 단원 — 경우의 수·확률. */
 const EXP_ONE_UNITS = ["2-2|경우의 수|", "2-2|확률|"];
 
-/** 흉한 표기의 이름들 — 없으면 빈 배열. `key` 가 ㈂ 단원이면 지수 1 도 본다. */
-function notationFaults(text: string, key = ""): string[] {
+/** ㈃ 등호 사슬에서 이웃한 두 변이 (빈칸을 빼고) 같은가. */
+function trivialEquation(math: string): boolean {
+  const sides = math
+    .slice(1, -1)
+    .split("=")
+    .map((s) => s.replace(/\s+|\\[,;!]/g, ""));
+  return sides.some((s, i) => i > 0 && s !== "" && s === sides[i - 1]);
+}
+
+/** ㈅ 분모가 $1$ 인 분수. */
+const DENOM_ONE = /\\d?frac\{[^{}]*\}\{1\}/;
+const TIMES_DENOM_ONE = /\\times\s*\\d?frac\{[^{}]*\}\{1\}/;
+
+/** ㈆ 「$1$로 나누면」 */
+const DIVIDE_BY_ONE = /\$1\$\s*(?:로|으로)\s*나누/;
+
+/**
+ * 흉한 표기의 이름들 — 없으면 빈 배열. `key` 가 ㈂ 단원이면 지수 1 도 본다.
+ * `field` 가 「정답」이면 분모 $1$ 인 분수를 어디서든 본다(㈅).
+ */
+function notationFaults(text: string, key = "", field = ""): string[] {
   const out = pageSmells(text).filter(
     (l) =>
       l.includes("계수 1 을 적었다") ||
+      l === "계수 0 을 적었다" ||
       (l === "지수 1 을 적었다" &&
         EXP_ONE_UNITS.some((u) => key.startsWith(u))),
   );
@@ -65,6 +95,14 @@ function notationFaults(text: string, key = ""): string[] {
   if (math.some((m) => ALGEBRAIC_ZERO.test(m))) {
     out.push("식에 상수 0 을 붙였다");
   }
+  if (math.some(trivialEquation)) out.push("뜻 없는 등식을 적었다");
+  if (
+    TIMES_DENOM_ONE.test(text) ||
+    (field === "정답" && DENOM_ONE.test(text))
+  ) {
+    out.push("분모 1 인 분수를 적었다");
+  }
+  if (DIVIDE_BY_ONE.test(text)) out.push("1 로 나눴다");
   return out;
 }
 
@@ -142,6 +180,56 @@ describe("표기 판정 눈금 — 양성은 잡고 음성은 안 잡는다", ()
       expect(notationFaults(t), t).toEqual([]);
     }
   });
+
+  it("뜻 없는 등식은 결함이고, 무엇이 바뀌는 등식은 아니다", () => {
+    for (const t of [
+      "$5=5$ 이므로 분모와 분자에 $2$ 를 곱하면",
+      "$y=-3=-3$이다.",
+      "$\\sqrt{38}=\\sqrt{38}$(점)",
+      "$\\overline{AB}:\\overline{AC}=4:7=4:7$",
+      "$\\dfrac{5}{36}=\\dfrac{5}{36}$",
+      "$y=2x^2+3=2x^2+3$",
+      "$2 = 2$",
+    ]) {
+      expect(notationFaults(t), t).toEqual(["뜻 없는 등식을 적었다"]);
+    }
+    for (const t of [
+      "$\\overline{AB}:\\overline{AC}=6:4=3:2$",
+      "$\\dfrac{2}{4}=\\dfrac{1}{2}$",
+      "$5\\sqrt{6}=\\sqrt{150}$",
+      "$y=-(-3)=3$",
+      "$10^{1}=2^{1}\\times5^{1}$",
+      "$x=3$",
+      "$=3$",
+    ]) {
+      expect(notationFaults(t), t).toEqual([]);
+    }
+  });
+
+  it("계수 0 · 분모 1 · 「1로 나누면」 은 결함이고, 대입·기울기 공식의 분모 1 은 아니다", () => {
+    expect(notationFaults("$0x+3y$")).toEqual(["계수 0 을 적었다"]);
+    expect(notationFaults("$0x-2y$가 되었다")).toEqual(["계수 0 을 적었다"]);
+    expect(notationFaults("$\\dfrac{7}{1}$", "", "정답")).toEqual([
+      "분모 1 인 분수를 적었다",
+    ]);
+    expect(notationFaults("$3\\times\\dfrac{3}{1}=9$")).toEqual([
+      "분모 1 인 분수를 적었다",
+    ]);
+    expect(notationFaults("양변을 $1$로 나누면 $x\\le -8$이다.")).toEqual([
+      "1 로 나눴다",
+    ]);
+    for (const [t, field] of [
+      ["$-6=\\dfrac{a}{1}$에서 $a=-6$", "해설"],
+      ["$\\dfrac{f(1)-f(0)}{1-(0)}=\\dfrac{-3}{1}=-3$", "해설"],
+      ["$3\\times\\dfrac{3}{10}$", "해설"],
+      ["$\\dfrac{1}{7}$", "정답"],
+      ["양변을 $-1$로 나누면", "해설"],
+      ["양변을 $10$으로 나누면", "해설"],
+      ["$10x+0.5y$", "해설"],
+    ] as const) {
+      expect(notationFaults(t, "", field), t).toEqual([]);
+    }
+  });
 });
 
 const TYPES = registeredTypes().map((e) => ({ key: e.key }));
@@ -155,7 +243,7 @@ function faultsOf(key: string, seeds: number, base: number): string[] {
       ["정답", p.answer],
       ["해설", p.solution],
     ] as const) {
-      for (const label of notationFaults(text, key)) {
+      for (const label of notationFaults(text, key, field)) {
         if (bad.length < 4) bad.push(`씨앗 ${s} [${field}] ${label}`);
       }
     }
@@ -163,22 +251,28 @@ function faultsOf(key: string, seeds: number, base: number): string[] {
   return bad;
 }
 
-describe(`중등 전 유형(${TYPES.length}) × 씨앗 ${SEEDS} — 계수 1·식의 상수 0 을 적지 않는다`, () => {
+describe(`중등 전 유형(${TYPES.length}) × 씨앗 ${SEEDS} — 흉한 표기(㈀~㈆)를 적지 않는다`, () => {
   it.each(TYPES)("$key", ({ key }) => {
     expect(faultsOf(key, SEEDS, 20260927)).toEqual([]);
   });
 });
 
 /**
- * 드문 자리 — 상수항이 $0$ 이 되는 일이 씨앗 수백에 한두 번뿐인 유형. 전 유형 씨앗 200 으로는
- * 못 잠그므로 이 유형들만 씨앗 2,000 으로 본다(고치기 전 각각 몇 번씩 걸리는 것을 확인했다).
+ * 드문 자리 — 걸리는 일이 씨앗 수백에 한두 번뿐인 유형. 전 유형 씨앗 200 으로는 못 잠그므로
+ * 이 유형들만 씨앗 2,000 으로 본다(고치기 전 각각 몇 번씩 걸리는 것을 확인했다).
+ * ㈁ 상수항이 $0$ — 기본 도형 07·10·11, 위치 관계 11, 연립 23.
+ * ㈃ $a=-1$ 에 양수를 대입 — 정비례와 반비례 02(씨앗 200 중 2번)·07(1번).
+ * ㈆ $x$ 의 계수가 $1$ — 일차부등식 09(3번).
  */
 const RARE = [
+  "1-1|정비례와 반비례|02",
+  "1-1|정비례와 반비례|07",
   "1-2|기본 도형|07",
   "1-2|기본 도형|10",
   "1-2|기본 도형|11",
   "1-2|위치 관계|11",
   "2-1|연립일차방정식|23",
+  "2-1|일차부등식|09",
 ];
 
 describe("드문 자리 — 씨앗 2,000", () => {

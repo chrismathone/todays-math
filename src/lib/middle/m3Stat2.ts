@@ -315,7 +315,7 @@ export const M3_STAT2: TypeEntry[] = [
       return {
         content: `학생 $5$명의 수학 점수의 편차가 각각 ${devs.map((d) => `$${d >= 0 ? "+" : ""}${d}$점`).join(", ")}이다. 이 자료의 표준편차를 구하시오.`,
         answer: `$${sdTex}\\,\\mathrm{점}$`,
-        solution: `분산은 편차의 제곱의 평균이므로 $\\dfrac{${devs.map((d) => sqTex(d)).join("+")}}{5}=\\dfrac{${sumSq}}{5}=${variance}$이다.\n표준편차는 분산의 양의 제곱근이므로 $\\sqrt{${variance}}=${sdTex}$(점)이다.`,
+        solution: `분산은 편차의 제곱의 평균이므로 $\\dfrac{${devs.map((d) => sqTex(d)).join("+")}}{5}=\\dfrac{${sumSq}}{5}=${variance}$이다.\n표준편차는 분산의 양의 제곱근이므로 $${sdTex === `\\sqrt{${variance}}` ? sdTex : `\\sqrt{${variance}}=${sdTex}`}$(점)이다.`,
         facts,
         figureSpec: null,
       };
