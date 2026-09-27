@@ -155,7 +155,7 @@ describe("ExplorerWorkshop inside the shared expedition frame", () => {
   });
 });
 
-describe("ExplorerWorkshop — 머리 이름 줄(05 §8.18 · D-143)", () => {
+describe("ExplorerWorkshop — 머리 이름 줄(05 §8.19 · D-143)", () => {
   it("«통분» + 갈래 딱지 «정의» + «조각 활동 · 단계 이름» — 풀이 화면과 같은 이름 줄", () => {
     fixture({ stage: "predict", choices: [{ id: 0, label: "더 작아져요" }] });
     const row = document.querySelector("[data-concept-row]")!;

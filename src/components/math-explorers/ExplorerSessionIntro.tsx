@@ -8,7 +8,7 @@ import s from "./math-explorers.module.css";
 import type { SessionIntroKind } from "./sessionIntro";
 
 /**
- * «오늘 다시 만날 개념» — 기억 복습 날 · 지난 학습 다시 풀기의 첫 활동 앞 한 장(05 §8.18 · D-143 ③).
+ * «오늘 다시 만날 개념» — 기억 복습 날 · 지난 학습 다시 풀기의 첫 활동 앞 한 장(05 §8.19 · D-143 ③).
  * 뜻은 가린 채 이름 · 갈래 딱지 · 단원만 보인다. 시작은 서버에 요청을 보내지 않는다(엔진 15활동 · 날짜 규칙 그대로).
  * 틀은 풀이 화면 그대로(`ExplorerPracticeFrame`) · 답 칸은 뜻 만나기처럼 단추 하나.
  */

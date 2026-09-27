@@ -8,7 +8,9 @@ import type {
 } from "@/contracts/mathExplorers.contract";
 import { ConceptNameRow } from "./ExplorerConceptHead";
 import { ExplorerPracticeFrame } from "./ExplorerPractice";
+import { EnterKey, NumberKey } from "@/components/math-srs/AnswerKeyCaps";
 import pageTurn from "@/components/math-srs/question-page-turn.module.css";
+import { answerKey } from "@/components/math-srs/useAnswerKeys";
 import { ExplorerChoiceText, ExplorerMath } from "./ExplorerMath";
 import s from "./math-explorers.module.css";
 
@@ -166,7 +168,7 @@ function WorkshopActivity({
         tabIndex={0}
         aria-label="분수 조작 활동"
       >
-        {/* 풀이 화면과 같은 이름 줄(05 §8.18 · D-143) — 붙은 개념 이름 + 갈래 딱지 · «조각 활동 · 단계» */}
+        {/* 풀이 화면과 같은 이름 줄(05 §8.19 · D-143) — 붙은 개념 이름 + 갈래 딱지 · «조각 활동 · 단계» */}
         <ConceptNameRow
           cardId={workshop.attachedTo.cardId}
           name="통분"
@@ -281,12 +283,13 @@ function WorkshopActivity({
                   type="button"
                   key={choice.id}
                   aria-label={`${index + 1} ${choice.label}`}
+                  aria-keyshortcuts={answerKey(index)}
                   aria-pressed={chosen === choice.id}
                   disabled={disabled}
                   data-anim={motion[choice.id]}
                   onClick={() => choose(choice.id)}
                 >
-                  <span className={s.answerNumber}>{index + 1}</span>
+                  <NumberKey index={index} className={s.answerNumber} />
                   <ExplorerChoiceText
                     className={s.answerText}
                     text={choice.label}
@@ -371,12 +374,14 @@ function WorkshopActivity({
               <button
                 type="button"
                 className={s.confirm}
+                aria-keyshortcuts="Enter"
                 disabled={disabled}
                 onClick={confirm}
               >
                 {stage === "check"
                   ? "칠한 조각 확인하기"
                   : "나눈 조각 확인하기"}
+                <EnterKey />
               </button>
             </div>
           </>

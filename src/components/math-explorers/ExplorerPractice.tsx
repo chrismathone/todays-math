@@ -1,13 +1,15 @@
 "use client";
 
-import { useState, type ReactNode } from "react";
+import { useRef, useState, type ReactNode } from "react";
 import type {
   ExplorerAction,
   ExplorerActivity,
   ExplorerState,
 } from "@/contracts/mathExplorers.contract";
 import AnswerFeedbackEffect from "@/components/math-srs/AnswerFeedbackEffect";
+import { EnterKey, NumberKey } from "@/components/math-srs/AnswerKeyCaps";
 import pageTurn from "@/components/math-srs/question-page-turn.module.css";
+import { answerKey, useAnswerKeys } from "@/components/math-srs/useAnswerKeys";
 import {
   ConceptKindTag,
   ConceptNameRow,
@@ -88,6 +90,9 @@ export function ExplorerPracticeFrame({
   children: ReactNode;
   feedbackMessage?: string;
 }) {
+  // 보기 번호 키 · 엔터(`useAnswerKeys`) — 연습과 작업실이 같은 틀이라 한 곳에서 듣는다.
+  const frame = useRef<HTMLElement>(null);
+  useAnswerKeys(frame);
   return (
     <>
       <div className={s.practiceToolbar}>
@@ -119,7 +124,11 @@ export function ExplorerPracticeFrame({
           aria-label="이번 학습 진행률"
         />
       </div>
-      <section className={s.practiceFrame} aria-label="개념 문제와 답 고르기">
+      <section
+        ref={frame}
+        className={s.practiceFrame}
+        aria-label="개념 문제와 답 고르기"
+      >
         {children}
         <AnswerFeedbackEffect
           correct={correct}
@@ -187,7 +196,7 @@ function Activity({
         tabIndex={0}
         aria-label="문제 내용"
       >
-        {/* 머리 — 무엇의 문장인가(원장님 2026-09-28 Hi-fi 4안, 05 §8.18 · D-143): 이름 + 갈래 딱지.
+        {/* 머리 — 무엇의 문장인가(원장님 2026-09-28 Hi-fi 4안, 05 §8.19 · D-143): 이름 + 갈래 딱지.
             정의 조립은 조작 안내 제목 · 겹친 안내 줄을 빼 이름(제목 크기) 바로 아래 문장이 온다 — 안내는 아래 칸 한 줄.
             뜻 만나기는 «개념 카드»(학년 · 단원 / 이름 + 딱지 / 뜻). 예 모으기 · 경계 살피기는 이름 줄 + 카드 문장 제목. */}
         {activity.kind === "assemble" ? (
@@ -331,6 +340,7 @@ function Activity({
                   type="button"
                   key={choice.id}
                   aria-label={`${index + 1} ${choice.label}`}
+                  aria-keyshortcuts={answerKey(index)}
                   aria-pressed={selected.includes(choice.id)}
                   disabled={
                     disabled ||
@@ -347,7 +357,7 @@ function Activity({
                   data-anim={motion[choice.id]}
                   onClick={() => choose(choice.id)}
                 >
-                  <span className={s.answerNumber}>{index + 1}</span>
+                  <NumberKey index={index} className={s.answerNumber} />
                   <ExplorerChoiceText
                     className={s.answerText}
                     text={choice.label}
@@ -360,6 +370,7 @@ function Activity({
                 <button
                   type="button"
                   className={s.confirm}
+                  aria-keyshortcuts="Enter"
                   disabled={
                     disabled ||
                     (activity.kind === "assemble"
@@ -371,6 +382,7 @@ function Activity({
                   {activity.kind === "assemble"
                     ? "완성한 문장 확인하기"
                     : "선택한 예 확인하기"}
+                  <EnterKey />
                 </button>
               ) : null}
             </div>

@@ -220,7 +220,7 @@ describe("③ 카드 글이 보이는 자리 전부가 KaTeX 를 지난다", () 
     const { container } = practice(base);
     fireEvent.click(screen.getByRole("button", { name: "1 x²" }));
     // 보기 넷 + 채운 빈칸 + 조각 셋 + 이름 + 세션 제목. 조작 안내 제목(발문)은 정의 조립에서 뺐다
-    // (원장님 2026-09-28 Hi-fi 4안 — 이름 바로 아래 문장, 안내는 아래 칸 한 줄, 05 §8.18 · D-143).
+    // (원장님 2026-09-28 Hi-fi 4안 — 이름 바로 아래 문장, 안내는 아래 칸 한 줄, 05 §8.19 · D-143).
     await settled(container, 10);
     // 읽기용 이름표는 글자 그대로 둔다(판단은 보고서) — 채점은 번호로 한다.
     expect(

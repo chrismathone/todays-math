@@ -466,6 +466,10 @@
   border-color: #20845f;
   background: #e7f7ee;
   color: #166346;
+  /* 번호 키(05 §8.18) — 결과색 테두리 · 두께 */
+  --answer-key-ink: #166346;
+  --answer-key-edge: #20845f;
+  --answer-key-depth: #20845f;
 }
 
 .practice .answerChoice:disabled {
@@ -476,6 +480,9 @@
   border-color: #d26163;
   background: #fff0ef;
   color: #a94247;
+  --answer-key-ink: #a94247;
+  --answer-key-edge: #d26163;
+  --answer-key-depth: #d26163;
 }
 
 .answered .inputMessage,

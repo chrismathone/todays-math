@@ -492,7 +492,7 @@ describe("StudentMathExplorers", () => {
         name: /1일차, 덧셈과 뺄셈, 학습 완료, 다시 풀기/,
       }),
     );
-    // 다시 풀기 첫 활동 앞 «오늘 다시 만날 개념» 한 장(05 §8.18 · D-143 ③) — 요청 없이 넘긴다.
+    // 다시 풀기 첫 활동 앞 «오늘 다시 만날 개념» 한 장(05 §8.19 · D-143 ③) — 요청 없이 넘긴다.
     fireEvent.click(
       await screen.findByRole("button", { name: /다시 풀기 시작하기/ }),
     );
@@ -695,7 +695,7 @@ function afterAnswerSession() {
   };
 }
 
-describe("ExplorerCardDialog — 이름 옆 갈래 딱지(05 §8.18 · D-143)", () => {
+describe("ExplorerCardDialog — 이름 옆 갈래 딱지(05 §8.19 · D-143)", () => {
   it("도감 카드 제목에 풀이 화면과 같은 딱지", () => {
     const state = stateView();
     const card = state.units

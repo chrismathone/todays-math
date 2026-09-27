@@ -82,7 +82,7 @@ export default function ExplorerCardDialog({
           </p>
           <h2 id="explorer-card-title">
             <ExplorerMath text={card.name} />
-            {/* 풀이 화면과 같은 갈래 딱지(05 §8.18 · D-143) */}
+            {/* 풀이 화면과 같은 갈래 딱지(05 §8.19 · D-143) */}
             <ConceptKindTag cardId={card.id} large />
           </h2>
         </div>

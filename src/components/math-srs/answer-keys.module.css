@@ -1,0 +1,59 @@
+/*
+ * 보기 번호 키 · ⏎ 키 — 모양 한 곳 (05 §8.18 · D-145, 원장님 2026-09-28 «숫자 버튼을 키보드처럼 · 엔터 제출 자리에 엔터키 모양»).
+ * 시안 `docs/design/mockups/hifi-choice-keys.html` A 안 + ㉮ ⏎ 키. 새 색 없음 — 키 면 · 테두리는 시안 값, ⏎ 키는 큐브 실험실
+ * «다음 활동 → Enter» 키(`CubeUnitLab.module.css` `.primaryButton kbd`)와 같은 값.
+ *
+ * 쓰는 화면(«모든 화면 일치»): 통합 탐험 연습 · 작업실 · 중등 오늘의 복습 · 초등 은행 · 지난 학습 다시 풀기.
+ *   번호 — 보기 번호 요소에 `.number` 를 더한다(자리 · 크기는 화면 것 그대로, 모양만 키로).
+ *   ⏎ — `EnterKey` 를 `aria-keyshortcuts="Enter"` 단추 안 글자 뒤에. 화살표가 있는 초등 확인 단추는 화살표에 `.swap`.
+ *   상태(고름 · 맞음 · 틀림)의 키 색은 화면 CSS 가 변수로 준다: `--answer-key-ink` 숫자 · `--answer-key-edge` 테두리 ·
+ *   `--answer-key-depth` 아래 두께.
+ *
+ * 🔴 키 모양은 **마우스가 주 포인터인 기기에서만** — `(hover: hover) and (pointer: fine)`. 폰 · 키보드 없는 태블릿에서
+ * 키 모양은 «누를 수 없는 키»라, 거기서는 지금 모양(번호 동그라미 · 화살표) 그대로 둔다. 키 **동작**은 어느 기기에서나 켜져 있다
+ * (`useAnswerKeys`). 모양을 주는 규칙은 모두 이 조건 안에만 둔다 — 시험이 이 파일을 읽어 지킨다(`AnswerKeys.test.tsx`).
+ */
+.enter {
+  display: none;
+}
+.enter svg {
+  width: 12px;
+  height: 12px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.9;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  /* 번호 — 동그라미가 흰 면 · 얇은 테두리 · 아래 두께 2px 의 작은 키가 된다. 두 겹 클래스는 화면 CSS 의 번호 규칙보다 앞서려고. */
+  .number.number {
+    min-height: 18px;
+    border-radius: 5px;
+    background: #fff;
+    color: var(--answer-key-ink, #35547b);
+    line-height: 18px;
+    text-align: center;
+    box-shadow:
+      inset 0 0 0 1px var(--answer-key-edge, #c6d4ec),
+      0 2px 0 var(--answer-key-depth, #c6d4ec);
+  }
+  /* ⏎ — 코발트 확인 단추 위 투명 면 · 흰 45% 테두리 · 아래 두께 2px */
+  .enter {
+    display: inline-grid;
+    flex: none;
+    place-items: center;
+    min-width: 22px;
+    height: 18px;
+    padding: 0 4px;
+    border: 1px solid rgb(255 255 255 / 45%);
+    border-bottom-width: 2px;
+    border-radius: 4px;
+    color: #e6edff;
+  }
+  /* 초등 «정답 확인 →» · «완성했어요 →» — 화살표 자리를 ⏎ 가 대신한다(한 단추에 «가라»와 «이 키»가 겹치지 않게) */
+  .swap {
+    display: none;
+  }
+}
