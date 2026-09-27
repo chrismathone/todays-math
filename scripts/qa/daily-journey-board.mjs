@@ -73,6 +73,30 @@ for (const name of (process.env.QA_ENGINES ?? "chromium,webkit").split(",")) {
       assert.deepEqual([one.clipped, one.split, one.overflow, one.pageOverflow], [[], [], [], false], `${name} ${width} ${set} ${variant}`);
       await page.locator("[data-daily-journey]").screenshot({ path: `${out}/${name}-${width}-${set}-${variant}.png` });
     }
+    // 출발 표시(원장님 제보 2026-09-28): 0일차 학생 — 말이 출발 자리(판 오른쪽 아래)에 있을 때 «← 출발»이
+    // 1일차 칸 밑 오른쪽에 있고 말과 겹치지 않는다. 두 판 모두.
+    for (const variant of ["map", "full"]) {
+      await page.goto(`${base}/dev/daily-journey-qa?days=0&set=middle&variant=${variant}`);
+      await page.waitForSelector("[data-qa-ready=true]");
+      await page.evaluate(() => document.fonts.ready);
+      const at = await page.evaluate(() => {
+        const box = (el) => { const r = el.getBoundingClientRect(); return { left: r.left, right: r.right, top: r.top, bottom: r.bottom }; };
+        return {
+          text: document.querySelector("[data-journey-departure]").textContent,
+          mark: box(document.querySelector("[data-journey-departure]")),
+          pawn: box(document.querySelector("[data-pawn-day]")),
+          day1: box(document.querySelector('[data-day-step="1"]')),
+          board: box(document.querySelector("[data-journey-page]")),
+        };
+      });
+      const overlap = at.mark.left < at.pawn.right - 1 && at.mark.right > at.pawn.left + 1 && at.mark.top < at.pawn.bottom - 1 && at.mark.bottom > at.pawn.top + 1;
+      assert.equal(at.text, "← 출발", `${name} ${width} ${variant}: 출발 문구`);
+      assert.equal(overlap, false, `${name} ${width} ${variant}: 출발 표시가 말과 겹침 ${JSON.stringify(at)}`);
+      assert.ok((at.mark.left + at.mark.right) / 2 > (at.board.left + at.board.right) / 2, `${name} ${width} ${variant}: 출발 표시가 판 왼쪽`);
+      assert.ok(at.mark.right <= at.day1.right + 1 && at.mark.right > at.day1.left, `${name} ${width} ${variant}: 출발 표시가 1일차 칸 밑이 아님 ${JSON.stringify(at)}`);
+      if (variant === "map") await page.locator("[data-daily-journey]").screenshot({ path: `${out}/${name}-${width}-departure.png` });
+      console.log(name, width, variant, "출발 표시", Math.round(at.mark.left), "–", Math.round(at.mark.right), "· 말", Math.round(at.pawn.left), "–", Math.round(at.pawn.right), "· 1일차 칸", Math.round(at.day1.left), "–", Math.round(at.day1.right));
+    }
     // 흐름: 지난 칸 되풀기 · 문제 하나로는 말이 안 움직임 · 하루를 마치면 한 칸
     await page.goto(`${base}/dev/daily-journey-qa?days=17`);
     await page.waitForSelector("[data-qa-ready=true]");

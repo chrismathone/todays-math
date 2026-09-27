@@ -152,6 +152,43 @@ describe("DailyJourneyBoard", () => {
     expect(centre).not.toHaveTextContent("기억 복습");
   });
 
+  it("puts the departure mark on the same side as day 1 with the arrow along the path (← 출발 · 원장님 제보 2026-09-28)", () => {
+    for (const variant of ["map", "full"] as const) {
+      const { container, unmount } = render(
+        <DailyJourneyBoard
+          journey={journey(0)}
+          variant={variant}
+          onReviewDay={vi.fn()}
+        />,
+      );
+      // 1일차 칸은 판 오른쪽 아래(4행 4열) — 길은 거기서 왼쪽으로 간다.
+      expect(container.querySelector('[data-day-step="1"]')).toHaveStyle({
+        gridRow: "4",
+        gridColumn: "4",
+      });
+      expect(container.querySelector('[data-day-step="2"]')).toHaveStyle({
+        gridRow: "4",
+        gridColumn: "3",
+      });
+      const footer = container.querySelector(
+        "[data-journey-departure]",
+      )!.parentElement!;
+      expect(footer.lastElementChild).toHaveAttribute("data-journey-departure");
+      expect(footer.lastElementChild).toHaveTextContent("← 출발");
+      expect(footer.firstElementChild).toHaveTextContent(
+        "시계 방향으로 한 칸씩",
+      );
+      unmount();
+    }
+  });
+
+  it("continues on later boards from the right-hand first tile, arrow pointing along the path", () => {
+    render(<DailyJourneyBoard journey={journey(13)} onReviewDay={vi.fn()} />);
+    expect(screen.getByText("← 12일차에서 이어서")).toHaveAttribute(
+      "data-journey-departure",
+    );
+  });
+
   it("keeps the pawn in place while individual problems and retries are answered", () => {
     const initial = journey(2);
     const { rerender } = render(
