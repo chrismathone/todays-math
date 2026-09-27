@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, type ReactNode } from "react";
+import { useRef, useState, type ReactNode } from "react";
 import type {
   ExplorerAction,
   ExplorerActivity,
@@ -8,6 +8,7 @@ import type {
 } from "@/contracts/mathExplorers.contract";
 import AnswerFeedbackEffect from "@/components/math-srs/AnswerFeedbackEffect";
 import pageTurn from "@/components/math-srs/question-page-turn.module.css";
+import { answerKey, useAnswerKeys } from "@/components/math-srs/useAnswerKeys";
 import { ExplorerChoiceText, ExplorerMath } from "./ExplorerMath";
 import s from "./math-explorers.module.css";
 
@@ -71,6 +72,9 @@ export function ExplorerPracticeFrame({
   children: ReactNode;
   feedbackMessage?: string;
 }) {
+  // 보기 번호 키 · 엔터(`useAnswerKeys`) — 연습과 작업실이 같은 틀이라 한 곳에서 듣는다.
+  const frame = useRef<HTMLElement>(null);
+  useAnswerKeys(frame);
   return (
     <>
       <div className={s.practiceToolbar}>
@@ -102,7 +106,11 @@ export function ExplorerPracticeFrame({
           aria-label="이번 학습 진행률"
         />
       </div>
-      <section className={s.practiceFrame} aria-label="개념 문제와 답 고르기">
+      <section
+        ref={frame}
+        className={s.practiceFrame}
+        aria-label="개념 문제와 답 고르기"
+      >
         {children}
         <AnswerFeedbackEffect
           correct={correct}
@@ -281,6 +289,7 @@ function Activity({
                   type="button"
                   key={choice.id}
                   aria-label={`${index + 1} ${choice.label}`}
+                  aria-keyshortcuts={answerKey(index)}
                   aria-pressed={selected.includes(choice.id)}
                   disabled={
                     disabled ||
@@ -310,6 +319,7 @@ function Activity({
                 <button
                   type="button"
                   className={s.confirm}
+                  aria-keyshortcuts="Enter"
                   disabled={
                     disabled ||
                     (activity.kind === "assemble"

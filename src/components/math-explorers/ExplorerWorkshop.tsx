@@ -8,6 +8,7 @@ import type {
 } from "@/contracts/mathExplorers.contract";
 import { ExplorerPracticeFrame } from "./ExplorerPractice";
 import pageTurn from "@/components/math-srs/question-page-turn.module.css";
+import { answerKey } from "@/components/math-srs/useAnswerKeys";
 import { ExplorerChoiceText, ExplorerMath } from "./ExplorerMath";
 import s from "./math-explorers.module.css";
 
@@ -278,6 +279,7 @@ function WorkshopActivity({
                   type="button"
                   key={choice.id}
                   aria-label={`${index + 1} ${choice.label}`}
+                  aria-keyshortcuts={answerKey(index)}
                   aria-pressed={chosen === choice.id}
                   disabled={disabled}
                   data-anim={motion[choice.id]}
@@ -368,6 +370,7 @@ function WorkshopActivity({
               <button
                 type="button"
                 className={s.confirm}
+                aria-keyshortcuts="Enter"
                 disabled={disabled}
                 onClick={confirm}
               >

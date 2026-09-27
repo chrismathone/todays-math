@@ -13,6 +13,7 @@ import { getCourseSection } from "@/lib/math-srs/elementary/catalog";
 import { solutionForDisplay } from "@/lib/solutionSteps";
 import CourseProgressBoard from "./CourseProgressBoard";
 import AnswerFeedbackEffect from "./AnswerFeedbackEffect";
+import { answerKey, useAnswerKeys } from "./useAnswerKeys";
 import s from "./elementary-practice.module.css";
 import pageTurn from "./question-page-turn.module.css";
 
@@ -235,6 +236,8 @@ function CourseQuestion({
   const questionHeading = useRef<HTMLHeadingElement>(null);
   const nextButton = useRef<HTMLButtonElement>(null);
   const input = useRef<HTMLInputElement>(null);
+  const questionRoot = useRef<HTMLElement>(null);
+  useAnswerKeys(questionRoot);
   const submitted = useRef(false);
   const figure = useProblemFigure(problem.figureUrl, onAuthFailure);
   const attempt =
@@ -370,6 +373,7 @@ function CourseQuestion({
 
   return (
     <section
+      ref={questionRoot}
       className={`${s.question} ${s.studentQuestion} ${s.fixedQuestion}`}
       data-answer-mode={
         useChoices ? "choices" : useInteractive ? "fraction" : "written"
@@ -624,6 +628,7 @@ function CourseQuestion({
                         key={`${choiceIndex}-${choice}`}
                         type="button"
                         className={s.answerChoice}
+                        aria-keyshortcuts={answerKey(choiceIndex)}
                         aria-pressed={selectedAnswer === choice}
                         data-result={
                           hasFeedback && selectedAnswer === choice
@@ -706,6 +711,7 @@ function CourseQuestion({
                     type="submit"
                     form="course-answer-form"
                     className={s.primary}
+                    aria-keyshortcuts="Enter"
                     disabled={locked || hasFeedback}
                   >
                     {busy

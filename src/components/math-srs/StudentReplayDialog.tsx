@@ -11,6 +11,7 @@ import { STUDENT_MUST_CHANGE_MESSAGE } from "@/lib/studentRouteAccess";
 import { solutionForDisplay } from "@/lib/solutionSteps";
 import AnswerFeedbackEffect from "./AnswerFeedbackEffect";
 import pageTurn from "./question-page-turn.module.css";
+import { answerKey, useAnswerKeys } from "./useAnswerKeys";
 import s from "./student-replay.module.css";
 
 const ProblemContent = dynamic(() =>
@@ -39,6 +40,8 @@ export default function StudentReplayDialog({
   const dialog = useRef<HTMLDialogElement>(null);
   const solutionDialog = useRef<HTMLDialogElement>(null);
   const solutionOpener = useRef<HTMLButtonElement>(null);
+  // 대화상자 자신이 키의 범위다 — 뒤 화면은 대화상자에 가려 키를 먹지 않고, 풀이 대화상자가 열리면 이것도 멈춘다.
+  useAnswerKeys(dialog);
   const request = useRef<AbortController | null>(null);
   const [data, setData] = useState<MathSrsReplay | null>(null);
   const [busy, setBusy] = useState(false);
@@ -299,6 +302,7 @@ export default function StudentReplayDialog({
                   <button
                     key={`${index}:${choice}`}
                     type="button"
+                    aria-keyshortcuts={answerKey(index)}
                     aria-pressed={answer === choice}
                     disabled={busy || correct !== null}
                     onClick={() => {
@@ -363,6 +367,7 @@ export default function StudentReplayDialog({
               <button
                 type="button"
                 className={s.primary}
+                aria-keyshortcuts="Enter"
                 disabled={busy || correct !== null || submittedAnswer === null}
                 onClick={() =>
                   void perform({

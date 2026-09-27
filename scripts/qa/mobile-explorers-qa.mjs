@@ -1994,6 +1994,130 @@ async function lightFrames({ page, mobile, step, shot }) {
   });
 }
 fixtures["light:frames"] = fixtures.concept;
+
+// ───────────────────────── 보기 번호 키 · 엔터 (원장님 2026-09-28) ─────────────────────────
+// «1,2,3,4 를 눌러도 정답 입력 · 엔터로 제출». jsdom 은 포커스된 단추의 엔터를 click 으로 바꾸지 않아, «마우스로 고른 보기에
+// 포커스가 남은 채 엔터»(브라우저 기본 동작과 겹침)와 «보기가 보이는 순간 키가 산다»는 실제 브라우저에서 잰다.
+// 키 장면은 PC 크기에서 돌린다(QA_SIZES=1280x800,800x720 · QA_SCENARIOS=keys — 묶음 이름이라 기본 실행에는 안 든다).
+const answerPosts = (sim, from) => sim.posts.slice(from).filter((post) => post.action?.type === "answer" || post.body?.submittedAnswer !== undefined);
+async function blurAll(page) {
+  await page.evaluate(() => document.activeElement instanceof HTMLElement && document.activeElement.blur());
+}
+async function keysScenario({ page, sim, mobile, step, shot }) {
+  await step("keys.start", async () => {
+    await page.goto(base + "/dev/mobile-explorers-qa");
+    await homeReady(page);
+    await tap(page.locator("[data-expedition-start]"), mobile);
+    await page.locator("[data-explorer-dock=true]").waitFor({ timeout: 10000 });
+    await settled(page, sim);
+    await untilActivity(page, sim, mobile, "examples");
+    const shortcuts = await choiceButtons(page).evaluateAll((buttons) => buttons.map((b) => b.getAttribute("aria-keyshortcuts")));
+    assert.deepEqual(shortcuts, shortcuts.map((_, i) => String(i + 1)), "보기 번호 키 표지");
+    assert.equal(await page.getByRole("button", { name: "선택한 예 확인하기" }).getAttribute("aria-keyshortcuts"), "Enter");
+    return engine.explorerView(explorerStored(sim), today()).currentActivity.cardName;
+  });
+  await step("keys.examples", async () => {
+    const answer = correctExplorerAction(sim);
+    const buttons = choiceButtons(page);
+    const count = await buttons.count();
+    const wrong = [...Array(count).keys()].find((id) => !answer.choiceIds.includes(id));
+    const from = sim.posts.length;
+    await blurAll(page);
+    await page.keyboard.press("Enter");
+    await page.waitForTimeout(250);
+    assert.equal(answerPosts(sim, from).length, 0, "아무것도 안 골랐는데 엔터가 보냈다");
+    await page.keyboard.press(String(wrong + 1));
+    assert.equal(await buttons.nth(wrong).getAttribute("aria-pressed"), "true", "숫자키로 켜지지 않았다");
+    await page.keyboard.press(String(wrong + 1));
+    assert.equal(await buttons.nth(wrong).getAttribute("aria-pressed"), "false", "숫자키로 꺼지지 않았다");
+    await page.keyboard.press(String(count + 1));
+    for (const id of answer.choiceIds.slice(0, -1)) await page.keyboard.press(String(id + 1));
+    // 마지막 보기는 마우스로 — 포커스가 그 보기에 남는다(Chromium). 엔터가 그 보기를 끄면 안 된다.
+    const last = answer.choiceIds.at(-1);
+    await tap(buttons.nth(last), mobile);
+    const focused = await buttons.nth(last).evaluate((el) => el === document.activeElement);
+    await shot("keys-examples-picked");
+    const handled = sim.handled;
+    await page.keyboard.press("Enter");
+    await until(() => sim.handled > handled, "엔터 확인 응답");
+    await page.locator("[data-answer-feedback=correct]").waitFor({ timeout: 5000 });
+    assert.equal(await buttons.nth(last).getAttribute("aria-pressed"), "true", "엔터가 포커스된 보기를 껐다");
+    await page.keyboard.press("Enter");
+    await page.keyboard.press("1");
+    await settled(page, sim);
+    const sent = answerPosts(sim, from);
+    assert.equal(sent.length, 1, `확인이 ${sent.length}번 갔다`);
+    assert.deepEqual([...sent[0].action.choiceIds].sort(), [...answer.choiceIds].sort());
+    return `숫자키 켜고 끔 · 보기 수 밖 무시 · 마우스 포커스(${focused ? "보기에 남음" : "안 남음"}) 뒤 엔터 = 확인 한 번 · 연출 중 키 무시`;
+  });
+  await step("keys.assemble", async () => {
+    await untilActivity(page, sim, mobile, "assemble");
+    const answer = correctExplorerAction(sim);
+    const from = sim.posts.length;
+    await blurAll(page);
+    for (const id of answer.choiceIds) await page.keyboard.press(String(id + 1));
+    await page.keyboard.press(String(answer.choiceIds[0] + 1));
+    await page.keyboard.press("Enter");
+    await page.locator("[data-answer-feedback=correct]").waitFor({ timeout: 5000 });
+    await settled(page, sim);
+    const sent = answerPosts(sim, from);
+    assert.equal(sent.length, 1);
+    assert.deepEqual(sent[0].action.choiceIds, answer.choiceIds, "숫자키 순서대로 빈칸이 차지 않았다");
+    return "숫자키 순서대로 빈칸 · 쓴 조각 다시 무시 · 엔터 확인";
+  });
+  await step("keys.truth", async () => {
+    await untilActivity(page, sim, mobile, "truth");
+    const answer = correctExplorerAction(sim);
+    const from = sim.posts.length;
+    await blurAll(page);
+    const handled = sim.handled;
+    await page.keyboard.press(String(answer.choiceIds[0] + 1));
+    await page.keyboard.press(String(((answer.choiceIds[0] + 1) % 2) + 1));
+    await until(() => sim.handled > handled, "하나 고르기 응답");
+    await page.locator("[data-answer-feedback=correct]").waitFor({ timeout: 5000 });
+    await settled(page, sim);
+    const sent = answerPosts(sim, from);
+    assert.equal(sent.length, 1, `하나 고르기가 ${sent.length}번 갔다`);
+    assert.deepEqual(sent[0].action.choiceIds, answer.choiceIds);
+    return "숫자키 한 번에 즉시 제출 · 이어 누른 키 무시";
+  });
+}
+async function keysBankScenario({ page, sim, mobile, step, shot }, kind) {
+  await step(`keys.${kind}`, async () => {
+    await page.goto(base + "/dev/mobile-explorers-qa");
+    await homeReady(page);
+    await tap(page.locator("[data-expedition-start]"), mobile);
+    const group = page.getByRole("group", { name: "답 고르기" });
+    await group.waitFor({ timeout: 15000 });
+    const shortcuts = await group.getByRole("button").evaluateAll((buttons) => buttons.map((b) => b.getAttribute("aria-keyshortcuts")));
+    assert.deepEqual(shortcuts, ["1", "2", "3", "4"], "보기 번호 키 표지");
+    // 화면에 뜬 보기 글 — 공개 DTO 에서(은행 장면 `publicProblems` 와 같은 길)
+    const now = new Date();
+    const choices =
+      kind === "elementary"
+        ? (await courseRequest(sim, "read", undefined, now)).data.session.problems[sim.state.course.learner.session.attempts.length].answerChoices
+        : (await middleRequest(sim, "read", undefined, now)).data.mission.problems[serverState.currentSrsMission(sim.state, now).attempts.length].answerChoices;
+    const from = sim.posts.length;
+    await blurAll(page);
+    await shot(`keys-${kind}`);
+    await page.keyboard.press("2");
+    await page.keyboard.press("3");
+    await until(() => answerPosts(sim, from).length > 0, "은행 답 응답");
+    await page.locator("[data-answer-feedback]").waitFor({ timeout: 5000 });
+    await page.keyboard.press("4");
+    await page.waitForTimeout(400);
+    const sent = answerPosts(sim, from);
+    assert.equal(sent.length, 1, `은행 답이 ${sent.length}번 갔다`);
+    assert.equal(sent[0].body.submittedAnswer, choices[1], "둘째 보기가 아니다");
+    return `숫자키 2 → «${choices[1]}» 한 번 · 저장 중 · 연출 중 키 무시`;
+  });
+}
+scenarios["keys:explorer"] = keysScenario;
+fixtures["keys:explorer"] = () => ({ ...serverState.emptySrsState(), explorers: explorerRecord(7, "g7-equation") });
+scenarios["keys:bank-middle"] = (context) => keysBankScenario(context, "middle");
+fixtures["keys:bank-middle"] = fixtures["bank-middle"];
+scenarios["keys:bank-elementary"] = (context) => keysBankScenario(context, "elementary");
+fixtures["keys:bank-elementary"] = fixtures["bank-elementary"];
 scenarios["light:frames"] = lightFrames;
 
 // ───────────────────────── runner ─────────────────────────
