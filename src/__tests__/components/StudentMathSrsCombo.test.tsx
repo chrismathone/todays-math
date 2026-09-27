@@ -93,6 +93,37 @@ beforeEach(() => {
   localStorage.clear();
 });
 
+/**
+ * 정답 연출이 뜨는 순간을 잡는다 — **누르기 전에** 걸어 둘 것.
+ *
+ * 🔴 연출은 1.2초 뒤 사라진다(`StudentMathSrs.tsx` 타이머). 클릭을 기다린 **뒤에** 찾기 시작하면, 다른 세션 부하로
+ *    클릭 await 가 1.2초를 넘길 때 이미 다음 문제로 넘어가 연출을 놓친다(2026-09-27 main 에서 한 번 빨강 —
+ *    실패 순간 화면이 «4/12 · 4번»이었다). 그래서 DOM 이 바뀌는 순간마다 보는 MutationObserver 를 먼저 건다 —
+ *    React 는 연출을 통째로 한 번에 붙이므로 붙는 순간의 글이 최종 글이다.
+ * 역할(status)이 아니라 연출 표지(`data-answer-feedback`)로 찾는다 — 불러오는 중 표시도 role=status 다.
+ * RTL `waitFor`/`findBy*` 를 쓰지 않은 것은 클릭(`user.click`)의 act 와 겹치지 않게 하려는 것이다.
+ */
+function effectAppears(timeout = 5000): Promise<HTMLElement> {
+  const find = () =>
+    document.querySelector<HTMLElement>("[data-answer-feedback]");
+  return new Promise((resolve, reject) => {
+    const now = find();
+    if (now) return resolve(now);
+    const observer = new MutationObserver(() => {
+      const found = find();
+      if (!found) return;
+      observer.disconnect();
+      clearTimeout(timer);
+      resolve(found);
+    });
+    observer.observe(document.body, { childList: true, subtree: true });
+    const timer = setTimeout(() => {
+      observer.disconnect();
+      reject(new Error(`정답 연출이 ${timeout}ms 안에 뜨지 않았다`));
+    }, timeout);
+  });
+}
+
 /** 앞 결과들로 이어 풀기 → 다음 문제를 첫 보기로 답 → 서버가 next 를 돌려준다 */
 async function answerNext(
   before: Result[],
@@ -129,14 +160,17 @@ async function answerNext(
   const choices = within(
     await screen.findByRole("group", { name: "답 고르기" }),
   ).getAllByRole("button");
+  const effect = effectAppears();
   await user.click(choices[0]);
-  return screen.findByRole("status");
+  return effect;
 }
 
 describe("복습 화면 — 첫 풀이 정답 연출의 콤보", () => {
   it("셋째 빠른 정답에서 «3문제 연속 정답»", async () => {
     const status = await answerNext(["fast", "fast"], "fast");
     expect(status).toHaveTextContent(/^3문제 연속 정답$/);
+    // 화면 읽기 — 정답 연출이 role=status 로 이 한 문장을 읽는다
+    expect(status).toHaveAttribute("role", "status");
   });
 
   it("둘째까지는 지금 문구", async () => {
@@ -194,12 +228,13 @@ describe("복습 화면 — 첫 풀이 정답 연출의 콤보", () => {
     await user.click(
       await screen.findByRole("button", { name: /오답 다시 풀기/ }),
     );
+    const effect = effectAppears();
     await user.click(
       within(screen.getByRole("group", { name: "답 고르기" })).getAllByRole(
         "button",
       )[0],
     );
-    const status = await screen.findByRole("status");
+    const status = await effect;
     expect(status).toHaveTextContent(/^정확하게 풀었어요$/);
     expect(status).not.toHaveAttribute("data-streak");
     await act(async () => {});
