@@ -1,5 +1,14 @@
+import { readFileSync } from "node:fs";
+import { resolve } from "node:path";
 import { useState } from "react";
-import { act, fireEvent, render, screen, within } from "@testing-library/react";
+import {
+  act,
+  cleanup,
+  fireEvent,
+  render,
+  screen,
+  within,
+} from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 import ExplorerPractice from "@/components/math-explorers/ExplorerPractice";
@@ -286,6 +295,24 @@ describe("통합 탐험 — 보기 번호 키 · 엔터", () => {
     await user.keyboard("{Enter}");
     expect(pressed("1 자연수")).toBe("false");
     expect(onAction).not.toHaveBeenCalled();
+  });
+
+  it("마우스로 켰다 끈 보기에 포커스가 남아도 확인 단추가 켜져 있으면 엔터는 확인 — 그 보기를 다시 켜지 않는다", async () => {
+    // D-145 ⑸ — 확인 단추가 있는 화면에서 누름 단추(켜졌든 꺼졌든)에 포커스가 있으면 엔터 = 확인(리드 · codex · grok 2:1).
+    const user = userEvent.setup();
+    const { onAction } = explorer();
+    await user.click(screen.getByRole("button", { name: "1 자연수" }));
+    const third = screen.getByRole("button", { name: "3 소수" });
+    await user.click(third);
+    await user.click(third);
+    expect(third).toHaveFocus();
+    await user.keyboard("{Enter}");
+    expect(onAction).toHaveBeenCalledExactlyOnceWith({
+      type: "answer",
+      questionId: "question",
+      choiceIds: [2],
+    });
+    expect(pressed("3 소수")).toBe("false");
   });
 
   it("확인 단추에 포커스가 있으면 엔터는 그 단추를 한 번만 누른다", async () => {
@@ -832,5 +859,212 @@ describe("지난 학습 다시 풀기 — 대화상자 안에서는 대화상자
     expect(JSON.parse(fetcher.mock.calls[1][1].body)).toMatchObject({
       submittedAnswer: "1/3",
     });
+  });
+});
+
+// ── 키 모양 — 번호 키 · ⏎ 키 (05 §8.18 · D-145) ─────────────────────────────
+/**
+ * 키 모양이 **실제 키와 같은가**. 모양 · 화면 읽기 · 동작이 모두 단추의 `aria-keyshortcuts` 한 곳에서 나오는지 본다:
+ * 키를 단 단추마다 키 모양이 정확히 하나(그 키) · 키 모양은 그 키를 단 단추 안에만.
+ * 색 · 크기 · «마우스 기기에서만»은 jsdom 이 못 잰다 — 실브라우저 `mobile-explorers-qa.mjs` 의 `keys:look` 이 계산된 스타일로 잰다.
+ */
+function expectKeyCaps() {
+  const buttons = Array.from(
+    document.querySelectorAll<HTMLButtonElement>("button[aria-keyshortcuts]"),
+  );
+  for (const button of buttons) {
+    const key = button.getAttribute("aria-keyshortcuts")!;
+    const caps = button.querySelectorAll("[data-answer-key]");
+    expect(caps, `${button.textContent} 의 키 모양`).toHaveLength(1);
+    expect(caps[0]).toHaveAttribute("data-answer-key", key);
+    // ⏎ 는 모양뿐 — 화면 읽기는 단추의 `aria-keyshortcuts` 로 엔터를 알린다. 번호는 읽는 방식을 지금 그대로 둔다.
+    if (key === "Enter") {
+      expect(caps[0].tagName).toBe("KBD");
+      expect(caps[0]).toHaveAttribute("aria-hidden", "true");
+    } else expect(caps[0].textContent).toBe(key);
+  }
+  for (const cap of document.querySelectorAll("[data-answer-key]"))
+    expect(cap.closest("button")).toHaveAttribute(
+      "aria-keyshortcuts",
+      cap.getAttribute("data-answer-key")!,
+    );
+  return buttons.map((button) => button.getAttribute("aria-keyshortcuts"));
+}
+const hasEnterKey = (name: string | RegExp) =>
+  !!screen
+    .getByRole("button", { name })
+    .querySelector('[data-answer-key="Enter"]');
+
+describe("키 모양 — 번호 키 · ⏎ 키는 그 단추의 실제 키 (05 §8.18)", () => {
+  it("탐험 예 모으기 · 정의 조립 — 번호 키 넷과 확인 단추의 ⏎, 화면 읽기 이름은 그대로", () => {
+    const first = explorer();
+    expect(expectKeyCaps()).toEqual(["1", "2", "3", "4", "Enter"]);
+    expect(
+      screen.getByRole("button", { name: "선택한 예 확인하기" }),
+    ).toBeInTheDocument();
+    expect(hasEnterKey("아직 모르겠어요")).toBe(false);
+    first.unmount();
+    explorer(assemble);
+    expect(expectKeyCaps()).toEqual(["1", "2", "3", "4", "Enter"]);
+    expect(hasEnterKey("완성한 정의 확인하기")).toBe(true);
+  });
+
+  it("탐험 경계 살피기 — 번호 키만(확인 단추가 없어 ⏎ 도 없다) · 뜻 만나기의 넘김 단추에는 ⏎ 가 없다", () => {
+    const first = explorer(truth);
+    expect(expectKeyCaps()).toEqual(["1", "2"]);
+    first.unmount();
+    explorer({ ...activity, kind: "read" });
+    expectKeyCaps();
+    expect(hasEnterKey(/정의를 가리고 도전하기/)).toBe(false);
+  });
+
+  it("작업실 — 예상 보기의 번호 키 · 조각 확인 단추의 ⏎", () => {
+    lab({
+      stage: "predict",
+      choices: [
+        { id: 0, label: "더 커져요" },
+        { id: 1, label: "그대로예요" },
+      ],
+    });
+    expect(expectKeyCaps()).toEqual(["1", "2"]);
+    cleanup();
+    lab();
+    expect(expectKeyCaps()).toEqual(["Enter"]);
+    expect(hasEnterKey("나눈 조각 확인하기")).toBe(true);
+  });
+
+  it("중등 오늘의 복습 — 번호 키 넷", async () => {
+    vi.mocked(srsApi.fetchMathSrs).mockResolvedValue({
+      ok: true,
+      data: middleState(),
+    });
+    render(
+      <StudentMathSrs expedition={{ onExit: vi.fn(), onComplete: vi.fn() }} />,
+    );
+    await screen.findByRole("group", { name: "답 고르기" });
+    expect(expectKeyCaps()).toEqual(["1", "2", "3", "4"]);
+  });
+
+  it("초등 은행 — 네 보기의 번호 키 · «정답 확인»과 «완성했어요»의 ⏎ · 화살표는 키와 바꿔 끼는 자리", async () => {
+    elementary(course({ answerChoices: ["1", "2", "3", "4"] } as never));
+    await screen.findByText("문제 1: 1 + 1");
+    expect(expectKeyCaps()).toEqual(["1", "2", "3", "4"]);
+    cleanup();
+    elementary(course());
+    await screen.findByRole("textbox", { name: "나의 답" });
+    expect(expectKeyCaps()).toEqual(["Enter"]);
+    const submit = screen.getByRole("button", { name: /정답 확인/ });
+    // ㉠ 키가 보이는 기기에서는 ⏎ 가 화살표 자리를 대신한다 — 화살표는 «바꿔 끼는 자리» 표지를 단다(모양은 실브라우저에서).
+    expect(submit.querySelectorAll("[data-answer-key-swap]")).toHaveLength(1);
+    expect(submit.querySelector("[data-answer-key-swap]")).toHaveTextContent(
+      "→",
+    );
+    cleanup();
+    elementary(
+      course({
+        interactive: { kind: "fraction-parts", denominator: 4, shape: "bar" },
+      } as never),
+    );
+    await screen.findByRole("button", { name: "2번째 칸" });
+    expect(expectKeyCaps()).toEqual(["Enter"]);
+    expect(hasEnterKey(/완성했어요/)).toBe(true);
+  });
+
+  it("초등 은행 — 채점 뒤 «다음 문제 →»(넘김)에는 ⏎ 도 바꿔 끼는 표지도 없다", async () => {
+    const run = course();
+    const answered = {
+      ...run,
+      problems: run.problems.map((problem, index) =>
+        index === 0 ? { ...problem, feedback: { correct: false } } : problem,
+      ),
+      attempts: [
+        {
+          problemId: run.problems[0].id,
+          submittedAnswer: "3",
+          correct: false,
+          usedHint: false,
+          selfAssessed: false,
+          answeredAt: now,
+        },
+      ],
+    } as CoursePublicSession;
+    render(
+      <StudentCoursePractice
+        session={answered}
+        summary={{ todayAnswered: 1, todayGoal: 10 } as CourseSummary}
+        feedbackId={run.problems[0].id}
+        busy={false}
+        onAnswer={vi.fn()}
+        onHint={vi.fn()}
+        onNext={vi.fn()}
+        onContinue={vi.fn()}
+        onExit={vi.fn()}
+        onAuthFailure={vi.fn()}
+      />,
+    );
+    const next = await screen.findByRole("button", { name: /다음 문제/ });
+    expectKeyCaps();
+    expect(next.querySelector("[data-answer-key]")).toBeNull();
+    expect(next.querySelector("[data-answer-key-swap]")).toBeNull();
+  });
+
+  it("지난 학습 다시 풀기 — 보기 번호 키 · 조각 «완성했어요»의 ⏎ · 맞힌 뒤 «다음 복습 문제»에는 ⏎ 가 없다", async () => {
+    vi.stubGlobal(
+      "fetch",
+      vi
+        .fn()
+        .mockResolvedValueOnce(json(replay))
+        .mockResolvedValueOnce(json({ ...replay, correct: true })),
+    );
+    render(
+      <StudentReplayDialog kind="elementary" step={2} onClose={vi.fn()} />,
+    );
+    await screen.findByRole("group", { name: "복습 답 고르기" });
+    expect(expectKeyCaps()).toEqual(["1", "2", "3", "4"]);
+    press("2");
+    const next = await screen.findByRole("button", {
+      name: /진도판으로|다음 복습 문제/,
+    });
+    expectKeyCaps();
+    expect(next.querySelector("[data-answer-key]")).toBeNull();
+    cleanup();
+    vi.stubGlobal(
+      "fetch",
+      vi.fn().mockResolvedValueOnce(
+        json({
+          ...replay,
+          interactive: { kind: "fraction-parts", denominator: 3, shape: "bar" },
+        }),
+      ),
+    );
+    render(
+      <StudentReplayDialog kind="elementary" step={2} onClose={vi.fn()} />,
+    );
+    await screen.findByRole("button", { name: "완성했어요" });
+    expect(expectKeyCaps()).toEqual(["Enter"]);
+  });
+
+  it("키 모양은 마우스가 주 포인터인 기기에서만 — 모양을 주는 규칙은 모두 가르는 조건 안에 있고, 밖에서는 ⏎ 를 숨긴다", () => {
+    const css = readFileSync(
+      resolve(process.cwd(), "src/components/math-srs/answer-keys.module.css"),
+      "utf8",
+    ).replace(/\/\*[\s\S]*?\*\//g, "");
+    const gate = "@media (hover: hover) and (pointer: fine)";
+    const start = css.indexOf(gate);
+    expect(start).toBeGreaterThanOrEqual(0);
+    // 가르는 조건 블록을 괄호 짝으로 떼어 낸다
+    let depth = 0;
+    let end = css.indexOf("{", start);
+    for (; end < css.length; end += 1) {
+      if (css[end] === "{") depth += 1;
+      if (css[end] === "}" && --depth === 0) break;
+    }
+    const inside = css.slice(start, end + 1);
+    const outside = css.slice(0, start) + css.slice(end + 1);
+    expect(inside).toMatch(/\.number\.number\s*\{[^}]*box-shadow/);
+    expect(inside).toMatch(/\.enter\s*\{[^}]*display:\s*inline-grid/);
+    expect(inside).toMatch(/\.swap\s*\{[^}]*display:\s*none/);
+    expect(outside).toMatch(/\.enter\s*\{[^}]*display:\s*none/);
+    expect(outside).not.toMatch(/\.number|\.swap/);
   });
 });

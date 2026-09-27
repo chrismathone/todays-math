@@ -11,6 +11,7 @@ import { STUDENT_MUST_CHANGE_MESSAGE } from "@/lib/studentRouteAccess";
 import { solutionForDisplay } from "@/lib/solutionSteps";
 import AnswerFeedbackEffect from "./AnswerFeedbackEffect";
 import pageTurn from "./question-page-turn.module.css";
+import { EnterKey, NumberKey } from "./AnswerKeyCaps";
 import { answerKey, useAnswerKeys } from "./useAnswerKeys";
 import s from "./student-replay.module.css";
 
@@ -314,9 +315,11 @@ export default function StudentReplayDialog({
                       });
                     }}
                   >
-                    <span className={s.index} aria-hidden="true">
-                      {index + 1}
-                    </span>
+                    <NumberKey
+                      index={index}
+                      className={s.index}
+                      aria-hidden="true"
+                    />
                     <MathText text={choice} />
                   </button>
                 ))}
@@ -377,6 +380,7 @@ export default function StudentReplayDialog({
                 }
               >
                 {busy ? "확인 중…" : "완성했어요"}
+                <EnterKey />
               </button>
             ) : busy ? (
               <span className={s.pending} role="status">

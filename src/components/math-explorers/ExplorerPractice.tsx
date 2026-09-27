@@ -7,6 +7,7 @@ import type {
   ExplorerState,
 } from "@/contracts/mathExplorers.contract";
 import AnswerFeedbackEffect from "@/components/math-srs/AnswerFeedbackEffect";
+import { EnterKey, NumberKey } from "@/components/math-srs/AnswerKeyCaps";
 import pageTurn from "@/components/math-srs/question-page-turn.module.css";
 import { answerKey, useAnswerKeys } from "@/components/math-srs/useAnswerKeys";
 import { ExplorerChoiceText, ExplorerMath } from "./ExplorerMath";
@@ -306,7 +307,7 @@ function Activity({
                   data-anim={motion[choice.id]}
                   onClick={() => choose(choice.id)}
                 >
-                  <span className={s.answerNumber}>{index + 1}</span>
+                  <NumberKey index={index} className={s.answerNumber} />
                   <ExplorerChoiceText
                     className={s.answerText}
                     text={choice.label}
@@ -331,6 +332,7 @@ function Activity({
                   {activity.kind === "assemble"
                     ? "완성한 정의 확인하기"
                     : "선택한 예 확인하기"}
+                  <EnterKey />
                 </button>
               ) : null}
             </div>

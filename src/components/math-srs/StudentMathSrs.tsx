@@ -34,6 +34,7 @@ import s from "./authenticated.module.css";
 import pageTurn from "./question-page-turn.module.css";
 import StudentJourney from "./StudentJourney";
 import AnswerFeedbackEffect from "./AnswerFeedbackEffect";
+import { NumberKey } from "./AnswerKeyCaps";
 import { answerKey, useAnswerKeys } from "./useAnswerKeys";
 import type { ExpeditionActivityCallbacks } from "@/components/math-explorers/ExplorerBankActivity";
 
@@ -687,9 +688,11 @@ function Question({
                       : undefined
                   }
                 >
-                  <span className={s.choiceNumber} aria-hidden="true">
-                    {index + 1}
-                  </span>
+                  <NumberKey
+                    index={index}
+                    className={s.choiceNumber}
+                    aria-hidden="true"
+                  />
                   <MathText text={choice} />
                 </button>
               ))}

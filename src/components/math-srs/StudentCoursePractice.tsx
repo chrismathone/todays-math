@@ -13,6 +13,7 @@ import { getCourseSection } from "@/lib/math-srs/elementary/catalog";
 import { solutionForDisplay } from "@/lib/solutionSteps";
 import CourseProgressBoard from "./CourseProgressBoard";
 import AnswerFeedbackEffect from "./AnswerFeedbackEffect";
+import { EnterKey, NumberKey, SwapArrow } from "./AnswerKeyCaps";
 import { answerKey, useAnswerKeys } from "./useAnswerKeys";
 import s from "./elementary-practice.module.css";
 import pageTurn from "./question-page-turn.module.css";
@@ -645,9 +646,10 @@ function CourseQuestion({
                           sendAnswer({ submittedAnswer: choice });
                         }}
                       >
-                        <span className={s.choiceNumber}>
-                          {choiceIndex + 1}
-                        </span>
+                        <NumberKey
+                          index={choiceIndex}
+                          className={s.choiceNumber}
+                        />
                         <MathText text={choice} as="span" />
                       </button>
                     ))}
@@ -719,7 +721,8 @@ function CourseQuestion({
                       : useInteractive
                         ? "완성했어요"
                         : "정답 확인"}
-                    <span aria-hidden="true">→</span>
+                    <SwapArrow />
+                    <EnterKey />
                   </button>
                 )}
               </div>

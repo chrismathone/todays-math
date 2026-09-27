@@ -7,6 +7,7 @@ import type {
   WorkshopView,
 } from "@/contracts/mathExplorers.contract";
 import { ExplorerPracticeFrame } from "./ExplorerPractice";
+import { EnterKey, NumberKey } from "@/components/math-srs/AnswerKeyCaps";
 import pageTurn from "@/components/math-srs/question-page-turn.module.css";
 import { answerKey } from "@/components/math-srs/useAnswerKeys";
 import { ExplorerChoiceText, ExplorerMath } from "./ExplorerMath";
@@ -285,7 +286,7 @@ function WorkshopActivity({
                   data-anim={motion[choice.id]}
                   onClick={() => choose(choice.id)}
                 >
-                  <span className={s.answerNumber}>{index + 1}</span>
+                  <NumberKey index={index} className={s.answerNumber} />
                   <ExplorerChoiceText
                     className={s.answerText}
                     text={choice.label}
@@ -377,6 +378,7 @@ function WorkshopActivity({
                 {stage === "check"
                   ? "칠한 조각 확인하기"
                   : "나눈 조각 확인하기"}
+                <EnterKey />
               </button>
             </div>
           </>

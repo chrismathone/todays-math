@@ -2120,6 +2120,285 @@ scenarios["keys:bank-elementary"] = (context) => keysBankScenario(context, "elem
 fixtures["keys:bank-elementary"] = fixtures["bank-elementary"];
 scenarios["light:frames"] = lightFrames;
 
+// ───────────────────────── 키 모양 — 번호 키 · ⏎ 키 (05 §8.18 · D-145, 2026-09-28) ─────────────────────────
+// 모양은 «마우스가 주 포인터인 기기»(`(hover: hover) and (pointer: fine)`)에서만 — 폰(isMobile · hasTouch)은 지금 동그라미 ·
+// 화살표 그대로. jsdom 은 이 조건도 계산된 색도 못 재서 여기서 잰다(교훈 2026-09-16 «RTL 은 클래스 이름을 보고 초록인데…»).
+// 폰 · PC 모두에서 돈다: QA_SIZES=320x568,390x700,800x720,1280x800 QA_SCENARIOS=keys:look-explorer,keys:look-middle,keys:look-elementary
+const KEY_EDGE = "rgb(198, 212, 236)";
+const KEY_SELECTED = { color: "rgb(49, 89, 222)", depth: "rgb(36, 69, 176)" };
+const KEY_RESULT = {
+  explorer: { correct: { color: "rgb(29, 117, 80)", depth: "rgb(20, 105, 78)" } },
+  middle: { correct: { color: "rgb(20, 105, 78)", depth: "rgb(22, 131, 96)" }, incorrect: { color: "rgb(161, 59, 50)", depth: "rgb(201, 81, 70)" } },
+  elementary: { correct: { color: "rgb(22, 99, 70)", depth: "rgb(32, 132, 95)" }, incorrect: { color: "rgb(169, 66, 71)", depth: "rgb(210, 97, 99)" } },
+};
+async function keyCaps(scope) {
+  return scope.locator("[data-answer-key]").evaluateAll((nodes) =>
+    nodes.map((el) => {
+      const style = getComputedStyle(el);
+      const box = el.getBoundingClientRect();
+      const button = el.closest("button").getBoundingClientRect();
+      return {
+        key: el.dataset.answerKey,
+        pressed: el.closest("button").getAttribute("aria-pressed"),
+        display: style.display,
+        radius: style.borderTopLeftRadius,
+        bg: style.backgroundColor,
+        color: style.color,
+        shadow: style.boxShadow,
+        w: Math.round(box.width * 10) / 10,
+        h: Math.round(box.height * 10) / 10,
+        inside: box.left >= button.left - 0.5 && box.right <= button.right + 0.5 && box.top >= button.top - 0.5 && box.bottom <= button.bottom + 0.5,
+      };
+    }),
+  );
+}
+// 번호 키 — PC 는 흰 면 · 5px 모서리 · 테두리/두께(상태 색), 폰은 지금 모양(동그라미 · 그림자 없음). 칸 크기는 둘 다 화면 것 그대로.
+function assertNumberCaps(caps, { mobile, size, look = null, label }) {
+  assert.ok(caps.length > 0, `${label}: 번호 키가 없다`);
+  for (const cap of caps) {
+    const where = `${label} ${cap.key}번 ${JSON.stringify(cap)}`;
+    assert.notEqual(cap.display, "none", `${where}: 번호가 숨었다`);
+    if (size) assert.deepEqual([cap.w, cap.h], size, `${where}: 칸 크기가 바뀌었다`);
+    assert.ok(cap.inside, `${where}: 단추 밖으로 나갔다`);
+    if (mobile) {
+      assert.equal(cap.shadow, "none", `${where}: 폰에 키 두께가 붙었다`);
+      assert.notEqual(cap.radius, "5px", `${where}: 폰에서 키 모서리`);
+      continue;
+    }
+    assert.equal(cap.radius, "5px", `${where}: 키 모서리`);
+    assert.equal(cap.bg, WHITE, `${where}: 키 면`);
+    const want = cap.pressed === "true" && look ? look : null;
+    if (want) {
+      assert.equal(cap.color, want.color, `${where}: 숫자 색`);
+      assert.ok(cap.shadow.includes(`${want.depth} 0px 2px 0px`), `${where}: 아래 두께 색`);
+    } else {
+      assert.ok(cap.shadow.includes(`${KEY_EDGE} 0px 0px 0px 1px inset`) && cap.shadow.includes(`${KEY_EDGE} 0px 2px 0px`), `${where}: 테두리 · 두께`);
+    }
+  }
+}
+// ⏎ 키(확인 단추 안) · 바꿔 끼는 화살표 — PC 는 ⏎ 보이고 화살표 숨김, 폰은 ⏎ 숨기고 화살표 그대로.
+async function assertEnterCap(button, { mobile, label }) {
+  const look = await button.evaluate((el) => {
+    const kbd = el.querySelector('[data-answer-key="Enter"]');
+    const swap = el.querySelector("[data-answer-key-swap]");
+    const box = kbd?.getBoundingClientRect();
+    const own = el.getBoundingClientRect();
+    const text = [...el.childNodes].filter((node) => node.nodeType === Node.TEXT_NODE).map((node) => node.textContent).join("").trim();
+    return {
+      name: el.getAttribute("aria-label") ?? text,
+      shortcut: el.getAttribute("aria-keyshortcuts"),
+      kbd: kbd ? { display: getComputedStyle(kbd).display, hidden: kbd.getAttribute("aria-hidden"), h: box.height, w: box.width, inside: box.left >= own.left && box.right <= own.right && box.top >= own.top && box.bottom <= own.bottom, color: getComputedStyle(kbd).color } : null,
+      swap: swap ? getComputedStyle(swap).display : null,
+      opacity: getComputedStyle(el).opacity,
+      lines: Math.round(own.height),
+    };
+  });
+  const where = `${label} ${JSON.stringify(look)}`;
+  assert.equal(look.shortcut, "Enter", `${where}: 엔터 표지`);
+  assert.ok(look.kbd, `${where}: ⏎ 키가 없다`);
+  assert.equal(look.kbd.hidden, "true", where);
+  if (mobile) {
+    assert.equal(look.kbd.display, "none", `${where}: 폰에 ⏎ 키가 보인다`);
+    if (look.swap !== null) assert.notEqual(look.swap, "none", `${where}: 폰에서 화살표가 사라졌다`);
+  } else {
+    // 단추(flex) 안에서는 inline-grid 가 grid 로 계산된다
+    assert.ok(["grid", "inline-grid"].includes(look.kbd.display), `${where}: PC 에 ⏎ 키가 안 보인다`);
+    assert.equal(look.kbd.h, 18, `${where}: ⏎ 키 높이`);
+    assert.ok(look.kbd.inside, `${where}: ⏎ 키가 단추 밖`);
+    assert.equal(look.kbd.color, "rgb(230, 237, 255)", `${where}: ⏎ 키 색`);
+    if (look.swap !== null) assert.equal(look.swap, "none", `${where}: PC 에서 화살표와 ⏎ 가 같이 선다`);
+  }
+  return look;
+}
+async function keysLookExplorer({ page, sim, mobile, width, step, shot }) {
+  // 탐험은 폭 350 이하에서 번호를 원래 숨긴다(`math-explorers.module.css` — 320 폰) — 그때는 «숨김 그대로»만 본다.
+  const numbersShown = width > 350;
+  const numbers = () => choiceButtons(page);
+  const checkNumbers = async (label, size, look) => {
+    const caps = await keyCaps(page.getByRole("group", { name: "답 고르기" }));
+    if (!numbersShown) {
+      assert.ok(caps.every((cap) => cap.display === "none"), `${label}: 320 에서 번호가 보인다`);
+      return caps.length;
+    }
+    assertNumberCaps(caps, { mobile, size, look, label });
+    return caps.length;
+  };
+  await step("keys.look.examples", async () => {
+    await page.goto(base + "/dev/mobile-explorers-qa");
+    await homeReady(page);
+    await tap(page.locator("[data-expedition-start]"), mobile);
+    await page.locator("[data-explorer-dock=true]").waitFor({ timeout: 10000 });
+    await settled(page, sim);
+    await untilActivity(page, sim, mobile, "examples");
+    await blurAll(page);
+    const confirm = page.getByRole("button", { name: "선택한 예 확인하기" });
+    const count = await checkNumbers("예 모으기 안 고름", [18, 18]);
+    const off = await assertEnterCap(confirm, { mobile, label: "확인 꺼짐" });
+    assert.equal(off.opacity, "0.5", "꺼진 확인 단추");
+    await shot("keys-look-examples-off");
+    const answer = correctExplorerAction(sim);
+    for (const id of answer.choiceIds) await tap(numbers().nth(id), mobile);
+    await blurAll(page);
+    await checkNumbers("예 모으기 고름", [18, 18], KEY_SELECTED);
+    const on = await assertEnterCap(confirm, { mobile, label: "확인 켜짐" });
+    assert.equal(on.opacity, "1");
+    await page.waitForTimeout(300); // 차오름(0.18초)이 끝난 모습을 찍는다
+    await shot("keys-look-examples-picked");
+    const handled = sim.handled;
+    await tap(confirm, mobile);
+    await until(() => sim.handled > handled, "예 모으기 확인 응답");
+    await page.locator("[data-answer-feedback=correct]").waitFor({ timeout: 5000 });
+    await checkNumbers("예 모으기 맞음", [18, 18], KEY_RESULT.explorer.correct);
+    await shot("keys-look-examples-correct");
+    await settled(page, sim);
+    return `번호 ${count}개 ${numbersShown ? (mobile ? "동그라미 그대로" : "키") : "숨김(350 이하)"} · ⏎ ${mobile ? "숨김" : "보임"} · 꺼진 확인 opacity ${off.opacity}`;
+  });
+  await step("keys.look.assemble", async () => {
+    await untilActivity(page, sim, mobile, "assemble");
+    await blurAll(page);
+    await checkNumbers("정의 조립", [22, 22]);
+    await assertEnterCap(page.getByRole("button", { name: "완성한 정의 확인하기" }), { mobile, label: "정의 조립 확인" });
+    await shot("keys-look-assemble");
+    return `정의 조립 번호 22 · 확인 단추 ⏎ ${mobile ? "숨김" : "보임"}`;
+  });
+  await step("keys.look.truth", async () => {
+    await untilActivity(page, sim, mobile, "truth");
+    await blurAll(page);
+    await checkNumbers("경계 살피기", [22, 22]);
+    assert.equal(await page.locator('[data-explorer-dock=true] [data-answer-key="Enter"]').count(), 0, "누르면 바로 채점하는 화면에 ⏎");
+    await shot("keys-look-truth");
+    return "경계 살피기 번호 22 · ⏎ 없음";
+  });
+}
+function bankLookHelpers({ page, sim, mobile }, kind) {
+  const publicProblems = async () => {
+    if (kind === "elementary") {
+      const dto = await courseRequest(sim, "read", undefined, new Date());
+      const session = sim.state.course.learner.session;
+      return { problems: dto.data.session.problems, stored: session.problems, index: session.attempts.length, sessionId: session.id };
+    }
+    const mission = serverState.currentSrsMission(sim.state, new Date());
+    const dto = await middleRequest(sim, "read", undefined, new Date());
+    return { problems: dto.data.mission.problems, stored: mission.problems, index: mission.attempts.length, sessionId: mission.id };
+  };
+  const correctIndex = (publicProblem, stored) =>
+    publicProblem.answerChoices.findIndex((choice) => (kind === "elementary" ? gradeCourseAnswer(stored, choice) === true : gradeSrsAnswer(stored, choice)));
+  const group = () => page.getByRole("group", { name: "답 고르기" });
+  async function answerInBrowser(right) {
+    const { problems, stored, index } = await publicProblems();
+    const correct = correctIndex(problems[index], stored[index]);
+    assert.ok(correct >= 0, "정답 보기를 찾지 못했다");
+    const pick = right ? correct : (correct + 1) % problems[index].answerChoices.length;
+    const handled = sim.handled;
+    await tap(group().getByRole("button").nth(pick), mobile);
+    await until(() => sim.handled > handled, "은행 답 응답");
+    await page.locator(`[data-answer-feedback=${right ? "correct" : "incorrect"}]`).waitFor({ timeout: 5000 });
+  }
+  async function answerOnServer() {
+    const { problems, stored, index, sessionId } = await publicProblems();
+    const choices = problems[index].answerChoices;
+    const submittedAnswer = choices ? choices[correctIndex(problems[index], stored[index])] : stored[index].answer;
+    if (kind === "elementary") await courseRequest(sim, "attempt", { sessionId, problemId: stored[index].id, submittedAnswer }, new Date());
+    else await middleRequest(sim, "attempt", { missionId: sessionId, problemId: stored[index].id, submittedAnswer, elapsedSeconds: 20, rating: "good" }, new Date());
+  }
+  return { publicProblems, group, answerInBrowser, answerOnServer, answered: () => sim.state.expedition?.mission?.answered ?? 0 };
+}
+async function keysLookBank(context, kind) {
+  const { page, mobile, step, shot } = context;
+  const size = kind === "elementary" ? [24, 24] : [23, 23];
+  const { group, answerInBrowser } = bankLookHelpers(context, kind);
+  await step(`keys.look.${kind}`, async () => {
+    await page.goto(base + "/dev/mobile-explorers-qa");
+    await homeReady(page);
+    await tap(page.locator("[data-expedition-start]"), mobile);
+    await group().waitFor({ timeout: 15000 });
+    await blurAll(page);
+    assertNumberCaps(await keyCaps(group()), { mobile, size, label: `${kind} 안 고름` });
+    await shot(`keys-look-${kind}`);
+    await answerInBrowser(true);
+    assertNumberCaps(await keyCaps(group()), { mobile, size, look: KEY_RESULT[kind].correct, label: `${kind} 맞음` });
+    await shot(`keys-look-${kind}-correct`);
+    await expect(page.locator("[data-answer-feedback]")).toHaveCount(0, { timeout: 8000 });
+    await group().waitFor({ timeout: 8000 });
+    await answerInBrowser(false);
+    assertNumberCaps(await keyCaps(group()), { mobile, size, look: KEY_RESULT[kind].incorrect, label: `${kind} 틀림` });
+    await shot(`keys-look-${kind}-incorrect`);
+    return `번호 ${size[0]}px ${mobile ? "동그라미 그대로" : "키"} · 맞음 · 틀림 결과색`;
+  });
+}
+// 오늘 분량을 다 맞혀 끝낸 뒤(틀리면 «모아 둔 오답 다시 풀기»가 끼어 하루가 안 끝난다) 진도판 지난 칸의 다시 풀기 대화상자를 잰다.
+async function keysLookReplay(context, kind) {
+  const { page, mobile, step, shot } = context;
+  const goal = kind === "elementary" ? 10 : 12;
+  const { publicProblems, group, answerInBrowser, answerOnServer, answered } = bankLookHelpers(context, kind);
+  await step(`keys.look.${kind}.replay`, async () => {
+    await page.goto(base + "/dev/mobile-explorers-qa");
+    await homeReady(page);
+    // 은행 날은 학생이 «시작»을 눌러야 미션 · 세션이 선다.
+    await tap(page.locator("[data-expedition-start]"), mobile);
+    await group().or(page.getByRole("textbox")).first().waitFor({ timeout: 15000 });
+    let input = "숫자 입력 문항 없음";
+    for (let guard = 0; guard < 40 && answered() < goal - 1; guard++) {
+      if (kind === "elementary" && context.sim.state.course.learner.session?.completedAt) await courseRequest(context.sim, "start", {}, new Date());
+      // 초등 숫자 입력 칸을 한 번 화면에서 잰다 — «정답 확인 →» 의 화살표 자리를 ⏎ 가 대신하는가(PC) · 그대로인가(폰).
+      // 생성기 문항은 숫자 답을 늘 네 보기로 내고, 숫자 입력 칸은 문제은행 후보(보기 없음)에서만 온다 — 시뮬레이터는 후보를 안 싣는다.
+      // 그래서 숫자 답 문항 하나의 보기를 **이 화면이 받는 응답에서만** 걷어 «은행 후보처럼» 만든다(기록 · 채점은 그대로).
+      const { problems, index } = await publicProblems();
+      const current = problems[index];
+      if (kind === "elementary" && input.startsWith("숫자") && !current.interactive && current.input.mode === "number") {
+        const courseRead = (url) => new URL(url).pathname === "/api/learn/math-srs/course";
+        await page.route(courseRead, async (route) => {
+          if (route.request().method() !== "GET") return route.fallback();
+          const dto = await courseRequest(context.sim, "read", undefined, new Date());
+          const shown = dto.data.session.problems;
+          shown[dto.data.session.attempts.length] = { ...shown[dto.data.session.attempts.length], answerChoices: null };
+          await route.fulfill({ status: 200, contentType: "application/json", body: JSON.stringify(dto) });
+          context.sim.handled++; // 시뮬레이터 대신 여기서 답했다 — «가로채지 않은 요청 0» 셈에 넣는다
+        });
+        await page.reload();
+        await homeReady(page);
+        await tap(page.locator("[data-expedition-start]"), mobile);
+        await page.getByRole("textbox", { name: current.input.label }).waitFor({ timeout: 15000 });
+        await blurAll(page);
+        const look = await assertEnterCap(page.getByRole("button", { name: /정답 확인/ }), { mobile, label: "초등 정답 확인" });
+        assert.notEqual(look.swap, null, "«정답 확인»에 바꿔 끼는 화살표가 없다");
+        await shot(`keys-look-${kind}-input`);
+        input = `«정답 확인» ${mobile ? "화살표 그대로 · ⏎ 숨김" : "⏎ 가 화살표 자리"}`;
+        await page.unroute(courseRead);
+      }
+      await answerOnServer();
+    }
+    assert.equal(answered(), goal - 1);
+    await page.reload();
+    await homeReady(page);
+    await tap(page.locator("[data-expedition-start]"), mobile);
+    await group().waitFor({ timeout: 15000 });
+    await answerInBrowser(true);
+    await homeReady(page);
+    await tap(page.locator('[data-day-step="1"]').getByRole("button"), mobile);
+    const dialog = page.getByRole("dialog", { name: /1번 문제 다시 풀기/ });
+    await expect(dialog).toBeVisible({ timeout: 10000 });
+    const choices = dialog.getByRole("group", { name: "복습 답 고르기" });
+    await choices.getByRole("button").first().waitFor();
+    await blurAll(page);
+    const caps = await keyCaps(choices);
+    assertNumberCaps(caps, { mobile, size: mobile ? null : [18, 18], label: `${kind} 다시 풀기` });
+    await shot(`keys-look-${kind}-replay`);
+    await tap(dialog.getByRole("button", { name: "복습 닫기" }), mobile);
+    return `다시 풀기 번호 ${caps.length}개 ${mobile ? "지금 모양" : "키 18px"}${kind === "elementary" ? " · " + input : ""}`;
+  });
+}
+scenarios["keys:look-explorer"] = keysLookExplorer;
+fixtures["keys:look-explorer"] = fixtures["keys:explorer"];
+scenarios["keys:look-middle"] = (context) => keysLookBank(context, "middle");
+fixtures["keys:look-middle"] = fixtures["bank-middle"];
+scenarios["keys:look-elementary"] = (context) => keysLookBank(context, "elementary");
+fixtures["keys:look-elementary"] = fixtures["bank-elementary"];
+scenarios["keys:look-replay-middle"] = (context) => keysLookReplay(context, "middle");
+fixtures["keys:look-replay-middle"] = fixtures["bank-middle"];
+scenarios["keys:look-replay-elementary"] = (context) => keysLookReplay(context, "elementary");
+fixtures["keys:look-replay-elementary"] = fixtures["bank-elementary"];
+
 // ───────────────────────── runner ─────────────────────────
 const results = [];
 // 이름에 `:` 가 든 묶음(`katex:*`·`lab-fraction:*`)은 `QA_SCENARIOS` 에 묶음 이름(전부) 또는 제 이름을 적을 때만 돈다
