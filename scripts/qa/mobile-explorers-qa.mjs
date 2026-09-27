@@ -531,6 +531,31 @@ async function settled(page, sim) {
   await expect(page.locator('progress[aria-label="이번 학습 진행률"]')).toHaveAttribute("value", String(session.index), { timeout: 8000 });
   await expect(page.locator("main")).toContainText(session.round ? `오답 복습 ${session.round}회` : "오늘의 개념 탐험");
   await page.waitForTimeout(560);
+  const overflow = await paneOverflow(page);
+  assert.equal(overflow, null, "문제 칸 가로 넘침(PC 에서는 가로 막대): " + JSON.stringify(overflow));
+}
+// 문제 칸(스크롤 칸)이 가로로 넘치는가 — 원장님 제보(2026-09-27, PC «정의 조립»): 칸 아래 쓸데없는 가로 막대, 손잡이가
+// 칸 폭의 약 75%. 폰은 막대가 겹쳐 떠서 안 보일 뿐 같은 넘침이다. 넘치면 원인을 짚어 돌려준다 — 칸 밖으로 나간 자식
+// 상자, 그리고 책장 넘김 빛 띠(`::after`)를 끄면 넘침이 사라지는가.
+async function paneOverflow(page) {
+  return page.evaluate(() => {
+    const pane = document.querySelector("[data-page-turn=true]");
+    if (!pane) return null;
+    const over = pane.scrollWidth - pane.clientWidth;
+    if (over <= 1) return null;
+    const edge = pane.getBoundingClientRect().left + pane.clientLeft + pane.clientWidth;
+    const children = [...pane.querySelectorAll("*")]
+      .filter((el) => !el.parentElement.closest(".katex") && el.getBoundingClientRect().right > edge + 1)
+      .slice(0, 3)
+      .map((el) => `${el.tagName.toLowerCase()}.${String(el.className).split(" ")[0]} +${Math.round(el.getBoundingClientRect().right - edge)}px`);
+    const after = getComputedStyle(pane, "::after");
+    const style = document.createElement("style");
+    style.textContent = "[data-page-turn]::after{display:none!important}";
+    document.head.append(style);
+    const withoutLight = pane.scrollWidth - pane.clientWidth;
+    style.remove();
+    return { over, width: pane.clientWidth, children, afterTransform: after.transform, withoutLight };
+  });
 }
 // Performs one explorer action through the real controls and waits for its response.
 async function perform(page, sim, action, mobile) {
@@ -1674,13 +1699,273 @@ for (const unitId of KATEX_UNITS) {
   scenarios[`katex:${unitId}`] = (context) => katexScenario(context, unitId);
 }
 
+// ───────────────────────── 작업실 세로 분수 (트랙 K 이어서, 2026-09-27) ─────────────────────────
+// 원장님 확정(보고서 §11 ②): 작업실 세로 분수를 CSS 로 그린 판에서 KaTeX(`\frac`)로. 작업실은 통분 카드 하나에만
+// 붙는다(`engine.ts`) — 문항 다섯 벌(`workshop.ts` 의 `questions(run)`)마다 조각 활동의 모든 단계를 지나며 분수가
+// 나오는 화면을 잰다. 나누는 수를 끝까지 올린 분수(맞추기 ×6 → 6/18)와 전부 칠한 칸 수(21/21)가 가장 길다.
+//  · 넘침·잘림은 `katexFit` 과 같은 판정 — 0 이어야 한다.
+//  · 분수마다 상자와 **잉크**(분자·가로선·분모의 픽셀 범위)를 `lab-fraction.json` 에 적는다 — 옛 CSS 판과 같은
+//    자리·같은 크기인지 견주는 자료(보고서). 분수 칸은 읽기용 이름표 «d분의 n» 으로 찾는다(두 판 공통).
+const labGeometry = [];
+const rounded = (box) => Object.fromEntries(Object.entries(box).map(([key, value]) => [key, Math.round(value * 100) / 100]));
+// 상자 안 그림에서 잉크 범위를 읽는다. 가로선은 «가장 길게 이어진 잉크 줄»과 그 위아래로 붙은 같은 길이의 줄이다
+// (숫자 «4» 의 가로획이 가로선만큼 길어도, 빈 줄로 떨어져 있어 가로선 묶음에 안 든다).
+async function fractionInk(page, locator) {
+  const box = await locator.boundingBox();
+  if (!box) return null;
+  const clip = { x: Math.floor(box.x) - 2, y: Math.floor(box.y) - 2, width: Math.ceil(box.width) + 5, height: Math.ceil(box.height) + 5 };
+  const png = await page.screenshot({ clip, animations: "disabled" });
+  const ink = await page.evaluate(async (src) => {
+    const image = await new Promise((done, fail) => {
+      const item = new Image();
+      item.onload = () => done(item);
+      item.onerror = fail;
+      item.src = src;
+    });
+    const canvas = document.createElement("canvas");
+    canvas.width = image.width;
+    canvas.height = image.height;
+    const context = canvas.getContext("2d", { willReadFrequently: true });
+    context.drawImage(image, 0, 0);
+    const data = context.getImageData(0, 0, canvas.width, canvas.height).data;
+    const dark = (x, y) => {
+      const i = (y * canvas.width + x) * 4;
+      return Math.max(Math.abs(data[i] - data[0]), Math.abs(data[i + 1] - data[1]), Math.abs(data[i + 2] - data[2])) > 40;
+    };
+    const rows = [];
+    for (let y = 0; y < canvas.height; y++) {
+      let left = -1;
+      let right = -1;
+      let run = 0;
+      let longest = 0;
+      for (let x = 0; x < canvas.width; x++) {
+        if (dark(x, y)) {
+          if (left < 0) left = x;
+          right = x;
+          run++;
+          longest = Math.max(longest, run);
+        } else run = 0;
+      }
+      rows.push({ left, right, longest });
+    }
+    const inked = rows.flatMap((row, y) => (row.left >= 0 ? [y] : []));
+    if (!inked.length) return null;
+    const longest = Math.max(...rows.map((row) => row.longest));
+    const peak = rows.findIndex((row) => row.longest === longest);
+    let barTop = peak;
+    let barBottom = peak;
+    while (barTop > 0 && rows[barTop - 1].longest >= longest - 1) barTop--;
+    while (barBottom < rows.length - 1 && rows[barBottom + 1].longest >= longest - 1) barBottom++;
+    const above = inked.filter((y) => y < barTop);
+    const below = inked.filter((y) => y > barBottom);
+    return {
+      top: inked[0],
+      bottom: inked[inked.length - 1] + 1,
+      left: Math.min(...rows.filter((row) => row.left >= 0).map((row) => row.left)),
+      right: Math.max(...rows.map((row) => row.right)) + 1,
+      barTop,
+      barBottom: barBottom + 1,
+      barWidth: longest,
+      numTop: above[0] ?? null,
+      numBottom: above.length ? above[above.length - 1] + 1 : null,
+      denTop: below[0] ?? null,
+      denBottom: below.length ? below[below.length - 1] + 1 : null,
+    };
+  }, `data:image/png;base64,${png.toString("base64")}`);
+  if (!ink) return null;
+  // 분수 칸 상자의 왼쪽 위를 0 으로 — 두 판을 칸 안 자리로 견준다.
+  const shift = (key, by) => (ink[key] === null ? null : Math.round((ink[key] + by) * 100) / 100);
+  return {
+    ...Object.fromEntries(["top", "bottom", "barTop", "barBottom", "numTop", "numBottom", "denTop", "denBottom"].map((key) => [key, shift(key, clip.y - box.y)])),
+    left: shift("left", clip.x - box.x),
+    right: shift("right", clip.x - box.x),
+    barWidth: ink.barWidth,
+  };
+}
+async function setFactor(page, index, target, mobile) {
+  const more = page.getByRole("button", { name: `${index + 1}번째 분수 나누는 수 늘리기` });
+  const less = page.getByRole("button", { name: `${index + 1}번째 분수 나누는 수 줄이기` });
+  for (let guard = 0; guard < 12; guard++) {
+    const value = Number(await more.evaluate((el) => el.parentElement.querySelector("strong").firstChild.textContent));
+    if (value === target) return;
+    await tap(value < target ? more : less, mobile);
+  }
+  throw new Error(`나누는 수 ${target} 에 닿지 못했다`);
+}
+async function labFractionScenario({ page, sim, mobile, width, height, step, shot }, run) {
+  const engineName = page.context().browser().browserType().name();
+  let problems = 0;
+  let measured = 0;
+  const measure = async (where, keep = false) => {
+    await page.waitForTimeout(200);
+    await page.evaluate(() => document.fonts.ready);
+    // 칠하기 칸을 누르다 보면 문제 칸이 내려가 있다 — 두 판을 같은 자리에서 재도록 맨 위로 올린다.
+    await page.evaluate(() => document.querySelectorAll("main *").forEach((el) => { if (el.scrollTop) el.scrollTop = 0; }));
+    const found = await katexFit(page, "main");
+    for (const problem of found)
+      katexFindings.push({ engine: engineName, size: `${width}x${height}`, unit: "g5-fractions", where: `작업실 ${run}벌 ${where}`, problem });
+    problems += found.length;
+    const fractions = [];
+    for (const wrapper of await page.locator('main span[aria-label*="분의 "]').all()) {
+      await wrapper.scrollIntoViewIfNeeded();
+      fractions.push({
+        label: await wrapper.getAttribute("aria-label"),
+        shown: await visibleText(wrapper),
+        katex: (await wrapper.locator(".katex").count()) > 0,
+        box: rounded(await wrapper.boundingBox()),
+        row: rounded(await wrapper.evaluate((el) => el.parentElement.getBoundingClientRect().toJSON())),
+        ink: await fractionInk(page, wrapper),
+      });
+    }
+    const layout = await page.evaluate(() => {
+      const box = (el) => {
+        const { x, y, width, height } = el.getBoundingClientRect();
+        return { x, y, width, height };
+      };
+      return {
+        strips: [...document.querySelectorAll('main [aria-label^="전체 "][aria-label$="색칠"]')].map(box),
+        grids: [...document.querySelectorAll('main [role="group"][aria-label$="개 조각"]')].map(box),
+        dock: box(document.querySelector("[data-explorer-dock=true]")),
+      };
+    });
+    labGeometry.push({ engine: engineName, size: `${width}x${height}`, run, where, found, fractions, layout });
+    measured += fractions.length;
+    if (keep || found.length) await shot(`lab-${run}-${where.replace(/[^0-9a-z가-힣]+/gi, "-")}${found.length ? "-problem" : ""}`);
+  };
+  await step("lab.start", async () => {
+    await page.goto(base + "/dev/mobile-explorers-qa");
+    await homeReady(page);
+    await tap(page.locator("[data-expedition-start]"), mobile);
+    await page.locator("[data-explorer-dock=true]").waitFor({ timeout: 10000 });
+    // `workshop` 시나리오와 같은 길 — 통분 카드 읽기 직전까지 서버에서 감고 다시 연다.
+    await fastForward(sim, (s) => {
+      const task = currentTask(s);
+      return task?.cardId === "g5-common-denominator" && task.kind === 0 && cards.definitionNeedsRead(explorerStored(s).profile, explorerStored(s).profile.definitions.session);
+    });
+    await page.reload();
+    await homeReady(page);
+    await tap(page.locator("[data-expedition-start]"), mobile);
+    await page.locator("[data-explorer-dock=true]").waitFor();
+    await settled(page, sim);
+    await perform(page, sim, correctExplorerAction(sim), mobile);
+    await settled(page, sim);
+    const workshop = attachedWorkshop(sim);
+    assert.equal(workshop?.stage, "predict", "작업실 예상하기에 닿지 못했다");
+    return workshop.questions.map((question) => question.fractions.map((f) => `${f.numerator}/${f.denominator}`).join("·") + `→${question.denominator}`).join(" | ");
+  });
+  await step("lab.predict", async () => {
+    await measure("예상", true);
+    await perform(page, sim, correctExplorerAction(sim), mobile);
+    await settled(page, sim);
+    return "1/2";
+  });
+  // 맞힌 뒤에는 정답 효과가 뜨고 새 단계(새 문항)가 다시 그려진다 — 효과를 본 뒤에 다음을 잰다(분수 칸이 떨어져 나가는 경주).
+  const answered = async () => {
+    await perform(page, sim, correctExplorerAction(sim), mobile);
+    await overlay(page, "correct", null, mobile);
+    await settled(page, sim);
+  };
+  await step("lab.split", async () => {
+    for (let factor = 1; factor <= 4; factor++) {
+      await setFactor(page, 0, factor, mobile);
+      await measure(`나누기 ×${factor}`, factor === 4);
+    }
+    await answered();
+    return "×1~×4 (가장 긴 4/8)";
+  });
+  await step("lab.match", async () => {
+    for (let factor = 1; factor <= 6; factor++) {
+      await setFactor(page, 0, factor, mobile);
+      await setFactor(page, 1, factor, mobile);
+      await measure(`맞추기 ×${factor}`, factor === 6);
+    }
+    await answered();
+    return "×1~×6 (가장 긴 6/12·6/18)";
+  });
+  await step("lab.rule", async () => {
+    await measure("규칙", true);
+    await answered();
+    return "3/6·2/6";
+  });
+  await step("lab.check", async () => {
+    const seen = [];
+    for (let index = 0; index < 2; index++) {
+      const workshop = attachedWorkshop(sim);
+      assert.equal(workshop?.stage, "check", "칠하기에 닿지 못했다");
+      const question = workshop.questions[workshop.checkIndex];
+      await measure(`칠하기 ${index + 1} 빈칸`);
+      const cells = (fraction) => Array.from({ length: question.denominator }, (_, part) => page.getByRole("button", { name: `${fraction + 1}번째 분수 ${part + 1}번째 조각`, exact: true }));
+      for (let fraction = 0; fraction < question.fractions.length; fraction++) for (const cell of cells(fraction)) await tap(cell, mobile);
+      await measure(`칠하기 ${index + 1} 전부`, true);
+      for (let fraction = 0; fraction < question.fractions.length; fraction++) for (const cell of cells(fraction)) await tap(cell, mobile);
+      seen.push(`${question.denominator}/${question.denominator}`);
+      await answered();
+    }
+    assert.equal(attachedWorkshop(sim), null, "칠하기 뒤 작업실이 끝나지 않았다");
+    return "전부 칠한 칸 수 " + seen.join(" · ");
+  });
+  await step("lab.fit", async () => {
+    // 마지막 칠하기 뒤 화면이 상태를 다시 읽는다 — 그 응답까지 받고 닫는다(가로챔 셈이 맞게).
+    await until(() => sim.requests === sim.handled, "남은 응답");
+    assert.equal(problems, 0, `넘침·잘림 ${problems}건 — katex-findings.json`);
+    return `분수 ${measured}개 · 넘침·잘림 0`;
+  });
+}
+for (let run = 1; run <= 5; run++) {
+  fixtures[`lab-fraction:${run}`] = () => {
+    const explorers = explorerRecord(5, "g5-fractions");
+    // 다음 작업실이 `questions(run)` 을 쓰도록 지난 횟수를 박는다(청사진 없음 → 예상하기부터).
+    explorers.profile.workshop = { runs: run - 1 };
+    return { ...serverState.emptySrsState(), explorers };
+  };
+  scenarios[`lab-fraction:${run}`] = (context) => labFractionScenario(context, run);
+}
+
+// ───────────────────────── 책장 넘김 빛 띠 프레임 (2026-09-27) ─────────────────────────
+// 빛 띠를 상자 이동에서 그라데이션 이동으로 바꾼 뒤(가로 막대 제보) 움직임이 같은지 — 넘김 움직임 둘을 같은 시각에
+// 멈춰 문제 칸을 찍는다. 옛 판과 새 판을 각각 찍어 밖에서 픽셀로 견준다(`QA_SCENARIOS=light`).
+const LIGHT_TIMES = [0, 60, 130, 200, 260, 330, 390, 460, 520];
+async function lightFrames({ page, mobile, step, shot }) {
+  await step("light.frames", async () => {
+    await page.goto(base + "/dev/mobile-explorers-qa");
+    await homeReady(page);
+    await tap(page.locator("[data-expedition-start]"), mobile);
+    await page.locator("[data-explorer-dock=true]").waitFor({ timeout: 10000 });
+    await page.waitForTimeout(1500);
+    await page.evaluate(() => document.fonts.ready);
+    const pane = page.locator("[data-page-turn=true]");
+    const names = [];
+    for (const time of LIGHT_TIMES) {
+      names.push(
+        await page.evaluate((at) => {
+          const turning = document.getAnimations().filter((item) => /turnPaper|paperLight/.test(item.animationName ?? ""));
+          for (const item of turning) {
+            item.pause();
+            item.currentTime = at;
+          }
+          return turning.map((item) => item.animationName.replace(/^.*__/, "")).sort().join("+");
+        }, time),
+      );
+      const where = `${page.context().browser().browserType().name()}-${page.viewportSize().width}`;
+      await pane.screenshot({ path: resolve(output, `light-${where}-${String(time).padStart(3, "0")}.png`) });
+    }
+    assert.ok(names.every((name) => name === "paperLight+turnPaper"), "넘김 움직임 둘을 못 찾았다: " + names.join(" | "));
+    await shot("light-end");
+    return `${LIGHT_TIMES.length}장`;
+  });
+}
+fixtures["light:frames"] = fixtures.concept;
+scenarios["light:frames"] = lightFrames;
+
 // ───────────────────────── runner ─────────────────────────
 const results = [];
-// `katex:*` 는 `QA_SCENARIOS` 에 `katex`(전부) 또는 제 이름을 적을 때만 돈다 — 기본 실행 시간을 늘리지 않는다.
+// 이름에 `:` 가 든 묶음(`katex:*`·`lab-fraction:*`)은 `QA_SCENARIOS` 에 묶음 이름(전부) 또는 제 이름을 적을 때만 돈다
+// — 기본 실행 시간을 늘리지 않는다.
+const grouped = (name) => name.includes(":");
 const scenarioNames = Object.keys(scenarios).filter((name) =>
   scenarioFilter
-    ? scenarioFilter.includes(name) || (name.startsWith("katex:") && scenarioFilter.includes("katex"))
-    : !name.startsWith("katex:"),
+    ? scenarioFilter.includes(name) || (grouped(name) && scenarioFilter.includes(name.split(":")[0]))
+    : !grouped(name),
 );
 for (const engineName of engines) {
   const browser = await { chromium, webkit }[engineName].launch({ headless: true });
@@ -1750,10 +2035,11 @@ for (const engineName of engines) {
   }
 }
 await writeFile(resolve(output, "report.json"), JSON.stringify(results, null, 2));
-if (katexFindings.length || scenarioNames.some((name) => name.startsWith("katex:"))) {
+if (katexFindings.length || scenarioNames.some((name) => name.startsWith("katex:") || name.startsWith("lab-fraction:"))) {
   await writeFile(resolve(output, "katex-findings.json"), JSON.stringify(katexFindings, null, 2));
   await writeFile(resolve(output, "katex-fitted.json"), JSON.stringify(katexFitted, null, 2));
 }
+if (labGeometry.length) await writeFile(resolve(output, "lab-fraction.json"), JSON.stringify(labGeometry, null, 2));
 const failed = results.filter((r) => r.status === "실패");
 console.log(`${results.length} 항목 · 실패 ${failed.length} · 못 봄 ${results.filter((r) => r.status === "못 봄").length}`);
 process.exitCode = failed.length ? 1 : 0;
