@@ -140,6 +140,62 @@ function withLedger(
 }
 const titles = (items: ReadonlyArray<{ title: string }>) =>
   items.map((item) => item.title);
+type Kind = "middle" | "explorers" | "elementary";
+const review = (kind: Kind, date: string) => ({
+  kind,
+  dayId: `${kind}:${date}`,
+  title: kind === "middle" ? "일차방정식" : "기억 복습",
+  subtitle: "중학교 1학년",
+  reviewCount: kind === "middle" ? 12 : 15,
+});
+/** 칸 기록 — `awards` 는 끝낸 오늘의 탐험(종류 하나), `legacy` 는 이관한 옛 날(한 날에 종류 여럿). */
+function withDays(
+  state: StoredSrsState,
+  mission: StoredExpeditionMission | null,
+  awards: Array<[string, Kind]>,
+  legacy: Array<[string, Kind[]]> = [],
+): StoredSrsState {
+  const day = (date: string, kinds: Kind[]) => ({
+    id: `expedition:${date}`,
+    date,
+    completedAt: `${date}T02:00:00.000Z`,
+    ...review(kinds[0], date),
+    reviews: kinds.map((kind) => review(kind, date)),
+  });
+  return {
+    ...state,
+    expedition: {
+      version: 1,
+      initializedAt: "2026-09-01T00:00:00.000Z",
+      mission,
+      receipts: [],
+      legacyDays: legacy.map(([date, kinds]) => day(date, kinds)),
+      awards: awards.map(([date, kind]) => ({
+        missionId: randomUUID(),
+        references: [],
+        day: day(date, [kind]),
+      })),
+    },
+  };
+}
+const bankPlan = {
+  kind: "middle",
+  route: "bank",
+  unitId: "g7-equation",
+  title: "일차방정식",
+  subtitle: "중학교 1학년",
+  goal: 12,
+};
+const G7 = [
+  "소인수분해",
+  "정수와 유리수",
+  "문자와 식",
+  "일차방정식",
+  "좌표와 비례관계",
+  "기본 도형과 작도",
+  "평면도형과 입체도형",
+  "자료의 정리와 해석",
+];
 const conceptPlan = (unitId: string) => {
   const unit = definitionUnits.find((u) => u.id === unitId)!;
   return {
@@ -202,22 +258,18 @@ describe("중등 단원 넘김 — 개념 카드를 다 모으면 다음 단원 
       unitId: "g8-simultaneous",
     });
   });
-  it("중1 일차방정식(은행 단원)은 그대로 — 다 모으면 은행 날, 앞 단원에서 걸어 와도 거기서 멈춘다", () => {
-    const bank = {
-      kind: "middle",
-      route: "bank",
-      unitId: "g7-equation",
-      title: "일차방정식",
-      subtitle: "중학교 1학년",
-      goal: 12,
-    };
-    expect(
-      planExpedition(
-        explorerState(7, "g7-equation", ["g7-equation"]),
-        student,
-        now,
-      ),
-    ).toEqual(bank);
+  it("중1 일차방정식(은행 단원)은 은행 날을 3일 끝내기 전까지 은행 날 — 앞 단원에서 걸어 와도 거기서 멈춘다 (D-142 ⑹)", () => {
+    const collected = explorerState(7, "g7-equation", ["g7-equation"]);
+    expect(planExpedition(collected, student, now)).toEqual(bankPlan);
+    for (const days of [1, 2]) {
+      const awards = Array.from(
+        { length: days },
+        (_, i) => [`2026-09-2${i}`, "middle"] as [string, Kind],
+      );
+      expect(
+        planExpedition(withDays(collected, null, awards), student, now),
+      ).toEqual(bankPlan);
+    }
     expect(
       planExpedition(
         explorerState(7, "factors", [
@@ -229,7 +281,7 @@ describe("중등 단원 넘김 — 개념 카드를 다 모으면 다음 단원 
         student,
         now,
       ),
-    ).toEqual(bank);
+    ).toEqual(bankPlan);
   });
   it("뒤 단원을 전부 모았으면 지금처럼 같은 단원을 다시 낸다", () => {
     expect(
@@ -255,6 +307,140 @@ describe("중등 단원 넘김 — 개념 카드를 다 모으면 다음 단원 
   it("은행이 있는 단원 표는 문제은행 연결과 같다 (초등 24 · 중1 일차방정식)", () => {
     for (const unit of definitionUnits)
       expect(unitHasBank(unit)).toBe(bankKindForExplorerUnit(unit.id) !== null);
+  });
+});
+
+describe("중1 일차방정식 — 끝낸 은행 날 3일 뒤 다음 단원 (D-142 ⑹, 원장님 2026-09-27)", () => {
+  const collected = explorerState(7, "g7-equation", ["g7-equation"]);
+  const threeBank: Array<[string, Kind]> = [
+    ["2026-09-20", "middle"],
+    ["2026-09-22", "middle"],
+    ["2026-09-24", "middle"],
+  ];
+  it("끝낸 은행 날이 3일이면 넘김 규칙대로 다음 «덜 모은» 단원 — 앞 단원에서 걸어 와도", () => {
+    expect(
+      planExpedition(withDays(collected, null, threeBank), student, now),
+    ).toEqual(conceptPlan("g7-coordinate"));
+    const walked = explorerState(7, "factors", [
+      "factors",
+      "numbers",
+      "expressions",
+      "g7-equation",
+    ]);
+    expect(
+      planExpedition(withDays(walked, null, threeBank), student, now),
+    ).toEqual(conceptPlan("g7-coordinate"));
+  });
+  it("달력 날이 아니라 끝낸 은행 날로 센다 — 기억 복습 · 개념 날은 세지 않는다", () => {
+    const state = withDays(collected, null, [
+      ["2026-09-18", "middle"],
+      ["2026-09-19", "explorers"],
+      ["2026-09-20", "explorers"],
+      ["2026-09-21", "middle"],
+      ["2026-09-22", "explorers"],
+      ["2026-09-23", "elementary"],
+    ]);
+    expect(planExpedition(state, student, now)).toEqual(bankPlan);
+  });
+  it("이관한 옛 칸도 센다 — 한 날에 여러 종류가 섞였으면 하루", () => {
+    const state = withDays(
+      collected,
+      null,
+      [["2026-09-24", "middle"]],
+      [
+        ["2026-09-10", ["explorers", "middle"]],
+        ["2026-09-11", ["middle"]],
+        ["2026-09-12", ["explorers"]],
+      ],
+    );
+    expect(planExpedition(state, student, now)).toEqual(
+      conceptPlan("g7-coordinate"),
+    );
+  });
+  it("열린 은행 미션은 그대로 — 3일째를 이미 채웠어도 오늘 시작한 은행 날을 끝까지", () => {
+    const mission = openMission(
+      bankPlan as Parameters<typeof openMission>[0],
+      5,
+    );
+    const state = withDays(collected, mission, threeBank);
+    expect(planExpedition(state, student, now)).toMatchObject({
+      kind: "middle",
+      unitId: "g7-equation",
+      status: "active",
+    });
+  });
+  it("예정 칸 — 개념 날 오늘 뒤로 «일차방정식» 은행 날 3칸, 그다음 단원들", () => {
+    const state = withDays(
+      explorerState(7, "g7-equation", []),
+      openMission(conceptPlan("g7-equation")),
+      [],
+    );
+    const journey = expeditionJourney(state, now, student);
+    expect(titles(journey.upcoming)).toEqual([
+      "일차방정식",
+      "일차방정식",
+      "일차방정식",
+      "일차방정식",
+      ...G7.slice(4),
+      ...G8.slice(0, 4),
+    ]);
+  });
+  it("예정 칸 — 은행 날 하루를 끝낸 뒤 오늘 은행 칸 · 남은 한 칸 · 다음 단원", () => {
+    const journey = expeditionJourney(
+      withDays(collected, null, [["2026-09-24", "middle"]]),
+      now,
+      student,
+    );
+    expect(titles(journey.upcoming).slice(0, 4)).toEqual([
+      "일차방정식",
+      "일차방정식",
+      "좌표와 비례관계",
+      "기본 도형과 작도",
+    ]);
+    expect(journey.position).toMatchObject({
+      caption: "중1 · 8단원 중",
+      ordinal: 4,
+      title: "일차방정식",
+    });
+  });
+  it("예정 칸 — 셋째 은행 날을 오늘 끝냈으면 내일부터 다음 단원", () => {
+    const done = {
+      ...openMission(bankPlan as Parameters<typeof openMission>[0], 12),
+      status: "complete" as const,
+      completedAt: "2026-09-27T02:00:00.000Z",
+    };
+    const state = withDays(collected, done, [
+      ["2026-09-24", "middle"],
+      ["2026-09-25", "middle"],
+      [today, "middle"],
+    ]);
+    const journey = expeditionJourney(state, now, student);
+    expect(journey.todayComplete).toBe(true);
+    expect(titles(journey.upcoming).slice(0, 2)).toEqual([
+      "좌표와 비례관계",
+      "기본 도형과 작도",
+    ]);
+    expect(journey.position).toMatchObject({
+      ordinal: 5,
+      title: "좌표와 비례관계",
+    });
+  });
+  it("같은 규칙 — 은행 칸 다음 칸은 은행 날을 하루 더 끝낸 뒤의 planExpedition 결과", () => {
+    for (const done of [0, 1, 2]) {
+      const awards = threeBank.slice(0, done);
+      const journey = expeditionJourney(
+        withDays(collected, null, awards),
+        now,
+        student,
+      );
+      const after = withDays(collected, null, [
+        ...awards,
+        ["2026-09-26", "middle"],
+      ]);
+      expect(journey.upcoming[1].title).toBe(
+        planExpedition(after, student, now).title,
+      );
+    }
   });
 });
 

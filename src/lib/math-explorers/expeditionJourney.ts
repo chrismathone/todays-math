@@ -17,6 +17,7 @@ import {
   definitionUnits,
 } from "./definition-cards";
 import {
+  completedMiddleBankDays,
   conceptUnits,
   expeditionLearning,
   expeditionToday,
@@ -171,7 +172,10 @@ export function expeditionOutlook(
   todayComplete: boolean,
 ): { upcoming: ForecastItem[]; position: MathExpeditionJourney["position"] } {
   const explorer = initialOwnedExplorer(state, studentId, now);
-  const units = conceptUnits(explorer.profile.definitions);
+  const units = conceptUnits(
+    explorer.profile.definitions,
+    completedMiddleBankDays(state, now),
+  );
   const learning = expeditionLearning(state, studentId, now);
   const today = todayComplete ? null : expeditionToday(state, studentId, now);
   const slots = planSlots(completedDays) - (today ? 1 : 0);
@@ -196,12 +200,11 @@ export function expeditionOutlook(
     : unitForecast(
         units,
         learning.unitId,
-        !(
-          today &&
+        // 오늘 칸이 그 단원의 개념 날 · 은행 날이면 한 칸을 이미 쓴 것(기억 복습 · 회복 날은 아님).
+        !!today &&
           today.plan.unitId === learning.unitId &&
           today.plan.route !== "memory" &&
-          today.plan.route !== "repair"
-        ),
+          today.plan.route !== "repair",
         slots,
       );
   const due = definitionDue(explorer.profile, kstDateOf(now)).length;

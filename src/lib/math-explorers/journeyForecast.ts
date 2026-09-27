@@ -12,6 +12,8 @@ export type ForecastUnit = {
   title: string;
   cards: number;
   collected: number;
+  /** 끝낸 문제은행 날 — 중1 일차방정식만 센다(D-142 ⑹). */
+  bankDays?: number;
 };
 /** 판의 미래 칸 하나. `gradeStart` 는 학년이 바뀌는 첫 칸의 표지(«중3» · «초5»). */
 export type ForecastItem = {
@@ -44,13 +46,26 @@ export const planSlots = (completedDays: number) =>
 export const unitHasBank = (unit: { id: string; grade: number }) =>
   unit.grade < 7 || unit.id === "g7-equation";
 
+/** 중1 일차방정식은 개념을 다 모은 뒤 은행 날을 이만큼 끝내야 다음 단원으로 넘긴다(D-142 ⑹, 원장님 2026-09-27). */
+export const MIDDLE_BANK_DAYS = 3;
+const middleBank = (unit: ForecastUnit) => unitHasBank(unit) && unit.grade >= 7;
 const finished = (unit: ForecastUnit) => unit.collected >= unit.cards;
-/** 넘김이 멈추는 단원: 아직 덜 모았거나, 은행 날이 이어지는 단원. */
-const stops = (unit: ForecastUnit) => !finished(unit) || unitHasBank(unit);
+const bankLeft = (unit: ForecastUnit) =>
+  middleBank(unit) ? Math.max(0, MIDDLE_BANK_DAYS - (unit.bankDays ?? 0)) : 0;
+/**
+ * 넘김이 멈추는 단원: 아직 덜 모았거나, 은행 날이 이어지는 단원 — 초등은 원장님 진도 계획 커서가 정하므로 늘 멈추고,
+ * 중1 일차방정식은 끝낸 은행 날이 3일이 될 때까지 멈춘다.
+ */
+const stops = (unit: ForecastUnit) =>
+  !finished(unit) ||
+  (unitHasBank(unit) && (!middleBank(unit) || bankLeft(unit) > 0));
+/** 한 단원이 판에서 차지할 날 — 개념 날(덜 모았으면) + 남은 중1 은행 날. 초등은 칸 하나. */
+const unitDays = (unit: ForecastUnit) =>
+  unit.grade < 7 ? 1 : (finished(unit) ? 0 : 1) + bankLeft(unit);
 
 /**
  * D-142 — 개념 카드 다섯 장을 다 모은 중등 단원은 학년 순서(학년 끝이면 다음 학년)의 다음 «덜 모은» 단원에 넘긴다.
- * 은행이 있는 단원(초등 · 중1 일차방정식)은 넘기지 않는다 — 은행 날은 지금처럼(일차방정식은 원장님께 여쭘).
+ * 초등 단원은 넘기지 않는다(은행 날 · 진도 계획 커서). 중1 일차방정식은 은행 날을 3일 끝낸 뒤에 넘긴다(⑹).
  * 뒤 단원을 전부 모았으면 시작 단원 그대로(지금 동작).
  */
 export function conceptTarget(
@@ -79,20 +94,26 @@ export function withGradeStarts(
 }
 
 /**
- * 오늘 단원(`targetId`) 뒤로 넘김 규칙이 차례로 고를 단원들. 오늘 칸이 이미 그 단원이면 빼고(`includeTarget` false),
- * 기억 복습 날처럼 오늘 칸이 다른 것이면 그 단원부터. 기억 복습 날은 미리 알 수 없어 넣지 않는다 — 그 날이 «밀림»이 된다.
+ * 오늘 단원(`targetId`)부터 넘김 규칙이 차례로 낼 날들 — 단원마다 개념 날 · 남은 중1 은행 날만큼 칸을 놓는다.
+ * 오늘 칸이 그 단원의 날이면(`todayIsTarget`) 한 칸을 빼고, 기억 복습 날처럼 오늘 칸이 다른 것이면 그대로.
+ * 기억 복습 날은 미리 알 수 없어 넣지 않는다 — 그 날이 «밀림»이 된다.
  */
 export function unitForecast(
   units: readonly ForecastUnit[],
   targetId: string,
-  includeTarget: boolean,
+  todayIsTarget: boolean,
   count: number,
 ): ForecastItem[] {
   const start = units.findIndex((unit) => unit.id === targetId);
   if (start < 0 || count <= 0) return [];
+  const target = units[start];
+  const own = Math.max(0, unitDays(target) - (todayIsTarget ? 1 : 0));
   const list = [
-    ...(includeTarget ? [units[start]] : []),
-    ...units.slice(start + 1).filter(stops),
+    ...Array<ForecastUnit>(own).fill(target),
+    ...units
+      .slice(start + 1)
+      .filter(stops)
+      .flatMap((unit) => Array<ForecastUnit>(unitDays(unit)).fill(unit)),
   ].slice(0, count);
   return withGradeStarts(
     list.map((unit) => ({

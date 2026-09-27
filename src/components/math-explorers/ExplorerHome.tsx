@@ -79,7 +79,7 @@ export function explorerJourney(state: ExplorerState): DailyJourney {
       ...(unit && !todayComplete
         ? [{ title: unit.title, subtitle: gradeLabel(unit.grade) }]
         : []),
-      ...unitForecast(units, target, todayComplete, slots),
+      ...unitForecast(units, target, !todayComplete, slots),
     ],
     position: unitPosition(units, target, state.dueCardIds.length) ?? undefined,
   };
