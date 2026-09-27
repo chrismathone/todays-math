@@ -26,7 +26,7 @@ import type { Rng } from "../elementary/types";
 
 import { CHOOSE_ALL_ANSWER_COUNT } from "../problem/chooseAllRule";
 
-import { eulReul } from "./m2Josa";
+import { eulReul, iGa } from "./m2Josa";
 import type { MidProblem, TypeEntry } from "./types";
 
 const GRADE = "중2";
@@ -795,7 +795,7 @@ export const M2_SYSTEM: TypeEntry[] = [
       return {
         content: `$x=${x}$, $y=${y}$일 때, $${mc(a, "x")}${sc(b, "y")}$의 값을 구하시오.`,
         answer: `$${answer}$`,
-        solution: `$x=${x}$, $y=${y}$를 대입하면 $${a}\\times(${x})+(${b})\\times(${y})=${answer}$이다.`,
+        solution: `$x=${x}$, $y=${y}$${eulReul(y)} 대입하면 $${a}\\times(${x})+(${b})\\times(${y})=${answer}$이다.`,
         facts: { x, y, a, b, answer },
       };
     },
@@ -816,7 +816,7 @@ export const M2_SYSTEM: TypeEntry[] = [
       return {
         content: `순서쌍 $(${x}, y)$가 일차방정식 $${mc(a, "x")}${sc(b, "y")}=${c}$의 해일 때, $y$의 값을 구하시오.`,
         answer: `$${y}$`,
-        solution: `$x=${x}$를 대입하면 $${a * x}${sc(b, "y")}=${c}$이다. 이를 풀면 $y=${y}$이다.`,
+        solution: `$x=${x}$${eulReul(x)} 대입하면 $${a * x}${sc(b, "y")}=${c}$이다. 이를 풀면 $y=${y}$이다.`,
         facts: { x, y, a, b, c, answer: y },
       };
     },
@@ -837,9 +837,9 @@ export const M2_SYSTEM: TypeEntry[] = [
         const c = answer * x + b * y;
         if (Math.abs(c) > 50) return null;
         return {
-          content: `순서쌍 $(${x}, ${y})$가 일차방정식 $ax${sc(b, "y")}=${c}$의 해일 때, 상수 $a$의 값을 구하시오.`,
+          content: `순서쌍 $(${x}, ${y})$${iGa(y)} 일차방정식 $ax${sc(b, "y")}=${c}$의 해일 때, 상수 $a$의 값을 구하시오.`,
           answer: `$${answer}$`,
-          solution: `$x=${x}$, $y=${y}$를 대입하면 $${mc(x, "a")}${sg(b * y)}=${c}$이므로 $a=${answer}$이다.`,
+          solution: `$x=${x}$, $y=${y}$${eulReul(y)} 대입하면 $${mc(x, "a")}${sg(b * y)}=${c}$이므로 $a=${answer}$이다.`,
           facts: { x, y, b, c, answer },
         };
       }),
@@ -905,9 +905,9 @@ export const M2_SYSTEM: TypeEntry[] = [
       const b = nonzero(rng, 2, 6);
       const c = a * x + b * y;
       return {
-        content: `순서쌍 $(x, ${y})$가 일차방정식 $${mc(a, "x")}${sc(b, "y")}=${c}$의 해일 때, $x$의 값을 구하시오.`,
+        content: `순서쌍 $(x, ${y})$${iGa(y)} 일차방정식 $${mc(a, "x")}${sc(b, "y")}=${c}$의 해일 때, $x$의 값을 구하시오.`,
         answer: `$${x}$`,
-        solution: `$y=${y}$를 대입하면 $${mc(a, "x")}${sg(b * y)}=${c}$이다. 이를 풀면 $x=${x}$이다.`,
+        solution: `$y=${y}$${eulReul(y)} 대입하면 $${mc(a, "x")}${sg(b * y)}=${c}$이다. 이를 풀면 $x=${x}$이다.`,
         facts: { x, y, a, b, c, answer: x },
       };
     },
@@ -922,7 +922,7 @@ export const M2_SYSTEM: TypeEntry[] = [
     const difference = a - b;
     const answer = a + b;
     return {
-      content: `순서쌍 $(${x}, ${y})$가 일차방정식 $ax+by=${c}$의 해이고 $a-b=${difference}$일 때, $a+b$의 값을 구하시오.`,
+      content: `순서쌍 $(${x}, ${y})$${iGa(y)} 일차방정식 $ax+by=${c}$의 해이고 $a-b=${difference}$일 때, $a+b$의 값을 구하시오.`,
       answer: `$${answer}$`,
       solution: `해를 대입하면 $${mc(x, "a")}${sc(y, "b")}=${c}$이고, $a-b=${difference}$이다. 두 식을 연립하여 풀면 $a=${a}$, $b=${b}$이므로 $a+b=${answer}$이다.`,
       facts: { x, y, a, b, c, difference, answer },

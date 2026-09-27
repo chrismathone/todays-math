@@ -41,6 +41,7 @@ import type { Rng } from "../elementary/types";
 
 import type { MidProblem, TypeEntry } from "./types";
 import { dimCm } from "./figureDims";
+import { eulReul, iGa } from "./m2Josa";
 
 const GRADE = "중3";
 const BOOK = "3-2";
@@ -1324,7 +1325,7 @@ export const M3_TRIG: TypeEntry[] = [
         const slopeText = ang === 45 ? "x" : `${surdText(tanT)}x`;
         const rhs = n > 0 ? `${slopeText}+${n}` : `${slopeText}-${-n}`;
         return {
-          content: `직선 $y=${rhs}$가 $x$축의 양의 방향과 이루는 예각의 크기를 구하시오.`,
+          content: `직선 $y=${rhs}$${iGa(n)} $x$축의 양의 방향과 이루는 예각의 크기를 구하시오.`,
           answer: `$${ang}^\\circ$`,
           solution: `직선의 기울기는 그 직선이 $x$축의 양의 방향과 이루는 각 $a$에 대하여 $\\tan a$와 같다.\n$\\tan a=${surdText(tanT)}$이므로 $a=${ang}^\\circ$이다.`,
           facts: nums({ mode, ang, n, x: ang }),
@@ -1336,7 +1337,7 @@ export const M3_TRIG: TypeEntry[] = [
       const slope = surdMul(surd(a, 1, 1), tanT);
       if (slope.d !== 1 || slope.n === 0) return null;
       return {
-        content: `$x$축의 양의 방향과 이루는 각의 크기가 $${ang}^\\circ$이고 점 $(${a},\\ ${b})$를 지나는 직선의 $y$절편을 구하시오.`,
+        content: `$x$축의 양의 방향과 이루는 각의 크기가 $${ang}^\\circ$이고 점 $(${a},\\ ${b})$${eulReul(b)} 지나는 직선의 $y$절편을 구하시오.`,
         answer: `$${binomText(b, -slope.n, slope.r)}$`,
         solution: `직선의 기울기는 $\\tan ${ang}^\\circ=${surdText(tanT)}$이다.\n$y$절편을 $k$라 하면 $${b}=${surdText(tanT)}\\times${a}+k$이므로 $k=${binomText(b, -slope.n, slope.r)}$이다.`,
         facts: nums({ mode, ang, a, b, c0: b, c1: -slope.n, root: slope.r }),
@@ -1539,7 +1540,8 @@ export const M3_TRIG: TypeEntry[] = [
       const head = `삼각비의 표에서 ${rows}이다.`;
       if (mode === 0) {
         return {
-          content: `${head} 이때 $${FN_NAMES[fn]} x=${table[2]!.toFixed(4)}$를 만족시키는 $x$의 크기를 구하시오.`,
+          // 소수 넷째 자리까지 적으므로 마지막에 읽는 숫자는 만 배 한 정수의 끝 자리다.
+          content: `${head} 이때 $${FN_NAMES[fn]} x=${table[2]!.toFixed(4)}$${eulReul(Math.round(table[2]! * 10000))} 만족시키는 $x$의 크기를 구하시오.`,
           answer: `$${b + 2}^\\circ$`,
           solution: `표에서 값이 $${table[2]!.toFixed(4)}$인 각을 찾으면 $${b + 2}^\\circ$이다.\n따라서 $x=${b + 2}^\\circ$이다.`,
           facts: { b, fn, mode, target: b + 2, val: table[2]! },

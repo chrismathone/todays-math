@@ -69,6 +69,7 @@ import { piTerm } from "./m1Shared";
 import { attempt, def, subj } from "./m1Stat";
 import type { Body } from "./m1Stat";
 import type { TypeEntry } from "./types";
+import { waGwa } from "./m2Josa";
 
 const MINOR_POLY = "다면체와 회전체";
 const MINOR_AREA = "입체도형의 겉넓이와 부피";
@@ -1195,7 +1196,7 @@ export const M1_SOLID_AREA: TypeEntry[] = [
           return {
             content: `오른쪽 그림은 밑면인 원의 반지름의 길이가 $${R}\\,\\mathrm{cm}$이고 높이가 $${h}\\,\\mathrm{cm}$인 원기둥의 한가운데에 원기둥 모양의 구멍을 뚫은 입체도형이다. 이 입체도형의 ${ask === 0 ? "겉넓이" : "부피"}를 구하시오.`,
             answer: `$${piTerm(val)}\\,\\mathrm{cm}^${ask === 0 ? 2 : 3}$`,
-            solution: `큰 원기둥의 밑면인 원의 반지름의 길이는 $${R}\\,\\mathrm{cm}$, 구멍의 반지름의 길이는 $${r}\\,\\mathrm{cm}$, 높이는 $${h}\\,\\mathrm{cm}$이다.\n밑넓이는 $\\pi\\times${R}^{2}-\\pi\\times${r}^{2}=${piTerm(R * R - r * r)}$이다.\n${ask === 0 ? `옆넓이는 바깥쪽 $2\\pi\\times${R}\\times${h}=${piTerm(2 * R * h)}$과 안쪽 $2\\pi\\times${r}\\times${h}=${piTerm(2 * r * h)}$의 합이다.\n따라서 겉넓이는 $2\\times${piTerm(R * R - r * r)}+${piTerm(2 * R * h)}+${piTerm(2 * r * h)}=${piTerm(S)}$이다.` : `따라서 부피는 $${piTerm(R * R - r * r)}\\times${h}=${piTerm(V)}$이다.`}`,
+            solution: `큰 원기둥의 밑면인 원의 반지름의 길이는 $${R}\\,\\mathrm{cm}$, 구멍의 반지름의 길이는 $${r}\\,\\mathrm{cm}$, 높이는 $${h}\\,\\mathrm{cm}$이다.\n밑넓이는 $\\pi\\times${R}^{2}-\\pi\\times${r}^{2}=${piTerm(R * R - r * r)}$이다.\n${ask === 0 ? `옆넓이는 바깥쪽 $2\\pi\\times${R}\\times${h}=${piTerm(2 * R * h)}$와 안쪽 $2\\pi\\times${r}\\times${h}=${piTerm(2 * r * h)}$의 합이다.\n따라서 겉넓이는 $2\\times${piTerm(R * R - r * r)}+${piTerm(2 * R * h)}+${piTerm(2 * r * h)}=${piTerm(S)}$이다.` : `따라서 부피는 $${piTerm(R * R - r * r)}\\times${h}=${piTerm(V)}$이다.`}`,
             facts: { shape, ask, R, r, h, S, V, ans: val },
             figureSpec: {
               version: "elem-1",
@@ -1217,7 +1218,7 @@ export const M1_SOLID_AREA: TypeEntry[] = [
         return {
           content: `오른쪽 그림은 가로의 길이가 $${w}\\,\\mathrm{cm}$, 세로의 길이가 $${d}\\,\\mathrm{cm}$, 높이가 $${h}\\,\\mathrm{cm}$인 직육면체의 한가운데에 직육면체 모양의 구멍을 뚫은 입체도형이다. 이 입체도형의 ${ask === 0 ? "겉넓이" : "부피"}를 구하시오.`,
           answer: `$${val}\\,\\mathrm{cm}^${ask === 0 ? 2 : 3}$`,
-          solution: `바깥 직육면체는 가로 $${w}\\,\\mathrm{cm}$, 세로 $${d}\\,\\mathrm{cm}$, 높이 $${h}\\,\\mathrm{cm}$이고 구멍은 가로 $${iw}\\,\\mathrm{cm}$, 세로 $${id}\\,\\mathrm{cm}$이다.\n밑넓이는 $${w}\\times${d}-${iw}\\times${id}=${w * d - iw * id}$이다.\n${ask === 0 ? `옆넓이는 바깥쪽 $2\\times(${w}+${d})\\times${h}=${2 * (w + d) * h}$과 안쪽 $2\\times(${iw}+${id})\\times${h}=${2 * (iw + id) * h}$의 합이다.\n따라서 겉넓이는 $2\\times${w * d - iw * id}+${2 * (w + d) * h}+${2 * (iw + id) * h}=${S}$이다.` : `따라서 부피는 $${w * d - iw * id}\\times${h}=${V}$이다.`}`,
+          solution: `바깥 직육면체는 가로 $${w}\\,\\mathrm{cm}$, 세로 $${d}\\,\\mathrm{cm}$, 높이 $${h}\\,\\mathrm{cm}$이고 구멍은 가로 $${iw}\\,\\mathrm{cm}$, 세로 $${id}\\,\\mathrm{cm}$이다.\n밑넓이는 $${w}\\times${d}-${iw}\\times${id}=${w * d - iw * id}$이다.\n${ask === 0 ? `옆넓이는 바깥쪽 $2\\times(${w}+${d})\\times${h}=${2 * (w + d) * h}$${waGwa(2 * (w + d) * h)} 안쪽 $2\\times(${iw}+${id})\\times${h}=${2 * (iw + id) * h}$의 합이다.\n따라서 겉넓이는 $2\\times${w * d - iw * id}+${2 * (w + d) * h}+${2 * (iw + id) * h}=${S}$이다.` : `따라서 부피는 $${w * d - iw * id}\\times${h}=${V}$이다.`}`,
           facts: { shape, ask, w, d, h, iw, id, S, V, ans: val },
           figureSpec: {
             version: "elem-1",

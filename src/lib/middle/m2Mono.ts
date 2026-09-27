@@ -562,7 +562,7 @@ export const M2_MONO_TYPES: TypeEntry[] = [
       return {
         content: `$${lhs}=${rhs}$ 일 때, 자연수 $a$, $b$, $c$ 에 대하여 $a+b+c$ 의 값을 구하시오.`,
         answer: `$${a + b + c}$`,
-        solution: `곱의 거듭제곱으로 좌변을 풀면 $${lhs}=\\left(${kc}\\right)^{b}${v0}^{ab}${v1}^{${ey}b}$ 이다.\n계수를 비교하면 $\\left(${kc}\\right)^{b}=${K}$ 에서 $b=${b}$, 지수를 비교하면 $ab=${X}$ 에서 $a=${a}$, $c=${ey}b=${c}$ 이다.\n따라서 $a+b+c=${a + b + c}$ 이다.`,
+        solution: `곱의 거듭제곱으로 좌변을 풀면 $${lhs}=\\left(${kc}\\right)^{b}${v0}^{ab}${v1}^{${coefTex(ey)}b}$ 이다.\n계수를 비교하면 $\\left(${kc}\\right)^{b}=${K}$ 에서 $b=${b}$, 지수를 비교하면 $ab=${X}$ 에서 $a=${a}$, $c=${coefTex(ey)}b=${c}$ 이다.\n따라서 $a+b+c=${a + b + c}$ 이다.`,
         facts: { kind, kc, a, b, c, K, X, ey },
       };
     },

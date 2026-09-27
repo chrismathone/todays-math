@@ -430,7 +430,7 @@ const COORD_TYPES: TypeEntry[] = [
           ? `변 $\\mathrm{CD}$가 변 $\\mathrm{AB}$와 평행하므로 점 $\\mathrm{D}$의 $x$좌표는 점 $\\mathrm{C}$의 $x$좌표와 같은 $${dx}$이고, 변 $\\mathrm{DA}$가 변 $\\mathrm{BC}$와 평행하므로 $y$좌표는 점 $\\mathrm{A}$의 $y$좌표와 같은 $${dy}$이다.`
           : `변 $\\mathrm{CD}$가 변 $\\mathrm{AB}$와 평행하므로 점 $\\mathrm{D}$의 $y$좌표는 점 $\\mathrm{C}$의 $y$좌표와 같은 $${dy}$이고, 변 $\\mathrm{DA}$가 변 $\\mathrm{BC}$와 평행하므로 $x$좌표는 점 $\\mathrm{A}$의 $x$좌표와 같은 $${dx}$이다.`;
         return {
-          content: `세 점 $${pointTex("A", ax, ay)}$, $${pointTex("B", bx, by)}$, $${pointTex("C", cx, cy)}$와 점 $\\mathrm{D}$를 꼭짓점으로 하는 사각형 $\\mathrm{ABCD}$가 각 변이 좌표축에 평행한 직사각형일 때, 점 $\\mathrm{D}$의 좌표를 구하시오.`,
+          content: `세 점 $${pointTex("A", ax, ay)}$, $${pointTex("B", bx, by)}$, $${pointTex("C", cx, cy)}$${waGwa(cy)} 점 $\\mathrm{D}$를 꼭짓점으로 하는 사각형 $\\mathrm{ABCD}$가 각 변이 좌표축에 평행한 직사각형일 때, 점 $\\mathrm{D}$의 좌표를 구하시오.`,
           answer: `$(${dx}, ${dy})$`,
           solution: `${why}\n따라서 점 $\\mathrm{D}$의 좌표는 $(${dx}, ${dy})$이다.`,
           facts: { ax, ay, bx, by, cx, cy, x: dx, y: dy },

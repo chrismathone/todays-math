@@ -99,6 +99,14 @@ function def(
   };
 }
 
+/**
+ * 「$cx=d$이므로 $x=…$」 — 계수 $c$ 가 $1$ 이면 「$1x=8$」을 적지 않고, 가운데 줄이 결론과
+ * 같아져 「$x=8$이므로 $x=8$이고」로 되풀이되므로 바로 「$x=8$」로 쓴다.
+ */
+function solveX(c: number, d: number, x: number): string {
+  return c === 1 ? `$x=${x}$` : `$${c}x=${d}$이므로 $x=${x}$`;
+}
+
 // ── 도형 ────────────────────────────────────────────────────────────────
 
 /** 기본 네 꼭짓점 (A 왼위 · B 왼아래 · C 오른아래 · D 오른위, 기울기 slant). */
@@ -416,7 +424,7 @@ export const M2_QUAD: TypeEntry[] = [
       return {
         content: `평행사변형 $ABCD$에서 $\\overline{AB}=(${p}x+${q})\\,\\mathrm{cm}$, $\\overline{CD}=(x+${s})\\,\\mathrm{cm}$이다. $\\overline{AB}$의 길이를 구하시오.`,
         answer: `$${L}\\,\\mathrm{cm}$`,
-        solution: `평행사변형의 두 쌍의 대변의 길이는 각각 같으므로 $\\overline{AB}=\\overline{CD}$이다.\n$${p}x+${q}=x+${s}$에서 $${p - 1}x=${s - q}$이므로 $x=${x}$이고, $\\overline{AB}=${p}\\times${x}+${q}=${L}\\,(\\mathrm{cm})$이다.`,
+        solution: `평행사변형의 두 쌍의 대변의 길이는 각각 같으므로 $\\overline{AB}=\\overline{CD}$이다.\n$${p}x+${q}=x+${s}$에서 ${solveX(p - 1, s - q, x)}이고, $\\overline{AB}=${p}\\times${x}+${q}=${L}\\,(\\mathrm{cm})$이다.`,
         facts: { mode, p, q, x, s, L, ans: L },
         figureSpec: figParaBasic(150, 92, 40),
       };
@@ -450,7 +458,7 @@ export const M2_QUAD: TypeEntry[] = [
       return {
         content: `평행사변형 $ABCD$에서 $\\angle A=(${p}x+${q})^\\circ$, $\\angle C=(x+${s})^\\circ$일 때, $\\angle C$의 크기를 구하시오.`,
         answer: `$${C}^\\circ$`,
-        solution: `평행사변형의 두 쌍의 대각의 크기는 각각 같으므로 $\\angle A=\\angle C$이다.\n$${p}x+${q}=x+${s}$에서 $${p - 1}x=${s - q}$이므로 $x=${x}$이고, $\\angle C=x+${s}=${C}^\\circ$이다.`,
+        solution: `평행사변형의 두 쌍의 대각의 크기는 각각 같으므로 $\\angle A=\\angle C$이다.\n$${p}x+${q}=x+${s}$에서 ${solveX(p - 1, s - q, x)}이고, $\\angle C=x+${s}=${C}^\\circ$이다.`,
         facts: { mode, p, q, x, s, C, ans: C },
         figureSpec: figParaBasic(150, 92, 40),
       };
@@ -546,7 +554,7 @@ export const M2_QUAD: TypeEntry[] = [
     return {
       content: `사각형 $ABCD$에서 $\\overline{AB}=(${p}x+${q})\\,\\mathrm{cm}$, $\\overline{CD}=(x+${s})\\,\\mathrm{cm}$이다. 다른 한 쌍의 대변의 길이도 각각 같을 때, $\\square ABCD$가 평행사변형이 되도록 하는 $x$의 값을 구하시오.`,
       answer: `$${x}$`,
-      solution: `두 쌍의 대변의 길이가 각각 같은 사각형은 평행사변형이므로 $\\overline{AB}=\\overline{CD}$이어야 한다.\n$${p}x+${q}=x+${s}$에서 $${p - 1}x=${s - q}$이므로 $x=${x}$이다.`,
+      solution: `두 쌍의 대변의 길이가 각각 같은 사각형은 평행사변형이므로 $\\overline{AB}=\\overline{CD}$이어야 한다.\n$${p}x+${q}=x+${s}$에서 ${solveX(p - 1, s - q, x)}이다.`,
       facts: { p, q, x, s, ans: x },
       figureSpec: figCondSides(150, 92, 40, 1, 2),
     };
@@ -560,7 +568,7 @@ export const M2_QUAD: TypeEntry[] = [
     return {
       content: `사각형 $ABCD$에서 $\\angle A=(${p}x+${q})^\\circ$, $\\angle C=(x+${s})^\\circ$이다. 다른 한 쌍의 대각의 크기도 각각 같을 때, $\\square ABCD$가 평행사변형이 되도록 하는 $x$의 값을 구하시오.`,
       answer: `$${x}$`,
-      solution: `두 쌍의 대각의 크기가 각각 같은 사각형은 평행사변형이므로 $\\angle A=\\angle C$이어야 한다.\n$${p}x+${q}=x+${s}$에서 $${p - 1}x=${s - q}$이므로 $x=${x}$이다.`,
+      solution: `두 쌍의 대각의 크기가 각각 같은 사각형은 평행사변형이므로 $\\angle A=\\angle C$이어야 한다.\n$${p}x+${q}=x+${s}$에서 ${solveX(p - 1, s - q, x)}이다.`,
       facts: { p, q, x, s, ans: x },
       figureSpec: figCondAngles(150, 92, 40),
     };
@@ -576,7 +584,7 @@ export const M2_QUAD: TypeEntry[] = [
     return {
       content: `평행사변형 $ABCD$에서 두 대각선의 교점을 $O$라 하자. $\\overline{AO}=(${p}x+${q})\\,\\mathrm{cm}$, $\\overline{CO}=(x+${s})\\,\\mathrm{cm}$일 때, $\\overline{AC}$의 길이를 구하시오.`,
       answer: `$${AC}\\,\\mathrm{cm}$`,
-      solution: `평행사변형의 두 대각선은 서로 다른 것을 이등분하므로 $\\overline{AO}=\\overline{CO}$이다.\n$${p}x+${q}=x+${s}$에서 $${p - 1}x=${s - q}$이므로 $x=${x}$이고, $\\overline{AO}=${p}\\times${x}+${q}=${AO}\\,\\mathrm{cm}$이다.\n따라서 $\\overline{AC}=2\\times${AO}=${AC}\\,(\\mathrm{cm})$이다.`,
+      solution: `평행사변형의 두 대각선은 서로 다른 것을 이등분하므로 $\\overline{AO}=\\overline{CO}$이다.\n$${p}x+${q}=x+${s}$에서 ${solveX(p - 1, s - q, x)}이고, $\\overline{AO}=${p}\\times${x}+${q}=${AO}\\,\\mathrm{cm}$이다.\n따라서 $\\overline{AC}=2\\times${AO}=${AC}\\,(\\mathrm{cm})$이다.`,
       facts: { p, q, x, s, AO, AC, ans: AC },
       figureSpec: figCondDiagOne(150, 92, 40),
     };

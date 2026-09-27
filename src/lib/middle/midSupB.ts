@@ -44,7 +44,7 @@ function iGa(n: number): "이" | "가" {
 //    타입만 끌어오는 것은 런타임에 지워지므로 안전하다.
 import type { ComboFamily } from "./combo";
 import { M1_EXPR_SUP_B } from "./m1Expr";
-import { signed } from "./m1Shared";
+import { poly } from "./m1Shared";
 import { M2_GEO_SIM_SUP_B } from "./m2GeoSim";
 import { M2_PYTHA_SUP_B } from "./m2Pytha";
 import { M2_RATIONAL_SUP_B } from "./m2Rational";
@@ -108,8 +108,9 @@ function linearSystemFamily(id: string, mode: number): ComboFamily {
       } else if (mode === 2) {
         const d = y - p * x;
         const s = x + q * y;
-        content = `연립방정식 $\\begin{cases}y=${p}x${signed(d)}\\\\x+${q}y=${s}\\end{cases}$를 대입법으로 푸시오.`;
-        solution = `둘째 식의 $y$에 $${p}x${signed(d)}$${eulReul(d)} 대입하면 $x+${q}(${p}x${signed(d)})=${s}$이므로 $x=${x}$이다. 따라서 $y=${y}$이다.`;
+        content = `연립방정식 $\\begin{cases}y=${poly(0, p, d)}\\\\x+${q}y=${s}\\end{cases}$를 대입법으로 푸시오.`;
+        // 상수항 $0$ 은 안 적는다(「$y=2x+0$」이 아니라 「$y=2x$」) — 그때 식은 x(엑스)로 끝나 「를」.
+        solution = `둘째 식의 $y$에 $${poly(0, p, d)}$${d === 0 ? "를" : eulReul(d)} 대입하면 $x+${q}(${poly(0, p, d)})=${s}$이므로 $x=${x}$이다. 따라서 $y=${y}$이다.`;
       } else if (mode === 3) {
         const a = p * (x + y);
         const b = q * x - y;

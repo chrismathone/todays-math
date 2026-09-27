@@ -21,6 +21,7 @@ import type { Rng } from "../elementary/types";
 import { CHOICE_COUNT, CHOICE_MARKS } from "../problem/choiceCountRule";
 
 import type { MidProblem, TypeEntry } from "./types";
+import { eulReul, iGa, waGwa } from "./m2Josa";
 
 const GRADE = "중2";
 const BOOK = "2-1";
@@ -259,9 +260,9 @@ export const M2_FUNC: TypeEntry[] = [
       const q = a * k + b;
       if (q === 0 || Math.abs(q) > 20) return null;
       return {
-        content: `점 $(k, ${q})$가 일차함수 $y=${linear(a, b)}$의 그래프 위에 있을 때, $k$의 값을 구하시오.`,
+        content: `점 $(k, ${q})$${iGa(q)} 일차함수 $y=${linear(a, b)}$의 그래프 위에 있을 때, $k$의 값을 구하시오.`,
         answer: `$${k}$`,
-        solution: `$x=k$, $y=${q}$를 대입하면 $${q}=${a === 1 ? "k" : a === -1 ? "-k" : `${a}k`}${b > 0 ? `+${b}` : b === 0 ? "" : b}$이므로 $${a === 1 ? "k" : a === -1 ? "-k" : `${a}k`}=${q - b}$이다.\n따라서 $k=${k}$이다.`,
+        solution: `$x=k$, $y=${q}$${eulReul(q)} 대입하면 $${q}=${a === 1 ? "k" : a === -1 ? "-k" : `${a}k`}${b > 0 ? `+${b}` : b === 0 ? "" : b}$이므로 $${a === 1 ? "k" : a === -1 ? "-k" : `${a}k`}=${q - b}$이다.\n따라서 $k=${k}$이다.`,
         facts: { a, b, q, k },
       };
     }),
@@ -275,9 +276,9 @@ export const M2_FUNC: TypeEntry[] = [
       const c = q - a * p;
       if (c === 0 || Math.abs(c) > 12) return null;
       return {
-        content: `일차함수 $y=${mono(a)}$의 그래프를 $y$축의 방향으로 $c$만큼 평행이동하였더니 점 $(${p}, ${q})$를 지났다. $c$의 값을 구하시오.`,
+        content: `일차함수 $y=${mono(a)}$의 그래프를 $y$축의 방향으로 $c$만큼 평행이동하였더니 점 $(${p}, ${q})$${eulReul(q)} 지났다. $c$의 값을 구하시오.`,
         answer: `$${c}$`,
-        solution: `평행이동한 그래프의 식은 $y=${mono(a)}+c$이다.\n$x=${p}$, $y=${q}$를 대입하면 $${q}=${a * p}+c$이다.\n따라서 $c=${c}$이다.`,
+        solution: `평행이동한 그래프의 식은 $y=${mono(a)}+c$이다.\n$x=${p}$, $y=${q}$${eulReul(q)} 대입하면 $${q}=${a * p}+c$이다.\n따라서 $c=${c}$이다.`,
         facts: { a, p, q, c },
       };
     }),
@@ -328,7 +329,7 @@ export const M2_FUNC: TypeEntry[] = [
       return {
         content: `오른쪽 그림과 같은 일차함수의 그래프에서 $x$의 값이 $${p}$만큼 증가할 때, $y$의 값의 증가량을 구하시오.`,
         answer: `$${ans}$`,
-        solution: `그래프가 두 점 $(${x1}, ${y1})$, $(${x2}, ${y2})$를 지나므로 기울기는 $${fracTex(num, den)}$이다.\n$x$의 값이 $${p}$만큼 증가할 때 $y$의 값의 증가량은 $${fracTex(num, den)}\\times${p}=${ans}$이다.`,
+        solution: `그래프가 두 점 $(${x1}, ${y1})$, $(${x2}, ${y2})$${eulReul(y2)} 지나므로 기울기는 $${fracTex(num, den)}$이다.\n$x$의 값이 $${p}$만큼 증가할 때 $y$의 값의 증가량은 $${fracTex(num, den)}\\times${p}=${ans}$이다.`,
         facts: { num, den, b, x1, y1, x2, y2, p, ans },
         figureSpec: {
           version: "elem-1",
@@ -361,7 +362,7 @@ export const M2_FUNC: TypeEntry[] = [
         const y2 = y1 + m * dx;
         if (Math.abs(y2) > 20) return null;
         return {
-          content: `두 점 $(${x1}, ${y1})$, $(${x2}, ${y2})$를 지나는 일차함수의 그래프의 기울기를 구하시오.`,
+          content: `두 점 $(${x1}, ${y1})$, $(${x2}, ${y2})$${eulReul(y2)} 지나는 일차함수의 그래프의 기울기를 구하시오.`,
           answer: `$${m}$`,
           solution: `기울기는 $\\dfrac{${y2}-(${y1 >= 0 ? y1 : `${y1}`})}{${x2}-(${x1 >= 0 ? x1 : `${x1}`})}=\\dfrac{${y2 - y1}}{${dx}}=${m}$이다.`,
           facts: { x1, y1, x2, y2, m },
@@ -478,7 +479,8 @@ export const M2_FUNC: TypeEntry[] = [
         return v === c1 ? null : v;
       });
       return {
-        content: `두 일차함수 $y=(${mult}a${off > 0 ? `-${off}` : `+${-off}`})x${c1 > 0 ? `+${c1}` : c1 === 0 ? "" : c1}$와 $y=${linear(coef2, c2)}$의 그래프가 서로 평행할 때, 상수 $a$의 값을 구하시오.`,
+        // $c_1=0$ 이면 식이 「$x$(엑스)」로 끝난다.
+        content: `두 일차함수 $y=(${mult}a${off > 0 ? `-${off}` : `+${-off}`})x${c1 > 0 ? `+${c1}` : c1 === 0 ? "" : c1}$${c1 === 0 ? "와" : waGwa(c1)} $y=${linear(coef2, c2)}$의 그래프가 서로 평행할 때, 상수 $a$의 값을 구하시오.`,
         answer: `$${a}$`,
         solution: `두 그래프가 평행하면 기울기가 같다.\n$${mult}a${off > 0 ? `-${off}` : `+${-off}`}=${coef2}$에서 $${mult}a=${coef2 + off}$이다.\n따라서 $a=${a}$이다.`,
         facts: { a, mult, off, coef2, c1, c2 },
@@ -502,7 +504,7 @@ export const M2_FUNC: TypeEntry[] = [
         return {
           content: `기울기가 $${m}$이고 $y$절편이 $${b}$인 일차함수의 그래프가 점 $(${p}, k)$를 지날 때, $k$의 값을 구하시오.`,
           answer: `$${k}$`,
-          solution: `일차함수의 식은 $y=${linear(m, b)}$이다.\n$x=${p}$를 대입하면 $k=${m * p}${b > 0 ? `+${b}` : b}=${k}$이다.`,
+          solution: `일차함수의 식은 $y=${linear(m, b)}$이다.\n$x=${p}$${eulReul(p)} 대입하면 $k=${m * p}${b > 0 ? `+${b}` : b}=${k}$이다.`,
           facts: { m, b, p, k },
         };
       }),
@@ -522,9 +524,9 @@ export const M2_FUNC: TypeEntry[] = [
         const b = q - m * p;
         if (b === 0 || Math.abs(b) > 15) return null;
         return {
-          content: `기울기가 $${m}$이고 점 $(${p}, ${q})$를 지나는 일차함수의 그래프의 $y$절편을 구하시오.`,
+          content: `기울기가 $${m}$이고 점 $(${p}, ${q})$${eulReul(q)} 지나는 일차함수의 그래프의 $y$절편을 구하시오.`,
           answer: `$${b}$`,
-          solution: `일차함수의 식을 $y=${mono(m)}+b$라 하면 $x=${p}$, $y=${q}$를 대입하여 $${q}=${m * p}+b$이다.\n따라서 $b=${b}$이므로 $y$절편은 $${b}$이다.`,
+          solution: `일차함수의 식을 $y=${mono(m)}+b$라 하면 $x=${p}$, $y=${q}$${eulReul(q)} 대입하여 $${q}=${m * p}+b$이다.\n따라서 $b=${b}$이므로 $y$절편은 $${b}$이다.`,
           facts: { m, p, q, b },
         };
       }),
@@ -547,9 +549,9 @@ export const M2_FUNC: TypeEntry[] = [
         const y2 = m * x2 + b;
         if (Math.abs(y1) > 15 || Math.abs(y2) > 15) return null;
         return {
-          content: `두 점 $(${x1}, ${y1})$, $(${x2}, ${y2})$를 지나는 일차함수의 그래프의 $y$절편을 구하시오.`,
+          content: `두 점 $(${x1}, ${y1})$, $(${x2}, ${y2})$${eulReul(y2)} 지나는 일차함수의 그래프의 $y$절편을 구하시오.`,
           answer: `$${b}$`,
-          solution: `기울기는 $\\dfrac{${y2 - y1}}{${dx}}=${m}$이다.\n$y=${mono(m)}+b$에 $x=${x1}$, $y=${y1}$을 대입하면 $${y1}=${m * x1}+b$, $b=${b}$이다.\n따라서 $y$절편은 $${b}$이다.`,
+          solution: `기울기는 $\\dfrac{${y2 - y1}}{${dx}}=${m}$이다.\n$y=${mono(m)}+b$에 $x=${x1}$, $y=${y1}$${eulReul(y1)} 대입하면 $${y1}=${m * x1}+b$, $b=${b}$이다.\n따라서 $y$절편은 $${b}$이다.`,
           facts: { x1, y1, x2, y2, m, b },
         };
       }),
@@ -571,7 +573,7 @@ export const M2_FUNC: TypeEntry[] = [
         return {
           content: `지면의 기온이 $${t0}\\degree\\mathrm{C}$이고, 높이가 $100 m$ 높아질 때마다 기온이 $${d}\\degree\\mathrm{C}$씩 내려간다고 한다. 높이가 $${h} m$인 곳의 기온을 구하시오.`,
           answer: `$${ans}\\degree\\mathrm{C}$`,
-          solution: `높이 $x m$인 곳의 기온을 $y\\degree\\mathrm{C}$라 하면 $y=${t0}-\\dfrac{${d}}{100}x$이다.\n$x=${h}$을 대입하면 $y=${t0}-${(d * h) / 100}=${ans}$이다.\n따라서 $${ans}\\degree\\mathrm{C}$이다.`,
+          solution: `높이 $x m$인 곳의 기온을 $y\\degree\\mathrm{C}$라 하면 $y=${t0}-\\dfrac{${d}}{100}x$이다.\n$x=${h}$${eulReul(h)} 대입하면 $y=${t0}-${(d * h) / 100}=${ans}$이다.\n따라서 $${ans}\\degree\\mathrm{C}$이다.`,
           facts: { t0, d, h, ans },
         };
       }),
@@ -593,7 +595,7 @@ export const M2_FUNC: TypeEntry[] = [
         return {
           content: `길이가 $${L0} cm$인 양초에 불을 붙이면 $1$분에 $${r} cm$씩 일정하게 짧아진다. 남은 양초의 길이가 $${Lk} cm$가 되는 것은 불을 붙인 지 몇 분 후인지 구하시오.`,
           answer: `$${t}$분 후`,
-          solution: `$x$분 후 남은 길이를 $y cm$라 하면 $y=${L0}-${mono(r)}$이다.\n$y=${Lk}$를 대입하면 $${Lk}=${L0}-${mono(r)}$에서 $${r === 1 ? "x" : `${r}x`}=${L0 - Lk}$이다.\n따라서 $${t}$분 후이다.`,
+          solution: `$x$분 후 남은 길이를 $y cm$라 하면 $y=${L0}-${mono(r)}$이다.\n$y=${Lk}$${eulReul(Lk)} 대입하면 $${Lk}=${L0}-${mono(r)}$에서 $${r === 1 ? "x" : `${r}x`}=${L0 - Lk}$이다.\n따라서 $${t}$분 후이다.`,
           facts: { L0, r, Lk, t },
         };
       }),
@@ -654,7 +656,7 @@ export const M2_FUNC: TypeEntry[] = [
       return {
         content: `어떤 온도계의 액주 길이는 온도가 $0\\degree\\mathrm{C}$일 때 $${base} mm$이고, 온도가 $1\\degree\\mathrm{C}$ 올라갈 때마다 $${rate} mm$씩 길어진다. 온도가 $${temp}\\degree\\mathrm{C}$일 때 액주 길이를 구하시오.`,
         answer: `$${length} mm$`,
-        solution: `온도를 $x\\degree\\mathrm{C}$, 액주 길이를 $y mm$라 하면 $y=${rate}x+${base}$이다. $x=${temp}$를 대입하면 $y=${rate}\\times${temp}+${base}=${length}$이다.`,
+        solution: `온도를 $x\\degree\\mathrm{C}$, 액주 길이를 $y mm$라 하면 $y=${rate}x+${base}$이다. $x=${temp}$${eulReul(temp)} 대입하면 $y=${rate}\\times${temp}+${base}=${length}$이다.`,
         facts: { base, rate, temp, length },
       };
     },
@@ -696,7 +698,7 @@ export const M2_FUNC: TypeEntry[] = [
       return {
         content: `추를 달지 않은 용수철의 길이는 $${base} cm$이고, 추의 무게가 $1 kg$ 늘어날 때마다 용수철의 길이는 $${rate} cm$씩 늘어난다. 무게가 $${weight} kg$인 추를 달았을 때 용수철의 길이를 계산하시오.`,
         answer: `$${length} cm$`,
-        solution: `추의 무게를 $x kg$, 용수철의 길이를 $y cm$라 하면 $y=${rate}x+${base}$이다. $x=${weight}$를 대입하면 $y=${rate}\\times${weight}+${base}=${length}$이다.`,
+        solution: `추의 무게를 $x kg$, 용수철의 길이를 $y cm$라 하면 $y=${rate}x+${base}$이다. $x=${weight}$${eulReul(weight)} 대입하면 $y=${rate}\\times${weight}+${base}=${length}$이다.`,
         facts: { base, rate, weight, length },
       };
     },
@@ -740,7 +742,7 @@ export const M2_FUNC: TypeEntry[] = [
         return {
           content: `길이가 각각 $${startA} cm$, $${startB} cm$인 두 양초 A, B에 동시에 불을 붙였다. A는 $1$분에 $${rateA} cm$, B는 $1$분에 $${rateB} cm$씩 일정하게 짧아질 때, 두 양초의 길이가 같아지는 것은 몇 분 후인지 구하시오.`,
           answer: `$${meet}$분 후`,
-          solution: `$x$분 후 두 양초의 길이는 각각 $${startA}-${rateA}x$, $${startB}-${rateB}x$이다. $${startA}-${rateA}x=${startB}-${rateB}x$에서 $${rateB - rateA}x=${startB - startA}$이므로 $x=${meet}$이다.`,
+          solution: `$x$분 후 두 양초의 길이는 각각 $${startA}-${rateA}x$, $${startB}-${rateB}x$이다. $${startA}-${rateA}x=${startB}-${rateB}x$에서 $${mono(rateB - rateA)}=${startB - startA}$이므로 $x=${meet}$이다.`,
           facts: { rateA, rateB, meet, startA, startB, length },
         };
       }),
@@ -790,7 +792,8 @@ export const M2_FUNC: TypeEntry[] = [
         // 그런 스펙을 던지므로, 생성기가 먼저 좁힌다.
         if (Math.abs(b1) > 3 || Math.abs(b2) > 3) return null;
         return {
-          content: `오른쪽 그림은 두 일차함수 $y=${linear(m1, b1)}$과 $y=${linear(m2, b2)}$의 그래프이다. 연립방정식 $\\begin{cases}y=${linear(m1, b1)}\\\\y=${linear(m2, b2)}\\end{cases}$의 해를 구하시오.`,
+          // $b_1=0$ 이면 식이 「$x$(엑스)」로 끝난다.
+          content: `오른쪽 그림은 두 일차함수 $y=${linear(m1, b1)}$${b1 === 0 ? "와" : waGwa(b1)} $y=${linear(m2, b2)}$의 그래프이다. 연립방정식 $\\begin{cases}y=${linear(m1, b1)}\\\\y=${linear(m2, b2)}\\end{cases}$의 해를 구하시오.`,
           answer: `$x=${p}$, $y=${q}$`,
           solution: `연립방정식의 해는 두 그래프의 교점의 좌표와 같다.\n두 그래프는 점 $(${p}, ${q})$에서 만나므로 해는 $x=${p}$, $y=${q}$이다.`,
           facts: { m1, b1, m2, b2, p, q },
@@ -833,7 +836,7 @@ export const M2_FUNC: TypeEntry[] = [
         return {
           content: `일차함수 $f(x)=ax${tail}$에 대하여 $f(${p})=${q}$일 때, 상수 $a$의 값을 구하시오.`,
           answer: `$${a}$`,
-          solution: `$x=${p}$를 대입하면 $${pa}${tail}=${q}$이다.\n따라서 $${pa}=${q - b}$이므로 $a=${a}$이다.`,
+          solution: `$x=${p}$${eulReul(p)} 대입하면 $${pa}${tail}=${q}$이다.\n따라서 $${pa}=${q - b}$이므로 $a=${a}$이다.`,
           facts: { a, b, p, q },
         };
       }),
@@ -858,7 +861,7 @@ export const M2_FUNC: TypeEntry[] = [
         return {
           content: `일차함수 $f(x)=ax+b$에 대하여 $f(${p})=${fp}$, $f(${q})=${fq}$일 때, $a+b$의 값을 구하시오.`,
           answer: `$${ans}$`,
-          solution: `두 식을 변끼리 빼면 $${q - p}a=${fq - fp}$이므로 $a=${a}$이다.\n$f(${p})=${fp}$에 $a=${a}$를 대입하면 $${a * p}+b=${fp}$이므로 $b=${b}$이다.\n따라서 $a+b=${ans}$이다.`,
+          solution: `두 식을 변끼리 빼면 $${q - p}a=${fq - fp}$이므로 $a=${a}$이다.\n$f(${p})=${fp}$에 $a=${a}$${eulReul(a)} 대입하면 $${a * p}+b=${fp}$이므로 $b=${b}$이다.\n따라서 $a+b=${ans}$이다.`,
           facts: { a, b, p, q, fp, fq, ans },
         };
       }),
@@ -891,7 +894,7 @@ export const M2_FUNC: TypeEntry[] = [
       const c = nonZero(rng, -8, 8);
       const head = k > 0 ? `a-${k}` : `a+${-k}`;
       return {
-        content: `$y=(${head})x${c > 0 ? `+${c}` : `${c}`}$가 $x$에 대한 일차함수가 되도록 할 때, 상수 $a$의 값이 될 수 없는 수를 구하시오.`,
+        content: `$y=(${head})x${c > 0 ? `+${c}` : `${c}`}$${iGa(c)} $x$에 대한 일차함수가 되도록 할 때, 상수 $a$의 값이 될 수 없는 수를 구하시오.`,
         answer: `$${k}$`,
         solution: `일차함수가 되려면 $x$의 계수가 $0$이 아니어야 한다.\n$${head}\\ne0$이어야 하므로 $a\\ne${k}$이다.\n따라서 될 수 없는 수는 $${k}$이다.`,
         facts: { k, c },
@@ -1012,7 +1015,7 @@ export const M2_FUNC: TypeEntry[] = [
         const y2 = y1 + m * dx;
         if (Math.abs(y2) > 25) return null;
         return {
-          content: `두 점 $(a, ${y1})$, $(${x2}, ${y2})$를 지나는 일차함수의 그래프의 기울기가 $${m}$일 때, $a$의 값을 구하시오.`,
+          content: `두 점 $(a, ${y1})$, $(${x2}, ${y2})$${eulReul(y2)} 지나는 일차함수의 그래프의 기울기가 $${m}$일 때, $a$의 값을 구하시오.`,
           answer: `$${a}$`,
           solution: `$\\dfrac{${y2}-(${y1})}{${x2}-a}=${m}$에서 $\\dfrac{${y2 - y1}}{${x2}-a}=${m}$이다.\n따라서 $${x2}-a=${dx}$이므로 $a=${a}$이다.`,
           facts: { m, a, x2, y1, y2 },
@@ -1065,7 +1068,7 @@ export const M2_FUNC: TypeEntry[] = [
         const k = y3 + m * d2;
         if ([y2, k].some((v) => Math.abs(v) > 25)) return null;
         return {
-          content: `두 점 $(${x1}, ${y1})$, $(${x2}, ${y2})$를 지나는 직선과 두 점 $(${x3}, ${y3})$, $(${x4}, k)$를 지나는 직선의 기울기가 서로 같을 때, $k$의 값을 구하시오.`,
+          content: `두 점 $(${x1}, ${y1})$, $(${x2}, ${y2})$${eulReul(y2)} 지나는 직선과 두 점 $(${x3}, ${y3})$, $(${x4}, k)$를 지나는 직선의 기울기가 서로 같을 때, $k$의 값을 구하시오.`,
           answer: `$${k}$`,
           solution: `앞 직선의 기울기는 $\\dfrac{${y2 - y1}}{${d1}}=${m}$이다.\n뒤 직선도 기울기가 같아야 하므로 $\\dfrac{k-(${y3})}{${d2}}=${m}$이다.\n따라서 $k=${k}$이다.`,
           facts: { m, x1, y1, x2, y2, x3, y3, x4, k },
@@ -1173,7 +1176,7 @@ export const M2_FUNC: TypeEntry[] = [
         const k = -m2 * x0;
         if (Math.abs(b1) > 20 || Math.abs(k) > 20) return null;
         return {
-          content: `두 일차함수 $y=${linear(m1, b1)}$과 $y=${mono(m2)}+k$의 그래프의 $x$절편이 서로 같을 때, 상수 $k$의 값을 구하시오.`,
+          content: `두 일차함수 $y=${linear(m1, b1)}$${waGwa(b1)} $y=${mono(m2)}+k$의 그래프의 $x$절편이 서로 같을 때, 상수 $k$의 값을 구하시오.`,
           answer: `$${k}$`,
           solution: `앞 그래프의 $x$절편은 $${linear(m1, b1)}=0$에서 $x=${x0}$이다.\n뒤 그래프도 점 $(${x0}, 0)$을 지나야 하므로 $0=${m2 * x0}+k$이다.\n따라서 $k=${k}$이다.`,
           facts: { x0, m1, b1, m2, k },
@@ -1226,7 +1229,7 @@ export const M2_FUNC: TypeEntry[] = [
         const y2 = m * x2 + b;
         if ([y1, y2, b].some((v) => Math.abs(v) > 24)) return null;
         return {
-          content: `두 점 $(${x1}, ${y1})$, $(${x2}, ${y2})$를 지나는 일차함수의 그래프의 $x$절편을 구하시오.`,
+          content: `두 점 $(${x1}, ${y1})$, $(${x2}, ${y2})$${eulReul(y2)} 지나는 일차함수의 그래프의 $x$절편을 구하시오.`,
           answer: `$${x0}$`,
           solution: `기울기는 $\\dfrac{${y2 - y1}}{${dx}}=${m}$이므로 그래프의 식은 $y=${linear(m, b)}$이다.\n$y=0$을 대입하면 $x=${x0}$이다.`,
           facts: { m, b, x0, x1, y1, x2, y2 },
@@ -1252,9 +1255,9 @@ export const M2_FUNC: TypeEntry[] = [
         const q = m * p + b;
         if (q === 0 || [q, b].some((v) => Math.abs(v) > 24)) return null;
         return {
-          content: `기울기가 $${m}$이고 점 $(${p}, ${q})$를 지나는 일차함수의 그래프의 $x$절편을 구하시오.`,
+          content: `기울기가 $${m}$이고 점 $(${p}, ${q})$${eulReul(q)} 지나는 일차함수의 그래프의 $x$절편을 구하시오.`,
           answer: `$${x0}$`,
-          solution: `식을 $y=${mono(m)}+b$라 하고 $x=${p}$, $y=${q}$를 대입하면 $${q}=${m * p}+b$이므로 $b=${b}$이다.\n$y=${linear(m, b)}$에서 $y=0$을 대입하면 $x=${x0}$이다.`,
+          solution: `식을 $y=${mono(m)}+b$라 하고 $x=${p}$, $y=${q}$${eulReul(q)} 대입하면 $${q}=${m * p}+b$이므로 $b=${b}$이다.\n$y=${linear(m, b)}$에서 $y=0$을 대입하면 $x=${x0}$이다.`,
           facts: { m, p, q, b, x0 },
         };
       }),
@@ -1275,7 +1278,7 @@ export const M2_FUNC: TypeEntry[] = [
         return {
           content: `$x$절편이 $${x0}$이고 $y$절편이 $${b}$인 일차함수의 그래프의 기울기를 구하시오.`,
           answer: `$${m}$`,
-          solution: `그래프는 두 점 $(${x0}, 0)$, $(0, ${b})$를 지난다.\n따라서 기울기는 $\\dfrac{${b}-0}{0-(${x0})}=\\dfrac{${b}}{${-x0}}=${m}$이다.`,
+          solution: `그래프는 두 점 $(${x0}, 0)$, $(0, ${b})$${eulReul(b)} 지난다.\n따라서 기울기는 $\\dfrac{${b}-0}{0-(${x0})}=\\dfrac{${b}}{${-x0}}=${m}$이다.`,
           facts: { m, x0, b },
         };
       }),
@@ -1296,9 +1299,9 @@ export const M2_FUNC: TypeEntry[] = [
         const b = q - m * p;
         if (b === 0 || b === c || Math.abs(b) > 20) return null;
         return {
-          content: `일차함수 $y=${linear(m, c)}$의 그래프와 평행하고 점 $(${p}, ${q})$를 지나는 일차함수의 그래프의 $y$절편을 구하시오.`,
+          content: `일차함수 $y=${linear(m, c)}$의 그래프와 평행하고 점 $(${p}, ${q})$${eulReul(q)} 지나는 일차함수의 그래프의 $y$절편을 구하시오.`,
           answer: `$${b}$`,
-          solution: `평행하면 기울기가 같으므로 구하는 식은 $y=${mono(m)}+b$이다.\n$x=${p}$, $y=${q}$를 대입하면 $${q}=${m * p}+b$이므로 $b=${b}$이다.`,
+          solution: `평행하면 기울기가 같으므로 구하는 식은 $y=${mono(m)}+b$이다.\n$x=${p}$, $y=${q}$${eulReul(q)} 대입하면 $${q}=${m * p}+b$이므로 $b=${b}$이다.`,
           facts: { m, c, p, q, b },
         };
       }),
@@ -1326,9 +1329,9 @@ export const M2_FUNC: TypeEntry[] = [
         const k = m * r + b;
         if ([y1, y2, k].some((v) => Math.abs(v) > 25)) return null;
         return {
-          content: `두 점 $(${x1}, ${y1})$, $(${x2}, ${y2})$를 지나는 일차함수의 그래프가 점 $(${r}, k)$를 지날 때, $k$의 값을 구하시오.`,
+          content: `두 점 $(${x1}, ${y1})$, $(${x2}, ${y2})$${eulReul(y2)} 지나는 일차함수의 그래프가 점 $(${r}, k)$를 지날 때, $k$의 값을 구하시오.`,
           answer: `$${k}$`,
-          solution: `기울기는 $\\dfrac{${y2 - y1}}{${dx}}=${m}$이고, $y=${mono(m)}+b$에 $x=${x1}$, $y=${y1}$을 대입하면 $b=${b}$이다.\n$y=${linear(m, b)}$에 $x=${r}$을 대입하면 $k=${k}$이다.`,
+          solution: `기울기는 $\\dfrac{${y2 - y1}}{${dx}}=${m}$이고, $y=${mono(m)}+b$에 $x=${x1}$, $y=${y1}$${eulReul(y1)} 대입하면 $b=${b}$이다.\n$y=${linear(m, b)}$에 $x=${r}$${eulReul(r)} 대입하면 $k=${k}$이다.`,
           facts: { m, b, x1, y1, x2, y2, r, k },
         };
       }),
@@ -1349,9 +1352,9 @@ export const M2_FUNC: TypeEntry[] = [
         if (b === 0 || Math.abs(b) > 20) return null;
         const ans = m + b;
         return {
-          content: `기울기가 $${m}$이고 점 $(${p}, ${q})$를 지나는 일차함수의 식을 $y=ax+b$라 할 때, $a+b$의 값을 구하시오.`,
+          content: `기울기가 $${m}$이고 점 $(${p}, ${q})$${eulReul(q)} 지나는 일차함수의 식을 $y=ax+b$라 할 때, $a+b$의 값을 구하시오.`,
           answer: `$${ans}$`,
-          solution: `기울기가 $${m}$이므로 $a=${m}$이고, 식은 $y=${mono(m)}+b$이다.\n$x=${p}$, $y=${q}$를 대입하면 $b=${b}$이다.\n따라서 $a+b=${ans}$이다.`,
+          solution: `기울기가 $${m}$이므로 $a=${m}$이고, 식은 $y=${mono(m)}+b$이다.\n$x=${p}$, $y=${q}$${eulReul(q)} 대입하면 $b=${b}$이다.\n따라서 $a+b=${ans}$이다.`,
           facts: { m, p, q, b, ans },
         };
       }),
@@ -1403,7 +1406,7 @@ export const M2_FUNC: TypeEntry[] = [
       return {
         content: `일차함수 $y=${linear(m, b)}$의 그래프를 $y$축의 방향으로 $${k}$만큼 평행이동한 그래프의 $y$절편을 구하시오.`,
         answer: `$${ans}$`,
-        solution: `$y$축의 방향으로 $${k}$만큼 평행이동하면 식은 $y=${mono(m)}${addend(b)}${addend(k)}$가 된다.\n따라서 $y$절편은 $${b}${addend(k)}=${ans}$이다.`,
+        solution: `$y$축의 방향으로 $${k}$만큼 평행이동하면 식은 $y=${mono(m)}${addend(b)}${addend(k)}$${iGa(k)} 된다.\n따라서 $y$절편은 $${b}${addend(k)}=${ans}$이다.`,
         facts: { m, b, k, ans },
       };
     }),
@@ -1429,7 +1432,7 @@ export const M2_FUNC: TypeEntry[] = [
         });
         const head = off > 0 ? `${mult}a-${off}` : `${mult}a+${-off}`;
         return {
-          content: `두 일차함수 $y=${linear(m1, b)}$과 $y=${mono(m2)}+(${head})$의 그래프가 $y$축 위의 같은 점에서 만날 때, 상수 $a$의 값을 구하시오.`,
+          content: `두 일차함수 $y=${linear(m1, b)}$${waGwa(b)} $y=${mono(m2)}+(${head})$의 그래프가 $y$축 위의 같은 점에서 만날 때, 상수 $a$의 값을 구하시오.`,
           answer: `$${a}$`,
           solution: `$y$축 위에서 만나려면 두 그래프의 $y$절편이 같아야 한다.\n$${head}=${b}$에서 $${mult}a=${b + off}$이므로 $a=${a}$이다.`,
           facts: { a, b, mult, off, m1, m2 },
@@ -1478,7 +1481,7 @@ export const M2_FUNC: TypeEntry[] = [
         const b2 = q - m2 * p;
         if ([b1, b2].some((v) => v === 0 || Math.abs(v) > 18)) return null;
         return {
-          content: `두 일차함수 $y=${linear(m1, b1)}$과 $y=${linear(m2, b2)}$의 그래프의 교점의 $x$좌표와 $y$좌표의 합을 구하시오.`,
+          content: `두 일차함수 $y=${linear(m1, b1)}$${waGwa(b1)} $y=${linear(m2, b2)}$의 그래프의 교점의 $x$좌표와 $y$좌표의 합을 구하시오.`,
           answer: `$${p + q}$`,
           solution: `두 식을 연립하면 $${linear(m1, b1)}=${linear(m2, b2)}$에서 $${coef(m1 - m2, "x")}=${b2 - b1}$이므로 $x=${p}$이다.\n$y=${linear(m1, b1)}$에 대입하면 $y=${q}$이다.\n따라서 교점은 $(${p}, ${q})$이고 좌표의 합은 $${p + q}$이다.`,
           facts: { m1, b1, m2, b2, p, q, ans: p + q },
@@ -1510,9 +1513,9 @@ export const M2_FUNC: TypeEntry[] = [
         const b3 = q - m3 * p;
         if ([b1, b2, b3].some((v) => v === 0 || Math.abs(v) > 18)) return null;
         return {
-          content: `두 일차함수 $y=${linear(m1, b1)}$과 $y=${linear(m2, b2)}$의 그래프의 교점을 지나고 기울기가 $${m3}$인 직선의 $y$절편을 구하시오.`,
+          content: `두 일차함수 $y=${linear(m1, b1)}$${waGwa(b1)} $y=${linear(m2, b2)}$의 그래프의 교점을 지나고 기울기가 $${m3}$인 직선의 $y$절편을 구하시오.`,
           answer: `$${b3}$`,
-          solution: `두 식을 연립하면 교점은 $(${p}, ${q})$이다.\n구하는 직선을 $y=${mono(m3)}+b$라 하고 $x=${p}$, $y=${q}$를 대입하면 $b=${b3}$이다.`,
+          solution: `두 식을 연립하면 교점은 $(${p}, ${q})$이다.\n구하는 직선을 $y=${mono(m3)}+b$라 하고 $x=${p}$, $y=${q}$${eulReul(q)} 대입하면 $b=${b3}$이다.`,
           facts: { m1, b1, m2, b2, p, q, m3, b3 },
         };
       }),
@@ -1537,9 +1540,9 @@ export const M2_FUNC: TypeEntry[] = [
         const k = q - m2 * p;
         if (q === 0 || k === 0 || Math.abs(k) > 20) return null;
         return {
-          content: `두 일차함수 $y=${linear(m1, b1)}$과 $y=${mono(m2)}+k$의 그래프의 교점의 $x$좌표가 $${p}$일 때, 상수 $k$의 값을 구하시오.`,
+          content: `두 일차함수 $y=${linear(m1, b1)}$${waGwa(b1)} $y=${mono(m2)}+k$의 그래프의 교점의 $x$좌표가 $${p}$일 때, 상수 $k$의 값을 구하시오.`,
           answer: `$${k}$`,
-          solution: `$x=${p}$를 $y=${linear(m1, b1)}$에 대입하면 교점은 $(${p}, ${q})$이다.\n이 점이 $y=${mono(m2)}+k$ 위에 있으므로 $${q}=${m2 * p}+k$이고, $k=${k}$이다.`,
+          solution: `$x=${p}$${eulReul(p)} $y=${linear(m1, b1)}$에 대입하면 교점은 $(${p}, ${q})$이다.\n이 점이 $y=${mono(m2)}+k$ 위에 있으므로 $${q}=${m2 * p}+k$이고, $k=${k}$이다.`,
           facts: { m1, b1, m2, k, p, q },
         };
       }),

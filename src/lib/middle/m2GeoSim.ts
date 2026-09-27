@@ -2150,7 +2150,7 @@ export const M2_GEO_SIM: TypeEntry[] = [
       return {
         content: `그림과 같은 삼각형 $ABC$에서 $\\overline{AD}$는 $\\angle A$의 외각의 이등분선이고 점 $D$는 $\\overline{BC}$의 연장선 위의 점이다. $\\overline{AB}=${ab}\\,\\mathrm{cm}$, $\\overline{AC}=${ac}\\,\\mathrm{cm}$, $\\overline{BC}=${b}\\,\\mathrm{cm}$일 때, $\\overline{CD}$의 길이를 구하시오.`,
         answer: `$${x}\\,\\mathrm{cm}$`,
-        solution: `삼각형의 외각의 이등분선의 성질에서 $\\overline{AB}:\\overline{AC}=\\overline{BD}:\\overline{CD}$이다.\n$\\overline{CD}=x\\,\\mathrm{cm}$라 하면 $${ab}:${ac}=(${b}+x):x$이므로 $${ab}x=${ac}(${b}+x)$, 즉 $${ab - ac}x=${ac * b}$에서 $x=${x}$이다.\n따라서 $\\overline{CD}=${x}\\,\\mathrm{cm}$이다.`,
+        solution: `삼각형의 외각의 이등분선의 성질에서 $\\overline{AB}:\\overline{AC}=\\overline{BD}:\\overline{CD}$이다.\n$\\overline{CD}=x\\,\\mathrm{cm}$라 하면 $${ab}:${ac}=(${b}+x):x$이므로 $${ab}x=${ac === 1 ? `${b}+x` : `${ac}(${b}+x)`}$, 즉 $${ab - ac === 1 ? "" : ab - ac}x=${ac * b}$에서 $x=${x}$이다.\n따라서 $\\overline{CD}=${x}\\,\\mathrm{cm}$이다.`,
         facts: { ab, ac, b, x },
         figureSpec: figPar07(ab, ac, b, x),
       };
@@ -2621,7 +2621,7 @@ export const M2_GEO_SIM_SUP_B: TypeEntry[] = [
         // ⚠️ 예전에는 `$q x=…$` 라고 적혀 있었다 — **생성기 변수 이름 `q` 가 지면에
         //    글자로 나갔다.** 값은 맞고 LaTeX 도 옳아서 값 검산도 렌더 검사도
         //    구조적으로 못 잡는다(2026-08-27). `x` 도 정의하지 않고 쓰고 있었다.
-        solution: `$\\overline{BD}:\\overline{CD}=${p}:${q}$이고 $\\overline{BD}=\\overline{BC}+\\overline{CD}$이다. $\\overline{BC}=x\\,\\mathrm{cm}$라 하면 $(x+${d}):${d}=${p}:${q}$이므로 $${q}x=${(p - q) * d}$에서 $x=${x}$이다.`,
+        solution: `$\\overline{BD}:\\overline{CD}=${p}:${q}$이고 $\\overline{BD}=\\overline{BC}+\\overline{CD}$이다. $\\overline{BC}=x\\,\\mathrm{cm}$라 하면 $(x+${d}):${d}=${p}:${q}$이므로 $${q === 1 ? "" : q}x=${(p - q) * d}$에서 $x=${x}$이다.`,
         facts: { p, q, d, x },
       };
     },

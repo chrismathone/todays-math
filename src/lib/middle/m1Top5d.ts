@@ -143,7 +143,7 @@ import { intBetween, pick } from "../elementary/rng";
 import { attempt, defType, type Body } from "./m1Shared";
 // 지면 수 조합 목록을 두 벌로 두지 않는다 — 4차 물결 것을 **읽어만** 온다.
 import { pageShortcutValues } from "./m1Top4";
-import { euroRo, eulReul, waGwa } from "./m2Josa";
+import { euroRo, eulReul, waGwa, iGa } from "./m2Josa";
 import type { TypeEntry } from "./types";
 
 const BOOK1 = "1-1";
@@ -612,7 +612,7 @@ const TRIANGLE_MAXMIN: TypeEntry[] = [
         return {
           content:
             `좌표평면 위에 네 점 $\\mathrm{A}(${p},\\ ${t})$, $\\mathrm{B}(${q},\\ ${t})$, ` +
-            `$\\mathrm{C}(${r},\\ ${u})$, $\\mathrm{D}(${r},\\ ${v})$가 있다. ` +
+            `$\\mathrm{C}(${r},\\ ${u})$, $\\mathrm{D}(${r},\\ ${v})$${iGa(v)} 있다. ` +
             `이 중에서 세 점을 골라 만든 삼각형의 넓이 가운데 가장 큰 값과 가장 작은 값의 차를 구하시오. ` +
             `(단, 어느 세 점도 한 직선 위에 있지 않다.)`,
           answer: `$${x}$`,

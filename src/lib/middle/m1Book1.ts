@@ -24,7 +24,7 @@ import {
   shuffle,
   signed,
 } from "./m1Shared";
-import { euroRo, eulReul, waGwa } from "./m2Josa";
+import { euroRo, eulReul, waGwa, eunNeun } from "./m2Josa";
 import type { TypeEntry } from "./types";
 
 const BOOK = "1-1";
@@ -596,7 +596,7 @@ export const M1_BOOK1: TypeEntry[] = [
         const ax = intBetween(rng, -6, 6);
         const area = (base * h) / 2;
         return {
-          content: `세 점 $\\mathrm{A}(${ax}, ${ay})$, $\\mathrm{B}(${bx}, ${by})$, $\\mathrm{C}(${cx}, ${by})$를 꼭짓점으로 하는 삼각형 $\\mathrm{ABC}$의 넓이를 구하시오.`,
+          content: `세 점 $\\mathrm{A}(${ax}, ${ay})$, $\\mathrm{B}(${bx}, ${by})$, $\\mathrm{C}(${cx}, ${by})$${eulReul(by)} 꼭짓점으로 하는 삼각형 $\\mathrm{ABC}$의 넓이를 구하시오.`,
           answer: `$${area}$`,
           solution: `두 점 $\\mathrm{B}$, $\\mathrm{C}$의 $y$좌표가 같으므로 변 $\\mathrm{BC}$는 $x$축에 평행하고, 그 길이는 $${base}$이다.\n높이는 점 $\\mathrm{A}$와 변 $\\mathrm{BC}$의 $y$좌표의 차 $${h}$이다.\n따라서 넓이는 $\\dfrac{1}{2}\\times${base}\\times${h}=${area}$이다.`,
           facts: { ax, ay, bx, by, cx, cy: by, area },
@@ -616,9 +616,9 @@ export const M1_BOOK1: TypeEntry[] = [
       const b = intNonzero(rng, -8, 8);
       const q = quadrantOf(a, b);
       return {
-        content: `점 $(${a}, ${b})$는 제 몇 사분면 위의 점인지 구하시오.`,
+        content: `점 $(${a}, ${b})$${eunNeun(b)} 제 몇 사분면 위의 점인지 구하시오.`,
         answer: `제$${q}$사분면`,
-        solution: `$x$좌표가 ${signWord(a)}, $y$좌표가 ${signWord(b)}이므로 점 $(${a}, ${b})$는 제$${q}$사분면 위의 점이다.`,
+        solution: `$x$좌표가 ${signWord(a)}, $y$좌표가 ${signWord(b)}이므로 점 $(${a}, ${b})$${eunNeun(b)} 제$${q}$사분면 위의 점이다.`,
         facts: { a, b, q },
       };
     },
@@ -696,7 +696,7 @@ export const M1_BOOK1: TypeEntry[] = [
             ? "$y$축에 대하여 대칭인 점은 $x$좌표의 부호만 바뀐다."
             : "원점에 대하여 대칭인 점은 $x$좌표와 $y$좌표의 부호가 모두 바뀐다.";
       return {
-        content: `점 $(${a}, ${b})$와 ${axisText}에 대하여 대칭인 점의 좌표를 구하시오.`,
+        content: `점 $(${a}, ${b})$${waGwa(b)} ${axisText}에 대하여 대칭인 점의 좌표를 구하시오.`,
         answer: `$(${cVal}, ${dVal})$`,
         solution: `${rule}\n따라서 구하는 점의 좌표는 $(${cVal}, ${dVal})$이다.`,
         facts: { a, b, axis, c: cVal, d: dVal },

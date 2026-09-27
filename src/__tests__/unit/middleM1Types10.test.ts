@@ -213,7 +213,7 @@ const EXT_VERIFY: Record<string, (content: string) => number[]> = {
   //           축 나란함을 따로 확인한다. 「x 는 C 것, y 는 A 것」을 안 옮겨 적는다.
   [C91]: (content) => {
     const [ax, ay, bx, by, cx, cy] = grab(
-      /세 점 \$\\mathrm\{A\}\((-?\d+), (-?\d+)\)\$, \$\\mathrm\{B\}\((-?\d+), (-?\d+)\)\$, \$\\mathrm\{C\}\((-?\d+), (-?\d+)\)\$와 점 \$\\mathrm\{D\}\$를 꼭짓점으로 하는 사각형/,
+      /세 점 \$\\mathrm\{A\}\((-?\d+), (-?\d+)\)\$, \$\\mathrm\{B\}\((-?\d+), (-?\d+)\)\$, \$\\mathrm\{C\}\((-?\d+), (-?\d+)\)\$(?:와|과) 점 \$\\mathrm\{D\}\$를 꼭짓점으로 하는 사각형/,
       content,
       "좌표 91",
     ).map(num);

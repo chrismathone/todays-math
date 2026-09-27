@@ -121,9 +121,13 @@ function specialExtra(
     };
     const shown = (name: SpecialMissing): string =>
       name === missing ? "a" : String(coefficients[name]);
+    // 식 안에서는 계수 $1$ 을 안 적는다(`mc`·`sc` 와 같다) — 「$1x+3y=5$」가 아니라 「$x+3y=5$」.
+    // 계수표는 **수를 그대로** 적는다(빈칸이 되면 안 된다).
+    const inEq = (name: SpecialMissing): string =>
+      shown(name) === "1" ? "" : shown(name);
     const answer = coefficients[missing];
     return {
-      content: `연립방정식 $\\begin{cases}${shown("A1")}x+${shown("B1")}y=${coefficients.C1}\\\\${shown("A2")}x+${shown("B2")}y=${coefficients.C2}\\end{cases}$의 해가 ${outcome} 때, $a$의 값을 구하시오.\n(계수표: ${shown("A1")}, ${shown("B1")}, ${coefficients.C1} / ${shown("A2")}, ${shown("B2")}, ${coefficients.C2})`,
+      content: `연립방정식 $\\begin{cases}${inEq("A1")}x+${inEq("B1")}y=${coefficients.C1}\\\\${inEq("A2")}x+${inEq("B2")}y=${coefficients.C2}\\end{cases}$의 해가 ${outcome} 때, $a$의 값을 구하시오.\n(계수표: ${shown("A1")}, ${shown("B1")}, ${coefficients.C1} / ${shown("A2")}, ${shown("B2")}, ${coefficients.C2})`,
       answer: `$${answer}$`,
       solution: `$x$, $y$의 계수비가 각각 $${k}$로 같아야 한다. 따라서 빠진 계수 $a=${answer}$이다.${outcome === "없을" ? " 이때 상수항의 비는 계수비와 다르다." : " 상수항의 비도 같으므로 두 식은 같은 방정식이다."}`,
       facts: { ...coefficients, answer },
@@ -153,7 +157,10 @@ export const M2_SYSTEM_APPLY: TypeEntry[] = [
         return {
           content: `연립방정식 $\\begin{cases}ax+by=${c1}\\\\bx+ay=${c2}\\end{cases}$ 의 해가 $x=${x0}$, $y=${y0}$ 일 때, 상수 $a$, $b$에 대하여 $a+b$의 값을 구하시오.`,
           answer: `$${S}$`,
-          solution: `주어진 해를 두 식에 대입하면 $${mc(x0, "a")}${sc(y0, "b")}=${c1}$, $${mc(x0, "b")}${sc(y0, "a")}=${c2}$이다.\n두 식을 변끼리 더하면 $${x0 + y0}(a+b)=${c1 + c2}$이므로 $a+b=${S}$이다.`,
+          solution: `주어진 해를 두 식에 대입하면 $${mc(x0, "a")}${sc(y0, "b")}=${c1}$, $${mc(x0, "b")}${sc(y0, "a")}=${c2}$이다.\n두 식을 변끼리 더하면 ${
+            // 계수 $1$ 은 안 적는다 — $x_0+y_0=1$ 이면 「$1(a+b)=-8$」이 아니라 바로 「$a+b=-8$」.
+            x0 + y0 === 1 ? "" : `$${mc(x0 + y0, "(a+b)")}=${c1 + c2}$이므로 `
+          }$a+b=${S}$이다.`,
           facts: { a, b, x0, y0, c1, c2, S },
         };
       }),
@@ -306,7 +313,7 @@ export const M2_SYSTEM_APPLY: TypeEntry[] = [
     const answer = nonzero(rng, 2, 6);
     const target = answer * x + y;
     return {
-      content: `연립방정식 $\\begin{cases}x+y=${sum}\\\\${mc(p, "x")}-y=${c}\\end{cases}$의 해가 일차방정식 $ax+y=${target}$를 만족시킬 때, 상수 $a$의 값을 구하시오.`,
+      content: `연립방정식 $\\begin{cases}x+y=${sum}\\\\${mc(p, "x")}-y=${c}\\end{cases}$의 해가 일차방정식 $ax+y=${target}$${eulReul(target)} 만족시킬 때, 상수 $a$의 값을 구하시오.`,
       answer: `$${answer}$`,
       // ⚠️ `${x}a+${y}` 로 적으면 $y$ 가 음수일 때 지면에 `3a+-4` 가 나가고,
       //    $x=1$ 이면 `1a` 가 나간다. 부호·계수는 `mc`·`sg` 가 한 곳에서 정한다.

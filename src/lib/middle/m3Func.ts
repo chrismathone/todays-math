@@ -45,7 +45,7 @@ import type { Rng } from "../elementary/types";
 import { CHOOSE_ALL_ANSWER_COUNT } from "../problem/chooseAllRule";
 import { CHOICE_COUNT, CHOICE_MARKS } from "../problem/choiceCountRule";
 
-import { eulReul } from "./m2Josa";
+import { eulReul, waGwa } from "./m2Josa";
 import type { MidProblem, TypeEntry } from "./types";
 
 const GRADE = "중3";
@@ -1300,7 +1300,7 @@ const TYPES_G1: TypeEntry[] = [
       return {
         content: `이차함수 $y=${stdRhs(a, p, q)}$의 그래프를 $x$축의 방향으로 $m$만큼, $y$축의 방향으로 $n$만큼 평행이동하였더니 이차함수 $y=${stdRhs(a, p2, q2)}$의 그래프와 일치하였다. 이때 $m+n$의 값을 구하시오.`,
         answer: `$${mx + my}$`,
-        solution: `평행이동한 그래프의 식은 $y=${termTex(a, `\\{x-(${p}+m)\\}^2`, true)}${termTex(rInt(q), "")}+n$이므로 꼭짓점은 $(${p}+m, ${q}+n)$이다.\n이것이 $${pt(p2, q2)}$와 같으므로 $m=${mx}$, $n=${my}$이다.\n따라서 $m+n=${mx + my}$이다.`,
+        solution: `평행이동한 그래프의 식은 $y=${termTex(a, `\\{x-(${p}+m)\\}^2`, true)}${termTex(rInt(q), "")}+n$이므로 꼭짓점은 $(${p}+m, ${q}+n)$이다.\n이것이 $${pt(p2, q2)}$${waGwa(q2)} 같으므로 $m=${mx}$, $n=${my}$이다.\n따라서 $m+n=${mx + my}$이다.`,
         facts: { mode, aN: a[0], aD: a[1], p, q, mx, my, p2, q2 },
         figureSpec: null,
       };
@@ -2111,7 +2111,7 @@ const TYPES_G2: TypeEntry[] = [
       return {
         content: `이차함수 $y=${termTex(rInt(A), "x^2", true)}-ax+a$의 최솟값을 $m$이라 할 때, $m$의 값이 최대가 되도록 하는 상수 $a$의 값을 구하시오.`,
         answer: `$${ans}$`,
-        solution: `$y=${A}\\left(x-\\dfrac{a}{${2 * A}}\\right)^2-\\dfrac{a^2}{${4 * A}}+a$이므로 최솟값은 $m=-\\dfrac{a^2}{${4 * A}}+a$이다.\n$m=-\\dfrac{1}{${4 * A}}(a-${2 * A})^2+${A}$이므로 $a=${ans}$일 때 $m$이 최대가 된다.`,
+        solution: `$y=${A === 1 ? "" : A}\\left(x-\\dfrac{a}{${2 * A}}\\right)^2-\\dfrac{a^2}{${4 * A}}+a$이므로 최솟값은 $m=-\\dfrac{a^2}{${4 * A}}+a$이다.\n$m=-\\dfrac{1}{${4 * A}}(a-${2 * A})^2+${A}$이므로 $a=${ans}$일 때 $m$이 최대가 된다.`,
         facts: { mode, A, ans },
         figureSpec: null,
       };
@@ -2179,9 +2179,9 @@ const TYPES_G2: TypeEntry[] = [
       const qv = intBetween(rng, -8, 8);
       const isMax = a < 0;
       return {
-        content: `이차함수 $y=${a === 1 ? "" : a === -1 ? "-" : a}(x${p >= 0 ? `-${p}` : `+${-p}`})^2${qv >= 0 ? `+${qv}` : qv}$의 ${isMax ? "최댓값" : "최솟값"}을 구하시오.`,
+        content: `이차함수 $y=${stdRhs(rInt(a), p, qv)}$의 ${isMax ? "최댓값" : "최솟값"}을 구하시오.`,
         answer: `$${qv}$`,
-        solution: `꼭짓점의 좌표가 $(${p}, ${qv})$이고 $x^2$의 계수가 ${a < 0 ? "음수이므로 위로 볼록하다" : "양수이므로 아래로 볼록하다"}.\n따라서 $x=${p}$일 때 ${isMax ? "최댓값" : "최솟값"} $${qv}$를 갖는다.`,
+        solution: `꼭짓점의 좌표가 $(${p}, ${qv})$이고 $x^2$의 계수가 ${a < 0 ? "음수이므로 위로 볼록하다" : "양수이므로 아래로 볼록하다"}.\n따라서 $x=${p}$일 때 ${isMax ? "최댓값" : "최솟값"} $${qv}$${eulReul(qv)} 갖는다.`,
         facts: { a, p, q: qv, ans: qv, isMax: isMax ? 1 : 0 },
       };
     },
@@ -2201,7 +2201,7 @@ const TYPES_G2: TypeEntry[] = [
       return {
         content: `꼭짓점의 좌표가 $(${p}, ${qv})$이고 $x^2$의 계수가 $${a}$인 이차함수의 ${isMax ? "최댓값" : "최솟값"}을 구하시오.`,
         answer: `$${qv}$`,
-        solution: `이차함수의 식은 $y=${a === 1 ? "" : a === -1 ? "-" : a}(x${p >= 0 ? `-${p}` : `+${-p}`})^2${qv >= 0 ? `+${qv}` : qv}$이다.\n$x^2$의 계수가 ${a < 0 ? "음수이므로 위로 볼록해 꼭짓점에서 최댓값" : "양수이므로 아래로 볼록해 꼭짓점에서 최솟값"}을 갖는다.\n따라서 ${isMax ? "최댓값" : "최솟값"}은 $${qv}$이다.`,
+        solution: `이차함수의 식은 $y=${stdRhs(rInt(a), p, qv)}$이다.\n$x^2$의 계수가 ${a < 0 ? "음수이므로 위로 볼록해 꼭짓점에서 최댓값" : "양수이므로 아래로 볼록해 꼭짓점에서 최솟값"}을 갖는다.\n따라서 ${isMax ? "최댓값" : "최솟값"}은 $${qv}$이다.`,
         facts: { a, p, q: qv, ans: qv, isMax: isMax ? 1 : 0 },
       };
     },
