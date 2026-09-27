@@ -11,6 +11,8 @@ import { STUDENT_MUST_CHANGE_MESSAGE } from "@/lib/studentRouteAccess";
 import { solutionForDisplay } from "@/lib/solutionSteps";
 import AnswerFeedbackEffect from "./AnswerFeedbackEffect";
 import pageTurn from "./question-page-turn.module.css";
+import { EnterKey, NumberKey } from "./AnswerKeyCaps";
+import { answerKey, useAnswerKeys } from "./useAnswerKeys";
 import s from "./student-replay.module.css";
 
 const ProblemContent = dynamic(() =>
@@ -39,6 +41,9 @@ export default function StudentReplayDialog({
   const dialog = useRef<HTMLDialogElement>(null);
   const solutionDialog = useRef<HTMLDialogElement>(null);
   const solutionOpener = useRef<HTMLButtonElement>(null);
+  const heading = useRef<HTMLHeadingElement>(null);
+  // 대화상자 자신이 키의 범위다 — 뒤 화면은 대화상자에 가려 키를 먹지 않고, 풀이 대화상자가 열리면 이것도 멈춘다.
+  useAnswerKeys(dialog);
   const request = useRef<AbortController | null>(null);
   const [data, setData] = useState<MathSrsReplay | null>(null);
   const [busy, setBusy] = useState(false);
@@ -153,6 +158,13 @@ export default function StudentReplayDialog({
     };
   }, [perform]);
 
+  // 대화상자를 열면 브라우저는 첫 단추(«복습 닫기 ×»)에 포커스를 둔다. 숫자키로 풀면 포커스가 거기 남아, 채점을 기다리거나
+  // 맞힌 뒤 친 엔터가 ×를 눌러 그날 진행과 진행 중 요청을 잃었다(리드 검토 2026-09-28). 다른 풀이 화면처럼 문항이 뜰 때마다
+  // 문제 머리로 포커스를 옮긴다 — 머리는 누르는 것이 아니라 엔터가 아무것도 누르지 않는다.
+  useEffect(() => {
+    heading.current?.focus({ preventScroll: true });
+  }, [data?.problemId]);
+
   useEffect(() => {
     const documentOverflow = document.documentElement.style.overflow;
     const bodyOverflow = document.body.style.overflow;
@@ -214,7 +226,9 @@ export default function StudentReplayDialog({
             완료한 칸 복습 ·{" "}
             {dayId ? `${currentStep} / ${total}` : `${currentStep}번 문제`}
           </p>
-          <h2>{data?.title ?? "다시 풀기"}</h2>
+          <h2 ref={heading} tabIndex={-1}>
+            {data?.title ?? "다시 풀기"}
+          </h2>
         </div>
         <button
           type="button"
@@ -273,6 +287,7 @@ export default function StudentReplayDialog({
                         type="button"
                         aria-label={`${index + 1}번째 조각`}
                         aria-pressed={parts.includes(index)}
+                        data-answer-control=""
                         disabled={busy || correct !== null}
                         onClick={() =>
                           setParts((current) =>
@@ -299,7 +314,9 @@ export default function StudentReplayDialog({
                   <button
                     key={`${index}:${choice}`}
                     type="button"
+                    aria-keyshortcuts={answerKey(index)}
                     aria-pressed={answer === choice}
+                    data-answer-control=""
                     disabled={busy || correct !== null}
                     onClick={() => {
                       if (request.current || correct !== null) return;
@@ -310,9 +327,11 @@ export default function StudentReplayDialog({
                       });
                     }}
                   >
-                    <span className={s.index} aria-hidden="true">
-                      {index + 1}
-                    </span>
+                    <NumberKey
+                      index={index}
+                      className={s.index}
+                      aria-hidden="true"
+                    />
                     <MathText text={choice} />
                   </button>
                 ))}
@@ -363,6 +382,7 @@ export default function StudentReplayDialog({
               <button
                 type="button"
                 className={s.primary}
+                aria-keyshortcuts="Enter"
                 disabled={busy || correct !== null || submittedAnswer === null}
                 onClick={() =>
                   void perform({
@@ -372,6 +392,7 @@ export default function StudentReplayDialog({
                 }
               >
                 {busy ? "확인 중…" : "완성했어요"}
+                <EnterKey />
               </button>
             ) : busy ? (
               <span className={s.pending} role="status">

@@ -1,0 +1,6613 @@
+{
+ "generatedBy": "scripts/qa/concept-terms/build-card-kinds.py",
+ "names": [
+  "정의",
+  "성질",
+  "공식",
+  "방법",
+  "법칙",
+  "정리",
+  "단위"
+ ],
+ "namesDecision": "일곱 그대로 — Claude · codex · grok 일치. 교재 추출용 «기호» · «기타»는 학생 딱지로 쓰지 않는다",
+ "rules": [
+  "0 딱지는 학생이 조립하는 빈칸 쪽을 따른다(세 답 일치). 뜻 뒤에 사실을 덧붙여 빈칸이 사실 쪽에만 있으면, 문장을 보정해 빈칸을 뜻 쪽으로 옮기고 딱지는 정의로 둔다",
+  "정의 — 카드 이름(낱말 · 기호)의 뜻을 빈칸이 묻는다. «~는 것»으로 끝나며 낱말의 뜻을 세우면 계산 이름이어도 정의(받아올림 · 반올림 · 밀기 · 근호)",
+  "성질 — 이미 뜻이 있는 대상에 늘 성립하는 사실(관계 · 조건)을 빈칸이 묻는다. 합동 조건 · 닮은 도형의 넓이비도 여기",
+  "공식 — 빈칸이 값을 구하는 식(넓이 · 부피 · 비교하는 양 · 일어나지 않을 확률)",
+  "방법 — 문장이 «~방법»으로 끝나거나 계산 · 풀이의 차례를 시킨다(대입법 · 가감법 · 분수의 곱셈 · 혼합 계산의 순서). 교재의 계산 상자(기타)도 여기",
+  "법칙 — 이름에 «법칙»이 있거나 이름 붙은 연산 법칙(지수 · 분배 · 경우의 수의 합 · 곱)",
+  "정리 — 이름에 «정리»가 있거나 교재가 정리라 부르는 것만(지금 피타고라스 하나). 교재가 정리라 부르지 않는 사실(삼각형의 세 각의 합)은 성질",
+  "단위 — 빈칸이 단위 사이의 관계(1cm=10mm · 1L=1000mL)"
+ ],
+ "counts": {
+  "정의": 166,
+  "성질": 22,
+  "공식": 15,
+  "방법": 17,
+  "법칙": 4,
+  "정리": 1,
+  "단위": 5
+ },
+ "draftCounts": {
+  "정의": 166,
+  "성질": 24,
+  "공식": 14,
+  "방법": 17,
+  "법칙": 4,
+  "정리": 1,
+  "단위": 4
+ },
+ "decided": 41,
+ "secondRound": [
+  "g7-origin",
+  "g9-double-root"
+ ],
+ "decidedUnanimous": 33,
+ "changedFromDraft": [
+  "g3-capacity",
+  "g8-complement",
+  "g9-vertex"
+ ],
+ "conditional": [
+  "g7-origin",
+  "g7-vertical-angle",
+  "g9-double-root",
+  "g9-vertex",
+  "g9-inscribed-angle"
+ ],
+ "note": "교재 문장은 저장소 밖 — textbookKinds 는 짝이 된 교재 용어의 이름 · 갈래 · 키만.",
+ "cards": [
+  {
+   "id": "g3-place",
+   "name": "자릿값",
+   "grade": 3,
+   "unit": "g3-add",
+   "unitTitle": "덧셈과 뺄셈",
+   "kind": "정의",
+   "decidedBy": "초안 유지",
+   "votes": null,
+   "why": "",
+   "condition": "",
+   "assemblyNote": "",
+   "draftKind": "정의",
+   "draftAmbiguous": false,
+   "draftNote": "",
+   "shape": "사전",
+   "textbookKinds": [],
+   "changedFromDraft": false
+  },
+  {
+   "id": "g3-carry",
+   "name": "받아올림",
+   "grade": 3,
+   "unit": "g3-add",
+   "unitTitle": "덧셈과 뺄셈",
+   "kind": "정의",
+   "decidedBy": "2:1(claude · codex)",
+   "votes": {
+    "claude": "정의",
+    "codex": "정의",
+    "grok": "방법"
+   },
+   "why": "빈칸이 받아올림이라는 낱말의 뜻(10을 윗자리 1로) — grok 은 계산 걸음으로 봐 방법",
+   "condition": "",
+   "assemblyNote": "",
+   "draftKind": "정의",
+   "draftAmbiguous": true,
+   "draftNote": "계산 절차의 이름 — 방법으로 볼 수도",
+   "shape": "사전",
+   "textbookKinds": [
+    {
+     "book": "cube-3-1",
+     "key": "3-1/p010/받아올림",
+     "term": "받아올림",
+     "kind": "기타",
+     "match": "exact"
+    }
+   ],
+   "changedFromDraft": false
+  },
+  {
+   "id": "g3-borrow",
+   "name": "받아내림",
+   "grade": 3,
+   "unit": "g3-add",
+   "unitTitle": "덧셈과 뺄셈",
+   "kind": "정의",
+   "decidedBy": "2:1(claude · codex)",
+   "votes": {
+    "claude": "정의",
+    "codex": "정의",
+    "grok": "방법"
+   },
+   "why": "받아올림과 같은 결",
+   "condition": "",
+   "assemblyNote": "",
+   "draftKind": "정의",
+   "draftAmbiguous": true,
+   "draftNote": "계산 절차의 이름 — 방법으로 볼 수도",
+   "shape": "사전",
+   "textbookKinds": [
+    {
+     "book": "cube-3-1",
+     "key": "3-1/p018/받아내림",
+     "term": "받아내림",
+     "kind": "기타",
+     "match": "exact"
+    }
+   ],
+   "changedFromDraft": false
+  },
+  {
+   "id": "g3-sum",
+   "name": "합",
+   "grade": 3,
+   "unit": "g3-add",
+   "unitTitle": "덧셈과 뺄셈",
+   "kind": "정의",
+   "decidedBy": "초안 유지",
+   "votes": null,
+   "why": "",
+   "condition": "",
+   "assemblyNote": "",
+   "draftKind": "정의",
+   "draftAmbiguous": false,
+   "draftNote": "",
+   "shape": "사전",
+   "textbookKinds": [],
+   "changedFromDraft": false
+  },
+  {
+   "id": "g3-difference",
+   "name": "차",
+   "grade": 3,
+   "unit": "g3-add",
+   "unitTitle": "덧셈과 뺄셈",
+   "kind": "정의",
+   "decidedBy": "초안 유지",
+   "votes": null,
+   "why": "",
+   "condition": "",
+   "assemblyNote": "",
+   "draftKind": "정의",
+   "draftAmbiguous": false,
+   "draftNote": "",
+   "shape": "사전",
+   "textbookKinds": [],
+   "changedFromDraft": false
+  },
+  {
+   "id": "g3-product",
+   "name": "곱",
+   "grade": 3,
+   "unit": "g3-multiply",
+   "unitTitle": "곱셈과 나눗셈",
+   "kind": "정의",
+   "decidedBy": "초안 유지",
+   "votes": null,
+   "why": "",
+   "condition": "",
+   "assemblyNote": "",
+   "draftKind": "정의",
+   "draftAmbiguous": false,
+   "draftNote": "",
+   "shape": "사전",
+   "textbookKinds": [],
+   "changedFromDraft": false
+  },
+  {
+   "id": "g3-division",
+   "name": "나눗셈",
+   "grade": 3,
+   "unit": "g3-multiply",
+   "unitTitle": "곱셈과 나눗셈",
+   "kind": "정의",
+   "decidedBy": "초안 유지",
+   "votes": null,
+   "why": "",
+   "condition": "",
+   "assemblyNote": "",
+   "draftKind": "정의",
+   "draftAmbiguous": false,
+   "draftNote": "",
+   "shape": "사전",
+   "textbookKinds": [
+    {
+     "book": "cube-3-1",
+     "key": "3-1/p056/나눗셈",
+     "term": "나눗셈",
+     "kind": "정의",
+     "match": "exact"
+    }
+   ],
+   "changedFromDraft": false
+  },
+  {
+   "id": "g3-quotient",
+   "name": "몫",
+   "grade": 3,
+   "unit": "g3-multiply",
+   "unitTitle": "곱셈과 나눗셈",
+   "kind": "정의",
+   "decidedBy": "초안 유지",
+   "votes": null,
+   "why": "",
+   "condition": "",
+   "assemblyNote": "",
+   "draftKind": "정의",
+   "draftAmbiguous": false,
+   "draftNote": "",
+   "shape": "사전",
+   "textbookKinds": [
+    {
+     "book": "cube-3-1",
+     "key": "3-1/p056/몫",
+     "term": "몫",
+     "kind": "정의",
+     "match": "exact"
+    }
+   ],
+   "changedFromDraft": false
+  },
+  {
+   "id": "g3-remainder",
+   "name": "나머지",
+   "grade": 3,
+   "unit": "g3-multiply",
+   "unitTitle": "곱셈과 나눗셈",
+   "kind": "정의",
+   "decidedBy": "초안 유지",
+   "votes": null,
+   "why": "",
+   "condition": "",
+   "assemblyNote": "",
+   "draftKind": "정의",
+   "draftAmbiguous": false,
+   "draftNote": "",
+   "shape": "사전+",
+   "textbookKinds": [
+    {
+     "book": "cube-3-2",
+     "key": "3-2/p042/나머지와 나누는 수의 관계",
+     "term": "나머지와 나누는 수의 관계",
+     "kind": "성질",
+     "match": "alias"
+    },
+    {
+     "book": "cube-3-2",
+     "key": "3-2/p042/나머지",
+     "term": "나머지",
+     "kind": "정의",
+     "match": "exact"
+    }
+   ],
+   "changedFromDraft": false
+  },
+  {
+   "id": "g3-check-division",
+   "name": "나눗셈 확인",
+   "grade": 3,
+   "unit": "g3-multiply",
+   "unitTitle": "곱셈과 나눗셈",
+   "kind": "성질",
+   "decidedBy": "3자 일치",
+   "votes": {
+    "claude": "성질",
+    "codex": "성질",
+    "grok": "성질"
+   },
+   "why": "빈칸이 늘 성립하는 검산 관계(곱 · 나머지)",
+   "condition": "",
+   "assemblyNote": "",
+   "draftKind": "성질",
+   "draftAmbiguous": true,
+   "draftNote": "이름은 «확인» — 방법으로 볼 수도",
+   "shape": "완결",
+   "textbookKinds": [
+    {
+     "book": "cube-3-2",
+     "key": "3-2/p050/나눗셈을 맞게 계산했는지 확인하는 방법",
+     "term": "나눗셈을 맞게 계산했는지 확인하는 방법",
+     "kind": "성질",
+     "match": "alias"
+    }
+   ],
+   "changedFromDraft": false
+  },
+  {
+   "id": "g3-fraction",
+   "name": "분수",
+   "grade": 3,
+   "unit": "g3-fraction",
+   "unitTitle": "분수와 소수",
+   "kind": "정의",
+   "decidedBy": "초안 유지",
+   "votes": null,
+   "why": "",
+   "condition": "",
+   "assemblyNote": "",
+   "draftKind": "정의",
+   "draftAmbiguous": false,
+   "draftNote": "",
+   "shape": "사전",
+   "textbookKinds": [
+    {
+     "book": "cube-3-1",
+     "key": "3-1/p120/분수",
+     "term": "분수",
+     "kind": "정의",
+     "match": "exact"
+    }
+   ],
+   "changedFromDraft": false
+  },
+  {
+   "id": "g3-denominator",
+   "name": "분모",
+   "grade": 3,
+   "unit": "g3-fraction",
+   "unitTitle": "분수와 소수",
+   "kind": "정의",
+   "decidedBy": "초안 유지",
+   "votes": null,
+   "why": "",
+   "condition": "",
+   "assemblyNote": "",
+   "draftKind": "정의",
+   "draftAmbiguous": false,
+   "draftNote": "",
+   "shape": "사전",
+   "textbookKinds": [
+    {
+     "book": "cube-3-1",
+     "key": "3-1/p120/분모",
+     "term": "분모",
+     "kind": "정의",
+     "match": "exact"
+    }
+   ],
+   "changedFromDraft": false
+  },
+  {
+   "id": "g3-numerator",
+   "name": "분자",
+   "grade": 3,
+   "unit": "g3-fraction",
+   "unitTitle": "분수와 소수",
+   "kind": "정의",
+   "decidedBy": "초안 유지",
+   "votes": null,
+   "why": "",
+   "condition": "",
+   "assemblyNote": "",
+   "draftKind": "정의",
+   "draftAmbiguous": false,
+   "draftNote": "",
+   "shape": "사전",
+   "textbookKinds": [
+    {
+     "book": "cube-3-1",
+     "key": "3-1/p120/분자",
+     "term": "분자",
+     "kind": "정의",
+     "match": "exact"
+    }
+   ],
+   "changedFromDraft": false
+  },
+  {
+   "id": "g3-unit-fraction",
+   "name": "단위분수",
+   "grade": 3,
+   "unit": "g3-fraction",
+   "unitTitle": "분수와 소수",
+   "kind": "정의",
+   "decidedBy": "초안 유지",
+   "votes": null,
+   "why": "",
+   "condition": "",
+   "assemblyNote": "",
+   "draftKind": "정의",
+   "draftAmbiguous": false,
+   "draftNote": "",
+   "shape": "사전",
+   "textbookKinds": [
+    {
+     "book": "cube-3-1",
+     "key": "3-1/p126/단위분수",
+     "term": "단위분수",
+     "kind": "정의",
+     "match": "exact"
+    }
+   ],
+   "changedFromDraft": false
+  },
+  {
+   "id": "g3-decimal",
+   "name": "소수 첫째 자리",
+   "grade": 3,
+   "unit": "g3-fraction",
+   "unitTitle": "분수와 소수",
+   "kind": "정의",
+   "decidedBy": "3자 일치",
+   "votes": {
+    "claude": "정의",
+    "codex": "정의",
+    "grok": "정의"
+   },
+   "why": "그 자리가 무엇을 나타내는지 — 교재 «기타»는 정의 상자가 없다는 추출 갈래일 뿐",
+   "condition": "",
+   "assemblyNote": "",
+   "draftKind": "정의",
+   "draftAmbiguous": false,
+   "draftNote": "",
+   "shape": "사전+",
+   "textbookKinds": [
+    {
+     "book": "cube-4-2",
+     "key": "4-2/p054/소수 첫째 자리",
+     "term": "소수 첫째 자리",
+     "kind": "기타",
+     "match": "exact"
+    }
+   ],
+   "changedFromDraft": false
+  },
+  {
+   "id": "g3-segment",
+   "name": "선분",
+   "grade": 3,
+   "unit": "g3-shapes",
+   "unitTitle": "평면도형과 원",
+   "kind": "정의",
+   "decidedBy": "초안 유지",
+   "votes": null,
+   "why": "",
+   "condition": "",
+   "assemblyNote": "",
+   "draftKind": "정의",
+   "draftAmbiguous": false,
+   "draftNote": "",
+   "shape": "사전+",
+   "textbookKinds": [
+    {
+     "book": "cube-3-1",
+     "key": "3-1/p034/선분",
+     "term": "선분",
+     "kind": "정의",
+     "match": "exact"
+    },
+    {
+     "book": "gaenyeom-1-2",
+     "key": "1-2/p011/선분",
+     "term": "선분",
+     "kind": "정의",
+     "match": "exact"
+    }
+   ],
+   "changedFromDraft": false
+  },
+  {
+   "id": "g3-right-angle",
+   "name": "직각",
+   "grade": 3,
+   "unit": "g3-shapes",
+   "unitTitle": "평면도형과 원",
+   "kind": "정의",
+   "decidedBy": "초안 유지",
+   "votes": null,
+   "why": "",
+   "condition": "",
+   "assemblyNote": "지금 빈칸(90 · 도)은 각도 쪽 — 보정 표가 뜻 쪽으로 옮긴다",
+   "draftKind": "정의",
+   "draftAmbiguous": false,
+   "draftNote": "",
+   "shape": "사전+",
+   "textbookKinds": [
+    {
+     "book": "cube-3-1",
+     "key": "3-1/p036/직각",
+     "term": "직각",
+     "kind": "정의",
+     "match": "exact"
+    },
+    {
+     "book": "gaenyeom-1-2",
+     "key": "1-2/p018/직각",
+     "term": "직각",
+     "kind": "정의",
+     "match": "exact"
+    }
+   ],
+   "changedFromDraft": false
+  },
+  {
+   "id": "g3-circle-center",
+   "name": "원의 중심",
+   "grade": 3,
+   "unit": "g3-shapes",
+   "unitTitle": "평면도형과 원",
+   "kind": "정의",
+   "decidedBy": "초안 유지",
+   "votes": null,
+   "why": "",
+   "condition": "",
+   "assemblyNote": "",
+   "draftKind": "정의",
+   "draftAmbiguous": false,
+   "draftNote": "",
+   "shape": "사전+",
+   "textbookKinds": [
+    {
+     "book": "cube-3-2",
+     "key": "3-2/p064/원의 중심",
+     "term": "원의 중심",
+     "kind": "정의",
+     "match": "exact"
+    }
+   ],
+   "changedFromDraft": false
+  },
+  {
+   "id": "g3-radius",
+   "name": "반지름",
+   "grade": 3,
+   "unit": "g3-shapes",
+   "unitTitle": "평면도형과 원",
+   "kind": "정의",
+   "decidedBy": "초안 유지",
+   "votes": null,
+   "why": "",
+   "condition": "",
+   "assemblyNote": "",
+   "draftKind": "정의",
+   "draftAmbiguous": false,
+   "draftNote": "",
+   "shape": "사전",
+   "textbookKinds": [
+    {
+     "book": "cube-3-2",
+     "key": "3-2/p064/반지름",
+     "term": "반지름",
+     "kind": "정의",
+     "match": "exact"
+    },
+    {
+     "book": "cube-6-2",
+     "key": "6-2/p104/반지름",
+     "term": "반지름",
+     "kind": "정의",
+     "match": "exact"
+    },
+    {
+     "book": "gaenyeom-1-2",
+     "key": "1-2/p116/반지름",
+     "term": "반지름",
+     "kind": "정의",
+     "match": "exact"
+    }
+   ],
+   "changedFromDraft": false
+  },
+  {
+   "id": "g3-diameter",
+   "name": "지름",
+   "grade": 3,
+   "unit": "g3-shapes",
+   "unitTitle": "평면도형과 원",
+   "kind": "정의",
+   "decidedBy": "초안 유지",
+   "votes": null,
+   "why": "",
+   "condition": "",
+   "assemblyNote": "",
+   "draftKind": "정의",
+   "draftAmbiguous": false,
+   "draftNote": "",
+   "shape": "사전+",
+   "textbookKinds": [
+    {
+     "book": "cube-3-2",
+     "key": "3-2/p064/지름",
+     "term": "지름",
+     "kind": "정의",
+     "match": "exact"
+    },
+    {
+     "book": "cube-3-2",
+     "key": "3-2/p066/원의 성질",
+     "term": "원의 성질",
+     "kind": "성질",
+     "match": "alias"
+    },
+    {
+     "book": "cube-6-2",
+     "key": "6-2/p104/지름",
+     "term": "지름",
+     "kind": "정의",
+     "match": "exact"
+    }
+   ],
+   "changedFromDraft": false
+  },
+  {
+   "id": "g3-length",
+   "name": "길이 단위",
+   "grade": 3,
+   "unit": "g3-measure",
+   "unitTitle": "길이·시간·들이·무게",
+   "kind": "단위",
+   "decidedBy": "3자 일치",
+   "votes": {
+    "claude": "단위",
+    "codex": "단위",
+    "grok": "단위"
+   },
+   "why": "빈칸이 1cm=10mm",
+   "condition": "",
+   "assemblyNote": "",
+   "draftKind": "단위",
+   "draftAmbiguous": false,
+   "draftNote": "",
+   "shape": "완결",
+   "textbookKinds": [
+    {
+     "book": "cube-3-1",
+     "key": "3-1/p096/밀리미터",
+     "term": "밀리미터",
+     "kind": "기호",
+     "match": "alias"
+    }
+   ],
+   "changedFromDraft": false
+  },
+  {
+   "id": "g3-kilometer",
+   "name": "킬로미터",
+   "grade": 3,
+   "unit": "g3-measure",
+   "unitTitle": "길이·시간·들이·무게",
+   "kind": "단위",
+   "decidedBy": "3자 일치",
+   "votes": {
+    "claude": "단위",
+    "codex": "단위",
+    "grok": "단위"
+   },
+   "why": "이름은 낱말이지만 빈칸이 1km=1000m",
+   "condition": "",
+   "assemblyNote": "",
+   "draftKind": "단위",
+   "draftAmbiguous": true,
+   "draftNote": "이름은 용어(킬로미터)인데 문장은 단위 관계",
+   "shape": "완결",
+   "textbookKinds": [
+    {
+     "book": "cube-3-1",
+     "key": "3-1/p096/킬로미터",
+     "term": "킬로미터",
+     "kind": "기호",
+     "match": "exact"
+    }
+   ],
+   "changedFromDraft": false
+  },
+  {
+   "id": "g3-time",
+   "name": "시간 단위",
+   "grade": 3,
+   "unit": "g3-measure",
+   "unitTitle": "길이·시간·들이·무게",
+   "kind": "단위",
+   "decidedBy": "3자 일치",
+   "votes": {
+    "claude": "단위",
+    "codex": "단위",
+    "grok": "단위"
+   },
+   "why": "빈칸이 1분=60초",
+   "condition": "",
+   "assemblyNote": "",
+   "draftKind": "단위",
+   "draftAmbiguous": false,
+   "draftNote": "",
+   "shape": "완결",
+   "textbookKinds": [
+    {
+     "book": "cube-3-1",
+     "key": "3-1/p102/초",
+     "term": "초",
+     "kind": "정의",
+     "match": "alias"
+    }
+   ],
+   "changedFromDraft": false
+  },
+  {
+   "id": "g3-capacity",
+   "name": "들이",
+   "grade": 3,
+   "unit": "g3-measure",
+   "unitTitle": "길이·시간·들이·무게",
+   "kind": "단위",
+   "decidedBy": "2:1(codex · grok)",
+   "votes": {
+    "claude": "정의",
+    "codex": "단위",
+    "grok": "단위"
+   },
+   "why": "빈칸 둘이 1L · 1000mL(환산) — 뜻(그릇에 담을 수 있는 양)은 빈칸 밖. codex 는 이름을 «들이 단위»로 바꾸자고도 함(1표)",
+   "condition": "",
+   "assemblyNote": "빈칸이 환산 쪽이라 딱지를 단위로 정했다",
+   "draftKind": "정의",
+   "draftAmbiguous": true,
+   "draftNote": "정의 + 단위 관계(1L=1000mL)",
+   "shape": "사전+",
+   "textbookKinds": [
+    {
+     "book": "cube-3-2",
+     "key": "3-2/p108/들이",
+     "term": "들이",
+     "kind": "정의",
+     "match": "exact"
+    },
+    {
+     "book": "cube-3-2",
+     "key": "3-2/p110/리터",
+     "term": "리터",
+     "kind": "기호",
+     "match": "alias"
+    },
+    {
+     "book": "cube-3-2",
+     "key": "3-2/p110/밀리리터",
+     "term": "밀리리터",
+     "kind": "기호",
+     "match": "alias"
+    }
+   ],
+   "changedFromDraft": true
+  },
+  {
+   "id": "g3-mass",
+   "name": "무게 단위",
+   "grade": 3,
+   "unit": "g3-measure",
+   "unitTitle": "길이·시간·들이·무게",
+   "kind": "단위",
+   "decidedBy": "3자 일치",
+   "votes": {
+    "claude": "단위",
+    "codex": "단위",
+    "grok": "단위"
+   },
+   "why": "빈칸이 1kg=1000g",
+   "condition": "",
+   "assemblyNote": "",
+   "draftKind": "단위",
+   "draftAmbiguous": false,
+   "draftNote": "",
+   "shape": "완결",
+   "textbookKinds": [
+    {
+     "book": "cube-3-2",
+     "key": "3-2/p118/킬로그램",
+     "term": "킬로그램",
+     "kind": "기호",
+     "match": "alias"
+    },
+    {
+     "book": "cube-3-2",
+     "key": "3-2/p118/그램",
+     "term": "그램",
+     "kind": "기호",
+     "match": "alias"
+    }
+   ],
+   "changedFromDraft": false
+  },
+  {
+   "id": "g3-table",
+   "name": "표",
+   "grade": 3,
+   "unit": "g3-data",
+   "unitTitle": "자료와 규칙",
+   "kind": "정의",
+   "decidedBy": "초안 유지",
+   "votes": null,
+   "why": "",
+   "condition": "",
+   "assemblyNote": "",
+   "draftKind": "정의",
+   "draftAmbiguous": false,
+   "draftNote": "",
+   "shape": "사전",
+   "textbookKinds": [],
+   "changedFromDraft": false
+  },
+  {
+   "id": "g3-picture-graph",
+   "name": "그림그래프",
+   "grade": 3,
+   "unit": "g3-data",
+   "unitTitle": "자료와 규칙",
+   "kind": "정의",
+   "decidedBy": "초안 유지",
+   "votes": null,
+   "why": "",
+   "condition": "",
+   "assemblyNote": "",
+   "draftKind": "정의",
+   "draftAmbiguous": false,
+   "draftNote": "",
+   "shape": "사전",
+   "textbookKinds": [
+    {
+     "book": "cube-3-2",
+     "key": "3-2/p134/그림그래프",
+     "term": "그림그래프",
+     "kind": "정의",
+     "match": "exact"
+    }
+   ],
+   "changedFromDraft": false
+  },
+  {
+   "id": "g3-data-total",
+   "name": "자료의 합계",
+   "grade": 3,
+   "unit": "g3-data",
+   "unitTitle": "자료와 규칙",
+   "kind": "정의",
+   "decidedBy": "초안 유지",
+   "votes": null,
+   "why": "",
+   "condition": "",
+   "assemblyNote": "",
+   "draftKind": "정의",
+   "draftAmbiguous": false,
+   "draftNote": "",
+   "shape": "사전",
+   "textbookKinds": [
+    {
+     "book": "cube-3-2",
+     "key": "3-2/p134/합계",
+     "term": "합계",
+     "kind": "기타",
+     "match": "exact"
+    },
+    {
+     "book": "cube-4-1",
+     "key": "4-1/p106/합계",
+     "term": "합계",
+     "kind": "정의",
+     "match": "exact"
+    }
+   ],
+   "changedFromDraft": false
+  },
+  {
+   "id": "g3-growing-rule",
+   "name": "늘어나는 규칙",
+   "grade": 3,
+   "unit": "g3-data",
+   "unitTitle": "자료와 규칙",
+   "kind": "정의",
+   "decidedBy": "초안 유지",
+   "votes": null,
+   "why": "",
+   "condition": "",
+   "assemblyNote": "",
+   "draftKind": "정의",
+   "draftAmbiguous": false,
+   "draftNote": "",
+   "shape": "사전",
+   "textbookKinds": [],
+   "changedFromDraft": false
+  },
+  {
+   "id": "g3-repeat-rule",
+   "name": "반복 규칙",
+   "grade": 3,
+   "unit": "g3-data",
+   "unitTitle": "자료와 규칙",
+   "kind": "정의",
+   "decidedBy": "초안 유지",
+   "votes": null,
+   "why": "",
+   "condition": "",
+   "assemblyNote": "",
+   "draftKind": "정의",
+   "draftAmbiguous": false,
+   "draftNote": "",
+   "shape": "사전",
+   "textbookKinds": [],
+   "changedFromDraft": false
+  },
+  {
+   "id": "g4-ten-thousand",
+   "name": "만",
+   "grade": 4,
+   "unit": "g4-numbers",
+   "unitTitle": "큰 수와 계산",
+   "kind": "정의",
+   "decidedBy": "초안 유지",
+   "votes": null,
+   "why": "",
+   "condition": "",
+   "assemblyNote": "",
+   "draftKind": "정의",
+   "draftAmbiguous": false,
+   "draftNote": "",
+   "shape": "사전",
+   "textbookKinds": [
+    {
+     "book": "cube-4-1",
+     "key": "4-1/p008/만",
+     "term": "만",
+     "kind": "정의",
+     "match": "exact"
+    }
+   ],
+   "changedFromDraft": false
+  },
+  {
+   "id": "g4-large-place",
+   "name": "큰 수의 자릿값",
+   "grade": 4,
+   "unit": "g4-numbers",
+   "unitTitle": "큰 수와 계산",
+   "kind": "성질",
+   "decidedBy": "초안 유지",
+   "votes": null,
+   "why": "",
+   "condition": "",
+   "assemblyNote": "",
+   "draftKind": "성질",
+   "draftAmbiguous": false,
+   "draftNote": "",
+   "shape": "완결",
+   "textbookKinds": [],
+   "changedFromDraft": false
+  },
+  {
+   "id": "g4-hundred-million",
+   "name": "억",
+   "grade": 4,
+   "unit": "g4-numbers",
+   "unitTitle": "큰 수와 계산",
+   "kind": "정의",
+   "decidedBy": "초안 유지",
+   "votes": null,
+   "why": "",
+   "condition": "",
+   "assemblyNote": "",
+   "draftKind": "정의",
+   "draftAmbiguous": false,
+   "draftNote": "",
+   "shape": "사전",
+   "textbookKinds": [
+    {
+     "book": "cube-4-1",
+     "key": "4-1/p014/억",
+     "term": "억",
+     "kind": "정의",
+     "match": "exact"
+    }
+   ],
+   "changedFromDraft": false
+  },
+  {
+   "id": "g4-multiply-ten",
+   "name": "10배와 100배",
+   "grade": 4,
+   "unit": "g4-numbers",
+   "unitTitle": "큰 수와 계산",
+   "kind": "성질",
+   "decidedBy": "초안 유지",
+   "votes": null,
+   "why": "",
+   "condition": "",
+   "assemblyNote": "",
+   "draftKind": "성질",
+   "draftAmbiguous": false,
+   "draftNote": "",
+   "shape": "완결",
+   "textbookKinds": [],
+   "changedFromDraft": false
+  },
+  {
+   "id": "g4-estimate-quotient",
+   "name": "몫 어림하기",
+   "grade": 4,
+   "unit": "g4-numbers",
+   "unitTitle": "큰 수와 계산",
+   "kind": "방법",
+   "decidedBy": "3자 일치",
+   "votes": {
+    "claude": "방법",
+    "codex": "방법",
+    "grok": "방법"
+   },
+   "why": "«~하기» — 빈칸이 어림하는 절차",
+   "condition": "",
+   "assemblyNote": "",
+   "draftKind": "방법",
+   "draftAmbiguous": true,
+   "draftNote": "문장은 «~하는 것»(정의 꼴), 이름은 «어림하기»(방법)",
+   "shape": "사전",
+   "textbookKinds": [],
+   "changedFromDraft": false
+  },
+  {
+   "id": "g4-proper",
+   "name": "진분수",
+   "grade": 4,
+   "unit": "g4-fractions",
+   "unitTitle": "분수·소수의 계산",
+   "kind": "정의",
+   "decidedBy": "초안 유지",
+   "votes": null,
+   "why": "",
+   "condition": "",
+   "assemblyNote": "",
+   "draftKind": "정의",
+   "draftAmbiguous": false,
+   "draftNote": "",
+   "shape": "사전",
+   "textbookKinds": [
+    {
+     "book": "cube-3-2",
+     "key": "3-2/p088/진분수",
+     "term": "진분수",
+     "kind": "정의",
+     "match": "exact"
+    }
+   ],
+   "changedFromDraft": false
+  },
+  {
+   "id": "g4-improper",
+   "name": "가분수",
+   "grade": 4,
+   "unit": "g4-fractions",
+   "unitTitle": "분수·소수의 계산",
+   "kind": "정의",
+   "decidedBy": "초안 유지",
+   "votes": null,
+   "why": "",
+   "condition": "",
+   "assemblyNote": "",
+   "draftKind": "정의",
+   "draftAmbiguous": false,
+   "draftNote": "",
+   "shape": "사전",
+   "textbookKinds": [
+    {
+     "book": "cube-3-2",
+     "key": "3-2/p088/가분수",
+     "term": "가분수",
+     "kind": "정의",
+     "match": "exact"
+    }
+   ],
+   "changedFromDraft": false
+  },
+  {
+   "id": "g4-mixed",
+   "name": "대분수",
+   "grade": 4,
+   "unit": "g4-fractions",
+   "unitTitle": "분수·소수의 계산",
+   "kind": "정의",
+   "decidedBy": "초안 유지",
+   "votes": null,
+   "why": "",
+   "condition": "",
+   "assemblyNote": "",
+   "draftKind": "정의",
+   "draftAmbiguous": false,
+   "draftNote": "",
+   "shape": "사전",
+   "textbookKinds": [
+    {
+     "book": "cube-3-2",
+     "key": "3-2/p090/대분수",
+     "term": "대분수",
+     "kind": "정의",
+     "match": "exact"
+    }
+   ],
+   "changedFromDraft": false
+  },
+  {
+   "id": "g4-same-denominator",
+   "name": "같은 분모의 덧셈",
+   "grade": 4,
+   "unit": "g4-fractions",
+   "unitTitle": "분수·소수의 계산",
+   "kind": "방법",
+   "decidedBy": "초안 유지",
+   "votes": null,
+   "why": "",
+   "condition": "",
+   "assemblyNote": "",
+   "draftKind": "방법",
+   "draftAmbiguous": false,
+   "draftNote": "",
+   "shape": "주어빠짐",
+   "textbookKinds": [],
+   "changedFromDraft": false
+  },
+  {
+   "id": "g4-decimal-add",
+   "name": "소수의 덧셈",
+   "grade": 4,
+   "unit": "g4-fractions",
+   "unitTitle": "분수·소수의 계산",
+   "kind": "방법",
+   "decidedBy": "초안 유지",
+   "votes": null,
+   "why": "",
+   "condition": "",
+   "assemblyNote": "",
+   "draftKind": "방법",
+   "draftAmbiguous": false,
+   "draftNote": "",
+   "shape": "주어빠짐",
+   "textbookKinds": [],
+   "changedFromDraft": false
+  },
+  {
+   "id": "g4-angle",
+   "name": "각도",
+   "grade": 4,
+   "unit": "g4-angles",
+   "unitTitle": "각도와 삼각형",
+   "kind": "정의",
+   "decidedBy": "초안 유지",
+   "votes": null,
+   "why": "",
+   "condition": "",
+   "assemblyNote": "",
+   "draftKind": "정의",
+   "draftAmbiguous": false,
+   "draftNote": "",
+   "shape": "사전+",
+   "textbookKinds": [
+    {
+     "book": "cube-4-1",
+     "key": "4-1/p032/각도",
+     "term": "각도",
+     "kind": "정의",
+     "match": "exact"
+    },
+    {
+     "book": "gaenyeom-1-2",
+     "key": "1-2/p018/각의 크기",
+     "term": "각의 크기",
+     "kind": "정의",
+     "match": "alias"
+    }
+   ],
+   "changedFromDraft": false
+  },
+  {
+   "id": "g4-acute",
+   "name": "예각",
+   "grade": 4,
+   "unit": "g4-angles",
+   "unitTitle": "각도와 삼각형",
+   "kind": "정의",
+   "decidedBy": "초안 유지",
+   "votes": null,
+   "why": "",
+   "condition": "",
+   "assemblyNote": "",
+   "draftKind": "정의",
+   "draftAmbiguous": false,
+   "draftNote": "",
+   "shape": "사전",
+   "textbookKinds": [
+    {
+     "book": "cube-4-1",
+     "key": "4-1/p036/예각",
+     "term": "예각",
+     "kind": "정의",
+     "match": "exact"
+    },
+    {
+     "book": "gaenyeom-1-2",
+     "key": "1-2/p018/예각",
+     "term": "예각",
+     "kind": "정의",
+     "match": "exact"
+    }
+   ],
+   "changedFromDraft": false
+  },
+  {
+   "id": "g4-obtuse",
+   "name": "둔각",
+   "grade": 4,
+   "unit": "g4-angles",
+   "unitTitle": "각도와 삼각형",
+   "kind": "정의",
+   "decidedBy": "초안 유지",
+   "votes": null,
+   "why": "",
+   "condition": "",
+   "assemblyNote": "",
+   "draftKind": "정의",
+   "draftAmbiguous": false,
+   "draftNote": "",
+   "shape": "사전",
+   "textbookKinds": [
+    {
+     "book": "cube-4-1",
+     "key": "4-1/p036/둔각",
+     "term": "둔각",
+     "kind": "정의",
+     "match": "exact"
+    },
+    {
+     "book": "gaenyeom-1-2",
+     "key": "1-2/p018/둔각",
+     "term": "둔각",
+     "kind": "정의",
+     "match": "exact"
+    }
+   ],
+   "changedFromDraft": false
+  },
+  {
+   "id": "g4-isosceles",
+   "name": "이등변삼각형",
+   "grade": 4,
+   "unit": "g4-angles",
+   "unitTitle": "각도와 삼각형",
+   "kind": "정의",
+   "decidedBy": "초안 유지",
+   "votes": null,
+   "why": "",
+   "condition": "",
+   "assemblyNote": "",
+   "draftKind": "정의",
+   "draftAmbiguous": false,
+   "draftNote": "",
+   "shape": "사전",
+   "textbookKinds": [
+    {
+     "book": "cube-4-2",
+     "key": "4-2/p032/이등변삼각형",
+     "term": "이등변삼각형",
+     "kind": "정의",
+     "match": "exact"
+    },
+    {
+     "book": "gaenyeom-2-2",
+     "key": "2-2/p013/이등변삼각형",
+     "term": "이등변삼각형",
+     "kind": "정의",
+     "match": "exact"
+    }
+   ],
+   "changedFromDraft": false
+  },
+  {
+   "id": "g4-triangle-sum",
+   "name": "삼각형의 세 각",
+   "grade": 4,
+   "unit": "g4-angles",
+   "unitTitle": "각도와 삼각형",
+   "kind": "성질",
+   "decidedBy": "2:1(claude · codex)",
+   "votes": {
+    "claude": "성질",
+    "codex": "성질",
+    "grok": "정리"
+   },
+   "why": "교재 원문이 «정리»라 부르지 않는다(4-1 · 1-2 확인 — 트랙 딱지일 뿐). grok 은 교재가 정리라 부른다는 전제로 정리",
+   "condition": "",
+   "assemblyNote": "",
+   "draftKind": "성질",
+   "draftAmbiguous": false,
+   "draftNote": "",
+   "shape": "완결",
+   "textbookKinds": [
+    {
+     "book": "cube-4-1",
+     "key": "4-1/p042/삼각형의 세 각의 크기의 합",
+     "term": "삼각형의 세 각의 크기의 합",
+     "kind": "정리",
+     "match": "alias"
+    },
+    {
+     "book": "gaenyeom-1-2",
+     "key": "1-2/p095/삼각형의 세 내각의 크기의 합",
+     "term": "삼각형의 세 내각의 크기의 합",
+     "kind": "정리",
+     "match": "alias"
+    }
+   ],
+   "changedFromDraft": false
+  },
+  {
+   "id": "g4-parallel",
+   "name": "평행",
+   "grade": 4,
+   "unit": "g4-polygons",
+   "unitTitle": "사각형과 다각형",
+   "kind": "정의",
+   "decidedBy": "초안 유지",
+   "votes": null,
+   "why": "",
+   "condition": "",
+   "assemblyNote": "",
+   "draftKind": "정의",
+   "draftAmbiguous": false,
+   "draftNote": "",
+   "shape": "사전",
+   "textbookKinds": [
+    {
+     "book": "cube-4-2",
+     "key": "4-2/p086/평행",
+     "term": "평행",
+     "kind": "정의",
+     "match": "exact"
+    },
+    {
+     "book": "gaenyeom-1-2",
+     "key": "1-2/p034/평행",
+     "term": "평행",
+     "kind": "정의",
+     "match": "exact"
+    }
+   ],
+   "changedFromDraft": false
+  },
+  {
+   "id": "g4-parallelogram",
+   "name": "평행사변형",
+   "grade": 4,
+   "unit": "g4-polygons",
+   "unitTitle": "사각형과 다각형",
+   "kind": "정의",
+   "decidedBy": "초안 유지",
+   "votes": null,
+   "why": "",
+   "condition": "",
+   "assemblyNote": "",
+   "draftKind": "정의",
+   "draftAmbiguous": false,
+   "draftNote": "",
+   "shape": "사전",
+   "textbookKinds": [
+    {
+     "book": "cube-4-2",
+     "key": "4-2/p092/평행사변형",
+     "term": "평행사변형",
+     "kind": "정의",
+     "match": "exact"
+    },
+    {
+     "book": "gaenyeom-2-2",
+     "key": "2-2/p059/평행사변형",
+     "term": "평행사변형",
+     "kind": "정의",
+     "match": "exact"
+    }
+   ],
+   "changedFromDraft": false
+  },
+  {
+   "id": "g4-rhombus",
+   "name": "마름모",
+   "grade": 4,
+   "unit": "g4-polygons",
+   "unitTitle": "사각형과 다각형",
+   "kind": "정의",
+   "decidedBy": "초안 유지",
+   "votes": null,
+   "why": "",
+   "condition": "",
+   "assemblyNote": "",
+   "draftKind": "정의",
+   "draftAmbiguous": false,
+   "draftNote": "",
+   "shape": "사전",
+   "textbookKinds": [
+    {
+     "book": "cube-4-2",
+     "key": "4-2/p094/마름모",
+     "term": "마름모",
+     "kind": "정의",
+     "match": "exact"
+    },
+    {
+     "book": "gaenyeom-2-2",
+     "key": "2-2/p081/마름모",
+     "term": "마름모",
+     "kind": "정의",
+     "match": "exact"
+    }
+   ],
+   "changedFromDraft": false
+  },
+  {
+   "id": "g4-polygon",
+   "name": "다각형",
+   "grade": 4,
+   "unit": "g4-polygons",
+   "unitTitle": "사각형과 다각형",
+   "kind": "정의",
+   "decidedBy": "초안 유지",
+   "votes": null,
+   "why": "",
+   "condition": "",
+   "assemblyNote": "",
+   "draftKind": "정의",
+   "draftAmbiguous": false,
+   "draftNote": "",
+   "shape": "사전",
+   "textbookKinds": [
+    {
+     "book": "cube-4-2",
+     "key": "4-2/p132/다각형",
+     "term": "다각형",
+     "kind": "정의",
+     "match": "exact"
+    },
+    {
+     "book": "gaenyeom-1-2",
+     "key": "1-2/p088/다각형",
+     "term": "다각형",
+     "kind": "정의",
+     "match": "exact"
+    }
+   ],
+   "changedFromDraft": false
+  },
+  {
+   "id": "g4-diagonal",
+   "name": "대각선",
+   "grade": 4,
+   "unit": "g4-polygons",
+   "unitTitle": "사각형과 다각형",
+   "kind": "정의",
+   "decidedBy": "초안 유지",
+   "votes": null,
+   "why": "",
+   "condition": "",
+   "assemblyNote": "",
+   "draftKind": "정의",
+   "draftAmbiguous": false,
+   "draftNote": "",
+   "shape": "사전",
+   "textbookKinds": [
+    {
+     "book": "cube-4-2",
+     "key": "4-2/p134/대각선",
+     "term": "대각선",
+     "kind": "정의",
+     "match": "exact"
+    },
+    {
+     "book": "gaenyeom-1-2",
+     "key": "1-2/p089/대각선",
+     "term": "대각선",
+     "kind": "정의",
+     "match": "exact"
+    }
+   ],
+   "changedFromDraft": false
+  },
+  {
+   "id": "g4-slide",
+   "name": "밀기",
+   "grade": 4,
+   "unit": "g4-movement",
+   "unitTitle": "평면도형의 이동",
+   "kind": "정의",
+   "decidedBy": "3자 일치",
+   "votes": {
+    "claude": "정의",
+    "codex": "정의",
+    "grok": "정의"
+   },
+   "why": "이동의 이름과 뜻",
+   "condition": "",
+   "assemblyNote": "",
+   "draftKind": "정의",
+   "draftAmbiguous": false,
+   "draftNote": "",
+   "shape": "사전",
+   "textbookKinds": [
+    {
+     "book": "cube-4-1",
+     "key": "4-1/p084/밀기",
+     "term": "밀기",
+     "kind": "기타",
+     "match": "exact"
+    }
+   ],
+   "changedFromDraft": false
+  },
+  {
+   "id": "g4-flip",
+   "name": "뒤집기",
+   "grade": 4,
+   "unit": "g4-movement",
+   "unitTitle": "평면도형의 이동",
+   "kind": "정의",
+   "decidedBy": "3자 일치",
+   "votes": {
+    "claude": "정의",
+    "codex": "정의",
+    "grok": "정의"
+   },
+   "why": "이동의 이름과 뜻",
+   "condition": "",
+   "assemblyNote": "",
+   "draftKind": "정의",
+   "draftAmbiguous": false,
+   "draftNote": "",
+   "shape": "사전",
+   "textbookKinds": [
+    {
+     "book": "cube-4-1",
+     "key": "4-1/p086/뒤집기",
+     "term": "뒤집기",
+     "kind": "기타",
+     "match": "exact"
+    }
+   ],
+   "changedFromDraft": false
+  },
+  {
+   "id": "g4-turn",
+   "name": "돌리기",
+   "grade": 4,
+   "unit": "g4-movement",
+   "unitTitle": "평면도형의 이동",
+   "kind": "정의",
+   "decidedBy": "3자 일치",
+   "votes": {
+    "claude": "정의",
+    "codex": "정의",
+    "grok": "정의"
+   },
+   "why": "이동의 이름과 뜻",
+   "condition": "",
+   "assemblyNote": "",
+   "draftKind": "정의",
+   "draftAmbiguous": false,
+   "draftNote": "",
+   "shape": "사전",
+   "textbookKinds": [
+    {
+     "book": "cube-4-1",
+     "key": "4-1/p090/돌리기",
+     "term": "돌리기",
+     "kind": "기타",
+     "match": "exact"
+    }
+   ],
+   "changedFromDraft": false
+  },
+  {
+   "id": "g4-quarter-turn",
+   "name": "직각만큼 돌리기",
+   "grade": 4,
+   "unit": "g4-movement",
+   "unitTitle": "평면도형의 이동",
+   "kind": "정의",
+   "decidedBy": "초안 유지",
+   "votes": null,
+   "why": "",
+   "condition": "",
+   "assemblyNote": "",
+   "draftKind": "정의",
+   "draftAmbiguous": false,
+   "draftNote": "",
+   "shape": "사전",
+   "textbookKinds": [],
+   "changedFromDraft": false
+  },
+  {
+   "id": "g4-half-turn",
+   "name": "반 바퀴 돌리기",
+   "grade": 4,
+   "unit": "g4-movement",
+   "unitTitle": "평면도형의 이동",
+   "kind": "정의",
+   "decidedBy": "초안 유지",
+   "votes": null,
+   "why": "",
+   "condition": "",
+   "assemblyNote": "",
+   "draftKind": "정의",
+   "draftAmbiguous": false,
+   "draftNote": "",
+   "shape": "사전",
+   "textbookKinds": [],
+   "changedFromDraft": false
+  },
+  {
+   "id": "g4-bar-graph",
+   "name": "막대그래프",
+   "grade": 4,
+   "unit": "g4-data",
+   "unitTitle": "그래프와 규칙",
+   "kind": "정의",
+   "decidedBy": "초안 유지",
+   "votes": null,
+   "why": "",
+   "condition": "",
+   "assemblyNote": "",
+   "draftKind": "정의",
+   "draftAmbiguous": false,
+   "draftNote": "",
+   "shape": "사전",
+   "textbookKinds": [
+    {
+     "book": "cube-4-1",
+     "key": "4-1/p106/막대그래프",
+     "term": "막대그래프",
+     "kind": "정의",
+     "match": "exact"
+    }
+   ],
+   "changedFromDraft": false
+  },
+  {
+   "id": "g4-line-graph",
+   "name": "꺾은선그래프",
+   "grade": 4,
+   "unit": "g4-data",
+   "unitTitle": "그래프와 규칙",
+   "kind": "정의",
+   "decidedBy": "초안 유지",
+   "votes": null,
+   "why": "",
+   "condition": "",
+   "assemblyNote": "",
+   "draftKind": "정의",
+   "draftAmbiguous": false,
+   "draftNote": "",
+   "shape": "사전",
+   "textbookKinds": [
+    {
+     "book": "cube-4-2",
+     "key": "4-2/p110/꺾은선그래프",
+     "term": "꺾은선그래프",
+     "kind": "정의",
+     "match": "exact"
+    }
+   ],
+   "changedFromDraft": false
+  },
+  {
+   "id": "g4-scale",
+   "name": "그래프의 눈금",
+   "grade": 4,
+   "unit": "g4-data",
+   "unitTitle": "그래프와 규칙",
+   "kind": "정의",
+   "decidedBy": "초안 유지",
+   "votes": null,
+   "why": "",
+   "condition": "",
+   "assemblyNote": "",
+   "draftKind": "정의",
+   "draftAmbiguous": false,
+   "draftNote": "",
+   "shape": "사전",
+   "textbookKinds": [],
+   "changedFromDraft": false
+  },
+  {
+   "id": "g4-number-rule",
+   "name": "수 배열의 규칙",
+   "grade": 4,
+   "unit": "g4-data",
+   "unitTitle": "그래프와 규칙",
+   "kind": "방법",
+   "decidedBy": "3자 일치",
+   "votes": {
+    "claude": "방법",
+    "codex": "방법",
+    "grok": "방법"
+   },
+   "why": "빈칸이 관계를 찾아 다음 수를 예측하는 절차(codex 는 이름을 «수 배열에서 규칙 찾기»로 제안 — 1표)",
+   "condition": "",
+   "assemblyNote": "",
+   "draftKind": "방법",
+   "draftAmbiguous": true,
+   "draftNote": "문장은 «~예측하는 것»(정의 꼴) — 정의로 볼 수도",
+   "shape": "사전",
+   "textbookKinds": [],
+   "changedFromDraft": false
+  },
+  {
+   "id": "g4-pattern-table",
+   "name": "규칙을 표로 나타내기",
+   "grade": 4,
+   "unit": "g4-data",
+   "unitTitle": "그래프와 규칙",
+   "kind": "방법",
+   "decidedBy": "초안 유지",
+   "votes": null,
+   "why": "",
+   "condition": "",
+   "assemblyNote": "",
+   "draftKind": "방법",
+   "draftAmbiguous": false,
+   "draftNote": "«~방법.»으로 끝남",
+   "shape": "사전",
+   "textbookKinds": [],
+   "changedFromDraft": false
+  },
+  {
+   "id": "g5-divisor",
+   "name": "약수",
+   "grade": 5,
+   "unit": "g5-divisors",
+   "unitTitle": "약수·배수와 혼합 계산",
+   "kind": "정의",
+   "decidedBy": "초안 유지",
+   "votes": null,
+   "why": "",
+   "condition": "",
+   "assemblyNote": "",
+   "draftKind": "정의",
+   "draftAmbiguous": false,
+   "draftNote": "",
+   "shape": "사전",
+   "textbookKinds": [
+    {
+     "book": "cube-5-1",
+     "key": "5-1/p030/약수",
+     "term": "약수",
+     "kind": "정의",
+     "match": "exact"
+    }
+   ],
+   "changedFromDraft": false
+  },
+  {
+   "id": "g5-multiple",
+   "name": "배수",
+   "grade": 5,
+   "unit": "g5-divisors",
+   "unitTitle": "약수·배수와 혼합 계산",
+   "kind": "정의",
+   "decidedBy": "초안 유지",
+   "votes": null,
+   "why": "",
+   "condition": "",
+   "assemblyNote": "",
+   "draftKind": "정의",
+   "draftAmbiguous": false,
+   "draftNote": "",
+   "shape": "사전",
+   "textbookKinds": [
+    {
+     "book": "cube-5-1",
+     "key": "5-1/p030/배수",
+     "term": "배수",
+     "kind": "정의",
+     "match": "exact"
+    }
+   ],
+   "changedFromDraft": false
+  },
+  {
+   "id": "g5-gcd",
+   "name": "최대공약수",
+   "grade": 5,
+   "unit": "g5-divisors",
+   "unitTitle": "약수·배수와 혼합 계산",
+   "kind": "정의",
+   "decidedBy": "초안 유지",
+   "votes": null,
+   "why": "",
+   "condition": "",
+   "assemblyNote": "",
+   "draftKind": "정의",
+   "draftAmbiguous": false,
+   "draftNote": "",
+   "shape": "사전",
+   "textbookKinds": [
+    {
+     "book": "cube-5-1",
+     "key": "5-1/p036/최대공약수",
+     "term": "최대공약수",
+     "kind": "정의",
+     "match": "exact"
+    },
+    {
+     "book": "gaenyeom-1-1",
+     "key": "1-1/p030/최대공약수",
+     "term": "최대공약수",
+     "kind": "정의",
+     "match": "exact"
+    }
+   ],
+   "changedFromDraft": false
+  },
+  {
+   "id": "g5-lcm",
+   "name": "최소공배수",
+   "grade": 5,
+   "unit": "g5-divisors",
+   "unitTitle": "약수·배수와 혼합 계산",
+   "kind": "정의",
+   "decidedBy": "초안 유지",
+   "votes": null,
+   "why": "",
+   "condition": "",
+   "assemblyNote": "",
+   "draftKind": "정의",
+   "draftAmbiguous": false,
+   "draftNote": "",
+   "shape": "사전",
+   "textbookKinds": [
+    {
+     "book": "cube-5-1",
+     "key": "5-1/p038/최소공배수",
+     "term": "최소공배수",
+     "kind": "정의",
+     "match": "exact"
+    },
+    {
+     "book": "gaenyeom-1-1",
+     "key": "1-1/p035/최소공배수",
+     "term": "최소공배수",
+     "kind": "정의",
+     "match": "exact"
+    }
+   ],
+   "changedFromDraft": false
+  },
+  {
+   "id": "g5-operation-order",
+   "name": "혼합 계산의 순서",
+   "grade": 5,
+   "unit": "g5-divisors",
+   "unitTitle": "약수·배수와 혼합 계산",
+   "kind": "방법",
+   "decidedBy": "3자 일치",
+   "votes": {
+    "claude": "방법",
+    "codex": "방법",
+    "grok": "방법"
+   },
+   "why": "계산 차례의 약속 — 이름 붙은 법칙이 아니다",
+   "condition": "",
+   "assemblyNote": "",
+   "draftKind": "방법",
+   "draftAmbiguous": true,
+   "draftNote": "계산 순서의 약속 — 법칙으로 볼 수도",
+   "shape": "완결",
+   "textbookKinds": [],
+   "changedFromDraft": false
+  },
+  {
+   "id": "g5-equivalent",
+   "name": "크기가 같은 분수",
+   "grade": 5,
+   "unit": "g5-fractions",
+   "unitTitle": "약분·통분과 분수 계산",
+   "kind": "성질",
+   "decidedBy": "초안 유지",
+   "votes": null,
+   "why": "",
+   "condition": "",
+   "assemblyNote": "",
+   "draftKind": "성질",
+   "draftAmbiguous": false,
+   "draftNote": "",
+   "shape": "완결",
+   "textbookKinds": [
+    {
+     "book": "cube-5-1",
+     "key": "5-1/p068/크기가 같은 분수",
+     "term": "크기가 같은 분수",
+     "kind": "성질",
+     "match": "exact"
+    },
+    {
+     "book": "cube-5-1",
+     "key": "5-1/p068/같은 수로 나누어 크기가 같은 분수 만들기",
+     "term": "같은 수로 나누어 크기가 같은 분수 만들기",
+     "kind": "성질",
+     "match": "alias"
+    }
+   ],
+   "changedFromDraft": false
+  },
+  {
+   "id": "g5-reduce",
+   "name": "약분",
+   "grade": 5,
+   "unit": "g5-fractions",
+   "unitTitle": "약분·통분과 분수 계산",
+   "kind": "정의",
+   "decidedBy": "초안 유지",
+   "votes": null,
+   "why": "",
+   "condition": "",
+   "assemblyNote": "",
+   "draftKind": "정의",
+   "draftAmbiguous": false,
+   "draftNote": "",
+   "shape": "사전",
+   "textbookKinds": [
+    {
+     "book": "cube-5-1",
+     "key": "5-1/p070/약분",
+     "term": "약분",
+     "kind": "정의",
+     "match": "exact"
+    }
+   ],
+   "changedFromDraft": false
+  },
+  {
+   "id": "g5-irreducible",
+   "name": "기약분수",
+   "grade": 5,
+   "unit": "g5-fractions",
+   "unitTitle": "약분·통분과 분수 계산",
+   "kind": "정의",
+   "decidedBy": "초안 유지",
+   "votes": null,
+   "why": "",
+   "condition": "",
+   "assemblyNote": "",
+   "draftKind": "정의",
+   "draftAmbiguous": false,
+   "draftNote": "",
+   "shape": "사전",
+   "textbookKinds": [
+    {
+     "book": "cube-5-1",
+     "key": "5-1/p070/기약분수",
+     "term": "기약분수",
+     "kind": "정의",
+     "match": "exact"
+    }
+   ],
+   "changedFromDraft": false
+  },
+  {
+   "id": "g5-common-denominator",
+   "name": "통분",
+   "grade": 5,
+   "unit": "g5-fractions",
+   "unitTitle": "약분·통분과 분수 계산",
+   "kind": "정의",
+   "decidedBy": "초안 유지",
+   "votes": null,
+   "why": "",
+   "condition": "",
+   "assemblyNote": "",
+   "draftKind": "정의",
+   "draftAmbiguous": false,
+   "draftNote": "",
+   "shape": "사전",
+   "textbookKinds": [
+    {
+     "book": "cube-5-1",
+     "key": "5-1/p074/통분",
+     "term": "통분",
+     "kind": "정의",
+     "match": "exact"
+    }
+   ],
+   "changedFromDraft": false
+  },
+  {
+   "id": "g5-fraction-multiply",
+   "name": "분수의 곱셈",
+   "grade": 5,
+   "unit": "g5-fractions",
+   "unitTitle": "약분·통분과 분수 계산",
+   "kind": "방법",
+   "decidedBy": "3자 일치",
+   "votes": {
+    "claude": "방법",
+    "codex": "방법",
+    "grok": "방법"
+   },
+   "why": "계산 절차",
+   "condition": "",
+   "assemblyNote": "",
+   "draftKind": "방법",
+   "draftAmbiguous": false,
+   "draftNote": "",
+   "shape": "주어빠짐",
+   "textbookKinds": [
+    {
+     "book": "cube-5-2",
+     "key": "5-2/p040/(단위분수)×(단위분수)",
+     "term": "(단위분수)×(단위분수)",
+     "kind": "기타",
+     "match": "alias"
+    },
+    {
+     "book": "cube-5-2",
+     "key": "5-2/p040/(진분수)×(진분수)",
+     "term": "(진분수)×(진분수)",
+     "kind": "기타",
+     "match": "alias"
+    }
+   ],
+   "changedFromDraft": false
+  },
+  {
+   "id": "g5-decimal-multiply",
+   "name": "소수의 곱셈",
+   "grade": 5,
+   "unit": "g5-estimate",
+   "unitTitle": "소수 곱셈과 어림",
+   "kind": "방법",
+   "decidedBy": "3자 일치",
+   "votes": {
+    "claude": "방법",
+    "codex": "방법",
+    "grok": "방법"
+   },
+   "why": "계산 절차",
+   "condition": "",
+   "assemblyNote": "",
+   "draftKind": "방법",
+   "draftAmbiguous": false,
+   "draftNote": "",
+   "shape": "주어빠짐",
+   "textbookKinds": [
+    {
+     "book": "cube-5-2",
+     "key": "5-2/p088/소수끼리 곱하는 경우",
+     "term": "소수끼리 곱하는 경우",
+     "kind": "기타",
+     "match": "alias"
+    }
+   ],
+   "changedFromDraft": false
+  },
+  {
+   "id": "g5-at-least",
+   "name": "이상과 이하",
+   "grade": 5,
+   "unit": "g5-estimate",
+   "unitTitle": "소수 곱셈과 어림",
+   "kind": "정의",
+   "decidedBy": "초안 유지",
+   "votes": null,
+   "why": "",
+   "condition": "",
+   "assemblyNote": "",
+   "draftKind": "정의",
+   "draftAmbiguous": false,
+   "draftNote": "용어 두 개를 한 문장에",
+   "shape": "완결",
+   "textbookKinds": [
+    {
+     "book": "cube-5-2",
+     "key": "5-2/p008/이상",
+     "term": "이상",
+     "kind": "정의",
+     "match": "exact"
+    },
+    {
+     "book": "cube-5-2",
+     "key": "5-2/p008/이하",
+     "term": "이하",
+     "kind": "정의",
+     "match": "exact"
+    }
+   ],
+   "changedFromDraft": false
+  },
+  {
+   "id": "g5-more-than",
+   "name": "초과와 미만",
+   "grade": 5,
+   "unit": "g5-estimate",
+   "unitTitle": "소수 곱셈과 어림",
+   "kind": "정의",
+   "decidedBy": "초안 유지",
+   "votes": null,
+   "why": "",
+   "condition": "",
+   "assemblyNote": "",
+   "draftKind": "정의",
+   "draftAmbiguous": false,
+   "draftNote": "용어 두 개를 한 문장에",
+   "shape": "완결",
+   "textbookKinds": [
+    {
+     "book": "cube-5-2",
+     "key": "5-2/p010/초과",
+     "term": "초과",
+     "kind": "정의",
+     "match": "exact"
+    },
+    {
+     "book": "cube-5-2",
+     "key": "5-2/p010/미만",
+     "term": "미만",
+     "kind": "정의",
+     "match": "exact"
+    }
+   ],
+   "changedFromDraft": false
+  },
+  {
+   "id": "g5-round",
+   "name": "반올림",
+   "grade": 5,
+   "unit": "g5-estimate",
+   "unitTitle": "소수 곱셈과 어림",
+   "kind": "정의",
+   "decidedBy": "3자 일치",
+   "votes": {
+    "claude": "정의",
+    "codex": "정의",
+    "grok": "정의"
+   },
+   "why": "교재도 반올림을 뜻매김한다 — 빈칸이 그 뜻(5 이상 · 5 미만)",
+   "condition": "",
+   "assemblyNote": "",
+   "draftKind": "정의",
+   "draftAmbiguous": true,
+   "draftNote": "어림하는 방법의 이름 — 방법으로 볼 수도",
+   "shape": "사전",
+   "textbookKinds": [
+    {
+     "book": "cube-5-2",
+     "key": "5-2/p018/반올림",
+     "term": "반올림",
+     "kind": "정의",
+     "match": "exact"
+    },
+    {
+     "book": "cube-6-2",
+     "key": "6-2/p042/반올림",
+     "term": "반올림",
+     "kind": "정의",
+     "match": "exact"
+    }
+   ],
+   "changedFromDraft": false
+  },
+  {
+   "id": "g5-round-up",
+   "name": "올림과 버림",
+   "grade": 5,
+   "unit": "g5-estimate",
+   "unitTitle": "소수 곱셈과 어림",
+   "kind": "정의",
+   "decidedBy": "3자 일치",
+   "votes": {
+    "claude": "정의",
+    "codex": "정의",
+    "grok": "정의"
+   },
+   "why": "두 낱말의 뜻을 가른다",
+   "condition": "",
+   "assemblyNote": "",
+   "draftKind": "정의",
+   "draftAmbiguous": true,
+   "draftNote": "용어 두 개 · 문장이 «~올리고 ~없앤다»(방법 꼴)",
+   "shape": "완결",
+   "textbookKinds": [
+    {
+     "book": "cube-5-2",
+     "key": "5-2/p016/올림",
+     "term": "올림",
+     "kind": "정의",
+     "match": "exact"
+    },
+    {
+     "book": "cube-5-2",
+     "key": "5-2/p016/버림",
+     "term": "버림",
+     "kind": "정의",
+     "match": "exact"
+    }
+   ],
+   "changedFromDraft": false
+  },
+  {
+   "id": "g5-correspondence",
+   "name": "대응 관계",
+   "grade": 5,
+   "unit": "g5-relations",
+   "unitTitle": "대응·평균·가능성",
+   "kind": "정의",
+   "decidedBy": "초안 유지",
+   "votes": null,
+   "why": "",
+   "condition": "",
+   "assemblyNote": "",
+   "draftKind": "정의",
+   "draftAmbiguous": false,
+   "draftNote": "",
+   "shape": "사전",
+   "textbookKinds": [
+    {
+     "book": "cube-5-1",
+     "key": "5-1/p052/대응 관계",
+     "term": "대응 관계",
+     "kind": "정의",
+     "match": "exact"
+    }
+   ],
+   "changedFromDraft": false
+  },
+  {
+   "id": "g5-rule-expression",
+   "name": "대응을 식으로 나타내기",
+   "grade": 5,
+   "unit": "g5-relations",
+   "unitTitle": "대응·평균·가능성",
+   "kind": "방법",
+   "decidedBy": "3자 일치",
+   "votes": {
+    "claude": "방법",
+    "codex": "방법",
+    "grok": "방법"
+   },
+   "why": "«나타내기» — 대응 규칙을 식으로 적는 절차",
+   "condition": "",
+   "assemblyNote": "",
+   "draftKind": "방법",
+   "draftAmbiguous": true,
+   "draftNote": "문장은 «~나타내는 것»(정의 꼴), 이름은 «나타내기»(방법)",
+   "shape": "사전",
+   "textbookKinds": [
+    {
+     "book": "cube-5-1",
+     "key": "5-1/p054/대응 관계를 식으로 나타내기",
+     "term": "대응 관계를 식으로 나타내기",
+     "kind": "기타",
+     "match": "alias"
+    }
+   ],
+   "changedFromDraft": false
+  },
+  {
+   "id": "g5-average",
+   "name": "평균",
+   "grade": 5,
+   "unit": "g5-relations",
+   "unitTitle": "대응·평균·가능성",
+   "kind": "정의",
+   "decidedBy": "초안 유지",
+   "votes": null,
+   "why": "",
+   "condition": "",
+   "assemblyNote": "",
+   "draftKind": "정의",
+   "draftAmbiguous": false,
+   "draftNote": "",
+   "shape": "사전",
+   "textbookKinds": [
+    {
+     "book": "cube-5-2",
+     "key": "5-2/p128/평균",
+     "term": "평균",
+     "kind": "정의",
+     "match": "exact"
+    },
+    {
+     "book": "cube-5-2",
+     "key": "5-2/p128/평균을 구하는 식",
+     "term": "평균을 구하는 식",
+     "kind": "공식",
+     "match": "alias"
+    },
+    {
+     "book": "gaenyeom-1-2",
+     "key": "1-2/p200/평균",
+     "term": "평균",
+     "kind": "정의",
+     "match": "exact"
+    }
+   ],
+   "changedFromDraft": false
+  },
+  {
+   "id": "g5-certain",
+   "name": "확실한 일",
+   "grade": 5,
+   "unit": "g5-relations",
+   "unitTitle": "대응·평균·가능성",
+   "kind": "정의",
+   "decidedBy": "초안 유지",
+   "votes": null,
+   "why": "",
+   "condition": "",
+   "assemblyNote": "",
+   "draftKind": "정의",
+   "draftAmbiguous": false,
+   "draftNote": "",
+   "shape": "사전+",
+   "textbookKinds": [
+    {
+     "book": "cube-5-2",
+     "key": "5-2/p134/확실하다",
+     "term": "확실하다",
+     "kind": "정의",
+     "match": "alias"
+    }
+   ],
+   "changedFromDraft": false
+  },
+  {
+   "id": "g5-impossible",
+   "name": "불가능한 일",
+   "grade": 5,
+   "unit": "g5-relations",
+   "unitTitle": "대응·평균·가능성",
+   "kind": "정의",
+   "decidedBy": "초안 유지",
+   "votes": null,
+   "why": "",
+   "condition": "",
+   "assemblyNote": "",
+   "draftKind": "정의",
+   "draftAmbiguous": false,
+   "draftNote": "",
+   "shape": "사전+",
+   "textbookKinds": [
+    {
+     "book": "cube-5-2",
+     "key": "5-2/p134/불가능하다",
+     "term": "불가능하다",
+     "kind": "정의",
+     "match": "alias"
+    }
+   ],
+   "changedFromDraft": false
+  },
+  {
+   "id": "g5-congruence",
+   "name": "합동",
+   "grade": 5,
+   "unit": "g5-solid",
+   "unitTitle": "합동·대칭과 직육면체",
+   "kind": "정의",
+   "decidedBy": "초안 유지",
+   "votes": null,
+   "why": "",
+   "condition": "",
+   "assemblyNote": "",
+   "draftKind": "정의",
+   "draftAmbiguous": false,
+   "draftNote": "",
+   "shape": "사전+",
+   "textbookKinds": [
+    {
+     "book": "cube-5-2",
+     "key": "5-2/p058/합동",
+     "term": "합동",
+     "kind": "정의",
+     "match": "exact"
+    },
+    {
+     "book": "gaenyeom-1-2",
+     "key": "1-2/p072/합동",
+     "term": "합동",
+     "kind": "정의",
+     "match": "exact"
+    }
+   ],
+   "changedFromDraft": false
+  },
+  {
+   "id": "g5-line-symmetry",
+   "name": "선대칭도형",
+   "grade": 5,
+   "unit": "g5-solid",
+   "unitTitle": "합동·대칭과 직육면체",
+   "kind": "정의",
+   "decidedBy": "초안 유지",
+   "votes": null,
+   "why": "",
+   "condition": "",
+   "assemblyNote": "",
+   "draftKind": "정의",
+   "draftAmbiguous": false,
+   "draftNote": "",
+   "shape": "사전",
+   "textbookKinds": [
+    {
+     "book": "cube-5-2",
+     "key": "5-2/p060/선대칭도형",
+     "term": "선대칭도형",
+     "kind": "정의",
+     "match": "exact"
+    },
+    {
+     "book": "gaenyeom-1-2",
+     "key": "1-2/p151/선대칭도형",
+     "term": "선대칭도형",
+     "kind": "정의",
+     "match": "exact"
+    }
+   ],
+   "changedFromDraft": false
+  },
+  {
+   "id": "g5-point-symmetry",
+   "name": "점대칭도형",
+   "grade": 5,
+   "unit": "g5-solid",
+   "unitTitle": "합동·대칭과 직육면체",
+   "kind": "정의",
+   "decidedBy": "초안 유지",
+   "votes": null,
+   "why": "",
+   "condition": "",
+   "assemblyNote": "",
+   "draftKind": "정의",
+   "draftAmbiguous": false,
+   "draftNote": "",
+   "shape": "사전",
+   "textbookKinds": [
+    {
+     "book": "cube-5-2",
+     "key": "5-2/p062/점대칭도형",
+     "term": "점대칭도형",
+     "kind": "정의",
+     "match": "exact"
+    }
+   ],
+   "changedFromDraft": false
+  },
+  {
+   "id": "g5-cuboid",
+   "name": "직육면체",
+   "grade": 5,
+   "unit": "g5-solid",
+   "unitTitle": "합동·대칭과 직육면체",
+   "kind": "정의",
+   "decidedBy": "초안 유지",
+   "votes": null,
+   "why": "",
+   "condition": "",
+   "assemblyNote": "",
+   "draftKind": "정의",
+   "draftAmbiguous": false,
+   "draftNote": "",
+   "shape": "사전",
+   "textbookKinds": [
+    {
+     "book": "cube-5-2",
+     "key": "5-2/p104/직육면체",
+     "term": "직육면체",
+     "kind": "정의",
+     "match": "exact"
+    }
+   ],
+   "changedFromDraft": false
+  },
+  {
+   "id": "g5-cube",
+   "name": "정육면체",
+   "grade": 5,
+   "unit": "g5-solid",
+   "unitTitle": "합동·대칭과 직육면체",
+   "kind": "정의",
+   "decidedBy": "초안 유지",
+   "votes": null,
+   "why": "",
+   "condition": "",
+   "assemblyNote": "",
+   "draftKind": "정의",
+   "draftAmbiguous": false,
+   "draftNote": "",
+   "shape": "사전",
+   "textbookKinds": [
+    {
+     "book": "cube-5-2",
+     "key": "5-2/p106/정육면체",
+     "term": "정육면체",
+     "kind": "정의",
+     "match": "exact"
+    }
+   ],
+   "changedFromDraft": false
+  },
+  {
+   "id": "g5-perimeter",
+   "name": "둘레",
+   "grade": 5,
+   "unit": "g5-area",
+   "unitTitle": "다각형의 둘레와 넓이",
+   "kind": "정의",
+   "decidedBy": "3자 일치",
+   "votes": {
+    "claude": "정의",
+    "codex": "정의",
+    "grok": "정의"
+   },
+   "why": "첫 빈칸이 둘레는 길이라는 뜻 — 구하는 법은 덧붙임",
+   "condition": "",
+   "assemblyNote": "",
+   "draftKind": "정의",
+   "draftAmbiguous": true,
+   "draftNote": "정의 + 구하는 법",
+   "shape": "사전+",
+   "textbookKinds": [],
+   "changedFromDraft": false
+  },
+  {
+   "id": "g5-rectangle-area",
+   "name": "직사각형의 넓이",
+   "grade": 5,
+   "unit": "g5-area",
+   "unitTitle": "다각형의 둘레와 넓이",
+   "kind": "공식",
+   "decidedBy": "초안 유지",
+   "votes": null,
+   "why": "",
+   "condition": "",
+   "assemblyNote": "",
+   "draftKind": "공식",
+   "draftAmbiguous": false,
+   "draftNote": "",
+   "shape": "주어빠짐",
+   "textbookKinds": [
+    {
+     "book": "cube-5-1",
+     "key": "5-1/p118/직사각형의 넓이",
+     "term": "직사각형의 넓이",
+     "kind": "공식",
+     "match": "exact"
+    }
+   ],
+   "changedFromDraft": false
+  },
+  {
+   "id": "g5-parallelogram-area",
+   "name": "평행사변형의 넓이",
+   "grade": 5,
+   "unit": "g5-area",
+   "unitTitle": "다각형의 둘레와 넓이",
+   "kind": "공식",
+   "decidedBy": "초안 유지",
+   "votes": null,
+   "why": "",
+   "condition": "",
+   "assemblyNote": "",
+   "draftKind": "공식",
+   "draftAmbiguous": false,
+   "draftNote": "",
+   "shape": "주어빠짐",
+   "textbookKinds": [
+    {
+     "book": "cube-5-1",
+     "key": "5-1/p126/평행사변형의 넓이",
+     "term": "평행사변형의 넓이",
+     "kind": "공식",
+     "match": "exact"
+    }
+   ],
+   "changedFromDraft": false
+  },
+  {
+   "id": "g5-triangle-area",
+   "name": "삼각형의 넓이",
+   "grade": 5,
+   "unit": "g5-area",
+   "unitTitle": "다각형의 둘레와 넓이",
+   "kind": "공식",
+   "decidedBy": "초안 유지",
+   "votes": null,
+   "why": "",
+   "condition": "",
+   "assemblyNote": "",
+   "draftKind": "공식",
+   "draftAmbiguous": false,
+   "draftNote": "",
+   "shape": "주어빠짐",
+   "textbookKinds": [
+    {
+     "book": "cube-5-1",
+     "key": "5-1/p128/삼각형의 넓이",
+     "term": "삼각형의 넓이",
+     "kind": "공식",
+     "match": "exact"
+    }
+   ],
+   "changedFromDraft": false
+  },
+  {
+   "id": "g5-trapezoid-area",
+   "name": "사다리꼴의 넓이",
+   "grade": 5,
+   "unit": "g5-area",
+   "unitTitle": "다각형의 둘레와 넓이",
+   "kind": "공식",
+   "decidedBy": "초안 유지",
+   "votes": null,
+   "why": "",
+   "condition": "",
+   "assemblyNote": "",
+   "draftKind": "공식",
+   "draftAmbiguous": false,
+   "draftNote": "",
+   "shape": "주어빠짐",
+   "textbookKinds": [
+    {
+     "book": "cube-5-1",
+     "key": "5-1/p134/사다리꼴의 넓이",
+     "term": "사다리꼴의 넓이",
+     "kind": "공식",
+     "match": "exact"
+    }
+   ],
+   "changedFromDraft": false
+  },
+  {
+   "id": "g6-reciprocal",
+   "name": "역수",
+   "grade": 6,
+   "unit": "g6-division",
+   "unitTitle": "분수·소수의 나눗셈",
+   "kind": "정의",
+   "decidedBy": "초안 유지",
+   "votes": null,
+   "why": "",
+   "condition": "",
+   "assemblyNote": "",
+   "draftKind": "정의",
+   "draftAmbiguous": false,
+   "draftNote": "",
+   "shape": "사전",
+   "textbookKinds": [
+    {
+     "book": "gaenyeom-1-1",
+     "key": "1-1/p088/역수",
+     "term": "역수",
+     "kind": "정의",
+     "match": "exact"
+    }
+   ],
+   "changedFromDraft": false
+  },
+  {
+   "id": "g6-fraction-divide",
+   "name": "분수의 나눗셈",
+   "grade": 6,
+   "unit": "g6-division",
+   "unitTitle": "분수·소수의 나눗셈",
+   "kind": "방법",
+   "decidedBy": "3자 일치",
+   "votes": {
+    "claude": "방법",
+    "codex": "방법",
+    "grok": "방법"
+   },
+   "why": "계산 카드끼리 맞춤 — 성질로도 읽히나 이름이 계산",
+   "condition": "",
+   "assemblyNote": "",
+   "draftKind": "방법",
+   "draftAmbiguous": true,
+   "draftNote": "«~곱하는 것과 같다» — 성질로 볼 수도",
+   "shape": "완결",
+   "textbookKinds": [],
+   "changedFromDraft": false
+  },
+  {
+   "id": "g6-quotient-invariant",
+   "name": "몫이 같은 나눗셈",
+   "grade": 6,
+   "unit": "g6-division",
+   "unitTitle": "분수·소수의 나눗셈",
+   "kind": "성질",
+   "decidedBy": "초안 유지",
+   "votes": null,
+   "why": "",
+   "condition": "",
+   "assemblyNote": "",
+   "draftKind": "성질",
+   "draftAmbiguous": false,
+   "draftNote": "",
+   "shape": "완결",
+   "textbookKinds": [],
+   "changedFromDraft": false
+  },
+  {
+   "id": "g6-decimal-divide",
+   "name": "소수의 나눗셈",
+   "grade": 6,
+   "unit": "g6-division",
+   "unitTitle": "분수·소수의 나눗셈",
+   "kind": "방법",
+   "decidedBy": "초안 유지",
+   "votes": null,
+   "why": "",
+   "condition": "",
+   "assemblyNote": "",
+   "draftKind": "방법",
+   "draftAmbiguous": false,
+   "draftNote": "",
+   "shape": "주어빠짐",
+   "textbookKinds": [],
+   "changedFromDraft": false
+  },
+  {
+   "id": "g6-divide-size",
+   "name": "나눗셈과 크기",
+   "grade": 6,
+   "unit": "g6-division",
+   "unitTitle": "분수·소수의 나눗셈",
+   "kind": "성질",
+   "decidedBy": "초안 유지",
+   "votes": null,
+   "why": "",
+   "condition": "",
+   "assemblyNote": "",
+   "draftKind": "성질",
+   "draftAmbiguous": false,
+   "draftNote": "",
+   "shape": "완결",
+   "textbookKinds": [],
+   "changedFromDraft": false
+  },
+  {
+   "id": "g6-ratio",
+   "name": "비",
+   "grade": 6,
+   "unit": "g6-ratio",
+   "unitTitle": "비와 비율",
+   "kind": "정의",
+   "decidedBy": "초안 유지",
+   "votes": null,
+   "why": "",
+   "condition": "",
+   "assemblyNote": "",
+   "draftKind": "정의",
+   "draftAmbiguous": false,
+   "draftNote": "",
+   "shape": "사전",
+   "textbookKinds": [
+    {
+     "book": "cube-6-1",
+     "key": "6-1/p080/비",
+     "term": "비",
+     "kind": "정의",
+     "match": "exact"
+    }
+   ],
+   "changedFromDraft": false
+  },
+  {
+   "id": "g6-rate",
+   "name": "비율",
+   "grade": 6,
+   "unit": "g6-ratio",
+   "unitTitle": "비와 비율",
+   "kind": "정의",
+   "decidedBy": "초안 유지",
+   "votes": null,
+   "why": "",
+   "condition": "",
+   "assemblyNote": "",
+   "draftKind": "정의",
+   "draftAmbiguous": false,
+   "draftNote": "",
+   "shape": "사전",
+   "textbookKinds": [
+    {
+     "book": "cube-6-1",
+     "key": "6-1/p080/비율",
+     "term": "비율",
+     "kind": "정의",
+     "match": "exact"
+    },
+    {
+     "book": "cube-6-1",
+     "key": "6-1/p080/비율을 구하는 식",
+     "term": "비율을 구하는 식",
+     "kind": "공식",
+     "match": "alias"
+    },
+    {
+     "book": "cube-6-2",
+     "key": "6-2/p082/비율",
+     "term": "비율",
+     "kind": "정의",
+     "match": "exact"
+    },
+    {
+     "book": "cube-6-2",
+     "key": "6-2/p082/비율을 구하는 식",
+     "term": "비율을 구하는 식",
+     "kind": "공식",
+     "match": "alias"
+    }
+   ],
+   "changedFromDraft": false
+  },
+  {
+   "id": "g6-percent",
+   "name": "백분율",
+   "grade": 6,
+   "unit": "g6-ratio",
+   "unitTitle": "비와 비율",
+   "kind": "정의",
+   "decidedBy": "초안 유지",
+   "votes": null,
+   "why": "",
+   "condition": "",
+   "assemblyNote": "",
+   "draftKind": "정의",
+   "draftAmbiguous": false,
+   "draftNote": "",
+   "shape": "사전+",
+   "textbookKinds": [
+    {
+     "book": "cube-6-1",
+     "key": "6-1/p086/백분율",
+     "term": "백분율",
+     "kind": "정의",
+     "match": "exact"
+    }
+   ],
+   "changedFromDraft": false
+  },
+  {
+   "id": "g6-rate-amount",
+   "name": "비교하는 양 구하기",
+   "grade": 6,
+   "unit": "g6-ratio",
+   "unitTitle": "비와 비율",
+   "kind": "공식",
+   "decidedBy": "3자 일치",
+   "votes": {
+    "claude": "공식",
+    "codex": "공식",
+    "grok": "공식"
+   },
+   "why": "빈칸이 기준량 × 비율",
+   "condition": "",
+   "assemblyNote": "",
+   "draftKind": "공식",
+   "draftAmbiguous": true,
+   "draftNote": "비교하는 양 = 기준량 × 비율 — 방법으로 볼 수도",
+   "shape": "완결",
+   "textbookKinds": [],
+   "changedFromDraft": false
+  },
+  {
+   "id": "g6-ratio-simplify",
+   "name": "비의 성질",
+   "grade": 6,
+   "unit": "g6-ratio",
+   "unitTitle": "비와 비율",
+   "kind": "성질",
+   "decidedBy": "초안 유지",
+   "votes": null,
+   "why": "",
+   "condition": "",
+   "assemblyNote": "",
+   "draftKind": "성질",
+   "draftAmbiguous": false,
+   "draftNote": "",
+   "shape": "완결",
+   "textbookKinds": [
+    {
+     "book": "cube-6-2",
+     "key": "6-2/p080/비의 성질",
+     "term": "비의 성질",
+     "kind": "성질",
+     "match": "exact"
+    }
+   ],
+   "changedFromDraft": false
+  },
+  {
+   "id": "g6-proportion",
+   "name": "비례식",
+   "grade": 6,
+   "unit": "g6-proportion",
+   "unitTitle": "비례식과 비례배분",
+   "kind": "정의",
+   "decidedBy": "초안 유지",
+   "votes": null,
+   "why": "",
+   "condition": "",
+   "assemblyNote": "",
+   "draftKind": "정의",
+   "draftAmbiguous": false,
+   "draftNote": "",
+   "shape": "사전",
+   "textbookKinds": [
+    {
+     "book": "cube-6-2",
+     "key": "6-2/p082/비례식",
+     "term": "비례식",
+     "kind": "정의",
+     "match": "exact"
+    }
+   ],
+   "changedFromDraft": false
+  },
+  {
+   "id": "g6-inner-outer",
+   "name": "내항과 외항",
+   "grade": 6,
+   "unit": "g6-proportion",
+   "unitTitle": "비례식과 비례배분",
+   "kind": "정의",
+   "decidedBy": "초안 유지",
+   "votes": null,
+   "why": "",
+   "condition": "",
+   "assemblyNote": "",
+   "draftKind": "정의",
+   "draftAmbiguous": false,
+   "draftNote": "용어 두 개를 한 문장에",
+   "shape": "완결",
+   "textbookKinds": [
+    {
+     "book": "cube-6-2",
+     "key": "6-2/p082/외항",
+     "term": "외항",
+     "kind": "정의",
+     "match": "exact"
+    },
+    {
+     "book": "cube-6-2",
+     "key": "6-2/p082/내항",
+     "term": "내항",
+     "kind": "정의",
+     "match": "exact"
+    }
+   ],
+   "changedFromDraft": false
+  },
+  {
+   "id": "g6-cross-product",
+   "name": "비례식의 성질",
+   "grade": 6,
+   "unit": "g6-proportion",
+   "unitTitle": "비례식과 비례배분",
+   "kind": "성질",
+   "decidedBy": "초안 유지",
+   "votes": null,
+   "why": "",
+   "condition": "",
+   "assemblyNote": "",
+   "draftKind": "성질",
+   "draftAmbiguous": false,
+   "draftNote": "",
+   "shape": "완결",
+   "textbookKinds": [
+    {
+     "book": "cube-6-2",
+     "key": "6-2/p086/비례식의 성질",
+     "term": "비례식의 성질",
+     "kind": "성질",
+     "match": "exact"
+    }
+   ],
+   "changedFromDraft": false
+  },
+  {
+   "id": "g6-distribute",
+   "name": "비례배분",
+   "grade": 6,
+   "unit": "g6-proportion",
+   "unitTitle": "비례식과 비례배분",
+   "kind": "정의",
+   "decidedBy": "초안 유지",
+   "votes": null,
+   "why": "",
+   "condition": "",
+   "assemblyNote": "",
+   "draftKind": "정의",
+   "draftAmbiguous": false,
+   "draftNote": "",
+   "shape": "사전",
+   "textbookKinds": [
+    {
+     "book": "cube-6-2",
+     "key": "6-2/p088/비례배분",
+     "term": "비례배분",
+     "kind": "정의",
+     "match": "exact"
+    }
+   ],
+   "changedFromDraft": false
+  },
+  {
+   "id": "g6-part-of-ratio",
+   "name": "비와 전체의 관계",
+   "grade": 6,
+   "unit": "g6-proportion",
+   "unitTitle": "비례식과 비례배분",
+   "kind": "공식",
+   "decidedBy": "3자 일치",
+   "votes": {
+    "claude": "공식",
+    "codex": "공식",
+    "grok": "공식"
+   },
+   "why": "빈칸이 a/(a+b) · b/(a+b)",
+   "condition": "",
+   "assemblyNote": "",
+   "draftKind": "공식",
+   "draftAmbiguous": true,
+   "draftNote": "성질로 볼 수도",
+   "shape": "완결",
+   "textbookKinds": [
+    {
+     "book": "cube-6-2",
+     "key": "6-2/p088/비례배분하는 식",
+     "term": "비례배분하는 식",
+     "kind": "공식",
+     "match": "alias"
+    }
+   ],
+   "changedFromDraft": false
+  },
+  {
+   "id": "g6-prism",
+   "name": "각기둥",
+   "grade": 6,
+   "unit": "g6-solids",
+   "unitTitle": "각기둥·각뿔과 공간",
+   "kind": "정의",
+   "decidedBy": "초안 유지",
+   "votes": null,
+   "why": "",
+   "condition": "",
+   "assemblyNote": "",
+   "draftKind": "정의",
+   "draftAmbiguous": false,
+   "draftNote": "",
+   "shape": "사전",
+   "textbookKinds": [
+    {
+     "book": "cube-6-1",
+     "key": "6-1/p026/각기둥",
+     "term": "각기둥",
+     "kind": "정의",
+     "match": "exact"
+    },
+    {
+     "book": "gaenyeom-1-2",
+     "key": "1-2/p136/각기둥",
+     "term": "각기둥",
+     "kind": "정의",
+     "match": "exact"
+    }
+   ],
+   "changedFromDraft": false
+  },
+  {
+   "id": "g6-pyramid",
+   "name": "각뿔",
+   "grade": 6,
+   "unit": "g6-solids",
+   "unitTitle": "각기둥·각뿔과 공간",
+   "kind": "정의",
+   "decidedBy": "초안 유지",
+   "votes": null,
+   "why": "",
+   "condition": "",
+   "assemblyNote": "",
+   "draftKind": "정의",
+   "draftAmbiguous": false,
+   "draftNote": "",
+   "shape": "사전",
+   "textbookKinds": [
+    {
+     "book": "cube-6-1",
+     "key": "6-1/p034/각뿔",
+     "term": "각뿔",
+     "kind": "정의",
+     "match": "exact"
+    },
+    {
+     "book": "gaenyeom-1-2",
+     "key": "1-2/p136/각뿔",
+     "term": "각뿔",
+     "kind": "정의",
+     "match": "exact"
+    }
+   ],
+   "changedFromDraft": false
+  },
+  {
+   "id": "g6-net",
+   "name": "전개도",
+   "grade": 6,
+   "unit": "g6-solids",
+   "unitTitle": "각기둥·각뿔과 공간",
+   "kind": "정의",
+   "decidedBy": "초안 유지",
+   "votes": null,
+   "why": "",
+   "condition": "",
+   "assemblyNote": "",
+   "draftKind": "정의",
+   "draftAmbiguous": false,
+   "draftNote": "",
+   "shape": "사전",
+   "textbookKinds": [
+    {
+     "book": "cube-5-2",
+     "key": "5-2/p112/전개도",
+     "term": "전개도",
+     "kind": "정의",
+     "match": "exact"
+    },
+    {
+     "book": "cube-6-1",
+     "key": "6-1/p030/전개도",
+     "term": "전개도",
+     "kind": "정의",
+     "match": "exact"
+    },
+    {
+     "book": "cube-6-2",
+     "key": "6-2/p130/전개도",
+     "term": "전개도",
+     "kind": "정의",
+     "match": "exact"
+    }
+   ],
+   "changedFromDraft": false
+  },
+  {
+   "id": "g6-prism-height",
+   "name": "각기둥의 높이",
+   "grade": 6,
+   "unit": "g6-solids",
+   "unitTitle": "각기둥·각뿔과 공간",
+   "kind": "정의",
+   "decidedBy": "초안 유지",
+   "votes": null,
+   "why": "",
+   "condition": "",
+   "assemblyNote": "",
+   "draftKind": "정의",
+   "draftAmbiguous": false,
+   "draftNote": "",
+   "shape": "사전",
+   "textbookKinds": [
+    {
+     "book": "cube-6-1",
+     "key": "6-1/p028/높이",
+     "term": "높이",
+     "kind": "정의",
+     "match": "exact"
+    }
+   ],
+   "changedFromDraft": false
+  },
+  {
+   "id": "g6-cube-stack",
+   "name": "쌓기나무의 개수",
+   "grade": 6,
+   "unit": "g6-solids",
+   "unitTitle": "각기둥·각뿔과 공간",
+   "kind": "방법",
+   "decidedBy": "초안 유지",
+   "votes": null,
+   "why": "",
+   "condition": "",
+   "assemblyNote": "",
+   "draftKind": "방법",
+   "draftAmbiguous": false,
+   "draftNote": "",
+   "shape": "주어빠짐",
+   "textbookKinds": [],
+   "changedFromDraft": false
+  },
+  {
+   "id": "g6-circumference",
+   "name": "원주",
+   "grade": 6,
+   "unit": "g6-circle",
+   "unitTitle": "원의 넓이와 둥근 입체",
+   "kind": "정의",
+   "decidedBy": "초안 유지",
+   "votes": null,
+   "why": "",
+   "condition": "",
+   "assemblyNote": "",
+   "draftKind": "정의",
+   "draftAmbiguous": false,
+   "draftNote": "",
+   "shape": "사전+",
+   "textbookKinds": [
+    {
+     "book": "cube-6-2",
+     "key": "6-2/p104/원주",
+     "term": "원주",
+     "kind": "정의",
+     "match": "exact"
+    }
+   ],
+   "changedFromDraft": false
+  },
+  {
+   "id": "g6-pi",
+   "name": "원주율",
+   "grade": 6,
+   "unit": "g6-circle",
+   "unitTitle": "원의 넓이와 둥근 입체",
+   "kind": "정의",
+   "decidedBy": "초안 유지",
+   "votes": null,
+   "why": "",
+   "condition": "",
+   "assemblyNote": "",
+   "draftKind": "정의",
+   "draftAmbiguous": false,
+   "draftNote": "",
+   "shape": "사전",
+   "textbookKinds": [
+    {
+     "book": "cube-6-2",
+     "key": "6-2/p104/원주율",
+     "term": "원주율",
+     "kind": "정의",
+     "match": "exact"
+    },
+    {
+     "book": "cube-6-2",
+     "key": "6-2/p104/원주율을 구하는 식",
+     "term": "원주율을 구하는 식",
+     "kind": "공식",
+     "match": "alias"
+    },
+    {
+     "book": "gaenyeom-1-2",
+     "key": "1-2/p122/원주율",
+     "term": "원주율",
+     "kind": "정의",
+     "match": "exact"
+    }
+   ],
+   "changedFromDraft": false
+  },
+  {
+   "id": "g6-circle-area",
+   "name": "원의 넓이",
+   "grade": 6,
+   "unit": "g6-circle",
+   "unitTitle": "원의 넓이와 둥근 입체",
+   "kind": "공식",
+   "decidedBy": "초안 유지",
+   "votes": null,
+   "why": "",
+   "condition": "",
+   "assemblyNote": "",
+   "draftKind": "공식",
+   "draftAmbiguous": false,
+   "draftNote": "",
+   "shape": "주어빠짐",
+   "textbookKinds": [
+    {
+     "book": "cube-6-2",
+     "key": "6-2/p112/원의 넓이",
+     "term": "원의 넓이",
+     "kind": "공식",
+     "match": "exact"
+    }
+   ],
+   "changedFromDraft": false
+  },
+  {
+   "id": "g6-cylinder",
+   "name": "원기둥",
+   "grade": 6,
+   "unit": "g6-circle",
+   "unitTitle": "원의 넓이와 둥근 입체",
+   "kind": "정의",
+   "decidedBy": "초안 유지",
+   "votes": null,
+   "why": "",
+   "condition": "",
+   "assemblyNote": "",
+   "draftKind": "정의",
+   "draftAmbiguous": false,
+   "draftNote": "",
+   "shape": "사전",
+   "textbookKinds": [
+    {
+     "book": "cube-6-2",
+     "key": "6-2/p128/원기둥",
+     "term": "원기둥",
+     "kind": "정의",
+     "match": "exact"
+    },
+    {
+     "book": "gaenyeom-1-2",
+     "key": "1-2/p150/원기둥",
+     "term": "원기둥",
+     "kind": "정의",
+     "match": "exact"
+    }
+   ],
+   "changedFromDraft": false
+  },
+  {
+   "id": "g6-cone-sphere",
+   "name": "원뿔과 구",
+   "grade": 6,
+   "unit": "g6-circle",
+   "unitTitle": "원의 넓이와 둥근 입체",
+   "kind": "정의",
+   "decidedBy": "3자 일치",
+   "votes": {
+    "claude": "정의",
+    "codex": "정의",
+    "grok": "정의"
+   },
+   "why": "두 입체의 뜻 — 보정 표가 구의 뜻을 채운다",
+   "condition": "",
+   "assemblyNote": "",
+   "draftKind": "정의",
+   "draftAmbiguous": true,
+   "draftNote": "용어 두 개의 특징 — 성질로 볼 수도",
+   "shape": "완결",
+   "textbookKinds": [],
+   "changedFromDraft": false
+  },
+  {
+   "id": "g6-band-graph",
+   "name": "띠그래프",
+   "grade": 6,
+   "unit": "g6-data-volume",
+   "unitTitle": "비율 그래프와 부피",
+   "kind": "정의",
+   "decidedBy": "초안 유지",
+   "votes": null,
+   "why": "",
+   "condition": "",
+   "assemblyNote": "",
+   "draftKind": "정의",
+   "draftAmbiguous": false,
+   "draftNote": "",
+   "shape": "사전",
+   "textbookKinds": [
+    {
+     "book": "cube-6-1",
+     "key": "6-1/p104/띠그래프",
+     "term": "띠그래프",
+     "kind": "정의",
+     "match": "exact"
+    }
+   ],
+   "changedFromDraft": false
+  },
+  {
+   "id": "g6-pie-graph",
+   "name": "원그래프",
+   "grade": 6,
+   "unit": "g6-data-volume",
+   "unitTitle": "비율 그래프와 부피",
+   "kind": "정의",
+   "decidedBy": "초안 유지",
+   "votes": null,
+   "why": "",
+   "condition": "",
+   "assemblyNote": "",
+   "draftKind": "정의",
+   "draftAmbiguous": false,
+   "draftNote": "",
+   "shape": "사전",
+   "textbookKinds": [
+    {
+     "book": "cube-6-1",
+     "key": "6-1/p108/원그래프",
+     "term": "원그래프",
+     "kind": "정의",
+     "match": "exact"
+    }
+   ],
+   "changedFromDraft": false
+  },
+  {
+   "id": "g6-volume",
+   "name": "부피",
+   "grade": 6,
+   "unit": "g6-data-volume",
+   "unitTitle": "비율 그래프와 부피",
+   "kind": "정의",
+   "decidedBy": "초안 유지",
+   "votes": null,
+   "why": "",
+   "condition": "",
+   "assemblyNote": "",
+   "draftKind": "정의",
+   "draftAmbiguous": false,
+   "draftNote": "",
+   "shape": "사전+",
+   "textbookKinds": [
+    {
+     "book": "cube-6-1",
+     "key": "6-1/p128/부피",
+     "term": "부피",
+     "kind": "정의",
+     "match": "exact"
+    }
+   ],
+   "changedFromDraft": false
+  },
+  {
+   "id": "g6-cuboid-volume",
+   "name": "직육면체의 부피",
+   "grade": 6,
+   "unit": "g6-data-volume",
+   "unitTitle": "비율 그래프와 부피",
+   "kind": "공식",
+   "decidedBy": "초안 유지",
+   "votes": null,
+   "why": "",
+   "condition": "",
+   "assemblyNote": "",
+   "draftKind": "공식",
+   "draftAmbiguous": false,
+   "draftNote": "",
+   "shape": "주어빠짐",
+   "textbookKinds": [
+    {
+     "book": "cube-6-1",
+     "key": "6-1/p130/직육면체의 부피",
+     "term": "직육면체의 부피",
+     "kind": "공식",
+     "match": "exact"
+    }
+   ],
+   "changedFromDraft": false
+  },
+  {
+   "id": "g6-surface-area",
+   "name": "겉넓이",
+   "grade": 6,
+   "unit": "g6-data-volume",
+   "unitTitle": "비율 그래프와 부피",
+   "kind": "정의",
+   "decidedBy": "초안 유지",
+   "votes": null,
+   "why": "",
+   "condition": "",
+   "assemblyNote": "",
+   "draftKind": "정의",
+   "draftAmbiguous": false,
+   "draftNote": "",
+   "shape": "사전",
+   "textbookKinds": [],
+   "changedFromDraft": false
+  },
+  {
+   "id": "prime",
+   "name": "소수",
+   "grade": 7,
+   "unit": "factors",
+   "unitTitle": "소인수분해",
+   "kind": "정의",
+   "decidedBy": "초안 유지",
+   "votes": null,
+   "why": "",
+   "condition": "",
+   "assemblyNote": "",
+   "draftKind": "정의",
+   "draftAmbiguous": false,
+   "draftNote": "",
+   "shape": "사전",
+   "textbookKinds": [
+    {
+     "book": "gaenyeom-1-1",
+     "key": "1-1/p010/소수",
+     "term": "소수",
+     "kind": "정의",
+     "match": "exact"
+    }
+   ],
+   "changedFromDraft": false
+  },
+  {
+   "id": "composite",
+   "name": "합성수",
+   "grade": 7,
+   "unit": "factors",
+   "unitTitle": "소인수분해",
+   "kind": "정의",
+   "decidedBy": "초안 유지",
+   "votes": null,
+   "why": "",
+   "condition": "",
+   "assemblyNote": "",
+   "draftKind": "정의",
+   "draftAmbiguous": false,
+   "draftNote": "",
+   "shape": "사전",
+   "textbookKinds": [
+    {
+     "book": "gaenyeom-1-1",
+     "key": "1-1/p010/합성수",
+     "term": "합성수",
+     "kind": "정의",
+     "match": "exact"
+    }
+   ],
+   "changedFromDraft": false
+  },
+  {
+   "id": "prime-factor",
+   "name": "소인수",
+   "grade": 7,
+   "unit": "factors",
+   "unitTitle": "소인수분해",
+   "kind": "정의",
+   "decidedBy": "초안 유지",
+   "votes": null,
+   "why": "",
+   "condition": "",
+   "assemblyNote": "",
+   "draftKind": "정의",
+   "draftAmbiguous": false,
+   "draftNote": "",
+   "shape": "사전",
+   "textbookKinds": [
+    {
+     "book": "gaenyeom-1-1",
+     "key": "1-1/p011/소인수",
+     "term": "소인수",
+     "kind": "정의",
+     "match": "exact"
+    }
+   ],
+   "changedFromDraft": false
+  },
+  {
+   "id": "factorization",
+   "name": "소인수분해",
+   "grade": 7,
+   "unit": "factors",
+   "unitTitle": "소인수분해",
+   "kind": "정의",
+   "decidedBy": "초안 유지",
+   "votes": null,
+   "why": "",
+   "condition": "",
+   "assemblyNote": "",
+   "draftKind": "정의",
+   "draftAmbiguous": false,
+   "draftNote": "",
+   "shape": "사전",
+   "textbookKinds": [
+    {
+     "book": "gaenyeom-1-1",
+     "key": "1-1/p011/소인수분해",
+     "term": "소인수분해",
+     "kind": "정의",
+     "match": "exact"
+    }
+   ],
+   "changedFromDraft": false
+  },
+  {
+   "id": "coprime",
+   "name": "서로소",
+   "grade": 7,
+   "unit": "factors",
+   "unitTitle": "소인수분해",
+   "kind": "정의",
+   "decidedBy": "초안 유지",
+   "votes": null,
+   "why": "",
+   "condition": "",
+   "assemblyNote": "",
+   "draftKind": "정의",
+   "draftAmbiguous": false,
+   "draftNote": "",
+   "shape": "사전",
+   "textbookKinds": [
+    {
+     "book": "gaenyeom-1-1",
+     "key": "1-1/p030/서로소",
+     "term": "서로소",
+     "kind": "정의",
+     "match": "exact"
+    }
+   ],
+   "changedFromDraft": false
+  },
+  {
+   "id": "positive",
+   "name": "양수",
+   "grade": 7,
+   "unit": "numbers",
+   "unitTitle": "정수와 유리수",
+   "kind": "정의",
+   "decidedBy": "초안 유지",
+   "votes": null,
+   "why": "",
+   "condition": "",
+   "assemblyNote": "",
+   "draftKind": "정의",
+   "draftAmbiguous": false,
+   "draftNote": "",
+   "shape": "사전",
+   "textbookKinds": [
+    {
+     "book": "gaenyeom-1-1",
+     "key": "1-1/p050/양수",
+     "term": "양수",
+     "kind": "정의",
+     "match": "exact"
+    }
+   ],
+   "changedFromDraft": false
+  },
+  {
+   "id": "negative",
+   "name": "음수",
+   "grade": 7,
+   "unit": "numbers",
+   "unitTitle": "정수와 유리수",
+   "kind": "정의",
+   "decidedBy": "초안 유지",
+   "votes": null,
+   "why": "",
+   "condition": "",
+   "assemblyNote": "",
+   "draftKind": "정의",
+   "draftAmbiguous": false,
+   "draftNote": "",
+   "shape": "사전",
+   "textbookKinds": [
+    {
+     "book": "gaenyeom-1-1",
+     "key": "1-1/p050/음수",
+     "term": "음수",
+     "kind": "정의",
+     "match": "exact"
+    }
+   ],
+   "changedFromDraft": false
+  },
+  {
+   "id": "integer",
+   "name": "정수",
+   "grade": 7,
+   "unit": "numbers",
+   "unitTitle": "정수와 유리수",
+   "kind": "정의",
+   "decidedBy": "초안 유지",
+   "votes": null,
+   "why": "",
+   "condition": "",
+   "assemblyNote": "",
+   "draftKind": "정의",
+   "draftAmbiguous": false,
+   "draftNote": "",
+   "shape": "사전",
+   "textbookKinds": [
+    {
+     "book": "gaenyeom-1-1",
+     "key": "1-1/p050/정수",
+     "term": "정수",
+     "kind": "정의",
+     "match": "exact"
+    }
+   ],
+   "changedFromDraft": false
+  },
+  {
+   "id": "rational",
+   "name": "유리수",
+   "grade": 7,
+   "unit": "numbers",
+   "unitTitle": "정수와 유리수",
+   "kind": "정의",
+   "decidedBy": "초안 유지",
+   "votes": null,
+   "why": "",
+   "condition": "",
+   "assemblyNote": "",
+   "draftKind": "정의",
+   "draftAmbiguous": false,
+   "draftNote": "",
+   "shape": "사전",
+   "textbookKinds": [
+    {
+     "book": "gaenyeom-1-1",
+     "key": "1-1/p051/유리수",
+     "term": "유리수",
+     "kind": "정의",
+     "match": "exact"
+    },
+    {
+     "book": "gaenyeom-2-1",
+     "key": "2-1/p013/유리수",
+     "term": "유리수",
+     "kind": "정의",
+     "match": "exact"
+    },
+    {
+     "book": "gaenyeom-3-1",
+     "key": "3-1/p025/유리수",
+     "term": "유리수",
+     "kind": "정의",
+     "match": "exact"
+    }
+   ],
+   "changedFromDraft": false
+  },
+  {
+   "id": "absolute",
+   "name": "절댓값",
+   "grade": 7,
+   "unit": "numbers",
+   "unitTitle": "정수와 유리수",
+   "kind": "정의",
+   "decidedBy": "초안 유지",
+   "votes": null,
+   "why": "",
+   "condition": "",
+   "assemblyNote": "",
+   "draftKind": "정의",
+   "draftAmbiguous": false,
+   "draftNote": "",
+   "shape": "사전",
+   "textbookKinds": [
+    {
+     "book": "gaenyeom-1-1",
+     "key": "1-1/p056/절댓값",
+     "term": "절댓값",
+     "kind": "정의",
+     "match": "exact"
+    }
+   ],
+   "changedFromDraft": false
+  },
+  {
+   "id": "term",
+   "name": "항",
+   "grade": 7,
+   "unit": "expressions",
+   "unitTitle": "문자와 식",
+   "kind": "정의",
+   "decidedBy": "초안 유지",
+   "votes": null,
+   "why": "",
+   "condition": "",
+   "assemblyNote": "",
+   "draftKind": "정의",
+   "draftAmbiguous": false,
+   "draftNote": "",
+   "shape": "사전",
+   "textbookKinds": [
+    {
+     "book": "gaenyeom-1-1",
+     "key": "1-1/p111/항",
+     "term": "항",
+     "kind": "정의",
+     "match": "exact"
+    }
+   ],
+   "changedFromDraft": false
+  },
+  {
+   "id": "constant",
+   "name": "상수항",
+   "grade": 7,
+   "unit": "expressions",
+   "unitTitle": "문자와 식",
+   "kind": "정의",
+   "decidedBy": "초안 유지",
+   "votes": null,
+   "why": "",
+   "condition": "",
+   "assemblyNote": "",
+   "draftKind": "정의",
+   "draftAmbiguous": false,
+   "draftNote": "",
+   "shape": "사전",
+   "textbookKinds": [
+    {
+     "book": "gaenyeom-1-1",
+     "key": "1-1/p111/상수항",
+     "term": "상수항",
+     "kind": "정의",
+     "match": "exact"
+    }
+   ],
+   "changedFromDraft": false
+  },
+  {
+   "id": "coefficient",
+   "name": "계수",
+   "grade": 7,
+   "unit": "expressions",
+   "unitTitle": "문자와 식",
+   "kind": "정의",
+   "decidedBy": "초안 유지",
+   "votes": null,
+   "why": "",
+   "condition": "",
+   "assemblyNote": "",
+   "draftKind": "정의",
+   "draftAmbiguous": false,
+   "draftNote": "",
+   "shape": "사전",
+   "textbookKinds": [
+    {
+     "book": "gaenyeom-1-1",
+     "key": "1-1/p111/계수",
+     "term": "계수",
+     "kind": "정의",
+     "match": "exact"
+    }
+   ],
+   "changedFromDraft": false
+  },
+  {
+   "id": "like-terms",
+   "name": "동류항",
+   "grade": 7,
+   "unit": "expressions",
+   "unitTitle": "문자와 식",
+   "kind": "정의",
+   "decidedBy": "초안 유지",
+   "votes": null,
+   "why": "",
+   "condition": "",
+   "assemblyNote": "",
+   "draftKind": "정의",
+   "draftAmbiguous": false,
+   "draftNote": "",
+   "shape": "사전",
+   "textbookKinds": [
+    {
+     "book": "gaenyeom-1-1",
+     "key": "1-1/p117/동류항",
+     "term": "동류항",
+     "kind": "정의",
+     "match": "exact"
+    }
+   ],
+   "changedFromDraft": false
+  },
+  {
+   "id": "linear",
+   "name": "일차식",
+   "grade": 7,
+   "unit": "expressions",
+   "unitTitle": "문자와 식",
+   "kind": "정의",
+   "decidedBy": "초안 유지",
+   "votes": null,
+   "why": "",
+   "condition": "",
+   "assemblyNote": "",
+   "draftKind": "정의",
+   "draftAmbiguous": false,
+   "draftNote": "",
+   "shape": "사전",
+   "textbookKinds": [
+    {
+     "book": "gaenyeom-1-1",
+     "key": "1-1/p111/일차식",
+     "term": "일차식",
+     "kind": "정의",
+     "match": "exact"
+    }
+   ],
+   "changedFromDraft": false
+  },
+  {
+   "id": "g7-equality",
+   "name": "등식",
+   "grade": 7,
+   "unit": "g7-equation",
+   "unitTitle": "일차방정식",
+   "kind": "정의",
+   "decidedBy": "초안 유지",
+   "votes": null,
+   "why": "",
+   "condition": "",
+   "assemblyNote": "",
+   "draftKind": "정의",
+   "draftAmbiguous": false,
+   "draftNote": "",
+   "shape": "사전",
+   "textbookKinds": [
+    {
+     "book": "gaenyeom-1-1",
+     "key": "1-1/p132/등식",
+     "term": "등식",
+     "kind": "정의",
+     "match": "exact"
+    },
+    {
+     "book": "gaenyeom-2-1",
+     "key": "2-1/p085/등식",
+     "term": "등식",
+     "kind": "정의",
+     "match": "exact"
+    }
+   ],
+   "changedFromDraft": false
+  },
+  {
+   "id": "g7-equation",
+   "name": "방정식",
+   "grade": 7,
+   "unit": "g7-equation",
+   "unitTitle": "일차방정식",
+   "kind": "정의",
+   "decidedBy": "초안 유지",
+   "votes": null,
+   "why": "",
+   "condition": "",
+   "assemblyNote": "",
+   "draftKind": "정의",
+   "draftAmbiguous": false,
+   "draftNote": "",
+   "shape": "사전+",
+   "textbookKinds": [
+    {
+     "book": "gaenyeom-1-1",
+     "key": "1-1/p132/방정식",
+     "term": "방정식",
+     "kind": "정의",
+     "match": "exact"
+    },
+    {
+     "book": "gaenyeom-1-1",
+     "key": "1-1/p132/해",
+     "term": "해",
+     "kind": "정의",
+     "match": "alias"
+    }
+   ],
+   "changedFromDraft": false
+  },
+  {
+   "id": "g7-identity",
+   "name": "항등식",
+   "grade": 7,
+   "unit": "g7-equation",
+   "unitTitle": "일차방정식",
+   "kind": "정의",
+   "decidedBy": "초안 유지",
+   "votes": null,
+   "why": "",
+   "condition": "",
+   "assemblyNote": "",
+   "draftKind": "정의",
+   "draftAmbiguous": false,
+   "draftNote": "",
+   "shape": "사전",
+   "textbookKinds": [
+    {
+     "book": "gaenyeom-1-1",
+     "key": "1-1/p132/항등식",
+     "term": "항등식",
+     "kind": "정의",
+     "match": "exact"
+    }
+   ],
+   "changedFromDraft": false
+  },
+  {
+   "id": "g7-transposition",
+   "name": "이항",
+   "grade": 7,
+   "unit": "g7-equation",
+   "unitTitle": "일차방정식",
+   "kind": "정의",
+   "decidedBy": "초안 유지",
+   "votes": null,
+   "why": "",
+   "condition": "",
+   "assemblyNote": "",
+   "draftKind": "정의",
+   "draftAmbiguous": false,
+   "draftNote": "",
+   "shape": "사전",
+   "textbookKinds": [
+    {
+     "book": "gaenyeom-1-1",
+     "key": "1-1/p139/이항",
+     "term": "이항",
+     "kind": "정의",
+     "match": "exact"
+    }
+   ],
+   "changedFromDraft": false
+  },
+  {
+   "id": "g7-linear-equation",
+   "name": "일차방정식",
+   "grade": 7,
+   "unit": "g7-equation",
+   "unitTitle": "일차방정식",
+   "kind": "정의",
+   "decidedBy": "초안 유지",
+   "votes": null,
+   "why": "",
+   "condition": "",
+   "assemblyNote": "",
+   "draftKind": "정의",
+   "draftAmbiguous": false,
+   "draftNote": "",
+   "shape": "사전",
+   "textbookKinds": [
+    {
+     "book": "gaenyeom-1-1",
+     "key": "1-1/p139/일차방정식",
+     "term": "일차방정식",
+     "kind": "정의",
+     "match": "exact"
+    }
+   ],
+   "changedFromDraft": false
+  },
+  {
+   "id": "g7-ordered-pair",
+   "name": "순서쌍",
+   "grade": 7,
+   "unit": "g7-coordinate",
+   "unitTitle": "좌표와 비례관계",
+   "kind": "정의",
+   "decidedBy": "초안 유지",
+   "votes": null,
+   "why": "",
+   "condition": "",
+   "assemblyNote": "",
+   "draftKind": "정의",
+   "draftAmbiguous": false,
+   "draftNote": "",
+   "shape": "사전",
+   "textbookKinds": [
+    {
+     "book": "gaenyeom-1-1",
+     "key": "1-1/p176/순서쌍",
+     "term": "순서쌍",
+     "kind": "정의",
+     "match": "exact"
+    }
+   ],
+   "changedFromDraft": false
+  },
+  {
+   "id": "g7-coordinate",
+   "name": "좌표",
+   "grade": 7,
+   "unit": "g7-coordinate",
+   "unitTitle": "좌표와 비례관계",
+   "kind": "정의",
+   "decidedBy": "초안 유지",
+   "votes": null,
+   "why": "",
+   "condition": "",
+   "assemblyNote": "",
+   "draftKind": "정의",
+   "draftAmbiguous": false,
+   "draftNote": "",
+   "shape": "사전",
+   "textbookKinds": [
+    {
+     "book": "gaenyeom-1-1",
+     "key": "1-1/p176/좌표#2",
+     "term": "좌표",
+     "kind": "정의",
+     "match": "exact"
+    }
+   ],
+   "changedFromDraft": false
+  },
+  {
+   "id": "g7-origin",
+   "name": "원점",
+   "grade": 7,
+   "unit": "g7-coordinate",
+   "unitTitle": "좌표와 비례관계",
+   "kind": "정의",
+   "decidedBy": "3자 일치",
+   "votes": {
+    "claude": "정의",
+    "codex": "정의",
+    "grok": "정의"
+   },
+   "why": "보정 표가 빈칸 둘을 뜻(두 좌표축이 만나는 점) 쪽으로 옮긴다 — 좌표 (0,0)은 보기 · 함정에",
+   "condition": "보정 표와 함께 — 지금 문장은 빈칸 둘이 좌표 사실 쪽",
+   "assemblyNote": "지금 빈칸 둘((0,0) · 0)이 좌표 사실 쪽 — 보정 표가 뜻 쪽으로 옮긴다(둘째 협의)",
+   "draftKind": "정의",
+   "draftAmbiguous": false,
+   "draftNote": "",
+   "shape": "사전+",
+   "textbookKinds": [
+    {
+     "book": "gaenyeom-1-1",
+     "key": "1-1/p176/원점#2",
+     "term": "원점",
+     "kind": "정의",
+     "match": "exact"
+    }
+   ],
+   "changedFromDraft": false
+  },
+  {
+   "id": "g7-direct",
+   "name": "정비례",
+   "grade": 7,
+   "unit": "g7-coordinate",
+   "unitTitle": "좌표와 비례관계",
+   "kind": "정의",
+   "decidedBy": "초안 유지",
+   "votes": null,
+   "why": "",
+   "condition": "",
+   "assemblyNote": "",
+   "draftKind": "정의",
+   "draftAmbiguous": false,
+   "draftNote": "",
+   "shape": "사전+",
+   "textbookKinds": [
+    {
+     "book": "gaenyeom-1-1",
+     "key": "1-1/p198/정비례",
+     "term": "정비례",
+     "kind": "정의",
+     "match": "exact"
+    }
+   ],
+   "changedFromDraft": false
+  },
+  {
+   "id": "g7-inverse",
+   "name": "반비례",
+   "grade": 7,
+   "unit": "g7-coordinate",
+   "unitTitle": "좌표와 비례관계",
+   "kind": "정의",
+   "decidedBy": "초안 유지",
+   "votes": null,
+   "why": "",
+   "condition": "",
+   "assemblyNote": "",
+   "draftKind": "정의",
+   "draftAmbiguous": false,
+   "draftNote": "",
+   "shape": "사전+",
+   "textbookKinds": [
+    {
+     "book": "gaenyeom-1-1",
+     "key": "1-1/p208/반비례",
+     "term": "반비례",
+     "kind": "정의",
+     "match": "exact"
+    }
+   ],
+   "changedFromDraft": false
+  },
+  {
+   "id": "g7-ray",
+   "name": "반직선",
+   "grade": 7,
+   "unit": "g7-geometry",
+   "unitTitle": "기본 도형과 작도",
+   "kind": "정의",
+   "decidedBy": "초안 유지",
+   "votes": null,
+   "why": "",
+   "condition": "",
+   "assemblyNote": "",
+   "draftKind": "정의",
+   "draftAmbiguous": false,
+   "draftNote": "",
+   "shape": "사전",
+   "textbookKinds": [
+    {
+     "book": "cube-3-1",
+     "key": "3-1/p034/반직선",
+     "term": "반직선",
+     "kind": "정의",
+     "match": "exact"
+    },
+    {
+     "book": "gaenyeom-1-2",
+     "key": "1-2/p011/반직선",
+     "term": "반직선",
+     "kind": "정의",
+     "match": "exact"
+    }
+   ],
+   "changedFromDraft": false
+  },
+  {
+   "id": "g7-vertical-angle",
+   "name": "맞꼭지각",
+   "grade": 7,
+   "unit": "g7-geometry",
+   "unitTitle": "기본 도형과 작도",
+   "kind": "정의",
+   "decidedBy": "3자 일치",
+   "votes": {
+    "claude": "정의",
+    "codex": "정의",
+    "grok": "정의"
+   },
+   "why": "보정 표가 빈칸을 뜻(마주 보는 각) 쪽으로 옮긴다 — 크기가 같다는 성질은 보기 · 함정에",
+   "condition": "보정 표(card-sentence-fixes.json)와 함께 — 지금 문장은 빈칸이 성질 쪽이라 보정 전에는 성질",
+   "assemblyNote": "보정 표가 빈칸을 뜻 쪽으로 옮긴다",
+   "draftKind": "정의",
+   "draftAmbiguous": true,
+   "draftNote": "정의 + 성질(크기가 같다) — 성질로 볼 수도",
+   "shape": "사전+",
+   "textbookKinds": [
+    {
+     "book": "gaenyeom-1-2",
+     "key": "1-2/p018/맞꼭지각",
+     "term": "맞꼭지각",
+     "kind": "정의",
+     "match": "exact"
+    },
+    {
+     "book": "gaenyeom-1-2",
+     "key": "1-2/p018/맞꼭지각의 성질",
+     "term": "맞꼭지각의 성질",
+     "kind": "성질",
+     "match": "alias"
+    },
+    {
+     "book": "gaenyeom-2-2",
+     "key": "2-2/p013/맞꼭지각의 성질",
+     "term": "맞꼭지각의 성질",
+     "kind": "성질",
+     "match": "alias"
+    }
+   ],
+   "changedFromDraft": false
+  },
+  {
+   "id": "g7-perpendicular",
+   "name": "수직",
+   "grade": 7,
+   "unit": "g7-geometry",
+   "unitTitle": "기본 도형과 작도",
+   "kind": "정의",
+   "decidedBy": "초안 유지",
+   "votes": null,
+   "why": "",
+   "condition": "",
+   "assemblyNote": "",
+   "draftKind": "정의",
+   "draftAmbiguous": false,
+   "draftNote": "",
+   "shape": "사전",
+   "textbookKinds": [
+    {
+     "book": "cube-4-2",
+     "key": "4-2/p084/수직",
+     "term": "수직",
+     "kind": "정의",
+     "match": "exact"
+    },
+    {
+     "book": "gaenyeom-1-2",
+     "key": "1-2/p019/직교",
+     "term": "직교",
+     "kind": "정의",
+     "match": "alias"
+    },
+    {
+     "book": "gaenyeom-1-2",
+     "key": "1-2/p019/수직",
+     "term": "수직",
+     "kind": "정의",
+     "match": "exact"
+    }
+   ],
+   "changedFromDraft": false
+  },
+  {
+   "id": "g7-construction",
+   "name": "작도",
+   "grade": 7,
+   "unit": "g7-geometry",
+   "unitTitle": "기본 도형과 작도",
+   "kind": "정의",
+   "decidedBy": "초안 유지",
+   "votes": null,
+   "why": "",
+   "condition": "",
+   "assemblyNote": "",
+   "draftKind": "정의",
+   "draftAmbiguous": false,
+   "draftNote": "",
+   "shape": "사전",
+   "textbookKinds": [
+    {
+     "book": "gaenyeom-1-2",
+     "key": "1-2/p060/작도",
+     "term": "작도",
+     "kind": "정의",
+     "match": "exact"
+    }
+   ],
+   "changedFromDraft": false
+  },
+  {
+   "id": "g7-sss",
+   "name": "삼각형의 SSS 합동",
+   "grade": 7,
+   "unit": "g7-geometry",
+   "unitTitle": "기본 도형과 작도",
+   "kind": "성질",
+   "decidedBy": "3자 일치",
+   "votes": {
+    "claude": "성질",
+    "codex": "성질",
+    "grok": "성질"
+   },
+   "why": "합동 조건 — 교재도 성질",
+   "condition": "",
+   "assemblyNote": "",
+   "draftKind": "성질",
+   "draftAmbiguous": true,
+   "draftNote": "합동 조건 — 정리로 볼 수도",
+   "shape": "완결",
+   "textbookKinds": [
+    {
+     "book": "gaenyeom-1-2",
+     "key": "1-2/p073/SSS 합동",
+     "term": "SSS 합동",
+     "kind": "성질",
+     "match": "exact"
+    }
+   ],
+   "changedFromDraft": false
+  },
+  {
+   "id": "g7-interior-sum",
+   "name": "다각형의 내각의 합",
+   "grade": 7,
+   "unit": "g7-measure",
+   "unitTitle": "평면도형과 입체도형",
+   "kind": "공식",
+   "decidedBy": "초안 유지",
+   "votes": null,
+   "why": "",
+   "condition": "",
+   "assemblyNote": "",
+   "draftKind": "공식",
+   "draftAmbiguous": false,
+   "draftNote": "",
+   "shape": "완결",
+   "textbookKinds": [
+    {
+     "book": "gaenyeom-1-2",
+     "key": "1-2/p102/다각형의 내각의 크기의 합",
+     "term": "다각형의 내각의 크기의 합",
+     "kind": "공식",
+     "match": "alias"
+    }
+   ],
+   "changedFromDraft": false
+  },
+  {
+   "id": "g7-sector",
+   "name": "부채꼴",
+   "grade": 7,
+   "unit": "g7-measure",
+   "unitTitle": "평면도형과 입체도형",
+   "kind": "정의",
+   "decidedBy": "초안 유지",
+   "votes": null,
+   "why": "",
+   "condition": "",
+   "assemblyNote": "",
+   "draftKind": "정의",
+   "draftAmbiguous": false,
+   "draftNote": "",
+   "shape": "사전",
+   "textbookKinds": [
+    {
+     "book": "gaenyeom-1-2",
+     "key": "1-2/p116/부채꼴",
+     "term": "부채꼴",
+     "kind": "정의",
+     "match": "exact"
+    }
+   ],
+   "changedFromDraft": false
+  },
+  {
+   "id": "g7-sector-area",
+   "name": "부채꼴의 넓이",
+   "grade": 7,
+   "unit": "g7-measure",
+   "unitTitle": "평면도형과 입체도형",
+   "kind": "공식",
+   "decidedBy": "초안 유지",
+   "votes": null,
+   "why": "",
+   "condition": "",
+   "assemblyNote": "",
+   "draftKind": "공식",
+   "draftAmbiguous": false,
+   "draftNote": "",
+   "shape": "주어빠짐",
+   "textbookKinds": [],
+   "changedFromDraft": false
+  },
+  {
+   "id": "g7-polyhedron",
+   "name": "다면체",
+   "grade": 7,
+   "unit": "g7-measure",
+   "unitTitle": "평면도형과 입체도형",
+   "kind": "정의",
+   "decidedBy": "초안 유지",
+   "votes": null,
+   "why": "",
+   "condition": "",
+   "assemblyNote": "",
+   "draftKind": "정의",
+   "draftAmbiguous": false,
+   "draftNote": "",
+   "shape": "사전",
+   "textbookKinds": [
+    {
+     "book": "gaenyeom-1-2",
+     "key": "1-2/p136/다면체",
+     "term": "다면체",
+     "kind": "정의",
+     "match": "exact"
+    }
+   ],
+   "changedFromDraft": false
+  },
+  {
+   "id": "g7-pyramid-volume",
+   "name": "뿔의 부피",
+   "grade": 7,
+   "unit": "g7-measure",
+   "unitTitle": "평면도형과 입체도형",
+   "kind": "공식",
+   "decidedBy": "초안 유지",
+   "votes": null,
+   "why": "",
+   "condition": "",
+   "assemblyNote": "",
+   "draftKind": "공식",
+   "draftAmbiguous": false,
+   "draftNote": "",
+   "shape": "주어빠짐",
+   "textbookKinds": [
+    {
+     "book": "gaenyeom-1-2",
+     "key": "1-2/p177/뿔의 부피",
+     "term": "뿔의 부피",
+     "kind": "공식",
+     "match": "exact"
+    }
+   ],
+   "changedFromDraft": false
+  },
+  {
+   "id": "g7-median",
+   "name": "중앙값",
+   "grade": 7,
+   "unit": "g7-statistics",
+   "unitTitle": "자료의 정리와 해석",
+   "kind": "정의",
+   "decidedBy": "초안 유지",
+   "votes": null,
+   "why": "",
+   "condition": "",
+   "assemblyNote": "",
+   "draftKind": "정의",
+   "draftAmbiguous": false,
+   "draftNote": "",
+   "shape": "사전+",
+   "textbookKinds": [
+    {
+     "book": "gaenyeom-1-2",
+     "key": "1-2/p200/중앙값",
+     "term": "중앙값",
+     "kind": "정의",
+     "match": "exact"
+    },
+    {
+     "book": "gaenyeom-3-2",
+     "key": "3-2/p129/중앙값",
+     "term": "중앙값",
+     "kind": "정의",
+     "match": "exact"
+    }
+   ],
+   "changedFromDraft": false
+  },
+  {
+   "id": "g7-mode",
+   "name": "최빈값",
+   "grade": 7,
+   "unit": "g7-statistics",
+   "unitTitle": "자료의 정리와 해석",
+   "kind": "정의",
+   "decidedBy": "초안 유지",
+   "votes": null,
+   "why": "",
+   "condition": "",
+   "assemblyNote": "",
+   "draftKind": "정의",
+   "draftAmbiguous": false,
+   "draftNote": "",
+   "shape": "사전",
+   "textbookKinds": [
+    {
+     "book": "gaenyeom-1-2",
+     "key": "1-2/p200/최빈값",
+     "term": "최빈값",
+     "kind": "정의",
+     "match": "exact"
+    }
+   ],
+   "changedFromDraft": false
+  },
+  {
+   "id": "g7-frequency",
+   "name": "도수",
+   "grade": 7,
+   "unit": "g7-statistics",
+   "unitTitle": "자료의 정리와 해석",
+   "kind": "정의",
+   "decidedBy": "초안 유지",
+   "votes": null,
+   "why": "",
+   "condition": "",
+   "assemblyNote": "",
+   "draftKind": "정의",
+   "draftAmbiguous": false,
+   "draftNote": "",
+   "shape": "사전+",
+   "textbookKinds": [
+    {
+     "book": "gaenyeom-1-2",
+     "key": "1-2/p213/도수",
+     "term": "도수",
+     "kind": "정의",
+     "match": "exact"
+    }
+   ],
+   "changedFromDraft": false
+  },
+  {
+   "id": "g7-relative-frequency",
+   "name": "상대도수",
+   "grade": 7,
+   "unit": "g7-statistics",
+   "unitTitle": "자료의 정리와 해석",
+   "kind": "정의",
+   "decidedBy": "초안 유지",
+   "votes": null,
+   "why": "",
+   "condition": "",
+   "assemblyNote": "",
+   "draftKind": "정의",
+   "draftAmbiguous": false,
+   "draftNote": "",
+   "shape": "사전",
+   "textbookKinds": [
+    {
+     "book": "gaenyeom-1-2",
+     "key": "1-2/p233/상대도수",
+     "term": "상대도수",
+     "kind": "정의",
+     "match": "exact"
+    }
+   ],
+   "changedFromDraft": false
+  },
+  {
+   "id": "g7-histogram",
+   "name": "히스토그램",
+   "grade": 7,
+   "unit": "g7-statistics",
+   "unitTitle": "자료의 정리와 해석",
+   "kind": "정의",
+   "decidedBy": "초안 유지",
+   "votes": null,
+   "why": "",
+   "condition": "",
+   "assemblyNote": "",
+   "draftKind": "정의",
+   "draftAmbiguous": false,
+   "draftNote": "",
+   "shape": "사전",
+   "textbookKinds": [
+    {
+     "book": "gaenyeom-1-2",
+     "key": "1-2/p222/히스토그램",
+     "term": "히스토그램",
+     "kind": "정의",
+     "match": "exact"
+    }
+   ],
+   "changedFromDraft": false
+  },
+  {
+   "id": "g8-terminating",
+   "name": "유한소수",
+   "grade": 8,
+   "unit": "g8-numbers",
+   "unitTitle": "유리수·순환소수와 지수",
+   "kind": "정의",
+   "decidedBy": "초안 유지",
+   "votes": null,
+   "why": "",
+   "condition": "",
+   "assemblyNote": "",
+   "draftKind": "정의",
+   "draftAmbiguous": false,
+   "draftNote": "",
+   "shape": "사전",
+   "textbookKinds": [
+    {
+     "book": "gaenyeom-2-1",
+     "key": "2-1/p013/유한소수",
+     "term": "유한소수",
+     "kind": "정의",
+     "match": "exact"
+    }
+   ],
+   "changedFromDraft": false
+  },
+  {
+   "id": "g8-repeating",
+   "name": "순환소수",
+   "grade": 8,
+   "unit": "g8-numbers",
+   "unitTitle": "유리수·순환소수와 지수",
+   "kind": "정의",
+   "decidedBy": "초안 유지",
+   "votes": null,
+   "why": "",
+   "condition": "",
+   "assemblyNote": "",
+   "draftKind": "정의",
+   "draftAmbiguous": false,
+   "draftNote": "",
+   "shape": "사전",
+   "textbookKinds": [
+    {
+     "book": "gaenyeom-2-1",
+     "key": "2-1/p013/순환소수",
+     "term": "순환소수",
+     "kind": "정의",
+     "match": "exact"
+    }
+   ],
+   "changedFromDraft": false
+  },
+  {
+   "id": "g8-repeat-block",
+   "name": "순환마디",
+   "grade": 8,
+   "unit": "g8-numbers",
+   "unitTitle": "유리수·순환소수와 지수",
+   "kind": "정의",
+   "decidedBy": "초안 유지",
+   "votes": null,
+   "why": "",
+   "condition": "",
+   "assemblyNote": "",
+   "draftKind": "정의",
+   "draftAmbiguous": false,
+   "draftNote": "",
+   "shape": "사전",
+   "textbookKinds": [
+    {
+     "book": "gaenyeom-2-1",
+     "key": "2-1/p013/순환마디",
+     "term": "순환마디",
+     "kind": "정의",
+     "match": "exact"
+    }
+   ],
+   "changedFromDraft": false
+  },
+  {
+   "id": "g8-power",
+   "name": "거듭제곱",
+   "grade": 8,
+   "unit": "g8-numbers",
+   "unitTitle": "유리수·순환소수와 지수",
+   "kind": "정의",
+   "decidedBy": "초안 유지",
+   "votes": null,
+   "why": "",
+   "condition": "",
+   "assemblyNote": "",
+   "draftKind": "정의",
+   "draftAmbiguous": false,
+   "draftNote": "",
+   "shape": "사전",
+   "textbookKinds": [
+    {
+     "book": "gaenyeom-1-1",
+     "key": "1-1/p010/거듭제곱",
+     "term": "거듭제곱",
+     "kind": "정의",
+     "match": "exact"
+    },
+    {
+     "book": "gaenyeom-2-1",
+     "key": "2-1/p039/거듭제곱",
+     "term": "거듭제곱",
+     "kind": "정의",
+     "match": "exact"
+    }
+   ],
+   "changedFromDraft": false
+  },
+  {
+   "id": "g8-exponent-law",
+   "name": "지수법칙",
+   "grade": 8,
+   "unit": "g8-numbers",
+   "unitTitle": "유리수·순환소수와 지수",
+   "kind": "법칙",
+   "decidedBy": "초안 유지",
+   "votes": null,
+   "why": "",
+   "condition": "",
+   "assemblyNote": "",
+   "draftKind": "법칙",
+   "draftAmbiguous": false,
+   "draftNote": "",
+   "shape": "완결",
+   "textbookKinds": [
+    {
+     "book": "gaenyeom-2-1",
+     "key": "2-1/p039/지수법칙",
+     "term": "지수법칙",
+     "kind": "법칙",
+     "match": "exact"
+    }
+   ],
+   "changedFromDraft": false
+  },
+  {
+   "id": "g8-distribution",
+   "name": "분배법칙",
+   "grade": 8,
+   "unit": "g8-inequality",
+   "unitTitle": "식의 계산과 일차부등식",
+   "kind": "법칙",
+   "decidedBy": "초안 유지",
+   "votes": null,
+   "why": "",
+   "condition": "",
+   "assemblyNote": "",
+   "draftKind": "법칙",
+   "draftAmbiguous": false,
+   "draftNote": "«~곱하는 법칙.»으로 끝남",
+   "shape": "사전",
+   "textbookKinds": [
+    {
+     "book": "gaenyeom-1-1",
+     "key": "1-1/p082/분배법칙",
+     "term": "분배법칙",
+     "kind": "법칙",
+     "match": "exact"
+    },
+    {
+     "book": "gaenyeom-3-1",
+     "key": "3-1/p049/분배법칙",
+     "term": "분배법칙",
+     "kind": "법칙",
+     "match": "exact"
+    }
+   ],
+   "changedFromDraft": false
+  },
+  {
+   "id": "g8-inequality",
+   "name": "부등식",
+   "grade": 8,
+   "unit": "g8-inequality",
+   "unitTitle": "식의 계산과 일차부등식",
+   "kind": "정의",
+   "decidedBy": "초안 유지",
+   "votes": null,
+   "why": "",
+   "condition": "",
+   "assemblyNote": "",
+   "draftKind": "정의",
+   "draftAmbiguous": false,
+   "draftNote": "",
+   "shape": "사전",
+   "textbookKinds": [
+    {
+     "book": "gaenyeom-2-1",
+     "key": "2-1/p085/부등식",
+     "term": "부등식",
+     "kind": "정의",
+     "match": "exact"
+    }
+   ],
+   "changedFromDraft": false
+  },
+  {
+   "id": "g8-inequality-solution",
+   "name": "부등식의 해",
+   "grade": 8,
+   "unit": "g8-inequality",
+   "unitTitle": "식의 계산과 일차부등식",
+   "kind": "정의",
+   "decidedBy": "초안 유지",
+   "votes": null,
+   "why": "",
+   "condition": "",
+   "assemblyNote": "",
+   "draftKind": "정의",
+   "draftAmbiguous": false,
+   "draftNote": "",
+   "shape": "사전",
+   "textbookKinds": [
+    {
+     "book": "gaenyeom-2-1",
+     "key": "2-1/p085/부등식의 해",
+     "term": "부등식의 해",
+     "kind": "정의",
+     "match": "exact"
+    }
+   ],
+   "changedFromDraft": false
+  },
+  {
+   "id": "g8-negative-multiply",
+   "name": "음수와 부등호",
+   "grade": 8,
+   "unit": "g8-inequality",
+   "unitTitle": "식의 계산과 일차부등식",
+   "kind": "성질",
+   "decidedBy": "초안 유지",
+   "votes": null,
+   "why": "",
+   "condition": "",
+   "assemblyNote": "",
+   "draftKind": "성질",
+   "draftAmbiguous": false,
+   "draftNote": "",
+   "shape": "완결",
+   "textbookKinds": [],
+   "changedFromDraft": false
+  },
+  {
+   "id": "g8-linear-inequality",
+   "name": "일차부등식",
+   "grade": 8,
+   "unit": "g8-inequality",
+   "unitTitle": "식의 계산과 일차부등식",
+   "kind": "정의",
+   "decidedBy": "초안 유지",
+   "votes": null,
+   "why": "",
+   "condition": "",
+   "assemblyNote": "",
+   "draftKind": "정의",
+   "draftAmbiguous": false,
+   "draftNote": "",
+   "shape": "사전",
+   "textbookKinds": [
+    {
+     "book": "gaenyeom-2-1",
+     "key": "2-1/p092/일차부등식",
+     "term": "일차부등식",
+     "kind": "정의",
+     "match": "exact"
+    }
+   ],
+   "changedFromDraft": false
+  },
+  {
+   "id": "g8-two-variable",
+   "name": "미지수가 두 개인 일차방정식",
+   "grade": 8,
+   "unit": "g8-simultaneous",
+   "unitTitle": "연립일차방정식",
+   "kind": "정의",
+   "decidedBy": "초안 유지",
+   "votes": null,
+   "why": "",
+   "condition": "",
+   "assemblyNote": "",
+   "draftKind": "정의",
+   "draftAmbiguous": false,
+   "draftNote": "",
+   "shape": "사전+",
+   "textbookKinds": [
+    {
+     "book": "gaenyeom-2-1",
+     "key": "2-1/p127/미지수가 2개인 일차방정식",
+     "term": "미지수가 2개인 일차방정식",
+     "kind": "정의",
+     "match": "exact"
+    }
+   ],
+   "changedFromDraft": false
+  },
+  {
+   "id": "g8-simultaneous",
+   "name": "연립방정식",
+   "grade": 8,
+   "unit": "g8-simultaneous",
+   "unitTitle": "연립일차방정식",
+   "kind": "정의",
+   "decidedBy": "초안 유지",
+   "votes": null,
+   "why": "",
+   "condition": "",
+   "assemblyNote": "",
+   "draftKind": "정의",
+   "draftAmbiguous": false,
+   "draftNote": "",
+   "shape": "사전",
+   "textbookKinds": [
+    {
+     "book": "gaenyeom-2-1",
+     "key": "2-1/p127/연립방정식",
+     "term": "연립방정식",
+     "kind": "정의",
+     "match": "exact"
+    },
+    {
+     "book": "gaenyeom-2-1",
+     "key": "2-1/p127/연립방정식을 푼다",
+     "term": "연립방정식을 푼다",
+     "kind": "정의",
+     "match": "alias"
+    }
+   ],
+   "changedFromDraft": false
+  },
+  {
+   "id": "g8-substitution",
+   "name": "대입법",
+   "grade": 8,
+   "unit": "g8-simultaneous",
+   "unitTitle": "연립일차방정식",
+   "kind": "방법",
+   "decidedBy": "2:1(codex · grok)",
+   "votes": {
+    "claude": "정의",
+    "codex": "방법",
+    "grok": "방법"
+   },
+   "why": "문장이 «~푸는 방법»이고 빈칸이 넣어 푸는 동작 — 교재는 이름을 뜻매김하지만 학생 딱지는 방법(Claude 는 받아올림·반올림과 같이 정의로 봄)",
+   "condition": "",
+   "assemblyNote": "",
+   "draftKind": "방법",
+   "draftAmbiguous": false,
+   "draftNote": "«~푸는 방법.» — 무엇을 푸는지(연립방정식) 빠짐",
+   "shape": "사전",
+   "textbookKinds": [
+    {
+     "book": "gaenyeom-2-1",
+     "key": "2-1/p133/대입법",
+     "term": "대입법",
+     "kind": "정의",
+     "match": "exact"
+    }
+   ],
+   "changedFromDraft": false
+  },
+  {
+   "id": "g8-elimination",
+   "name": "가감법",
+   "grade": 8,
+   "unit": "g8-simultaneous",
+   "unitTitle": "연립일차방정식",
+   "kind": "방법",
+   "decidedBy": "2:1(codex · grok)",
+   "votes": {
+    "claude": "정의",
+    "codex": "방법",
+    "grok": "방법"
+   },
+   "why": "대입법과 같은 결",
+   "condition": "",
+   "assemblyNote": "",
+   "draftKind": "방법",
+   "draftAmbiguous": false,
+   "draftNote": "«~없애는 방법.» — 연립방정식이 빠짐",
+   "shape": "사전",
+   "textbookKinds": [
+    {
+     "book": "gaenyeom-2-1",
+     "key": "2-1/p133/가감법",
+     "term": "가감법",
+     "kind": "정의",
+     "match": "exact"
+    }
+   ],
+   "changedFromDraft": false
+  },
+  {
+   "id": "g8-common-solution",
+   "name": "연립방정식 해 확인",
+   "grade": 8,
+   "unit": "g8-simultaneous",
+   "unitTitle": "연립일차방정식",
+   "kind": "방법",
+   "decidedBy": "3자 일치",
+   "votes": {
+    "claude": "방법",
+    "codex": "방법",
+    "grok": "방법"
+   },
+   "why": "모든 식에 넣어 보는 절차",
+   "condition": "",
+   "assemblyNote": "",
+   "draftKind": "방법",
+   "draftAmbiguous": true,
+   "draftNote": "문장은 «~확인하는 것»(정의 꼴), 이름은 «확인»(방법)",
+   "shape": "사전",
+   "textbookKinds": [],
+   "changedFromDraft": false
+  },
+  {
+   "id": "g8-function",
+   "name": "함수",
+   "grade": 8,
+   "unit": "g8-function",
+   "unitTitle": "일차함수",
+   "kind": "정의",
+   "decidedBy": "초안 유지",
+   "votes": null,
+   "why": "",
+   "condition": "",
+   "assemblyNote": "",
+   "draftKind": "정의",
+   "draftAmbiguous": false,
+   "draftNote": "",
+   "shape": "사전",
+   "textbookKinds": [
+    {
+     "book": "gaenyeom-2-1",
+     "key": "2-1/p171/함수",
+     "term": "함수",
+     "kind": "정의",
+     "match": "exact"
+    }
+   ],
+   "changedFromDraft": false
+  },
+  {
+   "id": "g8-linear-function",
+   "name": "일차함수",
+   "grade": 8,
+   "unit": "g8-function",
+   "unitTitle": "일차함수",
+   "kind": "정의",
+   "decidedBy": "초안 유지",
+   "votes": null,
+   "why": "",
+   "condition": "",
+   "assemblyNote": "",
+   "draftKind": "정의",
+   "draftAmbiguous": false,
+   "draftNote": "",
+   "shape": "사전",
+   "textbookKinds": [
+    {
+     "book": "gaenyeom-2-1",
+     "key": "2-1/p172/일차함수",
+     "term": "일차함수",
+     "kind": "정의",
+     "match": "exact"
+    }
+   ],
+   "changedFromDraft": false
+  },
+  {
+   "id": "g8-slope",
+   "name": "기울기",
+   "grade": 8,
+   "unit": "g8-function",
+   "unitTitle": "일차함수",
+   "kind": "정의",
+   "decidedBy": "초안 유지",
+   "votes": null,
+   "why": "",
+   "condition": "",
+   "assemblyNote": "",
+   "draftKind": "정의",
+   "draftAmbiguous": false,
+   "draftNote": "",
+   "shape": "사전",
+   "textbookKinds": [
+    {
+     "book": "gaenyeom-2-1",
+     "key": "2-1/p182/기울기",
+     "term": "기울기",
+     "kind": "정의",
+     "match": "exact"
+    }
+   ],
+   "changedFromDraft": false
+  },
+  {
+   "id": "g8-y-intercept",
+   "name": "y절편",
+   "grade": 8,
+   "unit": "g8-function",
+   "unitTitle": "일차함수",
+   "kind": "정의",
+   "decidedBy": "초안 유지",
+   "votes": null,
+   "why": "",
+   "condition": "",
+   "assemblyNote": "",
+   "draftKind": "정의",
+   "draftAmbiguous": false,
+   "draftNote": "",
+   "shape": "사전+",
+   "textbookKinds": [
+    {
+     "book": "gaenyeom-2-1",
+     "key": "2-1/p181/y절편",
+     "term": "y절편",
+     "kind": "정의",
+     "match": "exact"
+    }
+   ],
+   "changedFromDraft": false
+  },
+  {
+   "id": "g8-parallel-lines",
+   "name": "일차함수 그래프의 평행",
+   "grade": 8,
+   "unit": "g8-function",
+   "unitTitle": "일차함수",
+   "kind": "성질",
+   "decidedBy": "초안 유지",
+   "votes": null,
+   "why": "",
+   "condition": "",
+   "assemblyNote": "",
+   "draftKind": "성질",
+   "draftAmbiguous": false,
+   "draftNote": "",
+   "shape": "완결",
+   "textbookKinds": [],
+   "changedFromDraft": false
+  },
+  {
+   "id": "g8-circumcenter",
+   "name": "외심",
+   "grade": 8,
+   "unit": "g8-shapes",
+   "unitTitle": "삼각형과 사각형의 성질",
+   "kind": "정의",
+   "decidedBy": "초안 유지",
+   "votes": null,
+   "why": "",
+   "condition": "",
+   "assemblyNote": "",
+   "draftKind": "정의",
+   "draftAmbiguous": false,
+   "draftNote": "",
+   "shape": "사전",
+   "textbookKinds": [
+    {
+     "book": "gaenyeom-2-2",
+     "key": "2-2/p037/외심",
+     "term": "외심",
+     "kind": "정의",
+     "match": "exact"
+    }
+   ],
+   "changedFromDraft": false
+  },
+  {
+   "id": "g8-incenter",
+   "name": "내심",
+   "grade": 8,
+   "unit": "g8-shapes",
+   "unitTitle": "삼각형과 사각형의 성질",
+   "kind": "정의",
+   "decidedBy": "초안 유지",
+   "votes": null,
+   "why": "",
+   "condition": "",
+   "assemblyNote": "",
+   "draftKind": "정의",
+   "draftAmbiguous": false,
+   "draftNote": "",
+   "shape": "사전",
+   "textbookKinds": [
+    {
+     "book": "gaenyeom-2-2",
+     "key": "2-2/p043/내심",
+     "term": "내심",
+     "kind": "정의",
+     "match": "exact"
+    }
+   ],
+   "changedFromDraft": false
+  },
+  {
+   "id": "g8-parallelogram-diagonal",
+   "name": "평행사변형의 대각선",
+   "grade": 8,
+   "unit": "g8-shapes",
+   "unitTitle": "삼각형과 사각형의 성질",
+   "kind": "성질",
+   "decidedBy": "초안 유지",
+   "votes": null,
+   "why": "",
+   "condition": "",
+   "assemblyNote": "",
+   "draftKind": "성질",
+   "draftAmbiguous": false,
+   "draftNote": "",
+   "shape": "완결",
+   "textbookKinds": [],
+   "changedFromDraft": false
+  },
+  {
+   "id": "g8-midpoint",
+   "name": "중점",
+   "grade": 8,
+   "unit": "g8-shapes",
+   "unitTitle": "삼각형과 사각형의 성질",
+   "kind": "정의",
+   "decidedBy": "초안 유지",
+   "votes": null,
+   "why": "",
+   "condition": "",
+   "assemblyNote": "",
+   "draftKind": "정의",
+   "draftAmbiguous": false,
+   "draftNote": "",
+   "shape": "사전",
+   "textbookKinds": [
+    {
+     "book": "gaenyeom-1-2",
+     "key": "1-2/p011/중점",
+     "term": "중점",
+     "kind": "정의",
+     "match": "exact"
+    }
+   ],
+   "changedFromDraft": false
+  },
+  {
+   "id": "g8-square-properties",
+   "name": "정사각형의 대각선",
+   "grade": 8,
+   "unit": "g8-shapes",
+   "unitTitle": "삼각형과 사각형의 성질",
+   "kind": "성질",
+   "decidedBy": "초안 유지",
+   "votes": null,
+   "why": "",
+   "condition": "",
+   "assemblyNote": "",
+   "draftKind": "성질",
+   "draftAmbiguous": false,
+   "draftNote": "",
+   "shape": "완결",
+   "textbookKinds": [
+    {
+     "book": "gaenyeom-2-2",
+     "key": "2-2/p082/정사각형의 성질",
+     "term": "정사각형의 성질",
+     "kind": "성질",
+     "match": "alias"
+    }
+   ],
+   "changedFromDraft": false
+  },
+  {
+   "id": "g8-similarity",
+   "name": "닮음",
+   "grade": 8,
+   "unit": "g8-similarity",
+   "unitTitle": "닮음과 피타고라스",
+   "kind": "정의",
+   "decidedBy": "초안 유지",
+   "votes": null,
+   "why": "",
+   "condition": "",
+   "assemblyNote": "",
+   "draftKind": "정의",
+   "draftAmbiguous": false,
+   "draftNote": "",
+   "shape": "사전",
+   "textbookKinds": [
+    {
+     "book": "gaenyeom-2-2",
+     "key": "2-2/p107/닮음",
+     "term": "닮음",
+     "kind": "정의",
+     "match": "exact"
+    }
+   ],
+   "changedFromDraft": false
+  },
+  {
+   "id": "g8-similarity-ratio",
+   "name": "닮음비",
+   "grade": 8,
+   "unit": "g8-similarity",
+   "unitTitle": "닮음과 피타고라스",
+   "kind": "정의",
+   "decidedBy": "초안 유지",
+   "votes": null,
+   "why": "",
+   "condition": "",
+   "assemblyNote": "",
+   "draftKind": "정의",
+   "draftAmbiguous": false,
+   "draftNote": "",
+   "shape": "사전",
+   "textbookKinds": [
+    {
+     "book": "gaenyeom-2-2",
+     "key": "2-2/p107/닮음비",
+     "term": "닮음비",
+     "kind": "정의",
+     "match": "exact"
+    },
+    {
+     "book": "gaenyeom-2-2",
+     "key": "2-2/p108/닮음비",
+     "term": "닮음비",
+     "kind": "정의",
+     "match": "exact"
+    }
+   ],
+   "changedFromDraft": false
+  },
+  {
+   "id": "g8-similarity-area",
+   "name": "닮은 도형의 넓이비",
+   "grade": 8,
+   "unit": "g8-similarity",
+   "unitTitle": "닮음과 피타고라스",
+   "kind": "성질",
+   "decidedBy": "2:1(claude · codex)",
+   "votes": {
+    "claude": "성질",
+    "codex": "성질",
+    "grok": "공식"
+   },
+   "why": "닮음비와 넓이비 · 부피비의 관계 — 교재도 성질(grok 은 계산 식으로 봐 공식)",
+   "condition": "",
+   "assemblyNote": "",
+   "draftKind": "성질",
+   "draftAmbiguous": true,
+   "draftNote": "공식으로 볼 수도",
+   "shape": "완결",
+   "textbookKinds": [],
+   "changedFromDraft": false
+  },
+  {
+   "id": "g8-pythagoras",
+   "name": "피타고라스 정리",
+   "grade": 8,
+   "unit": "g8-similarity",
+   "unitTitle": "닮음과 피타고라스",
+   "kind": "정리",
+   "decidedBy": "초안 유지",
+   "votes": null,
+   "why": "",
+   "condition": "",
+   "assemblyNote": "",
+   "draftKind": "정리",
+   "draftAmbiguous": false,
+   "draftNote": "",
+   "shape": "완결",
+   "textbookKinds": [
+    {
+     "book": "gaenyeom-2-2",
+     "key": "2-2/p175/피타고라스 정리",
+     "term": "피타고라스 정리",
+     "kind": "정리",
+     "match": "exact"
+    }
+   ],
+   "changedFromDraft": false
+  },
+  {
+   "id": "g8-centroid",
+   "name": "무게중심",
+   "grade": 8,
+   "unit": "g8-similarity",
+   "unitTitle": "닮음과 피타고라스",
+   "kind": "정의",
+   "decidedBy": "초안 유지",
+   "votes": null,
+   "why": "",
+   "condition": "",
+   "assemblyNote": "",
+   "draftKind": "정의",
+   "draftAmbiguous": false,
+   "draftNote": "",
+   "shape": "사전+",
+   "textbookKinds": [
+    {
+     "book": "gaenyeom-2-2",
+     "key": "2-2/p159/무게중심",
+     "term": "무게중심",
+     "kind": "정의",
+     "match": "exact"
+    }
+   ],
+   "changedFromDraft": false
+  },
+  {
+   "id": "g8-cases",
+   "name": "경우의 수",
+   "grade": 8,
+   "unit": "g8-probability",
+   "unitTitle": "경우의 수와 확률",
+   "kind": "정의",
+   "decidedBy": "초안 유지",
+   "votes": null,
+   "why": "",
+   "condition": "",
+   "assemblyNote": "",
+   "draftKind": "정의",
+   "draftAmbiguous": false,
+   "draftNote": "",
+   "shape": "사전",
+   "textbookKinds": [
+    {
+     "book": "gaenyeom-2-2",
+     "key": "2-2/p193/경우의 수",
+     "term": "경우의 수",
+     "kind": "정의",
+     "match": "exact"
+    }
+   ],
+   "changedFromDraft": false
+  },
+  {
+   "id": "g8-addition-rule",
+   "name": "경우의 수의 합",
+   "grade": 8,
+   "unit": "g8-probability",
+   "unitTitle": "경우의 수와 확률",
+   "kind": "법칙",
+   "decidedBy": "초안 유지",
+   "votes": null,
+   "why": "",
+   "condition": "",
+   "assemblyNote": "",
+   "draftKind": "법칙",
+   "draftAmbiguous": false,
+   "draftNote": "교과서 이름은 «합의 법칙»",
+   "shape": "완결",
+   "textbookKinds": [
+    {
+     "book": "gaenyeom-2-2",
+     "key": "2-2/p193/사건 A 또는 사건 B가 일어나는 경우의 수",
+     "term": "사건 A 또는 사건 B가 일어나는 경우의 수",
+     "kind": "법칙",
+     "match": "alias"
+    }
+   ],
+   "changedFromDraft": false
+  },
+  {
+   "id": "g8-multiplication-rule",
+   "name": "경우의 수의 곱",
+   "grade": 8,
+   "unit": "g8-probability",
+   "unitTitle": "경우의 수와 확률",
+   "kind": "법칙",
+   "decidedBy": "초안 유지",
+   "votes": null,
+   "why": "",
+   "condition": "",
+   "assemblyNote": "",
+   "draftKind": "법칙",
+   "draftAmbiguous": false,
+   "draftNote": "교과서 이름은 «곱의 법칙»",
+   "shape": "완결",
+   "textbookKinds": [
+    {
+     "book": "gaenyeom-2-2",
+     "key": "2-2/p193/두 사건 A, B가 동시에 일어나는 경우의 수",
+     "term": "두 사건 A, B가 동시에 일어나는 경우의 수",
+     "kind": "법칙",
+     "match": "alias"
+    }
+   ],
+   "changedFromDraft": false
+  },
+  {
+   "id": "g8-probability",
+   "name": "확률",
+   "grade": 8,
+   "unit": "g8-probability",
+   "unitTitle": "경우의 수와 확률",
+   "kind": "정의",
+   "decidedBy": "초안 유지",
+   "votes": null,
+   "why": "",
+   "condition": "",
+   "assemblyNote": "",
+   "draftKind": "정의",
+   "draftAmbiguous": false,
+   "draftNote": "",
+   "shape": "사전",
+   "textbookKinds": [
+    {
+     "book": "gaenyeom-2-2",
+     "key": "2-2/p215/확률",
+     "term": "확률",
+     "kind": "정의",
+     "match": "exact"
+    },
+    {
+     "book": "gaenyeom-2-2",
+     "key": "2-2/p215/사건 A가 일어날 확률",
+     "term": "사건 A가 일어날 확률",
+     "kind": "공식",
+     "match": "alias"
+    }
+   ],
+   "changedFromDraft": false
+  },
+  {
+   "id": "g8-complement",
+   "name": "여사건의 확률",
+   "grade": 8,
+   "unit": "g8-probability",
+   "unitTitle": "경우의 수와 확률",
+   "kind": "공식",
+   "decidedBy": "3자 일치",
+   "votes": {
+    "claude": "공식",
+    "codex": "공식",
+    "grok": "공식"
+   },
+   "why": "빈칸이 1에서 빼는 식 — 교재도 공식",
+   "condition": "",
+   "assemblyNote": "",
+   "draftKind": "성질",
+   "draftAmbiguous": true,
+   "draftNote": "공식으로 볼 수도",
+   "shape": "완결",
+   "textbookKinds": [
+    {
+     "book": "gaenyeom-2-2",
+     "key": "2-2/p216/어떤 사건이 일어나지 않을 확률",
+     "term": "어떤 사건이 일어나지 않을 확률",
+     "kind": "공식",
+     "match": "alias"
+    }
+   ],
+   "changedFromDraft": true
+  },
+  {
+   "id": "g9-square-root",
+   "name": "제곱근",
+   "grade": 9,
+   "unit": "g9-real",
+   "unitTitle": "제곱근과 실수",
+   "kind": "정의",
+   "decidedBy": "초안 유지",
+   "votes": null,
+   "why": "",
+   "condition": "",
+   "assemblyNote": "",
+   "draftKind": "정의",
+   "draftAmbiguous": false,
+   "draftNote": "«~을 a의 제곱근이라 하며» — 이름이 문장 안에",
+   "shape": "완결",
+   "textbookKinds": [
+    {
+     "book": "gaenyeom-3-1",
+     "key": "3-1/p013/제곱근",
+     "term": "제곱근",
+     "kind": "정의",
+     "match": "exact"
+    }
+   ],
+   "changedFromDraft": false
+  },
+  {
+   "id": "g9-root-symbol",
+   "name": "근호",
+   "grade": 9,
+   "unit": "g9-real",
+   "unitTitle": "제곱근과 실수",
+   "kind": "정의",
+   "decidedBy": "3자 일치",
+   "votes": {
+    "claude": "정의",
+    "codex": "정의",
+    "grok": "정의"
+   },
+   "why": "기호 √a 의 뜻 — 학생 딱지에 «기호»는 없다",
+   "condition": "",
+   "assemblyNote": "",
+   "draftKind": "정의",
+   "draftAmbiguous": false,
+   "draftNote": "기호의 뜻",
+   "shape": "완결",
+   "textbookKinds": [
+    {
+     "book": "gaenyeom-3-1",
+     "key": "3-1/p013/근호",
+     "term": "근호",
+     "kind": "기호",
+     "match": "exact"
+    }
+   ],
+   "changedFromDraft": false
+  },
+  {
+   "id": "g9-irrational",
+   "name": "무리수",
+   "grade": 9,
+   "unit": "g9-real",
+   "unitTitle": "제곱근과 실수",
+   "kind": "정의",
+   "decidedBy": "초안 유지",
+   "votes": null,
+   "why": "",
+   "condition": "",
+   "assemblyNote": "",
+   "draftKind": "정의",
+   "draftAmbiguous": false,
+   "draftNote": "",
+   "shape": "사전+",
+   "textbookKinds": [
+    {
+     "book": "gaenyeom-3-1",
+     "key": "3-1/p025/무리수",
+     "term": "무리수",
+     "kind": "정의",
+     "match": "exact"
+    }
+   ],
+   "changedFromDraft": false
+  },
+  {
+   "id": "g9-real-number",
+   "name": "실수",
+   "grade": 9,
+   "unit": "g9-real",
+   "unitTitle": "제곱근과 실수",
+   "kind": "정의",
+   "decidedBy": "초안 유지",
+   "votes": null,
+   "why": "",
+   "condition": "",
+   "assemblyNote": "",
+   "draftKind": "정의",
+   "draftAmbiguous": false,
+   "draftNote": "",
+   "shape": "사전",
+   "textbookKinds": [
+    {
+     "book": "gaenyeom-3-1",
+     "key": "3-1/p025/실수",
+     "term": "실수",
+     "kind": "정의",
+     "match": "exact"
+    }
+   ],
+   "changedFromDraft": false
+  },
+  {
+   "id": "g9-root-square",
+   "name": "제곱의 제곱근",
+   "grade": 9,
+   "unit": "g9-real",
+   "unitTitle": "제곱근과 실수",
+   "kind": "성질",
+   "decidedBy": "초안 유지",
+   "votes": null,
+   "why": "",
+   "condition": "",
+   "assemblyNote": "",
+   "draftKind": "성질",
+   "draftAmbiguous": false,
+   "draftNote": "",
+   "shape": "완결",
+   "textbookKinds": [
+    {
+     "book": "gaenyeom-3-1",
+     "key": "3-1/p018/√a²의 성질",
+     "term": "√a²의 성질",
+     "kind": "성질",
+     "match": "alias"
+    }
+   ],
+   "changedFromDraft": false
+  },
+  {
+   "id": "g9-polynomial-multiply",
+   "name": "다항식의 곱셈",
+   "grade": 9,
+   "unit": "g9-polynomial",
+   "unitTitle": "다항식의 곱셈과 인수분해",
+   "kind": "방법",
+   "decidedBy": "3자 일치",
+   "votes": {
+    "claude": "방법",
+    "codex": "방법",
+    "grok": "방법"
+   },
+   "why": "빈칸이 분배 · 동류항 정리라는 절차",
+   "condition": "",
+   "assemblyNote": "",
+   "draftKind": "방법",
+   "draftAmbiguous": true,
+   "draftNote": "문장은 «~정리하는 계산»(정의 꼴)",
+   "shape": "사전",
+   "textbookKinds": [
+    {
+     "book": "gaenyeom-3-1",
+     "key": "3-1/p065/다항식의 곱셈",
+     "term": "다항식의 곱셈",
+     "kind": "공식",
+     "match": "exact"
+    }
+   ],
+   "changedFromDraft": false
+  },
+  {
+   "id": "g9-square-formula",
+   "name": "합의 제곱 공식",
+   "grade": 9,
+   "unit": "g9-polynomial",
+   "unitTitle": "다항식의 곱셈과 인수분해",
+   "kind": "공식",
+   "decidedBy": "초안 유지",
+   "votes": null,
+   "why": "",
+   "condition": "",
+   "assemblyNote": "",
+   "draftKind": "공식",
+   "draftAmbiguous": false,
+   "draftNote": "",
+   "shape": "완결",
+   "textbookKinds": [
+    {
+     "book": "gaenyeom-3-1",
+     "key": "3-1/p065/합의 제곱",
+     "term": "합의 제곱",
+     "kind": "공식",
+     "match": "alias"
+    }
+   ],
+   "changedFromDraft": false
+  },
+  {
+   "id": "g9-difference-squares",
+   "name": "합과 차의 곱",
+   "grade": 9,
+   "unit": "g9-polynomial",
+   "unitTitle": "다항식의 곱셈과 인수분해",
+   "kind": "공식",
+   "decidedBy": "초안 유지",
+   "votes": null,
+   "why": "",
+   "condition": "",
+   "assemblyNote": "",
+   "draftKind": "공식",
+   "draftAmbiguous": false,
+   "draftNote": "",
+   "shape": "완결",
+   "textbookKinds": [
+    {
+     "book": "gaenyeom-3-1",
+     "key": "3-1/p065/합과 차의 곱",
+     "term": "합과 차의 곱",
+     "kind": "공식",
+     "match": "exact"
+    }
+   ],
+   "changedFromDraft": false
+  },
+  {
+   "id": "g9-factorization",
+   "name": "인수분해",
+   "grade": 9,
+   "unit": "g9-polynomial",
+   "unitTitle": "다항식의 곱셈과 인수분해",
+   "kind": "정의",
+   "decidedBy": "초안 유지",
+   "votes": null,
+   "why": "",
+   "condition": "",
+   "assemblyNote": "",
+   "draftKind": "정의",
+   "draftAmbiguous": false,
+   "draftNote": "",
+   "shape": "사전+",
+   "textbookKinds": [
+    {
+     "book": "gaenyeom-3-1",
+     "key": "3-1/p087/인수분해",
+     "term": "인수분해",
+     "kind": "정의",
+     "match": "exact"
+    }
+   ],
+   "changedFromDraft": false
+  },
+  {
+   "id": "g9-common-factor",
+   "name": "공통인수 묶기",
+   "grade": 9,
+   "unit": "g9-polynomial",
+   "unitTitle": "다항식의 곱셈과 인수분해",
+   "kind": "방법",
+   "decidedBy": "3자 일치",
+   "votes": {
+    "claude": "방법",
+    "codex": "방법",
+    "grok": "방법"
+   },
+   "why": "«묶기» — 인수분해 절차",
+   "condition": "",
+   "assemblyNote": "",
+   "draftKind": "방법",
+   "draftAmbiguous": true,
+   "draftNote": "문장은 «~묶는 것»(정의 꼴), 이름은 «묶기»(방법)",
+   "shape": "사전",
+   "textbookKinds": [
+    {
+     "book": "gaenyeom-3-1",
+     "key": "3-1/p087/공통인 인수로 묶어 내기",
+     "term": "공통인 인수로 묶어 내기",
+     "kind": "공식",
+     "match": "alias"
+    }
+   ],
+   "changedFromDraft": false
+  },
+  {
+   "id": "g9-quadratic-equation",
+   "name": "이차방정식",
+   "grade": 9,
+   "unit": "g9-equation",
+   "unitTitle": "이차방정식",
+   "kind": "정의",
+   "decidedBy": "초안 유지",
+   "votes": null,
+   "why": "",
+   "condition": "",
+   "assemblyNote": "",
+   "draftKind": "정의",
+   "draftAmbiguous": false,
+   "draftNote": "",
+   "shape": "사전",
+   "textbookKinds": [
+    {
+     "book": "gaenyeom-3-1",
+     "key": "3-1/p113/이차방정식",
+     "term": "이차방정식",
+     "kind": "정의",
+     "match": "exact"
+    }
+   ],
+   "changedFromDraft": false
+  },
+  {
+   "id": "g9-zero-product",
+   "name": "곱이 0인 성질",
+   "grade": 9,
+   "unit": "g9-equation",
+   "unitTitle": "이차방정식",
+   "kind": "성질",
+   "decidedBy": "초안 유지",
+   "votes": null,
+   "why": "",
+   "condition": "",
+   "assemblyNote": "",
+   "draftKind": "성질",
+   "draftAmbiguous": false,
+   "draftNote": "",
+   "shape": "완결",
+   "textbookKinds": [
+    {
+     "book": "gaenyeom-3-1",
+     "key": "3-1/p118/AB=0의 성질",
+     "term": "AB=0의 성질",
+     "kind": "성질",
+     "match": "alias"
+    }
+   ],
+   "changedFromDraft": false
+  },
+  {
+   "id": "g9-equation-root",
+   "name": "이차방정식의 해",
+   "grade": 9,
+   "unit": "g9-equation",
+   "unitTitle": "이차방정식",
+   "kind": "정의",
+   "decidedBy": "초안 유지",
+   "votes": null,
+   "why": "",
+   "condition": "",
+   "assemblyNote": "",
+   "draftKind": "정의",
+   "draftAmbiguous": false,
+   "draftNote": "",
+   "shape": "사전+",
+   "textbookKinds": [
+    {
+     "book": "gaenyeom-3-1",
+     "key": "3-1/p113/이차방정식의 해",
+     "term": "이차방정식의 해",
+     "kind": "정의",
+     "match": "exact"
+    }
+   ],
+   "changedFromDraft": false
+  },
+  {
+   "id": "g9-double-root",
+   "name": "중근",
+   "grade": 9,
+   "unit": "g9-equation",
+   "unitTitle": "이차방정식",
+   "kind": "정의",
+   "decidedBy": "3자 일치",
+   "votes": {
+    "claude": "정의",
+    "codex": "정의",
+    "grok": "정의"
+   },
+   "why": "보정 표가 빈칸 둘을 뜻(서로 같은 두 근 · 그 근) 쪽으로 옮긴다 — 완전제곱식 꼴 · 해 한 개는 보기 · 함정 · 해설에",
+   "condition": "보정 표와 함께 — 지금 문장은 빈칸 둘이 해의 개수 · 값 쪽",
+   "assemblyNote": "지금 빈칸 둘(한 개 · a)이 해의 개수 · 값 쪽 — 보정 표가 뜻 쪽으로 옮긴다(둘째 협의)",
+   "draftKind": "정의",
+   "draftAmbiguous": false,
+   "draftNote": "",
+   "shape": "사전+",
+   "textbookKinds": [
+    {
+     "book": "gaenyeom-3-1",
+     "key": "3-1/p118/중근",
+     "term": "중근",
+     "kind": "정의",
+     "match": "exact"
+    }
+   ],
+   "changedFromDraft": false
+  },
+  {
+   "id": "g9-root-formula",
+   "name": "근의 공식",
+   "grade": 9,
+   "unit": "g9-equation",
+   "unitTitle": "이차방정식",
+   "kind": "공식",
+   "decidedBy": "초안 유지",
+   "votes": null,
+   "why": "",
+   "condition": "",
+   "assemblyNote": "",
+   "draftKind": "공식",
+   "draftAmbiguous": false,
+   "draftNote": "",
+   "shape": "완결",
+   "textbookKinds": [
+    {
+     "book": "gaenyeom-3-1",
+     "key": "3-1/p139/근의 공식",
+     "term": "근의 공식",
+     "kind": "공식",
+     "match": "exact"
+    }
+   ],
+   "changedFromDraft": false
+  },
+  {
+   "id": "g9-quadratic-function",
+   "name": "이차함수",
+   "grade": 9,
+   "unit": "g9-function",
+   "unitTitle": "이차함수",
+   "kind": "정의",
+   "decidedBy": "초안 유지",
+   "votes": null,
+   "why": "",
+   "condition": "",
+   "assemblyNote": "",
+   "draftKind": "정의",
+   "draftAmbiguous": false,
+   "draftNote": "",
+   "shape": "사전+",
+   "textbookKinds": [
+    {
+     "book": "gaenyeom-3-1",
+     "key": "3-1/p165/이차함수",
+     "term": "이차함수",
+     "kind": "정의",
+     "match": "exact"
+    }
+   ],
+   "changedFromDraft": false
+  },
+  {
+   "id": "g9-parabola",
+   "name": "포물선",
+   "grade": 9,
+   "unit": "g9-function",
+   "unitTitle": "이차함수",
+   "kind": "정의",
+   "decidedBy": "초안 유지",
+   "votes": null,
+   "why": "",
+   "condition": "",
+   "assemblyNote": "",
+   "draftKind": "정의",
+   "draftAmbiguous": false,
+   "draftNote": "",
+   "shape": "사전+",
+   "textbookKinds": [
+    {
+     "book": "gaenyeom-3-1",
+     "key": "3-1/p166/포물선",
+     "term": "포물선",
+     "kind": "정의",
+     "match": "exact"
+    }
+   ],
+   "changedFromDraft": false
+  },
+  {
+   "id": "g9-vertex",
+   "name": "꼭짓점",
+   "grade": 9,
+   "unit": "g9-function",
+   "unitTitle": "이차함수",
+   "kind": "정의",
+   "decidedBy": "3자 일치",
+   "votes": {
+    "claude": "정의",
+    "codex": "정의",
+    "grok": "정의"
+   },
+   "why": "보정 표가 포물선과 축이 만나는 점으로 뜻을 세운다 — 교재도 정의",
+   "condition": "보정 표와 함께 — 지금 문장은 빈칸 둘이 좌표 · 위치(성질) 쪽",
+   "assemblyNote": "",
+   "draftKind": "성질",
+   "draftAmbiguous": true,
+   "draftNote": "이름은 용어(꼭짓점)인데 문장은 좌표 (p, q) — 정의로 볼 수도",
+   "shape": "완결",
+   "textbookKinds": [
+    {
+     "book": "gaenyeom-3-1",
+     "key": "3-1/p166/꼭짓점",
+     "term": "꼭짓점",
+     "kind": "정의",
+     "match": "exact"
+    }
+   ],
+   "changedFromDraft": true
+  },
+  {
+   "id": "g9-axis",
+   "name": "이차함수의 축",
+   "grade": 9,
+   "unit": "g9-function",
+   "unitTitle": "이차함수",
+   "kind": "성질",
+   "decidedBy": "2:1(claude · codex)",
+   "votes": {
+    "claude": "성질",
+    "codex": "성질",
+    "grok": "정의"
+   },
+   "why": "채택된 보정도 «대칭축은 직선 x=p · y축에 평행»으로 축의 자리 · 방향을 묻는다(성질). Claude 답은 «뜻을 세우게 보정하면 정의, 아니면 성질» — 채택된 보정이 뜻을 세우지 않아 성질로 셈",
+   "condition": "",
+   "assemblyNote": "",
+   "draftKind": "성질",
+   "draftAmbiguous": true,
+   "draftNote": "이름은 용어(축)인데 문장은 «대칭축은 직선 x=p» — 정의로 볼 수도",
+   "shape": "완결",
+   "textbookKinds": [
+    {
+     "book": "gaenyeom-3-1",
+     "key": "3-1/p166/축",
+     "term": "축",
+     "kind": "정의",
+     "match": "exact"
+    }
+   ],
+   "changedFromDraft": false
+  },
+  {
+   "id": "g9-translation",
+   "name": "이차함수의 평행이동",
+   "grade": 9,
+   "unit": "g9-function",
+   "unitTitle": "이차함수",
+   "kind": "성질",
+   "decidedBy": "초안 유지",
+   "votes": null,
+   "why": "",
+   "condition": "",
+   "assemblyNote": "",
+   "draftKind": "성질",
+   "draftAmbiguous": false,
+   "draftNote": "",
+   "shape": "완결",
+   "textbookKinds": [
+    {
+     "book": "gaenyeom-3-1",
+     "key": "3-1/p179/이차함수 y=a(x−p)²+q의 그래프",
+     "term": "이차함수 y=a(x−p)²+q의 그래프",
+     "kind": "성질",
+     "match": "alias"
+    }
+   ],
+   "changedFromDraft": false
+  },
+  {
+   "id": "g9-hypotenuse",
+   "name": "빗변",
+   "grade": 9,
+   "unit": "g9-trigonometry",
+   "unitTitle": "삼각비",
+   "kind": "정의",
+   "decidedBy": "초안 유지",
+   "votes": null,
+   "why": "",
+   "condition": "",
+   "assemblyNote": "",
+   "draftKind": "정의",
+   "draftAmbiguous": false,
+   "draftNote": "",
+   "shape": "사전+",
+   "textbookKinds": [
+    {
+     "book": "gaenyeom-2-2",
+     "key": "2-2/p021/빗변",
+     "term": "빗변",
+     "kind": "정의",
+     "match": "exact"
+    }
+   ],
+   "changedFromDraft": false
+  },
+  {
+   "id": "g9-sine",
+   "name": "사인",
+   "grade": 9,
+   "unit": "g9-trigonometry",
+   "unitTitle": "삼각비",
+   "kind": "정의",
+   "decidedBy": "초안 유지",
+   "votes": null,
+   "why": "",
+   "condition": "",
+   "assemblyNote": "",
+   "draftKind": "정의",
+   "draftAmbiguous": false,
+   "draftNote": "",
+   "shape": "완결",
+   "textbookKinds": [
+    {
+     "book": "gaenyeom-3-2",
+     "key": "3-2/p013/사인",
+     "term": "사인",
+     "kind": "정의",
+     "match": "exact"
+    }
+   ],
+   "changedFromDraft": false
+  },
+  {
+   "id": "g9-cosine",
+   "name": "코사인",
+   "grade": 9,
+   "unit": "g9-trigonometry",
+   "unitTitle": "삼각비",
+   "kind": "정의",
+   "decidedBy": "초안 유지",
+   "votes": null,
+   "why": "",
+   "condition": "",
+   "assemblyNote": "",
+   "draftKind": "정의",
+   "draftAmbiguous": false,
+   "draftNote": "",
+   "shape": "완결",
+   "textbookKinds": [
+    {
+     "book": "gaenyeom-3-2",
+     "key": "3-2/p013/코사인",
+     "term": "코사인",
+     "kind": "정의",
+     "match": "exact"
+    }
+   ],
+   "changedFromDraft": false
+  },
+  {
+   "id": "g9-tangent",
+   "name": "탄젠트",
+   "grade": 9,
+   "unit": "g9-trigonometry",
+   "unitTitle": "삼각비",
+   "kind": "정의",
+   "decidedBy": "초안 유지",
+   "votes": null,
+   "why": "",
+   "condition": "",
+   "assemblyNote": "",
+   "draftKind": "정의",
+   "draftAmbiguous": false,
+   "draftNote": "",
+   "shape": "완결",
+   "textbookKinds": [
+    {
+     "book": "gaenyeom-3-2",
+     "key": "3-2/p013/탄젠트",
+     "term": "탄젠트",
+     "kind": "정의",
+     "match": "exact"
+    }
+   ],
+   "changedFromDraft": false
+  },
+  {
+   "id": "g9-trig-similarity",
+   "name": "삼각비와 닮음",
+   "grade": 9,
+   "unit": "g9-trigonometry",
+   "unitTitle": "삼각비",
+   "kind": "성질",
+   "decidedBy": "초안 유지",
+   "votes": null,
+   "why": "",
+   "condition": "",
+   "assemblyNote": "",
+   "draftKind": "성질",
+   "draftAmbiguous": false,
+   "draftNote": "",
+   "shape": "완결",
+   "textbookKinds": [
+    {
+     "book": "gaenyeom-2-2",
+     "key": "2-2/p116/직각삼각형의 닮음",
+     "term": "직각삼각형의 닮음",
+     "kind": "성질",
+     "match": "alias"
+    },
+    {
+     "book": "gaenyeom-3-2",
+     "key": "3-2/p013/직각삼각형의 크기와 삼각비의 값",
+     "term": "직각삼각형의 크기와 삼각비의 값",
+     "kind": "성질",
+     "match": "alias"
+    }
+   ],
+   "changedFromDraft": false
+  },
+  {
+   "id": "g9-chord",
+   "name": "현",
+   "grade": 9,
+   "unit": "g9-circle",
+   "unitTitle": "원의 성질",
+   "kind": "정의",
+   "decidedBy": "초안 유지",
+   "votes": null,
+   "why": "",
+   "condition": "",
+   "assemblyNote": "",
+   "draftKind": "정의",
+   "draftAmbiguous": false,
+   "draftNote": "",
+   "shape": "사전",
+   "textbookKinds": [
+    {
+     "book": "gaenyeom-1-2",
+     "key": "1-2/p116/현",
+     "term": "현",
+     "kind": "정의",
+     "match": "exact"
+    }
+   ],
+   "changedFromDraft": false
+  },
+  {
+   "id": "g9-tangent-line",
+   "name": "접선",
+   "grade": 9,
+   "unit": "g9-circle",
+   "unitTitle": "원의 성질",
+   "kind": "정의",
+   "decidedBy": "초안 유지",
+   "votes": null,
+   "why": "",
+   "condition": "",
+   "assemblyNote": "",
+   "draftKind": "정의",
+   "draftAmbiguous": false,
+   "draftNote": "",
+   "shape": "사전",
+   "textbookKinds": [
+    {
+     "book": "gaenyeom-2-2",
+     "key": "2-2/p043/접선",
+     "term": "접선",
+     "kind": "정의",
+     "match": "exact"
+    }
+   ],
+   "changedFromDraft": false
+  },
+  {
+   "id": "g9-radius-tangent",
+   "name": "반지름과 접선",
+   "grade": 9,
+   "unit": "g9-circle",
+   "unitTitle": "원의 성질",
+   "kind": "성질",
+   "decidedBy": "초안 유지",
+   "votes": null,
+   "why": "",
+   "condition": "",
+   "assemblyNote": "",
+   "draftKind": "성질",
+   "draftAmbiguous": false,
+   "draftNote": "",
+   "shape": "완결",
+   "textbookKinds": [
+    {
+     "book": "gaenyeom-2-2",
+     "key": "2-2/p043/원의 접선과 반지름",
+     "term": "원의 접선과 반지름",
+     "kind": "성질",
+     "match": "alias"
+    },
+    {
+     "book": "gaenyeom-3-2",
+     "key": "3-2/p068/원의 접선과 반지름",
+     "term": "원의 접선과 반지름",
+     "kind": "성질",
+     "match": "alias"
+    }
+   ],
+   "changedFromDraft": false
+  },
+  {
+   "id": "g9-inscribed-angle",
+   "name": "원주각",
+   "grade": 9,
+   "unit": "g9-circle",
+   "unitTitle": "원의 성질",
+   "kind": "정의",
+   "decidedBy": "3자 일치",
+   "votes": {
+    "claude": "정의",
+    "codex": "정의",
+    "grok": "정의"
+   },
+   "why": "보정 표가 둘째 빈칸을 뜻(현) 쪽으로 옮긴다 — 중심각의 절반은 보기 · 함정에",
+   "condition": "보정 표와 함께 — 지금 문장은 둘째 빈칸이 성질 쪽",
+   "assemblyNote": "",
+   "draftKind": "정의",
+   "draftAmbiguous": true,
+   "draftNote": "정의 + 성질(중심각의 절반)",
+   "shape": "사전+",
+   "textbookKinds": [
+    {
+     "book": "gaenyeom-3-2",
+     "key": "3-2/p087/원주각",
+     "term": "원주각",
+     "kind": "정의",
+     "match": "exact"
+    }
+   ],
+   "changedFromDraft": false
+  },
+  {
+   "id": "g9-same-arc",
+   "name": "같은 호의 원주각",
+   "grade": 9,
+   "unit": "g9-circle",
+   "unitTitle": "원의 성질",
+   "kind": "성질",
+   "decidedBy": "초안 유지",
+   "votes": null,
+   "why": "",
+   "condition": "",
+   "assemblyNote": "",
+   "draftKind": "성질",
+   "draftAmbiguous": false,
+   "draftNote": "",
+   "shape": "완결",
+   "textbookKinds": [
+    {
+     "book": "gaenyeom-3-2",
+     "key": "3-2/p088/원주각의 성질",
+     "term": "원주각의 성질",
+     "kind": "성질",
+     "match": "alias"
+    }
+   ],
+   "changedFromDraft": false
+  },
+  {
+   "id": "g9-deviation",
+   "name": "편차",
+   "grade": 9,
+   "unit": "g9-statistics",
+   "unitTitle": "통계와 상관관계",
+   "kind": "정의",
+   "decidedBy": "초안 유지",
+   "votes": null,
+   "why": "",
+   "condition": "",
+   "assemblyNote": "",
+   "draftKind": "정의",
+   "draftAmbiguous": false,
+   "draftNote": "",
+   "shape": "사전",
+   "textbookKinds": [
+    {
+     "book": "gaenyeom-3-2",
+     "key": "3-2/p117/편차",
+     "term": "편차",
+     "kind": "정의",
+     "match": "exact"
+    }
+   ],
+   "changedFromDraft": false
+  },
+  {
+   "id": "g9-variance",
+   "name": "분산",
+   "grade": 9,
+   "unit": "g9-statistics",
+   "unitTitle": "통계와 상관관계",
+   "kind": "정의",
+   "decidedBy": "초안 유지",
+   "votes": null,
+   "why": "",
+   "condition": "",
+   "assemblyNote": "",
+   "draftKind": "정의",
+   "draftAmbiguous": false,
+   "draftNote": "",
+   "shape": "사전",
+   "textbookKinds": [
+    {
+     "book": "gaenyeom-3-2",
+     "key": "3-2/p117/분산",
+     "term": "분산",
+     "kind": "정의",
+     "match": "exact"
+    }
+   ],
+   "changedFromDraft": false
+  },
+  {
+   "id": "g9-standard-deviation",
+   "name": "표준편차",
+   "grade": 9,
+   "unit": "g9-statistics",
+   "unitTitle": "통계와 상관관계",
+   "kind": "정의",
+   "decidedBy": "초안 유지",
+   "votes": null,
+   "why": "",
+   "condition": "",
+   "assemblyNote": "",
+   "draftKind": "정의",
+   "draftAmbiguous": false,
+   "draftNote": "",
+   "shape": "사전",
+   "textbookKinds": [
+    {
+     "book": "gaenyeom-3-2",
+     "key": "3-2/p117/표준편차",
+     "term": "표준편차",
+     "kind": "정의",
+     "match": "exact"
+    }
+   ],
+   "changedFromDraft": false
+  },
+  {
+   "id": "g9-scatterplot",
+   "name": "산점도",
+   "grade": 9,
+   "unit": "g9-statistics",
+   "unitTitle": "통계와 상관관계",
+   "kind": "정의",
+   "decidedBy": "초안 유지",
+   "votes": null,
+   "why": "",
+   "condition": "",
+   "assemblyNote": "",
+   "draftKind": "정의",
+   "draftAmbiguous": false,
+   "draftNote": "",
+   "shape": "사전",
+   "textbookKinds": [
+    {
+     "book": "gaenyeom-3-2",
+     "key": "3-2/p135/산점도",
+     "term": "산점도",
+     "kind": "정의",
+     "match": "exact"
+    }
+   ],
+   "changedFromDraft": false
+  },
+  {
+   "id": "g9-correlation",
+   "name": "상관관계",
+   "grade": 9,
+   "unit": "g9-statistics",
+   "unitTitle": "통계와 상관관계",
+   "kind": "정의",
+   "decidedBy": "초안 유지",
+   "votes": null,
+   "why": "",
+   "condition": "",
+   "assemblyNote": "",
+   "draftKind": "정의",
+   "draftAmbiguous": false,
+   "draftNote": "양·음의 상관관계를 한 문장에",
+   "shape": "완결",
+   "textbookKinds": [
+    {
+     "book": "gaenyeom-3-2",
+     "key": "3-2/p135/상관관계",
+     "term": "상관관계",
+     "kind": "정의",
+     "match": "exact"
+    },
+    {
+     "book": "gaenyeom-3-2",
+     "key": "3-2/p135/양의 상관관계",
+     "term": "양의 상관관계",
+     "kind": "정의",
+     "match": "alias"
+    },
+    {
+     "book": "gaenyeom-3-2",
+     "key": "3-2/p135/음의 상관관계",
+     "term": "음의 상관관계",
+     "kind": "정의",
+     "match": "alias"
+    }
+   ],
+   "changedFromDraft": false
+  }
+ ]
+}

@@ -6,8 +6,11 @@ import type {
   ExplorerState,
   WorkshopView,
 } from "@/contracts/mathExplorers.contract";
+import { ConceptNameRow } from "./ExplorerConceptHead";
 import { ExplorerPracticeFrame } from "./ExplorerPractice";
+import { EnterKey, NumberKey } from "@/components/math-srs/AnswerKeyCaps";
 import pageTurn from "@/components/math-srs/question-page-turn.module.css";
+import { answerKey } from "@/components/math-srs/useAnswerKeys";
 import { ExplorerChoiceText, ExplorerMath } from "./ExplorerMath";
 import s from "./math-explorers.module.css";
 
@@ -165,10 +168,12 @@ function WorkshopActivity({
         tabIndex={0}
         aria-label="분수 조작 활동"
       >
-        <div className={s.activityMeta}>
-          <span>통분 · 조각으로 이해하기</span>
-          <span>{stageNames[stage]}</span>
-        </div>
+        {/* 풀이 화면과 같은 이름 줄(05 §8.19 · D-143) — 붙은 개념 이름 + 갈래 딱지 · «조각 활동 · 단계» */}
+        <ConceptNameRow
+          cardId={workshop.attachedTo.cardId}
+          name="통분"
+          side={`조각 활동 · ${stageNames[stage]}`}
+        />
         <h2 className={s.questionTitle}>
           <ExplorerMath text={workshop.prompt} />
         </h2>
@@ -237,6 +242,7 @@ function WorkshopActivity({
                         disabled={disabled}
                         aria-label={`${index + 1}번째 분수 ${part + 1}번째 조각`}
                         aria-pressed={parts[index].includes(part)}
+                        data-answer-control=""
                         onClick={() =>
                           setParts((current) =>
                             current.map((selection, item) =>
@@ -278,12 +284,14 @@ function WorkshopActivity({
                   type="button"
                   key={choice.id}
                   aria-label={`${index + 1} ${choice.label}`}
+                  aria-keyshortcuts={answerKey(index)}
                   aria-pressed={chosen === choice.id}
+                  data-answer-control=""
                   disabled={disabled}
                   data-anim={motion[choice.id]}
                   onClick={() => choose(choice.id)}
                 >
-                  <span className={s.answerNumber}>{index + 1}</span>
+                  <NumberKey index={index} className={s.answerNumber} />
                   <ExplorerChoiceText
                     className={s.answerText}
                     text={choice.label}
@@ -321,6 +329,7 @@ function WorkshopActivity({
                         type="button"
                         disabled={disabled || factors[index] <= 1}
                         aria-label={`${index + 1}번째 분수 나누는 수 줄이기`}
+                        data-answer-control=""
                         onClick={() =>
                           setFactors(
                             (current) =>
@@ -343,6 +352,7 @@ function WorkshopActivity({
                           factors[index] >= (stage === "split" ? 4 : 6)
                         }
                         aria-label={`${index + 1}번째 분수 나누는 수 늘리기`}
+                        data-answer-control=""
                         onClick={() =>
                           setFactors(
                             (current) =>
@@ -368,12 +378,14 @@ function WorkshopActivity({
               <button
                 type="button"
                 className={s.confirm}
+                aria-keyshortcuts="Enter"
                 disabled={disabled}
                 onClick={confirm}
               >
                 {stage === "check"
                   ? "칠한 조각 확인하기"
                   : "나눈 조각 확인하기"}
+                <EnterKey />
               </button>
             </div>
           </>

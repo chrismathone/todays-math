@@ -6,6 +6,7 @@ import type {
   ExplorerState,
 } from "@/contracts/mathExplorers.contract";
 import { gradeLabel, type ExplorerCard } from "./ExplorerHome";
+import { ConceptKindTag, conceptHeadingLabel } from "./ExplorerConceptHead";
 import { ExplorerMath } from "./ExplorerMath";
 import s from "./math-explorers.module.css";
 
@@ -79,8 +80,14 @@ export default function ExplorerCardDialog({
           <p>
             {unit ? `${gradeLabel(unit.grade)} · ${unit.title}` : "개념 카드"}
           </p>
-          <h2 id="explorer-card-title">
+          <h2
+            id="explorer-card-title"
+            aria-label={conceptHeadingLabel(card.id, card.name)}
+          >
             <ExplorerMath text={card.name} />
+            {/* 풀이 화면과 같은 갈래 딱지(05 §8.19 · D-143). 이 창의 «정의» 문구도 «뜻»으로 — 딱지(방법 · 성질 …)와
+                어긋나지 않게(D-143 ⑥, Claude · codex · grok 셋 다 (나)). */}
+            <ConceptKindTag cardId={card.id} large />
           </h2>
         </div>
         <button type="button" aria-label="개념 카드 닫기" onClick={onClose}>
@@ -137,8 +144,8 @@ export default function ExplorerCardDialog({
               {active && !canReveal
                 ? "탐험과 오답 복습을 마친 뒤 해설을 볼 수 있어요."
                 : canReveal
-                  ? "필요할 때 정의와 해설을 열어 확인해 보세요."
-                  : "정의를 만나고 세 활동을 해결하면 내 카드로 모을 수 있어요."}
+                  ? "필요할 때 뜻과 해설을 열어 확인해 보세요."
+                  : "뜻을 만나고 세 활동을 해결하면 내 카드로 모을 수 있어요."}
             </p>
             {canReveal ? (
               <button
@@ -147,7 +154,7 @@ export default function ExplorerCardDialog({
                 disabled={busy}
                 onClick={onSolution}
               >
-                {busy ? "불러오는 중…" : "정의와 해설 보기"}
+                {busy ? "불러오는 중…" : "뜻과 해설 보기"}
               </button>
             ) : null}
           </>

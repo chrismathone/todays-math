@@ -13,6 +13,8 @@ import { getCourseSection } from "@/lib/math-srs/elementary/catalog";
 import { solutionForDisplay } from "@/lib/solutionSteps";
 import CourseProgressBoard from "./CourseProgressBoard";
 import AnswerFeedbackEffect from "./AnswerFeedbackEffect";
+import { EnterKey, NumberKey, SwapArrow } from "./AnswerKeyCaps";
+import { answerKey, useAnswerKeys } from "./useAnswerKeys";
 import s from "./elementary-practice.module.css";
 import pageTurn from "./question-page-turn.module.css";
 
@@ -235,6 +237,8 @@ function CourseQuestion({
   const questionHeading = useRef<HTMLHeadingElement>(null);
   const nextButton = useRef<HTMLButtonElement>(null);
   const input = useRef<HTMLInputElement>(null);
+  const questionRoot = useRef<HTMLElement>(null);
+  useAnswerKeys(questionRoot);
   const submitted = useRef(false);
   const figure = useProblemFigure(problem.figureUrl, onAuthFailure);
   const attempt =
@@ -370,6 +374,7 @@ function CourseQuestion({
 
   return (
     <section
+      ref={questionRoot}
       className={`${s.question} ${s.studentQuestion} ${s.fixedQuestion}`}
       data-answer-mode={
         useChoices ? "choices" : useInteractive ? "fraction" : "written"
@@ -595,6 +600,7 @@ function CourseQuestion({
                             type="button"
                             aria-label={`${part + 1}번째 칸`}
                             aria-pressed={selectedParts.includes(part)}
+                            data-answer-control=""
                             className={s.fractionPart}
                             disabled={locked || hasFeedback}
                             onClick={() => {
@@ -624,7 +630,9 @@ function CourseQuestion({
                         key={`${choiceIndex}-${choice}`}
                         type="button"
                         className={s.answerChoice}
+                        aria-keyshortcuts={answerKey(choiceIndex)}
                         aria-pressed={selectedAnswer === choice}
+                        data-answer-control=""
                         data-result={
                           hasFeedback && selectedAnswer === choice
                             ? feedback.correct
@@ -640,9 +648,10 @@ function CourseQuestion({
                           sendAnswer({ submittedAnswer: choice });
                         }}
                       >
-                        <span className={s.choiceNumber}>
-                          {choiceIndex + 1}
-                        </span>
+                        <NumberKey
+                          index={choiceIndex}
+                          className={s.choiceNumber}
+                        />
                         <MathText text={choice} as="span" />
                       </button>
                     ))}
@@ -706,6 +715,7 @@ function CourseQuestion({
                     type="submit"
                     form="course-answer-form"
                     className={s.primary}
+                    aria-keyshortcuts="Enter"
                     disabled={locked || hasFeedback}
                   >
                     {busy
@@ -713,7 +723,8 @@ function CourseQuestion({
                       : useInteractive
                         ? "완성했어요"
                         : "정답 확인"}
-                    <span aria-hidden="true">→</span>
+                    <SwapArrow />
+                    <EnterKey />
                   </button>
                 )}
               </div>

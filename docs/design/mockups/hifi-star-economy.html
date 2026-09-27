@@ -1,0 +1,276 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>별 경제 Hi-fi — 한 칸 별 · 끝없는 기지</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
+<style>
+/* 별 경제 Hi-fi 시안 (D-07 · D-144). 규칙은 3자 합의로 정해졌다 — 한 칸 보장 3 · 기지 3·6·12 뒤 12씩 끝없이.
+   여기서는 «화면에 새로 보이는 것» 네 가지의 모양만 고른다:
+     ⑴ 오늘의 한 칸 완료 줄의 별 ⑵ 홈 «우리 기지» 단추의 모은 별 ⑶ 우리 기지 시트 ⑷ 칸을 얻은 순간의 효과.
+   제품 CSS 를 옮겼다 — 새 색 · 새 글꼴 없음:
+     src/components/math-explorers/math-explorers.module.css (오늘의 한 칸 1679~1762 · 도구 줄 1764~1787 · 기지 1820~1845 ·
+     단추 331~350 · 상자 효과 651~697 · 대화창 1300~1345)
+     src/app/globals.css 80~103 (학습 토큰). 금색 = 지금 상자 효과(#936626 · #e2a020 · #fff1b5) · 초록 = 완료 줄(#177450) · 코발트 = 단추(#3159de). */
+:root {
+  --ink: #172b4d; --muted: #596c86; --accent: #3159df; --bg: #f4f6fa; --soft: #edf2ff;
+  --page: #fafaf8; --ctl: #b9b9b6;
+  --pw: 320px; --ph: 640px;
+}
+body.w390 { --pw: 390px; --ph: 760px; }
+* { box-sizing: border-box; }
+body { margin: 0; background: var(--page); color: #161616; font-family: "Pretendard Variable", Pretendard, "Malgun Gothic", system-ui, sans-serif; font-size: 14px; line-height: 1.55; }
+button { font: inherit; color: inherit; }
+:where(button):focus-visible { outline: 3px solid #82a1ff; outline-offset: 2px; }
+.tab, .wbtn { cursor: pointer; }
+.wrap { max-width: 1240px; margin: 0 auto; padding: 28px 24px 72px; }
+@media (max-width: 600px) { .wrap { padding-inline: 16px; } }
+.eyebrow { margin: 0; font-size: 12px; letter-spacing: .06em; color: #61615e; }
+h1 { margin: 6px 0 8px; font-size: 28px; line-height: 1.3; letter-spacing: -.02em; }
+.lede { margin: 0; max-width: 76ch; color: #61615e; font-size: 15px; }
+.lede b { color: #161616; }
+.ask { margin: 18px 0; border: 1px solid var(--ctl); border-radius: 8px; background: #fff; padding: 16px 20px; }
+.ask h2 { margin: 0 0 8px; font-size: 18px; }
+.ask ol { margin: 0; padding-left: 20px; display: grid; gap: 6px; color: #61615e; }
+.ask b { color: #161616; }
+.toolbar { position: sticky; top: 0; z-index: 30; display: flex; flex-wrap: wrap; gap: 6px 10px; align-items: center; padding: 10px 0; background: var(--page); border-block: 1px solid var(--ctl); }
+.tabs { display: flex; flex-wrap: wrap; gap: 4px; }
+.tab { padding: 7px 12px; border: 1px solid transparent; border-radius: 8px; background: none; color: #61615e; font-size: 13px; font-weight: 600; }
+.tab b { color: #161616; margin-right: 6px; }
+.tab[aria-selected="true"] { background: #fff; border-color: var(--ctl); color: #161616; box-shadow: inset 0 -2px 0 var(--accent); }
+.widths { margin-left: auto; display: flex; gap: 4px; align-items: center; font-size: 12px; color: #61615e; }
+.wbtn { border: 1px solid var(--ctl); background: #fff; border-radius: 6px; padding: 4px 10px; font-size: 12px; }
+.wbtn[aria-pressed="true"] { border-color: #161616; font-weight: 700; box-shadow: inset 0 -2px 0 var(--accent); }
+.thesis { margin: 20px 0 6px; }
+.thesis h2 { margin: 0 0 4px; font-size: 21px; }
+.thesis p { margin: 0; max-width: 78ch; color: #61615e; }
+.spec { margin: 10px 0 16px; display: grid; grid-template-columns: max-content minmax(0, 1fr); gap: 4px 14px; font-size: 13px; max-width: 980px; }
+.spec dt { font-weight: 700; }
+.spec dd { margin: 0; color: #61615e; }
+.cuts { display: flex; flex-wrap: wrap; gap: 18px; align-items: flex-start; }
+.cut { margin: 0; display: grid; gap: 8px; width: calc(var(--pw) + 12px); }
+.cut figcaption { font-size: 12.5px; color: #61615e; }
+.cut figcaption b { color: #161616; }
+
+/* ── 폰 ─────────────────────────────────────────────── */
+.phone { width: calc(var(--pw) + 12px); border: 6px solid #232323; border-radius: 26px; background: #fff; overflow: hidden; }
+.scr { position: relative; width: var(--pw); height: var(--ph); overflow: hidden; background: var(--bg); color: #192f52; }
+.top { height: 52px; display: flex; align-items: center; justify-content: space-between; padding: 0 16px; background: #fff; border-bottom: 1px solid #e2e8f3; font-size: 15px; font-weight: 800; color: #14243d; }
+.top span { font-size: 12px; font-weight: 500; color: var(--muted); }
+.home { display: grid; gap: 16px; padding: 14px 12px; }
+@media (max-width: 99999px) { body:not(.w390) .home { gap: 12px; } }
+/* 오늘의 한 칸 — .todayMission */
+.today { padding: 20px; background: #fff; border: 1px solid #e2e8f3; border-radius: 22px; box-shadow: 0 8px 28px #1c335007; }
+body:not(.w390) .today { padding: 16px; border-radius: 18px; }
+.meta { display: flex; align-items: center; justify-content: space-between; gap: 12px; color: #3156cd; font-size: 13px; font-weight: 750; }
+.subt { margin: 14px 0 5px; color: #61748e; font-size: 12px; line-height: 1.5; }
+.today h1 { margin: 0; color: #19314f; font-size: clamp(20px, 5.8vw, 28px); line-height: 1.35; letter-spacing: -.04em; }
+body:not(.w390) .today h1 { font-size: 20px; }
+body.w390 .today h1 { font-size: 22.6px; }
+.prog { height: 7px; overflow: hidden; border-radius: 8px; background: #e9eef7; margin: 16px 0; }
+.prog > span { display: block; height: 100%; width: 100%; border-radius: inherit; background: #3458dd; }
+.done { margin: 0; padding: 10px 0 2px; color: #177450; font-size: 14px; line-height: 1.6; word-break: keep-all; }
+.done > .ck { margin-right: 5px; }
+/* 별 표시 — 안마다 다르다 */
+.done b.num { font-weight: 800; font-variant-numeric: tabular-nums; }
+.pill { display: inline-flex; align-items: center; gap: 3px; margin-left: 6px; padding: 1px 9px 1px 7px; border-radius: 999px; background: #fff1b5; color: #936626; font-size: 13px; font-weight: 800; font-variant-numeric: tabular-nums; vertical-align: 1px; white-space: nowrap; }
+.pill i { font-style: normal; color: #e2a020; }
+.why { display: block; margin-top: 2px; color: #61748e; font-size: 12px; }
+.toward { display: flex; align-items: center; gap: 8px; margin-top: 10px; color: #61748e; font-size: 12px; }
+.toward .bar { flex: 1; height: 5px; border-radius: 5px; background: #e9eef7; overflow: hidden; }
+.toward .bar > span { display: block; height: 100%; background: #3458dd; }
+.toward b { color: #24405f; font-variant-numeric: tabular-nums; }
+.ledger { margin: 10px 0 0; padding: 9px 11px; border-radius: 12px; background: #f6f8fc; display: grid; gap: 3px; font-size: 12.5px; color: #425b79; }
+.ledger div { display: flex; justify-content: space-between; }
+.ledger div b { font-variant-numeric: tabular-nums; color: #24405f; }
+.ledger div.sum { border-top: 1px solid #e2e8f3; padding-top: 4px; font-weight: 750; color: #24405f; }
+/* 진도판 자리 */
+.board { height: 170px; border-radius: 22px; background: #fff; display: grid; place-items: center; color: #9aa9bf; font-size: 12px; }
+body:not(.w390) .board { border-radius: 18px; }
+/* 도구 줄 — .resourceLinks */
+.links { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px; }
+.links > span { position: relative; display: flex; align-items: center; justify-content: center; gap: 7px; min-height: 48px; padding: 8px 4px; border: 1px solid #dce5f2; border-radius: 14px; background: #fff; color: #425b79; font-size: 13px; font-weight: 700; white-space: nowrap; }
+body:not(.w390) .links > span { gap: 4px; font-size: 12px; }
+.links > span > .ic { font-size: 20px; color: #4568b6; }
+.links .count { color: #936626; font-variant-numeric: tabular-nums; font-weight: 800; }
+.links .count i { font-style: normal; color: #e2a020; }
+.links .badge { position: absolute; top: -7px; right: 6px; padding: 0 6px; border-radius: 999px; background: #fff1b5; color: #936626; font-size: 11px; font-weight: 800; line-height: 18px; font-variant-numeric: tabular-nums; }
+/* 시트 — .dialog + .baseInside */
+.dim { position: absolute; inset: 0; background: #13294d65; backdrop-filter: blur(3px); }
+.sheet { position: absolute; left: 14px; right: 14px; top: 50%; transform: translateY(-50%); max-height: calc(100% - 44px); border-radius: 21px; background: #fff; color: #213d65; box-shadow: 0 20px 80px #13284b38; overflow: hidden; display: flex; flex-direction: column; }
+.sheet header { display: flex; align-items: center; justify-content: space-between; padding: 20px 20px 16px; border-bottom: 1px solid #e9eef6; }
+.sheet header h2 { margin: 0; font-size: 19px; line-height: 1.5; font-weight: 750; }
+.sheet header span { width: 40px; height: 40px; display: grid; place-items: center; border-radius: 12px; background: #f1f4f9; color: #536986; font-size: 20px; }
+.sheet .body { padding: 16px 20px 20px; overflow: hidden; }
+.baseIn { text-align: center; }
+.baseIn > p { margin: 8px 0; color: #61748e; }
+.baseIn > h3 { margin: 0 0 14px; color: #24405f; font-size: 18.7px; }
+.emb { display: block; margin: 6px auto 12px; font-size: 80px; line-height: 1.1; color: #3157c7; }
+body:not(.w390) .emb { font-size: 64px; }
+.have strong { color: #24405f; }
+.have .gold { color: #936626; }
+.go { display: flex; align-items: center; justify-content: center; gap: 7px; width: 100%; min-height: 48px; padding: 11px 13px; border: 0; border-radius: 13px; font-size: 14px; font-weight: 750; background: #3159de; color: #fff; box-shadow: 0 3px 0 #2445b0; }
+.go.off { opacity: .5; }
+.short { margin: 8px 0 0; color: #61748e; font-size: 12.5px; }
+.stagebar { display: flex; align-items: center; gap: 8px; margin: 2px 0 14px; font-size: 12px; color: #61748e; }
+.stagebar .bar { flex: 1; height: 7px; border-radius: 8px; background: #e9eef7; overflow: hidden; }
+.stagebar .bar > span { display: block; height: 100%; background: #3458dd; }
+.stagebar b { color: #24405f; font-variant-numeric: tabular-nums; }
+.steps { display: flex; justify-content: center; gap: 5px; margin: -4px 0 12px; }
+.steps i { width: 9px; height: 9px; border-radius: 50%; background: #dfe7f4; }
+.steps i.on { background: #3157c7; }
+.steps small { font-size: 11px; color: #61748e; margin-left: 4px; }
+.chg { padding-top: 12px; margin-top: 14px; border-top: 1px solid #e4eaf2; text-align: left; }
+.chg h4 { margin: 0 0 8px; color: #38506f; font-size: 14px; }
+.chg .row { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+.chg .row span { border: 1px solid #e4eaf2; border-radius: 12px; padding: 10px; font-size: 12px; color: #61748e; text-align: center; }
+/* 효과 — .chestEffect 그대로(상자 그림 대신 별 하나) */
+.fx { position: absolute; inset: 0; z-index: 5; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 10px; color: #936626; background: radial-gradient(ellipse at center, #fff1b5dd 0, #fff6d578 34%, #fff7d000 72%); }
+.fx .burst { position: relative; width: 128px; height: 130px; display: grid; place-items: center; }
+.fx .burst > .big { font-size: 84px; line-height: 1; color: #e2a020; }
+.fx .burst > span { position: absolute; left: 50%; top: 42%; color: #e2a020; font-size: 23px; transform: translate(-50%, -50%) rotate(var(--a)) translateY(-70px); opacity: .85; }
+.fx strong { font-size: 29px; font-weight: 800; }
+.fx > span { font-size: 25px; font-weight: 750; }
+.fx small { font-size: 13px; font-weight: 600; color: #8b7950; }
+.note { margin: 14px 0 0; max-width: 80ch; color: #61615e; font-size: 13px; }
+.note b { color: #161616; }
+table.q { border-collapse: collapse; font-size: 12.5px; background: #fff; margin-top: 8px; }
+table.q th, table.q td { border: 1px solid #d6d6d3; padding: 6px 9px; text-align: left; vertical-align: top; }
+table.q th { background: #f3f3f1; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <p class="eyebrow">통합 탐험 · 별 경제 · Hi-fi · 2026-09-28 · D-144</p>
+  <h1>한 칸에 별 · 끝없는 기지 — 학생이 무엇을 보나</h1>
+  <p class="lede">규칙은 합의로 정해졌다 — <b>오늘의 칸을 얻으면 그 학습이 준 별이 3보다 적을 때 3까지 채운다</b>(은행 날 3 · 기억 복습 최소 3 · 개념 날 그대로) ·
+    <b>기지는 3 · 6 · 12 뒤로 한 단계마다 12, 끝없이</b>(3단계 뒤 이름은 «빛나는 수학 기지», 단계 수만). 지금은 카드 레벨 별이 화면에 안 보이고, 기지를 다 키우면 «성장 완료»로 멈춘다.
+    네 안은 같은 규칙을 <b>어디에 얼마나 보이나</b>만 다르다. 새 색 · 새 글꼴 없음(금색은 지금 상자 효과, 초록은 지금 완료 줄).</p>
+  <section class="ask" style="border-color:#161616">
+    <h2>결론 — 2안 + 기지 시트는 1안 (2026-09-28 · 05 §8.20)</h2>
+    <ol>
+      <li><b>안</b> 2안(Claude · codex) — grok 은 1안. 기지 시트 모은 별은 지금 글자색(codex · grok).</li>
+      <li><b>보이는 수</b> 그 칸이 준 별 합계(만장일치) · 섞일 때만 «카드 2 · 한 칸 보장 1»(Claude · codex) · «다음 탐험은 내일 열려요.» 유지(codex · grok).</li>
+      <li><b>칸 효과</b> 둔다(Claude · codex) — «오늘의 한 칸» / «별 +N», 화면이 «오늘 칸 없음 → 있음»을 본 순간 한 번.</li>
+      <li><b>우리 기지 딱지</b> 둔다(Claude · codex) · 0 이면 숨김(Claude · grok).</li>
+      <li><b>기지 시트</b> «별 N개를 더 모으면 M단계예요.» 모자랄 때만(Claude · grok) · 막대 · 점 없음(만장일치).</li>
+    </ol>
+  </section>
+  <section class="ask">
+    <h2>고를 것 (리드 · codex · grok 합의)</h2>
+    <ol>
+      <li><b>안</b> — 1 문장 안 숫자 · 2 금색 알약 + 효과 · 3 다음 단계까지 막대 · 4 별 내역 한 줄.</li>
+      <li><b>보이는 수</b> — 그 칸이 준 별 전부(카드 + 보장) 인가, 보장이 채운 수만인가.</li>
+      <li><b>칸을 얻은 순간의 효과</b> — 둘까(지금 상자 효과 모양), 둔다면 글자.</li>
+      <li><b>홈 «우리 기지» 단추의 모은 별</b> — 둘까, 어떤 모양으로.</li>
+      <li><b>기지 시트</b> — 부족한 수 한 줄 · 다음 단계까지 막대 · 단계 점 가운데 무엇.</li>
+    </ol>
+  </section>
+  <div class="toolbar">
+    <div class="tabs" role="tablist" aria-label="안">
+      <button class="tab" role="tab" data-k="1" aria-selected="true"><b>1</b>문장 안 숫자</button>
+      <button class="tab" role="tab" data-k="2" aria-selected="false"><b>2</b>금색 알약 + 효과 · 채택</button>
+      <button class="tab" role="tab" data-k="3" aria-selected="false"><b>3</b>다음 단계까지 막대</button>
+      <button class="tab" role="tab" data-k="4" aria-selected="false"><b>4</b>별 내역 한 줄</button>
+    </div>
+    <div class="widths">폰 폭
+      <button class="wbtn" data-w="320" aria-pressed="true">320</button>
+      <button class="wbtn" data-w="390" aria-pressed="false">390</button>
+    </div>
+  </div>
+  <section id="panel"></section>
+  <p class="note">장면: <b>초4</b> — 은행 날(큰 수 10문제)을 끝낸 순간 · 기지 5단계 · 모은 별 8(다음 12). <b>중2</b> — 기억 복습에서 카드 2장이 오르고(별 2) 보장 1. 규칙 · 수치는 <code>src/lib/math-explorers/starEconomy.ts</code>.</p>
+</div>
+<script>
+const V = {
+  1: { title: "1 · 문장 안 숫자", thesis: "완료 문장에 수만 넣는다. 가장 조용하다 — 단추 · 효과 없음. 기지 시트는 부족한 수 한 줄.",
+       spec: [["완료 줄", "«✓ 한 칸 전진했어요. 별 3개를 받았어요.» 초록 문장 안 숫자만 굵게"], ["우리 기지 단추", "그대로"], ["효과", "없음"], ["기지 시트", "단계 · 이름 · 모은 별 · «기지 키우기 · ✦ 12» · «별 4개를 더 모으면 6단계예요.»"]] },
+  2: { title: "2 · 금색 알약 + 효과", thesis: "지금 상자 보상의 금색을 그대로 빌린다 — 완료 줄 끝 알약 «✦ +3», 우리 기지 단추 모서리 «✦ 8», 칸을 얻은 순간 상자 효과 모양(상자 대신 별)으로 1.2초.",
+       spec: [["완료 줄", "«✓ 한 칸 전진했어요.» + 금색 알약 «✦ +3» (보장이 섞이면 아래 작은 줄 «카드 2 · 한 칸 보장 1»)"], ["우리 기지 단추", "모서리 금색 딱지 «✦ 8»"], ["효과", "칸을 얻은 순간 한 번 — «오늘의 한 칸» / «별 +3» · 1.2초 · 움직임 줄이기면 멈춘 그림"], ["기지 시트", "1 과 같음"]] },
+  3: { title: "3 · 다음 단계까지 막대", thesis: "별이 «어디로 가는지»를 보인다. 완료 줄 아래 «6단계까지 ✦ 8 / 12» 막대, 기지 시트도 같은 막대. 효과 없음.",
+       spec: [["완료 줄", "«✓ 한 칸 전진했어요. 별 +3» + 아래 «6단계까지» 막대(코발트 · 진행 막대와 같은 모양)"], ["우리 기지 단추", "«✦ 8 / 12» 로 이름 옆"], ["효과", "없음"], ["기지 시트", "«5단계 → 6단계» 막대 · 모은 별 · 버튼"]] },
+  4: { title: "4 · 별 내역 한 줄", thesis: "무엇으로 받았는지를 적는다(카드 레벨 · 한 칸 보장 · 합). 단계는 점으로 — 최근 열 단계만, 넘으면 «5단계» 수.",
+       spec: [["완료 줄", "«✓ 한 칸 전진했어요.» 아래 옅은 칸 — «카드 레벨 ✦ 2 · 한 칸 보장 ✦ 1 · 합 ✦ 3»"], ["우리 기지 단추", "그대로"], ["효과", "없음"], ["기지 시트", "단계 점(최근 열) · 모은 별 · 버튼 · 부족한 수"]] },
+};
+const star = (n) => `<span class="pill"><i>✦</i>+${n}</span>`;
+function done(k, bank) {
+  const cards = bank ? 0 : 2, bonus = bank ? 3 : 1, total = cards + bonus;
+  if (k === "1") return `<p class="done"><span class="ck">✓</span>한 칸 전진했어요. 별 <b class="num">${total}</b>개를 받았어요.</p>`;
+  if (k === "2") return `<p class="done"><span class="ck">✓</span>한 칸 전진했어요.${star(total)}${!bank ? `<span class="why">카드 ${cards} · 한 칸 보장 ${bonus}</span>` : ""}</p>`;
+  if (k === "3") return `<p class="done"><span class="ck">✓</span>한 칸 전진했어요. 별 +<b class="num">${total}</b></p><div class="toward"><span>6단계까지</span><span class="bar"><span style="width:${(8 / 12) * 100}%"></span></span><b>✦ 8 / 12</b></div>`;
+  return `<p class="done"><span class="ck">✓</span>한 칸 전진했어요.</p><div class="ledger">${cards ? `<div><span>카드 레벨</span><b>✦ ${cards}</b></div>` : ""}<div><span>한 칸 보장</span><b>✦ ${bonus}</b></div><div class="sum"><span>오늘의 한 칸</span><b>✦ ${total}</b></div></div>`;
+}
+function links(k) {
+  const base = k === "2" ? `<span><span class="ic">⌂</span>우리 기지<em class="badge">✦ 8</em></span>`
+    : k === "3" ? `<span><span class="ic">⌂</span>기지 <b class="count"><i>✦</i>8/12</b></span>`
+    : `<span><span class="ic">⌂</span>우리 기지</span>`;
+  return `<div class="links"><span><span class="ic">▤</span>도감</span><span><span class="ic">⚙</span>학습 설정</span>${base}</div>`;
+}
+function home(k, bank, fx) {
+  return `<div class="phone"><div class="scr">
+    <div class="top">수학 탐험<span>test_s</span></div>
+    <div class="home">
+      <section class="today">
+        <div class="meta"><span>오늘의 한 칸 완료</span><span>${bank ? "10 / 10 문제" : "15 / 15 활동"}</span></div>
+        <p class="subt">${bank ? "초등 4학년 · 큰 수" : "중학교 2학년"}</p>
+        <h1>${bank ? "큰 수" : "기억 복습"}</h1>
+        <div class="prog"><span></span></div>
+        ${done(k, bank)}
+      </section>
+      <div class="board">진도판(그대로)</div>
+      ${links(k)}
+    </div>
+    ${fx ? `<div class="fx" role="status"><div class="burst"><span class="big">✦</span>${[0, 60, 120, 180, 240, 300].map((a) => `<span style="--a:${a}deg">✦</span>`).join("")}</div><strong>오늘의 한 칸</strong><span>별 +3</span></div>` : ""}
+  </div></div>`;
+}
+function sheet(k) {
+  const lv = 5, have = 8, cost = 12;
+  const extra = k === "3"
+    ? `<div class="stagebar"><span>5단계</span><span class="bar"><span style="width:${(have / cost) * 100}%"></span></span><span>6단계</span></div>`
+    : k === "4" ? `<div class="steps">${Array.from({ length: lv }, () => `<i class="on"></i>`).join("")}<i></i><small>${lv}단계</small></div>` : "";
+  const short = k === "3" ? "" : `<p class="short">별 ${cost - have}개를 더 모으면 ${lv + 1}단계예요.</p>`;
+  return `<div class="phone"><div class="scr">
+    <div class="top">수학 탐험<span>test_s</span></div>
+    <div class="home"><section class="today"><div class="meta"><span>오늘의 한 칸 완료</span><span>10 / 10 문제</span></div><h1>큰 수</h1></section></div>
+    <div class="dim"></div>
+    <div class="sheet"><header><h2>우리 기지</h2><span>×</span></header>
+      <div class="body"><section class="baseIn">
+        <span class="emb">⌂</span>
+        <p>${lv}단계</p>
+        <h3>빛나는 수학 기지</h3>
+        ${extra}
+        <p class="have">모은 별 <strong class="${k === "2" ? "gold" : ""}">✦ ${have}${k === "3" ? ` / ${cost}` : ""}</strong></p>
+        <div class="go off">기지 키우기 · ✦ ${cost}</div>
+        ${short}
+        <div class="chg"><h4>탐험 보상</h4><div class="row"><span>보상 획득</span><span>보상 획득</span></div></div>
+      </section></div>
+    </div>
+  </div></div>`;
+}
+let cur = "1";
+function render() {
+  const v = V[cur];
+  document.getElementById("panel").innerHTML = `
+    <div class="thesis"><h2>${v.title}</h2><p>${v.thesis}</p></div>
+    <dl class="spec">${v.spec.map(([a, b]) => `<dt>${a}</dt><dd>${b}</dd>`).join("")}</dl>
+    <div class="cuts">
+      <figure class="cut">${home(cur, true, false)}<figcaption><b>초4 은행 날 끝</b> — 홈으로 돌아온 모습</figcaption></figure>
+      <figure class="cut">${home(cur, false, false)}<figcaption><b>중2 기억 복습 날 끝</b> — 카드 2 + 한 칸 보장 1</figcaption></figure>
+      ${cur === "2" ? `<figure class="cut">${home(cur, true, true)}<figcaption><b>칸을 얻은 순간</b> — 1.2초 효과(지금 상자 효과 모양 · 상자 대신 별)</figcaption></figure>` : ""}
+      <figure class="cut">${sheet(cur)}<figcaption><b>우리 기지</b> — 5단계 · 모은 별 8 · 다음 12</figcaption></figure>
+    </div>`;
+}
+document.querySelectorAll(".tab").forEach((b) => b.addEventListener("click", () => {
+  cur = b.dataset.k;
+  document.querySelectorAll(".tab").forEach((t) => t.setAttribute("aria-selected", String(t === b)));
+  render();
+}));
+document.querySelectorAll(".wbtn").forEach((b) => b.addEventListener("click", () => {
+  document.body.classList.toggle("w390", b.dataset.w === "390");
+  document.querySelectorAll(".wbtn").forEach((t) => t.setAttribute("aria-pressed", String(t === b)));
+}));
+render();
+</script>
+</body>
+</html>

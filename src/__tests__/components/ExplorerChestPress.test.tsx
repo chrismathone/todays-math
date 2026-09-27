@@ -112,12 +112,14 @@ function server(initial: StoredExplorer) {
   let stored = initial;
   let revision = 3;
   const posts: ExplorerRequest[] = [];
+  let expedition: unknown = undefined;
   const data = (feedback: unknown = null) => ({
     ...explorerView(stored, today),
     today,
     student,
     revision,
     feedback,
+    ...(expedition ? { expedition } : {}),
   });
   const apply = (input: ExplorerRequest) => {
     const result = applyExplorerAction(
@@ -169,6 +171,10 @@ function server(initial: StoredExplorer) {
   return {
     posts,
     stars: () => stored.profile.stars,
+    /** 이후 응답에 실을 오늘의 탐험(D-144 칸 효과를 켜는 값). */
+    setExpedition(value: unknown) {
+      expedition = value;
+    },
     /** 다음 POST 하나를 이렇게 답한다. */
     next(reply: "offline" | "lost" | "conflict" | 500 | 400) {
       replies.push(async (input) => {
@@ -304,6 +310,8 @@ describe("chest press — shown at once, taken back on failure", () => {
     expect(ready[0].getAttribute("data-state")).toBe("opened");
     expect(within(sheet).getByText("✦ 6")).toBeTruthy();
     expect(within(sheet).getByText("보물 발견!")).toBeTruthy();
+    // 효과는 시트 안 하나뿐 — 페이지 끝의 옛 자리에 한 벌 더 뜨지 않는다.
+    expect(screen.getAllByText("보물 발견!")).toHaveLength(1);
     expect(grow).toBeDisabled();
     await waitFor(() => expect(api.posts).toHaveLength(1));
 
@@ -618,5 +626,42 @@ describe("chest press — queue, reload, leaving and other buttons", () => {
     await act(async () => release());
     await waitFor(() => expect(api.stars()).toBe(7));
     expect(api.posts).toHaveLength(2);
+  });
+});
+
+describe("chest press — with the day's tile effect (D-144)", () => {
+  it("waits with the tile effect until the sheet closes when a reload brings today's tile in", async () => {
+    const api = server(storedWithReadyChests());
+    api.setExpedition({
+      mission: null,
+      next: null,
+      completedToday: false,
+      canStart: true,
+    });
+    const { sheet, ready } = await openBase();
+    api.next("conflict");
+    api.setExpedition({
+      mission: null,
+      next: null,
+      completedToday: true,
+      canStart: false,
+      todayStars: { cards: 2, bonus: 1 },
+    });
+
+    fireEvent.click(ready[0]);
+    await waitFor(() =>
+      expect(
+        within(sheet).getByText(
+          "다른 화면에서 기록이 바뀌어 최신 기록을 불러왔어요.",
+        ),
+      ).toBeTruthy(),
+    );
+    // 모달 시트 밖에 그리면 가려져 소모된다 — 시트가 열린 동안은 기다린다.
+    expect(screen.queryByText("별 +3")).toBeNull();
+
+    fireEvent.click(
+      within(sheet).getByRole("button", { name: "우리 기지 닫기" }),
+    );
+    expect(await screen.findByText("별 +3")).toBeTruthy();
   });
 });

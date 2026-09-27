@@ -25,7 +25,9 @@ import {
   definitionWeak,
 } from "./definition-cards";
 import type { DefinitionAction } from "./types";
+import { conceptSentence } from "./conceptSentenceFixes";
 import { ExplorerActionConflict, ExplorerActionInvalid } from "./errors";
+import { baseUpgradeCost } from "./starEconomy";
 import {
   applyWorkshopAction,
   isWorkshopAction,
@@ -35,7 +37,8 @@ import {
 
 export { ExplorerActionConflict, ExplorerActionInvalid } from "./errors";
 
-export const explorerUpgradeCosts = [3, 6, 12] as const;
+/** 기지 비용은 `starEconomy.ts` 한 곳(D-144) — 3 · 6 · 12 뒤로 한 단계마다 12, 끝 없음. */
+export { baseUpgradeCost as explorerUpgradeCost } from "./starEconomy";
 
 export function createExplorerState(
   studentId: string,
@@ -119,9 +122,7 @@ export function applyExplorerAction(
     }
     feedback = applyWorkshopAction(profile, action, date);
   } else if (action.type === "upgrade") {
-    const cost = explorerUpgradeCosts[profile.level];
-    if (cost === undefined)
-      throw new ExplorerActionInvalid("기지를 모두 완성했어요.");
+    const cost = baseUpgradeCost(profile.level);
     if (profile.stars < cost)
       throw new ExplorerActionInvalid(
         `별 ${cost - profile.stars}개를 더 모아 주세요.`,
@@ -146,7 +147,8 @@ export function applyExplorerAction(
       solution: {
         cardId: card.id,
         name: card.name,
-        definition: card.definition,
+        // 보이는 문장은 보정 표를 지난다(D-143 ④) — 원본은 그대로.
+        definition: conceptSentence(card).definition,
         explanation: card.explanation,
         note: card.note,
         examples: card.examples.map((example) => ({
@@ -352,7 +354,7 @@ export function explorerView(
       prompt: read
         ? "개념의 뜻을 읽어 보세요."
         : task.kind === 0
-          ? "말 조각을 순서대로 골라 정의를 완성하세요."
+          ? "말 조각을 순서대로 골라 문장을 완성하세요."
           : task.kind === 1
             ? card.exampleTitle
             : card.trap,
@@ -369,10 +371,16 @@ export function explorerView(
                     ? "맞다"
                     : "아니다",
           })),
+      // 뜻 · 조립 조각은 보정 표를 지난다(D-143 ④) — 빈칸(정답 조각)은 그대로라 채점은 안 바뀐다.
       ...(read
-        ? { reading: { definition: card.definition, note: card.note } }
+        ? {
+            reading: {
+              definition: conceptSentence(card).definition,
+              note: card.note,
+            },
+          }
         : task.kind === 0
-          ? { pieces: card.pieces }
+          ? { pieces: conceptSentence(card).pieces }
           : {}),
     };
   }

@@ -27,8 +27,12 @@ import {
   unitPosition,
   type ForecastUnit,
 } from "@/lib/math-explorers/journeyForecast";
+import {
+  baseStageName,
+  baseUpgradeCost,
+} from "@/lib/math-explorers/starEconomy";
 import { ExplorerMath } from "./ExplorerMath";
-import { ExplorerChests } from "./ExplorerPieces";
+import { ExplorerChests, TileStars } from "./ExplorerPieces";
 import r from "./chest-reward.module.css";
 import s from "./math-explorers.module.css";
 
@@ -51,7 +55,7 @@ const sameChests = (a: readonly Chest[], b: readonly Chest[]) =>
       chest.solved === b[index]!.solved &&
       chest.after === b[index]!.after,
   );
-/** A saved-press failure, one per chest, shown under its row (05 §8.19). */
+/** A saved-press failure, one per chest, shown under its row (05 §8.21). */
 export type ChestNotice = {
   chestId: string;
   text: string;
@@ -220,6 +224,7 @@ export default function ExplorerHome({
   chestNotices = NO_NOTICES,
   chestEffect,
   onCloseBase,
+  onSheetChange,
   onAction,
   onStart,
   onResume,
@@ -237,6 +242,8 @@ export default function ExplorerHome({
   /** The reward effect, drawn inside the base sheet so the modal cannot hide it. */
   chestEffect?: ReactNode;
   onCloseBase?: () => void;
+  /** Whether a home sheet (modal) is open — page-level effects wait for it. */
+  onSheetChange?: (open: boolean) => void;
   onAction: (action: ExplorerAction) => void;
   onStart: () => void;
   onResume: () => void;
@@ -251,6 +258,11 @@ export default function ExplorerHome({
   );
   const journey = useMemo(() => explorerJourney(state), [state]);
   const reviewDay = useStableHandler(onReviewDay);
+  const sheetChange = useStableHandler((open: boolean) =>
+    onSheetChange?.(open),
+  );
+  useEffect(() => sheetChange(sheet !== null), [sheet, sheetChange]);
+  useEffect(() => () => sheetChange(false), [sheetChange]);
   const claimChest = useStableHandler((chestId: string) =>
     onAction({ type: "chest", chestId }),
   );
@@ -313,6 +325,7 @@ export default function ExplorerHome({
     pendingRetry ||
     activeReview ||
     (!!state.session && !state.session.done);
+  const upgradeCost = baseUpgradeCost(state.profile.level);
   const closeSheet = () => {
     if (sheet === "base") onCloseBase?.();
     setSheet(null);
@@ -393,8 +406,11 @@ export default function ExplorerHome({
           </button>
         ) : (
           <p className={s.missionComplete}>
-            <span aria-hidden="true">✓</span> 한 칸 전진했어요. 다음 탐험은 내일
-            열려요.
+            <span aria-hidden="true">✓</span> 한 칸 전진했어요.
+            {state.expedition?.todayStars ? (
+              <TileStars {...state.expedition.todayStars} />
+            ) : null}{" "}
+            다음 탐험은 내일 열려요.
           </p>
         )}
       </section>
@@ -417,8 +433,19 @@ export default function ExplorerHome({
         <button type="button" onClick={() => setSheet("settings")}>
           <span aria-hidden="true">⚙</span>학습 설정
         </button>
-        <button type="button" onClick={() => setSheet("base")}>
+        <button
+          type="button"
+          onClick={() => setSheet("base")}
+          aria-label={
+            shown.stars ? `우리 기지, 모은 별 ${shown.stars}` : undefined
+          }
+        >
           <span aria-hidden="true">⌂</span>우리 기지
+          {shown.stars ? (
+            <em className={s.starBadge} aria-hidden="true">
+              ✦ {shown.stars}
+            </em>
+          ) : null}
         </button>
       </div>
 
@@ -546,35 +573,24 @@ export default function ExplorerHome({
               ⌂
             </span>
             <p>{state.profile.level}단계</p>
-            <h3>
-              {
-                [
-                  "작은 배움터",
-                  "수학 탐험소",
-                  "기억 연구소",
-                  "빛나는 수학 기지",
-                ][Math.min(state.profile.level, 3)]
-              }
-            </h3>
+            <h3>{baseStageName(state.profile.level)}</h3>
             <p>
               모은 별 <strong>✦ {shown.stars}</strong>
             </p>
             <button
               type="button"
               className={s.primary}
-              disabled={
-                busy ||
-                saving ||
-                state.profile.level >= 3 ||
-                state.profile.stars <
-                  ([3, 6, 12][state.profile.level] ?? Infinity)
-              }
+              disabled={busy || saving || shown.stars < upgradeCost}
               onClick={() => onAction({ type: "upgrade" })}
             >
-              {state.profile.level >= 3
-                ? "성장 완료"
-                : `기지 키우기 · ✦ ${[3, 6, 12][state.profile.level]}`}
+              기지 키우기 · ✦ {upgradeCost}
             </button>
+            {shown.stars < upgradeCost ? (
+              <p className={s.baseShort}>
+                별 {upgradeCost - shown.stars}개를 더 모으면{" "}
+                {state.profile.level + 1}단계예요.
+              </p>
+            ) : null}
           </section>
           <h3 className={s.subheading}>탐험 보상</h3>
           {state.units

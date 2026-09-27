@@ -1,0 +1,995 @@
+{
+ "source": "큐브수학 개념 3-1 진도북",
+ "file": "N:\\개인\\강아\\교재자료\\큐브수학 개념\\큐브수학 개념\\진도북\\큐브수학 개념 3-1_진도북.pdf",
+ "pages": 152,
+ "extractedAt": "2026-09-28",
+ "extractor": "scripts/qa/concept-terms/extract-cube-terms-elem34.py",
+ "toc": [
+  {
+   "chapter": "1. 덧셈과 뺄셈",
+   "sections": [
+    "받아올림이 없는 (세 자리 수)+(세 자리 수)",
+    "받아올림이 한 번 있는 (세 자리 수)+(세 자리 수)",
+    "받아올림이 여러 번 있는 (세 자리 수)+(세 자리 수)",
+    "받아내림이 없는 (세 자리 수)-(세 자리 수)",
+    "받아내림이 한 번 있는 (세 자리 수)-(세 자리 수)",
+    "받아내림이 두 번 있는 (세 자리 수)-(세 자리 수)"
+   ],
+   "pdfPages": [
+    6,
+    31
+   ]
+  },
+  {
+   "chapter": "2. 평면도형",
+   "sections": [
+    "선의 종류",
+    "각",
+    "직각",
+    "직각삼각형",
+    "직사각형",
+    "정사각형"
+   ],
+   "pdfPages": [
+    32,
+    53
+   ]
+  },
+  {
+   "chapter": "3. 나눗셈",
+   "sections": [
+    "똑같이 나누기",
+    "곱셈과 나눗셈의 관계",
+    "나눗셈의 몫을 곱셈식으로 구하기",
+    "나눗셈의 몫을 곱셈구구로 구하기"
+   ],
+   "pdfPages": [
+    54,
+    71
+   ]
+  },
+  {
+   "chapter": "4. 곱셈",
+   "sections": [
+    "(몇십)×(몇)",
+    "올림이 없는 (몇십몇)×(몇)",
+    "십의 자리에서 올림이 있는 (몇십몇)×(몇)",
+    "일의 자리에서 올림이 있는 (몇십몇)×(몇)",
+    "올림이 두 번 있는 (몇십몇)×(몇)"
+   ],
+   "pdfPages": [
+    72,
+    93
+   ]
+  },
+  {
+   "chapter": "5. 길이와 시간",
+   "sections": [
+    "1 cm보다 작은 단위",
+    "1 m보다 큰 단위",
+    "길이와 거리를 어림하고 재어 보기",
+    "1분보다 작은 단위",
+    "시간의 덧셈과 뺄셈",
+    "시간을 이용하여 문제 해결하기"
+   ],
+   "pdfPages": [
+    94,
+    117
+   ]
+  },
+  {
+   "chapter": "6. 분수와 소수",
+   "sections": [
+    "똑같이 나누기",
+    "분수",
+    "분수로 나타내기",
+    "단위분수의 크기 비교",
+    "분모가 같은 분수의 크기 비교",
+    "1보다 작은 소수",
+    "1보다 큰 소수",
+    "소수의 크기 비교"
+   ],
+   "pdfPages": [
+    118,
+    147
+   ]
+  }
+ ],
+ "sentenceStore": "문장(교재 원문)은 저장소 밖 C:\\Creative\\testautocreator-data\\I-개념용어\\cube-3-1.json — 용어마다 sentenceRef.key 로 찾는다",
+ "terms": [
+  {
+   "term": "받아올림",
+   "kind": "기타",
+   "grade": "3-1",
+   "chapter": "1. 덧셈과 뺄셈",
+   "section": "받아올림이 한 번 있는 (세 자리 수)+(세 자리 수)",
+   "pdfPage": 10,
+   "bookPage": "010쪽",
+   "key": "3-1/p010/받아올림",
+   "first": true,
+   "aliases": [],
+   "mathGarbled": false,
+   "note": "정의 문장 없음 — 소단원 제목과 설명으로 가르침(여백: 더한 값이 10 이상이면 윗자리로 올리는 과정)",
+   "evidence": "보정: 여백 설명",
+   "explorer": {
+    "match": "exact",
+    "cardId": "g3-carry",
+    "cardName": "받아올림",
+    "why": ""
+   },
+   "sentenceRef": {
+    "store": "testautocreator-data",
+    "file": "I-개념용어/cube-3-1.json",
+    "key": "3-1/p010/받아올림"
+   }
+  },
+  {
+   "term": "받아내림",
+   "kind": "기타",
+   "grade": "3-1",
+   "chapter": "1. 덧셈과 뺄셈",
+   "section": "받아내림이 한 번 있는 (세 자리 수)-(세 자리 수)",
+   "pdfPage": 18,
+   "bookPage": "018쪽",
+   "key": "3-1/p018/받아내림",
+   "first": true,
+   "aliases": [],
+   "mathGarbled": false,
+   "note": "정의 문장 없음 — 소단원 제목과 설명으로 가르침(여백: 받아내린 1이 10을 뜻함)",
+   "evidence": "보정: 여백 설명",
+   "explorer": {
+    "match": "exact",
+    "cardId": "g3-borrow",
+    "cardName": "받아내림",
+    "why": ""
+   },
+   "sentenceRef": {
+    "store": "testautocreator-data",
+    "file": "I-개념용어/cube-3-1.json",
+    "key": "3-1/p018/받아내림"
+   }
+  },
+  {
+   "term": "선분",
+   "kind": "정의",
+   "grade": "3-1",
+   "chapter": "2. 평면도형",
+   "section": "선의 종류",
+   "pdfPage": 34,
+   "bookPage": "034쪽",
+   "key": "3-1/p034/선분",
+   "first": true,
+   "aliases": [],
+   "mathGarbled": false,
+   "note": "",
+   "evidence": "색글씨+문형",
+   "explorer": {
+    "match": "exact",
+    "cardId": "g3-segment",
+    "cardName": "선분",
+    "why": ""
+   },
+   "sentenceRef": {
+    "store": "testautocreator-data",
+    "file": "I-개념용어/cube-3-1.json",
+    "key": "3-1/p034/선분"
+   }
+  },
+  {
+   "term": "곧은 선",
+   "kind": "기타",
+   "grade": "3-1",
+   "chapter": "2. 평면도형",
+   "section": "선의 종류",
+   "pdfPage": 34,
+   "bookPage": "034쪽",
+   "key": "3-1/p034/곧은 선",
+   "first": true,
+   "aliases": [],
+   "mathGarbled": false,
+   "note": "여백 예시 그림으로만 가름(문장 없음)",
+   "evidence": "보정: 여백 예시",
+   "explorer": {
+    "match": "none",
+    "cardId": "",
+    "cardName": "",
+    "why": ""
+   },
+   "sentenceRef": {
+    "store": "testautocreator-data",
+    "file": "I-개념용어/cube-3-1.json",
+    "key": "3-1/p034/곧은 선"
+   }
+  },
+  {
+   "term": "굽은 선",
+   "kind": "기타",
+   "grade": "3-1",
+   "chapter": "2. 평면도형",
+   "section": "선의 종류",
+   "pdfPage": 34,
+   "bookPage": "034쪽",
+   "key": "3-1/p034/굽은 선",
+   "first": true,
+   "aliases": [],
+   "mathGarbled": false,
+   "note": "여백 예시 그림으로만 가름(문장 없음)",
+   "evidence": "보정: 여백 예시",
+   "explorer": {
+    "match": "none",
+    "cardId": "",
+    "cardName": "",
+    "why": ""
+   },
+   "sentenceRef": {
+    "store": "testautocreator-data",
+    "file": "I-개념용어/cube-3-1.json",
+    "key": "3-1/p034/굽은 선"
+   }
+  },
+  {
+   "term": "반직선",
+   "kind": "정의",
+   "grade": "3-1",
+   "chapter": "2. 평면도형",
+   "section": "선의 종류",
+   "pdfPage": 34,
+   "bookPage": "034쪽",
+   "key": "3-1/p034/반직선",
+   "first": true,
+   "aliases": [],
+   "mathGarbled": false,
+   "note": "",
+   "evidence": "색글씨+문형",
+   "explorer": {
+    "match": "none",
+    "cardId": "",
+    "cardName": "",
+    "why": ""
+   },
+   "sentenceRef": {
+    "store": "testautocreator-data",
+    "file": "I-개념용어/cube-3-1.json",
+    "key": "3-1/p034/반직선"
+   }
+  },
+  {
+   "term": "직선",
+   "kind": "정의",
+   "grade": "3-1",
+   "chapter": "2. 평면도형",
+   "section": "선의 종류",
+   "pdfPage": 34,
+   "bookPage": "034쪽",
+   "key": "3-1/p034/직선",
+   "first": true,
+   "aliases": [],
+   "mathGarbled": false,
+   "note": "",
+   "evidence": "색글씨+문형",
+   "explorer": {
+    "match": "none",
+    "cardId": "",
+    "cardName": "",
+    "why": ""
+   },
+   "sentenceRef": {
+    "store": "testautocreator-data",
+    "file": "I-개념용어/cube-3-1.json",
+    "key": "3-1/p034/직선"
+   }
+  },
+  {
+   "term": "각",
+   "kind": "정의",
+   "grade": "3-1",
+   "chapter": "2. 평면도형",
+   "section": "각",
+   "pdfPage": 36,
+   "bookPage": "036쪽",
+   "key": "3-1/p036/각",
+   "first": true,
+   "aliases": [],
+   "mathGarbled": false,
+   "note": "",
+   "evidence": "색글씨+문형",
+   "explorer": {
+    "match": "none",
+    "cardId": "",
+    "cardName": "",
+    "why": ""
+   },
+   "sentenceRef": {
+    "store": "testautocreator-data",
+    "file": "I-개념용어/cube-3-1.json",
+    "key": "3-1/p036/각"
+   }
+  },
+  {
+   "term": "꼭짓점",
+   "kind": "정의",
+   "grade": "3-1",
+   "chapter": "2. 평면도형",
+   "section": "각",
+   "pdfPage": 36,
+   "bookPage": "036쪽",
+   "key": "3-1/p036/꼭짓점",
+   "first": true,
+   "aliases": [
+    "각의 꼭짓점"
+   ],
+   "mathGarbled": false,
+   "note": "",
+   "evidence": "색글씨+문형",
+   "explorer": {
+    "match": "none",
+    "cardId": "",
+    "cardName": "",
+    "why": ""
+   },
+   "sentenceRef": {
+    "store": "testautocreator-data",
+    "file": "I-개념용어/cube-3-1.json",
+    "key": "3-1/p036/꼭짓점"
+   }
+  },
+  {
+   "term": "변",
+   "kind": "정의",
+   "grade": "3-1",
+   "chapter": "2. 평면도형",
+   "section": "각",
+   "pdfPage": 36,
+   "bookPage": "036쪽",
+   "key": "3-1/p036/변",
+   "first": true,
+   "aliases": [
+    "각의 변"
+   ],
+   "mathGarbled": false,
+   "note": "",
+   "evidence": "색글씨+문형",
+   "explorer": {
+    "match": "none",
+    "cardId": "",
+    "cardName": "",
+    "why": ""
+   },
+   "sentenceRef": {
+    "store": "testautocreator-data",
+    "file": "I-개념용어/cube-3-1.json",
+    "key": "3-1/p036/변"
+   }
+  },
+  {
+   "term": "직각",
+   "kind": "정의",
+   "grade": "3-1",
+   "chapter": "2. 평면도형",
+   "section": "직각",
+   "pdfPage": 36,
+   "bookPage": "036쪽",
+   "key": "3-1/p036/직각",
+   "first": true,
+   "aliases": [],
+   "mathGarbled": false,
+   "note": "",
+   "evidence": "색글씨+문형",
+   "explorer": {
+    "match": "exact",
+    "cardId": "g3-right-angle",
+    "cardName": "직각",
+    "why": ""
+   },
+   "sentenceRef": {
+    "store": "testautocreator-data",
+    "file": "I-개념용어/cube-3-1.json",
+    "key": "3-1/p036/직각"
+   }
+  },
+  {
+   "term": "직각 표시",
+   "kind": "기호",
+   "grade": "3-1",
+   "chapter": "2. 평면도형",
+   "section": "직각",
+   "pdfPage": 36,
+   "bookPage": "036쪽",
+   "key": "3-1/p036/직각 표시",
+   "first": true,
+   "aliases": [],
+   "mathGarbled": false,
+   "note": "직각의 꼭짓점에 붙이는 표시 — 기호 자체는 그림이라 글자층에 없다",
+   "evidence": "보정: 본문(기호 그림)",
+   "explorer": {
+    "match": "none",
+    "cardId": "",
+    "cardName": "",
+    "why": ""
+   },
+   "sentenceRef": {
+    "store": "testautocreator-data",
+    "file": "I-개념용어/cube-3-1.json",
+    "key": "3-1/p036/직각 표시"
+   }
+  },
+  {
+   "term": "직각삼각형",
+   "kind": "정의",
+   "grade": "3-1",
+   "chapter": "2. 평면도형",
+   "section": "직각삼각형",
+   "pdfPage": 40,
+   "bookPage": "040쪽",
+   "key": "3-1/p040/직각삼각형",
+   "first": true,
+   "aliases": [],
+   "mathGarbled": false,
+   "note": "",
+   "evidence": "색글씨+문형",
+   "explorer": {
+    "match": "none",
+    "cardId": "",
+    "cardName": "",
+    "why": ""
+   },
+   "sentenceRef": {
+    "store": "testautocreator-data",
+    "file": "I-개념용어/cube-3-1.json",
+    "key": "3-1/p040/직각삼각형"
+   }
+  },
+  {
+   "term": "직사각형",
+   "kind": "정의",
+   "grade": "3-1",
+   "chapter": "2. 평면도형",
+   "section": "직사각형",
+   "pdfPage": 42,
+   "bookPage": "042쪽",
+   "key": "3-1/p042/직사각형",
+   "first": true,
+   "aliases": [],
+   "mathGarbled": false,
+   "note": "",
+   "evidence": "색글씨+문형",
+   "explorer": {
+    "match": "none",
+    "cardId": "",
+    "cardName": "",
+    "why": ""
+   },
+   "sentenceRef": {
+    "store": "testautocreator-data",
+    "file": "I-개념용어/cube-3-1.json",
+    "key": "3-1/p042/직사각형"
+   }
+  },
+  {
+   "term": "정사각형",
+   "kind": "정의",
+   "grade": "3-1",
+   "chapter": "2. 평면도형",
+   "section": "정사각형",
+   "pdfPage": 42,
+   "bookPage": "042쪽",
+   "key": "3-1/p042/정사각형",
+   "first": true,
+   "aliases": [],
+   "mathGarbled": false,
+   "note": "",
+   "evidence": "색글씨+문형",
+   "explorer": {
+    "match": "none",
+    "cardId": "",
+    "cardName": "",
+    "why": ""
+   },
+   "sentenceRef": {
+    "store": "testautocreator-data",
+    "file": "I-개념용어/cube-3-1.json",
+    "key": "3-1/p042/정사각형"
+   }
+  },
+  {
+   "term": "직사각형과 정사각형의 관계",
+   "kind": "성질",
+   "grade": "3-1",
+   "chapter": "2. 평면도형",
+   "section": "정사각형",
+   "pdfPage": 42,
+   "bookPage": "042쪽",
+   "key": "3-1/p042/직사각형과 정사각형의 관계",
+   "first": true,
+   "aliases": [],
+   "mathGarbled": false,
+   "note": "정사각형이 직사각형에 든다는 포함 관계. «관계» 소제목을 성질로 넣을지 원장님 판단",
+   "evidence": "보정: 소제목",
+   "explorer": {
+    "match": "none",
+    "cardId": "",
+    "cardName": "",
+    "why": ""
+   },
+   "sentenceRef": {
+    "store": "testautocreator-data",
+    "file": "I-개념용어/cube-3-1.json",
+    "key": "3-1/p042/직사각형과 정사각형의 관계"
+   }
+  },
+  {
+   "term": "나눗셈",
+   "kind": "정의",
+   "grade": "3-1",
+   "chapter": "3. 나눗셈",
+   "section": "똑같이 나누기",
+   "pdfPage": 56,
+   "bookPage": "056쪽",
+   "key": "3-1/p056/나눗셈",
+   "first": true,
+   "aliases": [],
+   "mathGarbled": false,
+   "note": "",
+   "evidence": "색글씨+문형",
+   "explorer": {
+    "match": "exact",
+    "cardId": "g3-division",
+    "cardName": "나눗셈",
+    "why": ""
+   },
+   "sentenceRef": {
+    "store": "testautocreator-data",
+    "file": "I-개념용어/cube-3-1.json",
+    "key": "3-1/p056/나눗셈"
+   }
+  },
+  {
+   "term": "÷",
+   "kind": "기호",
+   "grade": "3-1",
+   "chapter": "3. 나눗셈",
+   "section": "똑같이 나누기",
+   "pdfPage": 56,
+   "bookPage": "056쪽",
+   "key": "3-1/p056/÷",
+   "first": true,
+   "aliases": [
+    "나누기"
+   ],
+   "mathGarbled": false,
+   "note": "나눗셈 기호와 읽는 말(나누기)",
+   "evidence": "보정: 색글씨+쓰는꼴",
+   "explorer": {
+    "match": "none",
+    "cardId": "",
+    "cardName": "",
+    "why": ""
+   },
+   "sentenceRef": {
+    "store": "testautocreator-data",
+    "file": "I-개념용어/cube-3-1.json",
+    "key": "3-1/p056/÷"
+   }
+  },
+  {
+   "term": "나눗셈식",
+   "kind": "정의",
+   "grade": "3-1",
+   "chapter": "3. 나눗셈",
+   "section": "똑같이 나누기",
+   "pdfPage": 56,
+   "bookPage": "056쪽",
+   "key": "3-1/p056/나눗셈식",
+   "first": true,
+   "aliases": [],
+   "mathGarbled": false,
+   "note": "",
+   "evidence": "색글씨+문형",
+   "explorer": {
+    "match": "none",
+    "cardId": "",
+    "cardName": "",
+    "why": ""
+   },
+   "sentenceRef": {
+    "store": "testautocreator-data",
+    "file": "I-개념용어/cube-3-1.json",
+    "key": "3-1/p056/나눗셈식"
+   }
+  },
+  {
+   "term": "몫",
+   "kind": "정의",
+   "grade": "3-1",
+   "chapter": "3. 나눗셈",
+   "section": "똑같이 나누기",
+   "pdfPage": 56,
+   "bookPage": "056쪽",
+   "key": "3-1/p056/몫",
+   "first": true,
+   "aliases": [],
+   "mathGarbled": false,
+   "note": "",
+   "evidence": "색글씨+문형(나열)",
+   "explorer": {
+    "match": "exact",
+    "cardId": "g3-quotient",
+    "cardName": "몫",
+    "why": ""
+   },
+   "sentenceRef": {
+    "store": "testautocreator-data",
+    "file": "I-개념용어/cube-3-1.json",
+    "key": "3-1/p056/몫"
+   }
+  },
+  {
+   "term": "나누어지는 수",
+   "kind": "정의",
+   "grade": "3-1",
+   "chapter": "3. 나눗셈",
+   "section": "똑같이 나누기",
+   "pdfPage": 56,
+   "bookPage": "056쪽",
+   "key": "3-1/p056/나누어지는 수",
+   "first": true,
+   "aliases": [],
+   "mathGarbled": false,
+   "note": "",
+   "evidence": "색글씨+문형(나열)",
+   "explorer": {
+    "match": "none",
+    "cardId": "",
+    "cardName": "",
+    "why": ""
+   },
+   "sentenceRef": {
+    "store": "testautocreator-data",
+    "file": "I-개념용어/cube-3-1.json",
+    "key": "3-1/p056/나누어지는 수"
+   }
+  },
+  {
+   "term": "나누는 수",
+   "kind": "정의",
+   "grade": "3-1",
+   "chapter": "3. 나눗셈",
+   "section": "똑같이 나누기",
+   "pdfPage": 56,
+   "bookPage": "056쪽",
+   "key": "3-1/p056/나누는 수",
+   "first": true,
+   "aliases": [],
+   "mathGarbled": false,
+   "note": "",
+   "evidence": "색글씨+문형",
+   "explorer": {
+    "match": "none",
+    "cardId": "",
+    "cardName": "",
+    "why": ""
+   },
+   "sentenceRef": {
+    "store": "testautocreator-data",
+    "file": "I-개념용어/cube-3-1.json",
+    "key": "3-1/p056/나누는 수"
+   }
+  },
+  {
+   "term": "곱셈과 나눗셈의 관계",
+   "kind": "성질",
+   "grade": "3-1",
+   "chapter": "3. 나눗셈",
+   "section": "곱셈과 나눗셈의 관계",
+   "pdfPage": 58,
+   "bookPage": "058쪽",
+   "key": "3-1/p058/곱셈과 나눗셈의 관계",
+   "first": true,
+   "aliases": [],
+   "mathGarbled": false,
+   "note": "곱셈식과 나눗셈식을 서로 바꿔 쓰는 관계. «관계» 소제목을 성질로 넣을지 원장님 판단",
+   "evidence": "보정: 소단원 제목",
+   "explorer": {
+    "match": "none",
+    "cardId": "",
+    "cardName": "",
+    "why": ""
+   },
+   "sentenceRef": {
+    "store": "testautocreator-data",
+    "file": "I-개념용어/cube-3-1.json",
+    "key": "3-1/p058/곱셈과 나눗셈의 관계"
+   }
+  },
+  {
+   "term": "올림",
+   "kind": "기타",
+   "grade": "3-1",
+   "chapter": "4. 곱셈",
+   "section": "십의 자리에서 올림이 있는 (몇십몇)×(몇)",
+   "pdfPage": 80,
+   "bookPage": "080쪽",
+   "key": "3-1/p080/올림",
+   "first": true,
+   "aliases": [],
+   "mathGarbled": false,
+   "note": "정의 문장 없음 — 소단원 제목과 설명으로 가르침(여백: 올린 1이 실제로 나타내는 값)",
+   "evidence": "보정: 여백 설명",
+   "explorer": {
+    "match": "none",
+    "cardId": "",
+    "cardName": "",
+    "why": ""
+   },
+   "sentenceRef": {
+    "store": "testautocreator-data",
+    "file": "I-개념용어/cube-3-1.json",
+    "key": "3-1/p080/올림"
+   }
+  },
+  {
+   "term": "밀리미터",
+   "kind": "기호",
+   "grade": "3-1",
+   "chapter": "5. 길이와 시간",
+   "section": "1 cm보다 작은 단위",
+   "pdfPage": 96,
+   "bookPage": "096쪽",
+   "key": "3-1/p096/밀리미터",
+   "first": true,
+   "aliases": [
+    "mm"
+   ],
+   "mathGarbled": false,
+   "note": "",
+   "evidence": "색글씨+쓰고읽기",
+   "explorer": {
+    "match": "related",
+    "cardId": "g3-length",
+    "cardName": "길이 단위",
+    "why": "카드 «길이 단위»(1cm=10mm) 가 이 단위 관계를 묻는다"
+   },
+   "sentenceRef": {
+    "store": "testautocreator-data",
+    "file": "I-개념용어/cube-3-1.json",
+    "key": "3-1/p096/밀리미터"
+   }
+  },
+  {
+   "term": "킬로미터",
+   "kind": "기호",
+   "grade": "3-1",
+   "chapter": "5. 길이와 시간",
+   "section": "1 m보다 큰 단위",
+   "pdfPage": 96,
+   "bookPage": "096쪽",
+   "key": "3-1/p096/킬로미터",
+   "first": true,
+   "aliases": [
+    "km"
+   ],
+   "mathGarbled": false,
+   "note": "",
+   "evidence": "색글씨+쓰고읽기",
+   "explorer": {
+    "match": "exact",
+    "cardId": "g3-kilometer",
+    "cardName": "킬로미터",
+    "why": ""
+   },
+   "sentenceRef": {
+    "store": "testautocreator-data",
+    "file": "I-개념용어/cube-3-1.json",
+    "key": "3-1/p096/킬로미터"
+   }
+  },
+  {
+   "term": "약",
+   "kind": "기타",
+   "grade": "3-1",
+   "chapter": "5. 길이와 시간",
+   "section": "길이와 거리를 어림하고 재어 보기",
+   "pdfPage": 98,
+   "bookPage": "098쪽",
+   "key": "3-1/p098/약",
+   "first": true,
+   "aliases": [],
+   "mathGarbled": false,
+   "note": "어림한 값 앞에 붙이는 말 — 뜻을 정하는 문장이 아니라 쓰는 법",
+   "evidence": "보정: 색글씨(꼬리 없음)",
+   "explorer": {
+    "match": "none",
+    "cardId": "",
+    "cardName": "",
+    "why": ""
+   },
+   "sentenceRef": {
+    "store": "testautocreator-data",
+    "file": "I-개념용어/cube-3-1.json",
+    "key": "3-1/p098/약"
+   }
+  },
+  {
+   "term": "초",
+   "kind": "정의",
+   "grade": "3-1",
+   "chapter": "5. 길이와 시간",
+   "section": "1분보다 작은 단위",
+   "pdfPage": 102,
+   "bookPage": "102쪽",
+   "key": "3-1/p102/초",
+   "first": true,
+   "aliases": [],
+   "mathGarbled": false,
+   "note": "",
+   "evidence": "색글씨+문형",
+   "explorer": {
+    "match": "related",
+    "cardId": "g3-time",
+    "cardName": "시간 단위",
+    "why": "카드 «시간 단위»(1분=60초) — 교재는 1초를 정의하고 60초를 같은 쪽에서 가르침"
+   },
+   "sentenceRef": {
+    "store": "testautocreator-data",
+    "file": "I-개념용어/cube-3-1.json",
+    "key": "3-1/p102/초"
+   }
+  },
+  {
+   "term": "분수",
+   "kind": "정의",
+   "grade": "3-1",
+   "chapter": "6. 분수와 소수",
+   "section": "분수",
+   "pdfPage": 120,
+   "bookPage": "120쪽",
+   "key": "3-1/p120/분수",
+   "first": true,
+   "aliases": [],
+   "mathGarbled": true,
+   "note": "",
+   "evidence": "색글씨+문형",
+   "explorer": {
+    "match": "exact",
+    "cardId": "g3-fraction",
+    "cardName": "분수",
+    "why": ""
+   },
+   "sentenceRef": {
+    "store": "testautocreator-data",
+    "file": "I-개념용어/cube-3-1.json",
+    "key": "3-1/p120/분수"
+   }
+  },
+  {
+   "term": "분자",
+   "kind": "정의",
+   "grade": "3-1",
+   "chapter": "6. 분수와 소수",
+   "section": "분수",
+   "pdfPage": 120,
+   "bookPage": "120쪽",
+   "key": "3-1/p120/분자",
+   "first": true,
+   "aliases": [],
+   "mathGarbled": false,
+   "note": "그림 이름표(문장 아님) — 분수의 위 수를 가리키는 화살표 설명",
+   "evidence": "보정: 그림 이름표",
+   "explorer": {
+    "match": "exact",
+    "cardId": "g3-numerator",
+    "cardName": "분자",
+    "why": ""
+   },
+   "sentenceRef": {
+    "store": "testautocreator-data",
+    "file": "I-개념용어/cube-3-1.json",
+    "key": "3-1/p120/분자"
+   }
+  },
+  {
+   "term": "분모",
+   "kind": "정의",
+   "grade": "3-1",
+   "chapter": "6. 분수와 소수",
+   "section": "분수",
+   "pdfPage": 120,
+   "bookPage": "120쪽",
+   "key": "3-1/p120/분모",
+   "first": true,
+   "aliases": [],
+   "mathGarbled": false,
+   "note": "그림 이름표(문장 아님) — 분수의 아래 수를 가리키는 화살표 설명",
+   "evidence": "보정: 그림 이름표",
+   "explorer": {
+    "match": "exact",
+    "cardId": "g3-denominator",
+    "cardName": "분모",
+    "why": ""
+   },
+   "sentenceRef": {
+    "store": "testautocreator-data",
+    "file": "I-개념용어/cube-3-1.json",
+    "key": "3-1/p120/분모"
+   }
+  },
+  {
+   "term": "단위분수",
+   "kind": "정의",
+   "grade": "3-1",
+   "chapter": "6. 분수와 소수",
+   "section": "단위분수의 크기 비교",
+   "pdfPage": 126,
+   "bookPage": "126쪽",
+   "key": "3-1/p126/단위분수",
+   "first": true,
+   "aliases": [],
+   "mathGarbled": true,
+   "note": "",
+   "evidence": "색글씨+문형",
+   "explorer": {
+    "match": "exact",
+    "cardId": "g3-unit-fraction",
+    "cardName": "단위분수",
+    "why": ""
+   },
+   "sentenceRef": {
+    "store": "testautocreator-data",
+    "file": "I-개념용어/cube-3-1.json",
+    "key": "3-1/p126/단위분수"
+   }
+  },
+  {
+   "term": "소수",
+   "kind": "정의",
+   "grade": "3-1",
+   "chapter": "6. 분수와 소수",
+   "section": "1보다 작은 소수",
+   "pdfPage": 132,
+   "bookPage": "132쪽",
+   "key": "3-1/p132/소수",
+   "first": true,
+   "aliases": [],
+   "mathGarbled": false,
+   "note": "",
+   "evidence": "색글씨+문형",
+   "explorer": {
+    "match": "related",
+    "cardId": "g3-decimal",
+    "cardName": "소수 첫째 자리",
+    "why": "카드 «소수 첫째 자리» 는 소수의 자리 이름 — 이름 자체는 4-2 054쪽에서 처음"
+   },
+   "sentenceRef": {
+    "store": "testautocreator-data",
+    "file": "I-개념용어/cube-3-1.json",
+    "key": "3-1/p132/소수"
+   }
+  },
+  {
+   "term": "소수점",
+   "kind": "기호",
+   "grade": "3-1",
+   "chapter": "6. 분수와 소수",
+   "section": "1보다 작은 소수",
+   "pdfPage": 132,
+   "bookPage": "132쪽",
+   "key": "3-1/p132/소수점",
+   "first": true,
+   "aliases": [],
+   "mathGarbled": false,
+   "note": "점 기호 ‘.’ 의 이름을 정한 문장이라 기호로",
+   "evidence": "색글씨+문형",
+   "explorer": {
+    "match": "related",
+    "cardId": "g3-decimal",
+    "cardName": "소수 첫째 자리",
+    "why": "카드 정의가 소수점 오른쪽 첫째 자리를 말함"
+   },
+   "sentenceRef": {
+    "store": "testautocreator-data",
+    "file": "I-개념용어/cube-3-1.json",
+    "key": "3-1/p132/소수점"
+   }
+  }
+ ]
+}
