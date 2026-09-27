@@ -14,6 +14,7 @@ import type {
   MathSrsState,
 } from "@/contracts/mathSrs.contract";
 import { kstDateOf } from "@/lib/kstDate";
+import { comboToShow } from "@/lib/math-srs/combo";
 import { CONCEPTS } from "@/lib/math-srs/concepts";
 import type { Rating } from "@/lib/math-srs/types";
 import { STUDENT_MUST_CHANGE_MESSAGE } from "@/lib/studentRouteAccess";
@@ -172,6 +173,11 @@ export function StudentMathSrs({
     : feedbackId
       ? (mission?.attempts.find((attempt) => attempt.problemId === feedbackId)
           ?.correct ?? null)
+      : null;
+  // 콤보(05 §8.15) — 첫 풀이의 정답 연출에서만. 서버가 돌려준 기록으로 센다(오답 다시 풀기는 세지 않는다).
+  const streak =
+    !retryStep && feedbackId && mission
+      ? comboToShow(mission, feedbackId)
       : null;
 
   useEffect(() => {
@@ -385,6 +391,7 @@ export function StudentMathSrs({
                   problem={displayedProblem}
                   busy={busy || error?.status === 409}
                   correct={correct}
+                  streak={streak}
                   retry={!!retryStep}
                   eventKey={`${displayedProblem.id}:${retryTurn}`}
                   onReload={resetLoad}
@@ -582,6 +589,7 @@ function Question({
   problem,
   busy,
   correct,
+  streak,
   retry,
   eventKey,
   onReload,
@@ -590,6 +598,7 @@ function Question({
   problem: MathSrsPublicProblem;
   busy: boolean;
   correct: boolean | null;
+  streak: number | null;
   retry: boolean;
   eventKey: string;
   onReload: () => void;
@@ -690,7 +699,11 @@ function Question({
           </div>
         )}
       </div>
-      <AnswerFeedbackEffect correct={correct} eventKey={eventKey} />
+      <AnswerFeedbackEffect
+        correct={correct}
+        eventKey={eventKey}
+        streak={streak}
+      />
     </section>
   );
 }
