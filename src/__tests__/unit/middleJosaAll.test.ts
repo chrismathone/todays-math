@@ -252,6 +252,26 @@ describe("조사 판정기 눈금 — 양성은 잡고 음성은 안 잡는다",
 
 const TYPES = registeredTypes().map((e) => ({ key: e.key }));
 
+/**
+ * 전 유형 시험이 쓰는 판정 — 두 자를 **한 함수**로 묶는다. 전 유형 시험이 한쪽 자를
+ * 떼어 내도 제품이 이미 깨끗하면 아무도 안 운다(변이 J10 이 초록이었다). 그래서 이
+ * 함수 자체를 아래 눈금에 건다.
+ */
+function allJosaFaults(text: string): string[] {
+  return [...josaMismatches(text), ...blindJosa(text)];
+}
+
+describe("전 유형 판정(allJosaFaults) 눈금 — 두 자가 다 물려 있다", () => {
+  it("수 뒤 조사(josaMismatches)와 사각(blindJosa)을 함께 잡는다", () => {
+    expect(allJosaFaults("$x=20$를 대입하면")).toEqual(["$…x=20$를 → 을"]);
+    expect(allJosaFaults("분모를 $3$로 통분하여")).toEqual(["$…3$로 → 으로"]);
+    expect(allJosaFaults("평면 $P$ 위에 점 $A$, $B$이 있고")).toEqual([
+      "$…B$이 → 가",
+    ]);
+    expect(allJosaFaults("$x=20$을 대입하면 $3$으로 나눈다")).toEqual([]);
+  });
+});
+
 describe(`중등 전 유형(${TYPES.length}) × 씨앗 ${SEEDS} — 조사 결함 0`, () => {
   it.each(TYPES)("$key", ({ key }) => {
     const bad: string[] = [];
@@ -262,7 +282,7 @@ describe(`중등 전 유형(${TYPES.length}) × 씨앗 ${SEEDS} — 조사 결�
         ["정답", p.answer],
         ["해설", p.solution],
       ] as const) {
-        for (const j of [...josaMismatches(text), ...blindJosa(text)]) {
+        for (const j of allJosaFaults(text)) {
           if (bad.length < 4) bad.push(`씨앗 ${s} [${field}] ${j}`);
         }
       }
