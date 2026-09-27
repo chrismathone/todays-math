@@ -294,3 +294,44 @@ describe("ExplorerPractice — 무엇의 문장인가(이름 + 갈래 딱지)", 
     expect(document.querySelector("[data-concept-kind]")).toBeNull();
   });
 });
+
+describe("ExplorerPractice — 수식이 든 이름의 이름 줄", () => {
+  // 실제 화면 실측(fit)에서 잡힘: 이름을 `<p>` 에 담으면 KaTeX(`MathText` 의 div)가 p 안에 들어가
+  // «In HTML, <div> cannot be a descendant of <p>» 수화(hydration) 경고 — 10배와 100배 · SSS · y절편 · 곱이 0인 성질.
+  it("y절편 — 이름 줄에 KaTeX 가 들어와도 태그 중첩 경고가 없다", async () => {
+    const errors = vi.spyOn(console, "error").mockImplementation(() => {});
+    const { container } = render(
+      <ExplorerPractice
+        activity={{
+          questionId: "q-y",
+          cardId: "g8-y-intercept",
+          cardName: "y절편",
+          unitId: "g8-linear",
+          unitTitle: "일차함수",
+          kind: "examples",
+          prompt: "y절편을 바르게 설명한 것을 골라봐.",
+          choices: [
+            { id: 0, label: "가" },
+            { id: 1, label: "나" },
+          ],
+        }}
+        session={session}
+        busy={false}
+        correct={null}
+        eventKey=""
+        onAction={vi.fn()}
+        onHome={vi.fn()}
+      />,
+    );
+    await waitFor(() =>
+      expect(
+        container.querySelector("[data-concept-row] .katex"),
+      ).not.toBeNull(),
+    );
+    const nesting = errors.mock.calls.filter((call) =>
+      String(call[0]).includes("cannot be a descendant of"),
+    );
+    expect(nesting).toEqual([]);
+    errors.mockRestore();
+  });
+});

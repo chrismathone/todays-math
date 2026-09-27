@@ -306,7 +306,10 @@ const placeholderSvg =
 
 async function connect(page, sim) {
   page.on("request", (request) => {
-    if (new URL(request.url()).pathname.startsWith("/api/")) sim.requests++;
+    const path = new URL(request.url()).pathname;
+    if (!path.startsWith("/api/")) return;
+    sim.requests++;
+    (sim.asked ??= []).push(`${request.method()} ${path}`);
   });
   await page.route(
     (url) => url.pathname.startsWith("/api/"),
@@ -371,6 +374,7 @@ async function connect(page, sim) {
         }
       }
       sim.handled++;
+      (sim.answered ??= []).push(`${method} ${path}`);
       if (svg) return route.fulfill({ status: 200, contentType: "image/svg+xml; charset=utf-8", body: placeholderSvg });
       return route.fulfill({ status, json });
     },
@@ -1882,6 +1886,12 @@ async function fitScenario({ page, sim, mobile, width, height, step }, unitId) {
       await settled(page, sim);
     }
     await homeReady(page);
+    // 끝난 뒤 화면이 상태를 다시 읽는다 — 그 응답까지 받고 닫는다(가로챔 셈이 맞게, `lab.fit` 과 같다).
+    await until(() => sim.requests === sim.handled, "남은 응답").catch((error) => {
+      const left = [...(sim.asked ?? [])];
+      for (const done of sim.answered ?? []) left.splice(left.indexOf(done), 1);
+      throw new Error(`${error.message} — 응답 못 받은 요청: ${left.join(", ") || "(없음)"}`);
+    });
     return `잰 화면 ${measured}`;
   });
 }
