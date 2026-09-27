@@ -186,10 +186,12 @@
   color: #6f819c;
   word-break: keep-all;
 }
+/* «5 / 30» 은 한 덩이 — 초등 가운데 줄이 폰에서 «5 /» · «30» 으로 갈렸다 */
 .progressNote b {
   color: #31547e;
   font-weight: 750;
   font-variant-numeric: tabular-nums;
+  white-space: nowrap;
 }
 @container (min-width: 301px) and (max-width: 479px) {
   .map .board {
