@@ -273,6 +273,21 @@ describe("통합 탐험 — 보기 번호 키 · 엔터", () => {
     expect(pressed("3 소수")).toBe("true");
   });
 
+  it("마우스로 켰다 끈 보기에 포커스가 남아 확인 단추가 꺼졌으면, 엔터는 그 보기를 다시 켜지 않는다(아무 일 없음)", async () => {
+    const user = userEvent.setup();
+    const { onAction } = explorer();
+    const first = screen.getByRole("button", { name: "1 자연수" });
+    await user.click(first);
+    await user.click(first);
+    expect(first).toHaveFocus();
+    expect(
+      screen.getByRole("button", { name: "선택한 예 확인하기" }),
+    ).toBeDisabled();
+    await user.keyboard("{Enter}");
+    expect(pressed("1 자연수")).toBe("false");
+    expect(onAction).not.toHaveBeenCalled();
+  });
+
   it("확인 단추에 포커스가 있으면 엔터는 그 단추를 한 번만 누른다", async () => {
     const user = userEvent.setup();
     const { onAction } = explorer();
