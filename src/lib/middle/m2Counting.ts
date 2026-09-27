@@ -112,6 +112,11 @@ function comb(n: number, r: number): number {
   return perm(n, r) / fact(r);
 }
 
+/** 거듭제곱 `b^{e}` — 지수가 $1$ 이면 밑만 적는다(「$2^{1}\times6^{2}$」가 아니라 「$2\times6^{2}$」). */
+function powTex(b: number, e: number): string {
+  return e === 1 ? `${b}` : `${b}^{${e}}`;
+}
+
 /** 자연수 r 을 자리 수 낱말로 — 두 자리·세 자리. */
 function digitWord(r: number): string {
   return r === 2 ? "두 자리" : "세 자리";
@@ -483,7 +488,7 @@ export const M2_COUNTING: TypeEntry[] = [
         return {
           content: `서로 다른 동전 $${c}$개와 서로 다른 주사위 $${d}$개를 동시에 던질 때, 일어날 수 있는 모든 경우의 수를 구하시오.`,
           answer: `$${ans}$`,
-          solution: `동전 한 개는 $2$가지, 주사위 한 개는 $6$가지의 경우가 나온다.\n따라서 모든 경우의 수는 $2^{${c}}\\times6^{${d}}=${ans}$ 이다.`,
+          solution: `동전 한 개는 $2$가지, 주사위 한 개는 $6$가지의 경우가 나온다.\n따라서 모든 경우의 수는 $${powTex(2, c)}\\times${powTex(6, d)}=${ans}$ 이다.`,
           facts: { kind, c, d, ans },
         };
       }
@@ -836,7 +841,7 @@ export const M2_COUNTING: TypeEntry[] = [
       return {
         content: `서로 다른 $${coins}$개의 동전과 ${dice > 1 ? "서로 다른 " : ""}$${dice}$개의 주사위를 동시에 던질 때, 일어나는 모든 경우의 수를 구하시오.`,
         answer: `$${ans}$`,
-        solution: `동전은 각각 $2$가지, 주사위는 각각 $6$가지이다.\n따라서 경우의 수는 $2^{${coins}}\\times6^{${dice}}=${2 ** coins}\\times${6 ** dice}=${ans}$이다.`,
+        solution: `동전은 각각 $2$가지, 주사위는 각각 $6$가지이다.\n따라서 경우의 수는 $${powTex(2, coins)}\\times${powTex(6, dice)}=${2 ** coins}\\times${6 ** dice}=${ans}$이다.`,
         facts: { coins, dice, ans },
       };
     },

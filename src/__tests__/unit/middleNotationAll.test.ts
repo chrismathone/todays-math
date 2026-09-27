@@ -1,8 +1,12 @@
 /**
- * 중등 **전 유형** — 값은 맞는데 지면 표기가 흉한 것 두 가지를 잠근다.
+ * 중등 **전 유형** — 값은 맞는데 지면 표기가 흉한 것 세 가지를 잠근다.
  *
  *  ㈀ 계수 $1$ 을 적지 않는다(`$1x+47$` 이 아니라 `$x+47$`).
  *  ㈁ 식에 상수 $0$ 을 붙이지 않는다(`$(5x+0)^\circ$`·`$y=2x+0$`·`$(x-0)^2$` 가 아니라 `$(5x)^\circ$`·`$y=2x$`·`$x^2$`).
+ *  ㈂ **경우의 수·확률 단원**에서 지수 $1$ 을 적지 않는다(`$2^{1}\times6^{2}$` 이 아니라 `$2\times6^{2}$`).
+ *     다른 단원의 지수 $1$ 은 일부러 쓴 것이 많아 보지 않는다 — 지수법칙 설명(「$3=3^{1}$ 이므로」·
+ *     「$x^{2}\times x^{1}=x^{3}$」), 10의 거듭제곱 강조(「분모가 $10^{1}$이 된다」), 소인수(「$2^{1}$을 뺀 부분」).
+ *     어느 것을 고칠지는 2026-09-27 이 세션에서 **경우의 수 공식만**으로 정해졌다.
  *
  * 값 검산은 이 부류를 구조적으로 못 본다. 판정:
  *  ㈀-⑴ 공용 가드 `pageSmells`(`../helpers/midPage.ts`)의 계수 $1$ 규칙 셋 — 「계수 1 을 적었다」(`1x`)·
@@ -43,9 +47,17 @@ const BARE_PAREN_ONE = /(?<![\d.{])1\(/;
 /** ㈁ 식에 붙은 상수 0 — 문자·닫는 괄호·지수 바로 뒤, 뒤가 수·소수점·지수가 아닐 때. */
 const ALGEBRAIC_ZERO = /(?:[a-zA-Z)}\]]|\^\{?\d+\}?)[+-]0(?![\d.^])/;
 
-/** 흉한 표기의 이름들 — 없으면 빈 배열. */
-function notationFaults(text: string): string[] {
-  const out = pageSmells(text).filter((l) => l.includes("계수 1 을 적었다"));
+/** ㈂ 지수 1 을 보는 단원 — 경우의 수·확률. */
+const EXP_ONE_UNITS = ["2-2|경우의 수|", "2-2|확률|"];
+
+/** 흉한 표기의 이름들 — 없으면 빈 배열. `key` 가 ㈂ 단원이면 지수 1 도 본다. */
+function notationFaults(text: string, key = ""): string[] {
+  const out = pageSmells(text).filter(
+    (l) =>
+      l.includes("계수 1 을 적었다") ||
+      (l === "지수 1 을 적었다" &&
+        EXP_ONE_UNITS.some((u) => key.startsWith(u))),
+  );
   const math = [...text.matchAll(/\$[^$]*\$/g)].map((m) => m[0]);
   if (math.some((m) => BARE_PAREN_ONE.test(m))) {
     out.push("맨 괄호 앞에 계수 1 을 적었다");
@@ -70,6 +82,24 @@ describe("표기 판정 눈금 — 양성은 잡고 음성은 안 잡는다", ()
       "$3(x-6)>1(x+1)$",
     ]) {
       expect(notationFaults(t), t).not.toEqual([]);
+    }
+  });
+
+  it("경우의 수·확률 단원의 지수 1 은 결함이고, 다른 단원의 지수 1 은 보지 않는다", () => {
+    const counting = "2-2|경우의 수|07";
+    for (const t of ["$2^{1}\\times6^{2}=72$", "$2^{2}\\times6^{1}=24$"]) {
+      expect(notationFaults(t, counting), t).toEqual(["지수 1 을 적었다"]);
+    }
+    for (const t of ["$2\\times6^{2}=72$", "$2^{2}\\times6=24$", "$6^{10}$"]) {
+      expect(notationFaults(t, counting), t).toEqual([]);
+    }
+    // 지수법칙 설명·10의 거듭제곱 강조 — 일부러 쓴 지수 1
+    for (const [t, key] of [
+      ["$3=3^{1}$ 이므로 $3^{1}\\times 3^{16}=3^{17}$", "2-1|단항식의 계산|06"],
+      ["$x^{2}\\times x^{1}=x^{3}$", "2-1|단항식의 계산|50"],
+      ["분모가 이미 $10^{1}$이므로", "2-1|유리수와 순환소수|36"],
+    ] as const) {
+      expect(notationFaults(t, key), t).toEqual([]);
     }
   });
 
@@ -125,7 +155,7 @@ function faultsOf(key: string, seeds: number, base: number): string[] {
       ["정답", p.answer],
       ["해설", p.solution],
     ] as const) {
-      for (const label of notationFaults(text)) {
+      for (const label of notationFaults(text, key)) {
         if (bad.length < 4) bad.push(`씨앗 ${s} [${field}] ${label}`);
       }
     }
