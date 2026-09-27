@@ -239,6 +239,7 @@ function WorkshopActivity({
                         disabled={disabled}
                         aria-label={`${index + 1}번째 분수 ${part + 1}번째 조각`}
                         aria-pressed={parts[index].includes(part)}
+                        data-answer-control=""
                         onClick={() =>
                           setParts((current) =>
                             current.map((selection, item) =>
@@ -282,6 +283,7 @@ function WorkshopActivity({
                   aria-label={`${index + 1} ${choice.label}`}
                   aria-keyshortcuts={answerKey(index)}
                   aria-pressed={chosen === choice.id}
+                  data-answer-control=""
                   disabled={disabled}
                   data-anim={motion[choice.id]}
                   onClick={() => choose(choice.id)}
@@ -324,6 +326,7 @@ function WorkshopActivity({
                         type="button"
                         disabled={disabled || factors[index] <= 1}
                         aria-label={`${index + 1}번째 분수 나누는 수 줄이기`}
+                        data-answer-control=""
                         onClick={() =>
                           setFactors(
                             (current) =>
@@ -346,6 +349,7 @@ function WorkshopActivity({
                           factors[index] >= (stage === "split" ? 4 : 6)
                         }
                         aria-label={`${index + 1}번째 분수 나누는 수 늘리기`}
+                        data-answer-control=""
                         onClick={() =>
                           setFactors(
                             (current) =>

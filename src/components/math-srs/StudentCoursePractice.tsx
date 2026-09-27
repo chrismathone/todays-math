@@ -600,6 +600,7 @@ function CourseQuestion({
                             type="button"
                             aria-label={`${part + 1}번째 칸`}
                             aria-pressed={selectedParts.includes(part)}
+                            data-answer-control=""
                             className={s.fractionPart}
                             disabled={locked || hasFeedback}
                             onClick={() => {
@@ -631,6 +632,7 @@ function CourseQuestion({
                         className={s.answerChoice}
                         aria-keyshortcuts={answerKey(choiceIndex)}
                         aria-pressed={selectedAnswer === choice}
+                        data-answer-control=""
                         data-result={
                           hasFeedback && selectedAnswer === choice
                             ? feedback.correct

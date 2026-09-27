@@ -679,6 +679,7 @@ function Question({
                   disabled={disabled}
                   aria-keyshortcuts={answerKey(index)}
                   aria-pressed={selected === choice}
+                  data-answer-control=""
                   onClick={() => choose(choice)}
                   data-result={
                     selected === choice && correct !== null

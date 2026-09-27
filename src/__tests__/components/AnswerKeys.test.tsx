@@ -230,6 +230,47 @@ describe("통합 탐험 — 보기 번호 키 · 엔터", () => {
     });
   });
 
+  it("정의 조립 — 채운 빈칸을 마우스로 빼 포커스가 남아도, 확인이 꺼져 있으면 엔터는 아무것도 안 뺀다(누르고 있어도)", async () => {
+    // 첫 칸을 빼면 남은 조각이 앞칸으로 당겨져 포커스된 그 단추가 다시 «채운 빈칸»이 된다 — 엔터가 그것까지 빼면 안 된다.
+    const user = userEvent.setup();
+    const { onAction } = explorer(assemble);
+    press("2");
+    press("1");
+    await user.click(screen.getByRole("button", { name: "빈칸 1, 정확히" }));
+    const slot = screen.getByRole("button", { name: "빈칸 1, 자연수" });
+    expect(slot).toHaveFocus();
+    expect(
+      screen.getByRole("button", { name: "완성한 정의 확인하기" }),
+    ).toBeDisabled();
+    await user.keyboard("{Enter}");
+    expect(
+      fireEvent.keyDown(slot, { key: "Enter", repeat: true }),
+      "누르고 있는 엔터도 그 빈칸을 누르지 않게 막는다",
+    ).toBe(false);
+    expect(
+      screen.getByRole("button", { name: "빈칸 1, 자연수" }),
+    ).toBeInTheDocument();
+    expect(onAction).not.toHaveBeenCalled();
+  });
+
+  it("정의 조립 — 채운 빈칸에 포커스가 남아 있어도 확인 단추가 켜져 있으면 엔터 = 확인(그 조각을 빼지 않는다)", async () => {
+    const user = userEvent.setup();
+    const { onAction } = explorer(assemble);
+    press("2");
+    press("1");
+    await user.click(screen.getByRole("button", { name: "빈칸 1, 정확히" }));
+    press("3");
+    expect(
+      screen.getByRole("button", { name: "빈칸 1, 자연수" }),
+    ).toHaveFocus();
+    await user.keyboard("{Enter}");
+    expect(onAction).toHaveBeenCalledExactlyOnceWith({
+      type: "answer",
+      questionId: "question",
+      choiceIds: [2, 3],
+    });
+  });
+
   it("하나 고르기(경계 살피기) — 숫자키 한 번에 즉시 제출, 이어 누른 키는 먹지 않는다(기록 한 번)", () => {
     const onAction = vi.fn();
     render(<ExplorerWithParent value={truth} onAction={onAction} />);
@@ -568,6 +609,57 @@ describe("작업실 — 예상 · 규칙 보기는 숫자키, 확인 단추는 �
       parts: [2],
     });
   });
+
+  it("답 조작 표지는 답을 만드는 단추에만 — 보기 · 빈칸 · −/＋ · 칠한 칸, 확인 · 아직 모르겠어요에는 없다", () => {
+    const marked = () =>
+      Array.from(document.querySelectorAll<HTMLButtonElement>("button")).filter(
+        (button) => button.hasAttribute("data-answer-control"),
+      );
+    const names = (buttons: HTMLButtonElement[]) =>
+      buttons.map((button) => button.getAttribute("aria-label"));
+    const first = explorer(assemble);
+    expect(names(marked())).toEqual([
+      "빈칸 1",
+      "빈칸 2",
+      "1 자연수",
+      "2 정확히",
+      "3 소수",
+      "4 남김없이",
+    ]);
+    for (const name of ["완성한 정의 확인하기", "아직 모르겠어요"])
+      expect(screen.getByRole("button", { name })).not.toHaveAttribute(
+        "data-answer-control",
+      );
+    first.unmount();
+    lab();
+    expect(names(marked())).toEqual([
+      "1번째 분수 나누는 수 줄이기",
+      "1번째 분수 나누는 수 늘리기",
+    ]);
+    cleanup();
+    lab({ stage: "check", targetDenominator: 4 });
+    expect(marked()).toHaveLength(4);
+    expect(
+      screen.getByRole("button", { name: "칠한 조각 확인하기" }),
+    ).not.toHaveAttribute("data-answer-control");
+  });
+
+  it("나누는 수 ＋ 를 마우스로 누른 뒤 포커스가 남아 있어도 엔터는 ＋ 를 한 번 더 누르지 않고 확인한다", async () => {
+    // D-145 ⑸ 넓힘(리드 · codex · grok 합의 (나)) — 답을 만드는 조작 단추는 누름 단추가 아니어도 엔터 = 확인.
+    const user = userEvent.setup();
+    const onAction = lab();
+    const more = screen.getByRole("button", {
+      name: "1번째 분수 나누는 수 늘리기",
+    });
+    await user.click(more);
+    expect(more).toHaveFocus();
+    await user.keyboard("{Enter}");
+    expect(onAction).toHaveBeenCalledExactlyOnceWith({
+      type: "lab-split",
+      questionId: "split-question",
+      factor: 2,
+    });
+  });
 });
 
 // ── 중등 «오늘의 복습»(한 걸음) ────────────────────────────────────────────
@@ -838,6 +930,32 @@ describe("지난 학습 다시 풀기 — 대화상자 안에서는 대화상자
     expect(pressed("1 맞아요")).toBe("false");
   });
 
+  it("조각을 마우스로 칠해 포커스가 남아 있어도 엔터는 그 조각을 지우지 않고 «완성했어요»", async () => {
+    const user = userEvent.setup();
+    const fetcher = vi
+      .fn()
+      .mockResolvedValueOnce(
+        json({
+          ...replay,
+          interactive: { kind: "fraction-parts", denominator: 3, shape: "bar" },
+        }),
+      )
+      .mockReturnValueOnce(new Promise(() => {}));
+    vi.stubGlobal("fetch", fetcher);
+    render(
+      <StudentReplayDialog kind="elementary" step={2} onClose={vi.fn()} />,
+    );
+    const part = await screen.findByRole("button", { name: "2번째 조각" });
+    await user.click(part);
+    expect(part).toHaveFocus();
+    await user.keyboard("{Enter}");
+    expect(fetcher).toHaveBeenCalledTimes(2);
+    expect(JSON.parse(fetcher.mock.calls[1][1].body)).toMatchObject({
+      submittedAnswer: "1/3",
+    });
+    expect(part).toHaveAttribute("aria-pressed", "true");
+  });
+
   it("조각 채우기 — 엔터가 «완성했어요»와 같다", async () => {
     const fetcher = vi
       .fn()
@@ -861,6 +979,76 @@ describe("지난 학습 다시 풀기 — 대화상자 안에서는 대화상자
       submittedAnswer: "1/3",
     });
   });
+
+  describe("대화상자가 열리며 첫 포커스가 «복습 닫기 ×»에 가도(브라우저 showModal), 숫자키로 푼 뒤의 엔터가 대화상자를 닫지 않는다", () => {
+    // jsdom 에는 showModal 이 없다 — 브라우저처럼 열면서 첫 단추(×)에 포커스를 두는 대역으로 재현한다.
+    const native = Object.getOwnPropertyDescriptor(
+      HTMLDialogElement.prototype,
+      "showModal",
+    );
+    beforeEach(() => {
+      Object.defineProperty(HTMLDialogElement.prototype, "showModal", {
+        configurable: true,
+        value: function (this: HTMLDialogElement) {
+          this.setAttribute("open", "");
+          this.querySelector<HTMLButtonElement>("button")?.focus();
+        },
+      });
+    });
+    afterEach(() => {
+      if (native)
+        Object.defineProperty(HTMLDialogElement.prototype, "showModal", native);
+      else
+        delete (HTMLDialogElement.prototype as Partial<HTMLDialogElement>)
+          .showModal;
+    });
+    function day(second: Promise<Response>) {
+      const fetcher = vi
+        .fn()
+        .mockResolvedValueOnce(json(replay))
+        .mockReturnValueOnce(second);
+      vi.stubGlobal("fetch", fetcher);
+      const onClose = vi.fn();
+      render(
+        <StudentReplayDialog
+          kind="elementary"
+          step={1}
+          dayId="day-1"
+          total={2}
+          onClose={onClose}
+        />,
+      );
+      return { fetcher, onClose };
+    }
+
+    it("채점을 기다리는 동안 친 엔터 — 대화상자 그대로 · 진행 중 요청 그대로", async () => {
+      const user = userEvent.setup();
+      const { fetcher, onClose } = day(new Promise(() => {}));
+      await screen.findByRole("group", { name: "복습 답 고르기" });
+      await user.keyboard("2");
+      expect(fetcher).toHaveBeenCalledTimes(2);
+      await user.keyboard("{Enter}");
+      expect(onClose).not.toHaveBeenCalled();
+      expect(screen.getByRole("dialog")).toHaveAttribute("open");
+      expect((fetcher.mock.calls[1][1] as RequestInit).signal?.aborted).toBe(
+        false,
+      );
+    });
+
+    it("맞힌 뒤 친 엔터 — 대화상자 그대로 · 그날 진행(1 / 2) 그대로", async () => {
+      const user = userEvent.setup();
+      const { onClose } = day(
+        Promise.resolve(json({ ...replay, correct: true })),
+      );
+      await screen.findByRole("group", { name: "복습 답 고르기" });
+      await user.keyboard("2");
+      await screen.findByRole("button", { name: "다음 복습 문제" });
+      await user.keyboard("{Enter}");
+      expect(onClose).not.toHaveBeenCalled();
+      expect(screen.getByRole("dialog")).toHaveAttribute("open");
+      expect(screen.getByText(/1 \/ 2/)).toBeInTheDocument();
+    });
+  });
 });
 
 // ── 키 모양 — 번호 키 · ⏎ 키 (05 §8.18 · D-145) ─────────────────────────────
@@ -882,7 +1070,11 @@ function expectKeyCaps() {
     if (key === "Enter") {
       expect(caps[0].tagName).toBe("KBD");
       expect(caps[0]).toHaveAttribute("aria-hidden", "true");
-    } else expect(caps[0].textContent).toBe(key);
+    } else {
+      expect(caps[0].textContent).toBe(key);
+      // 번호 키를 단 보기는 답 조작 단추 — 엔터 규칙(D-145 ⑸)의 표지를 단다
+      expect(button).toHaveAttribute("data-answer-control");
+    }
   }
   for (const cap of document.querySelectorAll("[data-answer-key]"))
     expect(cap.closest("button")).toHaveAttribute(
@@ -1048,7 +1240,7 @@ describe("키 모양 — 번호 키 · ⏎ 키는 그 단추의 실제 키 (05 �
   it("키가 없는 번호(열째 보기부터)는 키 모양을 입지 않는다 — 번호만 지금 그대로", () => {
     render(
       <>
-        <button type="button" aria-keyshortcuts="9">
+        <button type="button" aria-keyshortcuts="9" data-answer-control="">
           <NumberKey index={8} className="n" />
         </button>
         <button type="button">

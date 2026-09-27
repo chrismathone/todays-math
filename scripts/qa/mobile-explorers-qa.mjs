@@ -2183,11 +2183,18 @@ async function assertEnterCap(button, { mobile, label }) {
     const swap = el.querySelector("[data-answer-key-swap]");
     const box = kbd?.getBoundingClientRect();
     const own = el.getBoundingClientRect();
-    const text = [...el.childNodes].filter((node) => node.nodeType === Node.TEXT_NODE).map((node) => node.textContent).join("").trim();
+    const words = [...el.childNodes].filter((node) => node.nodeType === Node.TEXT_NODE && node.textContent.trim());
+    const text = words.map((node) => node.textContent).join("").trim();
+    // 글자(단추 바로 아래 글 마디)의 잉크 상자 — ⏎ 는 그 뒤에, 간격을 두고, 같은 줄에 서야 한다.
+    const range = document.createRange();
+    if (words.length) range.selectNodeContents(words.at(-1));
+    const ink = words.length ? range.getBoundingClientRect() : null;
     return {
       name: el.getAttribute("aria-label") ?? text,
       shortcut: el.getAttribute("aria-keyshortcuts"),
-      kbd: kbd ? { display: getComputedStyle(kbd).display, hidden: kbd.getAttribute("aria-hidden"), h: box.height, w: box.width, inside: box.left >= own.left && box.right <= own.right && box.top >= own.top && box.bottom <= own.bottom, color: getComputedStyle(kbd).color } : null,
+      kbd: kbd ? { display: getComputedStyle(kbd).display, hidden: kbd.getAttribute("aria-hidden"), h: box.height, w: box.width, inside: box.left >= own.left && box.right <= own.right && box.top >= own.top && box.bottom <= own.bottom, color: getComputedStyle(kbd).color,
+        gap: ink ? Math.round((box.left - ink.right) * 10) / 10 : null,
+        line: ink ? Math.round(Math.abs(box.top + box.height / 2 - (ink.top + ink.height / 2)) * 10) / 10 : null } : null,
       swap: swap ? getComputedStyle(swap).display : null,
       opacity: getComputedStyle(el).opacity,
       lines: Math.round(own.height),
@@ -2206,6 +2213,10 @@ async function assertEnterCap(button, { mobile, label }) {
     assert.equal(look.kbd.h, 18, `${where}: ⏎ 키 높이`);
     assert.ok(look.kbd.inside, `${where}: ⏎ 키가 단추 밖`);
     assert.equal(look.kbd.color, "rgb(230, 237, 255)", `${where}: ⏎ 키 색`);
+    // 자리 — 글자 바로 뒤 · 글자에 붙지 않게(간격 > 0) · 같은 줄(가운데 높이 차 4px 안)
+    assert.notEqual(look.kbd.gap, null, `${where}: 글자를 못 찾았다`);
+    assert.ok(look.kbd.gap >= 4 && look.kbd.gap <= 16, `${where}: ⏎ 가 글자 뒤 4~16px 이 아니다`);
+    assert.ok(look.kbd.line <= 4, `${where}: ⏎ 가 글자와 다른 줄`);
     if (look.swap !== null) assert.equal(look.swap, "none", `${where}: PC 에서 화살표와 ⏎ 가 같이 선다`);
   }
   return look;
@@ -2327,10 +2338,38 @@ async function keysLookBank(context, kind) {
   });
 }
 // 오늘 분량을 다 맞혀 끝낸 뒤(틀리면 «모아 둔 오답 다시 풀기»가 끼어 하루가 안 끝난다) 진도판 지난 칸의 다시 풀기 대화상자를 잰다.
+// 이 화면이 받는 응답에서만 문항 모양을 바꾼다(기록 · 채점은 그대로) — 시뮬레이터가 못 내는 모양(문제은행 후보의 숫자 입력 칸 ·
+// 칠하기 문항)을 띄워 ⏎ 를 재려고. `patch` 가 바꾼 DTO 를 돌려준다.
+async function patchedRead(page, sim, path, read, patch) {
+  const matches = (url) => new URL(url).pathname === path;
+  await page.route(matches, async (route) => {
+    if (route.request().method() !== "GET") return route.fallback();
+    const dto = patch(await read(new URL(route.request().url())));
+    await route.fulfill({ status: 200, contentType: "application/json", body: JSON.stringify(dto) });
+    sim.handled++; // 시뮬레이터 대신 여기서 답했다 — «가로채지 않은 요청 0» 셈에 넣는다
+  });
+  return () => page.unroute(matches);
+}
+const FRACTION_PARTS = { kind: "fraction-parts", denominator: 4, shape: "bar" };
 async function keysLookReplay(context, kind) {
   const { page, mobile, step, shot } = context;
+  const sim = context.sim;
   const goal = kind === "elementary" ? 10 : 12;
   const { publicProblems, group, answerInBrowser, answerOnServer, answered } = bankLookHelpers(context, kind);
+  const openCourseAs = async (change, ready) => {
+    const restore = await patchedRead(page, sim, "/api/learn/math-srs/course", () => courseRequest(sim, "read", undefined, new Date()), (dto) => {
+      const shown = dto.data.session.problems;
+      const at = dto.data.session.attempts.length;
+      shown[at] = { ...shown[at], ...change };
+      return dto;
+    });
+    await page.reload();
+    await homeReady(page);
+    await tap(page.locator("[data-expedition-start]"), mobile);
+    await ready().waitFor({ timeout: 15000 });
+    await blurAll(page);
+    return restore;
+  };
   await step(`keys.look.${kind}.replay`, async () => {
     await page.goto(base + "/dev/mobile-explorers-qa");
     await homeReady(page);
@@ -2339,32 +2378,26 @@ async function keysLookReplay(context, kind) {
     await group().or(page.getByRole("textbox")).first().waitFor({ timeout: 15000 });
     let input = "숫자 입력 문항 없음";
     for (let guard = 0; guard < 40 && answered() < goal - 1; guard++) {
-      if (kind === "elementary" && context.sim.state.course.learner.session?.completedAt) await courseRequest(context.sim, "start", {}, new Date());
-      // 초등 숫자 입력 칸을 한 번 화면에서 잰다 — «정답 확인 →» 의 화살표 자리를 ⏎ 가 대신하는가(PC) · 그대로인가(폰).
-      // 생성기 문항은 숫자 답을 늘 네 보기로 내고, 숫자 입력 칸은 문제은행 후보(보기 없음)에서만 온다 — 시뮬레이터는 후보를 안 싣는다.
-      // 그래서 숫자 답 문항 하나의 보기를 **이 화면이 받는 응답에서만** 걷어 «은행 후보처럼» 만든다(기록 · 채점은 그대로).
+      if (kind === "elementary" && sim.state.course.learner.session?.completedAt) await courseRequest(sim, "start", {}, new Date());
+      // 초등 «정답 확인 →»(숫자 입력 칸) · «완성했어요 →»(칠하기)를 한 번씩 화면에서 잰다 — ⏎ 가 화살표 자리를 대신하는가(PC) ·
+      // 그대로인가(폰). 생성기 문항은 숫자 답을 늘 네 보기로 내고, 숫자 입력 칸은 문제은행 후보(보기 없음)에서만 온다 —
+      // 시뮬레이터는 후보를 안 싣는다. 그래서 숫자 답 문항 하나의 보기를 이 화면이 받는 응답에서만 걷는다.
       const { problems, index } = await publicProblems();
       const current = problems[index];
       if (kind === "elementary" && input.startsWith("숫자") && !current.interactive && current.input.mode === "number") {
-        const courseRead = (url) => new URL(url).pathname === "/api/learn/math-srs/course";
-        await page.route(courseRead, async (route) => {
-          if (route.request().method() !== "GET") return route.fallback();
-          const dto = await courseRequest(context.sim, "read", undefined, new Date());
-          const shown = dto.data.session.problems;
-          shown[dto.data.session.attempts.length] = { ...shown[dto.data.session.attempts.length], answerChoices: null };
-          await route.fulfill({ status: 200, contentType: "application/json", body: JSON.stringify(dto) });
-          context.sim.handled++; // 시뮬레이터 대신 여기서 답했다 — «가로채지 않은 요청 0» 셈에 넣는다
-        });
-        await page.reload();
-        await homeReady(page);
-        await tap(page.locator("[data-expedition-start]"), mobile);
-        await page.getByRole("textbox", { name: current.input.label }).waitFor({ timeout: 15000 });
-        await blurAll(page);
+        let restore = await openCourseAs({ answerChoices: null }, () => page.getByRole("textbox", { name: current.input.label }));
         const look = await assertEnterCap(page.getByRole("button", { name: /정답 확인/ }), { mobile, label: "초등 정답 확인" });
         assert.notEqual(look.swap, null, "«정답 확인»에 바꿔 끼는 화살표가 없다");
         await shot(`keys-look-${kind}-input`);
-        input = `«정답 확인» ${mobile ? "화살표 그대로 · ⏎ 숨김" : "⏎ 가 화살표 자리"}`;
-        await page.unroute(courseRead);
+        await restore();
+        restore = await openCourseAs({ answerChoices: null, interactive: FRACTION_PARTS }, () => page.getByRole("button", { name: "2번째 칸" }));
+        await tap(page.getByRole("button", { name: "2번째 칸" }), mobile);
+        await blurAll(page);
+        const done = await assertEnterCap(page.getByRole("button", { name: /완성했어요/ }), { mobile, label: "초등 완성했어요" });
+        assert.notEqual(done.swap, null, "«완성했어요»에 바꿔 끼는 화살표가 없다");
+        await shot(`keys-look-${kind}-parts`);
+        await restore();
+        input = `«정답 확인» · «완성했어요» ${mobile ? "화살표 그대로 · ⏎ 숨김" : `⏎ 가 화살표 자리(글자 뒤 ${look.kbd.gap}px)`}`;
       }
       await answerOnServer();
     }
@@ -2375,19 +2408,98 @@ async function keysLookReplay(context, kind) {
     await group().waitFor({ timeout: 15000 });
     await answerInBrowser(true);
     await homeReady(page);
-    await tap(page.locator('[data-day-step="1"]').getByRole("button"), mobile);
-    const dialog = page.getByRole("dialog", { name: /1번 문제 다시 풀기/ });
-    await expect(dialog).toBeVisible({ timeout: 10000 });
+    const openReplay = async () => {
+      await tap(page.locator('[data-day-step="1"]').getByRole("button"), mobile);
+      const dialog = page.getByRole("dialog", { name: /1번 문제 다시 풀기/ });
+      await expect(dialog).toBeVisible({ timeout: 10000 });
+      return dialog;
+    };
+    const dialog = await openReplay();
     const choices = dialog.getByRole("group", { name: "복습 답 고르기" });
     await choices.getByRole("button").first().waitFor();
-    await blurAll(page);
+    // D-145 · 리드 검토 ① — 열 때 브라우저가 «복습 닫기 ×»에 둔 포커스를 문항이 뜨면 문제 머리로 옮긴다.
+    // 그래서 숫자키로 푼 뒤(채점 대기 · 채점 뒤) 친 엔터가 ×를 눌러 대화상자를 닫지 않는다.
+    const focused = await page.evaluate(() => `${document.activeElement?.tagName}:${document.activeElement?.getAttribute("aria-label") ?? ""}`);
+    assert.equal(focused, "H2:", `문항이 뜬 뒤 포커스가 문제 머리가 아니다(${focused})`);
     const caps = await keyCaps(choices);
     assertNumberCaps(caps, { mobile, size: mobile ? null : [18, 18], label: `${kind} 다시 풀기` });
     await shot(`keys-look-${kind}-replay`);
+    const handled = sim.handled;
+    await page.keyboard.press("1");
+    await page.keyboard.press("Enter");
+    await until(() => sim.handled > handled, "다시 풀기 채점 응답");
+    await page.keyboard.press("Enter");
+    await page.waitForTimeout(1500);
+    await expect(dialog, "숫자키 → 엔터 뒤 대화상자가 닫혔다").toBeVisible();
     await tap(dialog.getByRole("button", { name: "복습 닫기" }), mobile);
-    return `다시 풀기 번호 ${caps.length}개 ${mobile ? "지금 모양" : "키 18px"}${kind === "elementary" ? " · " + input : ""}`;
+    await expect(dialog).toHaveCount(0);
+    // 칠하기 문항의 «완성했어요 ⏎» — 이 화면만 단추가 flex/gap 이 아니었다(⏎ 가 글자에 붙음, 리드 검토 ②).
+    const restore = await patchedRead(page, sim, "/api/learn/math-srs/replay", (url) => replayRequest(sim, url, undefined, new Date()), (dto) => ({ ...dto, data: { ...dto.data, interactive: FRACTION_PARTS } }));
+    const parts = await openReplay();
+    await tap(parts.getByRole("button", { name: "2번째 조각" }), mobile);
+    await blurAll(page);
+    const done = await assertEnterCap(parts.getByRole("button", { name: "완성했어요" }), { mobile, label: `${kind} 다시 풀기 완성했어요` });
+    await shot(`keys-look-${kind}-replay-parts`);
+    await tap(parts.getByRole("button", { name: "복습 닫기" }), mobile);
+    await restore();
+    return `다시 풀기 번호 ${caps.length}개 ${mobile ? "지금 모양" : "키 18px"} · 첫 포커스 문제 머리 · 숫자키 → 엔터 뒤 대화상자 그대로 · 완성했어요 ⏎ ${mobile ? "숨김" : `글자 뒤 ${done.kbd.gap}px`}${kind === "elementary" ? " · " + input : ""}`;
   });
 }
+// 작업실 — 조각 확인 단추의 ⏎ 자리와, 나누는 수 ＋ 를 마우스로 누른 뒤의 엔터(D-145 ⑸ 넓힘 — 3:0): ＋ 를 한 번 더 누르지 않고 확인.
+async function keysLookWorkshop({ page, sim, mobile, step, shot }) {
+  const labPosts = (from, type) => sim.posts.slice(from).filter((post) => post.action?.type === type);
+  await step("keys.look.workshop", async () => {
+    await page.goto(base + "/dev/mobile-explorers-qa");
+    await homeReady(page);
+    await tap(page.locator("[data-expedition-start]"), mobile);
+    await page.locator("[data-explorer-dock=true]").waitFor();
+    await fastForward(sim, (s) => {
+      const task = currentTask(s);
+      return task?.cardId === "g5-common-denominator" && task.kind === 0 && cards.definitionNeedsRead(explorerStored(s).profile, explorerStored(s).profile.definitions.session);
+    });
+    await page.reload();
+    await homeReady(page);
+    await tap(page.locator("[data-expedition-start]"), mobile);
+    await page.locator("[data-explorer-dock=true]").waitFor();
+    await settled(page, sim);
+    await perform(page, sim, correctExplorerAction(sim), mobile);
+    for (let guard = 0; guard < 6 && attachedWorkshop(sim)?.stage !== "split"; guard++) {
+      await settled(page, sim);
+      await perform(page, sim, workshopCorrect(attachedWorkshop(sim)), mobile);
+    }
+    await settled(page, sim);
+    assert.equal(attachedWorkshop(sim)?.stage, "split", "조각 나누기에 닿지 못했다");
+    const confirm = page.getByRole("button", { name: "나눈 조각 확인하기" });
+    await blurAll(page);
+    const split = await assertEnterCap(confirm, { mobile, label: "작업실 나눈 조각 확인" });
+    await shot("keys-look-workshop-split");
+    const more = page.getByRole("button", { name: "1번째 분수 나누는 수 늘리기" });
+    const before = Number(await more.evaluate((el) => el.parentElement.querySelector("strong").firstChild.textContent));
+    const from = sim.posts.length;
+    const handled = sim.handled;
+    await tap(more, mobile);
+    const focus = await more.evaluate((el) => el === document.activeElement);
+    await page.keyboard.press("Enter");
+    await until(() => sim.handled > handled, "조각 확인 응답");
+    const sent = labPosts(from, "lab-split");
+    assert.equal(sent.length, 1, `엔터가 확인을 ${sent.length}번 보냈다`);
+    assert.equal(sent[0].action.factor, before + 1, "엔터가 ＋ 를 한 번 더 눌렀다");
+    await page.locator("[data-answer-feedback]").waitFor({ timeout: 5000 });
+    await settled(page, sim);
+    for (let guard = 0; guard < 8 && attachedWorkshop(sim) && attachedWorkshop(sim).stage !== "check"; guard++) {
+      await perform(page, sim, workshopCorrect(attachedWorkshop(sim)), mobile);
+      await settled(page, sim);
+    }
+    assert.equal(attachedWorkshop(sim)?.stage, "check", "칠하기에 닿지 못했다");
+    await tap(page.getByRole("button", { name: "1번째 분수 1번째 조각", exact: true }), mobile);
+    await blurAll(page);
+    const check = await assertEnterCap(page.getByRole("button", { name: "칠한 조각 확인하기" }), { mobile, label: "작업실 칠한 조각 확인" });
+    await shot("keys-look-workshop-check");
+    return `나눈 · 칠한 조각 확인 ⏎ ${mobile ? "숨김" : `글자 뒤 ${split.kbd.gap} · ${check.kbd.gap}px`} · ＋ 마우스(포커스 ${focus ? "남음" : "안 남음"}) 뒤 엔터 = 확인 한 번(${before + 1}개로)`;
+  });
+}
+scenarios["keys:look-workshop"] = keysLookWorkshop;
+fixtures["keys:look-workshop"] = fixtures.workshop;
 scenarios["keys:look-explorer"] = keysLookExplorer;
 fixtures["keys:look-explorer"] = fixtures["keys:explorer"];
 scenarios["keys:look-middle"] = (context) => keysLookBank(context, "middle");
