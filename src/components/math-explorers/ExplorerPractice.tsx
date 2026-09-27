@@ -8,7 +8,7 @@ import type {
 } from "@/contracts/mathExplorers.contract";
 import AnswerFeedbackEffect from "@/components/math-srs/AnswerFeedbackEffect";
 import pageTurn from "@/components/math-srs/question-page-turn.module.css";
-import { ExplorerMath } from "./ExplorerMath";
+import { ExplorerChoiceText, ExplorerMath } from "./ExplorerMath";
 import s from "./math-explorers.module.css";
 
 const activityNames = {
@@ -126,6 +126,11 @@ function Activity({
   onAction: (action: ExplorerAction) => void;
 }) {
   const [selected, setSelected] = useState<number[]>([]);
+  // «선택됨» 움직임 표지(05 §8.16) — 누르거나 푼 **순간에만** 붙는다. 처음 그릴 때 · 채점 뒤 다시 그릴 때는 없거나 그대로라
+  // 차오름·빠짐이 다시 돌지 않는다.
+  const [motion, setMotion] = useState<Record<number, "in" | "out">>({});
+  const move = (id: number, value: "in" | "out") =>
+    setMotion((current) => ({ ...current, [id]: value }));
   const disabled = busy || correct !== null;
   const isReading = activity.kind === "read";
   const submit = (choiceIds: number[]) =>
@@ -134,6 +139,7 @@ function Activity({
     if (disabled) return;
     if (activity.kind === "truth") {
       setSelected([id]);
+      move(id, "in");
       submit([id]);
       return;
     }
@@ -142,8 +148,11 @@ function Activity({
       const next = [...selected, id];
       if (next.length > 2) return;
       setSelected(next);
+      move(id, "in");
       return;
     }
+    const picking = !selected.includes(id);
+    move(id, picking ? "in" : "out");
     setSelected((current) =>
       current.includes(id)
         ? current.filter((item) => item !== id)
@@ -198,11 +207,12 @@ function Activity({
                         selected[index] !== undefined ? "true" : undefined
                       }
                       disabled={disabled || selected[index] === undefined}
-                      onClick={() =>
+                      onClick={() => {
+                        move(selected[index]!, "out");
                         setSelected((current) =>
                           current.filter((_, i) => i !== index),
-                        )
-                      }
+                        );
+                      }}
                       aria-label={`빈칸 ${index + 1}${selected[index] !== undefined ? `, ${activity.choices.find((choice) => choice.id === selected[index])?.label}` : ""}`}
                     >
                       {selected[index] !== undefined ? (
@@ -284,17 +294,14 @@ function Activity({
                         : "incorrect"
                       : undefined
                   }
+                  data-anim={motion[choice.id]}
                   onClick={() => choose(choice.id)}
                 >
                   <span className={s.answerNumber}>{index + 1}</span>
-                  <span className={s.answerText}>
-                    <ExplorerMath text={choice.label} />
-                  </span>
-                  {activity.kind === "examples" ? (
-                    <span className={s.choiceCheck} aria-hidden="true">
-                      {selected.includes(choice.id) ? "✓" : ""}
-                    </span>
-                  ) : null}
+                  <ExplorerChoiceText
+                    className={s.answerText}
+                    text={choice.label}
+                  />
                 </button>
               ))}
             </div>
