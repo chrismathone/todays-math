@@ -44,7 +44,7 @@ function iGa(n: number): "이" | "가" {
 //    타입만 끌어오는 것은 런타임에 지워지므로 안전하다.
 import type { ComboFamily } from "./combo";
 import { M1_EXPR_SUP_B } from "./m1Expr";
-import { poly, signed } from "./m1Shared";
+import { poly } from "./m1Shared";
 import { M2_GEO_SIM_SUP_B } from "./m2GeoSim";
 import { M2_PYTHA_SUP_B } from "./m2Pytha";
 import { M2_RATIONAL_SUP_B } from "./m2Rational";
