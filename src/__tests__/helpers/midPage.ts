@@ -5,7 +5,10 @@
  * 모른다(2026-08-24 「값이 맞으면 시험이 다 초록이다」). 여기 둘은 그 뒤쪽이다.
  *
  *   `josaMismatches` — 수 뒤 조사가 **읽기**와 맞나 (`$15$과`·`$63$와`)
- *   `pageSmells`     — `1x`·`+-`·`^1` 처럼 값은 맞고 보기만 흉한 것
+ *   `blindJosa`      — 그 사각(문자·제곱·프라임 뒤, 「로/으로」, 「(이)라」, 수 뒤 주격 「이」)
+ *   `josaFaults`     — 위 둘을 함께(새로 쓰는 쪽은 이것)
+ *   `pageSmells`     — `1x`·`+-`·`^1`·`$1(a+b)$` 처럼 값은 맞고 보기만 흉한 것
+ * 눈금은 `unit/midPageGuards.test.ts`(2026-09-27 올린 자)와 각 쓰는 쪽 시험에 있다.
  *
  * ⚠️ 규칙을 **제품에서 가져오지 않는다.** `m2Josa.eulReul` 을 그대로 부르면
  *    동어반복이라 아무것도 안 지킨다 — 받침 판정은 여기 다시 적는다.
@@ -93,14 +96,146 @@ export function josaMismatches(text: string): string[] {
   return out;
 }
 
-/** 값이 맞아도 지면에 나오면 안 되는 모양. */
-const SMELLS: readonly (readonly [string, RegExp])[] = [
+/**
+ * 조사 판정 전부 — `josaMismatches`(수 뒤) + `blindJosa`(그 사각). 새로 쓰는 쪽은 이것을 쓴다.
+ *
+ * ⚠️ `josaMismatches` 에 `blindJosa` 를 **섞지 않았다.** 2026-09-27 에 섞어 보니 이 자를 쓰는
+ *    45파일 중 고등 `highIdentity` 하나가 빨개졌다 — 거짓 경보가 아니라 고등 엔진의 진짜 결함
+ *    (「항등식과 나머지정리 14」 해설 「$R$라 하면」)이었는데, 고등 엔진은 다른 컴퓨터가 맡는다.
+ *    그 결함이 고쳐지면 섞어도 된다(그때 이 함수와 `josaMismatches` 를 하나로).
+ */
+export function josaFaults(text: string): string[] {
+  return [...josaMismatches(text), ...blindJosa(text)];
+}
+
+/**
+ * `josaMismatches` 의 사각 — 위 자가 **수로 끝나는 수식 뒤 을·를·은·는·와·과·가** 만 보므로
+ * 비어 있던 자리들. 보통은 `josaFaults` 로 둘을 함께 부른다.
+ * 2026-09-27 중등 전수에서 61유형이 여기서 걸려 고쳤고(`middleJosaAll` 이 먼저 들고 있던 자를
+ * 리드 결정으로 여기로 올렸다), 프라임은 원장님이 「프라임으로 통일」을 정하셨다.
+ *
+ *  ⑴ 수 뒤 **주격** 「이/가」 — 「$252$이 되어야」. 서술격(「$5$이다」·「$5$이고」)과 겹치므로
+ *     「이」 뒤가 빈칸·쉼표·마침표·닫는 괄호·끝일 때만 조사로 본다.
+ *  ⑵ **문자·제곱·프라임**으로 끝나는 수식 뒤 — 「점 $B$이 있고」·「$R$가」·「$2x^{2}$를」·
+ *     「$AEB'$와」. 영문자는 이름으로 읽는다: 받침은 엘·엠·엔·알(l·m·n·r)뿐, 나머지(엑스·와이·
+ *     에이 …)는 없다. 제곱·세제곱(`^2`·`^{3}`)과 프라임(「프라임」)은 받침이 있다.
+ *  ⑶ 「로/으로」 — 받침이 없거나 ㄹ 받침(1·7·8·l·r)이면 「로」, 그 밖의 받침(0·3·6·m·n·제곱·
+ *     프라임)이면 「으로」.
+ *  ⑷ 「(이)라」 — 「나머지를 $R$라 하면」·「$y=mx+8$라 하자」. 받침이 있으면 「이라」.
+ * 안 보는 것: 단위(`\mathrm{g}`·` cm` — 그램·센티미터가 소리를 정한다), 줄이 바뀐 뒤의
+ * 「이」(「⏎이 자료의」 — 지시어), 도(°), 분수·근호로 끝나는 수식(읽는 순서가 다르다).
+ */
+const BLIND_PAIR: Record<string, readonly [string, string]> = {
+  은: ["은", "는"],
+  는: ["은", "는"],
+  을: ["을", "를"],
+  를: ["을", "를"],
+  이: ["이", "가"],
+  가: ["이", "가"],
+  과: ["과", "와"],
+  와: ["과", "와"],
+};
+
+type Ending = {
+  kind: "수" | "문자" | "제곱" | "프라임";
+  last: string;
+} | null;
+
+/** 수식을 소리 내어 읽을 때의 끝 — 판정할 수 없으면 `null`. */
+function endingOf(math: string): Ending {
+  let s = math.replace(/(?:\\right\)|\\right\]|\)|\]|\s)+$/, "");
+  if (/\\mathrm\{[^{}]*\}(?:\^\{?\d\}?)?$|\\degree$|\^\\circ$/.test(s)) {
+    return null;
+  }
+  // 프라임 — `B'`·`\overline{BA'}` 의 끝은 「프라임」(받침 ㅁ)
+  if (/'\}?$/.test(s)) return { kind: "프라임", last: "" };
+  // 띄어 쓴 단위 — `$20 cm$`·`$x cm$`. 앞이 명령(`\le x`)이면 단위가 아니다.
+  if (
+    /(?:\d|(?<![\\A-Za-z])[A-Za-z]|\})(?:\s|\\,)+(?:[a-z]{1,2}|m?L)(?:\^\{?\d\}?)?$/.test(
+      s,
+    )
+  ) {
+    return null;
+  }
+  if (/\^\{?[23]\}?$/.test(s)) return { kind: "제곱", last: "" };
+  const ol = /\\overline\{[A-Za-z]*([A-Za-z])\}$/.exec(s);
+  if (ol) s = ol[1]!;
+  const m = /(?<![\\A-Za-z])([A-Za-z]{1,3})$/.exec(s);
+  if (m) return { kind: "문자", last: m[1]!.slice(-1).toLowerCase() };
+  const d = /(?<![\d.])(\d+)$/.exec(s);
+  if (d) return { kind: "수", last: d[1]!.slice(-1) };
+  return null;
+}
+
+function hasBatchim(e: NonNullable<Ending>): boolean {
+  if (e.kind === "제곱" || e.kind === "프라임") return true;
+  if (e.kind === "문자") return "lmnr".includes(e.last);
+  return !"2459".includes(e.last);
+}
+
+function takesRo(e: NonNullable<Ending>): boolean {
+  if (e.kind === "제곱" || e.kind === "프라임") return false;
+  if (e.kind === "문자") return !"mn".includes(e.last);
+  return !"036".includes(e.last);
+}
+
+export function blindJosa(text: string): string[] {
+  const out: string[] = [];
+  const say = (body: string, josa: string, want: string) =>
+    out.push(`$…${body.slice(-16)}$${josa} → ${want}`);
+  for (const m of text.matchAll(
+    /\$([^$]*)\$ ?(은|는|을|를|이|가|와|과)(.?)/g,
+  )) {
+    const [, body, josa, next] = m as unknown as [
+      string,
+      string,
+      string,
+      string,
+    ];
+    if (josa === "이" && !/^[\s,.)]?$/.test(next)) continue; // 이다·이고·이므로 …
+    if (josa === "가" && next === "지") continue; // 가지
+    if (josa === "과" && next === "목") continue; // 과목
+    const e = endingOf(body);
+    if (!e) continue;
+    if (e.kind === "수" && josa !== "이") continue; // 그 밖은 위 `josaMismatches` 몫
+    const want = BLIND_PAIR[josa]![hasBatchim(e) ? 0 : 1];
+    if (want !== josa) say(body, josa, want);
+  }
+  for (const m of text.matchAll(
+    /\$([^$]*)\$ ?(으로|로)(?:(?![가-힣])|(?=[서써부는도의만]))/g,
+  )) {
+    const [, body, josa] = m as unknown as [string, string, string];
+    const e = endingOf(body);
+    if (!e) continue;
+    const want = takesRo(e) ? "로" : "으로";
+    if (want !== josa) say(body, josa, want);
+  }
+  for (const m of text.matchAll(
+    /\$([^$]*)\$ ?(이라|라)(?= 하|고 |고,|면|는 |서 )/g,
+  )) {
+    const [, body, josa] = m as unknown as [string, string, string];
+    const e = endingOf(body);
+    if (!e) continue;
+    const want = hasBatchim(e) ? "이라" : "라";
+    if (want !== josa) say(body, josa, want);
+  }
+  return out;
+}
+
+/**
+ * 값이 맞아도 지면에 나오면 안 되는 모양. 셋째 칸이 `"수식"` 이면 `$…$` 안에서만 본다
+ * (발문 글자의 「1(가)」 같은 것은 수식이 아니다).
+ */
+const SMELLS: readonly (readonly [string, RegExp, "수식"?])[] = [
   ["+- 나 -- 가 붙었다", /\+-|--/],
   ["계수 1 을 적었다", /(?<![\d.])1[a-zA-Z](?![a-zA-Z0-9])/],
   // 위 줄은 `1` 뒤에 **글자**가 올 때만 본다 — `1\left(x-4\right)`·`-1\left(x+7\right)` 는
   // 뒤가 역슬래시라 통째로 빠져 있었다(중1 항등식·일차방정식 판별 목록, 2026-09-27 실측).
-  // 맨 괄호 `1(` 는 넣지 않는다 — 중3 유리화 `\dfrac{1(3-\sqrt{3})}{6}` 처럼 옳은 풀이 줄이 걸린다.
   ["괄호 앞에 계수 1 을 적었다", /(?<![\d.])1\\left(?:[([]|\\\{)/],
+  // 맨 괄호 `1(` — `$1(a+b)=-8$`·`\{5x-1(20-x)\}`(2026-09-27 전수, 연립 12·부등식 72 …).
+  // 앞이 `{` 이면 뺀다 — 중3 유리화 `\dfrac{1(3-\sqrt{3})}{6}` 는 옳은 풀이 줄이다.
+  // (중등 `middleNotationAll` 이 먼저 들고 있던 자를 2026-09-27 리드 결정으로 여기로 올렸다.)
+  ["맨 괄호 앞에 계수 1 을 적었다", /(?<![\d.{])1\(/, "수식"],
   // 같은 까닭으로 `1\pi`·`1\sqrt{15}` 도 빠져 있었다(원과 부채꼴 넓이·호, 근호 전개 — 2026-09-27 실측).
   ["π·√ 앞에 계수 1 을 적었다", /(?<![\d.])1\\(?:pi|sqrt)(?![a-zA-Z])/],
   ["계수 0 을 적었다", /(?<![\d.])0[a-zA-Z]/],
@@ -116,5 +251,8 @@ const SMELLS: readonly (readonly [string, RegExp])[] = [
 
 /** 지면 냄새가 난 자리 — 없으면 빈 배열. */
 export function pageSmells(text: string): string[] {
-  return SMELLS.filter(([, re]) => re.test(text)).map(([label]) => label);
+  const math = [...text.matchAll(/\$[^$]*\$/g)].map((m) => m[0]).join(" ");
+  return SMELLS.filter(([, re, scope]) =>
+    re.test(scope === "수식" ? math : text),
+  ).map(([label]) => label);
 }
