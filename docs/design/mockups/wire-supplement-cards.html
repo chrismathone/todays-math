@@ -1,0 +1,440 @@
+<!doctype html>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>보충 카드 와이어</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nanum+Myeongjo:wght@800&family=Noto+Sans+KR:wght@400;500;700&display=swap">
+<style>
+/* 와이어 — 흑백 · 상자 · 실제 글자 크기만. 색 · 글꼴 · 움직임은 Hi-fi 단계(05 §0-3).
+   바깥 틀(제목 · 탭 · 표)은 wire-quick-combo 와 같은 토큰. 화면 안은 회색조만. «새»로 표시한 점선 상자가 이번에 더하는 자리. */
+:root {
+  color-scheme: light;
+  --paper: #fafaf8; --ink: #161616; --ink-2: #61615e; --rule: #b9b9b6; --pick: #2064b3;
+  --sans: "Pretendard Variable", Pretendard, "Noto Sans KR", "Malgun Gothic", system-ui, sans-serif;
+  --serif: "Nanum Myeongjo", "Noto Serif KR", Batang, serif;
+  --pw: 320px; --ph: 568px;
+}
+body.w390 { --pw: 390px; --ph: 700px; }
+body { margin: 0; background: var(--paper); color: var(--ink); font-family: var(--sans); font-size: 14px; line-height: 1.55; }
+* { box-sizing: border-box; }
+[hidden] { display: none !important; }
+button { font: inherit; color: inherit; }
+:is(button):focus-visible { outline: 3px solid #82a1ff; outline-offset: 2px; }
+.tab, .wbtn { cursor: pointer; }
+
+.board { max-width: 1240px; margin: 0 auto; padding-inline: 24px; padding-block: 28px 72px; }
+@media (max-width: 600px) { .board { padding-inline: 16px; } }
+.head { display: grid; gap: 10px; padding-bottom: 18px; }
+.eyebrow { margin: 0; font-size: 12px; letter-spacing: .06em; color: var(--ink-2); }
+h1 { margin: 0; font-family: var(--serif); font-weight: 800; font-size: 30px; line-height: 1.25; letter-spacing: -.02em; text-wrap: balance; }
+.lede { margin: 0; max-width: 74ch; color: var(--ink-2); font-size: 15px; }
+.lede b { color: var(--ink); }
+.facts { display: flex; flex-wrap: wrap; gap: 6px 22px; margin: 4px 0 0; padding: 0; list-style: none; font-size: 13px; color: var(--ink-2); }
+.facts b { color: var(--ink); font-weight: 600; }
+
+.ask { border: 1px solid var(--rule); border-radius: 8px; background: #fff; padding: 18px 20px; display: grid; gap: 10px; margin-bottom: 22px; }
+.ask h2 { margin: 0; font-family: var(--serif); font-size: 20px; font-weight: 800; }
+.ask ol { margin: 0; padding-left: 20px; display: grid; gap: 9px; color: var(--ink-2); }
+.ask li b { color: var(--ink); }
+.note { margin: 0; max-width: 78ch; font-size: 13px; color: var(--ink-2); }
+.note b { color: var(--ink); }
+
+h2.sec { margin: 30px 0 8px; font-family: var(--serif); font-size: 22px; font-weight: 800; letter-spacing: -.01em; }
+.tablewrap { overflow-x: auto; }
+table.t { border-collapse: collapse; font-size: 12.5px; background: #fff; min-width: 980px; }
+table.t th, table.t td { border: 1px solid #d6d6d3; padding: 6px 9px; text-align: left; vertical-align: top; }
+table.t th { font-weight: 700; background: #f3f3f1; }
+table.t th[scope="row"] { white-space: nowrap; }
+table.t code, .note code { font-size: 11.5px; background: #f0f0ee; padding: 0 4px; border-radius: 3px; }
+.rec { font-size: 11px; border: 1.5px solid var(--ink); border-radius: 3px; padding: 0 5px; margin-left: 6px; font-weight: 700; white-space: nowrap; }
+.who { font-weight: 700; color: var(--ink); }
+
+.toolbar { position: sticky; top: 0; z-index: 20; display: flex; flex-wrap: wrap; align-items: center; gap: 4px 10px; padding-block: 10px; background: var(--paper); border-block: 1px solid var(--rule); margin-top: 30px; }
+.tabs { display: flex; flex-wrap: wrap; gap: 4px; }
+.tab { display: flex; gap: 8px; align-items: baseline; padding: 7px 12px; border: 1px solid transparent; border-radius: 6px; background: none; color: var(--ink-2); }
+.tab .k { font-weight: 700; color: var(--ink); }
+.tab:hover { background: #fff; }
+.tab[aria-selected="true"] { background: #fff; border-color: var(--rule); color: var(--ink); box-shadow: inset 0 -2px 0 var(--pick); }
+.widths { margin-left: auto; display: flex; gap: 4px; align-items: center; font-size: 12px; color: var(--ink-2); }
+.wbtn { border: 1px solid var(--rule); background: #fff; border-radius: 6px; padding: 4px 10px; font-size: 12px; }
+.wbtn:hover { border-color: var(--ink-2); }
+.wbtn[aria-pressed="true"] { border-color: var(--ink); font-weight: 700; box-shadow: inset 0 -2px 0 var(--pick); }
+
+.panel { padding-top: 22px; display: grid; gap: 18px; }
+.thesis h2 { margin: 0 0 6px; font-family: var(--serif); font-size: 22px; font-weight: 800; letter-spacing: -.01em; }
+.thesis p { margin: 0; max-width: 74ch; color: var(--ink-2); }
+.meta { margin: 0; display: grid; grid-template-columns: max-content minmax(0, 1fr); gap: 5px 14px; font-size: 13px; max-width: 980px; }
+.meta dt { font-weight: 700; }
+.meta dd { margin: 0; color: var(--ink-2); }
+.cuts { display: flex; flex-wrap: wrap; gap: 18px; align-items: flex-start; overflow-x: auto; padding-bottom: 6px; }
+.cut { margin: 0; display: grid; gap: 8px; flex: none; }
+.cut figcaption { font-size: 12.5px; color: var(--ink-2); max-width: calc(var(--pw) + 12px); }
+.cut figcaption b { color: var(--ink); }
+.pcwrap figcaption { max-width: 660px; }
+
+/* ── 폰 — 학생 «수학 탐험» 화면을 상자로만 ─────────────── */
+.phone { width: calc(var(--pw) + 12px); border: 6px solid #232323; border-radius: 26px; background: #fff; overflow: hidden; }
+.scr { position: relative; width: var(--pw); height: var(--ph); display: flex; flex-direction: column; overflow: hidden; background: #f6f6f5; }
+.p-top { flex: none; display: flex; justify-content: space-between; align-items: center; padding: 12px 14px; background: #fff; border-bottom: 1px solid #dcdcda; }
+.p-top b { font-size: 15px; font-weight: 800; letter-spacing: -.4px; }
+.p-top span { font-size: 12px; color: #6b6b68; }
+.p-body { flex: 1; min-height: 0; min-width: 0; overflow: hidden; display: flex; flex-direction: column; gap: 10px; padding: 10px 12px; }
+.p-nav { flex: none; display: grid; grid-template-columns: repeat(3, 1fr); border-top: 1px solid #dcdcda; background: #fff; height: 54px; }
+.p-nav span { display: grid; place-items: center; font-size: 11px; color: #6b6b68; }
+.p-nav span::before { content: ""; width: 18px; height: 18px; border: 1.5px solid #9a9a96; border-radius: 5px; display: block; margin-bottom: -10px; }
+.p-nav span.on { color: #161616; font-weight: 700; }
+.p-nav span.on::before { border-color: #161616; }
+
+.card { background: #fff; border: 1px solid #d6d6d3; border-radius: 18px; padding: 14px; display: grid; gap: 7px; }
+.row2 { display: flex; justify-content: space-between; font-size: 12px; color: #6b6b68; }
+.sub { margin: 0; font-size: 12px; color: #6b6b68; }
+.ttl { margin: 0; font-size: 20px; font-weight: 800; letter-spacing: -.4px; line-height: 1.3; }
+.bar { height: 6px; border-radius: 3px; background: #dededb; overflow: hidden; }
+.bar i { display: block; height: 100%; background: #2b2b2b; }
+.btn { display: flex; justify-content: center; align-items: center; height: 46px; border-radius: 12px; background: #2b2b2b; color: #fff; font-size: 15px; font-weight: 700; }
+.btn.ghost { background: #fff; color: #161616; border: 1.5px solid #2b2b2b; }
+.btn.sm { height: 38px; font-size: 13px; }
+.done { margin: 0; font-size: 13px; color: #4a4a47; }
+.tools { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 6px; }
+.tools span { display: flex; justify-content: center; align-items: center; gap: 4px; height: 38px; border: 1px solid #d6d6d3; border-radius: 10px; background: #fff; font-size: 12.5px; }
+.tools.four { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+.boardbox { background: #fff; border: 1px solid #d6d6d3; border-radius: 18px; padding: 12px 8px; display: grid; gap: 6px; }
+.tiles { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 5px; position: relative; }
+.tile { position: relative; aspect-ratio: 1 / .78; border-radius: 8px; display: grid; place-items: center; font-size: 9.5px; line-height: 1.2; text-align: center; padding: 2px; color: #4a4a47; }
+.tile.d { background: #cfcfcc; }
+.tile.t { background: #2b2b2b; color: #fff; font-weight: 700; }
+.tile.f { border: 1.5px dashed #a9a9a6; background: #fff; }
+.center { text-align: center; font-size: 11px; color: #4a4a47; padding: 4px 0; }
+.center b { display: block; font-size: 22px; line-height: 1.2; color: #161616; }
+
+.new { position: relative; outline: 2px dashed #161616; outline-offset: 3px; }
+.new::after { content: "새"; position: absolute; top: -12px; right: -6px; font-size: 10px; font-weight: 700; background: #161616; color: #fff; border-radius: 3px; padding: 0 4px; line-height: 16px; }
+.new.l::after { right: auto; left: -6px; }
+
+.sheet { position: absolute; inset: 44px 0 0 0; background: #fff; border-radius: 18px 18px 0 0; border-top: 1px solid #b9b9b6; box-shadow: 0 -8px 24px #0001; padding: 14px; display: flex; flex-direction: column; gap: 9px; overflow: hidden; }
+.sheet.short { inset: auto 0 0 0; height: 46%; }
+.shade { position: absolute; inset: 0; background: #0000002a; }
+.sh-h { display: flex; justify-content: space-between; align-items: center; font-size: 16px; font-weight: 800; }
+.sh-h span { font-size: 18px; font-weight: 400; color: #6b6b68; }
+.grid2 { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 6px; }
+.gcard { border: 1px solid #d6d6d3; border-radius: 10px; padding: 7px 8px; display: grid; gap: 2px; font-size: 10.5px; color: #6b6b68; }
+.gcard b { font-size: 13px; color: #161616; }
+.dots { display: flex; gap: 3px; }
+.dots i { width: 7px; height: 7px; border-radius: 50%; border: 1px solid #9a9a96; }
+.dots i.on { background: #2b2b2b; border-color: #2b2b2b; }
+.list { display: grid; gap: 5px; }
+.li { display: flex; justify-content: space-between; align-items: center; gap: 6px; border: 1px solid #d6d6d3; border-radius: 10px; padding: 8px 10px; font-size: 12px; color: #6b6b68; background: #fff; }
+.li b { font-size: 14px; color: #161616; }
+.tag { display: inline-block; font-size: 10.5px; font-weight: 700; color: #4a4a47; background: #e4e4e1; border-radius: 3px; padding: 0 4px; margin-left: 4px; vertical-align: 2px; }
+.tag.src { background: #fff; border: 1px solid #6b6b68; font-weight: 500; }
+.gray { font-size: 11px; color: #8a8a86; }
+.defbox { border-radius: 12px; background: #f0f0ee; padding: 10px 12px; display: grid; gap: 6px; }
+.defbox i { display: block; height: 10px; border-radius: 3px; background: #d4d4d1; }
+.defbox i.s { width: 70%; }
+
+/* 풀이 틀(§8.19 4안 — 이름 + 딱지 → 문장 → 아래 답 칸) */
+.pr-head { display: flex; justify-content: space-between; font-size: 12px; color: #6b6b68; }
+.pr-card { flex: 1; min-height: 0; background: #fff; border: 1px solid #d6d6d3; border-radius: 20px; padding: 14px 12px 10px; display: flex; flex-direction: column; gap: 10px; }
+.pr-name { margin: 0; font-size: 20px; font-weight: 800; letter-spacing: -.4px; }
+.pr-sent { margin: 0; font-size: 17px; line-height: 2.3; }
+.w { display: inline-block; height: 12px; border-radius: 3px; background: #cfcfcc; vertical-align: middle; margin-right: 5px; }
+.pr-sent u { display: inline-block; width: 64px; height: 28px; border: 1.5px dashed #6b6b68; border-radius: 6px; vertical-align: middle; text-decoration: none; }
+.dock { margin-top: auto; border-top: 1px solid #ececea; padding-top: 6px; display: grid; gap: 7px; }
+.dock .hint { font-size: 11px; color: #6b6b68; }
+.choices { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 7px; }
+.choices span { display: grid; place-items: center; height: 54px; border: 2px solid #d6d6d3; border-radius: 12px; font-size: 16px; }
+
+/* ── PC 1280 × 800 — 절반 크기로 그림(버튼으로 실제 크기) ── */
+.pcwrap { margin: 0; display: grid; gap: 8px; }
+.pcclip { width: 646px; height: 406px; border: 3px solid #232323; border-radius: 10px; overflow: hidden; background: #fff; }
+body.pc1 .pcclip { width: 1286px; height: 806px; }
+.pc { width: 1280px; height: 800px; transform: scale(.5); transform-origin: 0 0; background: #f6f6f5; position: relative; }
+body.pc1 .pc { transform: none; }
+.pc-top { height: 60px; background: #fff; border-bottom: 1px solid #dcdcda; display: flex; align-items: center; justify-content: space-between; padding: 0 32px; font-size: 16px; }
+.pc-top b { font-size: 18px; }
+.pc-col { width: 680px; margin: 22px auto 0; display: grid; grid-template-columns: minmax(0, 1fr); gap: 16px; }
+.pc .card { padding: 20px; border-radius: 22px; }
+.pc .ttl { font-size: 26px; }
+.pc .tile { font-size: 16px; }
+.pc .tiles { gap: 8px; }
+.pc .tools span { height: 44px; font-size: 14px; }
+.pc .sheet { inset: 110px 250px 40px 250px; border-radius: 18px; border: 1px solid #b9b9b6; }
+.pc .sheet.short { inset: auto 300px 60px 300px; height: 300px; }
+.pc .li b { font-size: 16px; }
+
+footer { margin-top: 36px; }
+</style>
+
+<main class="board">
+  <header class="head">
+    <p class="eyebrow">WIRE · 보충 카드 · 2026-09-28 · 트랙 coverage</p>
+    <h1>보충 카드를 어디에 · 어떻게 — 다섯 안</h1>
+    <p class="lede">교재에만 있는 개념을 카드로 보충한다(원장님 «시안부터»). <b>본 진도(하루 15활동 · 진도판 칸) 밖</b>이라는 틀은 첫 협의에서 정했다(2:1).
+      이 시안은 학생이 보충 카드를 <b>언제 · 어디서</b> 만나는지만 다룬다. 색 · 모양은 Hi-fi 에서.</p>
+    <ul class="facts">
+      <li>후보 <b>21장</b>(<code>supplement-candidates.md</code>)</li>
+      <li>폰 <b>320 · 390</b> · PC <b>1280</b>(절반 크기)</li>
+      <li>점선 상자 «새» = 이번에 더하는 자리</li>
+    </ul>
+  </header>
+
+  <section class="ask" aria-labelledby="ask-h">
+    <h2 id="ask-h">원장님께 여쭐 것</h2>
+    <ol>
+      <li><b>어느 안</b> — A 도감 · B 단원 끝 한 장 · C 기억 복습 뒤 한 장 · D «교재 개념» 목록 · E 진도판 곁길 (섞어도 된다).</li>
+      <li><b>별</b> — 보충 카드를 모으면 별을 줄지(주면 카드와 같은 수집 +1 · 상자 · 한 칸 보장은 없음) 아니면 별 없이.</li>
+      <li><b>기억 복습</b> — 보충 카드도 1 · 3 · 7 · 14 · 30일 기억 복습에 넣을지. 넣으면 기억 복습 날 15활동에 섞여 «본 진도 밖»이 흐려진다.</li>
+      <li><b>후보 21장</b> — 목록에서 빼거나 예비(SAS · ASA 합동 · 모선 · 변수 · 식의 값 · 인수 · 등식의 성질)와 바꿀 것.</li>
+    </ol>
+    <p class="note">공통(안과 상관없이): 보충 카드는 새 id(<code>sup-…</code>) — 원본 230장 · 학생 기록 · 상자 · 교육과정 다리 · 진도판 칸은 그대로. 풀이 틀은 본 카드와 같다(§8.19 — 이름 + 갈래 딱지 · 문장 조립 · 예 모으기 · 경계 살피기).
+      보충 3활동은 <b>오늘의 탐험이 열려 있지 않을 때만</b> 시작한다(열린 탐험은 하나 · 통합 탐험 결정). 만들 때: 엔진 시작은 카드 5장을 요구해 <b>한 장 세션 경로</b>가 따로 들고, <code>sup-</code> 접두만으로는 기억 복습 · 상자 · 수집 집계와 저절로 갈리지 않는다(codex).</p>
+  </section>
+
+  <h2 class="sec">한눈에</h2>
+  <div class="tablewrap">
+    <table class="t">
+      <thead>
+        <tr><th>안</th><th>학생이 만나는 순서</th><th>하루 15활동 · 진도판</th><th>별(D-144)</th><th>기록</th><th>위험</th><th>만드는 품</th></tr>
+      </thead>
+      <tbody>
+        <tr><th scope="row">A 도감 «더 알아보기»</th>
+          <td>하단 «도감» → 학년 카드 아래 «교재에서 더 만나는 개념» → 카드 창(뜻) → «세 활동 해 보기»(선택 · 오늘의 탐험이 열려 있지 않을 때)</td>
+          <td>안 건드림 — 오늘 화면 · 판에 아무것도 안 생김</td>
+          <td>수집 +1 이거나 없음 · 칸 보장 없음</td>
+          <td><code>sup-</code> id 의 수집만(기억 복습 밖)</td>
+          <td>학생이 도감을 열어야만 만난다 — 대부분 못 보고 지날 수 있다</td>
+          <td>작음 — 도감 시트에 칸 하나 · 카드 창 재사용</td></tr>
+        <tr><th scope="row">B 단원 끝 한 장<span class="rec">추천 · 셋 다</span></th>
+          <td>그 단원 다섯 개념을 다 모은 날에만, 칸을 얻은 뒤 «오늘의 한 칸» 카드 아래 «교재에 한 장 더»(선택 · 그 단원 첫 장) → 같은 풀이 틀 3활동. 남은 장 · 건너뛴 장은 도감에서</td>
+          <td>칸을 얻은 뒤라 섞이지 않음 · 15활동 · 판 그대로</td>
+          <td>수집 +1 이거나 없음 · 칸 보장 없음</td>
+          <td>같음</td>
+          <td>보충이 없는 단원에서는 안 나온다(21장이 46단원 중 11단원에만) · 완료 화면이 한 줄 길어진다</td>
+          <td>중간 — 완료 카드에 줄 하나 · 보충 한 장짜리 세션</td></tr>
+        <tr><th scope="row">C 기억 복습 뒤 한 장</th>
+          <td>기억 복습 날 15활동을 끝낸 뒤 완료 화면에 «한 장 더»(선택) — 그날 복습한 카드들의 단원 중 보충이 있는 단원의 안 모은 첫 장</td>
+          <td>같음(칸을 얻은 뒤)</td>
+          <td>같음 · 한 칸 보장(모자라면 3까지)은 본 미션 몫 — 보충은 없음</td>
+          <td>같음</td>
+          <td>기억 복습은 만기 카드를 단원과 상관없이 5장 모으고 모자라면 새 카드도 든다(<code>definitionMemoryCards</code>) — «오늘 복습한 단원»이 하나가 아니다 · 학년 뒤쪽일수록 자주 뜬다</td>
+          <td>중간 — B 와 같은 한 장 세션 · 고르는 규칙이 하나 더</td></tr>
+        <tr><th scope="row">D «교재 개념» 목록</th>
+          <td>홈 도구 줄 네 번째 단추 «교재 개념» → 시트(학년별 묶음) → 묶음 곁 탐험(묶음은 1~6장 — 장수 × 3활동)</td>
+          <td>곁 탐험 — 칸 없음. 오늘의 탐험 15활동에 곁 탐험이 더해질 수 있다</td>
+          <td>같음</td>
+          <td>같음 + 곁 탐험 세션 기록</td>
+          <td>통합 탐험 결정의 «따로 시작하는 메뉴를 만들지 않는다»와 부딪친다 · 오늘의 탐험과 경쟁</td>
+          <td>큼 — 새 시트 · 곁 세션(엔진 경로) · 진도 가드</td></tr>
+        <tr><th scope="row">E 진도판 곁길</th>
+          <td>진도판에서 보충이 있는 단원 칸 모서리 작은 곁길 표시(«곁») → 누르면 짧은 시트 → 한 장 세션</td>
+          <td>판 위에 칸이 아닌 것이 생김 — «칸 = 하루»(D-142)가 흐려질 수 있음</td>
+          <td>같음</td>
+          <td>같음</td>
+          <td>지난 칸은 이미 «다시 풀기» 누름 자리 — 모서리 표시는 둘째 누름 자리(D-30 · 잘못 누름) · 320 폭 판이 이미 빽빽 · 판 규칙(예정 칸 · 넘김) 코드가 복잡해짐</td>
+          <td>큼 — 판 그림 · 누름 자리(D-30) · 예정 칸과의 겹침</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h2 class="sec">안마다 — codex · grok 의견</h2>
+  <div class="tablewrap">
+    <table class="t" id="opinions">
+      <thead><tr><th>안</th><th>codex</th><th>grok</th></tr></thead>
+      <tbody>
+        <tr><th scope="row">A</th><td data-op="codex-A">좋음: 15활동 · 판을 가장 분명히 지키고 도감 · 카드 창을 다시 써 품이 작다. 걱정: 목록 맨 아래라 필요한 학생도 지나친다 · 탐험 도중 보충을 열면 본 학습이 덮이지 않아야</td><td data-op="grok-A">좋음: 오늘 화면 · 칸 · 한 칸 보장을 그대로 두고 품이 가장 작다 · 학년 보충을 한 목록에서. 걱정: 되돌아보는 자리라 안 열면 21장을 지나친다 · «아직» 목록이 하나 더 · 열린 탐험 규칙과 겹칠 수 있다</td></tr>
+        <tr><th scope="row">B</th><td data-op="codex-B">좋음: 방금 배운 단원과 이어져 까닭이 자연스럽고, 칸을 얻은 뒤 3활동만이라 분량 경계가 선명. 걱정: «끝났는데 또 숙제»로 느낄 수 있어 선택임을 분명히 · 여러 장인 단원 · 이미 끝낸 학생의 길이 필요</td><td data-op="grok-B">좋음: 그날 쓴 선수 낱말(직선 · 각)을 바로 메우고 15활동 · 판 · 보장과 안 섞인다. 걱정: 여러 장인 단원의 «다음 날 다음 장»이 다른 단원 완료 화면에 뜬다 · 보충 없는 단원엔 길이 없다 · 완료 카드가 길어진다</td></tr>
+        <tr><th scope="row">C</th><td data-op="codex-C">좋음: 다시 떠올린 개념과 이을 수 있고 칸을 건드리지 않는다 · B 의 한 장 세션을 나눠 쓴다. 걱정: 기억 복습도 15활동이라 가볍다고 단정 못 함 · 단원이 섞여 고르는 품 · 선수 낱말을 늦게 만난다</td><td data-op="grok-C">좋음: 칸을 얻은 뒤라 부담이 작고 같은 단원 기억을 이을 수 있다. 걱정: 기억 복습 다섯 장은 단원이 섞여 «오늘 복습한 단원»이 하나가 아니다 · 초3 앞쪽은 기억 날이 드물고 뒤 학년일수록 자주 뜬다</td></tr>
+        <tr><th scope="row">D</th><td data-op="codex-D">좋음: 보충 전체를 찾기 쉽고 학년 · 묶음을 골라 쓰기 좋다 · 선생님이 안내하기 쉽다. 걱정: 따로 시작하는 메뉴가 통합 탐험 결정과 부딪친다 · 30활동 · 칸 하나 혼동 · 묶음 · 세션 · 보상 품이 크다</td><td data-op="grok-D">좋음: 21장을 학년 묶음으로 훑기 쉽고 칸 수는 그대로. 걱정: 따로 시작하는 메뉴 · 같은 날 30활동 · 5장이 아닌 묶음은 15활동 틀과 어긋남 · 320 에서 도구 칸 70px · 품이 가장 크다</td></tr>
+        <tr><th scope="row">E</th><td data-op="codex-E">좋음: 익숙한 판에서 단원과 보충의 관계가 보이고 지난 단원 보충도 다시 찾기 좋다. 걱정: «+1»이 추가 칸 · 별로 읽힌다 · 같은 단원이 여러 날이면 표시 기준이 필요 · 320 에서 다시 풀기와 곁길을 잘못 누른다</td><td data-op="grok-E">좋음: 매일 보는 판에서 보이고 칸 수는 그대로. 걱정: 지난 칸은 이미 다시 풀기 자리라 16px 표시는 둘째 누름 자리(D-30 · 잘못 누름) · 예정 점선 칸과 섞여 «칸 = 하루»가 흐려진다 · «+1»이 별로 읽힌다</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <p class="note" id="recommend-note"><b>추천 — B «단원 끝 한 장»을 주 입구로, 남은 장 · 건너뛴 장은 A 도감 칸을 선반으로.</b> Claude · codex · grok 이 따로 답해 셋 다 같은 추천(원장님이 고르실 일이라 합의가 아니라 의견 — 표에 그대로 둠). 까닭: 단원 다섯을 막 모은 때라 그날 쓴 선수 낱말과 이어지고, 칸을 얻은 뒤라 15활동 · 진도판 · 별 보장이 그대로다.<br>별 · 기억 복습은 셋 다 같은 의견 — <b>처음 모을 때만 수집 +1</b>(상자 · 한 칸 보장 없음 · 21장이면 최대 21개) · <b>기억 복습 일정에는 안 넣음</b>(넣으면 기억 복습 날 다섯 장에 섞여 본 카드를 밀어낸다).<br>두 모델이 함께 짚은 <b>빠진 안</b>: 본 카드 창(뜻 · 해설 · 앞개념)에서 그 카드가 낱말로 쓰는 보충 카드(평행 · 수직 → «직선»)를 열어 보기 — 새 단추 없이 필요한 순간에 만난다. B+A 와 함께 쓸 수 있어 Hi-fi 에서 곁들일지 여쭐 것.</p>
+
+  <nav class="toolbar" aria-label="안 고르기">
+    <div class="tabs" role="tablist">
+      <button class="tab" role="tab" aria-selected="true" data-tab="A"><span class="k">A</span>도감</button>
+      <button class="tab" role="tab" aria-selected="false" data-tab="B"><span class="k">B</span>단원 끝 한 장 · 추천</button>
+      <button class="tab" role="tab" aria-selected="false" data-tab="C"><span class="k">C</span>기억 복습 뒤</button>
+      <button class="tab" role="tab" aria-selected="false" data-tab="D"><span class="k">D</span>교재 개념 목록</button>
+      <button class="tab" role="tab" aria-selected="false" data-tab="E"><span class="k">E</span>진도판 곁길</button>
+    </div>
+    <div class="widths">폰
+      <button class="wbtn" data-w="320" aria-pressed="true">320</button>
+      <button class="wbtn" data-w="390" aria-pressed="false">390</button>
+      PC <button class="wbtn" data-pc="half" aria-pressed="true">절반</button>
+      <button class="wbtn" data-pc="full" aria-pressed="false">1280</button>
+    </div>
+  </nav>
+
+  <div id="panels"></div>
+
+  <footer>
+    <p class="note">근거: 교재 용어 전수(<code>docs/reference/concept-terms/coverage.md</code> — 고유 개념 722 중 카드 포함 221, 성질 12%) · 보충 후보(<code>supplement-candidates.md</code>) ·
+      통합 탐험 결정(<code>docs/reviews/unified-expedition-decision.md</code>) · 진도판 §8.17 · 문제 머리 §8.19 · 별 경제 D-144. 교재 문장은 싣지 않는다(저장소 밖).</p>
+  </footer>
+</main>
+
+<script>
+// 화면 조각 — 흑백 상자만. 모든 안이 같은 조각을 쓴다(«모든 화면 일치»).
+const nav = (on) => `<div class="p-nav"><span class="${on === 0 ? "on" : ""}">탐험</span><span class="${on === 1 ? "on" : ""}">도감</span><span>강의</span></div>`;
+const topBar = `<div class="p-top"><b>수학 탐험</b><span>초3 · 김하늘</span></div>`;
+const phone = (inner, onTab = 0) => `<div class="phone"><div class="scr">${topBar}${inner}${nav(onTab)}</div></div>`;
+const tiles = (extra = "") => {
+  const t = ["1일<br>덧셈과 뺄셈", "2일<br>곱셈과 나눗셈", "3일<br>분수와 소수", "4일<br>평면도형과 원", "5일<br>길이·시간", "6일<br>자료와 규칙", "7일<br>큰 수", "8일<br>분수·소수 계산"];
+  return `<div class="tiles">${t.map((x, i) => `<div class="tile ${i < 3 ? "d" : i === 3 ? "t" : "f"}">${x}${extra && i === 3 ? extra : ""}</div>`).join("")}</div>`;
+};
+const board = (extra = "", cls = "") => `<div class="boardbox ${cls}">${tiles(extra)}<div class="center">초3 · 6단원 중<b>4번째</b>평면도형과 원 · 모은 개념 15 / 30</div></div>`;
+const mission = (done, extra = "") => `<div class="card"><div class="row2"><span>${done ? "오늘의 한 칸 완료" : "오늘의 한 칸"}</span><span>${done ? "15 / 15" : "0 / 15"} 활동</span></div>
+  <p class="sub">개념 다섯 · 활동 셋씩</p><p class="ttl">평면도형과 원</p><div class="bar"><i style="width:${done ? 100 : 0}%"></i></div>
+  ${done ? `<p class="done">✓ 한 칸 전진했어요. 다음 탐험은 내일 열려요.</p>` : `<div class="btn">오늘의 탐험 시작 →</div>`}${extra}</div>`;
+const tools = (four) => `<div class="tools ${four ? "four" : ""}"><span>▤ 도감</span><span>⚙ 학습 설정</span><span>⌂ 우리 기지</span>${four ? `<span class="new">📖 교재 개념</span>` : ""}</div>`;
+const home = (m, b = board(), t = tools(false)) => `<div class="p-body">${m}${b}${t}</div>`;
+const practice = (name, kind, step, grey) => `<div class="p-body"><div class="pr-head"><span>← ${grey}</span><span>${step}</span></div>
+  <div class="pr-card"><p class="gray">문장 조립</p><p class="pr-name">${name}<span class="tag">${kind}</span><span class="tag src">교재 개념</span></p>
+  <p class="pr-sent"><i class="w" style="width:48px"></i><i class="w" style="width:30px"></i><u></u> <i class="w" style="width:56px"></i><i class="w" style="width:40px"></i><u></u> <i class="w" style="width:36px"></i></p>
+  <div class="dock"><span class="hint">말 조각 두 개를 순서대로 · 0 / 2</span><div class="choices"><span><i class="w" style="width:34px"></i></span><span><i class="w" style="width:52px"></i></span><span><i class="w" style="width:30px"></i></span><span><i class="w" style="width:60px"></i></span></div>
+  <div class="btn sm">완성한 문장 확인하기 ⏎</div></div></div></div>`;
+const pc = (inner, sheet = "") => `<div class="pcclip"><div class="pc"><div class="pc-top"><b>오늘의수학 · 수학 탐험</b><span>탐험 · 도감 · 강의 · 김하늘</span></div><div class="pc-col">${inner}</div>${sheet}</div></div>`;
+
+// 보충 카드 창 · 목록 조각
+const supCard = (name, kind, unit) => `<div class="shade"></div><div class="sheet"><div class="sh-h">${name}<span>×</span></div>
+  <p class="sub">초3 · ${unit} · <span class="tag src">교재 개념</span><span class="tag">${kind}</span></p>
+  <p class="gray">아직 모으기 전 · 오늘의 탐험 · 기억 복습과 따로예요</p>
+  <div class="defbox"><i></i><i></i><i class="s"></i></div>
+  <p class="gray">교재에서 이 개념을 다시 만나요 — 큐브 3-1 · 개념원리 1-2</p>
+  <div class="btn">세 활동 해 보기 →</div></div>`;
+const collection = (extra) => `<div class="shade"></div><div class="sheet"><div class="sh-h">나의 개념 도감<span>×</span></div>
+  <div class="row2"><span>초3</span><span>15 / 30개념</span></div>
+  <div class="grid2">${["평면도형과 원|선분", "평면도형과 원|직각", "평면도형과 원|원의 중심", "평면도형과 원|반지름"].map((x) => {
+    const [u, n] = x.split("|");
+    return `<div class="gcard">${u}<b>${n}<span class="tag">정의</span></b><div class="dots"><i class="on"></i><i></i><i></i></div></div>`;
+  }).join("")}</div>${extra}</div>`;
+
+const OPTIONS = {
+  A: {
+    title: "A 도감 «더 알아보기» — 모아 둔 카드 아래 한 칸",
+    thesis: "도감(하단 «도감» 탭 · 홈 «도감» 단추)의 학년 카드 목록 아래에 «교재에서 더 만나는 개념» 칸을 둔다. 학생이 찾아와서 고르는 자리 — 오늘 화면 · 진도판은 그대로.",
+    meta: [["만나는 순서", "도감 열기 → 스크롤 아래 «교재에서 더 만나는 개념 · 5» → 카드 누름 → 카드 창(이름 · 딱지 · «교재 개념» 표지 · 뜻) → «세 활동 해 보기»"],
+      ["보이는 수", "그 학년 보충 카드 전부(초3 5장). 모은 것은 «모음», 안 모은 것은 «아직»"],
+      ["하루 · 판", "칸 · 15활동 · 기억 복습 날과 무관. 뜻은 언제든 보고, 3활동은 오늘의 탐험이 열려 있지 않을 때만(열린 탐험은 하나)"],
+      ["별", "수집 +1 이거나 없음(여쭐 것 ②) · 상자 · 한 칸 보장 없음"]],
+    cuts: [
+      [phone(`<div class="p-body">${mission(false)}</div>` + collection(`<div class="list new" style="margin-top:6px"><div class="row2"><b style="font-size:13px;color:#161616">교재에서 더 만나는 개념 · 5</b><span>선택</span></div>
+        <div class="li"><span><b>직선</b><span class="tag">정의</span></span><span>아직</span></div>
+        <div class="li"><span><b>각</b><span class="tag">정의</span></span><span>아직</span></div>
+        <div class="li"><span><b>변과 꼭짓점</b><span class="tag">정의</span></span><span>모음</span></div></div>`), 1),
+        "<b>① 도감</b> — 학년 카드 아래 «교재에서 더 만나는 개념». 오늘의 탐험과 따로라는 걸 칸 머리에 적는다."],
+      [phone(`<div class="p-body">${mission(false)}</div>` + supCard("직선", "정의", "평면도형과 원"), 1),
+        "<b>② 카드 창</b> — 지금 도감 카드 창과 같은 틀 + «교재 개념» 표지. «세 활동 해 보기»는 같은 풀이 틀 3활동."],
+    ],
+    pcInner: mission(false) + board() + tools(false),
+    pcSheet: `<div class="shade"></div><div class="sheet"><div class="sh-h">나의 개념 도감<span>×</span></div><div class="row2"><span>초3</span><span>15 / 30개념</span></div>
+      <div class="grid2" style="grid-template-columns:repeat(4,1fr)">${"선분 직각 원의 중심 반지름 지름 분수 분모 분자".split(" ").map((n) => `<div class="gcard">평면도형과 원<b>${n}</b><div class="dots"><i class="on"></i><i></i><i></i></div></div>`).join("")}</div>
+      <div class="list new"><div class="row2"><b style="font-size:15px;color:#161616">교재에서 더 만나는 개념 · 5</b><span>선택 · 오늘의 탐험과 따로</span></div>
+      <div class="li"><span><b>직선</b><span class="tag">정의</span></span><span>아직</span></div><div class="li"><span><b>각</b><span class="tag">정의</span></span><span>아직</span></div></div></div>`,
+    pcCap: "<b>PC 1280</b> — 도감 창(가운데 680 기둥 위에 뜨는 창) 아래 칸.",
+  },
+  B: {
+    title: "B 단원 끝 한 장 — 단원을 다 모은 날, 칸을 얻은 뒤",
+    thesis: "그 단원의 다섯 개념을 다 모은 날, 한 칸을 얻은 뒤 «오늘의 한 칸» 카드 아래에 «교재에 한 장 더»를 한 번 보인다. 누르면 같은 풀이 틀로 한 장(3활동). 안 눌러도 된다.",
+    meta: [["만나는 순서", "오늘의 탐험 15활동 → 한 칸 전진 → 완료 카드 아래 «이 단원 개념 다섯을 다 모았어요 · 교재에 한 장 더 — 직선» → «살펴보기» → 뜻 만나기 + 3활동 → 도감에 «교재 개념»으로 남음"],
+      ["보이는 규칙", "그 단원을 다 모은 날에만 · 그 단원 보충 첫 장 한 번. 여러 장인 단원(초3 평면도형과 원 5장 · 중1 기본 도형 3장)의 나머지 장과 건너뛴 장은 도감의 «교재에서 더 만나는 개념»에서(추천 B+A). 보충은 46단원 중 11단원에만"],
+      ["하루 · 판", "칸을 얻은 뒤라 15활동 · 칸 · 판 예정은 그대로. «선택 · 칸과 상관없어요»를 줄에 적는다"],
+      ["별", "수집 +1 이거나 없음 · 상자 · 한 칸 보장 없음"]],
+    cuts: [
+      [phone(home(mission(true, `<div class="list new" style="margin-top:6px"><div class="row2"><b style="font-size:13px;color:#161616">이 단원 개념 다섯을 다 모았어요</b><span>선택</span></div>
+        <div class="li"><span>교재에 한 장 더 — <b>직선</b><span class="tag">정의</span></span><span>살펴보기 →</span></div><span class="gray">3활동 · 칸과 상관없어요</span></div>`))),
+        "<b>① 칸을 얻은 뒤 홈</b> — 완료 카드 안 아래 한 줄. 누르지 않으면 내일 이 줄은 사라지고 도감에만 남는다."],
+      [phone(practice("직선", "정의", "보충 1 / 3활동", "교재에 한 장 더")),
+        "<b>② 보충 한 장</b> — 본 카드와 같은 풀이 틀(§8.19). 머리에 «교재 개념» 표지 · 진행은 «보충 1 / 3활동»(15 가 아님)."],
+    ],
+    pcInner: mission(true, `<div class="list new" style="margin-top:8px"><div class="row2"><b style="font-size:15px;color:#161616">이 단원 개념 다섯을 다 모았어요</b><span>선택 · 3활동 · 칸과 상관없어요</span></div><div class="li"><span>교재에 한 장 더 — <b>직선</b><span class="tag">정의</span></span><span>살펴보기 →</span></div></div>`) + board() + tools(false),
+    pcCap: "<b>PC 1280</b> — 가운데 680 기둥의 완료 카드 안 한 줄.",
+  },
+  C: {
+    title: "C 기억 복습 뒤 한 장 — 가벼운 날에 한 장",
+    thesis: "기억 복습 날 15활동을 끝내면 완료 카드에 «한 장 더»를 보인다. 기억 복습은 만기 카드 위주로 단원이 섞이고 모자라면 새 카드도 든다 — 그날 카드들의 단원 중 보충이 있는 단원의 안 모은 첫 장.",
+    meta: [["만나는 순서", "기억 복습 15활동 → 한 칸 전진 → 완료 카드 아래 «오늘 복습한 단원의 교재 개념 — 공배수» → 한 장 3활동"],
+      ["고르는 규칙", "오늘 카드 다섯의 단원 → 보충이 있는 단원 → 안 모은 첫 장 → 없으면 안 뜸. 규칙이 B 보다 하나 많다 · 초3 앞쪽은 기억 복습 날이 드물어 직선 · 각을 늦게 만난다"],
+      ["하루 · 판", "칸을 얻은 뒤라 그대로. 한 칸 보장(모자라면 3까지, D-144)은 본 미션 몫 — 보충에는 없다"],
+      ["별", "수집 +1 이거나 없음"]],
+    cuts: [
+      [phone(`<div class="p-body"><div class="card"><div class="row2"><span>기억 복습 완료</span><span>15 / 15 활동</span></div><p class="sub">다시 만난 개념 다섯</p><p class="ttl">기억 퀘스트</p><div class="bar"><i style="width:100%"></i></div>
+        <p class="done">✓ 한 칸 전진했어요. 다음 탐험은 내일 열려요.</p>
+        <div class="list new" style="margin-top:6px"><div class="row2"><b style="font-size:13px;color:#161616">오늘 복습한 단원의 교재 개념</b><span>선택</span></div><div class="li"><span><b>공배수</b><span class="tag">정의</span></span><span>한 장 더 →</span></div><span class="gray">약수·배수와 혼합 계산 · 3활동</span></div></div>${board()}</div>`),
+        "<b>① 기억 복습 날 완료</b> — 한 칸을 얻은 뒤 완료 카드 안 한 줄."],
+      [phone(practice("공배수", "정의", "보충 1 / 3활동", "한 장 더")), "<b>② 보충 한 장</b> — B 와 같은 틀."],
+    ],
+    pcInner: `<div class="card"><div class="row2"><span>기억 복습 완료</span><span>15 / 15 활동</span></div><p class="ttl">기억 퀘스트</p><div class="bar"><i style="width:100%"></i></div><p class="done">✓ 한 칸 전진했어요.</p>
+      <div class="list new"><div class="row2"><b style="font-size:15px;color:#161616">오늘 복습한 단원의 교재 개념</b><span>선택 · 3활동</span></div><div class="li"><span><b>공배수</b><span class="tag">정의</span></span><span>한 장 더 →</span></div></div></div>` + board() + tools(false),
+    pcCap: "<b>PC 1280</b> — 기억 복습 날 완료 카드.",
+  },
+  D: {
+    title: "D «교재 개념» 목록 — 도구 줄 네 번째 단추",
+    thesis: "홈 도구 줄(도감 · 학습 설정 · 우리 기지)에 «교재 개념»을 더해 보충 21장을 학년 묶음으로 보인다. 묶음을 골라 곁 탐험(묶음은 1~6장 — 장수 × 3활동).",
+    meta: [["만나는 순서", "홈 «교재 개념» → 시트(초3 5장 · 초4 4장 · 초5 4장 · 초6 1장 · 중1 6장 · 중2 1장) → «이 묶음 탐험하기» → 장수 × 3활동(칸 없음)"],
+      ["하루 · 판", "곁 탐험은 칸이 없다. 같은 날 오늘의 탐험 15활동에 곁 탐험이 더해진다 · 엔진 시작은 카드 5장을 요구해 묶음 세션 경로가 따로 든다"],
+      ["부딪침", "통합 탐험 결정 «따로 시작하는 메뉴(기억 · 회복 · 통분 공방 시작 메뉴)를 만들지 않는다»와 정면으로 부딪친다"],
+      ["별", "수집 +1 이거나 없음(다른 안과 같음)"]],
+    cuts: [
+      [phone(home(mission(false), board(), tools(true))), "<b>① 홈</b> — 도구 줄이 넷으로. 320 에서 단추 한 칸이 70px 남짓."],
+      [phone(home(mission(false), board(), tools(true)) + `<div class="shade"></div><div class="sheet new l"><div class="sh-h">교재 개념 · 21장<span>×</span></div><p class="gray">교재에 나오는데 탐험 카드에 없던 개념이에요. 오늘의 탐험과 따로예요.</p>
+        <div class="list"><div class="li"><span><b>초3 · 도형의 기본 낱말</b><br>직선 · 각 · 변과 꼭짓점 · 직사각형 · 정사각형</span><span>0 / 5</span></div>
+        <div class="li"><span><b>초4 · 도형의 약속과 성질</b><br>수선 · 사다리꼴 · 정다각형 · 이등변삼각형의 성질</span><span>0 / 4</span></div>
+        <div class="li"><span><b>초5 · 약수·배수 · 입체</b><br>공약수 · 공배수 · 대응 · 면과 모서리</span><span>0 / 4</span></div></div><div class="btn">이 묶음 탐험하기 · 5장 15활동 →</div></div>`),
+        "<b>② 교재 개념 시트</b> — 학년 묶음. 묶음이 5장이 아닌 곳(4 · 1 · 6장)은 하루 15활동 틀과 어긋난다."],
+    ],
+    pcInner: mission(false) + board() + tools(true),
+    pcCap: "<b>PC 1280</b> — 도구 줄 넷.",
+  },
+  E: {
+    title: "E 진도판 곁길 — 판 위 단원 칸 옆 작은 표시",
+    thesis: "진도판에서 보충 카드가 있는 단원 칸에 작은 곁길 표시를 붙인다. 누르면 짧은 시트로 그 단원 보충 카드 한 장. 곁길은 칸이 아니다.",
+    meta: [["만나는 순서", "진도판 → 오늘 · 지난 칸 모서리 곁길 표시 → 시트 «곁길 · 직선 · 칸은 안 얻어요» → 한 장 3활동"],
+      ["하루 · 판", "판에 «칸이 아닌 것»이 생긴다 — 예정 칸(투명 · 점선)과 곁길 표시가 한 판에 섞인다(D-142)"],
+      ["누름", "판 칸은 지금 누르는 자리(지난 칸 다시 풀기) — 곁길 표시는 칸 안의 또 다른 누름 자리가 된다(D-30 손가락 커서 · 크기)"],
+      ["별", "수집 +1 이거나 없음"]],
+    cuts: [
+      [phone(home(mission(false), board(`<span class="new" style="position:absolute;right:-5px;bottom:-5px;width:16px;height:16px;border-radius:50%;background:#fff;border:1.5px solid #161616;font-size:9px;line-height:13px;color:#161616">곁</span>`))),
+        "<b>① 판</b> — 4일 «평면도형과 원» 칸 모서리에 곁길 표시(«곁» — «+1»은 별로 읽혀 바꿈). 320 에서 칸이 70px 남짓이라 표시가 16px — 누름 자리는 더 커야 한다."],
+      [phone(home(mission(false), board()) + `<div class="shade"></div><div class="sheet short new l"><div class="sh-h">곁길 · 평면도형과 원<span>×</span></div><div class="li"><span><b>직선</b><span class="tag">정의</span><span class="tag src">교재 개념</span></span><span>아직</span></div><p class="gray">3활동 · 칸은 안 얻어요</p><div class="btn">살펴보기 →</div></div>`),
+        "<b>② 곁길 시트</b> — 판 칸을 누른 것과 곁길을 누른 것이 가까워 잘못 누르기 쉽다."],
+    ],
+    pcInner: mission(false) + board(`<span class="new" style="position:absolute;right:-6px;bottom:-6px;width:24px;height:24px;border-radius:50%;background:#fff;border:2px solid #161616;font-size:12px;line-height:20px;color:#161616">곁</span>`) + tools(false),
+    pcCap: "<b>PC 1280</b> — 판 칸 모서리 곁길 표시.",
+  },
+};
+
+const panels = document.getElementById("panels");
+for (const [key, o] of Object.entries(OPTIONS)) {
+  const sec = document.createElement("section");
+  sec.className = "panel";
+  sec.dataset.panel = key;
+  sec.hidden = key !== "A";
+  sec.innerHTML = `<div class="thesis"><h2>${o.title}</h2><p>${o.thesis}</p></div>
+    <dl class="meta">${o.meta.map(([k, v]) => `<dt>${k}</dt><dd>${v}</dd>`).join("")}</dl>
+    <div class="cuts">${o.cuts.map(([html, cap]) => `<figure class="cut">${html}<figcaption>${cap}</figcaption></figure>`).join("")}</div>
+    <figure class="pcwrap">${pc(o.pcInner, o.pcSheet || "")}<figcaption>${o.pcCap}</figcaption></figure>`;
+  panels.appendChild(sec);
+}
+for (const b of document.querySelectorAll(".tab")) {
+  b.addEventListener("click", () => {
+    for (const t of document.querySelectorAll(".tab")) t.setAttribute("aria-selected", String(t === b));
+    for (const p of document.querySelectorAll("[data-panel]")) p.hidden = p.dataset.panel !== b.dataset.tab;
+  });
+}
+for (const b of document.querySelectorAll("[data-w]")) {
+  b.addEventListener("click", () => {
+    document.body.classList.toggle("w390", b.dataset.w === "390");
+    for (const x of document.querySelectorAll("[data-w]")) x.setAttribute("aria-pressed", String(x === b));
+  });
+}
+for (const b of document.querySelectorAll("[data-pc]")) {
+  b.addEventListener("click", () => {
+    document.body.classList.toggle("pc1", b.dataset.pc === "full");
+    for (const x of document.querySelectorAll("[data-pc]")) x.setAttribute("aria-pressed", String(x === b));
+  });
+}
+</script>
