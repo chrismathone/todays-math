@@ -51,11 +51,18 @@ for (const name of (process.env.QA_ENGINES ?? "chromium,webkit").split(",")) {
   for (const width of sizes) {
     const mobile = width < 600;
     const page = await browser.newPage({ viewport: { width, height: 900 }, isMobile: mobile, hasTouch: mobile });
-    // ⑴ 이름 전부
-    await page.goto(`${base}/dev/daily-journey-qa?set=all&variant=map`);
-    await page.waitForSelector("[data-qa-ready=true]");
-    await page.evaluate(() => document.fonts.ready);
-    const all = await page.evaluate(inspect);
+    // ⑴ 이름 전부 — 판 410여 개를 네 조각으로 나눠 그린다(한 페이지면 PC 폭에서 몇 분 걸린다).
+    const all = { clipped: [], split: [], overflow: [], names: 0, pageOverflow: false, boardWidth: 0 };
+    for (const part of [1, 2, 3, 4]) {
+      await page.goto(`${base}/dev/daily-journey-qa?set=all&variant=map&part=${part}`);
+      await page.waitForSelector("[data-qa-ready=true]", { timeout: 120000 });
+      await page.evaluate(() => document.fonts.ready);
+      const one = await page.evaluate(inspect);
+      for (const key of ["clipped", "split", "overflow"]) all[key].push(...one[key]);
+      all.names += one.names;
+      all.pageOverflow ||= one.pageOverflow;
+      all.boardWidth = one.boardWidth;
+    }
     report.push({ engine: name, width, ...all });
     console.log(name, width, "판", all.boardWidth, "이름", all.names, "잘림", all.clipped.length, "쪼개짐", all.split.length, "칸 넘침", all.overflow.length, "가로 스크롤", all.pageOverflow);
     if (!process.env.QA_SOFT) {
@@ -65,12 +72,26 @@ for (const name of (process.env.QA_ENGINES ?? "chromium,webkit").split(",")) {
       assert.equal(all.pageOverflow, false, `${name} ${width}: 가로 스크롤`);
     } else continue;
     // ⑵ 실제 목록 판
-    for (const [set, variant] of [["middle", "map"], ["elementary", "map"], ["middle", "full"]]) {
+    for (const [set, variant] of [["middle", "map"], ["elementary", "map"], ["middle", "full"], ["elementary", "full"]]) {
       await page.goto(`${base}/dev/daily-journey-qa?days=2&set=${set}&variant=${variant}`);
       await page.waitForSelector("[data-qa-ready=true]");
       await page.evaluate(() => document.fonts.ready);
       const one = await page.evaluate(inspect);
+      // full 판(은행 끝 화면)은 원래부터 칸 이름을 줄 수로 자른다(말줄임) — D-142 범위 밖이라 세기만 한다.
+      if (variant === "full" && one.clipped.length) {
+        console.log(name, width, set, "full 판 기존 말줄임", one.clipped.length, "—", [...new Set(one.clipped)].join(" / "));
+        one.clipped = [];
+      }
       assert.deepEqual([one.clipped, one.split, one.overflow, one.pageOverflow], [[], [], [], false], `${name} ${width} ${set} ${variant}`);
+      // 05 §8.17 예정 칸 = 투명 칸 — 첫 화면 판(map)과 초등 은행 끝 화면 판(full)이 같다(2026-09-28 원장님). 계산된 모양으로 잰다.
+      const planned = await page.evaluate(() =>
+        [...document.querySelectorAll('[data-daily-journey] li[data-state="upcoming"] > *')].map((tile) => {
+          const look = getComputedStyle(tile);
+          return [look.backgroundColor, look.borderTopStyle, look.borderTopColor, look.boxShadow, getComputedStyle(tile, "::before").display].join(" ");
+        }),
+      );
+      assert.ok(planned.length > 0, `${name} ${width} ${set} ${variant}: 예정 칸 없음`);
+      assert.deepEqual([...new Set(planned)], ["rgba(0, 0, 0, 0) dashed rgb(169, 186, 214) none none"], `${name} ${width} ${set} ${variant}: 예정 칸 모양`);
       await page.locator("[data-daily-journey]").screenshot({ path: `${out}/${name}-${width}-${set}-${variant}.png` });
     }
     // 흐름: 지난 칸 되풀기 · 문제 하나로는 말이 안 움직임 · 하루를 마치면 한 칸
