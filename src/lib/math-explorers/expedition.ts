@@ -184,6 +184,7 @@ function unfinished(
 /** Concept units in grade order with the student's collected cards — the unit list the D-142 hand-over walks. */
 export function conceptUnits(
   record: DefinitionRecord | undefined,
+  middleBankDays = 0,
 ): ForecastUnit[] {
   return definitionUnits.map((unit) => {
     const cards = definitionCards.filter((card) => card.unit === unit.id);
@@ -193,8 +194,29 @@ export function conceptUnits(
       title: unit.title,
       cards: cards.length,
       collected: cards.filter((card) => record?.cards[card.id]?.level).length,
+      ...(bankKindForExplorerUnit(unit.id) === "middle"
+        ? { bankDays: middleBankDays }
+        : {}),
     };
   });
+}
+
+/**
+ * 끝낸 중등 문제은행 날(D-142 ⑹) — 영구 칸 기록(이관한 옛 날 + 끝낸 오늘의 탐험)에서 중등 은행이 든 날을 센다.
+ * 칸은 오늘의 탐험과 재도전을 모두 끝낸 날에만 생기고 하루에 하나라서(`updateExpedition` · 저장 계약의 날짜 중복 금지)
+ * 달력 날이 아니라 «끝낸 은행 날»이다. 기억 복습 · 개념 날(explorers) · 초등 날은 세지 않고, 지난 칸 재풀이는 칸을 안 만든다.
+ * 90개로 잘리는 미션 목록(`state.missions`)은 쓰지 않는다.
+ */
+export function completedMiddleBankDays(
+  state: StoredSrsState,
+  now: Date,
+): number {
+  const ledger = initialExpedition(state, now);
+  return [
+    ...ledger.legacyDays,
+    ...ledger.awards.map((award) => award.day),
+  ].filter((day) => day.reviews.some((review) => review.kind === "middle"))
+    .length;
 }
 
 /**
@@ -223,7 +245,11 @@ export function expeditionLearning(
       (u) => u.grade === (record?.courseGrade ?? profile.grade),
     )!.id;
   // D-142: a middle unit whose five cards are collected hands over to the next unit to collect.
-  const unitId = conceptTarget(conceptUnits(record), start);
+  // D-142 ⑹: 중1 일차방정식은 끝낸 은행 날이 3일이 되면 넘긴다.
+  const unitId = conceptTarget(
+    conceptUnits(record, completedMiddleBankDays(state, now)),
+    start,
+  );
   const bankKind = bankKindForExplorerUnit(unitId);
   const sectionId =
     bankKind === "elementary"
