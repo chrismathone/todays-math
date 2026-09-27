@@ -8,6 +8,7 @@ import type {
 } from "@/contracts/mathSrs.contract";
 import { createMemories } from "@/lib/math-srs/memory";
 import * as api from "@/components/math-srs/mathSrsApi";
+import { effectAppears } from "../helpers/answerFeedback";
 
 /**
  * 복습 화면의 콤보(05 §8.15) — 서버가 돌려준 미션 기록으로 세어, 첫 풀이 정답 연출에서만 말한다.
@@ -92,37 +93,6 @@ beforeEach(() => {
   vi.clearAllMocks();
   localStorage.clear();
 });
-
-/**
- * 정답 연출이 뜨는 순간을 잡는다 — **누르기 전에** 걸어 둘 것.
- *
- * 🔴 연출은 1.2초 뒤 사라진다(`StudentMathSrs.tsx` 타이머). 클릭을 기다린 **뒤에** 찾기 시작하면, 다른 세션 부하로
- *    클릭 await 가 1.2초를 넘길 때 이미 다음 문제로 넘어가 연출을 놓친다(2026-09-27 main 에서 한 번 빨강 —
- *    실패 순간 화면이 «4/12 · 4번»이었다). 그래서 DOM 이 바뀌는 순간마다 보는 MutationObserver 를 먼저 건다 —
- *    React 는 연출을 통째로 한 번에 붙이므로 붙는 순간의 글이 최종 글이다.
- * 역할(status)이 아니라 연출 표지(`data-answer-feedback`)로 찾는다 — 불러오는 중 표시도 role=status 다.
- * RTL `waitFor`/`findBy*` 를 쓰지 않은 것은 클릭(`user.click`)의 act 와 겹치지 않게 하려는 것이다.
- */
-function effectAppears(timeout = 5000): Promise<HTMLElement> {
-  const find = () =>
-    document.querySelector<HTMLElement>("[data-answer-feedback]");
-  return new Promise((resolve, reject) => {
-    const now = find();
-    if (now) return resolve(now);
-    const observer = new MutationObserver(() => {
-      const found = find();
-      if (!found) return;
-      observer.disconnect();
-      clearTimeout(timer);
-      resolve(found);
-    });
-    observer.observe(document.body, { childList: true, subtree: true });
-    const timer = setTimeout(() => {
-      observer.disconnect();
-      reject(new Error(`정답 연출이 ${timeout}ms 안에 뜨지 않았다`));
-    }, timeout);
-  });
-}
 
 /** 앞 결과들로 이어 풀기 → 다음 문제를 첫 보기로 답 → 서버가 next 를 돌려준다 */
 async function answerNext(

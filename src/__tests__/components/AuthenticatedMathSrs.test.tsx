@@ -11,6 +11,7 @@ import { createMemories } from "@/lib/math-srs/memory";
 import { kstDateOf } from "@/lib/kstDate";
 import { STUDENT_MUST_CHANGE_MESSAGE } from "@/lib/studentRouteAccess";
 import * as api from "@/components/math-srs/mathSrsApi";
+import { effectAppears } from "../helpers/answerFeedback";
 
 const router = vi.hoisted(() => ({ replace: vi.fn(), refresh: vi.fn() }));
 vi.mock("next/navigation", () => ({ useRouter: () => router }));
@@ -351,27 +352,26 @@ describe("account-based math practice", () => {
     await user.click(
       await screen.findByRole("button", { name: "이어서 학습하기" }),
     );
+    // 연출은 1.2초 뒤 사라진다 — 누르기 전에 걸어 둔다(helpers/answerFeedback)
+    const wrongFirst = effectAppears();
     await user.click(
       within(screen.getByRole("group", { name: "답 고르기" })).getAllByRole(
         "button",
       )[3],
     );
-    expect(
-      await screen.findByText("다시 풀 문제로 모았어요"),
-    ).toBeInTheDocument();
+    expect(await wrongFirst).toHaveTextContent("다시 풀 문제로 모았어요");
     expect(
       screen.queryByRole("heading", { name: "미션을 마쳤어요" }),
     ).not.toBeInTheDocument();
     await screen.findByText("모아 둔 오답 다시 풀기", {}, { timeout: 2200 });
     expect(screen.getByRole("progressbar")).toHaveAttribute("value", "12");
+    const wrongRetry = effectAppears();
     await user.click(
       within(screen.getByRole("group", { name: "답 고르기" })).getAllByRole(
         "button",
       )[3],
     );
-    expect(
-      await screen.findByText("다시 풀 문제로 모았어요"),
-    ).toBeInTheDocument();
+    expect(await wrongRetry).toHaveTextContent("다시 풀 문제로 모았어요");
     expect(api.submitMathSrsReplay).toHaveBeenCalledWith(
       expect.objectContaining({
         missionId,
@@ -389,12 +389,13 @@ describe("account-based math practice", () => {
         ).toBeEnabled(),
       { timeout: 2200 },
     );
+    const rightRetry = effectAppears();
     await user.click(
       within(screen.getByRole("group", { name: "답 고르기" })).getAllByRole(
         "button",
       )[0],
     );
-    expect(await screen.findByText("정확하게 풀었어요")).toBeInTheDocument();
+    expect(await rightRetry).toHaveTextContent("정확하게 풀었어요");
     expect(screen.queryByText("이렇게 풀어요")).not.toBeInTheDocument();
     await screen.findByRole(
       "heading",
@@ -476,12 +477,13 @@ describe("account-based math practice", () => {
     await user.click(
       await screen.findByRole("button", { name: "오답 다시 풀기 · 1문제" }),
     );
+    const resumedRetry = effectAppears();
     await user.click(
       within(screen.getByRole("group", { name: "답 고르기" })).getAllByRole(
         "button",
       )[0],
     );
-    await screen.findByText("정확하게 풀었어요");
+    expect(await resumedRetry).toHaveTextContent("정확하게 풀었어요");
     expect(api.submitMathSrsReplay).toHaveBeenCalledWith(
       expect.objectContaining({ step: 2, recordRetry: true }),
     );
