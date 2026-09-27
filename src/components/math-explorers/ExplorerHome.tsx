@@ -10,6 +10,7 @@ import DailyJourneyBoard, {
   type DailyJourneyDay,
 } from "@/components/math-srs/DailyJourneyBoard";
 import { kstDateOf } from "@/lib/kstDate";
+import { ExplorerMath } from "./ExplorerMath";
 import { ExplorerChests } from "./ExplorerPieces";
 import s from "./math-explorers.module.css";
 
@@ -208,7 +209,9 @@ export default function ExplorerHome({
           </span>
         </div>
         <p className={s.missionSubtitle}>{subtitle}</p>
-        <h1 id="today-mission-title">{title}</h1>
+        <h1 id="today-mission-title">
+          <ExplorerMath text={title} />
+        </h1>
         <div
           className={s.missionProgress}
           role="progressbar"
@@ -294,7 +297,7 @@ export default function ExplorerHome({
               const card = allCards.find((item) => item.id === id);
               return card ? (
                 <button type="button" key={id} onClick={() => onInspect(card)}>
-                  {card.name}
+                  <ExplorerMath text={card.name} />
                   <span>해설 보기</span>
                 </button>
               ) : null;
@@ -327,7 +330,9 @@ export default function ExplorerHome({
                 <span>
                   {units.find((unit) => unit.id === card.unitId)?.title}
                 </span>
-                <strong>{card.name}</strong>
+                <strong>
+                  <ExplorerMath text={card.name} />
+                </strong>
                 <div
                   className={s.levelDots}
                   aria-label={`기억 ${card.progress?.level ?? 0}단계`}

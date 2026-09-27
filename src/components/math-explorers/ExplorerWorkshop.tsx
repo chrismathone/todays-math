@@ -8,6 +8,7 @@ import type {
 } from "@/contracts/mathExplorers.contract";
 import { ExplorerPracticeFrame } from "./ExplorerPractice";
 import pageTurn from "@/components/math-srs/question-page-turn.module.css";
+import { ExplorerMath } from "./ExplorerMath";
 import s from "./math-explorers.module.css";
 
 type Workshop = NonNullable<WorkshopView["session"]>;
@@ -157,9 +158,14 @@ function WorkshopActivity({
           <span>통분 · 조각으로 이해하기</span>
           <span>{stageNames[stage]}</span>
         </div>
-        <h2 className={s.questionTitle}>{workshop.prompt}</h2>
+        <h2 className={s.questionTitle}>
+          <ExplorerMath text={workshop.prompt} />
+        </h2>
         {workshop.predictionLabel && stage === "split" ? (
-          <p className={s.instruction}>내 예상: {workshop.predictionLabel}</p>
+          // `MathText` 는 div 를 내므로 p 가 아니라 div 에 담는다(모양은 클래스가 정한다).
+          <div className={s.instruction}>
+            내 예상: <ExplorerMath text={workshop.predictionLabel} />
+          </div>
         ) : null}
         <div className={s.fractionModels}>
           {workshop.fractions.map((fraction, index) => (
@@ -269,7 +275,9 @@ function WorkshopActivity({
                   onClick={() => choose(choice.id)}
                 >
                   <span className={s.answerNumber}>{index + 1}</span>
-                  <span className={s.answerText}>{choice.label}</span>
+                  <span className={s.answerText}>
+                    <ExplorerMath text={choice.label} />
+                  </span>
                 </button>
               ))}
             </div>

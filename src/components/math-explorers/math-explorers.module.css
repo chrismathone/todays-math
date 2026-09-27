@@ -1316,7 +1316,9 @@ button.confirm {
   font-weight: 750;
   margin: 20px 0 10px;
 }
-.solutionContent p {
+/* 카드 글은 `MathText`(div)를 담아 p 대신 `.solutionLine` div 로 선다 — 같은 규칙을 건다. */
+.solutionContent p,
+.solutionContent .solutionLine {
   font-size: 14px;
   line-height: 1.9;
   word-break: keep-all;
@@ -1337,7 +1339,8 @@ button.confirm {
   font-size: 12px;
   color: #6982a8;
 }
-.solutionExamples p {
+.solutionExamples p,
+.solutionExamples .solutionLine {
   margin: 8px 0 0;
   font-size: 13px;
 }

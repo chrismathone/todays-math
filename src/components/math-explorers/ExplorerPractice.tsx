@@ -8,6 +8,7 @@ import type {
 } from "@/contracts/mathExplorers.contract";
 import AnswerFeedbackEffect from "@/components/math-srs/AnswerFeedbackEffect";
 import pageTurn from "@/components/math-srs/question-page-turn.module.css";
+import { ExplorerMath } from "./ExplorerMath";
 import s from "./math-explorers.module.css";
 
 const activityNames = {
@@ -77,7 +78,11 @@ export function ExplorerPracticeFrame({
           ← 진도판
         </button>
         <span>
-          {session.reviewOnly ? "지난 학습 다시 풀기" : session.title}
+          {session.reviewOnly ? (
+            "지난 학습 다시 풀기"
+          ) : (
+            <ExplorerMath text={session.title} />
+          )}
         </span>
       </div>
       <div className={s.practiceProgress}>
@@ -155,16 +160,23 @@ function Activity({
         aria-label="문제 내용"
       >
         <div className={s.activityMeta}>
-          <span>{activity.cardName}</span>
+          <span>
+            <ExplorerMath text={activity.cardName} />
+          </span>
           <span>{activityNames[activity.kind]}</span>
         </div>
-        <h2 className={s.questionTitle}>{activity.prompt}</h2>
+        <h2 className={s.questionTitle}>
+          <ExplorerMath text={activity.prompt} />
+        </h2>
         {isReading && activity.reading ? (
           <>
             <div className={s.readingDefinition}>
-              {activity.reading.definition}
+              <ExplorerMath text={activity.reading.definition} />
             </div>
-            <p className={s.readingNote}>{activity.reading.note}</p>
+            {/* `MathText` 는 div 를 내므로 p 가 아니라 div 에 담는다(모양은 클래스가 정한다). */}
+            <div className={s.readingNote}>
+              <ExplorerMath text={activity.reading.note} />
+            </div>
             <p className={s.quietNote}>
               뜻을 읽고 나면 말 조각과 예를 골라 확인해요.
             </p>
@@ -177,7 +189,7 @@ function Activity({
             <div className={s.assemblySentence}>
               {activity.pieces.map((piece, index) => (
                 <span key={index}>
-                  {piece}
+                  <ExplorerMath text={piece} />
                   {index < 2 ? (
                     <button
                       type="button"
@@ -193,9 +205,17 @@ function Activity({
                       }
                       aria-label={`빈칸 ${index + 1}${selected[index] !== undefined ? `, ${activity.choices.find((choice) => choice.id === selected[index])?.label}` : ""}`}
                     >
-                      {activity.choices.find(
-                        (choice) => choice.id === selected[index],
-                      )?.label ?? `${index + 1}`}
+                      {selected[index] !== undefined ? (
+                        <ExplorerMath
+                          text={
+                            activity.choices.find(
+                              (choice) => choice.id === selected[index],
+                            )?.label ?? ""
+                          }
+                        />
+                      ) : (
+                        `${index + 1}`
+                      )}
                     </button>
                   ) : null}
                 </span>
@@ -267,7 +287,9 @@ function Activity({
                   onClick={() => choose(choice.id)}
                 >
                   <span className={s.answerNumber}>{index + 1}</span>
-                  <span className={s.answerText}>{choice.label}</span>
+                  <span className={s.answerText}>
+                    <ExplorerMath text={choice.label} />
+                  </span>
                   {activity.kind === "examples" ? (
                     <span className={s.choiceCheck} aria-hidden="true">
                       {selected.includes(choice.id) ? "✓" : ""}
