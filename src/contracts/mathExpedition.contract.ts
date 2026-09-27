@@ -66,11 +66,22 @@ export const expeditionMissionSchema = expeditionPlanSchema.extend({
   startedAt: z.iso.datetime(),
   completedAt: z.iso.datetime().nullable(),
 });
+/**
+ * D-144 한 칸 보장: 칸을 얻을 때 그 미션이 준 카드 레벨 별(`cards`)과 3까지 채운 별(`bonus`).
+ * 칸 기록에 함께 남아 같은 칸을 다시 계산하지 않는다 — 이 칸이 없는 옛 기록(D-144 전)은 보장이 없던 날이다.
+ */
+export const expeditionTileStarsSchema = z.strictObject({
+  cards: z.number().int().nonnegative(),
+  bonus: z.number().int().min(0).max(3),
+});
+export type ExpeditionTileStars = z.infer<typeof expeditionTileStarsSchema>;
 export const mathExpeditionSchema = z.strictObject({
   mission: expeditionMissionSchema.nullable(),
   next: expeditionPlanSchema.nullable(),
   completedToday: z.boolean(),
   canStart: z.boolean(),
+  /** 오늘(한국 날짜) 얻은 칸의 별 — 오늘 칸이 없거나 D-144 전 칸이면 없음 */
+  todayStars: expeditionTileStarsSchema.optional(),
 });
 export type ExpeditionPlan = z.infer<typeof expeditionPlanSchema>;
 export type ExpeditionMission = z.infer<typeof expeditionMissionSchema>;
@@ -84,6 +95,11 @@ const sourceReferenceSchema = z.strictObject({
 export const storedExpeditionMissionSchema = expeditionMissionSchema.extend({
   awardEligible: z.boolean(),
   references: z.array(sourceReferenceSchema),
+  /**
+   * D-144: 개념 미션이 세션에 묶일 때 그 세션이 이미 준 카드 레벨 별 — 칸 보장은 «지금 − 이 값»만 센다
+   * (옛 화면에서 끝낸 세션을 이어받으면 그때 번 별은 이 미션 것이 아니다). 없으면(D-144 전 미션 · 은행) 0.
+   */
+  startStars: z.number().int().nonnegative().optional(),
 });
 export const storedExpeditionSchema = z
   .strictObject({
@@ -96,6 +112,7 @@ export const storedExpeditionSchema = z
         day: mathExpeditionDaySchema,
         missionId: z.uuid(),
         references: z.array(sourceReferenceSchema),
+        stars: expeditionTileStarsSchema.optional(),
       }),
     ),
     receipts: z

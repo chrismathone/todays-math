@@ -405,8 +405,12 @@ export function expeditionDto(
   const canStart = !!open(state) || !!unfinished(state, now) || !complete;
   return {
     mission: mission
-      ? (({ awardEligible: _a, references: _r, ...publicMission }) =>
-          publicMission)(mission)
+      ? (({
+          awardEligible: _a,
+          references: _r,
+          startStars: _s,
+          ...publicMission
+        }) => publicMission)(mission)
       : null,
     next:
       canStart && !open(state) ? planExpedition(state, studentId, now) : null,
