@@ -15,7 +15,12 @@ await mkdir(out, { recursive: true });
 
 // 눈에 보이는 결함만 — 칸 글이 세 줄 밖으로 가려졌나, 낱말 하나가 두 줄에 걸쳤나, 칸 밖으로 넘쳤나.
 function inspect() {
-  const bad = { clipped: [], split: [], overflow: [], names: 0 };
+  const bad = { clipped: [], split: [], overflow: [], names: 0, shortTiles: 0, shortSmall: [] };
+  // D-142 ⑺ 줄임말 표의 줄은 칸에 0.9배 이상으로 들어가야 한다(줄임말을 둔 까닭).
+  for (const el of document.querySelectorAll("[data-tile-title][data-short]")) {
+    bad.shortTiles++;
+    if (Number(el.dataset.fit ?? 1) < 0.9) bad.shortSmall.push(`${el.textContent} ×${el.dataset.fit}`);
+  }
   for (const el of document.querySelectorAll("[data-tile-title], [data-journey-progress] p")) {
     bad.names++;
     if (getComputedStyle(el).overflow !== "visible" && el.scrollHeight > el.clientHeight + 1) bad.clipped.push(el.textContent);
@@ -52,21 +57,24 @@ for (const name of (process.env.QA_ENGINES ?? "chromium,webkit").split(",")) {
     const mobile = width < 600;
     const page = await browser.newPage({ viewport: { width, height: 900 }, isMobile: mobile, hasTouch: mobile });
     // ⑴ 이름 전부 — 판 410여 개를 네 조각으로 나눠 그린다(한 페이지면 PC 폭에서 몇 분 걸린다).
-    const all = { clipped: [], split: [], overflow: [], names: 0, pageOverflow: false, boardWidth: 0 };
+    const all = { clipped: [], split: [], overflow: [], names: 0, pageOverflow: false, boardWidth: 0, shortTiles: 0, shortSmall: [] };
     for (const part of [1, 2, 3, 4]) {
       await page.goto(`${base}/dev/daily-journey-qa?set=all&variant=map&part=${part}`);
       await page.waitForSelector("[data-qa-ready=true]", { timeout: 120000 });
       await page.evaluate(() => document.fonts.ready);
       const one = await page.evaluate(inspect);
-      for (const key of ["clipped", "split", "overflow"]) all[key].push(...one[key]);
+      for (const key of ["clipped", "split", "overflow", "shortSmall"]) all[key].push(...one[key]);
       all.names += one.names;
+      all.shortTiles += one.shortTiles;
       all.pageOverflow ||= one.pageOverflow;
       all.boardWidth = one.boardWidth;
     }
     report.push({ engine: name, width, ...all });
-    console.log(name, width, "판", all.boardWidth, "이름", all.names, "잘림", all.clipped.length, "쪼개짐", all.split.length, "칸 넘침", all.overflow.length, "가로 스크롤", all.pageOverflow);
+    console.log(name, width, "판", all.boardWidth, "이름", all.names, "잘림", all.clipped.length, "쪼개짐", all.split.length, "칸 넘침", all.overflow.length, "가로 스크롤", all.pageOverflow, "줄임말 칸", all.shortTiles, "0.9배 밑", all.shortSmall.length);
     if (!process.env.QA_SOFT) {
       assert.deepEqual(all.clipped, [], `${name} ${width}: 잘린 이름`);
+      assert.ok(all.shortTiles >= 33 * 3, `${name} ${width}: 줄임말 칸이 ${all.shortTiles}개뿐`);
+      assert.deepEqual(all.shortSmall, [], `${name} ${width}: 0.9배 밑으로 줄어든 줄임말`);
       assert.deepEqual(all.split, [], `${name} ${width}: 쪼개진 낱말`);
       assert.deepEqual(all.overflow, [], `${name} ${width}: 칸 넘침`);
       assert.equal(all.pageOverflow, false, `${name} ${width}: 가로 스크롤`);

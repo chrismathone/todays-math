@@ -9,6 +9,7 @@ import {
   type CSSProperties,
 } from "react";
 import s from "./daily-journey-board.module.css";
+import { tileTitle } from "@/lib/math-srs/elementary/sectionShortTitles";
 import { titlePieces } from "./journeyTitle";
 
 export interface DailyJourneyDay {
@@ -114,7 +115,9 @@ const FIT_STEPS = [1, 0.9, 0.8, 0.7] as const;
  * 칸 이름 — 초등 소단원은 35자까지 있어(«받아올림이 두 번, 세 번 있는 (세 자리 수)+(세 자리 수)») 칸 줄 수를 넘는다.
  * 칸 안에 다 들어갈 때까지 글자를 한 단계씩 줄인다. 그린 뒤 재고, 폭이 바뀌거나 글꼴이 늦게 오면 다시 잰다.
  */
-function TileTitle({ text }: { text: string }) {
+function TileTitle({ title }: { title: string }) {
+  // D-142 ⑺ 칸 줄임말 — 칸에 보이는 글만. 칸의 화면 읽기 · 툴팁 · 가운데는 원래 이름(부르는 쪽이 그대로 둔다).
+  const text = tileTitle(title);
   const box = useRef<HTMLSpanElement>(null);
   const [fit, setFit] = useState<{ scale: number; size: number } | null>(null);
   useLayoutEffect(() => {
@@ -173,6 +176,7 @@ function TileTitle({ text }: { text: string }) {
       className={s.tileTitle}
       style={fit ? { fontSize: `${fit.size}px` } : undefined}
       data-tile-title
+      data-short={text !== title ? "true" : undefined}
       data-fit={fit ? String(fit.scale) : undefined}
     >
       <Title text={text} />
@@ -421,7 +425,7 @@ export default function DailyJourneyBoard({
                     </em>
                   ) : null}
                 </span>
-                <TileTitle text={title} />
+                <TileTitle title={title} />
                 <span className={s.tileStatus}>
                   {done ? "✓ 완료" : next ? "오늘" : "예정"}
                 </span>
