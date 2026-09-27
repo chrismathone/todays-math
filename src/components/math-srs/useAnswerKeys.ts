@@ -14,9 +14,12 @@ import { useLayoutEffect, type RefObject } from "react";
  * IME 조합 중 · 다른 처리기가 이미 막은 키 · `scope` 밖의 대화상자가 열려 있을 때(뒤 화면은 키를 먹지 않는다).
  *
  * 엔터와 포커스: 포커스된 단추에서 친 엔터는 브라우저가 그 단추를 누른다 — 두 번 겹치지 않게 그대로 둔다.
- * 다만 **보기 · 칠한 칸(누름 단추 `aria-pressed` — 켜졌든 꺼졌든)** 에 포커스가 남아 있을 때는(마우스로 누르면 포커스가
- * 거기 남는다) 엔터가 그 칸을 켜고 끄지 말고 확인 단추가 되게 막는다 — 화면에 확인 단추가 있을 때만(꺼져 있으면 아무 일
- * 없음). 켜고 끄기는 스페이스 · 숫자키가 한다. D-145 ⑸(리드 · codex · grok 2:1).
+ * 다만 **답 조작 단추(`data-answer-control` — 보기 · 칠한 칸 · 나누는 수 −/＋ · 정의 조립의 빈칸)** 에 포커스가 남아 있을
+ * 때는(마우스로 누르면 포커스가 거기 남는다) 엔터가 그 단추를 한 번 더 누르지 말고 확인 단추가 되게 막는다 — 화면에 확인
+ * 단추가 있을 때만(꺼져 있으면 아무 일 없음 · 누르고 있는 반복도 막음). 그 단추의 누름은 스페이스 · 숫자키가 한다.
+ * ⏎ 모양이 «이 화면에서 엔터 = 확인»을 약속하기 때문(D-145 ⑸ — 보기 · 칠한 칸 2:1, 답 조작 단추 전체로 넓힘 3:0).
+ * 확인 단추가 없는 화면(누르면 바로 채점)에서는 표지가 있어도 브라우저 기본 그대로. 답을 만들지 않는 단추(아직 모르겠어요 ·
+ * 풀이 보기 · 뒤로 · 넘김)에는 표지를 달지 않는다.
  *
  * `useLayoutEffect` 인 까닭: 보기가 보이는 커밋과 **같은 순간**에 키가 살아 있어야 한다. `useEffect` 는 커밋 뒤 다음
  * 작업으로 밀려, 부하가 크면 보기는 보이는데 키가 안 먹는 틈이 생겼다(관련 시험 묶음에서 세 번에 한 번 — 중등 복습 첫 키).
@@ -29,7 +32,7 @@ export function useAnswerKeys(scope: RefObject<HTMLElement | null>) {
       if (event.ctrlKey || event.altKey || event.metaKey || event.shiftKey)
         return;
       // 일부 IME 는 조합을 끝내는 키를 keyCode 229 로만 알린다.
-      if (event.repeat || event.isComposing || event.keyCode === 229) return;
+      if (event.isComposing || event.keyCode === 229) return;
       const key =
         event.key === "Enter"
           ? "Enter"
@@ -43,11 +46,12 @@ export function useAnswerKeys(scope: RefObject<HTMLElement | null>) {
         `button[aria-keyshortcuts="${key}"]`,
       );
       if (key === "Enter" && target?.closest(ACTIVATABLE)) {
-        const toggle = target.closest("button[aria-pressed]");
-        if (!button || !toggle || !root.contains(toggle)) return;
+        const control = target.closest(ANSWER_CONTROL);
+        if (!button || !control || !root.contains(control)) return;
+        // 답 조작 단추를 한 번 더 누르지 않는다 — 누르고 있는 반복 엔터도(반복은 확인을 다시 누르지는 않는다).
         event.preventDefault();
       }
-      if (!button || button.disabled) return;
+      if (event.repeat || !button || button.disabled) return;
       event.preventDefault();
       button.click();
     }
@@ -60,6 +64,9 @@ export function useAnswerKeys(scope: RefObject<HTMLElement | null>) {
 export function answerKey(index: number) {
   return index < 9 ? String(index + 1) : undefined;
 }
+
+/** 답을 만드는 조작 단추의 표지 — 보기 · 칠한 칸 · 나누는 수 −/＋ · 정의 조립의 빈칸. */
+export const ANSWER_CONTROL = "[data-answer-control]";
 
 const EDITABLE =
   'input, textarea, select, [contenteditable]:not([contenteditable="false"]), math-field';

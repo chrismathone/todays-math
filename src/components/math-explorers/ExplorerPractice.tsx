@@ -212,6 +212,7 @@ function Activity({
                     <button
                       type="button"
                       className={s.wordSlot}
+                      data-answer-control=""
                       data-filled={
                         selected[index] !== undefined ? "true" : undefined
                       }
@@ -292,6 +293,7 @@ function Activity({
                   aria-label={`${index + 1} ${choice.label}`}
                   aria-keyshortcuts={answerKey(index)}
                   aria-pressed={selected.includes(choice.id)}
+                  data-answer-control=""
                   disabled={
                     disabled ||
                     (activity.kind === "assemble" &&
