@@ -556,7 +556,7 @@ export const M2_LINE: TypeEntry[] = [
           content: `$x$절편이 $${x0}$이고 $y$절편이 $${c}$인 일차함수의 그래프가 점 $(${s}, t)$를 지날 때, $t$의 값을 구하시오.`,
           answer: `$${t}$`,
           solution:
-            `$y$절편이 $${c}$이므로 구하는 식을 $y=mx${signed(c)}$라 하자.\n` +
+            `$y$절편이 $${c}$이므로 구하는 식을 $y=mx${signed(c)}$${DIGIT_BATCHIM[String(Math.abs(c) % 10)] ? "이라" : "라"} 하자.\n` +
             `$x$절편이 $${x0}$이므로 $x=${x0}$, $y=0$을 대입하면 $${monoVar(x0, "m")}${signed(c)}=0$에서 $m=${m}$이고, 일차함수의 식은 $y=${linear(m, c)}$이다.\n` +
             `$x=${s}$를 대입하면 $t=${m * s}${signed(c)}=${t}$이다.`,
           facts: { m, x0, c, s, t },

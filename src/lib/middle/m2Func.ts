@@ -21,7 +21,7 @@ import type { Rng } from "../elementary/types";
 import { CHOICE_COUNT, CHOICE_MARKS } from "../problem/choiceCountRule";
 
 import type { MidProblem, TypeEntry } from "./types";
-import { eulReul, iGa, waGwa } from "./m2Josa";
+import { euroRo, eulReul, iGa, waGwa } from "./m2Josa";
 
 const GRADE = "중2";
 const BOOK = "2-1";
@@ -1201,7 +1201,7 @@ export const M2_FUNC: TypeEntry[] = [
         return {
           content: `일차함수 $y=${mono(m)}+b$의 그래프에서 ($x$절편)$+$($y$절편)$=${sum}$일 때, 상수 $b$의 값을 구하시오.`,
           answer: `$${b}$`,
-          solution: `$y$절편은 $b$이고, $x$절편은 $${mono(m)}+b=0$에서 $x=${x0}$이다.\n두 절편의 합이 $${sum}$이므로 $${x0}+${b < 0 ? `(${b})` : b}=${sum}$이 되어 $b=${b}$이다.`,
+          solution: `$y$절편은 $b$이고, $x$절편은 $${mono(m)}+b=0$에서 $x=${x0}$이다.\n두 절편의 합이 $${sum}$이므로 $${x0}+${b < 0 ? `(${b})` : b}=${sum}$${iGa(sum)} 되어 $b=${b}$이다.`,
           facts: { m, x0, b, sum },
         };
       }),
@@ -1588,7 +1588,8 @@ export const M2_FUNC: TypeEntry[] = [
         return {
           content: `일차방정식 $${a === 1 ? "x" : a === -1 ? "-x" : `${a}x`}${bb > 0 ? `+${bb === 1 ? "" : bb}y` : `-${bb === -1 ? "" : -bb}y`}${c > 0 ? `+${c}` : `${c}`}=0$의 그래프의 기울기를 구하시오.`,
           answer: `$${m}$`,
-          solution: `$y$에 대하여 풀면 $${coef(bb, "y")}=${coef(-a, "x")}${addend(-c)}$이다.\n양변을 $${bb}$로 나누면 $x$의 계수는 $\\dfrac{${-a}}{${bb}}=${m}$이므로 기울기는 $${m}$이다.`,
+          // $y$ 의 계수가 $1$ 이면 이미 $y=\cdots$ 꼴이라 나눌 것이 없다.
+          solution: `$y$에 대하여 풀면 $${coef(bb, "y")}=${coef(-a, "x")}${addend(-c)}$이다.\n${bb === 1 ? `$x$의 계수는 $${m}$이므로` : `양변을 $${bb}$${euroRo(bb)} 나누면 $x$의 계수는 $\\dfrac{${-a}}{${bb}}=${m}$이므로`} 기울기는 $${m}$이다.`,
           facts: { a, b: bb, c, m },
         };
       }),

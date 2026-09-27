@@ -69,6 +69,14 @@ function gcdInt(a: number, b: number): number {
   return x === 0 ? 1 : x;
 }
 
+/**
+ * 비로 곱하는 한 토막 `\times\dfrac{n}{d}` — 비가 $1:q$ 이면 분모가 $1$ 이라
+ * `\times\dfrac{3}{1}` 이 된다. 그때는 분수를 안 쓰고 `\times3` 으로 적는다.
+ */
+function timesFrac(n: number, d: number): string {
+  return d === 1 ? `\\times${n}` : `\\times\\dfrac{${n}}{${d}}`;
+}
+
 function r2(v: number): number {
   return Math.round(v * 100) / 100;
 }
@@ -1753,7 +1761,7 @@ export const M2_GEO_SIM: TypeEntry[] = [
       return {
         content: `그림에서 $\\triangle ABC\\backsim\\triangle DEF$이고 $\\overline{BC}=${bc}\\,\\mathrm{cm}$, $\\overline{EF}=${ef}\\,\\mathrm{cm}$이다. $\\overline{AB}=${ab}\\,\\mathrm{cm}$일 때, $\\overline{DE}$의 길이를 구하시오.`,
         answer: `$${x}\\,\\mathrm{cm}$`,
-        solution: `$\\overline{BC}$의 대응변은 $\\overline{EF}$이므로 닮음비는 $${bc}:${ef}=${p}:${q}$이다.\n$\\overline{AB}:\\overline{DE}=${p}:${q}$이므로 $\\overline{DE}=${ab}\\times\\dfrac{${q}}{${p}}=${x}\\,(\\mathrm{cm})$이다.`,
+        solution: `$\\overline{BC}$의 대응변은 $\\overline{EF}$이므로 닮음비는 $${bc}:${ef}=${p}:${q}$이다.\n$\\overline{AB}:\\overline{DE}=${p}:${q}$이므로 $\\overline{DE}=${ab}${timesFrac(q, p)}=${x}\\,(\\mathrm{cm})$이다.`,
         facts: { bc, ef, ab, x },
         figureSpec: figSim02(p, q, {
           bc: `${bc} cm`,
@@ -1784,7 +1792,7 @@ export const M2_GEO_SIM: TypeEntry[] = [
       return {
         content: `서로 닮은 두 직육면체 $A$, $B$에서 직육면체 $A$의 가로의 길이는 $${a1}\\,\\mathrm{cm}$, 직육면체 $B$의 가로의 길이는 $${a2}\\,\\mathrm{cm}$이다. 직육면체 $A$의 세로의 길이가 $${b1}\\,\\mathrm{cm}$, 높이가 $${c1}\\,\\mathrm{cm}$일 때, 직육면체 $B$의 세로의 길이와 높이의 합을 구하시오.`,
         answer: `$${x}\\,\\mathrm{cm}$`,
-        solution: `닮음비는 $${a1}:${a2}=${p}:${q}$이다.\n직육면체 $B$의 세로의 길이는 $${b1}\\times\\dfrac{${q}}{${p}}=${(b1 * q) / p}\\,(\\mathrm{cm})$, 높이는 $${c1}\\times\\dfrac{${q}}{${p}}=${(c1 * q) / p}\\,(\\mathrm{cm})$이다.\n따라서 합은 $${(b1 * q) / p}+${(c1 * q) / p}=${x}\\,(\\mathrm{cm})$이다.`,
+        solution: `닮음비는 $${a1}:${a2}=${p}:${q}$이다.\n직육면체 $B$의 세로의 길이는 $${b1}${timesFrac(q, p)}=${(b1 * q) / p}\\,(\\mathrm{cm})$, 높이는 $${c1}${timesFrac(q, p)}=${(c1 * q) / p}\\,(\\mathrm{cm})$이다.\n따라서 합은 $${(b1 * q) / p}+${(c1 * q) / p}=${x}\\,(\\mathrm{cm})$이다.`,
         facts: { a1, a2, b1, c1, x },
         figureSpec: null,
       };
@@ -1813,7 +1821,7 @@ export const M2_GEO_SIM: TypeEntry[] = [
       return {
         content: `원뿔을 밑면에 평행한 평면으로 잘랐더니, 단면인 원의 중심에서 꼭짓점까지의 거리가 원뿔의 높이의 $\\dfrac{${m}}{${n}}$이었다. 단면인 원의 반지름의 길이가 $${r1}\\,\\mathrm{cm}$일 때, 처음 원뿔의 밑면의 넓이를 구하시오.`,
         answer: `$${area}\\pi\\,\\mathrm{cm}^2$`,
-        solution: `잘라 낸 작은 원뿔과 처음 원뿔은 닮은 도형이고 닮음비는 $${m}:${n}$이다.\n밑면의 반지름의 길이의 비도 $${m}:${n}$이므로 처음 원뿔의 밑면의 반지름의 길이는 $${r1}\\times\\dfrac{${n}}{${m}}=${R}\\,(\\mathrm{cm})$이다.\n따라서 밑면의 넓이는 $\\pi\\times${R}^2=${area}\\pi\\,(\\mathrm{cm}^2)$이다.`,
+        solution: `잘라 낸 작은 원뿔과 처음 원뿔은 닮은 도형이고 닮음비는 $${m}:${n}$이다.\n밑면의 반지름의 길이의 비도 $${m}:${n}$이므로 처음 원뿔의 밑면의 반지름의 길이는 $${r1}${timesFrac(n, m)}=${R}\\,(\\mathrm{cm})$이다.\n따라서 밑면의 넓이는 $\\pi\\times${R}^2=${area}\\pi\\,(\\mathrm{cm}^2)$이다.`,
         facts: { m, n, r1, R, area },
         figureSpec: null,
       };
@@ -1837,7 +1845,7 @@ export const M2_GEO_SIM: TypeEntry[] = [
       return {
         content: `그림에서 $\\triangle ABC\\backsim\\triangle ADE$이고 $\\overline{AB}=${ab}\\,\\mathrm{cm}$, $\\overline{AD}=${ad}\\,\\mathrm{cm}$이다. $\\triangle ABC$의 넓이가 $${s}\\,\\mathrm{cm}^2$일 때, $\\triangle ADE$의 넓이를 구하시오.`,
         answer: `$${x}\\,\\mathrm{cm}^2$`,
-        solution: `닮음비는 $\\overline{AB}:\\overline{AD}=${p}:${q}$이므로 넓이의 비는 $${p * p}:${q * q}$이다.\n$\\triangle ADE$의 넓이는 $${s}\\times\\dfrac{${q * q}}{${p * p}}=${x}\\,(\\mathrm{cm}^2)$이다.`,
+        solution: `닮음비는 $\\overline{AB}:\\overline{AD}=${p}:${q}$이므로 넓이의 비는 $${p * p}:${q * q}$이다.\n$\\triangle ADE$의 넓이는 $${s}${timesFrac(q * q, p * p)}=${x}\\,(\\mathrm{cm}^2)$이다.`,
         facts: { ab, ad, s, x },
         figureSpec: figSim05(ab, ad),
       };
@@ -1867,7 +1875,7 @@ export const M2_GEO_SIM: TypeEntry[] = [
       return {
         content: `서로 닮은 두 직육면체 $A$, $B$의 겉넓이가 각각 $${s1}\\,\\mathrm{cm}^2$, $${s2}\\,\\mathrm{cm}^2$이다. 직육면체 $A$의 부피가 $${v1}\\,\\mathrm{cm}^3$일 때, 직육면체 $B$의 부피를 구하시오.`,
         answer: `$${x}\\,\\mathrm{cm}^3$`,
-        solution: `겉넓이의 비가 $${s1}:${s2}=${p * p}:${q * q}$이므로 닮음비는 $${p}:${q}$이다.\n부피의 비는 $${p * p * p}:${q * q * q}$이므로 직육면체 $B$의 부피는 $${v1}\\times\\dfrac{${q * q * q}}{${p * p * p}}=${x}\\,(\\mathrm{cm}^3)$이다.`,
+        solution: `겉넓이의 비가 $${s1}:${s2}=${p * p}:${q * q}$이므로 닮음비는 $${p}:${q}$이다.\n부피의 비는 $${p * p * p}:${q * q * q}$이므로 직육면체 $B$의 부피는 $${v1}${timesFrac(q * q * q, p * p * p)}=${x}\\,(\\mathrm{cm}^3)$이다.`,
         facts: { s1, s2, v1, x },
         figureSpec: null,
       };
@@ -1898,7 +1906,7 @@ export const M2_GEO_SIM: TypeEntry[] = [
       return {
         content: `어느 가게에서 지름의 길이가 $${d1}\\,\\mathrm{cm}$인 원 모양 ${food} 한 판의 가격은 $${c1}$원이다. ${food}의 가격이 ${food}의 넓이에 정비례할 때, 지름의 길이가 $${d2}\\,\\mathrm{cm}$인 ${food} 한 판의 가격을 구하시오. (단, ${food}의 두께는 생각하지 않는다.)`,
         answer: `$${x}$원`,
-        solution: `두 ${food}는 닮은 도형이고 닮음비는 $${d1}:${d2}=${p}:${q}$이므로 넓이의 비는 $${p * p}:${q * q}$이다.\n가격이 넓이에 정비례하므로 구하는 가격은 $${c1}\\times\\dfrac{${q * q}}{${p * p}}=${x}$(원)이다.`,
+        solution: `두 ${food}는 닮은 도형이고 닮음비는 $${d1}:${d2}=${p}:${q}$이므로 넓이의 비는 $${p * p}:${q * q}$이다.\n가격이 넓이에 정비례하므로 구하는 가격은 $${c1}${timesFrac(q * q, p * p)}=${x}$(원)이다.`,
         facts: { d1, d2, c1, x },
         figureSpec: null,
       };
@@ -1945,7 +1953,7 @@ export const M2_GEO_SIM: TypeEntry[] = [
         return {
           content: `그림과 같은 삼각형 $ABC$에서 점 $D$, $E$는 각각 $\\overline{AB}$, $\\overline{AC}$ 위의 점이고 $\\overline{BC}\\parallel\\overline{DE}$이다. $\\overline{AD}=${a}\\,\\mathrm{cm}$, $\\overline{DB}=${b}\\,\\mathrm{cm}$, $\\overline{AE}=${e}\\,\\mathrm{cm}$일 때, $\\overline{EC}$의 길이를 구하시오.`,
           answer: `$${x}\\,\\mathrm{cm}$`,
-          solution: `$\\overline{BC}\\parallel\\overline{DE}$이므로 $\\overline{AD}:\\overline{DB}=\\overline{AE}:\\overline{EC}$이다.\n$${a}:${b}=${e}:\\overline{EC}$에서 $\\overline{EC}=${e}\\times\\dfrac{${b}}{${a}}=${x}\\,(\\mathrm{cm})$이다.`,
+          solution: `$\\overline{BC}\\parallel\\overline{DE}$이므로 $\\overline{AD}:\\overline{DB}=\\overline{AE}:\\overline{EC}$이다.\n$${a}:${b}=${e}:\\overline{EC}$에서 $\\overline{EC}=${e}${timesFrac(b, a)}=${x}\\,(\\mathrm{cm})$이다.`,
           facts: { mode, a, b, e, x },
           figureSpec: figPar01(a / (a + b), {
             ad: `${a} cm`,
@@ -2316,7 +2324,8 @@ export const M2_GEO_SIM_SUP_B: TypeEntry[] = [
         content: `세 평행선 $l$, $m$, $n$이 두 직선과 만나는 점을 차례로 $A$, $B$, $C$와 $D$, $E$, $F$라 하자. $\\overline{AC}=${a + b}\\,\\mathrm{cm}$, $\\overline{AB}=${a}\\,\\mathrm{cm}$, $\\overline{DF}=${(a + b) * k}\\,\\mathrm{cm}$일 때, $\\overline{DE}$의 길이를 구하시오.`,
         answer: `$${a * k}\\,\\mathrm{cm}$`,
         // 비는 기약으로 적는다 — `4:8` 은 값이 맞아도 지면이 흉하다.
-        solution: `$\\overline{AB}:\\overline{AC}=${a}:${a + b}=${a / gcdInt(a, a + b)}:${(a + b) / gcdInt(a, a + b)}$이고 이 비는 $\\overline{DE}:\\overline{DF}$와 같다.\n따라서 $\\overline{DE}=${(a + b) * k}\\times\\dfrac{${a}}{${a + b}}=${a * k}\\,(\\mathrm{cm})$이다.`,
+        // 이미 기약이면 `4:7=4:7` 이 되므로 한 번만 적는다.
+        solution: `$\\overline{AB}:\\overline{AC}=${a}:${a + b}${gcdInt(a, a + b) === 1 ? "" : `=${a / gcdInt(a, a + b)}:${(a + b) / gcdInt(a, a + b)}`}$이고 이 비는 $\\overline{DE}:\\overline{DF}$와 같다.\n따라서 $\\overline{DE}=${(a + b) * k}\\times\\dfrac{${a}}{${a + b}}=${a * k}\\,(\\mathrm{cm})$이다.`,
         facts: { a, b, k, x: a * k },
       };
     },
@@ -2655,7 +2664,7 @@ export const M2_GEO_SIM_SUP_B: TypeEntry[] = [
       return {
         content: `삼각형 $ABC$에서 $\\angle A$의 이등분선이 $\\overline{BC}$와 만나는 점을 $D$, $\\angle A$의 외각의 이등분선이 $\\overline{BC}$의 연장선과 만나는 점을 $E$라 하자. $\\overline{AB}=${ab}\\,\\mathrm{cm}$, $\\overline{AC}=${ac}\\,\\mathrm{cm}$, $\\overline{BC}=${bc}\\,\\mathrm{cm}$일 때, $\\overline{DE}$의 길이를 구하시오.`,
         answer: `$${x}\\,\\mathrm{cm}$`,
-        solution: `$\\overline{AB}:\\overline{AC}=${ab}:${ac}=${p}:${q}$이다.\n내각의 이등분선에서 $\\overline{BD}:\\overline{DC}=${p}:${q}$이므로 $\\overline{DC}=${bc}\\times\\dfrac{${q}}{${p + q}}=${dc}\\,(\\mathrm{cm})$이다.\n외각의 이등분선에서 $\\overline{BE}:\\overline{CE}=${p}:${q}$이고 $\\overline{BE}-\\overline{CE}=\\overline{BC}$이므로 $\\overline{CE}=${bc}\\times\\dfrac{${q}}{${p - q}}=${ce}\\,(\\mathrm{cm})$이다.\n따라서 $\\overline{DE}=\\overline{DC}+\\overline{CE}=${dc}+${ce}=${x}\\,(\\mathrm{cm})$이다.`,
+        solution: `$\\overline{AB}:\\overline{AC}=${ab}:${ac}=${p}:${q}$이다.\n내각의 이등분선에서 $\\overline{BD}:\\overline{DC}=${p}:${q}$이므로 $\\overline{DC}=${bc}\\times\\dfrac{${q}}{${p + q}}=${dc}\\,(\\mathrm{cm})$이다.\n외각의 이등분선에서 $\\overline{BE}:\\overline{CE}=${p}:${q}$이고 $\\overline{BE}-\\overline{CE}=\\overline{BC}$이므로 $\\overline{CE}=${bc}${timesFrac(q, p - q)}=${ce}\\,(\\mathrm{cm})$이다.\n따라서 $\\overline{DE}=\\overline{DC}+\\overline{CE}=${dc}+${ce}=${x}\\,(\\mathrm{cm})$이다.`,
         facts: { p, q, ab, ac, bc, dc, ce, x },
       };
     },

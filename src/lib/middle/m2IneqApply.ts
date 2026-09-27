@@ -17,7 +17,7 @@ import { intBetween, pick } from "../elementary/rng";
 import type { Rng } from "../elementary/types";
 
 import { poly } from "./m1Shared";
-import { eulReul, waGwa } from "./m2Josa";
+import { eulReul, euroRo, waGwa } from "./m2Josa";
 import type { MidProblem, TypeEntry } from "./types";
 
 const GRADE = "중2";
@@ -155,7 +155,7 @@ export const M2_INEQ_APPLY: TypeEntry[] = [
         return {
           content: `$x$에 대한 부등식 $ax>${b}$ 의 해가 $x<${c}$ 일 때, 상수 $a$의 값을 구하시오.`,
           answer: `$${a}$`,
-          solution: `해가 $x<${c}$ 로 부등호의 방향이 바뀌었으므로 $a<0$이다.\n$ax>${b}$의 양변을 $a$로 나누면 $x<\\dfrac{${b}}{a}$이므로 $\\dfrac{${b}}{a}=${c}$이다.\n따라서 $a=${a}$이다.`,
+          solution: `해가 $x<${c}$ ${euroRo(c)} 부등호의 방향이 바뀌었으므로 $a<0$이다.\n$ax>${b}$의 양변을 $a$로 나누면 $x<\\dfrac{${b}}{a}$이므로 $\\dfrac{${b}}{a}=${c}$이다.\n따라서 $a=${a}$이다.`,
           facts: { a, b, c },
         };
       }),

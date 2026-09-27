@@ -142,6 +142,12 @@ function factorTex(n: number): string {
   return parts.join("\\times");
 }
 
+/** `n=소인수분해` — `n` 이 소수 자신이면 `$5=5$` 가 되어 뜻이 없으므로 수만 적는다. */
+function factorEq(n: number): string {
+  const f = factorTex(n);
+  return f === String(n) ? f : `${n}=${f}`;
+}
+
 // ── 순환소수 표현 소품 ─────────────────────────────────
 
 /** 정규 표현 한 벌 — int.pre(cyc 반복). pre·cyc 는 자릿수 보존 문자열. */
@@ -533,7 +539,7 @@ export const M2_RATIONAL_SUP_B: TypeEntry[] = [
         content: `분수 $\\dfrac{${num}}{${den}}$의 분모와 분자에 같은 수를 곱하여 분모를 $10$의 거듭제곱으로 만들려고 한다. 곱해야 하는 가장 작은 자연수를 구하시오.`,
         answer: `$${mul}$`,
         // 곱할 수가 소수 하나면 `$2=2$` 같은 되풀이를 쓰지 않는다.
-        solution: `$${den}=${factorTex(den)}$이다. $10^{${k}}=2^{${k}}\\times5^{${k}}$이므로 모자란 소인수를 채우려면 $${factorTex(mul) === String(mul) ? mul : `${factorTex(mul)}=${mul}`}$${eulReul(mul)} 곱해야 한다.\n따라서 곱해야 하는 가장 작은 자연수는 $${mul}$이다.`,
+        solution: `${factorTex(den) === String(den) ? "" : `$${den}=${factorTex(den)}$이다. `}$10^{${k}}=2^{${k}}\\times5^{${k}}$이므로 모자란 소인수를 채우려면 $${factorTex(mul) === String(mul) ? mul : `${factorTex(mul)}=${mul}`}$${eulReul(mul)} 곱해야 한다.\n따라서 곱해야 하는 가장 작은 자연수는 $${mul}$이다.`,
         facts: { den, num, mul, k },
       };
     },
@@ -651,11 +657,12 @@ export const M2_RATIONAL_SUP_B: TypeEntry[] = [
       return v === 3 || v === 9 ? null : v;
     });
     const g = gcd(9, a);
+    // $a=1$ 이면 역수가 자연수 $9$ 다 — 정답에 `\dfrac{9}{1}` 을 적지 않는다.
     return {
       content: `순환소수 $0.\\overline{${a}}$의 역수를 구하시오.`,
-      answer: `$\\dfrac{${9 / g}}{${a / g}}$`,
+      answer: a / g === 1 ? `$${9 / g}$` : `$\\dfrac{${9 / g}}{${a / g}}$`,
       solution:
-        `$0.\\overline{${a}}=\\dfrac{${a}}{9}$이다.\n역수는 분모와 분자를 바꾼 $\\dfrac{9}{${a}}$이다.` +
+        `$0.\\overline{${a}}=\\dfrac{${a}}{9}$이다.\n역수는 분모와 분자를 바꾼 $\\dfrac{9}{${a}}${a === 1 ? "=9" : ""}$이다.` +
         (g === 1
           ? ""
           : ` 기약분수로 나타내면 $\\dfrac{${9 / g}}{${a / g}}$이다.`),
@@ -741,7 +748,7 @@ export const M2_RATIONAL: TypeEntry[] = [
       solution: `기약분수의 분모에 $2$나 $5$ 이외의 소인수가 없으면 유한소수가 된다.\n${termList
         .map(
           (x) =>
-            `${LETTERS[x.i]}의 분모는 $${x.it.d}=${factorTex(x.it.d)}$ 이므로 유한소수가 된다.`,
+            `${LETTERS[x.i]}의 분모는 $${factorEq(x.it.d)}$ 이므로 유한소수가 된다.`,
         )
         .join(
           "\n",
@@ -829,7 +836,7 @@ ${r.pre.length > 0 ? `$${N}-${r.pre.length}=${diff}$ ${eulReul(diff)}` : `$${N}$
         return {
           content: `분수 $\\dfrac{${a}}{${b}}$ 의 분모를 $10$의 거듭제곱으로 나타내어 유한소수로 나타내려고 한다. 분모와 분자에 공통으로 곱할 수 있는 가장 작은 자연수를 구하시오.`,
           answer: `$${mult}$`,
-          solution: `$${b}=${factorTex(b)}$ 이므로 분모와 분자에 $${mult}$ ${eulReul(mult)} 곱하면 분모가 $10^{${k}}$ 이 된다.\n따라서 곱할 수 있는 가장 작은 자연수는 $${mult}$ 이다.`,
+          solution: `${factorTex(b) === String(b) ? "" : `$${b}=${factorTex(b)}$ 이므로 `}분모와 분자에 $${mult}$ ${eulReul(mult)} 곱하면 분모가 $10^{${k}}$ 이 된다.\n따라서 곱할 수 있는 가장 작은 자연수는 $${mult}$ 이다.`,
           facts: { a, b, mult },
         };
       }),
@@ -864,7 +871,7 @@ ${r.pre.length > 0 ? `$${N}-${r.pre.length}=${diff}$ ${eulReul(diff)}` : `$${N}$
         solution: `기약분수로 나타낸 뒤 분모의 소인수를 살핀다.\n${termList
           .map((x) => {
             const g = gcd(x.it.n, x.it.d);
-            return `${LETTERS[x.i]}: $\\dfrac{${x.it.n}}{${x.it.d}}=\\dfrac{${x.it.n / g}}{${x.it.d / g}}$ 이고 분모 $${x.it.d / g}=${factorTex(x.it.d / g)}$ 이므로 유한소수가 된다.`;
+            return `${LETTERS[x.i]}: $\\dfrac{${x.it.n}}{${x.it.d}}=\\dfrac{${x.it.n / g}}{${x.it.d / g}}$ 이고 분모 $${factorEq(x.it.d / g)}$ 이므로 유한소수가 된다.`;
           })
           .join(
             "\n",
@@ -919,10 +926,14 @@ ${r.pre.length > 0 ? `$${N}-${r.pre.length}=${diff}$ ${eulReul(diff)}` : `$${N}$
         const f1 = mk(m1);
         const f2 = mk(m2);
         if (f1.d > 400 || f2.d > 400 || f1.d === f2.d) return null;
+        // 분모가 소수 자신이면 `$3=3$` 이 되므로 그 분모는 소인수분해를 적지 않는다.
+        const shownFac = [f1.d, f2.d]
+          .filter((d) => factorTex(d) !== String(d))
+          .map((d) => `$${d}=${factorTex(d)}$`);
         return {
           content: `두 분수 $\\dfrac{${f1.n}}{${f1.d}}$ ${waGwa(f1.n)} $\\dfrac{${f2.n}}{${f2.d}}$ 에 각각 자연수 $A$ 를 곱하면 두 분수를 모두 유한소수로 나타낼 수 있다고 한다. $A$ 의 값이 될 수 있는 가장 작은 자연수를 구하시오.`,
           answer: `$${L}$`,
-          solution: `$${f1.d}=${factorTex(f1.d)}$, $${f2.d}=${factorTex(f2.d)}$ 이므로 $A$ 는 $${m1}$ 의 배수이면서 $${m2}$ 의 배수이어야 한다.\n따라서 $A$ 의 값이 될 수 있는 가장 작은 자연수는 $${m1}$ ${waGwa(m1)} $${m2}$ 의 최소공배수인 $${L}$ 이다.`,
+          solution: `${shownFac.length ? `${shownFac.join(", ")} 이므로 ` : ""}$A$ 는 $${m1}$ 의 배수이면서 $${m2}$ 의 배수이어야 한다.\n따라서 $A$ 의 값이 될 수 있는 가장 작은 자연수는 $${m1}$ ${waGwa(m1)} $${m2}$ 의 최소공배수인 $${L}$ 이다.`,
           facts: { n1: f1.n, d1: f1.d, n2: f2.n, d2: f2.d, L },
         };
       }),
@@ -1066,7 +1077,7 @@ ${r.pre.length > 0 ? `$${N}-${r.pre.length}=${diff}$ ${eulReul(diff)}` : `$${N}$
         return {
           content: `순환소수 $${texOfRep(r)}$ 에 자연수 $a$ 를 곱한 수가 유한소수가 될 때, $a$ 의 값이 될 수 있는 가장 작은 자연수를 구하시오.`,
           answer: `$${m}$`,
-          solution: `$${texOfRep(r)}=\\dfrac{${n}}{${d}}$ 이고 $${d}=${factorTex(d)}$ 이다.\n유한소수가 되려면 분모의 소인수 중 $2$와 $5$ 이외의 부분인 $${m}$ ${iGa(m)} 약분되어야 하므로, 가장 작은 자연수 $a$ 는 $${m}$ 이다.`,
+          solution: `$${texOfRep(r)}=\\dfrac{${n}}{${d}}$ ${factorTex(d) === String(d) ? "" : `이고 $${d}=${factorTex(d)}$ `}이다.\n유한소수가 되려면 분모의 소인수 중 $2$와 $5$ 이외의 부분인 $${m}$ ${iGa(m)} 약분되어야 하므로, 가장 작은 자연수 $a$ 는 $${m}$ 이다.`,
           facts: { num: n, den: d, m, ...repFacts("r", r) },
         };
       }),

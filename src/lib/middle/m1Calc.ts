@@ -40,7 +40,7 @@ import { intBetween, pick } from "../elementary/rng";
 import type { Rng } from "../elementary/types";
 
 import type { MidProblem, TypeEntry } from "./types";
-import { eulReul, iGa } from "./m2Josa";
+import { euroRo, eulReul, iGa } from "./m2Josa";
 
 const GRADE = "중1";
 const BOOK = "1-1";
@@ -221,8 +221,8 @@ function addSolution(terms: readonly Q[], S: Q): string {
   // 그대로 두면 `=-8=-8` 이 찍힌다. 실제로 그렇게 나갔다.
   const redundant = mid === fin || num % lcd === 0;
   if (redundant)
-    return `분모를 $${lcd}$로 통분하여 더하면 $${left}=${fin}$이다.`;
-  return `분모를 $${lcd}$로 통분하여 더하면 $${left}=${mid}=${fin}$이다.`;
+    return `분모를 $${lcd}$${euroRo(lcd)} 통분하여 더하면 $${left}=${fin}$이다.`;
+  return `분모를 $${lcd}$${euroRo(lcd)} 통분하여 더하면 $${left}=${mid}=${fin}$이다.`;
 }
 
 /** 분모가 `dens` 안에 있는 $0$ 아닌 유리수 하나(약분되어 분모가 줄 수 있다). */
@@ -1330,7 +1330,7 @@ export const M1_CALC: TypeEntry[] = [
         content:
           `수직선 위의 두 점 $\\mathrm{A}$, $\\mathrm{B}$가 나타내는 수가 각각 ` +
           `$${texQ(A)}$, $${texQ(B)}$이다. 두 점 $\\mathrm{A}$, $\\mathrm{B}$ 사이를 ` +
-          `$${m}:${nRatio}$로 나누는 점 $\\mathrm{C}$가 나타내는 수를 구하시오.`,
+          `$${m}:${nRatio}$${euroRo(nRatio)} 나누는 점 $\\mathrm{C}$가 나타내는 수를 구하시오.`,
         answer: `$${texQ(C)}$`,
         solution:
           `두 점 $\\mathrm{A}$, $\\mathrm{B}$ 사이의 거리는 $${texQ(B)}-${texSigned(A)}=${texQ(dist)}$이다.\n` +
@@ -1383,10 +1383,12 @@ export const M1_CALC: TypeEntry[] = [
       if (a.n === 0 || b.n === 0) return null;
       const S = mulQ(a, b);
       if (!nice(S) || S.d === 1) return null;
+      // 약분할 것이 없으면 `\dfrac{1}{4}=\dfrac{1}{4}` 가 된다 — 한 번만 적는다.
+      const raw = texRawFrac(a.n * b.n, a.d * b.d);
       return {
         content: `다음을 계산하시오.\n$${texSigned(a)}\\times${texSigned(b)}$`,
         answer: `$${texQ(S)}$`,
-        solution: `분자는 분자끼리, 분모는 분모끼리 곱한다.\n$${texSigned(a)}\\times${texSigned(b)}=${texRawFrac(a.n * b.n, a.d * b.d)}=${texQ(S)}$이다.`,
+        solution: `분자는 분자끼리, 분모는 분모끼리 곱한다.\n$${texSigned(a)}\\times${texSigned(b)}=${raw === texQ(S) ? raw : `${raw}=${texQ(S)}`}$이다.`,
         facts: { ...fq("a", a), ...fq("b", b), ...fq("S", S) },
       };
     }),

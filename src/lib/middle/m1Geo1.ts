@@ -46,6 +46,7 @@ import { intBetween, pick } from "../elementary/rng";
 import type { Rng } from "../elementary/types";
 
 import { poly } from "./m1Shared";
+import { iGa } from "./m2Josa";
 import { attempt, def } from "./m1Stat";
 import type { Body } from "./m1Stat";
 import type { TypeEntry } from "./types";
@@ -617,10 +618,11 @@ const M1_GEO1_BASE: TypeEntry[] = [
       const lines = four
         .map((c, i) => `${BOGI[i]!}. $${notate(c.p, c.q)}$`)
         .join("\n");
+      // 점 이름은 $A$~$D$ 라 끝 글자(에이·비·씨·디)에 받침이 없다 — 「는」·「와」로 적는다.
       const truth = four
         .map(
           (c, i) =>
-            `${BOGI[i]!}. $${notate(c.p, c.q)}$은(는) $${notate(ta!, tb!)}$와(과) ${results[i] ? "같다" : "다르다"}.`,
+            `${BOGI[i]!}. $${notate(c.p, c.q)}$는 $${notate(ta!, tb!)}$와 ${results[i] ? "같다" : "다르다"}.`,
         )
         .join("\n");
       return {
@@ -1171,6 +1173,7 @@ const M1_GEO1_POS: TypeEntry[] = [
       attempt(200, (): Body | null => {
         const kind = pick(rng, [0, 1] as const);
         const objName = kind === 0 ? "직선 $l$" : "평면 $P$";
+        // 이름 $A$~$E$ 는 끝소리에 받침이 없다 — 「점 $B$, $E$가 있다」.
         const labels = ["A", "B", "C", "D", "E"];
         const onCount = pick(rng, [2, 3] as const);
         const onIdx = new Set(distinctIndices(rng, 5, onCount));
@@ -1189,7 +1192,7 @@ const M1_GEO1_POS: TypeEntry[] = [
         const ans = rows.filter((r) => r.t).length;
         if (ans === 0 || ans === 4) return null;
         return {
-          content: `${objName} 위에 점 ${onLabels.map((l) => `$${l}$`).join(", ")}이 있고, ${objName} 위에 있지 않은 점 ${offLabels.map((l) => `$${l}$`).join(", ")}이 있다. 다음 보기 중 옳은 것은 모두 몇 개인지 구하시오.\n\n${rows.map((r, i) => `${BOGI[i]!}. ${r.s}`).join("\n")}`,
+          content: `${objName} 위에 점 ${onLabels.map((l) => `$${l}$`).join(", ")}가 있고, ${objName} 위에 있지 않은 점 ${offLabels.map((l) => `$${l}$`).join(", ")}가 있다. 다음 보기 중 옳은 것은 모두 몇 개인지 구하시오.\n\n${rows.map((r, i) => `${BOGI[i]!}. ${r.s}`).join("\n")}`,
           answer: `$${ans}$개`,
           solution: `${rows.map((r, i) => `${BOGI[i]!}. ${r.t ? "옳다" : "옳지 않다"}.`).join("\n")}\n따라서 옳은 것은 $${ans}$개이다.`,
           facts: { kind, onCount, ans },
@@ -1215,7 +1218,7 @@ const M1_GEO1_POS: TypeEntry[] = [
       return {
         content: `정${gonName(n)}에서 한 변을 연장한 직선을 $l$이라 하자. 나머지 변을 각각 연장한 직선 중에서 $l$과 한 점에서 만나는 직선의 개수를 $a$, $l$과 평행한 직선의 개수를 $b$라 할 때, ${branch === 0 ? "$a-b$" : "$a+b$"}의 값을 구하시오.`,
         answer: `$${ans}$`,
-        solution: `정${gonName(n)}은 변이 $${n}$개이므로 $l$을 제외한 나머지 직선은 $${n - 1}$개이다.\n${even ? `$n=${n}$이 짝수이므로 $l$과 평행한 직선은 마주 보는 변 하나뿐이다.` : `$n=${n}$이 홀수이므로 $l$과 평행한 변이 없다.`}\n따라서 $b=${b}$, $a=${n - 1}-${b}=${a}$이므로 ${branch === 0 ? `$a-b=${a}-${b}=${ans}$` : `$a+b=${a}+${b}=${ans}$`}이다.`,
+        solution: `정${gonName(n)}은 변이 $${n}$개이므로 $l$을 제외한 나머지 직선은 $${n - 1}$개이다.\n${even ? `$n=${n}$${iGa(n)} 짝수이므로 $l$과 평행한 직선은 마주 보는 변 하나뿐이다.` : `$n=${n}$${iGa(n)} 홀수이므로 $l$과 평행한 변이 없다.`}\n따라서 $b=${b}$, $a=${n - 1}-${b}=${a}$이므로 ${branch === 0 ? `$a-b=${a}-${b}=${ans}$` : `$a+b=${a}+${b}=${ans}$`}이다.`,
         facts: { n, even: even ? 1 : 0, a, b, branch, ans },
       };
     },

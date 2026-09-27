@@ -213,7 +213,7 @@ export const M2_PROB: TypeEntry[] = [
       return {
         content: `서로 다른 두 개의 주사위를 동시에 던질 때, 나오는 두 눈의 수의 합이 $${S}$일 확률을 구하시오.`,
         answer: ansTex(p),
-        solution: `모든 경우의 수는 $6\\times6=36$ 이고, 두 눈의 수의 합이 $${S}$인 경우는 $${cnt}$가지이다.\n따라서 구하는 확률은 $\\dfrac{${cnt}}{36}=${fracTex(p)}$ 이다.`,
+        solution: `모든 경우의 수는 $6\\times6=36$ 이고, 두 눈의 수의 합이 $${S}$인 경우는 $${cnt}$가지이다.\n따라서 구하는 확률은 $${reduceTex(cnt, 36)}$ 이다.`,
         facts: { kind, S, num: p.n, den: p.d },
       };
     }

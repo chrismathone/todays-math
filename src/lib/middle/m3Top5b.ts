@@ -642,7 +642,7 @@ function renderIncircle(rng: Rng): Body {
     `$\\overline{BD}=${q}$일 때, 삼각형 $ABC$의 둘레의 길이를 구하시오.`;
 
   const lines: string[] = [
-    `내접원의 중심을 $O$, 반지름의 길이를 $r$라 하자.`,
+    `내접원의 중심을 $O$, 반지름의 길이를 $r$이라 하자.`,
     `원 밖의 한 점에서 그 원에 그은 두 접선의 길이는 서로 같으므로 ` +
       `$\\overline{AF}=\\overline{AD}=${p}$, $\\overline{BE}=\\overline{BD}=${q}$이다.`,
     `접점을 지나는 반지름은 접선과 수직이므로 $\\angle OEC=\\angle OFC=90^{\\circ}$이고, ` +
@@ -659,7 +659,7 @@ function renderIncircle(rng: Rng): Body {
     //    것이다). 「$r$의 값은 $A$ 또는 $B$」로 적으면 뜻은 같고 거짓 등식이 없다.
     `좌변을 인수분해하면 $(r-${r})(r+${-negative})=0$이므로 ` +
       `$r$의 값은 $${r}$ 또는 $${negative}$이다.`,
-    `두 값 $${r}$${waGwa(r)} $${negative}$ 가운데 $r$는 내접원의 반지름의 길이이므로 ` +
+    `두 값 $${r}$${waGwa(r)} $${negative}$ 가운데 $r$은 내접원의 반지름의 길이이므로 ` +
       `$r>0$이어야 한다. 따라서 $r=${r}$이다.`,
     `그러므로 삼각형 $ABC$의 둘레의 길이는 ` +
       `$\\overline{AB}+\\overline{BC}+\\overline{CA}=${ab}+${cb}+${ca}=${answer}$이다.`,

@@ -696,7 +696,8 @@ const M1_JOINT: TypeEntry[] = [
       return {
         content: `삼각형 $ABC$와 삼각형 $\\mathrm{${rhs.join("")}}$에서 $\\overline{AB}=${a}\\,\\mathrm{cm}$, $\\overline{BC}=${b}\\,\\mathrm{cm}$, $\\overline{CA}=${c}\\,\\mathrm{cm}$이고, 두 삼각형이 $\\mathrm{SSS}$ 합동일 때 $\\overline{${askSide[0]}${askSide[1]}}$의 길이를 구하시오.`,
         answer: `$${sides[ask]}\\,\\mathrm{cm}$`,
-        solution: `대응하는 변의 길이는 같으므로 $\\overline{${askSide[0]}${askSide[1]}}$은 $\\overline{${["AB", "BC", "CA"][ask]}}$에 대응하여 $${sides[ask]}\\,\\mathrm{cm}$이다.`,
+        // 변 이름의 끝은 $D$·$E$·$F$(디·이·에프) — 받침이 없어 「는」.
+        solution: `대응하는 변의 길이는 같으므로 $\\overline{${askSide[0]}${askSide[1]}}$는 $\\overline{${["AB", "BC", "CA"][ask]}}$에 대응하여 $${sides[ask]}\\,\\mathrm{cm}$이다.`,
         facts: { a, b, c, perm: PERM3.indexOf(perm), ask },
       };
     },

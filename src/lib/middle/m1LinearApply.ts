@@ -17,7 +17,7 @@
 import { intBetween, pick } from "../elementary/rng";
 import type { Rng } from "../elementary/types";
 
-import { eulReul } from "./m2Josa";
+import { eulReul, iGa } from "./m2Josa";
 import type { MidProblem, TypeEntry } from "./types";
 
 /** 수 뒤 「을/를」 — `m2Josa` 의 받침 판정을 되쓴다(규칙을 옮겨 적지 않는다). */
@@ -915,7 +915,7 @@ export const M1_LINEAR_APPLY: TypeEntry[] = [
       const wrong = a * x;
       const right = x + a;
       return {
-        content: `어떤 수에 $${a}$${nEul(a)} 더해야 할 것을 잘못하여 $${a}$${nEul(a)} 곱했더니 $${wrong}$이 되었다. 바르게 계산한 답을 구하시오.`,
+        content: `어떤 수에 $${a}$${nEul(a)} 더해야 할 것을 잘못하여 $${a}$${nEul(a)} 곱했더니 $${wrong}$${iGa(wrong)} 되었다. 바르게 계산한 답을 구하시오.`,
         answer: `$${right}$`,
         solution: `어떤 수를 $x$라 하면 $${a}x=${wrong}$이므로 $x=${x}$이다.\n따라서 바르게 계산한 답은 $${x}+${a}=${right}$이다.`,
         facts: { a, x, wrong, right },

@@ -376,7 +376,7 @@ const CONTENT_CHECKS: Record<string, (content: string) => number> = {
   },
   "47": (c) => {
     const [, a, wrong] = c.match(
-      /어떤 수에 \$(\d+)\$.* 곱했더니 \$(\d+)\$이 되었다/,
+      /어떤 수에 \$(\d+)\$.* 곱했더니 \$(\d+)\$(?:이|가) 되었다/,
     )!;
     return Number(wrong) / Number(a) + Number(a);
   },

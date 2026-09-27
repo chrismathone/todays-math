@@ -1191,7 +1191,7 @@ export const M3_TRIG: TypeEntry[] = [
         return {
           content: `가로, 세로, 높이의 길이가 각각 $${cm(a)}$, $${cm(b)}$, $${cm(h)}$인 직육면체가 있다. 이 직육면체의 대각선이 밑면과 이루는 각의 크기를 $x$라 할 때, $${trigOf(mode, "x")}$의 값을 구하시오.`,
           answer: `$${frac(num, den)}$`,
-          solution: `밑면의 대각선의 길이는 $\\sqrt{${a}^2+${b}^2}=${d}\\,(\\mathrm{cm})$이다.\n직육면체의 대각선의 길이는 $\\sqrt{${d}^2+${h}^2}=${s}\\,(\\mathrm{cm})$이다.\n밑면의 대각선과 높이, 직육면체의 대각선이 이루는 직각삼각형에서 $${trigOf(mode, "x")}=${expr}=${frac(num, den)}$이다.`,
+          solution: `밑면의 대각선의 길이는 $\\sqrt{${a}^2+${b}^2}=${d}\\,(\\mathrm{cm})$이다.\n직육면체의 대각선의 길이는 $\\sqrt{${d}^2+${h}^2}=${s}\\,(\\mathrm{cm})$이다.\n밑면의 대각선과 높이, 직육면체의 대각선이 이루는 직각삼각형에서 $${trigOf(mode, "x")}=${expr === frac(num, den) ? expr : `${expr}=${frac(num, den)}`}$이다.`,
           facts: { a, b, d, h, s, mode, num, den },
           figureSpec: null,
         };

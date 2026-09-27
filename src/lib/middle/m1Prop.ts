@@ -140,7 +140,8 @@ function coef(a: number, sym: string): string {
  */
 function evalTex(a: number, x: number, ans: number): string {
   if (a === 1) return `${ans}`;
-  if (a === -1) return `-${paren(x)}=${ans}`;
+  // $a=-1$ 에 양수를 넣으면 `-3=-3` 이 된다 — 바뀌는 것이 없으니 값만.
+  if (a === -1) return x >= 0 ? `${ans}` : `-${paren(x)}=${ans}`;
   return `${a}\\times${paren(x)}=${ans}`;
 }
 
@@ -761,8 +762,9 @@ const PROP: TypeEntry[] = [
           `정비례 관계 $${propTex(a, 1)}$의 그래프는 오른쪽 그림과 같이 원점과 점 $(${m}, ${a * m})$${eulReul(a * m)} 지나는 직선이다. ` +
           `이 그래프 위의 점 중 $x$좌표가 $${p}$인 점의 $y$좌표를 구하시오.`,
         answer: `$${ans}$`,
+        // `propTex` 는 늘 $x$(엑스)로 끝난다 — 받침이 없어 「가」.
         solution:
-          `그래프 위의 점에서는 $${propTex(a, 1)}$이 성립한다.\n` +
+          `그래프 위의 점에서는 $${propTex(a, 1)}$가 성립한다.\n` +
           `$x=${p}$${eulReul(p)} 대입하면 $y=${evalTex(a, p, ans)}$이다.`,
         facts: { a, num: a, den: 1, m, p, branch: 0, ans },
         figureSpec: linearSpec([a], [[m, a * m]]),

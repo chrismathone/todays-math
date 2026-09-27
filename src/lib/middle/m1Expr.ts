@@ -809,7 +809,7 @@ const EXPR_TYPES: TypeEntry[] = [
       return {
         content: `$a=${a0}$일 때, $-a^{${e}}$의 값을 구하시오.`,
         answer: `$${V}$`,
-        solution: `$-a^{${e}}$는 $a^{${e}}$ 앞에 $-$를 붙인 것이다.\n$a=${a0}$${eulReul(a0)} 대입하면 $-a^{${e}}=${V}$이다.`,
+        solution: `$-a^{${e}}$은 $a^{${e}}$ 앞에 $-$를 붙인 것이다.\n$a=${a0}$${eulReul(a0)} 대입하면 $-a^{${e}}=${V}$이다.`,
         facts: { mode, a0, e, V },
       };
     }),
@@ -1016,7 +1016,7 @@ const EXPR_TYPES: TypeEntry[] = [
         return {
           content: `다음 식을 계산하시오.\n$${expr}$`,
           answer: `$${lin(a1, b1)}$`,
-          solution: `나눗셈은 역수의 곱셈으로 고쳐 일차식의 각 항을 $${d}$로 나눈다.\n$${expr}=${lin(a1, b1)}$이다.`,
+          solution: `나눗셈은 역수의 곱셈으로 고쳐 일차식의 각 항을 $${d}$${euroRo(d)} 나눈다.\n$${expr}=${lin(a1, b1)}$이다.`,
           facts: { mode, d, a, b, p: a1, q: b1 },
         };
       }
@@ -1097,7 +1097,7 @@ const EXPR_TYPES: TypeEntry[] = [
         return {
           content: `다음 식을 계산하시오.\n$${expr}$`,
           answer: `$${lin(p, q)}$`,
-          solution: `분모의 최소공배수 $${L}$로 통분한 뒤 동류항끼리 모아서 계산한다.\n$${expr}=${lin(p, q)}$이다.`,
+          solution: `분모의 최소공배수 $${L}$${euroRo(L)} 통분한 뒤 동류항끼리 모아서 계산한다.\n$${expr}=${lin(p, q)}$이다.`,
           facts: { a, b, c, d, m, n, s, p, q },
         };
       }),
@@ -1483,7 +1483,7 @@ const EQ_TYPES: TypeEntry[] = [
       return {
         content: `$x$가 절댓값이 $${k}$인 수일 때, 방정식 $${lhs}=${d}$의 해를 구하시오.`,
         answer: `$x=${r}$`,
-        solution: `절댓값이 $${k}$인 수는 $${k}$${waGwa(k)} $${-k}$이다.\n$x=${r}$${eulReul(r)} 대입하면 좌변과 우변이 모두 $${d}$로 같고, $x=${-r}$${eulReul(-r)} 대입하면 등식이 성립하지 않는다.\n따라서 해는 $x=${r}$이다.`,
+        solution: `절댓값이 $${k}$인 수는 $${k}$${waGwa(k)} $${-k}$이다.\n$x=${r}$${eulReul(r)} 대입하면 좌변과 우변이 모두 $${d}$${euroRo(d)} 같고, $x=${-r}$${eulReul(-r)} 대입하면 등식이 성립하지 않는다.\n따라서 해는 $x=${r}$이다.`,
         facts: { k, r, m, n, c, d },
       };
     }),

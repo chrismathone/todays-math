@@ -11,7 +11,7 @@
 import { intBetween, pick } from "../elementary/rng";
 import type { Rng } from "../elementary/types";
 
-import { eulReul, waGwa } from "./m2Josa";
+import { eulReul, euroRo, waGwa } from "./m2Josa";
 import type { MidProblem, TypeEntry } from "./types";
 
 const GRADE = "중2";
@@ -129,7 +129,7 @@ function specialExtra(
     return {
       content: `연립방정식 $\\begin{cases}${inEq("A1")}x+${inEq("B1")}y=${coefficients.C1}\\\\${inEq("A2")}x+${inEq("B2")}y=${coefficients.C2}\\end{cases}$의 해가 ${outcome} 때, $a$의 값을 구하시오.\n(계수표: ${shown("A1")}, ${shown("B1")}, ${coefficients.C1} / ${shown("A2")}, ${shown("B2")}, ${coefficients.C2})`,
       answer: `$${answer}$`,
-      solution: `$x$, $y$의 계수비가 각각 $${k}$로 같아야 한다. 따라서 빠진 계수 $a=${answer}$이다.${outcome === "없을" ? " 이때 상수항의 비는 계수비와 다르다." : " 상수항의 비도 같으므로 두 식은 같은 방정식이다."}`,
+      solution: `$x$, $y$의 계수비가 각각 $${k}$${euroRo(k)} 같아야 한다. 따라서 빠진 계수 $a=${answer}$이다.${outcome === "없을" ? " 이때 상수항의 비는 계수비와 다르다." : " 상수항의 비도 같으므로 두 식은 같은 방정식이다."}`,
       facts: { ...coefficients, answer },
     };
   });

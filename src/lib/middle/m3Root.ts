@@ -1113,14 +1113,15 @@ const CALC_TYPES: TypeEntry[] = [
         const rad = 2 ** e1 * 3 ** e2;
         const letters = `${e1 ? "a" : ""}${e2 ? "b" : ""}`;
         const body = coef === 1 ? letters : `${coef}${letters}`;
+        // 계수가 $1$ 이면 꺼낼 제곱 인수가 없다 — `$\sqrt{6}=\sqrt{6}$` 을 적지 않고 바로 간다.
         const step1 =
           coef === 1
-            ? `$\\sqrt{${n}}=\\sqrt{${rad}}$ 이다.`
-            : `$${n}=${coef}^2\\times${rad}$ 이므로 $\\sqrt{${n}}=${coef}\\sqrt{${rad}}$ 이다.`;
+            ? ""
+            : `$${n}=${coef}^2\\times${rad}$ 이므로 $\\sqrt{${n}}=${coef}\\sqrt{${rad}}$ 이다.\n`;
         return {
           content: `$\\sqrt{2}=a$, $\\sqrt{3}=b$ 라 할 때, $\\sqrt{${n}}$ ${eulReul(n)} $a$, $b$ 를 사용하여 나타내시오.`,
           answer: `$${body}$`,
-          solution: `${step1}\n$\\sqrt{${rad}}=${letters}$ 이므로 $\\sqrt{${n}}=${body}$ 이다.`,
+          solution: `${step1}$\\sqrt{${rad}}=${letters}$ 이므로 $\\sqrt{${n}}=${body}$ 이다.`,
           facts: { n, coef, e1, e2 },
           figureSpec: null,
         };
@@ -1503,10 +1504,19 @@ const CALC_TYPES: TypeEntry[] = [
       if (sqrtTerm(p, m) === sqrtTerm(q, n)) return null;
       const lt = left < right ? 1 : 0;
       const rel = lt === 1 ? "<" : ">";
+      const moved = (
+        [
+          [p, m, left],
+          [q, n, right],
+        ] as const
+      )
+        .filter(([c]) => c !== 1)
+        .map(([c, r, v]) => `$${sqrtTerm(c, r)}=\\sqrt{${v}}$`);
       return {
         content: `두 수 $${sqrtTerm(p, m)}$ ${waGwa(m)} $${sqrtTerm(q, n)}$ 의 대소를 비교하시오.`,
         answer: `$${sqrtTerm(p, m)}${rel}${sqrtTerm(q, n)}$`,
-        solution: `근호 안으로 넣으면 $${sqrtTerm(p, m)}=\\sqrt{${left}}$, $${sqrtTerm(q, n)}=\\sqrt{${right}}$ 이다.\n$${left}${rel}${right}$ 이므로 $${sqrtTerm(p, m)}${rel}${sqrtTerm(q, n)}$ 이다.`,
+        // 계수가 $1$ 인 쪽은 넣을 것이 없다 — `$\sqrt{13}=\sqrt{13}$` 을 적지 않는다.
+        solution: `${moved.length ? `근호 안으로 넣으면 ${moved.join(", ")} 이다.\n` : ""}$${left}${rel}${right}$ 이므로 $${sqrtTerm(p, m)}${rel}${sqrtTerm(q, n)}$ 이다.`,
         facts: { p, m, q, n, lt },
         figureSpec: null,
       };

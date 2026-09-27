@@ -43,7 +43,7 @@ import type { Rng } from "../elementary/types";
 import { at, hDim, place, sx, sy, vDim } from "./realScene";
 import type { AssetScene } from "./realScene";
 import type { MidProblem, TypeEntry } from "./types";
-import { eulReul } from "./m2Josa";
+import { eulReul, euroRo } from "./m2Josa";
 
 const GRADE = "중1";
 
@@ -260,7 +260,7 @@ export const M1_REAL: TypeEntry[] = [
           answer: `$${t}$초`,
           solution:
             `기차가 터널을 완전히 지나려면 $(${tunnelLen}+${trainLen})=${tunnelLen + trainLen}$ (m)를 달려야 한다.\n` +
-            `$($속력$)\\times($시간$)=${tunnelLen + trainLen}$로 일정하므로 $y=\\dfrac{${tunnelLen + trainLen}}{x}$이다.\n` +
+            `$($속력$)\\times($시간$)=${tunnelLen + trainLen}$${euroRo(tunnelLen + trainLen)} 일정하므로 $y=\\dfrac{${tunnelLen + trainLen}}{x}$이다.\n` +
             `$x=${speed}$${eulReul(speed)} 대입하면 $y=\\dfrac{${tunnelLen + trainLen}}{${speed}}=${t}$이다. 따라서 $${t}$초가 걸린다.`,
           facts: { trainLen, tunnelLen, speed, t },
           figureSpec: trainTunnelScene(trainLen, tunnelLen),
