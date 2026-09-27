@@ -20,6 +20,12 @@ import type { DailyJourneyDay } from "@/components/math-srs/DailyJourneyBoard";
 import type { MathExpeditionReview } from "@/contracts/mathExpedition.contract";
 import ExplorerBankActivity from "./ExplorerBankActivity";
 import ExplorerPractice from "./ExplorerPractice";
+import ExplorerSessionIntro from "./ExplorerSessionIntro";
+import {
+  markSessionIntroSeen,
+  sessionIntroKind,
+  sessionIntroSeen,
+} from "./sessionIntro";
 import ExplorerWorkshop from "./ExplorerWorkshop";
 import { ChestRewardEffect } from "./ExplorerPieces";
 import s from "./math-explorers.module.css";
@@ -47,6 +53,8 @@ function ExplorerGame({ initialView }: { initialView?: "collection" }) {
   const [reload, setReload] = useState(0);
   const [busy, setBusy] = useState(false);
   const [practicing, setPracticing] = useState(false);
+  // «오늘 다시 만날 개념» 첫 장에서 시작을 누른 세션(저장소가 막혀도 이번 화면에서는 넘어가게).
+  const [introStarted, setIntroStarted] = useState<string | null>(null);
   const [bankKind, setBankKind] = useState<"elementary" | "middle" | null>(
     null,
   );
@@ -267,6 +275,18 @@ function ExplorerGame({ initialView }: { initialView?: "collection" }) {
     !!state?.currentActivity &&
     !!state.session &&
     !state.session.done;
+  const introKind =
+    inPractice && state?.session ? sessionIntroKind(state.session) : null;
+  const showIntro =
+    !!introKind &&
+    introStarted !== state?.session?.id &&
+    !sessionIntroSeen(state!.session!.id);
+  function startAfterIntro() {
+    const id = state?.session?.id;
+    if (!id) return;
+    markSessionIntroSeen(id);
+    setIntroStarted(id);
+  }
   const workshop = state?.workshop?.session;
   const attachedWorkshop =
     workshop &&
@@ -391,7 +411,16 @@ function ExplorerGame({ initialView }: { initialView?: "collection" }) {
       )}
       {state && !loading ? (
         inPractice && state.currentActivity && state.session ? (
-          attachedWorkshop ? (
+          introKind && showIntro ? (
+            <ExplorerSessionIntro
+              kind={introKind}
+              session={state.session}
+              units={state.units}
+              busy={busy || !!error || loading}
+              onStart={startAfterIntro}
+              onHome={exitPractice}
+            />
+          ) : attachedWorkshop ? (
             <ExplorerWorkshop
               workshop={workshop}
               session={state.session}
@@ -405,6 +434,7 @@ function ExplorerGame({ initialView }: { initialView?: "collection" }) {
             <ExplorerPractice
               activity={state.currentActivity}
               session={state.session}
+              units={state.units}
               busy={busy || !!error || loading}
               correct={correct}
               eventKey={effectKey}

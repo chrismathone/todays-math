@@ -6,6 +6,7 @@ import type {
   ExplorerState,
 } from "@/contracts/mathExplorers.contract";
 import { gradeLabel, type ExplorerCard } from "./ExplorerHome";
+import { ConceptKindTag } from "./ExplorerConceptHead";
 import { ExplorerMath } from "./ExplorerMath";
 import s from "./math-explorers.module.css";
 
@@ -81,6 +82,8 @@ export default function ExplorerCardDialog({
           </p>
           <h2 id="explorer-card-title">
             <ExplorerMath text={card.name} />
+            {/* 풀이 화면과 같은 갈래 딱지(05 §8.18 · D-143) */}
+            <ConceptKindTag cardId={card.id} large />
           </h2>
         </div>
         <button type="button" aria-label="개념 카드 닫기" onClick={onClose}>

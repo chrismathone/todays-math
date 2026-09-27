@@ -492,6 +492,10 @@ describe("StudentMathExplorers", () => {
         name: /1일차, 덧셈과 뺄셈, 학습 완료, 다시 풀기/,
       }),
     );
+    // 다시 풀기 첫 활동 앞 «오늘 다시 만날 개념» 한 장(05 §8.18 · D-143 ③) — 요청 없이 넘긴다.
+    fireEvent.click(
+      await screen.findByRole("button", { name: /다시 풀기 시작하기/ }),
+    );
     expect(
       await screen.findByRole("button", { name: "1 맞아요" }),
     ).toBeVisible();
@@ -690,3 +694,29 @@ function afterAnswerSession() {
     reviewOnly: false,
   };
 }
+
+describe("ExplorerCardDialog — 이름 옆 갈래 딱지(05 §8.18 · D-143)", () => {
+  it("도감 카드 제목에 풀이 화면과 같은 딱지", () => {
+    const state = stateView();
+    const card = state.units
+      .flatMap((unit) => unit.cards)
+      .find((item) => item.id === "g3-check-division")!;
+    render(
+      <ExplorerCardDialog
+        card={card}
+        state={state}
+        solution={null}
+        busy={false}
+        onInspect={vi.fn()}
+        onSolution={vi.fn()}
+        onSetGoal={vi.fn()}
+        onClose={vi.fn()}
+      />,
+    );
+    const title = document.getElementById("explorer-card-title")!;
+    expect(title).toHaveTextContent("나눗셈 확인");
+    expect(title.querySelector("[data-concept-kind]")).toHaveTextContent(
+      "성질",
+    );
+  });
+});

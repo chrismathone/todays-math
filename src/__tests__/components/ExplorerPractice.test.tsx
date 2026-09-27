@@ -1,4 +1,4 @@
-import { fireEvent, render, screen } from "@testing-library/react";
+import { fireEvent, render, screen, waitFor } from "@testing-library/react";
 import { describe, expect, it, vi } from "vitest";
 import ExplorerPractice from "@/components/math-explorers/ExplorerPractice";
 import type {
@@ -69,7 +69,7 @@ describe("ExplorerPractice", () => {
     ).toBeVisible();
     fireEvent.click(screen.getByRole("button", { name: "4 남김없이" }));
     fireEvent.click(
-      screen.getByRole("button", { name: "완성한 정의 확인하기" }),
+      screen.getByRole("button", { name: "완성한 문장 확인하기" }),
     );
     expect(onAction).toHaveBeenCalledWith({
       type: "answer",
@@ -129,7 +129,7 @@ describe("ExplorerPractice", () => {
     expect(screen.getByText("약수의 뜻입니다.")).toBeVisible();
     expect(container.querySelector("[data-explorer-dock]")).toBeInTheDocument();
     fireEvent.click(
-      screen.getByRole("button", { name: /정의를 가리고 도전하기/ }),
+      screen.getByRole("button", { name: /뜻을 가리고 도전하기/ }),
     );
     expect(onAction).toHaveBeenCalledWith({
       type: "read",
@@ -159,5 +159,138 @@ describe("ExplorerPractice", () => {
     expect(
       container.querySelectorAll('[data-answer-state="correct"]'),
     ).toHaveLength(0);
+  });
+});
+
+/**
+ * 4안 «이름 줄 + 문장이 곧 문제 + 첫 만남»(원장님 2026-09-28 확정, 05 §8.18 · D-143).
+ * 제보: «이게 어떤 용어의 정의인지 정리인지 적어 놓는 게 좋을 거 같은데 너무 무작정 문제가 출몰함.»
+ */
+describe("ExplorerPractice — 무엇의 문장인가(이름 + 갈래 딱지)", () => {
+  const substitution: ExplorerActivity = {
+    questionId: "q-sub",
+    cardId: "g8-substitution",
+    cardName: "대입법",
+    unitId: "g8-simultaneous",
+    unitTitle: "연립일차방정식",
+    kind: "assemble",
+    prompt: "말 조각을 순서대로 골라 문장을 완성하세요.",
+    pieces: [
+      "한 식에서 구한 미지수의 표현을 ",
+      "에 ",
+      " 연립방정식을 푸는 방법.",
+    ],
+    choices: [
+      { id: 0, label: "같은 식만" },
+      { id: 1, label: "넣어" },
+      { id: 2, label: "다른 식" },
+      { id: 3, label: "빼서" },
+    ],
+  };
+  const units = [
+    { id: "g8-simultaneous", grade: 8, title: "연립일차방정식" },
+  ] as unknown as ExplorerState["units"];
+  function show(value: ExplorerActivity) {
+    const onAction = vi.fn();
+    const result = render(
+      <ExplorerPractice
+        activity={value}
+        session={session}
+        units={units}
+        busy={false}
+        correct={null}
+        eventKey=""
+        onAction={onAction}
+        onHome={vi.fn()}
+      />,
+    );
+    return { ...result, onAction };
+  }
+
+  it("정의 조립 — 제목은 이름 + 갈래 딱지, 조작 안내 제목 · 겹친 안내 줄은 없고 아래 칸 한 줄", () => {
+    show(substitution);
+    const heading = screen.getByRole("heading", { level: 2 });
+    expect(heading).toHaveTextContent("대입법");
+    expect(heading.querySelector("[data-concept-kind]")).toHaveTextContent(
+      "방법",
+    );
+    expect(
+      screen.queryByText(/말 조각을 순서대로 골라/),
+    ).not.toBeInTheDocument();
+    expect(
+      screen.queryByText("말 조각 두 개를 순서대로 골라 주세요."),
+    ).not.toBeInTheDocument();
+    expect(screen.getByText("말 조각 두 개를 순서대로 · 0 / 2")).toBeVisible();
+    expect(screen.getByText("문장 조립")).toBeVisible();
+    expect(screen.queryByText("정의 조립")).not.toBeInTheDocument();
+    fireEvent.click(screen.getByRole("button", { name: "3 다른 식" }));
+    expect(screen.getByText("말 조각 두 개를 순서대로 · 1 / 2")).toBeVisible();
+    // 문장은 이름 바로 아래 — 원문(보정 문장) 그대로, 주어를 붙이지 않는다(4안 주어 없이).
+    expect(screen.getByText(/연립방정식을 푸는 방법\./)).toBeVisible();
+    expect(screen.queryByText(/대입법은/)).not.toBeInTheDocument();
+  });
+
+  it("갈래 딱지는 누르는 것이 아니다(D-30) — 단추 · 링크 밖의 글자", () => {
+    show(substitution);
+    const tag = document.querySelector("[data-concept-kind]")!;
+    expect(tag.tagName).toBe("SPAN");
+    expect(tag.closest("button, a, [role=button]")).toBeNull();
+    expect(tag.getAttribute("onclick")).toBeNull();
+  });
+
+  it("예 모으기 · 경계 살피기 — 이름 줄(이름 + 딱지 + 활동 이름) 뒤에 지금 제목(카드 문장)", async () => {
+    show({
+      ...substitution,
+      kind: "examples",
+      pieces: undefined,
+      prompt: "y=x+1을 x+y=5에 대입한 결과를 골라봐.",
+    });
+    const row = document.querySelector("[data-concept-row]")!;
+    expect(row).toHaveTextContent("대입법");
+    expect(row.querySelector("[data-concept-kind]")).toHaveTextContent("방법");
+    expect(row).toHaveTextContent("예 모으기");
+    // 제목(카드 문장)은 수식이 들어 KaTeX 청크가 늦게 온다.
+    await waitFor(() =>
+      expect(screen.getByRole("heading", { level: 2 })).toHaveTextContent(
+        "대입한 결과를 골라봐",
+      ),
+    );
+  });
+
+  it("뜻 만나기 — 개념 카드(학년 · 단원 / 이름 + 딱지 / 뜻), 답 칸은 단추 하나", () => {
+    const { container } = show({
+      ...substitution,
+      kind: "read",
+      choices: [],
+      pieces: undefined,
+      prompt: "개념의 뜻을 읽어 보세요.",
+      reading: {
+        definition:
+          "한 식에서 구한 미지수의 표현을 다른 식에 넣어 연립방정식을 푸는 방법.",
+        note: "y 전체를 x+1로 바꿔 넣어.",
+      },
+    });
+    expect(screen.getByText("중2 · 연립일차방정식")).toBeVisible();
+    const heading = screen.getByRole("heading", { level: 2 });
+    expect(heading).toHaveTextContent("대입법");
+    expect(heading.querySelector("[data-concept-kind]")).toHaveTextContent(
+      "방법",
+    );
+    expect(
+      screen.queryByText("개념의 뜻을 읽어 보세요."),
+    ).not.toBeInTheDocument();
+    expect(container.querySelector("[data-explorer-dock]")).toHaveAttribute(
+      "data-dock-size",
+      "slim",
+    );
+    expect(
+      screen.getByRole("button", { name: /뜻을 가리고 도전하기/ }),
+    ).toBeVisible();
+  });
+
+  it("표에 없는 카드는 딱지 없이 이름만", () => {
+    fixture();
+    expect(screen.getByRole("heading", { level: 2 })).toHaveTextContent("약수");
+    expect(document.querySelector("[data-concept-kind]")).toBeNull();
   });
 });

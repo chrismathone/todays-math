@@ -88,7 +88,8 @@ const studentRow = {
 const today = () => kstDateOf(new Date());
 const addDays = (date, days) =>
   new Date(Date.parse(`${date}T00:00:00Z`) + days * 86_400_000).toISOString().slice(0, 10);
-const activityNames = { read: "뜻 만나기", assemble: "정의 조립", examples: "예 모으기", truth: "경계 살피기" };
+// 정의 조립은 갈래와 상관없이 «문장 조립»(원장님 2026-09-28, 05 §8.18 · D-143).
+const activityNames = { read: "뜻 만나기", assemble: "문장 조립", examples: "예 모으기", truth: "경계 살피기" };
 
 // ───────────────────────── in-memory server ─────────────────────────
 function createSim(initial) {
@@ -344,6 +345,14 @@ async function connect(page, sim) {
           const result = await replayRequest(sim, url, body, now);
           if (result.svg) svg = true;
           else json = result;
+        } else if (path === "/api/logs/client" && method === "POST") {
+          // 브라우저 오류 기록(9d603a9ea) — 이 시뮬레이터가 일부러 낸 503(«잃은 응답»)을 화면이 기록하려 보낸다.
+          // 받아만 두고(어디에도 안 씀) 셈은 맞춘다. 기록의 모양만 본다: 503 말고 다른 오류가 오면 목록 밖으로 돌린다.
+          const events = Array.isArray(body?.events) ? body.events : [];
+          if (!events.every((event) => event?.kind === "client-request-failed" && /503/.test(event?.message ?? "")))
+            sim.unknown.push(`${method} ${path} ${JSON.stringify(body).slice(0, 600)}`);
+          sim.clientLogs = (sim.clientLogs ?? 0) + events.length;
+          json = { data: { received: events.length } };
         } else {
           sim.unknown.push(`${method} ${path}${url.search}${body ? " " + JSON.stringify(body).slice(0, 600) : ""}`);
           status = 404;
@@ -481,7 +490,10 @@ async function noHorizontalScroll(page) {
   assert.ok(doc.scroll <= doc.inner + 1, "가로 스크롤: " + JSON.stringify(doc));
 }
 async function practiceGeometry(page, mobile) {
-  const dock = await page.locator("[data-explorer-dock=true]").boundingBox();
+  const dockLocator = page.locator("[data-explorer-dock=true]");
+  const dock = await dockLocator.boundingBox();
+  // 뜻 만나기 · «오늘 다시 만날 개념» 첫 장은 답 칸이 단추 하나라 높이를 비운다(4안, 05 §8.18 · D-143).
+  const slim = (await dockLocator.getAttribute("data-dock-size")) === "slim";
   const frame = await page.getByRole("region", { name: "개념 문제와 답 고르기" }).boundingBox();
   assert.ok(dock && frame, "풀이 틀과 답안 영역이 있다");
   const doc = await page.evaluate(() => ({ width: document.documentElement.scrollWidth, height: document.documentElement.scrollHeight, innerWidth, innerHeight, scrollY }));
@@ -495,13 +507,20 @@ async function practiceGeometry(page, mobile) {
     assert.ok(navBox.y - dock.y - dock.height < 22, "답안 영역이 하단 탭에서 떨어져 있다: " + (navBox.y - dock.y - dock.height));
   }
   assert.equal(await page.locator("input:not([type=hidden]),textarea").count(), 0, "타이핑 입력이 없다");
-  return { dock, frame, nav: navBox };
+  return { dock, frame, nav: navBox, slim };
 }
 function sameGeometry(actual, original, label = "") {
-  for (const region of ["dock", "frame"])
-    for (const axis of ["x", "y", "width", "height"])
-      assert.ok(Math.abs(actual[region][axis] - original[region][axis]) < 1.1,
-        `${label} ${region}.${axis} 이동: ${original[region][axis]} → ${actual[region][axis]}`);
+  for (const axis of ["x", "y", "width", "height"])
+    assert.ok(Math.abs(actual.frame[axis] - original.frame[axis]) < 1.1,
+      `${label} frame.${axis} 이동: ${original.frame[axis]} → ${actual.frame[axis]}`);
+  // 한쪽이 단추 하나뿐인 답 칸(뜻 만나기 · 첫 장)이면 위 끝 · 높이만 다르다 — 좌우와 아래 끝(단추 자리)은 같아야 한다.
+  const axes = actual.slim === original.slim ? ["x", "y", "width", "height"] : ["x", "width", "bottom"];
+  const at = (box, axis) => (axis === "bottom" ? box.y + box.height : box[axis]);
+  for (const axis of axes)
+    assert.ok(Math.abs(at(actual.dock, axis) - at(original.dock, axis)) < 1.1,
+      `${label} dock.${axis} 이동: ${at(original.dock, axis)} → ${at(actual.dock, axis)}`);
+  if (actual.slim !== original.slim)
+    assert.ok((actual.slim ? actual : original).dock.height < (actual.slim ? original : actual).dock.height, `${label} 단추 하나 답 칸이 더 낮지 않다`);
 }
 async function overlay(page, result, baseline, mobile) {
   const effect = page.locator(`[data-answer-feedback=${result}]`);
@@ -518,6 +537,7 @@ async function settled(page, sim) {
   const stored = explorerStored(sim);
   const session = stored.profile.definitions?.session;
   if (!session || session.done) return;
+  await passSessionIntro(page, session);
   const workshop = attachedWorkshop(sim);
   if (workshop) await expect(page.locator(`[data-workshop-stage="${workshop.stage}"]`)).toBeVisible({ timeout: 8000 });
   else {
@@ -527,12 +547,46 @@ async function settled(page, sim) {
     // «곱이 0인 성질» 이 «곱이 000인 성질» 로 읽힌다. 눈에 보이는 글자로 견준다.
     await expect.poll(() => visibleText(pane), { timeout: 8000 }).toContain(activity.cardName);
     await expect(pane).toContainText(activityNames[activity.kind], { timeout: 8000 });
+    await conceptHeadStyle(page, activity.kind);
   }
   await expect(page.locator('progress[aria-label="이번 학습 진행률"]')).toHaveAttribute("value", String(session.index), { timeout: 8000 });
   await expect(page.locator("main")).toContainText(session.round ? `오답 복습 ${session.round}회` : "오늘의 개념 탐험");
   await page.waitForTimeout(560);
   const overflow = await paneOverflow(page);
   assert.equal(overflow, null, "문제 칸 가로 넘침(PC 에서는 가로 막대): " + JSON.stringify(overflow));
+}
+// 머리의 계산된 모양(05 §8.18) — RTL 은 클래스 이름만 본다(2026-09-16 교훈): 갈래 딱지 색 · 커서(누르는 것이 아님, D-30),
+// 정의 조립의 이름 크기(제목과 같은 clamp(20px, 3.5vw, 26px) · 폭 350 이하 19px).
+async function conceptHeadStyle(page, kind) {
+  const pane = page.locator("[data-page-turn=true]");
+  const tag = pane.locator("[data-concept-kind]").first();
+  if (!(await tag.count())) return;
+  const look = await tag.evaluate((el) => {
+    const style = getComputedStyle(el);
+    return { background: style.backgroundColor, color: style.color, cursor: style.cursor, border: style.borderTopWidth, shadow: style.boxShadow };
+  });
+  assert.deepEqual(look, { background: "rgb(223, 231, 244)", color: "rgb(64, 90, 128)", cursor: "default", border: "0px", shadow: "none" }, "갈래 딱지 모양");
+  if (kind !== "assemble") return;
+  const width = page.viewportSize().width;
+  const expected = width <= 350 ? 19 : Math.min(26, Math.max(20, width * 0.035));
+  const size = await pane.locator("h2").first().evaluate((el) => parseFloat(getComputedStyle(el).fontSize));
+  assert.ok(Math.abs(size - expected) < 0.6, `정의 조립 이름 크기 ${size}px (기대 ${expected}px)`);
+}
+// 기억 복습 날 · 지난 학습 다시 풀기의 첫 활동 앞 «오늘 다시 만날 개념» 한 장(05 §8.18 · D-143 ③) — 뜻은 가리고
+// 이름 · 갈래만 보이는지 보고 넘긴다. 시작은 서버에 요청을 보내지 않는다(화면만의 한 장).
+async function passSessionIntro(page, session) {
+  const expected = !session.round && !session.continuation && session.index === 0 && (session.reviewOnly || session.route === "memory");
+  const title = page.getByRole("heading", { name: "오늘 다시 만날 개념" });
+  if (!expected) {
+    assert.equal(await title.count(), 0, "첫 장이 기억 복습 · 다시 풀기 첫머리 밖에서 떴다");
+    return;
+  }
+  // 한 번 본 세션은 다시 안 보인다(이어하기) — 보이면 넘긴다.
+  if (!(await title.isVisible().catch(() => false))) return;
+  const names = await page.locator("[data-concept-name]").count();
+  assert.equal(names, session.cardIds?.length ?? 5, "첫 장의 개념 수");
+  await page.getByRole("button", { name: /기억 복습 시작하기|다시 풀기 시작하기/ }).click();
+  await expect(title).toHaveCount(0, { timeout: 8000 });
 }
 // 문제 칸(스크롤 칸)이 가로로 넘치는가 — 원장님 제보(2026-09-27, PC «정의 조립»): 칸 아래 쓸데없는 가로 막대, 손잡이가
 // 칸 폭의 약 75%. 폰은 막대가 겹쳐 떠서 안 보일 뿐 같은 넘침이다. 넘치면 원인을 짚어 돌려준다 — 칸 밖으로 나간 자식
@@ -561,13 +615,13 @@ async function paneOverflow(page) {
 async function perform(page, sim, action, mobile) {
   const handled = sim.handled;
   const choices = page.getByRole("group", { name: "답 고르기" });
-  if (action.type === "read") await tap(page.getByRole("button", { name: /정의를 가리고 도전하기/ }), mobile);
+  if (action.type === "read") await tap(page.getByRole("button", { name: /뜻을 가리고 도전하기/ }), mobile);
   else if (action.type === "answer") {
     const activity = engine.explorerView(explorerStored(sim), today()).currentActivity;
     if (!action.choiceIds.length) await tap(page.getByRole("button", { name: "아직 모르겠어요" }), mobile);
     else {
       for (const id of action.choiceIds) await tap(choices.getByRole("button").nth(id), mobile);
-      if (activity.kind === "assemble") await tap(page.getByRole("button", { name: "완성한 정의 확인하기" }), mobile);
+      if (activity.kind === "assemble") await tap(page.getByRole("button", { name: "완성한 문장 확인하기" }), mobile);
       if (activity.kind === "examples") await tap(page.getByRole("button", { name: "선택한 예 확인하기" }), mobile);
     }
   } else if (action.type === "lab-predict" || action.type === "lab-rule") {
@@ -738,7 +792,7 @@ const scenarios = {
       await tap(choices.getByRole("button").nth(assembly.choiceIds[1]), mobile);
       await shot("assemble");
       const handled = sim.handled;
-      await tap(page.getByRole("button", { name: "완성한 정의 확인하기" }), mobile);
+      await tap(page.getByRole("button", { name: "완성한 문장 확인하기" }), mobile);
       await until(() => sim.handled > handled, "조립 응답");
       await overlay(page, "correct", baseline, mobile);
       assert.equal(answers(), before + 1);
@@ -1451,7 +1505,7 @@ async function katexScenario({ page, sim, mobile, width, height, step, shot }, u
         for (const id of action.choiceIds) await tap(choices.getByRole("button").nth(id), mobile);
         problems += await check(where, activity.kind, "main");
         const handled = sim.handled;
-        await tap(page.getByRole("button", { name: "완성한 정의 확인하기" }), mobile);
+        await tap(page.getByRole("button", { name: "완성한 문장 확인하기" }), mobile);
         await until(() => sim.handled > handled, "조립 응답");
       } else {
         problems += await check(where, activity.kind, "main");
@@ -1635,7 +1689,7 @@ async function selectScenario({ page, sim, mobile, step, shot }) {
     assert.deepEqual({ pressed: released.pressed, anim: released.anim, transform: released.transform }, { pressed: "false", anim: "out", transform: EMPTY });
     await tap(choiceButtons(page).nth(ids[1]), mobile);
     const handled = sim.handled;
-    await tap(page.getByRole("button", { name: "완성한 정의 확인하기" }), mobile);
+    await tap(page.getByRole("button", { name: "완성한 문장 확인하기" }), mobile);
     await until(() => sim.handled > handled, "조립 응답");
     await settled(page, sim);
     return "고른 조각 코발트(흐려지지 않음) · 빈칸에서 빼면 빠짐";
@@ -1727,6 +1781,115 @@ fixtures.select = () => ({ ...serverState.emptySrsState(), explorers: explorerRe
 scenarios.select = selectScenario;
 fixtures["select-lab"] = () => ({ ...serverState.emptySrsState(), explorers: explorerRecord(5, "g5-fractions") });
 scenarios["select-lab"] = selectWorkshopScenario;
+
+// ───────────────────────── 기억 복습 날 첫 장 ─────────────────────────
+// «오늘 다시 만날 개념»(05 §8.18 · D-143 ③) — 다섯 장이 오늘 만기면 통합 탐험이 기억 복습 날을 연다. 첫 활동 앞 한 장에
+// 이름 · 갈래 딱지 · 단원만 보이고(뜻은 가림), 시작은 요청 없이 첫 활동으로 넘어간다.
+fixtures["memory-intro"] = () => {
+  const collected = cards.definitionCards.filter((card) => card.unit === "g8-simultaneous");
+  const explorers = explorerRecord(8, "g8-function", collected);
+  for (const card of collected) explorers.profile.definitions.cards[card.id].due = today();
+  return { ...serverState.emptySrsState(), explorers };
+};
+scenarios["memory-intro"] = async ({ page, sim, mobile, step, shot }) => {
+  await step("memory.intro", async () => {
+    await page.goto(base + "/dev/mobile-explorers-qa");
+    await homeReady(page);
+    await tap(page.locator("[data-expedition-start]"), mobile);
+    const title = page.getByRole("heading", { name: "오늘 다시 만날 개념" });
+    await expect(title).toBeVisible({ timeout: 10000 });
+    const session = explorerStored(sim).profile.definitions.session;
+    assert.equal(session.route, "memory", "기억 복습 날이 아니다");
+    const names = await page.locator("[data-concept-name]").evaluateAll((nodes) => nodes.map((node) => node.innerText.trim()));
+    assert.deepEqual(names, session.cardIds.map((id) => cards.definitionCard(id).name));
+    const kinds = await page.locator("[data-concept-kind]").allInnerTexts();
+    assert.equal(kinds.length, 5, "갈래 딱지 다섯");
+    assert.equal(await page.locator("[data-reading-definition], [data-assembly-sentence]").count(), 0, "첫 장에 뜻이 보인다");
+    await expect(page.getByText(cards.definitionCard(session.cardIds[0]).definition)).toHaveCount(0);
+    await practiceGeometry(page, mobile); // 문서 스크롤 없음 · 답 칸이 하단 탭 위
+    await shot("memory-intro");
+    const posts = sim.posts.length;
+    await tap(page.getByRole("button", { name: /기억 복습 시작하기/ }), mobile);
+    await expect(title).toHaveCount(0, { timeout: 8000 });
+    assert.equal(sim.posts.length, posts, "첫 장 시작이 서버에 요청을 보냈다");
+    await settled(page, sim);
+    await shot("memory-first");
+    await page.reload();
+    await homeReady(page);
+    await tap(page.locator("[data-expedition-start]"), mobile);
+    await page.locator("[data-explorer-dock=true]").waitFor({ timeout: 10000 });
+    await expect(title).toHaveCount(0);
+    return `${names.join(" · ")} — ${kinds.join(" · ")} · 이어하기에 다시 안 뜸`;
+  });
+};
+
+// ───────────────────────── 조립 문장 · 뜻 상자가 스크롤 없이 보이나 ─────────────────────────
+// 원장님 제보(2026-09-28) «너무 무작정 문제가 출몰함» — 운영 320×568 에서 조립 문장이 문제 칸 스크롤 아래였고
+// 뜻 만나기의 뜻 상자도 위 끝만 보였다. 4안(05 §8.18 · D-143)이 조작 안내 제목을 빼고 뜻 만나기 답 칸을 줄였다.
+// 한 단원을 끝까지 풀며, 뜻 만나기 · 조립마다 같은 화면을 네 폭으로 바꿔 잰다(시안 «잘림 실측»과 같은 판정):
+//   조립 — 문장 글줄(Range) 끝이 문제 칸 아래 끝 안인가(첫 줄만 보이는가도 센다) · 뜻 — 뜻 상자 끝이 칸 안인가.
+// `QA_SCENARIOS=fit` 로 켠다(기본 실행에는 안 낀다) · 단원은 `QA_FIT_UNITS`(기본 46단원 전부) · 결과 fit-findings.json.
+const FIT_SIZES = [[320, 568], [360, 640], [390, 700], [800, 900]];
+const FIT_UNITS = (process.env.QA_FIT_UNITS ?? cards.definitionUnits.map((unit) => unit.id).join(",")).split(",");
+const fitFindings = [];
+async function fitNow(page) {
+  return page.evaluate(() => {
+    const pane = document.querySelector("[data-page-turn=true]");
+    const sentence = pane?.querySelector("[data-assembly-sentence]");
+    const definition = pane?.querySelector("[data-reading-definition]");
+    if (!pane || (!sentence && !definition)) return null;
+    const limit = pane.getBoundingClientRect().bottom + 0.5;
+    if (definition) return { full: definition.getBoundingClientRect().bottom <= limit, first: true };
+    const range = document.createRange();
+    range.selectNodeContents(sentence);
+    const rects = [...range.getClientRects()].filter((rect) => rect.width > 0 && rect.height > 0);
+    const top = Math.min(...rects.map((rect) => rect.top));
+    const first = Math.max(...rects.filter((rect) => rect.top < top + 8).map((rect) => rect.bottom));
+    return { full: Math.max(...rects.map((rect) => rect.bottom)) <= limit, first: first <= limit };
+  });
+}
+async function fitScenario({ page, sim, mobile, width, height, step }, unitId) {
+  await step("fit.start", async () => {
+    await page.goto(base + "/dev/mobile-explorers-qa");
+    await homeReady(page);
+    await tap(page.locator("[data-expedition-start]"), mobile);
+    await page.locator("[data-explorer-dock=true]").waitFor({ timeout: 10000 });
+    await settled(page, sim);
+    return unitOf(unitId).title;
+  });
+  await step("fit.activities", async () => {
+    let measured = 0;
+    for (let guard = 0; guard < 80; guard++) {
+      const stored = explorerStored(sim);
+      const session = stored.profile.definitions?.session;
+      if (!session || session.done) break;
+      const action = correctExplorerAction(sim);
+      const activity = attachedWorkshop(sim) ? null : engine.explorerView(stored, today()).currentActivity;
+      if (activity && !session.round && (activity.kind === "read" || activity.kind === "assemble")) {
+        for (const [w, h] of FIT_SIZES) {
+          await page.setViewportSize({ width: w, height: h });
+          await page.evaluate(() => new Promise((done) => requestAnimationFrame(() => requestAnimationFrame(done))));
+          const result = await fitNow(page);
+          if (result) {
+            fitFindings.push({ unit: unitId, card: activity.cardId, name: activity.cardName, kind: activity.kind, size: `${w}x${h}`, ...result });
+            measured++;
+          }
+        }
+        await page.setViewportSize({ width, height });
+        await page.evaluate(() => new Promise((done) => requestAnimationFrame(() => requestAnimationFrame(done))));
+      }
+      await perform(page, sim, action, mobile);
+      await settled(page, sim);
+    }
+    await homeReady(page);
+    return `잰 화면 ${measured}`;
+  });
+}
+for (const unitId of FIT_UNITS) {
+  assert.ok(unitOf(unitId), "없는 단원: " + unitId);
+  fixtures[`fit:${unitId}`] = () => ({ ...serverState.emptySrsState(), explorers: explorerRecord(unitOf(unitId).grade, unitId) });
+  scenarios[`fit:${unitId}`] = (context) => fitScenario(context, unitId);
+}
 
 for (const unitId of KATEX_UNITS) {
   assert.ok(unitOf(unitId), "없는 단원: " + unitId);
@@ -2079,6 +2242,17 @@ if (katexFindings.length || scenarioNames.some((name) => name.startsWith("katex:
   await writeFile(resolve(output, "katex-fitted.json"), JSON.stringify(katexFitted, null, 2));
 }
 if (labGeometry.length) await writeFile(resolve(output, "lab-fraction.json"), JSON.stringify(labGeometry, null, 2));
+if (fitFindings.length) {
+  await writeFile(resolve(output, "fit-findings.json"), JSON.stringify(fitFindings, null, 2));
+  for (const kind of ["assemble", "read"])
+    console.log(
+      `잘림 실측 ${kind}: ` +
+        FIT_SIZES.map(([w, h]) => {
+          const rows = fitFindings.filter((row) => row.kind === kind && row.size === `${w}x${h}`);
+          return `${w}×${h} 다 보임 ${rows.filter((row) => row.full).length}/${rows.length}` + (kind === "assemble" ? ` · 첫 줄 ${rows.filter((row) => row.first).length}` : "");
+        }).join(" · "),
+    );
+}
 const failed = results.filter((r) => r.status === "실패");
 console.log(`${results.length} 항목 · 실패 ${failed.length} · 못 봄 ${results.filter((r) => r.status === "못 봄").length}`);
 process.exitCode = failed.length ? 1 : 0;
