@@ -88,8 +88,11 @@ const SYMBOLS: Record<string, string> = {
   "%": "\\%",
   "√": "\\sqrt",
 };
-/** 수식이 될 수 있는 글자 — 대분수 앞자리가 이것이면 식의 일부다(`3/6과 2/6` 의 `6`). */
-const MATH_CHAR = /[0-9A-Za-z⁰-⁹²³¹ⁿ+\-−×÷=≠<>≤≥±:/√π°%…→↔□△()]/;
+/**
+ * 앞 수를 잇는 글자 — 대분수 앞자리 바로 앞이 이것이면 그 자리는 앞 수의 일부다(`3/6과 2/6` 의 `6` 은 분모).
+ * 연산자(`=` · `×` · `+` …) 뒤는 새 수라 대분수가 설 수 있다(`… = 1과 1/3`, D-143 ⑦ 분수의 곱셈 보정 예).
+ */
+const CONTINUES_NUMBER = /[0-9A-Za-z⁰-⁹²³¹ⁿ./)°%√π]/;
 
 function lex(text: string): Lexeme[] {
   const out: Lexeme[] = [];
@@ -113,8 +116,8 @@ function lex(text: string): Lexeme[] {
       mixed &&
       Number(mixed[2]) > 0 &&
       Number(mixed[2]) < Number(mixed[3]) &&
-      // 앞이 식이면 대분수가 아니다 — `3/6과 2/6` 의 `6` 은 분모다.
-      !MATH_CHAR.test(text.slice(0, i).trimEnd().at(-1) ?? "")
+      // 앞 수에 이어지면 대분수가 아니다 — `3/6과 2/6` 의 `6` 은 분모다.
+      !CONTINUES_NUMBER.test(text.slice(0, i).trimEnd().at(-1) ?? "")
     ) {
       out.push({
         k: "mixed",

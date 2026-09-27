@@ -25,7 +25,6 @@ import {
   definitionWeak,
 } from "./definition-cards";
 import type { DefinitionAction } from "./types";
-import { conceptSentence } from "./conceptSentenceFixes";
 import { ExplorerActionConflict, ExplorerActionInvalid } from "./errors";
 import {
   applyWorkshopAction,
@@ -143,8 +142,8 @@ export function applyExplorerAction(
       solution: {
         cardId: card.id,
         name: card.name,
-        // 보이는 문장은 보정 표를 지난다(D-143 ④) — 원본은 그대로.
-        definition: conceptSentence(card).definition,
+        // 카드는 내보내는 층에서 이미 보정 표를 입었다(D-143 ④ · ⑦ — definition-cards.ts).
+        definition: card.definition,
         explanation: card.explanation,
         note: card.note,
         examples: card.examples.map((example) => ({
@@ -367,16 +366,11 @@ export function explorerView(
                     ? "맞다"
                     : "아니다",
           })),
-      // 뜻 · 조립 조각은 보정 표를 지난다(D-143 ④) — 빈칸(정답 조각)은 그대로라 채점은 안 바뀐다.
+      // 뜻 · 조립 조각 · 보기는 내보내는 층에서 보정 표를 입은 카드 그대로(D-143 ④ · ⑦) — 채점도 같은 카드로.
       ...(read
-        ? {
-            reading: {
-              definition: conceptSentence(card).definition,
-              note: card.note,
-            },
-          }
+        ? { reading: { definition: card.definition, note: card.note } }
         : task.kind === 0
-          ? { pieces: conceptSentence(card).pieces }
+          ? { pieces: card.pieces }
           : {}),
     };
   }

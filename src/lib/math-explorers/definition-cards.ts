@@ -9,6 +9,7 @@ import {
   type CourseCard,
   type CourseUnit,
 } from "./definition-content";
+import { applyCardFix, cardRevisions } from "./conceptSentenceFixes";
 
 const legacyUnits: CourseUnit[] = [
   {
@@ -355,6 +356,8 @@ export const definitionUnits: CourseUnit[] = [
   ...legacyUnits,
   ...courseUnits,
 ].sort((a, b) => a.grade - b.grade);
+// 카드를 내보내는 층 — 보정 표(D-143 ⑦, `conceptSentenceFixes.ts`)를 여기서 한 번 입힌다. 채점 · 화면 · 복습 · 선수가
+// 모두 이 목록을 읽으므로 같은 카드를 본다. 원본(`definition-content.ts`)은 그대로.
 export const definitionCards: DefinitionCard[] = definitionUnits.flatMap((u) =>
   [
     ...legacyCards.map((c) => ({
@@ -362,7 +365,9 @@ export const definitionCards: DefinitionCard[] = definitionUnits.flatMap((u) =>
       prerequisites: legacyPrerequisites[c.id] ?? [],
     })),
     ...courseCards,
-  ].filter((c) => c.unit === u.id),
+  ]
+    .filter((c) => c.unit === u.id)
+    .map(applyCardFix),
 );
 export const courseGrades = [3, 4, 5, 6, 7, 8, 9];
 export const gradeLabel = (grade: number) =>
@@ -543,17 +548,30 @@ export function definitionQuestionId(s: DefinitionSession) {
   const continuation = s.continuation ? `:retry-${s.continuation}` : "";
   return `${s.id}${continuation}:${s.round}:${s.index}`;
 }
+/**
+ * 기억 복습에서 읽는 만기 — 저장된 만기, 다만 뜻을 고친 카드(`cardRevisions`)를 그 판 **전에** 마지막으로 풀었으면 판 날이
+ * 더 이르면 판 날(원장님 확정 2026-09-28, D-143 ⑦). 공유 DB 에 쓰지 않는 읽기 규칙이다 — 저장된 만기 · 레벨 · 별은 그대로이고,
+ * 레벨이 오르는 «제때 복습»(`eligible`)은 저장된 만기로만 가리므로 앞당긴 복습은 별을 주지 않는다. 한 번 풀면 `attemptedAt` 이
+ * 판 뒤가 되어 저장된 만기로 돌아간다.
+ */
+export function definitionEffectiveDue(
+  cardId: string,
+  progress: DefinitionProgress,
+) {
+  const revised = Object.hasOwn(cardRevisions, cardId)
+    ? cardRevisions[cardId]
+    : undefined;
+  const seen = progress.attemptedAt || progress.lastDate || "";
+  return revised && seen < revised && revised < progress.due
+    ? revised
+    : progress.due;
+}
 export function definitionDue(p: Profile, date: string) {
+  const due = (c: DefinitionCard) =>
+    definitionEffectiveDue(c.id, p.definitions!.cards[c.id]);
   return definitionCards
-    .filter((c) => {
-      const progress = p.definitions?.cards[c.id];
-      return !!progress && progress.due <= date;
-    })
-    .sort((a, b) =>
-      p.definitions!.cards[a.id].due.localeCompare(
-        p.definitions!.cards[b.id].due,
-      ),
-    );
+    .filter((c) => !!p.definitions?.cards[c.id] && due(c) <= date)
+    .sort((a, b) => due(a).localeCompare(due(b)));
 }
 function addDays(date: string, days: number) {
   const d = new Date(`${date}T12:00:00Z`);
