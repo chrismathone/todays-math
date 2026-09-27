@@ -109,6 +109,21 @@ const FORBIDDEN_ROOTS = [
   ".claude/",
 ];
 
+/**
+ * 🔴 원장님 연구실(`/lab/math-srs/algebra`, 브라우저 기록 · 글자 입력칸뿐)은 숫자형 그대로다(2026-09-27).
+ * 연구실 화면과 그것이 쓰는 미션·생성기·브라우저 기록 모듈에서 import 사슬이 quick 에 닿으면 빨갛다 —
+ * 한 걸음 공급은 `serverState.ts` 가 `createMission` 에 넘기고, `mission.ts` 는 quick 을 모른다.
+ */
+const LAB_ROOTS = [
+  "src/app/lab/",
+  "src/components/math-srs/MathSrsApp.tsx",
+  "src/components/math-srs/PracticeSession.tsx",
+  "src/components/math-srs/useSrsStore.ts",
+  "src/lib/math-srs/mission.ts",
+  "src/lib/math-srs/generator.ts",
+  "src/lib/math-srs/storage.ts",
+];
+
 function walk(dir: string, out: string[]) {
   let names: string[];
   try {
@@ -321,6 +336,20 @@ describe("한 걸음 문항 격리 울타리", () => {
       const chain = pathToQuick(file);
       if (chain) leaks.push(chain.join(" → "));
     }
+    expect(leaks).toEqual([]);
+  });
+
+  it("원장님 연구실 쪽(화면·미션·생성기·브라우저 기록)은 quick 에 닿지 않는다", () => {
+    const leaks: string[] = [];
+    let roots = 0;
+    for (const file of SCAN.graph.keys()) {
+      const r = rel(file);
+      if (!LAB_ROOTS.some((root) => r === root || r.startsWith(root))) continue;
+      roots += 1;
+      const chain = pathToQuick(file);
+      if (chain) leaks.push(chain.join(" → "));
+    }
+    expect(roots).toBeGreaterThanOrEqual(LAB_ROOTS.length);
     expect(leaks).toEqual([]);
   });
 

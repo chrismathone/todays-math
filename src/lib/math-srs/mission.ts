@@ -6,11 +6,25 @@ import type {
   Attempt,
   ConceptId,
   Difficulty,
+  GeneratedProblem,
   Learner,
   Mission,
   MissionKind,
   Rating,
 } from "./types";
+
+/**
+ * 미션 한 칸의 문항을 만드는 쪽. 기본은 숫자 엔진(`generateProblem`) — 원장님 연구실
+ * (`/lab/math-srs/algebra`, 글자 입력칸뿐)이 쓰는 길이라 바꾸지 않는다. 학생 서버 미션은
+ * `serverState.ts` 가 폰 «한 걸음» 공급(`quickMission.ts`)을 넘긴다.
+ * 🔴 이 파일은 한 걸음 문항(`quick/**`)을 import 하지 않는다 — 연구실까지 딸려 가지 않게(`mathSrsQuickFence`).
+ */
+export type MissionProblemSupply = (input: {
+  conceptId: ConceptId;
+  difficulty: Difficulty;
+  kind: MissionKind;
+  seed: number;
+}) => GeneratedProblem;
 
 export function localDateKey(now: Date): string {
   if (!Number.isFinite(now.getTime()))
@@ -41,6 +55,7 @@ export function createMission(
   learner: Learner,
   now: Date,
   seed: number,
+  supply: MissionProblemSupply = generateProblem,
 ): Mission {
   if (!Number.isFinite(seed)) throw new Error("미션 시드가 올바르지 않아요.");
   const date = localDateKey(now);
@@ -97,7 +112,7 @@ export function createMission(
             ? 3
             : 4;
     const difficulty = Math.max(1, Math.min(5, base + delta)) as Difficulty;
-    let problem = generateProblem({
+    let problem = supply({
       conceptId: concept,
       difficulty,
       kind,
@@ -108,7 +123,7 @@ export function createMission(
       seenProblems.has(contentKey(problem)) && retry <= 25;
       retry++
     ) {
-      problem = generateProblem({
+      problem = supply({
         conceptId: concept,
         difficulty,
         kind,

@@ -60,7 +60,7 @@ const { srsStateDto } = src("lib/math-srs/serverDto.ts");
 const { replayProblem } = src("lib/math-srs/replay.ts");
 const { dailyJourneyDto } = src("lib/math-srs/dailyJourney.ts");
 const { gradeCourseAnswer } = src("lib/math-srs/elementary/answers.ts");
-const { checkAnswer } = src("lib/math-srs/sharedAnswers.ts");
+const { gradeSrsAnswer } = src("lib/math-srs/sharedAnswers.ts");
 const courseContract = src("contracts/mathSrsCourse.contract.ts");
 const srsContract = src("contracts/mathSrs.contract.ts");
 const replayContract = src("contracts/mathSrsReplay.contract.ts");
@@ -993,7 +993,8 @@ async function bankScenario({ page, sim, mobile, height, step, shot }, kind) {
   };
   const correctIndex = (publicProblem, stored) =>
     publicProblem.answerChoices.findIndex((choice) =>
-      kind === "elementary" ? gradeCourseAnswer(stored, choice) === true : checkAnswer(choice, stored.answer));
+      // 중등 복습은 숫자형·보기형(폰 «한 걸음», 2026-09-27) 모두 제품 채점 함수 하나로
+      kind === "elementary" ? gradeCourseAnswer(stored, choice) === true : gradeSrsAnswer(stored, choice));
   async function answerInBrowser() {
     const { problems, stored, index } = await publicProblems();
     const choice = correctIndex(problems[index], stored[index]);

@@ -36,6 +36,10 @@ function attempt<T>(tries: number, f: () => T | null): T {
   throw new Error("유형 생성 재시도 초과 — 매개변수 범위를 확인하십시오");
 }
 
+function gcd(a: number, b: number): number {
+  return b === 0 ? a : gcd(b, a % b);
+}
+
 /** 0 이 아닌 정수를 [-max, -min]∪[min, max] 에서 뽑는다. */
 function nonzero(rng: Rng, min: number, max: number): number {
   const v = intBetween(rng, min, max);
@@ -611,19 +615,25 @@ export const M2_SYSTEM_APPLY: TypeEntry[] = [
         };
       }),
   ),
-  def(MINOR_APPLY, "10A", "인원수의 비", SEC.농도비율, "연산", (rng) => {
-    const firstRatio = intBetween(rng, 2, 6);
-    const secondRatio = intBetween(rng, 2, 6);
-    const scale = intBetween(rng, 4, 15);
-    const total = (firstRatio + secondRatio) * scale;
-    const answer = firstRatio * scale;
-    return {
-      content: `어느 모임의 남학생 수와 여학생 수의 비는 $${firstRatio}:${secondRatio}$이고 전체 학생은 $${total}$명이다. 남학생 수를 구하시오.`,
-      answer: `$${answer}$명`,
-      solution: `남학생과 여학생을 각각 $x$명, $y$명이라 하면 $x+y=${total}$, $${secondRatio}x=${firstRatio}y$이다. 두 식을 연립하여 풀면 남학생은 $${answer}$명이다.`,
-      facts: { firstRatio, secondRatio, total, answer },
-    };
-  }),
+  def(MINOR_APPLY, "10A", "인원수의 비", SEC.농도비율, "연산", (rng) =>
+    // 비는 **가장 간단한 자연수의 비**로 준다 — 전에는 「$3:3$」·「$6:3$」이 씨앗 1,000 중
+    // 52.3% 나갔다(2026-09-27 실측, 중1 활용 23 과 같은 꼴). 두 항이 서로소면 둘은 다르다.
+    // 통과율 12/25 = 48% — 300번이면 던질 확률 $0.52^{300}\approx10^{-85}$.
+    attempt(300, () => {
+      const firstRatio = intBetween(rng, 2, 6);
+      const secondRatio = intBetween(rng, 2, 6);
+      if (gcd(firstRatio, secondRatio) !== 1) return null;
+      const scale = intBetween(rng, 4, 15);
+      const total = (firstRatio + secondRatio) * scale;
+      const answer = firstRatio * scale;
+      return {
+        content: `어느 모임의 남학생 수와 여학생 수의 비는 $${firstRatio}:${secondRatio}$이고 전체 학생은 $${total}$명이다. 남학생 수를 구하시오.`,
+        answer: `$${answer}$명`,
+        solution: `남학생과 여학생을 각각 $x$명, $y$명이라 하면 $x+y=${total}$, $${secondRatio}x=${firstRatio}y$이다. 두 식을 연립하여 풀면 남학생은 $${answer}$명이다.`,
+        facts: { firstRatio, secondRatio, total, answer },
+      };
+    }),
+  ),
   def(MINOR_APPLY, "11A", "불량품의 비율", SEC.농도비율, "기본", (rng) =>
     attempt(300, () => {
       const rateA = pick(rng, [5, 10, 15, 20] as const);
@@ -820,7 +830,9 @@ export const M2_SYSTEM_APPLY: TypeEntry[] = [
     SEC.일속력,
     "심화하",
     (rng) =>
-      attempt(300, () => {
+      // 시도 수 — 한 번 시도의 통과율이 거름을 더하고 3.72% 다(전수, 2026-09-27).
+      // 300번이면 던질 확률이 $1.2\times10^{-5}$ 라 800번으로 올린다($6.7\times10^{-14}$).
+      attempt(800, () => {
         const slow = intBetween(rng, 40, 90);
         const fast = intBetween(rng, slow + 10, 200);
         const head = intBetween(rng, 3, 20);
@@ -828,6 +840,9 @@ export const M2_SYSTEM_APPLY: TypeEntry[] = [
         if ((slow * head) % gap !== 0) return null;
         const minutes = (slow * head) / gap;
         if (minutes < 2 || minutes > 60) return null;
+        // 형이 딱 2배 빠르면($fast=2\times slow$) 답이 먼저 나선 시간과 같다 — 발문의
+        // 「$h$분 후」가 곧 답이라 계산할 까닭이 없다(중1 활용 13 과 같은 꼴).
+        if (minutes === head) return null;
         return {
           content: `동생이 분속 $${slow}\\,\\mathrm{m}$로 집을 나선 뒤 $${head}$분 후에 형이 분속 $${fast}\\,\\mathrm{m}$로 같은 길을 따라나섰다. 형이 출발한 지 몇 분 후에 동생을 만나는지 구하시오.`,
           answer: `$${minutes}$분 후`,

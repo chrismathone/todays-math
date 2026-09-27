@@ -39,6 +39,16 @@ const PREREQUISITES: Record<ConceptId, ConceptId[]> = {
   word: ["two-step", "balance"],
 };
 
+/** 한 문항이 기억에 주는 무게 — 제 개념 1, 선수 개념 0.15. 한 걸음 문항(`quickMission.ts`)도 같은 규칙을 쓴다. */
+export function conceptWeightsFor(
+  conceptId: ConceptId,
+): { conceptId: ConceptId; weight: number }[] {
+  return [
+    { conceptId, weight: 1 },
+    ...PREREQUISITES[conceptId].map((id) => ({ conceptId: id, weight: 0.15 })),
+  ];
+}
+
 const HINTS: Record<ConceptId, string> = {
   balance:
     "양변에 같은 연산을 했는지 살펴보세요. 항상 참인 등식과 특정한 수에서만 참인 등식을 구분해요.",
@@ -130,13 +140,7 @@ export function generateProblem({
     id: `middle-${selected.key}-${seed >>> 0}-${kind}`,
     templateId: selected.key,
     conceptId,
-    conceptWeights: [
-      { conceptId, weight: 1 },
-      ...PREREQUISITES[conceptId].map((id) => ({
-        conceptId: id,
-        weight: 0.15,
-      })),
-    ],
+    conceptWeights: conceptWeightsFor(conceptId),
     difficulty: actualDifficulty,
     kind,
     prompt,

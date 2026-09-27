@@ -8,7 +8,7 @@
 - 교사 조회: `authorizeAccount`, 메뉴 및 역할 판정, `requireOwnedClass`를 사용한다. 관리자 소유 범위도 기존 규칙을 따른다.
 - 진도: 실제 반·개별 기록을 `getCurrentProgress`에 넘긴다. 개인 진도가 없으면 반 진도로 돌아가는 기존 규칙이 유지된다.
 - 개념 영상: 기존 `loadStudentLectureScope`, `lectureOpenToStudent`, 정렬 함수를 사용한다. 연결할 단원 범위는 재사용 문제 유형 목록 `ENGINE_CATALOG`에서 가져온다.
-- 문제·채점·기억: 기존 중1 유형을 연결한 `createMission`, `checkAnswer`, `recordAttempt`와 기억 갱신 함수를 서버에서도 사용한다. 하루 경계는 `kstDateOf`로 정한다.
+- 문제·채점·기억: 학생 서버 미션은 `createMission` 에 폰 «한 걸음» 문항 공급(`quickMission.ts`, 보기 4개)을 넘겨 만든다(원장님 연구실은 기본 공급인 숫자 엔진 그대로). 채점은 숫자형·보기형 모두 `gradeSrsAnswer` 하나(`sharedAnswers.ts` — 숫자 절반이 `checkAnswer`), 기록은 `recordAttempt` 와 기억 갱신 함수를 서버에서도 쓴다. 하루 경계는 `kstDateOf`로 정한다.
 - 공통 응답·오류 기록: Zod 응답 계약, 공용 오류 응답, `noStore`, `withErrorLog`를 사용한다.
 
 진도는 학습 화면의 실제 수업 맥락과 영상 연결에 사용한다. 현재 미션은 일차방정식 여섯 개념을 진단하는 범위이며 **수업한 차시로만 문제를 제한하지 않는다**.

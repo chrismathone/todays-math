@@ -11,6 +11,12 @@
  */
 export const QUICK_CHOICE_MAX_EM = 3.6;
 
+/**
+ * 식 칸(발문 아래 줄)의 폭 상한(em). 학생 화면 식 칸은 320px 에서 글자 22px × KaTeX 1.15배 = 25.3px/em,
+ * 문제 칸 폭 약 257px → 한 줄 약 10.1em. 여유를 두어 9.6em. 실측(Playwright)으로 한 줄인지 확인했다.
+ */
+export const QUICK_EQUATION_MAX_EM = 9.6;
+
 // KaTeX_Main/Math 글자 폭(em). 문자는 기울임(Math-Italic) 폭.
 const GLYPH: Record<string, number> = {
   x: 0.572,
@@ -59,10 +65,11 @@ export function choiceWidthEm(tex: string, script = false): number {
     if (tex.startsWith("\\frac", i)) {
       const [num, afterNum] = readGroup(tex, i + 5);
       const [den, afterDen] = readGroup(tex, afterNum);
-      // 분자·분모는 이미 0.7배로 잰다(안쪽 분수는 쓰지 않는다)
+      // 🔴 제품 전처리(`textPreprocess` 6단계)가 모든 `\frac` 을 `\dfrac` 으로 올린다 — 분자·분모가
+      //    본문 크기(1배)로 그려진다. 0.7배로 재면 분수 보기를 작게 어림한다(2026-09-27 실측).
       const inner = Math.max(
-        choiceWidthEm(num, true),
-        choiceWidthEm(den, true),
+        choiceWidthEm(num, script),
+        choiceWidthEm(den, script),
       );
       em += inner + NULL_DELIM * scale;
       operand = true;

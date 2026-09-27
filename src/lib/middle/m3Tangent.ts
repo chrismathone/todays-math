@@ -27,6 +27,7 @@ import type { Rng } from "../elementary/types";
 
 import type { MidProblem, TypeEntry } from "./types";
 import { attachGivenDims } from "./figureDims";
+import { piTerm } from "./m1Shared";
 
 const GRADE = "중3";
 const BOOK = "3-2";
@@ -1203,8 +1204,8 @@ export const M3_TANGENT_TYPES: TypeEntry[] = [
       const z = g2 - r;
       return {
         content: `원 $O$는 $\\angle A=90^\\circ$인 직각삼각형 $ABC$의 내접원이고 점 $E$는 변 $BC$ 위의 접점이다. $\\overline{BE}=${y}\\,\\mathrm{cm}$, $\\overline{CE}=${z}\\,\\mathrm{cm}$일 때, 원 $O$의 넓이를 구하시오.`,
-        answer: `$${r * r}\\pi\\,\\mathrm{cm}^2$`,
-        solution: `반지름의 길이를 $r\\,\\mathrm{cm}$라 하면 $\\overline{AB}=(r+${y})\\,\\mathrm{cm}$, $\\overline{AC}=(r+${z})\\,\\mathrm{cm}$이다.\n피타고라스 정리에서 $(r+${y})^2+(r+${z})^2=(${y}+${z})^2$을 풀면 $r=${r}$이다.\n따라서 원 $O$의 넓이는 $${r * r}\\pi\\,\\mathrm{cm}^2$이다.`,
+        answer: `$${piTerm(r * r)}\\,\\mathrm{cm}^2$`,
+        solution: `반지름의 길이를 $r\\,\\mathrm{cm}$라 하면 $\\overline{AB}=(r+${y})\\,\\mathrm{cm}$, $\\overline{AC}=(r+${z})\\,\\mathrm{cm}$이다.\n피타고라스 정리에서 $(r+${y})^2+(r+${z})^2=(${y}+${z})^2$을 풀면 $r=${r}$이다.\n따라서 원 $O$의 넓이는 $${piTerm(r * r)}\\,\\mathrm{cm}^2$이다.`,
         facts: { mode, r, y, z, x: r * r },
         figureSpec: figRightIncircle({
           hor: g1,

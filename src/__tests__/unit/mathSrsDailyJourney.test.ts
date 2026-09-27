@@ -24,6 +24,7 @@ import {
   type StoredSrsState,
 } from "@/lib/math-srs/serverState";
 import { replayProblem } from "@/lib/math-srs/replay";
+import { correctSrsChoice } from "@/lib/math-srs/sharedAnswers";
 
 const now = new Date("2026-09-26T03:00:00.000Z");
 const tomorrow = new Date("2026-09-27T03:00:00.000Z");
@@ -36,6 +37,11 @@ const plan = (goal: 5 | 10 | 15 | 20) => ({
 });
 const middleStart = () =>
   startSrsMission(emptySrsState(), studentId, now, 71, randomUUID);
+type MiddleProblem = StoredSrsState["missions"][number]["problems"][number];
+/** 학생 미션은 폰 «한 걸음» 보기형(2026-09-27) — 정답·오답 제출을 문항 종류에 맞춘다 */
+const right = (p: MiddleProblem) => correctSrsChoice(p) ?? String(p.answer);
+const wrongOf = (p: MiddleProblem) =>
+  p.choices ? p.choices[(p.answer + 1) % 4]! : String(p.answer + 999);
 function middleAnswer(state: StoredSrsState, wrong = false) {
   const mission = state.missions[0];
   const problem = mission.problems[mission.attempts.length];
@@ -45,9 +51,7 @@ function middleAnswer(state: StoredSrsState, wrong = false) {
     {
       missionId: mission.id,
       problemId: problem.id,
-      submittedAnswer: wrong
-        ? String(problem.answer + 999)
-        : String(problem.answer),
+      submittedAnswer: wrong ? wrongOf(problem) : right(problem),
       elapsedSeconds: 10,
       rating: "good",
     },
@@ -119,20 +123,14 @@ describe("permanent daily learning journey", () => {
       state,
     );
     expect(
-      recordSrsRetry(
-        state,
-        mission.id,
-        wrong.id,
-        String(wrong.answer + 99),
-        tomorrow,
-      ),
+      recordSrsRetry(state, mission.id, wrong.id, wrongOf(wrong), tomorrow),
     ).toBe(state);
     expect(() =>
       recordSrsRetry(
         state,
         mission.id,
         mission.problems[1].id,
-        String(mission.problems[1].answer),
+        right(mission.problems[1]),
         tomorrow,
       ),
     ).toThrow();
@@ -140,13 +138,7 @@ describe("permanent daily learning journey", () => {
       attempts: mission.attempts,
       memories: state.memories,
     });
-    state = recordSrsRetry(
-      state,
-      mission.id,
-      wrong.id,
-      String(wrong.answer),
-      tomorrow,
-    );
+    state = recordSrsRetry(state, mission.id, wrong.id, right(wrong), tomorrow);
     const journey = dailyJourneyDto(state, "middle", tomorrow);
     expect(journey.completedDays).toBe(1);
     expect(journey.todayComplete).toBe(true);
@@ -160,13 +152,7 @@ describe("permanent daily learning journey", () => {
       memories: state.memories,
     }).toEqual(initialScores);
     expect(
-      recordSrsRetry(
-        state,
-        mission.id,
-        wrong.id,
-        String(wrong.answer),
-        tomorrow,
-      ),
+      recordSrsRetry(state, mission.id, wrong.id, right(wrong), tomorrow),
     ).toBe(state);
     expect(parseSrsState(state)).toEqual(state);
     expect(startSrsMission(state, studentId, tomorrow, 82, randomUUID)).toBe(

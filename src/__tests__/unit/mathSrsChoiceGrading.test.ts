@@ -6,6 +6,7 @@ import { describe, expect, it, vi } from "vitest";
 vi.mock("server-only", () => ({}));
 import { mathSrsStateResponseSchema } from "@/contracts/mathSrs.contract";
 import { mathSrsReplayResponseSchema } from "@/contracts/mathSrsReplay.contract";
+import { generateProblem } from "@/lib/math-srs/generator";
 import { recordAttempt } from "@/lib/math-srs/mission";
 import { numericAnswerChoices } from "@/lib/math-srs/numericAnswerChoices";
 import { replayProblem } from "@/lib/math-srs/replay";
@@ -48,8 +49,16 @@ function asChoice(problem: StoredProblem, answer: number): StoredProblem {
   delete choice.source;
   return choice;
 }
+/** 숫자형 미션 — 학생 서버 미션은 한 걸음 문항이 기본이 되어(2026-09-27) 숫자 엔진 공급을 밝혀 만든다 */
 const numeric = () =>
-  startSrsMission(emptySrsState(), studentId, now, 71, randomUUID);
+  startSrsMission(
+    emptySrsState(),
+    studentId,
+    now,
+    71,
+    randomUUID,
+    generateProblem,
+  );
 /** 숫자형과 보기형이 섞인 새 미션. 보기형의 정답 번호는 칸마다 다르다. */
 function mixed(indexes = CHOICE_AT): StoredSrsState {
   const state = numeric();

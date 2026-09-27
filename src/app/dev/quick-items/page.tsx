@@ -160,6 +160,9 @@ function Sample({ item }: { item: QuickItemPreview }) {
         난이도 {item.difficulty} · 목표 {item.expectedSeconds}초
       </p>
       <MathText as="div" className={b.prompt} text={item.prompt} />
+      {item.equation ? (
+        <MathText as="div" className={b.equation} text={item.equation} />
+      ) : null}
       <ol className={b.choices}>
         {item.choices.map((choice, i) => (
           <li

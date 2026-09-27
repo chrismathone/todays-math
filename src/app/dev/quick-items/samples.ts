@@ -29,7 +29,7 @@ export function parseDifficulty(value: string | undefined): Difficulty | null {
 
 /**
  * Playwright 가 넘침을 잴 «가장 빡빡한» 표본 — 모양 × 난이도마다 씨앗 `pool` 개 가운데
- * 보기가 가장 넓은 것 둘과 발문이 가장 긴 것 하나.
+ * 보기가 가장 넓은 것 둘 · 발문이 가장 긴 것 하나 · 식 칸이 가장 넓은 것 하나.
  */
 export function stressItems(pool: number): QuickItemPreview[] {
   const out: QuickItemPreview[] = [];
@@ -48,7 +48,15 @@ export function stressItems(pool: number): QuickItemPreview[] {
       const byPrompt = [...items].sort(
         (a, b) => b.prompt.length - a.prompt.length,
       );
-      const picked = new Set([byWidth[0]!, byWidth[1]!, byPrompt[0]!]);
+      const eqWidth = (it: QuickItemPreview) =>
+        it.equation ? choiceWidthEm(it.equation.slice(1, -1)) : 0;
+      const byEquation = [...items].sort((a, b) => eqWidth(b) - eqWidth(a));
+      const picked = new Set([
+        byWidth[0]!,
+        byWidth[1]!,
+        byPrompt[0]!,
+        byEquation[0]!,
+      ]);
       out.push(...picked);
     }
   return out;

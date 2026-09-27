@@ -14,7 +14,12 @@ import {
 import { kstDateOf } from "@/lib/kstDate";
 import { gradeSrsAnswer, srsChoiceIssue } from "./sharedAnswers";
 import { createMemories } from "./memory";
-import { createMission, recordAttempt } from "./mission";
+import {
+  createMission,
+  recordAttempt,
+  type MissionProblemSupply,
+} from "./mission";
+import { quickMissionProblem } from "./quickMission";
 import { CONCEPT_IDS, type Learner, type Mission } from "./types";
 import { storedCourseSchema } from "./courseAutomation";
 import { storedDailyJourneySchema, updateDailyJourney } from "./dailyJourney";
@@ -187,15 +192,20 @@ function asLearner(state: StoredSrsState, studentId: string): Learner {
   };
 }
 
+/**
+ * 학생 서버 복습 미션을 연다. 문항은 폰 «한 걸음» 문항(원장님 확정 2026-09-27) — `supply` 는
+ * 시험이 옛 숫자형 미션을 재현할 때만 바꾼다(이미 저장된 옛 미션은 그대로 이어서 풀린다).
+ */
 export function startSrsMission(
   state: StoredSrsState,
   studentId: string,
   now: Date,
   seed: number,
   newId: () => string,
+  supply: MissionProblemSupply = quickMissionProblem,
 ): StoredSrsState {
   if (currentSrsMission(state, now)) return state;
-  const mission = createMission(asLearner(state, studentId), now, seed);
+  const mission = createMission(asLearner(state, studentId), now, seed, supply);
   // The engine's stable IDs include the seed. Server IDs are opaque instead.
   const saved: StoredSrsMission = {
     ...mission,
