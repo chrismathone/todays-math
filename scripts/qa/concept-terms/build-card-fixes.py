@@ -117,6 +117,15 @@ FIXES: list = [
     dict(id="g9-vertex", severity="범위", sevVotes=sev("범위", "빠짐", "범위"), votes=V3, decidedBy=AGREE,
          issue="«방향이 바뀌는 점»이라 적었고 빈칸 둘이 좌표 · 위치(성질) 쪽 — 포물선과 축이 만나는 점으로 뜻을 세운다(이름 «포물선의 꼭짓점»은 codex 만의 제안 — 원장님께 여쭐 것)",
          template="포물선이 {축}과 만나는 점이며, y=a(x−p)²+q의 그래프에서는 {(p, q)}이다.", wrong=["x축", "(−p, q)"]),
+    # ── 둘째 협의(리드 요청 2026-09-28 — §9 ④): 빈칸 둘이 모두 덧붙인 사실 쪽이던 두 장 ──
+    dict(id="g7-origin", severity="범위", sevVotes=sev("범위", "범위", "범위"), votes=V3,
+         decidedBy="3자 일치(둘째 협의) — 문장은 grok 안: 빈칸 둘을 모두 뜻 쪽에(codex · grok 2:1 — Claude 는 한 빈칸을 (0,0)에 남김). 수직선의 원점을 넣자는 codex 안은 1표",
+         issue="빈칸 둘((0,0) · 0)이 같은 좌표 사실을 두 번 묻고, 뜻(두 좌표축이 만나는 점)에는 빈칸이 없다 — 좌표 (0,0)은 보기 · 함정(참)에 이미 있다",
+         template="좌표평면에서 {두 좌표축}이 {만나는 점}.", wrong=["한 좌표축", "평행한 직선"]),
+    dict(id="g9-double-root", severity="범위", sevVotes=sev("범위", "범위", "범위"), votes=V3,
+         decidedBy="3자 일치(둘째 협의) — 문장은 grok 안: 빈칸 둘을 모두 뜻 쪽에(codex · grok 2:1 — Claude 는 한 빈칸을 «한 개»에 남김)",
+         issue="빈칸 둘(한 개 · a)이 덧붙인 사실 쪽 — 교재는 완전제곱식 꼴이면 중근을 갖는다는 것을 따로 성질로 둔다. 그 사실은 보기 · 함정 · 해설에 이미 있다",
+         template="이차방정식이 {서로 같은 두 근}을 가질 때의 {그 근}.", wrong=["서로 다른 두 근", "해의 개수"]),
     # ── 2:1 로 고치기로 한 것 ──
     dict(id="g3-right-angle", severity="범위", sevVotes=sev("—", "범위", "범위"),
          votes={"claude": "안 고침", "codex": "고침", "grok": "고침"}, decidedBy="2:1(codex · grok 고침)",
