@@ -8,6 +8,7 @@ import type {
 } from "@/contracts/mathExplorers.contract";
 import { ExplorerPracticeFrame } from "./ExplorerPractice";
 import pageTurn from "@/components/math-srs/question-page-turn.module.css";
+import { ExplorerChoiceText, ExplorerMath } from "./ExplorerMath";
 import s from "./math-explorers.module.css";
 
 type Workshop = NonNullable<WorkshopView["session"]>;
@@ -113,6 +114,8 @@ function WorkshopActivity({
     workshop.fractions.map(() => []),
   );
   const [chosen, setChosen] = useState<number | null>(null);
+  // «선택됨» 움직임 표지(05 §8.16) — 누른 순간에만. 다른 보기로 바꾸면 앞 보기는 빠진다.
+  const [motion, setMotion] = useState<Record<number, "in" | "out">>({});
   const disabled = busy || correct !== null;
   const { stage, questionId } = workshop;
   const denominator = workshop.targetDenominator ?? 1;
@@ -138,6 +141,10 @@ function WorkshopActivity({
   }
   function choose(choiceId: number) {
     if (disabled) return;
+    setMotion({
+      ...(chosen !== null && chosen !== choiceId ? { [chosen]: "out" } : {}),
+      [choiceId]: "in",
+    });
     setChosen(choiceId);
     if (stage === "predict")
       onAction({ type: "lab-predict", questionId, choiceId });
@@ -157,9 +164,14 @@ function WorkshopActivity({
           <span>통분 · 조각으로 이해하기</span>
           <span>{stageNames[stage]}</span>
         </div>
-        <h2 className={s.questionTitle}>{workshop.prompt}</h2>
+        <h2 className={s.questionTitle}>
+          <ExplorerMath text={workshop.prompt} />
+        </h2>
         {workshop.predictionLabel && stage === "split" ? (
-          <p className={s.instruction}>내 예상: {workshop.predictionLabel}</p>
+          // `MathText` 는 div 를 내므로 p 가 아니라 div 에 담는다(모양은 클래스가 정한다).
+          <div className={s.instruction}>
+            내 예상: <ExplorerMath text={workshop.predictionLabel} />
+          </div>
         ) : null}
         <div className={s.fractionModels}>
           {workshop.fractions.map((fraction, index) => (
@@ -212,6 +224,7 @@ function WorkshopActivity({
                     role="group"
                     aria-label={`${index + 1}번째 분수 ${denominator}개 조각`}
                   >
+                    {/* 칠한 칸은 색(`#628fde`)으로만 보인다 — ✓ 글자는 뺐다(05 §8.16 «체크 말고»). */}
                     {Array.from({ length: denominator }, (_, part) => (
                       <button
                         type="button"
@@ -230,11 +243,7 @@ function WorkshopActivity({
                             ),
                           )
                         }
-                      >
-                        <span aria-hidden="true">
-                          {parts[index].includes(part) ? "✓" : ""}
-                        </span>
-                      </button>
+                      />
                     ))}
                   </div>
                 </>
@@ -266,10 +275,14 @@ function WorkshopActivity({
                   aria-label={`${index + 1} ${choice.label}`}
                   aria-pressed={chosen === choice.id}
                   disabled={disabled}
+                  data-anim={motion[choice.id]}
                   onClick={() => choose(choice.id)}
                 >
                   <span className={s.answerNumber}>{index + 1}</span>
-                  <span className={s.answerText}>{choice.label}</span>
+                  <ExplorerChoiceText
+                    className={s.answerText}
+                    text={choice.label}
+                  />
                 </button>
               ))}
             </div>

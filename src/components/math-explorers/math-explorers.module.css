@@ -965,6 +965,9 @@ button.wordSlot {
   overflow-wrap: anywhere;
   cursor: pointer;
   touch-action: manipulation;
+  /* «선택됨» 면(`::before`)이 둥근 모서리 안에서 글자 뒤에 차오르게 한다(05 §8.16). */
+  isolation: isolate;
+  overflow: hidden;
 }
 .answerNumber {
   display: grid;
@@ -977,30 +980,107 @@ button.wordSlot {
   font-size: 11px;
   font-weight: 750;
 }
+/*
+ * 보기 글은 제 높이대로 서고 단추(`overflow: hidden`)가 테두리 안에서 자른다. 안 들어가면 `ExplorerChoiceText` 가
+ * 글자를 줄여 넣는다(트랙 K). 예전의 숨은 스크롤(`max-height: 100%` · `overflow: auto` · 스크롤 막대 없음)은
+ * 넘친 줄을 보이지 않게 잘랐다(320×568 근의 공식 · 긴 한글 보기).
+ */
 .answerText {
   min-width: 0;
-  max-height: 100%;
-  overflow: auto;
-  scrollbar-width: none;
+}
+/*
+ * «선택됨» — 1안 코발트 차오름 (원장님 확정 2026-09-27, 05 §8.16 · 시안 `hifi-explorer-select.html`).
+ * 고르면 단추 전체가 코발트 면 · 흰 글자. 면은 `::before` 가 아래에서 차오른다(누를 때 0.18초 · 풀 때 0.14초).
+ * 움직임은 누른 순간에만 붙는 `data-anim` 에 건다 — 처음 그릴 때 · 채점 뒤 다시 그릴 때는 움직이지 않는다.
+ * 예 모으기 · 정의 조립 · 경계 살피기 · 작업실 하나 고르기가 모두 이 규칙 하나다(«모든 화면 일치»).
+ */
+.answers button::before {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  content: "";
+  background: #3159de;
+  transform: scaleY(0);
+  transform-origin: 50% 100%;
 }
 .answers button[aria-pressed="true"] {
-  color: #3159be;
-  border-color: #6d8de3;
-  background: #edf3ff;
+  color: #fff;
+  border-color: #3159de;
 }
-.answers button[data-answer-state="correct"] {
-  color: #2c785a;
-  border-color: #54a381;
-  background: #e9f7ef;
+.answers button[aria-pressed="true"]::before {
+  transform: scaleY(1);
 }
-.answers button[data-answer-state="incorrect"] {
-  color: #a15b55;
-  border-color: #d6968f;
-  background: #fff1ef;
+.answers button[aria-pressed="true"] .answerNumber {
+  background: #fff;
+  color: #3159de;
+}
+.answers button[data-anim="in"] {
+  animation: selectText 180ms linear both;
+}
+.answers button[data-anim="in"]::before {
+  animation: selectFill 180ms cubic-bezier(0.25, 0.8, 0.3, 1) both;
+}
+.answers button[data-anim="out"] {
+  animation: releaseText 140ms linear both;
+}
+.answers button[data-anim="out"]::before {
+  animation: releaseDrain 140ms cubic-bezier(0.5, 0, 0.75, 0.5) both;
+}
+@keyframes selectFill {
+  from {
+    transform: scaleY(0);
+  }
+  to {
+    transform: scaleY(1);
+  }
+}
+@keyframes releaseDrain {
+  from {
+    transform: scaleY(1);
+  }
+  to {
+    transform: scaleY(0);
+  }
+}
+/* 글자색은 면이 글자 높이에 닿는 때 바뀐다(시안 값). */
+@keyframes selectText {
+  0%,
+  38% {
+    color: #203d64;
+  }
+  39%,
+  100% {
+    color: #fff;
+  }
+}
+@keyframes releaseText {
+  0%,
+  45% {
+    color: #fff;
+  }
+  46%,
+  100% {
+    color: #203d64;
+  }
+}
+/*
+ * 채점 뒤 — 맞음만 결과색 면(`--learn-done`). **틀림은 고른 모양(코발트) 그대로** 둔다(원장님 확정) —
+ * 결과는 가운데 정답 연출만 말한다. 특이도는 누름보다 높게(`[aria-pressed][data-answer-state]`).
+ */
+.answers button[aria-pressed][data-answer-state="correct"] {
+  color: #fff;
+  border-color: #1d7550;
+}
+.answers button[aria-pressed][data-answer-state="correct"]::before {
+  background: #1d7550;
+  transform: scaleY(1);
+}
+.answers button[aria-pressed][data-answer-state="correct"] .answerNumber {
+  color: #1d7550;
 }
 .answers[data-kind="examples"] button {
   font-size: 13px;
-  padding: 8px 20px 8px 7px;
+  padding: 8px 8px 8px 7px;
   justify-content: flex-start;
   gap: 5px;
 }
@@ -1008,18 +1088,6 @@ button.wordSlot {
   flex-basis: 18px;
   height: 18px;
   font-size: 9px;
-}
-.choiceCheck {
-  position: absolute;
-  top: 7px;
-  right: 5px;
-  display: grid;
-  place-items: center;
-  width: 13px;
-  height: 13px;
-  border: 1px solid #c6d4ec;
-  border-radius: 3px;
-  font-size: 10px;
 }
 button.confirm {
   margin-top: 6px;
@@ -1316,7 +1384,9 @@ button.confirm {
   font-weight: 750;
   margin: 20px 0 10px;
 }
-.solutionContent p {
+/* 카드 글은 `MathText`(div)를 담아 p 대신 `.solutionLine` div 로 선다 — 같은 규칙을 건다. */
+.solutionContent p,
+.solutionContent .solutionLine {
   font-size: 14px;
   line-height: 1.9;
   word-break: keep-all;
@@ -1337,7 +1407,8 @@ button.confirm {
   font-size: 12px;
   color: #6982a8;
 }
-.solutionExamples p {
+.solutionExamples p,
+.solutionExamples .solutionLine {
   margin: 8px 0 0;
   font-size: 13px;
 }
@@ -1405,7 +1476,8 @@ button.confirm {
   .dialog button:hover:enabled {
     filter: brightness(0.98);
   }
-  .answers button:hover:enabled {
+  /* 마우스 올림은 고르지 않은 보기에만 — 고른 보기의 코발트 면을 덮지 않는다(05 §8.16, 시안 조사 §6-1). */
+  .answers button[aria-pressed="false"]:hover:enabled {
     border-color: #9bb1df;
     background: #f8faff;
   }
@@ -1596,6 +1668,11 @@ button.confirm {
   }
   .chestBurst > span {
     display: none;
+  }
+  /* «선택됨»은 움직임 없이 색만 바로(05 §8.16). `[data-anim]` 특이도로 덮는다. */
+  .answers button[data-anim],
+  .answers button[data-anim]::before {
+    animation: none !important;
   }
 }
 .expeditionHome {

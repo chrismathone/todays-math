@@ -6,6 +6,7 @@ import type {
   ExplorerState,
 } from "@/contracts/mathExplorers.contract";
 import { gradeLabel, type ExplorerCard } from "./ExplorerHome";
+import { ExplorerMath } from "./ExplorerMath";
 import s from "./math-explorers.module.css";
 
 export default function ExplorerCardDialog({
@@ -78,7 +79,9 @@ export default function ExplorerCardDialog({
           <p>
             {unit ? `${gradeLabel(unit.grade)} · ${unit.title}` : "개념 카드"}
           </p>
-          <h2 id="explorer-card-title">{card.name}</h2>
+          <h2 id="explorer-card-title">
+            <ExplorerMath text={card.name} />
+          </h2>
         </div>
         <button type="button" aria-label="개념 카드 닫기" onClick={onClose}>
           ×
@@ -93,10 +96,18 @@ export default function ExplorerCardDialog({
         {solution?.cardId === card.id ? (
           <div className={s.solutionContent} data-explorer-solution="true">
             <h3>뜻 다시 보기</h3>
-            <p className={s.readingDefinition}>{solution.definition}</p>
-            <p>{solution.note}</p>
+            {/* `MathText` 는 div 를 내므로 카드 글은 p 가 아니라 `solutionLine` div 에 담는다
+                (`.solutionContent p` 와 같은 규칙이 이 클래스에도 걸린다). */}
+            <div className={`${s.readingDefinition} ${s.solutionLine}`}>
+              <ExplorerMath text={solution.definition} />
+            </div>
+            <div className={s.solutionLine}>
+              <ExplorerMath text={solution.note} />
+            </div>
             <h3>해설</h3>
-            <p>{solution.explanation}</p>
+            <div className={s.solutionLine}>
+              <ExplorerMath text={solution.explanation} />
+            </div>
             <div className={s.solutionExamples}>
               {[true, false].map((correct) => (
                 <div key={String(correct)}>
@@ -106,17 +117,19 @@ export default function ExplorerCardDialog({
                   {solution.examples
                     .filter((example) => example.correct === correct)
                     .map((example, index) => (
-                      <p key={index}>{example.label}</p>
+                      <div key={index} className={s.solutionLine}>
+                        <ExplorerMath text={example.label} />
+                      </div>
                     ))}
                 </div>
               ))}
             </div>
-            <p className={s.statement}>
-              {solution.statement}
+            <div className={`${s.statement} ${s.solutionLine}`}>
+              <ExplorerMath text={solution.statement} />
               <strong>
                 {solution.truth ? "맞는 설명이에요." : "맞지 않는 설명이에요."}
               </strong>
-            </p>
+            </div>
           </div>
         ) : (
           <>
@@ -146,16 +159,20 @@ export default function ExplorerCardDialog({
             {workshopSolution ? (
               <>
                 <h3>{workshopSolution.title}</h3>
-                <p>{workshopSolution.explanation}</p>
+                <div className={s.solutionLine}>
+                  <ExplorerMath text={workshopSolution.explanation} />
+                </div>
                 {workshopSolution.examples.map((example, index) => (
-                  <p key={index}>
-                    {example.fractions
-                      .map(
-                        (fraction, fractionIndex) =>
-                          `${fraction.numerator}/${fraction.denominator} = ${example.numerators[fractionIndex]}/${example.denominator}`,
-                      )
-                      .join(" · ")}
-                  </p>
+                  <div key={index} className={s.solutionLine}>
+                    <ExplorerMath
+                      text={example.fractions
+                        .map(
+                          (fraction, fractionIndex) =>
+                            `${fraction.numerator}/${fraction.denominator} = ${example.numerators[fractionIndex]}/${example.denominator}`,
+                        )
+                        .join(" · ")}
+                    />
+                  </div>
                 ))}
               </>
             ) : (
@@ -182,7 +199,7 @@ export default function ExplorerCardDialog({
                     type="button"
                     onClick={() => onInspect(prerequisite)}
                   >
-                    {prerequisite.name}
+                    <ExplorerMath text={prerequisite.name} />
                     <span>
                       {prerequisite.progress?.level
                         ? "수집 완료"

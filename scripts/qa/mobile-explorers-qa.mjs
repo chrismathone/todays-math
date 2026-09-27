@@ -468,6 +468,14 @@ async function tap(locator, mobile) {
   else await locator.click();
 }
 const nav = (page) => page.locator('nav[aria-label="학생 학습 메뉴"]:visible');
+// 눈에 보이는 글자 — KaTeX 의 스크린리더용 MathML 을 뺀다.
+async function visibleText(locator) {
+  return locator.evaluate((el) => {
+    const clone = el.cloneNode(true);
+    clone.querySelectorAll(".katex-mathml").forEach((node) => node.remove());
+    return (clone.textContent ?? "").replace(/\s+/g, " ");
+  });
+}
 async function noHorizontalScroll(page) {
   const doc = await page.evaluate(() => ({ scroll: document.documentElement.scrollWidth, inner: innerWidth }));
   assert.ok(doc.scroll <= doc.inner + 1, "가로 스크롤: " + JSON.stringify(doc));
@@ -515,7 +523,9 @@ async function settled(page, sim) {
   else {
     const activity = engine.explorerView(stored, today()).currentActivity;
     const pane = page.locator("[data-page-turn=true]");
-    await expect(pane).toContainText(activity.cardName, { timeout: 8000 });
+    // 카드 이름은 KaTeX 로 그린다(트랙 K) — `textContent` 는 스크린리더용 MathML 글자를 겹쳐 담아
+    // «곱이 0인 성질» 이 «곱이 000인 성질» 로 읽힌다. 눈에 보이는 글자로 견준다.
+    await expect.poll(() => visibleText(pane), { timeout: 8000 }).toContain(activity.cardName);
     await expect(pane).toContainText(activityNames[activity.kind], { timeout: 8000 });
   }
   await expect(page.locator('progress[aria-label="이번 학습 진행률"]')).toHaveAttribute("value", String(session.index), { timeout: 8000 });
@@ -1119,16 +1129,567 @@ async function bankScenario({ page, sim, mobile, height, step, shot }, kind) {
   });
 }
 
+// ───────────────────────── KaTeX fit (track K, 2026-09-27) ─────────────────────────
+// 카드 글을 KaTeX 로 그리면(`ExplorerMath`) 글보다 넓거나 높아질 수 있다. 단원 하나의 활동 전부
+// (뜻 만나기·정의 조립·예 모으기·경계 살피기, 통분 단원은 조각 활동까지)와 도감 카드 해설에서
+// 보기·조각·빈칸·뜻이 **넘치거나 잘리지 않는가**를 잰다. `QA_SCENARIOS=katex` 로 켠다(기본 실행에는 안 낀다).
+// 표본은 학년별로 가장 긴 보기·조각·발문·뜻, 근의 공식·분수 계산·단위식·대분수가 든 단원이다.
+const KATEX_UNITS = (
+  process.env.QA_KATEX_UNITS ??
+  "g3-shapes,g3-measure,g4-fractions,g4-polygons,g5-divisors,g5-fractions,g5-area,g6-division,g6-proportion,g6-circle,numbers,g7-coordinate,g8-probability,g8-shapes,g9-equation,g9-function,g9-real"
+).split(",");
+const katexFindings = [];
+const katexFitted = [];
+
+// 한 화면의 넘침·잘림. 판정:
+//  ① 숨은 스크롤 칸(보기 글 — `scrollbar-width: none` 이거나 단추 안)이 넘치면 **잉크가 잘리는지 픽셀로** 본다:
+//     칸과 단추의 `overflow` 를 풀었을 때 그 둘레 그림이 달라지면 잘린 것이다.
+//     ⚠️ 상자로 재지 않는다 — KaTeX 는 글자 없는 받침 상자(`.strut`)로 줄 높이를 잡고, 글자 줄 상자(em)도 실제
+//     잉크보다 위아래로 약 0.2em 크다. 그래서 분수 하나(«3/4»)도 «세로 4px 잘림»으로 잡혔는데 화면은 멀쩡했다(거짓 경보).
+//  ② 요소 상자가 가장 가까운 «잘리는 조상»(overflow ≠ visible)의 가로 범위 밖으로 나가면 안 된다.
+//     ⚠️ 조상의 `scrollWidth` 로 재지 않는다 — 책장 넘김 빛 띠(`::after`, 투명·`translateX(35%)`)가
+//     문제 칸의 scrollWidth 를 104px 늘려, 한글만 있는 활동에서도 늘 «넘침»이 났다(거짓 경보).
+//     KaTeX 내부(`.katex` 안)와 화면 읽기용 1px 글은 뺀다.
+//  ③ 수식(`.katex`)은 가장 가까운 잘리는 조상의 가로 범위와 화면 폭 안에 있어야 한다.
+//  ④ 단추(보기·빈칸) 안 글 상자가 단추 밖으로 나가면 안 된다.
+//  ⑤ 문서 가로 스크롤 0.
+//  ⑥ 보기 글의 수식이 가로로 글자 칸 밖(단추 안쪽 여백)을 먹지 않는다 — 잘리지는 않아도 테두리에 닿는다.
+// ⚠️ 이 파일에는 블록 주석을 쓰지 않는다 — 13행 줄 주석의 «/api/ 뒤 별 두 개»에서 격리 시험(`mathSrsRecordIsolation`)의
+//    블록 주석 제거가 시작해, 다음 블록 주석 끝까지(2만여 글자, 기록 모듈을 부르는 줄 포함)를 지웠다(2026-09-27).
+async function katexFit(page, rootSelector) {
+  const problems = await katexBoxes(page, rootSelector);
+  const candidates = page.locator("[data-qa-clip]");
+  for (let index = 0; index < (await candidates.count()); index++) {
+    const candidate = candidates.nth(index);
+    if (await inkClipped(page, candidate)) problems.push(`잘림 «${await visibleText(candidate)}»`);
+  }
+  await page.evaluate(() => document.querySelectorAll("[data-qa-clip]").forEach((node) => node.removeAttribute("data-qa-clip")));
+  return problems;
+}
+// 칸(과 그 단추)의 `overflow` 를 풀기 전후 둘레 그림을 견준다. 칸 밖에 새 잉크가 나타나면 잘린 것이다.
+async function inkClipped(page, locator) {
+  const box = await locator.boundingBox();
+  const viewport = page.viewportSize();
+  if (!box) return false;
+  const x = Math.max(0, Math.floor(box.x - 24));
+  const y = Math.max(0, Math.floor(box.y - 24));
+  const clip = {
+    x,
+    y,
+    width: Math.min(viewport.width, Math.ceil(box.x + box.width + 24)) - x,
+    height: Math.min(viewport.height, Math.ceil(box.y + box.height + 24)) - y,
+  };
+  const before = await page.screenshot({ clip, animations: "disabled" });
+  await locator.evaluate((el) => {
+    for (const node of new Set([el, el.closest("button")].filter(Boolean))) {
+      node.dataset.qaOverflow = node.style.overflow;
+      node.style.setProperty("overflow", "visible", "important");
+    }
+  });
+  const after = await page.screenshot({ clip, animations: "disabled" });
+  await locator.evaluate((el) => {
+    for (const node of new Set([el, el.closest("button")].filter(Boolean))) {
+      node.style.overflow = node.dataset.qaOverflow ?? "";
+      delete node.dataset.qaOverflow;
+    }
+  });
+  // 칸 **밖**에 새로 나타난 잉크만 센다. 칸 안쪽은 겹 합성이 바뀌며 글자 가장자리 몇 픽셀이 달라진다
+  // (g5 «1/4» 실측: 칸 안 3~42 픽셀 차이 · 잘린 것 없음 — 전후 그림을 눈으로 확인).
+  const outside = await page.evaluate(
+    async ({ a, b, inner }) => {
+      const load = (src) =>
+        new Promise((done, fail) => {
+          const image = new Image();
+          image.onload = () => done(image);
+          image.onerror = fail;
+          image.src = src;
+        });
+      const [first, second] = await Promise.all([load(a), load(b)]);
+      const canvas = document.createElement("canvas");
+      canvas.width = first.width;
+      canvas.height = first.height;
+      const context = canvas.getContext("2d", { willReadFrequently: true });
+      context.drawImage(first, 0, 0);
+      const x = context.getImageData(0, 0, canvas.width, canvas.height).data;
+      context.clearRect(0, 0, canvas.width, canvas.height);
+      context.drawImage(second, 0, 0);
+      const y = context.getImageData(0, 0, canvas.width, canvas.height).data;
+      let count = 0;
+      for (let row = 0; row < canvas.height; row++)
+        for (let column = 0; column < canvas.width; column++) {
+          if (column >= inner.left && column < inner.right && row >= inner.top && row < inner.bottom) continue;
+          const i = (row * canvas.width + column) * 4;
+          if (Math.max(Math.abs(x[i] - y[i]), Math.abs(x[i + 1] - y[i + 1]), Math.abs(x[i + 2] - y[i + 2])) > 48) count++;
+        }
+      return count;
+    },
+    {
+      a: `data:image/png;base64,${before.toString("base64")}`,
+      b: `data:image/png;base64,${after.toString("base64")}`,
+      inner: {
+        left: Math.floor(box.x - clip.x) - 1,
+        right: Math.ceil(box.x + box.width - clip.x) + 1,
+        top: Math.floor(box.y - clip.y) - 1,
+        bottom: Math.ceil(box.y + box.height - clip.y) + 1,
+      },
+    },
+  );
+  if (process.env.QA_CLIP_DEBUG && outside > 2) {
+    const name = `clip-${Date.now()}`;
+    await writeFile(resolve(output, `${name}-a-clipped.png`), before);
+    await writeFile(resolve(output, `${name}-b-unclipped.png`), after);
+  }
+  return outside > 2;
+}
+async function katexBoxes(page, rootSelector) {
+  return page.evaluate((selector) => {
+    const scope = selector ? document.querySelector(selector) : document.body;
+    if (!scope) return ["범위 없음: " + selector];
+    const problems = [];
+    const tol = 1;
+    const text = (el) => {
+      const clone = el.cloneNode(true);
+      clone.querySelectorAll?.(".katex-mathml").forEach((node) => node.remove());
+      return (clone.textContent ?? "").replace(/\s+/g, " ").trim().slice(0, 36);
+    };
+    const insideKatex = (el) => !!el.parentElement?.closest(".katex");
+    const clipOf = (el) => {
+      let clip = el.parentElement;
+      while (clip && clip !== document.body && getComputedStyle(clip).overflowX === "visible") clip = clip.parentElement;
+      return clip && clip !== document.body ? clip.getBoundingClientRect() : { left: 0, right: innerWidth };
+    };
+    for (const el of scope.querySelectorAll("*")) {
+      if (insideKatex(el)) continue;
+      const style = getComputedStyle(el);
+      const box = el.getBoundingClientRect();
+      if (box.width <= 1 || box.height <= 1 || style.visibility === "hidden") continue;
+      const hidden = style.scrollbarWidth === "none" || !!el.closest("button");
+      // 넘치는 숨은 칸은 표시만 해 두고, 잘렸는지는 밖에서 픽셀로 본다(`inkClipped`).
+      if (
+        hidden &&
+        (style.overflowX !== "visible" || style.overflowY !== "visible") &&
+        (el.scrollWidth > el.clientWidth + tol || el.scrollHeight > el.clientHeight + tol)
+      )
+        el.setAttribute("data-qa-clip", "");
+      const limit = clipOf(el);
+      if (box.left < limit.left - tol || box.right > limit.right + tol)
+        problems.push(`틀 밖 ${Math.round(Math.max(limit.left - box.left, box.right - limit.right))}px «${text(el)}»`);
+    }
+    for (const math of scope.querySelectorAll(".katex")) {
+      if (math.parentElement?.closest(".katex")) continue;
+      const box = math.getBoundingClientRect();
+      if (box.width === 0) continue;
+      let clip = math.parentElement;
+      while (clip && clip !== document.body && getComputedStyle(clip).overflowX === "visible") clip = clip.parentElement;
+      const limit = clip && clip !== document.body ? clip.getBoundingClientRect() : { left: 0, right: innerWidth };
+      if (box.left < limit.left - tol || box.right > limit.right + tol)
+        problems.push(`수식이 틀 밖 ${Math.round(Math.max(limit.left - box.left, box.right - limit.right))}px «${text(math)}»`);
+      if (box.right > innerWidth + tol) problems.push(`수식이 화면 밖 «${text(math)}»`);
+    }
+    for (const button of scope.querySelectorAll("button")) {
+      const outer = button.getBoundingClientRect();
+      for (const child of button.children) {
+        if (child.getAttribute("aria-hidden") === "true") continue;
+        const inner = child.getBoundingClientRect();
+        if (inner.width === 0) continue;
+        if (inner.left < outer.left - tol || inner.right > outer.right + tol || inner.top < outer.top - tol || inner.bottom > outer.bottom + tol)
+          problems.push(`단추 밖으로 «${text(button)}»`);
+      }
+    }
+    // ⑥ 보기 글(`data-choice-text`)의 수식은 가로로 글자 칸 안에 — 단추 안쪽 여백을 먹어 테두리에 닿지 않는다.
+    for (const label of scope.querySelectorAll("[data-choice-text]")) {
+      const inner = label.getBoundingClientRect();
+      for (const math of label.querySelectorAll(".katex")) {
+        if (math.parentElement?.closest(".katex")) continue;
+        const box = math.getBoundingClientRect();
+        if (box.left < inner.left - tol || box.right > inner.right + tol)
+          problems.push(`보기 여백 침범 ${Math.round(Math.max(inner.left - box.left, box.right - inner.right))}px «${text(label)}»`);
+      }
+    }
+    if (document.documentElement.scrollWidth > innerWidth + tol)
+      problems.push(`문서 가로 스크롤 ${document.documentElement.scrollWidth - innerWidth}px`);
+    return problems;
+  }, rootSelector);
+}
+
+async function katexScenario({ page, sim, mobile, width, height, step, shot }, unitId) {
+  const unit = unitOf(unitId);
+  const seen = { read: 0, assemble: 0, examples: 0, truth: 0, workshop: 0, card: 0, math: 0 };
+  const record = (where, problems) => {
+    for (const problem of problems) katexFindings.push({ engine: page.context().browser().browserType().name(), size: `${width}x${height}`, unit: unitId, where, problem });
+    return problems.length;
+  };
+  const fitShots = new Set();
+  const check = async (where, kind, selector) => {
+    seen.math += await page.locator(`${selector ?? "body"} .katex`).count();
+    // 보기 맞춤(`ExplorerChoiceText`)이 글자를 줄인 보기 — 잘림은 아니지만 몇 개가 줄어드는지 원장님께 알린다.
+    // 그리고 1배로 되돌려도 단추 테두리 안 · 글자 칸 안에 들면 **쓸데없이 줄인 것**이다(근호 SVG 가 scrollWidth 를
+    // 부풀려 «√9» 까지 0.7배로 줄였던 결함, 2026-09-27).
+    const needless = [];
+    for (const fitted of await page.locator(`${selector ?? "body"} [data-choice-text][data-fit]`).all()) {
+      const label = await visibleText(fitted);
+      katexFitted.push({
+        engine: page.context().browser().browserType().name(),
+        size: `${width}x${height}`,
+        unit: unitId,
+        where,
+        scale: await fitted.getAttribute("data-fit"),
+        label,
+      });
+      const fitsAtOne = await fitted.evaluate((el) => {
+        const drawn = el.style.fontSize;
+        el.style.fontSize = "";
+        const inner = el.getBoundingClientRect();
+        const fits =
+          el.offsetHeight <= el.parentElement.clientHeight &&
+          [...el.querySelectorAll(".katex")].every((math) => {
+            const box = math.getBoundingClientRect();
+            return box.left >= inner.left - 1 && box.right <= inner.right + 1;
+          });
+        el.style.fontSize = drawn;
+        return fits;
+      });
+      if (fitsAtOne) needless.push(`쓸데없는 맞춤 «${label}»`);
+    }
+    const found = record(where, needless) + record(where, await katexFit(page, selector));
+    if (process.env.QA_KATEX_SHOT_ALL) {
+      await shot(`katex-${unitId}-${kind}-${seen[kind]}${found ? "-problem" : ""}`);
+    } else if (found || !fitShots.has(kind)) {
+      fitShots.add(kind);
+      await shot(`katex-${unitId}-${kind}${found ? "-problem-" + seen[kind] : ""}`);
+    }
+    return found;
+  };
+  await step("katex.start", async () => {
+    await page.goto(base + "/dev/mobile-explorers-qa");
+    await homeReady(page);
+    await tap(page.locator("[data-expedition-start]"), mobile);
+    await page.locator("[data-explorer-dock=true]").waitFor({ timeout: 10000 });
+    await settled(page, sim);
+    return unit.title;
+  });
+  let problems = 0;
+  await step("katex.activities", async () => {
+    for (let guard = 0; guard < 80; guard++) {
+      const stored = explorerStored(sim);
+      const session = stored.profile.definitions?.session;
+      if (!session || session.done) break;
+      const action = correctExplorerAction(sim);
+      if (attachedWorkshop(sim)) {
+        seen.workshop++;
+        problems += await check(`작업실 ${attachedWorkshop(sim).stage}`, "workshop", "main");
+        await perform(page, sim, action, mobile);
+        await settled(page, sim);
+        continue;
+      }
+      const activity = engine.explorerView(stored, today()).currentActivity;
+      const where = `${activity.cardName} · ${activityNames[activity.kind]}`;
+      seen[activity.kind]++;
+      if (activity.kind === "assemble") {
+        // 빈칸에 고른 조각까지 채워서 잰다 — 근의 공식처럼 긴 조각이 빈칸 단추에 들어간다.
+        const choices = page.getByRole("group", { name: "답 고르기" });
+        for (const id of action.choiceIds) await tap(choices.getByRole("button").nth(id), mobile);
+        problems += await check(where, activity.kind, "main");
+        const handled = sim.handled;
+        await tap(page.getByRole("button", { name: "완성한 정의 확인하기" }), mobile);
+        await until(() => sim.handled > handled, "조립 응답");
+      } else {
+        problems += await check(where, activity.kind, "main");
+        await perform(page, sim, action, mobile);
+      }
+      await settled(page, sim);
+    }
+    await homeReady(page);
+    return `뜻 ${seen.read} · 조립 ${seen.assemble} · 예 ${seen.examples} · 경계 ${seen.truth} · 작업실 ${seen.workshop} · 넘침 ${problems}`;
+  });
+  await step("katex.cards", async () => {
+    const view = engine.explorerView(explorerStored(sim), today());
+    const collection = view.units.filter((item) => item.grade === view.profile.courseGrade).flatMap((item) => item.cards);
+    for (const card of collection.filter((item) => item.unitId === unitId)) {
+      let sheet = page.getByRole("dialog", { name: "나의 개념 도감" });
+      if (!(await sheet.count())) {
+        await tap(page.getByRole("button", { name: /도감/ }).first(), mobile);
+        await expect(sheet).toBeVisible();
+      }
+      await tap(sheet.locator("[data-level]").nth(collection.findIndex((item) => item.id === card.id)), mobile);
+      const dialog = page.locator("dialog[open]:has(#explorer-card-title)");
+      await expect(dialog).toBeVisible();
+      await tap(dialog.getByRole("button", { name: "정의와 해설 보기" }), mobile);
+      await expect(dialog.locator("[data-explorer-solution]")).toBeVisible();
+      await expect(dialog.locator("[data-explorer-solution] .katex").first()).toBeVisible({ timeout: 8000 }).catch(() => {});
+      await page.waitForTimeout(150);
+      seen.card++;
+      problems += await check(`${card.name} · 도감 해설`, "card", "dialog[open]:has(#explorer-card-title)");
+      await tap(dialog.getByRole("button", { name: "개념 카드 닫기" }), mobile);
+      await expect(dialog).toHaveCount(0);
+    }
+    return `도감 카드 ${seen.card} · 잰 수식 ${seen.math}`;
+  });
+  await step("katex.fit", async () => {
+    assert.equal(problems, 0, `넘침·잘림 ${problems}건 — katex-findings.json`);
+    return `넘침·잘림 0 (수식 ${seen.math}곳)`;
+  });
+}
+// ───────────────────────── «선택됨» 효과 (05 §8.16, 2026-09-27) ─────────────────────────
+// 1안 코발트 차오름을 **계산된 스타일**로 잰다(RTL 은 CSS 를 계산하지 않는다 — 교훈 2026-09-16).
+// 고르면 `::before` 면이 코발트로 scaleY(1)·흰 글자 · 누를 때만 0.18초 차오름 / 풀 때 0.14초 빠짐 ·
+// 처음 그릴 때 움직임 없음 · 틀림이면 고른 모양 그대로 · 맞음이면 초록 면 · ✓ 칸 없음 ·
+// 움직임 줄이기면 움직임 없이 색만 · PC 에서 마우스 올림이 고른 보기를 덮지 않음.
+const COBALT = "rgb(49, 89, 222)";
+const DONE = "rgb(29, 117, 80)";
+const WHITE = "rgb(255, 255, 255)";
+const INK = "rgb(32, 61, 100)";
+const FILLED = "matrix(1, 0, 0, 1, 0, 0)";
+const EMPTY = "matrix(1, 0, 0, 0, 0, 0)";
+const choiceButtons = (page) => page.getByRole("group", { name: "답 고르기" }).getByRole("button");
+async function pressedLook(locator) {
+  return locator.evaluate((el) => {
+    const self = getComputedStyle(el);
+    const fill = getComputedStyle(el, "::before");
+    return {
+      pressed: el.getAttribute("aria-pressed"),
+      anim: el.getAttribute("data-anim"),
+      state: el.getAttribute("data-answer-state"),
+      color: self.color,
+      border: self.borderTopColor,
+      opacity: self.opacity,
+      paddingRight: self.paddingRight,
+      children: el.children.length,
+      // KaTeX 의 그림 쪽(`.katex-html`)은 원래 aria-hidden 이다 — ✓ 칸만 센다.
+      hiddenParts: [...el.querySelectorAll('[aria-hidden="true"]')].filter((node) => !node.closest(".katex")).length,
+      fill: fill.backgroundColor,
+      transform: fill.transform,
+      fillAnimation: fill.animationName,
+      fillDuration: fill.animationDuration,
+      textAnimation: self.animationName,
+    };
+  });
+}
+async function untilActivity(page, sim, mobile, kind) {
+  for (let guard = 0; guard < 30; guard++) {
+    if (!attachedWorkshop(sim) && engine.explorerView(explorerStored(sim), today()).currentActivity?.kind === kind) return;
+    await perform(page, sim, correctExplorerAction(sim), mobile);
+    await settled(page, sim);
+  }
+  throw new Error(`${kind} 활동에 닿지 못했다`);
+}
+async function selectScenario({ page, sim, mobile, step, shot }) {
+  await step("select.start", async () => {
+    await page.goto(base + "/dev/mobile-explorers-qa");
+    await homeReady(page);
+    await tap(page.locator("[data-expedition-start]"), mobile);
+    await page.locator("[data-explorer-dock=true]").waitFor({ timeout: 10000 });
+    await settled(page, sim);
+    await untilActivity(page, sim, mobile, "examples");
+    return engine.explorerView(explorerStored(sim), today()).currentActivity.cardName;
+  });
+  await step("select.firstPaint", async () => {
+    const buttons = choiceButtons(page);
+    for (let index = 0; index < (await buttons.count()); index++) {
+      const look = await pressedLook(buttons.nth(index));
+      assert.equal(look.anim, null, "처음 그릴 때 움직임 표지");
+      assert.equal(look.fillAnimation, "none", "처음 그릴 때 움직인다");
+      assert.equal(look.transform, EMPTY, "안 고른 보기에 면");
+      assert.equal(look.hiddenParts, 0, "✓ 칸이 남았다");
+      assert.equal(look.paddingRight, "8px", "✓ 여백 20px 이 남았다");
+    }
+    await shot("select-none");
+    return "표지 없음 · 면 없음 · ✓ 칸 없음 · 오른쪽 여백 8px";
+  });
+  await step("select.press", async () => {
+    const button = choiceButtons(page).nth(0);
+    await tap(button, mobile);
+    const moving = await pressedLook(button);
+    assert.equal(moving.anim, "in");
+    assert.match(moving.fillAnimation, /Fill/, "차오름 움직임 이름: " + moving.fillAnimation);
+    assert.equal(moving.fillDuration, "0.18s");
+    await page.waitForTimeout(260);
+    const look = await pressedLook(button);
+    assert.deepEqual(
+      { pressed: look.pressed, fill: look.fill, transform: look.transform, color: look.color, border: look.border },
+      { pressed: "true", fill: COBALT, transform: FILLED, color: WHITE, border: COBALT },
+    );
+    await shot("select-one");
+    return `차오름 ${moving.fillDuration} → 코발트 면 · 흰 글자`;
+  });
+  await step("select.release", async () => {
+    const button = choiceButtons(page).nth(0);
+    await tap(button, mobile);
+    const moving = await pressedLook(button);
+    assert.equal(moving.anim, "out");
+    assert.match(moving.fillAnimation, /Drain/, "빠짐 움직임 이름: " + moving.fillAnimation);
+    assert.equal(moving.fillDuration, "0.14s");
+    await page.waitForTimeout(220);
+    const look = await pressedLook(button);
+    assert.deepEqual({ pressed: look.pressed, transform: look.transform, color: look.color }, { pressed: "false", transform: EMPTY, color: INK });
+    return `빠짐 ${moving.fillDuration} → 면 없음`;
+  });
+  await step("select.wrongKeepsPick", async () => {
+    const answer = correctExplorerAction(sim);
+    const wrong = [0, 1, 2, 3].find((id) => !answer.choiceIds.includes(id));
+    const picks = [answer.choiceIds[0], wrong];
+    for (const id of picks) await tap(choiceButtons(page).nth(id), mobile);
+    const handled = sim.handled;
+    await tap(page.getByRole("button", { name: "선택한 예 확인하기" }), mobile);
+    await until(() => sim.handled > handled, "예 응답");
+    await page.locator("[data-answer-feedback=incorrect]").waitFor({ timeout: 5000 });
+    await page.waitForTimeout(250);
+    for (const id of picks) {
+      const look = await pressedLook(choiceButtons(page).nth(id));
+      assert.equal(look.state, "incorrect");
+      assert.deepEqual({ fill: look.fill, transform: look.transform, color: look.color, border: look.border }, { fill: COBALT, transform: FILLED, color: WHITE, border: COBALT }, "틀림 뒤 고른 모양이 바뀌었다");
+    }
+    assert.equal(await page.locator("[data-answer-state=correct]").count(), 0, "오답 뒤 정답 보기가 드러났다");
+    await shot("select-incorrect");
+    await settled(page, sim);
+    return "틀림 — 고른 두 보기 코발트 그대로 · 정답 비공개";
+  });
+  await step("select.truthCorrect", async () => {
+    await untilActivity(page, sim, mobile, "truth");
+    const id = correctExplorerAction(sim).choiceIds[0];
+    const handled = sim.handled;
+    await tap(choiceButtons(page).nth(id), mobile);
+    assert.equal(await choiceButtons(page).nth(id).getAttribute("data-anim"), "in");
+    await until(() => sim.handled > handled, "경계 응답");
+    await page.locator("[data-answer-feedback=correct]").waitFor({ timeout: 5000 });
+    await page.waitForTimeout(250);
+    const look = await pressedLook(choiceButtons(page).nth(id));
+    assert.deepEqual({ state: look.state, fill: look.fill, color: look.color, border: look.border }, { state: "correct", fill: DONE, color: WHITE, border: DONE });
+    await shot("select-correct");
+    await settled(page, sim);
+    return "맞음 — 초록 면 · 흰 글자";
+  });
+  await step("select.assemble", async () => {
+    await untilActivity(page, sim, mobile, "assemble");
+    const ids = correctExplorerAction(sim).choiceIds;
+    for (const id of ids) await tap(choiceButtons(page).nth(id), mobile);
+    await page.waitForTimeout(260);
+    for (const id of ids) {
+      const look = await pressedLook(choiceButtons(page).nth(id));
+      assert.deepEqual({ opacity: look.opacity, fill: look.fill, transform: look.transform, color: look.color }, { opacity: "1", fill: COBALT, transform: FILLED, color: WHITE }, "고른 조각 모양");
+    }
+    await shot("select-assemble");
+    await tap(page.getByRole("button", { name: /^빈칸 2,/ }), mobile);
+    await page.waitForTimeout(220);
+    const released = await pressedLook(choiceButtons(page).nth(ids[1]));
+    assert.deepEqual({ pressed: released.pressed, anim: released.anim, transform: released.transform }, { pressed: "false", anim: "out", transform: EMPTY });
+    await tap(choiceButtons(page).nth(ids[1]), mobile);
+    const handled = sim.handled;
+    await tap(page.getByRole("button", { name: "완성한 정의 확인하기" }), mobile);
+    await until(() => sim.handled > handled, "조립 응답");
+    await settled(page, sim);
+    return "고른 조각 코발트(흐려지지 않음) · 빈칸에서 빼면 빠짐";
+  });
+  await step("select.reducedMotion", async () => {
+    await page.emulateMedia({ reducedMotion: "reduce" });
+    await untilActivity(page, sim, mobile, "examples");
+    const button = choiceButtons(page).nth(0);
+    await tap(button, mobile);
+    const look = await pressedLook(button);
+    assert.deepEqual(
+      { anim: look.anim, fillAnimation: look.fillAnimation, textAnimation: look.textAnimation, transform: look.transform, fill: look.fill, color: look.color },
+      { anim: "in", fillAnimation: "none", textAnimation: "none", transform: FILLED, fill: COBALT, color: WHITE },
+    );
+    await tap(button, mobile);
+    assert.equal((await pressedLook(button)).transform, EMPTY);
+    await page.emulateMedia({ reducedMotion: "no-preference" });
+    return "움직임 없이 색만 바로";
+  });
+  await step("select.hover", async () => {
+    if (mobile) return "폰: 마우스 올림 없음";
+    const buttons = choiceButtons(page);
+    await buttons.nth(0).click();
+    await page.waitForTimeout(260);
+    await buttons.nth(0).hover();
+    const pressed = await pressedLook(buttons.nth(0));
+    assert.deepEqual({ fill: pressed.fill, border: pressed.border, color: pressed.color }, { fill: COBALT, border: COBALT, color: WHITE }, "마우스 올림이 고른 보기를 덮는다");
+    await buttons.nth(1).hover();
+    const idle = await pressedLook(buttons.nth(1));
+    assert.equal(idle.border, "rgb(155, 177, 223)", "고르지 않은 보기의 마우스 올림 모양");
+    await buttons.nth(0).click();
+    return "고른 보기 그대로 · 안 고른 보기만 올림 모양";
+  });
+}
+async function selectWorkshopScenario({ page, sim, mobile, step, shot }) {
+  await step("selectLab.predict", async () => {
+    await page.goto(base + "/dev/mobile-explorers-qa");
+    await homeReady(page);
+    await tap(page.locator("[data-expedition-start]"), mobile);
+    await page.locator("[data-explorer-dock=true]").waitFor({ timeout: 10000 });
+    // `workshop` 시나리오와 같은 길 — 통분 카드 읽기 직전까지 서버에서 감고 다시 연다.
+    await fastForward(sim, (s) => {
+      const task = currentTask(s);
+      return task?.cardId === "g5-common-denominator" && task.kind === 0 && cards.definitionNeedsRead(explorerStored(s).profile, explorerStored(s).profile.definitions.session);
+    });
+    await page.reload();
+    await homeReady(page);
+    await tap(page.locator("[data-expedition-start]"), mobile);
+    await page.locator("[data-explorer-dock=true]").waitFor();
+    await settled(page, sim);
+    await perform(page, sim, correctExplorerAction(sim), mobile);
+    await settled(page, sim);
+    assert.equal(attachedWorkshop(sim)?.stage, "predict", "작업실 예상하기에 닿지 못했다");
+    const buttons = choiceButtons(page);
+    assert.equal(await buttons.nth(0).getAttribute("data-anim"), null);
+    // 예상하기는 답을 받자마자 다음 단계로 넘어간다 — 응답을 잠시 붙잡고 고른 모양을 잰다.
+    let release;
+    sim.gate = { path: "/api/learn/math-explorers", method: "POST", promise: new Promise((done) => { release = done; }) };
+    const handled = sim.handled;
+    await tap(buttons.nth(0), mobile);
+    const moving = await pressedLook(buttons.nth(0));
+    assert.equal(moving.anim, "in");
+    assert.equal(moving.fillDuration, "0.18s");
+    await page.waitForTimeout(260);
+    const look = await pressedLook(buttons.nth(0));
+    assert.deepEqual({ transform: look.transform, fill: look.fill, color: look.color }, { transform: FILLED, fill: COBALT, color: WHITE }, "작업실 고른 보기");
+    await shot("select-lab-predict");
+    sim.gate = null;
+    release();
+    await until(() => sim.handled > handled, "예상 응답");
+    await settled(page, sim);
+    return "작업실 하나 고르기 — 코발트 면 · 흰 글자";
+  });
+  await step("selectLab.paint", async () => {
+    for (let guard = 0; guard < 30 && attachedWorkshop(sim)?.stage !== "check"; guard++) {
+      await perform(page, sim, correctExplorerAction(sim), mobile);
+      await settled(page, sim);
+    }
+    assert.equal(attachedWorkshop(sim)?.stage, "check", "작업실 칠하기에 닿지 못했다");
+    const cell = page.getByRole("button", { name: "1번째 분수 1번째 조각", exact: true });
+    await tap(cell, mobile);
+    assert.equal(await cell.getAttribute("aria-pressed"), "true");
+    assert.equal((await cell.textContent()).trim(), "", "칠한 칸에 ✓ 글자");
+    await shot("select-lab-paint");
+    return "칠한 칸 ✓ 없음";
+  });
+}
+fixtures.select = () => ({ ...serverState.emptySrsState(), explorers: explorerRecord(7, "g7-equation") });
+scenarios.select = selectScenario;
+fixtures["select-lab"] = () => ({ ...serverState.emptySrsState(), explorers: explorerRecord(5, "g5-fractions") });
+scenarios["select-lab"] = selectWorkshopScenario;
+
+for (const unitId of KATEX_UNITS) {
+  assert.ok(unitOf(unitId), "없는 단원: " + unitId);
+  fixtures[`katex:${unitId}`] = () => ({ ...serverState.emptySrsState(), explorers: explorerRecord(unitOf(unitId).grade, unitId) });
+  scenarios[`katex:${unitId}`] = (context) => katexScenario(context, unitId);
+}
+
 // ───────────────────────── runner ─────────────────────────
 const results = [];
-const scenarioNames = Object.keys(scenarios).filter((name) => !scenarioFilter || scenarioFilter.includes(name));
+// `katex:*` 는 `QA_SCENARIOS` 에 `katex`(전부) 또는 제 이름을 적을 때만 돈다 — 기본 실행 시간을 늘리지 않는다.
+const scenarioNames = Object.keys(scenarios).filter((name) =>
+  scenarioFilter
+    ? scenarioFilter.includes(name) || (name.startsWith("katex:") && scenarioFilter.includes("katex"))
+    : !name.startsWith("katex:"),
+);
 for (const engineName of engines) {
   const browser = await { chromium, webkit }[engineName].launch({ headless: true });
   try {
     for (const [width, height] of sizes) {
       const mobile = width < 600;
       for (const scenario of scenarioNames) {
-        const tag = `${engineName}-${width}x${height}-${scenario}`;
+        // `katex:단원` 의 `:` 는 Windows 파일 이름에서 대체 데이터 스트림이 되어 캡처가 숨는다.
+        const tag = `${engineName}-${width}x${height}-${scenario.replace(/:/g, "-")}`;
         const page = await browser.newPage({ viewport: { width, height }, isMobile: mobile, hasTouch: mobile, deviceScaleFactor: 1 });
         const errors = [];
         page.on("pageerror", (error) => errors.push(error.message));
@@ -1189,6 +1750,10 @@ for (const engineName of engines) {
   }
 }
 await writeFile(resolve(output, "report.json"), JSON.stringify(results, null, 2));
+if (katexFindings.length || scenarioNames.some((name) => name.startsWith("katex:"))) {
+  await writeFile(resolve(output, "katex-findings.json"), JSON.stringify(katexFindings, null, 2));
+  await writeFile(resolve(output, "katex-fitted.json"), JSON.stringify(katexFitted, null, 2));
+}
 const failed = results.filter((r) => r.status === "실패");
 console.log(`${results.length} 항목 · 실패 ${failed.length} · 못 봄 ${results.filter((r) => r.status === "못 봄").length}`);
 process.exitCode = failed.length ? 1 : 0;
