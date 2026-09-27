@@ -1,0 +1,253 @@
+# 교재 용어 ↔ 탐험 개념 카드 짝 — 트랙 midb(개념원리 중학 2-2 · 3-1 · 3-2). 사람 판단.
+# 카드는 src/lib/math-explorers/definition-cards.ts 의 definitionCards(빌더가 제품 모듈을 불러 꺼낸다 — 없는 카드 id 면 멈춘다).
+# match: exact(같은 용어) · alias(같은 개념 다른 이름) · related(더 넓게/좁게 · 다른 말로) · none.
+# why 가 «어긋남(범위)» · «어긋남(낱말)» 으로 시작하면 요약의 «뜻이 어긋나는 것»에 올린다.
+# 한 용어에 카드가 여럿이면 줄을 여럿 쓴다. 같은 권에 같은 용어가 두 번 나오면 한 줄이 둘 다에 붙는다.
+# grade	term	match	cardId	why
+2-2	증명	none
+2-2	삼각형의 합동 조건	related	g5-congruence	합동의 뜻(초5 카드) — 교재는 삼각형이 합동이 되는 조건(SSS·SAS·ASA)
+2-2	맞꼭지각의 성질	related	g7-vertical-angle	중1 카드가 맞꼭지각의 뜻과 «크기가 같다»를 함께 적음
+2-2	평행선의 성질	none
+2-2	이등변삼각형	exact	g4-isosceles	초4 카드 «길이가 같은 변이 적어도 두 개» — 교재도 정삼각형을 이등변삼각형에 넣으므로 같은 뜻
+2-2	꼭지각	none
+2-2	밑변	none
+2-2	밑각	none
+2-2	이등변삼각형의 성질	none
+2-2	이등변삼각형이 되는 조건	none
+2-2	직각삼각형의 합동 조건	none
+2-2	RHA 합동	none
+2-2	RHS 합동	none
+2-2	빗변	exact	g9-hypotenuse	카드는 중3 삼각비 단원 — 교재는 2-2 직각삼각형의 합동에서 먼저 정의
+2-2	각의 이등분선의 성질	none
+2-2	점과 직선 사이의 거리	none
+2-2	외접	related	g8-circumcenter	외심 카드가 «외접원의 중심»으로 씀
+2-2	외접원	related	g8-circumcenter	외심 카드가 «외접원의 중심»으로 씀
+2-2	외심	exact	g8-circumcenter
+2-2	삼각형의 외심의 성질	related	g8-circumcenter	카드 뜻에 «세 꼭짓점까지의 거리가 같다»(성질 ②)가 들어 있음
+2-2	선분의 수직이등분선의 성질	none
+2-2	삼각형의 외심의 위치	none
+2-2	접한다	none
+2-2	접선	exact	g9-tangent-line	카드는 중3 원의 성질 단원 — 교재는 2-2 내심 앞에서 먼저 정의
+2-2	접점	none
+2-2	원의 접선과 반지름	alias	g9-radius-tangent	카드 이름 «반지름과 접선» — 2-2 는 이름 없이 한 문장, 3-2 에서 굵은 표제
+2-2	내접	related	g8-incenter	내심 카드가 «내접원의 중심»으로 씀
+2-2	내접원	related	g8-incenter	내심 카드가 «내접원의 중심»으로 씀
+2-2	내심	exact	g8-incenter
+2-2	삼각형의 내심의 성질	related	g8-incenter	카드 뜻에 «세 변까지의 거리가 같다»(성질 ②)가 들어 있음
+2-2	삼각형의 넓이와 내접원의 반지름의 길이	none
+2-2	삼각형의 내접원과 접선의 길이	none
+2-2	□ABCD	none
+2-2	대변	none
+2-2	대각	none
+2-2	평행사변형	exact	g4-parallelogram	초4 카드 — 같은 뜻
+2-2	평행사변형의 성질	related	g8-parallelogram-diagonal	카드는 교재의 세 성질 가운데 대각선에 관한 것 하나만
+2-2	평행사변형이 되는 조건	none
+2-2	직사각형	none
+2-2	직사각형의 성질	none
+2-2	평행사변형이 직사각형이 되는 조건	none
+2-2	마름모	exact	g4-rhombus	초4 카드 — 같은 뜻
+2-2	마름모의 성질	none
+2-2	평행사변형이 마름모가 되는 조건	none
+2-2	정사각형	none
+2-2	정사각형의 성질	alias	g8-square-properties	카드 이름 «정사각형의 대각선»
+2-2	직사각형이 정사각형이 되는 조건	none
+2-2	마름모가 정사각형이 되는 조건	none
+2-2	사다리꼴	none
+2-2	등변사다리꼴	none
+2-2	등변사다리꼴의 성질	none
+2-2	여러 가지 사각형 사이의 관계	none
+2-2	여러 가지 사각형의 대각선의 성질	none
+2-2	평행선과 삼각형의 넓이	none
+2-2	높이가 같은 두 삼각형의 넓이의 비	none
+2-2	닮음	exact	g8-similarity
+2-2	닮은 도형	related	g8-similarity	카드 «닮음»이 «합동이 되는 관계»를 말함 — «닮은 도형»은 그 관계에 있는 두 도형
+2-2	∽	none
+2-2	대응점	none
+2-2	대응변	none
+2-2	대응각	none
+2-2	평면도형에서 닮음의 성질	none
+2-2	닮음비	exact	g8-similarity-ratio
+2-2	입체도형에서 닮음의 성질	none
+2-2	닮은 두 평면도형의 둘레의 길이의 비와 넓이의 비	alias	g8-similarity-area	카드 이름 «닮은 도형의 넓이비» — 교재 낱말은 «넓이의 비»
+2-2	닮은 두 입체도형의 겉넓이의 비와 부피의 비	related	g8-similarity-area	카드가 부피비 a³:b³ 도 함께 적음(겉넓이의 비는 없음)
+2-2	삼각형의 닮음 조건	none
+2-2	SSS 닮음	none
+2-2	SAS 닮음	none
+2-2	AA 닮음	none
+2-2	직각삼각형의 닮음	none
+2-2	직각삼각형의 닮음의 응용	none
+2-2	축척	none
+2-2	축도	none
+2-2	삼각형에서 평행선 사이의 선분의 길이의 비	none
+2-2	삼각형의 내각의 이등분선의 성질	none
+2-2	삼각형의 외각의 이등분선의 성질	none
+2-2	평행선 사이의 선분의 길이의 비	none
+2-2	삼각형의 두 변의 중점을 연결한 선분의 성질	related	g8-midpoint	카드는 «중점»의 뜻(중1 낱말) — 2-2 는 중점을 뜻매김하지 않고 이 성질에서 씀
+2-2	사다리꼴의 두 변의 중점을 연결한 선분의 성질	none
+2-2	중선	related	g8-centroid	무게중심 카드가 «세 중선의 교점»으로 씀
+2-2	삼각형의 중선의 성질	none
+2-2	무게중심	exact	g8-centroid
+2-2	삼각형의 무게중심의 성질	related	g8-centroid	카드 뜻에 «2:1로 나눈다»(성질 ②)가 들어 있음
+2-2	삼각형의 무게중심과 넓이	none
+2-2	피타고라스 정리	exact	g8-pythagoras	어긋남(낱말): 카드는 «직각변»이라는 낱말을 쓰는데 교재에는 이 낱말이 없다 — 교재는 직각을 이루는 두 변을 풀어서 말한다
+2-2	유클리드의 방법	none
+2-2	피타고라스의 방법	none
+2-2	바스카라의 방법	none
+2-2	직각삼각형이 되기 위한 조건	related	g8-pythagoras	피타고라스 정리의 역
+2-2	피타고라스 수	none
+2-2	삼각형의 변의 길이와 각의 크기 사이의 관계	none
+2-2	피타고라스 정리를 이용한 직각삼각형의 성질	none
+2-2	두 대각선이 직교하는 사각형의 성질	none
+2-2	피타고라스 정리를 이용한 직사각형의 성질	none
+2-2	직각삼각형의 세 반원 사이의 관계	none
+2-2	히포크라테스의 원의 넓이	none
+2-2	사건	none
+2-2	경우의 수	exact	g8-cases	어긋남(범위): 카드는 «일어날 수 있는 모든 가능한 결과의 개수»라 전체 경우의 수로 읽힌다 — 교재의 뜻은 어떤 한 사건에 대해 그 사건이 일어나는 가짓수다(사건마다 경우의 수가 따로 있다)
+2-2	사건 A 또는 사건 B가 일어나는 경우의 수	alias	g8-addition-rule	카드 이름 «경우의 수의 합» — 교재는 이름을 붙이지 않고 두 사건이 동시에 일어나지 않을 때 더하는 규칙으로만 적는다
+2-2	두 사건 A, B가 동시에 일어나는 경우의 수	alias	g8-multiplication-rule	카드 이름 «경우의 수의 곱»
+2-2	한 줄로 세우는 경우의 수	none
+2-2	대표를 뽑는 경우의 수	none
+2-2	확률	exact	g8-probability	어긋남(범위): 교재는 먼저 실험을 되풀이할 때 상대도수가 다가가는 값으로 확률의 뜻을 세우고(p215 ⑴), 가능성이 같은 경우의 a/n 은 확률을 구하는 방법(⑵)으로 둔다 — 카드는 a/n 쪽만 뜻으로 적는다(틀린 말은 아님)
+2-2	사건 A가 일어날 확률	alias	g8-probability	카드 뜻이 이 공식(각 경우가 일어날 가능성이 같을 때 a/n)과 같다
+2-2	확률의 성질	none
+2-2	어떤 사건이 일어나지 않을 확률	alias	g8-complement	어긋남(낱말): 카드 이름 «여사건의 확률» — «여사건»은 중학 교재 낱말이 아니다(고등). 교재 «어떤 사건이 일어나지 않을 확률»
+2-2	적어도 하나는 ~일 확률	related	g8-complement	일어나지 않을 확률을 쓰는 경우
+2-2	도형에서의 확률	none
+2-2	사건 A 또는 사건 B가 일어날 확률	related	g8-addition-rule	카드는 경우의 수의 합 — 교재는 같은 꼴의 확률의 덧셈
+2-2	두 사건 A, B가 동시에 일어날 확률	related	g8-multiplication-rule	카드는 경우의 수의 곱 — 교재는 같은 꼴의 확률의 곱셈
+2-2	연속하여 뽑는 경우의 확률	none
+3-1	제곱근	exact	g9-square-root
+3-1	제곱근의 개수	related	g9-square-root	카드 뜻에 «양수의 제곱근은 부호가 반대인 두 개»가 들어 있음
+3-1	근호	exact	g9-root-symbol	카드는 기호의 이름보다 √a 의 뜻(음이 아닌 제곱근)을 적음
+3-1	제곱근 a	related	g9-root-symbol	√a 를 읽는 이름
+3-1	양의 제곱근	related	g9-root-symbol	√a 는 양의 제곱근
+3-1	음의 제곱근	none
+3-1	±	none
+3-1	제곱근의 성질	none
+3-1	√a²의 성질	alias	g9-root-square	카드 이름 «제곱의 제곱근»
+3-1	제곱근의 대소 관계	none
+3-1	무리수	exact	g9-irrational
+3-1	유리수	exact	rational	중1 카드 — 3-1 은 복습
+3-1	소수의 분류	none
+3-1	실수	exact	g9-real-number
+3-1	실수의 분류	none
+3-1	실수와 수직선	none
+3-1	양의 실수	none
+3-1	음의 실수	none
+3-1	실수의 대소 관계	none
+3-1	제곱근표	none
+3-1	제곱근의 곱셈	none
+3-1	제곱근의 나눗셈	none
+3-1	근호가 있는 식의 변형	none
+3-1	분모의 유리화	none
+3-1	제곱근의 덧셈과 뺄셈	none
+3-1	분배법칙	exact	g8-distribution	중2(2-1) 카드 — 3-1 은 복습
+3-1	합의 제곱	alias	g9-square-formula	카드 이름 «합의 제곱 공식»
+3-1	차의 제곱	related	g9-square-formula	카드는 합의 제곱만
+3-1	합과 차의 곱	exact	g9-difference-squares
+3-1	(x+a)(x+b)의 전개	none
+3-1	(ax+b)(cx+d)의 전개	none
+3-1	곱셈 공식	related	g9-square-formula	곱셈 공식 가운데 하나
+3-1	곱셈 공식	related	g9-difference-squares	곱셈 공식 가운데 하나
+3-1	곱셈 공식의 변형	none
+3-1	인수	none
+3-1	인수분해	exact	g9-factorization
+3-1	공통인 인수로 묶어 내기	alias	g9-common-factor	카드 이름 «공통인수 묶기» — 교재 낱말은 «공통인 인수»
+3-1	a²+2ab+b², a²−2ab+b²의 인수분해	none
+3-1	완전제곱식	none
+3-1	완전제곱식이 되기 위한 조건	none
+3-1	a²−b²의 인수분해	related	g9-difference-squares	합과 차의 곱을 거꾸로(인수분해)
+3-1	x²+(a+b)x+ab의 인수분해	none
+3-1	acx²+(ad+bc)x+bd의 인수분해	none
+3-1	내림차순	none
+3-1	다항식의 곱셈	exact	g9-polynomial-multiply
+3-1	이차방정식	exact	g9-quadratic-equation
+3-1	이차방정식의 해	exact	g9-equation-root
+3-1	이차방정식을 푼다	none
+3-1	AB=0의 성질	alias	g9-zero-product	카드 이름 «곱이 0인 성질»
+3-1	인수분해를 이용한 이차방정식의 풀이	related	g9-zero-product	AB=0의 성질을 쓰는 풀이
+3-1	중근	exact	g9-double-root
+3-1	이차방정식이 중근을 가질 조건	related	g9-double-root
+3-1	제곱근을 이용한 이차방정식의 풀이	none
+3-1	완전제곱식을 이용한 이차방정식의 풀이	none
+3-1	근의 공식	exact	g9-root-formula
+3-1	x의 계수가 짝수인 이차방정식의 근의 공식	related	g9-root-formula
+3-1	이차방정식의 근의 개수	none
+3-1	두 근이 주어진 이차방정식	none
+3-1	이차함수	exact	g9-quadratic-function
+3-1	이차함수 y=x²의 그래프	related	g9-parabola
+3-1	이차함수 y=−x²의 그래프	none
+3-1	y축에 대하여 대칭	none
+3-1	포물선	exact	g9-parabola	어긋남(낱말): 카드 «a>0이면 위로 열린다» — 교재는 a>0 이면 «아래로 볼록», a<0 이면 «위로 볼록». «위로 열린다»와 «위로 볼록»은 반대 모양이라 헷갈린다
+3-1	축	alias	g9-axis	어긋남(낱말): 카드 «꼭짓점을 지나는 수직선» — 교재에서 «수직선»은 수를 나타내는 직선(3-1 p26 «실수와 수직선»). 세로 직선 뜻으로 쓰면 헷갈린다 · 카드 이름 «이차함수의 축»(교재 «포물선의 축»)
+3-1	꼭짓점	exact	g9-vertex	카드는 «방향이 바뀌는 점»으로 적음 — 교재는 포물선이 축과 만나는 점으로 뜻을 정한다
+3-1	이차함수 y=ax²의 그래프의 성질	related	g9-parabola
+3-1	아래로 볼록	related	g9-parabola	카드는 같은 모양을 «위로 열린다»로 적는다(포물선 줄의 어긋남 참고)
+3-1	위로 볼록	none		
+3-1	이차함수 y=ax²+q의 그래프	related	g9-translation
+3-1	축의 방정식	related	g9-axis
+3-1	이차함수 y=a(x−p)²의 그래프	related	g9-translation
+3-1	이차함수 y=a(x−p)²+q의 그래프	alias	g9-translation	카드 뜻(x축 방향 p, y축 방향 q 평행이동 → y=a(x−p)²+q)과 같은 내용
+3-1	이차함수의 표준형	none
+3-1	이차함수 y=ax²+bx+c의 그래프	none
+3-1	이차함수의 일반형	none
+3-1	최댓값	none
+3-1	최솟값	none
+3-1	이차함수의 최댓값과 최솟값	none
+3-2	사인	exact	g9-sine
+3-2	코사인	exact	g9-cosine
+3-2	탄젠트	exact	g9-tangent
+3-2	삼각비	related	g9-sine	사인·코사인·탄젠트를 통틀은 이름 — «삼각비» 카드는 따로 없음(단원 이름)
+3-2	sin · cos · tan	related	g9-sine
+3-2	직각삼각형의 크기와 삼각비의 값	alias	g9-trig-similarity	카드 이름 «삼각비와 닮음»
+3-2	30°, 45°, 60°의 삼각비의 값	none
+3-2	sin²A	none
+3-2	임의의 예각의 삼각비의 값	none
+3-2	0°, 90°의 삼각비의 값	none
+3-2	각의 크기에 따른 삼각비의 값의 변화	none
+3-2	삼각비의 표	none
+3-2	직각삼각형의 변의 길이 구하기	none
+3-2	일반 삼각형의 변의 길이 구하기	none
+3-2	삼각형의 높이 구하기	none
+3-2	삼각형의 넓이	related	g5-triangle-area	같은 이름(초5 카드: 밑변×높이÷2) — 3-2 는 두 변과 끼인각으로 ½ac sin B
+3-2	평행사변형의 넓이	related	g5-parallelogram-area	같은 이름(초5 카드: 밑변×높이) — 3-2 는 ab sin B
+3-2	사각형의 넓이	none
+3-2	평행사변형의 성질	related	g8-parallelogram-diagonal	참고 상자(2-2 복습) — 카드는 대각선에 관한 성질 하나만
+3-2	현의 수직이등분선의 성질	related	g9-chord	카드는 «현»의 뜻(중1 낱말) — 3-2 는 현을 뜻매김하지 않고 성질에서 씀
+3-2	직각삼각형의 합동 조건	none
+3-2	현의 길이의 성질	related	g9-chord	카드는 «현»의 뜻(중1 낱말)
+3-2	원의 접선과 반지름	exact	g9-radius-tangent	카드 이름 «반지름과 접선»
+3-2	접선의 길이	none
+3-2	원의 접선의 성질	none
+3-2	삼각형의 내접원의 성질	none
+3-2	원에 외접하는 사각형의 성질	none
+3-2	원주각	exact	g9-inscribed-angle
+3-2	원주각에 대한 호	none
+3-2	원주각과 중심각의 크기	related	g9-inscribed-angle	카드 뜻에 «같은 호의 중심각의 절반»이 들어 있음
+3-2	원주각의 성질	alias	g9-same-arc	카드 이름 «같은 호의 원주각» — 반원(지름)에 대한 원주각 90° 도 같이
+3-2	원주각의 크기와 호의 길이	none
+3-2	네 점이 한 원 위에 있을 조건	none
+3-2	원에 내접하는 사각형의 성질	none
+3-2	사각형이 원에 내접하기 위한 조건	none
+3-2	접선과 현이 이루는 각	none
+3-2	두 원에서 접선과 현이 이루는 각	none
+3-2	산포도	none
+3-2	편차	exact	g9-deviation
+3-2	분산	exact	g9-variance
+3-2	표준편차	exact	g9-standard-deviation
+3-2	분산과 표준편차를 이용한 자료의 분석	none
+3-2	변화된 변량에 대한 평균, 분산, 표준편차의 변화	none
+3-2	사분위수	none
+3-2	제1사분위수	none
+3-2	제2사분위수	none
+3-2	제3사분위수	none
+3-2	중앙값	exact	g7-median	중1 카드 — 3-2 는 복습
+3-2	사분위수 범위	none
+3-2	상자그림	none
+3-2	상자그림의 특징	none
+3-2	산점도	exact	g9-scatterplot
+3-2	상관관계	exact	g9-correlation	어긋남(범위): 카드는 양·음의 상관관계만 적는다 — 교재는 두 변량이 함께 변하는 경향이 있는지로 뜻을 세우고, 대략적인 경향의 양·음과 «상관관계가 없다»까지 나눈다
+3-2	양의 상관관계	related	g9-correlation
+3-2	음의 상관관계	related	g9-correlation
+3-2	상관관계가 없다	none
+3-2	상관관계의 강약	none
