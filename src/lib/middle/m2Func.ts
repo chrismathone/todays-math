@@ -742,7 +742,7 @@ export const M2_FUNC: TypeEntry[] = [
         return {
           content: `길이가 각각 $${startA} cm$, $${startB} cm$인 두 양초 A, B에 동시에 불을 붙였다. A는 $1$분에 $${rateA} cm$, B는 $1$분에 $${rateB} cm$씩 일정하게 짧아질 때, 두 양초의 길이가 같아지는 것은 몇 분 후인지 구하시오.`,
           answer: `$${meet}$분 후`,
-          solution: `$x$분 후 두 양초의 길이는 각각 $${startA}-${rateA}x$, $${startB}-${rateB}x$이다. $${startA}-${rateA}x=${startB}-${rateB}x$에서 $${rateB - rateA}x=${startB - startA}$이므로 $x=${meet}$이다.`,
+          solution: `$x$분 후 두 양초의 길이는 각각 $${startA}-${rateA}x$, $${startB}-${rateB}x$이다. $${startA}-${rateA}x=${startB}-${rateB}x$에서 $${mono(rateB - rateA)}=${startB - startA}$이므로 $x=${meet}$이다.`,
           facts: { rateA, rateB, meet, startA, startB, length },
         };
       }),

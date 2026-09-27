@@ -956,7 +956,7 @@ export const M1_BOOK2: TypeEntry[] = [
       return {
         content: `대각선의 개수가 변의 개수의 $${times}$배인 다각형의 변의 개수를 구하시오.`,
         answer: `$${n}$`,
-        solution: `구하는 다각형을 $n$각형이라 하면 대각선의 개수는 $\\dfrac{n(n-3)}{2}$이다.\n$\\dfrac{n(n-3)}{2}=${times}n$에서 $n-3=${2 * times}$이므로 $n=${n}$이다.`,
+        solution: `구하는 다각형을 $n$각형이라 하면 대각선의 개수는 $\\dfrac{n(n-3)}{2}$이다.\n$\\dfrac{n(n-3)}{2}=${times === 1 ? "" : times}n$에서 $n-3=${2 * times}$이므로 $n=${n}$이다.`,
         facts: { times, n, ans: n },
       };
     },

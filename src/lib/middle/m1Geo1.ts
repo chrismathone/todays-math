@@ -45,6 +45,7 @@
 import { intBetween, pick } from "../elementary/rng";
 import type { Rng } from "../elementary/types";
 
+import { poly } from "./m1Shared";
 import { attempt, def } from "./m1Stat";
 import type { Body } from "./m1Stat";
 import type { TypeEntry } from "./types";
@@ -860,7 +861,7 @@ const M1_GEO1_BASE: TypeEntry[] = [
       return {
         content: `그림에서 $\\angle a=(${a}x+${p})^\\circ$, $\\angle c=(${b2}x+${q})^\\circ$는 맞꼭지각이다. $x$의 값을 구하시오.`,
         answer: `$${x}$`,
-        solution: `맞꼭지각의 크기는 서로 같으므로 $${a}x+${p}=${b2}x+${q}$이다.\n$${a - b2}x=${q - p}$에서 $x=${x}$이다.`,
+        solution: `맞꼭지각의 크기는 서로 같으므로 $${a}x+${p}=${b2}x+${q}$이다.\n$${poly(0, a - b2, 0)}=${q - p}$에서 $x=${x}$이다.`,
         facts: { a, p, b2, q, x, ans: x },
         figureSpec: figVertical(val),
       };
@@ -882,9 +883,9 @@ const M1_GEO1_BASE: TypeEntry[] = [
       if (cConst < 0 || cConst > 60) return null;
       if (aVal < 12 || bVal < 8 || aVal + bVal > 165) return null;
       return {
-        content: `그림에서 세 직선이 한 점 $O$에서 만난다. $\\angle a=(${a1}x+${b1})^\\circ$, $\\angle b=${c1}^\\circ$이고 $\\angle a$와 $\\angle b$는 서로 이웃하며, 그 합은 $\\angle a$, $\\angle b$의 맞꼭지각인 $\\angle c=(${cCoef}x+${cConst})^\\circ$와 같다. $x$의 값을 구하시오.`,
+        content: `그림에서 세 직선이 한 점 $O$에서 만난다. $\\angle a=(${poly(0, a1, b1)})^\\circ$, $\\angle b=${c1}^\\circ$이고 $\\angle a$와 $\\angle b$는 서로 이웃하며, 그 합은 $\\angle a$, $\\angle b$의 맞꼭지각인 $\\angle c=(${cCoef}x+${cConst})^\\circ$와 같다. $x$의 값을 구하시오.`,
         answer: `$${x}$`,
-        solution: `맞꼭지각의 성질에 의해 $\\angle a+\\angle b=\\angle c$이므로 $(${a1}x+${b1})+${c1}=${cCoef}x+${cConst}$이다.\n$${a1 - cCoef}x=${cConst - b1 - c1}$에서 $x=${x}$이다.`,
+        solution: `맞꼭지각의 성질에 의해 $\\angle a+\\angle b=\\angle c$이므로 $(${poly(0, a1, b1)})+${c1}=${cCoef}x+${cConst}$이다.\n$${poly(0, a1 - cCoef, 0)}=${cConst - b1 - c1}$에서 $x=${x}$이다.`,
         facts: { a1, b1, c1, cCoef, cConst, x, ans: x },
         figureSpec: figThreeLines(aVal, bVal),
       };
@@ -1373,7 +1374,7 @@ const M1_GEO1_POS: TypeEntry[] = [
       return {
         content: `두 직선 $l$, $m$이 다른 한 직선 $t$와 만나고 $l\\parallel m$이다. $l$과 $t$의 교점에서 생기는 $\\angle a=(${a}x+${p})^\\circ$이고, $\\angle a$의 ${relWord}인 $\\angle b=(${b2}x+${q})^\\circ$일 때, $x$의 값을 구하시오.`,
         answer: `$${x}$`,
-        solution: `$l\\parallel m$이므로 ${relWord}의 크기는 서로 같다. 따라서 $${a}x+${p}=${b2}x+${q}$이다.\n$${a - b2}x=${q - p}$에서 $x=${x}$이다.`,
+        solution: `$l\\parallel m$이므로 ${relWord}의 크기는 서로 같다. 따라서 $${a}x+${p}=${b2}x+${q}$이다.\n$${poly(0, a - b2, 0)}=${q - p}$에서 $x=${x}$이다.`,
         facts: { relKind, a, p, b2, q, x, ans: x },
         figureSpec: figParallel(val),
       };

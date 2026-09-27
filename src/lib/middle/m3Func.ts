@@ -2111,7 +2111,7 @@ const TYPES_G2: TypeEntry[] = [
       return {
         content: `이차함수 $y=${termTex(rInt(A), "x^2", true)}-ax+a$의 최솟값을 $m$이라 할 때, $m$의 값이 최대가 되도록 하는 상수 $a$의 값을 구하시오.`,
         answer: `$${ans}$`,
-        solution: `$y=${A}\\left(x-\\dfrac{a}{${2 * A}}\\right)^2-\\dfrac{a^2}{${4 * A}}+a$이므로 최솟값은 $m=-\\dfrac{a^2}{${4 * A}}+a$이다.\n$m=-\\dfrac{1}{${4 * A}}(a-${2 * A})^2+${A}$이므로 $a=${ans}$일 때 $m$이 최대가 된다.`,
+        solution: `$y=${A === 1 ? "" : A}\\left(x-\\dfrac{a}{${2 * A}}\\right)^2-\\dfrac{a^2}{${4 * A}}+a$이므로 최솟값은 $m=-\\dfrac{a^2}{${4 * A}}+a$이다.\n$m=-\\dfrac{1}{${4 * A}}(a-${2 * A})^2+${A}$이므로 $a=${ans}$일 때 $m$이 최대가 된다.`,
         facts: { mode, A, ans },
         figureSpec: null,
       };

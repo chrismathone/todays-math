@@ -16,6 +16,7 @@
 import { intBetween, pick } from "../elementary/rng";
 import type { Rng } from "../elementary/types";
 
+import { poly } from "./m1Shared";
 import { eulReul, waGwa } from "./m2Josa";
 import type { MidProblem, TypeEntry } from "./types";
 
@@ -973,9 +974,10 @@ export const M2_INEQ_APPLY: TypeEntry[] = [
         const n = Math.floor(t / d) + 1;
         if (n > 20) return null;
         return {
-          content: `일차부등식 $${a}(x-${p})>${b}(x+${q})$ 를 만족시키는 $x$ 중에서 가장 작은 정수를 구하시오.`,
+          // 계수 $1$ 은 안 적는다 — $b=1$ 이면 「$1(x+3)$」·「$1x+3$」이 아니라 「$x+3$」.
+          content: `일차부등식 $${a}(x-${p})>${b === 1 ? `x+${q}` : `${b}(x+${q})`}$ 를 만족시키는 $x$ 중에서 가장 작은 정수를 구하시오.`,
           answer: `$${n}$`,
-          solution: `괄호를 풀면 $${a}x-${a * p}>${b}x+${b * q}$이므로 $${d}x>${t}$이다.\n$x>\\dfrac{${t}}{${d}}$이므로 가장 작은 정수는 $${n}$이다.`,
+          solution: `괄호를 풀면 $${poly(0, a, -a * p)}>${poly(0, b, b * q)}$이므로 $${d}x>${t}$이다.\n$x>\\dfrac{${t}}{${d}}$이므로 가장 작은 정수는 $${n}$이다.`,
           facts: { a, b, p, q, n },
         };
       }),
@@ -998,7 +1000,8 @@ export const M2_INEQ_APPLY: TypeEntry[] = [
         const b2 = intBetween(rng, -5, 5);
         const c2 = a2 * lo + b2; // a2·x + b2 >= c2 ⟺  x >= lo
         return {
-          content: `두 일차부등식 $${a1}x${b1 >= 0 ? `+${b1}` : b1}<${c1}$, $${a2}x${b2 >= 0 ? `+${b2}` : b2}\\ge${c2}$ 를 동시에 만족시키는 정수 $x$의 개수를 구하시오.`,
+          // 계수 $1$·상수 $0$ 은 안 적는다(`poly`) — 「$1x+0<5$」가 아니라 「$x<5$」.
+          content: `두 일차부등식 $${poly(0, a1, b1)}<${c1}$, $${poly(0, a2, b2)}\\ge${c2}$ 를 동시에 만족시키는 정수 $x$의 개수를 구하시오.`,
           answer: `$${hi - lo}$개`,
           solution: `앞 부등식에서 $x<${hi}$이고, 뒤 부등식에서 $x\\ge${lo}$이다.\n따라서 $${lo}\\le x<${hi}$이므로 정수 $x$는 $${lo}$부터 $${hi - 1}$까지 $${hi - lo}$개이다.`,
           facts: { a1, b1, c1, a2, b2, c2, lo, hi, ans: hi - lo },
@@ -1092,7 +1095,7 @@ export const M2_INEQ_APPLY: TypeEntry[] = [
         return {
           content: `$${N}$문제가 나오는 시험에서 한 문제를 맞히면 $${a}$점을 얻고 틀리면 $${b}$점을 잃는다. $${M}$점 이상을 얻으려면 최소 몇 문제를 맞혀야 하는지 구하시오.`,
           answer: `$${n}$문제`,
-          solution: `맞힌 문제를 $x$개라 하면 틀린 문제는 $(${N}-x)$개이므로 점수는 $\\{${a}x-${b}(${N}-x)\\}$점이다.\n$${a}x-${b}(${N}-x)\\ge${M}$에서 $${a + b}x\\ge${M + b * N}$이므로 $x\\ge\\dfrac{${M + b * N}}{${a + b}}$이다.\n이를 만족시키는 자연수 $x$의 최솟값은 $${n}$이다.`,
+          solution: `맞힌 문제를 $x$개라 하면 틀린 문제는 $(${N}-x)$개이므로 점수는 $\\{${a}x-${b === 1 ? "" : b}(${N}-x)\\}$점이다.\n$${a}x-${b === 1 ? "" : b}(${N}-x)\\ge${M}$에서 $${a + b}x\\ge${M + b * N}$이므로 $x\\ge\\dfrac{${M + b * N}}{${a + b}}$이다.\n이를 만족시키는 자연수 $x$의 최솟값은 $${n}$이다.`,
           facts: { N, a, b, M, n },
         };
       }),
