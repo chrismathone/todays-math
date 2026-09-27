@@ -1,0 +1,2408 @@
+{
+  "about": "큐브수학 개념 진도북 초5-1·5-2·6-1·6-2 개념 용어 판정 (트랙 elem56, 2026-09-28). extract-terms-elem56.py build 가 읽는다. 🔴 교재 원문(문장 · 버림 규칙의 교재 조각)은 저장소 밖 testautocreator-data/I-개념용어/elem56/terms-elem56-text.json 에 있고 용어마다 key 로 잇는다 — 시중 교재 원문은 저장소에 넣지 않는다. 여기 note·설명은 우리 말. 갈래 기준: 정의=뜻을 정한 낱말(여백·말풍선 포함) · 성질=이름 붙은 성질/관계 · 공식=(○○)=… 꼴 · 기호=새 기호·단위와 읽는 법 · 기타=핵심 문장 상자의 계산 방법 등(note 에 까닭).",
+  "terms": [
+    {
+      "grade": "5-1",
+      "pdfPage": 8,
+      "term": "덧셈과 뺄셈이 섞여 있는 경우",
+      "kind": "기타",
+      "note": "계산 순서 — 핵심 문장 상자",
+      "explorer": {
+        "match": "related",
+        "cardId": "g5-operation-order",
+        "why": "카드 한 장(혼합 계산의 순서)이 교재 소단원 다섯의 계산 순서를 한꺼번에 담는다"
+      },
+      "key": "5-1/p008/덧셈과 뺄셈이 섞여 있는 경우"
+    },
+    {
+      "grade": "5-1",
+      "pdfPage": 8,
+      "term": "덧셈과 뺄셈이 섞여 있고 ( )가 있는 경우",
+      "kind": "기타",
+      "note": "계산 순서 — 핵심 문장 상자",
+      "explorer": {
+        "match": "related",
+        "cardId": "g5-operation-order",
+        "why": "괄호 규칙 — 카드 정의 뒷부분"
+      },
+      "key": "5-1/p008/덧셈과 뺄셈이 섞여 있고 ( )가 있는 경우"
+    },
+    {
+      "grade": "5-1",
+      "pdfPage": 10,
+      "term": "곱셈과 나눗셈이 섞여 있는 경우",
+      "kind": "기타",
+      "note": "계산 순서 — 핵심 문장 상자",
+      "explorer": {
+        "match": "related",
+        "cardId": "g5-operation-order",
+        "why": "카드에는 «같은 급 연산은 앞에서부터» 규칙이 없다"
+      },
+      "key": "5-1/p010/곱셈과 나눗셈이 섞여 있는 경우"
+    },
+    {
+      "grade": "5-1",
+      "pdfPage": 10,
+      "term": "곱셈과 나눗셈이 섞여 있고 ( )가 있는 경우",
+      "kind": "기타",
+      "note": "계산 순서 — 핵심 문장 상자",
+      "explorer": {
+        "match": "related",
+        "cardId": "g5-operation-order",
+        "why": "괄호 규칙 — 카드 정의 뒷부분"
+      },
+      "key": "5-1/p010/곱셈과 나눗셈이 섞여 있고 ( )가 있는 경우"
+    },
+    {
+      "grade": "5-1",
+      "pdfPage": 14,
+      "term": "덧셈, 뺄셈, 곱셈이 섞여 있는 식",
+      "kind": "기타",
+      "note": "계산 순서 — 핵심 문장 상자(괄호 규칙을 같은 상자에)",
+      "explorer": {
+        "match": "related",
+        "cardId": "g5-operation-order",
+        "why": "카드 정의 앞부분(곱셈 먼저)"
+      },
+      "key": "5-1/p014/덧셈, 뺄셈, 곱셈이 섞여 있는 식"
+    },
+    {
+      "grade": "5-1",
+      "pdfPage": 14,
+      "term": "덧셈, 뺄셈, 나눗셈이 섞여 있는 식",
+      "kind": "기타",
+      "note": "계산 순서 — 핵심 문장 상자(괄호 규칙을 같은 상자에)",
+      "section": "덧셈, 뺄셈, 나눗셈이 섞여 있는 식",
+      "explorer": {
+        "match": "related",
+        "cardId": "g5-operation-order",
+        "why": "카드 정의 앞부분(나눗셈 먼저)"
+      },
+      "key": "5-1/p014/덧셈, 뺄셈, 나눗셈이 섞여 있는 식"
+    },
+    {
+      "grade": "5-1",
+      "pdfPage": 16,
+      "term": "덧셈, 뺄셈, 곱셈, 나눗셈이 섞여 있는 경우",
+      "kind": "기타",
+      "note": "계산 순서 — 핵심 문장 상자. 여백에 계산 순서를 그림으로 정리",
+      "explorer": {
+        "match": "related",
+        "cardId": "g5-operation-order",
+        "why": "카드 정의와 가장 가깝다(곱셈·나눗셈 먼저 + 괄호). 교재는 같은 급이면 앞에서부터를 따로 적는다"
+      },
+      "key": "5-1/p016/덧셈, 뺄셈, 곱셈, 나눗셈이 섞여 있는 경우"
+    },
+    {
+      "grade": "5-1",
+      "pdfPage": 16,
+      "term": "덧셈, 뺄셈, 곱셈, 나눗셈이 섞여 있고 ( )가 있는 경우",
+      "kind": "기타",
+      "note": "계산 순서 — 핵심 문장 상자",
+      "explorer": {
+        "match": "related",
+        "cardId": "g5-operation-order",
+        "why": "괄호 규칙 — 카드 정의 뒷부분"
+      },
+      "key": "5-1/p016/덧셈, 뺄셈, 곱셈, 나눗셈이 섞여 있고 ( )가 있는 경우"
+    },
+    {
+      "grade": "5-1",
+      "pdfPage": 30,
+      "term": "약수",
+      "kind": "정의",
+      "note": "핵심 문장 상자. «한눈에 용어 쏙» 한자 뜻풀이 그림(손글씨 — 글자층 해독 안 함)",
+      "key": "5-1/p030/약수"
+    },
+    {
+      "grade": "5-1",
+      "pdfPage": 30,
+      "term": "배수",
+      "kind": "정의",
+      "note": "핵심 문장 상자. «한눈에 용어 쏙» 한자 뜻풀이 그림(손글씨 — 글자층 해독 안 함)",
+      "key": "5-1/p030/배수"
+    },
+    {
+      "grade": "5-1",
+      "pdfPage": 32,
+      "term": "약수와 배수의 관계",
+      "kind": "성질",
+      "note": "여백에 기호(●·▲)로 나눗셈과 약수·배수를 잇는 풀이",
+      "key": "5-1/p032/약수와 배수의 관계"
+    },
+    {
+      "grade": "5-1",
+      "pdfPage": 36,
+      "term": "공약수",
+      "kind": "정의",
+      "key": "5-1/p036/공약수"
+    },
+    {
+      "grade": "5-1",
+      "pdfPage": 36,
+      "term": "최대공약수",
+      "kind": "정의",
+      "key": "5-1/p036/최대공약수"
+    },
+    {
+      "grade": "5-1",
+      "pdfPage": 36,
+      "term": "공약수와 최대공약수의 관계",
+      "kind": "성질",
+      "explorer": {
+        "match": "none",
+        "why": "초5 카드에 공약수·관계 카드 없음(최대공약수 정의 카드만)"
+      },
+      "key": "5-1/p036/공약수와 최대공약수의 관계"
+    },
+    {
+      "grade": "5-1",
+      "pdfPage": 38,
+      "term": "공배수",
+      "kind": "정의",
+      "key": "5-1/p038/공배수"
+    },
+    {
+      "grade": "5-1",
+      "pdfPage": 38,
+      "term": "최소공배수",
+      "kind": "정의",
+      "key": "5-1/p038/최소공배수"
+    },
+    {
+      "grade": "5-1",
+      "pdfPage": 38,
+      "term": "공배수와 최소공배수의 관계",
+      "kind": "성질",
+      "key": "5-1/p038/공배수와 최소공배수의 관계"
+    },
+    {
+      "grade": "5-1",
+      "pdfPage": 52,
+      "term": "대응 관계",
+      "kind": "정의",
+      "note": "여백 도움말 — 본문은 예로만 보인다",
+      "key": "5-1/p052/대응 관계"
+    },
+    {
+      "grade": "5-1",
+      "pdfPage": 54,
+      "term": "대응 관계를 식으로 나타내기",
+      "kind": "기타",
+      "note": "핵심 문장 상자 — 양을 기호로 두고 식 세우기",
+      "explorer": {
+        "match": "related",
+        "cardId": "g5-rule-expression",
+        "why": "카드 이름 «대응을 식으로 나타내기» — 교재 소단원 이름은 «대응 관계를 식으로 나타내기»"
+      },
+      "key": "5-1/p054/대응 관계를 식으로 나타내기"
+    },
+    {
+      "grade": "5-1",
+      "pdfPage": 68,
+      "term": "크기가 같은 분수",
+      "kind": "성질",
+      "note": "핵심 문장 상자(곱하는 쪽). 교재는 «크기가 같은 분수» 자체를 정의 문장으로 두지 않고 그림으로 보인다",
+      "section": "크기가 같은 분수 만들기",
+      "key": "5-1/p068/크기가 같은 분수"
+    },
+    {
+      "grade": "5-1",
+      "pdfPage": 68,
+      "term": "같은 수로 나누어 크기가 같은 분수 만들기",
+      "kind": "성질",
+      "key": "5-1/p068/같은 수로 나누어 크기가 같은 분수 만들기",
+      "note": "핵심 문장 상자 ⑵",
+      "section": "크기가 같은 분수 만들기",
+      "explorer": {
+        "match": "related",
+        "cardId": "g5-equivalent",
+        "why": "카드 정의가 곱하기·나누기를 한 문장에"
+      }
+    },
+    {
+      "grade": "5-1",
+      "pdfPage": 70,
+      "term": "약분",
+      "kind": "정의",
+      "aliases": [
+        "약분한다"
+      ],
+      "note": "핵심 문장 상자. 교재는 동사형(약분한다)으로 정의",
+      "key": "5-1/p070/약분"
+    },
+    {
+      "grade": "5-1",
+      "pdfPage": 70,
+      "term": "기약분수",
+      "kind": "정의",
+      "note": "핵심 문장 상자. 말풍선으로 뜻을 한 번 더 풀어 준다",
+      "key": "5-1/p070/기약분수"
+    },
+    {
+      "grade": "5-1",
+      "pdfPage": 74,
+      "term": "통분",
+      "kind": "정의",
+      "aliases": [
+        "통분한다"
+      ],
+      "note": "핵심 문장 상자. 교재는 동사형(통분한다)으로 정의",
+      "key": "5-1/p074/통분"
+    },
+    {
+      "grade": "5-1",
+      "pdfPage": 74,
+      "term": "공통분모",
+      "kind": "정의",
+      "note": "핵심 문장 상자",
+      "explorer": {
+        "match": "related",
+        "cardId": "g5-common-denominator",
+        "why": "카드 «통분» 정의 안에 «공통인 분모» 로만 나온다"
+      },
+      "key": "5-1/p074/공통분모"
+    },
+    {
+      "grade": "5-1",
+      "pdfPage": 76,
+      "term": "분수와 소수의 관계",
+      "kind": "성질",
+      "note": "여백 도움말. [분수] = ■/10, ■▲/100, ■▲●/1000",
+      "section": "분수와 소수의 크기 비교",
+      "explorer": {
+        "match": "none",
+        "why": "카드 없음"
+      },
+      "key": "5-1/p076/분수와 소수의 관계"
+    },
+    {
+      "grade": "5-1",
+      "pdfPage": 90,
+      "term": "받아올림이 없는 진분수의 덧셈",
+      "kind": "기타",
+      "note": "계산 방법 — 핵심 문장 상자(분모가 다른 분수의 덧셈)",
+      "explorer": {
+        "match": "none",
+        "why": "분수의 덧셈·뺄셈 카드 없음"
+      },
+      "key": "5-1/p090/받아올림이 없는 진분수의 덧셈"
+    },
+    {
+      "grade": "5-1",
+      "pdfPage": 98,
+      "term": "받아내림이 없는 진분수의 뺄셈",
+      "kind": "기타",
+      "note": "계산 방법 — 핵심 문장 상자(분모가 다른 분수의 뺄셈)",
+      "explorer": {
+        "match": "none",
+        "why": "분수의 덧셈·뺄셈 카드 없음"
+      },
+      "key": "5-1/p098/받아내림이 없는 진분수의 뺄셈"
+    },
+    {
+      "grade": "5-1",
+      "pdfPage": 116,
+      "term": "정다각형의 둘레",
+      "kind": "공식",
+      "note": "핵심 문장 상자",
+      "explorer": {
+        "match": "related",
+        "cardId": "g5-perimeter",
+        "why": "카드는 «둘레» 일반 정의 — 교재는 도형별 둘레 공식만(둘레 낱말은 앞 학년)"
+      },
+      "key": "5-1/p116/정다각형의 둘레"
+    },
+    {
+      "grade": "5-1",
+      "pdfPage": 116,
+      "term": "직사각형의 둘레",
+      "kind": "공식",
+      "note": "핵심 문장 상자",
+      "explorer": {
+        "match": "related",
+        "cardId": "g5-perimeter",
+        "why": "도형별 둘레 공식 — 카드는 둘레 일반"
+      },
+      "key": "5-1/p116/직사각형의 둘레"
+    },
+    {
+      "grade": "5-1",
+      "pdfPage": 116,
+      "term": "평행사변형의 둘레",
+      "kind": "공식",
+      "note": "핵심 문장 상자",
+      "explorer": {
+        "match": "related",
+        "cardId": "g5-perimeter",
+        "why": "도형별 둘레 공식 — 카드는 둘레 일반"
+      },
+      "key": "5-1/p116/평행사변형의 둘레"
+    },
+    {
+      "grade": "5-1",
+      "pdfPage": 116,
+      "term": "마름모의 둘레",
+      "kind": "공식",
+      "note": "핵심 문장 상자",
+      "explorer": {
+        "match": "related",
+        "cardId": "g5-perimeter",
+        "why": "도형별 둘레 공식 — 카드는 둘레 일반"
+      },
+      "key": "5-1/p116/마름모의 둘레"
+    },
+    {
+      "grade": "5-1",
+      "pdfPage": 118,
+      "term": "1 cm²",
+      "kind": "기호",
+      "aliases": [
+        "cm²",
+        "제곱센티미터",
+        "1 제곱센티미터"
+      ],
+      "explorer": {
+        "match": "none",
+        "why": "넓이 단위 카드 없음"
+      },
+      "key": "5-1/p118/1 cm²"
+    },
+    {
+      "grade": "5-1",
+      "pdfPage": 118,
+      "term": "직사각형의 넓이",
+      "kind": "공식",
+      "note": "핵심 문장 상자",
+      "key": "5-1/p118/직사각형의 넓이"
+    },
+    {
+      "grade": "5-1",
+      "pdfPage": 118,
+      "term": "정사각형의 넓이",
+      "kind": "공식",
+      "note": "핵심 문장 상자",
+      "key": "5-1/p118/정사각형의 넓이"
+    },
+    {
+      "grade": "5-1",
+      "pdfPage": 120,
+      "term": "1 m²",
+      "kind": "기호",
+      "aliases": [
+        "m²",
+        "제곱미터",
+        "1 제곱미터"
+      ],
+      "explorer": {
+        "match": "none",
+        "why": "넓이 단위 카드 없음"
+      },
+      "key": "5-1/p120/1 m²"
+    },
+    {
+      "grade": "5-1",
+      "pdfPage": 120,
+      "term": "1 cm²와 1 m²의 관계",
+      "kind": "기타",
+      "note": "결과 상자 — 단위 사이의 관계(같은 이름의 소제목 ②). 표본 대조에서 찾음",
+      "explorer": {
+        "match": "none",
+        "why": "넓이 단위 카드 없음"
+      },
+      "key": "5-1/p120/1 cm²와 1 m²의 관계"
+    },
+    {
+      "grade": "5-1",
+      "pdfPage": 120,
+      "term": "1 km²",
+      "kind": "기호",
+      "aliases": [
+        "km²",
+        "제곱킬로미터",
+        "1 제곱킬로미터"
+      ],
+      "explorer": {
+        "match": "none",
+        "why": "넓이 단위 카드 없음"
+      },
+      "key": "5-1/p120/1 km²"
+    },
+    {
+      "grade": "5-1",
+      "pdfPage": 120,
+      "term": "1 km²와 1 m²의 관계",
+      "kind": "기타",
+      "note": "결과 상자 — 단위 사이의 관계(같은 이름의 소제목 ②). 표본 대조에서 찾음",
+      "explorer": {
+        "match": "none",
+        "why": "넓이 단위 카드 없음"
+      },
+      "key": "5-1/p120/1 km²와 1 m²의 관계"
+    },
+    {
+      "grade": "5-1",
+      "pdfPage": 126,
+      "term": "밑변",
+      "kind": "정의",
+      "note": "평행사변형의 밑변",
+      "explorer": {
+        "match": "none",
+        "why": "밑변·높이 카드 없음(넓이 공식 카드 안에 낱말로만)"
+      },
+      "key": "5-1/p126/밑변"
+    },
+    {
+      "grade": "5-1",
+      "pdfPage": 126,
+      "term": "높이",
+      "kind": "정의",
+      "note": "평행사변형의 높이",
+      "explorer": {
+        "match": "none",
+        "why": "밑변·높이 카드 없음(넓이 공식 카드 안에 낱말로만)"
+      },
+      "key": "5-1/p126/높이"
+    },
+    {
+      "grade": "5-1",
+      "pdfPage": 126,
+      "term": "평행사변형의 넓이",
+      "kind": "공식",
+      "note": "핵심 문장 상자",
+      "key": "5-1/p126/평행사변형의 넓이"
+    },
+    {
+      "grade": "5-1",
+      "pdfPage": 128,
+      "term": "밑변",
+      "kind": "정의",
+      "note": "삼각형의 밑변",
+      "explorer": {
+        "match": "none",
+        "why": "밑변·높이 카드 없음"
+      },
+      "key": "5-1/p128/밑변"
+    },
+    {
+      "grade": "5-1",
+      "pdfPage": 128,
+      "term": "높이",
+      "kind": "정의",
+      "note": "삼각형의 높이",
+      "explorer": {
+        "match": "none",
+        "why": "밑변·높이 카드 없음"
+      },
+      "key": "5-1/p128/높이"
+    },
+    {
+      "grade": "5-1",
+      "pdfPage": 128,
+      "term": "삼각형의 넓이",
+      "kind": "공식",
+      "note": "핵심 문장 상자",
+      "key": "5-1/p128/삼각형의 넓이"
+    },
+    {
+      "grade": "5-1",
+      "pdfPage": 132,
+      "term": "마름모의 넓이",
+      "kind": "공식",
+      "note": "핵심 문장 상자",
+      "explorer": {
+        "match": "none",
+        "why": "초5 카드에 마름모의 넓이 없음(직사각형·평행사변형·삼각형·사다리꼴만)"
+      },
+      "key": "5-1/p132/마름모의 넓이"
+    },
+    {
+      "grade": "5-1",
+      "pdfPage": 132,
+      "term": "마름모의 대각선의 성질",
+      "kind": "성질",
+      "note": "여백 도움말(앞 학년 사각형 성질의 복습일 수 있음)",
+      "explorer": {
+        "match": "none",
+        "why": "카드 없음"
+      },
+      "key": "5-1/p132/마름모의 대각선의 성질"
+    },
+    {
+      "grade": "5-1",
+      "pdfPage": 134,
+      "term": "밑변",
+      "kind": "정의",
+      "note": "사다리꼴의 밑변",
+      "explorer": {
+        "match": "none",
+        "why": "밑변·높이 카드 없음"
+      },
+      "key": "5-1/p134/밑변"
+    },
+    {
+      "grade": "5-1",
+      "pdfPage": 134,
+      "term": "윗변",
+      "kind": "정의",
+      "explorer": {
+        "match": "none",
+        "why": "카드 없음(사다리꼴의 넓이 카드 안에 낱말로만)"
+      },
+      "key": "5-1/p134/윗변"
+    },
+    {
+      "grade": "5-1",
+      "pdfPage": 134,
+      "term": "아랫변",
+      "kind": "정의",
+      "explorer": {
+        "match": "none",
+        "why": "카드 없음(사다리꼴의 넓이 카드 안에 낱말로만)"
+      },
+      "key": "5-1/p134/아랫변"
+    },
+    {
+      "grade": "5-1",
+      "pdfPage": 134,
+      "term": "높이",
+      "kind": "정의",
+      "note": "사다리꼴의 높이",
+      "explorer": {
+        "match": "none",
+        "why": "밑변·높이 카드 없음"
+      },
+      "key": "5-1/p134/높이"
+    },
+    {
+      "grade": "5-1",
+      "pdfPage": 134,
+      "term": "사다리꼴의 넓이",
+      "kind": "공식",
+      "note": "핵심 문장 상자",
+      "key": "5-1/p134/사다리꼴의 넓이"
+    },
+    {
+      "grade": "5-2",
+      "pdfPage": 8,
+      "term": "이상",
+      "kind": "정의",
+      "note": "핵심 문장 상자",
+      "explorer": {
+        "match": "related",
+        "cardId": "g5-at-least",
+        "why": "카드 한 장이 «이상과 이하» 두 낱말을 같이 담는다"
+      },
+      "key": "5-2/p008/이상"
+    },
+    {
+      "grade": "5-2",
+      "pdfPage": 8,
+      "term": "이하",
+      "kind": "정의",
+      "note": "핵심 문장 상자",
+      "explorer": {
+        "match": "related",
+        "cardId": "g5-at-least",
+        "why": "카드 한 장이 «이상과 이하» 두 낱말을 같이 담는다"
+      },
+      "key": "5-2/p008/이하"
+    },
+    {
+      "grade": "5-2",
+      "pdfPage": 10,
+      "term": "초과",
+      "kind": "정의",
+      "note": "핵심 문장 상자",
+      "explorer": {
+        "match": "related",
+        "cardId": "g5-more-than",
+        "why": "카드 한 장이 «초과와 미만» 두 낱말을 같이 담는다"
+      },
+      "key": "5-2/p010/초과"
+    },
+    {
+      "grade": "5-2",
+      "pdfPage": 10,
+      "term": "미만",
+      "kind": "정의",
+      "note": "핵심 문장 상자",
+      "explorer": {
+        "match": "related",
+        "cardId": "g5-more-than",
+        "why": "카드 한 장이 «초과와 미만» 두 낱말을 같이 담는다"
+      },
+      "key": "5-2/p010/미만"
+    },
+    {
+      "grade": "5-2",
+      "pdfPage": 12,
+      "term": "수직선의 점 ●과 ○",
+      "kind": "기호",
+      "note": "수직선 표시 방법을 적은 핵심 문장 상자",
+      "explorer": {
+        "match": "none",
+        "why": "카드 없음(이상·초과 카드 정의에 수직선 표기는 없다)"
+      },
+      "key": "5-2/p012/수직선의 점 ●과 ○"
+    },
+    {
+      "grade": "5-2",
+      "pdfPage": 16,
+      "term": "올림",
+      "kind": "정의",
+      "note": "핵심 문장 상자",
+      "explorer": {
+        "match": "related",
+        "cardId": "g5-round-up",
+        "why": "카드 한 장이 «올림과 버림» 두 낱말을 같이 담는다"
+      },
+      "key": "5-2/p016/올림"
+    },
+    {
+      "grade": "5-2",
+      "pdfPage": 16,
+      "term": "버림",
+      "kind": "정의",
+      "note": "핵심 문장 상자",
+      "explorer": {
+        "match": "related",
+        "cardId": "g5-round-up",
+        "why": "카드 한 장이 «올림과 버림» 두 낱말을 같이 담는다"
+      },
+      "key": "5-2/p016/버림"
+    },
+    {
+      "grade": "5-2",
+      "pdfPage": 18,
+      "term": "반올림",
+      "kind": "정의",
+      "note": "핵심 문장 상자",
+      "key": "5-2/p018/반올림"
+    },
+    {
+      "grade": "5-2",
+      "pdfPage": 34,
+      "term": "(진분수)×(자연수)",
+      "kind": "기타",
+      "note": "계산 방법 — 핵심 문장 상자",
+      "explorer": {
+        "match": "related",
+        "cardId": "g5-fraction-multiply",
+        "why": "카드 «분수의 곱셈» 은 분수×분수 규칙 한 줄 — 교재는 경우마다 나눈다"
+      },
+      "key": "5-2/p034/(진분수)×(자연수)"
+    },
+    {
+      "grade": "5-2",
+      "pdfPage": 34,
+      "term": "(대분수)×(자연수)",
+      "kind": "기타",
+      "note": "계산 방법 — 핵심 문장 상자",
+      "explorer": {
+        "match": "related",
+        "cardId": "g5-fraction-multiply",
+        "why": "카드에는 가분수로 고쳐 놓는 단계가 없다"
+      },
+      "key": "5-2/p034/(대분수)×(자연수)"
+    },
+    {
+      "grade": "5-2",
+      "pdfPage": 36,
+      "term": "(자연수)×(진분수)",
+      "kind": "기타",
+      "note": "계산 방법 — 핵심 문장 상자",
+      "explorer": {
+        "match": "related",
+        "cardId": "g5-fraction-multiply",
+        "why": "분수의 곱셈 한 경우"
+      },
+      "key": "5-2/p036/(자연수)×(진분수)"
+    },
+    {
+      "grade": "5-2",
+      "pdfPage": 36,
+      "term": "(자연수)×(대분수)",
+      "kind": "기타",
+      "note": "계산 방법 — 핵심 문장 상자",
+      "explorer": {
+        "match": "related",
+        "cardId": "g5-fraction-multiply",
+        "why": "분수의 곱셈 한 경우"
+      },
+      "key": "5-2/p036/(자연수)×(대분수)"
+    },
+    {
+      "grade": "5-2",
+      "pdfPage": 40,
+      "term": "(단위분수)×(단위분수)",
+      "kind": "기타",
+      "note": "계산 방법 — 핵심 문장 상자",
+      "explorer": {
+        "match": "related",
+        "cardId": "g5-fraction-multiply",
+        "why": "분수의 곱셈 한 경우"
+      },
+      "key": "5-2/p040/(단위분수)×(단위분수)"
+    },
+    {
+      "grade": "5-2",
+      "pdfPage": 40,
+      "term": "(진분수)×(진분수)",
+      "kind": "기타",
+      "note": "계산 방법 — 핵심 문장 상자",
+      "explorer": {
+        "match": "related",
+        "cardId": "g5-fraction-multiply",
+        "why": "카드 정의와 같은 문장(교재는 진분수끼리로 한정)"
+      },
+      "key": "5-2/p040/(진분수)×(진분수)"
+    },
+    {
+      "grade": "5-2",
+      "pdfPage": 42,
+      "term": "대분수의 곱셈",
+      "kind": "기타",
+      "note": "계산 방법 — 핵심 문장 상자",
+      "explorer": {
+        "match": "related",
+        "cardId": "g5-fraction-multiply",
+        "why": "분수의 곱셈 한 경우"
+      },
+      "key": "5-2/p042/대분수의 곱셈"
+    },
+    {
+      "grade": "5-2",
+      "pdfPage": 42,
+      "term": "세 분수의 곱셈",
+      "kind": "기타",
+      "note": "계산 방법 — 핵심 문장 상자",
+      "explorer": {
+        "match": "related",
+        "cardId": "g5-fraction-multiply",
+        "why": "분수의 곱셈 한 경우"
+      },
+      "key": "5-2/p042/세 분수의 곱셈"
+    },
+    {
+      "grade": "5-2",
+      "pdfPage": 58,
+      "term": "합동",
+      "kind": "정의",
+      "note": "핵심 문장 상자",
+      "key": "5-2/p058/합동"
+    },
+    {
+      "grade": "5-2",
+      "pdfPage": 58,
+      "term": "대응점",
+      "kind": "정의",
+      "note": "핵심 문장 상자 — 합동인 두 도형",
+      "explorer": {
+        "match": "none",
+        "why": "대응점·대응변·대응각 카드 없음"
+      },
+      "key": "5-2/p058/대응점"
+    },
+    {
+      "grade": "5-2",
+      "pdfPage": 58,
+      "term": "대응변",
+      "kind": "정의",
+      "note": "핵심 문장 상자 — 합동인 두 도형",
+      "explorer": {
+        "match": "none",
+        "why": "대응점·대응변·대응각 카드 없음"
+      },
+      "key": "5-2/p058/대응변"
+    },
+    {
+      "grade": "5-2",
+      "pdfPage": 58,
+      "term": "대응각",
+      "kind": "정의",
+      "note": "핵심 문장 상자 — 합동인 두 도형",
+      "explorer": {
+        "match": "none",
+        "why": "대응점·대응변·대응각 카드 없음"
+      },
+      "key": "5-2/p058/대응각"
+    },
+    {
+      "grade": "5-2",
+      "pdfPage": 58,
+      "term": "합동인 도형의 성질",
+      "kind": "성질",
+      "note": "성질 두 가지(대응변의 길이 · 대응각의 크기) — 문장은 첫째만",
+      "explorer": {
+        "match": "related",
+        "cardId": "g5-congruence",
+        "why": "카드 «합동» 정의에 «모양과 크기가 모두 같다» 로만 녹아 있다"
+      },
+      "key": "5-2/p058/합동인 도형의 성질"
+    },
+    {
+      "grade": "5-2",
+      "pdfPage": 60,
+      "term": "선대칭도형",
+      "kind": "정의",
+      "key": "5-2/p060/선대칭도형"
+    },
+    {
+      "grade": "5-2",
+      "pdfPage": 60,
+      "term": "대칭축",
+      "kind": "정의",
+      "explorer": {
+        "match": "related",
+        "cardId": "g5-line-symmetry",
+        "why": "카드 «선대칭도형» 정의에 «한 직선» 으로만(대칭축 낱말 없음)"
+      },
+      "key": "5-2/p060/대칭축"
+    },
+    {
+      "grade": "5-2",
+      "pdfPage": 60,
+      "term": "대응점",
+      "kind": "정의",
+      "note": "선대칭도형에서",
+      "explorer": {
+        "match": "none",
+        "why": "대응점·대응변·대응각 카드 없음"
+      },
+      "key": "5-2/p060/대응점"
+    },
+    {
+      "grade": "5-2",
+      "pdfPage": 60,
+      "term": "대응변",
+      "kind": "정의",
+      "note": "선대칭도형에서",
+      "explorer": {
+        "match": "none",
+        "why": "대응점·대응변·대응각 카드 없음"
+      },
+      "key": "5-2/p060/대응변"
+    },
+    {
+      "grade": "5-2",
+      "pdfPage": 60,
+      "term": "대응각",
+      "kind": "정의",
+      "note": "선대칭도형에서",
+      "explorer": {
+        "match": "none",
+        "why": "대응점·대응변·대응각 카드 없음"
+      },
+      "key": "5-2/p060/대응각"
+    },
+    {
+      "grade": "5-2",
+      "pdfPage": 60,
+      "term": "선대칭도형의 성질",
+      "kind": "성질",
+      "explorer": {
+        "match": "related",
+        "cardId": "g5-line-symmetry",
+        "why": "카드는 도형 정의만 — 성질 세 가지는 없다"
+      },
+      "key": "5-2/p060/선대칭도형의 성질"
+    },
+    {
+      "grade": "5-2",
+      "pdfPage": 62,
+      "term": "점대칭도형",
+      "kind": "정의",
+      "key": "5-2/p062/점대칭도형"
+    },
+    {
+      "grade": "5-2",
+      "pdfPage": 62,
+      "term": "대칭의 중심",
+      "kind": "정의",
+      "explorer": {
+        "match": "related",
+        "cardId": "g5-point-symmetry",
+        "why": "카드 «점대칭도형» 정의에 «한 점» 으로만(대칭의 중심 낱말 없음)"
+      },
+      "key": "5-2/p062/대칭의 중심"
+    },
+    {
+      "grade": "5-2",
+      "pdfPage": 62,
+      "term": "대응점",
+      "kind": "정의",
+      "note": "점대칭도형에서",
+      "explorer": {
+        "match": "none",
+        "why": "대응점·대응변·대응각 카드 없음"
+      },
+      "key": "5-2/p062/대응점"
+    },
+    {
+      "grade": "5-2",
+      "pdfPage": 62,
+      "term": "대응변",
+      "kind": "정의",
+      "note": "점대칭도형에서",
+      "explorer": {
+        "match": "none",
+        "why": "대응점·대응변·대응각 카드 없음"
+      },
+      "key": "5-2/p062/대응변"
+    },
+    {
+      "grade": "5-2",
+      "pdfPage": 62,
+      "term": "대응각",
+      "kind": "정의",
+      "note": "점대칭도형에서",
+      "explorer": {
+        "match": "none",
+        "why": "대응점·대응변·대응각 카드 없음"
+      },
+      "key": "5-2/p062/대응각"
+    },
+    {
+      "grade": "5-2",
+      "pdfPage": 62,
+      "term": "점대칭도형의 성질",
+      "kind": "성질",
+      "explorer": {
+        "match": "related",
+        "cardId": "g5-point-symmetry",
+        "why": "카드는 도형 정의만 — 성질은 없다"
+      },
+      "key": "5-2/p062/점대칭도형의 성질"
+    },
+    {
+      "grade": "5-2",
+      "pdfPage": 88,
+      "term": "소수에 10, 100, 1000을 곱하는 경우",
+      "kind": "기타",
+      "note": "곱의 소수점 위치 ⑴ — 계산 방법 상자",
+      "explorer": {
+        "match": "related",
+        "cardId": "g5-decimal-multiply",
+        "why": "곱의 소수점 위치 — 카드는 ⑶ 소수끼리 곱하는 경우만"
+      },
+      "key": "5-2/p088/소수에 10, 100, 1000을 곱하는 경우"
+    },
+    {
+      "grade": "5-2",
+      "pdfPage": 88,
+      "term": "자연수에 0.1, 0.01, 0.001을 곱하는 경우",
+      "kind": "기타",
+      "note": "곱의 소수점 위치 ⑵ — 계산 방법 상자",
+      "explorer": {
+        "match": "related",
+        "cardId": "g5-decimal-multiply",
+        "why": "곱의 소수점 위치 — 카드는 ⑶ 소수끼리 곱하는 경우만"
+      },
+      "key": "5-2/p088/자연수에 0.1, 0.01, 0.001을 곱하는 경우"
+    },
+    {
+      "grade": "5-2",
+      "pdfPage": 88,
+      "term": "소수끼리 곱하는 경우",
+      "kind": "기타",
+      "note": "곱의 소수점 위치 ⑶ — 계산 방법 상자",
+      "explorer": {
+        "match": "related",
+        "cardId": "g5-decimal-multiply",
+        "why": "카드 «소수의 곱셈» 정의와 같은 규칙"
+      },
+      "key": "5-2/p088/소수끼리 곱하는 경우"
+    },
+    {
+      "grade": "5-2",
+      "pdfPage": 104,
+      "term": "면",
+      "kind": "정의",
+      "note": "직육면체의 구성 요소",
+      "explorer": {
+        "match": "none",
+        "why": "구성 요소 카드 없음"
+      },
+      "key": "5-2/p104/면"
+    },
+    {
+      "grade": "5-2",
+      "pdfPage": 104,
+      "term": "모서리",
+      "kind": "정의",
+      "note": "직육면체의 구성 요소",
+      "explorer": {
+        "match": "none",
+        "why": "구성 요소 카드 없음"
+      },
+      "key": "5-2/p104/모서리"
+    },
+    {
+      "grade": "5-2",
+      "pdfPage": 104,
+      "term": "꼭짓점",
+      "kind": "정의",
+      "note": "직육면체의 구성 요소(입체도형의 꼭짓점)",
+      "explorer": {
+        "match": "none",
+        "why": "구성 요소 카드 없음"
+      },
+      "key": "5-2/p104/꼭짓점"
+    },
+    {
+      "grade": "5-2",
+      "pdfPage": 104,
+      "term": "직육면체",
+      "kind": "정의",
+      "key": "5-2/p104/직육면체"
+    },
+    {
+      "grade": "5-2",
+      "pdfPage": 106,
+      "term": "정육면체",
+      "kind": "정의",
+      "key": "5-2/p106/정육면체"
+    },
+    {
+      "grade": "5-2",
+      "pdfPage": 106,
+      "term": "직육면체와 정육면체의 관계",
+      "kind": "성질",
+      "explorer": {
+        "match": "related",
+        "cardId": "g5-cube",
+        "why": "카드 «정육면체» 는 정의만 — 직육면체와의 포함 관계는 없다"
+      },
+      "key": "5-2/p106/직육면체와 정육면체의 관계"
+    },
+    {
+      "grade": "5-2",
+      "pdfPage": 108,
+      "term": "평행",
+      "kind": "정의",
+      "aliases": [
+        "평행하다"
+      ],
+      "note": "두 면의 평행(직선의 평행은 앞 학년)",
+      "explorer": {
+        "match": "none",
+        "why": "카드 없음"
+      },
+      "key": "5-2/p108/평행"
+    },
+    {
+      "grade": "5-2",
+      "pdfPage": 108,
+      "term": "밑면",
+      "kind": "정의",
+      "note": "직육면체의 밑면(앞 문장: 평행한 두 면)",
+      "explorer": {
+        "match": "none",
+        "why": "밑면·옆면 카드 없음"
+      },
+      "key": "5-2/p108/밑면"
+    },
+    {
+      "grade": "5-2",
+      "pdfPage": 108,
+      "term": "옆면",
+      "kind": "정의",
+      "note": "직육면체의 옆면",
+      "explorer": {
+        "match": "none",
+        "why": "밑면·옆면 카드 없음"
+      },
+      "key": "5-2/p108/옆면"
+    },
+    {
+      "grade": "5-2",
+      "pdfPage": 112,
+      "term": "겨냥도",
+      "kind": "정의",
+      "explorer": {
+        "match": "none",
+        "why": "카드 없음"
+      },
+      "key": "5-2/p112/겨냥도"
+    },
+    {
+      "grade": "5-2",
+      "pdfPage": 112,
+      "term": "전개도",
+      "kind": "정의",
+      "note": "정육면체의 전개도",
+      "explorer": {
+        "match": "none",
+        "why": "초5 카드 없음 — 초6 카드 g6-net «전개도» 가 있다"
+      },
+      "key": "5-2/p112/전개도"
+    },
+    {
+      "grade": "5-2",
+      "pdfPage": 128,
+      "term": "평균",
+      "kind": "정의",
+      "note": "예로 정의한다. 여백에 평균이 자료를 대표하는 값의 하나라는 풀이",
+      "key": "5-2/p128/평균"
+    },
+    {
+      "grade": "5-2",
+      "pdfPage": 128,
+      "term": "평균을 구하는 식",
+      "kind": "공식",
+      "note": "여백 도움말",
+      "explorer": {
+        "match": "related",
+        "cardId": "g5-average",
+        "why": "카드 «평균» 정의(합을 개수로 나눈 값)가 이 식을 말로 적은 것"
+      },
+      "key": "5-2/p128/평균을 구하는 식"
+    },
+    {
+      "grade": "5-2",
+      "pdfPage": 134,
+      "term": "가능성",
+      "kind": "정의",
+      "explorer": {
+        "match": "none",
+        "why": "«가능성» 자체 카드는 없다 — 카드는 두 끝(확실한 일·불가능한 일)만"
+      },
+      "key": "5-2/p134/가능성"
+    },
+    {
+      "grade": "5-2",
+      "pdfPage": 134,
+      "term": "가능성의 정도",
+      "kind": "기타",
+      "aliases": [
+        "반반이다",
+        "~아닐 것 같다",
+        "~일 것 같다"
+      ],
+      "note": "가능성을 말로 나타내는 다섯 낱말",
+      "explorer": {
+        "match": "related",
+        "cardId": "g5-certain",
+        "also": [
+          "g5-impossible"
+        ],
+        "why": "교재 낱말은 «확실하다·불가능하다» — 카드 이름은 «확실한 일·불가능한 일»"
+      },
+      "key": "5-2/p134/가능성의 정도"
+    },
+    {
+      "grade": "5-2",
+      "pdfPage": 134,
+      "term": "확실하다",
+      "kind": "정의",
+      "note": "여백 «가능성을 말로 표현하기» 의 쌍점 뜻풀이",
+      "explorer": {
+        "match": "related",
+        "cardId": "g5-certain",
+        "why": "카드 이름은 «확실한 일», 교재 낱말은 «확실하다» — 가능성 1은 p136 상자"
+      },
+      "key": "5-2/p134/확실하다"
+    },
+    {
+      "grade": "5-2",
+      "pdfPage": 134,
+      "term": "불가능하다",
+      "kind": "정의",
+      "note": "여백 «가능성을 말로 표현하기» 의 쌍점 뜻풀이",
+      "explorer": {
+        "match": "related",
+        "cardId": "g5-impossible",
+        "why": "카드 이름은 «불가능한 일», 교재 낱말은 «불가능하다» — 가능성 0은 p136 상자"
+      },
+      "key": "5-2/p134/불가능하다"
+    },
+    {
+      "grade": "5-2",
+      "pdfPage": 136,
+      "term": "가능성을 수로 표현하기",
+      "kind": "기타",
+      "note": "핵심 문장 상자. [분수] = 1/2 (글자층에서 깨짐)",
+      "explorer": {
+        "match": "related",
+        "cardId": "g5-certain",
+        "also": [
+          "g5-impossible"
+        ],
+        "why": "카드 두 장의 «가능성 1 / 0» 이 이 상자 문장에 있다"
+      },
+      "key": "5-2/p136/가능성을 수로 표현하기"
+    },
+    {
+      "grade": "6-1",
+      "pdfPage": 12,
+      "term": "(대분수)÷(자연수)",
+      "kind": "기타",
+      "note": "계산 방법 — 핵심 문장 상자",
+      "explorer": {
+        "match": "related",
+        "cardId": "g6-fraction-divide",
+        "why": "카드 «분수의 나눗셈» 은 분수÷분수(역수) — 교재 6-1 은 분수÷자연수만"
+      },
+      "key": "6-1/p012/(대분수)÷(자연수)"
+    },
+    {
+      "grade": "6-1",
+      "pdfPage": 26,
+      "term": "각기둥",
+      "kind": "정의",
+      "key": "6-1/p026/각기둥"
+    },
+    {
+      "grade": "6-1",
+      "pdfPage": 26,
+      "term": "밑면",
+      "kind": "정의",
+      "note": "각기둥의 밑면",
+      "explorer": {
+        "match": "none",
+        "why": "밑면·옆면 카드 없음"
+      },
+      "key": "6-1/p026/밑면"
+    },
+    {
+      "grade": "6-1",
+      "pdfPage": 26,
+      "term": "옆면",
+      "kind": "정의",
+      "note": "각기둥의 옆면",
+      "explorer": {
+        "match": "none",
+        "why": "밑면·옆면 카드 없음"
+      },
+      "key": "6-1/p026/옆면"
+    },
+    {
+      "grade": "6-1",
+      "pdfPage": 28,
+      "term": "각기둥의 이름",
+      "kind": "정의",
+      "aliases": [
+        "삼각기둥",
+        "사각기둥",
+        "오각기둥"
+      ],
+      "explorer": {
+        "match": "none",
+        "why": "카드 없음"
+      },
+      "key": "6-1/p028/각기둥의 이름"
+    },
+    {
+      "grade": "6-1",
+      "pdfPage": 28,
+      "term": "모서리",
+      "kind": "정의",
+      "note": "각기둥의 구성 요소",
+      "explorer": {
+        "match": "none",
+        "why": "구성 요소 카드 없음"
+      },
+      "key": "6-1/p028/모서리"
+    },
+    {
+      "grade": "6-1",
+      "pdfPage": 28,
+      "term": "꼭짓점",
+      "kind": "정의",
+      "note": "각기둥의 구성 요소",
+      "explorer": {
+        "match": "none",
+        "why": "구성 요소 카드 없음"
+      },
+      "key": "6-1/p028/꼭짓점"
+    },
+    {
+      "grade": "6-1",
+      "pdfPage": 28,
+      "term": "높이",
+      "kind": "정의",
+      "note": "각기둥의 높이",
+      "explorer": {
+        "match": "related",
+        "cardId": "g6-prism-height",
+        "why": "카드 이름은 «각기둥의 높이», 교재 낱말은 «높이»(각기둥 문맥)"
+      },
+      "key": "6-1/p028/높이"
+    },
+    {
+      "grade": "6-1",
+      "pdfPage": 28,
+      "term": "각기둥의 구성 요소의 수",
+      "kind": "공식",
+      "note": "여백 도움말",
+      "explorer": {
+        "match": "none",
+        "why": "카드 없음"
+      },
+      "key": "6-1/p028/각기둥의 구성 요소의 수"
+    },
+    {
+      "grade": "6-1",
+      "pdfPage": 30,
+      "term": "전개도",
+      "kind": "정의",
+      "note": "각기둥의 전개도",
+      "key": "6-1/p030/전개도"
+    },
+    {
+      "grade": "6-1",
+      "pdfPage": 34,
+      "term": "각뿔",
+      "kind": "정의",
+      "key": "6-1/p034/각뿔"
+    },
+    {
+      "grade": "6-1",
+      "pdfPage": 34,
+      "term": "밑면",
+      "kind": "정의",
+      "note": "각뿔의 밑면",
+      "explorer": {
+        "match": "none",
+        "why": "밑면·옆면 카드 없음"
+      },
+      "key": "6-1/p034/밑면"
+    },
+    {
+      "grade": "6-1",
+      "pdfPage": 34,
+      "term": "옆면",
+      "kind": "정의",
+      "note": "각뿔의 옆면",
+      "explorer": {
+        "match": "none",
+        "why": "밑면·옆면 카드 없음"
+      },
+      "key": "6-1/p034/옆면"
+    },
+    {
+      "grade": "6-1",
+      "pdfPage": 36,
+      "term": "각뿔의 이름",
+      "kind": "정의",
+      "aliases": [
+        "삼각뿔",
+        "사각뿔",
+        "오각뿔"
+      ],
+      "explorer": {
+        "match": "none",
+        "why": "카드 없음"
+      },
+      "key": "6-1/p036/각뿔의 이름"
+    },
+    {
+      "grade": "6-1",
+      "pdfPage": 36,
+      "term": "모서리",
+      "kind": "정의",
+      "note": "각뿔의 구성 요소",
+      "explorer": {
+        "match": "none",
+        "why": "구성 요소 카드 없음"
+      },
+      "key": "6-1/p036/모서리"
+    },
+    {
+      "grade": "6-1",
+      "pdfPage": 36,
+      "term": "꼭짓점",
+      "kind": "정의",
+      "note": "각뿔의 구성 요소",
+      "explorer": {
+        "match": "none",
+        "why": "구성 요소 카드 없음"
+      },
+      "key": "6-1/p036/꼭짓점"
+    },
+    {
+      "grade": "6-1",
+      "pdfPage": 36,
+      "term": "각뿔의 꼭짓점",
+      "kind": "정의",
+      "explorer": {
+        "match": "related",
+        "cardId": "g6-pyramid",
+        "why": "카드 «각뿔» 정의에 «한 꼭짓점에서 만나는» 으로만"
+      },
+      "key": "6-1/p036/각뿔의 꼭짓점"
+    },
+    {
+      "grade": "6-1",
+      "pdfPage": 36,
+      "term": "높이",
+      "kind": "정의",
+      "note": "각뿔의 높이",
+      "explorer": {
+        "match": "none",
+        "why": "각뿔의 높이 카드 없음(각기둥의 높이 카드만)"
+      },
+      "key": "6-1/p036/높이"
+    },
+    {
+      "grade": "6-1",
+      "pdfPage": 36,
+      "term": "각뿔의 구성 요소의 수",
+      "kind": "공식",
+      "note": "여백 도움말",
+      "explorer": {
+        "match": "none",
+        "why": "카드 없음"
+      },
+      "key": "6-1/p036/각뿔의 구성 요소의 수"
+    },
+    {
+      "grade": "6-1",
+      "pdfPage": 78,
+      "term": "두 수 비교하기(뺄셈·나눗셈)",
+      "kind": "기타",
+      "note": "핵심 문장 상자 — 뺄셈 비교와 나눗셈 비교를 견주는 두 문장(비의 도입). 문장은 첫째만",
+      "explorer": {
+        "match": "related",
+        "cardId": "g6-ratio",
+        "why": "비를 나눗셈 비교로 여는 까닭 — 카드 «비» 정의에는 «나눗셈» 이 빠져 있다"
+      },
+      "key": "6-1/p078/두 수 비교하기(뺄셈·나눗셈)"
+    },
+    {
+      "grade": "6-1",
+      "pdfPage": 80,
+      "term": "비",
+      "kind": "정의",
+      "note": "핵심 문장 상자",
+      "key": "6-1/p080/비"
+    },
+    {
+      "grade": "6-1",
+      "pdfPage": 80,
+      "term": "기호 :",
+      "kind": "기호",
+      "aliases": [
+        ":",
+        "대"
+      ],
+      "note": "비의 기호와 읽는 법",
+      "explorer": {
+        "match": "related",
+        "cardId": "g6-ratio",
+        "why": "카드 «비» 정의에 a:b 로만"
+      },
+      "key": "6-1/p080/기호 :"
+    },
+    {
+      "grade": "6-1",
+      "pdfPage": 80,
+      "term": "기준량",
+      "kind": "정의",
+      "explorer": {
+        "match": "related",
+        "cardId": "g6-rate",
+        "why": "카드 «비율» 정의 안에 낱말로만"
+      },
+      "note": "지면은 중괄호 그림이라 글자층에 쉼표가 없다",
+      "key": "6-1/p080/기준량"
+    },
+    {
+      "grade": "6-1",
+      "pdfPage": 80,
+      "term": "비교하는 양",
+      "kind": "정의",
+      "explorer": {
+        "match": "related",
+        "cardId": "g6-rate-amount",
+        "why": "카드는 «비교하는 양 구하기»(기준량×비율) — 교재는 이름만 정한다"
+      },
+      "note": "지면은 중괄호 그림이라 글자층에 쉼표가 없다",
+      "key": "6-1/p080/비교하는 양"
+    },
+    {
+      "grade": "6-1",
+      "pdfPage": 80,
+      "term": "비율",
+      "kind": "정의",
+      "key": "6-1/p080/비율"
+    },
+    {
+      "grade": "6-1",
+      "pdfPage": 80,
+      "term": "비율을 구하는 식",
+      "kind": "공식",
+      "note": "뒤에 분수꼴 =(비교하는 양)/(기준량) 이 이어진다",
+      "explorer": {
+        "match": "related",
+        "cardId": "g6-rate",
+        "why": "카드 «비율» 정의가 이 식을 말로 적은 것"
+      },
+      "key": "6-1/p080/비율을 구하는 식"
+    },
+    {
+      "grade": "6-1",
+      "pdfPage": 86,
+      "term": "백분율",
+      "kind": "정의",
+      "note": "핵심 문장 상자",
+      "key": "6-1/p086/백분율"
+    },
+    {
+      "grade": "6-1",
+      "pdfPage": 86,
+      "term": "%",
+      "kind": "기호",
+      "aliases": [
+        "퍼센트"
+      ],
+      "note": "핵심 문장 상자. 여백에 %가 단위인지 기호인지 짚는 풀이",
+      "explorer": {
+        "match": "related",
+        "cardId": "g6-percent",
+        "why": "카드 «백분율» 정의 끝에 «기호 %로 나타낸다»"
+      },
+      "key": "6-1/p086/%"
+    },
+    {
+      "grade": "6-1",
+      "pdfPage": 104,
+      "term": "띠그래프",
+      "kind": "정의",
+      "note": "핵심 문장 상자",
+      "key": "6-1/p104/띠그래프"
+    },
+    {
+      "grade": "6-1",
+      "pdfPage": 108,
+      "term": "원그래프",
+      "kind": "정의",
+      "note": "핵심 문장 상자",
+      "key": "6-1/p108/원그래프"
+    },
+    {
+      "grade": "6-1",
+      "pdfPage": 108,
+      "term": "비율그래프",
+      "kind": "기타",
+      "note": "두 비율 그래프를 견주는 여백에 이름만 나온다 — 뜻 문장 없음",
+      "explorer": {
+        "match": "none",
+        "why": "카드 없음"
+      },
+      "key": "6-1/p108/비율그래프"
+    },
+    {
+      "grade": "6-1",
+      "pdfPage": 112,
+      "term": "막대그래프와 띠그래프 비교",
+      "kind": "기타",
+      "note": "핵심 문장 상자 — 그래프 고르기",
+      "explorer": {
+        "match": "none",
+        "why": "카드 없음"
+      },
+      "key": "6-1/p112/막대그래프와 띠그래프 비교"
+    },
+    {
+      "grade": "6-1",
+      "pdfPage": 128,
+      "term": "부피",
+      "kind": "정의",
+      "note": "소제목 «직육면체의 부피 비교» 의 «부피» 에 붙은 말풍선 뜻풀이 — 문장꼴 정의 없음",
+      "key": "6-1/p128/부피"
+    },
+    {
+      "grade": "6-1",
+      "pdfPage": 128,
+      "term": "직육면체의 부피 직접 비교",
+      "kind": "기타",
+      "note": "핵심 문장 상자",
+      "explorer": {
+        "match": "none",
+        "why": "카드 없음"
+      },
+      "key": "6-1/p128/직육면체의 부피 직접 비교"
+    },
+    {
+      "grade": "6-1",
+      "pdfPage": 130,
+      "term": "1 cm³",
+      "kind": "기호",
+      "aliases": [
+        "cm³",
+        "세제곱센티미터",
+        "1 세제곱센티미터"
+      ],
+      "explorer": {
+        "match": "related",
+        "cardId": "g6-volume",
+        "why": "카드 «부피» 정의 끝에 «cm³ 같은 단위» 로만"
+      },
+      "key": "6-1/p130/1 cm³"
+    },
+    {
+      "grade": "6-1",
+      "pdfPage": 130,
+      "term": "직육면체의 부피",
+      "kind": "공식",
+      "note": "핵심 문장 상자",
+      "key": "6-1/p130/직육면체의 부피"
+    },
+    {
+      "grade": "6-1",
+      "pdfPage": 130,
+      "term": "정육면체의 부피",
+      "kind": "공식",
+      "note": "핵심 문장 상자",
+      "explorer": {
+        "match": "none",
+        "why": "카드 없음(직육면체의 부피 카드만)"
+      },
+      "key": "6-1/p130/정육면체의 부피"
+    },
+    {
+      "grade": "6-1",
+      "pdfPage": 134,
+      "term": "1 m³",
+      "kind": "기호",
+      "aliases": [
+        "m³",
+        "세제곱미터",
+        "1 세제곱미터"
+      ],
+      "explorer": {
+        "match": "none",
+        "why": "카드 없음"
+      },
+      "key": "6-1/p134/1 m³"
+    },
+    {
+      "grade": "6-1",
+      "pdfPage": 134,
+      "term": "1 m³와 1 cm³의 관계",
+      "kind": "기타",
+      "note": "핵심 문장 상자 — 단위 사이의 관계",
+      "explorer": {
+        "match": "none",
+        "why": "카드 없음"
+      },
+      "key": "6-1/p134/1 m³와 1 cm³의 관계"
+    },
+    {
+      "grade": "6-1",
+      "pdfPage": 136,
+      "term": "정육면체의 겉넓이",
+      "kind": "공식",
+      "note": "«겉넓이» 낱말 자체의 정의 문장은 없다",
+      "explorer": {
+        "match": "related",
+        "cardId": "g6-surface-area",
+        "why": "카드는 «겉넓이» 정의 — 교재는 구하는 방법만"
+      },
+      "key": "6-1/p136/정육면체의 겉넓이"
+    },
+    {
+      "grade": "6-2",
+      "pdfPage": 8,
+      "term": "분모가 같은 (분수)÷(분수)",
+      "kind": "기타",
+      "note": "계산 방법 — 핵심 문장 상자",
+      "explorer": {
+        "match": "related",
+        "cardId": "g6-fraction-divide",
+        "why": "카드는 «역수를 곱한다» 한 규칙 — 교재는 통분 후 분자끼리 나누기부터"
+      },
+      "key": "6-2/p008/분모가 같은 (분수)÷(분수)"
+    },
+    {
+      "grade": "6-2",
+      "pdfPage": 10,
+      "term": "분자끼리 나누어떨어지지 않는 경우",
+      "kind": "기타",
+      "note": "계산 방법 — 핵심 문장 상자",
+      "explorer": {
+        "match": "related",
+        "cardId": "g6-fraction-divide",
+        "why": "분수의 나눗셈 한 경우"
+      },
+      "key": "6-2/p010/분자끼리 나누어떨어지지 않는 경우"
+    },
+    {
+      "grade": "6-2",
+      "pdfPage": 12,
+      "term": "분모가 다른 (분수)÷(분수)",
+      "kind": "기타",
+      "note": "계산 방법 — 핵심 문장 상자",
+      "explorer": {
+        "match": "related",
+        "cardId": "g6-fraction-divide",
+        "why": "분수의 나눗셈 한 경우"
+      },
+      "key": "6-2/p012/분모가 다른 (분수)÷(분수)"
+    },
+    {
+      "grade": "6-2",
+      "pdfPage": 32,
+      "term": "(소수)÷(소수)",
+      "kind": "기타",
+      "note": "계산 방법 — 핵심 문장 상자. 여백 말풍선에 몫이 변하지 않는 까닭",
+      "explorer": {
+        "match": "related",
+        "cardId": "g6-quotient-invariant",
+        "why": "카드 «몫이 같은 나눗셈» 의 규칙을 소수 나눗셈에 쓴 것"
+      },
+      "key": "6-2/p032/(소수)÷(소수)"
+    },
+    {
+      "grade": "6-2",
+      "pdfPage": 36,
+      "term": "자릿수가 다른 (소수)÷(소수)",
+      "kind": "기타",
+      "note": "계산 방법 — 핵심 문장 상자",
+      "explorer": {
+        "match": "related",
+        "cardId": "g6-decimal-divide",
+        "why": "카드는 나누는 쪽만 자연수로 고친다 — 교재는 두 길(어느 쪽을 자연수로 고쳐도 됨)을 둔다"
+      },
+      "key": "6-2/p036/자릿수가 다른 (소수)÷(소수)"
+    },
+    {
+      "grade": "6-2",
+      "pdfPage": 42,
+      "term": "반올림",
+      "kind": "정의",
+      "note": "여백 복습(5-2 반올림) — «몫을 반올림하여 나타내기» 옆",
+      "section": "몫을 반올림하여 나타내기",
+      "key": "6-2/p042/반올림"
+    },
+    {
+      "grade": "6-2",
+      "pdfPage": 62,
+      "term": "위에서 본 모양에 수를 쓴 것으로 앞·옆 모양 그리기",
+      "kind": "기타",
+      "note": "핵심 문장 상자",
+      "explorer": {
+        "match": "related",
+        "cardId": "g6-cube-stack",
+        "why": "쌓기나무 — 카드는 개수 세기(층별 합)"
+      },
+      "key": "6-2/p062/위에서 본 모양에 수를 쓴 것으로 앞·옆 모양 그리기"
+    },
+    {
+      "grade": "6-2",
+      "pdfPage": 64,
+      "term": "층별로 나타낸 모양 그리기",
+      "kind": "기타",
+      "note": "핵심 문장 상자",
+      "explorer": {
+        "match": "related",
+        "cardId": "g6-cube-stack",
+        "why": "카드 «쌓기나무의 개수 — 층별로 나누어 더한다» 와 같은 소단원"
+      },
+      "key": "6-2/p064/층별로 나타낸 모양 그리기"
+    },
+    {
+      "grade": "6-2",
+      "pdfPage": 80,
+      "term": "전항",
+      "kind": "정의",
+      "explorer": {
+        "match": "none",
+        "why": "카드 없음(비의 성질 카드는 «비의 두 항» 으로)"
+      },
+      "key": "6-2/p080/전항"
+    },
+    {
+      "grade": "6-2",
+      "pdfPage": 80,
+      "term": "후항",
+      "kind": "정의",
+      "explorer": {
+        "match": "none",
+        "why": "카드 없음(비의 성질 카드는 «비의 두 항» 으로)"
+      },
+      "key": "6-2/p080/후항"
+    },
+    {
+      "grade": "6-2",
+      "pdfPage": 80,
+      "term": "비의 성질",
+      "kind": "성질",
+      "note": "성질 두 가지(곱하기 · 나누기) — 문장은 첫째만, 둘째는 예시 뒤에 떨어져 있다",
+      "key": "6-2/p080/비의 성질"
+    },
+    {
+      "grade": "6-2",
+      "pdfPage": 82,
+      "term": "비례식",
+      "kind": "정의",
+      "key": "6-2/p082/비례식"
+    },
+    {
+      "grade": "6-2",
+      "pdfPage": 82,
+      "term": "비율",
+      "kind": "정의",
+      "note": "여백 복습(6-1 비율) — 표본 대조에서 찾음",
+      "section": "비례식",
+      "key": "6-2/p082/비율"
+    },
+    {
+      "grade": "6-2",
+      "pdfPage": 82,
+      "term": "비율을 구하는 식",
+      "kind": "공식",
+      "note": "여백 복습(6-1 비율을 구하는 식) — 표본 대조에서 찾음",
+      "section": "비례식",
+      "explorer": {
+        "match": "related",
+        "cardId": "g6-rate",
+        "why": "카드 «비율» 정의가 이 식을 말로 적은 것"
+      },
+      "key": "6-2/p082/비율을 구하는 식"
+    },
+    {
+      "grade": "6-2",
+      "pdfPage": 82,
+      "term": "외항",
+      "kind": "정의",
+      "explorer": {
+        "match": "related",
+        "cardId": "g6-inner-outer",
+        "why": "카드 한 장이 «내항과 외항» 두 낱말을 같이 담는다"
+      },
+      "key": "6-2/p082/외항"
+    },
+    {
+      "grade": "6-2",
+      "pdfPage": 82,
+      "term": "내항",
+      "kind": "정의",
+      "explorer": {
+        "match": "related",
+        "cardId": "g6-inner-outer",
+        "why": "카드 한 장이 «내항과 외항» 두 낱말을 같이 담는다"
+      },
+      "key": "6-2/p082/내항"
+    },
+    {
+      "grade": "6-2",
+      "pdfPage": 86,
+      "term": "비례식의 성질",
+      "kind": "성질",
+      "note": "핵심 문장 상자",
+      "key": "6-2/p086/비례식의 성질"
+    },
+    {
+      "grade": "6-2",
+      "pdfPage": 88,
+      "term": "비례배분",
+      "kind": "정의",
+      "note": "핵심 문장 상자",
+      "key": "6-2/p088/비례배분"
+    },
+    {
+      "grade": "6-2",
+      "pdfPage": 88,
+      "term": "비례배분하는 식",
+      "kind": "공식",
+      "note": "여백 도움말. [분수] = ■/(■+▲), ▲/(■+▲) (분수 조판이 글자층에서 줄로 흩어짐)",
+      "explorer": {
+        "match": "related",
+        "cardId": "g6-part-of-ratio",
+        "why": "카드 «비와 전체의 관계» 의 a/(a+b)·b/(a+b) 와 같은 식"
+      },
+      "key": "6-2/p088/비례배분하는 식"
+    },
+    {
+      "grade": "6-2",
+      "pdfPage": 104,
+      "term": "원주",
+      "kind": "정의",
+      "key": "6-2/p104/원주"
+    },
+    {
+      "grade": "6-2",
+      "pdfPage": 104,
+      "term": "지름",
+      "kind": "정의",
+      "note": "여백 «원의 지름과 반지름» — 앞 학년 복습",
+      "explorer": {
+        "match": "none",
+        "why": "카드 없음"
+      },
+      "key": "6-2/p104/지름"
+    },
+    {
+      "grade": "6-2",
+      "pdfPage": 104,
+      "term": "반지름",
+      "kind": "정의",
+      "note": "여백 «원의 지름과 반지름» — 앞 학년 복습",
+      "explorer": {
+        "match": "none",
+        "why": "카드 없음"
+      },
+      "key": "6-2/p104/반지름"
+    },
+    {
+      "grade": "6-2",
+      "pdfPage": 104,
+      "term": "원주와 지름의 관계",
+      "kind": "성질",
+      "note": "핵심 문장 상자",
+      "explorer": {
+        "match": "related",
+        "cardId": "g6-pi",
+        "why": "원주율로 가는 도입 — 카드는 원주율만"
+      },
+      "key": "6-2/p104/원주와 지름의 관계"
+    },
+    {
+      "grade": "6-2",
+      "pdfPage": 104,
+      "term": "원주율",
+      "kind": "정의",
+      "note": "원 크기와 무관하게 일정하다는 풀이와 어림값 셋이 이어진다",
+      "key": "6-2/p104/원주율"
+    },
+    {
+      "grade": "6-2",
+      "pdfPage": 104,
+      "term": "원주율을 구하는 식",
+      "kind": "공식",
+      "note": "핵심 문장 상자",
+      "explorer": {
+        "match": "related",
+        "cardId": "g6-pi",
+        "why": "카드 «원주율» 정의(원주를 지름으로 나눈 비율)와 같은 식"
+      },
+      "key": "6-2/p104/원주율을 구하는 식"
+    },
+    {
+      "grade": "6-2",
+      "pdfPage": 106,
+      "term": "원주를 구하는 식",
+      "kind": "공식",
+      "note": "핵심 문장 상자",
+      "explorer": {
+        "match": "related",
+        "cardId": "g6-circumference",
+        "why": "카드 «원주» 는 정의만 — 구하는 식은 없다"
+      },
+      "key": "6-2/p106/원주를 구하는 식"
+    },
+    {
+      "grade": "6-2",
+      "pdfPage": 106,
+      "term": "지름을 구하는 식",
+      "kind": "공식",
+      "note": "핵심 문장 상자",
+      "explorer": {
+        "match": "none",
+        "why": "카드 없음"
+      },
+      "key": "6-2/p106/지름을 구하는 식"
+    },
+    {
+      "grade": "6-2",
+      "pdfPage": 112,
+      "term": "원의 넓이",
+      "kind": "공식",
+      "note": "핵심 문장 상자. [분수] = 1/2",
+      "key": "6-2/p112/원의 넓이"
+    },
+    {
+      "grade": "6-2",
+      "pdfPage": 128,
+      "term": "원기둥",
+      "kind": "정의",
+      "note": "문장 앞이 그림(입체 예시) — 뜻은 구성 요소 문장과 모양 말풍선으로 보인다",
+      "key": "6-2/p128/원기둥"
+    },
+    {
+      "grade": "6-2",
+      "pdfPage": 128,
+      "term": "밑면",
+      "kind": "정의",
+      "note": "원기둥의 밑면",
+      "explorer": {
+        "match": "none",
+        "why": "밑면·옆면 카드 없음"
+      },
+      "key": "6-2/p128/밑면"
+    },
+    {
+      "grade": "6-2",
+      "pdfPage": 128,
+      "term": "옆면",
+      "kind": "정의",
+      "note": "원기둥의 옆면(굽은 면)",
+      "explorer": {
+        "match": "none",
+        "why": "밑면·옆면 카드 없음"
+      },
+      "key": "6-2/p128/옆면"
+    },
+    {
+      "grade": "6-2",
+      "pdfPage": 128,
+      "term": "높이",
+      "kind": "정의",
+      "note": "원기둥의 높이",
+      "explorer": {
+        "match": "none",
+        "why": "카드 없음"
+      },
+      "key": "6-2/p128/높이"
+    },
+    {
+      "grade": "6-2",
+      "pdfPage": 130,
+      "term": "전개도",
+      "kind": "정의",
+      "note": "원기둥의 전개도",
+      "key": "6-2/p130/전개도"
+    },
+    {
+      "grade": "6-2",
+      "pdfPage": 134,
+      "term": "원뿔",
+      "kind": "정의",
+      "note": "문장 앞이 그림 — 모양 말풍선",
+      "explorer": {
+        "match": "related",
+        "cardId": "g6-cone-sphere",
+        "why": "카드 한 장이 «원뿔과 구» 를 같이 담는다"
+      },
+      "key": "6-2/p134/원뿔"
+    },
+    {
+      "grade": "6-2",
+      "pdfPage": 134,
+      "term": "밑면",
+      "kind": "정의",
+      "note": "원뿔의 밑면",
+      "explorer": {
+        "match": "none",
+        "why": "밑면·옆면 카드 없음"
+      },
+      "key": "6-2/p134/밑면"
+    },
+    {
+      "grade": "6-2",
+      "pdfPage": 134,
+      "term": "옆면",
+      "kind": "정의",
+      "note": "원뿔의 옆면",
+      "explorer": {
+        "match": "none",
+        "why": "밑면·옆면 카드 없음"
+      },
+      "key": "6-2/p134/옆면"
+    },
+    {
+      "grade": "6-2",
+      "pdfPage": 134,
+      "term": "원뿔의 꼭짓점",
+      "kind": "정의",
+      "explorer": {
+        "match": "related",
+        "cardId": "g6-cone-sphere",
+        "why": "카드 «원뿔과 구» 정의에 «한 꼭짓점» 으로만"
+      },
+      "key": "6-2/p134/원뿔의 꼭짓점"
+    },
+    {
+      "grade": "6-2",
+      "pdfPage": 134,
+      "term": "모선",
+      "kind": "정의",
+      "explorer": {
+        "match": "none",
+        "why": "카드 없음"
+      },
+      "key": "6-2/p134/모선"
+    },
+    {
+      "grade": "6-2",
+      "pdfPage": 134,
+      "term": "높이",
+      "kind": "정의",
+      "note": "원뿔의 높이",
+      "explorer": {
+        "match": "none",
+        "why": "카드 없음"
+      },
+      "key": "6-2/p134/높이"
+    },
+    {
+      "grade": "6-2",
+      "pdfPage": 136,
+      "term": "구",
+      "kind": "정의",
+      "note": "문장 앞이 그림 — 모양 말풍선",
+      "explorer": {
+        "match": "related",
+        "cardId": "g6-cone-sphere",
+        "why": "카드 한 장이 «원뿔과 구» 를 같이 담는다"
+      },
+      "key": "6-2/p136/구"
+    },
+    {
+      "grade": "6-2",
+      "pdfPage": 136,
+      "term": "구의 중심",
+      "kind": "정의",
+      "explorer": {
+        "match": "none",
+        "why": "카드 없음"
+      },
+      "key": "6-2/p136/구의 중심"
+    },
+    {
+      "grade": "6-2",
+      "pdfPage": 136,
+      "term": "구의 반지름",
+      "kind": "정의",
+      "explorer": {
+        "match": "none",
+        "why": "카드 없음"
+      },
+      "key": "6-2/p136/구의 반지름"
+    }
+  ],
+  "zeroSections": {
+    "5-1": {
+      "2-4": "구하는 방법 두 가지만(곱셈식 · 공약수로 나누기), 여백에 단계 정리 — 새 낱말 없음(눈으로 확인 p36)",
+      "2-6": "구하는 방법 두 가지만 — 새 낱말 없음(눈으로 확인 p38)",
+      "3-3": "생활 예 두 가지를 식으로 — 새 낱말 없음(눈으로 확인 p54)",
+      "4-1": "«크기가 같은 분수» 를 그림과 여백 풀이로만 보인다 — 정의 문장 없음. 용어 «크기가 같은 분수» 는 2절 성질 상자로 셈(눈으로 확인 p68)",
+      "4-5": "비교 방법만(통분해서 분자 비교) — 새 낱말 없음(눈으로 확인 p76)",
+      "5-2": "계산 방법만 — 예와 방법 풀이, 핵심 문장 상자·정의 문장 없음(눈으로 확인) · 여백에 계산 순서 흐름도(p92)",
+      "5-3": "계산 방법만 — 예와 방법 풀이, 핵심 문장 상자·정의 문장 없음(눈으로 확인) · 여백에 두 방법 비교(p94)",
+      "5-5": "계산 방법만 — 예와 방법 풀이, 핵심 문장 상자·정의 문장 없음(눈으로 확인)(p100)",
+      "5-6": "계산 방법만 — 예와 방법 풀이, 핵심 문장 상자·정의 문장 없음(눈으로 확인) · 여백에 받아내림 풀이(p102)"
+    },
+    "5-2": {
+      "1-7": "활용 예 세 가지(올림·버림·반올림) — 새 낱말 없음(눈으로 확인 p20)",
+      "4-1": "계산 방법만 — 예와 방법 풀이, 핵심 문장 상자·정의 문장 없음(눈으로 확인)(p80)",
+      "4-2": "계산 방법만 — 예와 방법 풀이, 핵심 문장 상자·정의 문장 없음(눈으로 확인)(p80)",
+      "4-3": "계산 방법만 — 예와 방법 풀이, 핵심 문장 상자·정의 문장 없음(눈으로 확인)(p82) · 여백에 곱하는 순서를 바꿔도 결과가 같다는 풀이(이름 없는 교환 성질 — 애매 목록)",
+      "4-4": "계산 방법만 — 예와 방법 풀이, 핵심 문장 상자·정의 문장 없음(눈으로 확인)(p82) · 여백에 곱의 크기 어림 풀이",
+      "4-5": "계산 방법만 — 예와 방법 풀이, 핵심 문장 상자·정의 문장 없음(눈으로 확인)(p86)",
+      "4-6": "계산 방법만 — 예와 방법 풀이, 핵심 문장 상자·정의 문장 없음(눈으로 확인)(p86)",
+      "5-6": "«전개도» 정의는 5절(정육면체의 전개도, p112) — 여기는 직육면체 전개도의 특징·그리기(눈으로 확인 p114)",
+      "6-3": "평균 이용 예(비교 · 모르는 값 구하기) — 여백 식은 풀이(눈으로 확인 p130)",
+      "6-5": "회전판 비교 예 — 새 낱말 없음(눈으로 확인 p134)"
+    },
+    "6-1": {
+      "1-1": "계산 방법만 — 예와 방법 풀이, 핵심 문장 상자·정의 문장 없음(눈으로 확인)(p8) · 여백에 몫의 크기 어림",
+      "1-2": "계산 방법만 — 예와 방법 풀이, 핵심 문장 상자·정의 문장 없음(눈으로 확인)(p10)",
+      "1-3": "계산 방법만 — 예와 방법 풀이, 핵심 문장 상자·정의 문장 없음(눈으로 확인)(p10) · 여백에 곱셈으로 고쳐 계산하는 풀이",
+      "2-4": "그리기 방법만 — 정의는 3절(각기둥의 전개도, p30)(눈으로 확인)",
+      "3-1": "계산 방법만 — 예와 방법 풀이, 핵심 문장 상자·정의 문장 없음(눈으로 확인)(p50) · 소제목 ⑵ 는 몫의 소수점이 옮겨 가는 관계 — 상자·정의 없음",
+      "3-2": "계산 방법만 — 예와 방법 풀이, 핵심 문장 상자·정의 문장 없음(눈으로 확인)(p52) · 여백에 분수로 고쳐 나누는 방법",
+      "3-3": "계산 방법만 — 예와 방법 풀이, 핵심 문장 상자·정의 문장 없음(눈으로 확인)(p54) · 여백에 몫의 크기 어림",
+      "3-4": "계산 방법만 — 예와 방법 풀이, 핵심 문장 상자·정의 문장 없음(눈으로 확인)(p58)",
+      "3-5": "계산 방법만 — 예와 방법 풀이, 핵심 문장 상자·정의 문장 없음(눈으로 확인)(p60)",
+      "3-6": "계산 방법만 — 예와 방법 풀이, 핵심 문장 상자·정의 문장 없음(눈으로 확인)(p62)",
+      "3-7": "어림셈으로 소수점 위치 찾기 — 새 낱말 없음(눈으로 확인 p62)",
+      "4-4": "비율이 쓰이는 예만 — 그림 이름표 셋(빠르기·인구 밀도·용액의 진하기)과 여백 쌍점 둘(타율·축척)의 뜻풀이(애매 목록)(눈으로 확인 p82)",
+      "4-6": "백분율이 쓰이는 예만 — 할인율·득표율·소금물의 진하기 말풍선 뜻풀이와 식(애매 목록)(눈으로 확인 p88)",
+      "5-1": "그림그래프(앞 학년)로 나타내기 — 정의 문장 없음(눈으로 확인 p102)",
+      "5-3": "그리는 순서만 — 여백의 항목별 백분율 식은 백분율 계산의 되풀이(눈으로 확인 p104)",
+      "5-5": "그리는 순서만(눈으로 확인 p108)",
+      "5-6": "해석 예만(눈으로 확인 p110)"
+    },
+    "6-2": {
+      "1-4": "계산 방법만 — 예와 방법 풀이, 핵심 문장 상자·정의 문장 없음(눈으로 확인)(p16) · 여백에 통분으로 계산하는 방법",
+      "1-5": "계산 방법만 — 예와 방법 풀이, 핵심 문장 상자·정의 문장 없음(눈으로 확인)(p16) · 여백에 곱셈으로 고쳐 쓰는 식 — «역수» 낱말 없음",
+      "1-6": "계산 방법만 — 예와 방법 풀이, 핵심 문장 상자·정의 문장 없음(눈으로 확인)(p18) · 여백에 곱셈으로 바꿔 계산하는 순서(분모와 분자를 바꿔 곱하기) — «역수» 낱말 없음",
+      "2-2": "계산 방법만 — 예와 방법 풀이, 핵심 문장 상자·정의 문장 없음(눈으로 확인)(p34) · 여백에 소수를 분수로 바꾸는 풀이",
+      "2-4": "계산 방법만 — 예와 방법 풀이, 핵심 문장 상자·정의 문장 없음(눈으로 확인)(p40)",
+      "2-6": "나누어 주고 남는 양 예 — 여백에 남는 양의 소수점 위치 풀이(눈으로 확인 p42)",
+      "3-1": "보는 방향 예 — 새 낱말 없음(눈으로 확인 p56)",
+      "3-2": "쌓기나무 개수 예 — 새 낱말 없음(눈으로 확인 p56)",
+      "3-3": "위·앞·옆 모양 그리기 — 여백에 «옆» 이 어느 쪽인지 약속, 새 낱말 없음(눈으로 확인 p58)",
+      "3-6": "여러 가지 모양 만들기 — 새 낱말 없음(눈으로 확인 p66)",
+      "4-2": "방법 표만(소수·분수로 된 비를 자연수끼리의 비로 고치기)(눈으로 확인 p80)",
+      "4-5": "비례식 활용 절차 네 단계 — 새 낱말 없음(눈으로 확인 p86)",
+      "5-4": "어림 방법(다각형 · 모눈) — 새 낱말 없음(눈으로 확인 p110)",
+      "5-6": "예만(모양 바꾸기 · 더하거나 빼기) — 여백에 반지름과 넓이의 관계 풀이(눈으로 확인 p114)"
+    }
+  },
+  "ambiguous": [
+    {
+      "grade": "5-1",
+      "what": "«기타» 갈래 = 핵심 문장 상자의 계산 순서·계산 방법(혼합 계산 8 · 분수 덧셈·뺄셈 2)",
+      "page": "p8~16, p90, p98",
+      "now": "용어 목록에 «기타»로 넣음(note «계산 순서/계산 방법»)",
+      "question": "계산 방법 상자도 용어 목록에 둘까요, 따로 뺄까요? (탐험 카드 «혼합 계산의 순서»·«분수의 곱셈»·«소수의 곱셈» 이 이 상자들과 짝)"
+    },
+    {
+      "grade": "5-1",
+      "what": "크기가 같은 분수",
+      "page": "p68",
+      "now": "교재에 정의 문장이 없어(그림+여백) 2절 성질 상자 두 개를 «성질»로 넣음",
+      "question": "«크기가 같은 분수»를 정의로 볼까요 성질로 볼까요?"
+    },
+    {
+      "grade": "5-1",
+      "what": "마름모의 대각선의 성질 · 분수와 소수의 관계",
+      "page": "p132, p76",
+      "now": "여백 도움말이지만 이름이 붙어 있어 넣음",
+      "question": "여백의 이름 붙은 도움말도 용어로 셀까요?"
+    },
+    {
+      "grade": "5-2",
+      "what": "평행(두 면)",
+      "page": "p108",
+      "now": "두 면이 평행하다는 정의 문장으로 넣음(이 트랙 첫 등장). 직선의 평행은 앞 학년",
+      "question": "앞 학년 «평행»과 같은 용어로 합칠까요?"
+    },
+    {
+      "grade": "5-2",
+      "what": "곱하는 순서를 바꿔도 결과가 같다는 여백 풀이(이름 없는 곱셈의 교환)",
+      "page": "p82 여백",
+      "now": "이름이 없어 넣지 않음",
+      "question": "이름 없는 성질도 셀까요?"
+    },
+    {
+      "grade": "5-2",
+      "what": "«~의 특징» 목록(직육면체의 특징 · 정육면체의 특징)",
+      "page": "p104, p106",
+      "now": "넣지 않음 — 교재가 «성질»로 이름 붙인 것만 성질로",
+      "question": "«특징» 목록도 성질로 셀까요?"
+    },
+    {
+      "grade": "6-1",
+      "what": "비율이 쓰이는 이름 — 자동차의 빠르기 · 인구 밀도 · 용액의 진하기 · 타율 · 축척",
+      "page": "p82",
+      "now": "넣지 않음(활용 소재). 그림 이름표·여백 쌍점에 «무엇에 대한 무엇의 비율» 꼴 뜻풀이가 있다",
+      "question": "활용 이름도 용어로 셀까요?"
+    },
+    {
+      "grade": "6-1",
+      "what": "백분율이 쓰이는 이름 — 할인율 · 득표율 · 소금물의 진하기",
+      "page": "p88",
+      "now": "넣지 않음(활용 소재). 말풍선 뜻풀이와 ×100 식이 있다",
+      "question": "활용 이름도 용어로 셀까요?"
+    },
+    {
+      "grade": "6-1",
+      "what": "«~의 특징» 목록(각기둥의 전개도의 특징 · 띠그래프의 특징)",
+      "page": "p30, p104",
+      "now": "넣지 않음",
+      "question": "«특징» 목록도 성질로 셀까요?"
+    },
+    {
+      "grade": "6-1",
+      "what": "부피 · 비율그래프",
+      "page": "p128, p108",
+      "now": "부피는 소제목 말풍선 뜻풀이로, 비율그래프는 여백 한 줄(이름만)로 넣음 — 둘 다 정의 문장꼴이 아니다",
+      "question": "문장꼴이 아닌 뜻풀이도 정의로 셀까요?"
+    },
+    {
+      "grade": "6-2",
+      "what": "여백 복습 정의 — 지름 · 반지름(p104) · 반올림(p42) · 비율(p82)",
+      "page": "p104, p42, p82",
+      "now": "넣고 note 에 «복습»",
+      "question": "앞 학년·앞 권 낱말의 여백 복습도 «다시 나온 곳»으로 셀까요?"
+    },
+    {
+      "grade": "6-2",
+      "what": "원기둥 · 원뿔 · 구의 정의",
+      "page": "p128, p134, p136",
+      "now": "정의 문장이 그림을 가리키고(그림 같은 입체를 ~라 한다) 뜻은 그림·구성 요소에 있다. 그대로 넣음",
+      "question": "탐험 카드 정의(말로 된 뜻)와 견줄 때 교재 쪽 뜻은 구성 요소 문장으로 볼까요?"
+    },
+    {
+      "grade": "6-2",
+      "what": "«~의 특징» 목록(원기둥의 전개도의 특징 · 구의 특징)",
+      "page": "p130, p136",
+      "now": "넣지 않음",
+      "question": "«특징» 목록도 성질로 셀까요?"
+    }
+  ],
+  "cardNotes": {
+    "g6-reciprocal": {
+      "inText": false,
+      "note": "«역수» 낱말·정의가 6-1·6-2 개념 쪽에 없다. 가까운 것은 6-2 p18 여백의 «분수의 곱셈으로 바꿔 계산하는 순서»(분모와 분자를 바꿔 곱한다) — 곱해서 1이 되는 수라는 뜻은 없음"
+    },
+    "g6-divide-size": {
+      "inText": false,
+      "note": "대응 문장 없음. 6-1 p8·p54 여백은 두 수의 크기를 견주어 몫이 1을 넘는지 보는 다른 규칙. 곱셈 쪽 짝은 5-2 p36·p82 여백(1 미만을 곱하면 결과가 줄어든다)"
+    }
+  },
+  "mismatches": [
+    {
+      "grade": "5-1",
+      "cardId": "g5-operation-order",
+      "book": "p8·p10 핵심 문장 상자 — 같은 급 연산끼리는 왼쪽부터 순서대로",
+      "issue": "범위가 좁음 — 카드는 곱셈·나눗셈 먼저와 괄호 먼저만 말하고 «같은 급끼리는 앞에서부터»가 없다(교재 소단원 1·2의 핵심)"
+    },
+    {
+      "grade": "5-1",
+      "cardId": "g5-correspondence",
+      "book": "p52 여백 — 한 양이 바뀔 때 다른 양이 따라서 일정하게 바뀌는 관계로 설명",
+      "issue": "표현 차이 — 카드는 «짝을 이루는 관계», 교재는 변화 중심"
+    },
+    {
+      "grade": "5-2",
+      "cardId": "g5-fraction-multiply",
+      "book": "p40 상자는 진분수끼리의 규칙, p42 상자는 대분수일 때 가분수 꼴로 고친 다음 계산",
+      "issue": "범위가 넓음 — 카드는 모든 분수의 곱셈에 «분자끼리·분모끼리» 한 줄을 대지만, 교재는 진분수끼리에만 쓰고 대분수는 먼저 가분수로 바꾼다(대분수에 그대로 대면 틀림)"
+    },
+    {
+      "grade": "5-2",
+      "cardId": "g5-certain",
+      "book": "p134 여백 쌍점 뜻풀이 · p136 상자(가능성 1)",
+      "issue": "이름 차이 — 카드 «확실한 일», 교재 낱말은 «확실하다»"
+    },
+    {
+      "grade": "5-2",
+      "cardId": "g5-impossible",
+      "book": "p134 여백 쌍점 뜻풀이 · p136 상자(가능성 0)",
+      "issue": "이름 차이 — 카드 «불가능한 일», 교재 낱말은 «불가능하다»"
+    },
+    {
+      "grade": "6-1",
+      "cardId": "g6-ratio",
+      "book": "p80 핵심 문장 상자 — 나눗셈 비교를 기호 : 로 적은 것",
+      "issue": "범위가 넓음 — 카드 정의에 «나눗셈으로»가 빠졌다. 교재는 앞 소단원(p78)에서 뺄셈 비교와 나눗셈 비교를 가른 뒤 비를 나눗셈 비교로 정의한다"
+    },
+    {
+      "grade": "6-1",
+      "cardId": "g6-net",
+      "book": "p30(각기둥) · 5-2 p112(정육면체) — 모서리를 잘라 펼친 그림",
+      "issue": "틀림 — 카드는 «면을 잘라», 교재는 모서리를 자른다. 전개도는 면이 아니라 모서리를 자른다"
+    },
+    {
+      "grade": "6-1",
+      "cardId": "g6-divide-size",
+      "book": "대응 문장 없음 — 가까운 것은 p54 여백(나누어지는 수가 나누는 수보다 작으면 몫이 1보다 작다)뿐",
+      "issue": "용어 수준 — 초6 카드 정의에 중1 낱말 «양수». 교재 초5·6 에는 «양수»가 없다"
+    },
+    {
+      "grade": "6-2",
+      "cardId": "g6-fraction-divide",
+      "book": "p8·p12 핵심 문장 상자는 통분 뒤 분자끼리 나누기, p18 여백은 곱셈으로 바꿔 분모와 분자를 바꿔 곱하기",
+      "issue": "용어 수준 — 카드는 «역수를 곱한다», 교재는 «역수» 낱말을 쓰지 않는다"
+    },
+    {
+      "grade": "6-2",
+      "cardId": "g6-reciprocal",
+      "book": "대응 문장 없음 — «역수» 낱말이 6-1·6-2 개념 쪽에 없다",
+      "issue": "교재에 없는 용어 — 탐험 카드만 «역수»를 정의한다"
+    },
+    {
+      "grade": "6-2",
+      "cardId": "g6-decimal-divide",
+      "book": "p36 핵심 문장 상자 — 두 수 가운데 어느 쪽을 자연수로 고쳐도 된다",
+      "issue": "범위가 좁음 — 카드는 «나누는 수가 자연수가 되도록»만(가벼움)"
+    }
+  ]
+}

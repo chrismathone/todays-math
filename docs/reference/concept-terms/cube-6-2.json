@@ -1,0 +1,1150 @@
+{
+  "source": "큐브수학 개념 6-2 진도북",
+  "file": "N:\\개인\\강아\\교재자료\\큐브수학 개념\\큐브수학 개념\\진도북\\큐브수학 개념 6-2_진도북.pdf",
+  "pages": 152,
+  "extractedAt": "2026-09-28",
+  "extractor": "scripts/qa/concept-terms/extract-terms-elem56.py",
+  "toc": [
+    {
+      "chapter": "1. 분수의 나눗셈",
+      "sections": [
+        "분모가 같은 (분수)÷(분수) ⑴",
+        "분모가 같은 (분수)÷(분수) ⑵",
+        "분모가 다른 (분수)÷(분수)",
+        "(자연수)÷(분수)",
+        "(분수)÷(분수)를 (분수)×(분수)로 나타내기",
+        "(분수)÷(분수)를 계산하기"
+      ],
+      "pdfPages": [
+        6,
+        29
+      ]
+    },
+    {
+      "chapter": "2. 소수의 나눗셈",
+      "sections": [
+        "자연수의 나눗셈을 이용한 (소수)÷(소수)",
+        "자릿수가 같은 (소수)÷(소수)",
+        "자릿수가 다른 (소수)÷(소수)",
+        "(자연수)÷(소수)",
+        "몫을 반올림하여 나타내기",
+        "나누어 주고 남는 양 알아보기"
+      ],
+      "pdfPages": [
+        30,
+        53
+      ]
+    },
+    {
+      "chapter": "3. 공간과 입체",
+      "sections": [
+        "어느 방향에서 보았는지 알아보기",
+        "쌓은 모양과 위에서 본 모양으로 쌓기나무의 개수 알아보기",
+        "위, 앞, 옆에서 본 모양으로 쌓은 모양과 쌓기나무의 개수 알아보기",
+        "위에서 본 모양에 수를 쓴 것을 보고 쌓은 모양과 쌓기나무의 개수 알아보기",
+        "층별로 나타낸 모양으로 쌓은 모양과 쌓기나무의 개수 알아보기",
+        "여러 가지 모양 만들기"
+      ],
+      "pdfPages": [
+        54,
+        77
+      ]
+    },
+    {
+      "chapter": "4. 비례식과 비례배분",
+      "sections": [
+        "비의 성질",
+        "간단한 자연수의 비로 나타내기",
+        "비례식",
+        "비례식의 성질",
+        "비례식 활용하기",
+        "비례배분"
+      ],
+      "pdfPages": [
+        78,
+        101
+      ]
+    },
+    {
+      "chapter": "5. 원의 넓이",
+      "sections": [
+        "원주와 지름의 관계",
+        "원주율",
+        "원주와 지름 구하기",
+        "원의 넓이 어림하기",
+        "원의 넓이 구하는 방법",
+        "여러 가지 원의 넓이 구하기"
+      ],
+      "pdfPages": [
+        102,
+        125
+      ]
+    },
+    {
+      "chapter": "6. 원기둥, 원뿔, 구",
+      "sections": [
+        "원기둥",
+        "원기둥의 전개도",
+        "원뿔",
+        "구"
+      ],
+      "pdfPages": [
+        126,
+        147
+      ]
+    }
+  ],
+  "sentenceStore": "문장(교재 원문)은 저장소 밖 C:\\Creative\\testautocreator-data\\I-개념용어\\cube-6-2.json — 용어마다 sentenceRef.key 로 찾는다",
+  "terms": [
+    {
+      "term": "분모가 같은 (분수)÷(분수)",
+      "kind": "기타",
+      "grade": "6-2",
+      "chapter": "1. 분수의 나눗셈",
+      "section": "분모가 같은 (분수)÷(분수) ⑴",
+      "pdfPage": 8,
+      "bookPage": "008쪽",
+      "key": "6-2/p008/분모가 같은 (분수)÷(분수)",
+      "first": true,
+      "aliases": [],
+      "mathGarbled": false,
+      "note": "계산 방법 — 핵심 문장 상자",
+      "explorer": {
+        "match": "related",
+        "cardId": "g6-fraction-divide",
+        "cardName": "분수의 나눗셈",
+        "why": "카드는 «역수를 곱한다» 한 규칙 — 교재는 통분 후 분자끼리 나누기부터"
+      },
+      "sentenceRef": {
+        "store": "testautocreator-data",
+        "file": "I-개념용어/cube-6-2.json",
+        "key": "6-2/p008/분모가 같은 (분수)÷(분수)"
+      }
+    },
+    {
+      "term": "분자끼리 나누어떨어지지 않는 경우",
+      "kind": "기타",
+      "grade": "6-2",
+      "chapter": "1. 분수의 나눗셈",
+      "section": "분모가 같은 (분수)÷(분수) ⑵",
+      "pdfPage": 10,
+      "bookPage": "010쪽",
+      "key": "6-2/p010/분자끼리 나누어떨어지지 않는 경우",
+      "first": true,
+      "aliases": [],
+      "mathGarbled": false,
+      "note": "계산 방법 — 핵심 문장 상자",
+      "explorer": {
+        "match": "related",
+        "cardId": "g6-fraction-divide",
+        "cardName": "분수의 나눗셈",
+        "why": "분수의 나눗셈 한 경우"
+      },
+      "sentenceRef": {
+        "store": "testautocreator-data",
+        "file": "I-개념용어/cube-6-2.json",
+        "key": "6-2/p010/분자끼리 나누어떨어지지 않는 경우"
+      }
+    },
+    {
+      "term": "분모가 다른 (분수)÷(분수)",
+      "kind": "기타",
+      "grade": "6-2",
+      "chapter": "1. 분수의 나눗셈",
+      "section": "분모가 다른 (분수)÷(분수)",
+      "pdfPage": 12,
+      "bookPage": "012쪽",
+      "key": "6-2/p012/분모가 다른 (분수)÷(분수)",
+      "first": true,
+      "aliases": [],
+      "mathGarbled": false,
+      "note": "계산 방법 — 핵심 문장 상자",
+      "explorer": {
+        "match": "related",
+        "cardId": "g6-fraction-divide",
+        "cardName": "분수의 나눗셈",
+        "why": "분수의 나눗셈 한 경우"
+      },
+      "sentenceRef": {
+        "store": "testautocreator-data",
+        "file": "I-개념용어/cube-6-2.json",
+        "key": "6-2/p012/분모가 다른 (분수)÷(분수)"
+      }
+    },
+    {
+      "term": "(소수)÷(소수)",
+      "kind": "기타",
+      "grade": "6-2",
+      "chapter": "2. 소수의 나눗셈",
+      "section": "자연수의 나눗셈을 이용한 (소수)÷(소수)",
+      "pdfPage": 32,
+      "bookPage": "032쪽",
+      "key": "6-2/p032/(소수)÷(소수)",
+      "first": true,
+      "aliases": [],
+      "mathGarbled": false,
+      "note": "계산 방법 — 핵심 문장 상자. 여백 말풍선에 몫이 변하지 않는 까닭",
+      "explorer": {
+        "match": "related",
+        "cardId": "g6-quotient-invariant",
+        "cardName": "몫이 같은 나눗셈",
+        "why": "카드 «몫이 같은 나눗셈» 의 규칙을 소수 나눗셈에 쓴 것"
+      },
+      "sentenceRef": {
+        "store": "testautocreator-data",
+        "file": "I-개념용어/cube-6-2.json",
+        "key": "6-2/p032/(소수)÷(소수)"
+      }
+    },
+    {
+      "term": "자릿수가 다른 (소수)÷(소수)",
+      "kind": "기타",
+      "grade": "6-2",
+      "chapter": "2. 소수의 나눗셈",
+      "section": "자릿수가 다른 (소수)÷(소수)",
+      "pdfPage": 36,
+      "bookPage": "036쪽",
+      "key": "6-2/p036/자릿수가 다른 (소수)÷(소수)",
+      "first": true,
+      "aliases": [],
+      "mathGarbled": false,
+      "note": "계산 방법 — 핵심 문장 상자",
+      "explorer": {
+        "match": "related",
+        "cardId": "g6-decimal-divide",
+        "cardName": "소수의 나눗셈",
+        "why": "카드는 나누는 쪽만 자연수로 고친다 — 교재는 두 길(어느 쪽을 자연수로 고쳐도 됨)을 둔다"
+      },
+      "sentenceRef": {
+        "store": "testautocreator-data",
+        "file": "I-개념용어/cube-6-2.json",
+        "key": "6-2/p036/자릿수가 다른 (소수)÷(소수)"
+      }
+    },
+    {
+      "term": "반올림",
+      "kind": "정의",
+      "grade": "6-2",
+      "chapter": "2. 소수의 나눗셈",
+      "section": "몫을 반올림하여 나타내기",
+      "pdfPage": 42,
+      "bookPage": "042쪽",
+      "key": "6-2/p042/반올림",
+      "first": false,
+      "aliases": [],
+      "mathGarbled": false,
+      "note": "여백 복습(5-2 반올림) — «몫을 반올림하여 나타내기» 옆 · 처음: 5-2 p18",
+      "explorer": {
+        "match": "none",
+        "cardId": "",
+        "cardName": "",
+        "why": "다른 학년 카드에 같은 이름: g5-round(학년 5)"
+      },
+      "sentenceRef": {
+        "store": "testautocreator-data",
+        "file": "I-개념용어/cube-6-2.json",
+        "key": "6-2/p042/반올림"
+      }
+    },
+    {
+      "term": "위에서 본 모양에 수를 쓴 것으로 앞·옆 모양 그리기",
+      "kind": "기타",
+      "grade": "6-2",
+      "chapter": "3. 공간과 입체",
+      "section": "위에서 본 모양에 수를 쓴 것을 보고 쌓은 모양과 쌓기나무의 개수 알아보기",
+      "pdfPage": 62,
+      "bookPage": "062쪽",
+      "key": "6-2/p062/위에서 본 모양에 수를 쓴 것으로 앞·옆 모양 그리기",
+      "first": true,
+      "aliases": [],
+      "mathGarbled": false,
+      "note": "핵심 문장 상자",
+      "explorer": {
+        "match": "related",
+        "cardId": "g6-cube-stack",
+        "cardName": "쌓기나무의 개수",
+        "why": "쌓기나무 — 카드는 개수 세기(층별 합)"
+      },
+      "sentenceRef": {
+        "store": "testautocreator-data",
+        "file": "I-개념용어/cube-6-2.json",
+        "key": "6-2/p062/위에서 본 모양에 수를 쓴 것으로 앞·옆 모양 그리기"
+      }
+    },
+    {
+      "term": "층별로 나타낸 모양 그리기",
+      "kind": "기타",
+      "grade": "6-2",
+      "chapter": "3. 공간과 입체",
+      "section": "층별로 나타낸 모양으로 쌓은 모양과 쌓기나무의 개수 알아보기",
+      "pdfPage": 64,
+      "bookPage": "064쪽",
+      "key": "6-2/p064/층별로 나타낸 모양 그리기",
+      "first": true,
+      "aliases": [],
+      "mathGarbled": false,
+      "note": "핵심 문장 상자",
+      "explorer": {
+        "match": "related",
+        "cardId": "g6-cube-stack",
+        "cardName": "쌓기나무의 개수",
+        "why": "카드 «쌓기나무의 개수 — 층별로 나누어 더한다» 와 같은 소단원"
+      },
+      "sentenceRef": {
+        "store": "testautocreator-data",
+        "file": "I-개념용어/cube-6-2.json",
+        "key": "6-2/p064/층별로 나타낸 모양 그리기"
+      }
+    },
+    {
+      "term": "전항",
+      "kind": "정의",
+      "grade": "6-2",
+      "chapter": "4. 비례식과 비례배분",
+      "section": "비의 성질",
+      "pdfPage": 80,
+      "bookPage": "080쪽",
+      "key": "6-2/p080/전항",
+      "first": true,
+      "aliases": [],
+      "mathGarbled": false,
+      "note": "",
+      "explorer": {
+        "match": "none",
+        "cardId": "",
+        "cardName": "",
+        "why": "카드 없음(비의 성질 카드는 «비의 두 항» 으로)"
+      },
+      "sentenceRef": {
+        "store": "testautocreator-data",
+        "file": "I-개념용어/cube-6-2.json",
+        "key": "6-2/p080/전항"
+      }
+    },
+    {
+      "term": "후항",
+      "kind": "정의",
+      "grade": "6-2",
+      "chapter": "4. 비례식과 비례배분",
+      "section": "비의 성질",
+      "pdfPage": 80,
+      "bookPage": "080쪽",
+      "key": "6-2/p080/후항",
+      "first": true,
+      "aliases": [],
+      "mathGarbled": false,
+      "note": "",
+      "explorer": {
+        "match": "none",
+        "cardId": "",
+        "cardName": "",
+        "why": "카드 없음(비의 성질 카드는 «비의 두 항» 으로)"
+      },
+      "sentenceRef": {
+        "store": "testautocreator-data",
+        "file": "I-개념용어/cube-6-2.json",
+        "key": "6-2/p080/후항"
+      }
+    },
+    {
+      "term": "비의 성질",
+      "kind": "성질",
+      "grade": "6-2",
+      "chapter": "4. 비례식과 비례배분",
+      "section": "비의 성질",
+      "pdfPage": 80,
+      "bookPage": "080쪽",
+      "key": "6-2/p080/비의 성질",
+      "first": true,
+      "aliases": [],
+      "mathGarbled": false,
+      "note": "성질 두 가지(곱하기 · 나누기) — 문장은 첫째만, 둘째는 예시 뒤에 떨어져 있다",
+      "explorer": {
+        "match": "exact",
+        "cardId": "g6-ratio-simplify",
+        "cardName": "비의 성질",
+        "why": ""
+      },
+      "sentenceRef": {
+        "store": "testautocreator-data",
+        "file": "I-개념용어/cube-6-2.json",
+        "key": "6-2/p080/비의 성질"
+      }
+    },
+    {
+      "term": "비례식",
+      "kind": "정의",
+      "grade": "6-2",
+      "chapter": "4. 비례식과 비례배분",
+      "section": "비례식",
+      "pdfPage": 82,
+      "bookPage": "082쪽",
+      "key": "6-2/p082/비례식",
+      "first": true,
+      "aliases": [],
+      "mathGarbled": false,
+      "note": "",
+      "explorer": {
+        "match": "exact",
+        "cardId": "g6-proportion",
+        "cardName": "비례식",
+        "why": ""
+      },
+      "sentenceRef": {
+        "store": "testautocreator-data",
+        "file": "I-개념용어/cube-6-2.json",
+        "key": "6-2/p082/비례식"
+      }
+    },
+    {
+      "term": "비율",
+      "kind": "정의",
+      "grade": "6-2",
+      "chapter": "4. 비례식과 비례배분",
+      "section": "비례식",
+      "pdfPage": 82,
+      "bookPage": "082쪽",
+      "key": "6-2/p082/비율",
+      "first": false,
+      "aliases": [],
+      "mathGarbled": false,
+      "note": "여백 복습(6-1 비율) — 표본 대조에서 찾음 · 처음: 6-1 p80",
+      "explorer": {
+        "match": "exact",
+        "cardId": "g6-rate",
+        "cardName": "비율",
+        "why": ""
+      },
+      "sentenceRef": {
+        "store": "testautocreator-data",
+        "file": "I-개념용어/cube-6-2.json",
+        "key": "6-2/p082/비율"
+      }
+    },
+    {
+      "term": "비율을 구하는 식",
+      "kind": "공식",
+      "grade": "6-2",
+      "chapter": "4. 비례식과 비례배분",
+      "section": "비례식",
+      "pdfPage": 82,
+      "bookPage": "082쪽",
+      "key": "6-2/p082/비율을 구하는 식",
+      "first": false,
+      "aliases": [],
+      "mathGarbled": false,
+      "note": "여백 복습(6-1 비율을 구하는 식) — 표본 대조에서 찾음 · 처음: 6-1 p80",
+      "explorer": {
+        "match": "related",
+        "cardId": "g6-rate",
+        "cardName": "비율",
+        "why": "카드 «비율» 정의가 이 식을 말로 적은 것"
+      },
+      "sentenceRef": {
+        "store": "testautocreator-data",
+        "file": "I-개념용어/cube-6-2.json",
+        "key": "6-2/p082/비율을 구하는 식"
+      }
+    },
+    {
+      "term": "외항",
+      "kind": "정의",
+      "grade": "6-2",
+      "chapter": "4. 비례식과 비례배분",
+      "section": "비례식",
+      "pdfPage": 82,
+      "bookPage": "082쪽",
+      "key": "6-2/p082/외항",
+      "first": true,
+      "aliases": [],
+      "mathGarbled": false,
+      "note": "",
+      "explorer": {
+        "match": "related",
+        "cardId": "g6-inner-outer",
+        "cardName": "내항과 외항",
+        "why": "카드 한 장이 «내항과 외항» 두 낱말을 같이 담는다"
+      },
+      "sentenceRef": {
+        "store": "testautocreator-data",
+        "file": "I-개념용어/cube-6-2.json",
+        "key": "6-2/p082/외항"
+      }
+    },
+    {
+      "term": "내항",
+      "kind": "정의",
+      "grade": "6-2",
+      "chapter": "4. 비례식과 비례배분",
+      "section": "비례식",
+      "pdfPage": 82,
+      "bookPage": "082쪽",
+      "key": "6-2/p082/내항",
+      "first": true,
+      "aliases": [],
+      "mathGarbled": false,
+      "note": "",
+      "explorer": {
+        "match": "related",
+        "cardId": "g6-inner-outer",
+        "cardName": "내항과 외항",
+        "why": "카드 한 장이 «내항과 외항» 두 낱말을 같이 담는다"
+      },
+      "sentenceRef": {
+        "store": "testautocreator-data",
+        "file": "I-개념용어/cube-6-2.json",
+        "key": "6-2/p082/내항"
+      }
+    },
+    {
+      "term": "비례식의 성질",
+      "kind": "성질",
+      "grade": "6-2",
+      "chapter": "4. 비례식과 비례배분",
+      "section": "비례식의 성질",
+      "pdfPage": 86,
+      "bookPage": "086쪽",
+      "key": "6-2/p086/비례식의 성질",
+      "first": true,
+      "aliases": [],
+      "mathGarbled": false,
+      "note": "핵심 문장 상자",
+      "explorer": {
+        "match": "exact",
+        "cardId": "g6-cross-product",
+        "cardName": "비례식의 성질",
+        "why": ""
+      },
+      "sentenceRef": {
+        "store": "testautocreator-data",
+        "file": "I-개념용어/cube-6-2.json",
+        "key": "6-2/p086/비례식의 성질"
+      }
+    },
+    {
+      "term": "비례배분",
+      "kind": "정의",
+      "grade": "6-2",
+      "chapter": "4. 비례식과 비례배분",
+      "section": "비례배분",
+      "pdfPage": 88,
+      "bookPage": "088쪽",
+      "key": "6-2/p088/비례배분",
+      "first": true,
+      "aliases": [],
+      "mathGarbled": false,
+      "note": "핵심 문장 상자",
+      "explorer": {
+        "match": "exact",
+        "cardId": "g6-distribute",
+        "cardName": "비례배분",
+        "why": ""
+      },
+      "sentenceRef": {
+        "store": "testautocreator-data",
+        "file": "I-개념용어/cube-6-2.json",
+        "key": "6-2/p088/비례배분"
+      }
+    },
+    {
+      "term": "비례배분하는 식",
+      "kind": "공식",
+      "grade": "6-2",
+      "chapter": "4. 비례식과 비례배분",
+      "section": "비례배분",
+      "pdfPage": 88,
+      "bookPage": "088쪽",
+      "key": "6-2/p088/비례배분하는 식",
+      "first": true,
+      "aliases": [],
+      "mathGarbled": true,
+      "note": "여백 도움말. [분수] = ■/(■+▲), ▲/(■+▲) (분수 조판이 글자층에서 줄로 흩어짐)",
+      "explorer": {
+        "match": "related",
+        "cardId": "g6-part-of-ratio",
+        "cardName": "비와 전체의 관계",
+        "why": "카드 «비와 전체의 관계» 의 a/(a+b)·b/(a+b) 와 같은 식"
+      },
+      "sentenceRef": {
+        "store": "testautocreator-data",
+        "file": "I-개념용어/cube-6-2.json",
+        "key": "6-2/p088/비례배분하는 식"
+      }
+    },
+    {
+      "term": "원주",
+      "kind": "정의",
+      "grade": "6-2",
+      "chapter": "5. 원의 넓이",
+      "section": "원주와 지름의 관계",
+      "pdfPage": 104,
+      "bookPage": "104쪽",
+      "key": "6-2/p104/원주",
+      "first": true,
+      "aliases": [],
+      "mathGarbled": false,
+      "note": "",
+      "explorer": {
+        "match": "exact",
+        "cardId": "g6-circumference",
+        "cardName": "원주",
+        "why": ""
+      },
+      "sentenceRef": {
+        "store": "testautocreator-data",
+        "file": "I-개념용어/cube-6-2.json",
+        "key": "6-2/p104/원주"
+      }
+    },
+    {
+      "term": "지름",
+      "kind": "정의",
+      "grade": "6-2",
+      "chapter": "5. 원의 넓이",
+      "section": "원주와 지름의 관계",
+      "pdfPage": 104,
+      "bookPage": "104쪽",
+      "key": "6-2/p104/지름",
+      "first": true,
+      "aliases": [],
+      "mathGarbled": false,
+      "note": "여백 «원의 지름과 반지름» — 앞 학년 복습",
+      "explorer": {
+        "match": "none",
+        "cardId": "",
+        "cardName": "",
+        "why": "카드 없음"
+      },
+      "sentenceRef": {
+        "store": "testautocreator-data",
+        "file": "I-개념용어/cube-6-2.json",
+        "key": "6-2/p104/지름"
+      }
+    },
+    {
+      "term": "반지름",
+      "kind": "정의",
+      "grade": "6-2",
+      "chapter": "5. 원의 넓이",
+      "section": "원주와 지름의 관계",
+      "pdfPage": 104,
+      "bookPage": "104쪽",
+      "key": "6-2/p104/반지름",
+      "first": true,
+      "aliases": [],
+      "mathGarbled": false,
+      "note": "여백 «원의 지름과 반지름» — 앞 학년 복습",
+      "explorer": {
+        "match": "none",
+        "cardId": "",
+        "cardName": "",
+        "why": "카드 없음"
+      },
+      "sentenceRef": {
+        "store": "testautocreator-data",
+        "file": "I-개념용어/cube-6-2.json",
+        "key": "6-2/p104/반지름"
+      }
+    },
+    {
+      "term": "원주와 지름의 관계",
+      "kind": "성질",
+      "grade": "6-2",
+      "chapter": "5. 원의 넓이",
+      "section": "원주와 지름의 관계",
+      "pdfPage": 104,
+      "bookPage": "104쪽",
+      "key": "6-2/p104/원주와 지름의 관계",
+      "first": true,
+      "aliases": [],
+      "mathGarbled": false,
+      "note": "핵심 문장 상자",
+      "explorer": {
+        "match": "related",
+        "cardId": "g6-pi",
+        "cardName": "원주율",
+        "why": "원주율로 가는 도입 — 카드는 원주율만"
+      },
+      "sentenceRef": {
+        "store": "testautocreator-data",
+        "file": "I-개념용어/cube-6-2.json",
+        "key": "6-2/p104/원주와 지름의 관계"
+      }
+    },
+    {
+      "term": "원주율",
+      "kind": "정의",
+      "grade": "6-2",
+      "chapter": "5. 원의 넓이",
+      "section": "원주율",
+      "pdfPage": 104,
+      "bookPage": "104쪽",
+      "key": "6-2/p104/원주율",
+      "first": true,
+      "aliases": [],
+      "mathGarbled": false,
+      "note": "원 크기와 무관하게 일정하다는 풀이와 어림값 셋이 이어진다",
+      "explorer": {
+        "match": "exact",
+        "cardId": "g6-pi",
+        "cardName": "원주율",
+        "why": ""
+      },
+      "sentenceRef": {
+        "store": "testautocreator-data",
+        "file": "I-개념용어/cube-6-2.json",
+        "key": "6-2/p104/원주율"
+      }
+    },
+    {
+      "term": "원주율을 구하는 식",
+      "kind": "공식",
+      "grade": "6-2",
+      "chapter": "5. 원의 넓이",
+      "section": "원주율",
+      "pdfPage": 104,
+      "bookPage": "104쪽",
+      "key": "6-2/p104/원주율을 구하는 식",
+      "first": true,
+      "aliases": [],
+      "mathGarbled": false,
+      "note": "핵심 문장 상자",
+      "explorer": {
+        "match": "related",
+        "cardId": "g6-pi",
+        "cardName": "원주율",
+        "why": "카드 «원주율» 정의(원주를 지름으로 나눈 비율)와 같은 식"
+      },
+      "sentenceRef": {
+        "store": "testautocreator-data",
+        "file": "I-개념용어/cube-6-2.json",
+        "key": "6-2/p104/원주율을 구하는 식"
+      }
+    },
+    {
+      "term": "원주를 구하는 식",
+      "kind": "공식",
+      "grade": "6-2",
+      "chapter": "5. 원의 넓이",
+      "section": "원주와 지름 구하기",
+      "pdfPage": 106,
+      "bookPage": "106쪽",
+      "key": "6-2/p106/원주를 구하는 식",
+      "first": true,
+      "aliases": [],
+      "mathGarbled": false,
+      "note": "핵심 문장 상자",
+      "explorer": {
+        "match": "related",
+        "cardId": "g6-circumference",
+        "cardName": "원주",
+        "why": "카드 «원주» 는 정의만 — 구하는 식은 없다"
+      },
+      "sentenceRef": {
+        "store": "testautocreator-data",
+        "file": "I-개념용어/cube-6-2.json",
+        "key": "6-2/p106/원주를 구하는 식"
+      }
+    },
+    {
+      "term": "지름을 구하는 식",
+      "kind": "공식",
+      "grade": "6-2",
+      "chapter": "5. 원의 넓이",
+      "section": "원주와 지름 구하기",
+      "pdfPage": 106,
+      "bookPage": "106쪽",
+      "key": "6-2/p106/지름을 구하는 식",
+      "first": true,
+      "aliases": [],
+      "mathGarbled": false,
+      "note": "핵심 문장 상자",
+      "explorer": {
+        "match": "none",
+        "cardId": "",
+        "cardName": "",
+        "why": "카드 없음"
+      },
+      "sentenceRef": {
+        "store": "testautocreator-data",
+        "file": "I-개념용어/cube-6-2.json",
+        "key": "6-2/p106/지름을 구하는 식"
+      }
+    },
+    {
+      "term": "원의 넓이",
+      "kind": "공식",
+      "grade": "6-2",
+      "chapter": "5. 원의 넓이",
+      "section": "원의 넓이 구하는 방법",
+      "pdfPage": 112,
+      "bookPage": "112쪽",
+      "key": "6-2/p112/원의 넓이",
+      "first": true,
+      "aliases": [],
+      "mathGarbled": true,
+      "note": "핵심 문장 상자. [분수] = 1/2",
+      "explorer": {
+        "match": "exact",
+        "cardId": "g6-circle-area",
+        "cardName": "원의 넓이",
+        "why": ""
+      },
+      "sentenceRef": {
+        "store": "testautocreator-data",
+        "file": "I-개념용어/cube-6-2.json",
+        "key": "6-2/p112/원의 넓이"
+      }
+    },
+    {
+      "term": "원기둥",
+      "kind": "정의",
+      "grade": "6-2",
+      "chapter": "6. 원기둥, 원뿔, 구",
+      "section": "원기둥",
+      "pdfPage": 128,
+      "bookPage": "128쪽",
+      "key": "6-2/p128/원기둥",
+      "first": true,
+      "aliases": [],
+      "mathGarbled": false,
+      "note": "문장 앞이 그림(입체 예시) — 뜻은 구성 요소 문장과 모양 말풍선으로 보인다",
+      "explorer": {
+        "match": "exact",
+        "cardId": "g6-cylinder",
+        "cardName": "원기둥",
+        "why": ""
+      },
+      "sentenceRef": {
+        "store": "testautocreator-data",
+        "file": "I-개념용어/cube-6-2.json",
+        "key": "6-2/p128/원기둥"
+      }
+    },
+    {
+      "term": "밑면",
+      "kind": "정의",
+      "grade": "6-2",
+      "chapter": "6. 원기둥, 원뿔, 구",
+      "section": "원기둥",
+      "pdfPage": 128,
+      "bookPage": "128쪽",
+      "key": "6-2/p128/밑면",
+      "first": false,
+      "aliases": [],
+      "mathGarbled": false,
+      "note": "원기둥의 밑면 · 처음: 5-2 p108",
+      "explorer": {
+        "match": "none",
+        "cardId": "",
+        "cardName": "",
+        "why": "밑면·옆면 카드 없음"
+      },
+      "sentenceRef": {
+        "store": "testautocreator-data",
+        "file": "I-개념용어/cube-6-2.json",
+        "key": "6-2/p128/밑면"
+      }
+    },
+    {
+      "term": "옆면",
+      "kind": "정의",
+      "grade": "6-2",
+      "chapter": "6. 원기둥, 원뿔, 구",
+      "section": "원기둥",
+      "pdfPage": 128,
+      "bookPage": "128쪽",
+      "key": "6-2/p128/옆면",
+      "first": false,
+      "aliases": [],
+      "mathGarbled": false,
+      "note": "원기둥의 옆면(굽은 면) · 처음: 5-2 p108",
+      "explorer": {
+        "match": "none",
+        "cardId": "",
+        "cardName": "",
+        "why": "밑면·옆면 카드 없음"
+      },
+      "sentenceRef": {
+        "store": "testautocreator-data",
+        "file": "I-개념용어/cube-6-2.json",
+        "key": "6-2/p128/옆면"
+      }
+    },
+    {
+      "term": "높이",
+      "kind": "정의",
+      "grade": "6-2",
+      "chapter": "6. 원기둥, 원뿔, 구",
+      "section": "원기둥",
+      "pdfPage": 128,
+      "bookPage": "128쪽",
+      "key": "6-2/p128/높이",
+      "first": false,
+      "aliases": [],
+      "mathGarbled": false,
+      "note": "원기둥의 높이 · 처음: 5-1 p126",
+      "explorer": {
+        "match": "none",
+        "cardId": "",
+        "cardName": "",
+        "why": "카드 없음"
+      },
+      "sentenceRef": {
+        "store": "testautocreator-data",
+        "file": "I-개념용어/cube-6-2.json",
+        "key": "6-2/p128/높이"
+      }
+    },
+    {
+      "term": "전개도",
+      "kind": "정의",
+      "grade": "6-2",
+      "chapter": "6. 원기둥, 원뿔, 구",
+      "section": "원기둥의 전개도",
+      "pdfPage": 130,
+      "bookPage": "130쪽",
+      "key": "6-2/p130/전개도",
+      "first": false,
+      "aliases": [],
+      "mathGarbled": false,
+      "note": "원기둥의 전개도 · 처음: 5-2 p112",
+      "explorer": {
+        "match": "exact",
+        "cardId": "g6-net",
+        "cardName": "전개도",
+        "why": ""
+      },
+      "sentenceRef": {
+        "store": "testautocreator-data",
+        "file": "I-개념용어/cube-6-2.json",
+        "key": "6-2/p130/전개도"
+      }
+    },
+    {
+      "term": "원뿔",
+      "kind": "정의",
+      "grade": "6-2",
+      "chapter": "6. 원기둥, 원뿔, 구",
+      "section": "원뿔",
+      "pdfPage": 134,
+      "bookPage": "134쪽",
+      "key": "6-2/p134/원뿔",
+      "first": true,
+      "aliases": [],
+      "mathGarbled": false,
+      "note": "문장 앞이 그림 — 모양 말풍선",
+      "explorer": {
+        "match": "related",
+        "cardId": "g6-cone-sphere",
+        "cardName": "원뿔과 구",
+        "why": "카드 한 장이 «원뿔과 구» 를 같이 담는다"
+      },
+      "sentenceRef": {
+        "store": "testautocreator-data",
+        "file": "I-개념용어/cube-6-2.json",
+        "key": "6-2/p134/원뿔"
+      }
+    },
+    {
+      "term": "밑면",
+      "kind": "정의",
+      "grade": "6-2",
+      "chapter": "6. 원기둥, 원뿔, 구",
+      "section": "원뿔",
+      "pdfPage": 134,
+      "bookPage": "134쪽",
+      "key": "6-2/p134/밑면",
+      "first": false,
+      "aliases": [],
+      "mathGarbled": false,
+      "note": "원뿔의 밑면 · 처음: 5-2 p108",
+      "explorer": {
+        "match": "none",
+        "cardId": "",
+        "cardName": "",
+        "why": "밑면·옆면 카드 없음"
+      },
+      "sentenceRef": {
+        "store": "testautocreator-data",
+        "file": "I-개념용어/cube-6-2.json",
+        "key": "6-2/p134/밑면"
+      }
+    },
+    {
+      "term": "옆면",
+      "kind": "정의",
+      "grade": "6-2",
+      "chapter": "6. 원기둥, 원뿔, 구",
+      "section": "원뿔",
+      "pdfPage": 134,
+      "bookPage": "134쪽",
+      "key": "6-2/p134/옆면",
+      "first": false,
+      "aliases": [],
+      "mathGarbled": false,
+      "note": "원뿔의 옆면 · 처음: 5-2 p108",
+      "explorer": {
+        "match": "none",
+        "cardId": "",
+        "cardName": "",
+        "why": "밑면·옆면 카드 없음"
+      },
+      "sentenceRef": {
+        "store": "testautocreator-data",
+        "file": "I-개념용어/cube-6-2.json",
+        "key": "6-2/p134/옆면"
+      }
+    },
+    {
+      "term": "원뿔의 꼭짓점",
+      "kind": "정의",
+      "grade": "6-2",
+      "chapter": "6. 원기둥, 원뿔, 구",
+      "section": "원뿔",
+      "pdfPage": 134,
+      "bookPage": "134쪽",
+      "key": "6-2/p134/원뿔의 꼭짓점",
+      "first": true,
+      "aliases": [],
+      "mathGarbled": false,
+      "note": "",
+      "explorer": {
+        "match": "related",
+        "cardId": "g6-cone-sphere",
+        "cardName": "원뿔과 구",
+        "why": "카드 «원뿔과 구» 정의에 «한 꼭짓점» 으로만"
+      },
+      "sentenceRef": {
+        "store": "testautocreator-data",
+        "file": "I-개념용어/cube-6-2.json",
+        "key": "6-2/p134/원뿔의 꼭짓점"
+      }
+    },
+    {
+      "term": "모선",
+      "kind": "정의",
+      "grade": "6-2",
+      "chapter": "6. 원기둥, 원뿔, 구",
+      "section": "원뿔",
+      "pdfPage": 134,
+      "bookPage": "134쪽",
+      "key": "6-2/p134/모선",
+      "first": true,
+      "aliases": [],
+      "mathGarbled": false,
+      "note": "",
+      "explorer": {
+        "match": "none",
+        "cardId": "",
+        "cardName": "",
+        "why": "카드 없음"
+      },
+      "sentenceRef": {
+        "store": "testautocreator-data",
+        "file": "I-개념용어/cube-6-2.json",
+        "key": "6-2/p134/모선"
+      }
+    },
+    {
+      "term": "높이",
+      "kind": "정의",
+      "grade": "6-2",
+      "chapter": "6. 원기둥, 원뿔, 구",
+      "section": "원뿔",
+      "pdfPage": 134,
+      "bookPage": "134쪽",
+      "key": "6-2/p134/높이",
+      "first": false,
+      "aliases": [],
+      "mathGarbled": false,
+      "note": "원뿔의 높이 · 처음: 5-1 p126",
+      "explorer": {
+        "match": "none",
+        "cardId": "",
+        "cardName": "",
+        "why": "카드 없음"
+      },
+      "sentenceRef": {
+        "store": "testautocreator-data",
+        "file": "I-개념용어/cube-6-2.json",
+        "key": "6-2/p134/높이"
+      }
+    },
+    {
+      "term": "구",
+      "kind": "정의",
+      "grade": "6-2",
+      "chapter": "6. 원기둥, 원뿔, 구",
+      "section": "구",
+      "pdfPage": 136,
+      "bookPage": "136쪽",
+      "key": "6-2/p136/구",
+      "first": true,
+      "aliases": [],
+      "mathGarbled": false,
+      "note": "문장 앞이 그림 — 모양 말풍선",
+      "explorer": {
+        "match": "related",
+        "cardId": "g6-cone-sphere",
+        "cardName": "원뿔과 구",
+        "why": "카드 한 장이 «원뿔과 구» 를 같이 담는다"
+      },
+      "sentenceRef": {
+        "store": "testautocreator-data",
+        "file": "I-개념용어/cube-6-2.json",
+        "key": "6-2/p136/구"
+      }
+    },
+    {
+      "term": "구의 중심",
+      "kind": "정의",
+      "grade": "6-2",
+      "chapter": "6. 원기둥, 원뿔, 구",
+      "section": "구",
+      "pdfPage": 136,
+      "bookPage": "136쪽",
+      "key": "6-2/p136/구의 중심",
+      "first": true,
+      "aliases": [],
+      "mathGarbled": false,
+      "note": "",
+      "explorer": {
+        "match": "none",
+        "cardId": "",
+        "cardName": "",
+        "why": "카드 없음"
+      },
+      "sentenceRef": {
+        "store": "testautocreator-data",
+        "file": "I-개념용어/cube-6-2.json",
+        "key": "6-2/p136/구의 중심"
+      }
+    },
+    {
+      "term": "구의 반지름",
+      "kind": "정의",
+      "grade": "6-2",
+      "chapter": "6. 원기둥, 원뿔, 구",
+      "section": "구",
+      "pdfPage": 136,
+      "bookPage": "136쪽",
+      "key": "6-2/p136/구의 반지름",
+      "first": true,
+      "aliases": [],
+      "mathGarbled": false,
+      "note": "",
+      "explorer": {
+        "match": "none",
+        "cardId": "",
+        "cardName": "",
+        "why": "카드 없음"
+      },
+      "sentenceRef": {
+        "store": "testautocreator-data",
+        "file": "I-개념용어/cube-6-2.json",
+        "key": "6-2/p136/구의 반지름"
+      }
+    }
+  ]
+}

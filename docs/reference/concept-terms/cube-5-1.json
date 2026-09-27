@@ -1,0 +1,1417 @@
+{
+  "source": "큐브수학 개념 5-1 진도북",
+  "file": "N:\\개인\\강아\\교재자료\\큐브수학 개념\\큐브수학 개념\\진도북\\큐브수학 개념 5-1_진도북.pdf",
+  "pages": 152,
+  "extractedAt": "2026-09-28",
+  "extractor": "scripts/qa/concept-terms/extract-terms-elem56.py",
+  "toc": [
+    {
+      "chapter": "1. 자연수의 혼합 계산",
+      "sections": [
+        "덧셈과 뺄셈이 섞여 있는 식",
+        "곱셈과 나눗셈이 섞여 있는 식",
+        "덧셈, 뺄셈, 곱셈이 섞여 있는 식",
+        "덧셈, 뺄셈, 나눗셈이 섞여 있는 식",
+        "덧셈, 뺄셈, 곱셈, 나눗셈이 섞여 있는 식"
+      ],
+      "pdfPages": [
+        6,
+        27
+      ]
+    },
+    {
+      "chapter": "2. 약수와 배수",
+      "sections": [
+        "약수와 배수",
+        "약수와 배수의 관계",
+        "공약수와 최대공약수",
+        "최대공약수 구하는 방법",
+        "공배수와 최소공배수",
+        "최소공배수 구하는 방법"
+      ],
+      "pdfPages": [
+        28,
+        49
+      ]
+    },
+    {
+      "chapter": "3. 규칙과 대응",
+      "sections": [
+        "두 양 사이의 관계",
+        "대응 관계를 식으로 나타내기",
+        "생활 속에서 대응 관계를 찾아 식으로 나타내기"
+      ],
+      "pdfPages": [
+        50,
+        65
+      ]
+    },
+    {
+      "chapter": "4. 약분과 통분",
+      "sections": [
+        "크기가 같은 분수",
+        "크기가 같은 분수 만들기",
+        "분수를 간단하게 나타내기",
+        "분모가 같은 분수로 나타내기",
+        "분수의 크기 비교",
+        "분수와 소수의 크기 비교"
+      ],
+      "pdfPages": [
+        66,
+        87
+      ]
+    },
+    {
+      "chapter": "5. 분수의 덧셈과 뺄셈",
+      "sections": [
+        "받아올림이 없는 진분수의 덧셈",
+        "받아올림이 있는 진분수의 덧셈",
+        "받아올림이 있는 대분수의 덧셈",
+        "받아내림이 없는 진분수의 뺄셈",
+        "받아내림이 없는 대분수의 뺄셈",
+        "받아내림이 있는 대분수의 뺄셈"
+      ],
+      "pdfPages": [
+        88,
+        113
+      ]
+    },
+    {
+      "chapter": "6. 다각형의 둘레와 넓이",
+      "sections": [
+        "정다각형의 둘레",
+        "사각형의 둘레",
+        "1 cm²",
+        "직사각형의 넓이",
+        "1 cm² 보다 더 큰 넓이의 단위",
+        "평행사변형의 넓이",
+        "삼각형의 넓이",
+        "마름모의 넓이",
+        "사다리꼴의 넓이"
+      ],
+      "pdfPages": [
+        114,
+        147
+      ]
+    }
+  ],
+  "sentenceStore": "문장(교재 원문)은 저장소 밖 C:\\Creative\\testautocreator-data\\I-개념용어\\cube-5-1.json — 용어마다 sentenceRef.key 로 찾는다",
+  "terms": [
+    {
+      "term": "덧셈과 뺄셈이 섞여 있는 경우",
+      "kind": "기타",
+      "grade": "5-1",
+      "chapter": "1. 자연수의 혼합 계산",
+      "section": "덧셈과 뺄셈이 섞여 있는 식",
+      "pdfPage": 8,
+      "bookPage": "008쪽",
+      "key": "5-1/p008/덧셈과 뺄셈이 섞여 있는 경우",
+      "first": true,
+      "aliases": [],
+      "mathGarbled": false,
+      "note": "계산 순서 — 핵심 문장 상자",
+      "explorer": {
+        "match": "related",
+        "cardId": "g5-operation-order",
+        "cardName": "혼합 계산의 순서",
+        "why": "카드 한 장(혼합 계산의 순서)이 교재 소단원 다섯의 계산 순서를 한꺼번에 담는다"
+      },
+      "sentenceRef": {
+        "store": "testautocreator-data",
+        "file": "I-개념용어/cube-5-1.json",
+        "key": "5-1/p008/덧셈과 뺄셈이 섞여 있는 경우"
+      }
+    },
+    {
+      "term": "덧셈과 뺄셈이 섞여 있고 ( )가 있는 경우",
+      "kind": "기타",
+      "grade": "5-1",
+      "chapter": "1. 자연수의 혼합 계산",
+      "section": "덧셈과 뺄셈이 섞여 있는 식",
+      "pdfPage": 8,
+      "bookPage": "008쪽",
+      "key": "5-1/p008/덧셈과 뺄셈이 섞여 있고 ( )가 있는 경우",
+      "first": true,
+      "aliases": [],
+      "mathGarbled": false,
+      "note": "계산 순서 — 핵심 문장 상자",
+      "explorer": {
+        "match": "related",
+        "cardId": "g5-operation-order",
+        "cardName": "혼합 계산의 순서",
+        "why": "괄호 규칙 — 카드 정의 뒷부분"
+      },
+      "sentenceRef": {
+        "store": "testautocreator-data",
+        "file": "I-개념용어/cube-5-1.json",
+        "key": "5-1/p008/덧셈과 뺄셈이 섞여 있고 ( )가 있는 경우"
+      }
+    },
+    {
+      "term": "곱셈과 나눗셈이 섞여 있는 경우",
+      "kind": "기타",
+      "grade": "5-1",
+      "chapter": "1. 자연수의 혼합 계산",
+      "section": "곱셈과 나눗셈이 섞여 있는 식",
+      "pdfPage": 10,
+      "bookPage": "010쪽",
+      "key": "5-1/p010/곱셈과 나눗셈이 섞여 있는 경우",
+      "first": true,
+      "aliases": [],
+      "mathGarbled": false,
+      "note": "계산 순서 — 핵심 문장 상자",
+      "explorer": {
+        "match": "related",
+        "cardId": "g5-operation-order",
+        "cardName": "혼합 계산의 순서",
+        "why": "카드에는 «같은 급 연산은 앞에서부터» 규칙이 없다"
+      },
+      "sentenceRef": {
+        "store": "testautocreator-data",
+        "file": "I-개념용어/cube-5-1.json",
+        "key": "5-1/p010/곱셈과 나눗셈이 섞여 있는 경우"
+      }
+    },
+    {
+      "term": "곱셈과 나눗셈이 섞여 있고 ( )가 있는 경우",
+      "kind": "기타",
+      "grade": "5-1",
+      "chapter": "1. 자연수의 혼합 계산",
+      "section": "곱셈과 나눗셈이 섞여 있는 식",
+      "pdfPage": 10,
+      "bookPage": "010쪽",
+      "key": "5-1/p010/곱셈과 나눗셈이 섞여 있고 ( )가 있는 경우",
+      "first": true,
+      "aliases": [],
+      "mathGarbled": false,
+      "note": "계산 순서 — 핵심 문장 상자",
+      "explorer": {
+        "match": "related",
+        "cardId": "g5-operation-order",
+        "cardName": "혼합 계산의 순서",
+        "why": "괄호 규칙 — 카드 정의 뒷부분"
+      },
+      "sentenceRef": {
+        "store": "testautocreator-data",
+        "file": "I-개념용어/cube-5-1.json",
+        "key": "5-1/p010/곱셈과 나눗셈이 섞여 있고 ( )가 있는 경우"
+      }
+    },
+    {
+      "term": "덧셈, 뺄셈, 곱셈이 섞여 있는 식",
+      "kind": "기타",
+      "grade": "5-1",
+      "chapter": "1. 자연수의 혼합 계산",
+      "section": "덧셈, 뺄셈, 곱셈이 섞여 있는 식",
+      "pdfPage": 14,
+      "bookPage": "014쪽",
+      "key": "5-1/p014/덧셈, 뺄셈, 곱셈이 섞여 있는 식",
+      "first": true,
+      "aliases": [],
+      "mathGarbled": false,
+      "note": "계산 순서 — 핵심 문장 상자(괄호 규칙을 같은 상자에)",
+      "explorer": {
+        "match": "related",
+        "cardId": "g5-operation-order",
+        "cardName": "혼합 계산의 순서",
+        "why": "카드 정의 앞부분(곱셈 먼저)"
+      },
+      "sentenceRef": {
+        "store": "testautocreator-data",
+        "file": "I-개념용어/cube-5-1.json",
+        "key": "5-1/p014/덧셈, 뺄셈, 곱셈이 섞여 있는 식"
+      }
+    },
+    {
+      "term": "덧셈, 뺄셈, 나눗셈이 섞여 있는 식",
+      "kind": "기타",
+      "grade": "5-1",
+      "chapter": "1. 자연수의 혼합 계산",
+      "section": "덧셈, 뺄셈, 나눗셈이 섞여 있는 식",
+      "pdfPage": 14,
+      "bookPage": "014쪽",
+      "key": "5-1/p014/덧셈, 뺄셈, 나눗셈이 섞여 있는 식",
+      "first": true,
+      "aliases": [],
+      "mathGarbled": false,
+      "note": "계산 순서 — 핵심 문장 상자(괄호 규칙을 같은 상자에)",
+      "explorer": {
+        "match": "related",
+        "cardId": "g5-operation-order",
+        "cardName": "혼합 계산의 순서",
+        "why": "카드 정의 앞부분(나눗셈 먼저)"
+      },
+      "sentenceRef": {
+        "store": "testautocreator-data",
+        "file": "I-개념용어/cube-5-1.json",
+        "key": "5-1/p014/덧셈, 뺄셈, 나눗셈이 섞여 있는 식"
+      }
+    },
+    {
+      "term": "덧셈, 뺄셈, 곱셈, 나눗셈이 섞여 있는 경우",
+      "kind": "기타",
+      "grade": "5-1",
+      "chapter": "1. 자연수의 혼합 계산",
+      "section": "덧셈, 뺄셈, 곱셈, 나눗셈이 섞여 있는 식",
+      "pdfPage": 16,
+      "bookPage": "016쪽",
+      "key": "5-1/p016/덧셈, 뺄셈, 곱셈, 나눗셈이 섞여 있는 경우",
+      "first": true,
+      "aliases": [],
+      "mathGarbled": false,
+      "note": "계산 순서 — 핵심 문장 상자. 여백에 계산 순서를 그림으로 정리",
+      "explorer": {
+        "match": "related",
+        "cardId": "g5-operation-order",
+        "cardName": "혼합 계산의 순서",
+        "why": "카드 정의와 가장 가깝다(곱셈·나눗셈 먼저 + 괄호). 교재는 같은 급이면 앞에서부터를 따로 적는다"
+      },
+      "sentenceRef": {
+        "store": "testautocreator-data",
+        "file": "I-개념용어/cube-5-1.json",
+        "key": "5-1/p016/덧셈, 뺄셈, 곱셈, 나눗셈이 섞여 있는 경우"
+      }
+    },
+    {
+      "term": "덧셈, 뺄셈, 곱셈, 나눗셈이 섞여 있고 ( )가 있는 경우",
+      "kind": "기타",
+      "grade": "5-1",
+      "chapter": "1. 자연수의 혼합 계산",
+      "section": "덧셈, 뺄셈, 곱셈, 나눗셈이 섞여 있는 식",
+      "pdfPage": 16,
+      "bookPage": "016쪽",
+      "key": "5-1/p016/덧셈, 뺄셈, 곱셈, 나눗셈이 섞여 있고 ( )가 있는 경우",
+      "first": true,
+      "aliases": [],
+      "mathGarbled": false,
+      "note": "계산 순서 — 핵심 문장 상자",
+      "explorer": {
+        "match": "related",
+        "cardId": "g5-operation-order",
+        "cardName": "혼합 계산의 순서",
+        "why": "괄호 규칙 — 카드 정의 뒷부분"
+      },
+      "sentenceRef": {
+        "store": "testautocreator-data",
+        "file": "I-개념용어/cube-5-1.json",
+        "key": "5-1/p016/덧셈, 뺄셈, 곱셈, 나눗셈이 섞여 있고 ( )가 있는 경우"
+      }
+    },
+    {
+      "term": "약수",
+      "kind": "정의",
+      "grade": "5-1",
+      "chapter": "2. 약수와 배수",
+      "section": "약수와 배수",
+      "pdfPage": 30,
+      "bookPage": "030쪽",
+      "key": "5-1/p030/약수",
+      "first": true,
+      "aliases": [],
+      "mathGarbled": false,
+      "note": "핵심 문장 상자. «한눈에 용어 쏙» 한자 뜻풀이 그림(손글씨 — 글자층 해독 안 함)",
+      "explorer": {
+        "match": "exact",
+        "cardId": "g5-divisor",
+        "cardName": "약수",
+        "why": ""
+      },
+      "sentenceRef": {
+        "store": "testautocreator-data",
+        "file": "I-개념용어/cube-5-1.json",
+        "key": "5-1/p030/약수"
+      }
+    },
+    {
+      "term": "배수",
+      "kind": "정의",
+      "grade": "5-1",
+      "chapter": "2. 약수와 배수",
+      "section": "약수와 배수",
+      "pdfPage": 30,
+      "bookPage": "030쪽",
+      "key": "5-1/p030/배수",
+      "first": true,
+      "aliases": [],
+      "mathGarbled": false,
+      "note": "핵심 문장 상자. «한눈에 용어 쏙» 한자 뜻풀이 그림(손글씨 — 글자층 해독 안 함)",
+      "explorer": {
+        "match": "exact",
+        "cardId": "g5-multiple",
+        "cardName": "배수",
+        "why": ""
+      },
+      "sentenceRef": {
+        "store": "testautocreator-data",
+        "file": "I-개념용어/cube-5-1.json",
+        "key": "5-1/p030/배수"
+      }
+    },
+    {
+      "term": "약수와 배수의 관계",
+      "kind": "성질",
+      "grade": "5-1",
+      "chapter": "2. 약수와 배수",
+      "section": "약수와 배수의 관계",
+      "pdfPage": 32,
+      "bookPage": "032쪽",
+      "key": "5-1/p032/약수와 배수의 관계",
+      "first": true,
+      "aliases": [],
+      "mathGarbled": false,
+      "note": "여백에 기호(●·▲)로 나눗셈과 약수·배수를 잇는 풀이",
+      "explorer": {
+        "match": "none",
+        "cardId": "",
+        "cardName": "",
+        "why": ""
+      },
+      "sentenceRef": {
+        "store": "testautocreator-data",
+        "file": "I-개념용어/cube-5-1.json",
+        "key": "5-1/p032/약수와 배수의 관계"
+      }
+    },
+    {
+      "term": "공약수",
+      "kind": "정의",
+      "grade": "5-1",
+      "chapter": "2. 약수와 배수",
+      "section": "공약수와 최대공약수",
+      "pdfPage": 36,
+      "bookPage": "036쪽",
+      "key": "5-1/p036/공약수",
+      "first": true,
+      "aliases": [],
+      "mathGarbled": false,
+      "note": "",
+      "explorer": {
+        "match": "none",
+        "cardId": "",
+        "cardName": "",
+        "why": ""
+      },
+      "sentenceRef": {
+        "store": "testautocreator-data",
+        "file": "I-개념용어/cube-5-1.json",
+        "key": "5-1/p036/공약수"
+      }
+    },
+    {
+      "term": "최대공약수",
+      "kind": "정의",
+      "grade": "5-1",
+      "chapter": "2. 약수와 배수",
+      "section": "공약수와 최대공약수",
+      "pdfPage": 36,
+      "bookPage": "036쪽",
+      "key": "5-1/p036/최대공약수",
+      "first": true,
+      "aliases": [],
+      "mathGarbled": false,
+      "note": "",
+      "explorer": {
+        "match": "exact",
+        "cardId": "g5-gcd",
+        "cardName": "최대공약수",
+        "why": ""
+      },
+      "sentenceRef": {
+        "store": "testautocreator-data",
+        "file": "I-개념용어/cube-5-1.json",
+        "key": "5-1/p036/최대공약수"
+      }
+    },
+    {
+      "term": "공약수와 최대공약수의 관계",
+      "kind": "성질",
+      "grade": "5-1",
+      "chapter": "2. 약수와 배수",
+      "section": "공약수와 최대공약수",
+      "pdfPage": 36,
+      "bookPage": "036쪽",
+      "key": "5-1/p036/공약수와 최대공약수의 관계",
+      "first": true,
+      "aliases": [],
+      "mathGarbled": false,
+      "note": "",
+      "explorer": {
+        "match": "none",
+        "cardId": "",
+        "cardName": "",
+        "why": "초5 카드에 공약수·관계 카드 없음(최대공약수 정의 카드만)"
+      },
+      "sentenceRef": {
+        "store": "testautocreator-data",
+        "file": "I-개념용어/cube-5-1.json",
+        "key": "5-1/p036/공약수와 최대공약수의 관계"
+      }
+    },
+    {
+      "term": "공배수",
+      "kind": "정의",
+      "grade": "5-1",
+      "chapter": "2. 약수와 배수",
+      "section": "공배수와 최소공배수",
+      "pdfPage": 38,
+      "bookPage": "038쪽",
+      "key": "5-1/p038/공배수",
+      "first": true,
+      "aliases": [],
+      "mathGarbled": false,
+      "note": "",
+      "explorer": {
+        "match": "none",
+        "cardId": "",
+        "cardName": "",
+        "why": ""
+      },
+      "sentenceRef": {
+        "store": "testautocreator-data",
+        "file": "I-개념용어/cube-5-1.json",
+        "key": "5-1/p038/공배수"
+      }
+    },
+    {
+      "term": "최소공배수",
+      "kind": "정의",
+      "grade": "5-1",
+      "chapter": "2. 약수와 배수",
+      "section": "공배수와 최소공배수",
+      "pdfPage": 38,
+      "bookPage": "038쪽",
+      "key": "5-1/p038/최소공배수",
+      "first": true,
+      "aliases": [],
+      "mathGarbled": false,
+      "note": "",
+      "explorer": {
+        "match": "exact",
+        "cardId": "g5-lcm",
+        "cardName": "최소공배수",
+        "why": ""
+      },
+      "sentenceRef": {
+        "store": "testautocreator-data",
+        "file": "I-개념용어/cube-5-1.json",
+        "key": "5-1/p038/최소공배수"
+      }
+    },
+    {
+      "term": "공배수와 최소공배수의 관계",
+      "kind": "성질",
+      "grade": "5-1",
+      "chapter": "2. 약수와 배수",
+      "section": "공배수와 최소공배수",
+      "pdfPage": 38,
+      "bookPage": "038쪽",
+      "key": "5-1/p038/공배수와 최소공배수의 관계",
+      "first": true,
+      "aliases": [],
+      "mathGarbled": false,
+      "note": "",
+      "explorer": {
+        "match": "none",
+        "cardId": "",
+        "cardName": "",
+        "why": ""
+      },
+      "sentenceRef": {
+        "store": "testautocreator-data",
+        "file": "I-개념용어/cube-5-1.json",
+        "key": "5-1/p038/공배수와 최소공배수의 관계"
+      }
+    },
+    {
+      "term": "대응 관계",
+      "kind": "정의",
+      "grade": "5-1",
+      "chapter": "3. 규칙과 대응",
+      "section": "두 양 사이의 관계",
+      "pdfPage": 52,
+      "bookPage": "052쪽",
+      "key": "5-1/p052/대응 관계",
+      "first": true,
+      "aliases": [],
+      "mathGarbled": false,
+      "note": "여백 도움말 — 본문은 예로만 보인다",
+      "explorer": {
+        "match": "exact",
+        "cardId": "g5-correspondence",
+        "cardName": "대응 관계",
+        "why": ""
+      },
+      "sentenceRef": {
+        "store": "testautocreator-data",
+        "file": "I-개념용어/cube-5-1.json",
+        "key": "5-1/p052/대응 관계"
+      }
+    },
+    {
+      "term": "대응 관계를 식으로 나타내기",
+      "kind": "기타",
+      "grade": "5-1",
+      "chapter": "3. 규칙과 대응",
+      "section": "대응 관계를 식으로 나타내기",
+      "pdfPage": 54,
+      "bookPage": "054쪽",
+      "key": "5-1/p054/대응 관계를 식으로 나타내기",
+      "first": true,
+      "aliases": [],
+      "mathGarbled": false,
+      "note": "핵심 문장 상자 — 양을 기호로 두고 식 세우기",
+      "explorer": {
+        "match": "related",
+        "cardId": "g5-rule-expression",
+        "cardName": "대응을 식으로 나타내기",
+        "why": "카드 이름 «대응을 식으로 나타내기» — 교재 소단원 이름은 «대응 관계를 식으로 나타내기»"
+      },
+      "sentenceRef": {
+        "store": "testautocreator-data",
+        "file": "I-개념용어/cube-5-1.json",
+        "key": "5-1/p054/대응 관계를 식으로 나타내기"
+      }
+    },
+    {
+      "term": "크기가 같은 분수",
+      "kind": "성질",
+      "grade": "5-1",
+      "chapter": "4. 약분과 통분",
+      "section": "크기가 같은 분수 만들기",
+      "pdfPage": 68,
+      "bookPage": "068쪽",
+      "key": "5-1/p068/크기가 같은 분수",
+      "first": true,
+      "aliases": [],
+      "mathGarbled": false,
+      "note": "핵심 문장 상자(곱하는 쪽). 교재는 «크기가 같은 분수» 자체를 정의 문장으로 두지 않고 그림으로 보인다",
+      "explorer": {
+        "match": "exact",
+        "cardId": "g5-equivalent",
+        "cardName": "크기가 같은 분수",
+        "why": ""
+      },
+      "sentenceRef": {
+        "store": "testautocreator-data",
+        "file": "I-개념용어/cube-5-1.json",
+        "key": "5-1/p068/크기가 같은 분수"
+      }
+    },
+    {
+      "term": "같은 수로 나누어 크기가 같은 분수 만들기",
+      "kind": "성질",
+      "grade": "5-1",
+      "chapter": "4. 약분과 통분",
+      "section": "크기가 같은 분수 만들기",
+      "pdfPage": 68,
+      "bookPage": "068쪽",
+      "key": "5-1/p068/같은 수로 나누어 크기가 같은 분수 만들기",
+      "first": true,
+      "aliases": [],
+      "mathGarbled": false,
+      "note": "핵심 문장 상자 ⑵",
+      "explorer": {
+        "match": "related",
+        "cardId": "g5-equivalent",
+        "cardName": "크기가 같은 분수",
+        "why": "카드 정의가 곱하기·나누기를 한 문장에"
+      },
+      "sentenceRef": {
+        "store": "testautocreator-data",
+        "file": "I-개념용어/cube-5-1.json",
+        "key": "5-1/p068/같은 수로 나누어 크기가 같은 분수 만들기"
+      }
+    },
+    {
+      "term": "약분",
+      "kind": "정의",
+      "grade": "5-1",
+      "chapter": "4. 약분과 통분",
+      "section": "분수를 간단하게 나타내기",
+      "pdfPage": 70,
+      "bookPage": "070쪽",
+      "key": "5-1/p070/약분",
+      "first": true,
+      "aliases": [
+        "약분한다"
+      ],
+      "mathGarbled": false,
+      "note": "핵심 문장 상자. 교재는 동사형(약분한다)으로 정의",
+      "explorer": {
+        "match": "exact",
+        "cardId": "g5-reduce",
+        "cardName": "약분",
+        "why": ""
+      },
+      "sentenceRef": {
+        "store": "testautocreator-data",
+        "file": "I-개념용어/cube-5-1.json",
+        "key": "5-1/p070/약분"
+      }
+    },
+    {
+      "term": "기약분수",
+      "kind": "정의",
+      "grade": "5-1",
+      "chapter": "4. 약분과 통분",
+      "section": "분수를 간단하게 나타내기",
+      "pdfPage": 70,
+      "bookPage": "070쪽",
+      "key": "5-1/p070/기약분수",
+      "first": true,
+      "aliases": [],
+      "mathGarbled": false,
+      "note": "핵심 문장 상자. 말풍선으로 뜻을 한 번 더 풀어 준다",
+      "explorer": {
+        "match": "exact",
+        "cardId": "g5-irreducible",
+        "cardName": "기약분수",
+        "why": ""
+      },
+      "sentenceRef": {
+        "store": "testautocreator-data",
+        "file": "I-개념용어/cube-5-1.json",
+        "key": "5-1/p070/기약분수"
+      }
+    },
+    {
+      "term": "통분",
+      "kind": "정의",
+      "grade": "5-1",
+      "chapter": "4. 약분과 통분",
+      "section": "분모가 같은 분수로 나타내기",
+      "pdfPage": 74,
+      "bookPage": "074쪽",
+      "key": "5-1/p074/통분",
+      "first": true,
+      "aliases": [
+        "통분한다"
+      ],
+      "mathGarbled": false,
+      "note": "핵심 문장 상자. 교재는 동사형(통분한다)으로 정의",
+      "explorer": {
+        "match": "exact",
+        "cardId": "g5-common-denominator",
+        "cardName": "통분",
+        "why": ""
+      },
+      "sentenceRef": {
+        "store": "testautocreator-data",
+        "file": "I-개념용어/cube-5-1.json",
+        "key": "5-1/p074/통분"
+      }
+    },
+    {
+      "term": "공통분모",
+      "kind": "정의",
+      "grade": "5-1",
+      "chapter": "4. 약분과 통분",
+      "section": "분모가 같은 분수로 나타내기",
+      "pdfPage": 74,
+      "bookPage": "074쪽",
+      "key": "5-1/p074/공통분모",
+      "first": true,
+      "aliases": [],
+      "mathGarbled": false,
+      "note": "핵심 문장 상자",
+      "explorer": {
+        "match": "related",
+        "cardId": "g5-common-denominator",
+        "cardName": "통분",
+        "why": "카드 «통분» 정의 안에 «공통인 분모» 로만 나온다"
+      },
+      "sentenceRef": {
+        "store": "testautocreator-data",
+        "file": "I-개념용어/cube-5-1.json",
+        "key": "5-1/p074/공통분모"
+      }
+    },
+    {
+      "term": "분수와 소수의 관계",
+      "kind": "성질",
+      "grade": "5-1",
+      "chapter": "4. 약분과 통분",
+      "section": "분수와 소수의 크기 비교",
+      "pdfPage": 76,
+      "bookPage": "076쪽",
+      "key": "5-1/p076/분수와 소수의 관계",
+      "first": true,
+      "aliases": [],
+      "mathGarbled": true,
+      "note": "여백 도움말. [분수] = ■/10, ■▲/100, ■▲●/1000",
+      "explorer": {
+        "match": "none",
+        "cardId": "",
+        "cardName": "",
+        "why": "카드 없음"
+      },
+      "sentenceRef": {
+        "store": "testautocreator-data",
+        "file": "I-개념용어/cube-5-1.json",
+        "key": "5-1/p076/분수와 소수의 관계"
+      }
+    },
+    {
+      "term": "받아올림이 없는 진분수의 덧셈",
+      "kind": "기타",
+      "grade": "5-1",
+      "chapter": "5. 분수의 덧셈과 뺄셈",
+      "section": "받아올림이 없는 진분수의 덧셈",
+      "pdfPage": 90,
+      "bookPage": "090쪽",
+      "key": "5-1/p090/받아올림이 없는 진분수의 덧셈",
+      "first": true,
+      "aliases": [],
+      "mathGarbled": false,
+      "note": "계산 방법 — 핵심 문장 상자(분모가 다른 분수의 덧셈)",
+      "explorer": {
+        "match": "none",
+        "cardId": "",
+        "cardName": "",
+        "why": "분수의 덧셈·뺄셈 카드 없음"
+      },
+      "sentenceRef": {
+        "store": "testautocreator-data",
+        "file": "I-개념용어/cube-5-1.json",
+        "key": "5-1/p090/받아올림이 없는 진분수의 덧셈"
+      }
+    },
+    {
+      "term": "받아내림이 없는 진분수의 뺄셈",
+      "kind": "기타",
+      "grade": "5-1",
+      "chapter": "5. 분수의 덧셈과 뺄셈",
+      "section": "받아내림이 없는 진분수의 뺄셈",
+      "pdfPage": 98,
+      "bookPage": "098쪽",
+      "key": "5-1/p098/받아내림이 없는 진분수의 뺄셈",
+      "first": true,
+      "aliases": [],
+      "mathGarbled": false,
+      "note": "계산 방법 — 핵심 문장 상자(분모가 다른 분수의 뺄셈)",
+      "explorer": {
+        "match": "none",
+        "cardId": "",
+        "cardName": "",
+        "why": "분수의 덧셈·뺄셈 카드 없음"
+      },
+      "sentenceRef": {
+        "store": "testautocreator-data",
+        "file": "I-개념용어/cube-5-1.json",
+        "key": "5-1/p098/받아내림이 없는 진분수의 뺄셈"
+      }
+    },
+    {
+      "term": "정다각형의 둘레",
+      "kind": "공식",
+      "grade": "5-1",
+      "chapter": "6. 다각형의 둘레와 넓이",
+      "section": "정다각형의 둘레",
+      "pdfPage": 116,
+      "bookPage": "116쪽",
+      "key": "5-1/p116/정다각형의 둘레",
+      "first": true,
+      "aliases": [],
+      "mathGarbled": false,
+      "note": "핵심 문장 상자",
+      "explorer": {
+        "match": "related",
+        "cardId": "g5-perimeter",
+        "cardName": "둘레",
+        "why": "카드는 «둘레» 일반 정의 — 교재는 도형별 둘레 공식만(둘레 낱말은 앞 학년)"
+      },
+      "sentenceRef": {
+        "store": "testautocreator-data",
+        "file": "I-개념용어/cube-5-1.json",
+        "key": "5-1/p116/정다각형의 둘레"
+      }
+    },
+    {
+      "term": "직사각형의 둘레",
+      "kind": "공식",
+      "grade": "5-1",
+      "chapter": "6. 다각형의 둘레와 넓이",
+      "section": "사각형의 둘레",
+      "pdfPage": 116,
+      "bookPage": "116쪽",
+      "key": "5-1/p116/직사각형의 둘레",
+      "first": true,
+      "aliases": [],
+      "mathGarbled": false,
+      "note": "핵심 문장 상자",
+      "explorer": {
+        "match": "related",
+        "cardId": "g5-perimeter",
+        "cardName": "둘레",
+        "why": "도형별 둘레 공식 — 카드는 둘레 일반"
+      },
+      "sentenceRef": {
+        "store": "testautocreator-data",
+        "file": "I-개념용어/cube-5-1.json",
+        "key": "5-1/p116/직사각형의 둘레"
+      }
+    },
+    {
+      "term": "평행사변형의 둘레",
+      "kind": "공식",
+      "grade": "5-1",
+      "chapter": "6. 다각형의 둘레와 넓이",
+      "section": "사각형의 둘레",
+      "pdfPage": 116,
+      "bookPage": "116쪽",
+      "key": "5-1/p116/평행사변형의 둘레",
+      "first": true,
+      "aliases": [],
+      "mathGarbled": false,
+      "note": "핵심 문장 상자",
+      "explorer": {
+        "match": "related",
+        "cardId": "g5-perimeter",
+        "cardName": "둘레",
+        "why": "도형별 둘레 공식 — 카드는 둘레 일반"
+      },
+      "sentenceRef": {
+        "store": "testautocreator-data",
+        "file": "I-개념용어/cube-5-1.json",
+        "key": "5-1/p116/평행사변형의 둘레"
+      }
+    },
+    {
+      "term": "마름모의 둘레",
+      "kind": "공식",
+      "grade": "5-1",
+      "chapter": "6. 다각형의 둘레와 넓이",
+      "section": "사각형의 둘레",
+      "pdfPage": 116,
+      "bookPage": "116쪽",
+      "key": "5-1/p116/마름모의 둘레",
+      "first": true,
+      "aliases": [],
+      "mathGarbled": false,
+      "note": "핵심 문장 상자",
+      "explorer": {
+        "match": "related",
+        "cardId": "g5-perimeter",
+        "cardName": "둘레",
+        "why": "도형별 둘레 공식 — 카드는 둘레 일반"
+      },
+      "sentenceRef": {
+        "store": "testautocreator-data",
+        "file": "I-개념용어/cube-5-1.json",
+        "key": "5-1/p116/마름모의 둘레"
+      }
+    },
+    {
+      "term": "1 cm²",
+      "kind": "기호",
+      "grade": "5-1",
+      "chapter": "6. 다각형의 둘레와 넓이",
+      "section": "1 cm²",
+      "pdfPage": 118,
+      "bookPage": "118쪽",
+      "key": "5-1/p118/1 cm²",
+      "first": true,
+      "aliases": [
+        "cm²",
+        "제곱센티미터",
+        "1 제곱센티미터"
+      ],
+      "mathGarbled": false,
+      "note": "",
+      "explorer": {
+        "match": "none",
+        "cardId": "",
+        "cardName": "",
+        "why": "넓이 단위 카드 없음"
+      },
+      "sentenceRef": {
+        "store": "testautocreator-data",
+        "file": "I-개념용어/cube-5-1.json",
+        "key": "5-1/p118/1 cm²"
+      }
+    },
+    {
+      "term": "직사각형의 넓이",
+      "kind": "공식",
+      "grade": "5-1",
+      "chapter": "6. 다각형의 둘레와 넓이",
+      "section": "직사각형의 넓이",
+      "pdfPage": 118,
+      "bookPage": "118쪽",
+      "key": "5-1/p118/직사각형의 넓이",
+      "first": true,
+      "aliases": [],
+      "mathGarbled": false,
+      "note": "핵심 문장 상자",
+      "explorer": {
+        "match": "exact",
+        "cardId": "g5-rectangle-area",
+        "cardName": "직사각형의 넓이",
+        "why": ""
+      },
+      "sentenceRef": {
+        "store": "testautocreator-data",
+        "file": "I-개념용어/cube-5-1.json",
+        "key": "5-1/p118/직사각형의 넓이"
+      }
+    },
+    {
+      "term": "정사각형의 넓이",
+      "kind": "공식",
+      "grade": "5-1",
+      "chapter": "6. 다각형의 둘레와 넓이",
+      "section": "직사각형의 넓이",
+      "pdfPage": 118,
+      "bookPage": "118쪽",
+      "key": "5-1/p118/정사각형의 넓이",
+      "first": true,
+      "aliases": [],
+      "mathGarbled": false,
+      "note": "핵심 문장 상자",
+      "explorer": {
+        "match": "none",
+        "cardId": "",
+        "cardName": "",
+        "why": ""
+      },
+      "sentenceRef": {
+        "store": "testautocreator-data",
+        "file": "I-개념용어/cube-5-1.json",
+        "key": "5-1/p118/정사각형의 넓이"
+      }
+    },
+    {
+      "term": "1 m²",
+      "kind": "기호",
+      "grade": "5-1",
+      "chapter": "6. 다각형의 둘레와 넓이",
+      "section": "1 cm² 보다 더 큰 넓이의 단위",
+      "pdfPage": 120,
+      "bookPage": "120쪽",
+      "key": "5-1/p120/1 m²",
+      "first": true,
+      "aliases": [
+        "m²",
+        "제곱미터",
+        "1 제곱미터"
+      ],
+      "mathGarbled": false,
+      "note": "",
+      "explorer": {
+        "match": "none",
+        "cardId": "",
+        "cardName": "",
+        "why": "넓이 단위 카드 없음"
+      },
+      "sentenceRef": {
+        "store": "testautocreator-data",
+        "file": "I-개념용어/cube-5-1.json",
+        "key": "5-1/p120/1 m²"
+      }
+    },
+    {
+      "term": "1 cm²와 1 m²의 관계",
+      "kind": "기타",
+      "grade": "5-1",
+      "chapter": "6. 다각형의 둘레와 넓이",
+      "section": "1 cm² 보다 더 큰 넓이의 단위",
+      "pdfPage": 120,
+      "bookPage": "120쪽",
+      "key": "5-1/p120/1 cm²와 1 m²의 관계",
+      "first": true,
+      "aliases": [],
+      "mathGarbled": false,
+      "note": "결과 상자 — 단위 사이의 관계(같은 이름의 소제목 ②). 표본 대조에서 찾음",
+      "explorer": {
+        "match": "none",
+        "cardId": "",
+        "cardName": "",
+        "why": "넓이 단위 카드 없음"
+      },
+      "sentenceRef": {
+        "store": "testautocreator-data",
+        "file": "I-개념용어/cube-5-1.json",
+        "key": "5-1/p120/1 cm²와 1 m²의 관계"
+      }
+    },
+    {
+      "term": "1 km²",
+      "kind": "기호",
+      "grade": "5-1",
+      "chapter": "6. 다각형의 둘레와 넓이",
+      "section": "1 cm² 보다 더 큰 넓이의 단위",
+      "pdfPage": 120,
+      "bookPage": "120쪽",
+      "key": "5-1/p120/1 km²",
+      "first": true,
+      "aliases": [
+        "km²",
+        "제곱킬로미터",
+        "1 제곱킬로미터"
+      ],
+      "mathGarbled": false,
+      "note": "",
+      "explorer": {
+        "match": "none",
+        "cardId": "",
+        "cardName": "",
+        "why": "넓이 단위 카드 없음"
+      },
+      "sentenceRef": {
+        "store": "testautocreator-data",
+        "file": "I-개념용어/cube-5-1.json",
+        "key": "5-1/p120/1 km²"
+      }
+    },
+    {
+      "term": "1 km²와 1 m²의 관계",
+      "kind": "기타",
+      "grade": "5-1",
+      "chapter": "6. 다각형의 둘레와 넓이",
+      "section": "1 cm² 보다 더 큰 넓이의 단위",
+      "pdfPage": 120,
+      "bookPage": "120쪽",
+      "key": "5-1/p120/1 km²와 1 m²의 관계",
+      "first": true,
+      "aliases": [],
+      "mathGarbled": false,
+      "note": "결과 상자 — 단위 사이의 관계(같은 이름의 소제목 ②). 표본 대조에서 찾음",
+      "explorer": {
+        "match": "none",
+        "cardId": "",
+        "cardName": "",
+        "why": "넓이 단위 카드 없음"
+      },
+      "sentenceRef": {
+        "store": "testautocreator-data",
+        "file": "I-개념용어/cube-5-1.json",
+        "key": "5-1/p120/1 km²와 1 m²의 관계"
+      }
+    },
+    {
+      "term": "밑변",
+      "kind": "정의",
+      "grade": "5-1",
+      "chapter": "6. 다각형의 둘레와 넓이",
+      "section": "평행사변형의 넓이",
+      "pdfPage": 126,
+      "bookPage": "126쪽",
+      "key": "5-1/p126/밑변",
+      "first": true,
+      "aliases": [],
+      "mathGarbled": false,
+      "note": "평행사변형의 밑변",
+      "explorer": {
+        "match": "none",
+        "cardId": "",
+        "cardName": "",
+        "why": "밑변·높이 카드 없음(넓이 공식 카드 안에 낱말로만)"
+      },
+      "sentenceRef": {
+        "store": "testautocreator-data",
+        "file": "I-개념용어/cube-5-1.json",
+        "key": "5-1/p126/밑변"
+      }
+    },
+    {
+      "term": "높이",
+      "kind": "정의",
+      "grade": "5-1",
+      "chapter": "6. 다각형의 둘레와 넓이",
+      "section": "평행사변형의 넓이",
+      "pdfPage": 126,
+      "bookPage": "126쪽",
+      "key": "5-1/p126/높이",
+      "first": true,
+      "aliases": [],
+      "mathGarbled": false,
+      "note": "평행사변형의 높이",
+      "explorer": {
+        "match": "none",
+        "cardId": "",
+        "cardName": "",
+        "why": "밑변·높이 카드 없음(넓이 공식 카드 안에 낱말로만)"
+      },
+      "sentenceRef": {
+        "store": "testautocreator-data",
+        "file": "I-개념용어/cube-5-1.json",
+        "key": "5-1/p126/높이"
+      }
+    },
+    {
+      "term": "평행사변형의 넓이",
+      "kind": "공식",
+      "grade": "5-1",
+      "chapter": "6. 다각형의 둘레와 넓이",
+      "section": "평행사변형의 넓이",
+      "pdfPage": 126,
+      "bookPage": "126쪽",
+      "key": "5-1/p126/평행사변형의 넓이",
+      "first": true,
+      "aliases": [],
+      "mathGarbled": false,
+      "note": "핵심 문장 상자",
+      "explorer": {
+        "match": "exact",
+        "cardId": "g5-parallelogram-area",
+        "cardName": "평행사변형의 넓이",
+        "why": ""
+      },
+      "sentenceRef": {
+        "store": "testautocreator-data",
+        "file": "I-개념용어/cube-5-1.json",
+        "key": "5-1/p126/평행사변형의 넓이"
+      }
+    },
+    {
+      "term": "밑변",
+      "kind": "정의",
+      "grade": "5-1",
+      "chapter": "6. 다각형의 둘레와 넓이",
+      "section": "삼각형의 넓이",
+      "pdfPage": 128,
+      "bookPage": "128쪽",
+      "key": "5-1/p128/밑변",
+      "first": false,
+      "aliases": [],
+      "mathGarbled": false,
+      "note": "삼각형의 밑변 · 처음: 5-1 p126",
+      "explorer": {
+        "match": "none",
+        "cardId": "",
+        "cardName": "",
+        "why": "밑변·높이 카드 없음"
+      },
+      "sentenceRef": {
+        "store": "testautocreator-data",
+        "file": "I-개념용어/cube-5-1.json",
+        "key": "5-1/p128/밑변"
+      }
+    },
+    {
+      "term": "높이",
+      "kind": "정의",
+      "grade": "5-1",
+      "chapter": "6. 다각형의 둘레와 넓이",
+      "section": "삼각형의 넓이",
+      "pdfPage": 128,
+      "bookPage": "128쪽",
+      "key": "5-1/p128/높이",
+      "first": false,
+      "aliases": [],
+      "mathGarbled": false,
+      "note": "삼각형의 높이 · 처음: 5-1 p126",
+      "explorer": {
+        "match": "none",
+        "cardId": "",
+        "cardName": "",
+        "why": "밑변·높이 카드 없음"
+      },
+      "sentenceRef": {
+        "store": "testautocreator-data",
+        "file": "I-개념용어/cube-5-1.json",
+        "key": "5-1/p128/높이"
+      }
+    },
+    {
+      "term": "삼각형의 넓이",
+      "kind": "공식",
+      "grade": "5-1",
+      "chapter": "6. 다각형의 둘레와 넓이",
+      "section": "삼각형의 넓이",
+      "pdfPage": 128,
+      "bookPage": "128쪽",
+      "key": "5-1/p128/삼각형의 넓이",
+      "first": true,
+      "aliases": [],
+      "mathGarbled": false,
+      "note": "핵심 문장 상자",
+      "explorer": {
+        "match": "exact",
+        "cardId": "g5-triangle-area",
+        "cardName": "삼각형의 넓이",
+        "why": ""
+      },
+      "sentenceRef": {
+        "store": "testautocreator-data",
+        "file": "I-개념용어/cube-5-1.json",
+        "key": "5-1/p128/삼각형의 넓이"
+      }
+    },
+    {
+      "term": "마름모의 넓이",
+      "kind": "공식",
+      "grade": "5-1",
+      "chapter": "6. 다각형의 둘레와 넓이",
+      "section": "마름모의 넓이",
+      "pdfPage": 132,
+      "bookPage": "132쪽",
+      "key": "5-1/p132/마름모의 넓이",
+      "first": true,
+      "aliases": [],
+      "mathGarbled": false,
+      "note": "핵심 문장 상자",
+      "explorer": {
+        "match": "none",
+        "cardId": "",
+        "cardName": "",
+        "why": "초5 카드에 마름모의 넓이 없음(직사각형·평행사변형·삼각형·사다리꼴만)"
+      },
+      "sentenceRef": {
+        "store": "testautocreator-data",
+        "file": "I-개념용어/cube-5-1.json",
+        "key": "5-1/p132/마름모의 넓이"
+      }
+    },
+    {
+      "term": "마름모의 대각선의 성질",
+      "kind": "성질",
+      "grade": "5-1",
+      "chapter": "6. 다각형의 둘레와 넓이",
+      "section": "마름모의 넓이",
+      "pdfPage": 132,
+      "bookPage": "132쪽",
+      "key": "5-1/p132/마름모의 대각선의 성질",
+      "first": true,
+      "aliases": [],
+      "mathGarbled": false,
+      "note": "여백 도움말(앞 학년 사각형 성질의 복습일 수 있음)",
+      "explorer": {
+        "match": "none",
+        "cardId": "",
+        "cardName": "",
+        "why": "카드 없음"
+      },
+      "sentenceRef": {
+        "store": "testautocreator-data",
+        "file": "I-개념용어/cube-5-1.json",
+        "key": "5-1/p132/마름모의 대각선의 성질"
+      }
+    },
+    {
+      "term": "밑변",
+      "kind": "정의",
+      "grade": "5-1",
+      "chapter": "6. 다각형의 둘레와 넓이",
+      "section": "사다리꼴의 넓이",
+      "pdfPage": 134,
+      "bookPage": "134쪽",
+      "key": "5-1/p134/밑변",
+      "first": false,
+      "aliases": [],
+      "mathGarbled": false,
+      "note": "사다리꼴의 밑변 · 처음: 5-1 p126",
+      "explorer": {
+        "match": "none",
+        "cardId": "",
+        "cardName": "",
+        "why": "밑변·높이 카드 없음"
+      },
+      "sentenceRef": {
+        "store": "testautocreator-data",
+        "file": "I-개념용어/cube-5-1.json",
+        "key": "5-1/p134/밑변"
+      }
+    },
+    {
+      "term": "윗변",
+      "kind": "정의",
+      "grade": "5-1",
+      "chapter": "6. 다각형의 둘레와 넓이",
+      "section": "사다리꼴의 넓이",
+      "pdfPage": 134,
+      "bookPage": "134쪽",
+      "key": "5-1/p134/윗변",
+      "first": true,
+      "aliases": [],
+      "mathGarbled": false,
+      "note": "",
+      "explorer": {
+        "match": "none",
+        "cardId": "",
+        "cardName": "",
+        "why": "카드 없음(사다리꼴의 넓이 카드 안에 낱말로만)"
+      },
+      "sentenceRef": {
+        "store": "testautocreator-data",
+        "file": "I-개념용어/cube-5-1.json",
+        "key": "5-1/p134/윗변"
+      }
+    },
+    {
+      "term": "아랫변",
+      "kind": "정의",
+      "grade": "5-1",
+      "chapter": "6. 다각형의 둘레와 넓이",
+      "section": "사다리꼴의 넓이",
+      "pdfPage": 134,
+      "bookPage": "134쪽",
+      "key": "5-1/p134/아랫변",
+      "first": true,
+      "aliases": [],
+      "mathGarbled": false,
+      "note": "",
+      "explorer": {
+        "match": "none",
+        "cardId": "",
+        "cardName": "",
+        "why": "카드 없음(사다리꼴의 넓이 카드 안에 낱말로만)"
+      },
+      "sentenceRef": {
+        "store": "testautocreator-data",
+        "file": "I-개념용어/cube-5-1.json",
+        "key": "5-1/p134/아랫변"
+      }
+    },
+    {
+      "term": "높이",
+      "kind": "정의",
+      "grade": "5-1",
+      "chapter": "6. 다각형의 둘레와 넓이",
+      "section": "사다리꼴의 넓이",
+      "pdfPage": 134,
+      "bookPage": "134쪽",
+      "key": "5-1/p134/높이",
+      "first": false,
+      "aliases": [],
+      "mathGarbled": false,
+      "note": "사다리꼴의 높이 · 처음: 5-1 p126",
+      "explorer": {
+        "match": "none",
+        "cardId": "",
+        "cardName": "",
+        "why": "밑변·높이 카드 없음"
+      },
+      "sentenceRef": {
+        "store": "testautocreator-data",
+        "file": "I-개념용어/cube-5-1.json",
+        "key": "5-1/p134/높이"
+      }
+    },
+    {
+      "term": "사다리꼴의 넓이",
+      "kind": "공식",
+      "grade": "5-1",
+      "chapter": "6. 다각형의 둘레와 넓이",
+      "section": "사다리꼴의 넓이",
+      "pdfPage": 134,
+      "bookPage": "134쪽",
+      "key": "5-1/p134/사다리꼴의 넓이",
+      "first": true,
+      "aliases": [],
+      "mathGarbled": false,
+      "note": "핵심 문장 상자",
+      "explorer": {
+        "match": "exact",
+        "cardId": "g5-trapezoid-area",
+        "cardName": "사다리꼴의 넓이",
+        "why": ""
+      },
+      "sentenceRef": {
+        "store": "testautocreator-data",
+        "file": "I-개념용어/cube-5-1.json",
+        "key": "5-1/p134/사다리꼴의 넓이"
+      }
+    }
+  ]
+}

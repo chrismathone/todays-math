@@ -34,6 +34,8 @@ import s from "./authenticated.module.css";
 import pageTurn from "./question-page-turn.module.css";
 import StudentJourney from "./StudentJourney";
 import AnswerFeedbackEffect from "./AnswerFeedbackEffect";
+import { NumberKey } from "./AnswerKeyCaps";
+import { answerKey, useAnswerKeys } from "./useAnswerKeys";
 import type { ExpeditionActivityCallbacks } from "@/components/math-explorers/ExplorerBankActivity";
 
 const ProblemContent = dynamic(() =>
@@ -607,6 +609,8 @@ function Question({
   const [selected, setSelected] = useState<string | null>(null);
   const [startedAt] = useState(() => Date.now());
   const heading = useRef<HTMLParagraphElement>(null);
+  const card = useRef<HTMLElement>(null);
+  useAnswerKeys(card);
   useEffect(() => {
     heading.current?.focus({ preventScroll: true });
   }, [problem.id]);
@@ -623,6 +627,7 @@ function Question({
   }
   return (
     <section
+      ref={card}
       className={`${s.card} ${s.questionCard} ${s.fixedQuestion}`}
       aria-label="현재 문제"
       aria-busy={busy}
@@ -672,6 +677,7 @@ function Question({
                   key={choice}
                   type="button"
                   disabled={disabled}
+                  aria-keyshortcuts={answerKey(index)}
                   aria-pressed={selected === choice}
                   onClick={() => choose(choice)}
                   data-result={
@@ -682,9 +688,11 @@ function Question({
                       : undefined
                   }
                 >
-                  <span className={s.choiceNumber} aria-hidden="true">
-                    {index + 1}
-                  </span>
+                  <NumberKey
+                    index={index}
+                    className={s.choiceNumber}
+                    aria-hidden="true"
+                  />
                   <MathText text={choice} />
                 </button>
               ))}

@@ -1,0 +1,1463 @@
+{
+  "source": "큐브수학 개념 5-2 진도북",
+  "file": "N:\\개인\\강아\\교재자료\\큐브수학 개념\\큐브수학 개념\\진도북\\큐브수학 개념 5-2_진도북.pdf",
+  "pages": 152,
+  "extractedAt": "2026-09-28",
+  "extractor": "scripts/qa/concept-terms/extract-terms-elem56.py",
+  "toc": [
+    {
+      "chapter": "1. 수의 범위와 어림하기",
+      "sections": [
+        "이상과 이하",
+        "초과와 미만",
+        "수의 범위 활용하기",
+        "올림",
+        "버림",
+        "반올림",
+        "올림, 버림, 반올림 활용하기"
+      ],
+      "pdfPages": [
+        6,
+        31
+      ]
+    },
+    {
+      "chapter": "2. 분수의 곱셈",
+      "sections": [
+        "(분수)×(자연수)",
+        "(자연수)×(분수)",
+        "진분수의 곱셈",
+        "대분수의 곱셈",
+        "세 분수의 곱셈"
+      ],
+      "pdfPages": [
+        32,
+        55
+      ]
+    },
+    {
+      "chapter": "3. 합동과 대칭",
+      "sections": [
+        "도형의 합동",
+        "합동인 도형의 성질",
+        "선대칭도형과 그 성질",
+        "점대칭도형과 그 성질"
+      ],
+      "pdfPages": [
+        56,
+        77
+      ]
+    },
+    {
+      "chapter": "4. 소수의 곱셈",
+      "sections": [
+        "(1보다 작은 소수)×(자연수)",
+        "(1보다 큰 소수)×(자연수)",
+        "(자연수)×(1보다 작은 소수)",
+        "(자연수)×(1보다 큰 소수)",
+        "1보다 작은 소수끼리의 곱셈",
+        "1보다 큰 소수끼리의 곱셈",
+        "곱의 소수점 위치"
+      ],
+      "pdfPages": [
+        78,
+        101
+      ]
+    },
+    {
+      "chapter": "5. 직육면체",
+      "sections": [
+        "직육면체",
+        "정육면체",
+        "직육면체의 성질",
+        "직육면체의 겨냥도",
+        "정육면체의 전개도",
+        "직육면체의 전개도"
+      ],
+      "pdfPages": [
+        102,
+        125
+      ]
+    },
+    {
+      "chapter": "6. 평균과 가능성",
+      "sections": [
+        "평균",
+        "평균 구하기",
+        "평균 이용하기",
+        "일이 일어날 가능성을 말로 표현하기",
+        "일이 일어날 가능성을 비교하기",
+        "일이 일어날 가능성을 수로 표현하기"
+      ],
+      "pdfPages": [
+        126,
+        147
+      ]
+    }
+  ],
+  "sentenceStore": "문장(교재 원문)은 저장소 밖 C:\\Creative\\testautocreator-data\\I-개념용어\\cube-5-2.json — 용어마다 sentenceRef.key 로 찾는다",
+  "terms": [
+    {
+      "term": "이상",
+      "kind": "정의",
+      "grade": "5-2",
+      "chapter": "1. 수의 범위와 어림하기",
+      "section": "이상과 이하",
+      "pdfPage": 8,
+      "bookPage": "008쪽",
+      "key": "5-2/p008/이상",
+      "first": true,
+      "aliases": [],
+      "mathGarbled": false,
+      "note": "핵심 문장 상자",
+      "explorer": {
+        "match": "related",
+        "cardId": "g5-at-least",
+        "cardName": "이상과 이하",
+        "why": "카드 한 장이 «이상과 이하» 두 낱말을 같이 담는다"
+      },
+      "sentenceRef": {
+        "store": "testautocreator-data",
+        "file": "I-개념용어/cube-5-2.json",
+        "key": "5-2/p008/이상"
+      }
+    },
+    {
+      "term": "이하",
+      "kind": "정의",
+      "grade": "5-2",
+      "chapter": "1. 수의 범위와 어림하기",
+      "section": "이상과 이하",
+      "pdfPage": 8,
+      "bookPage": "008쪽",
+      "key": "5-2/p008/이하",
+      "first": true,
+      "aliases": [],
+      "mathGarbled": false,
+      "note": "핵심 문장 상자",
+      "explorer": {
+        "match": "related",
+        "cardId": "g5-at-least",
+        "cardName": "이상과 이하",
+        "why": "카드 한 장이 «이상과 이하» 두 낱말을 같이 담는다"
+      },
+      "sentenceRef": {
+        "store": "testautocreator-data",
+        "file": "I-개념용어/cube-5-2.json",
+        "key": "5-2/p008/이하"
+      }
+    },
+    {
+      "term": "초과",
+      "kind": "정의",
+      "grade": "5-2",
+      "chapter": "1. 수의 범위와 어림하기",
+      "section": "초과와 미만",
+      "pdfPage": 10,
+      "bookPage": "010쪽",
+      "key": "5-2/p010/초과",
+      "first": true,
+      "aliases": [],
+      "mathGarbled": false,
+      "note": "핵심 문장 상자",
+      "explorer": {
+        "match": "related",
+        "cardId": "g5-more-than",
+        "cardName": "초과와 미만",
+        "why": "카드 한 장이 «초과와 미만» 두 낱말을 같이 담는다"
+      },
+      "sentenceRef": {
+        "store": "testautocreator-data",
+        "file": "I-개념용어/cube-5-2.json",
+        "key": "5-2/p010/초과"
+      }
+    },
+    {
+      "term": "미만",
+      "kind": "정의",
+      "grade": "5-2",
+      "chapter": "1. 수의 범위와 어림하기",
+      "section": "초과와 미만",
+      "pdfPage": 10,
+      "bookPage": "010쪽",
+      "key": "5-2/p010/미만",
+      "first": true,
+      "aliases": [],
+      "mathGarbled": false,
+      "note": "핵심 문장 상자",
+      "explorer": {
+        "match": "related",
+        "cardId": "g5-more-than",
+        "cardName": "초과와 미만",
+        "why": "카드 한 장이 «초과와 미만» 두 낱말을 같이 담는다"
+      },
+      "sentenceRef": {
+        "store": "testautocreator-data",
+        "file": "I-개념용어/cube-5-2.json",
+        "key": "5-2/p010/미만"
+      }
+    },
+    {
+      "term": "수직선의 점 ●과 ○",
+      "kind": "기호",
+      "grade": "5-2",
+      "chapter": "1. 수의 범위와 어림하기",
+      "section": "수의 범위 활용하기",
+      "pdfPage": 12,
+      "bookPage": "012쪽",
+      "key": "5-2/p012/수직선의 점 ●과 ○",
+      "first": true,
+      "aliases": [],
+      "mathGarbled": false,
+      "note": "수직선 표시 방법을 적은 핵심 문장 상자",
+      "explorer": {
+        "match": "none",
+        "cardId": "",
+        "cardName": "",
+        "why": "카드 없음(이상·초과 카드 정의에 수직선 표기는 없다)"
+      },
+      "sentenceRef": {
+        "store": "testautocreator-data",
+        "file": "I-개념용어/cube-5-2.json",
+        "key": "5-2/p012/수직선의 점 ●과 ○"
+      }
+    },
+    {
+      "term": "올림",
+      "kind": "정의",
+      "grade": "5-2",
+      "chapter": "1. 수의 범위와 어림하기",
+      "section": "올림",
+      "pdfPage": 16,
+      "bookPage": "016쪽",
+      "key": "5-2/p016/올림",
+      "first": true,
+      "aliases": [],
+      "mathGarbled": false,
+      "note": "핵심 문장 상자",
+      "explorer": {
+        "match": "related",
+        "cardId": "g5-round-up",
+        "cardName": "올림과 버림",
+        "why": "카드 한 장이 «올림과 버림» 두 낱말을 같이 담는다"
+      },
+      "sentenceRef": {
+        "store": "testautocreator-data",
+        "file": "I-개념용어/cube-5-2.json",
+        "key": "5-2/p016/올림"
+      }
+    },
+    {
+      "term": "버림",
+      "kind": "정의",
+      "grade": "5-2",
+      "chapter": "1. 수의 범위와 어림하기",
+      "section": "버림",
+      "pdfPage": 16,
+      "bookPage": "016쪽",
+      "key": "5-2/p016/버림",
+      "first": true,
+      "aliases": [],
+      "mathGarbled": false,
+      "note": "핵심 문장 상자",
+      "explorer": {
+        "match": "related",
+        "cardId": "g5-round-up",
+        "cardName": "올림과 버림",
+        "why": "카드 한 장이 «올림과 버림» 두 낱말을 같이 담는다"
+      },
+      "sentenceRef": {
+        "store": "testautocreator-data",
+        "file": "I-개념용어/cube-5-2.json",
+        "key": "5-2/p016/버림"
+      }
+    },
+    {
+      "term": "반올림",
+      "kind": "정의",
+      "grade": "5-2",
+      "chapter": "1. 수의 범위와 어림하기",
+      "section": "반올림",
+      "pdfPage": 18,
+      "bookPage": "018쪽",
+      "key": "5-2/p018/반올림",
+      "first": true,
+      "aliases": [],
+      "mathGarbled": false,
+      "note": "핵심 문장 상자",
+      "explorer": {
+        "match": "exact",
+        "cardId": "g5-round",
+        "cardName": "반올림",
+        "why": ""
+      },
+      "sentenceRef": {
+        "store": "testautocreator-data",
+        "file": "I-개념용어/cube-5-2.json",
+        "key": "5-2/p018/반올림"
+      }
+    },
+    {
+      "term": "(진분수)×(자연수)",
+      "kind": "기타",
+      "grade": "5-2",
+      "chapter": "2. 분수의 곱셈",
+      "section": "(분수)×(자연수)",
+      "pdfPage": 34,
+      "bookPage": "034쪽",
+      "key": "5-2/p034/(진분수)×(자연수)",
+      "first": true,
+      "aliases": [],
+      "mathGarbled": false,
+      "note": "계산 방법 — 핵심 문장 상자",
+      "explorer": {
+        "match": "related",
+        "cardId": "g5-fraction-multiply",
+        "cardName": "분수의 곱셈",
+        "why": "카드 «분수의 곱셈» 은 분수×분수 규칙 한 줄 — 교재는 경우마다 나눈다"
+      },
+      "sentenceRef": {
+        "store": "testautocreator-data",
+        "file": "I-개념용어/cube-5-2.json",
+        "key": "5-2/p034/(진분수)×(자연수)"
+      }
+    },
+    {
+      "term": "(대분수)×(자연수)",
+      "kind": "기타",
+      "grade": "5-2",
+      "chapter": "2. 분수의 곱셈",
+      "section": "(분수)×(자연수)",
+      "pdfPage": 34,
+      "bookPage": "034쪽",
+      "key": "5-2/p034/(대분수)×(자연수)",
+      "first": true,
+      "aliases": [],
+      "mathGarbled": false,
+      "note": "계산 방법 — 핵심 문장 상자",
+      "explorer": {
+        "match": "related",
+        "cardId": "g5-fraction-multiply",
+        "cardName": "분수의 곱셈",
+        "why": "카드에는 가분수로 고쳐 놓는 단계가 없다"
+      },
+      "sentenceRef": {
+        "store": "testautocreator-data",
+        "file": "I-개념용어/cube-5-2.json",
+        "key": "5-2/p034/(대분수)×(자연수)"
+      }
+    },
+    {
+      "term": "(자연수)×(진분수)",
+      "kind": "기타",
+      "grade": "5-2",
+      "chapter": "2. 분수의 곱셈",
+      "section": "(자연수)×(분수)",
+      "pdfPage": 36,
+      "bookPage": "036쪽",
+      "key": "5-2/p036/(자연수)×(진분수)",
+      "first": true,
+      "aliases": [],
+      "mathGarbled": false,
+      "note": "계산 방법 — 핵심 문장 상자",
+      "explorer": {
+        "match": "related",
+        "cardId": "g5-fraction-multiply",
+        "cardName": "분수의 곱셈",
+        "why": "분수의 곱셈 한 경우"
+      },
+      "sentenceRef": {
+        "store": "testautocreator-data",
+        "file": "I-개념용어/cube-5-2.json",
+        "key": "5-2/p036/(자연수)×(진분수)"
+      }
+    },
+    {
+      "term": "(자연수)×(대분수)",
+      "kind": "기타",
+      "grade": "5-2",
+      "chapter": "2. 분수의 곱셈",
+      "section": "(자연수)×(분수)",
+      "pdfPage": 36,
+      "bookPage": "036쪽",
+      "key": "5-2/p036/(자연수)×(대분수)",
+      "first": true,
+      "aliases": [],
+      "mathGarbled": false,
+      "note": "계산 방법 — 핵심 문장 상자",
+      "explorer": {
+        "match": "related",
+        "cardId": "g5-fraction-multiply",
+        "cardName": "분수의 곱셈",
+        "why": "분수의 곱셈 한 경우"
+      },
+      "sentenceRef": {
+        "store": "testautocreator-data",
+        "file": "I-개념용어/cube-5-2.json",
+        "key": "5-2/p036/(자연수)×(대분수)"
+      }
+    },
+    {
+      "term": "(단위분수)×(단위분수)",
+      "kind": "기타",
+      "grade": "5-2",
+      "chapter": "2. 분수의 곱셈",
+      "section": "진분수의 곱셈",
+      "pdfPage": 40,
+      "bookPage": "040쪽",
+      "key": "5-2/p040/(단위분수)×(단위분수)",
+      "first": true,
+      "aliases": [],
+      "mathGarbled": false,
+      "note": "계산 방법 — 핵심 문장 상자",
+      "explorer": {
+        "match": "related",
+        "cardId": "g5-fraction-multiply",
+        "cardName": "분수의 곱셈",
+        "why": "분수의 곱셈 한 경우"
+      },
+      "sentenceRef": {
+        "store": "testautocreator-data",
+        "file": "I-개념용어/cube-5-2.json",
+        "key": "5-2/p040/(단위분수)×(단위분수)"
+      }
+    },
+    {
+      "term": "(진분수)×(진분수)",
+      "kind": "기타",
+      "grade": "5-2",
+      "chapter": "2. 분수의 곱셈",
+      "section": "진분수의 곱셈",
+      "pdfPage": 40,
+      "bookPage": "040쪽",
+      "key": "5-2/p040/(진분수)×(진분수)",
+      "first": true,
+      "aliases": [],
+      "mathGarbled": false,
+      "note": "계산 방법 — 핵심 문장 상자",
+      "explorer": {
+        "match": "related",
+        "cardId": "g5-fraction-multiply",
+        "cardName": "분수의 곱셈",
+        "why": "카드 정의와 같은 문장(교재는 진분수끼리로 한정)"
+      },
+      "sentenceRef": {
+        "store": "testautocreator-data",
+        "file": "I-개념용어/cube-5-2.json",
+        "key": "5-2/p040/(진분수)×(진분수)"
+      }
+    },
+    {
+      "term": "대분수의 곱셈",
+      "kind": "기타",
+      "grade": "5-2",
+      "chapter": "2. 분수의 곱셈",
+      "section": "대분수의 곱셈",
+      "pdfPage": 42,
+      "bookPage": "042쪽",
+      "key": "5-2/p042/대분수의 곱셈",
+      "first": true,
+      "aliases": [],
+      "mathGarbled": false,
+      "note": "계산 방법 — 핵심 문장 상자",
+      "explorer": {
+        "match": "related",
+        "cardId": "g5-fraction-multiply",
+        "cardName": "분수의 곱셈",
+        "why": "분수의 곱셈 한 경우"
+      },
+      "sentenceRef": {
+        "store": "testautocreator-data",
+        "file": "I-개념용어/cube-5-2.json",
+        "key": "5-2/p042/대분수의 곱셈"
+      }
+    },
+    {
+      "term": "세 분수의 곱셈",
+      "kind": "기타",
+      "grade": "5-2",
+      "chapter": "2. 분수의 곱셈",
+      "section": "세 분수의 곱셈",
+      "pdfPage": 42,
+      "bookPage": "042쪽",
+      "key": "5-2/p042/세 분수의 곱셈",
+      "first": true,
+      "aliases": [],
+      "mathGarbled": false,
+      "note": "계산 방법 — 핵심 문장 상자",
+      "explorer": {
+        "match": "related",
+        "cardId": "g5-fraction-multiply",
+        "cardName": "분수의 곱셈",
+        "why": "분수의 곱셈 한 경우"
+      },
+      "sentenceRef": {
+        "store": "testautocreator-data",
+        "file": "I-개념용어/cube-5-2.json",
+        "key": "5-2/p042/세 분수의 곱셈"
+      }
+    },
+    {
+      "term": "합동",
+      "kind": "정의",
+      "grade": "5-2",
+      "chapter": "3. 합동과 대칭",
+      "section": "도형의 합동",
+      "pdfPage": 58,
+      "bookPage": "058쪽",
+      "key": "5-2/p058/합동",
+      "first": true,
+      "aliases": [],
+      "mathGarbled": false,
+      "note": "핵심 문장 상자",
+      "explorer": {
+        "match": "exact",
+        "cardId": "g5-congruence",
+        "cardName": "합동",
+        "why": ""
+      },
+      "sentenceRef": {
+        "store": "testautocreator-data",
+        "file": "I-개념용어/cube-5-2.json",
+        "key": "5-2/p058/합동"
+      }
+    },
+    {
+      "term": "대응점",
+      "kind": "정의",
+      "grade": "5-2",
+      "chapter": "3. 합동과 대칭",
+      "section": "합동인 도형의 성질",
+      "pdfPage": 58,
+      "bookPage": "058쪽",
+      "key": "5-2/p058/대응점",
+      "first": true,
+      "aliases": [],
+      "mathGarbled": false,
+      "note": "핵심 문장 상자 — 합동인 두 도형",
+      "explorer": {
+        "match": "none",
+        "cardId": "",
+        "cardName": "",
+        "why": "대응점·대응변·대응각 카드 없음"
+      },
+      "sentenceRef": {
+        "store": "testautocreator-data",
+        "file": "I-개념용어/cube-5-2.json",
+        "key": "5-2/p058/대응점"
+      }
+    },
+    {
+      "term": "대응변",
+      "kind": "정의",
+      "grade": "5-2",
+      "chapter": "3. 합동과 대칭",
+      "section": "합동인 도형의 성질",
+      "pdfPage": 58,
+      "bookPage": "058쪽",
+      "key": "5-2/p058/대응변",
+      "first": true,
+      "aliases": [],
+      "mathGarbled": false,
+      "note": "핵심 문장 상자 — 합동인 두 도형",
+      "explorer": {
+        "match": "none",
+        "cardId": "",
+        "cardName": "",
+        "why": "대응점·대응변·대응각 카드 없음"
+      },
+      "sentenceRef": {
+        "store": "testautocreator-data",
+        "file": "I-개념용어/cube-5-2.json",
+        "key": "5-2/p058/대응변"
+      }
+    },
+    {
+      "term": "대응각",
+      "kind": "정의",
+      "grade": "5-2",
+      "chapter": "3. 합동과 대칭",
+      "section": "합동인 도형의 성질",
+      "pdfPage": 58,
+      "bookPage": "058쪽",
+      "key": "5-2/p058/대응각",
+      "first": true,
+      "aliases": [],
+      "mathGarbled": false,
+      "note": "핵심 문장 상자 — 합동인 두 도형",
+      "explorer": {
+        "match": "none",
+        "cardId": "",
+        "cardName": "",
+        "why": "대응점·대응변·대응각 카드 없음"
+      },
+      "sentenceRef": {
+        "store": "testautocreator-data",
+        "file": "I-개념용어/cube-5-2.json",
+        "key": "5-2/p058/대응각"
+      }
+    },
+    {
+      "term": "합동인 도형의 성질",
+      "kind": "성질",
+      "grade": "5-2",
+      "chapter": "3. 합동과 대칭",
+      "section": "합동인 도형의 성질",
+      "pdfPage": 58,
+      "bookPage": "058쪽",
+      "key": "5-2/p058/합동인 도형의 성질",
+      "first": true,
+      "aliases": [],
+      "mathGarbled": false,
+      "note": "성질 두 가지(대응변의 길이 · 대응각의 크기) — 문장은 첫째만",
+      "explorer": {
+        "match": "related",
+        "cardId": "g5-congruence",
+        "cardName": "합동",
+        "why": "카드 «합동» 정의에 «모양과 크기가 모두 같다» 로만 녹아 있다"
+      },
+      "sentenceRef": {
+        "store": "testautocreator-data",
+        "file": "I-개념용어/cube-5-2.json",
+        "key": "5-2/p058/합동인 도형의 성질"
+      }
+    },
+    {
+      "term": "선대칭도형",
+      "kind": "정의",
+      "grade": "5-2",
+      "chapter": "3. 합동과 대칭",
+      "section": "선대칭도형과 그 성질",
+      "pdfPage": 60,
+      "bookPage": "060쪽",
+      "key": "5-2/p060/선대칭도형",
+      "first": true,
+      "aliases": [],
+      "mathGarbled": false,
+      "note": "",
+      "explorer": {
+        "match": "exact",
+        "cardId": "g5-line-symmetry",
+        "cardName": "선대칭도형",
+        "why": ""
+      },
+      "sentenceRef": {
+        "store": "testautocreator-data",
+        "file": "I-개념용어/cube-5-2.json",
+        "key": "5-2/p060/선대칭도형"
+      }
+    },
+    {
+      "term": "대칭축",
+      "kind": "정의",
+      "grade": "5-2",
+      "chapter": "3. 합동과 대칭",
+      "section": "선대칭도형과 그 성질",
+      "pdfPage": 60,
+      "bookPage": "060쪽",
+      "key": "5-2/p060/대칭축",
+      "first": true,
+      "aliases": [],
+      "mathGarbled": false,
+      "note": "",
+      "explorer": {
+        "match": "related",
+        "cardId": "g5-line-symmetry",
+        "cardName": "선대칭도형",
+        "why": "카드 «선대칭도형» 정의에 «한 직선» 으로만(대칭축 낱말 없음)"
+      },
+      "sentenceRef": {
+        "store": "testautocreator-data",
+        "file": "I-개념용어/cube-5-2.json",
+        "key": "5-2/p060/대칭축"
+      }
+    },
+    {
+      "term": "대응점",
+      "kind": "정의",
+      "grade": "5-2",
+      "chapter": "3. 합동과 대칭",
+      "section": "선대칭도형과 그 성질",
+      "pdfPage": 60,
+      "bookPage": "060쪽",
+      "key": "5-2/p060/대응점",
+      "first": false,
+      "aliases": [],
+      "mathGarbled": false,
+      "note": "선대칭도형에서 · 처음: 5-2 p58",
+      "explorer": {
+        "match": "none",
+        "cardId": "",
+        "cardName": "",
+        "why": "대응점·대응변·대응각 카드 없음"
+      },
+      "sentenceRef": {
+        "store": "testautocreator-data",
+        "file": "I-개념용어/cube-5-2.json",
+        "key": "5-2/p060/대응점"
+      }
+    },
+    {
+      "term": "대응변",
+      "kind": "정의",
+      "grade": "5-2",
+      "chapter": "3. 합동과 대칭",
+      "section": "선대칭도형과 그 성질",
+      "pdfPage": 60,
+      "bookPage": "060쪽",
+      "key": "5-2/p060/대응변",
+      "first": false,
+      "aliases": [],
+      "mathGarbled": false,
+      "note": "선대칭도형에서 · 처음: 5-2 p58",
+      "explorer": {
+        "match": "none",
+        "cardId": "",
+        "cardName": "",
+        "why": "대응점·대응변·대응각 카드 없음"
+      },
+      "sentenceRef": {
+        "store": "testautocreator-data",
+        "file": "I-개념용어/cube-5-2.json",
+        "key": "5-2/p060/대응변"
+      }
+    },
+    {
+      "term": "대응각",
+      "kind": "정의",
+      "grade": "5-2",
+      "chapter": "3. 합동과 대칭",
+      "section": "선대칭도형과 그 성질",
+      "pdfPage": 60,
+      "bookPage": "060쪽",
+      "key": "5-2/p060/대응각",
+      "first": false,
+      "aliases": [],
+      "mathGarbled": false,
+      "note": "선대칭도형에서 · 처음: 5-2 p58",
+      "explorer": {
+        "match": "none",
+        "cardId": "",
+        "cardName": "",
+        "why": "대응점·대응변·대응각 카드 없음"
+      },
+      "sentenceRef": {
+        "store": "testautocreator-data",
+        "file": "I-개념용어/cube-5-2.json",
+        "key": "5-2/p060/대응각"
+      }
+    },
+    {
+      "term": "선대칭도형의 성질",
+      "kind": "성질",
+      "grade": "5-2",
+      "chapter": "3. 합동과 대칭",
+      "section": "선대칭도형과 그 성질",
+      "pdfPage": 60,
+      "bookPage": "060쪽",
+      "key": "5-2/p060/선대칭도형의 성질",
+      "first": true,
+      "aliases": [],
+      "mathGarbled": false,
+      "note": "",
+      "explorer": {
+        "match": "related",
+        "cardId": "g5-line-symmetry",
+        "cardName": "선대칭도형",
+        "why": "카드는 도형 정의만 — 성질 세 가지는 없다"
+      },
+      "sentenceRef": {
+        "store": "testautocreator-data",
+        "file": "I-개념용어/cube-5-2.json",
+        "key": "5-2/p060/선대칭도형의 성질"
+      }
+    },
+    {
+      "term": "점대칭도형",
+      "kind": "정의",
+      "grade": "5-2",
+      "chapter": "3. 합동과 대칭",
+      "section": "점대칭도형과 그 성질",
+      "pdfPage": 62,
+      "bookPage": "062쪽",
+      "key": "5-2/p062/점대칭도형",
+      "first": true,
+      "aliases": [],
+      "mathGarbled": false,
+      "note": "",
+      "explorer": {
+        "match": "exact",
+        "cardId": "g5-point-symmetry",
+        "cardName": "점대칭도형",
+        "why": ""
+      },
+      "sentenceRef": {
+        "store": "testautocreator-data",
+        "file": "I-개념용어/cube-5-2.json",
+        "key": "5-2/p062/점대칭도형"
+      }
+    },
+    {
+      "term": "대칭의 중심",
+      "kind": "정의",
+      "grade": "5-2",
+      "chapter": "3. 합동과 대칭",
+      "section": "점대칭도형과 그 성질",
+      "pdfPage": 62,
+      "bookPage": "062쪽",
+      "key": "5-2/p062/대칭의 중심",
+      "first": true,
+      "aliases": [],
+      "mathGarbled": false,
+      "note": "",
+      "explorer": {
+        "match": "related",
+        "cardId": "g5-point-symmetry",
+        "cardName": "점대칭도형",
+        "why": "카드 «점대칭도형» 정의에 «한 점» 으로만(대칭의 중심 낱말 없음)"
+      },
+      "sentenceRef": {
+        "store": "testautocreator-data",
+        "file": "I-개념용어/cube-5-2.json",
+        "key": "5-2/p062/대칭의 중심"
+      }
+    },
+    {
+      "term": "대응점",
+      "kind": "정의",
+      "grade": "5-2",
+      "chapter": "3. 합동과 대칭",
+      "section": "점대칭도형과 그 성질",
+      "pdfPage": 62,
+      "bookPage": "062쪽",
+      "key": "5-2/p062/대응점",
+      "first": false,
+      "aliases": [],
+      "mathGarbled": false,
+      "note": "점대칭도형에서 · 처음: 5-2 p58",
+      "explorer": {
+        "match": "none",
+        "cardId": "",
+        "cardName": "",
+        "why": "대응점·대응변·대응각 카드 없음"
+      },
+      "sentenceRef": {
+        "store": "testautocreator-data",
+        "file": "I-개념용어/cube-5-2.json",
+        "key": "5-2/p062/대응점"
+      }
+    },
+    {
+      "term": "대응변",
+      "kind": "정의",
+      "grade": "5-2",
+      "chapter": "3. 합동과 대칭",
+      "section": "점대칭도형과 그 성질",
+      "pdfPage": 62,
+      "bookPage": "062쪽",
+      "key": "5-2/p062/대응변",
+      "first": false,
+      "aliases": [],
+      "mathGarbled": false,
+      "note": "점대칭도형에서 · 처음: 5-2 p58",
+      "explorer": {
+        "match": "none",
+        "cardId": "",
+        "cardName": "",
+        "why": "대응점·대응변·대응각 카드 없음"
+      },
+      "sentenceRef": {
+        "store": "testautocreator-data",
+        "file": "I-개념용어/cube-5-2.json",
+        "key": "5-2/p062/대응변"
+      }
+    },
+    {
+      "term": "대응각",
+      "kind": "정의",
+      "grade": "5-2",
+      "chapter": "3. 합동과 대칭",
+      "section": "점대칭도형과 그 성질",
+      "pdfPage": 62,
+      "bookPage": "062쪽",
+      "key": "5-2/p062/대응각",
+      "first": false,
+      "aliases": [],
+      "mathGarbled": false,
+      "note": "점대칭도형에서 · 처음: 5-2 p58",
+      "explorer": {
+        "match": "none",
+        "cardId": "",
+        "cardName": "",
+        "why": "대응점·대응변·대응각 카드 없음"
+      },
+      "sentenceRef": {
+        "store": "testautocreator-data",
+        "file": "I-개념용어/cube-5-2.json",
+        "key": "5-2/p062/대응각"
+      }
+    },
+    {
+      "term": "점대칭도형의 성질",
+      "kind": "성질",
+      "grade": "5-2",
+      "chapter": "3. 합동과 대칭",
+      "section": "점대칭도형과 그 성질",
+      "pdfPage": 62,
+      "bookPage": "062쪽",
+      "key": "5-2/p062/점대칭도형의 성질",
+      "first": true,
+      "aliases": [],
+      "mathGarbled": false,
+      "note": "",
+      "explorer": {
+        "match": "related",
+        "cardId": "g5-point-symmetry",
+        "cardName": "점대칭도형",
+        "why": "카드는 도형 정의만 — 성질은 없다"
+      },
+      "sentenceRef": {
+        "store": "testautocreator-data",
+        "file": "I-개념용어/cube-5-2.json",
+        "key": "5-2/p062/점대칭도형의 성질"
+      }
+    },
+    {
+      "term": "소수에 10, 100, 1000을 곱하는 경우",
+      "kind": "기타",
+      "grade": "5-2",
+      "chapter": "4. 소수의 곱셈",
+      "section": "곱의 소수점 위치",
+      "pdfPage": 88,
+      "bookPage": "088쪽",
+      "key": "5-2/p088/소수에 10, 100, 1000을 곱하는 경우",
+      "first": true,
+      "aliases": [],
+      "mathGarbled": false,
+      "note": "곱의 소수점 위치 ⑴ — 계산 방법 상자",
+      "explorer": {
+        "match": "related",
+        "cardId": "g5-decimal-multiply",
+        "cardName": "소수의 곱셈",
+        "why": "곱의 소수점 위치 — 카드는 ⑶ 소수끼리 곱하는 경우만"
+      },
+      "sentenceRef": {
+        "store": "testautocreator-data",
+        "file": "I-개념용어/cube-5-2.json",
+        "key": "5-2/p088/소수에 10, 100, 1000을 곱하는 경우"
+      }
+    },
+    {
+      "term": "자연수에 0.1, 0.01, 0.001을 곱하는 경우",
+      "kind": "기타",
+      "grade": "5-2",
+      "chapter": "4. 소수의 곱셈",
+      "section": "곱의 소수점 위치",
+      "pdfPage": 88,
+      "bookPage": "088쪽",
+      "key": "5-2/p088/자연수에 0.1, 0.01, 0.001을 곱하는 경우",
+      "first": true,
+      "aliases": [],
+      "mathGarbled": false,
+      "note": "곱의 소수점 위치 ⑵ — 계산 방법 상자",
+      "explorer": {
+        "match": "related",
+        "cardId": "g5-decimal-multiply",
+        "cardName": "소수의 곱셈",
+        "why": "곱의 소수점 위치 — 카드는 ⑶ 소수끼리 곱하는 경우만"
+      },
+      "sentenceRef": {
+        "store": "testautocreator-data",
+        "file": "I-개념용어/cube-5-2.json",
+        "key": "5-2/p088/자연수에 0.1, 0.01, 0.001을 곱하는 경우"
+      }
+    },
+    {
+      "term": "소수끼리 곱하는 경우",
+      "kind": "기타",
+      "grade": "5-2",
+      "chapter": "4. 소수의 곱셈",
+      "section": "곱의 소수점 위치",
+      "pdfPage": 88,
+      "bookPage": "088쪽",
+      "key": "5-2/p088/소수끼리 곱하는 경우",
+      "first": true,
+      "aliases": [],
+      "mathGarbled": false,
+      "note": "곱의 소수점 위치 ⑶ — 계산 방법 상자",
+      "explorer": {
+        "match": "related",
+        "cardId": "g5-decimal-multiply",
+        "cardName": "소수의 곱셈",
+        "why": "카드 «소수의 곱셈» 정의와 같은 규칙"
+      },
+      "sentenceRef": {
+        "store": "testautocreator-data",
+        "file": "I-개념용어/cube-5-2.json",
+        "key": "5-2/p088/소수끼리 곱하는 경우"
+      }
+    },
+    {
+      "term": "면",
+      "kind": "정의",
+      "grade": "5-2",
+      "chapter": "5. 직육면체",
+      "section": "직육면체",
+      "pdfPage": 104,
+      "bookPage": "104쪽",
+      "key": "5-2/p104/면",
+      "first": true,
+      "aliases": [],
+      "mathGarbled": false,
+      "note": "직육면체의 구성 요소",
+      "explorer": {
+        "match": "none",
+        "cardId": "",
+        "cardName": "",
+        "why": "구성 요소 카드 없음"
+      },
+      "sentenceRef": {
+        "store": "testautocreator-data",
+        "file": "I-개념용어/cube-5-2.json",
+        "key": "5-2/p104/면"
+      }
+    },
+    {
+      "term": "모서리",
+      "kind": "정의",
+      "grade": "5-2",
+      "chapter": "5. 직육면체",
+      "section": "직육면체",
+      "pdfPage": 104,
+      "bookPage": "104쪽",
+      "key": "5-2/p104/모서리",
+      "first": true,
+      "aliases": [],
+      "mathGarbled": false,
+      "note": "직육면체의 구성 요소",
+      "explorer": {
+        "match": "none",
+        "cardId": "",
+        "cardName": "",
+        "why": "구성 요소 카드 없음"
+      },
+      "sentenceRef": {
+        "store": "testautocreator-data",
+        "file": "I-개념용어/cube-5-2.json",
+        "key": "5-2/p104/모서리"
+      }
+    },
+    {
+      "term": "꼭짓점",
+      "kind": "정의",
+      "grade": "5-2",
+      "chapter": "5. 직육면체",
+      "section": "직육면체",
+      "pdfPage": 104,
+      "bookPage": "104쪽",
+      "key": "5-2/p104/꼭짓점",
+      "first": true,
+      "aliases": [],
+      "mathGarbled": false,
+      "note": "직육면체의 구성 요소(입체도형의 꼭짓점)",
+      "explorer": {
+        "match": "none",
+        "cardId": "",
+        "cardName": "",
+        "why": "구성 요소 카드 없음"
+      },
+      "sentenceRef": {
+        "store": "testautocreator-data",
+        "file": "I-개념용어/cube-5-2.json",
+        "key": "5-2/p104/꼭짓점"
+      }
+    },
+    {
+      "term": "직육면체",
+      "kind": "정의",
+      "grade": "5-2",
+      "chapter": "5. 직육면체",
+      "section": "직육면체",
+      "pdfPage": 104,
+      "bookPage": "104쪽",
+      "key": "5-2/p104/직육면체",
+      "first": true,
+      "aliases": [],
+      "mathGarbled": false,
+      "note": "",
+      "explorer": {
+        "match": "exact",
+        "cardId": "g5-cuboid",
+        "cardName": "직육면체",
+        "why": ""
+      },
+      "sentenceRef": {
+        "store": "testautocreator-data",
+        "file": "I-개념용어/cube-5-2.json",
+        "key": "5-2/p104/직육면체"
+      }
+    },
+    {
+      "term": "정육면체",
+      "kind": "정의",
+      "grade": "5-2",
+      "chapter": "5. 직육면체",
+      "section": "정육면체",
+      "pdfPage": 106,
+      "bookPage": "106쪽",
+      "key": "5-2/p106/정육면체",
+      "first": true,
+      "aliases": [],
+      "mathGarbled": false,
+      "note": "",
+      "explorer": {
+        "match": "exact",
+        "cardId": "g5-cube",
+        "cardName": "정육면체",
+        "why": ""
+      },
+      "sentenceRef": {
+        "store": "testautocreator-data",
+        "file": "I-개념용어/cube-5-2.json",
+        "key": "5-2/p106/정육면체"
+      }
+    },
+    {
+      "term": "직육면체와 정육면체의 관계",
+      "kind": "성질",
+      "grade": "5-2",
+      "chapter": "5. 직육면체",
+      "section": "정육면체",
+      "pdfPage": 106,
+      "bookPage": "106쪽",
+      "key": "5-2/p106/직육면체와 정육면체의 관계",
+      "first": true,
+      "aliases": [],
+      "mathGarbled": false,
+      "note": "",
+      "explorer": {
+        "match": "related",
+        "cardId": "g5-cube",
+        "cardName": "정육면체",
+        "why": "카드 «정육면체» 는 정의만 — 직육면체와의 포함 관계는 없다"
+      },
+      "sentenceRef": {
+        "store": "testautocreator-data",
+        "file": "I-개념용어/cube-5-2.json",
+        "key": "5-2/p106/직육면체와 정육면체의 관계"
+      }
+    },
+    {
+      "term": "평행",
+      "kind": "정의",
+      "grade": "5-2",
+      "chapter": "5. 직육면체",
+      "section": "직육면체의 성질",
+      "pdfPage": 108,
+      "bookPage": "108쪽",
+      "key": "5-2/p108/평행",
+      "first": true,
+      "aliases": [
+        "평행하다"
+      ],
+      "mathGarbled": false,
+      "note": "두 면의 평행(직선의 평행은 앞 학년)",
+      "explorer": {
+        "match": "none",
+        "cardId": "",
+        "cardName": "",
+        "why": "카드 없음"
+      },
+      "sentenceRef": {
+        "store": "testautocreator-data",
+        "file": "I-개념용어/cube-5-2.json",
+        "key": "5-2/p108/평행"
+      }
+    },
+    {
+      "term": "밑면",
+      "kind": "정의",
+      "grade": "5-2",
+      "chapter": "5. 직육면체",
+      "section": "직육면체의 성질",
+      "pdfPage": 108,
+      "bookPage": "108쪽",
+      "key": "5-2/p108/밑면",
+      "first": true,
+      "aliases": [],
+      "mathGarbled": false,
+      "note": "직육면체의 밑면(앞 문장: 평행한 두 면)",
+      "explorer": {
+        "match": "none",
+        "cardId": "",
+        "cardName": "",
+        "why": "밑면·옆면 카드 없음"
+      },
+      "sentenceRef": {
+        "store": "testautocreator-data",
+        "file": "I-개념용어/cube-5-2.json",
+        "key": "5-2/p108/밑면"
+      }
+    },
+    {
+      "term": "옆면",
+      "kind": "정의",
+      "grade": "5-2",
+      "chapter": "5. 직육면체",
+      "section": "직육면체의 성질",
+      "pdfPage": 108,
+      "bookPage": "108쪽",
+      "key": "5-2/p108/옆면",
+      "first": true,
+      "aliases": [],
+      "mathGarbled": false,
+      "note": "직육면체의 옆면",
+      "explorer": {
+        "match": "none",
+        "cardId": "",
+        "cardName": "",
+        "why": "밑면·옆면 카드 없음"
+      },
+      "sentenceRef": {
+        "store": "testautocreator-data",
+        "file": "I-개념용어/cube-5-2.json",
+        "key": "5-2/p108/옆면"
+      }
+    },
+    {
+      "term": "겨냥도",
+      "kind": "정의",
+      "grade": "5-2",
+      "chapter": "5. 직육면체",
+      "section": "직육면체의 겨냥도",
+      "pdfPage": 112,
+      "bookPage": "112쪽",
+      "key": "5-2/p112/겨냥도",
+      "first": true,
+      "aliases": [],
+      "mathGarbled": false,
+      "note": "",
+      "explorer": {
+        "match": "none",
+        "cardId": "",
+        "cardName": "",
+        "why": "카드 없음"
+      },
+      "sentenceRef": {
+        "store": "testautocreator-data",
+        "file": "I-개념용어/cube-5-2.json",
+        "key": "5-2/p112/겨냥도"
+      }
+    },
+    {
+      "term": "전개도",
+      "kind": "정의",
+      "grade": "5-2",
+      "chapter": "5. 직육면체",
+      "section": "정육면체의 전개도",
+      "pdfPage": 112,
+      "bookPage": "112쪽",
+      "key": "5-2/p112/전개도",
+      "first": true,
+      "aliases": [],
+      "mathGarbled": false,
+      "note": "정육면체의 전개도",
+      "explorer": {
+        "match": "none",
+        "cardId": "",
+        "cardName": "",
+        "why": "초5 카드 없음 — 초6 카드 g6-net «전개도» 가 있다"
+      },
+      "sentenceRef": {
+        "store": "testautocreator-data",
+        "file": "I-개념용어/cube-5-2.json",
+        "key": "5-2/p112/전개도"
+      }
+    },
+    {
+      "term": "평균",
+      "kind": "정의",
+      "grade": "5-2",
+      "chapter": "6. 평균과 가능성",
+      "section": "평균",
+      "pdfPage": 128,
+      "bookPage": "128쪽",
+      "key": "5-2/p128/평균",
+      "first": true,
+      "aliases": [],
+      "mathGarbled": false,
+      "note": "예로 정의한다. 여백에 평균이 자료를 대표하는 값의 하나라는 풀이",
+      "explorer": {
+        "match": "exact",
+        "cardId": "g5-average",
+        "cardName": "평균",
+        "why": ""
+      },
+      "sentenceRef": {
+        "store": "testautocreator-data",
+        "file": "I-개념용어/cube-5-2.json",
+        "key": "5-2/p128/평균"
+      }
+    },
+    {
+      "term": "평균을 구하는 식",
+      "kind": "공식",
+      "grade": "5-2",
+      "chapter": "6. 평균과 가능성",
+      "section": "평균 구하기",
+      "pdfPage": 128,
+      "bookPage": "128쪽",
+      "key": "5-2/p128/평균을 구하는 식",
+      "first": true,
+      "aliases": [],
+      "mathGarbled": false,
+      "note": "여백 도움말",
+      "explorer": {
+        "match": "related",
+        "cardId": "g5-average",
+        "cardName": "평균",
+        "why": "카드 «평균» 정의(합을 개수로 나눈 값)가 이 식을 말로 적은 것"
+      },
+      "sentenceRef": {
+        "store": "testautocreator-data",
+        "file": "I-개념용어/cube-5-2.json",
+        "key": "5-2/p128/평균을 구하는 식"
+      }
+    },
+    {
+      "term": "가능성",
+      "kind": "정의",
+      "grade": "5-2",
+      "chapter": "6. 평균과 가능성",
+      "section": "일이 일어날 가능성을 말로 표현하기",
+      "pdfPage": 134,
+      "bookPage": "134쪽",
+      "key": "5-2/p134/가능성",
+      "first": true,
+      "aliases": [],
+      "mathGarbled": false,
+      "note": "",
+      "explorer": {
+        "match": "none",
+        "cardId": "",
+        "cardName": "",
+        "why": "«가능성» 자체 카드는 없다 — 카드는 두 끝(확실한 일·불가능한 일)만"
+      },
+      "sentenceRef": {
+        "store": "testautocreator-data",
+        "file": "I-개념용어/cube-5-2.json",
+        "key": "5-2/p134/가능성"
+      }
+    },
+    {
+      "term": "가능성의 정도",
+      "kind": "기타",
+      "grade": "5-2",
+      "chapter": "6. 평균과 가능성",
+      "section": "일이 일어날 가능성을 말로 표현하기",
+      "pdfPage": 134,
+      "bookPage": "134쪽",
+      "key": "5-2/p134/가능성의 정도",
+      "first": true,
+      "aliases": [
+        "반반이다",
+        "~아닐 것 같다",
+        "~일 것 같다"
+      ],
+      "mathGarbled": false,
+      "note": "가능성을 말로 나타내는 다섯 낱말",
+      "explorer": {
+        "match": "related",
+        "cardId": "g5-certain",
+        "cardName": "확실한 일",
+        "why": "교재 낱말은 «확실하다·불가능하다» — 카드 이름은 «확실한 일·불가능한 일»",
+        "also": [
+          "g5-impossible"
+        ]
+      },
+      "sentenceRef": {
+        "store": "testautocreator-data",
+        "file": "I-개념용어/cube-5-2.json",
+        "key": "5-2/p134/가능성의 정도"
+      }
+    },
+    {
+      "term": "확실하다",
+      "kind": "정의",
+      "grade": "5-2",
+      "chapter": "6. 평균과 가능성",
+      "section": "일이 일어날 가능성을 말로 표현하기",
+      "pdfPage": 134,
+      "bookPage": "134쪽",
+      "key": "5-2/p134/확실하다",
+      "first": true,
+      "aliases": [],
+      "mathGarbled": false,
+      "note": "여백 «가능성을 말로 표현하기» 의 쌍점 뜻풀이",
+      "explorer": {
+        "match": "related",
+        "cardId": "g5-certain",
+        "cardName": "확실한 일",
+        "why": "카드 이름은 «확실한 일», 교재 낱말은 «확실하다» — 가능성 1은 p136 상자"
+      },
+      "sentenceRef": {
+        "store": "testautocreator-data",
+        "file": "I-개념용어/cube-5-2.json",
+        "key": "5-2/p134/확실하다"
+      }
+    },
+    {
+      "term": "불가능하다",
+      "kind": "정의",
+      "grade": "5-2",
+      "chapter": "6. 평균과 가능성",
+      "section": "일이 일어날 가능성을 말로 표현하기",
+      "pdfPage": 134,
+      "bookPage": "134쪽",
+      "key": "5-2/p134/불가능하다",
+      "first": true,
+      "aliases": [],
+      "mathGarbled": false,
+      "note": "여백 «가능성을 말로 표현하기» 의 쌍점 뜻풀이",
+      "explorer": {
+        "match": "related",
+        "cardId": "g5-impossible",
+        "cardName": "불가능한 일",
+        "why": "카드 이름은 «불가능한 일», 교재 낱말은 «불가능하다» — 가능성 0은 p136 상자"
+      },
+      "sentenceRef": {
+        "store": "testautocreator-data",
+        "file": "I-개념용어/cube-5-2.json",
+        "key": "5-2/p134/불가능하다"
+      }
+    },
+    {
+      "term": "가능성을 수로 표현하기",
+      "kind": "기타",
+      "grade": "5-2",
+      "chapter": "6. 평균과 가능성",
+      "section": "일이 일어날 가능성을 수로 표현하기",
+      "pdfPage": 136,
+      "bookPage": "136쪽",
+      "key": "5-2/p136/가능성을 수로 표현하기",
+      "first": true,
+      "aliases": [],
+      "mathGarbled": true,
+      "note": "핵심 문장 상자. [분수] = 1/2 (글자층에서 깨짐)",
+      "explorer": {
+        "match": "related",
+        "cardId": "g5-certain",
+        "cardName": "확실한 일",
+        "why": "카드 두 장의 «가능성 1 / 0» 이 이 상자 문장에 있다",
+        "also": [
+          "g5-impossible"
+        ]
+      },
+      "sentenceRef": {
+        "store": "testautocreator-data",
+        "file": "I-개념용어/cube-5-2.json",
+        "key": "5-2/p136/가능성을 수로 표현하기"
+      }
+    }
+  ]
+}
