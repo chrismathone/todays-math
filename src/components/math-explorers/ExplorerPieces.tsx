@@ -88,6 +88,47 @@ export function ExplorerChests({
   );
 }
 
+/** D-144 · 05 §8.19 — 그 칸이 준 별(카드 레벨 + 한 칸 보장). 금색은 상자 보상의 금색 그대로. */
+export function TileStars({ cards, bonus }: { cards: number; bonus: number }) {
+  const total = cards + bonus;
+  return (
+    <>
+      <span className={s.tileStars} aria-label={`별 ${total}개`}>
+        <span aria-hidden="true">✦</span>+{total}
+      </span>
+      {cards && bonus ? (
+        <span className={s.tileStarsWhy}>
+          카드 {cards} · 한 칸 보장 {bonus}
+        </span>
+      ) : null}
+    </>
+  );
+}
+
+/** 칸을 얻은 순간 한 번(D-144) — 상자 효과 모양 그대로, 상자 그림 대신 큰 별. 느낌표 없음(D-08). */
+export function TileRewardEffect({ stars }: { stars: number | null }) {
+  if (stars === null) return null;
+  return (
+    <div className={s.chestEffect} role="status" aria-live="polite">
+      <div className={s.chestBurst}>
+        <i className={s.tileBurstStar} aria-hidden="true">
+          ✦
+        </i>
+        {Array.from({ length: 6 }, (_, index) => (
+          <span
+            key={index}
+            style={{ "--angle": `${index * 60}deg` } as CSSProperties}
+          >
+            ✦
+          </span>
+        ))}
+      </div>
+      <strong>오늘의 한 칸</strong>
+      <span>별 +{stars}</span>
+    </div>
+  );
+}
+
 export function ChestRewardEffect({ stars }: { stars: number | null }) {
   if (stars === null) return null;
   return (

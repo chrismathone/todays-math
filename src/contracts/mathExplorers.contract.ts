@@ -1,6 +1,9 @@
 import { z } from "zod";
 import { isoDateSchema, uuidSchema } from "./common.contract";
-import { mathExpeditionJourneySchema, mathExpeditionSchema } from "./mathExpedition.contract";
+import {
+  mathExpeditionJourneySchema,
+  mathExpeditionSchema,
+} from "./mathExpedition.contract";
 
 const id = z.string().min(1).max(200);
 const text = z.string().max(4000);
@@ -131,7 +134,8 @@ export const explorerProfileSchema = z.strictObject({
   grade,
   stars: count,
   earned: count,
-  level: z.number().int().min(0).max(3),
+  // D-144: 기지는 3단계 뒤로도 끝없이 자란다(`starEconomy.ts`).
+  level: count,
   definitions: explorerDefinitionsSchema.optional(),
   workshop: workshopRecordSchema.optional(),
 });

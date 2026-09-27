@@ -26,6 +26,7 @@ import {
 } from "./definition-cards";
 import type { DefinitionAction } from "./types";
 import { ExplorerActionConflict, ExplorerActionInvalid } from "./errors";
+import { baseUpgradeCost } from "./starEconomy";
 import {
   applyWorkshopAction,
   isWorkshopAction,
@@ -35,7 +36,8 @@ import {
 
 export { ExplorerActionConflict, ExplorerActionInvalid } from "./errors";
 
-export const explorerUpgradeCosts = [3, 6, 12] as const;
+/** 기지 비용은 `starEconomy.ts` 한 곳(D-144) — 3 · 6 · 12 뒤로 한 단계마다 12, 끝 없음. */
+export { baseUpgradeCost as explorerUpgradeCost } from "./starEconomy";
 
 export function createExplorerState(
   studentId: string,
@@ -83,7 +85,9 @@ export function applyExplorerAction(
 ): { state: StoredExplorer; feedback: ExplorerFeedback; duplicate: boolean } {
   const date = isoDateSchema.parse(serverDate);
   if (action.type === "expedition-start")
-    throw new ExplorerActionInvalid("오늘의 학습은 통합 학습 화면에서 시작해 주세요.");
+    throw new ExplorerActionInvalid(
+      "오늘의 학습은 통합 학습 화면에서 시작해 주세요.",
+    );
   uuidSchema.parse(requestId);
   const key = actionKey(action);
   const duplicate = explorerReceipt(stored, action, requestId);
@@ -113,9 +117,7 @@ export function applyExplorerAction(
     }
     feedback = applyWorkshopAction(profile, action, date);
   } else if (action.type === "upgrade") {
-    const cost = explorerUpgradeCosts[profile.level];
-    if (cost === undefined)
-      throw new ExplorerActionInvalid("기지를 모두 완성했어요.");
+    const cost = baseUpgradeCost(profile.level);
     if (profile.stars < cost)
       throw new ExplorerActionInvalid(
         `별 ${cost - profile.stars}개를 더 모아 주세요.`,

@@ -21,7 +21,7 @@ import type { MathExpeditionReview } from "@/contracts/mathExpedition.contract";
 import ExplorerBankActivity from "./ExplorerBankActivity";
 import ExplorerPractice from "./ExplorerPractice";
 import ExplorerWorkshop from "./ExplorerWorkshop";
-import { ChestRewardEffect } from "./ExplorerPieces";
+import { ChestRewardEffect, TileRewardEffect } from "./ExplorerPieces";
 import s from "./math-explorers.module.css";
 
 const ExplorerCardDialog = dynamic(() => import("./ExplorerCardDialog"));
@@ -59,6 +59,9 @@ function ExplorerGame({ initialView }: { initialView?: "collection" }) {
   const [correct, setCorrect] = useState<boolean | null>(null);
   const [effectKey, setEffectKey] = useState("");
   const [chestStars, setChestStars] = useState<number | null>(null);
+  const [tileStars, setTileStars] = useState<number | null>(null);
+  const tileTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const shownComplete = useRef<boolean | null>(null);
   const [detailId, setDetailId] = useState<string | null>(null);
   const [solution, setSolution] = useState<ExplorerFeedback["solution"] | null>(
     null,
@@ -78,8 +81,25 @@ function ExplorerGame({ initialView }: { initialView?: "collection" }) {
       alive.current = false;
       inFlight.current?.abort();
       if (timer.current) clearTimeout(timer.current);
+      if (tileTimer.current) clearTimeout(tileTimer.current);
     };
   }, []);
+
+  // D-144 칸 효과: 화면에 보이던 «오늘 칸 없음»이 «있음»으로 바뀐 순간 한 번(개념 날은 정답 연출 뒤, 은행 날은 돌아온 뒤).
+  // 처음 불러온 화면 · 새로고침은 바뀐 것이 아니라 띄우지 않는다.
+  useEffect(() => {
+    const complete = state?.expedition?.completedToday;
+    if (complete === undefined) return;
+    const before = shownComplete.current;
+    shownComplete.current = complete;
+    const stars = state?.expedition?.todayStars;
+    if (before !== false || !complete || !stars) return;
+    if (tileTimer.current) clearTimeout(tileTimer.current);
+    setTileStars(stars.cards + stars.bonus);
+    tileTimer.current = setTimeout(() => {
+      if (alive.current) setTileStars(null);
+    }, EFFECT_MS);
+  }, [state]);
 
   useEffect(() => {
     const controller = new AbortController();
@@ -475,6 +495,7 @@ function ExplorerGame({ initialView }: { initialView?: "collection" }) {
         />
       ) : null}
       <ChestRewardEffect key={effectKey} stars={chestStars} />
+      <TileRewardEffect stars={tileStars} />
     </StudentReviewPage>
   );
 }

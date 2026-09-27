@@ -1,0 +1,357 @@
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>별 경제 와이어</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nanum+Myeongjo:wght@800&family=Noto+Sans+KR:wght@400;500;700&display=swap">
+<style>
+/* 와이어 — 흑백·상자·숫자만. 색·글꼴·움직임은 Hi-fi 단계(05 §0-3).
+   바깥 틀(제목·탭·표)은 wire-quick-combo 와 같은 토큰. 폰 안은 회색조만 쓴다. */
+:root {
+  color-scheme: light;
+  --paper: #fafaf8; --ink: #161616; --ink-2: #61615e;
+  --rule: #b9b9b6; --pick: #2064b3;
+  --sans: "Pretendard Variable", Pretendard, "Noto Sans KR", "Malgun Gothic", system-ui, sans-serif;
+  --serif: "Nanum Myeongjo", "Noto Serif KR", Batang, serif;
+  --pw: 320px; --ph: 568px;
+}
+body.w390 { --pw: 390px; --ph: 700px; }
+body { margin: 0; background: var(--paper); color: var(--ink); font-family: var(--sans); font-size: 14px; line-height: 1.55; }
+* { box-sizing: border-box; }
+[hidden] { display: none !important; }
+button { font: inherit; color: inherit; }
+button:focus-visible { outline: 3px solid #82a1ff; outline-offset: 2px; }
+.tab, .wbtn { cursor: pointer; }
+
+.board { max-width: 1180px; margin: 0 auto; padding-inline: 24px; padding-block: 28px 72px; }
+@media (max-width: 600px) { .board { padding-inline: 16px; } }
+.head { display: grid; gap: 10px; padding-bottom: 18px; }
+.eyebrow { margin: 0; font-size: 12px; letter-spacing: .06em; color: var(--ink-2); }
+h1 { margin: 0; font-family: var(--serif); font-weight: 800; font-size: 30px; line-height: 1.25; letter-spacing: -.02em; text-wrap: balance; }
+.lede { margin: 0; max-width: 72ch; color: var(--ink-2); font-size: 15px; }
+.lede b { color: var(--ink); }
+.facts { display: flex; flex-wrap: wrap; gap: 6px 22px; margin: 4px 0 0; padding: 0; list-style: none; font-size: 13px; color: var(--ink-2); }
+.facts b { color: var(--ink); font-weight: 600; }
+.ask { border: 1px solid var(--rule); border-radius: 8px; background: #fff; padding: 18px 20px; display: grid; gap: 10px; margin-bottom: 22px; }
+.ask h2 { margin: 0; font-family: var(--serif); font-size: 20px; font-weight: 800; }
+.ask ol { margin: 0; padding-left: 20px; display: grid; gap: 8px; color: var(--ink-2); }
+.ask li b { color: var(--ink); }
+.note { margin: 0; max-width: 76ch; font-size: 13px; color: var(--ink-2); }
+.note b { color: var(--ink); }
+h2.sec { margin: 30px 0 8px; font-family: var(--serif); font-size: 22px; font-weight: 800; letter-spacing: -.01em; }
+.tablewrap { overflow-x: auto; }
+table.t { border-collapse: collapse; font-size: 12.5px; background: #fff; }
+table.t th, table.t td { border: 1px solid #d6d6d3; padding: 6px 9px; text-align: left; vertical-align: top; }
+table.t th { font-weight: 700; background: #f3f3f1; }
+table.t td.n { font-variant-numeric: tabular-nums; white-space: nowrap; }
+table.t code, .note code, .meta code { font-size: 11.5px; background: #f0f0ee; padding: 0 4px; border-radius: 3px; }
+
+.toolbar { position: sticky; top: 0; z-index: 20; display: flex; flex-wrap: wrap; align-items: center; gap: 4px 10px; padding-block: 10px; background: var(--paper); border-block: 1px solid var(--rule); margin-top: 30px; }
+.tabs { display: flex; flex-wrap: wrap; gap: 4px; }
+.tab { display: flex; gap: 8px; align-items: baseline; padding: 7px 12px; border: 1px solid transparent; border-radius: 6px; background: none; color: var(--ink-2); }
+.tab .k { font-weight: 700; color: var(--ink); }
+.tab:hover { background: #fff; }
+.tab[aria-selected="true"] { background: #fff; border-color: var(--rule); color: var(--ink); box-shadow: inset 0 -2px 0 var(--pick); }
+.widths { margin-left: auto; display: flex; gap: 4px; align-items: center; font-size: 12px; color: var(--ink-2); }
+.wbtn { border: 1px solid var(--rule); background: #fff; border-radius: 6px; padding: 4px 10px; font-size: 12px; }
+.wbtn:hover { border-color: var(--ink-2); }
+.wbtn[aria-pressed="true"] { border-color: var(--ink); font-weight: 700; box-shadow: inset 0 -2px 0 var(--pick); }
+
+.panel { padding-top: 22px; display: grid; gap: 18px; }
+.thesis h2 { margin: 0 0 6px; font-family: var(--serif); font-size: 22px; font-weight: 800; letter-spacing: -.01em; }
+.thesis p { margin: 0; max-width: 72ch; color: var(--ink-2); }
+.meta { margin: 0; display: grid; grid-template-columns: max-content minmax(0, 1fr); gap: 5px 14px; font-size: 13px; max-width: 920px; }
+.meta dt { font-weight: 700; }
+.meta dd { margin: 0; color: var(--ink-2); }
+.cuts { display: flex; flex-wrap: wrap; gap: 18px; align-items: flex-start; overflow-x: auto; padding-bottom: 6px; }
+.cut { margin: 0; display: grid; gap: 8px; width: calc(var(--pw) + 12px); flex: none; }
+.cut figcaption { font-size: 12.5px; color: var(--ink-2); }
+.cut figcaption b { color: var(--ink); }
+.list { margin: 0; padding-left: 18px; display: grid; gap: 6px; color: var(--ink-2); max-width: 920px; }
+.list b { color: var(--ink); }
+
+/* 날별 그림 — 막대 = 그날 받은 별, 계단선 = 기지 단계 */
+.charts { display: grid; gap: 10px; max-width: 980px; }
+.chart { display: grid; grid-template-columns: 64px minmax(0, 1fr); gap: 8px; align-items: center; }
+.chart b { font-size: 12.5px; }
+.chart b small { display: block; font-weight: 400; color: var(--ink-2); font-size: 11px; }
+.chart svg { width: 100%; height: auto; background: #fff; border: 1px solid #e0e0dd; border-radius: 4px; }
+.legend { display: flex; flex-wrap: wrap; gap: 4px 14px; font-size: 12px; color: var(--ink-2); align-items: center; }
+.legend i { display: inline-block; width: 14px; height: 10px; vertical-align: middle; margin-right: 5px; border: 1px solid #2b2b2b; }
+
+/* ── 폰 — 학생 탐험 홈(ExplorerHome)을 상자로만 ─────────────── */
+.phone { width: calc(var(--pw) + 12px); border: 6px solid #232323; border-radius: 26px; background: #fff; overflow: hidden; }
+.scr { position: relative; width: var(--pw); height: var(--ph); display: flex; flex-direction: column; overflow: hidden; background: #f6f6f5; }
+.ph-top { flex: none; display: flex; justify-content: space-between; align-items: center; padding: 13px 14px; background: #fff; border-bottom: 1px solid #dcdcda; }
+.ph-top b { font-size: 15px; font-weight: 800; }
+.ph-top span { font-size: 12px; color: #6b6b68; }
+.ph-body { flex: 1; min-height: 0; display: flex; flex-direction: column; gap: 10px; padding: 10px 12px 0; overflow: hidden; }
+.mission { background: #fff; border: 1px solid #d6d6d3; border-radius: 16px; padding: 14px; display: grid; gap: 6px; }
+.mission .mm { display: flex; justify-content: space-between; font-size: 12px; color: #6b6b68; }
+.mission .sub { margin: 0; font-size: 12px; color: #6b6b68; }
+.mission h3 { margin: 0; font-size: 20px; }
+.mission .bar { height: 6px; border-radius: 3px; background: #dededb; overflow: hidden; }
+.mission .bar i { display: block; height: 100%; background: #2b2b2b; }
+.mission .done { margin: 4px 0 0; font-size: 13.5px; font-weight: 700; display: flex; flex-wrap: wrap; gap: 4px 8px; align-items: baseline; }
+.mission .done .star { border: 1.5px solid #161616; border-radius: 999px; padding: 0 8px; font-variant-numeric: tabular-nums; }
+.mission .done .why { font-size: 11.5px; font-weight: 400; color: #6b6b68; }
+.jb { background: #fff; border: 1px dashed #b9b9b6; border-radius: 16px; height: 150px; display: grid; place-items: center; font-size: 12px; color: #9a9a96; }
+.links { display: grid; grid-template-columns: repeat(3, 1fr); gap: 6px; }
+.links span { border: 1px solid #d6d6d3; background: #fff; border-radius: 10px; text-align: center; padding: 9px 0; font-size: 12.5px; }
+.links span.hot { border: 2px solid #161616; font-weight: 700; }
+.ph-tabs { flex: none; height: 56px; display: grid; grid-template-columns: repeat(3, 1fr); align-items: center; text-align: center; font-size: 12px; color: #6b6b68; background: #fff; border-top: 1px solid #dcdcda; margin-top: auto; }
+.ph-tabs b { color: #161616; }
+/* 시트 */
+.sheet { position: absolute; inset: 60px 0 0; background: #fff; border-top-left-radius: 18px; border-top-right-radius: 18px; border-top: 1px solid #b9b9b6; box-shadow: 0 -8px 24px rgba(0,0,0,.12); padding: 16px 16px 12px; display: flex; flex-direction: column; gap: 10px; overflow: hidden; }
+.sheet .sh { display: flex; justify-content: space-between; align-items: center; }
+.sheet .sh b { font-size: 16px; }
+.sheet .sh span { font-size: 18px; color: #6b6b68; }
+.base { border: 1px solid #d6d6d3; border-radius: 14px; padding: 14px; display: grid; justify-items: center; gap: 6px; text-align: center; }
+.base .emb { width: 58px; height: 58px; border-radius: 50%; border: 2px solid #2b2b2b; display: grid; place-items: center; font-size: 26px; }
+.base .lv { margin: 0; font-size: 12px; color: #6b6b68; }
+.base h4 { margin: 0; font-size: 18px; }
+.base .have { margin: 0; font-size: 13px; }
+.base .dots { display: flex; flex-wrap: wrap; gap: 4px; justify-content: center; max-width: 100%; }
+.base .dots i { width: 10px; height: 10px; border-radius: 50%; border: 1.5px solid #2b2b2b; }
+.base .dots i.on { background: #2b2b2b; }
+.base .go { width: 100%; min-height: 46px; display: grid; place-items: center; border-radius: 10px; background: #2b2b2b; color: #fff; font-weight: 700; font-size: 14px; }
+.base .go.off { background: #dededb; color: #7a7a77; }
+.base .next { margin: 0; font-size: 11.5px; color: #6b6b68; }
+.sheet h5 { margin: 4px 0 0; font-size: 13px; }
+.chests { display: grid; grid-template-columns: 1fr 1fr; gap: 6px; }
+.chests span { border: 1px dashed #b9b9b6; border-radius: 10px; font-size: 11.5px; text-align: center; padding: 8px 0; color: #6b6b68; }
+.frames { display: grid; grid-template-columns: repeat(3, 1fr); gap: 6px; }
+.frames span { border: 1px solid #d6d6d3; border-radius: 10px; font-size: 11px; padding: 6px; display: grid; gap: 2px; }
+.frames span.framed { border: 3px double #161616; }
+.frames span small { color: #6b6b68; }
+.fx { position: absolute; inset: 0; z-index: 5; display: grid; place-items: center; background: rgba(255,255,255,.82); }
+.fx .in { display: grid; justify-items: center; gap: 10px; }
+.fx .em { width: 76px; height: 76px; border-radius: 50%; border: 3px solid #161616; display: grid; place-items: center; font-size: 34px; background: #fff; }
+.fx .msg { margin: 0; font-size: 18px; font-weight: 800; }
+.fx .tag { font-size: 11px; color: #6b6b68; border: 1px solid #b9b9b6; border-radius: 3px; padding: 1px 6px; background: #fff; }
+</style>
+
+<div class="board">
+  <header class="head">
+    <p class="eyebrow">통합 탐험 · 별 경제 다시 설계 · Wire · 2026-09-28 · D-144</p>
+    <h1>은행 날에도 별이 오고, 모은 별이 늘 쓸 곳이 있게</h1>
+    <p class="lede">
+      원장님 제보 «보상 획득이 매우 병목». 조사해 보니 경제 쪽 막힘이 둘이었다 —
+      <b>① 초등(진도 계획) 학생은 문제은행 날 별 0</b>(30일 중 은행 날 20~23일 · 별 0 최장 10~21일 연속),
+      <b>② 중등은 4일째 기지 완성</b> 뒤 별이 110~142개 쌓여 쓸 곳이 없다.
+      원장님 선택은 «설계 시안»(은행 날 별 · 기지 단계 · 별 쓸 곳을 묶어서). 안 넷을 <b>같은 30일 · 90일 시뮬레이션</b>으로 쟀다.
+    </p>
+    <ul class="facts">
+      <li><b>학생 셋</b> 중2(개념·기억) · 초4(진도 계획 + 초등 은행) · 중1(개념 + 중등 은행 · 은행 복습)</li>
+      <li><b>방법</b> 제품 엔진 · CAS 저장 · 탐험 가드를 하루씩 그대로 · 고정 씨앗 · 거의 다 맞히는 <b>후한 학생</b></li>
+      <li><b>게임 안에서만</b> 현금성 · 경쟁 · 순위 없음</li>
+    </ul>
+  </header>
+
+  <section class="ask" style="border-color:#161616">
+    <h2>결론 — D 만장일치 (2026-09-28 · D-144 · 05 §8.19)</h2>
+    <p class="note">Claude · codex · grok 이 따로 답해 셋 다 <b>D</b>: 한 칸 보장 3 · 기지 3 · 6 · 12 뒤로 한 단계마다 12, 끝 없음 · 추가 쓸 곳 없음 · 하루 상한 없음 · 소급 없음.
+      갈린 점은 둘 — ADR 에 개정 한 줄을 넣을지(codex · grok 넣음 → 넣음) · 완료 줄에 보이는 수(합계 2 : 보장만 1 → 합계). 화면 모양은 Hi-fi <code>hifi-star-economy.html</code>.</p>
+  </section>
+  <section class="ask">
+    <h2>정할 것 (원장님 위임 — 리드 · codex · grok 합의)</h2>
+    <ol>
+      <li><b>은행 날 별</b> — 은행 칸 고정(A) · 첫 풀이 정답 비례(B) · 모든 칸 «한 칸 보장»(C · D) 가운데 무엇으로, 몇 개.</li>
+      <li><b>기지</b> — 단계 수와 비용 곡선. 끝이 있나(A · B · C) 없나(D).</li>
+      <li><b>별 쓸 곳</b> — 기지 말고 더 둘까(B 의 도감 테).</li>
+      <li><b>하루 상한</b> · <b>소급</b>(과거 은행 날에 별을 줄까) · 이미 기지를 다 키운 학생의 쌓인 별.</li>
+    </ol>
+    <p class="note">지키는 것: 통합 탐험 ADR «<b>별·상자는 기존 일회성 조건 유지 · 추가 학습은 하루 칸을 추가하지 않는다 · 기지 성장은 게임 안에서 모은 별로</b>» ·
+      05 §8.15 콤보는 별에 더하지 않음 · 지난 칸 재풀이 · 오답 재도전 · 중복 요청은 별을 늘리지 않음 · 문구 D-08.</p>
+  </section>
+
+  <h2 class="sec">지금 규칙</h2>
+  <div class="tablewrap"><table class="t">
+    <thead><tr><th>구분</th><th>규칙</th><th>자리</th></tr></thead>
+    <tbody>
+      <tr><td>나옴 ① 카드 레벨</td><td>수집(0→1) +1 · 기억 복습에서 1→2→3(처음부터 맞힘 · 힌트 없음 · 만기 · 같은 날 아님) +1. 최대 3 — 다 3이면 기억 복습 날 0</td><td><code>definition-cards.ts:808-832</code></td></tr>
+      <tr><td>나옴 ② 단원 상자</td><td>단원마다 2개(앞 개념 2 · 4 해결), 처음 한 번 +1</td><td><code>definition-cards.ts:588-649</code></td></tr>
+      <tr><td>나옴 ③ 설계도</td><td>통분 공방 평생 한 번 +1</td><td><code>workshop.ts:246-251</code></td></tr>
+      <tr><td>씀 — 기지</td><td>3 → 6 → 12, 3단계가 끝(«성장 완료»). 화면이 비용을 따로 적음</td><td><code>engine.ts:38 · :115-127</code> · <code>ExplorerHome.tsx:428-463</code> · 계약 level ≤ 3</td></tr>
+      <tr><td>은행 날</td><td>초등 10문(StudentCourseSrs) · 중등 12문(StudentMathSrs) — <b>별 쓰는 코드 없음</b></td><td><code>expedition.ts:588-595</code>(은행 중 개념 기록 변경 금지)</td></tr>
+      <tr><td>하루 칸</td><td>오늘의 탐험 + 재도전까지 끝내면 한국 날짜당 한 칸 · 재풀이는 칸 없음</td><td><code>expedition.ts:704-742 · :498-501</code> · 계약 superRefine</td></tr>
+      <tr><td>안 늘어나는 것</td><td>지난 칸 재풀이(스냅숏 되돌림) · 오답 재도전(1→2→3 안 올림) · 같은 요청 번호 · 두 탭(CAS) · 콤보</td><td><code>engine.ts:205-252</code> · 05 §8.15</td></tr>
+      <tr><td>화면</td><td>별은 기지 시트 «모은 별 ✦ N»과 상자 효과 «별 +1» 에만 보인다 — 카드 레벨 별은 조용히 들어온다</td><td><code>ExplorerHome.tsx:446</code> · <code>ExplorerPieces.tsx:91</code></td></tr>
+    </tbody>
+  </table></div>
+
+  <h2 class="sec">안 넷 — 규칙</h2>
+  <div class="tablewrap"><table class="t">
+    <thead><tr><th>안</th><th>은행 날 별</th><th>기지</th><th>추가 쓸 곳</th></tr></thead>
+    <tbody>
+      <tr><td><b>A</b> 은행 완료 별</td><td>은행 칸을 얻으면 +3 고정(기억 복습 날은 그대로)</td><td>10단계 · 3·6·9·…·30 (합 165)</td><td>없음</td></tr>
+      <tr><td><b>B</b> 정답 비례 + 도감 테</td><td>은행 칸 = 1 + ⌊첫 풀이 정답 ÷ 4⌋ (10문 만점 3 · 12문 만점 4 · 최소 1)</td><td>7단계 · 3·6·10·15·20·25·30 (합 109)</td><td>도감 테 — 단단한 기억(레벨 3) 카드에 별 2로 한 번</td></tr>
+      <tr><td><b>C</b> 한 칸 보장 + 12단계</td><td><b>모든 칸</b>: 그 미션이 준 별이 3보다 적으면 3까지 채움 → 은행 날 3 · 기억 복습 최소 3 · 개념 날 그대로</td><td>12단계 · 3·5·7·…·25 (합 168)</td><td>없음</td></tr>
+      <tr><td><b>D</b> 한 칸 보장 + 끝없는 기지</td><td>C 와 같음</td><td>지금 3·6·12 그대로 + 그 뒤 <b>한 단계마다 12, 끝 없음</b></td><td>없음(끝이 없어 «쓸 곳 없음»이 안 생김)</td></tr>
+    </tbody>
+  </table></div>
+
+  <h2 class="sec">30일</h2>
+  <div class="tablewrap"><table class="t"><thead><tr><th>안</th><th>30일 누적 별 (중2 · 초4 · 중1)</th><th>기지 (끝)</th><th>별 0 최장 연속(일)</th><th>사기 사이 최장 기다림(일)</th><th>쓸 곳 없는 남은 별</th><th>쓸 곳 없던 날</th></tr></thead><tbody><tr><td>지금</td><td class=n>163 · 17 · 131</td><td class=n>완성 4일째 · 2/3 · 완성 4일째</td><td class=n>0 · 21 · 1</td><td class=n>2 · 28 · 2</td><td class=n>142 · 0 · 110</td><td class=n>26 · 0 · 26</td></tr><tr><td>A 은행 완료 별 3 · 기지 10단계</td><td class=n>163 · 86 · 149</td><td class=n>9/10 · 7/10 · 9/10</td><td class=n>0 · 1 · 0</td><td class=n>6 · 8 · 5</td><td class=n>0 · 0 · 0</td><td class=n>0 · 0 · 0</td></tr><tr><td>B 은행 첫 풀이 비례 · 기지 7단계 + 도감 테</td><td class=n>163 · 86 · 155</td><td class=n>완성 19일째 · 6/7 · 완성 21일째 (테 24/24 · 0/5 · 18/18)</td><td class=n>0 · 1 · 0</td><td class=n>5 · 10 · 6</td><td class=n>6 · 0 · 10</td><td class=n>11 · 0 · 9</td></tr><tr><td>C 한 칸 보장 3 · 기지 12단계</td><td class=n>167 · 96 · 153</td><td class=n>11/12 · 8/12 · 11/12</td><td class=n>0 · 0 · 0</td><td class=n>5 · 6 · 4</td><td class=n>0 · 0 · 0</td><td class=n>0 · 0 · 0</td></tr><tr><td>D 한 칸 보장 3 · 끝없는 기지(3·6·12 그대로, 뒤로 12씩)</td><td class=n>167 · 96 · 153</td><td class=n>15단계 · 9단계 · 14단계</td><td class=n>0 · 0 · 0</td><td class=n>3 · 4 · 3</td><td class=n>0 · 0 · 0</td><td class=n>0 · 0 · 0</td></tr></tbody></table></div>
+  <h2 class="sec">90일</h2>
+  <div class="tablewrap"><table class="t"><thead><tr><th>안</th><th>90일 누적 별 (중2 · 초4 · 중1)</th><th>기지 (끝)</th><th>별 0 최장 연속(일)</th><th>사기 사이 최장 기다림(일)</th><th>쓸 곳 없는 남은 별</th><th>쓸 곳 없던 날</th></tr></thead><tbody><tr><td>지금</td><td class=n>236 · 34 · 300</td><td class=n>완성 4일째 · 완성 35일째 · 완성 4일째</td><td class=n>14 · 48 · 3</td><td class=n>2 · 33 · 2</td><td class=n>215 · 13 · 279</td><td class=n>86 · 55 · 86</td></tr><tr><td>A 은행 완료 별 3 · 기지 10단계</td><td class=n>236 · 253 · 336</td><td class=n>완성 31일째 · 완성 58일째 · 완성 33일째</td><td class=n>14 · 1 · 1</td><td class=n>7 · 12 · 6</td><td class=n>71 · 88 · 171</td><td class=n>59 · 32 · 57</td></tr><tr><td>B 은행 첫 풀이 비례 · 기지 7단계 + 도감 테</td><td class=n>236 · 253 · 348</td><td class=n>완성 19일째 · 완성 38일째 · 완성 21일째 (테 63/68 · 10/10 · 47/47)</td><td class=n>14 · 1 · 1</td><td class=n>16 · 10 · 9</td><td class=n>0 · 124 · 145</td><td class=n>0 · 52 · 69</td></tr><tr><td>C 한 칸 보장 3 · 기지 12단계</td><td class=n>361 · 281 · 399</td><td class=n>완성 31일째 · 완성 53일째 · 완성 33일째</td><td class=n>0 · 0 · 0</td><td class=n>6 · 9 · 5</td><td class=n>193 · 113 · 231</td><td class=n>59 · 37 · 57</td></tr><tr><td>D 한 칸 보장 3 · 끝없는 기지(3·6·12 그대로, 뒤로 12씩)</td><td class=n>361 · 281 · 399</td><td class=n>31단계 · 24단계 · 34단계</td><td class=n>0 · 0 · 0</td><td class=n>4 · 4 · 4</td><td class=n>0 · 0 · 0</td><td class=n>0 · 0 · 0</td></tr></tbody></table></div>
+  <p class="note">90일이면 <b>지금 규칙의 중2 도 별 0 이 14일 연속</b> — 학년 단원을 다 모은 뒤 카드가 3단계에 닿으면 기억 복습 날도 0 이다. 끝이 있는 A · B · C 는 31~58일에 다 사고 다시 별이 논다.</p>
+  <h2 class="sec">초4 씨앗 다섯 · 민감도</h2>
+  <div class="tablewrap"><table class="t"><thead><tr><th>안</th><th>초4 30일 누적 별</th><th>기지 (끝)</th><th>별 0 최장 연속</th><th>최장 기다림</th></tr></thead><tbody><tr><td>지금</td><td class=n>17~34</td><td class=n>2/3 / 완성 20일째 / 완성 28일째</td><td class=n>10~21</td><td class=n>18~28</td></tr><tr><td>A 은행 완료 별 3 · 기지 10단계</td><td class=n>86~94</td><td class=n>7/10</td><td class=n>1</td><td class=n>6~8</td></tr><tr><td>B 은행 첫 풀이 비례 · 기지 7단계 + 도감 테</td><td class=n>86~94</td><td class=n>6/7</td><td class=n>1</td><td class=n>8~10</td></tr><tr><td>C 한 칸 보장 3 · 기지 12단계</td><td class=n>96~103</td><td class=n>8/12 / 9/12</td><td class=n>0</td><td class=n>6</td></tr><tr><td>D 한 칸 보장 3 · 끝없는 기지(3·6·12 그대로, 뒤로 12씩)</td><td class=n>96~103</td><td class=n>9단계</td><td class=n>0</td><td class=n>4</td></tr></tbody></table></div>
+  <div class="tablewrap" style="margin-top:10px"><table class="t"><thead><tr><th>안</th><th>90일 누적 별 (중2 · 초4 · 중1)</th><th>기지 (끝)</th><th>별 0 최장 연속(일)</th><th>사기 사이 최장 기다림(일)</th><th>쓸 곳 없는 남은 별</th><th>쓸 곳 없던 날</th></tr></thead><tbody><tr><td>D 한 칸 보장 3 · 끝없는 기지(3·6·12 그대로, 뒤로 12씩)</td><td class=n>361 · 281 · 399</td><td class=n>31단계 · 24단계 · 34단계</td><td class=n>0 · 0 · 0</td><td class=n>4 · 4 · 4</td><td class=n>0 · 0 · 0</td><td class=n>0 · 0 · 0</td></tr><tr><td>D′ 한 칸 보장 3 · 끝없는 기지(3·6·12 뒤 15씩)</td><td class=n>361 · 281 · 399</td><td class=n>25단계 · 20단계 · 28단계</td><td class=n>0 · 0 · 0</td><td class=n>5 · 5 · 5</td><td class=n>0 · 0 · 0</td><td class=n>0 · 0 · 0</td></tr><tr><td>D″ 한 칸 보장 4 · 끝없는 기지(3·6·12 뒤 12씩)</td><td class=n>415 · 366 · 440</td><td class=n>35단계 · 31단계 · 37단계</td><td class=n>0 · 0 · 0</td><td class=n>3 · 3 · 3</td><td class=n>0 · 0 · 0</td><td class=n>0 · 0 · 0</td></tr></tbody></table></div>
+
+  <div class="toolbar">
+    <div class="tabs" role="tablist" aria-label="안">
+      <button class="tab" role="tab" data-k="now" aria-selected="false"><span class="k">지금</span></button>
+      <button class="tab" role="tab" data-k="A" aria-selected="true"><span class="k">A</span>은행 완료 별</button>
+      <button class="tab" role="tab" data-k="B" aria-selected="false"><span class="k">B</span>정답 비례 + 도감 테</button>
+      <button class="tab" role="tab" data-k="C" aria-selected="false"><span class="k">C</span>한 칸 보장 + 12단계</button>
+      <button class="tab" role="tab" data-k="D" aria-selected="false"><span class="k">D</span>한 칸 보장 + 끝없는 기지 · 채택</button>
+    </div>
+    <div class="widths">폰 폭
+      <button class="wbtn" data-w="320" aria-pressed="true">320</button>
+      <button class="wbtn" data-w="390" aria-pressed="false">390</button>
+      · 기간
+      <button class="wbtn" data-d="d30" aria-pressed="true">30일</button>
+      <button class="wbtn" data-d="d90" aria-pressed="false">90일</button>
+    </div>
+  </div>
+  <section class="panel" id="panel"></section>
+</div>
+
+<script>
+const DATA = {"d30":{"now":{"g8":{"add":[7,4,7,5,7,5,7,4,7,5,7,5,7,4,7,5,7,5,7,1,7,5,7,5,7,4,7,1,3,4],"stars":[4,2,9,2,9,14,21,25,32,37,44,49,56,60,67,72,79,84,91,92,99,104,111,116,123,127,134,135,138,142],"level":[1,2,2,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3],"kind":["u","m","u","m","u","m","u","m","u","m","u","m","u","m","u","m","u","m","u","m","u","m","u","m","u","m","u","m","u","m"]},"g4":{"add":[7,4,0,0,4,0,0,0,2,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],"stars":[4,2,2,2,6,6,6,6,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8],"level":[1,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2],"kind":["u","m","b","b","m","b","b","b","m","b","b","b","b","b","m","b","b","b","m","b","b","b","b","b","m","b","b","b","b","b"]},"g7":{"add":[7,4,7,5,7,5,7,4,0,5,0,5,0,4,7,1,7,0,7,4,7,5,7,0,7,1,7,4,7,0],"stars":[4,2,9,2,9,14,21,25,25,30,30,35,35,39,46,47,54,54,61,65,72,77,84,84,91,92,99,103,110,110],"level":[1,2,2,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3],"kind":["u","m","u","m","u","m","u","m","b","m","b","m","b","m","u","m","u","r","u","m","u","m","u","r","u","m","u","m","u","r"]}},"A":{"g8":{"add":[7,4,7,5,7,5,7,4,7,5,7,5,7,4,7,5,7,5,7,1,7,5,7,5,7,4,7,1,3,4],"stars":[4,2,0,5,0,5,12,1,8,13,2,7,14,18,4,9,16,21,4,5,12,17,24,2,9,13,20,21,24,28],"level":[1,2,3,3,4,4,4,5,5,5,6,6,6,6,7,7,7,7,8,8,8,8,8,9,9,9,9,9,9,9],"kind":["u","m","u","m","u","m","u","m","u","m","u","m","u","m","u","m","u","m","u","m","u","m","u","m","u","m","u","m","u","m"]},"g4":{"add":[7,4,3,3,4,3,3,3,2,3,3,3,3,3,0,3,3,3,0,3,3,3,3,3,0,3,3,3,3,3],"stars":[4,2,5,8,3,6,9,0,2,5,8,11,14,2,2,5,8,11,11,14,17,2,5,8,8,11,14,17,20,2],"level":[1,2,2,2,3,3,3,4,4,4,4,4,4,5,5,5,5,5,5,5,5,6,6,6,6,6,6,6,6,7],"kind":["u","m","b","b","m","b","b","b","m","b","b","b","b","b","m","b","b","b","m","b","b","b","b","b","m","b","b","b","b","b"]},"g7":{"add":[7,4,7,5,7,5,7,4,3,5,3,5,3,4,7,1,7,3,7,4,7,5,7,3,7,1,7,4,7,3],"stars":[4,2,0,5,0,5,12,1,4,9,12,17,2,6,13,14,0,3,10,14,21,2,9,12,19,20,0,4,11,14],"level":[1,2,3,3,4,4,4,5,5,5,5,5,6,6,6,6,7,7,7,7,7,8,8,8,8,8,9,9,9,9],"kind":["u","m","u","m","u","m","u","m","b","m","b","m","b","m","u","m","u","r","u","m","u","m","u","r","u","m","u","m","u","r"]}},"B":{"g8":{"add":[7,4,7,5,7,5,7,4,7,5,7,5,7,4,7,5,7,5,7,1,7,5,7,5,7,4,7,1,3,4],"stars":[4,2,9,4,11,1,8,12,19,4,11,16,23,2,9,14,21,26,1,0,1,0,1,0,1,1,8,9,8,6],"level":[1,2,2,3,3,4,4,4,4,5,5,5,5,6,6,6,6,6,7,7,7,7,7,7,7,7,7,7,7,7],"kind":["u","m","u","m","u","m","u","m","u","m","u","m","u","m","u","m","u","m","u","m","u","m","u","m","u","m","u","m","u","m"]},"g4":{"add":[7,4,3,3,4,3,3,3,2,3,3,3,3,3,0,3,3,3,0,3,3,3,3,3,0,3,3,3,3,3],"stars":[4,2,5,8,2,5,8,11,13,1,4,7,10,13,13,16,19,2,2,5,8,11,14,17,17,20,23,1,4,7],"level":[1,2,2,2,3,3,3,3,3,4,4,4,4,4,4,4,4,5,5,5,5,5,5,5,5,5,5,6,6,6],"kind":["u","m","b","b","m","b","b","b","m","b","b","b","b","b","m","b","b","b","m","b","b","b","b","b","m","b","b","b","b","b"]},"g7":{"add":[7,4,7,5,7,5,7,4,4,5,4,5,4,4,7,1,7,4,7,4,7,5,7,4,7,1,7,4,7,4],"stars":[4,2,9,4,11,1,8,12,16,1,5,10,14,18,0,1,8,12,19,23,0,1,0,0,1,0,1,1,6,10],"level":[1,2,2,3,3,4,4,4,4,5,5,5,5,5,6,6,6,6,6,6,7,7,7,7,7,7,7,7,7,7],"kind":["u","m","u","m","u","m","u","m","b","m","b","m","b","m","u","m","u","r","u","m","u","m","u","r","u","m","u","m","u","r"]}},"C":{"g8":{"add":[7,4,7,5,7,5,7,4,7,5,7,5,7,4,7,5,7,5,7,3,7,5,7,5,7,4,7,3,3,4],"stars":[4,3,3,8,6,0,7,11,5,10,2,7,14,1,8,13,1,6,13,16,2,7,14,19,3,7,14,17,20,24],"level":[1,2,3,3,4,5,5,5,6,6,7,7,7,8,8,8,9,9,9,9,10,10,10,10,11,11,11,11,11,11],"kind":["u","m","u","m","u","m","u","m","u","m","u","m","u","m","u","m","u","m","u","m","u","m","u","m","u","m","u","m","u","m"]},"g4":{"add":[7,4,3,3,4,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3],"stars":[4,3,6,2,6,0,3,6,9,1,4,7,10,0,3,6,9,12,0,3,6,9,12,15,1,4,7,10,13,16],"level":[1,2,2,3,3,4,4,4,4,5,5,5,5,6,6,6,6,6,7,7,7,7,7,7,8,8,8,8,8,8],"kind":["u","m","b","b","m","b","b","b","m","b","b","b","b","b","m","b","b","b","m","b","b","b","b","b","m","b","b","b","b","b"]},"g7":{"add":[7,4,7,5,7,5,7,4,3,5,3,5,3,4,7,3,7,3,7,4,7,5,7,3,7,3,7,4,7,3],"stars":[4,3,3,8,6,0,7,11,1,6,9,14,2,6,13,16,6,9,16,1,8,13,20,2,9,12,19,0,7,10],"level":[1,2,3,3,4,5,5,5,6,6,6,6,7,7,7,7,8,8,8,9,9,9,9,10,10,10,10,11,11,11],"kind":["u","m","u","m","u","m","u","m","b","m","b","m","b","m","u","m","u","r","u","m","u","m","u","r","u","m","u","m","u","r"]}},"D":{"g8":{"add":[7,4,7,5,7,5,7,4,7,5,7,5,7,4,7,5,7,5,7,3,7,5,7,5,7,4,7,3,3,4],"stars":[4,2,9,2,9,2,9,1,8,1,8,1,8,0,7,0,7,0,7,10,5,10,5,10,5,9,4,7,10,2],"level":[1,2,2,3,3,4,4,5,5,6,6,7,7,8,8,9,9,10,10,10,11,11,12,12,13,13,14,14,14,15],"kind":["u","m","u","m","u","m","u","m","u","m","u","m","u","m","u","m","u","m","u","m","u","m","u","m","u","m","u","m","u","m"]},"g4":{"add":[7,4,3,3,4,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3],"stars":[4,2,5,8,0,3,6,9,0,3,6,9,0,3,6,9,0,3,6,9,0,3,6,9,0,3,6,9,0,3],"level":[1,2,2,2,3,3,3,3,4,4,4,4,5,5,5,5,6,6,6,6,7,7,7,7,8,8,8,8,9,9],"kind":["u","m","b","b","m","b","b","b","m","b","b","b","b","b","m","b","b","b","m","b","b","b","b","b","m","b","b","b","b","b"]},"g7":{"add":[7,4,7,5,7,5,7,4,3,5,3,5,3,4,7,3,7,3,7,4,7,5,7,3,7,3,7,4,7,3],"stars":[4,2,9,2,9,2,9,1,4,9,0,5,8,0,7,10,5,8,3,7,2,7,2,5,0,3,10,2,9,0],"level":[1,2,2,3,3,4,4,5,5,5,6,6,6,7,7,7,8,8,9,9,10,10,11,11,12,12,12,13,13,14],"kind":["u","m","u","m","u","m","u","m","b","m","b","m","b","m","u","m","u","r","u","m","u","m","u","r","u","m","u","m","u","r"]}}},"d90":{"now":{"g8":{"add":[7,4,7,5,7,5,7,4,7,5,7,5,7,4,7,5,7,5,7,1,7,5,7,5,7,4,7,1,3,4,2,4,1,5,0,3,0,4,0,2,0,5,0,4,0,5,0,5,0,2,0,2,0,2,0,2,0,3,0,4,0,1,0,2,0,3,0,3,0,1,0,5,0,2,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0],"stars":[4,2,9,2,9,14,21,25,32,37,44,49,56,60,67,72,79,84,91,92,99,104,111,116,123,127,134,135,138,142,144,148,149,154,154,157,157,161,161,163,163,168,168,172,172,177,177,182,182,184,184,186,186,188,188,190,190,193,193,197,197,198,198,200,200,203,203,206,206,207,207,212,212,214,214,215,215,215,215,215,215,215,215,215,215,215,215,215,215,215],"level":[1,2,2,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3],"kind":["u","m","u","m","u","m","u","m","u","m","u","m","u","m","u","m","u","m","u","m","u","m","u","m","u","m","u","m","u","m","u","m","u","m","u","m","u","m","u","m","u","m","u","m","u","m","u","m","u","m","u","m","u","m","u","m","u","m","u","m","u","m","u","m","u","m","u","m","u","m","u","m","u","m","u","m","u","m","u","m","u","m","u","m","u","m","u","m","u","m"]},"g4":{"add":[7,4,0,0,4,0,0,0,2,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,7,3,0,0,3,0,0,4,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],"stars":[4,2,2,2,6,6,6,6,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,3,6,6,6,9,9,9,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13],"level":[1,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3],"kind":["u","m","b","b","m","b","b","b","m","b","b","b","b","b","m","b","b","b","m","b","b","b","b","b","m","b","b","b","b","b","b","m","b","b","u","m","b","b","m","b","b","m","b","b","b","b","b","b","m","b","b","m","b","b","b","b","b","b","b","b","b","b","m","b","b","m","b","b","b","b","b","m","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b"]},"g7":{"add":[7,4,7,5,7,5,7,4,0,5,0,5,0,4,7,1,7,0,7,4,7,5,7,0,7,1,7,4,7,0,7,4,7,1,7,0,7,4,7,4,7,5,7,0,7,5,7,2,7,3,5,0,0,2,5,3,0,5,0,0,0,4,0,5,0,5,0,4,0,0,0,3,0,3,0,4,0,4,0,0,0,5,0,5,0,4,0,2,0,3],"stars":[4,2,9,2,9,14,21,25,25,30,30,35,35,39,46,47,54,54,61,65,72,77,84,84,91,92,99,103,110,110,117,121,128,129,136,136,143,147,154,158,165,170,177,177,184,189,196,198,205,208,213,213,213,215,220,223,223,228,228,228,228,232,232,237,237,242,242,246,246,246,246,249,249,252,252,256,256,260,260,260,260,265,265,270,270,274,274,276,276,279],"level":[1,2,2,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3],"kind":["u","m","u","m","u","m","u","m","b","m","b","m","b","m","u","m","u","r","u","m","u","m","u","r","u","m","u","m","u","r","u","m","u","m","u","r","u","m","u","m","u","m","u","r","u","m","u","m","u","m","u","r","u","m","u","m","u","m","u","r","u","m","u","m","u","m","u","m","u","r","u","m","u","m","u","m","u","m","u","r","u","m","u","m","u","m","u","m","u","m"]}},"A":{"g8":{"add":[7,4,7,5,7,5,7,4,7,5,7,5,7,4,7,5,7,5,7,1,7,5,7,5,7,4,7,1,3,4,2,4,1,5,0,3,0,4,0,2,0,5,0,4,0,5,0,5,0,2,0,2,0,2,0,2,0,3,0,4,0,1,0,2,0,3,0,3,0,1,0,5,0,2,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0],"stars":[4,2,0,5,0,5,12,1,8,13,2,7,14,18,4,9,16,21,4,5,12,17,24,2,9,13,20,21,24,28,0,4,5,10,10,13,13,17,17,19,19,24,24,28,28,33,33,38,38,40,40,42,42,44,44,46,46,49,49,53,53,54,54,56,56,59,59,62,62,63,63,68,68,70,70,71,71,71,71,71,71,71,71,71,71,71,71,71,71,71],"level":[1,2,3,3,4,4,4,5,5,5,6,6,6,6,7,7,7,7,8,8,8,8,8,9,9,9,9,9,9,9,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10],"kind":["u","m","u","m","u","m","u","m","u","m","u","m","u","m","u","m","u","m","u","m","u","m","u","m","u","m","u","m","u","m","u","m","u","m","u","m","u","m","u","m","u","m","u","m","u","m","u","m","u","m","u","m","u","m","u","m","u","m","u","m","u","m","u","m","u","m","u","m","u","m","u","m","u","m","u","m","u","m","u","m","u","m","u","m","u","m","u","m","u","m"]},"g4":{"add":[7,4,3,3,4,3,3,3,2,3,3,3,3,3,0,3,3,3,0,3,3,3,3,3,0,3,3,3,3,3,3,0,3,3,7,3,3,3,3,3,3,4,3,3,3,3,3,3,0,3,3,0,3,3,3,3,3,3,3,3,3,3,0,3,3,0,3,3,3,3,3,0,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3],"stars":[4,2,5,8,3,6,9,0,2,5,8,11,14,2,2,5,8,11,11,14,17,2,5,8,8,11,14,17,20,2,5,5,8,11,18,21,0,3,6,9,12,16,19,22,25,1,4,7,7,10,13,13,16,19,22,25,28,1,4,7,10,13,13,16,19,19,22,25,28,31,34,34,37,40,43,46,49,52,55,58,61,64,67,70,73,76,79,82,85,88],"level":[1,2,2,2,3,3,3,4,4,4,4,4,4,5,5,5,5,5,5,5,5,6,6,6,6,6,6,6,6,7,7,7,7,7,7,7,8,8,8,8,8,8,8,8,8,9,9,9,9,9,9,9,9,9,9,9,9,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10],"kind":["u","m","b","b","m","b","b","b","m","b","b","b","b","b","m","b","b","b","m","b","b","b","b","b","m","b","b","b","b","b","b","m","b","b","u","m","b","b","m","b","b","m","b","b","b","b","b","b","m","b","b","m","b","b","b","b","b","b","b","b","b","b","m","b","b","m","b","b","b","b","b","m","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b"]},"g7":{"add":[7,4,7,5,7,5,7,4,3,5,3,5,3,4,7,1,7,3,7,4,7,5,7,3,7,1,7,4,7,3,7,4,7,1,7,3,7,4,7,4,7,5,7,3,7,5,7,2,7,3,5,3,0,2,5,3,0,5,0,3,0,4,0,5,0,5,0,4,0,3,0,3,0,3,0,4,0,4,0,3,0,5,0,5,0,4,0,2,0,3],"stars":[4,2,0,5,0,5,12,1,4,9,12,17,2,6,13,14,0,3,10,14,21,2,9,12,19,20,0,4,11,14,21,25,2,3,10,13,20,24,31,35,42,47,54,57,64,69,76,78,85,88,93,96,96,98,103,106,106,111,111,114,114,118,118,123,123,128,128,132,132,135,135,138,138,141,141,145,145,149,149,152,152,157,157,162,162,166,166,168,168,171],"level":[1,2,3,3,4,4,4,5,5,5,5,5,6,6,6,6,7,7,7,7,7,8,8,8,8,8,9,9,9,9,9,9,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10],"kind":["u","m","u","m","u","m","u","m","b","m","b","m","b","m","u","m","u","r","u","m","u","m","u","r","u","m","u","m","u","r","u","m","u","m","u","r","u","m","u","m","u","m","u","r","u","m","u","m","u","m","u","r","u","m","u","m","u","m","u","r","u","m","u","m","u","m","u","m","u","r","u","m","u","m","u","m","u","m","u","r","u","m","u","m","u","m","u","m","u","m"]}},"B":{"g8":{"add":[7,4,7,5,7,5,7,4,7,5,7,5,7,4,7,5,7,5,7,1,7,5,7,5,7,4,7,1,3,4,2,4,1,5,0,3,0,4,0,2,0,5,0,4,0,5,0,5,0,2,0,2,0,2,0,2,0,3,0,4,0,1,0,2,0,3,0,3,0,1,0,5,0,2,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0],"stars":[4,2,9,4,11,1,8,12,19,4,11,16,23,2,9,14,21,26,1,0,1,0,1,0,1,1,8,9,8,6,4,6,5,8,8,7,7,9,9,11,11,14,14,12,12,13,13,16,16,18,18,18,18,16,16,14,14,11,11,7,7,6,6,4,4,1,1,0,0,1,1,0,0,0,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1],"level":[1,2,2,3,3,4,4,4,4,5,5,5,5,6,6,6,6,6,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7],"kind":["u","m","u","m","u","m","u","m","u","m","u","m","u","m","u","m","u","m","u","m","u","m","u","m","u","m","u","m","u","m","u","m","u","m","u","m","u","m","u","m","u","m","u","m","u","m","u","m","u","m","u","m","u","m","u","m","u","m","u","m","u","m","u","m","u","m","u","m","u","m","u","m","u","m","u","m","u","m","u","m","u","m","u","m","u","m","u","m","u","m"]},"g4":{"add":[7,4,3,3,4,3,3,3,2,3,3,3,3,3,0,3,3,3,0,3,3,3,3,3,0,3,3,3,3,3,3,0,3,3,7,3,3,3,3,3,3,4,3,3,3,3,3,3,0,3,3,0,3,3,3,3,3,3,3,3,3,3,0,3,3,0,3,3,3,3,3,0,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3],"stars":[4,2,5,8,2,5,8,11,13,1,4,7,10,13,13,16,19,2,2,5,8,11,14,17,17,20,23,1,4,7,10,10,13,16,23,26,29,0,1,0,1,1,0,1,4,7,10,13,13,16,19,19,22,25,28,31,34,37,40,43,46,49,49,52,55,55,58,61,64,67,70,70,73,76,79,82,85,88,91,94,97,100,103,106,109,112,115,118,121,124],"level":[1,2,2,2,3,3,3,3,3,4,4,4,4,4,4,4,4,5,5,5,5,5,5,5,5,5,5,6,6,6,6,6,6,6,6,6,6,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7],"kind":["u","m","b","b","m","b","b","b","m","b","b","b","b","b","m","b","b","b","m","b","b","b","b","b","m","b","b","b","b","b","b","m","b","b","u","m","b","b","m","b","b","m","b","b","b","b","b","b","m","b","b","m","b","b","b","b","b","b","b","b","b","b","m","b","b","m","b","b","b","b","b","m","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b"]},"g7":{"add":[7,4,7,5,7,5,7,4,4,5,4,5,4,4,7,1,7,4,7,4,7,5,7,4,7,1,7,4,7,4,7,4,7,1,7,4,7,4,7,4,7,5,7,4,7,5,7,2,7,3,5,4,0,2,5,3,0,5,0,4,0,4,0,5,0,5,0,4,0,4,0,3,0,3,0,4,0,4,0,4,0,5,0,5,0,4,0,2,0,3],"stars":[4,2,9,4,11,1,8,12,16,1,5,10,14,18,0,1,8,12,19,23,0,1,0,0,1,0,1,1,6,10,17,21,28,29,36,40,47,49,56,58,65,66,73,77,84,85,92,94,101,104,109,113,113,113,108,111,111,110,110,114,114,116,116,121,121,120,120,122,122,126,126,127,127,130,130,128,128,132,132,136,136,135,135,138,138,140,140,142,142,145],"level":[1,2,2,3,3,4,4,4,4,5,5,5,5,5,6,6,6,6,6,6,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7],"kind":["u","m","u","m","u","m","u","m","b","m","b","m","b","m","u","m","u","r","u","m","u","m","u","r","u","m","u","m","u","r","u","m","u","m","u","r","u","m","u","m","u","m","u","r","u","m","u","m","u","m","u","r","u","m","u","m","u","m","u","r","u","m","u","m","u","m","u","m","u","r","u","m","u","m","u","m","u","m","u","r","u","m","u","m","u","m","u","m","u","m"]}},"C":{"g8":{"add":[7,4,7,5,7,5,7,4,7,5,7,5,7,4,7,5,7,5,7,3,7,5,7,5,7,4,7,3,3,4,3,4,3,5,3,3,3,4,3,3,3,5,3,4,3,5,3,5,3,3,3,3,3,3,3,3,3,3,3,4,3,3,3,3,3,3,3,3,3,3,3,5,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3],"stars":[4,3,3,8,6,0,7,11,5,10,2,7,14,1,8,13,1,6,13,16,2,7,14,19,3,7,14,17,20,24,2,6,9,14,17,20,23,27,30,33,36,41,44,48,51,56,59,64,67,70,73,76,79,82,85,88,91,94,97,101,104,107,110,113,116,119,122,125,128,131,134,139,142,145,148,151,154,157,160,163,166,169,172,175,178,181,184,187,190,193],"level":[1,2,3,3,4,5,5,5,6,6,7,7,7,8,8,8,9,9,9,9,10,10,10,10,11,11,11,11,11,11,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12],"kind":["u","m","u","m","u","m","u","m","u","m","u","m","u","m","u","m","u","m","u","m","u","m","u","m","u","m","u","m","u","m","u","m","u","m","u","m","u","m","u","m","u","m","u","m","u","m","u","m","u","m","u","m","u","m","u","m","u","m","u","m","u","m","u","m","u","m","u","m","u","m","u","m","u","m","u","m","u","m","u","m","u","m","u","m","u","m","u","m","u","m"]},"g4":{"add":[7,4,3,3,4,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,7,3,3,3,3,3,3,4,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3],"stars":[4,3,6,2,6,0,3,6,9,1,4,7,10,0,3,6,9,12,0,3,6,9,12,15,1,4,7,10,13,16,0,3,6,9,16,19,1,4,7,10,13,17,20,0,3,6,9,12,15,18,21,24,2,5,8,11,14,17,20,23,26,29,32,35,38,41,44,47,50,53,56,59,62,65,68,71,74,77,80,83,86,89,92,95,98,101,104,107,110,113],"level":[1,2,2,3,3,4,4,4,4,5,5,5,5,6,6,6,6,6,7,7,7,7,7,7,8,8,8,8,8,8,9,9,9,9,9,9,10,10,10,10,10,10,10,11,11,11,11,11,11,11,11,11,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12],"kind":["u","m","b","b","m","b","b","b","m","b","b","b","b","b","m","b","b","b","m","b","b","b","b","b","m","b","b","b","b","b","b","m","b","b","u","m","b","b","m","b","b","m","b","b","b","b","b","b","m","b","b","m","b","b","b","b","b","b","b","b","b","b","m","b","b","m","b","b","b","b","b","m","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b"]},"g7":{"add":[7,4,7,5,7,5,7,4,3,5,3,5,3,4,7,3,7,3,7,4,7,5,7,3,7,3,7,4,7,3,7,4,7,3,7,3,7,4,7,4,7,5,7,3,7,5,7,3,7,3,5,3,3,3,5,3,3,5,3,3,3,4,3,5,3,5,3,4,3,3,3,3,3,3,3,4,3,4,3,3,3,5,3,5,3,4,3,3,3,3],"stars":[4,3,3,8,6,0,7,11,1,6,9,14,2,6,13,16,6,9,16,1,8,13,20,2,9,12,19,0,7,10,17,21,3,6,13,16,23,27,34,38,45,50,57,60,67,72,79,82,89,92,97,100,103,106,111,114,117,122,125,128,131,135,138,143,146,151,154,158,161,164,167,170,173,176,179,183,186,190,193,196,199,204,207,212,215,219,222,225,228,231],"level":[1,2,3,3,4,5,5,5,6,6,6,6,7,7,7,7,8,8,8,9,9,9,9,10,10,10,10,11,11,11,11,11,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12],"kind":["u","m","u","m","u","m","u","m","b","m","b","m","b","m","u","m","u","r","u","m","u","m","u","r","u","m","u","m","u","r","u","m","u","m","u","r","u","m","u","m","u","m","u","r","u","m","u","m","u","m","u","r","u","m","u","m","u","m","u","r","u","m","u","m","u","m","u","m","u","r","u","m","u","m","u","m","u","m","u","r","u","m","u","m","u","m","u","m","u","m"]}},"D":{"g8":{"add":[7,4,7,5,7,5,7,4,7,5,7,5,7,4,7,5,7,5,7,3,7,5,7,5,7,4,7,3,3,4,3,4,3,5,3,3,3,4,3,3,3,5,3,4,3,5,3,5,3,3,3,3,3,3,3,3,3,3,3,4,3,3,3,3,3,3,3,3,3,3,3,5,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3],"stars":[4,2,9,2,9,2,9,1,8,1,8,1,8,0,7,0,7,0,7,10,5,10,5,10,5,9,4,7,10,2,5,9,0,5,8,11,2,6,9,0,3,8,11,3,6,11,2,7,10,1,4,7,10,1,4,7,10,1,4,8,11,2,5,8,11,2,5,8,11,2,5,10,1,4,7,10,1,4,7,10,1,4,7,10,1,4,7,10,1,4],"level":[1,2,2,3,3,4,4,5,5,6,6,7,7,8,8,9,9,10,10,10,11,11,12,12,13,13,14,14,14,15,15,15,16,16,16,16,17,17,17,18,18,18,18,19,19,19,20,20,20,21,21,21,21,22,22,22,22,23,23,23,23,24,24,24,24,25,25,25,25,26,26,26,27,27,27,27,28,28,28,28,29,29,29,29,30,30,30,30,31,31],"kind":["u","m","u","m","u","m","u","m","u","m","u","m","u","m","u","m","u","m","u","m","u","m","u","m","u","m","u","m","u","m","u","m","u","m","u","m","u","m","u","m","u","m","u","m","u","m","u","m","u","m","u","m","u","m","u","m","u","m","u","m","u","m","u","m","u","m","u","m","u","m","u","m","u","m","u","m","u","m","u","m","u","m","u","m","u","m","u","m","u","m"]},"g4":{"add":[7,4,3,3,4,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,7,3,3,3,3,3,3,4,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3],"stars":[4,2,5,8,0,3,6,9,0,3,6,9,0,3,6,9,0,3,6,9,0,3,6,9,0,3,6,9,0,3,6,9,0,3,10,1,4,7,10,1,4,8,11,2,5,8,11,2,5,8,11,2,5,8,11,2,5,8,11,2,5,8,11,2,5,8,11,2,5,8,11,2,5,8,11,2,5,8,11,2,5,8,11,2,5,8,11,2,5,8],"level":[1,2,2,2,3,3,3,3,4,4,4,4,5,5,5,5,6,6,6,6,7,7,7,7,8,8,8,8,9,9,9,9,10,10,10,11,11,11,11,12,12,12,12,13,13,13,13,14,14,14,14,15,15,15,15,16,16,16,16,17,17,17,17,18,18,18,18,19,19,19,19,20,20,20,20,21,21,21,21,22,22,22,22,23,23,23,23,24,24,24],"kind":["u","m","b","b","m","b","b","b","m","b","b","b","b","b","m","b","b","b","m","b","b","b","b","b","m","b","b","b","b","b","b","m","b","b","u","m","b","b","m","b","b","m","b","b","b","b","b","b","m","b","b","m","b","b","b","b","b","b","b","b","b","b","m","b","b","m","b","b","b","b","b","m","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b"]},"g7":{"add":[7,4,7,5,7,5,7,4,3,5,3,5,3,4,7,3,7,3,7,4,7,5,7,3,7,3,7,4,7,3,7,4,7,3,7,3,7,4,7,4,7,5,7,3,7,5,7,3,7,3,5,3,3,3,5,3,3,5,3,3,3,4,3,5,3,5,3,4,3,3,3,3,3,3,3,4,3,4,3,3,3,5,3,5,3,4,3,3,3,3],"stars":[4,2,9,2,9,2,9,1,4,9,0,5,8,0,7,10,5,8,3,7,2,7,2,5,0,3,10,2,9,0,7,11,6,9,4,7,2,6,1,5,0,5,0,3,10,3,10,1,8,11,4,7,10,1,6,9,0,5,8,11,2,6,9,2,5,10,1,5,8,11,2,5,8,11,2,6,9,1,4,7,10,3,6,11,2,6,9,0,3,6],"level":[1,2,2,3,3,4,4,5,5,5,6,6,6,7,7,7,8,8,9,9,10,10,11,11,12,12,12,13,13,14,14,14,15,15,16,16,17,17,18,18,19,19,20,20,20,21,21,22,22,22,23,23,23,24,24,24,25,25,25,25,26,26,26,27,27,27,28,28,28,28,29,29,29,29,30,30,30,31,31,31,31,32,32,32,33,33,33,34,34,34],"kind":["u","m","u","m","u","m","u","m","b","m","b","m","b","m","u","m","u","r","u","m","u","m","u","r","u","m","u","m","u","r","u","m","u","m","u","r","u","m","u","m","u","m","u","r","u","m","u","m","u","m","u","r","u","m","u","m","u","m","u","r","u","m","u","m","u","m","u","m","u","r","u","m","u","m","u","m","u","m","u","r","u","m","u","m","u","m","u","m","u","m"]}}}};
+const OPT = {
+  now: { title: "지금", thesis: "은행 날 0 · 기지 3단계가 끝. 비교 기준.", costs: [3, 6, 12], endless: false,
+    rules: [["은행 날", "별 없음"], ["기지", "3 → 6 → 12, 끝"], ["쓸 곳", "기지뿐"]] },
+  A: { title: "A · 은행 완료 별 3 + 기지 10단계", thesis: "은행 칸에만 별 3. 기억 복습 날 0 은 그대로 남는다(초4 · 중2 90일 14일 연속). 기지가 길어져 30일엔 모자라지 않지만 31~58일에 다 사면 다시 논다.",
+    costs: [3, 6, 9, 12, 15, 18, 21, 24, 27, 30], endless: false,
+    rules: [["은행 날", "은행 칸을 얻는 순간 +3 (재도전까지 끝낸 뒤 · 한국 날짜당 1번)"], ["기억 복습 날", "그대로 — 카드가 다 3단계면 0"], ["기지", "10단계, 3씩 오름(합 165) · 단계 이름 6개 새로(문구 협의)"], ["쓸 곳", "기지뿐"]] },
+  B: { title: "B · 첫 풀이 정답 비례 + 기지 7단계 + 도감 테", thesis: "정확하게 풀수록 더 받는다. 대신 약한 학생이 덜 받는다(정답률 60%면 초4 30일 86 → 63). 도감 테는 카드를 많이 모으는 중등에만 열린다(초4 30일 0/5).",
+    costs: [3, 6, 10, 15, 20, 25, 30], endless: false, frames: true,
+    rules: [["은행 날", "1 + ⌊첫 풀이 정답 ÷ 4⌋ — 초등 10문 만점 3 · 중등 12문 만점 4 · 최소 1"], ["기억 복습 날", "그대로"], ["기지", "7단계(합 109)"], ["도감 테", "단단한 기억(레벨 3) 카드마다 한 번, 별 2 — 도감 카드에 테"]] },
+  C: { title: "C · 한 칸 보장 3 + 기지 12단계", thesis: "칸 하나에 별 최소 3 — 은행 날과 «0별 기억 복습 날»을 한 규칙으로 없앤다. 기지는 완만하게 12단계. 90일이면 31~53일에 다 사고 다시 논다.",
+    costs: [3, 5, 7, 9, 11, 13, 15, 17, 19, 21, 23, 25], endless: false,
+    rules: [["모든 칸", "칸을 얻는 순간, 그 미션이 이미 준 별(개념 레벨 별 · 은행 0)이 3보다 적으면 3까지 채움"], ["결과", "은행 날 3 · 기억 복습 날 최소 3 · 개념 날(5 + 상자 2) 그대로"], ["기지", "12단계, 2씩 오름(합 168) · 단계 이름 8개 새로(문구 협의)"], ["쓸 곳", "기지뿐"]] },
+  D: { title: "D · 한 칸 보장 3 + 끝없는 기지", thesis: "C 의 한 칸 보장 + 기지에 끝을 없앤다. 지금 3 · 6 · 12 는 그대로 두고, 그 뒤로 한 단계에 12. 쓸 곳이 바닥나는 날이 구조적으로 없다.",
+    costs: [3, 6, 12], flat: 12, endless: true,
+    rules: [["모든 칸", "C 와 같음 — 칸당 최소 별 3"], ["기지", "3 → 6 → 12(지금 그대로) → 그 뒤 한 단계마다 12, 끝 없음"], ["이름", "지금 넷 그대로 · 3단계 뒤는 «빛나는 수학 기지» + 단계 수"], ["쓸 곳", "기지뿐 — 꾸미기 · 도감 테는 그림이 필요해 다음 설계로"]] },
+};
+const P = [["g8", "중2", "개념 · 기억"], ["g4", "초4", "진도 계획 · 초등 은행"], ["g7", "중1", "개념 · 중등 은행"]];
+const NAMES = ["작은 배움터", "수학 탐험소", "기억 연구소", "빛나는 수학 기지"];
+let cur = "A", width = 320, span = "d30";
+
+function chart(k, p) {
+  const s = DATA[span][k][p];
+  const n = s.add.length, W = 900, H = 120, bw = W / n, top = 8, base = H - 18;
+  const maxAdd = 8, maxLv = Math.max(4, ...s.level);
+  let g = "";
+  s.add.forEach((a, i) => {
+    const h = (a / maxAdd) * (base - top);
+    const fill = s.kind[i] === "b" || s.kind[i] === "r" ? "#fff" : s.kind[i] === "u" ? "#2b2b2b" : "#9a9a96";
+    g += `<rect x="${(i * bw + 1).toFixed(1)}" y="${(base - h).toFixed(1)}" width="${(bw - 2).toFixed(1)}" height="${Math.max(h, a === 0 ? 0 : 1).toFixed(1)}" fill="${fill}" stroke="#2b2b2b" stroke-width="${a ? 0.8 : 0}"/>`;
+    if (a === 0) g += `<line x1="${(i * bw + 1).toFixed(1)}" x2="${((i + 1) * bw - 1).toFixed(1)}" y1="${base + 3}" y2="${base + 3}" stroke="#161616" stroke-width="2.5"/>`;
+  });
+  let d = "";
+  s.level.forEach((lv, i) => {
+    const y = base - (lv / maxLv) * (base - top);
+    d += `${i ? "L" : "M"}${(i * bw).toFixed(1)},${y.toFixed(1)} L${((i + 1) * bw).toFixed(1)},${y.toFixed(1)} `;
+  });
+  g += `<path d="${d}" fill="none" stroke="#2064b3" stroke-width="2"/>`;
+  g += `<text x="${W - 4}" y="12" text-anchor="end" font-size="11" fill="#2064b3">기지 ${s.level.at(-1)}단계</text>`;
+  g += `<text x="4" y="${H - 4}" font-size="10" fill="#61615e">1일</text><text x="${W - 4}" y="${H - 4}" text-anchor="end" font-size="10" fill="#61615e">${n}일</text>`;
+  return `<svg viewBox="0 0 ${W} ${H}" role="img" aria-label="${p} 날별 별">${g}</svg>`;
+}
+function stageName(k, lv) {
+  if (k === "D" || k === "now") return NAMES[Math.min(lv, 3)];
+  return lv < 4 ? NAMES[lv] : `(단계 이름 ${lv} — 문구 협의)`;
+}
+function cost(k, lv) {
+  const o = OPT[k];
+  if (lv < o.costs.length) return o.costs[lv];
+  return o.endless ? o.flat : null;
+}
+function phoneHome(k, kind) {
+  const bank = kind === "bank";
+  const star = k === "now" ? 0 : k === "B" ? 3 : 3;
+  const memTop = k === "C" || k === "D" ? 2 : 0;
+  const line = bank
+    ? (star ? `<span class="star">별 +${star}</span><span class="why">${k === "B" ? "첫 풀이 10 / 10" : k === "A" ? "은행 칸" : "한 칸 보장"}</span>` : `<span class="why">(별 없음)</span>`)
+    : (memTop ? `<span class="star">별 +${memTop}</span><span class="why">기억 1 + 한 칸 보장 2 = 3</span>` : `<span class="why">(칸 보상 없음 · 기억 별 1 은 조용히)</span>`);
+  return `<div class="phone"><div class="scr">
+    <div class="ph-top"><b>수학 탐험</b><span>test_s</span></div>
+    <div class="ph-body">
+      <div class="mission">
+        <div class="mm"><span>오늘의 한 칸 완료</span><span>${bank ? "10 / 10 문제" : "15 / 15 활동"}</span></div>
+        <p class="sub">${bank ? "초등 4학년 · 큰 수" : "중학교 2학년"}</p>
+        <h3>${bank ? "큰 수" : "기억 복습"}</h3>
+        <div class="bar"><i style="width:100%"></i></div>
+        <p class="done">✓ 한 칸 전진했어요. ${line}</p>
+        <p class="sub">다음 탐험은 내일 열려요.</p>
+      </div>
+      <div class="jb">진도판(그대로)</div>
+      <div class="links"><span>도감</span><span>학습 설정</span><span class="hot">우리 기지</span></div>
+    </div>
+    <div class="ph-tabs"><b>탐험</b><span>도감</span><span>강의</span></div>
+    ${bank && star ? `<div class="fx"><div class="in"><div class="em">✦</div><p class="msg">별 +${star}</p><span class="tag">은행 활동에서 돌아온 순간 한 번 — 지금 상자 효과 그대로</span></div></div>` : ""}
+  </div></div>`;
+}
+function phoneBase(k) {
+  const o = OPT[k];
+  const s = DATA[span][k].g4;
+  const lv = s.level.at(-1), have = s.stars.at(-1);
+  const c = cost(k, lv);
+  const stages = o.endless ? null : o.costs.length;
+  const dots = stages ? `<div class="dots" aria-label="${lv} / ${stages}단계">${Array.from({ length: stages }, (_, i) => `<i class="${i < lv ? "on" : ""}"></i>`).join("")}</div>` : "";
+  const frames = o.frames ? `<h5>도감 테 · ✦ 2</h5><div class="frames"><span class="framed">큰 수<small>테 달림</small></span><span>만<small>✦ 2 로 달기</small></span><span>억<small>단단한 기억 전</small></span></div>` : "";
+  return `<div class="phone"><div class="scr">
+    <div class="ph-top"><b>수학 탐험</b><span>test_s</span></div>
+    <div class="ph-body"><div class="mission"><div class="mm"><span>오늘의 한 칸</span><span>0 / 10 문제</span></div><h3>큰 수</h3></div></div>
+    <div class="sheet">
+      <div class="sh"><b>우리 기지</b><span>×</span></div>
+      <div class="base">
+        <div class="emb">⌂</div>
+        <p class="lv">${lv}단계${stages ? ` / ${stages}` : ""}</p>
+        <h4>${stageName(k, lv)}</h4>
+        ${dots}
+        <p class="have">모은 별 <b>✦ ${have}</b></p>
+        <div class="go ${c === null || have < c ? "off" : ""}">${c === null ? "성장 완료" : `기지 키우기 · ✦ ${c}`}</div>
+        ${c !== null && have < c ? `<p class="next">별 ${c - have}개 더 모으면 ${lv + 1}단계</p>` : ""}
+      </div>
+      ${frames}
+      <h5>탐험 보상</h5><div class="chests"><span>2개 개념 · 보상 획득</span><span>4개 개념 · 보상 획득</span></div>
+    </div>
+  </div></div>`;
+}
+function render() {
+  const o = OPT[cur];
+  const days = span === "d30" ? 30 : 90;
+  const el = document.getElementById("panel");
+  el.innerHTML = `
+    <div class="thesis"><h2>${o.title}</h2><p>${o.thesis}</p></div>
+    <dl class="meta">${o.rules.map(([a, b]) => `<dt>${a}</dt><dd>${b}</dd>`).join("")}</dl>
+    <div class="legend"><span><i style="background:#2b2b2b"></i>개념 날</span><span><i style="background:#9a9a96"></i>기억 복습 날</span><span><i style="background:#fff"></i>은행 날 · 은행 복습</span><span><i style="background:#161616;height:3px;border:0"></i>별 0 인 날</span><span><i style="background:none;border:0;border-top:2px solid #2064b3;height:0"></i>기지 단계</span> · 막대 높이 = 그날 받은 별(최대 8)</div>
+    <div class="charts">${P.map(([p, name, sub]) => `<div class="chart"><b>${name}<small>${sub}</small></b>${chart(cur, p)}</div>`).join("")}</div>
+    <div class="cuts">
+      <figure class="cut">${phoneHome(cur, "bank")}<figcaption><b>초4 은행 날 끝</b> — 홈 «오늘의 한 칸 완료» 줄에 받은 별. 돌아온 순간 지금 상자 효과 한 번.</figcaption></figure>
+      <figure class="cut">${phoneHome(cur, "memory")}<figcaption><b>중2 기억 복습 날(카드 1장만 레벨 오름)</b> — 한 칸 보장이 있으면 2를 채워 3.</figcaption></figure>
+      <figure class="cut">${phoneBase(cur)}<figcaption><b>우리 기지 — 초4 ${days}일 끝</b> 그대로의 단계 · 잔고. 버튼 문구 · 단계 표시 · 이름은 Hi-fi 에서.</figcaption></figure>
+    </div>`;
+}
+document.querySelectorAll(".tab").forEach((b) => b.addEventListener("click", () => {
+  cur = b.dataset.k;
+  document.querySelectorAll(".tab").forEach((t) => t.setAttribute("aria-selected", String(t === b)));
+  render();
+}));
+document.querySelectorAll(".wbtn[data-w]").forEach((b) => b.addEventListener("click", () => {
+  width = Number(b.dataset.w);
+  document.body.classList.toggle("w390", width === 390);
+  document.querySelectorAll(".wbtn[data-w]").forEach((t) => t.setAttribute("aria-pressed", String(t === b)));
+}));
+document.querySelectorAll(".wbtn[data-d]").forEach((b) => b.addEventListener("click", () => {
+  span = b.dataset.d;
+  document.querySelectorAll(".wbtn[data-d]").forEach((t) => t.setAttribute("aria-pressed", String(t === b)));
+  render();
+}));
+render();
+</script>
