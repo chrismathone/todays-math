@@ -56,7 +56,11 @@ function actionKey(action: ExplorerAction) {
   return JSON.stringify(parsed.data);
 }
 
-/** Call before the route's revision check, so an uncertain network retry is safe. */
+/**
+ * Replays an exact earlier request, so an uncertain network retry is safe.
+ * The route calls it before the save only for expedition-start; other actions
+ * meet it inside `applyExplorerAction` and again after a failed revision check.
+ */
 export function explorerReceipt(
   stored: StoredExplorer,
   action: ExplorerAction,
@@ -83,7 +87,9 @@ export function applyExplorerAction(
 ): { state: StoredExplorer; feedback: ExplorerFeedback; duplicate: boolean } {
   const date = isoDateSchema.parse(serverDate);
   if (action.type === "expedition-start")
-    throw new ExplorerActionInvalid("오늘의 학습은 통합 학습 화면에서 시작해 주세요.");
+    throw new ExplorerActionInvalid(
+      "오늘의 학습은 통합 학습 화면에서 시작해 주세요.",
+    );
   uuidSchema.parse(requestId);
   const key = actionKey(action);
   const duplicate = explorerReceipt(stored, action, requestId);

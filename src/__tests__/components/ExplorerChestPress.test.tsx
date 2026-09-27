@@ -71,7 +71,10 @@ const [readyUnit, claimedUnit] = definitionUnits.filter(
 );
 
 /** 초3 첫 단원 상자 둘이 준비됨 · 둘째 단원 상자 둘은 이미 받음 · 별 5. */
-function storedWithReadyChests(): StoredExplorer {
+function storedWithReadyChests({
+  bothRows = false,
+  doneDay = false,
+}: { bothRows?: boolean; doneDay?: boolean } = {}): StoredExplorer {
   const stored = createExplorerState(student.id, 3);
   const progress = {
     level: 1,
@@ -85,11 +88,22 @@ function storedWithReadyChests(): StoredExplorer {
   );
   stored.profile.stars = 5;
   stored.profile.definitions = {
+    courseGrade: 3,
     runs: 2,
     cards: Object.fromEntries(cards.map((card) => [card.id, progress])),
-    claimedChests: [`${claimedUnit.id}:2`, `${claimedUnit.id}:4`],
+    claimedChests: bothRows
+      ? []
+      : [`${claimedUnit.id}:2`, `${claimedUnit.id}:4`],
     history: [],
   };
+  if (doneDay)
+    stored.completedDays = [
+      {
+        date: "2026-09-25",
+        unitId: claimedUnit.id,
+        sessionId: "5a2e5c0e-4f0b-4b8e-9d3c-0d9f5c1f3a11",
+      },
+    ];
   return stored;
 }
 
@@ -133,10 +147,20 @@ function server(initial: StoredExplorer) {
       status,
     });
   const replies: Reply[] = [];
+  const stuckReads: ((signal?: AbortSignal) => Promise<void>)[] = [];
+  let failReads = 0;
   vi.stubGlobal(
     "fetch",
     vi.fn(async (_url: string, options?: RequestInit) => {
-      if (!options?.body) return new Response(JSON.stringify({ data: data() }));
+      if (!options?.body) {
+        const stuck = stuckReads.shift();
+        if (failReads > 0) {
+          failReads -= 1;
+          throw new TypeError("Failed to fetch");
+        }
+        if (stuck) await stuck(options?.signal ?? undefined);
+        return new Response(JSON.stringify({ data: data() }));
+      }
       const input = JSON.parse(options.body as string) as ExplorerRequest;
       posts.push(input);
       return (replies.shift() ?? ok)(input);
@@ -167,6 +191,21 @@ function server(initial: StoredExplorer) {
         );
       });
     },
+    /** 다음 GET 하나가 연결 끊김으로 실패한다. */
+    failNextRead() {
+      failReads += 1;
+    },
+    /** 다음 GET 하나가 끊길 때까지(abort) 멈춘다. */
+    stickNextRead() {
+      stuckReads.push(
+        (signal) =>
+          new Promise<void>((_, reject) =>
+            signal?.addEventListener("abort", () =>
+              reject(new DOMException("Aborted", "AbortError")),
+            ),
+          ),
+      );
+    },
     /** 다음 POST 들을 손으로 풀 때까지 붙잡는다. */
     hold() {
       const waiting: (() => void)[] = [];
@@ -184,7 +223,7 @@ function server(initial: StoredExplorer) {
 }
 
 async function openBase() {
-  render(<StudentMathExplorers />);
+  const { unmount } = render(<StudentMathExplorers />);
   fireEvent.click(await screen.findByRole("button", { name: /우리 기지/ }));
   const sheet = await screen.findByRole("dialog", { name: "우리 기지" });
   const rows = within(sheet).getAllByLabelText("단원 보상상자");
@@ -192,7 +231,7 @@ async function openBase() {
     row.querySelector('[data-state="ready"]'),
   )!;
   const ready = within(readyRow).getAllByRole("button");
-  return { sheet, rows, ready };
+  return { sheet, rows, ready, unmount };
 }
 
 beforeEach(() => {
@@ -299,10 +338,24 @@ describe("chest press — shown at once, taken back on failure", () => {
     },
   );
 
-  it("gives the star once when the lost response had actually been saved", async () => {
+  it("confirms a chest whose response was lost after the save, without a notice", async () => {
     const api = server(storedWithReadyChests());
     const { sheet, ready } = await openBase();
     api.next("lost");
+
+    fireEvent.click(ready[0]);
+    await waitFor(() => expect(api.stars()).toBe(6));
+    await waitFor(() => expect(within(sheet).getByText("✦ 6")).toBeTruthy());
+    expect(ready[0].getAttribute("data-state")).toBe("opened");
+    expect(within(sheet).queryByRole("alert")).toBeNull();
+    expect(api.posts).toHaveLength(1);
+  });
+
+  it("gives the star once when the lost save cannot be checked and the chest is pressed again", async () => {
+    const api = server(storedWithReadyChests());
+    const { sheet, ready } = await openBase();
+    api.next("lost");
+    api.failNextRead();
 
     fireEvent.click(ready[0]);
     expect(await within(sheet).findByRole("alert")).toHaveTextContent(FAILED);
@@ -394,5 +447,176 @@ describe("chest press — shown at once, taken back on failure", () => {
     fireEvent.click(screen.getByRole("button", { name: /우리 기지/ }));
     const again = await screen.findByRole("dialog", { name: "우리 기지" });
     expect(within(again).queryByRole("alert")).toBeNull();
+  });
+});
+
+/**
+ * 리드 적대적 검토(2026-09-28)가 찾은 자리 — 대기열 · 새로 읽기 · 떠나기 · 저장 중 다른 단추.
+ */
+describe("chest press — queue, reload, leaving and other buttons", () => {
+  const FAILED = "별을 받지 못했어요. 상자를 다시 눌러 주세요.";
+  const RELOADED = "다른 화면에서 기록이 바뀌어 최신 기록을 불러왔어요.";
+
+  it("confirms a chest whose response was lost after the save, then sends the next with the fresh revision", async () => {
+    const api = server(storedWithReadyChests());
+    const { sheet, ready } = await openBase();
+    api.next("lost");
+
+    act(() => {
+      fireEvent.click(ready[0]);
+      fireEvent.click(ready[1]);
+    });
+    await waitFor(() => expect(api.stars()).toBe(7));
+    expect(api.posts).toHaveLength(2);
+    expect(api.posts[1].expectedRevision).toBe(4);
+    await waitFor(() => expect(within(sheet).getByText("✦ 7")).toBeTruthy());
+    expect(ready.map((button) => button.getAttribute("data-state"))).toEqual([
+      "opened",
+      "opened",
+    ]);
+    expect(within(sheet).queryByRole("alert")).toBeNull();
+    expect(within(sheet).queryByText(RELOADED)).toBeNull();
+  });
+
+  it("keeps one notice per failed chest", async () => {
+    const api = server(storedWithReadyChests({ bothRows: true }));
+    const { sheet, rows } = await openBase();
+    const readyRows = rows.filter((row) =>
+      row.querySelector('[data-state="ready"]'),
+    );
+    expect(readyRows).toHaveLength(2);
+    api.next("offline");
+    api.next(400);
+
+    act(() => {
+      fireEvent.click(within(readyRows[0]).getAllByRole("button")[0]);
+      fireEvent.click(within(readyRows[1]).getAllByRole("button")[0]);
+    });
+    await waitFor(() =>
+      expect(within(sheet).getAllByRole("alert")).toHaveLength(2),
+    );
+    expect(within(sheet).getByText(FAILED)).toBeTruthy();
+    expect(
+      within(sheet).getByText("앞의 개념 2개를 먼저 해결해봐."),
+    ).toBeTruthy();
+  });
+
+  it("gives up a stuck reload after 15 seconds and frees the buttons", async () => {
+    vi.useFakeTimers({ shouldAdvanceTime: true });
+    try {
+      const api = server(storedWithReadyChests());
+      const { sheet, ready } = await openBase();
+      const grow = within(sheet).getByRole("button", { name: /기지 키우기/ });
+      api.next("conflict");
+      api.stickNextRead();
+
+      fireEvent.click(ready[0]);
+      await waitFor(() => expect(api.posts).toHaveLength(1));
+      await act(async () => {
+        await vi.advanceTimersByTimeAsync(15_500);
+      });
+      await waitFor(() => expect(grow).toBeEnabled());
+      expect(within(sheet).getByRole("alert")).toHaveTextContent(FAILED);
+    } finally {
+      vi.useRealTimers();
+    }
+  });
+
+  it("keeps the study buttons and, once the sheet closes, the board off while a chest is saving", async () => {
+    const api = server(storedWithReadyChests({ doneDay: true }));
+    const { sheet, ready } = await openBase();
+    const release = api.hold();
+    const start = document.querySelector<HTMLButtonElement>(
+      "[data-expedition-start]",
+    )!;
+    expect(start).toBeEnabled();
+
+    fireEvent.click(ready[0]);
+    expect(start).toBeDisabled();
+    fireEvent.click(
+      within(sheet).getByRole("button", { name: "우리 기지 닫기" }),
+    );
+    const tile = document.querySelector<HTMLButtonElement>(
+      '[data-day-step="1"] button',
+    )!;
+    expect(tile).toBeDisabled();
+
+    fireEvent.click(screen.getByRole("button", { name: /학습 설정/ }));
+    const settings = await screen.findByRole("dialog", { name: "학습 설정" });
+    const grades = within(
+      within(settings).getByLabelText("학년 선택"),
+    ).getAllByRole("button");
+    expect(grades.every((button) => button.hasAttribute("disabled"))).toBe(
+      true,
+    );
+    fireEvent.click(
+      within(settings).getByRole("button", { name: "학습 설정 닫기" }),
+    );
+
+    fireEvent.click(screen.getByRole("button", { name: /도감/ }));
+    const collection = await screen.findByRole("dialog", {
+      name: "나의 개념 도감",
+    });
+    fireEvent.click(
+      within(collection)
+        .getAllByRole("button")
+        .find((button) => button.getAttribute("data-level") === "1")!,
+    );
+    const goal = await screen.findByRole("button", {
+      name: "이 단원을 다음 탐험 목표로",
+    });
+    expect(goal).toBeDisabled();
+
+    await act(async () => release());
+    await waitFor(() => expect(start).toBeEnabled());
+    expect(goal).toBeEnabled();
+    expect(api.posts).toHaveLength(1);
+  });
+
+  it("does not send another study action while a chest is saving", async () => {
+    const api = server(storedWithReadyChests({ doneDay: true }));
+    const { ready } = await openBase();
+    const release = api.hold();
+
+    fireEvent.click(ready[0]);
+    // 시트 뒤 판 칸은 브라우저에서는 모달이 막는다 — 막히지 않은 길로 눌러 대기열 가드를 문다.
+    fireEvent.click(
+      document.querySelector<HTMLButtonElement>('[data-day-step="1"] button')!,
+    );
+    await act(async () => release());
+    await waitFor(() => expect(api.stars()).toBe(6));
+    expect(api.posts.map((post) => post.action.type)).toEqual(["chest"]);
+  });
+
+  it("does not open a chest while another study action is being sent", async () => {
+    const api = server(storedWithReadyChests());
+    const { sheet, ready } = await openBase();
+    const release = api.hold();
+
+    act(() => {
+      fireEvent.click(
+        within(sheet).getByRole("button", { name: /기지 키우기/ }),
+      );
+      fireEvent.click(ready[0]);
+    });
+    expect(ready[0].getAttribute("data-state")).toBe("ready");
+    await act(async () => release());
+    await waitFor(() => expect(api.posts).toHaveLength(1));
+    expect(api.posts[0].action.type).toBe("upgrade");
+  });
+
+  it("still saves the pressed chests after the screen is left", async () => {
+    const api = server(storedWithReadyChests());
+    const { ready, unmount } = await openBase();
+    const release = api.hold();
+
+    act(() => {
+      fireEvent.click(ready[0]);
+      fireEvent.click(ready[1]);
+    });
+    unmount();
+    await act(async () => release());
+    await waitFor(() => expect(api.stars()).toBe(7));
+    expect(api.posts).toHaveLength(2);
   });
 });

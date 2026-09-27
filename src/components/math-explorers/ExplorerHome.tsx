@@ -51,7 +51,7 @@ const sameChests = (a: readonly Chest[], b: readonly Chest[]) =>
       chest.solved === b[index]!.solved &&
       chest.after === b[index]!.after,
   );
-/** A saved-press failure shown under that chest's row (05 §8.19). */
+/** A saved-press failure, one per chest, shown under its row (05 §8.19). */
 export type ChestNotice = {
   chestId: string;
   text: string;
@@ -61,32 +61,39 @@ type ChestRowProps = {
   title: string;
   chests: Chest[];
   busy: boolean;
-  notice: ChestNotice | null;
+  notices: ChestNotice[];
   onClaim: (chestId: string) => void;
 };
 const ChestRow = memo(
-  function ChestRow({ title, chests, busy, notice, onClaim }: ChestRowProps) {
+  function ChestRow({ title, chests, busy, notices, onClaim }: ChestRowProps) {
+    // Two chests of a row can fail alike — the same sentence is said once.
+    const lines = notices.filter(
+      (notice, index) =>
+        notices.findIndex((other) => other.text === notice.text) === index,
+    );
     return (
       <section className={s.chestGroup}>
         <h4>{title}</h4>
         <ExplorerChests chests={chests} busy={busy} onClaim={onClaim} />
-        {notice ? (
-          <p className={r.notice} role={notice.tone}>
+        {lines.map((notice) => (
+          <p key={notice.chestId} className={r.notice} role={notice.tone}>
             {notice.text}
           </p>
-        ) : null}
+        ))}
       </section>
     );
   },
   (a, b) =>
     a.title === b.title &&
     a.busy === b.busy &&
-    a.notice === b.notice &&
     a.onClaim === b.onClaim &&
+    a.notices.length === b.notices.length &&
+    a.notices.every((notice, index) => notice === b.notices[index]) &&
     sameChests(a.chests, b.chests),
 );
 
 const NO_CLAIMS: readonly string[] = [];
+const NO_NOTICES: Readonly<Record<string, ChestNotice>> = {};
 
 /** The same function for the whole mount, always calling the latest handler. */
 function useStableHandler<Args extends unknown[]>(
@@ -210,7 +217,7 @@ export default function ExplorerHome({
   state,
   busy,
   claims = NO_CLAIMS,
-  chestNotice = null,
+  chestNotices = NO_NOTICES,
   chestEffect,
   onCloseBase,
   onAction,
@@ -226,7 +233,7 @@ export default function ExplorerHome({
   busy: boolean;
   /** Chests pressed and shown as opened while their saves are on the way. */
   claims?: readonly string[];
-  chestNotice?: ChestNotice | null;
+  chestNotices?: Readonly<Record<string, ChestNotice>>;
   /** The reward effect, drawn inside the base sheet so the modal cannot hide it. */
   chestEffect?: ReactNode;
   onCloseBase?: () => void;
@@ -396,7 +403,9 @@ export default function ExplorerHome({
         <JourneyBoard
           journey={journey}
           variant="map"
-          busy={busy}
+          // Behind the open base sheet the board cannot be pressed, so a chest
+          // save does not re-render it; once the sheet closes it waits too.
+          busy={busy || (saving && sheet !== "base")}
           onReviewDay={reviewDay}
         />
       </section>
@@ -505,7 +514,7 @@ export default function ExplorerHome({
                 type="button"
                 key={grade}
                 aria-pressed={state.profile.courseGrade === grade}
-                disabled={settingsLocked}
+                disabled={settingsLocked || saving}
                 onClick={() => onAction({ type: "course", grade })}
               >
                 {grade < 7 ? `초${grade}` : `중${grade - 6}`}
@@ -519,7 +528,7 @@ export default function ExplorerHome({
                 type="button"
                 key={unit.id}
                 aria-pressed={state.profile.goalUnitId === unit.id}
-                disabled={settingsLocked}
+                disabled={settingsLocked || saving}
                 onClick={() => onAction({ type: "goal", unitId: unit.id })}
               >
                 <span>{unit.title}</span>
@@ -584,11 +593,9 @@ export default function ExplorerHome({
                   title={unit.title}
                   chests={chests}
                   busy={busy}
-                  notice={
-                    chests.some((chest) => chest.id === chestNotice?.chestId)
-                      ? chestNotice
-                      : null
-                  }
+                  notices={chests.flatMap(
+                    (chest) => chestNotices[chest.id] ?? [],
+                  )}
                   onClaim={claimChest}
                 />
               );

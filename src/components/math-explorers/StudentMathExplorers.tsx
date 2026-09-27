@@ -80,14 +80,16 @@ function ExplorerGame({ initialView }: { initialView?: "collection" }) {
     ExplorerFeedback["workshopSolution"] | null
   >(null);
   const [claims, setClaims] = useState<string[]>([]);
-  const [chestNotice, setChestNotice] = useState<ChestNotice | null>(null);
+  const [chestNotices, setChestNotices] = useState<
+    Readonly<Record<string, ChestNotice>>
+  >({});
   const claimQueue = useRef<ChestClaim[]>([]);
   const claimRunning = useRef(false);
-  const claimFlight = useRef<AbortController | null>(null);
   // An uncertain save is retried with its own request id, so a response lost
   // after the server saved it returns that receipt instead of a second star.
   const retryIds = useRef(new Map<string, string>());
   const chestEffects = useRef(0);
+  const effectChest = useRef<string | null>(null);
   /** The last server state: queued chest saves send its revision. */
   const latest = useRef<ExplorerState | null>(null);
   const inFlight = useRef<AbortController | null>(null);
@@ -101,7 +103,6 @@ function ExplorerGame({ initialView }: { initialView?: "collection" }) {
     return () => {
       alive.current = false;
       inFlight.current?.abort();
-      claimFlight.current?.abort();
       if (timer.current) clearTimeout(timer.current);
     };
   }, []);
@@ -283,7 +284,8 @@ function ExplorerGame({ initialView }: { initialView?: "collection" }) {
 
   // A chest press shows its reward at once (05 §8.19). Presses wait in line and
   // are saved one after another, so a second chest is never dropped; a failed
-  // save takes that chest's star back and says so under its row.
+  // save takes that chest's star back and says so under its row. The line keeps
+  // saving after the screen is left — those chests were already shown opened.
   function claimChest(chestId: string) {
     if (!state || pending.current) return;
     const chest = state.chests.find((item) => item.id === chestId);
@@ -297,9 +299,15 @@ function ExplorerGame({ initialView }: { initialView?: "collection" }) {
       },
     ];
     setClaims(claimQueue.current.map((claim) => claim.chestId));
-    setChestNotice(null);
+    setChestNotices((notices) => {
+      if (!notices[chestId]) return notices;
+      const rest = { ...notices };
+      delete rest[chestId];
+      return rest;
+    });
     if (timer.current) clearTimeout(timer.current);
     chestEffects.current += 1;
+    effectChest.current = chestId;
     setEffectKey(`chest-${chestEffects.current}`);
     setChestStars(1);
     timer.current = setTimeout(() => {
@@ -312,34 +320,60 @@ function ExplorerGame({ initialView }: { initialView?: "collection" }) {
     if (claimRunning.current) return;
     claimRunning.current = true;
     try {
-      while (claimQueue.current.length && alive.current) {
+      while (claimQueue.current.length) {
         const claim = claimQueue.current[0]!;
         const outcome = await saveClaim(claim);
-        if (!alive.current) return;
-        claimQueue.current = claimQueue.current.slice(1);
-        if (outcome.kind === "left") claimQueue.current = [];
+        if (outcome.kind === "left") {
+          claimQueue.current = [];
+          if (alive.current) setClaims([]);
+          return;
+        }
+        let fresh: ExplorerState | null = null;
+        let notice: ChestNotice | null = null;
         if (outcome.kind === "saved") {
+          fresh = outcome.data;
+          latest.current = fresh;
           retryIds.current.delete(claim.chestId);
-          latest.current = outcome.data;
-          setState(outcome.data);
-        } else if (outcome.kind !== "left") {
-          if (timer.current) clearTimeout(timer.current);
-          setChestStars(null);
-          if (outcome.kind === "failed")
-            retryIds.current.set(claim.chestId, claim.requestId);
-          const reloaded =
-            outcome.kind === "failed" ? false : await reloadQuietly();
-          if (!alive.current) return;
-          setChestNotice({
-            chestId: claim.chestId,
-            tone: outcome.kind === "conflict" && reloaded ? "status" : "alert",
-            text:
-              outcome.kind === "refused" && outcome.message
-                ? outcome.message
-                : outcome.kind === "conflict" && reloaded
-                  ? CHEST_RELOADED
-                  : CHEST_FAILED,
-          });
+        } else {
+          // Read the record before deciding: a lost response may have been saved
+          // (then the chest simply stays opened), and the next chest in line must
+          // go out with the current revision, not one a failed save left behind.
+          fresh = await readLatest();
+          const saved = !!fresh?.chests.find(
+            (item) => item.id === claim.chestId,
+          )?.claimed;
+          if (outcome.kind === "failed" && saved)
+            retryIds.current.delete(claim.chestId);
+          else {
+            if (outcome.kind === "failed")
+              retryIds.current.set(claim.chestId, claim.requestId);
+            const reloaded = outcome.kind === "conflict" && !!fresh;
+            notice = {
+              chestId: claim.chestId,
+              tone: reloaded ? "status" : "alert",
+              text:
+                outcome.kind === "refused" && outcome.message
+                  ? outcome.message
+                  : reloaded
+                    ? CHEST_RELOADED
+                    : CHEST_FAILED,
+            };
+          }
+        }
+        claimQueue.current = claimQueue.current.slice(1);
+        if (!alive.current) continue;
+        // One commit: the record, the taken-back star, its notice and the effect.
+        if (fresh) setState(fresh);
+        if (notice) {
+          const shown = notice;
+          setChestNotices((notices) => ({
+            ...notices,
+            [shown.chestId]: shown,
+          }));
+          if (effectChest.current === claim.chestId) {
+            if (timer.current) clearTimeout(timer.current);
+            setChestStars(null);
+          }
         }
         setClaims(claimQueue.current.map((item) => item.chestId));
       }
@@ -352,12 +386,14 @@ function ExplorerGame({ initialView }: { initialView?: "collection" }) {
     const revision = latest.current?.revision;
     if (revision === undefined) return { kind: "conflict" };
     const controller = new AbortController();
-    claimFlight.current = controller;
     const timeout = setTimeout(() => controller.abort(), 15000);
     try {
       const response = await fetch("/api/learn/math-explorers", {
         method: "POST",
         cache: "no-store",
+        // The line outlives the screen; keepalive lets the last save finish
+        // even when the page itself is closed.
+        keepalive: true,
         signal: controller.signal,
         headers: { "content-type": "application/json" },
         body: JSON.stringify({
@@ -368,14 +404,14 @@ function ExplorerGame({ initialView }: { initialView?: "collection" }) {
       });
       const json = await response.json().catch(() => null);
       if (response.status === 401) {
-        router.replace("/learn/login");
+        if (alive.current) router.replace("/learn/login");
         return { kind: "left" };
       }
       if (
         response.status === 403 &&
         json?.error?.message === STUDENT_MUST_CHANGE_MESSAGE
       ) {
-        router.replace("/learn/password");
+        if (alive.current) router.replace("/learn/password");
         return { kind: "left" };
       }
       if (response.status === 409) return { kind: "conflict" };
@@ -389,30 +425,34 @@ function ExplorerGame({ initialView }: { initialView?: "collection" }) {
       return { kind: "failed" };
     } finally {
       clearTimeout(timeout);
-      claimFlight.current = null;
     }
   }
 
-  /** Reads the latest record without the loading screen, so the sheet stays open. */
-  async function reloadQuietly() {
+  /** The latest record, read without the loading screen so the sheet stays open. */
+  async function readLatest(): Promise<ExplorerState | null> {
+    const controller = new AbortController();
+    const timeout = setTimeout(() => controller.abort(), 15000);
     try {
       const response = await fetch("/api/learn/math-explorers", {
         cache: "no-store",
+        signal: controller.signal,
       });
-      if (!response.ok) return false;
+      if (!response.ok) return null;
       const json = await response.json();
       const { explorerStateSchema } =
         await import("@/contracts/mathExplorers.contract");
       const data = explorerStateSchema.parse(json.data);
-      if (!alive.current) return false;
       latest.current = data;
-      setState(data);
-      return true;
+      return data;
     } catch {
-      return false;
+      return null;
+    } finally {
+      clearTimeout(timeout);
     }
   }
 
+  // While a chest is saving, every other study action waits too (05 §8.19).
+  const saving = claims.length > 0;
   const inPractice =
     practicing &&
     !!state?.currentActivity &&
@@ -531,7 +571,7 @@ function ExplorerGame({ initialView }: { initialView?: "collection" }) {
         <StudentReviewStatus
           loading={loading}
           error={error}
-          busy={busy}
+          busy={busy || saving}
           onReload={refresh}
           onRetry={
             error?.request
@@ -568,11 +608,11 @@ function ExplorerGame({ initialView }: { initialView?: "collection" }) {
             state={state}
             busy={busy || !!error}
             claims={claims}
-            chestNotice={chestNotice}
+            chestNotices={chestNotices}
             chestEffect={
               <ChestRewardEffect key={effectKey} stars={chestStars} />
             }
-            onCloseBase={() => setChestNotice(null)}
+            onCloseBase={() => setChestNotices({})}
             onAction={(action) =>
               action.type === "chest"
                 ? claimChest(action.chestId)
@@ -594,7 +634,7 @@ function ExplorerGame({ initialView }: { initialView?: "collection" }) {
           state={state}
           solution={solution}
           workshopSolution={workshopSolution}
-          busy={busy}
+          busy={busy || saving}
           onInspect={inspect}
           onSolution={() => void send({ type: "solution", cardId: detail.id })}
           onWorkshopSolution={() => void send({ type: "lab-solution" })}
@@ -614,7 +654,7 @@ function ExplorerGame({ initialView }: { initialView?: "collection" }) {
                 type="button"
                 key={`${review.kind}:${review.dayId}`}
                 onClick={() => openReview(review)}
-                disabled={busy}
+                disabled={busy || saving}
               >
                 <span>{review.title}</span>
                 <small>
