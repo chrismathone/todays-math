@@ -28,6 +28,36 @@ import { server } from "@/mocks/server";
 // 안이므로 **정말 안 그려지는 화면은 여전히 실패한다** — 늦게 실패할 뿐이다.
 configure({ asyncUtilTimeout: 12000 });
 
+// jsdom 29.1.1 의 MathML 계산된 스타일 심 (2026-09-27 — 시험 환경만, 제품 무관).
+//
+// 🔴 jsdom 은 MathML(`<math>` · `<mi>` …)을 `style` 없는 일반 `Element` 로 만든다. 그 요소에
+//    `getComputedStyle` 를 부르면 jsdom 내부(`computed-style.js` `prepareComputedStyleDeclaration`)가
+//    `elementImpl.style.length` 를 읽다가 `TypeError: … reading 'length'` 로 터진다.
+//    `getByRole(…, { name })` · `queryByRole(…, { name })` 는 모든 후보의 접근성 이름을 계산하며
+//    (dom-accessibility-api, 호출 때마다 `window.getComputedStyle` 를 꺼내 씀) 보기 단추 안 KaTeX
+//    `<math>` 까지 내려가므로, KaTeX 가 그려진 화면에서 이름으로 단추를 찾는 시험이 터진다.
+//    게다가 **순서 의존**이었다 — 수식 렌더러는 `next/dynamic` 이라, 앞 시험이 적재해 둔 파일에서만
+//    보기에 `<math>` 가 그려진다(AuthenticatedMathSrs «grades a choice immediately…»: 하나만 돌리면 초록,
+//    파일 전체면 빨강). 요소에 `style` 을 달아 주는 것으로는 안 된다 — jsdom 은 wrapper 가 아니라
+//    impl 의 `style` 을 읽는다. 그래서 `getComputedStyle` 를 감싼다.
+//
+// 좁게: **`style` 이 없는 요소에만** 빈 계산된 스타일(모든 속성 "")을 돌려준다. `style` 이 있는
+// HTML · SVG 요소와 요소가 아닌 값(잘못된 인자 — jsdom 이 던지는 그대로)은 jsdom 원래 함수를
+// 그대로 부른다 — 동작이 한 글자도 바뀌지 않는다.
+// 잠금: `src/__tests__/unit/jsdomMathmlStyleShim.test.tsx`. ⚠️ jsdom 이 MathML 에 style 을 주면 지울 것.
+if (typeof window !== "undefined") {
+  const jsdomGetComputedStyle = window.getComputedStyle.bind(window);
+  const lacksStyle = (element: unknown) =>
+    element instanceof window.Element && !("style" in element);
+  window.getComputedStyle = ((element: Element, pseudo?: string | null) =>
+    lacksStyle(element)
+      ? document.createElement("span").style
+      : jsdomGetComputedStyle(
+          element,
+          pseudo,
+        )) as typeof window.getComputedStyle;
+}
+
 // Phase 2, T2.1 — `src/__tests__/api/class.test.ts`(및 이후 progress/problem/test API
 // 테스트)는 Route Handler를 fetch가 아니라 함수로 직접 호출하므로 MSW(위 server)가 가로챌 수
 // 없다. 실제 Prisma 클라이언트(`@/lib/db`)가 .env의 DATABASE_URL(공유 Supabase 프로덕션 DB)에
