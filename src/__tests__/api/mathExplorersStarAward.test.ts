@@ -84,6 +84,8 @@ import {
   type ExplorerState,
 } from "@/contracts/mathExplorers.contract";
 import { definitionCard } from "@/lib/math-explorers/definition-cards";
+import { createExplorerState } from "@/lib/math-explorers/engine";
+import { createMemories } from "@/lib/math-srs/memory";
 import {
   emptySrsState,
   parseSrsState,
@@ -127,6 +129,7 @@ const courseRequest = (body: unknown) =>
 function answerFor(
   view: ExplorerState,
   wrongCards: Set<string>,
+  stuck?: string,
 ): ExplorerAction {
   const activity = view.currentActivity!;
   if (activity.kind === "read")
@@ -142,9 +145,11 @@ function answerFor(
     (label) => activity.choices.find((c) => c.label === label)!.id,
   );
   if (
-    view.session!.round === 0 &&
-    !view.session!.continuation &&
-    wrongCards.delete(activity.cardId)
+    (view.session!.round === 0 &&
+      !view.session!.continuation &&
+      wrongCards.delete(activity.cardId)) ||
+    // `stuck` 카드는 자동 재도전 세 바퀴 내내 틀려 «남은 문제»로 남는다(명시 재도전에서는 맞힌다).
+    (stuck === activity.cardId && !view.session!.continuation)
   )
     return {
       type: "answer",
@@ -163,9 +168,10 @@ function answerFor(
 async function finishConcept(
   view: ExplorerState,
   wrongCards = new Set<string>(),
+  stuck?: string,
 ) {
-  for (let i = 0; view.currentActivity && i < 100; i++)
-    view = await action(view, answerFor(view, wrongCards));
+  for (let i = 0; view.currentActivity && i < 200; i++)
+    view = await action(view, answerFor(view, wrongCards, stuck));
   expect(view.session?.done).toBe(true);
   return view;
 }
@@ -449,5 +455,207 @@ describe("one-tile star floor (D-144)", () => {
     view = await action(view, { type: "upgrade" });
     expect(view.profile).toMatchObject({ level: 4, stars: 28, earned: 61 });
     expect(view.feedback?.message).toBe("별 12개로 기지가 4단계로 자랐어요.");
+  });
+});
+
+/** 옛 화면(오늘의 탐험 없이)에서 개념 세션 하나를 끝낸다 — 세션 별이 남는다. `stuck` 카드는 끝까지 틀려 남은 문제로 둔다. */
+async function legacyConcept(unitId: string, stuck?: string) {
+  let view = await data(await read());
+  expect(view.expedition?.mission ?? null).toBeNull();
+  view = await action(view, { type: "start", route: "unit", unitId });
+  return finishConcept(view, new Set(), stuck);
+}
+const firstUnit = (view: ExplorerState, grade: number) =>
+  view.units.find((unit) => unit.grade === grade)!;
+
+describe("one-tile star floor counts only this mission's card stars (D-144 review)", () => {
+  it("does not read a leftover concept session's stars on a middle bank day", async () => {
+    vi.setSystemTime(new Date("2026-09-26T01:00:00.000Z"));
+    f.rows.set(f.studentId, {
+      studentId: f.studentId,
+      revision: 1,
+      payload: startSrsMission(
+        emptySrsState(),
+        f.studentId,
+        new Date("2026-09-26T00:00:00.000Z"),
+        71,
+        randomUUID,
+      ),
+    });
+    const leftover = await legacyConcept("g7-equation");
+    expect(leftover.session?.stars).toBe(5);
+    let view = await action(leftover, { type: "expedition-start" });
+    expect(view.expedition?.mission).toMatchObject({
+      kind: "middle",
+      route: "bank",
+    });
+    await finishMiddle();
+    view = await data(await read());
+    expect(saved().expedition!.awards.at(-1)!.stars).toEqual({
+      cards: 0,
+      bonus: 3,
+    });
+    expect(view.expedition?.todayStars).toEqual({ cards: 0, bonus: 3 });
+    expect(view.profile).toMatchObject({ stars: 5 + 3, earned: 8 });
+  });
+
+  it("does not read a leftover concept session's stars on an elementary bank day", async () => {
+    vi.setSystemTime(new Date("2026-09-26T01:00:00.000Z"));
+    const start = new Date("2026-09-26T01:00:00.000Z");
+    const course = startAutomaticCourse(
+      setCoursePlan(
+        emptyCourseState(),
+        {
+          startSectionId: "3-1-1-1",
+          dailyQuestionCount: 5,
+          enabled: true,
+          expectedRevision: 0,
+        },
+        start,
+      ),
+      start,
+      71,
+      randomUUID,
+    );
+    f.rows.set(f.studentId, {
+      studentId: f.studentId,
+      revision: 1,
+      payload: { ...emptySrsState(), course },
+    });
+    const leftover = await legacyConcept(
+      firstUnit(await data(await read()), 3).id,
+    );
+    expect(leftover.session?.stars).toBe(5);
+    let view = await action(leftover, { type: "expedition-start" });
+    expect(view.expedition?.mission).toMatchObject({ kind: "elementary" });
+    for (let i = 0; i < 5; i++) await answerCourse();
+    expect((await COURSE_START(courseRequest({}))).status).toBe(200);
+    for (let i = 0; i < 5; i++) await answerCourse();
+    view = await data(await read());
+    expect(view.expedition?.mission).toMatchObject({ status: "complete" });
+    expect(saved().expedition!.awards.at(-1)!.stars).toEqual({
+      cards: 0,
+      bonus: 3,
+    });
+    expect(view.profile.stars).toBe(5 + 3);
+  });
+
+  it("does not read a leftover concept session's stars on a 중1 bank review day (D-142 ⑼)", async () => {
+    vi.setSystemTime(new Date("2026-09-20T01:00:00.000Z"));
+    const explorer = createExplorerState(f.studentId, 7);
+    explorer.profile.definitions = {
+      courseGrade: 7,
+      goalUnitId: "g7-equation",
+      runs: 0,
+      cards: {},
+      history: [],
+    };
+    f.rows.set(f.studentId, {
+      studentId: f.studentId,
+      revision: 1,
+      payload: { ...emptySrsState(), explorers: explorer },
+    });
+    const leftover = await legacyConcept("g7-equation");
+    expect(leftover.session?.stars).toBe(5);
+    // 넘어간 중1: 끝낸 은행 날 셋 · 은행 개념 셋 만기 · 모은 카드는 아직 만기 전(개념 기억 복습이 끼지 않게)
+    const state = saved();
+    for (const card of Object.values(
+      state.explorers!.profile.definitions!.cards,
+    ))
+      card.due = "2026-12-01";
+    const bankDay = (date: string) => {
+      const review = {
+        kind: "middle" as const,
+        dayId: `middle:${date}`,
+        title: "일차방정식",
+        subtitle: "중학교 1학년",
+        reviewCount: 12,
+      };
+      return {
+        missionId: randomUUID(),
+        references: [],
+        day: {
+          ...review,
+          id: `expedition:${date}`,
+          date,
+          completedAt: `${date}T02:00:00.000Z`,
+          reviews: [review],
+        },
+      };
+    };
+    state.expedition = {
+      version: 1,
+      initializedAt: "2026-09-01T00:00:00.000Z",
+      mission: null,
+      legacyDays: [],
+      receipts: [],
+      awards: ["2026-09-16", "2026-09-17", "2026-09-18"].map(bankDay),
+    };
+    state.memories = createMemories().map((memory, i) => ({
+      ...memory,
+      attempts: i < 3 ? 4 : 0,
+      lastReviewedAt: i < 3 ? "2026-09-20T03:00:00.000Z" : null,
+      nextReviewAt: i < 3 ? "2026-09-26T00:00:00.000Z" : null,
+    }));
+    f.rows.set(f.studentId, { ...f.rows.get(f.studentId)!, payload: state });
+    vi.setSystemTime(new Date("2026-09-27T01:00:00.000Z"));
+    let view = await action(await data(await read()), {
+      type: "expedition-start",
+    });
+    expect(view.expedition?.mission).toMatchObject({
+      kind: "middle",
+      route: "memory",
+      title: "일차방정식 복습",
+    });
+    expect(saved().explorers!.profile.definitions!.session!.stars).toBe(5);
+    await finishMiddle();
+    view = await data(await read());
+    expect(saved().expedition!.awards.at(-1)!.stars).toEqual({
+      cards: 0,
+      bonus: 3,
+    });
+    expect(view.profile.stars).toBe(5 + 3);
+  });
+
+  it("counts only the stars won after a legacy session was bound to the mission", async () => {
+    // 옛 화면에서 끝냈지만 남은 문제가 있는 세션(카드 넷 수집 = 별 4)을 오늘의 탐험이 이어받는다.
+    const unit = firstUnit(await data(await read()), 3);
+    const stuck = unit.cards[1]!.id;
+    const legacy = await legacyConcept(unit.id, stuck);
+    expect(legacy.session).toMatchObject({ done: true, stars: 4 });
+    expect(legacy.session!.unresolved.length).toBeGreaterThan(0);
+    let view = await action(legacy, { type: "expedition-start" });
+    expect(view.expedition?.mission).toMatchObject({
+      kind: "explorers",
+      status: "retry",
+    });
+    view = await action(view, { type: "retry-unresolved" });
+    view = await finishConcept(view);
+    expect(view.session).toMatchObject({ stars: 5, unresolved: [] });
+    // 이 미션이 모은 카드는 한 장 — 보장이 둘을 채운다(옛 화면의 넷은 세지 않는다)
+    expect(saved().expedition!.awards.at(-1)!.stars).toEqual({
+      cards: 1,
+      bonus: 2,
+    });
+    expect(view.expedition?.todayStars).toEqual({ cards: 1, bonus: 2 });
+    expect(view.profile.stars).toBe(4 + 1 + 2);
+  });
+
+  it("counts every card the mission collected, including those only solved on its explicit retry", async () => {
+    let view = await action(await data(await read()), {
+      type: "expedition-start",
+    });
+    const stuck = view.session!.cardIds[1]!;
+    view = await finishConcept(view, new Set(), stuck);
+    expect(view.session).toMatchObject({ done: true, stars: 4 });
+    expect(view.expedition?.mission).toMatchObject({ status: "retry" });
+    view = await action(view, { type: "retry-unresolved" });
+    view = await finishConcept(view);
+    // 마지막 쓰기에서 오른 별은 1 이지만, 이 미션이 모은 카드는 다섯 — 보장 0
+    expect(saved().expedition!.awards.at(-1)!.stars).toEqual({
+      cards: 5,
+      bonus: 0,
+    });
+    expect(view.profile.stars).toBe(5);
   });
 });

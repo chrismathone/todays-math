@@ -410,8 +410,12 @@ export function expeditionDto(
   )?.stars;
   return {
     mission: mission
-      ? (({ awardEligible: _a, references: _r, ...publicMission }) =>
-          publicMission)(mission)
+      ? (({
+          awardEligible: _a,
+          references: _r,
+          startStars: _s,
+          ...publicMission
+        }) => publicMission)(mission)
       : null,
     next:
       canStart && !open(state) ? planExpedition(state, studentId, now) : null,
@@ -506,6 +510,9 @@ export function bindExpedition(
       source.explorers!.profile.definitions!.session!.reviewOnly
     ),
     references: ids.map((sourceId) => reference(source, plan.kind, sourceId)),
+    ...(plan.kind === "explorers"
+      ? { startStars: source.explorers!.profile.definitions!.session!.stars }
+      : {}),
   };
   return {
     ...source,
@@ -734,9 +741,14 @@ export function updateExpedition(
     // D-144 한 칸 보장 — 이 미션이 이미 준 카드 레벨 별(개념 세션, 은행은 0)이 3보다 적으면 3까지 채운다.
     // 칸과 같은 쓰기에서 한 번만: 칸은 한국 날짜당 하나 · 재풀이는 awardEligible 이 아니다.
     // 탐험 기록은 시작(`startExpedition`)이 늘 만든다 — 없으면 줄 곳이 없어 0 으로 남긴다.
+    // 개념 미션이 묶인 뒤에 모은 카드만(`startStars` — 옛 화면에서 끝낸 세션을 이어받은 경우).
     const cards =
       mission.kind === "explorers"
-        ? (next.explorers?.profile.definitions?.session?.stars ?? 0)
+        ? Math.max(
+            0,
+            (next.explorers?.profile.definitions?.session?.stars ?? 0) -
+              (mission.startStars ?? 0),
+          )
         : 0;
     const explorers = next.explorers;
     const bonus = explorers ? tileStarBonus(cards) : 0;

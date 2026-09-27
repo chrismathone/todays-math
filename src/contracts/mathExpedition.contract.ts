@@ -95,6 +95,11 @@ const sourceReferenceSchema = z.strictObject({
 export const storedExpeditionMissionSchema = expeditionMissionSchema.extend({
   awardEligible: z.boolean(),
   references: z.array(sourceReferenceSchema),
+  /**
+   * D-144: 개념 미션이 세션에 묶일 때 그 세션이 이미 준 카드 레벨 별 — 칸 보장은 «지금 − 이 값»만 센다
+   * (옛 화면에서 끝낸 세션을 이어받으면 그때 번 별은 이 미션 것이 아니다). 없으면(D-144 전 미션 · 은행) 0.
+   */
+  startStars: z.number().int().nonnegative().optional(),
 });
 export const storedExpeditionSchema = z
   .strictObject({

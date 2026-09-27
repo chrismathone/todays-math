@@ -1765,7 +1765,7 @@ button.confirm {
   display: inline-flex;
   align-items: center;
   gap: 3px;
-  margin: 0 0 0 6px;
+  margin: 0 0 0 2px;
   padding: 1px 9px 1px 7px;
   border-radius: 999px;
   background: #fff1b5;
@@ -1778,6 +1778,15 @@ button.confirm {
 }
 .tileStars > span {
   color: #e2a020;
+}
+.srOnly {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
 }
 .missionComplete > .tileStarsWhy {
   display: block;

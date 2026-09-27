@@ -93,9 +93,12 @@ export function TileStars({ cards, bonus }: { cards: number; bonus: number }) {
   const total = cards + bonus;
   return (
     <>
-      <span className={s.tileStars} aria-label={`별 ${total}개`}>
-        <span aria-hidden="true">✦</span>+{total}
+      {" "}
+      {/* 눈에는 «✦+3», 화면 읽기에는 «별 3개» — role 없는 span 의 aria-label 은 읽히지 않는다 */}
+      <span className={s.tileStars} aria-hidden="true">
+        <span>✦</span>+{total}
       </span>
+      <span className={s.srOnly}>별 {total}개</span>
       {cards && bonus ? (
         <span className={s.tileStarsWhy}>
           카드 {cards} · 한 칸 보장 {bonus}
@@ -110,7 +113,7 @@ export function TileRewardEffect({ stars }: { stars: number | null }) {
   if (stars === null) return null;
   return (
     <div className={s.chestEffect} role="status" aria-live="polite">
-      <div className={s.chestBurst}>
+      <div className={s.chestBurst} aria-hidden="true">
         <i className={s.tileBurstStar} aria-hidden="true">
           ✦
         </i>
@@ -133,7 +136,7 @@ export function ChestRewardEffect({ stars }: { stars: number | null }) {
   if (stars === null) return null;
   return (
     <div className={s.chestEffect} role="status" aria-live="polite">
-      <div className={s.chestBurst}>
+      <div className={s.chestBurst} aria-hidden="true">
         <ChestIcon opened />
         {Array.from({ length: 6 }, (_, index) => (
           <span

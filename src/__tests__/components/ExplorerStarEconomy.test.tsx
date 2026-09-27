@@ -1,9 +1,20 @@
 // D-144 · 05 §8.20 — 한 칸 별 · 끝없는 기지가 학생 화면에 보이는 모양(Hi-fi 2안, 3자 합의).
-import { fireEvent, render, screen, within } from "@testing-library/react";
+import {
+  fireEvent,
+  render,
+  screen,
+  waitFor,
+  within,
+} from "@testing-library/react";
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 import StudentMathExplorers from "@/components/math-explorers/StudentMathExplorers";
 import ExplorerHome from "@/components/math-explorers/ExplorerHome";
-import { createExplorerState, explorerView } from "@/lib/math-explorers/engine";
+import {
+  applyExplorerAction,
+  createExplorerState,
+  explorerView,
+} from "@/lib/math-explorers/engine";
+import { definitionCard } from "@/lib/math-explorers/definition-cards";
 import type { ExplorerState } from "@/contracts/mathExplorers.contract";
 import type {
   ExpeditionMission,
@@ -76,6 +87,15 @@ const completed = (
     canStart: false,
     todayStars,
   });
+/** 화면 읽기가 듣는 글자 — `aria-hidden` 가지를 뺀 글자 */
+function spoken(element: Element) {
+  const copy = element.cloneNode(true) as Element;
+  copy
+    .querySelectorAll('[aria-hidden="true"]')
+    .forEach((node) => node.remove());
+  return copy.textContent!.replace(/\s+/g, " ").trim();
+}
+const effectOf = (text: Element) => text.closest('[role="status"]')!;
 const response = (data: unknown) =>
   new Response(JSON.stringify({ data }), { status: 200 });
 function home(state: ExplorerState) {
@@ -120,8 +140,12 @@ describe("today's tile stars on the home card", () => {
   it("shows the stars the finished tile gave, next to the completion line", () => {
     home(completed());
     const line = screen.getByText(/한 칸 전진했어요/);
-    expect(within(line).getByLabelText("별 3개")).toHaveTextContent("✦+3");
-    expect(line).toHaveTextContent("다음 탐험은 내일 열려요.");
+    // 눈에는 «✦+3», 화면 읽기에는 «별 3개»(role 없는 span 의 aria-label 은 읽히지 않는다)
+    expect(line).toHaveTextContent("✦+3");
+    expect(spoken(line)).toBe(
+      "한 칸 전진했어요. 별 3개 다음 탐험은 내일 열려요.",
+    );
+    expect(line.querySelector("[aria-label]")).toBeNull();
     // 은행 날처럼 한 칸 보장만이면 내역 줄은 없다
     expect(line).not.toHaveTextContent("한 칸 보장");
   });
@@ -129,8 +153,8 @@ describe("today's tile stars on the home card", () => {
   it("adds a small breakdown only when card levels and the tile floor both gave stars", () => {
     home(completed({ cards: 2, bonus: 1 }));
     const line = screen.getByText(/한 칸 전진했어요/);
-    expect(within(line).getByLabelText("별 3개")).toBeVisible();
-    expect(line).toHaveTextContent("카드 2 · 한 칸 보장 1");
+    expect(spoken(line)).toContain("별 3개");
+    expect(spoken(line)).toContain("카드 2 · 한 칸 보장 1");
   });
 
   it("says nothing about stars for a tile awarded before D-144", () => {
@@ -183,15 +207,36 @@ describe("the base keeps growing", () => {
 });
 
 describe("tile reward moment", () => {
-  it("plays once when the screen sees today's tile appear after a bank day", async () => {
+  it("plays once after a bank day, leaves after 1.2 s and stays away through upgrades and chests", async () => {
     const initial = view();
     const active = view({}, { mission: mission("elementary"), next: null });
     const done = completed();
+    done.chests = done.chests.map((chest, index) =>
+      index === 0 ? { ...chest, solved: chest.after, ready: true } : chest,
+    );
+    const grown = { ...done, profile: { ...done.profile, level: 1, stars: 0 } };
+    const opened = {
+      ...grown,
+      profile: { ...grown.profile, stars: 1, earned: 4 },
+      chests: grown.chests.map((chest, index) =>
+        index === 0 ? { ...chest, claimed: true } : chest,
+      ),
+      feedback: {
+        chestId: grown.chests[0]!.id,
+        stars: 1,
+        message: "보상상자에서 별 1개를 얻었어!",
+      },
+    };
     let reads = 0;
     vi.stubGlobal(
       "fetch",
       vi.fn(async (_url, options) => {
-        if (options?.body) return response(active);
+        if (options?.body) {
+          const type = JSON.parse(options.body as string).action.type;
+          return response(
+            type === "upgrade" ? grown : type === "chest" ? opened : active,
+          );
+        }
         reads++;
         return response(reads === 1 ? initial : done);
       }),
@@ -201,12 +246,117 @@ describe("tile reward moment", () => {
       await screen.findByRole("button", { name: /오늘의 탐험 시작/ }),
     );
     fireEvent.click(await screen.findByRole("button", { name: "은행 완료" }));
-    const effect = (await screen.findByText("오늘의 한 칸")).closest(
-      '[role="status"]',
-    )!;
-    expect(effect).toBeInTheDocument();
-    expect(effect).toHaveTextContent("별 +3");
+    const effect = effectOf(await screen.findByText("오늘의 한 칸"));
+    // 퍼지는 별은 화면 읽기에서 뺀다 — «오늘의 한 칸 · 별 +3» 만 읽힌다
+    expect(spoken(effect)).toBe("오늘의 한 칸별 +3");
     expect(effect).not.toHaveTextContent("!");
+    const shownAt = Date.now();
+    await waitFor(
+      () => expect(screen.queryByText("오늘의 한 칸")).not.toBeInTheDocument(),
+      { timeout: 3000 },
+    );
+    expect(Date.now() - shownAt).toBeGreaterThanOrEqual(1000);
+    // 칸이 이미 있는 화면의 다음 상태들 — 기지 키우기 · 상자 열기에서는 다시 안 뜬다
+    fireEvent.click(screen.getByRole("button", { name: /^우리 기지/ }));
+    const sheet = screen.getByRole("dialog", { name: "우리 기지" });
+    fireEvent.click(
+      within(sheet).getByRole("button", { name: "기지 키우기 · ✦ 3" }),
+    );
+    expect(await within(sheet).findByText("1단계")).toBeVisible();
+    expect(screen.queryByText("오늘의 한 칸")).not.toBeInTheDocument();
+    fireEvent.click(
+      within(sheet).getAllByRole("button", { name: /열고 별 1개 받기/ })[0]!,
+    );
+    expect(await screen.findByText("보물 발견!")).toBeInTheDocument();
+    await new Promise((resolve) => setTimeout(resolve, 300));
+    expect(screen.queryByText("오늘의 한 칸")).not.toBeInTheDocument();
+  });
+
+  it("plays after the last concept answer's feedback, then not again when the home reloads", async () => {
+    // 개념 세션을 엔진으로 마지막 한 문제 전까지 풀어 둔다
+    let stored = createExplorerState(student.id, 3);
+    const unitId = explorerView(stored, now).units.find(
+      (unit) => unit.grade === 3,
+    )!.id;
+    const act = (value: Parameters<typeof applyExplorerAction>[1]) =>
+      applyExplorerAction(stored, value, now, crypto.randomUUID());
+    stored = act({ type: "start", route: "unit", unitId }).state;
+    const correct = () => {
+      const activity = explorerView(stored, now).currentActivity!;
+      if (activity.kind === "read")
+        return {
+          value: { type: "read" as const, questionId: activity.questionId },
+          label: "",
+        };
+      const card = definitionCard(activity.cardId);
+      const labels =
+        activity.kind === "assemble"
+          ? card.words.slice(0, 2)
+          : activity.kind === "examples"
+            ? card.examples.filter((e) => e.yes).map((e) => e.text)
+            : [card.truth ? "맞다" : "아니다"];
+      return {
+        value: {
+          type: "answer" as const,
+          questionId: activity.questionId,
+          choiceIds: labels.map(
+            (label) => activity.choices.find((c) => c.label === label)!.id,
+          ),
+        },
+        label: labels[0]!,
+      };
+    };
+    let last = correct();
+    for (;;) {
+      const probe = act(last.value);
+      if (probe.state.profile.definitions!.session!.done) break;
+      stored = probe.state;
+      last = correct();
+    }
+    const finished = act(last.value);
+    const active = view({}, { mission: mission("explorers"), next: null });
+    const before = { ...active, ...explorerView(stored, now) };
+    const after = {
+      ...before,
+      ...explorerView(finished.state, now),
+      feedback: finished.feedback,
+      expedition: {
+        ...completed({ cards: 5, bonus: 0 }).expedition!,
+        mission: mission("explorers", true),
+      },
+    };
+    let reads = 0;
+    vi.stubGlobal(
+      "fetch",
+      vi.fn(async (_url, options) => {
+        if (options?.body) {
+          const type = JSON.parse(options.body as string).action.type;
+          return response(type === "answer" ? after : before);
+        }
+        reads++;
+        return response(reads === 1 ? before : { ...after, feedback: null });
+      }),
+    );
+    render(<StudentMathExplorers />);
+    fireEvent.click(
+      await screen.findByRole("button", { name: /이어서 탐험하기/ }),
+    );
+    const choices = await screen.findByRole("group", { name: "답 고르기" });
+    fireEvent.click(
+      within(choices).getByRole("button", { name: new RegExp(last.label) }),
+    );
+    const effect = effectOf(
+      await screen.findByText("오늘의 한 칸", {}, { timeout: 8000 }),
+    );
+    expect(spoken(effect)).toBe("오늘의 한 칸별 +5");
+    await waitFor(
+      () => expect(screen.queryByText("오늘의 한 칸")).not.toBeInTheDocument(),
+      { timeout: 3000 },
+    );
+    await waitFor(() => expect(reads).toBeGreaterThanOrEqual(2));
+    expect(await screen.findByText(/한 칸 전진했어요/)).toBeVisible();
+    await new Promise((resolve) => setTimeout(resolve, 300));
+    expect(screen.queryByText("오늘의 한 칸")).not.toBeInTheDocument();
   });
 
   it("does not play on a fresh load of an already finished day", async () => {
