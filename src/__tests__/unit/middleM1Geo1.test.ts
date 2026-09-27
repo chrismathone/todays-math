@@ -454,10 +454,10 @@ const CHECKS: Record<string, (p: MidProblem) => void> = {
     // 발문의 「위에 있다 / 위에 있지 않다」 목록을 직접 파싱해 참·거짓을 다시 매긴다.
     const objWord = p.content.includes("평면 $P$") ? "평면 $P$" : "직선 $l$";
     const onMatch = p.content.match(
-      new RegExp(`${objWord.replace(/[$]/g, "\\$")} 위에 (.+?)이 있고`),
+      new RegExp(`${objWord.replace(/[$]/g, "\\$")} 위에 (.+?)(?:이|가) 있고`),
     );
     const offMatch = p.content.match(
-      new RegExp(`위에 있지 않은 점 ([^\\n]+?)이 있다`),
+      new RegExp(`위에 있지 않은 점 ([^\\n]+?)(?:이|가) 있다`),
     );
     expect(onMatch, p.content).not.toBeNull();
     expect(offMatch, p.content).not.toBeNull();

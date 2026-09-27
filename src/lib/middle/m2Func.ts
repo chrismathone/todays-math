@@ -1201,7 +1201,7 @@ export const M2_FUNC: TypeEntry[] = [
         return {
           content: `일차함수 $y=${mono(m)}+b$의 그래프에서 ($x$절편)$+$($y$절편)$=${sum}$일 때, 상수 $b$의 값을 구하시오.`,
           answer: `$${b}$`,
-          solution: `$y$절편은 $b$이고, $x$절편은 $${mono(m)}+b=0$에서 $x=${x0}$이다.\n두 절편의 합이 $${sum}$이므로 $${x0}+${b < 0 ? `(${b})` : b}=${sum}$이 되어 $b=${b}$이다.`,
+          solution: `$y$절편은 $b$이고, $x$절편은 $${mono(m)}+b=0$에서 $x=${x0}$이다.\n두 절편의 합이 $${sum}$이므로 $${x0}+${b < 0 ? `(${b})` : b}=${sum}$${iGa(sum)} 되어 $b=${b}$이다.`,
           facts: { m, x0, b, sum },
         };
       }),

@@ -48,6 +48,7 @@
 import { intBetween, pick } from "../elementary/rng";
 import type { Rng } from "../elementary/types";
 
+import { euroRo } from "./m2Josa";
 import type { MidProblem, TypeEntry } from "./types";
 
 const GRADE = "중3";
@@ -778,7 +779,7 @@ $${constText}=${m * m}$에서 $${alpha === 1 ? "" : alpha}p=${m * m - beta}$이�
           return body(
             `이차방정식 $${eq}$${josaNum(c, "을", "를")} 푸시오.`,
             `$x=${-p}\\pm\\sqrt{${q}}$`,
-            `양변을 $${a}$로 나누면 $(x${term(p, "")})^2=${q}$이다.
+            `양변을 $${a}$${euroRo(a)} 나누면 $(x${term(p, "")})^2=${q}$이다.
 $x${term(p, "")}=\\pm\\sqrt{${q}}$이므로 $x=${-p}\\pm\\sqrt{${q}}$이다.`,
             { a, p, q, c, d: 0, b: 0, mode, x: -p },
           );
@@ -786,7 +787,7 @@ $x${term(p, "")}=\\pm\\sqrt{${q}}$이므로 $x=${-p}\\pm\\sqrt{${q}}$이다.`,
         return body(
           `이차방정식 $${eq}$의 해가 $x=m\\pm\\sqrt{n}$일 때, 유리수 $m$, $n$에 대하여 $m+n$의 값을 구하시오.`,
           `$${-p + q}$`,
-          `양변을 $${a}$로 나누면 $(x${term(p, "")})^2=${q}$이므로 $x=${-p}\\pm\\sqrt{${q}}$이다.
+          `양변을 $${a}$${euroRo(a)} 나누면 $(x${term(p, "")})^2=${q}$이므로 $x=${-p}\\pm\\sqrt{${q}}$이다.
 따라서 $m=${-p}$, $n=${q}$이므로 $m+n=${-p}+${q}=${-p + q}$이다.`,
           { a, p, q, c, d: 0, b: 0, mode, x: -p + q },
         );
@@ -854,7 +855,7 @@ $x${term(p, "")}=\\pm\\sqrt{${q}}$이므로 $x=${-p}\\pm\\sqrt{${q}}$이다.`,
         const firstLine =
           bigA === 1
             ? `$x^2$의 계수가 $1$이므로 그대로 정리하면 $${divided}$이다.`
-            : `양변을 $${bigA}$로 나누면 $${divided}$이다.`;
+            : `양변을 $${bigA}$${euroRo(bigA)} 나누면 $${divided}$이다.`;
         return body(
           `이차방정식 $${quadEq(bigA, bigB, bigC)}$을 $(x+a)^2=b$의 꼴로 나타낼 때, 상수 $a$, $b$에 대하여 $${askText}$의 값을 구하시오.`,
           `$${value}$`,
@@ -2117,7 +2118,7 @@ $t>0$이므로 음수인 근은 버린다. 따라서 $t=\\dfrac{-${k}+${k}\\sqrt
             `상수 $m$에 대하여 이차방정식 $x^2-2mx+m^2-${t}=0$의 두 근의 차를 구하시오.`,
             `$${2 * k}$`,
             `근의 공식에서 $x=\\dfrac{2m\\pm\\sqrt{(-2m)^{2}-4(m^{2}-${t})}}{2}=\\dfrac{2m\\pm\\sqrt{${4 * t}}}{2}$이다.
-$\\sqrt{${4 * t}}=${2 * k}$이므로 두 근은 $m+${k}$, $m-${k}$이고, 그 차는 $${2 * k}$로 $m$의 값에 관계없이 일정하다.`,
+$\\sqrt{${4 * t}}=${2 * k}$이므로 두 근은 $m+${k}$, $m-${k}$이고, 그 차는 $${2 * k}$${euroRo(2 * k)} $m$의 값에 관계없이 일정하다.`,
             { b: 0, c: 0, d: 2 * k, k, t, mode, x: 2 * k },
           );
         }

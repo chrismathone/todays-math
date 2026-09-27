@@ -26,7 +26,7 @@
 import { intBetween, pick } from "../elementary/rng";
 import type { Rng } from "../elementary/types";
 
-import { eulReul, waGwa } from "./m2Josa";
+import { euroRo, eulReul, waGwa } from "./m2Josa";
 import type { Body } from "./m1Shared";
 import {
   attempt,
@@ -974,7 +974,7 @@ const 최대최소_TYPES: TypeEntry[] = [
                 .join("\\times")}=${dc}$(개)이다.`
             : kind === 1
               ? `공약수 중 가장 큰 수는 최대공약수 자신이므로 $${g.G}$이다.`
-              : `공약수는 최대공약수 $${g.G}$의 약수이다. 두 번째로 큰 약수는 $${g.G}$${nEul(g.G)} 가장 작은 소인수 $${smallestPrime}$로 나눈 $${second}$이다.`;
+              : `공약수는 최대공약수 $${g.G}$의 약수이다. 두 번째로 큰 약수는 $${g.G}$${nEul(g.G)} 가장 작은 소인수 $${smallestPrime}$${euroRo(smallestPrime)} 나눈 $${second}$이다.`;
         return {
           content: `두 수 $${g.A}$, $${g.B}$의 ${ask}${wEul(ask)} 구하시오.`,
           answer: `$${answer}$${unit}`,
@@ -1608,7 +1608,7 @@ const 최대최소_TYPES: TypeEntry[] = [
         return {
           content: `세 자연수 $${A}$, $${B}$, $N$의 최대공약수가 $${G}$이고 최소공배수가 $${L}$일 때, ${ask}`,
           answer: `$${answer}$${kind === 2 ? "개" : ""}`,
-          solution: `$N$은 최소공배수 $${L}$의 약수이면서, 세 수의 최대공약수가 $${G}$, 최소공배수가 $${L}$이 되어야 한다.\n조건을 만족시키는 $N$은 ${cands
+          solution: `$N$은 최소공배수 $${L}$의 약수이면서, 세 수의 최대공약수가 $${G}$, 최소공배수가 $${L}$${nIGa(L)} 되어야 한다.\n조건을 만족시키는 $N$은 ${cands
             .map((v) => `$${v}$`)
             .join(
               ", ",
@@ -1726,7 +1726,7 @@ const 최대최소_TYPES: TypeEntry[] = [
         return {
           content: `세 자연수 $${A}$, $${B}$, $${C}$의 최대공약수를 구하시오.`,
           answer: `$${g}$`,
-          solution: `세 수를 각각 $${g}\\times${u}$, $${g}\\times${v}$, $${g}\\times${w}$로 나타낼 수 있고 $${u}$, $${v}$, $${w}$${nEun(w)} 쌍마다 서로소이다. 따라서 최대공약수는 $${g}$이다.`,
+          solution: `세 수를 각각 $${g}\\times${u}$, $${g}\\times${v}$, $${g}\\times${w}$${euroRo(w)} 나타낼 수 있고 $${u}$, $${v}$, $${w}$${nEun(w)} 쌍마다 서로소이다. 따라서 최대공약수는 $${g}$이다.`,
           facts: { A, B, C, g },
         };
       }),
@@ -1976,7 +1976,7 @@ const 최대최소_TYPES: TypeEntry[] = [
         }
         if (answer < 0) return null;
         return {
-          content: `$${a}$로 나누어도 $${b}$로 나누어도 $${r}$${nIGa(r)} 남는 자연수 중에서 가장 작은 두 자리 자연수를 구하시오.`,
+          content: `$${a}$${euroRo(a)} 나누어도 $${b}$${euroRo(b)} 나누어도 $${r}$${nIGa(r)} 남는 자연수 중에서 가장 작은 두 자리 자연수를 구하시오.`,
           answer: `$${answer}$`,
           solution: `구하는 수에서 $${r}$${nEul(r)} 빼면 $${a}$${nGwa(a)} $${b}$의 공배수가 된다.\n$${a}$${nGwa(a)} $${b}$의 최소공배수는 $${L}$이므로 구하는 수는 $${L}$의 배수보다 $${r}$만큼 큰 수이다.\n두 자리 자연수 중 가장 작은 것은 $${answer}$이다.`,
           facts: { a, b, r, L, answer },

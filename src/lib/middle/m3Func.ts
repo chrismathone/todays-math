@@ -45,7 +45,7 @@ import type { Rng } from "../elementary/types";
 import { CHOOSE_ALL_ANSWER_COUNT } from "../problem/chooseAllRule";
 import { CHOICE_COUNT, CHOICE_MARKS } from "../problem/choiceCountRule";
 
-import { eulReul, waGwa } from "./m2Josa";
+import { eulReul, euroRo, waGwa } from "./m2Josa";
 import type { MidProblem, TypeEntry } from "./types";
 
 const GRADE = "중3";
@@ -185,17 +185,13 @@ function shiftTex(v: number): string {
 }
 
 /**
- * 수 뒤의 조사 — 끝 자리를 한자 수사로 읽었을 때 받침이 있는가로 가른다
- * (`m2Josa` 와 같은 규칙. 그 파일은 「을/를」·「와/과」만 내보내므로 나머지는 여기 둔다).
+ * 수 뒤의 조사 — 끝 자리를 한자 수사로 읽었을 때 받침이 있는가로 가른다(`m2Josa` 와 같은 규칙).
+ * 「(으)로」는 여기 두지 않고 `m2Josa.euroRo` 를 쓴다 — 받침 유무만 보면 ㄹ 받침(1·7·8)에
+ * 「$7$으로」가 나간다(일로·칠로·팔로가 맞다).
  */
 function vowelFinal(n: number): boolean {
   const d = Math.abs(n) % 10;
   return d === 2 || d === 4 || d === 5 || d === 9;
-}
-
-/** 「$3$으로」·「$4$로」 */
-function euroRo(n: number): "으로" | "로" {
-  return vowelFinal(n) ? "로" : "으로";
 }
 
 /** 「$3$과」·「$4$와」 */
@@ -818,7 +814,7 @@ const TYPES_G1: TypeEntry[] = [
       const fig = parabolaFig(a, 0, 0, [[m, n]]);
       if (fig === null) return null;
       return {
-        content: `오른쪽 그림과 같이 이차함수 $y=ax^2$의 그래프가 점 $${pt(m, n)}$${eulReul(n)} 지난다. 이 그래프가 점 $(${k}, t)$${eulReul(k)} 지날 때, $t$의 값을 구하시오.`,
+        content: `오른쪽 그림과 같이 이차함수 $y=ax^2$의 그래프가 점 $${pt(m, n)}$${eulReul(n)} 지난다. 이 그래프가 점 $(${k}, t)$를 지날 때, $t$의 값을 구하시오.`,
         answer: `$${t[0]}$`,
         solution: `$y=ax^2$에 $x=${m}$, $y=${n}$${eulReul(n)} 대입하면 $a=${ratTex(a)}$이다.\n$y=${termTex(a, "x^2", true)}$에 $x=${k}$${eulReul(k)} 대입하면 $t=${ratTex(a)}\\times${baseTex(k)}^2=${t[0]}$이다.`,
         facts: { mode, m, n, k, t: t[0], aN: a[0], aD: a[1] },
@@ -965,7 +961,7 @@ const TYPES_G1: TypeEntry[] = [
       const w = rAdd(rMul(a, rInt(k * k)), rInt(q));
       if (w[1] !== 1 || Math.abs(w[0]) > 40) return null;
       return {
-        content: `꼭짓점의 좌표가 $(0, ${q})$이고 점 $${pt(m, v[0])}$${eulReul(v[0])} 지나는 포물선을 그래프로 하는 이차함수의 그래프가 점 $(${k}, t)$${eulReul(k)} 지날 때, $t$의 값을 구하시오.`,
+        content: `꼭짓점의 좌표가 $(0, ${q})$이고 점 $${pt(m, v[0])}$${eulReul(v[0])} 지나는 포물선을 그래프로 하는 이차함수의 그래프가 점 $(${k}, t)$를 지날 때, $t$의 값을 구하시오.`,
         answer: `$${w[0]}$`,
         solution: `구하는 식을 $y=ax^2${termTex(rInt(q), "")}$ 꼴로 놓고 $x=${m}$, $y=${v[0]}$${eulReul(v[0])} 대입하면 $a=${ratTex(a)}$이다.\n$y=${stdRhs(a, 0, q)}$에 $x=${k}$${eulReul(k)} 대입하면 $t=${w[0]}$이다.`,
         facts: { mode, aN: a[0], aD: a[1], q, m, v: v[0], k, w: w[0] },
@@ -1002,7 +998,7 @@ const TYPES_G1: TypeEntry[] = [
       const v = rMul(a, rInt((m - p) * (m - p)));
       if (v[1] !== 1 || Math.abs(v[0]) > 60) return null;
       return {
-        content: `이차함수 $y=${stdRhs(a, p, 0)}$의 그래프가 점 $(${m}, v)$${eulReul(m)} 지날 때, $v$의 값을 구하시오.`,
+        content: `이차함수 $y=${stdRhs(a, p, 0)}$의 그래프가 점 $(${m}, v)$를 지날 때, $v$의 값을 구하시오.`,
         answer: `$${v[0]}$`,
         solution: `$y=${stdRhs(a, p, 0)}$에 $x=${m}$${eulReul(m)} 대입하면 $v=${ratTex(a)}\\times${baseTex(m - p)}^2=${v[0]}$이다.`,
         facts: { mode, aN: a[0], aD: a[1], p, m, v: v[0], mx: p, q: 0 },
@@ -1449,7 +1445,7 @@ const TYPES_G2: TypeEntry[] = [
       const { A, B, C } = expand(rInt(a), p, q);
       if (Math.abs(C[0]) > 60) return null;
       return {
-        content: `이차함수 $y=${genRhs(A, B, C)}$${eulReul(C[0])} $y=a(x-p)^2+q$ 꼴로 나타내시오. (단, $a$, $p$, $q$는 상수이다.)`,
+        content: `이차함수 $y=${genRhs(A, B, C)}$${C[0] !== 0 ? eulReul(C[0]) : B[0] !== 0 ? "를" : "을"} $y=a(x-p)^2+q$ 꼴로 나타내시오. (단, $a$, $p$, $q$는 상수이다.)`,
         answer: `$y=${stdRhs(rInt(a), p, q)}$`,
         solution: toStdLines(a, p, q).join("\n"),
         facts: { a, p, q, A: A[0], B: B[0], C: C[0] },
@@ -1892,7 +1888,7 @@ const TYPES_G2: TypeEntry[] = [
         return {
           content: `$x$축과 두 점 $${pt(r1, 0)}$, $${pt(r2, 0)}$에서 만나고 점 $${pt(m, v)}$${eulReul(v)} 지나는 포물선을 그래프로 하는 이차함수의 식을 $y=ax^2+bx+c$ 꼴로 나타내시오. (단, $a$, $b$, $c$는 상수이다.)`,
           answer: `$y=${genRhs(A, B, C)}$`,
-          solution: `$x$축과 두 점 $${pt(r1, 0)}$, $${pt(r2, 0)}$에서 만나므로 구하는 식을 $y=${factoredWithA(r1, r2)}$로 놓는다.\n$x=${m}$, $y=${v}$${eulReul(v)} 대입하면 $${termTex(rInt((m - r1) * (m - r2)), "a", true)}=${v}$이므로 $a=${a}$이다.\n따라서 $y=${genRhs(A, B, C)}$이다.`,
+          solution: `$x$축과 두 점 $${pt(r1, 0)}$, $${pt(r2, 0)}$에서 만나므로 구하는 식을 $y=${factoredWithA(r1, r2)}$${r2 === 0 ? "로" : euroRo(r2)} 놓는다.\n$x=${m}$, $y=${v}$${eulReul(v)} 대입하면 $${termTex(rInt((m - r1) * (m - r2)), "a", true)}=${v}$이므로 $a=${a}$이다.\n따라서 $y=${genRhs(A, B, C)}$이다.`,
           facts: { a, r1, r2, m, v, A: A[0], B: B[0], C: C[0] },
           figureSpec: null,
         };
@@ -1999,7 +1995,7 @@ const TYPES_G2: TypeEntry[] = [
         return {
           content: `차가 $${m}$인 두 수의 곱이 최소가 될 때, 그 두 수를 구하시오.`,
           answer: `$${-h}$${waGwaTex(-h)} $${h}$`,
-          solution: `두 수를 $x$, $x+${m}$이라 하고 곱을 $y$라 하면 $y=x(x+${m})=x^2+${m}x$이다.\n$y=(x+${h})^2-${h * h}$이므로 $x=${-h}$일 때 최솟값을 갖는다.\n따라서 구하는 두 수는 $${-h}$${waGwaTex(-h)} $${h}$이다.`,
+          solution: `두 수를 $x$, $x+${m}$${eulReul(m) === "을" ? "이라" : "라"} 하고 곱을 $y$라 하면 $y=x(x+${m})=x^2+${m}x$이다.\n$y=(x+${h})^2-${h * h}$이므로 $x=${-h}$일 때 최솟값을 갖는다.\n따라서 구하는 두 수는 $${-h}$${waGwaTex(-h)} $${h}$이다.`,
           facts: { mode, m, h, ans: h },
           figureSpec: null,
         };
@@ -2138,7 +2134,7 @@ const TYPES_G2: TypeEntry[] = [
         return {
           content: `직선 $y=-x+${b}$ 위에 있는 제$1$사분면 위의 점 $\\mathrm{P}$에서 $x$축, $y$축에 내린 수선의 발을 각각 $\\mathrm{Q}$, $\\mathrm{R}$라 할 때, 직사각형 $\\mathrm{OQPR}$의 넓이의 최댓값을 구하시오. (단, $\\mathrm{O}$는 원점이다.)`,
           answer: `$${h * h}$`,
-          solution: `점 $\\mathrm{P}$의 좌표를 $(x, -x+${b})$라 하면 $\\overline{\\mathrm{OQ}}=x$, $\\overline{\\mathrm{PQ}}=-x+${b}$이다.\n넓이를 $y$라 하면 $y=x(-x+${b})=-(x-${h})^2+${h * h}$이다.\n따라서 $x=${h}$일 때 넓이의 최댓값은 $${h * h}$이다.`,
+          solution: `점 $\\mathrm{P}$의 좌표를 $(x, -x+${b})$${eulReul(b) === "을" ? "이라" : "라"} 하면 $\\overline{\\mathrm{OQ}}=x$, $\\overline{\\mathrm{PQ}}=-x+${b}$이다.\n넓이를 $y$라 하면 $y=x(-x+${b})=-(x-${h})^2+${h * h}$이다.\n따라서 $x=${h}$일 때 넓이의 최댓값은 $${h * h}$이다.`,
           facts: { mode, b, h, ans: h * h },
           figureSpec: null,
         };
@@ -2151,7 +2147,7 @@ const TYPES_G2: TypeEntry[] = [
         return {
           content: `직선 $y=-${m}x+${b}$ 위에 있는 제$1$사분면 위의 점 $\\mathrm{P}$에서 $x$축, $y$축에 내린 수선의 발을 각각 $\\mathrm{Q}$, $\\mathrm{R}$라 할 때, 직사각형 $\\mathrm{OQPR}$의 넓이의 최댓값을 구하시오. (단, $\\mathrm{O}$는 원점이다.)`,
           answer: `$${ans}$`,
-          solution: `점 $\\mathrm{P}$의 좌표를 $(x, -${m}x+${b})$라 하면 넓이는 $y=x(-${m}x+${b})=-${m}x^2+${b}x$이다.\n$y=-${m}(x-${h})^2+${ans}$이므로 $x=${h}$일 때 최댓값 $${ans}$${eulReul(ans)} 갖는다.`,
+          solution: `점 $\\mathrm{P}$의 좌표를 $(x, -${m}x+${b})$${eulReul(b) === "을" ? "이라" : "라"} 하면 넓이는 $y=x(-${m}x+${b})=-${m}x^2+${b}x$이다.\n$y=-${m}(x-${h})^2+${ans}$이므로 $x=${h}$일 때 최댓값 $${ans}$${eulReul(ans)} 갖는다.`,
           facts: { mode, m, b, h, ans },
           figureSpec: null,
         };
@@ -2163,7 +2159,7 @@ const TYPES_G2: TypeEntry[] = [
       return {
         content: `직선 $y=-${m}x+${b}$ 위에 있는 제$1$사분면 위의 점 $\\mathrm{P}$에서 $x$축, $y$축에 내린 수선의 발을 각각 $\\mathrm{Q}$, $\\mathrm{R}$라 할 때, 직각삼각형 $\\mathrm{PRQ}$의 넓이의 최댓값을 구하시오.`,
         answer: `$${ans}$`,
-        solution: `점 $\\mathrm{P}$의 좌표를 $(x, -${m}x+${b})$라 하면 $\\overline{\\mathrm{PR}}=x$, $\\overline{\\mathrm{PQ}}=-${m}x+${b}$이다.\n넓이를 $y$라 하면 $y=\\dfrac{1}{2}x(-${m}x+${b})=${termTex(rInt(-m / 2), `(x-${h})^2`, true)}${termTex(rInt(ans), "")}$이다.\n따라서 $x=${h}$일 때 넓이의 최댓값은 $${ans}$이다.`,
+        solution: `점 $\\mathrm{P}$의 좌표를 $(x, -${m}x+${b})$${eulReul(b) === "을" ? "이라" : "라"} 하면 $\\overline{\\mathrm{PR}}=x$, $\\overline{\\mathrm{PQ}}=-${m}x+${b}$이다.\n넓이를 $y$라 하면 $y=\\dfrac{1}{2}x(-${m}x+${b})=${termTex(rInt(-m / 2), `(x-${h})^2`, true)}${termTex(rInt(ans), "")}$이다.\n따라서 $x=${h}$일 때 넓이의 최댓값은 $${ans}$이다.`,
         facts: { mode, m, b, h, ans },
         figureSpec: null,
       };

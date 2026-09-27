@@ -23,7 +23,7 @@ import { M1_BOOK2 } from "./m1Book2";
 import { intBetween, pick } from "../elementary/rng";
 import { defType, shuffle, signed } from "./m1Shared";
 import type { TypeEntry } from "./types";
-import { eulReul, eunNeun, iGa, waGwa } from "./m2Josa";
+import { eulReul, eunNeun, euroRo, iGa, waGwa } from "./m2Josa";
 
 const BOOK2 = "1-2";
 const DATA_MINOR = "도수분포표와 상대도수";
@@ -850,7 +850,7 @@ const GRAPH_UNDERSTANDING_TYPES: TypeEntry[] = [
       return {
         content: `어떤 관계의 그래프가 두 점 $(${x1}, ${y1})$, $(${x2}, ${y2})$${eulReul(y2)} 지난다. $x$가 $${x1}$에서 $${x2}$까지 변할 때 $y$가 증가한 양을 구하시오.`,
         answer: `$${increase}$`,
-        solution: `$y$좌표는 $${y1}$에서 $${y2}$로 변하므로 증가한 양은 $${y2}-${y1}=${increase}$이다.`,
+        solution: `$y$좌표는 $${y1}$에서 $${y2}$${euroRo(y2)} 변하므로 증가한 양은 $${y2}-${y1}=${increase}$이다.`,
         facts: { x1, x2, y1, y2, answer: increase },
       };
     },

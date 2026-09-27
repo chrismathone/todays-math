@@ -30,6 +30,7 @@
 import { intBetween, pick } from "../elementary/rng";
 import type { Rng } from "../elementary/types";
 
+import { euroRo } from "./m2Josa";
 import { simplifySqrt, sqrtTerm } from "./m3Root";
 import type { MidProblem, TypeEntry } from "./types";
 
@@ -407,7 +408,7 @@ export const M3_STAT2: TypeEntry[] = [
         return {
           content: `어떤 자료의 표준편차가 $${sd}$일 때, 각 변량에 ${c >= 0 ? `$${c}$${eulReul(c)} 더한` : `$${-c}$${eulReul(-c)} 뺀`} 새로운 자료의 표준편차를 구하시오.`,
           answer: `$${sd}$`,
-          solution: `모든 변량에 같은 수를 더하거나 빼도 변량 사이의 흩어진 정도는 변하지 않으므로 분산과 표준편차는 변하지 않는다.\n따라서 새로운 자료의 표준편차는 $${sd}$로 처음과 같다.`,
+          solution: `모든 변량에 같은 수를 더하거나 빼도 변량 사이의 흩어진 정도는 변하지 않으므로 분산과 표준편차는 변하지 않는다.\n따라서 새로운 자료의 표준편차는 $${sd}$${euroRo(sd)} 처음과 같다.`,
           facts: { sd, mode, c, k: 0, newSd: sd },
           figureSpec: null,
         };
@@ -1085,7 +1086,7 @@ export const M3_STAT2: TypeEntry[] = [
           .map(([x, y]) => `$(${x},\\,${y})$`)
           .join(
             ", ",
-          )}로 $${hit.length}$개이다.\n따라서 전체의 $\\dfrac{${hit.length}}{${n}}\\times100=${pct}\\,(\\%)$이다.`,
+          )}${euroRo(hit[hit.length - 1]![1])} $${hit.length}$개이다.\n따라서 전체의 $\\dfrac{${hit.length}}{${n}}\\times100=${pct}\\,(\\%)$이다.`,
         facts,
         figureSpec: {
           version: "elem-1",
@@ -1263,7 +1264,7 @@ export const M3_STAT2: TypeEntry[] = [
             .map(([x, y]) => `$(${x},\\,${y})$`)
             .join(
               ", ",
-            )}로 $${hit.length}$명이다.\n그 학생들의 과학 점수의 합은 $${hit
+            )}${euroRo(hit[hit.length - 1]![1])} $${hit.length}$명이다.\n그 학생들의 과학 점수의 합은 $${hit
             .map(([, y]) => y)
             .join(
               "+",

@@ -128,7 +128,7 @@ import { attempt, defType, type Body } from "./m1Shared";
 // 최대공약수·최소공배수 규칙을 두 벌로 두지 않는다 — 1차·3차 물결 것을 **읽어만** 온다.
 import { gcd } from "./m1Top";
 import { lcm } from "./m1Top3";
-import { eulReul } from "./m2Josa";
+import { eulReul, euroRo } from "./m2Josa";
 import type { TypeEntry } from "./types";
 
 const BOOK1 = "1-1";
@@ -898,7 +898,7 @@ const EQUALITY_TYPE: TypeEntry[] = [
         const pos = multiples.filter((m) => m > 0);
         const lines = [
           `등식의 양변에서 $b$를 빼도 등식은 성립하므로 $${a}x=${c}-b$이다.`,
-          `$${a}$${eunNeun(a)} $0$이 아니므로 양변을 $${a}$로 나누어도 등식은 성립한다. 따라서 $x=(${c}-b)\\div${a}$이다.`,
+          `$${a}$${eunNeun(a)} $0$이 아니므로 양변을 $${a}$${euroRo(a)} 나누어도 등식은 성립한다. 따라서 $x=(${c}-b)\\div${a}$이다.`,
           `$x$가 자연수이려면 $${c}-b$가 $${a}$의 배수이면서 $0$보다 커야 한다.`,
           `$b$가 $${b1}$ 이상 $${b2}$ 이하의 정수이므로 $${c}-b$는 $${c}-${paren(b2)}=${c - b2}$ 이상 $${c}-${paren(b1)}=${c - b1}$ 이하의 정수이다.`,
           `이 범위에서 $${a}$의 배수는 ${listTex(multiples)}이고, ${listTex(dead)}${eunNeun(dead[dead.length - 1]!)} $0$보다 크지 않으므로 남는 것은 ${listTex(pos)}이다.`,

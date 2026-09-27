@@ -872,6 +872,14 @@ function mono(c: number, ex: number, ey: number): string {
 }
 
 /**
+ * `mono` 로 끝나는 식 뒤 조사 — 끝 문자의 지수 `e` 로 가른다. $1$ 이면 문자(엑스·와이)로
+ * 끝나 받침이 없고(`VAR_EUL`·`VAR_IGA`), $2$ 이상이면 「…제곱」으로 끝나 받침이 있다
+ * (「$3x^{2}$을」·「$-12x^{4}y^{2}$이」).
+ */
+const monoEul = (e: number): string => (e >= 2 ? "을" : VAR_EUL);
+const monoIGa = (e: number): string => (e >= 2 ? "이" : VAR_IGA);
+
+/**
  * 중2 「단항식의 곱셈과 나눗셈」 보강 다섯 — pool 갈래가 연산1·응용2·심화2 라
  * **기본 넷**이 모자란다(하나는 응용).
  *
@@ -901,7 +909,7 @@ const MONO_SUPPLEMENTS: TypeEntry[] = ([0, 1, 2, 3, 4] as const).map((mode) =>
       const ep = intBetween(rng, 1, 2);
       if (mode === 0) {
         return {
-          content: `$A=${mono(c, ex, ey)}$일 때, $A\\times${mono(d, ep, 0)}$를 계산하시오.`,
+          content: `$A=${mono(c, ex, ey)}$일 때, $A\\times${mono(d, ep, 0)}$${monoEul(ep)} 계산하시오.`,
           answer: `$${mono(c * d, ex + ep, ey)}$`,
           solution: `계수는 계수끼리, 문자는 문자끼리 곱한다.\n$${c}\\times${d}=${c * d}$이고 $x^{${ex}}\\times x^{${ep}}=x^{${ex + ep}}$이므로 $${mono(c * d, ex + ep, ey)}$이다.`,
           facts: { mode, c, d, ex, ey, ep },
@@ -909,7 +917,7 @@ const MONO_SUPPLEMENTS: TypeEntry[] = ([0, 1, 2, 3, 4] as const).map((mode) =>
       }
       if (mode === 1) {
         return {
-          content: `$A=${mono(c * d, ex + ep, ey)}$일 때, $A\\div${mono(d, ep, 0)}$를 계산하시오.`,
+          content: `$A=${mono(c * d, ex + ep, ey)}$일 때, $A\\div${mono(d, ep, 0)}$${monoEul(ep)} 계산하시오.`,
           answer: `$${mono(c, ex, ey)}$`,
           solution: `계수는 계수끼리 나누고, 같은 문자는 지수끼리 뺀다.\n$${c * d}\\div${d}=${c}$이고 $x^{${ex + ep}}\\div x^{${ep}}=x^{${ex}}$이므로 $${mono(c, ex, ey)}$이다.`,
           facts: { mode, c, d, ex, ey, ep },
@@ -917,7 +925,7 @@ const MONO_SUPPLEMENTS: TypeEntry[] = ([0, 1, 2, 3, 4] as const).map((mode) =>
       }
       if (mode === 2) {
         return {
-          content: `어떤 단항식에 $${mono(d, ep, 0)}$${VAR_EUL} 곱했더니 $${mono(c * d, ex + ep, ey)}$${VAR_IGA} 되었다. 어떤 단항식을 구하시오.`,
+          content: `어떤 단항식에 $${mono(d, ep, 0)}$${monoEul(ep)} 곱했더니 $${mono(c * d, ex + ep, ey)}$${monoIGa(ey)} 되었다. 어떤 단항식을 구하시오.`,
           answer: `$${mono(c, ex, ey)}$`,
           solution: `(어떤 단항식)$=${mono(c * d, ex + ep, ey)}\\div${mono(d, ep, 0)}$이다.\n계수끼리 나누고 지수끼리 빼면 $${mono(c, ex, ey)}$이다.`,
           facts: { mode, c, d, ex, ey, ep },
@@ -925,7 +933,7 @@ const MONO_SUPPLEMENTS: TypeEntry[] = ([0, 1, 2, 3, 4] as const).map((mode) =>
       }
       if (mode === 3) {
         return {
-          content: `$A=${mono(c, ex, 0)}$일 때, $A^{2}$${eulReul(2)} 계산하시오.`,
+          content: `$A=${mono(c, ex, 0)}$일 때, $A^{2}$을 계산하시오.`,
           answer: `$${mono(c * c, 2 * ex, 0)}$`,
           solution: `괄호 안의 각 인수를 제곱한다.\n$(${c})^{2}=${c * c}$이고 $(x^{${ex}})^{2}=x^{${2 * ex}}$이므로 $${mono(c * c, 2 * ex, 0)}$이다.`,
           facts: { mode, c, ex },
@@ -938,8 +946,8 @@ const MONO_SUPPLEMENTS: TypeEntry[] = ([0, 1, 2, 3, 4] as const).map((mode) =>
       //    나누는 단항식에 계수를 붙여 그 자리를 없앴다.
       const dv = intBetween(rng, 2, 4);
       return {
-        // 식이 문자로 끝나므로 조사는 늘 「를」다(`VAR_EUL`).
-        content: `$${mono(c, ex, ey)}\\times${mono(d, ep, 0)}\\div${mono(dv, e2, 0)}$${VAR_EUL} 계산하였을 때, $x$의 지수를 구하시오.`,
+        // 끝 지수가 $2$ 이상이면 「…제곱을」이다(`monoEul`).
+        content: `$${mono(c, ex, ey)}\\times${mono(d, ep, 0)}\\div${mono(dv, e2, 0)}$${monoEul(e2)} 계산하였을 때, $x$의 지수를 구하시오.`,
         answer: `$${total}$`,
         solution: `곱할 때는 지수를 더하고 나눌 때는 뺀다.\n$x$의 지수는 $${ex}+${ep}-${e2}=${total}$이다.`,
         facts: { mode, ex, ep, e2, dv, x: total },

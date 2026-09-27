@@ -49,7 +49,7 @@
 import { intBetween, pick } from "../elementary/rng";
 import type { Rng } from "../elementary/types";
 
-import { eulReul, waGwa } from "./m2Josa";
+import { eulReul, euroRo, waGwa } from "./m2Josa";
 import type { MidProblem, TypeEntry } from "./types";
 
 const GRADE = "중3";
@@ -715,7 +715,7 @@ const MUL: TypeEntry[] = [
           answer: M(String(value)),
           solution: `곱을 ${M(
             `(${base}+${p})(${base}-${p})`,
-          )} 로 보면 ${M("(a+b)(a-b)=a^2-b^2")} 을 그대로 쓸 수 있다.\n${M(
+          )} ${euroRo(p)} 보면 ${M("(a+b)(a-b)=a^2-b^2")} 을 그대로 쓸 수 있다.\n${M(
             `${base}^2-${p}^2=${value}`,
           )}`,
           facts: { mode, base, p, value },
@@ -731,7 +731,7 @@ const MUL: TypeEntry[] = [
         answer: M(String(value)),
         solution: `곱을 ${M(
           `(${base}+${p})(${base}+${q})`,
-        )} 로 보면 ${M("(x+a)(x+b)=x^2+(a+b)x+ab")} 를 그대로 쓸 수 있다.\n${M(
+        )} ${euroRo(q)} 보면 ${M("(x+a)(x+b)=x^2+(a+b)x+ab")} 를 그대로 쓸 수 있다.\n${M(
           `${base}^2+${p + q}\\times${base}+${p * q}=${value}`,
         )}`,
         facts: { mode, base, p, q, value },
@@ -2008,7 +2008,7 @@ const FAC: TypeEntry[] = [
             `y=\\sqrt{${r}}-${n}`,
           )} 일 때, ${M("x^2-2xy+y^2")} 의 값을 구하시오.`,
           answer: M(String(value)),
-          solution: `${M("x^2-2xy+y^2=(x-y)^2")} 로 인수분해한 뒤 대입한다.\n${M(
+          solution: `${M("x^2-2xy+y^2=(x-y)^2")} 으로 인수분해한 뒤 대입한다.\n${M(
             `x-y=${2 * n}`,
           )} 이므로 구하는 값은 ${M(`${2 * n}^2=${value}`)} 이다.`,
           facts: { mode, r, n, value },
@@ -2033,7 +2033,7 @@ const FAC: TypeEntry[] = [
             [2 * t, "x"],
             [t * t, ""],
           ])}=(x+${t})^2`,
-        )} 로 인수분해한 뒤 대입한다.\n${M(
+        )} 으로 인수분해한 뒤 대입한다.\n${M(
           `(${x}+${t})^2=${base}^2=${value}`,
         )}`,
         facts: { mode, x, t, value },
