@@ -62,6 +62,10 @@
 .kindTag[data-size="title"] {
   font-size: 12px;
   line-height: 20px;
+  vertical-align: 4px;
+}
+/* 시안 4안 — 뜻 만나기 제목 · 도감 카드 제목 4px, 문장 조립 이름(제목 크기 이름 줄)만 3px */
+.row[data-size="title"] .kindTag {
   vertical-align: 3px;
 }
 
@@ -96,6 +100,8 @@
   font-size: 16px;
   font-weight: 700;
   color: #192f52;
+  /* 긴 이름이 칸을 밀지 않게(2026-09-27 넘침 교훈) — 낱말 안에서는 keep-all, 칸보다 긴 낱말만 끊는다 */
+  overflow-wrap: anywhere;
 }
 .todayUnit {
   flex-shrink: 0;

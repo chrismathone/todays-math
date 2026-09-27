@@ -7,7 +7,8 @@ import c from "./concept-head.module.css";
 /**
  * 갈래 딱지(정의 · 성질 · 공식 · 방법 · 법칙 · 정리 · 단위) — 원장님 2026-09-28 Hi-fi 4안(05 §8.19 · D-143).
  * 풀이 · 작업실 · 도감 카드 · 첫 장이 모두 이 하나를 쓴다(«모든 화면 일치»). 표에 없는 카드면 그리지 않는다.
- * 누르는 것이 아니다(D-30) — 글자(span)이고 화면 읽기에는 «대입법 · 방법»으로 읽힌다.
+ * 누르는 것이 아니다(D-30) — 글자(span)이고 화면 읽기에는 «대입법 · 방법»으로 읽힌다(글 흐름은 sr-only 가운뎃점,
+ * 제목은 `conceptHeadingLabel` 의 이름표).
  */
 export function ConceptKindTag({
   cardId,
@@ -30,6 +31,16 @@ export function ConceptKindTag({
       </span>
     </>
   );
+}
+
+/**
+ * 제목(문장 조립 · 뜻 만나기 · 도감 카드)의 화면 읽기 이름 «대입법 · 방법». 글 흐름의 sr-only 가운뎃점은 앞뒤 빈칸이
+ * 이름 계산에서 깎여 «대입법·방법»이 된다(절대 배치 상자의 끝 빈칸 — jsdom · 브라우저 모두). 제목은 제목 탐색으로
+ * 따로 읽히므로 이름표로 못 박는다. 갈래가 없는 카드면 이름표 없이 글자 그대로.
+ */
+export function conceptHeadingLabel(cardId: string, name: string) {
+  const kind = conceptKind(cardId);
+  return kind ? `${name} · ${kind}` : undefined;
 }
 
 /**
@@ -56,7 +67,10 @@ export function ConceptNameRow({
       data-size={title ? "title" : undefined}
       data-concept-row=""
     >
-      <Name className={c.name}>
+      <Name
+        className={c.name}
+        aria-label={title ? conceptHeadingLabel(cardId, name) : undefined}
+      >
         <span data-concept-name="">
           <ExplorerMath text={name} />
         </span>

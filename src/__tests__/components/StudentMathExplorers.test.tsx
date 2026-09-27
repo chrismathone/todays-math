@@ -663,13 +663,11 @@ describe("ExplorerCardDialog explanations", () => {
       );
       expect(onSolution).not.toHaveBeenCalled();
       if (done) {
-        fireEvent.click(
-          screen.getByRole("button", { name: "정의와 해설 보기" }),
-        );
+        fireEvent.click(screen.getByRole("button", { name: "뜻과 해설 보기" }));
         expect(onSolution).toHaveBeenCalledOnce();
       } else
         expect(
-          screen.queryByRole("button", { name: "정의와 해설 보기" }),
+          screen.queryByRole("button", { name: "뜻과 해설 보기" }),
         ).not.toBeInTheDocument();
       expect(screen.queryByText("뜻 다시 보기")).not.toBeInTheDocument();
     },

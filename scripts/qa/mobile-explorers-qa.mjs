@@ -570,6 +570,9 @@ async function conceptHeadStyle(page, kind) {
     return { background: style.backgroundColor, color: style.color, cursor: style.cursor, border: style.borderTopWidth, shadow: style.boxShadow };
   });
   assert.deepEqual(look, { background: "rgb(223, 231, 244)", color: "rgb(64, 90, 128)", cursor: "default", border: "0px", shadow: "none" }, "갈래 딱지 모양");
+  // 세로 자리 — 시안 4안: 이름 줄 2px · 문장 조립 이름 3px · 뜻 만나기 제목 4px(도감 제목 4px 은 도감 해설 단계에서)
+  const lift = await tag.evaluate((el) => getComputedStyle(el).verticalAlign);
+  assert.equal(lift, kind === "assemble" ? "3px" : kind === "read" ? "4px" : "2px", `갈래 딱지 세로 자리(${kind})`);
   if (kind !== "assemble") return;
   const width = page.viewportSize().width;
   const expected = width <= 350 ? 19 : Math.min(26, Math.max(20, width * 0.035));
@@ -595,9 +598,9 @@ async function passSessionIntro(page, session) {
 // 문제 칸(스크롤 칸)이 가로로 넘치는가 — 원장님 제보(2026-09-27, PC «정의 조립»): 칸 아래 쓸데없는 가로 막대, 손잡이가
 // 칸 폭의 약 75%. 폰은 막대가 겹쳐 떠서 안 보일 뿐 같은 넘침이다. 넘치면 원인을 짚어 돌려준다 — 칸 밖으로 나간 자식
 // 상자, 그리고 책장 넘김 빛 띠(`::after`)를 끄면 넘침이 사라지는가.
-async function paneOverflow(page) {
-  return page.evaluate(() => {
-    const pane = document.querySelector("[data-page-turn=true]");
+async function paneOverflow(page, selector = "[data-page-turn=true]") {
+  return page.evaluate((selector) => {
+    const pane = document.querySelector(selector);
     if (!pane) return null;
     const over = pane.scrollWidth - pane.clientWidth;
     if (over <= 1) return null;
@@ -613,7 +616,7 @@ async function paneOverflow(page) {
     const withoutLight = pane.scrollWidth - pane.clientWidth;
     style.remove();
     return { over, width: pane.clientWidth, children, afterTransform: after.transform, withoutLight };
-  });
+  }, selector);
 }
 // Performs one explorer action through the real controls and waits for its response.
 async function perform(page, sim, action, mobile) {
@@ -944,7 +947,10 @@ const scenarios = {
       const dialog = page.getByRole("dialog", { name: card.name });
       await expect(dialog).toBeVisible();
       assert.equal(await dialog.locator("[data-explorer-solution]").count(), 0, "누르기 전 해설 본문이 보인다");
-      await tap(dialog.getByRole("button", { name: "정의와 해설 보기" }), mobile);
+      const titleTag = dialog.locator("#explorer-card-title [data-concept-kind]");
+      if (await titleTag.count())
+        assert.equal(await titleTag.evaluate((el) => getComputedStyle(el).verticalAlign), "4px", "도감 제목 딱지 세로 자리");
+      await tap(dialog.getByRole("button", { name: "뜻과 해설 보기" }), mobile);
       await expect(dialog.locator("[data-explorer-solution]")).toBeVisible();
       const after = await docBox();
       for (const axis of ["x", "y", "width", "height"])
@@ -1532,7 +1538,7 @@ async function katexScenario({ page, sim, mobile, width, height, step, shot }, u
       await tap(sheet.locator("[data-level]").nth(collection.findIndex((item) => item.id === card.id)), mobile);
       const dialog = page.locator("dialog[open]:has(#explorer-card-title)");
       await expect(dialog).toBeVisible();
-      await tap(dialog.getByRole("button", { name: "정의와 해설 보기" }), mobile);
+      await tap(dialog.getByRole("button", { name: "뜻과 해설 보기" }), mobile);
       await expect(dialog.locator("[data-explorer-solution]")).toBeVisible();
       await expect(dialog.locator("[data-explorer-solution] .katex").first()).toBeVisible({ timeout: 8000 }).catch(() => {});
       await page.waitForTimeout(150);
@@ -1789,13 +1795,20 @@ scenarios["select-lab"] = selectWorkshopScenario;
 // ───────────────────────── 기억 복습 날 첫 장 ─────────────────────────
 // «오늘 다시 만날 개념»(05 §8.19 · D-143 ③) — 다섯 장이 오늘 만기면 통합 탐험이 기억 복습 날을 연다. 첫 활동 앞 한 장에
 // 이름 · 갈래 딱지 · 단원만 보이고(뜻은 가림), 시작은 요청 없이 첫 활동으로 넘어간다.
-fixtures["memory-intro"] = () => {
-  const collected = cards.definitionCards.filter((card) => card.unit === "g8-simultaneous");
-  const explorers = explorerRecord(8, "g8-function", collected);
+function memoryFixture(collected, grade, goalUnitId) {
+  const explorers = explorerRecord(grade, goalUnitId, collected);
   for (const card of collected) explorers.profile.definitions.cards[card.id].due = today();
   return { ...serverState.emptySrsState(), explorers };
-};
-scenarios["memory-intro"] = async ({ page, sim, mobile, step, shot }) => {
+}
+fixtures["memory-intro"] = () => memoryFixture(cards.definitionCards.filter((card) => card.unit === "g8-simultaneous"), 8, "g8-function");
+// 가장 나쁜 표본 — «이름 + 단원» 글자가 가장 긴 다섯 장이 한꺼번에 만기(리드 검토 ⑤). 첫 장 한 줄에 이름 · 딱지 · 단원이 다 선다.
+const longestIntroCards = [...cards.definitionCards]
+  .sort((a, b) => b.name.length + unitOf(b.unit).title.length - (a.name.length + unitOf(a.unit).title.length))
+  .slice(0, 5);
+fixtures["memory-intro-long"] = () => memoryFixture(longestIntroCards, 8, "g8-function");
+scenarios["memory-intro"] = (context) => memoryIntroScenario(context, "memory");
+scenarios["memory-intro-long"] = (context) => memoryIntroScenario(context, "memory-long");
+async function memoryIntroScenario({ page, sim, mobile, step, shot }, label) {
   await step("memory.intro", async () => {
     await page.goto(base + "/dev/mobile-explorers-qa");
     await homeReady(page);
@@ -1811,21 +1824,36 @@ scenarios["memory-intro"] = async ({ page, sim, mobile, step, shot }) => {
     assert.equal(await page.locator("[data-reading-definition], [data-assembly-sentence]").count(), 0, "첫 장에 뜻이 보인다");
     await expect(page.getByText(cards.definitionCard(session.cardIds[0]).definition)).toHaveCount(0);
     await practiceGeometry(page, mobile); // 문서 스크롤 없음 · 답 칸이 하단 탭 위
-    await shot("memory-intro");
+    // 첫 장 문제 칸도 가로로 넘치지 않는다(풀이 화면과 같은 판정 — PC 에서는 가로 막대, 2026-09-27 교훈).
+    const overflow = await paneOverflow(page, "[data-session-intro]");
+    assert.equal(overflow, null, "첫 장 문제 칸 가로 넘침: " + JSON.stringify(overflow));
+    // 칸 안에서 겹침 — 긴 이름이 줄을 못 바꾸면 칸은 안 넘치고 오른쪽 단원 글자 위로 올라간다(변이로 확인).
+    const overlaps = await page.locator("[data-session-intro] li").evaluateAll((rows) =>
+      rows.flatMap((row) => {
+        const [name, unit] = row.children;
+        const a = name.getBoundingClientRect(), b = unit.getBoundingClientRect();
+        const ink = document.createRange();
+        ink.selectNodeContents(name);
+        const right = Math.max(...[...ink.getClientRects()].filter((r) => r.width > 0).map((r) => r.right));
+        return Math.max(a.right, right) > b.left + 0.5 ? [`${name.innerText.trim()} → ${Math.round(Math.max(a.right, right) - b.left)}px`] : [];
+      }),
+    );
+    assert.deepEqual(overlaps, [], "첫 장 이름이 단원 글자와 겹친다");
+    await shot(`${label}-intro`);
     const posts = sim.posts.length;
     await tap(page.getByRole("button", { name: /기억 복습 시작하기/ }), mobile);
     await expect(title).toHaveCount(0, { timeout: 8000 });
     assert.equal(sim.posts.length, posts, "첫 장 시작이 서버에 요청을 보냈다");
     await settled(page, sim);
-    await shot("memory-first");
+    await shot(`${label}-first`);
     await page.reload();
     await homeReady(page);
     await tap(page.locator("[data-expedition-start]"), mobile);
     await page.locator("[data-explorer-dock=true]").waitFor({ timeout: 10000 });
     await expect(title).toHaveCount(0);
-    return `${names.join(" · ")} — ${kinds.join(" · ")} · 이어하기에 다시 안 뜸`;
+    return `${names.join(" · ")} — ${kinds.join(" · ")} · 칸 넘침 0 · 이어하기에 다시 안 뜸`;
   });
-};
+}
 
 // ───────────────────────── 조립 문장 · 뜻 상자가 스크롤 없이 보이나 ─────────────────────────
 // 원장님 제보(2026-09-28) «너무 무작정 문제가 출몰함» — 운영 320×568 에서 조립 문장이 문제 칸 스크롤 아래였고

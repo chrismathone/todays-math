@@ -183,6 +183,38 @@ describe("StudentMathExplorers — 기억 복습 날 첫 장", () => {
     expect(sessionIntroSeen("memory-session")).toBe(true);
   });
 
+  it("저장소가 막혀도(setItem · getItem 이 던짐) «시작하기» 한 번에 첫 활동 — 이 화면의 세션 기억으로 넘어간다", async () => {
+    const { home, memory } = states();
+    vi.spyOn(Storage.prototype, "setItem").mockImplementation(() => {
+      throw new Error("blocked");
+    });
+    vi.spyOn(Storage.prototype, "getItem").mockImplementation(() => {
+      throw new Error("blocked");
+    });
+    vi.stubGlobal(
+      "fetch",
+      vi.fn(
+        async (_url: string, options?: RequestInit) =>
+          new Response(
+            JSON.stringify({ data: options?.body ? memory : home }),
+            { status: 200 },
+          ),
+      ),
+    );
+    render(<StudentMathExplorers />);
+    fireEvent.click(
+      await screen.findByRole("button", { name: /오늘의 탐험 시작/ }),
+    );
+    const title = await screen.findByRole("heading", {
+      name: "오늘 다시 만날 개념",
+    });
+    fireEvent.click(screen.getByRole("button", { name: /기억 복습 시작하기/ }));
+    expect(
+      await screen.findByRole("button", { name: "1 순서쌍" }),
+    ).toBeVisible();
+    expect(title).not.toBeInTheDocument();
+  });
+
   it("이미 본 세션이면(이어하기) 한 장 없이 바로 활동", async () => {
     const { home, memory } = states();
     markSessionIntroSeen("memory-session");

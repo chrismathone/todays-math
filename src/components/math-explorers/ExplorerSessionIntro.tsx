@@ -46,6 +46,7 @@ export default function ExplorerSessionIntro({
         className={s.problemPane}
         tabIndex={0}
         aria-label="오늘 다시 만날 개념"
+        data-session-intro=""
       >
         <div className={s.activityMeta}>
           <span className={c.metaMuted}>

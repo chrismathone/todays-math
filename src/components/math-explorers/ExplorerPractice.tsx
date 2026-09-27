@@ -14,6 +14,7 @@ import {
   ConceptKindTag,
   ConceptNameRow,
   conceptHead as c,
+  conceptHeadingLabel,
 } from "./ExplorerConceptHead";
 import { ExplorerChoiceText, ExplorerMath } from "./ExplorerMath";
 import s from "./math-explorers.module.css";
@@ -215,7 +216,13 @@ function Activity({
               </span>
               <span>{activityNames.read}</span>
             </div>
-            <h2 className={s.questionTitle}>
+            <h2
+              className={s.questionTitle}
+              aria-label={conceptHeadingLabel(
+                activity.cardId,
+                activity.cardName,
+              )}
+            >
               <span data-concept-name="">
                 <ExplorerMath text={activity.cardName} />
               </span>
