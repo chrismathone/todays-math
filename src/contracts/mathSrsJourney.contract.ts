@@ -15,8 +15,14 @@ export const mathSrsJourneySchema = z.strictObject({
   todayAnswered: z.number().int().nonnegative(),
   todayGoal: z.number().int().positive(),
   days: z.array(mathSrsJourneyDaySchema),
+  /** Today's tile (while it is open) and the planned tiles after it (D-142). */
   upcoming: z.array(
-    z.strictObject({ title: z.string(), subtitle: z.string() }),
+    z.strictObject({
+      title: z.string(),
+      subtitle: z.string(),
+      /** First tile of a new grade — «중3» · «초5». */
+      gradeStart: z.string().max(10).optional(),
+    }),
   ),
 });
 export type MathSrsJourney = z.infer<typeof mathSrsJourneySchema>;

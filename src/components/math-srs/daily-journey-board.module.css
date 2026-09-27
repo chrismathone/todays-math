@@ -96,6 +96,173 @@
   padding-top: 7px;
   min-height: 35px;
 }
+/* D-142 — 미래 칸 단원 · 가운데 «나의 진행» · 여백 (05 §8.17, Hi-fi C «큰 숫자 하나»).
+   예정 칸은 «투명 칸»: 흰 바탕 · 그림자 · 색 띠 없이 점선만 — 완료(초록 면) · 오늘(파랑 면)과 «면이 있나»로 갈린다. */
+/* 칸 이름은 줄 수가 아니라 칸 높이로 자른다 — 넘치면 `TileTitle` 이 글자를 한 단계씩 줄여 넣는다. */
+.map .tileTitle {
+  display: block;
+  flex: 0 1 auto;
+  min-height: 0;
+  max-width: 100%;
+  overflow: hidden;
+  letter-spacing: -0.02em;
+}
+/* 낱말 안에서는 줄을 안 바꾼다(띄어쓰기 · <wbr> 에서만) — 두 엔진이 같게 끊는다. */
+.word {
+  white-space: nowrap;
+}
+.map .cell[data-state="upcoming"] .tile {
+  background: transparent;
+  border: 1px dashed #a9bad6;
+  box-shadow: none;
+  color: #5b6f8f;
+}
+.map .cell[data-state="upcoming"] .tile::before {
+  display: none;
+}
+.gradeTag {
+  align-self: center;
+  margin-left: 3px;
+  padding: 0 4px;
+  border-radius: 5px;
+  background: #dfe7f4;
+  color: #405a80;
+  font-size: 8px;
+  font-style: normal;
+  font-weight: 750;
+  line-height: 13px;
+  letter-spacing: 0;
+}
+/* 가운데 «나의 진행» — 누르는 것이 아니다(D-30): 테두리 · 그림자 · 손가락 커서 · hover 없음 */
+.progressCentre {
+  position: absolute;
+  inset: 27%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 3px;
+  min-width: 0;
+  text-align: center;
+  color: #1b3354;
+}
+.progressCentre p {
+  margin: 0 !important;
+}
+.progressCaption {
+  font-size: 10px !important;
+  line-height: 1.3 !important;
+  font-weight: 700;
+  color: #3159be;
+}
+.progressOrdinal {
+  display: flex;
+  align-items: baseline;
+  gap: 3px;
+  font-size: 30px !important;
+  line-height: 1 !important;
+  font-weight: 800;
+  letter-spacing: -0.04em;
+  color: #31547e;
+  font-variant-numeric: tabular-nums;
+}
+.progressOrdinal small {
+  font-size: 15px;
+  font-weight: 700;
+  letter-spacing: 0;
+  color: #7d8fab;
+}
+.progressUnit {
+  font-size: 15px !important;
+  line-height: 1.3 !important;
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  word-break: keep-all;
+  overflow-wrap: anywhere;
+}
+.progressNote {
+  font-size: 9.5px !important;
+  line-height: 1.45 !important;
+  color: #6f819c;
+  word-break: keep-all;
+}
+/* «5 / 30» 은 한 덩이 — 초등 가운데 줄이 폰에서 «5 /» · «30» 으로 갈렸다 */
+.progressNote b {
+  color: #31547e;
+  font-weight: 750;
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+@container (min-width: 301px) and (max-width: 479px) {
+  .map .board {
+    aspect-ratio: 1;
+  }
+}
+@container (min-width: 480px) {
+  .map .board {
+    aspect-ratio: 1.45;
+  }
+  .map .tile {
+    padding: 12px 8px 10px;
+    gap: 4px;
+  }
+  .map .dayNumber {
+    font-size: 18px;
+  }
+  .map .dayNumber small {
+    font-size: 9px;
+  }
+  .map .tileTitle {
+    font-size: 16px;
+    line-height: 1.3;
+  }
+  .gradeTag {
+    margin-left: 5px;
+    padding: 0 5px;
+    font-size: 10px;
+    line-height: 16px;
+  }
+  .progressCentre {
+    gap: 5px;
+  }
+  .progressCaption {
+    font-size: 12px !important;
+  }
+  .progressOrdinal {
+    font-size: 46px !important;
+  }
+  .progressOrdinal small {
+    font-size: 22px;
+  }
+  .progressUnit {
+    font-size: 22px !important;
+  }
+  .progressNote {
+    font-size: 12.5px !important;
+  }
+}
+/* 가장 좁은 폰(판 300px 이하 — 320 화면): 세 줄이 들어가게 칸 안 여백을 줄인다 */
+@container (max-width: 300px) {
+  .map .tile {
+    padding: 7px 2px 4px;
+    gap: 1px;
+  }
+  .map .dayNumber {
+    font-size: 12px;
+  }
+  .map .tileTitle {
+    line-height: 1.3;
+  }
+  .progressCentre {
+    gap: 2px;
+  }
+  .progressUnit {
+    font-size: 13px !important;
+  }
+  .progressOrdinal {
+    font-size: 26px !important;
+  }
+}
 .map .reviewNote {
   font-size: 10px !important;
   margin-top: 2px !important;

@@ -189,7 +189,7 @@ function explorerData(sim, saved, feedback, now) {
   const data = explorerContract.explorerStateSchema.parse({
     ...engine.explorerView(ownedExplorer(saved.state, now), date),
     today: date,
-    journey: expeditionJourney(saved.state, now),
+    journey: expeditionJourney(saved.state, now, studentId),
     expedition: expedition.expeditionDto(saved.state, studentId, now),
     student: { id: studentId, name: studentRow.name, className: studentRow.class.name },
     revision: saved.revision,
@@ -631,14 +631,34 @@ async function navTabs(page, mobile) {
   );
   return "탐험·도감·강의, 탐험 강조";
 }
-async function futureTiles(page) {
-  const upcoming = await page.locator('[data-daily-journey] li[data-state="upcoming"]').allInnerTexts();
-  const unitTitles = cards.definitionUnits.map((unit) => unit.title);
-  for (const text of upcoming) {
-    assert.ok(text.includes("다음 여정"), "미래 칸 표기: " + text);
-    assert.ok(!unitTitles.some((title) => text.includes(title)), "미래 칸에 단원명: " + text);
+// D-142: 예정 칸마다 서버가 낸 단원(초등은 소단원) — 그 뒤는 «다음 여정». 가운데는 «나의 진행». 이름이 잘리거나
+// 낱말이 두 줄에 걸치지 않는다(칸 안에서만 · `scripts/qa/daily-journey-board.mjs` 가 이름 전부를 따로 잰다).
+async function futureTiles(page, sim) {
+  const journey = expeditionJourney(sim.state, new Date(), studentId);
+  const tiles = await page.locator('[data-daily-journey] li[data-state="upcoming"]').evaluateAll((items) =>
+    items.map((li) => ({ step: Number(li.getAttribute("data-day-step")), text: li.innerText.replace(/\s+/g, "") })),
+  );
+  for (const tile of tiles) {
+    const planned = journey.upcoming[tile.step - journey.completedDays - 1];
+    const expected = (planned?.title ?? "다음 여정").replace(/\s+/g, "");
+    assert.ok(tile.text.includes(expected), `${tile.step}일차 칸 «${tile.text}» ≠ 예정 «${expected}»`);
   }
-  return upcoming.length;
+  const centre = await visibleText(page.locator("[data-journey-progress]"));
+  assert.ok(journey.position && centre.includes(journey.position.title) && centre.includes(`${journey.position.ordinal}번째`), "가운데 나의 진행: " + centre);
+  const defects = await page.evaluate(() => {
+    const bad = [];
+    for (const el of document.querySelectorAll("[data-daily-journey] [data-tile-title]")) {
+      if (el.scrollHeight > el.clientHeight + 1 || el.scrollWidth > el.clientWidth + 1) bad.push("잘림 " + el.textContent);
+      for (const word of el.querySelectorAll("span")) {
+        const lines = new Set([...word.getClientRects()].filter((r) => r.width > 0.5).map((r) => Math.round(r.top)));
+        if (lines.size > 1) bad.push("쪼개짐 " + word.textContent);
+      }
+    }
+    return bad;
+  });
+  assert.deepEqual(defects, [], "진도판 칸 이름");
+  const named = tiles.filter((tile) => journey.upcoming[tile.step - journey.completedDays - 1]).length;
+  return `예정 ${tiles.length}칸 중 이름 ${named} · 가운데 «${journey.position.caption} ${journey.position.ordinal}번째»`;
 }
 async function pawn(page) {
   return Number(await page.locator("[data-pawn-day]").getAttribute("data-pawn-day"));
@@ -676,7 +696,7 @@ const scenarios = {
       await tap(sheet.getByRole("button", { name: "나의 개념 도감 닫기" }), mobile);
       await expect(sheet).toHaveCount(0);
     });
-    await step("home.future", async () => `예정 칸 ${await futureTiles(page)}개 모두 «다음 여정»`);
+    await step("home.future", () => futureTiles(page, sim));
 
     let baseline;
     await step("concept.start", async () => {
@@ -813,7 +833,7 @@ const scenarios = {
       await expect(page.locator("[data-expedition-mission=true]")).toContainText(`${index} / 15 활동`);
       await expect(page.locator("[data-expedition-start]")).toHaveText(/이어서 탐험하기/);
       assert.equal(await pawn(page), 0, "진행 중에 말이 움직였다");
-      await futureTiles(page);
+      await futureTiles(page, sim);
       const current = await page.locator('[data-daily-journey] li[data-state="current"]').innerText();
       assert.ok(current.includes(sim.state.expedition.mission.title), "현재 칸 = 오늘 미션 단원: " + current);
       await shot("home-active");
@@ -1016,6 +1036,18 @@ async function bankScenario({ page, sim, mobile, height, step, shot }, kind) {
   const plan = expedition.planExpedition(sim.state, studentId, new Date());
   assert.equal(plan.kind, kind, "픽스처 계획: " + JSON.stringify(plan));
   const sourcePath = kind === "elementary" ? "/api/learn/math-srs/course" : "/api/learn/math-srs";
+  // D-142: 은행 화면 안의 옛 full 판(초등 은행 끝 화면 · 중1 결과 칸)이 탐험 안에서 실제로 뜨는가 — 한 번이라도 붙으면 적는다.
+  // 새로 고침을 건너 모으려고 sessionStorage 에 적는다.
+  await page.addInitScript(() => {
+    const seen = () => JSON.parse(sessionStorage.getItem("qaFullBoards") ?? "[]");
+    new MutationObserver(() => {
+      const board = document.querySelector('[data-journey-variant="full"]');
+      if (board && !board.dataset.seen) {
+        board.dataset.seen = "true";
+        sessionStorage.setItem("qaFullBoards", JSON.stringify([...seen(), [...board.querySelectorAll('li[data-state="upcoming"]')].slice(0, 3).map((li) => li.innerText.replace(/\s+/g, " ")).join(" | ")]));
+      }
+    }).observe(document, { childList: true, subtree: true });
+  });
   const publicProblems = async () => {
     if (kind === "elementary") {
       const dto = await courseRequest(sim, "read", undefined, new Date());
@@ -1110,7 +1142,7 @@ async function bankScenario({ page, sim, mobile, height, step, shot }, kind) {
     await expect(page.locator("[data-expedition-mission=true]")).toContainText(`1 / ${goal} 문제`);
     await expect(page.locator("[data-expedition-start]")).toHaveText(/이어서 탐험하기/);
     assert.equal(await pawn(page), 0);
-    await futureTiles(page);
+    await futureTiles(page, sim);
     return `홈 복귀 · 1/${goal} 유지`;
   });
   await step(`${prefix}.complete`, async () => {
@@ -1134,7 +1166,8 @@ async function bankScenario({ page, sim, mobile, height, step, shot }, kind) {
     await expect(page.locator("[data-pawn-day]")).toHaveAttribute("data-pawn-day", "1", { timeout: 5000 });
     assert.equal(sim.state.expedition.mission.status, "complete");
     await shot("bank-complete");
-    return `${goal}문제 완료 → 홈 · 말 1`;
+    const fullBoards = await page.evaluate(() => JSON.parse(sessionStorage.getItem("qaFullBoards") ?? "[]"));
+    return `${goal}문제 완료 → 홈 · 말 1 · 은행 안 full 판 ${fullBoards.length ? "보임: " + fullBoards.join(" / ") : "안 보임"}`;
   });
   await step(`${prefix}.past`, async () => {
     const revision = sim.revision;

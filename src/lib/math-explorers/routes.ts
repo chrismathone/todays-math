@@ -34,8 +34,16 @@ import {
   explorerView,
 } from "./engine";
 import { expeditionJourney } from "./expeditionJourney";
-import { expeditionDto, expeditionStartDuplicate, initialOwnedExplorer, planExpedition } from "./expedition";
-import { expeditionInitialCourseRecommendation, startExpedition } from "./expeditionStart";
+import {
+  expeditionDto,
+  expeditionStartDuplicate,
+  initialOwnedExplorer,
+  planExpedition,
+} from "./expedition";
+import {
+  expeditionInitialCourseRecommendation,
+  startExpedition,
+} from "./expeditionStart";
 import { loadCourseBankCandidates } from "@/lib/math-srs/courseBank";
 
 const responseSchema = dataResponseSchema(explorerStateSchema);
@@ -64,22 +72,32 @@ async function changeExplorer(
   ownedExplorer(previous.state, studentId, now);
   const expeditionStart = input.action.type === "expedition-start";
   const duplicateStart = (state: StoredSrsState) => {
-    if (expeditionStart) return expeditionStartDuplicate(state, input.requestId);
-    if (state.expedition?.receipts.some((r) => r.requestId === input.requestId)) throw new SrsConflict("같은 요청 번호로 다른 학습을 요청할 수 없어요.");
+    if (expeditionStart)
+      return expeditionStartDuplicate(state, input.requestId);
+    if (state.expedition?.receipts.some((r) => r.requestId === input.requestId))
+      throw new SrsConflict("같은 요청 번호로 다른 학습을 요청할 수 없어요.");
     return false;
   };
   const startFeedback = { message: "오늘의 탐험을 이어가요." };
-  if (duplicateStart(previous.state)) return { ...previous, feedback: startFeedback };
+  if (duplicateStart(previous.state))
+    return { ...previous, feedback: startFeedback };
   const receipt = explorerReceipt(
     ownedExplorer(previous.state, studentId, now),
     input.action,
     input.requestId,
   );
   if (receipt) return { ...previous, feedback: receipt };
-  const plan = expeditionStart ? planExpedition(previous.state, studentId, now) : null;
-  const recommendation = plan?.kind === "elementary" ? expeditionInitialCourseRecommendation(previous.state, plan, now) : null;
-  const candidates = recommendation && recommendation.mode !== "resume"
-    ? await loadCourseBankCandidates(recommendation.sectionId) : [];
+  const plan = expeditionStart
+    ? planExpedition(previous.state, studentId, now)
+    : null;
+  const recommendation =
+    plan?.kind === "elementary"
+      ? expeditionInitialCourseRecommendation(previous.state, plan, now)
+      : null;
+  const candidates =
+    recommendation && recommendation.mode !== "resume"
+      ? await loadCourseBankCandidates(recommendation.sectionId)
+      : [];
   const seed = randomInt(0, 0x1_0000_0000);
   let feedback: ExplorerFeedback | null = null;
   try {
@@ -88,8 +106,17 @@ async function changeExplorer(
       (state) => {
         if (expeditionStart) {
           feedback = startFeedback;
-          return startExpedition(state, studentId, now, input.requestId, seed, randomUUID,
-            recommendation ? { sectionId: recommendation.sectionId, candidates } : null);
+          return startExpedition(
+            state,
+            studentId,
+            now,
+            input.requestId,
+            seed,
+            randomUUID,
+            recommendation
+              ? { sectionId: recommendation.sectionId, candidates }
+              : null,
+          );
         }
         const result = applyExplorerAction(
           ownedExplorer(state, studentId, now),
@@ -109,7 +136,8 @@ async function changeExplorer(
     // Two tabs can submit the very same click while the first is being saved.
     // Only its exact committed receipt may bypass the stale revision check.
     const latest = await readSrsState(studentId);
-    if (duplicateStart(latest.state)) return { ...latest, feedback: startFeedback };
+    if (duplicateStart(latest.state))
+      return { ...latest, feedback: startFeedback };
     const duplicate = explorerReceipt(
       ownedExplorer(latest.state, studentId, now),
       input.action,
@@ -152,7 +180,7 @@ export async function handleExplorerRequest(
         data: {
           ...explorerView(ownedExplorer(saved.state, studentId, now), date),
           today: date,
-          journey: expeditionJourney(saved.state, now),
+          journey: expeditionJourney(saved.state, now, studentId),
           expedition: expeditionDto(saved.state, studentId, now),
           student: {
             id: student.id,

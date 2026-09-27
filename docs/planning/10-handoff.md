@@ -27,7 +27,7 @@
 - 기준 문서 `docs/reviews/unified-expedition-decision.md`. 원본 앱 패키지 `C:\Users\user\Downloads\Math_Explorers_Codex_Package.zip`·`Math_Explorers_Codex_Handoff.md`.
 - 서버: 고정된 «오늘의 탐험»(`src/lib/math-explorers/expedition.ts`·`expeditionStart.ts`), 모든 저장이 `changeSrsState → updateExpedition` 중앙 가드를 지난다. 하루 한 칸은 **실제 완료한 한국 날짜**, 3바퀴 뒤 남은 오답은 완료 아님 → `retry-unresolved`.
 - 모바일 검수 `node scripts/qa/mobile-explorers-qa.mjs`(dev 서버 필요, `/api/**` 전부 가로채 DB 안 씀) — Chromium·WebKit × 320/390/430/1280 **326항목 실패 0**.
-- 남은 것: 선수개념(repair) 미션 **자동 배정 없음** · 오래된 중등 미해결 오답이 있으면 중등 날이 이어짐 · 옛 엔진별 진도판을 쓰는 곳이 있으면 미래 칸 단원명이 보일 수 있음(통합 홈은 안 씀).
+- 남은 것: 선수개념(repair) 미션 **자동 배정 없음** · 오래된 중등 미해결 오답이 있으면 중등 날이 이어짐 · ~~옛 엔진별 진도판을 쓰는 곳이 있으면 미래 칸 단원명이 보일 수 있음(통합 홈은 안 씀).~~ **→ 2026-09-27 D-142 로 거꾸로**: 통합 홈도 미래 칸마다 단원을 적는다 — 통합 홈과 초등 은행 끝 화면이 같은 예정 함수. 중등은 개념을 다 모으면 다음 단원(중1 일차방정식은 보류).
 - 브랜치 `BIGSHOL/unified-game-claude-review`(`e6087989f`)는 **일부러 병합 안 함** — «3바퀴 뒤 칸 지급·배정 날짜 칸»이 결정 문서와 반대. 이름이 final 이라도 기준 아님.
 
 ### 0-X.2 eywa 자동 로그인(SSO) — D-139 ⑴~⑹ · CLAUDE.md 규칙 7

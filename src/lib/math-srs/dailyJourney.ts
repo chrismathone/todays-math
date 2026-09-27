@@ -4,6 +4,8 @@ import { kstDateOf } from "@/lib/kstDate";
 import { CONCEPTS } from "./concepts";
 import { courseSummary } from "./courseAutomation";
 import { COURSE_SECTIONS, getCourseSection } from "./elementary/catalog";
+import { sectionForecast, sectionLabel } from "./elementary/sectionForecast";
+import { planSlots } from "@/lib/math-explorers/journeyForecast";
 import { CONCEPT_IDS } from "./types";
 import type { StoredSrsState } from "./serverState";
 
@@ -210,13 +212,20 @@ function unitLabel(kind: JourneyKind, unitId: string) {
       title: CONCEPTS.find((c) => c.id === unitId)?.title ?? "일차방정식",
       subtitle: "중1 · 일차방정식",
     };
-  const section = getCourseSection(unitId);
-  return section
-    ? {
-        title: section.title,
-        subtitle: `초${section.grade} · ${section.semester}학기 · ${section.chapterTitle}`,
-      }
-    : { title: "수학 복습", subtitle: "초등 복습" };
+  return sectionLabel(unitId);
+}
+
+/** 완료한 날 칸의 이름 — 그날 푼 단원(초등은 소단원)들. 탐험 판(map)의 초등 은행 날도 같은 이름을 쓴다(D-142). */
+export function journeyDayLabel(kind: JourneyKind, unitIds: readonly string[]) {
+  const units = [...new Set(unitIds)];
+  const label = unitLabel(kind, units[0]);
+  return {
+    title:
+      units.length > 1
+        ? `${label.title} 외 ${units.length - 1}개 단원`
+        : label.title,
+    subtitle: label.subtitle,
+  };
 }
 
 /**
@@ -245,16 +254,15 @@ export function dailyJourneyDto(
   const days = ledger
     .filter((day) => day.completedAt)
     .map((day) => {
-      const units = [...new Set(day.references.flatMap((ref) => ref.unitIds))];
-      const label = unitLabel(kind, units[0]);
+      const label = journeyDayLabel(
+        kind,
+        day.references.flatMap((ref) => ref.unitIds),
+      );
       return {
         id: `${kind}:${day.date}`,
         date: day.date,
         completedAt: day.completedAt!,
-        title:
-          units.length > 1
-            ? `${label.title} 외 ${units.length - 1}개 단원`
-            : label.title,
+        title: label.title,
         subtitle: label.subtitle,
         reviewCount: day.references.reduce(
           (count, ref) => count + ref.problemIds.length,
@@ -278,16 +286,12 @@ export function dailyJourneyDto(
       summary?.currentSectionId ??
       state.course?.plan?.startSectionId ??
       COURSE_SECTIONS[0].id;
-    const firstIndex = COURSE_SECTIONS.findIndex(
-      (section) => section.id === start,
+    // The map board and this board read one section list (D-142, «모든 화면 일치»).
+    upcoming = sectionForecast(
+      start,
+      state.course?.completedSectionIds ?? [],
+      planSlots(days.length),
     );
-    upcoming = COURSE_SECTIONS.slice(Math.max(0, firstIndex))
-      .filter(
-        (section, index) =>
-          index === 0 ||
-          !state.course?.completedSectionIds.includes(section.id),
-      )
-      .map((section) => unitLabel(kind, section.id));
     if (!current) todayAnswered = summary?.todayAnswered ?? 0;
   } else {
     const pending = state.missions.find(
@@ -336,11 +340,17 @@ export function findJourneyDay(
   kind: JourneyKind,
   dayId: string,
 ): StoredJourneyDay | undefined {
-  const award = state.expedition?.awards.find((entry) => entry.day.kind === kind && entry.day.dayId === dayId);
-  if (award) return {
-    date: award.day.date, goal: award.day.reviewCount, answered: award.day.reviewCount,
-    completedAt: award.day.completedAt, references: award.references,
-  };
+  const award = state.expedition?.awards.find(
+    (entry) => entry.day.kind === kind && entry.day.dayId === dayId,
+  );
+  if (award)
+    return {
+      date: award.day.date,
+      goal: award.day.reviewCount,
+      answered: award.day.reviewCount,
+      completedAt: award.day.completedAt,
+      references: award.references,
+    };
   return dailyJourneyLedger(state)[kind].find(
     (day) => `${kind}:${day.date}` === dayId && day.completedAt !== null,
   );

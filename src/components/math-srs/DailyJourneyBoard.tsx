@@ -1,7 +1,15 @@
 "use client";
 
-import { useEffect, useRef, useState, type CSSProperties } from "react";
+import {
+  Fragment,
+  useEffect,
+  useLayoutEffect,
+  useRef,
+  useState,
+  type CSSProperties,
+} from "react";
 import s from "./daily-journey-board.module.css";
+import { titlePieces } from "./journeyTitle";
 
 export interface DailyJourneyDay {
   id: string;
@@ -12,6 +20,18 @@ export interface DailyJourneyDay {
   reviewCount: number;
 }
 
+/** The board centre «나의 진행» (D-142): the n-th unit of the grade (elementary: lesson of the chapter). */
+export interface DailyJourneyPosition {
+  caption: string;
+  ordinal: number;
+  title: string;
+  /** Today's elementary lesson — shown instead of the memory count. */
+  note?: string;
+  collected: number;
+  total: number;
+  due: number;
+}
+
 export interface DailyJourney {
   completedDays: number;
   todayComplete: boolean;
@@ -20,7 +40,13 @@ export interface DailyJourney {
   /** Completed learning days, oldest first. */
   days: ReadonlyArray<DailyJourneyDay>;
   /** Planned stages, starting with the next incomplete learning day. */
-  upcoming: ReadonlyArray<{ title: string; subtitle: string }>;
+  upcoming: ReadonlyArray<{
+    title: string;
+    subtitle: string;
+    /** First tile of a new grade — «중3» · «초5». */
+    gradeStart?: string;
+  }>;
+  position?: DailyJourneyPosition;
 }
 
 export interface DailyJourneyBoardProps {
@@ -56,6 +82,102 @@ function position(step: number): CSSProperties {
     left: `${(column - 0.22) * 25}%`,
     top: `${(row - 0.89) * 25}%`,
   };
+}
+
+/**
+ * Unit names break only where their meaning allows (D-142): a word never breaks inside
+ * (`nowrap` — WebKit otherwise split «(소수)÷» at the bracket), lines break at spaces and at
+ * the `<wbr>` of `titlePieces` («연립|일차방정식»).
+ */
+function Title({ text }: { text: string }) {
+  return titlePieces(text).map((piece, index) => (
+    <Fragment key={index}>
+      {index ? <wbr /> : null}
+      {piece.split(" ").map((word, at) => (
+        <Fragment key={at}>
+          {at ? " " : null}
+          {word ? <span className={s.word}>{word}</span> : null}
+        </Fragment>
+      ))}
+    </Fragment>
+  ));
+}
+
+/**
+ * 줄여 보는 차례 — 들어가면 그대로, 안 들어갈 때만 한 단계씩(보기 단추 `ExplorerChoiceText` 와 같은 방식 · 같은 바닥 0.7배).
+ * 실측(이름 360개 · Chromium · WebKit 같음): 폰 390 은 9개가 줄고 가장 작게 8px, 320 은 31개 · 가장 긴 초3 소단원 7개가 7px,
+ * PC 는 27개가 12.8~14.4px. 0.7배 밑은 한 번도 쓰이지 않았다.
+ */
+const FIT_STEPS = [1, 0.9, 0.8, 0.7] as const;
+
+/**
+ * 칸 이름 — 초등 소단원은 35자까지 있어(«받아올림이 두 번, 세 번 있는 (세 자리 수)+(세 자리 수)») 칸 줄 수를 넘는다.
+ * 칸 안에 다 들어갈 때까지 글자를 한 단계씩 줄인다. 그린 뒤 재고, 폭이 바뀌거나 글꼴이 늦게 오면 다시 잰다.
+ */
+function TileTitle({ text }: { text: string }) {
+  const box = useRef<HTMLSpanElement>(null);
+  const [fit, setFit] = useState<{ scale: number; size: number } | null>(null);
+  useLayoutEffect(() => {
+    const label = box.current;
+    if (!label) return;
+    let frame = 0;
+    let live = true;
+    const fits = () =>
+      label.scrollHeight <= label.clientHeight + 1 &&
+      label.scrollWidth <= label.clientWidth + 1;
+    const run = () => {
+      if (!live || !label.isConnected) return;
+      const drawn = label.style.fontSize;
+      // 줄이는 기준은 이 폭에서 CSS 가 정한 크기(폰 10px · PC 16px) — 부모 글자 크기가 아니다.
+      label.style.fontSize = "";
+      const base = parseFloat(getComputedStyle(label).fontSize) || 10;
+      let next: number = FIT_STEPS[FIT_STEPS.length - 1];
+      for (const step of FIT_STEPS) {
+        label.style.fontSize = step === 1 ? "" : `${base * step}px`;
+        if (fits()) {
+          next = step;
+          break;
+        }
+      }
+      label.style.fontSize = drawn;
+      setFit((current) =>
+        next === 1
+          ? null
+          : current?.scale === next && current.size === base * next
+            ? current
+            : { scale: next, size: base * next },
+      );
+    };
+    const later = () => {
+      cancelAnimationFrame(frame);
+      frame = requestAnimationFrame(run);
+    };
+    run();
+    const observer =
+      typeof ResizeObserver === "undefined"
+        ? undefined
+        : new ResizeObserver(later);
+    observer?.observe(label.parentElement ?? label);
+    const fonts = typeof document === "undefined" ? undefined : document.fonts;
+    fonts?.addEventListener?.("loadingdone", later);
+    return () => {
+      live = false;
+      cancelAnimationFrame(frame);
+      observer?.disconnect();
+      fonts?.removeEventListener?.("loadingdone", later);
+    };
+  }, [text]);
+  return (
+    <span
+      ref={box}
+      className={s.tileTitle}
+      style={fit ? { fontSize: `${fit.size}px` } : undefined}
+      data-tile-title
+      data-fit={fit ? String(fit.scale) : undefined}
+    >
+      <Title text={text} />
+    </span>
+  );
 }
 
 const pawn = (
@@ -278,26 +400,28 @@ export default function DailyJourneyBoard({
             const done = ordinal <= completed;
             const next = ordinal === completed + 1 && !journey.todayComplete;
             const planned = journey.upcoming[ordinal - completed - 1];
-            const topic = done
-              ? day
-              : variant === "map" && !next
-                ? undefined
-                : planned;
+            // D-142: every planned tile names its unit; «다음 여정» only beyond the plan.
+            const topic = done ? day : planned;
+            const gradeStart = !done ? planned?.gradeStart : undefined;
             const reviewable = done && !!day && day.reviewCount > 0;
             const clickable = reviewable || (next && canContinue);
             const title =
-              variant === "map" && !done && !next
-                ? "다음 여정"
-                : (topic?.title ?? (done ? "완료한 학습" : "다음 학습"));
+              topic?.title ??
+              (done ? "완료한 학습" : next ? "다음 학습" : "다음 여정");
             const state = done ? "complete" : next ? "current" : "upcoming";
-            const label = `${ordinal}일차, ${title}, ${done ? "학습 완료" : next ? "오늘의 학습" : "예정"}${reviewable ? ", 다시 풀기" : ""}`;
+            const label = `${ordinal}일차, ${title}${gradeStart ? `, ${gradeStart}` : ""}, ${done ? "학습 완료" : next ? "오늘의 학습" : "예정"}${reviewable ? ", 다시 풀기" : ""}`;
             const content = (
               <>
                 <span className={s.dayNumber}>
                   {ordinal}
                   <small>일차</small>
+                  {gradeStart ? (
+                    <em className={s.gradeTag} data-grade-start>
+                      {gradeStart}
+                    </em>
+                  ) : null}
                 </span>
-                <span className={s.tileTitle}>{title}</span>
+                <TileTitle text={title} />
                 <span className={s.tileStatus}>
                   {done ? "✓ 완료" : next ? "오늘" : "예정"}
                 </span>
@@ -346,7 +470,37 @@ export default function DailyJourneyBoard({
           })}
         </ol>
 
-        {variant === "map" ? (
+        {variant === "map" && journey.position ? (
+          // D-142 «나의 진행» — plain text, never a control (D-30).
+          <div className={s.progressCentre} data-journey-progress>
+            <p className={s.progressCaption}>{journey.position.caption}</p>
+            <p className={s.progressOrdinal}>
+              {journey.position.ordinal}
+              <small>번째</small>
+            </p>
+            <p className={s.progressUnit}>
+              <Title text={journey.position.title} />
+            </p>
+            <p className={s.progressNote}>
+              {journey.position.note ? (
+                <>
+                  {journey.position.note} · 모은 개념{" "}
+                  <b>
+                    {journey.position.collected} / {journey.position.total}
+                  </b>
+                </>
+              ) : (
+                <>
+                  모은 개념{" "}
+                  <b>
+                    {journey.position.collected} / {journey.position.total}
+                  </b>{" "}
+                  · 기억 복습 <b>{journey.position.due}</b>
+                </>
+              )}
+            </p>
+          </div>
+        ) : variant === "map" ? (
           <div className={s.mapCenter}>
             <span aria-hidden="true">✦</span>
             <strong>하루 한 칸</strong>

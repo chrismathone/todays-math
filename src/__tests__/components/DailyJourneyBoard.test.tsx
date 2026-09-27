@@ -26,7 +26,7 @@ function journey(completedDays = 0): DailyJourney {
 }
 
 describe("DailyJourneyBoard", () => {
-  it("uses a compact perimeter without a duplicate start and conceals unplanned future units", () => {
+  it("uses a compact perimeter without a duplicate start and writes a planned unit in every future tile (D-142)", () => {
     const value = journey(2);
     const { container } = render(
       <DailyJourneyBoard journey={value} variant="map" onReviewDay={vi.fn()} />,
@@ -43,16 +43,113 @@ describe("DailyJourneyBoard", () => {
     expect(
       screen.getByLabelText("3일차, 약수와 배수, 오늘의 학습"),
     ).toBeVisible();
-    for (const tile of container.querySelectorAll('[data-state="upcoming"]')) {
-      expect(tile).toHaveTextContent("다음 여정");
-      expect(tile).not.toHaveTextContent("분수의 덧셈과 뺄셈");
+    const upcoming = [...container.querySelectorAll('[data-state="upcoming"]')];
+    expect(upcoming).toHaveLength(9);
+    upcoming.forEach((tile, index) => {
+      const planned = value.upcoming[index + 1].title;
+      expect(tile).toHaveTextContent(planned);
+      expect(tile).not.toHaveTextContent("다음 여정");
       expect(tile.querySelector("[title]")).toHaveAttribute(
         "title",
-        "다음 여정",
+        `초5 · 1학기 · ${planned}`,
+      );
+      expect(tile.querySelector("[aria-label]")).toHaveAttribute(
+        "aria-label",
+        `${index + 4}일차, ${planned}, 예정`,
       );
       expect(tile.querySelector("button")).toBeNull();
-    }
+    });
     expect(container.querySelector("[data-journey-continue]")).toBeNull();
+  });
+
+  it("keeps «다음 여정» only beyond the planned horizon and marks the first tile of a new grade", () => {
+    const value: DailyJourney = {
+      ...journey(0),
+      upcoming: [
+        { title: "경우의 수와 확률", subtitle: "중학교 2학년" },
+        { title: "제곱근과 실수", subtitle: "중학교 3학년", gradeStart: "중3" },
+      ],
+    };
+    const { container } = render(
+      <DailyJourneyBoard journey={value} variant="map" onReviewDay={vi.fn()} />,
+    );
+    const second = container.querySelector('[data-day-step="2"]')!;
+    expect(second).toHaveTextContent("제곱근과 실수");
+    expect(second.querySelector("[data-grade-start]")).toHaveTextContent("중3");
+    expect(
+      container.querySelector('[data-day-step="1"] [data-grade-start]'),
+    ).toBeNull();
+    for (const step of [3, 12])
+      expect(
+        container.querySelector(`[data-day-step="${step}"]`),
+      ).toHaveTextContent("다음 여정");
+  });
+
+  it("offers line breaks inside long unit names without changing their letters", () => {
+    const value: DailyJourney = {
+      ...journey(0),
+      upcoming: [{ title: "연립일차방정식", subtitle: "중학교 2학년" }],
+    };
+    const { container } = render(
+      <DailyJourneyBoard journey={value} variant="map" onReviewDay={vi.fn()} />,
+    );
+    const title = container.querySelector(
+      '[data-day-step="1"] [data-tile-title]',
+    )!;
+    expect(title.querySelectorAll("wbr")).toHaveLength(1);
+    expect(title.textContent).toBe("연립일차방정식");
+  });
+
+  it("shows my current progress in the map centre as plain text, never as a control (D-30)", () => {
+    const value: DailyJourney = {
+      ...journey(2),
+      position: {
+        caption: "중2 · 7단원 중",
+        ordinal: 3,
+        title: "연립일차방정식",
+        collected: 5,
+        total: 35,
+        due: 0,
+      },
+    };
+    const { container } = render(
+      <DailyJourneyBoard journey={value} variant="map" onReviewDay={vi.fn()} />,
+    );
+    const centre = container.querySelector("[data-journey-progress]")!;
+    expect(centre).toHaveTextContent("중2 · 7단원 중");
+    expect(centre).toHaveTextContent("3번째");
+    expect(centre).toHaveTextContent("연립일차방정식");
+    expect(centre).toHaveTextContent("모은 개념 5 / 35 · 기억 복습 0");
+    expect(centre).not.toHaveTextContent("하루 한 칸");
+    expect(
+      centre.querySelector("button, a, [tabindex], [role=button]"),
+    ).toBeNull();
+    expect(centre).not.toHaveAttribute("tabindex");
+  });
+
+  it("names today's elementary lesson in the centre instead of the memory count", () => {
+    const value: DailyJourney = {
+      ...journey(0),
+      position: {
+        caption: "소단원 3개 중",
+        ordinal: 1,
+        title: "꺾은선그래프",
+        note: "꺾은선그래프 알아보기",
+        collected: 5,
+        total: 30,
+        due: 2,
+      },
+    };
+    const { container } = render(
+      <DailyJourneyBoard journey={value} variant="map" onReviewDay={vi.fn()} />,
+    );
+    const centre = container.querySelector("[data-journey-progress]")!;
+    expect(centre).toHaveTextContent("소단원 3개 중");
+    expect(centre).toHaveTextContent("1번째");
+    expect(centre).toHaveTextContent(
+      "꺾은선그래프 알아보기 · 모은 개념 5 / 30",
+    );
+    expect(centre).not.toHaveTextContent("기억 복습");
   });
 
   it("keeps the pawn in place while individual problems and retries are answered", () => {
