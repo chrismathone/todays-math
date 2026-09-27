@@ -1172,8 +1172,10 @@ const katexFitted = [];
 //     ⚠️ 상자로 재지 않는다 — KaTeX 는 글자 없는 받침 상자(`.strut`)로 줄 높이를 잡고, 글자 줄 상자(em)도 실제
 //     잉크보다 위아래로 약 0.2em 크다. 그래서 분수 하나(«3/4»)도 «세로 4px 잘림»으로 잡혔는데 화면은 멀쩡했다(거짓 경보).
 //  ② 요소 상자가 가장 가까운 «잘리는 조상»(overflow ≠ visible)의 가로 범위 밖으로 나가면 안 된다.
-//     ⚠️ 조상의 `scrollWidth` 로 재지 않는다 — 책장 넘김 빛 띠(`::after`, 투명·`translateX(35%)`)가
-//     문제 칸의 scrollWidth 를 104px 늘려, 한글만 있는 활동에서도 늘 «넘침»이 났다(거짓 경보).
+//     조상의 `scrollWidth` 로 재지 않은 까닭 — 책장 넘김 빛 띠(`::after`, 투명·`translateX(35%)`)가 문제 칸의
+//     scrollWidth 를 104px 늘려, 한글만 있는 활동에서도 늘 «넘침»이 났다. 🔴 그것을 «거짓 경보»로 걷어냈는데 **진짜 결함**
+//     이었다 — 폰은 막대가 겹쳐 떠서 안 보였을 뿐, PC 에서는 칸 아래 가로 막대였다(원장님 제보 2026-09-27). 빛 띠는 고쳤고
+//     (`question-page-turn.module.css`), 칸 넘침은 이제 `settled()` 의 `paneOverflow` 가 활동마다 잰다.
 //     KaTeX 내부(`.katex` 안)와 화면 읽기용 1px 글은 뺀다.
 //  ③ 수식(`.katex`)은 가장 가까운 잘리는 조상의 가로 범위와 화면 폭 안에 있어야 한다.
 //  ④ 단추(보기·빈칸) 안 글 상자가 단추 밖으로 나가면 안 된다.
@@ -1708,8 +1710,7 @@ for (const unitId of KATEX_UNITS) {
 //    자리·같은 크기인지 견주는 자료(보고서). 분수 칸은 읽기용 이름표 «d분의 n» 으로 찾는다(두 판 공통).
 const labGeometry = [];
 const rounded = (box) => Object.fromEntries(Object.entries(box).map(([key, value]) => [key, Math.round(value * 100) / 100]));
-// 상자 안 그림에서 잉크 범위를 읽는다. 가로선은 «가장 길게 이어진 잉크 줄»과 그 위아래로 붙은 같은 길이의 줄이다
-// (숫자 «4» 의 가로획이 가로선만큼 길어도, 빈 줄로 떨어져 있어 가로선 묶음에 안 든다).
+// 상자 안 그림에서 잉크 범위를 읽는다. 가로선은 «가장 길게 이어진 잉크 줄»과 그 위아래로 붙은 같은 길이의 줄이다.
 async function fractionInk(page, locator) {
   const box = await locator.boundingBox();
   if (!box) return null;
@@ -1751,7 +1752,12 @@ async function fractionInk(page, locator) {
     const inked = rows.flatMap((row, y) => (row.left >= 0 ? [y] : []));
     if (!inked.length) return null;
     const longest = Math.max(...rows.map((row) => row.longest));
-    const peak = rows.findIndex((row) => row.longest === longest);
+    // KaTeX 가로선은 숫자 폭만큼이라 «4» 의 가로획과 길이가 같을 수 있다 — 같은 길이면 잉크 가운데에 가장 가까운 줄.
+    const middle = (inked[0] + inked[inked.length - 1]) / 2;
+    const peak = rows
+      .map((row, y) => (row.longest >= longest - 1 ? y : -1))
+      .filter((y) => y >= 0)
+      .sort((a, b) => Math.abs(a - middle) - Math.abs(b - middle))[0];
     let barTop = peak;
     let barBottom = peak;
     while (barTop > 0 && rows[barTop - 1].longest >= longest - 1) barTop--;
