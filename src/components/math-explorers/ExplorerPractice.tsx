@@ -10,12 +10,19 @@ import AnswerFeedbackEffect from "@/components/math-srs/AnswerFeedbackEffect";
 import { EnterKey, NumberKey } from "@/components/math-srs/AnswerKeyCaps";
 import pageTurn from "@/components/math-srs/question-page-turn.module.css";
 import { answerKey, useAnswerKeys } from "@/components/math-srs/useAnswerKeys";
+import {
+  ConceptKindTag,
+  ConceptNameRow,
+  conceptHead as c,
+  conceptHeadingLabel,
+} from "./ExplorerConceptHead";
 import { ExplorerChoiceText, ExplorerMath } from "./ExplorerMath";
 import s from "./math-explorers.module.css";
 
 const activityNames = {
   read: "뜻 만나기",
-  assemble: "정의 조립",
+  // 갈래(정의 · 성질 · 공식 · 방법 …)와 상관없이 하나로(원장님 2026-09-28, D-143 ②) — 갈래는 이름 옆 딱지가 말한다.
+  assemble: "문장 조립",
   examples: "예 모으기",
   truth: "경계 살피기",
 };
@@ -23,6 +30,7 @@ const activityNames = {
 export default function ExplorerPractice({
   activity,
   session,
+  units,
   busy,
   correct,
   eventKey,
@@ -31,12 +39,15 @@ export default function ExplorerPractice({
 }: {
   activity: ExplorerActivity;
   session: NonNullable<ExplorerState["session"]>;
+  /** 뜻 만나기 머리의 «중2 · 단원» — 학년은 단원 목록에서 찾는다. */
+  units?: ExplorerState["units"];
   busy: boolean;
   correct: boolean | null;
   eventKey: string;
   onAction: (action: ExplorerAction) => void;
   onHome: () => void;
 }) {
+  const grade = units?.find((unit) => unit.id === activity.unitId)?.grade;
   return (
     <ExplorerPracticeFrame
       session={session}
@@ -48,6 +59,13 @@ export default function ExplorerPractice({
       <Activity
         key={`${activity.questionId}:${activity.kind}`}
         activity={activity}
+        gradeLabel={
+          grade === undefined
+            ? null
+            : grade < 7
+              ? `초${grade}`
+              : `중${grade - 6}`
+        }
         busy={busy}
         correct={correct}
         onAction={onAction}
@@ -125,11 +143,13 @@ export function ExplorerPracticeFrame({
 
 function Activity({
   activity,
+  gradeLabel,
   busy,
   correct,
   onAction,
 }: {
   activity: ExplorerActivity;
+  gradeLabel: string | null;
   busy: boolean;
   correct: boolean | null;
   onAction: (action: ExplorerAction) => void;
@@ -177,18 +197,53 @@ function Activity({
         tabIndex={0}
         aria-label="문제 내용"
       >
-        <div className={s.activityMeta}>
-          <span>
-            <ExplorerMath text={activity.cardName} />
-          </span>
-          <span>{activityNames[activity.kind]}</span>
-        </div>
-        <h2 className={s.questionTitle}>
-          <ExplorerMath text={activity.prompt} />
-        </h2>
+        {/* 머리 — 무엇의 문장인가(원장님 2026-09-28 Hi-fi 4안, 05 §8.19 · D-143): 이름 + 갈래 딱지.
+            정의 조립은 조작 안내 제목 · 겹친 안내 줄을 빼 이름(제목 크기) 바로 아래 문장이 온다 — 안내는 아래 칸 한 줄.
+            뜻 만나기는 «개념 카드»(학년 · 단원 / 이름 + 딱지 / 뜻). 예 모으기 · 경계 살피기는 이름 줄 + 카드 문장 제목. */}
+        {activity.kind === "assemble" ? (
+          <ConceptNameRow
+            cardId={activity.cardId}
+            name={activity.cardName}
+            side={activityNames.assemble}
+            title
+          />
+        ) : isReading ? (
+          <>
+            <div className={s.activityMeta}>
+              <span className={c.metaMuted}>
+                {gradeLabel ? `${gradeLabel} · ` : null}
+                <ExplorerMath text={activity.unitTitle} />
+              </span>
+              <span>{activityNames.read}</span>
+            </div>
+            <h2
+              className={s.questionTitle}
+              aria-label={conceptHeadingLabel(
+                activity.cardId,
+                activity.cardName,
+              )}
+            >
+              <span data-concept-name="">
+                <ExplorerMath text={activity.cardName} />
+              </span>
+              <ConceptKindTag cardId={activity.cardId} large />
+            </h2>
+          </>
+        ) : (
+          <>
+            <ConceptNameRow
+              cardId={activity.cardId}
+              name={activity.cardName}
+              side={activityNames[activity.kind]}
+            />
+            <h2 className={s.questionTitle}>
+              <ExplorerMath text={activity.prompt} />
+            </h2>
+          </>
+        )}
         {isReading && activity.reading ? (
           <>
-            <div className={s.readingDefinition}>
+            <div className={s.readingDefinition} data-reading-definition="">
               <ExplorerMath text={activity.reading.definition} />
             </div>
             {/* `MathText` 는 div 를 내므로 p 가 아니라 div 에 담는다(모양은 클래스가 정한다). */}
@@ -201,10 +256,7 @@ function Activity({
           </>
         ) : activity.kind === "assemble" && activity.pieces ? (
           <>
-            <p className={s.instruction}>
-              말 조각 두 개를 순서대로 골라 주세요.
-            </p>
-            <div className={s.assemblySentence}>
+            <div className={s.assemblySentence} data-assembly-sentence="">
               {activity.pieces.map((piece, index) => (
                 <span key={index}>
                   <ExplorerMath text={piece} />
@@ -250,7 +302,12 @@ function Activity({
           </p>
         )}
       </div>
-      <div className={s.answerDock} data-explorer-dock="true">
+      {/* 뜻 만나기는 단추 하나뿐이라 답 칸 높이를 비운다(4안) — 좁은 폰에서도 뜻 상자가 보이게. */}
+      <div
+        className={isReading ? `${s.answerDock} ${c.dockSlim}` : s.answerDock}
+        data-explorer-dock="true"
+        data-dock-size={isReading ? "slim" : undefined}
+      >
         {isReading ? (
           <button
             type="button"
@@ -260,14 +317,14 @@ function Activity({
               onAction({ type: "read", questionId: activity.questionId })
             }
           >
-            정의를 가리고 도전하기 <span aria-hidden="true">→</span>
+            뜻을 가리고 도전하기 <span aria-hidden="true">→</span>
           </button>
         ) : (
           <>
             <div className={s.answerInstruction}>
               <span>
                 {activity.kind === "assemble"
-                  ? `${Math.min(selected.length, 2)} / 2 조각 선택`
+                  ? `말 조각 두 개를 순서대로 · ${Math.min(selected.length, 2)} / 2`
                   : activity.kind === "examples"
                     ? "해당하는 예 모두 선택"
                     : "답을 하나 골라 주세요"}
@@ -332,7 +389,7 @@ function Activity({
                   onClick={() => submit(selected)}
                 >
                   {activity.kind === "assemble"
-                    ? "완성한 정의 확인하기"
+                    ? "완성한 문장 확인하기"
                     : "선택한 예 확인하기"}
                   <EnterKey />
                 </button>

@@ -6,6 +6,7 @@ import type {
   ExplorerState,
   WorkshopView,
 } from "@/contracts/mathExplorers.contract";
+import { ConceptNameRow } from "./ExplorerConceptHead";
 import { ExplorerPracticeFrame } from "./ExplorerPractice";
 import { EnterKey, NumberKey } from "@/components/math-srs/AnswerKeyCaps";
 import pageTurn from "@/components/math-srs/question-page-turn.module.css";
@@ -167,10 +168,12 @@ function WorkshopActivity({
         tabIndex={0}
         aria-label="분수 조작 활동"
       >
-        <div className={s.activityMeta}>
-          <span>통분 · 조각으로 이해하기</span>
-          <span>{stageNames[stage]}</span>
-        </div>
+        {/* 풀이 화면과 같은 이름 줄(05 §8.19 · D-143) — 붙은 개념 이름 + 갈래 딱지 · «조각 활동 · 단계» */}
+        <ConceptNameRow
+          cardId={workshop.attachedTo.cardId}
+          name="통분"
+          side={`조각 활동 · ${stageNames[stage]}`}
+        />
         <h2 className={s.questionTitle}>
           <ExplorerMath text={workshop.prompt} />
         </h2>

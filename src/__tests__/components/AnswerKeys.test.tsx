@@ -240,7 +240,7 @@ describe("통합 탐험 — 보기 번호 키 · 엔터", () => {
     const slot = screen.getByRole("button", { name: "빈칸 1, 자연수" });
     expect(slot).toHaveFocus();
     expect(
-      screen.getByRole("button", { name: "완성한 정의 확인하기" }),
+      screen.getByRole("button", { name: "완성한 문장 확인하기" }),
     ).toBeDisabled();
     await user.keyboard("{Enter}");
     expect(
@@ -626,7 +626,7 @@ describe("작업실 — 예상 · 규칙 보기는 숫자키, 확인 단추는 �
       "3 소수",
       "4 남김없이",
     ]);
-    for (const name of ["완성한 정의 확인하기", "아직 모르겠어요"])
+    for (const name of ["완성한 문장 확인하기", "아직 모르겠어요"])
       expect(screen.getByRole("button", { name })).not.toHaveAttribute(
         "data-answer-control",
       );
@@ -1099,7 +1099,7 @@ describe("키 모양 — 번호 키 · ⏎ 키는 그 단추의 실제 키 (05 �
     first.unmount();
     explorer(assemble);
     expect(expectKeyCaps()).toEqual(["1", "2", "3", "4", "Enter"]);
-    expect(hasEnterKey("완성한 정의 확인하기")).toBe(true);
+    expect(hasEnterKey("완성한 문장 확인하기")).toBe(true);
   });
 
   it("탐험 경계 살피기 — 번호 키만(확인 단추가 없어 ⏎ 도 없다) · 뜻 만나기의 넘김 단추에는 ⏎ 가 없다", () => {
@@ -1108,7 +1108,7 @@ describe("키 모양 — 번호 키 · ⏎ 키는 그 단추의 실제 키 (05 �
     first.unmount();
     explorer({ ...activity, kind: "read" });
     expectKeyCaps();
-    expect(hasEnterKey(/정의를 가리고 도전하기/)).toBe(false);
+    expect(hasEnterKey(/뜻을 가리고 도전하기/)).toBe(false);
   });
 
   it("작업실 — 예상 보기의 번호 키 · 조각 확인 단추의 ⏎", () => {
