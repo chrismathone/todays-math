@@ -30,7 +30,7 @@ import { intBetween, pick } from "../elementary/rng";
 import { drawScale } from "../figure/drawScale";
 import type { Rng } from "../elementary/types";
 
-import { piTerm } from "./m1Shared";
+import { piTerm, poly } from "./m1Shared";
 import { attempt as attemptStat, def as defStat, obj } from "./m1Stat";
 import type { Body as StatBody } from "./m1Stat";
 import type { MidProblem, TypeEntry } from "./types";
@@ -678,8 +678,8 @@ const SECTOR_TYPES: TypeEntry[] = [
       const off1 = V - c1 * x;
       const off2 = V - c2 * x;
       if (Math.abs(off1) > 60 || Math.abs(off2) > 60) return null;
-      const expr = (c: number, off: number) =>
-        `${c}x${off === 0 ? "" : off > 0 ? `+${off}` : `${off}`}`;
+      // 계수 $1$ 은 안 적는다(「$1x+47$」이 아니라 「$x+47$」) — `poly` 가 한 곳에서 정한다.
+      const expr = (c: number, off: number) => poly(0, c, off);
       const alpha = intBetween(rng, 35, 60);
       const beta = intBetween(rng, 20, 55);
       return {
@@ -734,8 +734,8 @@ const SECTOR_TYPES: TypeEntry[] = [
         const off2 = V - c2 * x;
         if (Math.abs(off1) > 40 || Math.abs(off2) > 40) return null;
         const theta = intBetween(rng, 50, 110);
-        const expr = (c: number, off: number) =>
-          `${c}x${off === 0 ? "" : off > 0 ? `+${off}` : `${off}`}`;
+        // 계수 $1$ 은 안 적는다 — 04 와 같다.
+        const expr = (c: number, off: number) => poly(0, c, off);
         return {
           content: `그림과 같이 원 O에서 $\\angle AOB=\\angle COD$이고 $\\overline{AB}=(${expr(c1, off1)})\\,\\mathrm{cm}$, $\\overline{CD}=(${expr(c2, off2)})\\,\\mathrm{cm}$일 때, $x$의 값을 구하시오.`,
           answer: `$${x}$`,
