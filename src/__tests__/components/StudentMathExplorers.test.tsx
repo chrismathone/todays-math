@@ -602,7 +602,7 @@ describe("ExplorerHome mission and sheets", () => {
     expect(screen.getByRole("dialog", { name: "학습 설정" })).toBeVisible();
     expect(screen.getByRole("button", { name: "초4" })).toBeEnabled();
     fireEvent.click(screen.getByRole("button", { name: "학습 설정 닫기" }));
-    fireEvent.click(screen.getByRole("button", { name: "우리 기지" }));
+    fireEvent.click(screen.getByRole("button", { name: /^우리 기지/ }));
     expect(screen.getByRole("dialog", { name: "우리 기지" })).toBeVisible();
   });
 

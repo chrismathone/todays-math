@@ -30,6 +30,7 @@ import {
   explorerUnitForSection,
 } from "./curriculumBridge";
 import { createExplorerState } from "./engine";
+import { tileStarBonus } from "./starEconomy";
 import { legacyExpeditionJourney } from "./expeditionJourney";
 import {
   BANK_REVIEW,
@@ -404,9 +405,13 @@ export function expeditionDto(
   now: Date,
 ): MathExpedition {
   const ledger = initialExpedition(state, now);
-  const complete = completionDates(ledger).includes(kstDateOf(now));
+  const today = kstDateOf(now);
+  const complete = completionDates(ledger).includes(today);
   const mission = ledger.mission;
   const canStart = !!open(state) || !!unfinished(state, now) || !complete;
+  const todayStars = ledger.awards.find(
+    (award) => award.day.date === today,
+  )?.stars;
   return {
     mission: mission
       ? (({
@@ -420,6 +425,7 @@ export function expeditionDto(
       canStart && !open(state) ? planExpedition(state, studentId, now) : null,
     completedToday: complete,
     canStart,
+    ...(todayStars ? { todayStars } : {}),
   };
 }
 
@@ -508,6 +514,9 @@ export function bindExpedition(
       source.explorers!.profile.definitions!.session!.reviewOnly
     ),
     references: ids.map((sourceId) => reference(source, plan.kind, sourceId)),
+    ...(plan.kind === "explorers"
+      ? { startStars: source.explorers!.profile.definitions!.session!.stars }
+      : {}),
   };
   return {
     ...source,
@@ -733,6 +742,32 @@ export function updateExpedition(
       subtitle: mission.subtitle,
       reviewCount: mission.goal,
     };
+    // D-144 한 칸 보장 — 이 미션이 이미 준 카드 레벨 별(개념 세션, 은행은 0)이 3보다 적으면 3까지 채운다.
+    // 칸과 같은 쓰기에서 한 번만: 칸은 한국 날짜당 하나 · 재풀이는 awardEligible 이 아니다.
+    // 탐험 기록은 시작(`startExpedition`)이 늘 만든다 — 없으면 줄 곳이 없어 0 으로 남긴다.
+    // 개념 미션이 묶인 뒤에 모은 카드만(`startStars` — 옛 화면에서 끝낸 세션을 이어받은 경우).
+    const cards =
+      mission.kind === "explorers"
+        ? Math.max(
+            0,
+            (next.explorers?.profile.definitions?.session?.stars ?? 0) -
+              (mission.startStars ?? 0),
+          )
+        : 0;
+    const explorers = next.explorers;
+    const bonus = explorers ? tileStarBonus(cards) : 0;
+    if (explorers && bonus)
+      next = {
+        ...next,
+        explorers: {
+          ...explorers,
+          profile: {
+            ...explorers.profile,
+            stars: explorers.profile.stars + bonus,
+            earned: explorers.profile.earned + bonus,
+          },
+        },
+      };
     ledger.awards = [
       ...ledger.awards,
       {
@@ -745,6 +780,7 @@ export function updateExpedition(
           completedAt: now.toISOString(),
           reviews: [review],
         },
+        stars: { cards, bonus },
       },
     ];
   }

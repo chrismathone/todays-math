@@ -65,6 +65,7 @@ const courseContract = src("contracts/mathSrsCourse.contract.ts");
 const srsContract = src("contracts/mathSrs.contract.ts");
 const replayContract = src("contracts/mathSrsReplay.contract.ts");
 const { kstDateOf } = src("lib/kstDate.ts");
+const { tileTitle } = src("lib/math-srs/elementary/sectionShortTitles.ts");
 
 const base = process.env.BASE ?? "http://localhost:3000";
 const output = resolve(process.env.QA_OUTPUT ?? ".qa-artifacts/mobile-explorers");
@@ -701,7 +702,8 @@ async function futureTiles(page, sim) {
   );
   for (const tile of tiles) {
     const planned = journey.upcoming[tile.step - journey.completedDays - 1];
-    const expected = (planned?.title ?? "다음 여정").replace(/\s+/g, "");
+    // 칸은 줄임말(D-142 ⑺ `tileTitle`)을 그린다 — 기대값도 같은 함수로
+    const expected = tileTitle(planned?.title ?? "다음 여정").replace(/\s+/g, "");
     assert.ok(tile.text.includes(expected), `${tile.step}일차 칸 «${tile.text}» ≠ 예정 «${expected}»`);
   }
   const centre = await visibleText(page.locator("[data-journey-progress]"));
@@ -973,13 +975,23 @@ const scenarios = {
       }
       await homeReady(page);
       await expect(page.locator("[data-expedition-mission=true]")).toContainText("오늘의 한 칸 완료");
-      await expect(page.locator("[data-expedition-mission=true]")).toContainText("한 칸 전진했어요. 다음 탐험은 내일 열려요.");
+      // D-144: 완료 줄 = «한 칸 전진했어요.» + 금색 알약(그 칸이 준 별, 화면 읽기는 «별 N개») + 섞일 때만 내역 줄 + «다음 탐험은 내일 열려요.»
+      const tile = sim.state.expedition.awards.at(-1).stars;
+      assert.ok(tile, "칸 기록에 별(D-144)이 없다");
+      const doneLine = page.locator("[data-expedition-mission=true]").getByText(/한 칸 전진했어요/);
+      await expect(doneLine).toContainText(`✦+${tile.cards + tile.bonus}`);
+      await expect(doneLine).toContainText(`별 ${tile.cards + tile.bonus}개`);
+      await expect(doneLine).toContainText("다음 탐험은 내일 열려요.");
+      if (tile.cards && tile.bonus) await expect(doneLine).toContainText(`카드 ${tile.cards} · 한 칸 보장 ${tile.bonus}`);
+      else await expect(doneLine).not.toContainText("한 칸 보장");
+      // 칸 효과는 한 번 떴다 사라진다(pointer-events 없음) — 찍기 전에 걷히게 기다린다
+      await page.getByText("오늘의 한 칸", { exact: true }).waitFor({ state: "detached", timeout: 5000 });
       assert.equal(await page.locator("[data-expedition-start]").count(), 0, "완료 뒤에도 시작 버튼");
       await expect(page.locator("[data-pawn-day]")).toHaveAttribute("data-pawn-day", "1", { timeout: 5000 });
       assert.equal(sim.state.expedition.awards.length, 1);
       await expect(page.locator('[data-day-step="1"]')).toContainText(sim.state.expedition.mission.title);
       await shot("home-complete");
-      return "완료 칸 1 · 말 1";
+      return `완료 칸 1 · 말 1 · 칸 별 카드 ${tile.cards} + 보장 ${tile.bonus}`;
     });
     await step("past.readonly", async () => {
       const earned = explorerSnapshot(sim);
