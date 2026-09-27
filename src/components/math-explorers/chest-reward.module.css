@@ -1,0 +1,14 @@
+/* 상자 보상 저장 실패 한 줄 — 누른 단원 칸 안, 상자 줄 아래 (05 §8.19, 3자 합의 A).
+   값은 연습 화면 경고 칸(.practiceError) 그대로 — 새 색 없음. */
+.notice {
+  margin: 12px 8px 0;
+  padding: 10px 12px;
+  border: 1px solid #e5c38f;
+  border-radius: 12px;
+  background: #fff8eb;
+  color: #9b7439;
+  font-size: 12px;
+  line-height: 1.6;
+  text-align: center;
+  word-break: keep-all;
+}

@@ -14,7 +14,10 @@ import {
   StudentReviewPage,
   StudentReviewStatus,
 } from "@/components/math-srs/StudentReviewHome";
-import ExplorerHome, { type ExplorerCard } from "./ExplorerHome";
+import ExplorerHome, {
+  type ChestNotice,
+  type ExplorerCard,
+} from "./ExplorerHome";
 import { ExplorerSheet } from "./ExplorerHome";
 import type { DailyJourneyDay } from "@/components/math-srs/DailyJourneyBoard";
 import type { MathExpeditionReview } from "@/contracts/mathExpedition.contract";
@@ -30,6 +33,16 @@ const StudentReplayDialog = dynamic(
 );
 const EFFECT_MS = 1200;
 type Failure = { status: number; message: string; request?: ExplorerRequest };
+type ChestClaim = { chestId: string; requestId: string };
+type ClaimOutcome =
+  | { kind: "saved"; data: ExplorerState }
+  | { kind: "failed" }
+  | { kind: "refused"; message: string | null }
+  | { kind: "conflict" }
+  | { kind: "left" };
+// 05 §8.19 — 원장님 위임 3자 합의(Claude · codex · grok, 2026-09-28).
+const CHEST_FAILED = "별을 받지 못했어요. 상자를 다시 눌러 주세요.";
+const CHEST_RELOADED = "다른 화면에서 기록이 바뀌어 최신 기록을 불러왔어요.";
 
 export default function StudentMathExplorers({
   initialView,
@@ -66,6 +79,17 @@ function ExplorerGame({ initialView }: { initialView?: "collection" }) {
   const [workshopSolution, setWorkshopSolution] = useState<
     ExplorerFeedback["workshopSolution"] | null
   >(null);
+  const [claims, setClaims] = useState<string[]>([]);
+  const [chestNotice, setChestNotice] = useState<ChestNotice | null>(null);
+  const claimQueue = useRef<ChestClaim[]>([]);
+  const claimRunning = useRef(false);
+  const claimFlight = useRef<AbortController | null>(null);
+  // An uncertain save is retried with its own request id, so a response lost
+  // after the server saved it returns that receipt instead of a second star.
+  const retryIds = useRef(new Map<string, string>());
+  const chestEffects = useRef(0);
+  /** The last server state: queued chest saves send its revision. */
+  const latest = useRef<ExplorerState | null>(null);
   const inFlight = useRef<AbortController | null>(null);
   const lastRequest = useRef<ExplorerRequest | null>(null);
   const pending = useRef(false);
@@ -77,6 +101,7 @@ function ExplorerGame({ initialView }: { initialView?: "collection" }) {
     return () => {
       alive.current = false;
       inFlight.current?.abort();
+      claimFlight.current?.abort();
       if (timer.current) clearTimeout(timer.current);
     };
   }, []);
@@ -115,6 +140,7 @@ function ExplorerGame({ initialView }: { initialView?: "collection" }) {
           await import("@/contracts/mathExplorers.contract");
         const data = explorerStateSchema.parse(json.data);
         if (!current) return;
+        latest.current = data;
         setState(data);
         setError(null);
         setCorrect(null);
@@ -140,7 +166,7 @@ function ExplorerGame({ initialView }: { initialView?: "collection" }) {
   }, [reload, router]);
 
   async function send(action: ExplorerAction, sameRequest?: ExplorerRequest) {
-    if (!state || pending.current) return;
+    if (!state || pending.current || claimQueue.current.length) return;
     pending.current = true;
     setBusy(true);
     setError(null);
@@ -190,6 +216,7 @@ function ExplorerGame({ initialView }: { initialView?: "collection" }) {
         await import("@/contracts/mathExplorers.contract");
       const data = explorerStateSchema.parse(json.data);
       if (!alive.current) return;
+      latest.current = data;
       lastRequest.current = null;
       if (
         (action.type === "answer" || action.type.startsWith("lab-")) &&
@@ -234,14 +261,6 @@ function ExplorerGame({ initialView }: { initialView?: "collection" }) {
           setSolution(data.feedback.solution);
         if (action.type === "lab-solution" && data.feedback?.workshopSolution)
           setWorkshopSolution(data.feedback.workshopSolution);
-        if (action.type === "chest" && data.feedback?.chestId) {
-          if (timer.current) clearTimeout(timer.current);
-          setEffectKey(input.requestId);
-          setChestStars(data.feedback.stars ?? 1);
-          timer.current = setTimeout(() => {
-            if (alive.current) setChestStars(null);
-          }, EFFECT_MS);
-        }
       }
     } catch {
       if (alive.current)
@@ -259,6 +278,138 @@ function ExplorerGame({ initialView }: { initialView?: "collection" }) {
         pending.current = false;
         if (alive.current) setBusy(false);
       }
+    }
+  }
+
+  // A chest press shows its reward at once (05 §8.19). Presses wait in line and
+  // are saved one after another, so a second chest is never dropped; a failed
+  // save takes that chest's star back and says so under its row.
+  function claimChest(chestId: string) {
+    if (!state || pending.current) return;
+    const chest = state.chests.find((item) => item.id === chestId);
+    if (!chest?.ready || chest.claimed) return;
+    if (claimQueue.current.some((claim) => claim.chestId === chestId)) return;
+    claimQueue.current = [
+      ...claimQueue.current,
+      {
+        chestId,
+        requestId: retryIds.current.get(chestId) ?? crypto.randomUUID(),
+      },
+    ];
+    setClaims(claimQueue.current.map((claim) => claim.chestId));
+    setChestNotice(null);
+    if (timer.current) clearTimeout(timer.current);
+    chestEffects.current += 1;
+    setEffectKey(`chest-${chestEffects.current}`);
+    setChestStars(1);
+    timer.current = setTimeout(() => {
+      if (alive.current) setChestStars(null);
+    }, EFFECT_MS);
+    void saveClaims();
+  }
+
+  async function saveClaims() {
+    if (claimRunning.current) return;
+    claimRunning.current = true;
+    try {
+      while (claimQueue.current.length && alive.current) {
+        const claim = claimQueue.current[0]!;
+        const outcome = await saveClaim(claim);
+        if (!alive.current) return;
+        claimQueue.current = claimQueue.current.slice(1);
+        if (outcome.kind === "left") claimQueue.current = [];
+        if (outcome.kind === "saved") {
+          retryIds.current.delete(claim.chestId);
+          latest.current = outcome.data;
+          setState(outcome.data);
+        } else if (outcome.kind !== "left") {
+          if (timer.current) clearTimeout(timer.current);
+          setChestStars(null);
+          if (outcome.kind === "failed")
+            retryIds.current.set(claim.chestId, claim.requestId);
+          const reloaded =
+            outcome.kind === "failed" ? false : await reloadQuietly();
+          if (!alive.current) return;
+          setChestNotice({
+            chestId: claim.chestId,
+            tone: outcome.kind === "conflict" && reloaded ? "status" : "alert",
+            text:
+              outcome.kind === "refused" && outcome.message
+                ? outcome.message
+                : outcome.kind === "conflict" && reloaded
+                  ? CHEST_RELOADED
+                  : CHEST_FAILED,
+          });
+        }
+        setClaims(claimQueue.current.map((item) => item.chestId));
+      }
+    } finally {
+      claimRunning.current = false;
+    }
+  }
+
+  async function saveClaim(claim: ChestClaim): Promise<ClaimOutcome> {
+    const revision = latest.current?.revision;
+    if (revision === undefined) return { kind: "conflict" };
+    const controller = new AbortController();
+    claimFlight.current = controller;
+    const timeout = setTimeout(() => controller.abort(), 15000);
+    try {
+      const response = await fetch("/api/learn/math-explorers", {
+        method: "POST",
+        cache: "no-store",
+        signal: controller.signal,
+        headers: { "content-type": "application/json" },
+        body: JSON.stringify({
+          requestId: claim.requestId,
+          expectedRevision: revision,
+          action: { type: "chest", chestId: claim.chestId },
+        } satisfies ExplorerRequest),
+      });
+      const json = await response.json().catch(() => null);
+      if (response.status === 401) {
+        router.replace("/learn/login");
+        return { kind: "left" };
+      }
+      if (
+        response.status === 403 &&
+        json?.error?.message === STUDENT_MUST_CHANGE_MESSAGE
+      ) {
+        router.replace("/learn/password");
+        return { kind: "left" };
+      }
+      if (response.status === 409) return { kind: "conflict" };
+      if (response.status >= 400 && response.status < 500)
+        return { kind: "refused", message: json?.error?.message ?? null };
+      if (!response.ok) return { kind: "failed" };
+      const { explorerStateSchema } =
+        await import("@/contracts/mathExplorers.contract");
+      return { kind: "saved", data: explorerStateSchema.parse(json.data) };
+    } catch {
+      return { kind: "failed" };
+    } finally {
+      clearTimeout(timeout);
+      claimFlight.current = null;
+    }
+  }
+
+  /** Reads the latest record without the loading screen, so the sheet stays open. */
+  async function reloadQuietly() {
+    try {
+      const response = await fetch("/api/learn/math-explorers", {
+        cache: "no-store",
+      });
+      if (!response.ok) return false;
+      const json = await response.json();
+      const { explorerStateSchema } =
+        await import("@/contracts/mathExplorers.contract");
+      const data = explorerStateSchema.parse(json.data);
+      if (!alive.current) return false;
+      latest.current = data;
+      setState(data);
+      return true;
+    } catch {
+      return false;
     }
   }
 
@@ -416,7 +567,17 @@ function ExplorerGame({ initialView }: { initialView?: "collection" }) {
           <ExplorerHome
             state={state}
             busy={busy || !!error}
-            onAction={(action) => void send(action)}
+            claims={claims}
+            chestNotice={chestNotice}
+            chestEffect={
+              <ChestRewardEffect key={effectKey} stars={chestStars} />
+            }
+            onCloseBase={() => setChestNotice(null)}
+            onAction={(action) =>
+              action.type === "chest"
+                ? claimChest(action.chestId)
+                : void send(action)
+            }
             onResume={resume}
             onStart={() => void send({ type: "expedition-start" })}
             onRetry={() => void send({ type: "retry-unresolved" })}
@@ -474,7 +635,6 @@ function ExplorerGame({ initialView }: { initialView?: "collection" }) {
           onClose={closeReview}
         />
       ) : null}
-      <ChestRewardEffect key={effectKey} stars={chestStars} />
     </StudentReviewPage>
   );
 }

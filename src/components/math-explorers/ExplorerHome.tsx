@@ -1,6 +1,16 @@
 "use client";
 
-import { useEffect, useId, useRef, useState, type ReactNode } from "react";
+import {
+  memo,
+  useCallback,
+  useEffect,
+  useId,
+  useLayoutEffect,
+  useMemo,
+  useRef,
+  useState,
+  type ReactNode,
+} from "react";
 import type {
   ExplorerAction,
   ExplorerState,
@@ -19,11 +29,75 @@ import {
 } from "@/lib/math-explorers/journeyForecast";
 import { ExplorerMath } from "./ExplorerMath";
 import { ExplorerChests } from "./ExplorerPieces";
+import r from "./chest-reward.module.css";
 import s from "./math-explorers.module.css";
 
 export type ExplorerCard = ExplorerState["units"][number]["cards"][number];
 export const gradeLabel = (grade: number) =>
   grade < 7 ? `초등 ${grade}학년` : `중학교 ${grade - 6}학년`;
+
+// A chest press changes one chest row and the star count. The journey board
+// behind the sheet and the other rows keep their props, so they skip the render
+// (before, one press re-rendered the whole home twice — reward-latency §2).
+const JourneyBoard = memo(DailyJourneyBoard);
+type Chest = ExplorerState["chests"][number];
+const sameChests = (a: readonly Chest[], b: readonly Chest[]) =>
+  a.length === b.length &&
+  a.every(
+    (chest, index) =>
+      chest.id === b[index]!.id &&
+      chest.ready === b[index]!.ready &&
+      chest.claimed === b[index]!.claimed &&
+      chest.solved === b[index]!.solved &&
+      chest.after === b[index]!.after,
+  );
+/** A saved-press failure shown under that chest's row (05 §8.19). */
+export type ChestNotice = {
+  chestId: string;
+  text: string;
+  tone: "alert" | "status";
+};
+type ChestRowProps = {
+  title: string;
+  chests: Chest[];
+  busy: boolean;
+  notice: ChestNotice | null;
+  onClaim: (chestId: string) => void;
+};
+const ChestRow = memo(
+  function ChestRow({ title, chests, busy, notice, onClaim }: ChestRowProps) {
+    return (
+      <section className={s.chestGroup}>
+        <h4>{title}</h4>
+        <ExplorerChests chests={chests} busy={busy} onClaim={onClaim} />
+        {notice ? (
+          <p className={r.notice} role={notice.tone}>
+            {notice.text}
+          </p>
+        ) : null}
+      </section>
+    );
+  },
+  (a, b) =>
+    a.title === b.title &&
+    a.busy === b.busy &&
+    a.notice === b.notice &&
+    a.onClaim === b.onClaim &&
+    sameChests(a.chests, b.chests),
+);
+
+const NO_CLAIMS: readonly string[] = [];
+
+/** The same function for the whole mount, always calling the latest handler. */
+function useStableHandler<Args extends unknown[]>(
+  handler: (...args: Args) => void,
+) {
+  const latest = useRef(handler);
+  useLayoutEffect(() => {
+    latest.current = handler;
+  });
+  return useCallback((...args: Args) => latest.current(...args), []);
+}
 
 export function explorerJourney(state: ExplorerState): DailyJourney {
   if (state.journey) return state.journey;
@@ -135,6 +209,10 @@ export function ExplorerSheet({
 export default function ExplorerHome({
   state,
   busy,
+  claims = NO_CLAIMS,
+  chestNotice = null,
+  chestEffect,
+  onCloseBase,
   onAction,
   onStart,
   onResume,
@@ -146,6 +224,12 @@ export default function ExplorerHome({
 }: {
   state: ExplorerState;
   busy: boolean;
+  /** Chests pressed and shown as opened while their saves are on the way. */
+  claims?: readonly string[];
+  chestNotice?: ChestNotice | null;
+  /** The reward effect, drawn inside the base sheet so the modal cannot hide it. */
+  chestEffect?: ReactNode;
+  onCloseBase?: () => void;
   onAction: (action: ExplorerAction) => void;
   onStart: () => void;
   onResume: () => void;
@@ -158,7 +242,26 @@ export default function ExplorerHome({
   const [sheet, setSheet] = useState<"collection" | "settings" | "base" | null>(
     initialView ?? null,
   );
-  const journey = explorerJourney(state);
+  const journey = useMemo(() => explorerJourney(state), [state]);
+  const reviewDay = useStableHandler(onReviewDay);
+  const claimChest = useStableHandler((chestId: string) =>
+    onAction({ type: "chest", chestId }),
+  );
+  // A pressed chest is shown opened, with its star, before the save returns.
+  const shown = useMemo(() => {
+    const opening = new Set(
+      state.chests
+        .filter((chest) => claims.includes(chest.id) && !chest.claimed)
+        .map((chest) => chest.id),
+    );
+    return {
+      chests: state.chests.map((chest) =>
+        opening.has(chest.id) ? { ...chest, claimed: true } : chest,
+      ),
+      stars: state.profile.stars + opening.size,
+    };
+  }, [state, claims]);
+  const saving = claims.length > 0;
   const mission = state.expedition?.mission;
   const next = state.expedition?.next;
   const activeReview = !!state.session?.reviewOnly && !state.session.done;
@@ -204,6 +307,7 @@ export default function ExplorerHome({
     activeReview ||
     (!!state.session && !state.session.done);
   const closeSheet = () => {
+    if (sheet === "base") onCloseBase?.();
     setSheet(null);
     if (initialView) onCloseView?.();
   };
@@ -259,6 +363,7 @@ export default function ExplorerHome({
             className={s.primary}
             disabled={
               busy ||
+              saving ||
               (!activeReview &&
                 !active &&
                 !pendingRetry &&
@@ -288,11 +393,11 @@ export default function ExplorerHome({
       </section>
 
       <section className={s.journeyPanel}>
-        <DailyJourneyBoard
+        <JourneyBoard
           journey={journey}
           variant="map"
           busy={busy}
-          onReviewDay={onReviewDay}
+          onReviewDay={reviewDay}
         />
       </section>
 
@@ -443,13 +548,14 @@ export default function ExplorerHome({
               }
             </h3>
             <p>
-              모은 별 <strong>✦ {state.profile.stars}</strong>
+              모은 별 <strong>✦ {shown.stars}</strong>
             </p>
             <button
               type="button"
               className={s.primary}
               disabled={
                 busy ||
+                saving ||
                 state.profile.level >= 3 ||
                 state.profile.stars <
                   ([3, 6, 12][state.profile.level] ?? Infinity)
@@ -468,18 +574,26 @@ export default function ExplorerHome({
                 unit.cards.some((card) => (card.progress?.level ?? 0) > 0) ||
                 unit.id === currentUnit?.id,
             )
-            .map((unit) => (
-              <section className={s.chestGroup} key={unit.id}>
-                <h4>{unit.title}</h4>
-                <ExplorerChests
-                  chests={state.chests.filter(
-                    (chest) => chest.unit === unit.id,
-                  )}
+            .map((unit) => {
+              const chests = shown.chests.filter(
+                (chest) => chest.unit === unit.id,
+              );
+              return (
+                <ChestRow
+                  key={unit.id}
+                  title={unit.title}
+                  chests={chests}
                   busy={busy}
-                  onClaim={(chestId) => onAction({ type: "chest", chestId })}
+                  notice={
+                    chests.some((chest) => chest.id === chestNotice?.chestId)
+                      ? chestNotice
+                      : null
+                  }
+                  onClaim={claimChest}
                 />
-              </section>
-            ))}
+              );
+            })}
+          {chestEffect}
         </ExplorerSheet>
       ) : null}
     </div>
