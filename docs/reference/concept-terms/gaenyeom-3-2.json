@@ -1,0 +1,1603 @@
+{
+  "source": "개념원리 중학 수학 3-2 (학생용)",
+  "file": "N:\\개인\\강아\\교재자료\\RPM\\22\\개념원리\\개념원리 중학 3-2 학생용.pdf",
+  "pages": 147,
+  "extractedAt": "2026-09-28",
+  "extractor": "scripts/qa/concept-terms/build-gaenyeom-terms-midb.py (목록: 저장소 밖 midb/terms-midb.tsv)",
+  "toc": [
+    {
+      "part": "Ⅰ. 삼각비",
+      "chapter": "1. 삼각비",
+      "sections": [
+        "01 삼각비",
+        "02 30°, 45°, 60°의 삼각비의 값",
+        "03 임의의 예각의 삼각비의 값"
+      ],
+      "pdfPages": [
+        13,
+        38
+      ],
+      "bookPages": [
+        10,
+        35
+      ],
+      "tocSections": [
+        "01 삼각비",
+        "02 30°, 45°, 60°의 삼각비의 값",
+        "03 임의의 예각의 삼각비의 값"
+      ],
+      "termsPerSection": {
+        "01 삼각비": 6,
+        "02 30°, 45°, 60°의 삼각비의 값": 2,
+        "03 임의의 예각의 삼각비의 값": 4
+      }
+    },
+    {
+      "part": "Ⅰ. 삼각비",
+      "chapter": "2. 삼각비의 활용",
+      "sections": [
+        "01 길이 구하기",
+        "02 넓이 구하기"
+      ],
+      "pdfPages": [
+        39,
+        60
+      ],
+      "bookPages": [
+        36,
+        57
+      ],
+      "tocSections": [
+        "01 길이 구하기",
+        "02 넓이 구하기"
+      ],
+      "termsPerSection": {
+        "01 길이 구하기": 3,
+        "02 넓이 구하기": 4
+      }
+    },
+    {
+      "part": "Ⅱ. 원의 성질",
+      "chapter": "1. 원과 직선",
+      "sections": [
+        "01 원의 현",
+        "02 원의 접선 (1)",
+        "03 원의 접선 (2)"
+      ],
+      "pdfPages": [
+        61,
+        86
+      ],
+      "bookPages": [
+        58,
+        83
+      ],
+      "tocSections": [
+        "01 원의 현",
+        "02 원의 접선 ⑴",
+        "03 원의 접선 ⑵"
+      ],
+      "termsPerSection": {
+        "01 원의 현": 3,
+        "02 원의 접선 (1)": 3,
+        "03 원의 접선 (2)": 2
+      }
+    },
+    {
+      "part": "Ⅱ. 원의 성질",
+      "chapter": "2. 원주각",
+      "sections": [
+        "01 원주각",
+        "02 원과 사각형",
+        "03 접선과 현이 이루는 각"
+      ],
+      "pdfPages": [
+        87,
+        116
+      ],
+      "bookPages": [
+        84,
+        113
+      ],
+      "tocSections": [
+        "01 원주각",
+        "02 원과 사각형",
+        "03 접선과 현이 이루는 각"
+      ],
+      "termsPerSection": {
+        "01 원주각": 5,
+        "02 원과 사각형": 3,
+        "03 접선과 현이 이루는 각": 2
+      }
+    },
+    {
+      "part": "Ⅲ. 통계",
+      "chapter": "1. 산포도",
+      "sections": [
+        "01 산포도와 표준편차"
+      ],
+      "pdfPages": [
+        117,
+        128
+      ],
+      "bookPages": [
+        114,
+        125
+      ],
+      "tocSections": [
+        "01 산포도와 표준편차"
+      ],
+      "termsPerSection": {
+        "01 산포도와 표준편차": 6
+      }
+    },
+    {
+      "part": "Ⅲ. 통계",
+      "chapter": "2. 상자그림과 산점도",
+      "sections": [
+        "01 상자그림",
+        "02 산점도와 상관관계"
+      ],
+      "pdfPages": [
+        129,
+        146
+      ],
+      "bookPages": [
+        126,
+        143
+      ],
+      "tocSections": [
+        "01 상자그림",
+        "02 산점도와 상관관계"
+      ],
+      "termsPerSection": {
+        "01 상자그림": 8,
+        "02 산점도와 상관관계": 6
+      }
+    }
+  ],
+  "sentenceStore": "문장(교재 원문)은 저장소 밖 C:\\Creative\\testautocreator-data\\I-개념용어\\gaenyeom-3-2.json — 용어마다 sentenceRef.key 로 찾는다",
+  "terms": [
+    {
+      "term": "사인",
+      "kind": "정의",
+      "grade": "3-2",
+      "part": "Ⅰ. 삼각비",
+      "chapter": "1. 삼각비",
+      "section": "01 삼각비",
+      "pdfPage": 13,
+      "bookPage": "010쪽",
+      "first": true,
+      "aliases": [
+        "sin A",
+        "sin"
+      ],
+      "mathGarbled": true,
+      "note": "쌓인 분수 — 글자층에서 분자·분모가 흩어져 문장의 수식이 온전하지 않음",
+      "explorer": {
+        "match": "exact",
+        "cardId": "g9-sine",
+        "cardName": "사인",
+        "why": ""
+      },
+      "key": "3-2/p013/사인",
+      "sentenceRef": {
+        "file": "C:\\Creative\\testautocreator-data\\I-개념용어\\gaenyeom-3-2.json",
+        "key": "3-2/p013/사인"
+      }
+    },
+    {
+      "term": "코사인",
+      "kind": "정의",
+      "grade": "3-2",
+      "part": "Ⅰ. 삼각비",
+      "chapter": "1. 삼각비",
+      "section": "01 삼각비",
+      "pdfPage": 13,
+      "bookPage": "010쪽",
+      "first": true,
+      "aliases": [
+        "cos A",
+        "cos"
+      ],
+      "mathGarbled": true,
+      "note": "쌓인 분수 — 글자층에서 분자·분모가 흩어져 문장의 수식이 온전하지 않음",
+      "explorer": {
+        "match": "exact",
+        "cardId": "g9-cosine",
+        "cardName": "코사인",
+        "why": ""
+      },
+      "key": "3-2/p013/코사인",
+      "sentenceRef": {
+        "file": "C:\\Creative\\testautocreator-data\\I-개념용어\\gaenyeom-3-2.json",
+        "key": "3-2/p013/코사인"
+      }
+    },
+    {
+      "term": "탄젠트",
+      "kind": "정의",
+      "grade": "3-2",
+      "part": "Ⅰ. 삼각비",
+      "chapter": "1. 삼각비",
+      "section": "01 삼각비",
+      "pdfPage": 13,
+      "bookPage": "010쪽",
+      "first": true,
+      "aliases": [
+        "tan A",
+        "tan"
+      ],
+      "mathGarbled": true,
+      "note": "쌓인 분수 — 글자층에서 분자·분모가 흩어져 문장의 수식이 온전하지 않음",
+      "explorer": {
+        "match": "exact",
+        "cardId": "g9-tangent",
+        "cardName": "탄젠트",
+        "why": ""
+      },
+      "key": "3-2/p013/탄젠트",
+      "sentenceRef": {
+        "file": "C:\\Creative\\testautocreator-data\\I-개념용어\\gaenyeom-3-2.json",
+        "key": "3-2/p013/탄젠트"
+      }
+    },
+    {
+      "term": "삼각비",
+      "kind": "정의",
+      "grade": "3-2",
+      "part": "Ⅰ. 삼각비",
+      "chapter": "1. 삼각비",
+      "section": "01 삼각비",
+      "pdfPage": 13,
+      "bookPage": "010쪽",
+      "first": true,
+      "aliases": [],
+      "mathGarbled": false,
+      "note": "",
+      "explorer": {
+        "match": "related",
+        "cardId": "g9-sine",
+        "cardName": "사인",
+        "why": "사인·코사인·탄젠트를 통틀은 이름 — «삼각비» 카드는 따로 없음(단원 이름)"
+      },
+      "key": "3-2/p013/삼각비",
+      "sentenceRef": {
+        "file": "C:\\Creative\\testautocreator-data\\I-개념용어\\gaenyeom-3-2.json",
+        "key": "3-2/p013/삼각비"
+      }
+    },
+    {
+      "term": "sin · cos · tan",
+      "kind": "기호",
+      "grade": "3-2",
+      "part": "Ⅰ. 삼각비",
+      "chapter": "1. 삼각비",
+      "section": "01 삼각비",
+      "pdfPage": 13,
+      "bookPage": "010쪽",
+      "first": true,
+      "aliases": [
+        "sine",
+        "cosine",
+        "tangent"
+      ],
+      "mathGarbled": false,
+      "note": "",
+      "explorer": {
+        "match": "related",
+        "cardId": "g9-sine",
+        "cardName": "사인",
+        "why": ""
+      },
+      "key": "3-2/p013/sin · cos · tan",
+      "sentenceRef": {
+        "file": "C:\\Creative\\testautocreator-data\\I-개념용어\\gaenyeom-3-2.json",
+        "key": "3-2/p013/sin · cos · tan"
+      }
+    },
+    {
+      "term": "직각삼각형의 크기와 삼각비의 값",
+      "kind": "성질",
+      "grade": "3-2",
+      "part": "Ⅰ. 삼각비",
+      "chapter": "1. 삼각비",
+      "section": "01 삼각비",
+      "pdfPage": 13,
+      "bookPage": "010쪽",
+      "first": true,
+      "aliases": [],
+      "mathGarbled": false,
+      "note": "이름은 추출자가 제목·내용에서 땀",
+      "explorer": {
+        "match": "alias",
+        "cardId": "g9-trig-similarity",
+        "cardName": "삼각비와 닮음",
+        "why": "카드 이름 «삼각비와 닮음»"
+      },
+      "key": "3-2/p013/직각삼각형의 크기와 삼각비의 값",
+      "sentenceRef": {
+        "file": "C:\\Creative\\testautocreator-data\\I-개념용어\\gaenyeom-3-2.json",
+        "key": "3-2/p013/직각삼각형의 크기와 삼각비의 값"
+      }
+    },
+    {
+      "term": "30°, 45°, 60°의 삼각비의 값",
+      "kind": "공식",
+      "grade": "3-2",
+      "part": "Ⅰ. 삼각비",
+      "chapter": "1. 삼각비",
+      "section": "02 30°, 45°, 60°의 삼각비의 값",
+      "pdfPage": 19,
+      "bookPage": "016쪽",
+      "first": true,
+      "aliases": [],
+      "mathGarbled": false,
+      "note": "",
+      "explorer": {
+        "match": "none",
+        "cardId": "",
+        "cardName": "",
+        "why": ""
+      },
+      "key": "3-2/p019/30°, 45°, 60°의 삼각비의 값",
+      "sentenceRef": {
+        "file": "C:\\Creative\\testautocreator-data\\I-개념용어\\gaenyeom-3-2.json",
+        "key": "3-2/p019/30°, 45°, 60°의 삼각비의 값"
+      }
+    },
+    {
+      "term": "sin²A",
+      "kind": "기호",
+      "grade": "3-2",
+      "part": "Ⅰ. 삼각비",
+      "chapter": "1. 삼각비",
+      "section": "02 30°, 45°, 60°의 삼각비의 값",
+      "pdfPage": 19,
+      "bookPage": "016쪽",
+      "first": true,
+      "aliases": [
+        "cos²A",
+        "tan²A"
+      ],
+      "mathGarbled": false,
+      "note": "",
+      "explorer": {
+        "match": "none",
+        "cardId": "",
+        "cardName": "",
+        "why": ""
+      },
+      "key": "3-2/p019/sin²A",
+      "sentenceRef": {
+        "file": "C:\\Creative\\testautocreator-data\\I-개념용어\\gaenyeom-3-2.json",
+        "key": "3-2/p019/sin²A"
+      }
+    },
+    {
+      "term": "임의의 예각의 삼각비의 값",
+      "kind": "성질",
+      "grade": "3-2",
+      "part": "Ⅰ. 삼각비",
+      "chapter": "1. 삼각비",
+      "section": "03 임의의 예각의 삼각비의 값",
+      "pdfPage": 24,
+      "bookPage": "021쪽",
+      "first": true,
+      "aliases": [],
+      "mathGarbled": false,
+      "note": "",
+      "explorer": {
+        "match": "none",
+        "cardId": "",
+        "cardName": "",
+        "why": ""
+      },
+      "key": "3-2/p024/임의의 예각의 삼각비의 값",
+      "sentenceRef": {
+        "file": "C:\\Creative\\testautocreator-data\\I-개념용어\\gaenyeom-3-2.json",
+        "key": "3-2/p024/임의의 예각의 삼각비의 값"
+      }
+    },
+    {
+      "term": "0°, 90°의 삼각비의 값",
+      "kind": "공식",
+      "grade": "3-2",
+      "part": "Ⅰ. 삼각비",
+      "chapter": "1. 삼각비",
+      "section": "03 임의의 예각의 삼각비의 값",
+      "pdfPage": 24,
+      "bookPage": "021쪽",
+      "first": true,
+      "aliases": [],
+      "mathGarbled": false,
+      "note": "이름은 추출자가 제목·내용에서 땀",
+      "explorer": {
+        "match": "none",
+        "cardId": "",
+        "cardName": "",
+        "why": ""
+      },
+      "key": "3-2/p024/0°, 90°의 삼각비의 값",
+      "sentenceRef": {
+        "file": "C:\\Creative\\testautocreator-data\\I-개념용어\\gaenyeom-3-2.json",
+        "key": "3-2/p024/0°, 90°의 삼각비의 값"
+      }
+    },
+    {
+      "term": "각의 크기에 따른 삼각비의 값의 변화",
+      "kind": "성질",
+      "grade": "3-2",
+      "part": "Ⅰ. 삼각비",
+      "chapter": "1. 삼각비",
+      "section": "03 임의의 예각의 삼각비의 값",
+      "pdfPage": 24,
+      "bookPage": "021쪽",
+      "first": true,
+      "aliases": [],
+      "mathGarbled": false,
+      "note": "이름은 추출자가 제목·내용에서 땀",
+      "explorer": {
+        "match": "none",
+        "cardId": "",
+        "cardName": "",
+        "why": ""
+      },
+      "key": "3-2/p024/각의 크기에 따른 삼각비의 값의 변화",
+      "sentenceRef": {
+        "file": "C:\\Creative\\testautocreator-data\\I-개념용어\\gaenyeom-3-2.json",
+        "key": "3-2/p024/각의 크기에 따른 삼각비의 값의 변화"
+      }
+    },
+    {
+      "term": "삼각비의 표",
+      "kind": "정의",
+      "grade": "3-2",
+      "part": "Ⅰ. 삼각비",
+      "chapter": "1. 삼각비",
+      "section": "03 임의의 예각의 삼각비의 값",
+      "pdfPage": 24,
+      "bookPage": "021쪽",
+      "first": true,
+      "aliases": [],
+      "mathGarbled": false,
+      "note": "",
+      "explorer": {
+        "match": "none",
+        "cardId": "",
+        "cardName": "",
+        "why": ""
+      },
+      "key": "3-2/p024/삼각비의 표",
+      "sentenceRef": {
+        "file": "C:\\Creative\\testautocreator-data\\I-개념용어\\gaenyeom-3-2.json",
+        "key": "3-2/p024/삼각비의 표"
+      }
+    },
+    {
+      "term": "직각삼각형의 변의 길이 구하기",
+      "kind": "공식",
+      "grade": "3-2",
+      "part": "Ⅰ. 삼각비",
+      "chapter": "2. 삼각비의 활용",
+      "section": "01 길이 구하기",
+      "pdfPage": 39,
+      "bookPage": "036쪽",
+      "first": true,
+      "aliases": [],
+      "mathGarbled": false,
+      "note": "이름은 추출자가 제목·내용에서 땀",
+      "explorer": {
+        "match": "none",
+        "cardId": "",
+        "cardName": "",
+        "why": ""
+      },
+      "key": "3-2/p039/직각삼각형의 변의 길이 구하기",
+      "sentenceRef": {
+        "file": "C:\\Creative\\testautocreator-data\\I-개념용어\\gaenyeom-3-2.json",
+        "key": "3-2/p039/직각삼각형의 변의 길이 구하기"
+      }
+    },
+    {
+      "term": "일반 삼각형의 변의 길이 구하기",
+      "kind": "공식",
+      "grade": "3-2",
+      "part": "Ⅰ. 삼각비",
+      "chapter": "2. 삼각비의 활용",
+      "section": "01 길이 구하기",
+      "pdfPage": 39,
+      "bookPage": "036쪽",
+      "first": true,
+      "aliases": [],
+      "mathGarbled": false,
+      "note": "이름은 추출자가 제목·내용에서 땀",
+      "explorer": {
+        "match": "none",
+        "cardId": "",
+        "cardName": "",
+        "why": ""
+      },
+      "key": "3-2/p039/일반 삼각형의 변의 길이 구하기",
+      "sentenceRef": {
+        "file": "C:\\Creative\\testautocreator-data\\I-개념용어\\gaenyeom-3-2.json",
+        "key": "3-2/p039/일반 삼각형의 변의 길이 구하기"
+      }
+    },
+    {
+      "term": "삼각형의 높이 구하기",
+      "kind": "공식",
+      "grade": "3-2",
+      "part": "Ⅰ. 삼각비",
+      "chapter": "2. 삼각비의 활용",
+      "section": "01 길이 구하기",
+      "pdfPage": 40,
+      "bookPage": "037쪽",
+      "first": true,
+      "aliases": [],
+      "mathGarbled": false,
+      "note": "이름은 추출자가 제목·내용에서 땀",
+      "explorer": {
+        "match": "none",
+        "cardId": "",
+        "cardName": "",
+        "why": ""
+      },
+      "key": "3-2/p040/삼각형의 높이 구하기",
+      "sentenceRef": {
+        "file": "C:\\Creative\\testautocreator-data\\I-개념용어\\gaenyeom-3-2.json",
+        "key": "3-2/p040/삼각형의 높이 구하기"
+      }
+    },
+    {
+      "term": "삼각형의 넓이",
+      "kind": "공식",
+      "grade": "3-2",
+      "part": "Ⅰ. 삼각비",
+      "chapter": "2. 삼각비의 활용",
+      "section": "02 넓이 구하기",
+      "pdfPage": 47,
+      "bookPage": "044쪽",
+      "first": true,
+      "aliases": [],
+      "mathGarbled": false,
+      "note": "이름은 추출자가 제목·내용에서 땀",
+      "explorer": {
+        "match": "related",
+        "cardId": "g5-triangle-area",
+        "cardName": "삼각형의 넓이",
+        "why": "같은 이름(초5 카드: 밑변×높이÷2) — 3-2 는 두 변과 끼인각으로 ½ac sin B"
+      },
+      "key": "3-2/p047/삼각형의 넓이",
+      "sentenceRef": {
+        "file": "C:\\Creative\\testautocreator-data\\I-개념용어\\gaenyeom-3-2.json",
+        "key": "3-2/p047/삼각형의 넓이"
+      }
+    },
+    {
+      "term": "평행사변형의 넓이",
+      "kind": "공식",
+      "grade": "3-2",
+      "part": "Ⅰ. 삼각비",
+      "chapter": "2. 삼각비의 활용",
+      "section": "02 넓이 구하기",
+      "pdfPage": 48,
+      "bookPage": "045쪽",
+      "first": true,
+      "aliases": [],
+      "mathGarbled": false,
+      "note": "",
+      "explorer": {
+        "match": "related",
+        "cardId": "g5-parallelogram-area",
+        "cardName": "평행사변형의 넓이",
+        "why": "같은 이름(초5 카드: 밑변×높이) — 3-2 는 ab sin B"
+      },
+      "key": "3-2/p048/평행사변형의 넓이",
+      "sentenceRef": {
+        "file": "C:\\Creative\\testautocreator-data\\I-개념용어\\gaenyeom-3-2.json",
+        "key": "3-2/p048/평행사변형의 넓이"
+      }
+    },
+    {
+      "term": "사각형의 넓이",
+      "kind": "공식",
+      "grade": "3-2",
+      "part": "Ⅰ. 삼각비",
+      "chapter": "2. 삼각비의 활용",
+      "section": "02 넓이 구하기",
+      "pdfPage": 48,
+      "bookPage": "045쪽",
+      "first": true,
+      "aliases": [],
+      "mathGarbled": false,
+      "note": "",
+      "explorer": {
+        "match": "none",
+        "cardId": "",
+        "cardName": "",
+        "why": ""
+      },
+      "key": "3-2/p048/사각형의 넓이",
+      "sentenceRef": {
+        "file": "C:\\Creative\\testautocreator-data\\I-개념용어\\gaenyeom-3-2.json",
+        "key": "3-2/p048/사각형의 넓이"
+      }
+    },
+    {
+      "term": "평행사변형의 성질",
+      "kind": "성질",
+      "grade": "3-2",
+      "part": "Ⅰ. 삼각비",
+      "chapter": "2. 삼각비의 활용",
+      "section": "02 넓이 구하기",
+      "pdfPage": 48,
+      "bookPage": "045쪽",
+      "first": false,
+      "aliases": [],
+      "mathGarbled": false,
+      "note": "복습",
+      "explorer": {
+        "match": "related",
+        "cardId": "g8-parallelogram-diagonal",
+        "cardName": "평행사변형의 대각선",
+        "why": "참고 상자(2-2 복습) — 카드는 대각선에 관한 성질 하나만"
+      },
+      "key": "3-2/p048/평행사변형의 성질",
+      "sentenceRef": {
+        "file": "C:\\Creative\\testautocreator-data\\I-개념용어\\gaenyeom-3-2.json",
+        "key": "3-2/p048/평행사변형의 성질"
+      }
+    },
+    {
+      "term": "현의 수직이등분선의 성질",
+      "kind": "성질",
+      "grade": "3-2",
+      "part": "Ⅱ. 원의 성질",
+      "chapter": "1. 원과 직선",
+      "section": "01 원의 현",
+      "pdfPage": 61,
+      "bookPage": "058쪽",
+      "first": true,
+      "aliases": [],
+      "mathGarbled": false,
+      "note": "이름은 추출자가 제목·내용에서 땀",
+      "explorer": {
+        "match": "related",
+        "cardId": "g9-chord",
+        "cardName": "현",
+        "why": "카드는 «현»의 뜻(중1 낱말) — 3-2 는 현을 뜻매김하지 않고 성질에서 씀"
+      },
+      "key": "3-2/p061/현의 수직이등분선의 성질",
+      "sentenceRef": {
+        "file": "C:\\Creative\\testautocreator-data\\I-개념용어\\gaenyeom-3-2.json",
+        "key": "3-2/p061/현의 수직이등분선의 성질"
+      }
+    },
+    {
+      "term": "직각삼각형의 합동 조건",
+      "kind": "성질",
+      "grade": "3-2",
+      "part": "Ⅱ. 원의 성질",
+      "chapter": "1. 원과 직선",
+      "section": "01 원의 현",
+      "pdfPage": 61,
+      "bookPage": "058쪽",
+      "first": false,
+      "aliases": [],
+      "mathGarbled": false,
+      "note": "복습",
+      "explorer": {
+        "match": "none",
+        "cardId": "",
+        "cardName": "",
+        "why": ""
+      },
+      "key": "3-2/p061/직각삼각형의 합동 조건",
+      "sentenceRef": {
+        "file": "C:\\Creative\\testautocreator-data\\I-개념용어\\gaenyeom-3-2.json",
+        "key": "3-2/p061/직각삼각형의 합동 조건"
+      }
+    },
+    {
+      "term": "현의 길이의 성질",
+      "kind": "성질",
+      "grade": "3-2",
+      "part": "Ⅱ. 원의 성질",
+      "chapter": "1. 원과 직선",
+      "section": "01 원의 현",
+      "pdfPage": 62,
+      "bookPage": "059쪽",
+      "first": true,
+      "aliases": [],
+      "mathGarbled": false,
+      "note": "이름은 추출자가 제목·내용에서 땀",
+      "explorer": {
+        "match": "related",
+        "cardId": "g9-chord",
+        "cardName": "현",
+        "why": "카드는 «현»의 뜻(중1 낱말)"
+      },
+      "key": "3-2/p062/현의 길이의 성질",
+      "sentenceRef": {
+        "file": "C:\\Creative\\testautocreator-data\\I-개념용어\\gaenyeom-3-2.json",
+        "key": "3-2/p062/현의 길이의 성질"
+      }
+    },
+    {
+      "term": "원의 접선과 반지름",
+      "kind": "성질",
+      "grade": "3-2",
+      "part": "Ⅱ. 원의 성질",
+      "chapter": "1. 원과 직선",
+      "section": "02 원의 접선 (1)",
+      "pdfPage": 68,
+      "bookPage": "065쪽",
+      "first": false,
+      "aliases": [],
+      "mathGarbled": false,
+      "note": "",
+      "explorer": {
+        "match": "exact",
+        "cardId": "g9-radius-tangent",
+        "cardName": "반지름과 접선",
+        "why": "카드 이름 «반지름과 접선»"
+      },
+      "key": "3-2/p068/원의 접선과 반지름",
+      "sentenceRef": {
+        "file": "C:\\Creative\\testautocreator-data\\I-개념용어\\gaenyeom-3-2.json",
+        "key": "3-2/p068/원의 접선과 반지름"
+      }
+    },
+    {
+      "term": "접선의 길이",
+      "kind": "정의",
+      "grade": "3-2",
+      "part": "Ⅱ. 원의 성질",
+      "chapter": "1. 원과 직선",
+      "section": "02 원의 접선 (1)",
+      "pdfPage": 68,
+      "bookPage": "065쪽",
+      "first": true,
+      "aliases": [],
+      "mathGarbled": false,
+      "note": "",
+      "explorer": {
+        "match": "none",
+        "cardId": "",
+        "cardName": "",
+        "why": ""
+      },
+      "key": "3-2/p068/접선의 길이",
+      "sentenceRef": {
+        "file": "C:\\Creative\\testautocreator-data\\I-개념용어\\gaenyeom-3-2.json",
+        "key": "3-2/p068/접선의 길이"
+      }
+    },
+    {
+      "term": "원의 접선의 성질",
+      "kind": "성질",
+      "grade": "3-2",
+      "part": "Ⅱ. 원의 성질",
+      "chapter": "1. 원과 직선",
+      "section": "02 원의 접선 (1)",
+      "pdfPage": 68,
+      "bookPage": "065쪽",
+      "first": true,
+      "aliases": [],
+      "mathGarbled": false,
+      "note": "",
+      "explorer": {
+        "match": "none",
+        "cardId": "",
+        "cardName": "",
+        "why": ""
+      },
+      "key": "3-2/p068/원의 접선의 성질",
+      "sentenceRef": {
+        "file": "C:\\Creative\\testautocreator-data\\I-개념용어\\gaenyeom-3-2.json",
+        "key": "3-2/p068/원의 접선의 성질"
+      }
+    },
+    {
+      "term": "삼각형의 내접원의 성질",
+      "kind": "성질",
+      "grade": "3-2",
+      "part": "Ⅱ. 원의 성질",
+      "chapter": "1. 원과 직선",
+      "section": "03 원의 접선 (2)",
+      "pdfPage": 74,
+      "bookPage": "071쪽",
+      "first": true,
+      "aliases": [],
+      "mathGarbled": false,
+      "note": "이름은 추출자가 제목·내용에서 땀",
+      "explorer": {
+        "match": "none",
+        "cardId": "",
+        "cardName": "",
+        "why": ""
+      },
+      "key": "3-2/p074/삼각형의 내접원의 성질",
+      "sentenceRef": {
+        "file": "C:\\Creative\\testautocreator-data\\I-개념용어\\gaenyeom-3-2.json",
+        "key": "3-2/p074/삼각형의 내접원의 성질"
+      }
+    },
+    {
+      "term": "원에 외접하는 사각형의 성질",
+      "kind": "성질",
+      "grade": "3-2",
+      "part": "Ⅱ. 원의 성질",
+      "chapter": "1. 원과 직선",
+      "section": "03 원의 접선 (2)",
+      "pdfPage": 74,
+      "bookPage": "071쪽",
+      "first": true,
+      "aliases": [],
+      "mathGarbled": false,
+      "note": "이름은 추출자가 제목·내용에서 땀",
+      "explorer": {
+        "match": "none",
+        "cardId": "",
+        "cardName": "",
+        "why": ""
+      },
+      "key": "3-2/p074/원에 외접하는 사각형의 성질",
+      "sentenceRef": {
+        "file": "C:\\Creative\\testautocreator-data\\I-개념용어\\gaenyeom-3-2.json",
+        "key": "3-2/p074/원에 외접하는 사각형의 성질"
+      }
+    },
+    {
+      "term": "원주각",
+      "kind": "정의",
+      "grade": "3-2",
+      "part": "Ⅱ. 원의 성질",
+      "chapter": "2. 원주각",
+      "section": "01 원주각",
+      "pdfPage": 87,
+      "bookPage": "084쪽",
+      "first": true,
+      "aliases": [],
+      "mathGarbled": false,
+      "note": "",
+      "explorer": {
+        "match": "exact",
+        "cardId": "g9-inscribed-angle",
+        "cardName": "원주각",
+        "why": ""
+      },
+      "key": "3-2/p087/원주각",
+      "sentenceRef": {
+        "file": "C:\\Creative\\testautocreator-data\\I-개념용어\\gaenyeom-3-2.json",
+        "key": "3-2/p087/원주각"
+      }
+    },
+    {
+      "term": "원주각에 대한 호",
+      "kind": "정의",
+      "grade": "3-2",
+      "part": "Ⅱ. 원의 성질",
+      "chapter": "2. 원주각",
+      "section": "01 원주각",
+      "pdfPage": 87,
+      "bookPage": "084쪽",
+      "first": true,
+      "aliases": [],
+      "mathGarbled": false,
+      "note": "이름은 추출자가 제목·내용에서 땀",
+      "explorer": {
+        "match": "none",
+        "cardId": "",
+        "cardName": "",
+        "why": ""
+      },
+      "key": "3-2/p087/원주각에 대한 호",
+      "sentenceRef": {
+        "file": "C:\\Creative\\testautocreator-data\\I-개념용어\\gaenyeom-3-2.json",
+        "key": "3-2/p087/원주각에 대한 호"
+      }
+    },
+    {
+      "term": "원주각과 중심각의 크기",
+      "kind": "성질",
+      "grade": "3-2",
+      "part": "Ⅱ. 원의 성질",
+      "chapter": "2. 원주각",
+      "section": "01 원주각",
+      "pdfPage": 87,
+      "bookPage": "084쪽",
+      "first": true,
+      "aliases": [],
+      "mathGarbled": true,
+      "note": "쌓인 분수 — 글자층에서 분자·분모가 흩어져 문장의 수식이 온전하지 않음",
+      "explorer": {
+        "match": "related",
+        "cardId": "g9-inscribed-angle",
+        "cardName": "원주각",
+        "why": "카드 뜻에 «같은 호의 중심각의 절반»이 들어 있음"
+      },
+      "key": "3-2/p087/원주각과 중심각의 크기",
+      "sentenceRef": {
+        "file": "C:\\Creative\\testautocreator-data\\I-개념용어\\gaenyeom-3-2.json",
+        "key": "3-2/p087/원주각과 중심각의 크기"
+      }
+    },
+    {
+      "term": "원주각의 성질",
+      "kind": "성질",
+      "grade": "3-2",
+      "part": "Ⅱ. 원의 성질",
+      "chapter": "2. 원주각",
+      "section": "01 원주각",
+      "pdfPage": 88,
+      "bookPage": "085쪽",
+      "first": true,
+      "aliases": [],
+      "mathGarbled": false,
+      "note": "이름은 추출자가 제목·내용에서 땀",
+      "explorer": {
+        "match": "alias",
+        "cardId": "g9-same-arc",
+        "cardName": "같은 호의 원주각",
+        "why": "카드 이름 «같은 호의 원주각» — 반원(지름)에 대한 원주각 90° 도 같이"
+      },
+      "key": "3-2/p088/원주각의 성질",
+      "sentenceRef": {
+        "file": "C:\\Creative\\testautocreator-data\\I-개념용어\\gaenyeom-3-2.json",
+        "key": "3-2/p088/원주각의 성질"
+      }
+    },
+    {
+      "term": "원주각의 크기와 호의 길이",
+      "kind": "성질",
+      "grade": "3-2",
+      "part": "Ⅱ. 원의 성질",
+      "chapter": "2. 원주각",
+      "section": "01 원주각",
+      "pdfPage": 88,
+      "bookPage": "085쪽",
+      "first": true,
+      "aliases": [],
+      "mathGarbled": false,
+      "note": "이름은 추출자가 제목·내용에서 땀",
+      "explorer": {
+        "match": "none",
+        "cardId": "",
+        "cardName": "",
+        "why": ""
+      },
+      "key": "3-2/p088/원주각의 크기와 호의 길이",
+      "sentenceRef": {
+        "file": "C:\\Creative\\testautocreator-data\\I-개념용어\\gaenyeom-3-2.json",
+        "key": "3-2/p088/원주각의 크기와 호의 길이"
+      }
+    },
+    {
+      "term": "네 점이 한 원 위에 있을 조건",
+      "kind": "성질",
+      "grade": "3-2",
+      "part": "Ⅱ. 원의 성질",
+      "chapter": "2. 원주각",
+      "section": "02 원과 사각형",
+      "pdfPage": 96,
+      "bookPage": "093쪽",
+      "first": true,
+      "aliases": [],
+      "mathGarbled": false,
+      "note": "이름은 추출자가 제목·내용에서 땀",
+      "explorer": {
+        "match": "none",
+        "cardId": "",
+        "cardName": "",
+        "why": ""
+      },
+      "key": "3-2/p096/네 점이 한 원 위에 있을 조건",
+      "sentenceRef": {
+        "file": "C:\\Creative\\testautocreator-data\\I-개념용어\\gaenyeom-3-2.json",
+        "key": "3-2/p096/네 점이 한 원 위에 있을 조건"
+      }
+    },
+    {
+      "term": "원에 내접하는 사각형의 성질",
+      "kind": "성질",
+      "grade": "3-2",
+      "part": "Ⅱ. 원의 성질",
+      "chapter": "2. 원주각",
+      "section": "02 원과 사각형",
+      "pdfPage": 96,
+      "bookPage": "093쪽",
+      "first": true,
+      "aliases": [],
+      "mathGarbled": false,
+      "note": "이름은 추출자가 제목·내용에서 땀",
+      "explorer": {
+        "match": "none",
+        "cardId": "",
+        "cardName": "",
+        "why": ""
+      },
+      "key": "3-2/p096/원에 내접하는 사각형의 성질",
+      "sentenceRef": {
+        "file": "C:\\Creative\\testautocreator-data\\I-개념용어\\gaenyeom-3-2.json",
+        "key": "3-2/p096/원에 내접하는 사각형의 성질"
+      }
+    },
+    {
+      "term": "사각형이 원에 내접하기 위한 조건",
+      "kind": "성질",
+      "grade": "3-2",
+      "part": "Ⅱ. 원의 성질",
+      "chapter": "2. 원주각",
+      "section": "02 원과 사각형",
+      "pdfPage": 96,
+      "bookPage": "093쪽",
+      "first": true,
+      "aliases": [],
+      "mathGarbled": false,
+      "note": "이름은 추출자가 제목·내용에서 땀",
+      "explorer": {
+        "match": "none",
+        "cardId": "",
+        "cardName": "",
+        "why": ""
+      },
+      "key": "3-2/p096/사각형이 원에 내접하기 위한 조건",
+      "sentenceRef": {
+        "file": "C:\\Creative\\testautocreator-data\\I-개념용어\\gaenyeom-3-2.json",
+        "key": "3-2/p096/사각형이 원에 내접하기 위한 조건"
+      }
+    },
+    {
+      "term": "접선과 현이 이루는 각",
+      "kind": "성질",
+      "grade": "3-2",
+      "part": "Ⅱ. 원의 성질",
+      "chapter": "2. 원주각",
+      "section": "03 접선과 현이 이루는 각",
+      "pdfPage": 103,
+      "bookPage": "100쪽",
+      "first": true,
+      "aliases": [],
+      "mathGarbled": false,
+      "note": "이름은 추출자가 제목·내용에서 땀",
+      "explorer": {
+        "match": "none",
+        "cardId": "",
+        "cardName": "",
+        "why": ""
+      },
+      "key": "3-2/p103/접선과 현이 이루는 각",
+      "sentenceRef": {
+        "file": "C:\\Creative\\testautocreator-data\\I-개념용어\\gaenyeom-3-2.json",
+        "key": "3-2/p103/접선과 현이 이루는 각"
+      }
+    },
+    {
+      "term": "두 원에서 접선과 현이 이루는 각",
+      "kind": "성질",
+      "grade": "3-2",
+      "part": "Ⅱ. 원의 성질",
+      "chapter": "2. 원주각",
+      "section": "03 접선과 현이 이루는 각",
+      "pdfPage": 103,
+      "bookPage": "100쪽",
+      "first": true,
+      "aliases": [],
+      "mathGarbled": false,
+      "note": "이름은 추출자가 제목·내용에서 땀",
+      "explorer": {
+        "match": "none",
+        "cardId": "",
+        "cardName": "",
+        "why": ""
+      },
+      "key": "3-2/p103/두 원에서 접선과 현이 이루는 각",
+      "sentenceRef": {
+        "file": "C:\\Creative\\testautocreator-data\\I-개념용어\\gaenyeom-3-2.json",
+        "key": "3-2/p103/두 원에서 접선과 현이 이루는 각"
+      }
+    },
+    {
+      "term": "산포도",
+      "kind": "정의",
+      "grade": "3-2",
+      "part": "Ⅲ. 통계",
+      "chapter": "1. 산포도",
+      "section": "01 산포도와 표준편차",
+      "pdfPage": 117,
+      "bookPage": "114쪽",
+      "first": true,
+      "aliases": [],
+      "mathGarbled": false,
+      "note": "",
+      "explorer": {
+        "match": "none",
+        "cardId": "",
+        "cardName": "",
+        "why": ""
+      },
+      "key": "3-2/p117/산포도",
+      "sentenceRef": {
+        "file": "C:\\Creative\\testautocreator-data\\I-개념용어\\gaenyeom-3-2.json",
+        "key": "3-2/p117/산포도"
+      }
+    },
+    {
+      "term": "편차",
+      "kind": "정의",
+      "grade": "3-2",
+      "part": "Ⅲ. 통계",
+      "chapter": "1. 산포도",
+      "section": "01 산포도와 표준편차",
+      "pdfPage": 117,
+      "bookPage": "114쪽",
+      "first": true,
+      "aliases": [],
+      "mathGarbled": false,
+      "note": "",
+      "explorer": {
+        "match": "exact",
+        "cardId": "g9-deviation",
+        "cardName": "편차",
+        "why": ""
+      },
+      "key": "3-2/p117/편차",
+      "sentenceRef": {
+        "file": "C:\\Creative\\testautocreator-data\\I-개념용어\\gaenyeom-3-2.json",
+        "key": "3-2/p117/편차"
+      }
+    },
+    {
+      "term": "분산",
+      "kind": "정의",
+      "grade": "3-2",
+      "part": "Ⅲ. 통계",
+      "chapter": "1. 산포도",
+      "section": "01 산포도와 표준편차",
+      "pdfPage": 117,
+      "bookPage": "114쪽",
+      "first": true,
+      "aliases": [],
+      "mathGarbled": true,
+      "note": "쌓인 분수 — 글자층에서 분자·분모가 흩어져 문장의 수식이 온전하지 않음",
+      "explorer": {
+        "match": "exact",
+        "cardId": "g9-variance",
+        "cardName": "분산",
+        "why": ""
+      },
+      "key": "3-2/p117/분산",
+      "sentenceRef": {
+        "file": "C:\\Creative\\testautocreator-data\\I-개념용어\\gaenyeom-3-2.json",
+        "key": "3-2/p117/분산"
+      }
+    },
+    {
+      "term": "표준편차",
+      "kind": "정의",
+      "grade": "3-2",
+      "part": "Ⅲ. 통계",
+      "chapter": "1. 산포도",
+      "section": "01 산포도와 표준편차",
+      "pdfPage": 117,
+      "bookPage": "114쪽",
+      "first": true,
+      "aliases": [],
+      "mathGarbled": true,
+      "note": "",
+      "explorer": {
+        "match": "exact",
+        "cardId": "g9-standard-deviation",
+        "cardName": "표준편차",
+        "why": ""
+      },
+      "key": "3-2/p117/표준편차",
+      "sentenceRef": {
+        "file": "C:\\Creative\\testautocreator-data\\I-개념용어\\gaenyeom-3-2.json",
+        "key": "3-2/p117/표준편차"
+      }
+    },
+    {
+      "term": "분산과 표준편차를 이용한 자료의 분석",
+      "kind": "성질",
+      "grade": "3-2",
+      "part": "Ⅲ. 통계",
+      "chapter": "1. 산포도",
+      "section": "01 산포도와 표준편차",
+      "pdfPage": 117,
+      "bookPage": "114쪽",
+      "first": true,
+      "aliases": [],
+      "mathGarbled": false,
+      "note": "",
+      "explorer": {
+        "match": "none",
+        "cardId": "",
+        "cardName": "",
+        "why": ""
+      },
+      "key": "3-2/p117/분산과 표준편차를 이용한 자료의 분석",
+      "sentenceRef": {
+        "file": "C:\\Creative\\testautocreator-data\\I-개념용어\\gaenyeom-3-2.json",
+        "key": "3-2/p117/분산과 표준편차를 이용한 자료의 분석"
+      }
+    },
+    {
+      "term": "변화된 변량에 대한 평균, 분산, 표준편차의 변화",
+      "kind": "공식",
+      "grade": "3-2",
+      "part": "Ⅲ. 통계",
+      "chapter": "1. 산포도",
+      "section": "01 산포도와 표준편차",
+      "pdfPage": 117,
+      "bookPage": "114쪽",
+      "first": true,
+      "aliases": [],
+      "mathGarbled": true,
+      "note": "",
+      "explorer": {
+        "match": "none",
+        "cardId": "",
+        "cardName": "",
+        "why": ""
+      },
+      "key": "3-2/p117/변화된 변량에 대한 평균, 분산, 표준편차의 변화",
+      "sentenceRef": {
+        "file": "C:\\Creative\\testautocreator-data\\I-개념용어\\gaenyeom-3-2.json",
+        "key": "3-2/p117/변화된 변량에 대한 평균, 분산, 표준편차의 변화"
+      }
+    },
+    {
+      "term": "사분위수",
+      "kind": "정의",
+      "grade": "3-2",
+      "part": "Ⅲ. 통계",
+      "chapter": "2. 상자그림과 산점도",
+      "section": "01 상자그림",
+      "pdfPage": 129,
+      "bookPage": "126쪽",
+      "first": true,
+      "aliases": [],
+      "mathGarbled": false,
+      "note": "",
+      "explorer": {
+        "match": "none",
+        "cardId": "",
+        "cardName": "",
+        "why": ""
+      },
+      "key": "3-2/p129/사분위수",
+      "sentenceRef": {
+        "file": "C:\\Creative\\testautocreator-data\\I-개념용어\\gaenyeom-3-2.json",
+        "key": "3-2/p129/사분위수"
+      }
+    },
+    {
+      "term": "제1사분위수",
+      "kind": "정의",
+      "grade": "3-2",
+      "part": "Ⅲ. 통계",
+      "chapter": "2. 상자그림과 산점도",
+      "section": "01 상자그림",
+      "pdfPage": 129,
+      "bookPage": "126쪽",
+      "first": true,
+      "aliases": [],
+      "mathGarbled": false,
+      "note": "",
+      "explorer": {
+        "match": "none",
+        "cardId": "",
+        "cardName": "",
+        "why": ""
+      },
+      "key": "3-2/p129/제1사분위수",
+      "sentenceRef": {
+        "file": "C:\\Creative\\testautocreator-data\\I-개념용어\\gaenyeom-3-2.json",
+        "key": "3-2/p129/제1사분위수"
+      }
+    },
+    {
+      "term": "제2사분위수",
+      "kind": "정의",
+      "grade": "3-2",
+      "part": "Ⅲ. 통계",
+      "chapter": "2. 상자그림과 산점도",
+      "section": "01 상자그림",
+      "pdfPage": 129,
+      "bookPage": "126쪽",
+      "first": true,
+      "aliases": [],
+      "mathGarbled": false,
+      "note": "",
+      "explorer": {
+        "match": "none",
+        "cardId": "",
+        "cardName": "",
+        "why": ""
+      },
+      "key": "3-2/p129/제2사분위수",
+      "sentenceRef": {
+        "file": "C:\\Creative\\testautocreator-data\\I-개념용어\\gaenyeom-3-2.json",
+        "key": "3-2/p129/제2사분위수"
+      }
+    },
+    {
+      "term": "제3사분위수",
+      "kind": "정의",
+      "grade": "3-2",
+      "part": "Ⅲ. 통계",
+      "chapter": "2. 상자그림과 산점도",
+      "section": "01 상자그림",
+      "pdfPage": 129,
+      "bookPage": "126쪽",
+      "first": true,
+      "aliases": [],
+      "mathGarbled": false,
+      "note": "",
+      "explorer": {
+        "match": "none",
+        "cardId": "",
+        "cardName": "",
+        "why": ""
+      },
+      "key": "3-2/p129/제3사분위수",
+      "sentenceRef": {
+        "file": "C:\\Creative\\testautocreator-data\\I-개념용어\\gaenyeom-3-2.json",
+        "key": "3-2/p129/제3사분위수"
+      }
+    },
+    {
+      "term": "중앙값",
+      "kind": "정의",
+      "grade": "3-2",
+      "part": "Ⅲ. 통계",
+      "chapter": "2. 상자그림과 산점도",
+      "section": "01 상자그림",
+      "pdfPage": 129,
+      "bookPage": "126쪽",
+      "first": true,
+      "aliases": [],
+      "mathGarbled": false,
+      "note": "복습",
+      "explorer": {
+        "match": "exact",
+        "cardId": "g7-median",
+        "cardName": "중앙값",
+        "why": "중1 카드 — 3-2 는 복습"
+      },
+      "key": "3-2/p129/중앙값",
+      "sentenceRef": {
+        "file": "C:\\Creative\\testautocreator-data\\I-개념용어\\gaenyeom-3-2.json",
+        "key": "3-2/p129/중앙값"
+      }
+    },
+    {
+      "term": "사분위수 범위",
+      "kind": "정의",
+      "grade": "3-2",
+      "part": "Ⅲ. 통계",
+      "chapter": "2. 상자그림과 산점도",
+      "section": "01 상자그림",
+      "pdfPage": 129,
+      "bookPage": "126쪽",
+      "first": true,
+      "aliases": [],
+      "mathGarbled": false,
+      "note": "",
+      "explorer": {
+        "match": "none",
+        "cardId": "",
+        "cardName": "",
+        "why": ""
+      },
+      "key": "3-2/p129/사분위수 범위",
+      "sentenceRef": {
+        "file": "C:\\Creative\\testautocreator-data\\I-개념용어\\gaenyeom-3-2.json",
+        "key": "3-2/p129/사분위수 범위"
+      }
+    },
+    {
+      "term": "상자그림",
+      "kind": "정의",
+      "grade": "3-2",
+      "part": "Ⅲ. 통계",
+      "chapter": "2. 상자그림과 산점도",
+      "section": "01 상자그림",
+      "pdfPage": 129,
+      "bookPage": "126쪽",
+      "first": true,
+      "aliases": [],
+      "mathGarbled": false,
+      "note": "",
+      "explorer": {
+        "match": "none",
+        "cardId": "",
+        "cardName": "",
+        "why": ""
+      },
+      "key": "3-2/p129/상자그림",
+      "sentenceRef": {
+        "file": "C:\\Creative\\testautocreator-data\\I-개념용어\\gaenyeom-3-2.json",
+        "key": "3-2/p129/상자그림"
+      }
+    },
+    {
+      "term": "상자그림의 특징",
+      "kind": "성질",
+      "grade": "3-2",
+      "part": "Ⅲ. 통계",
+      "chapter": "2. 상자그림과 산점도",
+      "section": "01 상자그림",
+      "pdfPage": 129,
+      "bookPage": "126쪽",
+      "first": true,
+      "aliases": [],
+      "mathGarbled": false,
+      "note": "",
+      "explorer": {
+        "match": "none",
+        "cardId": "",
+        "cardName": "",
+        "why": ""
+      },
+      "key": "3-2/p129/상자그림의 특징",
+      "sentenceRef": {
+        "file": "C:\\Creative\\testautocreator-data\\I-개념용어\\gaenyeom-3-2.json",
+        "key": "3-2/p129/상자그림의 특징"
+      }
+    },
+    {
+      "term": "산점도",
+      "kind": "정의",
+      "grade": "3-2",
+      "part": "Ⅲ. 통계",
+      "chapter": "2. 상자그림과 산점도",
+      "section": "02 산점도와 상관관계",
+      "pdfPage": 135,
+      "bookPage": "132쪽",
+      "first": true,
+      "aliases": [],
+      "mathGarbled": false,
+      "note": "",
+      "explorer": {
+        "match": "exact",
+        "cardId": "g9-scatterplot",
+        "cardName": "산점도",
+        "why": ""
+      },
+      "key": "3-2/p135/산점도",
+      "sentenceRef": {
+        "file": "C:\\Creative\\testautocreator-data\\I-개념용어\\gaenyeom-3-2.json",
+        "key": "3-2/p135/산점도"
+      }
+    },
+    {
+      "term": "상관관계",
+      "kind": "정의",
+      "grade": "3-2",
+      "part": "Ⅲ. 통계",
+      "chapter": "2. 상자그림과 산점도",
+      "section": "02 산점도와 상관관계",
+      "pdfPage": 135,
+      "bookPage": "132쪽",
+      "first": true,
+      "aliases": [],
+      "mathGarbled": false,
+      "note": "",
+      "explorer": {
+        "match": "exact",
+        "cardId": "g9-correlation",
+        "cardName": "상관관계",
+        "why": "어긋남(범위): 카드는 양·음의 상관관계만 적는다 — 교재는 두 변량이 함께 변하는 경향이 있는지로 뜻을 세우고, 대략적인 경향의 양·음과 «상관관계가 없다»까지 나눈다"
+      },
+      "key": "3-2/p135/상관관계",
+      "sentenceRef": {
+        "file": "C:\\Creative\\testautocreator-data\\I-개념용어\\gaenyeom-3-2.json",
+        "key": "3-2/p135/상관관계"
+      }
+    },
+    {
+      "term": "양의 상관관계",
+      "kind": "정의",
+      "grade": "3-2",
+      "part": "Ⅲ. 통계",
+      "chapter": "2. 상자그림과 산점도",
+      "section": "02 산점도와 상관관계",
+      "pdfPage": 135,
+      "bookPage": "132쪽",
+      "first": true,
+      "aliases": [],
+      "mathGarbled": false,
+      "note": "",
+      "explorer": {
+        "match": "related",
+        "cardId": "g9-correlation",
+        "cardName": "상관관계",
+        "why": ""
+      },
+      "key": "3-2/p135/양의 상관관계",
+      "sentenceRef": {
+        "file": "C:\\Creative\\testautocreator-data\\I-개념용어\\gaenyeom-3-2.json",
+        "key": "3-2/p135/양의 상관관계"
+      }
+    },
+    {
+      "term": "음의 상관관계",
+      "kind": "정의",
+      "grade": "3-2",
+      "part": "Ⅲ. 통계",
+      "chapter": "2. 상자그림과 산점도",
+      "section": "02 산점도와 상관관계",
+      "pdfPage": 135,
+      "bookPage": "132쪽",
+      "first": true,
+      "aliases": [],
+      "mathGarbled": false,
+      "note": "",
+      "explorer": {
+        "match": "related",
+        "cardId": "g9-correlation",
+        "cardName": "상관관계",
+        "why": ""
+      },
+      "key": "3-2/p135/음의 상관관계",
+      "sentenceRef": {
+        "file": "C:\\Creative\\testautocreator-data\\I-개념용어\\gaenyeom-3-2.json",
+        "key": "3-2/p135/음의 상관관계"
+      }
+    },
+    {
+      "term": "상관관계가 없다",
+      "kind": "정의",
+      "grade": "3-2",
+      "part": "Ⅲ. 통계",
+      "chapter": "2. 상자그림과 산점도",
+      "section": "02 산점도와 상관관계",
+      "pdfPage": 135,
+      "bookPage": "132쪽",
+      "first": true,
+      "aliases": [],
+      "mathGarbled": false,
+      "note": "",
+      "explorer": {
+        "match": "none",
+        "cardId": "",
+        "cardName": "",
+        "why": ""
+      },
+      "key": "3-2/p135/상관관계가 없다",
+      "sentenceRef": {
+        "file": "C:\\Creative\\testautocreator-data\\I-개념용어\\gaenyeom-3-2.json",
+        "key": "3-2/p135/상관관계가 없다"
+      }
+    },
+    {
+      "term": "상관관계의 강약",
+      "kind": "정의",
+      "grade": "3-2",
+      "part": "Ⅲ. 통계",
+      "chapter": "2. 상자그림과 산점도",
+      "section": "02 산점도와 상관관계",
+      "pdfPage": 135,
+      "bookPage": "132쪽",
+      "first": true,
+      "aliases": [],
+      "mathGarbled": false,
+      "note": "이름은 추출자가 제목·내용에서 땀",
+      "explorer": {
+        "match": "none",
+        "cardId": "",
+        "cardName": "",
+        "why": ""
+      },
+      "key": "3-2/p135/상관관계의 강약",
+      "sentenceRef": {
+        "file": "C:\\Creative\\testautocreator-data\\I-개념용어\\gaenyeom-3-2.json",
+        "key": "3-2/p135/상관관계의 강약"
+      }
+    }
+  ]
+}
