@@ -38,15 +38,21 @@
   "정리": 1,
   "단위": 4
  },
- "decided": 39,
- "decidedUnanimous": 31,
+ "decided": 41,
+ "secondRound": [
+  "g7-origin",
+  "g9-double-root"
+ ],
+ "decidedUnanimous": 33,
  "changedFromDraft": [
   "g3-capacity",
   "g8-complement",
   "g9-vertex"
  ],
  "conditional": [
+  "g7-origin",
   "g7-vertical-angle",
+  "g9-double-root",
   "g9-vertex",
   "g9-inscribed-angle"
  ],
@@ -4117,11 +4123,15 @@
    "unit": "g7-coordinate",
    "unitTitle": "좌표와 비례관계",
    "kind": "정의",
-   "decidedBy": "초안 유지",
-   "votes": null,
-   "why": "",
-   "condition": "",
-   "assemblyNote": "빈칸 둘((0,0) · 0)이 좌표 사실 쪽 — 딱지 «정의»와 조립이 어긋난다(원장님 확인 권함)",
+   "decidedBy": "3자 일치",
+   "votes": {
+    "claude": "정의",
+    "codex": "정의",
+    "grok": "정의"
+   },
+   "why": "보정 표가 빈칸 둘을 뜻(두 좌표축이 만나는 점) 쪽으로 옮긴다 — 좌표 (0,0)은 보기 · 함정에",
+   "condition": "보정 표와 함께 — 지금 문장은 빈칸 둘이 좌표 사실 쪽",
+   "assemblyNote": "지금 빈칸 둘((0,0) · 0)이 좌표 사실 쪽 — 보정 표가 뜻 쪽으로 옮긴다(둘째 협의)",
    "draftKind": "정의",
    "draftAmbiguous": false,
    "draftNote": "",
@@ -5968,11 +5978,15 @@
    "unit": "g9-equation",
    "unitTitle": "이차방정식",
    "kind": "정의",
-   "decidedBy": "초안 유지",
-   "votes": null,
-   "why": "",
-   "condition": "",
-   "assemblyNote": "빈칸 둘(한 개 · a)이 해의 개수 · 값 쪽 — 딱지 «정의»와 조립이 어긋난다(원장님 확인 권함)",
+   "decidedBy": "3자 일치",
+   "votes": {
+    "claude": "정의",
+    "codex": "정의",
+    "grok": "정의"
+   },
+   "why": "보정 표가 빈칸 둘을 뜻(서로 같은 두 근 · 그 근) 쪽으로 옮긴다 — 완전제곱식 꼴 · 해 한 개는 보기 · 함정 · 해설에",
+   "condition": "보정 표와 함께 — 지금 문장은 빈칸 둘이 해의 개수 · 값 쪽",
+   "assemblyNote": "지금 빈칸 둘(한 개 · a)이 해의 개수 · 값 쪽 — 보정 표가 뜻 쪽으로 옮긴다(둘째 협의)",
    "draftKind": "정의",
    "draftAmbiguous": false,
    "draftNote": "",

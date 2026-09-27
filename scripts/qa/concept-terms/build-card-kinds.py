@@ -88,10 +88,18 @@ DECISIONS: dict = {
                            "보정 표와 함께 — 지금 문장은 둘째 빈칸이 성질 쪽"),
 }
 
+# 둘째 협의(리드 요청 2026-09-28 · coverage.md §9 ④) — 첫 협의 목록 밖이던 두 장. 갈래는 초안 그대로 정의, 보정과 함께.
+SECOND_ROUND: dict = {
+    "g7-origin": ("정의", v("정의", "정의", "정의"), "보정 표가 빈칸 둘을 뜻(두 좌표축이 만나는 점) 쪽으로 옮긴다 — 좌표 (0,0)은 보기 · 함정에",
+                  "보정 표와 함께 — 지금 문장은 빈칸 둘이 좌표 사실 쪽"),
+    "g9-double-root": ("정의", v("정의", "정의", "정의"), "보정 표가 빈칸 둘을 뜻(서로 같은 두 근 · 그 근) 쪽으로 옮긴다 — 완전제곱식 꼴 · 해 한 개는 보기 · 함정 · 해설에",
+                       "보정 표와 함께 — 지금 문장은 빈칸 둘이 해의 개수 · 값 쪽"),
+}
+
 # 협의 목록 밖이지만 빈칸 둘이 모두 덧붙인 사실 쪽인 카드(coverage.md §4.4) — 초안 갈래를 두고 표시만 한다.
 ASSEMBLY_NOTE = {
-    "g7-origin": "빈칸 둘((0,0) · 0)이 좌표 사실 쪽 — 딱지 «정의»와 조립이 어긋난다(원장님 확인 권함)",
-    "g9-double-root": "빈칸 둘(한 개 · a)이 해의 개수 · 값 쪽 — 딱지 «정의»와 조립이 어긋난다(원장님 확인 권함)",
+    "g7-origin": "지금 빈칸 둘((0,0) · 0)이 좌표 사실 쪽 — 보정 표가 뜻 쪽으로 옮긴다(둘째 협의)",
+    "g9-double-root": "지금 빈칸 둘(한 개 · a)이 해의 개수 · 값 쪽 — 보정 표가 뜻 쪽으로 옮긴다(둘째 협의)",
     "g3-right-angle": "지금 빈칸(90 · 도)은 각도 쪽 — 보정 표가 뜻 쪽으로 옮긴다",
     "g3-capacity": "빈칸이 환산 쪽이라 딱지를 단위로 정했다",
     "g7-vertical-angle": "보정 표가 빈칸을 뜻 쪽으로 옮긴다",
@@ -115,7 +123,8 @@ def main():
         if r["match"] in ("exact", "alias"):
             for cid in r["cards"]:
                 by_card[cid].append(r)
-    unknown = (set(DECISIONS) | set(ASSEMBLY_NOTE)) - set(draft)
+    unknown = (set(DECISIONS) | set(SECOND_ROUND) | set(ASSEMBLY_NOTE)) - set(draft)
+    assert not set(DECISIONS) & set(SECOND_ROUND)
     assert not unknown, unknown
     # 39장 = 초안 애매 26 + 초안과 교재 쪽 갈래가 다른 13 — DECISIONS 가 빠짐없이 덮는지 본다.
     amb = {k for k, d in draft.items() if d["애매"]}
@@ -129,8 +138,8 @@ def main():
     for c in cards:
         d = draft[c["id"]]
         tk = [dict(book=r["book"], key=r["key"], term=r["term"], kind=r["kind"], match=r["match"]) for r in by_card[c["id"]]]
-        if c["id"] in DECISIONS:
-            kind, votes, why, cond = DECISIONS[c["id"]]
+        if c["id"] in DECISIONS or c["id"] in SECOND_ROUND:
+            kind, votes, why, cond = DECISIONS.get(c["id"]) or SECOND_ROUND[c["id"]]
             tally = collections.Counter(votes.values())
             assert tally[kind] >= 2, (c["id"], votes)
             how = "3자 일치" if tally[kind] == 3 else "2:1(" + " · ".join(k for k, x in votes.items() if x == kind) + ")"
@@ -151,7 +160,8 @@ def main():
         rules=RULES,
         counts={k: counts.get(k, 0) for k in KINDS},
         draftCounts={k: sum(1 for d in draft.values() if d["갈래초안"] == k) for k in KINDS},
-        decided=len(DECISIONS),
+        decided=len(DECISIONS) + len(SECOND_ROUND),
+        secondRound=sorted(SECOND_ROUND),
         decidedUnanimous=sum(1 for x in out if x["decidedBy"] == "3자 일치"),
         changedFromDraft=[x["id"] for x in out if x["changedFromDraft"]],
         conditional=[x["id"] for x in out if x["condition"]],
