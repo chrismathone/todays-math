@@ -1139,6 +1139,7 @@ const KATEX_UNITS = (
   "g3-shapes,g3-measure,g4-fractions,g4-polygons,g5-divisors,g5-fractions,g5-area,g6-division,g6-proportion,g6-circle,numbers,g7-coordinate,g8-probability,g8-shapes,g9-equation,g9-function,g9-real"
 ).split(",");
 const katexFindings = [];
+const katexFitted = [];
 
 // 한 화면의 넘침·잘림. 판정:
 //  ① 숨은 스크롤 칸(보기 글 — `scrollbar-width: none` 이거나 단추 안)이 넘치면 **잉크가 잘리는지 픽셀로** 본다:
@@ -1321,7 +1322,36 @@ async function katexScenario({ page, sim, mobile, width, height, step, shot }, u
   const fitShots = new Set();
   const check = async (where, kind, selector) => {
     seen.math += await page.locator(`${selector ?? "body"} .katex`).count();
-    const found = record(where, await katexFit(page, selector));
+    // 보기 맞춤(`ExplorerChoiceText`)이 글자를 줄인 보기 — 잘림은 아니지만 몇 개가 줄어드는지 원장님께 알린다.
+    // 그리고 1배로 되돌려도 단추 테두리 안 · 글자 칸 안에 들면 **쓸데없이 줄인 것**이다(근호 SVG 가 scrollWidth 를
+    // 부풀려 «√9» 까지 0.7배로 줄였던 결함, 2026-09-27).
+    const needless = [];
+    for (const fitted of await page.locator(`${selector ?? "body"} [data-choice-text][data-fit]`).all()) {
+      const label = await visibleText(fitted);
+      katexFitted.push({
+        engine: page.context().browser().browserType().name(),
+        size: `${width}x${height}`,
+        unit: unitId,
+        where,
+        scale: await fitted.getAttribute("data-fit"),
+        label,
+      });
+      const fitsAtOne = await fitted.evaluate((el) => {
+        const drawn = el.style.fontSize;
+        el.style.fontSize = "";
+        const inner = el.getBoundingClientRect();
+        const fits =
+          el.offsetHeight <= el.parentElement.clientHeight &&
+          [...el.querySelectorAll(".katex")].every((math) => {
+            const box = math.getBoundingClientRect();
+            return box.left >= inner.left - 1 && box.right <= inner.right + 1;
+          });
+        el.style.fontSize = drawn;
+        return fits;
+      });
+      if (fitsAtOne) needless.push(`쓸데없는 맞춤 «${label}»`);
+    }
+    const found = record(where, needless) + record(where, await katexFit(page, selector));
     if (process.env.QA_KATEX_SHOT_ALL) {
       await shot(`katex-${unitId}-${kind}-${seen[kind]}${found ? "-problem" : ""}`);
     } else if (found || !fitShots.has(kind)) {
@@ -1720,8 +1750,10 @@ for (const engineName of engines) {
   }
 }
 await writeFile(resolve(output, "report.json"), JSON.stringify(results, null, 2));
-if (katexFindings.length || scenarioNames.some((name) => name.startsWith("katex:")))
+if (katexFindings.length || scenarioNames.some((name) => name.startsWith("katex:"))) {
   await writeFile(resolve(output, "katex-findings.json"), JSON.stringify(katexFindings, null, 2));
+  await writeFile(resolve(output, "katex-fitted.json"), JSON.stringify(katexFitted, null, 2));
+}
 const failed = results.filter((r) => r.status === "실패");
 console.log(`${results.length} 항목 · 실패 ${failed.length} · 못 봄 ${results.filter((r) => r.status === "못 봄").length}`);
 process.exitCode = failed.length ? 1 : 0;

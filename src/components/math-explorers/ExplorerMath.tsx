@@ -40,7 +40,8 @@ export function ExplorerMath({ text }: { text: string }) {
 const FIT_STEPS = [1, 0.9, 0.8, 0.7] as const;
 
 /**
- * 보기 단추 안 글 — 칸에 안 들어가면 글자를 한 단계씩 줄여 넣는다. 들어가면 그대로(자료 230개념 중 거의 전부).
+ * 보기 단추 안 글 — 칸에 안 들어가면 글자를 한 단계씩 줄여 넣는다. 들어가면 그대로(폰 실측 17단원에서 줄어드는 것은
+ * 근의 공식 보기 둘뿐 — 320 폭 0.9배 · 390×600 0.8배).
  *
  * 트랙 K 폰 실측(2026-09-27, 17단원 × 활동 전부): 320×568 의 보기 칸(131×62)에서 근의 공식
  * `x = (−b ± √(b²−4ac))/(2a)` 가 두 줄로 감겨 분모 «2a» 가 잘렸다(일반 글자일 때도 세 줄로 잘리던 자리).
@@ -66,9 +67,16 @@ export function ExplorerChoiceText({
     if (!label || !button) return;
     let frame = 0;
     let live = true;
-    const fits = () =>
-      label.offsetHeight <= button.clientHeight &&
-      label.scrollWidth <= label.clientWidth + 1;
+    // 가로는 수식 상자가 글자 칸 밖으로 나가는지로 본다. `scrollWidth` 로 재지 않는다 — KaTeX 근호는 400em 짜리 SVG 를
+    // 숨겨 두는 구조라 «√9» 같은 짧은 보기도 늘 넘쳐 보여, 폰 실측에서 근호 보기 여섯이 0.7배로 줄었다(2026-09-27).
+    const fits = () => {
+      if (label.offsetHeight > button.clientHeight) return false;
+      const inner = label.getBoundingClientRect();
+      return [...label.querySelectorAll(".katex")].every((math) => {
+        const drawn = math.getBoundingClientRect();
+        return drawn.left >= inner.left - 1 && drawn.right <= inner.right + 1;
+      });
+    };
     const run = () => {
       if (!live || !label.isConnected) return;
       // 한 번에 재고 되돌린다 — 크기가 결국 같으면 ResizeObserver 가 다시 부르지 않는다(맞춤이 맴돌지 않는다).
