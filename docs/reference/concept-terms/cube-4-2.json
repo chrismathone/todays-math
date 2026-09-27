@@ -1,0 +1,1040 @@
+{
+ "source": "큐브수학 개념 4-2 진도북",
+ "file": "N:\\개인\\강아\\교재자료\\큐브수학 개념\\큐브수학 개념\\진도북\\큐브수학 개념 4-2_진도북.pdf",
+ "pages": 152,
+ "extractedAt": "2026-09-28",
+ "extractor": "scripts/qa/concept-terms/extract-cube-terms-elem34.py",
+ "toc": [
+  {
+   "chapter": "1. 분수의 덧셈과 뺄셈",
+   "sections": [
+    "(진분수)+(진분수)",
+    "(대분수)+(대분수)",
+    "(진분수)-(진분수)",
+    "받아내림이 없는 (대분수)-(대분수)",
+    "(자연수)-(분수)",
+    "받아내림이 있는 (대분수)-(대분수)"
+   ],
+   "pdfPages": [
+    6,
+    29
+   ]
+  },
+  {
+   "chapter": "2. 삼각형",
+   "sections": [
+    "삼각형을 변의 길이에 따라 분류하기",
+    "이등변삼각형의 성질",
+    "정삼각형의 성질",
+    "삼각형을 각의 크기에 따라 분류하기",
+    "삼각형을 두 가지 기준으로 분류하기"
+   ],
+   "pdfPages": [
+    30,
+    51
+   ]
+  },
+  {
+   "chapter": "3. 소수의 덧셈과 뺄셈",
+   "sections": [
+    "소수 두 자리 수",
+    "소수 세 자리 수",
+    "소수의 크기 비교",
+    "소수 사이의 관계",
+    "소수 한 자리 수의 덧셈",
+    "소수 한 자리 수의 뺄셈",
+    "소수 두 자리 수의 덧셈",
+    "소수 두 자리 수의 뺄셈"
+   ],
+   "pdfPages": [
+    52,
+    81
+   ]
+  },
+  {
+   "chapter": "4. 사각형",
+   "sections": [
+    "수직과 수선",
+    "평행과 평행선",
+    "평행선 사이의 거리",
+    "사다리꼴",
+    "평행사변형",
+    "마름모",
+    "여러 가지 사각형"
+   ],
+   "pdfPages": [
+    82,
+    107
+   ]
+  },
+  {
+   "chapter": "5. 꺾은선그래프",
+   "sections": [
+    "꺾은선그래프",
+    "꺾은선그래프에서 알 수 있는 내용",
+    "꺾은선그래프로 나타내기",
+    "자료를 조사하여 꺾은선그래프로 나타내기",
+    "꺾은선그래프의 활용"
+   ],
+   "pdfPages": [
+    108,
+    129
+   ]
+  },
+  {
+   "chapter": "6. 다각형",
+   "sections": [
+    "다각형",
+    "정다각형",
+    "대각선",
+    "모양 만들기",
+    "모양 채우기"
+   ],
+   "pdfPages": [
+    130,
+    147
+   ]
+  }
+ ],
+ "sentenceStore": "문장(교재 원문)은 저장소 밖 C:\\Creative\\testautocreator-data\\I-개념용어\\cube-4-2.json — 용어마다 sentenceRef.key 로 찾는다",
+ "terms": [
+  {
+   "term": "이등변삼각형",
+   "kind": "정의",
+   "grade": "4-2",
+   "chapter": "2. 삼각형",
+   "section": "삼각형을 변의 길이에 따라 분류하기",
+   "pdfPage": 32,
+   "bookPage": "032쪽",
+   "key": "4-2/p032/이등변삼각형",
+   "first": true,
+   "aliases": [],
+   "mathGarbled": false,
+   "note": "",
+   "evidence": "색글씨+문형",
+   "explorer": {
+    "match": "exact",
+    "cardId": "g4-isosceles",
+    "cardName": "이등변삼각형",
+    "why": ""
+   },
+   "sentenceRef": {
+    "store": "testautocreator-data",
+    "file": "I-개념용어/cube-4-2.json",
+    "key": "4-2/p032/이등변삼각형"
+   }
+  },
+  {
+   "term": "정삼각형",
+   "kind": "정의",
+   "grade": "4-2",
+   "chapter": "2. 삼각형",
+   "section": "삼각형을 변의 길이에 따라 분류하기",
+   "pdfPage": 32,
+   "bookPage": "032쪽",
+   "key": "4-2/p032/정삼각형",
+   "first": true,
+   "aliases": [],
+   "mathGarbled": false,
+   "note": "",
+   "evidence": "색글씨+문형",
+   "explorer": {
+    "match": "none",
+    "cardId": "",
+    "cardName": "",
+    "why": ""
+   },
+   "sentenceRef": {
+    "store": "testautocreator-data",
+    "file": "I-개념용어/cube-4-2.json",
+    "key": "4-2/p032/정삼각형"
+   }
+  },
+  {
+   "term": "이등변삼각형과 정삼각형의 관계",
+   "kind": "성질",
+   "grade": "4-2",
+   "chapter": "2. 삼각형",
+   "section": "삼각형을 변의 길이에 따라 분류하기",
+   "pdfPage": 32,
+   "bookPage": "032쪽",
+   "key": "4-2/p032/이등변삼각형과 정삼각형의 관계",
+   "first": true,
+   "aliases": [],
+   "mathGarbled": false,
+   "note": "정삼각형이 이등변삼각형에 든다는 포함 관계. «관계» 소제목을 성질로 넣을지 원장님 판단",
+   "evidence": "보정: 소제목",
+   "explorer": {
+    "match": "none",
+    "cardId": "",
+    "cardName": "",
+    "why": ""
+   },
+   "sentenceRef": {
+    "store": "testautocreator-data",
+    "file": "I-개념용어/cube-4-2.json",
+    "key": "4-2/p032/이등변삼각형과 정삼각형의 관계"
+   }
+  },
+  {
+   "term": "이등변삼각형의 성질",
+   "kind": "성질",
+   "grade": "4-2",
+   "chapter": "2. 삼각형",
+   "section": "이등변삼각형의 성질",
+   "pdfPage": 34,
+   "bookPage": "034쪽",
+   "key": "4-2/p034/이등변삼각형의 성질",
+   "first": true,
+   "aliases": [],
+   "mathGarbled": false,
+   "note": "두 각의 크기가 같음",
+   "evidence": "보정: 소단원 제목",
+   "explorer": {
+    "match": "none",
+    "cardId": "",
+    "cardName": "",
+    "why": ""
+   },
+   "sentenceRef": {
+    "store": "testautocreator-data",
+    "file": "I-개념용어/cube-4-2.json",
+    "key": "4-2/p034/이등변삼각형의 성질"
+   }
+  },
+  {
+   "term": "정삼각형의 성질",
+   "kind": "성질",
+   "grade": "4-2",
+   "chapter": "2. 삼각형",
+   "section": "정삼각형의 성질",
+   "pdfPage": 34,
+   "bookPage": "034쪽",
+   "key": "4-2/p034/정삼각형의 성질",
+   "first": true,
+   "aliases": [],
+   "mathGarbled": false,
+   "note": "세 각의 크기가 같음",
+   "evidence": "보정: 소단원 제목",
+   "explorer": {
+    "match": "none",
+    "cardId": "",
+    "cardName": "",
+    "why": ""
+   },
+   "sentenceRef": {
+    "store": "testautocreator-data",
+    "file": "I-개념용어/cube-4-2.json",
+    "key": "4-2/p034/정삼각형의 성질"
+   }
+  },
+  {
+   "term": "예각삼각형",
+   "kind": "정의",
+   "grade": "4-2",
+   "chapter": "2. 삼각형",
+   "section": "삼각형을 각의 크기에 따라 분류하기",
+   "pdfPage": 38,
+   "bookPage": "038쪽",
+   "key": "4-2/p038/예각삼각형",
+   "first": true,
+   "aliases": [],
+   "mathGarbled": false,
+   "note": "",
+   "evidence": "색글씨+문형",
+   "explorer": {
+    "match": "none",
+    "cardId": "",
+    "cardName": "",
+    "why": ""
+   },
+   "sentenceRef": {
+    "store": "testautocreator-data",
+    "file": "I-개념용어/cube-4-2.json",
+    "key": "4-2/p038/예각삼각형"
+   }
+  },
+  {
+   "term": "둔각삼각형",
+   "kind": "정의",
+   "grade": "4-2",
+   "chapter": "2. 삼각형",
+   "section": "삼각형을 각의 크기에 따라 분류하기",
+   "pdfPage": 38,
+   "bookPage": "038쪽",
+   "key": "4-2/p038/둔각삼각형",
+   "first": true,
+   "aliases": [],
+   "mathGarbled": false,
+   "note": "",
+   "evidence": "색글씨+문형",
+   "explorer": {
+    "match": "none",
+    "cardId": "",
+    "cardName": "",
+    "why": ""
+   },
+   "sentenceRef": {
+    "store": "testautocreator-data",
+    "file": "I-개념용어/cube-4-2.json",
+    "key": "4-2/p038/둔각삼각형"
+   }
+  },
+  {
+   "term": "소수 첫째 자리",
+   "kind": "기타",
+   "grade": "4-2",
+   "chapter": "3. 소수의 덧셈과 뺄셈",
+   "section": "소수 두 자리 수",
+   "pdfPage": 54,
+   "bookPage": "054쪽",
+   "key": "4-2/p054/소수 첫째 자리",
+   "first": true,
+   "aliases": [],
+   "mathGarbled": false,
+   "note": "자리 이름 — 표 머리와 설명으로 가르침(«~라고 합니다» 없음)",
+   "evidence": "보정: 표 + 설명",
+   "explorer": {
+    "match": "exact",
+    "cardId": "g3-decimal",
+    "cardName": "소수 첫째 자리",
+    "why": "이름 같음 — 다만 카드는 초3, 교재는 4-2 (카드는 초3, 교재는 4-2)"
+   },
+   "sentenceRef": {
+    "store": "testautocreator-data",
+    "file": "I-개념용어/cube-4-2.json",
+    "key": "4-2/p054/소수 첫째 자리"
+   }
+  },
+  {
+   "term": "소수 둘째 자리",
+   "kind": "기타",
+   "grade": "4-2",
+   "chapter": "3. 소수의 덧셈과 뺄셈",
+   "section": "소수 두 자리 수",
+   "pdfPage": 54,
+   "bookPage": "054쪽",
+   "key": "4-2/p054/소수 둘째 자리",
+   "first": true,
+   "aliases": [],
+   "mathGarbled": false,
+   "note": "자리 이름 — 표 머리와 설명으로 가르침",
+   "evidence": "보정: 표 + 설명",
+   "explorer": {
+    "match": "none",
+    "cardId": "",
+    "cardName": "",
+    "why": ""
+   },
+   "sentenceRef": {
+    "store": "testautocreator-data",
+    "file": "I-개념용어/cube-4-2.json",
+    "key": "4-2/p054/소수 둘째 자리"
+   }
+  },
+  {
+   "term": "소수 셋째 자리",
+   "kind": "기타",
+   "grade": "4-2",
+   "chapter": "3. 소수의 덧셈과 뺄셈",
+   "section": "소수 세 자리 수",
+   "pdfPage": 56,
+   "bookPage": "056쪽",
+   "key": "4-2/p056/소수 셋째 자리",
+   "first": true,
+   "aliases": [],
+   "mathGarbled": false,
+   "note": "표 머리(문장 아님)",
+   "evidence": "보정: 표",
+   "explorer": {
+    "match": "none",
+    "cardId": "",
+    "cardName": "",
+    "why": ""
+   },
+   "sentenceRef": {
+    "store": "testautocreator-data",
+    "file": "I-개념용어/cube-4-2.json",
+    "key": "4-2/p056/소수 셋째 자리"
+   }
+  },
+  {
+   "term": "소수 사이의 관계",
+   "kind": "성질",
+   "grade": "4-2",
+   "chapter": "3. 소수의 덧셈과 뺄셈",
+   "section": "소수 사이의 관계",
+   "pdfPage": 58,
+   "bookPage": "058쪽",
+   "key": "4-2/p058/소수 사이의 관계",
+   "first": true,
+   "aliases": [],
+   "mathGarbled": false,
+   "note": "10배·1/10 에 따라 소수점 기준으로 한 자리씩 옮겨 감. 둘째 항목은 분수 글꼴이 깨져 뺌",
+   "evidence": "보정: 소단원 제목",
+   "explorer": {
+    "match": "related",
+    "cardId": "g4-large-place",
+    "cardName": "큰 수의 자릿값",
+    "why": "10배 · 1/10 에 따라 한 자리씩 이동 — 카드는 자연수 큰 수, 교재는 소수"
+   },
+   "sentenceRef": {
+    "store": "testautocreator-data",
+    "file": "I-개념용어/cube-4-2.json",
+    "key": "4-2/p058/소수 사이의 관계"
+   }
+  },
+  {
+   "term": "수직",
+   "kind": "정의",
+   "grade": "4-2",
+   "chapter": "4. 사각형",
+   "section": "수직과 수선",
+   "pdfPage": 84,
+   "bookPage": "084쪽",
+   "key": "4-2/p084/수직",
+   "first": true,
+   "aliases": [],
+   "mathGarbled": false,
+   "note": "",
+   "evidence": "색글씨+문형",
+   "explorer": {
+    "match": "none",
+    "cardId": "",
+    "cardName": "",
+    "why": ""
+   },
+   "sentenceRef": {
+    "store": "testautocreator-data",
+    "file": "I-개념용어/cube-4-2.json",
+    "key": "4-2/p084/수직"
+   }
+  },
+  {
+   "term": "수선",
+   "kind": "정의",
+   "grade": "4-2",
+   "chapter": "4. 사각형",
+   "section": "수직과 수선",
+   "pdfPage": 84,
+   "bookPage": "084쪽",
+   "key": "4-2/p084/수선",
+   "first": true,
+   "aliases": [],
+   "mathGarbled": false,
+   "note": "",
+   "evidence": "색글씨+문형",
+   "explorer": {
+    "match": "none",
+    "cardId": "",
+    "cardName": "",
+    "why": ""
+   },
+   "sentenceRef": {
+    "store": "testautocreator-data",
+    "file": "I-개념용어/cube-4-2.json",
+    "key": "4-2/p084/수선"
+   }
+  },
+  {
+   "term": "수선의 성질",
+   "kind": "성질",
+   "grade": "4-2",
+   "chapter": "4. 사각형",
+   "section": "수직과 수선",
+   "pdfPage": 84,
+   "bookPage": "084쪽",
+   "key": "4-2/p084/수선의 성질",
+   "first": true,
+   "aliases": [],
+   "mathGarbled": false,
+   "note": "여백 제목, 두 항목(수선은 무수히 그을 수 있음 · 한 점을 지나는 수선은 하나)",
+   "evidence": "보정: 여백 제목",
+   "explorer": {
+    "match": "none",
+    "cardId": "",
+    "cardName": "",
+    "why": ""
+   },
+   "sentenceRef": {
+    "store": "testautocreator-data",
+    "file": "I-개념용어/cube-4-2.json",
+    "key": "4-2/p084/수선의 성질"
+   }
+  },
+  {
+   "term": "평행",
+   "kind": "정의",
+   "grade": "4-2",
+   "chapter": "4. 사각형",
+   "section": "평행과 평행선",
+   "pdfPage": 86,
+   "bookPage": "086쪽",
+   "key": "4-2/p086/평행",
+   "first": true,
+   "aliases": [],
+   "mathGarbled": false,
+   "note": "",
+   "evidence": "색글씨+문형",
+   "explorer": {
+    "match": "exact",
+    "cardId": "g4-parallel",
+    "cardName": "평행",
+    "why": ""
+   },
+   "sentenceRef": {
+    "store": "testautocreator-data",
+    "file": "I-개념용어/cube-4-2.json",
+    "key": "4-2/p086/평행"
+   }
+  },
+  {
+   "term": "평행선",
+   "kind": "정의",
+   "grade": "4-2",
+   "chapter": "4. 사각형",
+   "section": "평행과 평행선",
+   "pdfPage": 86,
+   "bookPage": "086쪽",
+   "key": "4-2/p086/평행선",
+   "first": true,
+   "aliases": [],
+   "mathGarbled": false,
+   "note": "",
+   "evidence": "색글씨+문형",
+   "explorer": {
+    "match": "none",
+    "cardId": "",
+    "cardName": "",
+    "why": ""
+   },
+   "sentenceRef": {
+    "store": "testautocreator-data",
+    "file": "I-개념용어/cube-4-2.json",
+    "key": "4-2/p086/평행선"
+   }
+  },
+  {
+   "term": "평행선의 성질",
+   "kind": "성질",
+   "grade": "4-2",
+   "chapter": "4. 사각형",
+   "section": "평행과 평행선",
+   "pdfPage": 86,
+   "bookPage": "086쪽",
+   "key": "4-2/p086/평행선의 성질",
+   "first": true,
+   "aliases": [],
+   "mathGarbled": false,
+   "note": "여백 제목, 두 항목(평행선은 무수히 그을 수 있음 · 한 점을 지나는 평행선은 하나)",
+   "evidence": "보정: 여백 제목",
+   "explorer": {
+    "match": "none",
+    "cardId": "",
+    "cardName": "",
+    "why": ""
+   },
+   "sentenceRef": {
+    "store": "testautocreator-data",
+    "file": "I-개념용어/cube-4-2.json",
+    "key": "4-2/p086/평행선의 성질"
+   }
+  },
+  {
+   "term": "평행선 사이의 거리",
+   "kind": "정의",
+   "grade": "4-2",
+   "chapter": "4. 사각형",
+   "section": "평행선 사이의 거리",
+   "pdfPage": 86,
+   "bookPage": "086쪽",
+   "key": "4-2/p086/평행선 사이의 거리",
+   "first": true,
+   "aliases": [],
+   "mathGarbled": false,
+   "note": "",
+   "evidence": "색글씨+문형",
+   "explorer": {
+    "match": "none",
+    "cardId": "",
+    "cardName": "",
+    "why": ""
+   },
+   "sentenceRef": {
+    "store": "testautocreator-data",
+    "file": "I-개념용어/cube-4-2.json",
+    "key": "4-2/p086/평행선 사이의 거리"
+   }
+  },
+  {
+   "term": "사다리꼴",
+   "kind": "정의",
+   "grade": "4-2",
+   "chapter": "4. 사각형",
+   "section": "사다리꼴",
+   "pdfPage": 90,
+   "bookPage": "090쪽",
+   "key": "4-2/p090/사다리꼴",
+   "first": true,
+   "aliases": [],
+   "mathGarbled": false,
+   "note": "",
+   "evidence": "색글씨+문형",
+   "explorer": {
+    "match": "none",
+    "cardId": "",
+    "cardName": "",
+    "why": ""
+   },
+   "sentenceRef": {
+    "store": "testautocreator-data",
+    "file": "I-개념용어/cube-4-2.json",
+    "key": "4-2/p090/사다리꼴"
+   }
+  },
+  {
+   "term": "평행사변형",
+   "kind": "정의",
+   "grade": "4-2",
+   "chapter": "4. 사각형",
+   "section": "평행사변형",
+   "pdfPage": 92,
+   "bookPage": "092쪽",
+   "key": "4-2/p092/평행사변형",
+   "first": true,
+   "aliases": [],
+   "mathGarbled": false,
+   "note": "",
+   "evidence": "색글씨+문형",
+   "explorer": {
+    "match": "exact",
+    "cardId": "g4-parallelogram",
+    "cardName": "평행사변형",
+    "why": ""
+   },
+   "sentenceRef": {
+    "store": "testautocreator-data",
+    "file": "I-개념용어/cube-4-2.json",
+    "key": "4-2/p092/평행사변형"
+   }
+  },
+  {
+   "term": "평행사변형의 성질",
+   "kind": "성질",
+   "grade": "4-2",
+   "chapter": "4. 사각형",
+   "section": "평행사변형",
+   "pdfPage": 92,
+   "bookPage": "092쪽",
+   "key": "4-2/p092/평행사변형의 성질",
+   "first": true,
+   "aliases": [],
+   "mathGarbled": false,
+   "note": "소제목, 세 항목(마주 보는 변 · 마주 보는 각 · 이웃한 두 각의 합 180°)",
+   "evidence": "보정: 소제목",
+   "explorer": {
+    "match": "none",
+    "cardId": "",
+    "cardName": "",
+    "why": ""
+   },
+   "sentenceRef": {
+    "store": "testautocreator-data",
+    "file": "I-개념용어/cube-4-2.json",
+    "key": "4-2/p092/평행사변형의 성질"
+   }
+  },
+  {
+   "term": "마름모",
+   "kind": "정의",
+   "grade": "4-2",
+   "chapter": "4. 사각형",
+   "section": "마름모",
+   "pdfPage": 94,
+   "bookPage": "094쪽",
+   "key": "4-2/p094/마름모",
+   "first": true,
+   "aliases": [],
+   "mathGarbled": false,
+   "note": "",
+   "evidence": "색글씨+문형",
+   "explorer": {
+    "match": "exact",
+    "cardId": "g4-rhombus",
+    "cardName": "마름모",
+    "why": ""
+   },
+   "sentenceRef": {
+    "store": "testautocreator-data",
+    "file": "I-개념용어/cube-4-2.json",
+    "key": "4-2/p094/마름모"
+   }
+  },
+  {
+   "term": "마름모의 성질",
+   "kind": "성질",
+   "grade": "4-2",
+   "chapter": "4. 사각형",
+   "section": "마름모",
+   "pdfPage": 94,
+   "bookPage": "094쪽",
+   "key": "4-2/p094/마름모의 성질",
+   "first": true,
+   "aliases": [],
+   "mathGarbled": false,
+   "note": "소제목, 네 항목",
+   "evidence": "보정: 소제목",
+   "explorer": {
+    "match": "none",
+    "cardId": "",
+    "cardName": "",
+    "why": ""
+   },
+   "sentenceRef": {
+    "store": "testautocreator-data",
+    "file": "I-개념용어/cube-4-2.json",
+    "key": "4-2/p094/마름모의 성질"
+   }
+  },
+  {
+   "term": "직사각형의 성질",
+   "kind": "성질",
+   "grade": "4-2",
+   "chapter": "4. 사각형",
+   "section": "여러 가지 사각형",
+   "pdfPage": 96,
+   "bookPage": "096쪽",
+   "key": "4-2/p096/직사각형의 성질",
+   "first": true,
+   "aliases": [],
+   "mathGarbled": false,
+   "note": "소제목 «직사각형과 정사각형의 성질» 표의 왼쪽 칸. 평행 항목은 줄이 갈려 뺌",
+   "evidence": "보정: 소제목(표)",
+   "explorer": {
+    "match": "none",
+    "cardId": "",
+    "cardName": "",
+    "why": ""
+   },
+   "sentenceRef": {
+    "store": "testautocreator-data",
+    "file": "I-개념용어/cube-4-2.json",
+    "key": "4-2/p096/직사각형의 성질"
+   }
+  },
+  {
+   "term": "정사각형의 성질",
+   "kind": "성질",
+   "grade": "4-2",
+   "chapter": "4. 사각형",
+   "section": "여러 가지 사각형",
+   "pdfPage": 96,
+   "bookPage": "096쪽",
+   "key": "4-2/p096/정사각형의 성질",
+   "first": true,
+   "aliases": [],
+   "mathGarbled": false,
+   "note": "같은 표의 오른쪽 칸. 평행 항목은 줄이 갈려 뺌",
+   "evidence": "보정: 소제목(표)",
+   "explorer": {
+    "match": "none",
+    "cardId": "",
+    "cardName": "",
+    "why": ""
+   },
+   "sentenceRef": {
+    "store": "testautocreator-data",
+    "file": "I-개념용어/cube-4-2.json",
+    "key": "4-2/p096/정사각형의 성질"
+   }
+  },
+  {
+   "term": "여러 가지 사각형의 관계",
+   "kind": "성질",
+   "grade": "4-2",
+   "chapter": "4. 사각형",
+   "section": "여러 가지 사각형",
+   "pdfPage": 96,
+   "bookPage": "096쪽",
+   "key": "4-2/p096/여러 가지 사각형의 관계",
+   "first": true,
+   "aliases": [],
+   "mathGarbled": false,
+   "note": "사각형 사이 포함 관계(넷째 항목은 줄이 길어 뺌). «관계» 소제목을 성질로 넣을지 원장님 판단",
+   "evidence": "보정: 소제목",
+   "explorer": {
+    "match": "none",
+    "cardId": "",
+    "cardName": "",
+    "why": ""
+   },
+   "sentenceRef": {
+    "store": "testautocreator-data",
+    "file": "I-개념용어/cube-4-2.json",
+    "key": "4-2/p096/여러 가지 사각형의 관계"
+   }
+  },
+  {
+   "term": "꺾은선그래프",
+   "kind": "정의",
+   "grade": "4-2",
+   "chapter": "5. 꺾은선그래프",
+   "section": "꺾은선그래프",
+   "pdfPage": 110,
+   "bookPage": "110쪽",
+   "key": "4-2/p110/꺾은선그래프",
+   "first": true,
+   "aliases": [],
+   "mathGarbled": false,
+   "note": "",
+   "evidence": "색글씨+문형",
+   "explorer": {
+    "match": "exact",
+    "cardId": "g4-line-graph",
+    "cardName": "꺾은선그래프",
+    "why": ""
+   },
+   "sentenceRef": {
+    "store": "testautocreator-data",
+    "file": "I-개념용어/cube-4-2.json",
+    "key": "4-2/p110/꺾은선그래프"
+   }
+  },
+  {
+   "term": "물결선",
+   "kind": "기호",
+   "grade": "4-2",
+   "chapter": "5. 꺾은선그래프",
+   "section": "꺾은선그래프에서 알 수 있는 내용",
+   "pdfPage": 112,
+   "bookPage": "112쪽",
+   "key": "4-2/p112/물결선",
+   "first": true,
+   "aliases": [
+    "≈"
+   ],
+   "mathGarbled": false,
+   "note": "소제목 «꺾은선그래프에서 물결선 알아보기» — 필요 없는 눈금 부분을 줄여 나타내는 표시",
+   "evidence": "보정: 본문(색 없음)",
+   "explorer": {
+    "match": "related",
+    "cardId": "g4-scale",
+    "cardName": "그래프의 눈금",
+    "why": "그래프 눈금을 줄여 읽는 표시 — 카드 «그래프의 눈금» 과 같은 쪽에서 쓰임"
+   },
+   "sentenceRef": {
+    "store": "testautocreator-data",
+    "file": "I-개념용어/cube-4-2.json",
+    "key": "4-2/p112/물결선"
+   }
+  },
+  {
+   "term": "다각형",
+   "kind": "정의",
+   "grade": "4-2",
+   "chapter": "6. 다각형",
+   "section": "다각형",
+   "pdfPage": 132,
+   "bookPage": "132쪽",
+   "key": "4-2/p132/다각형",
+   "first": true,
+   "aliases": [],
+   "mathGarbled": false,
+   "note": "",
+   "evidence": "색글씨+문형",
+   "explorer": {
+    "match": "exact",
+    "cardId": "g4-polygon",
+    "cardName": "다각형",
+    "why": ""
+   },
+   "sentenceRef": {
+    "store": "testautocreator-data",
+    "file": "I-개념용어/cube-4-2.json",
+    "key": "4-2/p132/다각형"
+   }
+  },
+  {
+   "term": "오각형",
+   "kind": "정의",
+   "grade": "4-2",
+   "chapter": "6. 다각형",
+   "section": "다각형",
+   "pdfPage": 132,
+   "bookPage": "132쪽",
+   "key": "4-2/p132/오각형",
+   "first": true,
+   "aliases": [],
+   "mathGarbled": false,
+   "note": "",
+   "evidence": "색글씨+문형(나열)",
+   "explorer": {
+    "match": "none",
+    "cardId": "",
+    "cardName": "",
+    "why": ""
+   },
+   "sentenceRef": {
+    "store": "testautocreator-data",
+    "file": "I-개념용어/cube-4-2.json",
+    "key": "4-2/p132/오각형"
+   }
+  },
+  {
+   "term": "육각형",
+   "kind": "정의",
+   "grade": "4-2",
+   "chapter": "6. 다각형",
+   "section": "다각형",
+   "pdfPage": 132,
+   "bookPage": "132쪽",
+   "key": "4-2/p132/육각형",
+   "first": true,
+   "aliases": [],
+   "mathGarbled": false,
+   "note": "",
+   "evidence": "색글씨+문형(나열)",
+   "explorer": {
+    "match": "none",
+    "cardId": "",
+    "cardName": "",
+    "why": ""
+   },
+   "sentenceRef": {
+    "store": "testautocreator-data",
+    "file": "I-개념용어/cube-4-2.json",
+    "key": "4-2/p132/육각형"
+   }
+  },
+  {
+   "term": "칠각형",
+   "kind": "정의",
+   "grade": "4-2",
+   "chapter": "6. 다각형",
+   "section": "다각형",
+   "pdfPage": 132,
+   "bookPage": "132쪽",
+   "key": "4-2/p132/칠각형",
+   "first": true,
+   "aliases": [],
+   "mathGarbled": false,
+   "note": "",
+   "evidence": "색글씨+문형(나열)",
+   "explorer": {
+    "match": "none",
+    "cardId": "",
+    "cardName": "",
+    "why": ""
+   },
+   "sentenceRef": {
+    "store": "testautocreator-data",
+    "file": "I-개념용어/cube-4-2.json",
+    "key": "4-2/p132/칠각형"
+   }
+  },
+  {
+   "term": "팔각형",
+   "kind": "정의",
+   "grade": "4-2",
+   "chapter": "6. 다각형",
+   "section": "다각형",
+   "pdfPage": 132,
+   "bookPage": "132쪽",
+   "key": "4-2/p132/팔각형",
+   "first": true,
+   "aliases": [],
+   "mathGarbled": false,
+   "note": "",
+   "evidence": "색글씨+문형",
+   "explorer": {
+    "match": "none",
+    "cardId": "",
+    "cardName": "",
+    "why": ""
+   },
+   "sentenceRef": {
+    "store": "testautocreator-data",
+    "file": "I-개념용어/cube-4-2.json",
+    "key": "4-2/p132/팔각형"
+   }
+  },
+  {
+   "term": "정다각형",
+   "kind": "정의",
+   "grade": "4-2",
+   "chapter": "6. 다각형",
+   "section": "정다각형",
+   "pdfPage": 132,
+   "bookPage": "132쪽",
+   "key": "4-2/p132/정다각형",
+   "first": true,
+   "aliases": [],
+   "mathGarbled": false,
+   "note": "",
+   "evidence": "색글씨+문형",
+   "explorer": {
+    "match": "none",
+    "cardId": "",
+    "cardName": "",
+    "why": ""
+   },
+   "sentenceRef": {
+    "store": "testautocreator-data",
+    "file": "I-개념용어/cube-4-2.json",
+    "key": "4-2/p132/정다각형"
+   }
+  },
+  {
+   "term": "대각선",
+   "kind": "정의",
+   "grade": "4-2",
+   "chapter": "6. 다각형",
+   "section": "대각선",
+   "pdfPage": 134,
+   "bookPage": "134쪽",
+   "key": "4-2/p134/대각선",
+   "first": true,
+   "aliases": [],
+   "mathGarbled": false,
+   "note": "",
+   "evidence": "색글씨+문형",
+   "explorer": {
+    "match": "exact",
+    "cardId": "g4-diagonal",
+    "cardName": "대각선",
+    "why": ""
+   },
+   "sentenceRef": {
+    "store": "testautocreator-data",
+    "file": "I-개념용어/cube-4-2.json",
+    "key": "4-2/p134/대각선"
+   }
+  },
+  {
+   "term": "대각선의 성질",
+   "kind": "성질",
+   "grade": "4-2",
+   "chapter": "6. 다각형",
+   "section": "대각선",
+   "pdfPage": 134,
+   "bookPage": "134쪽",
+   "key": "4-2/p134/대각선의 성질",
+   "first": true,
+   "aliases": [],
+   "mathGarbled": false,
+   "note": "소제목 «대각선의 성질에 따라 사각형 분류하기», 세 항목",
+   "evidence": "보정: 소제목",
+   "explorer": {
+    "match": "none",
+    "cardId": "",
+    "cardName": "",
+    "why": ""
+   },
+   "sentenceRef": {
+    "store": "testautocreator-data",
+    "file": "I-개념용어/cube-4-2.json",
+    "key": "4-2/p134/대각선의 성질"
+   }
+  }
+ ]
+}

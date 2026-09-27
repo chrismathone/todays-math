@@ -1,0 +1,771 @@
+{
+ "source": "큐브수학 개념 3-2 진도북",
+ "file": "N:\\개인\\강아\\교재자료\\큐브수학 개념\\큐브수학 개념\\진도북\\큐브수학 개념 3-2_진도북.pdf",
+ "pages": 152,
+ "extractedAt": "2026-09-28",
+ "extractor": "scripts/qa/concept-terms/extract-cube-terms-elem34.py",
+ "toc": [
+  {
+   "chapter": "1. 곱셈",
+   "sections": [
+    "올림이 없는 (세 자리 수)×(한 자리 수)",
+    "일의 자리에서 올림이 있는 (세 자리 수)×(한 자리 수)",
+    "십, 백의 자리에서 올림이 있는 (세 자리 수)×(한 자리 수)",
+    "(몇십)×(몇십), (몇십몇)×(몇십)",
+    "(몇)×(몇십몇)",
+    "올림이 한 번 있는 (몇십몇)×(몇십몇)",
+    "올림이 여러 번 있는 (몇십몇)×(몇십몇)"
+   ],
+   "pdfPages": [
+    6,
+    31
+   ]
+  },
+  {
+   "chapter": "2. 나눗셈",
+   "sections": [
+    "(몇십)÷(몇)",
+    "내림이 없고 나머지가 없는 (몇십몇)÷(몇)",
+    "내림이 있고 나머지가 없는 (몇십몇)÷(몇)",
+    "내림이 없고 나머지가 있는 (몇십몇)÷(몇)",
+    "내림이 있고 나머지가 있는 (몇십몇)÷(몇)",
+    "나머지가 없는 (세 자리 수)÷(한 자리 수)",
+    "나머지가 있는 (세 자리 수)÷(한 자리 수)",
+    "맞게 계산했는지 확인하기"
+   ],
+   "pdfPages": [
+    32,
+    61
+   ]
+  },
+  {
+   "chapter": "3. 원",
+   "sections": [
+    "원의 중심, 반지름, 지름",
+    "원의 성질",
+    "컴퍼스를 이용하여 원 그리기",
+    "원을 이용하여 여러 가지 모양 그리기"
+   ],
+   "pdfPages": [
+    62,
+    79
+   ]
+  },
+  {
+   "chapter": "4. 분수",
+   "sections": [
+    "분수로 나타내기",
+    "전체 개수에 대한 분수만큼은 얼마인지 알기",
+    "전체 길이에 대한 분수만큼은 얼마인지 알기",
+    "진분수, 가분수, 자연수",
+    "대분수",
+    "분모가 같은 분수의 크기 비교"
+   ],
+   "pdfPages": [
+    80,
+    105
+   ]
+  },
+  {
+   "chapter": "5. 들이와 무게",
+   "sections": [
+    "들이 비교하기",
+    "들이의 단위",
+    "들이 어림하고 재어 보기",
+    "들이의 덧셈과 뺄셈",
+    "무게 비교하기",
+    "무게의 단위",
+    "무게 어림하고 재어 보기",
+    "무게의 덧셈과 뺄셈"
+   ],
+   "pdfPages": [
+    106,
+    131
+   ]
+  },
+  {
+   "chapter": "6. 자료의 정리",
+   "sections": [
+    "표의 내용 알아보기",
+    "그림그래프 알아보기",
+    "그림그래프로 나타내기",
+    "자료를 조사하여 그림그래프로 나타내기"
+   ],
+   "pdfPages": [
+    132,
+    147
+   ]
+  }
+ ],
+ "sentenceStore": "문장(교재 원문)은 저장소 밖 C:\\Creative\\testautocreator-data\\I-개념용어\\cube-3-2.json — 용어마다 sentenceRef.key 로 찾는다",
+ "terms": [
+  {
+   "term": "올림",
+   "kind": "기타",
+   "grade": "3-2",
+   "chapter": "1. 곱셈",
+   "section": "일의 자리에서 올림이 있는 (세 자리 수)×(한 자리 수)",
+   "pdfPage": 10,
+   "bookPage": "010쪽",
+   "key": "3-2/p010/올림",
+   "first": false,
+   "aliases": [],
+   "mathGarbled": false,
+   "note": "정의 문장 없음 — 소단원 제목과 설명으로 가르침(곱셈 쪽 여백에서 다시 풀이 — 3-1 곱셈과 같음)",
+   "evidence": "보정: 여백 설명",
+   "explorer": {
+    "match": "none",
+    "cardId": "",
+    "cardName": "",
+    "why": ""
+   },
+   "sentenceRef": {
+    "store": "testautocreator-data",
+    "file": "I-개념용어/cube-3-2.json",
+    "key": "3-2/p010/올림"
+   }
+  },
+  {
+   "term": "나눗셈 세로 표기",
+   "kind": "기호",
+   "grade": "3-2",
+   "chapter": "2. 나눗셈",
+   "section": "내림이 없고 나머지가 없는 (몇십몇)÷(몇)",
+   "pdfPage": 36,
+   "bookPage": "036쪽",
+   "key": "3-2/p036/나눗셈 세로 표기",
+   "first": true,
+   "aliases": [],
+   "mathGarbled": true,
+   "note": "이름은 우리가 붙임(교재에 이름 없음) — 나눗셈을 세로로 쓸 때 세 수의 자리를 여백 그림으로 가르침",
+   "evidence": "보정: 여백 설명",
+   "explorer": {
+    "match": "none",
+    "cardId": "",
+    "cardName": "",
+    "why": ""
+   },
+   "sentenceRef": {
+    "store": "testautocreator-data",
+    "file": "I-개념용어/cube-3-2.json",
+    "key": "3-2/p036/나눗셈 세로 표기"
+   }
+  },
+  {
+   "term": "나머지와 나누는 수의 관계",
+   "kind": "성질",
+   "grade": "3-2",
+   "chapter": "2. 나눗셈",
+   "section": "내림이 없고 나머지가 있는 (몇십몇)÷(몇)",
+   "pdfPage": 42,
+   "bookPage": "042쪽",
+   "key": "3-2/p042/나머지와 나누는 수의 관계",
+   "first": true,
+   "aliases": [],
+   "mathGarbled": false,
+   "note": "나머지가 늘 나누는 수보다 작다는 관계(이름 붙은 여백 제목)",
+   "evidence": "보정: 여백 제목",
+   "explorer": {
+    "match": "related",
+    "cardId": "g3-remainder",
+    "cardName": "나머지",
+    "why": "카드 «나머지» 정의 뒷부분(나누는 수보다 작아야 한다)과 같은 내용"
+   },
+   "sentenceRef": {
+    "store": "testautocreator-data",
+    "file": "I-개념용어/cube-3-2.json",
+    "key": "3-2/p042/나머지와 나누는 수의 관계"
+   }
+  },
+  {
+   "term": "나머지",
+   "kind": "정의",
+   "grade": "3-2",
+   "chapter": "2. 나눗셈",
+   "section": "내림이 없고 나머지가 있는 (몇십몇)÷(몇)",
+   "pdfPage": 42,
+   "bookPage": "042쪽",
+   "key": "3-2/p042/나머지",
+   "first": true,
+   "aliases": [],
+   "mathGarbled": false,
+   "note": "",
+   "evidence": "색글씨+문형",
+   "explorer": {
+    "match": "exact",
+    "cardId": "g3-remainder",
+    "cardName": "나머지",
+    "why": ""
+   },
+   "sentenceRef": {
+    "store": "testautocreator-data",
+    "file": "I-개념용어/cube-3-2.json",
+    "key": "3-2/p042/나머지"
+   }
+  },
+  {
+   "term": "나누어떨어진다",
+   "kind": "정의",
+   "grade": "3-2",
+   "chapter": "2. 나눗셈",
+   "section": "내림이 없고 나머지가 있는 (몇십몇)÷(몇)",
+   "pdfPage": 42,
+   "bookPage": "042쪽",
+   "key": "3-2/p042/나누어떨어진다",
+   "first": true,
+   "aliases": [
+    "나누어떨어지다"
+   ],
+   "mathGarbled": false,
+   "note": "",
+   "evidence": "색글씨+문형",
+   "explorer": {
+    "match": "none",
+    "cardId": "",
+    "cardName": "",
+    "why": ""
+   },
+   "sentenceRef": {
+    "store": "testautocreator-data",
+    "file": "I-개념용어/cube-3-2.json",
+    "key": "3-2/p042/나누어떨어진다"
+   }
+  },
+  {
+   "term": "…(몫과 나머지 표기)",
+   "kind": "기호",
+   "grade": "3-2",
+   "chapter": "2. 나눗셈",
+   "section": "내림이 없고 나머지가 있는 (몇십몇)÷(몇)",
+   "pdfPage": 42,
+   "bookPage": "042쪽",
+   "key": "3-2/p042/…(몫과 나머지 표기)",
+   "first": true,
+   "aliases": [],
+   "mathGarbled": false,
+   "note": "몫과 나머지를 말줄임표로 잇는 새 표기(그림 속 식). 이름은 우리가 붙임",
+   "evidence": "보정: 그림 이름표",
+   "explorer": {
+    "match": "none",
+    "cardId": "",
+    "cardName": "",
+    "why": ""
+   },
+   "sentenceRef": {
+    "store": "testautocreator-data",
+    "file": "I-개념용어/cube-3-2.json",
+    "key": "3-2/p042/…(몫과 나머지 표기)"
+   }
+  },
+  {
+   "term": "내림",
+   "kind": "기타",
+   "grade": "3-2",
+   "chapter": "2. 나눗셈",
+   "section": "나머지가 있는 (세 자리 수)÷(한 자리 수)",
+   "pdfPage": 48,
+   "bookPage": "048쪽",
+   "key": "3-2/p048/내림",
+   "first": true,
+   "aliases": [],
+   "mathGarbled": false,
+   "note": "정의 문장 없음 — 소단원 제목과 설명으로 가르침(034쪽부터 소제목, 048쪽 여백에서 남은 수를 다음 자리로 내려 함께 계산한다고 풀이)",
+   "evidence": "보정: 여백 설명",
+   "explorer": {
+    "match": "none",
+    "cardId": "",
+    "cardName": "",
+    "why": ""
+   },
+   "sentenceRef": {
+    "store": "testautocreator-data",
+    "file": "I-개념용어/cube-3-2.json",
+    "key": "3-2/p048/내림"
+   }
+  },
+  {
+   "term": "나눗셈을 맞게 계산했는지 확인하는 방법",
+   "kind": "성질",
+   "grade": "3-2",
+   "chapter": "2. 나눗셈",
+   "section": "맞게 계산했는지 확인하기",
+   "pdfPage": 50,
+   "bookPage": "050쪽",
+   "key": "3-2/p050/나눗셈을 맞게 계산했는지 확인하는 방법",
+   "first": true,
+   "aliases": [
+    "맞게 계산했는지 확인하기"
+   ],
+   "mathGarbled": false,
+   "note": "검산식(나누는 수×몫+나머지=나누어지는 수). 공식으로 볼 수도 있음",
+   "evidence": "보정: 상자 제목",
+   "explorer": {
+    "match": "related",
+    "cardId": "g3-check-division",
+    "cardName": "나눗셈 확인",
+    "why": "같은 검산식(나누는 수×몫+나머지=나누어지는 수) — 카드 이름은 «나눗셈 확인»"
+   },
+   "sentenceRef": {
+    "store": "testautocreator-data",
+    "file": "I-개념용어/cube-3-2.json",
+    "key": "3-2/p050/나눗셈을 맞게 계산했는지 확인하는 방법"
+   }
+  },
+  {
+   "term": "원의 중심",
+   "kind": "정의",
+   "grade": "3-2",
+   "chapter": "3. 원",
+   "section": "원의 중심, 반지름, 지름",
+   "pdfPage": 64,
+   "bookPage": "064쪽",
+   "key": "3-2/p064/원의 중심",
+   "first": true,
+   "aliases": [],
+   "mathGarbled": false,
+   "note": "",
+   "evidence": "색글씨+문형",
+   "explorer": {
+    "match": "exact",
+    "cardId": "g3-circle-center",
+    "cardName": "원의 중심",
+    "why": ""
+   },
+   "sentenceRef": {
+    "store": "testautocreator-data",
+    "file": "I-개념용어/cube-3-2.json",
+    "key": "3-2/p064/원의 중심"
+   }
+  },
+  {
+   "term": "반지름",
+   "kind": "정의",
+   "grade": "3-2",
+   "chapter": "3. 원",
+   "section": "원의 중심, 반지름, 지름",
+   "pdfPage": 64,
+   "bookPage": "064쪽",
+   "key": "3-2/p064/반지름",
+   "first": true,
+   "aliases": [
+    "원의 반지름"
+   ],
+   "mathGarbled": false,
+   "note": "",
+   "evidence": "색글씨+문형",
+   "explorer": {
+    "match": "exact",
+    "cardId": "g3-radius",
+    "cardName": "반지름",
+    "why": ""
+   },
+   "sentenceRef": {
+    "store": "testautocreator-data",
+    "file": "I-개념용어/cube-3-2.json",
+    "key": "3-2/p064/반지름"
+   }
+  },
+  {
+   "term": "지름",
+   "kind": "정의",
+   "grade": "3-2",
+   "chapter": "3. 원",
+   "section": "원의 중심, 반지름, 지름",
+   "pdfPage": 64,
+   "bookPage": "064쪽",
+   "key": "3-2/p064/지름",
+   "first": true,
+   "aliases": [
+    "원의 지름"
+   ],
+   "mathGarbled": false,
+   "note": "",
+   "evidence": "색글씨+문형",
+   "explorer": {
+    "match": "exact",
+    "cardId": "g3-diameter",
+    "cardName": "지름",
+    "why": ""
+   },
+   "sentenceRef": {
+    "store": "testautocreator-data",
+    "file": "I-개념용어/cube-3-2.json",
+    "key": "3-2/p064/지름"
+   }
+  },
+  {
+   "term": "원의 성질",
+   "kind": "성질",
+   "grade": "3-2",
+   "chapter": "3. 원",
+   "section": "원의 성질",
+   "pdfPage": 66,
+   "bookPage": "066쪽",
+   "key": "3-2/p066/원의 성질",
+   "first": true,
+   "aliases": [],
+   "mathGarbled": false,
+   "note": "지름이 반지름의 두 배라는 항목 — 같은 쪽에 지름이 원을 반으로 나누고 가장 긴 선분이라는 항목도 있음",
+   "evidence": "보정: 소단원 제목",
+   "explorer": {
+    "match": "none",
+    "cardId": "",
+    "cardName": "",
+    "why": ""
+   },
+   "sentenceRef": {
+    "store": "testautocreator-data",
+    "file": "I-개념용어/cube-3-2.json",
+    "key": "3-2/p066/원의 성질"
+   }
+  },
+  {
+   "term": "진분수",
+   "kind": "정의",
+   "grade": "3-2",
+   "chapter": "4. 분수",
+   "section": "진분수, 가분수, 자연수",
+   "pdfPage": 88,
+   "bookPage": "088쪽",
+   "key": "3-2/p088/진분수",
+   "first": true,
+   "aliases": [],
+   "mathGarbled": true,
+   "note": "",
+   "evidence": "색글씨+문형",
+   "explorer": {
+    "match": "exact",
+    "cardId": "g4-proper",
+    "cardName": "진분수",
+    "why": "(카드는 초4, 교재는 3-2)"
+   },
+   "sentenceRef": {
+    "store": "testautocreator-data",
+    "file": "I-개념용어/cube-3-2.json",
+    "key": "3-2/p088/진분수"
+   }
+  },
+  {
+   "term": "가분수",
+   "kind": "정의",
+   "grade": "3-2",
+   "chapter": "4. 분수",
+   "section": "진분수, 가분수, 자연수",
+   "pdfPage": 88,
+   "bookPage": "088쪽",
+   "key": "3-2/p088/가분수",
+   "first": true,
+   "aliases": [],
+   "mathGarbled": true,
+   "note": "",
+   "evidence": "색글씨+문형",
+   "explorer": {
+    "match": "exact",
+    "cardId": "g4-improper",
+    "cardName": "가분수",
+    "why": "(카드는 초4, 교재는 3-2)"
+   },
+   "sentenceRef": {
+    "store": "testautocreator-data",
+    "file": "I-개념용어/cube-3-2.json",
+    "key": "3-2/p088/가분수"
+   }
+  },
+  {
+   "term": "자연수",
+   "kind": "정의",
+   "grade": "3-2",
+   "chapter": "4. 분수",
+   "section": "진분수, 가분수, 자연수",
+   "pdfPage": 88,
+   "bookPage": "088쪽",
+   "key": "3-2/p088/자연수",
+   "first": true,
+   "aliases": [],
+   "mathGarbled": false,
+   "note": "",
+   "evidence": "색글씨+문형",
+   "explorer": {
+    "match": "none",
+    "cardId": "",
+    "cardName": "",
+    "why": ""
+   },
+   "sentenceRef": {
+    "store": "testautocreator-data",
+    "file": "I-개념용어/cube-3-2.json",
+    "key": "3-2/p088/자연수"
+   }
+  },
+  {
+   "term": "대분수",
+   "kind": "정의",
+   "grade": "3-2",
+   "chapter": "4. 분수",
+   "section": "대분수",
+   "pdfPage": 90,
+   "bookPage": "090쪽",
+   "key": "3-2/p090/대분수",
+   "first": true,
+   "aliases": [],
+   "mathGarbled": true,
+   "note": "",
+   "evidence": "색글씨+문형",
+   "explorer": {
+    "match": "exact",
+    "cardId": "g4-mixed",
+    "cardName": "대분수",
+    "why": "(카드는 초4, 교재는 3-2)"
+   },
+   "sentenceRef": {
+    "store": "testautocreator-data",
+    "file": "I-개념용어/cube-3-2.json",
+    "key": "3-2/p090/대분수"
+   }
+  },
+  {
+   "term": "들이",
+   "kind": "정의",
+   "grade": "3-2",
+   "chapter": "5. 들이와 무게",
+   "section": "들이 비교하기",
+   "pdfPage": 108,
+   "bookPage": "108쪽",
+   "key": "3-2/p108/들이",
+   "first": true,
+   "aliases": [],
+   "mathGarbled": false,
+   "note": "여백 정의(«~을 말합니다» 꼴 — 색 글씨 없음)",
+   "evidence": "보정: 여백 정의 문장",
+   "explorer": {
+    "match": "exact",
+    "cardId": "g3-capacity",
+    "cardName": "들이",
+    "why": ""
+   },
+   "sentenceRef": {
+    "store": "testautocreator-data",
+    "file": "I-개념용어/cube-3-2.json",
+    "key": "3-2/p108/들이"
+   }
+  },
+  {
+   "term": "리터",
+   "kind": "기호",
+   "grade": "3-2",
+   "chapter": "5. 들이와 무게",
+   "section": "들이의 단위",
+   "pdfPage": 110,
+   "bookPage": "110쪽",
+   "key": "3-2/p110/리터",
+   "first": true,
+   "aliases": [
+    "L"
+   ],
+   "mathGarbled": false,
+   "note": "",
+   "evidence": "색글씨+쓰는꼴",
+   "explorer": {
+    "match": "related",
+    "cardId": "g3-capacity",
+    "cardName": "들이",
+    "why": "카드 «들이» 정의 뒷부분(1L=1000mL)"
+   },
+   "sentenceRef": {
+    "store": "testautocreator-data",
+    "file": "I-개념용어/cube-3-2.json",
+    "key": "3-2/p110/리터"
+   }
+  },
+  {
+   "term": "밀리리터",
+   "kind": "기호",
+   "grade": "3-2",
+   "chapter": "5. 들이와 무게",
+   "section": "들이의 단위",
+   "pdfPage": 110,
+   "bookPage": "110쪽",
+   "key": "3-2/p110/밀리리터",
+   "first": true,
+   "aliases": [
+    "mL"
+   ],
+   "mathGarbled": false,
+   "note": "",
+   "evidence": "색글씨+쓰는꼴",
+   "explorer": {
+    "match": "related",
+    "cardId": "g3-capacity",
+    "cardName": "들이",
+    "why": "카드 «들이» 정의 뒷부분(1L=1000mL)"
+   },
+   "sentenceRef": {
+    "store": "testautocreator-data",
+    "file": "I-개념용어/cube-3-2.json",
+    "key": "3-2/p110/밀리리터"
+   }
+  },
+  {
+   "term": "약",
+   "kind": "기타",
+   "grade": "3-2",
+   "chapter": "5. 들이와 무게",
+   "section": "들이 어림하고 재어 보기",
+   "pdfPage": 110,
+   "bookPage": "110쪽",
+   "key": "3-2/p110/약",
+   "first": false,
+   "aliases": [],
+   "mathGarbled": false,
+   "note": "어림한 들이·무게 앞에 붙이는 말(3-1 098쪽에서 처음)",
+   "evidence": "보정: 여백 설명",
+   "explorer": {
+    "match": "none",
+    "cardId": "",
+    "cardName": "",
+    "why": ""
+   },
+   "sentenceRef": {
+    "store": "testautocreator-data",
+    "file": "I-개념용어/cube-3-2.json",
+    "key": "3-2/p110/약"
+   }
+  },
+  {
+   "term": "킬로그램",
+   "kind": "기호",
+   "grade": "3-2",
+   "chapter": "5. 들이와 무게",
+   "section": "무게의 단위",
+   "pdfPage": 118,
+   "bookPage": "118쪽",
+   "key": "3-2/p118/킬로그램",
+   "first": true,
+   "aliases": [
+    "kg"
+   ],
+   "mathGarbled": false,
+   "note": "",
+   "evidence": "색글씨+쓰는꼴",
+   "explorer": {
+    "match": "related",
+    "cardId": "g3-mass",
+    "cardName": "무게 단위",
+    "why": "카드 «무게 단위»(1kg=1000g)"
+   },
+   "sentenceRef": {
+    "store": "testautocreator-data",
+    "file": "I-개념용어/cube-3-2.json",
+    "key": "3-2/p118/킬로그램"
+   }
+  },
+  {
+   "term": "그램",
+   "kind": "기호",
+   "grade": "3-2",
+   "chapter": "5. 들이와 무게",
+   "section": "무게의 단위",
+   "pdfPage": 118,
+   "bookPage": "118쪽",
+   "key": "3-2/p118/그램",
+   "first": true,
+   "aliases": [
+    "g"
+   ],
+   "mathGarbled": false,
+   "note": "",
+   "evidence": "색글씨+쓰는꼴",
+   "explorer": {
+    "match": "related",
+    "cardId": "g3-mass",
+    "cardName": "무게 단위",
+    "why": "카드 «무게 단위»(1kg=1000g)"
+   },
+   "sentenceRef": {
+    "store": "testautocreator-data",
+    "file": "I-개념용어/cube-3-2.json",
+    "key": "3-2/p118/그램"
+   }
+  },
+  {
+   "term": "톤",
+   "kind": "기호",
+   "grade": "3-2",
+   "chapter": "5. 들이와 무게",
+   "section": "무게의 단위",
+   "pdfPage": 118,
+   "bookPage": "118쪽",
+   "key": "3-2/p118/톤",
+   "first": true,
+   "aliases": [
+    "t"
+   ],
+   "mathGarbled": false,
+   "note": "",
+   "evidence": "색글씨+쓰고읽기",
+   "explorer": {
+    "match": "none",
+    "cardId": "",
+    "cardName": "",
+    "why": ""
+   },
+   "sentenceRef": {
+    "store": "testautocreator-data",
+    "file": "I-개념용어/cube-3-2.json",
+    "key": "3-2/p118/톤"
+   }
+  },
+  {
+   "term": "합계",
+   "kind": "기타",
+   "grade": "3-2",
+   "chapter": "6. 자료의 정리",
+   "section": "표의 내용 알아보기",
+   "pdfPage": 134,
+   "bookPage": "134쪽",
+   "key": "3-2/p134/합계",
+   "first": true,
+   "aliases": [],
+   "mathGarbled": false,
+   "note": "표 칸 이름 + 화살표 설명 — 뜻을 정하는 이름표는 4-1 106쪽",
+   "evidence": "보정: 표 이름표",
+   "explorer": {
+    "match": "related",
+    "cardId": "g3-data-total",
+    "cardName": "자료의 합계",
+    "why": "카드 이름은 «자료의 합계» — 교재 낱말은 «합계»"
+   },
+   "sentenceRef": {
+    "store": "testautocreator-data",
+    "file": "I-개념용어/cube-3-2.json",
+    "key": "3-2/p134/합계"
+   }
+  },
+  {
+   "term": "그림그래프",
+   "kind": "정의",
+   "grade": "3-2",
+   "chapter": "6. 자료의 정리",
+   "section": "그림그래프 알아보기",
+   "pdfPage": 134,
+   "bookPage": "134쪽",
+   "key": "3-2/p134/그림그래프",
+   "first": true,
+   "aliases": [],
+   "mathGarbled": false,
+   "note": "",
+   "evidence": "색글씨+문형",
+   "explorer": {
+    "match": "exact",
+    "cardId": "g3-picture-graph",
+    "cardName": "그림그래프",
+    "why": ""
+   },
+   "sentenceRef": {
+    "store": "testautocreator-data",
+    "file": "I-개념용어/cube-3-2.json",
+    "key": "3-2/p134/그림그래프"
+   }
+  }
+ ]
+}
