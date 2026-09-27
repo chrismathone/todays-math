@@ -575,10 +575,9 @@ export default function DailyJourneyBoard({
         ) : null}
       </div>
 
+      {/* 출발 자리(`position(0)`)와 쪽마다 첫 칸은 판 오른쪽 아래이고 길은 거기서 왼쪽으로 간다 — 출발 표시는
+          오른쪽 1일차 칸 밑, 화살표는 길 방향(원장님 제보 2026-09-28 «말은 5시에 있는데 출발은 왜 7시에»). */}
       <div className={s.boardFooter}>
-        <span className={s.departure}>
-          {firstStep === 0 ? "출발 →" : `${firstStep}일차에서 이어서 →`}
-        </span>
         {page !== currentPage ? (
           <button
             type="button"
@@ -591,6 +590,9 @@ export default function DailyJourneyBoard({
         ) : (
           <span className={s.direction}>시계 방향으로 한 칸씩</span>
         )}
+        <span className={s.departure} data-journey-departure>
+          {firstStep === 0 ? "← 출발" : `← ${firstStep}일차에서 이어서`}
+        </span>
       </div>
       {variant === "full" ? (
         <p className={s.legend}>
