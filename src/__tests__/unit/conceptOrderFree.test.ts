@@ -35,10 +35,20 @@ const ORDER_FREE = [
   // 문장을 고친 뒤에도 본디 대칭 — 2장
   "integer",
   "g7-construction",
+  // 리드 검토 A(2026-09-28 · 3자) — 맞바꿈이 조사까지 맞고 뜻이 같다: 3:0 셋 · 2:1 넷(grok 반대)
+  "g6-cuboid-volume",
+  "g8-linear-inequality",
+  "g7-polyhedron",
+  "g3-table",
+  "g3-segment",
+  "g4-quarter-turn",
+  "g4-half-turn",
+  // 조사를 «의 길이»로 고정한 뒤 본디 대칭(3:0)
+  "g5-parallelogram-area",
 ];
 
-describe("순서 무관 표지 — 합의한 14장", () => {
-  it("표 = 12장 + 정수 · 작도, 모두 있는 카드", () => {
+describe("순서 무관 표지 — 합의한 22장", () => {
+  it("표 = 12장 + 정수 · 작도 + 리드 검토 A 의 8장, 모두 있는 카드", () => {
     expect([...orderFreeCards].sort()).toEqual([...ORDER_FREE].sort());
     for (const id of ORDER_FREE) expect(definitionCard(id).id).toBe(id);
   });

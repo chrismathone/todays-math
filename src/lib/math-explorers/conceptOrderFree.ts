@@ -24,4 +24,13 @@ export const orderFreeCards: ReadonlySet<string> = new Set([
   // 문장을 고친 뒤에도 본디 대칭
   "integer", // 정수 — 양의 정수, 0, 음의 정수 세 가지
   "g7-construction", // 작도 — 눈금 없는 자와 컴퍼스
+  // 리드 검토 A(2026-09-28 · 3자) — 맞바꿈이 조사까지 맞고 뜻이 같다
+  "g6-cuboid-volume", // 직육면체의 부피 — 높이에 가로×세로를 곱하여 (3:0)
+  "g8-linear-inequality", // 일차부등식 — 한쪽이 0이고 다른 쪽이 일차식 (3:0)
+  "g7-polyhedron", // 다면체 — 면인 다각형들로 (3:0)
+  "g3-table", // 표 — 정리하고 … 분류한 (2:1, grok 반대)
+  "g3-segment", // 선분 — 두 끝점을 곧게 이은 … 양쪽에 점 (2:1, grok 반대)
+  "g4-quarter-turn", // 직각만큼 돌리기 — 한 바퀴의 90°만큼, 곧 1/4 (2:1, grok 반대)
+  "g4-half-turn", // 반 바퀴 돌리기 (2:1, grok 반대)
+  "g5-parallelogram-area", // 평행사변형의 넓이 — 조사를 «의 길이»로 고정한 뒤 (3:0)
 ]);

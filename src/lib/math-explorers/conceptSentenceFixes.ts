@@ -31,7 +31,7 @@ export const cardFixes: Readonly<Record<string, CardFix>> = {
   "g6-net": {
     definition: "각기둥이나 각뿔을 모서리를 따라 잘라 평면 위에 펼친 그림.",
     pieces: ["각기둥이나 각뿔을 ", "를 따라 잘라 ", " 위에 펼친 그림."],
-    words: ["모서리", "평면", "면", "공간"],
+    words: ["모서리", "평면", "둘레", "공간"],
   },
   // 미지수가 두 개인 일차방정식 — 틀림
   "g8-two-variable": {
@@ -58,7 +58,6 @@ export const cardFixes: Readonly<Record<string, CardFix>> = {
       " 나타낸 것이며, 모든 방정식을 함께 참이 되게 하는 값을 그 ",
       "라고 한다.",
     ],
-    words: ["한데 묶어", "해", "따로 버려", "평균"],
   },
   // 대입법 — 빠짐
   "g8-substitution": {
@@ -69,14 +68,12 @@ export const cardFixes: Readonly<Record<string, CardFix>> = {
       "에 ",
       " 푸는 방법.",
     ],
-    words: ["다른 식", "넣어", "같은 식만", "빼서"],
   },
   // 가감법 — 빠짐
   "g8-elimination": {
     definition:
       "연립방정식을 풀 때 두 식을 더하거나 빼서 한 미지수를 없애는 방법.",
     pieces: ["연립방정식을 풀 때 두 식을 더하거나 빼서 한 ", "를 ", " 방법."],
-    words: ["미지수", "없애는", "해", "늘리는"],
   },
   // 이차함수의 축 — 낱말
   "g9-axis": {
@@ -101,7 +98,6 @@ export const cardFixes: Readonly<Record<string, CardFix>> = {
     words: ["대칭", "아래로 볼록", "비대칭", "위로 볼록"],
     exampleTitle: "그래프가 아래로 볼록한 함수를 골라봐.",
     trap: "y=−x²의 그래프는 아래로 볼록하다.",
-    truth: false,
     explanation:
       "x²의 계수가 음수이면 위로 볼록해. 흔히 «위로 열린다»고 하는 모양이 아래로 볼록한 모양이야.",
     note: "x²의 계수가 음수이면 위로 볼록해. 흔히 «위로 열린다»고 하는 모양이 아래로 볼록한 모양이야.",
@@ -124,14 +120,6 @@ export const cardFixes: Readonly<Record<string, CardFix>> = {
   // 여사건의 확률 — 낱말
   "g8-complement": {
     name: "일어나지 않을 확률",
-    definition:
-      "어떤 사건이 일어나지 않을 확률은 1에서 그 사건의 확률을 뺀 값이다.",
-    pieces: [
-      "어떤 사건이 일어나지 않을 확률은 ",
-      "에서 그 사건의 확률을 ",
-      " 값이다.",
-    ],
-    words: ["1", "뺀", "0", "더한"],
   },
   // 나눗셈과 크기 — 낱말
   "g6-divide-size": {
@@ -170,7 +158,6 @@ export const cardFixes: Readonly<Record<string, CardFix>> = {
       " 곱한 값을 분자로, ",
       " 곱한 값을 분모로 하는 분수를 만든다.",
     ],
-    words: ["분자끼리", "분모끼리", "분모와", "분자와"],
     examples: [
       { text: "1/2 × 1/3 = 1/6", yes: true },
       { text: "1과 1/2 × 2/3 = 1", yes: true },
@@ -226,7 +213,7 @@ export const cardFixes: Readonly<Record<string, CardFix>> = {
   "g8-cases": {
     definition: "한 사건에 해당하는 가능한 결과를 빠짐없이 센 개수.",
     pieces: ["한 사건에 해당하는 ", "를 빠짐없이 센 ", "."],
-    words: ["가능한 결과", "개수", "평균", "합계의 값"],
+    words: ["가능한 결과", "개수", "평균", "가장 큰 값"],
     exampleTitle:
       "주사위 한 개를 던져 짝수의 눈이 나오는 경우를 바르게 설명한 것을 골라봐.",
     examples: [
@@ -278,14 +265,6 @@ export const cardFixes: Readonly<Record<string, CardFix>> = {
   },
   // 지수법칙 — 범위
   "g8-exponent-law": {
-    definition:
-      "밑이 같은 거듭제곱을 곱할 때 밑은 그대로 두고 지수를 더하며, 거듭제곱의 거듭제곱은 지수를 곱한다.",
-    pieces: [
-      "밑이 같은 거듭제곱을 곱할 때 밑은 그대로 두고 지수를 ",
-      ", 거듭제곱의 거듭제곱은 지수를 ",
-      ".",
-    ],
-    words: ["더하며", "곱한다", "빼며", "나눈다"],
     explanation:
       "곱셈으로 풀어 쓰면 a가 다섯 번 곱해져 있어. 나눗셈이면 지수를 빼고, 곱이나 몫을 거듭제곱하면 안의 각각에 지수를 붙여.",
     note: "곱셈으로 풀어 쓰면 a가 다섯 번 곱해져 있어. 나눗셈이면 지수를 빼고, 곱이나 몫을 거듭제곱하면 안의 각각에 지수를 붙여.",
@@ -301,7 +280,7 @@ export const cardFixes: Readonly<Record<string, CardFix>> = {
     ],
     words: ["한 꼭짓점", "모두 같은", "두 꼭짓점", "제각각 다른"],
   },
-  // ── 채점 결함 6장(2026-09-28 · 3자 합의 «(다) 섞기») — 정답이 아닌 채움이 참이라 맞는 문장이 틀림 처리되던 카드 ──
+  // ── 채점 결함(2026-09-28 · 3자 합의 «(다) 섞기») — 정답이 아닌 채움이 참이라 맞는 문장이 틀림 처리되던 카드 ──
   // 시간 단위 — 채점
   "g3-time": {
     definition: "1분은 60초이고 1시간은 60분이다.",
@@ -312,31 +291,40 @@ export const cardFixes: Readonly<Record<string, CardFix>> = {
   "g4-turn": {
     definition: "한 점을 중심으로 도형을 정해진 방향으로 각도만큼 회전하는 것.",
     pieces: ["한 점을 중심으로 도형을 정해진 ", "으로 ", "만큼 회전하는 것."],
-    words: ["방향", "각도", "길이", "무게"],
+    words: ["방향", "각도", "모양", "길이"],
   },
   // 대응을 식으로 나타내기 — 채점
   "g5-rule-expression": {
     definition: "두 양의 대응 규칙을 기호를 사용해 계산식으로 나타내는 것.",
     pieces: ["두 양의 대응 규칙을 ", "를 사용해 ", "으로 나타내는 것."],
-    words: ["기호", "계산식", "색만", "그래프만"],
+    words: ["기호", "계산식", "크기", "색"],
   },
   // 정수 — 채점
   integer: {
     definition: "양의 정수, 0, 음의 정수 세 가지를 통틀어 이르는 수.",
     pieces: ["양의 정수, ", ", ", " 세 가지를 통틀어 이르는 수."],
-    words: ["0", "음의 정수", "1/2", "모든 음수"],
   },
   // 작도 — 채점
   "g7-construction": {
-    definition: "눈금 없는 자와 컴퍼스만을 사용해 도형을 그리는 것.",
     pieces: ["", "와 ", "만을 사용해 도형을 그리는 것."],
     words: ["눈금 없는 자", "컴퍼스", "각도기", "저울"],
   },
   // 비율 — 채점
   "g6-rate": {
-    definition: "비교하는 양을 기준량으로 나눈 값.",
-    pieces: ["", "을 ", "으로 나눈 값."],
     words: ["비교하는 양", "기준량", "기준량의 절반", "전체의 합"],
+  },
+  // 만 — 채점
+  "g4-ten-thousand": {
+    words: ["1000", "10개", "100", "1000개"],
+  },
+  // 평행사변형의 넓이 — 채점
+  "g5-parallelogram-area": {
+    definition: "밑변의 길이에 높이의 길이를 곱하여 구한다.",
+    pieces: ["", "의 길이에 ", "의 길이를 곱하여 구한다."],
+  },
+  // 실수 — 채점
+  "g9-real-number": {
+    words: ["유리수", "무리수", "자연수", "정수"],
   },
 };
 

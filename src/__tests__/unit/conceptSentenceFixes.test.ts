@@ -1,6 +1,6 @@
 /**
  * 카드 보정 표(`conceptSentenceFixes.ts`) — 원본(`definition-content.ts` · PROVENANCE)은 그대로 두고, 카드를 내보내는 층
- * (`definition-cards.ts` 의 `definitionCards`)에서 29장을 덮어쓴다(D-143 ④ · ⑦ — 23장 + 채점 결함 6장). 화면 · 채점 · 복습 · 선수가 같은 카드를 읽는다.
+ * (`definition-cards.ts` 의 `definitionCards`)에서 32장을 덮어쓴다(D-143 ④ · ⑦ — 23장 + 채점 결함 9장). 화면 · 채점 · 복습 · 선수가 같은 카드를 읽는다.
  *
  * 결론은 용어 분석 트랙(terms-coverage)의 3자 합의 `docs/reference/concept-terms/card-sentence-fixes.json` —
  * 틀림 3 · 빠짐 5 · 낱말 5 · 범위 10. 뜻을 고친 «틀림» 3장은 이미 모은 학생에게 한 번 다시 복습(`cardRevisions.test.ts`).
@@ -56,8 +56,8 @@ describe("카드 보정 표 — 확정 파일 그대로", () => {
     );
   });
 
-  it("29장 · 칸마다 card-sentence-fixes.json 의 change 와 같다", () => {
-    expect(decided.fixes).toHaveLength(29);
+  it("32장 · 칸마다 card-sentence-fixes.json 의 change 와 같다", () => {
+    expect(decided.fixes).toHaveLength(32);
     expect(Object.keys(cardFixes).sort()).toEqual(
       decided.fixes.map((fix) => fix.id).sort(),
     );
@@ -175,6 +175,20 @@ describe("누출 검사는 보정 전 원본 카드로 — 보정 문장이 «�
         fixed: false,
       });
     }
+  });
+
+  it("보정 칸은 모두 원본과 다르다 — 원래 글을 그대로 다시 적으면 나중에 원문을 고쳐도 옛 글로 덮는다(리드 검토 ⑦)", () => {
+    const same: string[] = [];
+    for (const [id, fix] of Object.entries(cardFixes)) {
+      const source = definitionSourceCards.find((card) => card.id === id)!;
+      for (const [key, value] of Object.entries(fix as Change))
+        if (
+          JSON.stringify(value) ===
+          JSON.stringify((source as unknown as Change)[key])
+        )
+          same.push(`${id}.${key}`);
+    }
+    expect(same).toEqual([]);
   });
 
   it("coverage.md 가 적은 «보정 새 글 N칸» = 누출 검사기의 셈(칸 목록 · 창 길이는 검사기 소스에서 읽는다)", () => {
