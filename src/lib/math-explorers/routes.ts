@@ -178,6 +178,17 @@ export async function handleExplorerRequest(
         await request.json().catch(() => undefined),
       );
       if (!parsed.success) return noStore(validationError(parsed.error));
+      if (
+        parsed.data.studentId !== undefined &&
+        parsed.data.studentId !== studentId
+      )
+        return noStore(
+          jsonError(
+            "CONFLICT",
+            "로그인한 학생이 바뀌었어요. 다시 불러와 주세요.",
+            409,
+          ),
+        );
       const changed = await changeExplorer(studentId, parsed.data, now);
       saved = changed;
       feedback = changed.feedback;

@@ -32,6 +32,14 @@ import {
 } from "./sessionIntro";
 import ExplorerWorkshop from "./ExplorerWorkshop";
 import { ChestRewardEffect, TileRewardEffect } from "./ExplorerPieces";
+import {
+  forgetRetryId,
+  keepSaving,
+  rememberRetryId,
+  retryIdFor,
+  saveGeneration,
+  savingFor,
+} from "./chestSaveLine";
 import s from "./math-explorers.module.css";
 
 const ExplorerCardDialog = dynamic(() => import("./ExplorerCardDialog"));
@@ -46,27 +54,38 @@ type Failure = {
   /** Which action failed — a failed «기지 키우기» is said inside its sheet. */
   action?: ExplorerAction["type"];
 };
-type ChestClaim = { chestId: string; requestId: string };
+type ChestClaim = {
+  chestId: string;
+  requestId: string;
+  /** The student whose screen pressed it — a line never saves for anyone else. */
+  studentId: string;
+  generation: number;
+};
 type ClaimOutcome =
   | { kind: "saved"; data: ExplorerState }
   | { kind: "failed" }
   | { kind: "refused"; message: string | null }
   | { kind: "conflict" }
   | { kind: "left" };
-/**
- * Chest saves outlive a screen (05 §8.21): leaving the page inside the app does not
- * stop them, and a screen opened again reads the record only after they are done —
- * otherwise it shows a chest still closed and a press sends a new request (409).
- * An uncertain save's request id is kept here too, so a retry from any screen
- * returns the receipt instead of a second star.
- */
-let savingLine: Promise<void> | null = null;
-const chestRetryIds = new Map<string, string>();
-function keepSaving(line: Promise<void>) {
-  savingLine = line;
-  void line.finally(() => {
-    if (savingLine === line) savingLine = null;
-  });
+/** The latest record, read without the loading screen so the sheet stays open. */
+async function readLatest(): Promise<ExplorerState | null> {
+  const controller = new AbortController();
+  const timeout = setTimeout(() => controller.abort(), 15000);
+  try {
+    const response = await fetch("/api/learn/math-explorers", {
+      cache: "no-store",
+      signal: controller.signal,
+    });
+    if (!response.ok) return null;
+    const json = await response.json();
+    const { explorerStateSchema } =
+      await import("@/contracts/mathExplorers.contract");
+    return explorerStateSchema.parse(json.data);
+  } catch {
+    return null;
+  } finally {
+    clearTimeout(timeout);
+  }
 }
 
 // 05 §8.21 — 원장님 위임 3자 합의(Claude · codex · grok, 2026-09-28).
@@ -177,9 +196,6 @@ function ExplorerGame({ initialView }: { initialView?: "collection" }) {
     let current = true;
     void (async () => {
       try {
-        // Chests pressed on a screen just left may still be saving — read after them.
-        if (savingLine) await savingLine;
-        if (!current) return;
         timeout = setTimeout(() => controller.abort(), 15000);
         const response = await fetch("/api/learn/math-explorers", {
           cache: "no-store",
@@ -207,8 +223,17 @@ function ExplorerGame({ initialView }: { initialView?: "collection" }) {
         }
         const { explorerStateSchema } =
           await import("@/contracts/mathExplorers.contract");
-        const data = explorerStateSchema.parse(json.data);
+        let data = explorerStateSchema.parse(json.data);
         if (!current) return;
+        // This student's chests pressed on a screen just left may still be saving
+        // (05 §8.21) — read again after them; another student's line is not waited on.
+        const waiting = savingFor(data.student.id);
+        if (waiting) {
+          await waiting;
+          const again = await readLatest();
+          if (!current) return;
+          if (again?.student.id === data.student.id) data = again;
+        }
         latest.current = data;
         setState(data);
         setError(null);
@@ -242,6 +267,7 @@ function ExplorerGame({ initialView }: { initialView?: "collection" }) {
     const input = sameRequest ?? {
       requestId: crypto.randomUUID(),
       expectedRevision: state.revision,
+      studentId: state.student.id,
       action,
     };
     lastRequest.current = input;
@@ -365,7 +391,9 @@ function ExplorerGame({ initialView }: { initialView?: "collection" }) {
       ...claimQueue.current,
       {
         chestId,
-        requestId: chestRetryIds.get(chestId) ?? crypto.randomUUID(),
+        requestId: retryIdFor(state.student.id, chestId) ?? crypto.randomUUID(),
+        studentId: state.student.id,
+        generation: saveGeneration(),
       },
     ];
     setClaims(claimQueue.current.map((claim) => claim.chestId));
@@ -387,9 +415,10 @@ function ExplorerGame({ initialView }: { initialView?: "collection" }) {
   }
 
   function saveClaims() {
-    if (claimRunning.current) return;
+    if (claimRunning.current || !state) return;
     claimRunning.current = true;
     keepSaving(
+      state.student.id,
       runClaims().finally(() => {
         claimRunning.current = false;
       }),
@@ -397,32 +426,37 @@ function ExplorerGame({ initialView }: { initialView?: "collection" }) {
   }
 
   async function runClaims() {
+    const stop = () => {
+      claimQueue.current = [];
+      if (alive.current) setClaims([]);
+    };
     while (claimQueue.current.length) {
       const claim = claimQueue.current[0]!;
+      // Signed out or another student signed in since the press: stop the line.
+      if (claim.generation !== saveGeneration()) return stop();
       const outcome = await saveClaim(claim);
-      if (outcome.kind === "left") {
-        claimQueue.current = [];
-        if (alive.current) setClaims([]);
-        return;
-      }
+      if (outcome.kind === "left") return stop();
       let fresh: ExplorerState | null = null;
       let notice: ChestNotice | null = null;
       if (outcome.kind === "saved") {
         fresh = outcome.data;
         latest.current = fresh;
-        chestRetryIds.delete(claim.chestId);
+        forgetRetryId(claim.studentId, claim.chestId);
       } else {
         // Read the record before deciding: a lost response may have been saved
         // (then the chest simply stays opened), and the next chest in line must
         // go out with the current revision, not one a failed save left behind.
         fresh = await readLatest();
+        // Another student's record (the cookie changed): this line is not theirs.
+        if (fresh && fresh.student.id !== claim.studentId) return stop();
+        if (fresh) latest.current = fresh;
         const saved = !!fresh?.chests.find((item) => item.id === claim.chestId)
           ?.claimed;
         if (outcome.kind === "failed" && saved)
-          chestRetryIds.delete(claim.chestId);
+          forgetRetryId(claim.studentId, claim.chestId);
         else {
           if (outcome.kind === "failed")
-            chestRetryIds.set(claim.chestId, claim.requestId);
+            rememberRetryId(claim.studentId, claim.chestId, claim.requestId);
           const reloaded = outcome.kind === "conflict" && !!fresh;
           notice = {
             chestId: claim.chestId,
@@ -473,6 +507,7 @@ function ExplorerGame({ initialView }: { initialView?: "collection" }) {
           requestId: claim.requestId,
           expectedRevision: revision,
           action: { type: "chest", chestId: claim.chestId },
+          studentId: claim.studentId,
         } satisfies ExplorerRequest),
       });
       const json = await response.json().catch(() => null);
@@ -496,29 +531,6 @@ function ExplorerGame({ initialView }: { initialView?: "collection" }) {
       return { kind: "saved", data: explorerStateSchema.parse(json.data) };
     } catch {
       return { kind: "failed" };
-    } finally {
-      clearTimeout(timeout);
-    }
-  }
-
-  /** The latest record, read without the loading screen so the sheet stays open. */
-  async function readLatest(): Promise<ExplorerState | null> {
-    const controller = new AbortController();
-    const timeout = setTimeout(() => controller.abort(), 15000);
-    try {
-      const response = await fetch("/api/learn/math-explorers", {
-        cache: "no-store",
-        signal: controller.signal,
-      });
-      if (!response.ok) return null;
-      const json = await response.json();
-      const { explorerStateSchema } =
-        await import("@/contracts/mathExplorers.contract");
-      const data = explorerStateSchema.parse(json.data);
-      latest.current = data;
-      return data;
-    } catch {
-      return null;
     } finally {
       clearTimeout(timeout);
     }

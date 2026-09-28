@@ -195,6 +195,12 @@ export const explorerRequestSchema = z.strictObject({
   requestId: uuidSchema,
   expectedRevision: count,
   action: explorerActionSchema,
+  /**
+   * The student whose screen sent it. Sign-out and sign-in move softly, so a chest
+   * save queued by one student can leave after another has signed in — the route
+   * refuses a body for anyone but the signed-in student (05 §8.21).
+   */
+  studentId: id.optional(),
 });
 export type ExplorerAction = z.infer<typeof explorerActionSchema>;
 export type ExplorerRequest = z.infer<typeof explorerRequestSchema>;

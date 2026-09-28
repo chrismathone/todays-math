@@ -1048,8 +1048,10 @@ describe("authenticated math explorer persistence", () => {
       expectedRevision: 0,
       action: { type: "start", route: "unit", unitId: view.units[0].id },
     };
+    // 남의 학생 id 는 이제 «이 화면의 학생» 칸이라 모양은 맞다 — 그래도 로그인한 학생이 아니면 거절(409),
+    // 쓰지 않는다(리드 3차 검토, 05 §8.21).
+    expect((await post({ ...body, studentId: f.otherId })).status).toBe(409);
     for (const extra of [
-      { studentId: f.otherId },
       { stars: 100 },
       { date: "2099-01-01" },
       { correct: true },
@@ -1254,6 +1256,23 @@ describe("chest press without a pre-read", () => {
     expect(a.revision).toBe(b.revision);
     expect(a.profile.stars).toBe(view.profile.stars + 1);
     expect(b.profile.stars).toBe(view.profile.stars + 1);
+    expect(f.writes).toBe(1);
+  });
+
+  it("refuses an action sent for another student and leaves the record alone", async () => {
+    // 로그아웃 · 로그인은 소프트 이동이라 앞 학생의 저장 줄이 새 학생 쿠키로 나갈 수 있다(리드 3차 검토).
+    const { view, chest } = await readyChest();
+    f.writes = 0;
+    const other = await post({
+      ...chestBody(view, chest.id),
+      studentId: f.otherId,
+    });
+    expect(other.status).toBe(409);
+    expect(f.writes).toBe(0);
+    const mine = await data(
+      await post({ ...chestBody(view, chest.id), studentId: f.studentId }),
+    );
+    expect(mine.feedback?.chestId).toBe(chest.id);
     expect(f.writes).toBe(1);
   });
 

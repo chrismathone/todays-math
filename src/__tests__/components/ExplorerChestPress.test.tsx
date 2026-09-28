@@ -15,6 +15,7 @@ import {
 import type { ComponentProps } from "react";
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 import StudentMathExplorers from "@/components/math-explorers/StudentMathExplorers";
+import { forgetChestSaves } from "@/components/math-explorers/chestSaveLine";
 import {
   applyExplorerAction,
   createExplorerState,
@@ -189,7 +190,7 @@ function server(initial: StoredExplorer) {
       expedition = value;
     },
     /** 다음 POST 하나를 이렇게 답한다. */
-    next(reply: "offline" | "lost" | "conflict" | 500 | 400) {
+    next(reply: "offline" | "lost" | "conflict" | 500 | 503 | 400) {
       replies.push(async (input) => {
         if (reply === "offline") throw new TypeError("Failed to fetch");
         if (reply === "lost") {
@@ -779,6 +780,28 @@ describe("chest press — second review", () => {
     expect(api.stars()).toBe(3);
   });
 
+  it.each([
+    [
+      "conflict" as const,
+      "다른 화면에서 학습 기록이 바뀌었어요. 최신 기록을 불러온 뒤 이어 가 주세요.",
+    ],
+    [
+      503 as const,
+      "학습 저장소가 아직 준비되지 않았어요. 잠시 후 다시 시도하고, 계속되면 선생님께 알려 주세요.",
+    ],
+  ])(
+    "says a failed base upgrade (%s) in the sheet with the page status's sentence",
+    async (reply, text) => {
+      const api = server(storedWithReadyChests());
+      const { sheet } = await openBase();
+      api.next(reply);
+      fireEvent.click(
+        within(sheet).getByRole("button", { name: /기지 키우기/ }),
+      );
+      expect(await within(sheet).findByRole("alert")).toHaveTextContent(text);
+    },
+  );
+
   it("says a failed base upgrade inside the sheet and retries it with the same request", async () => {
     const api = server(storedWithReadyChests());
     const { sheet } = await openBase();
@@ -803,3 +826,165 @@ function chestIdOf(button: HTMLElement) {
   const after = Number(/^(\d+)개 개념/.exec(label)?.[1]);
   return `${readyUnit.id}:${after}`;
 }
+
+/**
+ * 리드 3차 검토(2026-09-28) — 학생 사이 누수. 저장 줄은 화면보다 오래 살고 로그아웃 · 로그인은
+ * 소프트 이동이라 모듈이 산다. 앞 학생 A 의 남은 상자가 B 로그인 뒤 B 의 쿠키 · B 의 revision 으로
+ * 나가 **B 의 상자를 열면** 안 된다.
+ */
+describe("chest press — another student signs in while a line is saving", () => {
+  const studentA = { id: "student-a", name: "학생 A", className: "테스트반" };
+  const studentB = { id: "student-b", name: "학생 B", className: "테스트반" };
+
+  /** 쿠키가 정하는 «지금 학생» 과 학생마다 기록 — 라우트처럼 본문의 학생이 다르면 409. */
+  function twoStudents() {
+    type Record_ = {
+      who: typeof studentA;
+      stored: StoredExplorer;
+      revision: number;
+    };
+    const records = new Map<string, Record_>(
+      [studentA, studentB].map((who) => {
+        const stored = storedWithReadyChests();
+        stored.profile.id = who.id;
+        return [who.id, { who, stored, revision: 3 }];
+      }),
+    );
+    let signedIn = studentA.id;
+    const posts: (ExplorerRequest & { studentId?: string })[] = [];
+    const held: (() => void)[] = [];
+    let holding = false;
+    const view = (id: string, feedback: unknown = null) => {
+      const record = records.get(id)!;
+      return {
+        ...explorerView(record.stored, today),
+        today,
+        student: record.who,
+        revision: record.revision,
+        feedback,
+      };
+    };
+    const save = (id: string, input: ExplorerRequest) => {
+      const record = records.get(id)!;
+      if (input.expectedRevision !== record.revision)
+        return new Response(
+          JSON.stringify({ error: { code: "CONFLICT", message: "x" } }),
+          { status: 409 },
+        );
+      const result = applyExplorerAction(
+        record.stored,
+        input.action,
+        today,
+        input.requestId,
+      );
+      if (!result.duplicate) {
+        record.stored = result.state;
+        record.revision += 1;
+      }
+      return new Response(JSON.stringify({ data: view(id, result.feedback) }));
+    };
+    vi.stubGlobal(
+      "fetch",
+      vi.fn(async (_url: string, options?: RequestInit) => {
+        const cookie = signedIn;
+        if (!options?.body)
+          return new Response(JSON.stringify({ data: view(cookie) }));
+        const input = JSON.parse(options.body as string) as ExplorerRequest & {
+          studentId?: string;
+        };
+        posts.push(input);
+        if (input.studentId !== undefined && input.studentId !== cookie)
+          return new Response(
+            JSON.stringify({
+              error: {
+                code: "CONFLICT",
+                message: "로그인한 학생이 바뀌었어요.",
+              },
+            }),
+            { status: 409 },
+          );
+        if (!holding) return save(cookie, input);
+        // 요청이 닿은 때의 쿠키로 저장한다 — 응답만 늦게 온다.
+        return new Promise<Response>((resolve) =>
+          held.push(() => resolve(save(cookie, input))),
+        );
+      }),
+    );
+    return {
+      posts,
+      stars: (id: string) => records.get(id)!.stored.profile.stars,
+      signIn(id: string) {
+        signedIn = id;
+      },
+      hold() {
+        holding = true;
+        return () => {
+          holding = false;
+          for (const release of held.splice(0)) release();
+        };
+      },
+    };
+  }
+
+  it("stops A's line when A leaves and B signs in — B's record is untouched and B's screen does not wait", async () => {
+    const api = twoStudents();
+    const first = await openBase();
+    const release = api.hold();
+    act(() => {
+      fireEvent.click(first.ready[0]);
+      fireEvent.click(first.ready[1]);
+    });
+    await waitFor(() => expect(api.posts).toHaveLength(1));
+    first.unmount();
+    forgetChestSaves(); // 로그아웃(postLogout) 이 하는 일
+    api.signIn(studentB.id);
+
+    render(<StudentMathExplorers />);
+    // A 의 첫 상자가 아직 매달려 있어도 B 의 화면은 뜬다.
+    expect(
+      await screen.findByRole("button", { name: /우리 기지/ }),
+    ).toBeTruthy();
+    await act(async () => release());
+    await waitFor(() => expect(api.stars(studentA.id)).toBe(6));
+    await new Promise((resolve) => setTimeout(resolve, 50));
+    expect(api.posts).toHaveLength(1);
+    expect(api.stars(studentB.id)).toBe(5);
+  });
+
+  it("does not make B's screen wait for A's line even when this tab never signed A out", async () => {
+    const api = twoStudents();
+    const first = await openBase();
+    const release = api.hold();
+    fireEvent.click(first.ready[0]);
+    await waitFor(() => expect(api.posts).toHaveLength(1));
+    first.unmount();
+    api.signIn(studentB.id); // 다른 탭의 로그인 — 이 탭은 로그아웃하지 않았다
+
+    render(<StudentMathExplorers />);
+    expect(
+      await screen.findByRole("button", { name: /우리 기지/ }),
+    ).toBeTruthy();
+    await act(async () => release());
+    await waitFor(() => expect(api.stars(studentA.id)).toBe(6));
+    expect(api.stars(studentB.id)).toBe(5);
+  });
+
+  it("never opens B's chest when B signs in without A leaving — the server refuses and A's line stops", async () => {
+    const api = twoStudents();
+    const { ready } = await openBase();
+    api.signIn(studentB.id); // 다른 탭에서 B 로그인 — 쿠키가 바뀌었다
+
+    act(() => {
+      fireEvent.click(ready[0]);
+      fireEvent.click(ready[1]);
+    });
+    await waitFor(() => expect(api.posts).toHaveLength(1));
+    await new Promise((resolve) => setTimeout(resolve, 100));
+    expect(api.posts).toHaveLength(1);
+    expect(api.posts[0].studentId).toBe(studentA.id);
+    expect(api.stars(studentB.id)).toBe(5);
+    expect(api.stars(studentA.id)).toBe(5);
+    // A 의 화면에 B 의 기록이 들어오지 않는다.
+    expect(screen.queryByText(/학생 B/)).toBeNull();
+  });
+});
