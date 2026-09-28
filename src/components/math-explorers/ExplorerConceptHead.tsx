@@ -1,6 +1,9 @@
 "use client";
 
-import { conceptKind } from "@/lib/math-explorers/conceptKinds";
+import {
+  conceptKind,
+  isSupplementCardId,
+} from "@/lib/math-explorers/conceptKinds";
 import { ExplorerMath } from "./ExplorerMath";
 import c from "./concept-head.module.css";
 
@@ -18,7 +21,7 @@ export function ConceptKindTag({
   large?: boolean;
 }) {
   const kind = conceptKind(cardId);
-  if (!kind) return null;
+  if (!kind) return <ConceptSourceTag cardId={cardId} large={large} />;
   return (
     <>
       <span className="sr-only"> · </span>
@@ -28,6 +31,34 @@ export function ConceptKindTag({
         data-concept-kind={kind}
       >
         {kind}
+      </span>
+      <ConceptSourceTag cardId={cardId} large={large} />
+    </>
+  );
+}
+
+/**
+ * 보충 카드 표지(D-147 · 05 §8.22 — Hi-fi 1안, 원장님 2026-09-28) — 갈래 딱지 뒤 속 빈 «교재» 딱지.
+ * 보충 카드(`sup-…`)에만 그린다. 누르는 것이 아니다(D-30) — 손가락 커서 · hover 없음.
+ * 도감 카드처럼 갈래 딱지 없이 이것만 붙일 때도 이 하나를 쓴다(«모든 화면 일치»).
+ */
+export function ConceptSourceTag({
+  cardId,
+  large = false,
+}: {
+  cardId: string;
+  large?: boolean;
+}) {
+  if (!isSupplementCardId(cardId)) return null;
+  return (
+    <>
+      <span className="sr-only"> · </span>
+      <span
+        className={c.sourceTag}
+        data-size={large ? "title" : undefined}
+        data-concept-source=""
+      >
+        교재
       </span>
     </>
   );
@@ -39,8 +70,12 @@ export function ConceptKindTag({
  * 따로 읽히므로 이름표로 못 박는다. 갈래가 없는 카드면 이름표 없이 글자 그대로.
  */
 export function conceptHeadingLabel(cardId: string, name: string) {
-  const kind = conceptKind(cardId);
-  return kind ? `${name} · ${kind}` : undefined;
+  const parts = [
+    name,
+    conceptKind(cardId),
+    isSupplementCardId(cardId) ? "교재" : null,
+  ].filter(Boolean);
+  return parts.length > 1 ? parts.join(" · ") : undefined;
 }
 
 /**

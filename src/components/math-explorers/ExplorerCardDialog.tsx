@@ -8,6 +8,7 @@ import type {
 import { gradeLabel, type ExplorerCard } from "./ExplorerHome";
 import { ConceptKindTag, conceptHeadingLabel } from "./ExplorerConceptHead";
 import { ExplorerMath } from "./ExplorerMath";
+import { ExplorerSolution } from "./ExplorerSolution";
 import s from "./math-explorers.module.css";
 
 export default function ExplorerCardDialog({
@@ -101,43 +102,7 @@ export default function ExplorerCardDialog({
             : "아직 수집 전"}
         </p>
         {solution?.cardId === card.id ? (
-          <div className={s.solutionContent} data-explorer-solution="true">
-            <h3>뜻 다시 보기</h3>
-            {/* `MathText` 는 div 를 내므로 카드 글은 p 가 아니라 `solutionLine` div 에 담는다
-                (`.solutionContent p` 와 같은 규칙이 이 클래스에도 걸린다). */}
-            <div className={`${s.readingDefinition} ${s.solutionLine}`}>
-              <ExplorerMath text={solution.definition} />
-            </div>
-            <div className={s.solutionLine}>
-              <ExplorerMath text={solution.note} />
-            </div>
-            <h3>해설</h3>
-            <div className={s.solutionLine}>
-              <ExplorerMath text={solution.explanation} />
-            </div>
-            <div className={s.solutionExamples}>
-              {[true, false].map((correct) => (
-                <div key={String(correct)}>
-                  <strong>
-                    {correct ? "해당하는 예" : "해당하지 않는 예"}
-                  </strong>
-                  {solution.examples
-                    .filter((example) => example.correct === correct)
-                    .map((example, index) => (
-                      <div key={index} className={s.solutionLine}>
-                        <ExplorerMath text={example.label} />
-                      </div>
-                    ))}
-                </div>
-              ))}
-            </div>
-            <div className={`${s.statement} ${s.solutionLine}`}>
-              <ExplorerMath text={solution.statement} />
-              <strong>
-                {solution.truth ? "맞는 설명이에요." : "맞지 않는 설명이에요."}
-              </strong>
-            </div>
-          </div>
+          <ExplorerSolution solution={solution} />
         ) : (
           <>
             <p className={s.quietNote}>
