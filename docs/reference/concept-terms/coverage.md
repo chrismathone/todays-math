@@ -406,7 +406,7 @@
 
 - 이 트랙 검사기 `check-leak-coverage.py`: 14권 원문 문장 + 트랙 곁 파일(판정 앵커 · 후보 · 버림 규칙)을 원천으로, 허용 말(용어 · 단원 이름 · 카드 글)을 걷어낸 12글자 창.
   자기 시험 — 원문 한 문장을 심으면 걸리고(1줄), 우리 말만이면 0. 2026-09-28 부터 둘 더: 보정 표의 한 칸에 원문을 심은 판이 걸리고(지금 보정 표는 0),
-  보정을 입힌 카드 덤프로 허용 말을 지으면 «덤프가 보정을 입었다» 멈춤이 새 글 37칸을 전부 잡는다(§12 🔴).
+  보정을 입힌 카드 덤프로 허용 말을 지으면 «덤프가 보정을 입었다» 멈춤이 새 글 44칸을 전부 잡는다(§12 🔴 — 이 숫자는 검사기 셈과 시험 `conceptSentenceFixes.test.ts` 가 묶는다).
 - 보정안은 더 엄하게 — `build-card-fixes.py` 가 새 글을 **아무것도 걷어내지 않은** 12글자 창으로 원문과 맞대어 하나라도 겹치면 멈춘다.
   이 검사가 제 초안 하나(분수의 곱셈 — 원래 카드 문장을 살린 부분이 교재 규칙 문장과 16글자 같음)를 잡아 다시 썼다.
 - 🔵 곁 발견: **카드 원문 칸 33곳**(정의 문장 대부분 · 함정 둘)이 교재 문장과 12글자 넘게 겹친다 — 예각 · 둔각 · 계수 · 합성수 · 점대칭도형 · 곱이 0인 성질 · 인수분해처럼
@@ -431,6 +431,7 @@ python scripts/qa/concept-terms/build-coverage.py   --cards <작업폴더>/cards
 python scripts/qa/concept-terms/build-card-kinds.py --cards <작업폴더>/cards.json --draft <concept-context-kinds-draft.tsv>
 python scripts/qa/concept-terms/build-card-fixes.py --cards <작업폴더>/cards.json            # 저장소 밖 원문이 있어야 돈다(겹침 검사)
 python scripts/qa/concept-terms/check-leak-coverage.py --cards <작업폴더>/cards.json --selftest --git main..HEAD
+npx tsx scripts/qa/concept-terms/build-fillings-audit.ts [--check]                  # 정답 아닌 채움 원장 — 판정은 사람이 적고, 새 · 바뀐 채움은 «미검토»
 ```
 🔴 **카드 덤프는 보정 전 원본 카드다**(2026-09-28 리드 적대적 검토 ④). 보정은 카드를 내보내는 층(`definitionCards`)에서 입히므로,
 그 층을 덤프하면 ⑴ 누출 검사가 보정 문장을 «카드 글»(허용 말)로 걷어내 보정 표를 못 보고 ⑵ 보정 생성기의 «새로 쓴 글만 잰다»가 23장 전부를

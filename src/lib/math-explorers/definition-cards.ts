@@ -9,6 +9,7 @@ import {
   type CourseCard,
   type CourseUnit,
 } from "./definition-content";
+import { orderFreeCards } from "./conceptOrderFree";
 import { applyCardFix, cardRevisions } from "./conceptSentenceFixes";
 
 const legacyUnits: CourseUnit[] = [
@@ -552,6 +553,20 @@ export function definitionQuestionId(s: DefinitionSession) {
   return `${s.id}${continuation}:${s.round}:${s.index}`;
 }
 /**
+ * 문장 조립 채점 — 자리 그대로(첫 칸 = 정답 첫 조각, 둘째 칸 = 정답 둘째 조각). 다만 두 빈칸이 본디 대등한 카드(`orderFreeCards`)는
+ * 두 정답 조각을 맞바꿔 넣어도 맞다(3자 합의 2026-09-28) — 맞바꿔도 뜻이 같은 문장을 만든 학생을 틀림 처리하지 않게.
+ */
+export function definitionAssemblyCorrect(
+  c: DefinitionCard,
+  values: readonly number[],
+) {
+  const [first, second] = values.map((v) => c.words[v]);
+  if (first === c.words[0] && second === c.words[1]) return true;
+  return (
+    orderFreeCards.has(c.id) && first === c.words[1] && second === c.words[0]
+  );
+}
+/**
  * 기억 복습에서 읽는 만기 — 저장된 만기, 다만 뜻을 고친 카드(`cardRevisions`)를 그 판 **전에** 마지막으로 풀었으면 판 날이
  * 더 이르면 판 날(원장님 확정 2026-09-28, D-143 ⑦). 공유 DB 에 쓰지 않는 읽기 규칙이다 — 저장된 만기 · 레벨 · 별은 그대로이고,
  * 레벨이 오르는 «제때 복습»(`eligible`)은 저장된 만기로만 가리므로 앞당긴 복습을 맞혀도 별 · 레벨 · 저장된 차례가 그대로다.
@@ -802,7 +817,7 @@ export function applyDefinitionAction(
     throw new Error("답을 다시 확인해주세요.");
   const correct =
     task.kind === 0
-      ? c.words[values[0]] === c.words[0] && c.words[values[1]] === c.words[1]
+      ? definitionAssemblyCorrect(c, values)
       : task.kind === 1
         ? c.examples.every((e, i) => e.yes === values.includes(i))
         : values[0] === (c.truth ? 1 : 0);
