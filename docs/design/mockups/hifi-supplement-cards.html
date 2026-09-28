@@ -1,0 +1,588 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>보충 카드 Hi-fi</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
+<style>
+/* 보충 카드 Hi-fi 시안 (D-07). 자리는 원장님이 고르셨다 — B 단원 끝 한 장(주 입구) + A 도감 선반.
+   여기서는 «보충 카드를 본 카드와 어떻게 가르나»(표지)와 줄 · 선반 · 카드 창의 모양만 다섯 안으로 보인다.
+   제품 CSS 를 옮겼다 — 새 색 · 새 글꼴 없음:
+     src/components/math-explorers/math-explorers.module.css — 오늘의 한 칸(1677~1781) · 도구 줄(1803~) · 단추(331~355) ·
+       상자 효과(651~697) · 풀이 틀(698~935) · 도감(151~176 · 411~480) · 대화창(1304~1460) · 좁은 폭(1483~1600)
+     src/components/math-explorers/concept-head.module.css — 이름 줄 · 갈래 딱지 · 흐린 머리(05 §8.19)
+     src/components/math-srs/daily-journey-board.module.css:116 — 예정 칸 점선(05 §8.17)
+     src/components/learn/learn.module.css(윗줄) · StudentMobileNav.module.css(아래 탭) · src/app/globals.css 80~103(학습 토큰)
+   카드 문장(뜻 · 곁말)은 아직 쓰지 않았다 — 막대는 자리만. */
+:root {
+  --page: #fafaf8; --ctl: #b9b9b6; --accent: #3159df;
+  --pw: 320px; --ph: 600px;
+}
+body.w390 { --pw: 390px; --ph: 760px; }
+* { box-sizing: border-box; }
+body { margin: 0; background: var(--page); color: #161616; font-family: "Pretendard Variable", Pretendard, "Malgun Gothic", system-ui, sans-serif; font-size: 14px; line-height: 1.55; }
+button { font: inherit; color: inherit; }
+:where(button):focus-visible { outline: 3px solid #82a1ff; outline-offset: 2px; }
+.tab, .wbtn { cursor: pointer; }
+.wrap { max-width: 1240px; margin: 0 auto; padding: 28px 24px 72px; }
+body.pc .wrap { max-width: 1340px; }
+@media (max-width: 600px) { .wrap { padding-inline: 16px; } }
+.eyebrow { margin: 0; font-size: 12px; letter-spacing: .06em; color: #61615e; }
+h1.pg { margin: 6px 0 8px; font-size: 28px; line-height: 1.3; letter-spacing: -.02em; }
+.lede { margin: 0; max-width: 80ch; color: #61615e; font-size: 15px; }
+.lede b { color: #161616; }
+.ask { margin: 18px 0; border: 1px solid var(--ctl); border-radius: 8px; background: #fff; padding: 16px 20px; }
+.ask.pick { border-color: #161616; }
+.ask h2 { margin: 0 0 8px; font-size: 18px; }
+.ask ol, .ask ul { margin: 0; padding-left: 20px; display: grid; gap: 6px; color: #61615e; }
+.ask b { color: #161616; }
+.toolbar { position: sticky; top: 0; z-index: 30; display: flex; flex-wrap: wrap; gap: 6px 10px; align-items: center; padding: 10px 0; background: var(--page); border-block: 1px solid var(--ctl); }
+.tabs { display: flex; flex-wrap: wrap; gap: 4px; }
+.tab { padding: 7px 12px; border: 1px solid transparent; border-radius: 8px; background: none; color: #61615e; font-size: 13px; font-weight: 600; }
+.tab b { color: #161616; margin-right: 6px; }
+.tab[aria-selected="true"] { background: #fff; border-color: var(--ctl); color: #161616; box-shadow: inset 0 -2px 0 var(--accent); }
+.rec { margin-left: 6px; font-size: 11px; border: 1.5px solid #161616; border-radius: 3px; padding: 0 5px; font-weight: 700; color: #161616; white-space: nowrap; }
+.widths { margin-left: auto; display: flex; gap: 4px; align-items: center; font-size: 12px; color: #61615e; }
+.wbtn { border: 1px solid var(--ctl); background: #fff; border-radius: 6px; padding: 4px 10px; font-size: 12px; }
+.wbtn[aria-pressed="true"] { border-color: #161616; font-weight: 700; box-shadow: inset 0 -2px 0 var(--accent); }
+.thesis { margin: 20px 0 6px; }
+.thesis h2 { margin: 0 0 4px; font-size: 21px; }
+.thesis p { margin: 0; max-width: 80ch; color: #61615e; }
+.spec { margin: 10px 0 16px; display: grid; grid-template-columns: max-content minmax(0, 1fr); gap: 4px 14px; font-size: 13px; max-width: 1000px; }
+.spec dt { font-weight: 700; }
+.spec dd { margin: 0; color: #61615e; }
+.cuts { display: flex; flex-wrap: wrap; gap: 18px; align-items: flex-start; }
+body.pc .cuts { flex-direction: column; flex-wrap: nowrap; overflow-x: auto; padding-bottom: 8px; }
+.cut { margin: 0; display: grid; gap: 8px; width: calc(var(--pw) + 12px); flex: none; }
+body.pc .cut { width: 1286px; }
+.cut figcaption { font-size: 12.5px; color: #61615e; }
+.cut figcaption b { color: #161616; }
+.note { margin: 14px 0 0; max-width: 84ch; color: #61615e; font-size: 13px; }
+.note b { color: #161616; }
+h2.sec { margin: 30px 0 6px; font-size: 20px; }
+.tablewrap { overflow-x: auto; }
+table.q { border-collapse: collapse; font-size: 12.5px; background: #fff; margin-top: 8px; min-width: 980px; }
+table.q th, table.q td { border: 1px solid #d6d6d3; padding: 7px 9px; text-align: left; vertical-align: top; }
+table.q th { background: #f3f3f1; }
+table.q th[scope="row"] { white-space: nowrap; }
+table.q td b { color: #161616; }
+
+/* ── 학생 화면 틀 ───────────────────────────────────────── */
+.phone { width: calc(var(--pw) + 12px); border: 6px solid #232323; border-radius: 26px; background: #fff; overflow: hidden; }
+.pcclip { width: 1286px; border: 3px solid #232323; border-radius: 10px; overflow: hidden; background: #fff; }
+.scr { position: relative; width: var(--pw); height: var(--ph); overflow: hidden; background: #f4f6fa; color: #192f52; display: flex; flex-direction: column; }
+.scr.pcs { width: 1280px; height: 800px; }
+/* 윗줄 — LearnTopBar (폭 600 이하 62px · 17px / PC 15px) */
+.stop { flex: none; display: flex; justify-content: space-between; align-items: center; gap: 12px; min-height: 62px; padding: 10px 18px; background: #fff; border-bottom: 1px solid #dde3ec; }
+.stop b { font-size: 17px; font-weight: 800; letter-spacing: -.4px; color: #172b4d; }
+.stop span { font-size: 12px; color: #596c86; }
+.pcs .stop { min-height: 0; padding: 11px 14px; }
+.pcs .stop b { font-size: 15px; }
+.pcs .stop span { font-size: 11px; }
+.sbody { position: relative; flex: 1; min-height: 0; overflow: hidden; }
+/* 아래 탭 — StudentMobileNav (폭 600 이하만) */
+.snav { position: absolute; z-index: 3; left: 0; right: 0; bottom: 0; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); padding: 7px 8px; border-top: 1px solid #dde3ec; background: #fff; box-shadow: 0 -8px 28px rgb(20 36 61 / 7%); }
+.snav span { display: grid; justify-items: center; align-content: center; gap: 2px; min-height: 54px; border-radius: 10px; color: #596c86; font-size: 11px; font-weight: 700; }
+.snav span.on { color: #3159df; background: #edf2ff; }
+.snav svg { width: 23px; height: 23px; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
+
+/* ── 홈 — .expeditionHome ── */
+.home { display: grid; gap: 16px; max-width: 680px; margin: 0 auto; padding: 14px 16px 96px; }
+.scr[data-w="320"] .home { gap: 12px; }
+.pcs .home { padding: 0; }
+/* PC(폭 700 초과) — student-review-home .main · .nav · .heading */
+.pcmain { width: min(100%, 1120px); margin: 0 auto; padding: 20px 28px 48px; }
+.pcnav { display: flex; flex-wrap: wrap; gap: 10px 24px; font-size: 13px; }
+.pcnav span { display: inline-flex; align-items: center; min-height: 44px; color: #596c86; text-decoration: underline; text-underline-offset: 4px; }
+.pcnav span.on { color: #3159df; font-weight: 700; }
+.pchead { margin: 28px 0 30px; }
+.pchead p { margin: 0 0 10px; color: #3159df; font-size: 12px; font-weight: 700; }
+.pchead h1 { margin: 0 0 10px; color: #172b4d; font-size: 38px; font-weight: 750; letter-spacing: -.04em; line-height: normal; }
+.pchead span { color: #596c86; font-size: 14px; line-height: 1.85; }
+.today { padding: 20px; background: #fff; border: 1px solid #e2e8f3; border-radius: 22px; box-shadow: 0 8px 28px #1c335007; }
+.scr[data-w="320"] .today { padding: 16px; border-radius: 18px; }
+.meta { display: flex; align-items: center; justify-content: space-between; gap: 12px; color: #3156cd; font-size: 13px; font-weight: 750; }
+.subt { margin: 14px 0 5px; color: #61748e; font-size: 12px; line-height: 1.5; }
+.today h1 { margin: 0; color: #19314f; font-size: 20px; line-height: 1.35; letter-spacing: -.04em; }
+.scr[data-w="390"] .today h1 { font-size: 22.6px; }
+.pcs .today h1 { font-size: 28px; }
+.prog { height: 7px; overflow: hidden; border-radius: 8px; background: #e9eef7; margin: 16px 0; }
+.prog > span { display: block; height: 100%; width: 100%; border-radius: inherit; background: #3458dd; }
+.done { margin: 0; padding: 10px 0 2px; color: #177450; font-size: 14px; line-height: 1.6; word-break: keep-all; }
+.done > .ck { margin-right: 5px; }
+.pill { display: inline-flex; align-items: center; gap: 3px; margin: 0 0 0 2px; padding: 1px 9px 1px 7px; border-radius: 999px; background: #fff1b5; color: #936626; font-size: 13px; font-weight: 800; font-variant-numeric: tabular-nums; vertical-align: 1px; white-space: nowrap; line-height: 1.5; }
+.pill i { font-style: normal; color: #e2a020; }
+.sr { position: absolute; width: 1px; height: 1px; padding: 0; overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; }
+.board { height: 170px; border-radius: 22px; background: #fff; display: grid; place-items: center; color: #9aa9bf; font-size: 12px; }
+.scr[data-w="320"] .board { border-radius: 18px; }
+.pcs .board { height: 300px; }
+.links { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px; }
+.links > span { position: relative; display: flex; align-items: center; justify-content: center; gap: 7px; min-height: 48px; padding: 8px 4px; border: 1px solid #dce5f2; border-radius: 14px; background: #fff; color: #425b79; font-size: 13px; font-weight: 700; white-space: nowrap; }
+.scr[data-w="320"] .links > span { gap: 4px; font-size: 12px; }
+.links .ic { font-size: 20px; color: #4568b6; }
+.links .badge { position: absolute; top: -7px; right: 6px; padding: 0 6px; border-radius: 999px; background: #fff1b5; color: #936626; font-size: 11px; font-weight: 800; line-height: 18px; font-style: normal; }
+
+/* 갈래 딱지 — concept-head.module.css .kindTag (누르는 것 아님 — 테두리 · 그림자 · 손가락 커서 없음) */
+.kt { display: inline-block; margin-left: 7px; padding: 0 6px; border-radius: 4px; background: #dfe7f4; color: #405a80; font-size: 11px; font-weight: 700; line-height: 18px; letter-spacing: 0; vertical-align: 2px; white-space: nowrap; }
+.kt.lg { font-size: 12px; line-height: 20px; vertical-align: 4px; }
+
+/* ── 보충 줄 — 오늘의 한 칸 카드 안(1 · 3 · 4 · 5안) ── */
+.sup { margin-top: 12px; padding-top: 12px; border-top: 1px solid #e9eef6; display: grid; gap: 8px; }
+.supCap { margin: 0; display: flex; justify-content: space-between; gap: 10px; color: #61748e; font-size: 12px; line-height: 1.5; }
+.supCap span:last-child { flex: none; }
+.supRow { display: flex; align-items: center; justify-content: space-between; gap: 10px; min-height: 48px; padding: 8px 12px; border: 1px solid #dce5f2; border-radius: 14px; background: #fff; color: #425b79; }
+.supRow .nm { min-width: 0; font-size: 16px; font-weight: 700; color: #192f52; word-break: keep-all; overflow-wrap: anywhere; }
+.supRow .nm small { display: block; font-size: 12px; font-weight: 550; color: #61748e; }
+.supRow .go { flex: none; font-size: 13px; font-weight: 750; color: #345ebd; }
+.supNote { margin: 0; color: #7b8ea8; font-size: 12px; line-height: 1.6; word-break: keep-all; }
+.supDone { margin: 0; color: #177450; font-size: 14px; line-height: 1.6; word-break: keep-all; }
+.supDone > .ck { margin-right: 5px; }
+.textGo { display: block; margin: 8px 0 0; padding: 8px 0; min-height: 40px; color: #345ebd; font-size: 14px; font-weight: 750; }
+
+/* 1안 표지 — 속 빈 «교재» 딱지(갈래 딱지 자 · 테두리는 학습 토큰 --learn-control) */
+.src1 { display: inline-block; margin-left: 4px; padding: 0 6px; border-radius: 4px; background: #fff; box-shadow: inset 0 0 0 1px #b8c4d6; color: #405a80; font-size: 11px; font-weight: 700; line-height: 18px; vertical-align: 2px; white-space: nowrap; }
+.src1.lg { font-size: 12px; line-height: 20px; vertical-align: 4px; }
+/* 2안 표지 — 예정 칸 점선(05 §8.17) · 모으면 도감 모은 카드 초록 */
+.side { display: grid; gap: 6px; padding: 16px 20px; border: 1px dashed #a9bad6; border-radius: 22px; background: #fff; color: #5b6f8f; }
+.scr[data-w="320"] .side { padding: 14px 16px; border-radius: 18px; }
+.side .sm { display: flex; justify-content: space-between; gap: 10px; font-size: 12px; font-weight: 750; }
+.side .sm span:last-child { font-weight: 550; }
+.side h2 { margin: 2px 0 0; font-size: 18px; font-weight: 750; line-height: 1.4; letter-spacing: -.02em; color: #192f52; }
+.side p { margin: 0; font-size: 12px; line-height: 1.6; word-break: keep-all; }
+.side.got { border: 1px solid #c9e0d5; background: #f0f7f4; color: #34765c; box-shadow: 0 3px 0 #d3e7dc; }
+.side.got .supDone { color: #34765c; }
+/* 3안 표지 — 없음. 흐린 머리 글(.metaMuted #8496b1)에 «교재 개념» */
+.muted3 { color: #8496b1; font-weight: 550; }
+/* 5안 표지 — 교재 권 이름(흐린 글) */
+
+/* 단추 — button.primary / button.secondary */
+.primary, .secondary { display: flex; align-items: center; justify-content: center; gap: 7px; width: 100%; min-height: 48px; padding: 11px 13px; border-radius: 13px; font-size: 14px; font-weight: 750; line-height: 1.4; text-align: center; word-break: keep-all; }
+.primary { background: #3159de; color: #fff; box-shadow: 0 3px 0 #2445b0; }
+.primary.off { opacity: .5; }
+.secondary { color: #345ebd; background: #edf2ff; }
+.side .secondary { margin-top: 6px; }
+
+/* ── 풀이 틀 — .practiceMain ~ .answerDock ── */
+.pmain { position: absolute; inset: 0; display: flex; flex-direction: column; padding: 8px 12px 76px; }
+.scr[data-w="320"] .pmain { padding-top: 3px; }
+.pcs .pmain { left: 50%; width: 780px; transform: translateX(-50%); padding: 12px 18px 18px; }
+.ptool { flex: none; display: flex; align-items: center; justify-content: space-between; gap: 9px; min-height: 34px; margin-bottom: 5px; }
+.scr[data-w="320"] .ptool { min-height: 29px; margin-bottom: 2px; }
+.pcs .ptool { min-height: 38px; margin-bottom: 8px; }
+.ptool b { font-size: 14px; font-weight: 750; color: #35547b; }
+.ptool span { font-size: 12px; color: #6c819f; text-align: right; }
+.pprog { flex: none; margin-bottom: 9px; }
+.scr[data-w="320"] .pprog { margin-bottom: 7px; }
+.pcs .pprog { margin-bottom: 10px; }
+.pprog > div { display: flex; justify-content: space-between; align-items: center; gap: 9px; margin-bottom: 7px; font-size: 12px; line-height: 1.4; }
+.pprog strong { font-weight: 700; }
+.pprog .trk { height: 5px; border-radius: 9px; background: #dce4ef; overflow: hidden; }
+.pframe { position: relative; flex: 1; min-height: 0; display: flex; flex-direction: column; overflow: hidden; border-radius: 18px; background: #fff; }
+.pcs .pframe { border-radius: 21px; }
+.pframe.dash { box-shadow: inset 0 0 0 1px #a9bad6; background: #fff; }
+.pframe.dash::before { content: ""; position: absolute; inset: 0; border: 1px dashed #a9bad6; border-radius: inherit; pointer-events: none; }
+.pframe.dash { box-shadow: none; }
+.ppane { flex: 1; min-height: 0; overflow: auto; overscroll-behavior: contain; scrollbar-width: thin; padding: 16px 14px 10px; }
+.scr[data-w="320"] .ppane { padding-top: 12px; }
+.pcs .ppane { padding: 18px 18px 14px; }
+.ameta { display: flex; align-items: flex-start; justify-content: space-between; gap: 10px; margin-bottom: 13px; font-size: 12px; font-weight: 550; color: #8496b1; line-height: 1.5; word-break: keep-all; }
+.scr[data-w="320"] .ameta { margin-bottom: 9px; }
+.pcs .ameta { margin-bottom: 16px; }
+.ameta > span:last-child { flex: none; }
+.qtitle { margin: 0 0 15px; font-size: 20px; font-weight: 650; line-height: 1.65; letter-spacing: -.025em; word-break: keep-all; }
+.scr[data-w="320"] .qtitle { font-size: 19px; }
+.pcs .qtitle { font-size: 26px; }
+.rdef { display: grid; gap: 11px; padding: 17px; border: 1px solid #dce7fb; border-radius: 14px; background: #f4f7fe; }
+.rdef i, .rnote i { display: block; height: 12px; border-radius: 4px; background: #dce7fb; }
+.rnote { display: grid; gap: 9px; margin: 16px 0; padding: 4px 0 4px 13px; border-left: 3px solid #f0ca74; }
+.rnote i { height: 10px; background: #e9eef6; }
+.quiet { margin: 11px 0 0; color: #7b8ea8; font-size: 12px; line-height: 1.8; word-break: keep-all; }
+.dock { flex: none; padding: 8px 14px 12px; background: #fff; box-shadow: 0 -8px 20px #1e426806; }
+.scr[data-w="320"] .dock { padding-top: 4px; padding-bottom: 10px; }
+.pcs .dock { padding: 11px 18px 15px; }
+
+.pprog .trk > span { display: block; height: 100%; border-radius: inherit; background: #3159de; }
+.crow { display: flex; align-items: baseline; justify-content: space-between; gap: 10px; margin-bottom: 10px; line-height: 1.4; word-break: keep-all; }
+.cname { min-width: 0; margin: 0; font-size: 20px; font-weight: 750; line-height: 1.45; letter-spacing: -.025em; color: #192f52; }
+.scr[data-w="320"] .cname { font-size: 19px; }
+.pcs .cname { font-size: 26px; }
+.crow .kt.lg, .crow .src1.lg { vertical-align: 3px; }
+.cside { flex: none; font-size: 12px; font-weight: 550; color: #8496b1; }
+.asent { font-size: 22px; line-height: 2.8; color: #284c7b; }
+.scr[data-w="320"] .asent { font-size: 19px; }
+.wbar { display: inline-block; height: 14px; margin-right: 6px; border-radius: 4px; background: #dce4ef; vertical-align: middle; }
+.slot { display: inline-flex; align-items: center; justify-content: center; vertical-align: middle; min-width: 58px; min-height: 42px; padding: 4px 10px; margin: 4px; border: 1.5px dashed #9db8e1; border-radius: 8px; background: #f3f7fe; color: #97accd; font-size: 17px; font-weight: 650; line-height: 1.45; }
+.dock.full { display: flex; flex-direction: column; justify-content: flex-end; height: 274px; }
+.scr[data-w="320"] .dock.full { height: 244px; }
+.ainst { display: flex; align-items: center; justify-content: space-between; gap: 8px; min-height: 30px; margin-bottom: 8px; font-size: 11px; color: #7990af; }
+.ainst span:last-child { font-weight: 600; color: #6b809f; }
+.scr[data-w="320"] .ainst { min-height: 26px; margin-bottom: 4px; }
+.answers { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); grid-template-rows: repeat(2, 74px); gap: 9px; }
+.scr[data-w="320"] .answers { grid-template-rows: repeat(2, 62px); gap: 7px; }
+.ans { display: flex; align-items: center; justify-content: center; gap: 7px; min-width: 0; padding: 8px; border: 2px solid #dce4ef; border-radius: 13px; background: #fff; }
+.ans .num { display: grid; place-items: center; flex: 0 0 22px; height: 22px; border-radius: 50%; background: #eef2f8; color: #7287a5; font-size: 11px; font-weight: 750; }
+.scr[data-w="320"] .ans .num { display: none; }
+.ans .wbar { margin: 0; height: 12px; }
+.confirm { display: flex; align-items: center; justify-content: center; width: 100%; min-height: 42px; margin-top: 6px; padding: 8px 13px; border-radius: 10px; background: #3159de; color: #fff; box-shadow: 0 3px 0 #2445b0; font-size: 13px; font-weight: 750; }
+.scr[data-w="320"] .confirm { min-height: 37px; padding-block: 6px; }
+.confirm.off { opacity: .5; }
+
+/* ── 대화창 — .dialog (+ .resourceSheet) ── */
+.dim { position: absolute; inset: 0; z-index: 5; background: #13294d65; backdrop-filter: blur(3px); -webkit-backdrop-filter: blur(3px); }
+.dlg { position: absolute; z-index: 6; left: 50%; top: 50%; transform: translate(-50%, -50%); width: min(560px, calc(100% - 28px)); max-height: min(760px, calc(100% - 44px)); display: flex; flex-direction: column; border-radius: 21px; background: #fff; color: #213d65; box-shadow: 0 20px 80px #13284b38; overflow: hidden; }
+.dlg.tall { height: min(760px, calc(100% - 44px)); }
+.dhead { flex: none; display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 20px 20px 16px; border-bottom: 1px solid #e9eef6; }
+.dhead p { margin: 0 0 5px; font-size: 12px; color: #8194af; }
+.dhead h2 { margin: 0; font-size: 23px; line-height: 1.5; font-weight: 750; word-break: keep-all; }
+.dlg.res .dhead h2 { font-size: 19px; }
+.dhead .x { flex: 0 0 40px; height: 40px; display: grid; place-items: center; border-radius: 50%; background: #f0f4fa; color: #6d83a4; font-size: 25px; }
+.dbody { position: relative; flex: 1; min-height: 0; overflow: hidden; padding: 18px 20px 22px; }
+.scrolled { position: absolute; left: 20px; right: 20px; bottom: 22px; }
+.memo { display: inline-block; margin: 0 0 8px; padding: 5px 9px; border-radius: 7px; background: #edf6f0; font-size: 11px; color: #669177; }
+.memo.dash { background: transparent; border: 1px dashed #a9bad6; color: #5b6f8f; padding: 4px 8px; }
+.dbody > .primary, .dbody > .secondary { margin-top: 17px; }
+.secHead { display: flex; align-items: center; justify-content: space-between; gap: 10px; margin-bottom: 4px; }
+.secHead p { margin: 0; font-size: 12px; color: #627c9e; }
+.secHead > span { flex: none; font-size: 12px; color: #526e92; font-variant-numeric: tabular-nums; }
+.scr[data-w="320"] .secHead > span { font-size: 10px; }
+.shelfHead { display: flex; align-items: baseline; justify-content: space-between; gap: 10px; margin: 25px 0 0; }
+.shelfHead h3 { margin: 0; font-size: 17px; font-weight: 750; line-height: 1.4; }
+.shelfHead span { flex: none; font-size: 12px; color: #526e92; font-variant-numeric: tabular-nums; }
+.coll { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; margin-top: 14px; }
+.cc { position: relative; display: flex; flex-direction: column; align-items: flex-start; gap: 8px; min-width: 0; min-height: 140px; padding: 14px 12px; border: 1px solid #e1e6ef; border-radius: 14px; background: #f7f9fc; color: #8695ac; }
+.cc.got { background: #f0f7f4; border-color: #c9e0d5; color: #34765c; box-shadow: 0 3px 0 #d3e7dc; }
+.cc.sm { min-height: 118px; }
+.cc > span { font-size: 10px; line-height: 1.4; word-break: keep-all; }
+.cc > strong { font-size: 17px; line-height: 1.35; word-break: keep-all; overflow-wrap: anywhere; }
+.cc > small { margin-top: auto; font-size: 11px; }
+.cc.dash { background: transparent; border: 1px dashed #a9bad6; color: #5b6f8f; }
+.cc .badge { position: absolute; top: -7px; right: 6px; padding: 0 6px; border-radius: 999px; background: #fff1b5; color: #936626; font-size: 11px; font-weight: 800; line-height: 18px; font-style: normal; }
+.dots { display: flex; gap: 5px; }
+.dots i { display: block; width: 17px; height: 5px; border-radius: 3px; background: #dce4ed; }
+.dots i.on { background: #6da48a; }
+.sched { margin: 20px 0 0; padding: 13px; border-radius: 11px; background: #f3f6fc; color: #7387a5; font-size: 12px; line-height: 1.9; word-break: keep-all; }
+.list3 { margin: 12px 0 0; padding: 0; list-style: none; border-top: 1px solid #e9eef6; }
+.list3 li { display: flex; align-items: center; justify-content: space-between; gap: 10px; min-height: 48px; padding: 9px 2px; border-bottom: 1px solid #e9eef6; word-break: keep-all; }
+.list3 .nm { min-width: 0; font-size: 16px; font-weight: 700; color: #192f52; overflow-wrap: anywhere; }
+.list3 .st { flex: none; font-size: 11px; color: #8496b1; }
+.list3 .st.got { color: #34765c; font-weight: 700; }
+
+/* 효과 — .chestEffect (4안만) */
+.fx { position: absolute; inset: 0; z-index: 8; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 10px; color: #936626; background: radial-gradient(ellipse at center, #fff1b5dd 0, #fff6d578 34%, #fff7d000 72%); }
+.fx .burst { position: relative; width: 128px; height: 130px; display: grid; place-items: center; }
+.fx .burst > i.big { font-style: normal; font-size: 84px; line-height: 1; color: #e2a020; }
+.fx .burst > span { position: absolute; left: 50%; top: 42%; color: #e2a020; font-size: 23px; transform: translate(-50%, -50%) rotate(var(--a)) translateY(-70px); opacity: .85; }
+.fx strong { font-size: 29px; font-weight: 800; }
+.fx > span { font-size: 25px; font-weight: 750; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <p class="eyebrow">통합 탐험 · 보충 카드 · Hi-fi · 2026-09-28</p>
+  <h1 class="pg">교재에 한 장 더 — 보충 카드를 어떻게 보이나</h1>
+  <p class="lede">자리는 원장님이 고르셨다 — <b>B 단원 끝 한 장</b>(단원 다섯 개념을 다 모은 날, 칸을 얻은 뒤 «오늘의 한 칸» 카드에 한 번) + <b>A 도감 선반</b>(«교재에서 더 만나는 개념») ·
+    별은 <b>처음 모을 때 +1</b>(상자 · 한 칸 보장 없음) · 기억 복습에 안 넣음 · 후보 21장 그대로. 다섯 안은 같은 흐름에서 <b>보충 카드를 본 카드와 가르는 표지</b>와 줄 · 선반 · 카드 창의 모양만 다르다.
+    제품 CSS 값 그대로 — 새 색 · 새 글꼴 없음. 뜻 문장은 막대로만 두었다(Hi-fi 확정 뒤 우리 말로 쓴다).</p>
+  <section class="ask pick" id="verdict">
+    <h2>추천 — 1안 «교재» 딱지 (원장님이 고르실 일)</h2>
+    <ul id="verdict-list">
+      <li><b>셋 다 1안</b> — Claude(먼저 적음) · codex · grok 이 따로 답해 같은 추천. 까닭: 네 자리(단원 끝 줄 · 세션 머리 · 도감 선반 · 카드 창)에 같은 표지가 따라다니고, 모은 뒤에도 남으며, 예정 칸 점선(D-142) · 별 금색(D-144)의 뜻을 건드리지 않는다. 품은 갈래 딱지에 테두리만 더한 정도.</li>
+      <li><b>셋이 함께 짚은 걱정</b> — «교재»가 갈래(정의 · 성질)로 읽히거나 테두리 딱지가 단추처럼 보일 수 있다. 줄이는 방법: 딱지 글을 «교재» 두 글자로만 두고 속 빈 테두리로 가른다(grok) · 누르는 것이 아니므로 손가락 커서 · hover 없음(D-30).</li>
+      <li><b>끝</b>은 줄이 «✓ 교재 개념 직선을 모았어요. ✦ +1»로 바뀌는 것만 — 효과(4안)는 «칸을 하나 더 얻었다»로 읽힌다(codex · grok).</li>
+      <li><b>나머지 안의 약점</b> — 2 점선은 «예정»으로 읽힘 · 3 글만으로는 세션에서 본 활동 하나 더로 읽힘 · 4 금색은 보상이지 표지가 아님 · 5 한 개념이 여러 권에 있어 권 하나를 박으면 틀린다(직선 = 큐브 3-1 · 개념원리 1-2).</li>
+    </ul>
+  </section>
+  <section class="ask">
+    <h2>고를 것</h2>
+    <ol>
+      <li><b>안</b> — 1 속 빈 «교재» 딱지 · 2 점선 곁 카드 · 3 표지 없이 글로 · 4 금빛 초대 · 5 교재 권 이름.</li>
+      <li><b>단원 끝 줄의 자리</b> — 오늘의 한 칸 카드 안(1 · 3 · 4 · 5안) · 카드 밖 따로 한 장(2안).</li>
+      <li><b>끝</b> — 홈 줄이 «✓ 교재 개념 직선을 모았어요. ✦ +1»로 바뀌는 것만(1 · 2 · 3 · 5안) · 여기에 별 효과 1.2초를 더함(4안).</li>
+      <li><b>도감 선반 모양</b> — 본 카드와 같은 격자(1 · 2 · 4 · 5안) · 줄 목록(3안).</li>
+      <li><b>카드 창 «세 활동 해 보기»</b> — 오늘의 탐험이 열려 있으면 흐리게 두고 «오늘의 탐험을 마친 뒤 해 볼 수 있어요.» 한 줄(열린 탐험은 하나 — 통합 탐험 결정). 다섯 안 공통.</li>
+    </ol>
+  </section>
+  <div class="toolbar">
+    <div class="tabs" role="tablist" aria-label="안">
+      <button class="tab" role="tab" data-k="1" aria-selected="true"><b>1</b>속 빈 «교재» 딱지<span class="rec">추천</span></button>
+      <button class="tab" role="tab" data-k="2" aria-selected="false"><b>2</b>점선 곁 카드</button>
+      <button class="tab" role="tab" data-k="3" aria-selected="false"><b>3</b>표지 없이 글로</button>
+      <button class="tab" role="tab" data-k="4" aria-selected="false"><b>4</b>금빛 초대</button>
+      <button class="tab" role="tab" data-k="5" aria-selected="false"><b>5</b>교재 권 이름</button>
+    </div>
+    <div class="widths">폭
+      <button class="wbtn" data-w="320" aria-pressed="true">폰 320</button>
+      <button class="wbtn" data-w="390" aria-pressed="false">폰 390</button>
+      <button class="wbtn" data-w="1280" aria-pressed="false">PC 1280</button>
+    </div>
+  </div>
+  <section id="panel"></section>
+  <p class="note">장면: <b>초3 김하늘</b> — 평면도형과 원(초3 여섯 단원 중 넷째)의 다섯 개념(선분 · 직각 · 원의 중심 · 반지름 · 지름)을 오늘 다 모았다 · 카드 레벨 별 5 · 도감 20 / 30개념.
+    이 단원의 보충 카드는 다섯 장(직선 · 각 · 변과 꼭짓점(도형) · 직사각형 · 정사각형 — <code>docs/reference/concept-terms/supplement-candidates.md</code> 1~5번). 단원 끝 줄은 첫 장(직선) 하나만 보이고, 남은 네 장은 도감 선반에 있다.
+    폰은 320 × 600 · 390 × 760(폭 600 이하 규칙 — 윗줄 62px · 아래 탭), PC 는 1280 × 800(아래 탭 없음 · 가운데 680 기둥 · 풀이 780 기둥).</p>
+
+  <h2 class="sec">안마다 장단 — Claude · codex · grok (따로 물음 · 합의 아님)</h2>
+  <div class="tablewrap">
+    <table class="q" id="opinions">
+      <thead><tr><th>안</th><th>Claude</th><th>codex</th><th>grok</th></tr></thead>
+      <tbody>
+        <tr><th scope="row">1 속 빈 «교재» 딱지</th>
+          <td data-op="claude-1"><b>좋음</b> 갈래 딱지 줄(D-143)에 한 칸 더라 줄 · 세션 머리 · 선반 · 카드 창 네 자리에서 같은 모양으로 보이고, 선반에서 본 카드와 섞여도 한눈에 갈린다 · 새 색 없음.<br><b>걱정</b> 갈래 딱지 바로 옆이라 «교재»를 갈래(정의 · 성질)로 읽을 수 있다 — 속 빈 모양으로 가르지만 11px 에서 차이가 작다 · 테두리 있는 작은 딱지가 단추처럼 보일 수 있다.</td>
+          <td data-op="codex-1"><b>좋음</b> 모은 뒤에도 표지가 남아 홈 · 세션 · 도감에서 본 카드와 갈린다 · 기존 딱지 값을 다시 써 품이 작다.<br><b>걱정</b> «정의 · 교재»를 같은 갈래로 읽거나 테두리 딱지를 단추로 볼 수 있다 · 320 에서 긴 이름 · 딱지 둘 · «살펴보기»가 함께 들 때 줄바꿈 확인이 필요하다.</td><td data-op="grok-1"><b>좋음</b> 네 자리에 같은 딱지가 붙어 자리가 달라도 한 장으로 갈린다 · 새 색이 없고 예정 점선 · 별 금색은 제 뜻 그대로 · 품은 갈래 딱지에 테두리만 더한 정도.<br><b>걱정</b> 11px 에서 채운 딱지와 속 빈 딱지의 차이가 작아 «교재»가 여덟째 갈래로 읽힐 수 있다 · 테두리가 단추처럼 보인다(D-30) · 긴 이름(«변과 꼭짓점(도형)»)에 붙인 모습이 없었다 — 선반에 그려 넣음.</td></tr>
+        <tr><th scope="row">2 점선 곁 카드</th>
+          <td data-op="claude-2"><b>좋음</b> «한 칸과 따로»가 모양으로 보인다 · 모으면 도감의 모은 카드 초록으로 바뀌어 끝이 분명하다.<br><b>걱정</b> 점선은 진도판에서 «예정 칸»(D-142)이라 «아직 안 온 것»으로 읽힌다 · 카드가 하나 더 생겨 진도판을 아래로 민다(320 에서 판이 첫 화면 밖으로).</td>
+          <td data-op="codex-2"><b>좋음</b> 오늘 카드 밖이라 본 진도와 따로라는 것이 가장 분명 · 모은 뒤 초록으로 바뀌는 것도 익숙하다.<br><b>걱정</b> 점선이 D-142 «예정 · 아직 안 열림»으로 읽힐 수 있고, 모은 뒤에는 본 카드와 같은 초록이 된다 · 320 세로를 더 쓰고 홈 · 세션 · 선반의 상태별 모양이 더 든다.</td><td data-op="grok-2"><b>좋음</b> «한 칸 밖»이 카드 한 장으로 보이고, 모으면 도감 초록 실선으로 끝이 분명하다.<br><b>걱정</b> 점선 #a9bad6 · 글자 #5b6f8f 는 진도판 «예정»이라 아직 안 온 칸으로 읽힌다 · 320 × 600 에서 진도판이 첫 화면 밖으로 밀린다.</td></tr>
+        <tr><th scope="row">3 표지 없이 글로</th>
+          <td data-op="claude-3"><b>좋음</b> 가장 조용하다 · 새 모양 0 · 선반이 줄 목록이라 자리로 갈린다.<br><b>걱정</b> 풀이 화면에서 본 카드와의 차이가 흐린 12px 한 줄뿐이라 «오늘 것을 하나 더»로 읽기 쉽다 · 선반이 격자와 달라 «같은 도감 카드»라는 느낌이 약하다.</td>
+          <td data-op="codex-3"><b>좋음</b> 갈래 · 예정 · 보상 표시와 부딪힘이 가장 적다 · 줄 목록이 320 에서 긴 이름에 자리를 더 준다.<br><b>걱정</b> 세션에서 흐린 머리 글에만 기대 본 활동이 하나 더 있는 것처럼 느낄 수 있다 · 품은 작지만 격자와 목록 두 모양을 지켜야 한다.</td><td data-op="grok-3"><b>좋음</b> 새 모양이 없어 품이 가장 작고, 홈 줄이 한 줄이라 판을 덜 민다 · 선반이 목록이라 자리로 갈린다.<br><b>걱정</b> 풀이 머리의 차이가 흐린 12px «교재 개념»뿐이라 오늘 활동 하나 더로 읽힌다 · 그 목록 모양이 «오늘 다시 만날 개념»(기억 복습 · D-143)과 같다.</td></tr>
+        <tr><th scope="row">4 금빛 초대</th>
+          <td data-op="claude-4"><b>좋음</b> 들어갈 까닭(별 +1)이 가장 분명하고, 끝 효과가 칸 효과와 같은 말투다.<br><b>걱정</b> 금색은 보상 자리(D-144)라 보충이 «별 사냥»으로 읽힌다 · 1 별에 효과까지 붙이면 약속이 과하다 · 효과가 «오늘의 한 칸» 효과와 겹쳐 «칸을 하나 더 얻었다»로 오해할 수 있다.</td>
+          <td data-op="codex-4"><b>좋음</b> 처음 모을 까닭과 보상이 바로 보인다 · 작은 알약이라 320 에서도 폭을 적게 쓴다.<br><b>걱정</b> 금색은 보상이지 보충의 표지가 아니고, 모은 뒤에는 표지도 사라진다 · 칸 효과를 다시 쓰면 칸을 하나 더 얻은 것으로 오해하기 쉽다 · 한 번 효과 · 보상 처리까지 품이 가장 크다.</td><td data-op="grok-4"><b>좋음</b> 처음 모으면 별 1개라는 까닭이 줄 · 선반 · 단추에 바로 보인다 · 끝 글에 느낌표가 없다.<br><b>걱정</b> 금색 알약과 1.2초 효과는 칸 보상(D-144) 자리라 «칸을 하나 더»로 읽힌다 · 단추 «세 활동 해 보기 · ✦ +1»이 «기지 키우기 · ✦ 12»(쓰는 별)와 같은 말투다.</td></tr>
+        <tr><th scope="row">5 교재 권 이름</th>
+          <td data-op="claude-5"><b>좋음</b> «왜 이 카드인가»(내 교재에 나온다)가 가장 분명하다.<br><b>걱정</b> 지점마다 쓰는 교재가 다를 수 있다(D-136 — 권 이름을 지점별로 둬야 한다) · 시중 교재 상표가 학생 화면에 나온다 · 쪽은 PDF 쪽이라 인쇄 쪽과 달라 적지 못한다.</td>
+          <td data-op="codex-5"><b>좋음</b> 실제 쓰는 책과 맞으면 «왜 배우는지»가 구체적이다 · 새 장식 없이 가른다.<br><b>걱정</b> 여러 권 · 학년에 걸친 개념이 있어 학년만으로 책 하나를 정하면 틀릴 수 있다 · 교재 대응을 따로 관리해야 한다 · 320 에서 긴 권 이름이 머리 글을 늘려 단원 정보와 다툰다.</td><td data-op="grok-5"><b>좋음</b> «왜 이 카드인가»가 권 이름으로 드러나고, 흐린 글이라 딱지 · 점선 · 금색과 부딪히지 않는다.<br><b>걱정</b> 직선만 해도 큐브 3-1 과 개념원리 1-2 둘 다에 있다 — «큐브 3-1»만 박으면 다른 교재 학생에게 거짓 표지가 된다 · 상표가 학생 화면에 남는다.</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <p class="note" id="pick-note"><b>시안에서 고친 곳(codex · grok 대조)</b> — 320 × 600 답 칸 위 4 · 아래 10(제품 낮은 폰 규칙) · 효과의 큰 별을 가운데(제품 <code>.tileBurstStar</code>) · 별 알약에 화면 읽기 글 «별 N개» · 선반 카드 높이 140(도감 카드) · 선반의 갈래 딱지 뺌(도감 카드에는 없다 — 1안 «교재»만 이름 뒤) ·
+    «모음» → «수집 완료»(제품 말) · 세션 머리 «초3 · 단원»(뜻 만나기 머리) · 홈 좌우 16px · PC 글 메뉴와 «매일 쌓이는 수학» 머리 · 2안 곁 카드에 흰 면 · 문장 조립 장면과 모은 보충 카드 창을 더함.
+    세션 곁말의 금색 왼쪽 줄은 제품 뜻 만나기의 <code>.readingNote</code> 그대로다(보충 표지로 쓰지 않았다).</p>
+  <section class="ask">
+    <h2>남은 질문 — 다섯 안 공통 (Hi-fi 뒤 구현 전에 정함 · codex · grok 이 짚음)</h2>
+    <ol>
+      <li><b>보충 도중 나가면</b> — 그날은 단원 끝 줄이 «이어서 하기 · n / 3»으로, 다음 날부터는 선반 카드 창에서 이어서 하는가.</li>
+      <li><b>오답</b> — 본 카드와 같은 재도전(세 바퀴) 뒤에도 남으면 모으지 않는가(별 없음).</li>
+      <li><b>보충이 열린 채 다음 날 오늘의 탐험이 열리면</b> — 열린 탐험은 하나다. 오늘의 탐험을 시작하면 보충 진행을 접는가, 남겨 두는가.</li>
+      <li><b>끝 줄 색</b> — 칸 완료 줄과 같은 초록 «✓»이라 칸을 하나 더 받은 줄로 읽힐 수 있다(grok). 도감 모은 카드 글자색(#34765c)으로 가를지.</li>
+      <li><b>건너뛴 장</b> — 단원 끝 줄을 누르지 않고 지나간 장과 아직 안 만난 장이 선반에서 둘 다 «아직 수집 전»이다. 가를지.</li>
+    </ol>
+  </section>
+</div>
+<script>
+const SUP = ["직선", "각", "변과 꼭짓점(도형)", "직사각형", "정사각형"];
+const MAIN = ["선분", "직각", "원의 중심", "반지름", "지름"];
+const BOOK = "큐브 3-1";
+
+const V = {
+  1: { title: "1 · 속 빈 «교재» 딱지", thesis: "갈래 딱지(정의 · 성질) 옆에 같은 자의 속 빈 딱지 «교재»를 하나 더 붙인다. 줄 · 세션 머리 · 선반 · 카드 창 어디서나 이름 뒤에 같은 모양으로 따라다닌다.",
+       spec: [["표지", "«교재» — 갈래 딱지와 같은 11px · 700 · 모서리 4 · 줄높이 18, 바탕 흰색 + 1px 테두리 #b8c4d6(학습 토큰 --learn-control) · 글자 #405a80"], ["단원 끝 줄", "오늘의 한 칸 카드 안, 완료 줄 아래 가는 선(#e9eef6) 뒤 — «교재에 한 장 더 · 선택» / 누르는 줄(이름 · 딱지 둘 · «살펴보기 →») / «세 활동 · 한 칸과 따로예요»"], ["세션 머리", "도구 줄 오른쪽 «교재에 한 장 더» · 진행 «교재에 한 장 더 1 / 3» · 뜻 만나기 제목 «직선 [정의] [교재]»"], ["끝", "홈으로 — 줄이 «✓ 교재 개념 직선을 모았어요. ✦ +1» + «남은 교재 개념 4장은 도감에 있어요.» 효과 없음"], ["도감 선반 · 카드 창", "본 카드와 같은 격자 · 같은 카드 모양(갈래 딱지 없음 — 도감 카드와 같다) + 이름 뒤 «교재» 딱지 · 기억 점 대신 «아직 수집 전 / 수집 완료» · 카드 창 제목 뒤 딱지 둘"]] },
+  2: { title: "2 · 점선 곁 카드", thesis: "보충은 «곁»이다 — 진도판 예정 칸의 점선(1px #a9bad6 · 글자 #5b6f8f)으로 그린다. 단원 끝 줄은 오늘 카드 밖 따로 한 장, 모으면 도감 모은 카드의 초록 실선으로 바뀐다.",
+       spec: [["표지", "점선 테두리(1px dashed #a9bad6) · 글자 #5b6f8f — 예정 칸과 같은 값. 모으면 #c9e0d5 실선 · #f0f7f4 면(도감 모은 카드)"], ["단원 끝 줄", "오늘의 한 칸 카드 아래 따로 한 장 — «교재에 한 장 더 · 선택 · 세 활동» / «직선 [정의]» / «단원 개념 다섯을 모은 날 열려요. 한 칸과 따로예요.» / «살펴보기 →»(secondary 단추)"], ["세션 머리", "풀이 틀 둘레가 점선 · 진행 «교재에 한 장 더 1 / 3»"], ["끝", "홈 — 곁 카드가 초록 실선 «✓ 교재 개념 직선을 모았어요. ✦ +1»"], ["도감 선반 · 카드 창", "안 모은 카드는 점선 · 모은 카드는 초록 실선 · 카드 창의 기억 알약 자리가 점선 «교재 개념 · 아직 수집 전»"]] },
+  3: { title: "3 · 표지 없이 글로", thesis: "새 모양을 더하지 않는다. 본 카드의 흐린 머리 글(#8496b1) 자리에 «교재 개념»을 적고, 단원 끝 줄은 글자 단추 한 줄, 선반은 격자 대신 줄 목록으로 자리를 가른다.",
+       spec: [["표지", "없음 — 흐린 머리 글 «교재 개념 · 초3 · 평면도형과 원»(카드 창은 «초등 3학년»)"], ["단원 끝 줄", "완료 줄 아래 코발트 글자 단추 «교재에 한 장 더 — 직선 →» + 흐린 한 줄 «단원 개념 다섯을 모은 날 · 세 활동 · 선택»"], ["세션 머리", "뜻 만나기 머리 줄 왼쪽 «교재 개념 · 초3 · 평면도형과 원» · 진행 «교재에 한 장 더 1 / 3»"], ["끝", "홈 — 완료 줄 아래 «✓ 교재 개념 직선도 모았어요. ✦ +1»"], ["도감 선반 · 카드 창", "선반은 «오늘 다시 만날 개념» 목록 모양(선 #e9eef6 · 이름 16px · 오른쪽 «아직 수집 전 / 수집 완료») · 카드 창 머리 글 «교재 개념 · …»"]] },
+  4: { title: "4 · 금빛 초대", thesis: "별 경제의 금색(#fff1b5 · #936626 · #e2a020)으로 «처음 모으면 별 1개»를 앞세운다. 줄 · 선반 · 카드 창에 «✦ +1», 모은 순간 칸 효과와 같은 모양으로 «교재 개념 / 별 +1» 1.2초.",
+       spec: [["표지", "금색 «✦ +1» — 줄 · 세션은 완료 줄 별 알약(13px), 선반 모서리는 우리 기지 딱지(11px · 위 −7px). 안 모은 보충 카드에만"], ["단원 끝 줄", "오늘의 한 칸 카드 안 — 누르는 줄 «교재에 한 장 더 · 직선 [정의]» + 오른쪽 «✦ +1» / «처음 모으면 별 1개 · 세 활동 · 선택»"], ["세션 머리", "진행 줄 오른쪽 «1 / 3 · ✦ +1»"], ["끝", "모은 순간 효과(상자 효과 모양 · 1.2초 · 움직임 줄이기면 멈춘 그림) «교재 개념» / «별 +1» → 홈 줄 «✓ 교재 개념 직선을 모았어요. ✦ +1»"], ["도감 선반 · 카드 창", "안 모은 카드 모서리 «✦ +1»(우리 기지 딱지 모양) · 카드 창 단추 «세 활동 해 보기 · ✦ +1»"]] },
+  5: { title: "5 · 교재 권 이름", thesis: "«교재»라고 하지 않고 학생이 가진 책 이름을 적는다 — «큐브 3-1». 왜 이 카드가 있는지를 가장 곧게 말한다. 권 이름은 흐린 글로만.",
+       spec: [["표지", "권 이름 «큐브 3-1»(흐린 글 #8496b1 · 초등은 큐브, 중등은 개념원리 — 학생 학년의 권 하나)"], ["단원 끝 줄", "오늘의 한 칸 카드 안 — «교재에 한 장 더 · 큐브 3-1» / 누르는 줄(이름 · 갈래 딱지 · «살펴보기 →») / «세 활동 · 한 칸과 따로예요»"], ["세션 머리", "뜻 만나기 머리 줄 왼쪽 «큐브 3-1 · 평면도형과 원» · 진행 «교재에 한 장 더 1 / 3»"], ["끝", "홈 — 줄이 «✓ 교재 개념 직선을 모았어요. ✦ +1» + «남은 4장은 도감에 있어요.»"], ["도감 선반 · 카드 창", "본 카드와 같은 격자 · 카드 머리 작은 글이 단원 대신 «큐브 3-1» · 카드 창 머리 «큐브 3-1 · 초등 3학년 · 평면도형과 원»"]] },
+};
+
+const ICON = {
+  compass: '<svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="8.5"/><path d="m16 8-2.5 5.5L8 16l2.5-5.5L16 8Z"/></svg>',
+  book: '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 6.5c-2.5-1.7-5.1-1.8-8-1v12c2.9-.8 5.5-.7 8 1 2.5-1.7 5.1-1.8 8-1v-12c-2.9-.8-5.5-.7-8 1Z"/><path d="M12 6.5v12"/></svg>',
+  play: '<svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3.5" y="4.5" width="17" height="15" rx="3"/><path d="m10 9 5 3-5 3V9Z"/></svg>',
+};
+const kt = (k = "정의", lg = false) => `<span class="kt${lg ? " lg" : ""}">${k}</span>`;
+const pill = (n) => ` <span class="pill" aria-hidden="true"><i>✦</i>+${n}</span><span class="sr">별 ${n}개</span>`;
+// 이름 + 갈래 딱지 + (1안) 표지
+const nameTags = (v, name, lg = false) => `${name}${kt("정의", lg)}${v === "1" ? `<span class="src1${lg ? " lg" : ""}">교재</span>` : ""}`;
+
+let W = "320";
+const isPC = () => W === "1280";
+function screen(inner, tab = 0, extra = "") {
+  const nav = isPC() ? "" : `<div class="snav">${[["compass", "탐험"], ["book", "도감"], ["play", "강의"]].map(([ic, l], i) => `<span class="${i === tab ? "on" : ""}">${ICON[ic]}${l}</span>`).join("")}</div>`;
+  const scr = `<div class="scr${isPC() ? " pcs" : ""}" data-w="${W}"><div class="stop"><b>오늘의수학</b><span>김하늘 · 초3반 · 나가기</span></div><div class="sbody">${inner}</div>${nav}${extra}</div>`;
+  return isPC() ? `<div class="pcclip">${scr}</div>` : `<div class="phone">${scr}</div>`;
+}
+
+// ── B ① · ③ — 오늘의 한 칸 카드 + 보충 줄 ──
+function supLine(v, got) {
+  const name = SUP[0];
+  if (v === "2") return ""; // 2안은 카드 밖
+  if (v === "3") {
+    return got
+      ? `<p class="done"><span class="ck">✓</span>교재 개념 ${name}도 모았어요.${pill(1)}</p>`
+      : `<span class="textGo">교재에 한 장 더 — ${name} →</span><p class="supNote">단원 개념 다섯을 모은 날 · 세 활동 · 선택</p>`;
+  }
+  if (got) {
+    return `<div class="sup"><p class="supDone"><span class="ck">✓</span>교재 개념 ${name}을 모았어요.${pill(1)}</p><p class="supNote">남은 교재 개념 4장은 도감에 있어요.</p></div>`;
+  }
+  if (v === "4") {
+    return `<div class="sup"><span class="supRow"><span class="nm"><small>교재에 한 장 더</small>${nameTags(v, name)}</span>${pill(1)}</span><p class="supNote">처음 모으면 별 1개 · 세 활동 · 선택</p></div>`;
+  }
+  const cap = v === "5" ? `<span>교재에 한 장 더 · ${BOOK}</span><span>선택</span>` : `<span>교재에 한 장 더</span><span>선택</span>`;
+  return `<div class="sup"><p class="supCap">${cap}</p><span class="supRow"><span class="nm">${nameTags(v, name)}</span><span class="go">살펴보기 →</span></span><p class="supNote">세 활동 · 한 칸과 따로예요</p></div>`;
+}
+function sideCard(got) {
+  const name = SUP[0];
+  if (got) return `<section class="side got"><p class="supDone"><span class="ck">✓</span>교재 개념 ${name}을 모았어요.${pill(1)}</p><p>남은 교재 개념 4장은 도감에 있어요.</p></section>`;
+  return `<section class="side"><div class="sm"><span>교재에 한 장 더</span><span>선택 · 세 활동</span></div><h2>${name}${kt()}</h2><p>단원 개념 다섯을 모은 날 열려요. 한 칸과 따로예요.</p><span class="secondary">살펴보기 →</span></section>`;
+}
+function home(v, got) {
+  const today = `<section class="today">
+      <div class="meta"><span>오늘의 한 칸 완료</span><span>15 / 15 활동</span></div>
+      <p class="subt">초등 3학년</p>
+      <h1>평면도형과 원</h1>
+      <div class="prog"><span></span></div>
+      <p class="done"><span class="ck">✓</span>한 칸 전진했어요.${pill(5)} 다음 탐험은 내일 열려요.</p>
+      ${supLine(v, got)}
+    </section>`;
+  const links = `<div class="links"><span><span class="ic">▤</span>도감</span><span><span class="ic">⚙</span>학습 설정</span><span><span class="ic">⌂</span>우리 기지<em class="badge">✦ 13</em></span></div>`;
+  return pcWrap(`<div class="home">${today}${v === "2" ? sideCard(got) : ""}<div class="board">진도판(그대로)</div>${links}</div>`);
+}
+// PC(폭 700 초과) 홈 — 글 메뉴 · «매일 쌓이는 수학» 머리(StudentReviewPage) 아래 680 기둥. 폰은 둘 다 숨는다.
+function pcWrap(inner) {
+  if (!isPC()) return inner;
+  return `<div class="pcmain"><div class="pcnav"><span class="on">탐험</span><span>도감</span><span>강의</span></div>
+    <header class="pchead"><p>하루 한 걸음 · 초3~중3 수학 탐험</p><h1>매일 쌓이는 수학</h1><span>오늘의 탐험을 마치고, 수학의 길을 한 칸씩 걸어요.</span></header>${inner}</div>`;
+}
+function fx() {
+  return `<div class="fx" role="status"><div class="burst" aria-hidden="true"><i class="big">✦</i>${[0, 60, 120, 180, 240, 300].map((a) => `<span style="--a:${a}deg">✦</span>`).join("")}</div><strong>교재 개념</strong><span>별 +1</span></div>`;
+}
+
+// ── B ② — 한 장 세션 머리(뜻 만나기) ──
+function session(v) {
+  const name = SUP[0];
+  const left = v === "3" ? `<span>교재 개념 · 초3 · 평면도형과 원</span>` : v === "5" ? `<span>${BOOK} · 평면도형과 원</span>` : `<span>초3 · 평면도형과 원</span>`;
+  const count = v === "4" ? `<span>1 / 3 ${pill(1)}</span>` : `<span>1 / 3</span>`;
+  return `<div class="pmain">
+    <div class="ptool"><b>← 진도판</b><span>교재에 한 장 더</span></div>
+    <div class="pprog"><div><strong>교재에 한 장 더</strong>${count}</div><div class="trk"></div></div>
+    <section class="pframe${v === "2" ? " dash" : ""}">
+      <div class="ppane">
+        <div class="ameta">${left}<span>뜻 만나기</span></div>
+        <h2 class="qtitle">${nameTags(v, name, true)}</h2>
+        <div class="rdef"><i style="width:92%"></i><i style="width:78%"></i><i style="width:54%"></i></div>
+        <div class="rnote"><i style="width:88%"></i><i style="width:60%"></i></div>
+        <p class="quiet">뜻을 읽고 나면 말 조각과 예를 골라 확인해요.</p>
+      </div>
+      <div class="dock"><span class="primary">뜻을 가리고 도전하기 <span aria-hidden="true">→</span></span></div>
+    </section>
+  </div>`;
+}
+
+// ── B ②-2 — 한 장 세션 둘째 활동(문장 조립) — 표지가 이름 줄에 남는지 ──
+function sessionAssemble(v) {
+  const name = SUP[0];
+  const count = v === "4" ? `<span>2 / 3 ${pill(1)}</span>` : `<span>2 / 3</span>`;
+  const bar = (w) => `<i class="wbar" style="width:${w}px"></i>`;
+  const slot = (n) => `<span class="slot">${n}</span>`;
+  const choice = (i, w) => `<span class="ans"><span class="num">${i}</span>${bar(w)}</span>`;
+  return `<div class="pmain">
+    <div class="ptool"><b>← 진도판</b><span>교재에 한 장 더</span></div>
+    <div class="pprog"><div><strong>교재에 한 장 더</strong>${count}</div><div class="trk"><span style="width:33.3%"></span></div></div>
+    <section class="pframe${v === "2" ? " dash" : ""}">
+      <div class="ppane">
+        <div class="crow"><h2 class="cname">${nameTags(v, name, true)}</h2><span class="cside">문장 조립</span></div>
+        <div class="asent">${bar(58)}${bar(36)}${slot(1)}${bar(70)}${bar(44)}${slot(2)}${bar(52)}</div>
+      </div>
+      <div class="dock full">
+        <div class="ainst"><span>말 조각 두 개를 순서대로 · 0 / 2</span><span>아직 모르겠어요</span></div>
+        <div class="answers">${choice(1, 40)}${choice(2, 58)}${choice(3, 34)}${choice(4, 50)}</div>
+        <span class="confirm off">완성한 문장 확인하기</span>
+      </div>
+    </section>
+  </div>`;
+}
+
+// ── A ④ — 도감 선반 ──
+function shelfCards(v) {
+  const st = (i) => (i === 0 ? "got" : "");
+  if (v === "3") {
+    return `<ul class="list3">${SUP.map((n, i) => `<li><span class="nm">${n}${kt()}</span><span class="st ${st(i)}">${i === 0 ? "수집 완료" : "아직 수집 전"}</span></li>`).join("")}</ul>`;
+  }
+  const shown = SUP;
+  return `<div class="coll">${shown.map((n, i) => {
+    const got = i === 0;
+    const cls = got ? "got" : v === "2" ? "dash" : "";
+    const top = v === "5" ? BOOK : "평면도형과 원";
+    const tag = v === "1" ? `<span class="src1" style="margin-left:6px">교재</span>` : "";
+    const badge = v === "4" && !got ? `<em class="badge">✦ +1</em>` : "";
+    return `<div class="cc ${cls}">${badge}<span>${top}</span><strong>${n}${tag}</strong><small>${got ? "수집 완료" : "아직 수집 전"}</small></div>`;
+  }).join("")}</div>`;
+}
+function dexSheet(v) {
+  const mainCards = MAIN.slice(3).map((n) => `<div class="cc got"><span>평면도형과 원</span><strong>${n}</strong><div class="dots"><i class="on"></i><i></i><i></i></div><small>10/01 복습</small></div>`).join("");
+  const note = v === "4" ? "선택 · 오늘의 탐험과 따로예요. 처음 모으면 별 1개." : "선택 · 오늘의 탐험 · 기억 복습과 따로예요.";
+  const inner = `<div class="scrolled">
+      <div class="coll" style="margin-top:0">${mainCards}</div>
+      <p class="sched">도움 없이 기억하면 복습 간격이 1 → 3 → 7 → 14 → 30일로 늘어나요.</p>
+      <div class="shelfHead"><h3>교재에서 더 만나는 개념</h3><span>1 / 5</span></div>
+      <p class="quiet" style="margin-top:4px">${note}</p>
+      ${shelfCards(v)}
+    </div>`;
+  return `<div class="dim"></div><div class="dlg res tall"><div class="dhead"><h2>나의 개념 도감</h2><span class="x">×</span></div><div class="dbody">${inner}</div></div>`;
+}
+
+// ── A ⑤ — 카드 창 ──
+function cardDialog(v) {
+  const name = SUP[1];
+  const head = v === "3" ? "교재 개념 · 초등 3학년 · 평면도형과 원" : v === "5" ? `${BOOK} · 초등 3학년 · 평면도형과 원` : "초등 3학년 · 평면도형과 원";
+  const memo = v === "2" ? `<p class="memo dash">교재 개념 · 아직 수집 전</p>` : `<p class="memo">아직 수집 전</p>`;
+  const go = v === "4" ? `세 활동 해 보기 · ✦ +1` : `세 활동 해 보기 <span aria-hidden="true">→</span>`;
+  return `<div class="dim"></div><div class="dlg"><div class="dhead"><div><p>${head}</p><h2>${nameTags(v, name, true)}</h2></div><span class="x">×</span></div>
+    <div class="dbody">${memo}
+      <p class="quiet">뜻을 만나고 세 활동을 해결하면 내 카드로 모을 수 있어요. 오늘의 탐험 · 기억 복습과 따로예요.</p>
+      <span class="primary">${go}</span>
+    </div></div>`;
+}
+// 모은 보충 카드를 다시 연 모습 — 본 카드 창의 «뜻과 해설 보기» 갈래(canReveal) 그대로 · 별은 다시 없다
+function cardDialogGot(v) {
+  const name = SUP[0];
+  const head = v === "3" ? "교재 개념 · 초등 3학년 · 평면도형과 원" : v === "5" ? `${BOOK} · 초등 3학년 · 평면도형과 원` : "초등 3학년 · 평면도형과 원";
+  const memo = v === "2" ? `<p class="memo dash">교재 개념 · 수집 완료</p>` : `<p class="memo">수집 완료 · 기억 복습 없음</p>`;
+  return `<div class="dim"></div><div class="dlg"><div class="dhead"><div><p>${head}</p><h2>${nameTags(v, name, true)}</h2></div><span class="x">×</span></div>
+    <div class="dbody">${memo}
+      <p class="quiet">필요할 때 뜻과 해설을 열어 확인해 보세요.</p>
+      <span class="primary">뜻과 해설 보기</span>
+    </div></div>`;
+}
+function cardDialogLocked(v) {
+  return cardDialog(v).replace('<span class="primary">', '<p class="quiet">오늘의 탐험을 마친 뒤 해 볼 수 있어요.</p><span class="primary off">');
+}
+function homeUnder() {
+  return pcWrap(`<div class="home"><section class="today"><div class="meta"><span>오늘의 한 칸 완료</span><span>15 / 15 활동</span></div><p class="subt">초등 3학년</p><h1>평면도형과 원</h1><div class="prog"><span></span></div></section><div class="board">진도판(그대로)</div></div>`);
+}
+
+let cur = "1";
+function render() {
+  const v = V[cur];
+  const cuts = isPC()
+    ? [
+        [screen(home(cur, false)), "<b>PC · 칸을 얻은 뒤 홈</b> — 가운데 680 기둥의 오늘의 한 칸 카드"],
+        [screen(session(cur)), "<b>PC · 한 장 세션 머리</b> — 풀이 780 기둥 · 뜻 만나기"],
+        [screen(sessionAssemble(cur)), "<b>PC · 둘째 활동</b> — 문장 조립 · 이름 줄 표지"],
+        [screen(homeUnder(), 0, dexSheet(cur)), "<b>PC · 도감 선반</b> — 560 창을 아래로 내린 모습 · 도감 격자는 PC 에서도 두 줄(제품 그대로)"],
+      ]
+    : [
+        [screen(home(cur, false)), "<b>① 칸을 얻은 뒤 홈</b> — 단원 끝 줄(그 단원 다섯을 다 모은 날 한 번)"],
+        [screen(session(cur)), "<b>② 한 장 세션 머리</b> — 첫 활동 앞 뜻 만나기(1 / 3). 뜻 · 곁말은 자리만"],
+        [screen(sessionAssemble(cur)), "<b>②-2 둘째 활동</b> — 문장 조립(2 / 3). 이름 줄에 표지가 남는가. 문장 · 보기는 자리만. 320 × 600 에서는 긴 문장이 칸 안에서 스크롤된다(제품과 같음)"],
+        ...(cur === "4" ? [[screen(home(cur, true), 0, fx()), "<b>③ 모은 순간</b> — 1.2초 효과(칸 효과 모양 · 느낌표 없음)"]] : []),
+        [screen(home(cur, true)), `<b>${cur === "4" ? "④" : "③"} 끝 — 홈으로</b> — 줄이 모은 표시로. 다음 날 이 줄은 없어지고 도감에만 남는다`],
+        [screen(homeUnder(), 1, dexSheet(cur)), `<b>${cur === "4" ? "⑤" : "④"} 도감 선반</b> — 본 카드 목록 끝(아래로 내린 모습) · «교재에서 더 만나는 개념»`],
+        [screen(homeUnder(), 1, cardDialog(cur)), `<b>${cur === "4" ? "⑥" : "⑤"} 카드 창</b> — 선반에서 «각»을 누른 모습(오늘의 탐험을 마친 뒤)`],
+        [screen(homeUnder(), 1, cardDialogLocked(cur)), `<b>${cur === "4" ? "⑦" : "⑥"} 카드 창 · 탐험 중</b> — 열린 탐험은 하나라 «세 활동 해 보기»를 흐리게`],
+        [screen(homeUnder(), 1, cardDialogGot(cur)), `<b>${cur === "4" ? "⑧" : "⑦"} 모은 보충 카드 창</b> — 다시 열면 뜻과 해설만(별은 다시 없다 · 기억 복습 없음)`],
+      ];
+  document.getElementById("panel").innerHTML = `
+    <div class="thesis"><h2>${v.title}</h2><p>${v.thesis}</p></div>
+    <dl class="spec">${v.spec.map(([a, b]) => `<dt>${a}</dt><dd>${b}</dd>`).join("")}</dl>
+    <div class="cuts">${cuts.map(([html, cap], i) => `<figure class="cut" data-cut="${cur}-${W}-${i + 1}">${html}<figcaption>${cap}</figcaption></figure>`).join("")}</div>`;
+}
+document.querySelectorAll(".tab").forEach((b) => b.addEventListener("click", () => {
+  cur = b.dataset.k;
+  document.querySelectorAll(".tab").forEach((t) => t.setAttribute("aria-selected", String(t === b)));
+  render();
+}));
+document.querySelectorAll(".wbtn").forEach((b) => b.addEventListener("click", () => {
+  W = b.dataset.w;
+  document.body.classList.toggle("w390", W === "390");
+  document.body.classList.toggle("pc", W === "1280");
+  document.querySelectorAll(".wbtn").forEach((t) => t.setAttribute("aria-pressed", String(t === b)));
+  render();
+}));
+render();
+</script>
+</body>
+</html>
