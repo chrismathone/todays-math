@@ -64,7 +64,10 @@ FIXES: list = [
          alsoCheck="계수를 맞추는 단계(양변에 같은 수를 곱함)는 함정 문장이 이미 말한다"),
     dict(id="g9-axis", severity="낱말", sevVotes=sev("틀림", "낱말", "낱말"), votes=V3, decidedBy=AGREE,
          issue="«꼭짓점을 지나는 수직선» — 교재에서 «수직선»은 수를 나타내는 직선이다. 세로 직선 뜻으로 잘못 쓴다",
-         template="y=a(x−p)²+q 그래프의 대칭축은 직선 {x=p}이며 꼭짓점을 지나고 {y축}에 평행하다.", wrong=["y=p", "x축"]),
+         template="y=a(x−p)²+q 그래프의 대칭축은 직선 {x=p}이며 꼭짓점을 지나고 {x축}에 수직이다.", wrong=["x=q", "y축"],
+         revision=dict(date="2026-09-28", votes="1차 (A) 2:1(grok B) → 2차 (A′) 3:0",
+                       why="리드 적대적 검토 ② — «y축에 평행»은 p=0 이면 틀린다(축이 y축 자신 — 같은 카드 보기 y=x²+2 · 함정 «언제나 y축»과 부딪침). "
+                           "«x축에 수직»은 p=0 에서도 참. 1차 (A)의 오답 말 y=p 는 둘째 칸에 넣어도 참(가로선 ⟂ 세로선 — grok 반례)이라 x=q 로")),
     dict(id="g9-parabola", severity="낱말", sevVotes=sev("낱말", "낱말", "낱말"), votes=V3, decidedBy=AGREE,
          issue="«a>0이면 위로 열린다» — 교재 낱말은 a>0이면 «아래로 볼록». «위로 열린다»와 «위로 볼록»이 반대 모양이라 헷갈린다. 해설에 두 말을 이어 준다(codex · grok)",
          template="이차함수 그래프처럼 한 축에 대하여 {대칭}인 곡선으로 a>0이면 {아래로 볼록}하다.", wrong=["비대칭", "위로 볼록"],
@@ -73,16 +76,25 @@ FIXES: list = [
          explanation="x²의 계수가 음수이면 위로 볼록해. 흔히 «위로 열린다»고 하는 모양이 아래로 볼록한 모양이야."),
     dict(id="g8-pythagoras", severity="낱말", sevVotes=sev("낱말", "낱말", "낱말"), votes=V3, decidedBy=AGREE,
          issue="«직각변»은 교재에 없는 낱말(보기 제목에도)",
-         template="직각삼각형에서 빗변의 길이를 c, 나머지 두 변의 길이를 a, b라 하면 {a²+b²}={c²}이다.", wrong=["a+b", "c"],
-         exampleTitle="빗변이 아닌 두 변이 3, 4인 직각삼각형의 빗변 설명을 골라봐."),
+         template="직각삼각형에서 빗변이 아닌 두 변의 길이의 {제곱의 합}은 빗변의 길이의 {제곱}과 같다.", wrong=["합", "곱"],
+         exampleTitle="빗변이 아닌 두 변이 3, 4인 직각삼각형의 빗변 설명을 골라봐.",
+         explanation="빗변을 c, 나머지 두 변을 a, b라 하면 a²+b²=c²이야. 직각삼각형인지 먼저 확인하고 빗변을 정확히 골라.",
+         revision=dict(date="2026-09-28", votes="1차 3:0 · 오답 말 «곱» 2차 3:0",
+                       why="빈칸 맞바꿈 대칭 검사(리드 적대적 검토 ①의 시험)에서 새로 걸림 — «{a²+b²}={c²}»는 등식이라 맞바꾼 c²=a²+b² 도 참이어서 "
+                           "자리 채점이 맞는 답을 틀림으로 친다. 말로 자리를 박고 식은 보기(3²+4²=5²) · 해설로. 오답 말 «두 배»는 조사(«두 배은»)로 걸러져 «곱»으로")),
     dict(id="g8-complement", severity="낱말", sevVotes=sev("낱말", "낱말", "낱말"), votes=V3, decidedBy=AGREE,
          issue="카드 이름 «여사건»은 고등 낱말 — 문장은 맞다. 이름만 바꾼다(id 는 그대로)",
          template="어떤 사건이 일어나지 않을 확률은 {1}에서 그 사건의 확률을 {뺀} 값이다.", wrong=["0", "더한"],
          name="일어나지 않을 확률"),
     dict(id="g6-divide-size", severity="낱말", sevVotes=sev("낱말", "낱말", "낱말"), votes=V3, decidedBy=AGREE,
          issue="초6 카드에 중1 낱말 «양수»",
-         template="0보다 큰 수를 0과 1 사이의 수로 나누면 몫은 원래 수보다 {커지고}, 1보다 큰 수로 나누면 {작아진다}.",
-         wrong=["작아지고", "커진다"]),
+         template="0보다 큰 수를 {0과 1 사이의 수}로 나누면 몫은 원래 수보다 커지고, {1보다 큰 수}로 나누면 작아진다.",
+         wrong=["1", "0과 2 사이의 수"],
+         revision=dict(date="2026-09-28", votes="(B) 2:1 — grok (A) «오답 말만 변하지 않고 · 변하지 않는다»",
+                       why="리드 지시(넓은 검사에서 3자 모두 결함) — 원래 카드에서 물려받은 오답 말 «작아지고 · 커진다»가 정답과 같은 뜻의 활용형이라 "
+                           "«…커진다, 1보다 큰 수로 나누면 작아진다»처럼 맞는 문장이 틀림이 됐다. 빈칸을 나누는 수 쪽으로 옮기고 오답 말은 "
+                           "1(몫이 그대로) · 0과 2 사이의 수(커지기도 작아지기도)로 — 정답 아닌 채움 11개가 모두 거짓. grok 반론: «0과 2 사이의 수»를 "
+                           "«그 범위의 어떤 수»로 읽으면 참 — 성질 문장은 «모든 수»로 읽고, 그 읽기까지 막는 범위형 오답은 «1» 말고 없다")),
     dict(id="g5-operation-order", severity="빠짐", sevVotes=sev("빠짐", "빠짐", "빠짐"), votes=V3, decidedBy=AGREE,
          issue="같은 단계(덧셈·뺄셈끼리, 곱셈·나눗셈끼리)는 왼쪽부터 — 교재 소단원의 핵심인데 문장엔 없고 해설에만. 보기에도 넣는다(세 답 모두)",
          template="덧셈·뺄셈과 곱셈·나눗셈이 섞인 식은 괄호 안을 먼저, 그다음 {곱셈·나눗셈}을 하고, 같은 단계끼리는 {왼쪽}부터 계산한다.",
@@ -90,8 +102,11 @@ FIXES: list = [
          examples=ex(("(2 + 3) × 4 = 20", True), ("12 ÷ 3 × 2 = 8", True), ("2 + 3 × 4 = 20", False), ("12 ÷ 3 × 2 = 2", False))),
     dict(id="g5-fraction-multiply", severity="범위", sevVotes=sev("빠짐", "범위", "범위"), votes=V3, decidedBy=AGREE,
          issue="모든 분수에 한 줄 규칙 — 대분수는 가분수로 바꾼 뒤 곱한다. 대분수에 그대로 쓰면 틀린 답. 보기에 대분수를 넣는다(세 답 모두)",
-         template="대분수는 가분수로 바꾼 뒤, 두 분수의 {분자끼리} 곱한 값과 {분모끼리} 곱한 값으로 새 분수를 만든다.",
+         template="대분수는 가분수로 바꾼 뒤, {분자끼리} 곱한 값을 분자로, {분모끼리} 곱한 값을 분모로 하는 분수를 만든다.",
          wrong=["분모와", "분자와"],
+         revision=dict(date="2026-09-28", votes="3:0",
+                       why="리드 적대적 검토 ① — «두 분수의 {분자끼리} 곱한 값과 {분모끼리} 곱한 값으로 새 분수를»는 두 조각을 맞바꿔도 참이라 "
+                           "자리 채점이 맞는 답을 틀림으로 치고(첫 판 14/15 · 기억 복습이면 차례가 처음으로), 어느 곱이 분자인지도 없었다. 빈칸 뒤 «분자로» · «분모로»가 자리를 박는다"),
          examples=ex(("1/2 × 1/3 = 1/6", True), ("1과 1/2 × 2/3 = 1", True), ("1/2 × 1/3 = 1/5", False), ("1과 1/2 × 2/3 = 1과 1/3", False))),
     dict(id="g7-vertical-angle", severity="범위", sevVotes=sev("범위", "범위", "범위"), votes=V3, decidedBy=AGREE,
          issue="정의 뒤에 성질(크기가 같다)을 붙였고 빈칸 둘이 성질 쪽 — «정의» 딱지로 성질을 조립시킨다. 빈칸을 뜻 쪽으로 옮기고, 크기가 같다는 성질은 보기 · 함정(참)에 남긴다",
@@ -216,19 +231,23 @@ def main():
             exs = f["examples"]
             assert any(e["yes"] for e in exs) and any(not e["yes"] for e in exs), f["id"]
             assert len({e["text"] for e in exs}) == len(exs), f["id"]
-        # 새로 쓴 글만 잰다 — 이름만 바꾸는 카드처럼 원래 카드 문장을 그대로 둔 칸은 새 글이 아니다(카드 원문 겹침은 coverage.md §11).
-        unchanged_def = f["template"].replace("{", "").replace("}", "") == c["definition"]
-        new_text = [*([] if unchanged_def else [f["template"]]),
-                    *(f.get(k, "") for k in ("name", "exampleTitle", "trap", "explanation")),
-                    *(e["text"] for e in f.get("examples", []))]
-        hits = [h for t in new_text if t for h in overlaps(t, ws)]
-        assert not hits, f"{f['id']}: 교재 원문과 12글자 겹침 {hits[:3]}"
         change = {"definition": f["template"].replace("{", "").replace("}", ""), "pieces": pieces, "words": words}
         for k in ("name", "exampleTitle", "examples", "trap", "truth", "explanation"):
             if k in f:
                 change[k] = f[k]
         if "explanation" in f:
             change["note"] = f["explanation"]  # 새 형식 카드는 note = explanation(옛 카드 15장은 따로지만 이번 보정에 없다)
+        # 🔴 카드 덤프는 보정 전 원본(`definitionSourceCards`)이어야 한다. 보정을 입은 덤프면 모든 칸이 이미 같아서 아래
+        # «새 글만 잰다»가 23장 전부를 건너뛰고 `current` 칸도 보정 글로 채워진다(2026-09-28 리드 검토 ④) — 그래서 멈춘다.
+        assert any(c.get(k) != v for k, v in change.items()), \
+            f"{f['id']}: 카드 덤프가 이미 이 보정을 입었다 — dump-explorer-cards-coverage.ts(원본 카드)로 다시 뽑을 것"
+        # 새로 쓴 글만 잰다 — 이름만 바꾸는 카드처럼 원래 카드 문장을 그대로 둔 칸은 새 글이 아니다(카드 원문 겹침은 coverage.md §11).
+        unchanged_def = change["definition"] == c["definition"]
+        new_text = [*([] if unchanged_def else [f["template"]]),
+                    *(f.get(k, "") for k in ("name", "exampleTitle", "trap", "explanation")),
+                    *(e["text"] for e in f.get("examples", []))]
+        hits = [h for t in new_text if t for h in overlaps(t, ws)]
+        assert not hits, f"{f['id']}: 교재 원문과 12글자 겹침 {hits[:3]}"
         out.append(dict(
             id=f["id"], name=c["name"], severity=f["severity"], issue=f["issue"],
             # 지금 칸은 문장 · 말만 — 말 조각은 문장에서 다시 나오고, 카드 원문 조각이 교재 표준 문구와 겹치는 곳(직각)을 한 번 더 옮기지 않는다.
@@ -236,6 +255,7 @@ def main():
                          **{k: c[k] for k in ("name", "exampleTitle", "examples", "trap", "truth", "explanation") if k in change}),
             change=change, alsoCheck=f.get("alsoCheck", ""),
             decidedBy=f["decidedBy"], votes=f["votes"], severityVotes=f["sevVotes"],
+            **({"revision": f["revision"]} if "revision" in f else {}),
         ))
     for n in NOT_FIXED:
         assert n["id"] in cards and n["id"] not in seen, n["id"]
@@ -243,7 +263,8 @@ def main():
         generatedBy="scripts/qa/concept-terms/build-card-fixes.py",
         policy="원본(definition-content.ts · definition-cards.ts, PROVENANCE SHA)은 그대로 — 원본 밖 보정 표(id → change 칸)를 "
                "카드를 내보내는 층에서 덮어쓴다(화면 · 채점 · 복습 · 선수가 같은 카드를 읽게). id 는 바꾸지 않는다(학생 기록 · 상자 · 교육과정 다리 유지).",
-        checks="빈칸 둘 · 말 넷 서로 다름 · 말 조각 셋 · 보기 맞음/틀림 둘 다 · 새 글과 14권 원문의 12글자 창 겹침 0(걷어내기 없음)",
+        checks="빈칸 둘 · 말 넷 서로 다름 · 말 조각 셋 · 보기 맞음/틀림 둘 다 · 새 글과 14권 원문의 12글자 창 겹침 0(걷어내기 없음) · "
+               "빈칸 두 조각을 맞바꾼 문장이 거짓(자리 채점 — 감사 표 src/__tests__/unit/conceptSentenceSymmetry.test.ts)",
         severityOrder=SEVERITY,
         counts=dict(fixes=len(out), bySeverity={s: sum(1 for o in out if o["severity"] == s) for s in SEVERITY},
                     notFixed=len(NOT_FIXED)),

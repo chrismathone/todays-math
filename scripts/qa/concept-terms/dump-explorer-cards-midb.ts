@@ -1,5 +1,5 @@
 /**
- * 탐험 개념 카드(`definitionUnits` · `definitionCards`)를 JSON 으로 꺼낸다 — 트랙 midb(중2·중3).
+ * 탐험 개념 카드(`definitionUnits` · `definitionSourceCards`)를 JSON 으로 꺼낸다 — 트랙 midb(중2·중3).
  *
  *   npx tsx scripts/qa/concept-terms/dump-explorer-cards-midb.ts <출력.json>
  *
@@ -8,8 +8,9 @@
  * ③ 안 바꾸는 것: `src/**` 는 읽기만 한다. 출력 파일 하나만 쓴다.
  */
 import { writeFileSync } from "node:fs";
+// 🔴 보정 전 원본 카드(definitionSourceCards)를 내보낸다 — 누출 검사기가 카드 글을 «우리 글»로 허용하므로, 보정을 입은 카드면 보정 문장이 검사를 비껴간다(D-143 ⑦ · 리드 검토 ④).
 import {
-  definitionCards,
+  definitionSourceCards,
   definitionUnits,
 } from "../../../src/lib/math-explorers/definition-cards";
 
@@ -20,7 +21,7 @@ const units = definitionUnits.map((u) => ({
   grade: u.grade,
   title: u.title,
 }));
-const cards = definitionCards.map((c) => ({
+const cards = definitionSourceCards.map((c) => ({
   id: c.id,
   unit: c.unit,
   grade: definitionUnits.find((u) => u.id === c.unit)!.grade,

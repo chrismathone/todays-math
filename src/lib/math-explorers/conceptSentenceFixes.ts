@@ -1,58 +1,327 @@
 /**
- * 보정 문장 표 — 원본(`definition-content.ts` · PROVENANCE)은 그대로 두고 **보이는 문장만** 고친다
- * (원장님 2026-09-28, D-143 ④).
+ * 카드 보정 표 — 원본(`definition-content.ts` · PROVENANCE)은 그대로 두고, 카드를 내보내는 층(`definition-cards.ts` 의
+ * `definitionCards`)에서 23장을 덮어쓴다(D-143 ④ · ⑦). 화면 · 채점 · 복습 · 선수가 모두 같은 카드를 읽는다 — 카드 id 는
+ * 그대로라 학생 기록 · 상자 · 교육과정 다리는 이어진다.
  *
- * 고치는 것은 빈칸 밖의 말뿐이다 — 빈칸 두 곳(정답 조각 `words[0]`·`words[1]`)과 보기는 그대로라 채점(조각 번호)이
- * 바뀌지 않는다. 문장이 보이는 자리 셋(정의 조립 조각 · 뜻 만나기 뜻 · 도감 «뜻 다시 보기»)은 모두 서버 뷰
- * (`engine.ts`)가 `conceptSentence` 를 지난다(«모든 화면 일치»).
- *
- * 다른 카드는 교재 용어 전수(`docs/reference/concept-terms/*`)와 대조해 **고칠 목록만** 만들고, 원장님 확정 전에는
- * 여기에 넣지 않는다.
+ * 결론은 용어 분석 트랙(terms-coverage)의 3자 합의 `docs/reference/concept-terms/card-sentence-fixes.json`
+ * (틀림 3 · 빠짐 5 · 낱말 5 · 범위 10 — 까닭 · 표는 그 파일). 이 표는 그 파일의 `change` 칸을 그대로 옮긴 것이고 시험이
+ * 칸마다 같음을 잠근다(`conceptSentenceFixes.test.ts`). 보정은 빈칸(정답 조각)까지 옮기기도 해서, 카드마다 조립 ·
+ * 예 모으기 · 경계 살피기가 새 카드로 풀리는지도 시험이 끝까지 풀어 본다. 🔴 교재 원문은 넣지 않는다(누출 검사 통과본).
  */
-type SentenceCard = {
-  id: string;
-  definition: string;
-  pieces: string[];
-  words: string[];
-};
-type SentenceFix = {
-  /** 조립 문장 세 조각 — 앞 · 빈칸 사이 · 뒤. */
-  pieces: readonly [string, string, string];
-  reason: string;
-};
+import type { CourseCard } from "./definition-content";
 
-export const conceptSentenceFixes: Readonly<Record<string, SentenceFix>> = {
-  "g8-substitution": {
-    // 원문 «한 식에서 구한 미지수의 표현을 [다른 식]에 [넣어] 푸는 방법.»
-    pieces: [
-      "한 식에서 구한 미지수의 표현을 ",
-      "에 ",
-      " 연립방정식을 푸는 방법.",
+export type CardFix = Partial<
+  Pick<
+    CourseCard,
+    | "name"
+    | "definition"
+    | "pieces"
+    | "words"
+    | "exampleTitle"
+    | "examples"
+    | "trap"
+    | "truth"
+    | "explanation"
+    | "note"
+  >
+>;
+
+export const cardFixes: Readonly<Record<string, CardFix>> = {
+  // 전개도 — 틀림
+  "g6-net": {
+    definition: "각기둥이나 각뿔을 모서리를 따라 잘라 평면 위에 펼친 그림.",
+    pieces: ["각기둥이나 각뿔을 ", "를 따라 잘라 ", " 위에 펼친 그림."],
+    words: ["모서리", "평면", "면", "공간"],
+  },
+  // 미지수가 두 개인 일차방정식 — 틀림
+  "g8-two-variable": {
+    definition:
+      "ax+by+c=0에서 a, b가 둘 다 0이 아닌 방정식이며 해를 순서쌍으로 나타낸다.",
+    pieces: ["ax+by+c=0에서 a, b가 ", " 방정식이며 해를 ", "으로 나타낸다."],
+    words: ["둘 다 0이 아닌", "순서쌍", "모두 0인", "평균"],
+    examples: [
+      { text: "x + y = 3", yes: true },
+      { text: "2x − y = 1", yes: true },
+      { text: "x² + y = 3", yes: false },
+      { text: "y = 3", yes: false },
     ],
-    reason: "무엇을 푸는지(연립방정식)가 빠졌다 — 원장님 제보 캡처(2026-09-28)",
+    explanation:
+      "a나 b가 0이면 미지수가 하나뿐인 방정식이 돼. (1,2), (0,3)처럼 해가 여러 개일 수 있어.",
+    note: "a나 b가 0이면 미지수가 하나뿐인 방정식이 돼. (1,2), (0,3)처럼 해가 여러 개일 수 있어.",
   },
+  // 연립방정식 — 틀림
+  "g8-simultaneous": {
+    definition:
+      "둘 이상의 방정식을 한데 묶어 나타낸 것이며, 모든 방정식을 함께 참이 되게 하는 값을 그 해라고 한다.",
+    pieces: [
+      "둘 이상의 방정식을 ",
+      " 나타낸 것이며, 모든 방정식을 함께 참이 되게 하는 값을 그 ",
+      "라고 한다.",
+    ],
+    words: ["한데 묶어", "해", "따로 버려", "평균"],
+  },
+  // 대입법 — 빠짐
+  "g8-substitution": {
+    definition:
+      "연립방정식의 한 식에서 구한 미지수의 표현을 다른 식에 넣어 푸는 방법.",
+    pieces: [
+      "연립방정식의 한 식에서 구한 미지수의 표현을 ",
+      "에 ",
+      " 푸는 방법.",
+    ],
+    words: ["다른 식", "넣어", "같은 식만", "빼서"],
+  },
+  // 가감법 — 빠짐
   "g8-elimination": {
-    // 원문 «두 식을 더하거나 빼서 한 [미지수]를 [없애는] 방법.»
+    definition:
+      "연립방정식을 풀 때 두 식을 더하거나 빼서 한 미지수를 없애는 방법.",
     pieces: ["연립방정식을 풀 때 두 식을 더하거나 빼서 한 ", "를 ", " 방법."],
-    reason: "무엇을 풀 때의 방법인지(연립방정식)가 빠졌다 — 대입법과 같은 결함",
+    words: ["미지수", "없애는", "해", "늘리는"],
+  },
+  // 이차함수의 축 — 낱말
+  "g9-axis": {
+    definition:
+      "y=a(x−p)²+q 그래프의 대칭축은 직선 x=p이며 꼭짓점을 지나고 x축에 수직이다.",
+    pieces: [
+      "y=a(x−p)²+q 그래프의 대칭축은 직선 ",
+      "이며 꼭짓점을 지나고 ",
+      "에 수직이다.",
+    ],
+    words: ["x=p", "x축", "x=q", "y축"],
+  },
+  // 포물선 — 낱말
+  "g9-parabola": {
+    definition:
+      "이차함수 그래프처럼 한 축에 대하여 대칭인 곡선으로 a>0이면 아래로 볼록하다.",
+    pieces: [
+      "이차함수 그래프처럼 한 축에 대하여 ",
+      "인 곡선으로 a>0이면 ",
+      "하다.",
+    ],
+    words: ["대칭", "아래로 볼록", "비대칭", "위로 볼록"],
+    exampleTitle: "그래프가 아래로 볼록한 함수를 골라봐.",
+    trap: "y=−x²의 그래프는 아래로 볼록하다.",
+    truth: false,
+    explanation:
+      "x²의 계수가 음수이면 위로 볼록해. 흔히 «위로 열린다»고 하는 모양이 아래로 볼록한 모양이야.",
+    note: "x²의 계수가 음수이면 위로 볼록해. 흔히 «위로 열린다»고 하는 모양이 아래로 볼록한 모양이야.",
+  },
+  // 피타고라스 정리 — 낱말
+  "g8-pythagoras": {
+    definition:
+      "직각삼각형에서 빗변이 아닌 두 변의 길이의 제곱의 합은 빗변의 길이의 제곱과 같다.",
+    pieces: [
+      "직각삼각형에서 빗변이 아닌 두 변의 길이의 ",
+      "은 빗변의 길이의 ",
+      "과 같다.",
+    ],
+    words: ["제곱의 합", "제곱", "합", "곱"],
+    exampleTitle: "빗변이 아닌 두 변이 3, 4인 직각삼각형의 빗변 설명을 골라봐.",
+    explanation:
+      "빗변을 c, 나머지 두 변을 a, b라 하면 a²+b²=c²이야. 직각삼각형인지 먼저 확인하고 빗변을 정확히 골라.",
+    note: "빗변을 c, 나머지 두 변을 a, b라 하면 a²+b²=c²이야. 직각삼각형인지 먼저 확인하고 빗변을 정확히 골라.",
+  },
+  // 여사건의 확률 — 낱말
+  "g8-complement": {
+    name: "일어나지 않을 확률",
+    definition:
+      "어떤 사건이 일어나지 않을 확률은 1에서 그 사건의 확률을 뺀 값이다.",
+    pieces: [
+      "어떤 사건이 일어나지 않을 확률은 ",
+      "에서 그 사건의 확률을 ",
+      " 값이다.",
+    ],
+    words: ["1", "뺀", "0", "더한"],
+  },
+  // 나눗셈과 크기 — 낱말
+  "g6-divide-size": {
+    definition:
+      "0보다 큰 수를 0과 1 사이의 수로 나누면 몫은 원래 수보다 커지고, 1보다 큰 수로 나누면 작아진다.",
+    pieces: [
+      "0보다 큰 수를 ",
+      "로 나누면 몫은 원래 수보다 커지고, ",
+      "로 나누면 작아진다.",
+    ],
+    words: ["0과 1 사이의 수", "1보다 큰 수", "1", "0과 2 사이의 수"],
+  },
+  // 혼합 계산의 순서 — 빠짐
+  "g5-operation-order": {
+    definition:
+      "덧셈·뺄셈과 곱셈·나눗셈이 섞인 식은 괄호 안을 먼저, 그다음 곱셈·나눗셈을 하고, 같은 단계끼리는 왼쪽부터 계산한다.",
+    pieces: [
+      "덧셈·뺄셈과 곱셈·나눗셈이 섞인 식은 괄호 안을 먼저, 그다음 ",
+      "을 하고, 같은 단계끼리는 ",
+      "부터 계산한다.",
+    ],
+    words: ["곱셈·나눗셈", "왼쪽", "덧셈·뺄셈", "오른쪽"],
+    examples: [
+      { text: "(2 + 3) × 4 = 20", yes: true },
+      { text: "12 ÷ 3 × 2 = 8", yes: true },
+      { text: "2 + 3 × 4 = 20", yes: false },
+      { text: "12 ÷ 3 × 2 = 2", yes: false },
+    ],
+  },
+  // 분수의 곱셈 — 범위
+  "g5-fraction-multiply": {
+    definition:
+      "대분수는 가분수로 바꾼 뒤, 분자끼리 곱한 값을 분자로, 분모끼리 곱한 값을 분모로 하는 분수를 만든다.",
+    pieces: [
+      "대분수는 가분수로 바꾼 뒤, ",
+      " 곱한 값을 분자로, ",
+      " 곱한 값을 분모로 하는 분수를 만든다.",
+    ],
+    words: ["분자끼리", "분모끼리", "분모와", "분자와"],
+    examples: [
+      { text: "1/2 × 1/3 = 1/6", yes: true },
+      { text: "1과 1/2 × 2/3 = 1", yes: true },
+      { text: "1/2 × 1/3 = 1/5", yes: false },
+      { text: "1과 1/2 × 2/3 = 1과 1/3", yes: false },
+    ],
+  },
+  // 맞꼭지각 — 범위
+  "g7-vertical-angle": {
+    definition:
+      "서로 엇갈리는 두 직선이 만드는 네 각 가운데 꼭짓점을 사이에 두고 마주 보는 두 각.",
+    pieces: [
+      "서로 엇갈리는 두 직선이 만드는 ",
+      " 가운데 꼭짓점을 사이에 두고 ",
+      " 두 각.",
+    ],
+    words: ["네 각", "마주 보는", "세 각", "이웃한"],
+    explanation:
+      "이웃한 각과 맞꼭지각을 구별해. 두 각의 크기가 같다는 건 뜻이 아니라 성질이야.",
+    note: "이웃한 각과 맞꼭지각을 구별해. 두 각의 크기가 같다는 건 뜻이 아니라 성질이야.",
+  },
+  // 원주각 — 범위
+  "g9-inscribed-angle": {
+    definition:
+      "원 위의 한 점을 꼭짓점으로 하고 두 변이 원의 현을 포함하는 각.",
+    pieces: ["원 위의 ", "을 꼭짓점으로 하고 두 변이 원의 ", "을 포함하는 각."],
+    words: ["한 점", "현", "중심", "접선"],
+  },
+  // 비 — 빠짐
+  "g6-ratio": {
+    definition: "두 양의 크기를 나눗셈으로 견주기 위해 a:b처럼 나타낸 것.",
+    pieces: ["두 양의 크기를 ", "으로 견주기 위해 ", "처럼 나타낸 것."],
+    words: ["나눗셈", "a:b", "뺄셈", "a+b"],
+    explanation:
+      "어느 양을 앞에 놓았는지 확인해. 빼서 견주는 것과 달리 비는 한 양이 다른 양의 몇 배인지를 견줘.",
+    note: "어느 양을 앞에 놓았는지 확인해. 빼서 견주는 것과 달리 비는 한 양이 다른 양의 몇 배인지를 견줘.",
+  },
+  // 상관관계 — 범위
+  "g9-correlation": {
+    definition:
+      "두 변량 중 한쪽이 변할 때 다른 쪽도 함께 변하는 경향이 있는 관계이며, 함께 커지는 쪽이면 양의 상관관계이다.",
+    pieces: [
+      "두 변량 중 한쪽이 변할 때 다른 쪽도 ",
+      " 경향이 있는 관계이며, 함께 커지는 쪽이면 ",
+      "이다.",
+    ],
+    words: ["함께 변하는", "양의 상관관계", "늘 같은 값인", "음의 상관관계"],
+    explanation:
+      "함께 변하는 경향만으로 원인이라고 단정할 수 없어. 뚜렷한 경향이 없으면 상관관계가 없다고 해.",
+    note: "함께 변하는 경향만으로 원인이라고 단정할 수 없어. 뚜렷한 경향이 없으면 상관관계가 없다고 해.",
+  },
+  // 경우의 수 — 범위
+  "g8-cases": {
+    definition: "한 사건에 해당하는 가능한 결과를 빠짐없이 센 개수.",
+    pieces: ["한 사건에 해당하는 ", "를 빠짐없이 센 ", "."],
+    words: ["가능한 결과", "개수", "평균", "합계의 값"],
+    exampleTitle:
+      "주사위 한 개를 던져 짝수의 눈이 나오는 경우를 바르게 설명한 것을 골라봐.",
+    examples: [
+      { text: "경우의 수는 3", yes: true },
+      { text: "2, 4, 6이 나오는 경우", yes: true },
+      { text: "경우의 수는 6", yes: false },
+      { text: "경우의 수는 2", yes: false },
+    ],
+  },
+  // 꼭짓점 — 범위
+  "g9-vertex": {
+    definition:
+      "포물선이 축과 만나는 점이며, y=a(x−p)²+q의 그래프에서는 (p, q)이다.",
+    pieces: [
+      "포물선이 ",
+      "과 만나는 점이며, y=a(x−p)²+q의 그래프에서는 ",
+      "이다.",
+    ],
+    words: ["축", "(p, q)", "x축", "(−p, q)"],
+  },
+  // 원점 — 범위
+  "g7-origin": {
+    definition: "좌표평면에서 두 좌표축이 만나는 점.",
+    pieces: ["좌표평면에서 ", "이 ", "."],
+    words: ["두 좌표축", "만나는 점", "한 좌표축", "평행한 직선"],
+  },
+  // 중근 — 범위
+  "g9-double-root": {
+    definition: "이차방정식이 서로 같은 두 근을 가질 때의 그 근.",
+    pieces: ["이차방정식이 ", "을 가질 때의 ", "."],
+    words: ["서로 같은 두 근", "그 근", "서로 다른 두 근", "해의 개수"],
+  },
+  // 직각 — 범위
+  "g3-right-angle": {
+    definition:
+      "종이를 한 번 접은 뒤 접힌 선끼리 포개지게 다시 접으면 모서리에 생기는 각.",
+    pieces: [
+      "종이를 한 번 접은 뒤 접힌 선끼리 ",
+      " 다시 접으면 모서리에 생기는 ",
+      ".",
+    ],
+    words: ["포개지게", "각", "벌어지게", "변"],
+    examples: [
+      { text: "정사각형의 한 각", yes: true },
+      { text: "3시를 가리키는 시곗바늘 사이의 각", yes: true },
+      { text: "1시를 가리키는 시곗바늘 사이의 각", yes: false },
+      { text: "조금만 벌린 가위 날 사이의 각", yes: false },
+    ],
+  },
+  // 지수법칙 — 범위
+  "g8-exponent-law": {
+    definition:
+      "밑이 같은 거듭제곱을 곱할 때 밑은 그대로 두고 지수를 더하며, 거듭제곱의 거듭제곱은 지수를 곱한다.",
+    pieces: [
+      "밑이 같은 거듭제곱을 곱할 때 밑은 그대로 두고 지수를 ",
+      ", 거듭제곱의 거듭제곱은 지수를 ",
+      ".",
+    ],
+    words: ["더하며", "곱한다", "빼며", "나눈다"],
+    explanation:
+      "곱셈으로 풀어 쓰면 a가 다섯 번 곱해져 있어. 나눗셈이면 지수를 빼고, 곱이나 몫을 거듭제곱하면 안의 각각에 지수를 붙여.",
+    note: "곱셈으로 풀어 쓰면 a가 다섯 번 곱해져 있어. 나눗셈이면 지수를 빼고, 곱이나 몫을 거듭제곱하면 안의 각각에 지수를 붙여.",
+  },
+  // 원뿔과 구 — 빠짐
+  "g6-cone-sphere": {
+    definition:
+      "원뿔은 원 모양의 밑면과 한 꼭짓점이 있고, 구는 중심에서 겉면의 어느 점까지나 거리가 모두 같은 입체도형이다.",
+    pieces: [
+      "원뿔은 원 모양의 밑면과 ",
+      "이 있고, 구는 중심에서 겉면의 어느 점까지나 거리가 ",
+      " 입체도형이다.",
+    ],
+    words: ["한 꼭짓점", "모두 같은", "두 꼭짓점", "제각각 다른"],
   },
 };
 
-/** 보이는 문장 — 표에 있으면 보정 조각과 그 조각으로 다시 이은 뜻, 없으면 원문 그대로. */
-export function conceptSentence(card: SentenceCard): {
-  pieces: string[];
-  definition: string;
-} {
-  const fix = Object.prototype.hasOwnProperty.call(
-    conceptSentenceFixes,
-    card.id,
-  )
-    ? conceptSentenceFixes[card.id]
+/** 보정 칸을 덮은 카드(보정이 없으면 그대로). 원본 카드 객체는 바꾸지 않는다. */
+export function applyCardFix<T extends CourseCard>(card: T): T {
+  const fix = Object.hasOwn(cardFixes, card.id)
+    ? cardFixes[card.id]
     : undefined;
-  if (!fix) return { pieces: card.pieces, definition: card.definition };
-  const [before, between, after] = fix.pieces;
-  return {
-    pieces: [before, between, after],
-    definition: before + card.words[0] + between + card.words[1] + after,
-  };
+  return fix ? { ...card, ...fix } : card;
 }
+
+/**
+ * 카드 보정 판 — 뜻을 고친 «틀림» 3장(원장님 확정 2026-09-28: 예전 문장으로 이미 모은 학생에게 한 번 다시 복습).
+ * 이 날짜 **전에** 마지막으로 푼(`attemptedAt`) 카드는 기억 복습에서 만기로 읽는다(`definitionEffectiveDue`) —
+ * 공유 DB 에 쓰지 않는 엔진 읽기 규칙이다. 맞히면 받은 별 · 수집 · 저장된 복습 차례는 그대로, 틀리면 여느 복습처럼
+ * 차례가 처음으로 돌아간다(엔진 규칙).
+ * 🔴 날짜는 «고친 문장이 운영에 나간 날(KST) 다음 날 이상»이어야 한다 — 그날 예전 문장을 푼 학생을 놓치지 않게.
+ * 늦게 잡으면 나간 뒤 새 문장을 먼저 본 학생에게 한 번 더 올 뿐이다(해롭지 않은 쪽).
+ */
+const REVISED_ON = "2026-09-29";
+export const cardRevisions: Readonly<Record<string, string>> = {
+  "g6-net": REVISED_ON, // 전개도
+  "g8-two-variable": REVISED_ON, // 미지수가 두 개인 일차방정식
+  "g8-simultaneous": REVISED_ON, // 연립방정식
+};

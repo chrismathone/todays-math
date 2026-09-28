@@ -21,6 +21,7 @@ import {
   definitionChests,
   definitionCourseGrade,
   definitionDue,
+  definitionEffectiveDue,
   definitionNeedsRead,
   definitionOptions,
   definitionQuestionId,
@@ -30,7 +31,6 @@ import {
   definitionWeak,
 } from "./definition-cards";
 import type { DefinitionAction } from "./types";
-import { conceptSentence } from "./conceptSentenceFixes";
 import { ExplorerActionConflict, ExplorerActionInvalid } from "./errors";
 import { baseUpgradeCost } from "./starEconomy";
 import {
@@ -151,8 +151,8 @@ export function applyExplorerAction(
       solution: {
         cardId: card.id,
         name: card.name,
-        // 보이는 문장은 보정 표를 지난다(D-143 ④) — 원본은 그대로.
-        definition: conceptSentence(card).definition,
+        // 카드는 내보내는 층에서 이미 보정 표를 입었다(D-143 ④ · ⑦ — definition-cards.ts).
+        definition: card.definition,
         explanation: card.explanation,
         note: card.note,
         examples: card.examples.map((example) => ({
@@ -375,16 +375,11 @@ export function explorerView(
                     ? "맞다"
                     : "아니다",
           })),
-      // 뜻 · 조립 조각은 보정 표를 지난다(D-143 ④) — 빈칸(정답 조각)은 그대로라 채점은 안 바뀐다.
+      // 뜻 · 조립 조각 · 보기는 내보내는 층에서 보정 표를 입은 카드 그대로(D-143 ④ · ⑦) — 채점도 같은 카드로.
       ...(read
-        ? {
-            reading: {
-              definition: conceptSentence(card).definition,
-              note: card.note,
-            },
-          }
+        ? { reading: { definition: card.definition, note: card.note } }
         : task.kind === 0
-          ? { pieces: conceptSentence(card).pieces }
+          ? { pieces: card.pieces }
           : {}),
     };
   }
@@ -407,7 +402,14 @@ export function explorerView(
           unitId: card.unit,
           name: card.name,
           prerequisiteIds: card.prerequisites ?? [],
-          progress: record?.cards[card.id] ?? null,
+          // 만기는 기억 복습이 읽는 값(뜻을 고친 카드는 앞당긴 판 날 — D-143 ⑦)이라 도감 격자의 «다시 기억할 때»와
+          // 카드 대화상자의 «다음 복습»이 같은 날을 말한다(모든 화면 일치). 저장된 기록은 그대로다.
+          progress: record?.cards[card.id]
+            ? {
+                ...record.cards[card.id],
+                due: definitionEffectiveDue(card.id, record.cards[card.id]),
+              }
+            : null,
         })),
     })),
     currentActivity,
