@@ -33,6 +33,7 @@ import {
 } from "@/lib/math-explorers/starEconomy";
 import { ExplorerMath } from "./ExplorerMath";
 import { ExplorerChests, TileStars } from "./ExplorerPieces";
+import { SupplementLine, SupplementShelf } from "./ExplorerSupplementPieces";
 import r from "./chest-reward.module.css";
 import s from "./math-explorers.module.css";
 
@@ -234,6 +235,8 @@ export default function ExplorerHome({
   onReviewDay,
   initialView,
   onCloseView,
+  onStartSupplement,
+  onInspectSupplement,
 }: {
   state: ExplorerState;
   busy: boolean;
@@ -258,6 +261,10 @@ export default function ExplorerHome({
   onReviewDay: (day: DailyJourneyDay, opener: HTMLButtonElement) => void;
   initialView?: "collection";
   onCloseView?: () => void;
+  /** 보충 카드(D-147) — 단원 끝 줄에서 그 장 시작 · 이어서. */
+  onStartSupplement?: (cardId: string) => void;
+  /** 보충 카드(D-147) — 도감 선반에서 카드 창 열기. */
+  onInspectSupplement?: (cardId: string) => void;
 }) {
   const [sheet, setSheet] = useState<"collection" | "settings" | "base" | null>(
     initialView ?? null,
@@ -426,6 +433,13 @@ export default function ExplorerHome({
             다음 탐험은 내일 열려요.
           </p>
         )}
+        {complete && !active && !activeReview && !pendingRetry ? (
+          <SupplementLine
+            state={state}
+            busy={busy || saving}
+            onStart={(cardId) => onStartSupplement?.(cardId)}
+          />
+        ) : null}
       </section>
 
       <section className={s.journeyPanel}>
@@ -537,6 +551,7 @@ export default function ExplorerHome({
           <p className={s.scheduleNote}>
             도움 없이 기억하면 복습 간격이 1 → 3 → 7 → 14 → 30일로 늘어나요.
           </p>
+          <SupplementShelf state={state} onInspect={onInspectSupplement} />
         </ExplorerSheet>
       ) : null}
 

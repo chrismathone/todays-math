@@ -310,11 +310,47 @@ const conditional: ReadonlySet<string> = new Set([
   "g9-inscribed-angle", // 원주각 — 보정 표와 함께 — 지금 문장은 둘째 빈칸이 성질 쪽
 ]);
 
+/**
+ * 보충 카드 21장의 갈래(D-147 · 05 §8.22) — 본 카드 표(230장, 시험이 원본과 짝을 잠근다) 밖의 작은 표.
+ * 학생 화면 번들이 부르므로 정답이 든 `supplement-content.ts` 를 import 하지 않고 여기 적는다 —
+ * 짝은 `supplementCards.test.ts` 가 잠근다. 이름 뒤 «교재» 딱지는 `isSupplementCardId` 로 가른다.
+ */
+export const supplementKindTable: Readonly<Record<string, ConceptKind>> = {
+  "sup-line": "정의", // 직선
+  "sup-angle": "정의", // 각
+  "sup-side-vertex": "정의", // 변과 꼭짓점(도형)
+  "sup-rectangle": "정의", // 직사각형
+  "sup-square": "정의", // 정사각형
+  "sup-perpendicular-line": "정의", // 수선
+  "sup-trapezoid": "정의", // 사다리꼴
+  "sup-regular-polygon": "정의", // 정다각형
+  "sup-isosceles-angles": "성질", // 이등변삼각형의 성질
+  "sup-common-divisor": "정의", // 공약수
+  "sup-common-multiple": "정의", // 공배수
+  "sup-corresponding-parts": "정의", // 대응점 · 대응변 · 대응각
+  "sup-face-edge": "정의", // 면과 모서리(입체도형)
+  "sup-base-lateral": "정의", // 밑면과 옆면
+  "sup-base-exponent": "정의", // 밑과 지수
+  "sup-equation-sides": "정의", // 좌변 · 우변 · 양변
+  "sup-y-axis-symmetry": "정의", // y축에 대하여 대칭
+  "sup-point-line-distance": "정의", // 점과 직선 사이의 거리
+  "sup-corresponding-alternate": "정의", // 동위각과 엇각
+  "sup-parallel-lines": "성질", // 평행선의 성질
+  "sup-right-triangle-congruence": "성질", // 직각삼각형의 합동 조건
+};
+
+/** 보충 카드인가 — id 가 `sup-` 로 시작한다(본 카드 230장에는 없다). */
+export function isSupplementCardId(cardId: string): boolean {
+  return cardId.startsWith("sup-");
+}
+
 /** 카드의 갈래 — 표에 없는 id 면 null(딱지를 그리지 않는다). */
 export function conceptKind(cardId: string): ConceptKind | null {
   return Object.hasOwn(conceptKindTable, cardId)
     ? conceptKindTable[cardId]
-    : null;
+    : Object.hasOwn(supplementKindTable, cardId)
+      ? supplementKindTable[cardId]
+      : null;
 }
 
 /** 보정 문장과 함께여야 맞는 갈래인가(조건부 5장). */

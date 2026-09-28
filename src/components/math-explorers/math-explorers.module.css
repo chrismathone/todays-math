@@ -1929,3 +1929,125 @@ button.confirm {
     font-size: 12px;
   }
 }
+
+/*
+ * 보충 카드(D-147 · 05 §8.22 — Hi-fi 1안, 원장님 2026-09-28). 새 색 · 새 글꼴 없음:
+ *  - 단원 끝 줄: 완료 줄 아래 가는 선(#e9eef6 = 대화창 머리 선) · 누르는 줄은 도구 줄 단추 값(#dce5f2 · 14px 모서리 · 48px)
+ *  - 모은 줄: ✓ 없이 도감 모은 카드 글자색 #34765c + 별 알약(D-144 값) — 칸 완료 줄(#177450 · ✓)과 가른다(3자 합의 ④)
+ *  - 도감 선반: 본 카드 격자(.collection) 그대로 + 이름 뒤 «교재» 딱지(concept-head .sourceTag)
+ */
+.supplementLine {
+  display: grid;
+  gap: 8px;
+  margin-top: 12px;
+  padding-top: 12px;
+  border-top: 1px solid #e9eef6;
+}
+.supplementCaption {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+  margin: 0;
+  color: #61748e;
+  font-size: 12px;
+  line-height: 1.5;
+}
+.supplementCaption > span:last-child {
+  flex: none;
+}
+button.supplementRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  width: 100%;
+  min-height: 48px;
+  padding: 8px 12px;
+  border: 1px solid #dce5f2;
+  border-radius: 14px;
+  background: #fff;
+  color: #425b79;
+  font: inherit;
+  text-align: left;
+  cursor: pointer;
+  touch-action: manipulation;
+}
+.supplementName {
+  min-width: 0;
+  color: #192f52;
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 1.5;
+  word-break: keep-all;
+  overflow-wrap: anywhere;
+}
+.supplementGo {
+  flex: none;
+  color: #345ebd;
+  font-size: 13px;
+  font-weight: 750;
+}
+.supplementNote {
+  margin: 0;
+  color: #7b8ea8;
+  font-size: 12px;
+  line-height: 1.6;
+  word-break: keep-all;
+}
+.supplementDone {
+  margin: 0;
+  color: #34765c;
+  font-size: 14px;
+  line-height: 1.6;
+  word-break: keep-all;
+}
+.supplementDone > .tileStars {
+  display: inline-flex;
+  align-items: center;
+  gap: 3px;
+  margin: 0 0 0 2px;
+  padding: 1px 9px 1px 7px;
+  border-radius: 999px;
+  background: #fff1b5;
+  color: #936626;
+  font-size: 13px;
+  font-weight: 800;
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+  vertical-align: 1px;
+}
+.supplementShelf {
+  margin-top: 25px;
+}
+.shelfHeading {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 10px;
+}
+.shelfHeading h3 {
+  margin: 0;
+  font-size: 17px;
+  font-weight: 750;
+  line-height: 1.4;
+}
+.shelfHeading > span {
+  flex: none;
+  color: #526e92;
+  font-size: 12px;
+  font-variant-numeric: tabular-nums;
+}
+@media (hover: hover) {
+  button.supplementRow:hover:enabled {
+    filter: brightness(0.98);
+  }
+}
+/* 초점 · 비활성은 홈 단추와 같다(.home button:focus-visible · :disabled) — 비활성은 기본 커서(D-30). */
+button.supplementRow:focus-visible {
+  outline: 3px solid #305dd1;
+  outline-offset: 3px;
+}
+button.supplementRow:disabled {
+  opacity: 0.5;
+  cursor: default;
+}

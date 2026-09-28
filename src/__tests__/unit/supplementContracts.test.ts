@@ -72,8 +72,14 @@ function stored(withSupplements: boolean) {
   return explorer;
 }
 function response(withSupplements: boolean) {
+  // 2단계 서버는 늘 보낸다 — «보충 칸 없는 응답»(1단계 서버 · 되돌린 뒤)은 칸을 지워 만든다.
+  const base: Partial<ReturnType<typeof explorerView>> = explorerView(
+    createExplorerState("student", 3),
+    today,
+  );
+  delete base.supplements;
   return {
-    ...explorerView(createExplorerState("student", 3), today),
+    ...base,
     ...(withSupplements ? { supplements: view } : {}),
     student: { id: "student", name: "학생", className: "반" },
     revision: 1,
@@ -136,9 +142,9 @@ describe("보충 카드 계약 — 읽기 먼저(1단계)", () => {
     ).toThrow();
   });
 
-  it("이 단계의 서버는 보충 칸을 보내지 않는다", () => {
+  it("2단계 서버는 보충 칸을 늘 보낸다(읽기 계약이 먼저 나간 뒤 — 1단계 b0a9b0c8a)", () => {
     expect(
-      explorerView(createExplorerState("student", 3), today),
-    ).not.toHaveProperty("supplements");
+      explorerView(createExplorerState("student", 3), today).supplements,
+    ).toMatchObject({ session: null, activity: null, offer: null });
   });
 });

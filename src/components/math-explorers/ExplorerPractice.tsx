@@ -27,9 +27,18 @@ const activityNames = {
   truth: "경계 살피기",
 };
 
+/**
+ * 풀이 틀이 세션에서 쓰는 것 — 제목 · 진행 · 바퀴. 본 카드 세션과 보충 카드 한 장(D-147)이 같은 틀을 쓴다.
+ */
+export type PracticeSession = Pick<
+  NonNullable<ExplorerState["session"]>,
+  "title" | "index" | "total" | "round" | "reviewOnly"
+>;
+
 export default function ExplorerPractice({
   activity,
   session,
+  progressLabel,
   units,
   busy,
   correct,
@@ -38,7 +47,9 @@ export default function ExplorerPractice({
   onHome,
 }: {
   activity: ExplorerActivity;
-  session: NonNullable<ExplorerState["session"]>;
+  session: PracticeSession;
+  /** 진행 줄 왼쪽 이름 — 없으면 «오늘의 개념 탐험»(보충 카드는 «교재에 한 장 더»). */
+  progressLabel?: string;
   /** 뜻 만나기 머리의 «중2 · 단원» — 학년은 단원 목록에서 찾는다. */
   units?: ExplorerState["units"];
   busy: boolean;
@@ -51,6 +62,7 @@ export default function ExplorerPractice({
   return (
     <ExplorerPracticeFrame
       session={session}
+      progressLabel={progressLabel}
       busy={busy}
       correct={correct}
       eventKey={eventKey}
@@ -76,6 +88,7 @@ export default function ExplorerPractice({
 
 export function ExplorerPracticeFrame({
   session,
+  progressLabel,
   busy,
   correct,
   eventKey,
@@ -83,7 +96,8 @@ export function ExplorerPracticeFrame({
   children,
   feedbackMessage,
 }: {
-  session: NonNullable<ExplorerState["session"]>;
+  session: PracticeSession;
+  progressLabel?: string;
   busy: boolean;
   correct: boolean | null;
   eventKey: string;
@@ -113,7 +127,7 @@ export function ExplorerPracticeFrame({
           <strong>
             {session.round
               ? `오답 복습 ${session.round}회`
-              : "오늘의 개념 탐험"}
+              : (progressLabel ?? "오늘의 개념 탐험")}
           </strong>
           <span>
             {Math.min(session.index + 1, session.total)} / {session.total}

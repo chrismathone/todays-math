@@ -46,6 +46,9 @@ import {
 import s from "./math-explorers.module.css";
 
 const ExplorerCardDialog = dynamic(() => import("./ExplorerCardDialog"));
+const ExplorerSupplementDialog = dynamic(
+  () => import("./ExplorerSupplementDialog"),
+);
 const StudentReplayDialog = dynamic(
   () => import("@/components/math-srs/StudentReplayDialog"),
 );
@@ -133,6 +136,10 @@ function ExplorerGame({ initialView }: { initialView?: "collection" }) {
   const sheetOpen = useRef(false);
   const waitingTile = useRef<number | null>(null);
   const [detailId, setDetailId] = useState<string | null>(null);
+  // 보충 카드(D-147) — 한 장 풀이 중인가 · 열린 카드 창 · 끝나면 도감으로 돌아갈지.
+  const [supPracticing, setSupPracticing] = useState(false);
+  const [supDetailId, setSupDetailId] = useState<string | null>(null);
+  const [supReturn, setSupReturn] = useState(false);
   const [solution, setSolution] = useState<ExplorerFeedback["solution"] | null>(
     null,
   );
@@ -327,7 +334,9 @@ function ExplorerGame({ initialView }: { initialView?: "collection" }) {
       latest.current = data;
       lastRequest.current = null;
       if (
-        (action.type === "answer" || action.type.startsWith("lab-")) &&
+        (action.type === "answer" ||
+          action.type === "supplement-answer" ||
+          action.type.startsWith("lab-")) &&
         typeof data.feedback?.correct === "boolean"
       ) {
         held = true;
@@ -339,7 +348,15 @@ function ExplorerGame({ initialView }: { initialView?: "collection" }) {
           setCorrect(null);
           setBusy(false);
           pending.current = false;
-          if (data.session?.done || !data.currentActivity) {
+          if (action.type === "supplement-answer") {
+            // 한 장이 끝나면(모음 · 못 모음) 홈으로 — 도감에서 시작했으면 도감을 다시 연다.
+            if (!data.supplements?.activity) {
+              setSupPracticing(false);
+              setLoading(true);
+              setReload((value) => value + 1);
+              window.scrollTo({ top: 0, behavior: "instant" });
+            }
+          } else if (data.session?.done || !data.currentActivity) {
             setPracticing(false);
             setLoading(true);
             setReload((value) => value + 1);
@@ -365,7 +382,18 @@ function ExplorerGame({ initialView }: { initialView?: "collection" }) {
           } else setPracticing(!!data.currentActivity);
           window.scrollTo({ top: 0, behavior: "instant" });
         }
-        if (action.type === "solution" && data.feedback?.solution)
+        if (action.type === "supplement-start") {
+          setDetailId(null);
+          setSupDetailId(null);
+          setSolution(null);
+          setSupPracticing(!!data.supplements?.activity);
+          window.scrollTo({ top: 0, behavior: "instant" });
+        }
+        if (
+          (action.type === "solution" ||
+            action.type === "supplement-solution") &&
+          data.feedback?.solution
+        )
           setSolution(data.feedback.solution);
         if (action.type === "lab-solution" && data.feedback?.workshopSolution)
           setWorkshopSolution(data.feedback.workshopSolution);
@@ -588,6 +616,19 @@ function ExplorerGame({ initialView }: { initialView?: "collection" }) {
     !!state?.currentActivity &&
     !!state.session &&
     !state.session.done;
+  const supplement = state?.supplements;
+  const inSupplement =
+    supPracticing &&
+    !inPractice &&
+    !!supplement?.activity &&
+    !!supplement.session;
+  // 열린 탐험은 하나 — 오늘의 탐험(은행 날 포함)이나 본 카드 세션 · 남은 문제 다시 풀기가 열려 있으면 보충은 흐리게.
+  const supplementLocked =
+    (!!state?.expedition?.mission &&
+      state.expedition.mission.status !== "complete") ||
+    (!!state?.session &&
+      (!state.session.done ||
+        (!state.session.reviewOnly && state.session.unresolved.length > 0)));
   const introKind =
     inPractice && state?.session ? sessionIntroKind(state.session) : null;
   const showIntro =
@@ -670,6 +711,18 @@ function ExplorerGame({ initialView }: { initialView?: "collection" }) {
     refresh();
     window.scrollTo({ top: 0, behavior: "instant" });
   }
+  function exitSupplement() {
+    if (pending.current) return;
+    setSupPracticing(false);
+    refresh();
+    window.scrollTo({ top: 0, behavior: "instant" });
+  }
+  function startSupplement(cardId: string, fromCollection: boolean) {
+    // send 가 막는 때(다른 요청 중 · 상자 저장 줄)는 요청이 나가지 않으니 도감 복귀 표시도 켜지 않는다(S1).
+    if (!state || pending.current || claimQueue.current.length) return;
+    setSupReturn(fromCollection);
+    void send({ type: "supplement-start", cardId });
+  }
 
   if (bankKind)
     return (
@@ -684,13 +737,13 @@ function ExplorerGame({ initialView }: { initialView?: "collection" }) {
     <StudentReviewPage
       kind="explorers"
       student={state?.student ?? null}
-      practicing={inPractice || !state}
+      practicing={inPractice || inSupplement || !state}
       boardReady={!!state}
       practiceTitle="수학 탐험"
       practicePageClassName={s.practicePage}
       practiceMainClassName={s.practiceMain}
     >
-      {inPractice && error ? (
+      {(inPractice || inSupplement) && error ? (
         <div className={s.practiceError} role="alert">
           <p>
             {error.status === 409
@@ -723,7 +776,41 @@ function ExplorerGame({ initialView }: { initialView?: "collection" }) {
         />
       )}
       {state && !loading ? (
-        inPractice && state.currentActivity && state.session ? (
+        inSupplement && supplement?.activity && supplement.session ? (
+          // 보충 한 장 — 본 카드와 같은 풀이 틀(§8.19). 행동만 보충 행동으로 바꿔 보낸다.
+          <ExplorerPractice
+            activity={supplement.activity}
+            session={{
+              title: supplement.session.title,
+              index: supplement.session.index,
+              total: supplement.session.total,
+              round: supplement.session.round,
+              reviewOnly: false,
+            }}
+            progressLabel={supplement.session.title}
+            units={state.units}
+            busy={busy || !!error || loading}
+            correct={correct}
+            eventKey={effectKey}
+            onAction={(action) =>
+              void send(
+                action.type === "read"
+                  ? {
+                      type: "supplement-read",
+                      questionId: action.questionId,
+                    }
+                  : action.type === "answer"
+                    ? {
+                        type: "supplement-answer",
+                        questionId: action.questionId,
+                        choiceIds: action.choiceIds,
+                      }
+                    : action,
+              )
+            }
+            onHome={exitSupplement}
+          />
+        ) : inPractice && state.currentActivity && state.session ? (
           introKind && showIntro ? (
             <ExplorerSessionIntro
               kind={introKind}
@@ -777,8 +864,16 @@ function ExplorerGame({ initialView }: { initialView?: "collection" }) {
             onRetry={() => void send({ type: "retry-unresolved" })}
             onInspect={inspect}
             onReviewDay={reviewDay}
-            initialView={initialView}
-            onCloseView={() => router.replace("/learn")}
+            initialView={supReturn ? "collection" : initialView}
+            onCloseView={() => {
+              setSupReturn(false);
+              if (initialView) router.replace("/learn");
+            }}
+            onStartSupplement={(cardId) => startSupplement(cardId, false)}
+            onInspectSupplement={(cardId) => {
+              setSolution(null);
+              setSupDetailId(cardId);
+            }}
           />
         )
       ) : null}
@@ -797,6 +892,23 @@ function ExplorerGame({ initialView }: { initialView?: "collection" }) {
             setDetailId(null);
             setSolution(null);
             setWorkshopSolution(null);
+          }}
+        />
+      ) : null}
+      {state && supDetailId ? (
+        <ExplorerSupplementDialog
+          cardId={supDetailId}
+          state={state}
+          solution={solution}
+          busy={busy || saving}
+          locked={supplementLocked}
+          onStart={() => startSupplement(supDetailId, true)}
+          onSolution={() =>
+            void send({ type: "supplement-solution", cardId: supDetailId })
+          }
+          onClose={() => {
+            setSupDetailId(null);
+            setSolution(null);
           }}
         />
       ) : null}

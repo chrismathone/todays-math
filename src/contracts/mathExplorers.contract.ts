@@ -227,7 +227,20 @@ export const explorerActionSchema = z.discriminatedUnion("type", [
   }),
   z.strictObject({ type: z.literal("lab-solution") }),
   z.strictObject({ type: z.literal("retry-unresolved") }),
+  // 보충 카드 한 장(D-147) — 시작 · 이어서는 같은 행동(멈춘 진행이 있으면 이어서).
+  z.strictObject({ type: z.literal("supplement-start"), cardId: id }),
+  z.strictObject({ type: z.literal("supplement-read"), questionId: id }),
+  z.strictObject({
+    type: z.literal("supplement-answer"),
+    questionId: id,
+    choiceIds: z.array(z.number().int().min(0).max(3)).max(4),
+  }),
+  z.strictObject({ type: z.literal("supplement-solution"), cardId: id }),
 ]);
+export type SupplementAction = Extract<
+  z.infer<typeof explorerActionSchema>,
+  { type: `supplement-${string}` }
+>;
 export const explorerRequestSchema = z.strictObject({
   requestId: uuidSchema,
   expectedRevision: count,
