@@ -1,6 +1,6 @@
 /**
  * 카드 보정 표(`conceptSentenceFixes.ts`) — 원본(`definition-content.ts` · PROVENANCE)은 그대로 두고, 카드를 내보내는 층
- * (`definition-cards.ts` 의 `definitionCards`)에서 23장을 덮어쓴다(D-143 ④ · ⑦). 화면 · 채점 · 복습 · 선수가 같은 카드를 읽는다.
+ * (`definition-cards.ts` 의 `definitionCards`)에서 29장을 덮어쓴다(D-143 ④ · ⑦ — 23장 + 채점 결함 6장). 화면 · 채점 · 복습 · 선수가 같은 카드를 읽는다.
  *
  * 결론은 용어 분석 트랙(terms-coverage)의 3자 합의 `docs/reference/concept-terms/card-sentence-fixes.json` —
  * 틀림 3 · 빠짐 5 · 낱말 5 · 범위 10. 뜻을 고친 «틀림» 3장은 이미 모은 학생에게 한 번 다시 복습(`cardRevisions.test.ts`).
@@ -56,8 +56,8 @@ describe("카드 보정 표 — 확정 파일 그대로", () => {
     );
   });
 
-  it("23장 · 칸마다 card-sentence-fixes.json 의 change 와 같다", () => {
-    expect(decided.fixes).toHaveLength(23);
+  it("29장 · 칸마다 card-sentence-fixes.json 의 change 와 같다", () => {
+    expect(decided.fixes).toHaveLength(29);
     expect(Object.keys(cardFixes).sort()).toEqual(
       decided.fixes.map((fix) => fix.id).sort(),
     );
@@ -71,11 +71,12 @@ describe("카드 보정 표 — 확정 파일 그대로", () => {
 
 describe("내보내는 카드가 보정을 입었다 — 화면 · 채점 · 복습 · 선수가 같은 카드", () => {
   it("보정 칸은 definitionCard 에 그대로, 나머지 칸 · 다른 카드는 원문 그대로", () => {
-    const raw = new Map(courseCards.map((card) => [card.id, card]));
+    // 원문 = 보정 전 원본(새 형식은 definition-content.ts 그대로 — 아래 누출 절 시험, 옛 15장은 definition-cards.ts 안).
+    // 옛 카드에도 보정이 있다(정수 — 채점 결함).
+    const raw = new Map(definitionSourceCards.map((card) => [card.id, card]));
     for (const card of definitionCards) {
       const fix = cardFixes[card.id] as Change | undefined;
-      const source = raw.get(card.id);
-      if (!source) continue; // 옛 카드 15장(보정 없음)
+      const source = raw.get(card.id)!;
       for (const key of Object.keys(source) as (keyof typeof source)[]) {
         const expected = fix && key in fix ? fix[key as string] : source[key];
         expect({ id: card.id, key, value: card[key] }).toEqual({
@@ -131,11 +132,20 @@ describe("누출 검사는 보정 전 원본 카드로 — 보정 문장이 «�
     )!;
     expect(source.name).toBe("여사건의 확률");
     for (const id of Object.keys(cardFixes)) {
-      const raw = courseCards.find((card) => card.id === id)!;
-      expect(definitionSourceCards.find((card) => card.id === id)).toEqual({
-        ...raw,
-        prerequisites: raw.prerequisites,
-      });
+      const source = definitionSourceCards.find((card) => card.id === id)!;
+      const raw = courseCards.find((card) => card.id === id);
+      if (raw)
+        expect(source).toEqual({ ...raw, prerequisites: raw.prerequisites });
+      // 원본에는 보정이 없다 — 보정한 칸 가운데 하나는 원본과 다르다(옛 카드 정수도)
+      const fix = cardFixes[id] as Change;
+      expect({
+        id,
+        differs: Object.keys(fix).some(
+          (key) =>
+            JSON.stringify(fix[key]) !==
+            JSON.stringify((source as unknown as Change)[key]),
+        ),
+      }).toEqual({ id, differs: true });
     }
   });
 
@@ -165,6 +175,54 @@ describe("누출 검사는 보정 전 원본 카드로 — 보정 문장이 «�
         fixed: false,
       });
     }
+  });
+
+  it("coverage.md 가 적은 «보정 새 글 N칸» = 누출 검사기의 셈(칸 목록 · 창 길이는 검사기 소스에서 읽는다)", () => {
+    // check-leak-coverage.py 의 fix_new_texts 와 같은 규칙: 허용 말로 들어가는 긴 칸 가운데 `current`(원래 카드 글)와 다르고,
+    // 걷어낸 뒤 창 길이 이상인 글. note 는 current 에 없어 explanation 과 견준다.
+    const py = readFileSync(
+      resolve(ROOT, "scripts/qa/concept-terms/check-leak-coverage.py"),
+      "utf8",
+    );
+    const fields = [
+      ...(/^FIX_TEXT_FIELDS = \(([^)]*)\)/m.exec(py)?.[1] ?? "").matchAll(
+        /"([a-zA-Z]+)"/g,
+      ),
+    ].map((m) => m[1]!);
+    const win = Number(/^WIN = (\d+)/m.exec(py)?.[1]);
+    expect(fields).toEqual([
+      "definition",
+      "exampleTitle",
+      "trap",
+      "explanation",
+      "note",
+    ]);
+    expect(win).toBe(12);
+    const norm = (t: string) => t.replace(/[\s$«»‘’“”'"`{}]/g, "");
+    const all = decided.fixes as unknown as {
+      change: Record<string, unknown>;
+      current: Record<string, unknown>;
+    }[];
+    const count = all
+      .flatMap((fix) =>
+        fields.map((key) => {
+          const value = fix.change[key];
+          const before = fix.current[key === "note" ? "explanation" : key];
+          return typeof value === "string" &&
+            value !== before &&
+            norm(value).length >= win
+            ? 1
+            : 0;
+        }),
+      )
+      .reduce((a: number, b: number) => a + b, 0);
+    const doc = readFileSync(
+      resolve(ROOT, "docs/reference/concept-terms/coverage.md"),
+      "utf8",
+    );
+    const said = [...doc.matchAll(/새 글 (\d+)칸/g)].map((m) => Number(m[1]));
+    expect(said.length).toBeGreaterThan(0);
+    for (const n of said) expect(n).toBe(count);
   });
 
   it("앱 코드는 원본 카드를 읽지 않는다 — 화면 · 채점 · 복습은 보정을 입은 definitionCards 하나", () => {

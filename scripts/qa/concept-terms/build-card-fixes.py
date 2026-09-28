@@ -25,7 +25,7 @@ import sys
 ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "..", ".."))
 OUT = os.path.join(ROOT, "docs", "reference", "concept-terms", "card-sentence-fixes.json")
 DATA = r"C:\Creative\testautocreator-data\I-개념용어"
-SEVERITY = ["틀림", "빠짐", "낱말", "범위"]
+SEVERITY = ["틀림", "빠짐", "낱말", "범위", "채점"]  # 채점: 정답이 아닌 채움이 참이라 맞는 문장이 틀림 처리됨(2026-09-28)
 
 V3 = {"claude": "고침", "codex": "고침", "grok": "고침"}
 AGREE = "3자 일치"
@@ -161,6 +161,29 @@ FIXES: list = [
          issue="구의 뜻이 없다(밑면이 없다는 특징뿐)",
          template="원뿔은 원 모양의 밑면과 {한 꼭짓점}이 있고, 구는 중심에서 겉면의 어느 점까지나 거리가 {모두 같은} 입체도형이다.",
          wrong=["두 꼭짓점", "제각각 다른"]),
+    # ── 채점 결함(2026-09-28 · 230장 기계 훑기 → 리드 지시 → 3자 합의 «(다) 섞기», 보고서 ⒀) ──
+    # 문장 조립은 자리 그대로 채점하므로 «정답이 아닌 채움»이 참이면 맞는 문장이 틀림이 된다. 맞바꿔도 조사까지 맞는 대등한 카드는
+    # 순서 무관 채점(`conceptOrderFree.ts`)으로, 조사가 어긋나거나 오답 말이 정답과 같은 뜻인 카드는 여기서 문장 · 보기를 고친다.
+    dict(id="g3-time", severity="채점", sevVotes=sev("채점", "채점", "채점"), votes=V3, decidedBy="3자 일치(방식 (다) 3:0 · 문장안 반대 없음)",
+         issue="«{1분}은 {60초}와 같다»는 두 조각을 맞바꾼 «60초은 1분와 같다»도 뜻이 맞아 틀림 처리됐다 — 조사가 어긋나 순서 무관으로 받으면 틀린 문장을 맞다고 보여 준다. 자리가 정해지는 문장으로(카드 보기 «1시간 = 60분»과 맞음)",
+         template="1분은 {60초}이고 1시간은 {60분}이다.", wrong=["100초", "100분"]),
+    dict(id="g4-turn", severity="채점", sevVotes=sev("채점", "채점", "채점"), votes=V3, decidedBy="3자 일치(방식 (다) 3:0 · 문장안 반대 없음)",
+         issue="«정해진 {방향}과 {각도}만큼»의 맞바꿈 «각도과 방향만큼»은 조사가 어긋난다 — 가운데 조각을 «으로»로 바꿔 자리를 정한다",
+         template="한 점을 중심으로 도형을 정해진 {방향}으로 {각도}만큼 회전하는 것.", wrong=["길이", "무게"]),
+    dict(id="g5-rule-expression", severity="채점", sevVotes=sev("채점", "채점", "채점"), votes=V3,
+         decidedBy="방식 (다) 3:0 · 문장은 반대 없음 · 오답 말 «도형만» → «그래프만»은 2표(codex 지적 · Claude 동의, grok 은 참인 채움 없음으로 봄)",
+         issue="«{기호}와 {계산식}으로»의 맞바꿈 «계산식와 기호으로»는 조사가 어긋난다 — «{기호}를 사용해 {계산식}으로»로 자리를 정한다. 카드 보기가 □ · △(도형 모양 기호)를 쓰므로 오답 말 «도형만»은 참으로 읽혀 바꾼다",
+         template="두 양의 대응 규칙을 {기호}를 사용해 {계산식}으로 나타내는 것.", wrong=["색만", "그래프만"]),
+    dict(id="integer", severity="채점", sevVotes=sev("채점", "채점", "채점"), votes=V3, decidedBy="3자 일치 — 문장 보정 + 순서 무관(합집합이라 본디 대칭)",
+         issue="«양의 정수, {0}, {음의 정수}를»의 맞바꿈은 뜻이 같은데 «0를»로 조사가 어긋난다 — 끝 조사를 없애 맞바꿈도 맞는 문장이 되게 하고 순서 무관으로 받는다(빈칸 0 은 그대로)",
+         template="양의 정수, {0}, {음의 정수} 세 가지를 통틀어 이르는 수.", wrong=["1/2", "모든 음수"]),
+    dict(id="g7-construction", severity="채점", sevVotes=sev("채점", "채점", "채점"), votes=V3,
+         decidedBy="2:1 — Claude 첫 안은 순서 무관만이었으나 codex · grok 모두 반대. 문장은 grok 안 + 순서 무관(codex 의 «함께 적용 가능»과 맞음)",
+         issue="«눈금 없는 {자}와 {컴퍼스}»를 맞바꾸면 «눈금 없는»이 컴퍼스에 붙어 «눈금 없는 자» 조건이 빠진다 — «눈금 없는 자»를 한 조각으로 묶고 순서 무관으로 받는다",
+         template="{눈금 없는 자}와 {컴퍼스}만을 사용해 도형을 그리는 것.", wrong=["각도기", "저울"]),
+    dict(id="g6-rate", severity="채점", sevVotes=sev("채점", "채점", "채점"), votes=V3, decidedBy="3자 일치(오답 말 교체 · 참인 채움 없음)",
+         issue="오답 말 «기준량만»을 둘째 칸에 넣은 «비교하는 양을 기준량만으로 나눈 값»은 정답과 뜻이 같다 — 뜻이 다른 말로 바꾼다(문장 그대로)",
+         template="{비교하는 양}을 {기준량}으로 나눈 값.", wrong=["기준량의 절반", "전체의 합"]),
 ]
 # 고치지 않기로 한 것 — id, 까닭(우리 말), decidedBy
 NOT_FIXED: list = [
@@ -264,7 +287,7 @@ def main():
         policy="원본(definition-content.ts · definition-cards.ts, PROVENANCE SHA)은 그대로 — 원본 밖 보정 표(id → change 칸)를 "
                "카드를 내보내는 층에서 덮어쓴다(화면 · 채점 · 복습 · 선수가 같은 카드를 읽게). id 는 바꾸지 않는다(학생 기록 · 상자 · 교육과정 다리 유지).",
         checks="빈칸 둘 · 말 넷 서로 다름 · 말 조각 셋 · 보기 맞음/틀림 둘 다 · 새 글과 14권 원문의 12글자 창 겹침 0(걷어내기 없음) · "
-               "빈칸 두 조각을 맞바꾼 문장이 거짓(자리 채점 — 감사 표 src/__tests__/unit/conceptSentenceSymmetry.test.ts)",
+               "정답이 아닌 채움 11개가 모두 거짓 — 순서 무관 카드의 맞바꿈만 정답(원장 docs/reference/concept-terms/card-fillings-audit.json · 시험 conceptSentenceSymmetry.test.ts)",
         severityOrder=SEVERITY,
         counts=dict(fixes=len(out), bySeverity={s: sum(1 for o in out if o["severity"] == s) for s in SEVERITY},
                     notFixed=len(NOT_FIXED)),

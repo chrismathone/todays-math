@@ -1820,10 +1820,16 @@ const longestIntroCards = [...cards.definitionCards]
 fixtures["memory-intro-long"] = () => memoryFixture(longestIntroCards, 8, "g8-function");
 // 뜻을 고친 카드(D-143 ⑦)를 판 전에 모은 학생 — 도감 격자와 카드 대화상자가 같은 복습 날을 말한다(리드 적대적 검토 ⑤ · 모든 화면 일치).
 // 격자는 «다시 기억할 때 / MM/DD 복습», 대화상자는 «기억 N단계 · 다음 복습 MM/DD» — 둘 다 뷰의 진도(앞당긴 만기)를 읽는다.
-fixtures["revised-due"] = () => ({
-  ...serverState.emptySrsState(),
-  explorers: explorerRecord(8, "g8-function", cards.definitionCards.filter((card) => card.unit === "g8-simultaneous")),
-});
+// 날짜는 오늘이 아니라 카드 보정 판(REVISED_ON) 기준으로 박는다 — 오늘 기준이면 판 날 일주일 뒤부터는 «판 전에 풀었다»가 거짓이 되어
+// 앞당긴 만기를 안 거치고도 통과한다(리드 검토 ③). 판 8일 전에 풀고 저장된 다음 복습은 판 60일 뒤.
+const cardRevisionsQa = src("lib/math-explorers/conceptSentenceFixes.ts").cardRevisions;
+const REVISED_ON = Object.values(cardRevisionsQa)[0];
+fixtures["revised-due"] = () => {
+  const explorers = explorerRecord(8, "g8-function", cards.definitionCards.filter((card) => card.unit === "g8-simultaneous"));
+  for (const progress of Object.values(explorers.profile.definitions.cards))
+    Object.assign(progress, { lastDate: addDays(REVISED_ON, -8), attemptedAt: addDays(REVISED_ON, -8), reviewedAt: addDays(REVISED_ON, -8), due: addDays(REVISED_ON, 60) });
+  return { ...serverState.emptySrsState(), explorers };
+};
 scenarios["revised-due"] = async ({ page, sim, mobile, step }) => {
   await step("revised.due", async () => {
     await page.goto(base + "/dev/mobile-explorers-qa");
@@ -1845,6 +1851,8 @@ scenarios["revised-due"] = async ({ page, sim, mobile, step }) => {
       await expect(dialog).toBeVisible();
       const line = (await dialog.getByText(/다음 복습/).first().innerText()).trim();
       const due = cards.definitionEffectiveDue(card.id, stored.profile.definitions.cards[card.id]);
+      // 뜻을 고친 카드는 반드시 앞당긴 판 날을, 나머지는 저장된 만기를 말해야 한다 — 읽기 규칙을 실제로 거쳤는지
+      assert.equal(due, card.id in cardRevisionsQa ? REVISED_ON : stored.profile.definitions.cards[card.id].due, `${card.name} 복습 날`);
       const mmdd = due.slice(5).replace("-", "/");
       assert.ok(line.endsWith(`다음 복습 ${mmdd}`), `${card.name} 대화상자 «${line}» ≠ 복습 날 ${mmdd}`);
       assert.equal(grid, due <= today() ? "다시 기억할 때" : `${mmdd} 복습`, `${card.name} 격자`);
@@ -1855,6 +1863,40 @@ scenarios["revised-due"] = async ({ page, sim, mobile, step }) => {
     const revised = said.filter((row) => /^(g8-two-variable|g8-simultaneous) /.test(row));
     assert.equal(revised.length, 2, "뜻을 고친 카드 둘");
     return said.join(" · ");
+  });
+};
+// 순서 무관 채점(D-143 ⑧) — 실제 화면에서 두 정답 조각을 거꾸로 놓고 제출해도 «맞음»으로 칠해진다(서버 채점 = 엔진).
+const orderFreeQa = src("lib/math-explorers/conceptOrderFree.ts").orderFreeCards;
+const orderFreeUnit = cards.definitionCard("g3-capacity").unit;
+fixtures["order-free"] = () => ({ ...serverState.emptySrsState(), explorers: explorerRecord(3, orderFreeUnit) });
+scenarios["order-free"] = async ({ page, sim, mobile, step, shot }) => {
+  await step("orderFree.swap", async () => {
+    await page.goto(base + "/dev/mobile-explorers-qa");
+    await homeReady(page);
+    await tap(page.locator("[data-expedition-start]"), mobile);
+    await page.locator("[data-explorer-dock=true]").waitFor({ timeout: 10000 });
+    await settled(page, sim);
+    const current = () => engine.explorerView(explorerStored(sim), today()).currentActivity;
+    for (let guard = 0; guard < 40; guard++) {
+      await untilActivity(page, sim, mobile, "assemble");
+      if (orderFreeQa.has(current().cardId)) break;
+      await perform(page, sim, correctExplorerAction(sim), mobile);
+      await settled(page, sim);
+    }
+    const activity = current();
+    assert.ok(orderFreeQa.has(activity.cardId), "순서 무관 카드의 조립에 닿지 못했다");
+    const ids = [...correctExplorerAction(sim).choiceIds].reverse();
+    for (const id of ids) await tap(choiceButtons(page).nth(id), mobile);
+    await shot("order-free-swapped");
+    const handled = sim.handled;
+    await tap(page.getByRole("button", { name: "완성한 문장 확인하기" }), mobile);
+    await until(() => sim.handled > handled, "조립 응답");
+    await page.locator("[data-answer-feedback=correct]").waitFor({ timeout: 5000 });
+    const session = explorerStored(sim).profile.definitions.session;
+    assert.ok(session.passed.includes(`${activity.cardId}:0`), "맞바꾼 조립이 통과로 기록되지 않았다");
+    const card = cards.definitionCard(activity.cardId);
+    await settled(page, sim);
+    return `${card.name} — «${card.words[1]}» · «${card.words[0]}» 순서로 제출 → 맞음`;
   });
 };
 scenarios["memory-intro"] = (context) => memoryIntroScenario(context, "memory");
