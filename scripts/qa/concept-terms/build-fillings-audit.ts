@@ -74,12 +74,20 @@ if (showAt > 0) {
   const id = process.argv[showAt + 1]!;
   const saved: Audit = JSON.parse(readFileSync(OUT, "utf8"));
   const entry = saved.cards.find((card) => card.id === id);
+  const sha = piecesSha(definitionCard(id).pieces);
   for (const f of fillingsOf(id)) {
     const v = entry?.fillings.find(
       (x) => JSON.stringify(x.slots) === JSON.stringify(f.slots),
     );
+    // 칸 번호만 같고 조각 · 말이 바뀐 판정은 지금 채움의 판정이 아니다(리드 검토 A2 L5)
+    const stale =
+      v !== undefined &&
+      (entry!.piecesSha !== sha ||
+        JSON.stringify(v.words) !== JSON.stringify(f.words));
     console.log(
-      `${f.slots.join(",")} ${f.text} — ${v?.verdict ?? "원장에 없음"}${v?.why ? ` (${v.why})` : ""}`,
+      `${f.slots.join(",")} ${f.text} — ${
+        !v ? "원장에 없음" : stale ? `${UNREVIEWED}(원장과 다름)` : v.verdict
+      }${v?.why && !stale ? ` (${v.why})` : ""}`,
     );
   }
   process.exit(0);

@@ -124,6 +124,18 @@ def fixes_in_allowed(fixes: list, units: list, allowed_sorted: list[str]) -> lis
     return [(i, k) for i, k, v in fix_new_texts(fixes, units) if norm(v) in allowed]
 
 
+def dump_stop_reasons(fixes: list, units: list, allowed_sorted: list[str]) -> list[str]:
+    """카드 덤프가 보정을 입었으면 멈출 까닭들 — main 과 자기 시험 ③ 이 같은 함수 · 같은 덤프 짝으로 쓴다(리드 검토 A2 M1).
+    ⑴ 보정의 모든 change 칸이 덤프 카드와 같다 = 덤프가 이미 보정을 입었다(생성기 `build-card-fixes.py` 의 멈춤과 같은 기준).
+       새 글의 기준도 덤프라, 보정 입은 덤프면 «새 글 0칸»이 되어 ⑵만으로는 눈먼다 — 그래서 ⑴이 먼저다.
+    ⑵ 보정 새 글이 허용 말(카드 글)에 들어 있다."""
+    source = {c["id"]: c for u in units for c in u["cards"]}
+    reasons = [f"{f['id']}.change — 덤프 카드가 이 보정을 이미 입었다(보정 칸이 모두 같다)"
+               for f in fixes if f["id"] in source and all(source[f["id"]].get(k) == v for k, v in f["change"].items())]
+    reasons += [f"{i}.{k} — 보정 새 글이 허용 말에 있다" for i, k in fixes_in_allowed(fixes, units, allowed_sorted)]
+    return reasons
+
+
 def with_fixes(units: list, fixes: list) -> list:
     """카드 덤프에 보정을 입힌 판(자기 시험 ③ — 옛 덤프가 하던 일)."""
     by_id = {f["id"]: f["change"] for f in fixes}
@@ -191,10 +203,16 @@ def main():
     print(f"원천 글 {len(src)} · 창 {len(wins)} · 허용 말 {len(allowed_sorted)} · 보정 새 글 {len(fix_new_texts(fixes, units))}칸")
     bad = 0
     # 카드 덤프가 보정을 입었으면 보정 문장이 허용 말이 되어 아래 검사가 눈먼다 — 먼저 멈춘다(리드 검토 ④).
-    carried = fixes_in_allowed(fixes, units, allowed_sorted)
-    print(f"보정 새 글이 허용 말에 든 칸: {len(carried)}" + (" — 🔴 카드 덤프가 보정을 입었다. 원본 카드(definitionSourceCards)로 다시 뽑을 것" if carried else ""))
-    for i, k in carried[:10]:
-        print("   ", i, k)
+    carried = dump_stop_reasons(fixes, units, allowed_sorted)
+    # coverage.md 가 적은 «새 글 N칸»과 셈이 다르면 멈춘다 — 보정 입은 덤프면 셈이 0 으로 떨어진다(⑴과 겹치는 그물)
+    doc = (REPO / "docs" / "reference" / "concept-terms" / "coverage.md").read_text(encoding="utf-8")
+    said = {int(n) for n in re.findall(r"새 글 (\d+)칸", doc)}
+    count = len(fix_new_texts(fixes, units))
+    if said and said != {count}:
+        carried.append(f"보정 새 글 {count}칸 — coverage.md 는 {sorted(said)}칸")
+    print(f"덤프 멈춤 까닭: {len(carried)}" + (" — 🔴 카드 덤프가 보정을 입었거나 셈이 문서와 다르다. 원본 카드(definitionSourceCards)로 다시 뽑을 것" if carried else ""))
+    for why in carried[:10]:
+        print("   ", why)
     bad += len(carried)
     if a.selftest:
         planted = next(s for s in src if len(norm(s)) > 30 and len(re.findall(r"[가-힣]", s)) > 20)
@@ -213,11 +231,13 @@ def main():
         if not h2 or h2_clean:
             print("자기 시험 ② 실패")
             bad += 1
-        # ③ 보정을 입힌 덤프(옛 덤프가 하던 일)로 허용 말을 지으면 위 멈춤이 새 글을 전부 잡아야 한다.
-        _, allowed_fixed, _ = build_units(with_fixes(units, planted_fixes))
-        c3 = fixes_in_allowed(planted_fixes, units, allowed_fixed)
-        print(f"자기 시험 ③: 보정을 입힌 덤프 → 허용 말에 든 새 글 {len(c3)}칸 / {len(fix_new_texts(planted_fixes, units))}칸")
-        if not c3 or len(c3) != len(fix_new_texts(planted_fixes, units)):
+        # ③ 보정을 입힌 덤프(옛 덤프가 하던 일)를 main 과 똑같이 넣으면(기준 · 허용 말 둘 다 그 덤프) 멈춤이 보정 전부를 잡아야 한다.
+        fixed_units = with_fixes(units, planted_fixes)
+        _, allowed_fixed, _ = build_units(fixed_units)
+        c3 = dump_stop_reasons(planted_fixes, fixed_units, allowed_fixed)
+        caught = {why.split(" ")[0].split(".")[0] for why in c3}
+        print(f"자기 시험 ③: 보정을 입힌 덤프를 main 처럼 넣음 → 멈춘 보정 {len(caught)}장 / {len(planted_fixes)}장")
+        if len(caught) != len(planted_fixes):
             print("자기 시험 ③ 실패")
             bad += 1
     for f in a.files or []:

@@ -1825,7 +1825,7 @@ const longestIntroCards = [...cards.definitionCards]
 fixtures["memory-intro-long"] = () => memoryFixture(longestIntroCards, 8, "g8-function");
 // 뜻을 고친 카드(D-143 ⑦)를 판 전에 모은 학생 — 도감 격자와 카드 대화상자가 같은 복습 날을 말한다(리드 적대적 검토 ⑤ · 모든 화면 일치).
 // 격자는 «다시 기억할 때 / MM/DD 복습», 대화상자는 «기억 N단계 · 다음 복습 MM/DD» — 둘 다 뷰의 진도(앞당긴 만기)를 읽는다.
-// 날짜는 오늘이 아니라 카드 보정 판(REVISED_ON) 기준으로 박는다 — 오늘 기준이면 판 날 일주일 뒤부터는 «판 전에 풀었다»가 거짓이 되어
+// 날짜는 오늘이 아니라 카드 보정 판 날(cardRevisions) 기준으로 박는다 — 오늘 기준이면 판 날 일주일 뒤부터는 «판 전에 풀었다»가 거짓이 되어
 // 앞당긴 만기를 안 거치고도 통과한다(리드 검토 ③). 판 8일 전에 풀고 저장된 다음 복습은 판 60일 뒤.
 const cardRevisionsQa = src("lib/math-explorers/conceptSentenceFixes.ts").cardRevisions;
 // 판 날짜는 카드마다 다를 수 있다 — 기록은 가장 이른 판보다 앞에 풀고 가장 늦은 판보다 뒤를 만기로 박고, 단정은 카드마다 제 판 날과 견준다(리드 검토 A2 ⑧).

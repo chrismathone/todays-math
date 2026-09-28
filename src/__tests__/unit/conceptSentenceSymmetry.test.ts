@@ -199,15 +199,54 @@ const DIGIT_BATCHIM: Record<string, number> = {
   "°": 0,
   "²": 17,
 };
-/** 마지막 글자의 받침 번호(0 = 없음, 8 = ㄹ). 읽기가 갈리는 글자(로마자 · 기호)는 null. */
+/** 마지막 글자의 받침 번호(0 = 없음, 8 = ㄹ). 읽기가 갈리는 글자(로마자 · 기호)는 null.
+ * 분수 a/b 는 «b분의 a»로 읽어 끝소리가 분자다(1/2 → «이분의 일» → ㄹ · 리드 검토 A2 L1). */
 const batchim = (word: string): number | null => {
+  const fraction = /(\d+)\/\d+$/.exec(word.trim());
+  if (fraction) return batchim(fraction[1]!);
   const ch = word.trim().slice(-1);
   const code = ch.charCodeAt(0);
   if (code >= 0xac00 && code <= 0xd7a3) return (code - 0xac00) % 28;
   return ch in DIGIT_BATCHIM ? DIGIT_BATCHIM[ch]! : null;
 };
-/** 빈칸 뒤 조각이 받침으로 갈리는 조사로 시작하면, 그 말이 문법상 맞는가(갈리지 않으면 null). */
+// 품사(리드 검토 A2 M2) — 명사 자리에 동사꼴 · 관형형 말이 오면 받침과 상관없이 안 맞는다. 목록은 230장의 말로 맞췄다
+// (끝 글자만 보면 동사꼴인 명사: 순서 · 무게 · 해).
+const NOUNS_LOOKING_LIKE_VERBS = new Set([
+  "순서",
+  "숫자 순서",
+  "덧셈 순서",
+  "무게",
+  "해",
+]);
+const lastSyllable = (word: string) => word.trim().slice(-1);
+const isVerbForm = (word: string) => {
+  const w = word.trim();
+  if (NOUNS_LOOKING_LIKE_VERBS.has(w)) return false;
+  const last = lastSyllable(w);
+  // 관형형 «-는» · 부사형 «-게» · 연결형 «-고 · -서 · -며»
+  if (["는", "게", "고", "서", "며"].includes(last)) return true;
+  // 연결형 «-어 · -여»(한 글자 «해»는 명사)
+  return (
+    w.length >= 2 &&
+    ["어", "여", "아", "워", "해", "져", "려", "쳐"].includes(last)
+  );
+};
+// 관형형 «-ㄴ»(더한 · 작은 · 짝수인 …) — 230장에서 이 끝 글자로 끝나는 명사는 없다
+const isAdnominal = (word: string) =>
+  ["한", "은", "인", "큰", "뺀", "른", "긴", "눈", "된", "진"].includes(
+    lastSyllable(word),
+  );
+const isNounLike = (word: string) => !isVerbForm(word) && !isAdnominal(word);
+/** 빈칸 뒤 조각에 그 말이 문법상 맞는가 — «하다» 칸 · 서술격 · «에» · 받침 조사. 판단할 수 없으면 null. */
 const fitsParticle = (word: string, after: string): boolean | null => {
+  // «하다»가 붙는 칸 — 명사만(«-기» · «-만» 은 «하다»가 안 붙는다)
+  if (/^(하고|하여|하며|하면|하는|한 |한$|한다|했|할 )/.test(after))
+    return isNounLike(word) && !/[기만]$/.test(word.trim());
+  // 서술격 «이다 · 이며 · 이고 · 이면 · 이므로» — 받침과 상관없이 명사면 맞다(리드 검토 A2 L2)
+  if (/^이(다|며|고|면|므로|지만)/.test(after)) return isNounLike(word);
+  // «에» — 명사만, «-만» 뒤는 어색하다
+  if (after.startsWith("에"))
+    return isNounLike(word) && !word.trim().endsWith("만");
   for (const [withB, without] of PARTICLES) {
     const used = after.startsWith(withB)
       ? withB
@@ -215,6 +254,7 @@ const fitsParticle = (word: string, after: string): boolean | null => {
         ? without
         : null;
     if (!used) continue;
+    if (!isNounLike(word)) return false;
     const b = batchim(word);
     if (b === null) return null;
     if (withB === "으로")
@@ -233,17 +273,16 @@ const particleGiveaways = (card: {
   const slotFits = [0, 1].map((slot) =>
     card.words.map((w) => fitsParticle(w, card.pieces[slot + 1]!)),
   );
+  // 판단할 수 없는 말(null)은 «맞을 수도 있음»으로 센다 — 칸 전체를 건너뛰면 정답만 모르는 말일 때 단서를 놓친다(리드 검토 A2 L3)
   slotFits.forEach((fits, slot) => {
-    if (fits.some((v) => v === null)) return;
-    const ok = card.words.filter((_, i) => fits[i]);
-    if (ok.length === 1 && fits[slot])
+    const ok = card.words.filter((_, i) => fits[i] !== false);
+    if (ok.length === 1 && fits[slot] !== false)
       out.push(`칸 ${slot + 1} — «${ok[0]}» 하나`);
   });
-  // 순서 무관 카드: 두 칸이 다 조사로 갈리는데 오답이 어느 칸에도 못 들어가면 조사만으로 정답이 정해진다
+  // 순서 무관 카드: 오답이 어느 칸에도 못 들어가면 조사만으로 정답이 정해진다
   if (
     orderFreeCards.has(card.id) &&
-    slotFits.every((fits) => fits.every((v) => v !== null)) &&
-    [2, 3].every((i) => !slotFits[0]![i] && !slotFits[1]![i])
+    [2, 3].every((i) => slotFits[0]![i] === false && slotFits[1]![i] === false)
   )
     out.push("순서 무관인데 오답이 두 칸 어디에도 못 들어감");
   return out;
@@ -272,6 +311,83 @@ describe("원장 카드 — 조사가 답을 알려 주지 않는다(받침으�
         words: ["유리수", "무리수", "자연수만", "정수만"],
       }),
     ).toEqual(["순서 무관인데 오답이 두 칸 어디에도 못 들어감"]);
+    // 자기 시험 — A2 가 고친 품사 단서 셋(리드 검토 A2 M2): 동사꼴 말은 명사 조사에, «-만»은 «에»에, «-기»는 «하고/한»에 안 맞는다
+    expect(
+      particleGiveaways({
+        id: "g8-simultaneous",
+        pieces: [
+          "둘 이상의 방정식을 ",
+          " 나타낸 것이며, 모든 방정식을 함께 참이 되게 하는 값을 그 ",
+          "라고 한다.",
+        ],
+        words: ["한데 묶어", "해", "따로 버려", "평균"],
+      }),
+    ).toEqual(["칸 2 — «해» 하나"]);
+    expect(
+      particleGiveaways({
+        id: "g8-substitution",
+        pieces: [
+          "연립방정식의 한 식에서 구한 미지수의 표현을 ",
+          "에 ",
+          " 푸는 방법.",
+        ],
+        words: ["다른 식", "넣어", "같은 식만", "빼서"],
+      }),
+    ).toEqual(["칸 1 — «다른 식» 하나"]);
+    expect(
+      particleGiveaways({
+        id: "g3-table",
+        pieces: ["자료를 기준에 따라 ", "하고 행과 열에 ", "한 것."],
+        words: ["분류", "정리", "섞기", "숨기기"],
+      }),
+    ).toEqual(["순서 무관인데 오답이 두 칸 어디에도 못 들어감"]);
+    // 분수는 «b분의 a» — 끝소리는 분자(리드 검토 A2 L1): 큰 수의 자릿값은 단서가 아니고, 뿔의 부피 옛 말은 «3»만 «으로»에 맞는다
+    expect(
+      particleGiveaways({
+        id: "g4-large-place",
+        pieces: [
+          "숫자가 한 자리 왼쪽으로 가면 나타내는 값이 ",
+          ", 오른쪽으로 가면 ",
+          "이 된다.",
+        ],
+        words: ["10배", "1/10", "2배", "1/2"],
+      }),
+    ).toEqual([]);
+    expect(
+      particleGiveaways({
+        id: "g7-pyramid-volume",
+        pieces: [
+          "같은 밑넓이와 높이를 가진 기둥 부피의 ",
+          "이며 밑넓이×높이÷",
+          "으로 구한다.",
+        ],
+        words: ["1/3", "3", "1/2", "2"],
+      }),
+    ).toEqual(["칸 2 — «3» 하나"]);
+    // 서술격 «이다»는 주격 «이»가 아니다 — 받침 없는 명사도 맞는다(리드 검토 A2 L2 · 지어낸 카드)
+    expect(
+      particleGiveaways({
+        id: "l2-predicate",
+        pieces: ["두 수의 ", "를 구한 값이 ", "이다."],
+        words: ["차", "합", "나머지", "배수"],
+      }),
+    ).toEqual([]);
+    // 읽기를 모르는 말(로마자)은 «맞을 수도 있음» — 정답만 모르는 말이고 나머지가 다 안 맞으면 단서다(리드 검토 A2 L3 · 지어낸 카드)
+    expect(
+      particleGiveaways({
+        id: "l3-unknown",
+        pieces: ["점 ", "를 지나는 ", "."],
+        words: ["P", "직선", "선분", "원"],
+      }),
+    ).toEqual(["칸 1 — «P» 하나"]);
+    // 관형형(«더한 · 작은»)은 받침이 맞아도 명사 조사에 못 온다 — 정답 «합»만 남는다(리드 검토 A2 M2 · 지어낸 카드)
+    expect(
+      particleGiveaways({
+        id: "m2-adnominal",
+        pieces: ["두 수를 ", " 결과를 ", "이라고 한다."],
+        words: ["더한", "합", "작은", "큰 수"],
+      }),
+    ).toEqual(["칸 2 — «합» 하나"]);
   });
 });
 
