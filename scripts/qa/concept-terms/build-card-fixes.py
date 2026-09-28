@@ -44,9 +44,10 @@ def sev(c, x, g):
 FIXES: list = [
     dict(id="g6-net", severity="틀림", sevVotes=sev("틀림", "범위", "틀림"), votes=V3, decidedBy=AGREE,
          issue="면을 잘라 펼친다고 적었다 — 각기둥 · 각뿔의 전개도는 모서리를 잘라 펼친 그림이다(5-2 · 6-1). 이 카드는 «각기둥·각뿔과 공간» 단원이라 범위도 그 둘로",
-         template="각기둥이나 각뿔을 {모서리}를 따라 잘라 {평면} 위에 펼친 그림.", wrong=["둘레", "공간"],
-         revision=dict(date="2026-09-28", votes="2:1 — codex 반대(«둘레를 따라»를 면의 가장자리로 읽을 여지 · 대안 «넓이»)",
-                       why="리드 검토 A ⑤⑥ — «를 따라»에 맞는 말이 «모서리» 하나라 조사가 답을 알려 줬고, 채움 «모서리를 따라 잘라 면 위에»가 애매했다 → 오답 말 면 → 둘레"),
+         template="각기둥이나 각뿔을 {모서리}를 따라 잘라 {평면} 위에 펼친 그림.", wrong=["넓이", "공간"],
+         revision=dict(date="2026-09-28", votes="A: 둘레 2:1(codex 반대) → A2: 넓이 3:0",
+                       why="리드 검토 A ⑤⑥ — «를 따라»에 맞는 말이 «모서리» 하나라 조사가 답을 알려 줬고 채움 «…잘라 면 위에»가 애매했다 → 면 → 둘레. "
+                           "A2 ⑤ — «둘레를 따라»가 모서리로 읽힐 여지(codex) → 분명히 거짓인 «넓이»로(«를»에 맞아 첫 칸 후보 둘)"),
          alsoCheck="원기둥의 전개도(6-2)는 모서리가 없다 — 원 단원에서 다룰 때 따로 말한다"),
     dict(id="g8-two-variable", severity="틀림", sevVotes=sev("틀림", "범위", "틀림"), votes=V3, decidedBy=AGREE,
          issue="«a, b가 동시에 0이 아닌»이면 한쪽이 0인 식(미지수 하나)도 들어간다 — 중2 교재는 두 미지수의 차수가 모두 1(a, b 둘 다 0이 아님). «식» → «방정식». 보기에도 미지수가 하나인 식을 넣는다(codex · grok)",
@@ -56,10 +57,14 @@ FIXES: list = [
     dict(id="g8-simultaneous", severity="틀림", sevVotes=sev("틀림", "틀림", "틀림"), votes=V3, decidedBy=AGREE,
          issue="공통인 해를 구하는 일(푸는 행동)을 연립방정식이라 했다 — 연립방정식은 방정식 여럿을 한 묶음으로 적은 것이고, 해를 구하는 일은 «연립방정식을 푼다»",
          template="둘 이상의 방정식을 {한데 묶어} 나타낸 것이며, 모든 방정식을 함께 참이 되게 하는 값을 그 {해}라고 한다.",
-         wrong=["따로 버려", "평균"]),
+         wrong=["따로 버려", "계수"],
+         revision=dict(date="2026-09-28", votes="3:0",
+                       why="리드 검토 A2 ③ — 둘째 칸 «…그 [ ]라고 한다»에 문법상 맞는 말이 «해» 하나였다(«평균라고» X) → 오답 말 평균 → 계수(받침 없는 틀린 명사 · 둘째 칸 후보 둘)")),
     dict(id="g8-substitution", severity="빠짐", sevVotes=sev("빠짐", "빠짐", "빠짐"), votes=V3, decidedBy=AGREE,
          issue="무엇을 푸는지(연립방정식)가 문장에 없다",
-         template="연립방정식의 한 식에서 구한 미지수의 표현을 {다른 식}에 {넣어} 푸는 방법.", wrong=["같은 식만", "빼서"]),
+         template="연립방정식의 한 식에서 구한 미지수의 표현을 {다른 식}에 {넣어} 푸는 방법.", wrong=["같은 식", "빼서"],
+         revision=dict(date="2026-09-28", votes="3:0",
+                       why="리드 검토 A2 ③ — 첫 칸 «[ ]에»에 맞는 말이 «다른 식» 하나였다(«같은 식만에» 어색 · 나머지 둘은 동사) → 오답 말 같은 식만 → 같은 식(«같은 식에 넣어 푸는 방법»은 거짓)")),
     dict(id="g8-elimination", severity="빠짐", sevVotes=sev("빠짐", "빠짐", "빠짐"), votes=V3, decidedBy=AGREE,
          issue="무엇을 푸는지(연립방정식)가 문장에 없다",
          template="연립방정식을 풀 때 두 식을 더하거나 빼서 한 {미지수}를 {없애는} 방법.", wrong=["해", "늘리는"],
@@ -128,9 +133,9 @@ FIXES: list = [
          explanation="함께 변하는 경향만으로 원인이라고 단정할 수 없어. 뚜렷한 경향이 없으면 상관관계가 없다고 해."),
     dict(id="g8-cases", severity="범위", sevVotes=sev("범위", "빠짐", "범위"), votes=V3, decidedBy=AGREE,
          issue="«모든 가능한 결과의 개수»라 전체 결과 수로 읽힌다 — 경우의 수는 한 사건이 일어나는 가짓수(사건마다 따로). 보기도 사건을 세게 바꾼다(codex · grok)",
-         template="한 사건에 해당하는 {가능한 결과}를 빠짐없이 센 {개수}.", wrong=["평균", "가장 큰 값"],
-         revision=dict(date="2026-09-28", votes="2:1 — codex 반대(«센 가장 큰 값»을 개수로 읽을 여지 · 대안 «확률»)",
-                       why="리드 검토 A ⑥ — 채움 «가능한 결과를 빠짐없이 센 합계의 값»을 개수로 읽을 수 있었다(codex 참 한 표) → 오답 말 합계의 값 → 가장 큰 값"),
+         template="한 사건에 해당하는 {가능한 결과}를 빠짐없이 센 {개수}.", wrong=["평균", "확률"],
+         revision=dict(date="2026-09-28", votes="A: 가장 큰 값 2:1(codex 반대) → A2: 확률 3:0",
+                       why="리드 검토 A ⑥ — 채움 «…센 합계의 값»을 개수로 읽을 수 있었다 → 가장 큰 값. A2 ⑤ — «센 가장 큰 값»도 개수로 읽힐 여지(codex) → 분명히 거짓인 «확률»로"),
          exampleTitle="주사위 한 개를 던져 짝수의 눈이 나오는 경우를 바르게 설명한 것을 골라봐.",
          examples=ex(("경우의 수는 3", True), ("2, 4, 6이 나오는 경우", True), ("경우의 수는 6", False), ("경우의 수는 2", False))),
     dict(id="g9-vertex", severity="범위", sevVotes=sev("범위", "빠짐", "범위"), votes=V3, decidedBy=AGREE,
@@ -173,9 +178,10 @@ FIXES: list = [
          template="1분은 {60초}이고 1시간은 {60분}이다.", wrong=["100초", "100분"]),
     dict(id="g4-turn", severity="채점", sevVotes=sev("채점", "채점", "채점"), votes=V3, decidedBy="3자 일치(방식 (다) 3:0 · 문장안 반대 없음)",
          issue="«정해진 {방향}과 {각도}만큼»의 맞바꿈 «각도과 방향만큼»은 조사가 어긋난다 — 가운데 조각을 «으로»로 바꿔 자리를 정한다",
-         template="한 점을 중심으로 도형을 정해진 {방향}으로 {각도}만큼 회전하는 것.", wrong=["모양", "길이"],
-         revision=dict(date="2026-09-28", votes="2:1 — codex 반대(«모양으로»를 돌린 뒤 놓인 모습으로 읽을 여지 · 대안 «방향에 따라»)",
-                       why="리드 검토 A ⑤ — «으로»에 맞는 말이 «방향» 하나라 조사가 답을 알려 줬다 → 오답 말 무게 → 모양(첫 칸 후보가 방향 · 모양 둘)")),
+         template="한 점을 중심으로 도형을 정해진 {방향}으로 {각도}만큼 회전하는 것.", wrong=["직선", "길이"],
+         revision=dict(date="2026-09-28", votes="A: 모양 2:1(codex 반대) → A2: 직선 2:1(grok 은 모양 그대로)",
+                       why="리드 검토 A ⑤ — «으로»에 맞는 말이 «방향» 하나라 조사가 답을 알려 줬다 → 무게 → 모양. A2 ② — 밀기 카드에서 «모양»이 참이 되듯 «정해진 모양으로»도 참으로 "
+                           "읽힐 여지(codex) → 뒤집기(선 기준)와 헷갈리는 «직선»(«으로»에 맞아 첫 칸 후보 둘)")),
     dict(id="g5-rule-expression", severity="채점", sevVotes=sev("채점", "채점", "채점"), votes=V3,
          decidedBy="방식 (다) 3:0 · 문장은 반대 없음 · 오답 말 «도형만» → «그래프만»은 2표(codex 지적 · Claude 동의, grok 은 참인 채움 없음으로 봄)",
          issue="«{기호}와 {계산식}으로»의 맞바꿈 «계산식와 기호으로»는 조사가 어긋난다 — «{기호}를 사용해 {계산식}으로»로 자리를 정한다. 카드 보기가 □ · △(도형 모양 기호)를 쓰므로 오답 말 «도형만»은 참으로 읽혀 바꾼다",
@@ -191,17 +197,33 @@ FIXES: list = [
          template="{눈금 없는 자}와 {컴퍼스}만을 사용해 도형을 그리는 것.", wrong=["각도기", "저울"]),
     dict(id="g6-rate", severity="채점", sevVotes=sev("채점", "채점", "채점"), votes=V3, decidedBy="3자 일치(오답 말 교체 · 참인 채움 없음)",
          issue="오답 말 «기준량만»을 둘째 칸에 넣은 «비교하는 양을 기준량만으로 나눈 값»은 정답과 뜻이 같다 — 뜻이 다른 말로 바꾼다(문장 그대로)",
-         template="{비교하는 양}을 {기준량}으로 나눈 값.", wrong=["기준량의 절반", "전체의 합"]),
+         wrong=["기준량의 절반", "전체의 합"]),  # 문장은 원본 그대로(template 없음 — 오답 말만)
     # ── 리드 검토 A(2026-09-28 · 3자 — consult10): 채점 결함 셋 더 ──
     dict(id="g4-ten-thousand", severity="채점", sevVotes=sev("채점", "채점", "채점"), votes=V3, decidedBy="3자 일치(3:0)",
          issue="오답 말 둘을 넣은 «100이 100개인 수»가 10000 이라 참이었다 — 오답 말 100개 → 1000개(100이 1000개면 100000)",
-         template="{1000}이 {10개}인 수.", wrong=["100", "1000개"]),
+         wrong=["100", "1000개"]),  # 문장은 원본 그대로(template 없음 — 오답 말만)
     dict(id="g5-parallelogram-area", severity="채점", sevVotes=sev("채점", "채점", "채점"), votes=V3, decidedBy="3자 일치(3:0) — 문장 보정 + 순서 무관",
          issue="«{밑변}의 길이에 {높이}를 곱하여»의 맞바꿈은 뜻이 참인데 «밑변를»로 조사가 어긋났다 — 둘째 칸 뒤도 «의 길이를»로 고정해 맞바꿈도 맞는 문장이 되게 하고 순서 무관으로 받는다",
-         template="{밑변}의 길이에 {높이}의 길이를 곱하여 구한다.", wrong=["옆변", "둘레"]),
+         template="{밑변의 길이}에 {높이}를 곱하여 구한다.", wrong=["옆변의 길이", "둘레"],
+         revision=dict(date="2026-09-28", votes="3:0",
+                       why="리드 검토 A2 ⑥ — «높이의 길이»가 겹말 → 말을 «밑변의 길이 · 높이 · 옆변의 길이 · 둘레»로, 조각 «[ ]에 [ ]를» — 네 말 모두 «에» · «를»에 맞고 맞바꿈도 참(뜻 문장은 원래 카드 그대로)")),
     dict(id="g9-real-number", severity="채점", sevVotes=sev("채점", "채점", "채점"), votes=V3, decidedBy="3자 일치(3:0)",
          issue="순서 무관 카드인데 오답 말 «자연수만 · 정수만»이 «와» · «를»에 안 맞아 조사만으로 정답이 정해졌다 — 조사에 맞는 «자연수 · 정수»로(유리수와 정수를 합쳐도 유리수라 실수가 아님)",
-         template="{유리수}와 {무리수}를 통틀어 이르는 수.", wrong=["자연수", "정수"]),
+         wrong=["자연수", "정수"]),  # 문장은 원본 그대로(template 없음 — 오답 말만)
+    # ── 리드 검토 A2(2026-09-28 · 3자 — consult11) ──
+    dict(id="g3-table", severity="채점", sevVotes=sev("채점", "채점", "채점"), votes=V3, decidedBy="3자 일치(3:0)",
+         issue="순서 무관 카드인데 오답 말 «섞기 · 숨기기»가 «하고/한» 앞에 못 와 두 칸 어디에도 안 들어갔다 — 어떻게 놓아도 정답. «하다»가 붙는 틀린 말로 "
+               "(뜻 문장은 그대로 — 용어 분석 때 «행·열은 3-2 교재에 없는 낱말이지만 틀린 말은 아니다»로 안 고침이었다)",
+         wrong=["혼합", "생략"]),  # 문장은 원본 그대로(template 없음 — 오답 말만)
+    dict(id="g4-slide", severity="채점", sevVotes=sev("채점", "채점", "채점"), votes=V3, decidedBy="3자 일치(3:0)",
+         issue="오답 말 «모양»을 넣은 «…같은 모양으로 같은 거리만큼 옮기는 것»이 밀기의 참인 뜻풀이였다 — 받침 있는 틀린 말 «중심»으로(돌리기와 헷갈리는 오답)",
+         wrong=["중심", "각도"]),  # 문장은 원본 그대로(template 없음 — 오답 말만)
+    dict(id="g4-quarter-turn", severity="채점", sevVotes=sev("채점", "채점", "채점"), votes=V3, decidedBy="3자 일치(3:0)",
+         issue="순서 무관 카드의 맞바꿈 «한 바퀴의 90°만큼, 곧 1/4 돌리는 것»이 어색했다 — 말을 «1/4바퀴 · 90°» 꼴로, 조각 «[ ], 곧 [ ]만큼 돌리는 것»으로 두 순서 모두 자연스럽게",
+         template="{1/4바퀴}, 곧 {90°}만큼 돌리는 것.", wrong=["1/2바퀴", "180°"]),
+    dict(id="g4-half-turn", severity="채점", sevVotes=sev("채점", "채점", "채점"), votes=V3, decidedBy="3자 일치(3:0)",
+         issue="직각만큼 돌리기와 같다 — 맞바꿈 «한 바퀴의 180°만큼, 곧 1/2 돌리는 것»이 어색했다",
+         template="{1/2바퀴}, 곧 {180°}만큼 돌리는 것.", wrong=["1/4바퀴", "90°"]),
 ]
 # 고치지 않기로 한 것 — id, 까닭(우리 말), decidedBy
 NOT_FIXED: list = [
@@ -218,7 +240,6 @@ NOT_FIXED: list = [
     dict(id="coprime", decidedBy="Claude(협의 목록 밖)", why="«관계»와 «두 수» 표현 차이 — 뜻은 같다"),
     dict(id="g6-decimal-divide", decidedBy="Claude(협의 목록 밖)", why="나누는 수를 자연수로 고치는 것은 표준 방법 — 틀리지 않는다"),
     dict(id="g8-probability", decidedBy="Claude(협의 목록 밖)", why="같은 가능성일 때 a/n 은 중2 확률의 계산 뜻 — 상대도수 쪽은 해설로 보탤 수 있으나 틀리지 않는다"),
-    dict(id="g3-table", decidedBy="Claude(협의 목록 밖)", why="행·열은 3-2 교재에 없는 낱말이지만 틀린 말은 아니다(가벼움)"),
     dict(id="g3-picture-graph", decidedBy="Claude(협의 목록 밖)", why="그림 하나가 뜻하는 수를 정한다는 덧붙임은 활동에 필요한 뜻이다"),
     dict(id="g5-correspondence", decidedBy="Claude(협의 목록 밖)", why="짝을 이루는 관계와 함께 변하는 관계 — 같은 대응을 다르게 말한 것"),
 ]
@@ -262,6 +283,10 @@ def main():
         seen.add(f["id"])
         c = cards[f["id"]]
         assert f["severity"] in SEVERITY, f["id"]
+        # 오답 말만 바꾸는 항목은 문장을 다시 적지 않는다(template 없음) — 원본 카드의 조각 · 정답으로 짓는다. 원래 카드 문장의 사본이
+        # 교재 표준 문구와 겹쳤다(2026-09-28 elem56 검사기 · 밀기 카드).
+        if f.get("template") is None:
+            f["template"] = c["pieces"][0] + "{" + c["words"][0] + "}" + c["pieces"][1] + "{" + c["words"][1] + "}" + c["pieces"][2]
         blanks = re.findall(r"\{([^}]+)\}", f["template"])
         assert len(blanks) == 2, (f["id"], blanks)
         pieces = re.split(r"\{[^}]+\}", f["template"])
@@ -280,10 +305,10 @@ def main():
             change["note"] = f["explanation"]  # 새 형식 카드는 note = explanation(옛 카드 15장은 따로지만 이번 보정에 없다)
         # 바뀐 칸만 덮는다 — 원래 글을 그대로 다시 적으면 나중에 원문 칸을 고쳐도 옛 글로 덮는다(리드 검토 ⑦, 2026-09-28).
         same = {k for k, v in change.items() if c.get(k) == v}
-        full = dict(change)  # 새 글 겹침 검사 · 지금 칸(current)은 온전한 새 카드 기준
+        full = dict(change)  # 새 글 겹침 검사는 온전한 새 카드 기준
         change = {k: v for k, v in change.items() if k not in same}
         # 🔴 카드 덤프는 보정 전 원본(`definitionSourceCards`)이어야 한다. 보정을 입은 덤프면 모든 칸이 이미 같아서 아래
-        # «새 글만 잰다»가 23장 전부를 건너뛰고 `current` 칸도 보정 글로 채워진다(2026-09-28 리드 검토 ④) — 그래서 멈춘다.
+        # «새 글만 잰다»가 23장 전부를 건너뛴다(2026-09-28 리드 검토 ④) — 그래서 멈춘다.
         assert change, \
             f"{f['id']}: 카드 덤프가 이미 이 보정을 입었다 — dump-explorer-cards-coverage.ts(원본 카드)로 다시 뽑을 것"
         # 새로 쓴 글만 잰다 — 이름만 바꾸는 카드처럼 원래 카드 문장을 그대로 둔 칸은 새 글이 아니다(카드 원문 겹침은 coverage.md §11).
@@ -295,10 +320,8 @@ def main():
         assert not hits, f"{f['id']}: 교재 원문과 12글자 겹침 {hits[:3]}"
         out.append(dict(
             id=f["id"], name=c["name"], severity=f["severity"], issue=f["issue"],
-            # 지금 칸은 문장 · 말만 — 말 조각은 문장에서 다시 나오고, 카드 원문 조각이 교재 표준 문구와 겹치는 곳(직각)을 한 번 더 옮기지 않는다.
-            # 지금 칸도 바뀐 칸의 원래 글만 — 안 바뀐 원문을 옮겨 적으면 교재 표준 문구와 겹치는 원래 카드 글이 저장소에 한 번 더 늘고
-            # (2026-09-28 midb 검사기가 실수 카드의 원래 뜻 문장 줄 — JSON 쌍점까지 — 을 교재의 같은 표준 정의와 12글자로 맞댐) 쓸 데도 없다.
-            current={k: c[k] for k in ("definition", "words", "name", "exampleTitle", "examples", "trap", "truth", "explanation") if k in change},
+            # 원래 카드 글(보정 전)은 옮겨 적지 않는다 — 원본 카드 파일에서 읽는다(리드 검토 A2 ⑨). 괄호(빈칸)를 뗀 원래 문장의 이어진 사본이
+            # 교재 표준 문구와 12글자로 겹쳤다(2026-09-28 — 실수 · 정수 · 혼합 계산 · 분수의 곱셈 · 직각 카드).
             change=change, alsoCheck=f.get("alsoCheck", ""),
             decidedBy=f["decidedBy"], votes=f["votes"], severityVotes=f["sevVotes"],
             **({"revision": f["revision"]} if "revision" in f else {}),
@@ -308,7 +331,8 @@ def main():
     doc = dict(
         generatedBy="scripts/qa/concept-terms/build-card-fixes.py",
         policy="원본(definition-content.ts · definition-cards.ts, PROVENANCE SHA)은 그대로 — 원본 밖 보정 표(id → change 칸)를 "
-               "카드를 내보내는 층에서 덮어쓴다(화면 · 채점 · 복습 · 선수가 같은 카드를 읽게). id 는 바꾸지 않는다(학생 기록 · 상자 · 교육과정 다리 유지).",
+               "카드를 내보내는 층에서 덮어쓴다(화면 · 채점 · 복습 · 선수가 같은 카드를 읽게). id 는 바꾸지 않는다(학생 기록 · 상자 · 교육과정 다리 유지). "
+               "change 는 원본과 다른 칸만 적고, 보정 전 글은 옮겨 적지 않는다 — 원본 카드 파일에서 읽는다.",
         checks="빈칸 둘 · 말 넷 서로 다름 · 말 조각 셋 · 보기 맞음/틀림 둘 다 · 새 글과 14권 원문의 12글자 창 겹침 0(걷어내기 없음) · "
                "정답이 아닌 채움 11개가 모두 거짓 — 순서 무관 카드의 맞바꿈만 정답(원장 docs/reference/concept-terms/card-fillings-audit.json · 시험 conceptSentenceSymmetry.test.ts)",
         severityOrder=SEVERITY,

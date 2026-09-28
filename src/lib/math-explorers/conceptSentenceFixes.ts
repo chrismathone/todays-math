@@ -1,10 +1,10 @@
 /**
  * 카드 보정 표 — 원본(`definition-content.ts` · PROVENANCE)은 그대로 두고, 카드를 내보내는 층(`definition-cards.ts` 의
- * `definitionCards`)에서 29장을 덮어쓴다(D-143 ④ · ⑦ — 23장 + 채점 결함 6장). 화면 · 채점 · 복습 · 선수가 모두 같은 카드를 읽는다 — 카드 id 는
+ * `definitionCards`)에서 36장을 덮어쓴다(D-143 ④ · ⑦ · ⑧ — 23장 + 채점 결함 13장). 화면 · 채점 · 복습 · 선수가 모두 같은 카드를 읽는다 — 카드 id 는
  * 그대로라 학생 기록 · 상자 · 교육과정 다리는 이어진다.
  *
  * 결론은 용어 분석 트랙(terms-coverage)의 3자 합의 `docs/reference/concept-terms/card-sentence-fixes.json`
- * (틀림 3 · 빠짐 5 · 낱말 5 · 범위 10 — 까닭 · 표는 그 파일). 이 표는 그 파일의 `change` 칸을 그대로 옮긴 것이고 시험이
+ * (틀림 3 · 빠짐 5 · 낱말 5 · 범위 10 · 채점 13 — 까닭 · 표는 그 파일). 이 표는 그 파일의 `change` 칸을 그대로 옮긴 것이고 시험이
  * 칸마다 같음을 잠근다(`conceptSentenceFixes.test.ts`). 보정은 빈칸(정답 조각)까지 옮기기도 해서, 카드마다 조립 ·
  * 예 모으기 · 경계 살피기가 새 카드로 풀리는지도 시험이 끝까지 풀어 본다. 🔴 교재 원문은 넣지 않는다(누출 검사 통과본).
  */
@@ -31,7 +31,7 @@ export const cardFixes: Readonly<Record<string, CardFix>> = {
   "g6-net": {
     definition: "각기둥이나 각뿔을 모서리를 따라 잘라 평면 위에 펼친 그림.",
     pieces: ["각기둥이나 각뿔을 ", "를 따라 잘라 ", " 위에 펼친 그림."],
-    words: ["모서리", "평면", "둘레", "공간"],
+    words: ["모서리", "평면", "넓이", "공간"],
   },
   // 미지수가 두 개인 일차방정식 — 틀림
   "g8-two-variable": {
@@ -58,6 +58,7 @@ export const cardFixes: Readonly<Record<string, CardFix>> = {
       " 나타낸 것이며, 모든 방정식을 함께 참이 되게 하는 값을 그 ",
       "라고 한다.",
     ],
+    words: ["한데 묶어", "해", "따로 버려", "계수"],
   },
   // 대입법 — 빠짐
   "g8-substitution": {
@@ -68,6 +69,7 @@ export const cardFixes: Readonly<Record<string, CardFix>> = {
       "에 ",
       " 푸는 방법.",
     ],
+    words: ["다른 식", "넣어", "같은 식", "빼서"],
   },
   // 가감법 — 빠짐
   "g8-elimination": {
@@ -213,7 +215,7 @@ export const cardFixes: Readonly<Record<string, CardFix>> = {
   "g8-cases": {
     definition: "한 사건에 해당하는 가능한 결과를 빠짐없이 센 개수.",
     pieces: ["한 사건에 해당하는 ", "를 빠짐없이 센 ", "."],
-    words: ["가능한 결과", "개수", "평균", "가장 큰 값"],
+    words: ["가능한 결과", "개수", "평균", "확률"],
     exampleTitle:
       "주사위 한 개를 던져 짝수의 눈이 나오는 경우를 바르게 설명한 것을 골라봐.",
     examples: [
@@ -291,7 +293,7 @@ export const cardFixes: Readonly<Record<string, CardFix>> = {
   "g4-turn": {
     definition: "한 점을 중심으로 도형을 정해진 방향으로 각도만큼 회전하는 것.",
     pieces: ["한 점을 중심으로 도형을 정해진 ", "으로 ", "만큼 회전하는 것."],
-    words: ["방향", "각도", "모양", "길이"],
+    words: ["방향", "각도", "직선", "길이"],
   },
   // 대응을 식으로 나타내기 — 채점
   "g5-rule-expression": {
@@ -319,12 +321,32 @@ export const cardFixes: Readonly<Record<string, CardFix>> = {
   },
   // 평행사변형의 넓이 — 채점
   "g5-parallelogram-area": {
-    definition: "밑변의 길이에 높이의 길이를 곱하여 구한다.",
-    pieces: ["", "의 길이에 ", "의 길이를 곱하여 구한다."],
+    pieces: ["", "에 ", "를 곱하여 구한다."],
+    words: ["밑변의 길이", "높이", "옆변의 길이", "둘레"],
   },
   // 실수 — 채점
   "g9-real-number": {
     words: ["유리수", "무리수", "자연수", "정수"],
+  },
+  // 표 — 채점
+  "g3-table": {
+    words: ["분류", "정리", "혼합", "생략"],
+  },
+  // 밀기 — 채점
+  "g4-slide": {
+    words: ["방향", "거리", "중심", "각도"],
+  },
+  // 직각만큼 돌리기 — 채점
+  "g4-quarter-turn": {
+    definition: "1/4바퀴, 곧 90°만큼 돌리는 것.",
+    pieces: ["", ", 곧 ", "만큼 돌리는 것."],
+    words: ["1/4바퀴", "90°", "1/2바퀴", "180°"],
+  },
+  // 반 바퀴 돌리기 — 채점
+  "g4-half-turn": {
+    definition: "1/2바퀴, 곧 180°만큼 돌리는 것.",
+    pieces: ["", ", 곧 ", "만큼 돌리는 것."],
+    words: ["1/2바퀴", "180°", "1/4바퀴", "90°"],
   },
 };
 

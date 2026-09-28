@@ -1828,11 +1828,14 @@ fixtures["memory-intro-long"] = () => memoryFixture(longestIntroCards, 8, "g8-fu
 // 날짜는 오늘이 아니라 카드 보정 판(REVISED_ON) 기준으로 박는다 — 오늘 기준이면 판 날 일주일 뒤부터는 «판 전에 풀었다»가 거짓이 되어
 // 앞당긴 만기를 안 거치고도 통과한다(리드 검토 ③). 판 8일 전에 풀고 저장된 다음 복습은 판 60일 뒤.
 const cardRevisionsQa = src("lib/math-explorers/conceptSentenceFixes.ts").cardRevisions;
-const REVISED_ON = Object.values(cardRevisionsQa)[0];
+// 판 날짜는 카드마다 다를 수 있다 — 기록은 가장 이른 판보다 앞에 풀고 가장 늦은 판보다 뒤를 만기로 박고, 단정은 카드마다 제 판 날과 견준다(리드 검토 A2 ⑧).
+const revisionDates = Object.values(cardRevisionsQa).sort();
+const EARLIEST_REVISION = revisionDates[0];
+const LATEST_REVISION = revisionDates.at(-1);
 fixtures["revised-due"] = () => {
   const explorers = explorerRecord(8, "g8-function", cards.definitionCards.filter((card) => card.unit === "g8-simultaneous"));
   for (const progress of Object.values(explorers.profile.definitions.cards))
-    Object.assign(progress, { lastDate: addDays(REVISED_ON, -8), attemptedAt: addDays(REVISED_ON, -8), reviewedAt: addDays(REVISED_ON, -8), due: addDays(REVISED_ON, 60) });
+    Object.assign(progress, { lastDate: addDays(EARLIEST_REVISION, -8), attemptedAt: addDays(EARLIEST_REVISION, -8), reviewedAt: addDays(EARLIEST_REVISION, -8), due: addDays(LATEST_REVISION, 60) });
   return { ...serverState.emptySrsState(), explorers };
 };
 scenarios["revised-due"] = async ({ page, sim, mobile, step }) => {
@@ -1857,7 +1860,7 @@ scenarios["revised-due"] = async ({ page, sim, mobile, step }) => {
       const line = (await dialog.getByText(/다음 복습/).first().innerText()).trim();
       const due = cards.definitionEffectiveDue(card.id, stored.profile.definitions.cards[card.id]);
       // 뜻을 고친 카드는 반드시 앞당긴 판 날을, 나머지는 저장된 만기를 말해야 한다 — 읽기 규칙을 실제로 거쳤는지
-      assert.equal(due, card.id in cardRevisionsQa ? REVISED_ON : stored.profile.definitions.cards[card.id].due, `${card.name} 복습 날`);
+      assert.equal(due, card.id in cardRevisionsQa ? cardRevisionsQa[card.id] : stored.profile.definitions.cards[card.id].due, `${card.name} 복습 날`);
       const mmdd = due.slice(5).replace("-", "/");
       assert.ok(line.endsWith(`다음 복습 ${mmdd}`), `${card.name} 대화상자 «${line}» ≠ 복습 날 ${mmdd}`);
       assert.equal(grid, due <= today() ? "다시 기억할 때" : `${mmdd} 복습`, `${card.name} 격자`);

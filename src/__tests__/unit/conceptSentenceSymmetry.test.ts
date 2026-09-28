@@ -5,7 +5,7 @@
  * 훑기가 원본 카드 16장을 더 잡았다. 두 빈칸이 본디 대등한 카드는 순서 무관 채점(`conceptOrderFree.ts`)으로 받는다.
  *
  * 뜻은 코드가 못 가리므로 채움마다 사람이 판정을 적은 **원장**(`docs/reference/concept-terms/card-fillings-audit.json` — 보정 카드 +
- * 순서 무관 카드, 카드마다 11채움 · 3자 합의 또는 Claude · 한 표 의견은 까닭 칸)을 둔다. 카드의 문장 · 말이 바뀌면 원장 글과
+ * 순서 무관 카드, 카드마다 11채움 · 3자 합의 또는 Claude · 한 표 의견은 까닭 칸 · 문장은 옮겨 적지 않고 말 · 조각 지문만)을 둔다. 카드의 문장 · 말이 바뀌면 원장과
  * 달라져 빨개진다(리드 검토: 맞바꿈만이 아니라 오답 말이 든 채움까지 — g9-axis 오답 말을 y=p 로 되돌리면 빨개진다).
  * 원장을 다시 뽑으면(`build-fillings-audit.ts`) 바뀐 채움은 «미검토»가 되어 여전히 빨갛다 — 읽고 판정을 적어야 초록이다.
  * 판정은 엔진 채점과 맞물린다: «순서 무관 정답»인 채움만 엔진이 맞음으로 친다.
@@ -13,7 +13,7 @@
  * 기계 검사 둘을 230장에 곁들인다: 가운데 조각이 대등하게 잇는 꼴이면 순서 무관이거나 맞바꿈이 거짓이라고 적어 둔 카드여야 하고,
  * 오답 말이 정답 말의 활용형(같은 줄기)이면 안 된다.
  */
-import { randomUUID } from "node:crypto";
+import { createHash, randomUUID } from "node:crypto";
 import { readFileSync } from "node:fs";
 import { resolve } from "node:path";
 import { describe, expect, it } from "vitest";
@@ -34,7 +34,7 @@ import {
 
 type Filling = {
   slots: [number, number];
-  text: string;
+  words: [string, string];
   verdict: string;
   why?: string;
 };
@@ -47,21 +47,29 @@ const audit = JSON.parse(
     "utf8",
   ),
 ) as {
-  cards: { id: string; judgedBy: string; fillings: Filling[] }[];
+  cards: {
+    id: string;
+    judgedBy: string;
+    piecesSha: string;
+    fillings: Filling[];
+  }[];
 };
 const auditOf = new Map(audit.cards.map((card) => [card.id, card]));
+/** 조각 지문 — 빈칸 밖 글이 바뀌면 달라진다(원장 생성기와 같은 셈). */
+const piecesSha = (pieces: readonly string[]) =>
+  createHash("sha256")
+    .update(JSON.stringify(pieces), "utf8")
+    .digest("hex")
+    .slice(0, 16);
 
-/** 정답(0, 1)을 뺀 순서 있는 채움 11개 — 원장과 같은 차례. */
+/** 정답(0, 1)을 뺀 순서 있는 채움 11개(칸 · 말) — 원장과 같은 차례. 문장은 원장에 적지 않는다(아래 시험). */
 const fillingsOf = (id: string) => {
   const card = definitionCard(id);
-  const out: { slots: [number, number]; text: string }[] = [];
+  const out: { slots: [number, number]; words: [string, string] }[] = [];
   for (let i = 0; i < 4; i++)
     for (let j = 0; j < 4; j++) {
       if (i === j || (i === 0 && j === 1)) continue;
-      out.push({
-        slots: [i, j],
-        text: `${card.pieces[0]}[${card.words[i]}]${card.pieces[1]}[${card.words[j]}]${card.pieces[2]}`,
-      });
+      out.push({ slots: [i, j], words: [card.words[i]!, card.words[j]!] });
     }
   return out;
 };
@@ -117,6 +125,24 @@ const stem = (word: string) => {
 };
 
 describe("채움 원장 — 보정 카드 + 순서 무관 카드의 정답 아닌 채움 전부", () => {
+  it("원장은 카드 문장을 옮겨 적지 않는다 — 말 · 칸 · 조각 지문만(원래 카드 문장의 사본이 교재 표준 문구와 겹친다)", () => {
+    const raw = readFileSync(
+      resolve(
+        __dirname,
+        "../../../docs/reference/concept-terms/card-fillings-audit.json",
+      ),
+      "utf8",
+    );
+    expect(raw).not.toMatch(/"text"\s*:/);
+    for (const entry of audit.cards)
+      for (const piece of definitionCard(entry.id).pieces)
+        if (piece.trim().length >= 8)
+          expect({ id: entry.id, has: raw.includes(piece.trim()) }).toEqual({
+            id: entry.id,
+            has: false,
+          });
+  });
+
   it("원장 카드 = 보정 카드 ∪ 순서 무관 카드", () => {
     expect(audit.cards.map((card) => card.id).sort()).toEqual(
       [...new Set([...Object.keys(cardFixes), ...orderFreeCards])].sort(),
@@ -124,18 +150,20 @@ describe("채움 원장 — 보정 카드 + 순서 무관 카드의 정답 아�
   });
 
   it.each(audit.cards.map((card) => card.id))(
-    "%s — 채움 11개가 원장에 읽고 적은 글 그대로 · 판정이 있고 · 엔진 채점과 맞물린다",
+    "%s — 채움 11개가 원장에 읽고 적은 그대로(말 · 조각 지문) · 판정이 있고 · 엔진 채점과 맞물린다",
     (id) => {
       const entry = auditOf.get(id)!;
-      expect(entry.judgedBy).not.toMatch(/^미검토$|^$/);
-      expect(
-        entry.fillings.map(({ slots, text }) => ({ slots, text })),
-      ).toEqual(fillingsOf(id));
       const card = definitionCard(id);
+      expect(entry.judgedBy).not.toMatch(/^미검토$|^$/);
+      // 조각(빈칸 밖 글)이 바뀌면 지문이 달라져 다시 읽게 된다
+      expect(entry.piecesSha).toBe(piecesSha(card.pieces));
+      expect(
+        entry.fillings.map(({ slots, words }) => ({ slots, words })),
+      ).toEqual(fillingsOf(id));
       for (const f of entry.fillings) {
-        expect({ id, text: f.text, verdict: f.verdict }).toEqual({
+        expect({ id, words: f.words, verdict: f.verdict }).toEqual({
           id,
-          text: f.text,
+          words: f.words,
           verdict: definitionAssemblyCorrect(card, f.slots)
             ? "순서 무관 정답"
             : "거짓",
@@ -146,6 +174,105 @@ describe("채움 원장 — 보정 카드 + 순서 무관 카드의 정답 아�
       }
     },
   );
+});
+
+// 받침으로 갈리는 조사 — [받침 있을 때, 없을 때]. «으로/로»는 ㄹ 받침이면 «로».
+const PARTICLES: [string, string][] = [
+  ["으로", "로"],
+  ["이라고", "라고"],
+  ["을", "를"],
+  ["이", "가"],
+  ["은", "는"],
+  ["과", "와"],
+];
+const DIGIT_BATCHIM: Record<string, number> = {
+  "0": 21,
+  "1": 8,
+  "2": 0,
+  "3": 16,
+  "4": 0,
+  "5": 0,
+  "6": 1,
+  "7": 8,
+  "8": 8,
+  "9": 0,
+  "°": 0,
+  "²": 17,
+};
+/** 마지막 글자의 받침 번호(0 = 없음, 8 = ㄹ). 읽기가 갈리는 글자(로마자 · 기호)는 null. */
+const batchim = (word: string): number | null => {
+  const ch = word.trim().slice(-1);
+  const code = ch.charCodeAt(0);
+  if (code >= 0xac00 && code <= 0xd7a3) return (code - 0xac00) % 28;
+  return ch in DIGIT_BATCHIM ? DIGIT_BATCHIM[ch]! : null;
+};
+/** 빈칸 뒤 조각이 받침으로 갈리는 조사로 시작하면, 그 말이 문법상 맞는가(갈리지 않으면 null). */
+const fitsParticle = (word: string, after: string): boolean | null => {
+  for (const [withB, without] of PARTICLES) {
+    const used = after.startsWith(withB)
+      ? withB
+      : after.startsWith(without)
+        ? without
+        : null;
+    if (!used) continue;
+    const b = batchim(word);
+    if (b === null) return null;
+    if (withB === "으로")
+      return used === "으로" ? b !== 0 && b !== 8 : b === 0 || b === 8;
+    return used === withB ? b !== 0 : b === 0;
+  }
+  return null;
+};
+/** 조사가 답을 알려 주는 칸 — (칸, 까닭) 목록. */
+const particleGiveaways = (card: {
+  id: string;
+  pieces: string[];
+  words: string[];
+}) => {
+  const out: string[] = [];
+  const slotFits = [0, 1].map((slot) =>
+    card.words.map((w) => fitsParticle(w, card.pieces[slot + 1]!)),
+  );
+  slotFits.forEach((fits, slot) => {
+    if (fits.some((v) => v === null)) return;
+    const ok = card.words.filter((_, i) => fits[i]);
+    if (ok.length === 1 && fits[slot])
+      out.push(`칸 ${slot + 1} — «${ok[0]}» 하나`);
+  });
+  // 순서 무관 카드: 두 칸이 다 조사로 갈리는데 오답이 어느 칸에도 못 들어가면 조사만으로 정답이 정해진다
+  if (
+    orderFreeCards.has(card.id) &&
+    slotFits.every((fits) => fits.every((v) => v !== null)) &&
+    [2, 3].every((i) => !slotFits[0]![i] && !slotFits[1]![i])
+  )
+    out.push("순서 무관인데 오답이 두 칸 어디에도 못 들어감");
+  return out;
+};
+
+describe("원장 카드 — 조사가 답을 알려 주지 않는다(받침으로 갈리는 조사 · 리드 검토 A ⑤ · A2 ③)", () => {
+  it("칸마다 문법상 맞는 말이 정답 하나뿐인 칸이 없다 · 순서 무관 카드의 오답이 어느 칸에는 들어간다", () => {
+    const found = audit.cards.flatMap((entry) =>
+      particleGiveaways(definitionCard(entry.id)).map(
+        (why) => `${entry.id} ${why}`,
+      ),
+    );
+    expect(found).toEqual([]);
+    // 자기 시험 — 고치기 전 전개도(«를 따라»에 모서리만) · 실수(순서 무관 · 오답 «…만»이 «와» · «를»에 안 맞음)
+    expect(
+      particleGiveaways({
+        id: "g6-net",
+        pieces: ["각기둥이나 각뿔을 ", "를 따라 잘라 ", " 위에 펼친 그림."],
+        words: ["모서리", "평면", "면", "공간"],
+      }),
+    ).toEqual(["칸 1 — «모서리» 하나"]);
+    expect(
+      particleGiveaways({
+        id: "g9-real-number",
+        pieces: ["", "와 ", "를 통틀어 이르는 수."],
+        words: ["유리수", "무리수", "자연수만", "정수만"],
+      }),
+    ).toEqual(["순서 무관인데 오답이 두 칸 어디에도 못 들어감"]);
+  });
 });
 
 describe("230장 기계 검사", () => {

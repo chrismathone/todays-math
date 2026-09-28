@@ -11,7 +11,7 @@
 
 🔴 카드 덤프는 **보정 전 원본 카드**여야 한다(`dump-explorer-cards-coverage.ts` 가 `definitionSourceCards` 를 내보낸다).
 카드 글을 허용하므로, 보정(`card-sentence-fixes.json`)을 입은 카드를 덤프하면 보정 문장이 «카드 글»로 허용되어 검사가 눈먼다
-(2026-09-28 리드 검토 ④ — 실제로 23장 전부가 그렇게 빠졌다). 그래서 보정 표의 새 글(`current` 와 다른 긴 칸)이 허용 말에
+(2026-09-28 리드 검토 ④ — 실제로 23장 전부가 그렇게 빠졌다). 그래서 보정 표의 새 글(원본 카드의 같은 칸과 다른 긴 칸)이 허용 말에
 들어 있으면 멈춘다. 자기 시험은 ① 원문 한 문장을 심은 줄 ② 보정 표에 원문을 심은 판 ③ 보정을 입힌 덤프 — 셋 다 걸려야 통과.
 
 사용:
@@ -105,22 +105,23 @@ def load_sources_and_allowed_units(units: list):
     return [s for s in src if s], allowed
 
 
-def fix_new_texts(fixes: list) -> list[tuple[str, str, str]]:
-    """보정 표의 새 글 — (카드 id, 칸, 글). 원래 카드 글(`current`)과 같은 칸은 새 글이 아니다(이름만 바꾼 카드의 뜻 문장).
-    `note` 는 `current` 에 없어 `explanation` 과 견준다(새 형식 카드는 note = explanation)."""
+def fix_new_texts(fixes: list, units: list) -> list[tuple[str, str, str]]:
+    """보정 표의 새 글 — (카드 id, 칸, 글). 원본 카드(보정 전 덤프 `units`)의 같은 칸과 같으면 새 글이 아니다.
+    보정 표는 원래 카드 글을 옮겨 적지 않는다(`current` 칸 없음 — 원래 글의 이어진 사본이 교재 표준 문구와 겹친다, 리드 검토 A2 ⑨)."""
+    source = {c["id"]: c for u in units for c in u["cards"]}
     out = []
     for f in fixes:
         for k in FIX_TEXT_FIELDS:
             v = f["change"].get(k)
-            if v and v != f["current"].get("explanation" if k == "note" else k) and len(norm(v)) >= WIN:
+            if v and v != source.get(f["id"], {}).get(k) and len(norm(v)) >= WIN:
                 out.append((f["id"], k, v))
     return out
 
 
-def fixes_in_allowed(fixes: list, allowed_sorted: list[str]) -> list[tuple[str, str]]:
+def fixes_in_allowed(fixes: list, units: list, allowed_sorted: list[str]) -> list[tuple[str, str]]:
     """보정 표의 새 글이 허용 말에 들어 있으면 그 (카드 id, 칸) — 카드 덤프가 보정을 입었다는 뜻이다."""
     allowed = set(allowed_sorted)
-    return [(i, k) for i, k, v in fix_new_texts(fixes) if norm(v) in allowed]
+    return [(i, k) for i, k, v in fix_new_texts(fixes, units) if norm(v) in allowed]
 
 
 def with_fixes(units: list, fixes: list) -> list:
@@ -187,10 +188,10 @@ def main():
     units = json.loads(Path(a.cards).read_text(encoding="utf-8"))
     wins, allowed_sorted, src = build_units(units)
     fixes = json.loads(FIXES.read_text(encoding="utf-8"))["fixes"]
-    print(f"원천 글 {len(src)} · 창 {len(wins)} · 허용 말 {len(allowed_sorted)} · 보정 새 글 {len(fix_new_texts(fixes))}칸")
+    print(f"원천 글 {len(src)} · 창 {len(wins)} · 허용 말 {len(allowed_sorted)} · 보정 새 글 {len(fix_new_texts(fixes, units))}칸")
     bad = 0
     # 카드 덤프가 보정을 입었으면 보정 문장이 허용 말이 되어 아래 검사가 눈먼다 — 먼저 멈춘다(리드 검토 ④).
-    carried = fixes_in_allowed(fixes, allowed_sorted)
+    carried = fixes_in_allowed(fixes, units, allowed_sorted)
     print(f"보정 새 글이 허용 말에 든 칸: {len(carried)}" + (" — 🔴 카드 덤프가 보정을 입었다. 원본 카드(definitionSourceCards)로 다시 뽑을 것" if carried else ""))
     for i, k in carried[:10]:
         print("   ", i, k)
@@ -214,9 +215,9 @@ def main():
             bad += 1
         # ③ 보정을 입힌 덤프(옛 덤프가 하던 일)로 허용 말을 지으면 위 멈춤이 새 글을 전부 잡아야 한다.
         _, allowed_fixed, _ = build_units(with_fixes(units, planted_fixes))
-        c3 = fixes_in_allowed(planted_fixes, allowed_fixed)
-        print(f"자기 시험 ③: 보정을 입힌 덤프 → 허용 말에 든 새 글 {len(c3)}칸 / {len(fix_new_texts(planted_fixes))}칸")
-        if not c3 or len(c3) != len(fix_new_texts(planted_fixes)):
+        c3 = fixes_in_allowed(planted_fixes, units, allowed_fixed)
+        print(f"자기 시험 ③: 보정을 입힌 덤프 → 허용 말에 든 새 글 {len(c3)}칸 / {len(fix_new_texts(planted_fixes, units))}칸")
+        if not c3 or len(c3) != len(fix_new_texts(planted_fixes, units)):
             print("자기 시험 ③ 실패")
             bad += 1
     for f in a.files or []:
