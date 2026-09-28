@@ -9,7 +9,10 @@ import type {
   ExplorerRequest,
   ExplorerState,
 } from "@/contracts/mathExplorers.contract";
-import { STUDENT_MUST_CHANGE_MESSAGE } from "@/lib/studentRouteAccess";
+import {
+  STUDENT_CHANGED_MESSAGE,
+  STUDENT_MUST_CHANGE_MESSAGE,
+} from "@/lib/studentRouteAccess";
 import {
   StudentReviewPage,
   StudentReviewStatus,
@@ -232,7 +235,16 @@ function ExplorerGame({ initialView }: { initialView?: "collection" }) {
           await waiting;
           const again = await readLatest();
           if (!current) return;
-          if (again?.student.id === data.student.id) data = again;
+          // The first read is from before those saves — never show it as the record.
+          if (!again) {
+            setError({
+              status: 0,
+              message:
+                "학습 기록을 확인하지 못했어요. 연결을 확인하고 다시 시도해 주세요.",
+            });
+            return;
+          }
+          data = again;
         }
         latest.current = data;
         setState(data);
@@ -426,14 +438,34 @@ function ExplorerGame({ initialView }: { initialView?: "collection" }) {
   }
 
   async function runClaims() {
-    const stop = () => {
+    // Stopping takes every chest left in the line back at once. When the student
+    // changed (05 §8.21), the effect goes in the same frame and each chest says why.
+    const stop = (why?: string) => {
+      const stopped = claimQueue.current.map((claim) => claim.chestId);
       claimQueue.current = [];
-      if (alive.current) setClaims([]);
+      if (!alive.current) return;
+      if (why) {
+        setChestNotices((notices) => ({
+          ...notices,
+          ...Object.fromEntries(
+            stopped.map((chestId) => [
+              chestId,
+              { chestId, tone: "alert" as const, text: why },
+            ]),
+          ),
+        }));
+        if (effectChest.current && stopped.includes(effectChest.current)) {
+          if (timer.current) clearTimeout(timer.current);
+          setChestStars(null);
+        }
+      }
+      setClaims([]);
     };
     while (claimQueue.current.length) {
       const claim = claimQueue.current[0]!;
       // Signed out or another student signed in since the press: stop the line.
-      if (claim.generation !== saveGeneration()) return stop();
+      if (claim.generation !== saveGeneration())
+        return stop(STUDENT_CHANGED_MESSAGE);
       const outcome = await saveClaim(claim);
       if (outcome.kind === "left") return stop();
       let fresh: ExplorerState | null = null;
@@ -448,7 +480,8 @@ function ExplorerGame({ initialView }: { initialView?: "collection" }) {
         // go out with the current revision, not one a failed save left behind.
         fresh = await readLatest();
         // Another student's record (the cookie changed): this line is not theirs.
-        if (fresh && fresh.student.id !== claim.studentId) return stop();
+        if (fresh && fresh.student.id !== claim.studentId)
+          return stop(STUDENT_CHANGED_MESSAGE);
         if (fresh) latest.current = fresh;
         const saved = !!fresh?.chests.find((item) => item.id === claim.chestId)
           ?.claimed;

@@ -16,6 +16,7 @@ import {
   validationError,
 } from "@/lib/apiResponse";
 import { kstDateOf } from "@/lib/kstDate";
+import { STUDENT_CHANGED_MESSAGE } from "@/lib/studentRouteAccess";
 import { crossSiteError, noStore } from "@/lib/learn/accountRoutes";
 import { requireStudent } from "@/lib/learn/studentRequest";
 import { loadCourseStudent } from "@/lib/math-srs/courseServer";
@@ -182,13 +183,7 @@ export async function handleExplorerRequest(
         parsed.data.studentId !== undefined &&
         parsed.data.studentId !== studentId
       )
-        return noStore(
-          jsonError(
-            "CONFLICT",
-            "로그인한 학생이 바뀌었어요. 다시 불러와 주세요.",
-            409,
-          ),
-        );
+        return noStore(jsonError("CONFLICT", STUDENT_CHANGED_MESSAGE, 409));
       const changed = await changeExplorer(studentId, parsed.data, now);
       saved = changed;
       feedback = changed.feedback;

@@ -157,10 +157,12 @@ function server(initial: StoredExplorer) {
   const replies: Reply[] = [];
   const stuckReads: ((signal?: AbortSignal) => Promise<void>)[] = [];
   let failReads = 0;
+  let reads = 0;
   vi.stubGlobal(
     "fetch",
     vi.fn(async (_url: string, options?: RequestInit) => {
       if (!options?.body) {
+        reads += 1;
         const stuck = stuckReads.shift();
         if (failReads > 0) {
           failReads -= 1;
@@ -177,6 +179,7 @@ function server(initial: StoredExplorer) {
   return {
     posts,
     stars: () => stored.profile.stars,
+    reads: () => reads,
     /** 다른 탭이 이 상자를 받는다(이 화면은 모른다). */
     claimElsewhere(chestId: string) {
       apply({
@@ -732,6 +735,26 @@ describe("chest press — second review", () => {
     expect(api.posts).toHaveLength(2);
   });
 
+  it("shows the read error, not the record from before the save, when the second read of a reopened screen fails", async () => {
+    const api = server(storedWithReadyChests());
+    const first = await openBase();
+    const release = api.hold();
+    fireEvent.click(first.ready[0]);
+    await waitFor(() => expect(api.posts).toHaveLength(1));
+    first.unmount();
+
+    const readsBefore = api.reads();
+    render(<StudentMathExplorers />);
+    // 첫 읽기(저장 전 기록)는 되고, 남은 저장을 기다린 뒤의 둘째 읽기가 끊긴다.
+    await waitFor(() => expect(api.reads()).toBe(readsBefore + 1));
+    api.failNextRead();
+    await act(async () => release());
+    expect(
+      await screen.findByText(/학습 기록을 확인하지 못했어요/),
+    ).toBeTruthy();
+    expect(screen.queryByRole("button", { name: /우리 기지/ })).toBeNull();
+  });
+
   it("keeps a failed chest's request id for the screen opened again", async () => {
     const api = server(storedWithReadyChests());
     const first = await openBase();
@@ -913,6 +936,7 @@ describe("chest press — another student signs in while a line is saving", () =
     return {
       posts,
       stars: (id: string) => records.get(id)!.stored.profile.stars,
+      level: (id: string) => records.get(id)!.stored.profile.level,
       signIn(id: string) {
         signedIn = id;
       },
@@ -969,9 +993,24 @@ describe("chest press — another student signs in while a line is saving", () =
     expect(api.stars(studentB.id)).toBe(5);
   });
 
+  it("sends the screen's student with a base upgrade — refused when the cookie is B's, B's record untouched", async () => {
+    const api = twoStudents();
+    const { sheet } = await openBase();
+    api.signIn(studentB.id);
+
+    fireEvent.click(within(sheet).getByRole("button", { name: /기지 키우기/ }));
+    expect(await within(sheet).findByRole("alert")).toBeTruthy();
+    expect(api.posts).toHaveLength(1);
+    expect(api.posts[0].action.type).toBe("upgrade");
+    expect(api.posts[0].studentId).toBe(studentA.id);
+    expect(api.level(studentB.id)).toBe(0);
+    expect(api.stars(studentB.id)).toBe(5);
+    expect(api.level(studentA.id)).toBe(0);
+  });
+
   it("never opens B's chest when B signs in without A leaving — the server refuses and A's line stops", async () => {
     const api = twoStudents();
-    const { ready } = await openBase();
+    const { sheet, ready } = await openBase();
     api.signIn(studentB.id); // 다른 탭에서 B 로그인 — 쿠키가 바뀌었다
 
     act(() => {
@@ -986,5 +1025,16 @@ describe("chest press — another student signs in while a line is saving", () =
     expect(api.stars(studentA.id)).toBe(5);
     // A 의 화면에 B 의 기록이 들어오지 않는다.
     expect(screen.queryByText(/학생 B/)).toBeNull();
+    // 멈춘 줄의 상자는 되돌아가고, 효과는 꺼지고, 까닭을 한 줄로 말한다(05 §8.21).
+    await waitFor(() =>
+      expect(ready.map((button) => button.getAttribute("data-state"))).toEqual([
+        "ready",
+        "ready",
+      ]),
+    );
+    expect(screen.queryByText("보물 발견!")).toBeNull();
+    expect(within(sheet).getByRole("alert")).toHaveTextContent(
+      "로그인한 학생이 바뀌었어요. 다시 불러와 주세요.",
+    );
   });
 });
