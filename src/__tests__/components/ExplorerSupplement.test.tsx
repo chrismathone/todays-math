@@ -1,6 +1,7 @@
 // D-147 · 05 §8.22 — 보충 카드가 학생 화면에 보이는 모양(Hi-fi 1안 «교재» 딱지, 3자 합의 세부 다섯).
 import { randomUUID } from "node:crypto";
 import {
+  act,
   fireEvent,
   render,
   screen,
@@ -123,7 +124,21 @@ function engine() {
       });
     }
   };
-  return { state, supplement, act };
+  const stateOf = (value: StoredExplorer): ExplorerState => ({
+    ...explorerView(value, today),
+    today,
+    student,
+    revision: 3,
+    feedback: null,
+    expedition: {
+      mission,
+      next: null,
+      completedToday: true,
+      canStart: false,
+      todayStars: { cards: 5, bonus: 0 },
+    },
+  });
+  return { state, supplement, act, stored: () => stored, stateOf };
 }
 
 function spoken(element: Element) {
@@ -448,5 +463,179 @@ describe("학생 화면 흐름 — 단원 끝 줄에서 한 장을 풀고 홈으
         screen.getByRole("button", { name: /이어서 하기|살펴보기/ }),
       ).toBeVisible(),
     );
+  });
+});
+
+/** 학생 화면 전체용 작은 서버 — 행동은 엔진으로 적용 · 다음 POST 를 멈추거나 409 로 답할 수 있다. */
+function miniServer(start: ReturnType<typeof engine>) {
+  let stored = start.stored();
+  let revision = 3;
+  const posts: ExplorerAction[] = [];
+  let hold: Promise<void> | null = null;
+  let conflictNext = false;
+  const data = (feedback: unknown = null) => ({
+    ...start.stateOf(stored),
+    revision,
+    feedback,
+  });
+  vi.stubGlobal(
+    "fetch",
+    vi.fn(async (_url: string, init?: RequestInit) => {
+      if (init?.method !== "POST")
+        return new Response(JSON.stringify({ data: data() }), { status: 200 });
+      const input = JSON.parse(String(init.body)) as {
+        requestId: string;
+        action: ExplorerAction;
+      };
+      posts.push(input.action);
+      if (hold) await hold;
+      if (conflictNext) {
+        conflictNext = false;
+        return new Response(
+          JSON.stringify({ error: { code: "CONFLICT", message: "바뀜" } }),
+          { status: 409 },
+        );
+      }
+      const result = applyExplorerAction(
+        stored,
+        input.action,
+        today,
+        input.requestId,
+      );
+      stored = result.state;
+      revision += 1;
+      return new Response(JSON.stringify({ data: data(result.feedback) }), {
+        status: 200,
+      });
+    }),
+  );
+  return {
+    posts,
+    holdNext() {
+      let release!: () => void;
+      hold = new Promise<void>((resolve) => (release = resolve));
+      return () => {
+        hold = null;
+        release();
+      };
+    },
+    conflictNext() {
+      conflictNext = true;
+    },
+  };
+}
+
+describe("리드 검토 화면 고침(S1~S4)", () => {
+  it("S2 끝 줄 · 못 모은 줄의 이름도 수식으로 그린다(모든 화면 일치 — y축…)", async () => {
+    const state = engine().state();
+    const card = (patch: object) => ({
+      ...state.supplements!.cards.find((c) => c.id === "sup-y-axis-symmetry")!,
+      ...patch,
+    });
+    const withCard = (patch: object) => ({
+      ...state,
+      supplements: {
+        ...state.supplements!,
+        offer: { cardId: "sup-y-axis-symmetry", unitId: "g7-coordinate" },
+        cards: [card(patch)],
+      },
+    });
+    const { unmount } = render(
+      <ExplorerHome
+        state={withCard({ collectedAt: today })}
+        busy={false}
+        onAction={vi.fn()}
+        onStart={vi.fn()}
+        onResume={vi.fn()}
+        onRetry={vi.fn()}
+        onInspect={vi.fn()}
+        onReviewDay={vi.fn()}
+      />,
+    );
+    const done = document.querySelector('[data-supplement-line="done"]')!;
+    await waitFor(() => expect(done.querySelector(".katex")).not.toBeNull());
+    unmount();
+    render(
+      <ExplorerHome
+        state={withCard({ missedAt: today })}
+        busy={false}
+        onAction={vi.fn()}
+        onStart={vi.fn()}
+        onResume={vi.fn()}
+        onRetry={vi.fn()}
+        onInspect={vi.fn()}
+        onReviewDay={vi.fn()}
+      />,
+    );
+    const missed = document.querySelector('[data-supplement-line="missed"]')!;
+    await waitFor(() => expect(missed.querySelector(".katex")).not.toBeNull());
+  });
+
+  it("S4 보충 카드 창의 닫기 이름은 본 카드 창과 같다(«개념 카드 닫기»)", () => {
+    render(
+      <ExplorerSupplementDialog
+        cardId="sup-angle"
+        state={engine().state()}
+        solution={null}
+        busy={false}
+        locked={false}
+        onStart={vi.fn()}
+        onSolution={vi.fn()}
+        onClose={vi.fn()}
+      />,
+    );
+    expect(
+      screen.getByRole("button", { name: "개념 카드 닫기" }),
+    ).toBeVisible();
+  });
+
+  it("S3 보충 한 장을 푸는 중 저장이 막히면(409) 풀이 틀 위 오류 패널로 알린다", async () => {
+    const api = miniServer(engine());
+    render(<StudentMathExplorers />);
+    fireEvent.click(await screen.findByRole("button", { name: /직선/ }));
+    await screen.findByRole("heading", { name: "직선 · 정의 · 교재" });
+    api.conflictNext();
+    fireEvent.click(
+      screen.getByRole("button", { name: /뜻을 가리고 도전하기/ }),
+    );
+    expect(
+      await screen.findByText("기록이 바뀌었어요. 최신 기록을 불러와 주세요."),
+    ).toBeVisible();
+    expect(
+      screen.getByRole("button", { name: "최신 기록 불러오기" }),
+    ).toBeVisible();
+  });
+
+  it("S1 상자를 저장하는 동안 단원 끝 줄 · 보충 카드 창의 시작 단추도 막는다", async () => {
+    const api = miniServer(engine());
+    render(<StudentMathExplorers />);
+    const line = await screen.findByRole("button", { name: /직선/ });
+    expect(line).toBeEnabled();
+    fireEvent.click(screen.getByRole("button", { name: /우리 기지/ }));
+    const base = await screen.findByRole("dialog", { name: "우리 기지" });
+    const release = api.holdNext();
+    fireEvent.click(
+      within(base)
+        .getAllByRole("button")
+        .find((b) => b.getAttribute("data-state") === "ready")!,
+    );
+    await waitFor(() => expect(api.posts).toHaveLength(1));
+    expect(line).toBeDisabled();
+    fireEvent.click(
+      within(base).getByRole("button", { name: "우리 기지 닫기" }),
+    );
+    fireEvent.click(screen.getAllByRole("button", { name: /^.?도감$/ })[0]!);
+    const dex = await screen.findByRole("dialog", { name: "나의 개념 도감" });
+    fireEvent.click(
+      dex.querySelector('[data-supplement-card="sup-angle"]') as HTMLElement,
+    );
+    const start = await screen.findByRole("button", {
+      name: /세 활동 해 보기/,
+    });
+    expect(start).toBeDisabled();
+    fireEvent.click(start);
+    expect(api.posts).toHaveLength(1);
+    await act(async () => release());
+    await waitFor(() => expect(start).toBeEnabled());
   });
 });

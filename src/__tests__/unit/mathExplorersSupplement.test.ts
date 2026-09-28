@@ -135,6 +135,28 @@ describe("보충 카드 — 단원 끝 줄(offer)", () => {
     expect(f.view().supplements!.offer).toBeNull();
   });
 
+  it("오늘 칸을 얻기 전에 도감에서 모은 장은 건너뛰고 그 단원의 안 모은 첫 장을 가리킨다(E3)", () => {
+    const f = fixture();
+    f.solve("sup-line"); // 도감 선반에서 먼저 — 아직 오늘의 칸 전
+    f.finishUnit("g3-shapes");
+    expect(f.view().supplements!.offer).toEqual({
+      cardId: "sup-angle",
+      unitId: "g3-shapes",
+    });
+    // 그 줄로 시작해 모으면, 같은 날에는 다음 장으로 넘어가지 않고 그 장을 끝 줄로 가리킨다(offered).
+    f.solve("sup-angle");
+    expect(f.view().supplements!.offer).toEqual({
+      cardId: "sup-angle",
+      unitId: "g3-shapes",
+    });
+    expect(f.state.profile.supplements!.offered).toEqual({
+      date: "2026-09-28",
+      cardId: "sup-angle",
+    });
+    f.date("2026-09-29");
+    expect(f.view().supplements!.offer).toBeNull();
+  });
+
   it("보충이 없는 단원이면 줄이 없다", () => {
     const f = fixture();
     f.finishUnit("g3-add");
@@ -245,6 +267,22 @@ describe("보충 카드 — 한 장 세션", () => {
     expect(f.view().supplements!.activity!.kind).toBe("read");
   });
 
+  it("재도전은 정확히 세 바퀴 — 모두 틀리면 활동 3 × 네 바퀴 = 12번 답한 뒤에 끝난다(E4)", () => {
+    const f = fixture();
+    f.act({ type: "supplement-start", cardId: "sup-line" });
+    f.step(); // 뜻 만나기
+    const answers: boolean[] = [];
+    for (let n = 0; n < 20 && f.view().supplements!.activity; n++) {
+      const round = f.view().supplements!.session!.round;
+      f.step(true);
+      answers.push(round <= 3);
+    }
+    expect(answers).toHaveLength(12);
+    expect(
+      f.view().supplements!.cards.find((c) => c.id === "sup-line")!.missedAt,
+    ).toBe("2026-09-28");
+  });
+
   it("멈춘 진행은 카드마다 지키고, 한 번에 푸는 것은 한 장이다", () => {
     const f = fixture();
     f.act({ type: "supplement-start", cardId: "sup-line" });
@@ -290,6 +328,78 @@ describe("보충 카드 — 한 장 세션", () => {
     );
     expect(() =>
       g.act({ type: "supplement-solution", cardId: "sup-line" }),
+    ).toThrow(ExplorerActionInvalid);
+  });
+
+  it("본 카드 세션이 열리면 멈춰 둔 보충의 뜻 읽기 · 답도 막는다 — 낡은 화면 · 다른 탭(E2)", () => {
+    const f = fixture();
+    f.act({ type: "supplement-start", cardId: "sup-line" });
+    const read = f.view().supplements!.activity!;
+    f.act({ type: "start", route: "unit", unitId: "g3-add" });
+    expect(() =>
+      f.act({ type: "supplement-read", questionId: read.questionId }),
+    ).toThrow(ExplorerActionConflict);
+    const g = fixture();
+    g.act({ type: "supplement-start", cardId: "sup-line" });
+    g.step(); // 뜻 만나기
+    const answer = g.view().supplements!.activity!;
+    g.act({ type: "start", route: "unit", unitId: "g3-add" });
+    expect(() =>
+      g.act({
+        type: "supplement-answer",
+        questionId: answer.questionId,
+        choiceIds: [0, 1],
+      }),
+    ).toThrow(ExplorerActionConflict);
+    expect(g.state.profile.supplements!.sessions["sup-line"]!.index).toBe(0);
+  });
+
+  it("남은 문제 다시 풀기가 걸려 있으면(칸 전) 시작 · 이어서를 막는다(E4 — conceptOpen)", () => {
+    const f = fixture();
+    f.act({ type: "start", route: "unit", unitId: "g3-add" });
+    // 본 카드를 모두 틀려 세 바퀴 뒤 남은 문제가 걸린다(오늘의 칸 전).
+    for (
+      let n = 0;
+      n < 80 && !f.state.profile.definitions!.session!.done;
+      n++
+    ) {
+      const s = f.state.profile.definitions!.session!;
+      if (definitionNeedsRead(f.state.profile, s)) {
+        f.act({ type: "read", questionId: definitionQuestionId(s) });
+        continue;
+      }
+      const task = s.queue[s.index]!;
+      const options = definitionOptions(s, task);
+      const wrong =
+        task.kind === 0
+          ? [1, 0]
+          : task.kind === 1
+            ? []
+            : [1 - Number(definitionCard(task.cardId).truth)];
+      f.act({
+        type: "answer",
+        questionId: definitionQuestionId(s),
+        choiceIds: wrong.map((id) => options.indexOf(id)),
+      });
+    }
+    const session = f.state.profile.definitions!.session!;
+    expect(session.done).toBe(true);
+    expect(session.unresolved.length).toBeGreaterThan(0);
+    expect(() =>
+      f.act({ type: "supplement-start", cardId: "sup-line" }),
+    ).toThrow(ExplorerActionConflict);
+  });
+
+  it("멈춘 진행이 있는 동안에는 해설을 막는다 — 못 모은 뒤 다시 해 보기를 시작하면(E4)", () => {
+    const f = fixture();
+    f.solve("sup-angle", () => true); // 못 모음 — 해설이 열린다
+    expect(
+      f.act({ type: "supplement-solution", cardId: "sup-angle" }).feedback
+        .solution,
+    ).toBeDefined();
+    f.act({ type: "supplement-start", cardId: "sup-angle" }); // 다시 해 보기
+    expect(() =>
+      f.act({ type: "supplement-solution", cardId: "sup-angle" }),
     ).toThrow(ExplorerActionInvalid);
   });
 

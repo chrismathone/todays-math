@@ -89,8 +89,13 @@ export function applySupplementAction(
   p: ExplorerProfile,
   action: SupplementAction,
   date: string,
+  completedDays: StoredExplorer["completedDays"] = [],
 ): ExplorerFeedback {
   const rec = record(p);
+  // 열린 탐험은 하나 — 본 카드 세션(오늘의 탐험 · 남은 문제 다시 풀기)이 열려 있으면 시작 · 뜻 읽기 · 답 모두 막는다
+  // (낡은 화면 · 다른 탭에서 멈춰 둔 보충의 답이 들어와 카드를 모으지 않게 — E2). 해설 보기는 쓰기가 없어 그대로.
+  if (action.type !== "supplement-solution" && conceptOpen(p))
+    throw new ExplorerActionConflict("오늘의 탐험을 마친 뒤 해 볼 수 있어요.");
   if (action.type === "supplement-solution") {
     const card = known(action.cardId);
     const mark = rec.cards[card.id];
@@ -121,10 +126,9 @@ export function applySupplementAction(
     const card = known(action.cardId);
     if (rec.cards[card.id]?.collectedAt)
       throw new ExplorerActionInvalid("이미 도감에 모은 개념이에요.");
-    if (conceptOpen(p))
-      throw new ExplorerActionConflict(
-        "오늘의 탐험을 마친 뒤 해 볼 수 있어요.",
-      );
+    // 단원 끝 줄이 가리키는 장을 시작하면 그날의 줄로 적어 둔다 — 같은 날 모아도 줄이 다음 장으로 넘어가지 않게(E3).
+    if (offer(p, rec, completedDays, date)?.cardId === card.id)
+      rec.offered = { date, cardId: card.id };
     rec.active = card.id;
     if (rec.sessions[card.id]) return { message: "멈춘 곳에서 이어서 해요." };
     rec.runs++;
@@ -268,7 +272,10 @@ function activity(s: ExplorerSupplementSession): ExplorerActivity {
   };
 }
 
-/** 단원 끝 줄 — 오늘의 단원 탐험으로 그 단원 다섯을 다 모은 날, 그 단원 보충 중 오늘 전에 안 모은 첫 장. */
+/**
+ * 단원 끝 줄 — 오늘의 단원 탐험으로 그 단원 다섯을 다 모은 날, 그 단원 보충 중 **안 모은 첫 장**(E3 — 오늘 칸 전에
+ * 도감에서 모은 장은 건너뛴다). 그날 이 줄로 시작한 장(`offered`)이 있으면 모은 뒤에도 그 장을 가리킨다(끝 줄).
+ */
 function offer(
   p: ExplorerProfile,
   rec: ExplorerSupplements | undefined,
@@ -282,11 +289,17 @@ function offer(
   const five = definitionCards.filter((card) => card.unit === day.unitId);
   if (!five.every((card) => (p.definitions?.cards[card.id]?.level ?? 0) > 0))
     return null;
-  const card = supplementCards.find((item) => {
-    if (item.unit !== day.unitId) return false;
-    const at = rec?.cards[item.id]?.collectedAt;
-    return !at || at === date;
-  });
+  const offered = rec?.offered;
+  if (
+    offered?.date === date &&
+    supplementCards.some(
+      (item) => item.id === offered.cardId && item.unit === day.unitId,
+    )
+  )
+    return { cardId: offered.cardId, unitId: day.unitId };
+  const card = supplementCards.find(
+    (item) => item.unit === day.unitId && !rec?.cards[item.id]?.collectedAt,
+  );
   return card ? { cardId: card.id, unitId: day.unitId } : null;
 }
 

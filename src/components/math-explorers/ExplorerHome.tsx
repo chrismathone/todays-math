@@ -436,7 +436,7 @@ export default function ExplorerHome({
         {complete && !active && !activeReview && !pendingRetry ? (
           <SupplementLine
             state={state}
-            busy={busy}
+            busy={busy || saving}
             onStart={(cardId) => onStartSupplement?.(cardId)}
           />
         ) : null}

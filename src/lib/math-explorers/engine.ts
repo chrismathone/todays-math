@@ -110,7 +110,12 @@ export function applyExplorerAction(
 
   if (isSupplementAction(action)) {
     // 보충 카드(D-147) — 본 카드 세션과 따로 둔 칸. 본 카드 기록 · 칸 · 상자를 건드리지 않는다.
-    feedback = applySupplementAction(profile, action, date);
+    feedback = applySupplementAction(
+      profile,
+      action,
+      date,
+      state.completedDays,
+    );
   } else if (isWorkshopAction(action)) {
     if (action.type === "lab-solution") {
       if (before && !before.done)

@@ -47,6 +47,10 @@ const open = (state: StoredSrsState) =>
   state.expedition?.mission && state.expedition.mission.status !== "complete"
     ? state.expedition.mission
     : null;
+/** 오늘의 탐험 미션(개념 · 은행)이 열려 있나 — 보충 카드(D-147)는 이때 시작 · 이어서 · 답을 받지 않는다. */
+export function expeditionMissionOpen(state: StoredSrsState): boolean {
+  return !!open(state);
+}
 
 /** Old verified achievements are imported once, before a new assignment starts. */
 export function initialExpedition(

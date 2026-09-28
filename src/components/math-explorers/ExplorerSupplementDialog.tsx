@@ -87,7 +87,7 @@ export default function ExplorerSupplementDialog({
             <ConceptKindTag cardId={card.id} large />
           </h2>
         </div>
-        <button type="button" aria-label="보충 카드 닫기" onClick={onClose}>
+        <button type="button" aria-label="개념 카드 닫기" onClick={onClose}>
           ×
         </button>
       </header>

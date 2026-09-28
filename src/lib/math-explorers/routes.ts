@@ -37,10 +37,12 @@ import {
 import { expeditionJourney } from "./expeditionJourney";
 import {
   expeditionDto,
+  expeditionMissionOpen,
   expeditionStartDuplicate,
   initialOwnedExplorer,
   planExpedition,
 } from "./expedition";
+import { isSupplementAction } from "./supplement";
 import {
   expeditionInitialCourseRecommendation,
   startExpedition,
@@ -126,6 +128,16 @@ async function changeExplorer(
           );
         }
         duplicateStart(state);
+        // 보충 카드(D-147) — 오늘의 탐험 미션이 열린 동안(은행 날 포함)은 시작 · 이어서 · 뜻 읽기 · 답을 받지 않는다.
+        // 이미 푸는 장을 다시 «시작»하면 저장이 안 바뀌어 문지기(updateExpedition)를 지나 조용히 200 이 되던 구멍(E2).
+        if (
+          isSupplementAction(input.action) &&
+          input.action.type !== "supplement-solution" &&
+          expeditionMissionOpen(state)
+        )
+          throw new ExplorerActionConflict(
+            "오늘의 탐험을 마친 뒤 해 볼 수 있어요.",
+          );
         const result = applyExplorerAction(
           ownedExplorer(state, studentId, now),
           input.action,

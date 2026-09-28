@@ -718,6 +718,8 @@ function ExplorerGame({ initialView }: { initialView?: "collection" }) {
     window.scrollTo({ top: 0, behavior: "instant" });
   }
   function startSupplement(cardId: string, fromCollection: boolean) {
+    // send 가 막는 때(다른 요청 중 · 상자 저장 줄)는 요청이 나가지 않으니 도감 복귀 표시도 켜지 않는다(S1).
+    if (!state || pending.current || claimQueue.current.length) return;
     setSupReturn(fromCollection);
     void send({ type: "supplement-start", cardId });
   }
@@ -741,7 +743,7 @@ function ExplorerGame({ initialView }: { initialView?: "collection" }) {
       practicePageClassName={s.practicePage}
       practiceMainClassName={s.practiceMain}
     >
-      {inPractice && error ? (
+      {(inPractice || inSupplement) && error ? (
         <div className={s.practiceError} role="alert">
           <p>
             {error.status === 409
@@ -898,7 +900,7 @@ function ExplorerGame({ initialView }: { initialView?: "collection" }) {
           cardId={supDetailId}
           state={state}
           solution={solution}
-          busy={busy}
+          busy={busy || saving}
           locked={supplementLocked}
           onStart={() => startSupplement(supDetailId, true)}
           onSolution={() =>

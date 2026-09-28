@@ -17,11 +17,11 @@ export type SupplementCardView = NonNullable<
 >["cards"][number];
 
 /** 이름 끝 글자의 받침으로 조사를 고른다 — 괄호 · 기호는 건너뛴다(«변과 꼭짓점(도형)을»). */
-export function withParticle(name: string, pair: "을/를" | "은/는") {
+export function particleFor(name: string, pair: "을/를" | "은/는") {
   const hangul = [...name].reverse().find((ch) => ch >= "가" && ch <= "힣");
   const [withFinal, withoutFinal] = pair.split("/") as [string, string];
-  if (!hangul) return `${name}${withFinal}`;
-  return `${name}${(hangul.charCodeAt(0) - 0xac00) % 28 ? withFinal : withoutFinal}`;
+  if (!hangul) return withFinal;
+  return (hangul.charCodeAt(0) - 0xac00) % 28 ? withFinal : withoutFinal;
 }
 
 /** 보충 칸 — 배포 1단계 서버(보내지 않음)나 옛 응답이면 빈 값(읽기 먼저 · D-147). */
@@ -71,10 +71,12 @@ export function SupplementLine({
   if (card.collectedAt)
     return (
       <div className={s.supplementLine} data-supplement-line="done">
-        <p className={s.supplementDone} data-supplement-done="">
-          교재 개념 {withParticle(card.name, "을/를")} 도감에 모았어요.
+        {/* 이름은 다른 자리처럼 ExplorerMath 로(«y축…» — 모든 화면 일치, S2). MathText 가 div 를 내므로 div. */}
+        <div className={s.supplementDone} data-supplement-done="">
+          교재 개념 <ExplorerMath text={card.name} />
+          {particleFor(card.name, "을/를")} 도감에 모았어요.
           <TileStars cards={1} bonus={0} />
-        </p>
+        </div>
         {left ? (
           <p className={s.supplementNote}>
             남은 교재 개념 {left}장은 도감에 있어요.
@@ -85,10 +87,11 @@ export function SupplementLine({
   if (card.missedAt === today && !card.started)
     return (
       <div className={s.supplementLine} data-supplement-line="missed">
-        <p className={s.supplementNote}>
-          {withParticle(card.name, "은/는")} 아직 모으지 못했어요. 도감에서 다시
+        <div className={s.supplementNote}>
+          <ExplorerMath text={card.name} />
+          {particleFor(card.name, "은/는")} 아직 모으지 못했어요. 도감에서 다시
           해 볼 수 있어요.
-        </p>
+        </div>
       </div>
     );
   return (
