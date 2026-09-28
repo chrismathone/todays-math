@@ -2,9 +2,10 @@
 // 실행: npx tsx scripts/qa/concept-terms/dump-explorer-cards-coverage.ts <출력.json>
 // 원본 definition-content.ts 는 읽기만 한다(PROVENANCE SHA).
 import { writeFileSync } from "node:fs";
+// 🔴 보정 전 원본 카드(definitionSourceCards)를 내보낸다 — 누출 검사기가 카드 글을 «우리 글»로 허용하므로, 보정을 입은 카드면 보정 문장이 검사를 비껴간다(D-143 ⑦ · 리드 검토 ④).
 import {
   definitionUnits,
-  definitionCards,
+  definitionSourceCards,
 } from "../../../src/lib/math-explorers/definition-cards";
 
 const [out] = process.argv.slice(2);
@@ -13,7 +14,7 @@ const units = definitionUnits.map((u) => ({
   id: u.id,
   grade: u.grade,
   title: u.title,
-  cards: definitionCards
+  cards: definitionSourceCards
     .filter((c) => c.unit === u.id)
     .map((c) => ({
       id: c.id,

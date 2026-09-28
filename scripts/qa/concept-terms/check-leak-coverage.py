@@ -9,6 +9,11 @@
 모든 글. 허용(= 저장소에 있어도 되는 말): 용어 이름 · 다른 표기 · 대단원/중단원/소단원 이름 · 목차 · 탐험 카드의 모든 글(우리 제품 글).
 원천에서 허용 말을 걷어낸 나머지를 빈칸 없이 12글자 창으로 잘라, 대상(허용 말을 걷어낸 뒤)에서 찾는다.
 
+🔴 카드 덤프는 **보정 전 원본 카드**여야 한다(`dump-explorer-cards-coverage.ts` 가 `definitionSourceCards` 를 내보낸다).
+카드 글을 허용하므로, 보정(`card-sentence-fixes.json`)을 입은 카드를 덤프하면 보정 문장이 «카드 글»로 허용되어 검사가 눈먼다
+(2026-09-28 리드 검토 ④ — 실제로 23장 전부가 그렇게 빠졌다). 그래서 보정 표의 새 글(`current` 와 다른 긴 칸)이 허용 말에
+들어 있으면 멈춘다. 자기 시험은 ① 원문 한 문장을 심은 줄 ② 보정 표에 원문을 심은 판 ③ 보정을 입힌 덤프 — 셋 다 걸려야 통과.
+
 사용:
   python check-leak-coverage.py --cards <카드.json> --files <파일...>
   python check-leak-coverage.py --cards <카드.json> --git main..HEAD      # 그 범위 커밋의 더한 줄 + 커밋 메시지
@@ -29,6 +34,8 @@ if hasattr(sys.stdout, "reconfigure"):
 
 REPO = Path(__file__).resolve().parents[3]
 DATA = Path(r"C:\Creative\testautocreator-data\I-개념용어")
+FIXES = REPO / "docs" / "reference" / "concept-terms" / "card-sentence-fixes.json"
+FIX_TEXT_FIELDS = ("definition", "exampleTitle", "trap", "explanation", "note")  # 허용 말로 들어가는 카드 칸
 WIN = 12
 MIN_HANGUL = 4
 SEP = chr(0)
@@ -52,6 +59,10 @@ def strings(x):
 
 
 def load_sources_and_allowed(cards_path: Path):
+    return load_sources_and_allowed_units(json.loads(cards_path.read_text(encoding="utf-8")))
+
+
+def load_sources_and_allowed_units(units: list):
     src: list[str] = []
     allowed: set[str] = set()
     for f in sorted(DATA.glob("*.json")):
@@ -86,13 +97,36 @@ def load_sources_and_allowed(cards_path: Path):
             allowed.update([t["term"], *t["aliases"], t.get("chapter", ""), t.get("section", ""), t.get("part", "") or ""])
     # 탐험 카드 글(우리 제품 글) — 온전한 글만. 말 조각 · 보기처럼 짧은 말(«같은» · «두 개»)은 넣지 않는다:
     # 원천에서 걷어내면 교재 문장이 잘게 부서져 창이 사라진다(자기 시험이 이것을 잡았다).
-    units = json.loads(cards_path.read_text(encoding="utf-8"))
     for u in units:
         allowed.add(u["title"])
         for c in u["cards"]:
             allowed.update([c["name"], c["definition"], c["exampleTitle"], c["trap"], c["explanation"], c["note"]])
     allowed = {norm(a) for a in allowed if len(norm(a)) >= 2}
     return [s for s in src if s], allowed
+
+
+def fix_new_texts(fixes: list) -> list[tuple[str, str, str]]:
+    """보정 표의 새 글 — (카드 id, 칸, 글). 원래 카드 글(`current`)과 같은 칸은 새 글이 아니다(이름만 바꾼 카드의 뜻 문장).
+    `note` 는 `current` 에 없어 `explanation` 과 견준다(새 형식 카드는 note = explanation)."""
+    out = []
+    for f in fixes:
+        for k in FIX_TEXT_FIELDS:
+            v = f["change"].get(k)
+            if v and v != f["current"].get("explanation" if k == "note" else k) and len(norm(v)) >= WIN:
+                out.append((f["id"], k, v))
+    return out
+
+
+def fixes_in_allowed(fixes: list, allowed_sorted: list[str]) -> list[tuple[str, str]]:
+    """보정 표의 새 글이 허용 말에 들어 있으면 그 (카드 id, 칸) — 카드 덤프가 보정을 입었다는 뜻이다."""
+    allowed = set(allowed_sorted)
+    return [(i, k) for i, k, v in fix_new_texts(fixes) if norm(v) in allowed]
+
+
+def with_fixes(units: list, fixes: list) -> list:
+    """카드 덤프에 보정을 입힌 판(자기 시험 ③ — 옛 덤프가 하던 일)."""
+    by_id = {f["id"]: f["change"] for f in fixes}
+    return [{**u, "cards": [{**c, **by_id.get(c["id"], {})} for c in u["cards"]]} for u in units]
 
 
 def strip_allowed(t: str, allowed_sorted: list[str]) -> str:
@@ -114,7 +148,11 @@ def windows_of(t: str) -> set[str]:
 
 
 def build(cards_path: Path):
-    src, allowed = load_sources_and_allowed(cards_path)
+    return build_units(json.loads(cards_path.read_text(encoding="utf-8")))
+
+
+def build_units(units: list):
+    src, allowed = load_sources_and_allowed_units(units)
     allowed_sorted = sorted(allowed, key=len, reverse=True)
     wins: set[str] = set()
     for s in src:
@@ -146,16 +184,40 @@ def main():
     ap.add_argument("--git")
     ap.add_argument("--selftest", action="store_true")
     a = ap.parse_args()
-    wins, allowed_sorted, src = build(Path(a.cards))
-    print(f"원천 글 {len(src)} · 창 {len(wins)} · 허용 말 {len(allowed_sorted)}")
+    units = json.loads(Path(a.cards).read_text(encoding="utf-8"))
+    wins, allowed_sorted, src = build_units(units)
+    fixes = json.loads(FIXES.read_text(encoding="utf-8"))["fixes"]
+    print(f"원천 글 {len(src)} · 창 {len(wins)} · 허용 말 {len(allowed_sorted)} · 보정 새 글 {len(fix_new_texts(fixes))}칸")
     bad = 0
+    # 카드 덤프가 보정을 입었으면 보정 문장이 허용 말이 되어 아래 검사가 눈먼다 — 먼저 멈춘다(리드 검토 ④).
+    carried = fixes_in_allowed(fixes, allowed_sorted)
+    print(f"보정 새 글이 허용 말에 든 칸: {len(carried)}" + (" — 🔴 카드 덤프가 보정을 입었다. 원본 카드(definitionSourceCards)로 다시 뽑을 것" if carried else ""))
+    for i, k in carried[:10]:
+        print("   ", i, k)
+    bad += len(carried)
     if a.selftest:
         planted = next(s for s in src if len(norm(s)) > 30 and len(re.findall(r"[가-힣]", s)) > 20)
         h1 = scan("우리 말 설명 " + planted, wins, allowed_sorted)
         h0 = scan("카드 문장은 우리 말로 새로 쓴다. 교재 문장은 저장소 밖에 둔다.", wins, allowed_sorted)
-        print(f"자기 시험: 원문을 심은 줄 → {len(h1)}줄 걸림 · 우리 말만 → {len(h0)}줄")
+        print(f"자기 시험 ①: 원문을 심은 줄 → {len(h1)}줄 걸림 · 우리 말만 → {len(h0)}줄")
         if not h1 or h0:
-            print("자기 시험 실패")
+            print("자기 시험 ① 실패")
+            bad += 1
+        # ② 보정 표(파일에 적히는 모양 그대로)의 한 칸에 원문을 심으면 걸리고, 지금 보정 표는 0 이어야 한다.
+        planted_fixes = json.loads(json.dumps(fixes))
+        planted_fixes[0]["change"]["definition"] = planted
+        h2 = scan(json.dumps({"fixes": planted_fixes}, ensure_ascii=False, indent=1), wins, allowed_sorted)
+        h2_clean = scan(json.dumps({"fixes": fixes}, ensure_ascii=False, indent=1), wins, allowed_sorted)
+        print(f"자기 시험 ②: 보정 표에 원문을 심은 판 → {len(h2)}줄 걸림 · 지금 보정 표 → {len(h2_clean)}줄")
+        if not h2 or h2_clean:
+            print("자기 시험 ② 실패")
+            bad += 1
+        # ③ 보정을 입힌 덤프(옛 덤프가 하던 일)로 허용 말을 지으면 위 멈춤이 새 글을 전부 잡아야 한다.
+        _, allowed_fixed, _ = build_units(with_fixes(units, planted_fixes))
+        c3 = fixes_in_allowed(planted_fixes, allowed_fixed)
+        print(f"자기 시험 ③: 보정을 입힌 덤프 → 허용 말에 든 새 글 {len(c3)}칸 / {len(fix_new_texts(planted_fixes))}칸")
+        if not c3 or len(c3) != len(fix_new_texts(planted_fixes)):
+            print("자기 시험 ③ 실패")
             bad += 1
     for f in a.files or []:
         hits = scan(Path(f).read_text(encoding="utf-8"), wins, allowed_sorted)

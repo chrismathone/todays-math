@@ -492,10 +492,10 @@ describe("account-owned concept transitions", () => {
       stars: 0,
       complete: false,
     });
-    expect(f.state.profile.definitions!.cards.factorization).toEqual({
-      ...progress.factorization,
-      attemptedAt: "2026-09-28",
-    });
+    // 시도한 날(attemptedAt)은 세션을 시작한 날이라 이어 풀기로는 안 바뀐다(D-143 ⑦ · 리드 검토 ③).
+    expect(f.state.profile.definitions!.cards.factorization).toEqual(
+      progress.factorization,
+    );
     expect(f.state.profile.definitions!.cards.prime).toEqual(progress.prime);
     expect(f.state.profile.definitions!.history).toHaveLength(1);
     expect(f.state.completedDays).toEqual([]);
@@ -554,7 +554,8 @@ describe("account-owned concept transitions", () => {
     f.finish();
     expect(f.state.profile.definitions!.cards).toEqual({
       ...record.cards,
-      prime: { ...record.cards.prime, missed: 0, attemptedAt: "2026-09-28" },
+      // 시도한 날은 기억 복습을 시작한 09-27 그대로(이어 풀기로 안 바뀐다 — D-143 ⑦ · 리드 검토 ③)
+      prime: { ...record.cards.prime, missed: 0 },
     });
     expect(f.state.profile.stars).toBe(stars);
     expect(f.state.receipts.at(-1)!.feedback).toMatchObject({

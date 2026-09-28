@@ -405,7 +405,8 @@
 ## 11. 교재 원문 누출 검사
 
 - 이 트랙 검사기 `check-leak-coverage.py`: 14권 원문 문장 + 트랙 곁 파일(판정 앵커 · 후보 · 버림 규칙)을 원천으로, 허용 말(용어 · 단원 이름 · 카드 글)을 걷어낸 12글자 창.
-  자기 시험 — 원문 한 문장을 심으면 걸리고(1줄), 우리 말만이면 0.
+  자기 시험 — 원문 한 문장을 심으면 걸리고(1줄), 우리 말만이면 0. 2026-09-28 부터 둘 더: 보정 표의 한 칸에 원문을 심은 판이 걸리고(지금 보정 표는 0),
+  보정을 입힌 카드 덤프로 허용 말을 지으면 «덤프가 보정을 입었다» 멈춤이 새 글 37칸을 전부 잡는다(§12 🔴).
 - 보정안은 더 엄하게 — `build-card-fixes.py` 가 새 글을 **아무것도 걷어내지 않은** 12글자 창으로 원문과 맞대어 하나라도 겹치면 멈춘다.
   이 검사가 제 초안 하나(분수의 곱셈 — 원래 카드 문장을 살린 부분이 교재 규칙 문장과 16글자 같음)를 잡아 다시 썼다.
 - 🔵 곁 발견: **카드 원문 칸 33곳**(정의 문장 대부분 · 함정 둘)이 교재 문장과 12글자 넘게 겹친다 — 예각 · 둔각 · 계수 · 합성수 · 점대칭도형 · 곱이 0인 성질 · 인수분해처럼
@@ -425,11 +426,16 @@
 ## 12. 다시 돌리는 법
 
 ```bash
-npx tsx scripts/qa/concept-terms/dump-explorer-cards-coverage.ts <작업폴더>/cards.json
+npx tsx scripts/qa/concept-terms/dump-explorer-cards-coverage.ts <작업폴더>/cards.json      # 🔴 보정 전 원본 카드(definitionSourceCards)
 python scripts/qa/concept-terms/build-coverage.py   --cards <작업폴더>/cards.json            # coverage-matches.json · coverage-stats.json
 python scripts/qa/concept-terms/build-card-kinds.py --cards <작업폴더>/cards.json --draft <concept-context-kinds-draft.tsv>
 python scripts/qa/concept-terms/build-card-fixes.py --cards <작업폴더>/cards.json            # 저장소 밖 원문이 있어야 돈다(겹침 검사)
 python scripts/qa/concept-terms/check-leak-coverage.py --cards <작업폴더>/cards.json --selftest --git main..HEAD
 ```
+🔴 **카드 덤프는 보정 전 원본 카드다**(2026-09-28 리드 적대적 검토 ④). 보정은 카드를 내보내는 층(`definitionCards`)에서 입히므로,
+그 층을 덤프하면 ⑴ 누출 검사가 보정 문장을 «카드 글»(허용 말)로 걷어내 보정 표를 못 보고 ⑵ 보정 생성기의 «새로 쓴 글만 잰다»가 23장 전부를
+«이미 같은 문장»으로 건너뛰었다(`current` 칸도 보정 글이 된다). 그래서 덤프 다섯(coverage · elem34 · elem56 · mida · midb)은 모두
+`definitionSourceCards`(보정 전, 앱 코드는 안 읽음 — 시험이 막음)를 내보내고, 둘은 잘못된 덤프에서 멈춘다 — `check-leak-coverage.py` 는
+보정 표의 새 글(`current` 와 다른 긴 칸)이 허용 말에 들어 있으면, `build-card-fixes.py` 는 아무 칸도 안 바뀌는 보정이면.
 세 빌더는 `--check` 로 «지금 저장소 산출물과 같은가»만 본다. 🔴 저장소 밖 의존물: `C:\Creative\testautocreator-data\I-개념용어\`(보정 겹침 검사 · 누출 검사) ·
 갈래 초안 TSV(옆 트랙 concept-context 산출 — 결과 JSON 에 필요한 칸을 옮겨 적었다).

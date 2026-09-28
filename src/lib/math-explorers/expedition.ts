@@ -20,6 +20,7 @@ import {
 import {
   definitionCards,
   definitionDue,
+  definitionEffectiveDue,
   definitionUnits,
   type DefinitionRecord,
 } from "./definition-cards";
@@ -350,7 +351,10 @@ export function expeditionToday(
   const overdue = due.some(
     (card) =>
       Date.parse(`${date}T00:00:00Z`) -
-        Date.parse(`${record!.cards[card.id].due}T00:00:00Z`) >=
+        // 뜻을 고친 카드의 앞당긴 만기도 같은 읽기 규칙으로(D-143 ⑦) — 밀리면 기억 복습 날이 열린다.
+        Date.parse(
+          `${definitionEffectiveDue(card.id, record!.cards[card.id])}T00:00:00Z`,
+        ) >=
       3 * 86_400_000,
   );
   const learning = expeditionLearning(state, studentId, now);

@@ -1818,6 +1818,45 @@ const longestIntroCards = [...cards.definitionCards]
   .sort((a, b) => b.name.length + unitOf(b.unit).title.length - (a.name.length + unitOf(a.unit).title.length))
   .slice(0, 5);
 fixtures["memory-intro-long"] = () => memoryFixture(longestIntroCards, 8, "g8-function");
+// 뜻을 고친 카드(D-143 ⑦)를 판 전에 모은 학생 — 도감 격자와 카드 대화상자가 같은 복습 날을 말한다(리드 적대적 검토 ⑤ · 모든 화면 일치).
+// 격자는 «다시 기억할 때 / MM/DD 복습», 대화상자는 «기억 N단계 · 다음 복습 MM/DD» — 둘 다 뷰의 진도(앞당긴 만기)를 읽는다.
+fixtures["revised-due"] = () => ({
+  ...serverState.emptySrsState(),
+  explorers: explorerRecord(8, "g8-function", cards.definitionCards.filter((card) => card.unit === "g8-simultaneous")),
+});
+scenarios["revised-due"] = async ({ page, sim, mobile, step }) => {
+  await step("revised.due", async () => {
+    await page.goto(base + "/dev/mobile-explorers-qa");
+    await homeReady(page);
+    const stored = explorerStored(sim);
+    const view = engine.explorerView(stored, today());
+    const collection = view.units.filter((item) => item.grade === view.profile.courseGrade).flatMap((item) => item.cards);
+    const said = [];
+    for (const card of collection.filter((item) => item.unitId === "g8-simultaneous")) {
+      let sheet = page.getByRole("dialog", { name: "나의 개념 도감" });
+      if (!(await sheet.count())) {
+        await tap(page.getByRole("button", { name: /도감/ }).first(), mobile);
+        await expect(sheet).toBeVisible();
+      }
+      const tile = sheet.locator("[data-level]").nth(collection.findIndex((item) => item.id === card.id));
+      const grid = (await tile.locator("small").innerText()).trim();
+      await tap(tile, mobile);
+      const dialog = page.locator("dialog[open]:has(#explorer-card-title)");
+      await expect(dialog).toBeVisible();
+      const line = (await dialog.getByText(/다음 복습/).first().innerText()).trim();
+      const due = cards.definitionEffectiveDue(card.id, stored.profile.definitions.cards[card.id]);
+      const mmdd = due.slice(5).replace("-", "/");
+      assert.ok(line.endsWith(`다음 복습 ${mmdd}`), `${card.name} 대화상자 «${line}» ≠ 복습 날 ${mmdd}`);
+      assert.equal(grid, due <= today() ? "다시 기억할 때" : `${mmdd} 복습`, `${card.name} 격자`);
+      said.push(`${card.id} ${grid} | ${line}`);
+      await tap(dialog.getByRole("button", { name: "개념 카드 닫기" }), mobile);
+      await expect(dialog).toHaveCount(0);
+    }
+    const revised = said.filter((row) => /^(g8-two-variable|g8-simultaneous) /.test(row));
+    assert.equal(revised.length, 2, "뜻을 고친 카드 둘");
+    return said.join(" · ");
+  });
+};
 scenarios["memory-intro"] = (context) => memoryIntroScenario(context, "memory");
 scenarios["memory-intro-long"] = (context) => memoryIntroScenario(context, "memory-long");
 async function memoryIntroScenario({ page, sim, mobile, step, shot }, label) {
