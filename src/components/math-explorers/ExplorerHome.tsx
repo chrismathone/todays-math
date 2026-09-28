@@ -1,6 +1,16 @@
 "use client";
 
-import { useEffect, useId, useRef, useState, type ReactNode } from "react";
+import {
+  memo,
+  useCallback,
+  useEffect,
+  useId,
+  useLayoutEffect,
+  useMemo,
+  useRef,
+  useState,
+  type ReactNode,
+} from "react";
 import type {
   ExplorerAction,
   ExplorerState,
@@ -23,11 +33,82 @@ import {
 } from "@/lib/math-explorers/starEconomy";
 import { ExplorerMath } from "./ExplorerMath";
 import { ExplorerChests, TileStars } from "./ExplorerPieces";
+import r from "./chest-reward.module.css";
 import s from "./math-explorers.module.css";
 
 export type ExplorerCard = ExplorerState["units"][number]["cards"][number];
 export const gradeLabel = (grade: number) =>
   grade < 7 ? `초등 ${grade}학년` : `중학교 ${grade - 6}학년`;
+
+// A chest press changes one chest row and the star count. The journey board
+// behind the sheet and the other rows keep their props, so they skip the render
+// (before, one press re-rendered the whole home twice — reward-latency §2).
+const JourneyBoard = memo(DailyJourneyBoard);
+type Chest = ExplorerState["chests"][number];
+const sameChests = (a: readonly Chest[], b: readonly Chest[]) =>
+  a.length === b.length &&
+  a.every(
+    (chest, index) =>
+      chest.id === b[index]!.id &&
+      chest.ready === b[index]!.ready &&
+      chest.claimed === b[index]!.claimed &&
+      chest.solved === b[index]!.solved &&
+      chest.after === b[index]!.after,
+  );
+/** A saved-press failure, one per chest, shown under its row (05 §8.21). */
+export type ChestNotice = {
+  chestId: string;
+  text: string;
+  tone: "alert" | "status";
+};
+type ChestRowProps = {
+  title: string;
+  chests: Chest[];
+  busy: boolean;
+  notices: ChestNotice[];
+  onClaim: (chestId: string) => void;
+};
+const ChestRow = memo(
+  function ChestRow({ title, chests, busy, notices, onClaim }: ChestRowProps) {
+    // Two chests of a row can fail alike — the same sentence is said once.
+    const lines = notices.filter(
+      (notice, index) =>
+        notices.findIndex((other) => other.text === notice.text) === index,
+    );
+    return (
+      <section className={s.chestGroup}>
+        <h4>{title}</h4>
+        <ExplorerChests chests={chests} busy={busy} onClaim={onClaim} />
+        {lines.map((notice) => (
+          <p key={notice.chestId} className={r.notice} role={notice.tone}>
+            {notice.text}
+          </p>
+        ))}
+      </section>
+    );
+  },
+  (a, b) =>
+    a.title === b.title &&
+    a.busy === b.busy &&
+    a.onClaim === b.onClaim &&
+    a.notices.length === b.notices.length &&
+    a.notices.every((notice, index) => notice === b.notices[index]) &&
+    sameChests(a.chests, b.chests),
+);
+
+const NO_CLAIMS: readonly string[] = [];
+const NO_NOTICES: Readonly<Record<string, ChestNotice>> = {};
+
+/** The same function for the whole mount, always calling the latest handler. */
+function useStableHandler<Args extends unknown[]>(
+  handler: (...args: Args) => void,
+) {
+  const latest = useRef(handler);
+  useLayoutEffect(() => {
+    latest.current = handler;
+  });
+  return useCallback((...args: Args) => latest.current(...args), []);
+}
 
 export function explorerJourney(state: ExplorerState): DailyJourney {
   if (state.journey) return state.journey;
@@ -139,6 +220,12 @@ export function ExplorerSheet({
 export default function ExplorerHome({
   state,
   busy,
+  claims = NO_CLAIMS,
+  chestNotices = NO_NOTICES,
+  chestEffect,
+  onCloseBase,
+  onSheetChange,
+  baseFailure = null,
   onAction,
   onStart,
   onResume,
@@ -150,6 +237,19 @@ export default function ExplorerHome({
 }: {
   state: ExplorerState;
   busy: boolean;
+  /** Chests pressed and shown as opened while their saves are on the way. */
+  claims?: readonly string[];
+  chestNotices?: Readonly<Record<string, ChestNotice>>;
+  /** The reward effect, drawn inside the base sheet so the modal cannot hide it. */
+  chestEffect?: ReactNode;
+  onCloseBase?: () => void;
+  /** Whether a home sheet (modal) is open — page-level effects wait for it. */
+  onSheetChange?: (open: boolean) => void;
+  /**
+   * A failed «기지 키우기», said inside the base sheet (the page status sits under
+   * the modal). With `retry`, pressing the button again sends the same request.
+   */
+  baseFailure?: { text: string; retry?: () => void } | null;
   onAction: (action: ExplorerAction) => void;
   onStart: () => void;
   onResume: () => void;
@@ -162,7 +262,38 @@ export default function ExplorerHome({
   const [sheet, setSheet] = useState<"collection" | "settings" | "base" | null>(
     initialView ?? null,
   );
-  const journey = explorerJourney(state);
+  const journey = useMemo(() => explorerJourney(state), [state]);
+  const reviewDay = useStableHandler(onReviewDay);
+  const sheetChange = useStableHandler((open: boolean) =>
+    onSheetChange?.(open),
+  );
+  useEffect(() => sheetChange(sheet !== null), [sheet, sheetChange]);
+  useEffect(() => () => sheetChange(false), [sheetChange]);
+  const claimChest = useStableHandler((chestId: string) =>
+    onAction({ type: "chest", chestId }),
+  );
+  // A pressed chest is shown opened, with its star, before the save returns.
+  const shown = useMemo(() => {
+    const opening = new Set(
+      state.chests
+        .filter((chest) => claims.includes(chest.id) && !chest.claimed)
+        .map((chest) => chest.id),
+    );
+    return {
+      chests: state.chests.map((chest) =>
+        opening.has(chest.id) ? { ...chest, claimed: true } : chest,
+      ),
+      stars: state.profile.stars + opening.size,
+    };
+  }, [state, claims]);
+  const saving = claims.length > 0;
+  // A failure line stays only while the record still shows its chest unopened — a
+  // newer record (another save, a reload) that shows it received takes it away.
+  // The 409 line stays: it says why the chest is shown received.
+  const received = useMemo(
+    () => new Set(state.chests.filter((c) => c.claimed).map((c) => c.id)),
+    [state.chests],
+  );
   const mission = state.expedition?.mission;
   const next = state.expedition?.next;
   const activeReview = !!state.session?.reviewOnly && !state.session.done;
@@ -209,6 +340,7 @@ export default function ExplorerHome({
     (!!state.session && !state.session.done);
   const upgradeCost = baseUpgradeCost(state.profile.level);
   const closeSheet = () => {
+    if (sheet === "base") onCloseBase?.();
     setSheet(null);
     if (initialView) onCloseView?.();
   };
@@ -264,6 +396,7 @@ export default function ExplorerHome({
             className={s.primary}
             disabled={
               busy ||
+              saving ||
               (!activeReview &&
                 !active &&
                 !pendingRetry &&
@@ -296,11 +429,13 @@ export default function ExplorerHome({
       </section>
 
       <section className={s.journeyPanel}>
-        <DailyJourneyBoard
+        <JourneyBoard
           journey={journey}
           variant="map"
-          busy={busy}
-          onReviewDay={onReviewDay}
+          // Behind the open base sheet the board cannot be pressed, so a chest
+          // save does not re-render it; once the sheet closes it waits too.
+          busy={busy || (saving && sheet !== "base")}
+          onReviewDay={reviewDay}
         />
       </section>
 
@@ -315,15 +450,13 @@ export default function ExplorerHome({
           type="button"
           onClick={() => setSheet("base")}
           aria-label={
-            state.profile.stars
-              ? `우리 기지, 모은 별 ${state.profile.stars}`
-              : undefined
+            shown.stars ? `우리 기지, 모은 별 ${shown.stars}` : undefined
           }
         >
           <span aria-hidden="true">⌂</span>우리 기지
-          {state.profile.stars ? (
+          {shown.stars ? (
             <em className={s.starBadge} aria-hidden="true">
-              ✦ {state.profile.stars}
+              ✦ {shown.stars}
             </em>
           ) : null}
         </button>
@@ -421,7 +554,7 @@ export default function ExplorerHome({
                 type="button"
                 key={grade}
                 aria-pressed={state.profile.courseGrade === grade}
-                disabled={settingsLocked}
+                disabled={settingsLocked || saving}
                 onClick={() => onAction({ type: "course", grade })}
               >
                 {grade < 7 ? `초${grade}` : `중${grade - 6}`}
@@ -435,7 +568,7 @@ export default function ExplorerHome({
                 type="button"
                 key={unit.id}
                 aria-pressed={state.profile.goalUnitId === unit.id}
-                disabled={settingsLocked}
+                disabled={settingsLocked || saving}
                 onClick={() => onAction({ type: "goal", unitId: unit.id })}
               >
                 <span>{unit.title}</span>
@@ -455,19 +588,30 @@ export default function ExplorerHome({
             <p>{state.profile.level}단계</p>
             <h3>{baseStageName(state.profile.level)}</h3>
             <p>
-              모은 별 <strong>✦ {state.profile.stars}</strong>
+              모은 별 <strong>✦ {shown.stars}</strong>
             </p>
             <button
               type="button"
               className={s.primary}
-              disabled={busy || state.profile.stars < upgradeCost}
-              onClick={() => onAction({ type: "upgrade" })}
+              disabled={
+                baseFailure?.retry
+                  ? saving
+                  : busy || saving || shown.stars < upgradeCost
+              }
+              onClick={
+                baseFailure?.retry ?? (() => onAction({ type: "upgrade" }))
+              }
             >
               기지 키우기 · ✦ {upgradeCost}
             </button>
-            {state.profile.stars < upgradeCost ? (
+            {baseFailure ? (
+              <p className={r.notice} role="alert">
+                {baseFailure.text}
+              </p>
+            ) : null}
+            {shown.stars < upgradeCost ? (
               <p className={s.baseShort}>
-                별 {upgradeCost - state.profile.stars}개를 더 모으면{" "}
+                별 {upgradeCost - shown.stars}개를 더 모으면{" "}
                 {state.profile.level + 1}단계예요.
               </p>
             ) : null}
@@ -479,18 +623,27 @@ export default function ExplorerHome({
                 unit.cards.some((card) => (card.progress?.level ?? 0) > 0) ||
                 unit.id === currentUnit?.id,
             )
-            .map((unit) => (
-              <section className={s.chestGroup} key={unit.id}>
-                <h4>{unit.title}</h4>
-                <ExplorerChests
-                  chests={state.chests.filter(
-                    (chest) => chest.unit === unit.id,
-                  )}
+            .map((unit) => {
+              const chests = shown.chests.filter(
+                (chest) => chest.unit === unit.id,
+              );
+              return (
+                <ChestRow
+                  key={unit.id}
+                  title={unit.title}
+                  chests={chests}
                   busy={busy}
-                  onClaim={(chestId) => onAction({ type: "chest", chestId })}
+                  notices={chests.flatMap((chest) =>
+                    chestNotices[chest.id]?.tone === "alert" &&
+                    received.has(chest.id)
+                      ? []
+                      : (chestNotices[chest.id] ?? []),
+                  )}
+                  onClaim={claimChest}
                 />
-              </section>
-            ))}
+              );
+            })}
+          {chestEffect}
         </ExplorerSheet>
       ) : null}
     </div>

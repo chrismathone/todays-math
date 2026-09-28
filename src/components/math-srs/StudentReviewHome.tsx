@@ -101,6 +101,15 @@ export function StudentReviewPage({
   );
 }
 
+/** 저장 실패 문장 — 페이지 상태 줄과 모달 시트 안 한 줄이 같은 말을 한다. */
+export function studentFailureText(error: { status: number; message: string }) {
+  return error.status === 409
+    ? "다른 화면에서 학습 기록이 바뀌었어요. 최신 기록을 불러온 뒤 이어 가 주세요."
+    : error.status === 503
+      ? "학습 저장소가 아직 준비되지 않았어요. 잠시 후 다시 시도하고, 계속되면 선생님께 알려 주세요."
+      : error.message;
+}
+
 export function StudentReviewStatus({
   loading,
   error,
@@ -122,12 +131,7 @@ export function StudentReviewStatus({
       </div>
     );
   if (!error) return null;
-  const message =
-    error.status === 409
-      ? "다른 화면에서 학습 기록이 바뀌었어요. 최신 기록을 불러온 뒤 이어 가 주세요."
-      : error.status === 503
-        ? "학습 저장소가 아직 준비되지 않았어요. 잠시 후 다시 시도하고, 계속되면 선생님께 알려 주세요."
-        : error.message;
+  const message = studentFailureText(error);
   return (
     <div className={`${s.status} ${s.error}`} role="alert">
       <p>{message}</p>
