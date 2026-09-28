@@ -8,13 +8,16 @@
 // 🔴 원장은 카드 문장을 옮겨 적지 않는다 — 말 두 개와 조각 지문(`piecesSha`, 빈칸 밖 글의 해시)만. 원래 카드 문장의 사본이 교재
 // 표준 문구와 겹쳤다(2026-09-28 elem56 검사기 · 밀기 카드). 조각이 바뀌면 지문이 달라져 그 카드의 채움이 모두 «미검토»가 된다.
 // 사람이 읽을 문장은 `--show <카드 id>` 로 그때그때 짓는다.
-// 범위: 보정 카드(`conceptSentenceFixes.ts`) + 순서 무관 카드(`conceptOrderFree.ts`).
+// 범위: 230장 전부 — scope 칸에 보정(`conceptSentenceFixes.ts`) · 순서 무관(`conceptOrderFree.ts`) · 원본을 적는다.
 import { createHash } from "node:crypto";
 import { existsSync, readFileSync, writeFileSync } from "node:fs";
 import { resolve } from "node:path";
 import { orderFreeCards } from "../../../src/lib/math-explorers/conceptOrderFree";
 import { cardFixes } from "../../../src/lib/math-explorers/conceptSentenceFixes";
-import { definitionCard } from "../../../src/lib/math-explorers/definition-cards";
+import {
+  definitionCard,
+  definitionCards,
+} from "../../../src/lib/math-explorers/definition-cards";
 
 type Filling = {
   slots: [number, number];
@@ -97,7 +100,8 @@ const old: Audit | null = existsSync(OUT)
   ? JSON.parse(readFileSync(OUT, "utf8"))
   : null;
 const oldCards = new Map((old?.cards ?? []).map((card) => [card.id, card]));
-const ids = [...new Set([...Object.keys(cardFixes), ...orderFreeCards])];
+// 범위: 230장 전부(리드 검토 B — 보정 · 순서 무관 카드만 보던 때 원장 밖 카드에서 참인 채움이 샜다)
+const ids = definitionCards.map((card) => card.id);
 const cards: AuditCard[] = ids.map((id) => {
   const card = definitionCard(id);
   const sha = piecesSha(card.pieces);
@@ -127,10 +131,13 @@ const cards: AuditCard[] = ids.map((id) => {
   return {
     id,
     name: card.name,
-    scope: [
-      ...(id in cardFixes ? ["보정"] : []),
-      ...(orderFreeCards.has(id) ? ["순서 무관"] : []),
-    ],
+    scope:
+      id in cardFixes || orderFreeCards.has(id)
+        ? [
+            ...(id in cardFixes ? ["보정"] : []),
+            ...(orderFreeCards.has(id) ? ["순서 무관"] : []),
+          ]
+        : ["원본"],
     judgedBy: unchanged ? before.judgedBy : UNREVIEWED,
     piecesSha: sha,
     fillings,
