@@ -1,9 +1,9 @@
 /**
  * 카드 보정 표(`conceptSentenceFixes.ts`) — 원본(`definition-content.ts` · PROVENANCE)은 그대로 두고, 카드를 내보내는 층
- * (`definition-cards.ts` 의 `definitionCards`)에서 32장을 덮어쓴다(D-143 ④ · ⑦ — 23장 + 채점 결함 9장). 화면 · 채점 · 복습 · 선수가 같은 카드를 읽는다.
+ * (`definition-cards.ts` 의 `definitionCards`)에서 36장을 덮어쓴다(D-143 ④ · ⑦ · ⑧ — 23장 + 채점 결함 13장). 화면 · 채점 · 복습 · 선수가 같은 카드를 읽는다.
  *
  * 결론은 용어 분석 트랙(terms-coverage)의 3자 합의 `docs/reference/concept-terms/card-sentence-fixes.json` —
- * 틀림 3 · 빠짐 5 · 낱말 5 · 범위 10. 뜻을 고친 «틀림» 3장은 이미 모은 학생에게 한 번 다시 복습(`cardRevisions.test.ts`).
+ * 틀림 3 · 빠짐 5 · 낱말 5 · 범위 10 · 채점 13. 뜻을 고친 «틀림» 3장은 이미 모은 학생에게 한 번 다시 복습(`cardRevisions.test.ts`).
  * 보정은 빈칸(정답 조각)까지 옮기기도 한다 — 그래서 카드마다 조립 · 예 모으기 · 경계 살피기가 새 카드로 여전히 풀리는지 단정한다.
  */
 import { createHash, randomUUID } from "node:crypto";
@@ -56,8 +56,8 @@ describe("카드 보정 표 — 확정 파일 그대로", () => {
     );
   });
 
-  it("32장 · 칸마다 card-sentence-fixes.json 의 change 와 같다", () => {
-    expect(decided.fixes).toHaveLength(32);
+  it("36장 · 칸마다 card-sentence-fixes.json 의 change 와 같다", () => {
+    expect(decided.fixes).toHaveLength(36);
     expect(Object.keys(cardFixes).sort()).toEqual(
       decided.fixes.map((fix) => fix.id).sort(),
     );
@@ -191,9 +191,17 @@ describe("누출 검사는 보정 전 원본 카드로 — 보정 문장이 «�
     expect(same).toEqual([]);
   });
 
+  it("보정 표 JSON 은 원래 카드 글을 옮겨 적지 않는다 — 원래 글은 원본 카드 파일에서 읽는다(리드 검토 A2 ⑨)", () => {
+    // 괄호(빈칸)를 뗀 원래 카드 문장의 이어진 사본이 교재 표준 문구와 12글자로 겹친다(누출 검사기 · 실수 · 정수 카드).
+    const raw = decided as unknown as { fixes: Record<string, unknown>[] };
+    expect(
+      raw.fixes.filter((fix) => "current" in fix).map((fix) => fix.id),
+    ).toEqual([]);
+  });
+
   it("coverage.md 가 적은 «보정 새 글 N칸» = 누출 검사기의 셈(칸 목록 · 창 길이는 검사기 소스에서 읽는다)", () => {
-    // check-leak-coverage.py 의 fix_new_texts 와 같은 규칙: 허용 말로 들어가는 긴 칸 가운데 `current`(원래 카드 글)와 다르고,
-    // 걷어낸 뒤 창 길이 이상인 글. note 는 current 에 없어 explanation 과 견준다.
+    // check-leak-coverage.py 의 fix_new_texts 와 같은 규칙: 허용 말로 들어가는 긴 칸 가운데 원본 카드(보정 전)의 같은 칸과 다르고,
+    // 걷어낸 뒤 창 길이 이상인 글.
     const py = readFileSync(
       resolve(ROOT, "scripts/qa/concept-terms/check-leak-coverage.py"),
       "utf8",
@@ -214,14 +222,17 @@ describe("누출 검사는 보정 전 원본 카드로 — 보정 문장이 «�
     expect(win).toBe(12);
     const norm = (t: string) => t.replace(/[\s$«»‘’“”'"`{}]/g, "");
     const all = decided.fixes as unknown as {
+      id: string;
       change: Record<string, unknown>;
-      current: Record<string, unknown>;
     }[];
     const count = all
       .flatMap((fix) =>
         fields.map((key) => {
           const value = fix.change[key];
-          const before = fix.current[key === "note" ? "explanation" : key];
+          const source = definitionSourceCards.find(
+            (card) => card.id === fix.id,
+          ) as unknown as Change;
+          const before = source[key];
           return typeof value === "string" &&
             value !== before &&
             norm(value).length >= win

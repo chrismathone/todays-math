@@ -148,6 +148,105 @@ describe("채움 원장 — 보정 카드 + 순서 무관 카드의 정답 아�
   );
 });
 
+// 받침으로 갈리는 조사 — [받침 있을 때, 없을 때]. «으로/로»는 ㄹ 받침이면 «로».
+const PARTICLES: [string, string][] = [
+  ["으로", "로"],
+  ["이라고", "라고"],
+  ["을", "를"],
+  ["이", "가"],
+  ["은", "는"],
+  ["과", "와"],
+];
+const DIGIT_BATCHIM: Record<string, number> = {
+  "0": 21,
+  "1": 8,
+  "2": 0,
+  "3": 16,
+  "4": 0,
+  "5": 0,
+  "6": 1,
+  "7": 8,
+  "8": 8,
+  "9": 0,
+  "°": 0,
+  "²": 17,
+};
+/** 마지막 글자의 받침 번호(0 = 없음, 8 = ㄹ). 읽기가 갈리는 글자(로마자 · 기호)는 null. */
+const batchim = (word: string): number | null => {
+  const ch = word.trim().slice(-1);
+  const code = ch.charCodeAt(0);
+  if (code >= 0xac00 && code <= 0xd7a3) return (code - 0xac00) % 28;
+  return ch in DIGIT_BATCHIM ? DIGIT_BATCHIM[ch]! : null;
+};
+/** 빈칸 뒤 조각이 받침으로 갈리는 조사로 시작하면, 그 말이 문법상 맞는가(갈리지 않으면 null). */
+const fitsParticle = (word: string, after: string): boolean | null => {
+  for (const [withB, without] of PARTICLES) {
+    const used = after.startsWith(withB)
+      ? withB
+      : after.startsWith(without)
+        ? without
+        : null;
+    if (!used) continue;
+    const b = batchim(word);
+    if (b === null) return null;
+    if (withB === "으로")
+      return used === "으로" ? b !== 0 && b !== 8 : b === 0 || b === 8;
+    return used === withB ? b !== 0 : b === 0;
+  }
+  return null;
+};
+/** 조사가 답을 알려 주는 칸 — (칸, 까닭) 목록. */
+const particleGiveaways = (card: {
+  id: string;
+  pieces: string[];
+  words: string[];
+}) => {
+  const out: string[] = [];
+  const slotFits = [0, 1].map((slot) =>
+    card.words.map((w) => fitsParticle(w, card.pieces[slot + 1]!)),
+  );
+  slotFits.forEach((fits, slot) => {
+    if (fits.some((v) => v === null)) return;
+    const ok = card.words.filter((_, i) => fits[i]);
+    if (ok.length === 1 && fits[slot])
+      out.push(`칸 ${slot + 1} — «${ok[0]}» 하나`);
+  });
+  // 순서 무관 카드: 두 칸이 다 조사로 갈리는데 오답이 어느 칸에도 못 들어가면 조사만으로 정답이 정해진다
+  if (
+    orderFreeCards.has(card.id) &&
+    slotFits.every((fits) => fits.every((v) => v !== null)) &&
+    [2, 3].every((i) => !slotFits[0]![i] && !slotFits[1]![i])
+  )
+    out.push("순서 무관인데 오답이 두 칸 어디에도 못 들어감");
+  return out;
+};
+
+describe("원장 카드 — 조사가 답을 알려 주지 않는다(받침으로 갈리는 조사 · 리드 검토 A ⑤ · A2 ③)", () => {
+  it("칸마다 문법상 맞는 말이 정답 하나뿐인 칸이 없다 · 순서 무관 카드의 오답이 어느 칸에는 들어간다", () => {
+    const found = audit.cards.flatMap((entry) =>
+      particleGiveaways(definitionCard(entry.id)).map(
+        (why) => `${entry.id} ${why}`,
+      ),
+    );
+    expect(found).toEqual([]);
+    // 자기 시험 — 고치기 전 전개도(«를 따라»에 모서리만) · 실수(순서 무관 · 오답 «…만»이 «와» · «를»에 안 맞음)
+    expect(
+      particleGiveaways({
+        id: "g6-net",
+        pieces: ["각기둥이나 각뿔을 ", "를 따라 잘라 ", " 위에 펼친 그림."],
+        words: ["모서리", "평면", "면", "공간"],
+      }),
+    ).toEqual(["칸 1 — «모서리» 하나"]);
+    expect(
+      particleGiveaways({
+        id: "g9-real-number",
+        pieces: ["", "와 ", "를 통틀어 이르는 수."],
+        words: ["유리수", "무리수", "자연수만", "정수만"],
+      }),
+    ).toEqual(["순서 무관인데 오답이 두 칸 어디에도 못 들어감"]);
+  });
+});
+
 describe("230장 기계 검사", () => {
   it("가운데 조각이 대등하게 잇는 꼴이면 순서 무관이거나, 맞바꿈이 거짓이라고 적어 둔 카드다", () => {
     const unexplained = definitionCards
