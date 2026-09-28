@@ -431,7 +431,7 @@ python scripts/qa/concept-terms/build-coverage.py   --cards <작업폴더>/cards
 python scripts/qa/concept-terms/build-card-kinds.py --cards <작업폴더>/cards.json --draft <concept-context-kinds-draft.tsv>
 python scripts/qa/concept-terms/build-card-fixes.py --cards <작업폴더>/cards.json            # 저장소 밖 원문이 있어야 돈다(겹침 검사)
 python scripts/qa/concept-terms/check-leak-coverage.py --cards <작업폴더>/cards.json --selftest --git main..HEAD
-npx tsx scripts/qa/concept-terms/build-fillings-audit.ts [--check]                  # 정답 아닌 채움 원장 — 판정은 사람이 적고, 새 · 바뀐 채움은 «미검토»
+npx tsx scripts/qa/concept-terms/build-fillings-audit.ts [--check | --show <카드 id>]  # 정답 아닌 채움 원장 — 판정은 사람이 적고, 새 · 바뀐 채움은 «미검토» · 원장엔 문장 없음(말 · 조각 지문), 문장은 --show
 ```
 🔴 **카드 덤프는 보정 전 원본 카드다**(2026-09-28 리드 적대적 검토 ④). 보정은 카드를 내보내는 층(`definitionCards`)에서 입히므로,
 그 층을 덤프하면 ⑴ 누출 검사가 보정 문장을 «카드 글»(허용 말)로 걷어내 보정 표를 못 보고 ⑵ 보정 생성기의 «새로 쓴 글만 잰다»가 23장 전부를
