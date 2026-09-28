@@ -1,5 +1,8 @@
 import type { DefinitionRecord } from "./definition-cards";
-import type { WorkshopRecord } from "@/contracts/mathExplorers.contract";
+import type {
+  ExplorerSupplements,
+  WorkshopRecord,
+} from "@/contracts/mathExplorers.contract";
 
 /** Account-owned concept progress. The imported demo profiles/game store are not used. */
 export type ExplorerProfile = {
@@ -10,6 +13,8 @@ export type ExplorerProfile = {
   level: number;
   definitions?: DefinitionRecord;
   workshop?: WorkshopRecord;
+  /** 보충 카드(D-147) — 본 카드 기록과 따로 둔 칸(`supplement.ts`). */
+  supplements?: ExplorerSupplements;
 };
 
 export type DefinitionAction = {

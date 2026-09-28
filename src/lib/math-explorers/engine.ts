@@ -8,6 +8,11 @@ import {
   type ExplorerView,
   type StoredExplorer,
 } from "@/contracts/mathExplorers.contract";
+import {
+  applySupplementAction,
+  isSupplementAction,
+  supplementView,
+} from "./supplement";
 import { isoDateSchema, uuidSchema } from "@/contracts/common.contract";
 import {
   applyDefinitionAction,
@@ -99,7 +104,10 @@ export function applyExplorerAction(
   const activeWorkshop = profile.workshop?.session;
   let feedback: ExplorerFeedback;
 
-  if (isWorkshopAction(action)) {
+  if (isSupplementAction(action)) {
+    // 보충 카드(D-147) — 본 카드 세션과 따로 둔 칸. 본 카드 기록 · 칸 · 상자를 건드리지 않는다.
+    feedback = applySupplementAction(profile, action, date);
+  } else if (isWorkshopAction(action)) {
     if (action.type === "lab-solution") {
       if (before && !before.done)
         throw new ExplorerActionInvalid(
@@ -430,5 +438,6 @@ export function explorerView(
     completedDays: stored.completedDays,
     history: record?.history ?? [],
     workshop: workshopView(profile.workshop, serverDate),
+    supplements: supplementView(profile, stored.completedDays, serverDate),
   });
 }

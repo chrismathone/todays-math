@@ -598,6 +598,14 @@ export function updateExpedition(
         !equal(previous.memories, next.memories))
     )
       throw new SrsConflict("진행 중인 오늘의 학습을 먼저 마쳐 주세요.");
+    // 보충 카드(D-147)는 오늘의 탐험 밖 — 미션이 열린 동안(은행 날 포함)에는 보충 칸을 바꾸지 않는다.
+    if (
+      !equal(
+        previous.explorers?.profile.supplements,
+        next.explorers?.profile.supplements,
+      )
+    )
+      throw new SrsConflict("오늘의 탐험을 마친 뒤 해 볼 수 있어요.");
     const before = previous.explorers?.profile.definitions;
     const after = next.explorers?.profile.definitions;
     if (

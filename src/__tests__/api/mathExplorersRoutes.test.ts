@@ -478,6 +478,73 @@ describe("authenticated math explorer persistence", () => {
     );
   });
 
+  it("blocks supplement cards while today's mission is open and opens them after the tile (D-147)", async () => {
+    let view = await action(await data(await read()), {
+      type: "expedition-start",
+    });
+    expect(view.expedition?.mission?.status).toBe("active");
+    const snapshot = structuredClone(f.rows.get(f.studentId));
+    // 오늘의 탐험이 열린 동안에는 보충 칸을 바꾸지 못한다(저장 문지기 — 409).
+    const blocked = await post({
+      requestId: randomUUID(),
+      expectedRevision: view.revision,
+      action: { type: "supplement-start", cardId: "sup-line" },
+    });
+    expect(blocked.status).toBe(409);
+    expect(f.rows.get(f.studentId)).toEqual(snapshot);
+    view = await finish(view);
+    expect(view.expedition?.mission?.status).toBe("complete");
+    // 칸을 얻은 뒤에는 도감 선반에서 시작할 수 있다 — 칸 · 한 칸 보장은 그대로.
+    const before = parseSrsState(f.rows.get(f.studentId)!.payload);
+    view = await action(view, { type: "supplement-start", cardId: "sup-line" });
+    expect(view.supplements.session).toMatchObject({ cardId: "sup-line" });
+    expect(view.supplements.activity?.kind).toBe("read");
+    const after = parseSrsState(f.rows.get(f.studentId)!.payload);
+    expect(after.expedition).toEqual(before.expedition);
+    expect(after.explorers!.completedDays).toEqual(
+      before.explorers!.completedDays,
+    );
+  });
+
+  it("blocks supplement cards while a bank mission is open — no concept session, the write guard refuses (D-147)", async () => {
+    const course = startAutomaticCourse(
+      setCoursePlan(
+        emptyCourseState(),
+        {
+          startSectionId: "3-1-1-1",
+          dailyQuestionCount: 5,
+          enabled: true,
+          expectedRevision: 0,
+        },
+        now,
+      ),
+      now,
+      71,
+      randomUUID,
+    );
+    f.rows.set(f.studentId, {
+      studentId: f.studentId,
+      revision: 1,
+      payload: { ...emptySrsState(), course },
+    });
+    const view = await action(await data(await read()), {
+      type: "expedition-start",
+    });
+    expect(view.expedition?.mission).toMatchObject({
+      kind: "elementary",
+      status: "active",
+    });
+    expect(view.session).toBeNull();
+    const snapshot = structuredClone(f.rows.get(f.studentId));
+    const blocked = await post({
+      requestId: randomUUID(),
+      expectedRevision: view.revision,
+      action: { type: "supplement-start", cardId: "sup-line" },
+    });
+    expect(blocked.status).toBe(409);
+    expect(f.rows.get(f.studentId)).toEqual(snapshot);
+  });
+
   it("keeps an exhausted concept mission open across midnight until retry-unresolved solves the rest", async () => {
     let view = await action(await data(await read()), {
       type: "expedition-start",
