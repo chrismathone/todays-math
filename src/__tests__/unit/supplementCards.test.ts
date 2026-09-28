@@ -66,6 +66,176 @@ const SENSITIVE: [string, string][] = [
   ["이", "가"],
 ];
 
+/**
+ * 빈칸 두 조각을 맞바꾼 문장 감사 표 — 채점은 자리 그대로라, 맞바꿔도 참이면 맞는 답을 틀렸다고 친다(D-143 ⑦ 리드 적대적
+ * 검토 ①과 같은 검사 · `conceptSentenceSymmetry.test.ts`). 뜻은 코드가 못 가리므로 3자 검토(2026-09-28 — 21장 모두
+ * «맞바꿔도 참인 대칭 없음»)의 까닭을 적는다. 카드 문장이 바뀌면 맞바꾼 문장이 표와 달라져 빨개진다.
+ */
+const SWAP_AUDIT: Record<string, [string, string]> = {
+  "sup-line": [
+    "두 점을 지나 곧은으로 끝없이 뻗어 나가는 양쪽 선.",
+    "«곧은으로» · «양쪽 선» — 말이 안 됨",
+  ],
+  "sup-angle": [
+    "한 반직선에서 나간 두 점이 만드는 도형.",
+    "반직선에서 점이 나가지 않는다 — 말이 안 됨",
+  ],
+  "sup-side-vertex": [
+    "삼각형이나 사각형을 이루는 점을 변이라 하고, 두 변이 만나는 선분을 꼭짓점이라고 한다.",
+    "점을 변, 선분을 꼭짓점이라 부른다 — 거짓",
+  ],
+  "sup-rectangle": [
+    "직각 각이 모두 네인 사각형.",
+    "«직각 각» · «네인» — 말이 안 됨",
+  ],
+  "sup-square": [
+    "네 변의 길이가 모두 직각 네 각이 모두 같고인 사각형.",
+    "«모두 직각 네 각» · «같고인» — 말이 안 됨",
+  ],
+  "sup-perpendicular-line": [
+    "한 직선과 직선으로 만나는 수직.",
+    "수선은 직선이지 «수직»이 아니다 — 말이 안 됨",
+  ],
+  "sup-trapezoid": [
+    "한 쌍한 변이 적어도 평행 있는 사각형.",
+    "«한 쌍한 변» — 말이 안 됨",
+  ],
+  "sup-regular-polygon": [
+    "각의 길이도, 변의 크기도 모두 똑같은 다각형.",
+    "«각의 길이» · «변의 크기» — 말이 안 됨",
+  ],
+  "sup-isosceles-angles": [
+    "이등변삼각형에서 길이가 같은 두 변의 같다에 있는 두 각은 크기가 맞은편.",
+    "«변의 같다에» · «크기가 맞은편» — 말이 안 됨",
+  ],
+  "sup-common-divisor": [
+    "두 자연수의 공통 가운데 약수인 수.",
+    "«공통 가운데 약수인 수» — 말이 안 됨",
+  ],
+  "sup-common-multiple": [
+    "두 자연수의 공통 가운데 배수인 수.",
+    "«공통 가운데 배수인 수» — 말이 안 됨",
+  ],
+  "sup-corresponding-parts": [
+    "합동인 두 도형을 겹치게 서로 포개면 되는 점, 변, 각.",
+    "«겹치게 서로 포개면 되는» — 대응을 말하지 않는다(말이 안 됨)",
+  ],
+  "sup-face-edge": [
+    "직육면체에서 겉을 이루는 선분을 면이라 하고, 두 면이 맞닿아 생기는 평평한 부분을 모서리라고 한다.",
+    "선분을 면, 평평한 부분을 모서리라 부른다 — 거짓",
+  ],
+  "sup-base-lateral": [
+    "각기둥에서 이어이면서 서로 평행하게 마주 보는 두 면이 밑면이고, 두 밑면을 합동 주는 나머지 면들이 옆면이다.",
+    "«이어이면서» · «합동 주는» — 말이 안 됨",
+  ],
+  "sup-base-exponent": [
+    "2³ = 2 × 2 × 2에서 2가 지수, 곱해진 2의 개수인 3이 밑이다.",
+    "밑과 지수가 뒤바뀜(2³ 의 밑은 2 · 지수는 3) — 거짓",
+  ],
+  "sup-equation-sides": [
+    "등식에서 등호의 오른쪽에 있는 식이 좌변, 왼쪽에 있는 식이 우변이며 두 변을 함께 양변이라고 한다.",
+    "좌변 · 우변이 뒤바뀜 — 거짓",
+  ],
+  "sup-y-axis-symmetry": [
+    "y축을 기준으로 x좌표 때 포개지는 두 점은 접었을의 부호만 서로 다르다.",
+    "«x좌표 때» · «접었을의 부호» — 말이 안 됨",
+  ],
+  "sup-point-line-distance": [
+    "직선 밖의 한 점에서 그 직선까지 길이으로 내린 선분의 수직.",
+    "«길이으로 내린» · «선분의 수직» — 말이 안 됨",
+  ],
+  "sup-corresponding-alternate": [
+    "한 직선이 두 직선과 만나서 생기는 각 가운데 엇갈린 위치에 놓인 두 각을 동위각, 두 직선 사이에서 같은 위치에 놓인 두 각을 엇각이라고 한다.",
+    "동위각 · 엇각이 뒤바뀜 — 거짓",
+  ],
+  "sup-parallel-lines": [
+    "두 직선이 같다하면, 이 두 직선을 가로지르는 직선이 만드는 동위각끼리, 엇각끼리 크기가 각각 평행.",
+    "«같다하면» · «각각 평행» — 말이 안 됨",
+  ],
+  "sup-right-triangle-congruence": [
+    "두 직각삼각형은 예각의 길이가 같고, 한 빗변의 크기 또는 다른 한 변의 길이가 같으면 합동이다.",
+    "«예각의 길이» · «빗변의 크기» — 말이 안 됨",
+  ],
+};
+// 두 조각이 대등하게 이어지는 가운데 조각 — «A = B» · «A과 B» · «A와 B» · «A 및 B»(본 카드 대칭 시험과 같은 식)
+const SYMMETRIC_JOIN = /(=|과|와|및)\s*$/;
+// 활용 끝을 떼어 낸 줄기 — 오답 말이 정답 말과 줄기가 같으면 같은 뜻을 다른 칸 꼴로 넣을 수 있다(본 카드 대칭 시험과 같은 목록).
+const ENDINGS = [
+  "진다",
+  "지고",
+  "지며",
+  "지는",
+  "진",
+  "한다",
+  "하고",
+  "하며",
+  "하다",
+  "하는",
+  "한",
+  "이다",
+  "이고",
+  "이며",
+  "인",
+  "된다",
+  "되고",
+  "되며",
+  "되는",
+  "된",
+  "는다",
+  "다",
+  "고",
+  "며",
+  "는",
+];
+const stem = (word: string) => {
+  const t = word.replace(/\s+/g, "");
+  const ending = ENDINGS.find((e) => t.length > e.length && t.endsWith(e));
+  return ending ? t.slice(0, -ending.length) : t;
+};
+
+describe("보충 카드 21장 — 빈칸 맞바꿈 · 대등 잇기 · 활용형", () => {
+  it("감사 표 = 21장 · 맞바꾼 문장이 표와 같고 뜻 문장과 다르다", () => {
+    expect(Object.keys(SWAP_AUDIT)).toEqual(IDS);
+    for (const card of supplementCards) {
+      const swapped =
+        card.pieces[0]! +
+        card.words[1] +
+        card.pieces[1] +
+        card.words[0] +
+        card.pieces[2];
+      const [audited, why] = SWAP_AUDIT[card.id]!;
+      expect({ id: card.id, swapped }).toEqual({
+        id: card.id,
+        swapped: audited,
+      });
+      expect(why.length).toBeGreaterThan(0);
+      expect(swapped).not.toBe(card.definition);
+    }
+  });
+
+  it("가운데 조각이 대등하게 잇는 꼴(«=» · «…과» · «…와» · «및»)이 아니다", () => {
+    for (const card of supplementCards)
+      expect({
+        id: card.id,
+        join: SYMMETRIC_JOIN.test(card.pieces[1]!),
+      }).toEqual({ id: card.id, join: false });
+    expect(SYMMETRIC_JOIN.test(" 곱한 값과 ")).toBe(true);
+  });
+
+  it("오답 말이 정답 말의 활용형이 아니다", () => {
+    for (const card of supplementCards) {
+      const [a0, a1, ...wrong] = card.words;
+      for (const d of wrong)
+        expect({
+          id: card.id,
+          d,
+          same: [a0!, a1!].filter((a) => stem(a) === stem(d!)),
+        }).toEqual({ id: card.id, d, same: [] });
+    }
+    expect(stem("같고")).toBe(stem("같다"));
+  });
+});
+
 describe("보충 카드 21장 — 내용과 담", () => {
   it("후보 21장 순서 그대로, id 는 sup- 로 시작하고 본 카드 230장과 겹치지 않는다", () => {
     expect(supplementCards.map((card) => card.id)).toEqual(IDS);
