@@ -2550,6 +2550,10 @@ def run(args: list[str]) -> tuple[int, str]:
 LAST_PROBE_ERR = ""
 
 
+# 넓은 목록에서 빼는 시험의 표지 — «가드가 무는가»가 아니라 «내용이 바뀌었나»를 잠그는 시험.
+JUDGE_EXCLUDE_MARK = "mutate-elem-tiers: 판정 제외"
+
+
 def engine_test_files() -> list[str]:
     """초등 **엔진을 실제로 부르는** 시험 파일 전부(직접이든 헬퍼를 거쳐서든).
 
@@ -2581,6 +2585,12 @@ def engine_test_files() -> list[str]:
                 helpers.add(os.path.splitext(name)[0])
     out = []
     for rel, txt in tests:
+        # 🔴 **지문 잠금 시험은 뺀다**(2026-09-28 리드 검토). 표 내용을 지문으로 잠그는 시험은 표를
+        #    건드리는 변이 **전부**에 걸려, 좁은 목록이 초록인 변이(가드가 못 무는 변이)를 늘
+        #    RED_WIDE 로 바꾼다 — GREEN 이 구조적으로 안 보이면 이 넓은 목록은 도장이다.
+        #    그런 시험은 파일 안에 `JUDGE_EXCLUDE_MARK` 를 적는다(`elemG6LazyTables.test.ts`).
+        if JUDGE_EXCLUDE_MARK in txt:
+            continue
         if "generateElementaryProblem" in txt or any(
             ("/%s\"" % h) in txt or ("/%s'" % h) in txt for h in helpers
         ):

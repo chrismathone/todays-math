@@ -13,6 +13,7 @@ import { STUDENT_MUST_CHANGE_MESSAGE } from "@/lib/studentRouteAccess";
 import {
   StudentReviewPage,
   StudentReviewStatus,
+  studentFailureText,
 } from "@/components/math-srs/StudentReviewHome";
 import ExplorerHome, {
   type ChestNotice,
@@ -38,7 +39,13 @@ const StudentReplayDialog = dynamic(
   () => import("@/components/math-srs/StudentReplayDialog"),
 );
 const EFFECT_MS = 1200;
-type Failure = { status: number; message: string; request?: ExplorerRequest };
+type Failure = {
+  status: number;
+  message: string;
+  request?: ExplorerRequest;
+  /** Which action failed — a failed «기지 키우기» is said inside its sheet. */
+  action?: ExplorerAction["type"];
+};
 type ChestClaim = { chestId: string; requestId: string };
 type ClaimOutcome =
   | { kind: "saved"; data: ExplorerState }
@@ -46,6 +53,22 @@ type ClaimOutcome =
   | { kind: "refused"; message: string | null }
   | { kind: "conflict" }
   | { kind: "left" };
+/**
+ * Chest saves outlive a screen (05 §8.21): leaving the page inside the app does not
+ * stop them, and a screen opened again reads the record only after they are done —
+ * otherwise it shows a chest still closed and a press sends a new request (409).
+ * An uncertain save's request id is kept here too, so a retry from any screen
+ * returns the receipt instead of a second star.
+ */
+let savingLine: Promise<void> | null = null;
+const chestRetryIds = new Map<string, string>();
+function keepSaving(line: Promise<void>) {
+  savingLine = line;
+  void line.finally(() => {
+    if (savingLine === line) savingLine = null;
+  });
+}
+
 // 05 §8.21 — 원장님 위임 3자 합의(Claude · codex · grok, 2026-09-28).
 const CHEST_FAILED = "별을 받지 못했어요. 상자를 다시 눌러 주세요.";
 const CHEST_RELOADED = "다른 화면에서 기록이 바뀌어 최신 기록을 불러왔어요.";
@@ -100,9 +123,6 @@ function ExplorerGame({ initialView }: { initialView?: "collection" }) {
   >({});
   const claimQueue = useRef<ChestClaim[]>([]);
   const claimRunning = useRef(false);
-  // An uncertain save is retried with its own request id, so a response lost
-  // after the server saved it returns that receipt instead of a second star.
-  const retryIds = useRef(new Map<string, string>());
   const chestEffects = useRef(0);
   const effectChest = useRef<string | null>(null);
   /** The last server state: queued chest saves send its revision. */
@@ -153,10 +173,14 @@ function ExplorerGame({ initialView }: { initialView?: "collection" }) {
 
   useEffect(() => {
     const controller = new AbortController();
-    const timeout = setTimeout(() => controller.abort(), 15000);
+    let timeout: ReturnType<typeof setTimeout> | undefined;
     let current = true;
     void (async () => {
       try {
+        // Chests pressed on a screen just left may still be saving — read after them.
+        if (savingLine) await savingLine;
+        if (!current) return;
+        timeout = setTimeout(() => controller.abort(), 15000);
         const response = await fetch("/api/learn/math-explorers", {
           cache: "no-store",
           signal: controller.signal,
@@ -250,6 +274,7 @@ function ExplorerGame({ initialView }: { initialView?: "collection" }) {
         if (response.status === 409) lastRequest.current = null;
         setError({
           status: response.status,
+          action: action.type,
           request: response.status >= 500 ? input : undefined,
           message:
             json?.error?.message ??
@@ -311,6 +336,7 @@ function ExplorerGame({ initialView }: { initialView?: "collection" }) {
       if (alive.current)
         setError({
           status: 0,
+          action: action.type,
           request: input,
           message: controller.signal.aborted
             ? "응답이 늦어지고 있어요. 같은 요청으로 다시 시도해 주세요."
@@ -339,7 +365,7 @@ function ExplorerGame({ initialView }: { initialView?: "collection" }) {
       ...claimQueue.current,
       {
         chestId,
-        requestId: retryIds.current.get(chestId) ?? crypto.randomUUID(),
+        requestId: chestRetryIds.get(chestId) ?? crypto.randomUUID(),
       },
     ];
     setClaims(claimQueue.current.map((claim) => claim.chestId));
@@ -357,72 +383,75 @@ function ExplorerGame({ initialView }: { initialView?: "collection" }) {
     timer.current = setTimeout(() => {
       if (alive.current) setChestStars(null);
     }, EFFECT_MS);
-    void saveClaims();
+    saveClaims();
   }
 
-  async function saveClaims() {
+  function saveClaims() {
     if (claimRunning.current) return;
     claimRunning.current = true;
-    try {
-      while (claimQueue.current.length) {
-        const claim = claimQueue.current[0]!;
-        const outcome = await saveClaim(claim);
-        if (outcome.kind === "left") {
-          claimQueue.current = [];
-          if (alive.current) setClaims([]);
-          return;
-        }
-        let fresh: ExplorerState | null = null;
-        let notice: ChestNotice | null = null;
-        if (outcome.kind === "saved") {
-          fresh = outcome.data;
-          latest.current = fresh;
-          retryIds.current.delete(claim.chestId);
-        } else {
-          // Read the record before deciding: a lost response may have been saved
-          // (then the chest simply stays opened), and the next chest in line must
-          // go out with the current revision, not one a failed save left behind.
-          fresh = await readLatest();
-          const saved = !!fresh?.chests.find(
-            (item) => item.id === claim.chestId,
-          )?.claimed;
-          if (outcome.kind === "failed" && saved)
-            retryIds.current.delete(claim.chestId);
-          else {
-            if (outcome.kind === "failed")
-              retryIds.current.set(claim.chestId, claim.requestId);
-            const reloaded = outcome.kind === "conflict" && !!fresh;
-            notice = {
-              chestId: claim.chestId,
-              tone: reloaded ? "status" : "alert",
-              text:
-                outcome.kind === "refused" && outcome.message
-                  ? outcome.message
-                  : reloaded
-                    ? CHEST_RELOADED
-                    : CHEST_FAILED,
-            };
-          }
-        }
-        claimQueue.current = claimQueue.current.slice(1);
-        if (!alive.current) continue;
-        // One commit: the record, the taken-back star, its notice and the effect.
-        if (fresh) setState(fresh);
-        if (notice) {
-          const shown = notice;
-          setChestNotices((notices) => ({
-            ...notices,
-            [shown.chestId]: shown,
-          }));
-          if (effectChest.current === claim.chestId) {
-            if (timer.current) clearTimeout(timer.current);
-            setChestStars(null);
-          }
-        }
-        setClaims(claimQueue.current.map((item) => item.chestId));
+    keepSaving(
+      runClaims().finally(() => {
+        claimRunning.current = false;
+      }),
+    );
+  }
+
+  async function runClaims() {
+    while (claimQueue.current.length) {
+      const claim = claimQueue.current[0]!;
+      const outcome = await saveClaim(claim);
+      if (outcome.kind === "left") {
+        claimQueue.current = [];
+        if (alive.current) setClaims([]);
+        return;
       }
-    } finally {
-      claimRunning.current = false;
+      let fresh: ExplorerState | null = null;
+      let notice: ChestNotice | null = null;
+      if (outcome.kind === "saved") {
+        fresh = outcome.data;
+        latest.current = fresh;
+        chestRetryIds.delete(claim.chestId);
+      } else {
+        // Read the record before deciding: a lost response may have been saved
+        // (then the chest simply stays opened), and the next chest in line must
+        // go out with the current revision, not one a failed save left behind.
+        fresh = await readLatest();
+        const saved = !!fresh?.chests.find((item) => item.id === claim.chestId)
+          ?.claimed;
+        if (outcome.kind === "failed" && saved)
+          chestRetryIds.delete(claim.chestId);
+        else {
+          if (outcome.kind === "failed")
+            chestRetryIds.set(claim.chestId, claim.requestId);
+          const reloaded = outcome.kind === "conflict" && !!fresh;
+          notice = {
+            chestId: claim.chestId,
+            tone: reloaded ? "status" : "alert",
+            text:
+              outcome.kind === "refused" && outcome.message
+                ? outcome.message
+                : reloaded
+                  ? CHEST_RELOADED
+                  : CHEST_FAILED,
+          };
+        }
+      }
+      claimQueue.current = claimQueue.current.slice(1);
+      if (!alive.current) continue;
+      // One commit: the record, the taken-back star, its notice and the effect.
+      if (fresh) setState(fresh);
+      if (notice) {
+        const shown = notice;
+        setChestNotices((notices) => ({
+          ...notices,
+          [shown.chestId]: shown,
+        }));
+        if (effectChest.current === claim.chestId) {
+          if (timer.current) clearTimeout(timer.current);
+          setChestStars(null);
+        }
+      }
+      setClaims(claimQueue.current.map((item) => item.chestId));
     }
   }
 
@@ -497,6 +526,18 @@ function ExplorerGame({ initialView }: { initialView?: "collection" }) {
 
   // While a chest is saving, every other study action waits too (05 §8.21).
   const saving = claims.length > 0;
+  // The base sheet is a modal over the page status — a failed upgrade is said in it.
+  const retryRequest = error?.request;
+  const baseFailure =
+    error?.action === "upgrade"
+      ? {
+          text: studentFailureText(error),
+          retry:
+            retryRequest && !busy
+              ? () => void send(retryRequest.action, retryRequest)
+              : undefined,
+        }
+      : null;
   const inPractice =
     practicing &&
     !!state?.currentActivity &&
@@ -680,6 +721,7 @@ function ExplorerGame({ initialView }: { initialView?: "collection" }) {
             }
             onCloseBase={() => setChestNotices({})}
             onSheetChange={sheetChanged}
+            baseFailure={baseFailure}
             onAction={(action) =>
               action.type === "chest"
                 ? claimChest(action.chestId)

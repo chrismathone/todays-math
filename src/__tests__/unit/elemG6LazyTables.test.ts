@@ -20,6 +20,10 @@
  *
  * ⚠️ 표 규칙(범위·가드)을 **일부러** 바꾸면 그 표의 지문만 바뀐다 — 바뀐 표가 의도한 것인지 보고 다시 찍는다.
  *    이름이 없는 표가 생기거나 없어지면 ⑴ 이 먼저 운다.
+ *
+ * mutate-elem-tiers: 판정 제외 — 이 파일은 «가드가 무는가»가 아니라 «표 내용이 바뀌었나»를 잠근다.
+ *    표를 건드리는 변이는 전부 여기에 걸리므로 변이 하네스의 넓은 목록에 두면 GREEN 이 안 보인다
+ *    (`scripts/qa/mutate-elem-tiers.py` 의 `JUDGE_EXCLUDE_MARK`).
  */
 import { createHash } from "node:crypto";
 import { readFileSync } from "node:fs";

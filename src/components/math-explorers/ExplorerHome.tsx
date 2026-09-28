@@ -225,6 +225,7 @@ export default function ExplorerHome({
   chestEffect,
   onCloseBase,
   onSheetChange,
+  baseFailure = null,
   onAction,
   onStart,
   onResume,
@@ -244,6 +245,11 @@ export default function ExplorerHome({
   onCloseBase?: () => void;
   /** Whether a home sheet (modal) is open — page-level effects wait for it. */
   onSheetChange?: (open: boolean) => void;
+  /**
+   * A failed «기지 키우기», said inside the base sheet (the page status sits under
+   * the modal). With `retry`, pressing the button again sends the same request.
+   */
+  baseFailure?: { text: string; retry?: () => void } | null;
   onAction: (action: ExplorerAction) => void;
   onStart: () => void;
   onResume: () => void;
@@ -281,6 +287,13 @@ export default function ExplorerHome({
     };
   }, [state, claims]);
   const saving = claims.length > 0;
+  // A failure line stays only while the record still shows its chest unopened — a
+  // newer record (another save, a reload) that shows it received takes it away.
+  // The 409 line stays: it says why the chest is shown received.
+  const received = useMemo(
+    () => new Set(state.chests.filter((c) => c.claimed).map((c) => c.id)),
+    [state.chests],
+  );
   const mission = state.expedition?.mission;
   const next = state.expedition?.next;
   const activeReview = !!state.session?.reviewOnly && !state.session.done;
@@ -580,11 +593,22 @@ export default function ExplorerHome({
             <button
               type="button"
               className={s.primary}
-              disabled={busy || saving || shown.stars < upgradeCost}
-              onClick={() => onAction({ type: "upgrade" })}
+              disabled={
+                baseFailure?.retry
+                  ? saving
+                  : busy || saving || shown.stars < upgradeCost
+              }
+              onClick={
+                baseFailure?.retry ?? (() => onAction({ type: "upgrade" }))
+              }
             >
               기지 키우기 · ✦ {upgradeCost}
             </button>
+            {baseFailure ? (
+              <p className={r.notice} role="alert">
+                {baseFailure.text}
+              </p>
+            ) : null}
             {shown.stars < upgradeCost ? (
               <p className={s.baseShort}>
                 별 {upgradeCost - shown.stars}개를 더 모으면{" "}
@@ -609,8 +633,11 @@ export default function ExplorerHome({
                   title={unit.title}
                   chests={chests}
                   busy={busy}
-                  notices={chests.flatMap(
-                    (chest) => chestNotices[chest.id] ?? [],
+                  notices={chests.flatMap((chest) =>
+                    chestNotices[chest.id]?.tone === "alert" &&
+                    received.has(chest.id)
+                      ? []
+                      : (chestNotices[chest.id] ?? []),
                   )}
                   onClaim={claimChest}
                 />

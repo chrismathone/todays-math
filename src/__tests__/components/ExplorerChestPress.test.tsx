@@ -74,7 +74,12 @@ const [readyUnit, claimedUnit] = definitionUnits.filter(
 function storedWithReadyChests({
   bothRows = false,
   doneDay = false,
-}: { bothRows?: boolean; doneDay?: boolean } = {}): StoredExplorer {
+  stars = 5,
+}: {
+  bothRows?: boolean;
+  doneDay?: boolean;
+  stars?: number;
+} = {}): StoredExplorer {
   const stored = createExplorerState(student.id, 3);
   const progress = {
     level: 1,
@@ -86,7 +91,7 @@ function storedWithReadyChests({
   const cards = [readyUnit, claimedUnit].flatMap((unit) =>
     definitionCards.filter((card) => card.unit === unit.id).slice(0, 4),
   );
-  stored.profile.stars = 5;
+  stored.profile.stars = stars;
   stored.profile.definitions = {
     courseGrade: 3,
     runs: 2,
@@ -171,6 +176,14 @@ function server(initial: StoredExplorer) {
   return {
     posts,
     stars: () => stored.profile.stars,
+    /** 다른 탭이 이 상자를 받는다(이 화면은 모른다). */
+    claimElsewhere(chestId: string) {
+      apply({
+        requestId: crypto.randomUUID(),
+        expectedRevision: revision,
+        action: { type: "chest", chestId },
+      });
+    },
     /** 이후 응답에 실을 오늘의 탐험(D-144 칸 효과를 켜는 값). */
     setExpedition(value: unknown) {
       expedition = value;
@@ -665,3 +678,128 @@ describe("chest press — with the day's tile effect (D-144)", () => {
     expect(await screen.findByText("별 +3")).toBeTruthy();
   });
 });
+
+/**
+ * 리드 2차 검토(2026-09-28) — 안내가 새 기록과 맞나 · 다시 연 화면 · 한 시트 안 별 수 · 기지 키우기 실패.
+ */
+describe("chest press — second review", () => {
+  const FAILED = "별을 받지 못했어요. 상자를 다시 눌러 주세요.";
+
+  it("takes a chest's notice away once a newer record shows that chest received", async () => {
+    const api = server(storedWithReadyChests());
+    const { sheet, ready } = await openBase();
+    api.next("offline");
+    fireEvent.click(ready[0]);
+    expect(await within(sheet).findByRole("alert")).toHaveTextContent(FAILED);
+
+    // 다른 탭이 그 상자를 받았다 — 다음 상자의 저장이 409 로 새 기록을 읽어 온다.
+    api.claimElsewhere(chestIdOf(ready[0]));
+    fireEvent.click(ready[1]);
+    await waitFor(() =>
+      expect(
+        within(sheet).getByText(
+          "다른 화면에서 기록이 바뀌어 최신 기록을 불러왔어요.",
+        ),
+      ).toBeTruthy(),
+    );
+    expect(ready[0].getAttribute("data-state")).toBe("opened");
+    // «보상 획득» 아래에 «별을 받지 못했어요»가 남지 않는다.
+    expect(within(sheet).queryByText(FAILED)).toBeNull();
+  });
+
+  it("opens a screen again only after the chests still being saved are saved", async () => {
+    const api = server(storedWithReadyChests());
+    const first = await openBase();
+    const release = api.hold();
+    act(() => {
+      fireEvent.click(first.ready[0]);
+      fireEvent.click(first.ready[1]);
+    });
+    first.unmount();
+
+    render(<StudentMathExplorers />);
+    await act(async () => release());
+    await waitFor(() => expect(api.stars()).toBe(7));
+    fireEvent.click(await screen.findByRole("button", { name: /우리 기지/ }));
+    const sheet = await screen.findByRole("dialog", { name: "우리 기지" });
+    expect(within(sheet).getByText("✦ 7")).toBeTruthy();
+    expect(
+      within(sheet)
+        .getAllByRole("button")
+        .filter((button) => button.getAttribute("data-state") === "ready"),
+    ).toHaveLength(0);
+    expect(api.posts).toHaveLength(2);
+  });
+
+  it("keeps a failed chest's request id for the screen opened again", async () => {
+    const api = server(storedWithReadyChests());
+    const first = await openBase();
+    api.next("offline");
+    fireEvent.click(first.ready[0]);
+    await within(first.sheet).findByRole("alert");
+    first.unmount();
+
+    const again = await openBase();
+    fireEvent.click(again.ready[0]);
+    await waitFor(() => expect(api.posts).toHaveLength(2));
+    expect(api.posts[1].requestId).toBe(api.posts[0].requestId);
+    await waitFor(() => expect(api.stars()).toBe(6));
+  });
+
+  it("shows one star count everywhere in and around the sheet while chests save", async () => {
+    const api = server(storedWithReadyChests({ stars: 1 }));
+    const { sheet, ready } = await openBase();
+    const grow = within(sheet).getByRole("button", { name: /기지 키우기/ });
+    expect(
+      within(sheet).getByText("별 2개를 더 모으면 1단계예요."),
+    ).toBeTruthy();
+    const release = api.hold();
+
+    fireEvent.click(ready[0]);
+    const badge = screen.getByRole("button", { name: "우리 기지, 모은 별 2" });
+    expect(badge.querySelector("em")?.textContent).toBe("✦ 2");
+    expect(within(sheet).getByText("✦ 2")).toBeTruthy();
+    expect(
+      within(sheet).getByText("별 1개를 더 모으면 1단계예요."),
+    ).toBeTruthy();
+    expect(grow).toBeDisabled();
+
+    fireEvent.click(ready[1]);
+    expect(
+      screen
+        .getByRole("button", { name: "우리 기지, 모은 별 3" })
+        .querySelector("em")?.textContent,
+    ).toBe("✦ 3");
+    expect(within(sheet).getByText("✦ 3")).toBeTruthy();
+    expect(within(sheet).queryByText(/개를 더 모으면/)).toBeNull();
+    expect(grow).toBeDisabled();
+
+    await act(async () => release());
+    await waitFor(() => expect(grow).toBeEnabled());
+    expect(api.stars()).toBe(3);
+  });
+
+  it("says a failed base upgrade inside the sheet and retries it with the same request", async () => {
+    const api = server(storedWithReadyChests());
+    const { sheet } = await openBase();
+    api.next(500);
+    const grow = within(sheet).getByRole("button", { name: /기지 키우기/ });
+
+    fireEvent.click(grow);
+    expect(await within(sheet).findByRole("alert")).toHaveTextContent(
+      "학습 기록을 저장하지 못했어요.",
+    );
+    expect(grow).toBeEnabled();
+    fireEvent.click(grow);
+    await waitFor(() => expect(api.posts).toHaveLength(2));
+    expect(api.posts[1].requestId).toBe(api.posts[0].requestId);
+    expect(await within(sheet).findByText("1단계")).toBeTruthy();
+    expect(within(sheet).queryByRole("alert")).toBeNull();
+  });
+});
+
+function chestIdOf(button: HTMLElement) {
+  const label = button.getAttribute("aria-label") ?? "";
+  const after = Number(/^(\d+)개 개념/.exec(label)?.[1]);
+  return `${readyUnit.id}:${after}`;
+}
