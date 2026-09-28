@@ -18,6 +18,7 @@ import {
 import { renderFigureSpec } from "@/lib/figure/renderFigureSpec";
 import { crossSiteError, noStore } from "@/lib/learn/accountRoutes";
 import { requireStudent } from "@/lib/learn/studentRequest";
+import { learnNow } from "@/lib/learn/testConsoleServer";
 import {
   CourseConflict,
   CourseInvalidInput,
@@ -53,7 +54,7 @@ export async function handleCourseStudentRequest(
   if (gate.response) return noStore(gate.response);
   if (operation !== "read" && !sameOriginMutation(request))
     return noStore(crossSiteError());
-  const now = new Date();
+  const now = await learnNow(gate.student.studentId, request);
   try {
     const student = await loadCourseStudent(gate.student.studentId);
     if (
@@ -92,7 +93,8 @@ export async function handleCourseStudentRequest(
             now,
             seed,
             randomUUID,
-            expeditionCourseRecommendation(state, now)?.sectionId === bankSectionId
+            expeditionCourseRecommendation(state, now)?.sectionId ===
+              bankSectionId
               ? bankCandidates
               : [],
           );
@@ -116,6 +118,8 @@ export async function handleCourseStudentRequest(
         },
         undefined,
         expectedRevision,
+        {},
+        now,
       );
     }
     return noStore(

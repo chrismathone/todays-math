@@ -64,6 +64,18 @@ const BRAND_RULES: readonly Rule[] = [
   { methods: PAGE, path: "/brand/**", why: "로고" },
 ];
 
+/**
+ * 테스트 도구판(원장님 2026-09-28) — 경로만 연다. **시험용 계정인지는 라우트가 DB 로 본다**(아니면 404).
+ * 첫 로그인 상태에서도 연다: 도구판이 그 상태를 만들 수 있으니 되돌리는 길도 있어야 한다.
+ */
+const TEST_CONSOLE_RULES: readonly Rule[] = [
+  {
+    methods: ["GET", "POST"],
+    path: "/api/learn/test-console",
+    why: "시험용 학생 계정의 테스트 도구판 — 라우트가 계정을 다시 확인",
+  },
+];
+
 /** 첫 비밀번호를 바꾼 학생 — 목록 → 재생(D-124 ⑵) */
 const ACTIVE_RULES: readonly Rule[] = [
   {
@@ -144,6 +156,7 @@ const ACTIVE_RULES: readonly Rule[] = [
     path: CLIENT_LOG_ENDPOINT,
     why: "브라우저 오류 보고 — 학생 화면의 오류도 모은다(원장님 2026-09-22). 보내기뿐, 읽는 것은 없다",
   },
+  ...TEST_CONSOLE_RULES,
   ...EXIT_RULES,
   ...BRAND_RULES,
 ];
@@ -156,6 +169,7 @@ const MUST_CHANGE_RULES: readonly Rule[] = [
     path: CLIENT_LOG_ENDPOINT,
     why: "브라우저 오류 보고 — 비밀번호 바꾸기 화면의 오류도 와야 한다(원장님 2026-09-22)",
   },
+  ...TEST_CONSOLE_RULES,
   ...EXIT_RULES,
   ...BRAND_RULES,
 ];

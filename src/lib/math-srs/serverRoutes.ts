@@ -16,6 +16,7 @@ import {
 import { crossSiteError, noStore } from "@/lib/learn/accountRoutes";
 import { requireStudent } from "@/lib/learn/studentRequest";
 import { loadSrsStudentContext } from "./serverContext";
+import { learnNow } from "@/lib/learn/testConsoleServer";
 import { srsStateDto } from "./serverDto";
 import {
   changeSrsState,
@@ -54,7 +55,7 @@ export async function handleSrsStudentRequest(
   if (gate.response) return noStore(gate.response);
   if (operation !== "read" && !sameOriginMutation(request))
     return noStore(crossSiteError());
-  const now = new Date();
+  const now = await learnNow(gate.student.studentId, request);
   try {
     const context = await loadSrsStudentContext(gate.student.studentId, now);
     if (!context) return noStore(unauthorizedError());
@@ -68,22 +69,37 @@ export async function handleSrsStudentRequest(
         const parsed = mathSrsStartSchema.safeParse(body);
         if (!parsed.success) return noStore(validationError(parsed.error));
         const seed = randomInt(0, 0x1_0000_0000);
-        saved = await changeSrsState(studentId, (state) =>
-          startSrsMission(state, studentId, now, seed, randomUUID),
+        saved = await changeSrsState(
+          studentId,
+          (state) => startSrsMission(state, studentId, now, seed, randomUUID),
+          undefined,
+          undefined,
+          {},
+          now,
         );
       } else if (operation === "hint") {
         const parsed = mathSrsHintInputSchema.safeParse(body);
         if (!parsed.success) return noStore(validationError(parsed.error));
         requestedMissionId = parsed.data.missionId;
-        saved = await changeSrsState(studentId, (state) =>
-          revealSrsHint(state, parsed.data),
+        saved = await changeSrsState(
+          studentId,
+          (state) => revealSrsHint(state, parsed.data),
+          undefined,
+          undefined,
+          {},
+          now,
         );
       } else {
         const parsed = mathSrsAttemptInputSchema.safeParse(body);
         if (!parsed.success) return noStore(validationError(parsed.error));
         requestedMissionId = parsed.data.missionId;
-        saved = await changeSrsState(studentId, (state) =>
-          submitSrsAttempt(state, studentId, parsed.data, now),
+        saved = await changeSrsState(
+          studentId,
+          (state) => submitSrsAttempt(state, studentId, parsed.data, now),
+          undefined,
+          undefined,
+          {},
+          now,
         );
       }
     }

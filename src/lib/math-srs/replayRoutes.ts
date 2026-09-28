@@ -15,6 +15,7 @@ import {
 import { renderFigureSpec } from "@/lib/figure/renderFigureSpec";
 import { crossSiteError, noStore } from "@/lib/learn/accountRoutes";
 import { requireStudent } from "@/lib/learn/studentRequest";
+import { learnNow } from "@/lib/learn/testConsoleServer";
 import { courseFailureResponse } from "./courseRoutes";
 import { loadCourseStudent } from "./courseServer";
 import { replayFigureSpec, replayProblem } from "./replay";
@@ -50,7 +51,7 @@ export async function handleReplayRequest(
     const student = await loadCourseStudent(gate.student.studentId);
     if (!student?.studentAccount || student.studentAccount.disabledAt)
       return noStore(unauthorizedError());
-    const now = new Date();
+    const now = await learnNow(gate.student.studentId, request);
     let saved = await readSrsState(gate.student.studentId);
     const { kind, step } = target;
     if (input?.recordRetry) {
@@ -62,16 +63,23 @@ export async function handleReplayRequest(
       )
         throw new CourseInvalidInput("오답 재풀이 요청을 확인해 주세요.");
       const retry = input;
-      saved = await changeSrsState(gate.student.studentId, (state) => {
-        replayProblem(state, kind, step, now, retry);
-        return recordSrsRetry(
-          state,
-          retry.missionId!,
-          retry.problemId,
-          retry.submittedAnswer,
-          now,
-        );
-      });
+      saved = await changeSrsState(
+        gate.student.studentId,
+        (state) => {
+          replayProblem(state, kind, step, now, retry);
+          return recordSrsRetry(
+            state,
+            retry.missionId!,
+            retry.problemId,
+            retry.submittedAnswer,
+            now,
+          );
+        },
+        undefined,
+        undefined,
+        {},
+        now,
+      );
     }
     if ("figure" in target && target.figure === "true") {
       if (!target.dayId)
