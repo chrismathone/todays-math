@@ -4,6 +4,7 @@
     python scripts/qa/mutate-elem-tiers.py g3
     python scripts/qa/mutate-elem-tiers.py g5
     python scripts/qa/mutate-elem-tiers.py g6
+    python scripts/qa/mutate-elem-tiers.py --anchors g6   # 자리만 센다(파일을 안 쓴다)
 
 **판정 순서가 이 도구의 알맹이다** (CLAUDE.md 2026-08-20·08-21):
 
@@ -1632,8 +1633,8 @@ G6_MUTS = [
         #    답을 `-1` 로 물으면 어떤 짝도 안 맞아 가드가 통째로 죽는다(8,323 → 7,939 이
         #    되돌아온다). `false &&` 는 못 쓴다 — 위 ⑵ 참조.
         "반증 ⑥ 가드 제거 — 2-2-3 심화상이 «한 걸음이면 나오는» 짝을 쓴다",
-        "            [win[0]!, 0],\n          )\n        )\n          continue;\n        NAT_TWO.push",
-        "            [-1, 0],\n          )\n        )\n          continue;\n        NAT_TWO.push",
+        "              [win[0]!, 0],\n            )\n          )\n            continue;\n          table.push",
+        "              [-1, 0],\n            )\n          )\n            continue;\n          table.push",
     ),
     (
         # ㉡ — 구간에 자연수가 하나뿐이면 마디가 굳은 것이고 그건 심화하다.
@@ -1663,8 +1664,8 @@ G6_MUTS = [
     (
         # ㉠ — 둘째 분배를 안 보고 첫 후보를 답한다.
         "둘째 분배 무시 — 2-2-5 심화상이 첫 후보를 답한다",
-        "        const win = list.filter(fits);\n        if (win.length !== 1) continue;\n        const x10 = win[0]!;",
-        "        const win = list.filter(fits);\n        if (win.length !== 1) continue;\n        const x10 = list[0]!;",
+        "          const win = list.filter(fits);\n          if (win.length !== 1) continue;\n          const x10 = win[0]!;",
+        "          const win = list.filter(fits);\n          if (win.length !== 1) continue;\n          const x10 = list[0]!;",
     ),
     # ── 확대 갈래 **2차분** — 1-2 · 1-6 · 2-4 (D-113·D-115, 2026-08-31) ──────────
     #
@@ -1679,15 +1680,15 @@ G6_MUTS = [
     (
         # ㉠ — 구간에 후보가 하나뿐이면 마디가 이미 굳은 것이고 그건 심화하다.
         "구간 훼손 — 1-2-1 심화중의 구간에 후보가 하나뿐이라 성질이 일을 안 한다",
-        "        if (up - lo < 5) continue;\n        if (multiplesBetween(lo, up, one).length !== 1) continue;\n        if (!backsolveSafe([s, h, lo, up], n)) continue;\n        PRISM_AREA_MID.push",
-        "        if (up - lo < 1) continue;\n        if (multiplesBetween(lo, up, one).length !== 1) continue;\n        if (!backsolveSafe([s, h, lo, up], n)) continue;\n        PRISM_AREA_MID.push",
+        "          if (up - lo < 5) continue;\n          if (multiplesBetween(lo, up, one).length !== 1) continue;\n          if (!backsolveSafe([s, h, lo, up], n)) continue;\n          table.push",
+        "          if (up - lo < 1) continue;\n          if (multiplesBetween(lo, up, one).length !== 1) continue;\n          if (!backsolveSafe([s, h, lo, up], n)) continue;\n          table.push",
     ),
     (
         # ㉣ 반증 ⑥ — 답을 `-1` 로 물으면 어떤 짝도 안 맞아 가드가 통째로 죽는다.
         #    (`false &&` 는 쓰지 않는다 — 파일럿이 연산자 묶임에 물린 자리다.)
         "반증 ⑥ 가드 제거 — 1-2-1 심화중이 «한 걸음이면 나오는» 짝을 쓴다 (실측 1,802건)",
-        "        if (!backsolveSafe([s, h, lo, up], n)) continue;\n        PRISM_AREA_MID.push",
-        "        if (!backsolveSafe([s, h, lo, up], -1)) continue;\n        PRISM_AREA_MID.push",
+        "          if (up - lo < 5) continue;\n          if (multiplesBetween(lo, up, one).length !== 1) continue;\n          if (!backsolveSafe([s, h, lo, up], n)) continue;\n          table.push",
+        "          if (up - lo < 5) continue;\n          if (multiplesBetween(lo, up, one).length !== 1) continue;\n          if (!backsolveSafe([s, h, lo, up], -1)) continue;\n          table.push",
     ),
     (
         # ㉡ — 구간 안에 $3$ 의 배수가 둘이면 답이 둘이 된다(지면 자체가 틀린다).
@@ -1704,16 +1705,16 @@ G6_MUTS = [
     (
         # ㉣ 반증 ⑥ — 1-6-1 심화중.
         "반증 ⑥ 가드 제거 — 1-6-1 심화중이 «한 걸음이면 나오는» 짝을 쓴다 (실측 994건)",
-        "        if (!backsolveSafe([w, d, lo, up], h)) continue;\n        SURF_RANGE_MID.push",
-        "        if (!backsolveSafe([w, d, lo, up], -1)) continue;\n        SURF_RANGE_MID.push",
+        "          if (!backsolveSafe([w, d, lo, up], h)) continue;\n          table.push",
+        "          if (!backsolveSafe([w, d, lo, up], -1)) continue;\n          table.push",
     ),
     (
         # ㉣ 반증 ⑥ — 1-6-2 심화중 (실측 61/279 를 거른다).
         #    ⚠️ 처음엔 「짝이 정확히 하나인가」를 겨눴는데 그 가드는 **대수적으로 늘 참**이라
         #    「산출물이 그대로」로 거부됐다. 죽은 가드를 지우고 살아 있는 것을 겨눈다.
         "반증 ⑥ 가드 제거 — 1-6-2 심화중이 «한 걸음이면 나오는» 짝을 쓴다 (실측 61건)",
-        "      if (!backsolveSafe([v, w, gap], d)) continue;\n      VOL_PAIR_MID.push",
-        "      if (!backsolveSafe([v, w, gap], -1)) continue;\n      VOL_PAIR_MID.push",
+        "        if (!backsolveSafe([v, w, gap], d)) continue;\n        table.push",
+        "        if (!backsolveSafe([v, w, gap], -1)) continue;\n        table.push",
     ),
     (
         # ㉢ — 상한이 삼조를 둘 이상 남기면 답이 하나로 안 선다.
@@ -1724,16 +1725,16 @@ G6_MUTS = [
         #    에서 끊겨 `kept` 가 늘 하나다. 「결함을 «가능»하게만 만들고 «반드시 밟도록»
         #    안 만든」 그 자리라, 고리와 가드를 **함께** 푼다.
         "후보 훼손 — 1-6-2 심화상의 상한이 삼조를 둘 이상 남긴다",
-        "  for (let cap = longest[0]! + 1; cap <= longest[1]!; cap += 1) {\n    const kept = triples.filter((t) => t[2] < cap);\n    if (kept.length !== 1) continue;",
-        "  for (let cap = longest[0]! + 1; cap <= longest[2]!; cap += 1) {\n    const kept = triples.filter((t) => t[2] < cap);\n    if (kept.length < 1) continue;",
+        "    for (let cap = longest[0]! + 1; cap <= longest[1]!; cap += 1) {\n      const kept = triples.filter((t) => t[2] < cap);\n      if (kept.length !== 1) continue;",
+        "    for (let cap = longest[0]! + 1; cap <= longest[2]!; cap += 1) {\n      const kept = triples.filter((t) => t[2] < cap);\n      if (kept.length < 1) continue;",
     ),
     (
         # ㉢ — 둘째 비 조건을 통과하는 전체가 둘이면 답이 하나로 안 선다.
         #    ⚠️ 처음엔 「후보가 셋 이상인가」를 겨눴는데 창 너비가 늘 $3s+2$·$4s+2$ 라
         #    후보 수가 언제나 3~4 다 — **그 가드는 죽어 있다.** 살아 있는 것은 이쪽이다.
         "후보 훼손 — 2-4-5 심화상의 둘째 비 조건이 전체를 하나로 못 남긴다",
-        "            const win = cands.filter((v) => ((v / s) * a) % t === 0);\n            if (win.length !== 1) continue;",
-        "            const win = cands.filter((v) => ((v / s) * a) % t === 0);\n            if (win.length < 1) continue;",
+        "              const win = cands.filter((v) => ((v / s) * a) % t === 0);\n              if (win.length !== 1) continue;",
+        "              const win = cands.filter((v) => ((v / s) * a) % t === 0);\n              if (win.length < 1) continue;",
     ),
     (
         # ㉠ — 간단히 했을 때 후항이 $b$ 가 아닌 세로가 들어오면 **발문이 거짓말**이 된다.
@@ -1765,8 +1766,8 @@ G6_MUTS = [
     (
         # ㉠ — 창에 «답이 아닌 수»가 하나도 없으면 창이 곧 답이라 성질이 일을 안 한다.
         "구간 훼손 — 1-1-2 심화중의 창이 답 하나만 담아도 좋다 (실측 5/55)",
-        "          if (win.length < 3 || win.length > 8) continue;\n          // 창 안에 **답보다 작은 수**가 하나는 있어야 「가장 작은 것」이 안 통한다.",
-        "          if (win.length < 1 || win.length > 8) continue;\n          // 창 안에 **답보다 작은 수**가 하나는 있어야 「가장 작은 것」이 안 통한다.",
+        "            if (win.length < 3 || win.length > 8) continue;\n            // 창 안에 **답보다 작은 수**가 하나는 있어야 「가장 작은 것」이 안 통한다.",
+        "            if (win.length < 1 || win.length > 8) continue;\n            // 창 안에 **답보다 작은 수**가 하나는 있어야 「가장 작은 것」이 안 통한다.",
     ),
     (
         # ㉣ 반증 ⑥ — 1-1-2. 이 자리가 앞판에서 실제로 샌 곳이다(생성기가 분수를 두 값으로 셌다).
@@ -1876,8 +1877,8 @@ G6_MUTS = [
     ),
     (
         "유일성 가드 무르기 — 창 안에 조건을 지키는 나누는 수가 여럿이어도 낸다",
-        "        if (hit.length !== 1) continue;",
-        "        if (hit.length < 1) continue;",
+        "        const hit = cands.filter((d) => keep(xc, d));\n        if (hit.length !== 1) continue;",
+        "        const hit = cands.filter((d) => keep(xc, d));\n        if (hit.length < 1) continue;",
     ),
     (
         "창 좁히기 — 1-3-3 후보를 하나까지 허용(견줄 것이 없어진다)",
@@ -2549,6 +2550,10 @@ def run(args: list[str]) -> tuple[int, str]:
 LAST_PROBE_ERR = ""
 
 
+# 넓은 목록에서 빼는 시험의 표지 — «가드가 무는가»가 아니라 «내용이 바뀌었나»를 잠그는 시험.
+JUDGE_EXCLUDE_MARK = "mutate-elem-tiers: 판정 제외"
+
+
 def engine_test_files() -> list[str]:
     """초등 **엔진을 실제로 부르는** 시험 파일 전부(직접이든 헬퍼를 거쳐서든).
 
@@ -2580,6 +2585,12 @@ def engine_test_files() -> list[str]:
                 helpers.add(os.path.splitext(name)[0])
     out = []
     for rel, txt in tests:
+        # 🔴 **지문 잠금 시험은 뺀다**(2026-09-28 리드 검토). 표 내용을 지문으로 잠그는 시험은 표를
+        #    건드리는 변이 **전부**에 걸려, 좁은 목록이 초록인 변이(가드가 못 무는 변이)를 늘
+        #    RED_WIDE 로 바꾼다 — GREEN 이 구조적으로 안 보이면 이 넓은 목록은 도장이다.
+        #    그런 시험은 파일 안에 `JUDGE_EXCLUDE_MARK` 를 적는다(`elemG6LazyTables.test.ts`).
+        if JUDGE_EXCLUDE_MARK in txt:
+            continue
         if "generateElementaryProblem" in txt or any(
             ("/%s\"" % h) in txt or ("/%s'" % h) in txt for h in helpers
         ):
@@ -2840,9 +2851,30 @@ def failed_tests(test_paths: str | list[str]) -> tuple[int, list[str]]:
     return code, names
 
 
+def check_anchors(targets: list[str]) -> int:
+    """변이 자리마다 대상 파일에서 **정확히 한 곳**을 무는지만 센다 — 파일은 안 쓴다.
+
+    대상 파일을 포맷 · 코드모드로 다시 쓴 뒤 회차를 돌리기 **전에** 부른다(메모리 «포맷 →
+    앵커 재검증 → md5»). 2026-09-28: g6 후보 표를 `lazyTable` 로 감싸자 들여쓰기 +2칸 ·
+    `X.push` → `table.push` 로 g6 앵커 102개 중 열이 죽었는데, 회차를 돌려야만 «??»로 보였다.
+    """
+    bad = 0
+    for which in targets:
+        target = TARGETS[which]
+        text = io.open(os.path.join(ROOT, target["file"]), encoding="utf-8").read()
+        dead = [(i, name, text.count(before)) for i, (name, before, _after) in enumerate(target["muts"]) if text.count(before) != 1]
+        print(f"{which} · {target['file']} · 변이 {len(target['muts'])} · 한 곳이 아닌 자리 {len(dead)}")
+        for i, name, count in dead:
+            print(f"   {i:>3}  {count}곳  {name}")
+        bad += len(dead)
+    return 1 if bad else 0
+
+
 def main() -> int:
     if "--recover" in sys.argv:
         return recover()
+    if "--anchors" in sys.argv:
+        return check_anchors([a for a in sys.argv[1:] if a in TARGETS] or list(TARGETS))
     which = sys.argv[1] if len(sys.argv) > 1 else "g3"
     if inflight_guard(which):
         return 2

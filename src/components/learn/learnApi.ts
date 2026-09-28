@@ -8,6 +8,7 @@
  * - 시청 보고는 실패해도 조용하다(브리프 §1.2 — 다음 보고가 덮는다). 부르는 쪽이 다시 보낸다.
  */
 import type { ConceptLectureForStudent } from "@/contracts/conceptLecture.contract";
+import { forgetChestSaves } from "@/components/math-explorers/chestSaveLine";
 import type {
   LearnLectureDetail,
   LearnLectureList,
@@ -106,6 +107,8 @@ async function submit<T>(
 }
 
 export function postLogin(loginId: string, password: string) {
+  // 로그인 · 로그아웃은 소프트 이동이라 앞 학생의 상자 저장 줄이 살아 있다 — 새 학생 것이 아니다(05 §8.21).
+  forgetChestSaves();
   return submit(
     "/api/learn/login",
     { loginId, password },
@@ -127,6 +130,7 @@ export function postPasswordChange(
 }
 
 export function postLogout() {
+  forgetChestSaves();
   return submit(
     "/api/learn/logout",
     undefined,

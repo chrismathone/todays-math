@@ -16,6 +16,7 @@ import { intBetween, pick } from "./rng";
 // 🔴 「로/으로」는 **판정기가 쓰는 그 표**(`JOSA_FINAL`)에서 온다 — 두 벌로 적지 않는다.
 import { lastSpokenNumber, numRo } from "./rules";
 import type { ChapterHandler, ElemForm, ElemProblem, Rng } from "./types";
+import { lazyTable } from "./lazyTable";
 
 /**
  * 초6 생성기.
@@ -5296,231 +5297,249 @@ function oneStepHits(
   return false;
 }
 
-const SAME_MULT: { a10: number; k: number; lo10: number; up10: number }[] = [];
-for (let a10 = 11; a10 <= 39; a10 += 1) {
-  if (a10 % 10 === 0) continue;
-  for (let k = 3; k <= 9; k += 1) {
-    const x10 = a10 * k;
-    if (x10 % 10 === 0 || x10 > 900) continue;
-    for (const pad of [5, 7, 9, 11]) {
-      const lo10 = x10 - pad;
-      const up10 = x10 + pad;
-      if (lo10 <= 0 || lo10 % 10 === 0 || up10 % 10 === 0) continue;
-      let hits = 0;
-      for (let m = 1; m * a10 < up10; m += 1) if (m * a10 > lo10) hits += 1;
-      if (hits !== 1) continue;
-      if (
-        oneStepHits(
-          [
-            [a10, 1],
-            [lo10, 1],
-            [up10, 1],
-          ],
-          [x10, 1],
+const SAME_MULT = lazyTable("g6.SAME_MULT", () => {
+  const table: { a10: number; k: number; lo10: number; up10: number }[] = [];
+  for (let a10 = 11; a10 <= 39; a10 += 1) {
+    if (a10 % 10 === 0) continue;
+    for (let k = 3; k <= 9; k += 1) {
+      const x10 = a10 * k;
+      if (x10 % 10 === 0 || x10 > 900) continue;
+      for (const pad of [5, 7, 9, 11]) {
+        const lo10 = x10 - pad;
+        const up10 = x10 + pad;
+        if (lo10 <= 0 || lo10 % 10 === 0 || up10 % 10 === 0) continue;
+        let hits = 0;
+        for (let m = 1; m * a10 < up10; m += 1) if (m * a10 > lo10) hits += 1;
+        if (hits !== 1) continue;
+        if (
+          oneStepHits(
+            [
+              [a10, 1],
+              [lo10, 1],
+              [up10, 1],
+            ],
+            [x10, 1],
+          )
         )
-      )
-        continue;
-      SAME_MULT.push({ a10, k, lo10, up10 });
+          continue;
+        table.push({ a10, k, lo10, up10 });
+      }
     }
   }
-}
+  return table;
+});
 
 /**
  * 2-2-1 심화상 재료 — 첫 조건이 후보를 **셋 이상** 만들고, 둘째 나눗셈을 각 후보에
  * 실제로 해 봐야 **하나**가 남는다. 후보를 발문이 주지 않는다는 것이 이 갈래의 알맹이다.
  */
-const SAME_TWO: {
-  a10: number;
-  b10: number;
-  lo10: number;
-  up10: number;
-  x10: number;
-}[] = [];
-for (let a10 = 11; a10 <= 29; a10 += 1) {
-  if (a10 % 10 === 0) continue;
-  for (let b10 = 11; b10 <= 39; b10 += 1) {
-    if (b10 % 10 === 0 || b10 === a10) continue;
-    for (let lo10 = 21; lo10 <= 160; lo10 += 1) {
-      if (lo10 % 10 === 0) continue;
-      for (const width of [30, 40, 50]) {
-        const up10 = lo10 + width;
-        if (up10 % 10 === 0 || up10 > 220) continue;
-        const list: number[] = [];
-        for (let m = 1; m * a10 < up10; m += 1)
-          if (m * a10 > lo10) list.push(m * a10);
-        if (list.length < 3 || list.length > 6) continue;
-        const win = list.filter((v) => v % b10 === 0);
-        if (win.length !== 1 || win[0]! % 10 === 0) continue;
-        if (
-          oneStepHits(
-            [
-              [a10, 1],
-              [b10, 1],
-              [lo10, 1],
-              [up10, 1],
-            ],
-            [win[0]!, 1],
+const SAME_TWO = lazyTable("g6.SAME_TWO", () => {
+  const table: {
+    a10: number;
+    b10: number;
+    lo10: number;
+    up10: number;
+    x10: number;
+  }[] = [];
+  for (let a10 = 11; a10 <= 29; a10 += 1) {
+    if (a10 % 10 === 0) continue;
+    for (let b10 = 11; b10 <= 39; b10 += 1) {
+      if (b10 % 10 === 0 || b10 === a10) continue;
+      for (let lo10 = 21; lo10 <= 160; lo10 += 1) {
+        if (lo10 % 10 === 0) continue;
+        for (const width of [30, 40, 50]) {
+          const up10 = lo10 + width;
+          if (up10 % 10 === 0 || up10 > 220) continue;
+          const list: number[] = [];
+          for (let m = 1; m * a10 < up10; m += 1)
+            if (m * a10 > lo10) list.push(m * a10);
+          if (list.length < 3 || list.length > 6) continue;
+          const win = list.filter((v) => v % b10 === 0);
+          if (win.length !== 1 || win[0]! % 10 === 0) continue;
+          if (
+            oneStepHits(
+              [
+                [a10, 1],
+                [b10, 1],
+                [lo10, 1],
+                [up10, 1],
+              ],
+              [win[0]!, 1],
+            )
           )
-        )
-          continue;
-        SAME_TWO.push({ a10, b10, lo10, up10, x10: win[0]! });
+            continue;
+          table.push({ a10, b10, lo10, up10, x10: win[0]! });
+        }
       }
     }
   }
-}
+  return table;
+});
 
 /**
  * 2-2-2 심화중 재료 — 어떤 수가 **소수 두 자리**, 몫이 **소수 한 자리**다.
  * 그러면 「자릿수가 다른 (소수)÷(소수)」가 발문에 그대로 선다(범위의 두 끝이 두 자리).
  */
-const DIFF_MULT: { a10: number; m: number; lo100: number; up100: number }[] =
-  [];
-for (let a10 = 11; a10 <= 39; a10 += 1) {
-  if (a10 % 10 === 0) continue;
-  for (let m = 21; m <= 90; m += 1) {
-    if (m % 10 === 0) continue;
-    const x100 = a10 * m;
-    if (x100 % 10 === 0 || x100 > 2500) continue;
-    for (const pad of [8, 11, 14, 17]) {
-      const lo100 = x100 - pad;
-      const up100 = x100 + pad;
-      if (lo100 <= 0 || lo100 % 10 === 0 || up100 % 10 === 0) continue;
-      let hits = 0;
-      for (let t = 1; t * a10 < up100; t += 1) {
-        const v = t * a10;
-        if (v > lo100 && v % 10 !== 0) hits += 1;
-      }
-      if (hits !== 1) continue;
-      if (
-        oneStepHits(
-          [
-            [a10, 1],
-            [lo100, 2],
-            [up100, 2],
-          ],
-          [x100, 2],
-        )
-      )
-        continue;
-      DIFF_MULT.push({ a10, m, lo100, up100 });
-    }
-  }
-}
-
-/** 2-2-2 심화상 재료 — 위와 같은 구조를 두 자리 소수로. */
-const DIFF_TWO: {
-  a10: number;
-  b10: number;
-  lo100: number;
-  up100: number;
-  x100: number;
-}[] = [];
-for (let a10 = 11; a10 <= 29; a10 += 1) {
-  if (a10 % 10 === 0) continue;
-  for (let b10 = 11; b10 <= 39; b10 += 1) {
-    if (b10 % 10 === 0 || b10 === a10) continue;
-    for (let lo100 = 201; lo100 <= 900; lo100 += 1) {
-      if (lo100 % 10 === 0) continue;
-      for (const width of [60, 90]) {
-        const up100 = lo100 + width;
-        if (up100 % 10 === 0 || up100 > 1200) continue;
-        const list: number[] = [];
+const DIFF_MULT = lazyTable("g6.DIFF_MULT", () => {
+  const table: { a10: number; m: number; lo100: number; up100: number }[] = [];
+  for (let a10 = 11; a10 <= 39; a10 += 1) {
+    if (a10 % 10 === 0) continue;
+    for (let m = 21; m <= 90; m += 1) {
+      if (m % 10 === 0) continue;
+      const x100 = a10 * m;
+      if (x100 % 10 === 0 || x100 > 2500) continue;
+      for (const pad of [8, 11, 14, 17]) {
+        const lo100 = x100 - pad;
+        const up100 = x100 + pad;
+        if (lo100 <= 0 || lo100 % 10 === 0 || up100 % 10 === 0) continue;
+        let hits = 0;
         for (let t = 1; t * a10 < up100; t += 1) {
           const v = t * a10;
-          if (v > lo100 && v % 10 !== 0) list.push(v);
+          if (v > lo100 && v % 10 !== 0) hits += 1;
         }
-        if (list.length < 3 || list.length > 6) continue;
-        const win = list.filter((v) => v % b10 === 0);
-        if (win.length !== 1) continue;
+        if (hits !== 1) continue;
         if (
           oneStepHits(
             [
               [a10, 1],
-              [b10, 1],
               [lo100, 2],
               [up100, 2],
             ],
-            [win[0]!, 2],
+            [x100, 2],
           )
         )
           continue;
-        DIFF_TWO.push({ a10, b10, lo100, up100, x100: win[0]! });
+        table.push({ a10, m, lo100, up100 });
       }
     }
   }
-}
+  return table;
+});
 
-/** 2-2-3 심화중 재료 — 되짚은 어떤 수가 **자연수**다((자연수)÷(소수) 소단원). */
-const NAT_MULT: { a10: number; lo: number; up: number; x: number }[] = [];
-for (let a10 = 11; a10 <= 49; a10 += 1) {
-  if (a10 % 10 === 0) continue;
-  for (let k = 4; k <= 40; k += 1) {
-    const x10 = a10 * k;
-    if (x10 % 10 !== 0) continue;
-    const x = x10 / 10;
-    if (x < 12 || x > 99) continue;
-    for (const pad of [3, 4, 5, 6]) {
-      const lo = x - pad;
-      const up = x + pad;
-      if (lo < 2) continue;
-      let hits = 0;
-      for (let n = lo + 1; n < up; n += 1) if ((n * 10) % a10 === 0) hits += 1;
-      if (hits !== 1) continue;
-      if (
-        oneStepHits(
-          [
-            [a10, 1],
-            [lo, 0],
-            [up, 0],
-          ],
-          [x, 0],
-        )
-      )
-        continue;
-      NAT_MULT.push({ a10, lo, up, x });
+/** 2-2-2 심화상 재료 — 위와 같은 구조를 두 자리 소수로. */
+const DIFF_TWO = lazyTable("g6.DIFF_TWO", () => {
+  const table: {
+    a10: number;
+    b10: number;
+    lo100: number;
+    up100: number;
+    x100: number;
+  }[] = [];
+  for (let a10 = 11; a10 <= 29; a10 += 1) {
+    if (a10 % 10 === 0) continue;
+    for (let b10 = 11; b10 <= 39; b10 += 1) {
+      if (b10 % 10 === 0 || b10 === a10) continue;
+      for (let lo100 = 201; lo100 <= 900; lo100 += 1) {
+        if (lo100 % 10 === 0) continue;
+        for (const width of [60, 90]) {
+          const up100 = lo100 + width;
+          if (up100 % 10 === 0 || up100 > 1200) continue;
+          const list: number[] = [];
+          for (let t = 1; t * a10 < up100; t += 1) {
+            const v = t * a10;
+            if (v > lo100 && v % 10 !== 0) list.push(v);
+          }
+          if (list.length < 3 || list.length > 6) continue;
+          const win = list.filter((v) => v % b10 === 0);
+          if (win.length !== 1) continue;
+          if (
+            oneStepHits(
+              [
+                [a10, 1],
+                [b10, 1],
+                [lo100, 2],
+                [up100, 2],
+              ],
+              [win[0]!, 2],
+            )
+          )
+            continue;
+          table.push({ a10, b10, lo100, up100, x100: win[0]! });
+        }
+      }
     }
   }
-}
+  return table;
+});
 
-/** 2-2-3 심화상 재료 — 후보를 만든 뒤 둘째 소수로 각각 나눠 봐야 하나가 남는다. */
-const NAT_TWO: {
-  a10: number;
-  b10: number;
-  lo: number;
-  up: number;
-  x: number;
-}[] = [];
-for (let a10 = 11; a10 <= 39; a10 += 1) {
-  if (a10 % 10 === 0) continue;
-  for (let b10 = 11; b10 <= 49; b10 += 1) {
-    if (b10 % 10 === 0 || b10 === a10) continue;
-    for (let lo = 8; lo <= 80; lo += 1) {
-      for (const width of [12, 16, 20, 24]) {
-        const up = lo + width;
-        if (up > 99) continue;
-        const list: number[] = [];
+/** 2-2-3 심화중 재료 — 되짚은 어떤 수가 **자연수**다((자연수)÷(소수) 소단원). */
+const NAT_MULT = lazyTable("g6.NAT_MULT", () => {
+  const table: { a10: number; lo: number; up: number; x: number }[] = [];
+  for (let a10 = 11; a10 <= 49; a10 += 1) {
+    if (a10 % 10 === 0) continue;
+    for (let k = 4; k <= 40; k += 1) {
+      const x10 = a10 * k;
+      if (x10 % 10 !== 0) continue;
+      const x = x10 / 10;
+      if (x < 12 || x > 99) continue;
+      for (const pad of [3, 4, 5, 6]) {
+        const lo = x - pad;
+        const up = x + pad;
+        if (lo < 2) continue;
+        let hits = 0;
         for (let n = lo + 1; n < up; n += 1)
-          if ((n * 10) % a10 === 0) list.push(n);
-        if (list.length < 3 || list.length > 6) continue;
-        const win = list.filter((n) => (n * 10) % b10 === 0);
-        if (win.length !== 1) continue;
+          if ((n * 10) % a10 === 0) hits += 1;
+        if (hits !== 1) continue;
         if (
           oneStepHits(
             [
               [a10, 1],
-              [b10, 1],
               [lo, 0],
               [up, 0],
             ],
-            [win[0]!, 0],
+            [x, 0],
           )
         )
           continue;
-        NAT_TWO.push({ a10, b10, lo, up, x: win[0]! });
+        table.push({ a10, lo, up, x });
       }
     }
   }
-}
+  return table;
+});
+
+/** 2-2-3 심화상 재료 — 후보를 만든 뒤 둘째 소수로 각각 나눠 봐야 하나가 남는다. */
+const NAT_TWO = lazyTable("g6.NAT_TWO", () => {
+  const table: {
+    a10: number;
+    b10: number;
+    lo: number;
+    up: number;
+    x: number;
+  }[] = [];
+  for (let a10 = 11; a10 <= 39; a10 += 1) {
+    if (a10 % 10 === 0) continue;
+    for (let b10 = 11; b10 <= 49; b10 += 1) {
+      if (b10 % 10 === 0 || b10 === a10) continue;
+      for (let lo = 8; lo <= 80; lo += 1) {
+        for (const width of [12, 16, 20, 24]) {
+          const up = lo + width;
+          if (up > 99) continue;
+          const list: number[] = [];
+          for (let n = lo + 1; n < up; n += 1)
+            if ((n * 10) % a10 === 0) list.push(n);
+          if (list.length < 3 || list.length > 6) continue;
+          const win = list.filter((n) => (n * 10) % b10 === 0);
+          if (win.length !== 1) continue;
+          if (
+            oneStepHits(
+              [
+                [a10, 1],
+                [b10, 1],
+                [lo, 0],
+                [up, 0],
+              ],
+              [win[0]!, 0],
+            )
+          )
+            continue;
+          table.push({ a10, b10, lo, up, x: win[0]! });
+        }
+      }
+    }
+  }
+  return table;
+});
 
 /** 정수 나눗셈으로 **소수 첫째 자리까지 반올림** — 부동소수를 안 거친다. */
 function round1(n: number, b: number): number {
@@ -5566,40 +5585,43 @@ for (let b = 17; b <= 39; b += 1) {
 }
 
 /** 2-2-4 심화상 재료 — 두 반올림 조건이 교차해 **하나**만 남는다. */
-const ROUND_CROSS: {
-  b1: number;
-  r1: number;
-  b2: number;
-  r2: number;
-  ns: number[];
-  x: number;
-}[] = [];
-for (const g of ROUND_BACK) {
-  for (let b2 = 11; b2 <= 39; b2 += 1) {
-    if (b2 === g.b) continue;
-    const byValue = new Map<number, number[]>();
-    for (const n of g.ns) {
-      const r = round1(n, b2);
-      byValue.set(r, [...(byValue.get(r) ?? []), n]);
-    }
-    for (const [r2, members] of byValue) {
-      if (members.length !== 1 || r2 % 10 === 0) continue;
-      const x = members[0]!;
-      if ((x * 100) % b2 === 0) continue;
-      const naive2 = (r2 * b2) / 10;
-      if (
-        x === Math.round(naive2) ||
-        x === Math.floor(naive2) ||
-        x === Math.ceil(naive2)
-      )
-        continue;
-      // 해설이 후보마다 «두 자리 + \ldots» 를 적는다 — 자름이 꼬리 0 이면
-      // 지면에 `9.70\ldots` 가 나간다(초등 지면에 안 쓴다).
-      if (g.ns.some((n) => Math.floor((n * 100) / b2) % 10 === 0)) continue;
-      ROUND_CROSS.push({ b1: g.b, r1: g.r10, b2, r2, ns: g.ns, x });
+const ROUND_CROSS = lazyTable("g6.ROUND_CROSS", () => {
+  const table: {
+    b1: number;
+    r1: number;
+    b2: number;
+    r2: number;
+    ns: number[];
+    x: number;
+  }[] = [];
+  for (const g of ROUND_BACK) {
+    for (let b2 = 11; b2 <= 39; b2 += 1) {
+      if (b2 === g.b) continue;
+      const byValue = new Map<number, number[]>();
+      for (const n of g.ns) {
+        const r = round1(n, b2);
+        byValue.set(r, [...(byValue.get(r) ?? []), n]);
+      }
+      for (const [r2, members] of byValue) {
+        if (members.length !== 1 || r2 % 10 === 0) continue;
+        const x = members[0]!;
+        if ((x * 100) % b2 === 0) continue;
+        const naive2 = (r2 * b2) / 10;
+        if (
+          x === Math.round(naive2) ||
+          x === Math.floor(naive2) ||
+          x === Math.ceil(naive2)
+        )
+          continue;
+        // 해설이 후보마다 «두 자리 + \ldots» 를 적는다 — 자름이 꼬리 0 이면
+        // 지면에 `9.70\ldots` 가 나간다(초등 지면에 안 쓴다).
+        if (g.ns.some((n) => Math.floor((n * 100) / b2) % 10 === 0)) continue;
+        table.push({ b1: g.b, r1: g.r10, b2, r2, ns: g.ns, x });
+      }
     }
   }
-}
+  return table;
+});
 
 /**
  * 2-2-5 심화중 재료 — 「$per$ 씩 주면 $k$ 명에게 주고 조금 남는다」가 처음 양을
@@ -5623,40 +5645,43 @@ for (let per = 3; per <= 8; per += 1)
  * 2-2-5 심화상 재료 — 「$a$ 씩 주면 $ra$ 남는다」가 후보를 **배수열**로 만들고,
  * 각 후보를 실제로 $b$ 로 나눠 남는 양을 견주어야 하나가 남는다.
  */
-const REM_CROSS: {
-  a: number;
-  ra10: number;
-  b: number;
-  rb10: number;
-  cap10: number;
-  x10: number;
-}[] = [];
-for (let a = 3; a <= 7; a += 1)
-  for (let b = a + 1; b <= 9; b += 1)
-    for (let ra10 = 1; ra10 < a * 10; ra10 += 1) {
-      if (ra10 % 10 === 0) continue;
-      for (let rb10 = 1; rb10 < b * 10; rb10 += 1) {
-        if (rb10 % 10 === 0 || rb10 === ra10) continue;
-        if (ra10 % 10 !== rb10 % 10) continue; // 같은 양이므로 소수 첫째 자리가 같다
-        const list: number[] = [];
-        for (let ka = 1; ka <= 14; ka += 1) {
-          const t = a * 10 * ka + ra10;
-          if (t > 700) break;
-          list.push(t);
+const REM_CROSS = lazyTable("g6.REM_CROSS", () => {
+  const table: {
+    a: number;
+    ra10: number;
+    b: number;
+    rb10: number;
+    cap10: number;
+    x10: number;
+  }[] = [];
+  for (let a = 3; a <= 7; a += 1)
+    for (let b = a + 1; b <= 9; b += 1)
+      for (let ra10 = 1; ra10 < a * 10; ra10 += 1) {
+        if (ra10 % 10 === 0) continue;
+        for (let rb10 = 1; rb10 < b * 10; rb10 += 1) {
+          if (rb10 % 10 === 0 || rb10 === ra10) continue;
+          if (ra10 % 10 !== rb10 % 10) continue; // 같은 양이므로 소수 첫째 자리가 같다
+          const list: number[] = [];
+          for (let ka = 1; ka <= 14; ka += 1) {
+            const t = a * 10 * ka + ra10;
+            if (t > 700) break;
+            list.push(t);
+          }
+          if (list.length < 5) continue;
+          const fits = (t: number) =>
+            t > b * 10 && (t - rb10) % (b * 10) === 0 && t - rb10 > 0;
+          const win = list.filter(fits);
+          if (win.length !== 1) continue;
+          const x10 = win[0]!;
+          const cap10 = x10 + a * 10 * 3 + 5;
+          if (cap10 % 10 === 0) continue; // `46.0` 은 초등 지면에 안 쓴다
+          const under = list.filter((t) => t < cap10);
+          if (under.length < 4 || under.filter(fits).length !== 1) continue;
+          table.push({ a, ra10, b, rb10, cap10, x10 });
         }
-        if (list.length < 5) continue;
-        const fits = (t: number) =>
-          t > b * 10 && (t - rb10) % (b * 10) === 0 && t - rb10 > 0;
-        const win = list.filter(fits);
-        if (win.length !== 1) continue;
-        const x10 = win[0]!;
-        const cap10 = x10 + a * 10 * 3 + 5;
-        if (cap10 % 10 === 0) continue; // `46.0` 은 초등 지면에 안 쓴다
-        const under = list.filter((t) => t < cap10);
-        if (under.length < 4 || under.filter(fits).length !== 1) continue;
-        REM_CROSS.push({ a, ra10, b, rb10, cap10, x10 });
       }
-    }
+  return table;
+});
 
 // ── 2-2-1 자릿수가 같은 (소수)÷(소수) ──
 
@@ -5666,7 +5691,7 @@ for (let a = 3; a <= 7; a += 1)
  * 배수열을 만들고, 범위가 그중 하나를 고른다.
  */
 function sameDpMid(unit: UnitSeed, rng: Rng): ElemProblem {
-  const c = pick(rng, SAME_MULT);
+  const c = pick(rng, SAME_MULT());
   const a = decStr(c.a10, 1);
   const x10 = c.a10 * c.k;
   const near = [c.k - 1, c.k, c.k + 1];
@@ -5693,7 +5718,7 @@ function sameDpMid(unit: UnitSeed, rng: Rng): ElemProblem {
  * 발문이 주지 않으므로 **직접 만들어** 둘째 나눗셈을 각각 해 봐야 하나가 남는다.
  */
 function sameDpTop(unit: UnitSeed, rng: Rng): ElemProblem {
-  const c = pick(rng, SAME_TWO);
+  const c = pick(rng, SAME_TWO());
   const a = decStr(c.a10, 1);
   const b = decStr(c.b10, 1);
   const cands: number[] = [];
@@ -5727,7 +5752,7 @@ function sameDpTop(unit: UnitSeed, rng: Rng): ElemProblem {
  * 그래서 「자릿수가 다른 (소수)÷(소수)」가 지면에 그대로 선다.
  */
 function diffDpMid(unit: UnitSeed, rng: Rng): ElemProblem {
-  const c = pick(rng, DIFF_MULT);
+  const c = pick(rng, DIFF_MULT());
   const a = decStr(c.a10, 1);
   const x100 = c.a10 * c.m;
   // ⚠️ **이웃을 «앞뒤 하나»로 잡으면 안 된다.** 곱하는 수는 소수 한 자리라 `3.0` 처럼
@@ -5761,7 +5786,7 @@ function diffDpMid(unit: UnitSeed, rng: Rng): ElemProblem {
 
 /** 심화상 — 후보를 만든 뒤 둘째 나눗셈을 각각 해 봐야 하나가 남는다. */
 function diffDpTop(unit: UnitSeed, rng: Rng): ElemProblem {
-  const c = pick(rng, DIFF_TWO);
+  const c = pick(rng, DIFF_TWO());
   const a = decStr(c.a10, 1);
   const b = decStr(c.b10, 1);
   const cands: number[] = [];
@@ -5796,7 +5821,7 @@ function diffDpTop(unit: UnitSeed, rng: Rng): ElemProblem {
 
 /** 심화중 — 되짚은 어떤 수가 **자연수**라 배수열이 성기다(그만큼 범위가 넓어도 된다). */
 function natDpMid(unit: UnitSeed, rng: Rng): ElemProblem {
-  const c = pick(rng, NAT_MULT);
+  const c = pick(rng, NAT_MULT());
   const a = decStr(c.a10, 1);
   const near = [c.x - c.a10, c.x, c.x + c.a10].filter((v) => v > 0);
   return makeDeep(
@@ -5815,7 +5840,7 @@ function natDpMid(unit: UnitSeed, rng: Rng): ElemProblem {
 
 /** 심화상 — 후보를 만든 뒤 둘째 소수로 각각 나눠 봐야 하나가 남는다. */
 function natDpTop(unit: UnitSeed, rng: Rng): ElemProblem {
-  const c = pick(rng, NAT_TWO);
+  const c = pick(rng, NAT_TWO());
   const a = decStr(c.a10, 1);
   const b = decStr(c.b10, 1);
   const cands: number[] = [];
@@ -5878,7 +5903,7 @@ function roundMid(unit: UnitSeed, rng: Rng): ElemProblem {
  * 둘째 반올림을 각 후보에 실제로 해 봐야 하나가 남는다.
  */
 function roundTop(unit: UnitSeed, rng: Rng): ElemProblem {
-  const c = pick(rng, ROUND_CROSS);
+  const c = pick(rng, ROUND_CROSS());
   const r1 = decStr(c.r1, 1);
   const r2 = decStr(c.r2, 1);
   const lo = decStr(c.r1 * 10 - 5, 2);
@@ -5949,7 +5974,7 @@ function remMid(unit: UnitSeed, rng: Rng): ElemProblem {
  */
 function remTop(unit: UnitSeed, rng: Rng): ElemProblem {
   const s = pick(rng, DEC_POUR);
-  const c = pick(rng, REM_CROSS);
+  const c = pick(rng, REM_CROSS());
   const cands: number[] = [];
   for (let k = 1; ; k += 1) {
     const t = c.a * 10 * k + c.ra10;
@@ -7894,34 +7919,37 @@ function multiplesBetween(lo: number, up: number, m: number): number[] {
 //            → 전체 넓이는 **옆면 하나 넓이의 배수**다. 구간 안에 그 배수가 하나뿐이다.
 // 심화하와 겹치지 않는다 — 심화하는 밑면을 **이름으로 주고**($n$ 이 굳어 있다) 높이를 되짚는다.
 
-const PRISM_AREA_MID: {
-  s: number;
-  h: number;
-  lo: number;
-  up: number;
-  n: number;
-}[] = [];
-for (let s = 3; s <= 8; s += 1)
-  for (let h = 3; h <= 9; h += 1) {
-    const one = s * h;
-    for (const n of TIER_SIDES) {
-      const area = one * n;
-      if (area > 400) continue; // 규모는 축이 아니다 (D-115 ⑽③)
-      for (let pad = 1; pad < one; pad += 1) {
-        const lo = area - pad;
-        const up = area + pad;
-        if (lo <= 0) continue;
-        // 구간 안에 «다른 후보»가 적어도 하나 더 있어야 성질이 일한다.
-        if (up - lo < 5) continue;
-        if (multiplesBetween(lo, up, one).length !== 1) continue;
-        if (!backsolveSafe([s, h, lo, up], n)) continue;
-        PRISM_AREA_MID.push({ s, h, lo, up, n });
+const PRISM_AREA_MID = lazyTable("g6.PRISM_AREA_MID", () => {
+  const table: {
+    s: number;
+    h: number;
+    lo: number;
+    up: number;
+    n: number;
+  }[] = [];
+  for (let s = 3; s <= 8; s += 1)
+    for (let h = 3; h <= 9; h += 1) {
+      const one = s * h;
+      for (const n of TIER_SIDES) {
+        const area = one * n;
+        if (area > 400) continue; // 규모는 축이 아니다 (D-115 ⑽③)
+        for (let pad = 1; pad < one; pad += 1) {
+          const lo = area - pad;
+          const up = area + pad;
+          if (lo <= 0) continue;
+          // 구간 안에 «다른 후보»가 적어도 하나 더 있어야 성질이 일한다.
+          if (up - lo < 5) continue;
+          if (multiplesBetween(lo, up, one).length !== 1) continue;
+          if (!backsolveSafe([s, h, lo, up], n)) continue;
+          table.push({ s, h, lo, up, n });
+        }
       }
     }
-  }
+  return table;
+});
 
 function prismAreaMid(unit: UnitSeed, rng: Rng): ElemProblem {
-  const c = pick(rng, PRISM_AREA_MID);
+  const c = pick(rng, PRISM_AREA_MID());
   const one = c.s * c.h;
   const area = one * c.n;
   return makeDeep(
@@ -7945,28 +7973,31 @@ function prismAreaMid(unit: UnitSeed, rng: Rng): ElemProblem {
 //
 // 안 굳는 마디: **모서리의 수**(구간). 굳히는 성질: 「각기둥의 모서리는 밑면 변의 수의 $3$배」.
 
-const PRISM_EDGE_MID: {
-  lo: number;
-  up: number;
-  n: number;
-  ask: "면" | "꼭짓점";
-}[] = [];
-for (const n of TIER_SIDES) {
-  const e = 3 * n;
-  for (let lo = e - 4; lo <= e - 1; lo += 1)
-    for (let up = e + 1; up <= e + 4; up += 1) {
-      if (lo < 5 || up - lo < 3) continue; // 구간 안에 후보가 둘 이상이어야 성질이 일한다
-      if (multiplesBetween(lo, up, 3).length !== 1) continue;
-      for (const ask of ["면", "꼭짓점"] as const) {
-        const ans = ask === "면" ? n + 2 : 2 * n;
-        if (!backsolveSafe([lo, up], ans)) continue;
-        PRISM_EDGE_MID.push({ lo, up, n, ask });
+const PRISM_EDGE_MID = lazyTable("g6.PRISM_EDGE_MID", () => {
+  const table: {
+    lo: number;
+    up: number;
+    n: number;
+    ask: "면" | "꼭짓점";
+  }[] = [];
+  for (const n of TIER_SIDES) {
+    const e = 3 * n;
+    for (let lo = e - 4; lo <= e - 1; lo += 1)
+      for (let up = e + 1; up <= e + 4; up += 1) {
+        if (lo < 5 || up - lo < 3) continue; // 구간 안에 후보가 둘 이상이어야 성질이 일한다
+        if (multiplesBetween(lo, up, 3).length !== 1) continue;
+        for (const ask of ["면", "꼭짓점"] as const) {
+          const ans = ask === "면" ? n + 2 : 2 * n;
+          if (!backsolveSafe([lo, up], ans)) continue;
+          table.push({ lo, up, n, ask });
+        }
       }
-    }
-}
+  }
+  return table;
+});
 
 function prismEdgeMid(unit: UnitSeed, rng: Rng): ElemProblem {
-  const c = pick(rng, PRISM_EDGE_MID);
+  const c = pick(rng, PRISM_EDGE_MID());
   const e = 3 * c.n;
   const ans = c.ask === "면" ? c.n + 2 : 2 * c.n;
   const calc =
@@ -7990,22 +8021,25 @@ function prismEdgeMid(unit: UnitSeed, rng: Rng): ElemProblem {
 // 안 굳는 마디: **옆면을 이어 붙인 가로 길이**(구간).
 // 굳히는 성질: 「전개도에서 그 가로는 **밑면의 둘레**와 같다」 → 한 변 길이의 배수.
 
-const PRISM_NET_MID: { s: number; lo: number; up: number; n: number }[] = [];
-for (let s = 4; s <= 9; s += 1)
-  for (const n of TIER_SIDES) {
-    const per = s * n;
-    for (let pad = 1; pad < s; pad += 1) {
-      const lo = per - pad;
-      const up = per + pad;
-      if (lo <= 0 || up - lo < 4) continue;
-      if (multiplesBetween(lo, up, s).length !== 1) continue;
-      if (!backsolveSafe([s, lo, up], n)) continue;
-      PRISM_NET_MID.push({ s, lo, up, n });
+const PRISM_NET_MID = lazyTable("g6.PRISM_NET_MID", () => {
+  const table: { s: number; lo: number; up: number; n: number }[] = [];
+  for (let s = 4; s <= 9; s += 1)
+    for (const n of TIER_SIDES) {
+      const per = s * n;
+      for (let pad = 1; pad < s; pad += 1) {
+        const lo = per - pad;
+        const up = per + pad;
+        if (lo <= 0 || up - lo < 4) continue;
+        if (multiplesBetween(lo, up, s).length !== 1) continue;
+        if (!backsolveSafe([s, lo, up], n)) continue;
+        table.push({ s, lo, up, n });
+      }
     }
-  }
+  return table;
+});
 
 function prismNetMid(unit: UnitSeed, rng: Rng): ElemProblem {
-  const c = pick(rng, PRISM_NET_MID);
+  const c = pick(rng, PRISM_NET_MID());
   const per = c.s * c.n;
   return makeDeep(
     unit,
@@ -8028,33 +8062,36 @@ function prismNetMid(unit: UnitSeed, rng: Rng): ElemProblem {
 // 1-2-1 의 짝이되 **옆면이 삼각형**이라 굳히는 성질이 다르다(넓이에 $\div2$ 가 붙는다).
 // 묻는 것도 다르다 — 1-2-1 은 «옆면의 수», 여기는 «밑면의 이름»(R5).
 
-const PYR_AREA_MID: {
-  s: number;
-  h: number;
-  lo: number;
-  up: number;
-  n: number;
-}[] = [];
-for (let s = 4; s <= 10; s += 1)
-  for (let h = 4; h <= 12; h += 1) {
-    if ((s * h) % 2 !== 0) continue; // 옆면 하나의 넓이가 자연수라야 한다
-    const one = (s * h) / 2;
-    for (const n of TIER_SIDES) {
-      const area = one * n;
-      if (area > 400) continue;
-      for (let pad = 1; pad < one; pad += 1) {
-        const lo = area - pad;
-        const up = area + pad;
-        if (lo <= 0 || up - lo < 5) continue;
-        if (multiplesBetween(lo, up, one).length !== 1) continue;
-        if (!backsolveSafe([s, h, lo, up], n)) continue;
-        PYR_AREA_MID.push({ s, h, lo, up, n });
+const PYR_AREA_MID = lazyTable("g6.PYR_AREA_MID", () => {
+  const table: {
+    s: number;
+    h: number;
+    lo: number;
+    up: number;
+    n: number;
+  }[] = [];
+  for (let s = 4; s <= 10; s += 1)
+    for (let h = 4; h <= 12; h += 1) {
+      if ((s * h) % 2 !== 0) continue; // 옆면 하나의 넓이가 자연수라야 한다
+      const one = (s * h) / 2;
+      for (const n of TIER_SIDES) {
+        const area = one * n;
+        if (area > 400) continue;
+        for (let pad = 1; pad < one; pad += 1) {
+          const lo = area - pad;
+          const up = area + pad;
+          if (lo <= 0 || up - lo < 5) continue;
+          if (multiplesBetween(lo, up, one).length !== 1) continue;
+          if (!backsolveSafe([s, h, lo, up], n)) continue;
+          table.push({ s, h, lo, up, n });
+        }
       }
     }
-  }
+  return table;
+});
 
 function pyrAreaMid(unit: UnitSeed, rng: Rng): ElemProblem {
-  const c = pick(rng, PYR_AREA_MID);
+  const c = pick(rng, PYR_AREA_MID());
   const one = (c.s * c.h) / 2;
   const area = one * c.n;
   return makeDeep(
@@ -8082,21 +8119,24 @@ function pyrAreaMid(unit: UnitSeed, rng: Rng): ElemProblem {
 //    이 소단원의 이름이 「각뿔 **알아보기**」이고, 각뿔을 각기둥과 가르는 것이 바로
 //    「밑면이 하나·옆면이 삼각형」이라 반증 ③ 도 안 건드린다.
 
-const SOLID_KIND_TOP: { f: number; cap: number }[] = [];
-for (let f = 5; f <= 9; f += 1) {
-  const nPrism = f - 2;
-  const nPyr = f - 1;
-  const vPrism = 2 * nPrism;
-  const vPyr = nPyr + 1;
-  // 각뿔만 남는 상한 — 각뿔의 꼭짓점보다 크고 각기둥의 꼭짓점 이하.
-  for (let cap = vPyr + 1; cap <= vPrism; cap += 1) {
-    if (!backsolveSafe([f, cap], 2 * nPyr)) continue;
-    SOLID_KIND_TOP.push({ f, cap });
+const SOLID_KIND_TOP = lazyTable("g6.SOLID_KIND_TOP", () => {
+  const table: { f: number; cap: number }[] = [];
+  for (let f = 5; f <= 9; f += 1) {
+    const nPrism = f - 2;
+    const nPyr = f - 1;
+    const vPrism = 2 * nPrism;
+    const vPyr = nPyr + 1;
+    // 각뿔만 남는 상한 — 각뿔의 꼭짓점보다 크고 각기둥의 꼭짓점 이하.
+    for (let cap = vPyr + 1; cap <= vPrism; cap += 1) {
+      if (!backsolveSafe([f, cap], 2 * nPyr)) continue;
+      table.push({ f, cap });
+    }
   }
-}
+  return table;
+});
 
 function solidKindTop(unit: UnitSeed, rng: Rng): ElemProblem {
-  const c = pick(rng, SOLID_KIND_TOP);
+  const c = pick(rng, SOLID_KIND_TOP());
   const nPrism = c.f - 2;
   const nPyr = c.f - 1;
   return makeDeep(
@@ -8123,39 +8163,42 @@ function solidKindTop(unit: UnitSeed, rng: Rng): ElemProblem {
 // (토대 문서가 「그 성질 때문에 심화하 둘이 같은 문항이 됐다」고 적은 자리를,
 //  중복을 만드는 대신 **마디를 굳히는 데** 쓴다.)
 
-const PYR_SUM_MID: {
-  lo: number;
-  up: number;
-  n: number;
-  kind: "꼭짓점" | "모서리";
-}[] = [];
-for (const n of TIER_SIDES) {
-  // ㉠ 면 + 꼭짓점 — 각뿔은 둘이 같으므로 합이 **짝수**다.
-  const even = 2 * (n + 1);
-  for (let lo = even - 3; lo <= even - 1; lo += 1)
-    for (let up = even + 1; up <= even + 3; up += 1) {
-      if (lo < 5 || up - lo < 3) continue;
-      let evens = 0;
-      for (let v = lo + 1; v < up; v += 1) if (v % 2 === 0) evens += 1;
-      if (evens !== 1) continue;
-      if (!backsolveSafe([lo, up], 2 * n)) continue;
-      PYR_SUM_MID.push({ lo, up, n, kind: "꼭짓점" });
+const PYR_SUM_MID = lazyTable("g6.PYR_SUM_MID", () => {
+  const table: {
+    lo: number;
+    up: number;
+    n: number;
+    kind: "꼭짓점" | "모서리";
+  }[] = [];
+  for (const n of TIER_SIDES) {
+    // ㉠ 면 + 꼭짓점 — 각뿔은 둘이 같으므로 합이 **짝수**다.
+    const even = 2 * (n + 1);
+    for (let lo = even - 3; lo <= even - 1; lo += 1)
+      for (let up = even + 1; up <= even + 3; up += 1) {
+        if (lo < 5 || up - lo < 3) continue;
+        let evens = 0;
+        for (let v = lo + 1; v < up; v += 1) if (v % 2 === 0) evens += 1;
+        if (evens !== 1) continue;
+        if (!backsolveSafe([lo, up], 2 * n)) continue;
+        table.push({ lo, up, n, kind: "꼭짓점" });
+      }
+    // ㉡ 면 + 모서리 — $(n+1)+2n=3n+1$ 이라 **$1$ 을 빼면 $3$ 의 배수**다.
+    const tri = 3 * n + 1;
+    for (let lo = tri - 3; lo <= tri - 1; lo += 1) {
+      const up = lo + 4;
+      if (lo < 5) continue;
+      let hits = 0;
+      for (let v = lo + 1; v < up; v += 1) if ((v - 1) % 3 === 0) hits += 1;
+      if (hits !== 1) continue;
+      if (!backsolveSafe([lo, up], n + 1)) continue;
+      table.push({ lo, up, n, kind: "모서리" });
     }
-  // ㉡ 면 + 모서리 — $(n+1)+2n=3n+1$ 이라 **$1$ 을 빼면 $3$ 의 배수**다.
-  const tri = 3 * n + 1;
-  for (let lo = tri - 3; lo <= tri - 1; lo += 1) {
-    const up = lo + 4;
-    if (lo < 5) continue;
-    let hits = 0;
-    for (let v = lo + 1; v < up; v += 1) if ((v - 1) % 3 === 0) hits += 1;
-    if (hits !== 1) continue;
-    if (!backsolveSafe([lo, up], n + 1)) continue;
-    PYR_SUM_MID.push({ lo, up, n, kind: "모서리" });
   }
-}
+  return table;
+});
 
 function pyrSumMid(unit: UnitSeed, rng: Rng): ElemProblem {
-  const c = pick(rng, PYR_SUM_MID);
+  const c = pick(rng, PYR_SUM_MID());
   if (c.kind === "꼭짓점") {
     const sum = 2 * (c.n + 1);
     return makeDeep(
@@ -8194,33 +8237,37 @@ function pyrSumMid(unit: UnitSeed, rng: Rng): ElemProblem {
 // 안 굳는 마디: **겉넓이**(구간). 굳히는 성질: 「겉넓이 = 두 밑면 + 옆면 네 면」이고
 // 옆면의 넓이는 **밑면의 둘레의 배수**다. 심화하는 겉넓이를 값으로 주어 높이가 곧바로 굳는다.
 
-const SURF_RANGE_MID: {
-  w: number;
-  d: number;
-  lo: number;
-  up: number;
-  h: number;
-}[] = [];
-for (let w = 2; w <= 8; w += 1)
-  for (let d = w + 1; d <= 9; d += 1) {
-    const base = 2 * w * d;
-    const per = 2 * (w + d);
-    for (let h = 3; h <= 9; h += 1) {
-      const s = base + per * h;
-      if (s > 500) continue;
-      for (let pad = 1; pad < per; pad += 1) {
-        const lo = s - pad;
-        const up = s + pad;
-        if (lo <= base || up - lo < 6) continue;
-        if (multiplesBetween(lo - base, up - base, per).length !== 1) continue;
-        if (!backsolveSafe([w, d, lo, up], h)) continue;
-        SURF_RANGE_MID.push({ w, d, lo, up, h });
+const SURF_RANGE_MID = lazyTable("g6.SURF_RANGE_MID", () => {
+  const table: {
+    w: number;
+    d: number;
+    lo: number;
+    up: number;
+    h: number;
+  }[] = [];
+  for (let w = 2; w <= 8; w += 1)
+    for (let d = w + 1; d <= 9; d += 1) {
+      const base = 2 * w * d;
+      const per = 2 * (w + d);
+      for (let h = 3; h <= 9; h += 1) {
+        const s = base + per * h;
+        if (s > 500) continue;
+        for (let pad = 1; pad < per; pad += 1) {
+          const lo = s - pad;
+          const up = s + pad;
+          if (lo <= base || up - lo < 6) continue;
+          if (multiplesBetween(lo - base, up - base, per).length !== 1)
+            continue;
+          if (!backsolveSafe([w, d, lo, up], h)) continue;
+          table.push({ w, d, lo, up, h });
+        }
       }
     }
-  }
+  return table;
+});
 
 function surfRangeMid(unit: UnitSeed, rng: Rng): ElemProblem {
-  const c = pick(rng, SURF_RANGE_MID);
+  const c = pick(rng, SURF_RANGE_MID());
   const base = 2 * c.w * c.d;
   const per = 2 * (c.w + c.d);
   return makeDeep(
@@ -8247,18 +8294,21 @@ function surfRangeMid(unit: UnitSeed, rng: Rng): ElemProblem {
 //    만들어 견주어야** 하나가 남는다. 한 변이 커지면 겉넓이도 반드시 커지므로 **답은 하나**다
 //    (토대 함정 ㉣ 「겉넓이 방정식은 답이 여럿이기 쉽다」를 이 단조성으로 막는다).
 
-const SURF_SQUARE_TOP: { a: number; h: number; s: number }[] = [];
-for (let a = 2; a <= 9; a += 1)
-  for (let h = 3; h <= 12; h += 1) {
-    if (h === a) continue;
-    const s = 2 * a * a + 4 * a * h;
-    if (s > 600) continue;
-    if (!backsolveSafe([h, s], a)) continue;
-    SURF_SQUARE_TOP.push({ a, h, s });
-  }
+const SURF_SQUARE_TOP = lazyTable("g6.SURF_SQUARE_TOP", () => {
+  const table: { a: number; h: number; s: number }[] = [];
+  for (let a = 2; a <= 9; a += 1)
+    for (let h = 3; h <= 12; h += 1) {
+      if (h === a) continue;
+      const s = 2 * a * a + 4 * a * h;
+      if (s > 600) continue;
+      if (!backsolveSafe([h, s], a)) continue;
+      table.push({ a, h, s });
+    }
+  return table;
+});
 
 function surfSquareTop(unit: UnitSeed, rng: Rng): ElemProblem {
-  const c = pick(rng, SURF_SQUARE_TOP);
+  const c = pick(rng, SURF_SQUARE_TOP());
   const area = (t: number) => 2 * t * t + 4 * t * c.h;
   const line = (t: number) =>
     expr(`${t}\\times${t}\\times2+${t}\\times4\\times${c.h}=${area(t)}`);
@@ -8284,31 +8334,34 @@ function surfSquareTop(unit: UnitSeed, rng: Rng): ElemProblem {
 // 안 굳는 마디: **세로와 높이가 동시에 미지**다(곱만 안다). 굳히는 조건: 두 모서리의 «차».
 // 심화하는 세 모서리 중 **둘을 발문이 주어** 마디가 하나도 안 남는다.
 
-const VOL_PAIR_MID: {
-  v: number;
-  w: number;
-  gap: number;
-  d: number;
-  h: number;
-}[] = [];
-for (let w = 2; w <= 9; w += 1)
-  for (let h = 2; h <= 9; h += 1)
-    for (let gap = 1; gap <= 6; gap += 1) {
-      const d = h + gap;
-      const p = d * h;
-      const v = w * p;
-      if (v > 400) continue;
-      // 🔴 **답이 하나인 것은 가드가 아니라 대수가 보장한다.** 곱이 $p$ 이고 차가
-      //    `gap` 인 자연수 짝은 $x(x+gap)=p$ 의 해라 **많아야 하나**다. 그래서 여기
-      //    「짝이 정확히 하나인가」를 세는 코드를 두었다가 지웠다 — 늘 참이라
-      //    **아무것도 안 거르는 장식**이었고, 변이 시험이 「산출물이 그대로」로 잡았다.
-      //    이 자리에서 실제로 일하는 가드는 아래 반증 ⑥ 하나다(실측 61/279 를 거른다).
-      if (!backsolveSafe([v, w, gap], d)) continue;
-      VOL_PAIR_MID.push({ v, w, gap, d, h });
-    }
+const VOL_PAIR_MID = lazyTable("g6.VOL_PAIR_MID", () => {
+  const table: {
+    v: number;
+    w: number;
+    gap: number;
+    d: number;
+    h: number;
+  }[] = [];
+  for (let w = 2; w <= 9; w += 1)
+    for (let h = 2; h <= 9; h += 1)
+      for (let gap = 1; gap <= 6; gap += 1) {
+        const d = h + gap;
+        const p = d * h;
+        const v = w * p;
+        if (v > 400) continue;
+        // 🔴 **답이 하나인 것은 가드가 아니라 대수가 보장한다.** 곱이 $p$ 이고 차가
+        //    `gap` 인 자연수 짝은 $x(x+gap)=p$ 의 해라 **많아야 하나**다. 그래서 여기
+        //    「짝이 정확히 하나인가」를 세는 코드를 두었다가 지웠다 — 늘 참이라
+        //    **아무것도 안 거르는 장식**이었고, 변이 시험이 「산출물이 그대로」로 잡았다.
+        //    이 자리에서 실제로 일하는 가드는 아래 반증 ⑥ 하나다(실측 61/279 를 거른다).
+        if (!backsolveSafe([v, w, gap], d)) continue;
+        table.push({ v, w, gap, d, h });
+      }
+  return table;
+});
 
 function volPairMid(unit: UnitSeed, rng: Rng): ElemProblem {
-  const c = pick(rng, VOL_PAIR_MID);
+  const c = pick(rng, VOL_PAIR_MID());
   const p = c.d * c.h;
   return makeDeep(
     unit,
@@ -8347,22 +8400,25 @@ function volumeTriples(v: number): [number, number, number][] {
   return out;
 }
 
-const VOL_TRIPLE_TOP: { v: number; cap: number }[] = [];
-for (let v = 24; v <= 240; v += 1) {
-  const triples = volumeTriples(v);
-  if (triples.length < 3 || triples.length > 6) continue;
-  const longest = triples.map((t) => t[2]).sort((x, y) => x - y);
-  for (let cap = longest[0]! + 1; cap <= longest[1]!; cap += 1) {
-    const kept = triples.filter((t) => t[2] < cap);
-    if (kept.length !== 1) continue;
-    const sum = kept[0]![0] + kept[0]![1] + kept[0]![2];
-    if (!backsolveSafe([v, cap], sum)) continue;
-    VOL_TRIPLE_TOP.push({ v, cap });
+const VOL_TRIPLE_TOP = lazyTable("g6.VOL_TRIPLE_TOP", () => {
+  const table: { v: number; cap: number }[] = [];
+  for (let v = 24; v <= 240; v += 1) {
+    const triples = volumeTriples(v);
+    if (triples.length < 3 || triples.length > 6) continue;
+    const longest = triples.map((t) => t[2]).sort((x, y) => x - y);
+    for (let cap = longest[0]! + 1; cap <= longest[1]!; cap += 1) {
+      const kept = triples.filter((t) => t[2] < cap);
+      if (kept.length !== 1) continue;
+      const sum = kept[0]![0] + kept[0]![1] + kept[0]![2];
+      if (!backsolveSafe([v, cap], sum)) continue;
+      table.push({ v, cap });
+    }
   }
-}
+  return table;
+});
 
 function volTripleTop(unit: UnitSeed, rng: Rng): ElemProblem {
-  const c = pick(rng, VOL_TRIPLE_TOP);
+  const c = pick(rng, VOL_TRIPLE_TOP());
   const triples = volumeTriples(c.v);
   const win = triples.find((t) => t[2] < c.cap)!;
   const sum = win[0] + win[1] + win[2];
@@ -8394,31 +8450,34 @@ function volTripleTop(unit: UnitSeed, rng: Rng): ElemProblem {
 //    그것을 m 단위로 옮기면 «단위만 다른 같은 문항»이 된다. 걸음을 하나 늘리는 것은
 //    마디를 늘리는 것이 아니다(D-115 ⑶ · 토대 함정 ㉡).
 
-const CUBIC_RANGE_MID: {
-  w: number;
-  d: number;
-  lo: number;
-  up: number;
-  h: number;
-}[] = [];
-for (let w = 2; w <= 6; w += 1)
-  for (let d = w; d <= 6; d += 1) {
-    const base = w * d;
-    for (let h = 2; h <= 9; h += 1) {
-      const v = base * h;
-      for (let pad = 1; pad < base; pad += 1) {
-        const lo = v - pad;
-        const up = v + pad;
-        if (lo <= 0 || up - lo < 3) continue;
-        if (multiplesBetween(lo, up, base).length !== 1) continue;
-        if (!backsolveSafe([w, d, lo * 1000000, up * 1000000], h)) continue;
-        CUBIC_RANGE_MID.push({ w, d, lo, up, h });
+const CUBIC_RANGE_MID = lazyTable("g6.CUBIC_RANGE_MID", () => {
+  const table: {
+    w: number;
+    d: number;
+    lo: number;
+    up: number;
+    h: number;
+  }[] = [];
+  for (let w = 2; w <= 6; w += 1)
+    for (let d = w; d <= 6; d += 1) {
+      const base = w * d;
+      for (let h = 2; h <= 9; h += 1) {
+        const v = base * h;
+        for (let pad = 1; pad < base; pad += 1) {
+          const lo = v - pad;
+          const up = v + pad;
+          if (lo <= 0 || up - lo < 3) continue;
+          if (multiplesBetween(lo, up, base).length !== 1) continue;
+          if (!backsolveSafe([w, d, lo * 1000000, up * 1000000], h)) continue;
+          table.push({ w, d, lo, up, h });
+        }
       }
     }
-  }
+  return table;
+});
 
 function cubicRangeMid(unit: UnitSeed, rng: Rng): ElemProblem {
-  const c = pick(rng, CUBIC_RANGE_MID);
+  const c = pick(rng, CUBIC_RANGE_MID());
   const base = c.w * c.d;
   const v = base * c.h;
   return makeDeep(
@@ -8444,21 +8503,24 @@ function cubicRangeMid(unit: UnitSeed, rng: Rng): ElemProblem {
 // 굳히는 성질: 「가장 간단한 자연수의 비는 두 항의 공약수가 $1$ 뿐이다」 — 이 대단원이
 // 예약한 축이다(토대 §1.4).
 
-const RATIO_PROP_MID: { pa: number; pb: number; g: number }[] = [];
-for (let a = 1; a <= 9; a += 1)
-  for (let b = a + 1; b <= 12; b += 1) {
-    if (gcd(a, b) !== 1) continue;
-    for (let g = 2; g <= 9; g += 1) {
-      const pa = a * g;
-      const pb = b * g;
-      if (pb > 96) continue;
-      if (!backsolveSafe([pa, pb], b - a)) continue;
-      RATIO_PROP_MID.push({ pa, pb, g });
+const RATIO_PROP_MID = lazyTable("g6.RATIO_PROP_MID", () => {
+  const table: { pa: number; pb: number; g: number }[] = [];
+  for (let a = 1; a <= 9; a += 1)
+    for (let b = a + 1; b <= 12; b += 1) {
+      if (gcd(a, b) !== 1) continue;
+      for (let g = 2; g <= 9; g += 1) {
+        const pa = a * g;
+        const pb = b * g;
+        if (pb > 96) continue;
+        if (!backsolveSafe([pa, pb], b - a)) continue;
+        table.push({ pa, pb, g });
+      }
     }
-  }
+  return table;
+});
 
 function ratioPropMid(unit: UnitSeed, rng: Rng): ElemProblem {
-  const c = pick(rng, RATIO_PROP_MID);
+  const c = pick(rng, RATIO_PROP_MID());
   const a = c.pa / c.g;
   const b = c.pb / c.g;
   return makeDeep(
@@ -8484,35 +8546,38 @@ function ratioPropMid(unit: UnitSeed, rng: Rng): ElemProblem {
 //    (`probe-elem-section-conditions` 의 `간단한 자연수의 비`). 그래서 비를 **일부러
 //    서로소가 아니게** 싣는다.
 
-const SIMPLE_RATIO_MID: {
-  am: number;
-  lo: number;
-  up: number;
-  x: number;
-  b: number;
-}[] = [];
-for (let am = 1; am <= 3; am += 1) {
-  const w = am * 100;
-  for (let b = 3; b <= 9; b += 1)
-    for (let x = 6; x <= 240; x += 1) {
-      if (x % b !== 0) continue;
-      const g = gcd(w, x);
-      if (x / g !== b) continue; // 간단히 하면 후항이 b 가 되는 세로만
-      const a = w / g;
-      if (a < 2 || a > 60) continue;
-      for (let pad = 1; pad < b; pad += 1) {
-        const lo = x - pad;
-        const up = x + pad;
-        if (lo <= 0 || up - lo < 4) continue;
-        if (multiplesBetween(lo, up, b).length !== 1) continue;
-        if (!backsolveSafe([am, lo, up, b], x)) continue;
-        SIMPLE_RATIO_MID.push({ am, lo, up, x, b });
+const SIMPLE_RATIO_MID = lazyTable("g6.SIMPLE_RATIO_MID", () => {
+  const table: {
+    am: number;
+    lo: number;
+    up: number;
+    x: number;
+    b: number;
+  }[] = [];
+  for (let am = 1; am <= 3; am += 1) {
+    const w = am * 100;
+    for (let b = 3; b <= 9; b += 1)
+      for (let x = 6; x <= 240; x += 1) {
+        if (x % b !== 0) continue;
+        const g = gcd(w, x);
+        if (x / g !== b) continue; // 간단히 하면 후항이 b 가 되는 세로만
+        const a = w / g;
+        if (a < 2 || a > 60) continue;
+        for (let pad = 1; pad < b; pad += 1) {
+          const lo = x - pad;
+          const up = x + pad;
+          if (lo <= 0 || up - lo < 4) continue;
+          if (multiplesBetween(lo, up, b).length !== 1) continue;
+          if (!backsolveSafe([am, lo, up, b], x)) continue;
+          table.push({ am, lo, up, x, b });
+        }
       }
-    }
-}
+  }
+  return table;
+});
 
 function simpleRatioMid(unit: UnitSeed, rng: Rng): ElemProblem {
-  const c = pick(rng, SIMPLE_RATIO_MID);
+  const c = pick(rng, SIMPLE_RATIO_MID());
   const w = c.am * 100;
   const g = gcd(w, c.x);
   const a = w / g;
@@ -8539,34 +8604,37 @@ function simpleRatioMid(unit: UnitSeed, rng: Rng): ElemProblem {
 // 안 굳는 마디: **두 번째 비의 한 묶음**. 심화하는 「두 항의 차」를 값으로 주어 한 번에 굳는다.
 // 여기서는 **합의 구간**만 주고, 「두 항의 합은 $(a+b)$ 의 배수」라는 비례식의 성질이 고른다.
 
-const PROP_EQ_MID: {
-  a: number;
-  b: number;
-  lo: number;
-  up: number;
-  k: number;
-}[] = [];
-for (let a = 2; a <= 8; a += 1)
-  for (let b = a + 1; b <= 9; b += 1) {
-    if (gcd(a, b) !== 1) continue;
-    const s = a + b;
-    for (let k = 3; k <= 12; k += 1) {
-      const sum = s * k;
-      if (sum > 130) continue;
-      for (let pad = 1; pad < s; pad += 1) {
-        const lo = sum - pad;
-        const up = sum + pad;
-        if (lo <= 0 || up - lo < 4) continue;
-        if (multiplesBetween(lo, up, s).length !== 1) continue;
-        if (!backsolveSafe([a, b, lo, up], a * k)) continue;
-        if (!backsolveSafe([a, b, lo, up], b * k)) continue;
-        PROP_EQ_MID.push({ a, b, lo, up, k });
+const PROP_EQ_MID = lazyTable("g6.PROP_EQ_MID", () => {
+  const table: {
+    a: number;
+    b: number;
+    lo: number;
+    up: number;
+    k: number;
+  }[] = [];
+  for (let a = 2; a <= 8; a += 1)
+    for (let b = a + 1; b <= 9; b += 1) {
+      if (gcd(a, b) !== 1) continue;
+      const s = a + b;
+      for (let k = 3; k <= 12; k += 1) {
+        const sum = s * k;
+        if (sum > 130) continue;
+        for (let pad = 1; pad < s; pad += 1) {
+          const lo = sum - pad;
+          const up = sum + pad;
+          if (lo <= 0 || up - lo < 4) continue;
+          if (multiplesBetween(lo, up, s).length !== 1) continue;
+          if (!backsolveSafe([a, b, lo, up], a * k)) continue;
+          if (!backsolveSafe([a, b, lo, up], b * k)) continue;
+          table.push({ a, b, lo, up, k });
+        }
       }
     }
-  }
+  return table;
+});
 
 function propEqMid(unit: UnitSeed, rng: Rng): ElemProblem {
-  const c = pick(rng, PROP_EQ_MID);
+  const c = pick(rng, PROP_EQ_MID());
   const s = c.a + c.b;
   return makeDeep(
     unit,
@@ -8588,19 +8656,22 @@ function propEqMid(unit: UnitSeed, rng: Rng): ElemProblem {
 // 안 굳는 마디: **두 내항**(곱만 안다). 굳히는 조건: 「두 내항이 같은 수」.
 // 심화하는 내항 둘을 발문이 주어 한 번의 나눗셈으로 끝난다.
 
-const PROP_RULE_MID: { a: number; b: number; x: number }[] = [];
-for (let a = 2; a <= 24; a += 1)
-  for (let b = 2; b <= 48; b += 1) {
-    if (a === b) continue;
-    const p = a * b;
-    const x = Math.round(Math.sqrt(p));
-    if (x * x !== p || x < 3 || x > 20) continue;
-    if (!backsolveSafe([a, b], x)) continue;
-    PROP_RULE_MID.push({ a, b, x });
-  }
+const PROP_RULE_MID = lazyTable("g6.PROP_RULE_MID", () => {
+  const table: { a: number; b: number; x: number }[] = [];
+  for (let a = 2; a <= 24; a += 1)
+    for (let b = 2; b <= 48; b += 1) {
+      if (a === b) continue;
+      const p = a * b;
+      const x = Math.round(Math.sqrt(p));
+      if (x * x !== p || x < 3 || x > 20) continue;
+      if (!backsolveSafe([a, b], x)) continue;
+      table.push({ a, b, x });
+    }
+  return table;
+});
 
 function propRuleMid(unit: UnitSeed, rng: Rng): ElemProblem {
-  const c = pick(rng, PROP_RULE_MID);
+  const c = pick(rng, PROP_RULE_MID());
   const p = c.a * c.b;
   return makeDeep(
     unit,
@@ -8622,33 +8693,36 @@ function propRuleMid(unit: UnitSeed, rng: Rng): ElemProblem {
 // 안 굳는 마디: **한 묶음의 크기**. 굳히는 성질: 「한 사람의 몫은 그 사람의 묶음 수의 배수」
 // + 발문의 구간. 심화하는 «차»를 값으로 주어 한 번에 굳는다.
 
-const SHARE_RANGE_MID: {
-  a: number;
-  b: number;
-  lo: number;
-  up: number;
-  k: number;
-}[] = [];
-for (let a = 2; a <= 6; a += 1)
-  for (let b = 2; b <= 7; b += 1) {
-    if (a === b || gcd(a, b) !== 1) continue;
-    for (let k = 3; k <= 12; k += 1) {
-      const part = b * k;
-      const total = (a + b) * k;
-      if (total > 140) continue;
-      for (let pad = 1; pad < b; pad += 1) {
-        const lo = part - pad;
-        const up = part + pad;
-        if (lo <= 0 || up - lo < 4) continue;
-        if (multiplesBetween(lo, up, b).length !== 1) continue;
-        if (!backsolveSafe([a, b, lo, up], total)) continue;
-        SHARE_RANGE_MID.push({ a, b, lo, up, k });
+const SHARE_RANGE_MID = lazyTable("g6.SHARE_RANGE_MID", () => {
+  const table: {
+    a: number;
+    b: number;
+    lo: number;
+    up: number;
+    k: number;
+  }[] = [];
+  for (let a = 2; a <= 6; a += 1)
+    for (let b = 2; b <= 7; b += 1) {
+      if (a === b || gcd(a, b) !== 1) continue;
+      for (let k = 3; k <= 12; k += 1) {
+        const part = b * k;
+        const total = (a + b) * k;
+        if (total > 140) continue;
+        for (let pad = 1; pad < b; pad += 1) {
+          const lo = part - pad;
+          const up = part + pad;
+          if (lo <= 0 || up - lo < 4) continue;
+          if (multiplesBetween(lo, up, b).length !== 1) continue;
+          if (!backsolveSafe([a, b, lo, up], total)) continue;
+          table.push({ a, b, lo, up, k });
+        }
       }
     }
-  }
+  return table;
+});
 
 function shareRangeMid(unit: UnitSeed, rng: Rng): ElemProblem {
-  const c = pick(rng, SHARE_RANGE_MID);
+  const c = pick(rng, SHARE_RANGE_MID());
   const kid = pick(rng, SHARE_KIDS);
   const item = pick(rng, SHARE_ITEMS);
   const s = c.a + c.b;
@@ -8678,44 +8752,47 @@ function shareRangeMid(unit: UnitSeed, rng: Rng): ElemProblem {
 //    주지 않는다. 각 후보로 **한 사람의 몫을 실제로 만들어** 「그것을 다시 나눌 수 있는가」에
 //    대 봐야 하나가 남는다(D-115 ⑾: 끝까지 계산해야 하면 «상»).
 
-const SHARE_SPLIT_TOP: {
-  a: number;
-  b: number;
-  c2: number;
-  d2: number;
-  lo: number;
-  up: number;
-  k: number;
-}[] = [];
-for (let a = 2; a <= 6; a += 1)
-  for (let b = 2; b <= 6; b += 1) {
-    if (a === b || gcd(a, b) !== 1) continue;
-    const s = a + b;
-    for (let c2 = 1; c2 <= 4; c2 += 1)
-      for (let d2 = c2 + 1; d2 <= 6; d2 += 1) {
-        if (gcd(c2, d2) !== 1) continue;
-        const t = c2 + d2;
-        if (t < 3 || a % t === 0) continue; // 늘 나누어떨어지면 조건이 아무 일도 안 한다
-        for (let lo = 20; lo <= 160; lo += 1)
-          for (const width of [3 * s + 2, 4 * s + 2]) {
-            const up = lo + width;
-            if (up > 200) continue;
-            const cands = multiplesBetween(lo, up, s);
-            // ⚠️ 창 너비가 $3s+2$·$4s+2$ 라 후보 수는 **늘 3~4** 다 — 이 줄은 그 사실을
-            //    적어 둔 것이지 거르는 가드가 아니다(변이가 「산출물이 그대로」로 잡았다).
-            //    이 자리에서 실제로 일하는 것은 바로 아래 「둘째 비가 하나로 남기는가」다.
-            if (cands.length < 3 || cands.length > 5) continue;
-            const win = cands.filter((v) => ((v / s) * a) % t === 0);
-            if (win.length !== 1) continue;
-            const k = win[0]! / s;
-            if (!backsolveSafe([a, b, lo, up, c2, d2], win[0]!)) continue;
-            SHARE_SPLIT_TOP.push({ a, b, c2, d2, lo, up, k });
-          }
-      }
-  }
+const SHARE_SPLIT_TOP = lazyTable("g6.SHARE_SPLIT_TOP", () => {
+  const table: {
+    a: number;
+    b: number;
+    c2: number;
+    d2: number;
+    lo: number;
+    up: number;
+    k: number;
+  }[] = [];
+  for (let a = 2; a <= 6; a += 1)
+    for (let b = 2; b <= 6; b += 1) {
+      if (a === b || gcd(a, b) !== 1) continue;
+      const s = a + b;
+      for (let c2 = 1; c2 <= 4; c2 += 1)
+        for (let d2 = c2 + 1; d2 <= 6; d2 += 1) {
+          if (gcd(c2, d2) !== 1) continue;
+          const t = c2 + d2;
+          if (t < 3 || a % t === 0) continue; // 늘 나누어떨어지면 조건이 아무 일도 안 한다
+          for (let lo = 20; lo <= 160; lo += 1)
+            for (const width of [3 * s + 2, 4 * s + 2]) {
+              const up = lo + width;
+              if (up > 200) continue;
+              const cands = multiplesBetween(lo, up, s);
+              // ⚠️ 창 너비가 $3s+2$·$4s+2$ 라 후보 수는 **늘 3~4** 다 — 이 줄은 그 사실을
+              //    적어 둔 것이지 거르는 가드가 아니다(변이가 「산출물이 그대로」로 잡았다).
+              //    이 자리에서 실제로 일하는 것은 바로 아래 「둘째 비가 하나로 남기는가」다.
+              if (cands.length < 3 || cands.length > 5) continue;
+              const win = cands.filter((v) => ((v / s) * a) % t === 0);
+              if (win.length !== 1) continue;
+              const k = win[0]! / s;
+              if (!backsolveSafe([a, b, lo, up, c2, d2], win[0]!)) continue;
+              table.push({ a, b, c2, d2, lo, up, k });
+            }
+        }
+    }
+  return table;
+});
 
 function shareSplitTop(unit: UnitSeed, rng: Rng): ElemProblem {
-  const c = pick(rng, SHARE_SPLIT_TOP);
+  const c = pick(rng, SHARE_SPLIT_TOP());
   const kid = pick(rng, SHARE_KIDS);
   const item = pick(rng, SHARE_ITEMS);
   const s = c.a + c.b;
@@ -8875,37 +8952,48 @@ const areaRangeStem = (c: AreaRangeCase): string =>
   `${num(fromCents(c.up * 314))} cm²보다 좁습니다. ` +
   `반지름이 자연수 cm일 때, 이 원의 반지름은 몇 cm인가? (원주율: ${num("3.14")})`;
 
-const AREA_RANGE_MID: AreaRangeCase[] = [];
-for (let lo = 1; lo <= 200; lo += 1)
-  for (let up = lo + 4; up <= Math.min(lo + 40, 240); up += 1) {
-    const sq: number[] = [];
-    for (let r = 1; r * r < up; r += 1) if (r * r > lo) sq.push(r);
-    if (sq.length !== 1) continue; // 구간 안의 «제곱수»가 하나여야 답이 선다
-    const r = sq[0]!;
-    if (r < 2 || r > 15) continue; // 지면에 얹히는 크기
-    // 구간 안에 **답이 아닌 자연수**가 둘은 있어야 성질이 일을 한다.
-    let others = 0;
-    for (let v = lo + 1; v < up; v += 1) if (v !== r * r) others += 1;
-    if (others < 3) continue;
-    const c: AreaRangeCase = { lo, up, r };
-    if (!backsolveSafeStem(areaRangeStem(c), rat(r))) continue;
-    AREA_RANGE_MID.push(c);
-  }
+const AREA_RANGE_MID = lazyTable("g6.AREA_RANGE_MID", () => {
+  const table: AreaRangeCase[] = [];
+  for (let lo = 1; lo <= 200; lo += 1)
+    for (let up = lo + 4; up <= Math.min(lo + 40, 240); up += 1) {
+      const sq: number[] = [];
+      for (let r = 1; r * r < up; r += 1) if (r * r > lo) sq.push(r);
+      if (sq.length !== 1) continue; // 구간 안의 «제곱수»가 하나여야 답이 선다
+      const r = sq[0]!;
+      if (r < 2 || r > 15) continue; // 지면에 얹히는 크기
+      // 구간 안에 **답이 아닌 자연수**가 둘은 있어야 성질이 일을 한다.
+      let others = 0;
+      for (let v = lo + 1; v < up; v += 1) if (v !== r * r) others += 1;
+      if (others < 3) continue;
+      const c: AreaRangeCase = { lo, up, r };
+      if (!backsolveSafeStem(areaRangeStem(c), rat(r))) continue;
+      table.push(c);
+    }
+  return table;
+});
 
 /**
  * 🔴 **답을 먼저 고른다.** 그냥 균등하게 뽑으면 작은 반지름을 담는 구간이 훨씬 많아
  * 「무조건 $2$」류가 나온다(1-1-2·2-6-3 과 같은 처방).
  */
-const AREA_RANGE_BY_ANS = new Map<number, AreaRangeCase[]>();
-for (const c of AREA_RANGE_MID) {
-  const l = AREA_RANGE_BY_ANS.get(c.r);
-  if (l) l.push(c);
-  else AREA_RANGE_BY_ANS.set(c.r, [c]);
-}
-const AREA_RANGE_ANSWERS = [...AREA_RANGE_BY_ANS.keys()].sort((x, y) => x - y);
+const AREA_RANGE_BY_ANS = lazyTable("g6.AREA_RANGE_BY_ANS", () => {
+  const table = new Map<number, AreaRangeCase[]>();
+  for (const c of AREA_RANGE_MID()) {
+    const l = table.get(c.r);
+    if (l) l.push(c);
+    else table.set(c.r, [c]);
+  }
+  return table;
+});
+const AREA_RANGE_ANSWERS = lazyTable("g6.AREA_RANGE_ANSWERS", () =>
+  [...AREA_RANGE_BY_ANS().keys()].sort((x, y) => x - y),
+);
 
 function areaRangeMid(unit: UnitSeed, rng: Rng): ElemProblem {
-  const c = pick(rng, AREA_RANGE_BY_ANS.get(pick(rng, AREA_RANGE_ANSWERS))!);
+  const c = pick(
+    rng,
+    AREA_RANGE_BY_ANS().get(pick(rng, AREA_RANGE_ANSWERS()))!,
+  );
   return makeDeep(unit, areaRangeStem(c), num(c.r), [
     `(원의 넓이)=(반지름)×(반지름)×(원주율)이므로, 넓이를 ${num("3.14")}${numRo(314)} 나누면 ` +
       `(반지름)×(반지름)이 됩니다.`,
@@ -8933,45 +9021,48 @@ const natDivReduceStem = (c: NatDivReduceCase): string =>
   `어떤 자연수를 ${num(c.b)}${numRo(c.b)} 나눈 몫을 기약분수로 나타냈더니 분모가 ${num(c.m)}${numJosa(c.m, "이", "가")} 되었습니다. ` +
   `어떤 수가 ${num(c.lo)}보다 크고 ${num(c.hi)}보다 작을 때, 어떤 수를 구하시오.`;
 
-const NAT_DIV_REDUCE_MID: NatDivReduceCase[] = [];
-for (let b = 6; b <= 30; b += 1)
-  for (let g = 2; g < b; g += 1) {
-    if (b % g !== 0) continue;
-    const m = b / g;
-    if (m < 2) continue; // 분모가 1 이면 몫이 자연수라 이 소단원이 아니다
-    const base: number[] = [];
-    for (let x = 1; x < b; x += 1) if (gcd(x, b) === g) base.push(x);
-    // 후보가 셋 이상이어야 «성질이 만든 배수열»이 지면에서 보인다.
-    if (base.length < 3) continue;
-    for (const band of [0, 1] as const) {
-      const set = base.map((x) => x + band * b);
-      for (let k = 0; k < set.length; k += 1) {
-        // 창은 **이웃과 이웃 사이** 어디든 — 답만 담되 그 자리는 창마다 달라진다.
-        //
-        // ⚠️ 이웃과 이웃을 **꽉 채워** 잡으면(lo = 앞이웃 · hi = 뒷이웃) 배수열이
-        //    고르게 놓인 자리에서 답이 **늘 창의 한가운데**가 된다 — 실측 76.6%.
-        //    「가장 큰 것」을 깨고 「가운데」를 새로 만든 셈이라, 양쪽을 **따로**
-        //    좁혀 답의 자리를 흩뜨린다.
-        const prev = k > 0 ? set[k - 1]! : band * b;
-        const next = k + 1 < set.length ? set[k + 1]! : (band + 1) * b;
-        const a = set[k]!;
-        for (let lo = Math.max(1, prev); lo < a; lo += 1)
-          for (let hi = a + 1; hi <= next; hi += 1) {
-            const win: number[] = [];
-            for (let v = lo + 1; v < hi; v += 1) win.push(v);
-            // 창 안에 «답이 아닌 수»가 둘은 있어야 성질이 일을 한다.
-            // 여덟을 넘으면 해설이 늘어놓기에 길다.
-            if (win.length < 3 || win.length > 8) continue;
-            const c: NatDivReduceCase = { b, m, g, lo, hi, a, win, band };
-            if (!backsolveSafeStem(natDivReduceStem(c), rat(a))) continue;
-            NAT_DIV_REDUCE_MID.push(c);
-          }
+const NAT_DIV_REDUCE_MID = lazyTable("g6.NAT_DIV_REDUCE_MID", () => {
+  const table: NatDivReduceCase[] = [];
+  for (let b = 6; b <= 30; b += 1)
+    for (let g = 2; g < b; g += 1) {
+      if (b % g !== 0) continue;
+      const m = b / g;
+      if (m < 2) continue; // 분모가 1 이면 몫이 자연수라 이 소단원이 아니다
+      const base: number[] = [];
+      for (let x = 1; x < b; x += 1) if (gcd(x, b) === g) base.push(x);
+      // 후보가 셋 이상이어야 «성질이 만든 배수열»이 지면에서 보인다.
+      if (base.length < 3) continue;
+      for (const band of [0, 1] as const) {
+        const set = base.map((x) => x + band * b);
+        for (let k = 0; k < set.length; k += 1) {
+          // 창은 **이웃과 이웃 사이** 어디든 — 답만 담되 그 자리는 창마다 달라진다.
+          //
+          // ⚠️ 이웃과 이웃을 **꽉 채워** 잡으면(lo = 앞이웃 · hi = 뒷이웃) 배수열이
+          //    고르게 놓인 자리에서 답이 **늘 창의 한가운데**가 된다 — 실측 76.6%.
+          //    「가장 큰 것」을 깨고 「가운데」를 새로 만든 셈이라, 양쪽을 **따로**
+          //    좁혀 답의 자리를 흩뜨린다.
+          const prev = k > 0 ? set[k - 1]! : band * b;
+          const next = k + 1 < set.length ? set[k + 1]! : (band + 1) * b;
+          const a = set[k]!;
+          for (let lo = Math.max(1, prev); lo < a; lo += 1)
+            for (let hi = a + 1; hi <= next; hi += 1) {
+              const win: number[] = [];
+              for (let v = lo + 1; v < hi; v += 1) win.push(v);
+              // 창 안에 «답이 아닌 수»가 둘은 있어야 성질이 일을 한다.
+              // 여덟을 넘으면 해설이 늘어놓기에 길다.
+              if (win.length < 3 || win.length > 8) continue;
+              const c: NatDivReduceCase = { b, m, g, lo, hi, a, win, band };
+              if (!backsolveSafeStem(natDivReduceStem(c), rat(a))) continue;
+              table.push(c);
+            }
+        }
       }
     }
-  }
+  return table;
+});
 
 function natDivReduceMid(unit: UnitSeed, rng: Rng): ElemProblem {
-  const c = pick(rng, NAT_DIV_REDUCE_MID);
+  const c = pick(rng, NAT_DIV_REDUCE_MID());
   return makeDeep(unit, natDivReduceStem(c), num(c.a), [
     `몫은 어떤 수를 분자로, ${num(c.b)}${numJosa(c.b, "을", "를")} 분모로 하는 분수입니다. ` +
       `기약분수의 분모가 ${num(c.m)}${numJosa(c.m, "이", "가")} 되었으므로 분자와 분모를 ` +
@@ -9022,42 +9113,45 @@ type FracReturnGroup = {
   wins: [number, number][];
 };
 
-const FRAC_RETURN_MID: FracReturnGroup[] = [];
-for (let q = 4; q <= 25; q += 1)
-  for (let p = 2; p < q; p += 1) {
-    if (gcd(p, q) !== 1) continue;
-    const divs: number[] = [];
-    for (let k = 2; k <= p; k += 1) if (p % k === 0) divs.push(k);
-    if (divs.length < 2) continue; // 후보가 하나면 마디가 안 열린다
-    // ⚠️ **`i = 0` 을 뺀다.** 가장 작은 약수는 거의 늘 $2$ 이고, 그 자리는 `lo = 1` 이라
-    //    창이 $2$ 부터 시작한다 — 그래서 「무조건 $2$」가 44.8% 였다(적대 검토 C 축,
-    //    대조군의 10배). 답이 «가장 작은 약수»가 아니게 만들면 그 전략이 죽는다.
-    for (let i = 1; i < divs.length; i += 1) {
-      const k = divs[i]!;
-      const prev = divs[i - 1]!;
-      const next = i + 1 < divs.length ? divs[i + 1]! : k + 3;
-      const wins: [number, number][] = [];
-      // 창을 **양쪽으로 따로** 좁혀 답의 자리를 흩뜨린다(1-1-1 과 같은 처방).
-      for (let lo = prev; lo < k; lo += 1)
-        for (let up = k + 1; up <= next; up += 1) {
-          const win: number[] = [];
-          for (let v = lo + 1; v < up; v += 1) win.push(v);
-          if (win.length < 3 || win.length > 8) continue;
-          // 창 안에 **답보다 작은 수**가 하나는 있어야 「가장 작은 것」이 안 통한다.
-          if (win[0]! >= k) continue;
-          // 🔴 창의 **두 끝이 나뉘어 답이 되는** 자리는 안 낸다 — 실측으로 이 갈래에서만
-          //    7.0% 가 그랬고(전부 「$2$ 보다 크고 $8$ 보다 작다」→ $8\div2=4$),
-          //    같은 자의 **답+1 음성 대조는 0.0%** 였다(잡음이 아니다).
-          //    ⚠️ 공용 `forwardReach` 에 ÷ 축을 넣는 길은 **리드가 취소**했다 —
-          //    갈래를 안 가르고 심화상의 28% 를 거짓으로 문다. 그래서 **여기서만** 막는다.
-          if (up % lo === 0 && up / lo === k) continue;
-          if (!backsolveSafeStem(fracReturnStem({ p, q, k, lo, up }), rat(k)))
-            continue;
-          wins.push([lo, up]);
-        }
-      if (wins.length > 0) FRAC_RETURN_MID.push({ p, q, k, wins });
+const FRAC_RETURN_MID = lazyTable("g6.FRAC_RETURN_MID", () => {
+  const table: FracReturnGroup[] = [];
+  for (let q = 4; q <= 25; q += 1)
+    for (let p = 2; p < q; p += 1) {
+      if (gcd(p, q) !== 1) continue;
+      const divs: number[] = [];
+      for (let k = 2; k <= p; k += 1) if (p % k === 0) divs.push(k);
+      if (divs.length < 2) continue; // 후보가 하나면 마디가 안 열린다
+      // ⚠️ **`i = 0` 을 뺀다.** 가장 작은 약수는 거의 늘 $2$ 이고, 그 자리는 `lo = 1` 이라
+      //    창이 $2$ 부터 시작한다 — 그래서 「무조건 $2$」가 44.8% 였다(적대 검토 C 축,
+      //    대조군의 10배). 답이 «가장 작은 약수»가 아니게 만들면 그 전략이 죽는다.
+      for (let i = 1; i < divs.length; i += 1) {
+        const k = divs[i]!;
+        const prev = divs[i - 1]!;
+        const next = i + 1 < divs.length ? divs[i + 1]! : k + 3;
+        const wins: [number, number][] = [];
+        // 창을 **양쪽으로 따로** 좁혀 답의 자리를 흩뜨린다(1-1-1 과 같은 처방).
+        for (let lo = prev; lo < k; lo += 1)
+          for (let up = k + 1; up <= next; up += 1) {
+            const win: number[] = [];
+            for (let v = lo + 1; v < up; v += 1) win.push(v);
+            if (win.length < 3 || win.length > 8) continue;
+            // 창 안에 **답보다 작은 수**가 하나는 있어야 「가장 작은 것」이 안 통한다.
+            if (win[0]! >= k) continue;
+            // 🔴 창의 **두 끝이 나뉘어 답이 되는** 자리는 안 낸다 — 실측으로 이 갈래에서만
+            //    7.0% 가 그랬고(전부 「$2$ 보다 크고 $8$ 보다 작다」→ $8\div2=4$),
+            //    같은 자의 **답+1 음성 대조는 0.0%** 였다(잡음이 아니다).
+            //    ⚠️ 공용 `forwardReach` 에 ÷ 축을 넣는 길은 **리드가 취소**했다 —
+            //    갈래를 안 가르고 심화상의 28% 를 거짓으로 문다. 그래서 **여기서만** 막는다.
+            if (up % lo === 0 && up / lo === k) continue;
+            if (!backsolveSafeStem(fracReturnStem({ p, q, k, lo, up }), rat(k)))
+              continue;
+            wins.push([lo, up]);
+          }
+        if (wins.length > 0) table.push({ p, q, k, wins });
+      }
     }
-  }
+  return table;
+});
 
 /**
  * 🔴 **답을 먼저 고른다.** 유형만 고르게 뽑아도 「무조건 $4$」가 26.9% 였다 —
@@ -9067,19 +9161,22 @@ for (let q = 4; q <= 25; q += 1)
  * ⚠️ 대신 «$q$ 를 키워 큰 약수를 만드는» 길은 안 갔다 — D-115 ⑽③ 이
  * 「규모는 축이 아니다」로 못 박은 자리이고, 분모만 커진 문항은 더 어렵지 않다.
  */
-const FRAC_RETURN_BY_ANS = new Map<number, FracReturnGroup[]>();
-for (const g of FRAC_RETURN_MID) {
-  const list = FRAC_RETURN_BY_ANS.get(g.k);
-  if (list) list.push(g);
-  else FRAC_RETURN_BY_ANS.set(g.k, [g]);
-}
-const FRAC_RETURN_ANSWERS = [...FRAC_RETURN_BY_ANS.keys()].sort(
-  (x, y) => x - y,
+const FRAC_RETURN_BY_ANS = lazyTable("g6.FRAC_RETURN_BY_ANS", () => {
+  const table = new Map<number, FracReturnGroup[]>();
+  for (const g of FRAC_RETURN_MID()) {
+    const list = table.get(g.k);
+    if (list) list.push(g);
+    else table.set(g.k, [g]);
+  }
+  return table;
+});
+const FRAC_RETURN_ANSWERS = lazyTable("g6.FRAC_RETURN_ANSWERS", () =>
+  [...FRAC_RETURN_BY_ANS().keys()].sort((x, y) => x - y),
 );
 
 function fracReturnMid(unit: UnitSeed, rng: Rng): ElemProblem {
-  const ansPick = pick(rng, FRAC_RETURN_ANSWERS);
-  const grp = pick(rng, FRAC_RETURN_BY_ANS.get(ansPick)!);
+  const ansPick = pick(rng, FRAC_RETURN_ANSWERS());
+  const grp = pick(rng, FRAC_RETURN_BY_ANS().get(ansPick)!);
   const [lo, up] = pick(rng, grp.wins);
   const c: FracReturnCase = { p: grp.p, q: grp.q, k: grp.k, lo, up };
   const inWindow: number[] = [];
@@ -9128,36 +9225,39 @@ const mixedDivisorStem = (c: MixedDivisorCase): string =>
   `나누었더니 몫을 기약분수로 나타낸 분모가 ${num(c.m)}${numJosa(c.m, "이", "가")} 되었습니다. ` +
   `어떤 자연수를 구하시오.`;
 
-const MIXED_NAT_DIVISOR_TOP: MixedDivisorCase[] = [];
-for (let d = 2; d <= 9; d += 1)
-  for (let t = 1; t < d; t += 1) {
-    if (gcd(t, d) !== 1) continue;
-    for (let w = 1; w <= 5; w += 1) {
-      const imp = w * d + t;
-      for (let k = 2; k <= 30; k += 1) {
-        const g = gcd(imp, k);
-        if (g < 2) continue; // 약분이 일어나야 배수열이 «답이 아닌 후보»를 만든다
-        const m = (d * k) / g;
-        if (m % d !== 0) continue; // 배수열의 걸음이 자연수여야 한다
-        if (m > 72) continue; // 규모는 축이 아니다 (D-115 ⑽③ · 원장님)
-        const step = m / d;
-        if (step < 2) continue; // 걸음이 1 이면 후보가 «모든 자연수»라 창이 뜻을 잃는다
-        for (let cap = k + 1; cap <= Math.min(k + 3 * step, 40); cap += 1) {
-          const cands: number[] = [];
-          for (let v = step; v < cap; v += step) if (v >= 2) cands.push(v);
-          if (cands.length < 3 || cands.length > 5) continue;
-          const hit = cands.filter((v) => (d * v) / gcd(imp, v) === m);
-          if (hit.length !== 1 || hit[0] !== k) continue;
-          const c: MixedDivisorCase = { w, t, d, k, m, cap, cands };
-          if (!backsolveSafeStem(mixedDivisorStem(c), rat(k))) continue;
-          MIXED_NAT_DIVISOR_TOP.push(c);
+const MIXED_NAT_DIVISOR_TOP = lazyTable("g6.MIXED_NAT_DIVISOR_TOP", () => {
+  const table: MixedDivisorCase[] = [];
+  for (let d = 2; d <= 9; d += 1)
+    for (let t = 1; t < d; t += 1) {
+      if (gcd(t, d) !== 1) continue;
+      for (let w = 1; w <= 5; w += 1) {
+        const imp = w * d + t;
+        for (let k = 2; k <= 30; k += 1) {
+          const g = gcd(imp, k);
+          if (g < 2) continue; // 약분이 일어나야 배수열이 «답이 아닌 후보»를 만든다
+          const m = (d * k) / g;
+          if (m % d !== 0) continue; // 배수열의 걸음이 자연수여야 한다
+          if (m > 72) continue; // 규모는 축이 아니다 (D-115 ⑽③ · 원장님)
+          const step = m / d;
+          if (step < 2) continue; // 걸음이 1 이면 후보가 «모든 자연수»라 창이 뜻을 잃는다
+          for (let cap = k + 1; cap <= Math.min(k + 3 * step, 40); cap += 1) {
+            const cands: number[] = [];
+            for (let v = step; v < cap; v += step) if (v >= 2) cands.push(v);
+            if (cands.length < 3 || cands.length > 5) continue;
+            const hit = cands.filter((v) => (d * v) / gcd(imp, v) === m);
+            if (hit.length !== 1 || hit[0] !== k) continue;
+            const c: MixedDivisorCase = { w, t, d, k, m, cap, cands };
+            if (!backsolveSafeStem(mixedDivisorStem(c), rat(k))) continue;
+            table.push(c);
+          }
         }
       }
     }
-  }
+  return table;
+});
 
 function mixedNatDivisorTop(unit: UnitSeed, rng: Rng): ElemProblem {
-  const c = pick(rng, MIXED_NAT_DIVISOR_TOP);
+  const c = pick(rng, MIXED_NAT_DIVISOR_TOP());
   const imp = c.w * c.d + c.t;
   const step = c.m / c.d;
   const shown = (v: number) => {
@@ -9200,29 +9300,33 @@ const rollTurnsStem = (c: RollCase, roller: string): string =>
   `이 ${roller}의 지름이 ${num(c.lo)} cm보다 길고 ${num(c.up)} cm보다 짧은 자연수 cm이고, ` +
   `굴린 바퀴 수도 자연수일 때, 몇 바퀴 굴렸습니까? (원주율: ${num("3.14")})`;
 
-const ROLL_TOP: RollCase[] = [];
-for (let d = 6; d <= 24; d += 1)
-  for (let turns = 3; turns <= 15; turns += 1) {
-    const prod = d * turns;
-    if (prod > 260) continue;
-    for (let lo = 3; lo < d; lo += 1) {
-      const up = lo + 6;
-      if (up <= d) continue;
-      // 🔴 **발문이 말하는 조건만으로** 센다 — 예전엔 «바퀴 수 2~30» 까지
-      // 걸었는데, 그 상한은 지면에 없다. 지면이 안 말하는 조건으로 걸러내면
-      // «답이 하나»가 **우리만 아는 사실**이 된다(학생은 둘로 본다).
-      const hit: number[] = [];
-      for (let dd = lo + 1; dd < up; dd += 1) if (prod % dd === 0) hit.push(dd);
-      if (hit.length !== 1 || hit[0] !== d) continue;
-      const c: RollCase = { d, turns, prod, lo, up };
-      if (!backsolveSafeStem(rollTurnsStem(c, ROLLERS[0]), rat(turns)))
-        continue;
-      ROLL_TOP.push(c);
+const ROLL_TOP = lazyTable("g6.ROLL_TOP", () => {
+  const table: RollCase[] = [];
+  for (let d = 6; d <= 24; d += 1)
+    for (let turns = 3; turns <= 15; turns += 1) {
+      const prod = d * turns;
+      if (prod > 260) continue;
+      for (let lo = 3; lo < d; lo += 1) {
+        const up = lo + 6;
+        if (up <= d) continue;
+        // 🔴 **발문이 말하는 조건만으로** 센다 — 예전엔 «바퀴 수 2~30» 까지
+        // 걸었는데, 그 상한은 지면에 없다. 지면이 안 말하는 조건으로 걸러내면
+        // «답이 하나»가 **우리만 아는 사실**이 된다(학생은 둘로 본다).
+        const hit: number[] = [];
+        for (let dd = lo + 1; dd < up; dd += 1)
+          if (prod % dd === 0) hit.push(dd);
+        if (hit.length !== 1 || hit[0] !== d) continue;
+        const c: RollCase = { d, turns, prod, lo, up };
+        if (!backsolveSafeStem(rollTurnsStem(c, ROLLERS[0]), rat(turns)))
+          continue;
+        table.push(c);
+      }
     }
-  }
+  return table;
+});
 
 function rollTurnsTop(unit: UnitSeed, rng: Rng): ElemProblem {
-  const c = pick(rng, ROLL_TOP);
+  const c = pick(rng, ROLL_TOP());
   const roller = pick(rng, ROLLERS);
   const cands: number[] = [];
   for (let dd = c.lo + 1; dd < c.up; dd += 1) cands.push(dd);
@@ -9252,16 +9356,19 @@ const cylSquareStem = (c: CylSquareCase, thing: string): string =>
   `원기둥 모양 ${thing}${josa(thing, "을", "를")} 앞에서 본 모양이 정사각형이고 ` +
   `그 넓이가 ${num(c.area)} cm²입니다. 이 ${thing}의 밑면의 반지름은 몇 cm인가?`;
 
-const CYL_SQUARE_MID: CylSquareCase[] = [];
-for (let r = 2; r <= 13; r += 1) {
-  // 규모는 축이 아니다 — 반지름 13 이면 앞에서 본 정사각형이 이미 $26$ cm다.
-  const c: CylSquareCase = { r, area: 4 * r * r };
-  if (!backsolveSafeStem(cylSquareStem(c, CYL_THINGS[0]), rat(r))) continue;
-  CYL_SQUARE_MID.push(c);
-}
+const CYL_SQUARE_MID = lazyTable("g6.CYL_SQUARE_MID", () => {
+  const table: CylSquareCase[] = [];
+  for (let r = 2; r <= 13; r += 1) {
+    // 규모는 축이 아니다 — 반지름 13 이면 앞에서 본 정사각형이 이미 $26$ cm다.
+    const c: CylSquareCase = { r, area: 4 * r * r };
+    if (!backsolveSafeStem(cylSquareStem(c, CYL_THINGS[0]), rat(r))) continue;
+    table.push(c);
+  }
+  return table;
+});
 
 function cylSquareMid(unit: UnitSeed, rng: Rng): ElemProblem {
-  const c = pick(rng, CYL_SQUARE_MID);
+  const c = pick(rng, CYL_SQUARE_MID());
   const thing = pick(rng, CYL_THINGS);
   const d = 2 * c.r;
   return makeDeep(unit, cylSquareStem(c, thing), num(c.r), [
@@ -9290,17 +9397,20 @@ const netSquareStem = (c: NetSquareCase): string =>
   `어떤 원기둥의 전개도에서 옆면이 정사각형이고 그 둘레가 ${unitNum(fromCents(c.perim), "cm")} 입니다. ` +
   `이 원기둥의 밑면의 반지름은 몇 cm인가? (원주율: ${num("3.14")})`;
 
-const NET_SQUARE_MID: NetSquareCase[] = [];
-for (let r = 2; r <= 13; r += 1) {
-  // 규모는 축이 아니다 — 반지름 13 이면 옆면 둘레가 이미 $326.56$ cm다.
-  const side = 2 * r * 314; // 밑면의 둘레(백분의 일)
-  const c: NetSquareCase = { r, side, perim: 4 * side };
-  if (!backsolveSafeStem(netSquareStem(c), rat(r))) continue;
-  NET_SQUARE_MID.push(c);
-}
+const NET_SQUARE_MID = lazyTable("g6.NET_SQUARE_MID", () => {
+  const table: NetSquareCase[] = [];
+  for (let r = 2; r <= 13; r += 1) {
+    // 규모는 축이 아니다 — 반지름 13 이면 옆면 둘레가 이미 $326.56$ cm다.
+    const side = 2 * r * 314; // 밑면의 둘레(백분의 일)
+    const c: NetSquareCase = { r, side, perim: 4 * side };
+    if (!backsolveSafeStem(netSquareStem(c), rat(r))) continue;
+    table.push(c);
+  }
+  return table;
+});
 
 function netSquareMid(unit: UnitSeed, rng: Rng): ElemProblem {
-  const c = pick(rng, NET_SQUARE_MID);
+  const c = pick(rng, NET_SQUARE_MID());
   return makeDeep(unit, netSquareStem(c), num(c.r), [
     `옆면은 가로가 밑면의 둘레이고 세로가 높이인 직사각형입니다. ` +
       `그것이 정사각형이므로 밑면의 둘레와 높이가 같습니다.`,
@@ -9351,57 +9461,65 @@ const conePairStem = (c: ConePairCase): string =>
   `이 원뿔의 밑면의 반지름과 높이가 모두 자연수 cm이고 높이가 밑면의 반지름보다 길며, ` +
   `높이와 반지름의 차가 ${num(c.diff)} cm일 때, 밑면의 반지름은 몇 cm인가?`;
 
-const CONE_PAIR_TOP: ConePairCase[] = [];
-for (let area = 12; area <= 160; area += 1) {
-  const pairs: [number, number][] = [];
-  for (let r = 1; r * r < area; r += 1)
-    if (area % r === 0) pairs.push([r, area / r]);
-  // 짝이 셋은 있어야 «만들어 견주기»가 한눈에 안 끝난다.
-  if (pairs.length < 3 || pairs.length > 6) continue;
-  for (const [r, h] of pairs) {
-    const diff = h - r;
-    // 차는 짝마다 다르다(`r` 이 커지면 `h` 는 작아지므로 `h - r` 은 **엄격히 줄어든다**).
-    // 그래도 그 사실에 기대지 않고 **세어서** 확인한다 — 하나가 아니면 안 쓴다.
-    //
-    // 🔴 **이 줄은 변이로 잴 수 없다 — 격자 전체에서 한 번도 안 물기 때문이다.**
-    //    2026-08-31 실측: `area` 12~160 · 짝 3~6개인 넓이의 **짝 252개 전부**에서
-    //    「차가 같은 짝이 둘 이상」인 자리가 **0** 이다. 그래서 이 줄을 지워도
-    //    산출물이 한 글자도 안 바뀌고, 하네스는 `??`(판정 안 함)를 낸다.
-    //    변이를 걷어 냈다 — **늘 `??` 인 항목은 종료 코드를 영영 1로 만들고,
-    //    그러면 다음 사람이 하네스를 안 본다**(2026-08-20 「거짓 경보는 가드를 끈다」).
-    //    ⚠️ 그렇다고 **지우지는 마라.** 위 단조성은 「`area` 의 약수 짝」이라는
-    //    지금 구성에서만 참이다 — 구성이 바뀌면 이 줄이 유일한 방어가 된다.
-    if (pairs.filter(([x, y]) => y - x === diff).length !== 1) continue;
-    if (h > 40 || r > 20) continue; // 지면에 얹히는 크기
-    const c: ConePairCase = { area, diff, r, h, pairs };
-    if (!backsolveSafeStem(conePairStem(c), rat(r))) continue;
-    CONE_PAIR_TOP.push(c);
+const CONE_PAIR_TOP = lazyTable("g6.CONE_PAIR_TOP", () => {
+  const table: ConePairCase[] = [];
+  for (let area = 12; area <= 160; area += 1) {
+    const pairs: [number, number][] = [];
+    for (let r = 1; r * r < area; r += 1)
+      if (area % r === 0) pairs.push([r, area / r]);
+    // 짝이 셋은 있어야 «만들어 견주기»가 한눈에 안 끝난다.
+    if (pairs.length < 3 || pairs.length > 6) continue;
+    for (const [r, h] of pairs) {
+      const diff = h - r;
+      // 차는 짝마다 다르다(`r` 이 커지면 `h` 는 작아지므로 `h - r` 은 **엄격히 줄어든다**).
+      // 그래도 그 사실에 기대지 않고 **세어서** 확인한다 — 하나가 아니면 안 쓴다.
+      //
+      // 🔴 **이 줄은 변이로 잴 수 없다 — 격자 전체에서 한 번도 안 물기 때문이다.**
+      //    2026-08-31 실측: `area` 12~160 · 짝 3~6개인 넓이의 **짝 252개 전부**에서
+      //    「차가 같은 짝이 둘 이상」인 자리가 **0** 이다. 그래서 이 줄을 지워도
+      //    산출물이 한 글자도 안 바뀌고, 하네스는 `??`(판정 안 함)를 낸다.
+      //    변이를 걷어 냈다 — **늘 `??` 인 항목은 종료 코드를 영영 1로 만들고,
+      //    그러면 다음 사람이 하네스를 안 본다**(2026-08-20 「거짓 경보는 가드를 끈다」).
+      //    ⚠️ 그렇다고 **지우지는 마라.** 위 단조성은 「`area` 의 약수 짝」이라는
+      //    지금 구성에서만 참이다 — 구성이 바뀌면 이 줄이 유일한 방어가 된다.
+      if (pairs.filter(([x, y]) => y - x === diff).length !== 1) continue;
+      if (h > 40 || r > 20) continue; // 지면에 얹히는 크기
+      const c: ConePairCase = { area, diff, r, h, pairs };
+      if (!backsolveSafeStem(conePairStem(c), rat(r))) continue;
+      table.push(c);
+    }
   }
-}
+  return table;
+});
 
 /**
  * 🔴 **답의 «자리»를 먼저 고른다.** 차 조건만 넣어도 「가장 큰 반지름」이 38.5% 였다 —
  * 짝이 셋인 넓이가 많고 그 안에서 마지막 자리가 흔하기 때문이다. 지름길이 **자리**에
  * 붙어 있으므로 자리로 묶어 고르게 뽑는다(1-1-2 는 같은 이유로 **답 값**으로 묶었다).
  */
-const CONE_BY_POS = new Map<string, ConePairCase[]>();
-for (const c of CONE_PAIR_TOP) {
-  // ⚠️ **절대 자리로 묶으면 안 된다.** 「다섯째」는 짝이 여섯인 넓이에서만 나오므로
-  //    그 묶음을 고르면 그대로 «마지막에서 둘째»가 된다 — 실제로 그렇게 했다가
-  //    「가장 큰 반지름」이 38.5% → **42.8%** 로 **올랐다.** 묶음은 «몇 개 중 몇째»다.
-  const at = c.pairs.findIndex(([r]) => r === c.r);
-  const key = `${at}/${c.pairs.length}`;
-  const list = CONE_BY_POS.get(key);
-  if (list) list.push(c);
-  else CONE_BY_POS.set(key, [c]);
-}
-const CONE_POSITIONS = [...CONE_BY_POS.keys()].sort();
+const CONE_BY_POS = lazyTable("g6.CONE_BY_POS", () => {
+  const table = new Map<string, ConePairCase[]>();
+  for (const c of CONE_PAIR_TOP()) {
+    // ⚠️ **절대 자리로 묶으면 안 된다.** 「다섯째」는 짝이 여섯인 넓이에서만 나오므로
+    //    그 묶음을 고르면 그대로 «마지막에서 둘째»가 된다 — 실제로 그렇게 했다가
+    //    「가장 큰 반지름」이 38.5% → **42.8%** 로 **올랐다.** 묶음은 «몇 개 중 몇째»다.
+    const at = c.pairs.findIndex(([r]) => r === c.r);
+    const key = `${at}/${c.pairs.length}`;
+    const list = table.get(key);
+    if (list) list.push(c);
+    else table.set(key, [c]);
+  }
+  return table;
+});
+const CONE_POSITIONS = lazyTable("g6.CONE_POSITIONS", () =>
+  [...CONE_BY_POS().keys()].sort(),
+);
 
 function conePairTop(unit: UnitSeed, rng: Rng): ElemProblem {
   // 자리를 고르게 뽑고, **그 안에서 답 값도** 고르게 뽑는다 — 둘이 상충해서
   // (자리만 고르면 「무조건 $2$」가 26.0%, 답 값을 키에 넣으면 「가장 큰 것」이
   //  46.8% 로 되레 오른다) 두 겹으로 나눈다.
-  const bucket = CONE_BY_POS.get(pick(rng, CONE_POSITIONS))!;
+  const bucket = CONE_BY_POS().get(pick(rng, CONE_POSITIONS()))!;
   const byAns = new Map<number, ConePairCase[]>();
   for (const x of bucket) {
     const l = byAns.get(x.r);
@@ -9561,39 +9679,44 @@ const underOneSmallestStem = (c: UnderOneSmallestCase): string =>
   `나누는 수가 ${num(fromCents(c.ac))}${centsJosa(c.ac, "을", "를")} 나누면 몫이 ${num(1)}보다 작아지는 ` +
   `자연수 중에서 가장 작은 수일 때, 어떤 소수를 구하시오.`;
 
-const UNDER_ONE_SMALLEST: UnderOneSmallestCase[] = [];
-for (let d = 2; d <= 9; d += 1)
-  for (let ac = (d - 1) * 100 + 10; ac < d * 100; ac += 10) {
-    if (ac % 100 === 0) continue; // 자연수면 「가장 작은」이 $A$ 자신이 되어 뜻이 흔들린다
-    // 확인 줄에 $A\div d$ 를 적으려면 그 몫도 지면에 적을 수 있어야 한다.
-    const aq = centsQuotientText(ac, d);
-    if (aq === null) continue;
-    for (let qc = 10; qc <= 90; qc += 10) {
-      const xc = qc * d;
-      if (xc % 100 === 0) continue; // 답이 자연수면 「어떤 소수」가 아니다
-      if (xc === ac) continue;
-      const c: UnderOneSmallestCase = {
-        d,
-        ac,
-        qc,
-        xc,
-        ans: xc,
-        slot: `q${qc}`,
-      };
-      // 반증 ⑥ + 답이 지면에 그대로 + ±한 걸음. 실측으로 $A-1$ 이 답과 같아지는
-      // 자리가 3.2% 있었고 이 자가 그것을 뺀다.
-      if (!backsolveSafeStem(underOneSmallestStem(c), rat(xc, 100))) continue;
-      UNDER_ONE_SMALLEST.push(c);
+const UNDER_ONE_SMALLEST = lazyTable("g6.UNDER_ONE_SMALLEST", () => {
+  const table: UnderOneSmallestCase[] = [];
+  for (let d = 2; d <= 9; d += 1)
+    for (let ac = (d - 1) * 100 + 10; ac < d * 100; ac += 10) {
+      if (ac % 100 === 0) continue; // 자연수면 「가장 작은」이 $A$ 자신이 되어 뜻이 흔들린다
+      // 확인 줄에 $A\div d$ 를 적으려면 그 몫도 지면에 적을 수 있어야 한다.
+      const aq = centsQuotientText(ac, d);
+      if (aq === null) continue;
+      for (let qc = 10; qc <= 90; qc += 10) {
+        const xc = qc * d;
+        if (xc % 100 === 0) continue; // 답이 자연수면 「어떤 소수」가 아니다
+        if (xc === ac) continue;
+        const c: UnderOneSmallestCase = {
+          d,
+          ac,
+          qc,
+          xc,
+          ans: xc,
+          slot: `q${qc}`,
+        };
+        // 반증 ⑥ + 답이 지면에 그대로 + ±한 걸음. 실측으로 $A-1$ 이 답과 같아지는
+        // 자리가 3.2% 있었고 이 자가 그것을 뺀다.
+        if (!backsolveSafeStem(underOneSmallestStem(c), rat(xc, 100))) continue;
+        table.push(c);
+      }
     }
-  }
+  return table;
+});
 
-const UNDER_ONE_SMALLEST_BINS = binByAnswerThenSlot(UNDER_ONE_SMALLEST);
+const UNDER_ONE_SMALLEST_BINS = lazyTable("g6.UNDER_ONE_SMALLEST_BINS", () =>
+  binByAnswerThenSlot(UNDER_ONE_SMALLEST()),
+);
 
 function underOneSmallestMid(unit: UnitSeed, rng: Rng): ElemProblem {
   const c = pickByAnswerThenSlot(
     rng,
-    UNDER_ONE_SMALLEST_BINS.bins,
-    UNDER_ONE_SMALLEST_BINS.answers,
+    UNDER_ONE_SMALLEST_BINS().bins,
+    UNDER_ONE_SMALLEST_BINS().answers,
   );
   const a = fromCents(c.ac);
   const q = fromCents(c.qc);
@@ -9703,19 +9826,23 @@ const bringZeroSlotStem = (c: DivisorSlotCase): string =>
   `소수점 아래 ${num(0)}을 내려 계산하게 되어 몫이 소수 두 자리 수가 되었습니다. ` +
   `나누는 수가 ${num(c.lo)}보다 크고 ${num(c.hi)}보다 작을 때, 나누는 수를 구하시오.`;
 
-const BRING_ZERO_SLOT = buildDivisorSlot(
-  (xc, d) => centsQuotientDp(xc, d) === 2,
-  { xlo: 110, xhi: 4990, winMin: 3, winMax: 6 },
-  bringZeroSlotStem,
-  (c) => rat(c.d),
+const BRING_ZERO_SLOT = lazyTable("g6.BRING_ZERO_SLOT", () =>
+  buildDivisorSlot(
+    (xc, d) => centsQuotientDp(xc, d) === 2,
+    { xlo: 110, xhi: 4990, winMin: 3, winMax: 6 },
+    bringZeroSlotStem,
+    (c) => rat(c.d),
+  ),
 );
-const BRING_ZERO_BINS = binByAnswerThenSlot(BRING_ZERO_SLOT);
+const BRING_ZERO_BINS = lazyTable("g6.BRING_ZERO_BINS", () =>
+  binByAnswerThenSlot(BRING_ZERO_SLOT()),
+);
 
 function bringZeroDivisorTop(unit: UnitSeed, rng: Rng): ElemProblem {
   const c = pickByAnswerThenSlot(
     rng,
-    BRING_ZERO_BINS.bins,
-    BRING_ZERO_BINS.answers,
+    BRING_ZERO_BINS().bins,
+    BRING_ZERO_BINS().answers,
   );
   const x = fromCents(c.xc);
   const q = centsQuotientText(c.xc, c.d)!;
@@ -9738,19 +9865,23 @@ const zeroTenthSlotStem = (c: DivisorSlotCase): string =>
  * 답이 몫이면 「무조건 $5$로 나눠라」가 답을 바로 주지 못하고, 지면에서도 이 소단원의
  * 이름(첫째 자리에 $0$이 있는 몫)이 **답 자체**로 보인다.
  */
-const ZERO_TENTH_SLOT = buildDivisorSlot(
-  (xc, d) => centsQuotientDp(xc, d) === 2 && centsQuotientTenth(xc, d) === 0,
-  { xlo: 210, xhi: 4990, winMin: 3, winMax: 6 },
-  zeroTenthSlotStem,
-  (c) => rat(c.xc, 100 * c.d),
+const ZERO_TENTH_SLOT = lazyTable("g6.ZERO_TENTH_SLOT", () =>
+  buildDivisorSlot(
+    (xc, d) => centsQuotientDp(xc, d) === 2 && centsQuotientTenth(xc, d) === 0,
+    { xlo: 210, xhi: 4990, winMin: 3, winMax: 6 },
+    zeroTenthSlotStem,
+    (c) => rat(c.xc, 100 * c.d),
+  ),
 );
-const ZERO_TENTH_BINS = binByAnswerThenSlot(ZERO_TENTH_SLOT);
+const ZERO_TENTH_BINS = lazyTable("g6.ZERO_TENTH_BINS", () =>
+  binByAnswerThenSlot(ZERO_TENTH_SLOT()),
+);
 
 function zeroTenthQuotientTop(unit: UnitSeed, rng: Rng): ElemProblem {
   const c = pickByAnswerThenSlot(
     rng,
-    ZERO_TENTH_BINS.bins,
-    ZERO_TENTH_BINS.answers,
+    ZERO_TENTH_BINS().bins,
+    ZERO_TENTH_BINS().answers,
   );
   const x = fromCents(c.xc);
   const q = centsQuotientText(c.xc, c.d)!;
@@ -9844,45 +9975,50 @@ const rateWindowStem = (c: RateWindowCase): string =>
   `비율이 ${expr(`\\frac{${c.p}}{${c.q}}`)} 인 비가 있습니다. 두 항이 모두 자연수이고 ` +
   `기준량이 ${num(c.lo)}보다 크고 ${num(c.hi)}보다 작을 때, 비교하는 양은 얼마입니까?`;
 
-const RATE_WINDOW_MID: RateWindowCase[] = [];
-for (let q = 4; q <= 15; q += 1)
-  for (let p = 2; p < q; p += 1) {
-    if (gcd(p, q) !== 1) continue;
-    for (let k = 2; k <= 8; k += 1) {
-      const base = q * k;
-      const ans = p * k;
-      if (ans < 3 || base > 120) continue;
-      for (let lo = Math.max(1, base - 8); lo < base; lo += 1)
-        for (let hi = base + 1; hi <= base + 8; hi += 1) {
-          const span = hi - lo - 1;
-          // 🔴 **창을 일곱 이상으로 잡는다** — 이 갈래에서는 공용 반증 ⑥ 자가
-          //    창의 **두 끝**을 구조적으로 걷어내기 때문이다(측정: 자리 0 이 1,428 → 0).
-          //    답이 $rac pq	imes$(기준량)인데 기준량이 $lo+1$ 이면
-          //    $rac pq	imes lo+rac pq$ 가 되어 `a	imes b+c` 꼴에 걸린다(끝도 대칭).
-          //    막을 수는 없으니 **창을 넓혀 그 누수의 몫을 줄인다**(2/5 → 2/7 아래).
-          if (span < 7 || span > 12) continue;
-          if (loneMultiple(lo, hi, q) !== base) continue;
-          const c: RateWindowCase = {
-            p,
-            q,
-            lo,
-            hi,
-            base,
-            ans,
-            slot: slotOf(lo, hi, base),
-          };
-          if (!backsolveSafeStem(rateWindowStem(c), rat(ans))) continue;
-          RATE_WINDOW_MID.push(c);
-        }
+const RATE_WINDOW_MID = lazyTable("g6.RATE_WINDOW_MID", () => {
+  const table: RateWindowCase[] = [];
+  for (let q = 4; q <= 15; q += 1)
+    for (let p = 2; p < q; p += 1) {
+      if (gcd(p, q) !== 1) continue;
+      for (let k = 2; k <= 8; k += 1) {
+        const base = q * k;
+        const ans = p * k;
+        if (ans < 3 || base > 120) continue;
+        for (let lo = Math.max(1, base - 8); lo < base; lo += 1)
+          for (let hi = base + 1; hi <= base + 8; hi += 1) {
+            const span = hi - lo - 1;
+            // 🔴 **창을 일곱 이상으로 잡는다** — 이 갈래에서는 공용 반증 ⑥ 자가
+            //    창의 **두 끝**을 구조적으로 걷어내기 때문이다(측정: 자리 0 이 1,428 → 0).
+            //    답이 $rac pq	imes$(기준량)인데 기준량이 $lo+1$ 이면
+            //    $rac pq	imes lo+rac pq$ 가 되어 `a	imes b+c` 꼴에 걸린다(끝도 대칭).
+            //    막을 수는 없으니 **창을 넓혀 그 누수의 몫을 줄인다**(2/5 → 2/7 아래).
+            if (span < 7 || span > 12) continue;
+            if (loneMultiple(lo, hi, q) !== base) continue;
+            const c: RateWindowCase = {
+              p,
+              q,
+              lo,
+              hi,
+              base,
+              ans,
+              slot: slotOf(lo, hi, base),
+            };
+            if (!backsolveSafeStem(rateWindowStem(c), rat(ans))) continue;
+            table.push(c);
+          }
+      }
     }
-  }
-const RATE_WINDOW_BINS = binByAnswerThenSlot(RATE_WINDOW_MID);
+  return table;
+});
+const RATE_WINDOW_BINS = lazyTable("g6.RATE_WINDOW_BINS", () =>
+  binByAnswerThenSlot(RATE_WINDOW_MID()),
+);
 
 function rateWindowMid(unit: UnitSeed, rng: Rng): ElemProblem {
   const c = pickByAnswerThenSlot(
     rng,
-    RATE_WINDOW_BINS.bins,
-    RATE_WINDOW_BINS.answers,
+    RATE_WINDOW_BINS().bins,
+    RATE_WINDOW_BINS().answers,
   );
   return makeDeep(unit, rateWindowStem(c), num(c.ans), [
     `비율이 ${expr(`\\frac{${c.p}}{${c.q}}`)} 이므로 비교하는 양은 ${num(c.p)}묶음, ` +
@@ -9935,43 +10071,48 @@ const pctWindowStem = (c: PctWindowCase, g: (typeof PCT_GROUPS)[number]) =>
   `${g.who} ${g.unit} 수가 자연수이고 전체 ${g.unit}이 ${num(c.lo)}명보다 많고 ` +
   `${num(c.hi)}명보다 적을 때, ${g.who} ${g.unit}은 몇 명입니까?`;
 
-const PCT_WINDOW_MID: PctWindowCase[] = [];
-for (let p = 4; p <= 96; p += 1) {
-  const [a, b] = pctFraction(p);
-  if (b < 5 || b > 50) continue; // 배수열이 너무 촘촘하거나 너무 성기면 창이 안 선다
-  for (let k = 1; k <= 10; k += 1) {
-    const total = b * k;
-    const ans = a * k;
-    if (total < 20 || total > 300 || ans < 2) continue;
-    for (let lo = Math.max(1, total - b + 1); lo < total; lo += 1)
-      for (let hi = total + 1; hi <= total + b - 1; hi += 1) {
-        const span = hi - lo - 1;
-        if (span < 5 || span > 14) continue;
-        if (loneMultiple(lo, hi, b) !== total) continue;
-        const c: PctWindowCase = {
-          p,
-          b,
-          lo,
-          hi,
-          total,
-          ans,
-          slot: slotOf(lo, hi, total),
-        };
-        const fit = pctGroupsFor(p);
-        if (fit.length === 0) continue; // 그럴듯한 소재가 없는 백분율
-        // 소재는 지면 글자만 바꾸므로 첫 소재로 대표해 가드를 건다(수는 같다).
-        if (!backsolveSafeStem(pctWindowStem(c, fit[0]!), rat(ans))) continue;
-        PCT_WINDOW_MID.push(c);
-      }
+const PCT_WINDOW_MID = lazyTable("g6.PCT_WINDOW_MID", () => {
+  const table: PctWindowCase[] = [];
+  for (let p = 4; p <= 96; p += 1) {
+    const [a, b] = pctFraction(p);
+    if (b < 5 || b > 50) continue; // 배수열이 너무 촘촘하거나 너무 성기면 창이 안 선다
+    for (let k = 1; k <= 10; k += 1) {
+      const total = b * k;
+      const ans = a * k;
+      if (total < 20 || total > 300 || ans < 2) continue;
+      for (let lo = Math.max(1, total - b + 1); lo < total; lo += 1)
+        for (let hi = total + 1; hi <= total + b - 1; hi += 1) {
+          const span = hi - lo - 1;
+          if (span < 5 || span > 14) continue;
+          if (loneMultiple(lo, hi, b) !== total) continue;
+          const c: PctWindowCase = {
+            p,
+            b,
+            lo,
+            hi,
+            total,
+            ans,
+            slot: slotOf(lo, hi, total),
+          };
+          const fit = pctGroupsFor(p);
+          if (fit.length === 0) continue; // 그럴듯한 소재가 없는 백분율
+          // 소재는 지면 글자만 바꾸므로 첫 소재로 대표해 가드를 건다(수는 같다).
+          if (!backsolveSafeStem(pctWindowStem(c, fit[0]!), rat(ans))) continue;
+          table.push(c);
+        }
+    }
   }
-}
-const PCT_WINDOW_BINS = binByAnswerThenSlot(PCT_WINDOW_MID);
+  return table;
+});
+const PCT_WINDOW_BINS = lazyTable("g6.PCT_WINDOW_BINS", () =>
+  binByAnswerThenSlot(PCT_WINDOW_MID()),
+);
 
 function pctWindowMid(unit: UnitSeed, rng: Rng): ElemProblem {
   const c = pickByAnswerThenSlot(
     rng,
-    PCT_WINDOW_BINS.bins,
-    PCT_WINDOW_BINS.answers,
+    PCT_WINDOW_BINS().bins,
+    PCT_WINDOW_BINS().answers,
   );
   const g = pick(rng, pctGroupsFor(c.p));
   const [a, b] = pctFraction(c.p);
@@ -10009,43 +10150,48 @@ const voteWindowStem = (c: VoteWindowCase): string =>
   `투표한 학생이 ${num(c.lo)}명보다 많고 ${num(c.hi)}명보다 적을 때, 반대한 학생은 몇 명입니까? ` +
   `(모든 학생이 찬성이나 반대 가운데 하나를 골랐습니다.)`;
 
-const VOTE_WINDOW_MID: VoteWindowCase[] = [];
-// 찬성률이 $5\%$ 나 $95\%$ 인 투표는 지면에서 거짓말이다 — 폭을 좁힌다.
-for (let p = 30; p <= 90; p += 1) {
-  const [a, b] = pctFraction(p);
-  if (b < 5 || b > 50) continue;
-  for (let k = 1; k <= 10; k += 1) {
-    const total = b * k;
-    const yes = a * k;
-    const ans = total - yes;
-    if (total < 20 || total > 300 || yes < 2 || ans < 2) continue;
-    for (let lo = Math.max(1, total - b + 1); lo < total; lo += 1)
-      for (let hi = total + 1; hi <= total + b - 1; hi += 1) {
-        const span = hi - lo - 1;
-        if (span < 5 || span > 14) continue;
-        if (loneMultiple(lo, hi, b) !== total) continue;
-        const c: VoteWindowCase = {
-          p,
-          b,
-          lo,
-          hi,
-          total,
-          yes,
-          ans,
-          slot: slotOf(lo, hi, total),
-        };
-        if (!backsolveSafeStem(voteWindowStem(c), rat(ans))) continue;
-        VOTE_WINDOW_MID.push(c);
-      }
+const VOTE_WINDOW_MID = lazyTable("g6.VOTE_WINDOW_MID", () => {
+  const table: VoteWindowCase[] = [];
+  // 찬성률이 $5\%$ 나 $95\%$ 인 투표는 지면에서 거짓말이다 — 폭을 좁힌다.
+  for (let p = 30; p <= 90; p += 1) {
+    const [a, b] = pctFraction(p);
+    if (b < 5 || b > 50) continue;
+    for (let k = 1; k <= 10; k += 1) {
+      const total = b * k;
+      const yes = a * k;
+      const ans = total - yes;
+      if (total < 20 || total > 300 || yes < 2 || ans < 2) continue;
+      for (let lo = Math.max(1, total - b + 1); lo < total; lo += 1)
+        for (let hi = total + 1; hi <= total + b - 1; hi += 1) {
+          const span = hi - lo - 1;
+          if (span < 5 || span > 14) continue;
+          if (loneMultiple(lo, hi, b) !== total) continue;
+          const c: VoteWindowCase = {
+            p,
+            b,
+            lo,
+            hi,
+            total,
+            yes,
+            ans,
+            slot: slotOf(lo, hi, total),
+          };
+          if (!backsolveSafeStem(voteWindowStem(c), rat(ans))) continue;
+          table.push(c);
+        }
+    }
   }
-}
-const VOTE_WINDOW_BINS = binByAnswerThenSlot(VOTE_WINDOW_MID);
+  return table;
+});
+const VOTE_WINDOW_BINS = lazyTable("g6.VOTE_WINDOW_BINS", () =>
+  binByAnswerThenSlot(VOTE_WINDOW_MID()),
+);
 
 function voteWindowMid(unit: UnitSeed, rng: Rng): ElemProblem {
   const c = pickByAnswerThenSlot(
     rng,
-    VOTE_WINDOW_BINS.bins,
-    VOTE_WINDOW_BINS.answers,
+    VOTE_WINDOW_BINS().bins,
+    VOTE_WINDOW_BINS().answers,
   );
   const [a, b] = pctFraction(c.p);
   return makeDeep(unit, voteWindowStem(c), num(c.ans), [
@@ -10125,39 +10271,44 @@ const mixedTopStem = (c: MixedTopCase): string =>
   `${expr(`${c.w}\\frac{\\square}{${c.d}}\\div\\frac{${c.a}}{${c.d}}`)} 의 몫이 자연수입니다. ` +
   `${expr(`\\frac{\\square}{${c.d}}`)} 가 진분수일 때, ${expr("\\square")} 안에 알맞은 수를 구하시오.`;
 
-const MIXED_TOP_MID: MixedTopCase[] = [];
-// 🔴 분모 상한이 $15$ 였을 때 자리가 **24개**뿐이라 답이 창 가운데로 쏠렸다
-//    (설계 공간에서 $29.2\%$ · 우연 $9.5\%$). $20$ 으로 넓히니 자리 **64개** ·
-//    가운데 $18.8\%$ 로 내려갔다 — 시험 ㉨″ 가 그것을 잰다. 심화하가 이미
-//    $1\frac1{24}$ 를 쓰므로 이 범위는 소단원 밖으로 안 나간다.
-for (let d = 5; d <= 20; d += 1)
-  for (let a = 2; a < d; a += 1) {
-    if (gcd(a, d) !== 1) continue; // 발문의 분수는 기약이다
-    for (let w = 1; w <= 5; w += 1) {
-      // 🔴 **유일성은 «기약» 을 빼고 따진다.** 발문은 「진분수」라고만 하지
-      //    「기약분수」라고 하지 않는다 — 기약을 조건으로 세어 유일하다고 하면
-      //    지면에는 답이 **둘인 문항**이 나간다($3\frac{2}{14}$ 도 진분수다).
-      //    실제로 시험이 그것을 잡았다(2-1-5 심화중, 씨앗 8자리).
-      //    ⚠️ 「기약분수다」를 발문에 얹는 길은 안 간다 — 약분은 토대 §1.4 가
-      //       **1-1 에 예약**한 축이고 초5 개념이다(반증 ③).
-      const hit: number[] = [];
-      for (let s = 1; s < d; s += 1) if ((w * d + s) % a === 0) hit.push(s);
-      if (hit.length !== 1) continue; // 답이 둘이면 값 검산이 구조적으로 못 본다
-      // 답 자체는 기약이어야 해설의 대분수가 정본 꼴로 선다.
-      if (gcd(hit[0]!, d) !== 1) continue;
-      const ans = hit[0]!;
-      const c: MixedTopCase = { w, d, a, ans, slot: `${ans}/${d}` };
-      if (!backsolveSafeStem(mixedTopStem(c), rat(ans))) continue;
-      MIXED_TOP_MID.push(c);
+const MIXED_TOP_MID = lazyTable("g6.MIXED_TOP_MID", () => {
+  const table: MixedTopCase[] = [];
+  // 🔴 분모 상한이 $15$ 였을 때 자리가 **24개**뿐이라 답이 창 가운데로 쏠렸다
+  //    (설계 공간에서 $29.2\%$ · 우연 $9.5\%$). $20$ 으로 넓히니 자리 **64개** ·
+  //    가운데 $18.8\%$ 로 내려갔다 — 시험 ㉨″ 가 그것을 잰다. 심화하가 이미
+  //    $1\frac1{24}$ 를 쓰므로 이 범위는 소단원 밖으로 안 나간다.
+  for (let d = 5; d <= 20; d += 1)
+    for (let a = 2; a < d; a += 1) {
+      if (gcd(a, d) !== 1) continue; // 발문의 분수는 기약이다
+      for (let w = 1; w <= 5; w += 1) {
+        // 🔴 **유일성은 «기약» 을 빼고 따진다.** 발문은 「진분수」라고만 하지
+        //    「기약분수」라고 하지 않는다 — 기약을 조건으로 세어 유일하다고 하면
+        //    지면에는 답이 **둘인 문항**이 나간다($3\frac{2}{14}$ 도 진분수다).
+        //    실제로 시험이 그것을 잡았다(2-1-5 심화중, 씨앗 8자리).
+        //    ⚠️ 「기약분수다」를 발문에 얹는 길은 안 간다 — 약분은 토대 §1.4 가
+        //       **1-1 에 예약**한 축이고 초5 개념이다(반증 ③).
+        const hit: number[] = [];
+        for (let s = 1; s < d; s += 1) if ((w * d + s) % a === 0) hit.push(s);
+        if (hit.length !== 1) continue; // 답이 둘이면 값 검산이 구조적으로 못 본다
+        // 답 자체는 기약이어야 해설의 대분수가 정본 꼴로 선다.
+        if (gcd(hit[0]!, d) !== 1) continue;
+        const ans = hit[0]!;
+        const c: MixedTopCase = { w, d, a, ans, slot: `${ans}/${d}` };
+        if (!backsolveSafeStem(mixedTopStem(c), rat(ans))) continue;
+        table.push(c);
+      }
     }
-  }
-const MIXED_TOP_BINS = binByAnswerThenSlot(MIXED_TOP_MID);
+  return table;
+});
+const MIXED_TOP_BINS = lazyTable("g6.MIXED_TOP_BINS", () =>
+  binByAnswerThenSlot(MIXED_TOP_MID()),
+);
 
 function mixedTopMid(unit: UnitSeed, rng: Rng): ElemProblem {
   const c = pickByAnswerThenSlot(
     rng,
-    MIXED_TOP_BINS.bins,
-    MIXED_TOP_BINS.answers,
+    MIXED_TOP_BINS().bins,
+    MIXED_TOP_BINS().answers,
   );
   const imp = c.w * c.d + c.ans;
   const q = imp / c.a;
@@ -10209,42 +10360,47 @@ const bandLenStem = (c: BandLenCase, t: (typeof BAND_TOPICS)[number]) =>
   `띠의 전체 길이가 ${num(c.lo)} cm 보다 길고 ${num(c.hi)} cm 보다 짧을 때, ` +
   `${t.item}${josa(t.item, "이", "가")} 차지하는 길이는 몇 cm 입니까?`;
 
-const BAND_LEN_MID: BandLenCase[] = [];
-for (let p = 5; p <= 95; p += 5) {
-  // 띠그래프의 비율은 $5$의 배수다 — `split100` 이 만드는 풀과 결을 맞춘다.
-  const [a, b] = pctFraction(p);
-  if (b < 4 || b > 20) continue;
-  for (let k = 1; k <= 6; k += 1) {
-    const total = b * k;
-    const ans = a * k;
-    if (total < 10 || total > 60 || ans < 2) continue; // 지면에 그릴 수 있는 띠 길이
-    for (let lo = Math.max(1, total - b + 1); lo < total; lo += 1)
-      for (let hi = total + 1; hi <= total + b - 1; hi += 1) {
-        const span = hi - lo - 1;
-        if (span < 5 || span > 12) continue;
-        if (loneMultiple(lo, hi, b) !== total) continue;
-        const c: BandLenCase = {
-          p,
-          b,
-          lo,
-          hi,
-          total,
-          ans,
-          slot: slotOf(lo, hi, total),
-        };
-        if (!backsolveSafeStem(bandLenStem(c, BAND_TOPICS[0]), rat(ans)))
-          continue;
-        BAND_LEN_MID.push(c);
-      }
+const BAND_LEN_MID = lazyTable("g6.BAND_LEN_MID", () => {
+  const table: BandLenCase[] = [];
+  for (let p = 5; p <= 95; p += 5) {
+    // 띠그래프의 비율은 $5$의 배수다 — `split100` 이 만드는 풀과 결을 맞춘다.
+    const [a, b] = pctFraction(p);
+    if (b < 4 || b > 20) continue;
+    for (let k = 1; k <= 6; k += 1) {
+      const total = b * k;
+      const ans = a * k;
+      if (total < 10 || total > 60 || ans < 2) continue; // 지면에 그릴 수 있는 띠 길이
+      for (let lo = Math.max(1, total - b + 1); lo < total; lo += 1)
+        for (let hi = total + 1; hi <= total + b - 1; hi += 1) {
+          const span = hi - lo - 1;
+          if (span < 5 || span > 12) continue;
+          if (loneMultiple(lo, hi, b) !== total) continue;
+          const c: BandLenCase = {
+            p,
+            b,
+            lo,
+            hi,
+            total,
+            ans,
+            slot: slotOf(lo, hi, total),
+          };
+          if (!backsolveSafeStem(bandLenStem(c, BAND_TOPICS[0]), rat(ans)))
+            continue;
+          table.push(c);
+        }
+    }
   }
-}
-const BAND_LEN_BINS = binByAnswerThenSlot(BAND_LEN_MID);
+  return table;
+});
+const BAND_LEN_BINS = lazyTable("g6.BAND_LEN_BINS", () =>
+  binByAnswerThenSlot(BAND_LEN_MID()),
+);
 
 function bandLenMid(unit: UnitSeed, rng: Rng): ElemProblem {
   const c = pickByAnswerThenSlot(
     rng,
-    BAND_LEN_BINS.bins,
-    BAND_LEN_BINS.answers,
+    BAND_LEN_BINS().bins,
+    BAND_LEN_BINS().answers,
   );
   const t = pick(rng, BAND_TOPICS);
   const [a, b] = pctFraction(c.p);

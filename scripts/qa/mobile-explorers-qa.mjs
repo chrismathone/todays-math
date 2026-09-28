@@ -140,10 +140,9 @@ function ownedExplorer(state, now) {
 }
 
 // Mirrors src/lib/math-explorers/routes.ts changeExplorer (DB candidates → []).
+// Only expedition-start reads before the save; other actions go straight to it (reward-speed ①).
 async function explorerChange(sim, input, now) {
   const date = kstDateOf(now);
-  const previous = await readSrsState(studentId, sim.table);
-  ownedExplorer(previous.state, now);
   const expeditionStart = input.action.type === "expedition-start";
   const duplicateStart = (state) => {
     if (expeditionStart) return expedition.expeditionStartDuplicate(state, input.requestId);
@@ -152,12 +151,17 @@ async function explorerChange(sim, input, now) {
     return false;
   };
   const startFeedback = { message: "오늘의 탐험을 이어가요." };
-  if (duplicateStart(previous.state)) return { ...previous, feedback: startFeedback };
-  const receipt = engine.explorerReceipt(ownedExplorer(previous.state, now), input.action, input.requestId);
-  if (receipt) return { ...previous, feedback: receipt };
-  const plan = expeditionStart ? expedition.planExpedition(previous.state, studentId, now) : null;
-  const recommendation =
-    plan?.kind === "elementary" ? expeditionInitialCourseRecommendation(previous.state, plan, now) : null;
+  let recommendation = null;
+  if (expeditionStart) {
+    const previous = await readSrsState(studentId, sim.table);
+    ownedExplorer(previous.state, now);
+    if (duplicateStart(previous.state)) return { ...previous, feedback: startFeedback };
+    const receipt = engine.explorerReceipt(ownedExplorer(previous.state, now), input.action, input.requestId);
+    if (receipt) return { ...previous, feedback: receipt };
+    const plan = expedition.planExpedition(previous.state, studentId, now);
+    recommendation =
+      plan.kind === "elementary" ? expeditionInitialCourseRecommendation(previous.state, plan, now) : null;
+  }
   const seed = randomInt(0, 0x1_0000_0000);
   let feedback = null;
   try {
@@ -169,6 +173,7 @@ async function explorerChange(sim, input, now) {
           return startExpedition(state, studentId, now, input.requestId, seed, randomUUID,
             recommendation ? { sectionId: recommendation.sectionId, candidates: [] } : null);
         }
+        duplicateStart(state);
         const result = engine.applyExplorerAction(ownedExplorer(state, now), input.action, date, input.requestId);
         feedback = result.feedback;
         return result.duplicate ? state : { ...state, explorers: result.state };

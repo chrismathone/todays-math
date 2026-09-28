@@ -12,6 +12,7 @@ const f = vi.hoisted(() => ({
     { studentId: string; revision: number; payload: unknown }
   >(),
   writes: 0,
+  reads: 0,
   withdrawn: false,
   disabled: false,
   missing: false,
@@ -40,6 +41,7 @@ vi.mock("@/lib/db", () => ({
     studentSrsState: {
       findUnique: async ({ where }: { where: { studentId: string } }) => {
         if (f.missing) throw { code: "P2021" };
+        f.reads++;
         const row = structuredClone(f.rows.get(where.studentId) ?? null);
         await Promise.resolve();
         return row;
@@ -174,6 +176,7 @@ async function finish(view: ExplorerState) {
 beforeEach(() => {
   f.rows.clear();
   f.writes = 0;
+  f.reads = 0;
   f.withdrawn = false;
   f.disabled = false;
   f.missing = false;
@@ -1112,8 +1115,10 @@ describe("authenticated math explorer persistence", () => {
       expectedRevision: 0,
       action: { type: "start", route: "unit", unitId: view.units[0].id },
     };
+    // 남의 학생 id 는 이제 «이 화면의 학생» 칸이라 모양은 맞다 — 그래도 로그인한 학생이 아니면 거절(409),
+    // 쓰지 않는다(리드 3차 검토, 05 §8.21).
+    expect((await post({ ...body, studentId: f.otherId })).status).toBe(409);
     for (const extra of [
-      { studentId: f.otherId },
       { stars: 100 },
       { date: "2099-01-01" },
       { correct: true },
@@ -1259,5 +1264,102 @@ describe("authenticated math explorer persistence", () => {
     });
     expect((await read()).status).toBe(503);
     expect(f.writes).toBe(0);
+  });
+});
+
+/**
+ * 상자 누름 속도 (2026-09-28, reward-speed ①) — 시작이 아닌 동작은 상태 행을 **미리 읽지 않고**
+ * 바로 revision 비교 저장으로 간다. 미리 읽기가 하던 일(영수증 되돌려주기 · 탐험 시작 요청 번호
+ * 재사용 막기)은 엔진 영수증과 저장 실패 뒤 다시 읽기가 받는다 — 그 셋을 여기서 지킨다.
+ */
+describe("chest press without a pre-read", () => {
+  async function readyChest() {
+    const view = await finish(await unitStart());
+    const chest = view.chests.find((item) => item.ready && !item.claimed);
+    if (!chest) throw new Error("Expected a ready chest");
+    return { view, chest };
+  }
+  const chestBody = (
+    view: ExplorerState,
+    chestId: string,
+  ): ExplorerRequest => ({
+    requestId: randomUUID(),
+    expectedRevision: view.revision,
+    action: { type: "chest", chestId },
+  });
+
+  it("reads the state row once and writes once", async () => {
+    const { view, chest } = await readyChest();
+    f.reads = 0;
+    f.writes = 0;
+    const opened = await data(await post(chestBody(view, chest.id)));
+    expect(opened.feedback).toMatchObject({ chestId: chest.id, stars: 1 });
+    expect(opened.profile.stars).toBe(view.profile.stars + 1);
+    expect(f.reads).toBe(1);
+    expect(f.writes).toBe(1);
+  });
+
+  it("replays a lost response with the same receipt and no second star", async () => {
+    const { view, chest } = await readyChest();
+    const body = chestBody(view, chest.id);
+    const first = await data(await post(body));
+    f.writes = 0;
+    const retry = await data(await post(body));
+    expect(retry.feedback).toEqual(first.feedback);
+    expect(retry.revision).toBe(first.revision);
+    expect(retry.profile.stars).toBe(view.profile.stars + 1);
+    expect(f.writes).toBe(0);
+  });
+
+  it("gives one star when two tabs send the very same press", async () => {
+    const { view, chest } = await readyChest();
+    const body = chestBody(view, chest.id);
+    f.writes = 0;
+    const [a, b] = await Promise.all([post(body), post(body)]).then(
+      (responses) => Promise.all(responses.map(data)),
+    );
+    expect(a.feedback).toEqual(b.feedback);
+    expect(a.feedback?.chestId).toBe(chest.id);
+    expect(a.revision).toBe(b.revision);
+    expect(a.profile.stars).toBe(view.profile.stars + 1);
+    expect(b.profile.stars).toBe(view.profile.stars + 1);
+    expect(f.writes).toBe(1);
+  });
+
+  it("refuses an action sent for another student and leaves the record alone", async () => {
+    // 로그아웃 · 로그인은 소프트 이동이라 앞 학생의 저장 줄이 새 학생 쿠키로 나갈 수 있다(리드 3차 검토).
+    const { view, chest } = await readyChest();
+    f.writes = 0;
+    const other = await post({
+      ...chestBody(view, chest.id),
+      studentId: f.otherId,
+    });
+    expect(other.status).toBe(409);
+    expect(f.writes).toBe(0);
+    const mine = await data(
+      await post({ ...chestBody(view, chest.id), studentId: f.studentId }),
+    );
+    expect(mine.feedback?.chestId).toBe(chest.id);
+    expect(f.writes).toBe(1);
+  });
+
+  it("rejects an answer that reuses the expedition start request id", async () => {
+    const view = await data(await read());
+    const startId = randomUUID();
+    const started = await data(
+      await post({
+        requestId: startId,
+        expectedRevision: view.revision,
+        action: { type: "expedition-start" },
+      }),
+    );
+    const writes = f.writes;
+    const reused = await post({
+      requestId: startId,
+      expectedRevision: started.revision,
+      action: correctAction(started),
+    });
+    expect(reused.status).toBe(409);
+    expect(f.writes).toBe(writes);
   });
 });

@@ -16,6 +16,7 @@ import {
   validationError,
 } from "@/lib/apiResponse";
 import { kstDateOf } from "@/lib/kstDate";
+import { STUDENT_CHANGED_MESSAGE } from "@/lib/studentRouteAccess";
 import { crossSiteError, noStore } from "@/lib/learn/accountRoutes";
 import { requireStudent } from "@/lib/learn/studentRequest";
 import { loadCourseStudent } from "@/lib/math-srs/courseServer";
@@ -68,8 +69,6 @@ async function changeExplorer(
   now: Date,
 ) {
   const date = kstDateOf(now);
-  const previous = await readSrsState(studentId);
-  ownedExplorer(previous.state, studentId, now);
   const expeditionStart = input.action.type === "expedition-start";
   const duplicateStart = (state: StoredSrsState) => {
     if (expeditionStart)
@@ -79,25 +78,33 @@ async function changeExplorer(
     return false;
   };
   const startFeedback = { message: "오늘의 탐험을 이어가요." };
-  if (duplicateStart(previous.state))
-    return { ...previous, feedback: startFeedback };
-  const receipt = explorerReceipt(
-    ownedExplorer(previous.state, studentId, now),
-    input.action,
-    input.requestId,
-  );
-  if (receipt) return { ...previous, feedback: receipt };
-  const plan = expeditionStart
-    ? planExpedition(previous.state, studentId, now)
-    : null;
-  const recommendation =
-    plan?.kind === "elementary"
-      ? expeditionInitialCourseRecommendation(previous.state, plan, now)
-      : null;
-  const candidates =
-    recommendation && recommendation.mode !== "resume"
-      ? await loadCourseBankCandidates(recommendation.sectionId)
-      : [];
+  let recommendation: ReturnType<
+    typeof expeditionInitialCourseRecommendation
+  > | null = null;
+  let candidates: Awaited<ReturnType<typeof loadCourseBankCandidates>> = [];
+  // Only a start reads first: its plan loads bank candidates outside the save.
+  // Other actions (a chest press) go straight to the revision-checked save — the
+  // engine replays its own receipt there, and a stale revision falls back to the
+  // committed receipt below, so the extra read of the state row is not needed.
+  if (expeditionStart) {
+    const previous = await readSrsState(studentId);
+    ownedExplorer(previous.state, studentId, now);
+    if (duplicateStart(previous.state))
+      return { ...previous, feedback: startFeedback };
+    const receipt = explorerReceipt(
+      ownedExplorer(previous.state, studentId, now),
+      input.action,
+      input.requestId,
+    );
+    if (receipt) return { ...previous, feedback: receipt };
+    const plan = planExpedition(previous.state, studentId, now);
+    recommendation =
+      plan.kind === "elementary"
+        ? expeditionInitialCourseRecommendation(previous.state, plan, now)
+        : null;
+    if (recommendation && recommendation.mode !== "resume")
+      candidates = await loadCourseBankCandidates(recommendation.sectionId);
+  }
   const seed = randomInt(0, 0x1_0000_0000);
   let feedback: ExplorerFeedback | null = null;
   try {
@@ -118,6 +125,7 @@ async function changeExplorer(
               : null,
           );
         }
+        duplicateStart(state);
         const result = applyExplorerAction(
           ownedExplorer(state, studentId, now),
           input.action,
@@ -171,6 +179,11 @@ export async function handleExplorerRequest(
         await request.json().catch(() => undefined),
       );
       if (!parsed.success) return noStore(validationError(parsed.error));
+      if (
+        parsed.data.studentId !== undefined &&
+        parsed.data.studentId !== studentId
+      )
+        return noStore(jsonError("CONFLICT", STUDENT_CHANGED_MESSAGE, 409));
       const changed = await changeExplorer(studentId, parsed.data, now);
       saved = changed;
       feedback = changed.feedback;

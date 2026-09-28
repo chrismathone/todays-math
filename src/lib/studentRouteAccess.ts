@@ -31,6 +31,9 @@ export const STUDENT_FORBIDDEN_MESSAGE =
   "학생 계정은 이 기능을 쓸 수 없습니다.";
 export const STUDENT_MUST_CHANGE_MESSAGE =
   "비밀번호를 바꾼 뒤 이용할 수 있습니다.";
+/** 요청이 로그인한 학생이 아닌 학생의 것 — 라우트 거절과 화면 안내가 같은 말을 한다(05 §8.21). */
+export const STUDENT_CHANGED_MESSAGE =
+  "로그인한 학생이 바뀌었어요. 다시 불러와 주세요.";
 
 type Rule = { methods: readonly string[]; path: string; why: string };
 

@@ -64,7 +64,11 @@ function actionKey(action: ExplorerAction) {
   return JSON.stringify(parsed.data);
 }
 
-/** Call before the route's revision check, so an uncertain network retry is safe. */
+/**
+ * Replays an exact earlier request, so an uncertain network retry is safe.
+ * The route calls it before the save only for expedition-start; other actions
+ * meet it inside `applyExplorerAction` and again after a failed revision check.
+ */
 export function explorerReceipt(
   stored: StoredExplorer,
   action: ExplorerAction,
