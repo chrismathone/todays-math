@@ -7,15 +7,19 @@
  * 보정은 빈칸(정답 조각)까지 옮기기도 한다 — 그래서 카드마다 조립 · 예 모으기 · 경계 살피기가 새 카드로 여전히 풀리는지 단정한다.
  */
 import { createHash, randomUUID } from "node:crypto";
-import { readFileSync } from "node:fs";
+import { readdirSync, readFileSync } from "node:fs";
 import { resolve } from "node:path";
 import { describe, expect, it } from "vitest";
-import { cardFixes } from "@/lib/math-explorers/conceptSentenceFixes";
+import {
+  applyCardFix,
+  cardFixes,
+} from "@/lib/math-explorers/conceptSentenceFixes";
 import { courseCards } from "@/lib/math-explorers/definition-content";
 import {
   definitionCard,
   definitionCards,
   definitionNeedsRead,
+  definitionSourceCards,
   definitionOptions,
   definitionQuestionId,
 } from "@/lib/math-explorers/definition-cards";
@@ -113,6 +117,72 @@ describe("내보내는 카드가 보정을 입었다 — 화면 · 채점 · 복
       .map((card) => card.name);
     expect(names).toContain("일어나지 않을 확률");
     expect(names).not.toContain("여사건의 확률");
+  });
+});
+
+describe("누출 검사는 보정 전 원본 카드로 — 보정 문장이 «카드 글»로 허용되면 검사가 눈먼다(리드 검토 ④)", () => {
+  it("definitionSourceCards = 보정 전 원본(같은 순서) · definitionCards = 그것에 보정을 입힌 것", () => {
+    expect(definitionSourceCards.map((card) => card.id)).toEqual(
+      definitionCards.map((card) => card.id),
+    );
+    expect(definitionSourceCards.map(applyCardFix)).toEqual(definitionCards);
+    const source = definitionSourceCards.find(
+      (card) => card.id === "g8-complement",
+    )!;
+    expect(source.name).toBe("여사건의 확률");
+    for (const id of Object.keys(cardFixes)) {
+      const raw = courseCards.find((card) => card.id === id)!;
+      expect(definitionSourceCards.find((card) => card.id === id)).toEqual({
+        ...raw,
+        prerequisites: raw.prerequisites,
+      });
+    }
+  });
+
+  it("누출 검사 · 보정 표 생성기가 읽는 카드 덤프 다섯은 원본 카드를 내보낸다", () => {
+    const dir = resolve(ROOT, "scripts/qa/concept-terms");
+    const dumps = readdirSync(dir).filter((f) =>
+      /^dump-explorer-cards-.+\.ts$/.test(f),
+    );
+    expect(dumps.sort()).toEqual([
+      "dump-explorer-cards-coverage.ts",
+      "dump-explorer-cards-elem34.ts",
+      "dump-explorer-cards-elem56.ts",
+      "dump-explorer-cards-mida.ts",
+      "dump-explorer-cards-midb.ts",
+    ]);
+    for (const f of dumps) {
+      const code = readFileSync(resolve(dir, f), "utf8")
+        .split("\n")
+        .filter((line) => !/^\s*(\/\/|\*|\/\*)/.test(line))
+        .join("\n");
+      expect({ f, source: /\bdefinitionSourceCards\b/.test(code) }).toEqual({
+        f,
+        source: true,
+      });
+      expect({ f, fixed: /\bdefinitionCards\b/.test(code) }).toEqual({
+        f,
+        fixed: false,
+      });
+    }
+  });
+
+  it("앱 코드는 원본 카드를 읽지 않는다 — 화면 · 채점 · 복습은 보정을 입은 definitionCards 하나", () => {
+    const hits: string[] = [];
+    const walk = (dir: string) => {
+      for (const entry of readdirSync(dir, { withFileTypes: true })) {
+        const path = resolve(dir, entry.name);
+        if (entry.isDirectory()) {
+          if (entry.name !== "__tests__") walk(path);
+        } else if (
+          /\.(ts|tsx)$/.test(entry.name) &&
+          readFileSync(path, "utf8").includes("definitionSourceCards")
+        )
+          hits.push(path.slice(ROOT.length + 1).replace(/\\/g, "/"));
+      }
+    };
+    walk(resolve(ROOT, "src"));
+    expect(hits).toEqual(["src/lib/math-explorers/definition-cards.ts"]);
   });
 });
 

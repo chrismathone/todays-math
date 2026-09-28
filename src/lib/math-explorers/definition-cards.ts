@@ -356,19 +356,22 @@ export const definitionUnits: CourseUnit[] = [
   ...legacyUnits,
   ...courseUnits,
 ].sort((a, b) => a.grade - b.grade);
+// 보정 전 원본 카드 — 🔴 앱 코드는 읽지 않는다(시험이 막는다). 교재 원문 누출 검사 · 보정 표 생성기의 카드 덤프만 읽는다:
+// 검사기는 카드 글을 «우리 글»로 허용하므로, 보정을 입은 카드를 덤프하면 보정 문장이 검사를 비껴간다(리드 검토 ④).
+export const definitionSourceCards: DefinitionCard[] = definitionUnits.flatMap(
+  (u) =>
+    [
+      ...legacyCards.map((c) => ({
+        ...c,
+        prerequisites: legacyPrerequisites[c.id] ?? [],
+      })),
+      ...courseCards,
+    ].filter((c) => c.unit === u.id),
+);
 // 카드를 내보내는 층 — 보정 표(D-143 ⑦, `conceptSentenceFixes.ts`)를 여기서 한 번 입힌다. 채점 · 화면 · 복습 · 선수가
 // 모두 이 목록을 읽으므로 같은 카드를 본다. 원본(`definition-content.ts`)은 그대로.
-export const definitionCards: DefinitionCard[] = definitionUnits.flatMap((u) =>
-  [
-    ...legacyCards.map((c) => ({
-      ...c,
-      prerequisites: legacyPrerequisites[c.id] ?? [],
-    })),
-    ...courseCards,
-  ]
-    .filter((c) => c.unit === u.id)
-    .map(applyCardFix),
-);
+export const definitionCards: DefinitionCard[] =
+  definitionSourceCards.map(applyCardFix);
 export const courseGrades = [3, 4, 5, 6, 7, 8, 9];
 export const gradeLabel = (grade: number) =>
   grade < 7 ? `초${grade}` : `중${grade - 6}`;
@@ -551,8 +554,9 @@ export function definitionQuestionId(s: DefinitionSession) {
 /**
  * 기억 복습에서 읽는 만기 — 저장된 만기, 다만 뜻을 고친 카드(`cardRevisions`)를 그 판 **전에** 마지막으로 풀었으면 판 날이
  * 더 이르면 판 날(원장님 확정 2026-09-28, D-143 ⑦). 공유 DB 에 쓰지 않는 읽기 규칙이다 — 저장된 만기 · 레벨 · 별은 그대로이고,
- * 레벨이 오르는 «제때 복습»(`eligible`)은 저장된 만기로만 가리므로 앞당긴 복습은 별을 주지 않는다. 한 번 풀면 `attemptedAt` 이
- * 판 뒤가 되어 저장된 만기로 돌아간다.
+ * 레벨이 오르는 «제때 복습»(`eligible`)은 저장된 만기로만 가리므로 앞당긴 복습을 맞혀도 별 · 레벨 · 저장된 차례가 그대로다.
+ * 🔴 틀리면 여느 복습처럼 엔진 규칙대로 차례가 처음(다음 날)으로 돌아간다(레벨 · 별은 그대로 — 리드 검토 ⑥).
+ * 한 번 풀면 `attemptedAt`(세션을 시작한 날)이 판 뒤가 되어 저장된 만기로 돌아간다.
  */
 export function definitionEffectiveDue(
   cardId: string,
@@ -882,7 +886,9 @@ export function applyDefinitionAction(
           level,
           due,
           lastDate: ranked ? date : (old?.lastDate ?? ""),
-          attemptedAt: date,
+          // 시도한 날 = 세션을 **시작한** 날. 끝낸 날로 적으면 판(`cardRevisions`) 전날 예전 문장으로 풀기 시작해 판 날
+          // 끝낸 학생이 다시 복습에서 빠진다(D-143 ⑦ · 리드 검토 ③).
+          attemptedAt: s.date,
           missed: s.unresolved.filter((t) => t.cardId === card.id).length,
           reviewStep: step,
           reviewedAt,

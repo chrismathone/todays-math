@@ -16,6 +16,7 @@ import {
   definitionChests,
   definitionCourseGrade,
   definitionDue,
+  definitionEffectiveDue,
   definitionNeedsRead,
   definitionOptions,
   definitionQuestionId,
@@ -393,7 +394,14 @@ export function explorerView(
           unitId: card.unit,
           name: card.name,
           prerequisiteIds: card.prerequisites ?? [],
-          progress: record?.cards[card.id] ?? null,
+          // 만기는 기억 복습이 읽는 값(뜻을 고친 카드는 앞당긴 판 날 — D-143 ⑦)이라 도감 격자의 «다시 기억할 때»와
+          // 카드 대화상자의 «다음 복습»이 같은 날을 말한다(모든 화면 일치). 저장된 기록은 그대로다.
+          progress: record?.cards[card.id]
+            ? {
+                ...record.cards[card.id],
+                due: definitionEffectiveDue(card.id, record.cards[card.id]),
+              }
+            : null,
         })),
     })),
     currentActivity,
