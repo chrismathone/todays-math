@@ -350,7 +350,7 @@ function ExplorerGame({ initialView }: { initialView?: "collection" }) {
           pending.current = false;
           if (action.type === "supplement-answer") {
             // 한 장이 끝나면(모음 · 못 모음) 홈으로 — 도감에서 시작했으면 도감을 다시 연다.
-            if (!data.supplements.activity) {
+            if (!data.supplements?.activity) {
               setSupPracticing(false);
               setLoading(true);
               setReload((value) => value + 1);
@@ -386,7 +386,7 @@ function ExplorerGame({ initialView }: { initialView?: "collection" }) {
           setDetailId(null);
           setSupDetailId(null);
           setSolution(null);
-          setSupPracticing(!!data.supplements.activity);
+          setSupPracticing(!!data.supplements?.activity);
           window.scrollTo({ top: 0, behavior: "instant" });
         }
         if (

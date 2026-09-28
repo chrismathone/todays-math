@@ -101,7 +101,7 @@ function engine() {
   const supplement = (cardId: string, steps = Infinity) => {
     act({ type: "supplement-start", cardId });
     for (let n = 0; n < steps; n++) {
-      const activity = explorerView(stored, today).supplements.activity;
+      const activity = explorerView(stored, today).supplements!.activity;
       if (!activity) break;
       if (activity.kind === "read") {
         act({ type: "supplement-read", questionId: activity.questionId });
@@ -230,7 +230,7 @@ describe("단원 끝 줄 — 오늘의 한 칸 카드 안", () => {
     e.act({ type: "supplement-start", cardId: "sup-line" });
     // 모두 틀리게 — 뜻 만나기 뒤 매 활동 오답
     for (let n = 0; n < 20; n++) {
-      const activity = e.state().supplements.activity;
+      const activity = e.state().supplements!.activity;
       if (!activity) break;
       if (activity.kind === "read") {
         e.act({ type: "supplement-read", questionId: activity.questionId });
@@ -261,7 +261,7 @@ describe("단원 끝 줄 — 오늘의 한 칸 카드 안", () => {
 
   it("보충이 없는 날은 줄이 없다", () => {
     const state = engine().state();
-    home({ ...state, supplements: { ...state.supplements, offer: null } });
+    home({ ...state, supplements: { ...state.supplements!, offer: null } });
     expect(screen.queryByText("교재에 한 장 더")).not.toBeInTheDocument();
   });
 });
@@ -384,12 +384,12 @@ describe("한 장 세션 머리 — 같은 풀이 틀(§8.19)", () => {
     const state = e.state();
     render(
       <ExplorerPractice
-        activity={state.supplements.activity!}
+        activity={state.supplements!.activity!}
         session={{
-          title: state.supplements.session!.title,
-          index: state.supplements.session!.index,
-          total: state.supplements.session!.total,
-          round: state.supplements.session!.round,
+          title: state.supplements!.session!.title,
+          index: state.supplements!.session!.index,
+          total: state.supplements!.session!.total,
+          round: state.supplements!.session!.round,
           reviewOnly: false,
         }}
         progressLabel="교재에 한 장 더"

@@ -12,7 +12,9 @@ import s from "./math-explorers.module.css";
  * 보충 카드 화면 조각(D-147 · 05 §8.22 — Hi-fi 1안, 3자 합의 세부 다섯).
  * 단원 끝 줄은 «오늘의 한 칸» 카드 안 완료 줄 아래, 도감 선반은 «나의 개념 도감» 본 카드 격자 아래.
  */
-export type SupplementCardView = ExplorerState["supplements"]["cards"][number];
+export type SupplementCardView = NonNullable<
+  ExplorerState["supplements"]
+>["cards"][number];
 
 /** 이름 끝 글자의 받침으로 조사를 고른다 — 괄호 · 기호는 건너뛴다(«변과 꼭짓점(도형)을»). */
 export function withParticle(name: string, pair: "을/를" | "은/는") {
@@ -22,8 +24,19 @@ export function withParticle(name: string, pair: "을/를" | "은/는") {
   return `${name}${(hangul.charCodeAt(0) - 0xac00) % 28 ? withFinal : withoutFinal}`;
 }
 
+/** 보충 칸 — 배포 1단계 서버(보내지 않음)나 옛 응답이면 빈 값(읽기 먼저 · D-147). */
+const EMPTY_SUPPLEMENTS: NonNullable<ExplorerState["supplements"]> = {
+  cards: [],
+  session: null,
+  activity: null,
+  offer: null,
+};
+export function supplementsOf(state: ExplorerState) {
+  return state.supplements ?? EMPTY_SUPPLEMENTS;
+}
+
 export function supplementCardOf(state: ExplorerState, cardId: string) {
-  return state.supplements.cards.find((card) => card.id === cardId) ?? null;
+  return supplementsOf(state).cards.find((card) => card.id === cardId) ?? null;
 }
 
 /** 이어서 하기 · 다시 해 보기 · 세 활동 해 보기 — 카드 창 · 단원 끝 줄이 같은 말을 쓴다. */
@@ -48,11 +61,11 @@ export function SupplementLine({
   busy: boolean;
   onStart: (cardId: string) => void;
 }) {
-  const offer = state.supplements.offer;
+  const offer = supplementsOf(state).offer;
   const card = offer ? supplementCardOf(state, offer.cardId) : null;
   if (!offer || !card) return null;
   const today = state.today ?? kstDateOf(new Date());
-  const left = state.supplements.cards.filter(
+  const left = supplementsOf(state).cards.filter(
     (item) => item.unitId === offer.unitId && !item.collectedAt,
   ).length;
   if (card.collectedAt)
@@ -120,7 +133,7 @@ export function SupplementShelf({
   const units = state.units.filter(
     (unit) => unit.grade === state.profile.courseGrade,
   );
-  const shelf = state.supplements.cards.filter((card) =>
+  const shelf = supplementsOf(state).cards.filter((card) =>
     units.some((unit) => unit.id === card.unitId),
   );
   if (!shelf.length) return null;

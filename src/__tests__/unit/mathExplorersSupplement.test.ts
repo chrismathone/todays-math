@@ -67,7 +67,7 @@ function fixture(grade = 3) {
   };
   /** 보충 한 걸음 — 뜻 만나기면 읽고, 아니면 맞게(또는 틀리게) 답한다. */
   const step = (wrong = false) => {
-    const activity = view().supplements.activity!;
+    const activity = view().supplements!.activity!;
     if (activity.kind === "read")
       return act({ type: "supplement-read", questionId: activity.questionId });
     const card = supplementCard(activity.cardId);
@@ -95,10 +95,12 @@ function fixture(grade = 3) {
   ) => {
     act({ type: "supplement-start", cardId });
     let last: ReturnType<typeof act> | undefined;
-    for (let safety = 0; view().supplements.activity; safety++) {
+    for (let safety = 0; view().supplements!.activity; safety++) {
       if (safety > 20) throw new Error("unbounded");
-      const round = view().supplements.session!.round;
-      last = step(view().supplements.activity!.kind !== "read" && wrong(round));
+      const round = view().supplements!.session!.round;
+      last = step(
+        view().supplements!.activity!.kind !== "read" && wrong(round),
+      );
     }
     return last!;
   };
@@ -123,32 +125,32 @@ function fixture(grade = 3) {
 describe("보충 카드 — 단원 끝 줄(offer)", () => {
   it("그 단원 다섯을 오늘의 단원 탐험으로 다 모은 날에만, 그 단원 보충 중 안 모은 첫 장을 내놓는다", () => {
     const f = fixture();
-    expect(f.view().supplements.offer).toBeNull();
+    expect(f.view().supplements!.offer).toBeNull();
     f.finishUnit("g3-shapes");
-    expect(f.view().supplements.offer).toEqual({
+    expect(f.view().supplements!.offer).toEqual({
       cardId: "sup-line",
       unitId: "g3-shapes",
     });
     f.date("2026-09-29");
-    expect(f.view().supplements.offer).toBeNull();
+    expect(f.view().supplements!.offer).toBeNull();
   });
 
   it("보충이 없는 단원이면 줄이 없다", () => {
     const f = fixture();
     f.finishUnit("g3-add");
-    expect(f.view().supplements.offer).toBeNull();
+    expect(f.view().supplements!.offer).toBeNull();
   });
 
   it("같은 날 모으면 다음 장으로 바꾸지 않고 그 장이 끝 줄로 남는다", () => {
     const f = fixture();
     f.finishUnit("g3-shapes");
     f.solve("sup-line");
-    expect(f.view().supplements.offer).toEqual({
+    expect(f.view().supplements!.offer).toEqual({
       cardId: "sup-line",
       unitId: "g3-shapes",
     });
     expect(
-      f.view().supplements.cards.find((c) => c.id === "sup-line")!.collectedAt,
+      f.view().supplements!.cards.find((c) => c.id === "sup-line")!.collectedAt,
     ).toBe("2026-09-28");
   });
 });
@@ -159,7 +161,7 @@ describe("보충 카드 — 한 장 세션", () => {
     f.finishUnit("g3-shapes");
     const before = structuredClone(f.state);
     f.act({ type: "supplement-start", cardId: "sup-line" });
-    const started = f.view().supplements;
+    const started = f.view().supplements!;
     expect(started.session).toMatchObject({
       cardId: "sup-line",
       index: 0,
@@ -175,7 +177,7 @@ describe("보충 카드 — 한 장 세션", () => {
       reading: { definition: supplementCard("sup-line").definition },
     });
     f.step();
-    const assemble = f.view().supplements.activity!;
+    const assemble = f.view().supplements!.activity!;
     expect(assemble.kind).toBe("assemble");
     expect(assemble.pieces).toEqual(supplementCard("sup-line").pieces);
     expect(assemble.choices.map((c) => c.label).sort()).toEqual(
@@ -191,9 +193,9 @@ describe("보충 카드 — 한 장 세션", () => {
     expect(after.profile.definitions).toEqual(before.profile.definitions);
     expect(after.completedDays).toEqual(before.completedDays);
     expect(f.view().chests).toEqual(explorerView(before, "2026-09-28").chests);
-    expect(f.view().supplements.session).toBeNull();
-    expect(f.view().supplements.activity).toBeNull();
-    const card = f.view().supplements.cards.find((c) => c.id === "sup-line")!;
+    expect(f.view().supplements!.session).toBeNull();
+    expect(f.view().supplements!.activity).toBeNull();
+    const card = f.view().supplements!.cards.find((c) => c.id === "sup-line")!;
     expect(card).toMatchObject({
       collectedAt: "2026-09-28",
       missedAt: null,
@@ -222,7 +224,7 @@ describe("보충 카드 — 한 장 세션", () => {
     expect(last.feedback.complete).toBe(false);
     expect(last.feedback.stars ?? 0).toBe(0);
     expect(f.state.profile.stars).toBe(stars);
-    const card = f.view().supplements.cards.find((c) => c.id === "sup-angle")!;
+    const card = f.view().supplements!.cards.find((c) => c.id === "sup-angle")!;
     expect(card).toMatchObject({
       collectedAt: null,
       missedAt: "2026-09-28",
@@ -239,8 +241,8 @@ describe("보충 카드 — 한 장 세션", () => {
       truth: supplementCard("sup-angle").truth,
     });
     f.act({ type: "supplement-start", cardId: "sup-angle" });
-    expect(f.view().supplements.session).toMatchObject({ index: 0, round: 0 });
-    expect(f.view().supplements.activity!.kind).toBe("read");
+    expect(f.view().supplements!.session).toMatchObject({ index: 0, round: 0 });
+    expect(f.view().supplements!.activity!.kind).toBe("read");
   });
 
   it("멈춘 진행은 카드마다 지키고, 한 번에 푸는 것은 한 장이다", () => {
@@ -248,10 +250,10 @@ describe("보충 카드 — 한 장 세션", () => {
     f.act({ type: "supplement-start", cardId: "sup-line" });
     f.step(); // 뜻 만나기
     f.step(); // 문장 조립 맞음
-    const staleQuestion = f.view().supplements.activity!.questionId;
+    const staleQuestion = f.view().supplements!.activity!.questionId;
     f.act({ type: "supplement-start", cardId: "sup-angle" });
-    expect(f.view().supplements.session!.cardId).toBe("sup-angle");
-    const line = f.view().supplements.cards.find((c) => c.id === "sup-line")!;
+    expect(f.view().supplements!.session!.cardId).toBe("sup-angle");
+    const line = f.view().supplements!.cards.find((c) => c.id === "sup-line")!;
     expect(line).toMatchObject({ started: true, solved: 1 });
     // 멈춘 장의 문항 번호로는 답할 수 없다.
     expect(() =>
@@ -262,15 +264,15 @@ describe("보충 카드 — 한 장 세션", () => {
       }),
     ).toThrow(ExplorerActionConflict);
     f.act({ type: "supplement-start", cardId: "sup-line" });
-    expect(f.view().supplements.session).toMatchObject({
+    expect(f.view().supplements!.session).toMatchObject({
       cardId: "sup-line",
       index: 1,
       solved: 1,
     });
-    expect(f.view().supplements.activity!.kind).toBe("examples");
+    expect(f.view().supplements!.activity!.kind).toBe("examples");
     // 저장 · 다시 읽기를 지나도 같다.
     f.reload();
-    expect(f.view().supplements.session).toMatchObject({
+    expect(f.view().supplements!.session).toMatchObject({
       cardId: "sup-line",
       index: 1,
     });
@@ -297,7 +299,7 @@ describe("보충 카드 — 한 장 세션", () => {
     f.step();
     f.step();
     f.step();
-    const activity = f.view().supplements.activity!;
+    const activity = f.view().supplements!.activity!;
     const card = supplementCard("sup-common-divisor");
     const action: ExplorerAction = {
       type: "supplement-answer",

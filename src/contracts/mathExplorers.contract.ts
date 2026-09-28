@@ -131,9 +131,10 @@ export const explorerDefinitionsSchema = z.strictObject({
   history: z.array(historyEntry).max(60),
 });
 /**
- * 보충 카드(D-147 · 05 §8.22) — 본 카드 기록(`definitions`)과 따로 둔 칸. 한 장 = 뜻 만나기 → 세 활동(활동 종류
- * 0 문장 조립 · 1 예 모으기 · 2 경계 살피기). 멈춘 진행은 카드마다 `sessions` 에 남고, 지금 푸는 한 장이 `active`.
- * 모으면(`collectedAt`) 세션을 지우고 별 +1 — 칸 기록 · 한 칸 보장 · 상자 · 기억 일정 밖이다.
+ * 보충 카드(D-147) 저장 칸 — 본 카드 기록(`definitions`)과 따로. 배포 1단계는 **읽기만**(서버는 아직 쓰지 않는다):
+ * 2단계 코드가 쓴 뒤 되돌려도 이 계약이 읽어 학습 API · 강사 현황이 막히지 않게(star-economy D-144 와 같은 두 단계).
+ * 한 장 = 뜻 만나기 → 세 활동(0 문장 조립 · 1 예 모으기 · 2 경계 살피기). 멈춘 진행은 카드마다 `sessions`, 지금 푸는
+ * 한 장이 `active`, 단원 끝 줄로 시작한 장이 `offered`(그날 그 줄이 가리키는 장). 모으면 `collectedAt` · 못 모으면 `missedAt`.
  */
 const supplementKind = z.union([z.literal(0), z.literal(1), z.literal(2)]);
 export const explorerSupplementSessionSchema = z.strictObject({
@@ -150,6 +151,7 @@ export const explorerSupplementSessionSchema = z.strictObject({
 export const explorerSupplementsSchema = z.strictObject({
   runs: count,
   active: id.optional(),
+  offered: z.strictObject({ date: isoDateSchema, cardId: id }).optional(),
   cards: z.record(
     id,
     z.strictObject({
@@ -433,40 +435,41 @@ export const explorerViewSchema = z.strictObject({
   history: z.array(historyEntry).max(60),
   workshop: workshopViewSchema.optional(),
   /**
-   * 보충 카드(D-147 · 05 §8.22) — 이름 · 갈래 · 단원과 학생 기록만(정답 · 문장은 활동과 해설로만 나간다).
-   * `offer` 는 단원 끝 줄(그 단원 다섯을 오늘의 단원 탐험으로 다 모은 날 · 그 단원 보충 중 안 모은 첫 장).
-   * `solved` 는 멈춘 진행에서 해결한 활동 수(«이어서 하기 · n / 3»).
+   * 보충 카드(D-147) — 이름 · 갈래 · 단원과 학생 기록만(정답 · 문장은 활동과 해설로만 나간다). 1단계는 읽기만(없어도 된다).
+   * `offer` 는 단원 끝 줄, `solved` 는 멈춘 진행에서 해결한 활동 수(«이어서 하기 · n / 3»).
    */
-  supplements: z.strictObject({
-    cards: z
-      .array(
-        z.strictObject({
+  supplements: z
+    .strictObject({
+      cards: z
+        .array(
+          z.strictObject({
+            id,
+            unitId: id,
+            name: text,
+            kind: z.enum(CONCEPT_KINDS),
+            prerequisiteIds: z.array(id).max(10),
+            collectedAt: isoDateSchema.nullable(),
+            missedAt: isoDateSchema.nullable(),
+            started: z.boolean(),
+            solved: z.number().int().min(0).max(3),
+          }),
+        )
+        .max(60),
+      session: z
+        .strictObject({
           id,
-          unitId: id,
-          name: text,
-          kind: z.enum(CONCEPT_KINDS),
-          prerequisiteIds: z.array(id).max(10),
-          collectedAt: isoDateSchema.nullable(),
-          missedAt: isoDateSchema.nullable(),
-          started: z.boolean(),
+          cardId: id,
+          title: text,
+          index: z.number().int().min(0).max(3),
+          total: z.number().int().min(1).max(3),
+          round: z.number().int().min(0).max(3),
           solved: z.number().int().min(0).max(3),
-        }),
-      )
-      .max(60),
-    session: z
-      .strictObject({
-        id,
-        cardId: id,
-        title: text,
-        index: z.number().int().min(0).max(3),
-        total: z.number().int().min(1).max(3),
-        round: z.number().int().min(0).max(3),
-        solved: z.number().int().min(0).max(3),
-      })
-      .nullable(),
-    activity: explorerActivitySchema.nullable(),
-    offer: z.strictObject({ cardId: id, unitId: id }).nullable(),
-  }),
+        })
+        .nullable(),
+      activity: explorerActivitySchema.nullable(),
+      offer: z.strictObject({ cardId: id, unitId: id }).nullable(),
+    })
+    .optional(),
 });
 export const explorerStateSchema = explorerViewSchema.extend({
   student: z.strictObject({ id, name: z.string(), className: z.string() }),

@@ -500,8 +500,8 @@ describe("authenticated math explorer persistence", () => {
     // 칸을 얻은 뒤에는 도감 선반에서 시작할 수 있다 — 칸 · 한 칸 보장은 그대로.
     const before = parseSrsState(f.rows.get(f.studentId)!.payload);
     view = await action(view, { type: "supplement-start", cardId: "sup-line" });
-    expect(view.supplements.session).toMatchObject({ cardId: "sup-line" });
-    expect(view.supplements.activity?.kind).toBe("read");
+    expect(view.supplements!.session).toMatchObject({ cardId: "sup-line" });
+    expect(view.supplements!.activity?.kind).toBe("read");
     const after = parseSrsState(f.rows.get(f.studentId)!.payload);
     expect(after.expedition).toEqual(before.expedition);
     expect(after.explorers!.completedDays).toEqual(
