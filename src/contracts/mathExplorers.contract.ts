@@ -1,4 +1,5 @@
 import { z } from "zod";
+import { CONCEPT_KINDS } from "@/lib/math-explorers/conceptKinds";
 import { isoDateSchema, uuidSchema } from "./common.contract";
 import {
   mathExpeditionJourneySchema,
@@ -129,6 +130,41 @@ export const explorerDefinitionsSchema = z.strictObject({
   session: explorerDefinitionSessionSchema.optional(),
   history: z.array(historyEntry).max(60),
 });
+/**
+ * 보충 카드(D-147) 저장 칸 — 본 카드 기록(`definitions`)과 따로. 배포 1단계는 **읽기만**(서버는 아직 쓰지 않는다):
+ * 2단계 코드가 쓴 뒤 되돌려도 이 계약이 읽어 학습 API · 강사 현황이 막히지 않게(star-economy D-144 와 같은 두 단계).
+ * 한 장 = 뜻 만나기 → 세 활동(0 문장 조립 · 1 예 모으기 · 2 경계 살피기). 멈춘 진행은 카드마다 `sessions`, 지금 푸는
+ * 한 장이 `active`, 단원 끝 줄로 시작한 장이 `offered`(그날 그 줄이 가리키는 장). 모으면 `collectedAt` · 못 모으면 `missedAt`.
+ */
+const supplementKind = z.union([z.literal(0), z.literal(1), z.literal(2)]);
+export const explorerSupplementSessionSchema = z.strictObject({
+  id,
+  cardId: id,
+  date: isoDateSchema,
+  queue: z.array(supplementKind).min(1).max(3),
+  index: z.number().int().min(0).max(3),
+  round: z.number().int().min(0).max(3),
+  next: z.array(supplementKind).max(3),
+  seen: z.boolean(),
+  passed: z.array(supplementKind).max(3),
+});
+export const explorerSupplementsSchema = z.strictObject({
+  runs: count,
+  active: id.optional(),
+  offered: z.strictObject({ date: isoDateSchema, cardId: id }).optional(),
+  cards: z.record(
+    id,
+    z.strictObject({
+      collectedAt: isoDateSchema.optional(),
+      missedAt: isoDateSchema.optional(),
+    }),
+  ),
+  sessions: z.record(id, explorerSupplementSessionSchema),
+});
+export type ExplorerSupplements = z.infer<typeof explorerSupplementsSchema>;
+export type ExplorerSupplementSession = z.infer<
+  typeof explorerSupplementSessionSchema
+>;
 export const explorerProfileSchema = z.strictObject({
   id,
   grade,
@@ -138,6 +174,7 @@ export const explorerProfileSchema = z.strictObject({
   level: count,
   definitions: explorerDefinitionsSchema.optional(),
   workshop: workshopRecordSchema.optional(),
+  supplements: explorerSupplementsSchema.optional(),
 });
 
 export const explorerActionSchema = z.discriminatedUnion("type", [
@@ -384,6 +421,42 @@ export const explorerViewSchema = z.strictObject({
   completedDays: z.array(completedDay).max(36600),
   history: z.array(historyEntry).max(60),
   workshop: workshopViewSchema.optional(),
+  /**
+   * 보충 카드(D-147) — 이름 · 갈래 · 단원과 학생 기록만(정답 · 문장은 활동과 해설로만 나간다). 1단계는 읽기만(없어도 된다).
+   * `offer` 는 단원 끝 줄, `solved` 는 멈춘 진행에서 해결한 활동 수(«이어서 하기 · n / 3»).
+   */
+  supplements: z
+    .strictObject({
+      cards: z
+        .array(
+          z.strictObject({
+            id,
+            unitId: id,
+            name: text,
+            kind: z.enum(CONCEPT_KINDS),
+            prerequisiteIds: z.array(id).max(10),
+            collectedAt: isoDateSchema.nullable(),
+            missedAt: isoDateSchema.nullable(),
+            started: z.boolean(),
+            solved: z.number().int().min(0).max(3),
+          }),
+        )
+        .max(60),
+      session: z
+        .strictObject({
+          id,
+          cardId: id,
+          title: text,
+          index: z.number().int().min(0).max(3),
+          total: z.number().int().min(1).max(3),
+          round: z.number().int().min(0).max(3),
+          solved: z.number().int().min(0).max(3),
+        })
+        .nullable(),
+      activity: explorerActivitySchema.nullable(),
+      offer: z.strictObject({ cardId: id, unitId: id }).nullable(),
+    })
+    .optional(),
 });
 export const explorerStateSchema = explorerViewSchema.extend({
   student: z.strictObject({ id, name: z.string(), className: z.string() }),
