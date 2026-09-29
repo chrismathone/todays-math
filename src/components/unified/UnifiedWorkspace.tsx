@@ -14,8 +14,12 @@ import { signOutAction } from "@/app/actions/auth";
 import RouteLinkStatus from "@/components/ui/RouteLinkStatus";
 import {
   WORKSPACE_MENUS,
+  WORKSPACE_PRODUCTS,
+  workspaceMenusOf,
   type WorkspaceMenu,
+  type WorkspaceProduct,
 } from "@/contracts/accountAccess.contract";
+import { isEnglishView, type EnglishView } from "@/components/english/views";
 import { useWorkspaceAccess } from "./useWorkspaceAccess";
 import type { BankData, StudioProblem } from "./types";
 import type { StudioCrop } from "./studioHelpers";
@@ -88,13 +92,30 @@ const CourseDashboard = dynamic(
     ),
   },
 );
-type View = WorkspaceMenu;
-const navItems: {
+const EnglishStudio = dynamic(
+  () => import("@/components/english/EnglishStudio"),
+  {
+    ssr: false,
+    loading: () => (
+      <WorkProgress
+        className={s.loading}
+        label="오늘의 영어를 여는 중입니다…"
+      />
+    ),
+  },
+);
+/**
+ * 뷰 = 메뉴 + 영어 뷰 셋(D-148 · 25 §1.2). 영어 뷰 셋은 메뉴 `english` 하나에 딸린다(`menuOf`).
+ * 제품(수학 · 영어)은 뷰에서 파생하고 따로 저장하지 않는다(`productOf`).
+ */
+type View = WorkspaceMenu | EnglishView;
+type NavItem = {
   id: View;
   label: string;
   short: string;
   icon: WorkspaceIconName;
-}[] = [
+};
+const mathNav: NavItem[] = [
   { id: "home", label: "오늘의 작업", short: "홈", icon: "home" },
   { id: "bank", label: "시험지 만들기", short: "만들기", icon: "bank" },
   { id: "studio", label: "자료 제작", short: "자료 제작", icon: "crop" },
@@ -110,8 +131,33 @@ const navItems: {
   { id: "concept", label: "오늘의 개념", short: "개념", icon: "play" },
   { id: "srs", label: "오늘의 기억 · SRS", short: "기억 학습", icon: "clock" },
 ];
-const viewValid = (value: string): value is View =>
+/** 오늘의 영어 옆 메뉴 — 탭 셋(원장님 확정 ⑹, ChatGPT 앱 옆 메뉴 그대로). 옆 메뉴는 지금 제품의 목록만 그린다 */
+const englishNav: NavItem[] = [
+  { id: "english", label: "학교별 내신 대비", short: "내신", icon: "school" },
+  { id: "english-maker", label: "문제 만들기", short: "만들기", icon: "pen" },
+  {
+    id: "english-library",
+    label: "문제 보관함",
+    short: "보관함",
+    icon: "folder",
+  },
+];
+const navItemsOf: Record<WorkspaceProduct, NavItem[]> = {
+  math: mathNav,
+  english: englishNav,
+};
+const allNavItems = [...mathNav, ...englishNav];
+const menuValid = (value: string): value is WorkspaceMenu =>
   WORKSPACE_MENUS.some((item) => item.id === value);
+const viewValid = (value: string): value is View =>
+  menuValid(value) || isEnglishView(value);
+/** 뷰가 딸린 메뉴 — 권한은 이것으로 본다 */
+const menuOf = (view: View): WorkspaceMenu =>
+  isEnglishView(view) ? "english" : view;
+const productOf = (view: View | null): WorkspaceProduct =>
+  view && menuOf(view) === "english" ? "english" : "math";
+/** 세트 딥링크 `/?set=<uuid>#english` 의 id 모양 */
+const SET_LINK = /^[0-9a-f-]{36}$/i;
 
 function SidebarSignOutButton() {
   const { pending } = useFormStatus();
@@ -159,22 +205,35 @@ function UnifiedWorkspaceContent({
 }) {
   const menuKey = allowedMenus.join(",");
   const enabledMenus = useMemo(
-    () => new Set(menuKey.split(",").filter(viewValid)),
+    () => new Set(menuKey.split(",").filter(menuValid)),
     [menuKey],
   );
   const can = useCallback(
-    (menu: View) => enabledMenus.has(menu),
+    (view: View) => enabledMenus.has(menuOf(view)),
     [enabledMenus],
   );
-  const availableNav = navItems.filter((item) => can(item.id));
-  const defaultView = [...enabledMenus][0] ?? null;
+  const defaultView: View | null = [...enabledMenus][0] ?? null;
   const hasMenus = enabledMenus.size > 0;
   const canCreate = can("bank") || can("studio") || can("export");
+  const canEnglish = can("english");
   const [requestedView, setView] = useState<View | null>(defaultView);
   const [navigationReady, setNavigationReady] = useState(false);
   const [profileOpen, setProfileOpen] = useState(false);
   const view =
     requestedView && can(requestedView) ? requestedView : defaultView;
+  const product = productOf(view);
+  const productLabel =
+    WORKSPACE_PRODUCTS.find((item) => item.id === product)?.label ??
+    "오늘의수학";
+  /** 권한 있는 제품만(25 §1.1) — 하나뿐이면 고르기 단추 없이 지금 모습 그대로 */
+  const products = WORKSPACE_PRODUCTS.filter((item) =>
+    workspaceMenusOf(item.id).some((menu) => enabledMenus.has(menu)),
+  );
+  const availableNav = navItemsOf[product].filter((item) => can(item.id));
+  /** 빠른 검색(Ctrl K)에는 두 제품이 다 선다 */
+  const quickNav = allNavItems.filter((item) => can(item.id));
+  const englishView: EnglishView =
+    view && isEnglishView(view) ? view : "english";
   const worksheetView =
     view === "bank" ||
     view === "studio" ||
@@ -270,7 +329,18 @@ function UnifiedWorkspaceContent({
     | { kind: "order"; previous: StudioProblem[]; draftId: string }
     | null
   >(null);
-  const [modal, setModal] = useState<"new" | "search" | "help" | null>(null);
+  // «english-exam»(영어 «새 시험 등록»)은 셸의 <dialog> 가 아니라 영어 뷰가 제 창을 그린다.
+  const [modal, setModal] = useState<
+    "new" | "search" | "help" | "english-exam" | null
+  >(null);
+  const [pickerOpen, setPickerOpen] = useState(false);
+  const pickerRef = useRef<HTMLDivElement>(null);
+  const brandRef = useRef<HTMLButtonElement>(null);
+  const pickerFocusPending = useRef(false);
+  /** 세트 딥링크 — sync() 가 읽어 영어 뷰에 넘기고, 열리면(`forgetSetLink`) URL 에서 지운다 */
+  const [openSet, setOpenSet] = useState<{ id?: string; version: number }>({
+    version: 0,
+  });
   const [newTitle, setNewTitle] = useState("");
   const [quickQuery, setQuickQuery] = useState("");
   const [libraryQuery, setLibraryQuery] = useState("");
@@ -283,7 +353,7 @@ function UnifiedWorkspaceContent({
   const fileRef = useRef<HTMLInputElement>(null);
   const draftFileRef = useRef<HTMLInputElement>(null);
   const label =
-    navItems.find((item) => item.id === view)?.label ?? "메뉴 이용 안내";
+    allNavItems.find((item) => item.id === view)?.label ?? "메뉴 이용 안내";
   const navigate = useCallback(
     (next: View) => {
       if (!can(next)) return;
@@ -294,6 +364,7 @@ function UnifiedWorkspaceContent({
       setNotice("");
       setUndo(null);
       setModal(null);
+      setPickerOpen(false);
       const url = new URL(window.location.href);
       url.hash = next === "home" ? "" : next;
       if (url.href !== window.location.href)
@@ -322,16 +393,93 @@ function UnifiedWorkspaceContent({
       /* Optional preference. */
     }
   }, [sidebarCollapsed]);
+  // 제품 고르기 목록(D-148 · 시안 C) — 키보드로 열면 첫 항목에 초점, 바깥을 누르면 닫힌다.
+  useEffect(() => {
+    if (!pickerOpen) return;
+    if (pickerFocusPending.current) {
+      pickerFocusPending.current = false;
+      pickerRef.current
+        ?.querySelector<HTMLButtonElement>('[role="option"]')
+        ?.focus();
+    }
+    const away = (event: MouseEvent) => {
+      if (!pickerRef.current?.contains(event.target as Node))
+        setPickerOpen(false);
+    };
+    document.addEventListener("mousedown", away);
+    return () => document.removeEventListener("mousedown", away);
+  }, [pickerOpen]);
+  /** 고르면 그 제품의 첫 뷰 — 수학은 `defaultView`(지금 규칙), 영어는 «학교별 내신 대비» */
+  const chooseProduct = (next: WorkspaceProduct) => {
+    setPickerOpen(false);
+    const target: View | null =
+      next === "english"
+        ? "english"
+        : defaultView && productOf(defaultView) === "math"
+          ? defaultView
+          : (mathNav.find((item) => can(item.id))?.id ?? null);
+    if (target) navigate(target);
+    brandRef.current?.focus();
+  };
+  const onPickerKey = (event: React.KeyboardEvent<HTMLDivElement>) => {
+    const options = Array.from(
+      pickerRef.current?.querySelectorAll<HTMLButtonElement>(
+        '[role="option"]',
+      ) ?? [],
+    );
+    if (!options.length) return;
+    const index = options.indexOf(document.activeElement as HTMLButtonElement);
+    if (event.key === "ArrowDown") {
+      event.preventDefault();
+      options[(index + 1) % options.length].focus();
+    } else if (event.key === "ArrowUp") {
+      event.preventDefault();
+      options[(index - 1 + options.length) % options.length].focus();
+    } else if (event.key === "Escape") {
+      event.preventDefault();
+      setPickerOpen(false);
+      brandRef.current?.focus();
+    } else if (event.key === "Enter" && index >= 0) {
+      event.preventDefault();
+      options[index].click();
+    }
+  };
+  /** 영어 뷰가 세트를 열고 나면 URL 의 `set` 을 지운다 — 새로 고쳐도 같은 세트를 다시 열지 않는다 */
+  const forgetSetLink = useCallback(() => {
+    const url = new URL(window.location.href);
+    if (!url.searchParams.has("set")) return;
+    url.searchParams.delete("set");
+    window.history.replaceState(null, "", url);
+  }, []);
+  const openNewExam = useCallback(() => setModal("english-exam"), [setModal]);
+  const closeModal = useCallback(() => setModal(null), [setModal]);
+  const englishNotice = useCallback(
+    (message: string, tone: "status" | "alert" = "status") =>
+      setNotice(message, tone === "alert"),
+    [setNotice],
+  );
   useEffect(() => {
     const sync = () => {
-      const value = window.location.hash.slice(1) || "home";
-      const next = viewValid(value) && can(value) ? value : defaultView;
+      const url = new URL(window.location.href);
+      const value = url.hash.slice(1) || "home";
+      let next = viewValid(value) && can(value) ? value : defaultView;
+      // 세트 딥링크(D-148) — `extraction` 처럼 검색 인수를 읽는다. 영어 권한이 없으면 무시한다.
+      const setId = url.searchParams.get("set");
+      const setLinked = Boolean(
+        setId && SET_LINK.test(setId) && can("english"),
+      );
+      if (setLinked && productOf(next) !== "english") next = "english";
       setView(next);
       setNavigationReady(true);
       setOpened(
         (current) => new Set([...current, ...(next ? [next] : [])].filter(can)),
       );
-      const url = new URL(window.location.href);
+      if (setLinked && setId)
+        setOpenSet((current) =>
+          current.id === setId
+            ? current
+            : { id: setId, version: current.version + 1 },
+        );
       const documentId = url.searchParams.get("extraction");
       if (
         storageScope &&
@@ -363,20 +511,26 @@ function UnifiedWorkspaceContent({
     // Close controls immediately after the corresponding permission is revoked.
     // eslint-disable-next-line react-hooks/set-state-in-effect
     setModal((current) =>
-      !hasMenus || (current === "new" && !canCreate) ? null : current,
+      !hasMenus ||
+      (current === "new" && !canCreate) ||
+      (current === "english-exam" && !canEnglish)
+        ? null
+        : current,
     );
-  }, [hasMenus, canCreate]);
+  }, [hasMenus, canCreate, canEnglish]);
+  /** 셸의 <dialog> 가 그리는 창만 — «새 시험 등록»은 영어 뷰가 제 창을 그린다 */
+  const shellModal = modal === "english-exam" ? null : modal;
   useEffect(() => {
     const dialog = dialogRef.current;
     if (!dialog) return;
-    if (modal) {
+    if (shellModal) {
       if (!dialog.open) dialog.showModal();
-      if (modal === "search") queryRef.current?.focus();
-      if (modal === "new") newTitleRef.current?.focus();
-      if (modal === "help") dialog.querySelector("button")?.focus();
+      if (shellModal === "search") queryRef.current?.focus();
+      if (shellModal === "new") newTitleRef.current?.focus();
+      if (shellModal === "help") dialog.querySelector("button")?.focus();
     }
-    if (!modal && dialog.open) dialog.close();
-  }, [modal]);
+    if (!shellModal && dialog.open) dialog.close();
+  }, [shellModal]);
   useEffect(() => {
     const keydown = (event: KeyboardEvent) => {
       if (!(event.ctrlKey || event.metaKey)) return;
@@ -634,6 +788,7 @@ function UnifiedWorkspaceContent({
       data-sidebar-collapsed={sidebarCollapsed}
       data-authenticated={Boolean(currentUser)}
       data-menu-count={availableNav.length}
+      data-picker={products.length > 1}
     >
       <a
         className={s.skipLink}
@@ -673,63 +828,157 @@ function UnifiedWorkspaceContent({
         />
       )}
       <aside className={s.sidebar}>
-        <div className={s.sideHeader}>
-          <button
-            className={s.brand}
-            onClick={() => defaultView && navigate(defaultView)}
-            aria-label={
-              defaultView === "home" ? "오늘의수학 홈" : "오늘의수학 작업실"
-            }
-            disabled={!hasMenus}
-          >
-            <span className={s.brandMark}>
-              <TodayMathMark size={36} inverse />
-            </span>
-            <span>오늘의수학</span>
-          </button>
-          <button
-            className={s.sidebarToggle}
-            onClick={toggleSidebar}
-            aria-label={
-              sidebarCollapsed ? "왼쪽 메뉴 펼치기" : "왼쪽 메뉴 접기"
-            }
-            title={
-              sidebarCollapsed ? "메뉴 펼치기 (Ctrl+\\)" : "메뉴 접기 (Ctrl+\\)"
-            }
-            aria-expanded={!sidebarCollapsed}
-          >
-            <svg
-              viewBox="0 0 24 24"
-              width="19"
-              height="19"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="1.7"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              aria-hidden="true"
-            >
-              <path
-                d={
-                  sidebarCollapsed
-                    ? "m5 6 6 6-6 6m7-12 6 6-6 6"
-                    : "m19 6-6 6 6 6m-7-12-6 6 6 6"
+        <div className={s.productMenu} ref={pickerRef}>
+          <div className={s.sideHeader}>
+            {products.length > 1 ? (
+              // 브랜드 자리가 곧 고르기 단추(D-148 · 시안 C) — 이름 옆 ▾, 누르면 바로 아래 제품 목록.
+              <button
+                ref={brandRef}
+                className={s.brand}
+                aria-haspopup="listbox"
+                aria-expanded={pickerOpen}
+                aria-controls={
+                  pickerOpen ? "workspace-product-list" : undefined
                 }
-              />
-            </svg>
-          </button>
+                aria-label={`제품 고르기 — ${productLabel}`}
+                onClick={() => setPickerOpen((open) => !open)}
+                onKeyDown={(event) => {
+                  if (event.key === "ArrowDown" || event.key === "ArrowUp") {
+                    event.preventDefault();
+                    pickerFocusPending.current = true;
+                    setPickerOpen(true);
+                  } else if (event.key === "Escape" && pickerOpen) {
+                    event.preventDefault();
+                    setPickerOpen(false);
+                  }
+                }}
+              >
+                <span className={s.brandMark}>
+                  <TodayMathMark size={36} inverse />
+                  {product === "english" && (
+                    <span
+                      className={s.productBadge}
+                      data-testid="product-badge"
+                      aria-hidden="true"
+                    >
+                      영
+                    </span>
+                  )}
+                </span>
+                <span className={s.brandName}>
+                  {productLabel}
+                  <span className={s.brandChevron}>
+                    <Icon name="down" size={16} />
+                  </span>
+                </span>
+              </button>
+            ) : (
+              <button
+                className={s.brand}
+                onClick={() => defaultView && navigate(defaultView)}
+                aria-label={
+                  defaultView === "home"
+                    ? "오늘의수학 홈"
+                    : `${productLabel} 작업실`
+                }
+                disabled={!hasMenus}
+              >
+                <span className={s.brandMark}>
+                  <TodayMathMark size={36} inverse />
+                  {product === "english" && (
+                    <span
+                      className={s.productBadge}
+                      data-testid="product-badge"
+                      aria-hidden="true"
+                    >
+                      영
+                    </span>
+                  )}
+                </span>
+                <span>{productLabel}</span>
+              </button>
+            )}
+            <button
+              className={s.sidebarToggle}
+              onClick={toggleSidebar}
+              aria-label={
+                sidebarCollapsed ? "왼쪽 메뉴 펼치기" : "왼쪽 메뉴 접기"
+              }
+              title={
+                sidebarCollapsed
+                  ? "메뉴 펼치기 (Ctrl+\\)"
+                  : "메뉴 접기 (Ctrl+\\)"
+              }
+              aria-expanded={!sidebarCollapsed}
+            >
+              <svg
+                viewBox="0 0 24 24"
+                width="19"
+                height="19"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="1.7"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                aria-hidden="true"
+              >
+                <path
+                  d={
+                    sidebarCollapsed
+                      ? "m5 6 6 6-6 6m7-12 6 6-6 6"
+                      : "m19 6-6 6 6 6m-7-12-6 6 6 6"
+                  }
+                />
+              </svg>
+            </button>
+          </div>
+          {pickerOpen && (
+            <div
+              id="workspace-product-list"
+              role="listbox"
+              aria-label="제품"
+              className={s.productPicker}
+              onKeyDown={onPickerKey}
+            >
+              {products.map((item) => (
+                <button
+                  key={item.id}
+                  type="button"
+                  role="option"
+                  aria-selected={item.id === product}
+                  className={item.id === product ? s.productCurrent : undefined}
+                  onClick={() => chooseProduct(item.id)}
+                >
+                  {item.label}
+                </button>
+              ))}
+            </div>
+          )}
         </div>
-        {canCreate && (
-          <button
-            className={s.newButton}
-            aria-label="새 시험지 만들기"
-            title={sidebarCollapsed ? "새 시험지 만들기" : undefined}
-            onClick={() => setModal("new")}
-          >
-            <Icon name="plus" />
-            <span>새 시험지 만들기</span>
-          </button>
-        )}
+        {product === "english"
+          ? canEnglish && (
+              <button
+                className={s.newButton}
+                aria-label="새 시험 등록"
+                title={sidebarCollapsed ? "새 시험 등록" : undefined}
+                onClick={() => setModal("english-exam")}
+              >
+                <Icon name="plus" />
+                <span>새 시험 등록</span>
+              </button>
+            )
+          : canCreate && (
+              <button
+                className={s.newButton}
+                aria-label="새 시험지 만들기"
+                title={sidebarCollapsed ? "새 시험지 만들기" : undefined}
+                onClick={() => setModal("new")}
+              >
+                <Icon name="plus" />
+                <span>새 시험지 만들기</span>
+              </button>
+            )}
+        {product === "english" && <p className={s.navCaption}>오늘의 영어</p>}
         <nav className={s.navigation} aria-label="작업실 메뉴">
           {availableNav.map((item) => (
             <div
@@ -851,32 +1100,34 @@ function UnifiedWorkspaceContent({
           )}
         </header>
         <div className={s.notifications}>
-          {hasMenus && notice && (worksheetView || modal) && (
-            <div
-              className={s.notice}
-              data-error={noticeError}
-              role={noticeError ? "alert" : "status"}
-            >
-              <Icon name={noticeError ? "warning" : "check"} size={18} />
-              <span>{notice}</span>
-              {undo && undo.draftId === draft.id && (
-                <button className={s.undoButton} onClick={undoLast}>
-                  <Icon name="undo" size={16} />
-                  되돌리기
-                </button>
-              )}
-              <button
-                className={s.dismiss}
-                onClick={() => {
-                  setNotice("");
-                  setUndo(null);
-                }}
-                aria-label="알림 닫기"
+          {hasMenus &&
+            notice &&
+            (worksheetView || modal || product === "english") && (
+              <div
+                className={s.notice}
+                data-error={noticeError}
+                role={noticeError ? "alert" : "status"}
               >
-                <Icon name="close" size={17} />
-              </button>
-            </div>
-          )}
+                <Icon name={noticeError ? "warning" : "check"} size={18} />
+                <span>{notice}</span>
+                {undo && undo.draftId === draft.id && (
+                  <button className={s.undoButton} onClick={undoLast}>
+                    <Icon name="undo" size={16} />
+                    되돌리기
+                  </button>
+                )}
+                <button
+                  className={s.dismiss}
+                  onClick={() => {
+                    setNotice("");
+                    setUndo(null);
+                  }}
+                  aria-label="알림 닫기"
+                >
+                  <Icon name="close" size={17} />
+                </button>
+              </div>
+            )}
         </div>
         <div id="workspace-content" className={s.content} tabIndex={-1}>
           {worksheetView && canCreate && saveError && (
@@ -1014,6 +1265,27 @@ function UnifiedWorkspaceContent({
               <CourseDashboard />
             </main>
           )}
+          {/* 오늘의 영어(D-148) — 개념·SRS 블록과 같은 결로 마운트를 유지한다. `worksheetView` 에 넣지 않는다 */}
+          {canEnglish &&
+            ([...opened].some((item) => productOf(item) === "english") ||
+              product === "english") && (
+              <main hidden={product !== "english"} className={s.viewContent}>
+                <EnglishStudio
+                  view={englishView}
+                  onNavigate={navigate}
+                  newExamOpen={modal === "english-exam"}
+                  onNewExam={openNewExam}
+                  onNewExamClose={closeModal}
+                  openSetRequest={
+                    openSet.id
+                      ? (openSet as { id: string; version: number })
+                      : undefined
+                  }
+                  onSetOpened={forgetSetLink}
+                  onNotice={englishNotice}
+                />
+              </main>
+            )}
           {view === "export" && hydrated && (
             <WorksheetEditor
               selected={selected}
@@ -1410,7 +1682,7 @@ function UnifiedWorkspaceContent({
             )}
             <p className={s.commandCaption}>바로 이동</p>
             <div className={s.commandLinks}>
-              {availableNav
+              {quickNav
                 .filter((item) => item.id !== "home")
                 .map((item) => (
                   <button key={item.id} onClick={() => navigate(item.id)}>

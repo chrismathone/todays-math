@@ -93,6 +93,17 @@ const paths = {
       <path d="M12 9v5m0 3h.01" />
     </>
   ),
+  /** 오늘의 영어(D-148) — 학교별 내신 대비 */
+  school: (
+    <>
+      <path d="M3 21h18M5 21V9l7-5 7 5v12" />
+      <path d="M9 21v-6h6v6" />
+    </>
+  ),
+  /** 오늘의 영어(D-148) — 문제 만들기 */
+  pen: <path d="M12 20h9M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4Z" />,
+  /** 브랜드 자리 고르기 단추의 ▾ (D-148 · 시안 C) */
+  down: <path d="m6 9 6 6 6-6" />,
 } satisfies Record<string, ReactNode>;
 export type WorkspaceIconName = keyof typeof paths;
 export default function WorkspaceIcon({

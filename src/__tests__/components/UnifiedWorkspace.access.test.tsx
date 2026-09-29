@@ -35,6 +35,8 @@ const mocks = vi.hoisted(() => ({
   teachingMount: vi.fn(),
   overviewMount: vi.fn(),
   conceptMount: vi.fn(),
+  englishMount: vi.fn(),
+  englishSetOpened: vi.fn(),
 }));
 const router = { replace: mocks.replace };
 vi.mock("next/navigation", () => ({ useRouter: () => router }));
@@ -130,6 +132,45 @@ vi.mock("@/components/unified/ConceptView", () => ({
 }));
 vi.mock("@/components/math-srs/CourseDashboard", () => ({
   default: () => <h2>SRS 패널</h2>,
+}));
+// «오늘의 영어» 뷰 셋의 뿌리(D-148) — 셸이 주는 props 만 보이는 탐침
+vi.mock("@/components/english/EnglishStudio", () => ({
+  default: function EnglishProbe({
+    view,
+    openSetRequest,
+    onSetOpened,
+    newExamOpen,
+    onNotice,
+  }: {
+    view: string;
+    openSetRequest?: { id: string; version: number };
+    onSetOpened: () => void;
+    newExamOpen: boolean;
+    onNotice: (message: string, tone?: "status" | "alert") => void;
+  }) {
+    useEffect(() => {
+      mocks.englishMount();
+    }, []);
+    return (
+      <>
+        <h2>영어 패널</h2>
+        <span data-testid="english-view">{view}</span>
+        <span data-testid="english-open-set">{openSetRequest?.id ?? ""}</span>
+        <span data-testid="english-new-exam">{String(newExamOpen)}</span>
+        <button
+          onClick={() => {
+            mocks.englishSetOpened();
+            onSetOpened();
+          }}
+        >
+          세트 열림 알림
+        </button>
+        <button onClick={() => onNotice("영어 알림 줄", "status")}>
+          영어 알림
+        </button>
+      </>
+    );
+  },
 }));
 vi.mock("@/components/unified/TeachingOverview", () => ({
   default: function OverviewProbe() {
@@ -822,4 +863,280 @@ describe("per-account workspace menu access", () => {
       expect(screen.getByRole("button", { name: "로그아웃" })).toBeVisible();
     },
   );
+});
+
+/**
+ * D-148 — 브랜드 자리 «고르기 단추»(시안 C)와 영어 뷰 셋. 제품은 뷰에서 파생하고(`english*` → 영어) 저장하지 않는다.
+ * 수학 순서 시험은 위 묶음 그대로(영어 탭은 **제품별 목록**이라 수학 목록에 끼지 않는다).
+ */
+describe("제품 전환 — 브랜드 자리 고르기 단추 (D-148)", () => {
+  const ALL = WORKSPACE_MENUS.map((menu) => menu.id);
+  const MATH_ONLY = ALL.filter((menu) => workspaceMenuProduct(menu) === "math");
+  const brand = () => screen.getByRole("button", { name: /제품 고르기/ });
+  const ENGLISH_NAV = ["학교별 내신 대비", "문제 만들기", "문제 보관함"];
+  const SET_ID = "73000000-0000-4000-8000-000000000001";
+
+  it("제품 목록은 권한 있는 제품만 — 영어 메뉴가 없으면 지금 모습 그대로(▾ 없음 · 목록 없음)", () => {
+    const { unmount } = render(
+      <UnifiedWorkspace initialData={initialData} allowedMenus={MATH_ONLY} />,
+    );
+    expect(screen.queryByRole("button", { name: /제품 고르기/ })).toBeNull();
+    const plain = screen.getByRole("button", { name: "오늘의수학 홈" });
+    expect(plain).not.toHaveAttribute("aria-haspopup");
+    fireEvent.click(plain);
+    expect(screen.queryByRole("listbox", { name: "제품" })).toBeNull();
+    expect(window.location.hash).toBe("");
+    unmount();
+
+    render(<UnifiedWorkspace initialData={initialData} allowedMenus={ALL} />);
+    const picker = brand();
+    expect(picker).toHaveAttribute("aria-haspopup", "listbox");
+    expect(picker).toHaveAttribute("aria-expanded", "false");
+    fireEvent.click(picker);
+    const list = within(screen.getByRole("listbox", { name: "제품" }));
+    expect(
+      list.getAllByRole("option").map((option) => option.textContent),
+    ).toEqual(["오늘의수학", "오늘의영어"]);
+    expect(list.getByRole("option", { name: "오늘의수학" })).toHaveAttribute(
+      "aria-selected",
+      "true",
+    );
+    expect(picker).toHaveAttribute("aria-expanded", "true");
+  });
+
+  it("영어 메뉴만 있는 계정은 제품이 하나라 목록이 없고 옆 메뉴가 바로 영어 탭 셋이다", async () => {
+    render(
+      <UnifiedWorkspace initialData={initialData} allowedMenus={["english"]} />,
+    );
+    expect(screen.queryByRole("button", { name: /제품 고르기/ })).toBeNull();
+    expect(
+      screen.getByRole("button", { name: "오늘의영어 작업실" }),
+    ).toBeVisible();
+    expect(
+      nav()
+        .getAllByRole("button")
+        .map((button) => button.getAttribute("aria-label")),
+    ).toEqual(ENGLISH_NAV);
+    expect(
+      await screen.findByRole("heading", { name: "영어 패널" }),
+    ).toBeVisible();
+    expect(window.location.hash).toBe("#english");
+    expect(screen.getByRole("button", { name: "새 시험 등록" })).toBeVisible();
+    expect(
+      screen.queryByRole("button", { name: "새 시험지 만들기" }),
+    ).toBeNull();
+  });
+
+  it("영어로 넘어가면 옆 메뉴가 영어 탭 셋 · 파란 단추 «새 시험 등록» · 캡션, 돌아오면 수학 여덟이 그대로다", async () => {
+    render(<UnifiedWorkspace initialData={initialData} allowedMenus={ALL} />);
+    fireEvent.click(brand());
+    fireEvent.click(screen.getByRole("option", { name: "오늘의영어" }));
+    expect(
+      nav()
+        .getAllByRole("button")
+        .map((button) => button.getAttribute("aria-label")),
+    ).toEqual(ENGLISH_NAV);
+    expect(
+      nav().getByRole("button", { name: "학교별 내신 대비" }),
+    ).toHaveAttribute("aria-current", "page");
+    expect(window.location.hash).toBe("#english");
+    expect(
+      await screen.findByRole("heading", { name: "영어 패널" }),
+    ).toBeVisible();
+    expect(screen.getByTestId("english-view")).toHaveTextContent("english");
+    expect(screen.getByText("오늘의 영어", { selector: "p" })).toBeVisible();
+    expect(screen.getByRole("button", { name: "새 시험 등록" })).toBeVisible();
+    expect(
+      screen.queryByRole("button", { name: "새 시험지 만들기" }),
+    ).toBeNull();
+    expect(screen.queryByRole("listbox", { name: "제품" })).toBeNull();
+    expect(brand()).toHaveAccessibleName("제품 고르기 — 오늘의영어");
+    expect(
+      within(screen.getByRole("banner")).getByText("학교별 내신 대비"),
+    ).toBeVisible();
+
+    // 옆 메뉴 파란 단추 → 셸 modal «english-exam» 이 영어 뷰에 전해진다(창은 영어 뷰가 그린다)
+    fireEvent.click(screen.getByRole("button", { name: "새 시험 등록" }));
+    expect(screen.getByTestId("english-new-exam")).toHaveTextContent("true");
+    expect(screen.queryByRole("dialog")).toBeNull();
+
+    fireEvent.click(nav().getByRole("button", { name: "문제 보관함" }));
+    expect(window.location.hash).toBe("#english-library");
+    expect(screen.getByTestId("english-view")).toHaveTextContent(
+      "english-library",
+    );
+    expect(screen.getByTestId("english-new-exam")).toHaveTextContent("false");
+
+    fireEvent.click(brand());
+    fireEvent.click(screen.getByRole("option", { name: "오늘의수학" }));
+    expect(nav().getAllByRole("button")).toHaveLength(MATH_ONLY.length);
+    expect(window.location.hash).toBe("");
+    expect(brand()).toHaveAccessibleName("제품 고르기 — 오늘의수학");
+    // 영어 뷰는 숨김으로 남는다(상태를 잃지 않는다) — 다시 마운트하지 않는다
+    expect(mocks.englishMount).toHaveBeenCalledOnce();
+    expect(screen.queryByRole("heading", { name: "영어 패널" })).toBeNull();
+    expect(
+      screen.getByRole("heading", { name: "영어 패널", hidden: true }),
+    ).toBeInTheDocument();
+  });
+
+  it("고르기 단추는 키보드로 오간다 — ↑↓ Enter Esc · 바깥 클릭 닫힘 · 포커스 되돌림", async () => {
+    render(<UnifiedWorkspace initialData={initialData} allowedMenus={ALL} />);
+    const picker = brand();
+    picker.focus();
+    fireEvent.keyDown(picker, { key: "ArrowDown" });
+    const list = screen.getByRole("listbox", { name: "제품" });
+    const options = within(list).getAllByRole("option");
+    expect(options[0]).toHaveFocus();
+    fireEvent.keyDown(options[0], { key: "ArrowDown" });
+    expect(options[1]).toHaveFocus();
+    fireEvent.keyDown(options[1], { key: "ArrowDown" });
+    expect(options[0]).toHaveFocus();
+    fireEvent.keyDown(options[0], { key: "ArrowUp" });
+    expect(options[1]).toHaveFocus();
+    fireEvent.keyDown(options[1], { key: "Escape" });
+    expect(screen.queryByRole("listbox", { name: "제품" })).toBeNull();
+    expect(picker).toHaveFocus();
+    expect(window.location.hash).toBe("");
+
+    fireEvent.keyDown(picker, { key: "ArrowDown" });
+    fireEvent.keyDown(
+      within(screen.getByRole("listbox", { name: "제품" })).getAllByRole(
+        "option",
+      )[0],
+      { key: "ArrowDown" },
+    );
+    fireEvent.keyDown(document.activeElement!, { key: "Enter" });
+    expect(window.location.hash).toBe("#english");
+    expect(screen.queryByRole("listbox", { name: "제품" })).toBeNull();
+    expect(
+      await screen.findByRole("heading", { name: "영어 패널" }),
+    ).toBeVisible();
+
+    fireEvent.click(brand());
+    expect(screen.getByRole("listbox", { name: "제품" })).toBeVisible();
+    fireEvent.mouseDown(document.body);
+    expect(screen.queryByRole("listbox", { name: "제품" })).toBeNull();
+  });
+
+  it("#english-maker 를 바로 열면 만들기 탭이 켜지고 브레드크럼이 그 이름이다", async () => {
+    window.history.replaceState(null, "", "/#english-maker");
+    render(<UnifiedWorkspace initialData={initialData} allowedMenus={ALL} />);
+    expect(
+      await screen.findByRole("heading", { name: "영어 패널" }),
+    ).toBeVisible();
+    expect(screen.getByTestId("english-view")).toHaveTextContent(
+      "english-maker",
+    );
+    expect(nav().getByRole("button", { name: "문제 만들기" })).toHaveAttribute(
+      "aria-current",
+      "page",
+    );
+    expect(
+      within(screen.getByRole("banner")).getByText("문제 만들기"),
+    ).toBeVisible();
+    expect(window.location.hash).toBe("#english-maker");
+    // 빠른 검색에는 두 제품이 다 선다
+    fireEvent.click(screen.getByRole("button", { name: "빠른 검색 열기" }));
+    const dialog = within(screen.getByRole("dialog"));
+    expect(dialog.getByRole("button", { name: "문제 보관함" })).toBeVisible();
+    expect(dialog.getByRole("button", { name: "내 시험지" })).toBeVisible();
+    fireEvent.click(dialog.getByRole("button", { name: "내 시험지" }));
+    expect(window.location.hash).toBe("#library");
+    expect(nav().getAllByRole("button")).toHaveLength(MATH_ONLY.length);
+  });
+
+  it("영어 메뉴가 없으면 #english 는 첫 허용 메뉴로 떨어지고 영어 뷰는 마운트되지 않는다", async () => {
+    window.history.replaceState(null, "", "/#english-library");
+    render(
+      <UnifiedWorkspace initialData={initialData} allowedMenus={["library"]} />,
+    );
+    expect(
+      await screen.findByRole("heading", { name: "내 시험지" }),
+    ).toBeVisible();
+    expect(window.location.hash).toBe("#library");
+    expect(mocks.englishMount).not.toHaveBeenCalled();
+  });
+
+  it("?set= 딥링크는 영어 뷰에 세트 id 를 넘기고, 열리면 URL 에서 set 을 지운다", async () => {
+    window.history.replaceState(null, "", `/?set=${SET_ID}#english`);
+    render(<UnifiedWorkspace initialData={initialData} allowedMenus={ALL} />);
+    expect(await screen.findByTestId("english-open-set")).toHaveTextContent(
+      SET_ID,
+    );
+    expect(window.location.search).toBe(`?set=${SET_ID}`);
+    fireEvent.click(screen.getByRole("button", { name: "세트 열림 알림" }));
+    expect(window.location.search).toBe("");
+    expect(window.location.hash).toBe("#english");
+  });
+
+  it("?set= 은 해시가 없어도 영어 뷰를 열고, 모양이 틀리면 넘기지 않는다", async () => {
+    window.history.replaceState(null, "", `/?set=${SET_ID}`);
+    const { unmount } = render(
+      <UnifiedWorkspace initialData={initialData} allowedMenus={ALL} />,
+    );
+    expect(await screen.findByTestId("english-open-set")).toHaveTextContent(
+      SET_ID,
+    );
+    expect(window.location.hash).toBe("#english");
+    unmount();
+    mocks.englishMount.mockClear();
+
+    window.history.replaceState(null, "", "/?set=not-a-uuid#english");
+    render(<UnifiedWorkspace initialData={initialData} allowedMenus={ALL} />);
+    expect(await screen.findByTestId("english-open-set")).toHaveTextContent("");
+  });
+
+  it("영어 권한이 없으면 ?set= 은 무시된다", async () => {
+    window.history.replaceState(null, "", `/?set=${SET_ID}#english`);
+    render(
+      <UnifiedWorkspace initialData={initialData} allowedMenus={MATH_ONLY} />,
+    );
+    expect(
+      await screen.findByRole("heading", { name: "오늘의 작업" }),
+    ).toBeVisible();
+    expect(mocks.englishMount).not.toHaveBeenCalled();
+    expect(window.location.hash).toBe("");
+  });
+
+  it("접힌 옆 메뉴에서는 마크 귀퉁이 딱지 «영»이 영어일 때만 붙고, 마크를 누르면 목록이 뜬다", async () => {
+    render(<UnifiedWorkspace initialData={initialData} allowedMenus={ALL} />);
+    fireEvent.click(screen.getByRole("button", { name: "왼쪽 메뉴 접기" }));
+    expect(
+      screen.getByRole("button", { name: "왼쪽 메뉴 펼치기" }),
+    ).toBeVisible();
+    expect(screen.queryByTestId("product-badge")).toBeNull();
+    fireEvent.click(brand());
+    fireEvent.click(screen.getByRole("option", { name: "오늘의영어" }));
+    expect(screen.getByTestId("product-badge")).toHaveTextContent("영");
+    expect(screen.getByTestId("product-badge")).toHaveAttribute(
+      "aria-hidden",
+      "true",
+    );
+    fireEvent.click(brand());
+    expect(screen.getByRole("listbox", { name: "제품" })).toBeVisible();
+    fireEvent.click(screen.getByRole("option", { name: "오늘의수학" }));
+    expect(screen.queryByTestId("product-badge")).toBeNull();
+  });
+
+  it("영어에서는 «현재 시험지» 카드 · 담기 바가 안 뜨고, 영어 뷰의 알림은 셸 알림 줄로 나온다", async () => {
+    const store = createWorkspaceDraftStore();
+    store.hydrate();
+    store.importDraft({
+      version: 1,
+      title: "수학 시험지",
+      problems: [{ id: "p1", content: "1+1" }],
+      columns: 1,
+      answers: false,
+    });
+    window.history.replaceState(null, "", "/#export");
+    render(<UnifiedWorkspace initialData={initialData} allowedMenus={ALL} />);
+    expect(await screen.findByText("현재 시험지")).toBeVisible();
+    fireEvent.click(brand());
+    fireEvent.click(screen.getByRole("option", { name: "오늘의영어" }));
+    expect(screen.queryByText("현재 시험지")).toBeNull();
+    expect(screen.queryByRole("textbox", { name: "제목" })).toBeNull();
+    fireEvent.click(await screen.findByRole("button", { name: "영어 알림" }));
+    expect(screen.getByRole("status")).toHaveTextContent("영어 알림 줄");
+  });
 });
