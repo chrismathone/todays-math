@@ -1,0 +1,819 @@
+/*
+ * 오늘의 영어 — 05 §8.23 «작업실 그대로»(D-148). 값은 `Workroom.module.css` 토큰과 시안
+ * `hifi-d148-english-switch.html` C 안 본문 그대로다. 새 색·새 글꼴 없음.
+ * 🔴 왼쪽 색 막대 금지 · 카드·행·알약에 손가락 커서·hover 금지(D-30) — 눌리는 것은 <button>·<a> 뿐이다.
+ * 영어 지문·보기는 세리프 라틴 글꼴(`PAPER_FONTS.serifKR` 의 이름 + 시스템 세리프 — 새로 싣지 않는다).
+ */
+.studio {
+  --e-line: #d4dce8;
+  --e-line-soft: #eef1f7;
+  --e-ink: var(--ink, #172b4d);
+  --e-muted: var(--muted, #596c86);
+  --e-faint: #8c98ab;
+  --e-accent: var(--accent, #3159df);
+  --e-accent-ink: #2447b8;
+  --e-soft: #edf2ff;
+  --e-draft-bg: #fbf0d4;
+  --e-draft-ink: #86590a;
+  --e-review-bg: #eef1f5;
+  --e-review-ink: #6b7a90;
+  --e-done-bg: #e4eafc;
+  --e-done-ink: #2447b8;
+  --e-danger: #b42318;
+  --e-danger-bg: #fff2ed;
+  --e-serif:
+    "KoPubBatang", "Nanum Myeongjo", "Noto Serif KR", Georgia,
+    "Times New Roman", serif;
+  min-width: 0;
+  color: var(--e-ink);
+}
+.studio :is(input, select, textarea) {
+  font-family: inherit;
+  font-size: var(--text-body, 14px);
+  color: var(--e-ink);
+}
+.studio textarea {
+  line-height: 1.6;
+}
+.serif {
+  font-family: var(--e-serif);
+}
+.visuallyHidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+}
+
+/* ── 학교 칩 + 시험 고르기 ─────────────────────────────────── */
+.pickerRow {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+  margin: 0 0 16px;
+}
+.chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  min-width: 0;
+}
+.chip {
+  min-height: var(--control-height, 44px);
+  padding: 0 14px;
+  border: 1px solid var(--e-line);
+  border-radius: var(--control-radius, 8px);
+  background: #fff;
+  color: var(--e-muted);
+  font-weight: 600;
+  max-width: 100%;
+  overflow-wrap: anywhere;
+}
+.chip:hover {
+  border-color: #91a9da;
+}
+.chip[aria-pressed="true"] {
+  background: var(--e-soft);
+  border-color: var(--e-accent);
+  color: var(--e-accent-ink);
+}
+.examSelect {
+  margin-left: auto;
+  min-height: var(--control-height, 44px);
+  max-width: 100%;
+  padding: 0 12px;
+  border: 1px solid var(--e-line);
+  border-radius: var(--control-radius, 8px);
+  background: #fff;
+}
+
+/* ── 카드 ──────────────────────────────────────────────────── */
+.card {
+  min-width: 0;
+  padding: 18px 20px;
+  background: #fff;
+  border: 1px solid var(--e-line);
+  border-radius: 12px;
+}
+.card + .card {
+  margin-top: 16px;
+}
+.sectionHead {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px 12px;
+}
+.sectionTitle {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin: 0;
+  font-size: 17px;
+  font-weight: 700;
+}
+.num {
+  padding: 1px 7px;
+  border-radius: 5px;
+  background: #eef3fd;
+  color: #6e87b0;
+  font-size: var(--text-caption, 12px);
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+}
+.quiet {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  min-height: var(--control-height, 44px);
+  padding: 0 10px;
+  border: 1px solid transparent;
+  border-radius: var(--control-radius, 8px);
+  background: transparent;
+  color: #667d9e;
+  font-size: 13px;
+  font-weight: 600;
+  white-space: nowrap;
+}
+.quiet:hover {
+  border-color: var(--e-line);
+  color: var(--e-ink);
+}
+.desc {
+  margin: 6px 0 0;
+  color: #8793a7;
+  font-size: 13px;
+}
+
+/* ── 이번 시험 준비 ────────────────────────────────────────── */
+.steps {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px 24px;
+  margin: 0 0 16px;
+}
+.kick {
+  font-size: var(--text-caption, 12px);
+  font-weight: 700;
+  letter-spacing: 0.6px;
+  color: #8194b1;
+}
+.stepsTitle {
+  margin: 4px 0 0;
+  font-size: var(--text-section, 18px);
+  font-weight: 700;
+}
+.stepList {
+  display: flex;
+  flex: 1;
+  gap: 10px;
+  max-width: 560px;
+  min-width: 0;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.stepList li {
+  flex: 1;
+  min-width: 0;
+}
+.step {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  width: 100%;
+  padding: 6px 4px;
+  border: 1px solid transparent;
+  border-radius: var(--control-radius, 8px);
+  background: transparent;
+  text-align: center;
+}
+.step:hover {
+  border-color: var(--e-line);
+}
+.dot {
+  display: grid;
+  place-items: center;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: #edf2f9;
+  color: #8fa0b8;
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+}
+.step[data-done="true"] .dot {
+  background: var(--e-accent);
+  color: #fff;
+}
+.step b {
+  font-size: var(--text-body, 14px);
+  font-weight: 650;
+}
+.step small {
+  font-size: var(--text-caption, 12px);
+  font-weight: 400;
+  color: var(--e-faint);
+}
+
+/* ── 두 열 ─────────────────────────────────────────────────── */
+.grid {
+  display: grid;
+  grid-template-columns: minmax(0, 0.92fr) minmax(0, 1.28fr);
+  gap: 16px;
+}
+.column {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  min-width: 0;
+}
+.column > .card + .card {
+  margin-top: 0;
+}
+
+/* ── 시험 자료 행 ──────────────────────────────────────────── */
+.rows {
+  margin: 4px 0 0;
+  padding: 0;
+  list-style: none;
+}
+.row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 0;
+  border-bottom: 1px solid var(--e-line-soft);
+}
+.row:last-child {
+  border-bottom: 0;
+}
+.fileIcon {
+  display: grid;
+  place-items: center;
+  flex-shrink: 0;
+  width: 36px;
+  height: 40px;
+  border-radius: 8px;
+  background: #edf3ff;
+  color: #4b7cd6;
+}
+.rowBody {
+  flex: 1;
+  min-width: 0;
+}
+.rowTitle {
+  display: block;
+  font-size: var(--text-body, 14px);
+  font-weight: 600;
+  overflow-wrap: anywhere;
+}
+.rowTitle a {
+  color: inherit;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+.rowMeta {
+  display: block;
+  margin-top: 2px;
+  font-size: var(--text-caption, 12px);
+  color: #99a5b6;
+}
+.rowDelete {
+  display: grid;
+  place-items: center;
+  flex-shrink: 0;
+  width: 44px;
+  min-height: var(--control-height, 44px);
+  border-radius: var(--control-radius, 8px);
+  background: transparent;
+  color: #8296b6;
+}
+.rowDelete:hover {
+  background: var(--e-danger-bg);
+  color: var(--e-danger);
+}
+.footnote {
+  margin: 12px 0 0;
+  font-size: var(--text-caption, 12px);
+  color: var(--e-faint);
+  line-height: 1.6;
+}
+
+/* ── 출제 설정 ─────────────────────────────────────────────── */
+.tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 7px;
+  margin: 12px 0 0;
+  padding: 0;
+  list-style: none;
+}
+.tag {
+  padding: 5px 10px;
+  border-radius: 5px;
+  background: #edf3ff;
+  color: #4574c6;
+  font-size: var(--text-caption, 12px);
+  font-weight: 600;
+}
+.gradeLine {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+  margin: 14px 0 0;
+  padding-top: 12px;
+  border-top: 1px solid var(--e-line-soft);
+  font-size: 13px;
+  color: var(--e-muted);
+}
+.gradeLine b {
+  color: var(--e-ink);
+  font-weight: 650;
+}
+.gradeLine .dangerButton {
+  margin-left: auto;
+}
+.dangerButton {
+  min-height: var(--control-height, 44px);
+  padding: 0 10px;
+  border: 1px solid transparent;
+  border-radius: var(--control-radius, 8px);
+  background: transparent;
+  color: var(--e-danger);
+  font-size: 13px;
+  font-weight: 600;
+}
+.dangerButton:hover {
+  background: var(--e-danger-bg);
+}
+
+/* ── 대비 문제 세트 ────────────────────────────────────────── */
+.setCard {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 12px 14px;
+  margin-top: 14px;
+  padding: 14px 16px;
+  border: 1px solid #e5ebf5;
+  border-radius: 10px;
+}
+.setIcon {
+  display: grid;
+  place-items: center;
+  flex-shrink: 0;
+  width: 46px;
+  height: 46px;
+  border-radius: 12px;
+  background: #edf4ff;
+  color: #4382ed;
+}
+.setBody {
+  flex: 1;
+  min-width: 0;
+}
+.setTitle {
+  margin: 6px 0 2px;
+  font-size: 15px;
+  font-weight: 650;
+  overflow-wrap: anywhere;
+}
+.setMeta {
+  margin: 0;
+  color: #91a0b5;
+  font-size: var(--text-caption, 12px);
+  overflow-wrap: anywhere;
+}
+.count {
+  text-align: right;
+  color: #71829c;
+  font-size: var(--text-caption, 12px);
+  white-space: nowrap;
+}
+.count b {
+  display: block;
+  font-size: 22px;
+  font-weight: 700;
+  color: #293c60;
+  font-variant-numeric: tabular-nums;
+}
+.pill {
+  display: inline-flex;
+  align-items: center;
+  min-height: 22px;
+  padding: 0 8px;
+  border-radius: 999px;
+  font-size: var(--text-caption, 12px);
+  font-weight: 600;
+  line-height: 1.5;
+  white-space: nowrap;
+}
+.pill[data-tone="draft"] {
+  background: var(--e-draft-bg);
+  color: var(--e-draft-ink);
+}
+.pill[data-tone="review"] {
+  background: var(--e-review-bg);
+  color: var(--e-review-ink);
+}
+.pill[data-tone="done"] {
+  background: var(--e-done-bg);
+  color: var(--e-done-ink);
+}
+.wide {
+  width: 100%;
+  margin-top: 16px;
+}
+.under {
+  margin: 10px 0 0;
+  text-align: center;
+  color: #98a4b6;
+  font-size: var(--text-caption, 12px);
+}
+.empty {
+  padding: 28px 20px;
+  text-align: center;
+}
+.empty h2 {
+  margin: 0 0 6px;
+  font-size: var(--text-section, 18px);
+  font-weight: 700;
+}
+.empty p {
+  margin: 0 0 14px;
+  color: var(--e-muted);
+  font-size: var(--text-body, 14px);
+}
+
+/* ── 창 안 폼 ──────────────────────────────────────────────── */
+.field {
+  display: block;
+  margin-bottom: 16px;
+  font-size: var(--text-body, 14px);
+  font-weight: 650;
+}
+.field small {
+  float: right;
+  font-size: var(--text-caption, 12px);
+  font-weight: 400;
+  color: var(--e-muted);
+}
+.field :is(input, select, textarea) {
+  display: block;
+  box-sizing: border-box;
+  width: 100%;
+  margin-top: 8px;
+  padding: 0 13px;
+  border: 1px solid #d5dfec;
+  border-radius: var(--control-radius, 8px);
+  background: #fff;
+  font-weight: 400;
+}
+.field :is(input, select) {
+  height: var(--control-height, 44px);
+}
+.field textarea {
+  min-height: 160px;
+  padding: 10px 13px;
+  resize: vertical;
+}
+.field input[type="file"] {
+  padding: 9px 13px;
+}
+.tabs {
+  display: flex;
+  gap: 6px;
+  margin: 0 0 18px;
+  padding: 0;
+  border-bottom: 1px solid var(--e-line-soft);
+}
+.tab {
+  min-height: var(--control-height, 44px);
+  padding: 0 12px;
+  border: 0;
+  border-bottom: 2px solid transparent;
+  border-radius: 0;
+  background: transparent;
+  color: var(--e-muted);
+  font-weight: 600;
+}
+.tab:hover {
+  color: var(--e-ink);
+}
+.tab[aria-selected="true"] {
+  color: var(--e-accent-ink);
+  border-bottom-color: var(--e-accent);
+}
+.checks {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 6px 12px;
+  margin: 0 0 8px;
+}
+.checks label {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  min-height: var(--control-height, 44px);
+  font-size: var(--text-body, 14px);
+  font-weight: 500;
+}
+.checks input {
+  width: 18px;
+  height: 18px;
+  accent-color: var(--e-accent);
+}
+.formError {
+  margin: 0 0 12px;
+  padding: 10px 12px;
+  border-radius: var(--control-radius, 8px);
+  background: var(--e-danger-bg);
+  color: #a33d2a;
+  font-size: var(--text-body, 14px);
+  line-height: 1.6;
+}
+.formActions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  gap: 8px;
+  margin-top: 8px;
+}
+.printLinks {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+.printNote {
+  margin: 14px 0 0;
+  color: var(--e-danger);
+  font-size: var(--text-body, 14px);
+}
+
+/* ── 편집 화면 ─────────────────────────────────────────────── */
+.toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+  margin: 0 0 16px;
+}
+.toolbar select {
+  min-height: var(--control-height, 44px);
+  padding: 0 12px;
+  border: 1px solid var(--e-line);
+  border-radius: var(--control-radius, 8px);
+  background: #fff;
+}
+.toolbarSpacer {
+  flex: 1;
+}
+.conflict {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px 12px;
+  margin: 0 0 16px;
+  padding: 10px 14px;
+  border: 1px solid #eac9ba;
+  border-radius: var(--control-radius, 8px);
+  background: #fff3ef;
+  color: #963d2a;
+  font-size: var(--text-body, 14px);
+}
+.conflict span {
+  flex: 1;
+  min-width: 0;
+}
+.metaLine {
+  margin: 6px 0 14px;
+  color: var(--e-muted);
+  font-size: 13px;
+}
+.titleInput {
+  box-sizing: border-box;
+  width: 100%;
+  height: var(--control-height, 44px);
+  padding: 0 13px;
+  border: 1px solid #d5dfec;
+  border-radius: var(--control-radius, 8px);
+  font-size: var(--text-section, 18px);
+  font-weight: 700;
+}
+.passageBox {
+  display: block;
+  margin: 0 0 16px;
+  font-size: var(--text-body, 14px);
+  font-weight: 650;
+}
+.passageBox textarea {
+  display: block;
+  box-sizing: border-box;
+  width: 100%;
+  min-height: 200px;
+  margin-top: 8px;
+  padding: 12px 14px;
+  border: 1px solid #d5dfec;
+  border-radius: var(--control-radius, 8px);
+  font-family: var(--e-serif);
+  font-size: 15px;
+  font-weight: 400;
+  line-height: 1.7;
+  resize: vertical;
+}
+.question {
+  margin-top: 12px;
+}
+.qHead {
+  margin: 0 0 12px;
+  font-size: var(--text-caption, 12px);
+  font-weight: 700;
+  letter-spacing: 0.6px;
+  color: #6e87b0;
+}
+.question .field {
+  margin-bottom: 12px;
+}
+.question .field textarea {
+  min-height: 72px;
+}
+.options {
+  display: grid;
+  gap: 6px;
+  margin: 0 0 12px;
+  padding: 0;
+  list-style: none;
+}
+.optionRow {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.optionIndex {
+  display: grid;
+  place-items: center;
+  flex-shrink: 0;
+  width: 26px;
+  height: 26px;
+  border: 1px solid var(--e-line);
+  border-radius: 50%;
+  font-size: var(--text-caption, 12px);
+  font-weight: 700;
+  color: var(--e-muted);
+}
+.optionRow input {
+  flex: 1;
+  min-width: 0;
+  height: var(--control-height, 44px);
+  padding: 0 12px;
+  border: 1px solid #d5dfec;
+  border-radius: var(--control-radius, 8px);
+  font-family: var(--e-serif);
+  font-size: 15px;
+}
+.answerRow {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+  margin: 0 0 12px;
+  font-size: var(--text-body, 14px);
+  font-weight: 650;
+}
+.answerRow select {
+  height: var(--control-height, 44px);
+  padding: 0 12px;
+  border: 1px solid #d5dfec;
+  border-radius: var(--control-radius, 8px);
+  background: #fff;
+  font-weight: 400;
+}
+.loadError {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px 12px;
+  padding: 12px 14px;
+  border: 1px solid #eac9ba;
+  border-radius: var(--control-radius, 8px);
+  background: #fff3ef;
+  color: #963d2a;
+}
+.loadError span {
+  flex: 1;
+  min-width: 0;
+}
+
+/* ── 보관함 ────────────────────────────────────────────────── */
+.tools {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+  margin: 0 0 12px;
+}
+.search {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex: 1;
+  min-width: min(100%, 240px);
+  height: var(--control-height, 44px);
+  padding: 0 12px;
+  border: 1px solid var(--e-line);
+  border-radius: var(--control-radius, 8px);
+  background: #fff;
+  color: #8296b6;
+}
+.search:focus-within {
+  border-color: #91a9da;
+}
+.search input {
+  flex: 1;
+  min-width: 0;
+  border: 0;
+  background: transparent;
+  outline: none;
+}
+.tools select {
+  min-height: var(--control-height, 44px);
+  max-width: 100%;
+  padding: 0 12px;
+  border: 1px solid var(--e-line);
+  border-radius: var(--control-radius, 8px);
+  background: #fff;
+}
+.examLine {
+  margin: 0 0 8px;
+  color: var(--e-muted);
+  font-size: 13px;
+}
+.libraryList {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.libraryRow {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  width: 100%;
+  padding: 10px 6px;
+  border: 0;
+  border-bottom: 1px solid var(--e-line-soft);
+  border-radius: 0;
+  background: transparent;
+  text-align: left;
+  font-weight: 500;
+}
+.libraryRow:hover {
+  background: #f7f9ff;
+}
+.libraryList li:last-child .libraryRow {
+  border-bottom: 0;
+}
+.libraryRow .rowTitle {
+  font-weight: 600;
+}
+.rowChevron {
+  flex-shrink: 0;
+  color: #8296b6;
+}
+
+@media (max-width: 760px) {
+  .grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .steps {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  .stepList {
+    max-width: none;
+  }
+  .examSelect {
+    margin-left: 0;
+    width: 100%;
+  }
+  .card {
+    padding: 16px;
+  }
+  .checks {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .count {
+    margin-left: auto;
+  }
+  .toolbar > .toolbarSpacer {
+    display: none;
+  }
+}
