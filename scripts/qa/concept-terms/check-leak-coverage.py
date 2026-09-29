@@ -20,7 +20,8 @@
 ③ 보정을 입힌 덤프(보정 전부 멈춤) ④ 걷고 나면 창이 안 남는 긴 원문 문장을 심은 줄(걷기 전 창이 잡아야)
 ⑤ 허용 말만으로 된 걷기 전 창을 심은 줄(안 걸려야 — 창 안에 허용 말 밖 한글이 한 자라도 있을 때만 친다)
 ⑥ 교재 문장(한글 12자 이상) 전부를 한 줄씩 심기(놓침 12 이하 · 놓친 것은 허용 말 밖 한글 0자)
-⑦ 창으로는 못 잡고 통째 검사만 잡는 교재 문장이 정확히 6(통째 검사를 빼면 0) · 허용 말 하나 안에 든 문장은 표에 없음 — 일곱 다 맞아야 통과.
+⑦ 창으로는 못 잡고 통째 검사만 잡는 교재 문장이 정확히 6(통째 검사를 빼면 0) · 허용 말 하나 안에 든 문장은 표에 없음 · 통째 표는
+   정확히 801문장(표 문턱만 무디게 한 변이를 잡는다) — 일곱 다 맞아야 통과.
 교재 문장이 줄에 통째로 있으면(12자 이상 · 한글 12자 이상 · 허용 말 하나 안에 들지 않는 것) 창과 상관없이 친다.
 
 사용:
@@ -51,6 +52,9 @@ MIN_HANGUL = 4
 # 807 중 780 만 잡혔고 1자면 795 — 우리 글 10만 줄에서 새로 걸리는 줄은 같았다(2026-09-29 실측, 리드 검토 B 이어서).
 WHOLE_MIN_OUTSIDE = 1
 WHOLE_SENTENCE_HANGUL = 12  # 통째 검사 표 · 자기 시험 ⑥ ⑦ 의 문장 범위(한글 12자 이상)
+# 통째 표의 문장 수(2026-09-29 실측) — 표를 짓는 줄의 문턱만 한글 4자로 되돌리면 867 이 되는데 ⑥ ⑦ 은 같은 상수로 재서 초록이었다
+# (리드 검토 D ①). 교재 문장 · 허용 말(카드 글)이 바뀌면 이 수도 바뀐다 — 까닭을 적고 새 값으로 고친다.
+WHOLE_TABLE_SIZE = 801
 SEP = chr(0)
 
 
@@ -345,8 +349,9 @@ def main():
         # 허용 말 하나 안에 통째로 든 교재 문장은 표에 없어야 한다(용어 이름 · 별칭만 쓴 줄이 걸리지 않게)
         inside = [n for n in (norm(b) for b in books) if any(n in a for a in allowed_sorted)]
         leaked_inside = [n for n in inside if n in wins[2]]
-        print(f"자기 시험 ⑦: 통째 검사만 잡는 교재 문장 {len(only_whole)}개(= 6) · 허용 말 안 문장 {len(inside)}개 중 표에 든 것 {len(leaked_inside)}")
-        if len(only_whole) != 6 or leaked_inside or not inside:
+        print(f"자기 시험 ⑦: 통째 검사만 잡는 교재 문장 {len(only_whole)}개(= 6) · 허용 말 안 문장 {len(inside)}개 중 표에 든 것 {len(leaked_inside)}"
+              f" · 통째 표 {len(wins[2])}문장(= {WHOLE_TABLE_SIZE})")
+        if len(only_whole) != 6 or leaked_inside or not inside or len(wins[2]) != WHOLE_TABLE_SIZE:
             print("자기 시험 ⑦ 실패")
             bad += 1
     for f in a.files or []:
