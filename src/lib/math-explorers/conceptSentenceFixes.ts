@@ -436,6 +436,12 @@ export const cardFixes: Readonly<Record<string, CardFix>> = {
       "평균",
       "가장 큰 값과 가장 작은 값의 차",
     ],
+    examples: [
+      { text: "각 구간에 속하는 학생 수", yes: true },
+      { text: "모든 도수를 더하면 전체 인원", yes: true },
+      { text: "각 구간의 평균 점수", yes: false },
+      { text: "도수의 총합은 항상 1", yes: false },
+    ],
   },
   // 분수 — 채점
   "g3-fraction": {

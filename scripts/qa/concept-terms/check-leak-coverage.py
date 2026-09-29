@@ -20,8 +20,8 @@
 ③ 보정을 입힌 덤프(보정 전부 멈춤) ④ 걷고 나면 창이 안 남는 긴 원문 문장을 심은 줄(걷기 전 창이 잡아야)
 ⑤ 허용 말만으로 된 걷기 전 창을 심은 줄(안 걸려야 — 창 안에 허용 말 밖 한글이 한 자라도 있을 때만 친다)
 ⑥ 교재 문장(한글 12자 이상) 전부를 한 줄씩 심기(놓침 12 이하 · 놓친 것은 허용 말 밖 한글 0자)
-⑦ 창으로는 못 잡고 통째 검사만 잡는 교재 문장이 있다(통째 검사를 빼면 0) — 일곱 다 맞아야 통과.
-교재 문장이 줄에 통째로 있으면(12자 이상 · 한글 4자 이상 · 허용 말 하나 안에 들지 않는 것) 창과 상관없이 친다.
+⑦ 창으로는 못 잡고 통째 검사만 잡는 교재 문장이 정확히 6(통째 검사를 빼면 0) · 허용 말 하나 안에 든 문장은 표에 없음 — 일곱 다 맞아야 통과.
+교재 문장이 줄에 통째로 있으면(12자 이상 · 한글 12자 이상 · 허용 말 하나 안에 들지 않는 것) 창과 상관없이 친다.
 
 사용:
   python check-leak-coverage.py --cards <카드.json> --files <파일...>
@@ -50,6 +50,7 @@ MIN_HANGUL = 4
 # 걷기 전 창은 창 안에 허용 말 밖 한글이 한 자라도 있으면 친다 — 허용 말만으로 된 창(용어 나열)만 뺀다. 4자로 두면 교재 문장
 # 807 중 780 만 잡혔고 1자면 795 — 우리 글 10만 줄에서 새로 걸리는 줄은 같았다(2026-09-29 실측, 리드 검토 B 이어서).
 WHOLE_MIN_OUTSIDE = 1
+WHOLE_SENTENCE_HANGUL = 12  # 통째 검사 표 · 자기 시험 ⑥ ⑦ 의 문장 범위(한글 12자 이상)
 SEP = chr(0)
 
 
@@ -201,9 +202,10 @@ def build_units(units: list):
     inside_allowed: set[str] = set()
     for a in allowed:
         inside_allowed |= windows_of(a)
-    # 한글이 MIN_HANGUL 자 이상인 문장만 — 식뿐인 교재 «문장»(곱셈 공식 등)은 문제 풀이 · 해설에 늘 나와 거짓 경보가 된다(저장소 267만 줄에서 89줄)
+    # 한글이 WHOLE_SENTENCE_HANGUL 자 이상인 문장만 — 자기 시험 ⑥ 이 재는 범위와 같다. 식뿐인 «문장»(곱셈 공식 · 저장소 89줄)과 한글 4~11자의
+    # 교과 공식 문장(용어 이름 + 괄호 · 등호 · 나눗셈 기호 — 엔진 해설 7줄)은 늘 쓰는 공식이라 거짓 경보가 됐다(리드 검토 C T1).
     sentences = tuple(sorted({n for n in (norm(b) for b in book_sentences())
-                              if len(n) >= WIN and len(re.findall(r"[가-힣]", n)) >= MIN_HANGUL
+                              if len(n) >= WIN and len(re.findall(r"[가-힣]", n)) >= WHOLE_SENTENCE_HANGUL
                               and not any(n in a for a in allowed)}))
     return (stripped, whole - inside_allowed, sentences), allowed_sorted, src
 
@@ -327,20 +329,24 @@ def main():
         # ⑥ 교재 문장(한글 12자 이상)을 한 줄씩 전부 심는다 — 창(걷은 창 · 걷기 전 창)만으로 놓친 것이 12개 이하이고, 놓친 것은 모두
         # 허용 말 밖 한글이 0자여야 한다(문턱 · 가림을 바꾸면 여기서 드러난다 — 리드 검토 B4 L2. 통째 검사는 빼고 잰다: 통째 검사가
         # 문턱 탓에 놓친 문장까지 되살려 문턱을 가린다. 2026-09-29: 807 중 창만으로 놓침 12, 통째 검사까지 6).
-        books = [b for b in dict.fromkeys(book_sentences()) if len(re.findall(r"[가-힣]", b)) >= 12]
+        books = [b for b in dict.fromkeys(book_sentences()) if len(re.findall(r"[가-힣]", b)) >= WHOLE_SENTENCE_HANGUL]
         missed = [b for b in books if not scan("우리 말 설명 " + b, (wins[0], wins[1]), allowed_sorted)]
         outside = [b for b in missed if any(not m and "가" <= ch <= "힣"
                                            for m, ch in zip(allowed_mask(norm(b), allowed_sorted), norm(b)))]
         missed_all = [b for b in missed if not scan("우리 말 설명 " + b, wins, allowed_sorted)]
         print(f"자기 시험 ⑥: 교재 문장 {len(books)}개를 한 줄씩 심음 → 창만으로 놓침 {len(missed)}(통째 검사까지 {len(missed_all)}) · 그중 허용 말 밖 한글이 있는 것 {len(outside)}")
-        if len(missed) > 12 or outside:
+        # 통째 검사까지 놓침 ≤ 6(지금 값) — 통째 검사를 무디게 하는 변이(문장 길이 · 한글 문턱)를 잡는다(리드 검토 C T2)
+        if len(missed) > 12 or outside or len(missed_all) > 6:
             print("자기 시험 ⑥ 실패")
             bad += 1
         # ⑦ 창으로는 못 잡고 통째 검사만 잡는 교재 문장(한글이 전부 용어 이름 + 식) — 심으면 걸리고, 통째 검사를 빼면 안 걸린다
         only_whole = [b for b in books if scan("우리 말 설명 " + b, wins, allowed_sorted)
                       and not scan("우리 말 설명 " + b, (wins[0], wins[1]), allowed_sorted)]
-        print(f"자기 시험 ⑦: 통째 검사만 잡는 교재 문장 {len(only_whole)}개")
-        if not only_whole:
+        # 허용 말 하나 안에 통째로 든 교재 문장은 표에 없어야 한다(용어 이름 · 별칭만 쓴 줄이 걸리지 않게)
+        inside = [n for n in (norm(b) for b in books) if any(n in a for a in allowed_sorted)]
+        leaked_inside = [n for n in inside if n in wins[2]]
+        print(f"자기 시험 ⑦: 통째 검사만 잡는 교재 문장 {len(only_whole)}개(= 6) · 허용 말 안 문장 {len(inside)}개 중 표에 든 것 {len(leaked_inside)}")
+        if len(only_whole) != 6 or leaked_inside or not inside:
             print("자기 시험 ⑦ 실패")
             bad += 1
     for f in a.files or []:
