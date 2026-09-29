@@ -3,6 +3,7 @@ import { redirect } from "next/navigation";
 import { getAccountAccess } from "@/lib/accountAccess";
 import AdminHeader from "@/components/admin/AdminHeader";
 import CourseDashboard from "@/components/math-srs/CourseDashboard";
+import JourneyThemePicker from "@/components/math-srs/JourneyThemePicker";
 import styles from "./page.module.css";
 import adminStyles from "@/components/admin/admin.module.css";
 
@@ -23,6 +24,7 @@ export default async function AdminSrsPage() {
         active="srs"
       />
       <main className={styles.main}>
+        <JourneyThemePicker />
         <CourseDashboard admin />
       </main>
     </div>

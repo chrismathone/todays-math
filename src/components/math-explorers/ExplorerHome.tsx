@@ -20,6 +20,7 @@ import DailyJourneyBoard, {
   type DailyJourneyDay,
 } from "@/components/math-srs/DailyJourneyBoard";
 import { kstDateOf } from "@/lib/kstDate";
+import type { JourneyThemeId } from "@/lib/math-explorers/journeyThemes";
 import {
   conceptTarget,
   planSlots,
@@ -220,6 +221,7 @@ export function ExplorerSheet({
 
 export default function ExplorerHome({
   state,
+  journeyTheme,
   busy,
   claims = NO_CLAIMS,
   chestNotices = NO_NOTICES,
@@ -239,6 +241,8 @@ export default function ExplorerHome({
   onInspectSupplement,
 }: {
   state: ExplorerState;
+  /** 진도판 테마 — 학원 전체 한 벌, 관리자가 고른다(없으면 지금 판). */
+  journeyTheme?: JourneyThemeId;
   busy: boolean;
   /** Chests pressed and shown as opened while their saves are on the way. */
   claims?: readonly string[];
@@ -446,6 +450,7 @@ export default function ExplorerHome({
         <JourneyBoard
           journey={journey}
           variant="map"
+          theme={journeyTheme}
           // Behind the open base sheet the board cannot be pressed, so a chest
           // save does not re-render it; once the sheet closes it waits too.
           busy={busy || (saving && sheet !== "base")}

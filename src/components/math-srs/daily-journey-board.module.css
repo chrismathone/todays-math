@@ -809,3 +809,180 @@ button.next:active:enabled {
     transition: none !important;
   }
 }
+
+/* ── 진도판 테마(학원 전체 한 벌 · 원장님 2026-09-30) ─────────────────────────────
+   판 그림(codex 이미지 생성)을 판 바탕으로 깔고, 칸은 그림 속 정거장 위에 얹는 «글자 받침»이 된다.
+   가독성: 글자는 그림에 바로 올리지 않는다 — 받침(흰 반투명 · 오늘 파랑 · 완료 초록) 위에만. 지금 판(classic)은 아무것도 안 바뀐다. */
+.root:not([data-journey-theme="classic"]) .board {
+  border-color: #c7d7ec;
+  background: var(--journey-board) center / 100% 100% no-repeat, #e5ecf7;
+}
+.root:not([data-journey-theme="classic"]) .board::before {
+  display: none;
+}
+.root:not([data-journey-theme="classic"]) .tile,
+.root:not([data-journey-theme="classic"]) .cell[data-state="upcoming"] .tile {
+  justify-content: space-between;
+  background: transparent;
+  border: 0;
+  box-shadow: none;
+  color: #1b3354;
+}
+.root:not([data-journey-theme="classic"]) .tile::before {
+  display: none;
+}
+.root:not([data-journey-theme="classic"]) .dayNumber {
+  padding: 2px 5px 2px 4px;
+  border-radius: 7px;
+  background: #ffffffe6;
+  box-shadow: 0 1px 2px #0f2a4a26;
+  color: #1b3354;
+}
+/* 받침은 바깥으로 번진다(음수 여백) — 글자 자리는 지금 판과 같아 칸 이름이 더 줄지 않는다(320 폭 줄임말 0.8배 → 0.9배 이상) */
+.root:not([data-journey-theme="classic"]) .tileTitle {
+  max-width: none;
+  /* 번짐은 칸 안쪽 여백(판 3px)을 넘지 않는다 — 넘으면 칸 밖으로 삐져나온다 */
+  margin: -1px -3px;
+  padding: 1px 3px;
+  border-radius: 6px;
+  background: #ffffffeb;
+  box-shadow: 0 1px 2px #0f2a4a26;
+  color: #1b3354;
+}
+.root:not([data-journey-theme="classic"]) .cell[data-state="complete"] .dayNumber,
+.root:not([data-journey-theme="classic"]) .cell[data-state="complete"] .tileTitle {
+  background: #e3f3e8f2;
+  color: #1f5a41;
+}
+.root:not([data-journey-theme="classic"]) .cell[data-state="current"] .dayNumber,
+.root:not([data-journey-theme="classic"]) .cell[data-state="current"] .tileTitle {
+  background: #3159d9;
+  color: #fff;
+}
+.root:not([data-journey-theme="classic"]) .cell[data-state="current"] .tile {
+  outline: 2px solid #3159d9;
+  outline-offset: -2px;
+  border-radius: 12px;
+  background: #3159d91f;
+}
+.root:not([data-journey-theme="classic"]) .progressCentre,
+.root:not([data-journey-theme="classic"]) .mapCenter {
+  inset: 29%;
+  padding: 6px 4px;
+  border-radius: 14px;
+  background: #ffffffe8;
+  box-shadow: 0 2px 6px #0f2a4a26;
+}
+
+/* 탈것 — 네 방향 그림 중 가는 쪽 하나만(오른쪽은 왼쪽 그림을 뒤집는다) */
+.rider {
+  width: clamp(30px, 11cqi, 54px);
+  height: clamp(30px, 11cqi, 54px);
+  transform: translate(-50%, -62%);
+  filter: drop-shadow(0 2px 2px #0f2a4a40);
+}
+.rider .pawnShadow {
+  left: 18%;
+  right: 18%;
+  height: 16%;
+  bottom: 2%;
+}
+.riderFigure {
+  position: absolute;
+  inset: 0;
+  display: block;
+  transform-origin: 50% 90%;
+}
+.riderFigure img,
+.riderSide {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  user-select: none;
+  -webkit-user-drag: none;
+}
+.riderSide img:not(.wheel) {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+/* 바퀴 자리는 인라인 left · top · width(그림 폭에 대한 비) — 여기서 left · top 을 덮으면 바퀴가 몸통에서 떨어진다 */
+.riderFigure .wheel {
+  right: auto;
+  bottom: auto;
+  height: auto;
+  aspect-ratio: 1;
+  transform: translate(-50%, -50%);
+}
+.riderView,
+.riderSide {
+  visibility: hidden;
+}
+.rider[data-heading="left"] .riderSide,
+.rider[data-heading="right"] .riderSide,
+.rider[data-heading="up"] .riderView[data-view="up"],
+.rider[data-heading="down"] .riderView[data-view="down"] {
+  visibility: visible;
+}
+.rider[data-heading="right"] .riderSide {
+  transform: scaleX(-1);
+}
+/* 가는 동안 바퀴만 돈다(옆모습에서만 동그랗게 보인다) — 왼쪽으로 가면 반시계, 오른쪽은 뒤집힌 그림이라 같은 회전으로 시계 */
+.rider[data-moving] .wheel {
+  animation: journeyWheel 0.32s linear infinite;
+}
+@keyframes journeyWheel {
+  from {
+    transform: translate(-50%, -50%) rotate(0deg);
+  }
+  to {
+    transform: translate(-50%, -50%) rotate(-360deg);
+  }
+}
+/* 가만히 있을 때의 작은 몸짓 — 열기구는 둥실, 배는 출렁, 탐사선은 떠 있음. 바퀴 탈것은 가만히. */
+.rider[data-motion="sway"] .riderFigure {
+  animation: journeySway 3.2s ease-in-out infinite;
+}
+.rider[data-motion="bob"] .riderFigure {
+  animation: journeyBob 2.4s ease-in-out infinite;
+}
+.rider[data-motion="drift"] .riderFigure {
+  animation: journeyDrift 3.6s ease-in-out infinite;
+}
+@keyframes journeySway {
+  0%,
+  100% {
+    transform: translateY(0) rotate(-2deg);
+  }
+  50% {
+    transform: translateY(-3px) rotate(2deg);
+  }
+}
+@keyframes journeyBob {
+  0%,
+  100% {
+    transform: translateY(0) rotate(0deg);
+  }
+  50% {
+    transform: translateY(1.5px) rotate(3deg);
+  }
+}
+@keyframes journeyDrift {
+  0%,
+  100% {
+    transform: translate(0, 0);
+  }
+  50% {
+    transform: translate(1px, -2px);
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .rider .riderFigure,
+  .rider .wheel {
+    animation: none !important;
+  }
+}
