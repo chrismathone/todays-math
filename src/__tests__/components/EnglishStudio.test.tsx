@@ -493,7 +493,8 @@ describe("[EnglishStudio] 학교별 내신 대비", () => {
     ).toBeVisible();
   });
 
-  it("«학교 맞춤 문제 만들기»는 만들기 뷰로 가고, 자리표는 «준비 중» 한 줄이다", async () => {
+  it("«학교 맞춤 문제 만들기»는 만들기 뷰로 가고, 뿌리가 머리를 그린 아래에 세 길 탭이 선다", async () => {
+    // 트랙 시절의 자리표(«준비 중»)는 병합 때 ai 트랙의 실제 화면으로 바뀌었다(25 §11.1) — 머리는 뿌리, 탭부터가 화면
     const log = makeLog();
     render(<Harness log={log} />);
     await screen.findByRole("heading", { name: "학교별 내신 대비" });
@@ -501,7 +502,12 @@ describe("[EnglishStudio] 학교별 내신 대비", () => {
       screen.getByRole("button", { name: "학교 맞춤 문제 만들기" }),
     );
     expect(currentView()).toBe("english-maker");
-    expect(await screen.findByText("문제 만들기 — 준비 중")).toBeVisible();
+    expect(
+      await screen.findByRole("tablist", { name: "문제 만들기 방법" }),
+    ).toBeVisible();
+    expect(
+      screen.getAllByRole("heading", { name: "문제 만들기" }),
+    ).toHaveLength(1);
   });
 
   it("시험이 하나도 없으면 빈 상태 카드와 «새 시험 등록»만 있다", async () => {
