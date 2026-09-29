@@ -4,8 +4,9 @@
  * 저장하지 않고 초안만 돌려준다(클라이언트가 sets POST). 순서: 세션 401 → 같은 출처 403 → 계약 400 →
  * 시험 404/범위 밖 403 → AI. 오류 순서: AiCapacityError 502 → AiConfigError 503 → 검증기 502 → AiGenerationError 502.
  *
- * ⚠️ `openai` 는 항상 모킹(절대 규칙 7). 시험 소유 조회는 `examLookup.ts`(이 트랙 소유) 하나를 모킹한다 —
- *    Prisma 모델 셋은 base 트랙이 만들고 이 워크트리에는 없다(브리프 §2).
+ * ⚠️ `openai` 는 항상 모킹(절대 규칙 7). 시험 소유 판정은 `ownership.ts` 의 `requireOwnedEnglishExam` 을 모킹한다 —
+ *    그 헬퍼의 실제 판정(없음 404 · 다른 지점 403 · 최고관리자 통과)은 `englishExams.test.ts` 가 대역 DB 로 잠근다.
+ *    (트랙 시절의 임시 `examLookup.ts` 는 base 병합 뒤 걷었다 — ai 검토 D7.)
  *
  * 표본 지문은 우리가 지은 짧은 글이다.
  */
@@ -14,10 +15,10 @@ import { beforeEach, describe, expect, it, vi } from "vitest";
 
 vi.mock("server-only", () => ({}));
 
-const { mockCreate, mockSession, mockFindExam } = vi.hoisted(() => ({
+const { mockCreate, mockSession, mockRequireOwned } = vi.hoisted(() => ({
   mockCreate: vi.fn(),
   mockSession: vi.fn(),
-  mockFindExam: vi.fn(),
+  mockRequireOwned: vi.fn(),
 }));
 
 vi.mock("openai", () => ({
@@ -28,15 +29,16 @@ vi.mock("openai", () => ({
 
 vi.mock("@/lib/session", () => ({ getSessionUser: mockSession }));
 
-vi.mock("@/lib/english/examLookup", () => ({
-  findEnglishExamGrade: mockFindExam,
+vi.mock("@/lib/ownership", () => ({
+  requireOwnedEnglishExam: mockRequireOwned,
 }));
 
 import { POST } from "@/app/api/english/generate/route";
 import { errorResponseSchema } from "@/contracts/common.contract";
 import { englishDraftResponseSchema } from "@/contracts/english.contract";
+import { forbiddenError, notFoundError } from "@/lib/apiResponse";
 import { ERROR_LOG_ROUTE } from "@/lib/errorLog/withErrorLog";
-import { NOT_FOUND_ID, USER_OTHER_ID, USER_TEACHER_ID } from "@/mocks/data";
+import { NOT_FOUND_ID, USER_TEACHER_ID } from "@/mocks/data";
 
 const ORIGIN = "http://localhost";
 const EXAM_ID = "20000000-0000-4000-8000-000000000001";
@@ -121,11 +123,9 @@ beforeEach(() => {
   mockCreate.mockReset();
   mockSession.mockReset().mockResolvedValue(teacher);
   // 학년은 본문 어디에도 없는 값으로 — 라우트가 «중1» 을 박아 넣어도 초록이던 구멍(리드 검토 D3)
-  mockFindExam.mockReset().mockResolvedValue({
-    id: EXAM_ID,
-    grade: "고3",
-    userId: USER_TEACHER_ID,
-    ownerBranchId: null,
+  mockRequireOwned.mockReset().mockResolvedValue({
+    ok: true,
+    data: { id: EXAM_ID, grade: "고3", userId: USER_TEACHER_ID },
   });
   vi.unstubAllEnvs();
   vi.stubEnv("AUTH_URL", ORIGIN);
@@ -144,7 +144,7 @@ describe("POST /api/english/generate — 문지기 순서", () => {
     const res = await call(body);
     expect(res.status).toBe(401);
     expect((await errorOf(res)).code).toBe("UNAUTHORIZED");
-    expect(mockFindExam).not.toHaveBeenCalled();
+    expect(mockRequireOwned).not.toHaveBeenCalled();
     expect(mockCreate).not.toHaveBeenCalled();
   });
 
@@ -175,47 +175,47 @@ describe("POST /api/english/generate — 문지기 순서", () => {
 
     const unknownType = await call({ ...body, types: ["원문 복원"] });
     expect(unknownType.status).toBe(400);
-    expect(mockFindExam).not.toHaveBeenCalled();
+    expect(mockRequireOwned).not.toHaveBeenCalled();
     expect(mockCreate).not.toHaveBeenCalled();
   });
 
-  it("시험이 없으면 404", async () => {
-    mockFindExam.mockResolvedValue(null);
+  it("시험이 없으면 404 — 헬퍼의 응답을 그대로 돌려준다", async () => {
+    mockRequireOwned.mockResolvedValue({
+      ok: false,
+      response: notFoundError("시험"),
+    });
     const res = await call({ ...body, examId: NOT_FOUND_ID });
     expect(res.status).toBe(404);
     expect((await errorOf(res)).code).toBe("NOT_FOUND");
+    expect(mockRequireOwned).toHaveBeenCalledWith(
+      expect.objectContaining({ id: USER_TEACHER_ID }),
+      NOT_FOUND_ID,
+    );
     expect(mockCreate).not.toHaveBeenCalled();
   });
 
-  it("남의 시험은 403 — 지점 관리자는 같은 지점이면 넘는다(D-130)", async () => {
-    mockFindExam.mockResolvedValue({
-      id: EXAM_ID,
-      grade: "중1",
-      userId: USER_OTHER_ID,
-      ownerBranchId: "branch-a",
+  it("소유 범위 밖이면 403 — 판정은 requireOwnedEnglishExam 이 한다(D-130 은 englishExams.test.ts 가 잠근다)", async () => {
+    mockRequireOwned.mockResolvedValue({
+      ok: false,
+      response: forbiddenError(),
     });
     const forbidden = await call(body);
     expect(forbidden.status).toBe(403);
+    expect((await errorOf(forbidden)).code).toBe("FORBIDDEN");
+    expect(mockRequireOwned).toHaveBeenCalledWith(
+      expect.objectContaining({ id: USER_TEACHER_ID }),
+      EXAM_ID,
+    );
     expect(mockCreate).not.toHaveBeenCalled();
+  });
 
-    mockSession.mockResolvedValue({
-      ...teacher,
-      isAdmin: true,
-      branchId: "branch-a",
-      branchRole: "owner",
+  it("표의 학년이 계약 목록 밖이면 던진다(withErrorLog 가 기록하고 다시 던져 500) — 조용히 다른 학년으로 만들지 않는다", async () => {
+    mockRequireOwned.mockResolvedValue({
+      ok: true,
+      data: { id: EXAM_ID, grade: "대학생", userId: USER_TEACHER_ID },
     });
-    mockCreate.mockResolvedValueOnce(aiTextResponse(JSON.stringify(draft)));
-    const admin = await call(body);
-    expect(admin.status).toBe(200);
-
-    mockSession.mockResolvedValue({
-      ...teacher,
-      isAdmin: true,
-      branchId: "branch-b",
-      branchRole: "owner",
-    });
-    const otherBranch = await call(body);
-    expect(otherBranch.status).toBe(403);
+    await expect(call(body)).rejects.toThrow();
+    expect(mockCreate).not.toHaveBeenCalled();
   });
 });
 
@@ -229,7 +229,10 @@ describe("POST /api/english/generate — AI 결과와 오류 순서", () => {
     const parsed = englishDraftResponseSchema.parse(await res.json());
     expect(parsed.data.source).toBe("deepseek");
     expect(parsed.data.questions).toHaveLength(1);
-    expect(mockFindExam).toHaveBeenCalledWith(expect.anything(), EXAM_ID);
+    expect(mockRequireOwned).toHaveBeenCalledWith(
+      expect.objectContaining({ id: USER_TEACHER_ID }),
+      EXAM_ID,
+    );
     const sent = mockCreate.mock.calls[0]![0]! as {
       messages: { content: string }[];
     };
@@ -237,11 +240,9 @@ describe("POST /api/english/generate — AI 결과와 오류 순서", () => {
     expect(sent.messages[1]?.content).not.toContain("중1");
 
     // 다른 시험이면 다른 학년 — 시험에서 읽은 값이 실린다
-    mockFindExam.mockResolvedValue({
-      id: EXAM_ID,
-      grade: "중2",
-      userId: USER_TEACHER_ID,
-      ownerBranchId: null,
+    mockRequireOwned.mockResolvedValue({
+      ok: true,
+      data: { id: EXAM_ID, grade: "중2", userId: USER_TEACHER_ID },
     });
     mockCreate.mockResolvedValueOnce(aiTextResponse(JSON.stringify(draft)));
     expect((await call(body)).status).toBe(200);
