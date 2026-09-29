@@ -1,0 +1,316 @@
+/**
+ * 오늘의 영어 — ChatGPT 로 제작 (D-148 · 25 §4.1). 키 없는 주 경로.
+ *
+ *   요청문(`buildChatgptRequest`) — 조건 · 규칙 · 답 형식이 다 들어가는가.
+ *   붙여넣기 읽기(`parseChatgptResult`) — 코드펜스 · 앞뒤 잡설 · 후행 쉼표를 지나 검증기까지 가는가.
+ *   `parseAiJsonObject` — 배열 함수(`parseAiJsonArray`)와 같은 복구 단계로 **객체 하나**를 읽는가.
+ *
+ * 표본 지문은 우리가 지은 짧은 글이다(교재·출판사 지문 아님).
+ */
+import { describe, expect, it } from "vitest";
+import { z } from "zod";
+
+import { AiParseError } from "@/lib/ai/errors";
+import { parseAiJsonObject } from "@/lib/ai/jsonRepair";
+import { ENGLISH_EXAM_PROMPT_VERSION } from "@/lib/ai/prompts/englishExam";
+import {
+  buildChatgptRequest,
+  coerceEnglishDraftShape,
+  parseChatgptResult,
+} from "@/lib/english/chatgpt";
+
+const passage =
+  "Mina keeps a small notebook in her bag. Every evening she writes three things that went well during the day. After a month she noticed that she complained less and laughed more. Her teacher said the habit trains the mind to look for good moments.";
+
+const exam = {
+  school: "한빛중학교",
+  grade: "중2" as const,
+  title: "2학기 중간고사",
+};
+
+const conditions = {
+  mode: "new" as const,
+  topic: "감사 일기의 효과",
+  passage: "",
+  difficulty: "표준" as const,
+  count: 3,
+  words: 200,
+  types: ["주제", "서술형"] as ("주제" | "서술형")[],
+};
+
+const goodDraft = {
+  title: "감사 일기",
+  passage,
+  questions: [
+    {
+      type: "주제",
+      prompt: "윗글의 주제로 가장 적절한 것은?",
+      options: [
+        "A habit that changes how we see the day",
+        "How to buy a notebook",
+        "Why teachers give homework",
+        "The history of diaries",
+        "A month of rain",
+      ],
+      answer: "1",
+      explanation: "좋은 순간을 찾는 습관을 설명하는 글입니다.",
+      evidence: "the habit trains the mind to look for good moments",
+    },
+    {
+      type: "서술형",
+      prompt: "미나가 한 달 뒤 알아차린 변화를 우리말로 쓰시오.",
+      options: [],
+      answer: "불평이 줄고 더 많이 웃게 되었다.",
+      explanation: "불평이 줄었다(1점) · 더 웃었다(1점)",
+      evidence: "she complained less and laughed more",
+    },
+    {
+      type: "주제",
+      prompt: "윗글의 제목으로 가장 적절한 것은?",
+      options: [
+        "Three Good Things",
+        "A Bag Full of Books",
+        "Evening Homework",
+        "The Best Teacher",
+        "Rainy Days",
+      ],
+      answer: "1",
+      explanation: "매일 좋은 일 세 가지를 적는 습관이 핵심입니다.",
+      evidence: "she writes three things that went well during the day",
+    },
+  ],
+};
+
+describe("buildChatgptRequest — 요청문에 조건 · 규칙 · 답 형식이 다 들어간다", () => {
+  const text = buildChatgptRequest({ exam, request: conditions });
+
+  it("학교 · 학년 · 시험 이름 · 제작 방식 · 소재 · 난이도 · 문항 수 · 지문 길이 · 유형", () => {
+    expect(text).toContain("한빛중학교");
+    expect(text).toContain("중2");
+    expect(text).toContain("2학기 중간고사");
+    expect(text).toContain("새 지문");
+    expect(text).toContain("감사 일기의 효과");
+    expect(text).toContain("표준");
+    expect(text).toContain("3문항");
+    expect(text).toContain("200단어");
+    expect(text).toContain("주제");
+    expect(text).toContain("서술형");
+    // 고르지 않은 유형은 «고를 수 있는 목록»이 아니라 조건에 안 나온다 — 규칙의 type 값 목록에만 있다
+    expect(text.split("[규칙]")[0]).not.toContain("문장 삽입");
+  });
+
+  it("규칙 — 보기 5개 서로 다름 · 정답 1~5 · 서술형 보기 없음 + 부분점수 · 연속 인용 · 고른 유형만 · 변형 지문은 발문 안 · 지어낸 통계 금지", () => {
+    expect(text).toMatch(/보기.*5개/);
+    expect(text).toMatch(/서로 다르/);
+    expect(text).toMatch(/"1".*"5"|1~5/);
+    expect(text).toMatch(/서술형.*보기 없이|서술형.*보기가 없/);
+    expect(text).toContain("부분점수");
+    expect(text).toMatch(/이어진 인용|연속 인용/);
+    expect(text).toMatch(/고른 유형만/);
+    expect(text).toMatch(/각각 하나 이상|각 하나 이상/);
+    expect(text).toMatch(/빈칸 추론 · 어법 · 문장 삽입[^\n]*prompt 안에/);
+    expect(text).toMatch(/지어낸 통계/);
+  });
+
+  it("답 형식 — JSON 하나를 코드펜스로, 다른 말 없이", () => {
+    expect(text).toContain('"title"');
+    expect(text).toContain('"passage"');
+    expect(text).toContain('"questions"');
+    for (const key of [
+      "type",
+      "prompt",
+      "options",
+      "answer",
+      "explanation",
+      "evidence",
+    ])
+      expect(text).toContain(`"${key}"`);
+    expect(text).toContain("```json");
+    expect(text).toMatch(/그 밖의 말|다른 말/);
+  });
+
+  it("원문 유지 모드는 원문을 싣고 «그대로» 규칙을 붙인다 — 새 지문 모드에는 원문 칸이 없다", () => {
+    const original = buildChatgptRequest({
+      exam,
+      request: { ...conditions, mode: "original", topic: "", passage },
+    });
+    expect(original).toContain(passage);
+    expect(original).toContain("원문 유지");
+    expect(original).toMatch(/한 글자도 바꾸지/);
+    expect(text).not.toContain("[원문]");
+  });
+
+  it("저장한 자료 글은 참고 자료로 따로 싣는다 — 원문과 같은 글이면 두 번 싣지 않는다", () => {
+    const withMaterial = buildChatgptRequest({
+      exam,
+      request: conditions,
+      materialText: "Reference notes about gratitude journals.",
+    });
+    expect(withMaterial).toContain("[참고 자료]");
+    expect(withMaterial).toContain("Reference notes about gratitude journals.");
+
+    const same = buildChatgptRequest({
+      exam,
+      request: { ...conditions, mode: "original", topic: "", passage },
+      materialText: passage,
+    });
+    expect(same.split(passage).length - 1).toBe(1);
+  });
+
+  it("요청문과 DeepSeek 프롬프트는 같은 규칙 한 벌을 쓴다 — 버전이 프롬프트 파일에 있다", () => {
+    expect(ENGLISH_EXAM_PROMPT_VERSION).toMatch(/^v\d+$/);
+  });
+});
+
+describe("parseChatgptResult — 붙여 넣은 글에서 JSON 을 찾아 검증기까지", () => {
+  it("코드펜스 + 앞뒤 잡설 + 후행 쉼표를 지나 초안이 된다 · source 는 chatgpt 로 서버가 아니라 여기서 붙는다", () => {
+    const pasted =
+      "네, 요청하신 문제입니다.\n```json\n" +
+      JSON.stringify({ ...goodDraft, source: "manual" }, null, 2).replace(
+        /\n\s*\]\s*\n}$/,
+        ",\n  ]\n}",
+      ) +
+      "\n```\n더 필요하시면 말씀해 주세요.";
+    const verdict = parseChatgptResult(pasted, conditions);
+    expect(verdict.ok).toBe(true);
+    if (verdict.ok) {
+      expect(verdict.draft.source).toBe("chatgpt");
+      expect(verdict.draft.questions).toHaveLength(3);
+      expect(verdict.draft.title).toBe("감사 일기");
+    }
+  });
+
+  it("검증기 실패는 문항별 사유로 돌아온다 — 보기 넷", () => {
+    const broken = {
+      ...goodDraft,
+      questions: [
+        {
+          ...goodDraft.questions[0],
+          options: goodDraft.questions[0]!.options.slice(0, 4),
+        },
+        goodDraft.questions[1],
+        goodDraft.questions[2],
+      ],
+    };
+    const verdict = parseChatgptResult(JSON.stringify(broken), conditions);
+    expect(verdict.ok).toBe(false);
+    if (!verdict.ok) {
+      expect(verdict.issues.some((issue) => issue.question === 0)).toBe(true);
+      expect(verdict.issues.map((issue) => issue.message).join(" ")).toContain(
+        "5개",
+      );
+    }
+  });
+
+  it("요청과 견준다 — 문항 수가 다르면 막힌다 · expect 를 안 주면 통과", () => {
+    const two = { ...goodDraft, questions: goodDraft.questions.slice(0, 2) };
+    const strict = parseChatgptResult(JSON.stringify(two), conditions);
+    expect(strict.ok).toBe(false);
+    if (!strict.ok)
+      expect(strict.issues.map((issue) => issue.message).join(" ")).toContain(
+        "문항 수",
+      );
+    expect(parseChatgptResult(JSON.stringify(two)).ok).toBe(true);
+  });
+
+  it("JSON 이 없으면 한 줄 사유 — 빈 글 · 잡담만", () => {
+    for (const text of ["", "   ", "죄송합니다, 다시 말씀해 주세요."]) {
+      const verdict = parseChatgptResult(text);
+      expect(verdict.ok).toBe(false);
+      if (!verdict.ok) {
+        expect(verdict.issues).toHaveLength(1);
+        expect(verdict.issues[0]?.question).toBeNull();
+        expect(verdict.issues[0]?.message).toMatch(/JSON/);
+      }
+    }
+  });
+
+  it("배열로 온 답 — 객체 하나를 감싼 배열은 안의 객체를 건지고, 객체가 없는 배열은 «객체» 사유", () => {
+    const wrapped = parseChatgptResult(JSON.stringify([goodDraft]));
+    expect(wrapped.ok).toBe(true);
+    if (wrapped.ok) expect(wrapped.draft.title).toBe("감사 일기");
+
+    // 문항 배열만 붙여 넣은 경우 — 초안 객체가 아니다
+    const questionsOnly = parseChatgptResult(
+      JSON.stringify(goodDraft.questions),
+    );
+    expect(questionsOnly.ok).toBe(false);
+    if (!questionsOnly.ok)
+      expect(questionsOnly.issues[0]?.message).toMatch(/객체/);
+  });
+
+  it("ChatGPT 가 흔히 덧붙이는 모양을 받아 준다 — 원문자 정답 · 서술형의 빠진 options · 모르는 열쇠 · 숫자 정답", () => {
+    const loose = {
+      ...goodDraft,
+      difficulty: "표준",
+      questions: [
+        { ...goodDraft.questions[0], answer: "①", number: 1 },
+        {
+          ...goodDraft.questions[1],
+          options: undefined,
+          explanation: undefined,
+        },
+        { ...goodDraft.questions[2], answer: 1 },
+      ],
+    };
+    const verdict = parseChatgptResult(JSON.stringify(loose), conditions);
+    expect(verdict.ok).toBe(true);
+    if (verdict.ok) {
+      expect(verdict.draft.questions[0]?.answer).toBe("1");
+      expect(verdict.draft.questions[1]?.options).toEqual([]);
+      expect(verdict.draft.questions[1]?.explanation).toBe("");
+      expect(verdict.draft.questions[2]?.answer).toBe("1");
+      expect(verdict.draft).not.toHaveProperty("difficulty");
+    }
+  });
+
+  it("받아 주는 것은 모양뿐 — 뜻은 그대로 검증기가 본다 (원문자 6 · 서술형 정답 없음)", () => {
+    expect(
+      coerceEnglishDraftShape(
+        {
+          ...goodDraft,
+          questions: [{ ...goodDraft.questions[0], answer: "⑥" }],
+        },
+        "chatgpt",
+      ),
+    ).toMatchObject({ questions: [{ answer: "⑥" }] });
+    const verdict = parseChatgptResult(
+      JSON.stringify({
+        ...goodDraft,
+        questions: [{ ...goodDraft.questions[1], answer: "" }],
+      }),
+    );
+    expect(verdict.ok).toBe(false);
+  });
+});
+
+describe("parseAiJsonObject — 객체 하나를 같은 복구 단계로", () => {
+  it("코드펜스 · 앞뒤 잡설 · 후행 쉼표 · 문자열 안 줄바꿈", () => {
+    expect(parseAiJsonObject('```json\n{"a": 1,}\n```')).toEqual({ a: 1 });
+    expect(parseAiJsonObject('결과: {"a": "x"} 끝')).toEqual({ a: "x" });
+    expect(parseAiJsonObject('{"a": "첫 줄\n둘째 줄"}')).toEqual({
+      a: "첫 줄\n둘째 줄",
+    });
+  });
+
+  it("앞 잡설에 대괄호가 있어도 객체를 찾는다 — 배열 함수는 `[` 를 먼저 본다", () => {
+    expect(parseAiJsonObject('[참고] 아래가 결과입니다. {"a": 1}')).toEqual({
+      a: 1,
+    });
+    // 대괄호 토큰이 JSON 배열로 풀려도(«[1]») 뒤의 객체를 건진다 (리드 검토 D5)
+    expect(parseAiJsonObject('[1] 결과: {"a":1}')).toEqual({ a: 1 });
+  });
+
+  it("배열 · 문자열 · 깨진 글은 AiParseError", () => {
+    expect(() => parseAiJsonObject("[1,2]")).toThrow(AiParseError);
+    expect(() => parseAiJsonObject('"문자열"')).toThrow(AiParseError);
+    expect(() => parseAiJsonObject("아무 JSON 도 없음")).toThrow(AiParseError);
+    expect(() => parseAiJsonObject("")).toThrow(AiParseError);
+  });
+
+  it("스키마를 주면 그 스키마로 잠근다 — 위반은 AiParseError", () => {
+    const schema = z.strictObject({ a: z.number() });
+    expect(parseAiJsonObject('{"a": 1}', schema)).toEqual({ a: 1 });
+    expect(() => parseAiJsonObject('{"a": "x"}', schema)).toThrow(AiParseError);
+  });
+});
