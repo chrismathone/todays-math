@@ -1,10 +1,10 @@
 /**
  * 카드 보정 표 — 원본(`definition-content.ts` · PROVENANCE)은 그대로 두고, 카드를 내보내는 층(`definition-cards.ts` 의
- * `definitionCards`)에서 76장을 덮어쓴다(D-143 ④ · ⑦ · ⑧ — 24장 + 채점 결함 52장). 화면 · 채점 · 복습 · 선수가 모두 같은 카드를 읽는다 — 카드 id 는
+ * `definitionCards`)에서 83장을 덮어쓴다(D-143 ④ · ⑦ · ⑧ — 24장 + 채점 결함 59장, 그중 7장은 보기 절대 말만 — 리드 검토 D ③). 화면 · 채점 · 복습 · 선수가 모두 같은 카드를 읽는다 — 카드 id 는
  * 그대로라 학생 기록 · 상자 · 교육과정 다리는 이어진다.
  *
  * 결론은 용어 분석 트랙(terms-coverage)의 3자 합의 `docs/reference/concept-terms/card-sentence-fixes.json`
- * (틀림 3 · 빠짐 5 · 낱말 6 · 범위 10 · 채점 52 — 까닭 · 표는 그 파일). 이 표는 그 파일의 `change` 칸을 그대로 옮긴 것이고 시험이
+ * (틀림 3 · 빠짐 5 · 낱말 6 · 범위 10 · 채점 59 — 까닭 · 표는 그 파일). 이 표는 그 파일의 `change` 칸을 그대로 옮긴 것이고 시험이
  * 칸마다 같음을 잠근다(`conceptSentenceFixes.test.ts`). 보정은 빈칸(정답 조각)까지 옮기기도 해서, 카드마다 조립 ·
  * 예 모으기 · 경계 살피기가 새 카드로 풀리는지도 시험이 끝까지 풀어 본다. 🔴 교재 원문은 넣지 않는다(누출 검사 통과본).
  */
@@ -210,6 +210,12 @@ export const cardFixes: Readonly<Record<string, CardFix>> = {
     explanation:
       "함께 변하는 경향만으로 원인이라고 단정할 수 없어. 뚜렷한 경향이 없으면 상관관계가 없다고 해.",
     note: "함께 변하는 경향만으로 원인이라고 단정할 수 없어. 뚜렷한 경향이 없으면 상관관계가 없다고 해.",
+    examples: [
+      { text: "함께 커지는 경향은 반드시 양의 상관", yes: true },
+      { text: "반대로 변하는 경향은 음의 상관", yes: true },
+      { text: "상관관계가 있으면 반드시 원인과 결과", yes: false },
+      { text: "모든 점이 한 직선 위에 있어야 함", yes: false },
+    ],
   },
   // 경우의 수 — 범위
   "g8-cases": {
@@ -392,6 +398,12 @@ export const cardFixes: Readonly<Record<string, CardFix>> = {
   // 히스토그램 — 채점
   "g7-histogram": {
     words: ["직사각형", "높이", "원", "둘레"],
+    examples: [
+      { text: "이웃한 막대가 붙어 있음", yes: true },
+      { text: "각 막대의 높이는 항상 그 계급의 도수", yes: true },
+      { text: "막대 색만으로 도수가 정해짐", yes: false },
+      { text: "가로축이 항상 날짜임", yes: false },
+    ],
   },
   // 유한소수 — 채점
   "g8-terminating": {
@@ -404,6 +416,12 @@ export const cardFixes: Readonly<Record<string, CardFix>> = {
   // 산점도 — 채점
   "g9-scatterplot": {
     words: ["점", "관계", "막대만", "넓이"],
+    examples: [
+      { text: "한 점은 반드시 두 변량의 한 쌍을 나타낸다", yes: true },
+      { text: "두 변량의 함께 변하는 경향을 살핀다", yes: true },
+      { text: "점들을 반드시 모두 선으로 연결한다", yes: false },
+      { text: "한 점은 한 변량의 합계만 나타낸다", yes: false },
+    ],
   },
   // 뿔의 부피 — 채점
   "g7-pyramid-volume": {
@@ -438,7 +456,7 @@ export const cardFixes: Readonly<Record<string, CardFix>> = {
     ],
     examples: [
       { text: "각 구간에 속하는 학생 수", yes: true },
-      { text: "모든 도수를 더하면 전체 인원", yes: true },
+      { text: "모든 도수를 더하면 항상 조사한 자료 수", yes: true },
       { text: "각 구간의 평균 점수", yes: false },
       { text: "도수의 총합은 항상 1", yes: false },
     ],
@@ -468,6 +486,12 @@ export const cardFixes: Readonly<Record<string, CardFix>> = {
   // 띠그래프 — 채점
   "g6-band-graph": {
     words: ["비율", "나눈", "평균", "늘인"],
+    examples: [
+      { text: "전체 비율은 언제나 100%", yes: true },
+      { text: "부분의 비율을 비교하기 좋음", yes: true },
+      { text: "전체 비율은 10%", yes: false },
+      { text: "각 부분의 길이가 언제나 같음", yes: false },
+    ],
   },
   // 좌표 — 채점
   "g7-coordinate": {
@@ -535,6 +559,69 @@ export const cardFixes: Readonly<Record<string, CardFix>> = {
   "g6-circumference": {
     definition: "원 가장자리를 한 바퀴 도는 길이이며 원의 둘레라고도 한다.",
     pieces: ["원 가장자리를 한 바퀴 도는 ", "이며 원의 ", "라고도 한다."],
+  },
+  // 원의 중심 — 채점(보기 절대 말 · fix12)
+  "g3-circle-center": {
+    examples: [
+      { text: "원 위 모든 점까지의 거리는 반드시 같음", yes: true },
+      { text: "컴퍼스 바늘로 고정한 점", yes: true },
+      { text: "반드시 원 위에 있는 점", yes: false },
+      { text: "원 위 점마다 거리가 다른 점", yes: false },
+    ],
+  },
+  // 뒤집기 — 채점(보기 절대 말 · fix12)
+  "g4-flip": {
+    examples: [
+      { text: "기준선 양쪽이 거울처럼 대응", yes: true },
+      { text: "모양과 크기는 항상 그대로", yes: true },
+      { text: "도형이 항상 커짐", yes: false },
+      { text: "어떤 점도 위치가 바뀌지 않음", yes: false },
+    ],
+  },
+  // 순서쌍 — 채점(보기 절대 말 · fix12)
+  "g7-ordered-pair": {
+    examples: [
+      { text: "(2,3)과 (3,2)는 항상 다름", yes: true },
+      { text: "앞 수와 뒤 수를 구별함", yes: true },
+      { text: "(2,3)과 (3,2)는 항상 같음", yes: false },
+      { text: "두 수의 합만 알면 됨", yes: false },
+    ],
+  },
+  // 외심 — 채점(보기 절대 말 · fix12)
+  "g8-circumcenter": {
+    examples: [
+      { text: "세 꼭짓점까지 반드시 같은 거리", yes: true },
+      { text: "세 변의 수직이등분선의 교점", yes: true },
+      { text: "세 변까지 같은 거리", yes: false },
+      { text: "반드시 삼각형 내부에 있음", yes: false },
+    ],
+  },
+  // 내심 — 채점(보기 절대 말 · fix12)
+  "g8-incenter": {
+    examples: [
+      { text: "세 각의 이등분선의 교점", yes: true },
+      { text: "세 변까지 수직거리가 항상 같음", yes: true },
+      { text: "세 꼭짓점까지 항상 같은 거리", yes: false },
+      { text: "삼각형 바깥에 있을 수 있음", yes: false },
+    ],
+  },
+  // 평행사변형의 대각선 — 채점(보기 절대 말 · fix12)
+  "g8-parallelogram-diagonal": {
+    examples: [
+      { text: "교점은 언제나 각 대각선의 중점", yes: true },
+      { text: "한 대각선이 10이면 나뉜 두 길이는 언제나 5", yes: true },
+      { text: "두 대각선 길이는 언제나 같음", yes: false },
+      { text: "두 대각선은 언제나 수직", yes: false },
+    ],
+  },
+  // 접선 — 채점(보기 절대 말 · fix12)
+  "g9-tangent-line": {
+    examples: [
+      { text: "원과 만나는 점은 반드시 하나", yes: true },
+      { text: "만나는 점을 접점이라고 함", yes: true },
+      { text: "원과 만나는 점이 두 개", yes: false },
+      { text: "반드시 원의 중심을 지남", yes: false },
+    ],
   },
 };
 
