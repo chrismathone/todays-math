@@ -114,7 +114,7 @@ describe("validateEnglishDraft — 생성 요청과 견주기", () => {
     expect(fewer.ok).toBe(false);
     if (!fewer.ok)
       expect(fewer.issues.map((i) => i.message).join(" ")).toMatch(
-        /문항 수.*빠졌습니다: 서술형|빠졌습니다: 서술형.*문항 수/s,
+        /문항 수[\s\S]*빠졌습니다: 서술형|빠졌습니다: 서술형[\s\S]*문항 수/,
       );
 
     const wrongType = validateEnglishDraft(good, {
