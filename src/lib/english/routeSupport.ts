@@ -2,14 +2,12 @@
  * 오늘의 영어 라우트(`src/app/api/english/**`)가 같이 쓰는 것 — 세션·같은 출처 관문, 영어 전용 거절 응답,
  * 자료 파일 규칙, 시험 요약 읽기 (D-148 · 25 §3).
  *
- * 🔴 영어 전용 오류 코드(`PAYLOAD_TOO_LARGE` · `ENGLISH_DRAFT_REJECTED` · `REVISION_MISMATCH`)는 공통 계약의
- *    `errorCodeSchema` 에 아직 없다(리드 소유 — 보고서 «리드가 정할 것»). 그래서 `jsonError` 를 지나지 못하고
- *    같은 `{ error: { code, message, details? } }` 모양을 직접 만든다. 계약에 코드가 들어오면 `jsonError` 로 바꾼다.
+ * 영어 전용 오류 코드 셋(`PAYLOAD_TOO_LARGE` · `ENGLISH_DRAFT_REJECTED` · `REVISION_MISMATCH`)은 공통 계약
+ * `errorCodeSchema` 에 있다(리드 커밋 c70ee7509) — 다른 거절과 같이 `jsonError` 를 지난다.
  */
-import { NextResponse } from "next/server";
-
 import {
   ENGLISH_MATERIAL_MAX_BYTES,
+  ENGLISH_MATERIAL_MAX_LABEL,
   type EnglishDraftIssue,
 } from "@/contracts/english.contract";
 import { sameOriginMutation } from "@/lib/accountAccess";
@@ -42,11 +40,11 @@ export async function requireEnglishSession(
 }
 
 // ─────────────────────────────────────────────
-// 영어 전용 거절 응답
+// 영어 전용 거절 응답 — 코드는 공통 계약 `errorCodeSchema`(D-148)
 // ─────────────────────────────────────────────
 
 export const ENGLISH_ROUTE_MESSAGES = {
-  payloadTooLarge: "파일은 10MB 이하로 올려 주세요.",
+  payloadTooLarge: `파일은 ${ENGLISH_MATERIAL_MAX_LABEL} 이하로 올려 주세요.`,
   draftRejected: "문항이 규칙에 맞지 않습니다. 표시된 자리를 고쳐 주세요.",
   revisionMismatch:
     "다른 곳에서 먼저 저장됐습니다. 다시 불러온 뒤 고쳐 주세요.",
@@ -56,39 +54,13 @@ export const ENGLISH_ROUTE_MESSAGES = {
   multipartUnreadable: "올린 파일을 읽지 못했습니다.",
 } as const;
 
-export type EnglishErrorCode =
-  "PAYLOAD_TOO_LARGE" | "ENGLISH_DRAFT_REJECTED" | "REVISION_MISMATCH";
-
-/** `{ error: { code, message, details? } }` — `jsonError` 와 같은 모양(공통 계약에 코드가 없어 직접 만든다) */
-export function englishError(
-  code: EnglishErrorCode,
-  message: string,
-  status: number,
-  details?: unknown,
-) {
-  return NextResponse.json(
-    {
-      error: {
-        code,
-        message,
-        ...(details === undefined ? {} : { details }),
-      },
-    },
-    { status },
-  );
-}
-
 /** 413 — 사유는 JSON 으로(파서 오류에 지워지지 않게, 교훈 2026-09-21) */
 export const payloadTooLarge = () =>
-  englishError(
-    "PAYLOAD_TOO_LARGE",
-    ENGLISH_ROUTE_MESSAGES.payloadTooLarge,
-    413,
-  );
+  jsonError("PAYLOAD_TOO_LARGE", ENGLISH_ROUTE_MESSAGES.payloadTooLarge, 413);
 
 /** 422 — 어느 문항이 어느 규칙에 걸렸는지 `details.issues` 로 */
 export const draftRejected = (issues: EnglishDraftIssue[]) =>
-  englishError(
+  jsonError(
     "ENGLISH_DRAFT_REJECTED",
     ENGLISH_ROUTE_MESSAGES.draftRejected,
     422,
@@ -97,14 +69,10 @@ export const draftRejected = (issues: EnglishDraftIssue[]) =>
 
 /** 409 — revision CAS 가 어긋났다 */
 export const revisionMismatch = () =>
-  englishError(
-    "REVISION_MISMATCH",
-    ENGLISH_ROUTE_MESSAGES.revisionMismatch,
-    409,
-  );
+  jsonError("REVISION_MISMATCH", ENGLISH_ROUTE_MESSAGES.revisionMismatch, 409);
 
 // ─────────────────────────────────────────────
-// 자료 파일 규칙 (25 §3 — pdf · docx · txt · png · jpg ≤ 10MB)
+// 자료 파일 규칙 (25 §3 — pdf · docx · txt · png · jpg ≤ ENGLISH_MATERIAL_MAX_BYTES, 4MB — Vercel 본문 상한 4.5MB 아래)
 // ─────────────────────────────────────────────
 
 /** 이름 확장자 → 저장할 MIME(브라우저가 보낸 형은 믿지 않는다) */
@@ -125,7 +93,7 @@ export function englishMaterialExtension(name: string): string | null {
 }
 
 /**
- * multipart 겉봉(경계 줄 · 칸 머리)의 여유 — `content-length` 로 먼저 자를 때 정확히 10MB 인 파일이
+ * multipart 겉봉(경계 줄 · 칸 머리)의 여유 — `content-length` 로 먼저 자를 때 정확히 상한 크기인 파일이
  * 겉봉 몇백 바이트 때문에 거절되지 않게. 실제 크기는 받은 뒤 `file.size` 로 다시 잰다.
  */
 export const ENGLISH_MULTIPART_ALLOWANCE = 64 * 1024;

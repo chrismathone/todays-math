@@ -57,14 +57,6 @@ import {
 } from "@/mocks/englishTestDouble";
 import { seedUsers } from "@/mocks/prismaTestDouble";
 
-/** 영어 전용 코드는 공통 `errorCodeSchema` 에 아직 없다(보고서 «리드가 정할 것») — 모양만 잠근다 */
-const englishErrorSchema = z.strictObject({
-  error: z.strictObject({
-    code: z.string().min(1),
-    message: z.string().min(1),
-    details: z.unknown().optional(),
-  }),
-});
 const issuesSchema = z.strictObject({
   issues: z.array(
     z.strictObject({
@@ -266,7 +258,7 @@ describe("POST /api/english/exams/[id]/sets — 저장", () => {
         withId(examId),
       );
       expect(res.status).toBe(422);
-      const body = englishErrorSchema.parse(await res.json());
+      const body = errorResponseSchema.parse(await res.json());
       expect(body.error.code).toBe("ENGLISH_DRAFT_REJECTED");
       const { issues } = issuesSchema.parse(body.error.details);
       expect(issues.length).toBeGreaterThan(0);
@@ -519,7 +511,7 @@ describe("PUT /api/english/sets/[id] — revision CAS", () => {
       revision: 1,
     });
     expect(stale.status).toBe(409);
-    const body = englishErrorSchema.parse(await stale.json());
+    const body = errorResponseSchema.parse(await stale.json());
     expect(body.error.code).toBe("REVISION_MISMATCH");
     expect(body.error.message).toBe(
       "다른 곳에서 먼저 저장됐습니다. 다시 불러온 뒤 고쳐 주세요.",
@@ -558,7 +550,7 @@ describe("PUT /api/english/sets/[id] — revision CAS", () => {
       revision: 1,
     });
     expect(res.status).toBe(422);
-    expect(englishErrorSchema.parse(await res.json()).error.code).toBe(
+    expect(errorResponseSchema.parse(await res.json()).error.code).toBe(
       "ENGLISH_DRAFT_REJECTED",
     );
     expect(englishRows.sets()[0]).toMatchObject({ revision: 1 });

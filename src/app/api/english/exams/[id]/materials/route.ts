@@ -1,7 +1,8 @@
 /**
  * GET  /api/english/exams/{id}/materials — 자료 목록(파일 원본 없이 — `hasFile`, 텍스트는 `content`)
  * POST /api/english/exams/{id}/materials — JSON `{name, content}` **또는** multipart `file`
- *      (pdf · docx · txt · png · jpg ≤ 10MB). `.txt` 는 파일 원본과 함께 `content` 도 채운다(≤30,000자).
+ *      (pdf · docx · txt · png · jpg ≤ `ENGLISH_MATERIAL_MAX_BYTES` — 4MB, Vercel 본문 상한 4.5MB 아래).
+ *      `.txt` 는 파일 원본과 함께 `content` 도 채운다(≤30,000자).
  * 대응 계약: src/contracts/english.contract.ts (D-148 · 25 §3)
  *
  * 🔴 크기는 **받는 쪽이 재기 전에** `content-length` 로 먼저 자르고, 413 은 `{error}` JSON 으로 —
@@ -34,7 +35,7 @@ import { requireOwnedEnglishExam } from "@/lib/ownership";
 
 type RouteContext = { params: Promise<{ id: string }> };
 
-/** 목록·응답용 칸 — `bytes` 는 읽지 않는다(자료마다 10MB 일 수 있다) */
+/** 목록·응답용 칸 — `bytes` 는 읽지 않는다(자료마다 상한 크기까지 갈 수 있다) */
 const MATERIAL_FIELDS = {
   id: true,
   examId: true,

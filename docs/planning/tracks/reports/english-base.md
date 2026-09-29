@@ -2,7 +2,7 @@
 
 브리프: `docs/planning/tracks/briefs/english-base.md` · 공통 `english-common.md`
 SSOT: `docs/planning/25-english-studio.md` §2 · §3 · §4.4 · §6 · 결정 **D-148**(07 Decision Log)
-워크트리: `BIGSHOL/english-base` · 기준 커밋 **`0150e9db6`**(리드가 옮긴 것 — 1790652d7 과 같은 내용) · 2026-09-30 · **푸시하지 않았다.**
+워크트리: `BIGSHOL/english-base` · 기준 커밋 **`0150e9db6`**(리드가 옮긴 것 — 1790652d7 과 같은 내용) · 리드 커밋 **c70ee7509**(오류 코드 셋) · **946cccacb**(25 §6.2 정정 · 검증기 시험 `s` 플래그 제거) · **2de827cc3**(자료 상한 4MB) 병합 · 2026-09-30 · **푸시하지 않았다.**
 
 > 🔴 **DB 에 닿지 않았다 — 드라이런도.** 마이그레이션·적용 스크립트는 **파일만** 있다(브리프 «DB 에 닿지 않는다», `.env` 없음).
 > 배포 순서는 **DB 먼저 · 코드 나중**(25 §7 ①): ① 리드가 main 에서 드라이런 → ② 원장님께 여쭘 → ③ `--apply` → ④ 코드 병합·푸시.
@@ -39,7 +39,7 @@ SSOT: `docs/planning/25-english-studio.md` §2 · §3 · §4.4 · §6 · 결정 
 | `/api/english/exams/[id]` | PATCH | `englishExamUpdateSchema`(`title?` · `examDate?`(null 로 지움) · `types?`) → 고친 뒤 요약과 함께 200 |
 | | DELETE | `requireOwnedEnglishExam` → `delete`(DB Cascade) → `{data:{id}}` |
 | `/api/english/exams/[id]/materials` | GET | `bytes` 없이(`select`) · `hasFile` 은 둘째 질의 `bytes: {not: null}` · **올린 차례(createdAt asc)** |
-| | POST | 본문 읽기 **전** `content-length` > 10MB + 64KiB(겉봉 여유) → 413 JSON. multipart(`file`): 확장자 `pdf·docx·txt·png·jpg·jpeg` 아니면 400 · `file.size` > 10MB → 413 · 빈 파일 400 · MIME 은 **확장자 표**(브라우저 형은 안 믿음) · `.txt` 는 `content` 도(trim · ≤30,000자) · 깨진 multipart 400. JSON `{name, content}` → `text/plain` · size = UTF-8 바이트 |
+| | POST | 본문 읽기 **전** `content-length` > `ENGLISH_MATERIAL_MAX_BYTES`(4MB) + 64KiB(겉봉 여유) → 413 JSON. multipart(`file`): 확장자 `pdf·docx·txt·png·jpg·jpeg` 아니면 400 · `file.size` > 상한 → 413 · 빈 파일 400 · MIME 은 **확장자 표**(브라우저 형은 안 믿음) · `.txt` 는 `content` 도(trim · ≤30,000자) · 깨진 multipart 400. JSON `{name, content}` → `text/plain` · size = UTF-8 바이트 |
 | `/api/english/materials/[id]` | GET | 파일이면 bytes 를 그 MIME 으로, 아니면 `content` 를 `text/plain; charset=utf-8`(이름에 `.txt`) · `Content-Disposition: attachment; filename="<ascii>"; filename*=UTF-8''…` · `X-Content-Type-Options: nosniff` · `private, no-store` |
 | | DELETE | 부모 시험으로 404/403 |
 | `/api/english/exams/[id]/sets` | GET | 요약 목록(지문·문항 없음) · **최근 고친 것이 먼저(updatedAt desc)** |
@@ -55,7 +55,7 @@ SSOT: `docs/planning/25-english-studio.md` §2 · §3 · §4.4 · §6 · 결정 
 | 파일 | 건수 | 무엇 |
 |---|---|---|
 | `src/__tests__/api/englishExams.test.ts` | 22 | 401·403(다른 출처)·400 다섯 · 201 응답 계약 parse · 저장 행 소유자 · 날짜 왕복 · 목록 범위(강사 자기 것만 · 지점 관리자 지점 전체 · 다른 지점 0) · 요약 수 셋 · 차례 · PATCH 404/403/400 넷/200 · DELETE Cascade(남의 것은 남는다) |
-| `src/__tests__/api/englishMaterials.test.ts` | 23 | JSON 지문 201/400 넷 · png 201(MIME 은 확장자 · bytes 원본 저장) · `.txt` content · 확장자 다섯 400 · file 칸 없음/빈 파일/깨진 multipart 400 · **content-length 로 본문 읽기 전 413(JSON 사유)** · **10MB 경계 실제 바이트(정확히 10MB 201 · +1 413)** · 목록(bytes 없음 · 차례) · 내려받기 머리(attachment UTF-8 · nosniff · text/plain) · 소유 넷 · 지점 관리자 |
+| `src/__tests__/api/englishMaterials.test.ts` | 23 | JSON 지문 201/400 넷 · png 201(MIME 은 확장자 · bytes 원본 저장) · `.txt` content · 확장자 다섯 400 · file 칸 없음/빈 파일/깨진 multipart 400 · **content-length 로 본문 읽기 전 413(JSON 사유)** · **상한(4MB) 경계 실제 바이트(정확히 상한 201 · +1 413 — 크기·문구 모두 계약 상수에서)** · 목록(bytes 없음 · 차례) · 내려받기 머리(attachment UTF-8 · nosniff · text/plain) · 소유 넷 · 지점 관리자 |
 | `src/__tests__/api/englishSets.test.ts` | 23 | 201(초안·revision 1·유형 딱지) · status 보내면 400 · 계약 400 넷 · 검증기 422 넷(문항 번호·문구) · **makeCloze 초안 저장** · 소유 넷 · 요약 목록(지문 없음·차례) · GET · PUT 200/409(낡은 revision — 아무것도 안 바뀜 → 다시 읽으면 저장)/422/400 셋/404/403 · DELETE |
 | `src/__tests__/unit/englishTestDouble.test.ts` | 17 | 모르는 모양 여섯이 던진다 · ownedRowsWhere 모양 · `_count` · Cascade · CHECK/FK 흉내 · `bytes` 필터 · select 투영 · CAS(P2025 · increment) · compose 없이 `where.user` 를 물으면 던진다 |
 | `src/__tests__/unit/englishFence.test.ts` | 10 | 아래 «울타리» |
@@ -79,7 +79,7 @@ npx vitest run src/__tests__/api/englishExams.test.ts src/__tests__/api/englishM
 → Test Files 15 passed (15) · Tests 275 passed (275)
 npm run lint            → 0 errors (경고 62 — 전부 기존 파일: review.contract · elementary · middle · math-explorers · unifiedPreview. 영어 파일 0)
 npm run lint:affordance → 통과
-npx tsc --noEmit        → 오류 1 — 기준 커밋에도 있던 것(아래 ③-2). 내 파일 0
+npx tsc --noEmit        → 오류 0 (기준 커밋의 오류 1건은 리드 946cccacb 가 고쳤고 병합됨)
 npx prettier --check    → 새 파일 전부 통과 · 고친 기존 파일 둘은 --strip-trailing-cr diff 로 차이 없음
 ```
 
@@ -98,14 +98,14 @@ npx prettier --check    → 새 파일 전부 통과 · 고친 기존 파일 둘
 
 ## ③ 계약에서 모자랐던 것 · 브리프와 다르게 한 것
 
-1. 🔴 **`errorCodeSchema`(공통 계약)에 `PAYLOAD_TOO_LARGE` · `ENGLISH_DRAFT_REJECTED` · `REVISION_MISMATCH` 가 없다.** `jsonError` 는 `errorResponseSchema.parse` 를 지나므로 이 코드로는 **던진다**. 그래서 `routeSupport.englishError()` 가 같은 `{error:{code,message,details?}}` 모양을 `NextResponse.json` 으로 직접 만든다(기존 `Response.json({error:{code:"CONFLICT"…}})` 라우트들과 같은 결). 시험은 이 셋을 느슨한 zod 로 모양만 잠근다. **리드가 셋을 `errorCodeSchema` 에 더하면 `englishError` 를 `jsonError` 로 바꾸고 시험을 `errorResponseSchema` 로 조인다**(파일 둘·줄 몇).
-2. 🔴 **`src/__tests__/unit/englishValidate.test.ts` 117행(리드 파일)이 `tsc --noEmit` 에서 빨갛다** — `TS1501: This regular expression flag is only available when targeting 'es2018' or later`(tsconfig target ES2017). 기준 커밋 그대로 돌려도 난다(내 변경 전 실측). **pre-push 훅 ⑷ 이 main 을 밀 때 `type-check` 를 돌리므로 그대로면 푸시가 막힌다.** 손대지 않았다(리드 소유).
+1. ~~`errorCodeSchema` 에 영어 코드 셋이 없었다~~ → **리드가 c70ee7509 로 넣었고 이 브랜치에 병합했다**(82cf5bcdb). `routeSupport` 의 413/422/409 는 이제 다른 거절과 같이 `jsonError` 를 지나고, 시험도 `errorResponseSchema` 로 parse 한다(후속 커밋).
+2. ~~`englishValidate.test.ts` 117행의 정규식 `s` 플래그가 tsc 에서 빨갰다~~ → **리드 946cccacb 가 플래그를 뺐고 병합했다** — tsc 오류 0.
 3. `requireOwnedEnglishExam(**viewer, examId**)` — 브리프·25 §3 이 두 번 그렇게 적어 그대로 했다. 기존 헬퍼(`requireOwnedTest(id, viewer)`)와 인자 차례가 반대다. 맞추라면 한 줄.
 4. 계약에 **시험 하나 읽기(GET `/api/english/exams/{id}`)** 가 없어 만들지 않았다(목록에 요약이 같이 온다). 목록은 페이지 없이 전부(학원 하나 규모).
 5. **`.txt` 파일의 `content`** — 계약 상한 30,000자를 넘는 뒷부분은 싣지 않는다(원본 `bytes` 는 그대로, 내려받기는 온전). 거절할지 자를지는 정하지 않은 자리라 «자름»으로 두고 응답 `content` 에 그대로 보이게 했다.
 6. **차례** — 시험 목록 `createdAt` **내림차순**(새 시험이 먼저), 자료 `createdAt` 오름차순(올린 차례), 세트 `updatedAt` 내림차순(최근 고친 것). 브리프의 «createdAt 순»은 방향이 없어 이렇게 정했다 — 셸이 다른 차례를 원하면 알려 달라.
 7. **PUT 은 보낸 `status` 를 그대로 저장한다.** «내용을 고치면 상태는 초안으로 내려간다»(25 §1.3)는 편집 화면(shell) 규칙으로 읽었다. 서버가 강제하길 원하면 PUT 에서 `passage/questions` 가 바뀌었을 때 `status` 를 «초안»으로 덮는 줄 하나.
-8. `content-length` 선판정에 **겉봉 여유 64KiB** 를 뒀다 — 정확히 10MB 인 파일이 multipart 경계 몇백 바이트 때문에 거절되지 않게. 실제 크기는 받은 뒤 `file.size` 로 다시 잰다(경계 시험이 실제 바이트로 잠근다).
+8. `content-length` 선판정에 **겉봉 여유 64KiB** 를 뒀다 — 정확히 4MB(계약 상수) 인 파일이 multipart 경계 몇백 바이트 때문에 거절되지 않게. 실제 크기는 받은 뒤 `file.size` 로 다시 잰다(경계 시험이 실제 바이트로 잠근다).
 9. 울타리 ⑵ 는 리드 정정대로 **DB 식별자만** 센다. 거기에 Prisma 가 만든 모델 형(`@prisma/client` 의 `EnglishExam` · `Prisma.EnglishExam…`)도 DB 쪽 식별자로 보고 같이 센다 — 화면이 이걸 import 하면 DB 결합이라 빨간 게 맞다고 봤다. 빼라면 정규식 둘(`PRISMA_NAMESPACE` · `PRISMA_IMPORT`)을 지우면 된다.
 10. `src/lib/english/serialize.ts` · `routeSupport.ts` 는 브리프 소유 표에 없던 **새 base 모듈**이다(ai 의 `generate.ts`·`chatgpt.ts` 와 이름이 겹치지 않는다).
 11. `prismaTestDouble.ts` 는 «import 한 줄 + 합성»에 **reset 호출 한 줄**을 더했다 — errorLog 대역과 같은 결이고, 없으면 영어 행이 시험 사이로 샌다.
@@ -124,16 +124,14 @@ npx prettier --check    → 새 파일 전부 통과 · 고친 기존 파일 둘
   ALLOW_SHARED_IMPORT=1 npx tsx scripts/qa/apply-english-studio-migration.ts --apply
   ```
   되돌리기 드라이런 `npx tsx scripts/qa/apply-english-studio-migration.ts --revert`(행이 있으면 `--drop-rows`).
-- ③-1 `errorCodeSchema` 에 코드 셋 — 더할지, 지금처럼 둘지.
-- ③-2 `englishValidate.test.ts:117` — 정규식 `s` 플래그(또는 tsconfig target). 이대로면 main 푸시 훅이 tsc 에서 막힌다.
 - ③-3 인자 차례 · ③-6 차례 · ③-7 PUT 상태 강제 · ③-9 Prisma 형 검사 유지 여부.
-- 🔴 **Vercel 본문 상한(아래 ⑤-1)** — 10MB 파일이 플랫폼에서 먼저 막힐 수 있다. 상한을 4MB 로 낮출지, 그대로 둘지(원장님 결정 자리).
+- ⑤-1 은 리드가 받아들여 상한을 4MB 로 내렸다(2de827cc3) — 남은 결정 없음.
 
 ---
 
 ## ⑤ 위험
 
-1. 🔴 **Vercel Serverless Function 의 요청 본문 상한은 4.5MB 다.** 10MB 파일은 라우트에 닿기 전에 플랫폼이 413(`FUNCTION_PAYLOAD_TOO_LARGE`)으로 끊고, 그 본문은 **우리 JSON 이 아니다** — 화면이 «파일은 10MB 이하로…»를 못 보여 준다. 여기서는 로컬(dev 서버)·시험만 잰다. 상한을 계약 `ENGLISH_MATERIAL_MAX_BYTES` 에서 4MB 로 내리거나(마이그레이션 무관 — CHECK 는 크기 상한을 안 건다), 큰 파일은 다른 길(저장소 직접 올리기)을 두어야 한다. 원장님·리드 결정.
+1. ~~Vercel Serverless Function 의 요청 본문 상한 4.5MB 에 10MB 파일이 먼저 막힌다~~ → **리드가 받아들여 계약 상한을 4MB 로 내렸다**(2de827cc3 · `ENGLISH_MATERIAL_MAX_BYTES` = 4MB · 문구는 `ENGLISH_MATERIAL_MAX_LABEL`). 라우트 문구·주석·경계 시험은 그 상수에서 끌어 쓴다 — 숫자를 손으로 적은 자리가 없다. 4.5MB 와 4MB 사이 겉봉 여유(64KiB)는 그대로 들어간다.
 2. **실제 DB 로 한 번도 안 돌렸다.** 대역이 흉내 낸 것 — `update where {id, revision}`(Prisma 5+ extendedWhereUnique) · `bytes: {not: null}` 필터 · `include._count` · `Bytes`(Uint8Array) 를 `Response` 본문으로 · `@db.Date` 왕복 — 은 main 에서 드라이런 뒤 표본 한 번(시험 하나 · 자료 하나 · 세트 저장·고치기)으로 확인해야 한다(교훈 2026-09-20 «없어서 초록인 것은 안 보인다»).
 3. **CHECK 가 계약 값과 글자로 묶여 있다** — 학년·상태·출처 값을 계약에 더하면 새 마이그레이션 없이는 DB 가 거절한다(조용히 통과하지 않는다 — 의도한 것).
 4. **RLS 는 켰고 정책은 없다** — 앱은 Prisma 직결로 소유 범위를 걸어 읽는다(다른 새 표와 같은 관례). Supabase 공개 API 로는 못 읽는다.

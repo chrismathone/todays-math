@@ -2,13 +2,12 @@
 /**
  * 오늘의 영어 — 자료 API `/api/english/exams/[id]/materials` · `/api/english/materials/[id]` (D-148 · 25 §3).
  *
- * JSON 지문 · multipart 파일(pdf · docx · txt · png · jpg ≤ 10MB) · 내려받기 머리 · 10MB 경계(**실제 바이트로**) ·
+ * JSON 지문 · multipart 파일(pdf · docx · txt · png · jpg ≤ `ENGLISH_MATERIAL_MAX_BYTES`) · 내려받기 머리 · 상한 경계(**실제 바이트로**) ·
  * 413 은 `{error}` JSON(사유가 파서 오류로 지워지지 않게 — 교훈 2026-09-21) · 소유는 부모 시험으로.
  * 표본 지문은 우리가 지은 짧은 글이다(교재·출판사 지문 아님).
  */
 import { NextRequest } from "next/server";
 import { beforeEach, describe, expect, it, vi } from "vitest";
-import { z } from "zod";
 
 type Viewer = {
   id: string;
@@ -44,6 +43,7 @@ import { errorResponseSchema } from "@/contracts/common.contract";
 import {
   ENGLISH_MATERIAL_CONTENT_MAX,
   ENGLISH_MATERIAL_MAX_BYTES,
+  ENGLISH_MATERIAL_MAX_LABEL,
   englishMaterialListResponseSchema,
   englishMaterialResponseSchema,
 } from "@/contracts/english.contract";
@@ -54,15 +54,6 @@ import {
   seedEnglishMaterial,
 } from "@/mocks/englishTestDouble";
 import { seedUsers } from "@/mocks/prismaTestDouble";
-
-/** 영어 전용 코드는 공통 `errorCodeSchema` 에 아직 없다(보고서 «리드가 정할 것») — 모양만 잠근다 */
-const englishErrorSchema = z.strictObject({
-  error: z.strictObject({
-    code: z.string().min(1),
-    message: z.string().min(1),
-    details: z.unknown().optional(),
-  }),
-});
 
 const ORIGIN = "http://localhost";
 const NOT_FOUND_ID = "00000000-0000-4000-8000-00000000dead";
@@ -372,12 +363,14 @@ describe("POST materials — multipart 파일", () => {
     );
     expect(res.status).toBe(413);
     expect(res.headers.get("content-type")).toMatch(/json/);
-    const body = englishErrorSchema.parse(await res.json());
+    const body = errorResponseSchema.parse(await res.json());
     expect(body.error.code).toBe("PAYLOAD_TOO_LARGE");
-    expect(body.error.message).toBe("파일은 10MB 이하로 올려 주세요.");
+    expect(body.error.message).toBe(
+      `파일은 ${ENGLISH_MATERIAL_MAX_LABEL} 이하로 올려 주세요.`,
+    );
   });
 
-  it("🔴 10MB 경계를 실제 바이트로 — 정확히 10MB 는 201, 1바이트 넘으면 413", async () => {
+  it(`🔴 상한(${ENGLISH_MATERIAL_MAX_LABEL}) 경계를 실제 바이트로 — 정확히 상한은 201, 1바이트 넘으면 413`, async () => {
     const exact = new Uint8Array(ENGLISH_MATERIAL_MAX_BYTES);
     exact[0] = 0x25; // %PDF
     const ok = await createMaterial(
@@ -395,7 +388,7 @@ describe("POST materials — multipart 파일", () => {
       withId(examId),
     );
     expect(rejected.status).toBe(413);
-    expect(englishErrorSchema.parse(await rejected.json()).error.code).toBe(
+    expect(errorResponseSchema.parse(await rejected.json()).error.code).toBe(
       "PAYLOAD_TOO_LARGE",
     );
     expect(englishRows.materials()).toHaveLength(1);

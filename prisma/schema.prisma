@@ -1495,7 +1495,7 @@ model EnglishExam {
   @@map("english_exam")
 }
 
-/// 시험 자료 — 파일 원본(≤10MB, `bytes`) 또는 지문 글(`content`). **SQL 에만 있는 것**: 둘 다 NULL 금지 CHECK · size >= 0
+/// 시험 자료 — 파일 원본(`bytes` — 상한은 계약 `ENGLISH_MATERIAL_MAX_BYTES`, 4MB) 또는 지문 글(`content`). **SQL 에만 있는 것**: 둘 다 NULL 금지 CHECK · size >= 0
 model EnglishMaterial {
   id        String   @id @default(uuid()) @db.Uuid
   examId    String   @map("exam_id") @db.Uuid
