@@ -15,12 +15,6 @@
   outline: 2px solid var(--learn-accent, #3159df);
   outline-offset: 5px;
 }
-.context {
-  margin: -8px 0 16px;
-  color: var(--learn-muted, #596c86);
-  font-size: var(--text-caption, 12px);
-  font-weight: 700;
-}
 .tabs {
   display: flex;
   flex-wrap: wrap;

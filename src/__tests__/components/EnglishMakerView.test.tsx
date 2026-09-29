@@ -168,11 +168,9 @@ afterEach(() => {
 });
 
 describe("EnglishMakerView — 세 탭", () => {
-  it("머리와 탭 셋 · 첫 탭이 ChatGPT · 화살표로 옮긴다", () => {
+  it("탭 셋부터 시작한다(머리는 뿌리 EnglishStudio 가 그린다) · 첫 탭이 ChatGPT · 화살표로 옮긴다", () => {
     setup();
-    expect(
-      screen.getByRole("heading", { level: 1, name: "문제 만들기" }),
-    ).toBeInTheDocument();
+    expect(screen.queryByRole("heading", { level: 1 })).toBeNull();
     const list = screen.getByRole("tablist", { name: "문제 만들기 방법" });
     const tabs = within(list).getAllByRole("tab");
     expect(tabs.map((el) => el.textContent)).toEqual([

@@ -12,7 +12,6 @@
 import { useId, useState, type KeyboardEvent } from "react";
 
 import WorkProgress from "@/components/unified/WorkProgress";
-import WorkspacePageHeader from "@/components/unified/WorkspacePageHeader";
 import {
   ENGLISH_DIFFICULTIES,
   ENGLISH_GENERATE_MODES,
@@ -557,14 +556,9 @@ export default function EnglishMakerView({
   );
 
   return (
+    // 머리(«문제 만들기» WorkspacePageHeader)와 학교 칩·시험 고르기 줄은 뿌리 EnglishStudio(shell)가 그린다 —
+    // 여기서는 탭 줄부터 시작한다(리드 결정 2026-09-30, 머리·시험 이름이 둘 나오던 자리).
     <div className={s.maker}>
-      <WorkspacePageHeader
-        title="문제 만들기"
-        description="ChatGPT 에서 문제를 만들고, 수업에 맞게 검토하세요."
-      />
-      <p className={s.context}>
-        {exam.school} {exam.grade} · {exam.title}
-      </p>
       <div role="tablist" aria-label="문제 만들기 방법" className={s.tabs}>
         {TABS.map((item) => (
           <button
