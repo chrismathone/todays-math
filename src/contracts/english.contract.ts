@@ -93,7 +93,12 @@ export const ENGLISH_SET_SOURCES = [
 export const englishSetSourceSchema = z.enum(ENGLISH_SET_SOURCES);
 export type EnglishSetSource = z.infer<typeof englishSetSourceSchema>;
 
-export const ENGLISH_MATERIAL_MAX_BYTES = 10 * 1024 * 1024;
+/**
+ * 자료 파일 상한 — 🔴 Vercel Serverless Function 의 요청 본문 상한이 4.5MB 라 10MB 는 라우트에 닿기 전에
+ * 플랫폼이 413 으로 끊는다(base 트랙 보고 ⑤-1, 2026-09-30). 그래서 4MB. 문구는 `ENGLISH_MATERIAL_MAX_LABEL` 하나에서.
+ */
+export const ENGLISH_MATERIAL_MAX_BYTES = 4 * 1024 * 1024;
+export const ENGLISH_MATERIAL_MAX_LABEL = "4MB";
 export const ENGLISH_MATERIAL_CONTENT_MAX = 30_000;
 export const ENGLISH_PASSAGE_MAX = 24_000;
 
