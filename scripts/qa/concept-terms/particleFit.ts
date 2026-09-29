@@ -147,11 +147,12 @@ export const particleGiveaways = (card: {
     if (ok.length === 1 && fits[slot] !== false)
       out.push(`칸 ${slot + 1} — «${ok[0]}» 하나`);
   });
-  // 한 칸에 정답 둘만 맞으면 그 칸은 정답 둘 중 하나로 좁혀진다(리드 검토 A2 L7 — 경우의 수 첫 칸 · 순서 무관 카드도 같다)
+  // 한 칸에 정답 둘만 맞으면 그 칸은 정답 둘 중 하나로 좁혀진다(리드 검토 A2 L7 — 경우의 수 첫 칸 · 순서 무관 카드도 같다).
+  // 정답 말은 판단할 수 없어도(null) «맞을 수 있음»으로 센다 — 오답 둘만 확실히 안 맞으면 좁혀진다(리드 검토 B4 L5)
   slotFits.forEach((fits, slot) => {
     if (
-      fits[0] === true &&
-      fits[1] === true &&
+      fits[0] !== false &&
+      fits[1] !== false &&
       fits[2] === false &&
       fits[3] === false
     )

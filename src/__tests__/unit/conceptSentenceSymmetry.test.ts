@@ -313,6 +313,14 @@ describe("230장 — 조사가 답을 알려 주지 않는다(받침으로 갈�
         words: ["경우", "개수", "평균", "확률"],
       }),
     ).toEqual(["칸 1 — 정답 둘만 맞음"]);
+    // 정답 말을 읽을 수 없어도(로마자 «P») 오답 둘이 안 맞으면 좁혀진다(리드 검토 B4 L5)
+    expect(
+      particleGiveaways({
+        id: "b-two-answers-unknown",
+        pieces: ["", "를 모두 센 ", "."],
+        words: ["P", "개수", "평균", "확률"],
+      }),
+    ).toEqual(["칸 1 — 정답 둘만 맞음"]);
     // 글자 분수도 분자로 읽는다(«360도분의 각») — 정답이 제 조사에 안 맞고 오답만 맞던 부채꼴의 넓이
     expect(
       particleGiveaways({
@@ -397,6 +405,37 @@ describe("원장의 기계 거름 — «조사 어긋남»으로 적은 채움�
         .map((f) => `${entry.id} ${f.slots.join(",")}`);
     });
     expect(wrong).toEqual([]);
+  });
+});
+
+describe("원장의 까닭 — B 가 판정한 카드는 모든 채움에 출처 · 맞바꿈은 늘 3자(리드 검토 B2 M3 · B4 L3)", () => {
+  // 출처: 넓은 검사(후보 1398칸) · 고침안 자문 · 옛 거름 오류 다시 판정 · 맞바꿈 · 애매 다시 — 모두 3자. 기계 거름은 지금 규칙으로도 조사가 어긋나는 칸만.
+  const THREE_WAY = /B (넓은 검사|고침안|다시 판정|맞바꿈 · 애매 다시) 3자/;
+  const MECHANICAL = /조사 어긋남\(기계 (거름|로도)\)/;
+  const bCards = audit.cards.filter((card) =>
+    card.judgedBy.startsWith("3자(B"),
+  );
+  it("B 카드가 179장 넓은 검사 + 고친 카드를 다 덮는다", () => {
+    expect(bCards.length).toBeGreaterThanOrEqual(179);
+  });
+  it("B 카드의 채움은 모두 까닭에 출처(3자 판정 또는 기계 거름)가 있다", () => {
+    const bare = bCards.flatMap((card) =>
+      card.fillings
+        .filter(
+          (f) => !THREE_WAY.test(f.why ?? "") && !MECHANICAL.test(f.why ?? ""),
+        )
+        .map((f) => `${card.id} ${f.slots.join(",")}`),
+    );
+    expect(bare).toEqual([]);
+  });
+  it("맞바꿈(1, 0)은 기계 거름만으로 거짓이 되지 않는다 — 늘 3자 출처가 있다", () => {
+    const machineOnly = bCards.flatMap((card) =>
+      card.fillings
+        .filter((f) => f.slots[0] === 1 && f.slots[1] === 0)
+        .filter((f) => !THREE_WAY.test(f.why ?? ""))
+        .map(() => card.id),
+    );
+    expect(machineOnly).toEqual([]);
   });
 });
 

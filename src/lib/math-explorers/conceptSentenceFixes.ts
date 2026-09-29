@@ -1,10 +1,10 @@
 /**
  * 카드 보정 표 — 원본(`definition-content.ts` · PROVENANCE)은 그대로 두고, 카드를 내보내는 층(`definition-cards.ts` 의
- * `definitionCards`)에서 75장을 덮어쓴다(D-143 ④ · ⑦ · ⑧ — 23장 + 채점 결함 52장). 화면 · 채점 · 복습 · 선수가 모두 같은 카드를 읽는다 — 카드 id 는
+ * `definitionCards`)에서 76장을 덮어쓴다(D-143 ④ · ⑦ · ⑧ — 24장 + 채점 결함 52장). 화면 · 채점 · 복습 · 선수가 모두 같은 카드를 읽는다 — 카드 id 는
  * 그대로라 학생 기록 · 상자 · 교육과정 다리는 이어진다.
  *
  * 결론은 용어 분석 트랙(terms-coverage)의 3자 합의 `docs/reference/concept-terms/card-sentence-fixes.json`
- * (틀림 3 · 빠짐 5 · 낱말 5 · 범위 10 · 채점 52 — 까닭 · 표는 그 파일). 이 표는 그 파일의 `change` 칸을 그대로 옮긴 것이고 시험이
+ * (틀림 3 · 빠짐 5 · 낱말 6 · 범위 10 · 채점 52 — 까닭 · 표는 그 파일). 이 표는 그 파일의 `change` 칸을 그대로 옮긴 것이고 시험이
  * 칸마다 같음을 잠근다(`conceptSentenceFixes.test.ts`). 보정은 빈칸(정답 조각)까지 옮기기도 해서, 카드마다 조립 ·
  * 예 모으기 · 경계 살피기가 새 카드로 풀리는지도 시험이 끝까지 풀어 본다. 🔴 교재 원문은 넣지 않는다(누출 검사 통과본).
  */
@@ -382,7 +382,7 @@ export const cardFixes: Readonly<Record<string, CardFix>> = {
   },
   // 비의 성질 — 채점
   "g6-ratio-simplify": {
-    words: ["0이 아닌 수", "비율", "0", "표"],
+    words: ["0이 아닌 수", "비율", "0인 수", "두 항"],
   },
   // 부채꼴 — 채점
   "g7-sector": {
@@ -419,7 +419,7 @@ export const cardFixes: Readonly<Record<string, CardFix>> = {
   },
   // 크기가 같은 분수 — 채점
   "g5-equivalent": {
-    words: ["0이 아닌 수", "크기", "0", "표"],
+    words: ["0이 아닌 수", "크기", "0인 수", "숫자"],
   },
   // 상대도수 — 채점
   "g7-relative-frequency": {
@@ -428,7 +428,8 @@ export const cardFixes: Readonly<Record<string, CardFix>> = {
   // 도수 — 채점
   "g7-frequency": {
     definition:
-      "정해진 계급에 속하는 자료의 개수이며 전체 도수의 합은 조사한 자료를 모두 센 값이다.",
+      "정해진 계급에 속하는 자료의 개수이며 도수의 총합은 조사한 자료를 모두 센 값이다.",
+    pieces: ["정해진 계급에 속하는 자료의 ", "이며 도수의 총합은 ", "이다."],
     words: [
       "개수",
       "조사한 자료를 모두 센 값",
@@ -494,7 +495,7 @@ export const cardFixes: Readonly<Record<string, CardFix>> = {
   },
   // 몫이 같은 나눗셈 — 채점
   "g6-quotient-invariant": {
-    words: ["0이 아닌 수", "몫", "0", "표"],
+    words: ["0이 아닌 수", "몫", "0인 수", "곱"],
   },
   // 일차식 — 채점
   linear: {
@@ -523,6 +524,11 @@ export const cardFixes: Readonly<Record<string, CardFix>> = {
   // 닮음 — 채점
   "g8-similarity": {
     words: ["확대 또는 축소", "합동", "색칠", "평행"],
+  },
+  // 원주 — 낱말
+  "g6-circumference": {
+    definition: "원 가장자리를 한 바퀴 도는 길이이며 원의 둘레라고도 한다.",
+    pieces: ["원 가장자리를 한 바퀴 도는 ", "이며 원의 ", "라고도 한다."],
   },
 };
 
