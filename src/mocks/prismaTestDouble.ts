@@ -50,6 +50,7 @@ import {
 } from "@/mocks/data";
 import type { MockUnit } from "@/mocks/data/units";
 import { errorLogModels, resetErrorLogTestDouble } from "./errorLogTestDouble";
+import { englishModels, resetEnglishTestDouble } from "./englishTestDouble";
 
 interface ClassRow {
   id: string;
@@ -655,6 +656,7 @@ let conceptLectureViewRows: ConceptLectureViewRow[] = [];
 /** 매 테스트 시작 전 Mock 픽스처 상태로 되돌린다 — 테스트 간 상태 오염 방지. */
 export function resetPrismaTestDouble() {
   resetErrorLogTestDouble();
+  resetEnglishTestDouble();
   classRows = [...MOCK_CLASSES, MOCK_CLASS_OTHER_USER].map(toClassRow);
   studentRows = MOCK_STUDENTS.map(toStudentRow);
   eywaSyncRunRows = [];
@@ -2771,6 +2773,8 @@ export const prismaTestDouble = {
   ...prismaModels,
   // 오류 기록 표 — 따로 둔 대역(errorLogTestDouble.ts 머리말)
   ...errorLogModels,
+  // 오늘의 영어 표 셋 — 따로 둔 대역(englishTestDouble.ts 머리말, D-148)
+  ...englishModels,
   /**
    * 🔴 **배열 형태도 트랜잭션이다.** 예전에는 `Promise.all` 만 하고 롤백을 안 걸었다.
    *    실제 Prisma 의 `$transaction([...])` 은 하나가 실패하면 전부 되돌린다 —
