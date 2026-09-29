@@ -59,7 +59,7 @@
 | 표 | 칸 | 비고 |
 |---|---|---|
 | `english_exam` | id uuid · user_id → user **CASCADE** · school VarChar(80) · grade VarChar(4)(중1~고3) · title VarChar(100) · exam_date **date?** · types **jsonb** `[]`(출제 설정 — 유형 이름 배열) · created_at · updated_at | 색인 (user_id, created_at). SQL 에만: `jsonb_typeof(types)='array'` CHECK |
-| `english_material` | id · exam_id → english_exam **CASCADE** · name VarChar(255) · mime_type VarChar(100) · size int · **bytes bytea?**(파일 원본 ≤10MB) · **content text?**(지문 글 ≤30,000자 — 텍스트 자료, 또는 .txt 파일의 글) · created_at | 색인 (exam_id, created_at). 파일이면 bytes, 글이면 content — 둘 다 null 금지(SQL CHECK) |
+| `english_material` | id · exam_id → english_exam **CASCADE** · name VarChar(255) · mime_type VarChar(100) · size int · **bytes bytea?**(파일 원본 ≤4MB — Vercel 본문 상한 4.5MB, base 보고 ⑤-1) · **content text?**(지문 글 ≤30,000자 — 텍스트 자료, 또는 .txt 파일의 글) · created_at | 색인 (exam_id, created_at). 파일이면 bytes, 글이면 content — 둘 다 null 금지(SQL CHECK) |
 | `english_question_set` | id · exam_id → **CASCADE** · title VarChar(160) · status VarChar(8) `초안|검토 중|검토 완료`(SQL CHECK) · source VarChar(16) `chatgpt|cloze|deepseek|manual`(CHECK) · passage text · **questions jsonb**(문항 배열 — 쓰기 때 계약 strict 검증 · SQL `jsonb_typeof='array'`) · revision int 1 · created_at · updated_at | 색인 (exam_id, updated_at) |
 
 - 세 표 모두 **`ENABLE ROW LEVEL SECURITY`**(2026-09-14 이후 새 표 규칙).
