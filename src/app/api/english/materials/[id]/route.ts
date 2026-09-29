@@ -39,7 +39,12 @@ async function handleGet(request: NextRequest, { params }: RouteContext) {
     "Cache-Control": "private, no-store",
   });
   if (material.bytes) {
-    headers.set("Content-Type", material.mimeType);
+    // text/* 는 charset 을 붙인다 — 아래 텍스트 자료 갈래와 같은 결(검토 F)
+    const type =
+      /^text\//i.test(material.mimeType) && !/charset=/i.test(material.mimeType)
+        ? `${material.mimeType}; charset=utf-8`
+        : material.mimeType;
+    headers.set("Content-Type", type);
     headers.set("Content-Disposition", attachmentDisposition(material.name));
     headers.set("Content-Length", String(material.bytes.byteLength));
     return new Response(new Uint8Array(material.bytes), { headers });

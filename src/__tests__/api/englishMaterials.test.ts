@@ -7,7 +7,7 @@
  * 표본 지문은 우리가 지은 짧은 글이다(교재·출판사 지문 아님).
  */
 import { NextRequest } from "next/server";
-import { beforeEach, describe, expect, it, vi } from "vitest";
+import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 
 type Viewer = {
   id: string;
@@ -123,7 +123,13 @@ const materialUrl = (id: string) => `${ORIGIN}/api/english/materials/${id}`;
 let examId: string;
 let othersExamId: string;
 
+afterEach(() => vi.unstubAllEnvs());
+
 beforeEach(() => {
+  // 🔴 main 의 .env 가 AUTH_URL=http://localhost:3000 을 워커에 싣는다(교훈 2026-09-20 · 검토 A) —
+  //    같은 출처 검사가 요청 origin(http://localhost)과 견주게 둘 다 비운다(선례 classOwner.test.ts)
+  vi.stubEnv("AUTH_URL", "");
+  vi.stubEnv("NEXTAUTH_URL", "");
   sessionState.user = TEACHER;
   seedUsers([
     {
@@ -395,6 +401,49 @@ describe("POST materials — multipart 파일", () => {
   }, 60_000);
 });
 
+describe("POST materials — .txt content 자르기 (검토 E)", () => {
+  const hasLoneSurrogate = (text: string) => {
+    for (let i = 0; i < text.length; i++) {
+      const c = text.charCodeAt(i);
+      if (c >= 0xd800 && c <= 0xdbff) {
+        const n = text.charCodeAt(i + 1);
+        if (!(n >= 0xdc00 && n <= 0xdfff)) return true;
+        i++;
+      } else if (c >= 0xdc00 && c <= 0xdfff) return true;
+    }
+    return false;
+  };
+  const upload = async (text: string) => {
+    const res = await createMaterial(
+      fileRequest(materialsUrl(examId), {
+        name: "long.txt",
+        bytes: new TextEncoder().encode(text),
+      }),
+      withId(examId),
+    );
+    expect(res.status).toBe(201);
+    return (
+      englishMaterialResponseSchema.parse(await res.json()).data.content ?? ""
+    );
+  };
+
+  it("🔴 상한 경계의 이모지 — 서로게이트 쌍 가운데를 끊지 않는다(걸치면 쌍째 뺌 · 딱 들어가면 그대로)", async () => {
+    const straddle = await upload(
+      "a".repeat(ENGLISH_MATERIAL_CONTENT_MAX - 1) + "😀b",
+    );
+    expect(straddle).toBe("a".repeat(ENGLISH_MATERIAL_CONTENT_MAX - 1));
+    expect(hasLoneSurrogate(straddle)).toBe(false);
+    expect(straddle.length).toBeLessThanOrEqual(ENGLISH_MATERIAL_CONTENT_MAX);
+
+    const fits = await upload(
+      "a".repeat(ENGLISH_MATERIAL_CONTENT_MAX - 2) + "😀b",
+    );
+    expect(fits).toBe("a".repeat(ENGLISH_MATERIAL_CONTENT_MAX - 2) + "😀");
+    expect(fits.length).toBe(ENGLISH_MATERIAL_CONTENT_MAX);
+    expect(hasLoneSurrogate(fits)).toBe(false);
+  });
+});
+
 describe("GET materials — 목록", () => {
   it("파일 원본 없이 — hasFile 과 content 만 · 올린 차례대로 · 다른 시험 것은 안 섞인다", async () => {
     const first = seedEnglishMaterial({
@@ -499,6 +548,37 @@ describe("GET /api/english/materials/[id] — 내려받기", () => {
     expect(
       Buffer.from(await res.arrayBuffer()).equals(Buffer.from(bytes)),
     ).toBe(true);
+  });
+
+  it(".txt 파일 원본도 text/plain; charset=utf-8 로 — 텍스트 갈래와 같은 결 (검토 F) · png 는 그대로", async () => {
+    const bytes = new TextEncoder().encode(PASSAGE);
+    const txt = seedEnglishMaterial({
+      examId,
+      name: "passage.txt",
+      mimeType: "text/plain",
+      size: bytes.byteLength,
+      bytes,
+      content: PASSAGE,
+    });
+    const res = await downloadMaterial(
+      jsonRequest(materialUrl(txt.id), "GET"),
+      withId(txt.id),
+    );
+    expect(res.status).toBe(200);
+    expect(res.headers.get("content-type")).toBe("text/plain; charset=utf-8");
+    expect(await res.text()).toBe(PASSAGE);
+    const png = seedEnglishMaterial({
+      examId,
+      name: "a.png",
+      mimeType: "image/png",
+      size: 1,
+      bytes: new Uint8Array([1]),
+    });
+    const image = await downloadMaterial(
+      jsonRequest(materialUrl(png.id), "GET"),
+      withId(png.id),
+    );
+    expect(image.headers.get("content-type")).toBe("image/png");
   });
 
   it("텍스트 자료면 content 를 text/plain; charset=utf-8 로 · 이름에 .txt 를 붙인다", async () => {

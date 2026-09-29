@@ -7,7 +7,7 @@
  * 표본 지문은 우리가 지은 짧은 글이다(교재·출판사 지문 아님).
  */
 import { NextRequest } from "next/server";
-import { beforeEach, describe, expect, it, vi } from "vitest";
+import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 import { z } from "zod";
 
 type Viewer = {
@@ -140,7 +140,13 @@ const setUrl = (id: string) => `${ORIGIN}/api/english/sets/${id}`;
 let examId: string;
 let othersExamId: string;
 
+afterEach(() => vi.unstubAllEnvs());
+
 beforeEach(() => {
+  // 🔴 main 의 .env 가 AUTH_URL=http://localhost:3000 을 워커에 싣는다(교훈 2026-09-20 · 검토 A) —
+  //    같은 출처 검사가 요청 origin(http://localhost)과 견주게 둘 다 비운다(선례 classOwner.test.ts)
+  vi.stubEnv("AUTH_URL", "");
+  vi.stubEnv("NEXTAUTH_URL", "");
   sessionState.user = TEACHER;
   seedUsers([
     {

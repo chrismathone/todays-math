@@ -8,7 +8,7 @@
  * 소유 범위(D-130)는 짝으로 본다 — 같은 요청을 «강사(자기 것만)» · «지점 관리자(지점 전체)» · «다른 지점 관리자» 로.
  */
 import { NextRequest } from "next/server";
-import { beforeEach, describe, expect, it, vi } from "vitest";
+import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 
 type Viewer = {
   id: string;
@@ -69,12 +69,6 @@ const TEACHER: Viewer = {
   name: "김원장",
   isAdmin: false,
 };
-const OTHER: Viewer = {
-  id: USER_OTHER_ID,
-  email: "other-teacher@example.com",
-  name: "박강사",
-  isAdmin: false,
-};
 const BRANCH_TEACHER: Viewer = {
   id: BRANCH_TEACHER_ID,
   email: "branch-teacher@example.com",
@@ -120,7 +114,13 @@ const withId = (id: string) => ({ params: Promise.resolve({ id }) });
 const examUrl = (id?: string) =>
   `${ORIGIN}/api/english/exams${id ? `/${id}` : ""}`;
 
+afterEach(() => vi.unstubAllEnvs());
+
 beforeEach(() => {
+  // 🔴 main 의 .env 가 AUTH_URL=http://localhost:3000 을 워커에 싣는다(교훈 2026-09-20 · 검토 A) —
+  //    같은 출처 검사가 요청 origin(http://localhost)과 견주게 둘 다 비운다(선례 classOwner.test.ts)
+  vi.stubEnv("AUTH_URL", "");
+  vi.stubEnv("NEXTAUTH_URL", "");
   sessionState.user = TEACHER;
   seedUsers([
     {

@@ -20,6 +20,8 @@
  *          · `english_question_set.exam_id → english_exam(id)` **CASCADE**
  *   ⑷ 색인 — (user_id, created_at) · (exam_id, created_at) · (exam_id, updated_at)
  *   ⑸ CHECK — grade · types 배열 · 자료 본문(bytes 또는 content) · size ≥ 0 · status · source · questions 배열 · revision ≥ 1 (여덟)
+ *          — 이름만이 아니라 **정의문**(`pg_get_constraintdef`)을 본다: 값 목록은 계약 상수(ENGLISH_GRADES ·
+ *          ENGLISH_SET_STATUSES · ENGLISH_SET_SOURCES)와 집합으로 같아야 하고, 식은 기대 모양과 맞아야 한다(검토 D)
  *   ⑹ RLS — 세 표 모두 켜짐(Supabase 공개 API 로 새지 않게)
  *   ⑺ 🔴 기존 표 무변경 — 적용 전후 `user` 행 수가 같다
  *
@@ -30,6 +32,12 @@ import { createHash } from "node:crypto";
 import { readFileSync } from "node:fs";
 
 import { PrismaClient } from "@prisma/client";
+
+import {
+  ENGLISH_GRADES,
+  ENGLISH_SET_SOURCES,
+  ENGLISH_SET_STATUSES,
+} from "@/contracts/english.contract";
 
 const MIGRATION_NAME = "20260930120000_english_studio";
 const MIGRATION_PATH = `prisma/migrations/${MIGRATION_NAME}/migration.sql`;
@@ -100,18 +108,53 @@ const EXPECTED_INDEXES: Record<string, string[]> = {
   english_material: ["english_material_exam_id_created_at_idx"],
   english_question_set: ["english_question_set_exam_id_updated_at_idx"],
 };
-const EXPECTED_CHECKS: Record<string, string[]> = {
-  english_exam: ["english_exam_grade_check", "english_exam_types_array"],
-  english_material: [
-    "english_material_has_body",
-    "english_material_size_nonnegative",
-  ],
-  english_question_set: [
-    "english_question_set_status_check",
-    "english_question_set_source_check",
-    "english_question_set_questions_array",
-    "english_question_set_positive_revision",
-  ],
+type CheckVerdict = (def: string) => string | null;
+
+/**
+ * `IN ('a', 'b')` 는 PG 가 `= ANY ((ARRAY['a'::character varying, …])::text[])` 로 다시 적는다 —
+ * 따옴표 값만 뽑아 **집합**으로 견준다(순서 무관 · 빠짐도 남음도 잡는다).
+ */
+function quotedValues(def: string): string[] {
+  return [...def.matchAll(/'((?:[^']|'')*)'::(?:character varying|text)/g)].map(
+    (m) => m[1]!.replaceAll("''", "'"),
+  );
+}
+const valueList =
+  (column: string, values: readonly string[]): CheckVerdict =>
+  (def) => {
+    if (!def.includes(column)) return `${column} 칸을 안 본다`;
+    const found = [...new Set(quotedValues(def))].sort().join("|");
+    const want = [...values].sort().join("|");
+    return found === want ? null : `값 목록이 다르다: [${found}] ≠ [${want}]`;
+  };
+const pattern =
+  (re: RegExp): CheckVerdict =>
+  (def) =>
+    re.test(def) ? null : `식이 ${re} 와 맞지 않는다`;
+
+/** 표별 CHECK — 이름 → 정의문 판정(검토 D: 이름만 세면 식이 틀려도 초록) */
+const EXPECTED_CHECKS: Record<string, Record<string, CheckVerdict>> = {
+  english_exam: {
+    english_exam_grade_check: valueList("grade", ENGLISH_GRADES),
+    english_exam_types_array: pattern(/jsonb_typeof\(types\) = 'array'/),
+  },
+  english_material: {
+    english_material_has_body: pattern(
+      /bytes IS NOT NULL[\s\S]*OR[\s\S]*content IS NOT NULL/,
+    ),
+    english_material_size_nonnegative: pattern(/size >= 0/),
+  },
+  english_question_set: {
+    english_question_set_status_check: valueList(
+      "status",
+      ENGLISH_SET_STATUSES,
+    ),
+    english_question_set_source_check: valueList("source", ENGLISH_SET_SOURCES),
+    english_question_set_questions_array: pattern(
+      /jsonb_typeof\(questions\) = 'array'/,
+    ),
+    english_question_set_positive_revision: pattern(/revision >= 1/),
+  },
 };
 
 const REVERT_SQL = `
@@ -245,14 +288,21 @@ async function check(tx: Tx, usersBefore: number): Promise<void> {
   }
   for (const [table, wanted] of Object.entries(EXPECTED_CHECKS)) {
     const checks = (await tx.$queryRawUnsafe(
-      `SELECT k.conname FROM pg_constraint k
+      `SELECT k.conname, pg_get_constraintdef(k.oid) AS def FROM pg_constraint k
         WHERE k.conrelid = $1::regclass AND k.contype = 'c'`,
       `public.${table}`,
-    )) as Array<{ conname: string }>;
-    const names = new Set(checks.map((c) => c.conname));
-    console.log(`  ⑸ ${table} CHECK — ${[...names].sort().join(", ")}`);
-    for (const name of wanted)
-      if (!names.has(name)) throw new Error(`CHECK ${name} 가 없다`);
+    )) as Array<{ conname: string; def: string }>;
+    const defs = new Map(checks.map((c) => [c.conname, c.def]));
+    console.log(`  ⑸ ${table} CHECK — ${[...defs.keys()].sort().join(", ")}`);
+    for (const [name, verify] of Object.entries(wanted)) {
+      const def = defs.get(name);
+      if (def === undefined) throw new Error(`CHECK ${name} 가 없다`);
+      const why = verify(def);
+      if (why)
+        throw new Error(
+          `CHECK ${name} 의 정의문이 기대와 다르다 — ${why}\n    ${def}`,
+        );
+    }
   }
   const rls = (await tx.$queryRawUnsafe(
     `SELECT relname, relrowsecurity FROM pg_class
@@ -315,7 +365,17 @@ async function main() {
     MIGRATION_NAME,
   )) as unknown[];
   if (already.length > 0) {
-    console.log("이미 적용돼 있다. 아무것도 하지 않는다.");
+    // 기록만 믿지 않는다(검토 C) — 손으로 표를 지운 뒤 «이미 적용»으로 조용히 넘어가지 않게 세 표를 같이 본다
+    const missing: string[] = [];
+    for (const table of TABLES)
+      if (!(await tableExists(prisma, table))) missing.push(table);
+    if (missing.length)
+      throw new Error(
+        `기록은 있는데 표가 없다: ${missing.join(", ")} — _prisma_migrations 와 실제 표가 어긋났다. 먼저 확인할 것`,
+      );
+    console.log(
+      "이미 적용돼 있다(기록 · 표 셋 모두 있음). 아무것도 하지 않는다.",
+    );
     return;
   }
   await checkPrecondition();

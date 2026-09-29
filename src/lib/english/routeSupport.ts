@@ -109,6 +109,16 @@ export function contentLengthExceeds(request: Request): boolean {
   );
 }
 
+/**
+ * UTF-16 단위 상한으로 자르되 **서로게이트 쌍 가운데를 끊지 않는다**(검토 E). 계약의 `max` 는 `.length`(UTF-16 단위)를
+ * 세므로 코드포인트 수로 자르면 상한을 넘길 수 있다 — 단위로 자르고, 끝이 높은 서로게이트면 그 한 단위를 뺀다.
+ */
+export function clampUtf16(text: string, max: number): string {
+  const cut = text.slice(0, max);
+  const last = cut.charCodeAt(cut.length - 1);
+  return last >= 0xd800 && last <= 0xdbff ? cut.slice(0, -1) : cut;
+}
+
 /** `Content-Disposition: attachment` — 아스키 대체 이름과 RFC 5987 UTF-8 이름을 같이 */
 export function attachmentDisposition(name: string): string {
   const ascii = name.replace(/[^\x20-\x7e]/g, "_").replace(/["\\]/g, "_");

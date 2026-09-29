@@ -23,6 +23,7 @@ import { db } from "@/lib/db";
 import {
   ENGLISH_MATERIAL_MIME_BY_EXTENSION,
   ENGLISH_ROUTE_MESSAGES,
+  clampUtf16,
   contentLengthExceeds,
   englishMaterialExtension,
   payloadTooLarge,
@@ -99,13 +100,14 @@ async function createFromMultipart(request: NextRequest, examId: string) {
 
   const bytes = new Uint8Array(await file.arrayBuffer());
   if (bytes.byteLength > ENGLISH_MATERIAL_MAX_BYTES) return payloadTooLarge();
-  // .txt 는 지문 글도 같이 — 문제 제작이 바로 쓴다. 계약 상한(30,000자)을 넘는 뒷부분은 싣지 않는다(원본은 bytes 에 그대로)
+  // .txt 는 지문 글도 같이 — 문제 제작이 바로 쓴다. 계약 상한(30,000자)을 넘는 뒷부분은 싣지 않는다(원본은 bytes 에 그대로).
+  // 서로게이트 쌍 가운데를 끊지 않는다(검토 E — 고립 서로게이트가 DB 로 가지 않게)
   const content =
     ext === "txt"
-      ? new TextDecoder("utf-8")
-          .decode(bytes)
-          .trim()
-          .slice(0, ENGLISH_MATERIAL_CONTENT_MAX)
+      ? clampUtf16(
+          new TextDecoder("utf-8").decode(bytes).trim(),
+          ENGLISH_MATERIAL_CONTENT_MAX,
+        )
       : null;
 
   const created = await db.englishMaterial.create({
