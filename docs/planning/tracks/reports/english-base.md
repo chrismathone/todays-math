@@ -77,7 +77,8 @@ npx vitest run src/__tests__/api/englishExams.test.ts src/__tests__/api/englishM
   src/__tests__/unit/examWiringAudit.test.ts src/__tests__/unit/prismaTestDoubleSnapshot.test.ts src/__tests__/unit/withErrorLog.test.ts \
   src/__tests__/unit/contracts.smoke.test.ts src/__tests__/unit/ownerScope.test.ts src/__tests__/api/adminSeesAll.test.ts
 → Test Files 15 passed (15) · Tests 275 passed (275)
-npm run lint            → 0 errors (경고 62 — 전부 기존 파일: review.contract · elementary · middle · math-explorers · unifiedPreview. 영어 파일 0)
+검토 후속 뒤: 관련 10파일 169건 통과 · 🔴 AUTH_URL=http://localhost:3000 npx vitest run <API 시험 셋> → 3파일 70건 통과(main 의 .env 를 흉내 낸 재현 — 스텁 전에는 54건이 403 이었다, 검토 A)
+npm run lint            → 0 errors (경고 62 — 전부 기존 파일: review.contract · elementary · middle · math-explorers · unifiedPreview). 영어 파일의 경고는 처음에 1 이었다(`englishExams.test.ts` 미사용 `OTHER` — 검토 G) → 지웠고 `eslint --max-warnings=0` 으로 영어 파일 전부 0 확인
 npm run lint:affordance → 통과
 npx tsc --noEmit        → 오류 0 (기준 커밋의 오류 1건은 리드 946cccacb 가 고쳤고 병합됨)
 npx prettier --check    → 새 파일 전부 통과 · 고친 기존 파일 둘은 --strip-trailing-cr diff 로 차이 없음
@@ -133,6 +134,7 @@ npx prettier --check    → 새 파일 전부 통과 · 고친 기존 파일 둘
 
 1. ~~Vercel Serverless Function 의 요청 본문 상한 4.5MB 에 10MB 파일이 먼저 막힌다~~ → **리드가 받아들여 계약 상한을 4MB 로 내렸다**(2de827cc3 · `ENGLISH_MATERIAL_MAX_BYTES` = 4MB · 문구는 `ENGLISH_MATERIAL_MAX_LABEL`). 라우트 문구·주석·경계 시험은 그 상수에서 끌어 쓴다 — 숫자를 손으로 적은 자리가 없다. 4.5MB 와 4MB 사이 겉봉 여유(64KiB)는 그대로 들어간다.
 2. **실제 DB 로 한 번도 안 돌렸다.** 대역이 흉내 낸 것 — `update where {id, revision}`(Prisma 5+ extendedWhereUnique) · `bytes: {not: null}` 필터 · `include._count` · `Bytes`(Uint8Array) 를 `Response` 본문으로 · `@db.Date` 왕복 — 은 main 에서 드라이런 뒤 표본 한 번(시험 하나 · 자료 하나 · 세트 저장·고치기)으로 확인해야 한다(교훈 2026-09-20 «없어서 초록인 것은 안 보인다»).
+2-1. **`prismaTestDouble.$transaction` 의 스냅샷은 영어 행을 안 덮는다**(검토 H — 설계: 영어 라우트는 tx 를 안 쓴다, `englishTestDouble.ts` 머리말). 누가 tx 안에서 영어 표를 만지면 실패한 트랜잭션의 영어 행이 조용히 남는다 — `prismaTestDoubleSnapshot` 은 그 파일의 `let *Rows` 만 세므로 못 잡는다. 그때는 영어 행 배열을 스냅샷에 넣거나(같은 파일로 합치기) 대역을 `$transaction` 에 연결해야 한다.
 3. **CHECK 가 계약 값과 글자로 묶여 있다** — 학년·상태·출처 값을 계약에 더하면 새 마이그레이션 없이는 DB 가 거절한다(조용히 통과하지 않는다 — 의도한 것).
 4. **RLS 는 켰고 정책은 없다** — 앱은 Prisma 직결로 소유 범위를 걸어 읽는다(다른 새 표와 같은 관례). Supabase 공개 API 로는 못 읽는다.
 5. `content-length` 가 없는(chunked) 요청은 다 받은 뒤에야 잰다 — 플랫폼 상한이 먼저 막으므로 실질 위험은 작다.
@@ -148,6 +150,14 @@ npx prettier --check    → 새 파일 전부 통과 · 고친 기존 파일 둘
 
 ---
 
-## ⑦ 후속 커밋
+## ⑦ 검토 후속 (리드 적대적 검토 — 판정 «조건부 병합 가능», 병합 대상 f859d93e6 → 후속 커밋들)
 
 - **8d84bd920** — 울타리 ⑴ 예외: ai 트랙의 실물 탐침 `scripts/qa/probe-english-generate-live.ts` 를 `NEVER_FORBIDDEN` 에 두고 `isForbidden` 이 그 목록을 먼저 보게 했다(리드 D1, 2026-09-30). `scripts/` 의 나머지는 그대로 금지 · 합성 간선 변이는 그대로 빨강. 25 §6 문서는 리드가 병합 때 고친다.
+- **fe2e279ad** — 검토 A·C·D·E·F·G.
+  - A 🔴 API 시험 셋 `beforeEach` 첫 줄에 `vi.stubEnv("AUTH_URL", "")` · `vi.stubEnv("NEXTAUTH_URL", "")`(+ `afterEach(vi.unstubAllEnvs)`, 선례 `classOwner.test.ts`) — main 의 `.env`(`AUTH_URL=http://localhost:3000`)가 워커에 실려 같은 출처 검사가 403 을 내던 자리. 워크트리에서 `AUTH_URL=http://localhost:3000` 으로 재현해 70/70.
+  - C 🟡 적용 스크립트 «이미 적용» 판정 — `_prisma_migrations` 기록이 있으면 세 표 `to_regclass` 도 보고, 하나라도 없으면 «기록은 있는데 표가 없다» throw(exit 1).
+  - D 🟡 `check()` 가 CHECK 를 `pg_get_constraintdef` 정의문으로 대조 — 학년·상태·출처 목록은 계약 상수(`ENGLISH_GRADES` · `ENGLISH_SET_STATUSES` · `ENGLISH_SET_SOURCES`)와 **집합**으로 같아야(빠짐·남음 모두 빨강), 배열·본문·크기·revision 식은 기대 모양과 맞아야 한다. ⚠️ PG 의 `IN` 재작성 모양(`= ANY (ARRAY['…'::character varying…])`)을 전제로 따옴표 값을 뽑는다 — 드라이런에서 모양이 다르면 정의문을 찍고 멈춘다(열린 채 통과하지 않는다).
+  - E 🟡 `.txt` `content` 자르기 — `clampUtf16`(UTF-16 단위로 자르되 끝의 높은 서로게이트를 뺀다; 코드포인트로 자르면 계약 `max`(UTF-16 `.length`)를 넘길 수 있어 이쪽). 시험: 상한 경계의 이모지(걸치면 쌍째 뺌 · 딱 들어가면 그대로 · 고립 서로게이트 0).
+  - F 🟡 `.txt` 파일 원본 내려받기도 `text/plain; charset=utf-8`(text/* 면 charset 통일). 시험: txt 는 charset 붙고 png 는 그대로.
+  - G 🟡 미사용 `OTHER` 제거 · 보고서 lint 문장 정정(②).
+  - 기록만: I 인자 차례 `(viewer, examId)` 유지(ai 트랙 `examLookup.ts` 가 전제) · H 는 ⑤ 2-1 에 적음.
