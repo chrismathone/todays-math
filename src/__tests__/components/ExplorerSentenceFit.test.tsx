@@ -58,6 +58,8 @@ const activity: ExplorerActivity = {
 const layout = {
   paneHeight: 250,
   end: (scale: number, filled: number) => 260 * scale + 30 * filled,
+  /** CSS 기준 글자 크기 — 좁은 폭 19px(바닥 0.8 = 15.2px) · 넓은 폭 22px(바닥 0.7 = 15.4px). */
+  basePx: 19,
 };
 const pane = () =>
   document.querySelector<HTMLElement>("[data-page-turn=true]")!;
@@ -99,6 +101,21 @@ beforeEach(() => {
   observers = [];
   layout.paneHeight = 250;
   layout.end = (scale, filled) => 260 * scale + 30 * filled;
+  layout.basePx = 19;
+  // jsdom 은 CSS 모듈을 싣지 않는다 — 문장의 계산된 글자 크기만 «기준 × 배율»로 돌려준다(다른 속성은 jsdom 그대로).
+  const computed = window.getComputedStyle;
+  vi.spyOn(window, "getComputedStyle").mockImplementation((node, pseudo) => {
+    const style = computed(node, pseudo);
+    if (!(node as Element).matches?.("[data-assembly-sentence]")) return style;
+    return new Proxy(style, {
+      get(target, key) {
+        if (key === "fontSize")
+          return `${layout.basePx * drawnScale(node as HTMLElement)}px`;
+        const value = Reflect.get(target, key);
+        return typeof value === "function" ? value.bind(target) : value;
+      },
+    });
+  });
   vi.stubGlobal("ResizeObserver", FakeResizeObserver);
   vi.stubGlobal("requestAnimationFrame", (callback: FrameRequestCallback) => {
     callback(0);
@@ -163,6 +180,20 @@ describe("assembly sentence fit", () => {
 
   it("stops at the floor and leaves the rest to the pane scroll", () => {
     layout.end = () => 400;
+    fixture();
+    expect(sentence()).toHaveAttribute("data-fit", "0.8"); // 좁은 폭 19px — 15.2px 에서 멈춤
+  });
+
+  it("goes one step further on a wide phone, where 0.7 is still 15px of text", () => {
+    // 넓은 폭 22px: 0.8배(17.6px)에서도 빈칸 단추 아래 테두리가 몇 px 칸 밖 — 0.7배(15.4px)면 들어간다.
+    layout.basePx = 22;
+    layout.end = (scale) => (scale > 0.75 ? 255 : 240);
+    fixture();
+    expect(sentence()).toHaveAttribute("data-fit", "0.7");
+  });
+
+  it("does not go below 15px of text on a narrow phone even if 0.7 would fit", () => {
+    layout.end = (scale) => (scale > 0.75 ? 255 : 240);
     fixture();
     expect(sentence()).toHaveAttribute("data-fit", "0.8");
   });

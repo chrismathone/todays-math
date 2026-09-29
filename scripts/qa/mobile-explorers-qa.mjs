@@ -1968,7 +1968,7 @@ const fitFindings = [];
 // 넘칠 때만 글씨 줄이기(원장님 2026-09-29, D-143) 뒤로 더 적는 것 — `full`·`first` 판정은 그대로(바꾸기 전과 견준다):
 //   fit    제품이 고른 배율(`data-fit`, 없으면 1)
 //   slots  빈칸 단추 상자까지 넣은 끝이 칸 안인가 — 단추(최소 높이 42px · 가운데 맞춤)는 글보다 아래로 내려와 `full` 이 못 본다
-//   trial  배율을 1 · 0.9 · 0.8 · 0.7 로 눌러 대 본 `slots` 판정(바닥을 고르는 근거 — 제품이 쓰지 않는 0.7 까지)
+//   trial  배율을 1 · 0.9 · 0.8 · 0.7 로 눌러 대 본 `slots` 판정(바닥을 고른 근거 — 제품은 글자 15px 까지만, 좁은 폭은 0.8 에서 멈춤)
 //   over   지금 넘친 px(단추 포함, 넘치지 않으면 0) · pane 문제 칸 높이
 const FIT_TRIAL_STEPS = [1, 0.9, 0.8, 0.7];
 async function fitNow(page) {
@@ -2142,6 +2142,9 @@ async function fitSupplementScenario({ page, sim, mobile, width, height, step },
       handled = sim.handled;
       await tap(page.getByRole("button", { name: "← 진도판" }), mobile);
       await homeReady(page);
+      // 도감에서 시작한 한 장이라 나오면 도감으로 돌아온다 — 그 시트가 뜬 뒤에 다음 카드로(WebKit 에서 시트가 늦게 떠
+      // «도감» 단추를 누르려다 시트에 가려 멈췄다).
+      await expect(page.getByRole("dialog", { name: "나의 개념 도감" })).toBeVisible({ timeout: 10000 });
       await until(() => sim.requests === sim.handled, "보충 나간 뒤 응답");
     }
     return `보충 ${shelf.length}장 · 잰 화면 ${measured}`;

@@ -9,23 +9,42 @@ import { useLayoutEffect, useRef, useState, type RefObject } from "react";
  * 문장이 칸 안에 다 안 들어갈 때만 **그 문장** 글씨를 한두 단계 줄인다 — 들어가는 문장은 지금 크기 그대로,
  * 바닥에서도 넘치면 지금처럼 칸 스크롤. 자르기(«…») · 마우스 올리기 펼침은 하지 않는다(빈칸이 가려지고 폰엔 hover 가 없다).
  *
- * 배율은 CSS 기준 크기(넓은 폭 22px · 좁은 폭 19px)에 곱한다(`--sentence-fit`) — 1 → 0.9 → 0.8,
- * 좁은 폭이면 19 → 17.1 → 15.2px(보기 글 14px 밑으로 안 내려간다). 문장은 읽는 글이라 보기 단추 맞춤(0.7)보다 바닥이 높다.
+ * 배율은 CSS 기준 크기(넓은 폭 22px · 좁은 폭 19px)에 곱한다(`--sentence-fit`) — 1 → 0.9 → 0.8 → 0.7, 단 **글자 15px 밑으로는
+ * 안 간다**: 넓은 폭은 22 → 19.8 → 17.6 → 15.4px, 좁은 폭은 19 → 17.1 → 15.2px 에서 멈춘다(0.7 은 13.3px — 보기 글 14px 밑).
+ * 1차 3자 합의는 바닥 0.8(3:0)이었고, 실측(230장 × 네 폭)에서 360 · 390 에 남은 넘침이 전부 «글은 보이고 빈칸 단추 아래
+ * 테두리만 3~7px» 라 0.7 이면 다 들어가 2차에서 «글자 바닥 15px»로 정했다(2026-09-29).
  */
-export const SENTENCE_FIT_STEPS = [1, 0.9, 0.8] as const;
+export const SENTENCE_FIT_STEPS = [1, 0.9, 0.8, 0.7] as const;
+/** 줄여서 내려가는 글자 크기의 바닥(px). */
+export const SENTENCE_MIN_PX = 15;
+/** 기준 글자 크기를 모를 때의 바닥 — 1차 합의 0.8. */
+const UNKNOWN_BASE_FLOOR = 0.8;
+
+/** 그 기준 글자 크기(px)에서 쓸 수 있는 단계 — 1배는 늘 든다. */
+export function sentenceSteps(basePx: number): number[] {
+  return SENTENCE_FIT_STEPS.filter((step) =>
+    step === 1
+      ? true
+      : Number.isFinite(basePx)
+        ? basePx * step >= SENTENCE_MIN_PX - 0.01
+        : step >= UNKNOWN_BASE_FLOOR,
+  );
+}
 
 /**
  * 들어가는 가장 큰 단계. `bottomAt(step)` 은 그 단계로 그렸을 때 문장 끝(칸 스크롤을 맨 위로 둔 자리),
- * `limit` 는 칸의 보이는 아래 끝. 0.5px 는 반올림 여유. `from` 보다 큰 단계는 대 보지 않는다. 다 넘치면 바닥.
+ * `limit` 는 칸의 보이는 아래 끝. 0.5px 는 반올림 여유. `from` 보다 큰 단계는 대 보지 않는다. 다 넘치면 바닥(`steps` 끝).
  */
 export function pickSentenceStep(
   bottomAt: (step: number) => number,
   limit: number,
   from = 1,
+  steps: readonly number[] = SENTENCE_FIT_STEPS,
 ): number {
-  const steps = SENTENCE_FIT_STEPS.filter((step) => step <= from);
-  for (const step of steps) if (bottomAt(step) <= limit + 0.5) return step;
-  return SENTENCE_FIT_STEPS[SENTENCE_FIT_STEPS.length - 1];
+  const tries = steps.filter((step) => step <= from);
+  for (const step of tries) if (bottomAt(step) <= limit + 0.5) return step;
+  // `from` 이 이 폭의 바닥보다 작으면(좁은 폭으로 바뀐 직후) 이 폭의 바닥으로 — 15px 밑에 머물지 않는다.
+  return tries.at(-1) ?? steps.at(-1) ?? 1;
 }
 
 /** 문장 끝 — 그려진 상자(글줄 · 빈칸 단추) 가운데 가장 아래. 빈 상자(조각 사이 접힌 공백)는 뺀다. */
@@ -138,6 +157,9 @@ function measureSentenceStep(
   try {
     const outer = box.getBoundingClientRect();
     const limit = outer.top + box.clientTop + box.clientHeight;
+    // 이 폭의 기준 글자 크기(22px · 좁은 폭 19px) — 1배로 두고 읽는다. 15px 밑으로 가는 단계는 안 쓴다.
+    words.style.setProperty("--sentence-fit", "1");
+    const basePx = parseFloat(getComputedStyle(words).fontSize);
     return pickSentenceStep(
       (step) => {
         words.style.setProperty("--sentence-fit", String(step));
@@ -153,6 +175,7 @@ function measureSentenceStep(
       },
       limit,
       from,
+      sentenceSteps(basePx),
     );
   } finally {
     if (drawn) words.style.setProperty("--sentence-fit", drawn);
