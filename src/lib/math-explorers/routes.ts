@@ -191,10 +191,7 @@ export async function handleExplorerRequest(
         await request.json().catch(() => undefined),
       );
       if (!parsed.success) return noStore(validationError(parsed.error));
-      if (
-        parsed.data.studentId !== undefined &&
-        parsed.data.studentId !== studentId
-      )
+      if (parsed.data.studentId !== studentId)
         return noStore(jsonError("CONFLICT", STUDENT_CHANGED_MESSAGE, 409));
       const changed = await changeExplorer(studentId, parsed.data, now);
       saved = changed;

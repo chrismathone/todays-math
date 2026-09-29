@@ -186,6 +186,7 @@ function server(initial: StoredExplorer) {
         requestId: crypto.randomUUID(),
         expectedRevision: revision,
         action: { type: "chest", chestId },
+        studentId: student.id,
       });
     },
     /** 이후 응답에 실을 오늘의 탐험(D-144 칸 효과를 켜는 값). */
@@ -874,7 +875,7 @@ describe("chest press — another student signs in while a line is saving", () =
       }),
     );
     let signedIn = studentA.id;
-    const posts: (ExplorerRequest & { studentId?: string })[] = [];
+    const posts: ExplorerRequest[] = [];
     const held: (() => void)[] = [];
     let holding = false;
     const view = (id: string, feedback: unknown = null) => {
@@ -912,11 +913,9 @@ describe("chest press — another student signs in while a line is saving", () =
         const cookie = signedIn;
         if (!options?.body)
           return new Response(JSON.stringify({ data: view(cookie) }));
-        const input = JSON.parse(options.body as string) as ExplorerRequest & {
-          studentId?: string;
-        };
+        const input = JSON.parse(options.body as string) as ExplorerRequest;
         posts.push(input);
-        if (input.studentId !== undefined && input.studentId !== cookie)
+        if (input.studentId !== cookie)
           return new Response(
             JSON.stringify({
               error: {

@@ -101,7 +101,7 @@ const post = (body: unknown) =>
     new Request(`${base}${path}`, {
       method: "POST",
       headers: { origin: base, "Content-Type": "application/json" },
-      body: JSON.stringify(body),
+      body: JSON.stringify({ studentId: f.studentId, ...(body as object) }),
     }),
   );
 const data = async (response: Response) => {
