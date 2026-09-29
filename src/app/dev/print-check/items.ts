@@ -2485,6 +2485,69 @@ export const ITEMS: PrintCheckItem[] = [
       "🔴 한글에서 여는 것까지가 검수다(시험은 변환 문자열까지만 봤다 — 규칙 9 로 한글 COM 을 안 돌렸다).",
     changedOn: "2026-09-26",
   },
+  {
+    id: "english-student-a4",
+    title: "오늘의 영어 — 학생용 A4 (새 지면 · 1단 · 배점 없음)",
+    changed:
+      "둘째 제품 «오늘의 영어»(D-148)의 첫 지면. `A4Page` 경계·종이색·서체 변수만 수학과 같이 쓰고 **1단**으로 " +
+      "새로 그렸다(수학 2단 폭·장당 2문항·`.paperParity` 안 씀). 머리 «오늘의 영어 · 학원 | 학생용 · 검토 상태» · " +
+      "세트 제목 · «학교 학년 · 시험» · 이름·날짜 줄 → 지문 상자(세리프 12pt · 줄 간격 1.9 · 얇은 테두리 · " +
+      "`pre-wrap`) → 문항(«1. 발문» · 보기 ①~⑤ · 서술형·원문 복원은 50px 밑줄 답란). 쪽은 문단·문항 높이를 " +
+      "숨은 틀에서 재어 나눈다(한 쪽보다 긴 블록은 혼자 한 쪽 + 미리보기 경고). 배점은 어디에도 없다(원장님 ⑻).",
+    look:
+      "(제안) 학생용으로 인쇄해 ① 지문 상자가 쪽 아래에서 **잘리지 않는가**(상자 테두리가 네 변 다 있는가, " +
+      "다음 쪽으로 이어지면 «지문 (이어짐)» 상자로 이어지는가). ② 문항이 **쪽 경계에서 갈리지 않는가**(보기 ①~⑤ 가 " +
+      "한 쪽에 다 있는가). ③ 지문·보기의 영어가 **세리프**로 찍히는가 — 고딕(Malgun Gothic 류)으로 나오면 글꼴 대체다. " +
+      "④ 서술형·원문 복원의 **답란 밑줄이 옅지 않은가**(1px 검정이 종이에서 보이는가). ⑤ **배점·점수 글자가 " +
+      "한 글자라도 보이면 불합격**. ⑥ 머리의 «검토 완료» 상태 글자·이름·날짜 줄·꼬리 «p. N / M» 이 있는가. " +
+      "⑦ 정답·해설·근거가 학생용에 새지 않았는가.",
+    lookFromSource: false,
+    evidence: [
+      "docs/planning/25-english-studio.md §5",
+      "docs/planning/05-design-system.md §8.23 (인쇄 행)",
+      "docs/planning/tracks/briefs/english-print.md §1 · §4",
+      "src/components/english/print/EnglishPaper.tsx",
+      "src/components/english/print/EnglishPrint.module.css",
+      "src/components/english/print/englishPaperLayout.ts (쪽 나눔)",
+      "src/__tests__/components/EnglishPrintPaper.test.tsx",
+      "src/app/(main)/english/sets/[id]/print/page.tsx (인쇄 경로 /english/sets/{세트id}/print?view=student)",
+    ],
+    scale: "오늘의 영어 세트 전부(새 제품 — 기존 문항 0건)",
+    status: "대기",
+    needs:
+      "검토 완료 세트 하나 — 객관식 2 · 서술형 1 · 원문 복원 1. 지문에 빈 줄이 든 것(문단 둘 이상)이면 " +
+      "«이어짐» 상자까지 본다. 🔴 라우트는 base 트랙 병합 뒤에 붙는다 — 그 전에는 뽑을 화면이 없다.",
+    changedOn: "2026-09-30",
+  },
+  {
+    id: "english-teacher-a4",
+    title: "오늘의 영어 — 교사용 A4 (정답·해설·근거 상자 · 회색 면)",
+    changed:
+      "학생용과 같은 지면에 문항마다 **정답·해설·근거 상자**를 얹는다 — 회색 면(#e8e8eb) + 왼쪽 3px 회색 선 " +
+      "(지면 규약 — 화면의 왼쪽 색 막대 금지 D-30 과 무관). 객관식 정답은 ③ 처럼 보기 번호 글자, 서술형·원문 복원은 " +
+      "정답 글. 머리는 «교사용 · 정답 및 해설 · 검토 상태». 답란은 교사용에 없다(그 자리에 상자).",
+    look:
+      "(제안) 교사용으로 인쇄해 ① 상자의 **회색 면이 종이에 찍히는가**(흰 종이에 면이 안 보이면 브라우저 " +
+      "«배경 그래픽» 설정을 켜고 다시 — 그래도 안 나오면 불합격). ② 왼쪽 3px 선이 보이는가. ③ 상자 안 «정답·해설·근거» " +
+      "이름표와 본문이 겹치지 않는가(근거 영어 문장이 세리프인가). ④ 상자가 붙은 문항이 학생용보다 길어져 **쪽 경계에서 " +
+      "갈리지 않는가**. ⑤ **배점·점수 글자가 보이면 불합격**. ⑥ 학생용과 문항 번호·보기 순서가 같은가.",
+    lookFromSource: false,
+    evidence: [
+      "docs/planning/25-english-studio.md §5",
+      "docs/planning/05-design-system.md §8.23 (인쇄 행)",
+      "docs/planning/tracks/briefs/english-print.md §1 · §4",
+      "src/components/english/print/EnglishPaper.tsx (QuestionBlock — teacherBox)",
+      "src/components/english/print/EnglishPrint.module.css (.teacherBox)",
+      "src/__tests__/components/EnglishPrintPaper.test.tsx",
+      "src/app/(main)/english/sets/[id]/print/page.tsx (인쇄 경로 /english/sets/{세트id}/print?view=teacher)",
+    ],
+    scale: "오늘의 영어 세트 전부(새 제품 — 기존 문항 0건)",
+    status: "대기",
+    needs:
+      "학생용과 같은 세트(객관식 2 · 서술형 1 · 원문 복원 1)를 교사용으로 한 번 더 뽑는다. " +
+      "🔴 라우트는 base 트랙 병합 뒤에 붙는다 — 그 전에는 뽑을 화면이 없다.",
+    changedOn: "2026-09-30",
+  },
 ];
 
 /** 한 번에 다 보려면 어떤 시험지를 뽑아야 하나. */

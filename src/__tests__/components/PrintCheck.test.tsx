@@ -199,7 +199,11 @@ describe("실물 출력 검수 목록 — 데이터", () => {
     // 78: answer-sheet-solution-postprocess 추가 (2026-09-26 후보정 T3 — 학습지 정답지 해설이 `SolutionText`
     //     (줄 나눔)를 지나고, 붙은 수식·여러 줄 수식·`\$` 가 새지 않는다).
     // 79: hwpx-repeat-dot 추가 (2026-09-26 후보정 T3 — HWPX 순환소수 점이 `dot {d}` 로. 한글에서 여는 것까지가 검수).
-    expect(ITEMS.length).toBe(79);
+    // 80: english-student-a4 추가 (2026-09-30 트랙 english-print — 오늘의 영어 학생용 A4. 새 제품의 새 지면,
+    //     1단 · 배점 없음 · 문단·문항 높이로 쪽 나눔. 라우트는 base 병합 뒤).
+    // 81: english-teacher-a4 추가 (2026-09-30 트랙 english-print — 교사용 A4. 정답·해설·근거 상자의 회색 면이
+    //     종이에 찍히는지가 핵심).
+    expect(ITEMS.length).toBe(81);
   });
 
   /**

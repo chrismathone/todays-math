@@ -11,6 +11,7 @@
  */
 import type {
   Class as ClassRow,
+  EnglishExam as EnglishExamRow,
   Problem as ProblemRow,
   Student as StudentRow,
   Test as TestRow,
@@ -127,4 +128,21 @@ export async function requireOwnedTest(
     return { ok: false, response: forbiddenError() };
   }
   return { ok: true, data: test };
+}
+
+/**
+ * 오늘의 영어 시험(`english_exam`)이 존재하고, 뷰어의 소유 범위 안인지 확인한다 (D-148 · 25 §3).
+ * 자료(`english_material`)·세트(`english_question_set`)는 따로 헬퍼를 두지 않고 **부모 시험**으로 판정한다 —
+ * 라우트가 행의 `examId` 를 읽어 이 함수에 넘긴다. 인자 순서는 브리프 그대로 `(viewer, examId)`.
+ */
+export async function requireOwnedEnglishExam(
+  viewer: ScopeViewer,
+  examId: string,
+): Promise<OwnershipResult<EnglishExamRow>> {
+  const exam = await db.englishExam.findUnique({ where: { id: examId } });
+  if (!exam) return { ok: false, response: notFoundError("시험") };
+  if (!(await ownerIsInScope(viewer, exam.userId))) {
+    return { ok: false, response: forbiddenError() };
+  }
+  return { ok: true, data: exam };
 }

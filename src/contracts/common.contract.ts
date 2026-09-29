@@ -130,6 +130,11 @@ export const errorCodeSchema = z.enum([
   "INTERNAL_ERROR",
   // 학생 로그인 연속 5회 실패 잠금(D-125 ⑶) — 429. 문구는 studentAccount.contract.ts STUDENT_LOGIN_MESSAGES.locked
   "TOO_MANY_ATTEMPTS",
+  // 오늘의 영어(D-148, 25 §3~§4) — 세트 저장·생성의 검증기 거절(422/502, details 에 issues) ·
+  // 세트 고치기의 revision 불일치(409) · 자료 파일 10MB 초과(413 — 사유가 JSON 으로 가게)
+  "ENGLISH_DRAFT_REJECTED",
+  "REVISION_MISMATCH",
+  "PAYLOAD_TOO_LARGE",
 ]);
 export type ErrorCode = z.infer<typeof errorCodeSchema>;
 

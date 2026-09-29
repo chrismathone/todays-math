@@ -3,7 +3,7 @@
 작성: **2026-08-15** · 큐브 QA 갱신: **2026-08-21**
 
 > **다른 컴퓨터에서 이 문서 하나만 읽고 이어할 수 있게 쓴 문서다.**
-> 순서: **§0-Y(2026-09-27~28, 최신)** → §0-X(2026-09-26) → §0-W·§0-V(2026-09-13) → §0-T(2026-09-07 심야) → §0-S → §0-R → §0-Q → §0-P → §0-O → §0-N → §0-M → §0-L → §0-K → §0-J → §0-I → §0-F → §0-E → §1 환경 준비 → 이관은 08, 도형은 09.
+> 순서: **§0-Z(2026-09-30, 최신 — 오늘의 영어)** → **§0-Z′(같은 날 — 진도판 테마 D-149 · 새 주소 · 선생님 계획 저장)** → §0-Y(2026-09-27~29) → §0-X(2026-09-26) → §0-W·§0-V(2026-09-13) → §0-T(2026-09-07 심야) → §0-S → §0-R → §0-Q → §0-P → §0-O → §0-N → §0-M → §0-L → §0-K → §0-J → §0-I → §0-F → §0-E → §1 환경 준비 → 이관은 08, 도형은 09.
 
 ---
 
@@ -11,7 +11,53 @@
 > [`tracks/brief-handoff-20260820.md`](tracks/brief-handoff-20260820.md) (2026-08-20).
 > 이 문서(§2·§3)는 그보다 앞선 기출 이관 단계 기준이다.
 
-## 0-Y. 인수인계 (2026-09-27~29 — **최신**) — 폰 복습 한 걸음 · 진도판 · 탐험 개념 머리 · 별 경제 · 보기 키 · 상자 보상 · 보충 카드 · 교재 용어 전수
+## 0-Z. 인수인계 (2026-09-30 — **최신**) — 오늘의 영어 (D-148, 둘째 제품)
+
+원장님이 ChatGPT 에서 만든 «외부지문 문제생성기» 2안을 **둘째 제품**으로 들였다. 설계 SSOT 는 **25번 문서**(§0 원장님 확정 ⑴~⑼ · §11 병합·검토 기록) — 여기엔 이어받는 사람이 알아야 할 것만.
+
+- **무엇이 섰나**: 옆 메뉴 브랜드 자리 **고르기 단추**(오늘의수학 ↔ 오늘의영어) · 영어 탭 셋(학교별 내신 대비 · 문제 만들기 · 문제 보관함) · 새 표 셋 `english_exam`·`english_material`·`english_question_set` · 라우트 13 + `/api/english/generate` · 만들기 세 길(ChatGPT 붙여넣기 · 원문 복원 · DeepSeek) 공통 검증기 · 학생용/교사용 A4(배점 없음) · 영어 울타리 · 딥링크 `/?set=<uuid>#english`.
+- **트랙 넷(base · ai · print · shell)** 을 각각 적대적 검토(추출본 · 변이)한 뒤 후속 커밋을 받아 **커밋 id 로 병합**했다(25 §11 표).
+- 🔴 **배포 순서는 DB 먼저 · 코드 나중**(25 §7). 드라이런(ROLLBACK) → 원장님 승인 → **적용 완료**(아래) → 푸시. 되돌리려면
+  `ALLOW_SHARED_IMPORT=1 npx tsx scripts/qa/apply-english-studio-migration.ts --revert`(행이 있으면 `--drop-rows` 를 요구). 새 컴퓨터에서는 `npx prisma generate` 가 먼저다.
+- 🔴 **실물 인쇄 검수 대기** — `/dev/print-check` 의 `english-student-a4` · `english-teacher-a4` 두 항목 «대기». 지면 세부 일곱(25 §10.1)은 실물을 뽑아 원장님께 한꺼번에 여쭙는다.
+- DeepSeek 실물 표본 1회 성공(25 §11) — 탐침 `scripts/qa/probe-english-generate-live.ts`(`-r dotenv/config`, 과금).
+- 새 메뉴 `english` 는 **모든 기존 계정에 켜진다**(DB 는 꺼진 메뉴만 저장).
+- **관문(main, 병합 뒤)**: 전체 Vitest 896파일 — 실패는 알려진 4건(3파일, [메모리 main-known-failing-tests]) + shell 시험 하나(자리표 «준비 중» 단정 — ai 화면으로 바뀌어 고침) · `tsc` 0 · `npm run lint` 0 오류(경고 62 는 기존 파일).
+- **DB 적용(2026-09-30 03:00, 원장님 승인)**: `--apply` 로 표 셋 생성 — 칸 9/8/10 · FK 3 · CHECK 8 · RLS 3 · `_prisma_migrations` 한 줄 · user 3행 그대로. 적용 로그는 세션 scratchpad `english-migration-apply.log`.
+
+### 0-Z.1 오늘의 함정
+- **워크트리엔 `.env` 가 없어 `AUTH_URL` 로 갈리는 403 이 안 보였다** — base 라우트 시험 54개가 main 에서만 빨갰다(교훈 2026-09-20 그대로). 라우트 시험은 `vi.stubEnv("AUTH_URL", "")` · `NEXTAUTH_URL` 둘을 `beforeEach` 에.
+- **울타리는 `scripts/` 도 금지 뿌리** — 영어 탐침 한 파일만 `NEVER_FORBIDDEN` 예외(25 §6 ⑴). `scripts/qa/english-phone-width.ts` 는 그래서 영어 모듈을 import 하지 않고 픽스처를 인라인으로 둔다.
+- **접힘 옆 메뉴 머리를 영어 조건 없이 바꾸면 모든 계정의 수학이 바뀐다** — 영어 메뉴가 기본 켜짐이라 «제품이 둘 이상» 은 사실상 «전 계정»이다. 05 §8.23 ⑷ «수학은 지금 그대로».
+- **scratchpad 뿌리의 옛 `package-lock.json` 이 Turbopack 을 죽인다** — 추출본에서 dev 서버를 띄울 때 `--webpack`.
+- **이 컴퓨터의 오르카 워크트리 `node_modules` 는 정션이 아니라 실제 사본**이었다(`Get-Item … LinkType` 빈 값) — rm 전에 확인하는 절차는 그대로 두되, 확인 결과가 «실제 사본»이면 그냥 지운다. 지운 뒤 main 개수(637) 검산.
+
+## 0-Z′. 인수인계 (2026-09-30 — 같은 날 둘째 줄기) — 진도판 테마 (D-149) · 새 주소 · 선생님 계획 저장 · 탐험 요청 학생 필수 · 보기 절대 말
+
+같은 날 오늘의 영어(§0-Z)와 따로 간 줄기. 결정 본문은 07 D-149, 모양은 05 §8.24.
+
+### 0-Z′.1 진도판 테마 (D-149)
+- **판 다섯 + 기본 판**(하늘섬 · 바다 항해 · 우주 궤도 · 숲길 탐험 · 도형 마을) — 학원 전체 한 벌, 기본은 지금 판. 관리자 «학습 관리»(`/admin/math-srs`) 맨 위 «진도판 테마»에서 고른다.
+- 목록 SSOT `src/lib/math-explorers/journeyThemes.ts` · 저장소 `src/lib/journeyThemeStore.ts`(`app_setting` 키 `journey.theme` · 표가 없거나 값이 이상하면 지금 판) · API `src/app/api/admin/journey-theme/route.ts` · 학생 쪽은 `/learn/page.tsx` 가 서버에서 읽어 넘긴다(학생 API 계약 무변경).
+- 그림은 `public/images/journey/`(판 1240px WebP · 탈것 네 방향 192px · 수레 · 로버는 몸통 + 바퀴). 원본 PNG · 시안 · codex 의뢰서는 **저장소 밖** `D:\tmp\pawn\`(out · out2 · out3 · brief-art*.md · compare*.html).
+- 🔴 판 그림은 **좌우 뒤집은 것**이다 — 의뢰서에 «반시계»라고 잘못 적어 길 화살표가 반대로 나왔다. 그래서 하늘섬의 출발 깃발 장식이 왼쪽 아래(4일차 자리)에 있다. 다시 그리면 «시계 방향 · 시작 오른쪽 아래»로.
+- 🔴 **`/images/journey/**` 는 학생 관문 허용 목록 · proxy 공개 목록에 둘 다 있어야 한다** — 없으면 학생에게 판 그림이 307(로그인으로)이라 안 보인다(첫 실측에서 그랬다).
+- 가독성 검수: `QA_THEME=sky QA_CHANNEL=msedge QA_ENGINES=chromium BASE=… node scripts/qa/daily-journey-board.mjs` — 테마 판은 «예정 칸 모양»(점선) 검사를 건너뛴다. dev 서버는 워크트리(정션 node_modules)에서 `next dev --webpack`(Turbopack 은 정션 밖을 못 따라간다).
+- 배포: `app_setting` 은 **DB 먼저**(`scripts/qa/apply-app-setting-migration.ts` 드라이런 → `ALLOW_SHARED_IMPORT=1 … --apply`). 코드는 표가 없어도 학생 판을 지금 판으로 띄우지만 관리자 저장은 표가 있어야 된다.
+- 잔고: 보물상자 · 기지 4단계 · 별 그림은 1차 화풍 시안뿐(`out/`) — 테마에 맞춘 판은 아직 없다. 탈것 이동은 650ms 라 바퀴가 두 바퀴쯤 돈다.
+
+### 0-Z′.2 새 주소 `today.aywa.co.kr` (원장님 9-30)
+- Vercel 팀 `bigshols-projects` 프로젝트 `todays-math` — 옛 주소 `todays-math.vercel.app` 은 307 로 새 주소에 넘긴다.
+- 🔴 **후이즈도메인 네임서버 ns1 · ns2 에 `today` CNAME 이 없고 ns3 · ns4 에만 있다**(SOA 판번호 `2026092101` 그대로 — 기록을 더하며 판번호를 안 올렸다). 그래서 Let's Encrypt 첫 발급이 NXDOMAIN 으로 실패했고, 발급 뒤에도 KT · 구글 DNS 가 번갈아 «없는 주소»를 기억해 **가끔 접속이 안 된다**. 원장님께 후이즈도메인에서 다시 저장하거나 고객센터 문의를 부탁드렸다 — 반영됐는지 `Resolve-DnsName today.aywa.co.kr -Type CNAME -Server ns1.whoisdomain.kr -DnsOnly` 로 네 대 다 볼 것.
+- `AUTH_URL` 은 운영에 **없다 — 넣지 말 것**(`trustHost` · 출처 검사가 요청 주소를 쓴다. 넣으면 그 주소 하나로 묶인다).
+
+### 0-Z′.3 그 밖에 오늘 나간 것
+- 탐험 쓰기 요청 `studentId` **필수**(`901d93418` — 없으면 400 · 다르면 409).
+- **선생님이 탐험(개념) · 은행 미션이 열린 학생의 계획을 저장 못 하던 결함**(`4f3d34168`) — 운영 test_s(9-28 미션 7/15)에서 원장님 첫 계획 저장이 409. 선생님 쓰기는 과정 기록에서 `plan` · `learner.selectedSectionId` 만 다를 때 통과. 🔴 대시보드는 409 면 무엇이든 «다른 곳에서 기록이 변경»을 같이 띄운다(서버가 판번호 충돌과 미션 검사를 같은 CONFLICT 로 보낸다) — 오류 코드를 가르는 일은 잔고.
+- 보기 절대 말 요령(fix12 · §0-Y.5 ③) · 산문 판정 맞물림(②) · 누출 검사기 통째 표 801(①) · g7-frequency 까닭(④) — 리드 검토 D low 넷 끝.
+- 교재 원문 정본은 **`N:\개인\I-개념용어`**(MYBOX) — `C:\Creative\testautocreator-data\I-개념용어` 로 복사해 쓴다.
+
+## 0-Y. 인수인계 (2026-09-27~29) — 폰 복습 한 걸음 · 진도판 · 탐험 개념 머리 · 별 경제 · 보기 키 · 상자 보상 · 보충 카드 · 교재 용어 전수
 
 사흘 동안 결정 일곱(D-141~D-147)을 **운영까지** 올렸다. 9-28 에 배포 여덟 번 · 9-29 에 셋, 전부 Vercel success.
 결정 본문은 07 Decision Log, 모양은 05 §8.15~§8.22 — 여기엔 «이어받는 사람이 알아야 할 것»만 적는다.
