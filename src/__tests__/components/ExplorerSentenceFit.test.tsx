@@ -67,7 +67,10 @@ const sentence = () =>
   document.querySelector<HTMLElement>("[data-assembly-sentence]")!;
 const drawnScale = (node: HTMLElement) =>
   Number(node.style.getPropertyValue("--sentence-fit") || 1);
-const tilted = () => pane().style.getPropertyValue("transform") !== "none";
+/** 책장 넘김 애니메이션은 인라인 스타일도 이긴다 — `!important` 로 눌러야만 기울기가 풀린다. */
+const tilted = () =>
+  pane().style.getPropertyValue("transform") !== "none" ||
+  pane().style.getPropertyPriority("transform") !== "important";
 
 type Notify = (entries: Array<{ target: Element }>) => void;
 let observers: Array<{ callback: Notify; targets: Set<Element> }> = [];
@@ -150,19 +153,34 @@ afterEach(() => {
     .getClientRects;
 });
 
-function fixture() {
-  return render(
+function practice(value = activity) {
+  return (
     <ExplorerPractice
-      activity={activity}
+      activity={value}
       session={session}
       busy={false}
       correct={null}
       eventKey=""
       onAction={vi.fn()}
       onHome={vi.fn()}
-    />,
+    />
   );
 }
+function fixture() {
+  return render(practice());
+}
+/** 가짜 글꼴 목록 — `loadingdone` 을 쏠 수 있게. 시험이 끝나면 걷는다. */
+function fakeFonts() {
+  const fonts = new EventTarget();
+  Object.defineProperty(document, "fonts", {
+    configurable: true,
+    value: fonts,
+  });
+  return fonts;
+}
+afterEach(() => {
+  delete (document as { fonts?: unknown }).fonts;
+});
 
 describe("assembly sentence fit", () => {
   it("keeps the size as drawn when the whole sentence fits", () => {
@@ -299,23 +317,60 @@ describe("assembly sentence fit", () => {
   });
 
   it("re-fits when a web font finishes loading", () => {
-    const fonts = new EventTarget();
-    Object.defineProperty(document, "fonts", {
-      configurable: true,
-      value: fonts,
+    const fonts = fakeFonts();
+    layout.end = () => 200;
+    fixture();
+    expect(sentence()).not.toHaveAttribute("data-fit");
+    layout.end = (scale) => 260 * scale; // 글꼴이 와서 글이 넓어졌다
+    act(() => {
+      fonts.dispatchEvent(new Event("loadingdone"));
     });
-    try {
-      layout.end = () => 200;
-      fixture();
-      expect(sentence()).not.toHaveAttribute("data-fit");
-      layout.end = (scale) => 260 * scale; // 글꼴이 와서 글이 넓어졌다
-      act(() => {
-        fonts.dispatchEvent(new Event("loadingdone"));
-      });
-      expect(sentence()).toHaveAttribute("data-fit", "0.9");
-    } finally {
-      delete (document as { fonts?: unknown }).fonts;
-    }
+    expect(sentence()).toHaveAttribute("data-fit", "0.9");
+  });
+
+  it("re-fits from the full size after a font load, even after shrinking within the activity", () => {
+    // 채워서 0.9 로 줄고, 비워도 줄이기만이라 0.9 — 글꼴이 오면 1배부터 다시 고른다(비운 문장은 1배로 들어간다).
+    const fonts = fakeFonts();
+    layout.end = (scale, filled) => 230 * scale + 30 * filled;
+    fixture();
+    fireEvent.click(screen.getByRole("button", { name: "1 60초" }));
+    fireEvent.click(screen.getByRole("button", { name: "빈칸 1, 60초" }));
+    expect(sentence()).toHaveAttribute("data-fit", "0.9");
+    act(() => {
+      fonts.dispatchEvent(new Event("loadingdone"));
+    });
+    expect(sentence()).not.toHaveAttribute("data-fit");
+  });
+
+  it("starts from the full size again on the next activity", () => {
+    const view = fixture(); // 1배 260 > 250 → 0.9
+    expect(sentence()).toHaveAttribute("data-fit", "0.9");
+    layout.end = () => 200; // 다음 문장은 짧다
+    view.rerender(practice({ ...activity, questionId: "next-question" }));
+    expect(sentence()).not.toHaveAttribute("data-fit");
+    expect(sentence().style.getPropertyValue("--sentence-fit")).toBe("");
+  });
+
+  it("stops watching and measuring once the activity is gone", () => {
+    // 프레임은 줄에 쌓아 두고, 취소가 닿지 않는 경우(이미 꺼낸 콜백)까지 친다.
+    const frames: FrameRequestCallback[] = [];
+    vi.stubGlobal("requestAnimationFrame", (callback: FrameRequestCallback) =>
+      frames.push(callback),
+    );
+    vi.stubGlobal("cancelAnimationFrame", () => {});
+    const fonts = fakeFonts();
+    const view = fixture();
+    const box = pane();
+    resize(box); // 다음 프레임에 잴 일이 하나 걸린 채로
+    const ranges = vi.spyOn(document, "createRange");
+    view.unmount();
+    expect(observers.filter(({ targets }) => targets.size > 0)).toEqual([]);
+    act(() => {
+      frames.splice(0).forEach((frame) => frame(0));
+      fonts.dispatchEvent(new Event("loadingdone"));
+    });
+    expect(frames).toEqual([]);
+    expect(ranges).not.toHaveBeenCalled();
   });
 
   it("touches only the sentence — the name row and the pane keep their size", () => {

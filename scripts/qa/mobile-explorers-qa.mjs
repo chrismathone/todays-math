@@ -10,7 +10,7 @@
 //   QA_SCENARIOS  concept,workshop,bank-elementary,bank-middle,tabs
 //   QA_THROTTLE   CPU slowdown rate for Chromium (e.g. 4) — races hide on fast machines
 //
-// Safety: the browser never reaches a real API. Every `/api/**` request is
+// Safety: the browser never reaches a real API. Every request under `/api/` is
 // fulfilled here by an in-memory server that runs the product's own engines,
 // CAS store (`changeSrsState` with an in-memory table) and expedition guard
 // (`updateExpedition`). `server-only` and `@/lib/db` are replaced before any
@@ -1297,6 +1297,8 @@ const katexFitted = [];
 //  ⑥ 보기 글의 수식이 가로로 글자 칸 밖(단추 안쪽 여백)을 먹지 않는다 — 잘리지는 않아도 테두리에 닿는다.
 // ⚠️ 이 파일에는 블록 주석을 쓰지 않는다 — 13행 줄 주석의 «/api/ 뒤 별 두 개»에서 격리 시험(`mathSrsRecordIsolation`)의
 //    블록 주석 제거가 시작해, 다음 블록 주석 끝까지(2만여 글자, 기록 모듈을 부르는 줄 포함)를 지웠다(2026-09-27).
+//    2026-09-29 에 JSDoc 한 줄로 되풀이(10만여 글자) — 13행 표기를 바꾸고, 가드는 줄 머리의 블록 주석만 지우게 굳혔다.
+//    그래도 이 파일에는 블록 주석을 쓰지 않는다(`/` 뒤 별도 적지 않는다).
 async function katexFit(page, rootSelector) {
   const problems = await katexBoxes(page, rootSelector);
   const candidates = page.locator("[data-qa-clip]");
@@ -2028,7 +2030,7 @@ async function fitSettled(page) {
       }),
   );
 }
-/** 지금 화면을 네 폭으로 바꿔 가며 잰다(`row` 는 칸 이름표) — 끝나면 처음 크기로 돌린다. 잰 수를 돌려준다. */
+// 지금 화면을 네 폭으로 바꿔 가며 잰다(`row` 는 칸 이름표) — 끝나면 처음 크기로 돌린다. 잰 수를 돌려준다.
 async function measureFitSizes(page, width, height, row, filled) {
   let measured = 0;
   for (const [w, h] of FIT_SIZES) {
@@ -2136,8 +2138,12 @@ async function fitSupplementScenario({ page, sim, mobile, width, height, step },
       await expect(page.locator("[data-assembly-sentence]")).toBeVisible();
       const row = { unit: card.unit, card: card.id, name: card.name, kind: "assemble", supplement: true };
       measured += await measureFitSizes(page, width, height, row, 0);
-      for (const word of card.words.slice(0, 2))
-        await tap(choiceButtons(page).nth(activity.choices.findIndex((choice) => choice.label === word)), mobile);
+      for (const word of card.words.slice(0, 2)) {
+        const index = activity.choices.findIndex((choice) => choice.label === word);
+        // 못 찾으면 nth(-1) 이 마지막 보기를 조용히 눌러 엉뚱한 말을 채운다 — 멈춘다.
+        assert.notEqual(index, -1, `${card.name}: 정답 말 «${word}» 가 보기에 없다`);
+        await tap(choiceButtons(page).nth(index), mobile);
+      }
       measured += await measureFitSizes(page, width, height, row, 2);
       handled = sim.handled;
       await tap(page.getByRole("button", { name: "← 진도판" }), mobile);

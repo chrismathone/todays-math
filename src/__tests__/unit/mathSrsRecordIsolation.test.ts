@@ -24,12 +24,26 @@ function files(dir: string): string[] {
           : [],
   );
 }
+// 주석 걷기 — 줄 주석을 먼저, 블록 주석은 **줄 머리(들여쓰기 뒤)의 `/*`** 에서만.
+// 🔴 블록을 아무 데서나 먼저 지우면 줄 주석 · 문자열 속 `/*`(«`/api/**`» · `"preview/*.html"`)가 블록 시작으로 읽혀
+//    다음 블록 주석 끝까지 — 코드 줄째 — 지운다. `mobile-explorers-qa.mjs` 가 두 번 그렇게 이 시험에서 사라졌다
+//    (2026-09-27 2만여 자, 2026-09-29 JSDoc 한 줄로 10만여 자 · 기록 모듈을 부르는 줄 포함). 저장소 전체에서
+//    같은 식으로 코드 줄을 삼키던 블록이 다섯 더 있었다 — 아래 «지운 블록에 코드 줄 없음»이 막는다.
+const LINE_COMMENT = /^\s*(\/\/|#).*$/gm;
+const BLOCK_COMMENT = /^[ \t]*\/\*[\s\S]*?\*\//gm;
+/** 지운 블록 안에 이런 줄이 있으면 주석이 아니라 코드를 지운 것이다. */
+const CODE_LINE =
+  /^[ \t]*(import|export|const|let|var|function|async function|class|return|await|for|if)\b/m;
 const withoutComments = (text: string) =>
-  text.replace(/\/\*[\s\S]*?\*\//g, "").replace(/^\s*(\/\/|#).*$/gm, "");
-const sources = ["src", "scripts"].flatMap(files).map((path) => ({
-  path: relative(root, join(root, path)).replaceAll("\\", "/"),
-  text: withoutComments(readFileSync(join(root, path), "utf8")),
-}));
+  text.replace(LINE_COMMENT, "").replace(BLOCK_COMMENT, "");
+const sources = ["src", "scripts"].flatMap(files).map((path) => {
+  const raw = readFileSync(join(root, path), "utf8");
+  return {
+    path: relative(root, join(root, path)).replaceAll("\\", "/"),
+    raw,
+    text: withoutComments(raw),
+  };
+});
 
 /** 복습 기록(보기형 문항 포함)을 읽거나 학생·강사에게 내보내는 서버 모듈. */
 const RECORD_MODULES = [
@@ -87,6 +101,31 @@ describe("보기형 전용 문항이 사는 기록의 격리", () => {
         "scripts/qa/mobile-explorers-qa.mjs",
       ]),
     );
+  });
+
+  it("줄 주석 · 문자열 속 `/*` 가 뒤 JSDoc 까지 지우지 않는다 — 그 사이 모듈 참조가 산다", () => {
+    const text = [
+      "// Every `/api/**` request is fulfilled here.",
+      'const glob = "preview/*.html";',
+      'import { readSrsState } from "../src/lib/math-srs/serverStore";',
+      "/** 네 폭으로 잰다. */",
+      "readSrsState(glob);",
+    ].join("\n");
+    const kept = withoutComments(text);
+    expect(recordReference.test(kept)).toBe(true);
+    expect(kept).not.toContain("네 폭으로 잰다");
+    expect(kept).not.toContain("fulfilled here");
+  });
+
+  it("주석을 걷어도 코드 줄은 안 사라진다 — 지운 블록 안에 import · const · function … 줄이 없다", () => {
+    const eaten = sources.flatMap(({ path, raw }) =>
+      [...raw.replace(LINE_COMMENT, "").matchAll(BLOCK_COMMENT)]
+        .filter(([block]) =>
+          CODE_LINE.test(block.split("\n").slice(1).join("\n")),
+        )
+        .map(([block]) => `${path} (${block.length}자)`),
+    );
+    expect(eaten).toEqual([]);
   });
 
   it("복습 기록 모듈을 부르는 곳은 허용 목록 안에만 있다 (문제은행·시험지·작업실·내보내기·자동 출제 없음)", () => {
