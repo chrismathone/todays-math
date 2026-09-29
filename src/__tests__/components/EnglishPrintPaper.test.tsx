@@ -128,8 +128,10 @@ describe("EnglishPaper — 지면 규칙", () => {
 
   it("문항과 지문 상자는 쪽 경계에서 갈리지 않는다 (`break-inside: avoid`) — 그리고 그 클래스가 실제로 붙는다", () => {
     const { container } = paper("student");
-    expect(cssBlock("question")).toMatch(/break-inside:\s*avoid/);
-    expect(cssBlock("passageBox")).toMatch(/break-inside:\s*avoid/);
+    // 🔴 `page-break-inside: avoid` 도 «break-inside» 글자를 담는다 — 앞에 `-` 가 없는 선언만 센다
+    //    (변이 M2: `.question` 의 `break-inside` 만 지워도 초록이었다 — 2026-09-30)
+    expect(cssBlock("question")).toMatch(/(?<![-\w])break-inside:\s*avoid/);
+    expect(cssBlock("passageBox")).toMatch(/(?<![-\w])break-inside:\s*avoid/);
     const article = container.querySelector('[data-english-question="1"]');
     expect(article?.className).toMatch(/question/);
     expect(
