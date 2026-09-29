@@ -1833,12 +1833,13 @@
   .workspace[data-sidebar-collapsed="true"] .brandChevron {
     display: none;
   }
-  /* 접힘 + 제품 둘 이상: 마크(고르기 단추)를 접기 단추 위에 세운다 — 제품이 하나면 지금 모습 그대로 */
-  .workspace[data-sidebar-collapsed="true"][data-picker="true"] .sideHeader {
+  /* 접힘 + **영어일 때만**: 마크(딱지 «영»)를 접기 단추 위에 세운다 — 수학 접힘은 기준 그대로(05 §8.23 ⑷
+   * «수학은 지금 모습 그대로»). 수학에서 접힌 채 제품을 바꾸려면 펼친 뒤 고른다 */
+  .workspace[data-sidebar-collapsed="true"][data-product="english"] .sideHeader {
     flex-direction: column;
     gap: 4px;
   }
-  .workspace[data-sidebar-collapsed="true"][data-picker="true"]
+  .workspace[data-sidebar-collapsed="true"][data-product="english"]
     .sideHeader
     .brand {
     display: flex;

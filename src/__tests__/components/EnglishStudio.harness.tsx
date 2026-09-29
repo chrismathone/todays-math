@@ -59,6 +59,10 @@ export function Harness({
   );
   return (
     <div data-testid="harness" data-view={view}>
+      {/* 셸 옆 메뉴의 파란 단추 자리 — 목록이 «읽는 중»·«오류»여도 눌린다 */}
+      <button type="button" onClick={() => setNewExamOpen(true)}>
+        새 시험 등록(셸)
+      </button>
       <EnglishStudio
         view={view}
         onNavigate={setView}

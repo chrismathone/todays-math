@@ -387,6 +387,7 @@ function UnifiedWorkspaceContent({
   const toggleSidebar = useCallback(() => {
     const value = !sidebarCollapsed;
     setSidebarCollapsed(value);
+    setPickerOpen(false);
     try {
       localStorage.setItem("today-math-sidebar-collapsed", String(value));
     } catch {
@@ -788,7 +789,8 @@ function UnifiedWorkspaceContent({
       data-sidebar-collapsed={sidebarCollapsed}
       data-authenticated={Boolean(currentUser)}
       data-menu-count={availableNav.length}
-      data-picker={products.length > 1}
+      // 영어일 때만 붙는 표지(D-148 · 05 §8.23 ⑷) — 접힌 옆 메뉴의 마크·딱지 배치가 이것을 본다. 수학은 표지 없이 기준 그대로
+      data-product={product === "english" ? "english" : undefined}
     >
       <a
         className={s.skipLink}
@@ -939,6 +941,12 @@ function UnifiedWorkspaceContent({
               aria-label="제품"
               className={s.productPicker}
               onKeyDown={onPickerKey}
+              onBlur={(event) => {
+                // Tab 으로 초점이 목록 밖 요소로 나가면 닫는다 — 목록·브랜드 안에서 옮기는 것은 그대로
+                const next = event.relatedTarget as Node | null;
+                if (next && !pickerRef.current?.contains(next))
+                  setPickerOpen(false);
+              }}
             >
               {products.map((item) => (
                 <button
@@ -1021,7 +1029,8 @@ function UnifiedWorkspaceContent({
             </button>
           </div>
         )}
-        {can("studio") && (
+        {/* 수학 «자료 제작»의 AI 연결 판 — 옆 메뉴는 지금 제품의 것만 그린다(영어에서는 안 뜬다) */}
+        {product === "math" && can("studio") && (
           <DevAiStatusPanel
             collapsed={sidebarCollapsed}
             onExpand={toggleSidebar}

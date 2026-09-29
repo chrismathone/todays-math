@@ -16,6 +16,7 @@ import WorkspacePageHeader from "@/components/unified/WorkspacePageHeader";
 import w from "@/components/unified/Workroom.module.css";
 import {
   ENGLISH_GENERATED_TYPES,
+  ENGLISH_MATERIAL_CONTENT_MAX,
   ENGLISH_MATERIAL_MAX_BYTES,
   ENGLISH_MATERIAL_MAX_LABEL,
   englishExamResponseSchema,
@@ -51,6 +52,8 @@ const HEADER = {
   title: "학교별 내신 대비",
   description: "학교의 출제 흐름에 맞춰, 이번 시험을 준비하세요.",
 };
+/** 계약이 내보내지 않는 상한 — `englishMaterialTextCreateSchema.name.max(255)` 와 같은 값 */
+const MATERIAL_NAME_MAX = 255;
 
 export default function EnglishPrepView({
   exam,
@@ -564,18 +567,21 @@ function MaterialDialog({
               자료 이름
               <input
                 value={name}
-                maxLength={255}
+                maxLength={MATERIAL_NAME_MAX}
                 onChange={(event) => setName(event.target.value)}
                 placeholder="3과 외부지문"
               />
             </label>
             <label className={s.field}>
-              지문 <small>30,000자 이하</small>
+              지문{" "}
+              <small>
+                {ENGLISH_MATERIAL_CONTENT_MAX.toLocaleString("ko-KR")}자 이하
+              </small>
               <textarea
                 className={s.serif}
                 aria-label="지문"
                 value={content}
-                maxLength={30_000}
+                maxLength={ENGLISH_MATERIAL_CONTENT_MAX}
                 onChange={(event) => setContent(event.target.value)}
               />
             </label>

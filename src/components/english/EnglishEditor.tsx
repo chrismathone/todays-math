@@ -16,6 +16,7 @@ import WorkProgress from "@/components/unified/WorkProgress";
 import w from "@/components/unified/Workroom.module.css";
 import {
   ENGLISH_OPEN_TYPES,
+  ENGLISH_PASSAGE_MAX,
   ENGLISH_SET_STATUSES,
   englishSetResponseSchema,
   type EnglishExam,
@@ -43,6 +44,9 @@ import s from "./EnglishStudio.module.css";
 const CHOICES = Array.from({ length: ENGLISH_CHOICE_COUNT }, (_, i) =>
   String(i + 1),
 );
+/** 계약이 내보내지 않는 상한 — `english.contract.ts` 의 `setTitleSchema.max(160)` · 보기 원소 `max(1_500)` 과 같은 값 */
+const SET_TITLE_MAX = 160;
+const OPTION_MAX = 1_500;
 
 export default function EnglishEditor({
   setId,
@@ -113,11 +117,16 @@ export default function EnglishEditor({
 
   const save = async () => {
     if (!draft) return;
+    // 빈 보기 칸은 «없는 보기»다 — 다섯 칸을 늘 그리므로 비운 칸을 걷어낸 뒤 공용 검증기를 지난다(보기 수 규칙이 사유를 낸다)
+    const questions = draft.questions.map((question) => ({
+      ...question,
+      options: question.options.filter((option) => option.trim()),
+    }));
     const verdict = validateEnglishDraft({
       title: draft.title,
       source: draft.source,
       passage: draft.passage,
-      questions: draft.questions,
+      questions,
     });
     if (!verdict.ok) {
       setError(formatIssues(verdict.issues));
@@ -134,7 +143,7 @@ export default function EnglishEditor({
             title: draft.title,
             status: draft.status,
             passage: draft.passage,
-            questions: draft.questions,
+            questions,
             revision: draft.revision,
           }),
         ),
@@ -266,7 +275,7 @@ export default function EnglishEditor({
           className={s.titleInput}
           aria-label="세트 이름"
           value={draft.title}
-          maxLength={160}
+          maxLength={SET_TITLE_MAX}
           onChange={(event) =>
             edit((set) => ({ ...set, title: event.target.value }))
           }
@@ -279,7 +288,7 @@ export default function EnglishEditor({
           지문
           <textarea
             value={draft.passage}
-            maxLength={24_000}
+            maxLength={ENGLISH_PASSAGE_MAX}
             onChange={(event) =>
               edit((set) => ({ ...set, passage: event.target.value }))
             }
@@ -332,7 +341,7 @@ export default function EnglishEditor({
                       <input
                         aria-label={`${n}번 문제 ${i + 1}번 선택지`}
                         value={option}
-                        maxLength={1_500}
+                        maxLength={OPTION_MAX}
                         onChange={(event) =>
                           editQuestion(index, {
                             options: options.map((item, j) =>

@@ -230,6 +230,28 @@ describe("[EnglishEditor] 검토·편집", () => {
     });
   });
 
+  it("보기가 다섯이 아니면 보내지 않고 «N번 문항: …» 사유를 적는다 — 저장 전 공용 검증기 관문 (검토 #4)", async () => {
+    let puts = 0;
+    const listener = ({ request }: { request: Request }) => {
+      if (request.method === "PUT") puts += 1;
+    };
+    server.events.on("request:start", listener);
+    await openDraft();
+    fireEvent.change(
+      screen.getByRole("textbox", { name: "1번 문제 5번 선택지" }),
+      { target: { value: "   " } },
+    );
+    fireEvent.click(screen.getByRole("button", { name: "저장" }));
+    expect(await screen.findByRole("alert")).toHaveTextContent(
+      "1번 문항: 보기는 5개여야 합니다 (지금 4개).",
+    );
+    await waitFor(() => expect(puts).toBe(0));
+    expect(screen.getByRole("combobox", { name: "검토 상태" })).toHaveValue(
+      "초안",
+    );
+    server.events.removeListener("request:start", listener);
+  });
+
   it("세트를 못 읽으면 문구와 «목록»만 남긴다", async () => {
     server.use(
       http.get(`/api/english/sets/${ENGLISH_SET_DRAFT_ID}`, () =>

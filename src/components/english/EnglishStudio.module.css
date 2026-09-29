@@ -21,6 +21,8 @@
   --e-done-ink: #2447b8;
   --e-danger: #b42318;
   --e-danger-bg: #fff2ed;
+  /* `PAPER_FONTS.serifKR`(src/components/unified/print/tokens.ts)을 손으로 옮긴 것 — CSS 는 토큰을 import 못 한다.
+   * 라틴 대체로 Georgia · Times New Roman 을 뒤에 둔다(새 글꼴 적재 없음). 토큰이 바뀌면 여기도 같이(검토 #7) */
   --e-serif:
     "KoPubBatang", "Nanum Myeongjo", "Noto Serif KR", Georgia,
     "Times New Roman", serif;

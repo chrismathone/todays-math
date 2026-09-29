@@ -120,8 +120,13 @@ export default function EnglishStudio({
       if (version === examsVersion.current)
         setExams({ status: "ready", data: body.data });
     } catch (error) {
+      // 이미 보이는 목록(등록 직후 등)은 지우지 않는다 — 오류는 목록이 없을 때만 보인다
       if (version === examsVersion.current)
-        setExams({ status: "error", message: messageOf(error) });
+        setExams((previous) =>
+          previous.status === "ready"
+            ? previous
+            : { status: "error", message: messageOf(error) },
+        );
     }
   }, []);
   useEffect(() => {
@@ -261,6 +266,27 @@ export default function EnglishStudio({
 
   const header = HEADERS[view];
 
+  // «새 시험 등록» 창은 목록이 «읽는 중»·«오류»여도 그린다(등록은 목록 없이도 된다 — 검토 #5).
+  const newExamDialog = newExamOpen && (
+    <NewExamDialog
+      onClose={onNewExamClose}
+      onCreated={(created) => {
+        const hadList = exams.status === "ready";
+        setExams((current) =>
+          current.status === "ready"
+            ? { status: "ready", data: [created, ...current.data] }
+            : { status: "ready", data: [created] },
+        );
+        // 목록이 없던 채로 등록했으면 나머지를 다시 읽는다 — 실패해도 방금 등록한 시험은 남는다(loadExams)
+        if (!hadList) void loadExams();
+        selectExam(created.id);
+        setEditor(null);
+        onNewExamClose();
+        onNotice("시험을 등록했습니다.");
+      }}
+    />
+  );
+
   if (exams.status === "loading")
     return (
       <div className={s.studio}>
@@ -268,6 +294,7 @@ export default function EnglishStudio({
           className={w.loading}
           label="시험 목록을 불러오는 중입니다…"
         />
+        {newExamDialog}
       </div>
     );
   if (exams.status === "error")
@@ -291,6 +318,7 @@ export default function EnglishStudio({
             다시 시도
           </button>
         </div>
+        {newExamDialog}
       </div>
     );
 
@@ -459,25 +487,14 @@ export default function EnglishStudio({
           />
         </>
       )}
-      {newExamOpen && (
-        <NewExamDialog
-          onClose={onNewExamClose}
-          onCreated={(created) => {
-            setExams((current) =>
-              current.status === "ready"
-                ? { status: "ready", data: [created, ...current.data] }
-                : current,
-            );
-            selectExam(created.id);
-            setEditor(null);
-            onNewExamClose();
-            onNotice("시험을 등록했습니다.");
-          }}
-        />
-      )}
+      {newExamDialog}
     </div>
   );
 }
+
+/** 계약이 내보내지 않는 상한 — `english.contract.ts` 의 `schoolSchema.max(80)` · `examTitleSchema.max(100)` 와 같은 값 */
+const SCHOOL_MAX = 80;
+const EXAM_TITLE_MAX = 100;
 
 /** «새 시험 등록» 창 — 학교 이름(필수 · 80) · 학년 · 시험 날짜(선택) · 시험 이름(기본 «2학기 중간고사») */
 function NewExamDialog({
@@ -534,7 +551,7 @@ function NewExamDialog({
           학교 이름
           <input
             value={school}
-            maxLength={80}
+            maxLength={SCHOOL_MAX}
             onChange={(event) => setSchool(event.target.value)}
             placeholder="침산중학교"
           />
@@ -565,7 +582,7 @@ function NewExamDialog({
           시험 이름
           <input
             value={title}
-            maxLength={100}
+            maxLength={EXAM_TITLE_MAX}
             onChange={(event) => setTitle(event.target.value)}
           />
         </label>

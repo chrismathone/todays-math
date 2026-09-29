@@ -1099,24 +1099,88 @@ describe("제품 전환 — 브랜드 자리 고르기 단추 (D-148)", () => {
     expect(window.location.hash).toBe("");
   });
 
-  it("접힌 옆 메뉴에서는 마크 귀퉁이 딱지 «영»이 영어일 때만 붙고, 마크를 누르면 목록이 뜬다", async () => {
+  it("접힌 옆 메뉴 — 수학은 표지·딱지 없이 기준 그대로, 영어일 때만 data-product 표지와 딱지 «영»이 붙고 마크를 누르면 목록이 뜬다 (검토 #1 #2)", async () => {
+    const root = () => document.querySelector("[data-sidebar-collapsed]")!;
+    const { unmount } = render(
+      <UnifiedWorkspace initialData={initialData} allowedMenus={MATH_ONLY} />,
+    );
+    fireEvent.click(screen.getByRole("button", { name: "왼쪽 메뉴 접기" }));
+    // 제품 하나 계정: 기준 커밋과 같은 표지 집합 — data-product · data-picker 둘 다 없다
+    expect(root()).not.toHaveAttribute("data-product");
+    expect(root()).not.toHaveAttribute("data-picker");
+    expect(screen.queryByTestId("product-badge")).toBeNull();
+    unmount();
+    // 접힘은 브라우저 설정으로 남는다 — 다음 렌더가 그것을 되살리지 않게 지운다
+    localStorage.removeItem("today-math-sidebar-collapsed");
+
     render(<UnifiedWorkspace initialData={initialData} allowedMenus={ALL} />);
     fireEvent.click(screen.getByRole("button", { name: "왼쪽 메뉴 접기" }));
     expect(
       screen.getByRole("button", { name: "왼쪽 메뉴 펼치기" }),
     ).toBeVisible();
+    // 수학 접힘: 제품이 둘이어도 표지·딱지 없음 — 수학 접힌 머리는 지금 모습 그대로(05 §8.23 ⑷)
+    expect(root()).not.toHaveAttribute("data-product");
+    expect(root()).not.toHaveAttribute("data-picker");
     expect(screen.queryByTestId("product-badge")).toBeNull();
     fireEvent.click(brand());
     fireEvent.click(screen.getByRole("option", { name: "오늘의영어" }));
-    expect(screen.getByTestId("product-badge")).toHaveTextContent("영");
-    expect(screen.getByTestId("product-badge")).toHaveAttribute(
-      "aria-hidden",
-      "true",
-    );
+    expect(root()).toHaveAttribute("data-product", "english");
+    const badge = screen.getByTestId("product-badge");
+    expect(badge).toHaveTextContent("영");
+    expect(badge).toHaveAttribute("aria-hidden", "true");
+    // 딱지는 브랜드 단추의 마크 안에 있다
+    expect(brand().contains(badge)).toBe(true);
     fireEvent.click(brand());
     expect(screen.getByRole("listbox", { name: "제품" })).toBeVisible();
     fireEvent.click(screen.getByRole("option", { name: "오늘의수학" }));
+    expect(root()).not.toHaveAttribute("data-product");
     expect(screen.queryByTestId("product-badge")).toBeNull();
+  });
+
+  it("영어만 있는 계정도 접힘에서 표지와 딱지 «영»이 붙는다 (검토 #9)", () => {
+    render(
+      <UnifiedWorkspace initialData={initialData} allowedMenus={["english"]} />,
+    );
+    fireEvent.click(screen.getByRole("button", { name: "왼쪽 메뉴 접기" }));
+    expect(document.querySelector("[data-sidebar-collapsed]")).toHaveAttribute(
+      "data-product",
+      "english",
+    );
+    expect(screen.getByTestId("product-badge")).toHaveTextContent("영");
+  });
+
+  it("옆 메뉴의 «AI 작업 연결» 판은 수학 제품에만 선다 (검토 #3)", async () => {
+    render(<UnifiedWorkspace initialData={initialData} allowedMenus={ALL} />);
+    expect(
+      screen.getByRole("button", { name: "AI 연결 설정" }),
+    ).toBeInTheDocument();
+    fireEvent.click(brand());
+    fireEvent.click(screen.getByRole("option", { name: "오늘의영어" }));
+    await screen.findByRole("heading", { name: "영어 패널" });
+    expect(screen.queryByRole("button", { name: "AI 연결 설정" })).toBeNull();
+    fireEvent.click(brand());
+    fireEvent.click(screen.getByRole("option", { name: "오늘의수학" }));
+    expect(
+      screen.getByRole("button", { name: "AI 연결 설정" }),
+    ).toBeInTheDocument();
+  });
+
+  it("제품 목록에서 Tab 으로 초점이 목록 밖으로 나가면 닫힌다 (검토 #13)", () => {
+    render(<UnifiedWorkspace initialData={initialData} allowedMenus={ALL} />);
+    fireEvent.click(brand());
+    const options = within(
+      screen.getByRole("listbox", { name: "제품" }),
+    ).getAllByRole("option");
+    options[0].focus();
+    // 목록 안에서 옮기는 것은 그대로
+    fireEvent.focusOut(options[0], { relatedTarget: options[1] });
+    expect(screen.getByRole("listbox", { name: "제품" })).toBeVisible();
+    // 목록 밖(윗줄 «빠른 검색 열기»)으로 나가면 닫힌다
+    fireEvent.focusOut(options[1], {
+      relatedTarget: screen.getByRole("button", { name: "빠른 검색 열기" }),
+    });
+    expect(screen.queryByRole("listbox", { name: "제품" })).toBeNull();
+    expect(brand()).toHaveAttribute("aria-expanded", "false");
   });
 
   it("영어에서는 «현재 시험지» 카드 · 담기 바가 안 뜨고, 영어 뷰의 알림은 셸 알림 줄로 나온다", async () => {

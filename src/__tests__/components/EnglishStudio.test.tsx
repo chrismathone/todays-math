@@ -545,6 +545,51 @@ describe("[EnglishStudio] 학교별 내신 대비", () => {
     ).toBeVisible();
   });
 
+  it("목록을 못 읽어도 옆 메뉴 «새 시험 등록»은 창을 열고, 등록한 시험이 바로 보인다 (검토 #5)", async () => {
+    server.use(
+      http.get("/api/english/exams", () =>
+        HttpResponse.json(
+          {
+            error: {
+              code: "INTERNAL_ERROR",
+              message: "잠시 뒤 다시 시도해 주세요.",
+            },
+          },
+          { status: 500 },
+        ),
+      ),
+    );
+    const log = makeLog();
+    render(<Harness log={log} />);
+    expect(await screen.findByRole("alert")).toHaveTextContent(
+      "잠시 뒤 다시 시도해 주세요.",
+    );
+    fireEvent.click(screen.getByRole("button", { name: "새 시험 등록(셸)" }));
+    const dialog = within(screen.getByRole("dialog", { name: "새 시험 등록" }));
+    fireEvent.change(dialog.getByRole("textbox", { name: "학교 이름" }), {
+      target: { value: "정화중학교" },
+    });
+    fireEvent.click(dialog.getByRole("button", { name: "등록" }));
+    expect(
+      await screen.findByRole("button", { name: "정화중학교" }),
+    ).toHaveAttribute("aria-pressed", "true");
+    expect(
+      screen.getByRole("heading", { name: "학교별 내신 대비" }),
+    ).toBeVisible();
+    // 목록을 다시 읽다 또 실패해도 방금 등록한 시험은 남는다
+    await waitFor(() =>
+      expect(log.notices.at(-1)).toEqual({
+        message: "시험을 등록했습니다.",
+        tone: "status",
+      }),
+    );
+    expect(screen.getByRole("button", { name: "정화중학교" })).toBeVisible();
+    // 목록 오류 줄은 걷혔다(새 시험의 자료·세트는 대역이 몰라 404 — 그 줄은 별개)
+    expect(
+      screen.queryByText("잠시 뒤 다시 시도해 주세요."),
+    ).not.toBeInTheDocument();
+  });
+
   it("딥링크 요청은 그 세트의 시험으로 맞춘 뒤 편집 화면을 열고 onSetOpened 를 부른다", async () => {
     localStorage.setItem(STORAGE_KEY, ENGLISH_EXAM_B_ID);
     const log = makeLog();
