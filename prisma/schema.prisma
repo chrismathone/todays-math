@@ -219,6 +219,8 @@ model User {
   studentAccountsIssued  StudentAccount[] @relation("studentAccountIssuer")
   /// 이 계정의 요청이 거절·실패한 기록 (오류 기록 표) — 계정을 지우면 기록은 남고 이 칸만 빈다
   errorLogs              ErrorLog[]
+  /// 오늘의 영어 — 학교별 내신 시험(D-148). 학원 운영 데이터 — 계정을 지우면 시험과 딸린 자료·세트가 같이 지워진다
+  englishExams           EnglishExam[]
 
   @@map("user")
 }
@@ -1457,4 +1459,80 @@ model ErrorLogImage {
   errorLog ErrorLog @relation(fields: [errorLogId], references: [id], onDelete: Cascade)
 
   @@map("error_log_image")
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+// 오늘의 영어 — 외부지문 내신 스튜디오 (D-148, docs/planning/25-english-studio.md §2)
+//
+// 부류: **학원 운영 데이터**(D-130) — `EnglishExam.userId` 로 소유하고 `ownedRowsWhere` 로 범위를 가른다
+// (지점 관리자는 지점 전체 · 강사는 자기 것). 자료·세트는 부모 시험의 범위로 판정한다.
+// 🔴 문제은행 `Problem` 에 넣지 않는다 · `WorkspaceDocument/Asset` 에 얹지 않는다(25 §2).
+// 계약: src/contracts/english.contract.ts · 마이그레이션: prisma/migrations/20260930120000_english_studio
+// (적용은 scripts/qa/apply-english-studio-migration.ts — `prisma migrate dev/deploy/db push` 금지).
+// ─────────────────────────────────────────────────────────────────────────────
+
+/// 학교별 내신 시험 하나 — 자료(EnglishMaterial)와 대비 문제 세트(EnglishQuestionSet)의 부모
+model EnglishExam {
+  id        String    @id @default(uuid()) @db.Uuid
+  userId    String    @map("user_id") @db.Uuid
+  school    String    @db.VarChar(80)
+  /// 중1~고3 — 계약 `ENGLISH_GRADES`. **SQL 에만 있는 것**: CHECK grade IN (...)
+  grade     String    @db.VarChar(4)
+  title     String    @db.VarChar(100)
+  /// 시험 날짜(달력 날짜) — 없어도 된다
+  examDate  DateTime? @map("exam_date") @db.Date
+  /// 출제 설정 — 이번 시험에서 중점적으로 다룰 유형 이름 배열(계약 `englishGeneratedTypeSchema`).
+  /// **SQL 에만 있는 것**: CHECK jsonb_typeof(types) = 'array'
+  types     Json      @default("[]") @db.JsonB
+  createdAt DateTime  @default(now()) @map("created_at")
+  updatedAt DateTime  @updatedAt @map("updated_at")
+
+  user      User                 @relation(fields: [userId], references: [id], onDelete: Cascade)
+  materials EnglishMaterial[]
+  sets      EnglishQuestionSet[]
+
+  @@index([userId, createdAt])
+  @@map("english_exam")
+}
+
+/// 시험 자료 — 파일 원본(≤10MB, `bytes`) 또는 지문 글(`content`). **SQL 에만 있는 것**: 둘 다 NULL 금지 CHECK · size >= 0
+model EnglishMaterial {
+  id        String   @id @default(uuid()) @db.Uuid
+  examId    String   @map("exam_id") @db.Uuid
+  name      String   @db.VarChar(255)
+  mimeType  String   @map("mime_type") @db.VarChar(100)
+  size      Int
+  /// 파일 원본 — 텍스트 자료는 NULL. 목록 조회는 이 칸을 읽지 않는다(`select`)
+  bytes     Bytes?
+  /// 문제 제작에 쓸 지문 글(≤30,000자) — 텍스트 자료, 또는 .txt 파일의 글. 그 밖 파일은 NULL
+  content   String?  @db.Text
+  createdAt DateTime @default(now()) @map("created_at")
+
+  exam EnglishExam @relation(fields: [examId], references: [id], onDelete: Cascade)
+
+  @@index([examId, createdAt])
+  @@map("english_material")
+}
+
+/// 대비 문제 세트 — 지문 하나 + 문항 배열(쓰기 때 계약 `englishQuestionSchema` 로 잠근다) + 검토 상태
+model EnglishQuestionSet {
+  id        String   @id @default(uuid()) @db.Uuid
+  examId    String   @map("exam_id") @db.Uuid
+  title     String   @db.VarChar(160)
+  /// 초안 · 검토 중 · 검토 완료 — 계약 `ENGLISH_SET_STATUSES`. **SQL 에만 있는 것**: CHECK status IN (...)
+  status    String   @default("초안") @db.VarChar(8)
+  /// chatgpt · cloze · deepseek · manual — 계약 `ENGLISH_SET_SOURCES`. **SQL 에만 있는 것**: CHECK source IN (...)
+  source    String   @db.VarChar(16)
+  passage   String   @db.Text
+  /// 문항 배열 — **SQL 에만 있는 것**: CHECK jsonb_typeof(questions) = 'array'
+  questions Json     @db.JsonB
+  /// 낙관적 잠금 — 읽었을 때의 값을 PUT 이 들고 오고, 다르면 409 REVISION_MISMATCH. **SQL 에만 있는 것**: CHECK revision >= 1
+  revision  Int      @default(1)
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
+
+  exam EnglishExam @relation(fields: [examId], references: [id], onDelete: Cascade)
+
+  @@index([examId, updatedAt])
+  @@map("english_question_set")
 }
