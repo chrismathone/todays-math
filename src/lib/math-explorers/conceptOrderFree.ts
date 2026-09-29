@@ -33,4 +33,5 @@ export const orderFreeCards: ReadonlySet<string> = new Set([
   "g4-quarter-turn", // 직각만큼 돌리기 — 한 바퀴의 90°만큼, 곧 1/4 (2:1, grok 반대)
   "g4-half-turn", // 반 바퀴 돌리기 (2:1, grok 반대)
   "g5-parallelogram-area", // 평행사변형의 넓이 — 조사를 «의 길이»로 고정한 뒤 (3:0)
+  "g6-prism", // 각기둥 — «평행이고 합동인 다각형이며»로 조각을 고친 뒤, 맞바꿈도 같은 뜻(리드 검토 B · b6 · fix7)
 ]);

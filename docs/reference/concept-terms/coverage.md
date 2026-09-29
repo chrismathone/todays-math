@@ -406,7 +406,11 @@
 
 - 이 트랙 검사기 `check-leak-coverage.py`: 14권 원문 문장 + 트랙 곁 파일(판정 앵커 · 후보 · 버림 규칙)을 원천으로, 허용 말(용어 · 단원 이름 · 카드 글)을 걷어낸 12글자 창.
   자기 시험 — 원문 한 문장을 심으면 걸리고(1줄), 우리 말만이면 0. 2026-09-28 부터 둘 더: 보정 표의 한 칸에 원문을 심은 판이 걸리고(지금 보정 표는 0),
-  보정을 입힌 카드 덤프로 허용 말을 지으면 «덤프가 보정을 입었다» 멈춤이 새 글 45칸을 전부 잡는다(§12 🔴 — 이 숫자는 검사기 셈과 시험 `conceptSentenceFixes.test.ts` 가 묶는다).
+  보정을 입힌 카드 덤프로 허용 말을 지으면 «덤프가 보정을 입었다» 멈춤이 보정 전부를 잡는다(§12 🔴).
+  🔴 걷어낸 창만 보면 허용 말이 촘촘한 교재 문장은 창이 하나도 안 남는다 — 30자 넘는 원문 문장의 약 27%를 통째로 옮겨도 못 잡았다(리드 검토 A2).
+  그래서 **걷기 전 창**(14권 교재 문장 그대로의 12글자, 허용 말 하나 안에 통째로 든 창은 뺌)도 본다 — 자기 시험 ④ 는 걷으면 창이 안 남는 문장을 심어 걷기 전 창이 잡는지 잰다.
+  누출 판정은 이 검사기 하나로 하지 않는다 — elem34 · elem56 · mida · midb 넷과 리드 독립 검사기를 함께 돌린다.
+- 셈 한 줄(검사기와 시험 `conceptSentenceFixes.test.ts` 가 이 줄의 숫자를 읽는다 — 문장을 고칠 때 이 줄은 셈 그대로 둔다): 보정 새 글 53칸.
 - 보정안은 더 엄하게 — `build-card-fixes.py` 가 새 글을 **아무것도 걷어내지 않은** 12글자 창으로 원문과 맞대어 하나라도 겹치면 멈춘다.
   이 검사가 제 초안 하나(분수의 곱셈 — 원래 카드 문장을 살린 부분이 교재 규칙 문장과 16글자 같음)를 잡아 다시 썼다.
 - 🔵 곁 발견: **카드 원문 칸 33곳**(정의 문장 대부분 · 함정 둘)이 교재 문장과 12글자 넘게 겹친다 — 예각 · 둔각 · 계수 · 합성수 · 점대칭도형 · 곱이 0인 성질 · 인수분해처럼
@@ -431,13 +435,13 @@ python scripts/qa/concept-terms/build-coverage.py   --cards <작업폴더>/cards
 python scripts/qa/concept-terms/build-card-kinds.py --cards <작업폴더>/cards.json --draft <concept-context-kinds-draft.tsv>
 python scripts/qa/concept-terms/build-card-fixes.py --cards <작업폴더>/cards.json            # 저장소 밖 원문이 있어야 돈다(겹침 검사)
 python scripts/qa/concept-terms/check-leak-coverage.py --cards <작업폴더>/cards.json --selftest --git main..HEAD
-npx tsx scripts/qa/concept-terms/build-fillings-audit.ts [--check | --show <카드 id>]  # 정답 아닌 채움 원장 — 판정은 사람이 적고, 새 · 바뀐 채움은 «미검토» · 원장엔 문장 없음(말 · 조각 지문), 문장은 --show
+npx tsx scripts/qa/concept-terms/build-fillings-audit.ts [--check | --show <카드 id>]  # 정답 아닌 채움 원장(230장 × 11 — 리드 검토 B) — 판정은 사람이 적고, 새 · 바뀐 채움은 «미검토» · 원장엔 문장 없음(말 · 조각 지문), 문장은 --show
 ```
 🔴 **카드 덤프는 보정 전 원본 카드다**(2026-09-28 리드 적대적 검토 ④). 보정은 카드를 내보내는 층(`definitionCards`)에서 입히므로,
 그 층을 덤프하면 ⑴ 누출 검사가 보정 문장을 «카드 글»(허용 말)로 걷어내 보정 표를 못 보고 ⑵ 보정 생성기의 «새로 쓴 글만 잰다»가 23장 전부를
 «이미 같은 문장»으로 건너뛰었다. 그래서 덤프 다섯(coverage · elem34 · elem56 · mida · midb)은 모두
 `definitionSourceCards`(보정 전, 앱 코드는 안 읽음 — 시험이 막음)를 내보내고, 둘은 잘못된 덤프에서 멈춘다 — `check-leak-coverage.py` 는
 ⑴ 보정의 모든 칸이 덤프 카드와 같으면(덤프가 이미 보정을 입음 — 새 글의 기준도 덤프라 이것이 먼저다) ⑵ 보정 새 글이 허용 말에 있으면 ⑶ «새 글 N칸» 셈이 이 문서와 다르면,
-`build-card-fixes.py` 는 아무 칸도 안 바뀌는 보정이면. 검사기 자기 시험 ③ 은 보정을 입힌 덤프를 main 과 같은 짝(기준 · 허용 말 둘 다)으로 넣어 36장 전부 멈추는지 잰다(리드 검토 A2 M1).
+`build-card-fixes.py` 는 아무 칸도 안 바뀌는 보정이면. 검사기 자기 시험 ③ 은 보정을 입힌 덤프를 main 과 같은 짝(기준 · 허용 말 둘 다)으로 넣어 보정 전부(지금 68장) 멈추는지 잰다(리드 검토 A2 M1).
 세 빌더는 `--check` 로 «지금 저장소 산출물과 같은가»만 본다. 🔴 저장소 밖 의존물: `C:\Creative\testautocreator-data\I-개념용어\`(보정 겹침 검사 · 누출 검사) ·
 갈래 초안 TSV(옆 트랙 concept-context 산출 — 결과 JSON 에 필요한 칸을 옮겨 적었다).

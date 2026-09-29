@@ -133,9 +133,10 @@ FIXES: list = [
          explanation="함께 변하는 경향만으로 원인이라고 단정할 수 없어. 뚜렷한 경향이 없으면 상관관계가 없다고 해."),
     dict(id="g8-cases", severity="범위", sevVotes=sev("범위", "빠짐", "범위"), votes=V3, decidedBy=AGREE,
          issue="«모든 가능한 결과의 개수»라 전체 결과 수로 읽힌다 — 경우의 수는 한 사건이 일어나는 가짓수(사건마다 따로). 보기도 사건을 세게 바꾼다(codex · grok)",
-         template="한 사건에 해당하는 {가능한 결과}를 빠짐없이 센 {개수}.", wrong=["평균", "확률"],
-         revision=dict(date="2026-09-28", votes="A: 가장 큰 값 2:1(codex 반대) → A2: 확률 3:0",
-                       why="리드 검토 A ⑥ — 채움 «…센 합계의 값»을 개수로 읽을 수 있었다 → 가장 큰 값. A2 ⑤ — «센 가장 큰 값»도 개수로 읽힐 여지(codex) → 분명히 거짓인 «확률»로"),
+         template="한 사건에 해당하는 {가능한 결과}를 빠짐없이 센 {개수}.", wrong=["넓이", "확률"],
+         revision=dict(date="2026-09-28", votes="A: 가장 큰 값 2:1(codex 반대) → A2: 확률 3:0 → B: 넓이(fix3)",
+                       why="리드 검토 A ⑥ — 채움 «…센 합계의 값»을 개수로 읽을 수 있었다 → 가장 큰 값. A2 ⑤ — «센 가장 큰 값»도 개수로 읽힐 여지(codex) → 분명히 거짓인 «확률»로. "
+                           "A2 L7 · B — «를»에 정답 둘만 맞아(«평균»은 받침) 첫 칸이 정답 둘로 좁혀졌다 → «를»에 맞는 거짓 «넓이»로"),
          exampleTitle="주사위 한 개를 던져 짝수의 눈이 나오는 경우를 바르게 설명한 것을 골라봐.",
          examples=ex(("경우의 수는 3", True), ("2, 4, 6이 나오는 경우", True), ("경우의 수는 6", False), ("경우의 수는 2", False))),
     dict(id="g9-vertex", severity="범위", sevVotes=sev("범위", "빠짐", "범위"), votes=V3, decidedBy=AGREE,
@@ -224,6 +225,134 @@ FIXES: list = [
     dict(id="g4-half-turn", severity="채점", sevVotes=sev("채점", "채점", "채점"), votes=V3, decidedBy="3자 일치(3:0)",
          issue="직각만큼 돌리기와 같다 — 맞바꿈 «한 바퀴의 180°만큼, 곧 1/2 돌리는 것»이 어색했다",
          template="{1/2바퀴}, 곧 {180°}만큼 돌리는 것.", wrong=["1/4바퀴", "90°"]),
+    # ── 리드 검토 B(2026-09-28 · 3자 — B fix · fix2 · fix3): 230장에 넓힌 조사 · 품사 검사와 채움 검사 ──
+    dict(id="g3-check-division", severity="채점", sevVotes=sev("채점", "채점", "채점"), votes=V3, decidedBy="3자 일치(3:0)",
+         issue="«를 더하면»에 맞는 말이 «나머지» 하나였다(곱 · 합 · 몫 모두 받침) — 받침 없는 거짓 «차»로",
+         wrong=["합", "차"]),  # 문장은 원본 그대로(template 없음 — 오답 말만)
+    dict(id="g3-picture-graph", severity="채점", sevVotes=sev("채점", "채점", "채점"), votes=V3, decidedBy="3자 일치(3:0)",
+         issue="둘째 칸 «로»에 맞는 말이 «수» 하나였다(«색만»은 받침) — «로»에 맞는 거짓 «차례»로",
+         wrong=["문장", "차례"]),  # 문장은 원본 그대로(template 없음 — 오답 말만)
+    dict(id="g3-repeat-rule", severity="채점", sevVotes=sev("채점", "채점", "채점"), votes=V3, decidedBy="3자 일치(3:0 — fix2 · 첫 안의 «크기» 유지는 codex 반대로 바꿈)",
+         issue="«이 같은»에 «묶음»만 맞았고(합계는 받침 없음) 채움 «묶음이 같은 크기로 되풀이»가 참에 가까웠다(codex) — «합 · 차»로(«이»에 묶음 · 합, «로»에 순서 · 차)",
+         wrong=["합", "차"]),  # 문장은 원본 그대로(template 없음 — 오답 말만)
+    dict(id="g4-decimal-add", severity="채점", sevVotes=sev("채점", "채점", "채점"), votes=V3, decidedBy="3자 일치(3:0)",
+         issue="«을 맞추고»에 맞는 말이 «소수점» 하나였다 — 받침 있는 거짓 «오른쪽 끝»으로",
+         wrong=["오른쪽 끝", "숫자 개수끼리"]),  # 문장은 원본 그대로(template 없음 — 오답 말만)
+    dict(id="g4-scale", severity="채점", sevVotes=sev("채점", "채점", "채점"), votes=V3, decidedBy="3자 일치(3:0)",
+         issue="첫 칸 조사에 맞는 말이 «수의 크기» 하나였다 — 조사에 맞는 거짓 «그림 크기»로",
+         wrong=["그림 크기", "장식"]),  # 문장은 원본 그대로(template 없음 — 오답 말만)
+    dict(id="g5-triangle-area", severity="채점", sevVotes=sev("채점", "채점", "채점"), votes=V3, decidedBy="3자 일치(3:0)",
+         issue="«로 나눈다»에 «2»만 맞았다(3은 «삼» — 받침 ㅁ) — 받침 없는 거짓 «4»로",
+         wrong=["합", "4"]),  # 문장은 원본 그대로(template 없음 — 오답 말만)
+    dict(id="g6-decimal-divide", severity="채점", sevVotes=sev("채점", "채점", "채점"), votes=V3, decidedBy="3자 일치(3:0)",
+         issue="둘째 칸에 맞는 명사가 «소수점» 하나였다 — 받침 있는 거짓 «몫»으로",
+         wrong=["단위분수", "몫"]),  # 문장은 원본 그대로(template 없음 — 오답 말만)
+    dict(id="g6-rate-amount", severity="채점", sevVotes=sev("채점", "채점", "채점"), votes=V3, decidedBy="3자 일치(3:0)",
+         issue="첫 칸 조사에 «비율»만 맞았다 — 받침 있는 거짓 «합»으로",
+         wrong=["합", "나누어"]),  # 문장은 원본 그대로(template 없음 — 오답 말만)
+    dict(id="g6-ratio-simplify", severity="채점", sevVotes=sev("채점", "채점", "채점"), votes=V3, decidedBy="2:1(Claude · grok 찬성 / codex 반대 — 원래 채움 «…0은 같다»를 «0 은 늘 0»으로 읽음) — fix8",
+         issue="첫 칸 조사에 «0이 아닌 수» 하나만 맞았다 — «두 항의 차»로 바꿨는데 두 항이 다르면 참이라(리드 검토 B M2) 양도 아니고 늘 같은 것도 아닌 «표»로(앞 안 «기호»는 «기호는 같다»가 참 · fix6, «넓이»는 양수라 참 · fix7 — 둘 다 codex 반대)",
+         wrong=["0", "표"]),  # 문장은 원본 그대로(template 없음 — 오답 말만)
+    dict(id="g7-sector", severity="채점", sevVotes=sev("채점", "채점", "채점"), votes=V3, decidedBy="2:1(Claude · grok 찬성 / codex 반대 — «두 호와 그 사이의 지름»을 반원으로 읽음) — fix6",
+         issue="«로 둘러싸인»에 «호» 하나만 맞았다(현은 받침) — 앞 안 오답 «모서리»(입체 용어)는 둘째 칸을 «호»로 정해 버렸다(리드 검토 B L2). 조각을 « 하나로 둘러싸인»으로 바꿔 둘째 칸 뒤 조사를 없애고 원래 오답 «현»으로",
+         template="원의 두 {반지름}과 그 사이의 {호} 하나로 둘러싸인 도형.",
+         wrong=["지름", "현"]),
+    dict(id="g7-histogram", severity="채점", sevVotes=sev("채점", "채점", "채점"), votes=V3, decidedBy="3자 일치(3:0)",
+         issue="«로 나타낸»에 «높이»만 맞았다(색은 받침) — «로»에 맞는 거짓 «둘레»로",
+         wrong=["원", "둘레"]),  # 문장은 원본 그대로(template 없음 — 오답 말만)
+    dict(id="g8-terminating", severity="채점", sevVotes=sev("채점", "채점", "채점"), votes=V3, decidedBy="3자 일치(3:0)",
+         issue="첫 칸 조사에 «0이 아닌 숫자» 하나만 맞았다 — 받침 있는 거짓 «순환마디»로",
+         wrong=["순환마디", "끝나지 않는"]),  # 문장은 원본 그대로(template 없음 — 오답 말만)
+    dict(id="g8-multiplication-rule", severity="채점", sevVotes=sev("채점", "채점", "채점"), votes=V3, decidedBy="3자 일치(3:0)",
+         issue="둘째 칸 조사에 «선택 수»만 맞았다(평균은 받침) — 받침 없는 거짓 «차»로",
+         wrong=["합", "차"]),  # 문장은 원본 그대로(template 없음 — 오답 말만)
+    dict(id="g9-scatterplot", severity="채점", sevVotes=sev("채점", "채점", "채점"), votes=V3, decidedBy="3자 일치(3:0 — fix2)",
+         issue="«를 살피는»에 «관계» 하나만 맞았다 — «를»에 맞는 거짓 «넓이»로(첫 안 «순서»는 값의 순서를 살핀다로 읽힐 여지 — codex)",
+         wrong=["막대만", "넓이"]),  # 문장은 원본 그대로(template 없음 — 오답 말만)
+    dict(id="g7-pyramid-volume", severity="채점", sevVotes=sev("채점", "채점", "채점"), votes=V3, decidedBy="3자 일치(3:0)",
+         issue="«으로 구한다»에 «3»만 맞았다(1/3 · 1/2 는 «…분의 일», 2는 «이») — 받침 있는 거짓 «6»으로",
+         wrong=["1/2", "6"]),  # 문장은 원본 그대로(template 없음 — 오답 말만)
+    dict(id="g5-certain", severity="채점", sevVotes=sev("채점", "채점", "채점"), votes=V3, decidedBy="3자 일치(3:0)",
+         issue="«로 나타낸다»에 «1»만 맞았다(0은 «영», «반드시»는 부사) — «로»에 맞는 거짓 «1/2»로(«이분의 일»)",
+         wrong=["절대로 안", "1/2"]),  # 문장은 원본 그대로(template 없음 — 오답 말만)
+    dict(id="g4-number-rule", severity="채점", sevVotes=sev("채점", "채점", "채점"), votes=V3, decidedBy="3자 일치(3:0)",
+         issue="오답 «색깔»만 품사가 튀어 칸이 갈렸다 — 명사 «삭제»로(«지우기»와 짝)",
+         wrong=["삭제", "지우기"]),  # 문장은 원본 그대로(template 없음 — 오답 말만)
+    dict(id="g5-equivalent", severity="채점", sevVotes=sev("채점", "채점", "채점"), votes=V3, decidedBy="2:1(Claude · grok 찬성 / codex 반대 — 참 없음, 숫자 예 문장으로 새로 짜자는 제안) — fix8",
+         issue="오답 둘이 두 칸 어디에도 못 들어가 순서만 묻는 카드였다 — «분모만» → «분자». «같은 분자를 곱하거나 나누어도 크기는 같다»는 분자가 0이 아니면 참이라(리드 검토 B M1) 양이 아닌 «표»로(앞 안 «차례»는 너무 먼 말이라 codex · grok 반대 · fix6, «자리»는 수직선 위 자리로 읽으면 참이라 codex 반대 · fix7)",
+         wrong=["0", "표"]),  # 문장은 원본 그대로(template 없음 — 오답 말만)
+    dict(id="g7-relative-frequency", severity="채점", sevVotes=sev("채점", "채점", "채점"), votes=V3, decidedBy="2:1(Claude · grok 찬성 / codex 반대 — 도수 · 전체 도수 · 계급의 크기가 우연히 같으면 참이 된다는 과한 읽기) — fix6",
+         issue="오답 둘이 두 칸 어디에도 못 들어가 순서만 묻는 카드였다 — «계급의 폭» → «계급의 크기». 남은 오답 «최댓값»은 «를 · 로» 어디에도 조사가 안 맞는 죽은 보기였다(리드 검토 B L8) — «넓이»로",
+         wrong=["넓이", "계급의 크기"]),  # 문장은 원본 그대로(template 없음 — 오답 말만)
+    dict(id="g7-frequency", severity="채점", sevVotes=sev("채점", "채점", "채점"), votes=V3, decidedBy="2:1(Claude · grok 찬성 / codex 반대 — 자료 값이 우연히 같으면 참이 된다는 과한 읽기) — fix6",
+         issue="정답 두 말 «개수 · 자료 수»가 거의 같아 맞바꿈이 뜻으로 거의 참이었다 — 둘째 정답을 전체를 가리키는 말로(첫 안 «전체 자료 수»는 계급 안으로 읽혀 codex 반대). 정답 말만 길어 길이로 드러나던 것(리드 검토 B L1) — 오답 «최댓값» → «가장 큰 값과 가장 작은 값의 차»",
+         template="정해진 계급에 속하는 자료의 {개수}이며 전체 도수의 합은 {조사한 자료를 모두 센 값}이다.",
+         wrong=["평균", "가장 큰 값과 가장 작은 값의 차"]),
+    dict(id="g3-fraction", severity="채점", sevVotes=sev("채점", "채점", "채점"), votes=V3, decidedBy="3자 일치(3:0 — fix3)",
+         issue="«로 나타낸»에 맞는 명사가 «수» 하나였다(«똑같이»는 부사, «색»은 받침) — «로»에 맞는 거짓 «표»로",
+         wrong=["서로 다르게", "표"]),  # 문장은 원본 그대로(template 없음 — 오답 말만)
+    dict(id="g4-bar-graph", severity="채점", sevVotes=sev("채점", "채점", "채점"), votes=V3, decidedBy="2:1(Claude · grok 찬성 / codex 반대 — 색깔에 수를 맞춘 막대그래프도 있다는 읽기) — fix6",
+         issue="«로 나타낸»에 정답 둘만 맞았다(원 · 색깔만은 받침) — «로»에 맞는 거짓 «색깔»로. 맞바꿈 «길이의 막대로»는 셋 다 애매였다(리드 검토 B M4) — 조각을 «[막대] 모양으로 그려 그 [길이]로»로 바꿔 맞바꾸면 말이 안 되게",
+         template="자료의 수를 {막대} 모양으로 그려 그 {길이}로 나타낸 그래프.",
+         wrong=["원", "색깔"]),
+    dict(id="g5-correspondence", severity="채점", sevVotes=sev("채점", "채점", "채점"), votes=V3, decidedBy="3자 일치(3:0 — fix4)",
+         issue="«을 이루는»에 정답 둘만 맞았다(«순서 없이»는 부사) — 받침 있는 거짓 «색»으로. 원래 오답 «차»는 «일정한 차에 따라 짝»이 대응 규칙으로 참이라(codex · fix3) «종이»로",
+         wrong=["색", "종이"]),  # 문장은 원본 그대로(template 없음 — 오답 말만)
+    dict(id="g5-impossible", severity="채점", sevVotes=sev("채점", "채점", "채점"), votes=V3, decidedBy="3자 일치(3:0 — fix3)",
+         issue="«으로 나타낸다»에 «0»만 맞았다(1은 «일») — 받침 있는 거짓 «반»으로",
+         wrong=["반드시 일어나는", "반"]),  # 문장은 원본 그대로(template 없음 — 오답 말만)
+    dict(id="g6-cube-stack", severity="채점", sevVotes=sev("채점", "채점", "채점"), votes=V3, decidedBy="3자 일치(3:0 — fix4)",
+         issue="«로 나누어»에 «층별»만 맞았다(더해 · 빼서는 동사꼴, 색만은 받침) — «로»에 맞는 거짓 «둘레»로(앞 안 «색깔별»은 색깔별로 나눠 층마다 더해도 셀 수 있어 codex 반대 · fix3)",
+         wrong=["둘레", "빼서"]),  # 문장은 원본 그대로(template 없음 — 오답 말만)
+    dict(id="g6-band-graph", severity="채점", sevVotes=sev("채점", "채점", "채점"), votes=V3, decidedBy="3자 일치(3:0 — fix3)",
+         issue="«에 따라»에 «비율»만 맞았다(나눈 · 늘인은 관형형, «-만»은 «에»에 어색) — 명사 «평균»으로",
+         wrong=["평균", "늘인"]),  # 문장은 원본 그대로(template 없음 — 오답 말만)
+    dict(id="g7-coordinate", severity="채점", sevVotes=sev("채점", "채점", "채점"), votes=V3, decidedBy="3자 일치(3:0 — fix4)",
+         issue="«와»에 정답 둘만 맞았고(«…만»은 받침) 채움 «x좌표와 y좌표만의 순서쌍»이 참이었다(넓은 검사 codex · grok) — 오답 둘을 «넓이 · 거리»로",
+         wrong=["넓이", "거리"]),  # 문장은 원본 그대로(template 없음 — 오답 말만)
+    dict(id="g7-sector-area", severity="채점", sevVotes=sev("채점", "채점", "채점"), votes=V3, decidedBy="3자 일치(3:0 — fix6)",
+         issue="«360도분의 중심각»은 «각»으로 끝나 «을»인데 조각이 «를»이었고, 오답 «360°/중심각»만 «를»에 맞았다 — 오답을 분자가 같은 «중심각/180°»로. 화면의 «360°을»이 어색하고 분수 뒤 조사 관례가 제품 안에서 갈린다(리드 검토 B L6) — 조각을 «[분수]의 값을»로 바꿔 분수 뒤에 받침 조사를 두지 않음",
+         template="원의 넓이에 {중심각/360°}의 값을 {곱하여} 구한다.",
+         wrong=["중심각/180°", "더하여"]),
+    dict(id="g3-decimal", severity="채점", sevVotes=sev("채점", "채점", "채점"), votes=V3, decidedBy="3자 일치(3:0 — fix4)",
+         issue="채움 «오른쪽 [1] 자리 … [0.1]»이 첫째 자리로 읽혀 참이었다(넓은 검사 codex · grok 참, Claude 애매) — 오답 «1» → «10»(«0.01»은 «둘째»와 참이 되어 뺌)",
+         wrong=["둘째", "10"]),  # 문장은 원본 그대로(template 없음 — 오답 말만)
+    dict(id="g5-round-up", severity="채점", sevVotes=sev("채점", "채점", "채점"), votes=V3, decidedBy="3자 일치(3:0 — fix4)",
+         issue="채움 «올림은 [더한다]»가 더할 수 · 자리를 빼먹은 뜻으로 읽힐 여지(넓은 검사 codex · grok 애매) — «곱한다»로",
+         wrong=["1을 빼고", "곱한다"]),  # 문장은 원본 그대로(template 없음 — 오답 말만)
+    dict(id="prime", severity="채점", sevVotes=sev("채점", "채점", "채점"), votes=V3, decidedBy="3자 참 없음(fix4 에서 codex 대안 «4의 배수» · fix8 에서 grok 도 확인, codex 는 문장 짜임 반대 — 앞 안 «짝수»는 2가 해당해 codex 반대)",
+         issue="채움 «[모든 자연수] 중에서 약수가 [1과 자기 자신]뿐인 수»는 1이 드는지가 갈렸다(넓은 검사 codex 참 · grok 애매) — «4의 배수»로(그런 수가 하나도 없다 · 앞 안 «짝수»는 2가 해당해 codex 반대)",
+         wrong=["4의 배수", "1"]),  # 문장은 원본 그대로(template 없음 — 오답 말만)
+    dict(id="g8-parallel-lines", severity="채점", sevVotes=sev("채점", "채점", "채점"), votes=V3, decidedBy="3자 일치(3:0 — fix4)",
+         issue="채움 «[기울기]가 같고 [함숫값]은 달라야»가 참이었다(넓은 검사 Claude · codex) — 받침 있는 거짓 «꼭짓점»으로(직선에는 꼭짓점이 없다)",
+         wrong=["x좌표", "꼭짓점"]),  # 문장은 원본 그대로(template 없음 — 오답 말만)
+    # ── 리드 검토 B 이어서(2026-09-28 · 3자 — b5 · fix5): 옛 거름 규칙이 잘못 걸러 판정 없이 거짓이던 81칸을 다시 읽음 ──
+    dict(id="g3-diameter", severity="채점", sevVotes=sev("채점", "채점", "채점"), votes=V3, decidedBy="3자 일치(3:0 — fix5)",
+         issue="채움 «원의 [아무 점]을 지나 … 반지름의 [2배]»가 길이가 지름인 현(곧 중심을 지남)으로 읽힐 여지(b5 Claude · codex 애매) — 오답 «아무 점» → «꼭짓점»(원에는 꼭짓점이 없다)",
+         wrong=["꼭짓점", "3배"]),  # 문장은 원본 그대로(template 없음 — 오답 말만)
+    # ── 리드 검토 B 이어서(2026-09-28 · 3자 — b6 · fix6 · fix7): 맞바꿈을 기계 거름에서 빼고 다시 읽음 · 특수한 경우에만 참인 오답 ──
+    dict(id="g6-quotient-invariant", severity="채점", sevVotes=sev("채점", "채점", "채점"), votes=V3, decidedBy="2:1(Claude · grok 찬성 / codex 반대 — 원래 채움 «…0은 같다»를 «0 은 늘 0»으로 읽음) — fix8",
+         issue="«같은 나머지의 수치를 곱해도 몫은 같다»가 그 수치가 0이 아니면 참이었다(리드 검토 B M2) — 양이 아닌 «표»로(«넓이»는 양수라 참 · codex · fix7)",
+         wrong=["0", "표"]),  # 문장은 원본 그대로(template 없음 — 오답 말만)
+    dict(id="linear", severity="채점", sevVotes=sev("채점", "채점", "채점"), votes=V3, decidedBy="2:1(Claude · grok 찬성 / codex 반대 — 참 없음, 숫자 예 문장으로 새로 짜자는 제안) — fix8",
+         issue="맞바꿈 «1이 차수인 다항식»이 조사만 어긋나고 뜻은 같았다(b6 3:0 참) — 조각을 «가장 높은 [차수]가»로 바꿔 맞바꾸면 말이 안 되게",
+         template="동류항끼리 정리하였을 때 가장 높은 {차수}가 {1}인 다항식.",
+         wrong=["계수", "2"]),
+    dict(id="g9-zero-product", severity="채점", sevVotes=sev("채점", "채점", "채점"), votes=V3, decidedBy="2:1(Claude · grok 찬성 / codex 반대 — 참 없음, 숫자 예 문장으로 새로 짜자는 제안) — fix8",
+         issue="맞바꿈이 참인 두 명제를 바꿔 놓을 뿐이라 뜻이 같았다(b6 3:0 참) — 둘째 정답을 «모두 0일 필요는» + 조각 « 없다.»로, 오답 «항상 모두 0이다» → «0일 수는». 첫 조각은 원래 카드 글이 교재 문장과 겹쳐(보정 표에 옮겨 적히면 누출) «AB=0인 두 수 A, B는»으로 다듬음(뜻 같음)",
+         template="AB=0인 두 수 A, B는 {A=0 또는 B=0}이며 두 수가 {모두 0일 필요는} 없다.",
+         wrong=["A=B", "0일 수는"]),
+    dict(id="g6-prism", severity="채점", sevVotes=sev("채점", "채점", "채점"), votes=V3, decidedBy="2:1(Claude · grok 찬성 / codex 반대 — 참 없음, 숫자 예 문장으로 새로 짜자는 제안) — fix8",
+         issue="맞바꿈 «합동인 다각형하고 평행이며»가 조사만 어긋나고 뜻은 같았다(b6 Claude · codex 참) — 조각을 «[평행]이고 [합동인 다각형]이며»로 바꿔 두 순서 모두 맞는 문장이 되게 하고 순서 무관으로 받는다",
+         template="두 밑면이 서로 {평행}이고 {합동인 다각형}이며 옆면이 직사각형인 입체도형.",
+         wrong=["수직", "원"]),
+    dict(id="composite", severity="채점", sevVotes=sev("채점", "채점", "채점"), votes=V3, decidedBy="3자 일치(3:0 — fix8)",
+         issue="맞바꿈 «소수가 아닌 중에서 1보다 큰 자연수 수»가 뜻이 같았다(b6 codex · grok 참) — 문장을 «[1보다 큰 자연수] 중 [소수]가 아닌 수»로(맞바꾸면 빈 집합 · 자문 판의 «가운데»는 320 폭에서 한 줄 늘어 «중»으로 줄임 — 뜻 같음) · 오답 «짝수»는 특수한 합성수를 가리켜 «분수»로",
+         template="{1보다 큰 자연수} 중 {소수}가 아닌 수.",
+         wrong=["0보다 큰 수", "분수"]),
+    dict(id="g8-similarity", severity="채점", sevVotes=sev("채점", "채점", "채점"), votes=V3, decidedBy="2:1(Claude · grok 찬성 / codex 반대 — 참 없음, 숫자 예 문장으로 새로 짜자는 제안) — fix8",
+         issue="채움 «일정한 비율로 [변형]했을 때 다른 도형과 [합동]»이 닮음으로 읽힐 여지(b6 Claude 참 · codex · grok 애매) — 오답 «변형» → «색칠»",
+         wrong=["색칠", "평행"]),  # 문장은 원본 그대로(template 없음 — 오답 말만)
 ]
 # 고치지 않기로 한 것 — id, 까닭(우리 말), decidedBy
 NOT_FIXED: list = [
@@ -278,6 +407,7 @@ def main():
     ws = source_windows()
     out = []
     seen = set()
+    words_only = set()  # 문장은 원본 그대로 · 오답 말만 바꾸는 항목
     for f in FIXES:
         assert f["id"] not in seen, f["id"]
         seen.add(f["id"])
@@ -286,6 +416,7 @@ def main():
         # 오답 말만 바꾸는 항목은 문장을 다시 적지 않는다(template 없음) — 원본 카드의 조각 · 정답으로 짓는다. 원래 카드 문장의 사본이
         # 교재 표준 문구와 겹쳤다(2026-09-28 elem56 검사기 · 밀기 카드).
         if f.get("template") is None:
+            words_only.add(f["id"])
             f["template"] = c["pieces"][0] + "{" + c["words"][0] + "}" + c["pieces"][1] + "{" + c["words"][1] + "}" + c["pieces"][2]
         blanks = re.findall(r"\{([^}]+)\}", f["template"])
         assert len(blanks) == 2, (f["id"], blanks)
@@ -326,8 +457,9 @@ def main():
             decidedBy=f["decidedBy"], votes=f["votes"], severityVotes=f["sevVotes"],
             **({"revision": f["revision"]} if "revision" in f else {}),
         ))
+    # «안 고침»은 뜻 문장 이야기다 — 오답 말만 바꾸는 채점 보정(문장 그대로)은 같은 카드에 함께 있어도 된다(리드 검토 B)
     for n in NOT_FIXED:
-        assert n["id"] in cards and n["id"] not in seen, n["id"]
+        assert n["id"] in cards and (n["id"] not in seen or n["id"] in words_only), n["id"]
     doc = dict(
         generatedBy="scripts/qa/concept-terms/build-card-fixes.py",
         policy="원본(definition-content.ts · definition-cards.ts, PROVENANCE SHA)은 그대로 — 원본 밖 보정 표(id → change 칸)를 "

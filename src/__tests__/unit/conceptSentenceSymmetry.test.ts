@@ -4,8 +4,8 @@
  * 분수의 곱셈 맞바꿈을 잡았고, 맞바꿈 검사가 피타고라스를, 넓은 검사가 «나눗셈과 크기»(오답 말이 정답의 활용형)를, 230장 기계
  * 훑기가 원본 카드 16장을 더 잡았다. 두 빈칸이 본디 대등한 카드는 순서 무관 채점(`conceptOrderFree.ts`)으로 받는다.
  *
- * 뜻은 코드가 못 가리므로 채움마다 사람이 판정을 적은 **원장**(`docs/reference/concept-terms/card-fillings-audit.json` — 보정 카드 +
- * 순서 무관 카드, 카드마다 11채움 · 3자 합의 또는 Claude · 한 표 의견은 까닭 칸 · 문장은 옮겨 적지 않고 말 · 조각 지문만)을 둔다. 카드의 문장 · 말이 바뀌면 원장과
+ * 뜻은 코드가 못 가리므로 채움마다 사람이 판정을 적은 **원장**(`docs/reference/concept-terms/card-fillings-audit.json` — 230장
+ * 전부(리드 검토 B), 카드마다 11채움 · 3자 합의 또는 Claude · 한 표 의견은 까닭 칸 · 문장은 옮겨 적지 않고 말 · 조각 지문만)을 둔다. 카드의 문장 · 말이 바뀌면 원장과
  * 달라져 빨개진다(리드 검토: 맞바꿈만이 아니라 오답 말이 든 채움까지 — g9-axis 오답 말을 y=p 로 되돌리면 빨개진다).
  * 원장을 다시 뽑으면(`build-fillings-audit.ts`) 바뀐 채움은 «미검토»가 되어 여전히 빨갛다 — 읽고 판정을 적어야 초록이다.
  * 판정은 엔진 채점과 맞물린다: «순서 무관 정답»인 채움만 엔진이 맞음으로 친다.
@@ -31,6 +31,10 @@ import {
   applyExplorerAction,
   createExplorerState,
 } from "@/lib/math-explorers/engine";
+import {
+  fitsParticle,
+  particleGiveaways,
+} from "../../../scripts/qa/concept-terms/particleFit";
 
 type Filling = {
   slots: [number, number];
@@ -124,7 +128,7 @@ const stem = (word: string) => {
   return ending ? t.slice(0, -ending.length) : t;
 };
 
-describe("채움 원장 — 보정 카드 + 순서 무관 카드의 정답 아닌 채움 전부", () => {
+describe("채움 원장 — 230장의 정답 아닌 채움 전부", () => {
   it("원장은 카드 문장을 옮겨 적지 않는다 — 말 · 칸 · 조각 지문만(원래 카드 문장의 사본이 교재 표준 문구와 겹친다)", () => {
     const raw = readFileSync(
       resolve(
@@ -143,10 +147,12 @@ describe("채움 원장 — 보정 카드 + 순서 무관 카드의 정답 아�
           });
   });
 
-  it("원장 카드 = 보정 카드 ∪ 순서 무관 카드", () => {
+  it("원장 카드 = 230장 전부(보정 · 순서 무관 카드만 보던 때 원장 밖 카드에서 참인 채움이 샜다 · 리드 검토 B)", () => {
     expect(audit.cards.map((card) => card.id).sort()).toEqual(
-      [...new Set([...Object.keys(cardFixes), ...orderFreeCards])].sort(),
+      definitionCards.map((card) => card.id).sort(),
     );
+    for (const id of [...Object.keys(cardFixes), ...orderFreeCards])
+      expect(auditOf.has(id)).toBe(true);
   });
 
   it.each(audit.cards.map((card) => card.id))(
@@ -176,124 +182,10 @@ describe("채움 원장 — 보정 카드 + 순서 무관 카드의 정답 아�
   );
 });
 
-// 받침으로 갈리는 조사 — [받침 있을 때, 없을 때]. «으로/로»는 ㄹ 받침이면 «로».
-const PARTICLES: [string, string][] = [
-  ["으로", "로"],
-  ["이라고", "라고"],
-  ["을", "를"],
-  ["이", "가"],
-  ["은", "는"],
-  ["과", "와"],
-];
-const DIGIT_BATCHIM: Record<string, number> = {
-  "0": 21,
-  "1": 8,
-  "2": 0,
-  "3": 16,
-  "4": 0,
-  "5": 0,
-  "6": 1,
-  "7": 8,
-  "8": 8,
-  "9": 0,
-  "°": 0,
-  "²": 17,
-};
-/** 마지막 글자의 받침 번호(0 = 없음, 8 = ㄹ). 읽기가 갈리는 글자(로마자 · 기호)는 null.
- * 분수 a/b 는 «b분의 a»로 읽어 끝소리가 분자다(1/2 → «이분의 일» → ㄹ · 리드 검토 A2 L1). */
-const batchim = (word: string): number | null => {
-  const fraction = /(\d+)\/\d+$/.exec(word.trim());
-  if (fraction) return batchim(fraction[1]!);
-  const ch = word.trim().slice(-1);
-  const code = ch.charCodeAt(0);
-  if (code >= 0xac00 && code <= 0xd7a3) return (code - 0xac00) % 28;
-  return ch in DIGIT_BATCHIM ? DIGIT_BATCHIM[ch]! : null;
-};
-// 품사(리드 검토 A2 M2) — 명사 자리에 동사꼴 · 관형형 말이 오면 받침과 상관없이 안 맞는다. 목록은 230장의 말로 맞췄다
-// (끝 글자만 보면 동사꼴인 명사: 순서 · 무게 · 해).
-const NOUNS_LOOKING_LIKE_VERBS = new Set([
-  "순서",
-  "숫자 순서",
-  "덧셈 순서",
-  "무게",
-  "해",
-]);
-const lastSyllable = (word: string) => word.trim().slice(-1);
-const isVerbForm = (word: string) => {
-  const w = word.trim();
-  if (NOUNS_LOOKING_LIKE_VERBS.has(w)) return false;
-  const last = lastSyllable(w);
-  // 관형형 «-는» · 부사형 «-게» · 연결형 «-고 · -서 · -며»
-  if (["는", "게", "고", "서", "며"].includes(last)) return true;
-  // 연결형 «-어 · -여»(한 글자 «해»는 명사)
-  return (
-    w.length >= 2 &&
-    ["어", "여", "아", "워", "해", "져", "려", "쳐"].includes(last)
-  );
-};
-// 관형형 «-ㄴ»(더한 · 작은 · 짝수인 …) — 230장에서 이 끝 글자로 끝나는 명사는 없다
-const isAdnominal = (word: string) =>
-  ["한", "은", "인", "큰", "뺀", "른", "긴", "눈", "된", "진"].includes(
-    lastSyllable(word),
-  );
-const isNounLike = (word: string) => !isVerbForm(word) && !isAdnominal(word);
-/** 빈칸 뒤 조각에 그 말이 문법상 맞는가 — «하다» 칸 · 서술격 · «에» · 받침 조사. 판단할 수 없으면 null. */
-const fitsParticle = (word: string, after: string): boolean | null => {
-  // «하다»가 붙는 칸 — 명사만(«-기» · «-만» 은 «하다»가 안 붙는다)
-  if (/^(하고|하여|하며|하면|하는|한 |한$|한다|했|할 )/.test(after))
-    return isNounLike(word) && !/[기만]$/.test(word.trim());
-  // 서술격 «이다 · 이며 · 이고 · 이면 · 이므로» — 받침과 상관없이 명사면 맞다(리드 검토 A2 L2)
-  if (/^이(다|며|고|면|므로|지만)/.test(after)) return isNounLike(word);
-  // «에» — 명사만, «-만» 뒤는 어색하다
-  if (after.startsWith("에"))
-    return isNounLike(word) && !word.trim().endsWith("만");
-  for (const [withB, without] of PARTICLES) {
-    const used = after.startsWith(withB)
-      ? withB
-      : after.startsWith(without)
-        ? without
-        : null;
-    if (!used) continue;
-    if (!isNounLike(word)) return false;
-    const b = batchim(word);
-    if (b === null) return null;
-    if (withB === "으로")
-      return used === "으로" ? b !== 0 && b !== 8 : b === 0 || b === 8;
-    return used === withB ? b !== 0 : b === 0;
-  }
-  return null;
-};
-/** 조사가 답을 알려 주는 칸 — (칸, 까닭) 목록. */
-const particleGiveaways = (card: {
-  id: string;
-  pieces: string[];
-  words: string[];
-}) => {
-  const out: string[] = [];
-  const slotFits = [0, 1].map((slot) =>
-    card.words.map((w) => fitsParticle(w, card.pieces[slot + 1]!)),
-  );
-  // 판단할 수 없는 말(null)은 «맞을 수도 있음»으로 센다 — 칸 전체를 건너뛰면 정답만 모르는 말일 때 단서를 놓친다(리드 검토 A2 L3)
-  slotFits.forEach((fits, slot) => {
-    const ok = card.words.filter((_, i) => fits[i] !== false);
-    if (ok.length === 1 && fits[slot] !== false)
-      out.push(`칸 ${slot + 1} — «${ok[0]}» 하나`);
-  });
-  // 순서 무관 카드: 오답이 어느 칸에도 못 들어가면 조사만으로 정답이 정해진다
-  if (
-    orderFreeCards.has(card.id) &&
-    [2, 3].every((i) => slotFits[0]![i] === false && slotFits[1]![i] === false)
-  )
-    out.push("순서 무관인데 오답이 두 칸 어디에도 못 들어감");
-  return out;
-};
-
-describe("원장 카드 — 조사가 답을 알려 주지 않는다(받침으로 갈리는 조사 · 리드 검토 A ⑤ · A2 ③)", () => {
+describe("230장 — 조사가 답을 알려 주지 않는다(받침으로 갈리는 조사 · 품사 · 리드 검토 A ⑤ · A2 ③ · B)", () => {
   it("칸마다 문법상 맞는 말이 정답 하나뿐인 칸이 없다 · 순서 무관 카드의 오답이 어느 칸에는 들어간다", () => {
-    const found = audit.cards.flatMap((entry) =>
-      particleGiveaways(definitionCard(entry.id)).map(
-        (why) => `${entry.id} ${why}`,
-      ),
+    const found = definitionCards.flatMap((card) =>
+      particleGiveaways(card).map((why) => `${card.id} ${why}`),
     );
     expect(found).toEqual([]);
     // 자기 시험 — 고치기 전 전개도(«를 따라»에 모서리만) · 실수(순서 무관 · 오답 «…만»이 «와» · «를»에 안 맞음)
@@ -310,7 +202,11 @@ describe("원장 카드 — 조사가 답을 알려 주지 않는다(받침으�
         pieces: ["", "와 ", "를 통틀어 이르는 수."],
         words: ["유리수", "무리수", "자연수만", "정수만"],
       }),
-    ).toEqual(["순서 무관인데 오답이 두 칸 어디에도 못 들어감"]);
+    ).toEqual([
+      "칸 1 — 정답 둘만 맞음",
+      "칸 2 — 정답 둘만 맞음",
+      "순서 무관인데 오답이 두 칸 어디에도 못 들어감",
+    ]);
     // 자기 시험 — A2 가 고친 품사 단서 셋(리드 검토 A2 M2): 동사꼴 말은 명사 조사에, «-만»은 «에»에, «-기»는 «하고/한»에 안 맞는다
     expect(
       particleGiveaways({
@@ -340,7 +236,11 @@ describe("원장 카드 — 조사가 답을 알려 주지 않는다(받침으�
         pieces: ["자료를 기준에 따라 ", "하고 행과 열에 ", "한 것."],
         words: ["분류", "정리", "섞기", "숨기기"],
       }),
-    ).toEqual(["순서 무관인데 오답이 두 칸 어디에도 못 들어감"]);
+    ).toEqual([
+      "칸 1 — 정답 둘만 맞음",
+      "칸 2 — 정답 둘만 맞음",
+      "순서 무관인데 오답이 두 칸 어디에도 못 들어감",
+    ]);
     // 분수는 «b분의 a» — 끝소리는 분자(리드 검토 A2 L1): 큰 수의 자릿값은 단서가 아니고, 뿔의 부피 옛 말은 «3»만 «으로»에 맞는다
     expect(
       particleGiveaways({
@@ -388,6 +288,115 @@ describe("원장 카드 — 조사가 답을 알려 주지 않는다(받침으�
         words: ["더한", "합", "작은", "큰 수"],
       }),
     ).toEqual(["칸 2 — «합» 하나"]);
+    // 리드 검토 B — 230장에 넓히며 더한 규칙의 자기 시험(지어낸 카드)
+    // 부사(«똑같이»)는 «로»에 못 온다 — 명사 «수»만 남는다(분수 카드)
+    expect(
+      particleGiveaways({
+        id: "b-adverb",
+        pieces: ["", " 나누어 ", "로 적는다."],
+        words: ["똑같이", "수", "다르게", "색"],
+      }),
+    ).toEqual(["칸 2 — «수» 하나"]);
+    // 종결형 «-다»는 명사 조사에 못 온다
+    expect(
+      particleGiveaways({
+        id: "b-final",
+        pieces: ["두 수의 ", "를 구하면 ", "."],
+        words: ["차", "0", "같다", "크다"],
+      }),
+    ).toEqual(["칸 1 — «차» 하나"]);
+    // 한 칸에 정답 둘만 맞으면 그 칸이 정답 둘로 좁혀진다(리드 검토 A2 L7 — 경우의 수 첫 칸)
+    expect(
+      particleGiveaways({
+        id: "b-two-answers",
+        pieces: ["", "를 모두 센 ", "."],
+        words: ["경우", "개수", "평균", "확률"],
+      }),
+    ).toEqual(["칸 1 — 정답 둘만 맞음"]);
+    // 글자 분수도 분자로 읽는다(«360도분의 각») — 정답이 제 조사에 안 맞고 오답만 맞던 부채꼴의 넓이
+    expect(
+      particleGiveaways({
+        id: "b-own-particle",
+        pieces: ["넓이에 ", "를 ", " 구한다."],
+        words: ["각/360°", "곱하여", "360°/각", "더하여"],
+      }),
+    ).toEqual(["칸 1 — 정답 «각/360°»이 제 조사에 안 맞음"]);
+    // 끝 글자만 보면 동사꼴인 명사(«순서»)는 명사로 읽는다(리드 검토 A2 · B L3 — 예외 목록을 지우면 230장에서 거짓 경보)
+    expect(
+      particleGiveaways({
+        id: "b-noun-exception",
+        pieces: ["같은 ", "로 ", "."],
+        words: ["순서", "모양", "더해", "빼서"],
+      }),
+    ).toEqual(["칸 1 — «순서» 하나"]);
+    // «하다» 칸도 동사꼴(«더해»)은 못 온다 — 정답 둘로 좁혀진다(리드 검토 B L3)
+    expect(
+      particleGiveaways({
+        id: "b-hada-verb",
+        pieces: ["", "하고 ", "."],
+        words: ["분류", "정리", "더해", "섞기"],
+      }),
+    ).toEqual(["칸 1 — 정답 둘만 맞음"]);
+    // 단위 · 글자 읽기(리드 검토 B L1) — «1kg»은 «킬로그램»(ㅁ)이라 «으로», «1m»는 «미터»라 «로», «n»은 «엔»(ㄴ)
+    expect(
+      particleGiveaways({
+        id: "b-units",
+        pieces: ["무게를 ", "으로 나타내면 ", "."],
+        words: ["1kg", "1000g", "1m", "1L"],
+      }),
+    ).toEqual(["칸 1 — 정답 둘만 맞음"]);
+    expect(
+      particleGiveaways({
+        id: "b-letter",
+        pieces: ["", "을 곱한 ", "."],
+        words: ["n", "수", "a", "x"],
+      }),
+    ).toEqual(["칸 1 — «n» 하나"]);
+    // 주격 «이/가»도 받침으로 가른다(리드 검토 B L3 — 이 줄을 지워도 초록이던 것 · 반복 규칙 옛 말)
+    expect(
+      particleGiveaways({
+        id: "b-subject",
+        pieces: ["정해진 ", "이 같은 ", "로 되풀이된다."],
+        words: ["묶음", "순서", "합계", "크기"],
+      }),
+    ).toEqual(["칸 1 — «묶음» 하나"]);
+    // 끝 글자로 못 가르는 부사(«반드시»)는 목록으로 — 조사가 안 붙는다(리드 검토 B L3)
+    expect(
+      particleGiveaways({
+        id: "b-adverb-list",
+        pieces: ["가능성을 ", "로 나타낸다", "."],
+        words: ["1", "반드시", "0", "절대로"],
+      }),
+    ).toEqual(["칸 1 — «1» 하나"]);
+    // 순서 있는 카드도 오답 둘이 두 칸 어디에도 못 들어가면 순서만 묻는다(리드 검토 A2 L2 — 크기가 같은 분수 옛 말)
+    expect(
+      particleGiveaways({
+        id: "b-order-only",
+        pieces: ["분모와 분자에 같은 ", "를 곱해도 분수의 ", "는 같다."],
+        words: ["0이 아닌 수", "크기", "0", "분모만"],
+      }),
+    ).toEqual([
+      "칸 1 — 정답 둘만 맞음",
+      "칸 2 — 정답 둘만 맞음",
+      "오답이 두 칸 어디에도 못 들어가 순서만 물음",
+    ]);
+  });
+});
+
+describe("원장의 기계 거름 — «조사 어긋남»으로 적은 채움은 지금 규칙으로도 한 칸이 어긋난다", () => {
+  it("까닭에 «조사 어긋남»이 있으면 첫 칸이나 둘째 칸의 말이 제 조사에 안 맞는다(옛 규칙이 잘못 걸러 판정 없이 거짓이 된 81칸 — 리드 검토 B)", () => {
+    const wrong = audit.cards.flatMap((entry) => {
+      const card = definitionCard(entry.id);
+      return entry.fillings
+        .filter((f) => (f.why ?? "").includes("조사 어긋남"))
+        .filter(
+          (f) =>
+            fitsParticle(card.words[f.slots[0]]!, card.pieces[1]!) !== false &&
+            fitsParticle(card.words[f.slots[1]]!, card.pieces[2]!) !== false,
+        )
+        .map((f) => `${entry.id} ${f.slots.join(",")}`);
+    });
+    expect(wrong).toEqual([]);
   });
 });
 

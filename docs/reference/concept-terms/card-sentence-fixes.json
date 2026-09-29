@@ -10,13 +10,13 @@
   "채점"
  ],
  "counts": {
-  "fixes": 36,
+  "fixes": 75,
   "bySeverity": {
    "틀림": 3,
    "빠짐": 5,
    "낱말": 5,
    "범위": 10,
-   "채점": 13
+   "채점": 52
   },
   "notFixed": 13
  },
@@ -629,7 +629,7 @@
     "words": [
      "가능한 결과",
      "개수",
-     "평균",
+     "넓이",
      "확률"
     ],
     "exampleTitle": "주사위 한 개를 던져 짝수의 눈이 나오는 경우를 바르게 설명한 것을 골라봐.",
@@ -666,8 +666,8 @@
    },
    "revision": {
     "date": "2026-09-28",
-    "votes": "A: 가장 큰 값 2:1(codex 반대) → A2: 확률 3:0",
-    "why": "리드 검토 A ⑥ — 채움 «…센 합계의 값»을 개수로 읽을 수 있었다 → 가장 큰 값. A2 ⑤ — «센 가장 큰 값»도 개수로 읽힐 여지(codex) → 분명히 거짓인 «확률»로"
+    "votes": "A: 가장 큰 값 2:1(codex 반대) → A2: 확률 3:0 → B: 넓이(fix3)",
+    "why": "리드 검토 A ⑥ — 채움 «…센 합계의 값»을 개수로 읽을 수 있었다 → 가장 큰 값. A2 ⑤ — «센 가장 큰 값»도 개수로 읽힐 여지(codex) → 분명히 거짓인 «확률»로. A2 L7 · B — «를»에 정답 둘만 맞아(«평균»은 받침) 첫 칸이 정답 둘로 좁혀졌다 → «를»에 맞는 거짓 «넓이»로"
    }
   },
   {
@@ -1252,6 +1252,1045 @@
    },
    "alsoCheck": "",
    "decidedBy": "3자 일치(3:0)",
+   "votes": {
+    "claude": "고침",
+    "codex": "고침",
+    "grok": "고침"
+   },
+   "severityVotes": {
+    "claude": "채점",
+    "codex": "채점",
+    "grok": "채점"
+   }
+  },
+  {
+   "id": "g3-check-division",
+   "name": "나눗셈 확인",
+   "severity": "채점",
+   "issue": "«를 더하면»에 맞는 말이 «나머지» 하나였다(곱 · 합 · 몫 모두 받침) — 받침 없는 거짓 «차»로",
+   "change": {
+    "words": [
+     "곱",
+     "나머지",
+     "합",
+     "차"
+    ]
+   },
+   "alsoCheck": "",
+   "decidedBy": "3자 일치(3:0)",
+   "votes": {
+    "claude": "고침",
+    "codex": "고침",
+    "grok": "고침"
+   },
+   "severityVotes": {
+    "claude": "채점",
+    "codex": "채점",
+    "grok": "채점"
+   }
+  },
+  {
+   "id": "g3-picture-graph",
+   "name": "그림그래프",
+   "severity": "채점",
+   "issue": "둘째 칸 «로»에 맞는 말이 «수» 하나였다(«색만»은 받침) — «로»에 맞는 거짓 «차례»로",
+   "change": {
+    "words": [
+     "그림",
+     "수",
+     "문장",
+     "차례"
+    ]
+   },
+   "alsoCheck": "",
+   "decidedBy": "3자 일치(3:0)",
+   "votes": {
+    "claude": "고침",
+    "codex": "고침",
+    "grok": "고침"
+   },
+   "severityVotes": {
+    "claude": "채점",
+    "codex": "채점",
+    "grok": "채점"
+   }
+  },
+  {
+   "id": "g3-repeat-rule",
+   "name": "반복 규칙",
+   "severity": "채점",
+   "issue": "«이 같은»에 «묶음»만 맞았고(합계는 받침 없음) 채움 «묶음이 같은 크기로 되풀이»가 참에 가까웠다(codex) — «합 · 차»로(«이»에 묶음 · 합, «로»에 순서 · 차)",
+   "change": {
+    "words": [
+     "묶음",
+     "순서",
+     "합",
+     "차"
+    ]
+   },
+   "alsoCheck": "",
+   "decidedBy": "3자 일치(3:0 — fix2 · 첫 안의 «크기» 유지는 codex 반대로 바꿈)",
+   "votes": {
+    "claude": "고침",
+    "codex": "고침",
+    "grok": "고침"
+   },
+   "severityVotes": {
+    "claude": "채점",
+    "codex": "채점",
+    "grok": "채점"
+   }
+  },
+  {
+   "id": "g4-decimal-add",
+   "name": "소수의 덧셈",
+   "severity": "채점",
+   "issue": "«을 맞추고»에 맞는 말이 «소수점» 하나였다 — 받침 있는 거짓 «오른쪽 끝»으로",
+   "change": {
+    "words": [
+     "소수점",
+     "자리끼리",
+     "오른쪽 끝",
+     "숫자 개수끼리"
+    ]
+   },
+   "alsoCheck": "",
+   "decidedBy": "3자 일치(3:0)",
+   "votes": {
+    "claude": "고침",
+    "codex": "고침",
+    "grok": "고침"
+   },
+   "severityVotes": {
+    "claude": "채점",
+    "codex": "채점",
+    "grok": "채점"
+   }
+  },
+  {
+   "id": "g4-scale",
+   "name": "그래프의 눈금",
+   "severity": "채점",
+   "issue": "첫 칸 조사에 맞는 말이 «수의 크기» 하나였다 — 조사에 맞는 거짓 «그림 크기»로",
+   "change": {
+    "words": [
+     "수의 크기",
+     "기준",
+     "그림 크기",
+     "장식"
+    ]
+   },
+   "alsoCheck": "",
+   "decidedBy": "3자 일치(3:0)",
+   "votes": {
+    "claude": "고침",
+    "codex": "고침",
+    "grok": "고침"
+   },
+   "severityVotes": {
+    "claude": "채점",
+    "codex": "채점",
+    "grok": "채점"
+   }
+  },
+  {
+   "id": "g5-triangle-area",
+   "name": "삼각형의 넓이",
+   "severity": "채점",
+   "issue": "«로 나눈다»에 «2»만 맞았다(3은 «삼» — 받침 ㅁ) — 받침 없는 거짓 «4»로",
+   "change": {
+    "words": [
+     "곱",
+     "2",
+     "합",
+     "4"
+    ]
+   },
+   "alsoCheck": "",
+   "decidedBy": "3자 일치(3:0)",
+   "votes": {
+    "claude": "고침",
+    "codex": "고침",
+    "grok": "고침"
+   },
+   "severityVotes": {
+    "claude": "채점",
+    "codex": "채점",
+    "grok": "채점"
+   }
+  },
+  {
+   "id": "g6-decimal-divide",
+   "name": "소수의 나눗셈",
+   "severity": "채점",
+   "issue": "둘째 칸에 맞는 명사가 «소수점» 하나였다 — 받침 있는 거짓 «몫»으로",
+   "change": {
+    "words": [
+     "자연수",
+     "소수점",
+     "단위분수",
+     "몫"
+    ]
+   },
+   "alsoCheck": "",
+   "decidedBy": "3자 일치(3:0)",
+   "votes": {
+    "claude": "고침",
+    "codex": "고침",
+    "grok": "고침"
+   },
+   "severityVotes": {
+    "claude": "채점",
+    "codex": "채점",
+    "grok": "채점"
+   }
+  },
+  {
+   "id": "g6-rate-amount",
+   "name": "비교하는 양 구하기",
+   "severity": "채점",
+   "issue": "첫 칸 조사에 «비율»만 맞았다 — 받침 있는 거짓 «합»으로",
+   "change": {
+    "words": [
+     "비율",
+     "곱하여",
+     "합",
+     "나누어"
+    ]
+   },
+   "alsoCheck": "",
+   "decidedBy": "3자 일치(3:0)",
+   "votes": {
+    "claude": "고침",
+    "codex": "고침",
+    "grok": "고침"
+   },
+   "severityVotes": {
+    "claude": "채점",
+    "codex": "채점",
+    "grok": "채점"
+   }
+  },
+  {
+   "id": "g6-ratio-simplify",
+   "name": "비의 성질",
+   "severity": "채점",
+   "issue": "첫 칸 조사에 «0이 아닌 수» 하나만 맞았다 — «두 항의 차»로 바꿨는데 두 항이 다르면 참이라(리드 검토 B M2) 양도 아니고 늘 같은 것도 아닌 «표»로(앞 안 «기호»는 «기호는 같다»가 참 · fix6, «넓이»는 양수라 참 · fix7 — 둘 다 codex 반대)",
+   "change": {
+    "words": [
+     "0이 아닌 수",
+     "비율",
+     "0",
+     "표"
+    ]
+   },
+   "alsoCheck": "",
+   "decidedBy": "2:1(Claude · grok 찬성 / codex 반대 — 원래 채움 «…0은 같다»를 «0 은 늘 0»으로 읽음) — fix8",
+   "votes": {
+    "claude": "고침",
+    "codex": "고침",
+    "grok": "고침"
+   },
+   "severityVotes": {
+    "claude": "채점",
+    "codex": "채점",
+    "grok": "채점"
+   }
+  },
+  {
+   "id": "g7-sector",
+   "name": "부채꼴",
+   "severity": "채점",
+   "issue": "«로 둘러싸인»에 «호» 하나만 맞았다(현은 받침) — 앞 안 오답 «모서리»(입체 용어)는 둘째 칸을 «호»로 정해 버렸다(리드 검토 B L2). 조각을 « 하나로 둘러싸인»으로 바꿔 둘째 칸 뒤 조사를 없애고 원래 오답 «현»으로",
+   "change": {
+    "definition": "원의 두 반지름과 그 사이의 호 하나로 둘러싸인 도형.",
+    "pieces": [
+     "원의 두 ",
+     "과 그 사이의 ",
+     " 하나로 둘러싸인 도형."
+    ]
+   },
+   "alsoCheck": "",
+   "decidedBy": "2:1(Claude · grok 찬성 / codex 반대 — «두 호와 그 사이의 지름»을 반원으로 읽음) — fix6",
+   "votes": {
+    "claude": "고침",
+    "codex": "고침",
+    "grok": "고침"
+   },
+   "severityVotes": {
+    "claude": "채점",
+    "codex": "채점",
+    "grok": "채점"
+   }
+  },
+  {
+   "id": "g7-histogram",
+   "name": "히스토그램",
+   "severity": "채점",
+   "issue": "«로 나타낸»에 «높이»만 맞았다(색은 받침) — «로»에 맞는 거짓 «둘레»로",
+   "change": {
+    "words": [
+     "직사각형",
+     "높이",
+     "원",
+     "둘레"
+    ]
+   },
+   "alsoCheck": "",
+   "decidedBy": "3자 일치(3:0)",
+   "votes": {
+    "claude": "고침",
+    "codex": "고침",
+    "grok": "고침"
+   },
+   "severityVotes": {
+    "claude": "채점",
+    "codex": "채점",
+    "grok": "채점"
+   }
+  },
+  {
+   "id": "g8-terminating",
+   "name": "유한소수",
+   "severity": "채점",
+   "issue": "첫 칸 조사에 «0이 아닌 숫자» 하나만 맞았다 — 받침 있는 거짓 «순환마디»로",
+   "change": {
+    "words": [
+     "0이 아닌 숫자",
+     "끝나는",
+     "순환마디",
+     "끝나지 않는"
+    ]
+   },
+   "alsoCheck": "",
+   "decidedBy": "3자 일치(3:0)",
+   "votes": {
+    "claude": "고침",
+    "codex": "고침",
+    "grok": "고침"
+   },
+   "severityVotes": {
+    "claude": "채점",
+    "codex": "채점",
+    "grok": "채점"
+   }
+  },
+  {
+   "id": "g8-multiplication-rule",
+   "name": "경우의 수의 곱",
+   "severity": "채점",
+   "issue": "둘째 칸 조사에 «선택 수»만 맞았다(평균은 받침) — 받침 없는 거짓 «차»로",
+   "change": {
+    "words": [
+     "곱",
+     "선택 수",
+     "합",
+     "차"
+    ]
+   },
+   "alsoCheck": "",
+   "decidedBy": "3자 일치(3:0)",
+   "votes": {
+    "claude": "고침",
+    "codex": "고침",
+    "grok": "고침"
+   },
+   "severityVotes": {
+    "claude": "채점",
+    "codex": "채점",
+    "grok": "채점"
+   }
+  },
+  {
+   "id": "g9-scatterplot",
+   "name": "산점도",
+   "severity": "채점",
+   "issue": "«를 살피는»에 «관계» 하나만 맞았다 — «를»에 맞는 거짓 «넓이»로(첫 안 «순서»는 값의 순서를 살핀다로 읽힐 여지 — codex)",
+   "change": {
+    "words": [
+     "점",
+     "관계",
+     "막대만",
+     "넓이"
+    ]
+   },
+   "alsoCheck": "",
+   "decidedBy": "3자 일치(3:0 — fix2)",
+   "votes": {
+    "claude": "고침",
+    "codex": "고침",
+    "grok": "고침"
+   },
+   "severityVotes": {
+    "claude": "채점",
+    "codex": "채점",
+    "grok": "채점"
+   }
+  },
+  {
+   "id": "g7-pyramid-volume",
+   "name": "뿔의 부피",
+   "severity": "채점",
+   "issue": "«으로 구한다»에 «3»만 맞았다(1/3 · 1/2 는 «…분의 일», 2는 «이») — 받침 있는 거짓 «6»으로",
+   "change": {
+    "words": [
+     "1/3",
+     "3",
+     "1/2",
+     "6"
+    ]
+   },
+   "alsoCheck": "",
+   "decidedBy": "3자 일치(3:0)",
+   "votes": {
+    "claude": "고침",
+    "codex": "고침",
+    "grok": "고침"
+   },
+   "severityVotes": {
+    "claude": "채점",
+    "codex": "채점",
+    "grok": "채점"
+   }
+  },
+  {
+   "id": "g5-certain",
+   "name": "확실한 일",
+   "severity": "채점",
+   "issue": "«로 나타낸다»에 «1»만 맞았다(0은 «영», «반드시»는 부사) — «로»에 맞는 거짓 «1/2»로(«이분의 일»)",
+   "change": {
+    "words": [
+     "반드시",
+     "1",
+     "절대로 안",
+     "1/2"
+    ]
+   },
+   "alsoCheck": "",
+   "decidedBy": "3자 일치(3:0)",
+   "votes": {
+    "claude": "고침",
+    "codex": "고침",
+    "grok": "고침"
+   },
+   "severityVotes": {
+    "claude": "채점",
+    "codex": "채점",
+    "grok": "채점"
+   }
+  },
+  {
+   "id": "g4-number-rule",
+   "name": "수 배열의 규칙",
+   "severity": "채점",
+   "issue": "오답 «색깔»만 품사가 튀어 칸이 갈렸다 — 명사 «삭제»로(«지우기»와 짝)",
+   "change": {
+    "words": [
+     "관계",
+     "예측",
+     "삭제",
+     "지우기"
+    ]
+   },
+   "alsoCheck": "",
+   "decidedBy": "3자 일치(3:0)",
+   "votes": {
+    "claude": "고침",
+    "codex": "고침",
+    "grok": "고침"
+   },
+   "severityVotes": {
+    "claude": "채점",
+    "codex": "채점",
+    "grok": "채점"
+   }
+  },
+  {
+   "id": "g5-equivalent",
+   "name": "크기가 같은 분수",
+   "severity": "채점",
+   "issue": "오답 둘이 두 칸 어디에도 못 들어가 순서만 묻는 카드였다 — «분모만» → «분자». «같은 분자를 곱하거나 나누어도 크기는 같다»는 분자가 0이 아니면 참이라(리드 검토 B M1) 양이 아닌 «표»로(앞 안 «차례»는 너무 먼 말이라 codex · grok 반대 · fix6, «자리»는 수직선 위 자리로 읽으면 참이라 codex 반대 · fix7)",
+   "change": {
+    "words": [
+     "0이 아닌 수",
+     "크기",
+     "0",
+     "표"
+    ]
+   },
+   "alsoCheck": "",
+   "decidedBy": "2:1(Claude · grok 찬성 / codex 반대 — 참 없음, 숫자 예 문장으로 새로 짜자는 제안) — fix8",
+   "votes": {
+    "claude": "고침",
+    "codex": "고침",
+    "grok": "고침"
+   },
+   "severityVotes": {
+    "claude": "채점",
+    "codex": "채점",
+    "grok": "채점"
+   }
+  },
+  {
+   "id": "g7-relative-frequency",
+   "name": "상대도수",
+   "severity": "채점",
+   "issue": "오답 둘이 두 칸 어디에도 못 들어가 순서만 묻는 카드였다 — «계급의 폭» → «계급의 크기». 남은 오답 «최댓값»은 «를 · 로» 어디에도 조사가 안 맞는 죽은 보기였다(리드 검토 B L8) — «넓이»로",
+   "change": {
+    "words": [
+     "도수",
+     "전체 도수",
+     "넓이",
+     "계급의 크기"
+    ]
+   },
+   "alsoCheck": "",
+   "decidedBy": "2:1(Claude · grok 찬성 / codex 반대 — 도수 · 전체 도수 · 계급의 크기가 우연히 같으면 참이 된다는 과한 읽기) — fix6",
+   "votes": {
+    "claude": "고침",
+    "codex": "고침",
+    "grok": "고침"
+   },
+   "severityVotes": {
+    "claude": "채점",
+    "codex": "채점",
+    "grok": "채점"
+   }
+  },
+  {
+   "id": "g7-frequency",
+   "name": "도수",
+   "severity": "채점",
+   "issue": "정답 두 말 «개수 · 자료 수»가 거의 같아 맞바꿈이 뜻으로 거의 참이었다 — 둘째 정답을 전체를 가리키는 말로(첫 안 «전체 자료 수»는 계급 안으로 읽혀 codex 반대). 정답 말만 길어 길이로 드러나던 것(리드 검토 B L1) — 오답 «최댓값» → «가장 큰 값과 가장 작은 값의 차»",
+   "change": {
+    "definition": "정해진 계급에 속하는 자료의 개수이며 전체 도수의 합은 조사한 자료를 모두 센 값이다.",
+    "words": [
+     "개수",
+     "조사한 자료를 모두 센 값",
+     "평균",
+     "가장 큰 값과 가장 작은 값의 차"
+    ]
+   },
+   "alsoCheck": "",
+   "decidedBy": "2:1(Claude · grok 찬성 / codex 반대 — 자료 값이 우연히 같으면 참이 된다는 과한 읽기) — fix6",
+   "votes": {
+    "claude": "고침",
+    "codex": "고침",
+    "grok": "고침"
+   },
+   "severityVotes": {
+    "claude": "채점",
+    "codex": "채점",
+    "grok": "채점"
+   }
+  },
+  {
+   "id": "g3-fraction",
+   "name": "분수",
+   "severity": "채점",
+   "issue": "«로 나타낸»에 맞는 명사가 «수» 하나였다(«똑같이»는 부사, «색»은 받침) — «로»에 맞는 거짓 «표»로",
+   "change": {
+    "words": [
+     "똑같이",
+     "수",
+     "서로 다르게",
+     "표"
+    ]
+   },
+   "alsoCheck": "",
+   "decidedBy": "3자 일치(3:0 — fix3)",
+   "votes": {
+    "claude": "고침",
+    "codex": "고침",
+    "grok": "고침"
+   },
+   "severityVotes": {
+    "claude": "채점",
+    "codex": "채점",
+    "grok": "채점"
+   }
+  },
+  {
+   "id": "g4-bar-graph",
+   "name": "막대그래프",
+   "severity": "채점",
+   "issue": "«로 나타낸»에 정답 둘만 맞았다(원 · 색깔만은 받침) — «로»에 맞는 거짓 «색깔»로. 맞바꿈 «길이의 막대로»는 셋 다 애매였다(리드 검토 B M4) — 조각을 «[막대] 모양으로 그려 그 [길이]로»로 바꿔 맞바꾸면 말이 안 되게",
+   "change": {
+    "definition": "자료의 수를 막대 모양으로 그려 그 길이로 나타낸 그래프.",
+    "pieces": [
+     "자료의 수를 ",
+     " 모양으로 그려 그 ",
+     "로 나타낸 그래프."
+    ],
+    "words": [
+     "막대",
+     "길이",
+     "원",
+     "색깔"
+    ]
+   },
+   "alsoCheck": "",
+   "decidedBy": "2:1(Claude · grok 찬성 / codex 반대 — 색깔에 수를 맞춘 막대그래프도 있다는 읽기) — fix6",
+   "votes": {
+    "claude": "고침",
+    "codex": "고침",
+    "grok": "고침"
+   },
+   "severityVotes": {
+    "claude": "채점",
+    "codex": "채점",
+    "grok": "채점"
+   }
+  },
+  {
+   "id": "g5-correspondence",
+   "name": "대응 관계",
+   "severity": "채점",
+   "issue": "«을 이루는»에 정답 둘만 맞았다(«순서 없이»는 부사) — 받침 있는 거짓 «색»으로. 원래 오답 «차»는 «일정한 차에 따라 짝»이 대응 규칙으로 참이라(codex · fix3) «종이»로",
+   "change": {
+    "words": [
+     "규칙",
+     "짝",
+     "색",
+     "종이"
+    ]
+   },
+   "alsoCheck": "",
+   "decidedBy": "3자 일치(3:0 — fix4)",
+   "votes": {
+    "claude": "고침",
+    "codex": "고침",
+    "grok": "고침"
+   },
+   "severityVotes": {
+    "claude": "채점",
+    "codex": "채점",
+    "grok": "채점"
+   }
+  },
+  {
+   "id": "g5-impossible",
+   "name": "불가능한 일",
+   "severity": "채점",
+   "issue": "«으로 나타낸다»에 «0»만 맞았다(1은 «일») — 받침 있는 거짓 «반»으로",
+   "change": {
+    "words": [
+     "절대로 일어나지 않는",
+     "0",
+     "반드시 일어나는",
+     "반"
+    ]
+   },
+   "alsoCheck": "",
+   "decidedBy": "3자 일치(3:0 — fix3)",
+   "votes": {
+    "claude": "고침",
+    "codex": "고침",
+    "grok": "고침"
+   },
+   "severityVotes": {
+    "claude": "채점",
+    "codex": "채점",
+    "grok": "채점"
+   }
+  },
+  {
+   "id": "g6-cube-stack",
+   "name": "쌓기나무의 개수",
+   "severity": "채점",
+   "issue": "«로 나누어»에 «층별»만 맞았다(더해 · 빼서는 동사꼴, 색만은 받침) — «로»에 맞는 거짓 «둘레»로(앞 안 «색깔별»은 색깔별로 나눠 층마다 더해도 셀 수 있어 codex 반대 · fix3)",
+   "change": {
+    "words": [
+     "층별",
+     "더해",
+     "둘레",
+     "빼서"
+    ]
+   },
+   "alsoCheck": "",
+   "decidedBy": "3자 일치(3:0 — fix4)",
+   "votes": {
+    "claude": "고침",
+    "codex": "고침",
+    "grok": "고침"
+   },
+   "severityVotes": {
+    "claude": "채점",
+    "codex": "채점",
+    "grok": "채점"
+   }
+  },
+  {
+   "id": "g6-band-graph",
+   "name": "띠그래프",
+   "severity": "채점",
+   "issue": "«에 따라»에 «비율»만 맞았다(나눈 · 늘인은 관형형, «-만»은 «에»에 어색) — 명사 «평균»으로",
+   "change": {
+    "words": [
+     "비율",
+     "나눈",
+     "평균",
+     "늘인"
+    ]
+   },
+   "alsoCheck": "",
+   "decidedBy": "3자 일치(3:0 — fix3)",
+   "votes": {
+    "claude": "고침",
+    "codex": "고침",
+    "grok": "고침"
+   },
+   "severityVotes": {
+    "claude": "채점",
+    "codex": "채점",
+    "grok": "채점"
+   }
+  },
+  {
+   "id": "g7-coordinate",
+   "name": "좌표",
+   "severity": "채점",
+   "issue": "«와»에 정답 둘만 맞았고(«…만»은 받침) 채움 «x좌표와 y좌표만의 순서쌍»이 참이었다(넓은 검사 codex · grok) — 오답 둘을 «넓이 · 거리»로",
+   "change": {
+    "words": [
+     "x좌표",
+     "y좌표",
+     "넓이",
+     "거리"
+    ]
+   },
+   "alsoCheck": "",
+   "decidedBy": "3자 일치(3:0 — fix4)",
+   "votes": {
+    "claude": "고침",
+    "codex": "고침",
+    "grok": "고침"
+   },
+   "severityVotes": {
+    "claude": "채점",
+    "codex": "채점",
+    "grok": "채점"
+   }
+  },
+  {
+   "id": "g7-sector-area",
+   "name": "부채꼴의 넓이",
+   "severity": "채점",
+   "issue": "«360도분의 중심각»은 «각»으로 끝나 «을»인데 조각이 «를»이었고, 오답 «360°/중심각»만 «를»에 맞았다 — 오답을 분자가 같은 «중심각/180°»로. 화면의 «360°을»이 어색하고 분수 뒤 조사 관례가 제품 안에서 갈린다(리드 검토 B L6) — 조각을 «[분수]의 값을»로 바꿔 분수 뒤에 받침 조사를 두지 않음",
+   "change": {
+    "definition": "원의 넓이에 중심각/360°의 값을 곱하여 구한다.",
+    "pieces": [
+     "원의 넓이에 ",
+     "의 값을 ",
+     " 구한다."
+    ],
+    "words": [
+     "중심각/360°",
+     "곱하여",
+     "중심각/180°",
+     "더하여"
+    ]
+   },
+   "alsoCheck": "",
+   "decidedBy": "3자 일치(3:0 — fix6)",
+   "votes": {
+    "claude": "고침",
+    "codex": "고침",
+    "grok": "고침"
+   },
+   "severityVotes": {
+    "claude": "채점",
+    "codex": "채점",
+    "grok": "채점"
+   }
+  },
+  {
+   "id": "g3-decimal",
+   "name": "소수 첫째 자리",
+   "severity": "채점",
+   "issue": "채움 «오른쪽 [1] 자리 … [0.1]»이 첫째 자리로 읽혀 참이었다(넓은 검사 codex · grok 참, Claude 애매) — 오답 «1» → «10»(«0.01»은 «둘째»와 참이 되어 뺌)",
+   "change": {
+    "words": [
+     "첫째",
+     "0.1",
+     "둘째",
+     "10"
+    ]
+   },
+   "alsoCheck": "",
+   "decidedBy": "3자 일치(3:0 — fix4)",
+   "votes": {
+    "claude": "고침",
+    "codex": "고침",
+    "grok": "고침"
+   },
+   "severityVotes": {
+    "claude": "채점",
+    "codex": "채점",
+    "grok": "채점"
+   }
+  },
+  {
+   "id": "g5-round-up",
+   "name": "올림과 버림",
+   "severity": "채점",
+   "issue": "채움 «올림은 [더한다]»가 더할 수 · 자리를 빼먹은 뜻으로 읽힐 여지(넓은 검사 codex · grok 애매) — «곱한다»로",
+   "change": {
+    "words": [
+     "1을 올리고",
+     "없앤다",
+     "1을 빼고",
+     "곱한다"
+    ]
+   },
+   "alsoCheck": "",
+   "decidedBy": "3자 일치(3:0 — fix4)",
+   "votes": {
+    "claude": "고침",
+    "codex": "고침",
+    "grok": "고침"
+   },
+   "severityVotes": {
+    "claude": "채점",
+    "codex": "채점",
+    "grok": "채점"
+   }
+  },
+  {
+   "id": "prime",
+   "name": "소수",
+   "severity": "채점",
+   "issue": "채움 «[모든 자연수] 중에서 약수가 [1과 자기 자신]뿐인 수»는 1이 드는지가 갈렸다(넓은 검사 codex 참 · grok 애매) — «4의 배수»로(그런 수가 하나도 없다 · 앞 안 «짝수»는 2가 해당해 codex 반대)",
+   "change": {
+    "words": [
+     "1보다 큰 자연수",
+     "1과 자기 자신",
+     "4의 배수",
+     "1"
+    ]
+   },
+   "alsoCheck": "",
+   "decidedBy": "3자 참 없음(fix4 에서 codex 대안 «4의 배수» · fix8 에서 grok 도 확인, codex 는 문장 짜임 반대 — 앞 안 «짝수»는 2가 해당해 codex 반대)",
+   "votes": {
+    "claude": "고침",
+    "codex": "고침",
+    "grok": "고침"
+   },
+   "severityVotes": {
+    "claude": "채점",
+    "codex": "채점",
+    "grok": "채점"
+   }
+  },
+  {
+   "id": "g8-parallel-lines",
+   "name": "일차함수 그래프의 평행",
+   "severity": "채점",
+   "issue": "채움 «[기울기]가 같고 [함숫값]은 달라야»가 참이었다(넓은 검사 Claude · codex) — 받침 있는 거짓 «꼭짓점»으로(직선에는 꼭짓점이 없다)",
+   "change": {
+    "words": [
+     "기울기",
+     "y절편",
+     "x좌표",
+     "꼭짓점"
+    ]
+   },
+   "alsoCheck": "",
+   "decidedBy": "3자 일치(3:0 — fix4)",
+   "votes": {
+    "claude": "고침",
+    "codex": "고침",
+    "grok": "고침"
+   },
+   "severityVotes": {
+    "claude": "채점",
+    "codex": "채점",
+    "grok": "채점"
+   }
+  },
+  {
+   "id": "g3-diameter",
+   "name": "지름",
+   "severity": "채점",
+   "issue": "채움 «원의 [아무 점]을 지나 … 반지름의 [2배]»가 길이가 지름인 현(곧 중심을 지남)으로 읽힐 여지(b5 Claude · codex 애매) — 오답 «아무 점» → «꼭짓점»(원에는 꼭짓점이 없다)",
+   "change": {
+    "words": [
+     "중심",
+     "2배",
+     "꼭짓점",
+     "3배"
+    ]
+   },
+   "alsoCheck": "",
+   "decidedBy": "3자 일치(3:0 — fix5)",
+   "votes": {
+    "claude": "고침",
+    "codex": "고침",
+    "grok": "고침"
+   },
+   "severityVotes": {
+    "claude": "채점",
+    "codex": "채점",
+    "grok": "채점"
+   }
+  },
+  {
+   "id": "g6-quotient-invariant",
+   "name": "몫이 같은 나눗셈",
+   "severity": "채점",
+   "issue": "«같은 나머지의 수치를 곱해도 몫은 같다»가 그 수치가 0이 아니면 참이었다(리드 검토 B M2) — 양이 아닌 «표»로(«넓이»는 양수라 참 · codex · fix7)",
+   "change": {
+    "words": [
+     "0이 아닌 수",
+     "몫",
+     "0",
+     "표"
+    ]
+   },
+   "alsoCheck": "",
+   "decidedBy": "2:1(Claude · grok 찬성 / codex 반대 — 원래 채움 «…0은 같다»를 «0 은 늘 0»으로 읽음) — fix8",
+   "votes": {
+    "claude": "고침",
+    "codex": "고침",
+    "grok": "고침"
+   },
+   "severityVotes": {
+    "claude": "채점",
+    "codex": "채점",
+    "grok": "채점"
+   }
+  },
+  {
+   "id": "linear",
+   "name": "일차식",
+   "severity": "채점",
+   "issue": "맞바꿈 «1이 차수인 다항식»이 조사만 어긋나고 뜻은 같았다(b6 3:0 참) — 조각을 «가장 높은 [차수]가»로 바꿔 맞바꾸면 말이 안 되게",
+   "change": {
+    "definition": "동류항끼리 정리하였을 때 가장 높은 차수가 1인 다항식.",
+    "pieces": [
+     "동류항끼리 정리하였을 때 가장 높은 ",
+     "가 ",
+     "인 다항식."
+    ]
+   },
+   "alsoCheck": "",
+   "decidedBy": "2:1(Claude · grok 찬성 / codex 반대 — 참 없음, 숫자 예 문장으로 새로 짜자는 제안) — fix8",
+   "votes": {
+    "claude": "고침",
+    "codex": "고침",
+    "grok": "고침"
+   },
+   "severityVotes": {
+    "claude": "채점",
+    "codex": "채점",
+    "grok": "채점"
+   }
+  },
+  {
+   "id": "g9-zero-product",
+   "name": "곱이 0인 성질",
+   "severity": "채점",
+   "issue": "맞바꿈이 참인 두 명제를 바꿔 놓을 뿐이라 뜻이 같았다(b6 3:0 참) — 둘째 정답을 «모두 0일 필요는» + 조각 « 없다.»로, 오답 «항상 모두 0이다» → «0일 수는». 첫 조각은 원래 카드 글이 교재 문장과 겹쳐(보정 표에 옮겨 적히면 누출) «AB=0인 두 수 A, B는»으로 다듬음(뜻 같음)",
+   "change": {
+    "definition": "AB=0인 두 수 A, B는 A=0 또는 B=0이며 두 수가 모두 0일 필요는 없다.",
+    "pieces": [
+     "AB=0인 두 수 A, B는 ",
+     "이며 두 수가 ",
+     " 없다."
+    ],
+    "words": [
+     "A=0 또는 B=0",
+     "모두 0일 필요는",
+     "A=B",
+     "0일 수는"
+    ]
+   },
+   "alsoCheck": "",
+   "decidedBy": "2:1(Claude · grok 찬성 / codex 반대 — 참 없음, 숫자 예 문장으로 새로 짜자는 제안) — fix8",
+   "votes": {
+    "claude": "고침",
+    "codex": "고침",
+    "grok": "고침"
+   },
+   "severityVotes": {
+    "claude": "채점",
+    "codex": "채점",
+    "grok": "채점"
+   }
+  },
+  {
+   "id": "g6-prism",
+   "name": "각기둥",
+   "severity": "채점",
+   "issue": "맞바꿈 «합동인 다각형하고 평행이며»가 조사만 어긋나고 뜻은 같았다(b6 Claude · codex 참) — 조각을 «[평행]이고 [합동인 다각형]이며»로 바꿔 두 순서 모두 맞는 문장이 되게 하고 순서 무관으로 받는다",
+   "change": {
+    "definition": "두 밑면이 서로 평행이고 합동인 다각형이며 옆면이 직사각형인 입체도형.",
+    "pieces": [
+     "두 밑면이 서로 ",
+     "이고 ",
+     "이며 옆면이 직사각형인 입체도형."
+    ]
+   },
+   "alsoCheck": "",
+   "decidedBy": "2:1(Claude · grok 찬성 / codex 반대 — 참 없음, 숫자 예 문장으로 새로 짜자는 제안) — fix8",
+   "votes": {
+    "claude": "고침",
+    "codex": "고침",
+    "grok": "고침"
+   },
+   "severityVotes": {
+    "claude": "채점",
+    "codex": "채점",
+    "grok": "채점"
+   }
+  },
+  {
+   "id": "composite",
+   "name": "합성수",
+   "severity": "채점",
+   "issue": "맞바꿈 «소수가 아닌 중에서 1보다 큰 자연수 수»가 뜻이 같았다(b6 codex · grok 참) — 문장을 «[1보다 큰 자연수] 중 [소수]가 아닌 수»로(맞바꾸면 빈 집합 · 자문 판의 «가운데»는 320 폭에서 한 줄 늘어 «중»으로 줄임 — 뜻 같음) · 오답 «짝수»는 특수한 합성수를 가리켜 «분수»로",
+   "change": {
+    "definition": "1보다 큰 자연수 중 소수가 아닌 수.",
+    "pieces": [
+     "",
+     " 중 ",
+     "가 아닌 수."
+    ],
+    "words": [
+     "1보다 큰 자연수",
+     "소수",
+     "0보다 큰 수",
+     "분수"
+    ]
+   },
+   "alsoCheck": "",
+   "decidedBy": "3자 일치(3:0 — fix8)",
+   "votes": {
+    "claude": "고침",
+    "codex": "고침",
+    "grok": "고침"
+   },
+   "severityVotes": {
+    "claude": "채점",
+    "codex": "채점",
+    "grok": "채점"
+   }
+  },
+  {
+   "id": "g8-similarity",
+   "name": "닮음",
+   "severity": "채점",
+   "issue": "채움 «일정한 비율로 [변형]했을 때 다른 도형과 [합동]»이 닮음으로 읽힐 여지(b6 Claude 참 · codex · grok 애매) — 오답 «변형» → «색칠»",
+   "change": {
+    "words": [
+     "확대 또는 축소",
+     "합동",
+     "색칠",
+     "평행"
+    ]
+   },
+   "alsoCheck": "",
+   "decidedBy": "2:1(Claude · grok 찬성 / codex 반대 — 참 없음, 숫자 예 문장으로 새로 짜자는 제안) — fix8",
    "votes": {
     "claude": "고침",
     "codex": "고침",
