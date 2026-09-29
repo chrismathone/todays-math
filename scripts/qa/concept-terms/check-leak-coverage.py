@@ -18,7 +18,10 @@
 보정을 입음 · 새 글의 기준도 덤프라 이것이 먼저다) ⑵ 보정 새 글(원본 카드의 같은 칸과 다른 긴 칸)이 허용 말에 있으면
 ⑶ coverage.md 의 «새 글 N칸»이 셈과 다르면(리드 검토 A2 M1). 자기 시험은 ① 원문 한 문장을 심은 줄 ② 보정 표에 원문을 심은 판
 ③ 보정을 입힌 덤프(보정 전부 멈춤) ④ 걷고 나면 창이 안 남는 긴 원문 문장을 심은 줄(걷기 전 창이 잡아야)
-⑤ 허용 말만으로 된 걷기 전 창을 심은 줄(안 걸려야 — 창 안에 허용 말 밖 한글이 한 자라도 있을 때만 친다) — 다섯 다 맞아야 통과.
+⑤ 허용 말만으로 된 걷기 전 창을 심은 줄(안 걸려야 — 창 안에 허용 말 밖 한글이 한 자라도 있을 때만 친다)
+⑥ 교재 문장(한글 12자 이상) 전부를 한 줄씩 심기(놓침 12 이하 · 놓친 것은 허용 말 밖 한글 0자)
+⑦ 창으로는 못 잡고 통째 검사만 잡는 교재 문장이 있다(통째 검사를 빼면 0) — 일곱 다 맞아야 통과.
+교재 문장이 줄에 통째로 있으면(12자 이상 · 한글 4자 이상 · 허용 말 하나 안에 들지 않는 것) 창과 상관없이 친다.
 
 사용:
   python check-leak-coverage.py --cards <카드.json> --files <파일...>
@@ -184,7 +187,9 @@ def book_sentences() -> list[str]:
 
 
 def build_units(units: list):
-    """창 둘 — (허용 말을 걷어낸 창, 걷기 전 창). 걷기 전 창은 14권 교재 문장에서만 짓고, 허용 말 하나 안에 통째로 든 창은 뺀다."""
+    """창 셋 — (허용 말을 걷어낸 창, 걷기 전 창, 교재 문장 통째). 걷기 전 창은 14권 교재 문장에서만 짓고, 허용 말 하나 안에 통째로 든
+    창은 뺀다. 통째 문장은 12자 이상이고 허용 말 하나 안에 통째로 들지 않은 교재 문장 — 한글이 전부 용어 이름이고 나머지가 식 · 기호인
+    문장은 창으로는 못 잡아서 문장째 찾는다(리드 검토 B4 L1 — 3bb78ea08 판은 잡던 6문장)."""
     src, allowed = load_sources_and_allowed_units(units)
     allowed_sorted = sorted(allowed, key=len, reverse=True)
     stripped: set[str] = set()
@@ -196,7 +201,11 @@ def build_units(units: list):
     inside_allowed: set[str] = set()
     for a in allowed:
         inside_allowed |= windows_of(a)
-    return (stripped, whole - inside_allowed), allowed_sorted, src
+    # 한글이 MIN_HANGUL 자 이상인 문장만 — 식뿐인 교재 «문장»(곱셈 공식 등)은 문제 풀이 · 해설에 늘 나와 거짓 경보가 된다(저장소 267만 줄에서 89줄)
+    sentences = tuple(sorted({n for n in (norm(b) for b in book_sentences())
+                              if len(n) >= WIN and len(re.findall(r"[가-힣]", n)) >= MIN_HANGUL
+                              and not any(n in a for a in allowed)}))
+    return (stripped, whole - inside_allowed, sentences), allowed_sorted, src
 
 
 def allowed_mask(t: str, allowed_sorted: list[str]) -> list[bool]:
@@ -225,12 +234,15 @@ def whole_hits(t: str, whole: set[str], allowed_sorted: list[str]) -> list[str]:
             if sum(1 for x in range(i, i + WIN) if not mask[x] and "가" <= t[x] <= "힣") >= WHOLE_MIN_OUTSIDE]
 
 
-def scan(text: str, wins: tuple[set[str], set[str]], allowed_sorted: list[str]) -> list[str]:
-    stripped, whole = wins
+def scan(text: str, wins: tuple, allowed_sorted: list[str]) -> list[str]:
+    stripped, whole = wins[0], wins[1]
+    sentences = wins[2] if len(wins) > 2 else ()
     hits = []
     for line in text.splitlines():
-        t = strip_allowed(norm(line), allowed_sorted)
-        found = [w for w in windows_of(t) if w in stripped] or whole_hits(norm(line), whole, allowed_sorted)
+        n = norm(line)
+        t = strip_allowed(n, allowed_sorted)
+        found = ([w for w in windows_of(t) if w in stripped] or whole_hits(n, whole, allowed_sorted)
+                 or [x[:WIN] for x in sentences if x in n])
         if found:
             hits.append(f"{line.strip()[:120]}  ← {found[0]}")
     return hits
@@ -253,7 +265,7 @@ def main():
     units = json.loads(Path(a.cards).read_text(encoding="utf-8"))
     wins, allowed_sorted, src = build_units(units)
     fixes = json.loads(FIXES.read_text(encoding="utf-8"))["fixes"]
-    print(f"원천 글 {len(src)} · 창 {len(wins[0])} · 걷기 전 창 {len(wins[1])} · 허용 말 {len(allowed_sorted)} · 보정 새 글 {len(fix_new_texts(fixes, units))}칸")
+    print(f"원천 글 {len(src)} · 창 {len(wins[0])} · 걷기 전 창 {len(wins[1])} · 통째 문장 {len(wins[2])} · 허용 말 {len(allowed_sorted)} · 보정 새 글 {len(fix_new_texts(fixes, units))}칸")
     bad = 0
     # 카드 덤프가 보정을 입었으면 보정 문장이 허용 말이 되어 아래 검사가 눈먼다 — 먼저 멈춘다(리드 검토 ④).
     carried = dump_stop_reasons(fixes, units, allowed_sorted)
@@ -311,6 +323,25 @@ def main():
         print(f"자기 시험 ⑤: 허용 말만으로 된 창을 심은 줄 → {len(h5)}줄 걸림(허용 말을 안 가리면 {len(h5_unmasked)}개 창)")
         if not terms_only or h5 or not h5_unmasked:
             print("자기 시험 ⑤ 실패")
+            bad += 1
+        # ⑥ 교재 문장(한글 12자 이상)을 한 줄씩 전부 심는다 — 창(걷은 창 · 걷기 전 창)만으로 놓친 것이 12개 이하이고, 놓친 것은 모두
+        # 허용 말 밖 한글이 0자여야 한다(문턱 · 가림을 바꾸면 여기서 드러난다 — 리드 검토 B4 L2. 통째 검사는 빼고 잰다: 통째 검사가
+        # 문턱 탓에 놓친 문장까지 되살려 문턱을 가린다. 2026-09-29: 807 중 창만으로 놓침 12, 통째 검사까지 6).
+        books = [b for b in dict.fromkeys(book_sentences()) if len(re.findall(r"[가-힣]", b)) >= 12]
+        missed = [b for b in books if not scan("우리 말 설명 " + b, (wins[0], wins[1]), allowed_sorted)]
+        outside = [b for b in missed if any(not m and "가" <= ch <= "힣"
+                                           for m, ch in zip(allowed_mask(norm(b), allowed_sorted), norm(b)))]
+        missed_all = [b for b in missed if not scan("우리 말 설명 " + b, wins, allowed_sorted)]
+        print(f"자기 시험 ⑥: 교재 문장 {len(books)}개를 한 줄씩 심음 → 창만으로 놓침 {len(missed)}(통째 검사까지 {len(missed_all)}) · 그중 허용 말 밖 한글이 있는 것 {len(outside)}")
+        if len(missed) > 12 or outside:
+            print("자기 시험 ⑥ 실패")
+            bad += 1
+        # ⑦ 창으로는 못 잡고 통째 검사만 잡는 교재 문장(한글이 전부 용어 이름 + 식) — 심으면 걸리고, 통째 검사를 빼면 안 걸린다
+        only_whole = [b for b in books if scan("우리 말 설명 " + b, wins, allowed_sorted)
+                      and not scan("우리 말 설명 " + b, (wins[0], wins[1]), allowed_sorted)]
+        print(f"자기 시험 ⑦: 통째 검사만 잡는 교재 문장 {len(only_whole)}개")
+        if not only_whole:
+            print("자기 시험 ⑦ 실패")
             bad += 1
     for f in a.files or []:
         hits = scan(Path(f).read_text(encoding="utf-8"), wins, allowed_sorted)

@@ -1,9 +1,9 @@
 /**
  * 카드 보정 표(`conceptSentenceFixes.ts`) — 원본(`definition-content.ts` · PROVENANCE)은 그대로 두고, 카드를 내보내는 층
- * (`definition-cards.ts` 의 `definitionCards`)에서 75장을 덮어쓴다(D-143 ④ · ⑦ · ⑧ — 23장 + 채점 결함 52장). 화면 · 채점 · 복습 · 선수가 같은 카드를 읽는다.
+ * (`definition-cards.ts` 의 `definitionCards`)에서 76장을 덮어쓴다(D-143 ④ · ⑦ · ⑧ — 24장 + 채점 결함 52장). 화면 · 채점 · 복습 · 선수가 같은 카드를 읽는다.
  *
  * 결론은 용어 분석 트랙(terms-coverage)의 3자 합의 `docs/reference/concept-terms/card-sentence-fixes.json` —
- * 틀림 3 · 빠짐 5 · 낱말 5 · 범위 10 · 채점 52. 뜻을 고친 «틀림» 3장은 이미 모은 학생에게 한 번 다시 복습(`cardRevisions.test.ts`).
+ * 틀림 3 · 빠짐 5 · 낱말 6 · 범위 10 · 채점 52. 뜻을 고친 «틀림» 3장은 이미 모은 학생에게 한 번 다시 복습(`cardRevisions.test.ts`).
  * 보정은 빈칸(정답 조각)까지 옮기기도 한다 — 그래서 카드마다 조립 · 예 모으기 · 경계 살피기가 새 카드로 여전히 풀리는지 단정한다.
  */
 import { createHash, randomUUID } from "node:crypto";
@@ -56,8 +56,8 @@ describe("카드 보정 표 — 확정 파일 그대로", () => {
     );
   });
 
-  it("75장 · 칸마다 card-sentence-fixes.json 의 change 와 같다", () => {
-    expect(decided.fixes).toHaveLength(75);
+  it("76장 · 칸마다 card-sentence-fixes.json 의 change 와 같다", () => {
+    expect(decided.fixes).toHaveLength(76);
     expect(Object.keys(cardFixes).sort()).toEqual(
       decided.fixes.map((fix) => fix.id).sort(),
     );
