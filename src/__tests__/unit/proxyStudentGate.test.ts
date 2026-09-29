@@ -106,6 +106,7 @@ const STATIC = [
   "/icon.svg",
   "/apple-icon.png",
   "/brand/today-math-mark.svg",
+  "/images/journey/sky-board.webp",
   "/figures/a.png",
   "/figures-svg/a.svg",
 ];
@@ -159,6 +160,7 @@ const brand = [
   "/icon.svg",
   "/apple-icon.png",
   "/brand/today-math-mark.svg",
+  "/images/journey/sky-board.webp",
 ].flatMap((p) => [`GET ${p}`, `HEAD ${p}`]);
 
 const EXIT = [

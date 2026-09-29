@@ -5,6 +5,7 @@ import DailyJourneyBoard, {
   type DailyJourney,
   type DailyJourneyPosition,
 } from "@/components/math-srs/DailyJourneyBoard";
+import type { JourneyThemeId } from "@/lib/math-explorers/journeyThemes";
 import { StudentReviewPage } from "@/components/math-srs/StudentReviewHome";
 import s from "@/components/math-srs/student-review-home.module.css";
 import explorer from "@/components/math-explorers/math-explorers.module.css";
@@ -159,12 +160,15 @@ export default function DailyJourneyQaClient({
   set,
   variant,
   part,
+  theme = "classic",
 }: {
   days: number;
   set: "middle" | "elementary" | "all";
   variant: "full" | "map";
   /** `set=all` 을 네 조각으로 — 한 페이지에 판 410여 개면 PC 폭에서 몇 분 걸린다. 0 이면 전부. */
   part: number;
+  /** 진도판 테마 — `?theme=sky` 로 테마마다 같은 검수를 돈다. */
+  theme?: JourneyThemeId;
 }) {
   const [journey, setJourney] = useState(() =>
     makeJourney(days, set === "all" ? "middle" : set),
@@ -196,6 +200,7 @@ export default function DailyJourneyQaClient({
               <DailyJourneyBoard
                 journey={board.journey}
                 variant={variant}
+                theme={theme}
                 onReviewDay={() => {}}
               />
             </div>
@@ -213,6 +218,7 @@ export default function DailyJourneyQaClient({
         <DailyJourneyBoard
           journey={journey}
           variant={variant}
+          theme={theme}
           onNext={() =>
             setJourney((current) => ({
               ...current,

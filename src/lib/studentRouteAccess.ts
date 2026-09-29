@@ -62,6 +62,11 @@ const BRAND_RULES: readonly Rule[] = [
   { methods: PAGE, path: "/icon.svg", why: "탭 아이콘" },
   { methods: PAGE, path: "/apple-icon.png", why: "홈 화면 아이콘" },
   { methods: PAGE, path: "/brand/**", why: "로고" },
+  {
+    methods: PAGE,
+    path: "/images/journey/**",
+    why: "진도판 테마 그림(판 · 탈것) — 공개 그림",
+  },
 ];
 
 /** 첫 비밀번호를 바꾼 학생 — 목록 → 재생(D-124 ⑵) */

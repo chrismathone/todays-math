@@ -11,6 +11,11 @@ import {
 import s from "./daily-journey-board.module.css";
 import { tileTitle } from "@/lib/math-srs/elementary/sectionShortTitles";
 import { titlePieces } from "./journeyTitle";
+import {
+  JOURNEY_THEMES,
+  type JourneyTheme,
+  type JourneyThemeId,
+} from "@/lib/math-explorers/journeyThemes";
 
 export interface DailyJourneyDay {
   id: string;
@@ -56,6 +61,8 @@ export interface DailyJourneyBoardProps {
   nextLabel?: string;
   busy?: boolean;
   variant?: "full" | "map";
+  /** 진도판 테마(학원 전체 한 벌) — 없으면 지금 판. */
+  theme?: JourneyThemeId;
   onReviewDay: (day: DailyJourneyDay, opener: HTMLButtonElement) => void;
 }
 
@@ -75,6 +82,63 @@ const CELLS = [
   [2, 4],
   [3, 4],
 ] as const;
+
+/**
+ * 탈것이 바라보는 쪽 — `step` 칸에서 다음 칸으로 가는 방향. 아래 줄은 왼쪽 · 왼쪽 줄은 위 · 위 줄은 오른쪽 · 오른쪽 줄은 아래
+ * (원장님 2026-09-30 «움직임이 4방향» — 탈것이 가는 쪽을 본다). 출발 자리(0)는 첫 칸으로 왼쪽.
+ */
+export type RiderHeading = "left" | "up" | "right" | "down";
+export function riderHeading(step: number): RiderHeading {
+  const at = ((step % PAGE_SIZE) + PAGE_SIZE) % PAGE_SIZE;
+  return at < 4 ? "left" : at < 7 ? "up" : at < 10 ? "right" : "down";
+}
+
+/** 테마 탈것 — 네 방향 그림을 다 두고 `data-heading` 으로 하나만 보인다(오른쪽은 왼쪽 그림을 뒤집는다). */
+function Rider({ look }: { look: JourneyTheme }) {
+  const images = look.riderImages!;
+  return (
+    <span className={s.riderFigure} data-pawn-figure="true">
+      <span className={s.riderSide} data-view="side">
+        {images.wheels ? (
+          <>
+            <img src={images.body} alt="" draggable={false} />
+            {images.wheels.map((wheel, index) => (
+              <img
+                key={index}
+                className={s.wheel}
+                src={images.wheel}
+                alt=""
+                draggable={false}
+                data-wheel
+                style={{
+                  left: `${wheel.x * 100}%`,
+                  top: `${wheel.y * 100}%`,
+                  width: `${wheel.d * 100}%`,
+                }}
+              />
+            ))}
+          </>
+        ) : (
+          <img src={images.left} alt="" draggable={false} />
+        )}
+      </span>
+      <img
+        className={s.riderView}
+        data-view="up"
+        src={images.up}
+        alt=""
+        draggable={false}
+      />
+      <img
+        className={s.riderView}
+        data-view="down"
+        src={images.down}
+        alt=""
+        draggable={false}
+      />
+    </span>
+  );
+}
 
 function position(step: number): CSSProperties {
   if (step === 0) return { left: "91%", top: "103%" };
@@ -227,8 +291,11 @@ export default function DailyJourneyBoard({
   nextLabel = "이어서 학습하기",
   busy = false,
   variant = "full",
+  theme = "classic",
   onReviewDay,
 }: DailyJourneyBoardProps) {
+  const look = JOURNEY_THEMES[theme] ?? JOURNEY_THEMES.classic;
+  const themed = !!look.boardImage && !!look.riderImages;
   const completed = Math.max(0, Math.floor(journey.completedDays));
   const currentPage = Math.floor(
     Math.max(0, completed - (journey.todayComplete ? 1 : 0)) / PAGE_SIZE,
@@ -265,12 +332,20 @@ export default function DailyJourneyBoard({
     )
       return;
     const options = { duration: 650, easing: "cubic-bezier(.2,.8,.25,1)" };
-    const animations = [
-      token.animate(
-        [position(pawnStep - 1), position(pawnStep)] as Keyframe[],
-        options,
-      ),
-    ];
+    // 테마 탈것은 가는 동안 가는 쪽을 보고 바퀴가 돈다 — 도착하면 다음에 갈 쪽을 본다.
+    token.dataset.heading = riderHeading(pawnStep - 1);
+    token.dataset.moving = "true";
+    const arrive = () => {
+      token.dataset.heading = riderHeading(pawnStep);
+      delete token.dataset.moving;
+    };
+    const travel = token.animate(
+      [position(pawnStep - 1), position(pawnStep)] as Keyframe[],
+      options,
+    );
+    travel.onfinish = arrive;
+    travel.oncancel = arrive;
+    const animations = [travel];
     // Separate the travel, hop, shadow and landing layers, as in the supplied
     // Math Explorers pieces. Only a completed daily stage triggers this hop.
     const figure = token.querySelector<HTMLElement>("[data-pawn-figure]");
@@ -329,6 +404,7 @@ export default function DailyJourneyBoard({
       aria-label="전체 학습 진도"
       data-daily-journey="true"
       data-journey-variant={variant}
+      data-journey-theme={look.id}
     >
       <header className={s.header}>
         <div>
@@ -392,7 +468,17 @@ export default function DailyJourneyBoard({
         </button>
       </nav>
 
-      <div className={s.board} data-journey-page={page + 1}>
+      <div
+        className={s.board}
+        data-journey-page={page + 1}
+        style={
+          themed
+            ? ({
+                "--journey-board": `url(${look.boardImage})`,
+              } as CSSProperties)
+            : undefined
+        }
+      >
         <ol
           className={s.ring}
           start={firstStep + 1}
@@ -561,16 +647,22 @@ export default function DailyJourneyBoard({
         {pawnVisible ? (
           <span
             ref={pawnRef}
-            className={s.pawn}
+            className={themed ? `${s.pawn} ${s.rider}` : s.pawn}
             style={position(pawnStep)}
             data-pawn-day={completed}
-            aria-label={`내 말, ${completed}일 학습 완료`}
+            data-heading={themed ? riderHeading(pawnStep) : undefined}
+            data-motion={themed ? look.motion : undefined}
+            aria-label={`내 ${look.rider}, ${completed}일 학습 완료`}
           >
             <span className={s.pawnShadow} data-pawn-shadow="true" />
             <span className={s.pawnLanding} data-pawn-landing="true" />
-            <span className={s.pawnFigure} data-pawn-figure="true">
-              {pawn}
-            </span>
+            {themed ? (
+              <Rider look={look} />
+            ) : (
+              <span className={s.pawnFigure} data-pawn-figure="true">
+                {pawn}
+              </span>
+            )}
           </span>
         ) : null}
       </div>

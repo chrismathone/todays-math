@@ -3,6 +3,7 @@ import { notFound } from "next/navigation";
 import { StudentMobileNav } from "@/components/learn/StudentMobileNav";
 import learn from "@/components/learn/learn.module.css";
 import DailyJourneyQaClient from "./DailyJourneyQaClient";
+import { isJourneyThemeId } from "@/lib/math-explorers/journeyThemes";
 
 export default async function DailyJourneyQaPage({
   searchParams,
@@ -12,6 +13,7 @@ export default async function DailyJourneyQaPage({
     set?: string;
     variant?: string;
     part?: string;
+    theme?: string;
   }>;
 }) {
   await connection();
@@ -34,6 +36,7 @@ export default async function DailyJourneyQaPage({
         }
         set={set}
         variant={query.variant === "map" ? "map" : "full"}
+        theme={isJourneyThemeId(query.theme) ? query.theme : "classic"}
         part={
           [1, 2, 3, 4].includes(Number(query.part)) ? Number(query.part) : 0
         }

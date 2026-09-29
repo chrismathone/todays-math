@@ -25,6 +25,7 @@ import ExplorerHome, {
 import { ExplorerSheet } from "./ExplorerHome";
 import type { DailyJourneyDay } from "@/components/math-srs/DailyJourneyBoard";
 import type { MathExpeditionReview } from "@/contracts/mathExpedition.contract";
+import type { JourneyThemeId } from "@/lib/math-explorers/journeyThemes";
 import ExplorerBankActivity from "./ExplorerBankActivity";
 import ExplorerPractice from "./ExplorerPractice";
 import ExplorerSessionIntro from "./ExplorerSessionIntro";
@@ -100,13 +101,24 @@ const CHEST_RELOADED = "다른 화면에서 기록이 바뀌어 최신 기록을
 
 export default function StudentMathExplorers({
   initialView,
-}: { initialView?: "collection" } = {}) {
+  journeyTheme,
+}: { initialView?: "collection"; journeyTheme?: JourneyThemeId } = {}) {
   return (
-    <ExplorerGame key={initialView ?? "expedition"} initialView={initialView} />
+    <ExplorerGame
+      key={initialView ?? "expedition"}
+      initialView={initialView}
+      journeyTheme={journeyTheme}
+    />
   );
 }
 
-function ExplorerGame({ initialView }: { initialView?: "collection" }) {
+function ExplorerGame({
+  initialView,
+  journeyTheme,
+}: {
+  initialView?: "collection";
+  journeyTheme?: JourneyThemeId;
+}) {
   const router = useRouter();
   const [state, setState] = useState<ExplorerState | null>(null);
   const [loading, setLoading] = useState(true);
@@ -845,6 +857,7 @@ function ExplorerGame({ initialView }: { initialView?: "collection" }) {
         ) : (
           <ExplorerHome
             state={state}
+            journeyTheme={journeyTheme}
             busy={busy || !!error}
             claims={claims}
             chestNotices={chestNotices}

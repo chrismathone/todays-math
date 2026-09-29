@@ -47,6 +47,8 @@ describe("🔴 학생이 할 수 있는 것 전부 — 늘거나 넓어지면 �
       "GET|HEAD /icon.svg",
       "GET|HEAD /apple-icon.png",
       "GET|HEAD /brand/**",
+      // 진도판 테마 그림(원장님 2026-09-30) — 공개 그림
+      "GET|HEAD /images/journey/**",
     ]);
   });
 
@@ -64,6 +66,8 @@ describe("🔴 학생이 할 수 있는 것 전부 — 늘거나 넓어지면 �
       "GET|HEAD /icon.svg",
       "GET|HEAD /apple-icon.png",
       "GET|HEAD /brand/**",
+      // 진도판 테마 그림(원장님 2026-09-30) — 공개 그림
+      "GET|HEAD /images/journey/**",
     ]);
   });
 });
@@ -167,6 +171,7 @@ describe("학생 세션 — 허용 목록 밖은 막힌다", () => {
       ["POST", "/api/auth/signout"],
       ["GET", "/favicon.ico"],
       ["HEAD", "/brand/today-math-mark.svg"],
+      ["GET", "/images/journey/sky-board.webp"],
     ] as const)
       expect(active(m, p), `${m} ${p}`).toStrictEqual({ kind: "allow" });
   });

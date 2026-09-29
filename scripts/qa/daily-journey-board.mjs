@@ -11,6 +11,8 @@ const base = process.env.BASE ?? "http://localhost:3000";
 const out = process.env.QA_OUTPUT ?? ".qa-artifacts/daily-journey-board";
 const sizes = (process.env.QA_SIZES ?? "320,390,800,1280").split(",").map(Number);
 const engines = { chromium, webkit };
+// 진도판 테마(학원 전체 한 벌) — QA_THEME=sky 처럼 주면 같은 검수를 그 테마 판에서 돈다(기본 classic).
+const theme = process.env.QA_THEME ?? "classic";
 await mkdir(out, { recursive: true });
 
 // 눈에 보이는 결함만 — 칸 글이 세 줄 밖으로 가려졌나, 낱말 하나가 두 줄에 걸쳤나, 칸 밖으로 넘쳤나.
@@ -52,14 +54,15 @@ function inspect() {
 
 const report = [];
 for (const name of (process.env.QA_ENGINES ?? "chromium,webkit").split(",")) {
-  const browser = await engines[name].launch({ headless: true });
+  // QA_CHANNEL=msedge — Playwright 브라우저를 안 받은 PC 에서 설치된 Edge 로(chromium 만)
+  const browser = await engines[name].launch({ headless: true, ...(name === "chromium" && process.env.QA_CHANNEL ? { channel: process.env.QA_CHANNEL } : {}) });
   for (const width of sizes) {
     const mobile = width < 600;
     const page = await browser.newPage({ viewport: { width, height: 900 }, isMobile: mobile, hasTouch: mobile });
     // ⑴ 이름 전부 — 판 410여 개를 네 조각으로 나눠 그린다(한 페이지면 PC 폭에서 몇 분 걸린다).
     const all = { clipped: [], split: [], overflow: [], names: 0, pageOverflow: false, boardWidth: 0, shortTiles: 0, shortSmall: [] };
     for (const part of [1, 2, 3, 4]) {
-      await page.goto(`${base}/dev/daily-journey-qa?set=all&variant=map&part=${part}`);
+      await page.goto(`${base}/dev/daily-journey-qa?set=all&variant=map&part=${part}&theme=${theme}`);
       await page.waitForSelector("[data-qa-ready=true]", { timeout: 120000 });
       await page.evaluate(() => document.fonts.ready);
       const one = await page.evaluate(inspect);
@@ -81,7 +84,7 @@ for (const name of (process.env.QA_ENGINES ?? "chromium,webkit").split(",")) {
     } else continue;
     // ⑵ 실제 목록 판
     for (const [set, variant] of [["middle", "map"], ["elementary", "map"], ["middle", "full"], ["elementary", "full"]]) {
-      await page.goto(`${base}/dev/daily-journey-qa?days=2&set=${set}&variant=${variant}`);
+      await page.goto(`${base}/dev/daily-journey-qa?days=2&set=${set}&variant=${variant}&theme=${theme}`);
       await page.waitForSelector("[data-qa-ready=true]");
       await page.evaluate(() => document.fonts.ready);
       const one = await page.evaluate(inspect);
@@ -99,8 +102,10 @@ for (const name of (process.env.QA_ENGINES ?? "chromium,webkit").split(",")) {
         }),
       );
       assert.ok(planned.length > 0, `${name} ${width} ${set} ${variant}: 예정 칸 없음`);
-      assert.deepEqual([...new Set(planned)], ["rgba(0, 0, 0, 0) dashed rgb(169, 186, 214) none none"], `${name} ${width} ${set} ${variant}: 예정 칸 모양`);
-      await page.locator("[data-daily-journey]").screenshot({ path: `${out}/${name}-${width}-${set}-${variant}.png` });
+      // 테마 판은 칸이 «글자 받침»이라 점선 칸이 없다(2026-09-30) — 예정 칸 모양은 지금 판에서만 잰다
+      if (theme === "classic")
+        assert.deepEqual([...new Set(planned)], ["rgba(0, 0, 0, 0) dashed rgb(169, 186, 214) none none"], `${name} ${width} ${set} ${variant}: 예정 칸 모양`);
+      await page.locator("[data-daily-journey]").screenshot({ path: `${out}/${theme}-${name}-${width}-${set}-${variant}.png` });
     }
     // 출발 표시(원장님 제보 2026-09-28): 0일차 학생 — 말이 출발 자리(판 오른쪽 아래)에 있을 때 «← 출발»이
     // 1일차 칸 밑 오른쪽에 있고 말과 겹치지 않는다. 두 판 모두.

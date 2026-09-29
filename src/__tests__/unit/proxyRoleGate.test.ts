@@ -114,6 +114,7 @@ describe("역할 게이트 관문", () => {
     "/icon.svg",
     "/apple-icon.png",
     "/brand/today-math-mark.svg",
+    "/images/journey/sky-board.webp",
   ])("로그인 전과 검수 계정 모두 브랜드 이미지 %s를 읽는다", async (asset) => {
     for (const identity of [
       null,

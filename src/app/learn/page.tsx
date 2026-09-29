@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { redirect } from "next/navigation";
 import StudentMathExplorers from "@/components/math-explorers/StudentMathExplorers";
+import { readJourneyTheme } from "@/lib/journeyThemeStore";
 import { getStudentSession } from "@/lib/learn/studentRequest";
 
 export const metadata: Metadata = { title: "수학 탐험 · 오늘의수학" };
@@ -18,5 +19,15 @@ export default async function LearnHomePage({
   if (!student) redirect("/learn/login");
   if (student.mustChangePassword) redirect("/learn/password");
   const view = query.view === "collection" ? "collection" : undefined;
-  return <StudentMathExplorers key={view ?? "home"} initialView={view} />;
+  // 진도판 테마(학원 전체 한 벌) — 읽다 실패해도 학생 첫 화면은 지금 판으로 뜬다.
+  const { theme } = await readJourneyTheme().catch(() => ({
+    theme: "classic" as const,
+  }));
+  return (
+    <StudentMathExplorers
+      key={view ?? "home"}
+      initialView={view}
+      journeyTheme={theme}
+    />
+  );
 }
