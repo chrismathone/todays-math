@@ -1,0 +1,250 @@
+/* 오늘의 영어 — 문제 만들기 (D-148). 작업실 토큰 그대로(05 §8.9 · Workroom.module.css) — 새 색·새 글꼴 없음.
+   D-30: 손가락 커서는 단추·선택 상자에만(.workspace button 이 준다). 카드·행에는 없다. */
+.maker {
+  padding: var(--workspace-page-padding, 16px 20px);
+  min-width: 0;
+  color: var(--learn-ink, #172b4d);
+  font-size: var(--text-body, 14px);
+  line-height: 1.6;
+}
+.maker :is(button, input, select, textarea):focus-visible {
+  outline: 3px solid var(--learn-focus, #82a1ff);
+  outline-offset: 3px;
+}
+.maker [role="tabpanel"]:focus-visible {
+  outline: 2px solid var(--learn-accent, #3159df);
+  outline-offset: 5px;
+}
+.context {
+  margin: -8px 0 16px;
+  color: var(--learn-muted, #596c86);
+  font-size: var(--text-caption, 12px);
+  font-weight: 700;
+}
+.tabs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 16px;
+  border-bottom: 1px solid var(--learn-track, #dde3ec);
+}
+.tabs button {
+  position: relative;
+  height: 44px;
+  padding: 0 20px;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  color: var(--learn-muted, #596c86);
+  font-size: var(--text-body, 14px);
+  font-weight: 600;
+  white-space: nowrap;
+}
+.tabs button[aria-selected="true"] {
+  color: var(--learn-accent, #3159df);
+}
+.tabs button[aria-selected="true"]::after {
+  position: absolute;
+  right: 16px;
+  bottom: -1px;
+  left: 16px;
+  height: 3px;
+  border-radius: 3px 3px 0 0;
+  background: var(--learn-accent, #3159df);
+  content: "";
+}
+.tabs button:hover {
+  color: var(--learn-accent, #3159df);
+}
+.panel {
+  display: grid;
+  gap: 16px;
+  max-width: 880px;
+}
+.card {
+  padding: 16px 18px;
+  border: 1px solid var(--learn-track, #dde3ec);
+  border-radius: var(--learn-radius, 14px);
+  background: var(--learn-surface, #fff);
+}
+.card h2 {
+  margin: 0 0 6px;
+  font-size: var(--text-section, 18px);
+  font-weight: 800;
+  letter-spacing: -0.03em;
+}
+.card p {
+  margin: 0;
+  color: var(--learn-muted, #596c86);
+}
+.card p + p {
+  margin-top: 6px;
+}
+.statusLine {
+  color: var(--learn-ink, #172b4d);
+  font-weight: 700;
+}
+.form {
+  display: grid;
+  gap: 14px;
+}
+.group {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  min-width: 0;
+}
+.group legend {
+  padding: 0;
+  margin-bottom: 6px;
+  color: var(--learn-ink, #172b4d);
+  font-size: var(--text-caption, 12px);
+  font-weight: 700;
+}
+.choices {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px 14px;
+}
+.choice {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  min-height: 32px;
+}
+.choice input {
+  width: 18px;
+  height: 18px;
+  margin: 0;
+  accent-color: var(--learn-accent, #3159df);
+}
+.field {
+  display: grid;
+  gap: 6px;
+  min-width: 0;
+}
+.field > label,
+.fieldHead > label {
+  color: var(--learn-ink, #172b4d);
+  font-size: var(--text-caption, 12px);
+  font-weight: 700;
+}
+.fieldHead {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+}
+.field input[type="text"],
+.field textarea,
+.select {
+  box-sizing: border-box;
+  width: 100%;
+  min-width: 0;
+  padding: 9px 12px;
+  border: 1px solid var(--learn-control, #b8c4d6);
+  border-radius: 8px;
+  background: var(--learn-surface, #fff);
+  color: var(--learn-ink, #172b4d);
+  font: inherit;
+  font-size: var(--text-body, 14px);
+}
+.field input[type="text"],
+.select {
+  min-height: var(--control-height, 44px);
+}
+.field textarea {
+  line-height: 1.6;
+  resize: vertical;
+}
+.field textarea[readonly] {
+  background: var(--learn-neutral, #edf0f6);
+}
+.fieldHead .select {
+  width: auto;
+  max-width: 100%;
+}
+.select {
+  cursor: pointer;
+}
+.select:disabled {
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+/* 영어 지문은 화면에서도 세리프(25 §1.4 — PAPER_FONTS.serifKR 의 라틴 세리프 글리프, 새 글꼴 없음). */
+.serif {
+  font-family:
+    var(--font-noto-serif-kr), "KoPubBatang", "Nanum Myeongjo", "Noto Serif KR",
+    "Batang", serif;
+}
+.row {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 220px));
+  gap: 12px;
+}
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+.primaryButton,
+.quietButton {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  min-height: var(--control-height, 44px);
+  padding: 0 16px;
+  border: 1px solid transparent;
+  border-radius: var(--control-radius, 8px);
+  font-size: var(--text-body, 14px);
+  font-weight: 600;
+  white-space: nowrap;
+}
+.primaryButton {
+  background: var(--learn-accent, #3159df);
+  color: var(--learn-on-accent, #fff);
+}
+.primaryButton:hover {
+  background: var(--learn-accent-hover, #2448bd);
+}
+.quietButton {
+  margin-top: 8px;
+  background: var(--learn-surface, #fff);
+  border-color: var(--learn-control, #b8c4d6);
+  color: var(--learn-accent, #3159df);
+}
+.quietButton:hover {
+  background: var(--learn-soft, #edf2ff);
+}
+.alert {
+  margin: 0;
+  padding: 10px 12px;
+  border: 1px solid var(--learn-danger, #b42318);
+  border-radius: 8px;
+  background: var(--learn-danger-bg, #fff0ee);
+  color: var(--learn-danger, #b42318);
+  font-size: var(--text-caption, 12px);
+  line-height: 1.6;
+}
+.alert p {
+  margin: 0;
+}
+.issues {
+  margin: 4px 0 0;
+  padding-left: 18px;
+  color: var(--learn-danger, #b42318);
+  font-size: var(--text-caption, 12px);
+}
+.issues li + li {
+  margin-top: 2px;
+}
+.issues b {
+  font-weight: 700;
+}
+@media (max-width: 640px) {
+  .row {
+    grid-template-columns: 1fr;
+  }
+}
