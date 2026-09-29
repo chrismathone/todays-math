@@ -14,6 +14,8 @@ import type { EnglishSet } from "@/contracts/english.contract";
 export const ENGLISH_BLOCK_GAP = 14;
 /** 지문 상자 안 문단 사이 간격(px) — `EnglishPaper` 가 둘째 문단부터 `marginTop` 으로 준다 */
 export const ENGLISH_PARAGRAPH_GAP = 10;
+/** 쪽마다 본문 높이에서 빼 두는 여유(px) — 화면 측정과 인쇄 렌더의 작은 차이가 마지막 블록을 자르지 않게 */
+export const ENGLISH_PAGE_SLACK = 12;
 
 export type EnglishPaperBlock =
   | { kind: "passage"; paragraph: number; text: string }
@@ -81,8 +83,13 @@ export function packEnglishBlocks({
   let used = 0;
   let pageHasPassage = false;
 
+  // 화면 측정과 인쇄 렌더가 몇 px 달라도 마지막 블록이 overflow:hidden 에 잘리지 않게 여유를 뺀다
+  // (수학 `unified/print/pack.ts` 의 `avail - 12` 와 같은 값 — 리드 검토 D2).
   const limit = () =>
-    Math.max(1, pages.length === 0 ? avail.first : avail.cont);
+    Math.max(
+      1,
+      (pages.length === 0 ? avail.first : avail.cont) - ENGLISH_PAGE_SLACK,
+    );
   const flush = () => {
     pages.push(page);
     page = [];

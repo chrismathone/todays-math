@@ -103,13 +103,21 @@ export function EnglishPrintClient({
               교사용
             </button>
           </div>
+          {/*
+            🔴 잰 뒤라도 틀이 깨졌으면(layoutError) 잠근다 — 그때 `pages` 는 없고 지면은 «전부 한 쪽» 임시본이라,
+               `.a4Page` 의 overflow:hidden 에 조용히 잘려 종이로 나간다(리드 검토 D1 · 수학 WorksheetPrint 의 ready && !layoutError 결).
+          */}
           <button
             className={printStyles.printButton}
-            disabled={!ready}
+            disabled={!ready || layoutError}
             onClick={() => window.print()}
             type="button"
           >
-            {ready ? "인쇄하기" : "지면 준비 중"}
+            {layoutError
+              ? "인쇄할 수 없음"
+              : ready
+                ? "인쇄하기"
+                : "지면 준비 중"}
           </button>
           <button
             className={printStyles.backLink}
@@ -129,7 +137,7 @@ export function EnglishPrintClient({
             지면 크기를 재지 못했습니다. 창을 새로 고친 뒤 다시 시도해 주세요.
           </p>
         ) : null}
-        {oversizedNames.length ? (
+        {!layoutError && oversizedNames.length ? (
           <p className={printStyles.printWarning} role="status">
             한 쪽보다 길어 지면에서 잘릴 수 있습니다 —{" "}
             {oversizedNames.join(" · ")}. 지문을 빈 줄로 나누거나 문항을 줄인 뒤
@@ -141,7 +149,7 @@ export function EnglishPrintClient({
       <div
         aria-label="지면 미리보기"
         className={printStyles.pageGallery}
-        data-english-pages-ready={ready ? "true" : "false"}
+        data-english-pages-ready={ready && !layoutError ? "true" : "false"}
         role="region"
         tabIndex={0}
       >

@@ -139,6 +139,14 @@ describe("EnglishPaper — 지면 규칙", () => {
     ).toMatch(/passageBox/);
   });
 
+  it("숨은 측정 틀은 인쇄 매체에서 `display: none` 이다 — 두 벌이 더 찍히지 않는다 (리드 검토 D3)", () => {
+    // 화면에서는 화면 밖(fixed · visibility hidden), 인쇄에서는 아예 안 그린다
+    expect(cssBlock("measureHost")).toMatch(/visibility:\s*hidden/);
+    expect(CSS).toMatch(
+      /@media print\s*\{\s*\.measureHost\s*\{[^}]*display:\s*none\s*!important/,
+    );
+  });
+
   it("지문은 줄바꿈을 지킨다 (`pre-wrap`) — 문단 안 줄바꿈이 글자 그대로 남고, 빈 줄은 문단을 가른다", () => {
     const { container } = paper("student");
     expect(cssBlock("passageText")).toMatch(/white-space:\s*pre-wrap/);

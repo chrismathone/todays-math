@@ -161,10 +161,9 @@ function QuestionBlock({
       ) : null}
       {open && view === "student" ? (
         <div
-          aria-label={`${number}번 답란`}
+          aria-hidden="true"
           className={styles.answerBlank}
           data-english-answer-blank={number}
-          role="presentation"
         />
       ) : null}
       {view === "teacher" ? (

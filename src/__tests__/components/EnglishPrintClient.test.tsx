@@ -17,15 +17,30 @@ import {
 
 import { SAMPLE_EXAM as EXAM, SAMPLE_SET } from "../fixtures/englishPrintSet";
 
-function mockLayout(bodyHeight = 900, blockHeight = 100) {
+/**
+ * 크기 흉내. `cont` 를 주면 이어지는 쪽(`[data-english-body="2"]`)만 그 높이, `passage` 를 주면
+ * 지문 상자(`[data-english-passage]`)만 그 높이 — 훅이 **어느 요소를 읽는지**를 가르는 데 쓴다(리드 검토 D4).
+ */
+function mockLayout(
+  bodyHeight = 900,
+  blockHeight = 100,
+  extra: { cont?: number; passage?: number } = {},
+) {
   vi.spyOn(HTMLElement.prototype, "getClientRects").mockReturnValue([
     {},
   ] as unknown as DOMRectList);
   vi.spyOn(HTMLElement.prototype, "getBoundingClientRect").mockImplementation(
     function (this: HTMLElement) {
-      return {
-        height: this.matches("[data-english-body]") ? bodyHeight : blockHeight,
-      } as DOMRect;
+      const height =
+        extra.cont !== undefined && this.matches('[data-english-body="2"]')
+          ? extra.cont
+          : this.matches("[data-english-body]")
+            ? bodyHeight
+            : extra.passage !== undefined &&
+                this.matches("[data-english-passage]")
+              ? extra.passage
+              : blockHeight;
+      return { height } as DOMRect;
     },
   );
 }
@@ -123,7 +138,7 @@ describe("EnglishPrintClient", () => {
   });
 
   it("잰 높이대로 쪽이 나뉜다 — 본문 240px 에 블록 100px 씩이면 두 블록마다 한 쪽", async () => {
-    // 블록 6 (문단 2 + 문항 4) · 간격 14 · 100+14+100 = 214 ≤ 240, 셋째는 328 > 240
+    // 블록 6 (문단 2 + 문항 4) · 간격 14 · 본문 240 − 여유 12 = 228 · 100+14+100 = 214 ≤ 228, 셋째는 328 > 228
     mockLayout(240, 100);
     render(
       <EnglishPrintClient
@@ -225,5 +240,72 @@ describe("EnglishPrintClient", () => {
     expect(container.querySelector("main > header")?.textContent).not.toMatch(
       /!|[\u{1F300}-\u{1FAFF}]/u,
     );
+  });
+
+  it("🔴 잰 뒤라도 틀이 깨졌으면(본문 40px 미만) 인쇄가 잠기고, 쪽 나눔·«너무 큼» 알림을 믿지 않는다 (리드 검토 D1)", async () => {
+    // 본문 20px — layoutError. 임시 한 쪽 지면이 overflow:hidden 에 잘린 채 종이로 나가면 안 된다.
+    mockLayout(20, 100);
+    render(
+      <EnglishPrintClient
+        academyName="오늘의수학"
+        exam={EXAM}
+        set={SAMPLE_SET}
+      />,
+    );
+    const alert = await screen.findByRole("alert");
+    expect(alert).toHaveTextContent("지면 크기를 재지 못했습니다");
+    const print = screen.getByRole("button", { name: "인쇄할 수 없음" });
+    expect(print).toBeDisabled();
+    expect(screen.queryByRole("button", { name: "인쇄하기" })).toBeNull();
+    // 본문이 20px 이면 블록 전부가 «너무 큼»이다 — 그 소음을 내지 않는다
+    expect(screen.queryByText(/한 쪽보다 길어/)).toBeNull();
+    const gallery = screen.getByRole("region", { name: "지면 미리보기" });
+    expect(gallery).toHaveAttribute("data-english-pages-ready", "false");
+    // 깨진 측정으로 만든 쪽 나눔(블록마다 한 쪽)을 지면에 적용하지 않는다 — 임시 한 쪽 그대로
+    expect(gallery.querySelectorAll("[data-print-page]")).toHaveLength(1);
+    expect(window.print).not.toHaveBeenCalled();
+  });
+
+  it("훅이 첫 쪽·이어지는 쪽 높이와 지문 상자 여분을 각각 읽는다 — 다른 값을 주면 쪽 수가 갈린다 (리드 검토 D4)", async () => {
+    // 첫 쪽 340(여유 빼면 328) · 이어지는 쪽 600(588) · 문단·문항 100 · 지문 상자 250 → 여분 250−200−10 = 40
+    // 첫 쪽: 40+100 · +10+100 = 250 · 문항 +14+100 = 364 > 328 → 문항은 전부 둘째 쪽(100+114×3 = 442 ≤ 588)
+    // 여분을 0 으로 읽으면 첫 쪽에 문항 하나가 들어가고(324 ≤ 328), 이어지는 쪽을 첫 쪽 높이로 읽으면 셋째 쪽이 생긴다
+    mockLayout(340, 100, { cont: 600, passage: 250 });
+    render(
+      <EnglishPrintClient
+        academyName="오늘의수학"
+        exam={EXAM}
+        set={SAMPLE_SET}
+      />,
+    );
+    await screen.findByRole("button", { name: "인쇄하기" });
+    const gallery = screen.getByRole("region", { name: "지면 미리보기" });
+    await waitFor(() =>
+      expect(gallery.querySelectorAll("[data-print-page]")).toHaveLength(2),
+    );
+    const pages = gallery.querySelectorAll("[data-print-page]");
+    expect(pages[0]!.querySelectorAll("[data-english-question]")).toHaveLength(
+      0,
+    );
+    expect(pages[0]!.querySelectorAll("[data-english-passage] p")).toHaveLength(
+      2,
+    );
+    expect(pages[1]!.querySelectorAll("[data-english-question]")).toHaveLength(
+      4,
+    );
+  });
+
+  it("측정 틀은 화면 밖 클래스(`measureHost`)를 달고 보조기술에서 숨는다", () => {
+    mockLayout();
+    const { container } = render(
+      <EnglishPrintClient
+        academyName="오늘의수학"
+        exam={EXAM}
+        set={SAMPLE_SET}
+      />,
+    );
+    const host = container.querySelector("[data-measure-items]")?.parentElement;
+    expect(host?.getAttribute("aria-hidden")).toBe("true");
+    expect(host?.className).toMatch(/measureHost/);
   });
 });

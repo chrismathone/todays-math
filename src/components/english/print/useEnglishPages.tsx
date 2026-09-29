@@ -159,11 +159,13 @@ export function useEnglishPages(
     </div>
   );
 
+  // 🔴 틀이 깨졌으면(layoutError) 쪽 나눔도 «너무 큼» 목록도 믿지 않는다 — 본문이 40px 도 안 되면
+  //    모든 블록이 oversized 로 잡혀 소음만 된다(리드 검토 D1, 2026-09-30).
   return {
     pages: ready && !layoutError ? measured.result.pages : undefined,
     ready,
     layoutError,
-    oversized: ready ? measured.result.oversized : [],
+    oversized: ready && !layoutError ? measured.result.oversized : [],
     measureNode,
   };
 }

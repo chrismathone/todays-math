@@ -10,6 +10,7 @@ import { describe, expect, it } from "vitest";
 
 import {
   ENGLISH_BLOCK_GAP,
+  ENGLISH_PAGE_SLACK,
   ENGLISH_PARAGRAPH_GAP,
   englishPaperBlocks,
   packEnglishBlocks,
@@ -79,7 +80,7 @@ describe("packEnglishBlocks — 순서대로 채우고 넘치면 다음 쪽", ()
 
   it("문항 사이 간격과 지문 상자 여분까지 세어 넘치는 문항을 다음 쪽으로 보낸다", () => {
     // 지문 300 + 상자 40 = 340 · 간격 14 + 문항 300 = 654 · 간격 14 + 문항 300 = 968 (들어간다)
-    // · 간격 14 + 문항 40 = 1022 > 1000 → 다음 쪽
+    // · 간격 14 + 문항 40 = 1022 > 988(1000 − 여유 12) → 다음 쪽
     const result = packEnglishBlocks({
       blocks: [
         { kind: "passage", height: 300 },
@@ -95,8 +96,8 @@ describe("packEnglishBlocks — 순서대로 채우고 넘치면 다음 쪽", ()
   });
 
   it("지문 문단이 쪽을 넘으면 상자 여분을 두 쪽 모두에 센다 (이어지는 상자도 테두리·제목이 있다)", () => {
-    // 첫 쪽: 문단 600 + 여분 40 = 640 · 문단 간격 10 + 문단 400 = 1050 > 1000 → 둘째 문단은 다음 쪽
-    // 둘째 쪽(1100): 문단 400 + 여분 40 = 440 · 간격 14 + 문항 600 = 1054 (들어간다)
+    // 첫 쪽(988): 문단 600 + 여분 40 = 640 · 문단 간격 10 + 문단 400 = 1050 > 988 → 둘째 문단은 다음 쪽
+    // 둘째 쪽(1088): 문단 400 + 여분 40 = 440 · 간격 14 + 문항 600 = 1054 (들어간다)
     const result = packEnglishBlocks({
       blocks: [
         { kind: "passage", height: 600 },
@@ -136,7 +137,7 @@ describe("packEnglishBlocks — 순서대로 채우고 넘치면 다음 쪽", ()
       avail: { first: 1000, cont: 1100 },
       passageChrome: 40,
     });
-    // 첫 쪽 500 + 14 + 500 = 1014 > 1000 → 하나씩 · 둘째 쪽 500+14+500 = 1014 ≤ 1100 → 둘
+    // 첫 쪽(988) 500 + 14 + 500 = 1014 > 988 → 하나씩 · 둘째 쪽(1088) 500+14+500 = 1014 ≤ 1088 → 둘
     // 셋째 쪽 500 + 14 + 60 = 574
     expect(result.pages).toEqual([[0], [1, 2], [3, 4]]);
   });
@@ -145,5 +146,31 @@ describe("packEnglishBlocks — 순서대로 채우고 넘치면 다음 쪽", ()
     expect(
       packEnglishBlocks({ blocks: [], avail, passageChrome: 0 }).pages,
     ).toEqual([[]]);
+  });
+
+  it("본문 높이에서 여유 12px 를 빼고 채운다 — 딱 맞는 블록은 다음 쪽으로 (리드 검토 D2)", () => {
+    expect(ENGLISH_PAGE_SLACK).toBe(12);
+    // 500 + 14 + 486 = 1000 = 본문 그대로 → 여유를 빼면 988 을 넘어 다음 쪽
+    expect(
+      packEnglishBlocks({
+        blocks: [
+          { kind: "question", height: 500 },
+          { kind: "question", height: 486 },
+        ],
+        avail,
+        passageChrome: 0,
+      }).pages,
+    ).toEqual([[0], [1]]);
+    // 500 + 14 + 474 = 988 = 여유를 뺀 딱 그 높이 → 한 쪽
+    expect(
+      packEnglishBlocks({
+        blocks: [
+          { kind: "question", height: 500 },
+          { kind: "question", height: 474 },
+        ],
+        avail,
+        passageChrome: 0,
+      }).pages,
+    ).toEqual([[0, 1]]);
   });
 });
