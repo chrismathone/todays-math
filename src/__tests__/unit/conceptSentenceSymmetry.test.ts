@@ -66,6 +66,55 @@ const piecesSha = (pieces: readonly string[]) =>
     .digest("hex")
     .slice(0, 16);
 
+/** 3자 표 — [claude, codex, grok]. */
+type Vote = "참" | "애매" | "거짓";
+const VOTERS = ["claude", "codex", "grok"] as const;
+const VOTES_TABLE =
+  /claude (참|애매|거짓) · codex (참|애매|거짓) · grok (참|애매|거짓)/g;
+/**
+ * 까닭에 산문으로 적은 판정 — 한 사람만 달리 보고 나머지 둘은 판정 쪽(거짓 채움이면 거짓 · 순서 무관이면 참)이다.
+ * 꼴마다 [다른 한 사람, 그 표]를 낸다. 표가 없는 꼴(«2:1(grok: …)»)은 판정의 반대 표다.
+ */
+const VOTER = "(Claude|claude|codex|grok)";
+const PROSE: RegExp[] = [
+  // codex 참(fix6 — …) — Claude · grok 거짓 / codex 애매(…) — 거짓 / … — Claude · grok 거짓(2:1)
+  new RegExp(`${VOTER} (참|애매)\\((?:[^()]|\\([^()]*\\))*\\) — (?:${VOTER} · ${VOTER} )?거짓(?:\\(2:1\\))?`, "g"),
+  // grok: «…»으로 읽으면 참 — … 거짓(2:1 · consult8)
+  new RegExp(`${VOTER}: [^—]*?(참|애매) — [^—]*?거짓\\(2:1`, "g"),
+  // (codex «애매», 참으로 본 답 없음)
+  new RegExp(`\\(${VOTER} «(참|애매)», 참으로 본 답 없음\\)`, "g"),
+  // …거짓(Claude 애매)
+  new RegExp(`\\(${VOTER} (참|애매)\\)`, "g"),
+  // 2:1(grok: 뜻이 달라진다고 봄) — 표 없이 반대만
+  new RegExp(`2:1\\(${VOTER}: [^)]*\\)`, "g"),
+];
+const tableVotes = (why: string) =>
+  [...why.matchAll(VOTES_TABLE)].map((m) => m.slice(1) as Vote[]);
+const voteIndex = (name: string) =>
+  VOTERS.indexOf(name.toLowerCase() as (typeof VOTERS)[number]);
+/** 까닭 한 칸의 판정 전부 — 표 꼴 + 산문 꼴. */
+const votesOf = (why: string, verdict: string): Vote[][] => {
+  const majority: Vote = verdict === "순서 무관 정답" ? "참" : "거짓";
+  const dissent: Vote = majority === "참" ? "거짓" : "참";
+  const prose: Vote[][] = [];
+  // 읽은 구절은 지우고 다음 꼴로 — 한 구절이 두 꼴에 겹쳐 두 번 세지 않게
+  let rest = why.replace(VOTES_TABLE, "");
+  for (const re of PROSE)
+    rest = rest.replace(re, (...m: string[]) => {
+      const v: Vote[] = [majority, majority, majority];
+      v[voteIndex(m[1])] = m[2] === "참" || m[2] === "애매" ? m[2] : dissent;
+      prose.push(v);
+      return " ";
+    });
+  return [...tableVotes(why), ...prose];
+};
+/** 표로 풀리지 않은 이름 · 몇 대 몇이 남았나 — 새 산문 꼴이 조용히 시험 밖으로 새지 않게. */
+const unreadVotes = (why: string) => {
+  let rest = why.replace(VOTES_TABLE, "");
+  for (const re of PROSE) rest = rest.replace(re, " ");
+  return /claude|codex|grok|\d:\d/i.test(rest);
+};
+
 /** 정답(0, 1)을 뺀 순서 있는 채움 11개(칸 · 말) — 원장과 같은 차례. 문장은 원장에 적지 않는다(아래 시험). */
 const fillingsOf = (id: string) => {
   const card = definitionCard(id);
@@ -441,17 +490,16 @@ describe("원장의 까닭 — B 가 판정한 카드는 모든 채움에 출처
   });
   it("표와 판정이 맞물린다 — 참 둘 이상인 판정 없음 · 거짓인 맞바꿈은 판정마다 거짓 표가 있음 · 오답 채움은 참+애매 둘 미만(리드 검토 C T4)", () => {
     // 규칙(judgedBy): 둘 이상 참이면 카드 고침 · 참+애매 둘 이상이면 오답으로 고칠 수 있는 한 고침 ·
-    // 맞바꿈은 한 판정에서 참 둘 이상이거나 거짓 표가 하나도 없으면 조각을 고침
-    const VOTES =
-      /claude (참|애매|거짓) · codex (참|애매|거짓) · grok (참|애매|거짓)/g;
+    // 맞바꿈은 한 판정에서 참 둘 이상이거나 거짓 표가 하나도 없으면 조각을 고침.
+    // «순서 무관 정답»은 거꾸로 — 참 둘 이상이라 엔진이 맞음으로 친다. 산문으로 적은 판정도 표로 풀어 같이 잰다(리드 검토 D ②).
     const broken = audit.cards.flatMap((card) =>
       card.fillings.flatMap((f) =>
-        [...(f.why ?? "").matchAll(VOTES)]
-          .map((m) => m.slice(1))
+        votesOf(f.why ?? "", f.verdict)
           .filter((v) => {
             const yes = v.filter((x) => x === "참").length;
             const notFalse = v.filter((x) => x !== "거짓").length;
             const swap = f.slots[0] === 1 && f.slots[1] === 0;
+            if (f.verdict === "순서 무관 정답") return yes < 2;
             return (
               yes >= 2 ||
               (swap && f.verdict === "거짓" && notFalse === 3) ||
@@ -462,6 +510,49 @@ describe("원장의 까닭 — B 가 판정한 카드는 모든 채움에 출처
       ),
     );
     expect(broken).toEqual([]);
+  });
+  it("산문으로 적은 판정도 빠짐없이 표로 풀린다 — 풀리지 않고 남은 이름 · 몇 대 몇이 없다(리드 검토 D ②)", () => {
+    // 누가 어느 쪽인지 적히지 않은 두 칸 — 짝 개념 채움이 결함인가를 2:1 로 정했을 뿐, 채움의 참 · 거짓 표가 아니다.
+    const NO_VOTER = new Set(["g4-quarter-turn 2,3", "g4-half-turn 2,3"]);
+    const left = audit.cards.flatMap((card) =>
+      card.fillings
+        .filter((f) => unreadVotes(f.why ?? ""))
+        .map((f) => `${card.id} ${f.slots.join(",")}`),
+    );
+    expect(left.sort()).toEqual([...NO_VOTER].sort());
+    // 산문 판정은 지금 21채움(B 카드 16 + A 판 원장 5) — 꼴 하나를 못 읽게 되면 수가 준다
+    const prose = audit.cards.flatMap((card) =>
+      card.fillings.filter(
+        (f) => votesOf(f.why ?? "", f.verdict).length > tableVotes(f.why ?? "").length,
+      ),
+    );
+    expect(prose.length).toBe(19);
+  });
+  it("산문 판정 풀이 — 다섯 꼴 · 표 꼴과 섞인 까닭 · 못 읽는 것은 남긴다", () => {
+    expect(
+      votesOf("B 고침안 3자: codex 참(fix6 — 반원으로 읽음) — Claude · grok 거짓, 둘 이상 참이 아니라 거짓", "거짓"),
+    ).toEqual([["거짓", "참", "거짓"]]);
+    expect(votesOf("codex 애매(보충하면) — 거짓", "거짓")).toEqual([
+      ["거짓", "애매", "거짓"],
+    ]);
+    expect(
+      votesOf("grok: «어떤 수» 읽기로 참 — 성질 문장은 «모든 수»로 읽어 거짓(2:1 · consult8)", "거짓"),
+    ).toEqual([["거짓", "거짓", "참"]]);
+    expect(votesOf("말이 제자리를 돈다(codex «애매», 참으로 본 답 없음)", "거짓")).toEqual([
+      ["거짓", "애매", "거짓"],
+    ]);
+    expect(votesOf("일반 문장으로는 거짓(Claude 애매)", "거짓")).toEqual([
+      ["애매", "거짓", "거짓"],
+    ]);
+    expect(
+      votesOf("엔진이 맞음으로 친다 · 2:1(grok: 뜻이 달라진다고 봄)", "순서 무관 정답"),
+    ).toEqual([["참", "참", "거짓"]]);
+    expect(
+      votesOf("B 넓은 검사 3자: claude 거짓 · codex 참 · grok 거짓 — 둘 이상 참이 아니라 거짓", "거짓"),
+    ).toEqual([["거짓", "참", "거짓"]]);
+    expect(unreadVotes("B 넓은 검사 3자: 셋 다 거짓")).toBe(false);
+    expect(unreadVotes("codex 는 참이라 봄 — 나머지 거짓")).toBe(true);
+    expect(unreadVotes("결함 아님 2:1 합의")).toBe(true);
   });
   it("맞바꿈(1, 0)은 기계 거름만으로 거짓이 되지 않는다 — 늘 3자 출처가 있다", () => {
     const machineOnly = bCards.flatMap((card) =>
