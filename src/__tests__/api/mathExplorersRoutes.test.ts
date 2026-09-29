@@ -115,7 +115,15 @@ const base = "http://localhost:3000";
 const path = "/api/learn/math-explorers";
 const now = new Date("2026-09-26T16:00:00.000Z"); // already Sep 27 in Korea
 const read = (query = "") => GET(new Request(`${base}${path}${query}`));
+/** The screen always names its student (D-146) — a body without one is refused. */
 const post = (body: unknown, origin = base) =>
+  postRaw(
+    body && typeof body === "object" && !("studentId" in body)
+      ? { ...body, studentId: f.studentId }
+      : body,
+    origin,
+  );
+const postRaw = (body: unknown, origin = base) =>
   POST(
     new Request(`${base}${path}`, {
       method: "POST",
@@ -1244,6 +1252,7 @@ describe("authenticated math explorer persistence", () => {
       requestId: randomUUID(),
       expectedRevision: 0,
       action: { type: "start", route: "unit", unitId: view.units[0].id },
+      studentId: f.studentId,
     };
     const pair = await Promise.all([post(body), post(body)]);
     const views = await Promise.all(pair.map(data));
@@ -1367,6 +1376,7 @@ describe("chest press without a pre-read", () => {
     requestId: randomUUID(),
     expectedRevision: view.revision,
     action: { type: "chest", chestId },
+    studentId: f.studentId,
   });
 
   it("reads the state row once and writes once", async () => {
@@ -1422,6 +1432,19 @@ describe("chest press without a pre-read", () => {
     );
     expect(mine.feedback?.chestId).toBe(chest.id);
     expect(f.writes).toBe(1);
+  });
+
+  it("refuses an action that does not name its student and leaves the record alone", async () => {
+    // D-146 은 옛 탭 호환으로 선택이었다 — 모든 화면이 보낸 뒤로 필수(0-Y.5).
+    const { view, chest } = await readyChest();
+    f.writes = 0;
+    const snapshot = structuredClone(f.rows.get(f.studentId));
+    const { studentId, ...unnamedBody } = chestBody(view, chest.id);
+    expect(studentId).toBe(f.studentId);
+    const unnamed = await postRaw(unnamedBody);
+    expect(unnamed.status).toBe(400);
+    expect(f.writes).toBe(0);
+    expect(f.rows.get(f.studentId)).toEqual(snapshot);
   });
 
   it("rejects an answer that reuses the expedition start request id", async () => {
