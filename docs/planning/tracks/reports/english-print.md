@@ -16,11 +16,11 @@
 
 | | |
 | --- | --- |
-| 커밋 | `c84515f6b` 지면·측정·미리보기·print-check 항목·시험 → (이 보고서 커밋은 마지막 메시지에) |
+| 커밋 | `c84515f6b` 지면·측정·미리보기·print-check 항목·시험 · `ecd24a7fa` M2 봉합 · `69b22384c` 보고서 → 리드 검토 뒤 `9e03aad25`(D1~D4·D6·D7) → **`11ad6254d` 라우트**(§7) |
 | 만든 것 | `src/components/english/print/` 다섯 파일 · 시험 셋 + 픽스처 · print-check 항목 둘 |
 | 시험 | **43 통과 / 4 파일** (단위 10 · 지면 14 · 미리보기 9 · print-check 10) · ESLint 0 · 어포던스 0 · tsc 내 파일 0 |
 | 변이 | 넷 중 넷이 문다 — M2 는 처음엔 안 물어 시험을 고쳤다(§2.2) |
-| 못 한 것 | 라우트 `page.tsx`·`loading.tsx` — **base 병합 뒤** 리드가 알리면 붙인다(초안 §6) · 실물 인쇄 검수(절대 규칙 6 — 항목 «대기») |
+| 못 한 것 | ~~라우트~~(§7 에서 붙였다 — `11ad6254d`) · **실물 인쇄 검수**(절대 규칙 6 — 항목 «대기» · 리드가 main 에서 한 번 열어 볼 것 §3 ③) |
 | 리드가 정할 것 | 울타리 허용 목록에 `src/components/english/**`(§4 ①) · 시험 파일 이름(§4 ②) · 서체·보기 번호·꼬리 같은 지면 세부(§4 ③) · 학원 이름의 출처(§4 ④) · tsc 기존 오류(§4 ⑤) |
 
 ---
@@ -195,3 +195,17 @@ export default function Loading() {
 ```
 
 관문은 리드가 이미 적었다(`accountRouteAccess.ts:101` — `/english` → `any("english")`). `exam.grade` 는 DB 가 VarChar(4) 라 계약 enum 으로 읽을 때 변환기가 검증해야 한다(base).
+
+---
+
+## 7. 후속 커밋 (2026-09-30, 리드 검토 뒤)
+
+| 커밋 | 무엇 |
+| --- | --- |
+| `9e03aad25` | 리드 적대적 검토 D1~D4·D6·D7 — layoutError 면 인쇄 잠금(«인쇄할 수 없음» · oversized·pages-ready 도 무시) · 쪽 여유 `ENGLISH_PAGE_SLACK` 12px · 인쇄 매체 `measureHost` 숨김 CSS 원문 시험 · 첫/이어지는 쪽·상자 여분 배선 시험(mock 이 요소마다 다른 높이) · 답란 `aria-hidden`. 리드 변이 M7·M8·M9·M15·M19 다섯이 새 시험에 문다 |
+| `33a199803` · main 병합 | `2de827cc3`(자료 4MB) 병합 → 뒤에 main `0a11aaa7f`(base·ai·print 병합) 빨리감기 |
+| **`11ad6254d`** | **라우트** `src/app/(main)/english/sets/[id]/print/page.tsx` + `loading.tsx` — §6 초안 그대로. 서버 컴포넌트 · 크롬 없음 · `EnglishPrintClient` 하나 · 세션 없음 → `/login` · uuid 아님·세트 없음·부모 시험 없음·범위 밖 → 404(`requireOwnedEnglishExam`) · 학원 이름 = 시험 주인의 `Branch.name`, 없으면 «오늘의수학»(리드 결정) · `?view=teacher\|student`. 시험 `src/__tests__/api/englishPrintPage.test.ts`(8) — 돌려받은 **요소의 type·props** 를 본다(페이지는 컴포넌트를 부르지 않는다). print-check evidence 를 page.tsx 로(D7 마무리) · `classOwnerPrintFree` 가드에 영어 인쇄 뿌리 둘 추가 |
+
+라우트 커밋의 관문: 11파일 121 통과(인쇄 넷 · 페이지 · accountRouteAccess · englishMenu · englishFence · proxyStudentGate · classOwnerPrintFree · errorLogRouteCoverage) · ESLint 0 · 어포던스 0 · tsc 0. `errorLogRouteCoverage` 는 `route.ts` 만 센다 — page.tsx 는 대상 밖(빨강 없음). `proxyStudentGate` 는 새 페이지를 학생 세션에 «막힘(307 → /learn)» 으로 센다 — 기대 목록 변경 없이 초록.
+
+남은 것: **실물 인쇄 검수**(항목 둘 «대기») · 지면 세부는 25 §10.1 에서 원장님이 실물을 보고 정하실 때 같이(리드).
