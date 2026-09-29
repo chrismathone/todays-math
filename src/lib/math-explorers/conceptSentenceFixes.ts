@@ -1,10 +1,10 @@
 /**
  * 카드 보정 표 — 원본(`definition-content.ts` · PROVENANCE)은 그대로 두고, 카드를 내보내는 층(`definition-cards.ts` 의
- * `definitionCards`)에서 68장을 덮어쓴다(D-143 ④ · ⑦ · ⑧ — 23장 + 채점 결함 45장). 화면 · 채점 · 복습 · 선수가 모두 같은 카드를 읽는다 — 카드 id 는
+ * `definitionCards`)에서 75장을 덮어쓴다(D-143 ④ · ⑦ · ⑧ — 23장 + 채점 결함 52장). 화면 · 채점 · 복습 · 선수가 모두 같은 카드를 읽는다 — 카드 id 는
  * 그대로라 학생 기록 · 상자 · 교육과정 다리는 이어진다.
  *
  * 결론은 용어 분석 트랙(terms-coverage)의 3자 합의 `docs/reference/concept-terms/card-sentence-fixes.json`
- * (틀림 3 · 빠짐 5 · 낱말 5 · 범위 10 · 채점 45 — 까닭 · 표는 그 파일). 이 표는 그 파일의 `change` 칸을 그대로 옮긴 것이고 시험이
+ * (틀림 3 · 빠짐 5 · 낱말 5 · 범위 10 · 채점 52 — 까닭 · 표는 그 파일). 이 표는 그 파일의 `change` 칸을 그대로 옮긴 것이고 시험이
  * 칸마다 같음을 잠근다(`conceptSentenceFixes.test.ts`). 보정은 빈칸(정답 조각)까지 옮기기도 해서, 카드마다 조립 ·
  * 예 모으기 · 경계 살피기가 새 카드로 풀리는지도 시험이 끝까지 풀어 본다. 🔴 교재 원문은 넣지 않는다(누출 검사 통과본).
  */
@@ -382,11 +382,12 @@ export const cardFixes: Readonly<Record<string, CardFix>> = {
   },
   // 비의 성질 — 채점
   "g6-ratio-simplify": {
-    words: ["0이 아닌 수", "비율", "0", "두 항의 차"],
+    words: ["0이 아닌 수", "비율", "0", "표"],
   },
   // 부채꼴 — 채점
   "g7-sector": {
-    words: ["반지름", "호", "지름", "모서리"],
+    definition: "원의 두 반지름과 그 사이의 호 하나로 둘러싸인 도형.",
+    pieces: ["원의 두 ", "과 그 사이의 ", " 하나로 둘러싸인 도형."],
   },
   // 히스토그램 — 채점
   "g7-histogram": {
@@ -418,17 +419,22 @@ export const cardFixes: Readonly<Record<string, CardFix>> = {
   },
   // 크기가 같은 분수 — 채점
   "g5-equivalent": {
-    words: ["0이 아닌 수", "크기", "0", "분자"],
+    words: ["0이 아닌 수", "크기", "0", "표"],
   },
   // 상대도수 — 채점
   "g7-relative-frequency": {
-    words: ["도수", "전체 도수", "계급의 크기", "최댓값"],
+    words: ["도수", "전체 도수", "넓이", "계급의 크기"],
   },
   // 도수 — 채점
   "g7-frequency": {
     definition:
       "정해진 계급에 속하는 자료의 개수이며 전체 도수의 합은 조사한 자료를 모두 센 값이다.",
-    words: ["개수", "조사한 자료를 모두 센 값", "평균", "최댓값"],
+    words: [
+      "개수",
+      "조사한 자료를 모두 센 값",
+      "평균",
+      "가장 큰 값과 가장 작은 값의 차",
+    ],
   },
   // 분수 — 채점
   "g3-fraction": {
@@ -436,6 +442,8 @@ export const cardFixes: Readonly<Record<string, CardFix>> = {
   },
   // 막대그래프 — 채점
   "g4-bar-graph": {
+    definition: "자료의 수를 막대 모양으로 그려 그 길이로 나타낸 그래프.",
+    pieces: ["자료의 수를 ", " 모양으로 그려 그 ", "로 나타낸 그래프."],
     words: ["막대", "길이", "원", "색깔"],
   },
   // 대응 관계 — 채점
@@ -460,8 +468,8 @@ export const cardFixes: Readonly<Record<string, CardFix>> = {
   },
   // 부채꼴의 넓이 — 채점
   "g7-sector-area": {
-    definition: "원의 넓이에 중심각/360°을 곱하여 구한다.",
-    pieces: ["원의 넓이에 ", "을 ", " 구한다."],
+    definition: "원의 넓이에 중심각/360°의 값을 곱하여 구한다.",
+    pieces: ["원의 넓이에 ", "의 값을 ", " 구한다."],
     words: ["중심각/360°", "곱하여", "중심각/180°", "더하여"],
   },
   // 소수 첫째 자리 — 채점
@@ -479,6 +487,42 @@ export const cardFixes: Readonly<Record<string, CardFix>> = {
   // 일차함수 그래프의 평행 — 채점
   "g8-parallel-lines": {
     words: ["기울기", "y절편", "x좌표", "꼭짓점"],
+  },
+  // 지름 — 채점
+  "g3-diameter": {
+    words: ["중심", "2배", "꼭짓점", "3배"],
+  },
+  // 몫이 같은 나눗셈 — 채점
+  "g6-quotient-invariant": {
+    words: ["0이 아닌 수", "몫", "0", "표"],
+  },
+  // 일차식 — 채점
+  linear: {
+    definition: "동류항끼리 정리하였을 때 가장 높은 차수가 1인 다항식.",
+    pieces: ["동류항끼리 정리하였을 때 가장 높은 ", "가 ", "인 다항식."],
+  },
+  // 곱이 0인 성질 — 채점
+  "g9-zero-product": {
+    definition:
+      "AB=0인 두 수 A, B는 A=0 또는 B=0이며 두 수가 모두 0일 필요는 없다.",
+    pieces: ["AB=0인 두 수 A, B는 ", "이며 두 수가 ", " 없다."],
+    words: ["A=0 또는 B=0", "모두 0일 필요는", "A=B", "0일 수는"],
+  },
+  // 각기둥 — 채점
+  "g6-prism": {
+    definition:
+      "두 밑면이 서로 평행이고 합동인 다각형이며 옆면이 직사각형인 입체도형.",
+    pieces: ["두 밑면이 서로 ", "이고 ", "이며 옆면이 직사각형인 입체도형."],
+  },
+  // 합성수 — 채점
+  composite: {
+    definition: "1보다 큰 자연수 중 소수가 아닌 수.",
+    pieces: ["", " 중 ", "가 아닌 수."],
+    words: ["1보다 큰 자연수", "소수", "0보다 큰 수", "분수"],
+  },
+  // 닮음 — 채점
+  "g8-similarity": {
+    words: ["확대 또는 축소", "합동", "색칠", "평행"],
   },
 };
 

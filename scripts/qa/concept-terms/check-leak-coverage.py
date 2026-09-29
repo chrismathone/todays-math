@@ -17,7 +17,8 @@
 (2026-09-28 리드 검토 ④ — 실제로 23장 전부가 그렇게 빠졌다). 그래서 멈춘다 — ⑴ 보정의 모든 칸이 덤프 카드와 같으면(덤프가 이미
 보정을 입음 · 새 글의 기준도 덤프라 이것이 먼저다) ⑵ 보정 새 글(원본 카드의 같은 칸과 다른 긴 칸)이 허용 말에 있으면
 ⑶ coverage.md 의 «새 글 N칸»이 셈과 다르면(리드 검토 A2 M1). 자기 시험은 ① 원문 한 문장을 심은 줄 ② 보정 표에 원문을 심은 판
-③ 보정을 입힌 덤프(보정 전부 멈춤) ④ 걷고 나면 창이 안 남는 긴 원문 문장을 심은 줄(걷기 전 창이 잡아야) — 넷 다 걸려야 통과.
+③ 보정을 입힌 덤프(보정 전부 멈춤) ④ 걷고 나면 창이 안 남는 긴 원문 문장을 심은 줄(걷기 전 창이 잡아야)
+⑤ 허용 말만으로 된 걷기 전 창을 심은 줄(안 걸려야 — 창 안에서 허용 말을 뺀 한글이 4자 이상 남을 때만 친다) — 다섯 다 맞아야 통과.
 
 사용:
   python check-leak-coverage.py --cards <카드.json> --files <파일...>
@@ -195,12 +196,38 @@ def build_units(units: list):
     return (stripped, whole - inside_allowed), allowed_sorted, src
 
 
+def allowed_mask(t: str, allowed_sorted: list[str]) -> list[bool]:
+    """글자마다 허용 말(긴 것부터, 겹치지 않게)에 든 글자인가 — `strip_allowed` 와 같은 차례로 짚는다."""
+    work, mask = t, [False] * len(t)
+    for a in allowed_sorted:
+        if a not in work:
+            continue
+        k = work.find(a)
+        while k >= 0:
+            for x in range(k, k + len(a)):
+                mask[x] = True
+            work = work[:k] + SEP * len(a) + work[k + len(a):]
+            k = work.find(a, k + len(a))
+    return mask
+
+
+def whole_hits(t: str, whole: set[str], allowed_sorted: list[str]) -> list[str]:
+    """걷기 전 창 — 창 안에서 허용 말을 뺀 한글이 MIN_HANGUL 자 이상 남을 때만 친다. 허용 말(용어 · 단원 이름)을 쉼표로 늘어놓은
+    줄이 교재의 같은 나열과 겹쳐 걸리던 거짓 경보(2026-09-28 리드 검토 B2 L4 — main 의 gaenyeom_curation_mida.py:181)."""
+    cands = [(i, t[i:i + WIN]) for i in range(0, max(0, len(t) - WIN + 1)) if t[i:i + WIN] in whole]
+    if not cands:
+        return []
+    mask = allowed_mask(t, allowed_sorted)
+    return [w for i, w in cands
+            if sum(1 for x in range(i, i + WIN) if not mask[x] and "가" <= t[x] <= "힣") >= MIN_HANGUL]
+
+
 def scan(text: str, wins: tuple[set[str], set[str]], allowed_sorted: list[str]) -> list[str]:
     stripped, whole = wins
     hits = []
     for line in text.splitlines():
         t = strip_allowed(norm(line), allowed_sorted)
-        found = [w for w in windows_of(t) if w in stripped] or [w for w in windows_of(norm(line)) if w in whole]
+        found = [w for w in windows_of(t) if w in stripped] or whole_hits(norm(line), whole, allowed_sorted)
         if found:
             hits.append(f"{line.strip()[:120]}  ← {found[0]}")
     return hits
@@ -272,6 +299,15 @@ def main():
         print(f"자기 시험 ④: 걷으면 창이 안 남는 원문 {len(blind)}문장 중 하나를 심은 줄 → {len(h4)}줄 걸림(걷은 창만이면 {len(h4_old)}줄)")
         if not planted4 or not h4 or h4_old:
             print("자기 시험 ④ 실패")
+            bad += 1
+        # ⑤ 허용 말(용어 · 단원 이름)만으로 이뤄진 걷기 전 창 — 교재의 같은 나열과 겹쳐도 걸리면 안 된다(리드 검토 B2 L4).
+        terms_only = next((w for w in sorted(wins[1]) if sum(1 for x, ch in enumerate(w)
+                           if not allowed_mask(w, allowed_sorted)[x] and "가" <= ch <= "힣") < MIN_HANGUL), "")
+        h5 = scan(terms_only, wins, allowed_sorted) if terms_only else []
+        h5_unmasked = [w for w in windows_of(norm(terms_only)) if w in wins[1]] if terms_only else []
+        print(f"자기 시험 ⑤: 허용 말만으로 된 창을 심은 줄 → {len(h5)}줄 걸림(허용 말을 안 가리면 {len(h5_unmasked)}개 창)")
+        if not terms_only or h5 or not h5_unmasked:
+            print("자기 시험 ⑤ 실패")
             bad += 1
     for f in a.files or []:
         hits = scan(Path(f).read_text(encoding="utf-8"), wins, allowed_sorted)

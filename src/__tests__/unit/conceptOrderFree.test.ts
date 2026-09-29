@@ -45,10 +45,12 @@ const ORDER_FREE = [
   "g4-half-turn",
   // 조사를 «의 길이»로 고정한 뒤 본디 대칭(3:0)
   "g5-parallelogram-area",
+  // 조각을 «평행이고 합동인 다각형이며»로 고친 뒤 맞바꿈도 같은 뜻(리드 검토 B · b6 · fix7/fix8)
+  "g6-prism",
 ];
 
-describe("순서 무관 표지 — 합의한 22장", () => {
-  it("표 = 12장 + 정수 · 작도 + 리드 검토 A 의 8장, 모두 있는 카드", () => {
+describe("순서 무관 표지 — 합의한 23장", () => {
+  it("표 = 12장 + 정수 · 작도 + 리드 검토 A 의 8장 + 리드 검토 B 의 각기둥, 모두 있는 카드", () => {
     expect([...orderFreeCards].sort()).toEqual([...ORDER_FREE].sort());
     for (const id of ORDER_FREE) expect(definitionCard(id).id).toBe(id);
   });

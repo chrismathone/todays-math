@@ -1,5 +1,7 @@
 // 문장 조립 «정답이 아닌 모든 채움»의 판정 원장 — docs/reference/concept-terms/card-fillings-audit.json.
-// 실행: npx tsx scripts/qa/concept-terms/build-fillings-audit.ts [--check] [--show <카드 id>]
+// 실행: npx tsx scripts/qa/concept-terms/build-fillings-audit.ts [--check] [--show <카드 id>] [--mechanical [<out.json>]]
+//   --mechanical: 지금 조사 · 품사 규칙(`particleFit.ts`)으로 한 칸이 어긋나는 채움 — 기계 거름을 저장소에서 다시 낸다(리드 검토 B M3).
+//   🔴 맞바꿈(1, 0)은 거름에서 빼고 늘 3자가 읽는다 — 조사만 어긋나고 뜻이 같은 맞바꿈이 있었다(linear · 영의 곱 · 각기둥).
 //
 // 조립은 자리 그대로 채점하므로(순서 무관 카드는 맞바꿈도 맞음) 정답이 아닌 채움이 참이면 맞는 문장이 틀림이 된다.
 // 뜻은 코드가 못 가리므로 채움마다 사람이 판정을 적는다(3자 합의 · 까닭). 이 스크립트는 판정을 짓지 않는다 —
@@ -18,6 +20,7 @@ import {
   definitionCard,
   definitionCards,
 } from "../../../src/lib/math-explorers/definition-cards";
+import { fitsParticle } from "./particleFit";
 
 type Filling = {
   slots: [number, number];
@@ -70,6 +73,27 @@ function fillingsOf(id: string) {
       });
     }
   return out;
+}
+
+const mechanicalAt = process.argv.indexOf("--mechanical");
+if (mechanicalAt > 0) {
+  const rows = definitionCards.flatMap((card) =>
+    fillingsOf(card.id)
+      .filter(({ slots }) => !(slots[0] === 1 && slots[1] === 0))
+      .filter(
+        ({ slots }) =>
+          fitsParticle(card.words[slots[0]]!, card.pieces[1]!) === false ||
+          fitsParticle(card.words[slots[1]]!, card.pieces[2]!) === false,
+      )
+      .map(({ slots, words }) => ({ id: card.id, slots, words })),
+  );
+  const out = process.argv[mechanicalAt + 1];
+  if (out && !out.startsWith("--"))
+    writeFileSync(out, JSON.stringify(rows, null, 1), "utf8");
+  console.log(
+    `기계 거름(맞바꿈 뺌) ${rows.length}칸 · 카드 ${new Set(rows.map((r) => r.id)).size}장`,
+  );
+  process.exit(0);
 }
 
 const showAt = process.argv.indexOf("--show");
