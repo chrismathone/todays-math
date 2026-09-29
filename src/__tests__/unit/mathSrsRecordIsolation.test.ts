@@ -9,6 +9,11 @@ import { join, relative } from "node:path";
 import { describe, expect, it } from "vitest";
 import { z } from "zod";
 import { mathSrsClassDashboardSchema } from "@/contracts/mathSrs.contract";
+import {
+  ANYWHERE_BLOCK,
+  eatenCode,
+  withoutComments,
+} from "../helpers/sourceComments";
 
 const root = join(__dirname, "../../..");
 const SKIP = new Set(["node_modules", ".next", "__tests__"]);
@@ -24,24 +29,15 @@ function files(dir: string): string[] {
           : [],
   );
 }
-// 주석 걷기 — 줄 주석을 먼저, 블록 주석은 **줄 머리(들여쓰기 뒤)의 `/*`** 에서만.
-// 🔴 블록을 아무 데서나 먼저 지우면 줄 주석 · 문자열 속 `/*`(«`/api/**`» · `"preview/*.html"`)가 블록 시작으로 읽혀
-//    다음 블록 주석 끝까지 — 코드 줄째 — 지운다. `mobile-explorers-qa.mjs` 가 두 번 그렇게 이 시험에서 사라졌다
-//    (2026-09-27 2만여 자, 2026-09-29 JSDoc 한 줄로 10만여 자 · 기록 모듈을 부르는 줄 포함). 저장소 전체에서
-//    같은 식으로 코드 줄을 삼키던 블록이 다섯 더 있었다 — 아래 «지운 블록에 코드 줄 없음»이 막는다.
-const LINE_COMMENT = /^\s*(\/\/|#).*$/gm;
-const BLOCK_COMMENT = /^[ \t]*\/\*[\s\S]*?\*\//gm;
-/** 지운 블록 안에 이런 줄이 있으면 주석이 아니라 코드를 지운 것이다. */
-const CODE_LINE =
-  /^[ \t]*(import|export|const|let|var|function|async function|class|return|await|for|if)\b/m;
-const withoutComments = (text: string) =>
-  text.replace(LINE_COMMENT, "").replace(BLOCK_COMMENT, "");
+// 주석 걷기는 `helpers/sourceComments.ts` 한 곳 — 줄 주석을 먼저, 블록 주석은 줄 머리의 `/*` 에서만(까닭은 그 머리말).
+// 파이썬 · SQL 도 훑으므로 `#` 줄도 주석으로 친다.
+const COMMENTS = { hash: true } as const;
 const sources = ["src", "scripts"].flatMap(files).map((path) => {
   const raw = readFileSync(join(root, path), "utf8");
   return {
     path: relative(root, join(root, path)).replaceAll("\\", "/"),
     raw,
-    text: withoutComments(raw),
+    text: withoutComments(raw, COMMENTS),
   };
 });
 
@@ -111,19 +107,21 @@ describe("보기형 전용 문항이 사는 기록의 격리", () => {
       "/** 네 폭으로 잰다. */",
       "readSrsState(glob);",
     ].join("\n");
-    const kept = withoutComments(text);
+    const kept = withoutComments(text, COMMENTS);
     expect(recordReference.test(kept)).toBe(true);
     expect(kept).not.toContain("네 폭으로 잰다");
     expect(kept).not.toContain("fulfilled here");
+    // 옛 규칙(블록을 아무 데서나)이면 같은 글에서 참조가 사라진다 — 이 자기 시험이 그 차이를 본다.
+    expect(
+      recordReference.test(
+        withoutComments(text, { ...COMMENTS, block: ANYWHERE_BLOCK }),
+      ),
+    ).toBe(false);
   });
 
-  it("주석을 걷어도 코드 줄은 안 사라진다 — 지운 블록 안에 import · const · function … 줄이 없다", () => {
+  it("주석을 걷어도 코드 줄은 안 사라진다 — 걷는 블록 안에 import · const · function … 줄이 없다", () => {
     const eaten = sources.flatMap(({ path, raw }) =>
-      [...raw.replace(LINE_COMMENT, "").matchAll(BLOCK_COMMENT)]
-        .filter(([block]) =>
-          CODE_LINE.test(block.split("\n").slice(1).join("\n")),
-        )
-        .map(([block]) => `${path} (${block.length}자)`),
+      eatenCode(raw, COMMENTS).map((length) => `${path} (${length}자)`),
     );
     expect(eaten).toEqual([]);
   });

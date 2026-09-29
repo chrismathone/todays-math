@@ -5,6 +5,7 @@
 import { readdirSync, readFileSync } from "node:fs";
 import { join, relative } from "node:path";
 import { describe, expect, it } from "vitest";
+import { eatenCode, withoutComments } from "../helpers/sourceComments";
 
 const root = join(__dirname, "../../..");
 const SCANNED = [
@@ -25,12 +26,16 @@ function files(dir: string): string[] {
   );
 }
 // 주석은 부르는 곳이 아니다 (types.ts 의 엔진 약속 주석이 checkAnswer(…) 를 적어 둔다).
-const withoutComments = (text: string) =>
-  text.replace(/\/\*[\s\S]*?\*\//g, "").replace(/^\s*\/\/.*$/gm, "");
-const sources = SCANNED.flatMap(files).map((path) => ({
-  path: relative(root, join(root, path)).replaceAll("\\", "/"),
-  text: withoutComments(readFileSync(join(root, path), "utf8")),
-}));
+// 걷기는 `helpers/sourceComments.ts` 한 곳 — 블록을 아무 데서나 먼저 걷던 옛 규칙은 문자열 · 줄 주석 속 `/*` 에서
+// 코드 줄째 걷을 수 있었다(기록 격리 시험이 실측 스크립트에 두 번 눈멂, 2026-09-27 · 2026-09-29).
+const sources = SCANNED.flatMap(files).map((path) => {
+  const raw = readFileSync(join(root, path), "utf8");
+  return {
+    path: relative(root, join(root, path)).replaceAll("\\", "/"),
+    raw,
+    text: withoutComments(raw),
+  };
+});
 const callers = (pattern: RegExp) =>
   sources.filter((s) => pattern.test(s.text)).map((s) => s.path);
 
@@ -45,6 +50,13 @@ describe("중등 복습 채점·보기의 단일 경로", () => {
         "src/components/math-srs/PracticeSession.tsx",
       ]),
     );
+  });
+
+  it("주석을 걷어도 코드 줄은 안 사라진다 — 걷는 블록 안에 import · const · function … 줄이 없다", () => {
+    const eaten = sources.flatMap(({ path, raw }) =>
+      eatenCode(raw).map((length) => `${path} (${length}자)`),
+    );
+    expect(eaten).toEqual([]);
   });
 
   it("숫자 채점 checkAnswer 를 직접 부르는 곳은 채점 함수와 숫자 보기 생성기뿐이다", () => {
