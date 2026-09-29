@@ -145,3 +145,9 @@ npx prettier --check    → 새 파일 전부 통과 · 고친 기존 파일 둘
 ## ⑥ 못 한 것
 
 - DB 드라이런·적용(브리프대로 안 함) · 전체 시험(리드가 main 에서) · `generate` 라우트(ai 트랙) · 화면(shell) · 인쇄(print).
+
+---
+
+## ⑦ 후속 커밋
+
+- **8d84bd920** — 울타리 ⑴ 예외: ai 트랙의 실물 탐침 `scripts/qa/probe-english-generate-live.ts` 를 `NEVER_FORBIDDEN` 에 두고 `isForbidden` 이 그 목록을 먼저 보게 했다(리드 D1, 2026-09-30). `scripts/` 의 나머지는 그대로 금지 · 합성 간선 변이는 그대로 빨강. 25 §6 문서는 리드가 병합 때 고친다.
