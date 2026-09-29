@@ -2136,8 +2136,12 @@ async function fitSupplementScenario({ page, sim, mobile, width, height, step },
       await expect(page.locator("[data-assembly-sentence]")).toBeVisible();
       const row = { unit: card.unit, card: card.id, name: card.name, kind: "assemble", supplement: true };
       measured += await measureFitSizes(page, width, height, row, 0);
-      for (const word of card.words.slice(0, 2))
-        await tap(choiceButtons(page).nth(activity.choices.findIndex((choice) => choice.label === word)), mobile);
+      for (const word of card.words.slice(0, 2)) {
+        const index = activity.choices.findIndex((choice) => choice.label === word);
+        // 못 찾으면 nth(-1) 이 마지막 보기를 조용히 눌러 엉뚱한 말을 채운다 — 멈춘다.
+        assert.notEqual(index, -1, `${card.name}: 정답 말 «${word}» 가 보기에 없다`);
+        await tap(choiceButtons(page).nth(index), mobile);
+      }
       measured += await measureFitSizes(page, width, height, row, 2);
       handled = sim.handled;
       await tap(page.getByRole("button", { name: "← 진도판" }), mobile);
