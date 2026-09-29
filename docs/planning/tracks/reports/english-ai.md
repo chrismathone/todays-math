@@ -103,6 +103,7 @@ DB 에 닿지 않고 저장하지 않는다. 보고 싶은 것: ⑴ 몇 초 걸�
 | `a578fa48f` | 리드 `c70ee7509`(계약에 `ENGLISH_DRAFT_REJECTED` · 리드 시험의 `s` 플래그) 병합 — 충돌 없음 |
 | `b18aa269c` | 라우트의 검증기 거절 응답 `code` 를 `ENGLISH_DRAFT_REJECTED` 로(`details: { issues }`), 라우트 시험·화면 시험 픽스처 한 줄씩 |
 | `d53076e55` | 검토 D2 · D3 · D4 · D5 · D8 후속(아래) |
+| `4622f137d` | shell 맞춤 — `EnglishMakerView` 가 **탭 줄부터** 시작한다. 머리(«문제 만들기» `WorkspacePageHeader`)와 «학교 학년 · 시험» 문맥 줄은 뿌리 `EnglishStudio`(shell)가 그리므로 화면에서 걷었다(import · 안 쓰는 `.context` CSS 규칙 제거). 시험은 «h1 없음»을 단정하고 탭·본문 단정은 그대로. 관문: 시험 넷 4 files · 56 tests · ESLint 0 · 어포던스 0 · tsc 0 |
 
 - **D4 (화면 논리)** — `importPaste` 가 «요청문 복사»와 **같은 `validatedConditions()`** 로 조건을 읽는다. 조건이 계약을 못 지나면(새 지문인데 소재 비움 등) 같은 `role="alert"` 사유 목록을 보이고 멈춘다 — 전에는 expectation 을 조용히 버리고 저장까지 갔다.
 - **D2 (시험 구멍)** — 화면 시험 «붙여넣기는 화면의 조건과 견준다»: 문항 수 기본값 5 그대로 3문항 초안 붙여넣기 → alert 에 «문항 수». **D4 시험** «소재 비움 · 3문항 JSON → 저장 안 됨 + «소재» 사유».
@@ -110,4 +111,4 @@ DB 에 닿지 않고 저장하지 않는다. 보고 싶은 것: ⑴ 몇 초 걸�
 - **D5 (진단 문구)** — `parseAiJsonObject` 는 비객체 후보를 `continue` 하고 후보를 끝까지 돈다. 객체가 없을 때만 «비객체가 있었으면 객체 형태 아님 / 아니면 유효한 JSON 아님». `'[1] 결과: {"a":1}'` → `{"a":1}` 시험 추가. 배열 함수는 그대로(변경 덩어리 전부 `parseAiJsonObject` 안, 257행 이후). 따라온 변화: 객체 하나를 감싼 배열 `[{…}]` 은 객체 구간이 안의 객체를 건진다(문항 배열만 붙여 넣으면 여전히 «객체» 사유) — 시험을 그 뜻으로 바꿨다.
 - **D8 (사소)** — 탭·패널 id 를 `useId` 접두로(`${uid}-tab-*` · `${uid}-panel-*`).
 - D1(울타리 · 탐침 예외)은 base, D6·D7(examLookup 교체)은 병합 뒤 리드 — 손대지 않았다.
-- 관문: `npx vitest run` 내 시험 넷 + `aiGenerator` + `errorLogRouteCoverage` → **6 files · 106 tests 통과**(내 넷은 57). ESLint(트랙 파일) 0 · `npx tsc --noEmit` 0(리드 `s` 플래그 수정 병합 뒤 전체 0). 변이 셋: 화면이 expectation 을 안 넘김 → D2 시험 빨강 · 라우트 학년 «중1» 하드코딩 → D3 시험 빨강 · 비객체에서 즉시 던짐 → D5 시험 둘 빨강. 복원 확인(작업 트리 0).
+- 관문: `npx vitest run` 내 시험 넷 + `aiGenerator` + `errorLogRouteCoverage` → **6 files · 106 tests 통과**(내 넷은 56 — 17 · 12 · 11 · 16). ESLint(트랙 파일) 0 · `npx tsc --noEmit` 0(리드 `s` 플래그 수정 병합 뒤 전체 0). 변이 셋: 화면이 expectation 을 안 넘김 → D2 시험 빨강 · 라우트 학년 «중1» 하드코딩 → D3 시험 빨강 · 비객체에서 즉시 던짐 → D5 시험 둘 빨강. 복원 확인(작업 트리 0).
