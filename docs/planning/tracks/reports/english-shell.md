@@ -20,7 +20,7 @@
 | 뷰 | `type View = WorkspaceMenu \| EnglishView`(`src/components/english/views.ts` — React 를 모르는 작은 모듈이라 셸이 정적으로 불러도 영어 묶음이 같이 실리지 않는다). `menuOf(view)`(영어 뷰 셋 → 메뉴 `english`) · `productOf(view)`(제품은 뷰에서 파생, 저장 없음) · `viewValid` 는 메뉴 + 영어 뷰 셋 |
 | 옆 메뉴 목록 | `navItemsOf = { math: 수학 8, english: [학교별 내신 대비 · 문제 만들기 · 문제 보관함] }` — `availableNav` 는 **지금 제품**만. 빠른 검색(Ctrl K)은 `quickNav`(두 제품 다). 아이콘 `school` · `pen` 새로, `folder` 재사용, ▾ 는 `down` |
 | 고르기 단추 | 제품이 둘 이상이면 브랜드 단추가 `aria-haspopup="listbox"` · `aria-expanded` · 이름 옆 ▾, `aria-label` «제품 고르기 — {제품 이름}». 누르면 바로 아래 `role="listbox"` «제품»(옵션은 `role="option"` 단추, 현재 제품 `aria-selected` + ✓). 고르면 그 제품 첫 뷰 — 수학 `defaultView`(지금 규칙) · 영어 `english`. 키보드 ↑↓(순환) Enter Esc · 바깥 mousedown 닫힘 · 닫히면 브랜드로 포커스 되돌림. 제품이 하나면 예전 단추 그대로(«오늘의수학 홈» / «{제품} 작업실», ▾ 없음) |
-| 접힘(72px) | 마크 귀퉁이 딱지 «영»(`.productBadge` — `#3b60df` · 10px 800 · `#14243d` 2px 테두리, **접힘 + 영어일 때만** `display:grid`). 접힌 채 마크를 누르면 목록이 옆으로(`position: fixed; left: 80px; top: 18px; width: 220px` — `profilePanel` 결). 🔴 **결정 한 가지(§3 ①)**: 지금 셸은 접히면 브랜드를 숨기고 접기 단추만 남기는데, 시안 C 의 접힘은 마크가 보여야 하므로 **제품이 둘 이상일 때만** `.sideHeader` 를 세로로 세워 마크(고르기 단추)를 접기 단추 **위**에 둔다(`[data-picker="true"]`). 제품이 하나면 지금 모습 그대로 |
+| 접힘(72px) | 마크 귀퉁이 딱지 «영»(`.productBadge` — `#3b60df` · 10px 800 · `#14243d` 2px 테두리, **접힘 + 영어일 때만** `display:grid`). 접힌 채 마크를 누르면 목록이 옆으로(`position: fixed; left: 80px; top: 18px; width: 220px` — `profilePanel` 결). **영어 제품일 때만**(`.workspace[data-product="english"]`, 검토 #1 뒤 `3a2b9603d`) `.sideHeader` 를 세로로 세워 마크(딱지 «영»)를 접기 단추 **위**에 둔다. 수학 접힘은 제품 수와 무관하게 **기준 커밋 그대로**(표지 없음 · 브랜드 숨김 · 접기 단추만 — 05 §8.23 ⑷ «수학은 지금 모습 그대로»). 수학에서 접힌 채 제품을 바꾸려면 펼친 뒤 고른다. 영어만 있는 계정도 접힘에서 마크 + 딱지가 보인다(#9) |
 | 파란 단추 · 캡션 | 영어 제품이면 `s.newButton` «새 시험 등록»(`Icon plus`) → `setModal("english-exam")`, 그 아래 `s.navCaption` «오늘의 영어». 수학이면 «새 시험지 만들기» 그대로 |
 | modal | `"new" \| "search" \| "help" \| "english-exam"`. 셸 `<dialog>` 는 `shellModal`(english-exam 제외)만 연다 — «새 시험 등록» 창은 영어 뷰가 제 창으로 그린다. 권한이 빠지면 닫는 효과에 `english-exam` 도 넣었다. `navigate()` 가 닫는 것은 그대로 |
 | 마운트 | 개념·SRS 블록과 같은 결 — `canEnglish && (opened 에 영어 뷰가 있거나 product === "english")` 일 때 `<main hidden={product !== "english"}>` 에 `EnglishStudio`(next/dynamic) 하나. **`worksheetView` 에 넣지 않았다** — «현재 시험지» 카드·담기 바·Ctrl S 저장은 영어에서 안 뜬다 |
@@ -41,7 +41,7 @@
 | `EnglishLibraryView.tsx` | 머리 · 칩 줄 · 이름 검색(`type=search`) · 상태 `<select>` · «새로고침» · «{학교} · {학년} · {이름}» 줄 · `<ul aria-label="문제 세트 목록">` — **행 전체가 `<button>`**(D-30) · 빈 상태 «아직 만든 문제 세트가 없습니다.» + «문제 만들기» · 거른 결과 없음 «조건에 맞는 문제 세트가 없습니다.» |
 | `EnglishMakerView.tsx` | **자리표** — «문제 만들기 — 준비 중» 한 줄, props 는 공통 지시 §3 약속 그대로(`exam · materials · onSaved · onNotice`). 뿌리는 `onSaved(id)` 에 세트 목록을 다시 읽고 «학교별 내신 대비» 뷰의 편집 화면을 연다 |
 | `EnglishDialog.tsx` | 작은 창 공용 — 작업실 `<dialog className={w.dialog}>` 틀·제목·«창 닫기» 그대로(`ConfirmDialog` 결: `showModal` · Esc · 배경 누르기 · 포커스 되돌림 · 작업실 뿌리로 portal) |
-| `EnglishStudio.module.css` | 작업실 토큰만(`--ink/--muted/--accent`, 시안 C 값). 새 색·글꼴 없음. 영어 지문·보기는 세리프 라틴(`PAPER_FONTS.serifKR` 이름 + Georgia — 새로 싣지 않음). 카드·행에 `cursor`·hover 없음, 왼쪽 색 막대 없음. 760px 아래 한 열 |
+| `EnglishStudio.module.css` | 작업실 토큰(`--ink/--muted/--accent`) + 시안 C 값. **정정(검토 #6)**: 이 파일의 hex 42 중 `Workroom.module.css` 값 14 · 시안 C 값 24 · ConceptView/globals 값 4 — «새로 지은 색»은 없지만 «Workroom 밖 값 없음»은 아니다(시안 C 값은 원장님이 고른 것이라 D-07 위반은 아님). 새 글꼴은 싣지 않음 — `--e-serif` 는 `PAPER_FONTS.serifKR` 를 CSS 에 손으로 옮긴 것 + Georgia(검토 #7, 주석에 출처). 카드·행에 `cursor`·hover 없음, 왼쪽 색 막대 없음. 760px 아래 한 열 |
 
 ### 1.3 MSW — `src/mocks/handlers/english.ts` + `handlers/index.ts` 등록 한 줄
 
@@ -83,7 +83,7 @@
 
 ## 3. 브리프와 다르게 했거나 내가 정한 것 (리드가 알아야 할 것)
 
-1. **접힘 + 제품 둘 이상이면 옆 메뉴 머리를 세로로**(마크 위 · 접기 단추 아래, 머리 높이 약 +48px). 시안 C 접힘에는 접기 단추가 없었지만 실제 셸은 마우스로 펼칠 길이 있어야 해서. 제품이 하나면 예전대로(브랜드 숨김 · 접기 단추만).
+1. **접힘 + 영어 제품일 때만 옆 메뉴 머리를 세로로**(마크 위 · 접기 단추 아래, 머리 높이 약 +48px). 시안 C 접힘에는 접기 단추가 없었지만 실제 셸은 마우스로 펼칠 길이 있어야 해서. 처음 판은 «제품 둘 이상이면»이었는데 영어 메뉴가 전 계정 기본 켜짐이라 수학 접힘까지 바뀌어(검토 #1) **영어일 때만**으로 좁혔다(`3a2b9603d`). 수학 접힘은 제품 수와 무관하게 기준 그대로.
 2. «새 시험 등록» 창은 **영어 뷰가 제 창(`EnglishDialog`)으로** 그린다 — 셸 `modal === "english-exam"` 이 `newExamOpen` 으로 내려간다. 셸 `<dialog>` 는 그 값에 열리지 않는다(`shellModal`).
 3. 알림은 셸 알림 줄 그대로(고정 위치 줄 — 브리프 «토스트 없음»을 «셸 결 그대로»로 읽음). 영어 뷰는 제 알림 줄을 두지 않는다. 다만 목록·세트를 **못 읽은** 오류는 그 자리에 `role="alert"` 줄 + «다시 시도/목록» 단추.
 4. 편집 화면의 **유형은 읽기 전용**(바꾸면 보기 모양이 갈린다 — 유형 바꾸기는 다음 판).
@@ -113,7 +113,7 @@
 
 | # | 결정 | 반영 |
 |---|---|---|
-| ① 접힘 머리 세로 배치 | **이대로 둔다** — 제품 둘 이상일 때만 · 마우스로 펼칠 길이 있어야 한다. 시안 C 접힘은 접기 단추를 안 그렸을 뿐 | 코드 그대로(`ea39797f7`) |
+| ① 접힘 머리 세로 배치 | **이대로 둔다** — 제품 둘 이상일 때만 · 마우스로 펼칠 길이 있어야 한다. 시안 C 접힘은 접기 단추를 안 그렸을 뿐 → **적대적 검토 뒤 리드가 뒤집음**: 영어 메뉴가 전 계정 기본 켜짐(25 §7 ④)이라 «제품 둘 이상»은 곧 «모든 계정»이었다. **영어 제품일 때만**으로 좁힌다(검토 (c) 안) | `ea39797f7` → `3a2b9603d`(§7) |
 | ② 만들기 뷰 머리·칩 줄 | **뿌리(shell) 소유** 그대로. ai 트랙에 `EnglishMakerView` 에서 `WorkspacePageHeader` 와 시험 문맥 줄을 빼라고 보냈다. 뿌리는 손대지 않는다 | 코드 그대로 |
 | ③ 422 모양 | base 라우트 `routeSupport.ts` 의 `draftRejected` 가 `details: { issues }` 를 준다 — 편집 화면 판정과 같다. 확인 끝 | — |
 | ④ 폰 폭 실측 스크립트 | **저장소에 둔다** — `scripts/qa/english-phone-width.ts`. 조건: `src/lib/english/**` · `src/components/english/**` · `src/mocks/handlers/english.ts` 를 import 하지 않는다(울타리 ⑴ 이 `scripts/` 를 금지 뿌리로 둔다). 픽스처는 인라인(자작 지문) · 머리 주석에 실행법 한 줄 · `probe-*.ts` 와 같은 맨몸 실행 | **커밋 `faab7d945`** — import 는 `node:fs` · `node:path` · `playwright` 뿐. 산출물 `.qa-artifacts/english-phone-width/`(추적 안 함). 옮긴 뒤 다시 돌려 장면 8 전부 390 · 넘침 0 · exit 0 확인. `.tmp-english-probe/` 는 지웠다 |
@@ -127,3 +127,25 @@
 - 편집 화면은 보기가 5개 미만인 세트도 5칸으로 그린다(빈 칸은 저장 때 검증기가 막는다).
 - `EnglishStudio` 는 `next/dynamic` — 접근 시험은 탐침으로 갈아 끼웠다(다른 뷰와 같은 방식).
 - 병합 순서: 이 트랙은 계약(`2de827cc3`)을 이미 품고 있다. base·ai·print 와 같은 파일을 만지지 않았다(공통 지시 §3 표대로). ai 가 `EnglishMakerView.tsx` 를 채우면 **ai 판을 택하고** props 약속만 맞으면 된다.
+
+## 7. 검토 후속 (적대적 검토 «조건부 병합 가능» → 리드 후속 목록, 2026-09-30)
+
+검토 보고서: 리드 스크래치 `review-english-shell.md` ②·③. main 은 병합하지 않았다(리드 지시 — 병합 때 `EnglishMakerView.tsx` 충돌은 ai 판).
+**커밋 `3a2b9603d`**(코드·시험, amend 없음) + 이 보고서 정정.
+
+| # | 심각도 | 한 것 | 시험 |
+|---|---|---|---|
+| 1 | 🔴 | 접힘 머리 세로 배치를 **영어 제품일 때만**으로 좁힘 — 표지 `data-picker` → `data-product="english"`(영어가 아니면 속성 자체가 없다), `Workroom.module.css` 두 규칙을 그 표지에 걸음. 수학 접힘은 제품 수와 무관하게 기준 커밋과 같은 DOM·클래스·높이. 접기/펼치기를 누르면 열려 있던 제품 목록도 닫는다 | `UnifiedWorkspace.access`: 수학 접힘(제품 하나 · 둘) = `data-product`·`data-picker` 없음 + 딱지 없음 / 영어 접힘 = `data-product="english"` + 마크 안 딱지 «영» + 마크 눌러 목록 |
+| 2 | 🟡 | `data-picker="false"` 가 제품 하나 계정에 붙던 것 — 표지 교체로 사라짐(수학은 어떤 값도 안 붙는다) | 위 시험의 `not.toHaveAttribute("data-picker")` |
+| 9 | 🟢 | 영어만 있는 계정도 접힘에서 마크 + 딱지(#1 과 함께 풀림) | «영어만 있는 계정도 접힘에서 표지와 딱지» |
+| 3 | 🟡 | `DevAiStatusPanel`(수학 «AI 작업 연결» 판)을 `product === "math" && can("studio")` 로 | «AI 작업 연결 판은 수학 제품에만» — 영어로 가면 사라지고 돌아오면 다시 |
+| 4 | 🟡 | 시험 구멍(변이 M11) — 편집 화면이 빈 보기 칸을 걷어낸 뒤 공용 검증기를 지나고, 걸리면 **PUT 을 보내지 않는다** | `EnglishEditor`: 1번 문항 5번 보기를 비우고 «저장» → PUT 0건 · `role=alert` «1번 문항: 보기는 5개여야 합니다 (지금 4개).» |
+| 5 | 🟡 | «새 시험 등록» 창을 목록 «읽는 중»·«오류» 분기에도 그린다. 목록 없이 등록하면 `[created]` 로 ready 가 되고 목록을 다시 읽는다 — 다시 실패해도 방금 등록한 시험은 남는다(`loadExams` 가 ready 목록을 지우지 않음) | `EnglishStudio`: GET 500 → 셸 자리 단추로 창 → 등록 → 칩 «정화중학교» 고름 · 오류 줄 걷힘 |
+| 8 | 🟢 | 리터럴 → 계약 상수: 지문 `ENGLISH_PASSAGE_MAX` · 자료 글 `ENGLISH_MATERIAL_CONTENT_MAX`(문구 «30,000자 이하»도 여기서). 계약이 내보내지 않는 값(세트 이름 160 · 보기 1,500 · 학교 80 · 시험 이름 100 · 자료 이름 255)은 이름 붙인 상수 + 계약의 어느 스키마 값인지 주석 | — |
+| 13 | 🟢 | 제품 listbox 가 Tab 으로 초점이 밖으로 나가면 닫힌다(`onBlur` · `relatedTarget` 이 목록·브랜드 밖일 때만 — 목록 안 이동·브랜드 되돌림은 그대로) | «Tab 으로 초점이 목록 밖으로 나가면 닫힌다» |
+| 6 | 🟢 | 보고서 §1.2 «새 색 없음» 정정(hex 42 = Workroom 14 · 시안 C 24 · ConceptView/globals 4) | — |
+| 7 | 🟢 | `--e-serif` 주석에 출처(`PAPER_FONTS.serifKR` 손 사본 + Georgia) — 값은 그대로 | — |
+
+기록만(고치지 않음, 리드 지시): #12 409 시험이 `code:"REVISION_MISMATCH"` 도 같이 보내 코드 판정 구현도 초록 — 상태 코드 경로는 변이 M10 이 물었다 · #14 브랜드 «오늘의영어»(계약 `WORKSPACE_PRODUCTS` 라벨) vs 캡션 «오늘의 영어»(메뉴 라벨) — 그대로 · #10 수학 bank 뷰 «떠나도 hidden 으로 남는다»는 기존 셸 구멍 · 인쇄 링크는 브리프대로(항상 + 검토 완료 아니면 경고 한 줄).
+
+후속 뒤 관문(커밋 `3a2b9603d` 트리): `npx vitest run` EnglishStudio · EnglishEditor · EnglishLibrary · UnifiedWorkspace*(access · actions · cart · orderReset) · englishMenu — **8 files · 94 passed** · `eslint`(트랙 파일 전부) 0 · `lint:affordance` 0 · `tsc --noEmit` 0.
