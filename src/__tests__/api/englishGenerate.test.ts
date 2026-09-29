@@ -120,9 +120,10 @@ async function errorOf(response: Response) {
 beforeEach(() => {
   mockCreate.mockReset();
   mockSession.mockReset().mockResolvedValue(teacher);
+  // 학년은 본문 어디에도 없는 값으로 — 라우트가 «중1» 을 박아 넣어도 초록이던 구멍(리드 검토 D3)
   mockFindExam.mockReset().mockResolvedValue({
     id: EXAM_ID,
-    grade: "중1",
+    grade: "고3",
     userId: USER_TEACHER_ID,
     ownerBranchId: null,
   });
@@ -232,7 +233,22 @@ describe("POST /api/english/generate — AI 결과와 오류 순서", () => {
     const sent = mockCreate.mock.calls[0]![0]! as {
       messages: { content: string }[];
     };
-    expect(sent.messages[1]?.content).toContain("중1");
+    expect(sent.messages[1]?.content).toContain("대상 학년: 고3");
+    expect(sent.messages[1]?.content).not.toContain("중1");
+
+    // 다른 시험이면 다른 학년 — 시험에서 읽은 값이 실린다
+    mockFindExam.mockResolvedValue({
+      id: EXAM_ID,
+      grade: "중2",
+      userId: USER_TEACHER_ID,
+      ownerBranchId: null,
+    });
+    mockCreate.mockResolvedValueOnce(aiTextResponse(JSON.stringify(draft)));
+    expect((await call(body)).status).toBe(200);
+    const second = mockCreate.mock.calls[1]![0]! as {
+      messages: { content: string }[];
+    };
+    expect(second.messages[1]?.content).toContain("대상 학년: 중2");
   });
 
   it("길이 한도 → 502 (AiGenerationError 보다 먼저)", async () => {

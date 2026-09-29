@@ -254,10 +254,12 @@ function isPlainObject(value: unknown): value is Record<string, unknown> {
  * 세트 초안을 배열이 아니라 객체로 받기 때문이다. 복구 단계는 `parseAiJsonArray` 와 같다
  * (`repairJsonString`: 코드펜스 · 앞뒤 잡설 · 문자열 안 백슬래시·줄바꿈 · 후행 쉼표), 배열 함수는 손대지 않는다.
  *
- * 순서: 보정본 → 원문 → (코드펜스 벗긴 글의) 객체 구간 보정본 → 그 원문. **처음 풀리는 것**이 객체면 그것을
- * 쓰고, 객체가 아니면(배열·문자열·null) «객체 형태가 아닙니다» — 배열 안의 객체를 파고들지 않는다(배열로 온
- * 답은 형식 위반이지 잡설이 아니다). 어느 것도 풀리지 않으면 «유효한 JSON 이 아닙니다». `schema` 를 주면
- * 그 스키마로 잠그고 위반은 `AiParseError` 다 — 재시도 여부는 호출자(`withOneRetryOnParseFailure`)가 정한다.
+ * 순서: 보정본 → 원문 → (코드펜스 벗긴 글의) 객체 구간 보정본 → 그 원문. 후보를 **끝까지** 돌아 처음 **객체로**
+ * 풀리는 것을 쓴다 — 잡설의 `[1]` 같은 대괄호 토큰이 배열로 먼저 풀려도 그 뒤 객체 구간이 살아 있다(리드 검토 D5).
+ * 객체가 하나도 없으면: 배열·문자열·null 로 풀린 후보가 있었으면 «객체 형태가 아닙니다», 아무것도 안 풀렸으면
+ * «유효한 JSON 이 아닙니다». (객체 하나를 감싼 배열 `[{…}]` 은 객체 구간이 안의 객체를 건진다 — 내용은 어차피
+ * 검증기가 본다.) `schema` 를 주면 그 스키마로 잠그고 위반은 `AiParseError` 다 — 재시도 여부는 호출자
+ * (`withOneRetryOnParseFailure`)가 정한다.
  */
 export function parseAiJsonObject(raw: string): Record<string, unknown>;
 export function parseAiJsonObject<T extends ZodType>(
@@ -270,17 +272,23 @@ export function parseAiJsonObject(raw: string, schema?: ZodType): unknown {
   if (span !== undefined) candidates.push(repairJsonString(span), span);
 
   let object: Record<string, unknown> | undefined;
+  let sawNonObject = false;
   for (const candidate of candidates) {
     const value = tryParseJson(candidate);
     if (value === undefined) continue;
     if (!isPlainObject(value)) {
-      throw new AiParseError("AI 응답이 JSON 객체 형태가 아닙니다.");
+      sawNonObject = true;
+      continue;
     }
     object = value;
     break;
   }
   if (!object) {
-    throw new AiParseError("AI 응답이 유효한 JSON이 아닙니다.");
+    throw new AiParseError(
+      sawNonObject
+        ? "AI 응답이 JSON 객체 형태가 아닙니다."
+        : "AI 응답이 유효한 JSON이 아닙니다.",
+    );
   }
   if (!schema) return object;
 

@@ -177,6 +177,9 @@ export default function EnglishMakerView({
   onNotice,
 }: EnglishMakerViewProps) {
   const uid = useId();
+  // 탭·패널 id 는 인스턴스마다 다르게 — 한 화면에 둘이 마운트돼도 aria-controls·포커스가 안 섞인다(리드 검토 D8).
+  const tabId = (id: MakerTab) => `${uid}-tab-${id}`;
+  const panelId = (id: MakerTab) => `${uid}-panel-${id}`;
   const [tab, setTab] = useState<MakerTab>("chatgpt");
   const [conditions, setConditions] = useState<Conditions>(() => ({
     mode: "new",
@@ -285,19 +288,16 @@ export default function EnglishMakerView({
   }
 
   async function importPaste() {
-    const parsed = englishGenerateRequestSchema.safeParse({
-      examId: exam.id,
-      ...conditions,
+    // «요청문 복사»와 같은 함수로 조건을 읽는다 — 조건이 계약을 못 지나면 여기서도 사유를 보이고 멈춘다.
+    // (리드 검토 D4: 전에는 expectation 을 조용히 버리고 문항 수·유형 대조 없이 저장까지 갔다.)
+    const request = validatedConditions();
+    if (!request) return;
+    const verdict = parseChatgptResult(pasteText, {
+      mode: request.mode,
+      passage: request.passage,
+      count: request.count,
+      types: request.types,
     });
-    const expectation = parsed.success
-      ? {
-          mode: parsed.data.mode,
-          passage: parsed.data.passage,
-          count: parsed.data.count,
-          types: parsed.data.types,
-        }
-      : undefined;
-    const verdict = parseChatgptResult(pasteText, expectation);
     if (!verdict.ok) {
       setPasteIssues(verdict.issues);
       return;
@@ -406,7 +406,7 @@ export default function EnglishMakerView({
     if (next === null) return;
     event.preventDefault();
     setTab(TABS[next]!.id);
-    document.getElementById(`english-maker-tab-${TABS[next]!.id}`)?.focus();
+    document.getElementById(tabId(TABS[next]!.id))?.focus();
   }
 
   const materialPicker = (onPick: (content: string) => void) =>
@@ -571,9 +571,9 @@ export default function EnglishMakerView({
             key={item.id}
             type="button"
             role="tab"
-            id={`english-maker-tab-${item.id}`}
+            id={tabId(item.id)}
             aria-selected={tab === item.id}
-            aria-controls={`english-maker-panel-${item.id}`}
+            aria-controls={panelId(item.id)}
             tabIndex={tab === item.id ? 0 : -1}
             onKeyDown={moveTab}
             onClick={() => setTab(item.id)}
@@ -585,8 +585,8 @@ export default function EnglishMakerView({
 
       <section
         role="tabpanel"
-        id="english-maker-panel-chatgpt"
-        aria-labelledby="english-maker-tab-chatgpt"
+        id={panelId("chatgpt")}
+        aria-labelledby={tabId("chatgpt")}
         hidden={tab !== "chatgpt"}
         tabIndex={0}
         className={s.panel}
@@ -662,8 +662,8 @@ export default function EnglishMakerView({
 
       <section
         role="tabpanel"
-        id="english-maker-panel-cloze"
-        aria-labelledby="english-maker-tab-cloze"
+        id={panelId("cloze")}
+        aria-labelledby={tabId("cloze")}
         hidden={tab !== "cloze"}
         tabIndex={0}
         className={s.panel}
@@ -737,8 +737,8 @@ export default function EnglishMakerView({
 
       <section
         role="tabpanel"
-        id="english-maker-panel-api"
-        aria-labelledby="english-maker-tab-api"
+        id={panelId("api")}
+        aria-labelledby={tabId("api")}
         hidden={tab !== "api"}
         tabIndex={0}
         className={s.panel}

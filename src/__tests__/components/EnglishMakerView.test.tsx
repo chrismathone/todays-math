@@ -302,6 +302,42 @@ describe("ChatGPT 로 제작", () => {
     expect(onSaved).not.toHaveBeenCalled();
   });
 
+  it("붙여넣기는 화면의 조건과 견준다 — 문항 수 5 인데 3문항 초안이면 «문항 수» 사유 (리드 검토 D2)", async () => {
+    setup();
+    fillTopic();
+    // 초안 자체는 흠이 없다 — 걸리는 것은 조건 대조뿐이어야 한다
+    fireEvent.change(screen.getByLabelText("ChatGPT 결과 붙여넣기"), {
+      target: { value: JSON.stringify(goodDraft) },
+    });
+    await act(async () => {
+      fireEvent.click(button("가져오기"));
+    });
+    const alert = screen.getByRole("alert");
+    expect(alert).toHaveTextContent("문항 수");
+    expect(alert).toHaveTextContent("5");
+    expect(fetchMock).not.toHaveBeenCalled();
+    expect(onSaved).not.toHaveBeenCalled();
+  });
+
+  it("조건이 계약을 못 지나면 가져오기도 복사처럼 사유를 보이고 멈춘다 — 소재 비움 (리드 검토 D4)", async () => {
+    fetchMock.mockResolvedValue(
+      jsonResponse(savedSet("set-9", "chatgpt"), 201),
+    );
+    setup();
+    fireEvent.change(screen.getByLabelText("문항 수"), {
+      target: { value: "3" },
+    });
+    fireEvent.change(screen.getByLabelText("ChatGPT 결과 붙여넣기"), {
+      target: { value: JSON.stringify(goodDraft) },
+    });
+    await act(async () => {
+      fireEvent.click(button("가져오기"));
+    });
+    expect(screen.getByRole("alert")).toHaveTextContent("소재");
+    expect(fetchMock).not.toHaveBeenCalled();
+    expect(onSaved).not.toHaveBeenCalled();
+  });
+
   it("붙여넣기 성공 — 세트로 저장하고 onSaved(id)", async () => {
     fetchMock.mockResolvedValue(
       jsonResponse(savedSet("set-1", "chatgpt"), 201),

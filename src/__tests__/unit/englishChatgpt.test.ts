@@ -225,10 +225,18 @@ describe("parseChatgptResult — 붙여 넣은 글에서 JSON 을 찾아 검증�
     }
   });
 
-  it("배열로 온 답은 객체가 아니라고 알린다", () => {
-    const verdict = parseChatgptResult(JSON.stringify([goodDraft]));
-    expect(verdict.ok).toBe(false);
-    if (!verdict.ok) expect(verdict.issues[0]?.message).toMatch(/객체/);
+  it("배열로 온 답 — 객체 하나를 감싼 배열은 안의 객체를 건지고, 객체가 없는 배열은 «객체» 사유", () => {
+    const wrapped = parseChatgptResult(JSON.stringify([goodDraft]));
+    expect(wrapped.ok).toBe(true);
+    if (wrapped.ok) expect(wrapped.draft.title).toBe("감사 일기");
+
+    // 문항 배열만 붙여 넣은 경우 — 초안 객체가 아니다
+    const questionsOnly = parseChatgptResult(
+      JSON.stringify(goodDraft.questions),
+    );
+    expect(questionsOnly.ok).toBe(false);
+    if (!questionsOnly.ok)
+      expect(questionsOnly.issues[0]?.message).toMatch(/객체/);
   });
 
   it("ChatGPT 가 흔히 덧붙이는 모양을 받아 준다 — 원문자 정답 · 서술형의 빠진 options · 모르는 열쇠 · 숫자 정답", () => {
@@ -289,6 +297,8 @@ describe("parseAiJsonObject — 객체 하나를 같은 복구 단계로", () =>
     expect(parseAiJsonObject('[참고] 아래가 결과입니다. {"a": 1}')).toEqual({
       a: 1,
     });
+    // 대괄호 토큰이 JSON 배열로 풀려도(«[1]») 뒤의 객체를 건진다 (리드 검토 D5)
+    expect(parseAiJsonObject('[1] 결과: {"a":1}')).toEqual({ a: 1 });
   });
 
   it("배열 · 문자열 · 깨진 글은 AiParseError", () => {
