@@ -109,6 +109,16 @@
 4. 폰 폭 실측 스크립트를 저장소에 둘지(`scripts/qa/english-phone-width.ts` 로 옮기면 `/dev/unified` + 픽스처 경로만 그대로). 지금은 `.tmp-english-probe/`(추적 안 함).
 5. 자료 행의 `<a download>` — 라우트가 `Content-Disposition: attachment` 를 주므로 `download` 속성은 중복(무해). 둘 중 하나로 통일할지.
 
+### 5.1 리드 결정 (2026-09-30, 보고서 45f90eb52 를 읽고)
+
+| # | 결정 | 반영 |
+|---|---|---|
+| ① 접힘 머리 세로 배치 | **이대로 둔다** — 제품 둘 이상일 때만 · 마우스로 펼칠 길이 있어야 한다. 시안 C 접힘은 접기 단추를 안 그렸을 뿐 | 코드 그대로(`ea39797f7`) |
+| ② 만들기 뷰 머리·칩 줄 | **뿌리(shell) 소유** 그대로. ai 트랙에 `EnglishMakerView` 에서 `WorkspacePageHeader` 와 시험 문맥 줄을 빼라고 보냈다. 뿌리는 손대지 않는다 | 코드 그대로 |
+| ③ 422 모양 | base 라우트 `routeSupport.ts` 의 `draftRejected` 가 `details: { issues }` 를 준다 — 편집 화면 판정과 같다. 확인 끝 | — |
+| ④ 폰 폭 실측 스크립트 | **저장소에 둔다** — `scripts/qa/english-phone-width.ts`. 조건: `src/lib/english/**` · `src/components/english/**` · `src/mocks/handlers/english.ts` 를 import 하지 않는다(울타리 ⑴ 이 `scripts/` 를 금지 뿌리로 둔다). 픽스처는 인라인(자작 지문) · 머리 주석에 실행법 한 줄 · `probe-*.ts` 와 같은 맨몸 실행 | **커밋 `faab7d945`** — import 는 `node:fs` · `node:path` · `playwright` 뿐. 산출물 `.qa-artifacts/english-phone-width/`(추적 안 함). 옮긴 뒤 다시 돌려 장면 8 전부 390 · 넘침 0 · exit 0 확인. `.tmp-english-probe/` 는 지웠다 |
+| ⑤ `<a download>` + `Content-Disposition` | **그대로 둔다**(무해) | — |
+
 ## 6. 위험
 
 - `useCallback(() => setModal(…), [setModal])` — React Compiler 린트(`preserve-manual-memoization`)가 `[]` 를 거부해 `setModal` 을 deps 에 넣었다(기존 코드 결과 다르지만 뜻은 같다).
