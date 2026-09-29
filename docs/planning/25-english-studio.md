@@ -136,7 +136,7 @@ ChatGPT 앱의 `makeCloze` 이식: 7단어 이상 문장에서 6글자 이상 �
 
 - **영어 울타리** `src/__tests__/unit/englishFence.test.ts`(D-141 울타리 셋과 같은 정적 검사 — 주석은 `helpers/sourceComments.ts` 로 걷는다):
   1. 문제은행·시험지·엔진·`src/lib/ai/`·`src/lib/daily/`·`src/lib/math-srs/`·`src/app/api/{problems,tests,basket,exports,studio,learn}` 뿌리에서 `src/lib/english/**`·`src/components/english/**` 로 가는 import 사슬 **0**. (영어 → `src/lib/ai/client.ts` 는 반대 방향이라 허용.)
-  2. `english_exam|english_material|english_question_set|EnglishExam|EnglishMaterial|EnglishQuestionSet` 글자는 **허용 목록에만**: `prisma/schema.prisma` · 그 마이그레이션 SQL · `scripts/qa/apply-english-studio-migration.ts` · `src/lib/english/**` · `src/app/api/english/**` · `src/app/(main)/english/**` · `src/mocks/englishTestDouble.ts` · `src/__tests__/**` · `docs/**`.
+  2. **DB 식별자**(`english_exam|english_material|english_question_set` 글자 · 접근자 `db.englishExam|db.englishMaterial|db.englishQuestionSet`, `tx.english…`)는 **허용 목록에만**: `prisma/schema.prisma` · 그 마이그레이션 SQL · `scripts/qa/apply-english-studio-migration.ts` · `src/lib/english/**` · `src/lib/ownership.ts` · `src/app/api/english/**` · `src/app/(main)/english/**` · `src/mocks/englishTestDouble.ts` · `src/mocks/prismaTestDouble.ts` · `src/__tests__/**` · `docs/**`. ⚠️ 계약의 타입 이름 `EnglishExam`·`EnglishSet` 은 화면 컴포넌트(`src/components/english/**`)가 쓰므로 **검사 대상이 아니다**(print 트랙 보고 §4 ①, 2026-09-30 정정).
   3. 🔴 quick 울타리를 그대로 베끼면 통합 셸(`UnifiedWorkspace`)까지 막힌다 — 셸·`src/components/unified/**` 는 영어 컴포넌트를 **불러도 된다**(목록에 명시).
 - 그 밖 전수 시험이 요구하는 것: `errorLogRouteCoverage`(withErrorLog) · `accountRouteAccess.test.ts`(메뉴 매핑) · `UnifiedWorkspace.access.test.tsx`(nav 순서 — 영어 탭은 **제품별 목록**이라 수학 순서 시험은 그대로 초록이어야 한다) · `conceptMenu.test.ts` 류 `englishMenu.test.ts`(자리·상한·관문) · `contracts.smoke.test.ts` 에 유효/무효 표본.
 - D-141 울타리와는 무관(§ 탐색 보고 — `StudentSrsState`·quick·math-srs 기록 모듈을 만지지 않는다).
@@ -180,5 +180,10 @@ ChatGPT 앱의 `makeCloze` 이식: 7단어 이상 문장에서 6글자 이상 �
 위험으로 받은 것(둘 다): 울타리를 베끼면 셸까지 막힘 · 표 이름 검사에 스키마·SQL·스크립트 허용 · `WorkspaceAsset` 권한 넓히지 말 것 · 인쇄 페이지 관문 명시 · 메뉴 enum 손 중복 · `worksheetView` 에 넣지 말 것 · `WorkspaceDocument.payload`(z.record) 에 넣지 말 것 · 수학 2단 폭 쓰지 말 것 · 413 사유 · 전역 `cursor:pointer`(D-30).
 
 ## 10. 남은 결정 · 다음 판
+
+### 10.1 원장님 확인 대기 — 지면 세부 (print 트랙이 브리프에 없어 정한 것, D-07 결)
+실물 지면을 한 번 뽑아 보시며 한꺼번에 여쭙는다: ⑴ 지문·보기·발문·해설 모두 **지면 명조**(이름표·머리 딱지·꼬리만 sans) ⑵ 보기 번호 **①~⑤**, 교사용 정답도 «정답 ③» ⑶ 교사용에는 답란 없이 그 자리에 정답·해설·근거 상자 ⑷ 문항 유형 이름은 지면에 안 찍음 ⑸ 꼬리 «{학원} · {학교} {학년} | p. N / M», 이름·날짜 줄 ⑹ 머리의 학원 이름은 **지점 이름이 있으면 그것, 없으면 «오늘의영어»**(리드 결정) ⑺ 빈 줄 없는 한 쪽보다 긴 지문은 혼자 한 쪽 + 미리보기 알림(자르지 않음).
+
+### 10.2 다음 판
 
 - 배점 표기(⑻ 보류) · 학생 풀이 화면(ChatGPT 3안, Q9) · PDF·DOCX·이미지 자동 읽기 · 학생 결과 기록(그때 문항 정규화 §2) · 학교별 기출 분석(ChatGPT 대화 §1 «학교별 출제 특징 등록») — 전부 다음 판, 원장님 결정 뒤.
