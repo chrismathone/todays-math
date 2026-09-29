@@ -19,6 +19,7 @@ import UnifiedWorkspace from "@/components/unified/UnifiedWorkspace";
 import { signOutAction } from "@/app/actions/auth";
 import {
   WORKSPACE_MENUS,
+  workspaceMenuProduct,
   type WorkspaceMenu,
 } from "@/contracts/accountAccess.contract";
 import {
@@ -373,7 +374,10 @@ describe("per-account workspace menu access", () => {
   });
   it("keeps all development menus and shortcuts when access is omitted", async () => {
     render(<UnifiedWorkspace initialData={initialData} />);
-    for (const menu of WORKSPACE_MENUS)
+    // 수학 제품의 메뉴만 — 영어 메뉴(D-148)는 브랜드 자리 «고르기 단추»로 넘어간 뒤의 옆 메뉴에 선다.
+    for (const menu of WORKSPACE_MENUS.filter(
+      (item) => workspaceMenuProduct(item.id) === "math",
+    ))
       expect(
         nav().getByRole("button", {
           name: menu.id === "bank" ? "시험지 만들기" : menu.label,

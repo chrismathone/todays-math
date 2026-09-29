@@ -1,0 +1,135 @@
+/**
+ * 오늘의 영어 — 초안 검증기 (D-148 · 25 §4.4). 만들기 세 길(ChatGPT 붙여넣기 · 원문 복원 · DeepSeek)과
+ * 세트 저장 라우트가 **같은 규칙**을 지난다. 계약(`english.contract.ts`)은 모양만 잠그고, 여기서는 지문과
+ * 문항을 같이 보는 뜻을 본다 — 보기 다섯 · 정답 번호 범위 · 근거가 지문 안 · 유형별 보기 유무 · 요청과의 일치.
+ *
+ * 순수 함수다(서버·클라이언트 같이). 통과 ≠ 검토 완료 — 저장은 늘 «초안».
+ */
+import {
+  ENGLISH_OPEN_TYPES,
+  englishDraftSchema,
+  type EnglishDraft,
+  type EnglishDraftIssue,
+  type EnglishGenerateRequest,
+  type EnglishQuestion,
+  type EnglishQuestionType,
+} from "@/contracts/english.contract";
+
+/** 공백을 하나로 접고 앞뒤를 지운다 — 근거 대조·보기 중복 판정의 자 */
+export function normalizeEnglishText(text: string): string {
+  return text.replace(/\s+/g, " ").trim();
+}
+
+/** 생성 요청과 견줄 때 쓰는 부분 — `examId` 같은 것은 필요 없다 */
+export type EnglishDraftExpectation = Pick<
+  EnglishGenerateRequest,
+  "mode" | "passage" | "count" | "types"
+>;
+
+export type EnglishDraftVerdict =
+  | { ok: true; draft: EnglishDraft }
+  | { ok: false; issues: EnglishDraftIssue[] };
+
+export const ENGLISH_CHOICE_COUNT = 5;
+
+function questionIssues(
+  question: EnglishQuestion,
+  index: number,
+  passage: string,
+): EnglishDraftIssue[] {
+  const issues: EnglishDraftIssue[] = [];
+  const open = ENGLISH_OPEN_TYPES.includes(question.type);
+  if (open) {
+    if (question.options.length > 0)
+      issues.push({
+        question: index,
+        message: `${question.type} 문항에는 보기가 없어야 합니다.`,
+      });
+  } else {
+    if (question.options.length !== ENGLISH_CHOICE_COUNT)
+      issues.push({
+        question: index,
+        message: `보기는 ${ENGLISH_CHOICE_COUNT}개여야 합니다 (지금 ${question.options.length}개).`,
+      });
+    else if (
+      new Set(question.options.map(normalizeEnglishText)).size !==
+      ENGLISH_CHOICE_COUNT
+    )
+      issues.push({ question: index, message: "같은 보기가 두 번 있습니다." });
+    if (!/^[1-5]$/.test(question.answer))
+      issues.push({
+        question: index,
+        message: "정답은 보기 번호 1~5 여야 합니다.",
+      });
+  }
+  const evidence = normalizeEnglishText(question.evidence);
+  if (!evidence)
+    issues.push({ question: index, message: "지문 속 근거가 비어 있습니다." });
+  else if (!passage.includes(evidence))
+    issues.push({
+      question: index,
+      message:
+        "지문 속 근거를 지문에서 찾지 못했습니다 (그대로 이어진 인용이어야 합니다).",
+    });
+  return issues;
+}
+
+/**
+ * 초안 하나를 판정한다. `expect` 가 있으면 생성 요청과도 견준다(문항 수 · 고른 유형만 · 고른 유형 각 하나 이상 ·
+ * original 이면 지문 원문 유지).
+ */
+export function validateEnglishDraft(
+  value: unknown,
+  expect?: EnglishDraftExpectation,
+): EnglishDraftVerdict {
+  const parsed = englishDraftSchema.safeParse(value);
+  if (!parsed.success)
+    return {
+      ok: false,
+      issues: parsed.error.issues.map((issue) => {
+        const head = issue.path[0];
+        const second = issue.path[1];
+        return {
+          question:
+            head === "questions" && typeof second === "number" ? second : null,
+          message: `${issue.path.join(".") || "초안"}: ${issue.message}`,
+        };
+      }),
+    };
+  const draft = parsed.data;
+  const passage = normalizeEnglishText(draft.passage);
+  const issues: EnglishDraftIssue[] = [];
+  draft.questions.forEach((question, index) =>
+    issues.push(...questionIssues(question, index, passage)),
+  );
+  if (expect) {
+    if (draft.questions.length !== expect.count)
+      issues.push({
+        question: null,
+        message: `요청한 문항 수(${expect.count})와 다릅니다 (${draft.questions.length}문항).`,
+      });
+    const wanted = new Set<EnglishQuestionType>(expect.types);
+    draft.questions.forEach((question, index) => {
+      if (!wanted.has(question.type))
+        issues.push({
+          question: index,
+          message: `고르지 않은 유형입니다: ${question.type}.`,
+        });
+    });
+    for (const type of wanted)
+      if (!draft.questions.some((question) => question.type === type))
+        issues.push({
+          question: null,
+          message: `요청한 유형이 빠졌습니다: ${type}.`,
+        });
+    if (
+      expect.mode === "original" &&
+      passage !== normalizeEnglishText(expect.passage)
+    )
+      issues.push({
+        question: null,
+        message: "원문 유지 모드인데 지문이 바뀌었습니다.",
+      });
+  }
+  return issues.length ? { ok: false, issues } : { ok: true, draft };
+}

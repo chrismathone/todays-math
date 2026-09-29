@@ -96,6 +96,10 @@ export function accountRouteAllowed(
   if (under(path, "/api/concept")) return any("concept");
   if (path === "/api/metrics") return any("home");
   if (path === "/api/units") return any("bank", "studio", "teaching");
+  // 오늘의 영어(D-148) — 자료·세트·생성 API 와 크롬 없는 인쇄 페이지(`/english/sets/{id}/print`) 둘 다.
+  // `/api` 밖 경로는 아래에서 기본 통과라, 인쇄 페이지를 여기 적지 않으면 메뉴를 끈 계정도 연다.
+  if (under(path, "/api/english") || under(path, "/english"))
+    return any("english");
   if (under(path, "/api")) return false; // Newly added resource routes must declare their menu.
   return true; // Images/fonts and established static assets are not feature endpoints.
 }
