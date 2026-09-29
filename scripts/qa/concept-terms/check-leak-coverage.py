@@ -18,7 +18,7 @@
 보정을 입음 · 새 글의 기준도 덤프라 이것이 먼저다) ⑵ 보정 새 글(원본 카드의 같은 칸과 다른 긴 칸)이 허용 말에 있으면
 ⑶ coverage.md 의 «새 글 N칸»이 셈과 다르면(리드 검토 A2 M1). 자기 시험은 ① 원문 한 문장을 심은 줄 ② 보정 표에 원문을 심은 판
 ③ 보정을 입힌 덤프(보정 전부 멈춤) ④ 걷고 나면 창이 안 남는 긴 원문 문장을 심은 줄(걷기 전 창이 잡아야)
-⑤ 허용 말만으로 된 걷기 전 창을 심은 줄(안 걸려야 — 창 안에서 허용 말을 뺀 한글이 4자 이상 남을 때만 친다) — 다섯 다 맞아야 통과.
+⑤ 허용 말만으로 된 걷기 전 창을 심은 줄(안 걸려야 — 창 안에 허용 말 밖 한글이 한 자라도 있을 때만 친다) — 다섯 다 맞아야 통과.
 
 사용:
   python check-leak-coverage.py --cards <카드.json> --files <파일...>
@@ -44,6 +44,9 @@ FIXES = REPO / "docs" / "reference" / "concept-terms" / "card-sentence-fixes.jso
 FIX_TEXT_FIELDS = ("definition", "exampleTitle", "trap", "explanation", "note")  # 허용 말로 들어가는 카드 칸
 WIN = 12
 MIN_HANGUL = 4
+# 걷기 전 창은 창 안에 허용 말 밖 한글이 한 자라도 있으면 친다 — 허용 말만으로 된 창(용어 나열)만 뺀다. 4자로 두면 교재 문장
+# 807 중 780 만 잡혔고 1자면 795 — 우리 글 10만 줄에서 새로 걸리는 줄은 같았다(2026-09-29 실측, 리드 검토 B 이어서).
+WHOLE_MIN_OUTSIDE = 1
 SEP = chr(0)
 
 
@@ -212,14 +215,14 @@ def allowed_mask(t: str, allowed_sorted: list[str]) -> list[bool]:
 
 
 def whole_hits(t: str, whole: set[str], allowed_sorted: list[str]) -> list[str]:
-    """걷기 전 창 — 창 안에서 허용 말을 뺀 한글이 MIN_HANGUL 자 이상 남을 때만 친다. 허용 말(용어 · 단원 이름)을 쉼표로 늘어놓은
+    """걷기 전 창 — 창 안에서 허용 말을 뺀 한글이 WHOLE_MIN_OUTSIDE 자 이상 남을 때만 친다. 허용 말(용어 · 단원 이름)을 쉼표로 늘어놓은
     줄이 교재의 같은 나열과 겹쳐 걸리던 거짓 경보(2026-09-28 리드 검토 B2 L4 — main 의 gaenyeom_curation_mida.py:181)."""
     cands = [(i, t[i:i + WIN]) for i in range(0, max(0, len(t) - WIN + 1)) if t[i:i + WIN] in whole]
     if not cands:
         return []
     mask = allowed_mask(t, allowed_sorted)
     return [w for i, w in cands
-            if sum(1 for x in range(i, i + WIN) if not mask[x] and "가" <= t[x] <= "힣") >= MIN_HANGUL]
+            if sum(1 for x in range(i, i + WIN) if not mask[x] and "가" <= t[x] <= "힣") >= WHOLE_MIN_OUTSIDE]
 
 
 def scan(text: str, wins: tuple[set[str], set[str]], allowed_sorted: list[str]) -> list[str]:
@@ -302,7 +305,7 @@ def main():
             bad += 1
         # ⑤ 허용 말(용어 · 단원 이름)만으로 이뤄진 걷기 전 창 — 교재의 같은 나열과 겹쳐도 걸리면 안 된다(리드 검토 B2 L4).
         terms_only = next((w for w in sorted(wins[1]) if sum(1 for x, ch in enumerate(w)
-                           if not allowed_mask(w, allowed_sorted)[x] and "가" <= ch <= "힣") < MIN_HANGUL), "")
+                           if not allowed_mask(w, allowed_sorted)[x] and "가" <= ch <= "힣") < WHOLE_MIN_OUTSIDE), "")
         h5 = scan(terms_only, wins, allowed_sorted) if terms_only else []
         h5_unmasked = [w for w in windows_of(norm(terms_only)) if w in wins[1]] if terms_only else []
         print(f"자기 시험 ⑤: 허용 말만으로 된 창을 심은 줄 → {len(h5)}줄 걸림(허용 말을 안 가리면 {len(h5_unmasked)}개 창)")
