@@ -1965,21 +1965,85 @@ async function memoryIntroScenario({ page, sim, mobile, step, shot }, label) {
 const FIT_SIZES = [[320, 568], [360, 640], [390, 700], [800, 900]];
 const FIT_UNITS = (process.env.QA_FIT_UNITS ?? cards.definitionUnits.map((unit) => unit.id).join(",")).split(",");
 const fitFindings = [];
+// 넘칠 때만 글씨 줄이기(원장님 2026-09-29, D-143) 뒤로 더 적는 것 — `full`·`first` 판정은 그대로(바꾸기 전과 견준다):
+//   fit    제품이 고른 배율(`data-fit`, 없으면 1)
+//   slots  빈칸 단추 상자까지 넣은 끝이 칸 안인가 — 단추(최소 높이 42px · 가운데 맞춤)는 글보다 아래로 내려와 `full` 이 못 본다
+//   trial  배율을 1 · 0.9 · 0.8 · 0.7 로 눌러 대 본 `slots` 판정(바닥을 고른 근거 — 제품은 글자 15px 까지만, 좁은 폭은 0.8 에서 멈춤)
+//   over   지금 넘친 px(단추 포함, 넘치지 않으면 0) · pane 문제 칸 높이
+const FIT_TRIAL_STEPS = [1, 0.9, 0.8, 0.7];
 async function fitNow(page) {
-  return page.evaluate(() => {
+  return page.evaluate((trialSteps) => {
     const pane = document.querySelector("[data-page-turn=true]");
     const sentence = pane?.querySelector("[data-assembly-sentence]");
     const definition = pane?.querySelector("[data-reading-definition]");
     if (!pane || (!sentence && !definition)) return null;
     const limit = pane.getBoundingClientRect().bottom + 0.5;
     if (definition) return { full: definition.getBoundingClientRect().bottom <= limit, first: true };
-    const range = document.createRange();
-    range.selectNodeContents(sentence);
-    const rects = [...range.getClientRects()].filter((rect) => rect.width > 0 && rect.height > 0);
+    const textRects = () => {
+      const range = document.createRange();
+      range.selectNodeContents(sentence);
+      return [...range.getClientRects()].filter((rect) => rect.width > 0 && rect.height > 0);
+    };
+    const withSlots = () =>
+      Math.max(...textRects().map((rect) => rect.bottom), ...[...sentence.querySelectorAll("button")].map((slot) => slot.getBoundingClientRect().bottom)) + pane.scrollTop;
+    const rects = textRects();
     const top = Math.min(...rects.map((rect) => rect.top));
     const first = Math.max(...rects.filter((rect) => rect.top < top + 8).map((rect) => rect.bottom));
-    return { full: Math.max(...rects.map((rect) => rect.bottom)) <= limit, first: first <= limit };
-  });
+    const end = withSlots();
+    const drawn = sentence.style.getPropertyValue("--sentence-fit");
+    const trial = {};
+    for (const step of trialSteps) {
+      sentence.style.setProperty("--sentence-fit", String(step));
+      trial[step] = withSlots() <= limit;
+    }
+    if (drawn) sentence.style.setProperty("--sentence-fit", drawn);
+    else sentence.style.removeProperty("--sentence-fit");
+    return {
+      full: Math.max(...rects.map((rect) => rect.bottom)) <= limit,
+      first: first <= limit,
+      fit: Number(sentence.dataset.fit ?? 1),
+      slots: end <= limit,
+      over: Math.max(0, Math.round(end - limit)),
+      pane: Math.round(pane.clientHeight),
+      trial,
+    };
+  }, FIT_TRIAL_STEPS);
+}
+// 화면 크기를 바꾼 뒤 제품 맞춤(ResizeObserver → 다음 프레임 → 다시 그림)이 끝날 때까지 — 배율이 세 프레임 내리 같으면.
+async function fitSettled(page) {
+  await page.evaluate(
+    () =>
+      new Promise((done) => {
+        let last = null;
+        let same = 0;
+        let frames = 0;
+        const tick = () => {
+          const now = document.querySelector("[data-assembly-sentence]")?.dataset.fit ?? "1";
+          same = now === last ? same + 1 : 0;
+          last = now;
+          if (same >= 3 || ++frames > 60) done();
+          else requestAnimationFrame(tick);
+        };
+        requestAnimationFrame(tick);
+      }),
+  );
+}
+/** 지금 화면을 네 폭으로 바꿔 가며 잰다(`row` 는 칸 이름표) — 끝나면 처음 크기로 돌린다. 잰 수를 돌려준다. */
+async function measureFitSizes(page, width, height, row, filled) {
+  let measured = 0;
+  for (const [w, h] of FIT_SIZES) {
+    await page.setViewportSize({ width: w, height: h });
+    await page.evaluate(() => new Promise((done) => requestAnimationFrame(() => requestAnimationFrame(done))));
+    await fitSettled(page);
+    const result = await fitNow(page);
+    if (result) {
+      fitFindings.push({ ...row, size: `${w}x${h}`, filled, ...result });
+      measured++;
+    }
+  }
+  await page.setViewportSize({ width, height });
+  await page.evaluate(() => new Promise((done) => requestAnimationFrame(() => requestAnimationFrame(done))));
+  return measured;
 }
 async function fitScenario({ page, sim, mobile, width, height, step }, unitId) {
   await step("fit.start", async () => {
@@ -1999,17 +2063,26 @@ async function fitScenario({ page, sim, mobile, width, height, step }, unitId) {
       const action = correctExplorerAction(sim);
       const activity = attachedWorkshop(sim) ? null : engine.explorerView(stored, today()).currentActivity;
       if (activity && !session.round && (activity.kind === "read" || activity.kind === "assemble")) {
-        for (const [w, h] of FIT_SIZES) {
-          await page.setViewportSize({ width: w, height: h });
-          await page.evaluate(() => new Promise((done) => requestAnimationFrame(() => requestAnimationFrame(done))));
-          const result = await fitNow(page);
-          if (result) {
-            fitFindings.push({ unit: unitId, card: activity.cardId, name: activity.cardName, kind: activity.kind, size: `${w}x${h}`, ...result });
-            measured++;
-          }
+        const row = { unit: unitId, card: activity.cardId, name: activity.cardName, kind: activity.kind };
+        const measureSizes = async (filled) => (measured += await measureFitSizes(page, width, height, row, filled));
+        // 책장 넘김(처음 520ms 칸이 rotateY 로 기울어 있음) 도중에 정한 배율 — 화면 크기를 바꾸기 전에 읽는다.
+        // 다시 재는 계기는 크기 변화뿐이라 넘김이 끝난 뒤에도 그대로다. 같은 크기에서 다시 잰 값(아래 `mountFit`)과 같아야 한다.
+        const mount =
+          activity.kind === "assemble" ? Number((await page.locator("[data-assembly-sentence]").getAttribute("data-fit")) ?? 1) : null;
+        const before = fitFindings.length;
+        await measureSizes(0);
+        if (mount !== null)
+          for (const row of fitFindings.slice(before)) if (row.size === `${width}x${height}`) row.mountFit = mount;
+        // 빈칸을 채우면 단추 안에 말이 들어가 문장이 길어진다 — 정답 두 말을 채운 채로 네 폭을 한 번 더 잰다(2026-09-29).
+        if (activity.kind === "assemble" && action.type === "answer" && action.choiceIds.length === 2) {
+          for (const id of action.choiceIds) await tap(choiceButtons(page).nth(id), mobile);
+          await measureSizes(2);
+          const handled = sim.handled;
+          await tap(page.getByRole("button", { name: "완성한 문장 확인하기" }), mobile);
+          await until(() => sim.handled > handled, "조립 응답");
+          await settled(page, sim);
+          continue;
         }
-        await page.setViewportSize({ width, height });
-        await page.evaluate(() => new Promise((done) => requestAnimationFrame(() => requestAnimationFrame(done))));
       }
       await perform(page, sim, action, mobile);
       await settled(page, sim);
@@ -2028,6 +2101,59 @@ for (const unitId of FIT_UNITS) {
   assert.ok(unitOf(unitId), "없는 단원: " + unitId);
   fixtures[`fit:${unitId}`] = () => ({ ...serverState.emptySrsState(), explorers: explorerRecord(unitOf(unitId).grade, unitId) });
   scenarios[`fit:${unitId}`] = (context) => fitScenario(context, unitId);
+}
+
+// 보충 카드 한 장(«교재에 한 장 더», D-147)도 같은 풀이 틀(`ExplorerPractice`)이라 같은 맞춤을 탄다 — 21장의 조립 문장을
+// 네 폭 × 빈칸 빔 · 채움으로 잰다(«모든 화면 일치», 2026-09-29). 도감 선반 → 카드 창 → «세 활동 해 보기» → 뜻 만나기 → 조립.
+// 오늘의 탐험이 안 열린 학생이라 잠기지 않는다. `QA_SCENARIOS=fit-sup` 로 켠다(학년별 묶음 · 결과는 fit-findings.json 에 `supplement: true`).
+const { supplementCards } = src("lib/math-explorers/supplement-content.ts");
+const supplementGrade = (card) => unitOf(card.unit)?.grade;
+async function fitSupplementScenario({ page, sim, mobile, width, height, step }, grade) {
+  await step("fitSup.cards", async () => {
+    await page.goto(base + "/dev/mobile-explorers-qa");
+    await homeReady(page);
+    let measured = 0;
+    const shelf = supplementCards.filter((card) => supplementGrade(card) === grade);
+    for (const card of shelf) {
+      const sheet = page.getByRole("dialog", { name: "나의 개념 도감" });
+      if (!(await sheet.count())) {
+        await tap(page.getByRole("button", { name: /도감/ }).first(), mobile);
+        await expect(sheet).toBeVisible();
+      }
+      await tap(sheet.locator(`[data-supplement-card="${card.id}"]`), mobile);
+      let handled = sim.handled;
+      await tap(page.getByRole("button", { name: "세 활동 해 보기" }), mobile);
+      await until(() => sim.handled > handled, "보충 시작 응답");
+      await page.locator("[data-explorer-dock=true]").waitFor({ timeout: 10000 });
+      await settled(page, sim);
+      const current = () => engine.explorerView(explorerStored(sim), today()).supplements?.activity;
+      if (current()?.kind === "read") {
+        await perform(page, sim, { type: "read" }, mobile);
+        await settled(page, sim);
+      }
+      const activity = current();
+      assert.equal(activity?.kind, "assemble", `${card.name}: 뜻 만나기 다음이 조립이 아니다`);
+      await expect(page.locator("[data-assembly-sentence]")).toBeVisible();
+      const row = { unit: card.unit, card: card.id, name: card.name, kind: "assemble", supplement: true };
+      measured += await measureFitSizes(page, width, height, row, 0);
+      for (const word of card.words.slice(0, 2))
+        await tap(choiceButtons(page).nth(activity.choices.findIndex((choice) => choice.label === word)), mobile);
+      measured += await measureFitSizes(page, width, height, row, 2);
+      handled = sim.handled;
+      await tap(page.getByRole("button", { name: "← 진도판" }), mobile);
+      await homeReady(page);
+      // 도감에서 시작한 한 장이라 나오면 도감으로 돌아온다 — 그 시트가 뜬 뒤에 다음 카드로(WebKit 에서 시트가 늦게 떠
+      // «도감» 단추를 누르려다 시트에 가려 멈췄다).
+      await expect(page.getByRole("dialog", { name: "나의 개념 도감" })).toBeVisible({ timeout: 10000 });
+      await until(() => sim.requests === sim.handled, "보충 나간 뒤 응답");
+    }
+    return `보충 ${shelf.length}장 · 잰 화면 ${measured}`;
+  });
+}
+for (const grade of [...new Set(supplementCards.map(supplementGrade))]) {
+  assert.ok(grade, "보충 카드 단원이 본 단원 목록에 없다");
+  fixtures[`fit-sup:${grade}`] = () => ({ ...serverState.emptySrsState(), explorers: explorerRecord(grade) });
+  scenarios[`fit-sup:${grade}`] = (context) => fitSupplementScenario(context, grade);
 }
 
 for (const unitId of KATEX_UNITS) {
@@ -2898,13 +3024,33 @@ if (katexFindings.length || scenarioNames.some((name) => name.startsWith("katex:
 if (labGeometry.length) await writeFile(resolve(output, "lab-fraction.json"), JSON.stringify(labGeometry, null, 2));
 if (fitFindings.length) {
   await writeFile(resolve(output, "fit-findings.json"), JSON.stringify(fitFindings, null, 2));
-  for (const kind of ["assemble", "read"])
+  for (const kind of ["assemble", "read"].filter((kind) => fitFindings.some((row) => row.kind === kind && !row.supplement)))
     console.log(
       `잘림 실측 ${kind}: ` +
         FIT_SIZES.map(([w, h]) => {
-          const rows = fitFindings.filter((row) => row.kind === kind && row.size === `${w}x${h}`);
+          const rows = fitFindings.filter((row) => row.kind === kind && row.size === `${w}x${h}` && !row.filled && !row.supplement);
           return `${w}×${h} 다 보임 ${rows.filter((row) => row.full).length}/${rows.length}` + (kind === "assemble" ? ` · 첫 줄 ${rows.filter((row) => row.first).length}` : "");
         }).join(" · "),
+    );
+  // 넘칠 때만 글씨 줄이기(2026-09-29) — 빈 빈칸 · 채운 빈칸 각각: 빈칸 상자까지 다 보임 · 줄인 배율별 수 · 배율을 눌러 대 본 판정.
+  for (const [supplement, filled] of [[false, 0], [false, 2], [true, 0], [true, 2]]) {
+    const rows = fitFindings.filter((row) => row.kind === "assemble" && (row.filled ?? 0) === filled && !!row.supplement === supplement && row.trial);
+    if (!rows.length) continue;
+    console.log(
+      `${supplement ? "보충 " : ""}조립 맞춤 (빈칸 ${filled ? "채움" : "빔"}): ` +
+        FIT_SIZES.map(([w, h]) => {
+          const at = rows.filter((row) => row.size === `${w}x${h}`);
+          const scales = FIT_TRIAL_STEPS.map((step) => `${step}배 ${at.filter((row) => row.fit === step).length}`).join(" ");
+          const trial = FIT_TRIAL_STEPS.map((step) => `${step}→${at.filter((row) => row.trial[step]).length}`).join(" ");
+          return `${w}×${h} 다 보임 ${at.filter((row) => row.full).length} · 빈칸까지 ${at.filter((row) => row.slots).length}/${at.length} [${scales}] (눌러 대 봄 ${trial})`;
+        }).join(" · "),
+    );
+  }
+  const mounted = fitFindings.filter((row) => row.mountFit !== undefined);
+  if (mounted.length)
+    console.log(
+      `넘김 도중 정한 배율 = 넘김 뒤 다시 잰 배율: ${mounted.filter((row) => row.mountFit === row.fit).length}/${mounted.length}` +
+        mounted.filter((row) => row.mountFit !== row.fit).map((row) => ` · ${row.name} ${row.mountFit}→${row.fit}`).join(""),
     );
 }
 const failed = results.filter((r) => r.status === "실패");

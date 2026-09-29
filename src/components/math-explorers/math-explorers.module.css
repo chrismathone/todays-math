@@ -860,8 +860,10 @@ button.chest {
   line-height: 1.9;
   word-break: keep-all;
 }
+/* 넘칠 때만 글씨 줄이기(원장님 2026-09-29, D-143) — `--sentence-fit` 은 `sentenceFit.ts` 가 싣는 배율(1 · 0.9 · 0.8 · 0.7,
+   글자 15px 밑으로는 안 감). 기준 크기에 곱한다(좁은 폭 19px 도 같은 변수). */
 .assemblySentence {
-  font-size: 22px;
+  font-size: calc(22px * var(--sentence-fit, 1));
   line-height: 2.8;
   color: #284c7b;
   word-break: keep-all;
@@ -881,7 +883,9 @@ button.wordSlot {
   background: #f3f7fe;
   color: #97accd;
   font: inherit;
-  font-size: 17px;
+  /* 문장 글보다 커지지 않게만(1em = 둘레 문장) — 문장이 17px 밑으로 줄 때(좁은 폭 0.8 · 넓은 폭 0.7)만 따라 작아진다.
+     누르는 크기는 그대로. */
+  font-size: min(17px, 1em);
   font-weight: 650;
   line-height: 1.45;
   cursor: pointer;
@@ -1554,7 +1558,7 @@ button.confirm {
     font-size: 19px;
   }
   .assemblySentence {
-    font-size: 19px;
+    font-size: calc(19px * var(--sentence-fit, 1));
   }
   .answers button {
     font-size: 14px;
