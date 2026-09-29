@@ -447,6 +447,54 @@ describe("authenticated math explorer persistence", () => {
     );
   });
 
+  it("lets a teacher set the first plan while a concept-only (explorers) mission is open", async () => {
+    // 운영 test_s(2026-09-30): 계획 없이 탐험만 한 학생의 9-28 미션이 7/15 로 열려 있어 원장님의 첫 계획 저장이 409 였다.
+    const view = await action(await data(await read()), {
+      type: "expedition-start",
+    });
+    const frozen = view.expedition!.mission!;
+    expect(frozen.kind).toBe("explorers");
+    const plan = (state: ReturnType<typeof parseSrsState>) => ({
+      ...state,
+      course: setCoursePlan(
+        state.course ?? emptyCourseState(),
+        {
+          startSectionId: "3-1-1-1",
+          dailyQuestionCount: 10,
+          enabled: true,
+          expectedRevision: view.revision,
+        },
+        now,
+      ),
+    });
+    await expect(changeSrsState(f.studentId, plan)).rejects.toThrow();
+    await changeSrsState(f.studentId, plan, undefined, undefined, {
+      teacher: true,
+    });
+    const saved = parseSrsState(f.rows.get(f.studentId)!.payload);
+    expect(saved.course!.plan!.startSectionId).toBe("3-1-1-1");
+    expect(saved.expedition!.mission).toEqual(
+      expect.objectContaining({
+        id: frozen.id,
+        kind: "explorers",
+        status: "active",
+      }),
+    );
+    // 선생님이라도 계획 밖 과정 칸(푼 소단원)은 열린 미션 동안 못 바꾼다
+    const beyondPlan = (state: ReturnType<typeof parseSrsState>) => ({
+      ...state,
+      course: {
+        ...state.course!,
+        completedSectionIds: ["3-1-1-1"],
+      },
+    });
+    await expect(
+      changeSrsState(f.studentId, beyondPlan, undefined, undefined, {
+        teacher: true,
+      }),
+    ).rejects.toThrow("진행 중인 오늘의 학습을 먼저 마쳐 주세요.");
+  });
+
   it("awards the actual Korea completion day once and keeps historical replay read only", async () => {
     vi.setSystemTime(new Date("2026-09-27T14:59:00.000Z"));
     let view = await action(await data(await read()), {
