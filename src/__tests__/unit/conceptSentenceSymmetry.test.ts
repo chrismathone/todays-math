@@ -313,6 +313,16 @@ describe("230장 — 조사가 답을 알려 주지 않는다(받침으로 갈�
         words: ["경우", "개수", "평균", "확률"],
       }),
     ).toEqual(["칸 1 — 정답 둘만 맞음"]);
+    // 판단 못 하는 말은 null — 참 · 거짓이 아니다(리드 검토 C T5)
+    expect(fitsParticle("P", "를 모두 센 ")).toBeNull();
+    // 둘째 정답 자리에 둔 거울(리드 검토 C T5)
+    expect(
+      particleGiveaways({
+        id: "b-two-answers-unknown-2",
+        pieces: ["", "를 모두 센 ", "."],
+        words: ["개수", "P", "평균", "확률"],
+      }),
+    ).toEqual(["칸 1 — 정답 둘만 맞음"]);
     // 정답 말을 읽을 수 없어도(로마자 «P») 오답 둘이 안 맞으면 좁혀진다(리드 검토 B4 L5)
     expect(
       particleGiveaways({
@@ -415,8 +425,9 @@ describe("원장의 까닭 — B 가 판정한 카드는 모든 채움에 출처
   const bCards = audit.cards.filter((card) =>
     card.judgedBy.startsWith("3자(B"),
   );
-  it("B 카드가 179장 넓은 검사 + 고친 카드를 다 덮는다", () => {
-    expect(bCards.length).toBeGreaterThanOrEqual(179);
+  it("B 카드는 정확히 180장(넓은 검사 139 + 고침안 41) · 나머지 50장은 A 판 원장(리드 검토 C T3 — 문턱이면 한 장이 머리만 바꿔 빠져도 초록)", () => {
+    expect(bCards.length).toBe(180);
+    expect(audit.cards.length - bCards.length).toBe(50);
   });
   it("B 카드의 채움은 모두 까닭에 출처(3자 판정 또는 기계 거름)가 있다", () => {
     const bare = bCards.flatMap((card) =>
@@ -427,6 +438,30 @@ describe("원장의 까닭 — B 가 판정한 카드는 모든 채움에 출처
         .map((f) => `${card.id} ${f.slots.join(",")}`),
     );
     expect(bare).toEqual([]);
+  });
+  it("표와 판정이 맞물린다 — 참 둘 이상인 판정 없음 · 거짓인 맞바꿈은 판정마다 거짓 표가 있음 · 오답 채움은 참+애매 둘 미만(리드 검토 C T4)", () => {
+    // 규칙(judgedBy): 둘 이상 참이면 카드 고침 · 참+애매 둘 이상이면 오답으로 고칠 수 있는 한 고침 ·
+    // 맞바꿈은 한 판정에서 참 둘 이상이거나 거짓 표가 하나도 없으면 조각을 고침
+    const VOTES =
+      /claude (참|애매|거짓) · codex (참|애매|거짓) · grok (참|애매|거짓)/g;
+    const broken = audit.cards.flatMap((card) =>
+      card.fillings.flatMap((f) =>
+        [...(f.why ?? "").matchAll(VOTES)]
+          .map((m) => m.slice(1))
+          .filter((v) => {
+            const yes = v.filter((x) => x === "참").length;
+            const notFalse = v.filter((x) => x !== "거짓").length;
+            const swap = f.slots[0] === 1 && f.slots[1] === 0;
+            return (
+              yes >= 2 ||
+              (swap && f.verdict === "거짓" && notFalse === 3) ||
+              (!swap && notFalse >= 2)
+            );
+          })
+          .map((v) => `${card.id} ${f.slots.join(",")} ${v.join("·")}`),
+      ),
+    );
+    expect(broken).toEqual([]);
   });
   it("맞바꿈(1, 0)은 기계 거름만으로 거짓이 되지 않는다 — 늘 3자 출처가 있다", () => {
     const machineOnly = bCards.flatMap((card) =>
