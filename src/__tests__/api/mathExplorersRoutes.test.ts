@@ -115,7 +115,15 @@ const base = "http://localhost:3000";
 const path = "/api/learn/math-explorers";
 const now = new Date("2026-09-26T16:00:00.000Z"); // already Sep 27 in Korea
 const read = (query = "") => GET(new Request(`${base}${path}${query}`));
+/** The screen always names its student (D-146) — a body without one is refused. */
 const post = (body: unknown, origin = base) =>
+  postRaw(
+    body && typeof body === "object" && !("studentId" in body)
+      ? { ...body, studentId: f.studentId }
+      : body,
+    origin,
+  );
+const postRaw = (body: unknown, origin = base) =>
   POST(
     new Request(`${base}${path}`, {
       method: "POST",
@@ -437,6 +445,54 @@ describe("authenticated math explorer persistence", () => {
         status: "active",
       }),
     );
+  });
+
+  it("lets a teacher set the first plan while a concept-only (explorers) mission is open", async () => {
+    // 운영 test_s(2026-09-30): 계획 없이 탐험만 한 학생의 9-28 미션이 7/15 로 열려 있어 원장님의 첫 계획 저장이 409 였다.
+    const view = await action(await data(await read()), {
+      type: "expedition-start",
+    });
+    const frozen = view.expedition!.mission!;
+    expect(frozen.kind).toBe("explorers");
+    const plan = (state: ReturnType<typeof parseSrsState>) => ({
+      ...state,
+      course: setCoursePlan(
+        state.course ?? emptyCourseState(),
+        {
+          startSectionId: "3-1-1-1",
+          dailyQuestionCount: 10,
+          enabled: true,
+          expectedRevision: view.revision,
+        },
+        now,
+      ),
+    });
+    await expect(changeSrsState(f.studentId, plan)).rejects.toThrow();
+    await changeSrsState(f.studentId, plan, undefined, undefined, {
+      teacher: true,
+    });
+    const saved = parseSrsState(f.rows.get(f.studentId)!.payload);
+    expect(saved.course!.plan!.startSectionId).toBe("3-1-1-1");
+    expect(saved.expedition!.mission).toEqual(
+      expect.objectContaining({
+        id: frozen.id,
+        kind: "explorers",
+        status: "active",
+      }),
+    );
+    // 선생님이라도 계획 밖 과정 칸(푼 소단원)은 열린 미션 동안 못 바꾼다
+    const beyondPlan = (state: ReturnType<typeof parseSrsState>) => ({
+      ...state,
+      course: {
+        ...state.course!,
+        completedSectionIds: ["3-1-1-1"],
+      },
+    });
+    await expect(
+      changeSrsState(f.studentId, beyondPlan, undefined, undefined, {
+        teacher: true,
+      }),
+    ).rejects.toThrow("진행 중인 오늘의 학습을 먼저 마쳐 주세요.");
   });
 
   it("awards the actual Korea completion day once and keeps historical replay read only", async () => {
@@ -1244,6 +1300,7 @@ describe("authenticated math explorer persistence", () => {
       requestId: randomUUID(),
       expectedRevision: 0,
       action: { type: "start", route: "unit", unitId: view.units[0].id },
+      studentId: f.studentId,
     };
     const pair = await Promise.all([post(body), post(body)]);
     const views = await Promise.all(pair.map(data));
@@ -1367,6 +1424,7 @@ describe("chest press without a pre-read", () => {
     requestId: randomUUID(),
     expectedRevision: view.revision,
     action: { type: "chest", chestId },
+    studentId: f.studentId,
   });
 
   it("reads the state row once and writes once", async () => {
@@ -1422,6 +1480,19 @@ describe("chest press without a pre-read", () => {
     );
     expect(mine.feedback?.chestId).toBe(chest.id);
     expect(f.writes).toBe(1);
+  });
+
+  it("refuses an action that does not name its student and leaves the record alone", async () => {
+    // D-146 은 옛 탭 호환으로 선택이었다 — 모든 화면이 보낸 뒤로 필수(0-Y.5).
+    const { view, chest } = await readyChest();
+    f.writes = 0;
+    const snapshot = structuredClone(f.rows.get(f.studentId));
+    const { studentId, ...unnamedBody } = chestBody(view, chest.id);
+    expect(studentId).toBe(f.studentId);
+    const unnamed = await postRaw(unnamedBody);
+    expect(unnamed.status).toBe(400);
+    expect(f.writes).toBe(0);
+    expect(f.rows.get(f.studentId)).toEqual(snapshot);
   });
 
   it("rejects an answer that reuses the expedition start request id", async () => {

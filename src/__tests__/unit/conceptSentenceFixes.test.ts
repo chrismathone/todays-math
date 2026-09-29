@@ -1,9 +1,9 @@
 /**
  * 카드 보정 표(`conceptSentenceFixes.ts`) — 원본(`definition-content.ts` · PROVENANCE)은 그대로 두고, 카드를 내보내는 층
- * (`definition-cards.ts` 의 `definitionCards`)에서 76장을 덮어쓴다(D-143 ④ · ⑦ · ⑧ — 24장 + 채점 결함 52장). 화면 · 채점 · 복습 · 선수가 같은 카드를 읽는다.
+ * (`definition-cards.ts` 의 `definitionCards`)에서 83장을 덮어쓴다(D-143 ④ · ⑦ · ⑧ — 24장 + 채점 결함 59장, 그중 7장은 보기 절대 말만 — 리드 검토 D ③). 화면 · 채점 · 복습 · 선수가 같은 카드를 읽는다.
  *
  * 결론은 용어 분석 트랙(terms-coverage)의 3자 합의 `docs/reference/concept-terms/card-sentence-fixes.json` —
- * 틀림 3 · 빠짐 5 · 낱말 6 · 범위 10 · 채점 52. 뜻을 고친 «틀림» 3장은 이미 모은 학생에게 한 번 다시 복습(`cardRevisions.test.ts`).
+ * 틀림 3 · 빠짐 5 · 낱말 6 · 범위 10 · 채점 59. 뜻을 고친 «틀림» 3장은 이미 모은 학생에게 한 번 다시 복습(`cardRevisions.test.ts`).
  * 보정은 빈칸(정답 조각)까지 옮기기도 한다 — 그래서 카드마다 조립 · 예 모으기 · 경계 살피기가 새 카드로 여전히 풀리는지 단정한다.
  */
 import { createHash, randomUUID } from "node:crypto";
@@ -56,8 +56,8 @@ describe("카드 보정 표 — 확정 파일 그대로", () => {
     );
   });
 
-  it("76장 · 칸마다 card-sentence-fixes.json 의 change 와 같다", () => {
-    expect(decided.fixes).toHaveLength(76);
+  it("83장 · 칸마다 card-sentence-fixes.json 의 change 와 같다", () => {
+    expect(decided.fixes).toHaveLength(83);
     expect(Object.keys(cardFixes).sort()).toEqual(
       decided.fixes.map((fix) => fix.id).sort(),
     );
@@ -381,5 +381,30 @@ describe("보정한 카드가 든 단원을 새 카드로 끝까지 푼다 — �
     expect(result.feedback.solution?.definition).toBe(
       "연립방정식을 풀 때 두 식을 더하거나 빼서 한 미지수를 없애는 방법.",
     );
+  });
+});
+
+describe("보기 절대 말 — «항상 · 반드시 · 언제나»로 예 · 아니오를 가를 수 없다(리드 검토 D ③ · fix12 3자)", () => {
+  // 덱 전체 15개가 모두 «아니오»여서 «절대 말은 거짓» 요령으로 지워졌다. 카드마다 절대 말 든 보기가 예 · 아니오에 같은 수여야 한다.
+  const ABSOLUTE = /항상|반드시|언제나/;
+  it("카드마다 절대 말 든 보기의 예 수 = 아니오 수", () => {
+    const lopsided = definitionCards
+      .map((card) => {
+        const abs = card.examples.filter((e) => ABSOLUTE.test(e.text));
+        return {
+          id: card.id,
+          yes: abs.filter((e) => e.yes).length,
+          no: abs.filter((e) => !e.yes).length,
+        };
+      })
+      .filter((c) => c.yes !== c.no);
+    expect(lopsided).toEqual([]);
+  });
+  it("덱 전체 — 절대 말 든 보기는 예 13 · 아니오 13(12장)", () => {
+    const abs = definitionCards.flatMap((card) =>
+      card.examples.filter((e) => ABSOLUTE.test(e.text)),
+    );
+    expect(abs.filter((e) => e.yes)).toHaveLength(13);
+    expect(abs.filter((e) => !e.yes)).toHaveLength(13);
   });
 });

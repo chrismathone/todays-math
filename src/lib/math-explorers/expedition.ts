@@ -8,6 +8,7 @@ import type { StoredExplorer } from "@/contracts/mathExplorers.contract";
 import { kstDateOf } from "@/lib/kstDate";
 import {
   courseSummary,
+  emptyCourseState,
   findStoredCourseSession,
 } from "@/lib/math-srs/courseAutomation";
 import { dailyJourneyLedger } from "@/lib/math-srs/dailyJourney";
@@ -41,6 +42,15 @@ import {
 
 const equal = (a: unknown, b: unknown) =>
   JSON.stringify(a) === JSON.stringify(b);
+/** The course without the two fields a plan edit writes (`setCoursePlan`): the plan and the selected start section. */
+const withoutPlan = (course: StoredSrsState["course"]) => {
+  const c = course ?? emptyCourseState();
+  return {
+    ...c,
+    plan: undefined,
+    learner: { ...c.learner, selectedSectionId: undefined },
+  };
+};
 const gradeLabel = (grade: number) =>
   grade < 7 ? `초등 ${grade}학년` : `중학교 ${grade - 6}학년`;
 const open = (state: StoredSrsState) =>
@@ -598,7 +608,15 @@ export function updateExpedition(
       throw new SrsConflict(
         "시작한 오늘의 학습과 오답 복습을 마친 뒤 목표를 바꿔 주세요.",
       );
-    if (prior.kind !== "elementary" && !equal(previous.course, next.course))
+    // A teacher's plan edit may pass a concept or bank mission too — only the plan and start section may differ.
+    const teacherPlanEdit =
+      writer.teacher &&
+      equal(withoutPlan(previous.course), withoutPlan(next.course));
+    if (
+      prior.kind !== "elementary" &&
+      !teacherPlanEdit &&
+      !equal(previous.course, next.course)
+    )
       throw new SrsConflict("진행 중인 오늘의 학습을 먼저 마쳐 주세요.");
     if (
       prior.kind !== "middle" &&
