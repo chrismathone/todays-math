@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef, useState, type ReactNode } from "react";
+import { useRef, useState, type CSSProperties, type ReactNode } from "react";
 import type {
   ExplorerAction,
   ExplorerActivity,
@@ -18,6 +18,7 @@ import {
 } from "./ExplorerConceptHead";
 import { ExplorerChoiceText, ExplorerMath } from "./ExplorerMath";
 import s from "./math-explorers.module.css";
+import { useSentenceFit } from "./sentenceFit";
 
 const activityNames = {
   read: "뜻 만나기",
@@ -176,6 +177,10 @@ function Activity({
     setMotion((current) => ({ ...current, [id]: value }));
   const disabled = busy || correct !== null;
   const isReading = activity.kind === "read";
+  // 문장 조립 — 넘칠 때만 글씨 줄이기(원장님 2026-09-29, D-143). 채운 말이 바뀌면 그리기 전에 다시 잰다.
+  const pane = useRef<HTMLDivElement>(null);
+  const sentence = useRef<HTMLDivElement>(null);
+  const sentenceScale = useSentenceFit(pane, sentence, selected.join(","));
   const submit = (choiceIds: number[]) =>
     onAction({ type: "answer", questionId: activity.questionId, choiceIds });
   function choose(id: number) {
@@ -206,6 +211,7 @@ function Activity({
   return (
     <>
       <div
+        ref={pane}
         className={`${s.problemPane} ${pageTurn.page}`}
         data-page-turn="true"
         tabIndex={0}
@@ -270,7 +276,17 @@ function Activity({
           </>
         ) : activity.kind === "assemble" && activity.pieces ? (
           <>
-            <div className={s.assemblySentence} data-assembly-sentence="">
+            <div
+              ref={sentence}
+              className={s.assemblySentence}
+              data-assembly-sentence=""
+              data-fit={sentenceScale < 1 ? String(sentenceScale) : undefined}
+              style={
+                sentenceScale < 1
+                  ? ({ "--sentence-fit": sentenceScale } as CSSProperties)
+                  : undefined
+              }
+            >
               {activity.pieces.map((piece, index) => (
                 <span key={index}>
                   <ExplorerMath text={piece} />
