@@ -9,6 +9,7 @@
  *     `src/components/english/**` 에 닿지 않는다. 반대 방향(영어 → `src/lib/ai/client.ts` 등)은 허용이다.
  *     🔴 D-141 quick 울타리를 그대로 베끼면 통합 셸(`src/components/unified/**`)까지 막힌다 — 셸과
  *     `src/app/(main)/english/**` · `src/app/api/english/**` 는 영어 컴포넌트를 **불러도 된다**(`NEVER_FORBIDDEN`).
+ *     `scripts/` 아래 **영어 탐침 한 파일**(`scripts/qa/probe-english-generate-live.ts` — ai 트랙의 실물 탐침)은 예외다(리드 D1).
  *  ⑵ **DB 식별자** — `english_exam|english_material|english_question_set`(표 이름) ·
  *     `db.englishExam|db.englishMaterial|db.englishQuestionSet`(및 `tx.english…` — 접근자 앞 받침은 가리지 않는다) ·
  *     Prisma 가 만든 모델 형(`Prisma.EnglishExam…` · `@prisma/client` 의 `EnglishExam|EnglishMaterial|EnglishQuestionSet`)은
@@ -99,6 +100,8 @@ const NEVER_FORBIDDEN = [
   "src/lib/ownership.ts",
   "src/mocks/",
   "src/__tests__/",
+  // ai 트랙의 실물 탐침 — 영어 쪽 파일 · 어디서도 import 되지 않음 (리드 D1, 2026-09-30 — HTTP 로 바꾸지 않는다)
+  "scripts/qa/probe-english-generate-live.ts",
 ];
 
 /** ⑵ 표·모델 접근이 허용되는 곳(브리프 §1.7 ⑵ + `prismaTestDouble.ts` 의 합성 한 줄) */
@@ -248,6 +251,7 @@ function pathToEnglish(
 }
 
 const isForbidden = (file: string) =>
+  !NEVER_FORBIDDEN.some((p) => file === p || file.startsWith(p)) &&
   FORBIDDEN_ROOTS.some((root) => file === root || file.startsWith(root));
 
 function chainLeaks(graph: Graph = SCAN.graph): string[] {
@@ -435,6 +439,13 @@ describe("영어 울타리 — ⑴ import 사슬", () => {
       false,
     );
     expect(isForbidden("src/app/api/english/exams/route.ts")).toBe(false);
+    // ai 트랙의 실물 탐침(이 워크트리에는 없다 — 경로 글자로만 단정) · scripts/ 의 나머지는 그대로 금지
+    expect(isForbidden("scripts/qa/probe-english-generate-live.ts")).toBe(
+      false,
+    );
+    expect(isForbidden("scripts/qa/apply-english-studio-migration.ts")).toBe(
+      true,
+    );
     // 그리고 금지 목록은 브리프의 뿌리를 정말 담고 있다
     for (const file of [
       "src/lib/problemPool.ts",
