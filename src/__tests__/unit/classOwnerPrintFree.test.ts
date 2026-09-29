@@ -19,6 +19,9 @@ const PRINT_ROOTS = [
   path.join("src", "components", "print"),
   path.join("src", "app", "(main)", "tests", "[id]", "print"),
   path.join("src", "lib", "print"),
+  // 오늘의 영어 지면(D-148) — 종이는 마찬가지로 학생에게 간다
+  path.join("src", "components", "english", "print"),
+  path.join("src", "app", "(main)", "english", "sets", "[id]", "print"),
 ];
 const EXT = new Set([".ts", ".tsx", ".css"]);
 
