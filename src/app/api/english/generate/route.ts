@@ -5,7 +5,7 @@
  * (변형 미리보기 `api/problems/transform` 과 같은 결: 결과를 보기 전에 쌓이지 않는다).
  *
  * 순서: 세션 401 → 같은 출처 403 → 계약 400 → 시험 404 / 범위 밖 403(D-130 `withinOwnerScope`) → AI.
- * 오류: `AiCapacityError` 502 → `AiConfigError` 503 → `EnglishDraftRejectedError` 502(details 에 문항별 사유)
+ * 오류: `AiCapacityError` 502 → `AiConfigError` 503 → `EnglishDraftRejectedError` 502 `ENGLISH_DRAFT_REJECTED`(details.issues 에 문항별 사유)
  *      → `AiGenerationError` 502. 셋 다 `AiGenerationError` 의 하위 타입이라 **이 순서**여야 원인이 안 뭉개진다.
  * 비밀 값 · 프롬프트 전문 · 원문은 응답과 로그에 싣지 않는다.
  *
@@ -81,8 +81,7 @@ async function handlePost(request: NextRequest) {
         503,
       );
     if (error instanceof EnglishDraftRejectedError)
-      return jsonError("AI_GENERATION_FAILED", error.message, 502, {
-        code: ENGLISH_DRAFT_REJECTED,
+      return jsonError(ENGLISH_DRAFT_REJECTED, error.message, 502, {
         issues: error.issues,
       });
     if (error instanceof AiGenerationError)

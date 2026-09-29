@@ -30,10 +30,9 @@ import { coerceEnglishDraftShape } from "./chatgpt";
 import { validateEnglishDraft } from "./validate";
 
 /**
- * 🔴 검증기 실패 코드 — 계약 `errorCodeSchema`(common.contract.ts) 에 아직 `ENGLISH_DRAFT_REJECTED` 가 없다
- *    (리드 소유, 트랙은 계약을 고치지 않는다). 그래서 라우트는 코드를 `AI_GENERATION_FAILED` 로 두고 `details.code`
- *    에 이 값을 싣는다. 리드가 계약에 더하면 이 상수를 `code` 자리로 올린다 — 보고서 «리드가 정할 것».
- *    라우트 파일에 두지 않는 까닭: Next 는 route.ts 의 낯선 export 를 빌드 형 검사에서 막는다.
+ * 검증기 실패 코드 — 계약 `errorCodeSchema`(common.contract.ts, 리드 커밋 c70ee7509) 의 값과 같은 글자.
+ * 라우트가 `jsonError(ENGLISH_DRAFT_REJECTED, …, 502, { issues })` 로 쓴다.
+ * 라우트 파일에 두지 않는 까닭: Next 는 route.ts 의 낯선 export 를 빌드 형 검사에서 막는다.
  */
 export const ENGLISH_DRAFT_REJECTED = "ENGLISH_DRAFT_REJECTED";
 

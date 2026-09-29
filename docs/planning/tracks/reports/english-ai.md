@@ -60,9 +60,9 @@ props 약속 그대로 `{ exam, materials, onSaved, onNotice }`. 머리 `Workspa
 Prisma 모델 `EnglishExam` 은 base 트랙이 만들고 이 워크트리에는 없다. 그래서 `src/lib/english/examLookup.ts` 한 곳에서 `db.englishExam.findUnique({ select: { id, grade, userId } })` 를 **구조적 형**으로 좁혀 부르고(모델이 없으면 던짐), 소유자 지점은 `db.user.findUnique` 로 따로 읽는다(base 의 관계 이름을 가정하지 않으려고). 라우트 시험은 이 모듈을 모킹한다.
 - 리드가 할 일: base 병합 뒤 라우트의 `findEnglishExamGrade + withinOwnerScope` 두 줄을 `requireOwnedEnglishExam(session, examId)`(없으면 404 · 범위 밖 403) 하나로 바꾸고, `examLookup.ts` 를 지우고, `src/__tests__/api/englishGenerate.test.ts` 의 `vi.mock("@/lib/english/examLookup")` 을 `englishTestDouble` 에 시험 행을 심는 것으로 바꾼다. 학년은 그 헬퍼가 돌려주는 행의 `grade` 를 쓴다(`englishGradeSchema.parse`).
 
-### 3.2 오류 코드 `ENGLISH_DRAFT_REJECTED` 가 계약에 없다
+### 3.2 오류 코드 `ENGLISH_DRAFT_REJECTED` — 끝남 (리드 `c70ee7509` 병합 뒤)
 
-`src/contracts/common.contract.ts` 의 `errorCodeSchema` 에 없어 `jsonError` 가 던진다(계약은 리드 소유). 지금은 `code: "AI_GENERATION_FAILED"` + `details: { code: "ENGLISH_DRAFT_REJECTED", issues }`. 리드가 계약에 더하면 `src/lib/english/generate.ts` 의 상수 `ENGLISH_DRAFT_REJECTED` 를 라우트의 `code` 자리로 올리고 라우트 시험 한 줄(`error.code`)을 바꾸면 된다. 화면은 `details.issues` 만 읽어 코드가 바뀌어도 그대로다.
+처음에는 계약 `errorCodeSchema` 에 없어 `code: "AI_GENERATION_FAILED"` + `details.code` 로 실었다. 리드가 계약에 넣은 뒤(`c70ee7509`, 내 브랜치에 병합) 라우트는 **`code: "ENGLISH_DRAFT_REJECTED"` + `details: { issues }`** 로 응답한다. 화면은 `details.issues` 만 읽는다. 같은 커밋에서 리드 시험 파일의 `s` 플래그(§3.3)도 고쳐져 `npx tsc --noEmit` 이 0 이다.
 
 ### 3.3 리드 파일의 tsc 오류 1건
 

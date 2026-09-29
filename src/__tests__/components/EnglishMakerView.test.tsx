@@ -472,10 +472,9 @@ describe("API 직접 생성", () => {
       jsonResponse(
         {
           error: {
-            code: "AI_GENERATION_FAILED",
+            code: "ENGLISH_DRAFT_REJECTED",
             message: "AI 가 만든 초안이 검증을 통과하지 못했습니다.",
             details: {
-              code: "ENGLISH_DRAFT_REJECTED",
               issues: [
                 { question: 1, message: "보기는 5개여야 합니다 (지금 4개)." },
               ],

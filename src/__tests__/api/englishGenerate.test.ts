@@ -278,12 +278,10 @@ describe("POST /api/english/generate — AI 결과와 오류 순서", () => {
     const res = await call(body);
     expect(res.status).toBe(502);
     const error = await errorOf(res);
-    expect(error.code).toBe("AI_GENERATION_FAILED");
+    expect(error.code).toBe("ENGLISH_DRAFT_REJECTED");
     const details = error.details as {
-      code: string;
       issues: { question: number | null; message: string }[];
     };
-    expect(details.code).toBe("ENGLISH_DRAFT_REJECTED");
     expect(details.issues[0]?.question).toBe(0);
     expect(details.issues[0]?.message).toMatch(/근거/);
     expect(mockCreate).toHaveBeenCalledTimes(1);
