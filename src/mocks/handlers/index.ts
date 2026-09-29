@@ -2,6 +2,7 @@ import type { HttpHandler } from "msw";
 
 import { authHandlers } from "./auth";
 import { classHandlers } from "./class";
+import { englishHandlers } from "./english";
 import { metricsHandlers } from "./metrics";
 import { predictionHandlers } from "./prediction";
 import { problemHandlers } from "./problem";
@@ -15,6 +16,7 @@ import { unitHandlers } from "./unit";
  * 도메인별 핸들러(src/contracts/*.contract.ts 기반):
  *   - src/mocks/handlers/auth.ts     (가입 — POST /api/auth/signup)
  *   - src/mocks/handlers/class.ts    (반/학생/진도 CRUD)
+ *   - src/mocks/handlers/english.ts  (오늘의 영어 — 시험·자료·세트, D-148)
  *   - src/mocks/handlers/prediction.ts ('오늘의 시험' 회차 계기판·상세 — T7.14)
  *   - src/mocks/handlers/progressPlan.ts (반 진도 계획 읽기·넣기·미리보기 — D-129 ④)
  *   - src/mocks/handlers/problem.ts  (문제은행/AI 생성·변형 — Claude API Mock 포함)
@@ -27,6 +29,7 @@ import { unitHandlers } from "./unit";
 export const handlers: HttpHandler[] = [
   ...authHandlers,
   ...classHandlers,
+  ...englishHandlers,
   ...metricsHandlers,
   ...predictionHandlers,
   ...problemHandlers,

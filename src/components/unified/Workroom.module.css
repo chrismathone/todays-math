@@ -1752,3 +1752,117 @@
     display: none;
   }
 }
+
+/* ── 제품 고르기 단추 · 딱지 «영» (D-148 · 05 §8.23 · 시안 C) ─────────
+ * 브랜드 자리가 곧 고르기 단추. 펼침(240px)에서는 목록이 머리 바로 아래 흐름 안에 서고,
+ * 접힘(72px)에서는 마크만 남고 목록이 옆으로 뜬다(`profilePanel` 결 — fixed · left 80px).
+ * 딱지 «영»은 접힌 옆 메뉴 · 영어일 때만 보인다(수학은 지금 모습 그대로). */
+.productMenu {
+  position: relative;
+  flex-shrink: 0;
+}
+.brandName {
+  display: inline-flex;
+  align-items: center;
+  gap: 3px;
+  min-width: 0;
+}
+.brandChevron {
+  display: inline-flex;
+  flex-shrink: 0;
+  color: #9db0cf;
+}
+.productBadge {
+  position: absolute;
+  right: -6px;
+  bottom: -4px;
+  display: none;
+  min-width: 16px;
+  height: 16px;
+  padding: 0 3px;
+  border: 2px solid #14243d;
+  border-radius: 5px;
+  background: #3b60df;
+  color: #fff;
+  font-size: 10px;
+  font-weight: 800;
+  line-height: 1;
+  letter-spacing: 0;
+  place-items: center;
+  box-sizing: content-box;
+}
+.productPicker {
+  display: grid;
+  gap: 2px;
+  margin: 8px 0 0;
+  padding: 6px;
+  background: #0f1b31;
+  border: 1px solid #2a4066;
+  border-radius: 8px;
+}
+.productPicker button {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  min-height: var(--control-height, 44px);
+  padding: 0 10px;
+  border-radius: 6px;
+  color: #b9c7dd;
+  font-size: var(--text-body, 14px);
+  font-weight: 500;
+  text-align: left;
+}
+.productPicker button:hover {
+  background: #213655;
+  color: #fff;
+}
+.productPicker button.productCurrent {
+  background: #304362;
+  color: #fff;
+  font-weight: 600;
+}
+.productPicker button.productCurrent::after {
+  content: "✓";
+  color: #a2b9ff;
+}
+@media (min-width: 761px) {
+  .workspace[data-sidebar-collapsed="true"] .productBadge {
+    display: grid;
+  }
+  .workspace[data-sidebar-collapsed="true"] .brandChevron {
+    display: none;
+  }
+  /* 접힘 + **영어일 때만**: 마크(딱지 «영»)를 접기 단추 위에 세운다 — 수학 접힘은 기준 그대로(05 §8.23 ⑷
+   * «수학은 지금 모습 그대로»). 수학에서 접힌 채 제품을 바꾸려면 펼친 뒤 고른다 */
+  .workspace[data-sidebar-collapsed="true"][data-product="english"] .sideHeader {
+    flex-direction: column;
+    gap: 4px;
+  }
+  .workspace[data-sidebar-collapsed="true"][data-product="english"]
+    .sideHeader
+    .brand {
+    display: flex;
+    min-height: var(--control-height, 44px);
+  }
+  .workspace[data-sidebar-collapsed="true"] .productPicker {
+    position: fixed;
+    z-index: 70;
+    top: 18px;
+    left: 80px;
+    width: 220px;
+    margin: 0;
+    box-shadow: 0 12px 30px #07162a33;
+  }
+}
+@media (max-width: 760px) {
+  .productPicker {
+    position: absolute;
+    z-index: 70;
+    top: calc(100% + 6px);
+    left: 0;
+    width: 220px;
+    margin: 0;
+    box-shadow: 0 12px 30px #07162a33;
+  }
+}
