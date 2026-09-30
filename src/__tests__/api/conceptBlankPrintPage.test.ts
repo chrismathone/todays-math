@@ -1,0 +1,131 @@
+/**
+ * 개념 백지 인쇄 페이지 `/concept-blank/print?s=…&view=…` (D-150 · 26 §6 · 브리프 cb-paper).
+ *
+ * 서버 컴포넌트를 함수로 부른다(`englishPrintPage.test.ts` 결). 보는 것 — 세션 없음 → `/login` ·
+ * `?s=` 가 틀리면 «주소를 확인해 주세요» 한 줄 · 맞으면 `ConceptBlankPaper` 에 고정 합치기 결과와 `view`(기본 both).
+ * 은행은 실제 학년 파일이 비어 있는 동안 FIXTURE 로 바꿔 끼운다(같은 주소 = 같은 지면인지 본다).
+ *
+ * ⚠️ 페이지는 `<ConceptBlankPaper …/>` **요소**를 돌려줄 뿐 컴포넌트를 부르지 않는다 — 돌려받은 요소의 `props` 를 본다.
+ */
+import { isValidElement, type ReactElement } from "react";
+import { beforeEach, describe, expect, it, vi } from "vitest";
+
+const mocks = vi.hoisted(() => ({ session: vi.fn() }));
+vi.mock("@/lib/session", () => ({ getSessionUser: mocks.session }));
+vi.mock("next/navigation", () => ({
+  notFound: () => {
+    throw new Error("NOT_FOUND");
+  },
+  redirect: (to: string) => {
+    throw new Error(`REDIRECT ${to}`);
+  },
+}));
+vi.mock("@/lib/concept-blank/bank", async () => {
+  const { FIXTURE_BANK } = await import("@/lib/concept-blank/fixture");
+  const actual = await vi.importActual<
+    typeof import("@/lib/concept-blank/bank")
+  >("@/lib/concept-blank/bank");
+  return { ...actual, CONCEPT_BLANK_BANK: FIXTURE_BANK };
+});
+
+import ConceptBlankPrintPage from "@/app/(main)/concept-blank/print/page";
+import ConceptBlankPaper, {
+  type ConceptBlankPaperProps,
+} from "@/components/concept-blank/ConceptBlankPaper";
+import type { ConceptBlankSelection } from "@/contracts/conceptBlank.contract";
+import { composeSheets } from "@/lib/concept-blank/compose";
+import { FIXTURE_BANK } from "@/lib/concept-blank/fixture";
+import { encodeSelection } from "@/lib/concept-blank/selectionCodec";
+
+const OWNER = {
+  id: "10000000-0000-4000-8000-0000000000a1",
+  email: "owner@example.com",
+  name: "김원장",
+  isAdmin: false,
+};
+
+const SELECTION: ConceptBlankSelection = {
+  sections: FIXTURE_BANK.concepts.map((c) => c.section),
+  forms: [
+    {
+      form: "term",
+      counts: { 하: 5, 중: 5, 상: 5 },
+      extras: { 하: 1, 중: 1, 상: 0 },
+    },
+    {
+      form: "figure",
+      counts: { 하: 1, 중: 1, 상: 0 },
+      extras: { 하: 0, 중: 0, 상: 0 },
+    },
+  ],
+  title: "합동과 대칭",
+  date: "2026-10-01",
+};
+
+function call(query: Record<string, string | string[] | undefined>) {
+  return ConceptBlankPrintPage({ searchParams: Promise.resolve(query) });
+}
+
+/** 돌려받은 트리에서 `ConceptBlankPaper` 요소를 찾는다. */
+function findPaper(node: unknown): ReactElement<ConceptBlankPaperProps> | null {
+  if (!isValidElement(node)) return null;
+  if (node.type === ConceptBlankPaper)
+    return node as ReactElement<ConceptBlankPaperProps>;
+  const children = (node.props as { children?: unknown }).children;
+  for (const child of Array.isArray(children) ? children : [children]) {
+    const hit = findPaper(child);
+    if (hit) return hit;
+  }
+  return null;
+}
+
+beforeEach(() => {
+  mocks.session.mockReset();
+});
+
+describe("/concept-blank/print", () => {
+  it("세션이 없으면 /login 으로", async () => {
+    mocks.session.mockResolvedValue(null);
+    await expect(call({ s: encodeSelection(SELECTION) })).rejects.toThrow(
+      "REDIRECT /login",
+    );
+  });
+
+  it.each([
+    ["없음", undefined],
+    ["깨진 글", "%%%"],
+    ["계약 밖", btoa(JSON.stringify({ sections: [], forms: [] }))],
+  ])("?s= 가 틀리면(%s) «주소를 확인해 주세요» 한 줄", async (_, s) => {
+    mocks.session.mockResolvedValue(OWNER);
+    const page = (await call({ s })) as ReactElement<{ children: string }>;
+    expect(findPaper(page)).toBeNull();
+    expect(page.props.children).toBe("주소를 확인해 주세요.");
+  });
+
+  it("맞는 주소면 고정 합치기 결과를 지면에 — 같은 주소 = 같은 지면", async () => {
+    mocks.session.mockResolvedValue(OWNER);
+    const paper = findPaper(await call({ s: encodeSelection(SELECTION) }));
+    expect(paper).not.toBeNull();
+    expect(paper!.props.view).toBe("both");
+    expect(paper!.props.sheets).toEqual(composeSheets(SELECTION, FIXTURE_BANK));
+    expect(paper!.props.sheets.map((s) => s.form)).toEqual(["term", "figure"]);
+    const again = findPaper(await call({ s: encodeSelection(SELECTION) }));
+    expect(JSON.stringify(again!.props.sheets)).toBe(
+      JSON.stringify(paper!.props.sheets),
+    );
+  });
+
+  it.each([
+    ["student", "student"],
+    ["key", "key"],
+    ["both", "both"],
+    ["teacher", "both"],
+    [undefined, "both"],
+  ] as const)("?view=%s → %s", async (view, expected) => {
+    mocks.session.mockResolvedValue(OWNER);
+    const paper = findPaper(
+      await call({ s: encodeSelection(SELECTION), view }),
+    );
+    expect(paper!.props.view).toBe(expected);
+  });
+});

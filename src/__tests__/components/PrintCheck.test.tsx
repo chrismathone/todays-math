@@ -203,7 +203,9 @@ describe("실물 출력 검수 목록 — 데이터", () => {
     //     1단 · 배점 없음 · 문단·문항 높이로 쪽 나눔. 라우트는 base 병합 뒤).
     // 81: english-teacher-a4 추가 (2026-09-30 트랙 english-print — 교사용 A4. 정답·해설·근거 상자의 회색 면이
     //     종이에 찍히는지가 핵심).
-    expect(ITEMS.length).toBe(81);
+    // 82~87: concept-blank-recall · term · cloze · map · figure · key-a4 추가 (2026-09-30 트랙 cb-paper —
+    //     개념 백지(D-150) 새 지면 다섯 형식 + 채점표. 은행이 차기 전에는 하네스로 뽑는다).
+    expect(ITEMS.length).toBe(87);
   });
 
   /**

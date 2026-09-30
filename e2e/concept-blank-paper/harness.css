@@ -1,0 +1,18 @@
+/* 제품 루트 레이아웃이 `next/font/local` 로 싣는 지면 명조를 같은 파일로 싣는다(`src/app/fonts.ts`).
+   고딕 라벨은 제품과 같이 스택(`PAPER_FONTS.sansKR`)대로 풀리게 둔다. */
+@font-face {
+  font-family: "cb-harness-noto-serif-kr";
+  src: url("../../public/fonts/NotoSerifKR-subset.woff2") format("woff2");
+  font-weight: 100 900;
+  font-style: normal;
+}
+
+:root {
+  --font-noto-serif-kr: "cb-harness-noto-serif-kr";
+}
+
+body {
+  margin: 0;
+  padding: 16px;
+  background: #c9c9c7;
+}
