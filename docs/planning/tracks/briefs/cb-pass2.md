@@ -34,7 +34,7 @@
 
 ## 2. KaTeX 표기 — 제품과 같게
 
-자: `npx tsx scripts/qa/concept-blank/check-notation.ts --part <e3…>` → **표기 0건**이 끝이다(기준선: e3 1,017 · e4 689 · e5 841 · e6 751 · m1 1,256 · m3 703).
+자: `npx tsx scripts/qa/concept-blank/check-notation.ts --part <e3…>` → **표기 0건**이 끝이다(기준선: e3 1,017 · e4 689 · e5 841 · e6 751 · m1 1,256 · m2 1,154 · m3 703).
 
 규칙은 제품의 것이다 — 초등 `src/lib/elementary/format.ts` · `rules.ts`, 중등 생성기 `src/lib/middle/`. **먼저 거기서 같은 표기를 찾아 그 꼴을 따른다.**
 
