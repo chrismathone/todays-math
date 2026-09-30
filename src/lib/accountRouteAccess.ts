@@ -100,6 +100,9 @@ export function accountRouteAllowed(
   // `/api` 밖 경로는 아래에서 기본 통과라, 인쇄 페이지를 여기 적지 않으면 메뉴를 끈 계정도 연다.
   if (under(path, "/api/english") || under(path, "/english"))
     return any("english");
+  // 개념 백지(D-150) — 크롬 없는 인쇄 페이지(`/concept-blank/print`). API 는 없다(은행이 코드 데이터).
+  // `/api` 밖 경로는 아래에서 기본 통과라, 여기 적지 않으면 메뉴를 끈 계정도 인쇄 페이지를 연다.
+  if (under(path, "/concept-blank")) return any("conceptBlank");
   if (under(path, "/api")) return false; // Newly added resource routes must declare their menu.
   return true; // Images/fonts and established static assets are not feature endpoints.
 }

@@ -1,0 +1,491 @@
+/*
+ * 개념 백지 탭(D-150 · 26 §4) — 첫 판. 값은 작업실 토큰(05 §8.9 · globals.css 의 --learn-*) 그대로 — 새 색 · 새 글꼴 없음.
+ * 두 칸은 영어 화면 결(05 §8.23 · EnglishStudio.module.css 의 .grid), 켜기 스위치는 진도 계획 화면 것(05 §8.10).
+ * 🔴 왼쪽 색 막대 금지 · 카드 · 행에 손가락 커서 · hover 금지(D-30) — 눌리는 것은 <button> · <a> · 체크 칸 <label> 뿐이다.
+ */
+.view {
+  --b-line: var(--learn-track, #dde3ec);
+  --b-ink: var(--learn-ink, #172b4d);
+  --b-muted: var(--learn-muted, #596c86);
+  --b-accent: var(--learn-accent, #3159df);
+  --b-soft: var(--learn-soft, #edf2ff);
+  min-width: 0;
+  color: var(--b-ink);
+  font-size: var(--text-body, 14px);
+}
+.view :is(button, a, input):focus-visible {
+  outline: 3px solid var(--learn-focus, #82a1ff);
+  outline-offset: 2px;
+}
+
+/* ── 단추 ─────────────────────────────────────────────────── */
+.primaryButton {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  min-height: var(--control-height, 44px);
+  padding: 0 18px;
+  border: 1px solid transparent;
+  border-radius: var(--control-radius, 8px);
+  background: var(--b-accent);
+  color: var(--learn-on-accent, #fff);
+  font-size: var(--text-body, 14px);
+  font-weight: 600;
+  text-decoration: none;
+  white-space: nowrap;
+}
+a.primaryButton:hover,
+button.primaryButton:enabled:hover {
+  background: var(--learn-accent-hover, #2448bd);
+}
+button.primaryButton:disabled {
+  opacity: 0.45;
+}
+.quietButton {
+  margin-left: auto;
+  min-height: 36px;
+  padding: 0 10px;
+  border: 1px solid transparent;
+  border-radius: var(--control-radius, 8px);
+  background: transparent;
+  color: var(--b-muted);
+  font-size: 13px;
+  font-weight: 600;
+  white-space: nowrap;
+}
+.quietButton:hover {
+  border-color: var(--b-line);
+  color: var(--b-ink);
+}
+
+/* ── 카드 · 두 칸 ───────────────────────────────────────────── */
+.grid {
+  display: grid;
+  grid-template-columns: minmax(0, 0.92fr) minmax(0, 1.28fr);
+  gap: 16px;
+  align-items: start;
+}
+.column {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  min-width: 0;
+}
+.card {
+  min-width: 0;
+  padding: 18px 20px;
+  border: 1px solid var(--b-line);
+  border-radius: 12px;
+  background: var(--learn-surface, #fff);
+}
+.cardHead {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px 12px;
+}
+.cardTitle {
+  margin: 0;
+  font-size: 17px;
+  font-weight: 700;
+}
+.num {
+  padding: 1px 8px;
+  border-radius: 5px;
+  background: var(--b-soft);
+  color: var(--b-accent);
+  font-size: var(--text-caption, 12px);
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+}
+.desc {
+  margin: 6px 0 0;
+  color: var(--b-muted);
+  font-size: 13px;
+  line-height: 1.5;
+}
+.note {
+  margin: 10px 0 0;
+  padding: 8px 12px;
+  border-radius: 8px;
+  background: var(--learn-warning-bg, #fff4df);
+  color: var(--learn-warning, #8a5a06);
+  font-size: var(--text-caption, 12px);
+}
+
+/* ── 나무 ─────────────────────────────────────────────────── */
+.grades {
+  margin: 12px 0 0;
+  padding: 0;
+  list-style: none;
+  border-top: 1px solid var(--b-line);
+}
+.grade {
+  border-bottom: 1px solid var(--b-line);
+}
+.gradeButton {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+  min-height: 44px;
+  padding: 0 8px;
+  border: 0;
+  border-radius: 8px;
+  background: transparent;
+  color: var(--b-ink);
+  text-align: left;
+}
+.gradeButton:hover {
+  background: var(--learn-neutral, #edf0f6);
+}
+.gradeButton[aria-expanded="true"] {
+  color: var(--b-accent);
+}
+.gradeName {
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+}
+.picked {
+  padding: 1px 8px;
+  border-radius: 999px;
+  background: var(--b-soft);
+  color: var(--b-accent);
+  font-size: var(--text-caption, 12px);
+  font-weight: 600;
+}
+.chevron {
+  display: inline-flex;
+  margin-left: auto;
+  color: var(--b-muted);
+  transition: transform 0.15s ease;
+}
+.gradeButton[aria-expanded="true"] .chevron {
+  transform: rotate(90deg);
+  color: var(--b-accent);
+}
+.gradePending {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  min-height: 40px;
+  padding: 0 8px;
+  color: var(--b-muted);
+}
+.pending {
+  font-size: var(--text-caption, 12px);
+}
+.chapters {
+  margin: 0;
+  padding: 2px 4px 12px;
+  list-style: none;
+}
+.chapter + .chapter {
+  margin-top: 4px;
+  padding-top: 4px;
+  border-top: 1px dashed var(--b-line);
+}
+.chapter[data-empty="true"] > .chapterLabel {
+  color: var(--b-muted);
+}
+.check {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  padding: 5px 2px;
+  line-height: 1.45;
+}
+.check input {
+  flex-shrink: 0;
+  width: 18px;
+  height: 18px;
+  margin: 1px 0 0;
+  accent-color: var(--b-accent);
+}
+.chapterLabel {
+  font-weight: 700;
+}
+.sections {
+  margin: 0;
+  padding: 0 0 0 26px;
+  list-style: none;
+}
+.section[data-empty="true"] {
+  opacity: 0.5;
+}
+.stock {
+  display: block;
+  margin: -3px 0 3px 28px;
+  color: var(--b-muted);
+  font-size: var(--text-caption, 12px);
+  font-variant-numeric: tabular-nums;
+}
+
+/* ── 형식 카드 ─────────────────────────────────────────────── */
+.formCard {
+  min-width: 0;
+  padding: 14px 18px 16px;
+  border: 1px solid var(--b-line);
+  border-radius: 12px;
+  background: var(--learn-surface, #fff);
+}
+.formCard[data-on="false"] {
+  background: var(--learn-bg, #f4f6fa);
+}
+.formHead {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.letter {
+  display: grid;
+  flex-shrink: 0;
+  place-items: center;
+  width: 26px;
+  height: 26px;
+  border-radius: 7px;
+  background: var(--b-soft);
+  color: var(--b-accent);
+  font-size: 13px;
+  font-weight: 700;
+}
+.formCard[data-on="false"] .letter {
+  background: var(--learn-neutral, #edf0f6);
+  color: var(--b-muted);
+}
+.formTitle {
+  margin: 0;
+  font-size: 15px;
+  font-weight: 700;
+}
+.formHelp {
+  margin: 6px 0 0;
+  color: var(--b-muted);
+  font-size: 13px;
+  line-height: 1.5;
+}
+.reason {
+  margin: 6px 0 0;
+  color: var(--learn-warning, #8a5a06);
+  font-size: var(--text-caption, 12px);
+  font-weight: 600;
+}
+/* 스위치 — 진도 계획 화면(ProgressPlan.module.css 의 .switch)과 같은 모양 */
+.switch {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 44px;
+  min-height: 44px;
+  margin-left: auto;
+  padding: 0;
+  border: 0;
+  background: transparent;
+}
+.track {
+  position: relative;
+  flex-shrink: 0;
+  width: 40px;
+  height: 22px;
+  border-radius: 11px;
+  background: #7c8da7;
+}
+.track::after {
+  position: absolute;
+  top: 3px;
+  left: 3px;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: #fff;
+  content: "";
+}
+.switch[aria-checked="true"] .track {
+  background: var(--b-accent);
+}
+.switch[aria-checked="true"] .track::after {
+  right: 3px;
+  left: auto;
+}
+.switch:disabled .track {
+  opacity: 0.4;
+}
+.levels {
+  display: grid;
+  gap: 8px;
+  margin-top: 12px;
+}
+.levelRow {
+  display: grid;
+  grid-template-columns: 64px repeat(3, minmax(0, 1fr));
+  align-items: center;
+  gap: 8px;
+}
+.rowLabel {
+  color: var(--b-muted);
+  font-size: var(--text-caption, 12px);
+  font-weight: 700;
+}
+.levelField {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  min-width: 0;
+}
+.levelName {
+  flex-shrink: 0;
+  width: 14px;
+  font-size: 13px;
+  font-weight: 700;
+}
+.levelField input {
+  box-sizing: border-box;
+  width: 100%;
+  min-width: 44px;
+  max-width: 72px;
+  min-height: 36px;
+  padding: 0 8px;
+  border: 1px solid var(--learn-control, #b8c4d6);
+  border-radius: 8px;
+  background: var(--learn-surface, #fff);
+  color: var(--b-ink);
+  font: inherit;
+  font-variant-numeric: tabular-nums;
+  text-align: right;
+}
+.levelField input:disabled {
+  background: var(--learn-neutral, #edf0f6);
+  color: var(--b-muted);
+}
+.levelMax {
+  flex-shrink: 0;
+  color: var(--b-muted);
+  font-size: var(--text-caption, 12px);
+  font-variant-numeric: tabular-nums;
+}
+
+/* ── 제목 · 날짜 ───────────────────────────────────────────── */
+.metaGrid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.6fr) minmax(0, 1fr);
+  gap: 12px;
+  margin-top: 12px;
+}
+.field {
+  display: grid;
+  gap: 6px;
+  min-width: 0;
+}
+.field > span {
+  font-size: var(--text-caption, 12px);
+  font-weight: 700;
+}
+.field input {
+  box-sizing: border-box;
+  width: 100%;
+  min-width: 0;
+  min-height: var(--control-height, 44px);
+  padding: 0 12px;
+  border: 1px solid var(--learn-control, #b8c4d6);
+  border-radius: 8px;
+  background: var(--learn-surface, #fff);
+  color: var(--b-ink);
+  font: inherit;
+}
+
+/* ── 미리보기 ──────────────────────────────────────────────── */
+.previewCard {
+  margin-top: 16px;
+}
+.segment {
+  display: inline-flex;
+  margin-left: auto;
+  padding: 3px;
+  border: 1px solid var(--b-line);
+  border-radius: 10px;
+  background: var(--learn-bg, #f4f6fa);
+}
+.segment button {
+  min-height: 36px;
+  padding: 0 14px;
+  border: 0;
+  border-radius: 7px;
+  background: transparent;
+  color: var(--b-muted);
+  font-size: 13px;
+  font-weight: 600;
+}
+.segment button:hover {
+  color: var(--b-ink);
+}
+.segment button[aria-pressed="true"] {
+  background: var(--learn-surface, #fff);
+  color: var(--b-accent);
+  box-shadow: 0 0 0 1px var(--b-line);
+}
+.paperDesk {
+  margin-top: 14px;
+  padding: 16px;
+  overflow-x: auto;
+  border-radius: 10px;
+  background: var(--learn-neutral, #edf0f6);
+}
+/* 지면은 제 폭(A4)으로 그리고 배율만 씌운다 — 자리는 바깥 .paperFit 이 줄인 크기로 잡는다 */
+.paperFit {
+  margin: 0 auto;
+  overflow: hidden;
+}
+.paperScale {
+  /* 지면 트랙(cb-paper)은 화면에서 쪽마다 `zoom: var(--cb-paper-scale, 0.58)` 로 줄인다 — 여기서 1 로 두어
+     지면을 제 A4 크기로 그리게 하고, 배율은 칸 맞춤(usePaperFit) 한 곳에서만 정한다(두 번 줄지 않게). */
+  --cb-paper-scale: 1;
+  width: max-content;
+  transform-origin: top left;
+}
+.empty {
+  margin: 14px 0 0;
+  padding: 28px 16px;
+  border: 1px dashed var(--b-line);
+  border-radius: 10px;
+  color: var(--b-muted);
+  text-align: center;
+}
+
+/* 나무는 제 칸 안에서 굴린다 — 넓은 화면은 형식 카드가 옆에 그대로 보이게, 폰은 펼친 학년이 형식 카드를 한참 밀어내지 않게 */
+.treeCard .grades {
+  max-height: min(68vh, 720px);
+  overflow-y: auto;
+  overscroll-behavior-y: contain;
+}
+@media (min-width: 761px) {
+  .treeCard {
+    position: sticky;
+    top: 16px;
+  }
+}
+@media (max-width: 760px) {
+  .grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .card {
+    padding: 16px;
+  }
+  .treeCard .grades {
+    max-height: 60vh;
+  }
+  .metaGrid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  /* 폰 — 줄 이름을 위로 올리고 하 · 중 · 상 세 칸을 한 줄에 */
+  .levelRow {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 4px 8px;
+  }
+  .rowLabel {
+    grid-column: 1 / -1;
+  }
+  .levelField {
+    gap: 4px;
+  }
+}
