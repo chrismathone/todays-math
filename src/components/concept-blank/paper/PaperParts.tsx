@@ -111,12 +111,18 @@ export function sheetTitle(header: SheetHeader): string {
     : `${prefix} · ${header.title}`;
 }
 
-/** 제목 글씨 — 긴 제목은 줄여 머리가 두 줄을 넘지 않게(쪽 나누기 어림이 머리 높이를 고정으로 본다). */
-function titleClass(title: string): string {
+/**
+ * 제목 글씨 단계 — 긴 제목은 줄여 머리가 두 줄을 넘지 않게(쪽 나누기 어림이 머리 높이를 고정으로 본다).
+ * 단계 이름만 준다 — 크기는 머리(`.title`) · 채점표 머리(`.keyHead h3`)가 제 CSS 로 정한다.
+ */
+export function titleSizeClass(title: string): string | undefined {
   const em = textEm(title);
-  if (em <= 19) return styles.title!;
-  return `${styles.title} ${em <= 23 ? styles.titleMid : styles.titleSmall}`;
+  if (em <= 19) return undefined;
+  return em <= 23 ? styles.titleMid : styles.titleSmall;
 }
+
+const titleClass = (title: string) =>
+  [styles.title, titleSizeClass(title)].filter(Boolean).join(" ");
 
 /** 첫 장 머리(05 §8.5) — 오늘의수학 · 영문 라벨 · 제목 · 목표 | 학습일 · 이름/반 · 단원. */
 export function SheetHead({

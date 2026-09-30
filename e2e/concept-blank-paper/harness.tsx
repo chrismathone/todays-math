@@ -6,6 +6,13 @@ import "../../src/app/globals.css";
 import "./harness.css";
 
 import ConceptBlankPaper from "../../src/components/concept-blank/ConceptBlankPaper";
+import {
+  clozeCost,
+  keyRowCost,
+  planSheet,
+  sheetHasContent,
+  termCost,
+} from "../../src/components/concept-blank/paper/paginate";
 import { parseConceptBlankView } from "../../src/components/concept-blank/paper/view";
 import type {
   ConceptBlankSelection,
@@ -15,12 +22,24 @@ import type {
 import { composeSheets } from "../../src/lib/concept-blank/compose";
 import { FIXTURE_BANK } from "../../src/lib/concept-blank/fixture";
 import { fuzzSheets } from "./fuzz";
+import {
+  countSheets,
+  realSheets,
+  worstPicks,
+  worstSheets,
+  type RealGrade,
+} from "./real";
 import { STRESS_SHEETS } from "./stress";
 
 /**
- * `?set=fixture|stress|math|fuzz&seed=N` · `?view=student|key|both` — 지면만 그린다(화면 축소 없이 1배).
+ * `?set=fixture|stress|math|fuzz&seed=N|real-e4|real-e5|real-e6|worst|counts` · `?view=student|key|both` —
+ * 지면만 그린다(화면 축소 없이 1배).
  * fixture = 시험 · 미리보기용 작은 은행 전부(시안 두 단원) · stress = 계약 상한 · math = 수식 문장 ·
- * fuzz = 시드 고정 무작위 길이(`fuzz.ts`). `?scale=0.58` 이면 화면 미리보기 축소를 본다(인쇄에는 안 먹는다).
+ * fuzz = 시드 고정 무작위 길이(`fuzz.ts`) · real-* = main 의 실제 은행 한 학년 전부 · worst = 실제 은행에서 가장 긴 것끼리 ·
+ * counts = 문항 수 1 ~ 정원 + 1(`real.ts`). `?scale=0.58` 이면 화면 미리보기 축소를 본다(인쇄에는 안 먹는다).
+ *
+ * 쪽 나누기 어림(`paginate.ts`)은 `<script id="cb-estimates">` 에 덩이마다 실어 둔다 — `estimate.spec.ts` 가
+ * 실제 높이와 맞대어 «어림 ≥ 실제»를 잠근다(지면 DOM 에는 어림을 싣지 않는다).
  */
 const params = new URLSearchParams(location.search);
 const ALL = { 하: 40, 중: 40, 상: 40 };
@@ -91,15 +110,43 @@ function sheetsFor(set: string | null): ConceptBlankSheet[] {
   if (set === "stress") return STRESS_SHEETS;
   if (set === "math") return MATH_SHEETS;
   if (set === "fuzz") return fuzzSheets(Number(params.get("seed") ?? 1));
+  if (set === "worst") return worstSheets();
+  if (set === "counts") return countSheets();
+  if (set?.startsWith("real-")) return realSheets(set.slice(5) as RealGrade);
   return composeSheets(fixtureSelection, FIXTURE_BANK);
 }
+
+const sheets = sheetsFor(params.get("set"));
+const plans = sheets.filter(sheetHasContent).map(planSheet);
+
+/** 덩이마다의 어림 높이 — 지면 DOM 순서 그대로(학생지 문항 · 채점표 줄). 머리글(«가» · ○× 안내)은 뺀 값. */
+const estimates = {
+  items: plans.flatMap((plan) =>
+    plan.student.flatMap((page) =>
+      page.form === "term"
+        ? page.blocks.map((b) => termCost(b, b))
+        : page.form === "cloze"
+          ? page.blocks.map((b) => clozeCost(b, b))
+          : [],
+    ),
+  ),
+  rows: plans.flatMap((plan) =>
+    plan.key.flatMap((rows) => rows.map(keyRowCost)),
+  ),
+  worst: params.get("set") === "worst" ? worstPicks() : undefined,
+};
 
 createRoot(document.getElementById("root")!).render(
   <StrictMode>
     <main style={{ ["--cb-paper-scale" as string]: params.get("scale") ?? 1 }}>
       <ConceptBlankPaper
-        sheets={sheetsFor(params.get("set"))}
+        sheets={sheets}
         view={parseConceptBlankView(params.get("view") ?? undefined)}
+      />
+      <script
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(estimates) }}
+        id="cb-estimates"
+        type="application/json"
       />
     </main>
   </StrictMode>,

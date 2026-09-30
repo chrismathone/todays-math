@@ -3,7 +3,12 @@ import type { ConceptBlankSheet } from "@/contracts/conceptBlank.contract";
 import { A4Page } from "@/components/print/A4Page";
 
 import { KeyHead, KeyNotes, KeyTable } from "./paper/KeyBody";
-import { planSheet, sheetHasContent, type SheetPlan } from "./paper/paginate";
+import {
+  numberColumnWidth,
+  planSheet,
+  sheetHasContent,
+  type SheetPlan,
+} from "./paper/paginate";
 import { ContinuationHead, SheetFoot, SheetHead } from "./paper/PaperParts";
 import { StudentBody } from "./paper/StudentBody";
 import styles from "./paper/paper.module.css";
@@ -58,6 +63,7 @@ function studentPages(plan: SheetPlan, sheetIndex: number) {
         data-cb-page={i + 1}
         data-cb-part="student"
         data-cb-sheet={sheet.form}
+        style={{ ["--cb-num" as string]: `${numberColumnWidth(sheet)}px` }}
       >
         {i === 0 ? (
           <SheetHead header={sheet.header} />

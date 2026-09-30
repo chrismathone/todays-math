@@ -3,7 +3,12 @@ import { CONCEPT_BLANK_FORM_LABELS } from "@/contracts/conceptBlank.contract";
 
 import { FigureSvg } from "./FigureSvg";
 import { keyNotes, type KeyRow } from "./paginate";
-import { KeySentence, PaperText, sheetTitle } from "./PaperParts";
+import {
+  KeySentence,
+  PaperText,
+  sheetTitle,
+  titleSizeClass,
+} from "./PaperParts";
 import styles from "./paper.module.css";
 
 /**
@@ -11,12 +16,11 @@ import styles from "./paper.module.css";
  * (교재 원문). 채점 기준은 은행의 우리 문장 — 뜻(핵심어 굵게) · 예 답 · ○× 답과 까닭 · 적용 답 · 이름표 답 · 줄 답.
  */
 export function KeyHead({ sheet }: { sheet: ConceptBlankSheet }) {
+  const title = sheetTitle(sheet.header);
   return (
     <header className={styles.keyHead} data-cb-head="key">
-      <h3>
-        <span>ANSWER KEY · 교사용</span>
-        {sheetTitle(sheet.header)}
-      </h3>
+      <div className={styles.keyKicker}>ANSWER KEY · 교사용</div>
+      <h3 className={titleSizeClass(title)}>{title}</h3>
       <div className={styles.keySource}>
         {sheet.header.unitLabel} · {CONCEPT_BLANK_FORM_LABELS[sheet.form]}
       </div>
@@ -27,6 +31,12 @@ export function KeyHead({ sheet }: { sheet: ConceptBlankSheet }) {
 export function KeyTable({ rows }: { rows: KeyRow[] }) {
   return (
     <table className={styles.key}>
+      {/* 열 폭 고정 — 번호 · 개념 · 채점 기준(나머지). 줄마다 글 길이가 달라도 열이 흔들리지 않는다 */}
+      <colgroup>
+        <col className={styles.keyColNo} />
+        <col className={styles.keyColConcept} />
+        <col />
+      </colgroup>
       <thead>
         <tr>
           <th>번호</th>
@@ -36,7 +46,11 @@ export function KeyTable({ rows }: { rows: KeyRow[] }) {
       </thead>
       <tbody>
         {rows.map((row) => (
-          <tr data-cb-key-row={row.kind} key={`${row.kind}-${row.n}`}>
+          <tr
+            className={row.kind === "figure" ? styles.keyFigureRow : undefined}
+            data-cb-key-row={row.kind}
+            key={`${row.kind}-${row.n}`}
+          >
             <td className={styles.keyNo}>{row.n}</td>
             <KeyCells row={row} />
           </tr>
