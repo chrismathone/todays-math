@@ -2314,7 +2314,7 @@ section("06-02", "6. 원의 성질", "원의 접선", {
   figures: [
     {
       level: "하",
-      prompt: "직선 $l$은 원 $O$와 점 $T$에서만 만난다. 이름을 쓰시오.",
+      prompt: r`직선 $\ell$은 원 $O$와 점 $T$에서만 만난다. 이름을 쓰시오.`,
       svg: (() => {
         const o: Pt = [70, 55];
         const t: Pt = [70, 95];
@@ -2336,7 +2336,7 @@ section("06-02", "6. 원의 성질", "원의 접선", {
       ],
       lines: [
         {
-          label: r`$\overline{OT}$와 $l$이 이루는 각`,
+          label: r`$\overline{OT}$와 $\ell$이 이루는 각`,
           answer: r`$90^\circ$ — 접점에서 그은 반지름은 접선과 직각으로 만난다`,
         },
       ],
