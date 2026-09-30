@@ -264,6 +264,51 @@ describe("parseChatgptResult — 붙여 넣은 글에서 JSON 을 찾아 검증�
     }
   });
 
+  it("🔴 글자 그대로의 `\\n` 은 줄바꿈으로 받아 준다 — 그대로 두면 학생 지면에 `\\n` 이 찍힌다 (25 §12.8)", () => {
+    // 벤치 214세트 · 1,280문항에서 12건(4세트, 셋이 luna) — 12건 모두 진짜. 모델이 줄바꿈을 두 번 이스케이프한 것이다.
+    const literal = String.raw`다음 글의 빈칸에 들어갈 말은?\n\nA pianist who practices\r\nevery day\timproves.`;
+    const coerced = coerceEnglishDraftShape(
+      {
+        ...goodDraft,
+        passage: String.raw`First line.\nSecond line.`,
+        questions: [
+          {
+            ...goodDraft.questions[0],
+            prompt: literal,
+            options: [String.raw`a\nb`, "c", "d", "e", "f"],
+            explanation: String.raw`정답은 ①.\n②는 반대.`,
+            evidence: String.raw`First line.\nSecond line.`,
+          },
+        ],
+      },
+      "chatgpt",
+    ) as {
+      passage: string;
+      questions: {
+        prompt: string;
+        options: string[];
+        explanation: string;
+        evidence: string;
+      }[];
+    };
+    expect(coerced.passage).toBe("First line.\nSecond line.");
+    expect(coerced.questions[0]!.prompt).toBe(
+      "다음 글의 빈칸에 들어갈 말은?\n\nA pianist who practices\nevery day improves.",
+    );
+    expect(coerced.questions[0]!.options[0]).toBe("a\nb");
+    expect(coerced.questions[0]!.explanation).toBe("정답은 ①.\n②는 반대.");
+    expect(coerced.questions[0]!.evidence).toBe("First line.\nSecond line.");
+    // 진짜 줄바꿈과 다른 역슬래시는 그대로
+    expect(
+      (
+        coerceEnglishDraftShape(
+          { ...goodDraft, passage: "a\nb \\x c" },
+          "chatgpt",
+        ) as { passage: string }
+      ).passage,
+    ).toBe("a\nb \\x c");
+  });
+
   it("받아 주는 것은 모양뿐 — 뜻은 그대로 검증기가 본다 (원문자 6 · 서술형 정답 없음)", () => {
     expect(
       coerceEnglishDraftShape(

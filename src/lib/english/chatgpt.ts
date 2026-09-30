@@ -119,6 +119,16 @@ function coerceAnswer(answer: unknown, open: boolean): unknown {
   return numbered ? numbered[1] : answer;
 }
 
+/**
+ * 글자 그대로의 `\n` · `\r\n` · `\t` 를 줄바꿈 · 빈칸으로 — 모델이 줄바꿈을 두 번 이스케이프하면 발문에 `\n\n` 이 글자로 남아
+ * 학생 지면에 찍힌다. 벤치 1,280문항에서 12건, 12건 모두 진짜였다(25 §12.8). 영어 글에 글자 `\n` 이 정당하게 들 일이 없어
+ * 막지 않고 받을 때 고친다. 다른 역슬래시는 건드리지 않는다.
+ */
+function unescapeLiteralBreaks(value: unknown): unknown {
+  if (typeof value !== "string" || !value.includes("\\")) return value;
+  return value.replace(/\\r\\n|\\n|\\r/g, "\n").replace(/\\t/g, " ");
+}
+
 function coerceQuestion(question: unknown): unknown {
   if (!isRecord(question)) return question;
   const open =
@@ -126,24 +136,31 @@ function coerceQuestion(question: unknown): unknown {
     ENGLISH_OPEN_TYPES.includes(question.type as EnglishQuestionType);
   return {
     type: question.type,
-    prompt: question.prompt,
+    prompt: unescapeLiteralBreaks(question.prompt),
     options:
       question.options == null
         ? []
         : Array.isArray(question.options)
           ? question.options.map((option) =>
-              typeof option === "number" ? String(option) : option,
+              typeof option === "number"
+                ? String(option)
+                : unescapeLiteralBreaks(option),
             )
           : question.options,
-    answer: coerceAnswer(question.answer, open),
-    explanation: question.explanation == null ? "" : question.explanation,
-    evidence: question.evidence == null ? "" : question.evidence,
+    answer: unescapeLiteralBreaks(coerceAnswer(question.answer, open)),
+    explanation:
+      question.explanation == null
+        ? ""
+        : unescapeLiteralBreaks(question.explanation),
+    evidence:
+      question.evidence == null ? "" : unescapeLiteralBreaks(question.evidence),
   };
 }
 
 /**
  * ChatGPT · DeepSeek 가 흔히 덧붙이는 **모양**을 받아 준다 — 모르는 열쇠(번호 · 난이도)는 버리고, 서술형의 빠진
- * `options` 는 빈 배열로, 빠진 `explanation`·`evidence` 는 빈 글로, 정답의 원문자·숫자는 번호 문자열로.
+ * `options` 는 빈 배열로, 빠진 `explanation`·`evidence` 는 빈 글로, 정답의 원문자·숫자는 번호 문자열로,
+ * 글자 그대로의 `\n` 은 줄바꿈으로(`unescapeLiteralBreaks`).
  * **뜻은 손대지 않는다** — 보기 수 · 정답 범위 · 근거 대조는 검증기가 그대로 본다. `source` 는 부르는 쪽이 정한다.
  */
 export function coerceEnglishDraftShape(
@@ -156,7 +173,7 @@ export function coerceEnglishDraftShape(
       typeof value.title === "string"
         ? value.title.trim().slice(0, TITLE_MAX)
         : value.title,
-    passage: value.passage,
+    passage: unescapeLiteralBreaks(value.passage),
     questions: Array.isArray(value.questions)
       ? value.questions.map(coerceQuestion)
       : value.questions,

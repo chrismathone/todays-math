@@ -24,7 +24,7 @@ import type { EnglishQuestion } from "@/contracts/english.contract";
 import { runCli } from "./cli";
 import type { GenRecord } from "./generate";
 import { JUDGES, type BenchModel } from "./models";
-import { BENCH_TASKS } from "./tasks";
+import { findTask } from "./taskIndex";
 import { extractJsonObject, flag, pool, safeName } from "./util";
 
 export const SOLVE_A_TYPES = ["주제", "내용 일치"];
@@ -111,7 +111,7 @@ const RUBRIC_SYSTEM =
   "당신은 한국 중·고등학교 영어 내신 시험 문항을 검수하는 수석 출제위원입니다. 엄격하고 일관되게 채점합니다. 반드시 JSON 객체 하나로만 답합니다.";
 
 function rubricPrompt(record: GenRecord): string {
-  const task = BENCH_TASKS.find((t) => t.id === record.task)!;
+  const task = findTask(record.task);
   const draft = record.draft as {
     passage?: string;
     questions?: EnglishQuestion[];
