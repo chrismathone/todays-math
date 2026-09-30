@@ -6,7 +6,9 @@
  * 설계(리드 · codex · grok 합의, 2026-09-30):
  *   solveA  — **정답을 못 보고** 원 지문 + 주제 · 내용 일치를 푼다(보기 순서는 섞는다 — 위치 편향).
  *   solveB  — 원 지문 **없이** 어법 · 빈칸 · 삽입을 문항 속 지문만으로 푼다(원 지문을 보면 답이 샌다).
- *   guess   — 지문 없이 주제 · 내용 일치를 찍는다(지문 의존도 — 총점 밖 진단).
+ *   guess   — 지문 없이 주제 · 내용 일치를 찍는다(지문 의존도 — 총점 밖 진단). 🔴 한 세트의 문항을 **같이** 보여 준다 —
+ *             내용 일치의 맞는 보기들이 지문 내용을 알려 줘 주제의 답이 샌다(2026-09-30 v4 에서 확인).
+ *   guessEach — 같은 것을 문항 **하나씩 따로**(`--kinds guessEach`). 문항 하나가 보기만으로 풀리는지는 이쪽이 잰다.
  *   rubric  — 정답 · 해설 · 근거를 보고 문항 축(1~5)과 지문 축(1~5)을 매긴다. 정답 유일성은 solve 가 맡는다.
  * 결과: `<out>/judge/<생성파일>__<채점관>__<종류>.json`. 이미 있으면 건너뛴다(재개).
  */
@@ -29,8 +31,11 @@ import { extractJsonObject, flag, pool, safeName } from "./util";
 
 export const SOLVE_A_TYPES = ["주제", "내용 일치"];
 export const SOLVE_B_TYPES = ["어법", "빈칸 추론", "문장 삽입"];
+/** `guessEach` 는 기본 채점에 안 들어간다(`--kinds guessEach` 로만) — 문항을 **하나씩 따로** 지문 없이 푼다(25 §12.9) */
 export const JUDGE_KINDS = ["solveA", "solveB", "guess", "rubric"] as const;
-export type JudgeKind = (typeof JUDGE_KINDS)[number];
+export const EXTRA_KINDS = ["guessEach"] as const;
+export type JudgeKind =
+  (typeof JUDGE_KINDS)[number] | (typeof EXTRA_KINDS)[number];
 
 const CIRCLED = ["①", "②", "③", "④", "⑤"];
 
@@ -183,6 +188,55 @@ async function judgeOne(
   )
     return;
   const passage = (record.draft as { passage?: string }).passage ?? "";
+  if (kind === "guessEach") {
+    // 문항마다 따로 부른다 — 다른 문항의 보기가 단서가 되지 않게
+    const each = itemsOf(record, SOLVE_A_TYPES, true);
+    if (!each.length) {
+      writeFileSync(file, JSON.stringify({ kind, empty: true }), "utf8");
+      return;
+    }
+    const answers: unknown[] = [];
+    let total = 0;
+    try {
+      for (const item of each) {
+        const { text, ms } = await runCli({
+          provider: judge.provider,
+          model: judge.model,
+          effort: judge.effort,
+          system: SOLVER_SYSTEM,
+          prompt: solvePrompt("guess", "", [item]),
+          cwd,
+        });
+        total += ms;
+        const one = extractJsonObject(text) as { answers?: unknown[] };
+        answers.push(...(one.answers ?? []));
+      }
+      writeFileSync(
+        file,
+        JSON.stringify(
+          {
+            kind,
+            judge: judge.id,
+            ms: total,
+            items: each.map(({ id, index, order }) => ({ id, index, order })),
+            result: { answers },
+            error: null,
+          },
+          null,
+          2,
+        ),
+        "utf8",
+      );
+      console.log(
+        `완료  ${judge.id}  ${kind}  ${path.basename(genFile)}  ${total}ms`,
+      );
+    } catch (e) {
+      console.log(
+        `실패  ${judge.id}  ${kind}  ${path.basename(genFile)}  ${(e as Error).message.slice(0, 200)}`,
+      );
+    }
+    return;
+  }
   let prompt: string;
   let system: string;
   let items: Item[] = [];

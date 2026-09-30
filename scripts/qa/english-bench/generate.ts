@@ -25,7 +25,7 @@ import { isV4Version, v4Prompt } from "./promptV4";
 import { isStrictVersion, strictPrompt } from "./promptStrict";
 import { GENERATORS, type BenchModel } from "./models";
 import { BENCH_TASKS, type BenchTask } from "./tasks";
-import { V4_TASKS } from "./tasksV4";
+import { V4_FICTION_TASKS, V4_TASKS } from "./tasksV4";
 import { flag, pool, safeName } from "./util";
 
 export interface GenRecord {
@@ -146,7 +146,12 @@ async function main() {
   // 회사(CLI)마다 따로 줄을 세운다 — 한 회사의 한도가 다른 회사를 막지 않게
   const byProvider = new Map<Provider, (() => Promise<void>)[]>();
   // `--taskset v4` — 주제 · 내용 일치만 재는 새 지문 열둘(tasksV4.ts)
-  const taskset = flag("--taskset") === "v4" ? V4_TASKS : BENCH_TASKS;
+  const taskset =
+    flag("--taskset") === "v4"
+      ? V4_TASKS
+      : flag("--taskset") === "v4f"
+        ? V4_FICTION_TASKS
+        : BENCH_TASKS;
   for (const task of taskset.filter((t) => !tasks || tasks.includes(t.id)))
     for (const model of models) {
       const jobs = byProvider.get(model.provider) ?? [];

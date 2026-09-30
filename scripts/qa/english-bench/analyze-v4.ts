@@ -21,6 +21,11 @@ const ARMS = ["v3", "v4a", "v4b"] as const;
 type Arm = (typeof ARMS)[number];
 const JUDGE_IDS = ["judge:codex", "judge:claude"];
 const TYPES = ["주제", "내용 일치"];
+/**
+ * 어느 탐침으로 «지문 없이»를 볼까 — 미리 적은 규칙은 `guess`(세트의 문항을 같이 보여 줌). `--guess-kind guessEach` 는
+ * 문항을 하나씩 따로 보여 준 **사후 측정**이다(2026-09-30: `guess` 는 내용 일치의 보기가 주제의 답을 알려 준다).
+ */
+const GUESS_KIND = flag("--guess-kind") ?? "guess";
 export const GUESS_CEILING = 0.4;
 export const SOLVE_DROP = 0.05;
 export const RUBRIC_DROP = 0.3;
@@ -87,7 +92,7 @@ function loadArm(out: string, arm: Arm) {
       const solves: number[] = [];
       const rubrics: number[] = [];
       for (const judge of JUDGE_IDS) {
-        const gv = solved(readJudge(dir, base, judge, "guess"), index, key);
+        const gv = solved(readJudge(dir, base, judge, GUESS_KIND), index, key);
         if (gv !== null) guesses.push(gv);
         const sv = solved(readJudge(dir, base, judge, "solveA"), index, key);
         if (sv !== null) solves.push(sv);
@@ -152,6 +157,9 @@ function main() {
   const of = (arm: Arm, key: "guess" | "solve" | "rubric") =>
     mean([...arms[arm].passages.values()].map((p) => p[key]));
 
+  console.log(
+    `지문 없이 풀기 탐침: ${GUESS_KIND}${GUESS_KIND === "guess" ? " (미리 적은 규칙)" : " (사후 측정 — 채택 규칙 밖)"}`,
+  );
   console.log(
     "판 | 세트 | 통과 | 지문 | 지문 없이 | 지문 보고 | 루브릭 | 주제 지문 없이 | 내용 일치 지문 없이",
   );

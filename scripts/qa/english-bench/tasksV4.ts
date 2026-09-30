@@ -129,3 +129,58 @@ export const V4_TASKS: BenchTask[] = SOURCES.map((s) => ({
     types: ["주제", "내용 일치"],
   },
 }));
+
+/**
+ * 지어낸 내용의 지문 넷 — «지문 없이 100%»가 세상 지식 때문인지 가르려고 쓴다(2026-09-30, 25 §12.9 사후 측정).
+ * 위 열둘은 실제 현상(군중의 지혜 · 위약 · 철도 표준시)을 다뤄 채점관 AI 가 내용을 이미 안다. 아래는 없는 마을 · 가게 · 학교의
+ * 이야기라 사실을 알 길이 없고, 결론도 어느 쪽으로든 그럴듯하게 썼다. 🔴 우리가 지은 글 · 실제 사실이 아니다.
+ */
+const FICTION: Source[] = [
+  {
+    id: "F01-orvane-market",
+    label: "오르반 마을의 장 · 중3 (지어낸 글)",
+    grade: "중3",
+    difficulty: "표준",
+    passage:
+      "In the hill village of Orvane, the weekly market used to open at dawn. Farmers walked down in the dark, and most stalls were empty again by ten. Three years ago the village council moved the opening to noon. The council did not do this to help the farmers, who complained loudly. It did so because the new bridge had brought bus visitors, and the buses arrived at eleven. At first sales of vegetables fell, since local families had always shopped early. Sales of cheese and honey, however, doubled, because visitors preferred food they could carry home. Within a year the vegetable growers began making pickles and jam. Today older villagers still call the noon market a mistake, while the younger sellers say they would not return to dawn.",
+  },
+  {
+    id: "F02-marrow-seats",
+    label: "매로 학교의 자리 바꾸기 · 고1 (지어낸 글)",
+    grade: "고1",
+    difficulty: "표준",
+    passage:
+      "Marrow School began rotating classroom seats every month, expecting that students moved to the front would participate more. The records told a different story. Students who moved forward asked about the same number of questions as before, while those who moved to the back rows asked noticeably more. Teachers first suspected that back-row students were simply less afraid of being watched. Interviews pointed elsewhere. From the back, students could see which classmates looked confused, and they often asked the question they guessed others were too shy to raise. When the school later tested a circular seating plan, in which everyone could see everyone else, the increase spread across the whole class. The school therefore concluded that the useful change was not distance from the teacher but a clear view of one's classmates.",
+  },
+  {
+    id: "F03-tulle-bakery",
+    label: "튈 빵집의 할인 · 고1 (지어낸 글)",
+    grade: "고1",
+    difficulty: "표준",
+    passage:
+      "For years the Tulle Street bakery sold yesterday's bread at half price from a basket near the door. The owner believed the basket cost her money, because customers who might have bought fresh loaves chose the cheap ones instead. Last spring she removed it. Sales of fresh bread did not rise; they fell by a small but steady amount. Regular customers explained why when she asked. Many had come in for the cheap loaf and then added a fresh pastry or a coffee, and without the basket they had less reason to stop by. Others said the basket had shown them that nothing in the shop was older than a day. In the autumn the basket returned, this time placed at the back of the shop so that visitors walked past every shelf to reach it.",
+  },
+  {
+    id: "F04-selby-tern",
+    label: "셀비 습지의 회색 제비갈매기 · 고2 (지어낸 글)",
+    grade: "고2",
+    difficulty: "심화",
+    passage:
+      "The gray tern of the Selby marsh was long assumed to nest earlier in warm years, as many birds do. Fifteen seasons of field notes show the opposite: the warmer the spring, the later the first eggs appear. The explanation lies in the reeds rather than in the birds. Terns on this marsh build their nests on floating mats of dead reed, and in a warm spring the old stems rot and sink before new growth can replace them. The birds must then wait for fresh reeds to die back and drift together, which delays nesting by two to three weeks. Pairs that nest late raise fewer chicks, since the small fish they feed on move to deeper water by midsummer. Warm years, which appear gentle, are therefore the difficult ones for this colony.",
+  },
+];
+
+export const V4_FICTION_TASKS: BenchTask[] = FICTION.map((s) => ({
+  id: s.id,
+  label: s.label,
+  grade: s.grade,
+  request: {
+    mode: "original",
+    topic: "",
+    passage: s.passage,
+    difficulty: s.difficulty,
+    count: 2,
+    words: 150,
+    types: ["주제", "내용 일치"],
+  },
+}));
