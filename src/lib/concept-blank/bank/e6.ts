@@ -10,7 +10,10 @@ import type {
 type SectionBank = {
   id: string;
   section: string;
-  concepts: [ConceptEntry["level"], ConceptEntry["kind"], string, string][];
+  /** `null` = 뺀 문항의 빈 자리 — 고정 문항이라 뒤 번호가 밀리지 않게 번호만 센다. */
+  concepts: (
+    [ConceptEntry["level"], ConceptEntry["kind"], string, string] | null
+  )[];
   ox: [OxItem["level"], string, boolean, string];
   apply: [ApplyItem["level"], string, string];
 };
@@ -1622,8 +1625,9 @@ const sections: SectionBank[] = [
     id: "e6-2-4-1",
     section: "초6::2-4 비례식과 비례배분::2-4-1 비의 성질 알아보기",
     concepts: [
-      ["하", "정의", "전항", "비에서 콜론($:$) {앞에 적힌 수}가 전항이다."],
-      ["하", "정의", "후항", "비에서 콜론($:$) {뒤에 적힌 수}가 후항이다."],
+      // c1 «전항» · c2 «후항» — 2022 개정 «용어와 기호»에 없어 뺐다(3자 합의 2026-10-01 · consult-27).
+      null,
+      null,
       [
         "중",
         "성질",
@@ -1636,6 +1640,18 @@ const sections: SectionBank[] = [
         "$0$으로 곱하면 안 되는 까닭",
         "비의 두 항에 $0$을 곱하면 {기준이 되는 양도 $0$}이 되어 원래의 비율을 나타낼 수 없다.",
       ],
+      [
+        "하",
+        "방법",
+        "같은 수를 곱해 만든 비",
+        "$2:3$의 두 수에 각각 $2$를 곱하면 비율이 같은 비 {$4:6$}이 된다.",
+      ],
+      [
+        "하",
+        "방법",
+        "같은 수로 나누어 만든 비",
+        "$6:8$의 두 수를 각각 $2$로 나누면 비율이 같은 비 {$3:4$}가 된다.",
+      ],
     ],
     ox: [
       "중",
@@ -1643,7 +1659,11 @@ const sections: SectionBank[] = [
       true,
       "두 항을 각각 $3$배 했으므로 비율이 유지된다.",
     ],
-    apply: ["상", "$7:9$와 비율이 같고 후항이 $45$인 비의 전항은?", "$35$"],
+    apply: [
+      "상",
+      "$7:9$와 비율이 같은 비 $\\square:45$에서 $\\square$에 알맞은 수는?",
+      "$35$",
+    ],
   },
   {
     id: "e6-2-4-2",
@@ -1694,26 +1714,17 @@ const sections: SectionBank[] = [
         "중",
         "정의",
         "비율",
-        "비례식의 양쪽 비에서 전항이 후항의 {몇 배인지} 나타낸 값은 서로 같다.",
+        "비례식의 양쪽 비에서 비교하는 양이 기준량의 {몇 배인지} 나타낸 값은 서로 같다.",
       ],
       [
         "중",
         "공식",
         "비율을 구하는 식",
-        "각 비의 비율은 {전항을 후항으로 나눈 값}으로 확인한다.",
+        "각 비의 비율은 {비교하는 양을 기준량으로 나눈 값}으로 확인한다.",
       ],
-      [
-        "하",
-        "정의",
-        "외항",
-        "비례식에서 양 끝, 곧 {첫 번째와 네 번째 수}가 외항이다.",
-      ],
-      [
-        "하",
-        "정의",
-        "내항",
-        "비례식의 가운데에 놓인 {두 번째와 세 번째 수}가 내항이다.",
-      ],
+      // c4 «외항» · c5 «내항» — 2022 개정 «용어와 기호»에 없어 뺐다(3자 합의 2026-10-01 · consult-27).
+      null,
+      null,
       [
         "상",
         "방법",
@@ -1723,14 +1734,14 @@ const sections: SectionBank[] = [
     ],
     ox: [
       "중",
-      "$2:3=4:6$에서 내항은 $3$과 $4$이다.",
+      "$2:3$과 $6:9$는 비례식 $2:3=6:9$로 나타낼 수 있다.",
       true,
-      "네 수를 왼쪽부터 읽을 때 가운데 두 수이다.",
+      "두 비의 비율이 모두 $\\frac{2}{3}$이다.",
     ],
     apply: [
       "상",
-      "$3:5=9:15$에서 외항 두 수와 공통 비율을 쓰시오.",
-      "$3$과 $15$, $\\frac{3}{5}$",
+      "$3:5=9:15$에서 양쪽 비의 비율을 각각 구하고, 같은지 쓰시오.",
+      "$\\frac{3}{5}$, $\\frac{9}{15}=\\frac{3}{5}$ — 같다",
     ],
   },
   {
@@ -1740,7 +1751,7 @@ const sections: SectionBank[] = [
       [
         "하",
         "방법",
-        "외항과 내항의 곱",
+        "양 끝의 곱과 가운데의 곱",
         "비례식에서는 양 끝 두 수끼리, 가운데 두 수끼리 각각 {곱}을 구한다.",
       ],
       [
@@ -2568,14 +2579,13 @@ const figures: FigureItem[] = [
 
 export const bank: ConceptBlankBank = {
   concepts: sections.flatMap(({ id, section, concepts }) =>
-    concepts.map(([level, kind, term, definition], i) => ({
-      id: `${id}-c${i + 1}`,
-      section,
-      level,
-      kind,
-      term,
-      definition,
-    })),
+    concepts.flatMap((entry, i) => {
+      if (!entry) return [];
+      const [level, kind, term, definition] = entry;
+      return [
+        { id: `${id}-c${i + 1}`, section, level, kind, term, definition },
+      ];
+    }),
   ),
   ox: sections.map(({ id, section, ox: [level, statement, answer, why] }) => ({
     id: `${id}-o1`,
