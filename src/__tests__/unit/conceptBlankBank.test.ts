@@ -6,6 +6,7 @@ import { describe, expect, it } from "vitest";
 import {
   blankKeywords,
   conceptBlankBankSchema,
+  splitBlankSentence,
 } from "@/contracts/conceptBlank.contract";
 import {
   BANK_PARTS,
@@ -94,7 +95,11 @@ describe("concept blank bank", () => {
     ]) {
       const keys = blankKeywords(c.definition);
       expect(keys.length, c.id).toBeGreaterThan(0);
-      const rest = c.definition.replace(/\{[^{}]+\}/g, "").replace(/\s+/g, "");
+      const rest = splitBlankSentence(c.definition)
+        .filter((p) => p.kind === "text")
+        .map((p) => p.text)
+        .join("")
+        .replace(/\s+/g, "");
       expect(
         rest.length,
         `${c.id}: 빈칸을 빼면 문장이 거의 없다`,
