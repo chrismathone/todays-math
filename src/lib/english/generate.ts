@@ -1,7 +1,8 @@
 /**
- * 오늘의 영어 — DeepSeek 직접 생성 (D-148 · 25 §4.3). 서버 전용 — `callAi` 가 키를 읽는다.
+ * 오늘의 영어 — AI 직접 생성 (D-148 · 25 §4.3). 서버 전용 — 호출부가 키를 읽는다.
+ * 공급자: `OPENAI_API_KEY` 가 있으면 gpt-6-luna(`callOpenAi`), 없으면 DeepSeek(`callAi`) — `resolveEnglishVendor`(25 §12.7).
  *
- * 흐름: 프롬프트(`src/lib/ai/prompts/englishExam.ts`) → `callAi` → **객체 하나** `parseAiJsonObject`
+ * 흐름: 프롬프트(`src/lib/ai/prompts/englishExam.ts`) → `callOpenAi`/`callAi` → **객체 하나** `parseAiJsonObject`
  *   → 모양 받아 주기(`coerceEnglishDraftShape`) → 검증기 `validateEnglishDraft(value, input)` → `source: "deepseek"`.
  *
  * 재시도: JSON 을 못 읽으면(`AiParseError`) `withOneRetryOnParseFailure` 가 한 번 더 부른다. 길이 한도
@@ -10,7 +11,8 @@
  * 검증기 실패 → **사유를 되먹여 한 번 고쳐 쓴다**(D-150, 2026-09-30). 똑같이 다시 부르는 재시도가 아니라, 검증기 사유와
  * 결정적 품질 검사 실패(`feedback.ts`)를 문항 번호와 함께 주고 «지적된 문항만» 고치게 한다. 모델 벤치에서 DeepSeek
  * 두 모델의 채택률이 67% → 100% 가 됐다(25 §12). 🔴 라우트 `maxDuration = 300` 을 넘지 않게 **첫 호출이
- * `ENGLISH_REFINE_BUDGET_MS` 안에 끝났을 때만** 고친다 — v4-pro 는 한 번에 130~310초라 대개 건너뛴다.
+ * `ENGLISH_REFINE_BUDGET_MS` 안에 끝났을 때만** 고친다 — v4-pro 는 한 번에 130~310초라 대개 건너뛰고,
+ * luna(API)는 50~90초라 대개 고친다.
  * 고쳐 쓴 것도 걸리거나 못 읽으면 `EnglishDraftRejectedError`(사유는 마지막으로 읽힌 초안의 것).
  *
  * 대응 라우트: POST /api/english/generate (저장하지 않고 초안만 돌려준다).
@@ -22,8 +24,9 @@ import type {
   EnglishGrade,
 } from "@/contracts/english.contract";
 import { callAi } from "@/lib/ai/client";
-import { AiGenerationError } from "@/lib/ai/errors";
+import { AiConfigError, AiGenerationError } from "@/lib/ai/errors";
 import { parseAiJsonObject } from "@/lib/ai/jsonRepair";
+import { callOpenAi } from "@/lib/ai/openai";
 import {
   buildEnglishRefinePrompt,
   buildEnglishSystemPrompt,
@@ -56,6 +59,28 @@ export class EnglishDraftRejectedError extends AiGenerationError {
   }
 }
 
+export type EnglishAiVendor = "openai" | "deepseek";
+
+/**
+ * 영어 생성 공급자 — `OPENAI_API_KEY` 가 있으면 luna(`src/lib/ai/openai.ts`), 없으면 DeepSeek(`callAi`).
+ * 운영에 키를 넣기 전까지는 지금 동작 그대로다. `ENGLISH_AI_VENDOR`(openai | deepseek)로 코드 없이 고르거나 되돌린다
+ * (`STUDIO_AI_FIGURE_VENDOR` 와 같은 결). 낯선 값은 설정 오류 — 조용히 다른 공급자로 가지 않는다.
+ * 원장님 2026-09-30 «luna 로»(25 §12.7). 초안의 `source` 는 공급자와 무관하게 "deepseek"(화면 이름 «AI 생성») —
+ * 값을 바꾸려면 DB `source` CHECK 마이그레이션이 필요해 그대로 둔다.
+ */
+export function resolveEnglishVendor(
+  env: Record<string, string | undefined> = process.env,
+): EnglishAiVendor {
+  const chosen = env.ENGLISH_AI_VENDOR?.trim();
+  if (chosen) {
+    if (chosen === "openai" || chosen === "deepseek") return chosen;
+    throw new AiConfigError(
+      "ENGLISH_AI_VENDOR 는 openai 또는 deepseek 여야 합니다.",
+    );
+  }
+  return env.OPENAI_API_KEY?.trim() ? "openai" : "deepseek";
+}
+
 /** 고쳐 쓰기를 시작해도 되는 첫 호출의 최대 소요 — 라우트 300초에서 고쳐 쓰기 한 번(~100초)과 여유를 뺀 값 */
 export const ENGLISH_REFINE_BUDGET_MS = 150_000;
 
@@ -74,9 +99,10 @@ export async function generateEnglishDraft(
   { now = Date.now }: GenerateEnglishOptions = {},
 ): Promise<EnglishDraft> {
   const started = now();
+  const call = resolveEnglishVendor() === "openai" ? callOpenAi : callAi;
   const system = buildEnglishSystemPrompt();
   const attempt = async () => {
-    const raw = await callAi({
+    const raw = await call({
       system,
       prompt: buildEnglishUserPrompt(input, grade),
     });
@@ -98,7 +124,7 @@ export async function generateEnglishDraft(
   try {
     revised = coerceEnglishDraftShape(
       parseAiJsonObject(
-        await callAi({
+        await call({
           system,
           prompt: buildEnglishRefinePrompt(
             input,

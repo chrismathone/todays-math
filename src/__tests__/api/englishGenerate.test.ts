@@ -130,6 +130,9 @@ beforeEach(() => {
   vi.unstubAllEnvs();
   vi.stubEnv("AUTH_URL", ORIGIN);
   vi.stubEnv("DEEPSEEK_API_KEY", "test-api-key");
+  // OpenAI 키가 있으면 영어는 luna 로 간다 — 이 파일은 DeepSeek 경로를 본다
+  vi.stubEnv("OPENAI_API_KEY", "");
+  vi.stubEnv("ENGLISH_AI_VENDOR", "");
 });
 
 describe("POST /api/english/generate — 문지기 순서", () => {

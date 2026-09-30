@@ -1,5 +1,6 @@
 /**
- * POST /api/english/generate — DeepSeek 직접 생성 (D-148 · 25 §3 · §4.3).
+ * POST /api/english/generate — AI 직접 생성 (D-148 · 25 §3 · §4.3). 공급자는 `resolveEnglishVendor`
+ * (`OPENAI_API_KEY` 가 있으면 gpt-6-luna, 없으면 DeepSeek — 25 §12.7).
  *
  * **저장하지 않는다** — 초안만 돌려주고, 저장은 클라이언트가 `POST /api/english/exams/{id}/sets` 로 한다
  * (변형 미리보기 `api/problems/transform` 과 같은 결: 결과를 보기 전에 쌓이지 않는다).

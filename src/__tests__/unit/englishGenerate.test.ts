@@ -17,12 +17,15 @@ vi.mock("openai", () => ({
   }),
 }));
 
+import OpenAI from "openai";
+
 import { DEEPSEEK_MODEL } from "@/lib/ai/client";
 import {
   AiCapacityError,
   AiConfigError,
   AiGenerationError,
 } from "@/lib/ai/errors";
+import { ENGLISH_OPENAI_EFFORT, ENGLISH_OPENAI_MODEL } from "@/lib/ai/openai";
 import {
   buildEnglishSystemPrompt,
   buildEnglishUserPrompt,
@@ -32,6 +35,7 @@ import {
   ENGLISH_REFINE_BUDGET_MS,
   EnglishDraftRejectedError,
   generateEnglishDraft,
+  resolveEnglishVendor,
 } from "@/lib/english/generate";
 
 const passage =
@@ -92,8 +96,12 @@ const expectedMaxTokens = Number(process.env.DEEPSEEK_MAX_TOKENS ?? 64000);
 
 beforeEach(() => {
   mockCreate.mockReset();
+  vi.mocked(OpenAI).mockClear();
   vi.unstubAllEnvs();
   vi.stubEnv("DEEPSEEK_API_KEY", "test-api-key");
+  // OpenAI 키가 있으면 영어는 luna 로 간다 — 셸에 키가 있어도 아래 DeepSeek 시험이 흔들리지 않게 비운다
+  vi.stubEnv("OPENAI_API_KEY", "");
+  vi.stubEnv("ENGLISH_AI_VENDOR", "");
 });
 
 describe("프롬프트 — 규칙 · 자료 감싸기", () => {
@@ -344,6 +352,113 @@ describe("generateEnglishDraft — 모킹된 DeepSeek", () => {
 
   it("DEEPSEEK_API_KEY 가 없으면 AI 를 부르지 않고 AiConfigError", async () => {
     vi.stubEnv("DEEPSEEK_API_KEY", "");
+
+    await expect(generateEnglishDraft(input, "고1")).rejects.toBeInstanceOf(
+      AiConfigError,
+    );
+    expect(mockCreate).not.toHaveBeenCalled();
+  });
+});
+
+describe("영어 AI 공급자 — OPENAI_API_KEY 가 있으면 luna (원장님 2026-09-30 «luna 로» · 25 §12.7)", () => {
+  it("키가 없으면 DeepSeek — 운영에 키를 넣기 전까지 지금 동작 그대로", () => {
+    expect(resolveEnglishVendor({})).toBe("deepseek");
+    expect(resolveEnglishVendor({ OPENAI_API_KEY: "  " })).toBe("deepseek");
+  });
+
+  it("키가 있으면 openai", () => {
+    expect(resolveEnglishVendor({ OPENAI_API_KEY: "k" })).toBe("openai");
+  });
+
+  it("ENGLISH_AI_VENDOR 로 코드 없이 고른다 — deepseek 면 키가 있어도 DeepSeek", () => {
+    expect(
+      resolveEnglishVendor({
+        OPENAI_API_KEY: "k",
+        ENGLISH_AI_VENDOR: "deepseek",
+      }),
+    ).toBe("deepseek");
+    expect(resolveEnglishVendor({ ENGLISH_AI_VENDOR: " openai " })).toBe(
+      "openai",
+    );
+  });
+
+  it("낯선 값이면 설정 오류 — 조용히 다른 공급자로 가지 않는다", () => {
+    expect(() => resolveEnglishVendor({ ENGLISH_AI_VENDOR: "gpt" })).toThrow(
+      AiConfigError,
+    );
+  });
+});
+
+describe("generateEnglishDraft — 모킹된 OpenAI (gpt-6-luna)", () => {
+  beforeEach(() => {
+    vi.stubEnv("OPENAI_API_KEY", "test-openai-key");
+    vi.stubEnv("DEEPSEEK_API_KEY", "");
+  });
+
+  it("요청 — OpenAI 기본 주소(baseURL 없음) · luna · max_completion_tokens · 추론 강도 · 같은 프롬프트", async () => {
+    mockCreate.mockResolvedValueOnce(aiTextResponse(JSON.stringify(draft)));
+
+    const result = await generateEnglishDraft(input, "고1");
+
+    expect(result.questions).toHaveLength(2);
+    const made = vi.mocked(OpenAI).mock.calls.at(-1)![0] as {
+      apiKey: string;
+      baseURL?: string;
+    };
+    expect(made.apiKey).toBe("test-openai-key");
+    expect(made.baseURL).toBeUndefined();
+    const sent = mockCreate.mock.calls[0]![0]! as {
+      model: string;
+      max_tokens?: number;
+      max_completion_tokens: number;
+      reasoning_effort: string;
+      messages: { role: string; content: string }[];
+    };
+    expect(sent.model).toBe(ENGLISH_OPENAI_MODEL);
+    expect(ENGLISH_OPENAI_MODEL).toBe("gpt-6-luna");
+    expect(sent.max_tokens).toBeUndefined();
+    expect(sent.max_completion_tokens).toBeGreaterThanOrEqual(32000);
+    expect(sent.reasoning_effort).toBe(ENGLISH_OPENAI_EFFORT);
+    expect(sent.messages[0]?.content).toBe(buildEnglishSystemPrompt());
+    expect(sent.messages[1]?.content).toContain(passage);
+  });
+
+  it("거절되면 고쳐 쓰기도 luna 로 부른다", async () => {
+    const fourOptions = {
+      ...draft,
+      questions: [
+        {
+          ...draft.questions[0],
+          options: draft.questions[0]!.options.slice(0, 4),
+        },
+        draft.questions[1],
+      ],
+    };
+    mockCreate
+      .mockResolvedValueOnce(aiTextResponse(JSON.stringify(fourOptions)))
+      .mockResolvedValueOnce(aiTextResponse(JSON.stringify(draft)));
+
+    await generateEnglishDraft(input, "고1");
+
+    expect(mockCreate).toHaveBeenCalledTimes(2);
+    for (const [sent] of mockCreate.mock.calls)
+      expect((sent as { model: string }).model).toBe(ENGLISH_OPENAI_MODEL);
+  });
+
+  it("답을 내기 전에 길이 한도에 걸리면 AiCapacityError — 재시도하지 않는다", async () => {
+    mockCreate.mockResolvedValueOnce({
+      choices: [{ finish_reason: "length", message: { content: "" } }],
+    });
+
+    await expect(generateEnglishDraft(input, "고1")).rejects.toBeInstanceOf(
+      AiCapacityError,
+    );
+    expect(mockCreate).toHaveBeenCalledTimes(1);
+  });
+
+  it("ENGLISH_AI_VENDOR=openai 인데 키가 없으면 AiConfigError — 부르지 않는다", async () => {
+    vi.stubEnv("OPENAI_API_KEY", "");
+    vi.stubEnv("ENGLISH_AI_VENDOR", "openai");
 
     await expect(generateEnglishDraft(input, "고1")).rejects.toBeInstanceOf(
       AiConfigError,
