@@ -11,7 +11,7 @@ async function request<T>(
   url: string,
   parse: (value: unknown) => Promise<T>,
   body?: unknown,
-): Promise<Submitted<T>> {
+): Promise<Submitted<T> & { code?: string }> {
   const controller = new AbortController();
   const timeout = setTimeout(() => controller.abort(), 15_000);
   try {
@@ -31,6 +31,9 @@ async function request<T>(
       return {
         ok: false,
         status: response.status,
+        ...(typeof json?.error?.code === "string"
+          ? { code: json.error.code }
+          : {}),
         message:
           json?.error?.details?.[0]?.message ??
           json?.error?.message ??

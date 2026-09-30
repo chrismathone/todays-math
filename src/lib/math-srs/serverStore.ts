@@ -1,7 +1,10 @@
 import "server-only";
 import { db } from "@/lib/db";
 import { updateDailyJourney } from "./dailyJourney";
-import { updateExpedition, type ExpeditionWriter } from "@/lib/math-explorers/expedition";
+import {
+  updateExpedition,
+  type ExpeditionWriter,
+} from "@/lib/math-explorers/expedition";
 import {
   emptySrsState,
   parseSrsState,
@@ -77,15 +80,18 @@ export async function changeSrsState(
     )
       throw new SrsConflict(
         "학습 기록이 변경되었습니다. 설정을 다시 불러와 주세요.",
+        "REVISION_MISMATCH",
       );
     const state = change(previous.state);
     if (state === previous.state) return previous;
-    const payload = parseSrsState(updateExpedition(
+    const payload = parseSrsState(
+      updateExpedition(
         previous.state,
         updateDailyJourney(previous.state, state),
         new Date(),
         writer,
-      ));
+      ),
+    );
     try {
       if (previous.revision === 0) {
         await table.create({ data: { studentId, revision: 1, payload } });
@@ -105,5 +111,6 @@ export async function changeSrsState(
   }
   throw new SrsConflict(
     "다른 창에서 학습 기록을 저장했습니다. 다시 불러와 주세요.",
+    "REVISION_MISMATCH",
   );
 }
