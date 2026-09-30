@@ -1,0 +1,617 @@
+<!doctype html>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>탐험 기록 교사 화면 와이어</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nanum+Myeongjo:wght@800&family=Noto+Sans+KR:wght@400;500;700&display=swap">
+<style>
+/* 와이어 — 흑백 · 상자 · 실제 글자만. 색 · 글꼴 · 그림자는 Hi-fi 단계(05 §0-3).
+   바깥 틀(제목 · 탭 · 표)은 wire-supplement-cards · wire-d130 과 같은 토큰. 화면 안은 회색조만.
+   화면 조각은 실제로 줄어드는 HTML 이다 — 창을 좁히면 폰 폭 배치가 그대로 보인다.
+   누르는 자리(D-30)는 밑줄 글 · 굵은 테두리 단추 · 탭 · 알약으로만 그린다. 줄 · 상자 · 딱지는 눌리지 않는다. */
+:root {
+  color-scheme: light;
+  --paper: #fafaf8; --ink: #161616; --ink-2: #61615e; --rule: #b9b9b6; --pick: #2064b3;
+  --sans: "Pretendard Variable", Pretendard, "Noto Sans KR", "Malgun Gothic", system-ui, sans-serif;
+  --serif: "Nanum Myeongjo", "Noto Serif KR", Batang, serif;
+}
+html, body { background: var(--paper); }
+body { margin: 0; color: var(--ink); font-family: var(--sans); font-size: 14px; line-height: 1.55; word-break: keep-all; overflow-wrap: anywhere; }
+* { box-sizing: border-box; }
+[hidden] { display: none !important; }
+button { font: inherit; color: inherit; }
+button:focus-visible { outline: 3px solid #82a1ff; outline-offset: 2px; }
+.tab { cursor: pointer; }
+
+.board { max-width: 1240px; margin: 0 auto; padding-inline: 24px; padding-block: 28px 72px; }
+@media (max-width: 600px) { .board { padding-inline: 16px; } }
+.head { display: grid; gap: 10px; padding-bottom: 18px; }
+.eyebrow { margin: 0; font-size: 12px; letter-spacing: .06em; color: var(--ink-2); }
+h1 { margin: 0; font-family: var(--serif); font-weight: 800; font-size: 30px; line-height: 1.25; letter-spacing: -.02em; text-wrap: balance; }
+.lede { margin: 0; max-width: 76ch; color: var(--ink-2); font-size: 15px; }
+.lede b { color: var(--ink); }
+.facts { display: flex; flex-wrap: wrap; gap: 6px 22px; margin: 4px 0 0; padding: 0; list-style: none; font-size: 13px; color: var(--ink-2); }
+.facts b { color: var(--ink); font-weight: 600; }
+
+.ask { border: 1px solid var(--ink); border-radius: 8px; background: #fff; padding: 18px 20px; display: grid; gap: 10px; margin-bottom: 22px; }
+.ask h2 { margin: 0; font-family: var(--serif); font-size: 20px; font-weight: 800; }
+.ask ol { margin: 0; padding-left: 20px; display: grid; gap: 11px; color: var(--ink-2); }
+.ask li b { color: var(--ink); }
+.opts { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 4px; }
+.opt { border: 1px solid var(--rule); border-radius: 999px; padding: 2px 10px; font-size: 12px; background: #fff; color: var(--ink-2); }
+.note { margin: 0; max-width: 84ch; font-size: 13px; color: var(--ink-2); }
+.note b { color: var(--ink); }
+
+h2.sec { margin: 30px 0 8px; font-family: var(--serif); font-size: 22px; font-weight: 800; letter-spacing: -.01em; }
+.tablewrap { overflow-x: auto; }
+table.t { border-collapse: collapse; font-size: 12.5px; background: #fff; min-width: 900px; }
+table.t th, table.t td { border: 1px solid #d6d6d3; padding: 6px 9px; text-align: left; vertical-align: top; }
+table.t th { font-weight: 700; background: #f3f3f1; }
+table.t th[scope="row"] { white-space: nowrap; }
+table.t td.n { font-variant-numeric: tabular-nums; white-space: nowrap; }
+table.t code, .note code, .meta code { font-size: 11.5px; background: #f0f0ee; padding: 0 4px; border-radius: 3px; }
+
+.toolbar { position: sticky; top: 0; z-index: 20; display: flex; flex-wrap: wrap; align-items: center; gap: 4px 10px; padding-block: 10px; background: var(--paper); border-block: 1px solid var(--rule); margin-top: 30px; }
+.tabs { display: flex; flex-wrap: wrap; gap: 4px; }
+.tab { display: flex; gap: 8px; align-items: baseline; padding: 7px 12px; border: 1px solid transparent; border-radius: 6px; background: none; color: var(--ink-2); }
+.tab .k { font-weight: 700; color: var(--ink); }
+.tab:hover { background: #fff; }
+.tab[aria-selected="true"] { background: #fff; border-color: var(--rule); color: var(--ink); box-shadow: inset 0 -2px 0 var(--pick); }
+
+.panel { padding-top: 22px; display: grid; grid-template-columns: minmax(0, 1fr); gap: 18px; min-width: 0; }
+.thesis h2 { margin: 0 0 6px; font-family: var(--serif); font-size: 22px; font-weight: 800; letter-spacing: -.01em; }
+.thesis p { margin: 0; max-width: 78ch; color: var(--ink-2); }
+.meta { margin: 0; display: grid; grid-template-columns: max-content minmax(0, 1fr); gap: 5px 14px; font-size: 13px; max-width: 980px; }
+.meta dt { font-weight: 700; }
+.meta dd { margin: 0; color: var(--ink-2); }
+.cut { margin: 0; display: grid; grid-template-columns: minmax(0, 1fr); gap: 8px; min-width: 0; }
+.cut figcaption { font-size: 12.5px; color: var(--ink-2); max-width: 90ch; }
+.cut figcaption b { color: var(--ink); }
+.list { margin: 0; padding-left: 18px; display: grid; gap: 6px; color: var(--ink-2); max-width: 980px; }
+.list b { color: var(--ink); }
+.two { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 14px; align-items: start; }
+.three { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 14px; align-items: start; }
+@media (max-width: 900px) { .two, .three { grid-template-columns: minmax(0, 1fr); } }
+
+/* ── 화면 조각 — 교사 화면(PC 가 주, 폰에서도 줄어든다)을 회색 상자로만 ─────────────── */
+.app { background: #f6f6f5; border: 1px solid #d6d6d3; border-radius: 10px; padding: 14px; display: grid; grid-template-columns: minmax(0, 1fr); gap: 12px; min-width: 0; }
+@media (max-width: 600px) { .app { padding: 10px; } }
+.app :is(p, h3, h4, h5, h6, dl, dd), .pn :is(p, h4, h5, h6, dl, dd) { margin: 0; }
+.appbar { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 4px 12px; font-size: 12px; color: #6b6b68; }
+.apptabs { display: flex; flex-wrap: wrap; gap: 2px; border-bottom: 1px solid #d6d6d3; }
+.apptabs span { padding: 8px 12px; font-size: 13px; font-weight: 600; color: #6b6b68; border-bottom: 2px solid transparent; margin-bottom: -1px; }
+.apptabs span.on { color: #161616; border-bottom-color: #161616; }
+.apptabs small { font-weight: 700; margin-left: 3px; }
+.apphead { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: flex-start; gap: 8px 12px; }
+.apphead h3 { font-size: 20px; font-weight: 800; letter-spacing: -.4px; line-height: 1.3; }
+.eb { font-size: 10.5px; letter-spacing: .12em; color: #8a8a86; }
+.mut { color: #6b6b68; font-size: 12.5px; }
+.b { display: inline-flex; align-items: center; min-height: 30px; padding: 2px 10px; border: 1.5px solid #2b2b2b; border-radius: 7px; background: #fff; font-size: 12.5px; font-weight: 600; white-space: nowrap; }
+.lk { text-decoration: underline; text-underline-offset: 3px; font-weight: 700; }
+.tot { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); background: #fff; border: 1px solid #d6d6d3; border-radius: 10px; padding: 10px 0; }
+.tot > div { padding: 0 16px; border-right: 1px solid #e0e0dd; min-width: 0; }
+.tot > div:last-child { border-right: 0; }
+.tot dt { font-size: 12.5px; color: #6b6b68; }
+.tot dd { margin-top: 1px; font-size: 22px; font-weight: 800; font-variant-numeric: tabular-nums; line-height: 1.3; }
+.tot dd small { font-size: 12.5px; font-weight: 500; color: #6b6b68; margin-left: 2px; }
+@media (max-width: 600px) { .tot { grid-template-columns: repeat(2, minmax(0, 1fr)); row-gap: 10px; } .tot > div:nth-child(2) { border-right: 0; } }
+.flt { display: flex; flex-wrap: wrap; gap: 8px 18px; align-items: center; background: #fff; border: 1px solid #d6d6d3; border-radius: 10px; padding: 9px 12px; font-size: 12.5px; }
+.flt .g { display: flex; flex-wrap: wrap; gap: 4px; align-items: center; min-width: 0; }
+.flt .g > b { font-weight: 600; color: #6b6b68; margin-right: 3px; }
+.ch { border: 1.5px solid #9a9a96; border-radius: 999px; padding: 0 10px; background: #fff; white-space: nowrap; line-height: 24px; }
+.ch.on { background: #2b2b2b; border-color: #2b2b2b; color: #fff; font-weight: 700; }
+.ch small { opacity: .75; margin-left: 3px; }
+.sel { border: 1.5px solid #9a9a96; border-radius: 7px; padding: 0 10px; background: #fff; white-space: nowrap; line-height: 26px; }
+.tg { display: inline-block; font-size: 11.5px; font-weight: 700; background: #e4e4e1; color: #2b2b2b; border-radius: 3px; padding: 0 6px; line-height: 20px; white-space: nowrap; margin: 1px 3px 1px 0; }
+.tg.op { background: #fff; box-shadow: inset 0 0 0 1px #9a9a96; font-weight: 500; }
+.box { background: #fff; border: 1px solid #d6d6d3; border-radius: 10px; min-width: 0; }
+.box > h4 { padding: 10px 14px; font-size: 14px; font-weight: 800; border-bottom: 1px solid #e0e0dd; display: flex; flex-wrap: wrap; gap: 2px 8px; align-items: baseline; }
+.box > h4 small { font-weight: 400; color: #6b6b68; font-size: 12px; }
+.slot { border: 1.5px dashed #9a9a96; border-radius: 8px; margin: 10px 14px; padding: 7px 12px; color: #6b6b68; font-size: 12.5px; background: #fafaf8; }
+.slot b { color: #2b2b2b; }
+.p2 { display: inline-block; font-size: 10.5px; font-weight: 700; border: 1px solid #6b6b68; border-radius: 3px; padding: 0 5px; margin-right: 6px; color: #4a4a47; background: #fff; line-height: 17px; }
+.new { position: relative; outline: 2px dashed #161616; outline-offset: 3px; }
+.new::after { content: "새"; position: absolute; top: -12px; right: 6px; font-size: 10px; font-weight: 700; background: #161616; color: #fff; border-radius: 3px; padding: 0 4px; line-height: 16px; }
+.new.in { display: inline-block; padding: 0 5px; margin-right: 16px; }
+.new.in::after { top: -7px; right: -19px; }
+.tabs2 .new.in { padding: 8px 9px; }
+.ph { display: inline-block; height: 10px; border-radius: 3px; background: #dededb; vertical-align: middle; }
+
+/* A — 사유별 묶음 */
+.grp { border-top: 1px solid #e0e0dd; }
+.grp > h5 { padding: 9px 14px 6px; font-size: 13px; font-weight: 800; display: flex; flex-wrap: wrap; gap: 2px 8px; align-items: baseline; }
+.grp > h5 i { font-style: normal; width: 19px; height: 19px; border-radius: 50%; border: 1.5px solid #2b2b2b; display: inline-grid; place-items: center; font-size: 11px; font-weight: 800; flex: none; align-self: center; }
+.grp > h5 small { color: #6b6b68; font-weight: 400; font-size: 12px; }
+.row { display: grid; grid-template-columns: 170px 150px minmax(0, 1fr); gap: 2px 14px; align-items: baseline; padding: 7px 14px 7px 41px; font-size: 13px; border-top: 1px dotted #d6d6d3; }
+.row .who small { color: #6b6b68; margin-left: 6px; }
+.row .v { font-weight: 700; font-variant-numeric: tabular-nums; }
+.row .d { color: #4a4a47; min-width: 0; }
+.row .d small { display: block; color: #6b6b68; }
+@media (max-width: 760px) { .row { grid-template-columns: minmax(0, 1fr) max-content; padding-left: 14px; } .row .d { grid-column: 1 / -1; } }
+
+/* B — 한 줄 문장 */
+.sent { padding: 9px 14px; font-size: 13.5px; border-top: 1px dotted #d6d6d3; display: grid; grid-template-columns: minmax(0, 1fr) max-content; gap: 2px 12px; align-items: baseline; }
+.sent:first-of-type { border-top: 0; }
+.sent .who small { color: #6b6b68; margin-left: 5px; font-size: 12px; }
+.sent .more { grid-column: 1 / -1; color: #6b6b68; font-size: 12.5px; }
+.sent .open { grid-column: 1 / -1; margin-top: 6px; border: 1px solid #d6d6d3; border-radius: 8px; padding: 10px; display: grid; grid-template-columns: minmax(0, 1fr); gap: 10px; background: #fafaf8; min-width: 0; }
+.open h6 { margin: 0 0 4px; font-size: 12px; color: #4a4a47; }
+
+/* 표 — «오늘의 기억 · SRS» 표의 뼈대(머리 회색 · 줄 밑선) */
+.tw { overflow-x: auto; min-width: 0; }
+table.r { width: 100%; border-collapse: collapse; font-size: 12.5px; font-variant-numeric: tabular-nums; background: #fff; }
+table.r th, table.r td { border-bottom: 1px solid #e0e0dd; padding: 6px 10px; text-align: left; vertical-align: top; }
+table.r thead th { font-size: 11.5px; color: #6b6b68; font-weight: 700; background: #f3f3f1; white-space: nowrap; }
+table.r tbody th { font-weight: 800; white-space: nowrap; }
+table.r tbody th small { display: block; font-weight: 400; color: #6b6b68; }
+table.r td small { display: block; color: #6b6b68; }
+table.r .un { color: #9a9a96; }
+table.r.wide { min-width: 900px; }
+table.r.mid { min-width: 560px; }
+.tabs2 { display: flex; flex-wrap: wrap; gap: 0 2px; padding: 0 8px; border-bottom: 1px solid #e0e0dd; font-size: 12.5px; }
+.tabs2 span { padding: 8px 9px; font-weight: 600; color: #4a4a47; border-bottom: 2px solid transparent; white-space: nowrap; }
+.tabs2 span.on { color: #161616; border-bottom-color: #161616; background: #f3f3f1; }
+.tabs2 span small { margin-left: 3px; color: #6b6b68; }
+.tabs2 .sep { padding: 8px 2px; color: #b9b9b6; font-weight: 400; }
+
+/* 5칸 띠 — 단원 하나 = 카드 다섯 */
+.st { display: inline-grid; grid-template-columns: repeat(5, 12px); gap: 2px; vertical-align: middle; }
+.st i { width: 12px; height: 12px; border: 1px solid #b9b9b6; border-radius: 2px; background: #fff; display: block; font-style: normal; font-size: 10px; line-height: 9px; text-align: center; font-weight: 800; color: #161616; }
+.st i.c1 { background: #cfcfcc; border-color: #cfcfcc; }
+.st i.co { background: #2b2b2b; border-color: #2b2b2b; }
+.st i.cx { border: 1.5px solid #161616; }
+.st i.cu { border: 1.5px dashed #161616; }
+.lg { display: flex; flex-wrap: wrap; gap: 4px 16px; font-size: 12px; color: #6b6b68; align-items: center; }
+.lg .st { grid-template-columns: 12px; margin-right: 5px; }
+table.map th, table.map td { padding: 6px 6px; }
+table.map thead th { white-space: normal; font-size: 11px; line-height: 1.3; vertical-align: bottom; width: 84px; }
+table.map thead th:first-child { width: auto; }
+
+/* 상세 — «오늘의 기억 · SRS» 의 오른쪽 상세 자리 */
+.pn { background: #fff; border: 1px solid #b9b9b6; border-radius: 10px; min-width: 0; }
+.pnh { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 6px 12px; align-items: flex-start; padding: 12px 14px; border-bottom: 1px solid #e0e0dd; }
+.pnh h4 { font-size: 16px; font-weight: 800; }
+.pnb { padding: 12px 14px; display: grid; grid-template-columns: minmax(0, 1fr); gap: 14px; min-width: 0; }
+.pnb h5 { font-size: 13px; font-weight: 800; margin-bottom: 6px; }
+.pnb h5 small { font-weight: 400; color: #6b6b68; margin-left: 6px; }
+.fx { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px 14px; }
+.fx dt { font-size: 12px; color: #6b6b68; }
+.fx dd { font-size: 14px; font-weight: 700; font-variant-numeric: tabular-nums; }
+.fx dd small { font-weight: 400; color: #6b6b68; }
+@media (max-width: 600px) { .fx { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+.ul { display: grid; grid-template-columns: max-content max-content minmax(0, 1fr); gap: 5px 12px; font-size: 12.5px; align-items: center; }
+.ul span.c { color: #6b6b68; }
+@media (max-width: 600px) { .ul { grid-template-columns: max-content minmax(0, 1fr); } .ul span.c { grid-column: 1 / -1; margin-top: -4px; } }
+
+/* E — 지금 반 현황(학생 카드 명단) */
+.sc { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px; }
+@media (max-width: 900px) { .sc { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (max-width: 560px) { .sc { grid-template-columns: minmax(0, 1fr); } }
+.scard { background: #fff; border: 1px solid #d6d6d3; border-radius: 10px; padding: 10px 12px; display: grid; gap: 7px; min-width: 0; }
+.scard .hd { display: flex; justify-content: space-between; gap: 8px; align-items: center; }
+.scard .hd b { font-size: 14px; }
+.scard .hd b::before { content: attr(data-i); display: inline-grid; place-items: center; width: 22px; height: 22px; border-radius: 50%; background: #e4e4e1; font-size: 11px; margin-right: 7px; vertical-align: 1px; }
+.scard .bd { font-size: 11px; color: #6b6b68; border: 1px solid #d6d6d3; border-radius: 999px; padding: 0 7px; white-space: nowrap; }
+.scard .old { display: grid; gap: 5px; }
+.scard .nl { font-size: 12px; border: 1.5px dashed #161616; border-radius: 6px; padding: 5px 8px; display: grid; gap: 2px; }
+.scard .nl small { color: #6b6b68; }
+footer { margin-top: 30px; }
+</style>
+
+<main class="board">
+  <header class="head">
+    <p class="eyebrow">WIRE · 탐험 기록을 교사에게 · 2026-10-01 · 27번 문서 공백 3 · 트랙 me-wire</p>
+    <h1>개념 카드 기록과 «도움이 필요한 학생»을 어디에 · 어떻게 — 다섯 안</h1>
+    <p class="lede">학생의 개념 카드(탐험) 기록은 이미 저장돼 있고, 교사가 볼 화면만 없다. 이 시안은 <b>그 화면의 자리와 뼈대</b>만 다룬다.
+      합의(리드 · codex · grok)는 «<b>수업 관리 아래 새 화면</b> · 초 · 중등 한 목록 · 기본은 담당 반»이고, A~D 가 그 자리 안의 네 안, <b>E 는 뒤집어 볼 대조안</b>(지금 반 현황 안의 한 구역)이다.
+      색 · 글꼴 · 모양은 고르신 뒤 Hi-fi 에서.</p>
+    <ul class="facts">
+      <li>표본 <b>담당 반 3 · 학생 29명</b>(중1 A 12 · 초5 B 9 · 중2 C 8) — 이름은 전부 지어낸 것</li>
+      <li><b>학습 개입 7명</b>(사유 9건) · <b>운영 확인 3명</b> · <b>사유 없음 19명</b></li>
+      <li>오늘 = <b>2026-10-01(목)</b> 한국 시간</li>
+      <li>싣는 것은 <b>교사 끝점(me-teacher)의 출력 안</b>에서만 — 문항 글 · 학생 답 · 종합 점수 · 순위 · 백분위 없음</li>
+      <li><b>밑줄 글 · 굵은 테두리 단추 · 탭 · 알약 = 누르는 자리.</b> 줄 · 상자 · 딱지는 눌리지 않는다(D-30)</li>
+      <li>점선 상자 «새» = 지금 화면에 더하는 자리 · 점선 «2단계» = 자료가 아직 없는 빈 자리</li>
+    </ul>
+  </header>
+
+  <section class="ask" aria-labelledby="ask-h">
+    <h2 id="ask-h">정할 것 — 원장님께 여쭐 것</h2>
+    <ol>
+      <li><b>자리.</b> 합의는 «수업 관리 아래 새 화면»(A~D)이다. 지금 반 현황 안의 구역(E)으로 뒤집으실지.
+        <div class="opts"><span class="opt">새 화면(A~D)</span><span class="opt">반 현황 안(E)</span><span class="opt">새 화면 + 반 현황에는 들어오는 한 줄만(합의)</span></div></li>
+      <li><b>첫 화면의 주인.</b> 열자마자 무엇이 먼저 보이나.
+        <div class="opts"><span class="opt">사유 목록(A · B)</span><span class="opt">학생 명단(C)</span><span class="opt">반 개념 지도(D)</span></div></li>
+      <li><b>사유의 모양.</b> 섞을 수 있다(예: B 의 문장을 C 의 표 칸에).
+        <div class="opts"><span class="opt">사유별 묶음(A)</span><span class="opt">한 줄 문장(B · E)</span><span class="opt">학생 줄의 딱지(C · D)</span></div></li>
+      <li><b>카드 230장을 어떻게.</b> 첫 화면과 학생 상세에 각각.
+        <div class="opts"><span class="opt">단원별 5칸 띠(A 상세 · D)</span><span class="opt">밀린 · 막힌 것만 목록(B)</span><span class="opt">숫자 요약만(C · E)</span></div></li>
+      <li><b>사유 문턱의 첫 값.</b> 아래 «사유 v1.1» 표 그대로 시작할지. 표본에서는 활성 학생 26명 중 7명(27%)이 오른다.
+        <div class="opts"><span class="opt">그대로 시작 · 2주 써 보고 고침</span><span class="opt">고칠 값 있음</span></div></li>
+      <li><b>«봤음»으로 닫기.</b> 교사가 확인한 사유를 목록에서 내리는 기능이 필요한가. 닫으려면 <b>저장(표 · 칸)이 필요해 2단계</b>다 — 지금 안에는 그리지 않았다.
+        <div class="opts"><span class="opt">필요 없음 — 조건이 풀리면 저절로 내려간다</span><span class="opt">필요 — 2단계에 넣는다</span></div></li>
+      <li><b>갈래 거르개의 이름.</b> 사유가 나온 곳으로 가른다 — 임무(세션) 기록에서 나온 사유(미해결 · 날 넘김 · 오래 쉼)와 카드 복습 기록에서 나온 사유(복습 막힘 · 복습 밀림).
+        «기억»은 지금 메뉴 «오늘의 기억 · SRS»와 헷갈릴 수 있어 B 에서만 «임무 / 복습»으로 써 봤다.
+        <div class="opts"><span class="opt">탐험 / 기억(A · C · D)</span><span class="opt">임무 / 복습(B)</span><span class="opt">갈래 거르개 없이 학교급만</span></div></li>
+      <li><b>세부.</b> 0명인 사유 묶음을 보일지 · 사유 없는 학생을 이 화면에 둘지(접어 둠 · 아예 없음) · 탭 이름 옆 사람 수 ·
+        딱지의 짧은 이름(«복습 밀림 4장 · 5일») · «학습 개입 / 운영 확인»이라는 이름.</li>
+      <li><b>2단계로 미룬 것 하나.</b> 지금 «오늘의 기억 · SRS»(초등 은행 · 중등 한 걸음)의 상태를 같은 목록에 실을지 — 교사 끝점 출력 밖이라 자료 · 투영이 더 필요하다. 이 시안에는 그리지 않았다.</li>
+    </ol>
+    <p class="note">지키는 것: 목록은 <b>둘</b>이다 — 학습 개입(사유 다섯 · 차례 있음)과 운영 확인(시작 전 · 계정 없음). 한 줄로 합치지 않고, 학생에게 번호 · 순위를 붙이지 않는다(D-134).
+      «한 걸음» 문항의 글과 학생이 고른 답은 어느 안에도 없다(D-141 ⑵). 문구는 간결 · 사무적(D-08).</p>
+  </section>
+
+  <h2 class="sec">지금 있는 교사 화면 — 코드로 읽은 사실</h2>
+  <div class="tablewrap"><table class="t">
+    <thead><tr><th></th><th>중등 «반 수학 복습» <code>ClassMathSrs</code></th><th>초등 «오늘의 기억 · SRS» <code>CourseDashboard</code></th></tr></thead>
+    <tbody>
+      <tr><th scope="row">들어가는 길</th><td>수업 관리 › 반 · 학생 관리 › 반을 고르면 오른쪽 칸의 글 링크 «○○ 수학 복습 현황 →» · 주소 <code>/classes/[id]/math-srs</code></td><td>옆 메뉴 «오늘의 기억 · SRS»(메뉴 권한 <code>srs</code>) · 관리자는 <code>/admin/math-srs</code></td></tr>
+      <tr><th scope="row">범위</th><td><b>반 하나</b></td><td><b>전체 학생 한 표</b> — 반 선택 · 검색으로 좁힘</td></tr>
+      <tr><th scope="row">머리</th><td>영문 작은 글 «CLASS PRACTICE» · «○○ · 수학 복습» · 설명 한 줄 · «새로고침»</td><td>«SRS 현황» · «지원 교육과정 초3–초6 · 한국 시간 기준» · «목록 새로고침»</td></tr>
+      <tr><th scope="row">요약 칸 넷</th><td>등록 학생 · 오늘 학습 · 미션 완료 · 시작을 기다리는 학생</td><td>계획 설정 · 설정 필요 · 복습 도래 · 오늘 종료</td></tr>
+      <tr><th scope="row">거르개</th><td>이름 검색 + 단추 다섯(전체 · 미학습 · 학습 중 · 완료 · 계정 미발급), 단추마다 사람 수</td><td>학생 / 반 검색 · 반 선택 + 밑줄 탭 아홉(전체 · 상태 일곱 · 계정 확인 필요), 탭마다 사람 수</td></tr>
+      <tr><th scope="row">학생 줄</th><td><b>카드 명단</b> — 이름 첫 글자 동그라미 · 이름 · 계정 딱지 · 오늘 n / m문제 · 개념별 기억 추정치(%) · 진도 · 마지막 학습</td><td><b>표 8열</b> — 학생 / 반 · 상태 / 계정 · 학습 진도 · 오늘 풀이 · 복습 · 마지막 활동 · 자동 학습 · 관리</td></tr>
+      <tr><th scope="row">학생 상세</th><td><b>없다</b></td><td>이름(또는 «상세 보기»)을 누르면 <b>오른쪽 상세</b> — 탭 다섯(개요 · 소단원 분석 · 일별 활동 · 풀이 기록 · 학습 설정) · Esc 로 닫기</td></tr>
+      <tr><th scope="row">«도움»에 가까운 것</th><td>없다 — 상태 거르개뿐</td><td>상태 «복습 필요» 거르개 · 소단원 분석의 «복습 도래»</td></tr>
+      <tr><th scope="row">개념 카드(탐험) 기록</th><td colspan="2"><b>둘 다 읽지 않는다</b> — 어떤 교사 모듈도 <code>state.explorers</code> 를 안 읽는다(27번 문서 §1)</td></tr>
+      <tr><th scope="row">말투</th><td colspan="2">«~합니다» 설명 한 줄 · 숫자 뒤 단위(명 · 문제 · 개) · 빈 자리는 «기록 없음» · «측정 전» · «학습 전» · «없음»으로 적는다(0 으로 채우지 않는다)</td></tr>
+    </tbody>
+  </table></div>
+
+  <h2 class="sec">사유 v1.1 — 두 목록 (27번 문서 §4.2 · 3자 합의)</h2>
+  <div class="tablewrap"><table class="t">
+    <thead><tr><th>목록</th><th>차례</th><th>사유(표시 이름)</th><th>문턱(첫 값)</th><th>같이 싣는 값</th><th>이 시안의 딱지</th></tr></thead>
+    <tbody>
+      <tr><th scope="row" rowspan="6">학습 개입</th><td class="n">0</td><td>상한에 닿아 선생님과 확인</td><td colspan="3"><b>2단계</b> — «남은 것 다시» 상한 2회가 들어온 뒤(합의 안건 4). 지금은 자료가 없어 빈 자리만 그렸다</td></tr>
+      <tr><td class="n">1</td><td>미해결을 남기고 끝냄</td><td>가장 최근 세션(최근 7일 안)의 미해결 1 이상</td><td>미해결 수 · 세션 날짜 · 단원 · 첫 시도 정답 · 남은 카드 이름</td><td>미해결 3</td></tr>
+      <tr><td class="n">2</td><td>최근 복습에서 막힘</td><td>모은 카드 가운데 마지막 복습이 «다시»인 카드 2장 이상</td><td>카드 수 · 카드 이름 · 복습한 날</td><td>복습 막힘 3장</td></tr>
+      <tr><td class="n">3</td><td>복습이 밀림</td><td>3일 이상 지난 카드 3장 이상, 또는 7일 이상 지난 카드 1장 이상</td><td>카드 수 · 가장 오래 밀린 날 수 · 카드 이름</td><td>복습 밀림 4장 · 5일</td></tr>
+      <tr><td class="n">4</td><td>임무가 날을 넘김</td><td>열린 임무의 날짜가 2일 이상 전</td><td>연 날 · 넘긴 날 수 · 단원 · 해결한 활동 수</td><td>날 넘김 3일</td></tr>
+      <tr><td class="n">5</td><td>오래 쉼</td><td>학습 이력이 있고 마지막으로 끝낸 날이 7일 이상 전</td><td>마지막으로 끝낸 날 · 쉰 날 수</td><td>오래 쉼 10일</td></tr>
+      <tr><th scope="row" rowspan="2">운영 확인</th><td class="n">—</td><td>시작 전</td><td>계정은 있는데 탐험 기록 없음 · 계정을 만든 지 3일 뒤부터(만든 날을 모르면 바로)</td><td>계정을 만든 날 · 지난 날 수</td><td>시작 전</td></tr>
+      <tr><td class="n">—</td><td>계정 없음</td><td>학생 계정이 없거나 꺼짐</td><td>없음</td><td>계정 없음</td></tr>
+    </tbody>
+  </table></div>
+
+  <h2 class="sec">공통(A~D) — 자리와 들어오는 한 줄</h2>
+  <p class="note">새 화면은 «수업 관리»의 셋째 탭이다. 반 카드(반 · 학생 관리의 오른쪽 칸)와 반 현황에는 <b>이 화면으로 들어오는 글 링크 한 줄</b>만 둔다 — 목록을 거기서 되풀이하지 않는다.
+    초등 «SRS 현황» 머리에도 같은 한 줄. 사유가 없으면 «도움이 필요한 학생 없음»으로 남는다(줄이 사라지지 않는다).</p>
+  <div id="entry" class="three" style="margin-top:10px"></div>
+
+  <nav class="toolbar" aria-label="안 고르기">
+    <div class="tabs" role="tablist">
+      <button class="tab" role="tab" aria-selected="true" data-tab="A"><span class="k">A</span>사유별 묶음</button>
+      <button class="tab" role="tab" aria-selected="false" data-tab="B"><span class="k">B</span>한 줄 문장</button>
+      <button class="tab" role="tab" aria-selected="false" data-tab="C"><span class="k">C</span>학생 명단 + 딱지</button>
+      <button class="tab" role="tab" aria-selected="false" data-tab="D"><span class="k">D</span>반 개념 지도</button>
+      <button class="tab" role="tab" aria-selected="false" data-tab="E"><span class="k">E</span>대조 — 반 현황 안의 구역</button>
+    </div>
+  </nav>
+  <div id="panels"></div>
+
+  <h2 class="sec">한눈에 — 비교</h2>
+  <div class="tablewrap"><table class="t" id="compare">
+    <thead><tr><th>안</th><th>자리</th><th>첫 화면의 주인</th><th>사유의 모양</th><th>카드 230장</th><th>갈래 거르개 이름</th><th>표본 29명에서 첫 화면</th><th>사유가 둘인 학생</th><th>폰 폭(390)</th><th>걸리는 점</th><th>만드는 품</th></tr></thead>
+    <tbody>
+      <tr><th scope="row">A 사유별 묶음</th><td>새 화면</td><td>사유 목록</td><td>사유별 묶음(차례 1~5)</td><td>상세에서 단원별 5칸 띠</td><td>탐험 / 기억</td><td class="n">학습 9줄 + 운영 3줄</td><td>묶음마다 되풀이(7명이 9줄)</td><td>줄이 두 단으로 꺾인다</td><td>되풀이 · 0명 묶음 · «오래 쉼»이 «복습 밀림»과 거의 늘 같이 선다</td><td>중간 — 목록 + 상세(학생 끝점)</td></tr>
+      <tr><th scope="row">B 한 줄 문장</th><td>새 화면</td><td>사유 목록</td><td>학생마다 문장 한 줄(가장 앞선 사유)</td><td>펼치면 밀린 · 막힌 것만 목록</td><td>임무 / 복습(«오늘의 기억» 메뉴와 안 겹치게 써 본 이름)</td><td class="n">학습 7줄 + 운영 3줄</td><td>한 번만 · 둘째 사유는 «그 밖» 한 줄</td><td>문장이 그대로 꺾인다 · 펼친 표만 가로로 민다</td><td>문장 규칙이 하나 더 선다(리포트 문장 생성기와 말투 맞춤) · 전체 모은 상태는 안 보인다</td><td>중간 — 문장 규칙 + 펼침(학생 끝점)</td></tr>
+      <tr><th scope="row">C 학생 명단 + 딱지</th><td>새 화면</td><td>학생 명단(표)</td><td>학생 줄의 딱지</td><td>숫자 요약만(열 · 상세)</td><td>탐험 / 기억</td><td class="n">29줄(사유 있는 10줄이 위)</td><td>한 줄에 딱지 둘</td><td>표를 가로로 민다</td><td>목적(개입할 학생 찾기)이 명단에 묻힌다 · 카드 낱장이 어디에도 없다</td><td>작음 — 지금 초등 표 · 상세 틀을 그대로</td></tr>
+      <tr><th scope="row">D 반 개념 지도</th><td>새 화면</td><td>반 전체의 개념 지도</td><td>학생 줄의 딱지</td><td>첫 화면에 단원별 5칸 띠</td><td>탐험 / 기억</td><td class="n">반마다 한 판 — 중1 A 12줄 × 8단원</td><td>한 줄에 딱지 둘</td><td>지도를 가로로 민다</td><td>반을 하나씩 본다 — «초 · 중등 한 목록»과 어긋난다 · 반 끝점이 칸별 상태를 안 준다(끝점을 넓혀야) · 다른 학년 단원은 지도 밖</td><td>큼 — 끝점 넓히기 + 지도 + 상세</td></tr>
+      <tr><th scope="row">E 반 현황 안의 구역(대조)</th><td>지금 화면 둘</td><td>지금 명단 위 한 구역</td><td>한 줄 문장</td><td>숫자 요약만(학생 카드에 한 줄)</td><td>없음 — 지금 거르개 그대로</td><td class="n">반마다 — 중1 A 4줄 + 운영 한 줄</td><td>한 번만</td><td>지금 화면 그대로 줄어든다</td><td>초 · 중등이 두 화면으로 갈린다 · 반 수만큼 들어가야 한다 · 중등 화면에는 상세가 없다 · 2단계 자리가 두 곳에 선다</td><td>중간 — 화면 둘을 각각 고침</td></tr>
+    </tbody>
+  </table></div>
+  <p class="note" style="margin-top:10px">섞는 길: <b>B 의 목록 + A 의 상세(5칸 띠)</b> · <b>C 의 표에 B 의 문장 칸</b> · <b>A~D 어느 것이든 D 의 지도를 «반을 하나 골랐을 때만» 둘째 보기로</b>. E 는 A~D 와 같이 갈 수 없다(목록이 두 군데가 된다) — 들어오는 한 줄만 남긴다.</p>
+
+  <footer>
+    <p class="note">근거: 계획 <code>docs/planning/27-explorers-teacher-visibility.md</code> §4.2 · §5 · 합의 <code>tracks/reports/consult-27/consensus.md</code> §1 · §1.2 ·
+      교사 끝점 출력 <code>tracks/briefs/me-teacher.md</code>(모은 카드 / 230 · 단원별 모은 수 · 오늘 복습 · 밀린 카드 · 카드 목록 · 최근 세션 10건 · 열린 세션 · 마지막으로 끝낸 날 · 사유) ·
+      지금 화면 <code>ClassMathSrs.tsx</code> · <code>CourseDashboard.tsx</code> · <code>TeachingView.tsx</code> · <code>ClassManage.tsx</code> · 성취 리포트 23번 문서 §2.4 · §7(종합 점수 없음).
+      단원 · 카드 이름은 제품 카탈로그 그대로(46단원 · 230장).</p>
+  </footer>
+</main>
+
+<script>
+// ── 표본 — 모든 안이 같은 29명을 쓴다. 이름은 지어낸 것. 값은 교사 끝점(me-teacher) 출력의 칸만.
+const WD = ["일", "월", "화", "수", "목", "금", "토"];
+const day = (s) => new Date(s + "T00:00:00Z");
+const md = (s) => { const d = day(s); return `${d.getUTCMonth() + 1}/${d.getUTCDate()}(${WD[d.getUTCDay()]})`; };
+const C = {
+  m1a: { name: "중1 A", lv: "중", units: ["소인수분해", "정수와 유리수", "문자와 식", "일차방정식", "좌표와 비례관계", "기본 도형과 작도", "평면도형과 입체도형", "자료의 정리와 해석"] },
+  e5b: { name: "초5 B", lv: "초", units: ["약수·배수와 혼합 계산", "약분·통분과 분수 계산", "소수 곱셈과 어림", "대응·평균·가능성", "합동·대칭과 직육면체", "다각형의 둘레와 넓이"] },
+  m2c: { name: "중2 C", lv: "중", units: ["유리수·순환소수와 지수", "식의 계산과 일차부등식", "연립일차방정식", "일차함수", "삼각형과 사각형의 성질", "닮음과 피타고라스", "경우의 수와 확률"] },
+};
+// n 이름 · c 반 · col 모은 카드 · due 오늘 복습 · ov [밀린 카드, 가장 오래 밀린 날] · last 마지막으로 끝낸 날
+// st 단원 띠(0 기록 없음 · 1 모음 · o 복습 밀림 · x 최근 복습에서 막힘 · u 미해결) · ls 가장 최근 세션 · fl 사유
+const S = [
+  { n: "강다인", c: "m1a", col: 20, due: 2, ov: [0, 0], last: "2026-09-30", st: ["11111", "11111", "11111", "11111"], ls: { d: "2026-09-30", u: "기억 복습", f: 14, x: 0 } },
+  { n: "김도윤", c: "m1a", col: 18, due: 2, ov: [0, 0], last: "2026-09-29", st: ["11111", "11111", "11111", "111uu"], ls: { d: "2026-09-30", u: "일차방정식", f: 9, x: 3 },
+    fl: [{ k: "unres", v: 3, d: "2026-09-30", u: "일차방정식", f: 9, cards: ["이항", "일차방정식"] }] },
+  { n: "김서연", c: "m1a", col: 20, due: 3, ov: [0, 0], last: "2026-10-01", st: ["11111", "11111", "11111", "11111"], ls: { d: "2026-10-01", u: "기억 복습", f: 14, x: 0 } },
+  { n: "박지호", c: "m1a", col: 15, due: 7, ov: [7, 5], last: "2026-09-29", st: ["11x1o", "11oox", "111xo"], ls: { d: "2026-09-29", u: "기억 복습", f: 10, x: 0 },
+    fl: [{ k: "stuck", v: 3, d: "2026-09-29", cards: ["소인수", "절댓값", "동류항"] }, { k: "over", v: 4, max: 5, cards: ["서로소", "정수", "유리수", "일차식"] }] },
+  { n: "박하린", c: "m1a", col: 15, due: 1, ov: [0, 0], last: "2026-09-30", st: ["11111", "11111", "11111"], ls: { d: "2026-09-30", u: "기억 복습", f: 13, x: 0 } },
+  { n: "서준우", c: "m1a", col: 5, due: 1, ov: [1, 2], last: "2026-09-25", st: ["1111o"], ls: { d: "2026-09-25", u: "소인수분해", f: 11, x: 0 },
+    fl: [{ k: "carried", v: 3, d: "2026-09-28", u: "정수와 유리수", solved: 8 }] },
+  { n: "이수아", c: "m1a", col: 20, due: 0, ov: [0, 0], last: "2026-09-30", st: ["11111", "11111", "11111", "11111"], ls: { d: "2026-09-30", u: "일차방정식", f: 15, x: 0 } },
+  { n: "이예준", c: "m1a", col: 10, due: 7, ov: [7, 8], last: "2026-09-21", st: ["ooooo", "oo111"], ls: { d: "2026-09-21", u: "기억 복습", f: 12, x: 0 },
+    fl: [{ k: "over", v: 6, max: 8, cards: ["소수", "합성수", "소인수", "소인수분해", "서로소", "양수"] }, { k: "idle", v: 10, d: "2026-09-21" }] },
+  { n: "정민서", c: "m1a", col: 15, due: 2, ov: [0, 0], last: "2026-09-30", st: ["11111", "11111", "11111"], ls: { d: "2026-09-30", u: "기억 복습", f: 12, x: 0 } },
+  { n: "최시우", c: "m1a", col: 20, due: 3, ov: [1, 1], last: "2026-09-30", st: ["11111", "11111", "1111o", "11111"], ls: { d: "2026-09-30", u: "일차방정식", f: 13, x: 0 } },
+  { n: "한유나", c: "m1a", acct: true, none: true, fl: [{ k: "notStarted", d: "2026-09-24", v: 7 }] },
+  { n: "홍지안", c: "m1a", acct: false, none: true, fl: [{ k: "noAccount" }] },
+
+  { n: "고은채", c: "e5b", col: 10, due: 1, ov: [0, 0], last: "2026-09-30", st: ["11111", "11111"], ls: { d: "2026-09-29", u: "약분·통분과 분수 계산", f: 12, x: 0 } },
+  { n: "김민준", c: "e5b", col: 10, due: 0, ov: [0, 0], last: "2026-10-01", st: ["11111", "11111"], ls: { d: "2026-09-29", u: "기억 복습", f: 13, x: 0 } },
+  { n: "남궁하람", c: "e5b", col: 10, due: 2, ov: [2, 9], last: "2026-09-30", st: ["1111o", "111o1"], ls: { d: "2026-09-22", u: "약분·통분과 분수 계산", f: 11, x: 0 },
+    fl: [{ k: "over", v: 1, max: 9, seven: true, cards: ["통분"] }] },
+  { n: "문소율", c: "e5b", col: 10, due: 1, ov: [0, 0], last: "2026-09-30", st: ["11111", "11111"], ls: { d: "2026-09-26", u: "기억 복습", f: 14, x: 0 } },
+  { n: "배지우", c: "e5b", col: 5, due: 0, ov: [0, 0], last: "2026-09-29", st: ["11111"], ls: { d: "2026-09-24", u: "약수·배수와 혼합 계산", f: 10, x: 0 } },
+  { n: "송하준", c: "e5b", col: 15, due: 2, ov: [0, 0], last: "2026-09-30", st: ["11111", "11111", "11111"], ls: { d: "2026-09-30", u: "소수 곱셈과 어림", f: 13, x: 0 } },
+  { n: "오서윤", c: "e5b", col: 10, due: 0, ov: [0, 0], last: "2026-10-01", st: ["11111", "11111"], ls: { d: "2026-09-27", u: "기억 복습", f: 15, x: 0 } },
+  { n: "장태오", c: "e5b", col: 5, due: 1, ov: [1, 1], last: "2026-09-28", st: ["1111o"], ls: { d: "2026-09-23", u: "약수·배수와 혼합 계산", f: 9, x: 0 } },
+  { n: "황보라", c: "e5b", col: 15, due: 1, ov: [0, 0], last: "2026-09-30", st: ["11111", "11111", "11111"], ls: { d: "2026-09-29", u: "소수 곱셈과 어림", f: 12, x: 0 } },
+
+  { n: "권나윤", c: "m2c", col: 55, due: 4, ov: [0, 0], last: "2026-09-30", st: ["11111", "11111", "11111"], ls: { d: "2026-09-30", u: "기억 복습", f: 14, x: 0 } },
+  { n: "김건우", c: "m2c", col: 15, due: 2, ov: [1, 1], last: "2026-09-28", st: ["11111", "11111", "111x1"], ls: { d: "2026-09-29", u: "기억 복습", f: 13, x: 1 },
+    fl: [{ k: "unres", v: 1, d: "2026-09-29", u: "기억 복습", f: 13, cards: ["가감법"] }] },
+  { n: "노은호", c: "m2c", col: 15, due: 1, ov: [0, 0], last: "2026-09-30", st: ["11111", "11111", "11111"], ls: { d: "2026-09-30", u: "연립일차방정식", f: 12, x: 0 } },
+  { n: "류하은", c: "m2c", col: 15, due: 3, ov: [2, 1], last: "2026-09-30", st: ["11111", "11x11", "11x11"], ls: { d: "2026-09-30", u: "기억 복습", f: 11, x: 0 },
+    fl: [{ k: "stuck", v: 2, d: "2026-09-30", cards: ["부등식의 해", "대입법"] }] },
+  { n: "신동현", c: "m2c", col: 20, due: 0, ov: [0, 0], last: "2026-10-01", st: ["11111", "11111", "11111", "11111"], ls: { d: "2026-10-01", u: "일차함수", f: 14, x: 0 } },
+  { n: "안채원", c: "m2c", acct: true, none: true, fl: [{ k: "notStarted", d: "2026-09-15", v: 16 }] },
+  { n: "임주원", c: "m2c", col: 10, due: 1, ov: [0, 0], last: "2026-09-29", st: ["11111", "11111"], ls: { d: "2026-09-29", u: "식의 계산과 일차부등식", f: 11, x: 0 } },
+  { n: "제갈서진", c: "m2c", col: 15, due: 2, ov: [0, 0], last: "2026-09-30", st: ["11111", "11111", "11111"], ls: { d: "2026-09-30", u: "기억 복습", f: 13, x: 0 } },
+];
+S.forEach((s) => { s.fl ??= []; });
+// 사유 — 차례 · 표시 이름 · 딱지 · 근거 한 줄 · 문장 · 묶음 안 차례를 정하는 값
+const R = {
+  unres: { o: 1, name: "미해결을 남기고 끝냄", tag: (f) => `미해결 ${f.v}`, val: (f) => `미해결 ${f.v}`, key: (f) => f.v,
+    why: (f) => `${md(f.d)} ${f.u} · 첫 시도 15개 중 ${f.f}개 맞힘<small>남은 카드 — ${f.cards.join(" · ")}</small>`,
+    say: (f) => `미해결 ${f.v}개를 남기고 끝냄. ${md(f.d)} ${f.u} · 첫 시도 15개 중 ${f.f}개 맞힘.` },
+  stuck: { o: 2, name: "최근 복습에서 막힘", tag: (f) => `복습 막힘 ${f.v}장`, val: (f) => `${f.v}장`, key: (f) => f.v,
+    why: (f) => `${f.cards.join(" · ")}<small>${md(f.d)} 복습</small>`,
+    say: (f) => `최근 복습에서 ${f.v}장이 막힘. ${f.cards.join(" · ")}.` },
+  over: { o: 3, name: "복습이 밀림", tag: (f) => `복습 밀림 ${f.v}장 · ${f.max}일`, val: (f) => `${f.v}장 · 가장 오래 ${f.max}일`, key: (f) => f.max,
+    why: (f) => `${f.seven ? "7일" : "3일"} 이상 지난 카드 ${f.v}장<small>${f.cards.join(" · ")}</small>`,
+    say: (f) => `복습이 밀림. ${f.seven ? "7일" : "3일"} 이상 지난 카드 ${f.v}장 · 가장 오래 ${f.max}일.` },
+  carried: { o: 4, name: "임무가 날을 넘김", tag: (f) => `날 넘김 ${f.v}일`, val: (f) => `${f.v}일째`, key: (f) => f.v,
+    why: (f) => `${md(f.d)}에 연 ${f.u} · 15개 중 ${f.solved}개 해결`,
+    say: (f) => `임무가 날을 넘김. ${md(f.d)}에 연 ${f.u} · ${f.v}일째 · 15개 중 ${f.solved}개 해결.` },
+  idle: { o: 5, name: "오래 쉼", tag: (f) => `오래 쉼 ${f.v}일`, val: (f) => `${f.v}일`, key: (f) => f.v,
+    why: (f) => `마지막으로 끝낸 날 ${md(f.d)}`,
+    say: (f) => `오래 쉼. 마지막으로 끝낸 날 ${md(f.d)} · ${f.v}일 전.` },
+  notStarted: { op: 1, name: "시작 전", tag: () => "시작 전", say: (f) => `시작 전. 계정을 만든 날 ${md(f.d)} · ${f.v}일째 탐험 기록 없음.` },
+  noAccount: { op: 2, name: "계정 없음", tag: () => "계정 없음", say: () => "계정 없음." },
+};
+const LEARN = ["unres", "stuck", "over", "carried", "idle"];
+const learnFlags = (s) => s.fl.filter((f) => !R[f.k].op).sort((a, b) => R[a.k].o - R[b.k].o);
+const opFlag = (s) => s.fl.find((f) => R[f.k].op);
+const learners = S.filter((s) => learnFlags(s).length)
+  .sort((a, b) => { const x = learnFlags(a)[0], y = learnFlags(b)[0]; return R[x.k].o - R[y.k].o || R[y.k].key(y) - R[x.k].key(x); });
+const ops = S.filter(opFlag).sort((a, b) => R[opFlag(a).k].op - R[opFlag(b).k].op);
+const quiet = S.filter((s) => !s.fl.length);
+const who = (s, cls = true) => `<span class="who"><u class="lk">${s.n}</u>${cls ? `<small>${C[s.c].name}</small>` : ""}</span>`;
+const tags = (s) => s.fl.map((f) => `<span class="tg${R[f.k].op ? " op" : ""}">${R[f.k].tag(f)}</span>`).join("");
+const strip = (code) => `<span class="st">${[...code].map((ch) => `<i class="c${ch}">${ch === "x" ? "×" : ""}</i>`).join("")}</span>`;
+const LEGEND = `<div class="lg"><span>${strip("1")}모은 카드</span><span>${strip("o")}복습이 밀린 카드</span><span>${strip("x")}최근 복습에서 막힌 카드</span><span>${strip("u")}미해결로 남은 카드</span><span>${strip("0")}기록 없음</span></div>`;
+const SLOT = `<div class="slot"><span class="p2">2단계</span><b>상한에 닿아 선생님과 확인</b> — «남은 것 다시» 상한이 들어오면 이 자리가 차례 0 이다. 지금은 자료가 없어 비워 둔다.</div>`;
+
+// ── 새 화면의 틀(A~D 공통) — «수업 관리»의 셋째 탭
+// 갈래 거르개 — 사유가 나온 곳으로 가른다(세션 기록 4명 · 카드 복습 기록 4명). 이름은 B 에서만 «임무 / 복습»으로 써 본다.
+let SRC = ["탐험", "기억"];
+const filters = (scope) => `<div class="flt">
+  <span class="g"><b>범위</b><span class="sel">${scope} ▾</span></span>
+  <span class="g"><b>학교급</b><span class="ch on">전체<small>29</small></span><span class="ch">초등<small>9</small></span><span class="ch">중등<small>20</small></span></span>
+  <span class="g"><b>갈래</b><span class="ch on">전체</span><span class="ch">${SRC[0]}<small>4</small></span><span class="ch">${SRC[1]}<small>4</small></span></span>
+</div>`;
+const totals = `<dl class="tot"><div><dt>학생</dt><dd>29<small>명</small></dd></div><div><dt>학습 개입</dt><dd>7<small>명</small></dd></div><div><dt>운영 확인</dt><dd>3<small>명</small></dd></div><div><dt>사유 없음</dt><dd>19<small>명</small></dd></div></dl>`;
+const frame = (body, scope = "담당 반 전체 (3)", line = "담당 반 3 · 학생 29명 · 2026-10-01(목) 한국 시간 · 개념 카드(탐험) 기록에서 읽습니다.") => `<div class="app">
+  <div class="appbar"><span>오늘의수학 › 수업 관리</span><span>강선생 · 내 수업 공간</span></div>
+  <div class="apptabs"><span>반 · 학생 관리</span><span>수업 진행</span><span class="on">도움이 필요한 학생<small>7</small></span></div>
+  <div class="apphead"><div><h3>도움이 필요한 학생</h3><p class="mut">${line}</p></div><span class="b">새로고침</span></div>
+  ${totals}${filters(scope)}${body}
+</div>`;
+const opsBox = (asSentence) => `<div class="box"><h4>운영 확인 <small>3명 · 학습 개입과 따로 센다 — 계정 · 시작 여부</small></h4>
+  ${ops.map((s) => { const f = opFlag(s); const link = f.k === "noAccount" ? `<u class="lk">반 관리에서 계정 발급 →</u>` : "";
+    return asSentence
+      ? `<div class="sent"><span>${who(s)} — ${R[f.k].say(f)}</span><span>${link}</span></div>`
+      : `<div class="row" style="padding-left:14px"><span>${who(s)}</span><span class="v"><span class="tg op">${R[f.k].name}</span></span><span class="d">${f.k === "noAccount" ? link : `계정을 만든 날 ${md(f.d)} · ${f.v}일째 탐험 기록 없음`}</span></div>`; }).join("")}
+</div>`;
+const quietLine = `<div class="box"><h4>사유 없음 <small>19명 · 접혀 있음</small> <u class="lk" style="font-size:12.5px;font-weight:600">이름 펼치기</u></h4></div>`;
+
+// ── 학생 상세에 쓰는 기록 — 한 학생(박지호)을 모든 안이 같이 연다
+const JIHO = S.find((s) => s.n === "박지호");
+const JIHO_CARDS = [ // 카드 · 단원 · 단계 · 복습 간격 · 다음 복습 · 마지막 복습 · 밀린 날
+  ["소수", "소인수분해", 2, 7, "2026-10-04", "기억함", 0], ["합성수", "소인수분해", 2, 7, "2026-10-04", "기억함", 0], ["소인수", "소인수분해", 1, 1, "2026-09-30", "막힘", 1],
+  ["소인수분해", "소인수분해", 2, 7, "2026-10-05", "기억함", 0], ["서로소", "소인수분해", 1, 3, "2026-09-26", "기억함", 5],
+  ["양수", "정수와 유리수", 2, 7, "2026-10-03", "기억함", 0], ["음수", "정수와 유리수", 2, 7, "2026-10-03", "기억함", 0], ["정수", "정수와 유리수", 1, 3, "2026-09-27", "기억함", 4],
+  ["유리수", "정수와 유리수", 1, 3, "2026-09-27", "기억함", 4], ["절댓값", "정수와 유리수", 1, 1, "2026-09-30", "막힘", 1],
+  ["항", "문자와 식", 1, 3, "2026-10-02", "기억함", 0], ["상수항", "문자와 식", 1, 3, "2026-10-02", "기억함", 0], ["계수", "문자와 식", 1, 3, "2026-10-02", "기억함", 0],
+  ["동류항", "문자와 식", 1, 1, "2026-09-30", "막힘", 1], ["일차식", "문자와 식", 1, 1, "2026-09-28", "처음", 3],
+];
+const JIHO_SESS = [ // 날짜 · 단원 · 길 · 첫 시도 정답 · 미해결 · 별
+  ["2026-09-29", "기억 복습", "기억", 10, 0, 0], ["2026-09-25", "문자와 식", "단원", 11, 0, 5], ["2026-09-24", "기억 복습", "기억", 12, 0, 1],
+  ["2026-09-22", "정수와 유리수", "단원", 13, 0, 5], ["2026-09-18", "소인수분해", "단원", 12, 0, 5],
+];
+const sessTable = (n = 5) => `<div class="tw"><table class="r mid"><thead><tr><th>날짜</th><th>단원 · 길</th><th>첫 시도 정답</th><th>미해결</th><th>별</th></tr></thead><tbody>
+  ${JIHO_SESS.slice(0, n).map(([d, u, r, f, x, st]) => `<tr><th scope="row">${md(d)}</th><td>${u}<small>${r}</small></td><td>${f} / 15</td><td>${x || `<span class="un">없음</span>`}</td><td>${st}</td></tr>`).join("")}
+  </tbody></table></div>`;
+const facts = `<dl class="fx">
+  <div><dt>모은 카드</dt><dd>15 <small>/ 230</small></dd></div><div><dt>오늘 복습할 카드</dt><dd>7<small>장</small></dd></div><div><dt>밀린 카드</dt><dd>7<small>장 · 가장 오래 5일</small></dd></div>
+  <div><dt>마지막으로 끝낸 날</dt><dd>${md(JIHO.last)}</dd></div><div><dt>열린 임무</dt><dd><small>없음</small></dd></div><div><dt>최근 세션</dt><dd>${md(JIHO.ls.d)} <small>기억 복습</small></dd></div>
+</dl>`;
+const flagLines = `<div>${learnFlags(JIHO).map((f) => `<p style="font-size:13px"><span class="tg">${R[f.k].name}</span> ${R[f.k].say(f).replace(/^[^.]+\. /, "")}</p>`).join("")}</div>`;
+const cardRows = (rows) => rows.map(([n, u, lv, gap, due, last, od]) => `<tr><th scope="row">${n}<small>${u}</small></th><td>${lv}단계</td><td>${gap}일</td><td>${md(due)}</td><td>${last === "막힘" ? `<b>막힘</b>` : last}</td><td>${od ? `<b>${od}일</b>` : `<span class="un">—</span>`}</td></tr>`).join("");
+const cardTable = (rows) => `<div class="tw"><table class="r mid"><thead><tr><th>카드 · 단원</th><th>단계</th><th>복습 간격</th><th>다음 복습</th><th>마지막 복습</th><th>밀린 날</th></tr></thead><tbody>${cardRows(rows)}</tbody></table></div>`;
+const panel = (title, sub, body) => `<div class="pn"><div class="pnh"><div><h4>${title}</h4><p class="mut">${sub}</p></div><span class="b">닫기 ×</span></div><div class="pnb">${body}</div></div>`;
+const NOANS = `<p class="mut">문항 글과 학생이 고른 답은 싣지 않습니다. 카드 · 단원 이름과 합계만 표시합니다.</p>`;
+
+// ── A — 사유별 묶음
+function cutA() {
+  const groups = LEARN.map((k) => {
+    const rows = S.filter((s) => s.fl.some((f) => f.k === k)).map((s) => [s, s.fl.find((f) => f.k === k)]).sort((a, b) => R[k].key(b[1]) - R[k].key(a[1]));
+    return `<div class="grp"><h5><i>${R[k].o}</i>${R[k].name}<small>${rows.length}명</small></h5>
+      ${rows.map(([s, f]) => { const other = learnFlags(s).filter((g) => g.k !== k).map((g) => R[g.k].name);
+        return `<div class="row"><span>${who(s)}</span><span class="v">${R[k].val(f)}</span><span class="d">${R[k].why(f)}${other.length ? `<small>다른 사유 — ${other.join(" · ")}</small>` : ""}</span></div>`; }).join("")}</div>`;
+  }).join("");
+  return frame(`<div class="box"><h4>학습 개입 <small>7명 · 사유 9건 · 사유의 차례대로 — 묶음 안은 값이 큰 쪽이 위</small></h4>${SLOT}${groups}</div>${opsBox(false)}${quietLine}`);
+}
+const detailA = () => panel("박지호 · 개념 카드 기록", "중1 A · 학생 계정 있음", `${facts}${flagLines}
+  <div><h5>단원별 카드<small>기록이 있는 단원만 · 단원 하나 = 카드 다섯</small></h5>
+    <div class="ul">
+      <b>소인수분해</b>${strip("11x1o")}<span class="c">5 / 5 · 막힘 — 소인수 · 밀림 — 서로소(5일)</span>
+      <b>정수와 유리수</b>${strip("11oox")}<span class="c">5 / 5 · 밀림 — 정수 · 유리수(4일) · 막힘 — 절댓값</span>
+      <b>문자와 식</b>${strip("111xo")}<span class="c">5 / 5 · 막힘 — 동류항 · 밀림 — 일차식(3일)</span>
+    </div><div style="margin-top:8px">${LEGEND}</div></div>
+  <div><h5>최근 세션<small>10건까지 · 최근 것부터</small></h5>${sessTable(5)}</div>${NOANS}`);
+
+// ── B — 한 줄 문장
+function cutB() {
+  const open = `<div class="open">
+    <div><h6>밀린 · 막힌 카드 7장 — 박지호</h6>${cardTable(JIHO_CARDS.filter((c) => c[6] > 0).sort((a, b) => b[6] - a[6]))}</div>
+    <div><h6>최근 세션 3건</h6>${sessTable(3)}</div>${NOANS}</div>`;
+  const rows = learners.map((s) => { const [first, ...rest] = learnFlags(s);
+    return `<div class="sent"><span>${who(s)} — ${R[first.k].say(first)}</span><span class="b">${s === JIHO ? "접기 ▴" : "펼치기 ▾"}</span>
+      ${rest.length ? `<span class="more">그 밖 — ${rest.map((f) => R[f.k].say(f).replace(/\.$/, "")).join(" / ")}</span>` : ""}${s === JIHO ? open : ""}</div>`; }).join("");
+  SRC = ["임무", "복습"];
+  const html = frame(`<div class="box"><h4>학습 개입 <small>7명 · 학생마다 한 줄 — 가장 앞선 사유를 문장으로 · 번호와 순위는 없다</small></h4>${SLOT}${rows}</div>${opsBox(true)}${quietLine}`);
+  SRC = ["탐험", "기억"];
+  return html;
+}
+
+// ── C — 학생 명단 + 딱지
+function cutC() {
+  const order = [...learners, ...ops, ...quiet];
+  const rows = order.map((s) => s.none
+    ? `<tr><th scope="row"><u class="lk">${s.n}</u><small>${C[s.c].name}</small></th><td>${tags(s)}</td><td colspan="5" class="un">${s.acct ? `탐험 기록 없음 · 계정을 만든 날 ${md(opFlag(s).d)}` : "학생 계정 없음"}</td><td>${s.acct ? "" : `<u class="lk">계정 확인 →</u>`}</td></tr>`
+    : `<tr><th scope="row"><u class="lk">${s.n}</u><small>${C[s.c].name}</small></th><td>${tags(s) || `<span class="un">없음</span>`}</td><td>${s.col} / 230</td><td>${s.due ? `${s.due}장` : `<span class="un">없음</span>`}</td>
+        <td>${s.ov[0] ? `${s.ov[0]}장<small>가장 오래 ${s.ov[1]}일</small>` : `<span class="un">없음</span>`}</td><td>${md(s.ls.d)} ${s.ls.u}<small>첫 시도 ${s.ls.f} / 15${s.ls.x ? ` · 미해결 ${s.ls.x}` : ""}</small></td><td>${md(s.last)}</td><td><span class="b">기록 보기 ›</span></td></tr>`).join("");
+  return frame(`<div class="box">
+    <div class="tabs2"><span class="on">전체<small>29</small></span><span>학습 개입<small>7</small></span><span>운영 확인<small>3</small></span><span>사유 없음<small>19</small></span><span class="sep">|</span>
+      <span>미해결<small>2</small></span><span>복습 막힘<small>2</small></span><span>복습 밀림<small>3</small></span><span>날 넘김<small>1</small></span><span>오래 쉼<small>1</small></span><span>시작 전<small>2</small></span><span>계정 없음<small>1</small></span><span class="sep">|</span>
+      <span style="color:#6b6b68;font-weight:400"><span class="p2">2단계</span>선생님과 확인</span></div>
+    <div class="tw"><table class="r wide"><thead><tr><th>학생 / 반</th><th>도움 사유</th><th>모은 카드</th><th>오늘 복습</th><th>밀린 카드</th><th>최근 세션</th><th>마지막으로 끝낸 날</th><th>관리</th></tr></thead><tbody>${rows}</tbody></table></div>
+  </div>`);
+}
+const detailC = () => panel("박지호 · 개념 카드 기록", "중1 A · 학생 계정 있음", `${facts}${flagLines}
+  <div><h5>학년별 모은 카드<small>기록이 있는 학년만</small></h5><p style="font-size:13px">중1 — 15 / 40 <span class="mut">(소인수분해 5 · 정수와 유리수 5 · 문자와 식 5)</span></p></div>
+  <div><h5>최근 세션<small>10건까지 · 최근 것부터</small></h5>${sessTable(5)}</div>${NOANS}`);
+
+// ── D — 반 개념 지도
+function cutD() {
+  const cls = "m1a", units = C[cls].units;
+  const mine = (list) => list.filter((s) => s.c === cls);
+  const order = [...mine(learners), ...mine(quiet), ...mine(ops)];
+  const rows = order.map((s) => `<tr><th scope="row"><u class="lk">${s.n}</u><small style="white-space:normal">${tags(s)}</small></th>
+    ${units.map((_, i) => `<td>${s.none ? "" : strip(s.st[i] ?? "00000")}</td>`).join("")}<td>${s.none ? `<span class="un">—</span>` : `${s.col} / 40`}</td></tr>`).join("");
+  return frame(`<div class="box"><h4>중1 A <small>12명 · 학습 개입 4 · 운영 확인 2 — 사유가 있는 학생이 위</small></h4>${SLOT}
+    <div style="padding:8px 14px">${LEGEND}</div>
+    <div class="tw"><table class="r map wide"><thead><tr><th>학생 · 사유</th>${units.map((u) => `<th>${u}</th>`).join("")}<th>모은 카드<br>(중1 단원)</th></tr></thead><tbody>${rows}</tbody></table></div></div>
+    <div class="box"><h4>초5 B <small>9명 · 학습 개입 1</small> <u class="lk" style="font-size:12.5px;font-weight:600">지도 펼치기</u></h4></div>
+    <div class="box"><h4>중2 C <small>8명 · 학습 개입 2 · 운영 확인 1</small> <u class="lk" style="font-size:12.5px;font-weight:600">지도 펼치기</u></h4></div>`);
+}
+const detailD = () => panel("박지호 · 개념 카드 기록", "중1 A · 학생 계정 있음", `${facts}${flagLines}
+  <div><h5>카드 15장<small>기록이 있는 카드 전부 · 단원 차례</small></h5>${cardTable(JIHO_CARDS)}</div>${NOANS}`);
+
+// ── E — 대조: 지금 반 현황 안의 구역
+const old = (w) => `<i class="ph" style="width:${w}%"></i>`;
+function cutE1() {
+  const cls = "m1a", mine = S.filter((s) => s.c === cls);
+  const lines = learners.filter((s) => s.c === cls).map((s) => { const [first, ...rest] = learnFlags(s);
+    return `<div class="sent"><span><b>${s.n}</b> — ${R[first.k].say(first)}${rest.length ? ` <span class="mut">그 밖 — ${rest.map((f) => R[f.k].name).join(" · ")}</span>` : ""}</span><span></span></div>`; }).join("");
+  const cards = mine.map((s) => `<div class="scard"><div class="hd"><b data-i="${s.n[0]}">${s.n}</b><span class="bd">${s.acct === false ? "계정 발급 필요" : "학생 계정 있음"}</span></div>
+    <div class="old">${old(62)}${old(88)}${old(45)}</div>
+    <div class="nl">${s.none ? `<span>${s.acct ? "개념 카드 기록 없음 · 시작 전" : "개념 카드 기록 없음"}</span>` : `<span>개념 카드 ${s.col} / 230 · 오늘 복습 ${s.due ? `${s.due}장` : "없음"}${s.ov[0] ? ` · 밀린 카드 ${s.ov[0]}장` : ""}</span>${learnFlags(s).length ? `<small>${learnFlags(s).map((f) => R[f.k].name).join(" · ")}</small>` : ""}`}</div></div>`).join("");
+  return `<div class="app">
+    <div class="appbar"><span>오늘의수학 › 수업 관리 › 반 수학 복습</span><span>강선생</span></div>
+    <div class="apphead"><div><p class="eb">CLASS PRACTICE</p><h3>중1 A · 수학 복습</h3><p class="mut">등록된 학생들의 실제 풀이 기록과 현재 진도를 확인합니다.</p></div><span class="b">새로고침</span></div>
+    <dl class="tot"><div><dt>등록 학생</dt><dd>12<small>명</small></dd></div><div><dt>오늘 학습</dt><dd>${old(40)}</dd></div><div><dt>미션 완료</dt><dd>${old(40)}</dd></div><div><dt>시작을 기다리는 학생</dt><dd>${old(40)}</dd></div></dl>
+    <div class="box new"><h4>도움이 필요한 학생 <small>개념 카드 기록 · 4명 · 사유의 차례대로</small></h4>${SLOT}${lines}
+      <div class="sent"><span class="mut">운영 확인 2명 — 시작 전 한유나 · 계정 없음 홍지안</span><span></span></div></div>
+    <div class="flt"><span class="g"><b>학생별 학습 흐름</b><span class="sel">학생 이름 검색</span></span>
+      <span class="g"><span class="ch on">전체<small>12</small></span><span class="ch">미학습</span><span class="ch">학습 중</span><span class="ch">완료</span><span class="ch">계정 미발급<small>1</small></span></span></div>
+    <div class="sc">${cards}</div>
+  </div>`;
+}
+function cutE2() {
+  const mine = S.filter((s) => s.c === "e5b");
+  const rows = mine.map((s) => `<tr><th scope="row"><u class="lk">${s.n}</u><small>초5 B</small></th><td>${old(70)}</td><td>${old(90)}</td><td>${old(50)}</td><td>${old(40)}</td>
+    <td>${s.col} / 230${learnFlags(s).length ? `<small><b>${learnFlags(s).map((f) => R[f.k].tag(f)).join(" · ")}</b></small>` : ""}</td><td><span class="b">상세 보기 ›</span></td></tr>`).join("");
+  return `<div class="app">
+    <div class="appbar"><span>오늘의수학 › 오늘의 기억 · SRS</span><span>강선생</span></div>
+    <div class="apphead"><div><h3>SRS 현황</h3><p class="mut">지원 교육과정 초3–초6 · 한국 시간 기준</p></div><span class="b">목록 새로고침</span></div>
+    <div class="box">
+      <div class="tabs2"><span class="on">전체</span><span>설정 필요</span><span>일시정지</span><span>학습 중</span><span>복습 필요</span><span>시작 가능</span><span>오늘 종료</span><span>과정 완료</span><span>계정 확인 필요</span>
+        <span class="new in" style="margin-left:8px">도움 필요<small>1</small></span></div>
+      <div class="tw"><table class="r wide"><thead><tr><th>학생 / 반</th><th>상태 / 계정</th><th>학습 진도</th><th>오늘 풀이</th><th>복습 · 마지막 활동 · 자동 학습</th><th><span class="new in">개념 카드</span></th><th>관리</th></tr></thead><tbody>${rows}</tbody></table></div>
+    </div>
+    <div class="box"><h4>학생 상세 <small>탭 다섯 + 하나</small></h4>
+      <div class="tabs2" style="border-bottom:0"><span class="on">개요</span><span>소단원 분석</span><span>일별 활동</span><span>풀이 기록</span><span>학습 설정</span><span class="new in" style="margin-left:8px">개념 카드</span></div></div>
+  </div>`;
+}
+
+// ── 공통 — 들어오는 길 세 곳
+document.getElementById("entry").innerHTML = `
+  <figure class="cut"><div class="app">
+    <div class="appbar"><span>수업 관리</span><span>강선생</span></div>
+    <div class="apptabs"><span class="on">반 · 학생 관리</span><span>수업 진행</span><span class="new">도움이 필요한 학생<small>7</small></span></div>
+    <p class="mut">${old(70)}</p></div>
+    <figcaption><b>① 수업 관리의 셋째 탭.</b> 지금은 탭이 둘(반 · 학생 관리 · 수업 진행)이다. 옆 숫자는 학습 개입 사람 수(운영 확인은 세지 않는다).</figcaption></figure>
+  <figure class="cut"><div class="app">
+    <div class="appbar"><span>반 · 학생 관리 › 중1 A 를 골랐을 때 오른쪽 칸</span></div>
+    <p><u class="lk" style="font-size:12.5px">중1 A 수학 복습 현황 →</u></p>
+    <p class="new"><u class="lk" style="font-size:12.5px">도움이 필요한 학생 4명 →</u> <span class="mut">운영 확인 2명</span></p>
+    <p class="mut">${old(80)}<br>${old(55)}</p></div>
+    <figcaption><b>② 반 카드.</b> 지금 있는 글 링크 아래에 한 줄. 누르면 새 화면이 그 반으로 좁혀져 열린다.</figcaption></figure>
+  <figure class="cut"><div class="app">
+    <div class="appbar"><span>반 수학 복습(중등) · SRS 현황(초등)의 머리</span></div>
+    <h3 style="font-size:17px">중1 A · 수학 복습</h3>
+    <p class="new"><u class="lk" style="font-size:12.5px">이 반에서 도움이 필요한 학생 4명 →</u></p>
+    <p class="mut">${old(80)}</p></div>
+    <figcaption><b>③ 반 현황.</b> 머리 아래 한 줄. 목록은 여기서 되풀이하지 않는다(E 와 다른 점).</figcaption></figure>`;
+
+// ── 안 다섯
+const P = {
+  A: { title: "A · 사유별 묶음 — 사유의 차례가 화면의 차례", thesis: "사유 다섯이 차례대로 서고, 묶음마다 학생과 근거 값이 온다. 위에서부터 읽으면 오늘 말 걸 차례다.",
+    meta: [["자리", "수업 관리 아래 새 화면(셋째 탭) · 담당 반 전체가 기본"], ["첫 화면의 주인", "도움이 필요한 학생 — 사유 목록"], ["사유의 모양", "사유별 묶음(차례 1~5) · 운영 확인은 아래 따로"], ["카드 230장", "학생 상세에서 단원별 5칸 띠(기록이 있는 단원만)"]],
+    cuts: [[cutA, "<b>① 첫 화면.</b> 묶음 머리에 사람 수. 사유가 둘인 학생은 두 묶음에 나오고 «다른 사유»가 붙는다(박지호 · 이예준). 묶음 안은 그 사유의 값이 큰 쪽이 위."],
+      [detailA, "<b>② 학생 이름을 누르면</b> — 지금 «오늘의 기억 · SRS» 상세와 같은 자리(넓은 화면은 오른쪽, 좁으면 아래). 단원마다 5칸 띠와 걸린 카드 이름."]],
+    good: "위에서부터가 곧 일의 차례다. 사유마다 몇 명인지 머리에서 보인다. 2단계 «선생님과 확인»이 들어올 자리(차례 0)가 맨 위에 있다.",
+    bad: "사유가 둘인 학생이 두 번 나온다(7명이 9줄). «오래 쉼»은 거의 늘 «복습이 밀림»과 같이 선다 — 표본에서도 그렇다. 0명인 묶음을 보일지 정해야 한다." },
+  B: { title: "B · 한 줄 문장 — 학생마다 한 줄, 가장 앞선 사유를 문장으로", thesis: "학생은 한 번씩만 나온다. 줄마다 «누가 — 무엇을 · 언제 · 얼마나». 펼치면 밀린 · 막힌 카드만.",
+    meta: [["자리", "수업 관리 아래 새 화면(셋째 탭) · 담당 반 전체가 기본"], ["첫 화면의 주인", "도움이 필요한 학생 — 사유 목록"], ["사유의 모양", "한 줄 문장 · 둘째 사유는 «그 밖» 한 줄"], ["카드 230장", "줄을 펼치면 밀린 · 막힌 것만 목록(오래 밀린 순)"]],
+    cuts: [[cutB, "<b>첫 화면 — 박지호 줄을 펼친 상태.</b> 줄의 차례는 가장 앞선 사유의 차례다. 상세 칸이 따로 없고 줄 안에서 펼친다."]],
+    good: "7명이 7줄. 문장이라 폰 폭에서 그대로 꺾인다. 펼치면 바로 짚을 카드만 나온다.",
+    bad: "둘째 사유가 작아진다. 문장 규칙(사유 일곱 × 값)이 코드에 하나 더 선다 — 성취 리포트의 문장 생성기와 말투를 맞춰야 한다. 안 밀린 카드와 전체 모은 상태는 이 화면에 없다." },
+  C: { title: "C · 학생 명단 + 딱지 — 지금 «오늘의 기억 · SRS» 표와 같은 틀", thesis: "학생 전원이 표에 서고 사유는 줄의 딱지다. 거르개 탭으로 좁힌다. 카드는 숫자만.",
+    meta: [["자리", "수업 관리 아래 새 화면(셋째 탭) · 담당 반 전체가 기본"], ["첫 화면의 주인", "학생 명단(표 8열)"], ["사유의 모양", "학생 줄의 딱지 · 거르개 탭마다 사람 수"], ["카드 230장", "숫자 요약만 — 모은 카드 · 오늘 복습 · 밀린 카드"]],
+    cuts: [[cutC, "<b>① 첫 화면 — «전체» 29명.</b> 사유가 있는 학생이 위(학습 개입 → 운영 확인 → 사유 없음). 기본 거르개를 «학습 개입»으로 둘 수도 있다."],
+      [detailC, "<b>② «기록 보기»를 누르면</b> — 오른쪽 상세. 숫자와 최근 세션뿐, 카드 낱장은 없다."]],
+    good: "지금 초등 화면과 읽는 법이 같다(표 · 거르개 탭 · 오른쪽 상세). 사유 없는 학생도 한 표에 있어 «기록 없음»과 «문제 없음»이 갈린다. 만드는 품이 가장 작다.",
+    bad: "29줄 가운데 사유가 있는 줄은 10줄 — 개입할 학생 찾기가 명단에 묻힌다. 카드 낱장이 어디에도 없다. 폰 폭에서는 표를 가로로 민다." },
+  D: { title: "D · 반 개념 지도 — 학생 × 단원, 5칸 띠", thesis: "반마다 한 판 — 학생 줄마다 그 학년 단원의 띠가 선다. 세로로 읽으면 반이 같이 막힌 단원이 보인다.",
+    meta: [["자리", "수업 관리 아래 새 화면(셋째 탭) · 담당 반 전체가 기본이지만 지도는 반마다 한 판(첫 반만 펼쳐 있다)"], ["첫 화면의 주인", "반 전체의 개념 지도"], ["사유의 모양", "학생 줄의 딱지 · 사유가 있는 학생이 위"], ["카드 230장", "첫 화면에 단원별 5칸 띠 · 상세에 카드 전부"]],
+    cuts: [[cutD, "<b>① 첫 화면 — 중1 A.</b> 12명 × 8단원 = 띠 96개. 나머지 반은 접혀 있다. 주의 — 지금 반 끝점은 단원마다 «모은 수»만 준다 — 칸마다 밀림 · 막힘을 찍으려면 끝점을 넓혀야 한다."],
+      [detailD, "<b>② 학생 이름을 누르면</b> — 기록이 있는 카드 전부(단계 · 복습 간격 · 다음 복습 · 마지막 복습 · 밀린 날)."]],
+    good: "반이 어느 단원에서 같이 막혔는지 보인다. 카드 낱장이 첫 화면에 있다.",
+    bad: "학년마다 단원이 달라 초 · 중등이 한 표에 못 선다 — 합의한 «한 목록»과 어긋난다. 반 끝점을 넓혀야 한다. 다른 학년 단원의 기록(권나윤의 중1 40장)은 지도 밖이다. 폰 폭에서는 가로로 민다." },
+  E: { title: "E · 대조안 — 새 화면 없이, 지금 반 현황 안의 한 구역", thesis: "교사가 이미 여는 화면에 구역을 하나 넣는다. 중등은 반 수학 복습, 초등은 SRS 현황 — 두 화면에 따로.",
+    meta: [["자리", "지금 화면 둘 — 중등 «반 수학 복습» · 초등 «오늘의 기억 · SRS»"], ["첫 화면의 주인", "지금 명단 그대로 · 그 위에 한 구역"], ["사유의 모양", "한 줄 문장(중등) · 표 칸의 짧은 글(초등)"], ["카드 230장", "숫자 요약만 — 학생 카드에 한 줄"]],
+    cuts: [[cutE1, "<b>① 중등 «반 수학 복습» — 중1 A.</b> 요약 칸 아래에 구역 하나, 학생 카드마다 한 줄. 회색 막대는 지금 있는 내용(그대로). 이 화면에는 학생 상세가 없다."],
+      [cutE2, "<b>② 초등 «SRS 현황» — 초5 B 아홉 줄만.</b> 거르개 탭 하나 · 열 하나 · 상세 탭 하나를 더한다."]],
+    good: "찾아갈 곳이 늘지 않는다. 새 탭 · 새 메뉴가 없다.",
+    bad: "초 · 중등이 두 화면으로 갈린다. 중등은 반 수만큼 들어가야 «오늘 누구와 말할까»가 나온다(표본 3번). 중등 화면에는 카드 기록을 열 상세 자리가 없어 새로 만들어야 한다. 2단계 자리가 두 곳에 선다." },
+};
+document.getElementById("panels").innerHTML = Object.entries(P).map(([k, o]) => `<section class="panel" data-panel="${k}" ${k === "A" ? "" : "hidden"}>
+  <div class="thesis"><h2>${o.title}</h2><p>${o.thesis}</p></div>
+  <dl class="meta">${o.meta.map(([a, b]) => `<dt>${a}</dt><dd>${b}</dd>`).join("")}</dl>
+  ${o.cuts.map(([fn, cap]) => `<figure class="cut">${fn()}<figcaption>${cap}</figcaption></figure>`).join("")}
+  <ul class="list"><li><b>좋은 점</b> — ${o.good}</li><li><b>걸리는 점</b> — ${o.bad}</li></ul>
+</section>`).join("");
+const tabs = [...document.querySelectorAll(".tab")];
+tabs.forEach((tab) => tab.addEventListener("click", () => {
+  tabs.forEach((t) => t.setAttribute("aria-selected", String(t === tab)));
+  document.querySelectorAll("[data-panel]").forEach((p) => { p.hidden = p.dataset.panel !== tab.dataset.tab; });
+}));
+</script>
