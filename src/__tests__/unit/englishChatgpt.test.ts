@@ -14,6 +14,7 @@ import { AiParseError } from "@/lib/ai/errors";
 import { parseAiJsonObject } from "@/lib/ai/jsonRepair";
 import { ENGLISH_EXAM_PROMPT_VERSION } from "@/lib/ai/prompts/englishExam";
 import {
+  buildChatgptFixRequest,
   buildChatgptRequest,
   coerceEnglishDraftShape,
   parseChatgptResult,
@@ -264,6 +265,51 @@ describe("parseChatgptResult — 붙여 넣은 글에서 JSON 을 찾아 검증�
     }
   });
 
+  it("🔴 글자 그대로의 `\\n` 은 줄바꿈으로 받아 준다 — 그대로 두면 학생 지면에 `\\n` 이 찍힌다 (25 §12.8)", () => {
+    // 벤치 214세트 · 1,280문항에서 12건(4세트, 셋이 luna) — 12건 모두 진짜. 모델이 줄바꿈을 두 번 이스케이프한 것이다.
+    const literal = String.raw`다음 글의 빈칸에 들어갈 말은?\n\nA pianist who practices\r\nevery day\timproves.`;
+    const coerced = coerceEnglishDraftShape(
+      {
+        ...goodDraft,
+        passage: String.raw`First line.\nSecond line.`,
+        questions: [
+          {
+            ...goodDraft.questions[0],
+            prompt: literal,
+            options: [String.raw`a\nb`, "c", "d", "e", "f"],
+            explanation: String.raw`정답은 ①.\n②는 반대.`,
+            evidence: String.raw`First line.\nSecond line.`,
+          },
+        ],
+      },
+      "chatgpt",
+    ) as {
+      passage: string;
+      questions: {
+        prompt: string;
+        options: string[];
+        explanation: string;
+        evidence: string;
+      }[];
+    };
+    expect(coerced.passage).toBe("First line.\nSecond line.");
+    expect(coerced.questions[0]!.prompt).toBe(
+      "다음 글의 빈칸에 들어갈 말은?\n\nA pianist who practices\nevery day improves.",
+    );
+    expect(coerced.questions[0]!.options[0]).toBe("a\nb");
+    expect(coerced.questions[0]!.explanation).toBe("정답은 ①.\n②는 반대.");
+    expect(coerced.questions[0]!.evidence).toBe("First line.\nSecond line.");
+    // 진짜 줄바꿈과 다른 역슬래시는 그대로
+    expect(
+      (
+        coerceEnglishDraftShape(
+          { ...goodDraft, passage: "a\nb \\x c" },
+          "chatgpt",
+        ) as { passage: string }
+      ).passage,
+    ).toBe("a\nb \\x c");
+  });
+
   it("받아 주는 것은 모양뿐 — 뜻은 그대로 검증기가 본다 (원문자 6 · 서술형 정답 없음)", () => {
     expect(
       coerceEnglishDraftShape(
@@ -281,6 +327,116 @@ describe("parseChatgptResult — 붙여 넣은 글에서 JSON 을 찾아 검증�
       }),
     );
     expect(verdict.ok).toBe(false);
+  });
+});
+
+describe("buildChatgptFixRequest — 거절됐을 때만 «고쳐 달라 요청문» (25 §12.8 「3」)", () => {
+  const fourOptions = {
+    ...goodDraft,
+    questions: [
+      {
+        ...goodDraft.questions[0],
+        options: goodDraft.questions[0]!.options.slice(0, 4),
+      },
+      goodDraft.questions[1],
+      goodDraft.questions[2],
+    ],
+  };
+
+  it("통과한 결과에는 요청문이 없다 — 통과 세트에 고쳐 쓰기를 권하지 않는다", () => {
+    expect(
+      buildChatgptFixRequest({
+        request: conditions,
+        pasted: JSON.stringify(goodDraft),
+      }),
+    ).toBeNull();
+  });
+
+  it("거절 사유(문항 번호) · 고치는 범위 · 조건 · 앞서 낸 결과 · 답 형식을 싣는다", () => {
+    const fence = "`".repeat(3);
+    const pasted = `${fence}json\n${JSON.stringify(fourOptions)}\n${fence}`;
+    const text = buildChatgptFixRequest({ request: conditions, pasted })!;
+    expect(text).toContain("[고칠 곳]");
+    expect(text).toMatch(/- q1: 보기는 5개여야 합니다/);
+    // 형식 문제는 그 칸만 · 내용 문제는 그 문항의 정답 · 해설 · 근거까지 · 나머지는 그대로
+    expect(text).toContain("[고치는 범위]");
+    expect(text).toMatch(/그 칸만 고칩니다/);
+    expect(text).toMatch(
+      /지적되지 않은 문항과 지문\(passage\)은 한 글자도 바꾸지 않습니다/,
+    );
+    expect(text).toContain("3문항");
+    expect(text).toContain("감사 일기의 효과");
+    // 같은 대화가 지금 편집본과 다를 수 있다 — 붙여 넣었던 결과를 그대로 다시 싣는다
+    expect(text).toContain("[앞서 낸 결과]");
+    expect(text).toContain(JSON.stringify(fourOptions));
+    expect(text).toContain('"evidence"');
+    expect(text).toMatch(/JSON 하나만/);
+  });
+
+  it("원문을 준 방식이면 원문도 다시 싣는다", () => {
+    const original = {
+      ...conditions,
+      mode: "original" as const,
+      topic: "",
+      passage,
+    };
+    const text = buildChatgptFixRequest({
+      request: original,
+      pasted: JSON.stringify(fourOptions),
+    })!;
+    expect(text).toContain("[원문]");
+    expect(text).toContain(passage);
+  });
+
+  it("근거가 지문에 없으면 자리를 짚은 줄이 들어간다", () => {
+    const wrongEvidence = {
+      ...goodDraft,
+      questions: [
+        {
+          ...goodDraft.questions[0],
+          evidence: "the habit teaches the mind to look for good moments",
+        },
+        goodDraft.questions[1],
+        goodDraft.questions[2],
+      ],
+    };
+    const text = buildChatgptFixRequest({
+      request: conditions,
+      pasted: JSON.stringify(wrongEvidence),
+    })!;
+    expect(text).toMatch(/- q1 근거 진단: /);
+  });
+
+  it("🔴 막지 않는 품질 검사의 지적은 싣지 않는다 — 정밀도 낮은 의심을 고치라 하면 맞는 답을 틀리게 바꾼다", () => {
+    // 1번은 검증 거절(보기 4개), 2번 서술형은 채점 기준에 부분점수 요소가 없다(품질 검사만 걸림)
+    const mixed = {
+      ...fourOptions,
+      questions: [
+        fourOptions.questions[0],
+        { ...goodDraft.questions[1], explanation: "맞으면 정답" },
+        goodDraft.questions[2],
+      ],
+    };
+    const text = buildChatgptFixRequest({
+      request: conditions,
+      pasted: JSON.stringify(mixed),
+    })!;
+    const where = text.slice(
+      text.indexOf("[고칠 곳]"),
+      text.indexOf("[고치는 범위]"),
+    );
+    expect(where).toContain("q1");
+    expect(where).not.toContain("q2");
+    expect(where).not.toContain("부분점수");
+  });
+
+  it("JSON 을 못 읽은 붙여넣기 — 그 사유와 붙여 넣은 글을 싣는다", () => {
+    const text = buildChatgptFixRequest({
+      request: conditions,
+      pasted: "미안합니다. 다시 만들겠습니다.",
+    })!;
+    expect(text).toMatch(/JSON 을 찾지 못했습니다/);
+    expect(text).toContain("미안합니다. 다시 만들겠습니다.");
   });
 });
 

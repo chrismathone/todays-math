@@ -3,7 +3,7 @@
  *
  *   npx tsx scripts/qa/english-bench/generate.ts --out <폴더> [--only codex:gpt-6-astra,claude:opus] [--prompt v1|v2] [--lanes 2]
  *
- *   [--tasks C-variation] 로 과제만 고를 수 있다.
+ *   [--tasks C-variation] 로 과제만 고를 수 있다. [--taskset v4] 는 v4 용 새 지문 열둘.
  * 결과: `<out>/gen/<모델>__<과제>.json` — 원문 응답 · 지연 · 읽기/검증기 판정. 이미 있는 파일은 건너뛴다(재개).
  * 제품 경로와 같게: 프롬프트(`buildEnglishSystemPrompt`/`buildEnglishUserPrompt`) → `parseAiJsonObject`
  *   → `coerceEnglishDraftShape` → `validateEnglishDraft(값, 요청)`.
@@ -20,9 +20,12 @@ import { validateEnglishDraft } from "@/lib/english/validate";
 import { runCli, type Provider } from "./cli";
 import * as promptV1 from "./promptV1";
 import * as promptV2 from "./promptV2";
+import * as promptV3 from "./promptV3";
+import { isV4Version, v4Prompt } from "./promptV4";
 import { isStrictVersion, strictPrompt } from "./promptStrict";
 import { GENERATORS, type BenchModel } from "./models";
 import { BENCH_TASKS, type BenchTask } from "./tasks";
+import { V4_FICTION_TASKS, V4_TASKS } from "./tasksV4";
 import { flag, pool, safeName } from "./util";
 
 export interface GenRecord {
@@ -43,16 +46,20 @@ export interface GenRecord {
   issues: { question: number | null; message: string }[];
 }
 
-/** `--prompt v1`·`v2` 면 얼려 둔 판, `v2s·v2s2·v2s3·v2s4` 면 근거 규칙을 단계별로 조인 시험판, 아니면 제품 프롬프트(지금 v3) */
+/** `--prompt v1`·`v2`·`v3` 면 얼려 둔 판, `v2s…v2s5` 는 근거 규칙 시험판, `v4a`·`v4b` 는 주제·내용 일치 시험판, 아니면 제품 프롬프트 */
 const PROMPT_FLAG = flag("--prompt");
 const PROMPT =
   PROMPT_FLAG === "v1"
     ? promptV1
     : PROMPT_FLAG === "v2"
       ? promptV2
-      : isStrictVersion(PROMPT_FLAG)
-        ? strictPrompt(PROMPT_FLAG)
-        : promptCurrent;
+      : PROMPT_FLAG === "v3"
+        ? promptV3
+        : isV4Version(PROMPT_FLAG)
+          ? v4Prompt(PROMPT_FLAG)
+          : isStrictVersion(PROMPT_FLAG)
+            ? strictPrompt(PROMPT_FLAG)
+            : promptCurrent;
 /** 한 번 부를 때의 제한(분) — 기본 12. 느린 모델을 부하 없이 다시 잴 때 늘린다(grok-4.7, 2026-09-30) */
 const TIMEOUT_MS = Number(flag("--timeout-min") ?? 12) * 60_000;
 
@@ -138,7 +145,14 @@ async function main() {
   const tasks = flag("--tasks")?.split(",");
   // 회사(CLI)마다 따로 줄을 세운다 — 한 회사의 한도가 다른 회사를 막지 않게
   const byProvider = new Map<Provider, (() => Promise<void>)[]>();
-  for (const task of BENCH_TASKS.filter((t) => !tasks || tasks.includes(t.id)))
+  // `--taskset v4` — 주제 · 내용 일치만 재는 새 지문 열둘(tasksV4.ts)
+  const taskset =
+    flag("--taskset") === "v4"
+      ? V4_TASKS
+      : flag("--taskset") === "v4f"
+        ? V4_FICTION_TASKS
+        : BENCH_TASKS;
+  for (const task of taskset.filter((t) => !tasks || tasks.includes(t.id)))
     for (const model of models) {
       const jobs = byProvider.get(model.provider) ?? [];
       jobs.push(() => generateOne(model, task, out, cwd));

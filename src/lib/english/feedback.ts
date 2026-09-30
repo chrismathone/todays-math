@@ -68,37 +68,49 @@ function evidenceDiagnosis(passage: string, raw: unknown): string | null {
   return `${where}. 근거는 ${parts.length}문장인데, ${parts.length > 1 ? "여러 문장을 옮기다 틀렸습니다. " : ""}지문의 문장 하나를 첫 글자부터 끝 문장부호까지 그대로 복사해 바꾸십시오${near ? ` — 가장 가까운 지문 문장: «${near}»` : ""}.`;
 }
 
-export function englishDraftFeedback(
+/**
+ * **저장을 막은 사유만** — 검증기 사유와, 근거 거절이면 그 자리 짚기. 막지 않는 품질 검사(`quality.ts`)는 안 넣는다.
+ * ChatGPT 길의 «고쳐 달라 요청문»이 이것만 쓴다(25 §12.8 「3」 — 정밀도 낮은 의심을 고치라 하면 맞는 답을 틀리게 바꾼다).
+ * 통과한 초안이면 빈 배열.
+ */
+export function englishRejectionReasons(
   value: unknown,
   expect: EnglishQualityExpectation,
 ): string[] {
   const lines: string[] = [];
+  const draft = (value ?? {}) as { passage?: unknown; questions?: unknown };
+  const verdict = validateEnglishDraft(value, expect);
+  if (verdict.ok) return lines;
+  const passage = normalizeEnglishText(String(draft.passage ?? ""));
+  const raws = Array.isArray(draft.questions) ? draft.questions : [];
+  for (const issue of verdict.issues) {
+    lines.push(
+      `${issue.question === null ? "세트" : `q${issue.question + 1}`}: ${issue.message}`,
+    );
+    if (
+      issue.question !== null &&
+      issue.message === ENGLISH_EVIDENCE_NOT_FOUND
+    ) {
+      const hint = evidenceDiagnosis(
+        passage,
+        (raws[issue.question] as { evidence?: unknown } | undefined)?.evidence,
+      );
+      if (hint) lines.push(`q${issue.question + 1} 근거 진단: ${hint}`);
+    }
+  }
+  return lines;
+}
+
+export function englishDraftFeedback(
+  value: unknown,
+  expect: EnglishQualityExpectation,
+): string[] {
+  const lines: string[] = englishRejectionReasons(value, expect);
   const draft = (value ?? {}) as {
     title?: unknown;
     passage?: unknown;
     questions?: unknown;
   };
-  const verdict = validateEnglishDraft(value, expect);
-  if (!verdict.ok) {
-    const passage = normalizeEnglishText(String(draft.passage ?? ""));
-    const raws = Array.isArray(draft.questions) ? draft.questions : [];
-    for (const issue of verdict.issues) {
-      lines.push(
-        `${issue.question === null ? "세트" : `q${issue.question + 1}`}: ${issue.message}`,
-      );
-      if (
-        issue.question !== null &&
-        issue.message === ENGLISH_EVIDENCE_NOT_FOUND
-      ) {
-        const hint = evidenceDiagnosis(
-          passage,
-          (raws[issue.question] as { evidence?: unknown } | undefined)
-            ?.evidence,
-        );
-        if (hint) lines.push(`q${issue.question + 1} 근거 진단: ${hint}`);
-      }
-    }
-  }
   const parsed = (Array.isArray(draft.questions) ? draft.questions : []).map(
     (question) => englishQuestionSchema.safeParse(question),
   );
