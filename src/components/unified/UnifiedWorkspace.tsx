@@ -80,6 +80,15 @@ const ConceptView = dynamic(() => import("./ConceptView"), {
     />
   ),
 });
+const ConceptBlankView = dynamic(
+  () => import("@/components/concept-blank/ConceptBlankView"),
+  {
+    ssr: false,
+    loading: () => (
+      <WorkProgress className={s.loading} label="개념 백지를 여는 중입니다…" />
+    ),
+  },
+);
 const CourseDashboard = dynamic(
   () => import("@/components/math-srs/CourseDashboard"),
   {
@@ -129,6 +138,8 @@ const mathNav: NavItem[] = [
   },
   // D-124 ⑽ — «수업 · 학생 관리» 바로 아래
   { id: "concept", label: "오늘의 개념", short: "개념", icon: "play" },
+  // D-150 — «오늘의 개념» 바로 아래(원장님 캡처)
+  { id: "conceptBlank", label: "개념 백지", short: "백지", icon: "pen" },
   { id: "srs", label: "오늘의 기억 · SRS", short: "기억 학습", icon: "clock" },
 ];
 /** 오늘의 영어 옆 메뉴 — 탭 셋(원장님 확정 ⑹, ChatGPT 앱 옆 메뉴 그대로). 옆 메뉴는 지금 제품의 목록만 그린다 */
@@ -1269,6 +1280,12 @@ function UnifiedWorkspaceContent({
               <ConceptView />
             </main>
           )}
+          {can("conceptBlank") &&
+            (opened.has("conceptBlank") || view === "conceptBlank") && (
+              <main hidden={view !== "conceptBlank"} className={s.viewContent}>
+                <ConceptBlankView active={view === "conceptBlank"} />
+              </main>
+            )}
           {can("srs") && (opened.has("srs") || view === "srs") && (
             <main hidden={view !== "srs"} className={s.viewContent}>
               <CourseDashboard />

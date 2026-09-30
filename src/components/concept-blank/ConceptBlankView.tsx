@@ -1,0 +1,758 @@
+"use client";
+
+/**
+ * «개념 백지» 탭(D-150 · 26 §4 · 브리프 cb-app) — 왼쪽 나무(학년 → 대단원 → 소단원) · 오른쪽 형식 카드 다섯 ·
+ * 제목 · 날짜 · 아래 미리보기 · 인쇄하기(새 창 `/concept-blank/print?s=…&view=both`).
+ *
+ * 🔴 고정 문항 — 화면은 고르기(`ConceptBlankSelection`)만 만든다. 지면은 `composeSheets` 가 정하고, 같은 고르기면
+ * 언제나 같은 지면이다. 은행은 props(기본 `CONCEPT_BLANK_BANK`) — 실제 은행이 비어 있는 동안 시험은 `FIXTURE_BANK`.
+ * 고르기는 주소 `?blank=` 에도 싣는다(이 뷰가 보일 때만) — 새로 고치거나 즐겨찾기로 열면 되살아난다(DB 저장은 26 §7 잔고).
+ *
+ * 모양은 작업실 토큰 그대로(05 §8.9) · 두 칸은 영어 화면 결(05 §8.23) · 스위치는 진도 계획 화면 것(05 §8.10).
+ * D-08(사무적) · D-30(손가락 커서는 단추 · 체크 칸에만). 🔴 새 화면의 첫 판이다 — D-07 로 원장님이 보고 고친다.
+ */
+import { useEffect, useId, useMemo, useRef, useState } from "react";
+
+import ConceptBlankPaper from "@/components/concept-blank/ConceptBlankPaper";
+import Icon from "@/components/unified/WorkspaceIcon";
+import WorkspacePageHeader from "@/components/unified/WorkspacePageHeader";
+import {
+  CONCEPT_BLANK_FORM_LABELS,
+  CONCEPT_BLANK_FORMS,
+  CONCEPT_BLANK_LEVELS,
+  type ConceptBlankBank,
+  type ConceptBlankForm,
+  type ConceptBlankLevel,
+  type ConceptBlankSelection,
+  type ConceptBlankSheet,
+  type LevelCounts,
+} from "@/contracts/conceptBlank.contract";
+import { CONCEPT_BLANK_BANK } from "@/lib/concept-blank/bank";
+import {
+  composeSheets,
+  orderedSections,
+  stockCounts,
+} from "@/lib/concept-blank/compose";
+import {
+  BLANK_TREE,
+  CONCEPT_BLANK_GRADES,
+  getBlankSection,
+  type BlankChapter,
+} from "@/lib/concept-blank/sections";
+import {
+  decodeSelection,
+  encodeSelection,
+} from "@/lib/concept-blank/selectionCodec";
+
+import s from "./concept-blank.module.css";
+
+/** 계약의 상한(`conceptBlankSelectionSchema`) — 형식 · 난이도마다 40, 소단원 60, 제목 40자. */
+const COUNT_CAP = 40;
+const SECTION_CAP = 60;
+const TITLE_MAX = 40;
+/** 고르기를 싣는 주소 인수 — 셸의 해시(`#conceptBlank`)는 뷰 이름만 알아서 검색 인수에 둔다(`?set=` · `?extraction=` 결). */
+const URL_PARAM = "blank";
+const PRINT_PATH = "/concept-blank/print";
+const DATE_RE = /^\d{4}-\d{2}-\d{2}$/;
+const ZERO: LevelCounts = { 하: 0, 중: 0, 상: 0 };
+
+type Stock = ReturnType<typeof stockCounts>;
+type StockKind = "concepts" | "ox" | "apply" | "figures";
+type Row = "main" | "extra";
+
+const LETTER: Record<ConceptBlankForm, string> = {
+  recall: "A",
+  term: "B",
+  cloze: "C",
+  map: "D",
+  figure: "E",
+};
+
+/** 형식마다 숫자 줄 — 첫 줄은 `counts`, 둘째 줄(B ○× · C 적용)은 `extras`. */
+const ROWS: Record<
+  ConceptBlankForm,
+  {
+    main: { label: string; stock: StockKind };
+    extra?: { label: string; stock: StockKind };
+  }
+> = {
+  recall: { main: { label: "개념 수", stock: "concepts" } },
+  term: {
+    main: { label: "용어", stock: "concepts" },
+    extra: { label: "○×", stock: "ox" },
+  },
+  cloze: {
+    main: { label: "문장", stock: "concepts" },
+    extra: { label: "적용", stock: "apply" },
+  },
+  map: { main: { label: "개념 수", stock: "concepts" } },
+  figure: { main: { label: "그림", stock: "figures" } },
+};
+
+const HELP: Record<ConceptBlankForm, string> = {
+  recall:
+    "소단원 이름만 보고 아는 개념을 모두 씁니다. 수는 채점표에 싣는 개념 수입니다.",
+  term: "용어를 보고 뜻을 씁니다. 뒤에 ○× 문항이 붙습니다.",
+  cloze: "뜻 문장의 핵심어 자리를 채웁니다. 뒤에 적용 문항이 붙습니다.",
+  map: "대단원마다 가운데 이름에서 가지를 뻗어 뜻과 예를 씁니다. 수는 가지 수입니다.",
+  figure: "그림의 빈 이름표와 아래 줄을 채웁니다.",
+};
+
+const EMPTY_REASON: Record<ConceptBlankForm, string> = {
+  recall: "고른 소단원에 개념 문항이 없습니다.",
+  term: "고른 소단원에 용어 · ○× 문항이 없습니다.",
+  cloze: "고른 소단원에 문장 · 적용 문항이 없습니다.",
+  map: "고른 소단원에 개념 문항이 없습니다.",
+  figure: "고른 소단원에 그림 문항이 없습니다.",
+};
+
+type FormDraft = {
+  on: boolean;
+  /** 원장님이 고친 수만 — 없으면 «전부»(= 고른 소단원의 재고). */
+  counts: Partial<LevelCounts>;
+  extras: Partial<LevelCounts>;
+};
+type Draft = {
+  sections: string[];
+  forms: Record<ConceptBlankForm, FormDraft>;
+  title: string;
+  date: string;
+};
+
+const sum = (c: LevelCounts) => c.하 + c.중 + c.상;
+const isReadyGrade = (grade: string) =>
+  (CONCEPT_BLANK_GRADES as readonly string[]).includes(grade);
+
+/** 주소의 `?blank=` 를 읽어 처음 고르기를 세운다 — 없거나 틀리면 빈 고르기(형식은 다 켠 채). */
+function initialDraft(): Draft {
+  const saved =
+    typeof window === "undefined"
+      ? null
+      : decodeSelection(
+          new URL(window.location.href).searchParams.get(URL_PARAM),
+        );
+  const forms = Object.fromEntries(
+    CONCEPT_BLANK_FORMS.map((form) => [
+      form,
+      { on: !saved, counts: {}, extras: {} },
+    ]),
+  ) as Record<ConceptBlankForm, FormDraft>;
+  for (const f of saved?.forms ?? [])
+    forms[f.form] = {
+      on: true,
+      counts: { ...f.counts },
+      extras: { ...f.extras },
+    };
+  return {
+    sections: saved ? orderedSections(saved.sections) : [],
+    forms,
+    title: saved?.title ?? "",
+    date: saved?.date ?? "",
+  };
+}
+
+function stockLine(stock: Stock | undefined): string {
+  if (!stock || stock.total === 0) return "문항 없음";
+  return `개념 ${sum(stock.concepts)} · ○× ${sum(stock.ox)} · 적용 ${sum(stock.apply)} · 그림 ${sum(stock.figures)}`;
+}
+
+function itemCount(sheet: ConceptBlankSheet): number {
+  switch (sheet.form) {
+    case "recall":
+      return sheet.key.length;
+    case "term":
+      return sheet.terms.length + sheet.ox.length;
+    case "cloze":
+      return sheet.sentences.length + sheet.apply.length;
+    case "map":
+      return sheet.maps.reduce((n, m) => n + m.nodes.length, 0);
+    case "figure":
+      return sheet.figures.length;
+  }
+}
+
+type Caps = Record<StockKind, LevelCounts>;
+
+/** 숫자 칸의 최대 — 고른 소단원의 그 재고(계약 상한 40 에서 자른 것). */
+function maxOf(caps: Caps, form: ConceptBlankForm, row: Row): LevelCounts {
+  const spec = row === "main" ? ROWS[form].main : ROWS[form].extra;
+  return spec ? caps[spec.stock] : ZERO;
+}
+/** 숫자 칸의 값 — 고친 수가 없으면 «전부», 있으면 최대 안으로. */
+function valueOf(
+  draft: Draft,
+  caps: Caps,
+  form: ConceptBlankForm,
+  row: Row,
+): LevelCounts {
+  const max = maxOf(caps, form, row);
+  const stored = draft.forms[form][row === "main" ? "counts" : "extras"];
+  const pick = (level: ConceptBlankLevel) =>
+    Math.max(0, Math.min(stored[level] ?? max[level], max[level]));
+  return { 하: pick("하"), 중: pick("중"), 상: pick("상") };
+}
+/** 형식을 켤 수 있나 — 고른 소단원에 그 형식이 쓰는 재고가 있어야 한다. */
+function availableOf(chosen: string[], caps: Caps, form: ConceptBlankForm) {
+  return (
+    chosen.length > 0 &&
+    sum(maxOf(caps, form, "main")) + sum(maxOf(caps, form, "extra")) > 0
+  );
+}
+
+/**
+ * 미리보기 축소 — 지면(`ConceptBlankPaper`)을 제 폭(A4)으로 그린 뒤 칸 폭에 맞춰 가로 · 세로를 **같은 배율**로 줄인다
+ * (원장님 «A4 사이즈에 맞게»). 지면의 속은 건드리지 않는다 — 배율만 씌운다. 칸보다 좁으면 그대로(키우지 않는다).
+ * transform 은 차지하는 자리를 안 줄이므로, 바깥 칸에 줄인 폭 · 높이를 적어 자리를 맞춘다.
+ */
+function usePaperFit(enabled: boolean) {
+  const deskRef = useRef<HTMLDivElement>(null);
+  const paperRef = useRef<HTMLDivElement>(null);
+  const [fit, setFit] = useState<{ k: number; w: number; h: number } | null>(
+    null,
+  );
+  useEffect(() => {
+    const desk = deskRef.current;
+    const paper = paperRef.current;
+    if (!enabled || !desk || !paper || typeof ResizeObserver === "undefined")
+      return;
+    const measure = () => {
+      const w = paper.offsetWidth;
+      const h = paper.offsetHeight;
+      const style = getComputedStyle(desk);
+      const room =
+        desk.clientWidth -
+        (parseFloat(style.paddingLeft) || 0) -
+        (parseFloat(style.paddingRight) || 0);
+      const next =
+        w > 0 && room > 0 ? { k: Math.min(1, room / w), w, h } : null;
+      setFit((current) =>
+        current &&
+        next &&
+        current.k === next.k &&
+        current.w === next.w &&
+        current.h === next.h
+          ? current
+          : next,
+      );
+    };
+    const observer = new ResizeObserver(measure);
+    observer.observe(desk);
+    observer.observe(paper);
+    measure();
+    return () => observer.disconnect();
+  }, [enabled]);
+  return { deskRef, paperRef, fit };
+}
+
+export type ConceptBlankViewProps = {
+  /** 문항 은행 — 기본은 실제 은행. 시험 · 시안은 `FIXTURE_BANK`. */
+  bank?: ConceptBlankBank;
+  /** 셸에서 지금 보이는 뷰인가 — 보일 때만 주소에 고르기를 싣는다(떠나면 지운다). */
+  active?: boolean;
+};
+
+export default function ConceptBlankView({
+  bank = CONCEPT_BLANK_BANK,
+  active = true,
+}: ConceptBlankViewProps) {
+  const uid = useId();
+  const [draft, setDraft] = useState<Draft>(initialDraft);
+  const [openGrade, setOpenGrade] = useState<string | null>(() =>
+    draft.sections.length
+      ? (getBlankSection(draft.sections[0]!)?.grade ?? null)
+      : null,
+  );
+  const [capHit, setCapHit] = useState(false);
+  const [paperView, setPaperView] = useState<"student" | "key">("student");
+
+  /** 소단원마다 재고 — 은행이 채우는 학년(초3~중3)만. */
+  const stockIndex = useMemo(() => {
+    const map = new Map<string, Stock>();
+    for (const grade of BLANK_TREE)
+      if (isReadyGrade(grade.grade))
+        for (const chapter of grade.chapters)
+          for (const section of chapter.sections)
+            map.set(section.key, stockCounts(section.key, bank));
+    return map;
+  }, [bank]);
+  const selectable = (key: string) => (stockIndex.get(key)?.total ?? 0) > 0;
+
+  /** 고른 소단원 — 재고가 있는 것만, 교육과정 순서. */
+  const chosen = useMemo(
+    () =>
+      orderedSections(
+        draft.sections.filter((key) => (stockIndex.get(key)?.total ?? 0) > 0),
+      ),
+    [draft.sections, stockIndex],
+  );
+  const chosenSet = useMemo(() => new Set(chosen), [chosen]);
+
+  /** 고른 소단원의 재고 합 — 숫자 칸의 최대(계약 상한 40 에서 자른다). */
+  const caps = useMemo<Caps>(() => {
+    const total = (kind: StockKind): LevelCounts => {
+      const out = { ...ZERO };
+      for (const key of chosen) {
+        const stock = stockIndex.get(key)!;
+        for (const level of CONCEPT_BLANK_LEVELS)
+          out[level] += stock[kind][level];
+      }
+      for (const level of CONCEPT_BLANK_LEVELS)
+        out[level] = Math.min(out[level], COUNT_CAP);
+      return out;
+    };
+    return {
+      concepts: total("concepts"),
+      ox: total("ox"),
+      apply: total("apply"),
+      figures: total("figures"),
+    };
+  }, [chosen, stockIndex]);
+
+  const isOn = (form: ConceptBlankForm) =>
+    availableOf(chosen, caps, form) && draft.forms[form].on;
+
+  const selection = useMemo<ConceptBlankSelection | null>(() => {
+    if (!chosen.length) return null;
+    const forms = CONCEPT_BLANK_FORMS.flatMap((form) => {
+      if (!availableOf(chosen, caps, form) || !draft.forms[form].on) return [];
+      const counts = valueOf(draft, caps, form, "main");
+      const extras = ROWS[form].extra
+        ? valueOf(draft, caps, form, "extra")
+        : { ...ZERO };
+      return sum(counts) + sum(extras) > 0 ? [{ form, counts, extras }] : [];
+    });
+    if (!forms.length) return null;
+    const title = draft.title.trim().slice(0, TITLE_MAX);
+    return {
+      sections: chosen.slice(0, SECTION_CAP),
+      forms,
+      ...(title ? { title } : {}),
+      ...(DATE_RE.test(draft.date) ? { date: draft.date } : {}),
+    };
+  }, [chosen, caps, draft]);
+
+  const code = useMemo(() => {
+    if (!selection) return null;
+    try {
+      return encodeSelection(selection);
+    } catch {
+      return null;
+    }
+  }, [selection]);
+  const sheets = useMemo(
+    () => (selection ? composeSheets(selection, bank) : []),
+    [selection, bank],
+  );
+  const items = sheets.reduce((n, sheet) => n + itemCount(sheet), 0);
+  const { deskRef, paperRef, fit } = usePaperFit(sheets.length > 0);
+
+  // 주소 `?blank=` — 이 뷰가 보일 때만 싣고, 떠나면 지운다. replaceState 라 셸의 해시 동기화(popstate)는 안 깨운다.
+  useEffect(() => {
+    const url = new URL(window.location.href);
+    const next = active ? code : null;
+    if (url.searchParams.get(URL_PARAM) === next) return;
+    if (next) url.searchParams.set(URL_PARAM, next);
+    else url.searchParams.delete(URL_PARAM);
+    window.history.replaceState(window.history.state, "", url);
+  }, [active, code]);
+
+  /** 고른 소단원을 바꾼다 — 기준은 지금 고른 것(재고 있는 것만). 상한 60 을 넘으면 앞에서 자르고 한 줄 알린다. */
+  const changeSections = (next: string[], hit = false) => {
+    setCapHit(hit);
+    setDraft((current) => ({ ...current, sections: next }));
+  };
+  const addSections = (keys: string[]) => {
+    const add = keys.filter((key) => !chosenSet.has(key));
+    const room = Math.max(SECTION_CAP - chosen.length, 0);
+    changeSections([...chosen, ...add.slice(0, room)], add.length > room);
+  };
+  const toggleSection = (key: string) => {
+    if (!selectable(key)) return;
+    if (chosenSet.has(key)) changeSections(chosen.filter((k) => k !== key));
+    else addSections([key]);
+  };
+  const toggleChapter = (chapter: BlankChapter) => {
+    const keys = chapter.sections.map((x) => x.key).filter(selectable);
+    if (!keys.length) return;
+    if (keys.every((key) => chosenSet.has(key)))
+      changeSections(chosen.filter((k) => !keys.includes(k)));
+    else addSections(keys);
+  };
+  const toggleForm = (form: ConceptBlankForm) =>
+    setDraft((current) => ({
+      ...current,
+      forms: {
+        ...current.forms,
+        [form]: { ...current.forms[form], on: !current.forms[form].on },
+      },
+    }));
+  const setCount = (
+    form: ConceptBlankForm,
+    row: Row,
+    level: ConceptBlankLevel,
+    raw: string,
+  ) => {
+    const max = maxOf(caps, form, row)[level];
+    const n = Math.floor(Number(raw));
+    const value = Number.isFinite(n) ? Math.min(Math.max(n, 0), max) : 0;
+    const field = row === "main" ? "counts" : "extras";
+    setDraft((current) => ({
+      ...current,
+      forms: {
+        ...current.forms,
+        [form]: {
+          ...current.forms[form],
+          [field]: { ...current.forms[form][field], [level]: value },
+        },
+      },
+    }));
+  };
+
+  const autoTitle =
+    !draft.title.trim() && sheets[0] ? sheets[0].header.title : null;
+  const printHref = code ? `${PRINT_PATH}?s=${code}&view=both` : null;
+
+  return (
+    <div className={s.view}>
+      <WorkspacePageHeader
+        title="개념 백지"
+        description="학년 · 대단원 · 소단원을 고르고 형식마다 난이도별 문항 수를 정합니다. 같은 고르기는 언제나 같은 지면입니다."
+      >
+        {printHref ? (
+          <a
+            className={s.primaryButton}
+            href={printHref}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <Icon name="print" size={18} />
+            인쇄하기
+          </a>
+        ) : (
+          <button type="button" className={s.primaryButton} disabled>
+            <Icon name="print" size={18} />
+            인쇄하기
+          </button>
+        )}
+      </WorkspacePageHeader>
+
+      <div className={s.grid}>
+        <section
+          className={`${s.card} ${s.treeCard}`}
+          aria-labelledby={`${uid}-tree`}
+        >
+          <div className={s.cardHead}>
+            <h2 id={`${uid}-tree`} className={s.cardTitle}>
+              단원 고르기
+            </h2>
+            <span className={s.num}>고른 소단원 {chosen.length}</span>
+            {chosen.length > 0 && (
+              <button
+                type="button"
+                className={s.quietButton}
+                onClick={() => changeSections([])}
+              >
+                모두 풀기
+              </button>
+            )}
+          </div>
+          <p className={s.desc}>
+            학년을 펼쳐 대단원이나 소단원을 고릅니다. 학년을 넘어 여러 개를 고를
+            수 있습니다.
+          </p>
+          {capHit && (
+            <p className={s.note} role="status">
+              소단원은 {SECTION_CAP}개까지 고를 수 있습니다.
+            </p>
+          )}
+          <ul className={s.grades}>
+            {BLANK_TREE.map((grade, gi) => {
+              if (!isReadyGrade(grade.grade))
+                return (
+                  <li key={grade.grade} className={s.grade}>
+                    <div className={s.gradePending}>
+                      <span className={s.gradeName}>{grade.grade}</span>
+                      <span className={s.pending}>준비 중</span>
+                    </div>
+                  </li>
+                );
+              const open = openGrade === grade.grade;
+              const picked = grade.chapters.reduce(
+                (n, c) =>
+                  n + c.sections.filter((x) => chosenSet.has(x.key)).length,
+                0,
+              );
+              const panelId = `${uid}-g${gi}`;
+              return (
+                <li key={grade.grade} className={s.grade}>
+                  <button
+                    type="button"
+                    className={s.gradeButton}
+                    aria-expanded={open}
+                    aria-controls={open ? panelId : undefined}
+                    onClick={() => setOpenGrade(open ? null : grade.grade)}
+                  >
+                    <span className={s.gradeName}>{grade.grade}</span>
+                    {picked > 0 && (
+                      <span className={s.picked}>{picked}개 고름</span>
+                    )}
+                    <span className={s.chevron}>
+                      <Icon name="chevron" size={16} />
+                    </span>
+                  </button>
+                  {open && (
+                    <ul id={panelId} className={s.chapters}>
+                      {grade.chapters.map((chapter, ci) => {
+                        const keys = chapter.sections
+                          .map((x) => x.key)
+                          .filter(selectable);
+                        const count = keys.filter((k) =>
+                          chosenSet.has(k),
+                        ).length;
+                        const all = keys.length > 0 && count === keys.length;
+                        return (
+                          <li
+                            key={chapter.key}
+                            className={s.chapter}
+                            data-empty={keys.length ? undefined : "true"}
+                          >
+                            <label className={`${s.check} ${s.chapterLabel}`}>
+                              <input
+                                type="checkbox"
+                                checked={all}
+                                disabled={!keys.length}
+                                ref={(el) => {
+                                  if (el) el.indeterminate = count > 0 && !all;
+                                }}
+                                onChange={() => toggleChapter(chapter)}
+                              />
+                              <span>{chapter.title}</span>
+                            </label>
+                            <ul className={s.sections}>
+                              {chapter.sections.map((section, si) => {
+                                const stock = stockIndex.get(section.key);
+                                const empty = !stock || stock.total === 0;
+                                const stockId = `${uid}-g${gi}c${ci}s${si}`;
+                                return (
+                                  <li
+                                    key={section.key}
+                                    className={s.section}
+                                    data-empty={empty ? "true" : undefined}
+                                  >
+                                    <label className={s.check}>
+                                      <input
+                                        type="checkbox"
+                                        checked={chosenSet.has(section.key)}
+                                        disabled={empty}
+                                        aria-describedby={stockId}
+                                        onChange={() =>
+                                          toggleSection(section.key)
+                                        }
+                                      />
+                                      <span>{section.title}</span>
+                                    </label>
+                                    <span id={stockId} className={s.stock}>
+                                      {stockLine(stock)}
+                                    </span>
+                                  </li>
+                                );
+                              })}
+                            </ul>
+                          </li>
+                        );
+                      })}
+                    </ul>
+                  )}
+                </li>
+              );
+            })}
+            <li className={s.grade}>
+              <div className={s.gradePending}>
+                <span className={s.gradeName}>고등</span>
+                <span className={s.pending}>준비 중</span>
+              </div>
+            </li>
+          </ul>
+        </section>
+
+        <div className={s.column}>
+          {CONCEPT_BLANK_FORMS.map((form) => {
+            const label = CONCEPT_BLANK_FORM_LABELS[form];
+            const on = isOn(form);
+            const available = availableOf(chosen, caps, form);
+            const reason = !chosen.length
+              ? "소단원을 먼저 고르세요."
+              : available
+                ? null
+                : EMPTY_REASON[form];
+            const rows = (["main", "extra"] as const).filter(
+              (row) => row === "main" || ROWS[form].extra,
+            );
+            return (
+              <section
+                key={form}
+                className={s.formCard}
+                data-on={on ? "true" : "false"}
+                aria-labelledby={`${uid}-${form}`}
+              >
+                <div className={s.formHead}>
+                  <span className={s.letter} aria-hidden="true">
+                    {LETTER[form]}
+                  </span>
+                  <h3 id={`${uid}-${form}`} className={s.formTitle}>
+                    {label}
+                  </h3>
+                  <button
+                    type="button"
+                    role="switch"
+                    aria-checked={on}
+                    aria-label={`${label} 켜기`}
+                    className={s.switch}
+                    disabled={!available}
+                    onClick={() => toggleForm(form)}
+                  >
+                    <span className={s.track} aria-hidden="true" />
+                  </button>
+                </div>
+                <p className={s.formHelp}>{HELP[form]}</p>
+                {reason && <p className={s.reason}>{reason}</p>}
+                <div className={s.levels}>
+                  {rows.map((row) => {
+                    const spec =
+                      row === "main" ? ROWS[form].main : ROWS[form].extra!;
+                    const max = maxOf(caps, form, row);
+                    const value = valueOf(draft, caps, form, row);
+                    return (
+                      <div
+                        key={row}
+                        className={s.levelRow}
+                        role="group"
+                        aria-label={`${label} ${spec.label}`}
+                      >
+                        <span className={s.rowLabel}>{spec.label}</span>
+                        {CONCEPT_BLANK_LEVELS.map((level) => (
+                          <label key={level} className={s.levelField}>
+                            <span className={s.levelName}>{level}</span>
+                            <input
+                              type="number"
+                              inputMode="numeric"
+                              min={0}
+                              max={max[level]}
+                              step={1}
+                              value={value[level]}
+                              disabled={!on || max[level] === 0}
+                              aria-label={`${label} ${spec.label} ${level}`}
+                              onChange={(event) =>
+                                setCount(form, row, level, event.target.value)
+                              }
+                            />
+                            <span className={s.levelMax}>/ {max[level]}</span>
+                          </label>
+                        ))}
+                      </div>
+                    );
+                  })}
+                </div>
+              </section>
+            );
+          })}
+
+          <section className={s.card} aria-labelledby={`${uid}-meta`}>
+            <h2 id={`${uid}-meta`} className={s.cardTitle}>
+              제목 · 날짜
+            </h2>
+            <div className={s.metaGrid}>
+              <label className={s.field}>
+                <span>제목</span>
+                <input
+                  type="text"
+                  maxLength={TITLE_MAX}
+                  value={draft.title}
+                  placeholder={autoTitle ?? "비우면 단원 이름이 들어갑니다"}
+                  onChange={(event) =>
+                    setDraft((current) => ({
+                      ...current,
+                      title: event.target.value,
+                    }))
+                  }
+                />
+              </label>
+              <label className={s.field}>
+                <span>날짜</span>
+                <input
+                  type="date"
+                  value={draft.date}
+                  onChange={(event) =>
+                    setDraft((current) => ({
+                      ...current,
+                      date: event.target.value,
+                    }))
+                  }
+                />
+              </label>
+            </div>
+          </section>
+        </div>
+      </div>
+
+      <section
+        className={`${s.card} ${s.previewCard}`}
+        aria-labelledby={`${uid}-preview`}
+      >
+        <div className={s.cardHead}>
+          <h2 id={`${uid}-preview`} className={s.cardTitle}>
+            미리보기
+          </h2>
+          {sheets.length > 0 && (
+            <span className={s.num}>
+              형식 {sheets.length} · 문항 {items}
+            </span>
+          )}
+          <div className={s.segment} role="group" aria-label="미리보기 지면">
+            <button
+              type="button"
+              aria-pressed={paperView === "student"}
+              onClick={() => setPaperView("student")}
+            >
+              학생지
+            </button>
+            <button
+              type="button"
+              aria-pressed={paperView === "key"}
+              onClick={() => setPaperView("key")}
+            >
+              채점표
+            </button>
+          </div>
+        </div>
+        {sheets.length > 0 ? (
+          <div ref={deskRef} className={s.paperDesk} data-paper-desk="">
+            <div
+              className={s.paperFit}
+              style={
+                fit
+                  ? { width: fit.w * fit.k, height: fit.h * fit.k }
+                  : undefined
+              }
+            >
+              <div
+                ref={paperRef}
+                className={s.paperScale}
+                data-paper-scale=""
+                style={
+                  fit && fit.k < 1
+                    ? { transform: `scale(${fit.k})` }
+                    : undefined
+                }
+              >
+                <ConceptBlankPaper sheets={sheets} view={paperView} />
+              </div>
+            </div>
+          </div>
+        ) : (
+          <p className={s.empty}>소단원과 형식을 고르면 지면이 나옵니다.</p>
+        )}
+      </section>
+    </div>
+  );
+}
