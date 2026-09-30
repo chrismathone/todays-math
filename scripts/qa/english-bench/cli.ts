@@ -27,9 +27,21 @@ export interface CliCall {
   cwd: string;
 }
 
+/**
+ * 토큰 사용량 — 비용 계산용(원장님 2026-09-30 «비용까지 계산해서 우선도»). `output` 은 생각(추론) 토큰을 **포함**한
+ * 출력 토큰. 구독 CLI 는 자기 에이전트 지시문을 입력에 더하므로 `input` 은 API 로 부를 때보다 크다 — 비용은 우리
+ * 요청문 크기로 따로 잰다(usage.ts).
+ */
+export interface CliUsage {
+  input?: number;
+  output: number;
+  reasoning?: number;
+}
+
 export interface CliResult {
   text: string;
   ms: number;
+  usage?: CliUsage;
 }
 
 export class CliCallError extends Error {
@@ -124,6 +136,7 @@ export async function runCli(call: CliCall): Promise<CliResult> {
   const started = Date.now();
   const joined = `${call.system}\n\n---\n\n${call.prompt}`;
   let text: string;
+  let usage: CliUsage | undefined;
 
   if (call.provider === "deepseek") {
     // 유일한 유료 API — 제품 `callAi`(src/lib/ai/client.ts) 와 같은 호출(추론 예산 하한 64,000). 모델만 고른다.
@@ -143,9 +156,23 @@ export async function runCli(call: CliCall): Promise<CliResult> {
         { role: "user", content: call.prompt },
       ],
     });
+    const u = response.usage as
+      | {
+          prompt_tokens?: number;
+          completion_tokens?: number;
+          completion_tokens_details?: { reasoning_tokens?: number };
+        }
+      | undefined;
     return {
       text: response.choices[0]?.message?.content ?? "",
       ms: Date.now() - started,
+      usage: u
+        ? {
+            input: u.prompt_tokens,
+            output: u.completion_tokens ?? 0,
+            reasoning: u.completion_tokens_details?.reasoning_tokens,
+          }
+        : undefined,
     };
   }
   if (call.provider === "codex") {
@@ -175,6 +202,7 @@ export async function runCli(call: CliCall): Promise<CliResult> {
         "hooks",
         "--disable",
         "shell_tool",
+        "--json",
         "-o",
         out,
         "-",
@@ -183,6 +211,28 @@ export async function runCli(call: CliCall): Promise<CliResult> {
       if (r.code !== 0)
         throw new CliCallError(`codex 종료 ${r.code}`, r.stderr.slice(-800));
       text = readFileSync(out, "utf8");
+      for (const line of r.stdout.split(/\r?\n/)) {
+        if (!line.includes('"turn.completed"')) continue;
+        try {
+          const event = JSON.parse(line) as {
+            usage?: {
+              input_tokens?: number;
+              output_tokens?: number;
+              reasoning_output_tokens?: number;
+            };
+          };
+          if (event.usage)
+            usage = {
+              input: event.usage.input_tokens,
+              output:
+                (event.usage.output_tokens ?? 0) +
+                (event.usage.reasoning_output_tokens ?? 0),
+              reasoning: event.usage.reasoning_output_tokens,
+            };
+        } catch {
+          /* 사용량 줄이 아니면 건너뛴다 */
+        }
+      }
     } finally {
       rmSync(tmp, { recursive: true, force: true });
     }
@@ -211,6 +261,19 @@ export async function runCli(call: CliCall): Promise<CliResult> {
     if (out.is_error !== false || typeof out.result !== "string")
       throw new CliCallError("claude 오류", r.stdout.slice(-800));
     text = out.result;
+    const cu = out.usage as
+      | {
+          input_tokens?: number;
+          output_tokens?: number;
+          output_tokens_details?: { thinking_tokens?: number };
+        }
+      | undefined;
+    if (cu)
+      usage = {
+        input: cu.input_tokens,
+        output: cu.output_tokens ?? 0,
+        reasoning: cu.output_tokens_details?.thinking_tokens,
+      };
   } else if (call.provider === "grok") {
     const tmp = mkdtempSync(path.join(os.tmpdir(), "ebench-grok-"));
     const promptFile = path.join(tmp, "prompt.md");
@@ -242,6 +305,20 @@ export async function runCli(call: CliCall): Promise<CliResult> {
           r.stdout.slice(-800) + r.stderr.slice(-400),
         );
       text = out.text;
+      const gu = out.usage as
+        | {
+            input_tokens?: number;
+            output_tokens?: number;
+            reasoning_tokens?: number;
+          }
+        | undefined;
+      // grok 의 output_tokens 는 reasoning 을 포함한다(스모크: output 41 · reasoning 36)
+      if (gu)
+        usage = {
+          input: gu.input_tokens,
+          output: gu.output_tokens ?? 0,
+          reasoning: gu.reasoning_tokens,
+        };
     } finally {
       rmSync(tmp, { recursive: true, force: true });
     }
@@ -265,6 +342,19 @@ export async function runCli(call: CliCall): Promise<CliResult> {
         r.stdout.slice(-800) + r.stderr.slice(-400),
       );
     text = out.response;
+    const au = out.usage as
+      | {
+          input_tokens?: number;
+          output_tokens?: number;
+          thinking_tokens?: number;
+        }
+      | undefined;
+    if (au)
+      usage = {
+        input: au.input_tokens,
+        output: (au.output_tokens ?? 0) + (au.thinking_tokens ?? 0),
+        reasoning: au.thinking_tokens,
+      };
   }
-  return { text, ms: Date.now() - started };
+  return { text, ms: Date.now() - started, usage };
 }
