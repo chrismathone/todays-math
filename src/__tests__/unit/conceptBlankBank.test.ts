@@ -7,9 +7,13 @@ import {
   blankKeywords,
   conceptBlankBankSchema,
 } from "@/contracts/conceptBlank.contract";
-import { BANK_PARTS, CONCEPT_BLANK_BANK } from "@/lib/concept-blank/bank";
+import {
+  BANK_PARTS,
+  CONCEPT_BLANK_BANK,
+  sectionStock,
+} from "@/lib/concept-blank/bank";
 import { FIXTURE_BANK } from "@/lib/concept-blank/fixture";
-import { getBlankSection } from "@/lib/concept-blank/sections";
+import { BLANK_SECTIONS, getBlankSection } from "@/lib/concept-blank/sections";
 
 const PART_GRADES: Record<string, readonly string[]> = {
   e3: ["초3"],
@@ -51,6 +55,29 @@ describe("concept blank bank", () => {
           `${item.id}: ${section?.grade} 는 ${part} 파일 밖`,
         ).toContain(section!.grade);
       }
+    },
+  );
+
+  // 채우기 시작한 학년은 소단원을 하나도 빼먹지 않는다(브리프 cb-bank 의 최소 재고) — 빈 뼈대 학년은 건너뛴다.
+  it.each(Object.keys(BANK_PARTS))(
+    "%s, once filled, stocks every section of its grade",
+    (part) => {
+      const bank = BANK_PARTS[part]!;
+      if (everyItem(bank).length === 0) return;
+      const sections = BLANK_SECTIONS.filter((s) =>
+        PART_GRADES[part]!.includes(s.grade),
+      );
+      expect(sections.length, `${part}: 교육과정 소단원`).toBeGreaterThan(0);
+      const thin = sections.flatMap((s) => {
+        const stock = sectionStock(s.key, bank);
+        const short = [
+          stock.concepts.length < 2 && `개념 ${stock.concepts.length}`,
+          stock.ox.length < 1 && "○× 0",
+          stock.apply.length < 1 && "적용 0",
+        ].filter(Boolean);
+        return short.length ? [`${s.key} — ${short.join(" · ")}`] : [];
+      });
+      expect(thin).toEqual([]);
     },
   );
 
