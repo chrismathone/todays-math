@@ -234,16 +234,97 @@ export const termRuledLines = (entry: ConceptEntry): 1 | 2 =>
   plainSentence(entry.definition).replace(/\s+/g, "").length <= 18 ? 1 : 2;
 
 /**
- * 수식이 든 줄은 글줄보다 높아질 수 있다(제품 수식 경로는 수식을 본문보다 크게 그린다). 수식 줄의 높이를 글씨 크기의
- * 배수로 본다 — 글자 · 첨자 수식 2.2배 · 분수 2.6배 · 합 · 적분 · 여러 줄 · 겹친 분수 4.2배(잰 값 2.09 · 2.34 에 여유).
- * 그 높이가 글줄 높이(`linePx`)를 넘는 만큼만 더한다 — 줄 간격이 넓은 C 문장은 거의 안 늘고, 촘촘한 채점표는 는다.
+ * 수식이 든 줄은 글줄보다 높아질 수 있다(제품 수식 경로는 수식을 본문의 1.21배로, 분수를 크게 그린다).
+ * 수식 줄의 높이를 글씨 크기의 배수로 본다 — 갈래마다 잰 값(`e2e/concept-blank-paper/calibrate.ts` · 2026-09-30)에 여유:
+ *
+ * | 갈래 | 잰 줄 높이(em) | 어림 | 보기 |
+ * |---|---|---|---|
+ * | `small` 글자 · 첨자 · 근호 · 윗줄 · 괄호 | ≤ 1.71 | 1.8 | `x^2` · `\sqrt{b^2-4ac}` · `\overline{AB}` · `\sin 30^\circ` · `(a+b)^2` |
+ * | `raised` 글자 위에 얹는 것 · 괄호와 만난 근호 | ≤ 2.11 | 2.25 | `\overset{\frown}{AB}` · `\overleftrightarrow{AB}` · `\sqrt 2(\sqrt 3+1)` |
+ * | `tall` 분수 한 겹 · 괄호 안 근호에 첨자 | 2.43 ~ 2.49 | 2.6 | `\frac{1}{2}` · `-\frac{b}{a}` · `(-\sqrt 5)^2` |
+ * | `tallPlus` 분수 + 첨자 · 근호 · 늘인 괄호 · 윗줄 | 2.64 ~ 3.15 | 3.3 | `\left(-\frac{2}{3}\right)^2` · `\sqrt{\frac{1}{2}}` · 근의 공식 |
+ * | `huge` 겹친 분수 · 합 · 적분 · 여러 줄 | 3.73 ~ 3.89 | 4.2(여러 줄은 줄 수만큼) | `\frac{1}{1+\frac{1}{2}}` |
+ *
+ * 그 높이가 글줄 높이(`linePx`)를 넘는 만큼만 더한다 — 줄 간격이 넓은 C 문장(30.1px)은 분수가 있어야 늘고, 촘촘한 채점표
+ * (17.8px)는 글자 수식에도 조금 는다. 수식이 든 줄은 기준선이 어긋나 1~2px 늘 수 있어 줄마다 `MATH_LINE_MIN` 은 더한다.
  * 수식 조각 하나가 한 줄을 높인다고 보고(긴 수식은 연산자에서 줄이 바뀌니 300px 마다 한 줄 더), 글의 줄 수를 넘지 않게
  * 높은 것부터 센다.
  */
-const MATH_LINE_EM = { small: 2.2, tall: 2.6, huge: 4.2 } as const;
-const TALL_MATH = /[\\](?:d?frac|tfrac|over|binom)(?![a-zA-Z])/g;
+const MATH_LINE_EM = {
+  small: 1.8,
+  raised: 2.25,
+  tall: 2.6,
+  tallPlus: 3.3,
+  huge: 4.2,
+} as const;
+type MathKind = keyof typeof MATH_LINE_EM;
+const MATH_LINE_MIN = 3;
+const ROOT = /[\\]sqrt(?![a-zA-Z])/;
+const PAREN = /[()]|[\\](?:left|right)(?![a-zA-Z])/;
+const SCRIPT = /[\^_]/;
+const FRACTION = /[\\](?:d?frac|tfrac|over|binom)(?![a-zA-Z])/;
+const FRACTION_AT = /[\\](?:d?frac|tfrac)(?![a-zA-Z])/y;
 const HUGE_MATH = /[\\](?:cfrac|sum|int|prod|lim|begin)(?![a-zA-Z])/;
+/** 분수와 같이 있으면 줄을 더 높이는 것 — 첨자 · 근호 · 늘인 괄호 · 윗줄 · 얹는 것. */
+const STACKER =
+  /[\^_]|[\\](?:sqrt|left|right|big+[lr]?|overline|underline|overset|underset|bar|hat|vec|dot|tilde|widehat|overrightarrow|overleftarrow|overleftrightarrow)(?![a-zA-Z])/i;
+/** 글자 위에 얹는 것(분수 없이). */
+const RAISER =
+  /[\\](?:overset|underset|stackrel|widehat|hat|vec|tilde|overrightarrow|overleftarrow|overleftrightarrow)(?![a-zA-Z])/;
+const MATH_ROW_BREAK = /[\\]{2}/g;
 const MATH_SEGMENT = /\$[^$]*\$/g;
+
+/**
+ * 분수 안에 분수가 또 있는가 — 겹친 분수는 한 겹보다 훨씬 높다. 나란히 놓인 분수 둘
+ * (`\frac{2}{3}\times\frac{9}{4}`)은 겹친 것이 아니다. 분수의 두 묶음 `{ }{ }` 이 열려 있는 동안 분수를 또 만나면 겹친 것.
+ */
+export function hasNestedFraction(segment: string): boolean {
+  let depth = 0;
+  /** 방금 본 분수의 아직 안 열린 묶음 수. */
+  let pending = 0;
+  /** 분수 묶음이 열린 중괄호 깊이. */
+  const open: number[] = [];
+  for (let i = 0; i < segment.length; i++) {
+    FRACTION_AT.lastIndex = i;
+    const found = FRACTION_AT.exec(segment);
+    if (found) {
+      if (open.length) return true;
+      pending = 2;
+      i += found[0].length - 1;
+      continue;
+    }
+    const ch = segment[i];
+    if (ch === "{") {
+      depth += 1;
+      if (pending) {
+        pending -= 1;
+        open.push(depth);
+      }
+    } else if (ch === "}") {
+      if (open[open.length - 1] === depth) open.pop();
+      depth -= 1;
+    }
+  }
+  return false;
+}
+
+/** 수식 조각 하나의 갈래. */
+export function mathKind(segment: string): MathKind {
+  if (HUGE_MATH.test(segment) || hasNestedFraction(segment)) return "huge";
+  if (FRACTION.test(segment))
+    return STACKER.test(segment) ? "tallPlus" : "tall";
+  // 근호가 괄호와 만나면 근호는 위로, 괄호는 아래로 줄을 민다 — 거기에 첨자까지 붙으면 분수만큼 높다
+  if (ROOT.test(segment) && PAREN.test(segment))
+    return SCRIPT.test(segment) ? "tall" : "raised";
+  return RAISER.test(segment) ? "raised" : "small";
+}
+
+/** 그 갈래의 수식 줄 높이(글씨 크기의 배수) — 여러 줄 수식(`\\` 로 나눈 것)은 줄 수만큼 높다. */
+function mathLineEm(segment: string, kind: MathKind): number {
+  if (kind !== "huge") return MATH_LINE_EM[kind];
+  const rows = (segment.match(MATH_ROW_BREAK)?.length ?? 0) + 1;
+  return Math.max(MATH_LINE_EM.huge, rows * 1.9 + 0.8);
+}
 
 export function mathExtra(
   text: string,
@@ -252,26 +333,20 @@ export function mathExtra(
   linePx: number,
 ): number {
   if (!text.includes("$")) return 0;
-  const count = { small: 0, tall: 0, huge: 0 };
+  /** 수식이 높이는 줄마다의 높이(em) — 조각 하나가 한 줄(긴 조각은 여러 줄). */
+  const heights: number[] = [];
   for (const segment of text.match(MATH_SEGMENT) ?? [text]) {
+    const em = mathLineEm(segment, mathKind(segment));
     const spread = 1 + Math.floor((mathEm(segment) * fontPx) / 300);
-    const fractions = segment.match(TALL_MATH)?.length ?? 0;
-    const kind =
-      HUGE_MATH.test(segment) || fractions > 1
-        ? "huge"
-        : fractions
-          ? "tall"
-          : "small";
-    count[kind] += spread;
+    for (let i = 0; i < spread; i++) heights.push(em);
   }
-  let left = lines;
-  let extra = 0;
-  for (const kind of ["huge", "tall", "small"] as const) {
-    const n = Math.min(left, count[kind]);
-    left -= n;
-    extra += n * Math.max(0, MATH_LINE_EM[kind] * fontPx - linePx);
-  }
-  return extra;
+  return heights
+    .sort((a, b) => b - a)
+    .slice(0, lines)
+    .reduce(
+      (extra, em) => extra + Math.max(MATH_LINE_MIN, em * fontPx - linePx),
+      0,
+    );
 }
 
 /** B 한 문항의 가장 낮은 높이(쓰기 줄은 남는 만큼 더 늘어난다). */
@@ -344,8 +419,8 @@ export function keyRowCost(row: KeyRow): number {
     main(label, k.conceptWidth) +
     (place ? k.subGap + estimateLines(place, 9, k.conceptWidth) * k.place : 0);
   /**
-   * 칸들은 첫 줄 기준선을 맞춘다 — 한 칸의 첫 줄에 수식이 있어 높으면 옆 칸이 그만큼 내려와, 줄 높이가
-   * 가장 높은 칸보다 더 커질 수 있다. 첫 줄이 높아지는 만큼을 한 번 더 더한다.
+   * 칸들은 첫 줄 기준선을 맞춘다 — 한 칸의 첫 줄에 수식이 있어 높으면 **옆 칸**이 그만큼 내려온다. 그래서 줄 높이는
+   * «칸 높이 + 옆 칸 첫 줄이 높아진 만큼» 가운데 큰 쪽이다(수식이 든 칸 자신은 내려오지 않는다 — 두 번 세지 않는다).
    */
   const rise = (text: string, font: number = k.font, line: number = k.line) =>
     mathExtra(text, 1, font, line);
@@ -360,19 +435,17 @@ export function keyRowCost(row: KeyRow): number {
             : 0;
       return (
         k.fixed +
-        Math.max(rise(row.entry.term), rise(keyText(row.entry))) +
         Math.max(
-          concept(row.entry.term, row.place),
-          main(keyText(row.entry)) + exLine,
+          concept(row.entry.term, row.place) + rise(keyText(row.entry)),
+          main(keyText(row.entry)) + exLine + rise(row.entry.term),
         )
       );
     }
     case "ox":
       return (
         k.fixed +
-        rise(row.item.why) +
         Math.max(
-          main("○×", k.conceptWidth),
+          main("○×", k.conceptWidth) + rise(row.item.why),
           main(`${row.item.answer ? "○" : "×"} · ${row.item.why}`) +
             sub(row.item.statement),
         )
@@ -380,10 +453,10 @@ export function keyRowCost(row: KeyRow): number {
     case "apply":
       return (
         k.fixed +
-        rise(row.item.prompt, 10, k.sub) +
-        sub(row.item.prompt) -
-        k.subGap +
-        main(row.item.answer)
+        Math.max(
+          main("적용", k.conceptWidth) + rise(row.item.prompt, 10, k.sub),
+          sub(row.item.prompt) - k.subGap + main(row.item.answer),
+        )
       );
     case "figure": {
       const [, , w, h] = row.item.viewBox.split(" ").map(Number);

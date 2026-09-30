@@ -77,7 +77,10 @@ function KeyCells({ row }: { row: KeyRow }) {
             {row.example && ex ? (
               <span className={styles.keyEx}>
                 {row.example === "reference" ? "예(참고) " : "예 "}
-                <PaperText text={ex.prompt} /> → <b>{ex.answer}</b>
+                <PaperText text={ex.prompt} /> →{" "}
+                <b>
+                  <PaperText text={ex.answer} />
+                </b>
               </span>
             ) : row.example === "free" ? (
               <span className={styles.keyEx}>
@@ -138,7 +141,8 @@ function KeyCells({ row }: { row: KeyRow }) {
                 ) : null}
                 {row.item.lines.map((line, i) => (
                   <span className={styles.keyLine} key={i}>
-                    {line.label}: <PaperText text={line.answer} />
+                    <PaperText text={line.label} />:{" "}
+                    <PaperText text={line.answer} />
                   </span>
                 ))}
               </div>

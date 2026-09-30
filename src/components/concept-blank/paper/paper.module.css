@@ -361,6 +361,11 @@
   vertical-align: calc(-1 * var(--cb-blank-drop));
 }
 
+/* 빈칸 + 바로 뒤에 붙은 조사 · 마침표 — 한 줄에 묶는다(«____ / .» 처럼 떨어지지 않게) */
+.keep {
+  white-space: nowrap;
+}
+
 /* ── A 완전 백지 ───────────────────────────── */
 
 .zones {

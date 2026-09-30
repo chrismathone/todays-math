@@ -10,7 +10,8 @@ import { measurePages, openSet, type PageReport } from "./measure";
  * (브리프 cb-paper «받아들임» · 원장님 2026-09-30 «A4 에 맞게 · 퀄리티 · 줄맞춤»). 자는 `measure.ts`.
  *
  * 표본 — fixture(시안 두 단원) · stress(계약 상한) · math(수식) · fuzz 8(시드 고정 무작위 길이) ·
- * **real-e4 · e5 · e6(main 의 실제 은행 한 학년 전부)** · **worst(실제 은행에서 가장 긴 것끼리)** · counts(문항 수 1 ~ 정원 + 1) ·
+ * **real-e3 · e4 · e5 · e6 · m1 · m3(main 의 실제 은행 한 학년 전부 — 중학은 수식이 많다)** ·
+ * **worst · worst-m(실제 은행에서 가장 긴 것끼리 — 초등 · 중학)** · counts(문항 수 1 ~ 정원 + 1) ·
  * show(보고서 본보기 — 실제 은행 한 대단원).
  * 캡처는 장마다 `test-results/concept-blank-paper/<set>/…png`, 표는 `report-<set>.json`.
  * 실제 은행 세 벌은 장이 수백이라 걸린 장만 찍는다(`CB_SHOTS=all` 이면 모두).
@@ -25,11 +26,15 @@ const SETS = [
   "stress",
   "math",
   "worst",
+  "worst-m",
   "counts",
   "show",
+  "real-e3",
   "real-e4",
   "real-e5",
   "real-e6",
+  "real-m1",
+  "real-m3",
   ...[1, 2, 3, 4, 5, 6, 7, 8].map((seed) => `fuzz&seed=${seed}`),
 ] as const;
 

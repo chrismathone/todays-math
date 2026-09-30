@@ -19,11 +19,16 @@ const OUT = path.join(process.cwd(), "test-results", "concept-blank-paper");
 
 const SETS = [
   "worst",
+  "worst-m",
+  "real-e3",
   "real-e4",
   "real-e5",
   "real-e6",
+  "real-m1",
+  "real-m3",
   "stress",
   "math",
+  "cal",
   "fuzz&seed=1",
   "fuzz&seed=2",
 ];
@@ -249,6 +254,8 @@ for (const set of SETS) {
           items: summary(items),
           rows: summary(rows),
           under: [...items, ...rows].filter((x) => x.slack < 0),
+          // 눈금 맞추기 표본은 덩이를 다 적는다 — 수식 갈래마다 줄이 얼마나 높아지는지 읽는다
+          all: set === "cal" ? [...items, ...rows] : undefined,
           // 어림이 헐거운 덩이(한 줄 넘게 남는 것) — 수식 · 긴 낱말에서 어림이 얼마나 넉넉한지 본다
           loose: [...items, ...rows]
             .filter((x) => x.slack > 18)

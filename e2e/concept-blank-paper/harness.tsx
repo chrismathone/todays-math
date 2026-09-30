@@ -21,6 +21,7 @@ import type {
 } from "../../src/contracts/conceptBlank.contract";
 import { composeSheets } from "../../src/lib/concept-blank/compose";
 import { FIXTURE_BANK } from "../../src/lib/concept-blank/fixture";
+import { calSheets } from "./calibrate";
 import { fuzzSheets } from "./fuzz";
 import {
   countSheets,
@@ -29,15 +30,16 @@ import {
   worstPicks,
   worstSheets,
   type RealGrade,
+  type WorstSet,
 } from "./real";
 import { STRESS_SHEETS } from "./stress";
 
 /**
- * `?set=fixture|stress|math|fuzz&seed=N|real-e4|real-e5|real-e6|worst|counts|show` · `?view=student|key|both` —
+ * `?set=fixture|stress|math|fuzz&seed=N|real-e3 … real-m3|worst|worst-m|counts|show|cal` · `?view=student|key|both` —
  * 지면만 그린다(화면 축소 없이 1배).
  * fixture = 시험 · 미리보기용 작은 은행 전부(시안 두 단원) · stress = 계약 상한 · math = 수식 문장 ·
- * fuzz = 시드 고정 무작위 길이(`fuzz.ts`) · real-* = main 의 실제 은행 한 학년 전부 · worst = 실제 은행에서 가장 긴 것끼리 ·
- * counts = 문항 수 1 ~ 정원 + 1 · show = 보고서 본보기(`real.ts`). `?scale=0.58` 이면 화면 미리보기 축소를 본다(인쇄에는 안 먹는다).
+ * fuzz = 시드 고정 무작위 길이(`fuzz.ts`) · real-* = main 의 실제 은행 한 학년 전부 · worst(초등) · worst-m(중학) = 실제 은행에서 가장 긴 것끼리 ·
+ * counts = 문항 수 1 ~ 정원 + 1 · show = 보고서 본보기(`real.ts`) · cal = 수식 갈래마다 한 줄(`calibrate.ts`). `?scale=0.58` 이면 화면 미리보기 축소를 본다(인쇄에는 안 먹는다).
  *
  * 쪽 나누기 어림(`paginate.ts`)은 `<script id="cb-estimates">` 에 덩이마다 실어 둔다 — `estimate.spec.ts` 가
  * 실제 높이와 맞대어 «어림 ≥ 실제»를 잠근다(지면 DOM 에는 어림을 싣지 않는다).
@@ -111,9 +113,10 @@ function sheetsFor(set: string | null): ConceptBlankSheet[] {
   if (set === "stress") return STRESS_SHEETS;
   if (set === "math") return MATH_SHEETS;
   if (set === "fuzz") return fuzzSheets(Number(params.get("seed") ?? 1));
-  if (set === "worst") return worstSheets();
+  if (set === "worst" || set === "worst-m") return worstSheets(set);
   if (set === "counts") return countSheets();
   if (set === "show") return showSheets();
+  if (set === "cal") return calSheets();
   if (set?.startsWith("real-")) return realSheets(set.slice(5) as RealGrade);
   return composeSheets(fixtureSelection, FIXTURE_BANK);
 }
@@ -135,7 +138,9 @@ const estimates = {
   rows: plans.flatMap((plan) =>
     plan.key.flatMap((rows) => rows.map(keyRowCost)),
   ),
-  worst: params.get("set") === "worst" ? worstPicks() : undefined,
+  worst: params.get("set")?.startsWith("worst")
+    ? worstPicks(params.get("set") as WorstSet)
+    : undefined,
 };
 
 createRoot(document.getElementById("root")!).render(

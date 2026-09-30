@@ -2,52 +2,20 @@
  * 개념 백지 지면(D-150)의 글 도구 — 뜻 문장 쪼개기 · 빈칸 길이 · 글 폭 어림 · 날짜 · 동그라미 번호.
  * 모두 순수 함수다(서버 인쇄 페이지 · 화면 미리보기 · 쪽 나누기가 같이 쓴다).
  */
-
-/** 뜻 문장 조각 — 글(수식 `$...$` 이 섞일 수 있다) 또는 핵심어(`{ }` 안). */
-export type SentencePiece =
-  { kind: "text"; text: string } | { kind: "key"; text: string };
+import {
+  blankKeywords,
+  splitBlankSentence,
+  type BlankSentencePiece,
+} from "@/contracts/conceptBlank.contract";
 
 /**
- * 뜻 문장을 글 · 핵심어 조각으로 나눈다. `{ }` 는 핵심어 자리다.
- * 🔴 `$...$` 안의 `{ }` 는 TeX 묶음(`\frac{1}{2}`)이라 핵심어로 보지 않고 글에 그대로 둔다 —
- * 수식이 없는 문장에서는 계약의 `blankKeywords` 와 같은 조각이 나온다.
+ * 뜻 문장 가르기는 **계약 한 자리**에만 있다(`splitBlankSentence` — 계약 검사 · 은행 시험 · 지면이 같이 쓴다).
+ * 여기서는 지면이 부르던 이름 그대로 넘겨줄 뿐이다 — 가르는 법을 이 파일에 다시 쓰지 않는다.
  */
-export function splitSentence(sentence: string): SentencePiece[] {
-  const pieces: SentencePiece[] = [];
-  let text = "";
-  let i = 0;
-  while (i < sentence.length) {
-    const ch = sentence[i]!;
-    if (ch === "$") {
-      const close = sentence.indexOf("$", i + 1);
-      const end = close < 0 ? sentence.length : close + 1;
-      text += sentence.slice(i, end);
-      i = end;
-      continue;
-    }
-    if (ch === "{") {
-      const close = sentence.indexOf("}", i + 1);
-      const inner = close < 0 ? "" : sentence.slice(i + 1, close);
-      if (close > i + 1 && !/[{$]/.test(inner)) {
-        if (text) pieces.push({ kind: "text", text });
-        text = "";
-        pieces.push({ kind: "key", text: inner.trim() });
-        i = close + 1;
-        continue;
-      }
-    }
-    text += ch;
-    i += 1;
-  }
-  if (text) pieces.push({ kind: "text", text });
-  return pieces;
-}
-
+export type SentencePiece = BlankSentencePiece;
+export const splitSentence = splitBlankSentence;
 /** 문장의 핵심어 — 빈칸 · 채점표 굵은 글. */
-export const sentenceKeywords = (sentence: string): string[] =>
-  splitSentence(sentence)
-    .filter((p) => p.kind === "key")
-    .map((p) => p.text);
+export const sentenceKeywords = blankKeywords;
 
 /** 핵심어를 뺀 읽기용 문장(채점표 · 지도 · 이름표의 글 폭 어림에 쓴다). */
 export const plainSentence = (sentence: string): string =>
@@ -190,25 +158,58 @@ export function estimateLines(
  */
 export const BLANK_WIDTH = { perEm: 14, pad: 24, min: 40, max: 240 } as const;
 
+/**
+ * 답 글의 폭(em) — 수식 `$...$` 이 든 답(지도 «예»의 답 `$3\sqrt{2}$`)은 TeX 원문이 아니라 그려지는 폭으로 센다.
+ * 글만 있는 답은 `textEm` 과 같다.
+ */
+export function answerEm(answer: string): number {
+  if (!answer.includes("$")) return textEm(answer);
+  return answer
+    .split(/(\$[^$]*\$)/)
+    .reduce(
+      (em, part) => em + (part.startsWith("$") ? mathEm(part) : textEm(part)),
+      0,
+    );
+}
+
 export function blankWidth(keyword: string): number {
   const { perEm, pad, min, max } = BLANK_WIDTH;
   return Math.round(
-    Math.min(max, Math.max(min, textEm(keyword) * perEm + pad)),
+    Math.min(max, Math.max(min, answerEm(keyword) * perEm + pad)),
   );
 }
 
 /** 빈칸 좌우 여백(px) — `paper.module.css` 의 `.blank { margin: 0 3px }` 와 짝. */
 export const BLANK_MARGIN = 6;
 
-/** 빈칸이 낀 문장 → 조각들(글 덩이 · 빈칸). 빈칸은 끊기지 않고, 앞뒤 어디서나 줄이 바뀔 수 있다. */
+/**
+ * 빈칸 뒤에 띄어쓰기 없이 붙은 글(«____이다.» · «____,» · «____를»)의 첫 덩이 — 빈칸과 한 줄에 묶는다.
+ * 묶지 않으면 빈칸이 줄 끝에 닿았을 때 조사 · 마침표만 다음 줄로 떨어진다(«… 값은 ____ / .»).
+ * 수식으로 시작하거나 여덟 글자를 넘는 덩이는 묶지 않는다(긴 덩이를 묶으면 줄 밖으로 밀린다).
+ */
+export function blankTail(after: string | undefined): string {
+  const tail = /^[^\s$]+/.exec(after ?? "")?.[0] ?? "";
+  return [...tail].length <= 8 ? tail : "";
+}
+
+/**
+ * 빈칸이 낀 문장 → 조각들(글 덩이 · 빈칸). 빈칸은 끊기지 않는다 — 앞에서는 줄이 바뀔 수 있고, 뒤에 붙은 글
+ * (`blankTail`)과는 한 덩이다.
+ */
 export function sentenceAtoms(sentence: string, fontPx: number): InlineAtom[] {
   const pieces = splitSentence(sentence);
   return pieces.flatMap((piece, i) => {
-    if (piece.kind === "text") return textAtoms(piece.text, fontPx);
+    if (piece.kind === "text") {
+      // 앞 빈칸에 묶인 첫 덩이는 빈칸 쪽에서 셌다
+      const tail = pieces[i - 1]?.kind === "key" ? blankTail(piece.text) : "";
+      return textAtoms(piece.text.slice(tail.length), fontPx);
+    }
     const spaced = /\s$/.test(pieces[i - 1]?.text ?? "");
+    const next = pieces[i + 1];
+    const tail = next?.kind === "text" ? blankTail(next.text) : "";
     return [
       {
-        px: blankWidth(piece.text) + BLANK_MARGIN,
+        px: blankWidth(piece.text) + BLANK_MARGIN + textEm(tail) * fontPx,
         glue: spaced ? SPACE_EM * fontPx : 0,
       },
     ];

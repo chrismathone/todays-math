@@ -386,7 +386,9 @@ function FigureBody({
               <div className={styles.cardWrite}>
                 {figure.lines.map((line, k) => (
                   <div className={styles.cardLine} data-cb-line="" key={k}>
-                    <span>{line.label}</span>
+                    <span>
+                      <PaperText text={line.label} />
+                    </span>
                     <span className={styles.field} />
                   </div>
                 ))}

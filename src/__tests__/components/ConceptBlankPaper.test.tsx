@@ -13,8 +13,10 @@ import { describe, expect, it } from "vitest";
 import ConceptBlankPaper from "@/components/concept-blank/ConceptBlankPaper";
 import {
   GEOMETRY,
+  hasNestedFraction,
   keyRowCost,
   mathExtra,
+  mathKind,
   notesCost,
   numberColumnWidth,
   packBalanced,
@@ -31,12 +33,14 @@ import {
 } from "@/components/concept-blank/paper/StudentBody";
 import {
   BLANK_WIDTH,
+  blankTail,
   blankWidth,
   circled,
   estimateLines,
   formatSheetDate,
   mathEm,
   sentenceAtoms,
+  sentenceKeywords,
   splitSentence,
   textEm,
   wrapLines,
@@ -44,6 +48,7 @@ import {
 import { parseConceptBlankView } from "@/components/concept-blank/paper/view";
 import {
   blankKeywords,
+  splitBlankSentence,
   type ConceptBlankSelection,
   type ConceptBlankSheet,
   type ConceptEntry,
@@ -656,10 +661,124 @@ describe("줄맞춤 · 채우기 — 번호 열 · 줄 어림 · 가지 · 카�
     const tall = mathExtra("값 $\\frac{a}{b}$ 이다", 1, 11.5, 17.83);
     expect(small).toBeGreaterThan(0);
     expect(tall).toBeGreaterThan(small);
-    // 줄 간격이 넓은 글(C 문장 30.1)은 글자 수식으로 늘지 않는다
-    expect(mathExtra("값 $x$ 이다", 1, 14, 30.1)).toBeLessThan(1);
-    // 글의 줄 수보다 많이 세지 않는다
+    // 줄 간격이 넓은 글(C 문장 30.1)은 글자 수식으로 거의 늘지 않는다 — 줄마다 최소 여유만
+    expect(mathExtra("값 $x$ 이다", 1, 14, 30.1)).toBeLessThanOrEqual(3);
+    // 글의 줄 수보다 많이 세지 않는다 · 높은 것부터 센다
     expect(mathExtra("$a$ $b$ $c$ $d$", 1, 11.5, 17.83)).toBe(small);
+    expect(mathExtra("$a$ $\\frac{a}{b}$", 1, 11.5, 17.83)).toBe(tall);
+  });
+
+  it("수식 갈래 — 잰 줄 높이대로 나눈다(글자 · 얹는 것 · 분수 · 분수 + 첨자 · 겹친 것)", () => {
+    const kinds = (list: string[]) => list.map((s) => mathKind(`$${s}$`));
+    expect(
+      kinds([
+        "x^2",
+        "\\sqrt{b^2-4ac}",
+        "\\overline{\\mathrm{AB}}",
+        "\\sin 30^\\circ",
+        "(a+b)^2",
+      ]),
+    ).toEqual(Array(5).fill("small"));
+    expect(
+      kinds([
+        "\\overset{\\frown}{AB}",
+        "\\overleftrightarrow{AB}",
+        "\\sqrt 2(\\sqrt 3+1)=\\sqrt 6+\\sqrt 2",
+        "\\left(\\sqrt 2+1\\right)-3",
+      ]),
+    ).toEqual(Array(4).fill("raised"));
+    expect(kinds(["\\frac{1}{2}", "-\\frac{b}{a}", "(-\\sqrt 5)^2"])).toEqual(
+      Array(3).fill("tall"),
+    );
+    expect(
+      kinds([
+        "\\frac{a^2}{b}",
+        "\\sqrt{\\frac{1}{2}}",
+        "\\left(-\\frac{2}{3}\\right)^2",
+        "x=\\frac{-b\\pm\\sqrt{b^2-4ac}}{2a}",
+      ]),
+    ).toEqual(Array(4).fill("tallPlus"));
+    expect(
+      kinds([
+        "\\frac{\\frac{1}{2}}{3}",
+        "\\frac{1}{1+\\frac{1}{2}}",
+        "\\sum_{i=1}^{n} i",
+        "\\begin{cases} a \\\\ b \\end{cases}",
+      ]),
+    ).toEqual(Array(4).fill("huge"));
+    // 나란히 놓인 분수 둘은 겹친 것이 아니다
+    expect(
+      hasNestedFraction(
+        "\\left(-\\frac{2}{3}\\right)\\times\\left(+\\frac{9}{4}\\right)",
+      ),
+    ).toBe(false);
+    expect(hasNestedFraction("\\frac{1}{1+\\frac{1}{2}}")).toBe(true);
+    // `\overline` 은 분수 명령어(`\over`)가 아니다
+    expect(mathKind("$\\overline{AB}$")).toBe("small");
+  });
+
+  it("채점표 줄 — 옆 칸의 첫 줄 수식이 높으면 그만큼 내려온다(수식이 든 칸 자신은 두 번 세지 않는다)", () => {
+    const row = (term: string, definition: string): KeyRow => ({
+      kind: "concept",
+      n: "1",
+      entry: { ...entry(1, definition), term },
+    });
+    const plain = keyRowCost(row("용어", "짧은 뜻에는 {핵심어}가 있다."));
+    const mathText = keyRowCost(
+      row("용어", "값 $\\frac{1}{2}$ 에는 {핵심어}가 있다."),
+    );
+    const grow = mathExtra("$\\frac{1}{2}$", 1, 11.5, 17.83);
+    // 뜻 칸의 한 줄이 분수만큼 높아진다 — 한 번만
+    expect(mathText - plain).toBeCloseTo(grow);
+    // 용어 칸이 세 줄로 더 높으면, 뜻 칸 첫 줄의 분수가 용어 칸을 그만큼 내린다
+    const longTerm = "아주 긴 용어 이름이 좁은 칸에서 세 줄로 접힌다 이렇게";
+    expect(
+      keyRowCost(row(longTerm, "값 $\\frac{1}{2}$ 에는 {핵심어}가 있다.")) -
+        keyRowCost(row(longTerm, "짧은 뜻에는 {핵심어}가 있다.")),
+    ).toBeCloseTo(grow);
+  });
+
+  it("빈칸 뒤에 붙은 조사 · 마침표는 빈칸과 한 줄에 묶는다 — 어림도 같은 묶음으로 센다", () => {
+    expect(blankTail("이다.")).toBe("이다.");
+    expect(blankTail(", 다음 글")).toBe(",");
+    expect(blankTail(".")).toBe(".");
+    // 띄어 쓴 글 · 수식으로 시작하는 글 · 여덟 글자를 넘는 덩이는 묶지 않는다
+    expect(blankTail(" 이다.")).toBe("");
+    expect(blankTail("$x$ 이다")).toBe("");
+    expect(blankTail("아홉글자가넘는덩이")).toBe("");
+    expect(blankTail(undefined)).toBe("");
+
+    render(
+      <ConceptBlankPaper
+        sheets={[
+          {
+            form: "cloze",
+            header: header("cloze"),
+            sentences: [entry(1, "값은 {답}이다. 그리고 {다른 답} 을 쓴다.")],
+            apply: [],
+          },
+        ]}
+        view="student"
+      />,
+    );
+    const keeps = [...document.querySelectorAll("[data-cb-keep]")];
+    // 첫 빈칸은 «이다.» 와 묶이고, 둘째 빈칸은 뒤가 띄어쓰기라 묶이지 않는다
+    expect(keeps).toHaveLength(1);
+    expect(keeps[0]!.querySelectorAll("[data-cb-blank]")).toHaveLength(1);
+    expect(keeps[0]!.textContent).toBe("이다.");
+    expect(document.querySelectorAll("[data-cb-blank]")).toHaveLength(2);
+    // 글은 그대로 이어진다(묶어도 글자가 늘거나 빠지지 않는다)
+    expect(
+      document.querySelector('[data-cb-item="sentence"]')!.textContent,
+    ).toBe("문 1값은 이다. 그리고  을 쓴다.");
+
+    // 어림 — 빈칸 조각이 뒤 덩이의 폭까지 품는다
+    const atoms = sentenceAtoms("값은 {답}이다. 끝", 14);
+    expect(atoms.map((a) => Math.round(a.px))).toEqual([
+      Math.round(textEm("값은") * 14),
+      blankWidth("답") + 6 + Math.round(textEm("이다.") * 14),
+      Math.round(textEm("끝") * 14),
+    ]);
   });
 
   it("D 가지 놓기 — 왼쪽 · 오른쪽을 번갈아, 하나면 오른쪽 기둥이 없다", () => {
@@ -785,6 +904,105 @@ describe("지면 글 — 수식 · 핵심어 · 날짜", () => {
       { kind: "key", text: "분모" },
       { kind: "text", text: "라 한다." },
     ]);
+  });
+
+  it("핵심어 가르기는 계약 한 자리 — 지면은 그 함수를 그대로 쓴다", () => {
+    expect(splitSentence).toBe(splitBlankSentence);
+    expect(sentenceKeywords).toBe(blankKeywords);
+    const s = "해는 $x=\\frac{-b}{2a}$ 이고 이를 {근의 공식}이라 한다.";
+    expect(sentenceKeywords(s)).toEqual(["근의 공식"]);
+  });
+
+  it("예의 답 · 그림 줄 이름도 수식 경로로 — 글자만 오면 그대로", () => {
+    const figure = sheetOf("figure").figures[0]!;
+    const withMath: ConceptBlankSheet[] = [
+      {
+        form: "map",
+        header: header("map"),
+        maps: [
+          {
+            hub: "지도",
+            nodes: [
+              {
+                ...entry(1),
+                example: {
+                  prompt: "값을 간단히 하면?",
+                  answer: "$3\\sqrt{2}$",
+                },
+              },
+              {
+                ...entry(2),
+                example: { prompt: "합동인가?", answer: "아니다" },
+              },
+            ],
+          },
+        ],
+      },
+      {
+        form: "figure",
+        header: header("figure"),
+        figures: [
+          {
+            ...figure,
+            id: "f-math",
+            lines: [{ label: "$\\angle A$ 의 크기", answer: "$60^\\circ$" }],
+          },
+          { ...figure, id: "f-plain" },
+        ],
+      },
+    ];
+    const student = render(
+      <ConceptBlankPaper sheets={withMath} view="student" />,
+    );
+    // 학생지 — 그림 줄 이름의 수식이 KaTeX 로, 글자 이름은 글자 그대로
+    const lines = [...document.querySelectorAll("[data-cb-line]")];
+    expect(lines[0]!.querySelectorAll(".katex")).toHaveLength(1);
+    expect(lines[0]!.textContent).toContain("의 크기");
+    expect(lines.at(-1)!.querySelector(".katex")).toBeNull();
+    expect(lines.at(-1)!.textContent).toBe(figure.lines.at(-1)!.label);
+    // 학생지에는 예의 답이 없다 — 빈칸 폭은 그려지는 답의 폭(TeX 원문 길이가 아니다)
+    expect(document.body.textContent).not.toContain("sqrt");
+    const blanks = [
+      ...document.querySelectorAll<HTMLElement>(
+        "[data-cb-node] [data-cb-blank]",
+      ),
+    ];
+    expect(blanks.map((b) => b.style.width)).toEqual([
+      `${blankWidth("$3\\sqrt{2}$")}px`,
+      `${blankWidth("아니다")}px`,
+    ]);
+    expect(blankWidth("$3\\sqrt{2}$")).toBeLessThan(blankWidth("3sqrt{2}가"));
+    student.unmount();
+
+    render(<ConceptBlankPaper sheets={withMath} view="key" />);
+    const rows = [
+      ...document.querySelectorAll('tr[data-cb-key-row="concept"]'),
+    ];
+    // 채점표 — 수식 답은 KaTeX, 글자 답은 굵은 글자 그대로
+    expect(rows[0]!.querySelector("b .katex")).not.toBeNull();
+    expect(rows[1]!.querySelector("b .katex")).toBeNull();
+    expect(
+      [...rows[1]!.querySelectorAll("b")].some(
+        (b) => b.textContent === "아니다",
+      ),
+    ).toBe(true);
+    const figureRows = [
+      ...document.querySelectorAll('tr[data-cb-key-row="figure"]'),
+    ];
+    expect(
+      figureRows[0]!.querySelectorAll(".katex").length,
+    ).toBeGreaterThanOrEqual(2);
+    expect(figureRows[1]!.querySelector(".katex")).toBeNull();
+    expect(figureRows[1]!.textContent).toContain(
+      `${figure.lines[0]!.label}: ${figure.lines[0]!.answer}`,
+    );
+    // 그림 속 이름표 답은 글자 그대로(SVG 글)
+    for (const t of figure.tags)
+      expect(
+        [...figureRows[1]!.querySelectorAll("svg text")].map(
+          (x) => x.textContent,
+        ),
+      ).toContain(t.answer);
   });
 
   it("날짜 · 동그라미 번호", () => {

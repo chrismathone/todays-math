@@ -4,7 +4,13 @@ import { MathText } from "@/components/math/MathText";
 import type { SheetHeader } from "@/contracts/conceptBlank.contract";
 
 import styles from "./paper.module.css";
-import { blankWidth, formatSheetDate, splitSentence, textEm } from "./text";
+import {
+  blankTail,
+  blankWidth,
+  formatSheetDate,
+  splitSentence,
+  textEm,
+} from "./text";
 
 /**
  * 개념 백지 지면 공통 조각 — 머리 · 간소 머리 · 발 · 수식 글 · 빈칸. 훅이 없다(서버 인쇄 페이지에서도 그린다).
@@ -39,17 +45,32 @@ export function Blank({ answer, width }: { answer?: string; width?: number }) {
   );
 }
 
-/** 학생지 — 핵심어 자리를 빈칸으로. */
+/**
+ * 학생지 — 핵심어 자리를 빈칸으로. 빈칸 뒤에 띄어쓰기 없이 붙은 조사 · 마침표(`blankTail`)는 빈칸과 한 줄에 묶는다 —
+ * 빈칸이 줄 끝에 닿아도 «.» 이나 «를» 만 다음 줄로 떨어지지 않는다(쪽 나누기 어림 `sentenceAtoms` 도 같은 묶음으로 센다).
+ */
 export function BlankSentence({ sentence }: { sentence: string }) {
+  const pieces = splitSentence(sentence);
   return (
     <>
-      {splitSentence(sentence).map((piece, i) =>
-        piece.kind === "key" ? (
-          <Blank answer={piece.text} key={i} />
+      {pieces.map((piece, i) => {
+        if (piece.kind === "text") {
+          const tail =
+            pieces[i - 1]?.kind === "key" ? blankTail(piece.text) : "";
+          const rest = piece.text.slice(tail.length);
+          return rest ? <PaperText key={i} text={rest} /> : null;
+        }
+        const next = pieces[i + 1];
+        const tail = next?.kind === "text" ? blankTail(next.text) : "";
+        return tail ? (
+          <span className={styles.keep} data-cb-keep="" key={i}>
+            <Blank answer={piece.text} />
+            {tail}
+          </span>
         ) : (
-          <PaperText key={i} text={piece.text} />
-        ),
-      )}
+          <Blank answer={piece.text} key={i} />
+        );
+      })}
     </>
   );
 }

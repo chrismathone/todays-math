@@ -13,12 +13,12 @@ import {
 } from "../../src/lib/concept-blank/sections";
 
 /**
- * 실제 은행으로 세운 지면 — 손으로 고른 채움 글(`stress.ts` · `fuzz.ts`)이 아니라 main 의 은행(`bank/e4 · e5 · e6`)을
+ * 실제 은행으로 세운 지면 — 손으로 고른 채움 글(`stress.ts` · `fuzz.ts`)이 아니라 main 의 은행(`bank/e3 … m3`)을
  * 제품 함수(`composeSheets`)로 그대로 합친다(교훈 2026-09-27 «장면과 표본은 제품 함수 · 실제 목록 전부로»).
  *
  *  · `realSheets("e5")` — 그 학년의 **모든 대단원**을 하나씩 골라 형식 다섯을 문항 수 최대로. 은행의 모든 항목이
  *    한 번은 지면에 오른다(한 번에 다 고르면 난이도별 40 상한에 잘린다).
- *  · `worstSheets()` — 초4 · 5 · 6 은행에서 **가장 긴 것끼리** 모은 최악 조합(리드 조건 ⑷): 가장 긴 뜻 문장 · 가장 긴
+ *  · `worstSheets()` — 은행에서 **가장 긴 것끼리** 모은 최악 조합(리드 조건 ⑷ — 초등 `worst` · 중학 `worst-m`): 가장 긴 뜻 문장 · 가장 긴
  *    용어 · 가장 긴 소단원 이름 · 가장 긴 ○× · 가장 긴 적용 · 이름표 · 줄이 가장 많은 그림.
  *  · `countSheets()` — 문항 수 1~정원 + 1 을 하나씩(칸이 적은 장이 비지 않는가 — A 칸 · B 문항 · D 가지 · E 카드).
  *  · `showSheets()` — 보고서 본보기(실제 은행 한 대단원 · 흔한 문항 수).
@@ -33,7 +33,15 @@ const FORMS: ConceptBlankSelection["forms"] = [
   { form: "figure", counts: ALL, extras: NONE },
 ];
 
-export const REAL_GRADES = { e4: "초4", e5: "초5", e6: "초6" } as const;
+export const REAL_GRADES = {
+  e3: "초3",
+  e4: "초4",
+  e5: "초5",
+  e6: "초6",
+  m1: "중1",
+  m2: "중2",
+  m3: "중3",
+} as const;
 export type RealGrade = keyof typeof REAL_GRADES;
 
 export function realSheets(part: RealGrade): ConceptBlankSheet[] {
@@ -84,14 +92,19 @@ export function showSheets(): ConceptBlankSheet[] {
   );
 }
 
-const REAL: ConceptBlankBank = {
-  concepts: (["e4", "e5", "e6"] as const).flatMap(
-    (p) => BANK_PARTS[p]!.concepts,
-  ),
-  ox: (["e4", "e5", "e6"] as const).flatMap((p) => BANK_PARTS[p]!.ox),
-  apply: (["e4", "e5", "e6"] as const).flatMap((p) => BANK_PARTS[p]!.apply),
-  figures: (["e4", "e5", "e6"] as const).flatMap((p) => BANK_PARTS[p]!.figures),
-};
+/** 최악 조합을 고르는 은행 묶음 — 초등(수식 없음)과 중학(수식이 많다)을 따로 세운다. */
+export const WORST_PARTS = {
+  worst: ["e3", "e4", "e5", "e6"],
+  "worst-m": ["m1", "m2", "m3"],
+} as const satisfies Record<string, readonly RealGrade[]>;
+export type WorstSet = keyof typeof WORST_PARTS;
+
+const merged = (parts: readonly RealGrade[]): ConceptBlankBank => ({
+  concepts: parts.flatMap((p) => BANK_PARTS[p]!.concepts),
+  ox: parts.flatMap((p) => BANK_PARTS[p]!.ox),
+  apply: parts.flatMap((p) => BANK_PARTS[p]!.apply),
+  figures: parts.flatMap((p) => BANK_PARTS[p]!.figures),
+});
 
 /** 긴 것부터 n 개(길이가 같으면 은행 순서). */
 const longest = <T>(items: readonly T[], text: (x: T) => string, n: number) =>
@@ -105,7 +118,8 @@ const stripCode = (title: string) =>
   title.replace(/^[12]-\d+(-\d+)?\s+/, "").replace(/^\d+\.\s*/, "");
 
 /** 최악 조합에 쓴 글 — 보고서 표에 그대로 옮긴다. */
-export function worstPicks() {
+export function worstPicks(set: WorstSet = "worst") {
+  const REAL = merged(WORST_PARTS[set]);
   const sections = [
     ...new Set(
       [...REAL.concepts, ...REAL.ox, ...REAL.apply, ...REAL.figures].map(
@@ -136,8 +150,8 @@ export function worstPicks() {
   };
 }
 
-export function worstSheets(): ConceptBlankSheet[] {
-  const w = worstPicks();
+export function worstSheets(set: WorstSet = "worst"): ConceptBlankSheet[] {
+  const w = worstPicks(set);
   const first = getBlankSection(w.sections[0]!)!;
   const header = (form: SheetHeader["form"]): SheetHeader => ({
     // 제목은 고르기 상한(40자)까지 — 가장 긴 대단원 이름을 이어 붙인다
