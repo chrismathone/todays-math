@@ -32,6 +32,10 @@ export type EnglishDraftVerdict =
 
 export const ENGLISH_CHOICE_COUNT = 5;
 
+/** 근거가 지문에 없을 때의 사유 — 고쳐 쓰기 되먹임(`feedback.ts`)이 이 줄 뒤에 자리 짚기를 붙인다 */
+export const ENGLISH_EVIDENCE_NOT_FOUND =
+  "지문 속 근거를 지문에서 찾지 못했습니다 (그대로 이어진 인용이어야 합니다).";
+
 function questionIssues(
   question: EnglishQuestion,
   index: number,
@@ -66,11 +70,7 @@ function questionIssues(
   if (!evidence)
     issues.push({ question: index, message: "지문 속 근거가 비어 있습니다." });
   else if (!passage.includes(evidence))
-    issues.push({
-      question: index,
-      message:
-        "지문 속 근거를 지문에서 찾지 못했습니다 (그대로 이어진 인용이어야 합니다).",
-    });
+    issues.push({ question: index, message: ENGLISH_EVIDENCE_NOT_FOUND });
   return issues;
 }
 

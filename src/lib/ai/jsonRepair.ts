@@ -98,7 +98,7 @@ function extractJsonSpan(text: string): string {
  * 백슬래시로 보정해 리터럴 백슬래시로 살리고, 리터럴 줄바꿈/캐리지리턴을 `\n`으로
  * 치환한다. 문자열 밖(구조 문자: `{`, `}`, `[`, `]`, `,`, `:`)은 건드리지 않는다.
  */
-function escapeInsideStrings(text: string): string {
+function escapeInsideStrings(text: string, latex = true): string {
   let result = "";
   let inString = false;
 
@@ -121,7 +121,7 @@ function escapeInsideStrings(text: string): string {
       if (
         next !== undefined &&
         VALID_JSON_ESCAPES.has(next) &&
-        !isAmbiguousLatexCommand(text, i)
+        !(latex && isAmbiguousLatexCommand(text, i))
       ) {
         result += ch + next;
         i++;
@@ -183,11 +183,19 @@ function stripTrailingCommas(text: string): string {
 /**
  * AI 응답 텍스트에서 흔한 손상을 복구해 `JSON.parse`가 통과할 형태로 만든다.
  * 완벽한 파서가 아니라 salvage(구조는 보존, 내용만 복구)에 집중한 실용적 복구다.
+ *
+ * `latex: false` — LaTeX 가 없는 글(오늘의 영어)용. `
+`·`	` 뒤에 영문자가 와도 LaTeX 명령으로 보지 않는다.
+ * 🔴 켠 채로 영어를 읽으면 줄바꿈 뒤 영어 단어(`
+Many`)마다 역슬래시가 글자로 남는다(2026-09-30 모델 벤치).
  */
-export function repairJsonString(raw: string): string {
+export function repairJsonString(
+  raw: string,
+  { latex = true }: { latex?: boolean } = {},
+): string {
   const withoutFence = stripCodeFence(raw);
   const jsonSpan = extractJsonSpan(withoutFence);
-  const withEscapedStrings = escapeInsideStrings(jsonSpan);
+  const withEscapedStrings = escapeInsideStrings(jsonSpan, latex);
   return stripTrailingCommas(withEscapedStrings);
 }
 
@@ -251,8 +259,8 @@ function isPlainObject(value: unknown): value is Record<string, unknown> {
 
 /**
  * AI 응답(또는 ChatGPT 에서 붙여 넣은 글)에서 **JSON 객체 하나**를 읽는다 — 오늘의 영어(D-148 · 25 §4.3)가
- * 세트 초안을 배열이 아니라 객체로 받기 때문이다. 복구 단계는 `parseAiJsonArray` 와 같다
- * (`repairJsonString`: 코드펜스 · 앞뒤 잡설 · 문자열 안 백슬래시·줄바꿈 · 후행 쉼표), 배열 함수는 손대지 않는다.
+ * 세트 초안을 배열이 아니라 객체로 받기 때문이다. 복구 단계는 `parseAiJsonArray` 와 같되 **LaTeX 규칙은 끈다**
+ * (`repairJsonString(…, {latex:false})`: 코드펜스 · 앞뒤 잡설 · 문자열 안 백슬래시·줄바꿈 · 후행 쉼표), 배열 함수는 손대지 않는다.
  *
  * 순서: 보정본 → 원문 → (코드펜스 벗긴 글의) 객체 구간 보정본 → 그 원문. 후보를 **끝까지** 돌아 처음 **객체로**
  * 풀리는 것을 쓴다 — 잡설의 `[1]` 같은 대괄호 토큰이 배열로 먼저 풀려도 그 뒤 객체 구간이 살아 있다(리드 검토 D5).
@@ -267,9 +275,11 @@ export function parseAiJsonObject<T extends ZodType>(
   schema: T,
 ): z.infer<T>;
 export function parseAiJsonObject(raw: string, schema?: ZodType): unknown {
-  const candidates = [repairJsonString(raw), raw];
+  // 객체 파서는 오늘의 영어만 쓴다 — LaTeX 규칙을 끈 복구(위 `repairJsonString` 머리말의 🔴)
+  const repair = (text: string) => repairJsonString(text, { latex: false });
+  const candidates = [repair(raw), raw];
   const span = extractObjectSpan(stripCodeFence(raw));
-  if (span !== undefined) candidates.push(repairJsonString(span), span);
+  if (span !== undefined) candidates.push(repair(span), span);
 
   let object: Record<string, unknown> | undefined;
   let sawNonObject = false;

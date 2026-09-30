@@ -102,6 +102,8 @@ const NEVER_FORBIDDEN = [
   "src/__tests__/",
   // ai 트랙의 실물 탐침 — 영어 쪽 파일 · 어디서도 import 되지 않음 (리드 D1, 2026-09-30 — HTTP 로 바꾸지 않는다)
   "scripts/qa/probe-english-generate-live.ts",
+  // 모델 벤치 — 영어 쪽 도구 폴더(제품 프롬프트 · 파서 · 검증기 · 품질 검사를 그대로 부른다, 25 §12). 어디서도 import 되지 않음
+  "scripts/qa/english-bench/",
 ];
 
 /** ⑵ 표·모델 접근이 허용되는 곳(브리프 §1.7 ⑵ + `prismaTestDouble.ts` 의 합성 한 줄) */
@@ -443,9 +445,12 @@ describe("영어 울타리 — ⑴ import 사슬", () => {
     expect(isForbidden("scripts/qa/probe-english-generate-live.ts")).toBe(
       false,
     );
+    expect(isForbidden("scripts/qa/english-bench/generate.ts")).toBe(false);
     expect(isForbidden("scripts/qa/apply-english-studio-migration.ts")).toBe(
       true,
     );
+    // 벤치 폴더 이름을 앞글자로 흉내 낸 다른 스크립트는 여전히 금지
+    expect(isForbidden("scripts/qa/english-bench-helper.ts")).toBe(true);
     // 그리고 금지 목록은 브리프의 뿌리를 정말 담고 있다
     for (const file of [
       "src/lib/problemPool.ts",
