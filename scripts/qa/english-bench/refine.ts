@@ -1,7 +1,7 @@
 /**
  * 오늘의 영어 모델 벤치 ④ «강하게 쪼기» — 만든 세트에 **객관적 지적**(제품 검증기 + 결정적 검사)을 되먹여 고쳐 쓰게 한다.
  *
- *   npx tsx scripts/qa/english-bench/refine.ts --from <v2 폴더> --out <루프 폴더> [--only …] [--rounds 2] [--lanes 2]
+ *   npx tsx scripts/qa/english-bench/refine.ts --from <v2 폴더> --out <루프 폴더> [--only …] [--rounds 2] [--lanes 2] [--prompt v2s…]
  *
  * 원장님 2026-09-30 «하네스를 깊게 찔러 넣어도 결과가 같은지 · 강력하게 쪼으면 퀄리티가 올라가는지».
  * 설계: 지적이 없으면 멈춘다. 지적된 문항만 고치고 나머지는 그대로 두라고 한다. 되먹임은 모델 자신의 «반성»이 아니라
@@ -19,16 +19,23 @@ import {
 import path from "node:path";
 
 import { parseAiJsonObject } from "@/lib/ai/jsonRepair";
-import * as prompt from "@/lib/ai/prompts/englishExam";
+import * as promptCurrent from "@/lib/ai/prompts/englishExam";
 import { coerceEnglishDraftShape } from "@/lib/english/chatgpt";
 import { englishDraftFeedback } from "@/lib/english/feedback";
 import { validateEnglishDraft } from "@/lib/english/validate";
 
 import { runCli } from "./cli";
+import { isStrictVersion, strictPrompt } from "./promptStrict";
 import type { GenRecord } from "./generate";
 import { GENERATORS } from "./models";
 import { BENCH_TASKS, type BenchTask } from "./tasks";
 import { flag, pool } from "./util";
+
+/** `--prompt v2s·v2s2·v2s3` 면 근거 규칙을 단계별로 조인 시험판(promptStrict.ts) — 고쳐 쓰기도 같은 규칙으로 */
+const PROMPT_FLAG = flag("--prompt");
+const prompt = isStrictVersion(PROMPT_FLAG)
+  ? strictPrompt(PROMPT_FLAG)
+  : promptCurrent;
 
 /** 지적 목록 — 제품 되먹임(`src/lib/english/feedback.ts`) 그대로 */
 export function feedbackOf(value: unknown, task: BenchTask): string[] {
@@ -56,6 +63,7 @@ async function refineOne(
   let current = record;
   if (current.parsed && current.draft) {
     for (let round = 0; round < rounds; round += 1) {
+      // 근거 거절이면 제품 되먹임이 자리를 짚어 준다(«q<n> 근거 진단» — 2026-09-30 벤치 --hint 시험판을 옮긴 것)
       const issues = feedbackOf(current.draft, task);
       history.push(issues.length);
       if (!issues.length) break;

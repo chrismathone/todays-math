@@ -3,6 +3,7 @@
  *
  *   npx tsx scripts/qa/english-bench/generate.ts --out <폴더> [--only codex:gpt-6-astra,claude:opus] [--prompt v1|v2] [--lanes 2]
  *
+ *   [--tasks C-variation] 로 과제만 고를 수 있다.
  * 결과: `<out>/gen/<모델>__<과제>.json` — 원문 응답 · 지연 · 읽기/검증기 판정. 이미 있는 파일은 건너뛴다(재개).
  * 제품 경로와 같게: 프롬프트(`buildEnglishSystemPrompt`/`buildEnglishUserPrompt`) → `parseAiJsonObject`
  *   → `coerceEnglishDraftShape` → `validateEnglishDraft(값, 요청)`.
@@ -18,6 +19,8 @@ import { validateEnglishDraft } from "@/lib/english/validate";
 
 import { runCli, type Provider } from "./cli";
 import * as promptV1 from "./promptV1";
+import * as promptV2 from "./promptV2";
+import { isStrictVersion, strictPrompt } from "./promptStrict";
 import { GENERATORS, type BenchModel } from "./models";
 import { BENCH_TASKS, type BenchTask } from "./tasks";
 import { flag, pool, safeName } from "./util";
@@ -30,6 +33,8 @@ export interface GenRecord {
   ms: number | null;
   /** 부른 횟수 — 읽기 실패면 한 번 더(제품과 같음) */
   attempts?: number;
+  /** 토큰 사용량(부른 횟수 합) — cli.ts 가 받아 온 것. 비용 추정용 */
+  usage?: { input: number; output: number; reasoning: number };
   raw: string | null;
   error: string | null;
   parsed: boolean;
@@ -38,8 +43,16 @@ export interface GenRecord {
   issues: { question: number | null; message: string }[];
 }
 
-/** `--prompt v1` 이면 얼려 둔 v1, 아니면 제품 프롬프트(지금 v2) */
-const PROMPT = flag("--prompt") === "v1" ? promptV1 : promptCurrent;
+/** `--prompt v1`·`v2` 면 얼려 둔 판, `v2s·v2s2·v2s3·v2s4` 면 근거 규칙을 단계별로 조인 시험판, 아니면 제품 프롬프트(지금 v3) */
+const PROMPT_FLAG = flag("--prompt");
+const PROMPT =
+  PROMPT_FLAG === "v1"
+    ? promptV1
+    : PROMPT_FLAG === "v2"
+      ? promptV2
+      : isStrictVersion(PROMPT_FLAG)
+        ? strictPrompt(PROMPT_FLAG)
+        : promptCurrent;
 /** 한 번 부를 때의 제한(분) — 기본 12. 느린 모델을 부하 없이 다시 잴 때 늘린다(grok-4.7, 2026-09-30) */
 const TIMEOUT_MS = Number(flag("--timeout-min") ?? 12) * 60_000;
 
@@ -68,7 +81,7 @@ async function generateOne(
     // 제품 DeepSeek 경로와 같게 **JSON 을 못 읽으면 한 번만 다시** 부른다(`withOneRetryOnParseFailure`).
     // 구독 CLI 는 에이전트 틀이라 «검사한 뒤 내겠다» 머리말만 내고 끝나는 일이 있다(grok · agy 실측 2026-09-30).
     for (let attempt = 1; attempt <= 2; attempt += 1) {
-      const { text, ms } = await runCli({
+      const { text, ms, usage } = await runCli({
         provider: model.provider,
         model: model.model,
         effort: model.effort,
@@ -78,6 +91,12 @@ async function generateOne(
         timeoutMs: TIMEOUT_MS,
       });
       record.ms = (record.ms ?? 0) + ms;
+      if (usage)
+        record.usage = {
+          input: (record.usage?.input ?? 0) + (usage.input ?? 0),
+          output: (record.usage?.output ?? 0) + usage.output,
+          reasoning: (record.usage?.reasoning ?? 0) + (usage.reasoning ?? 0),
+        };
       record.raw = text;
       record.attempts = attempt;
       try {
@@ -115,9 +134,11 @@ async function main() {
   mkdirSync(path.join(out, "gen"), { recursive: true });
   mkdirSync(cwd, { recursive: true });
   const models = GENERATORS.filter((m) => !only || only.includes(m.id));
+  // 과제 고르기(같은 과제를 여러 회차로 잴 때 — 2026-09-30 luna 근거 조이기)
+  const tasks = flag("--tasks")?.split(",");
   // 회사(CLI)마다 따로 줄을 세운다 — 한 회사의 한도가 다른 회사를 막지 않게
   const byProvider = new Map<Provider, (() => Promise<void>)[]>();
-  for (const task of BENCH_TASKS)
+  for (const task of BENCH_TASKS.filter((t) => !tasks || tasks.includes(t.id)))
     for (const model of models) {
       const jobs = byProvider.get(model.provider) ?? [];
       jobs.push(() => generateOne(model, task, out, cwd));

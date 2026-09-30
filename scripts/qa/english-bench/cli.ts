@@ -148,6 +148,14 @@ export async function runCli(call: CliCall): Promise<CliResult> {
       baseURL: "https://api.deepseek.com",
       timeout: timeoutMs,
     });
+    // 추론 강도(원장님 2026-09-30 «딥시크 effort 별로도 비교») — `low|high|max` 는 reasoning_effort, `off` 는 생각 끄기.
+    // 지정하지 않으면 제품과 같은 기본값(생각 켬 · high).
+    const tuning =
+      call.effort === "off"
+        ? { thinking: { type: "disabled" } }
+        : call.effort
+          ? { reasoning_effort: call.effort }
+          : {};
     const response = await client.chat.completions.create({
       model: call.model,
       max_tokens: 64000,
@@ -155,6 +163,7 @@ export async function runCli(call: CliCall): Promise<CliResult> {
         { role: "system", content: call.system },
         { role: "user", content: call.prompt },
       ],
+      ...(tuning as object),
     });
     const u = response.usage as
       | {

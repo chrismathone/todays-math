@@ -51,6 +51,13 @@ export const GENERATORS: BenchModel[] = [
     provider: "deepseek",
     model,
   })),
+  // flash 추론 강도 비교 — 기본(high)은 위 줄. `off` = 생각 끄기(원장님 2026-09-30 «딥시크 effort 별로도»)
+  ...["low", "max", "off"].map((effort): BenchModel => ({
+    id: `deepseek:deepseek-flash@${effort}`,
+    provider: "deepseek",
+    model: "deepseek-flash",
+    effort,
+  })),
 ];
 
 /** 채점관 셋 — 각 AI 의 최상위 모델. 생성 모델 이름은 가린다 */
