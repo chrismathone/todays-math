@@ -992,7 +992,7 @@ export default function StudioView({
         setLevel(restored.level);
         setStep(restored.step);
         studioAi.restorePageJobs(restored.completedPages ?? []);
-        setNotice("이전 자료 제작 작업을 복원했습니다.");
+        setNotice("이전 문제 추출 작업을 복원했습니다.");
       }
       setError(errors.join("\n"));
       setBusy(false);
@@ -3374,7 +3374,7 @@ export default function StudioView({
         </Suspense>
       )}
       <footer className={styles.actionBar} aria-label="문제 제작 주요 작업">
-        <span role="status" aria-label="자료 제작 저장 상태">
+        <span role="status" aria-label="문제 추출 저장 상태">
           {storageScope && sessionStatus === "저장됨"
             ? sources.length
               ? "계정에 저장됨"

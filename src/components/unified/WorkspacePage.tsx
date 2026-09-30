@@ -28,7 +28,7 @@ export default async function WorkspacePage({ user }: { user: SessionUser }) {
       grades: [],
       chapters: [],
       error:
-        "문제은행 연결을 확인해 주세요. 자료 제작은 바로 사용할 수 있습니다.",
+        "문제은행 연결을 확인해 주세요. 문제 추출은 바로 사용할 수 있습니다.",
     };
   }
   return (

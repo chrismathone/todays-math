@@ -13,7 +13,7 @@ export type WorkspaceProduct = (typeof WORKSPACE_PRODUCTS)[number]["id"];
 export const WORKSPACE_MENUS = [
   { id: "home", label: "오늘의 작업" },
   { id: "bank", label: "시험지 만들기" },
-  { id: "studio", label: "자료 제작" },
+  { id: "studio", label: "문제 추출" },
   { id: "export", label: "시험지 · 내보내기" },
   { id: "library", label: "내 시험지" },
   { id: "teaching", label: "수업 · 학생 관리" },

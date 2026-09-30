@@ -127,7 +127,7 @@ test("지은 안 A 의 머리 높이 — 시안에서 잰 값과 같은가", asy
   // ① 원본 가져오기 — 큰 제목·원형 막대는 없고 띠 하나다.
   await page.setViewportSize({ width: 1516, height: 940 });
   await page.goto("/");
-  await expect(page.getByRole("heading", { level: 1 })).toHaveText("자료 제작");
+  await expect(page.getByRole("heading", { level: 1 })).toHaveText("문제 추출");
   expect(await page.locator("[data-studio-tool-row]").count()).toBe(0);
   const 단계1: Record<string, unknown> = {};
   for (const width of [1516, 1280]) {

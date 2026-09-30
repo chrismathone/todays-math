@@ -24,14 +24,14 @@ const NAV = [
   { key: "main", href: "/", label: "오늘의 작업", icon: "⌂" },
   { key: "classes", href: "/classes", label: "수업·학생 관리", icon: "♧" },
   { key: "problems", href: "/problems", label: "시험지 만들기", icon: "▥" },
-  { key: "studio", href: "/studio", label: "자료 제작", icon: "▤" },
+  { key: "studio", href: "/studio", label: "문제 추출", icon: "▤" },
 ] as const;
 
 const TITLE: Record<Nav, string> = {
   main: "오늘의 작업",
   classes: "수업·학생 관리",
   problems: "시험지 만들기",
-  studio: "자료 제작",
+  studio: "문제 추출",
 };
 
 export function AppChrome({

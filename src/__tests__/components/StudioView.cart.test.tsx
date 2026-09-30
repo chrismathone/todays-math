@@ -236,7 +236,7 @@ async function openReview(
     originals: new Map(),
   });
   render(<Workspace {...props} />);
-  await screen.findByText("이전 자료 제작 작업을 복원했습니다.");
+  await screen.findByText("이전 문제 추출 작업을 복원했습니다.");
 }
 
 const footer = () =>

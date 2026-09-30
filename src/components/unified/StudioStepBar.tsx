@@ -65,7 +65,7 @@ export default function StudioStepBar({
   return (
     <div ref={barRef} className={styles.editorBar} data-studio-band>
       <div className={styles.editorTabs}>
-        <h1>{canStudio ? "자료 제작" : "시험지 구성"}</h1>
+        <h1>{canStudio ? "문제 추출" : "시험지 구성"}</h1>
         <nav className={styles.stepTabs} aria-label="제작 단계 이동">
           {canStudio && (
             <>

@@ -82,6 +82,6 @@ describe("public landing and authenticated main entry", () => {
     const page = await WorkspacePage({ user });
     expect(page.props.storageScope).toBe(user.id);
     expect(page.props.initialData.problems).toEqual([]);
-    expect(page.props.initialData.error).toContain("자료 제작은 바로");
+    expect(page.props.initialData.error).toContain("문제 추출은 바로");
   });
 });
