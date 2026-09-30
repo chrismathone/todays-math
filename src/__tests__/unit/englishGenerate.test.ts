@@ -29,6 +29,7 @@ import {
   ENGLISH_EXAM_PROMPT_VERSION,
 } from "@/lib/ai/prompts/englishExam";
 import {
+  ENGLISH_REFINE_BUDGET_MS,
   EnglishDraftRejectedError,
   generateEnglishDraft,
 } from "@/lib/english/generate";
@@ -217,21 +218,40 @@ describe("generateEnglishDraft — 모킹된 DeepSeek", () => {
     expect(mockCreate).toHaveBeenCalledTimes(1);
   });
 
-  it("검증기에 걸리면 EnglishDraftRejectedError 에 사유가 실린다 — 재시도하지 않는다", async () => {
-    mockCreate.mockResolvedValueOnce(
-      aiTextResponse(
-        JSON.stringify({
-          ...draft,
-          questions: [
-            {
-              ...draft.questions[0],
-              options: draft.questions[0]!.options.slice(0, 4),
-            },
-            draft.questions[1],
-          ],
-        }),
-      ),
-    );
+  const fourOptions = {
+    ...draft,
+    questions: [
+      {
+        ...draft.questions[0],
+        options: draft.questions[0]!.options.slice(0, 4),
+      },
+      draft.questions[1],
+    ],
+  };
+
+  it("검증기에 걸리면 사유를 되먹여 한 번 고쳐 쓴다 — 고친 초안이 통과하면 성공 (D-150)", async () => {
+    mockCreate
+      .mockResolvedValueOnce(aiTextResponse(JSON.stringify(fourOptions)))
+      .mockResolvedValueOnce(aiTextResponse(JSON.stringify(draft)));
+
+    const result = await generateEnglishDraft(input, "고1");
+
+    expect(result.questions[0]!.options).toHaveLength(5);
+    expect(mockCreate).toHaveBeenCalledTimes(2);
+    const refine = mockCreate.mock.calls[1]![0] as {
+      messages: { role: string; content: string }[];
+    };
+    const user = refine.messages[1]!.content;
+    // 두 번째 요청: 같은 조건 + 앞서 낸 답 + 문항 번호가 붙은 사유 + «지적된 문항만» 지시
+    expect(user).toContain("고1");
+    expect(user).toContain("[앞서 낸 답]");
+    expect(user).toContain("q1");
+    expect(user).toContain("5개");
+    expect(user).toContain("지적된 문항만");
+  });
+
+  it("고친 초안도 걸리면 EnglishDraftRejectedError — 고쳐 쓰기는 딱 한 번", async () => {
+    mockCreate.mockResolvedValue(aiTextResponse(JSON.stringify(fourOptions)));
 
     const failure = await generateEnglishDraft(input, "고1").catch(
       (error: unknown) => error,
@@ -242,11 +262,46 @@ describe("generateEnglishDraft — 모킹된 DeepSeek", () => {
     const issues = (failure as EnglishDraftRejectedError).issues;
     expect(issues.some((issue) => issue.question === 0)).toBe(true);
     expect(issues.map((issue) => issue.message).join(" ")).toContain("5개");
+    expect(mockCreate).toHaveBeenCalledTimes(2);
+  });
+
+  it("첫 호출이 예산을 넘기면 고쳐 쓰지 않는다 — 라우트 300초 안에 끝내려고 (호출 1회)", async () => {
+    mockCreate.mockResolvedValue(aiTextResponse(JSON.stringify(fourOptions)));
+    let clock = 0;
+    const now = () => {
+      const t = clock;
+      clock += ENGLISH_REFINE_BUDGET_MS + 1;
+      return t;
+    };
+
+    const failure = await generateEnglishDraft(input, "고1", { now }).catch(
+      (error: unknown) => error,
+    );
+
+    expect(failure).toBeInstanceOf(EnglishDraftRejectedError);
     expect(mockCreate).toHaveBeenCalledTimes(1);
   });
 
+  it("고쳐 쓴 응답을 못 읽으면 첫 사유로 거절한다", async () => {
+    mockCreate
+      .mockResolvedValueOnce(aiTextResponse(JSON.stringify(fourOptions)))
+      .mockResolvedValueOnce(aiTextResponse("미안합니다, 다시 쓰겠습니다"));
+
+    const failure = await generateEnglishDraft(input, "고1").catch(
+      (error: unknown) => error,
+    );
+
+    expect(failure).toBeInstanceOf(EnglishDraftRejectedError);
+    expect(
+      (failure as EnglishDraftRejectedError).issues
+        .map((issue) => issue.message)
+        .join(" "),
+    ).toContain("5개");
+    expect(mockCreate).toHaveBeenCalledTimes(2);
+  });
+
   it("요청과 어긋난 초안(문항 수 · 원문 바뀜)도 검증기가 막는다", async () => {
-    mockCreate.mockResolvedValueOnce(
+    mockCreate.mockResolvedValue(
       aiTextResponse(
         JSON.stringify({ ...draft, passage: `${passage} Extra sentence.` }),
       ),

@@ -278,8 +278,9 @@ describe("POST /api/english/generate — AI 결과와 오류 순서", () => {
     expect(mockCreate).not.toHaveBeenCalled();
   });
 
-  it("검증기 실패 → 502 + details 에 문항별 사유", async () => {
-    mockCreate.mockResolvedValueOnce(
+  it("검증기 실패(고쳐 쓰기 한 번 뒤에도) → 502 + details 에 문항별 사유", async () => {
+    // D-150: 검증기에 걸리면 사유를 되먹여 한 번 고쳐 쓴다 — 고쳐 쓴 것도 같으면 거절
+    mockCreate.mockResolvedValue(
       aiTextResponse(
         JSON.stringify({
           ...draft,
@@ -301,7 +302,7 @@ describe("POST /api/english/generate — AI 결과와 오류 순서", () => {
     };
     expect(details.issues[0]?.question).toBe(0);
     expect(details.issues[0]?.message).toMatch(/근거/);
-    expect(mockCreate).toHaveBeenCalledTimes(1);
+    expect(mockCreate).toHaveBeenCalledTimes(2);
   });
 
   it("두 번 다 못 읽으면 502 일반 실패 — 프롬프트 · 원문은 응답에 없다", async () => {
