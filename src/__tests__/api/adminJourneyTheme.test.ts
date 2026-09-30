@@ -15,15 +15,23 @@ vi.mock("@/lib/accountAccess", () => ({
   authorizeAccount: vi.fn(async (_request: Request, adminOnly?: boolean) => {
     state.adminOnlyAsked.push(!!adminOnly);
     return state.admin
-      ? { account: { id: "10000000-0000-4000-8000-000000000001" }, response: null }
+      ? {
+          account: { id: "10000000-0000-4000-8000-000000000001" },
+          response: null,
+        }
       : {
           account: null,
-          response: Response.json({ error: { code: "FORBIDDEN" } }, { status: 403 }),
+          response: Response.json(
+            { error: { code: "FORBIDDEN" } },
+            { status: 403 },
+          ),
         };
   }),
 }));
 vi.mock("@/lib/journeyThemeStore", () => ({
-  readJourneyTheme: vi.fn(async () => state.stored ?? { theme: "classic", updatedAt: null }),
+  readJourneyTheme: vi.fn(
+    async () => state.stored ?? { theme: "classic", updatedAt: null },
+  ),
   writeJourneyTheme: state.write,
 }));
 vi.mock("@/lib/audit", () => ({ recordAudit: state.audit }));
@@ -38,7 +46,10 @@ const put = (body: unknown) =>
   PUT(
     new Request("http://localhost/api/admin/journey-theme", {
       method: "PUT",
-      headers: { origin: "http://localhost", "Content-Type": "application/json" },
+      headers: {
+        origin: "http://localhost",
+        "Content-Type": "application/json",
+      },
       body: JSON.stringify(body),
     }),
   );
@@ -56,7 +67,9 @@ beforeEach(() => {
 
 describe("GET /api/admin/journey-theme", () => {
   it("returns the classic board before anyone chooses", async () => {
-    const res = await GET(new Request("http://localhost/api/admin/journey-theme"));
+    const res = await GET(
+      new Request("http://localhost/api/admin/journey-theme"),
+    );
     expect(res.status).toBe(200);
     expect(res.headers.get("Cache-Control")).toContain("no-store");
     expect(journeyThemeResponseSchema.parse(await res.json())).toEqual({
@@ -67,7 +80,9 @@ describe("GET /api/admin/journey-theme", () => {
 
   it("refuses a non-admin", async () => {
     state.admin = false;
-    const res = await GET(new Request("http://localhost/api/admin/journey-theme"));
+    const res = await GET(
+      new Request("http://localhost/api/admin/journey-theme"),
+    );
     expect(res.status).toBe(403);
   });
 });
@@ -96,6 +111,29 @@ describe("PUT /api/admin/journey-theme", () => {
     expect((await put({ theme: "castle" })).status).toBe(400);
     expect((await put({ theme: "sky", branchId: "x" })).status).toBe(400);
     expect(state.write).not.toHaveBeenCalled();
+  });
+
+  it("answers 400, not 500, to a body that is not JSON — and does not cache the answer", async () => {
+    const res = await PUT(
+      new Request("http://localhost/api/admin/journey-theme", {
+        method: "PUT",
+        headers: {
+          origin: "http://localhost",
+          "Content-Type": "application/json",
+        },
+        body: "theme=sky",
+      }),
+    );
+    expect(res.status).toBe(400);
+    expect(res.headers.get("Cache-Control")).toContain("no-store");
+    expect(state.write).not.toHaveBeenCalled();
+    expect(state.audit).not.toHaveBeenCalled();
+  });
+
+  it("does not cache a saved answer either", async () => {
+    const res = await put({ theme: "forest" });
+    expect(res.status).toBe(200);
+    expect(res.headers.get("Cache-Control")).toContain("no-store");
   });
 
   it("refuses a non-admin without writing", async () => {
