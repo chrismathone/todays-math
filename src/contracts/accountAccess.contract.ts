@@ -19,6 +19,8 @@ export const WORKSPACE_MENUS = [
   { id: "teaching", label: "수업 · 학생 관리" },
   // D-124 ⑽ — «수업 · 학생 관리» 바로 아래. 강의 목록은 서비스 공용, 쓰기는 isAdmin 만(⑼).
   { id: "concept", label: "오늘의 개념" },
+  // D-150 — «오늘의 개념» 바로 아래(원장님 캡처). 고정 문항 개념 백지 · 인쇄 페이지 관문 `/concept-blank`.
+  { id: "conceptBlank", label: "개념 백지" },
   { id: "srs", label: "오늘의 기억 · SRS" },
   // D-148 — 둘째 제품 «오늘의 영어». 권한은 이 하나로, 그 아래 탭 셋(학교별 내신 대비 · 문제 만들기 ·
   // 문제 보관함)은 화면이 나눈다(25 §1.2). 관문은 `/api/english` · `/english`(인쇄 페이지).
@@ -33,6 +35,7 @@ export const workspaceMenuSchema = z.enum([
   "library",
   "teaching",
   "concept",
+  "conceptBlank",
   "srs",
   "english",
 ]);

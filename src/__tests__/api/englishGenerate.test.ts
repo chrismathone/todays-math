@@ -130,6 +130,9 @@ beforeEach(() => {
   vi.unstubAllEnvs();
   vi.stubEnv("AUTH_URL", ORIGIN);
   vi.stubEnv("DEEPSEEK_API_KEY", "test-api-key");
+  // OpenAI 키가 있으면 영어는 luna 로 간다 — 이 파일은 DeepSeek 경로를 본다
+  vi.stubEnv("OPENAI_API_KEY", "");
+  vi.stubEnv("ENGLISH_AI_VENDOR", "");
 });
 
 describe("POST /api/english/generate — 문지기 순서", () => {
@@ -278,8 +281,9 @@ describe("POST /api/english/generate — AI 결과와 오류 순서", () => {
     expect(mockCreate).not.toHaveBeenCalled();
   });
 
-  it("검증기 실패 → 502 + details 에 문항별 사유", async () => {
-    mockCreate.mockResolvedValueOnce(
+  it("검증기 실패(고쳐 쓰기 한 번 뒤에도) → 502 + details 에 문항별 사유", async () => {
+    // D-151: 검증기에 걸리면 사유를 되먹여 한 번 고쳐 쓴다 — 고쳐 쓴 것도 같으면 거절
+    mockCreate.mockResolvedValue(
       aiTextResponse(
         JSON.stringify({
           ...draft,
@@ -301,7 +305,7 @@ describe("POST /api/english/generate — AI 결과와 오류 순서", () => {
     };
     expect(details.issues[0]?.question).toBe(0);
     expect(details.issues[0]?.message).toMatch(/근거/);
-    expect(mockCreate).toHaveBeenCalledTimes(1);
+    expect(mockCreate).toHaveBeenCalledTimes(2);
   });
 
   it("두 번 다 못 읽으면 502 일반 실패 — 프롬프트 · 원문은 응답에 없다", async () => {

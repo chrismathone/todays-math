@@ -35,6 +35,7 @@ const mocks = vi.hoisted(() => ({
   teachingMount: vi.fn(),
   overviewMount: vi.fn(),
   conceptMount: vi.fn(),
+  conceptBlankMount: vi.fn(),
   englishMount: vi.fn(),
   englishSetOpened: vi.fn(),
 }));
@@ -128,6 +129,20 @@ vi.mock("@/components/unified/ConceptView", () => ({
       mocks.conceptMount();
     }, []);
     return <h2>개념 패널</h2>;
+  },
+}));
+// «개념 백지»(D-150) — 셸이 주는 active 만 보이는 탐침
+vi.mock("@/components/concept-blank/ConceptBlankView", () => ({
+  default: function ConceptBlankProbe({ active }: { active?: boolean }) {
+    useEffect(() => {
+      mocks.conceptBlankMount();
+    }, []);
+    return (
+      <>
+        <h2>개념 백지 패널</h2>
+        <span data-testid="concept-blank-active">{String(active)}</span>
+      </>
+    );
   },
 }));
 vi.mock("@/components/math-srs/CourseDashboard", () => ({
@@ -468,6 +483,55 @@ describe("per-account workspace menu access", () => {
     ).not.toBeInTheDocument();
     await screen.findByRole("heading", { name: "수업 패널" });
     expect(mocks.conceptMount).not.toHaveBeenCalled();
+    expect(window.location.hash).toBe("#teaching");
+  });
+
+  it("puts «개념 백지» right below «오늘의 개념», keeps it mounted when leaving and needs the conceptBlank menu (D-150)", async () => {
+    const { unmount } = render(
+      <UnifiedWorkspace
+        initialData={initialData}
+        allowedMenus={["teaching", "concept", "conceptBlank", "srs"]}
+      />,
+    );
+    expect(
+      nav()
+        .getAllByRole("button")
+        .map((b) => b.getAttribute("aria-label")),
+    ).toEqual([
+      "수업 · 학생 관리",
+      "오늘의 개념",
+      "개념 백지",
+      "오늘의 기억 · SRS",
+    ]);
+    fireEvent.click(nav().getByRole("button", { name: "개념 백지" }));
+    expect(
+      await screen.findByRole("heading", { name: "개념 백지 패널" }),
+    ).toBeVisible();
+    expect(window.location.hash).toBe("#conceptBlank");
+    expect(screen.getByTestId("concept-blank-active")).toHaveTextContent(
+      "true",
+    );
+    // 다른 메뉴로 가도 고르기를 잃지 않게 숨김으로 남고, 뷰에는 «지금 안 보임»을 알린다
+    fireEvent.click(nav().getByRole("button", { name: "오늘의 개념" }));
+    expect(screen.getByTestId("concept-blank-active")).toHaveTextContent(
+      "false",
+    );
+    expect(mocks.conceptBlankMount).toHaveBeenCalledOnce();
+    unmount();
+
+    mocks.conceptBlankMount.mockClear();
+    window.history.replaceState(null, "", "/#conceptBlank");
+    render(
+      <UnifiedWorkspace
+        initialData={initialData}
+        allowedMenus={["teaching", "concept"]}
+      />,
+    );
+    expect(
+      nav().queryByRole("button", { name: "개념 백지" }),
+    ).not.toBeInTheDocument();
+    await screen.findByRole("heading", { name: "수업 패널" });
+    expect(mocks.conceptBlankMount).not.toHaveBeenCalled();
     expect(window.location.hash).toBe("#teaching");
   });
 

@@ -40,7 +40,7 @@ describe("메뉴 자리 · 제품", () => {
     expect(workspaceMenuProduct("english")).toBe("english");
   });
 
-  it("제품은 둘(오늘의수학 · 오늘의영어)이고, 수학 메뉴 여덟은 그대로 수학이다", () => {
+  it("제품은 둘(오늘의수학 · 오늘의영어)이고, 수학 메뉴 아홉은 그대로 수학이다", () => {
     expect(WORKSPACE_PRODUCTS.map((p) => p.id)).toEqual(["math", "english"]);
     expect(workspaceMenusOf("math")).toEqual([
       "home",
@@ -50,6 +50,7 @@ describe("메뉴 자리 · 제품", () => {
       "library",
       "teaching",
       "concept",
+      "conceptBlank",
       "srs",
     ]);
     expect(workspaceMenusOf("english")).toEqual(["english"]);

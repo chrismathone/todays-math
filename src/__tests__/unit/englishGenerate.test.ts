@@ -17,20 +17,25 @@ vi.mock("openai", () => ({
   }),
 }));
 
+import OpenAI from "openai";
+
 import { DEEPSEEK_MODEL } from "@/lib/ai/client";
 import {
   AiCapacityError,
   AiConfigError,
   AiGenerationError,
 } from "@/lib/ai/errors";
+import { ENGLISH_OPENAI_EFFORT, ENGLISH_OPENAI_MODEL } from "@/lib/ai/openai";
 import {
   buildEnglishSystemPrompt,
   buildEnglishUserPrompt,
   ENGLISH_EXAM_PROMPT_VERSION,
 } from "@/lib/ai/prompts/englishExam";
 import {
+  ENGLISH_REFINE_BUDGET_MS,
   EnglishDraftRejectedError,
   generateEnglishDraft,
+  resolveEnglishVendor,
 } from "@/lib/english/generate";
 
 const passage =
@@ -91,8 +96,12 @@ const expectedMaxTokens = Number(process.env.DEEPSEEK_MAX_TOKENS ?? 64000);
 
 beforeEach(() => {
   mockCreate.mockReset();
+  vi.mocked(OpenAI).mockClear();
   vi.unstubAllEnvs();
   vi.stubEnv("DEEPSEEK_API_KEY", "test-api-key");
+  // OpenAI 키가 있으면 영어는 luna 로 간다 — 셸에 키가 있어도 아래 DeepSeek 시험이 흔들리지 않게 비운다
+  vi.stubEnv("OPENAI_API_KEY", "");
+  vi.stubEnv("ENGLISH_AI_VENDOR", "");
 });
 
 describe("프롬프트 — 규칙 · 자료 감싸기", () => {
@@ -111,6 +120,29 @@ describe("프롬프트 — 규칙 · 자료 감싸기", () => {
     expect(system).toContain('"evidence"');
     // 자료 칸 안의 글은 지시가 아니다
     expect(system).toMatch(/지시가 아닙니다|지시로 보지/);
+  });
+
+  it("v3 — 근거는 지문의 이어진 한두 문장을 통째로 복사한다 (gpt-6-luna 서술형 근거 버릇 · 25 §12.7)", () => {
+    // 벤치: v2 그대로 8회 중 4회 거절(근거를 3~4문장 옮기다 사이 문장을 건너뛰거나 바꿔 씀) → 이 규칙 10회 중 9회 통과,
+    // 품질은 v2 와 같다. «딱 한 문장»(10/10)은 삽입·서술형이 몇 점 낮아 안 썼다.
+    expect(ENGLISH_EXAM_PROMPT_VERSION).toBe("v3");
+    const system = buildEnglishSystemPrompt();
+    expect(system).toContain("이어진 한두 문장");
+    expect(system).toContain("문자열 검색");
+    expect(system).toMatch(/떨어진 문장을 이어 붙이기 · 사이 문장을 건너뛰기/);
+    expect(system).toMatch(/낱말이나 대명사 하나라도 바꾸기/);
+    expect(system).toMatch(
+      /passage 를 고쳤다면 evidence 를 모두 새 passage 에서 다시 복사/,
+    );
+    const prompt = buildEnglishUserPrompt(
+      { ...input, mode: "variation", words: 200 },
+      "고1",
+    );
+    const rules = prompt.slice(prompt.indexOf("요청 규칙:"));
+    expect(rules).toMatch(
+      /- 근거\(evidence\)는 passage 를 확정한 뒤 그 passage 에서 문항마다 이어진 한두 문장을 통째로 복사/,
+    );
+    expect(rules).toContain("바꿔 쓴 passage 에서");
   });
 
   it("사용자 프롬프트는 조건을 싣고 원문을 자료 칸으로 감싼다 — 칸을 닫는 글자는 무력화", () => {
@@ -217,21 +249,40 @@ describe("generateEnglishDraft — 모킹된 DeepSeek", () => {
     expect(mockCreate).toHaveBeenCalledTimes(1);
   });
 
-  it("검증기에 걸리면 EnglishDraftRejectedError 에 사유가 실린다 — 재시도하지 않는다", async () => {
-    mockCreate.mockResolvedValueOnce(
-      aiTextResponse(
-        JSON.stringify({
-          ...draft,
-          questions: [
-            {
-              ...draft.questions[0],
-              options: draft.questions[0]!.options.slice(0, 4),
-            },
-            draft.questions[1],
-          ],
-        }),
-      ),
-    );
+  const fourOptions = {
+    ...draft,
+    questions: [
+      {
+        ...draft.questions[0],
+        options: draft.questions[0]!.options.slice(0, 4),
+      },
+      draft.questions[1],
+    ],
+  };
+
+  it("검증기에 걸리면 사유를 되먹여 한 번 고쳐 쓴다 — 고친 초안이 통과하면 성공 (D-151)", async () => {
+    mockCreate
+      .mockResolvedValueOnce(aiTextResponse(JSON.stringify(fourOptions)))
+      .mockResolvedValueOnce(aiTextResponse(JSON.stringify(draft)));
+
+    const result = await generateEnglishDraft(input, "고1");
+
+    expect(result.questions[0]!.options).toHaveLength(5);
+    expect(mockCreate).toHaveBeenCalledTimes(2);
+    const refine = mockCreate.mock.calls[1]![0] as {
+      messages: { role: string; content: string }[];
+    };
+    const user = refine.messages[1]!.content;
+    // 두 번째 요청: 같은 조건 + 앞서 낸 답 + 문항 번호가 붙은 사유 + «지적된 문항만» 지시
+    expect(user).toContain("고1");
+    expect(user).toContain("[앞서 낸 답]");
+    expect(user).toContain("q1");
+    expect(user).toContain("5개");
+    expect(user).toContain("지적된 문항만");
+  });
+
+  it("고친 초안도 걸리면 EnglishDraftRejectedError — 고쳐 쓰기는 딱 한 번", async () => {
+    mockCreate.mockResolvedValue(aiTextResponse(JSON.stringify(fourOptions)));
 
     const failure = await generateEnglishDraft(input, "고1").catch(
       (error: unknown) => error,
@@ -242,11 +293,46 @@ describe("generateEnglishDraft — 모킹된 DeepSeek", () => {
     const issues = (failure as EnglishDraftRejectedError).issues;
     expect(issues.some((issue) => issue.question === 0)).toBe(true);
     expect(issues.map((issue) => issue.message).join(" ")).toContain("5개");
+    expect(mockCreate).toHaveBeenCalledTimes(2);
+  });
+
+  it("첫 호출이 예산을 넘기면 고쳐 쓰지 않는다 — 라우트 300초 안에 끝내려고 (호출 1회)", async () => {
+    mockCreate.mockResolvedValue(aiTextResponse(JSON.stringify(fourOptions)));
+    let clock = 0;
+    const now = () => {
+      const t = clock;
+      clock += ENGLISH_REFINE_BUDGET_MS + 1;
+      return t;
+    };
+
+    const failure = await generateEnglishDraft(input, "고1", { now }).catch(
+      (error: unknown) => error,
+    );
+
+    expect(failure).toBeInstanceOf(EnglishDraftRejectedError);
     expect(mockCreate).toHaveBeenCalledTimes(1);
   });
 
+  it("고쳐 쓴 응답을 못 읽으면 첫 사유로 거절한다", async () => {
+    mockCreate
+      .mockResolvedValueOnce(aiTextResponse(JSON.stringify(fourOptions)))
+      .mockResolvedValueOnce(aiTextResponse("미안합니다, 다시 쓰겠습니다"));
+
+    const failure = await generateEnglishDraft(input, "고1").catch(
+      (error: unknown) => error,
+    );
+
+    expect(failure).toBeInstanceOf(EnglishDraftRejectedError);
+    expect(
+      (failure as EnglishDraftRejectedError).issues
+        .map((issue) => issue.message)
+        .join(" "),
+    ).toContain("5개");
+    expect(mockCreate).toHaveBeenCalledTimes(2);
+  });
+
   it("요청과 어긋난 초안(문항 수 · 원문 바뀜)도 검증기가 막는다", async () => {
-    mockCreate.mockResolvedValueOnce(
+    mockCreate.mockResolvedValue(
       aiTextResponse(
         JSON.stringify({ ...draft, passage: `${passage} Extra sentence.` }),
       ),
@@ -266,6 +352,113 @@ describe("generateEnglishDraft — 모킹된 DeepSeek", () => {
 
   it("DEEPSEEK_API_KEY 가 없으면 AI 를 부르지 않고 AiConfigError", async () => {
     vi.stubEnv("DEEPSEEK_API_KEY", "");
+
+    await expect(generateEnglishDraft(input, "고1")).rejects.toBeInstanceOf(
+      AiConfigError,
+    );
+    expect(mockCreate).not.toHaveBeenCalled();
+  });
+});
+
+describe("영어 AI 공급자 — OPENAI_API_KEY 가 있으면 luna (원장님 2026-09-30 «luna 로» · 25 §12.7)", () => {
+  it("키가 없으면 DeepSeek — 운영에 키를 넣기 전까지 지금 동작 그대로", () => {
+    expect(resolveEnglishVendor({})).toBe("deepseek");
+    expect(resolveEnglishVendor({ OPENAI_API_KEY: "  " })).toBe("deepseek");
+  });
+
+  it("키가 있으면 openai", () => {
+    expect(resolveEnglishVendor({ OPENAI_API_KEY: "k" })).toBe("openai");
+  });
+
+  it("ENGLISH_AI_VENDOR 로 코드 없이 고른다 — deepseek 면 키가 있어도 DeepSeek", () => {
+    expect(
+      resolveEnglishVendor({
+        OPENAI_API_KEY: "k",
+        ENGLISH_AI_VENDOR: "deepseek",
+      }),
+    ).toBe("deepseek");
+    expect(resolveEnglishVendor({ ENGLISH_AI_VENDOR: " openai " })).toBe(
+      "openai",
+    );
+  });
+
+  it("낯선 값이면 설정 오류 — 조용히 다른 공급자로 가지 않는다", () => {
+    expect(() => resolveEnglishVendor({ ENGLISH_AI_VENDOR: "gpt" })).toThrow(
+      AiConfigError,
+    );
+  });
+});
+
+describe("generateEnglishDraft — 모킹된 OpenAI (gpt-6-luna)", () => {
+  beforeEach(() => {
+    vi.stubEnv("OPENAI_API_KEY", "test-openai-key");
+    vi.stubEnv("DEEPSEEK_API_KEY", "");
+  });
+
+  it("요청 — OpenAI 기본 주소(baseURL 없음) · luna · max_completion_tokens · 추론 강도 · 같은 프롬프트", async () => {
+    mockCreate.mockResolvedValueOnce(aiTextResponse(JSON.stringify(draft)));
+
+    const result = await generateEnglishDraft(input, "고1");
+
+    expect(result.questions).toHaveLength(2);
+    const made = vi.mocked(OpenAI).mock.calls.at(-1)![0] as {
+      apiKey: string;
+      baseURL?: string;
+    };
+    expect(made.apiKey).toBe("test-openai-key");
+    expect(made.baseURL).toBeUndefined();
+    const sent = mockCreate.mock.calls[0]![0]! as {
+      model: string;
+      max_tokens?: number;
+      max_completion_tokens: number;
+      reasoning_effort: string;
+      messages: { role: string; content: string }[];
+    };
+    expect(sent.model).toBe(ENGLISH_OPENAI_MODEL);
+    expect(ENGLISH_OPENAI_MODEL).toBe("gpt-6-luna");
+    expect(sent.max_tokens).toBeUndefined();
+    expect(sent.max_completion_tokens).toBeGreaterThanOrEqual(32000);
+    expect(sent.reasoning_effort).toBe(ENGLISH_OPENAI_EFFORT);
+    expect(sent.messages[0]?.content).toBe(buildEnglishSystemPrompt());
+    expect(sent.messages[1]?.content).toContain(passage);
+  });
+
+  it("거절되면 고쳐 쓰기도 luna 로 부른다", async () => {
+    const fourOptions = {
+      ...draft,
+      questions: [
+        {
+          ...draft.questions[0],
+          options: draft.questions[0]!.options.slice(0, 4),
+        },
+        draft.questions[1],
+      ],
+    };
+    mockCreate
+      .mockResolvedValueOnce(aiTextResponse(JSON.stringify(fourOptions)))
+      .mockResolvedValueOnce(aiTextResponse(JSON.stringify(draft)));
+
+    await generateEnglishDraft(input, "고1");
+
+    expect(mockCreate).toHaveBeenCalledTimes(2);
+    for (const [sent] of mockCreate.mock.calls)
+      expect((sent as { model: string }).model).toBe(ENGLISH_OPENAI_MODEL);
+  });
+
+  it("답을 내기 전에 길이 한도에 걸리면 AiCapacityError — 재시도하지 않는다", async () => {
+    mockCreate.mockResolvedValueOnce({
+      choices: [{ finish_reason: "length", message: { content: "" } }],
+    });
+
+    await expect(generateEnglishDraft(input, "고1")).rejects.toBeInstanceOf(
+      AiCapacityError,
+    );
+    expect(mockCreate).toHaveBeenCalledTimes(1);
+  });
+
+  it("ENGLISH_AI_VENDOR=openai 인데 키가 없으면 AiConfigError — 부르지 않는다", async () => {
+    vi.stubEnv("OPENAI_API_KEY", "");
+    vi.stubEnv("ENGLISH_AI_VENDOR", "openai");
 
     await expect(generateEnglishDraft(input, "고1")).rejects.toBeInstanceOf(
       AiConfigError,
