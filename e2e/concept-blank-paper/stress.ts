@@ -135,4 +135,65 @@ export const STRESS_SHEETS: ConceptBlankSheet[] = [
     header: header("figure"),
     figures: range(7).map(figure),
   },
+  // 띄어쓰기 없는 40자 제목 + 긴 단원 글 — 머리가 석 줄로 늘면 몸이 줄어 꽉 찬 장이 넘친다(제목은 두 줄까지만 쓴다).
+  // 짧은 문항을 천장까지 채워 몸 높이를 끝까지 쓰게 한다.
+  {
+    form: "term",
+    header: tightHeader("term"),
+    terms: range(9).map(short),
+    ox: [],
+  },
+  {
+    form: "cloze",
+    header: tightHeader("cloze"),
+    sentences: range(14).map(short),
+    apply: [],
+  },
+  {
+    form: "cloze",
+    header: tightHeader("cloze"),
+    sentences: range(8).map(short),
+    apply: range(3).map(apply),
+  },
+  // 문항 100개 — 번호가 세 자리가 되면 번호 열이 52px 로 넓어진다(그 지면 안에서는 한 값)
+  {
+    form: "term",
+    header: header("term"),
+    terms: range(100).map(short),
+    ox: [],
+  },
+  // 채점표 머리 — 앞말이 가장 긴 형식(«그림 보고 쓰기 · »)에 40자 제목이면 두 줄이 된다. 짧은 줄로 첫 장을 끝까지 채운다.
+  {
+    form: "recall",
+    header: tightHeader("figure"),
+    zones: range(2).map((i) => ({
+      section: `${SECTION}-t${i}`,
+      title: `소단원 ${i}`,
+      hint: "정의",
+      side: "예" as const,
+    })),
+    key: range(30).map(short),
+  },
 ];
+
+function tightHeader(form: SheetHeader["form"]): SheetHeader {
+  return {
+    title: "가나다라마바사아자차카타파하".repeat(3).slice(0, 40),
+    unitLabel:
+      "초6 · 1-3 소수의 나눗셈과 직육면체의 겉넓이와 부피 그리고 비와 비율 외 11단원",
+    date: "2026-10-01",
+    form,
+  };
+}
+
+function short(i: number): ConceptEntry {
+  return {
+    id: `stress-s-${i}`,
+    section: SECTION,
+    term: `짧은 용어 ${i}`,
+    kind: "정의",
+    level: "하",
+    // 쓰기 줄 두 줄(열아홉 자 이상) · 문장은 한 줄
+    definition: `짧은 뜻 문장 ${i}번에는 {핵심어} 하나가 있고 한 줄에 든다.`,
+  };
+}

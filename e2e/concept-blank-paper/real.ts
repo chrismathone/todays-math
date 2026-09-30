@@ -21,6 +21,7 @@ import {
  *  · `worstSheets()` — 초4 · 5 · 6 은행에서 **가장 긴 것끼리** 모은 최악 조합(리드 조건 ⑷): 가장 긴 뜻 문장 · 가장 긴
  *    용어 · 가장 긴 소단원 이름 · 가장 긴 ○× · 가장 긴 적용 · 이름표 · 줄이 가장 많은 그림.
  *  · `countSheets()` — 문항 수 1~정원 + 1 을 하나씩(칸이 적은 장이 비지 않는가 — A 칸 · B 문항 · D 가지 · E 카드).
+ *  · `showSheets()` — 보고서 본보기(실제 은행 한 대단원 · 흔한 문항 수).
  */
 const ALL = { 하: 40, 중: 40, 상: 40 };
 const NONE = { 하: 0, 중: 0, 상: 0 };
@@ -51,6 +52,36 @@ export function realSheets(part: RealGrade): ConceptBlankSheet[] {
       ? composeSheets({ sections, forms: FORMS, date: "2026-10-01" }, bank)
       : [];
   });
+}
+
+/**
+ * 보고서에 싣는 본보기 — 실제 은행의 한 대단원(초5 · 2-3 합동과 대칭, 그림 소단원이 있다)을 원장님이 흔히 고를 만한
+ * 문항 수로: A 전부 · B 용어 9 + ○× · C 문장 8 + 적용(○× · 적용은 하 · 중 하나씩 — 은행에 있는 만큼) · D 가지 전부 · E 그림 전부.
+ */
+export function showSheets(): ConceptBlankSheet[] {
+  const chapter = BLANK_TREE.find((g) => g.grade === "초5")?.chapters.find(
+    (c) => c.title.includes("합동과 대칭"),
+  );
+  if (!chapter) return [];
+  const three = { 하: 3, 중: 3, 상: 3 };
+  return composeSheets(
+    {
+      sections: chapter.sections.map((s) => s.key),
+      forms: [
+        { form: "recall", counts: ALL, extras: NONE },
+        { form: "term", counts: three, extras: { 하: 1, 중: 1, 상: 0 } },
+        {
+          form: "cloze",
+          counts: { 하: 3, 중: 3, 상: 2 },
+          extras: { 하: 1, 중: 1, 상: 0 },
+        },
+        { form: "map", counts: ALL, extras: NONE },
+        { form: "figure", counts: ALL, extras: NONE },
+      ],
+      date: "2026-10-01",
+    },
+    BANK_PARTS.e5!,
+  );
 }
 
 const REAL: ConceptBlankBank = {

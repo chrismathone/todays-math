@@ -84,6 +84,51 @@ test("글자 폭 — textEm 은 지면 글꼴의 실제 폭보다 작지 않다"
   expect(under).toEqual([]);
 });
 
+test("숫자 폭 — 고딕은 같은 폭(tabular-nums) · 지면 명조에는 그 기능이 없다", async ({
+  page,
+}) => {
+  await openSet(page, "fixture", "student");
+  const widths = await page.evaluate(() => {
+    // 지면(`.page` — tabular-nums 를 물려준다) 안에서 잰다
+    const host = document.querySelector<HTMLElement>("[data-cb-page]")!;
+    const span = document.createElement("span");
+    span.style.cssText =
+      "position:absolute;visibility:hidden;white-space:pre;font-size:100px;line-height:1;";
+    host.append(span);
+    const out: Record<string, number[]> = {};
+    for (const [face, family] of [
+      ["serif", "var(--paper-font-serif)"],
+      ["sans", "var(--paper-font-sans)"],
+    ] as const)
+      for (const weight of [400, 800]) {
+        span.style.fontFamily = family;
+        span.style.fontWeight = String(weight);
+        out[`${face}-${weight}`] = "0123456789".split("").map((d) => {
+          span.textContent = d.repeat(10);
+          return Math.round(span.getBoundingClientRect().width) / 1000;
+        });
+      }
+    const numeric = getComputedStyle(host).fontVariantNumeric;
+    span.remove();
+    return { numeric, out };
+  });
+  mkdirSync(OUT, { recursive: true });
+  writeFileSync(
+    path.join(OUT, "digit-widths.json"),
+    JSON.stringify(widths, null, 2),
+  );
+  expect(widths.numeric).toContain("tabular-nums");
+  const spread = (face: string) =>
+    Math.max(...widths.out[face]!) - Math.min(...widths.out[face]!);
+  // 고딕(채점표 번호 · 맞은 개수 칸 · 쪽 번호)은 숫자 열 개가 같은 폭이다
+  expect(spread("sans-400")).toBeLessThanOrEqual(0.002);
+  expect(spread("sans-800")).toBeLessThanOrEqual(0.002);
+  // 🔴 지면 명조(NotoSerifKR 서브셋)에는 같은 폭 숫자(tnum)가 **없다** — «1» 만 0.09em 좁다(잰 값 0.471 · 나머지 0.557).
+  //    그래서 명조 숫자(«문 12»)의 자리 맞춤은 글꼴이 아니라 **고정 폭 번호 열**(`--cb-num`)이 한다(overflow.spec 가 잠근다).
+  //    글꼴에 기능이 생기면 이 값이 0 이 된다 — 그때 이 줄을 «같다»로 바꾼다.
+  expect(spread("serif-400")).toBeGreaterThan(0.05);
+});
+
 for (const set of SETS) {
   test(`${set} — 덩이마다 어림 ≥ 실제 · 몸 높이`, async ({ page }) => {
     await openSet(page, set);
