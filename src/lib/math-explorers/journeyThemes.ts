@@ -25,6 +25,15 @@ export interface RiderImages {
   wheels?: ReadonlyArray<{ x: number; y: number; d: number }>;
 }
 
+/** 테마 소품 — 보물상자(닫힘 · 열림) · 기지 네 단계 · 별. 없으면 지금 모양(SVG 상자 · ⌂ · ✦). */
+export interface JourneyPropArt {
+  chest: string;
+  chestOpen: string;
+  /** 기지 1~4단계 — 4단계 뒤로는 마지막 그림. */
+  bases: readonly [string, string, string, string];
+  star: string;
+}
+
 export interface JourneyTheme {
   id: JourneyThemeId;
   name: string;
@@ -36,6 +45,8 @@ export interface JourneyTheme {
   riderImages: RiderImages | null;
   /** 탈것이 칸을 옮길 때의 몸짓 — CSS 가 읽는다. */
   motion: "hop" | "sway" | "bob" | "drift" | "roll";
+  /** 소품 그림(codex 4차 · 하늘섬 먼저). 아직 안 그린 테마는 없다. */
+  propArt?: JourneyPropArt;
 }
 
 const riderSet = (id: string): RiderImages => ({
@@ -60,6 +71,17 @@ export const JOURNEY_THEMES: Readonly<Record<JourneyThemeId, JourneyTheme>> = {
     boardImage: "/images/journey/sky-board.webp",
     riderImages: riderSet("sky"),
     motion: "sway",
+    propArt: {
+      chest: "/images/journey/sky-chest.webp",
+      chestOpen: "/images/journey/sky-chest-open.webp",
+      bases: [
+        "/images/journey/sky-base1.webp",
+        "/images/journey/sky-base2.webp",
+        "/images/journey/sky-base3.webp",
+        "/images/journey/sky-base4.webp",
+      ],
+      star: "/images/journey/sky-star.webp",
+    },
   },
   sea: {
     id: "sea",
