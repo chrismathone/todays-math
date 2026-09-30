@@ -1,5 +1,5 @@
 /**
- * OpenAI API 래퍼 — 서버 전용. 지금은 **오늘의 영어 생성**만 쓴다(gpt-6-luna, D-150 · 25 §12.7).
+ * OpenAI API 래퍼 — 서버 전용. 지금은 **오늘의 영어 생성**만 쓴다(gpt-6-luna, D-151 · 25 §12.7).
  *
  * ⚠️ `client.ts`(DeepSeek)와 같이 Route Handler 가 부르는 서버 모듈에서만 import 한다 — `OPENAI_API_KEY` 가 번들에 들어가면 안 된다.
  *

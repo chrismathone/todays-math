@@ -118,7 +118,7 @@ type NavItem = {
 const mathNav: NavItem[] = [
   { id: "home", label: "오늘의 작업", short: "홈", icon: "home" },
   { id: "bank", label: "시험지 만들기", short: "만들기", icon: "bank" },
-  { id: "studio", label: "자료 제작", short: "자료 제작", icon: "crop" },
+  { id: "studio", label: "문제 추출", short: "문제 추출", icon: "crop" },
   { id: "export", label: "시험지 · 내보내기", short: "시험지", icon: "paper" },
   { id: "library", label: "내 시험지", short: "보관함", icon: "folder" },
   {
@@ -1752,7 +1752,7 @@ function UnifiedWorkspaceContent({
               <p>
                 {storageScope
                   ? "가져온 원본과 추출한 문제도 내 시험지에 저장됩니다. 저장 상태를 확인한 뒤 다른 기기에서 이어서 작업하세요."
-                  : "자료 제작 작업은 이 브라우저에 저장됩니다. 다른 기기로 옮길 시험지는 작업 파일로 내보내세요."}
+                  : "문제 추출 작업은 이 브라우저에 저장됩니다. 다른 기기로 옮길 시험지는 작업 파일로 내보내세요."}
               </p>
             </div>
             <button className={s.primaryButton} onClick={() => setModal(null)}>

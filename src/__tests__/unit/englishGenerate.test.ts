@@ -260,7 +260,7 @@ describe("generateEnglishDraft — 모킹된 DeepSeek", () => {
     ],
   };
 
-  it("검증기에 걸리면 사유를 되먹여 한 번 고쳐 쓴다 — 고친 초안이 통과하면 성공 (D-150)", async () => {
+  it("검증기에 걸리면 사유를 되먹여 한 번 고쳐 쓴다 — 고친 초안이 통과하면 성공 (D-151)", async () => {
     mockCreate
       .mockResolvedValueOnce(aiTextResponse(JSON.stringify(fourOptions)))
       .mockResolvedValueOnce(aiTextResponse(JSON.stringify(draft)));

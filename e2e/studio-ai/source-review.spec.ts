@@ -79,7 +79,7 @@ test("source in-card math, figure and metadata edits save together and survive r
   // 다시 만든다(렌더러 components 가 렌더마다 새 함수) — 그 사이에 포커스를 주면 Enter 가
   // 허공에 가서 편집기가 안 열렸다(10회에 1~2회, 트랙 23). 저장이 끝난 뒤에 누른다.
   await expect(
-    page.getByRole("status", { name: "자료 제작 저장 상태" }),
+    page.getByRole("status", { name: "문제 추출 저장 상태" }),
   ).toHaveText("저장됨");
   await figure.focus();
   await page.keyboard.press("Enter");
@@ -145,7 +145,7 @@ test("source in-card math, figure and metadata edits save together and survive r
   await expect(saved).toContainText("넓이 검수");
   await expect(saved.locator(".choice")).toHaveCount(5);
   await expect(
-    page.getByRole("status", { name: "자료 제작 저장 상태" }),
+    page.getByRole("status", { name: "문제 추출 저장 상태" }),
   ).toHaveText("저장됨");
   await page.reload();
   await expect(saved).toContainText("직접 수정");

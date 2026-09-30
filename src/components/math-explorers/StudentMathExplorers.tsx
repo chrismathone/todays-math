@@ -27,6 +27,7 @@ import type { DailyJourneyDay } from "@/components/math-srs/DailyJourneyBoard";
 import type { MathExpeditionReview } from "@/contracts/mathExpedition.contract";
 import type { JourneyThemeId } from "@/lib/math-explorers/journeyThemes";
 import ExplorerBankActivity from "./ExplorerBankActivity";
+import { JourneyArtProvider } from "./JourneyArt";
 import ExplorerPractice from "./ExplorerPractice";
 import ExplorerSessionIntro from "./ExplorerSessionIntro";
 import {
@@ -103,12 +104,15 @@ export default function StudentMathExplorers({
   initialView,
   journeyTheme,
 }: { initialView?: "collection"; journeyTheme?: JourneyThemeId } = {}) {
+  // 테마 소품(상자 · 기지 · 별) — 효과 · 은행 미션까지 한 벌로 따른다.
   return (
-    <ExplorerGame
-      key={initialView ?? "expedition"}
-      initialView={initialView}
-      journeyTheme={journeyTheme}
-    />
+    <JourneyArtProvider theme={journeyTheme}>
+      <ExplorerGame
+        key={initialView ?? "expedition"}
+        initialView={initialView}
+        journeyTheme={journeyTheme}
+      />
+    </JourneyArtProvider>
   );
 }
 

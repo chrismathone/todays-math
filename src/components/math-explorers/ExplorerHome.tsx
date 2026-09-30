@@ -34,6 +34,7 @@ import {
 } from "@/lib/math-explorers/starEconomy";
 import { ExplorerMath } from "./ExplorerMath";
 import { ExplorerChests, TileStars } from "./ExplorerPieces";
+import { BaseArt, StarMark } from "./JourneyArt";
 import { SupplementLine, SupplementShelf } from "./ExplorerSupplementPieces";
 import r from "./chest-reward.module.css";
 import s from "./math-explorers.module.css";
@@ -475,7 +476,7 @@ export default function ExplorerHome({
           <span aria-hidden="true">⌂</span>우리 기지
           {shown.stars ? (
             <em className={s.starBadge} aria-hidden="true">
-              ✦ {shown.stars}
+              <StarMark /> {shown.stars}
             </em>
           ) : null}
         </button>
@@ -602,13 +603,14 @@ export default function ExplorerHome({
       {sheet === "base" ? (
         <ExplorerSheet title="우리 기지" onClose={closeSheet}>
           <section className={s.baseInside}>
-            <span className={s.baseEmblem} aria-hidden="true">
-              ⌂
-            </span>
+            <BaseArt level={state.profile.level} />
             <p>{state.profile.level}단계</p>
             <h3>{baseStageName(state.profile.level)}</h3>
             <p>
-              모은 별 <strong>✦ {shown.stars}</strong>
+              모은 별{" "}
+              <strong>
+                <StarMark /> {shown.stars}
+              </strong>
             </p>
             <button
               type="button"
@@ -622,7 +624,7 @@ export default function ExplorerHome({
                 baseFailure?.retry ?? (() => onAction({ type: "upgrade" }))
               }
             >
-              기지 키우기 · ✦ {upgradeCost}
+              기지 키우기 · <StarMark /> {upgradeCost}
             </button>
             {baseFailure ? (
               <p className={r.notice} role="alert">

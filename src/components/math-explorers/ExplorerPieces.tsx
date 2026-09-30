@@ -1,41 +1,7 @@
 import type { CSSProperties } from "react";
 import type { ExplorerState } from "@/contracts/mathExplorers.contract";
+import { ChestArt, StarMark } from "./JourneyArt";
 import s from "./math-explorers.module.css";
-
-export function ChestIcon({ opened = false }: { opened?: boolean }) {
-  return (
-    <svg viewBox="0 0 64 64" fill="none" aria-hidden="true">
-      <path
-        d={opened ? "m9 27 4-14 41 6-3 13" : "M9 29v-9c0-7 46-7 46 0v9"}
-        fill="#ffda78"
-        stroke="#9d6c27"
-        strokeWidth="2.5"
-        strokeLinejoin="round"
-      />
-      <path
-        d="M9 29h46v24H9z"
-        fill="#edb345"
-        stroke="#9d6c27"
-        strokeWidth="2.5"
-        strokeLinejoin="round"
-      />
-      <path d="M19 29v24m26-24v24M9 37h46" stroke="#9d6c27" strokeWidth="2.5" />
-      <rect
-        x="27"
-        y="33"
-        width="10"
-        height="12"
-        rx="2"
-        fill="#fff1b2"
-        stroke="#9d6c27"
-        strokeWidth="2"
-      />
-      {opened ? (
-        <path d="m32 7 2 5 5 1-4 3 1 5-4-3-4 3 1-5-4-3 5-1Z" fill="#ffd05a" />
-      ) : null}
-    </svg>
-  );
-}
 
 export function ExplorerChests({
   chests,
@@ -61,7 +27,7 @@ export function ExplorerChests({
           aria-label={`${chest.after}개 개념 보상상자, ${chest.claimed ? "보상 획득 완료" : chest.ready ? "열고 별 1개 받기" : `${chest.solved}/${chest.after}개 해결`}`}
         >
           <span className={s.chestArt}>
-            <ChestIcon opened={chest.claimed} />
+            <ChestArt opened={chest.claimed} />
             {!chest.ready && !chest.claimed ? (
               <span className={s.lock} aria-hidden="true">
                 ⌑
@@ -96,7 +62,10 @@ export function TileStars({ cards, bonus }: { cards: number; bonus: number }) {
       {" "}
       {/* 눈에는 «✦+3», 화면 읽기에는 «별 3개» — role 없는 span 의 aria-label 은 읽히지 않는다 */}
       <span className={s.tileStars} aria-hidden="true">
-        <span>✦</span>+{total}
+        <span>
+          <StarMark />
+        </span>
+        +{total}
       </span>
       <span className={s.srOnly}>별 {total}개</span>
       {cards && bonus ? (
@@ -115,14 +84,14 @@ export function TileRewardEffect({ stars }: { stars: number | null }) {
     <div className={s.chestEffect} role="status" aria-live="polite">
       <div className={s.chestBurst} aria-hidden="true">
         <i className={s.tileBurstStar} aria-hidden="true">
-          ✦
+          <StarMark />
         </i>
         {Array.from({ length: 6 }, (_, index) => (
           <span
             key={index}
             style={{ "--angle": `${index * 60}deg` } as CSSProperties}
           >
-            ✦
+            <StarMark />
           </span>
         ))}
       </div>
@@ -137,13 +106,13 @@ export function ChestRewardEffect({ stars }: { stars: number | null }) {
   return (
     <div className={s.chestEffect} role="status" aria-live="polite">
       <div className={s.chestBurst} aria-hidden="true">
-        <ChestIcon opened />
+        <ChestArt opened />
         {Array.from({ length: 6 }, (_, index) => (
           <span
             key={index}
             style={{ "--angle": `${index * 60}deg` } as CSSProperties}
           >
-            ✦
+            <StarMark />
           </span>
         ))}
       </div>

@@ -145,7 +145,7 @@ async function openStudio(
       />
     </DevAiProvider>,
   );
-  await screen.findByText("이전 자료 제작 작업을 복원했습니다.");
+  await screen.findByText("이전 문제 추출 작업을 복원했습니다.");
   return view;
 }
 const openProgress = async () =>
@@ -497,7 +497,7 @@ describe("6 · 편집창 확대는 원장님 선택에만 따른다(2026-09-21 �
   // 파일·학년을 **포함한** 모든 도구가 둘째 줄로 내려갔다. 두 줄이라는 뼈대는 그대로다.
   it("위 띠는 두 줄 — 제목 줄에 탭과 단계 단추, 둘째 줄에 파일·학년·쪽·문제 이동과 전체 작업·진행 요약", async () => {
     await openStudio(twoCrops(), { step: "review" });
-    const title = screen.getByRole("heading", { name: "자료 제작" });
+    const title = screen.getByRole("heading", { name: "문제 추출" });
     const band = title.closest("[data-studio-band]") as HTMLElement;
     expect(band).not.toBeNull();
     for (const name of ["원본 파일", "시험지 학년"])

@@ -264,7 +264,7 @@ export function DevAiProvider({
       signal?: AbortSignal,
     ): Promise<DevAiResponse> => {
       if (signal?.aborted) throw new DOMException("작업 취소", "AbortError");
-      if (!enabled) throw new Error("자료 제작 메뉴를 사용할 권한이 없습니다.");
+      if (!enabled) throw new Error("문제 추출 메뉴를 사용할 권한이 없습니다.");
       if (!status?.enabled) throw new Error("개발용 AI 연결을 확인해 주세요.");
       const selected = status.providers.find((item) => item.id === provider);
       if (!selected || !["ready", "unverified"].includes(selected.status))

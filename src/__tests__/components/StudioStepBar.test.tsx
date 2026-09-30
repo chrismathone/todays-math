@@ -142,7 +142,7 @@ async function openStudio(
       />
     </DevAiProvider>,
   );
-  await screen.findByText("이전 자료 제작 작업을 복원했습니다.");
+  await screen.findByText("이전 문제 추출 작업을 복원했습니다.");
   return view;
 }
 
@@ -163,7 +163,7 @@ describe("1 · 뼈대 — 네 단계가 같은 제목 줄을 쓴다", () => {
     await openStudio([], { step: "upload" });
     expect(bar()).not.toBeNull();
     expect(
-      within(bar()).getByRole("heading", { name: "자료 제작" }),
+      within(bar()).getByRole("heading", { name: "문제 추출" }),
     ).toBeInTheDocument();
     expect(
       screen.queryByRole("heading", { name: "내 자료로 만드는 문제" }),
@@ -322,7 +322,7 @@ describe("5 · ④ 시험지 구성 화면도 같은 띠를 쓴다", () => {
     render(<WorksheetEditor {...props} cropCount={19} onGoToStep={vi.fn()} />);
     expect(bar()).not.toBeNull();
     expect(
-      within(bar()).getByRole("heading", { name: "자료 제작" }),
+      within(bar()).getByRole("heading", { name: "문제 추출" }),
     ).toBeInTheDocument();
     expect(
       screen.queryByRole("heading", { name: "시험지 구성하기" }),
@@ -331,7 +331,7 @@ describe("5 · ④ 시험지 구성 화면도 같은 띠를 쓴다", () => {
     expect(pressed()[0]).toMatch(/^시험지 구성/);
   });
 
-  it("자료 제작을 못 쓰는 계정이면 앞 세 탭을 아예 세우지 않는다", () => {
+  it("문제 추출을 못 쓰는 계정이면 앞 세 탭을 아예 세우지 않는다", () => {
     render(<WorksheetEditor {...props} allowedMenus={["export"]} />);
     expect(
       within(bar()).getByRole("heading", { name: "시험지 구성" }),

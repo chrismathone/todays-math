@@ -439,7 +439,7 @@ test("③ 에서 담으면 카드마다 «담음» · 목록으로 보고 뺀다
   const firstRow = await order.getByRole("listitem").first().textContent();
   await page.getByRole("button", { name: "1번 문제 빼기" }).click();
   await expect(order.getByRole("listitem")).toHaveCount(n - 1);
-  await menu(page, "자료 제작").click();
+  await menu(page, "문제 추출").click();
   await expect(card(page, 1).locator("[data-studio-cart-chip]")).toHaveText(
     "뺌",
   );
@@ -499,7 +499,7 @@ test("③ 에서 담으면 카드마다 «담음» · 목록으로 보고 뺀다
   await expect(
     page.getByRole("status", { name: `담은 문제 ${n + 1}문항` }),
   ).toBeAttached();
-  await menu(page, "자료 제작").click();
+  await menu(page, "문제 추출").click();
   await expect(cartToggle(page)).toHaveText(
     new RegExp(`담은 문항\\s*${n + 1}`),
   );
@@ -847,7 +847,7 @@ test("빼고 → 새로 고침 → 담기 단추가 뺀 것을 안 넣는다 —
   await expect(topBadge(page)).toHaveAccessibleName(`담은 문제 ${n - 1}`);
 
   // 다시 담기는 새로 고친 뒤에도 뺀 자리(둘째)로.
-  await menu(page, "자료 제작").click();
+  await menu(page, "문제 추출").click();
   await cartToggle(page).click();
   await panel(page).getByRole("button", { name: "문제 02 다시 담기" }).click();
   await expect(card(page, 2).locator("[data-studio-cart-chip]")).toHaveText(

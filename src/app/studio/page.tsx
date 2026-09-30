@@ -4,7 +4,7 @@ import WorkspacePage from "@/components/unified/WorkspacePage";
 import { getAccountAccess } from "@/lib/accountAccess";
 
 export const metadata = {
-  title: "자료 제작 · 오늘수학",
+  title: "문제 추출 · 오늘수학",
   robots: { index: false, follow: false },
 };
 export default async function StudioPage() {

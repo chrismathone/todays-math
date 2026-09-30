@@ -171,7 +171,7 @@ export function buildEnglishUserPrompt(
 }
 
 /**
- * 고쳐 쓰기 요청(v2, D-150) — 같은 조건 + 앞서 낸 답 + 기계가 잰 문제 목록. «지적된 문항만» 고치게 한다.
+ * 고쳐 쓰기 요청(v2, D-151) — 같은 조건 + 앞서 낸 답 + 기계가 잰 문제 목록. «지적된 문항만» 고치게 한다.
  * 문제 목록은 `src/lib/english/feedback.ts` 가 만든다(이 파일은 영어 모듈을 import 하지 않는다 — 울타리).
  */
 export function buildEnglishRefinePrompt(

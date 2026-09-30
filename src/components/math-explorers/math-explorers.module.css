@@ -605,9 +605,32 @@ button.chest {
   background: #f8df9d;
   box-shadow: 0 4px 0 #d3b675;
 }
-.chestArt svg {
+.chestArt svg,
+.chestArt .propImage {
   width: 53px;
   height: 53px;
+}
+/* 테마 소품 그림(D-149) — 상자 · 기지 · 별. 그림은 정사각 투명 PNG→WebP, 여백 포함. */
+.propImage {
+  display: block;
+  object-fit: contain;
+  user-select: none;
+}
+.baseImage {
+  display: block;
+  width: 168px;
+  height: 168px;
+  margin: 0 auto 6px;
+  object-fit: contain;
+  user-select: none;
+}
+.starImage {
+  display: inline-block;
+  width: 1.15em;
+  height: 1.15em;
+  vertical-align: -0.2em;
+  object-fit: contain;
+  user-select: none;
 }
 .chest strong {
   font-size: 13px;
@@ -682,7 +705,8 @@ button.chest {
   display: grid;
   place-items: center;
 }
-.chestBurst > svg {
+.chestBurst > svg,
+.chestBurst > .propImage {
   width: 116px;
   height: 116px;
   animation: chestOpen 0.55s both;
@@ -1663,6 +1687,7 @@ button.confirm {
 @media (prefers-reduced-motion: reduce) {
   .chestArt,
   .chestBurst > svg,
+  .chestBurst > .propImage,
   .tileBurstStar,
   .chestBurst > span,
   .chestEffect {

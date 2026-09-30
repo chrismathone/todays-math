@@ -75,7 +75,7 @@ describe("페이지 로딩 스켈레톤", () => {
       "href",
       "/problems",
     );
-    expect(screen.getByRole("link", { name: "자료 제작" })).toHaveAttribute(
+    expect(screen.getByRole("link", { name: "문제 추출" })).toHaveAttribute(
       "href",
       "/studio",
     );

@@ -282,7 +282,7 @@ describe("POST /api/english/generate — AI 결과와 오류 순서", () => {
   });
 
   it("검증기 실패(고쳐 쓰기 한 번 뒤에도) → 502 + details 에 문항별 사유", async () => {
-    // D-150: 검증기에 걸리면 사유를 되먹여 한 번 고쳐 쓴다 — 고쳐 쓴 것도 같으면 거절
+    // D-151: 검증기에 걸리면 사유를 되먹여 한 번 고쳐 쓴다 — 고쳐 쓴 것도 같으면 거절
     mockCreate.mockResolvedValue(
       aiTextResponse(
         JSON.stringify({

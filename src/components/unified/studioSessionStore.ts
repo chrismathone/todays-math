@@ -35,7 +35,7 @@ interface Envelope {
 
 const DB_NAME = "today-math-studio-v1";
 const CONFLICT =
-  "다른 창에서 자료 제작 작업이 변경되었습니다. 현재 작업을 확인한 뒤 새로고침해 주세요.";
+  "다른 창에서 문제 추출 작업이 변경되었습니다. 현재 작업을 확인한 뒤 새로고침해 주세요.";
 
 /** 원본 Blob은 한 번만 저장하고 검수 상태는 별도로 갱신한다. */
 export class LocalStudioSessionStore {
@@ -123,7 +123,7 @@ export class LocalStudioSessionStore {
         reject(
           invalid
             ? new Error(
-                "저장된 자료 제작 원본을 읽지 못했습니다. 기존 작업은 덮어쓰지 않았습니다.",
+                "저장된 문제 추출 원본을 읽지 못했습니다. 기존 작업은 덮어쓰지 않았습니다.",
               )
             : tx.error,
         );

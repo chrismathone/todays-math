@@ -210,7 +210,7 @@ ChatGPT 앱의 `makeCloze` 이식: 7단어 이상 문장에서 6글자 이상 �
 ### 11.1 shell 병합
 shell `3a2b9603d`(검토 후속 포함) → main `4f1756bc9`, 보고서 `94ac14dc1` → `347f861f7`. 충돌은 `src/components/english/EnglishMakerView.tsx` 하나(shell 자리표 vs ai 화면) — **ai 판**을 택했다(공통 지시 §3). 병합 뒤 main 에서 전체 시험·tsc·lint 를 한 번 더 돌렸다(결과는 10-handoff §0-Z).
 
-## 12. 문항 품질 고도화 · 모델 벤치 (D-150, 2026-09-30)
+## 12. 문항 품질 고도화 · 모델 벤치 (D-151 — 처음엔 D-150, 개념 백지와 겹쳐 옮김, 2026-09-30)
 
 원장님: «영어지문 생성기 문제 퀄리티 고도화 방안 — 웹 검색으로 초고도화, codex 및 grok 총동원» → «종합해서 구현까지» → «내부 요금제로 grok · codex · claude(+ antigravity gemini, deepseek 는 다른 데서 찾은 API 키) 모델별로 생성 · 세 AI 가 점수 · 모든 유형 · 지문 등 다양한 방면» → «하네스를 깊게 찔러 넣어도 결과가 같은지 · 강력하게 쪼으면 퀄리티가 올라가는지».
 

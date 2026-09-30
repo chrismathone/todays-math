@@ -753,7 +753,7 @@ describe("per-account workspace menu access", () => {
     );
     const title = await screen.findByRole("textbox", { name: "제목" });
     fireEvent.change(title, { target: { value: "권한 변경 중인 시험지" } });
-    fireEvent.click(nav().getByRole("button", { name: "자료 제작" }));
+    fireEvent.click(nav().getByRole("button", { name: "문제 추출" }));
     expect(
       await screen.findByRole("heading", { name: "자료 패널" }),
     ).toBeVisible();

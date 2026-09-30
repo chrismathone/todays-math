@@ -8,7 +8,7 @@
  * 재시도: JSON 을 못 읽으면(`AiParseError`) `withOneRetryOnParseFailure` 가 한 번 더 부른다. 길이 한도
  * (`finish_reason === "length"`)는 client 가 `AiCapacityError`, 키 없음은 `AiConfigError` — 둘 다 재시도 대상이 아니다(`retry.ts`).
  *
- * 검증기 실패 → **사유를 되먹여 한 번 고쳐 쓴다**(D-150, 2026-09-30). 똑같이 다시 부르는 재시도가 아니라, 검증기 사유와
+ * 검증기 실패 → **사유를 되먹여 한 번 고쳐 쓴다**(D-151, 2026-09-30). 똑같이 다시 부르는 재시도가 아니라, 검증기 사유와
  * 결정적 품질 검사 실패(`feedback.ts`)를 문항 번호와 함께 주고 «지적된 문항만» 고치게 한다. 모델 벤치에서 DeepSeek
  * 두 모델의 채택률이 67% → 100% 가 됐다(25 §12). 🔴 라우트 `maxDuration = 300` 을 넘지 않게 **첫 호출이
  * `ENGLISH_REFINE_BUDGET_MS` 안에 끝났을 때만** 고친다 — v4-pro 는 한 번에 130~310초라 대개 건너뛰고,

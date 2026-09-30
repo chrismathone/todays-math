@@ -73,7 +73,7 @@ test("뒤집힌 페이지는 한 번만 자동 회전하며 재인식 완료 상
   expect(pageImages[0]).not.toBe(pageImages[1]);
   await page.getByRole("button", { name: /^OCR · 디지털화 1/ }).click();
   await expect(
-    page.getByRole("status", { name: "자료 제작 저장 상태" }),
+    page.getByRole("status", { name: "문제 추출 저장 상태" }),
   ).toHaveText("저장됨");
   await page.reload();
   await expect(
@@ -112,7 +112,7 @@ test("수동 90도 회전한 원본 크기와 방향을 새로고침 뒤 유지�
     )
     .toEqual([1600, 1200]);
   await expect(
-    page.getByRole("status", { name: "자료 제작 저장 상태" }),
+    page.getByRole("status", { name: "문제 추출 저장 상태" }),
   ).toHaveText("저장됨");
   await page.reload();
   await expect
@@ -151,7 +151,7 @@ test("보관한 문제 크롭을 독립 원본으로 다시 열어 편집하고 
   await page.mouse.up();
   await expect(area.locator('[data-crop-kind="problem"]')).toHaveCount(1);
   await expect(
-    page.getByRole("status", { name: "자료 제작 저장 상태" }),
+    page.getByRole("status", { name: "문제 추출 저장 상태" }),
   ).toHaveText("저장됨");
   await page.evaluate(async () => {
     const crops = await new Promise<unknown[]>((resolve, reject) => {
@@ -193,7 +193,7 @@ test("보관한 문제 크롭을 독립 원본으로 다시 열어 편집하고 
     .fill("보관함에서 재편집한 문제 $1+1$");
   await card.getByRole("button", { name: "저장", exact: true }).click();
   await expect(
-    page.getByRole("status", { name: "자료 제작 저장 상태" }),
+    page.getByRole("status", { name: "문제 추출 저장 상태" }),
   ).toHaveText("저장됨");
   await page.reload();
   await expect(card).toContainText("보관함에서 재편집한 문제");
@@ -276,7 +276,7 @@ test("원본·OCR 수정·검수 위치를 새로고침 뒤 복원하고 새로 
     .fill("검수한 원문 $2+3$의 값은?");
   await card.getByRole("button", { name: "저장", exact: true }).click();
   await expect(
-    page.getByRole("status", { name: "자료 제작 저장 상태" }),
+    page.getByRole("status", { name: "문제 추출 저장 상태" }),
   ).toHaveText("저장됨");
   await page.reload();
   await expect(card).toContainText("검수한 원문");
@@ -290,7 +290,7 @@ test("원본·OCR 수정·검수 위치를 새로고침 뒤 복원하고 새로 
     .getByRole("button", { name: "새로 시작", exact: true })
     .click();
   await expect(
-    page.getByRole("status", { name: "자료 제작 저장 상태" }),
+    page.getByRole("status", { name: "문제 추출 저장 상태" }),
   ).toHaveText("저장됨");
   await page.reload();
   await expect(
@@ -341,7 +341,7 @@ test("파일 원본 Blob을 복원하며 다른 창의 최신 학년을 덮어�
   });
   await expect(image).toBeVisible();
   await expect(
-    page.getByRole("status", { name: "자료 제작 저장 상태" }),
+    page.getByRole("status", { name: "문제 추출 저장 상태" }),
   ).toHaveText("저장됨");
   const second = await context.newPage();
   await second.goto("/");
@@ -352,20 +352,20 @@ test("파일 원본 Blob을 복원하며 다른 창의 최신 학년을 덮어�
     }),
   ).toBeVisible();
   await expect(
-    second.getByRole("status", { name: "자료 제작 저장 상태" }),
+    second.getByRole("status", { name: "문제 추출 저장 상태" }),
   ).toHaveText("저장됨");
   await page.getByRole("combobox", { name: "시험지 학년" }).selectOption("중2");
   await expect(
-    page.getByRole("status", { name: "자료 제작 저장 상태" }),
+    page.getByRole("status", { name: "문제 추출 저장 상태" }),
   ).toHaveText("저장됨");
   await second
     .getByRole("combobox", { name: "시험지 학년" })
     .selectOption("초4");
   await expect(
-    second.getByRole("status", { name: "자료 제작 저장 상태" }),
+    second.getByRole("status", { name: "문제 추출 저장 상태" }),
   ).toHaveText("저장 실패");
   await expect(
-    second.getByText(/다른 창에서 자료 제작 작업이 변경/),
+    second.getByText(/다른 창에서 문제 추출 작업이 변경/),
   ).toBeVisible();
   second.on("dialog", (dialog) => dialog.accept());
   await second.reload();

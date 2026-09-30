@@ -201,7 +201,7 @@ const menu = (name: string) =>
     { name },
   );
 async function toStudio() {
-  fireEvent.click(menu("자료 제작"));
+  fireEvent.click(menu("문제 추출"));
   return screen.findByRole("region", { name: "작업실 대역" });
 }
 async function toOrder() {

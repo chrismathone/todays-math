@@ -164,7 +164,7 @@ for (const width of [320, 390, 1440]) {
     await expect(
       page.getByRole("heading", { name: "김하늘", exact: true }),
     ).toBeFocused();
-    await page.getByLabel("자료 제작", { exact: true }).check();
+    await page.getByLabel("문제 추출", { exact: true }).check();
     expect(
       api.requests.filter((request) => request.method === "PATCH"),
     ).toHaveLength(0);
@@ -183,7 +183,7 @@ for (const width of [320, 390, 1440]) {
     await expect(
       page.getByLabel("문제은행", { exact: true }),
     ).not.toBeChecked();
-    await page.getByLabel("자료 제작", { exact: true }).check();
+    await page.getByLabel("문제 추출", { exact: true }).check();
     await page.getByRole("button", { name: "계정 승인 · 메뉴 저장" }).click();
     await expect(
       page.getByRole("status").filter({ hasText: "계정을 승인하고" }),

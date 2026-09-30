@@ -25,6 +25,15 @@ export interface RiderImages {
   wheels?: ReadonlyArray<{ x: number; y: number; d: number }>;
 }
 
+/** 테마 소품 — 보물상자(닫힘 · 열림) · 기지 네 단계 · 별. 없으면 지금 모양(SVG 상자 · ⌂ · ✦). */
+export interface JourneyPropArt {
+  chest: string;
+  chestOpen: string;
+  /** 기지 1~4단계 — 4단계 뒤로는 마지막 그림. */
+  bases: readonly [string, string, string, string];
+  star: string;
+}
+
 export interface JourneyTheme {
   id: JourneyThemeId;
   name: string;
@@ -36,7 +45,22 @@ export interface JourneyTheme {
   riderImages: RiderImages | null;
   /** 탈것이 칸을 옮길 때의 몸짓 — CSS 가 읽는다. */
   motion: "hop" | "sway" | "bob" | "drift" | "roll";
+  /** 소품 그림(codex 4~6차). 지금 판(classic)은 없다 — SVG 상자 · ⌂ · ✦. */
+  propArt?: JourneyPropArt;
 }
+
+/** 소품 한 벌 — 별은 모든 테마가 하늘섬 별 하나를 쓴다(같은 재화로 보이게, codex · grok 합의 2026-09-30). */
+const propSet = (id: string): JourneyPropArt => ({
+  chest: `/images/journey/${id}-chest.webp`,
+  chestOpen: `/images/journey/${id}-chest-open.webp`,
+  bases: [
+    `/images/journey/${id}-base1.webp`,
+    `/images/journey/${id}-base2.webp`,
+    `/images/journey/${id}-base3.webp`,
+    `/images/journey/${id}-base4.webp`,
+  ],
+  star: "/images/journey/sky-star.webp",
+});
 
 const riderSet = (id: string): RiderImages => ({
   left: `/images/journey/${id}-left.webp`,
@@ -60,6 +84,7 @@ export const JOURNEY_THEMES: Readonly<Record<JourneyThemeId, JourneyTheme>> = {
     boardImage: "/images/journey/sky-board.webp",
     riderImages: riderSet("sky"),
     motion: "sway",
+    propArt: propSet("sky"),
   },
   sea: {
     id: "sea",
@@ -68,6 +93,7 @@ export const JOURNEY_THEMES: Readonly<Record<JourneyThemeId, JourneyTheme>> = {
     boardImage: "/images/journey/sea-board.webp",
     riderImages: riderSet("sea"),
     motion: "bob",
+    propArt: propSet("sea"),
   },
   space: {
     id: "space",
@@ -76,6 +102,7 @@ export const JOURNEY_THEMES: Readonly<Record<JourneyThemeId, JourneyTheme>> = {
     boardImage: "/images/journey/space-board.webp",
     riderImages: riderSet("space"),
     motion: "drift",
+    propArt: propSet("space"),
   },
   forest: {
     id: "forest",
@@ -93,6 +120,7 @@ export const JOURNEY_THEMES: Readonly<Record<JourneyThemeId, JourneyTheme>> = {
       ],
     },
     motion: "roll",
+    propArt: propSet("forest"),
   },
   shapes: {
     id: "shapes",
@@ -110,6 +138,7 @@ export const JOURNEY_THEMES: Readonly<Record<JourneyThemeId, JourneyTheme>> = {
       ],
     },
     motion: "roll",
+    propArt: propSet("shapes"),
   },
 };
 
