@@ -32,7 +32,7 @@ import {
 
 export function srsFailureResponse(error: unknown): Response {
   if (error instanceof SrsConflict)
-    return noStore(jsonError("CONFLICT", error.message, 409));
+    return noStore(jsonError(error.code, error.message, 409));
   if (error instanceof SrsUnavailable || isMissingSrsStorage(error))
     return noStore(
       jsonError(

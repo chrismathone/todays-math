@@ -14,6 +14,7 @@ const f = vi.hoisted(() => ({
   withdrawn: false,
   disabled: false,
   missing: false,
+  audit: vi.fn<(args: unknown) => Promise<unknown>>(async () => ({})),
   render: vi.fn(async () => ({
     ok: true,
     svg: '<svg xmlns="http://www.w3.org/2000/svg" />',
@@ -41,6 +42,7 @@ vi.mock("@/lib/db", () => {
   });
   return {
     db: {
+      accountAuditLog: { create: f.audit },
       unit: { findFirst: vi.fn(async () => null) },
       problem: { findMany: vi.fn(async () => []) },
       student: {
@@ -184,6 +186,7 @@ beforeEach(() => {
   f.disabled = false;
   f.missing = false;
   f.render.mockClear();
+  f.audit.mockReset();
   vi.stubEnv("AUTH_URL", base);
   studentSession();
 });
@@ -286,16 +289,14 @@ describe("student course API", () => {
         )
       ).status,
     ).toBe(409);
-    expect(
-      (
-        await PLAN(
-          request(`${coursePath}/plan`, "POST", {
-            ...plan,
-            expectedRevision: state.revision,
-          }),
-        )
-      ).status,
-    ).toBe(409);
+    const stale = await PLAN(
+      request(`${coursePath}/plan`, "POST", {
+        ...plan,
+        expectedRevision: state.revision,
+      }),
+    );
+    expect(stale.status).toBe(409);
+    expect((await stale.json()).error.code).toBe("REVISION_MISMATCH");
   });
   it("renders only the authenticated student's stored opaque problem, without accepting seeds", async () => {
     const state = await started();
@@ -334,6 +335,183 @@ describe("student course API", () => {
 });
 
 describe("teacher course roster, plans and detail", () => {
+  it("records only changed plan fields after each successful teacher save", async () => {
+    teacher();
+    const first = await TEACHER_PLAN(
+      request(teacherPath(), "POST", plan),
+      context(),
+    );
+    expect(first.status).toBe(200);
+    expect(f.audit).toHaveBeenCalledExactlyOnceWith({
+      data: {
+        actorId: f.ownerId,
+        action: "math_srs.course_plan_changed",
+        outcome: "success",
+        details: {
+          studentId: f.studentId,
+          revision: 1,
+          beforeStartSectionId: null,
+          afterStartSectionId: plan.startSectionId,
+          beforeDailyQuestionCount: null,
+          afterDailyQuestionCount: 10,
+          beforeEnabled: null,
+          afterEnabled: true,
+        },
+      },
+    });
+    f.audit.mockClear();
+    const changed = await TEACHER_PLAN(
+      request(teacherPath(), "POST", {
+        ...plan,
+        expectedRevision: 1,
+        dailyQuestionCount: 15,
+        enabled: false,
+      }),
+      context(),
+    );
+    expect(changed.status).toBe(200);
+    expect(f.audit).toHaveBeenCalledExactlyOnceWith({
+      data: {
+        actorId: f.ownerId,
+        action: "math_srs.course_plan_changed",
+        outcome: "success",
+        details: {
+          studentId: f.studentId,
+          revision: 2,
+          beforeDailyQuestionCount: 10,
+          afterDailyQuestionCount: 15,
+          beforeEnabled: true,
+          afterEnabled: false,
+        },
+      },
+    });
+    f.audit.mockClear();
+    const moved = await TEACHER_PLAN(
+      request(teacherPath(), "POST", {
+        ...plan,
+        startSectionId: "3-1-1-2",
+        expectedRevision: 2,
+        dailyQuestionCount: 15,
+        enabled: false,
+      }),
+      context(),
+    );
+    expect(moved.status).toBe(200);
+    expect(f.audit).toHaveBeenCalledExactlyOnceWith({
+      data: {
+        actorId: f.ownerId,
+        action: "math_srs.course_plan_changed",
+        outcome: "success",
+        details: {
+          studentId: f.studentId,
+          revision: 3,
+          beforeStartSectionId: plan.startSectionId,
+          afterStartSectionId: "3-1-1-2",
+        },
+      },
+    });
+  });
+
+  it("does not audit unchanged settings or stale and foreign writes", async () => {
+    teacher();
+    await TEACHER_PLAN(request(teacherPath(), "POST", plan), context());
+    f.audit.mockClear();
+    const before = structuredClone(f.rows.get(f.studentId));
+    const unchanged = await TEACHER_PLAN(
+      request(teacherPath(), "POST", {
+        ...plan,
+        expectedRevision: 1,
+      }),
+      context(),
+    );
+    expect(unchanged.status).toBe(200);
+    expect(f.rows.get(f.studentId)).toEqual(before);
+    expect(f.audit).not.toHaveBeenCalled();
+    const stale = await TEACHER_PLAN(
+      request(teacherPath(), "POST", plan),
+      context(),
+    );
+    expect(stale.status).toBe(409);
+    expect((await stale.json()).error.code).toBe("REVISION_MISMATCH");
+    teacher({ id: f.otherId });
+    expect(
+      (
+        await TEACHER_PLAN(
+          request(teacherPath(), "POST", {
+            ...plan,
+            expectedRevision: 1,
+            enabled: false,
+          }),
+          context(),
+        )
+      ).status,
+    ).toBe(403);
+    expect(f.rows.get(f.studentId)).toEqual(before);
+    expect(f.audit).not.toHaveBeenCalled();
+  });
+
+  it("keeps mission guards distinct from revisions and does not audit refused changes", async () => {
+    const state = await started();
+    teacher();
+    const response = await TEACHER_PLAN(
+      request(teacherPath(), "POST", {
+        ...plan,
+        expectedRevision: state.revision,
+        startSectionId: "3-1-1-2",
+      }),
+      context(),
+    );
+    expect(response.status).toBe(409);
+    expect((await response.json()).error).toEqual({
+      code: "CONFLICT",
+      message: "진행 중인 학습을 마친 뒤 시작 소단원을 바꿔 주세요.",
+    });
+    expect(f.audit).not.toHaveBeenCalled();
+  });
+
+  it("audits only the winning concurrent plan write", async () => {
+    teacher();
+    const responses = await Promise.all([
+      TEACHER_PLAN(request(teacherPath(), "POST", plan), context()),
+      TEACHER_PLAN(
+        request(teacherPath(), "POST", { ...plan, dailyQuestionCount: 15 }),
+        context(),
+      ),
+    ]);
+    expect(responses.map((response) => response.status).sort()).toEqual([
+      200, 409,
+    ]);
+    expect(f.audit).toHaveBeenCalledTimes(1);
+    const saved = parseSrsState(f.rows.get(f.studentId)!.payload).course!.plan!;
+    expect(f.audit.mock.calls[0]).toEqual([
+      expect.objectContaining({
+        data: expect.objectContaining({
+          details: expect.objectContaining({
+            afterDailyQuestionCount: saved.dailyQuestionCount,
+          }),
+        }),
+      }),
+    ]);
+  });
+
+  it("preserves a successful plan save when the audit store fails", async () => {
+    teacher();
+    f.audit.mockRejectedValueOnce(new Error("audit unavailable"));
+    const error = vi.spyOn(console, "error").mockImplementation(() => {});
+    try {
+      const response = await TEACHER_PLAN(
+        request(teacherPath(), "POST", plan),
+        context(),
+      );
+      expect(response.status).toBe(200);
+      expect(f.rows.get(f.studentId)?.revision).toBe(1);
+      expect(f.audit).toHaveBeenCalledTimes(1);
+      expect(error).toHaveBeenCalledWith("Unable to record account activity.");
+    } finally {
+      error.mockRestore();
+    }
+  });
+
   it("enforces approval, SRS menu, and role gates", async () => {
     f.session = null;
     expect((await ROSTER(request("/api/math-srs/course"))).status).toBe(401);

@@ -82,6 +82,25 @@ function memoryTable() {
 }
 
 describe("server practice transitions", () => {
+  it("marks stale expected revisions and exhausted atomic retries as revision mismatches", async () => {
+    const table = memoryTable();
+    await changeSrsState(studentId, (s) => start(s), table);
+    const change = vi.fn((s: StoredSrsState) => s);
+    await expect(
+      changeSrsState(studentId, change, table, 0),
+    ).rejects.toMatchObject({
+      code: "REVISION_MISMATCH",
+    });
+    expect(change).not.toHaveBeenCalled();
+    table.updateMany = vi.fn(async () => ({ count: 0 }));
+    await expect(
+      changeSrsState(studentId, (s) => ({ ...s }), table),
+    ).rejects.toMatchObject({
+      code: "REVISION_MISMATCH",
+    });
+    expect(table.updateMany).toHaveBeenCalledTimes(5);
+  });
+
   it("uses the existing Korean date and resumes a persisted mission before creating another", () => {
     const state = start();
     expect(state.missions[0].date).toBe("2026-09-23");

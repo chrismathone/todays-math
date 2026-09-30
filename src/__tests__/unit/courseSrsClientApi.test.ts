@@ -4,6 +4,7 @@ import {
   getCourseState,
   getCourseStudentDetail,
   saveOwnCoursePlan,
+  saveCourseStudentPlan,
 } from "@/components/math-srs/courseApi";
 afterEach(() => {
   vi.unstubAllGlobals();
@@ -11,6 +12,38 @@ afterEach(() => {
 });
 
 describe("account-backed SRS client boundary", () => {
+  it.each(["REVISION_MISMATCH", "CONFLICT"])(
+    "preserves the %s error code for teacher plan saves",
+    async (code) => {
+      vi.stubGlobal(
+        "fetch",
+        vi.fn().mockResolvedValue(
+          Response.json(
+            {
+              error: {
+                code,
+                message: "진행 중인 학습을 마친 뒤 시작 소단원을 바꿔 주세요.",
+              },
+            },
+            { status: 409 },
+          ),
+        ),
+      );
+      expect(
+        await saveCourseStudentPlan("student", {
+          expectedRevision: 3,
+          startSectionId: "3-1-1-1",
+          dailyQuestionCount: 10,
+          enabled: true,
+        }),
+      ).toEqual({
+        ok: false,
+        status: 409,
+        code,
+        message: "진행 중인 학습을 마친 뒤 시작 소단원을 바꿔 주세요.",
+      });
+    },
+  );
   it("validates successful responses instead of accepting corrupt reports", async () => {
     const fetcher = vi
       .fn()
