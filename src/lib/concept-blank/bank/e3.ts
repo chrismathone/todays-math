@@ -3160,7 +3160,7 @@ export const bank: ConceptBlankBank = {
           answer: "$500\\,\\mathrm{mL}$",
         },
         {
-          label: "$1\\,\\mathrm{L}$까지 필요한 양",
+          label: "$1\\,\\mathrm{L}$까지 더 필요한 양",
           answer: "$500\\,\\mathrm{mL}$를 더 담아야 한다.",
         },
       ],
