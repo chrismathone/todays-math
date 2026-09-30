@@ -8,6 +8,11 @@
  *
  * 배점은 **없다**(원장님 ⑻ · D-28 결) — 어디에도 점수 글자를 찍지 않는다.
  * 학생용은 서술형·원문 복원에 답란(50px 밑줄), 교사용은 그 자리에 정답·해설·근거 상자.
+ *
+ * 묶음(D-151 · 25 §12.11 3자 합의): 학생용은 `bundle` 을 받으면 **그 묶음의 문항**(독해 묶음이면 원 지문도)만 싣고,
+ * 머리의 시험 줄 아래에 «문제 묶음 1 · 3~4번»을 찍는다 — 학생 종이에 운영 문장은 없다. 문항 번호는 세트 번호 그대로.
+ * 🔴 교사용은 학생용 묶음과 관계없이 **모든 문항**을 싣고, 첫 쪽 머리에 안내 줄(`teacherNotes` — 배부 순서 · 답이 보이는 문항)을 둔다.
+ * 어법의 `<u>…</u>` 표기는 밑줄로 그린다(`underline.ts` — 글을 HTML 로 넣지 않는다 · 짝이 깨졌으면 글자 그대로).
  */
 import { A4Page } from "@/components/print/A4Page";
 import {
@@ -16,6 +21,8 @@ import {
   type EnglishQuestion,
   type EnglishSet,
 } from "@/contracts/english.contract";
+import { englishBundleLabel } from "@/lib/english/bundle";
+import { splitEnglishUnderline } from "@/lib/english/underline";
 
 import styles from "./EnglishPrint.module.css";
 import {
@@ -23,6 +30,7 @@ import {
   ENGLISH_PARAGRAPH_GAP,
   englishPaperBlocks,
   type EnglishPaperBlock,
+  type EnglishPaperSelection,
 } from "./englishPaperLayout";
 
 export type EnglishPaperView = "student" | "teacher";
@@ -35,11 +43,34 @@ export const ENGLISH_VIEW_LABEL: Record<EnglishPaperView, string> = {
 /** 보기 번호 — 정답 "1"~"5" 를 같은 글자로 찍는다 */
 const CHOICE_MARKS = ["①", "②", "③", "④", "⑤"] as const;
 
+/** 학생용 묶음 — `no` 가 `null` 이면 묶음이 하나뿐인 세트다(가른 것이 없어 머리에 묶음 줄을 찍지 않는다) */
+export interface EnglishPaperBundle extends EnglishPaperSelection {
+  no: number | null;
+}
+
+/** 교사용 머리의 안내 줄 — «배부 순서 — 묶음 1(3~4번) → …» */
+export interface EnglishTeacherNote {
+  label: string;
+  text: string;
+}
+
+/** 이 지면에 실을 것 — 교사용은 늘 세트 전부(`undefined`) */
+export function englishPaperSelection(
+  view: EnglishPaperView,
+  bundle: EnglishPaperBundle | undefined,
+): EnglishPaperSelection | undefined {
+  return view === "student" ? bundle : undefined;
+}
+
 export interface EnglishPaperProps {
   set: EnglishSet;
   exam: Pick<EnglishExam, "school" | "grade" | "title">;
   view: EnglishPaperView;
   academyName: string;
+  /** 학생용 묶음 — 안 주면 세트 전부. 교사용은 받아도 쓰지 않는다 */
+  bundle?: EnglishPaperBundle;
+  /** 교사용 첫 쪽 머리의 안내 줄 — 학생용에는 찍지 않는다 */
+  teacherNotes?: readonly EnglishTeacherNote[];
   /**
    * 쪽 나눔 — 쪽마다 블록 번호(`englishPaperBlocks` 순). 없으면 **한 쪽에 전부**.
    * 빈 배열 `[]` 인 쪽은 머리·꼬리만 그린다(측정 틀이 본문 높이를 잴 때 쓴다).
@@ -124,6 +155,29 @@ function PassageBox({
   );
 }
 
+/**
+ * 발문 — 어법 문항의 `<u>…</u>` 표기만 밑줄로 그린다(번호 ①~⑤ 는 선 밖 · 줄이 바뀐 구간도 한 밑줄).
+ * 짝이 깨졌으면 어디까지가 밑줄인지 알 수 없으니 글자 그대로 둔다. 다른 유형의 표기도 글자 그대로(미리보기가 알린다).
+ */
+function PromptText({ question }: { question: EnglishQuestion }) {
+  const parts =
+    question.type === "어법" ? splitEnglishUnderline(question.prompt) : null;
+  if (!parts) return <>{question.prompt}</>;
+  return (
+    <>
+      {parts.map((part, order) =>
+        part.underline ? (
+          <u className={styles.underline} key={order}>
+            {part.text}
+          </u>
+        ) : (
+          <span key={order}>{part.text}</span>
+        ),
+      )}
+    </>
+  );
+}
+
 function QuestionBlock({
   index,
   question,
@@ -143,7 +197,9 @@ function QuestionBlock({
     >
       <div className={styles.prompt}>
         <span className={styles.number}>{number}.</span>
-        <span className={styles.promptText}>{question.prompt}</span>
+        <span className={styles.promptText}>
+          <PromptText question={question} />
+        </span>
       </div>
       {question.options.length > 0 ? (
         <ol
@@ -201,9 +257,18 @@ export function EnglishPaper({
   exam,
   view,
   academyName,
+  bundle,
+  teacherNotes,
   pages,
 }: EnglishPaperProps) {
-  const blocks = englishPaperBlocks(set);
+  const selection = englishPaperSelection(view, bundle);
+  const blocks = englishPaperBlocks(set, selection);
+  // 학생 종이의 묶음 이름 — 화면의 묶음 번호와 같다. 묶음이 하나뿐이면 없다
+  const bundleNo = view === "student" ? (bundle?.no ?? null) : null;
+  const bundleLabel =
+    bundle && bundleNo !== null
+      ? englishBundleLabel({ no: bundleNo, questions: bundle.questions })
+      : null;
   const layout: readonly (readonly number[])[] = pages ?? [
     blocks.map((_, index) => index),
   ];
@@ -250,15 +315,29 @@ export function EnglishPaper({
                 <div className={styles.examLine}>
                   {exam.school} {exam.grade} · {exam.title}
                 </div>
+                {bundleLabel ? (
+                  <div className={styles.bundleLine}>{bundleLabel}</div>
+                ) : null}
                 <div className={styles.nameLine}>
                   이름 ________________ · 날짜 ____ . ____ . ____
                 </div>
+                {view === "teacher" && teacherNotes?.length ? (
+                  <dl className={styles.teacherNotes}>
+                    {teacherNotes.map((note) => (
+                      <div className={styles.teacherNote} key={note.label}>
+                        <dt>{note.label}</dt>
+                        <dd>{note.text}</dd>
+                      </div>
+                    ))}
+                  </dl>
+                ) : null}
               </header>
             ) : (
               <header className={styles.slimHead}>
                 <span>오늘의 영어 · {set.title}</span>
                 <span>
-                  {viewLabel} · p. {page}
+                  {bundleNo !== null ? `문제 묶음 ${bundleNo}` : viewLabel} · p.{" "}
+                  {page}
                 </span>
               </header>
             )}

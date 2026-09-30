@@ -2704,6 +2704,102 @@ export const ITEMS: PrintCheckItem[] = [
       "위 다섯 지면을 뽑을 때 «학생지 + 채점표»로 같이 뽑으면 채점표가 뒤에 붙어 나온다(`?view=both`). 채점표만은 주소 끝을 `&view=key` 로.",
     changedOn: "2026-09-30",
   },
+  {
+    id: "english-bundle-sheets",
+    title:
+      "오늘의 영어 — 학생용 묶음 분리 (묶음마다 따로 뽑기 · 머리의 묶음 줄)",
+    changed:
+      "학생용이 한 장짜리에서 **순서가 있는 묶음**으로 바뀌었다(D-151 · 3자 합의). 변형 문항(어법 · 빈칸 · 삽입)은 원 지문 " +
+      "상자 없이 앞 묶음, 원 지문 + 독해형(주제 · 내용 일치 · 서술형)은 맨 뒤 묶음. 다른 문항의 답을 지문으로 보여 주는 " +
+      "변형 문항은 그 뒤 묶음으로 갈린다. 인쇄 화면에서 묶음을 **하나씩 골라** 뽑는다(한 묶음 = 한 인쇄 작업). " +
+      "머리의 시험 줄 아래에 고딕 13px 굵은 한 줄 «문제 묶음 1 · 3~4번»이 생겨 **첫 쪽 머리가 약 26px 늘었다**. " +
+      "이어지는 쪽 머리는 «문제 묶음 1 · p. 2». 문항 번호는 세트 번호 그대로(묶음 1 이 3번부터 시작할 수 있다).",
+    look:
+      "(제안) 묶음을 하나씩 골라 전부 뽑아 ① **변형 묶음의 종이에 원 지문 상자가 없는가** — 있으면 불합격(답이 보인다). " +
+      "② 묶음마다 머리에 «문제 묶음 N · 수록 문항»이 읽히는가(걷은 종이를 묶음별로 가를 수 있는가). 화면의 단추와 " +
+      "번호 · 문항이 같은가. ③ 고른 묶음**만** 나왔는가 — 다른 묶음의 문항이 같은 인쇄에 섞여 나오면 불합격. 양면으로 " +
+      "뽑아도 두 묶음이 한 장의 앞뒤에 붙지 않는가. ④ 화면 단추의 쪽 수와 나온 장수가 같은가. 늘어난 머리 때문에 " +
+      "마지막 문항이 **쪽 아래에서 잘리지 않는가**(잘리면 불합격 — 넘치면 다음 쪽으로 가야 한다). ⑤ 학생 종이에 " +
+      "«걷은 뒤» 같은 배부 안내 문장이 **없는가**. ⑥ 묶음이 하나뿐인 세트(독해형만)는 머리에 묶음 줄이 없는가. " +
+      "🔴 실사용 확인(종이가 아니라 수업에서): 화면은 순서를 막지 않는다 — 배부 순서 카드가 화면 위로 올라간 뒤에도 " +
+      "묶음 1 → 걷기 → 묶음 2 순서를 따르게 되는가.",
+    lookFromSource: false,
+    evidence: [
+      "docs/planning/25-english-studio.md §12.11 (3자 합의 — Wire · Hi-fi)",
+      "docs/design/mockups/hifi-d151-english-student-bundles.html",
+      "src/lib/english/bundle.ts (묶음 짓기 · 문장)",
+      "src/components/english/print/EnglishPrintClient.tsx (묶음 단추 · 배부 안내)",
+      "src/components/english/print/EnglishPaper.tsx (bundle · .bundleLine)",
+      "src/__tests__/unit/englishBundle.test.ts",
+      "src/__tests__/components/EnglishPrintClient.test.tsx",
+      "인쇄 경로 /english/sets/{세트id}/print?view=student&bundle=1",
+    ],
+    scale:
+      "오늘의 영어 세트 전부 — 변형 문항과 독해형이 같이 있는 세트는 묶음 둘 이상",
+    status: "대기",
+    needs:
+      "여섯 유형이 다 든 세트 하나(AI 생성 기본값). 누출 줄에 «…묶음 2로 두었습니다»가 뜨는 세트면 묶음이 셋이다 " +
+      "(실제 세트의 60% 쯤). 독해형만 있는 세트 하나를 더 뽑으면 ⑥ 까지 본다.",
+    changedOn: "2026-10-01",
+  },
+  {
+    id: "english-grammar-underline",
+    title: "오늘의 영어 — 어법의 밑줄 (꺾쇠 글자 → 글자 밑줄 1px · 0.3em)",
+    changed:
+      "어법 문항의 `①<u>표현</u>` 표기를 지금까지 **글자 그대로** 찍었다(꺾쇠가 종이에 보였다). 이제 밑줄로 그린다 — " +
+      "글자 밑줄(`text-decoration`) · 굵기 1px · 기준선 아래 0.3em · 내림 글자(g · y · p)에서 선을 끊지 않는다 " +
+      "(끊으면 밑줄 구간의 끝이 모호하다). 번호 ①~⑤ 는 선 밖. 줄이 바뀐 구간은 줄마다 이어진다. 학생용 · 교사용 같다. " +
+      "🔴 0.3em 은 **검수 시작값**이다(3자 합의) — 화면 4배 확대에서는 안 닿았지만 종이는 아직 안 봤다.",
+    look:
+      "(제안) 어법 문항이 든 묶음을 뽑아 ① **꺾쇠 `<u>` · `</u>` 글자가 한 글자라도 보이면 불합격**. ② 밑줄이 g · y · p " +
+      "의 **아래 끝과 닿거나 겹치는가** — 닿으면 0.32em 으로 내려 다시(그래도 닿으면 다시 협의). ③ 밑줄이 **다음 줄 " +
+      "글자에 더 가까워 보여** 어느 줄의 밑줄인지 헷갈리는가. ④ 번호 ①~⑤ 아래에 선이 있는가(있으면 불합격). " +
+      "⑤ 두 줄에 걸친 밑줄이 **줄마다 이어지는가**(둘째 줄에서 끊기면 불합격). ⑥ 1px 선이 종이에서 **옅어 사라지지 " +
+      "않는가**. ⑦ 줄 끝에서 밑줄이 낱말 뒤 빈칸까지 조금 이어진다 — 거슬리는 정도인가(브라우저 동작 · 참고).",
+    lookFromSource: false,
+    evidence: [
+      "docs/planning/25-english-studio.md §12.11 (라-1)",
+      "src/lib/english/underline.ts",
+      "src/components/english/print/EnglishPaper.tsx (PromptText)",
+      "src/components/english/print/EnglishPrint.module.css (.underline)",
+      "src/__tests__/unit/englishUnderline.test.ts",
+      "src/__tests__/components/EnglishPrintPaper.test.tsx",
+    ],
+    scale:
+      "AI 로 만든 어법 문항 전부(지금 프롬프트는 389개 가운데 386개가 밑줄 다섯 쌍) — 옛 세트 · 붙여넣기 세트는 밑줄이 없을 수 있다(그때는 학생용 인쇄가 막힌다)",
+    status: "대기",
+    needs:
+      "AI 로 만든 어법 문항이 든 세트. 밑줄 구간에 g · y · p 가 있고 **두 줄에 걸친 구간**이 하나는 있어야 ② · ⑤ 가 보인다.",
+    changedOn: "2026-10-01",
+  },
+  {
+    id: "english-teacher-head-notes",
+    title: "오늘의 영어 — 교사용 머리의 안내 줄 (배부 순서 · 답이 보이는 문항)",
+    changed:
+      "교사용 첫 쪽 머리의 이름 줄 아래에 안내가 생겼다 — «배부 순서 — 묶음 1(3~4번) → 걷은 뒤 묶음 2(5번) → …» · " +
+      "«답이 보이는 문항 — 5번의 지문에 3번 · 4번의 답»(없으면 «검사에서 찾은 누출 없음»). 어법의 밑줄 표기가 깨진 " +
+      "세트는 셋째 줄 «밑줄 표기 — 3번: 밑줄 구간 없음». 고딕 11px · 이름표는 굵게 · 값은 줄이지 않고 줄바꿈한다. " +
+      "교사용은 학생용 묶음과 관계없이 **모든 문항**을 싣는다. 머리가 두 줄이면 약 35px 늘어난다.",
+    look:
+      "(제안) 교사용으로 뽑아 ① 안내 두 줄이 **첫 쪽에만** 있는가. ② 이름표(«배부 순서» · «답이 보이는 문항»)가 " +
+      "두 줄로 접히지 않는가. ③ 값이 길어 줄이 바뀔 때 **이름 줄 · 본문과 겹치지 않는가**. ④ 늘어난 머리 때문에 " +
+      "첫 쪽 마지막 블록이 **잘리지 않는가**. ⑤ 화면의 배부 순서 · 누출 줄과 **같은 묶음 번호 · 같은 문항**을 말하는가. " +
+      "⑥ 학생용을 어느 묶음으로 골라 뒀든 교사용에 **모든 문항**이 있는가.",
+    lookFromSource: false,
+    evidence: [
+      "docs/planning/25-english-studio.md §12.11 (다)",
+      "src/components/english/print/EnglishPaper.tsx (teacherNotes)",
+      "src/components/english/print/EnglishPrint.module.css (.teacherNotes)",
+      "src/lib/english/bundle.ts (englishBundleNotices — order · shown)",
+      "src/__tests__/components/EnglishPrintPaper.test.tsx",
+      "인쇄 경로 /english/sets/{세트id}/print?view=teacher",
+    ],
+    scale: "묶음이 둘 이상인 세트의 교사용 전부",
+    status: "대기",
+    needs:
+      "`english-bundle-sheets` 와 같은 세트를 교사용으로 한 번 더. 누출 짝이 있는 세트면 둘째 줄에 문항이 적힌다.",
+    changedOn: "2026-10-01",
+  },
 ];
 
 /** 한 번에 다 보려면 어떤 시험지를 뽑아야 하나. */

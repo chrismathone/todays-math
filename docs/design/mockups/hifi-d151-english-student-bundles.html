@@ -1,0 +1,431 @@
+<!doctype html>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>학생용 묶음 분리 하이파이</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@400;700;900&family=Noto+Sans+KR:wght@400;500;600;700&display=swap">
+<style>
+/* Hi-fi — 구조는 3자 합의로 정해졌다(25 §12.11). 여기서는 같은 구조를 제품의 실제 색 · 글꼴 · 치수로 네 가지 배치에 올린다.
+   도구 줄 · 단추는 TestPrint.module.css, 지면은 EnglishPrint.module.css 의 값 그대로. 새 색 · 새 글꼴 없음(05 §8.23).
+   제품 화면을 그대로 옮긴 그림이라 밝은 판 하나로만 그린다. */
+:root {
+  color-scheme: light;
+  --ink: #172b4d; --muted: #596c86; --accent: #3159df; --accent-hover: #2448bd; --bg: #f4f6fa; --surface: #ffffff;
+  --soft: #edf2ff; --neutral: #edf0f6; --track: #dde3ec; --control: #b8c4d6; --focus: #82a1ff;
+  --warning: #8a5a06; --warning-bg: #fff4df; --danger: #b42318; --danger-bg: #fff0ee;
+  --paper: #fcfcf8; --paper-ink: #0e0e10; --gold: #a57f00;
+  --sans: Pretendard, "Noto Sans KR", "Apple SD Gothic Neo", "Malgun Gothic", sans-serif;
+  --serif: "Noto Serif KR", "KoPubBatang", "Nanum Myeongjo", Batang, serif;
+  --scale: .5;
+}
+body { margin: 0; background: #fafaf8; color: #161616; font-family: var(--sans); font-size: 14px; line-height: 1.55; }
+* { box-sizing: border-box; }
+[hidden] { display: none !important; }
+button { font: inherit; color: inherit; }
+button:focus-visible { outline: 3px solid var(--focus); outline-offset: 2px; }
+
+.board { max-width: 1280px; margin: 0 auto; padding-inline: 24px; padding-block: 28px 72px; }
+@media (max-width: 600px) { .board { padding-inline: 16px; } }
+.eyebrow { margin: 0; font-size: 12px; letter-spacing: .06em; color: #61615e; }
+h1.pt { margin: 8px 0 10px; font-family: var(--serif); font-weight: 900; font-size: 30px; line-height: 1.25; letter-spacing: -.02em; text-wrap: balance; }
+.lede { margin: 0; max-width: 76ch; color: #61615e; font-size: 15px; }
+.lede b { color: #161616; }
+.ask { border: 1px solid #b9b9b6; border-radius: 8px; background: #fff; padding: 18px 20px; display: grid; gap: 10px; margin: 20px 0 8px; }
+.ask h2 { margin: 0; font-family: var(--serif); font-size: 20px; font-weight: 900; }
+.ask ol { margin: 0; padding-left: 20px; display: grid; gap: 8px; color: #61615e; }
+.ask li b { color: #161616; }
+h2.sec { margin: 34px 0 6px; font-family: var(--serif); font-size: 22px; font-weight: 900; letter-spacing: -.01em; }
+.note { margin: 0 0 10px; max-width: 80ch; font-size: 13px; color: #61615e; }
+.note b { color: #161616; }
+
+.pick { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 30; display: flex; flex-wrap: wrap; align-items: center; gap: 6px 14px; padding-block: 10px; background: #fafaf8; border-block: 1px solid #b9b9b6; margin-top: 22px; }
+.pick .grp { display: flex; flex-wrap: wrap; align-items: center; gap: 4px; font-size: 12px; color: #61615e; }
+.pick .grp > span { margin-right: 2px; font-weight: 700; color: #161616; }
+.pk { cursor: pointer; border: 1px solid #b9b9b6; background: #fff; border-radius: 6px; padding: 5px 10px; font-size: 12.5px; }
+.pk:hover { border-color: #61615e; }
+@media (max-width: 860px) { .pick { position: static; } .shell { padding: 12px 12px 20px; } }
+.pk[aria-pressed="true"] { border-color: #161616; font-weight: 700; box-shadow: inset 0 -2px 0 var(--accent); }
+
+/* ── 제품 화면 — 인쇄 미리보기 ─────────────── */
+.shell { margin-top: 18px; border: 1px solid #b9b9b6; border-radius: 10px; background: var(--bg); color: var(--ink); padding: 24px 28px 64px; overflow: hidden; }
+@media (min-width: 861px) { .shell.win { height: 780px; overflow-y: auto; } }
+.tb { position: sticky; top: 0; z-index: 5; width: min(100%, 1000px); margin: 0 auto; border: 1px solid var(--track); border-radius: 14px; background: var(--surface); padding: 14px 18px; display: grid; grid-template-columns: minmax(0, 1fr) auto; align-items: center; gap: 12px 16px; box-shadow: 0 6px 18px rgb(23 43 77 / 5%); }
+#blocked .tb { position: static; }
+@media (max-width: 860px) { .tb { position: static; grid-template-columns: minmax(0, 1fr); } }
+.sw.wide { grid-column: 1 / -1; }
+.sw .push { margin-left: auto; }
+@media (max-width: 860px) { .sw .push { margin-left: 0; } }
+.tb .ey { color: var(--muted); font-size: 12px; font-weight: 600; }
+.tb h3 { margin: 2px 0; font-size: 24px; font-weight: 700; letter-spacing: -.02em; line-height: 1.3; }
+.tb p.sub { margin: 0; color: var(--muted); font-size: 14px; }
+.acts { display: flex; align-items: center; flex-wrap: wrap; gap: 10px; }
+.sw { display: flex; align-items: stretch; flex-wrap: wrap; gap: 6px; }
+.b { min-height: 44px; border: 1px solid var(--control); border-radius: 8px; padding: 0 16px; font-size: 14px; font-weight: 600; cursor: pointer; background: var(--surface); color: var(--ink); }
+.b:hover { border-color: var(--accent); }
+.b[aria-pressed="true"] { background: var(--soft); border-color: var(--accent); color: var(--accent); }
+.b.two { display: grid; align-content: center; gap: 1px; padding: 5px 14px; text-align: left; }
+.b.two small { font-size: 12px; font-weight: 500; color: var(--muted); }
+.b.two[aria-pressed="true"] small { color: var(--accent); }
+.b.print { background: var(--accent); border-color: var(--accent); color: #fff; }
+.b.print:hover { background: var(--accent-hover); }
+.b.print:disabled { opacity: .65; cursor: not-allowed; }
+.b.sm { min-height: 36px; padding: 0 12px; font-size: 13px; }
+.card > .row + .row { margin-top: -2px; }
+.row { grid-column: 1 / -1; margin: 0; font-size: 14px; display: flex; flex-wrap: wrap; align-items: center; gap: 6px 12px; }
+.row.info { color: var(--muted); }
+.row.warn { color: var(--warning); font-weight: 600; }
+.row.err { color: var(--danger); font-weight: 700; }
+.row .lab { font-size: 12px; font-weight: 700; color: var(--ink); background: var(--neutral); border-radius: 6px; padding: 2px 8px; }
+.row.warn .lab { color: var(--warning); background: var(--warning-bg); }
+
+.card { width: min(100%, 1000px); margin: 14px auto 0; border: 1px solid var(--track); border-radius: 14px; background: var(--surface); padding: 14px 18px; display: grid; gap: 12px; }
+.card h4 { margin: 0; font-size: 15px; font-weight: 700; }
+.tw { overflow-x: auto; }
+table.bt { width: 100%; min-width: 640px; border-collapse: collapse; font-size: 14px; }
+table.bt th { text-align: left; font-size: 12px; font-weight: 600; color: var(--muted); padding: 6px 10px; border-bottom: 1px solid var(--track); }
+table.bt td { padding: 9px 10px; border-bottom: 1px solid var(--track); vertical-align: middle; }
+table.bt tr:last-child td { border-bottom: 0; }
+table.bt tr.on td { background: var(--soft); }
+table.bt td.n { font-weight: 700; white-space: nowrap; }
+table.bt td.why { color: var(--muted); font-size: 13px; }
+.now { font-size: 12px; font-weight: 700; color: var(--accent); }
+
+.split { width: min(100%, 1100px); margin: 14px auto 0; display: grid; grid-template-columns: 270px minmax(0, 1fr); gap: 16px; align-items: start; }
+@media (max-width: 860px) { .split { grid-template-columns: minmax(0, 1fr); } }
+.rail { border: 1px solid var(--track); border-radius: 14px; background: var(--surface); padding: 12px; display: grid; gap: 8px; }
+.rail .cap { font-size: 12px; font-weight: 600; color: var(--muted); padding: 0 4px; }
+.rail .b.two { width: 100%; }
+.rail .hint { margin: 0; font-size: 13px; color: var(--muted); padding: 2px 4px; }
+.rail .hint.warn { color: var(--warning); font-weight: 600; }
+
+.flow { margin-top: 14px; display: flex; flex-wrap: wrap; align-items: stretch; gap: 8px; }
+.flow .arrow { align-self: center; font-size: 12px; font-weight: 600; color: var(--muted); white-space: nowrap; }
+.flow .gap { flex: 1; min-width: 12px; }
+
+.gal { margin-top: 28px; display: flex; flex-direction: column; align-items: center; gap: 28px; }
+.a4 { flex: none; width: calc(794px * var(--scale)); height: calc(1123px * var(--scale)); position: relative; background: var(--paper); box-shadow: 0 10px 28px rgb(0 0 0 / 18%); overflow: hidden; max-width: 100%; }
+.a4 > .pg { width: 794px; height: 1123px; transform: scale(var(--scale)); transform-origin: 0 0; display: flex; flex-direction: column; }
+.crop { border: 1px solid #b9b9b6; background: var(--paper); overflow: hidden; max-width: 100%; }
+.crop > .pg { width: 794px; }
+.crops { display: grid; gap: 18px; max-width: 796px; }
+.rbtn { display: flex; flex-wrap: wrap; gap: 6px; padding: 0 4px; }
+.cropwrap { display: grid; gap: 6px; min-width: 0; }
+.cropwrap .cc { font-size: 13px; color: #61615e; }
+.cropwrap .cc b { color: #161616; }
+.cropscroll { overflow: hidden; }
+
+/* ── 지면 — 제품 치수 그대로 ─────────────── */
+.pg { font-family: var(--serif); color: var(--paper-ink); background: var(--paper); }
+.pg.first { padding: 36px 50px 24px; }
+.pg.cont { padding: 24px 50px 24px; }
+.pg .phead { flex: none; margin-bottom: 16px; }
+.pg .prow { display: flex; align-items: baseline; justify-content: space-between; gap: 16px; font-family: var(--sans); font-size: 10px; font-weight: 700; letter-spacing: .14em; }
+.pg .brand { color: var(--gold); }
+.pg .vtag { color: #3a3a40; text-align: right; }
+.pg .trow { display: flex; align-items: flex-start; gap: 14px; }
+.pg .ptitle { margin: 8px 0 0; font-size: 22px; font-weight: 900; letter-spacing: -.01em; line-height: 1.35; }
+.pg .pexam { margin-top: 4px; font-family: var(--sans); font-size: 11px; color: #3a3a40; }
+.pg .bline { margin-top: 8px; font-family: var(--sans); font-size: 13px; font-weight: 700; color: var(--paper-ink); letter-spacing: .02em; }
+.pg .pname { margin-top: 10px; border-top: 1px solid var(--gold); padding-top: 8px; font-family: var(--sans); font-size: 11px; color: #3a3a40; display: flex; justify-content: space-between; gap: 12px; }
+.pg .pname b { color: var(--paper-ink); font-weight: 700; }
+.pg .bnum { flex: none; margin-top: 10px; border: 1px solid var(--gold); padding: 3px 10px 5px; text-align: center; font-family: var(--sans); }
+.pg .bnum span { display: block; font-size: 9px; font-weight: 700; letter-spacing: .12em; color: #3a3a40; }
+.pg .bnum b { display: block; font-family: var(--serif); font-size: 24px; font-weight: 900; line-height: 1.1; }
+.pg .tnote { margin-top: 6px; font-family: var(--sans); font-size: 11px; color: #3a3a40; display: grid; grid-template-columns: 96px minmax(0, 1fr); gap: 2px 8px; }
+.pg .tnote dt { font-weight: 700; color: var(--paper-ink); }
+.pg .tnote dd { margin: 0; }
+.pg .pslim { flex: none; display: flex; align-items: baseline; justify-content: space-between; gap: 16px; border-bottom: 1px solid var(--gold); margin-bottom: 14px; padding-bottom: 8px; font-family: var(--sans); font-size: 11px; color: #6b6b72; }
+.pg .pslim span:first-child { color: var(--paper-ink); font-size: 12px; font-weight: 800; }
+.pg .pbody { flex: 1; min-height: 0; display: flex; flex-direction: column; gap: 14px; }
+.pg .pbody > * { flex: none; }
+.pg .pbox { border: 1px solid #d4d4d8; padding: 12px 16px 14px; }
+.pg .plabel { margin-bottom: 6px; font-family: var(--sans); font-size: 10px; font-weight: 700; letter-spacing: .16em; color: #6b6b72; }
+.pg .ptext { margin: 0; font-size: 16px; line-height: 1.9; white-space: pre-wrap; overflow-wrap: anywhere; }
+.pg .q .qp { display: grid; grid-template-columns: auto minmax(0, 1fr); gap: 0 6px; font-size: 15.33px; line-height: 1.7; }
+.pg .q .qn { font-weight: 800; }
+.pg .q .qt { white-space: pre-wrap; overflow-wrap: anywhere; }
+.pg .q ol { list-style: none; margin: 6px 0 0 22px; padding: 0; font-size: 16px; line-height: 1.8; }
+.pg .q li { display: grid; grid-template-columns: auto minmax(0, 1fr); gap: 0 6px; }
+.pg .q .blank { height: 50px; margin: 10px 0 0 22px; border-bottom: 1px solid var(--paper-ink); }
+.pg .tbox { margin: 8px 0 0 22px; border-left: 3px solid #a0a0a8; background: #e8e8eb; padding: 8px 12px; font-size: 14.67px; line-height: 1.7; }
+.pg .tbox .tr { display: grid; grid-template-columns: 34px minmax(0, 1fr); gap: 0 8px; }
+.pg .tbox .tr + .tr { margin-top: 4px; }
+.pg .tbox .tl { padding-top: 3px; font-family: var(--sans); font-size: 10px; font-weight: 700; letter-spacing: .08em; color: #3a3a40; }
+.pg .pfoot { flex: none; display: flex; justify-content: space-between; gap: 16px; margin-top: 10px; font-family: var(--sans); font-size: 9.5px; color: #6b6b72; }
+/* 밑줄 두 가지 — c1 글자 밑줄 · c2 아래 테두리 */
+.u1 u { text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: .3em; text-decoration-skip-ink: none; }
+.u2 u { text-decoration: none; border-bottom: 1px solid var(--paper-ink); padding-bottom: 1px; -webkit-box-decoration-break: clone; box-decoration-break: clone; }
+.pg mark { background: var(--warning-bg); color: inherit; outline: 1px solid var(--warning); }
+.measure { position: absolute; left: -100000px; top: 0; width: 794px; visibility: hidden; pointer-events: none; }
+
+table.cmp { border-collapse: collapse; font-size: 12.5px; background: #fff; min-width: 900px; }
+table.cmp th, table.cmp td { border: 1px solid #d6d6d3; padding: 6px 9px; text-align: left; vertical-align: top; }
+table.cmp th { font-weight: 700; background: #f3f3f1; }
+</style>
+
+<main class="board">
+  <p class="eyebrow">Hi-fi · 오늘의 영어 · D-151 · 25번 문서 §12.11 · 2026-10-01</p>
+  <h1 class="pt">학생용 묶음 분리 — 어떤 모양으로 올릴까</h1>
+  <p class="lede">구조는 3자 합의(Claude · codex · grok)로 정해졌다. <b>묶음은 누출 관계의 순서대로 짓고, 하나씩 골라 뽑는다.</b> 남은 것은 모양이다 — 인쇄 화면에서 묶음 목록과 안내 줄을 어디에 둘지, 지면 머리에 묶음 이름을 어떻게 찍을지, 어법의 밑줄을 무엇으로 그릴지. 아래는 제품의 실제 색 · 글꼴 · 치수로 그린 그림이고, 표본은 luna 가 만든 실제 세트와 그 세트의 실제 누출 짝이다.</p>
+
+  <section class="ask" aria-labelledby="done-h" style="border-color:#161616">
+    <h2 id="done-h">확정 — 3자 합의(Claude · codex · grok, 2026-10-01)</h2>
+    <ol>
+      <li><b>인쇄 화면 — H1 을 고쳐 그린 것.</b> 묶음 단추는 도구 줄의 둘째 줄(따라온다), 배부 순서 · 누출 줄은 그 아래 카드. 교사용 단추는 오른쪽 끝에 떨어뜨린다. 영향 문장은 합치기 단추 앞.</li>
+      <li><b>지면 머리 — a2.</b> 시험 줄 아래 13px 굵은 한 줄. 이름 줄(a3)은 학생의 손글씨가 덮는다.</li>
+      <li><b>밑줄 — c1 · 1px · 0.3em.</b> 0.3em 은 검수 시작값이다 — 종이에서 정한다.</li>
+    </ol>
+    <p class="note" style="margin:0">아래 그림은 고르기 전의 시안 그대로다(기본 선택만 확정안으로 바꿨다). 합친 문구의 차례 · «합치기 되돌리기» · 교사용 머리의 «밑줄 표기» 줄 같은 세부는 제품이 기준이다 — 결정 기록은 25번 문서 §12.11.</p>
+  </section>
+
+  <section class="ask" aria-labelledby="ask-h">
+    <h2 id="ask-h">고를 것</h2>
+    <ol>
+      <li><b>인쇄 화면</b> — H1 고르기 단추 / H2 묶음 표 / H3 옆 목록 / H4 순서 띠.</li>
+      <li><b>지면 머리</b> — a1 오른쪽 위 한 줄 / a2 시험 줄 아래 한 줄 / a3 이름 줄 오른쪽 / a4 제목 옆 번호 칸.</li>
+      <li><b>어법의 밑줄</b> — c1 글자 밑줄 / c2 아래 테두리.</li>
+    </ol>
+    <p class="note" style="margin:0">아래 막대에서 셋을 따로 바꿔 볼 수 있다. «세트»를 «누출 없음»으로 바꾸면 묶음이 둘로 줄고, «5번 합치기»를 누르면 합친 뒤의 줄이 보인다. 묶음 단추를 누르면 그 묶음의 지면이 나온다.</p>
+  </section>
+
+  <div class="pick" role="toolbar" aria-label="시안 고르기">
+    <div class="grp" data-group="screen"><span>인쇄 화면</span>
+      <button class="pk" data-v="h1" aria-pressed="true">H1 고르기 단추</button><button class="pk" data-v="h2" aria-pressed="false">H2 묶음 표</button><button class="pk" data-v="h3" aria-pressed="false">H3 옆 목록</button><button class="pk" data-v="h4" aria-pressed="false">H4 순서 띠</button></div>
+    <div class="grp" data-group="head"><span>지면 머리</span>
+      <button class="pk" data-v="a1" aria-pressed="true">a1</button><button class="pk" data-v="a2" aria-pressed="false">a2</button><button class="pk" data-v="a3" aria-pressed="false">a3</button><button class="pk" data-v="a4" aria-pressed="false">a4</button></div>
+    <div class="grp" data-group="under"><span>밑줄</span>
+      <button class="pk" data-v="u1" aria-pressed="true">c1</button><button class="pk" data-v="u2" aria-pressed="false">c2</button></div>
+    <div class="grp" data-group="set"><span>세트</span>
+      <button class="pk" data-v="leak" aria-pressed="true">누출 있음</button><button class="pk" data-v="clean" aria-pressed="false">누출 없음</button></div>
+    <div class="grp" data-group="zoom"><span>지면</span>
+      <button class="pk" data-v="1" aria-pressed="true">실제 크기</button><button class="pk" data-v=".5" aria-pressed="false">50%</button></div>
+  </div>
+
+  <h2 class="sec" id="screen-h">인쇄 화면</h2>
+  <p class="note">아래 칸은 제품 화면 그대로다 — 도구 줄은 폭 1000px 까지, 넓은 화면에서는 위에 붙어 따라오고(칸 안에서 굴려 본다), 지면은 실제 크기로 세로로 쌓인다.</p>
+  <p class="note" id="screen-note"></p>
+  <div class="shell win" id="shell"></div>
+
+  <h2 class="sec">지면 머리 네 가지</h2>
+  <p class="note">첫 쪽 머리만 잘라 실제 크기로 놓았다(좁은 화면에서는 폭에 맞춰 줄어든다). a1 은 지금 «학생용 · 초안»이 서는 자리를 묶음 이름으로 바꾼다. 이어지는 쪽의 머리는 모든 안에서 «오늘의 영어 · 세트 이름 | 문제 묶음 1 · p. 2»다.</p>
+  <div class="crops" id="heads"></div>
+
+  <h2 class="sec">교사용 머리 · 어법의 밑줄</h2>
+  <p class="note">교사용은 늘 그 세트의 모든 문항을 싣고, 머리에 배부 순서와 답이 보이는 문항을 한 줄씩 적는다. 밑줄은 두 줄에 걸친 구와 g · y · p 의 내림이 있는 문장으로 본다 — 번호 ①~⑤ 는 선 밖이다.</p>
+  <div class="crops" id="extras"></div>
+
+  <h2 class="sec">막는 상태</h2>
+  <p class="note">어법 문항에서 밑줄 표기의 짝이 안 맞거나 밑줄 구간이 하나도 없으면 학생용 인쇄를 막는다. 도구 줄의 자리는 지금의 «지면 크기를 재지 못했습니다» 줄과 같다.</p>
+  <div class="shell" id="blocked"></div>
+
+  <h2 class="sec">나란히 보기</h2>
+  <div class="tw">
+    <table class="cmp">
+      <thead><tr><th>인쇄 화면</th><th>묶음 목록의 자리</th><th>안내 · 누출 줄의 자리</th><th>순서가 보이는 정도</th><th>좁은 화면</th><th>지금 화면에서 바뀌는 양</th></tr></thead>
+      <tbody>
+        <tr><th scope="row">H1 고르기 단추</th><td>도구 줄의 둘째 줄에 묶음 단추(따라온다)</td><td>도구 줄 아래 카드 두 줄(따라오지 않는다)</td><td>단추의 번호와 안내 문장</td><td>단추가 줄바꿈된다</td><td>도구 줄에 한 줄 + 카드 하나</td></tr>
+        <tr><th scope="row">H2 묶음 표</th><td>도구 줄 아래 표 — 순서 · 문항 · 쪽 · 까닭</td><td>표의 «까닭» 칸 + 표 아래 한 줄</td><td>표의 행 순서와 까닭</td><td>표가 칸 안에서 옆으로 밀린다</td><td>카드 하나가 는다</td></tr>
+        <tr><th scope="row">H3 옆 목록</th><td>왼쪽 세로 목록, 오른쪽이 지면</td><td>목록 아래</td><td>목록의 위아래 순서</td><td>목록이 지면 위로 올라간다</td><td>배치가 두 칸으로 바뀐다</td></tr>
+        <tr><th scope="row">H4 순서 띠</th><td>도구 줄 아래 가로 띠 — 묶음 사이에 «걷은 뒤»</td><td>띠가 곧 배부 안내 · 아래 한 줄</td><td>가장 크다(화살 자리의 말)</td><td>띠가 줄바꿈된다</td><td>띠 하나가 는다</td></tr>
+      </tbody>
+    </table>
+  </div>
+</main>
+
+<div class="measure" id="measure" aria-hidden="true"></div>
+<script type="application/json" id="set-data">{"title":"창의성의 형성과 꾸준한 노력","passage":"Many people believe that creativity arrives as a sudden flash of inspiration. Stories about inventors who solved problems in dreams or artists who painted masterpieces overnight support this belief. However, researchers who study creative work have found a different pattern. Most original ideas grow slowly out of long periods of practice, failure, and revision. A composer may write dozens of weak melodies before one of them becomes worth developing. A scientist may run the same experiment many times, adjusting a single condition each time, until an unexpected result appears. What looks like a sudden breakthrough is usually the visible end of an invisible process. This does not mean that inspiration is unimportant. Rather, inspiration tends to favor those who have already prepared their minds by collecting knowledge and testing possibilities. When the moment of insight finally comes, it connects pieces that were gathered patiently over time. For students, this finding carries a practical lesson. Instead of waiting for brilliant ideas to appear, they should build habits that make such ideas more likely: keeping notes, asking questions, and returning to unfinished work. Creativity, in this view, is less a gift that some people receive and more a skill that anyone can cultivate through steady effort.","questions":[{"type":"주제","prompt":"다음 글의 주제로 가장 적절한 것은?","options":["The development of creative ability through persistent preparation and practice","The repeated revision of melodies in professional composition","The influence of human effort on achievement across different fields","The replacement of inspiration by disciplined practice in creative work","The role of prior knowledge in producing moments of insight"],"answer":"1","explanation":"정답은 1번이다. 글은 창의성이 갑자기 주어지는 재능이라기보다 준비와 연습, 수정 등 꾸준한 노력으로 기를 수 있는 능력이라고 설명한다. 2번은 작곡가의 사례에 한정되고, 3번은 창의성이라는 글의 초점보다 넓으며, 4번은 영감이 중요하지 않다는 뜻으로 잘못 바꿨고, 5번은 사전 지식의 역할만 다루어 글의 핵심을 일부만 반영한다.","evidence":"Creativity, in this view, is less a gift that some people receive and more a skill that anyone can cultivate through steady effort."},{"type":"내용 일치","prompt":"다음 중 글의 내용과 일치하는 것은?","options":["많은 사람은 창의성이 오랜 훈련보다 순간적인 영감의 결과라고 믿는다.","연구자들은 독창적인 생각이 대체로 짧은 연습과 빠른 수정 끝에 만들어진다고 본다.","작곡가는 약한 선율을 여러 편 쓴 뒤 그중 발전시킬 만한 곡을 발견하기도 한다.","과학자는 예상 밖의 결과를 얻기 위해 매번 여러 실험 조건을 바꾼다.","학생은 새로운 생각을 얻으려면 영감이 찾아올 때까지 기다려야 한다."],"answer":"3","explanation":"정답은 3번이다. 작곡가는 발전시킬 만한 선율을 찾기 전에 약한 선율을 수십 개 쓸 수 있다고 했다. 1번은 사람들이 믿는 내용을 반대로 서술했고, 2번은 오랜 기간의 작업을 짧은 기간으로 바꿨으며, 4번은 매번 한 가지 조건만 조정한다는 사실을 바꿨다. 5번은 영감을 기다리기보다 습관을 기르라는 조언과 반대된다.","evidence":"A composer may write dozens of weak melodies before one of them becomes worth developing."},{"type":"어법","prompt":"밑줄 친 ①~⑤ 가운데 어법상 틀린 것을 고르시오.\n\nHowever, researchers ①\u003cu>who study creative work\u003c/u> have found a different pattern. ②\u003cu>Most original ideas grows slowly\u003c/u> out of long periods of practice, failure, and revision. A scientist may run the same experiment many times, ③\u003cu>adjusting a single condition each time\u003c/u>, until an unexpected result appears. What looks like a sudden breakthrough ④\u003cu>is usually the visible end\u003c/u> of an invisible process. When the moment of insight finally comes, it connects pieces ⑤\u003cu>that were gathered patiently over time\u003c/u>.","options":["who study creative work","Most original ideas grows slowly","adjusting a single condition each time","is usually the visible end","that were gathered patiently over time"],"answer":"2","explanation":"정답은 2번이다. 주어 Most original ideas가 복수이므로 동사는 grows가 아니라 grow여야 한다. 1번은 선행사 researchers와 관계절 동사 study가 수 일치하고, 3번은 주절의 주어가 실험을 수행하는 방식을 나타내는 분사구문이며, 4번은 What절을 단수 주어로 받아 is를 썼다. 5번은 복수 선행사 pieces를 수식하는 수동태 관계절이다.","evidence":"Most original ideas grow slowly out of long periods of practice, failure, and revision."},{"type":"빈칸 추론","prompt":"빈칸에 들어갈 말로 가장 적절한 것은?\n\nFor students, this finding carries a practical lesson. Instead of waiting for brilliant ideas to appear, they should build habits that make such ideas more likely: keeping notes, asking questions, and returning to unfinished work. Creativity, in this view, is ________.","options":["a natural gift that appears without prior preparation","a result of inspiration that makes practice less necessary","a talent developed only by collecting facts rather than testing ideas","a learnable ability strengthened by continued effort and revision","a temporary effect of habits that matter only to professional artists"],"answer":"4","explanation":"정답은 4번이다. 글은 창의성을 소수에게 주어지는 선천적 선물이 아니라 꾸준한 노력으로 기를 수 있는 능력으로 제시한다. 1번은 준비 없이 나타나는 타고난 재능이라는 초기의 통념이고, 2번은 연습을 불필요하게 만든다고 하여 글의 논리와 어긋난다. 3번은 지식 수집만을 강조하고 시험과 수정의 역할을 배제하며, 5번은 습관의 효과를 전문 예술가에게만 한정한다.","evidence":"Creativity, in this view, is less a gift that some people receive and more a skill that anyone can cultivate through steady effort."},{"type":"문장 삽입","prompt":"[주어진 문장] For students, this finding carries a practical lesson.\n\n다음 글의 흐름으로 보아 주어진 문장이 들어가기에 가장 적절한 곳을 고르시오.\n\nMany people believe that creativity arrives as a sudden flash of inspiration. ( ① ) Stories about inventors who solved problems in dreams or artists who painted masterpieces overnight support this belief. ( ② ) However, researchers who study creative work have found a different pattern. ( ③ ) Most original ideas grow slowly out of long periods of practice, failure, and revision. A composer may write dozens of weak melodies before one of them becomes worth developing. A scientist may run the same experiment many times, adjusting a single condition each time, until an unexpected result appears. ( ④ ) What looks like a sudden breakthrough is usually the visible end of an invisible process. This does not mean that inspiration is unimportant. Rather, inspiration tends to favor those who have already prepared their minds by collecting knowledge and testing possibilities. When the moment of insight finally comes, it connects pieces that were gathered patiently over time. ( ⑤ ) Instead of waiting for brilliant ideas to appear, they should build habits that make such ideas more likely: keeping notes, asking questions, and returning to unfinished work. Creativity, in this view, is less a gift that some people receive and more a skill that anyone can cultivate through steady effort.","options":["①","②","③","④","⑤"],"answer":"5","explanation":"정답은 5번이다. 주어진 문장의 this finding은 앞에서 설명한 창의성의 형성 과정 전체를 가리키고, 바로 뒤의 Instead of waiting은 학생들에게 주는 실천적 교훈을 구체화한다. 1~4번은 창의성에 관한 근거와 설명이 아직 이어지는 위치이거나, 학생 대상의 조언으로 넘어가는 흐름을 끊는다.","evidence":"For students, this finding carries a practical lesson. Instead of waiting for brilliant ideas to appear, they should build habits that make such ideas more likely: keeping notes, asking questions, and returning to unfinished work."},{"type":"서술형","prompt":"지문의 핵심을 영어 한 문장으로 요약하시오. 25~35단어로 쓰고 다음 낱말을 모두 한 번씩 사용하되, 필요하면 어형을 바꾸시오: inspiration, preparation, creativity, cultivate. 창의적 성과가 겉으로 보이는 모습과 실제 형성 과정의 대조 및 학생에게 주는 시사점이 드러나야 합니다.","options":[],"answer":"Although creativity may seem to emerge in a sudden flash of inspiration, it is usually cultivated through sustained preparation, practice, and revision, so students should actively develop habits that make insight more likely.","explanation":"5점 만점: 갑작스러운 영감처럼 보이는 현상과 꾸준한 형성 과정의 대조 2점 · 학생이 실천할 습관의 필요성 포함 1점 · 제시 낱말 네 개를 모두 적절히 사용하고 25~35단어로 작성 1점 · 한 문장으로 어법에 맞게 요약 1점. 핵심 내용이 같고 조건을 충족하는 다른 표현도 인정합니다.","evidence":"Instead of waiting for brilliant ideas to appear, they should build habits that make such ideas more likely: keeping notes, asking questions, and returning to unfinished work. Creativity, in this view, is less a gift that some people receive and more a skill that anyone can cultivate through steady effort."}],"leaks":[{"source":2,"target":4,"kind":"어법","snippet":"original ideas grow slowly out"},{"source":3,"target":4,"kind":"빈칸 추론","snippet":"view, is less a gift that some people receive and more a skill that anyone can cultivate through steady effort"}]}</script>
+<script>
+const SET = JSON.parse(document.getElementById("set-data").textContent);
+const EXAM = { academy: "한빛학원", school: "한빛고등학교 고2", title: "2학기 중간고사" };
+const MARKS = ["①", "②", "③", "④", "⑤"];
+const OPEN = ["서술형", "원문 복원"];
+const VARIANT_TYPES = ["어법", "빈칸 추론", "문장 삽입", "원문 복원"];
+const state = { screen: "h1", head: "a2", under: "u1", set: "leak", zoom: "1", pick: 0, merged: false, why: false };
+
+const esc = (s) => s.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
+const underline = (html) => html.replace(/&lt;u&gt;/g, "<u>").replace(/&lt;\/u&gt;/g, "</u>");
+const num = (i) => i + 1;
+// 수록 문항 — 이어지면 «3~4번», 떨어지면 «1~2, 6번»
+function range(indices) {
+  const n = indices.map(num).sort((a, b) => a - b), parts = [];
+  for (let i = 0; i < n.length; i += 1) { let j = i; while (j + 1 < n.length && n[j + 1] === n[j] + 1) j += 1; parts.push(j > i ? `${n[i]}~${n[j]}` : `${n[i]}`); i = j; }
+  return parts.join(", ") + "번";
+}
+const leaks = () => (state.set === "leak" ? SET.leaks : []);
+
+// 묶음 짓기 — 3자 합의 가: 아직 묶이지 않은 변형 문항 가운데, 남은 변형 문항의 답을 담지 않은 것을 다음 묶음으로. 독해 묶음은 맨 뒤.
+function buildBundles() {
+  const all = SET.questions.map((q, i) => i);
+  const variant = all.filter((i) => VARIANT_TYPES.includes(SET.questions[i].type));
+  const reading = all.filter((i) => !variant.includes(i));
+  const remaining = new Set(variant), out = [];
+  while (remaining.size) {
+    let take = [...remaining].filter((i) => !leaks().some((l) => l.target === i && l.source !== i && remaining.has(l.source)));
+    let cycle = false;
+    if (!take.length) { take = [[...remaining][0]]; cycle = true; }
+    out.push({ kind: "변형", items: take, cycle });
+    take.forEach((i) => remaining.delete(i));
+  }
+  if (state.merged && out.length > 1) { out[0].items = [...out[0].items, ...out[1].items].sort((a, b) => a - b); out[0].merged = true; out.splice(1, 1); }
+  if (reading.length) out.push({ kind: "독해", items: reading, passage: true });
+  return out.map((b, k) => ({ ...b, no: k + 1 }));
+}
+const whyOf = (b) => {
+  if (b.kind === "독해") return "원 지문이 있어 맨 뒤";
+  if (b.merged) return "5번을 합쳤다 — 3 · 4번의 답이 5번의 지문에 보인다";
+  const from = [...new Set(leaks().filter((l) => b.items.includes(l.target)).map((l) => num(l.source)))];
+  return from.length ? `${from.join(" · ")}번의 답이 이 묶음의 지문에 있어 뒤로` : "서로 답이 안 보인다";
+};
+
+function markText(text, snippets) {
+  let out = "", at = 0;
+  const spans = snippets.map((s) => {
+    const words = s.match(/[A-Za-z0-9']+/g) || [];
+    const m = words.length ? new RegExp(words.map((w) => w.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")).join("[^A-Za-z0-9]{1,24}?")).exec(text) : null;
+    return m ? [m.index, m.index + m[0].length] : null;
+  }).filter(Boolean).sort((a, b) => a[0] - b[0]);
+  for (const [s, e] of spans) { if (s < at) continue; out += esc(text.slice(at, s)) + "<mark>" + esc(text.slice(s, e)) + "</mark>"; at = e; }
+  return underline(out + esc(text.slice(at)));
+}
+function questionHtml(i, teacher, marks) {
+  const q = SET.questions[i];
+  const opts = q.options.length ? "<ol>" + q.options.map((o, k) => `<li><span>${MARKS[k]}</span><span>${underline(esc(o))}</span></li>`).join("") + "</ol>" : "";
+  const blank = OPEN.includes(q.type) && !teacher ? '<div class="blank"></div>' : "";
+  const answer = OPEN.includes(q.type) ? esc(q.answer) : MARKS[Number(q.answer) - 1];
+  const tbox = teacher ? `<section class="tbox"><div class="tr"><span class="tl">정답</span><span>${answer}</span></div><div class="tr"><span class="tl">해설</span><span>${esc(q.explanation)}</span></div><div class="tr"><span class="tl">근거</span><span>${esc(q.evidence)}</span></div></section>` : "";
+  return `<article class="q"><div class="qp"><span class="qn">${num(i)}.</span><span class="qt">${markText(q.prompt, marks || [])}</span></div>${opts}${blank}${tbox}</article>`;
+}
+const passageHtml = () => `<section class="pbox"><div class="plabel">지문</div><p class="ptext">${esc(SET.passage)}</p></section>`;
+
+// 첫 쪽 머리 — 지면 머리 네 가지
+function headHtml(view) {
+  const label = view.teacher ? "" : `문제 묶음 ${view.no} · ${range(view.items)}`;
+  const tag = view.teacher ? "교사용 · 정답 및 해설" : state.head === "a1" ? label : "학생용 · 초안";
+  const bnum = !view.teacher && state.head === "a4" ? `<div class="bnum"><span>문제 묶음</span><b>${view.no}</b></div>` : "";
+  const exam = `${EXAM.school} · ${EXAM.title}${!view.teacher && state.head === "a4" ? " · " + range(view.items) : ""}`;
+  const bline = !view.teacher && state.head === "a2" ? `<div class="bline">${label}</div>` : "";
+  const right = !view.teacher && state.head === "a3" ? `<b>${label}</b>` : "";
+  const tnote = view.teacher ? `<dl class="tnote"><dt>배부 순서</dt><dd>${view.order}</dd><dt>답이 보이는 문항</dt><dd>${view.leakLine}</dd></dl>` : "";
+  return `<header class="phead"><div class="prow"><span class="brand">오늘의 영어 · ${EXAM.academy}</span><span class="vtag">${tag}</span></div><div class="trow">${bnum}<div><h1 class="ptitle">${esc(SET.title)}</h1><div class="pexam">${exam}</div></div></div>${bline}<div class="pname"><span>이름 ________________ · 날짜 ____ . ____ . ____</span>${right}</div>${tnote}</header>`;
+}
+const slimHtml = (view, page) => `<header class="pslim"><span>오늘의 영어 · ${esc(SET.title)}</span><span>${view.teacher ? "교사용 · 정답 및 해설" : `문제 묶음 ${view.no}`} · p. ${page}</span></header>`;
+const footHtml = (page, total) => `<footer class="pfoot"><span>${EXAM.academy} · ${EXAM.school}</span><span>p. ${page} / ${total}</span></footer>`;
+
+function paginate(view) {
+  const host = document.getElementById("measure");
+  const blocks = [...(view.passage ? [passageHtml()] : []), ...view.items.map((i) => questionHtml(i, view.teacher, view.marks ? leaks().filter((l) => l.target === i).map((l) => l.snippet) : []))];
+  host.className = "measure " + state.under;
+  host.innerHTML = `<div class="pg first">${headHtml(view)}<div class="pbody" id="m-body">${blocks.join("")}</div>${footHtml(1, 1)}</div><div class="pg cont">${slimHtml(view, 2)}</div>`;
+  const heights = [...host.querySelector("#m-body").children].map((el) => el.offsetHeight);
+  const headFirst = host.querySelector(".phead").offsetHeight + 16, headCont = host.querySelector(".pslim").offsetHeight + 14, footH = host.querySelector(".pfoot").offsetHeight + 10;
+  const room = (first) => 1123 - (first ? 36 : 24) - 24 - (first ? headFirst : headCont) - footH - 12;
+  const pages = [[]]; let used = 0;
+  heights.forEach((h, i) => { const page = pages[pages.length - 1], need = (page.length ? 14 : 0) + h; if (page.length && used + need > room(pages.length === 1)) { pages.push([i]); used = h; } else { page.push(i); used += need; } });
+  host.innerHTML = "";
+  return pages.map((idx, p) => `<div class="a4"><div class="pg ${state.under} ${p === 0 ? "first" : "cont"}">${p === 0 ? headHtml(view) : slimHtml(view, p + 1)}<div class="pbody">${idx.map((i) => blocks[i]).join("")}</div>${footHtml(p + 1, pages.length)}</div></div>`);
+}
+
+function views() {
+  const bundles = buildBundles();
+  const order = bundles.map((b) => `묶음 ${b.no}(${range(b.items)})`).join(" → 걷은 뒤 ");
+  const pairs = leaks().map((l) => `${num(l.target)}번의 지문에 ${num(l.source)}번의 답`);
+  const leakLine = pairs.length ? [...new Set(pairs)].join(" · ") : "검사에서 찾은 누출 없음";
+  const list = bundles.map((b) => ({ ...b, marks: !!b.merged, name: `묶음 ${b.no}`, sub: `${b.kind} · ${range(b.items)}` }));
+  list.push({ teacher: true, passage: true, items: SET.questions.map((q, i) => i), name: "교사용", sub: "정답 · 해설 · 모든 문항", order, leakLine });
+  return list.map((v) => { const pages = paginate(v); return { ...v, pages, count: pages.length }; });
+}
+
+const guide = (bundles) => bundles.length < 2 ? "" : bundles.slice(0, -1).map((b, k) => k === 0 ? `묶음 ${b.no}을 풀고 걷은 뒤 묶음 ${bundles[k + 1].no}를 나눠 줍니다.` : `묶음 ${b.no}를 걷은 뒤 묶음 ${bundles[k + 1].no}을 나눠 줍니다.`).join(" ");
+// 근거 — 어느 문항의 답(글자 그대로)이 어느 문항의 지문에 있는가
+const whyRows = (cls) => state.why && leaks().length ? leaks().map((l) => `<p class="${cls}"><span class="lab">근거</span>${num(l.source)}번의 답 «${esc(l.snippet.length > 60 ? l.snippet.slice(0, 58) + "…" : l.snippet)}» — ${num(l.target)}번의 지문에 그대로 있습니다.</p>`).join("") : "";
+function notices(list) {
+  const bundles = list.filter((v) => !v.teacher);
+  const has = leaks().length > 0;
+  const leak = !has ? `<p class="row info"><span class="lab">누출 검사</span>검사에서 찾은 누출 없음</p>`
+    : state.merged ? `<p class="row warn"><span class="lab">답이 보이는 문항</span>5번을 묶음 1에 합쳤습니다. 3번 · 4번의 답이 5번의 지문에 보입니다.<button class="b sm" data-act="merge">되돌리기</button></p>`
+    : `<p class="row warn"><span class="lab">답이 보이는 문항</span>5번의 지문에 3번 · 4번의 답이 있어 5번을 묶음 2로 두었습니다.<button class="b sm" data-act="why" aria-pressed="${state.why}">근거 보기</button><button class="b sm" data-act="merge">5번을 묶음 1에 합치기</button><span style="font-weight:400">합치면 3번 · 4번의 답이 5번의 지문에 보입니다.</span></p>`;
+  return `<p class="row info"><span class="lab">배부 순서</span>${guide(bundles)} 한꺼번에 주면 가른 효과가 없습니다.</p>${leak}${whyRows("row info")}`;
+}
+// 옆 목록(H3)은 폭이 좁아 문장과 단추를 줄로 가른다
+function railNotices(list) {
+  const bundles = list.filter((v) => !v.teacher);
+  const head = `<p class="hint">${guide(bundles)} 한꺼번에 주면 가른 효과가 없습니다.</p>`;
+  if (!leaks().length) return head + `<p class="hint">검사에서 찾은 누출 없음</p>`;
+  if (state.merged) return head + `<p class="hint warn">5번을 묶음 1에 합쳤습니다. 3번 · 4번의 답이 5번의 지문에 보입니다.</p><div class="rbtn"><button class="b sm" data-act="merge">되돌리기</button></div>`;
+  return head + `<p class="hint warn">5번의 지문에 3번 · 4번의 답이 있어 5번을 묶음 2로 두었습니다.</p><div class="rbtn"><button class="b sm" data-act="why" aria-pressed="${state.why}">근거 보기</button><button class="b sm" data-act="merge">5번을 묶음 1에 합치기</button></div><p class="hint">합치면 3번 · 4번의 답이 5번의 지문에 보입니다.</p>${whyRows("hint").replace(/<span class="lab">[^<]*<\/span>/g, "")}`;
+}
+const titleBlock = `<div><div class="ey">오늘의 영어 · 인쇄 미리보기</div><h3>${esc(SET.title)}</h3><p class="sub">${EXAM.school} · ${EXAM.title} · ${SET.questions.length}문항</p></div>`;
+const two = (v, k, extra = "", cls = "") => `<button class="b two${cls}" data-pick="${k}" aria-pressed="${state.pick === k}">${v.name}<small>${v.sub} · ${v.count}쪽${extra}</small></button>`;
+const printBtn = (v) => `<button class="b print">인쇄하기 — ${v.name}</button><button class="b">닫기</button>`;
+
+const SCREENS = {
+  h1: (list, cur) => `<div class="tb">${titleBlock}<div class="acts">${printBtn(cur)}</div><div class="sw wide" role="group" aria-label="지면 종류">${list.map((v, k) => two(v, k, "", v.teacher ? " push" : "")).join("")}</div></div><div class="card">${notices(list)}</div>`,
+  h2: (list, cur) => `<div class="tb">${titleBlock}<div class="acts">${printBtn(cur)}</div></div>
+    <div class="card"><h4>묶음</h4><div class="tw"><table class="bt"><thead><tr><th>순서</th><th>묶음</th><th>문항</th><th>쪽</th><th>까닭</th><th></th></tr></thead><tbody>
+    ${list.map((v, k) => `<tr class="${state.pick === k ? "on" : ""}"><td>${v.teacher ? "—" : v.no}</td><td class="n">${v.name}${v.teacher ? "" : " · " + v.kind}</td><td>${v.teacher ? "모든 문항" : range(v.items)}</td><td>${v.count}쪽</td><td class="why">${v.teacher ? "정답 · 해설 · 근거" : whyOf(v)}</td><td>${state.pick === k ? '<span class="now">보는 중</span>' : `<button class="b sm" data-pick="${k}">미리보기</button>`}</td></tr>`).join("")}
+    </tbody></table></div>${notices(list)}</div>`,
+  h3: (list, cur) => `<div class="tb">${titleBlock}<div class="acts">${printBtn(cur)}</div></div>`,
+  h4: (list, cur) => `<div class="tb">${titleBlock}<div class="acts">${printBtn(cur)}</div></div>
+    <div class="card"><div class="flow" style="margin-top:0">${list.filter((v) => !v.teacher).map((v, k, arr) => two(v, k) + (k < arr.length - 1 ? '<span class="arrow">걷은 뒤 →</span>' : "")).join("")}<span class="gap"></span>${two(list[list.length - 1], list.length - 1)}</div>
+    <p class="row info" style="margin:0"><span class="lab">배부 순서</span>왼쪽부터 차례로 나눠 주고 걷습니다. 한꺼번에 주면 가른 효과가 없습니다.</p>${notices(list).split("</p>").slice(1).join("</p>")}</div>`,
+};
+const NOTES = {
+  h1: "<b>H1 고르기 단추</b> — 도구 줄의 둘째 줄에 묶음 단추(교사용은 오른쪽 끝에 떨어뜨린다). 단추 둘째 줄에 문항과 쪽 수. 도구 줄은 지금처럼 위에 붙어 따라오고, 배부 순서 · 누출 줄은 그 아래 카드에 있어 지면을 넘기면 위로 올라간다.",
+  h2: "<b>H2 묶음 표</b> — 도구 줄 아래 표 하나. 순서 · 문항 · 쪽 · «왜 이 자리인지»가 한 줄에 읽힌다. 고르기는 행의 «미리보기» 단추(행 자체는 눌리지 않는다).",
+  h3: "<b>H3 옆 목록</b> — 왼쪽에 묶음 목록, 오른쪽에 지면. 안내와 누출 줄은 목록 아래. 지면을 넘기는 동안 목록이 같이 보인다.",
+  h4: "<b>H4 순서 띠</b> — 묶음이 왼쪽에서 오른쪽으로 놓이고 사이에 «걷은 뒤»가 적힌다. 띠가 곧 배부 안내다.",
+};
+
+function render() {
+  const list = views();
+  if (state.pick >= list.length) state.pick = 0;
+  const cur = list[state.pick];
+  fitScale();
+  document.getElementById("screen-note").innerHTML = NOTES[state.screen];
+  const gallery = `<div class="gal">${cur.pages.join("")}</div>`;
+  const shell = document.getElementById("shell");
+  if (state.screen === "h3") {
+    shell.innerHTML = SCREENS.h3(list, cur) + `<div class="split"><div class="rail"><div class="cap">묶음 — 위에서부터 차례로</div>${list.map((v, k) => two(v, k)).join("")}${railNotices(list)}</div><div>${gallery.replace('class="gal"', 'class="gal" style="margin-top:0"')}</div></div>`;
+  } else shell.innerHTML = SCREENS[state.screen](list, cur) + gallery;
+
+  // 지면 머리 네 가지 — 첫 묶음의 첫 쪽 머리를 실제 크기로
+  const keep = state.head;
+  const first = list[0];
+  const names = { a1: "오른쪽 위 한 줄 — 지금 «학생용 · 초안» 자리", a2: "시험 줄 아래 한 줄", a3: "이름 줄 오른쪽", a4: "제목 옆 번호 칸 + 시험 줄 끝에 수록 문항" };
+  document.getElementById("heads").innerHTML = Object.keys(names).map((k) => { state.head = k; return `<div class="cropwrap"><div class="cc"><b>${k}</b> · ${names[k]}</div><div class="cropscroll"><div class="crop" style="width:794px"><div class="pg first ${state.under}" style="padding-bottom:6px">${headHtml(first)}</div></div></div></div>`; }).join("");
+  state.head = keep;
+
+  const teacher = list[list.length - 1];
+  const sample = "However, researchers ①<u>who study creative work</u> have found a different pattern. ②<u>Most original ideas grows slowly</u> out of long periods of practice, failure, and revision, ③<u>adjusting a single condition each time, until an unexpected result finally appears in the laboratory</u>.";
+  const under = (cls, title) => `<div class="cropwrap"><div class="cc"><b>${title}</b></div><div class="cropscroll"><div class="crop" style="width:794px"><div class="pg cont ${cls}" style="padding-block:18px"><article class="q"><div class="qp"><span class="qn">3.</span><span class="qt">${underline(esc(sample))}</span></div></article></div></div></div></div>`;
+  document.getElementById("extras").innerHTML =
+    `<div class="cropwrap"><div class="cc"><b>교사용 머리</b> · 배부 순서 · 답이 보이는 문항</div><div class="cropscroll"><div class="crop" style="width:794px"><div class="pg first" style="padding-bottom:6px">${headHtml(teacher)}</div></div></div></div>` +
+    under("u1", "c1 글자 밑줄 — 1px · 글자 아래로 0.3em(확정 — 처음 시안은 0.22em 이었고 내림 글자에 닿았다) · 내림 글자에서 끊지 않는다") +
+    under("u2", "c2 아래 테두리 — 1px 선이 줄 상자 아래에 선다 · 줄이 바뀌어도 줄마다 이어진다");
+
+  document.getElementById("blocked").innerHTML = `<div class="tb">${titleBlock}<div class="acts"><button class="b print" disabled>인쇄할 수 없음</button><button class="b">닫기</button></div><div class="sw wide">${list.map((v, k) => `<button class="b two${v.teacher ? " push" : ""}" aria-pressed="${k === 0}">${v.name}<small>${v.sub}</small></button>`).join("")}</div><p class="row err">3번 어법 문항에 밑줄 표기가 없습니다. 문항을 고친 뒤 다시 인쇄하십시오.</p></div>`;
+
+  fitCrops();
+  for (const group of document.querySelectorAll(".pick .grp")) for (const button of group.querySelectorAll(".pk")) button.setAttribute("aria-pressed", String(state[group.dataset.group] === button.dataset.v));
+}
+
+document.addEventListener("click", (event) => {
+  const pk = event.target.closest(".pk");
+  if (pk) { const key = pk.parentElement.dataset.group; state[key] = pk.dataset.v; if (key === "set") { state.merged = false; state.pick = 0; } render(); return; }
+  const pick = event.target.closest("[data-pick]");
+  if (pick) { state.pick = Number(pick.dataset.pick); render(); return; }
+  const act = event.target.closest("[data-act]");
+  if (act && act.dataset.act === "merge") { state.merged = !state.merged; state.pick = 0; render(); }
+  if (act && act.dataset.act === "why") { state.why = !state.why; render(); }
+});
+// 잘라 놓은 지면 조각은 칸 폭에 맞춰 줄인다 — 오른쪽 끝의 딱지가 화면 밖으로 나가지 않게
+function fitCrops() { for (const crop of document.querySelectorAll(".crop")) { const room = crop.parentElement.clientWidth; crop.style.zoom = String(Math.min(1, room / 796)); } }
+// 좁은 화면에서는 지면을 칸 폭에 맞춘다
+function fitScale() { const shell = document.getElementById("shell"); const room = shell.clientWidth - (innerWidth <= 860 ? 26 : 76); document.documentElement.style.setProperty("--scale", String(Math.min(Number(state.zoom), room / 794))); }
+addEventListener("resize", () => { fitScale(); fitCrops(); });
+const wanted = location.hash.slice(1);
+if (SCREENS[wanted]) state.screen = wanted;
+(document.fonts && document.fonts.ready ? document.fonts.ready : Promise.resolve()).then(render);
+render();
+</script>
