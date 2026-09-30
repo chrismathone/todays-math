@@ -35,17 +35,36 @@ export function splitPassageParagraphs(passage: string): string[] {
   return parts.length ? parts : [passage.trim()];
 }
 
-/** 지문 문단이 먼저, 문항이 뒤 — 지면 순서 그대로 */
+/**
+ * 지면에 실을 것 — 학생용 묶음(D-151 · 25 §12.11). 변형 묶음은 원 지문 없이 그 문항만, 독해 묶음은 원 지문 + 독해형.
+ * 안 주면 세트 전부(교사용 · 묶음을 가르기 전의 지면).
+ */
+export interface EnglishPaperSelection {
+  /** 실을 문항 — 세트의 문항 번호(0부터). 종이의 번호는 세트 번호 그대로다 */
+  questions: readonly number[];
+  /** 원 지문 상자를 싣는가 */
+  passage: boolean;
+}
+
+/** 지문 문단이 먼저, 문항이 뒤 — 지면 순서 그대로. `selection` 을 주면 그 묶음의 블록만 */
 export function englishPaperBlocks(
   set: Pick<EnglishSet, "passage" | "questions">,
+  selection?: EnglishPaperSelection,
 ): EnglishPaperBlock[] {
+  const questions = selection
+    ? [...new Set(selection.questions)]
+        .filter((index) => index >= 0 && index < set.questions.length)
+        .sort((a, b) => a - b)
+    : set.questions.map((_, index) => index);
   return [
-    ...splitPassageParagraphs(set.passage).map((text, paragraph) => ({
-      kind: "passage" as const,
-      paragraph,
-      text,
-    })),
-    ...set.questions.map((_, index) => ({ kind: "question" as const, index })),
+    ...(selection && !selection.passage
+      ? []
+      : splitPassageParagraphs(set.passage).map((text, paragraph) => ({
+          kind: "passage" as const,
+          paragraph,
+          text,
+        }))),
+    ...questions.map((index) => ({ kind: "question" as const, index })),
   ];
 }
 

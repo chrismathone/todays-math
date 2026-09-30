@@ -1,5 +1,6 @@
 /**
  * 오늘의 영어 — 세트 인쇄 페이지 `/english/sets/{id}/print?view=student|teacher` (D-148 · 25 §5).
+ * 학생용은 묶음으로 갈라 하나씩 뽑는다(D-151 · 25 §12.11) — `&bundle=2` 는 처음 고를 묶음, `&merge=1` 은 변형 문항을 합친 채로.
  *
  * 서버 컴포넌트 · **크롬 없음** — `EnglishPrintClient` 하나만 그린다(작업실 CSS 의 `@page { margin: 14mm }` 이
  * 같은 창에 실리면 지면 여백이 뒤바뀐다 — 보고서 english-print §5). 관문은 `accountRouteAccess.ts` 가
@@ -13,6 +14,8 @@ import { notFound, redirect } from "next/navigation";
 
 import {
   EnglishPrintClient,
+  parseEnglishPrintBundle,
+  parseEnglishPrintMerge,
   parseEnglishPrintView,
 } from "@/components/english/print/EnglishPrintClient";
 import { idParamSchema } from "@/contracts/common.contract";
@@ -29,7 +32,11 @@ export const ENGLISH_PRINT_DEFAULT_ACADEMY = "오늘의수학";
 
 type EnglishSetPrintPageProps = {
   params: Promise<{ id: string }>;
-  searchParams: Promise<{ view?: string | string[] }>;
+  searchParams: Promise<{
+    view?: string | string[];
+    bundle?: string | string[];
+    merge?: string | string[];
+  }>;
 };
 
 export default async function EnglishSetPrintPage({
@@ -70,6 +77,8 @@ export default async function EnglishSetPrintPage({
         grade: exam.grade as EnglishExam["grade"],
         title: exam.title,
       }}
+      initialBundle={parseEnglishPrintBundle(query.bundle)}
+      initialMerged={parseEnglishPrintMerge(query.merge)}
       initialView={parseEnglishPrintView(query.view)}
       set={serializeEnglishSet(set)}
     />
