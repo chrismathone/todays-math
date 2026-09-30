@@ -14,6 +14,10 @@ import {
   sectionStock,
 } from "@/lib/concept-blank/bank";
 import { FIXTURE_BANK } from "@/lib/concept-blank/fixture";
+import {
+  bankNotationFaults,
+  notationFaults,
+} from "@/lib/concept-blank/notation";
 import { BLANK_SECTIONS, getBlankSection } from "@/lib/concept-blank/sections";
 
 const PART_GRADES: Record<string, readonly string[]> = {
@@ -81,6 +85,32 @@ describe("concept blank bank", () => {
       expect(thin).toEqual([]);
     },
   );
+
+  // 원장님 2026-09-30 «카텍스 사용할 것» — 은행 2차가 0건으로 만든 표기를 잠근다(자: `concept-blank/notation.ts`).
+  it.each(Object.keys(BANK_PARTS))(
+    "%s keeps numbers, units and symbols inside KaTeX",
+    (part) => {
+      const faults = bankNotationFaults(BANK_PARTS[part]!).map(
+        (f) => `${f.id} (${f.field}) [${f.rule}] ${f.what}`,
+      );
+      expect(faults.slice(0, 20)).toEqual([]);
+    },
+  );
+
+  it("the notation ruler says both yes and no", () => {
+    const rules = (s: string, sentence = false) =>
+      notationFaults(s, sentence).map((f) => f.rule);
+    expect(rules("구슬 20개를 5개씩 묶는다.")).toContain("수식 밖 숫자");
+    expect(rules("구슬 $20$개를 $5$개씩 묶는다.")).toEqual([]);
+    expect(rules("∠A의 크기는 직각이다.")).toContain("수식 밖 기호");
+    expect(rules(String.raw`$\angle A=50^\circ$이다.`)).toEqual([]);
+    expect(rules("$8$각형의 대각선")).toContain("아라비아 도형 이름");
+    expect(rules("팔각형의 대각선")).toEqual([]);
+    expect(rules(String.raw`값은 $\frac{1}{2$ 이다.`)).toContain("수식 오류");
+    expect(
+      rules(String.raw`$\cos 30^\circ=$ {$\frac{\sqrt{3}}{2}$}이다.`, true),
+    ).toEqual([]);
+  });
 
   it("ids are unique across the whole bank and the fixture", () => {
     const ids = [...everyItem(), ...everyItem(FIXTURE_BANK)].map((x) => x.id);

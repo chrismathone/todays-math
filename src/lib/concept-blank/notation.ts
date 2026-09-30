@@ -1,0 +1,97 @@
+import katex from "katex";
+import {
+  type ConceptBlankBank,
+  splitBlankSentence,
+} from "@/contracts/conceptBlank.contract";
+import {
+  arabicPolygons,
+  bareNumbers,
+  josaFaults,
+} from "@/lib/elementary/rules";
+
+/**
+ * 개념 백지 은행의 표기 자(D-150 · 원장님 2026-09-30 «카텍스 사용할 것»).
+ * 수식 `$...$` **밖**에 남은 수학 표기를 센다 — 자는 초등 엔진의 것 그대로다(`elementary/rules.ts`: 원장님 2026-08-22
+ * 「모든 숫자는 KaTeX」 · 「8각형이 아니라 팔각형」 · 수식 뒤 조사). 여기에 수식 밖 유니코드 수학 글자와 KaTeX 가 던지는 수식을 더한다.
+ *
+ * 그림 이름표(`tags[].answer`)와 SVG 안 글자는 재지 않는다(KaTeX 를 못 쓴다) — «통과»가 아니라 «안 잼».
+ */
+export type NotationFault = {
+  id: string;
+  field: string;
+  rule: string;
+  what: string;
+};
+
+/** 수식 밖에 있으면 안 되는 유니코드 수학 글자 — 제품 표기는 `\sqrt` · `^2` · `\times` · `\angle` · `^\circ` … 다. */
+const UNICODE_MATH = /[√∛²³⁴⁵⁶⁷⁸⁹⁰¹⁻⁺ⁿπ±≤≥≠×÷−∠△□°∥⊥≡∽∞]/g;
+const stripMath = (s: string) => s.replace(/\$[^$]*\$/g, " ");
+
+/** 글 한 칸의 표기 결함. 뜻 문장(`sentence`)은 핵심어 괄호를 걷어 읽는 글로 본다 — 핵심어 안의 수식은 그대로 수식이다. */
+export function notationFaults(
+  raw: string,
+  sentence = false,
+): { rule: string; what: string }[] {
+  const text = sentence
+    ? splitBlankSentence(raw)
+        .map((p) => p.text)
+        .join("")
+    : raw;
+  const out: { rule: string; what: string }[] = [];
+  const add = (rule: string, what: readonly string[]) => {
+    for (const w of what) out.push({ rule, what: w });
+  };
+  if ((text.match(/\$/g) ?? []).length % 2 === 1)
+    add("수식 짝", ["$ 가 홀수 개"]);
+  for (const m of text.matchAll(/\$([^$]*)\$/g)) {
+    try {
+      katex.renderToString(m[1]!, { throwOnError: true, strict: "ignore" });
+    } catch (e) {
+      add("수식 오류", [
+        `${m[1]} — ${String((e as Error).message).slice(0, 60)}`,
+      ]);
+    }
+  }
+  add("수식 밖 숫자", bareNumbers(text));
+  add("수식 밖 기호", stripMath(text).match(UNICODE_MATH) ?? []);
+  // 초등 자는 글자 그대로의 `8각형` 만 본다 — 숫자를 수식에 넣은 `$8$각형` 도 같은 결함이다(팔각형).
+  add("아라비아 도형 이름", [
+    ...arabicPolygons(text),
+    ...(text.match(/\$\s*\d+\s*\$\s*각형/g) ?? []),
+  ]);
+  add("수식 뒤 조사", josaFaults(text));
+  return out;
+}
+
+/** 은행 한 묶음의 모든 글 칸을 잰다. */
+export function bankNotationFaults(bank: ConceptBlankBank): NotationFault[] {
+  const out: NotationFault[] = [];
+  const scan = (id: string, field: string, raw: string, sentence = false) => {
+    for (const f of notationFaults(raw, sentence))
+      out.push({ id, field, ...f });
+  };
+  for (const c of bank.concepts) {
+    scan(c.id, "term", c.term);
+    scan(c.id, "definition", c.definition, true);
+    if (c.example) {
+      scan(c.id, "example.prompt", c.example.prompt);
+      scan(c.id, "example.answer", c.example.answer);
+    }
+  }
+  for (const o of bank.ox) {
+    scan(o.id, "statement", o.statement);
+    scan(o.id, "why", o.why);
+  }
+  for (const a of bank.apply) {
+    scan(a.id, "prompt", a.prompt);
+    scan(a.id, "answer", a.answer);
+  }
+  for (const f of bank.figures) {
+    scan(f.id, "prompt", f.prompt);
+    for (const l of f.lines) {
+      scan(f.id, "line.label", l.label);
+      scan(f.id, "line.answer", l.answer);
+    }
+  }
+  return out;
+}
