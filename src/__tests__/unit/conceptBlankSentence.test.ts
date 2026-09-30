@@ -6,10 +6,51 @@ import { describe, expect, it } from "vitest";
 import {
   blankKeywords,
   blankSentenceSchema,
+  figureItemSchema,
   splitBlankSentence,
+  visibleLength,
 } from "@/contracts/conceptBlank.contract";
 
 const ok = (s: string) => blankSentenceSchema.safeParse(s).success;
+
+// 글자 수 상한은 «보이는 글자»로 잰다 — KaTeX 마크업이 늘린 길이 때문에 말을 돌려 쓰지 않게(2026-09-30 은행 2차).
+describe("visible length", () => {
+  it("does not count KaTeX markup", () => {
+    expect(visibleLength("선분 AB의 길이")).toBe(9);
+    expect(visibleLength(String.raw`$\overline{PA}=8$`)).toBe(4);
+    expect(visibleLength(String.raw`$\frac{3}{8}$`)).toBe(2);
+    expect(visibleLength(String.raw`$7\,\mathrm{cm}$`)).toBe(3);
+    expect(visibleLength(String.raw`$\angle A=50^\circ$`)).toBe(6);
+    expect(visibleLength("{유리수}와 {무리수}")).toBe(8);
+  });
+
+  it("lets a figure prompt and a line label carry math within the same visible budget", () => {
+    const figure = {
+      id: "t-f1",
+      section: "중3::6. 원의 성질::원의 접선",
+      level: "중",
+      prompt: String.raw`점 $P$에서 원 $O$에 그은 두 접선이다. $\overline{PA}=8$일 때 $\overline{PB}$의 길이를 쓰시오.`,
+      viewBox: "0 0 200 120",
+      svg: '<circle cx="60" cy="60" r="40" fill="none" stroke="black"/>',
+      tags: [],
+      lines: [
+        {
+          label: String.raw`$\overline{AD}:\overline{AB}$와 같은 비`,
+          answer: String.raw`$\overline{AE}:\overline{AC}$`,
+        },
+      ],
+    };
+    expect(figure.prompt.length).toBeGreaterThan(60);
+    expect(figureItemSchema.safeParse(figure).success).toBe(true);
+    // 보이는 글자가 상한을 넘으면 여전히 거절한다
+    expect(
+      figureItemSchema.safeParse({
+        ...figure,
+        prompt: "가".repeat(61),
+      }).success,
+    ).toBe(false);
+  });
+});
 
 describe("blank sentence keywords", () => {
   it("keeps TeX groups inside math out of the keywords", () => {

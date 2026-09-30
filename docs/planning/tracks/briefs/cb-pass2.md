@@ -34,7 +34,7 @@
 
 ## 2. KaTeX 표기 — 제품과 같게
 
-자: `npx tsx scripts/qa/concept-blank/check-notation.ts --part <e3…>` → **표기 0건**이 끝이다(기준선: e3 1,017 · e4 689 · e5 841 · e6 751 · m1 1,256 · m3 703).
+자: `npx tsx scripts/qa/concept-blank/check-notation.ts --part <e3…>` → **표기 0건**이 끝이다(기준선: e3 1,017 · e4 689 · e5 841 · e6 751 · m1 1,256 · m2 1,154 · m3 703).
 
 규칙은 제품의 것이다 — 초등 `src/lib/elementary/format.ts` · `rules.ts`, 중등 생성기 `src/lib/middle/`. **먼저 거기서 같은 표기를 찾아 그 꼴을 따른다.**
 
@@ -42,7 +42,8 @@
 2. **단위**는 수식 안 — `$7\,\mathrm{cm}$` · `$25\,\mathrm{cm}^2$`. 두 단위가 이어지는 꼴(1 L 350 mL · 2분 15초)은 제품 생성기가 쓰는 꼴을 찾아 그대로.
 3. **분수** `\frac{3}{8}` · 대분수 `2\frac{3}{4}`. 가분수를 대분수로 바꾸지 않는다(뜻 그대로 — D-73).
    분수 읽는 법을 가르치는 문장만 «`$8$`분의 `$3$`» 꼴을 쓰고, 값은 언제나 `\frac`.
-4. **도형 · 각** — `$\angle A=50^\circ$` · `$\triangle \mathrm{ABC}$` · `$\overline{\mathrm{AB}}$` · `\parallel` · `\perp` · `\equiv` · `\sim`. 중등 생성기의 꼴을 확인해 맞춘다.
+4. **도형 · 각** — `$\angle A=50^\circ$` · `$\triangle ABC$` · `$\overline{AB}$` · 점 `$A$` · `\parallel` · `\perp` · `\equiv` · `\sim`. 중등 생성기의 꼴을 확인해 맞춘다.
+   점 이름에 `\mathrm` 을 쓰지 않는다 — 제품 수식 경로(`preprocessMathText`)가 대문자 점 이름을 알아서 곧게 세운다(리드 실측 2026-09-30: `\overline{AB}` → `\overline{\mathrm{AB}}`). 단위만 `\mathrm`.
 5. **도형 이름은 한자 수사** — 팔각형(「8각형이 아니라 팔각형」). 문자면 `$n$각형`.
 6. **수식 뒤 조사**는 읽는 소리에 맞춘다(`$3$을` · `$\frac{6}{10}$을` — 자가 잰다).
 7. **빈칸 핵심어가 수 · 식이면 `{$...$}`** — 계약이 허용한다(main `b7a8e4791`: 핵심어 안 수식, 수식 안 TeX 중괄호). 글 핵심어는 그대로.
