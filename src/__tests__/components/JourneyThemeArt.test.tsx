@@ -77,7 +77,7 @@ describe("journey theme props — chest, base and star follow the theme art", ()
     expect(container.textContent).not.toContain("✦");
   });
 
-  it.each(["classic", "space"] as const)(
+  it.each(["classic"] as const)(
     "%s has no prop art and keeps the drawn chest, ⌂ and ✦",
     (theme) => {
       const { container } = inTheme(
@@ -100,8 +100,8 @@ describe("journey theme props — chest, base and star follow the theme art", ()
     expect(container.textContent).toBe("✦");
   });
 
-  it("sea and forest draw their own chest and base, and share the one sky star", () => {
-    for (const theme of ["sea", "forest"] as const) {
+  it("every travel-map theme draws its own chest and base, and shares the one sky star", () => {
+    for (const theme of ["sea", "space", "forest", "shapes"] as const) {
       const { container } = inTheme(
         theme,
         <>
@@ -131,6 +131,13 @@ describe("journey theme props — chest, base and star follow the theme art", ()
       for (const src of [chest, chestOpen, ...bases, star])
         expect(existsSync(join(process.cwd(), "public", src)), src).toBe(true);
     }
-    expect(JOURNEY_THEMES.sky.propArt).toBeDefined();
+    const withArt = Object.values(JOURNEY_THEMES).filter((t) => t.propArt);
+    expect(withArt.map((t) => t.id)).toEqual([
+      "sky",
+      "sea",
+      "space",
+      "forest",
+      "shapes",
+    ]);
   });
 });

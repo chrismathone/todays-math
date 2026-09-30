@@ -45,7 +45,7 @@ export interface JourneyTheme {
   riderImages: RiderImages | null;
   /** 탈것이 칸을 옮길 때의 몸짓 — CSS 가 읽는다. */
   motion: "hop" | "sway" | "bob" | "drift" | "roll";
-  /** 소품 그림(codex 4차 · 하늘섬 먼저). 아직 안 그린 테마는 없다. */
+  /** 소품 그림(codex 4~6차). 지금 판(classic)은 없다 — SVG 상자 · ⌂ · ✦. */
   propArt?: JourneyPropArt;
 }
 
@@ -102,6 +102,7 @@ export const JOURNEY_THEMES: Readonly<Record<JourneyThemeId, JourneyTheme>> = {
     boardImage: "/images/journey/space-board.webp",
     riderImages: riderSet("space"),
     motion: "drift",
+    propArt: propSet("space"),
   },
   forest: {
     id: "forest",
@@ -137,6 +138,7 @@ export const JOURNEY_THEMES: Readonly<Record<JourneyThemeId, JourneyTheme>> = {
       ],
     },
     motion: "roll",
+    propArt: propSet("shapes"),
   },
 };
 
