@@ -293,6 +293,20 @@ describe("parseAiJsonObject — 객체 하나를 같은 복구 단계로", () =>
     });
   });
 
+  it("🔴 영어 글의 줄바꿈 이스케이프를 LaTeX 로 읽지 않는다 — `\\nMany` 가 글자 그대로의 `\\n` 으로 남던 결함", () => {
+    // 모델은 올바른 JSON(줄바꿈 둘 뒤에 영어 단어)을 냈는데, 수학용 복구가 `\n` + 영문자를 `\neq` 류 LaTeX 로 보고
+    // 역슬래시를 살려 지면에 `\n` 이 찍혔다(2026-09-30 모델 벤치 — 21개 모델 전부에서 같은 모양).
+    const raw = String.raw`{"prompt":"다음 글의 밑줄 친 부분 중?\n\nMany people ①believe it.\tThe end\r\nBye","b":"\frame \bold"}`;
+    expect(parseAiJsonObject(raw)).toEqual({
+      prompt:
+        "다음 글의 밑줄 친 부분 중?\n\nMany people ①believe it.\tThe end\r\nBye",
+      b: "\frame \bold",
+    });
+    // 문자열 안의 날 줄바꿈이 섞여 JSON.parse 가 못 읽는 글도 복구하되, 뒤따르는 영어 줄바꿈은 그대로
+    const broken = '{"prompt":"첫 줄\n둘째\\nMany"}';
+    expect(parseAiJsonObject(broken)).toEqual({ prompt: "첫 줄\n둘째\nMany" });
+  });
+
   it("앞 잡설에 대괄호가 있어도 객체를 찾는다 — 배열 함수는 `[` 를 먼저 본다", () => {
     expect(parseAiJsonObject('[참고] 아래가 결과입니다. {"a": 1}')).toEqual({
       a: 1,
