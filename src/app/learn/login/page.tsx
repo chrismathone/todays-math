@@ -1,12 +1,12 @@
-import { StudentLoginForm } from "@/components/learn/StudentLoginForm";
+import { redirect } from "next/navigation";
 
 export const metadata = {
-  title: "오늘의 개념 · 학생 로그인",
+  title: "로그인",
 };
 
 /**
- * 학생 로그인 — 원장님 로그인(`/login`)과 섞지 않는다(D-125 ⑷). 이미 들어온 학생은 관문이 `/learn` 으로 보낸다.
+ * 기존 학생 로그인 주소도 통합 로그인으로 연결한다. 학생 세션·권한은 기존 관문이 따로 판정한다.
  */
 export default function StudentLoginPage() {
-  return <StudentLoginForm />;
+  redirect("/login");
 }

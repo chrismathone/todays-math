@@ -33,7 +33,7 @@ export function AuthForm({ mode, callbackUrl, notice }: AuthFormProps) {
     destination === "/"
       ? alternatePath
       : `${alternatePath}?${new URLSearchParams({ callbackUrl: destination })}`;
-  const [email, setEmail] = useState("");
+  const [identifier, setIdentifier] = useState("");
   const [password, setPassword] = useState("");
   const [name, setName] = useState("");
   const [errors, setErrors] = useState<Record<string, string>>({});
@@ -76,10 +76,56 @@ export function AuthForm({ mode, callbackUrl, notice }: AuthFormProps) {
     let succeeded = false;
 
     try {
+      const loginId = identifier.trim();
+      if (!isSignup && !loginId) {
+        showFieldErrors({
+          email: "이메일 또는 학생 아이디를 입력해 주세요.",
+        });
+        return;
+      }
+
+      // 학생 아이디에는 @가 없다. 인증 실패 시 다른 공급자로 재시도하지 않는다.
+      if (!isSignup && !loginId.includes("@")) {
+        const [{ studentLoginRequestSchema }, { postLogin }] =
+          await Promise.all([
+            import("@/contracts/studentAccount.contract"),
+            import("@/components/learn/learnApi"),
+          ]);
+        const parsed = studentLoginRequestSchema.safeParse({
+          loginId,
+          password,
+        });
+        if (!parsed.success) {
+          const { loginId: identifierError, ...fieldErrors } =
+            fieldErrorsFromZod(parsed.error);
+          showFieldErrors({
+            ...(identifierError ? { email: identifierError } : {}),
+            ...fieldErrors,
+          });
+          return;
+        }
+        const result = await postLogin(
+          parsed.data.loginId,
+          parsed.data.password,
+        );
+        if (!result.ok) {
+          setAlert(result.message);
+          return;
+        }
+        // 선생님용 callbackUrl은 학생 세션의 목적지로 사용하지 않는다.
+        router.replace(
+          result.data.mustChangePassword ? "/learn/password" : "/learn",
+        );
+        router.refresh();
+        succeeded = true;
+        setNavigating(true);
+        return;
+      }
+
       // Keep the schema out of the initial bundle, with import failures inside the recovery boundary.
       const { authLoginRequestSchema, authSignupRequestSchema } =
         await import("@/contracts/auth.contract");
-      const credentials = { email: email.trim(), password };
+      const credentials = { email: loginId, password };
       if (isSignup && !accountCreated.current) {
         const parsed = authSignupRequestSchema.safeParse({
           ...credentials,
@@ -141,7 +187,9 @@ export function AuthForm({ mode, callbackUrl, notice }: AuthFormProps) {
   }
 
   const submitLabel = navigating
-    ? "작업실로 이동 중…"
+    ? isSignup
+      ? "작업실로 이동 중…"
+      : "이동 중…"
     : pending
       ? created || !isSignup
         ? "로그인 중…"
@@ -172,7 +220,7 @@ export function AuthForm({ mode, callbackUrl, notice }: AuthFormProps) {
         <p>
           {isSignup
             ? "가입을 신청하면 관리자 승인 후 작업실을 사용할 수 있어요."
-            : "오늘의 수업 준비, 이어서 시작해 볼까요?"}
+            : "오늘의 수업과 학습, 이어서 시작해 볼까요?"}
         </p>
       </div>
       {created ? (
@@ -210,19 +258,27 @@ export function AuthForm({ mode, callbackUrl, notice }: AuthFormProps) {
         <AuthField
           id="email"
           name="email"
-          label="이메일"
-          type="email"
-          inputMode="email"
+          label={isSignup ? "이메일" : "이메일 또는 학생 아이디"}
+          type={isSignup ? "email" : "text"}
+          inputMode={isSignup ? "email" : "text"}
           autoComplete="username"
           autoCapitalize="none"
+          autoCorrect="off"
           spellCheck={false}
-          placeholder="teacher@example.com"
+          placeholder={
+            isSignup ? "teacher@example.com" : "이메일 또는 학생 아이디"
+          }
+          hint={
+            isSignup
+              ? undefined
+              : "선생님은 이메일, 학생은 발급받은 아이디를 입력하세요."
+          }
           required
           maxLength={255}
-          value={email}
+          value={identifier}
           error={errors.email}
           readOnly={created || pending}
-          onChange={(event) => setEmail(event.target.value)}
+          onChange={(event) => setIdentifier(event.target.value)}
         />
         <AuthField
           id="password"

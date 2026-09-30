@@ -46,7 +46,7 @@ describe("[T1.2] LoginForm", () => {
   it("이메일과 비밀번호 필드를 보여 준다", () => {
     render(<LoginForm />);
 
-    expect(screen.getByLabelText("이메일")).toBeInTheDocument();
+    expect(screen.getByLabelText(/^이메일/)).toBeInTheDocument();
     expect(screen.getByLabelText("비밀번호")).toBeInTheDocument();
     expect(screen.queryByLabelText("이름")).not.toBeInTheDocument();
   });
@@ -63,7 +63,7 @@ describe("[T1.2] LoginForm", () => {
     });
 
     render(<LoginForm />);
-    await user.type(screen.getByLabelText("이메일"), "teacher@example.com");
+    await user.type(screen.getByLabelText(/^이메일/), "teacher@example.com");
     await user.type(screen.getByLabelText("비밀번호"), "password123");
     await user.click(screen.getByRole("button", { name: "로그인" }));
 
@@ -87,7 +87,7 @@ describe("[T1.2] LoginForm", () => {
     signIn.mockResolvedValue({ ok: true });
 
     render(<LoginForm callbackUrl={callbackUrl} />);
-    await user.type(screen.getByLabelText("이메일"), "teacher@example.com");
+    await user.type(screen.getByLabelText(/^이메일/), "teacher@example.com");
     await user.type(screen.getByLabelText("비밀번호"), "password123");
     await user.click(screen.getByRole("button", { name: "로그인" }));
 
@@ -116,7 +116,7 @@ describe("[T1.2] LoginForm", () => {
     );
   });
 
-  // 구글(OAuth) 로그인은 제거됐다(원장님 지시 2026-08-14) — 로그인 수단은 이메일/비밀번호뿐이다.
+  // 구글(OAuth) 로그인은 제거됐다(원장님 지시 2026-08-14) — 소셜 로그인 없이 아이디와 비밀번호로 로그인한다.
   // 버튼이 다시 살아나면 이 테스트가 깨진다.
   it("소셜 로그인 버튼을 노출하지 않는다", () => {
     render(<LoginForm />);
@@ -134,7 +134,7 @@ describe("[T1.2] LoginForm", () => {
     const user = userEvent.setup();
     render(<LoginForm />);
 
-    await user.type(screen.getByLabelText("이메일"), "not-an-email");
+    await user.type(screen.getByLabelText(/^이메일/), "not-an-email@");
     await user.type(screen.getByLabelText("비밀번호"), "password123");
     await user.click(screen.getByRole("button", { name: "로그인" }));
 
@@ -148,7 +148,7 @@ describe("[T1.2] LoginForm", () => {
     const user = userEvent.setup();
     render(<LoginForm />);
 
-    await user.type(screen.getByLabelText("이메일"), "teacher@example.com");
+    await user.type(screen.getByLabelText(/^이메일/), "teacher@example.com");
     await user.type(screen.getByLabelText("비밀번호"), "short");
     await user.click(screen.getByRole("button", { name: "로그인" }));
 
@@ -168,7 +168,7 @@ describe("[T1.2] LoginForm", () => {
     });
 
     render(<LoginForm />);
-    await user.type(screen.getByLabelText("이메일"), "teacher@example.com");
+    await user.type(screen.getByLabelText(/^이메일/), "teacher@example.com");
     await user.type(screen.getByLabelText("비밀번호"), "password123");
     await user.click(screen.getByRole("button", { name: "로그인" }));
 
@@ -191,7 +191,7 @@ describe("[T1.2] LoginForm", () => {
     });
 
     render(<LoginForm />);
-    await user.type(screen.getByLabelText("이메일"), "teacher@example.com");
+    await user.type(screen.getByLabelText(/^이메일/), "teacher@example.com");
     await user.type(screen.getByLabelText("비밀번호"), "password123");
     await user.click(screen.getByRole("button", { name: "로그인" }));
 
@@ -229,7 +229,7 @@ describe("[T1.2] SignupForm", () => {
   it("이메일/비밀번호/이름 필드와 로그인 전환 링크를 보여 준다", () => {
     render(<SignupForm />);
 
-    expect(screen.getByLabelText("이메일")).toBeInTheDocument();
+    expect(screen.getByLabelText(/^이메일/)).toBeInTheDocument();
     expect(screen.getByLabelText("비밀번호")).toBeInTheDocument();
     expect(screen.getByLabelText("이름")).toBeInTheDocument();
     expect(screen.getByRole("link", { name: "로그인" })).toHaveAttribute(
@@ -248,7 +248,10 @@ describe("[T1.2] SignupForm", () => {
     });
 
     render(<SignupForm />);
-    await user.type(screen.getByLabelText("이메일"), "new-teacher@example.com");
+    await user.type(
+      screen.getByLabelText(/^이메일/),
+      "new-teacher@example.com",
+    );
     await user.type(screen.getByLabelText("비밀번호"), "password123");
     await user.type(screen.getByLabelText("이름"), "김원장");
     await user.click(screen.getByRole("button", { name: "가입하고 시작하기" }));
@@ -271,7 +274,7 @@ describe("[T1.2] SignupForm", () => {
     render(<SignupForm />);
 
     await user.type(
-      screen.getByLabelText("이메일"),
+      screen.getByLabelText(/^이메일/),
       MOCK_EXISTING_SIGNUP_EMAIL,
     );
     await user.type(screen.getByLabelText("비밀번호"), "password123");
@@ -289,7 +292,10 @@ describe("[T1.2] SignupForm", () => {
     const user = userEvent.setup();
     render(<SignupForm />);
 
-    await user.type(screen.getByLabelText("이메일"), "new-teacher@example.com");
+    await user.type(
+      screen.getByLabelText(/^이메일/),
+      "new-teacher@example.com",
+    );
     await user.type(screen.getByLabelText("비밀번호"), "password123");
     await user.click(screen.getByRole("button", { name: "가입하고 시작하기" }));
 
@@ -307,7 +313,7 @@ describe("auth recovery and accessibility", () => {
 
   async function fillCredentials() {
     const user = userEvent.setup();
-    await user.type(screen.getByLabelText("이메일"), "auth-qa@example.com");
+    await user.type(screen.getByLabelText(/^이메일/), "auth-qa@example.com");
     await user.type(screen.getByLabelText("비밀번호"), "password123");
     if (screen.queryByLabelText("이름"))
       await user.type(screen.getByLabelText("이름"), "김선생");
@@ -365,7 +371,7 @@ describe("auth recovery and accessibility", () => {
     render(<LoginForm />);
     const user = userEvent.setup();
     await user.tab();
-    expect(screen.getByLabelText("이메일")).toHaveFocus();
+    expect(screen.getByLabelText(/^이메일/)).toHaveFocus();
     await user.tab();
     expect(screen.getByLabelText("비밀번호")).toHaveFocus();
     await user.tab();
@@ -391,7 +397,7 @@ describe("auth recovery and accessibility", () => {
         .closest("form")!,
     );
     await screen.findByRole("alert");
-    const email = screen.getByLabelText("이메일");
+    const email = screen.getByLabelText(/^이메일/);
     expect(email).toHaveAttribute("aria-invalid", "true");
     expect(email).toHaveAccessibleDescription(
       "이메일 형식이 올바르지 않습니다.",
@@ -420,9 +426,7 @@ describe("auth recovery and accessibility", () => {
     await act(async () => {
       resolveSignIn({ ok: true });
     });
-    expect(
-      screen.getByRole("button", { name: "작업실로 이동 중…" }),
-    ).toBeDisabled();
+    expect(screen.getByRole("button", { name: "이동 중…" })).toBeDisabled();
     fireEvent.submit(form);
     expect(signIn).toHaveBeenCalledTimes(1);
   });
@@ -471,7 +475,7 @@ describe("auth recovery and accessibility", () => {
       expect(screen.getByRole("status")).toHaveTextContent(
         "가입 신청이 접수됐어요",
       );
-      expect(screen.getByLabelText("이메일")).toHaveAttribute("readonly");
+      expect(screen.getByLabelText(/^이메일/)).toHaveAttribute("readonly");
       expect(screen.getByLabelText("비밀번호")).toHaveAttribute(
         "autocomplete",
         "current-password",
@@ -503,7 +507,9 @@ describe("auth recovery and accessibility", () => {
         "요청을 처리할 수 없습니다",
       ),
     );
-    expect(screen.getByLabelText("이메일")).not.toHaveAttribute("aria-invalid");
+    expect(screen.getByLabelText(/^이메일/)).not.toHaveAttribute(
+      "aria-invalid",
+    );
     expect(signIn).not.toHaveBeenCalled();
   });
 
