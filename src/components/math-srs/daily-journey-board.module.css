@@ -875,6 +875,10 @@ button.next:active:enabled {
 }
 
 /* 탈것 — 네 방향 그림 중 가는 쪽 하나만(오른쪽은 왼쪽 그림을 뒤집는다) */
+.root:not([data-journey-theme="classic"]) .departure {
+  /* 테마 탈것은 기본 말보다 넓다 — 출발 글자도 탈것 반폭 + 4px 만큼 띄운다. */
+  margin-right: calc(9% + clamp(15px, 5.5cqi, 27px) + 4px);
+}
 .rider {
   width: clamp(30px, 11cqi, 54px);
   height: clamp(30px, 11cqi, 54px);
