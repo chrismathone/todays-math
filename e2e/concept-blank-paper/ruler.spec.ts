@@ -105,7 +105,7 @@ test("자가 문다 — 지면을 망가뜨리면 그 자만 움직인다", asyn
   expect(max(again, (r) => r.align.qnBaseline)).toBe(0);
 });
 
-test("자가 문다 — KaTeX 기준선", async ({ page }) => {
+test("자가 문다 — KaTeX 기준선 · 핵심어 수식 굵기", async ({ page }) => {
   await openSet(page, "math");
   const clean = await measurePages(page);
   expect(clean.reduce((n, r) => n + r.align.katex, 0)).toBeGreaterThan(10);
@@ -113,4 +113,54 @@ test("자가 문다 — KaTeX 기준선", async ({ page }) => {
   // 수식만 2px 내린다 — 옆 글과 기준선이 어긋난다
   const shifted = await broken(page, ".katex{position:relative;top:2px}");
   expect(max(shifted, (r) => r.align.katexBaseline)).toBeCloseTo(2, 0);
+
+  // 굵은 핵심어 안 수식의 굵기 — 멀쩡하면 굵고(700), KaTeX 제 굵기로 되돌리면 가늘다
+  const weights = (rs: PageReport[]) =>
+    rs
+      .map((r) => r.align.keywordMathWeight)
+      .filter((w): w is number => w !== null);
+  expect(weights(clean).length).toBeGreaterThan(0);
+  expect(Math.min(...weights(clean))).toBeGreaterThanOrEqual(700);
+  const thin = await broken(page, ".katex{font-weight:400 !important}");
+  expect(Math.min(...weights(thin))).toBe(400);
+});
+
+test("자가 문다 — 새는 마크업 · 수식 오류", async ({ page }) => {
+  await openSet(page, "math");
+  const clean = await measurePages(page);
+  expect(clean.flatMap((r) => r.leaks)).toEqual([]);
+  expect(max(clean, (r) => r.mathErrors)).toBe(0);
+  // 수식 경로를 안 지난 글 한 조각(`$` · 역슬래시가 그대로)을 학생지 문장과 채점표 줄에 끼운다
+  await page.evaluate(() => {
+    for (const selector of [
+      '[data-cb-part="student"] [data-cb-item="sentence"]',
+      '[data-cb-part="key"] tr[data-cb-key-row]',
+    ]) {
+      const probe = document.createElement("span");
+      probe.dataset.cbRulerProbe = "";
+      probe.textContent = String.raw` $\frac{1}{2}$ `;
+      document.querySelector(selector)!.lastElementChild!.append(probe);
+    }
+  });
+  const leaked = await measurePages(page);
+  expect(leaked.flatMap((r) => r.leaks)).toEqual([
+    String.raw`$\frac{1}{2}$`,
+    String.raw`$\frac{1}{2}$`,
+  ]);
+  // 달러 없이 역슬래시만 남은 것도 잡는다 · KaTeX 가 붉게 그린 수식은 오류로 센다
+  await page.evaluate(() => {
+    const [a, b] = document.querySelectorAll<HTMLElement>(
+      "[data-cb-ruler-probe]",
+    );
+    a!.textContent = String.raw` \times `;
+    b!.textContent = "";
+    const bad = document.createElement("span");
+    bad.className = "katex-error";
+    b!.append(bad);
+  });
+  const again = await measurePages(page);
+  expect(again.flatMap((r) => r.leaks)).toEqual([String.raw`\times`]);
+  expect(again.reduce((n, r) => n + r.mathErrors, 0)).toBe(1);
+  // KaTeX 가 같이 넣는 MathML(annotation 에 TeX 원문이 있다)은 새는 것이 아니다 — 수식이 있는데도 0 이었다
+  expect(clean.reduce((n, r) => n + r.align.katex, 0)).toBeGreaterThan(10);
 });

@@ -5,13 +5,21 @@
  * 쪽 나누기 고정 규칙(B 10문항 → 2장 · 천장 · 고르게 나누기) · 줄맞춤 도구(번호 열 · 줄 어림 · 가지 · 카드 놓기) ·
  * 학생지에 답이 새지 않는다 · 배점 글자가 없다 · 수식은 제품 KaTeX 경로.
  *
+ * 이어서(2026-10-01) — 핵심어 안 수식 · 글이 나오는 모든 칸이 수식 경로(`$` · 역슬래시가 새지 않는다) · 빈칸 폭은 보이는 폭 ·
+ * 수식 줄 나눔(도막) · 굵은 글 안 수식 폭.
+ *
  * ⚠️ vitest 는 CSS 를 안 읽는다(`css: false`) — 넘침(px)은 Playwright 가 인쇄 매체로 잰다(`e2e/concept-blank-paper`).
  */
+import { readFileSync } from "node:fs";
+import { createRequire } from "node:module";
+import path from "node:path";
+
 import { render, screen, within } from "@testing-library/react";
 import { describe, expect, it } from "vitest";
 
 import ConceptBlankPaper from "@/components/concept-blank/ConceptBlankPaper";
 import {
+  clozeCost,
   GEOMETRY,
   hasNestedFraction,
   keyRowCost,
@@ -24,6 +32,7 @@ import {
   packPages,
   PAGE_CAPS,
   planSheet,
+  termRuledLines,
   type KeyRow,
 } from "@/components/concept-blank/paper/paginate";
 import {
@@ -35,20 +44,28 @@ import {
   BLANK_WIDTH,
   blankTail,
   blankWidth,
+  BOLD_MATH,
   circled,
   estimateLines,
   formatSheetDate,
+  inkEm,
+  mathCharEm,
+  mathChunks,
   mathEm,
+  mathInkEm,
   sentenceAtoms,
   sentenceKeywords,
   splitSentence,
+  textAtoms,
   textEm,
   wrapLines,
 } from "@/components/concept-blank/paper/text";
 import { parseConceptBlankView } from "@/components/concept-blank/paper/view";
 import {
   blankKeywords,
+  conceptBlankBankSchema,
   splitBlankSentence,
+  type ConceptBlankBank,
   type ConceptBlankSelection,
   type ConceptBlankSheet,
   type ConceptEntry,
@@ -103,6 +120,23 @@ const entry = (i: number, definition?: string): ConceptEntry => ({
   level: "하",
   definition: definition ?? `짧은 뜻 문장 ${i}번에는 {핵심어}가 있다.`,
 });
+
+/**
+ * 종이에 찍히는 글 — KaTeX 가 접근성용으로 같이 넣는 MathML(그 안 `annotation` 에 TeX 원문이 있다)을 뺀 글 조각들.
+ * 그림 속 이름표(`[data-cb-tag]` — SVG 글자)는 수식 경로를 안 지나는 예외라 `skipTags` 로 뺄 수 있다.
+ */
+function visibleTexts(root: Element, skipTags = false): string[] {
+  const walker = document.createTreeWalker(root, NodeFilter.SHOW_TEXT);
+  const texts: string[] = [];
+  while (walker.nextNode()) {
+    const parent = walker.currentNode.parentElement;
+    if (parent?.closest(".katex-mathml")) continue;
+    if (skipTags && parent?.closest("[data-cb-tag]")) continue;
+    texts.push(walker.currentNode.textContent ?? "");
+  }
+  return texts;
+}
+const visibleText = (root: Element) => visibleTexts(root).join("");
 
 const studentPages = (form: string) =>
   document.querySelectorAll(
@@ -668,6 +702,86 @@ describe("줄맞춤 · 채우기 — 번호 열 · 줄 어림 · 가지 · 카�
     expect(mathExtra("$a$ $\\frac{a}{b}$", 1, 11.5, 17.83)).toBe(tall);
   });
 
+  it("수식 줄 나눔 — 맨 바깥 연산자 · 관계 기호 뒤에서만 끊긴다(좁은 칸의 긴 식)", () => {
+    expect(mathChunks("$acx^2+(ad+bc)x+bd$")).toEqual([
+      "acx^2+",
+      "(ad+bc)x+",
+      "bd",
+    ]);
+    expect(mathChunks(String.raw`$3\times4=12$`)).toEqual([
+      String.raw`3\times`,
+      "4=",
+      "12",
+    ]);
+    // 묶음 · 괄호 안과 식 머리의 부호에서는 안 끊긴다(맨 괄호도 — 제품 경로가 키 큰 속의 괄호를 늘인 괄호로 바꾼다)
+    expect(mathChunks(String.raw`$\frac{a+b}{2}$`)).toHaveLength(1);
+    expect(mathChunks(String.raw`$\left(a+b\right)c$`)).toHaveLength(1);
+    expect(
+      mathChunks(String.raw`$\sqrt 2(\sqrt 3+1)=\sqrt 6+\sqrt 2$`),
+    ).toEqual([
+      String.raw`\sqrt 2(\sqrt 3+1)=`,
+      String.raw`\sqrt 6+`,
+      String.raw`\sqrt 2`,
+    ]);
+    // 짝이 안 맞는 괄호(구간 `(a, b]`)에도 깊이가 음수로 가지 않는다
+    expect(mathChunks("$)a+b$")).toEqual([")a+", "b"]);
+    expect(mathChunks("$-3$")).toEqual(["-3"]);
+    expect(mathChunks("$x=-2$")).toEqual(["x=", "-2"]);
+    expect(mathChunks("$(-2, +3)$")).toHaveLength(1);
+    expect(mathChunks("$x+$")).toEqual(["x+"]);
+    // 도막으로 나눠도 폭의 합은 그대로다
+    const long = "$acx^2+(ad+bc)x+bd$";
+    expect(
+      mathChunks(long).reduce((em, chunk) => em + mathEm(chunk), 0),
+    ).toBeCloseTo(mathEm(long), 5);
+    // 채점표 개념 열(118px · 굵은 11.5px) — «폭 ÷ 칸 폭»은 두 줄이지만 도막으로 채우면 세 줄이다(중3 은행에서 잰 것)
+    const term = `${long}의 인수분해`;
+    expect(estimateLines(term, 11.5, 118, BOLD_MATH)).toBe(3);
+    // 굵은 글의 수식은 넓게 센다
+    expect(textAtoms("$abc$", 10, BOLD_MATH)[0]!.px).toBeCloseTo(
+      textAtoms("$abc$", 10)[0]!.px * BOLD_MATH,
+      5,
+    );
+  });
+
+  it("수식 글자 폭 — 어림 표는 KaTeX 글꼴의 보통 벌 · 굵은 벌보다 좁지 않다", () => {
+    // KaTeX 가 배치에 쓰는 글꼴 폭 표(글자마다 [깊이, 높이, 기울임, 비낌, 폭])
+    const require = createRequire(import.meta.url);
+    const file = path.join(
+      path.dirname(require.resolve("katex/package.json")),
+      "src",
+      "fontMetricsData.js",
+    );
+    const metrics = new Function(
+      readFileSync(file, "utf8").replace("export default", "return"),
+    )() as Record<string, Record<number, number[]>>;
+    const width = (font: string, ch: string) =>
+      metrics[font]?.[ch.codePointAt(0)!]?.[4] ?? 0;
+    // 수식의 `-` · `*` 는 뺄셈표 · 별표 연산자로 그려진다
+    const glyph = (ch: string) => (ch === "-" ? "−" : ch === "*" ? "∗" : ch);
+    const chars = [
+      ..."abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ",
+      ..."0123456789+-=<>()[]/.,:|!*",
+    ];
+    const regular: string[] = [];
+    const bold: string[] = [];
+    for (const ch of chars) {
+      const g = glyph(ch);
+      const thin = Math.max(width("Math-Italic", g), width("Main-Regular", g));
+      const thick = Math.max(
+        width("Math-BoldItalic", g),
+        width("Main-Bold", g),
+      );
+      expect(thin, ch).toBeGreaterThan(0);
+      if (mathCharEm(ch) < thin)
+        regular.push(`${ch} ${mathCharEm(ch)}<${thin}`);
+      if (mathCharEm(ch) * BOLD_MATH < thick)
+        bold.push(`${ch} ${mathCharEm(ch)}×${BOLD_MATH}<${thick}`);
+    }
+    expect(regular).toEqual([]);
+    expect(bold).toEqual([]);
+  });
+
   it("수식 갈래 — 잰 줄 높이대로 나눈다(글자 · 얹는 것 · 분수 · 분수 + 첨자 · 겹친 것)", () => {
     const kinds = (list: string[]) => list.map((s) => mathKind(`$${s}$`));
     expect(
@@ -1005,6 +1119,143 @@ describe("지면 글 — 수식 · 핵심어 · 날짜", () => {
       ).toContain(t.answer);
   });
 
+  it("핵심어 안 수식 — 채점표는 굵은 글 안 KaTeX, 학생지는 보이는 폭만큼의 빈칸", () => {
+    const definition = String.raw`{$1000\,\mathrm{m}$}를 $1\,\mathrm{km}$라 쓰고, $\sin 60^\circ$의 값은 {$\frac{\sqrt{3}}{2}$}이며 {윗자리의 $1$개}를 {올림}한다.`;
+    const keys = blankKeywords(definition);
+    expect(keys).toEqual([
+      String.raw`$1000\,\mathrm{m}$`,
+      String.raw`$\frac{\sqrt{3}}{2}$`,
+      "윗자리의 $1$개",
+      "올림",
+    ]);
+    const sheet: ConceptBlankSheet = {
+      form: "cloze",
+      header: header("cloze"),
+      sentences: [entry(1, definition)],
+      apply: [],
+    };
+
+    const key = render(<ConceptBlankPaper sheets={[sheet]} view="key" />);
+    const bold = [
+      ...document.querySelectorAll<HTMLElement>("[data-cb-keyword]"),
+    ];
+    expect(bold).toHaveLength(4);
+    // 수식 핵심어는 굵은 글 안에서 KaTeX 로 — 마크업 글자가 그대로 찍히지 않는다
+    expect(bold.map((b) => b.querySelectorAll(".katex").length)).toEqual([
+      1, 1, 1, 0,
+    ]);
+    for (const b of bold) {
+      expect(b.tagName).toBe("B");
+      expect(visibleText(b)).not.toMatch(/[$\\{}]/);
+    }
+    expect(visibleText(bold[2]!)).toContain("윗자리의");
+    expect(bold[3]!.textContent).toBe("올림");
+    key.unmount();
+
+    render(<ConceptBlankPaper sheets={[sheet]} view="student" />);
+    const sentence = document.querySelector('[data-cb-item="sentence"]')!;
+    // 학생지 — 핵심어의 수식은 그려지지 않는다(글 조각의 수식 둘만)
+    expect(sentence.querySelectorAll(".katex")).toHaveLength(2);
+    expect(visibleText(sentence)).not.toMatch(/[$\\{}]/);
+    expect(
+      [...sentence.querySelectorAll<HTMLElement>("[data-cb-blank]")].map(
+        (b) => b.style.width,
+      ),
+    ).toEqual(keys.map((k) => `${blankWidth(k)}px`));
+  });
+
+  it("빈칸 폭 — 수식 핵심어는 `$` 마크업 글자 수가 아니라 보이는 폭으로", () => {
+    const frac = String.raw`$\frac{\sqrt{3}}{2}$`;
+    // 마크업 글자 수(19자)로 세면 최대 폭까지 간다 — 분수 하나는 한글 세 글자보다 좁다
+    expect([...frac].length * 14 + 24).toBeGreaterThan(BLANK_WIDTH.max);
+    expect(blankWidth(frac)).toBeLessThan(blankWidth("가나다"));
+    expect(blankWidth(String.raw`$\frac{7}{7}$`)).toBe(BLANK_WIDTH.min);
+    // 단위 — «1000 mL» 은 한글 세 글자보다 길고 여섯 글자보다 짧다
+    const mL = blankWidth(String.raw`$1000\,\mathrm{mL}$`);
+    expect(mL).toBeGreaterThan(blankWidth("가나다"));
+    expect(mL).toBeLessThan(blankWidth("가나다라마바"));
+    // 보이는 글자가 늘면 빈칸도 는다
+    const widths = ["$10$", "$1000$", "$100000000$"].map(blankWidth);
+    expect([...widths].sort((a, b) => a - b)).toEqual(widths);
+    expect(new Set(widths).size).toBe(3);
+    // 글꼴 · 윗줄 · 묶음처럼 글자를 그리지 않는 마크업은 폭을 늘리지 않는다
+    expect(mathInkEm(String.raw`$\overline{\mathrm{AB}}$`)).toBeCloseTo(
+      mathInkEm("$AB$"),
+      5,
+    );
+    expect(mathInkEm(String.raw`$\displaystyle \frac{1}{2}$`)).toBeCloseTo(
+      mathInkEm(String.raw`$\frac{1}{2}$`),
+      5,
+    );
+    // 기호 — 식 사이에서는 좌우 띄움이 붙고, 혼자 서면 글자 폭뿐이다 · 식 머리의 `-` 는 부호
+    expect(mathInkEm(String.raw`$3\times4$`)).toBeGreaterThan(
+      mathInkEm("$3$") + mathInkEm(String.raw`$\times$`) + mathInkEm("$4$"),
+    );
+    expect(mathInkEm("$-2$")).toBeLessThan(
+      mathInkEm("$1-2$") - mathInkEm("$1$"),
+    );
+    // 여러 줄 수식은 가장 넓은 줄의 폭
+    expect(
+      mathInkEm(String.raw`$\begin{cases} x+y=1 \\ x=3 \end{cases}$`),
+    ).toBeLessThan(mathInkEm("$x+y=1$") + mathInkEm("$x=3$"));
+    // 분수는 분자 · 분모 가운데 넓은 쪽, 첨자는 작게
+    expect(mathInkEm(String.raw`$\frac{1}{100}$`)).toBeLessThan(
+      mathInkEm("$1100$"),
+    );
+    expect(mathInkEm(String.raw`$\frac{1}{100}$`)).toBeGreaterThanOrEqual(
+      mathInkEm("$100$"),
+    );
+    expect(mathInkEm("$x^2$")).toBeLessThan(mathInkEm("$x2$"));
+    // 글과 수식이 섞인 핵심어 — 글은 글자 폭, 수식은 보이는 폭
+    expect(inkEm("윗자리의 $1$개")).toBeCloseTo(
+      textEm("윗자리의 ") + mathInkEm("$1$") + textEm("개"),
+      5,
+    );
+    expect(inkEm("글자만")).toBe(textEm("글자만"));
+    // 어림(줄 채우기)도 같은 폭으로 센다 — 빈칸 조각 = 빈칸 폭 + 좌우 여백
+    expect(sentenceAtoms(`값은 {${frac}} 이다`, 14)[1]!.px).toBe(
+      blankWidth(frac) + 6,
+    );
+  });
+
+  it("B 쓰기 줄 수 — 뜻 문장의 보이는 글자 수로(수식 마크업은 세지 않는다)", () => {
+    // 보이는 글은 «1000 m를 1 km라고 한다.» 열세 글자 — 마크업까지 세면 마흔 자가 넘는다
+    const short = entry(
+      1,
+      String.raw`{$1000\,\mathrm{m}$}를 {$1\,\mathrm{km}$}라고 한다.`,
+    );
+    expect(short.definition.replace(/\s+/g, "").length).toBeGreaterThan(18);
+    expect(termRuledLines(short)).toBe(1);
+    expect(termRuledLines(entry(2, "짧은 {뜻}이다."))).toBe(1);
+    expect(
+      termRuledLines(
+        entry(3, "두 도형을 겹쳐 놓았을 때 남는 곳 없이 {꼭 맞게} 겹친다."),
+      ),
+    ).toBe(2);
+  });
+
+  it("학생지 문장 높이 어림 — 빈칸이 된 핵심어의 수식은 줄을 높이지 않는다", () => {
+    const sheetOfOne = (definition: string): ConceptBlankSheet => ({
+      form: "cloze",
+      header: header("cloze"),
+      sentences: [entry(1, definition)],
+      apply: [],
+    });
+    const block = (definition: string) => {
+      const page = planSheet(sheetOfOne(definition)).student[0]!;
+      return page.form === "cloze" ? page.blocks[0]! : null;
+    };
+    const plain = clozeCost(block("값은 {절반}이다.")!, undefined);
+    // 핵심어가 분수여도 학생지에는 밑줄뿐이다
+    expect(
+      clozeCost(block(String.raw`값은 {$\frac{1}{2}$}이다.`)!, undefined),
+    ).toBe(plain);
+    // 글 조각의 분수는 줄을 높인다
+    expect(
+      clozeCost(block(String.raw`값 $\frac{1}{2}$ 은 {절반}이다.`)!, undefined),
+    ).toBeGreaterThan(plain);
+  });
+
   it("날짜 · 동그라미 번호", () => {
     expect(formatSheetDate("2026-10-01")).toBe("2026. 10. 1 (목)");
     expect(formatSheetDate("2026-02-30")).toBeNull();
@@ -1014,5 +1265,289 @@ describe("지면 글 — 수식 · 핵심어 · 날짜", () => {
     expect(circled(21)).toBe("㉑");
     expect(circled(50)).toBe("㊿");
     expect(circled(51)).toBe("(51)");
+  });
+});
+
+/**
+ * 글이 나오는 모든 칸이 제품 수식 경로(`PaperText` → `MathText`)를 지난다(원장님 2026-09-30 «카텍스 사용할 것»).
+ * 은행 2차부터 모든 숫자 · 단위 · 분수 · 각이 `$...$` 다 — 한 칸이라도 글자 그대로 찍으면 `$` · 역슬래시가 종이에 샌다.
+ * 수식이 든 작은 은행(계약이 받아들이는 꼴)을 제품 `composeSheets` 로 합쳐 다섯 형식 × 학생지 · 채점표에서 본다.
+ */
+describe("모든 칸 수식 경로 — `$` · 역슬래시가 종이에 새지 않는다", () => {
+  const MS = {
+    a: "초5::2-3 합동과 대칭::2-3-1 도형의 합동 알아보기",
+    b: "초5::2-3 합동과 대칭::2-3-2 합동인 도형의 성질 알아보기",
+  } as const;
+  const MATH_BANK: ConceptBlankBank = conceptBlankBankSchema.parse({
+    concepts: [
+      {
+        id: "mx-km",
+        section: MS.a,
+        term: String.raw`$1\,\mathrm{km}$`,
+        kind: "단위",
+        level: "하",
+        definition: String.raw`{$1000\,\mathrm{m}$}를 $1\,\mathrm{km}$라 쓰고 {$1$ 킬로미터}라고 읽는다.`,
+        example: {
+          prompt: String.raw`$2350\,\mathrm{m}$는 몇 $\mathrm{km}$ 몇 $\mathrm{m}$인가?`,
+          answer: String.raw`$2\,\mathrm{km}$ $350\,\mathrm{m}$`,
+        },
+      },
+      {
+        id: "mx-frac",
+        section: MS.a,
+        term: String.raw`진분수 $\frac{2}{3}$`,
+        kind: "정의",
+        level: "중",
+        definition: String.raw`분자가 분모보다 작은 $\frac{2}{3}$ 같은 분수를 {진분수}라 하고, $\sin 60^\circ$의 값은 {$\frac{\sqrt{3}}{2}$}이다.`,
+      },
+      {
+        id: "mx-mixed",
+        section: MS.b,
+        term: String.raw`대분수 $2\frac{1}{3}$`,
+        kind: "정의",
+        level: "상",
+        definition: String.raw`$2\frac{1}{3}$처럼 {자연수}와 {진분수}로 이루어진 분수를 대분수라 한다.`,
+        example: {
+          prompt: String.raw`$\frac{7}{3}$을 대분수로 나타내면?`,
+          answer: String.raw`$2\frac{1}{3}$`,
+        },
+      },
+    ],
+    ox: [
+      {
+        id: "mx-o1",
+        section: MS.a,
+        level: "하",
+        statement: String.raw`$\frac{3}{3}$은 진분수이다.`,
+        answer: false,
+        why: String.raw`분자와 분모가 같은 $\frac{3}{3}$은 가분수이다.`,
+      },
+      {
+        id: "mx-o2",
+        section: MS.b,
+        level: "중",
+        statement: String.raw`$1\,\mathrm{km}$는 $1000\,\mathrm{m}$이다.`,
+        answer: true,
+        why: String.raw`$1000\,\mathrm{m}$를 $1\,\mathrm{km}$라 한다.`,
+      },
+    ],
+    apply: [
+      {
+        id: "mx-a1",
+        section: MS.a,
+        level: "하",
+        prompt: String.raw`$1\,\mathrm{km}$ $200\,\mathrm{m}$는 몇 $\mathrm{m}$인가?`,
+        answer: String.raw`$1200\,\mathrm{m}$`,
+      },
+      {
+        id: "mx-a2",
+        section: MS.b,
+        level: "중",
+        prompt: String.raw`기온이 오른 때와 내린 때를 $1$시간 단위로 쓰시오.`,
+        // 물결표 둘 — 마크다운이 지운 글(취소선)로 읽지 않는다
+        answer: String.raw`$9$~$10$시 상승, $10$~$11$시 하강`,
+      },
+    ],
+    figures: [
+      {
+        id: "mx-f1",
+        section: MS.a,
+        level: "하",
+        prompt: String.raw`각 $\angle A$ 읽기`,
+        viewBox: "0 0 200 110",
+        svg: `<polygon points="40,90 160,90 100,20" fill="#F7F3E6" stroke="#1F1F23" stroke-width="1.6"/>`,
+        tags: [{ x: 70, y: 2, w: 60, answer: "꼭짓점" }],
+        lines: [
+          {
+            label: String.raw`$\angle A$의 크기`,
+            answer: String.raw`세 각이 같으므로 $60^\circ$이다.`,
+          },
+        ],
+      },
+    ],
+  });
+  const MATH_SHEETS = composeSheets(
+    {
+      sections: [MS.a, MS.b],
+      forms: [
+        { form: "recall", counts: ALL, extras: NONE },
+        { form: "term", counts: ALL, extras: ALL },
+        { form: "cloze", counts: ALL, extras: ALL },
+        { form: "map", counts: ALL, extras: NONE },
+        { form: "figure", counts: ALL, extras: NONE },
+      ],
+      title: "수식 은행",
+      date: "2026-10-01",
+    },
+    MATH_BANK,
+  );
+  const FORMS = ["recall", "term", "cloze", "map", "figure"] as const;
+  const leaks = (root: Element) =>
+    visibleTexts(root, true).filter((t) => /[$\\]/.test(t));
+
+  it("수식 은행이 다섯 형식으로 합쳐진다", () => {
+    expect(MATH_SHEETS.map((s) => s.form)).toEqual([...FORMS]);
+  });
+
+  for (const view of ["student", "key"] as const)
+    it(`${view === "student" ? "학생지" : "채점표"} — 어느 형식에서도 \`$\` · 역슬래시 글자가 없다`, () => {
+      render(<ConceptBlankPaper sheets={MATH_SHEETS} view={view} />);
+      for (const form of FORMS) {
+        const pages = [
+          ...(view === "student" ? studentPages(form) : keyPages(form)),
+        ];
+        expect(pages.length, form).toBeGreaterThan(0);
+        for (const page of pages) expect(leaks(page), form).toEqual([]);
+        // A 학생지는 소단원 이름뿐이다 — 그 밖의 면은 수식이 KaTeX 로 그려져 있다
+        if (!(view === "student" && form === "recall"))
+          expect(
+            pages.reduce((n, p) => n + p.querySelectorAll(".katex").length, 0),
+            form,
+          ).toBeGreaterThan(0);
+      }
+      // 수식 오류(붉은 글) · 지운 글이 없다
+      expect(document.querySelector(".katex-error")).toBeNull();
+      expect(document.querySelector("del")).toBeNull();
+      expect(document.querySelector('[style*="color:#cc0000"]')).toBeNull();
+    });
+
+  it("학생지 — 칸마다 수식이 KaTeX 로: 용어 · ○× 문장 · 뜻 글 · 적용 물음 · 가지 이름 · 예 물음 · 그림 물음 · 줄 이름", () => {
+    render(<ConceptBlankPaper sheets={MATH_SHEETS} view="student" />);
+    const katex = (selector: string) =>
+      [...document.querySelectorAll(selector)].map(
+        (el) => el.querySelectorAll(".katex").length,
+      );
+    // B — 용어 셋 모두 수식이 있다 · ○× 문장 둘
+    expect(katex('[data-cb-item="term"]')).toEqual([1, 1, 1]);
+    expect(katex('[data-cb-item="ox"]')).toEqual([1, 2]);
+    // C — 글 조각의 수식만(핵심어의 수식은 빈칸이다): 1 · 2 · 1
+    expect(katex('[data-cb-item="sentence"]')).toEqual([1, 2, 1]);
+    expect(katex('[data-cb-item="apply"]')).toEqual([3, 1]);
+    // D — 가지 이름 + 예 물음(답은 빈칸). 왼쪽 기둥(첫째 · 셋째 가지)이 먼저 그려진다
+    expect(katex("[data-cb-node]")).toEqual([1 + 3, 1 + 1, 1]);
+    // E — 물음 + 줄 이름
+    expect(katex("[data-cb-card]")).toEqual([2]);
+    expect(katex("[data-cb-line]")).toEqual([1]);
+    // 답은 한 글자도 없다 — 예의 답 · 적용 답 · 핵심어의 보이는 글
+    const text = visibleText(document.body);
+    expect(text).not.toContain("킬로미터");
+    expect(text).not.toContain("1200");
+    expect(text).not.toContain("가분수");
+  });
+
+  it("채점표 — 칸마다 수식이 KaTeX 로: 용어 · 핵심어 · 예 물음/답 · ○× 까닭/문장 · 적용 물음/답 · 그림 물음 · 줄 이름/답", () => {
+    render(<ConceptBlankPaper sheets={MATH_SHEETS} view="key" />);
+    const rows = (form: string, kind: string) =>
+      [...keyPages(form)].flatMap((p) => [
+        ...p.querySelectorAll<HTMLElement>(`tr[data-cb-key-row="${kind}"]`),
+      ]);
+    const cells = (row: HTMLElement) =>
+      [...row.querySelectorAll("td")].map(
+        (td) => td.querySelectorAll(".katex").length,
+      );
+    // B — 번호 · 개념(용어) · 채점 기준(뜻: 글 + 핵심어)
+    expect(rows("term", "concept").map(cells)).toEqual([
+      [0, 1, 3],
+      [0, 1, 3],
+      [0, 1, 1],
+    ]);
+    // 핵심어 — 수식이 든 것은 굵은 글 안 KaTeX
+    expect(
+      [...keyPages("cloze")]
+        .flatMap((p) => [...p.querySelectorAll("[data-cb-keyword]")])
+        .map((b) => b.querySelectorAll(".katex").length),
+    ).toEqual([1, 1, 0, 1, 0, 0]);
+    // ○× — 까닭 + 문장
+    expect(rows("term", "ox").map(cells)).toEqual([
+      [0, 0, 2],
+      [0, 0, 4],
+    ]);
+    // 적용 — 물음 + 굵은 답
+    expect(rows("cloze", "apply").map(cells)).toEqual([
+      [0, 0, 3 + 1],
+      [0, 0, 1 + 4],
+    ]);
+    expect(
+      rows("cloze", "apply").map((r) => r.querySelectorAll("b .katex").length),
+    ).toEqual([1, 4]);
+    // D — 뜻 + 예 물음 → 굵은 답(예가 없는 가지는 «학생이 든 예»)
+    expect(rows("map", "concept").map(cells)).toEqual([
+      [0, 1, 3 + 3 + 2],
+      [0, 1, 3],
+      [0, 1, 1 + 1 + 1],
+    ]);
+    // A — 뜻 + 참고 예
+    expect(rows("recall", "concept").map(cells)).toEqual([
+      [0, 1, 3 + 3 + 2],
+      [0, 1, 3],
+      [0, 1, 1 + 1 + 1],
+    ]);
+    // E — 물음 · 줄 이름 + 줄 답
+    expect(rows("figure", "figure").map(cells)).toEqual([[0, 1, 2]]);
+    // 물결표 둘은 글자 그대로 — 지운 글이 아니다
+    expect(visibleText(rows("cloze", "apply")[1]!)).toMatch(/9~10시.*10~11시/);
+  });
+
+  it("지도의 가운데 · A 소단원 이름 · 채점표 자리 글 · 이름표 목록도 수식 경로 — 그림 속 이름표(SVG 글자)만 예외", () => {
+    const figure = MATH_BANK.figures[0]!;
+    const hub = String.raw`분수 $\frac{1}{2}$ 알아보기`;
+    const sheets: ConceptBlankSheet[] = [
+      {
+        form: "recall",
+        header: header("recall"),
+        zones: [
+          {
+            section: MS.a,
+            title: String.raw`$1\,\mathrm{km}$ 알아보기`,
+            hint: "뜻 · 예",
+            side: "예",
+          },
+        ],
+        key: [MATH_BANK.concepts[0]!],
+      },
+      {
+        form: "map",
+        header: header("map"),
+        maps: [{ hub, nodes: [MATH_BANK.concepts[1]!] }],
+      },
+      {
+        form: "figure",
+        header: header("figure"),
+        figures: [
+          {
+            ...figure,
+            tags: [{ x: 70, y: 2, w: 60, answer: String.raw`$\angle A$` }],
+          },
+        ],
+      },
+    ];
+    render(<ConceptBlankPaper sheets={sheets} view="both" />);
+    for (const page of document.querySelectorAll("[data-cb-page]"))
+      expect(leaks(page)).toEqual([]);
+    expect(
+      document.querySelector("[data-cb-zone] [data-cb-zone-title] .katex"),
+    ).not.toBeNull();
+    expect(document.querySelector("[data-cb-hub] .katex")).not.toBeNull();
+    // 채점표 — 자리 글(A 의 소단원 · D 의 지도 이름)
+    const places = [...document.querySelectorAll("[data-cb-place]")];
+    expect(places).toHaveLength(2);
+    for (const place of places)
+      expect(place.querySelector(".katex")).not.toBeNull();
+    // 이름표 — 채점표의 목록은 KaTeX, 그림 속 네모 안 글자는 은행 글 그대로(SVG 에는 KaTeX 를 못 쓴다)
+    const figureRow = document.querySelector('tr[data-cb-key-row="figure"]')!;
+    expect(figureRow.querySelector("[data-cb-tag-list] .katex")).not.toBeNull();
+    expect(figureRow.querySelector("[data-cb-tag] text")!.textContent).toBe(
+      String.raw`$\angle A$`,
+    );
+  });
+
+  it("글자만 있는 은행은 전과 같다 — 수식 경로를 지나도 글이 바뀌지 않는다", () => {
+    render(<ConceptBlankPaper sheets={SHEETS} view="both" />);
+    expect(document.querySelector(".katex")).toBeNull();
+    const text = document.body.textContent ?? "";
+    for (const c of FIXTURE_BANK.concepts) {
+      expect(text).toContain(c.term);
+      for (const k of blankKeywords(c.definition)) expect(text).toContain(k);
+    }
   });
 });

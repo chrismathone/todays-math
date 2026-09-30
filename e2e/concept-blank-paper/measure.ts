@@ -8,7 +8,8 @@ import type { Page } from "@playwright/test";
  *  ② 넘침 — 칸마다 `scroll − client`, 장 안 모든 요소의 아래 · 오른쪽 끝(KaTeX · 긴 낱말)
  *  ③ 빈 공간 — 머리에서 발까지 세로로 아무 덩이도 없는 가장 큰 틈(px). 장의 1/4(281px)을 넘으면 장이 빈 것이다
  *  ④ 줄맞춤 — 번호 열 폭 · 번호와 첫 줄 기준선 · 줄 긋기 간격 · 좌우 칸 윗선/아랫선 · 채점표 열 폭 ·
- *     빈칸 밑줄 깊이 · KaTeX 기준선
+ *     빈칸 밑줄 깊이 · KaTeX 기준선 · 굵은 핵심어 안 수식의 굵기
+ *  ⑤ 새는 마크업 — 글이 나오는 모든 칸이 수식 경로를 지나는가(`$` · 역슬래시 글자 0 · 수식 오류 0)
  */
 export type PageReport = {
   part: string;
@@ -25,6 +26,13 @@ export type PageReport = {
   emptyAt: string;
   /** 이 장이 그 지면의 마지막 장인가(채점표 마지막 장은 표가 끝나 남는다). */
   last: boolean;
+  /**
+   * 종이에 그대로 찍힌 수식 마크업 — `$` 나 역슬래시가 든 글 조각(KaTeX 의 MathML · 그림 속 이름표는 뺀다).
+   * 글이 나오는 칸이 하나라도 수식 경로를 안 지나면 여기 잡힌다.
+   */
+  leaks: string[];
+  /** KaTeX 가 못 읽어 붉게 그린 수식 수. */
+  mathErrors: number;
   align: {
     /** 번호 열 폭(모두 같아야 한다) · 왼쪽 끝이 흩어진 폭. */
     qnWidths: number[];
@@ -47,17 +55,25 @@ export type PageReport = {
     /** KaTeX — 수식 기준선과 옆 글 기준선의 차(최댓값) · 수식 수. */
     katexBaseline: number;
     katex: number;
+    /** 채점표 굵은 핵심어 안 수식의 굵기(가장 가는 것) · 그런 수식 수 — 수식은 둘레 글의 굵기를 따른다. */
+    keywordMathWeight: number | null;
+    keywordMath: number;
   };
 };
 
-export async function openSet(page: Page, set: string, view = "both") {
+export async function openSet(
+  page: Page,
+  set: string,
+  view = "both",
+  ready = "[data-cb-page]",
+) {
   await page.setViewportSize({ width: 1000, height: 1400 });
   await page.emulateMedia({ media: "print" });
   // 첫 적재에서 Vite 가 의존을 묶고 새로 고치면 goto 가 끊긴다 — 몇 번 다시 연다
   for (let tries = 0; ; tries++) {
     try {
       await page.goto(`/?set=${set}&view=${view}`, { timeout: 60_000 });
-      await page.waitForSelector("[data-cb-page]", { timeout: 30_000 });
+      await page.waitForSelector(ready, { timeout: 30_000 });
       break;
     } catch (e) {
       if (tries >= 3) throw e;
@@ -287,6 +303,29 @@ export async function measurePages(page: Page): Promise<PageReport[]> {
         }),
       );
 
+      const keywordMaths = [
+        ...sheet.querySelectorAll<HTMLElement>("[data-cb-keyword] .katex"),
+      ];
+      const keywordMathWeight = keywordMaths.length
+        ? Math.min(
+            ...keywordMaths.map((k) => Number(getComputedStyle(k).fontWeight)),
+          )
+        : null;
+
+      /* ⑤ 새는 마크업 — 종이에 찍히는 글 조각에 `$` · 역슬래시가 없다 */
+      const leaks: string[] = [];
+      const walker = document.createTreeWalker(sheet, NodeFilter.SHOW_TEXT);
+      while (walker.nextNode()) {
+        const parent = walker.currentNode.parentElement;
+        // KaTeX 의 MathML(그 안 annotation 에 TeX 원문)은 찍히지 않는다 · 그림 속 이름표는 SVG 글자(예외)
+        if (!parent || parent.closest(".katex-mathml, [data-cb-tag]")) continue;
+        const text = walker.currentNode.textContent ?? "";
+        if (/[$\\]/.test(text)) leaks.push(text.trim().slice(0, 60));
+      }
+      const mathErrors = sheet.querySelectorAll(
+        '.katex-error, .katex [style*="cc0000"]',
+      ).length;
+
       const same = sheets.filter(
         (s) =>
           s.dataset.cbPart === sheet.dataset.cbPart &&
@@ -309,6 +348,8 @@ export async function measurePages(page: Page): Promise<PageReport[]> {
           (!next ||
             next.dataset.cbPage === "1" ||
             next.dataset.cbPart !== sheet.dataset.cbPart),
+        leaks,
+        mathErrors,
         align: {
           qnWidths: [...new Set(qnRects.map((r) => round(r.width)))],
           qnLeftSpread: round(qnLeftSpread),
@@ -328,6 +369,8 @@ export async function measurePages(page: Page): Promise<PageReport[]> {
           blanks: blanks.length,
           katexBaseline: round(katexBaseline),
           katex: maths.length,
+          keywordMathWeight,
+          keywordMath: keywordMaths.length,
         },
       };
     });

@@ -8,8 +8,8 @@ import {
   blankTail,
   blankWidth,
   formatSheetDate,
+  inkEm,
   splitSentence,
-  textEm,
 } from "./text";
 
 /**
@@ -33,7 +33,7 @@ export function PaperText({ text }: { text: string }) {
   );
 }
 
-/** 학생이 채우는 밑줄 빈칸 — 길이는 핵심어 글자 폭에 비례. */
+/** 학생이 채우는 밑줄 빈칸 — 길이는 핵심어의 보이는 폭에 비례(수식 핵심어는 마크업이 아니라 그려지는 폭). */
 export function Blank({ answer, width }: { answer?: string; width?: number }) {
   return (
     <span
@@ -75,14 +75,17 @@ export function BlankSentence({ sentence }: { sentence: string }) {
   );
 }
 
-/** 채점표 — 핵심어를 굵게. */
+/**
+ * 채점표 — 핵심어를 굵게. 핵심어도 수식을 품을 수 있어(`{$\frac{\sqrt{3}}{2}$}`) 글 조각과 같은 수식 경로로 그린다 —
+ * 수식은 둘레 글의 굵기를 물려받는다(`paper.module.css` `.page .katex`).
+ */
 export function KeySentence({ sentence }: { sentence: string }) {
   return (
     <>
       {splitSentence(sentence).map((piece, i) =>
         piece.kind === "key" ? (
           <b data-cb-keyword="" key={i}>
-            {piece.text}
+            <PaperText text={piece.text} />
           </b>
         ) : (
           <PaperText key={i} text={piece.text} />
@@ -137,7 +140,7 @@ export function sheetTitle(header: SheetHeader): string {
  * 단계 이름만 준다 — 크기는 머리(`.title`) · 채점표 머리(`.keyHead h3`)가 제 CSS 로 정한다.
  */
 export function titleSizeClass(title: string): string | undefined {
-  const em = textEm(title);
+  const em = inkEm(title);
   if (em <= 19) return undefined;
   return em <= 23 ? styles.titleMid : styles.titleSmall;
 }

@@ -1,18 +1,21 @@
-import type {
-  ApplyItem,
-  ConceptBlankSheet,
-  ConceptEntry,
-  FigureItem,
-  OxItem,
+import {
+  visibleLength,
+  type ApplyItem,
+  type ConceptBlankSheet,
+  type ConceptEntry,
+  type FigureItem,
+  type OxItem,
 } from "@/contracts/conceptBlank.contract";
 
 import {
+  BOLD_MATH,
   circled,
   estimateLines,
   plainSentence,
   sentenceAtoms,
   mathEm,
   sentenceKeywords,
+  splitSentence,
   wrapLines,
 } from "./text";
 
@@ -229,9 +232,16 @@ export function numberColumnWidth(sheet: ConceptBlankSheet): 44 | 52 {
   return count >= 100 ? 52 : 44;
 }
 
-/** B 용어 칸의 쓰기 줄 수(가장 적을 때) — 뜻 문장이 짧으면 한 줄, 아니면 두 줄(시안 «이상» 한 줄 · 나머지 두 줄). */
-export const termRuledLines = (entry: ConceptEntry): 1 | 2 =>
-  plainSentence(entry.definition).replace(/\s+/g, "").length <= 18 ? 1 : 2;
+/**
+ * B 용어 칸의 쓰기 줄 수(가장 적을 때) — 뜻 문장이 짧으면 한 줄, 아니면 두 줄(시안 «이상» 한 줄 · 나머지 두 줄).
+ * 길이는 **보이는 글자 수**(계약의 `visibleLength` — 띄어쓰기 빼고)로 잰다. 수식 마크업까지 세면 `$1000\,\mathrm{m}$` 하나가
+ * 열여덟 자라, 짧은 뜻도 다 두 줄이 된다.
+ */
+export const termRuledLines = (entry: ConceptEntry): 1 | 2 => {
+  const shown = plainSentence(entry.definition);
+  const spaces = shown.replace(/\$[^$]*\$/g, "").match(/\s/g)?.length ?? 0;
+  return visibleLength(shown) - spaces <= 18 ? 1 : 2;
+};
 
 /**
  * 수식이 든 줄은 글줄보다 높아질 수 있다(제품 수식 경로는 수식을 본문의 1.21배로, 분수를 크게 그린다).
@@ -268,9 +278,9 @@ const HUGE_MATH = /[\\](?:cfrac|sum|int|prod|lim|begin)(?![a-zA-Z])/;
 /** 분수와 같이 있으면 줄을 더 높이는 것 — 첨자 · 근호 · 늘인 괄호 · 윗줄 · 얹는 것. */
 const STACKER =
   /[\^_]|[\\](?:sqrt|left|right|big+[lr]?|overline|underline|overset|underset|bar|hat|vec|dot|tilde|widehat|overrightarrow|overleftarrow|overleftrightarrow)(?![a-zA-Z])/i;
-/** 글자 위에 얹는 것(분수 없이). */
+/** 글자 위에 얹는 것(분수 없이) — 순환소수의 점(`0.\dot{3}`)도 글줄을 위로 민다(굵은 용어에서 잰 값 1.85em). */
 const RAISER =
-  /[\\](?:overset|underset|stackrel|widehat|hat|vec|tilde|overrightarrow|overleftarrow|overleftrightarrow)(?![a-zA-Z])/;
+  /[\\](?:overset|underset|stackrel|widehat|hat|vec|tilde|d?dot|overrightarrow|overleftarrow|overleftrightarrow)(?![a-zA-Z])/;
 const MATH_ROW_BREAK = /[\\]{2}/g;
 const MATH_SEGMENT = /\$[^$]*\$/g;
 
@@ -355,7 +365,13 @@ export function termCost(
   prev: TermBlock | undefined,
 ): number {
   if (block.kind === "term") {
-    const lines = estimateLines(block.entry.term, G.term.font, qWidth);
+    // 용어는 굵은 글이다 — 그 안의 수식도 굵은 벌로 그려져 넓다
+    const lines = estimateLines(
+      block.entry.term,
+      G.term.font,
+      qWidth,
+      BOLD_MATH,
+    );
     return (
       G.term.fixed +
       lines * G.term.line +
@@ -381,10 +397,15 @@ export function clozeCost(
   if (block.kind === "sentence") {
     const text = block.entry.definition;
     const lines = wrapLines(sentenceAtoms(text, G.sentence.font), qWidth);
+    // 학생지에 그려지는 수식은 글 조각의 것뿐이다 — 핵심어의 수식(`{$\frac{1}{2}$}`)은 밑줄 빈칸이라 줄을 높이지 않는다
+    const shown = splitSentence(text)
+      .filter((piece) => piece.kind === "text")
+      .map((piece) => piece.text)
+      .join(" ");
     return (
       G.sentence.fixed +
       lines * G.sentence.line +
-      mathExtra(text, lines, G.sentence.font, G.sentence.line) +
+      mathExtra(shown, lines, G.sentence.font, G.sentence.line) +
       (prev?.kind === "sentence" ? 0 : G.sentence.part)
     );
   }
@@ -407,16 +428,18 @@ const keyText = (entry: ConceptEntry) => plainSentence(entry.definition);
 
 export function keyRowCost(row: KeyRow): number {
   const k = G.key;
-  const main = (text: string, width: number = k.textWidth) => {
-    const lines = estimateLines(text, k.font, width);
+  /** `bold` — 굵은 글(개념 칸 · 굵은 답 · 굵은 핵심어가 든 뜻)이면 수식 폭을 굵은 벌로 센다. */
+  const scale = (bold: boolean) => (bold ? BOLD_MATH : 1);
+  const main = (text: string, width: number = k.textWidth, bold = false) => {
+    const lines = estimateLines(text, k.font, width, scale(bold));
     return lines * k.line + mathExtra(text, lines, k.font, k.line);
   };
-  const sub = (text: string) => {
-    const lines = estimateLines(text, 10, k.textWidth - 10);
+  const sub = (text: string, bold = false) => {
+    const lines = estimateLines(text, 10, k.textWidth - 10, scale(bold));
     return k.subGap + lines * k.sub + mathExtra(text, lines, 10, k.sub);
   };
   const concept = (label: string, place?: string) =>
-    main(label, k.conceptWidth) +
+    main(label, k.conceptWidth, true) +
     (place ? k.subGap + estimateLines(place, 9, k.conceptWidth) * k.place : 0);
   /**
    * 칸들은 첫 줄 기준선을 맞춘다 — 한 칸의 첫 줄에 수식이 있어 높으면 **옆 칸**이 그만큼 내려온다. 그래서 줄 높이는
@@ -427,17 +450,23 @@ export function keyRowCost(row: KeyRow): number {
   switch (row.kind) {
     case "concept": {
       const ex = row.entry.example;
+      // 예의 답 · 핵심어는 굵다 — 거기 수식이 있으면 그 글줄의 수식을 굵은 벌로 센다(넉넉한 쪽)
       const exLine =
         row.example && ex
-          ? sub(`예(참고) ${ex.prompt} → ${ex.answer}`)
+          ? sub(`예(참고) ${ex.prompt} → ${ex.answer}`, ex.answer.includes("$"))
           : row.example === "free"
             ? sub("예 — 학생이 든 예가 뜻에 맞으면 ○")
             : 0;
+      const boldKey = sentenceKeywords(row.entry.definition).some((key) =>
+        key.includes("$"),
+      );
       return (
         k.fixed +
         Math.max(
           concept(row.entry.term, row.place) + rise(keyText(row.entry)),
-          main(keyText(row.entry)) + exLine + rise(row.entry.term),
+          main(keyText(row.entry), k.textWidth, boldKey) +
+            exLine +
+            rise(row.entry.term),
         )
       );
     }
@@ -455,7 +484,9 @@ export function keyRowCost(row: KeyRow): number {
         k.fixed +
         Math.max(
           main("적용", k.conceptWidth) + rise(row.item.prompt, 10, k.sub),
-          sub(row.item.prompt) - k.subGap + main(row.item.answer),
+          sub(row.item.prompt) -
+            k.subGap +
+            main(row.item.answer, k.textWidth, true),
         )
       );
     case "figure": {
@@ -466,6 +497,7 @@ export function keyRowCost(row: KeyRow): number {
           ? main(
               `이름표: ${row.item.tags.map((t) => t.answer).join(" · ")}`,
               k.figureTextWidth,
+              true,
             )
           : 0) +
         row.item.lines.reduce(
@@ -473,7 +505,8 @@ export function keyRowCost(row: KeyRow): number {
           0,
         );
       return (
-        k.fixed + Math.max(main(row.item.prompt, k.conceptWidth), svg, text)
+        k.fixed +
+        Math.max(main(row.item.prompt, k.conceptWidth, true), svg, text)
       );
     }
   }

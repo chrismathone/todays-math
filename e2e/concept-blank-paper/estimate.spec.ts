@@ -25,6 +25,7 @@ const SETS = [
   "real-e5",
   "real-e6",
   "real-m1",
+  "real-m2",
   "real-m3",
   "stress",
   "math",

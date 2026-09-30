@@ -7,7 +7,7 @@ import type { StudentPage } from "./paginate";
 import { termRuledLines } from "./paginate";
 import { Blank, BlankSentence, HowTo, PaperText } from "./PaperParts";
 import styles from "./paper.module.css";
-import { circled, textEm } from "./text";
+import { circled, inkEm } from "./text";
 
 /**
  * 학생지 한 장의 몸(머리 · 발 사이) — 형식 다섯(시안 `concept-blank-5-two-units.html` 의 틀을 옮겼다).
@@ -59,7 +59,9 @@ function RecallBody({
           <section className={styles.zone} data-cb-zone={zone.side} key={n}>
             <div className={styles.zoneHead}>
               <span className={styles.zoneNo}>{circled(n)}</span>
-              <span className={styles.zoneTitle}>{zone.title}</span>
+              <span className={styles.zoneTitle} data-cb-zone-title="">
+                <PaperText text={zone.title} />
+              </span>
               <span className={styles.zoneHint}>{zone.hint}</span>
             </div>
             <div className={styles.zoneBody}>
@@ -240,9 +242,9 @@ export function wirePaths(left: number, right: number): string[] {
   ];
 }
 
-/** 가운데 원 글씨 — 이름이 길면 줄인다(원 132px). */
+/** 가운데 원 글씨 — 이름이 길면 줄인다(원 132px). 길이는 보이는 폭으로 잰다(수식 마크업은 세지 않는다). */
 const hubFont = (hub: string) => {
-  const em = textEm(hub);
+  const em = inkEm(hub);
   return em <= 6 ? 19 : em <= 10 ? 17 : em <= 14 ? 15 : 13;
 };
 
@@ -307,8 +309,12 @@ function MapBody({
             <MapNode entry={entry} key={entry.id} />
           ))}
         </div>
-        <div className={styles.hub} style={{ fontSize: hubFont(page.map.hub) }}>
-          {page.map.hub}
+        <div
+          className={styles.hub}
+          data-cb-hub=""
+          style={{ fontSize: hubFont(page.map.hub) }}
+        >
+          <PaperText text={page.map.hub} />
         </div>
         {right.length ? (
           <div className={styles.mapSide} data-cb-side="right">
