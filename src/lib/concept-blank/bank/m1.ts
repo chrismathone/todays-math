@@ -4913,8 +4913,7 @@ figure(
   "05-01",
   2,
   "중",
-  // 길이 조건은 물음에 둔다 — 그림 줄 이름은 24자 상한이라 `$12\,\mathrm{cm}$` 를 담지 못한다(cb-pass2-m1).
-  r`길이가 $12\,\mathrm{cm}$인 선분 $AB$를 똑같이 둘로 나누는 점 $M$의 이름을 쓰시오.`,
+  "선분 $AB$를 똑같이 둘로 나누는 점 $M$의 이름을 쓰시오.",
   `<path d="M30 70H170" ${INK}/><path d="M65 65V75 M135 65V75" ${GUIDE}/>` +
     dot(30, 70) +
     dot(170, 70) +
@@ -4926,7 +4925,10 @@ figure(
   [{ x: 78, y: 26, w: 44, answer: "중점" }],
   [
     { label: "선분 $AM$과 선분 $MB$의 길이", answer: "서로 같다." },
-    { label: "선분 $AM$의 길이", answer: r`$6\,\mathrm{cm}$` },
+    {
+      label: r`선분 $AB$가 $12\,\mathrm{cm}$일 때 $\overline{AM}$의 길이`,
+      answer: r`$6\,\mathrm{cm}$`,
+    },
   ],
 );
 figure(
@@ -5239,7 +5241,7 @@ figure(
     { x: 150, y: 68, w: 36, answer: "호" },
   ],
   [
-    { label: r`$\angle AOB$는 호 $AB$의 무엇`, answer: "중심각" },
+    { label: r`$\angle AOB$는 호 $AB$에 대한 무엇인가`, answer: "중심각" },
     { label: "두 반지름과 호 $AB$로 둘러싸인 도형", answer: "부채꼴 $AOB$" },
   ],
 );
