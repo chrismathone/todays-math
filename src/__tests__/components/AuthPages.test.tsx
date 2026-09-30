@@ -2,6 +2,7 @@ import { render, screen } from "@testing-library/react";
 import { beforeEach, describe, expect, it, vi } from "vitest";
 import LoginPage from "@/app/(auth)/login/page";
 import SignupPage from "@/app/(auth)/signup/page";
+import StudentLoginPage from "@/app/learn/login/page";
 
 const auth = vi.hoisted(() => vi.fn());
 const redirect = vi.hoisted(() =>
@@ -38,7 +39,11 @@ describe.each([
         }),
       }),
     );
-    expect(screen.getByLabelText("이메일")).toBeInTheDocument();
+    expect(
+      screen.getByLabelText(
+        _name === "login" ? "이메일 또는 학생 아이디" : "이메일",
+      ),
+    ).toBeInTheDocument();
     expect(screen.getByRole("link")).toHaveAttribute(
       "href",
       expect.stringContaining("callbackUrl=%2Ftests%2Fnew%3FclassId%3Dabc"),
@@ -79,4 +84,8 @@ describe.each([
     ).rejects.toThrow("redirect:/");
     expect(redirect).toHaveBeenCalledWith("/");
   });
+});
+
+it("기존 학생 로그인 주소를 통합 로그인으로 연결한다", () => {
+  expect(() => StudentLoginPage()).toThrow("redirect:/login");
 });
