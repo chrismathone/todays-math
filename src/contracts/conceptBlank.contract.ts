@@ -49,23 +49,66 @@ const idSchema = z
   .regex(/^[a-z0-9]+(?:-[a-z0-9]+)*$/, "id 는 소문자 · 숫자 · 붙임표");
 const levelSchema = z.enum(CONCEPT_BLANK_LEVELS);
 
+/** 뜻 문장 조각 — 글(수식 `$...$` 이 섞일 수 있다) 또는 핵심어(`{ }` 안). */
+export type BlankSentencePiece =
+  { kind: "text"; text: string } | { kind: "key"; text: string };
+
+/**
+ * 뜻 문장을 글 · 핵심어 조각으로 나눈다 — 핵심어를 가르는 **하나뿐인 자리**다(계약 · 은행 시험 · 지면이 같이 쓴다).
+ * 🔴 `$...$` 안의 `{ }` 는 TeX 묶음(`\frac{1}{2}`)이라 핵심어가 아니다 — 글에 그대로 둔다.
+ * 짝이 없거나 `$` 를 품은 `{` 는 핵심어로 치지 않고 글에 남긴다(스키마가 그 남은 괄호를 거절한다).
+ */
+export function splitBlankSentence(sentence: string): BlankSentencePiece[] {
+  const pieces: BlankSentencePiece[] = [];
+  let text = "";
+  let i = 0;
+  while (i < sentence.length) {
+    const ch = sentence[i]!;
+    if (ch === "$") {
+      const close = sentence.indexOf("$", i + 1);
+      const end = close < 0 ? sentence.length : close + 1;
+      text += sentence.slice(i, end);
+      i = end;
+      continue;
+    }
+    if (ch === "{") {
+      const close = sentence.indexOf("}", i + 1);
+      const inner = close < 0 ? "" : sentence.slice(i + 1, close);
+      if (close > i + 1 && inner.trim() && !/[{$]/.test(inner)) {
+        if (text) pieces.push({ kind: "text", text });
+        text = "";
+        pieces.push({ kind: "key", text: inner.trim() });
+        i = close + 1;
+        continue;
+      }
+    }
+    text += ch;
+    i += 1;
+  }
+  if (text) pieces.push({ kind: "text", text });
+  return pieces;
+}
+
 /**
  * 뜻 문장 — 핵심어를 `{ }` 로 감싼다(1~4곳). 빈칸 형식은 `{ }` 자리를 비우고, 채점표는 `{ }` 를 핵심어로 굵게 쓴다.
- * 수식은 `$...$`(KaTeX). `{ }` 안에 `$` 를 넣지 않는다.
+ * 수식은 `$...$`(KaTeX) — 수식 안의 `{ }` 는 TeX 묶음이라 핵심어로 세지 않는다. `{ }` 안에 `$` 를 넣지 않는다.
  */
 export const blankSentenceSchema = z
   .string()
   .min(8)
   .max(160)
   .refine((s) => {
-    const n = (s.match(/\{[^{}]+\}/g) ?? []).length;
-    return (
-      n >= 1 &&
-      n <= 4 &&
-      !/\{[^}]*\{|\}[^{]*\}/.test(s.replace(/\{[^{}]+\}/g, ""))
+    const pieces = splitBlankSentence(s);
+    const n = pieces.filter((p) => p.kind === "key").length;
+    const stray = pieces.some(
+      (p) => p.kind === "text" && /[{}]/.test(p.text.replace(/\$[^$]*\$/g, "")),
     );
+    return n >= 1 && n <= 4 && !stray;
   }, "핵심어 { } 는 1~4곳, 겹치거나 짝이 안 맞으면 안 된다")
-  .refine((s) => !/\{[^}]*\$[^}]*\}/.test(s), "{ } 안에 수식($)을 넣지 않는다");
+  .refine(
+    (s) => !/\{[^{}$]*\$[^$]*\$[^{}$]*\}/.test(s),
+    "{ } 안에 수식($)을 넣지 않는다",
+  );
 
 /** 개념 한 장 — B · C 문항, A 의 채점 항목, D 의 가지가 모두 여기서 나온다. */
 export const conceptEntrySchema = z.strictObject({
@@ -232,5 +275,7 @@ export type ConceptBlankSheet =
 
 /** 핵심어 꺼내기 — `{ }` 안 글. */
 export function blankKeywords(sentence: string): string[] {
-  return [...sentence.matchAll(/\{([^{}]+)\}/g)].map((m) => m[1]!.trim());
+  return splitBlankSentence(sentence)
+    .filter((p) => p.kind === "key")
+    .map((p) => p.text);
 }
