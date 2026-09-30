@@ -49,6 +49,19 @@ export interface JourneyTheme {
   propArt?: JourneyPropArt;
 }
 
+/** 소품 한 벌 — 별은 모든 테마가 하늘섬 별 하나를 쓴다(같은 재화로 보이게, codex · grok 합의 2026-09-30). */
+const propSet = (id: string): JourneyPropArt => ({
+  chest: `/images/journey/${id}-chest.webp`,
+  chestOpen: `/images/journey/${id}-chest-open.webp`,
+  bases: [
+    `/images/journey/${id}-base1.webp`,
+    `/images/journey/${id}-base2.webp`,
+    `/images/journey/${id}-base3.webp`,
+    `/images/journey/${id}-base4.webp`,
+  ],
+  star: "/images/journey/sky-star.webp",
+});
+
 const riderSet = (id: string): RiderImages => ({
   left: `/images/journey/${id}-left.webp`,
   up: `/images/journey/${id}-up.webp`,
@@ -71,17 +84,7 @@ export const JOURNEY_THEMES: Readonly<Record<JourneyThemeId, JourneyTheme>> = {
     boardImage: "/images/journey/sky-board.webp",
     riderImages: riderSet("sky"),
     motion: "sway",
-    propArt: {
-      chest: "/images/journey/sky-chest.webp",
-      chestOpen: "/images/journey/sky-chest-open.webp",
-      bases: [
-        "/images/journey/sky-base1.webp",
-        "/images/journey/sky-base2.webp",
-        "/images/journey/sky-base3.webp",
-        "/images/journey/sky-base4.webp",
-      ],
-      star: "/images/journey/sky-star.webp",
-    },
+    propArt: propSet("sky"),
   },
   sea: {
     id: "sea",
@@ -90,6 +93,7 @@ export const JOURNEY_THEMES: Readonly<Record<JourneyThemeId, JourneyTheme>> = {
     boardImage: "/images/journey/sea-board.webp",
     riderImages: riderSet("sea"),
     motion: "bob",
+    propArt: propSet("sea"),
   },
   space: {
     id: "space",
@@ -115,6 +119,7 @@ export const JOURNEY_THEMES: Readonly<Record<JourneyThemeId, JourneyTheme>> = {
       ],
     },
     motion: "roll",
+    propArt: propSet("forest"),
   },
   shapes: {
     id: "shapes",

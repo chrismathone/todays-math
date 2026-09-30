@@ -2,6 +2,8 @@
  * 진도판 테마 소품(원장님 2026-09-30 확정 — 하늘섬 먼저) — 상자 · 기지 · 별이 테마 그림을 따른다.
  * 소품 그림이 없는 테마(지금 판 · 아직 안 그린 테마)는 지금 모양(SVG 상자 · ⌂ · ✦) 그대로.
  */
+import { existsSync } from "node:fs";
+import { join } from "node:path";
 import { render } from "@testing-library/react";
 import { describe, expect, it } from "vitest";
 import {
@@ -75,7 +77,7 @@ describe("journey theme props — chest, base and star follow the theme art", ()
     expect(container.textContent).not.toContain("✦");
   });
 
-  it.each(["classic", "sea"] as const)(
+  it.each(["classic", "space"] as const)(
     "%s has no prop art and keeps the drawn chest, ⌂ and ✦",
     (theme) => {
       const { container } = inTheme(
@@ -98,9 +100,37 @@ describe("journey theme props — chest, base and star follow the theme art", ()
     expect(container.textContent).toBe("✦");
   });
 
-  it("only themes with a full prop set declare one (four bases)", () => {
-    for (const theme of Object.values(JOURNEY_THEMES))
-      if (theme.propArt) expect(theme.propArt.bases).toHaveLength(4);
+  it("sea and forest draw their own chest and base, and share the one sky star", () => {
+    for (const theme of ["sea", "forest"] as const) {
+      const { container } = inTheme(
+        theme,
+        <>
+          <ChestRewardEffect stars={1} />
+          <BaseArt level={0} />
+        </>,
+      );
+      expect(srcs(container)).toEqual([
+        `/images/journey/${theme}-chest-open.webp`,
+        "/images/journey/sky-star.webp",
+        "/images/journey/sky-star.webp",
+        "/images/journey/sky-star.webp",
+        "/images/journey/sky-star.webp",
+        "/images/journey/sky-star.webp",
+        "/images/journey/sky-star.webp",
+        `/images/journey/${theme}-base1.webp`,
+      ]);
+    }
+  });
+
+  it("every declared prop picture is in public, four bases each, one star for all", () => {
+    for (const theme of Object.values(JOURNEY_THEMES)) {
+      if (!theme.propArt) continue;
+      const { chest, chestOpen, bases, star } = theme.propArt;
+      expect(bases).toHaveLength(4);
+      expect(star).toBe("/images/journey/sky-star.webp");
+      for (const src of [chest, chestOpen, ...bases, star])
+        expect(existsSync(join(process.cwd(), "public", src)), src).toBe(true);
+    }
     expect(JOURNEY_THEMES.sky.propArt).toBeDefined();
   });
 });
