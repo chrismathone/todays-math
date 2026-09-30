@@ -51,8 +51,24 @@ describe("blank sentence keywords", () => {
     expect(ok("{가} {나} {다} {라} {마} 다섯은 너무 많다.")).toBe(false);
   });
 
-  it("still rejects math inside a keyword and stray braces outside math", () => {
-    expect(ok("제곱해서 {$a$}가 되는 수를 제곱근이라 한다.")).toBe(false);
+  // 원장님 2026-09-30 «카텍스 사용할 것» — 빈칸의 답이 식이면 핵심어에 수식을 그대로 싣는다.
+  it("lets a keyword carry math, TeX groups and all", () => {
+    const s = String.raw`이차방정식 $ax^2+bx+c=0$ 의 해는 $x=$ {$\frac{-b\pm\sqrt{b^2-4ac}}{2a}$} 이다.`;
+    expect(blankKeywords(s)).toEqual([
+      String.raw`$\frac{-b\pm\sqrt{b^2-4ac}}{2a}$`,
+    ]);
+    expect(ok(s)).toBe(true);
+    const mixed = String.raw`$\cos 30^\circ=$ {$\frac{\sqrt{3}}{2}$}, $\tan 45^\circ=$ {1}이다.`;
+    expect(blankKeywords(mixed)).toEqual([
+      String.raw`$\frac{\sqrt{3}}{2}$`,
+      "1",
+    ]);
+    expect(ok(mixed)).toBe(true);
+    expect(ok("제곱해서 {$a$}가 되는 수를 제곱근이라 한다.")).toBe(true);
+  });
+
+  it("still rejects stray braces outside math and unclosed math in a keyword", () => {
+    expect(ok("수식이 안 닫힌 {$a} 핵심어가 있는 문장은 안 된다.")).toBe(false);
     expect(ok("짝이 없는 { 괄호가 있는 {문장}은 안 된다.")).toBe(false);
     expect(ok("닫기만 하는 } 괄호가 있는 {문장}도 안 된다.")).toBe(false);
     expect(ok("겹친 {핵심어 {안의} 괄호}는 안 된다.")).toBe(false);

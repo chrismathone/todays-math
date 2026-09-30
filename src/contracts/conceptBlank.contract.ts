@@ -54,9 +54,31 @@ export type BlankSentencePiece =
   { kind: "text"; text: string } | { kind: "key"; text: string };
 
 /**
+ * `open` 자리의 `{` 가 여는 핵심어의 닫는 `}` 자리. 핵심어 안의 `$...$` 는 통째로 건너뛴다(그 안의 `{ }` 는 TeX 묶음).
+ * 수식 밖에서 `{` 를 또 만나거나(겹침) 수식 · 괄호가 안 닫히면 -1.
+ */
+function keywordEnd(sentence: string, open: number): number {
+  let j = open + 1;
+  while (j < sentence.length) {
+    const ch = sentence[j]!;
+    if (ch === "$") {
+      const close = sentence.indexOf("$", j + 1);
+      if (close < 0) return -1;
+      j = close + 1;
+      continue;
+    }
+    if (ch === "{") return -1;
+    if (ch === "}") return j;
+    j += 1;
+  }
+  return -1;
+}
+
+/**
  * 뜻 문장을 글 · 핵심어 조각으로 나눈다 — 핵심어를 가르는 **하나뿐인 자리**다(계약 · 은행 시험 · 지면이 같이 쓴다).
  * 🔴 `$...$` 안의 `{ }` 는 TeX 묶음(`\frac{1}{2}`)이라 핵심어가 아니다 — 글에 그대로 둔다.
- * 짝이 없거나 `$` 를 품은 `{` 는 핵심어로 치지 않고 글에 남긴다(스키마가 그 남은 괄호를 거절한다).
+ * 핵심어는 수식을 품을 수 있다(`{$\frac{\sqrt{3}}{2}$}` — 원장님 2026-09-30 «카텍스 사용할 것»).
+ * 짝이 없거나 겹친 `{` 는 핵심어로 치지 않고 글에 남긴다(스키마가 그 남은 괄호를 거절한다).
  */
 export function splitBlankSentence(sentence: string): BlankSentencePiece[] {
   const pieces: BlankSentencePiece[] = [];
@@ -72,9 +94,9 @@ export function splitBlankSentence(sentence: string): BlankSentencePiece[] {
       continue;
     }
     if (ch === "{") {
-      const close = sentence.indexOf("}", i + 1);
+      const close = keywordEnd(sentence, i);
       const inner = close < 0 ? "" : sentence.slice(i + 1, close);
-      if (close > i + 1 && inner.trim() && !/[{$]/.test(inner)) {
+      if (inner.trim()) {
         if (text) pieces.push({ kind: "text", text });
         text = "";
         pieces.push({ kind: "key", text: inner.trim() });
@@ -91,7 +113,7 @@ export function splitBlankSentence(sentence: string): BlankSentencePiece[] {
 
 /**
  * 뜻 문장 — 핵심어를 `{ }` 로 감싼다(1~4곳). 빈칸 형식은 `{ }` 자리를 비우고, 채점표는 `{ }` 를 핵심어로 굵게 쓴다.
- * 수식은 `$...$`(KaTeX) — 수식 안의 `{ }` 는 TeX 묶음이라 핵심어로 세지 않는다. `{ }` 안에 `$` 를 넣지 않는다.
+ * 수식은 `$...$`(KaTeX) — 수식 안의 `{ }` 는 TeX 묶음이라 핵심어로 세지 않는다. 답이 식이면 핵심어에 수식을 싣는다(`{$...$}`).
  */
 export const blankSentenceSchema = z
   .string()
@@ -104,11 +126,7 @@ export const blankSentenceSchema = z
       (p) => p.kind === "text" && /[{}]/.test(p.text.replace(/\$[^$]*\$/g, "")),
     );
     return n >= 1 && n <= 4 && !stray;
-  }, "핵심어 { } 는 1~4곳, 겹치거나 짝이 안 맞으면 안 된다")
-  .refine(
-    (s) => !/\{[^{}$]*\$[^$]*\$[^{}$]*\}/.test(s),
-    "{ } 안에 수식($)을 넣지 않는다",
-  );
+  }, "핵심어 { } 는 1~4곳, 겹치거나 짝이 안 맞으면 안 된다");
 
 /** 개념 한 장 — B · C 문항, A 의 채점 항목, D 의 가지가 모두 여기서 나온다. */
 export const conceptEntrySchema = z.strictObject({
