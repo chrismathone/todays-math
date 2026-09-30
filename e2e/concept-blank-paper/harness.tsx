@@ -1,0 +1,106 @@
+import { StrictMode } from "react";
+import { createRoot } from "react-dom/client";
+
+import "katex/dist/katex.min.css";
+import "../../src/app/globals.css";
+import "./harness.css";
+
+import ConceptBlankPaper from "../../src/components/concept-blank/ConceptBlankPaper";
+import { parseConceptBlankView } from "../../src/components/concept-blank/paper/view";
+import type {
+  ConceptBlankSelection,
+  ConceptBlankSheet,
+  ConceptEntry,
+} from "../../src/contracts/conceptBlank.contract";
+import { composeSheets } from "../../src/lib/concept-blank/compose";
+import { FIXTURE_BANK } from "../../src/lib/concept-blank/fixture";
+import { fuzzSheets } from "./fuzz";
+import { STRESS_SHEETS } from "./stress";
+
+/**
+ * `?set=fixture|stress|math|fuzz&seed=N` · `?view=student|key|both` — 지면만 그린다(화면 축소 없이 1배).
+ * fixture = 시험 · 미리보기용 작은 은행 전부(시안 두 단원) · stress = 계약 상한 · math = 수식 문장 ·
+ * fuzz = 시드 고정 무작위 길이(`fuzz.ts`). `?scale=0.58` 이면 화면 미리보기 축소를 본다(인쇄에는 안 먹는다).
+ */
+const params = new URLSearchParams(location.search);
+const ALL = { 하: 40, 중: 40, 상: 40 };
+const NONE = { 하: 0, 중: 0, 상: 0 };
+
+const fixtureSelection: ConceptBlankSelection = {
+  sections: [
+    ...new Set(
+      [
+        ...FIXTURE_BANK.concepts,
+        ...FIXTURE_BANK.ox,
+        ...FIXTURE_BANK.apply,
+        ...FIXTURE_BANK.figures,
+      ].map((x) => x.section),
+    ),
+  ],
+  forms: [
+    { form: "recall", counts: ALL, extras: NONE },
+    { form: "term", counts: ALL, extras: ALL },
+    { form: "cloze", counts: ALL, extras: ALL },
+    { form: "map", counts: ALL, extras: NONE },
+    { form: "figure", counts: ALL, extras: NONE },
+  ],
+  date: "2026-10-01",
+};
+
+const mathEntry = (i: number, definition: string): ConceptEntry => ({
+  id: `math-${i}`,
+  section: "중1::2. 정수와 유리수::정수와 유리수",
+  term: `수식 뜻 ${i}`,
+  kind: "정의",
+  level: "중",
+  definition,
+});
+const MATH_SENTENCES = [
+  "분수 $\\frac{a}{b}$ 에서 $b \\neq 0$ 일 때 가로선 아래의 수 $b$ 를 {분모}, 위의 수 $a$ 를 {분자}라 한다.",
+  "정수 $a$ 와 $0$ 이 아닌 정수 $b$ 로 $\\frac{a}{b}$ 꼴로 나타낼 수 있는 수를 {유리수}라 한다.",
+  "수 하나를 수직선에 찍었을 때 그 점이 0 에서 떨어진 만큼을 {절댓값}이라 부르고 $|a|$ 처럼 막대 둘로 감싸 적는다.",
+  "$a^2 = a \\times a$ 처럼 같은 수를 거듭 곱한 것을 {거듭제곱}이라 하고, 곱한 개수 $2$ 를 {지수}라 한다.",
+  "일차방정식 $ax + b = 0$ $(a \\neq 0)$ 의 해는 $x = -\\frac{b}{a}$ 이고, 이렇게 해를 구하는 것을 방정식을 {푼다}고 한다.",
+  "두 수의 곱이 $1$ 이 될 때 한 수를 다른 수의 {역수}라 하며, $\\frac{2}{3}$ 의 역수는 $\\frac{3}{2}$ 이다.",
+  "제곱근 $\\sqrt{a}$ 는 $a \\geq 0$ 일 때 제곱하여 $a$ 가 되는 수 가운데 {음이 아닌} 것이다.",
+  "좌표평면에서 점 $(x, y)$ 의 $x$ 를 {x좌표}, $y$ 를 {y좌표}라 하고 두 수를 순서대로 묶어 쓴다.",
+];
+const MATH_SHEETS: ConceptBlankSheet[] = [
+  {
+    form: "cloze",
+    header: {
+      title: "정수와 유리수",
+      unitLabel: "중1 · 2. 정수와 유리수",
+      date: "2026-10-01",
+      form: "cloze",
+    },
+    sentences: MATH_SENTENCES.map((d, i) => mathEntry(i + 1, d)),
+    apply: [
+      {
+        id: "math-ap-1",
+        section: "중1::2. 정수와 유리수::정수와 유리수",
+        level: "중",
+        prompt: "$-\\frac{3}{4}$ 의 절댓값과 역수를 차례로 쓰시오.",
+        answer: "$\\frac{3}{4}$, $-\\frac{4}{3}$",
+      },
+    ],
+  },
+];
+
+function sheetsFor(set: string | null): ConceptBlankSheet[] {
+  if (set === "stress") return STRESS_SHEETS;
+  if (set === "math") return MATH_SHEETS;
+  if (set === "fuzz") return fuzzSheets(Number(params.get("seed") ?? 1));
+  return composeSheets(fixtureSelection, FIXTURE_BANK);
+}
+
+createRoot(document.getElementById("root")!).render(
+  <StrictMode>
+    <main style={{ ["--cb-paper-scale" as string]: params.get("scale") ?? 1 }}>
+      <ConceptBlankPaper
+        sheets={sheetsFor(params.get("set"))}
+        view={parseConceptBlankView(params.get("view") ?? undefined)}
+      />
+    </main>
+  </StrictMode>,
+);
