@@ -14,7 +14,8 @@ import { mkdtempSync, readFileSync, rmSync, writeFileSync } from "node:fs";
 import os from "node:os";
 import path from "node:path";
 
-export type Provider = "codex" | "claude" | "grok" | "gemini" | "deepseek";
+export type Provider =
+  "codex" | "claude" | "grok" | "gemini" | "deepseek" | "openai";
 
 export interface CliCall {
   provider: Provider;
@@ -174,6 +175,42 @@ export async function runCli(call: CliCall): Promise<CliResult> {
       | undefined;
     return {
       text: response.choices[0]?.message?.content ?? "",
+      ms: Date.now() - started,
+      usage: u
+        ? {
+            input: u.prompt_tokens,
+            output: u.completion_tokens ?? 0,
+            reasoning: u.completion_tokens_details?.reasoning_tokens,
+          }
+        : undefined,
+    };
+  }
+  if (call.provider === "openai") {
+    // 유료 API — 제품의 영어 luna 경로(`src/lib/ai/openai.ts`)와 같은 호출. 원장님 2026-09-30 «luna 로» · 키는 main `.env` 의 OPENAI_API_KEY.
+    // 추론 모델은 `max_tokens` 대신 `max_completion_tokens` 를 받는다. 강도는 `reasoning_effort`(비우면 API 기본값).
+    const apiKey = process.env.OPENAI_API_KEY;
+    if (!apiKey) throw new CliCallError("OPENAI_API_KEY 없음", "");
+    const client = new OpenAI({ apiKey, timeout: timeoutMs });
+    const response = await client.chat.completions.create({
+      model: call.model,
+      max_completion_tokens: 64000,
+      messages: [
+        { role: "system", content: call.system },
+        { role: "user", content: call.prompt },
+      ],
+      ...(call.effort ? { reasoning_effort: call.effort } : {}),
+    } as Parameters<typeof client.chat.completions.create>[0]);
+    const u = (response as { usage?: unknown }).usage as
+      | {
+          prompt_tokens?: number;
+          completion_tokens?: number;
+          completion_tokens_details?: { reasoning_tokens?: number };
+        }
+      | undefined;
+    return {
+      text:
+        (response as { choices: { message?: { content?: string | null } }[] })
+          .choices[0]?.message?.content ?? "",
       ms: Date.now() - started,
       usage: u
         ? {

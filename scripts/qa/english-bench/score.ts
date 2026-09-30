@@ -23,7 +23,7 @@ import { reviewEnglishDraft } from "@/lib/english/quality";
 
 import type { GenRecord } from "./generate";
 import type { JudgeKind } from "./judge";
-import { GENERATORS, JUDGES } from "./models";
+import { familyOf, GENERATORS, JUDGES } from "./models";
 import { BENCH_TASKS } from "./tasks";
 import { flag, safeName } from "./util";
 
@@ -533,9 +533,9 @@ function main() {
     const objective = items.filter((it) => it.valid && it.type !== "서술형");
     const selfExcluded = (() => {
       const provider = GENERATORS.find((g) => g.id === model)!.provider;
-      const others = JUDGES.filter((j) => j.provider !== provider).map(
-        (j) => j.id,
-      );
+      const others = JUDGES.filter(
+        (j) => familyOf(j.provider) !== familyOf(provider),
+      ).map((j) => j.id);
       const vals = items
         .filter((it) => it.valid)
         .map((it) => {

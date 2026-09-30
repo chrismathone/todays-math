@@ -52,6 +52,13 @@ export const GENERATORS: BenchModel[] = [
     model,
   })),
   // flash 추론 강도 비교 — 기본(high)은 위 줄. `off` = 생각 끄기(원장님 2026-09-30 «딥시크 effort 별로도»)
+  // 제품 영어 luna 경로 — OpenAI API(유료, 원장님 2026-09-30 «luna 로»). @high 는 codex 벤치와 같은 강도, 맨 이름은 API 기본값
+  ...["", "@medium", "@high"].map((suffix): BenchModel => ({
+    id: `openai:gpt-6-luna${suffix}`,
+    provider: "openai",
+    model: "gpt-6-luna",
+    ...(suffix ? { effort: suffix.slice(1) } : {}),
+  })),
   ...["low", "max", "off"].map((effort): BenchModel => ({
     id: `deepseek:deepseek-flash@${effort}`,
     provider: "deepseek",
@@ -72,7 +79,12 @@ export const JUDGES: BenchModel[] = [
   { id: "judge:grok", provider: "grok", model: "grok-4.7", effort: "medium" },
 ];
 
+/** 회사 — OpenAI API 로 부른 모델은 codex 채점관과 같은 회사다 */
+export function familyOf(provider: Provider): Provider {
+  return provider === "openai" ? "codex" : provider;
+}
+
 /** 자기 계열 채점 — 생성 모델과 같은 회사 채점관(gemini 는 해당 없음) */
 export function sameFamily(generator: BenchModel, judge: BenchModel): boolean {
-  return generator.provider === judge.provider;
+  return familyOf(generator.provider) === familyOf(judge.provider);
 }
