@@ -28,6 +28,18 @@ vi.mock("@/components/concept-blank/ConceptBlankPaper", () => ({
   },
 }));
 
+/** 학년 은행 늦게 불러오기(은행 3차) — 손으로 푸는 약속. 은행을 props 로 주는 시험은 부르지 않는다. */
+const loads = vi.hoisted(() => ({
+  calls: [] as string[],
+  pending: new Map<string, (bank: unknown) => void>(),
+}));
+vi.mock("@/lib/concept-blank/bank/load", () => ({
+  loadGradeBank: (grade: string) => {
+    loads.calls.push(grade);
+    return new Promise((resolve) => loads.pending.set(grade, resolve));
+  },
+}));
+
 const S = {
   cong: "초5::2-3 합동과 대칭::2-3-1 도형의 합동 알아보기",
   congProp: "초5::2-3 합동과 대칭::2-3-2 합동인 도형의 성질 알아보기",
@@ -936,5 +948,70 @@ describe("내 시험지에 저장 · 다시 열기", () => {
     });
     expect(puts[0]!.url).toBe("/api/library/documents/blank-9");
     expect(puts[0]!.body.expectedRevision).toBe(4);
+  });
+});
+
+// 은행 3차로 문항이 열 배 — 화면은 은행 전체를 싣지 않고 학년마다 늦게 불러온다(`bank/load.ts`).
+describe("학년 은행 늦게 불러오기", () => {
+  beforeEach(() => {
+    loads.calls.length = 0;
+    loads.pending.clear();
+  });
+  const gradeBank = (grade: string) => {
+    const mine = <T extends { section: string }>(xs: T[]) =>
+      xs.filter((x) => x.section.startsWith(`${grade}::`));
+    return {
+      concepts: mine(FIXTURE_BANK.concepts),
+      ox: mine(FIXTURE_BANK.ox),
+      apply: mine(FIXTURE_BANK.apply),
+      figures: mine(FIXTURE_BANK.figures),
+    };
+  };
+  const arrive = async (grade: string) => {
+    await act(async () => {
+      loads.pending.get(grade)!(gradeBank(grade));
+    });
+  };
+
+  it("처음에는 아무 학년도 안 부르고, 펼친 학년만 부른다 — 오는 동안 소단원은 «불러오는 중»", async () => {
+    render(<ConceptBlankView active />);
+    expect(loads.calls).toEqual([]);
+    openGrade("초5");
+    expect(loads.calls).toEqual(["초5"]);
+    expect(box("2-3-1 도형의 합동 알아보기")).toBeDisabled();
+    expect(tree().getAllByText("불러오는 중").length).toBeGreaterThan(0);
+    await arrive("초5");
+    expect(box("2-3-1 도형의 합동 알아보기")).toBeEnabled();
+    expect(tree().queryByText("불러오는 중")).not.toBeInTheDocument();
+    // 접었다 펴도 다시 부르지 않는다
+    fireEvent.click(tree().getByRole("button", { name: /^초5/ }));
+    openGrade("초5");
+    expect(loads.calls).toEqual(["초5"]);
+  });
+
+  it("주소의 고르기는 그 학년이 올 때까지 지우지도 줄이지도 않는다", async () => {
+    const saved: ConceptBlankSelection = {
+      sections: [S.line, S.point],
+      forms: [
+        {
+          form: "term",
+          counts: { 하: 1, 중: 1, 상: 0 },
+          extras: { 하: 0, 중: 1, 상: 0 },
+        },
+      ],
+      title: "대칭",
+    };
+    const code = encodeSelection(saved);
+    window.history.replaceState(null, "", `/?blank=${code}#conceptBlank`);
+    render(<ConceptBlankView active />);
+    expect(loads.calls).toEqual(["초5"]);
+    expect(new URL(window.location.href).searchParams.get("blank")).toBe(code);
+    expect(screen.getByRole("button", { name: "인쇄하기" })).toBeDisabled();
+    expect(screen.getByText("문항을 불러오는 중입니다.")).toBeInTheDocument();
+    await arrive("초5");
+    expect(printedSelection()).toEqual({
+      ...saved,
+      date: kstDateOf(new Date()),
+    });
   });
 });

@@ -7,7 +7,7 @@ import {
   type LevelCounts,
   type SheetHeader,
 } from "@/contracts/conceptBlank.contract";
-import { CONCEPT_BLANK_BANK, sectionStock } from "./bank";
+import { sectionStock } from "./bank/stock";
 import { getBlankSection, sectionTitleTex } from "./sections";
 
 /**
@@ -83,7 +83,7 @@ export const MAP_NODES_PER_PAGE = 6;
 
 export function composeSheets(
   selection: ConceptBlankSelection,
-  bank: ConceptBlankBank = CONCEPT_BLANK_BANK,
+  bank: ConceptBlankBank,
 ): ConceptBlankSheet[] {
   const sections = orderedSections(selection.sections);
   if (sections.length === 0) return [];
@@ -209,9 +209,7 @@ export type StockCounts = ReturnType<typeof stockCounts>;
  * (은행 3차로 문항이 열 배 — 나무의 소단원 360개마다 은행 전체를 훑으면 화면을 열 때 느리다).
  * 문항이 없는 소단원은 표에 없다.
  */
-export function stockTable(
-  bank: ConceptBlankBank = CONCEPT_BLANK_BANK,
-): Map<string, StockCounts> {
+export function stockTable(bank: ConceptBlankBank): Map<string, StockCounts> {
   const table = new Map<string, StockCounts>();
   const row = (section: string) => {
     let r = table.get(section);
@@ -238,10 +236,7 @@ export function stockTable(
 }
 
 /** 소단원 하나의 재고 — 화면 나무의 숫자 칸. */
-export function stockCounts(
-  key: string,
-  bank: ConceptBlankBank = CONCEPT_BLANK_BANK,
-) {
+export function stockCounts(key: string, bank: ConceptBlankBank) {
   const s = sectionStock(key, bank);
   const byLevel = <T extends { level: string }>(xs: T[]) =>
     Object.fromEntries(

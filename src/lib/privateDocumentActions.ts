@@ -39,9 +39,12 @@ async function problemCountOf(
   if (kind === "conceptBlank") {
     const document = conceptBlankDocumentSchema.safeParse(payload);
     if (!document.success) return null;
-    const { composeSheets, sheetItemCount } =
-      await import("@/lib/concept-blank/compose");
-    return composeSheets(document.data.selection).reduce(
+    const [{ composeSheets, sheetItemCount }, { CONCEPT_BLANK_BANK }] =
+      await Promise.all([
+        import("@/lib/concept-blank/compose"),
+        import("@/lib/concept-blank/bank"),
+      ]);
+    return composeSheets(document.data.selection, CONCEPT_BLANK_BANK).reduce(
       (n, sheet) => n + sheetItemCount(sheet),
       0,
     );

@@ -17,7 +17,6 @@ import {
   sheetHasContent,
 } from "@/components/concept-blank/paper/paginate";
 
-import { CONCEPT_BLANK_BANK } from "./bank";
 import { composeSheets, orderedSections } from "./compose";
 import { BLANK_SECTIONS } from "./sections";
 
@@ -331,7 +330,7 @@ const formatCode = (text: string) => text.replace(/(.{4})(?=.)/g, "$1.");
 /** 지면에 찍힌 코드의 은행 지문(4글자) — 그 고르기로 지면에 찍히는 문항에서 낸다. */
 export function sheetBankDigest(
   selection: ConceptBlankSelection,
-  bank: ConceptBlankBank = CONCEPT_BLANK_BANK,
+  bank: ConceptBlankBank,
 ): string {
   return toText(
     digestSymbols(
@@ -347,7 +346,7 @@ export function sheetBankDigest(
  */
 export function encodeSheetCode(
   selection: ConceptBlankSelection,
-  bank: ConceptBlankBank = CONCEPT_BLANK_BANK,
+  bank: ConceptBlankBank,
 ): string {
   const canonical = canonicalSheetSelection(
     conceptBlankSelectionSchema.parse(selection),
@@ -369,7 +368,7 @@ export function encodeSheetCode(
  */
 export function decodeSheetCode(
   code: string | null | undefined,
-  bank: ConceptBlankBank = CONCEPT_BLANK_BANK,
+  bank: ConceptBlankBank,
 ): SheetCodeReading | null {
   if (!code) return null;
   const text = code
