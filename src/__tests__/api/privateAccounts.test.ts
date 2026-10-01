@@ -48,6 +48,7 @@ import { PATCH as updateAccount } from "@/app/api/admin/users/[id]/route";
 import { POST as activity } from "@/app/api/account/activity/route";
 import { auditData } from "@/lib/audit";
 import type { ConceptBlankSelection } from "@/contracts/conceptBlank.contract";
+import { CONCEPT_BLANK_BANK } from "@/lib/concept-blank/bank";
 import { composeSheets, sheetItemCount } from "@/lib/concept-blank/compose";
 
 const userId = "10000000-0000-4000-8000-000000000001";
@@ -373,7 +374,7 @@ describe("concept blank in 내 시험지", () => {
       "blank-1",
     );
     expect(response.status).toBe(200);
-    const printed = composeSheets(selection).reduce(
+    const printed = composeSheets(selection, CONCEPT_BLANK_BANK).reduce(
       (n, sheet) => n + sheetItemCount(sheet),
       0,
     );

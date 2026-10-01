@@ -44,7 +44,8 @@ import {
   type ConceptBlankSelection,
   type LevelCounts,
 } from "@/contracts/conceptBlank.contract";
-import { CONCEPT_BLANK_BANK } from "@/lib/concept-blank/bank";
+import { loadGradeBank } from "@/lib/concept-blank/bank/load";
+import { joinBanks } from "@/lib/concept-blank/bank/plus";
 import {
   composeSheets,
   orderedSections,
@@ -319,8 +320,55 @@ function usePaperFit(enabled: boolean) {
   return { deskRef, paperRef, fit };
 }
 
+/**
+ * 학년 은행을 늦게 불러온다(은행 3차 · `bank/load.ts`) — 소단원마다 10개씩이라 은행이 열 배, 화면 조각에 은행 전체를 싣지 않는다.
+ * `grades` 의 학년만 부르고, 한 번 부른 학년은 다시 부르지 않는다. `null` 이면 부르지 않는다(은행을 props 로 받은 시험 · 시안).
+ */
+function useGradeBanks(grades: readonly string[] | null) {
+  const [parts, setParts] = useState<ReadonlyMap<string, ConceptBlankBank>>(
+    () => new Map(),
+  );
+  /** 못 온 학년 — 다시 불러 오면 뺀다(알림은 못 온 학년이 남아 있는 동안만). */
+  const [failed, setFailed] = useState<ReadonlySet<string>>(() => new Set());
+  const asked = useRef(new Set<string>());
+  const wanted = grades ? grades.filter(isReadyGrade).join("|") : "";
+  useEffect(() => {
+    for (const grade of wanted ? wanted.split("|") : []) {
+      if (asked.current.has(grade)) continue;
+      asked.current.add(grade);
+      loadGradeBank(grade).then(
+        (bank) => {
+          setParts((current) => new Map(current).set(grade, bank));
+          setFailed((current) => {
+            if (!current.has(grade)) return current;
+            const next = new Set(current);
+            next.delete(grade);
+            return next;
+          });
+        },
+        () => {
+          asked.current.delete(grade);
+          setFailed((current) => new Set(current).add(grade));
+        },
+      );
+    }
+  }, [wanted]);
+  // 학년 차례로 잇는다 — 학년 안은 원래 파일 뒤에 보강(소단원 안 차례가 서버의 은행 전체와 같다).
+  const bank = useMemo(
+    () =>
+      joinBanks(
+        CONCEPT_BLANK_GRADES.flatMap((grade) => {
+          const part = parts.get(grade);
+          return part ? [part] : [];
+        }),
+      ),
+    [parts],
+  );
+  return { bank, loaded: parts, failed: failed.size > 0 };
+}
+
 export type ConceptBlankViewProps = {
-  /** 문항 은행 — 기본은 실제 은행. 시험 · 시안은 `FIXTURE_BANK`. */
+  /** 문항 은행 — 시험 · 시안은 `FIXTURE_BANK` 를 준다. 주지 않으면(제품) 학년마다 늦게 불러온다(`useGradeBanks`). */
   bank?: ConceptBlankBank;
   /** 셸에서 지금 보이는 뷰인가 — 보일 때만 주소에 고르기를 싣는다(떠나면 지운다). */
   active?: boolean;
@@ -331,7 +379,7 @@ export type ConceptBlankViewProps = {
 };
 
 export default function ConceptBlankView({
-  bank = CONCEPT_BLANK_BANK,
+  bank: fixedBank,
   active = true,
   storageScope,
   openDocument,
@@ -365,26 +413,58 @@ export default function ConceptBlankView({
     "both",
   );
 
-  /** 소단원마다 재고 — 은행이 채우는 학년(초3~중3)만. */
+  /** 불러올 학년 — 고른 소단원의 학년 + 펼친 학년. 은행을 props 로 받았으면 부르지 않는다. */
+  const neededGrades = useMemo(() => {
+    if (fixedBank) return null;
+    const grades = new Set<string>();
+    for (const key of draft.sections) {
+      const grade = getBlankSection(key)?.grade;
+      if (grade) grades.add(grade);
+    }
+    if (openGrade) grades.add(openGrade);
+    return [...grades];
+  }, [fixedBank, draft.sections, openGrade]);
+  const live = useGradeBanks(neededGrades);
+  const bank = fixedBank ?? live.bank;
+  /** 온 학년(props 은행이면 null — 다 있다). */
+  const loadedGrades = fixedBank ? null : live.loaded;
+  const hasGrade = (grade: string | undefined) =>
+    !loadedGrades || !grade || !isReadyGrade(grade) || loadedGrades.has(grade);
+  /** 고른 소단원의 학년이 다 왔나 — 오기 전에는 고르기를 정하지 않는다(주소 · 저장 · 인쇄를 건드리지 않는다). */
+  const ready = draft.sections.every((key) =>
+    hasGrade(getBlankSection(key)?.grade),
+  );
+
+  /** 소단원마다 재고 — 은행이 채우는 학년(초3~중3) 가운데 온 학년만. */
   const stockIndex = useMemo(() => {
     const table = stockTable(bank);
     const map = new Map<string, Stock>();
     for (const grade of BLANK_TREE)
-      if (isReadyGrade(grade.grade))
+      if (
+        isReadyGrade(grade.grade) &&
+        (!loadedGrades || loadedGrades.has(grade.grade))
+      )
         for (const chapter of grade.chapters)
           for (const section of chapter.sections)
             map.set(section.key, table.get(section.key) ?? EMPTY_STOCK);
     return map;
-  }, [bank]);
+  }, [bank, loadedGrades]);
   const selectable = (key: string) => (stockIndex.get(key)?.total ?? 0) > 0;
 
-  /** 고른 소단원 — 재고가 있는 것만, 교육과정 순서. */
+  /** 고른 소단원 — 재고가 있는 것만(학년이 아직 안 왔으면 일단 둔다), 교육과정 순서. */
   const chosen = useMemo(
     () =>
       orderedSections(
-        draft.sections.filter((key) => (stockIndex.get(key)?.total ?? 0) > 0),
+        draft.sections.filter(
+          (key) =>
+            (stockIndex.get(key)?.total ?? 0) > 0 ||
+            // 아직 안 온 학년만 기다린다 — 은행이 없는 학년(초1 · 초2 · 고등)은 오지 않으니 전처럼 뺀다
+            (!!loadedGrades &&
+              isReadyGrade(getBlankSection(key)?.grade ?? "") &&
+              !loadedGrades.has(getBlankSection(key)?.grade ?? "")),
+        ),
       ),
-    [draft.sections, stockIndex],
+    [draft.sections, stockIndex, loadedGrades],
   );
   const chosenSet = useMemo(() => new Set(chosen), [chosen]);
 
@@ -393,7 +473,7 @@ export default function ConceptBlankView({
     const total = (kind: StockKind): LevelCounts => {
       const out = { ...ZERO };
       for (const key of chosen) {
-        const stock = stockIndex.get(key)!;
+        const stock = stockIndex.get(key) ?? EMPTY_STOCK;
         for (const level of CONCEPT_BLANK_LEVELS)
           out[level] += stock[kind][level];
       }
@@ -413,7 +493,7 @@ export default function ConceptBlankView({
     availableOf(chosen, caps, form) && draft.forms[form].on;
 
   const selection = useMemo<ConceptBlankSelection | null>(() => {
-    if (!chosen.length) return null;
+    if (!ready || !chosen.length) return null;
     const forms = CONCEPT_BLANK_FORMS.flatMap((form) => {
       if (!availableOf(chosen, caps, form) || !draft.forms[form].on) return [];
       const counts = valueOf(draft, caps, form, "main");
@@ -430,7 +510,7 @@ export default function ConceptBlankView({
       ...(title ? { title } : {}),
       ...(DATE_RE.test(draft.date) ? { date: draft.date } : {}),
     };
-  }, [chosen, caps, draft]);
+  }, [ready, chosen, caps, draft]);
 
   const code = useMemo(() => {
     if (!selection) return null;
@@ -454,14 +534,16 @@ export default function ConceptBlankView({
   const { deskRef, paperRef, fit } = usePaperFit(sheets.length > 0);
 
   // 주소 `?blank=` — 이 뷰가 보일 때만 싣고, 떠나면 지운다. replaceState 라 셸의 해시 동기화(popstate)는 안 깨운다.
+  // 학년 은행이 오는 동안은 건드리지 않는다 — 오기 전의 빈 고르기로 주소의 고르기를 지우면 새로 고침이 고르기를 잃는다.
   useEffect(() => {
+    if (active && !ready) return;
     const url = new URL(window.location.href);
     const next = active ? code : null;
     if (url.searchParams.get(URL_PARAM) === next) return;
     if (next) url.searchParams.set(URL_PARAM, next);
     else url.searchParams.delete(URL_PARAM);
     window.history.replaceState(window.history.state, "", url);
-  }, [active, code]);
+  }, [active, ready, code]);
 
   // 주소 `?blankDoc=` — 내 시험지에 있는 자료면 그 id 를 같은 규칙으로 싣는다(새로 고쳐도 같은 자료에 저장).
   const savedId = savedDocument?.id ?? null;
@@ -728,6 +810,11 @@ export default function ConceptBlankView({
           )}
         </div>
       </WorkspacePageHeader>
+      {live.failed && (
+        <p className={s.saveError} role="alert">
+          문항을 불러오지 못했습니다. 새로 고쳐 주세요.
+        </p>
+      )}
       {saveError && (
         <p className={s.saveError} role="alert">
           {saveError}
@@ -829,13 +916,16 @@ export default function ConceptBlankView({
                             <ul className={s.sections}>
                               {chapter.sections.map((section, si) => {
                                 const stock = stockIndex.get(section.key);
+                                const loading = !hasGrade(grade.grade);
                                 const empty = !stock || stock.total === 0;
                                 const stockId = `${uid}-g${gi}c${ci}s${si}`;
                                 return (
                                   <li
                                     key={section.key}
                                     className={s.section}
-                                    data-empty={empty ? "true" : undefined}
+                                    data-empty={
+                                      empty && !loading ? "true" : undefined
+                                    }
                                   >
                                     <label className={s.check}>
                                       <input
@@ -854,7 +944,9 @@ export default function ConceptBlankView({
                                       </span>
                                     </label>
                                     <span id={stockId} className={s.stock}>
-                                      {stockLine(stock)}
+                                      {loading
+                                        ? "불러오는 중"
+                                        : stockLine(stock)}
                                     </span>
                                   </li>
                                 );
@@ -1043,7 +1135,11 @@ export default function ConceptBlankView({
             </div>
           </div>
         ) : (
-          <p className={s.empty}>소단원과 형식을 고르면 지면이 나옵니다.</p>
+          <p className={s.empty}>
+            {ready
+              ? "소단원과 형식을 고르면 지면이 나옵니다."
+              : "문항을 불러오는 중입니다."}
+          </p>
         )}
       </section>
     </div>

@@ -16,6 +16,7 @@ import {
   type LevelCounts,
 } from "../../../src/contracts/conceptBlank.contract";
 import { SHEET_CODE_LINE_CAPACITY } from "../../../src/components/concept-blank/paper/paginate";
+import { CONCEPT_BLANK_BANK } from "../../../src/lib/concept-blank/bank";
 import { stockCounts } from "../../../src/lib/concept-blank/compose";
 import {
   BLANK_TREE,
@@ -45,14 +46,14 @@ const ready = BLANK_TREE.filter((g) =>
 const chapters = ready.flatMap((g) => g.chapters);
 const stocked = chapters
   .flatMap((c) => c.sections)
-  .filter((s) => stockCounts(s.key).total > 0);
+  .filter((s) => stockCounts(s.key, CONCEPT_BLANK_BANK).total > 0);
 
 /** 화면의 기본 고르기 — 켤 수 있는 형식 전부, 수는 재고 전부(40 에서 자름). */
 function uiDefault(sections: string[]): ConceptBlankSelection {
   const caps = (kind: StockKind): LevelCounts => {
     const out = { ...ZERO };
     for (const key of sections) {
-      const stock = stockCounts(key)[kind];
+      const stock = stockCounts(key, CONCEPT_BLANK_BANK)[kind];
       for (const l of CONCEPT_BLANK_LEVELS) out[l] += stock[l];
     }
     for (const l of CONCEPT_BLANK_LEVELS) out[l] = Math.min(out[l], 40);
@@ -67,14 +68,14 @@ function uiDefault(sections: string[]): ConceptBlankSelection {
 }
 
 const len = (s: ConceptBlankSelection) =>
-  encodeSheetCode(s).replace(/\./g, "").length;
+  encodeSheetCode(s, CONCEPT_BLANK_BANK).replace(/\./g, "").length;
 
 function stats(name: string, selections: ConceptBlankSelection[]) {
   const lens = selections.map(len).sort((a, b) => a - b);
   const pick = (q: number) =>
     lens[Math.min(lens.length - 1, Math.floor(q * lens.length))]!;
   const worst = selections.reduce((w, s) => (len(s) > len(w) ? s : w));
-  const shown = encodeSheetCode(worst);
+  const shown = encodeSheetCode(worst, CONCEPT_BLANK_BANK);
   console.log(
     `| ${name} | ${selections.length} | ${lens[0]} | ${pick(0.5)} | ${lens[lens.length - 1]} | \`${shown}\` (${shown.length}) | ${encodeSelection(worst).length} |`,
   );
@@ -104,7 +105,7 @@ stats(
 const runsOf3 = chapters.flatMap((c) => {
   const keys = c.sections
     .map((s) => s.key)
-    .filter((k) => stockCounts(k).total > 0);
+    .filter((k) => stockCounts(k, CONCEPT_BLANK_BANK).total > 0);
   return keys.length >= 3
     ? keys.slice(0, keys.length - 2).map((_, i) => keys.slice(i, i + 3))
     : [];
@@ -117,7 +118,7 @@ stats(
     const g = ready[Math.floor(next3() * ready.length)]!;
     const keys = g.chapters
       .flatMap((c) => c.sections)
-      .filter((s) => stockCounts(s.key).total > 0)
+      .filter((s) => stockCounts(s.key, CONCEPT_BLANK_BANK).total > 0)
       .map((s) => s.key);
     const out = new Set<string>();
     while (out.size < 3) out.add(keys[Math.floor(next3() * keys.length)]!);
@@ -129,7 +130,9 @@ stats(
   "③ 대단원 하나 통째",
   chapters
     .map((c) =>
-      c.sections.map((s) => s.key).filter((k) => stockCounts(k).total > 0),
+      c.sections
+        .map((s) => s.key)
+        .filter((k) => stockCounts(k, CONCEPT_BLANK_BANK).total > 0),
     )
     .filter((keys) => keys.length > 0)
     .map(uiDefault),
@@ -153,7 +156,7 @@ stats(
     while (out.size < 10) {
       const keys = ready[g % ready.length]!.chapters.flatMap(
         (c) => c.sections,
-      ).filter((s) => stockCounts(s.key).total > 0);
+      ).filter((s) => stockCounts(s.key, CONCEPT_BLANK_BANK).total > 0);
       out.add(keys[Math.floor(next10() * keys.length)]!.key);
       g++;
     }

@@ -357,7 +357,7 @@ describe("잘못된 코드는 null", () => {
     const wanted = new Set([32, 33, 34, 62, 63, 64, 65]);
     const seen = new Map<number, string>();
     for (let n = 0; n < 6000 && seen.size < wanted.size; n++) {
-      const code = encodeSheetCode(randomSelection(next));
+      const code = encodeSheetCode(randomSelection(next), CONCEPT_BLANK_BANK);
       const raw = code.replace(/\./g, "");
       if (wanted.has(raw.length) && !seen.has(raw.length))
         seen.set(raw.length, raw);
@@ -366,11 +366,14 @@ describe("잘못된 코드는 null", () => {
       [...wanted].sort((a, b) => a - b),
     );
     for (const raw of seen.values()) {
-      expect(decodeSheetCode(raw)).not.toBeNull();
+      expect(decodeSheetCode(raw, CONCEPT_BLANK_BANK)).not.toBeNull();
       for (let i = 0; i + 1 < raw.length; i++) {
         if (raw[i] === raw[i + 1]) continue;
         const bad = raw.slice(0, i) + raw[i + 1] + raw[i] + raw.slice(i + 2);
-        expect(decodeSheetCode(bad), `${raw.length}글자 · ${i}`).toBeNull();
+        expect(
+          decodeSheetCode(bad, CONCEPT_BLANK_BANK),
+          `${raw.length}글자 · ${i}`,
+        ).toBeNull();
       }
     }
   });

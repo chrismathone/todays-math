@@ -1,10 +1,5 @@
-import type {
-  ApplyItem,
-  ConceptBlankBank,
-  ConceptEntry,
-  FigureItem,
-  OxItem,
-} from "@/contracts/conceptBlank.contract";
+import type { ConceptBlankBank } from "@/contracts/conceptBlank.contract";
+import { sectionStock as stockOf, type SectionStock } from "./stock";
 import { bank as e3 } from "./e3";
 import { bank as e4 } from "./e4";
 import { bank as e5 } from "./e5";
@@ -60,21 +55,12 @@ export const CONCEPT_BLANK_BANK: ConceptBlankBank = {
   figures: Object.values(BANK_PARTS).flatMap((b) => b.figures),
 };
 
-export type SectionStock = {
-  concepts: ConceptEntry[];
-  ox: OxItem[];
-  apply: ApplyItem[];
-  figures: FigureItem[];
-};
+export type { SectionStock };
 
+/** 소단원 하나의 문항 — 기본은 은행 전체(서버 · 시험 · 스크립트). 화면은 `stock.ts` 를 받은 은행으로 쓴다. */
 export function sectionStock(
   key: string,
   bank: ConceptBlankBank = CONCEPT_BLANK_BANK,
 ): SectionStock {
-  return {
-    concepts: bank.concepts.filter((x) => x.section === key),
-    ox: bank.ox.filter((x) => x.section === key),
-    apply: bank.apply.filter((x) => x.section === key),
-    figures: bank.figures.filter((x) => x.section === key),
-  };
+  return stockOf(key, bank);
 }
