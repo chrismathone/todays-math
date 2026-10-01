@@ -26,7 +26,9 @@
 
 `jev.mjs`는 AI SDK 7의 `experimental_evaluate`와 `createGateway().evaluationModel('typesafe-ai/jev')`를 사용한다. 서로 다른 학생 답안은 별도 요청으로 보낸다. 루브릭과 모범 답안을 주되, 실험용 기대 분류는 전달하지 않는다.
 
-첫 실제 요청은 로컬 Gateway 키로 호출했으며 `Free tier users do not have access to this model`로 거절됐다. 완료된 Jev 평가 결과는 **0개**다. 이어 확인한 결과 CLI는 예전 `bigshol` 계정에 로그인돼 있었고, 로컬 프로젝트 연결도 예전 팀을 가리켰다. 사용자가 알려준 `chrismathone` Pro 팀 이전 이력은 `docs/planning/10-handoff.md`의 §0-A.0에서도 확인했다. **이 오류는 현재 운영 Pro 팀의 Jev 접근 여부를 증명하지 않는다.** 별도 CLI 설정 폴더에서 올바른 계정의 인증을 준비했지만, 사용자가 지금은 로그인하기 어렵다고 하여 대기를 종료했다. 결제·키 교체·프로젝트 재연결은 수행하지 않았다. 후속 실험은 `chrismathone` 인증과 올바른 프로젝트의 Gateway 설정 확인부터 이어간다.
+실제 요청은 로컬 Gateway 키로 호출했으며 반복 확인에서도 `Free tier users do not have access to this model`로 거절됐다. 완료된 Jev 평가 결과는 **0개**다. 사용자 화면은 `Injaewon's projects · Pro`와 활성 키를 보여 주며, 화면의 키 끝자리도 로컬 키와 일치한다. 따라서 잘못된 팀의 키라고 추정했던 초기 진단은 철회한다. CLI는 예전 계정이지만, Gateway 키로 직접 호출할 때 CLI 로그인은 필요하지 않다.
+
+**Vercel Pro 구독과 AI Gateway의 무료/유료 크레딧 등급은 별개다.** [공식 가격 문서](https://vercel.com/docs/ai-gateway/pricing)에 따르면 무료 등급은 일부 모델만 지원하며 Gateway 크레딧 구매로 유료 등급으로 전환된다. 확인된 사실은 이 키의 Jev 요청이 Gateway 무료 등급으로 판정된다는 것이다. 다음 확인 대상은 해당 팀의 Gateway 크레딧 구매 이력과 유료 등급 반영 상태다. 이미 구매했다면 Vercel 측 상태 확인이 필요하다. 결제·키 교체·프로젝트 재연결은 수행하지 않았다.
 
 Jev는 텍스트 평가 모델이므로 사진 판독기를 대체하지 않는다. 공식 문서는 영어 중심 학습과 CJK에서의 낮은 정확도를 설명한다. 한국어 개념 답안은 반드시 직접 평가해야 한다. `semantic-cases.json`은 동의 표현, 오개념, 부분점수, 답 형식, 빈 답, 판독 불가, 답안 내부 지시문을 포함한 **합성 텍스트 12개**이며 실제 학생 결과가 아니다.
 
