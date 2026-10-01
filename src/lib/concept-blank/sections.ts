@@ -47,6 +47,31 @@ export const BLANK_SECTIONS: readonly BlankSection[] = CURRICULUM_UNITS.filter(
 const byKey = new Map(BLANK_SECTIONS.map((s) => [s.key, s]));
 export const getBlankSection = (key: string) => byKey.get(key);
 
+/**
+ * 소단원 이름의 수식 — 시드 글(`y=ax^2+bx+c` · `1cm²` · `㎥`)을 KaTeX 꼴로(원장님 2026-10-01 «일부 카텍스 적용 안되어있네»).
+ * 시드는 다른 화면도 같은 글로 쓰므로 고치지 않고, 개념 백지가 이름을 지면(`PaperText`) · 화면(나무)에 넘길 때만 바꾼다.
+ * 이름 통째로 맞춘다(부분 치환은 `y=ax` 가 `y=ax^2…` 안에서 두 번 감싸인다). ×(곱하기) · ÷ · 괄호 낱말 «(몇십)×(몇)»은 글자로 둔다.
+ * 개념 백지 학년의 이름에 날 수식이 남으면 `conceptBlankSectionTitle.test.ts` 가 운다 — 시드에 이름이 늘면 여기에 더한다.
+ */
+const TITLE_TEX: ReadonlyMap<string, string> = new Map([
+  ["이차함수 y=ax^2+bx+c의 그래프", "이차함수 $y=ax^2+bx+c$의 그래프"],
+  ["정비례 관계 y=ax의 그래프", "정비례 관계 $y=ax$의 그래프"],
+  ["반비례 관계 y=a/x의 그래프", "반비례 관계 $y=\\dfrac{a}{x}$의 그래프"],
+  ["1-5-1 1cm보다 작은 단위", "1-5-1 $1\\,\\mathrm{cm}$보다 작은 단위"],
+  ["1-5-2 1m보다 큰 단위", "1-5-2 $1\\,\\mathrm{m}$보다 큰 단위"],
+  [
+    "1-6-2 1cm², 직사각형과 정사각형의 넓이",
+    "1-6-2 $1\\,\\mathrm{cm}^2$, 직사각형과 정사각형의 넓이",
+  ],
+  [
+    "1-6-3 1cm²보다 더 큰 넓이의 단위",
+    "1-6-3 $1\\,\\mathrm{cm}^2$보다 더 큰 넓이의 단위",
+  ],
+  ["1-6-3 ㎥ 알아보기", "1-6-3 $\\mathrm{m}^3$ 알아보기"],
+]);
+export const sectionTitleTex = (title: string): string =>
+  TITLE_TEX.get(title) ?? title;
+
 export const BLANK_TREE: readonly BlankGrade[] = (() => {
   const grades: BlankGrade[] = [];
   for (const s of [...BLANK_SECTIONS].sort((a, b) => a.order - b.order)) {

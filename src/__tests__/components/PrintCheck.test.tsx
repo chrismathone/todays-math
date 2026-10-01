@@ -211,7 +211,9 @@ describe("실물 출력 검수 목록 — 데이터", () => {
     //     검수 시작값 — g · y · p 와 닿는지는 종이에서만 정한다).
     // 90: english-teacher-head-notes 추가 (2026-10-01 D-151 — 교사용 첫 쪽 머리의 배부 순서 · 답이 보이는 문항).
     // 91: english-bare-choice-marks 추가 (2026-10-01 D-151 — 번호뿐인 보기는 보기 줄을 찍지 않는다).
-    expect(ITEMS.length).toBe(91);
+    // 92: concept-blank-sheet-code 추가 (2026-10-01 트랙 cb-code — 개념 백지 모든 장 맨 아래 지면 코드 줄.
+    //     영어 91 과 같은 날 따로 갈라져 병합에서 겹쳤다).
+    expect(ITEMS.length).toBe(92);
   });
 
   /**

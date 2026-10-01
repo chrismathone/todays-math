@@ -32,6 +32,7 @@ import ConceptBlankPrintPage from "@/app/(main)/concept-blank/print/page";
 import ConceptBlankPaper, {
   type ConceptBlankPaperProps,
 } from "@/components/concept-blank/ConceptBlankPaper";
+import PrintNow from "@/components/concept-blank/paper/PrintNow";
 import type { ConceptBlankSelection } from "@/contracts/conceptBlank.contract";
 import { composeSheets } from "@/lib/concept-blank/compose";
 import { FIXTURE_BANK } from "@/lib/concept-blank/fixture";
@@ -158,5 +159,19 @@ describe("/concept-blank/print", () => {
       await call({ s: encodeSelection(SELECTION), view }),
     );
     expect(paper!.props.view).toBe(expected);
+  });
+
+  it("print=1 이면 지면을 그린 뒤 인쇄 창을 바로 띄운다(인쇄하기 단추 — Ctrl+P 없이) · 없으면 안 띄운다", async () => {
+    mocks.session.mockResolvedValue(OWNER);
+    const has = (node: unknown): boolean => {
+      if (!isValidElement(node)) return false;
+      if (node.type === PrintNow) return true;
+      const children = (node.props as { children?: unknown }).children;
+      return (Array.isArray(children) ? children : [children]).some(has);
+    };
+    expect(has(await call({ s: encodeSelection(SELECTION), print: "1" }))).toBe(
+      true,
+    );
+    expect(has(await call({ s: encodeSelection(SELECTION) }))).toBe(false);
   });
 });

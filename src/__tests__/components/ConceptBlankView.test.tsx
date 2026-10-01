@@ -16,6 +16,7 @@ import {
   encodeSelection,
 } from "@/lib/concept-blank/selectionCodec";
 import { encodeSheetCode } from "@/lib/concept-blank/sheetCode";
+import { kstDateOf } from "@/lib/kstDate";
 
 vi.mock("@/components/concept-blank/ConceptBlankPaper", () => ({
   default: function PaperProbe({ sheets, view, code }: ConceptBlankPaperProps) {
@@ -52,9 +53,12 @@ const count = (name: string) =>
   screen.getByRole("spinbutton", { name }) as HTMLInputElement;
 const formSwitch = (label: string) =>
   screen.getByRole("switch", { name: `${label} 켜기` });
-function printedSelection(): ConceptBlankSelection | null {
+function printUrl(): URL {
   const link = screen.getByRole("link", { name: "인쇄하기" });
-  const url = new URL(link.getAttribute("href")!, "http://localhost");
+  return new URL(link.getAttribute("href")!, "http://localhost");
+}
+function printedSelection(): ConceptBlankSelection | null {
+  const url = printUrl();
   expect(url.pathname).toBe("/concept-blank/print");
   expect(url.searchParams.get("view")).toBe("both");
   return decodeSelection(url.searchParams.get("s"));
@@ -65,6 +69,27 @@ beforeEach(() => {
 });
 afterEach(() => {
   window.history.replaceState(null, "", "/");
+});
+
+describe("소단원 이름의 수식 — KaTeX (원장님 2026-10-01 «일부 카텍스 적용 안되어있네»)", () => {
+  it("나무의 «이차함수 y=ax^2+bx+c의 그래프»는 수식으로 그린다 — 캐럿이 글자로 안 보인다", () => {
+    renderView();
+    openGrade("중3");
+    const label = tree()
+      .getAllByRole("checkbox")
+      .map((b) => b.closest("label")!)
+      .find(
+        (l) =>
+          l.textContent!.includes("의 그래프") && l.querySelector(".katex"),
+      );
+    expect(label).toBeDefined();
+    expect(label!.querySelector(".katex-error")).toBeNull();
+    // 보이는 글(MathML 주석 밖)에 날 캐럿이 없다
+    const visible = [...label!.querySelectorAll(".katex-html")]
+      .map((n) => n.textContent)
+      .join("");
+    expect(visible).not.toContain("^");
+  });
 });
 
 describe("나무 — 학년 → 대단원 → 소단원", () => {
@@ -231,6 +256,52 @@ describe("형식 카드 다섯", () => {
   });
 });
 
+describe("인쇄 옵션 — 날짜 · 인쇄할 지면 · 인쇄 단추 (원장님 2026-10-01)", () => {
+  afterEach(() => {
+    vi.useRealTimers();
+  });
+
+  it("날짜는 기본이 오늘(한국 시간)이고 인쇄 주소에 실린다 — 비우면 날짜 없이(손으로 쓰는 줄)", () => {
+    vi.useFakeTimers({ toFake: ["Date"] });
+    vi.setSystemTime(new Date("2026-10-01T16:30:00Z")); // 한국 시간 10월 2일 01:30
+    renderView();
+    openGrade("초5");
+    fireEvent.click(box("2-3 합동과 대칭"));
+    expect(screen.getByLabelText("날짜")).toHaveValue("2026-10-02");
+    expect(printedSelection()!.date).toBe("2026-10-02");
+
+    fireEvent.change(screen.getByLabelText("날짜"), {
+      target: { value: "" },
+    });
+    expect(printedSelection()).not.toHaveProperty("date");
+  });
+
+  it("인쇄할 지면을 고른다 — 학생지 · 채점표 · 전체(기본)", () => {
+    renderView();
+    openGrade("초5");
+    fireEvent.click(box("2-3 합동과 대칭"));
+    const group = screen.getByRole("group", { name: "인쇄할 지면" });
+    const choice = (name: string) =>
+      within(group).getByRole("button", { name });
+    expect(choice("전체")).toHaveAttribute("aria-pressed", "true");
+    expect(printUrl().searchParams.get("view")).toBe("both");
+
+    fireEvent.click(choice("학생지"));
+    expect(choice("학생지")).toHaveAttribute("aria-pressed", "true");
+    expect(printUrl().searchParams.get("view")).toBe("student");
+
+    fireEvent.click(choice("채점표"));
+    expect(printUrl().searchParams.get("view")).toBe("key");
+  });
+
+  it("인쇄하기는 인쇄 창을 바로 띄우는 주소로 연다(Ctrl+P 없이)", () => {
+    renderView();
+    openGrade("초5");
+    fireEvent.click(box("2-3 합동과 대칭"));
+    expect(printUrl().searchParams.get("print")).toBe("1");
+  });
+});
+
 describe("인쇄 · 미리보기", () => {
   it("아무것도 안 고르면 인쇄하기가 잠기고 미리보기는 안내 한 줄", () => {
     renderView();
@@ -290,8 +361,11 @@ describe("인쇄 · 미리보기", () => {
     const paper = screen.getByTestId("paper");
     expect(paper).toHaveTextContent("recall,term,cloze,map,figure");
     expect(paper).toHaveAttribute("data-view", "student");
-    const student = screen.getByRole("button", { name: "학생지" });
-    const key = screen.getByRole("button", { name: "채점표" });
+    const preview = within(
+      screen.getByRole("group", { name: "미리보기 지면" }),
+    );
+    const student = preview.getByRole("button", { name: "학생지" });
+    const key = preview.getByRole("button", { name: "채점표" });
     expect(student).toHaveAttribute("aria-pressed", "true");
     fireEvent.click(key);
     expect(key).toHaveAttribute("aria-pressed", "true");
@@ -392,7 +466,11 @@ describe("주소로 고르기 되살리기", () => {
     expect(formSwitch("완전 백지")).not.toBeChecked();
     expect(count("용어 → 뜻 용어 하").value).toBe("1");
     expect(screen.getByRole("textbox", { name: "제목" })).toHaveValue("대칭");
-    expect(printedSelection()).toEqual(saved);
+    // 날짜를 안 실은 주소면 오늘(한국 시간)이 들어간다 — 원장님 2026-10-01 «디폴트 오늘 날짜»
+    expect(printedSelection()).toEqual({
+      ...saved,
+      date: kstDateOf(new Date()),
+    });
   });
 
   it("고르기를 바꾸면 주소가 따라오고, 화면을 떠나면 주소에서 지운다", () => {

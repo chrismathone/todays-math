@@ -365,12 +365,67 @@ button.primaryButton:disabled {
   font-variant-numeric: tabular-nums;
 }
 
-/* ── 제목 · 날짜 ───────────────────────────────────────────── */
+/* ── 제목 ──────────────────────────────────────────────────── */
 .metaGrid {
   display: grid;
-  grid-template-columns: minmax(0, 1.6fr) minmax(0, 1fr);
+  grid-template-columns: minmax(0, 1fr);
   gap: 12px;
   margin-top: 12px;
+}
+
+/* ── 인쇄 옵션(머리 오른쪽) — 날짜 · 인쇄할 지면 · 인쇄하기 (원장님 2026-10-01) ── */
+.printBar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 8px;
+}
+.printDate {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+.printDate > span {
+  font-size: var(--text-caption, 12px);
+  font-weight: 700;
+  color: var(--b-muted);
+}
+.printDate input {
+  box-sizing: border-box;
+  min-height: 40px;
+  padding: 0 10px;
+  border: 1px solid var(--learn-control, #b8c4d6);
+  border-radius: 8px;
+  background: var(--learn-surface, #fff);
+  color: var(--b-ink);
+  font: inherit;
+}
+/* 미리보기의 .segment 와 같은 얼굴 — 머리에서는 오른쪽으로 밀지 않는다 */
+.printSegment {
+  display: inline-flex;
+  padding: 3px;
+  border: 1px solid var(--b-line);
+  border-radius: 10px;
+  background: var(--learn-bg, #f4f6fa);
+}
+.printSegment button {
+  min-height: 34px;
+  padding: 0 12px;
+  border: 0;
+  border-radius: 7px;
+  background: transparent;
+  color: var(--b-muted);
+  font-size: 13px;
+  font-weight: 600;
+}
+.printSegment button:hover {
+  color: var(--b-ink);
+}
+.printSegment button[aria-pressed="true"] {
+  background: var(--learn-surface, #fff);
+  color: var(--b-accent);
+  box-shadow: 0 0 0 1px var(--b-line);
 }
 .field {
   display: grid;

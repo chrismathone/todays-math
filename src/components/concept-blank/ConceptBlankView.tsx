@@ -2,7 +2,8 @@
 
 /**
  * «개념 백지» 탭(D-150 · 26 §4 · 브리프 cb-app) — 왼쪽 나무(학년 → 대단원 → 소단원) · 오른쪽 형식 카드 다섯 ·
- * 제목 · 날짜 · 아래 미리보기 · 인쇄하기(새 창 `/concept-blank/print?s=…&view=both`).
+ * 제목 · 아래 미리보기 · 머리 오른쪽 인쇄 옵션(날짜 — 기본 오늘 · 학생지 / 채점표 / 전체 · 인쇄하기 → 새 창
+ * `/concept-blank/print?s=…&view=…&print=1` 이 지면을 그린 뒤 인쇄 창을 바로 띄운다 — 원장님 2026-10-01).
  *
  * 🔴 고정 문항 — 화면은 고르기(`ConceptBlankSelection`)만 만든다. 지면은 `composeSheets` 가 정하고, 같은 고르기면
  * 언제나 같은 지면이다. 은행은 props(기본 `CONCEPT_BLANK_BANK`) — 실제 은행이 비어 있는 동안 시험은 `FIXTURE_BANK`.
@@ -14,6 +15,7 @@
 import { useEffect, useId, useMemo, useRef, useState } from "react";
 
 import ConceptBlankPaper from "@/components/concept-blank/ConceptBlankPaper";
+import { PaperText } from "@/components/concept-blank/paper/PaperParts";
 import Icon from "@/components/unified/WorkspaceIcon";
 import WorkspacePageHeader from "@/components/unified/WorkspacePageHeader";
 import {
@@ -37,6 +39,7 @@ import {
   BLANK_TREE,
   CONCEPT_BLANK_GRADES,
   getBlankSection,
+  sectionTitleTex,
   type BlankChapter,
 } from "@/lib/concept-blank/sections";
 import {
@@ -44,6 +47,7 @@ import {
   encodeSelection,
 } from "@/lib/concept-blank/selectionCodec";
 import { encodeSheetCode } from "@/lib/concept-blank/sheetCode";
+import { kstDateOf } from "@/lib/kstDate";
 
 import s from "./concept-blank.module.css";
 
@@ -148,7 +152,8 @@ function initialDraft(): Draft {
     sections: saved ? orderedSections(saved.sections) : [],
     forms,
     title: saved?.title ?? "",
-    date: saved?.date ?? "",
+    // 원장님 2026-10-01 «디폴트 오늘 날짜» — 주소에 날짜가 없으면 오늘(한국 시간). 비우면 지면의 학습일은 손으로 쓰는 줄.
+    date: saved?.date ?? kstDateOf(new Date()),
   };
 }
 
@@ -265,6 +270,10 @@ export default function ConceptBlankView({
   );
   const [capHit, setCapHit] = useState(false);
   const [paperView, setPaperView] = useState<"student" | "key">("student");
+  /** 인쇄할 지면 — 학생지 · 채점표 · 전체(학생지 뒤에 채점표). 원장님 2026-10-01 «본문/답지/전체 따로». */
+  const [printView, setPrintView] = useState<"student" | "key" | "both">(
+    "both",
+  );
 
   /** 소단원마다 재고 — 은행이 채우는 학년(초3~중3)만. */
   const stockIndex = useMemo(() => {
@@ -417,7 +426,10 @@ export default function ConceptBlankView({
 
   const autoTitle =
     !draft.title.trim() && sheets[0] ? sheets[0].header.title : null;
-  const printHref = code ? `${PRINT_PATH}?s=${code}&view=both` : null;
+  // `print=1` — 인쇄 페이지가 지면을 다 그린 뒤 인쇄 창을 바로 띄운다(원장님 2026-10-01 «ctrl+p 말고 인쇄버튼으로»)
+  const printHref = code
+    ? `${PRINT_PATH}?s=${code}&view=${printView}&print=1`
+    : null;
 
   return (
     <div className={s.view}>
@@ -425,22 +437,55 @@ export default function ConceptBlankView({
         title="개념 백지"
         description="학년 · 대단원 · 소단원을 고르고 형식마다 난이도별 문항 수를 정합니다. 같은 고르기는 언제나 같은 지면입니다."
       >
-        {printHref ? (
-          <a
-            className={s.primaryButton}
-            href={printHref}
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Icon name="print" size={18} />
-            인쇄하기
-          </a>
-        ) : (
-          <button type="button" className={s.primaryButton} disabled>
-            <Icon name="print" size={18} />
-            인쇄하기
-          </button>
-        )}
+        <div className={s.printBar}>
+          <label className={s.printDate}>
+            <span>날짜</span>
+            <input
+              type="date"
+              value={draft.date}
+              onChange={(event) =>
+                setDraft((current) => ({
+                  ...current,
+                  date: event.target.value,
+                }))
+              }
+            />
+          </label>
+          <div className={s.printSegment} role="group" aria-label="인쇄할 지면">
+            {(
+              [
+                ["student", "학생지"],
+                ["key", "채점표"],
+                ["both", "전체"],
+              ] as const
+            ).map(([value, label]) => (
+              <button
+                key={value}
+                type="button"
+                aria-pressed={printView === value}
+                onClick={() => setPrintView(value)}
+              >
+                {label}
+              </button>
+            ))}
+          </div>
+          {printHref ? (
+            <a
+              className={s.primaryButton}
+              href={printHref}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <Icon name="print" size={18} />
+              인쇄하기
+            </a>
+          ) : (
+            <button type="button" className={s.primaryButton} disabled>
+              <Icon name="print" size={18} />
+              인쇄하기
+            </button>
+          )}
+        </div>
       </WorkspacePageHeader>
 
       <div className={s.grid}>
@@ -556,7 +601,11 @@ export default function ConceptBlankView({
                                           toggleSection(section.key)
                                         }
                                       />
-                                      <span>{section.title}</span>
+                                      <span>
+                                        <PaperText
+                                          text={sectionTitleTex(section.title)}
+                                        />
+                                      </span>
                                     </label>
                                     <span id={stockId} className={s.stock}>
                                       {stockLine(stock)}
@@ -666,7 +715,7 @@ export default function ConceptBlankView({
 
           <section className={s.card} aria-labelledby={`${uid}-meta`}>
             <h2 id={`${uid}-meta`} className={s.cardTitle}>
-              제목 · 날짜
+              제목
             </h2>
             <div className={s.metaGrid}>
               <label className={s.field}>
@@ -680,19 +729,6 @@ export default function ConceptBlankView({
                     setDraft((current) => ({
                       ...current,
                       title: event.target.value,
-                    }))
-                  }
-                />
-              </label>
-              <label className={s.field}>
-                <span>날짜</span>
-                <input
-                  type="date"
-                  value={draft.date}
-                  onChange={(event) =>
-                    setDraft((current) => ({
-                      ...current,
-                      date: event.target.value,
                     }))
                   }
                 />

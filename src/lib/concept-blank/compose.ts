@@ -8,7 +8,7 @@ import {
   type SheetHeader,
 } from "@/contracts/conceptBlank.contract";
 import { CONCEPT_BLANK_BANK, sectionStock } from "./bank";
-import { getBlankSection } from "./sections";
+import { getBlankSection, sectionTitleTex } from "./sections";
 
 /**
  * 고르기 → 지면(D-150). 🔴 고정이다: 무작위 없이 «소단원 순서(교육과정) → 은행 파일 순서»로 세우고,
@@ -92,7 +92,9 @@ export function composeSheets(
                 const kinds = [...new Set(s.concepts.map((c) => c.kind))];
                 return {
                   section: s.key,
-                  title: stripCode(getBlankSection(s.key)!.title),
+                  title: stripCode(
+                    sectionTitleTex(getBlankSection(s.key)!.title),
+                  ),
                   hint: kinds.length ? kinds.join(" · ") : "뜻 · 예",
                   side: s.figures.length ? ("그림" as const) : ("예" as const),
                 };

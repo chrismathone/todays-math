@@ -1,5 +1,6 @@
 /**
- * 개념 백지 — 인쇄 페이지 `/concept-blank/print?s=…&view=student|key|both` (D-150 · 26 §6).
+ * 개념 백지 — 인쇄 페이지 `/concept-blank/print?s=…&view=student|key|both[&print=1]` (D-150 · 26 §6).
+ * `print=1` — 화면의 인쇄하기로 열면 지면을 그린 뒤 인쇄 창을 바로 띄운다(`PrintNow` · 원장님 2026-10-01).
  *
  * 서버 컴포넌트 · **크롬 없음** — 지면(`ConceptBlankPaper`) 하나만 그린다(영어 인쇄 페이지 본보기 — 작업실 CSS 의
  * `@page` 가 같은 창에 실리면 지면 여백이 뒤바뀐다). 관문은 `accountRouteAccess.ts` 가 `/concept-blank` →
@@ -11,6 +12,7 @@
 import { redirect } from "next/navigation";
 
 import ConceptBlankPaper from "@/components/concept-blank/ConceptBlankPaper";
+import PrintNow from "@/components/concept-blank/paper/PrintNow";
 import { parseConceptBlankView } from "@/components/concept-blank/paper/view";
 import { composeSheets } from "@/lib/concept-blank/compose";
 import { decodeSelection } from "@/lib/concept-blank/selectionCodec";
@@ -25,6 +27,7 @@ type ConceptBlankPrintPageProps = {
   searchParams: Promise<{
     s?: string | string[];
     view?: string | string[];
+    print?: string | string[];
   }>;
 };
 
@@ -52,6 +55,9 @@ export default async function ConceptBlankPrintPage({
         sheets={sheets}
         view={parseConceptBlankView(query.view)}
       />
+      {(Array.isArray(query.print) ? query.print[0] : query.print) === "1" ? (
+        <PrintNow />
+      ) : null}
     </main>
   );
 }
