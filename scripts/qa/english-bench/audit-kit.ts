@@ -13,7 +13,11 @@
  *
  * 결과(<폴더>/audit/): teacher.html · student.html(인쇄용 — 키 없음) · key.html · key.json(따로 보관) ·
  *   teacher-record.csv · student-record.csv(적어 넣는 표). 🔴 표본은 고정 씨앗으로 뽑는다 — 다시 돌려도 같은 문항이다.
- * DB · AI 를 부르지 않는다.
+ * DB · AI 를 부르지 않는다. 저장소 뿌리에서 돌린다(지면 글꼴을 `public/fonts` 에서 읽어 파일 안에 싣는다).
+ *
+ * 지면(원장님 2026-10-01 «인쇄하기 좋도록») — 발문 · 보기는 제품 지면과 같은 규칙(`splitEnglishUnderline` ·
+ *   `englishOptionLayout`)과 같은 글꼴(명조 본문 · 고딕 이름표)로 그린다. 문항은 쪽에 걸쳐 쪼개지 않고, 문항 머리 오른쪽에
+ *   답 칸 · 강사용은 문항 아래 흠 표시 칸 · 쪽 아래 «시트 이름 · 쪽 / 전체». 정답지 맨 위는 빠른 정답표(채점용).
  */
 import {
   existsSync,
@@ -30,6 +34,11 @@ import {
   type EnglishQuestionType,
 } from "@/contracts/english.contract";
 import { coerceEnglishDraftShape } from "@/lib/english/chatgpt";
+import {
+  ENGLISH_CHOICE_MARKS as MARKS,
+  englishOptionLayout,
+} from "@/lib/english/options";
+import { splitEnglishUnderline } from "@/lib/english/underline";
 import { validateEnglishDraft } from "@/lib/english/validate";
 
 import type { GenRecord } from "./generate";
@@ -38,7 +47,6 @@ import { flag } from "./util";
 const VARIANT: EnglishQuestionType[] = ["어법", "빈칸 추론", "문장 삽입"];
 const READING: EnglishQuestionType[] = ["주제", "내용 일치"];
 const PER_TYPE = 10;
-const MARKS = ["①", "②", "③", "④", "⑤"];
 
 interface Item {
   id: string;
@@ -76,47 +84,176 @@ function shuffled<T>(list: readonly T[], next: () => number): T[] {
 const escapeHtml = (text: string) =>
   text.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
 
-/** 글을 HTML 로 — 꺾쇠는 전부 글자로 두고 `<u>` · `</u>` 표기만 밑줄로 되살린다 */
-const proseHtml = (text: string) =>
-  escapeHtml(text)
-    .replace(/&lt;u&gt;/gi, "<u>")
-    .replace(/&lt;\/u&gt;/gi, "</u>");
-
-const bareMarks = (options: string[]) =>
-  options.length > 0 &&
-  options.every((option, i) => option.trim() === MARKS[i]);
-
-function itemHtml(item: Item, record: string): string {
-  const options = bareMarks(item.options)
-    ? `<p class="row">${MARKS.join("&emsp;")}</p>`
-    : `<ol>${item.options.map((option, i) => `<li><span>${MARKS[i]}</span><span>${proseHtml(option)}</span></li>`).join("")}</ol>`;
-  return `<article><h3>${item.id} <small>${item.type}</small></h3><p class="prompt">${proseHtml(item.prompt)}</p>${options}${record}</article>`;
+/** 발문 — 제품 지면과 같은 규칙: 어법의 `<u>…</u>` 만 밑줄(번호는 선 밖), 그 밖은 글자 그대로 */
+function promptHtml(item: Item): string {
+  // 삽입 자리 «( ④ )» 가 줄 끝에서 «(» 와 «④ )» 로 갈리지 않게 한 덩이로 묶는다
+  const text = (value: string) =>
+    escapeHtml(value).replace(
+      /\(\s*[①-⑤]\s*\)/g,
+      (slot) => `<span class="slot">${slot}</span>`,
+    );
+  const parts =
+    item.type === "어법" ? splitEnglishUnderline(item.prompt) : null;
+  if (!parts) return text(item.prompt);
+  return parts
+    .map((part) =>
+      part.underline ? `<u>${text(part.text)}</u>` : text(part.text),
+    )
+    .join("");
 }
 
-const PAGE_CSS = `
-@page { size: A4; margin: 15mm; }
-body { margin: 0; font-family: "Noto Sans KR", "Malgun Gothic", sans-serif; font-size: 11pt; line-height: 1.6; color: #111; }
-main { max-width: 180mm; margin: 0 auto; padding: 8mm 0; }
-h1 { margin: 0 0 4px; font-size: 16pt; }
-.lead { margin: 0 0 10px; font-size: 10pt; }
-.name { margin: 0 0 14px; padding: 8px 0; border-top: 1px solid #111; border-bottom: 1px solid #111; font-size: 10pt; }
-h2 { margin: 18px 0 6px; font-size: 12pt; border-bottom: 1px solid #999; }
-article { break-inside: avoid; margin: 0 0 16px; }
-h3 { margin: 0 0 4px; font-size: 11pt; }
-h3 small { font-weight: 400; color: #555; }
-.prompt, ol, .row { font-family: "Nanum Myeongjo", "Noto Serif KR", Batang, Georgia, serif; }
-.prompt { margin: 0; white-space: pre-wrap; overflow-wrap: anywhere; }
+/** 보기를 한 줄에 모으는 · 두 칸으로 놓는 글자 상한 — 어법의 밑줄 구간처럼 짧은 보기를 다섯 줄로 세우면 쪽만 는다 */
+const INLINE_CHOICE_CHARS = 24;
+const PAIRED_CHOICE_CHARS = 32;
+
+/** 보기 줄 — 제품 지면과 같은 규칙(`englishOptionLayout`): 발문에 ( ① ) 자리가 다 있으면 보기 줄을 찍지 않는다 */
+function choicesHtml(item: Item): string {
+  const layout = englishOptionLayout(item);
+  if (layout.omitted || !layout.lines.length) return "";
+  const longest = Math.max(
+    ...layout.lines.map((line) => line.text.trim().length),
+  );
+  const shape =
+    longest <= INLINE_CHOICE_CHARS
+      ? " inline"
+      : longest <= PAIRED_CHOICE_CHARS
+        ? " paired"
+        : "";
+  return `<ol class="choices${shape}">${layout.lines
+    .map(
+      (line) =>
+        `<li><span>${line.mark}</span><span>${escapeHtml(line.text)}</span></li>`,
+    )
+    .join("")}</ol>`;
+}
+
+const box = (label: string) => `<span><i class="box"></i>${label}</span>`;
+
+/** 문항 — 번호(발문과 같은 명조) · 발문 · 보기 · 오른쪽 답 칸. 유형은 묶음 머리에 있어 문항마다 다시 적지 않는다 */
+function itemHtml(item: Item, teacher: boolean): string {
+  const flags = teacher
+    ? `<p class="flags">${box("답이 없다")}${box("답이 둘 이상이다")}${box("판정할 수 없다")}<span class="memo">메모<i class="line"></i></span></p>`
+    : "";
+  return `<article class="item"><span class="id">${item.id}</span><div class="itemBody"><span class="answer">답<i class="answerBox"></i></span><p class="prompt">${promptHtml(item)}</p>${choicesHtml(item)}${flags}</div></article>`;
+}
+
+/**
+ * 지면 글꼴을 파일 안에 싣는다 — 제품 지면의 명조(`NotoSerifKR-subset`)와 이름표의 Pretendard.
+ * 원장님 PC 에는 둘 다 깔려 있지 않아 이름만 적으면 바탕 · 맑은 고딕으로 떨어진다(`src/app/fonts.ts` · 05 §8.23.2).
+ * 옆에 둔 글꼴 파일은 file:// 로 연 쪽에서 막힐 수 있어 data: 로 넣는다(감사지 한 장 약 5MB).
+ */
+function fontFaces(): string {
+  const face = (family: string, file: string, weight: string) =>
+    `@font-face{font-family:"${family}";src:url(data:font/woff2;base64,${readFileSync(
+      path.join(process.cwd(), "public", "fonts", file),
+    ).toString(
+      "base64",
+    )}) format("woff2");font-weight:${weight};font-style:normal;font-display:block}`;
+  return (
+    face("Audit Serif", "NotoSerifKR-subset.woff2", "100 900") +
+    face("Audit Sans", "PretendardVariable.woff2", "45 920")
+  );
+}
+
+const SERIF = `"Audit Serif", "Noto Serif KR", "Nanum Myeongjo", Batang, serif`;
+const SANS = `"Audit Sans", Pretendard, "Malgun Gothic", sans-serif`;
+
+/** 색 · 굵기 · 크기는 제품 지면(`EnglishPrint.module.css` · `tokens.ts`)을 따른다 — 금색 선 · 명조 본문 · 고딕 이름표 */
+const pageCss = (footer: string) => `
+:root { --ink: #0E0E10; --ink70: #3A3A40; --ink50: #6B6B72; --ink30: #A0A0A8; --ink15: #D4D4D8; --ink08: #E8E8EB; --gold: #A57F00; }
+@page {
+  size: A4;
+  margin: 14mm 16mm 16mm;
+  @bottom-center { content: ${JSON.stringify(footer)} "  ·  " counter(page) " / " counter(pages); font-family: ${SANS}; font-size: 8pt; color: #6B6B72; }
+}
+* { box-sizing: border-box; }
+html, body { margin: 0; background: #fff; }
+body { color: var(--ink); font-family: ${SANS}; font-size: 10pt; line-height: 1.5; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+@media screen {
+  body { background: var(--ink08); padding: 16px 0 48px; }
+  main { width: 210mm; margin: 0 auto; padding: 14mm 16mm 16mm; background: #fff; box-shadow: 0 1px 4px rgba(0, 0, 0, 0.12); }
+  .howto { width: 210mm; margin: 0 auto 12px; padding: 10px 14px; border: 1px solid var(--ink30); background: #fff; font-size: 13px; line-height: 1.6; color: var(--ink70); }
+  .howto b { color: var(--ink); }
+}
+@media print { .howto { display: none; } }
+
+.head { margin-bottom: 2mm; }
+.headRow { display: flex; justify-content: space-between; gap: 6mm; font-size: 7.5pt; font-weight: 700; letter-spacing: 0.14em; }
+.brand { color: var(--gold); }
+.tag { color: var(--ink70); }
+h1 { margin: 2mm 0 0; font-family: ${SERIF}; font-size: 18pt; font-weight: 800; letter-spacing: -0.01em; line-height: 1.35; }
+.rules { margin: 2.5mm 0 0; padding-left: 4.5mm; color: var(--ink70); font-size: 9pt; line-height: 1.6; word-break: keep-all; }
+.rules b { color: var(--ink); }
+.nameLine { display: flex; flex-wrap: wrap; gap: 2mm 9mm; margin-top: 3.5mm; padding-top: 3mm; border-top: 1px solid var(--gold); color: var(--ink70); font-size: 9.5pt; }
+.field { display: inline-flex; align-items: flex-end; gap: 2mm; }
+.field i { display: inline-block; height: 1.1em; border-bottom: 1px solid var(--ink50); }
+
+h2 { display: flex; align-items: baseline; gap: 3mm; margin: 6mm 0 0; padding-bottom: 1.5mm; border-bottom: 1.5px solid var(--ink); font-size: 11pt; font-weight: 800; break-after: avoid; page-break-after: avoid; }
+h2 small { color: var(--ink50); font-size: 8.5pt; font-weight: 400; }
+
+.item { display: grid; grid-template-columns: 9mm minmax(0, 1fr); column-gap: 2.5mm; align-items: start; padding: 3mm 0 3.5mm; border-bottom: 1px solid var(--ink15); break-inside: avoid; page-break-inside: avoid; }
+.id { font-family: ${SERIF}; font-size: 10.5pt; font-weight: 800; line-height: 1.65; }
+.itemBody { min-width: 0; }
+.itemBody::after { content: ""; display: block; clear: both; }
+.answer { float: right; display: inline-flex; align-items: center; gap: 1.5mm; margin: 0 0 1mm 4mm; color: var(--ink70); font-size: 8.5pt; font-weight: 700; }
+.answerBox { display: inline-block; width: 11mm; height: 7mm; border: 1px solid var(--ink); }
+.prompt { margin: 0; font-family: ${SERIF}; font-size: 10.5pt; line-height: 1.65; white-space: pre-wrap; word-break: keep-all; overflow-wrap: anywhere; }
+.slot { white-space: nowrap; }
 .prompt u { text-decoration-thickness: 1px; text-underline-offset: 0.3em; text-decoration-skip-ink: none; }
-ol { list-style: none; margin: 6px 0 0; padding: 0; }
-li { display: grid; grid-template-columns: auto minmax(0, 1fr); gap: 0 6px; }
-.row { margin: 6px 0 0; }
-.record { margin: 8px 0 0; padding: 6px 8px; border: 1px solid #999; font-size: 9.5pt; }
-table { border-collapse: collapse; font-size: 10pt; }
-th, td { border: 1px solid #999; padding: 3px 8px; text-align: left; vertical-align: top; }
+.choices { list-style: none; margin: 1.2mm 0 0 3mm; padding: 0; font-family: ${SERIF}; font-size: 10.5pt; line-height: 1.6; word-break: keep-all; }
+.choices li { display: grid; grid-template-columns: auto minmax(0, 1fr); gap: 0 1.5mm; }
+.choices li span:last-child { overflow-wrap: anywhere; }
+.choices.inline { display: flex; flex-wrap: wrap; gap: 0.5mm 7mm; }
+.choices.inline li { display: inline-grid; }
+.choices.paired { display: grid; grid-template-columns: 1fr 1fr; gap: 0 6mm; }
+.flags { display: flex; flex-wrap: wrap; align-items: center; gap: 1.5mm 5mm; margin: 2.5mm 0 0; color: var(--ink70); font-size: 8.5pt; }
+.flags span { display: inline-flex; align-items: center; gap: 1.2mm; }
+.box { display: inline-block; width: 3.2mm; height: 3.2mm; border: 1px solid var(--ink70); }
+.flags .memo { flex: 1; min-width: 50mm; }
+.memo .line { flex: 1; height: 1.1em; border-bottom: 1px solid var(--ink30); }
+
+table { width: 100%; border-collapse: collapse; table-layout: fixed; }
+th, td { border: 1px solid var(--ink30); padding: 1.5mm 2mm; text-align: left; vertical-align: top; }
+thead th { background: var(--ink08); font-size: 8.5pt; white-space: nowrap; }
+tr { break-inside: avoid; page-break-inside: avoid; }
+.quick { margin-top: 2.5mm; }
+.quick th { background: var(--ink08); font-size: 8.5pt; text-align: center; }
+.quick td { padding: 1mm; font-family: ${SERIF}; font-size: 12.5pt; text-align: center; }
+.explain { margin-top: 2.5mm; font-size: 9pt; line-height: 1.55; }
+.explain .mark { font-family: ${SERIF}; font-size: 12pt; text-align: center; }
+.explain .text { font-family: ${SERIF}; word-break: keep-all; overflow-wrap: anywhere; }
+.explain .src { color: var(--ink50); font-size: 7.5pt; overflow-wrap: anywhere; }
 `;
 
-const page = (title: string, body: string) =>
-  `<!doctype html>\n<html lang="ko"><meta charset="utf-8"><title>${title}</title><style>${PAGE_CSS}</style><main>${body}</main></html>\n`;
+const HOWTO = `<p class="howto"><b>인쇄</b> — Ctrl+P · 용지 <b>A4</b> · 배율 <b>기본</b> · 여백 <b>기본</b> · <b>«머리글과 바닥글» 끄기</b>(쪽 번호는 지면 아래에 찍힙니다). 이 안내는 인쇄되지 않습니다.</p>`;
+
+function page(
+  title: string,
+  footer: string,
+  fonts: string,
+  body: string,
+): string {
+  return `<!doctype html>\n<html lang="ko"><head><meta charset="utf-8"><title>${title}</title><style>${fonts}${pageCss(footer)}</style></head><body>${HOWTO}<main>${body}</main></body></html>\n`;
+}
+
+const field = (label: string, width: number) =>
+  `<span class="field">${label}<i style="width:${width}mm"></i></span>`;
+
+function head(
+  tag: string,
+  title: string,
+  rules: string[],
+  fields: string[],
+): string {
+  return `<header class="head"><div class="headRow"><span class="brand">오늘의 영어 · 사람 감사</span><span class="tag">${tag}</span></div><h1>${title}</h1><ul class="rules">${rules.map((rule) => `<li>${rule}</li>`).join("")}</ul>${fields.length ? `<div class="nameLine">${fields.join("")}</div>` : ""}</header>`;
+}
+
+/** 출처 줄 — «openai_gpt-6-luna_medium__H03-night-flowers.json» → «H03-night-flowers» (전체 이름은 key.json 에) */
+const sourceOf = (file: string) =>
+  file
+    .replace(/\.json$/, "")
+    .split("__")
+    .pop() ?? file;
 
 function collect(
   out: string,
@@ -185,49 +322,88 @@ function build(out: string, seed: number) {
   const dir = path.join(out, "audit");
   mkdirSync(dir, { recursive: true });
 
-  const byType = (items: Item[], record: (item: Item) => string) =>
+  const fonts = fontFaces();
+  const byType = (items: Item[], teacherSheet: boolean) =>
     [...new Set(items.map((item) => item.type))]
-      .map(
-        (type) =>
-          `<h2>${type}</h2>${items
-            .filter((item) => item.type === type)
-            .map((item) => itemHtml(item, record(item)))
-            .join("")}`,
-      )
+      .map((type) => {
+        const mine = items.filter((item) => item.type === type);
+        return `<section><h2>${type}<small>${mine[0]!.id} – ${mine.at(-1)!.id} · ${mine.length}문항</small></h2>${mine
+          .map((item) => itemHtml(item, teacherSheet))
+          .join("")}</section>`;
+      })
       .join("");
 
   writeFileSync(
     path.join(dir, "teacher.html"),
     page(
       "오늘의 영어 — 변형형 키 감사(강사용)",
-      `<h1>변형형 키 감사 — 강사용</h1>
-<p class="lead">정답 · 해설을 보지 않고 풉니다. 문항마다 고른 답을 적고, 문항에 흠이 있으면 해당 칸에 표시합니다. 변형 문항은 발문 안의 글만 보고 풉니다(원 지문은 주지 않습니다).</p>
-<p class="name">이름 ________________ · 날짜 ____ . ____ . ____ · 걸린 시간 ______ 분</p>
-${byType(teacher, () => `<p class="record">고른 답 (　　) · □ 답이 없다 · □ 답이 둘 이상이다 · □ 판정할 수 없다 · 메모 ______________________________</p>`)}`,
+      "변형형 키 감사 · 강사용",
+      fonts,
+      head(
+        `강사용 · ${teacher.length}문항`,
+        "변형형 키 감사",
+        [
+          "정답 · 해설을 보지 않고 풉니다. 고른 보기 번호를 <b>답 칸</b>에 적습니다.",
+          "문항에 흠이 있으면 그 문항 아래 칸에 표시합니다 — 답이 없다 · 답이 둘 이상이다 · 판정할 수 없다. 이유는 메모에 짧게.",
+          "변형 문항은 발문 안의 글만 보고 풉니다(원 지문은 주지 않습니다).",
+        ],
+        [field("이름", 38), field("날짜", 28), field("걸린 시간", 14) + "분"],
+      ) + byType(teacher, true),
     ),
   );
   writeFileSync(
     path.join(dir, "student.html"),
     page(
       "오늘의 영어 — 가림 풀이(학생용)",
-      `<h1>지문 없이 풀기</h1>
-<p class="lead">지문은 없습니다. 보기만 보고 가장 알맞다고 생각하는 번호에 표시합니다. 모든 문항에 하나씩 고릅니다.</p>
-<p class="name">이름 ________________ · 학년 ______ · 날짜 ____ . ____ . ____</p>
-${byType(student, () => "")}`,
+      "지문 없이 풀기 · 학생용",
+      fonts,
+      head(
+        `학생용 · ${student.length}문항`,
+        "지문 없이 풀기",
+        [
+          "지문은 없습니다. 보기만 보고 가장 알맞다고 생각하는 보기 번호를 <b>답 칸</b>에 적습니다.",
+          "모르는 문항도 비우지 말고 하나를 고릅니다.",
+        ],
+        [field("이름", 38), field("학년", 16), field("날짜", 28)],
+      ) + byType(student, false),
     ),
   );
   const all = [...teacher, ...student];
+  const markOf = (item: Item) =>
+    MARKS[Number(item.answer) - 1] ?? escapeHtml(item.answer);
+  const quick = [teacher, student]
+    .flatMap((items) =>
+      Array.from({ length: Math.ceil(items.length / 10) }, (_, row) =>
+        items.slice(row * 10, row * 10 + 10),
+      ),
+    )
+    .map(
+      (row) =>
+        `<tr>${row.map((item) => `<th>${item.id}</th>`).join("")}</tr><tr>${row.map((item) => `<td>${markOf(item)}</td>`).join("")}</tr>`,
+    )
+    .join("");
   writeFileSync(
     path.join(dir, "key.html"),
     page(
       "오늘의 영어 — 감사지 정답(따로 보관)",
-      `<h1>감사지 정답 — 풀기 전에 보지 않습니다</h1>
-<table><thead><tr><th>번호</th><th>유형</th><th>정답</th><th>세트 · 문항</th><th>해설</th></tr></thead><tbody>${all
-        .map(
-          (item) =>
-            `<tr><td>${item.id}</td><td>${item.type}</td><td>${MARKS[Number(item.answer) - 1] ?? escapeHtml(item.answer)}</td><td>${escapeHtml(item.file.replace(/\.json$/, ""))} · ${item.question}번</td><td>${proseHtml(item.explanation)}</td></tr>`,
-        )
-        .join("")}</tbody></table>`,
+      "감사지 정답 · 따로 보관",
+      fonts,
+      head(
+        "정답지 · 따로 보관",
+        "감사지 정답",
+        [
+          "<b>풀기 전에 보지 않습니다</b> — 강사용 · 학생용과 따로 보관합니다.",
+          "적힌 답은 teacher-record.csv · student-record.csv 에 옮긴 뒤 audit-kit.ts --score 로 채점합니다(답은 숫자 1~5).",
+        ],
+        [],
+      ) +
+        `<section><h2>빠른 정답표<small>강사용 A · 학생용 B</small></h2><table class="quick">${quick}</table></section>
+<section><h2>정답 · 해설<small>${all.length}문항</small></h2><table class="explain"><colgroup><col style="width:13mm"><col style="width:18mm"><col style="width:11mm"><col style="width:30mm"><col></colgroup><thead><tr><th>번호</th><th>유형</th><th>정답</th><th>세트 · 문항</th><th>해설</th></tr></thead><tbody>${all
+          .map(
+            (item) =>
+              `<tr><td>${item.id}</td><td>${item.type}</td><td class="mark">${markOf(item)}</td><td class="src">${escapeHtml(sourceOf(item.file))}<br>${item.question}번</td><td class="text">${escapeHtml(item.explanation)}</td></tr>`,
+          )
+          .join("")}</tbody></table></section>`,
     ),
   );
   writeFileSync(

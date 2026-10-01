@@ -29,7 +29,8 @@
 - 🔴 사람 감사 뒤 다시 볼 것: ⓔ 를 계속 켤지 · ⓓ 를 켤지(채점관 AI 와의 연관만 보였다 — 25 §12.13).
 
 ### 0-ZC.3 준비만 해 둔 것 — 사람 감사(25 §12.8 「5」)
-- 감사지: `D:\worktree-archive\todays-math-english-bench-20260930\bench\audit\audit\` — `teacher.html`(변형형 30문항 · 15쪽) · `student.html`(지문 없이 20문항 · 5쪽) · **`key.html` · `key.json` 은 따로 보관**(풀기 전에 보지 않는다) · 적어 넣는 표 `teacher-record.csv` · `student-record.csv`.
+- 감사지: `D:\worktree-archive\todays-math-english-bench-20260930\bench\audit\audit\` — `teacher.html` · `teacher.pdf`(변형형 30문항 · 14쪽) · `student.html` · `student.pdf`(지문 없이 20문항 · 4쪽) · **`key.html` · `key.pdf` · `key.json` 은 따로 보관**(풀기 전에 보지 않는다 — 맨 위 빠른 정답표) · 적어 넣는 표 `teacher-record.csv` · `student-record.csv`.
+- 지면(원장님 «인쇄하기 좋도록», 2026-10-01 밤): 제품 지면 글꼴(명조 · Pretendard)을 파일 안에 실어 어느 PC 든 같다 · 문항은 쪽에 걸쳐 쪼개지 않는다 · 번호 옆 발문, 오른쪽 답 칸 · 짧은 보기는 한 줄/두 칸 · «( ④ )» 한 덩이 · 한국어는 낱말에서 줄바꿈 · 쪽 아래 «시트 · 쪽 / 전체». PDF 는 그 HTML 을 Chromium 으로 인쇄한 것(다시 만들면 PDF 는 손으로 다시 뽑는다). 인쇄는 «머리글과 바닥글» 끄기.
 - 만든 법: `generate.ts --taskset audit --only openai:gpt-6-luna@medium`(제품 호출 · 열두 지문 · 여섯 유형) → `audit-kit.ts --out <폴더>`(고정 씨앗). 채점은 `audit-kit.ts --out <폴더> --score`.
 
 ### 0-ZC.4 원장님께 여쭐 것
