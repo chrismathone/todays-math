@@ -184,3 +184,23 @@ export const V4_FICTION_TASKS: BenchTask[] = FICTION.map((s) => ({
     types: ["주제", "내용 일치"],
   },
 }));
+
+/**
+ * 사람 감사용 과제 열둘(25 §12.8 「5」) — 위 열두 지문 그대로, 제품의 주된 쓰임인 «원문 유지 · 여섯 유형 한 문항씩».
+ * 강사가 정답을 가리고 푸는 변형형(어법 · 빈칸 추론 · 문장 삽입)과 학생이 지문 없이 푸는 독해형(주제 · 내용 일치)을
+ * **같은 세트에서** 뽑으려고 따로 둔다. 감사지는 `audit-kit.ts` 가 만든다.
+ */
+export const AUDIT_TASKS: BenchTask[] = SOURCES.map((s) => ({
+  id: s.id.replace(/^V/, "H"),
+  label: `${s.label} (사람 감사)`,
+  grade: s.grade,
+  request: {
+    mode: "original",
+    topic: "",
+    passage: s.passage,
+    difficulty: s.difficulty,
+    count: 6,
+    words: 150,
+    types: ["주제", "내용 일치", "어법", "빈칸 추론", "문장 삽입", "서술형"],
+  },
+}));

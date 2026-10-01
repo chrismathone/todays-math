@@ -1,0 +1,411 @@
+<!doctype html>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>수정 요청문 · 검사 표시 와이어</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nanum+Myeongjo:wght@400;800&family=Noto+Sans+KR:wght@400;500;700&display=swap">
+<style>
+/* 와이어 — 흑백 · 상자 · 실제 글자 크기만. 색 · 장식은 Hi-fi 단계(05 §0-3).
+   틀 치수는 제품 CSS 에서 읽었다: 문제 만들기 패널 880px 상한(EnglishMaker.module.css `.panel`) · 편집 화면은 상한 없음 —
+   1280px 화면에서 옆 메뉴 240 + 여백 20×2 를 뺀 1000px(Workroom.module.css) · 단추 높이 44px · 본문 14px · 알림 12px.
+   점선 상자 = 이번에 더하는 자리. 한 가지 밝은 판으로만 그린다(와이어는 종이 위의 그림). */
+:root {
+  color-scheme: light;
+  --paper: #fafaf8; --sheet: #ffffff; --ink: #161616; --ink-2: #61615e; --rule: #b9b9b6; --soft: #e7e7e4; --pick: #2064b3; --stop: #8a2b12;
+  --sans: "Pretendard Variable", Pretendard, "Noto Sans KR", "Malgun Gothic", system-ui, sans-serif;
+  --serif: "Nanum Myeongjo", "Noto Serif KR", Batang, serif;
+}
+body { margin: 0; background: var(--paper); color: var(--ink); font-family: var(--sans); font-size: 14px; line-height: 1.55; }
+* { box-sizing: border-box; }
+[hidden] { display: none !important; }
+button { font: inherit; color: inherit; }
+button:focus-visible { outline: 3px solid #82a1ff; outline-offset: 2px; }
+.tab, .wbtn { cursor: pointer; }
+
+.board { max-width: 1240px; margin: 0 auto; padding-inline: 24px; padding-block: 28px 72px; }
+@media (max-width: 600px) { .board { padding-inline: 16px; } }
+.head { display: grid; gap: 10px; padding-bottom: 18px; }
+.eyebrow { margin: 0; font-size: 12px; letter-spacing: .06em; color: var(--ink-2); }
+h1 { margin: 0; font-family: var(--serif); font-weight: 800; font-size: 30px; line-height: 1.25; letter-spacing: -.02em; text-wrap: balance; }
+.lede { margin: 0; max-width: 74ch; color: var(--ink-2); font-size: 15px; }
+.lede b { color: var(--ink); }
+.facts { display: flex; flex-wrap: wrap; gap: 6px 22px; margin: 4px 0 0; padding: 0; list-style: none; font-size: 13px; color: var(--ink-2); }
+.facts b { color: var(--ink); font-weight: 600; }
+.ask { border: 1px solid var(--rule); border-radius: 8px; background: var(--sheet); padding: 18px 20px; display: grid; gap: 10px; margin-bottom: 22px; }
+.ask h2 { margin: 0; font-family: var(--serif); font-size: 20px; font-weight: 800; }
+.ask ol { margin: 0; padding-left: 20px; display: grid; gap: 9px; color: var(--ink-2); }
+.ask li b { color: var(--ink); }
+.note { margin: 0; max-width: 78ch; font-size: 13px; color: var(--ink-2); }
+.note b { color: var(--ink); }
+h2.sec { margin: 38px 0 8px; font-family: var(--serif); font-size: 22px; font-weight: 800; letter-spacing: -.01em; }
+.tablewrap { overflow-x: auto; margin-top: 10px; }
+table.t { border-collapse: collapse; font-size: 12.5px; background: var(--sheet); min-width: 900px; }
+table.t th, table.t td { border: 1px solid #d6d6d3; padding: 6px 9px; text-align: left; vertical-align: top; }
+table.t th { font-weight: 700; background: #f3f3f1; }
+table.t th[scope="row"] { white-space: nowrap; }
+table.t td.n { font-variant-numeric: tabular-nums; white-space: nowrap; }
+
+.toolbar { display: flex; flex-wrap: wrap; align-items: center; gap: 4px 10px; padding-block: 10px; border-block: 1px solid var(--rule); margin-top: 18px; }
+.tabs { display: flex; flex-wrap: wrap; gap: 4px; }
+.tab { display: flex; gap: 8px; align-items: baseline; padding: 7px 12px; border: 1px solid transparent; border-radius: 6px; background: none; color: var(--ink-2); }
+.tab .k { font-weight: 700; color: var(--ink); }
+.tab:hover { background: var(--sheet); }
+.tab[aria-selected="true"] { background: var(--sheet); border-color: var(--rule); color: var(--ink); box-shadow: inset 0 -2px 0 var(--pick); }
+.opts { margin-left: auto; display: flex; flex-wrap: wrap; gap: 4px; align-items: center; font-size: 12px; color: var(--ink-2); }
+.wbtn { border: 1px solid var(--rule); background: var(--sheet); border-radius: 6px; padding: 4px 10px; font-size: 12px; }
+.wbtn:hover { border-color: var(--ink-2); }
+.wbtn[aria-pressed="true"] { border-color: var(--ink); font-weight: 700; box-shadow: inset 0 -2px 0 var(--pick); }
+.thesis { padding-top: 16px; }
+.thesis h3 { margin: 0 0 4px; font-family: var(--serif); font-size: 19px; font-weight: 800; }
+.thesis p { margin: 0 0 12px; max-width: 78ch; color: var(--ink-2); }
+
+/* 제품 폭 그대로 그리고, 화면이 좁으면 통째로 줄인다 */
+.fit { border: 1px solid var(--rule); border-radius: 8px; background: #efefec; overflow: hidden; padding: 0; }
+.fit > .stage { transform-origin: 0 0; padding: 16px 20px; }
+
+/* ── 제품 화면의 부품(상자로만) ─────────────── */
+.btn { display: inline-flex; align-items: center; justify-content: center; min-height: 44px; padding: 0 16px; border: 1px solid var(--ink-2); border-radius: 8px; background: var(--sheet); font-size: 14px; font-weight: 600; white-space: nowrap; }
+.btn.pri { background: var(--ink); color: var(--sheet); border-color: var(--ink); }
+.btn.off { opacity: .45; }
+.row { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; }
+.lab { font-size: 12px; font-weight: 700; }
+.ta { border: 1px solid var(--rule); border-radius: 8px; background: var(--sheet); padding: 9px 12px; font-size: 14px; line-height: 1.6; color: var(--ink-2); overflow: hidden; white-space: pre-wrap; overflow-wrap: anywhere; }
+.ta.ro { background: #eeeeeb; }
+.alert { border: 1.5px solid var(--stop); border-radius: 8px; background: var(--sheet); padding: 10px 12px; font-size: 12px; line-height: 1.6; color: var(--stop); }
+.alert p { margin: 0; }
+.alert ul { margin: 4px 0 0; padding-left: 18px; }
+.status { border: 1px solid var(--rule); border-radius: 8px; background: var(--sheet); padding: 8px 12px; font-size: 13px; }
+.new { outline: 2px dashed var(--pick); outline-offset: 3px; }
+.newtag { font-size: 10px; font-weight: 700; color: var(--pick); border: 1px dashed var(--pick); border-radius: 3px; padding: 0 4px; margin-left: 6px; vertical-align: 1px; white-space: nowrap; }
+.mk { width: 880px; display: grid; gap: 16px; }
+.card { border: 1px solid var(--rule); border-radius: 12px; background: var(--sheet); padding: 18px 20px; }
+.skip { border: 1px dashed var(--rule); border-radius: 8px; padding: 6px 12px; font-size: 12px; color: var(--ink-2); background: none; }
+.dim { position: relative; }
+.dim::before { content: ""; position: absolute; inset: 0; background: rgba(22, 22, 22, .32); }
+.dialog { position: absolute; left: 50%; top: 40px; transform: translateX(-50%); width: 640px; border: 1px solid var(--ink); border-radius: 12px; background: var(--sheet); padding: 18px 20px; display: grid; gap: 12px; }
+.dialog h4 { margin: 0; font-size: 18px; font-weight: 800; }
+.dialog .kick { margin: 0; font-size: 12px; color: var(--ink-2); }
+
+/* 편집 화면 */
+.ed { width: 1000px; }
+.etool { display: flex; align-items: center; gap: 8px; margin-bottom: 16px; }
+.etool .sp { flex: 1; }
+.sel { display: inline-flex; align-items: center; min-height: 44px; padding: 0 12px; border: 1px solid var(--rule); border-radius: 8px; background: var(--sheet); }
+.ed .card + .card { margin-top: 12px; }
+.etitle { height: 44px; border: 1px solid var(--rule); border-radius: 8px; padding: 0 13px; display: flex; align-items: center; font-size: 18px; font-weight: 700; }
+.emeta { margin: 6px 0 14px; color: var(--ink-2); font-size: 13px; }
+.qhead { display: flex; justify-content: space-between; align-items: center; margin: 0 0 12px; font-size: 12px; font-weight: 700; letter-spacing: .6px; color: var(--ink-2); }
+.f { margin-bottom: 12px; font-weight: 650; }
+.f .ta { margin-top: 8px; font-weight: 400; }
+.opt { display: flex; align-items: center; gap: 8px; margin-bottom: 6px; }
+.opt i { flex: none; width: 26px; height: 26px; border: 1px solid var(--rule); border-radius: 50%; display: grid; place-items: center; font-style: normal; font-size: 12px; }
+.opt span { flex: 1; min-height: 44px; border: 1px solid var(--rule); border-radius: 8px; padding: 0 13px; display: flex; align-items: center; color: var(--ink-2); }
+.ans { display: flex; align-items: center; gap: 8px; margin: 0 0 12px; font-weight: 650; }
+.qnote { margin: 0 0 12px; font-size: 13px; color: var(--ink); display: flex; flex-wrap: wrap; gap: 4px 10px; align-items: baseline; }
+.qnote .tag { font-size: 11px; font-weight: 700; border: 1px solid var(--ink); border-radius: 3px; padding: 0 5px; white-space: nowrap; }
+.qnote .act { text-decoration: underline; text-underline-offset: 3px; white-space: nowrap; }
+.panelq { border: 1px solid var(--rule); border-radius: 12px; background: var(--sheet); padding: 12px 16px; margin-bottom: 16px; }
+.panelq h4 { margin: 0 0 6px; font-size: 14px; font-weight: 700; }
+.panelq .qnote { margin-bottom: 6px; }
+
+/* 지면 조각 */
+.papers { display: flex; flex-wrap: wrap; gap: 18px; margin-top: 12px; }
+.paper { flex: 1 1 300px; max-width: 400px; border: 1px solid #9c9c98; background: var(--sheet); padding: 14px 16px; font-family: var(--serif); font-size: 13px; line-height: 1.7; }
+.paper .cap { font-family: var(--sans); font-size: 12px; font-weight: 700; margin: 0 0 8px; }
+.paper ol { list-style: none; margin: 6px 0 0 18px; padding: 0; }
+.paper .rowopt { display: flex; gap: 22px; margin: 6px 0 0 18px; }
+.paper small { display: block; margin-top: 8px; font-family: var(--sans); font-size: 12px; color: var(--ink-2); }
+</style>
+
+<main class="board">
+  <header class="head">
+    <p class="eyebrow">Wire · 오늘의 영어 · D-151 · 25번 문서 §12.8 「3」「4」 · 2026-10-01</p>
+    <h1>거절된 결과를 다시 받는 단추와, 검사가 본 것을 보이는 자리</h1>
+    <p class="lede">로직은 이미 있고 화면만 없는 둘이다. ChatGPT 로 만든 결과가 저장 검사에 걸렸을 때 <b>같은 대화에 붙일 수정 요청문</b>을 내주는 단추, 그리고 검토 화면에서 <b>막지 않는 검사가 본 사실</b>을 보이는 자리. 세 번째로 삽입 문항의 보기가 지면에 «① ①»로 찍히는 것을 같이 정한다.</p>
+    <ul class="facts">
+      <li>표본 <b>제품 경로(luna)로 만든 실제 세트</b> · 거절은 그 세트를 두 군데 어긋나게 한 것</li>
+      <li>수정 요청문 <b>10,801자 · 115줄</b>(붙여 넣었던 결과 전체를 다시 싣는다)</li>
+      <li>검사 표시가 서는 빈도 <b>제품 경로 30세트 중 8(27%)</b> · luna 전체 289세트 중 136(47%) — 전부 세트 머리 줄 쪽</li>
+      <li>문항 줄 셋(해설 번호 · 모두 옳다 · 글자 \n)은 저장을 지난 <b>462세트에서 0건</b></li>
+    </ul>
+  </header>
+
+  <section class="ask" aria-labelledby="ask-h">
+    <h2 id="ask-h">고를 것</h2>
+    <ol>
+      <li><b>수정 요청문 단추의 자리</b> — F1 알림 안 · F2 다음 할 일 카드 · F3 창 · F4 위쪽 복사 단추 옆.</li>
+      <li><b>검사 표시의 자리</b> — Q1 제자리 줄 · Q2 문항 머리 딱지 · Q3 위쪽 요약 · Q4 눌러서 보기.</li>
+      <li><b>삽입 문항의 보기</b> — 번호만 다섯 줄 · 한 줄에 다섯 · 보기 줄 없음.</li>
+    </ol>
+    <p class="note">원장님이 고르기를 <b>3자 합의</b>(Claude · codex · grok)에 맡기셨다. 세 검토자는 그림을 못 보므로 아래 표의 잰 값이 근거다. 값은 이 화면에서 직접 잰다.</p>
+  </section>
+
+  <h2 class="sec">1. 수정 요청문 — ChatGPT 로 제작, 거절된 뒤</h2>
+  <p class="note">지금은 빨간 알림에 사유만 나오고, 원장님이 그 사유를 ChatGPT 에 손으로 옮겨 적어야 한다. 요청문을 짓는 함수(<b>buildChatgptFixRequest</b>)는 저장을 막은 사유와 근거 자리 짚기만 싣는다.</p>
+  <div class="tablewrap"><table class="t">
+    <thead><tr><th>안</th><th>단추가 서는 곳</th><th>복사 전에 내용을 보는 길</th><th>복사까지 누르는 횟수</th><th>거절 직후 늘어나는 높이</th><th>알림 끝에서 단추까지</th><th>걸리는 것</th></tr></thead>
+    <tbody>
+      <tr><th scope="row">F1 알림 안</th><td>빨간 알림 안, 사유 목록 아래</td><td>«요청문 보기»를 누르면 알림 안에 펼친다</td><td class="n">1</td><td class="n" data-m="f1-grow"></td><td class="n" data-m="f1-dist"></td><td>빨간 상자 안에 단추가 둘 선다</td></tr>
+      <tr><th scope="row">F2 다음 할 일 카드</th><td>알림 아래 새 카드(두 걸음 안내)</td><td>요청문이 늘 보인다(여섯 줄 창)</td><td class="n">1</td><td class="n" data-m="f2-grow"></td><td class="n" data-m="f2-dist"></td><td>10,801자 가운데 여섯 줄만 보인다 · 화면이 가장 길어진다</td></tr>
+      <tr><th scope="row">F3 창</th><td>알림 안 단추 → 창 안의 «복사»</td><td>창을 열어야 복사할 수 있다(늘 본다)</td><td class="n">2</td><td class="n" data-m="f3-grow"></td><td class="n" data-m="f3-dist"></td><td>한 번 더 누른다 · 창이 붙여넣기 칸을 가린다</td></tr>
+      <tr><th scope="row">F4 위쪽 단추 옆</th><td>«요청문 복사» 옆(붙여넣기 칸 위)</td><td>«요청문 보기»를 누르면 단추 줄 아래 펼친다</td><td class="n">1</td><td class="n" data-m="f4-grow"></td><td class="n" data-m="f4-dist"></td><td>사유와 단추가 떨어진다 · 거절 전에는 못 누르는 단추가 늘 서 있다</td></tr>
+    </tbody>
+  </table></div>
+
+  <div class="toolbar">
+    <div class="tabs" role="tablist" aria-label="수정 요청문 시안" id="f-tabs">
+      <button class="tab" role="tab" data-v="f1" aria-selected="true"><span class="k">F1</span> 알림 안</button>
+      <button class="tab" role="tab" data-v="f2" aria-selected="false"><span class="k">F2</span> 다음 할 일 카드</button>
+      <button class="tab" role="tab" data-v="f3" aria-selected="false"><span class="k">F3</span> 창</button>
+      <button class="tab" role="tab" data-v="f4" aria-selected="false"><span class="k">F4</span> 위쪽 단추 옆</button>
+    </div>
+    <div class="opts" id="f-states">상태
+      <button class="wbtn" data-s="rejected" aria-pressed="true">거절 직후</button>
+      <button class="wbtn" data-s="open" aria-pressed="false">요청문을 봄</button>
+      <button class="wbtn" data-s="copied" aria-pressed="false">복사한 뒤</button>
+    </div>
+  </div>
+  <div class="thesis" id="f-thesis"></div>
+  <div class="fit" id="f-fit"><div class="stage" id="f-stage"></div></div>
+
+  <h2 class="sec">2. 검사 표시 — 검토 · 편집 화면</h2>
+  <p class="note">3자 합의(25 §12.8 「4」)가 정한 범위: 문항에 보이는 것은 <b>해설의 정답 번호 ≠ 정답 칸 · «모두 옳다 / 정답 없음» 보기 · 글자 \n 찌꺼기</b>, 세트 머리에는 <b>정답 보기만 김 · 절대어가 오답에만 · 정답 번호 쏠림</b> 한 줄. 빨강이 아니라 본 사실과 자리로 적는다. 정밀도가 낮은 «정답 오류» 검사는 보이지 않는다.
+  이 표본 세트에 실제로 서는 것은 하나다 — 4번(빈칸 추론)의 오답 보기 ③ · ⑤ 에만 only 가 있다. 문항 줄은 실제로는 0건이라 <b>2번의 해설 번호를 일부러 바꾼 상태</b>로 그렸다.</p>
+  <div class="tablewrap"><table class="t">
+    <thead><tr><th>안</th><th>세트 머리</th><th>문항</th><th>지적이 서는 높이(편집 화면 위 끝에서)</th><th>늘어나는 높이</th><th>걸리는 것</th></tr></thead>
+    <tbody>
+      <tr><th scope="row">Q1 제자리 줄</th><td>세트 카드 메타 줄 아래 한 줄(합의문 그대로)</td><td>그 칸 바로 아래 한 줄</td><td class="n" data-m="q1-at"></td><td class="n" data-m="q1-grow"></td><td>문항 줄은 그 문항까지 굴려야 보인다</td></tr>
+      <tr><th scope="row">Q2 문항 머리 딱지</th><td>세트 단위(정답 번호 쏠림)만</td><td>문항 머리에 «확인 1» + 카드 끝에 줄(절대어 · 길이도 그 문항에)</td><td class="n" data-m="q2-at"></td><td class="n" data-m="q2-grow"></td><td>합의문의 «세트 머리에 한 줄만»과 다르다 · 위에서는 아무것도 안 보인다</td></tr>
+      <tr><th scope="row">Q3 위쪽 요약</th><td colspan="2">도구 줄 아래 한 상자에 전부 — 줄마다 «N번으로» 단추 · 카드 안에는 없음</td><td class="n" data-m="q3-at"></td><td class="n" data-m="q3-grow"></td><td>고치는 자리와 읽는 자리가 떨어진다 · 단추가 줄마다 선다</td></tr>
+      <tr><th scope="row">Q4 눌러서 보기</th><td colspan="2">도구 줄의 «확인해 볼 곳 2» 단추 → 창에 목록 · 화면에는 없음</td><td class="n" data-m="q4-at"></td><td class="n" data-m="q4-grow"></td><td>누르지 않으면 안 읽힌다 · 창을 닫아야 고칠 수 있다</td></tr>
+    </tbody>
+  </table></div>
+
+  <div class="toolbar">
+    <div class="tabs" role="tablist" aria-label="검사 표시 시안" id="q-tabs">
+      <button class="tab" role="tab" data-v="q1" aria-selected="true"><span class="k">Q1</span> 제자리 줄</button>
+      <button class="tab" role="tab" data-v="q2" aria-selected="false"><span class="k">Q2</span> 문항 머리 딱지</button>
+      <button class="tab" role="tab" data-v="q3" aria-selected="false"><span class="k">Q3</span> 위쪽 요약</button>
+      <button class="tab" role="tab" data-v="q4" aria-selected="false"><span class="k">Q4</span> 눌러서 보기</button>
+    </div>
+    <div class="opts" id="q-states">
+      <button class="wbtn" data-s="dismiss" aria-pressed="false">«확인함» 단추를 둔 모습</button>
+    </div>
+  </div>
+  <div class="thesis" id="q-thesis"></div>
+  <div class="fit" id="q-fit"><div class="stage" id="q-stage"></div></div>
+
+  <h2 class="sec">3. 삽입 문항의 보기 — 지면</h2>
+  <p class="note">삽입 문항은 발문 안에 ( ① )~( ⑤ ) 자리가 있고 보기 값이 번호 글자 그대로다. 지면이 보기 번호를 한 번 더 붙여 «① ①»로 찍는다(옛 지면부터). 어법 보기처럼 글이 있는 보기는 그대로다.</p>
+  <div class="papers">
+    <div class="paper"><p class="cap">지금</p>5. … ( ③ ) A composer may write dozens of weak melodies … ( ④ ) …<ol><li>① ①</li><li>② ②</li><li>③ ③</li><li>④ ④</li><li>⑤ ⑤</li></ol><small>다섯 줄 · 번호가 둘씩</small></div>
+    <div class="paper"><p class="cap">가. 번호만 다섯 줄</p>5. … ( ③ ) A composer may write dozens of weak melodies … ( ④ ) …<ol><li>①</li><li>②</li><li>③</li><li>④</li><li>⑤</li></ol><small>겹친 번호만 없앤다 · 높이는 지금과 같다</small></div>
+    <div class="paper"><p class="cap">나. 한 줄에 다섯</p>5. … ( ③ ) A composer may write dozens of weak melodies … ( ④ ) …<div class="rowopt"><span>①</span><span>②</span><span>③</span><span>④</span><span>⑤</span></div><small>한 줄 · 문항이 네 줄 짧아진다(지면 약 110px) · 답을 고르는 자리가 남는다</small></div>
+    <div class="paper"><p class="cap">다. 보기 줄 없음</p>5. … ( ③ ) A composer may write dozens of weak melodies … ( ④ ) …<small>수능 꼴 — 글 속 번호에 직접 표시 · 다섯 줄 짧아진다 · 답을 적는 자리가 글 속에 흩어진다</small></div>
+  </div>
+</main>
+
+<script>
+const REASONS = [
+  ["2번 문항", "지문 속 근거를 지문에서 찾지 못했습니다 (그대로 이어진 인용이어야 합니다)."],
+  ["4번 문항", "보기는 5개여야 합니다 (지금 4개)."],
+];
+const REQUEST = `[오늘의 영어 — 고쳐 쓰기 요청]
+앞서 만든 결과가 자동 검사에 걸려 저장되지 않았습니다. 아래 [고칠 곳]만 고쳐 주세요.
+
+[고칠 곳]
+- q2: 지문 속 근거를 지문에서 찾지 못했습니다 (그대로 이어진 인용이어야 합니다).
+- q2 근거 진단: 근거가 «lodies before one of them becomes worth » 까지는 지문과 같지만, 그 뒤 «quickly.» 는 지문에 없습니다(지문은 «developing. A scientist may run the same experimen…» 로 이어집니다). …
+- q4: 보기는 5개여야 합니다 (지금 4개).
+
+[고치는 범위]
+- 모양 문제(보기 수 · 정답 번호 · 빠진 칸 · 유형 이름)는 그 칸만 고칩니다.
+- 내용 문제(근거 · 지문 · 요청과 다른 유형이나 문항 수)는 그 문항의 정답 · 해설 · 근거까지만 같이 고칩니다.
+- 지적되지 않은 문항과 지문(passage)은 한 글자도 바꾸지 않습니다.
+
+[조건] … [원문] … [앞서 낸 결과] … [답 형식] …`;
+const PASTED = '```json\n{\n  "title": "창의성의 형성과 꾸준한 노력",\n  "passage": "Many people believe that creativity arrives as a sudden flash of inspiration. Stories about inventors …",\n  "questions": [\n    { "type": "주제", "prompt": "다음 글의 주제로 가장 적절한 것은?", …';
+const LINE = 22.4; // 14px × 1.6
+const ta = (text, rows, cls = "", px = 0) => `<div class="ta ${cls}" style="height:${px || Math.round(rows * LINE + 20)}px">${esc(text)}</div>`;
+const esc = (s) => s.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
+const alertBox = (inner = "", lead = "가져오지 못했습니다. 아래 사유를 고쳐 다시 붙여 넣어 주세요.") =>
+  `<div class="alert" id="alert"><p>${lead}</p><ul>${REASONS.map(([q, m]) => `<li><b>${q}</b> ${m}</li>`).join("")}</ul>${inner}</div>`;
+const copied = '<div class="status new">수정 요청문을 복사했습니다. 같은 ChatGPT 대화에 붙여 넣어 주세요.<span class="newtag">새</span></div>';
+
+const F = {
+  f1: {
+    title: "F1 — 알림 안에 단추",
+    text: "사유를 읽은 자리에서 바로 복사한다. 내용은 누를 때만 펼친다. 지금 화면에서 더해지는 것이 가장 적다.",
+    draw: (s) => maker("", alertBox(
+      `<div class="row new" style="margin-top:10px" id="newbox"><span class="btn" id="fixbtn">수정 요청문 복사</span><span class="btn">${s === "open" ? "요청문 접기" : "요청문 보기"}</span><span class="newtag">새</span></div>` +
+      (s === "open" ? `<div style="margin-top:10px">${ta(REQUEST, 10, "ro")}</div>` : ""),
+      "가져오지 못했습니다. 아래 사유를 ChatGPT 에 알려 고친 결과를 다시 붙여 넣어 주세요."), s),
+  },
+  f2: {
+    title: "F2 — 알림 아래 «다시 받기» 카드",
+    text: "알림은 사유만 말하고, 그 아래 카드가 할 일을 두 걸음으로 적는다. 요청문은 늘 보인다.",
+    draw: (s) => maker("", alertBox() +
+      `<div class="card new" id="newbox" style="display:grid;gap:10px"><b>다시 받기<span class="newtag">새</span></b>
+        <div class="row"><span>1. 아래 요청문을 같은 ChatGPT 대화에 붙여 넣습니다.</span><span class="btn" id="fixbtn">수정 요청문 복사</span></div>
+        ${ta(REQUEST, 6, "ro")}
+        <div>2. 고친 답을 위 «ChatGPT 결과 붙여넣기» 칸에 바꿔 넣고 «가져오기»를 누릅니다.</div></div>`, s),
+  },
+  f3: {
+    title: "F3 — 창에서 보고 복사",
+    text: "알림 안의 단추는 창을 열 뿐이다. 창에서 요청문 전체를 본 뒤 «복사»를 누른다.",
+    draw: (s) => maker("", alertBox(
+      `<div class="row new" style="margin-top:10px" id="newbox"><span class="btn" id="fixbtn">수정 요청문 보기</span><span class="newtag">새</span></div>`), s,
+      s === "open" ? `<div class="dialog new"><p class="kick">ChatGPT 로 제작</p><h4>수정 요청문</h4>${ta(REQUEST, 14, "ro")}<div class="row" style="justify-content:flex-end"><span class="btn">닫기</span><span class="btn pri">복사</span></div></div>` : ""),
+  },
+  f4: {
+    title: "F4 — 위쪽 «요청문 복사» 옆",
+    text: "복사 단추 둘을 한 줄에 모은다. 거절되기 전에는 흐리게 서 있다가 거절된 뒤에 눌린다. 알림에는 그 단추를 가리키는 한 문장만 더한다.",
+    draw: (s) => maker(
+      `<span class="btn new" id="fixbtn">수정 요청문 복사<span class="newtag">새</span></span><span class="btn new">${s === "open" ? "요청문 접기" : "요청문 보기"}</span>` ,
+      alertBox("", "가져오지 못했습니다. 위의 «수정 요청문 복사»로 ChatGPT 에 고쳐 달라고 한 뒤 다시 붙여 넣어 주세요."), s,
+      "", s === "open" ? `<div id="newbox">${ta(REQUEST, 10, "ro")}</div>` : ""),
+  },
+};
+function maker(topExtra, below, s, overlay = "", underTop = "") {
+  return `<div class="mk ${overlay ? "dim" : ""}" style="position:relative">
+    <div class="skip">조건 칸(제작 방식 · 원문 · 난이도 · 문항 수 · 유형) — 접어 그림</div>
+    <div class="row"><span class="btn pri">요청문 복사</span>${topExtra}</div>${underTop}
+    <div><div class="lab">ChatGPT 결과 붙여넣기</div><div style="margin-top:6px">${ta(PASTED, 10)}</div></div>
+    ${s === "copied" ? copied : ""}
+    ${below}
+    <div class="row"><span class="btn pri">가져오기</span></div>
+    ${overlay}
+  </div>`;
+}
+
+const OPTS4 = ["a natural gift that appears without prior preparation", "a result of inspiration that makes practice less necessary", "a talent developed only by collecting facts rather than testing ideas", "a learnable ability strengthened by continued effort and revision", "a temporary effect of habits that matter only to professional artists"];
+const OPTS2 = ["많은 사람은 창의성이 오랜 훈련보다 순간적인 영감의 결과라고 믿는다.", "연구자들은 독창적인 생각이 대체로 짧은 연습과 빠른 수정 끝에 만들어진다고 본다.", "작곡가는 약한 선율을 여러 편 쓴 뒤 그중 발전시킬 만한 곡을 발견하기도 한다.", "과학자는 예상 밖의 결과를 얻기 위해 매번 여러 실험 조건을 바꾼다.", "학생은 새로운 생각을 얻으려면 영감이 찾아올 때까지 기다려야 한다."];
+const NOTE2 = "정답 칸은 ③, 해설은 ④ 를 정답으로 적었습니다.";
+const NOTE4 = "오답 보기 ③ · ⑤ 에만 only 가 있습니다.";
+const dis = (on) => on ? '<span class="act">확인함</span>' : "";
+const qnote = (id, tag, text, on, extra = "") => `<p class="qnote new" data-note="${id}"><span class="tag">${tag}</span><span>${text}</span>${extra}${dis(on)}</p>`;
+function qcard(n, type, opts, answer, o) {
+  return `<div class="card" id="qc${n}"><div class="qhead"><span>QUESTION 0${n} · ${type}</span>${o.headTag || ""}</div>
+    <div class="f">발문${ta(n === 4 ? "다음 빈칸에 들어갈 말로 가장 적절한 것은?\n\nMany people believe that creativity arrives as a sudden flash of inspiration. … Creativity, in this view, is ____." : "윗글의 내용과 일치하는 것은?", 3, "", 72)}</div>
+    ${opts.map((t, i) => `<div class="opt"><i>${i + 1}</i><span>${t}</span></div>`).join("")}
+    ${o.afterOpts || ""}
+    <div class="ans">정답 번호 <span class="sel">${answer}</span></div>
+    ${o.afterAnswer || ""}
+    <div class="f">해설 · 채점 기준${ta(n === 2 ? "정답은 ④. 셋째 문장에서 작곡가가 약한 선율을 여러 편 쓴다고 했다. …" : "마지막 문장은 창의성을 누구나 기를 수 있는 기술로 본다. …", 3, "", 72)}</div>
+    <div class="f">지문 속 근거${ta("A composer may write dozens of weak melodies before one of them becomes worth developing.", 3, "", 72)}</div>
+    ${o.end || ""}</div>`;
+}
+function editor(o) {
+  return `<div class="ed ${o.overlay ? "dim" : ""}" style="position:relative">
+    <div class="etool"><span class="btn">목록</span><span class="sel">초안</span>${o.tool || ""}<span class="sp"></span><span class="btn">인쇄</span><span class="btn">세트 삭제</span><span class="btn pri">저장</span></div>
+    ${o.top || ""}
+    <div class="card"><div class="etitle">창의성의 형성과 꾸준한 노력</div><p class="emeta">AI 생성 · 6문항 · 한빛고등학교</p>${o.setLine || ""}
+      <div class="f" style="margin:0">지문${ta("Many people believe that creativity arrives as a sudden flash of inspiration. Stories about inventors who solved problems in dreams or artists who painted masterpieces overnight support this belief. However, researchers who study creative work have found a different pattern. …", 8, "", 200)}</div></div>
+    <div class="skip" style="margin-top:12px" data-gap="1">QUESTION 01 · 주제 — 접어 그림(실제 높이만큼 자리를 둔다)</div>
+    ${qcard(2, "내용 일치", OPTS2, "3", o.q2 || {})}
+    <div class="skip" style="margin-top:12px" data-gap="1">QUESTION 03 · 어법 — 접어 그림</div>
+    ${qcard(4, "빈칸 추론", OPTS4, "4", o.q4 || {})}
+    ${o.overlay || ""}</div>`;
+}
+const Q = {
+  q1: {
+    title: "Q1 — 제자리 줄",
+    text: "세트 카드의 메타 줄 아래에 한 줄, 문항 줄은 어긋난 칸 바로 아래. 고치는 자리에서 읽는다. 합의문의 자리 그대로다.",
+    draw: (d) => editor({
+      setLine: qnote("set", "확인해 볼 곳", `4번 빈칸 추론 — ${NOTE4}`, d),
+      q2: { afterAnswer: qnote("q2", "확인해 볼 곳", NOTE2, d) },
+    }),
+  },
+  q2: {
+    title: "Q2 — 문항 머리 딱지 + 카드 끝",
+    text: "지적을 전부 그 문항에 둔다. 머리에 개수 딱지, 카드 끝에 줄. 세트 카드에는 세트 단위 지적(정답 번호 쏠림)만 남는다.",
+    draw: (d) => editor({
+      q2: { headTag: '<span class="qnote new" style="margin:0"><span class="tag">확인 1</span></span>', end: qnote("q2", "확인해 볼 곳", NOTE2, d) },
+      q4: { headTag: '<span class="qnote new" style="margin:0"><span class="tag">확인 1</span></span>', end: qnote("set", "확인해 볼 곳", NOTE4, d) },
+    }),
+  },
+  q3: {
+    title: "Q3 — 위쪽 요약 상자",
+    text: "도구 줄 아래 상자 하나에 모든 지적을 모은다. 줄마다 그 문항으로 가는 단추. 문항 카드는 지금 그대로다.",
+    draw: (d) => editor({
+      top: `<div class="panelq new"><h4>확인해 볼 곳 2</h4>${qnote("q2", "2번", NOTE2, d, '<span class="act">2번으로</span>')}${qnote("set", "4번", NOTE4, d, '<span class="act">4번으로</span>')}</div>`,
+    }),
+  },
+  q4: {
+    title: "Q4 — 눌러서 보기",
+    text: "도구 줄에 개수가 적힌 단추 하나. 누르면 창에 목록이 선다. 화면은 지금과 같다.",
+    draw: (d) => editor({
+      tool: '<span class="btn new" data-note="set">확인해 볼 곳 2</span>',
+      overlay: `<div class="dialog new"><p class="kick">창의성의 형성과 꾸준한 노력</p><h4>확인해 볼 곳</h4>${qnote("q2", "2번", NOTE2, d)}${qnote("x", "4번", NOTE4, d)}<div class="row" style="justify-content:flex-end"><span class="btn">닫기</span></div></div>`,
+    }),
+  },
+};
+
+const state = { f: "f1", fs: "rejected", q: "q1", qd: false };
+function fit(id) {
+  const box = document.getElementById(id + "-fit"), stage = document.getElementById(id + "-stage");
+  stage.style.zoom = 1;
+  const need = stage.firstElementChild.offsetWidth + 40;
+  const zoom = Math.min(1, box.clientWidth / need);
+  stage.style.zoom = zoom;
+}
+function render() {
+  const f = F[state.f];
+  document.getElementById("f-thesis").innerHTML = `<h3>${f.title}</h3><p>${f.text}</p>`;
+  document.getElementById("f-stage").innerHTML = f.draw(state.fs);
+  const q = Q[state.q];
+  document.getElementById("q-thesis").innerHTML = `<h3>${q.title}</h3><p>${q.text}</p>`;
+  document.getElementById("q-stage").innerHTML = q.draw(state.qd);
+  // 접어 그린 문항 카드는 실제 카드 높이만큼 자리를 둔다 — 굴리는 거리를 재려면 위 카드들의 높이가 맞아야 한다
+  const real = document.getElementById("qc2");
+  if (real) document.querySelectorAll("#q-stage [data-gap]").forEach((el) => { el.style.height = real.offsetHeight + "px"; });
+  fit("f"); fit("q");
+  for (const [sel, key, val] of [["#f-tabs", "f"], ["#q-tabs", "q"]])
+    document.querySelectorAll(sel + " .tab").forEach((b) => b.setAttribute("aria-selected", String(b.dataset.v === state[key])));
+  document.querySelectorAll("#f-states .wbtn").forEach((b) => b.setAttribute("aria-pressed", String(b.dataset.s === state.fs)));
+  document.querySelector("#q-states .wbtn").setAttribute("aria-pressed", String(state.qd));
+}
+// 표의 잰 값 — 안마다 한 번씩 그려 본 뒤 잰다(줄이지 않은 크기)
+function measure() {
+  const probe = document.createElement("div");
+  probe.style.cssText = "position:absolute;left:-100000px;top:0;padding:16px 20px";
+  document.body.append(probe);
+  const out = {};
+  probe.innerHTML = maker("", alertBox(), "rejected");
+  const base = probe.firstElementChild.offsetHeight;
+  for (const key of Object.keys(F)) {
+    probe.innerHTML = F[key].draw("rejected");
+    const root = probe.firstElementChild, alertEl = probe.querySelector("#alert"), btn = probe.querySelector("#fixbtn");
+    out[key + "-grow"] = `+${root.offsetHeight - base}px`;
+    const a = alertEl.getBoundingClientRect(), b = btn.getBoundingClientRect();
+    const inside = b.top >= a.top && b.bottom <= a.bottom;
+    out[key + "-dist"] = inside ? "알림 안" : b.top > a.bottom ? `아래 ${Math.round(b.top - a.bottom)}px` : `위 ${Math.round(a.top - b.bottom)}px`;
+  }
+  probe.innerHTML = editor({});
+  const ebase = probe.firstElementChild.offsetHeight;
+  for (const key of Object.keys(Q)) {
+    probe.innerHTML = Q[key].draw(false);
+    const gap = probe.querySelector("#qc2").offsetHeight;
+    probe.querySelectorAll("[data-gap]").forEach((el) => { el.style.height = gap + "px"; });
+    const root = probe.firstElementChild, top = root.getBoundingClientRect().top;
+    const found = [...probe.querySelectorAll("[data-note]")].filter((el) => el.dataset.note !== "x" && !el.closest(".dialog")).map((el) => [el.dataset.note === "q2" ? "2번 줄" : "4번 줄", Math.round(el.getBoundingClientRect().top - top)]).sort((a, b) => a[0].localeCompare(b[0]));
+    const ys = found.map(([, y]) => y);
+    const dialog = probe.querySelector(".dialog");
+    out[key + "-at"] = key === "q4" ? `단추 ${ys[0]}px(목록은 창 안)` : found.map(([name, y]) => `${name} ${y.toLocaleString("en-US")}px`).join(" · ");
+    probe.innerHTML = Q[key].draw(false);
+    if (dialog) probe.querySelector(".dialog").remove();
+    out[key + "-grow"] = `+${probe.firstElementChild.offsetHeight - ebase}px`;
+  }
+  probe.remove();
+  document.querySelectorAll("[data-m]").forEach((cell) => { cell.textContent = out[cell.dataset.m] ?? ""; });
+  window.__measured = out;
+}
+document.getElementById("f-tabs").addEventListener("click", (e) => { const b = e.target.closest(".tab"); if (b) { state.f = b.dataset.v; render(); } });
+document.getElementById("q-tabs").addEventListener("click", (e) => { const b = e.target.closest(".tab"); if (b) { state.q = b.dataset.v; render(); } });
+document.getElementById("f-states").addEventListener("click", (e) => { const b = e.target.closest(".wbtn"); if (b) { state.fs = b.dataset.s; render(); } });
+document.getElementById("q-states").addEventListener("click", (e) => { if (e.target.closest(".wbtn")) { state.qd = !state.qd; render(); } });
+addEventListener("resize", () => { fit("f"); fit("q"); });
+(document.fonts?.ready ?? Promise.resolve()).then(() => { render(); measure(); });
+render();
+</script>
