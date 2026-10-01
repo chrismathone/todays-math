@@ -710,7 +710,7 @@ function plainMath(tex: string): string {
     return tex[i++] ?? "";
   };
   const command = (): string => {
-    const m = /^\\([A-Za-z]+|.)/s.exec(tex.slice(i));
+    const m = /^\\([A-Za-z]+|[\s\S])/.exec(tex.slice(i));
     if (!m) {
       i += 1;
       return "";
