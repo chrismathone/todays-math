@@ -60,6 +60,7 @@ const RECORD_MODULES = [
   "math-explorers/expedition",
   "math-explorers/expeditionStart",
   "math-explorers/expeditionJourney",
+  "math-explorers/teacherRoutes", // 탐험 기록의 교사 보기(27번 문서) — 기록을 읽어 강사에게 내보낸다
 ];
 /** 지금 그 모듈을 부르는 곳 — 학생 학습·통합 탐험·강사 기록 보기·DB 없는 QA 시뮬레이터. */
 const ALLOWED = [

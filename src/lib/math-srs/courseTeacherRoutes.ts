@@ -28,7 +28,8 @@ import {
 } from "./courseServer";
 import { changeSrsState } from "./serverStore";
 
-async function teacherGate(request: Request) {
+/** «오늘의 기억» 교사 끝점의 문지기 — 탐험 교사 보기(`math-explorers/teacherRoutes.ts`)도 이것을 지난다. */
+export async function teacherGate(request: Request) {
   const access = await authorizeAccount(request);
   if (access.response) return access;
   const path = new URL(request.url).pathname;

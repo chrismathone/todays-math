@@ -58,6 +58,30 @@ describe("SRS feature access", () => {
       false,
     );
   });
+  // 개념 카드(탐험) 기록의 교사 보기(27번 문서) — 읽기만, 메뉴는 옆 끝점과 같다.
+  it("opens the explorers teacher views read-only under their siblings' menus", () => {
+    const teaching = {
+      ...teacher,
+      menus: ["teaching"] as AccountAccess["menus"],
+    };
+    const studentPath = "/api/students/student-id/math-srs/explorers";
+    expect(accountRouteAllowed(teacher, "GET", studentPath)).toBe(true);
+    expect(accountRouteAllowed(teaching, "GET", studentPath)).toBe(false);
+    for (const method of ["POST", "PUT", "PATCH", "DELETE"])
+      expect(accountRouteAllowed(teacher, method, studentPath)).toBe(false);
+    expect(accountRouteAllowed(teacher, "GET", `${studentPath}/export`)).toBe(
+      false,
+    );
+    const classPath = "/api/classes/class-id/math-srs/explorers";
+    for (const account of [teacher, teaching])
+      expect(accountRouteAllowed(account, "GET", classPath)).toBe(
+        accountRouteAllowed(account, "GET", "/api/classes/class-id/math-srs"),
+      );
+    expect(accountRouteAllowed(teaching, "GET", classPath)).toBe(true);
+    expect(accountRouteAllowed(teacher, "GET", classPath)).toBe(false);
+    for (const path of [studentPath, classPath])
+      expect(studentGateFor(false, "GET", path).kind).toBe("forbidden");
+  });
   it("reserves the full administrator page for approved admins", () => {
     expect(accountRouteAllowed(teacher, "GET", "/admin/math-srs")).toBe(false);
     expect(
