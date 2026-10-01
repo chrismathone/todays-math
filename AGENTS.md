@@ -21,3 +21,11 @@ When an Orca-managed task is fully complete, its changes have been merged into
 worktree so the finished session no longer appears in the workspace list.
 Preserve its Git branch by default. Never remove an unmerged, dirty, or active
 worktree.
+
+# TypeSafe skill
+
+Use the project-installed [TypeSafe skill](.agents/skills/typesafe-ai/SKILL.md)
+for TypeSafe/Jev work and relevant AI judgment design in this project, including
+grading, verification, and routing. Read the skill and the relevant live TypeSafe
+documentation before designing or changing an integration. Preserve the project's
+chosen stack and keep deterministic rules and calculations in code.
