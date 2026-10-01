@@ -11,9 +11,47 @@ import {
 import {
   documentIdSchema,
   saveDocumentSchema,
+  type DocumentKind,
 } from "@/contracts/privateWorkspace.contract";
+import type { WorkspaceMenu } from "@/contracts/accountAccess.contract";
+import {
+  CONCEPT_BLANK_TITLE_MAX,
+  conceptBlankDocumentSchema,
+} from "@/contracts/conceptBlank.contract";
 import { isPrismaErrorCode } from "@/lib/prismaErrors";
 import { z } from "zod";
+
+/** 자료를 저장하려면 있어야 하는 메뉴 — 그 자료를 만드는 화면. */
+const EDITOR_MENU: Readonly<Record<DocumentKind, WorkspaceMenu>> = {
+  draft: "export",
+  extraction: "studio",
+  conceptBlank: "conceptBlank",
+};
+
+/**
+ * 자료의 문항 수 — 꼴이 틀리면 null. 개념 백지(26 §9 ⑾)는 고르기만 담으므로 지면을 합쳐 찍히는 문항을 센다
+ * (은행은 이 종류를 저장할 때만 불러온다 — 다른 자료의 저장 경로에 은행을 싣지 않는다).
+ */
+async function problemCountOf(
+  kind: DocumentKind,
+  payload: Record<string, unknown>,
+): Promise<number | null> {
+  if (kind === "conceptBlank") {
+    const document = conceptBlankDocumentSchema.safeParse(payload);
+    if (!document.success) return null;
+    const { composeSheets, sheetItemCount } =
+      await import("@/lib/concept-blank/compose");
+    return composeSheets(document.data.selection).reduce(
+      (n, sheet) => n + sheetItemCount(sheet),
+      0,
+    );
+  }
+  const list =
+    kind === "draft"
+      ? payload.problems
+      : (payload.data as Record<string, unknown> | undefined)?.crops;
+  return Array.isArray(list) && list.length <= 2000 ? list.length : null;
+}
 
 export async function readDocument(
   request: Request,
@@ -62,15 +100,22 @@ export async function saveDocument(request: Request, id: string) {
   if (!parsed.success)
     return privateError("저장할 자료 형식을 확인해 주세요.", 400);
   const { kind, title, payload, expectedRevision } = parsed.data;
-  const list =
-    kind === "draft"
-      ? payload.problems
-      : (payload.data as Record<string, unknown> | undefined)?.crops;
-  if (!Array.isArray(list) || list.length > 2000)
-    return privateError("문제 목록을 확인해 주세요.", 400);
+  const problemCount = await problemCountOf(kind, payload);
+  if (problemCount === null)
+    return privateError(
+      kind === "conceptBlank"
+        ? "저장할 개념 백지를 확인해 주세요."
+        : "문제 목록을 확인해 주세요.",
+      400,
+    );
+  if (kind === "conceptBlank" && title.length > CONCEPT_BLANK_TITLE_MAX)
+    return privateError(
+      `개념 백지 이름은 ${CONCEPT_BLANK_TITLE_MAX}자까지입니다.`,
+      400,
+    );
   if (
     !access.account!.isAdmin &&
-    !access.account!.menus.includes(kind === "draft" ? "export" : "studio")
+    !access.account!.menus.includes(EDITOR_MENU[kind])
   )
     return privateError("이 자료를 편집할 권한이 없습니다.", 403);
   const userId = access.ownerId!;
@@ -90,7 +135,7 @@ export async function saveDocument(request: Request, id: string) {
         kind,
         title,
         payload: payload as Prisma.InputJsonObject,
-        problemCount: list.length,
+        problemCount,
       };
       if (previous) {
         const changed = await tx.workspaceDocument.updateMany({
@@ -113,7 +158,7 @@ export async function saveDocument(request: Request, id: string) {
             documentId: id,
             kind,
             title,
-            problemCount: list.length,
+            problemCount,
             revision: document.revision,
           },
         }),
@@ -197,6 +242,9 @@ export async function renameDocument(request: Request, id: string) {
       where: { userId, id, revision: expectedRevision },
     });
     if (!previous) return null;
+    // 개념 백지는 자료 이름 = 지면 제목(26 §9 ⑾) — 제목 상한 안에서만 바꾼다.
+    const blank = previous.kind === "conceptBlank";
+    if (blank && title.length > CONCEPT_BLANK_TITLE_MAX) return "too-long";
     const payload = previous.payload as Prisma.JsonObject;
     const changed = await tx.workspaceDocument.updateMany({
       where: { userId, id, revision: expectedRevision },
@@ -205,6 +253,14 @@ export async function renameDocument(request: Request, id: string) {
         payload: {
           ...payload,
           ...(previous.kind === "draft" ? { title } : {}),
+          ...(blank
+            ? {
+                selection: {
+                  ...(payload.selection as Prisma.JsonObject),
+                  title,
+                },
+              }
+            : {}),
         } as Prisma.InputJsonObject,
         revision: { increment: 1 },
       },
@@ -223,6 +279,11 @@ export async function renameDocument(request: Request, id: string) {
       where: { userId_id: { userId, id } },
     });
   });
+  if (document === "too-long")
+    return privateError(
+      `개념 백지 이름은 ${CONCEPT_BLANK_TITLE_MAX}자까지입니다.`,
+      400,
+    );
   return document
     ? Response.json(
         { data: documentDto(document) },

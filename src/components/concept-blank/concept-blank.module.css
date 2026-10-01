@@ -42,6 +42,34 @@ button.primaryButton:enabled:hover {
 button.primaryButton:disabled {
   opacity: 0.45;
 }
+/* [내 시험지에 저장] — 머리 줄의 다른 칸(날짜 · 인쇄할 지면 · 인쇄하기)과 같은 높이, 인쇄하기보다 한 단 낮은 얼굴(26 §9 ⑾) */
+.secondaryButton {
+  box-sizing: border-box;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: var(--control-height, 44px);
+  padding: 0 16px;
+  border: 1px solid var(--learn-control, #b8c4d6);
+  border-radius: var(--control-radius, 8px);
+  background: var(--learn-surface, #fff);
+  color: var(--b-ink);
+  font: inherit;
+  font-weight: 600;
+}
+button.secondaryButton:enabled:hover {
+  border-color: var(--b-accent);
+  color: var(--b-accent);
+}
+button.secondaryButton:disabled {
+  color: var(--b-muted);
+}
+.saveError {
+  margin: 0 0 12px;
+  color: var(--learn-danger, #b42318);
+  font-size: 13px;
+  line-height: 1.6;
+}
 .quietButton {
   margin-left: auto;
   min-height: 36px;

@@ -2734,6 +2734,28 @@ export const ITEMS: PrintCheckItem[] = [
     changedOn: "2026-10-01",
   },
   {
+    id: "concept-blank-ten-per-level",
+    title:
+      "개념 백지 — 하 · 중 · 상 10개씩(처음 값) 지면이 넘침 없이 이어지는가",
+    changed:
+      "원장님 2026-10-01 «하/중/상 10문제씩»(26 §9). 형식 카드의 처음 값이 «재고 전부»에서 **10** 으로 바뀌었고, 은행 3차가 소단원마다 개념 · ○× · 적용을 난이도별 10개씩 채운다 — 한 형식이 이제 30~60문항이라 장 수가 크게 는다. 소단원을 여럿 고르면 한 난이도의 수를 **소단원 차례로 하나씩 돌려** 고르게 나눈다(전에는 앞 소단원부터 채워 뒤 소단원이 빠졌다).",
+    look: "(제안) ① 소단원 **하나** · 형식 다섯 · 처음 값 그대로 «전체» 인쇄 — 형식마다 장이 넘침 없이 이어지는가(잘린 줄 · 겹친 칸 · 빈 장이 있으면 불합격). ② 개념 지도(D)가 가지 여섯씩 여러 장으로 나뉘고 «(1) · (2) …» 번호가 맞는가. ③ 소단원 **셋**을 골라 «용어 → 뜻» 하 10 — 세 소단원의 용어가 고루(4 · 3 · 3) 소단원 차례로 찍히는가. ④ 같은 개념을 난이도로 나눠 물은 용어(«받아올림» · «받아올림이 두 번 생길 때»)가 학생에게 다른 물음으로 읽히는가 — 헷갈리는 짝은 적어 둔다. ⑤ 채점표가 학생지와 같은 차례 · 같은 수인가.",
+    lookFromSource: false,
+    evidence: [
+      "docs/planning/26-concept-blank.md §9",
+      "docs/planning/tracks/briefs/cb-ten.md",
+      "src/lib/concept-blank/compose.ts (takeByLevel — 소단원 차례로 돌려 뽑기)",
+      "src/components/concept-blank/ConceptBlankView.tsx (DEFAULT_COUNT)",
+      "src/lib/concept-blank/bank/*-plus.ts (은행 3차 보강)",
+      "src/__tests__/unit/conceptBlankCompose.test.ts",
+    ],
+    scale: "개념 백지 지면 전부 — 형식 하나가 30~60문항",
+    status: "대기",
+    needs:
+      "은행 3차(트랙 cb-ten-e3 … m3)가 main 에 병합된 뒤 — 그 전에는 소단원에 난이도별 1~2개뿐이라 10이 안 찬다. 학년 하나에서 소단원 하나, 다른 학년에서 소단원 셋을 골라 두 번 뽑는다(여백 없음 · 배율 100% · 배경 그래픽 켬).",
+    changedOn: "2026-10-01",
+  },
+  {
     id: "english-bundle-sheets",
     title:
       "오늘의 영어 — 학생용 묶음 분리 (묶음마다 따로 뽑기 · 머리의 묶음 줄)",

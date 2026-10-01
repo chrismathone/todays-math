@@ -1,6 +1,15 @@
+import type { DocumentKind } from "@/contracts/privateWorkspace.contract";
+
+/** 관리자 화면의 자료 종류 이름. */
+export const ADMIN_KIND_LABEL: Readonly<Record<DocumentKind, string>> = {
+  draft: "시험지",
+  extraction: "추출 자료",
+  conceptBlank: "개념 백지",
+};
+
 export type UserDocument = {
   id: string;
-  kind: "draft" | "extraction";
+  kind: DocumentKind;
   title: string;
   revision: number;
   createdAt: string;

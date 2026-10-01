@@ -253,6 +253,9 @@ const countsSchema = z.strictObject({
 });
 export type LevelCounts = z.infer<typeof countsSchema>;
 
+/** 지면 제목 상한 — 저장한 개념 백지의 자료 이름도 이 안이다. */
+export const CONCEPT_BLANK_TITLE_MAX = 40;
+
 /**
  * 원장님이 고른 것 — 소단원 여럿 · 형식 여럿 · 형식마다 난이도별 문항 수. 이것만으로 지면이 정해진다(고정).
  * 주소(`?s=`)에 실어 같은 링크 = 같은 지면.
@@ -271,13 +274,23 @@ export const conceptBlankSelectionSchema = z.strictObject({
     )
     .min(1)
     .max(5),
-  title: z.string().max(40).optional(),
+  title: z.string().max(CONCEPT_BLANK_TITLE_MAX).optional(),
   date: z
     .string()
     .regex(/^\d{4}-\d{2}-\d{2}$/)
     .optional(),
 });
 export type ConceptBlankSelection = z.infer<typeof conceptBlankSelectionSchema>;
+
+/**
+ * 내 시험지에 저장한 개념 백지(원장님 2026-10-01 «담아서 내 시험지에 저장하고 다음에 또 쓸수 있게», 26 §9 ⑾) —
+ * `workspace_document` 의 `conceptBlank` 종류의 payload. 고정 문항이라 **고르기만** 담으면 같은 지면이 다시 나온다.
+ * 날짜는 담지 않는다 — 다음에 열면 그날(화면의 처음 값). 자료 이름은 지면 제목과 같이 간다(이름 바꾸기도 제목을 고친다).
+ */
+export const conceptBlankDocumentSchema = z.strictObject({
+  selection: conceptBlankSelectionSchema.omit({ date: true }),
+});
+export type ConceptBlankDocument = z.infer<typeof conceptBlankDocumentSchema>;
 
 /* ───────── 지면 코드(사진 채점의 첫 걸음 — 트랙 cb-code · 26 §8) ───────── */
 

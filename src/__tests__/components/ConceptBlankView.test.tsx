@@ -542,3 +542,267 @@ describe("주소로 고르기 되살리기", () => {
     expect(screen.getByRole("button", { name: "인쇄하기" })).toBeDisabled();
   });
 });
+
+// 원장님 2026-10-01 «개념 백지를 담아서 내 시험지에 저장하고 다음에 또 쓸수 있게»(26 §9 ⑾).
+describe("내 시험지에 저장 · 다시 열기", () => {
+  type Put = { url: string; body: Record<string, unknown> };
+  const stored = (
+    id: string,
+    revision: number,
+    selection: Omit<ConceptBlankSelection, "date">,
+  ) => ({
+    id,
+    kind: "conceptBlank",
+    title: selection.title ?? "합동과 대칭",
+    payload: { selection },
+    problemCount: 3,
+    revision,
+    createdAt: "2026-10-01T00:00:00Z",
+    updatedAt: "2026-10-01T00:00:00Z",
+  });
+  /**
+   * 내 시험지 API 대역 — PUT 은 받은 것을 판을 하나 올려 돌려주고, GET 은 `docs` 에서 꺼낸다.
+   * 서버처럼 없는 자료에 판을 대고 저장하면 409(지워진 자료).
+   */
+  function cloud(docs: Record<string, ReturnType<typeof stored>> = {}) {
+    const puts: Put[] = [];
+    const fetchMock = vi.fn(
+      async (input: RequestInfo | URL, init?: RequestInit) => {
+        const url = String(input);
+        const id = decodeURIComponent(url.split("/").pop()!.split("?")[0]!);
+        if (init?.method === "PUT") {
+          const body = JSON.parse(String(init.body));
+          puts.push({ url, body });
+          if (body.expectedRevision && !docs[id])
+            return Response.json(
+              { error: { message: "변경됨" } },
+              { status: 409 },
+            );
+          const doc = {
+            ...stored(
+              id,
+              (body.expectedRevision ?? 0) + 1,
+              body.payload.selection,
+            ),
+            title: body.title,
+          };
+          docs[id] = doc;
+          return Response.json({ data: doc });
+        }
+        return docs[id]
+          ? Response.json({ data: docs[id] })
+          : Response.json({ error: { message: "없음" } }, { status: 404 });
+      },
+    );
+    vi.stubGlobal("fetch", fetchMock);
+    return { puts, fetchMock };
+  }
+  afterEach(() => {
+    vi.unstubAllGlobals();
+  });
+  const saveButton = () =>
+    screen.getByRole("button", { name: /내 시험지에 저장|저장됨|저장 중/ });
+
+  it("내 시험지가 없으면(계정 범위 없음) 저장 단추가 없다", () => {
+    renderView();
+    expect(
+      screen.queryByRole("button", { name: "내 시험지에 저장" }),
+    ).not.toBeInTheDocument();
+  });
+
+  it("고르기를 날짜 없이 저장하고, 고치면 같은 자료에 다음 판으로 저장한다", async () => {
+    const { puts } = cloud();
+    render(
+      <ConceptBlankView bank={FIXTURE_BANK} active storageScope="owner-a" />,
+    );
+    expect(saveButton()).toBeDisabled();
+    openGrade("초5");
+    fireEvent.click(box("2-3 합동과 대칭"));
+    expect(saveButton()).toHaveTextContent("내 시험지에 저장");
+    expect(saveButton()).toBeEnabled();
+
+    await act(async () => {
+      fireEvent.click(saveButton());
+    });
+    expect(puts).toHaveLength(1);
+    const first = puts[0]!;
+    expect(first.url).toMatch(/^\/api\/library\/documents\/[A-Za-z0-9_-]+$/);
+    expect(first.body.kind).toBe("conceptBlank");
+    expect(first.body.title).toBe("합동과 대칭");
+    expect(first.body.expectedRevision).toBeNull();
+    const savedSelection = (
+      first.body.payload as { selection: ConceptBlankSelection }
+    ).selection;
+    expect(savedSelection).not.toHaveProperty("date");
+    expect(savedSelection.sections).toEqual(printedSelection()!.sections);
+    expect(saveButton()).toHaveTextContent("저장됨");
+    expect(saveButton()).toBeDisabled();
+    expect(new URL(window.location.href).searchParams.get("blankDoc")).toBe(
+      first.url.split("/").pop(),
+    );
+
+    // 날짜만 바꾸면 저장할 것이 없다(날짜는 담지 않는다)
+    fireEvent.change(screen.getByLabelText("날짜"), {
+      target: { value: "2026-12-24" },
+    });
+    expect(saveButton()).toHaveTextContent("저장됨");
+
+    fireEvent.change(count("완전 백지 개념 수 하"), { target: { value: "1" } });
+    expect(saveButton()).toHaveTextContent("내 시험지에 저장");
+    await act(async () => {
+      fireEvent.click(saveButton());
+    });
+    expect(puts).toHaveLength(2);
+    expect(puts[1]!.url).toBe(first.url);
+    expect(puts[1]!.body.expectedRevision).toBe(1);
+    expect(saveButton()).toHaveTextContent("저장됨");
+  });
+
+  it("저장이 실패하면 까닭을 알리고 다시 누를 수 있다", async () => {
+    vi.stubGlobal(
+      "fetch",
+      vi.fn(async () =>
+        Response.json(
+          { error: { message: "이 자료를 편집할 권한이 없습니다." } },
+          { status: 403 },
+        ),
+      ),
+    );
+    render(
+      <ConceptBlankView bank={FIXTURE_BANK} active storageScope="owner-a" />,
+    );
+    openGrade("초5");
+    fireEvent.click(box("2-3 합동과 대칭"));
+    await act(async () => {
+      fireEvent.click(saveButton());
+    });
+    expect(screen.getByRole("alert")).toHaveTextContent(
+      "이 자료를 편집할 권한이 없습니다.",
+    );
+    expect(saveButton()).toBeEnabled();
+  });
+
+  it("내 시험지에서 열면 그 고르기를 되살리고, 저장은 같은 자료에 한다", async () => {
+    const selection = {
+      sections: [S.line, S.point],
+      forms: [
+        {
+          form: "term" as const,
+          counts: { 하: 1, 중: 1, 상: 0 },
+          extras: { 하: 0, 중: 1, 상: 0 },
+        },
+      ],
+      title: "대칭 백지",
+    };
+    const { puts } = cloud({ "blank-1": stored("blank-1", 2, selection) });
+    const { rerender } = render(
+      <ConceptBlankView bank={FIXTURE_BANK} active storageScope="owner-a" />,
+    );
+    await act(async () => {
+      rerender(
+        <ConceptBlankView
+          bank={FIXTURE_BANK}
+          active
+          storageScope="owner-a"
+          openDocument={{ id: "blank-1", version: 1 }}
+        />,
+      );
+    });
+    expect(screen.getByRole("textbox", { name: "제목" })).toHaveValue(
+      "대칭 백지",
+    );
+    expect(box("2-3-3 선대칭도형과 그 성질 알아보기")).toBeChecked();
+    expect(printedSelection()).toMatchObject({
+      sections: [S.line, S.point],
+      forms: selection.forms,
+      title: "대칭 백지",
+      date: kstDateOf(new Date()),
+    });
+    expect(saveButton()).toHaveTextContent("저장됨");
+
+    fireEvent.change(screen.getByRole("textbox", { name: "제목" }), {
+      target: { value: "대칭 백지 2" },
+    });
+    await act(async () => {
+      fireEvent.click(saveButton());
+    });
+    expect(puts[0]!.url).toBe("/api/library/documents/blank-1");
+    expect(puts[0]!.body.expectedRevision).toBe(2);
+    expect(puts[0]!.body.title).toBe("대칭 백지 2");
+  });
+
+  it("열어 둔 자료를 내 시험지에서 지웠으면 새 자료로 저장한다", async () => {
+    const selection = {
+      sections: [S.cong],
+      forms: [
+        {
+          form: "recall" as const,
+          counts: { 하: 1, 중: 0, 상: 0 },
+          extras: { 하: 0, 중: 0, 상: 0 },
+        },
+      ],
+      title: "합동",
+    };
+    const docs = { "blank-1": stored("blank-1", 3, selection) };
+    const { puts } = cloud(docs);
+    const { rerender } = render(
+      <ConceptBlankView bank={FIXTURE_BANK} active storageScope="owner-a" />,
+    );
+    await act(async () => {
+      rerender(
+        <ConceptBlankView
+          bank={FIXTURE_BANK}
+          active
+          storageScope="owner-a"
+          openDocument={{ id: "blank-1", version: 1 }}
+        />,
+      );
+    });
+    Reflect.deleteProperty(docs, "blank-1");
+    fireEvent.change(screen.getByRole("textbox", { name: "제목" }), {
+      target: { value: "합동 다시" },
+    });
+    await act(async () => {
+      fireEvent.click(saveButton());
+    });
+    const last = puts.at(-1)!;
+    expect(last.url).not.toBe("/api/library/documents/blank-1");
+    expect(last.body.expectedRevision).toBeNull();
+    expect(screen.queryByRole("alert")).not.toBeInTheDocument();
+    expect(saveButton()).toHaveTextContent("저장됨");
+  });
+
+  it("새로 고쳐도(주소의 blankDoc) 같은 자료에 이어서 저장한다", async () => {
+    const selection = {
+      sections: [S.cong],
+      forms: [
+        {
+          form: "recall" as const,
+          counts: { 하: 1, 중: 0, 상: 0 },
+          extras: { 하: 0, 중: 0, 상: 0 },
+        },
+      ],
+    };
+    const { puts } = cloud({ "blank-9": stored("blank-9", 4, selection) });
+    window.history.replaceState(
+      null,
+      "",
+      `/?blank=${encodeSelection({ ...selection, title: "고친 제목" })}&blankDoc=blank-9#conceptBlank`,
+    );
+    await act(async () => {
+      render(
+        <ConceptBlankView bank={FIXTURE_BANK} active storageScope="owner-a" />,
+      );
+    });
+    // 주소의 고르기(아직 저장 안 한 고침)를 지우지 않는다
+    expect(screen.getByRole("textbox", { name: "제목" })).toHaveValue(
+      "고친 제목",
+    );
+    expect(saveButton()).toHaveTextContent("내 시험지에 저장");
+    await act(async () => {
+      fireEvent.click(saveButton());
+    });
+    expect(puts[0]!.url).toBe("/api/library/documents/blank-9");
+    expect(puts[0]!.body.expectedRevision).toBe(4);
+  });
+});

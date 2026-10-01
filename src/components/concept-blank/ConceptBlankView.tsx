@@ -12,28 +12,45 @@
  * 모양은 작업실 토큰 그대로(05 §8.9) · 두 칸은 영어 화면 결(05 §8.23) · 스위치는 진도 계획 화면 것(05 §8.10).
  * D-08(사무적) · D-30(손가락 커서는 단추 · 체크 칸에만). 🔴 새 화면의 첫 판이다 — D-07 로 원장님이 보고 고친다.
  */
-import { useEffect, useId, useMemo, useRef, useState } from "react";
+import {
+  useCallback,
+  useEffect,
+  useId,
+  useMemo,
+  useRef,
+  useState,
+} from "react";
 
 import ConceptBlankPaper from "@/components/concept-blank/ConceptBlankPaper";
 import { PaperText } from "@/components/concept-blank/paper/PaperParts";
+import {
+  PrivateCloudClient,
+  PrivateCloudError,
+  cloudError,
+  privateDocumentId,
+} from "@/components/unified/privateCloudClient";
 import Icon from "@/components/unified/WorkspaceIcon";
 import WorkspacePageHeader from "@/components/unified/WorkspacePageHeader";
 import {
   CONCEPT_BLANK_FORM_LABELS,
+  CONCEPT_BLANK_TITLE_MAX,
   CONCEPT_BLANK_FORMS,
   CONCEPT_BLANK_LEVELS,
+  conceptBlankDocumentSchema,
   type ConceptBlankBank,
+  type ConceptBlankDocument,
   type ConceptBlankForm,
   type ConceptBlankLevel,
   type ConceptBlankSelection,
-  type ConceptBlankSheet,
   type LevelCounts,
 } from "@/contracts/conceptBlank.contract";
 import { CONCEPT_BLANK_BANK } from "@/lib/concept-blank/bank";
 import {
   composeSheets,
   orderedSections,
-  stockCounts,
+  sheetItemCount,
+  stockTable,
+  type StockCounts,
 } from "@/lib/concept-blank/compose";
 import {
   BLANK_TREE,
@@ -56,14 +73,23 @@ const COUNT_CAP = 40;
 /** 숫자 칸의 처음 값 — 원장님 2026-10-01 «하/중/상 10문제씩»(26 §9 ⑽). 재고가 적으면 재고만큼. */
 const DEFAULT_COUNT = 10;
 const SECTION_CAP = 60;
-const TITLE_MAX = 40;
+const TITLE_MAX = CONCEPT_BLANK_TITLE_MAX;
 /** 고르기를 싣는 주소 인수 — 셸의 해시(`#conceptBlank`)는 뷰 이름만 알아서 검색 인수에 둔다(`?set=` · `?extraction=` 결). */
 const URL_PARAM = "blank";
+/** 내 시험지에서 연(또는 저장한) 개념 백지의 자료 id — 새로 고쳐도 같은 자료에 이어서 저장한다(26 §9 ⑾). */
+const DOC_PARAM = "blankDoc";
 const PRINT_PATH = "/concept-blank/print";
 const DATE_RE = /^\d{4}-\d{2}-\d{2}$/;
 const ZERO: LevelCounts = { 하: 0, 중: 0, 상: 0 };
 
-type Stock = ReturnType<typeof stockCounts>;
+type Stock = StockCounts;
+const EMPTY_STOCK: Stock = {
+  concepts: { 하: 0, 중: 0, 상: 0 },
+  ox: { 하: 0, 중: 0, 상: 0 },
+  apply: { 하: 0, 중: 0, 상: 0 },
+  figures: { 하: 0, 중: 0, 상: 0 },
+  total: 0,
+};
 type StockKind = "concepts" | "ox" | "apply" | "figures";
 type Row = "main" | "extra";
 
@@ -132,12 +158,17 @@ const isReadyGrade = (grade: string) =>
 
 /** 주소의 `?blank=` 를 읽어 처음 고르기를 세운다 — 없거나 틀리면 빈 고르기(형식은 다 켠 채). */
 function initialDraft(): Draft {
-  const saved =
+  return draftFrom(
     typeof window === "undefined"
       ? null
       : decodeSelection(
           new URL(window.location.href).searchParams.get(URL_PARAM),
-        );
+        ),
+  );
+}
+
+/** 고르기 → 화면의 초안. 저장한 개념 백지에는 날짜가 없다 — 그때는 오늘. */
+function draftFrom(saved: ConceptBlankSelection | null): Draft {
   const forms = Object.fromEntries(
     CONCEPT_BLANK_FORMS.map((form) => [
       form,
@@ -159,24 +190,44 @@ function initialDraft(): Draft {
   };
 }
 
+const gradeOf = (draft: Draft) =>
+  draft.sections.length
+    ? (getBlankSection(draft.sections[0]!)?.grade ?? null)
+    : null;
+
+/** 내 시험지에 담는 고르기 — 날짜를 뺀다(다음에 열면 그날). 저장했나를 가르는 열쇠도 이 꼴로 잰다. */
+function documentSelection(
+  selection: ConceptBlankSelection,
+): ConceptBlankDocument["selection"] {
+  return {
+    sections: selection.sections,
+    forms: selection.forms,
+    ...(selection.title ? { title: selection.title } : {}),
+  };
+}
+const selectionKey = (selection: ConceptBlankDocument["selection"]) =>
+  JSON.stringify(conceptBlankDocumentSchema.shape.selection.parse(selection));
+
+type SavedDocument = { id: string; revision: number; key: string };
+
+/** 내 시험지의 개념 백지 한 벌을 읽는다 — 다른 종류이거나 꼴이 틀리면 연다고 하지 않는다. */
+async function readBlankDocument(client: PrivateCloudClient, id: string) {
+  const document = await client.get(id);
+  const parsed =
+    document.kind === "conceptBlank"
+      ? conceptBlankDocumentSchema.safeParse(document.payload)
+      : null;
+  if (!parsed?.success) throw new Error("저장한 개념 백지를 열지 못했습니다.");
+  return {
+    id: document.id,
+    revision: document.revision,
+    selection: parsed.data.selection,
+  };
+}
+
 function stockLine(stock: Stock | undefined): string {
   if (!stock || stock.total === 0) return "문항 없음";
   return `개념 ${sum(stock.concepts)} · ○× ${sum(stock.ox)} · 적용 ${sum(stock.apply)} · 그림 ${sum(stock.figures)}`;
-}
-
-function itemCount(sheet: ConceptBlankSheet): number {
-  switch (sheet.form) {
-    case "recall":
-      return sheet.key.length;
-    case "term":
-      return sheet.terms.length + sheet.ox.length;
-    case "cloze":
-      return sheet.sentences.length + sheet.apply.length;
-    case "map":
-      return sheet.maps.reduce((n, m) => n + m.nodes.length, 0);
-    case "figure":
-      return sheet.figures.length;
-  }
 }
 
 type Caps = Record<StockKind, LevelCounts>;
@@ -257,18 +308,39 @@ export type ConceptBlankViewProps = {
   bank?: ConceptBlankBank;
   /** 셸에서 지금 보이는 뷰인가 — 보일 때만 주소에 고르기를 싣는다(떠나면 지운다). */
   active?: boolean;
+  /** 내 시험지의 계정 범위 — 있으면 [내 시험지에 저장]이 선다(26 §9 ⑾). */
+  storageScope?: string;
+  /** 내 시험지에서 연 개념 백지 — 판(version)이 바뀔 때마다 그 자료를 불러와 고르기를 되살린다. */
+  openDocument?: { id: string; version: number } | null;
 };
 
 export default function ConceptBlankView({
   bank = CONCEPT_BLANK_BANK,
   active = true,
+  storageScope,
+  openDocument,
 }: ConceptBlankViewProps) {
   const uid = useId();
   const [draft, setDraft] = useState<Draft>(initialDraft);
   const [openGrade, setOpenGrade] = useState<string | null>(() =>
-    draft.sections.length
-      ? (getBlankSection(draft.sections[0]!)?.grade ?? null)
-      : null,
+    gradeOf(draft),
+  );
+  /** 내 시험지에 있는 자료 — 저장하면(또는 내 시험지에서 열면) 선다. 다음 저장은 이 자료의 다음 판이다. */
+  const [savedDocument, setSavedDocument] = useState<SavedDocument | null>(
+    null,
+  );
+  const [saving, setSaving] = useState(false);
+  const [saveError, setSaveError] = useState("");
+  /** 처음 열 때 주소에 있던 자료 id(새로 고침) — 그 자료에 이어서 저장한다. 주소의 고르기(`?blank=`)는 그대로 둔다. */
+  const [urlDocument] = useState(() => {
+    if (typeof window === "undefined") return null;
+    const url = new URL(window.location.href);
+    const id = url.searchParams.get(DOC_PARAM);
+    return id ? { id, keepDraft: url.searchParams.has(URL_PARAM) } : null;
+  });
+  const client = useMemo(
+    () => (storageScope ? new PrivateCloudClient(storageScope) : null),
+    [storageScope],
   );
   const [capHit, setCapHit] = useState(false);
   const [paperView, setPaperView] = useState<"student" | "key">("student");
@@ -279,12 +351,13 @@ export default function ConceptBlankView({
 
   /** 소단원마다 재고 — 은행이 채우는 학년(초3~중3)만. */
   const stockIndex = useMemo(() => {
+    const table = stockTable(bank);
     const map = new Map<string, Stock>();
     for (const grade of BLANK_TREE)
       if (isReadyGrade(grade.grade))
         for (const chapter of grade.chapters)
           for (const section of chapter.sections)
-            map.set(section.key, stockCounts(section.key, bank));
+            map.set(section.key, table.get(section.key) ?? EMPTY_STOCK);
     return map;
   }, [bank]);
   const selectable = (key: string) => (stockIndex.get(key)?.total ?? 0) > 0;
@@ -361,7 +434,7 @@ export default function ConceptBlankView({
       selection && sheets.length ? encodeSheetCode(selection, bank) : undefined,
     [selection, sheets.length, bank],
   );
-  const items = sheets.reduce((n, sheet) => n + itemCount(sheet), 0);
+  const items = sheets.reduce((n, sheet) => n + sheetItemCount(sheet), 0);
   const { deskRef, paperRef, fit } = usePaperFit(sheets.length > 0);
 
   // 주소 `?blank=` — 이 뷰가 보일 때만 싣고, 떠나면 지운다. replaceState 라 셸의 해시 동기화(popstate)는 안 깨운다.
@@ -373,6 +446,69 @@ export default function ConceptBlankView({
     else url.searchParams.delete(URL_PARAM);
     window.history.replaceState(window.history.state, "", url);
   }, [active, code]);
+
+  // 주소 `?blankDoc=` — 내 시험지에 있는 자료면 그 id 를 같은 규칙으로 싣는다(새로 고쳐도 같은 자료에 저장).
+  const savedId = savedDocument?.id ?? null;
+  useEffect(() => {
+    const url = new URL(window.location.href);
+    const next = active ? savedId : null;
+    if (url.searchParams.get(DOC_PARAM) === next) return;
+    if (next) url.searchParams.set(DOC_PARAM, next);
+    else url.searchParams.delete(DOC_PARAM);
+    window.history.replaceState(window.history.state, "", url);
+  }, [active, savedId]);
+
+  /** 내 시험지에서 읽은 자료를 받는다 — `keepDraft` 면 지금 고르기(주소의 아직 저장 안 한 고침)를 그대로 둔다. */
+  const adopt = useCallback(
+    (
+      document: Awaited<ReturnType<typeof readBlankDocument>>,
+      keepDraft: boolean,
+    ) => {
+      setSavedDocument({
+        id: document.id,
+        revision: document.revision,
+        key: selectionKey(document.selection),
+      });
+      setSaveError("");
+      if (keepDraft) return;
+      const next = draftFrom(document.selection);
+      setDraft(next);
+      setOpenGrade(gradeOf(next));
+    },
+    [],
+  );
+  // 내 시험지의 [열기] — 판이 바뀔 때마다 다시 읽는다(같은 자료를 두 번 열어도).
+  const openId = openDocument?.id;
+  const openVersion = openDocument?.version;
+  useEffect(() => {
+    if (!client || !openId) return;
+    let live = true;
+    readBlankDocument(client, openId).then(
+      (document) => {
+        if (live) adopt(document, false);
+      },
+      (cause) => {
+        if (live) setSaveError(cloudError(cause));
+      },
+    );
+    return () => {
+      live = false;
+    };
+  }, [client, openId, openVersion, adopt]);
+  // 새로 고침 — 주소의 자료 id 를 읽어 판만 받는다. 지워졌으면 다음 저장이 새 자료가 된다.
+  useEffect(() => {
+    if (!client || !urlDocument) return;
+    let live = true;
+    readBlankDocument(client, urlDocument.id).then(
+      (document) => {
+        if (live) adopt(document, urlDocument.keepDraft);
+      },
+      () => undefined,
+    );
+    return () => {
+      live = false;
+    };
+  }, [client, urlDocument, adopt]);
 
   /** 고른 소단원을 바꾼다 — 기준은 지금 고른 것(재고 있는 것만). 상한 60 을 넘으면 앞에서 자르고 한 줄 알린다. */
   const changeSections = (next: string[], hit = false) => {
@@ -428,6 +564,58 @@ export default function ConceptBlankView({
 
   const autoTitle =
     !draft.title.trim() && sheets[0] ? sheets[0].header.title : null;
+
+  /** 내 시험지에 담을 고르기 — 날짜를 뺀 것. 저장한 것과 같으면 «저장됨». */
+  const toSave = useMemo(
+    () => (selection ? documentSelection(selection) : null),
+    [selection],
+  );
+  const saved =
+    !!toSave && !!savedDocument && savedDocument.key === selectionKey(toSave);
+  /** [내 시험지에 저장] — 처음이면 새 자료, 내 시험지에 있는 자료면 그 다음 판. 자료 이름은 지면 제목. */
+  const save = async () => {
+    if (!client || !toSave || saving) return;
+    setSaving(true);
+    setSaveError("");
+    const title = (
+      toSave.title ??
+      sheets[0]?.header.title ??
+      "개념 백지"
+    ).slice(0, TITLE_MAX);
+    const put = (id: string, revision: number | null) =>
+      client.save(id, "conceptBlank", title, { selection: toSave }, revision);
+    try {
+      let document;
+      try {
+        document = await put(
+          savedDocument?.id ?? privateDocumentId(),
+          savedDocument?.revision ?? null,
+        );
+      } catch (cause) {
+        // 열어 둔 자료를 내 시험지에서 지웠으면(409 · 다시 읽어 404) 새 자료로 담는다 — 고르기뿐이라 잃을 것이 없다.
+        const gone =
+          savedDocument &&
+          cause instanceof PrivateCloudError &&
+          cause.status === 409 &&
+          (await client.get(savedDocument.id).then(
+            () => false,
+            (missing) =>
+              missing instanceof PrivateCloudError && missing.status === 404,
+          ));
+        if (!gone) throw cause;
+        document = await put(privateDocumentId(), null);
+      }
+      setSavedDocument({
+        id: document.id,
+        revision: document.revision,
+        key: selectionKey(toSave),
+      });
+    } catch (cause) {
+      setSaveError(cloudError(cause));
+    } finally {
+      setSaving(false);
+    }
+  };
   // `print=1` — 인쇄 페이지가 지면을 다 그린 뒤 인쇄 창을 바로 띄운다(원장님 2026-10-01 «ctrl+p 말고 인쇄버튼으로»)
   const printHref = code
     ? `${PRINT_PATH}?s=${code}&view=${printView}&print=1`
@@ -471,6 +659,16 @@ export default function ConceptBlankView({
               </button>
             ))}
           </div>
+          {client && (
+            <button
+              type="button"
+              className={s.secondaryButton}
+              disabled={!toSave || saving || saved}
+              onClick={() => void save()}
+            >
+              {saving ? "저장 중…" : saved ? "저장됨" : "내 시험지에 저장"}
+            </button>
+          )}
           {printHref ? (
             <a
               className={s.primaryButton}
@@ -489,6 +687,11 @@ export default function ConceptBlankView({
           )}
         </div>
       </WorkspacePageHeader>
+      {saveError && (
+        <p className={s.saveError} role="alert">
+          {saveError}
+        </p>
+      )}
 
       <div className={s.grid}>
         <section

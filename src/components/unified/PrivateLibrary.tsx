@@ -1,7 +1,11 @@
 "use client";
 
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
-import type { PrivateDocumentSummary } from "@/contracts/privateWorkspace.contract";
+import { CONCEPT_BLANK_TITLE_MAX } from "@/contracts/conceptBlank.contract";
+import type {
+  DocumentKind,
+  PrivateDocumentSummary,
+} from "@/contracts/privateWorkspace.contract";
 import ConfirmDialog from "./ConfirmDialog";
 import { PrivateCloudClient, cloudError } from "./privateCloudClient";
 import WorkspacePageHeader from "./WorkspacePageHeader";
@@ -9,12 +13,22 @@ import { formatDraftDate } from "./WorkroomHome";
 import WorkProgress from "./WorkProgress";
 import s from "./PrivateLibrary.module.css";
 
+/** 자료 종류 이름 — 목록의 종류 칸 · 종류 고르기. 개념 백지는 26 §9 ⑾. */
+const KIND_LABEL: Readonly<Record<DocumentKind, string>> = {
+  draft: "시험지",
+  extraction: "추출한 자료",
+  conceptBlank: "개념 백지",
+};
+
 type PrivateLibraryProps = {
   storageScope: string;
   canExport: boolean;
   canStudio: boolean;
   onOpenDraft: (id: string) => void | Promise<void>;
   onOpenExtraction: (id: string) => void;
+  /** 개념 백지 메뉴가 있나 — 없으면 저장한 개념 백지를 열 수 없다(이름 변경 · 삭제는 된다). */
+  canConceptBlank?: boolean;
+  onOpenConceptBlank?: (id: string) => void | Promise<void>;
   onImport?: () => void;
   onNew?: () => void;
   onDeleted?: (item: PrivateDocumentSummary) => void | Promise<void>;
@@ -31,6 +45,8 @@ function PrivateLibraryContent({
   canStudio,
   onOpenDraft,
   onOpenExtraction,
+  canConceptBlank = false,
+  onOpenConceptBlank,
   onImport,
   onNew,
   onDeleted,
@@ -129,8 +145,9 @@ function PrivateLibraryContent({
             onChange={(event) => setKind(event.target.value)}
           >
             <option value="all">전체 자료</option>
-            <option value="draft">시험지</option>
-            <option value="extraction">추출한 자료</option>
+            <option value="draft">{KIND_LABEL.draft}</option>
+            <option value="extraction">{KIND_LABEL.extraction}</option>
+            <option value="conceptBlank">{KIND_LABEL.conceptBlank}</option>
           </select>
         </label>
         <label>
@@ -217,9 +234,13 @@ function PrivateLibraryContent({
                       ? canExport
                         ? () => onOpenDraft(item.id)
                         : undefined
-                      : canStudio
-                        ? () => onOpenExtraction(item.id)
-                        : undefined
+                      : item.kind === "conceptBlank"
+                        ? canConceptBlank && onOpenConceptBlank
+                          ? () => onOpenConceptBlank(item.id)
+                          : undefined
+                        : canStudio
+                          ? () => onOpenExtraction(item.id)
+                          : undefined
                   }
                 />
               ))}
@@ -323,7 +344,7 @@ function LibraryItem({
       </td>
       <td className={s.kindCell} role="cell">
         <span className={s.kindBadge} data-kind={item.kind}>
-          {item.kind === "draft" ? "시험지" : "추출한 자료"}
+          {KIND_LABEL[item.kind]}
         </span>
       </td>
       <td className={s.titleCell} role="cell">
@@ -399,7 +420,12 @@ function LibraryItem({
             field={{
               label: "새 자료 이름",
               value: name,
-              maxLength: item.kind === "draft" ? 80 : 200,
+              maxLength:
+                item.kind === "draft"
+                  ? 80
+                  : item.kind === "conceptBlank"
+                    ? CONCEPT_BLANK_TITLE_MAX
+                    : 200,
               onChange: setName,
             }}
             confirmLabel="이름 저장"

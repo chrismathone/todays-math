@@ -47,6 +47,8 @@ import { readPrivateAsset, writePrivateAsset } from "@/lib/privateAssets";
 import { PATCH as updateAccount } from "@/app/api/admin/users/[id]/route";
 import { POST as activity } from "@/app/api/account/activity/route";
 import { auditData } from "@/lib/audit";
+import type { ConceptBlankSelection } from "@/contracts/conceptBlank.contract";
+import { composeSheets, sheetItemCount } from "@/lib/concept-blank/compose";
 
 const userId = "10000000-0000-4000-8000-000000000001";
 const otherId = "20000000-0000-4000-8000-000000000002";
@@ -340,6 +342,123 @@ describe("private material ownership and revision control", () => {
         }),
       }),
     );
+  });
+});
+
+// 원장님 2026-10-01 «개념 백지를 담아서 내 시험지에 저장하고 다음에 또 쓸수 있게»(26 §9 ⑾) — 고르기만 담는다(고정 문항).
+describe("concept blank in 내 시험지", () => {
+  const selection: ConceptBlankSelection = {
+    sections: ["초5::2-3 합동과 대칭::2-3-1 도형의 합동 알아보기"],
+    forms: [
+      {
+        form: "term",
+        counts: { 하: 10, 중: 10, 상: 10 },
+        extras: { 하: 10, 중: 10, 상: 10 },
+      },
+    ],
+    title: "합동 백지",
+  };
+  const blankRequest = (body: unknown) =>
+    request("PUT", body, "/api/library/documents/blank-1");
+
+  it("saves the selection and counts the items its sheets print", async () => {
+    mocks.doc.findUnique.mockResolvedValue(null);
+    const response = await saveDocument(
+      blankRequest({
+        kind: "conceptBlank",
+        title: "합동 백지",
+        payload: { selection },
+        expectedRevision: null,
+      }),
+      "blank-1",
+    );
+    expect(response.status).toBe(200);
+    const printed = composeSheets(selection).reduce(
+      (n, sheet) => n + sheetItemCount(sheet),
+      0,
+    );
+    expect(printed).toBeGreaterThan(0);
+    expect(mocks.doc.create).toHaveBeenCalledWith({
+      data: expect.objectContaining({
+        userId,
+        id: "blank-1",
+        kind: "conceptBlank",
+        payload: { selection },
+        problemCount: printed,
+      }),
+    });
+  });
+
+  it("refuses anything but a dateless selection — reopening prints today", async () => {
+    mocks.doc.findUnique.mockResolvedValue(null);
+    for (const payload of [
+      { selection: { ...selection, date: "2026-10-01" } },
+      { selection: { ...selection, sections: [] } },
+      { problems: [] },
+    ])
+      expect(
+        (
+          await saveDocument(
+            blankRequest({
+              kind: "conceptBlank",
+              title: "합동 백지",
+              payload,
+              expectedRevision: null,
+            }),
+            "blank-1",
+          )
+        ).status,
+      ).toBe(400);
+    expect(mocks.doc.create).not.toHaveBeenCalled();
+  });
+
+  it("needs the 개념 백지 menu to save", async () => {
+    login({ menus: ["library"] });
+    mocks.doc.findUnique.mockResolvedValue(null);
+    expect(
+      (
+        await saveDocument(
+          blankRequest({
+            kind: "conceptBlank",
+            title: "합동 백지",
+            payload: { selection },
+            expectedRevision: null,
+          }),
+          "blank-1",
+        )
+      ).status,
+    ).toBe(403);
+    expect(mocks.doc.create).not.toHaveBeenCalled();
+  });
+
+  it("renaming keeps the sheet title in step, 40 characters at most", async () => {
+    mocks.doc.findFirst.mockResolvedValue({
+      ...document,
+      id: "blank-1",
+      kind: "conceptBlank",
+      payload: { selection },
+    });
+    const rename = (title: string) =>
+      renameDocument(
+        request(
+          "PATCH",
+          { title, expectedRevision: 1 },
+          "/api/library/documents/blank-1",
+        ),
+        "blank-1",
+      );
+    expect((await rename("3월 2주 백지")).status).toBe(200);
+    expect(mocks.doc.updateMany).toHaveBeenCalledWith(
+      expect.objectContaining({
+        data: expect.objectContaining({
+          title: "3월 2주 백지",
+          payload: { selection: { ...selection, title: "3월 2주 백지" } },
+        }),
+      }),
+    );
+    mocks.doc.updateMany.mockClear();
+    expect((await rename("가".repeat(41))).status).toBe(400);
+    expect(mocks.doc.updateMany).not.toHaveBeenCalled();
   });
 });
 

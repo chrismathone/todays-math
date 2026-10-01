@@ -318,6 +318,11 @@ function UnifiedWorkspaceContent({
     id?: string;
     version: number;
   }>({ version: 0 });
+  /** 내 시험지에서 연 개념 백지(26 §9 ⑾) — 판을 올려 같은 자료를 다시 열어도 개념 백지가 다시 읽는다. */
+  const [blankDocument, setBlankDocument] = useState<{
+    id: string;
+    version: number;
+  } | null>(null);
   const [studioRestoreRequest, setStudioRestoreRequest] = useState<{
     id: number;
     crops: StudioCrop[];
@@ -1291,7 +1296,11 @@ function UnifiedWorkspaceContent({
           {can("conceptBlank") &&
             (opened.has("conceptBlank") || view === "conceptBlank") && (
               <main hidden={view !== "conceptBlank"} className={s.viewContent}>
-                <ConceptBlankView active={view === "conceptBlank"} />
+                <ConceptBlankView
+                  active={view === "conceptBlank"}
+                  storageScope={storageScope}
+                  openDocument={blankDocument}
+                />
               </main>
             )}
           {can("srs") && (opened.has("srs") || view === "srs") && (
@@ -1401,6 +1410,15 @@ function UnifiedWorkspaceContent({
                 window.history.replaceState(null, "", url);
                 navigate("studio");
               }}
+              canConceptBlank={can("conceptBlank")}
+              onOpenConceptBlank={(id) => {
+                if (!can("conceptBlank")) return;
+                setBlankDocument((current) => ({
+                  id,
+                  version: (current?.version ?? 0) + 1,
+                }));
+                navigate("conceptBlank");
+              }}
               onImport={
                 can("export") ? () => draftFileRef.current?.click() : undefined
               }
@@ -1410,6 +1428,8 @@ function UnifiedWorkspaceContent({
                   forgetPrivateDraft(item.id);
                   return;
                 }
+                // 개념 백지는 고르기만 담는다 — 지울 것이 화면에 없다(열려 있던 것은 다음 저장이 새 자료로 간다).
+                if (item.kind === "conceptBlank") return;
                 await forgetPrivateExtraction(storageScope, item.id);
                 const url = new URL(window.location.href);
                 if (

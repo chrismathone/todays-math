@@ -158,6 +158,72 @@ describe("private library board", () => {
     expect(props.onOpenDraft).toHaveBeenNthCalledWith(2, "alpha");
   });
 
+  // 원장님 2026-10-01 «개념 백지를 담아서 내 시험지에 저장하고 다음에 또 쓸수 있게»(26 §9 ⑾).
+  it("lists a saved concept blank as «개념 백지», filters it and opens it in the concept blank tab", async () => {
+    const blank: PrivateDocumentSummary = {
+      id: "blank-1",
+      kind: "conceptBlank",
+      title: "합동 백지",
+      problemCount: 30,
+      revision: 2,
+      createdAt: "2026-10-01T00:00:00Z",
+      updatedAt: "2026-10-01T00:00:00Z",
+    };
+    vi.stubGlobal(
+      "fetch",
+      vi.fn(async () => listResponse([...boardItems, blank])),
+    );
+    const props = { ...boardProps(), onOpenConceptBlank: vi.fn() };
+    const { rerender } = render(<PrivateLibrary {...props} canConceptBlank />);
+    await screen.findByRole("table");
+    expect(boardRow("합동 백지").getByText("개념 백지")).toBeVisible();
+    fireEvent.change(screen.getByRole("combobox", { name: "자료 종류" }), {
+      target: { value: "conceptBlank" },
+    });
+    expect(titles()).toEqual(["합동 백지"]);
+    fireEvent.click(screen.getByRole("button", { name: "합동 백지 열기" }));
+    await waitFor(() =>
+      expect(props.onOpenConceptBlank).toHaveBeenCalledWith("blank-1"),
+    );
+    expect(props.onOpenDraft).not.toHaveBeenCalled();
+    expect(props.onOpenExtraction).not.toHaveBeenCalled();
+
+    // 개념 백지 메뉴가 없으면 열 수 없다(이름 변경 · 삭제는 그대로)
+    rerender(<PrivateLibrary {...props} canConceptBlank={false} />);
+    expect(
+      screen.queryByRole("button", { name: "합동 백지 열기" }),
+    ).not.toBeInTheDocument();
+    expect(
+      screen.getByRole("button", { name: "합동 백지 이름 변경" }),
+    ).toBeEnabled();
+  });
+
+  it("caps a concept blank's new name at the sheet title limit", async () => {
+    vi.stubGlobal(
+      "fetch",
+      vi.fn(async () =>
+        listResponse([
+          {
+            id: "blank-1",
+            kind: "conceptBlank",
+            title: "합동 백지",
+            problemCount: 30,
+            revision: 2,
+            createdAt: "2026-10-01T00:00:00Z",
+            updatedAt: "2026-10-01T00:00:00Z",
+          },
+        ]),
+      ),
+    );
+    render(<PrivateLibrary {...boardProps()} />);
+    fireEvent.click(
+      await screen.findByRole("button", { name: "합동 백지 이름 변경" }),
+    );
+    expect(
+      screen.getByRole("textbox", { name: "새 자료 이름" }),
+    ).toHaveAttribute("maxLength", "40");
+  });
+
   it("preserves both types and management actions when opening permissions are absent", async () => {
     vi.stubGlobal(
       "fetch",

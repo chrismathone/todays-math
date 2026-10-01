@@ -7,11 +7,12 @@ import AdminHeader from "./AdminHeader";
 import { AccountStatus, accountDate } from "./AccountReview";
 import AccountReview from "./AccountReview";
 import { accountRequest, requestMessage } from "./accountRequests";
-import type {
-  AuditEntry,
-  DocumentDetail,
-  PageResult,
-  UserDocument,
+import {
+  ADMIN_KIND_LABEL,
+  type AuditEntry,
+  type DocumentDetail,
+  type PageResult,
+  type UserDocument,
 } from "./documentTypes";
 import s from "./admin.module.css";
 import d from "./detail.module.css";
@@ -187,9 +188,7 @@ function Documents({ userId }: { userId: string }) {
                       if (selected === doc.id) preview.current?.focus();
                     }}
                   >
-                    <span className={d.kind}>
-                      {doc.kind === "draft" ? "시험지" : "추출 자료"}
-                    </span>
+                    <span className={d.kind}>{ADMIN_KIND_LABEL[doc.kind]}</span>
                     <strong>{doc.title || "제목 없는 자료"}</strong>
                     <span>
                       수정 {accountDate(doc.updatedAt)} · 버전 {doc.revision}

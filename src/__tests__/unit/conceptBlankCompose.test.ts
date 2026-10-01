@@ -8,6 +8,7 @@ import {
   composeSheets,
   orderedSections,
   stockCounts,
+  stockTable,
   takeByLevel,
 } from "@/lib/concept-blank/compose";
 import { FIXTURE_BANK } from "@/lib/concept-blank/fixture";
@@ -128,6 +129,23 @@ describe("composeSheets", () => {
     expect(
       takeByLevel(items.slice(0, 4), { 하: 2, 중: 0, 상: 0 }).map((x) => x.id),
     ).toEqual(["a1", "a2"]);
+  });
+
+  // 은행 3차로 문항이 열 배 — 나무의 재고는 소단원마다 은행 전체를 훑지 않고 한 번에 센다.
+  it("builds the whole stock table in one pass, equal to counting each section", () => {
+    const table = stockTable(FIXTURE_BANK);
+    const keys = new Set(
+      [
+        ...FIXTURE_BANK.concepts,
+        ...FIXTURE_BANK.ox,
+        ...FIXTURE_BANK.apply,
+        ...FIXTURE_BANK.figures,
+      ].map((x) => x.section),
+    );
+    expect(keys.size).toBeGreaterThan(1);
+    for (const key of keys)
+      expect(table.get(key), key).toEqual(stockCounts(key, FIXTURE_BANK));
+    expect(table.get("초3::없는::소단원")).toBeUndefined();
   });
 
   it("counts stock per level for the tree", () => {

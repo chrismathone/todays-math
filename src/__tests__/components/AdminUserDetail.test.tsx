@@ -167,6 +167,41 @@ describe("administrator user detail", () => {
     expect(screen.queryByText(/payload|crops/)).not.toBeInTheDocument();
   });
 
+  // 26 §9 ⑾ — 개념 백지는 고르기만 담는다. «시험지 · 0문항»으로 읽히지 않게 소단원과 형식을 보인다.
+  it("previews a saved concept blank as its sections and forms, not as an empty worksheet", () => {
+    render(
+      <AdminDocumentPreview
+        userId={pendingAccount.id}
+        document={{
+          ...draft,
+          kind: "conceptBlank",
+          title: "합동 백지",
+          payload: {
+            selection: {
+              sections: [
+                "초5::2-3 합동과 대칭::2-3-1 도형의 합동 알아보기",
+                "초5::2-3 합동과 대칭::2-3-3 선대칭도형과 그 성질 알아보기",
+              ],
+              forms: [
+                {
+                  form: "term",
+                  counts: { 하: 10, 중: 10, 상: 10 },
+                  extras: { 하: 10, 중: 0, 상: 0 },
+                },
+              ],
+            },
+          },
+        }}
+      />,
+    );
+    expect(screen.getByText(/개념 백지 · 읽기 전용/)).toBeInTheDocument();
+    expect(screen.getByText("2-3-1 도형의 합동 알아보기")).toBeInTheDocument();
+    expect(screen.getByText(/용어 → 뜻/)).toBeInTheDocument();
+    expect(
+      screen.queryByText("이 자료에 저장된 문항이 없습니다."),
+    ).not.toBeInTheDocument();
+  });
+
   it("does not inject SVG markup and defers long document rendering", () => {
     const problems = Array.from({ length: 21 }, () => ({
       content: "문제",

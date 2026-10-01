@@ -186,6 +186,57 @@ export function composeSheets(
   );
 }
 
+/** 지면 한 벌에 찍히는 문항 수 — 화면의 합계 · 내 시험지의 «문항 수»(26 §9 ⑾). */
+export function sheetItemCount(sheet: ConceptBlankSheet): number {
+  switch (sheet.form) {
+    case "recall":
+      return sheet.key.length;
+    case "term":
+      return sheet.terms.length + sheet.ox.length;
+    case "cloze":
+      return sheet.sentences.length + sheet.apply.length;
+    case "map":
+      return sheet.maps.reduce((n, m) => n + m.nodes.length, 0);
+    case "figure":
+      return sheet.figures.length;
+  }
+}
+
+export type StockCounts = ReturnType<typeof stockCounts>;
+
+/**
+ * 은행 전체의 재고표 — 소단원 열쇠 → `stockCounts` 와 같은 꼴. 은행을 한 번만 훑는다
+ * (은행 3차로 문항이 열 배 — 나무의 소단원 360개마다 은행 전체를 훑으면 화면을 열 때 느리다).
+ * 문항이 없는 소단원은 표에 없다.
+ */
+export function stockTable(
+  bank: ConceptBlankBank = CONCEPT_BLANK_BANK,
+): Map<string, StockCounts> {
+  const table = new Map<string, StockCounts>();
+  const row = (section: string) => {
+    let r = table.get(section);
+    if (!r) {
+      const zero = () => ({ 하: 0, 중: 0, 상: 0 });
+      r = {
+        concepts: zero(),
+        ox: zero(),
+        apply: zero(),
+        figures: zero(),
+        total: 0,
+      };
+      table.set(section, r);
+    }
+    return r;
+  };
+  for (const kind of ["concepts", "ox", "apply", "figures"] as const)
+    for (const item of bank[kind]) {
+      const r = row(item.section);
+      r[kind][item.level] += 1;
+      r.total += 1;
+    }
+  return table;
+}
+
 /** 소단원 하나의 재고 — 화면 나무의 숫자 칸. */
 export function stockCounts(
   key: string,

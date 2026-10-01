@@ -6,7 +6,17 @@ import { MathText, SolutionText } from "@/components/math/MathText";
 import { fractionViewFor } from "@/components/unified/fractionDisplay";
 import { svgDataUrl } from "@/lib/svgDataUrl";
 import { accountDate } from "./AccountReview";
-import { objectValue, stringValue, type DocumentDetail } from "./documentTypes";
+import {
+  CONCEPT_BLANK_FORM_LABELS,
+  conceptBlankDocumentSchema,
+} from "@/contracts/conceptBlank.contract";
+import { getBlankSection } from "@/lib/concept-blank/sections";
+import {
+  ADMIN_KIND_LABEL,
+  objectValue,
+  stringValue,
+  type DocumentDetail,
+} from "./documentTypes";
 import s from "./admin.module.css";
 import d from "./detail.module.css";
 
@@ -168,11 +178,14 @@ export default function AdminDocumentPreview({
     },
   );
 
+  if (document.kind === "conceptBlank")
+    return <ConceptBlankPreview document={document} />;
+
   return (
     <article>
       <header className={d.previewHeading}>
         <span className={d.kind}>
-          {extraction ? "추출 자료" : "시험지"} · 읽기 전용
+          {ADMIN_KIND_LABEL[document.kind]} · 읽기 전용
         </span>
         <h2>{document.title || "제목 없는 자료"}</h2>
         <p>
@@ -225,6 +238,47 @@ export default function AdminDocumentPreview({
             </button>
           </div>
         ) : null}
+      </div>
+    </article>
+  );
+}
+
+/** 개념 백지(26 §9 ⑾) — 고르기만 담는다(고정 문항). 문항 대신 고른 소단원과 형식 · 난이도별 수를 보인다. */
+function ConceptBlankPreview({ document }: { document: DocumentDetail }) {
+  const parsed = conceptBlankDocumentSchema.safeParse(document.payload);
+  return (
+    <article>
+      <header className={d.previewHeading}>
+        <span className={d.kind}>
+          {ADMIN_KIND_LABEL.conceptBlank} · 읽기 전용
+        </span>
+        <h2>{document.title || "제목 없는 자료"}</h2>
+        <p>
+          버전 {document.revision} · 수정 {accountDate(document.updatedAt)}
+        </p>
+      </header>
+      <div className={d.previewBody}>
+        {parsed.success ? (
+          <section className={d.sources}>
+            <h3>고른 소단원</h3>
+            <ul>
+              {parsed.data.selection.sections.map((key) => (
+                <li key={key}>{getBlankSection(key)?.title ?? key}</li>
+              ))}
+            </ul>
+            <h3>형식 · 하 / 중 / 상</h3>
+            <ul>
+              {parsed.data.selection.forms.map((f) => (
+                <li key={f.form}>
+                  {CONCEPT_BLANK_FORM_LABELS[f.form]} {f.counts.하} /{" "}
+                  {f.counts.중} / {f.counts.상}
+                </li>
+              ))}
+            </ul>
+          </section>
+        ) : (
+          <p className={d.emptyPreview}>저장한 고르기를 읽지 못했습니다.</p>
+        )}
       </div>
     </article>
   );
