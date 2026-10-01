@@ -36,6 +36,7 @@ import type { ConceptBlankSelection } from "@/contracts/conceptBlank.contract";
 import { composeSheets } from "@/lib/concept-blank/compose";
 import { FIXTURE_BANK } from "@/lib/concept-blank/fixture";
 import { encodeSelection } from "@/lib/concept-blank/selectionCodec";
+import { encodeSheetCode } from "@/lib/concept-blank/sheetCode";
 
 const OWNER = {
   id: "10000000-0000-4000-8000-0000000000a1",
@@ -113,6 +114,36 @@ describe("/concept-blank/print", () => {
     expect(JSON.stringify(again!.props.sheets)).toBe(
       JSON.stringify(paper!.props.sheets),
     );
+  });
+
+  it("지면 코드(cb-code)를 같이 넘긴다 — 같은 은행으로 묶은 코드 · 제목 · 날짜와 상관없이 같다", async () => {
+    mocks.session.mockResolvedValue(OWNER);
+    const paper = findPaper(await call({ s: encodeSelection(SELECTION) }));
+    expect(paper!.props.code).toBe(encodeSheetCode(SELECTION, FIXTURE_BANK));
+    const renamed = findPaper(
+      await call({
+        s: encodeSelection({
+          ...SELECTION,
+          title: "다른 제목",
+          date: undefined,
+        }),
+      }),
+    );
+    expect(renamed!.props.code).toBe(paper!.props.code);
+  });
+
+  it("나무에 없는 소단원뿐이라 지면이 없으면 코드도 없다(던지지 않는다)", async () => {
+    mocks.session.mockResolvedValue(OWNER);
+    const paper = findPaper(
+      await call({
+        s: encodeSelection({
+          ...SELECTION,
+          sections: ["초5::없는 단원::없는 소단원"],
+        }),
+      }),
+    );
+    expect(paper!.props.sheets).toEqual([]);
+    expect(paper!.props.code).toBeUndefined();
   });
 
   it.each([

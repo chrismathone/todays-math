@@ -293,6 +293,27 @@
   border-bottom: 1px dashed var(--ink30);
 }
 
+/* 지면 코드 줄(트랙 cb-code) — 학생지 · 채점표 모든 장의 맨 아래 한 줄. 장의 안쪽(아래 여백 20px 위)에 둔다 —
+   종이 끝 5mm 안쪽은 프린터가 못 찍는다. 줄 높이 4 + 12 = 16px 만큼 `GEOMETRY` 의 몸 높이를 낮췄다.
+   한 줄로만 선다(줄바꿈 없음) — 넘치면 Playwright 넘침 자가 문다.
+   장 아래로 미는 것은 앞 덩이다(학생지 발의 `margin-top: auto` · 채점표 몸의 `flex: 1`) — 이 줄은 그 바로 밑에 붙는다 */
+.codeLine {
+  flex: none;
+  padding-top: 4px;
+  color: var(--ink50);
+  font-family: var(--paper-font-sans);
+  font-size: 9px;
+  line-height: 12px;
+  text-align: right;
+  white-space: nowrap;
+}
+
+.code {
+  color: var(--ink70);
+  font-weight: 600;
+  letter-spacing: 0.06em;
+}
+
 /* ── 공통 조각 ─────────────────────────────── */
 
 /* 문항 번호 — 고정 폭 열. 번호 자릿수가 달라도 뒤 글의 왼쪽 끝이 한 줄에 선다 */

@@ -14,6 +14,7 @@ import ConceptBlankPaper from "@/components/concept-blank/ConceptBlankPaper";
 import { parseConceptBlankView } from "@/components/concept-blank/paper/view";
 import { composeSheets } from "@/lib/concept-blank/compose";
 import { decodeSelection } from "@/lib/concept-blank/selectionCodec";
+import { encodeSheetCode } from "@/lib/concept-blank/sheetCode";
 import { getSessionUser } from "@/lib/session";
 
 import styles from "./print.module.css";
@@ -42,10 +43,13 @@ export default async function ConceptBlankPrintPage({
       </p>
     );
 
+  // 지면 코드(트랙 cb-code) — 지면이 있을 때만(나무에 없는 소단원뿐이면 합치기가 빈 지면을 준다)
+  const sheets = composeSheets(selection);
   return (
     <main className={styles.shell}>
       <ConceptBlankPaper
-        sheets={composeSheets(selection)}
+        code={sheets.length ? encodeSheetCode(selection) : undefined}
+        sheets={sheets}
         view={parseConceptBlankView(query.view)}
       />
     </main>

@@ -1,8 +1,12 @@
 import type { ReactNode } from "react";
 
 import { MathText } from "@/components/math/MathText";
-import type { SheetHeader } from "@/contracts/conceptBlank.contract";
+import {
+  SHEET_PART_LABELS,
+  type SheetHeader,
+} from "@/contracts/conceptBlank.contract";
 
+import { SHEET_CODE_LINE_CAPACITY } from "./paginate";
 import styles from "./paper.module.css";
 import {
   blankTail,
@@ -216,6 +220,38 @@ export function SheetFoot({ tally, page }: { tally?: string; page: number }) {
       <span className={styles.dash} />
       {page === 1 ? <span>p. 1</span> : null}
     </footer>
+  );
+}
+
+/** 코드의 글자 수(점 뺀 것). */
+const codeSymbols = (code: string) => code.replace(/\./g, "").length;
+
+/**
+ * 지면 코드 줄(트랙 cb-code) — 학생지 · 채점표 모든 장의 맨 아래 «코드 · 쪽/전체쪽 · 학생지|채점표».
+ * 사진 채점이 장을 찾는 열쇠다: 같은 코드 안에서 «쪽 · 몫»이 장 하나를 가리킨다(쪽은 몫마다 형식을 넘어 센다).
+ * 코드는 지면을 가리킬 뿐 학생을 가리키지 않는다(`sheetCode.ts`). 정원을 넘으면 «코드 없음»(`data-cb-code=""`).
+ */
+export function SheetCodeLine({
+  code,
+  page,
+  total,
+  part,
+}: {
+  code: string;
+  page: number;
+  total: number;
+  part: keyof typeof SHEET_PART_LABELS;
+}) {
+  const printed = codeSymbols(code) <= SHEET_CODE_LINE_CAPACITY;
+  return (
+    <div
+      className={styles.codeLine}
+      data-cb-code={printed ? code : ""}
+      data-cb-code-page={page}
+    >
+      {printed ? <span className={styles.code}>{code}</span> : "코드 없음"} ·{" "}
+      {page}/{total} · {SHEET_PART_LABELS[part]}
+    </div>
   );
 }
 

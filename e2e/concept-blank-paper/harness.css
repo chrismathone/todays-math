@@ -16,3 +16,11 @@ body {
   padding: 16px;
   background: #c9c9c7;
 }
+
+/* 지면 코드 줄의 정원을 잴 때만 쓴다(`code.spec.ts`) — 제품 루트가 싣는 Pretendard 와 같은 파일. 지면은 이 이름을 안 부른다 */
+@font-face {
+  font-family: "cb-harness-pretendard";
+  src: url("../../public/fonts/PretendardVariable.woff2") format("woff2");
+  font-weight: 45 920;
+  font-style: normal;
+}

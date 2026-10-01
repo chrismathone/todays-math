@@ -43,6 +43,7 @@ import {
   decodeSelection,
   encodeSelection,
 } from "@/lib/concept-blank/selectionCodec";
+import { encodeSheetCode } from "@/lib/concept-blank/sheetCode";
 
 import s from "./concept-blank.module.css";
 
@@ -342,6 +343,12 @@ export default function ConceptBlankView({
   const sheets = useMemo(
     () => (selection ? composeSheets(selection, bank) : []),
     [selection, bank],
+  );
+  /** 지면 코드(트랙 cb-code) — 인쇄와 같은 코드 줄을 미리보기에도(같은 문제는 같은 뷰). */
+  const sheetCode = useMemo(
+    () =>
+      selection && sheets.length ? encodeSheetCode(selection, bank) : undefined,
+    [selection, sheets.length, bank],
   );
   const items = sheets.reduce((n, sheet) => n + itemCount(sheet), 0);
   const { deskRef, paperRef, fit } = usePaperFit(sheets.length > 0);
@@ -745,7 +752,11 @@ export default function ConceptBlankView({
                     : undefined
                 }
               >
-                <ConceptBlankPaper sheets={sheets} view={paperView} />
+                <ConceptBlankPaper
+                  code={sheetCode}
+                  sheets={sheets}
+                  view={paperView}
+                />
               </div>
             </div>
           </div>
