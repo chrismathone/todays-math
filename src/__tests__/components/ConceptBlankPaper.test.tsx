@@ -53,6 +53,7 @@ import {
   mathChunks,
   mathEm,
   mathInkEm,
+  plainText,
   sentenceAtoms,
   sentenceKeywords,
   splitSentence,
@@ -360,6 +361,49 @@ describe("ConceptBlankPaper — 머리 · 발 · 보기", () => {
     expect(screen.getByRole("status").textContent).toBe(
       "담을 문항이 없습니다.",
     );
+  });
+
+  // 리뷰(2026-10-01) — 손으로 만든 `?s=` 에서 A 의 개념 수가 전부 0 이면 칸(소단원)은 있는데 채점 줄이 0 이었다:
+  // 채점표만은 빈 화면 · 둘 다는 학생지 발에 «떠올린 개념 ____ / 0» 에 채점 안내도 없었다. 다른 형식처럼 뽑지 않는다.
+  it("A 채점 줄이 0 이면 다른 형식처럼 «담을 문항이 없습니다» — 학생지만 · 채점표만 · 둘 다", () => {
+    const zero = composeSheets(
+      {
+        sections: SECTIONS,
+        forms: [{ form: "recall", counts: NONE, extras: NONE }],
+      },
+      FIXTURE_BANK,
+    );
+    expect(zero[0]).toMatchObject({ form: "recall", key: [] });
+    expect(zero[0]!.form === "recall" && zero[0]!.zones.length).toBeGreaterThan(
+      0,
+    );
+    for (const view of ["student", "key", "both"] as const) {
+      const r = render(<ConceptBlankPaper sheets={zero} view={view} />);
+      expect(screen.getByRole("status").textContent, view).toBe(
+        "담을 문항이 없습니다.",
+      );
+      expect(document.querySelector("[data-cb-page]"), view).toBeNull();
+      r.unmount();
+    }
+    // 다른 형식과 같이 고르면 A 만 빠진다 — «/ 0» 발이 어디에도 없다
+    const mixed = composeSheets(
+      {
+        sections: SECTIONS,
+        forms: [
+          { form: "recall", counts: NONE, extras: NONE },
+          { form: "term", counts: ALL, extras: NONE },
+        ],
+      },
+      FIXTURE_BANK,
+    );
+    render(<ConceptBlankPaper sheets={mixed} view="both" />);
+    const forms = new Set(
+      [...document.querySelectorAll("[data-cb-sheet]")].map((p) =>
+        p.getAttribute("data-cb-sheet"),
+      ),
+    );
+    expect([...forms]).toEqual(["term"]);
+    expect(document.body.textContent).not.toMatch(/\/\s*0(?!\d)/);
   });
 
   it("인쇄 주소 view — 모르는 값은 둘 다", () => {
@@ -1256,6 +1300,36 @@ describe("지면 글 — 수식 · 핵심어 · 날짜", () => {
     ).toBeGreaterThan(plain);
   });
 
+  it("보이는 글(plainText) — 수식 마크업 · 핵심어 괄호를 걷고 기호는 글자로(그림 읽기 이름에 쓴다)", () => {
+    const cases: [string, string][] = [
+      [String.raw`각 $\angle A$ 읽기`, "각 ∠A 읽기"],
+      [String.raw`넓이 $1\,\mathrm{cm}^2$ 알아보기`, "넓이 1 cm² 알아보기"],
+      [String.raw`전체 $100\%$ 띠그래프`, "전체 100% 띠그래프"],
+      [String.raw`선분 $\overline{AB}$와 $\triangle ABC$`, "선분 AB와 △ABC"],
+      [String.raw`$\angle B=60^{\circ}$`, "∠B=60°"],
+      [String.raw`$\angle C = 90^\circ$`, "∠C = 90°"],
+      [String.raw`$\frac{1}{2}$과 $2\frac{1}{3}$`, "1/2과 2 1/3"],
+      [String.raw`$\frac{\sqrt{3}}{2}$`, "√3/2"],
+      [String.raw`$\sqrt{2}\times\sqrt{3}$`, "√2×√3"],
+      [
+        String.raw`$l\parallel m$ · $\triangle ABC\backsim\triangle DEF$`,
+        "l∥m · △ABC∽△DEF",
+      ],
+      [
+        String.raw`$0.\dot{3}$ · $\pi$ · $a_1$ · $x\le 3$`,
+        "0.3 · π · a₁ · x≤3",
+      ],
+      [String.raw`$\sin 30^\circ$`, "sin 30°"],
+      [String.raw`$\left(-\frac{2}{3}\right)^2$`, "(-2/3)²"],
+      ["{핵심어}가 있는 글", "핵심어가 있는 글"],
+      ["글자만", "글자만"],
+    ];
+    for (const [tex, shown] of cases) {
+      expect(plainText(tex), tex).toBe(shown);
+      expect(plainText(tex), tex).not.toMatch(/[$\\{}]/);
+    }
+  });
+
   it("날짜 · 동그라미 번호", () => {
     expect(formatSheetDate("2026-10-01")).toBe("2026. 10. 1 (목)");
     expect(formatSheetDate("2026-02-30")).toBeNull();
@@ -1539,6 +1613,16 @@ describe("모든 칸 수식 경로 — `$` · 역슬래시가 종이에 새지 �
     expect(figureRow.querySelector("[data-cb-tag] text")!.textContent).toBe(
       String.raw`$\angle A$`,
     );
+  });
+
+  // 리뷰(2026-10-01 · 보고서 §11.8 ⑤) — 그림의 `aria-label` 이 물음 글 그대로라 화면 읽기 프로그램이 TeX 원문을 읽었다.
+  it("그림의 읽기 이름(aria-label)은 보이는 글 — 수식 마크업을 걷는다(학생지 · 채점표)", () => {
+    render(<ConceptBlankPaper sheets={MATH_SHEETS} view="both" />);
+    const labels = [...document.querySelectorAll("svg[data-cb-figure]")].map(
+      (svg) => svg.getAttribute("aria-label"),
+    );
+    // 학생지 카드 하나 + 채점표 작은 그림 하나
+    expect(labels).toEqual(["각 ∠A 읽기", "각 ∠A 읽기"]);
   });
 
   it("글자만 있는 은행은 전과 같다 — 수식 경로를 지나도 글이 바뀌지 않는다", () => {

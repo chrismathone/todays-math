@@ -742,11 +742,15 @@ function tallyOf(sheet: ConceptBlankSheet): string {
   }
 }
 
-/** 담을 것이 없는 지면(B · C 문항 0 · D 지도 0 · E 그림 0)은 뽑지 않는다. A 는 칸만으로도 뽑는다. */
+/**
+ * 담을 것이 없는 지면(A 채점 줄 0 · B · C 문항 0 · D 지도 0 · E 그림 0)은 뽑지 않는다. A 는 칸(소단원)이 있어도
+ * 채점 줄이 0 이면 뺀다 — 손으로 만든 `?s=` 에서 개념 수가 전부 0 이면 채점표만은 빈 화면, 학생지 발은 «/ 0» 이었다
+ * (리뷰 2026-10-01). 화면의 문항 수(`ConceptBlankView` 의 `itemCount`)도 A 는 채점 줄 수로 센다.
+ */
 export function sheetHasContent(sheet: ConceptBlankSheet): boolean {
   switch (sheet.form) {
     case "recall":
-      return sheet.zones.length > 0;
+      return sheet.zones.length > 0 && sheet.key.length > 0;
     case "term":
       return sheet.terms.length + sheet.ox.length > 0;
     case "cloze":

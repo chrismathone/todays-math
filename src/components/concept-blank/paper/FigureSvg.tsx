@@ -1,6 +1,7 @@
 import type { FigureItem } from "@/contracts/conceptBlank.contract";
 
 import styles from "./paper.module.css";
+import { plainText } from "./text";
 
 /** 계약(`figureItemSchema`)과 같은 거름 — 은행 시험이 먼저 막지만, 지면도 한 번 더 본다. */
 const UNSAFE_SVG = /<script|\son\w+=|href=|<image|<foreignObject/i;
@@ -10,6 +11,7 @@ const GOLD = "#A57F00";
 /**
  * E 그림 — 은행의 SVG 조각을 `viewBox` 로 감싸고, 빈 이름표 자리(`tags`)에 금색 점선 네모를 그린다.
  * `answers` 면(채점표) 네모 안에 답을 쓴다 — 글자가 네모보다 길면 글씨를 줄여 넣는다.
+ * 읽기 이름(`aria-label`)은 물음의 보이는 글(`plainText` — TeX 원문을 화면 읽기 프로그램이 읽지 않게).
  */
 export function FigureSvg({
   item,
@@ -23,7 +25,7 @@ export function FigureSvg({
   if (UNSAFE_SVG.test(item.svg)) return null;
   return (
     <svg
-      aria-label={item.prompt}
+      aria-label={plainText(item.prompt)}
       className={className ?? styles.figure}
       data-cb-figure={item.id}
       role="img"
