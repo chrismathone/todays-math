@@ -350,6 +350,31 @@ describe("잘못된 코드는 null", () => {
     }
   });
 
+  it("검사 글자의 무게가 몸의 무게와 겹치는 길이(31 주기)에서도 끝 두 글자 뒤바뀜을 잡는다 — 실제 은행 코드", () => {
+    // 리뷰 2026-10-01: 무게가 α^(i mod 31) 로 돌아 몸 32번째 글자(i=31)와 검사 글자가 같은 무게 1 이었다 —
+    // 33글자 코드의 끝 두 글자를 바꿔 써도 통과해 «은행이 바뀜»으로 읽혔다(화면 기본 수 · 흩어진 소단원 7개면 17%).
+    const next = rng(4242);
+    const wanted = new Set([32, 33, 34, 62, 63, 64, 65]);
+    const seen = new Map<number, string>();
+    for (let n = 0; n < 6000 && seen.size < wanted.size; n++) {
+      const code = encodeSheetCode(randomSelection(next));
+      const raw = code.replace(/\./g, "");
+      if (wanted.has(raw.length) && !seen.has(raw.length))
+        seen.set(raw.length, raw);
+    }
+    expect([...seen.keys()].sort((a, b) => a - b)).toEqual(
+      [...wanted].sort((a, b) => a - b),
+    );
+    for (const raw of seen.values()) {
+      expect(decodeSheetCode(raw)).not.toBeNull();
+      for (let i = 0; i + 1 < raw.length; i++) {
+        if (raw[i] === raw[i + 1]) continue;
+        const bad = raw.slice(0, i) + raw[i + 1] + raw[i] + raw.slice(i + 2);
+        expect(decodeSheetCode(bad), `${raw.length}글자 · ${i}`).toBeNull();
+      }
+    }
+  });
+
   it("잘리거나 글자가 빠지거나 더해지면 null", () => {
     for (let i = 0; i < raw.length; i++) {
       const dropped = raw.slice(0, i) + raw.slice(i + 1);

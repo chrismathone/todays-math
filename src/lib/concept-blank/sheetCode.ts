@@ -12,6 +12,11 @@ import {
   type SheetCodeReading,
 } from "@/contracts/conceptBlank.contract";
 
+import {
+  planSheet,
+  sheetHasContent,
+} from "@/components/concept-blank/paper/paginate";
+
 import { CONCEPT_BLANK_BANK } from "./bank";
 import { composeSheets, orderedSections } from "./compose";
 import { BLANK_SECTIONS } from "./sections";
@@ -34,8 +39,10 @@ import { BLANK_SECTIONS } from "./sections";
  *    쓰지 않아 싣지 않는다(되살리면 0).
  *
  * 은행 지문 — 그 고르기로 **지면에 찍히는 문항 전부**(id · 정답 · 문장 · 그림 — 머리 빼고 합치기 결과 그대로)와 소단원 열쇠에서 낸
- * 20비트. 은행이 바뀐 뒤의 지면과 옛 지면을 가른다(브리프의 «id 와 정답»을 품는다 — 문장 길이가 쪽 나눔을 바꾸기 때문에 문장도 넣었다).
- * 검사 글자 — GF(32) 가중합. 어느 자리든 한 글자 바뀜 · 이웃 두 글자 뒤바뀜을 반드시 잡는다. 거기에 «되살린 고르기를 다시 묶으면
+ * 20비트 — 그리고 그 문항들이 **어느 장에 드는지**(쪽 나눔 `planSheet` 의 결과). 은행이나 쪽 나눔 규칙이 바뀐 뒤의 지면과 옛 지면을
+ * 가른다(브리프의 «id 와 정답»을 품는다 — 문장 길이가 쪽 나눔을 바꾸기 때문에 문장도 넣었다). 그래서 `bankChanged` 는 «은행 또는
+ * 쪽 나눔이 바뀜»이고, 검사 글자가 하나뿐이라 «코드를 잘못 옮김»과도 다 가르지 못한다 — 채점 쪽은 «코드 확인 필요»로 다룰 것.
+ * 검사 글자 — GF(32) 가중합(검사 글자도 제 자리의 무게로). 어느 자리든 한 글자 바뀜 · 이웃 두 글자 뒤바뀜을 반드시 잡는다. 거기에 «되살린 고르기를 다시 묶으면
  * 같은 글자가 나와야 한다»를 더해, 손으로 옮기다 틀린 코드가 다른 고르기로 읽히지 않게 한다(틀리면 null).
  *
  * 🔴 코드는 지면을 가리킬 뿐 학생을 가리키지 않는다 — 제목 · 날짜(이름이 들어갈 수 있는 칸)는 싣지 않는다.
@@ -124,8 +131,18 @@ const gfMul = (a: number, b: number) =>
   a === 0 || b === 0 ? 0 : GF_EXP[(GF_LOG[a]! + GF_LOG[b]!) % 31]!;
 
 /** Σ α^i · s_i — 무게가 0 이 아니고 이웃끼리 달라서 한 글자 바뀜 · 이웃 뒤바뀜이 늘 값을 바꾼다. */
-function checkSymbol(symbols: readonly number[]): number {
+function weightedSum(symbols: readonly number[]): number {
   return symbols.reduce((sum, s, i) => sum ^ gfMul(GF_EXP[i % 31]!, s), 0);
+}
+
+/**
+ * 검사 글자 c — 몸 n 글자 뒤 **n 번째 자리의 무게 α^n** 으로 붙여 전체 가중합이 0 이 되게 한다(c = S · α^−n).
+ * 🔴 무게 없이(무게 1) 붙이면 무게가 31 주기로 돌아 n = 32(코드 33글자) · 63 에서 몸 끝 글자의 무게도 1 이 되어,
+ * 끝 두 글자 뒤바뀜을 못 잡았다(리뷰 2026-10-01 — 흩어진 소단원 7개면 코드의 17% 가 33글자).
+ */
+function checkSymbol(body: readonly number[]): number {
+  const sum = weightedSum(body);
+  return sum === 0 ? 0 : GF_EXP[(GF_LOG[sum]! - (body.length % 31) + 31) % 31]!;
 }
 
 /* ───────── 지문 ───────── */
@@ -165,12 +182,17 @@ function digestSymbols(
   selection: ConceptBlankSelection,
   bank: ConceptBlankBank,
 ): number[] {
+  const composed = composeSheets(selection, bank);
   // 머리(제목 · 날짜)는 뺀다 — 코드가 싣지 않는 값이다
-  const sheets = composeSheets(selection, bank).map((sheet) => ({
-    ...sheet,
-    header: undefined,
-  }));
-  const h = hash32(stableJson({ sections: selection.sections, sheets }));
+  const sheets = composed.map((sheet) => ({ ...sheet, header: undefined }));
+  // 쪽 나눔도 넣는다 — 코드의 «3/5 · 학생지»는 쪽 나눔 규칙이 정한 장이다. 규칙(예산 · 천장 · 어림)이 바뀌면 같은 고르기 ·
+  // 같은 은행이라도 그 장에 다른 문항이 들어, 옛 코드를 «그대로»로 읽으면 채점이 조용히 틀린다(리뷰 2026-10-01).
+  // 쪽 나눔은 머리를 보지 않는다(`planSheet` — DOM 을 재지 않는 고정 규칙).
+  const pages = composed.filter(sheetHasContent).map((sheet) => {
+    const plan = planSheet(sheet);
+    return { student: plan.student, key: plan.key };
+  });
+  const h = hash32(stableJson({ sections: selection.sections, sheets, pages }));
   return Array.from(
     { length: SHEET_CODE_DIGEST_LENGTH },
     (_, i) => (h >>> (27 - 5 * i)) & 31,
@@ -360,7 +382,7 @@ export function decodeSheetCode(
   const all = symbols as number[];
   const tail = SHEET_CODE_DIGEST_LENGTH + 1;
   if (all.length < tail + 2 || all[0] !== SHEET_CODE_VERSION) return null;
-  if (checkSymbol(all.slice(0, -1)) !== all[all.length - 1]) return null;
+  if (weightedSum(all) !== 0) return null;
 
   const payload = all.slice(1, -tail);
   let selection: ConceptBlankSelection | null;
