@@ -145,7 +145,14 @@ const payloadSchema = z
 export type StoredSrsState = z.infer<typeof payloadSchema>;
 export type StoredSrsMission = StoredSrsState["missions"][number];
 
-export class SrsConflict extends Error {}
+export class SrsConflict extends Error {
+  constructor(
+    message: string,
+    readonly code: "CONFLICT" | "REVISION_MISMATCH" = "CONFLICT",
+  ) {
+    super(message);
+  }
+}
 export class SrsUnavailable extends Error {}
 
 export function emptySrsState(): StoredSrsState {

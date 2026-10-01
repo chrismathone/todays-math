@@ -93,17 +93,29 @@ function ownerInBranch(branch: { id: string; name: string } | null) {
   );
 }
 
-const page = (id = SET_ID, view?: string | string[]) =>
+const page = (
+  id = SET_ID,
+  view?: string | string[],
+  more: { bundle?: string | string[]; merge?: string | string[] } = {},
+) =>
   EnglishSetPrintPage({
     params: Promise.resolve({ id }),
-    searchParams: Promise.resolve(view === undefined ? {} : { view }),
+    searchParams: Promise.resolve({
+      ...(view === undefined ? {} : { view }),
+      ...more,
+    }),
   });
 
 /** 성공 경로 — 돌려받은 것은 `EnglishPrintClient` 요소여야 한다 */
-async function rendered(id?: string, view?: string | string[]) {
+async function rendered(
+  id?: string,
+  view?: string | string[],
+  more?: { bundle?: string | string[]; merge?: string | string[] },
+) {
   const element = (await page(
     id,
     view,
+    more,
   )) as ReactElement<EnglishPrintClientProps>;
   expect(element.type).toBe(EnglishPrintClient);
   return element.props;
@@ -206,6 +218,25 @@ describe("오늘의 영어 인쇄 페이지 — 지면에 넘기는 것", () => 
       where: { id: OWNER_ID },
       select: { branch: { select: { name: true } } },
     });
+  });
+
+  it("?bundle= · ?merge= 로 학생용 묶음과 합침을 넘긴다 — 기본은 묶음 1 · 가른 채 (D-151)", async () => {
+    const plain = await rendered();
+    expect(plain.initialBundle).toBe(1);
+    expect(plain.initialMerged).toBe(false);
+    const second = await rendered(SET_ID, "student", {
+      bundle: "2",
+      merge: "1",
+    });
+    expect(second.initialBundle).toBe(2);
+    expect(second.initialMerged).toBe(true);
+    // 모르는 값은 기본으로
+    const odd = await rendered(SET_ID, undefined, {
+      bundle: "x",
+      merge: "yes",
+    });
+    expect(odd.initialBundle).toBe(1);
+    expect(odd.initialMerged).toBe(false);
   });
 
   it("?view=teacher 면 교사용으로 시작 · 모르는 값·배열은 학생용", async () => {

@@ -33,7 +33,8 @@ import {
 
 const studentInclude = {
   class: true,
-  studentAccount: { select: { id: true, disabledAt: true } },
+  // `createdAt` — 탐험 교사 보기의 «시작 전»이 계정을 만든 날부터 센다(27번 문서 §4.2)
+  studentAccount: { select: { id: true, disabledAt: true, createdAt: true } },
 } as const;
 type StudentRow = {
   id: string;

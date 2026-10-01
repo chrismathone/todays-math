@@ -255,3 +255,218 @@ describe("EnglishPaper — 머리 · 쪽", () => {
     ).not.toBeNull();
   });
 });
+
+describe("EnglishPaper — 묶음 · 어법의 밑줄 · 교사용 안내 (D-151 · 25 §12.11)", () => {
+  // 표본 세트의 문항: 1 주제 · 2 어법 · 3 서술형 · 4 원문 복원
+  const UNDERLINED = {
+    ...SAMPLE_SET,
+    questions: SAMPLE_SET.questions.map((question) =>
+      question.type === "어법"
+        ? {
+            ...question,
+            prompt:
+              "밑줄 친 ①~② 가운데 어법상 틀린 것은?\nThe library ①<u>opened</u> a room where students ②<u>reads\nquietly</u>.",
+          }
+        : question,
+    ),
+  };
+  const bundled = (
+    view: "student" | "teacher",
+    bundle: { no: number | null; questions: number[]; passage: boolean },
+    extra: { pages?: number[][]; set?: typeof SAMPLE_SET } = {},
+  ) =>
+    render(
+      <EnglishPaper
+        academyName="오늘의수학"
+        bundle={bundle}
+        exam={EXAM}
+        pages={extra.pages}
+        set={extra.set ?? SAMPLE_SET}
+        teacherNotes={[
+          {
+            label: "배부 순서",
+            text: "묶음 1(2, 4번) → 걷은 뒤 묶음 2(1, 3번)",
+          },
+          { label: "답이 보이는 문항", text: "검사에서 찾은 누출 없음" },
+        ]}
+        view={view}
+      />,
+    );
+  const numbers = (container: Element) =>
+    [...container.querySelectorAll("[data-english-question]")].map((node) =>
+      node.getAttribute("data-english-question"),
+    );
+
+  it("🔴 변형 묶음은 원 지문 상자 없이 그 묶음의 문항만 싣는다 — 문항 번호는 세트 번호 그대로", () => {
+    const { container } = bundled("student", {
+      no: 1,
+      questions: [1, 3],
+      passage: false,
+    });
+    expect(container.querySelector("[data-english-passage]")).toBeNull();
+    expect(numbers(container)).toEqual(["2", "4"]);
+    expect(screen.getByText("2.")).toBeInTheDocument();
+    expect(screen.queryByText("1.")).toBeNull();
+  });
+
+  it("독해 묶음은 원 지문 상자와 독해형 문항을 싣는다", () => {
+    const { container } = bundled("student", {
+      no: 2,
+      questions: [0, 2],
+      passage: true,
+    });
+    expect(container.querySelector("[data-english-passage]")).not.toBeNull();
+    expect(numbers(container)).toEqual(["1", "3"]);
+  });
+
+  it("머리의 묶음 줄 «문제 묶음 1 · 2, 4번» — 시험 줄 아래 · «학생용 · 검토 상태» 딱지는 그대로", () => {
+    const { container } = bundled("student", {
+      no: 1,
+      questions: [1, 3],
+      passage: false,
+    });
+    const line = screen.getByText("문제 묶음 1 · 2, 4번");
+    expect(line.className).toMatch(/bundleLine/);
+    expect(screen.getByText("학생용 · 검토 완료")).toBeInTheDocument();
+    // 시험 줄 다음, 이름 줄 앞
+    const head = container.querySelector("header")!;
+    const order = [...head.children].map((node) => node.textContent);
+    expect(order.indexOf("문제 묶음 1 · 2, 4번")).toBe(
+      order.indexOf("한빛중 중2 · 2학기 중간고사") + 1,
+    );
+    const block = cssBlock("bundleLine");
+    expect(block).toMatch(/font-size:\s*13px/);
+    expect(block).toMatch(/font-weight:\s*700/);
+    expect(block).toMatch(/font-family:\s*var\(--paper-font-sans\)/);
+  });
+
+  it("묶음이 하나뿐이면(번호 없음) 묶음 줄을 찍지 않는다 — 가른 것이 없다", () => {
+    bundled("student", { no: null, questions: [0, 1, 2, 3], passage: true });
+    expect(screen.queryByText(/문제 묶음/)).toBeNull();
+  });
+
+  it("이어지는 쪽 머리는 «문제 묶음 1 · p. 2»", () => {
+    // 블록: 0 → 2번 문항, 1 → 4번 문항 (원 지문 없음)
+    const { container } = bundled(
+      "student",
+      { no: 1, questions: [1, 3], passage: false },
+      { pages: [[0], [1]] },
+    );
+    const pages = container.querySelectorAll("[data-print-page]");
+    expect(pages).toHaveLength(2);
+    expect(
+      within(pages[1] as HTMLElement).getByText("문제 묶음 1 · p. 2"),
+    ).toBeInTheDocument();
+    expect(numbers(pages[1]!)).toEqual(["4"]);
+  });
+
+  it("🔴 교사용은 학생용 묶음과 관계없이 모든 문항과 원 지문을 싣는다 — 묶음 줄 없음", () => {
+    const { container } = bundled("teacher", {
+      no: 1,
+      questions: [1, 3],
+      passage: false,
+    });
+    expect(container.querySelector("[data-english-passage]")).not.toBeNull();
+    expect(numbers(container)).toEqual(["1", "2", "3", "4"]);
+    expect(screen.queryByText(/문제 묶음 1 ·/)).toBeNull();
+  });
+
+  it("교사용 첫 쪽 머리에 안내 줄(배부 순서 · 답이 보이는 문항) — 학생 종이에는 없다", () => {
+    const teacher = bundled(
+      "teacher",
+      { no: 1, questions: [1, 3], passage: false },
+      {
+        pages: [
+          [0, 1, 2],
+          [3, 4, 5],
+        ],
+      },
+    );
+    const pages = teacher.container.querySelectorAll("[data-print-page]");
+    const first = within(pages[0] as HTMLElement);
+    expect(first.getByText("배부 순서")).toBeInTheDocument();
+    expect(
+      first.getByText("묶음 1(2, 4번) → 걷은 뒤 묶음 2(1, 3번)"),
+    ).toBeInTheDocument();
+    expect(first.getByText("답이 보이는 문항")).toBeInTheDocument();
+    expect(first.getByText("검사에서 찾은 누출 없음")).toBeInTheDocument();
+    expect(within(pages[1] as HTMLElement).queryByText("배부 순서")).toBeNull();
+    teacher.unmount();
+
+    bundled("student", { no: 1, questions: [1, 3], passage: false });
+    expect(screen.queryByText("배부 순서")).toBeNull();
+    expect(screen.queryByText(/걷은 뒤/)).toBeNull();
+  });
+
+  it("🔴 어법의 `<u>` 표기는 밑줄로 그린다 — 꺾쇠가 종이에 안 남고 번호는 선 밖, 줄이 바뀐 구간도 한 밑줄", () => {
+    const { container } = bundled(
+      "student",
+      { no: 1, questions: [1, 3], passage: false },
+      { set: UNDERLINED },
+    );
+    const question = container.querySelector('[data-english-question="2"]')!;
+    const lines = [...question.querySelectorAll("u")];
+    expect(lines.map((node) => node.textContent)).toEqual([
+      "opened",
+      "reads\nquietly",
+    ]);
+    expect(lines.every((node) => /underline/.test(node.className))).toBe(true);
+    expect(question.textContent).not.toMatch(/<\/?u>/);
+    expect(question.textContent).toContain("①opened");
+    const block = cssBlock("underline");
+    expect(block).toMatch(/text-decoration-line:\s*underline/);
+    expect(block).toMatch(/text-decoration-thickness:\s*1px/);
+    expect(block).toMatch(/text-underline-offset:\s*0\.3em/);
+    // 내림 글자에서 선을 끊으면 밑줄 구간의 끝이 모호해진다
+    expect(block).toMatch(/text-decoration-skip-ink:\s*none/);
+  });
+
+  it("교사용도 같은 밑줄을 그린다", () => {
+    const { container } = bundled(
+      "teacher",
+      { no: 1, questions: [1, 3], passage: false },
+      { set: UNDERLINED },
+    );
+    expect(
+      container.querySelectorAll('[data-english-question="2"] u'),
+    ).toHaveLength(2);
+  });
+
+  it("짝이 안 맞는 표기는 글자 그대로 — 어디까지가 밑줄인지 지어내지 않는다", () => {
+    const broken = {
+      ...SAMPLE_SET,
+      questions: SAMPLE_SET.questions.map((question) =>
+        question.type === "어법"
+          ? { ...question, prompt: "A ①<u>opened B ②<u>reads</u>" }
+          : question,
+      ),
+    };
+    const { container } = bundled(
+      "teacher",
+      { no: null, questions: [0, 1, 2, 3], passage: true },
+      { set: broken },
+    );
+    const question = container.querySelector('[data-english-question="2"]')!;
+    expect(question.querySelector("u")).toBeNull();
+    expect(question.textContent).toContain("A ①<u>opened B ②<u>reads</u>");
+  });
+
+  it("다른 유형에 섞인 표기는 글자로 찍는다 — 밑줄은 어법 문항만", () => {
+    const mixed = {
+      ...SAMPLE_SET,
+      questions: SAMPLE_SET.questions.map((question) =>
+        question.type === "서술형"
+          ? { ...question, prompt: "밑줄 친 <u>this</u> 를 설명하시오." }
+          : question,
+      ),
+    };
+    const { container } = bundled(
+      "student",
+      { no: null, questions: [0, 1, 2, 3], passage: true },
+      { set: mixed },
+    );
+    const question = container.querySelector('[data-english-question="3"]')!;
+    expect(question.querySelector("u")).toBeNull();
+    expect(question.textContent).toContain("<u>this</u>");
+  });
+});

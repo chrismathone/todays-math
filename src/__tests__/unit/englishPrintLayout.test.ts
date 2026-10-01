@@ -174,3 +174,33 @@ describe("packEnglishBlocks — 순서대로 채우고 넘치면 다음 쪽", ()
     ).toEqual([[0, 1]]);
   });
 });
+
+describe("englishPaperBlocks — 묶음을 주면 그 묶음의 블록만 (D-151 · 25 §12.11)", () => {
+  const set = {
+    passage: "A.\n\nB.",
+    questions: [question, question, question, question],
+  };
+
+  it("변형 묶음: 지문 문단 없이 그 문항만 — 문항 번호는 세트의 번호 그대로", () => {
+    expect(
+      englishPaperBlocks(set, { questions: [3, 1], passage: false }),
+    ).toEqual([
+      { kind: "question", index: 1 },
+      { kind: "question", index: 3 },
+    ]);
+  });
+
+  it("독해 묶음: 지문 문단이 먼저, 그 묶음의 문항이 뒤", () => {
+    expect(
+      englishPaperBlocks(set, { questions: [0, 2], passage: true }).map(
+        (block) => (block.kind === "passage" ? "p" : block.index),
+      ),
+    ).toEqual(["p", "p", 0, 2]);
+  });
+
+  it("세트에 없는 번호는 버린다 — 빈 문항 블록이 서지 않는다", () => {
+    expect(
+      englishPaperBlocks(set, { questions: [2, 9, -1], passage: false }),
+    ).toEqual([{ kind: "question", index: 2 }]);
+  });
+});

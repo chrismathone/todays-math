@@ -1309,18 +1309,19 @@ describe("authenticated math explorer persistence", () => {
     const duplicate = await data(await post(body));
     expect(duplicate.revision).toBe(1);
     expect(f.writes).toBe(1);
-    expect(
-      (await post({ ...body, action: { type: "course", grade: 4 } })).status,
-    ).toBe(409);
-    expect(
-      (
-        await post({
-          ...body,
-          requestId: randomUUID(),
-          action: { type: "course", grade: 4 },
-        })
-      ).status,
-    ).toBe(409);
+    const reused = await post({
+      ...body,
+      action: { type: "course", grade: 4 },
+    });
+    expect(reused.status).toBe(409);
+    expect((await reused.json()).error.code).toBe("CONFLICT");
+    const stale = await post({
+      ...body,
+      requestId: randomUUID(),
+      action: { type: "course", grade: 4 },
+    });
+    expect(stale.status).toBe(409);
+    expect((await stale.json()).error.code).toBe("REVISION_MISMATCH");
     expect(f.writes).toBe(1);
   });
 
@@ -1474,6 +1475,7 @@ describe("chest press without a pre-read", () => {
       studentId: f.otherId,
     });
     expect(other.status).toBe(409);
+    expect((await other.json()).error.code).toBe("CONFLICT");
     expect(f.writes).toBe(0);
     const mine = await data(
       await post({ ...chestBody(view, chest.id), studentId: f.studentId }),
@@ -1512,6 +1514,7 @@ describe("chest press without a pre-read", () => {
       action: correctAction(started),
     });
     expect(reused.status).toBe(409);
+    expect((await reused.json()).error.code).toBe("CONFLICT");
     expect(f.writes).toBe(writes);
   });
 });

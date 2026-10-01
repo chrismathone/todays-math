@@ -366,16 +366,14 @@ describe("student SRS routes", () => {
       mission.problems.every((p) => p.feedback === null && p.hint === null),
     ).toBe(true);
     const target = { missionId: mission.id, problemId: mission.problems[0].id };
-    expect(
-      (
-        await hint(
-          req("/api/learn/math-srs/hint", "POST", {
-            ...target,
-            problemId: mission.problems[1].id,
-          }),
-        )
-      ).status,
-    ).toBe(409);
+    const outOfOrder = await hint(
+      req("/api/learn/math-srs/hint", "POST", {
+        ...target,
+        problemId: mission.problems[1].id,
+      }),
+    );
+    expect(outOfOrder.status).toBe(409);
+    expect((await outOfOrder.json()).error.code).toBe("CONFLICT");
     state = await readState(
       await hint(req("/api/learn/math-srs/hint", "POST", target)),
     );
