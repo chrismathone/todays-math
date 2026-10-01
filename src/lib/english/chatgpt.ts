@@ -241,7 +241,10 @@ export function buildChatgptFixRequest({
   } catch {
     return null;
   }
-  const reasons = englishRejectionReasons(value, request);
+  const reasons = englishRejectionReasons(value, {
+    ...request,
+    allowUnderlineCompanion: true,
+  });
   if (!reasons.length) return null;
 
   const lines = [

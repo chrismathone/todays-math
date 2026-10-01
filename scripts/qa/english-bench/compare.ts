@@ -9,9 +9,8 @@
 import { existsSync, readFileSync, writeFileSync } from "node:fs";
 import path from "node:path";
 
-import { ENGLISH_GENERATED_TYPES } from "@/contracts/english.contract";
-
 import { GENERATORS, JUDGES } from "./models";
+import { BENCH_SIX_TYPES } from "./sixTypes";
 import { BENCH_TASKS } from "./tasks";
 import { flag } from "./util";
 
@@ -97,7 +96,7 @@ function main() {
   });
 
   // 2) 유형별
-  const types = [...ENGLISH_GENERATED_TYPES];
+  const types = [...BENCH_SIX_TYPES];
   lines.push(
     "",
     "## 2. 유형별 (v2)",

@@ -4,10 +4,16 @@
  */
 import { describe, expect, it } from "vitest";
 
-import type {
-  EnglishDraft,
-  EnglishQuestion,
+import {
+  ENGLISH_GENERATED_TYPES,
+  ENGLISH_QUESTION_TYPES,
+  englishGenerateRequestSchema,
+  englishQuestionSchema,
+  englishSetMetaSchema,
+  type EnglishDraft,
+  type EnglishQuestion,
 } from "@/contracts/english.contract";
+import { ENGLISH_TYPE_GUIDE } from "@/lib/ai/prompts/englishExam";
 import { reviewEnglishDraft } from "@/lib/english/quality";
 
 const passage =
@@ -354,5 +360,126 @@ describe("reviewEnglishDraft — 세트", () => {
     expect(
       copied.set.find((c) => c.code === "passage.variation-distance")?.ok,
     ).toBe(false);
+  });
+});
+
+describe("reviewEnglishDraft — 어휘", () => {
+  const prompt = [
+    "다음 글의 밑줄 친 부분 중, 어휘상 틀린 것은?",
+    "Many students ①<u>think</u> that talent decides success. However, research ②<u>shows</u> that ③<u>constant</u> practice matters more. A pianist who ④<u>practices</u> every day improves faster than one who waits for inspiration. Small efforts, ⑤<u>repeated</u> over time, build real skill. Therefore, habits are more important than gifts.",
+  ].join("\n");
+  const vocab: EnglishQuestion = {
+    type: "어휘",
+    prompt,
+    options: ["think", "shows", "constant", "practices", "repeated"],
+    answer: "3",
+    explanation: "steady 가 문맥에 맞다. 정답 ③.",
+    evidence: "research shows that steady practice matters more",
+  };
+
+  it("생성 목록 · 출제 설정 · 만든 조건 · 안내 줄에 어휘가 있고, 원문 복원은 그대로 빠진다", () => {
+    expect(ENGLISH_QUESTION_TYPES).toContain("어휘");
+    expect(ENGLISH_GENERATED_TYPES).toContain("어휘");
+    expect(ENGLISH_TYPE_GUIDE.어휘).toContain("①<u>표현</u>");
+    expect(
+      englishQuestionSchema.safeParse({
+        type: "어휘",
+        prompt: "발문",
+        options: [],
+        answer: "1",
+        explanation: "",
+        evidence: "",
+      }).success,
+    ).toBe(true);
+    expect(
+      englishGenerateRequestSchema.safeParse({
+        examId: "00000000-0000-4000-8000-000000000001",
+        mode: "new",
+        topic: "학교",
+        passage: "",
+        difficulty: "표준",
+        count: 1,
+        words: 200,
+        types: ["어휘"],
+      }).success,
+    ).toBe(true);
+    expect(
+      englishSetMetaSchema.safeParse({ path: "api", types: ["어휘"] }).success,
+    ).toBe(true);
+    expect(
+      englishGenerateRequestSchema.safeParse({
+        examId: "00000000-0000-4000-8000-000000000001",
+        mode: "new",
+        topic: "학교",
+        passage: "",
+        difficulty: "표준",
+        count: 1,
+        words: 200,
+        types: ["원문 복원"],
+      }).success,
+    ).toBe(false);
+  });
+
+  it("밑줄 다섯이 보기와 같고, 정답이 아닌 네 곳은 원문이며, 고친 곳은 정답 하나", () => {
+    const report = reviewEnglishDraft(draftOf(vocab));
+    const c = Object.fromEntries(
+      report.questions[0]!.checks.map((item) => [item.code, item.ok]),
+    );
+    expect(c["vocab.markers"]).toBe(true);
+    expect(c["vocab.options-match"]).toBe(true);
+    expect(c["grammar.distractors-in-passage"]).toBe(true);
+    expect(c["variant.single-edit"]).toBe(true);
+    expect(c["grammar.answer-is-edit"]).toBe(true);
+    const messages = report.questions[0]!.checks.filter((item) =>
+      item.code.startsWith("vocab."),
+    )
+      .map((item) => item.message)
+      .join(" ");
+    expect(messages).toContain("어휘");
+    expect(
+      report.questions[0]!.checks.find(
+        (item) => item.code === "grammar.answer-is-edit",
+      )?.message,
+    ).toBe("정답 밑줄이 원문에서 고친 곳이어야 합니다.");
+  });
+
+  it("번호가 빠지거나 겹치면 어휘 밑줄 대응이 깨진다", () => {
+    const missing = checks(
+      draftOf({
+        ...vocab,
+        prompt: prompt.replace("⑤<u>repeated</u>", "repeated"),
+      }),
+    );
+    expect(missing["vocab.markers"]).toBe(false);
+    const duplicate = checks(
+      draftOf({
+        ...vocab,
+        prompt: prompt.replace("④<u>practices</u>", "③<u>practices</u>"),
+      }),
+    );
+    expect(duplicate["vocab.markers"]).toBe(false);
+  });
+
+  it("보기와 밑줄이 다르면 잡는다", () => {
+    const c = checks(
+      draftOf({
+        ...vocab,
+        options: ["think", "reveal", "constant", "practices", "repeated"],
+      }),
+    );
+    expect(c["vocab.options-match"]).toBe(false);
+  });
+
+  it("두 곳을 바꾸면 한 군데가 깨지고, 정답 번호가 그 곳이 아니면 잡는다", () => {
+    const two = checks(
+      draftOf({
+        ...vocab,
+        prompt: prompt.replace("①<u>think</u>", "①<u>believe</u>"),
+        options: ["believe", "shows", "constant", "practices", "repeated"],
+      }),
+    );
+    expect(two["variant.single-edit"]).toBe(false);
+    const wrong = checks(draftOf({ ...vocab, answer: "1" }));
+    expect(wrong["grammar.answer-is-edit"]).toBe(false);
   });
 });

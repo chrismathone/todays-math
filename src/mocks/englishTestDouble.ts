@@ -4,9 +4,13 @@
  * ## 왜 `prismaTestDouble.ts` 에 안 넣었나
  *
  * 트랙 넷(base · shell · ai · print)이 병행한다 — 같은 파일의 같은 자리(행 배열 선언 · reset · snapshot)를
- * 둘이 고치면 병합이 부딪친다(`learnTestDouble.ts` 머리말과 같은 까닭). 영어 라우트는 `$transaction` 을 쓰지
- * 않으므로 되돌리기 스냅샷이 필요 없다. `prismaTestDouble.ts` 에는 `errorLogTestDouble` 처럼 import 한 줄과
- * 모델 합성만 있다(전역 `vitest.setup.ts` 모킹이 그대로 답한다).
+ * 둘이 고치면 병합이 부딪친다(`learnTestDouble.ts` 머리말과 같은 까닭). 영어 행의 되돌리기는
+ * `prismaTestDouble` 스냅샷에 넣지 않고 `composeEnglishDb` 의 `$transaction` 이 맡는다.
+ * `prismaTestDouble.ts` 에는 `errorLogTestDouble` 처럼 import 한 줄과 모델 합성만 있다
+ * (전역 `vitest.setup.ts` 모킹이 그대로 답한다).
+ *
+ * `$executeRaw` 는 여기서 아무 행도 잠그지 않는다. 큐는 메모리 호출을 한 줄로 세울 뿐이다 —
+ * 이 대역이 초록이어도 Postgres `FOR UPDATE` 를 입증한 것이 아니다.
  *
  * 쓰는 법: 라우트 시험은 `@/lib/db` 를 `composeEnglishDb(prismaTestDouble)` 로 모킹한다 — 계정(`user`)은
  * 원래 대역이, 영어 표 셋은 여기가 답한다. 소유 범위 판정(`ownedRowsWhere` 의 `{ user: { branchId } }`)이
@@ -584,6 +588,54 @@ export const englishModels = {
   },
 };
 
+function snapshotEnglishRows() {
+  return structuredClone({ examRows, materialRows, setRows });
+}
+
+function restoreEnglishRows(snapshot: ReturnType<typeof snapshotEnglishRows>) {
+  examRows = snapshot.examRows;
+  materialRows = snapshot.materialRows;
+  setRows = snapshot.setRows;
+}
+
+/**
+ * 트랜잭션 클라이언트. `$executeRaw` · `$executeRawUnsafe` 는 메모리에서 잠금을 흉내 내지 않는다.
+ * 호출 직렬화는 아래 큐다.
+ */
+const englishTxClient = {
+  ...englishModels,
+  async $executeRaw() {
+    return 0;
+  },
+  async $executeRawUnsafe() {
+    return 0;
+  },
+};
+
+/** 메모리 호출을 한 줄로 세운다. 거절된 앞 트랜잭션이 뒤를 막지 않게 꼬리는 항상 풀린다. */
+let englishTxTail: Promise<void> = Promise.resolve();
+
+function runEnglishTransaction<T>(
+  arg: ((tx: typeof englishTxClient) => Promise<T>) | Promise<unknown>[],
+): Promise<T | unknown[]> {
+  const job = async () => {
+    if (typeof arg !== "function") return Promise.all(arg);
+    const snapshot = snapshotEnglishRows();
+    try {
+      return await arg(englishTxClient);
+    } catch (error) {
+      restoreEnglishRows(snapshot);
+      throw error;
+    }
+  };
+  const run = englishTxTail.then(job, job);
+  englishTxTail = run.then(
+    () => undefined,
+    () => undefined,
+  );
+  return run;
+}
+
 /** 원래 대역(계정 등) 위에 영어 표 셋을 얹는다 — 지점 판정은 원래 대역의 `user.findUnique` 로 */
 export function composeEnglishDb(base: object): object {
   const baseUser = (
@@ -605,6 +657,7 @@ export function composeEnglishDb(base: object): object {
     {},
     {
       get(_target, prop, receiver) {
+        if (prop === "$transaction") return runEnglishTransaction;
         if (typeof prop === "string" && prop in englishModels)
           return englishModels[prop as keyof typeof englishModels];
         return Reflect.get(base, prop, receiver);

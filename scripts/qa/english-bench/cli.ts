@@ -10,7 +10,9 @@
 import { spawn } from "node:child_process";
 
 import OpenAI from "openai";
-import { mkdtempSync, readFileSync, rmSync, writeFileSync } from "node:fs";
+import { mkdtempSync, readFileSync, writeFileSync } from "node:fs";
+// 🔴 동기 판 지우기는 금지다 — 경로에 한글이 있으면 Node(Windows)가 말없이 죽는다(`noRmSync.test.ts`). 약속 판을 쓴다.
+import { rm } from "node:fs/promises";
 import os from "node:os";
 import path from "node:path";
 
@@ -280,7 +282,7 @@ export async function runCli(call: CliCall): Promise<CliResult> {
         }
       }
     } finally {
-      rmSync(tmp, { recursive: true, force: true });
+      await rm(tmp, { recursive: true, force: true });
     }
   } else if (call.provider === "claude") {
     const args = [
@@ -366,7 +368,7 @@ export async function runCli(call: CliCall): Promise<CliResult> {
           reasoning: gu.reasoning_tokens,
         };
     } finally {
-      rmSync(tmp, { recursive: true, force: true });
+      await rm(tmp, { recursive: true, force: true });
     }
   } else {
     const args = [

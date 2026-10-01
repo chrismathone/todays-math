@@ -343,6 +343,37 @@ describe("buildChatgptFixRequest — 거절됐을 때만 «고쳐 달라 요청�
     ],
   };
 
+  it("고른 어법 옆의 어휘는 고르지 않은 유형으로 적지 않고, 다른 유형은 적는다", () => {
+    const grammar = { ...goodDraft.questions[0], type: "어법" };
+    const vocabShort = {
+      ...goodDraft.questions[0],
+      type: "어휘",
+      prompt: "밑줄 친 부분 중 어휘상 틀린 것은?",
+      options: goodDraft.questions[0]!.options.slice(0, 4),
+    };
+    const request = { ...conditions, count: 2, types: ["어법" as const] };
+    const text = buildChatgptFixRequest({
+      request,
+      pasted: JSON.stringify({
+        title: goodDraft.title,
+        passage,
+        questions: [grammar, vocabShort],
+      }),
+    });
+    expect(text).toMatch(/보기는 5개/);
+    expect(text).not.toContain("고르지 않은 유형입니다: 어휘");
+
+    const other = buildChatgptFixRequest({
+      request,
+      pasted: JSON.stringify({
+        title: goodDraft.title,
+        passage,
+        questions: [grammar, goodDraft.questions[1]],
+      }),
+    });
+    expect(other).toContain("고르지 않은 유형입니다: 서술형");
+  });
+
   it("통과한 결과에는 요청문이 없다 — 통과 세트에 고쳐 쓰기를 권하지 않는다", () => {
     expect(
       buildChatgptFixRequest({

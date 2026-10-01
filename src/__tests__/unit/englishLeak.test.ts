@@ -149,4 +149,48 @@ describe("findVariantLeaks — 변형 문항끼리의 정답 누출", () => {
       findVariantLeaks({ passage, questions: [blank(BLANK_FULL)] }),
     ).toEqual([]);
   });
+
+  it("어휘의 원래 표현이 빈칸 지문에 같은 문맥으로 있으면 누출 — 틀린 낱말이 아니라 원문 자리", () => {
+    const vocabBody = `Many students ①<u>think</u> that talent decides success. However, research ②<u>shows</u> that steady practice matters more. A pianist who ③<u>practices</u> every day improves faster than one who waits for ④<u>ideas</u>. Small efforts, ⑤<u>repeated</u> over time, build real skill. Therefore, habits are more important than gifts.`;
+    const vocab: EnglishQuestion = {
+      type: "어휘",
+      prompt: `밑줄 친 부분 중 어휘상 틀린 것은?\n${vocabBody}`,
+      options: ["think", "shows", "practices", "ideas", "repeated"],
+      answer: "4",
+      explanation: "inspiration 이 맞다.",
+      evidence: S3,
+    };
+    const leaks = findVariantLeaks({
+      passage,
+      questions: [vocab, blank(BLANK_FULL)],
+    });
+    const forward = leaks.find(
+      (item) => item.source === 0 && item.target === 1,
+    );
+    expect(forward).toBeDefined();
+    expect(forward!.kind).toBe("어휘");
+    expect(forward!.snippet).toContain("inspiration");
+    expect(forward!.snippet.length).toBeGreaterThanOrEqual(20);
+    const back = leaks.find((item) => item.source === 1 && item.target === 0);
+    expect(back).toBeDefined();
+    expect(back!.kind).toBe("빈칸 추론");
+    expect(back!.snippet).toContain("steady practice");
+  });
+
+  it("어휘의 원래 낱말만 같고 문맥이 다르면 누출이 아니다", () => {
+    const vocab: EnglishQuestion = {
+      type: "어휘",
+      prompt:
+        "밑줄 친 부분 중 어휘상 틀린 것은?\nA pianist who ①<u>practices</u> every day ②<u>improves</u> faster ③<u>extra</u> one who ④<u>waits</u> for inspiration. Small efforts, ⑤<u>repeated</u> over time, build real skill.",
+      options: ["practices", "improves", "extra", "waits", "repeated"],
+      answer: "3",
+      explanation: "than 이 맞다.",
+      evidence: S3,
+    };
+    const other = blank(
+      `${S1} However, research shows that ________ matters more. ${S5}`,
+    );
+    const leaks = findVariantLeaks({ passage, questions: [vocab, other] });
+    expect(leaks.find((item) => item.kind === "어휘")).toBeUndefined();
+  });
 });

@@ -75,7 +75,67 @@ const MODE_LABEL: Record<Mode, string> = {
   original: "원문 유지",
   variation: "원문 변형",
 };
-const COUNT_OPTIONS = [3, 5, 8] as const;
+const COUNT_OPTIONS = [3, 5, 6, 8] as const;
+type CountOption = (typeof COUNT_OPTIONS)[number];
+
+/**
+ * 어법과 어휘가 한 배열에 있으면 생성 목록에서 앞선 쪽만 남긴다.
+ * 저장 배열은 상수 순서라, 어법이 어휘보다 앞이면 어법이 남는다.
+ */
+function exclusiveUnderline(types: readonly GeneratedType[]): GeneratedType[] {
+  const grammar = types.includes("어법");
+  const vocab = types.includes("어휘");
+  if (!grammar || !vocab) return [...types];
+  const drop =
+    ENGLISH_GENERATED_TYPES.indexOf("어법") <
+    ENGLISH_GENERATED_TYPES.indexOf("어휘")
+      ? "어휘"
+      : "어법";
+  return types.filter((type) => type !== drop);
+}
+
+/** 유형 수가 문항 수보다 크면, 그 수를 담는 가장 작은 선택으로 올린다. 줄이지는 않는다. */
+function fitCount(count: number, typeCount: number): CountOption {
+  if (
+    typeCount <= count &&
+    (COUNT_OPTIONS as readonly number[]).includes(count)
+  )
+    return count as CountOption;
+  return (
+    COUNT_OPTIONS.find((option) => option >= Math.max(count, typeCount)) ??
+    COUNT_OPTIONS[COUNT_OPTIONS.length - 1]!
+  );
+}
+
+/**
+ * `examId` — 이 초안을 검증한 시험. 저장이 끊긴 뒤 시험을 바꾸고 «다시 저장»을 누르면 초안이 **다른 시험**에
+ * 들어가던 것을 막는다(D-153 검토 #2): 묶음은 제 시험으로만 보내고, 다른 시험을 보는 동안 단추는 숨긴다.
+ */
+type SaveBundle = { draft: EnglishDraft; meta: EnglishSetMeta; examId: string };
+
+function sortKeys(value: unknown): unknown {
+  if (Array.isArray(value)) return value.map(sortKeys);
+  if (value && typeof value === "object") {
+    const source = value as Record<string, unknown>;
+    const out: Record<string, unknown> = {};
+    for (const key of Object.keys(source).sort())
+      out[key] = sortKeys(source[key]);
+    return out;
+  }
+  return value;
+}
+
+function sameJson(left: unknown, right: unknown): boolean {
+  return JSON.stringify(sortKeys(left)) === JSON.stringify(sortKeys(right));
+}
+
+function metaWithoutKey(
+  meta: EnglishSetMeta,
+): Omit<EnglishSetMeta, "clientKey"> {
+  const rest = { ...meta };
+  delete rest.clientKey;
+  return rest;
+}
 const WORD_OPTIONS = [100, 150, 200, 250, 300, 400] as const;
 const JSON_HEADERS = { "content-type": "application/json" } as const;
 
@@ -186,19 +246,26 @@ export default function EnglishMakerView({
   const tabId = (id: MakerTab) => `${uid}-tab-${id}`;
   const panelId = (id: MakerTab) => `${uid}-panel-${id}`;
   const [tab, setTab] = useState<MakerTab>("chatgpt");
-  const [conditions, setConditions] = useState<Conditions>(() => ({
-    mode: "new",
-    topic: "",
-    passage: "",
-    difficulty: "표준",
-    count: 5,
-    words: 200,
-    types: exam.types.length ? [...exam.types] : ["주제"],
-  }));
+  const [conditions, setConditions] = useState<Conditions>(() => {
+    const types = exclusiveUnderline(
+      exam.types.length ? [...exam.types] : ["주제"],
+    );
+    return {
+      mode: "new",
+      topic: "",
+      passage: "",
+      difficulty: "표준",
+      count: fitCount(5, types.length),
+      words: 200,
+      types,
+    };
+  });
   const [conditionIssues, setConditionIssues] = useState<string[]>([]);
-  const [busy, setBusy] = useState<null | "import" | "cloze" | "generate">(
-    null,
-  );
+  const [busy, setBusy] = useState<
+    null | "import" | "cloze" | "generate" | "save"
+  >(null);
+  /** 검증을 통과한 초안 · 그때의 meta · clientKey. «다시 저장»은 이 묶음만 보낸다. */
+  const [pendingSave, setPendingSave] = useState<SaveBundle | null>(null);
   const [startedAt, setStartedAt] = useState<number | undefined>(undefined);
 
   // 불러온 자료 — 그 글을 그대로 썼을 때만 «만든 조건»에 이름을 싣는다
@@ -240,22 +307,41 @@ export default function EnglishMakerView({
   const update = (patch: Partial<Conditions>) =>
     setConditions((previous) => ({ ...previous, ...patch }));
 
-  const toggleType = (type: GeneratedType) =>
-    setConditions((previous) => ({
-      ...previous,
-      types: previous.types.includes(type)
+  const toggleType = (type: GeneratedType) => {
+    const adding = !conditions.types.includes(type);
+    if (
+      adding &&
+      ((type === "어법" && conditions.types.includes("어휘")) ||
+        (type === "어휘" && conditions.types.includes("어법")))
+    ) {
+      onNotice("어법과 어휘는 한 세트에 넣지 않습니다", "alert");
+      return;
+    }
+    setConditions((previous) => {
+      const types = previous.types.includes(type)
         ? previous.types.filter((item) => item !== type)
         : ENGLISH_GENERATED_TYPES.filter(
             (item) => item === type || previous.types.includes(item),
-          ),
-    }));
+          );
+      return {
+        ...previous,
+        types,
+        count: fitCount(previous.count, types.length),
+      };
+    });
+  };
 
   function loadExamTypes() {
     if (!exam.types.length) {
       onNotice("이 시험에 저장된 출제 설정이 없습니다.", "alert");
       return;
     }
-    update({ types: [...exam.types] });
+    const types = exclusiveUnderline([...exam.types]);
+    setConditions((previous) => ({
+      ...previous,
+      types,
+      count: fitCount(previous.count, types.length),
+    }));
   }
 
   /** 조건을 계약으로 잠근다 — 어긋나면 사유를 보이고 null. */
@@ -274,25 +360,70 @@ export default function EnglishMakerView({
     return { mode, topic, passage, difficulty, count, words, types };
   }
 
-  async function saveDraft(draft: EnglishDraft, meta: EnglishSetMeta) {
+  /**
+   * 같은 초안을 다시 누르면 같은 키를 쓴다. 폼을 바꿔 다른 초안이 되면 새 키다.
+   * 키는 POST 전에 묶음에 남는다 — 응답이 끊겨도 «다시 저장»이 그 본문만 보낸다.
+   */
+  function bundleFor(draft: EnglishDraft, meta: EnglishSetMeta): SaveBundle {
+    if (
+      pendingSave &&
+      pendingSave.examId === exam.id &&
+      sameJson(pendingSave.draft, draft) &&
+      sameJson(metaWithoutKey(pendingSave.meta), metaWithoutKey(meta))
+    )
+      return pendingSave;
+    const bundle = {
+      draft,
+      meta: { ...meta, clientKey: crypto.randomUUID() },
+      examId: exam.id,
+    };
+    setPendingSave(bundle);
+    return bundle;
+  }
+
+  async function postBundle(bundle: SaveBundle): Promise<string> {
     const body = await readJson(
-      await fetch(`/api/english/exams/${exam.id}/sets`, {
+      // 묶음을 지은 시험으로 — 지금 보고 있는 시험이 아니다
+      await fetch(`/api/english/exams/${bundle.examId}/sets`, {
         method: "POST",
         headers: JSON_HEADERS,
         body: JSON.stringify({
-          title: draft.title,
-          source: draft.source,
-          passage: draft.passage,
-          questions: draft.questions,
-          meta,
+          title: bundle.draft.title,
+          source: bundle.draft.source,
+          passage: bundle.draft.passage,
+          questions: bundle.draft.questions,
+          meta: bundle.meta,
         }),
       }),
     );
     const id = (body as { data?: { id?: unknown } } | null)?.data?.id;
     if (typeof id !== "string" || !id)
       throw new ApiFailure(0, "저장 결과를 읽지 못했습니다.");
+    return id;
+  }
+
+  async function saveDraft(draft: EnglishDraft, meta: EnglishSetMeta) {
+    const bundle = bundleFor(draft, meta);
+    const id = await postBundle(bundle);
+    setPendingSave(null);
     onNotice("초안으로 저장했습니다. 검토 화면에서 확인해 주세요.", "status");
     onSaved(id);
+  }
+
+  async function retrySave() {
+    if (!pendingSave || busy || pendingSave.examId !== exam.id) return;
+    const bundle = pendingSave;
+    setBusy("save");
+    try {
+      const id = await postBundle(bundle);
+      setPendingSave(null);
+      onNotice("초안으로 저장했습니다. 검토 화면에서 확인해 주세요.", "status");
+      onSaved(id);
+    } catch (error) {
+      onNotice(messageOf(error), "alert");
+    } finally {
+      setBusy(null);
+    }
   }
 
   async function copyRequest() {
@@ -321,6 +452,7 @@ export default function EnglishMakerView({
       passage: request.passage,
       count: request.count,
       types: request.types,
+      allowUnderlineCompanion: true,
     });
     setFixOpen(false);
     setFixCopyFailed(false);
@@ -450,17 +582,26 @@ export default function EnglishMakerView({
       setAiLink("ready");
       // 부른 모델 · 프롬프트 판은 서버가 알려 준다(못 읽으면 빼고 저장한다 — 초안은 잃지 않는다)
       const model = full.success ? full.data.model : undefined;
-      await saveDraft(
-        full.success ? full.data.data : (draft.data as EnglishDraft),
-        englishMetaFromConditions("api", request, {
-          model: model?.name,
-          promptVersion: model?.promptVersion,
-          materialName:
-            request.mode === "new"
-              ? undefined
-              : sameText(pickedPassage, request.passage),
-        }),
-      );
+      try {
+        await saveDraft(
+          full.success ? full.data.data : (draft.data as EnglishDraft),
+          englishMetaFromConditions("api", request, {
+            model: model?.name,
+            promptVersion: model?.promptVersion,
+            materialName:
+              request.mode === "new"
+                ? undefined
+                : sameText(pickedPassage, request.passage),
+          }),
+        );
+      } catch (error) {
+        // 저장 실패(503 포함)는 연결 상태를 바꾸지 않는다. 생성 실패만 «대기»다.
+        const failure =
+          error instanceof ApiFailure
+            ? error
+            : new ApiFailure(0, messageOf(error));
+        setApiError(failure);
+      }
     } catch (error) {
       const failure =
         error instanceof ApiFailure
@@ -911,6 +1052,23 @@ export default function EnglishMakerView({
           </>
         ) : null}
       </section>
+      {/* 다른 시험을 보는 동안에는 숨긴다 — 그 시험으로 돌아오면 다시 보인다(묶음은 그대로) */}
+      {pendingSave && pendingSave.examId === exam.id ? (
+        <div className={s.actions}>
+          <button
+            type="button"
+            className={s.primaryButton}
+            disabled={busy !== null}
+            onClick={() => void retrySave()}
+          >
+            {busy === "save" ? (
+              <WorkProgress variant="inline" label="저장 중…" />
+            ) : (
+              "다시 저장"
+            )}
+          </button>
+        </div>
+      ) : null}
     </div>
   );
 }

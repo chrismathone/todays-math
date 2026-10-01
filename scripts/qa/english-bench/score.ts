@@ -14,7 +14,6 @@ import { existsSync, readdirSync, readFileSync, writeFileSync } from "node:fs";
 import path from "node:path";
 
 import {
-  ENGLISH_GENERATED_TYPES,
   englishQuestionSchema,
   type EnglishDraft,
   type EnglishQuestion,
@@ -22,6 +21,7 @@ import {
 import { reviewEnglishDraft } from "@/lib/english/quality";
 
 import type { GenRecord } from "./generate";
+import { BENCH_SIX_TYPES } from "./sixTypes";
 import type { JudgeKind } from "./judge";
 import { familyOf, GENERATORS, JUDGES } from "./models";
 import { BENCH_TASKS } from "./tasks";
@@ -33,7 +33,7 @@ const PASSAGE_WEIGHT: Record<string, number> = {
   "C-variation": 0.25,
 };
 const EXPECTED_ITEMS = 6;
-const TYPES = [...ENGLISH_GENERATED_TYPES];
+const TYPES = [...BENCH_SIX_TYPES];
 
 type JudgeFile = {
   kind: JudgeKind;

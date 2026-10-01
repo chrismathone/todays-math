@@ -5,10 +5,11 @@
  * 각 한 문항 — 모델당 18문항. 🔴 표본 지문은 **우리가 지은 글**이다(교재·출판사·모의고사 지문 아님 — 교재 원문은 저장소 밖).
  */
 import {
-  ENGLISH_GENERATED_TYPES,
   type EnglishGenerateRequest,
   type EnglishGrade,
 } from "@/contracts/english.contract";
+
+import { BENCH_SIX_TYPES } from "./sixTypes";
 
 export interface BenchTask {
   id: string;
@@ -17,7 +18,7 @@ export interface BenchTask {
   request: Omit<EnglishGenerateRequest, "examId">;
 }
 
-const ALL_TYPES = [...ENGLISH_GENERATED_TYPES];
+const ALL_TYPES = [...BENCH_SIX_TYPES];
 
 export const PASSAGE_CREATIVITY =
   "Many people believe that creativity arrives as a sudden flash of inspiration. Stories about inventors who solved problems in dreams or artists who painted masterpieces overnight support this belief. However, researchers who study creative work have found a different pattern. Most original ideas grow slowly out of long periods of practice, failure, and revision. A composer may write dozens of weak melodies before one of them becomes worth developing. A scientist may run the same experiment many times, adjusting a single condition each time, until an unexpected result appears. What looks like a sudden breakthrough is usually the visible end of an invisible process. This does not mean that inspiration is unimportant. Rather, inspiration tends to favor those who have already prepared their minds by collecting knowledge and testing possibilities. When the moment of insight finally comes, it connects pieces that were gathered patiently over time. For students, this finding carries a practical lesson. Instead of waiting for brilliant ideas to appear, they should build habits that make such ideas more likely: keeping notes, asking questions, and returning to unfinished work. Creativity, in this view, is less a gift that some people receive and more a skill that anyone can cultivate through steady effort.";

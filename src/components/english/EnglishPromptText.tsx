@@ -1,5 +1,5 @@
 /**
- * 발문 — 어법 문항의 `<u>…</u>` 표기만 밑줄로 그린다(번호 ①~⑤ 는 선 밖 · 줄이 바뀐 구간도 한 밑줄).
+ * 발문 — 밑줄 문항(어법 · 어휘)의 `<u>…</u>` 표기만 밑줄로 그린다(번호 ①~⑤ 는 선 밖 · 줄이 바뀐 구간도 한 밑줄).
  * 짝이 깨졌으면 어디까지가 밑줄인지 알 수 없으니 글자 그대로 둔다. 다른 유형의 표기도 글자 그대로(미리보기가 알린다).
  *
  * **지면(`EnglishPaper`)과 편집 화면(`EnglishQuestionView`)이 같이 쓴다** — 같은 문제는 같은 규칙으로 보인다.
@@ -11,7 +11,10 @@
 import type { ReactNode } from "react";
 
 import type { EnglishQuestion } from "@/contracts/english.contract";
-import { splitEnglishUnderline } from "@/lib/english/underline";
+import {
+  isEnglishUnderlineType,
+  splitEnglishUnderline,
+} from "@/lib/english/underline";
 
 const CIRCLED = /([①-⑳])/;
 
@@ -44,8 +47,9 @@ export default function EnglishPromptText({
   underlineClassName?: string;
   markClassName?: string;
 }) {
-  const parts =
-    question.type === "어법" ? splitEnglishUnderline(question.prompt) : null;
+  const parts = isEnglishUnderlineType(question.type)
+    ? splitEnglishUnderline(question.prompt)
+    : null;
   if (!parts)
     return (
       <EnglishMarkedText text={question.prompt} markClassName={markClassName} />
