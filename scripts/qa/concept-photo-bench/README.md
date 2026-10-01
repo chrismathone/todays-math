@@ -108,11 +108,11 @@ node --env-file=.env scripts/qa/concept-photo-bench/jev.mjs ocr .qa-artifacts/co
 node scripts/qa/concept-photo-bench/report.mjs .qa-artifacts/concept-photo-bench/samples/manifest.json .qa-artifacts/concept-photo-bench/results .qa-artifacts/concept-photo-bench/typesafe-semantic-2/summary.json .qa-artifacts/concept-photo-bench/typesafe-ocr-2/summary.json
 ```
 
-기존 Gateway 경로는 해당 서비스의 접근이 해결된 뒤 새 출력 폴더로 실행:
+기본 경로는 TypeSafe 직접 API다. 기존 Gateway 경로는 해당 서비스의 접근이 해결된 뒤 `--provider gateway`를 명시하고 새 출력 폴더로 실행:
 
 ```powershell
-node --env-file=.env scripts/qa/concept-photo-bench/jev.mjs semantic scripts/qa/concept-photo-bench/semantic-cases.json .qa-artifacts/concept-photo-bench/jev-semantic-2
-node --env-file=.env scripts/qa/concept-photo-bench/jev.mjs ocr .qa-artifacts/concept-photo-bench/run-2 .qa-artifacts/concept-photo-bench/jev-ocr-2 all .qa-artifacts/concept-photo-bench/samples/manifest.json
+node --env-file=.env scripts/qa/concept-photo-bench/jev.mjs semantic scripts/qa/concept-photo-bench/semantic-cases.json .qa-artifacts/concept-photo-bench/jev-semantic-2 --provider gateway
+node --env-file=.env scripts/qa/concept-photo-bench/jev.mjs ocr .qa-artifacts/concept-photo-bench/run-2 .qa-artifacts/concept-photo-bench/jev-ocr-2 all .qa-artifacts/concept-photo-bench/samples/manifest.json --provider gateway
 ```
 
 마지막 선택 인자로 사진 실험과 semantic 실험의 건수를 제한할 수 있다. 인증·크레딧 오류에서는 즉시 중단한다. 재실험은 새 출력 폴더를 사용한다. 새 실행에는 입력 해시가 저장되며 다른 입력의 기존 결과를 캐시로 재사용하지 않는다. 최초 파일럿은 해시 도입 전 자료이므로 `results` 폴더를 재실행에 사용하지 않는다.

@@ -8,7 +8,7 @@ import { evaluateTypeSafe } from "./typesafe.mjs";
 const argv = process.argv.slice(2);
 const providerIndex = argv.indexOf("--provider");
 const provider =
-  providerIndex >= 0 ? argv.splice(providerIndex, 2)[1] : "gateway";
+  providerIndex >= 0 ? argv.splice(providerIndex, 2)[1] : "typesafe";
 if (!["gateway", "typesafe"].includes(provider))
   throw new Error("Use --provider gateway or --provider typesafe");
 const [mode, inputFile, outputDir, limitArg, manifestFile] = argv;
