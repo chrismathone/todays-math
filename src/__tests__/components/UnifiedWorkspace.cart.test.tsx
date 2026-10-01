@@ -205,7 +205,8 @@ async function toStudio() {
   return screen.findByRole("region", { name: "작업실 대역" });
 }
 async function toOrder() {
-  fireEvent.click(menu("시험지 · 내보내기"));
+  // 옆 메뉴에 «시험지 · 내보내기» 줄이 없다(원장님 2026-10-01) — 옆 «현재 시험지 · 편집 이어가기»로
+  fireEvent.click(screen.getByRole("button", { name: /편집 이어가기/ }));
   fireEvent.click(await screen.findByRole("tab", { name: /문제 순서/ }));
 }
 const orderIds = () =>

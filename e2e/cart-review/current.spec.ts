@@ -104,6 +104,9 @@ const menu = (page: Page, name: string) =>
   page.getByRole("navigation", { name: "작업실 메뉴" }).getByRole("button", {
     name,
   });
+/** 시험지 화면으로 — 옆 메뉴에 «시험지 · 내보내기» 줄이 없다(원장님 2026-10-01). 옆 «현재 시험지 · 편집 이어가기». */
+const openWorksheet = (page: Page) =>
+  page.getByRole("button", { name: /편집 이어가기/ }).click();
 const footer = (page: Page) =>
   page.locator('footer[aria-label="문제 제작 주요 작업"]');
 const addButton = (page: Page) =>
@@ -432,7 +435,7 @@ test("③ 에서 담으면 카드마다 «담음» · 목록으로 보고 뺀다
 
   // ④ 에서 첫 문제를 뺀다 → 작업실도 안다(어긋남 1 이 사라졌다).
   await page.setViewportSize({ width: 1516, height: 940 });
-  await menu(page, "시험지 · 내보내기").click();
+  await openWorksheet(page);
   await page.getByRole("tab", { name: /문제 순서/ }).click();
   const order = page.getByRole("tabpanel", { name: /문제 순서/ });
   await expect(order.getByRole("listitem")).toHaveCount(n);
@@ -485,7 +488,7 @@ test("③ 에서 담으면 카드마다 «담음» · 목록으로 보고 뺀다
   );
   await expect(addButton(page)).toHaveText(/모두 담았습니다/);
   await expect(topBadge(page)).toHaveAccessibleName(`담은 문제 ${n}`);
-  await menu(page, "시험지 · 내보내기").click();
+  await openWorksheet(page);
   await page.getByRole("tab", { name: /문제 순서/ }).click();
   // 뺀 자리(첫째)로 돌아왔다.
   await expect(order.getByRole("listitem").first()).toHaveText(firstRow!);
@@ -509,13 +512,14 @@ test("③ 에서 담으면 카드마다 «담음» · 목록으로 보고 뺀다
     "문제은행",
   );
   await expect(panel(page)).toContainText(`이 원본 ${n} · 다른 곳 1`);
-  // 모든 화면 일치 — 작업실 «담음» 수 · 목록 · 탭 배지 · 위 띠 · 왼쪽 메뉴 배지가 같은 장부.
+  // 모든 화면 일치 — 작업실 «담음» 수 · 목록 · 탭 배지 · 위 띠 · 옆 «현재 시험지» 칸이 같은 장부
+  // (옆 메뉴의 «시험지 · 내보내기» 줄과 그 배지는 2026-10-01 에 뺐다).
   await expect(chips(page).filter({ hasText: /^담음$/ })).toHaveCount(n);
   await expect(stepTab(page, /시험지 구성/)).toHaveText(
     new RegExp(`시험지 구성\\s*${n + 1}$`),
   );
   await expect(topBadge(page)).toHaveAccessibleName(`담은 문제 ${n + 1}`);
-  await expect(menu(page, "시험지 · 내보내기")).toContainText(String(n + 1));
+  await expect(page.getByText(`${n + 1}문항`, { exact: true })).toBeVisible();
   await page.screenshot({
     path: testInfo.outputPath("목록-문제은행-포함.png"),
   });

@@ -227,6 +227,15 @@ const response = (menus: WorkspaceMenu[], extra = {}) =>
 function nav() {
   return within(screen.getByRole("navigation", { name: "작업실 메뉴" }));
 }
+/**
+ * 시험지 화면으로 — 옆 메뉴에 «시험지 · 내보내기» 줄이 없다(원장님 2026-10-01). 시험지 쪽 화면이 아니면
+ * «시험지 만들기»로 간 뒤 옆 «현재 시험지 · 편집 이어가기»로 연다.
+ */
+async function openWorksheet() {
+  if (!screen.queryByRole("button", { name: /편집 이어가기/ }))
+    fireEvent.click(nav().getByRole("button", { name: "시험지 만들기" }));
+  fireEvent.click(await screen.findByRole("button", { name: /편집 이어가기/ }));
+}
 function nextCheck() {
   vi.spyOn(Date, "now").mockReturnValue(Date.now() + 2000);
 }
@@ -325,7 +334,7 @@ describe("per-account workspace menu access", () => {
         screen.queryByText(/저장한 시험지를 불러오고/),
       ).not.toBeInTheDocument();
 
-      fireEvent.click(nav().getByRole("button", { name: "시험지 · 내보내기" }));
+      await openWorksheet();
       const title = await screen.findByRole("textbox", { name: "제목" });
       expect(cloud.transport).toHaveBeenCalled();
       expect(
@@ -344,7 +353,7 @@ describe("per-account workspace menu access", () => {
       act(() => window.dispatchEvent(new Event("pagehide")));
       await act(async () => {});
       expect(cloud.transport).not.toHaveBeenCalled();
-      fireEvent.click(nav().getByRole("button", { name: "시험지 · 내보내기" }));
+      await openWorksheet();
       expect(
         await screen.findByDisplayValue("탭 이동 전 시험지"),
       ).toBeVisible();
@@ -431,8 +440,10 @@ describe("per-account workspace menu access", () => {
   it("keeps all development menus and shortcuts when access is omitted", async () => {
     render(<UnifiedWorkspace initialData={initialData} />);
     // 수학 제품의 메뉴만 — 영어 메뉴(D-148)는 브랜드 자리 «고르기 단추»로 넘어간 뒤의 옆 메뉴에 선다.
+    // «시험지 · 내보내기»는 옆 메뉴에 줄이 없다(원장님 2026-10-01 — 문제 추출 · 시험지 만들기 · 내 시험지의 끝 단계).
     for (const menu of WORKSPACE_MENUS.filter(
-      (item) => workspaceMenuProduct(item.id) === "math",
+      (item) =>
+        workspaceMenuProduct(item.id) === "math" && item.id !== "export",
     ))
       expect(
         nav().getByRole("button", {
@@ -643,6 +654,28 @@ describe("per-account workspace menu access", () => {
     expect(screen.queryByRole("dialog")).not.toBeInTheDocument();
     expect(mocks.bankMount).not.toHaveBeenCalled();
     expect(mocks.overviewMount).not.toHaveBeenCalled();
+  });
+
+  it("«시험지 · 내보내기»는 옆 메뉴에 따로 없다 — 문제 추출 · 시험지 만들기 · 내 시험지의 끝 단계(원장님 2026-10-01)", async () => {
+    render(
+      <UnifiedWorkspace
+        initialData={initialData}
+        allowedMenus={["home", "bank", "studio", "export", "library"]}
+        currentUser={user}
+      />,
+    );
+    expect(
+      nav().queryByRole("button", { name: "시험지 · 내보내기" }),
+    ).not.toBeInTheDocument();
+    // 화면은 그대로 있다 — 시험지 만들기에서 옆 «현재 시험지 · 편집 이어가기»로
+    fireEvent.click(nav().getByRole("button", { name: "시험지 만들기" }));
+    fireEvent.click(
+      await screen.findByRole("button", { name: /편집 이어가기/ }),
+    );
+    // 빈 시험지 화면 — 담는 길 셋이 뜬다
+    expect(
+      await screen.findByRole("button", { name: /문제은행에서 담기/ }),
+    ).toBeVisible();
   });
 
   it("shows worksheet access in the sidebar without a duplicate header button", () => {
@@ -1033,7 +1066,8 @@ describe("제품 전환 — 브랜드 자리 고르기 단추 (D-148)", () => {
 
     fireEvent.click(brand());
     fireEvent.click(screen.getByRole("option", { name: "오늘의수학" }));
-    expect(nav().getAllByRole("button")).toHaveLength(MATH_ONLY.length);
+    // «시험지 · 내보내기»는 옆 메뉴에 줄이 없다(원장님 2026-10-01)
+    expect(nav().getAllByRole("button")).toHaveLength(MATH_ONLY.length - 1);
     expect(window.location.hash).toBe("");
     expect(brand()).toHaveAccessibleName("제품 고르기 — 오늘의수학");
     // 영어 뷰는 숨김으로 남는다(상태를 잃지 않는다) — 다시 마운트하지 않는다
@@ -1107,7 +1141,8 @@ describe("제품 전환 — 브랜드 자리 고르기 단추 (D-148)", () => {
     expect(dialog.getByRole("button", { name: "내 시험지" })).toBeVisible();
     fireEvent.click(dialog.getByRole("button", { name: "내 시험지" }));
     expect(window.location.hash).toBe("#library");
-    expect(nav().getAllByRole("button")).toHaveLength(MATH_ONLY.length);
+    // «시험지 · 내보내기»는 옆 메뉴에 줄이 없다(원장님 2026-10-01)
+    expect(nav().getAllByRole("button")).toHaveLength(MATH_ONLY.length - 1);
   });
 
   it("영어 메뉴가 없으면 #english 는 첫 허용 메뉴로 떨어지고 영어 뷰는 마운트되지 않는다", async () => {

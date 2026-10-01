@@ -127,7 +127,8 @@ describe("workspace action wiring", () => {
       await screen.findByRole("button", { name: "잠긴 문제 담기 검증" }),
     );
     expect(await screen.findByText("출제가 잠긴 문항입니다.")).toBeVisible();
-    fireEvent.click(screen.getByRole("button", { name: "시험지 · 내보내기" }));
+    // 옆 메뉴에 «시험지 · 내보내기» 줄이 없다(원장님 2026-10-01) — 옆 «현재 시험지 · 편집 이어가기»로
+    fireEvent.click(screen.getByRole("button", { name: /편집 이어가기/ }));
     expect(
       await screen.findByRole("button", { name: /문제은행에서 담기/ }),
     ).toBeVisible();
@@ -207,7 +208,7 @@ describe("workspace action wiring", () => {
     expect(
       await screen.findByText("자료 작업실 열림: 단계 review 1 · 파일 0"),
     ).toBeVisible();
-    fireEvent.click(screen.getByRole("button", { name: "시험지 · 내보내기" }));
+    fireEvent.click(screen.getByRole("button", { name: /편집 이어가기/ }));
     fireEvent.click(reviewTab());
     // 같은 밀리초에 두 번 눌러도 둘째가 묻히지 않는다 — 요청 번호가 셈이라서.
     expect(

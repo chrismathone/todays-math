@@ -240,7 +240,15 @@ function UnifiedWorkspaceContent({
   const products = WORKSPACE_PRODUCTS.filter((item) =>
     workspaceMenusOf(item.id).some((menu) => enabledMenus.has(menu)),
   );
-  const availableNav = navItemsOf[product].filter((item) => can(item.id));
+  // 원장님 2026-10-01 «메뉴가 두 개가 필요한가 — 내보내기는 문제 추출 가장 마지막 단계»: «시험지 · 내보내기»는
+  // 문제 추출(넷째 단계) · 시험지 만들기(담기) · 내 시험지(열기)의 끝 단계라 옆 메뉴에 줄을 따로 두지 않는다.
+  // 화면 · 권한 · 관문은 그대로다(옆 «현재 시험지 · 편집 이어가기» 칸 · 빠른 검색으로도 연다). 그 입구가 하나도 없는
+  // 계정(내보내기만 켠 계정)에만 줄을 남긴다.
+  const hiddenInSidebar = (id: View) =>
+    id === "export" && (can("studio") || can("bank") || can("library"));
+  const availableNav = navItemsOf[product].filter(
+    (item) => can(item.id) && !hiddenInSidebar(item.id),
+  );
   /** 빠른 검색(Ctrl K)에는 두 제품이 다 선다 */
   const quickNav = allNavItems.filter((item) => can(item.id));
   const englishView: EnglishView =
