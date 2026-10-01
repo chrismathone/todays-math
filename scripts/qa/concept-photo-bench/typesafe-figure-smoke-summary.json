@@ -1,0 +1,71 @@
+{
+  "date": "2026-10-02",
+  "transport": "TypeSafe direct HTTP",
+  "endpoint": "https://api.typesafe.ai/v1/systemone",
+  "requestedModel": "jev-latest",
+  "httpSuccesses": 3,
+  "attempts": 3,
+  "fastPathSuccesses": 1,
+  "results": [
+    {
+      "content": "요소 1을 지워 주세요.",
+      "expected": {
+        "op": "delete",
+        "target": 1
+      },
+      "actual": {
+        "op": "delete",
+        "target": 1
+      },
+      "match": true,
+      "ms": 295.11429999999996,
+      "responseModel": "jev-1.13.0",
+      "op": "delete",
+      "opConfidence": 1,
+      "scope": "one",
+      "scopeConfidence": 0.98,
+      "pointA": "none",
+      "pointB": "none"
+    },
+    {
+      "content": "각 ABC에 각 표시를 해 주세요.",
+      "expected": {
+        "op": "addAngle",
+        "at": "B",
+        "from": "A",
+        "to": "C"
+      },
+      "match": false,
+      "ms": 194.07690000000002,
+      "responseModel": "jev-1.13.0",
+      "op": "addAngle",
+      "opConfidence": 0.97,
+      "scope": "many",
+      "scopeConfidence": 0.72,
+      "pointA": "B",
+      "pointB": "B"
+    },
+    {
+      "content": "선분 BC의 중점을 찍어 주세요.",
+      "expected": {
+        "op": "addMidpoint",
+        "from": "B",
+        "to": "C"
+      },
+      "match": false,
+      "ms": 205.18650000000002,
+      "responseModel": "jev-1.13.0",
+      "op": "addMidpoint",
+      "opConfidence": 1,
+      "scope": "one",
+      "scopeConfidence": 0.99,
+      "pointA": "none",
+      "pointB": "C"
+    }
+  ],
+  "limitations": [
+    "Three synthetic requests; confirms transport and guards, not broad figure-edit accuracy.",
+    "Angle request was classified as multiple edits; midpoint request omitted its first point. Both returned null for the existing model fallback.",
+    "No thresholds were lowered and no production deployment or authenticated browser check occurred."
+  ]
+}
