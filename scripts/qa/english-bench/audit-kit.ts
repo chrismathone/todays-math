@@ -18,6 +18,7 @@
  * 지면(원장님 2026-10-01 «인쇄하기 좋도록») — 발문 · 보기는 제품 지면과 같은 규칙(`splitEnglishUnderline` ·
  *   `englishOptionLayout`)과 같은 글꼴(명조 본문 · 고딕 이름표)로 그린다. 문항은 쪽에 걸쳐 쪼개지 않고, 문항 머리 오른쪽에
  *   답 칸 · 강사용은 문항 아래 흠 표시 칸 · 쪽 아래 «시트 이름 · 쪽 / 전체». 정답지 맨 위는 빠른 정답표(채점용).
+ *   화면에서도 A4 한 장씩 나뉜다(«A4 사이즈 크기로 분할») — 열 때 실제 높이로 재서 장에 담는다(`PAGINATE`). 화면의 한 장 = 인쇄 한 쪽.
  */
 import {
   existsSync,
@@ -159,23 +160,31 @@ const SERIF = `"Audit Serif", "Noto Serif KR", "Nanum Myeongjo", Batang, serif`;
 const SANS = `"Audit Sans", Pretendard, "Malgun Gothic", sans-serif`;
 
 /** 색 · 굵기 · 크기는 제품 지면(`EnglishPrint.module.css` · `tokens.ts`)을 따른다 — 금색 선 · 명조 본문 · 고딕 이름표 */
-const pageCss = (footer: string) => `
+const pageCss = `
 :root { --ink: #0E0E10; --ink70: #3A3A40; --ink50: #6B6B72; --ink30: #A0A0A8; --ink15: #D4D4D8; --ink08: #E8E8EB; --gold: #A57F00; }
-@page {
-  size: A4;
-  margin: 14mm 16mm 16mm;
-  @bottom-center { content: ${JSON.stringify(footer)} "  ·  " counter(page) " / " counter(pages); font-family: ${SANS}; font-size: 8pt; color: #6B6B72; }
-}
+@page { size: A4; margin: 0; }
 * { box-sizing: border-box; }
 html, body { margin: 0; background: #fff; }
 body { color: var(--ink); font-family: ${SANS}; font-size: 10pt; line-height: 1.5; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+
+/* A4 한 장 = 화면의 한 장 = 인쇄의 한 쪽. 여백 위 14 · 좌우 16 · 아래 18mm(쪽 번호 자리) */
+.sheet { position: relative; width: 210mm; height: 297mm; padding: 14mm 16mm 0; overflow: hidden; background: #fff; }
+.sheetBody { height: 265mm; overflow: hidden; }
+.sheetBody > :first-child { margin-top: 0; }
+.sheetFoot { position: absolute; right: 16mm; bottom: 8mm; left: 16mm; color: var(--ink50); font-size: 8pt; text-align: center; }
+.flow { width: 210mm; padding: 14mm 16mm 16mm; background: #fff; }
 @media screen {
   body { background: var(--ink08); padding: 16px 0 48px; }
-  main { width: 210mm; margin: 0 auto; padding: 14mm 16mm 16mm; background: #fff; box-shadow: 0 1px 4px rgba(0, 0, 0, 0.12); }
+  .sheet, .flow { margin: 0 auto 16px; box-shadow: 0 1px 4px rgba(0, 0, 0, 0.12); }
   .howto { width: 210mm; margin: 0 auto 12px; padding: 10px 14px; border: 1px solid var(--ink30); background: #fff; font-size: 13px; line-height: 1.6; color: var(--ink70); }
   .howto b { color: var(--ink); }
 }
-@media print { .howto { display: none; } }
+@media print {
+  body { padding: 0; }
+  .howto { display: none; }
+  .sheet { margin: 0; box-shadow: none; break-after: page; page-break-after: always; }
+  .sheet:last-child { break-after: auto; page-break-after: auto; }
+}
 
 .head { margin-bottom: 2mm; }
 .headRow { display: flex; justify-content: space-between; gap: 6mm; font-size: 7.5pt; font-weight: 700; letter-spacing: 0.14em; }
@@ -225,7 +234,80 @@ tr { break-inside: avoid; page-break-inside: avoid; }
 .explain .src { color: var(--ink50); font-size: 7.5pt; overflow-wrap: anywhere; }
 `;
 
-const HOWTO = `<p class="howto"><b>인쇄</b> — Ctrl+P · 용지 <b>A4</b> · 배율 <b>기본</b> · 여백 <b>기본</b> · <b>«머리글과 바닥글» 끄기</b>(쪽 번호는 지면 아래에 찍힙니다). 이 안내는 인쇄되지 않습니다.</p>`;
+const HOWTO = `<p class="howto"><b>인쇄</b> — Ctrl+P · 용지 <b>A4</b> · 배율 <b>기본(100%)</b> · 여백 <b>기본</b> · <b>«머리글과 바닥글» 끄기</b>. 화면의 한 장이 종이 한 쪽입니다. 이 안내는 인쇄되지 않습니다.</p>`;
+
+/**
+ * A4 장 나누기(원장님 2026-10-01 «A4 사이즈 크기로 분할해서») — 글꼴을 다 읽은 뒤 블록(머리 · 묶음 머리 · 문항 · 표)을
+ * 차례로 장에 담고, 넘치면 다음 장으로 넘긴다. 문항은 쪼개지 않는다 · 묶음 머리는 첫 문항과 같이 간다 ·
+ * 정답 · 해설 표(`split`)는 줄 단위로 나누고 장마다 머리 줄을 다시 단다. 장보다 큰 블록은 그 장에 둔다(지금 표본엔 없다).
+ * 크기는 실제 그린 높이로 잰다 — 글자 수로 어림하면 글꼴 · 줄바꿈이 다른 자리에서 어긋난다.
+ * 다 나누면 `<html data-paged="장 수">` — PDF 로 뽑는 쪽이 이것을 기다린다.
+ */
+const PAGINATE = `(function () {
+  var flow = document.getElementById("flow");
+  function paginate() {
+    var label = flow.getAttribute("data-footer");
+    var holder = document.createElement("div");
+    holder.className = "sheets";
+    flow.parentNode.insertBefore(holder, flow);
+    var body = null;
+    function newSheet() {
+      var sheet = document.createElement("section");
+      sheet.className = "sheet";
+      body = document.createElement("div");
+      body.className = "sheetBody";
+      var foot = document.createElement("div");
+      foot.className = "sheetFoot";
+      sheet.appendChild(body);
+      sheet.appendChild(foot);
+      holder.appendChild(sheet);
+    }
+    function over() {
+      return body.scrollHeight > body.clientHeight + 1;
+    }
+    function moveOn(node) {
+      body.removeChild(node);
+      var last = body.lastElementChild;
+      var carry = last && last.tagName === "H2" && body.children.length > 1 ? last : null;
+      newSheet();
+      if (carry) body.appendChild(carry);
+      body.appendChild(node);
+    }
+    function place(node) {
+      body.appendChild(node);
+      if (over() && body.children.length > 1) moveOn(node);
+    }
+    function placeTable(table) {
+      var rows = Array.prototype.slice.call(table.tBodies[0].rows);
+      var shell = table.cloneNode(true);
+      shell.tBodies[0].innerHTML = "";
+      var current = shell.cloneNode(true);
+      body.appendChild(current);
+      rows.forEach(function (row) {
+        current.tBodies[0].appendChild(row);
+        if (!over()) return;
+        if (current.tBodies[0].rows.length > 1) {
+          current.tBodies[0].removeChild(row);
+          newSheet();
+          current = shell.cloneNode(true);
+          body.appendChild(current);
+          current.tBodies[0].appendChild(row);
+        } else if (body.children.length > 1) moveOn(current);
+      });
+    }
+    newSheet();
+    Array.prototype.slice.call(flow.children).forEach(function (node) {
+      if (node.tagName === "TABLE" && node.classList.contains("split")) placeTable(node);
+      else place(node);
+    });
+    flow.parentNode.removeChild(flow);
+    var sheets = holder.children;
+    for (var i = 0; i < sheets.length; i += 1)
+      sheets[i].lastChild.textContent = label + "  ·  " + (i + 1) + " / " + sheets.length;
+    document.documentElement.setAttribute("data-paged", String(sheets.length));
+  }
+  (document.fonts ? document.fonts.ready : Promise.resolve()).then(paginate);
+})();`;
 
 function page(
   title: string,
@@ -233,7 +315,7 @@ function page(
   fonts: string,
   body: string,
 ): string {
-  return `<!doctype html>\n<html lang="ko"><head><meta charset="utf-8"><title>${title}</title><style>${fonts}${pageCss(footer)}</style></head><body>${HOWTO}<main>${body}</main></body></html>\n`;
+  return `<!doctype html>\n<html lang="ko"><head><meta charset="utf-8"><title>${title}</title><style>${fonts}${pageCss}</style></head><body>${HOWTO}<main id="flow" class="flow" data-footer="${escapeHtml(footer)}">${body}</main><script>${PAGINATE}</script></body></html>\n`;
 }
 
 const field = (label: string, width: number) =>
@@ -327,9 +409,9 @@ function build(out: string, seed: number) {
     [...new Set(items.map((item) => item.type))]
       .map((type) => {
         const mine = items.filter((item) => item.type === type);
-        return `<section><h2>${type}<small>${mine[0]!.id} – ${mine.at(-1)!.id} · ${mine.length}문항</small></h2>${mine
+        return `<h2>${type}<small>${mine[0]!.id} – ${mine.at(-1)!.id} · ${mine.length}문항</small></h2>${mine
           .map((item) => itemHtml(item, teacherSheet))
-          .join("")}</section>`;
+          .join("")}`;
       })
       .join("");
 
@@ -397,13 +479,12 @@ function build(out: string, seed: number) {
         ],
         [],
       ) +
-        `<section><h2>빠른 정답표<small>강사용 A · 학생용 B</small></h2><table class="quick">${quick}</table></section>
-<section><h2>정답 · 해설<small>${all.length}문항</small></h2><table class="explain"><colgroup><col style="width:13mm"><col style="width:18mm"><col style="width:11mm"><col style="width:30mm"><col></colgroup><thead><tr><th>번호</th><th>유형</th><th>정답</th><th>세트 · 문항</th><th>해설</th></tr></thead><tbody>${all
+        `<h2>빠른 정답표<small>강사용 A · 학생용 B</small></h2><table class="quick">${quick}</table><h2>정답 · 해설<small>${all.length}문항</small></h2><table class="explain split"><colgroup><col style="width:13mm"><col style="width:18mm"><col style="width:11mm"><col style="width:30mm"><col></colgroup><thead><tr><th>번호</th><th>유형</th><th>정답</th><th>세트 · 문항</th><th>해설</th></tr></thead><tbody>${all
           .map(
             (item) =>
               `<tr><td>${item.id}</td><td>${item.type}</td><td class="mark">${markOf(item)}</td><td class="src">${escapeHtml(sourceOf(item.file))}<br>${item.question}번</td><td class="text">${escapeHtml(item.explanation)}</td></tr>`,
           )
-          .join("")}</tbody></table></section>`,
+          .join("")}</tbody></table>`,
     ),
   );
   writeFileSync(
