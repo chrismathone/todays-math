@@ -562,7 +562,7 @@ describe("내 시험지에 저장 · 다시 열기", () => {
   });
   /**
    * 내 시험지 API 대역 — PUT 은 받은 것을 판을 하나 올려 돌려주고, GET 은 `docs` 에서 꺼낸다.
-   * 서버처럼 없는 자료에 판을 대고 저장하면 409(지워진 자료).
+   * 서버처럼 판이 안 맞으면(지워졌거나 다른 곳에서 바뀐 자료) 409.
    */
   function cloud(docs: Record<string, ReturnType<typeof stored>> = {}) {
     const puts: Put[] = [];
@@ -573,7 +573,10 @@ describe("내 시험지에 저장 · 다시 열기", () => {
         if (init?.method === "PUT") {
           const body = JSON.parse(String(init.body));
           puts.push({ url, body });
-          if (body.expectedRevision && !docs[id])
+          if (
+            body.expectedRevision &&
+            docs[id]?.revision !== body.expectedRevision
+          )
             return Response.json(
               { error: { message: "변경됨" } },
               { status: 409 },
@@ -768,6 +771,135 @@ describe("내 시험지에 저장 · 다시 열기", () => {
     const last = puts.at(-1)!;
     expect(last.url).not.toBe("/api/library/documents/blank-1");
     expect(last.body.expectedRevision).toBeNull();
+    expect(screen.queryByRole("alert")).not.toBeInTheDocument();
+    expect(saveButton()).toHaveTextContent("저장됨");
+  });
+
+  // 리뷰(2026-10-01) — 개념 백지는 숨은 채 살아 있다. 내 시험지에서 이름을 바꾸거나 지우고 돌아오면 판이 낡는다.
+  describe("내 시험지에서 바뀐 자료로 돌아오면", () => {
+    const selection = {
+      sections: [S.line],
+      forms: [
+        {
+          form: "term" as const,
+          counts: { 하: 1, 중: 0, 상: 0 },
+          extras: { 하: 0, 중: 0, 상: 0 },
+        },
+      ],
+      title: "대칭",
+    };
+    async function openThenLeave(
+      docs: Record<string, ReturnType<typeof stored>>,
+    ) {
+      const view = (active: boolean) => (
+        <ConceptBlankView
+          bank={FIXTURE_BANK}
+          active={active}
+          storageScope="owner-a"
+          openDocument={{ id: "blank-1", version: 1 }}
+        />
+      );
+      const utils = render(view(true));
+      await act(async () => {});
+      expect(saveButton()).toHaveTextContent("저장됨");
+      act(() => {
+        utils.rerender(view(false));
+      });
+      return async () => {
+        await act(async () => {
+          utils.rerender(view(true));
+        });
+      };
+    }
+
+    it("이름을 바꿨으면 새 이름 · 새 판을 받고 «저장됨» 그대로", async () => {
+      const docs = { "blank-1": stored("blank-1", 2, selection) };
+      const { puts } = cloud(docs);
+      const back = await openThenLeave(docs);
+      docs["blank-1"] = stored("blank-1", 3, {
+        ...selection,
+        title: "새 이름",
+      });
+      await back();
+      expect(screen.getByRole("textbox", { name: "제목" })).toHaveValue(
+        "새 이름",
+      );
+      expect(saveButton()).toHaveTextContent("저장됨");
+      fireEvent.change(count("용어 → 뜻 용어 하"), { target: { value: "0" } });
+      fireEvent.change(count("용어 → 뜻 용어 상"), { target: { value: "1" } });
+      await act(async () => {
+        fireEvent.click(saveButton());
+      });
+      expect(puts.at(-1)!.body.expectedRevision).toBe(3);
+      expect(screen.queryByRole("alert")).not.toBeInTheDocument();
+    });
+
+    it("지웠으면 «저장됨»이 풀리고 주소의 자료 id 도 빠진다 — 저장은 새 자료로", async () => {
+      const docs: Record<string, ReturnType<typeof stored>> = {
+        "blank-1": stored("blank-1", 2, selection),
+      };
+      const { puts } = cloud(docs);
+      const back = await openThenLeave(docs);
+      Reflect.deleteProperty(docs, "blank-1");
+      await back();
+      expect(saveButton()).toHaveTextContent("내 시험지에 저장");
+      expect(saveButton()).toBeEnabled();
+      expect(new URL(window.location.href).searchParams.has("blankDoc")).toBe(
+        false,
+      );
+      await act(async () => {
+        fireEvent.click(saveButton());
+      });
+      expect(puts.at(-1)!.url).not.toBe("/api/library/documents/blank-1");
+      expect(puts.at(-1)!.body.expectedRevision).toBeNull();
+    });
+  });
+
+  it("다른 곳에서 먼저 저장해 판이 바뀌었으면 다시 읽고 알린다 — 한 번 더 누르면 지금 고르기로 저장", async () => {
+    const selection = {
+      sections: [S.line],
+      forms: [
+        {
+          form: "term" as const,
+          counts: { 하: 1, 중: 0, 상: 0 },
+          extras: { 하: 0, 중: 0, 상: 0 },
+        },
+      ],
+    };
+    const docs = { "blank-1": stored("blank-1", 2, selection) };
+    const { puts } = cloud(docs);
+    const { rerender } = render(
+      <ConceptBlankView bank={FIXTURE_BANK} active storageScope="owner-a" />,
+    );
+    await act(async () => {
+      rerender(
+        <ConceptBlankView
+          bank={FIXTURE_BANK}
+          active
+          storageScope="owner-a"
+          openDocument={{ id: "blank-1", version: 1 }}
+        />,
+      );
+    });
+    // 다른 창이 상 1 로 저장해 판 3
+    docs["blank-1"] = stored("blank-1", 3, {
+      ...selection,
+      forms: [{ ...selection.forms[0]!, counts: { 하: 0, 중: 0, 상: 1 } }],
+    });
+    fireEvent.change(screen.getByRole("textbox", { name: "제목" }), {
+      target: { value: "이 창의 제목" },
+    });
+    await act(async () => {
+      fireEvent.click(saveButton());
+    });
+    expect(puts.at(-1)!.body.expectedRevision).toBe(2);
+    expect(screen.getByRole("alert")).toHaveTextContent("다른 곳에서 바뀌어");
+    expect(saveButton()).toBeEnabled();
+    await act(async () => {
+      fireEvent.click(saveButton());
+    });
+    expect(puts.at(-1)!.body.expectedRevision).toBe(3);
+    expect(puts.at(-1)!.body.title).toBe("이 창의 제목");
     expect(screen.queryByRole("alert")).not.toBeInTheDocument();
     expect(saveButton()).toHaveTextContent("저장됨");
   });

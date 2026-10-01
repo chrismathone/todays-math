@@ -208,7 +208,23 @@ function documentSelection(
 const selectionKey = (selection: ConceptBlankDocument["selection"]) =>
   JSON.stringify(conceptBlankDocumentSchema.shape.selection.parse(selection));
 
-type SavedDocument = { id: string; revision: number; key: string };
+/** 내 시험지에 있는 그 자료 — 판 · 고르기 열쇠 · 자료의 지면 제목(내 시험지에서 이름을 바꾸면 이것이 바뀐다). */
+type SavedDocument = {
+  id: string;
+  revision: number;
+  key: string;
+  title: string;
+};
+type BlankDocument = Awaited<ReturnType<typeof readBlankDocument>>;
+const savedFrom = (document: BlankDocument): SavedDocument => ({
+  id: document.id,
+  revision: document.revision,
+  key: selectionKey(document.selection),
+  title: document.selection.title ?? "",
+});
+/** 저장하려는데 판이 안 맞았다(다른 창 · 기기가 먼저 저장) — 다시 읽은 뒤 한 번 더 누르면 이 화면의 고르기로 저장한다. */
+const CHANGED_ELSEWHERE =
+  "내 시험지의 자료가 다른 곳에서 바뀌어 다시 읽었습니다. 다시 누르면 지금 고르기로 저장합니다.";
 
 /** 내 시험지의 개념 백지 한 벌을 읽는다 — 다른 종류이거나 꼴이 틀리면 연다고 하지 않는다. */
 async function readBlankDocument(client: PrivateCloudClient, id: string) {
@@ -459,24 +475,42 @@ export default function ConceptBlankView({
   }, [active, savedId]);
 
   /** 내 시험지에서 읽은 자료를 받는다 — `keepDraft` 면 지금 고르기(주소의 아직 저장 안 한 고침)를 그대로 둔다. */
-  const adopt = useCallback(
-    (
-      document: Awaited<ReturnType<typeof readBlankDocument>>,
-      keepDraft: boolean,
-    ) => {
-      setSavedDocument({
-        id: document.id,
-        revision: document.revision,
-        key: selectionKey(document.selection),
-      });
-      setSaveError("");
-      if (keepDraft) return;
-      const next = draftFrom(document.selection);
-      setDraft(next);
-      setOpenGrade(gradeOf(next));
-    },
-    [],
-  );
+  const adopt = useCallback((document: BlankDocument, keepDraft: boolean) => {
+    setSavedDocument(savedFrom(document));
+    setSaveError("");
+    if (keepDraft) return;
+    const next = draftFrom(document.selection);
+    setDraft(next);
+    setOpenGrade(gradeOf(next));
+  }, []);
+  // 탭으로 돌아오면 그 자료를 다시 읽는다 — 이 화면은 숨은 채 살아 있어, 내 시험지에서 이름을 바꾸거나 지우면 판이 낡는다
+  // (리뷰 2026-10-01). 지워졌으면 «저장됨»을 풀고(다음 저장은 새 자료), 이름이 바뀌었으면 제목 칸도 새 이름으로.
+  const wasActive = useRef(active);
+  useEffect(() => {
+    const back = active && !wasActive.current;
+    wasActive.current = active;
+    if (!back || !client || !savedDocument) return;
+    const previous = savedDocument;
+    let live = true;
+    readBlankDocument(client, previous.id).then(
+      (document) => {
+        if (!live) return;
+        const next = savedFrom(document);
+        setSavedDocument(next);
+        if (next.title !== previous.title)
+          setDraft((current) => ({ ...current, title: next.title }));
+      },
+      (cause) => {
+        if (live && cause instanceof PrivateCloudError && cause.status === 404)
+          setSavedDocument((current) =>
+            current?.id === previous.id ? null : current,
+          );
+      },
+    );
+    return () => {
+      live = false;
+    };
+  }, [active, client, savedDocument]);
   // 내 시험지의 [열기] — 판이 바뀔 때마다 다시 읽는다(같은 자료를 두 번 열어도).
   const openId = openDocument?.id;
   const openVersion = openDocument?.version;
@@ -592,23 +626,30 @@ export default function ConceptBlankView({
           savedDocument?.revision ?? null,
         );
       } catch (cause) {
-        // 열어 둔 자료를 내 시험지에서 지웠으면(409 · 다시 읽어 404) 새 자료로 담는다 — 고르기뿐이라 잃을 것이 없다.
-        const gone =
-          savedDocument &&
-          cause instanceof PrivateCloudError &&
-          cause.status === 409 &&
-          (await client.get(savedDocument.id).then(
-            () => false,
-            (missing) =>
-              missing instanceof PrivateCloudError && missing.status === 404,
-          ));
-        if (!gone) throw cause;
+        // 판이 안 맞으면(409) 다시 읽는다. 지워졌으면(404) 새 자료로 담는다 — 고르기뿐이라 잃을 것이 없다.
+        // 다른 곳에서 먼저 저장했으면 새 판을 받고 알린다 — 다시 누르면 이 화면의 고르기로 저장한다.
+        if (
+          !savedDocument ||
+          !(cause instanceof PrivateCloudError && cause.status === 409)
+        )
+          throw cause;
+        const latest = await readBlankDocument(client, savedDocument.id).catch(
+          (missing) =>
+            missing instanceof PrivateCloudError && missing.status === 404
+              ? null
+              : Promise.reject(cause),
+        );
+        if (latest) {
+          setSavedDocument(savedFrom(latest));
+          throw new Error(CHANGED_ELSEWHERE);
+        }
         document = await put(privateDocumentId(), null);
       }
       setSavedDocument({
         id: document.id,
         revision: document.revision,
         key: selectionKey(toSave),
+        title: toSave.title ?? "",
       });
     } catch (cause) {
       setSaveError(cloudError(cause));

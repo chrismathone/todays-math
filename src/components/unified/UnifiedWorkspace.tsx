@@ -1428,7 +1428,7 @@ function UnifiedWorkspaceContent({
                   forgetPrivateDraft(item.id);
                   return;
                 }
-                // 개념 백지는 고르기만 담는다 — 지울 것이 화면에 없다(열려 있던 것은 다음 저장이 새 자료로 간다).
+                // 개념 백지는 고르기만 담는다 — 지울 것이 화면에 없다. 열어 둔 것이었으면 개념 백지 탭이 돌아올 때 다시 읽어 «저장됨»을 풀고, 다음 저장은 새 자료로 간다.
                 if (item.kind === "conceptBlank") return;
                 await forgetPrivateExtraction(storageScope, item.id);
                 const url = new URL(window.location.href);
