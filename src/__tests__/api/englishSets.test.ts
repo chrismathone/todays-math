@@ -209,6 +209,44 @@ describe("POST /api/english/exams/[id]/sets — 저장", () => {
     });
   });
 
+  it("만든 조건(meta)을 함께 보내면 그대로 저장하고 돌려준다 · 안 보내면 null(원장님 2026-10-01 «메타데이터 기억되게»)", async () => {
+    const meta = {
+      path: "api" as const,
+      mode: "original" as const,
+      difficulty: "표준" as const,
+      count: 2,
+      types: ["주제" as const, "서술형" as const],
+      model: "gpt-6-luna",
+      promptVersion: "v3",
+    };
+    const res = await createSet(
+      jsonRequest(setsUrl(examId), "POST", { ...DRAFT, meta }),
+      withId(examId),
+    );
+    expect(res.status).toBe(201);
+    const body = englishSetResponseSchema.parse(await res.json());
+    expect(body.data.meta).toEqual(meta);
+    expect(englishRows.sets()[0]!.meta).toEqual(meta);
+
+    const bare = await createSet(
+      jsonRequest(setsUrl(examId), "POST", DRAFT),
+      withId(examId),
+    );
+    expect(
+      englishSetResponseSchema.parse(await bare.json()).data.meta,
+    ).toBeNull();
+
+    // 모르는 칸이 든 meta 는 계약이 막는다(400) — 아무 글이나 쌓이지 않게
+    const wrong = await createSet(
+      jsonRequest(setsUrl(examId), "POST", {
+        ...DRAFT,
+        meta: { ...meta, note: "x" },
+      }),
+      withId(examId),
+    );
+    expect(wrong.status).toBe(400);
+  });
+
   it("상태를 «검토 완료»로 보내도 계약이 거절한다(400) — 저장은 늘 초안", async () => {
     const res = await createSet(
       jsonRequest(setsUrl(examId), "POST", { ...DRAFT, status: "검토 완료" }),

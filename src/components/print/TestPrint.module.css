@@ -19,7 +19,10 @@
   grid-template-columns: minmax(0, 1fr) auto;
   align-items: center;
   gap: 16px;
-  font-family: Pretendard, "Apple SD Gothic Neo", "Malgun Gothic", sans-serif;
+  /* 앱 글꼴(next/font 로 싣는 Pretendard)이 맨 앞 — 이름 «Pretendard» 만 쓰면 그 글꼴을 깔지 않은 기계에서 맑은 고딕으로 떨어진다 */
+  font-family:
+    var(--font-pretendard), Pretendard, "Apple SD Gothic Neo", "Malgun Gothic",
+    sans-serif;
   box-shadow: 0 6px 18px rgb(23 43 77 / 5%);
 }
 

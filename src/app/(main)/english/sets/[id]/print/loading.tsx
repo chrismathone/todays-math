@@ -8,7 +8,7 @@ export default function Loading() {
         padding: 24,
         color: "var(--learn-muted)",
         fontFamily:
-          'Pretendard, "Apple SD Gothic Neo", "Malgun Gothic", sans-serif',
+          'var(--font-pretendard), Pretendard, "Apple SD Gothic Neo", "Malgun Gothic", sans-serif',
         fontSize: 14,
       }}
     >

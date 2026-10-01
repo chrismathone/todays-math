@@ -4,13 +4,17 @@
  * 구현: src/components/english/EnglishEditor.tsx (뿌리 EnglishStudio 가 마운트)
  *
  * 무엇을 잠그나
- * 1. 세트를 읽어 «QUESTION 01 · 유형» 머리 · 발문 · 보기 1~5(`aria-label` «N번 문제 M번 선택지») · 정답 · 해설 · 근거를 그린다.
+ * 1. 세트를 읽어 «1번 · 유형» 머리 · 발문 · 보기 ①~⑤ · 정답 · 해설 · 근거를 **지면과 같은 규칙으로** 그린다(어법의 `<u>` 는 밑줄).
+ *    고칠 칸(`aria-label` «N번 문제 M번 선택지» 등)은 «N번 문제 수정»을 누르면 열린다 — 원장님 2026-10-01 «후보정»·«스크롤 없이».
  * 2. 내용을 고치면 상태가 «초안»으로 내려간다(ChatGPT 앱 규칙).
  * 3. 저장은 `revision` 을 싣고, 성공하면 응답의 `revision` 으로 갱신한다(두 번째 저장이 새 값을 싣는다).
  * 4. 409 면 알림 줄 + «다시 불러오기» — 다시 읽으면 알림이 걷히고 서버 내용으로 돌아온다.
  * 5. 인쇄 창은 학생용·교사용 새 탭 링크. 검토 완료가 아니면 «아직 검토 완료하지 않은 문제입니다.» 한 줄.
  * 6. 삭제는 확인 창 뒤 목록으로 돌아간다.
  */
+import { readFileSync } from "node:fs";
+import path from "node:path";
+
 import { http, HttpResponse } from "msw";
 import {
   fireEvent,
@@ -48,8 +52,27 @@ async function openDraft(log = makeLog()) {
 describe("[EnglishEditor] 검토·편집", () => {
   it("세트를 읽어 문항 머리 · 보기 · 정답 · 해설 · 근거를 그린다", async () => {
     await openDraft();
-    expect(screen.getByText("QUESTION 01 · 주제")).toBeVisible();
-    expect(screen.getByText("QUESTION 03 · 서술형")).toBeVisible();
+    expect(screen.getByText("1번 · 주제")).toBeVisible();
+    expect(screen.getByText("3번 · 서술형")).toBeVisible();
+    // 읽기 모양 — 보기는 ①~⑤ 와 글, 정답은 번호 글자
+    const first = screen.getByRole("region", { name: "1번 문항" });
+    expect(
+      within(first)
+        .getAllByRole("listitem")
+        .map((li) => li.textContent),
+    ).toEqual([
+      "①강가에 나무를 심는 일의 어려움",
+      "②학생들의 나무 심기가 마을에 가져온 변화",
+      "③홍수를 막는 여러 가지 방법",
+      "④여름에 강가를 걷는 즐거움",
+      "⑤교사와 학생의 갈등",
+    ]);
+    expect(within(first).getByText("②", { selector: "dd span" })).toBeVisible();
+    expect(
+      screen.queryByRole("textbox", { name: "1번 문제 1번 선택지" }),
+    ).not.toBeInTheDocument();
+    for (const n of [1, 3])
+      fireEvent.click(screen.getByRole("button", { name: `${n}번 문제 수정` }));
     expect(
       screen.getByRole("textbox", { name: "1번 문제 1번 선택지" }),
     ).toHaveValue("강가에 나무를 심는 일의 어려움");
@@ -237,6 +260,7 @@ describe("[EnglishEditor] 검토·편집", () => {
     };
     server.events.on("request:start", listener);
     await openDraft();
+    fireEvent.click(screen.getByRole("button", { name: "1번 문제 수정" }));
     fireEvent.change(
       screen.getByRole("textbox", { name: "1번 문제 5번 선택지" }),
       { target: { value: "   " } },
@@ -284,5 +308,165 @@ describe("[EnglishEditor] 검토·편집", () => {
     expect(
       await screen.findByRole("heading", { name: "학교별 내신 대비" }),
     ).toBeVisible();
+  });
+});
+
+describe("[EnglishEditor] 읽기 모양 · 칸 높이 · 글꼴 (원장님 2026-10-01 «후보정» · «스크롤 없이» · «폰트 일치»)", () => {
+  const grammarSet = {
+    ...ENGLISH_MOCK_SETS[0],
+    questions: [
+      {
+        type: "어법" as const,
+        prompt:
+          "밑줄 친 ①~⑤ 가운데 어법상 틀린 것을 고르시오.\n\nEvery Friday, groups ①<u>took turns</u> watering the beds. Students ②<u>recorded</u> how tall the plants were. When insects ③<u>appeared</u>, the class ④<u>looking up</u> which ones were helpful. They ⑤<u>avoided spraying</u> chemicals.",
+        options: ["1", "2", "3", "4", "5"],
+        answer: "4",
+        explanation:
+          "주어 the class 에 이어지는 동사 자리라 looked up 이어야 한다.",
+        evidence:
+          "Today the young forest protects the town from floods and gives shade to people who walk there in summer.",
+      },
+      ...ENGLISH_MOCK_SETS[0].questions.slice(1),
+    ],
+  };
+
+  async function openGrammar() {
+    server.use(
+      http.get(`/api/english/sets/${ENGLISH_SET_DRAFT_ID}`, () =>
+        HttpResponse.json(englishSetResponseSchema.parse({ data: grammarSet })),
+      ),
+    );
+    render(<Harness log={makeLog()} openSetId={ENGLISH_SET_DRAFT_ID} />);
+    await screen.findByRole("textbox", { name: "세트 이름" });
+    return screen.getByRole("region", { name: "1번 문항" });
+  }
+
+  it("어법의 <u> 표기는 밑줄로 그린다 — 꺾쇠 글자가 화면에 없고, 번호뿐인 보기는 보기 줄을 찍지 않는다(지면과 같은 규칙)", async () => {
+    const card = await openGrammar();
+    expect(card.textContent).not.toContain("<u>");
+    const underlined = [...card.querySelectorAll("u")].map(
+      (u) => u.textContent,
+    );
+    expect(underlined).toEqual([
+      "took turns",
+      "recorded",
+      "appeared",
+      "looking up",
+      "avoided spraying",
+    ]);
+    // ①~⑤ 는 밑줄 밖
+    expect(underlined.join("")).not.toMatch(/[①-⑤]/);
+    expect(within(card).queryByRole("list")).toBeNull();
+    expect(within(card).getByText("④", { selector: "dd span" })).toBeVisible();
+  });
+
+  it("«수정»을 누르면 고칠 칸이 열리고(표기 그대로) «수정 끝»을 누르면 고친 글로 다시 그린다", async () => {
+    const card = await openGrammar();
+    fireEvent.click(screen.getByRole("button", { name: "1번 문제 수정" }));
+    const prompt = screen.getByRole("textbox", { name: "1번 문제 발문" });
+    expect((prompt as HTMLTextAreaElement).value).toContain(
+      "④<u>looking up</u>",
+    );
+    fireEvent.change(prompt, {
+      target: {
+        value: (prompt as HTMLTextAreaElement).value.replace(
+          "looking up",
+          "looked up",
+        ),
+      },
+    });
+    fireEvent.click(screen.getByRole("button", { name: "1번 문제 수정 끝" }));
+    expect(
+      screen.queryByRole("textbox", { name: "1번 문제 발문" }),
+    ).not.toBeInTheDocument();
+    expect([...card.querySelectorAll("u")].map((u) => u.textContent)).toContain(
+      "looked up",
+    );
+    // 내용을 고쳤으니 상태가 초안으로
+    expect(screen.getByRole("combobox", { name: "검토 상태" })).toHaveValue(
+      "초안",
+    );
+  });
+
+  it("저장 전 검증에 걸린 문항은 고칠 칸을 다시 연다", async () => {
+    await openDraft();
+    fireEvent.click(screen.getByRole("button", { name: "2번 문제 수정" }));
+    fireEvent.change(
+      screen.getByRole("textbox", { name: "2번 문제 3번 선택지" }),
+      { target: { value: "" } },
+    );
+    fireEvent.click(screen.getByRole("button", { name: "2번 문제 수정 끝" }));
+    expect(
+      screen.queryByRole("textbox", { name: "2번 문제 1번 선택지" }),
+    ).not.toBeInTheDocument();
+    fireEvent.click(screen.getByRole("button", { name: "저장" }));
+    expect(await screen.findByRole("alert")).toHaveTextContent("2번 문항");
+    expect(
+      screen.getByRole("textbox", { name: "2번 문제 1번 선택지" }),
+    ).toBeVisible();
+  });
+
+  it("글 칸은 내용만큼 늘어난다 — 지문 · 발문이 칸 안에서 굴러가지 않는다", async () => {
+    const spy = vi
+      .spyOn(HTMLTextAreaElement.prototype, "scrollHeight", "get")
+      .mockReturnValue(612);
+    await openDraft();
+    const passage = screen.getByRole("textbox", { name: "지문" });
+    expect(passage.style.height).toBe(
+      `${612 + passage.offsetHeight - passage.clientHeight}px`,
+    );
+    fireEvent.click(screen.getByRole("button", { name: "1번 문제 수정" }));
+    const prompt = screen.getByRole("textbox", { name: "1번 문제 발문" });
+    expect(prompt.style.height).toBe(
+      `${612 + prompt.offsetHeight - prompt.clientHeight}px`,
+    );
+    spy.mockRestore();
+  });
+
+  it("만든 조건이 있으면 메타 줄 아래에 한 줄로 보인다 — 없으면(옛 세트) 줄이 없다", async () => {
+    server.use(
+      http.get(`/api/english/sets/${ENGLISH_SET_DRAFT_ID}`, () =>
+        HttpResponse.json(
+          englishSetResponseSchema.parse({
+            data: {
+              ...ENGLISH_MOCK_SETS[0],
+              meta: {
+                path: "api",
+                mode: "original",
+                difficulty: "표준",
+                count: 3,
+                types: ["주제", "내용 일치", "서술형"],
+                model: "gpt-6-luna",
+                promptVersion: "v3",
+              },
+            },
+          }),
+        ),
+      ),
+    );
+    render(<Harness log={makeLog()} openSetId={ENGLISH_SET_DRAFT_ID} />);
+    expect(
+      await screen.findByText(
+        "만든 조건 — API 직접 생성(gpt-6-luna · 프롬프트 v3) · 원문 유지 · 표준 · 3문항 · 주제 · 내용 일치 · 서술형",
+      ),
+    ).toBeVisible();
+  });
+
+  it("옛 세트(만든 조건 없음)에는 그 줄이 없다", async () => {
+    await openDraft();
+    expect(screen.queryByText(/만든 조건 —/)).not.toBeInTheDocument();
+  });
+
+  it("🔴 화면에는 앱 글꼴 하나 — 영어 스튜디오 화면 CSS 에 명조(세리프) 글꼴이 없다", () => {
+    for (const file of [
+      "src/components/english/EnglishStudio.module.css",
+      "src/components/english/EnglishMaker.module.css",
+    ]) {
+      const css = readFileSync(path.join(process.cwd(), file), "utf8").replace(
+        /\/\*[\s\S]*?\*\//g,
+        "",
+      );
+      expect(css).not.toMatch(/(?<!sans-)serif|Myeongjo|Batang|Georgia/i);
+    }
   });
 });

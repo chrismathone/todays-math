@@ -166,11 +166,11 @@
   cursor: not-allowed;
   opacity: 0.6;
 }
-/* 영어 지문은 화면에서도 세리프(25 §1.4 — PAPER_FONTS.serifKR 의 라틴 세리프 글리프, 새 글꼴 없음). */
-.serif {
-  font-family:
-    var(--font-noto-serif-kr), "KoPubBatang", "Nanum Myeongjo", "Noto Serif KR",
-    "Batang", serif;
+/* 화면 글꼴은 앱 글꼴 하나(원장님 2026-10-01 «웹앱 안에서는 모든 곳에서 일정한 폰트») — 명조는 지면에만.
+   내용만큼 늘어나는 칸(AutoGrowTextarea)은 칸 안에서 굴러가지 않는다(«스크롤 없이 한 화면에서»). */
+.field textarea[data-autogrow] {
+  overflow: hidden;
+  resize: none;
 }
 .row {
   display: grid;

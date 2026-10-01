@@ -346,7 +346,9 @@
   display: grid;
   gap: 8px;
   color: var(--learn-muted);
-  font-family: Pretendard, "Apple SD Gothic Neo", "Malgun Gothic", sans-serif;
+  font-family:
+    var(--font-pretendard), Pretendard, "Apple SD Gothic Neo", "Malgun Gothic",
+    sans-serif;
   font-size: 14px;
   line-height: 1.55;
 }

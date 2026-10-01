@@ -27,6 +27,7 @@ import {
   type EnglishSetSummary,
 } from "@/contracts/english.contract";
 
+import AutoGrowTextarea from "./AutoGrowTextarea";
 import EnglishDialog from "./EnglishDialog";
 import EnglishExamPicker from "./EnglishExamPicker";
 import {
@@ -577,8 +578,7 @@ function MaterialDialog({
               <small>
                 {ENGLISH_MATERIAL_CONTENT_MAX.toLocaleString("ko-KR")}자 이하
               </small>
-              <textarea
-                className={s.serif}
+              <AutoGrowTextarea
                 aria-label="지문"
                 value={content}
                 maxLength={ENGLISH_MATERIAL_CONTENT_MAX}

@@ -3,7 +3,7 @@
  *
  *   npx tsx scripts/qa/english-bench/generate.ts --out <폴더> [--only codex:gpt-6-astra,claude:opus] [--prompt v1|v2] [--lanes 2]
  *
- *   [--tasks C-variation] 로 과제만 고를 수 있다. [--taskset v4] 는 v4 용 새 지문 열둘.
+ *   [--tasks C-variation] 로 과제만 고를 수 있다. [--taskset v4] 는 v4 용 새 지문 열둘 · [--taskset audit] 는 사람 감사용(같은 열둘 · 여섯 유형).
  * 결과: `<out>/gen/<모델>__<과제>.json` — 원문 응답 · 지연 · 읽기/검증기 판정. 이미 있는 파일은 건너뛴다(재개).
  * 제품 경로와 같게: 프롬프트(`buildEnglishSystemPrompt`/`buildEnglishUserPrompt`) → `parseAiJsonObject`
  *   → `coerceEnglishDraftShape` → `validateEnglishDraft(값, 요청)`.
@@ -25,7 +25,7 @@ import { isV4Version, v4Prompt } from "./promptV4";
 import { isStrictVersion, strictPrompt } from "./promptStrict";
 import { GENERATORS, type BenchModel } from "./models";
 import { BENCH_TASKS, type BenchTask } from "./tasks";
-import { V4_FICTION_TASKS, V4_TASKS } from "./tasksV4";
+import { AUDIT_TASKS, V4_FICTION_TASKS, V4_TASKS } from "./tasksV4";
 import { flag, pool, safeName } from "./util";
 
 export interface GenRecord {
@@ -145,13 +145,15 @@ async function main() {
   const tasks = flag("--tasks")?.split(",");
   // 회사(CLI)마다 따로 줄을 세운다 — 한 회사의 한도가 다른 회사를 막지 않게
   const byProvider = new Map<Provider, (() => Promise<void>)[]>();
-  // `--taskset v4` — 주제 · 내용 일치만 재는 새 지문 열둘(tasksV4.ts)
+  // `--taskset v4` — 주제 · 내용 일치만 재는 새 지문 열둘(tasksV4.ts) · `audit` — 같은 열둘을 여섯 유형으로(사람 감사)
   const taskset =
     flag("--taskset") === "v4"
       ? V4_TASKS
       : flag("--taskset") === "v4f"
         ? V4_FICTION_TASKS
-        : BENCH_TASKS;
+        : flag("--taskset") === "audit"
+          ? AUDIT_TASKS
+          : BENCH_TASKS;
   for (const task of taskset.filter((t) => !tasks || tasks.includes(t.id)))
     for (const model of models) {
       const jobs = byProvider.get(model.provider) ?? [];

@@ -2,7 +2,9 @@
  * 오늘의 영어 — 05 §8.23 «작업실 그대로»(D-148). 값은 `Workroom.module.css` 토큰과 시안
  * `hifi-d148-english-switch.html` C 안 본문 그대로다. 새 색·새 글꼴 없음.
  * 🔴 왼쪽 색 막대 금지 · 카드·행·알약에 손가락 커서·hover 금지(D-30) — 눌리는 것은 <button>·<a> 뿐이다.
- * 영어 지문·보기는 세리프 라틴 글꼴(`PAPER_FONTS.serifKR` 의 이름 + 시스템 세리프 — 새로 싣지 않는다).
+ * 🔴 화면 글꼴은 앱 글꼴 하나다(원장님 2026-10-01 «웹앱 안에서는 모든 곳에서 일정한 폰트» · «발문과 문항번호 폰트 일치»).
+ *    전에는 지문 · 보기 · 정답 · 근거 칸만 세리프(`--e-serif`)였는데, 그 목록에 실어 둔 글꼴이 없어 Windows 에서는
+ *    영어가 Georgia · 한글이 다른 대체 글꼴로 떨어져 한 화면에 글꼴이 셋이었다. 명조는 **지면에만**(EnglishPrint.module.css).
  */
 .studio {
   --e-line: #d4dce8;
@@ -21,11 +23,6 @@
   --e-done-ink: #2447b8;
   --e-danger: #b42318;
   --e-danger-bg: #fff2ed;
-  /* `PAPER_FONTS.serifKR`(src/components/unified/print/tokens.ts)을 손으로 옮긴 것 — CSS 는 토큰을 import 못 한다.
-   * 라틴 대체로 Georgia · Times New Roman 을 뒤에 둔다(새 글꼴 적재 없음). 토큰이 바뀌면 여기도 같이(검토 #7) */
-  --e-serif:
-    "KoPubBatang", "Nanum Myeongjo", "Noto Serif KR", Georgia,
-    "Times New Roman", serif;
   min-width: 0;
   color: var(--e-ink);
 }
@@ -37,8 +34,10 @@
 .studio textarea {
   line-height: 1.6;
 }
-.serif {
-  font-family: var(--e-serif);
+/* 내용만큼 늘어나는 칸(AutoGrowTextarea) — 칸 안에서 굴러가지 않는다(원장님 «스크롤 없이 한 화면에서») */
+.studio textarea[data-autogrow] {
+  overflow: hidden;
+  resize: none;
 }
 .visuallyHidden {
   position: absolute;
@@ -621,32 +620,94 @@
   display: block;
   box-sizing: border-box;
   width: 100%;
-  min-height: 200px;
+  min-height: 120px;
   margin-top: 8px;
   padding: 12px 14px;
   border: 1px solid #d5dfec;
   border-radius: var(--control-radius, 8px);
-  font-family: var(--e-serif);
-  font-size: 15px;
   font-weight: 400;
   line-height: 1.7;
-  resize: vertical;
 }
 .question {
   margin-top: 12px;
 }
-.qHead {
+/* 문항 머리 — «3번 · 어법» + «수정». 글꼴 · 크기는 본문과 같다(원장님 «발문과 문항번호 폰트 일치») */
+.qHeadRow {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px 12px;
   margin: 0 0 12px;
-  font-size: var(--text-caption, 12px);
+}
+.qHead {
+  margin: 0;
+  font-size: var(--text-body, 14px);
   font-weight: 700;
-  letter-spacing: 0.6px;
-  color: #6e87b0;
+  color: var(--e-ink);
 }
 .question .field {
   margin-bottom: 12px;
 }
 .question .field textarea {
-  min-height: 72px;
+  min-height: 44px;
+}
+/* 읽기 모양 — 지면과 같은 규칙(어법의 밑줄 · 보기 번호 · 정답 번호 글자), 글꼴만 화면 글꼴 */
+.qView {
+  display: grid;
+  gap: 10px;
+  font-size: var(--text-body, 14px);
+  line-height: 1.7;
+}
+.qPrompt {
+  margin: 0;
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+}
+.qUnderline {
+  text-decoration-line: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.3em;
+  text-decoration-skip-ink: none;
+}
+.qChoices {
+  display: grid;
+  gap: 2px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.qChoices li {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  gap: 0 8px;
+  overflow-wrap: anywhere;
+}
+/* 앱 글꼴(Pretendard)의 원문자 ①~⑤ 는 글자보다 작게 그려진다 — 화면에서만 글자 크기로 키운다(지면 명조는 같은 크기) */
+.qCircled {
+  font-size: 1.25em;
+  line-height: 1;
+}
+.qFacts {
+  display: grid;
+  grid-template-columns: max-content minmax(0, 1fr);
+  gap: 4px 12px;
+  margin: 4px 0 0;
+  padding: 10px 12px;
+  border-radius: var(--control-radius, 8px);
+  background: var(--e-line-soft);
+}
+.qFacts > div {
+  display: contents;
+}
+.qFacts dt {
+  color: var(--e-muted);
+  font-weight: 700;
+}
+.qFacts dd {
+  margin: 0;
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
 }
 .options {
   display: grid;
@@ -660,17 +721,14 @@
   align-items: center;
   gap: 8px;
 }
+/* 보기 번호는 읽기 모양 · 지면과 같은 원문자(①~⑤) */
 .optionIndex {
   display: grid;
   place-items: center;
   flex-shrink: 0;
   width: 26px;
-  height: 26px;
-  border: 1px solid var(--e-line);
-  border-radius: 50%;
-  font-size: var(--text-caption, 12px);
-  font-weight: 700;
-  color: var(--e-muted);
+  color: var(--e-ink);
+  font-size: 1.25em;
 }
 .optionRow input {
   flex: 1;
@@ -679,8 +737,6 @@
   padding: 0 12px;
   border: 1px solid #d5dfec;
   border-radius: var(--control-radius, 8px);
-  font-family: var(--e-serif);
-  font-size: 15px;
 }
 .answerRow {
   display: flex;

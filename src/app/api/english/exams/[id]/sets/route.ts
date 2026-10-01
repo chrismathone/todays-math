@@ -67,7 +67,9 @@ async function handlePost(request: NextRequest, { params }: RouteContext) {
   if (!parsed.success) return validationError(parsed.error);
 
   // 세 길(ChatGPT 붙여넣기 · 원문 복원 · DeepSeek)이 같은 규칙을 지난다 — 검증 통과 ≠ 검토 완료
-  const verdict = validateEnglishDraft(parsed.data);
+  // 만든 조건(meta)은 초안이 아니다 — 검증기에는 초안만 넘긴다
+  const { meta, ...draft } = parsed.data;
+  const verdict = validateEnglishDraft(draft);
   if (!verdict.ok) return draftRejected(verdict.issues);
 
   const created = await db.englishQuestionSet.create({
@@ -77,6 +79,8 @@ async function handlePost(request: NextRequest, { params }: RouteContext) {
       source: verdict.draft.source,
       passage: verdict.draft.passage,
       questions: verdict.draft.questions,
+      // 만든 조건 — 만들기 화면이 보낸 것만(옛 클라이언트 · 손으로 만든 세트는 NULL)
+      ...(meta ? { meta } : {}),
       status: "초안",
       revision: 1,
     },

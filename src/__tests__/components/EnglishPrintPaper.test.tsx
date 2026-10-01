@@ -181,6 +181,55 @@ describe("EnglishPaper — 지면 규칙", () => {
     ]);
   });
 
+  it("번호뿐인 보기 — 발문에 자리가 다 있으면 보기 줄을 찍지 않고, 겹친 «① ①» 이 어디에도 없다 (25 §12.12 「3」)", () => {
+    const insertion = {
+      type: "문장 삽입" as const,
+      prompt:
+        "주어진 문장이 들어가기에 가장 적절한 곳은?\n[주어진 문장] So we waited.\n( ① ) One. ( ② ) Two. ( ③ ) Three. ( ④ ) Four. ( ⑤ ) Five.",
+      options: ["①", "②", "③", "④", "⑤"],
+      answer: "3",
+      explanation: "셋째 자리",
+      evidence: "So we waited.",
+    };
+    const grammar = {
+      type: "어법" as const,
+      prompt: "다음 중 어법상 틀린 것은?",
+      options: ["① grow", "② grows", "③ grew", "④ grown", "⑤ growing"],
+      answer: "2",
+      explanation: "수 일치",
+      evidence: "They grow.",
+    };
+    for (const view of ["student", "teacher"] as const) {
+      const { container, unmount } = render(
+        <EnglishPaper
+          academyName="오늘의수학"
+          exam={EXAM}
+          set={{ ...SAMPLE_SET, questions: [insertion, grammar] }}
+          view={view}
+        />,
+      );
+      const first = container.querySelector(
+        '[data-english-question="1"]',
+      ) as HTMLElement;
+      expect(within(first).queryByRole("list")).toBeNull();
+      const second = container.querySelector(
+        '[data-english-question="2"]',
+      ) as HTMLElement;
+      expect(
+        within(second)
+          .getAllByRole("listitem")
+          .map((li) => li.textContent),
+      ).toEqual(["①grow", "②grows", "③grew", "④grown", "⑤growing"]);
+      expect(container.textContent).not.toMatch(/([①-⑤])\s*\1/);
+      // 교사용 정답 상자는 그대로
+      if (view === "teacher")
+        expect(
+          within(first).getByRole("region", { name: "1번 정답 및 해설" }),
+        ).toHaveTextContent("③");
+      unmount();
+    }
+  });
+
   it("🔴 배점 글자가 어디에도 없다 (원장님 ⑻ · D-28 결)", () => {
     for (const view of ["student", "teacher"] as const) {
       const { container, unmount } = paper(view);

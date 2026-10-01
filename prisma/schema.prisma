@@ -1526,6 +1526,9 @@ model EnglishQuestionSet {
   passage   String   @db.Text
   /// 문항 배열 — **SQL 에만 있는 것**: CHECK jsonb_typeof(questions) = 'array'
   questions Json     @db.JsonB
+  /// 만든 조건(제작 방식 · 난이도 · 문항 수 · 유형 · 모델 …) — 계약 `englishSetMetaSchema`. 없으면 NULL(옛 세트).
+  /// **SQL 에만 있는 것**: CHECK meta IS NULL OR jsonb_typeof(meta) = 'object' (2026-10-01 원장님 «메타데이터 기억되게»)
+  meta      Json?    @db.JsonB
   /// 낙관적 잠금 — 읽었을 때의 값을 PUT 이 들고 오고, 다르면 409 REVISION_MISMATCH. **SQL 에만 있는 것**: CHECK revision >= 1
   revision  Int      @default(1)
   createdAt DateTime @default(now()) @map("created_at")

@@ -52,6 +52,8 @@ export interface EnglishQuestionSetRow {
   source: string;
   passage: string;
   questions: unknown;
+  /** 만든 조건(jsonb · NULL 허용 — 2026-10-01). CHECK: NULL 이거나 객체 */
+  meta: unknown;
   revision: number;
   createdAt: Date;
   updatedAt: Date;
@@ -225,6 +227,9 @@ function examWithInclude(
   return out;
 }
 
+/** jsonb 칸 — 객체 값을 연산이 아니라 값으로 받는다 */
+const JSON_OBJECT_COLUMNS = new Set(["meta"]);
+
 /** `{ increment: n }` 을 푼다. 모르는 연산 객체는 던진다 */
 function applyData<T extends object>(
   model: string,
@@ -235,6 +240,10 @@ function applyData<T extends object>(
   for (const [key, value] of Object.entries(data)) {
     if (value === undefined) continue;
     if (!(key in record)) fail(`${model} data 에 없는 칸 '${key}'`);
+    if (JSON_OBJECT_COLUMNS.has(key)) {
+      record[key] = structuredClone(value);
+      continue;
+    }
     if (
       value !== null &&
       typeof value === "object" &&
@@ -518,11 +527,17 @@ export const englishModels = {
         source: undefined,
         passage: undefined,
         questions: undefined,
+        meta: null,
         revision: 1,
         createdAt: now,
         updatedAt: now,
       } as unknown as EnglishQuestionSetRow;
       applyData("englishQuestionSet", row, data);
+      if (
+        row.meta !== null &&
+        (typeof row.meta !== "object" || Array.isArray(row.meta))
+      )
+        fail("englishQuestionSet.meta 는 NULL 이거나 객체여야 한다(CHECK)");
       if (!row.examId || !row.title || !row.source || !row.passage)
         fail("englishQuestionSet NOT NULL 칸이 비었다");
       if (!examRows.some((e) => e.id === row.examId))
@@ -646,6 +661,7 @@ export function seedEnglishQuestionSet(
     status: "초안",
     source: "manual",
     questions: [],
+    meta: null,
     revision: 1,
     createdAt: now,
     updatedAt: now,
