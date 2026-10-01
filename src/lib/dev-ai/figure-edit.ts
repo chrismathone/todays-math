@@ -144,7 +144,7 @@ export async function editDevAiFigure(
   /**
    * 빠른 길(Jev) — 두 전송 경로(구독 CLI·서버 API)가 모두 여기를 지나므로 배선은 이 한 자리면 된다.
    * 되면 지금과 **같은 모양의 결과**로 여기서 끝나고, 안 되면 `null` 이라 아래 지금 경로가 그대로 돈다.
-   * 꺼져 있으면(`STUDIO_AI_JEV=off`·키 없음) **기다림을 하나도 끼우지 않는다** — `ai` 패키지를 읽지 않는 것은 물론,
+   * 꺼져 있으면(`STUDIO_AI_JEV=off`·TypeSafe 키 없음) **기다림을 하나도 끼우지 않는다** —
    * 취소 신호가 도착하는 차례까지 지금과 똑같아야 한다.
    */
   if (isJevEnabled()) {
