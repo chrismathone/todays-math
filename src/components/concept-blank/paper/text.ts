@@ -586,3 +586,220 @@ export function circled(n: number): string {
   if (n >= 36 && n <= 50) return String.fromCodePoint(0x32b1 + n - 36);
   return `(${n})`;
 }
+
+/* ───────── 보이는 글 — 수식 마크업을 걷은 글(그림 읽기 이름) ───────── */
+
+/** 글자로 바꿀 수식 기호 — 은행에 나오는 것 전부(2026-10-01 전수 · 일곱 학년). 표에 없는 명령은 이름 글자로 둔다. */
+const PLAIN_SYMBOLS: Readonly<Record<string, string>> = {
+  times: "×",
+  div: "÷",
+  pm: "±",
+  cdot: "·",
+  angle: "∠",
+  triangle: "△",
+  square: "□",
+  bigcirc: "◯",
+  circ: "°",
+  prime: "′",
+  pi: "π",
+  le: "≤",
+  leq: "≤",
+  ge: "≥",
+  geq: "≥",
+  ne: "≠",
+  neq: "≠",
+  cdots: "…",
+  ldots: "…",
+  parallel: "∥",
+  perp: "⊥",
+  backsim: "∽",
+  sim: "∼",
+  equiv: "≡",
+  ell: "ℓ",
+  alpha: "α",
+  beta: "β",
+  theta: "θ",
+  frown: "⌢",
+  infty: "∞",
+  rightarrow: "→",
+  leftrightarrow: "↔",
+};
+/** 띄움 — 보이는 글에서는 빈칸 하나(`\!` 은 좁힘이라 없앤다). */
+const PLAIN_SPACES: Readonly<Record<string, string>> = {
+  ",": " ",
+  ";": " ",
+  ":": " ",
+  " ": " ",
+  quad: " ",
+  qquad: " ",
+  "!": "",
+};
+/** 속 글만 남기는 명령 — 글꼴 · 윗줄 · 화살표 · 점(`\overline{AB}` → AB · `0.\dot{3}` → 0.3). */
+const PLAIN_WRAPPERS = new Set([
+  "mathrm",
+  "mathit",
+  "mathbf",
+  "boldsymbol",
+  "text",
+  "textrm",
+  "operatorname",
+  "overline",
+  "underline",
+  "overrightarrow",
+  "overleftrightarrow",
+  "widehat",
+  "hat",
+  "bar",
+  "vec",
+  "dot",
+  "ddot",
+]);
+/** 아무것도 안 찍는 명령. */
+const PLAIN_SILENT = new Set([
+  "displaystyle",
+  "textstyle",
+  "big",
+  "Big",
+  "bigl",
+  "bigr",
+]);
+const PLAIN_FUNCTIONS = new Set(["sin", "cos", "tan", "log"]);
+const SUPERSCRIPT: Readonly<Record<string, string>> = {
+  "0": "⁰",
+  "1": "¹",
+  "2": "²",
+  "3": "³",
+  "4": "⁴",
+  "5": "⁵",
+  "6": "⁶",
+  "7": "⁷",
+  "8": "⁸",
+  "9": "⁹",
+  "+": "⁺",
+  "-": "⁻",
+  n: "ⁿ",
+};
+const SUBSCRIPT: Readonly<Record<string, string>> = {
+  "0": "₀",
+  "1": "₁",
+  "2": "₂",
+  "3": "₃",
+  "4": "₄",
+  "5": "₅",
+  "6": "₆",
+  "7": "₇",
+  "8": "₈",
+  "9": "₉",
+};
+
+/** 여러 덩이로 된 분자 · 분모 · 근호 속은 괄호로 감싼다(`\frac{a+b}{2}` → (a+b)/2). */
+const wrapPlain = (s: string) =>
+  [...s].length > 1 && /[+\-×÷=±·/\s]/.test(s) ? `(${s})` : s;
+
+/** `$...$` 속 TeX 하나 → 보이는 글. */
+function plainMath(tex: string): string {
+  let i = 0;
+  /** 명령의 인수 — 묶음 `{...}` 하나 또는 낱 글자 · 명령 하나. */
+  const arg = (): string => {
+    while (tex[i] === " ") i += 1;
+    if (tex[i] === "{") {
+      i += 1;
+      return run("}");
+    }
+    if (tex[i] === "\\") return command();
+    return tex[i++] ?? "";
+  };
+  const command = (): string => {
+    const m = /^\\([A-Za-z]+|.)/s.exec(tex.slice(i));
+    if (!m) {
+      i += 1;
+      return "";
+    }
+    i += m[0].length;
+    const name = m[1]!;
+    // 글자 명령 뒤 빈칸은 TeX 가 먹는다(`\angle A` → ∠A)
+    if (/^[A-Za-z]/.test(name)) while (tex[i] === " ") i += 1;
+    if (name in PLAIN_SPACES) return PLAIN_SPACES[name]!;
+    if (!/^[A-Za-z]/.test(name)) return name; // `\%` · `\{` · `\}`
+    if (name === "frac" || name === "dfrac" || name === "tfrac") {
+      const top = arg();
+      return `${wrapPlain(top)}/${wrapPlain(arg())}`;
+    }
+    if (name === "sqrt") {
+      if (tex[i] === "[") i = Math.max(i, tex.indexOf("]", i) + 1);
+      return `√${wrapPlain(arg())}`;
+    }
+    if (name === "overset" || name === "underset" || name === "stackrel") {
+      arg();
+      return arg();
+    }
+    if (name === "phantom" || name === "hphantom" || name === "vphantom") {
+      arg();
+      return "";
+    }
+    if (name === "left" || name === "right") {
+      if (tex[i] === ".") i += 1;
+      return "";
+    }
+    if (PLAIN_WRAPPERS.has(name)) return arg();
+    if (PLAIN_SILENT.has(name)) return "";
+    if (PLAIN_FUNCTIONS.has(name))
+      return /[A-Za-z0-9]/.test(tex[i] ?? "") ? `${name} ` : name;
+    return PLAIN_SYMBOLS[name] ?? name;
+  };
+  const sup = (s: string) =>
+    s === "°" || s === "′"
+      ? s
+      : [...s].every((c) => c in SUPERSCRIPT)
+        ? [...s].map((c) => SUPERSCRIPT[c]).join("")
+        : `^${wrapPlain(s)}`;
+  const sub = (s: string) =>
+    [...s].every((c) => c in SUBSCRIPT)
+      ? [...s].map((c) => SUBSCRIPT[c]).join("")
+      : s;
+  const run = (close?: string): string => {
+    let s = "";
+    while (i < tex.length) {
+      const ch = tex[i]!;
+      if (ch === close) {
+        i += 1;
+        return s;
+      }
+      if (ch === "\\") {
+        // 대분수 — 자연수와 분수 사이를 띄운다(`2\frac{1}{3}` → 2 1/3)
+        if (/\d$/.test(s) && /^\\[dt]?frac(?![A-Za-z])/.test(tex.slice(i)))
+          s += " ";
+        s += command();
+      } else if (ch === "{") {
+        i += 1;
+        s += run("}");
+      } else if (ch === "^" || ch === "_") {
+        i += 1;
+        s += ch === "^" ? sup(arg()) : sub(arg());
+      } else {
+        s += ch;
+        i += 1;
+      }
+    }
+    return s;
+  };
+  return run();
+}
+
+/**
+ * 지면 글의 **보이는 글** — 수식 `$...$` 의 마크업을 걷고 기호는 글자로(`$\angle A$` → ∠A · `$\frac{1}{2}$` → 1/2 ·
+ * `$1\,\mathrm{cm}^2$` → 1 cm²), 핵심어 괄호 `{ }` 는 뺀다. 종이에 안 찍히는 자리 — 그림의 읽기 이름(`aria-label`)에 쓴다.
+ * 화면 읽기 프로그램이 TeX 원문(«달러 백슬래시 앵글 에이»)을 읽지 않게(리뷰 2026-10-01 · 보고서 §11.8 ⑤).
+ */
+export function plainText(text: string): string {
+  return text
+    .split(/(\$[^$]*\$)/)
+    .map((part) =>
+      part.length > 1 && part.startsWith("$") && part.endsWith("$")
+        ? plainMath(part.slice(1, -1))
+        : part.replace(/[{}$]/g, ""),
+    )
+    .join("")
+    .replace(/\s+/g, " ")
+    .trim();
+}
