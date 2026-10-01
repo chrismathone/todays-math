@@ -50,6 +50,13 @@
   overflow-wrap: anywhere;
 }
 
+/* 수식은 둘레 글의 굵기를 따른다 — KaTeX 는 제 글꼴 선언(`font: normal …`)으로 굵기를 지워, 굵은 용어 · 굵은 핵심어 안의
+   수식만 가늘게 나온다(`{$1\,\mathrm{km}$}` 가 핵심어인데 굵지 않으면 흑백 인쇄에서 핵심어인지 알 수 없다).
+   KaTeX 글꼴에는 굵은 벌(Main-Bold · Math-BoldItalic)이 있다. */
+.page :global(.katex) {
+  font-weight: inherit;
+}
+
 /* 화면에서는 줄여 보인다(시안 0.58배). 부르는 쪽이 `--cb-paper-scale` 로 바꾼다. 인쇄에서는 늘 1배. */
 @media screen {
   .page {

@@ -69,7 +69,9 @@ function KeyCells({ row }: { row: KeyRow }) {
           <td className={styles.keyConcept}>
             <PaperText text={row.entry.term} />
             {row.place ? (
-              <span className={styles.keyPlace}>{row.place}</span>
+              <span className={styles.keyPlace} data-cb-place="">
+                <PaperText text={row.place} />
+              </span>
             ) : null}
           </td>
           <td className={styles.keyText}>
@@ -129,12 +131,14 @@ function KeyCells({ row }: { row: KeyRow }) {
               <FigureSvg answers className={styles.keySvg} item={row.item} />
               <div>
                 {row.item.tags.length ? (
-                  <span className={styles.keyLine}>
+                  <span className={styles.keyLine} data-cb-tag-list="">
                     이름표:{" "}
                     {row.item.tags.map((t, i) => (
                       <span key={i}>
                         {i ? " · " : ""}
-                        <b>{t.answer}</b>
+                        <b>
+                          <PaperText text={t.answer} />
+                        </b>
                       </span>
                     ))}
                   </span>

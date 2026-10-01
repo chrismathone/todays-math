@@ -1,9 +1,14 @@
-import type {
-  ConceptBlankBank,
-  ConceptBlankSelection,
-  ConceptBlankSheet,
-  SheetHeader,
+import {
+  blankKeywords,
+  type ConceptBlankBank,
+  type ConceptBlankSelection,
+  type ConceptBlankSheet,
+  type SheetHeader,
 } from "../../src/contracts/conceptBlank.contract";
+import {
+  sentenceAtoms,
+  textAtoms,
+} from "../../src/components/concept-blank/paper/text";
 import { BANK_PARTS } from "../../src/lib/concept-blank/bank";
 import { composeSheets } from "../../src/lib/concept-blank/compose";
 import { FIXTURE_BANK } from "../../src/lib/concept-blank/fixture";
@@ -92,7 +97,7 @@ export function showSheets(): ConceptBlankSheet[] {
   );
 }
 
-/** 최악 조합을 고르는 은행 묶음 — 초등(수식 없음)과 중학(수식이 많다)을 따로 세운다. */
+/** 최악 조합을 고르는 은행 묶음 — 초등(숫자 · 단위 · 분수)과 중학(식 · 근호 · 기호)을 따로 세운다. */
 export const WORST_PARTS = {
   worst: ["e3", "e4", "e5", "e6"],
   "worst-m": ["m1", "m2", "m3"],
@@ -106,10 +111,20 @@ const merged = (parts: readonly RealGrade[]): ConceptBlankBank => ({
   figures: parts.flatMap((p) => BANK_PARTS[p]!.figures),
 });
 
-/** 긴 것부터 n 개(길이가 같으면 은행 순서). */
-const longest = <T>(items: readonly T[], text: (x: T) => string, n: number) =>
+/**
+ * 지면에서 차지하는 폭(em) — 줄 어림이 세는 그 폭이다(수식은 그려지는 만큼 · 띄어쓰기 포함). 은행 2차부터 모든 숫자 · 단위가
+ * `$...$` 라, 마크업 글자 수로 «긴 것»을 고르면 짧은 글에 수식만 많은 것이 뽑힌다.
+ */
+const paperEm = (text: string) =>
+  textAtoms(text, 1).reduce((em, atom) => em + atom.px + atom.glue, 0);
+/** 뜻 문장 — 학생지 C 의 줄 폭(빈칸은 빈칸 폭으로). */
+const sentenceEm = (sentence: string) =>
+  sentenceAtoms(sentence, 14).reduce((px, a) => px + a.px + a.glue, 0) / 14;
+
+/** 큰 것부터 n 개(크기가 같으면 은행 순서). */
+const longest = <T>(items: readonly T[], size: (x: T) => number, n: number) =>
   items
-    .map((x, i) => ({ x, i, len: [...text(x)].length }))
+    .map((x, i) => ({ x, i, len: size(x) }))
     .sort((a, b) => b.len - a.len || a.i - b.i)
     .slice(0, n)
     .map((e) => e.x);
@@ -131,20 +146,25 @@ export function worstPicks(set: WorstSet = "worst") {
     ...new Set(sections.map((k) => getBlankSection(k)?.chapter ?? "")),
   ];
   return {
-    definitions: longest(REAL.concepts, (c) => c.definition, 28),
-    terms: longest(REAL.concepts, (c) => c.term, 18),
-    sections: longest(sections, (k) => getBlankSection(k)?.title ?? k, 8),
-    chapter: longest(chapters, (c) => c, 1)[0] ?? "",
-    ox: longest(REAL.ox, (o) => o.statement, 9),
-    oxWhy: longest(REAL.ox, (o) => o.why, 9),
-    apply: longest(REAL.apply, (a) => a.prompt, 6),
-    applyAnswer: longest(REAL.apply, (a) => a.answer, 6),
+    definitions: longest(REAL.concepts, (c) => sentenceEm(c.definition), 28),
+    terms: longest(REAL.concepts, (c) => paperEm(c.term), 18),
+    sections: longest(
+      sections,
+      (k) => paperEm(getBlankSection(k)?.title ?? k),
+      8,
+    ),
+    chapter: longest(chapters, paperEm, 1)[0] ?? "",
+    ox: longest(REAL.ox, (o) => paperEm(o.statement), 9),
+    oxWhy: longest(REAL.ox, (o) => paperEm(o.why), 9),
+    apply: longest(REAL.apply, (a) => paperEm(a.prompt), 6),
+    applyAnswer: longest(REAL.apply, (a) => paperEm(a.answer), 6),
+    // 이름표 · 줄이 많은 것부터, 같으면 글이 긴 것
     figures: longest(
       REAL.figures,
       (f) =>
-        "x".repeat(f.tags.length * 40 + f.lines.length * 40) +
-        f.prompt +
-        f.lines.map((l) => l.label + l.answer).join(""),
+        (f.tags.length + f.lines.length) * 40 +
+        paperEm(f.prompt) +
+        f.lines.reduce((em, l) => em + paperEm(l.label) + paperEm(l.answer), 0),
       12,
     ),
   };
@@ -198,6 +218,20 @@ export function worstSheets(set: WorstSet = "worst"): ConceptBlankSheet[] {
     },
     { form: "figure", header: header("figure"), figures: w.figures },
   ];
+}
+
+/**
+ * 빈칸이 되는 글 가운데 수식이 든 것 전부(`?set=ink`) — 은행 일곱 학년의 핵심어 · 예의 답. 빈칸 폭 어림(`inkEm`)을
+ * 실제로 그려진 폭과 맞댄다(`ink.spec.ts`).
+ */
+export function inkProbeTexts(): string[] {
+  const texts = Object.values(BANK_PARTS).flatMap((bank) =>
+    bank.concepts.flatMap((c) => [
+      ...blankKeywords(c.definition),
+      ...(c.example ? [c.example.answer] : []),
+    ]),
+  );
+  return [...new Set(texts.filter((t) => t.includes("$")))];
 }
 
 /** 문항 수 1 ~ 정원 + 1 — 칸이 적은 장도 아래가 비지 않는가. FIXTURE 와 실제 은행의 앞 항목을 돌려 쓴다. */

@@ -10,7 +10,7 @@ import { measurePages, openSet, type PageReport } from "./measure";
  * (브리프 cb-paper «받아들임» · 원장님 2026-09-30 «A4 에 맞게 · 퀄리티 · 줄맞춤»). 자는 `measure.ts`.
  *
  * 표본 — fixture(시안 두 단원) · stress(계약 상한) · math(수식) · fuzz 8(시드 고정 무작위 길이) ·
- * **real-e3 · e4 · e5 · e6 · m1 · m3(main 의 실제 은행 한 학년 전부 — 중학은 수식이 많다)** ·
+ * **real-e3 · e4 · e5 · e6 · m1 · m2 · m3(main 의 실제 은행 한 학년 전부 — 은행 2차부터 모든 숫자 · 단위 · 분수가 KaTeX)** ·
  * **worst · worst-m(실제 은행에서 가장 긴 것끼리 — 초등 · 중학)** · counts(문항 수 1 ~ 정원 + 1) ·
  * show(보고서 본보기 — 실제 은행 한 대단원).
  * 캡처는 장마다 `test-results/concept-blank-paper/<set>/…png`, 표는 `report-<set>.json`.
@@ -34,6 +34,7 @@ const SETS = [
   "real-e5",
   "real-e6",
   "real-m1",
+  "real-m2",
   "real-m3",
   ...[1, 2, 3, 4, 5, 6, 7, 8].map((seed) => `fuzz&seed=${seed}`),
 ] as const;
@@ -66,6 +67,19 @@ for (const set of SETS) {
       path.join(OUT, `report-${name}.json`),
       JSON.stringify(reports, null, 2),
     );
+    // 최악 조합에 고른 글 — 보고서 표에 옮긴다
+    if (name.startsWith("worst"))
+      writeFileSync(
+        path.join(OUT, `picks-${name}.json`),
+        await page.evaluate(() =>
+          JSON.stringify(
+            JSON.parse(document.getElementById("cb-estimates")!.textContent!)
+              .worst,
+            null,
+            2,
+          ),
+        ),
+      );
 
     const overflow = reports.filter((r) => r.overflowPx > 0.5);
     const empty = reports.filter(
@@ -122,7 +136,24 @@ for (const set of SETS) {
         expect(a.blankDrop[1], `${at} 빈칸 밑줄`).toBeLessThan(0.25);
       }
       expect(a.katexBaseline, `${at} KaTeX 기준선`).toBeLessThanOrEqual(0.5);
+      // 굵은 핵심어 안의 수식도 굵다(수식은 둘레 글의 굵기를 따른다)
+      if (a.keywordMathWeight !== null)
+        expect(
+          a.keywordMathWeight,
+          `${at} 핵심어 수식 굵기`,
+        ).toBeGreaterThanOrEqual(700);
     }
+    // ⑤ 새는 마크업 0 — 글이 나오는 모든 칸이 수식 경로를 지난다 · 수식 오류 0
+    expect(
+      reports.flatMap((r) =>
+        r.leaks.map((t) => `${r.part} ${r.form} p${r.page}: ${t}`),
+      ),
+    ).toEqual([]);
+    expect(
+      reports
+        .filter((r) => r.mathErrors > 0)
+        .map((r) => `${r.part} ${r.form} p${r.page}: ${r.mathErrors}`),
+    ).toEqual([]);
     // ② 넘침 0 — 빈 공간보다 먼저다
     expect(overflow, JSON.stringify(overflow, null, 2)).toEqual([]);
     // ③ 세로로 빈 틈이 장의 1/4 을 넘지 않는다
