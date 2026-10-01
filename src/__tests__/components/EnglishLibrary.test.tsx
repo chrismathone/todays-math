@@ -120,7 +120,7 @@ describe("[EnglishLibrary] 문제 보관함", () => {
     expect(
       await screen.findByRole("textbox", { name: "세트 이름" }),
     ).toHaveValue("원문 복원 연습");
-    expect(screen.getByText("QUESTION 01 · 원문 복원")).toBeVisible();
+    expect(screen.getByText("1번 · 원문 복원")).toBeVisible();
   });
 
   it("세트가 없는 시험은 빈 상태와 «문제 만들기»", async () => {

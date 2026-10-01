@@ -10,13 +10,14 @@ import type {
   EnglishQuestionSet as EnglishQuestionSetRow,
 } from "@prisma/client";
 
-import type {
-  EnglishExam,
-  EnglishMaterial,
-  EnglishQuestion,
-  EnglishQuestionType,
-  EnglishSet,
-  EnglishSetSummary,
+import {
+  englishSetMetaSchema,
+  type EnglishExam,
+  type EnglishMaterial,
+  type EnglishQuestion,
+  type EnglishQuestionType,
+  type EnglishSet,
+  type EnglishSetSummary,
 } from "@/contracts/english.contract";
 
 export type EnglishExamCounts = {
@@ -125,6 +126,13 @@ export function serializeEnglishSetSummary(
   };
 }
 
+/** 만든 조건 — 계약에 맞으면 싣고, 없거나 깨졌으면 null(옛 세트 · 손으로 만든 세트). 깨진 값으로 화면을 세우지 않는다 */
+function metaOf(value: unknown): EnglishSet["meta"] {
+  if (value === null || value === undefined) return null;
+  const parsed = englishSetMetaSchema.safeParse(value);
+  return parsed.success ? parsed.data : null;
+}
+
 export function serializeEnglishSet(
   row: Pick<
     EnglishQuestionSetRow,
@@ -138,11 +146,12 @@ export function serializeEnglishSet(
     | "revision"
     | "createdAt"
     | "updatedAt"
-  >,
+  > & { meta?: unknown },
 ): EnglishSet {
   return {
     ...serializeEnglishSetSummary(row),
     passage: row.passage,
     questions: questionsOf(row),
+    meta: metaOf(row.meta),
   };
 }

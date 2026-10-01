@@ -208,7 +208,8 @@ describe("실물 출력 검수 목록 — 데이터", () => {
     // 83: english-grammar-underline 추가 (2026-10-01 D-151 — 어법의 `<u>` 를 글자 밑줄로. 1px · 0.3em 은
     //     검수 시작값 — g · y · p 와 닿는지는 종이에서만 정한다).
     // 84: english-teacher-head-notes 추가 (2026-10-01 D-151 — 교사용 첫 쪽 머리의 배부 순서 · 답이 보이는 문항).
-    expect(ITEMS.length).toBe(84);
+    // 85: english-bare-choice-marks 추가 (2026-10-01 D-151 — 번호뿐인 보기는 보기 줄을 찍지 않는다).
+    expect(ITEMS.length).toBe(85);
   });
 
   /**

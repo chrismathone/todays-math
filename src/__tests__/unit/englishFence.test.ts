@@ -111,6 +111,9 @@ const TABLE_ALLOWED = [
   "prisma/schema.prisma",
   "prisma/migrations/20260930120000_english_studio/",
   "scripts/qa/apply-english-studio-migration.ts",
+  // 세트의 «만든 조건» 칸(2026-10-01 원장님 «메타데이터 기억되게») — 마이그레이션과 그 적용 도구
+  "prisma/migrations/20261001120000_english_set_meta/",
+  "scripts/qa/apply-english-set-meta-migration.ts",
   "src/lib/english/",
   "src/lib/ownership.ts",
   "src/app/api/english/",

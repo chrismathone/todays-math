@@ -19,11 +19,13 @@ import {
   ENGLISH_PASSAGE_MAX,
   englishDraftSchema,
   englishGenerateRequestSchema,
+  englishGenerateResponseSchema,
   type EnglishDraft,
   type EnglishDraftIssue,
   type EnglishExam,
   type EnglishGenerateRequest,
   type EnglishMaterial,
+  type EnglishSetMeta,
 } from "@/contracts/english.contract";
 import {
   buildChatgptRequest,
@@ -31,7 +33,10 @@ import {
   type EnglishMakerConditions,
 } from "@/lib/english/chatgpt";
 import { CLOZE_COUNTS, makeCloze } from "@/lib/english/cloze";
+import { englishMetaFromConditions } from "@/lib/english/meta";
 import { validateEnglishDraft } from "@/lib/english/validate";
+
+import AutoGrowTextarea from "./AutoGrowTextarea";
 
 import s from "./EnglishMaker.module.css";
 
@@ -195,6 +200,16 @@ export default function EnglishMakerView({
   );
   const [startedAt, setStartedAt] = useState<number | undefined>(undefined);
 
+  // 불러온 자료 — 그 글을 그대로 썼을 때만 «만든 조건»에 이름을 싣는다
+  const [pickedPassage, setPickedPassage] = useState<EnglishMaterial | null>(
+    null,
+  );
+  const [pickedCloze, setPickedCloze] = useState<EnglishMaterial | null>(null);
+  const sameText = (material: EnglishMaterial | null, text: string) =>
+    material?.content && material.content.trim() === text.trim()
+      ? material.name
+      : undefined;
+
   // ① ChatGPT
   const [fallbackText, setFallbackText] = useState<string | null>(null);
   const [pasteText, setPasteText] = useState("");
@@ -250,7 +265,7 @@ export default function EnglishMakerView({
     return { mode, topic, passage, difficulty, count, words, types };
   }
 
-  async function saveDraft(draft: EnglishDraft) {
+  async function saveDraft(draft: EnglishDraft, meta: EnglishSetMeta) {
     const body = await readJson(
       await fetch(`/api/english/exams/${exam.id}/sets`, {
         method: "POST",
@@ -260,6 +275,7 @@ export default function EnglishMakerView({
           source: draft.source,
           passage: draft.passage,
           questions: draft.questions,
+          meta,
         }),
       }),
     );
@@ -304,7 +320,15 @@ export default function EnglishMakerView({
     setPasteIssues([]);
     setBusy("import");
     try {
-      await saveDraft(verdict.draft);
+      await saveDraft(
+        verdict.draft,
+        englishMetaFromConditions("chatgpt", request, {
+          materialName:
+            request.mode === "new"
+              ? undefined
+              : sameText(pickedPassage, request.passage),
+        }),
+      );
       setPasteText("");
     } catch (error) {
       const message = messageOf(error);
@@ -343,8 +367,11 @@ export default function EnglishMakerView({
     }
     setClozeError("");
     setBusy("cloze");
+    const meta: EnglishSetMeta = { path: "cloze", count: clozeCount };
+    const materialName = sameText(pickedCloze, text);
+    if (materialName) meta.materialName = materialName;
     try {
-      await saveDraft(verdict.draft);
+      await saveDraft(verdict.draft, meta);
     } catch (error) {
       const message = messageOf(error);
       setClozeError(message);
@@ -368,16 +395,31 @@ export default function EnglishMakerView({
           body: JSON.stringify({ examId: exam.id, ...request }),
         }),
       );
-      const draft = englishDraftSchema.safeParse(
-        (body as { data?: unknown } | null)?.data,
-      );
+      const full = englishGenerateResponseSchema.safeParse(body);
+      const draft = full.success
+        ? full
+        : englishDraftSchema.safeParse(
+            (body as { data?: unknown } | null)?.data,
+          );
       if (!draft.success)
         throw new ApiFailure(
           0,
           "생성 결과를 읽지 못했습니다. 다시 시도해 주세요.",
         );
       setAiLink("ready");
-      await saveDraft(draft.data);
+      // 부른 모델 · 프롬프트 판은 서버가 알려 준다(못 읽으면 빼고 저장한다 — 초안은 잃지 않는다)
+      const model = full.success ? full.data.model : undefined;
+      await saveDraft(
+        full.success ? full.data.data : (draft.data as EnglishDraft),
+        englishMetaFromConditions("api", request, {
+          model: model?.name,
+          promptVersion: model?.promptVersion,
+          materialName:
+            request.mode === "new"
+              ? undefined
+              : sameText(pickedPassage, request.passage),
+        }),
+      );
     } catch (error) {
       const failure =
         error instanceof ApiFailure
@@ -408,7 +450,7 @@ export default function EnglishMakerView({
     document.getElementById(tabId(TABS[next]!.id))?.focus();
   }
 
-  const materialPicker = (onPick: (content: string) => void) =>
+  const materialPicker = (onPick: (material: EnglishMaterial) => void) =>
     textMaterials.length ? (
       <select
         className={s.select}
@@ -418,7 +460,7 @@ export default function EnglishMakerView({
           const picked = textMaterials.find(
             (material) => material.id === event.target.value,
           );
-          if (picked?.content) onPick(picked.content);
+          if (picked?.content) onPick(picked);
         }}
       >
         <option value="">저장한 자료 불러오기</option>
@@ -465,11 +507,13 @@ export default function EnglishMakerView({
         <div className={s.field}>
           <div className={s.fieldHead}>
             <label htmlFor={`${uid}-passage`}>원문</label>
-            {materialPicker((content) => update({ passage: content }))}
+            {materialPicker((material) => {
+              setPickedPassage(material);
+              update({ passage: material.content ?? "" });
+            })}
           </div>
-          <textarea
+          <AutoGrowTextarea
             id={`${uid}-passage`}
-            className={s.serif}
             rows={8}
             value={conditions.passage}
             placeholder="영어 원문을 붙여 넣으세요 (80자 이상)."
@@ -675,11 +719,13 @@ export default function EnglishMakerView({
               <div className={s.field}>
                 <div className={s.fieldHead}>
                   <label htmlFor={`${uid}-cloze`}>복원할 원문</label>
-                  {materialPicker((content) => setClozeText(content))}
+                  {materialPicker((material) => {
+                    setPickedCloze(material);
+                    setClozeText(material.content ?? "");
+                  })}
                 </div>
-                <textarea
+                <AutoGrowTextarea
                   id={`${uid}-cloze`}
-                  className={s.serif}
                   rows={10}
                   value={clozeText}
                   placeholder="영어 원문을 붙여 넣으세요."

@@ -210,6 +210,39 @@ export const englishQuestionSchema = z.strictObject({
 });
 export type EnglishQuestion = z.infer<typeof englishQuestionSchema>;
 
+export const ENGLISH_GENERATE_MODES = ["new", "original", "variation"] as const;
+export const englishGenerateModeSchema = z.enum(ENGLISH_GENERATE_MODES);
+export const ENGLISH_DIFFICULTIES = ["기본", "표준", "심화"] as const;
+export const englishDifficultySchema = z.enum(ENGLISH_DIFFICULTIES);
+
+/** 세트를 만든 길 — 만들기 화면의 세 탭(ChatGPT 붙여넣기 · 서버 AI · 원문 복원) */
+export const ENGLISH_SET_PATHS = ["chatgpt", "api", "cloze"] as const;
+
+/**
+ * 세트의 «만든 조건» — 원장님 2026-10-01 «수학 문제처럼 생성된 영어 문제도 입력할 수 있는 모든 메타데이터 기억되게».
+ * 만들기 화면의 칸 그대로(제작 방식 · 소재 · 원문 변형의 원문 · 난이도 · 문항 수 · 지문 길이 · 유형 · 불러온 자료 이름)와
+ * 서버 AI 길이면 부른 모델 · 프롬프트 판. 원문 유지 · 원문 복원의 원문은 세트 지문과 같아 따로 싣지 않는다.
+ * DB `english_question_set.meta`(jsonb · 없으면 NULL — 옛 세트 · 손으로 만든 세트). 세트를 고쳐도 바뀌지 않는다(만든 때의 기록).
+ */
+export const englishSetMetaSchema = z.strictObject({
+  path: z.enum(ENGLISH_SET_PATHS),
+  mode: englishGenerateModeSchema.optional(),
+  topic: z.string().trim().max(300).optional(),
+  sourcePassage: z.string().trim().max(18_000).optional(),
+  difficulty: englishDifficultySchema.optional(),
+  /** 문항 수 — 원문 복원은 «최대 문항 수» */
+  count: z.number().int().min(1).max(30).optional(),
+  words: z.number().int().min(80).max(400).optional(),
+  types: z
+    .array(englishGeneratedTypeSchema)
+    .max(ENGLISH_GENERATED_TYPES.length)
+    .optional(),
+  materialName: z.string().trim().max(200).optional(),
+  model: z.string().trim().max(80).optional(),
+  promptVersion: z.string().trim().max(16).optional(),
+});
+export type EnglishSetMeta = z.infer<typeof englishSetMetaSchema>;
+
 const setTitleSchema = z.string().trim().min(1).max(160);
 const passageSchema = z.string().trim().min(1).max(ENGLISH_PASSAGE_MAX);
 const questionsSchema = z.array(englishQuestionSchema).min(1).max(30);
@@ -232,6 +265,8 @@ export type EnglishSetSummary = z.infer<typeof englishSetSummarySchema>;
 export const englishSetSchema = englishSetSummarySchema.extend({
   passage: passageSchema,
   questions: questionsSchema,
+  /** 만든 조건 — 없으면 null(옛 세트 · 손으로 만든 세트) */
+  meta: englishSetMetaSchema.nullable().optional(),
 });
 export type EnglishSet = z.infer<typeof englishSetSchema>;
 
@@ -241,6 +276,7 @@ export const englishSetCreateSchema = z.strictObject({
   source: englishSetSourceSchema,
   passage: passageSchema,
   questions: questionsSchema,
+  meta: englishSetMetaSchema.optional(),
 });
 export type EnglishSetCreate = z.infer<typeof englishSetCreateSchema>;
 
@@ -262,11 +298,6 @@ export const englishSetResponseSchema = dataResponseSchema(englishSetSchema);
 // ─────────────────────────────────────────────
 // DeepSeek 직접 생성 (25 §4.3) — ChatGPT 요청문(§4.1)도 같은 입력을 쓴다
 // ─────────────────────────────────────────────
-
-export const ENGLISH_GENERATE_MODES = ["new", "original", "variation"] as const;
-export const englishGenerateModeSchema = z.enum(ENGLISH_GENERATE_MODES);
-export const ENGLISH_DIFFICULTIES = ["기본", "표준", "심화"] as const;
-export const englishDifficultySchema = z.enum(ENGLISH_DIFFICULTIES);
 
 export const englishGenerateRequestSchema = z
   .strictObject({
@@ -324,6 +355,15 @@ export const englishDraftSchema = z.strictObject({
 export type EnglishDraft = z.infer<typeof englishDraftSchema>;
 export const englishDraftResponseSchema =
   dataResponseSchema(englishDraftSchema);
+
+/** 서버 AI 생성 응답 — 초안 + 부른 모델 · 프롬프트 판(만든 조건 `meta` 에 싣는다) */
+export const englishGenerateResponseSchema = z.strictObject({
+  data: englishDraftSchema,
+  model: z.strictObject({
+    name: z.string().min(1).max(80),
+    promptVersion: z.string().min(1).max(16),
+  }),
+});
 
 /** 검증기 실패 — 어느 문항(0부터, 지문이면 null)이 어느 규칙에 걸렸나 */
 export const englishDraftIssueSchema = z.strictObject({

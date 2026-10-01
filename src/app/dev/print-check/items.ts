@@ -2644,6 +2644,30 @@ export const ITEMS: PrintCheckItem[] = [
       "`english-bundle-sheets` 와 같은 세트를 교사용으로 한 번 더. 누출 짝이 있는 세트면 둘째 줄에 문항이 적힌다.",
     changedOn: "2026-10-01",
   },
+  {
+    id: "english-bare-choice-marks",
+    title: "오늘의 영어 — 번호뿐인 보기(삽입 · 어법)의 보기 줄",
+    changed:
+      "보기 값이 번호 글자뿐인 문항이 «① ①» · «② ②»로 번호를 두 번 찍던 것을 고쳤다(25 §12.12 「3」 — 3자 합의). " +
+      "다섯 보기가 모두 자기 번호뿐이고 발문에 ①~⑤ **자리**(«( ① )» · «①<u>…</u>»)가 다 있으면 **보기 줄을 찍지 않는다** — " +
+      "수능 꼴, 글 속 번호에 표시. «①~⑤ 가운데»처럼 말로만 든 번호는 자리로 세지 않는다. 자리가 모자라면 번호만 다섯 줄. " +
+      "보기 글이 자기 번호로 시작하면(«① grow») 그 번호 하나만 걷는다. 학생용 · 교사용 같다(교사용 «정답 ③» 상자는 그대로).",
+    look:
+      "(제안) ① 삽입 문항 — 보기 줄 없이 글 속 ( ① )~( ⑤ ) 만 있는가, 학생이 표시할 자리가 분명한가. " +
+      "② 밑줄형 어법(«①<u>…</u>» · 보기 «1»~«5») — 보기 줄이 없는가. ③ 보기 글이 있는 어법(«① grow») — 번호가 한 번만 찍히는가. " +
+      "④ 교사용 정답 상자에 «정답 ③» 이 있는가. ⑤ 보기 줄이 빠져 문항이 짧아진 뒤 쪽 나눔이 어긋나지 않는가(잘림 · 빈 쪽).",
+    lookFromSource: false,
+    evidence: [
+      "src/lib/english/options.ts (englishOptionLayout)",
+      "src/components/english/print/EnglishPaper.tsx (QuestionBlock)",
+      "src/__tests__/unit/englishOptions.test.ts",
+      "src/__tests__/components/EnglishPrintPaper.test.tsx",
+      "인쇄 경로 /english/sets/{세트id}/print?view=student · ?view=teacher",
+    ],
+    scale: "삽입 문항 · 밑줄형 어법 문항이 든 세트",
+    status: "대기",
+    changedOn: "2026-10-01",
+  },
 ];
 
 /** 한 번에 다 보려면 어떤 시험지를 뽑아야 하나. */

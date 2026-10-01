@@ -11,13 +11,13 @@
  *      → `AiGenerationError` 502. 셋 다 `AiGenerationError` 의 하위 타입이라 **이 순서**여야 원인이 안 뭉개진다.
  * 비밀 값 · 프롬프트 전문 · 원문은 응답과 로그에 싣지 않는다.
  *
- * 대응 계약: src/contracts/english.contract.ts (englishGenerateRequestSchema / englishDraftResponseSchema)
+ * 대응 계약: src/contracts/english.contract.ts (englishGenerateRequestSchema / englishGenerateResponseSchema)
  */
 import type { NextRequest } from "next/server";
 
 import {
-  englishDraftResponseSchema,
   englishGenerateRequestSchema,
+  englishGenerateResponseSchema,
   englishGradeSchema,
 } from "@/contracts/english.contract";
 import { sameOriginMutation } from "@/lib/accountAccess";
@@ -35,6 +35,7 @@ import {
 import {
   ENGLISH_DRAFT_REJECTED,
   EnglishDraftRejectedError,
+  englishGenerationModel,
   generateEnglishDraft,
 } from "@/lib/english/generate";
 import { withErrorLog } from "@/lib/errorLog/withErrorLog";
@@ -65,8 +66,11 @@ async function handlePost(request: NextRequest) {
 
   try {
     const draft = await generateEnglishDraft(parsed.data, grade);
-    // 200 — 만든 자원이 없다. 저장은 클라이언트가 sets POST 로.
-    return jsonOk(englishDraftResponseSchema, { data: draft });
+    // 200 — 만든 자원이 없다. 저장은 클라이언트가 sets POST 로. 부른 모델 · 프롬프트 판은 «만든 조건»에 실린다
+    return jsonOk(englishGenerateResponseSchema, {
+      data: draft,
+      model: englishGenerationModel(),
+    });
   } catch (error) {
     if (error instanceof AiCapacityError)
       return jsonError(

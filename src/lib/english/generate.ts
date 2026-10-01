@@ -23,11 +23,12 @@ import type {
   EnglishGenerateRequest,
   EnglishGrade,
 } from "@/contracts/english.contract";
-import { callAi } from "@/lib/ai/client";
+import { DEEPSEEK_MODEL, callAi } from "@/lib/ai/client";
 import { AiConfigError, AiGenerationError } from "@/lib/ai/errors";
 import { parseAiJsonObject } from "@/lib/ai/jsonRepair";
-import { callOpenAi } from "@/lib/ai/openai";
+import { ENGLISH_OPENAI_MODEL, callOpenAi } from "@/lib/ai/openai";
 import {
+  ENGLISH_EXAM_PROMPT_VERSION,
   buildEnglishRefinePrompt,
   buildEnglishSystemPrompt,
   buildEnglishUserPrompt,
@@ -82,6 +83,22 @@ export function resolveEnglishVendor(
 }
 
 /** 고쳐 쓰기를 시작해도 되는 첫 호출의 최대 소요 — 라우트 300초에서 고쳐 쓰기 한 번(~100초)과 여유를 뺀 값 */
+/**
+ * 지금 서버 AI 길이 부르는 모델 · 프롬프트 판 — 세트의 «만든 조건»에 싣는다(원장님 2026-10-01 «메타데이터 기억되게»).
+ * `generateEnglishDraft` 와 같은 `resolveEnglishVendor` 로 고르므로 실제로 부른 것과 같다.
+ */
+export function englishGenerationModel(
+  env: Record<string, string | undefined> = process.env,
+): { name: string; promptVersion: string } {
+  return {
+    name:
+      resolveEnglishVendor(env) === "openai"
+        ? ENGLISH_OPENAI_MODEL
+        : DEEPSEEK_MODEL,
+    promptVersion: ENGLISH_EXAM_PROMPT_VERSION,
+  };
+}
+
 export const ENGLISH_REFINE_BUDGET_MS = 150_000;
 
 export interface GenerateEnglishOptions {

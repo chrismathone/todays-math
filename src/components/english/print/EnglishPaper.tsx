@@ -22,8 +22,12 @@ import {
   type EnglishSet,
 } from "@/contracts/english.contract";
 import { englishBundleLabel } from "@/lib/english/bundle";
-import { splitEnglishUnderline } from "@/lib/english/underline";
+import {
+  ENGLISH_CHOICE_MARKS,
+  englishOptionLayout,
+} from "@/lib/english/options";
 
+import EnglishPromptText from "../EnglishPromptText";
 import styles from "./EnglishPrint.module.css";
 import {
   ENGLISH_BLOCK_GAP,
@@ -39,9 +43,6 @@ export const ENGLISH_VIEW_LABEL: Record<EnglishPaperView, string> = {
   student: "학생용",
   teacher: "교사용 · 정답 및 해설",
 };
-
-/** 보기 번호 — 정답 "1"~"5" 를 같은 글자로 찍는다 */
-const CHOICE_MARKS = ["①", "②", "③", "④", "⑤"] as const;
 
 /** 학생용 묶음 — `no` 가 `null` 이면 묶음이 하나뿐인 세트다(가른 것이 없어 머리에 묶음 줄을 찍지 않는다) */
 export interface EnglishPaperBundle extends EnglishPaperSelection {
@@ -121,7 +122,7 @@ function groupBlocks(placed: Placed[]): Group[] {
 function answerMark(question: EnglishQuestion): string {
   if (ENGLISH_OPEN_TYPES.includes(question.type)) return question.answer;
   const number = Number(question.answer);
-  return CHOICE_MARKS[number - 1] ?? question.answer;
+  return ENGLISH_CHOICE_MARKS[number - 1] ?? question.answer;
 }
 
 function PassageBox({
@@ -155,29 +156,6 @@ function PassageBox({
   );
 }
 
-/**
- * 발문 — 어법 문항의 `<u>…</u>` 표기만 밑줄로 그린다(번호 ①~⑤ 는 선 밖 · 줄이 바뀐 구간도 한 밑줄).
- * 짝이 깨졌으면 어디까지가 밑줄인지 알 수 없으니 글자 그대로 둔다. 다른 유형의 표기도 글자 그대로(미리보기가 알린다).
- */
-function PromptText({ question }: { question: EnglishQuestion }) {
-  const parts =
-    question.type === "어법" ? splitEnglishUnderline(question.prompt) : null;
-  if (!parts) return <>{question.prompt}</>;
-  return (
-    <>
-      {parts.map((part, order) =>
-        part.underline ? (
-          <u className={styles.underline} key={order}>
-            {part.text}
-          </u>
-        ) : (
-          <span key={order}>{part.text}</span>
-        ),
-      )}
-    </>
-  );
-}
-
 function QuestionBlock({
   index,
   question,
@@ -189,6 +167,8 @@ function QuestionBlock({
 }) {
   const number = index + 1;
   const open = ENGLISH_OPEN_TYPES.includes(question.type);
+  // 보기 줄 — 편집 화면과 같은 규칙(번호뿐인 보기는 발문 속 번호가 곧 보기 · 겹친 번호를 찍지 않는다)
+  const options = englishOptionLayout(question);
   return (
     <article
       className={styles.question}
@@ -198,19 +178,22 @@ function QuestionBlock({
       <div className={styles.prompt}>
         <span className={styles.number}>{number}.</span>
         <span className={styles.promptText}>
-          <PromptText question={question} />
+          <EnglishPromptText
+            question={question}
+            underlineClassName={styles.underline}
+          />
         </span>
       </div>
-      {question.options.length > 0 ? (
+      {options.lines.length > 0 && !options.omitted ? (
         <ol
           aria-label={`${number}번 보기`}
           className={styles.choices}
           lang="en"
         >
-          {question.options.map((option, choice) => (
+          {options.lines.map((line, choice) => (
             <li key={choice}>
-              <span>{CHOICE_MARKS[choice] ?? `${choice + 1}.`}</span>
-              <span className={styles.choiceText}>{option}</span>
+              <span>{line.mark}</span>
+              <span className={styles.choiceText}>{line.text}</span>
             </li>
           ))}
         </ol>

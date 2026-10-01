@@ -24,12 +24,16 @@ import {
   type EnglishSet,
   type EnglishSetStatus,
 } from "@/contracts/english.contract";
+import { englishMetaLine } from "@/lib/english/meta";
+import { ENGLISH_CHOICE_MARKS } from "@/lib/english/options";
 import {
   ENGLISH_CHOICE_COUNT,
   validateEnglishDraft,
 } from "@/lib/english/validate";
 
+import AutoGrowTextarea from "./AutoGrowTextarea";
 import EnglishDialog from "./EnglishDialog";
+import EnglishQuestionView from "./EnglishQuestionView";
 import {
   EnglishRequestError,
   SOURCE_LABEL,
@@ -77,6 +81,8 @@ export default function EnglishEditor({
   const [deleteOpen, setDeleteOpen] = useState(false);
   const [deleteError, setDeleteError] = useState<string | null>(null);
   const [deleting, setDeleting] = useState(false);
+  // 고칠 칸이 열린 문항(0부터) — 처음엔 모두 읽기 모양(지면과 같은 규칙으로 그린 것)이다
+  const [editing, setEditing] = useState<ReadonlySet<number>>(() => new Set());
   const printRef = useRef<HTMLButtonElement>(null);
   const deleteRef = useRef<HTMLButtonElement>(null);
 
@@ -115,6 +121,25 @@ export default function EnglishEditor({
       ),
     }));
 
+  const toggleEditing = (index: number) =>
+    setEditing((current) => {
+      const next = new Set(current);
+      if (next.has(index)) next.delete(index);
+      else next.add(index);
+      return next;
+    });
+  /** 검증에 걸린 문항은 고칠 칸을 연다 — 사유를 읽고 바로 고치게 */
+  const openIssues = (issues: readonly { question: number | null }[]) =>
+    setEditing(
+      (current) =>
+        new Set([
+          ...current,
+          ...issues.flatMap((issue) =>
+            issue.question === null ? [] : [issue.question],
+          ),
+        ]),
+    );
+
   const save = async () => {
     if (!draft) return;
     // 빈 보기 칸은 «없는 보기»다 — 다섯 칸을 늘 그리므로 비운 칸을 걷어낸 뒤 공용 검증기를 지난다(보기 수 규칙이 사유를 낸다)
@@ -130,6 +155,7 @@ export default function EnglishEditor({
     });
     if (!verdict.ok) {
       setError(formatIssues(verdict.issues));
+      openIssues(verdict.issues);
       return;
     }
     setSaving(true);
@@ -152,9 +178,10 @@ export default function EnglishEditor({
       onSaved(body.data);
     } catch (caught) {
       if (statusOf(caught) === 409) setConflict(messageOf(caught));
-      else if (caught instanceof EnglishRequestError && caught.issues?.length)
+      else if (caught instanceof EnglishRequestError && caught.issues?.length) {
         setError(`${caught.message} ${formatIssues(caught.issues)}`);
-      else setError(messageOf(caught));
+        openIssues(caught.issues);
+      } else setError(messageOf(caught));
     } finally {
       setSaving(false);
     }
@@ -194,6 +221,9 @@ export default function EnglishEditor({
         label="문제 세트를 불러오는 중입니다…"
       />
     );
+
+  // 만든 조건 — 만들 때의 기록이라 고쳐도 바뀌지 않는다(원장님 2026-10-01 «메타데이터 기억되게»)
+  const metaLine = englishMetaLine(draft.meta);
 
   return (
     <div className={s.editor}>
@@ -284,9 +314,10 @@ export default function EnglishEditor({
           {SOURCE_LABEL[draft.source]} · {draft.questions.length}문항 ·{" "}
           {exam.school}
         </p>
+        {metaLine ? <p className={s.metaLine}>만든 조건 — {metaLine}</p> : null}
         <label className={s.passageBox}>
           지문
-          <textarea
+          <AutoGrowTextarea
             value={draft.passage}
             maxLength={ENGLISH_PASSAGE_MAX}
             onChange={(event) =>
@@ -299,99 +330,121 @@ export default function EnglishEditor({
       {draft.questions.map((question, index) => {
         const n = index + 1;
         const open = ENGLISH_OPEN_TYPES.includes(question.type);
+        const isEditing = editing.has(index);
         const options = Array.from(
           { length: ENGLISH_CHOICE_COUNT },
           (_, i) => question.options[i] ?? "",
         );
         return (
-          <section key={n} className={`${s.card} ${s.question}`}>
-            <p className={s.qHead}>
-              QUESTION {String(n).padStart(2, "0")} · {question.type}
-            </p>
-            <label className={s.field}>
-              발문
-              <textarea
-                aria-label={`${n}번 문제 발문`}
-                value={question.prompt}
-                onChange={(event) =>
-                  editQuestion(index, { prompt: event.target.value })
+          <section
+            key={n}
+            aria-label={`${n}번 문항`}
+            className={`${s.card} ${s.question}`}
+          >
+            <div className={s.qHeadRow}>
+              <p className={s.qHead}>
+                {n}번 · {question.type}
+              </p>
+              <button
+                type="button"
+                className={w.outlineButton}
+                aria-label={
+                  isEditing ? `${n}번 문제 수정 끝` : `${n}번 문제 수정`
                 }
-              />
-            </label>
-            {open ? (
-              <label className={s.field}>
-                정답 · 인정 답안
-                <textarea
-                  className={s.serif}
-                  aria-label={`${n}번 문제 정답·인정 답안`}
-                  value={question.answer}
-                  onChange={(event) =>
-                    editQuestion(index, { answer: event.target.value })
-                  }
-                />
-              </label>
+                aria-pressed={isEditing}
+                onClick={() => toggleEditing(index)}
+              >
+                {isEditing ? "수정 끝" : "수정"}
+              </button>
+            </div>
+            {!isEditing ? (
+              <EnglishQuestionView question={question} number={n} />
             ) : (
               <>
-                <ul className={s.options}>
-                  {options.map((option, i) => (
-                    <li key={i} className={s.optionRow}>
-                      <span className={s.optionIndex} aria-hidden="true">
-                        {i + 1}
-                      </span>
-                      <input
-                        aria-label={`${n}번 문제 ${i + 1}번 선택지`}
-                        value={option}
-                        maxLength={OPTION_MAX}
-                        onChange={(event) =>
-                          editQuestion(index, {
-                            options: options.map((item, j) =>
-                              j === i ? event.target.value : item,
-                            ),
-                          })
-                        }
-                      />
-                    </li>
-                  ))}
-                </ul>
-                <label className={s.answerRow}>
-                  정답 번호
-                  <select
-                    aria-label={`${n}번 문제 정답 번호`}
-                    value={question.answer}
+                <label className={s.field}>
+                  발문
+                  <AutoGrowTextarea
+                    aria-label={`${n}번 문제 발문`}
+                    value={question.prompt}
                     onChange={(event) =>
-                      editQuestion(index, { answer: event.target.value })
+                      editQuestion(index, { prompt: event.target.value })
                     }
-                  >
-                    {CHOICES.map((choice) => (
-                      <option key={choice} value={choice}>
-                        {choice}
-                      </option>
-                    ))}
-                  </select>
+                  />
+                </label>
+                {open ? (
+                  <label className={s.field}>
+                    정답 · 인정 답안
+                    <AutoGrowTextarea
+                      aria-label={`${n}번 문제 정답·인정 답안`}
+                      value={question.answer}
+                      onChange={(event) =>
+                        editQuestion(index, { answer: event.target.value })
+                      }
+                    />
+                  </label>
+                ) : (
+                  <>
+                    <ul className={s.options}>
+                      {options.map((option, i) => (
+                        <li key={i} className={s.optionRow}>
+                          <span className={s.optionIndex} aria-hidden="true">
+                            {ENGLISH_CHOICE_MARKS[i]}
+                          </span>
+                          <input
+                            aria-label={`${n}번 문제 ${i + 1}번 선택지`}
+                            value={option}
+                            maxLength={OPTION_MAX}
+                            onChange={(event) =>
+                              editQuestion(index, {
+                                options: options.map((item, j) =>
+                                  j === i ? event.target.value : item,
+                                ),
+                              })
+                            }
+                          />
+                        </li>
+                      ))}
+                    </ul>
+                    <label className={s.answerRow}>
+                      정답 번호
+                      <select
+                        aria-label={`${n}번 문제 정답 번호`}
+                        value={question.answer}
+                        onChange={(event) =>
+                          editQuestion(index, { answer: event.target.value })
+                        }
+                      >
+                        {CHOICES.map((choice, i) => (
+                          <option key={choice} value={choice}>
+                            {ENGLISH_CHOICE_MARKS[i]}
+                          </option>
+                        ))}
+                      </select>
+                    </label>
+                  </>
+                )}
+                <label className={s.field}>
+                  해설 · 채점 기준
+                  <AutoGrowTextarea
+                    aria-label={`${n}번 문제 해설·채점 기준`}
+                    value={question.explanation}
+                    onChange={(event) =>
+                      editQuestion(index, { explanation: event.target.value })
+                    }
+                  />
+                </label>
+                <label className={s.field}>
+                  지문 속 근거 <small>지문에서 그대로 이어진 인용</small>
+                  <AutoGrowTextarea
+                    aria-label={`${n}번 문제 지문 속 근거`}
+                    value={question.evidence}
+                    onChange={(event) =>
+                      editQuestion(index, { evidence: event.target.value })
+                    }
+                  />
                 </label>
               </>
             )}
-            <label className={s.field}>
-              해설 · 채점 기준
-              <textarea
-                aria-label={`${n}번 문제 해설·채점 기준`}
-                value={question.explanation}
-                onChange={(event) =>
-                  editQuestion(index, { explanation: event.target.value })
-                }
-              />
-            </label>
-            <label className={s.field}>
-              지문 속 근거 <small>지문에서 그대로 이어진 인용</small>
-              <textarea
-                className={s.serif}
-                aria-label={`${n}번 문제 지문 속 근거`}
-                value={question.evidence}
-                onChange={(event) =>
-                  editQuestion(index, { evidence: event.target.value })
-                }
-              />
-            </label>
           </section>
         );
       })}

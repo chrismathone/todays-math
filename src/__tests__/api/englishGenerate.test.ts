@@ -35,7 +35,7 @@ vi.mock("@/lib/ownership", () => ({
 
 import { POST } from "@/app/api/english/generate/route";
 import { errorResponseSchema } from "@/contracts/common.contract";
-import { englishDraftResponseSchema } from "@/contracts/english.contract";
+import { englishGenerateResponseSchema } from "@/contracts/english.contract";
 import { forbiddenError, notFoundError } from "@/lib/apiResponse";
 import { ERROR_LOG_ROUTE } from "@/lib/errorLog/withErrorLog";
 import { NOT_FOUND_ID, USER_TEACHER_ID } from "@/mocks/data";
@@ -229,8 +229,13 @@ describe("POST /api/english/generate — AI 결과와 오류 순서", () => {
     const res = await call(body);
 
     expect(res.status).toBe(200);
-    const parsed = englishDraftResponseSchema.parse(await res.json());
+    const parsed = englishGenerateResponseSchema.parse(await res.json());
     expect(parsed.data.source).toBe("deepseek");
+    // 부른 모델 · 프롬프트 판 — 세트의 «만든 조건»에 실린다(키가 없는 시험 환경이라 DeepSeek)
+    expect(parsed.model).toEqual({
+      name: "deepseek-v4-pro",
+      promptVersion: "v3",
+    });
     expect(parsed.data.questions).toHaveLength(1);
     expect(mockRequireOwned).toHaveBeenCalledWith(
       expect.objectContaining({ id: USER_TEACHER_ID }),

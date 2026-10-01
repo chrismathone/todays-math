@@ -361,6 +361,16 @@ describe("ChatGPT 로 제작", () => {
     expect(body.title).toBe("등굣길의 놀이");
     expect((body.questions as unknown[]).length).toBe(3);
     expect(body).not.toHaveProperty("status");
+    // 만든 조건 — 만들기 칸 그대로(원장님 2026-10-01 «입력할 수 있는 모든 메타데이터 기억되게»)
+    expect(body.meta).toEqual({
+      path: "chatgpt",
+      mode: "new",
+      topic: "등굣길",
+      difficulty: "표준",
+      count: 3,
+      words: 200,
+      types: ["주제", "어법"],
+    });
     expect(onSaved).toHaveBeenCalledWith("set-1");
     expect(onNotice).toHaveBeenCalledWith(
       expect.stringContaining("초안"),
@@ -421,6 +431,12 @@ describe("원문 복원", () => {
     expect(questions.length).toBeGreaterThan(0);
     expect(questions.length).toBeLessThanOrEqual(3);
     expect(questions.every((q) => q.type === "원문 복원")).toBe(true);
+    // 만든 조건 — 최대 문항 수와 불러온 자료 이름(그 글을 그대로 썼을 때)
+    expect(body.meta).toEqual({
+      path: "cloze",
+      count: 3,
+      materialName: "3과 지문",
+    });
     expect(onSaved).toHaveBeenCalledWith("set-2");
   });
 
@@ -469,7 +485,10 @@ describe("API 직접 생성", () => {
   it("200 이면 초안을 세트로 저장하고 onSaved — 상태 줄은 «AI 연결됨»", async () => {
     fetchMock
       .mockResolvedValueOnce(
-        jsonResponse({ data: { ...goodDraft, source: "deepseek" } }),
+        jsonResponse({
+          data: { ...goodDraft, source: "deepseek" },
+          model: { name: "gpt-6-luna", promptVersion: "v3" },
+        }),
       )
       .mockResolvedValueOnce(jsonResponse(savedSet("set-3", "deepseek"), 201));
     setup();
@@ -497,6 +516,18 @@ describe("API 직접 생성", () => {
     expect(generateBody.types).toEqual(["주제", "어법"]);
     const saveBody = await lastRequestBody();
     expect(saveBody.source).toBe("deepseek");
+    // 만든 조건 — 서버가 알려 준 모델 · 프롬프트 판까지
+    expect(saveBody.meta).toEqual({
+      path: "api",
+      mode: "new",
+      topic: "등굣길의 놀이",
+      difficulty: "표준",
+      count: 3,
+      words: 200,
+      types: ["주제", "어법"],
+      model: "gpt-6-luna",
+      promptVersion: "v3",
+    });
     expect(onSaved).toHaveBeenCalledWith("set-3");
     expect(screen.getByRole("status")).toHaveTextContent("AI 연결됨");
   });
