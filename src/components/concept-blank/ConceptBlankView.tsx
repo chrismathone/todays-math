@@ -53,6 +53,8 @@ import s from "./concept-blank.module.css";
 
 /** 계약의 상한(`conceptBlankSelectionSchema`) — 형식 · 난이도마다 40, 소단원 60, 제목 40자. */
 const COUNT_CAP = 40;
+/** 숫자 칸의 처음 값 — 원장님 2026-10-01 «하/중/상 10문제씩»(26 §9 ⑽). 재고가 적으면 재고만큼. */
+const DEFAULT_COUNT = 10;
 const SECTION_CAP = 60;
 const TITLE_MAX = 40;
 /** 고르기를 싣는 주소 인수 — 셸의 해시(`#conceptBlank`)는 뷰 이름만 알아서 검색 인수에 둔다(`?set=` · `?extraction=` 결). */
@@ -113,7 +115,7 @@ const EMPTY_REASON: Record<ConceptBlankForm, string> = {
 
 type FormDraft = {
   on: boolean;
-  /** 원장님이 고친 수만 — 없으면 «전부»(= 고른 소단원의 재고). */
+  /** 원장님이 고친 수만 — 없으면 10(재고가 적으면 재고만큼). */
   counts: Partial<LevelCounts>;
   extras: Partial<LevelCounts>;
 };
@@ -184,7 +186,7 @@ function maxOf(caps: Caps, form: ConceptBlankForm, row: Row): LevelCounts {
   const spec = row === "main" ? ROWS[form].main : ROWS[form].extra;
   return spec ? caps[spec.stock] : ZERO;
 }
-/** 숫자 칸의 값 — 고친 수가 없으면 «전부», 있으면 최대 안으로. */
+/** 숫자 칸의 값 — 고친 수가 없으면 10, 있으면 그 수 — 어느 쪽이든 최대(재고) 안으로. */
 function valueOf(
   draft: Draft,
   caps: Caps,
@@ -194,7 +196,7 @@ function valueOf(
   const max = maxOf(caps, form, row);
   const stored = draft.forms[form][row === "main" ? "counts" : "extras"];
   const pick = (level: ConceptBlankLevel) =>
-    Math.max(0, Math.min(stored[level] ?? max[level], max[level]));
+    Math.max(0, Math.min(stored[level] ?? DEFAULT_COUNT, max[level]));
   return { 하: pick("하"), 중: pick("중"), 상: pick("상") };
 }
 /** 형식을 켤 수 있나 — 고른 소단원에 그 형식이 쓰는 재고가 있어야 한다. */

@@ -99,6 +99,37 @@ describe("composeSheets", () => {
     expect(sheets).toEqual([]);
   });
 
+  // 은행 3차 — 소단원마다 10개씩이면 «앞에서부터 n 개»는 첫 소단원만 찍는다. 소단원 차례로 하나씩 돌려 뽑는다(26 §9).
+  it("spreads a level count over the chosen sections, one each in turn", () => {
+    const item = (id: string, section: string, level: "하" | "중" = "하") => ({
+      id,
+      section,
+      level,
+    });
+    const items = [
+      item("a1", "A"),
+      item("a2", "A"),
+      item("a3", "A"),
+      item("a4", "A"),
+      item("b1", "B"),
+      item("c1", "C"),
+      item("c2", "C"),
+      item("a-mid", "A", "중"),
+    ];
+    // 하 5 → A · B · C · A · C (B 는 하나뿐이라 셋째 바퀴부터 빠진다) — 지면은 소단원 차례 → 은행 차례
+    expect(
+      takeByLevel(items, { 하: 5, 중: 1, 상: 0 }).map((x) => x.id),
+    ).toEqual(["a1", "a2", "b1", "c1", "c2", "a-mid"]);
+    // 모자라면 남는 소단원이 마저 채운다
+    expect(
+      takeByLevel(items, { 하: 7, 중: 0, 상: 0 }).map((x) => x.id),
+    ).toEqual(["a1", "a2", "a3", "a4", "b1", "c1", "c2"]);
+    // 소단원 하나면 앞에서부터 그대로
+    expect(
+      takeByLevel(items.slice(0, 4), { 하: 2, 중: 0, 상: 0 }).map((x) => x.id),
+    ).toEqual(["a1", "a2"]);
+  });
+
   it("counts stock per level for the tree", () => {
     const c = stockCounts(
       "초5::2-3 합동과 대칭::2-3-3 선대칭도형과 그 성질 알아보기",

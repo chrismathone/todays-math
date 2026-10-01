@@ -185,7 +185,49 @@ describe("형식 카드 다섯", () => {
     expect(screen.getAllByText("소단원을 먼저 고르세요.").length).toBe(5);
   });
 
-  it("숫자 칸의 기본은 고른 소단원의 재고 전부이고, 재고를 넘지 못한다", () => {
+  it("숫자 칸의 처음 값은 10 — 재고가 더 많아도 10, 칸마다 따로(원장님 2026-10-01 «하/중/상 10문제씩»)", () => {
+    const many = (level: "하" | "중", n: number) =>
+      Array.from({ length: n }, (_, i) => ({
+        id: `fx-many-${level === "하" ? "low" : "mid"}-${i + 1}`,
+        section: S.atLeast,
+        term: `${level} 용어 ${i + 1}`,
+        kind: "정의" as const,
+        level,
+        definition: `이 문장은 {${level} 핵심어 ${i + 1}}를 담은 뜻이다.`,
+      }));
+    const ox = Array.from({ length: 11 }, (_, i) => ({
+      id: `fx-many-ox-${i + 1}`,
+      section: S.atLeast,
+      level: "하" as const,
+      statement: `${i + 1}번째 ○× 문장이다.`,
+      answer: true,
+      why: "시험용 까닭이다.",
+    }));
+    const bank = {
+      ...FIXTURE_BANK,
+      concepts: [...FIXTURE_BANK.concepts, ...many("하", 12), ...many("중", 4)],
+      ox: [...FIXTURE_BANK.ox, ...ox],
+    };
+    render(<ConceptBlankView bank={bank} active />);
+    openGrade("초5");
+    fireEvent.click(box("2-1-1 이상과 이하 알아보기"));
+    expect(count("완전 백지 개념 수 하").value).toBe("10");
+    expect(
+      Number(count("완전 백지 개념 수 하").getAttribute("max")),
+    ).toBeGreaterThanOrEqual(12);
+    expect(count("용어 → 뜻 용어 하").value).toBe("10");
+    expect(count("용어 → 뜻 ○× 하").value).toBe("10");
+    // 재고가 10 보다 적은 칸은 재고만큼
+    const mid = Number(count("완전 백지 개념 수 중").getAttribute("max"));
+    expect(mid).toBeLessThan(10);
+    expect(count("완전 백지 개념 수 중").value).toBe(String(mid));
+    // 인쇄 고르기에도 10 이 실린다
+    expect(
+      printedSelection()?.forms.find((f) => f.form === "term")?.counts.하,
+    ).toBe(10);
+  });
+
+  it("재고가 10 보다 적으면 처음 값은 재고 전부이고, 재고를 넘지 못한다", () => {
     renderView();
     openGrade("초5");
     fireEvent.click(box("2-3 합동과 대칭"));
