@@ -124,3 +124,23 @@ node --env-file=.env scripts/qa/concept-photo-bench/jev.mjs ocr .qa-artifacts/co
 기존 `sheetCode`로 문항·개념 버전을 복원하고, 문항 영역별로 사진을 읽어 관찰 결과를 보존한다. 빈 답, 판독 불가, 체크와 필기 충돌을 구분한다. 확실한 선택 번호는 정답표와 비교하고, 개념 서술은 교사 루브릭으로 별도 채점한다. 불확실한 결과는 원본 크롭과 함께 교사에게 보여준다. 모델의 자신감 수치를 곧바로 자동 채점 승인 기준으로 삼지 않는다.
 
 후속 자료에서는 개념 백지 5개 형식(recall/term/cloze/map/figure)을 포함하고, 독립적인 교사 라벨을 먼저 확정한다. 학생·시험지 단위로 개발용과 평가용을 나누며, 정답을 미작성·판독 불가에 채워 넣는 비율과 교사 검토량을 함께 측정한다.
+
+## 같은 사진으로 전체 처리 시간 비교
+
+`pipeline.mjs`는 A(Gemini 판독·채점 한 번)와 B(Gemini 판독 → Jev 채점)를 비교한다. 두 방식의 Gemini는 모두 기존 Antigravity CLI 구독의 `gemini-3.8-flash-low`다. B의 채점은 `TYPESAFE_API_KEY`를 쓰는 TypeSafe 직접 API의 `jev-latest`다. API 키는 Gemini 자식 프로세스 환경에서 제거한다.
+
+사진 10장을 방식별 3회씩 총 60회 새로 호출한다. 사진별 A/B를 연속 실행하면서 순서를 번갈아 배치하고, 회차마다 사진 순서를 순환한다. 호출은 직렬로 진행한다. 실행 전 `plan.json`에 순서, 프롬프트, 이미지 해시를 저장한다. 각 호출은 새 전용 작업 폴더를 사용한다. 동일한 계획으로 재개하면 완료된 시도의 원래 측정값을 유지하며 새로운 독립 시행으로 세지 않는다. 프롬프트·이미지·모델·라벨이 달라지면 재개를 거절한다.
+
+A에는 판독과 함께 정답표·채점 규칙을 주고, B는 Gemini 판독을 마친 다음 Jev에 정답표를 준다. 기대 판정 라벨은 모델에게 보내지 않는다. A와 B의 모델 판정을 코드로 교정하지 않고, 별도로 임시 기준 및 결정적 비교와의 일치를 기록한다. 정답표 노출 단계 차이에 따른 판독 변화도 이 비교의 일부다.
+
+타이머는 이미지 준비 직전부터 최종 판정 파싱까지다. Gemini CLI 시작, 이미지 도구, 어댑터 로그 저장 시간도 포함한다. 각 시도의 결과 JSON 저장과 통계 계산은 제외한다. 일반 Gemini API의 지연이나 실제 제품의 처리량을 측정한 것이 아니다. 실패는 전체 시도 분모에 남기며 시간 차이는 양쪽 성공 쌍에서만 계산한다. 자동 재시도는 없다.
+
+```powershell
+node --test scripts/qa/concept-photo-bench/pipeline.test.mjs
+node --env-file=.env scripts/qa/concept-photo-bench/pipeline.mjs .qa-artifacts/concept-photo-bench/samples/manifest.json .qa-artifacts/concept-photo-bench/pipeline-new 3
+node scripts/qa/concept-photo-bench/pipeline-report.mjs .qa-artifacts/concept-photo-bench/pipeline-new
+```
+
+`summary.json`은 중앙값·평균·90백분위, 판독/채점 일치, 실패 수, 동일 사진·회차의 B−A 차이, 실행 순서별 결과, 불확실 라벨 제외 결과를 담는다. 95% 참고 구간은 사진 단위로 반복을 함께 묶어 10,000회 재추출한 평균 차이의 백분위다. 같은 사진 3회를 독립 사진 3장으로 세지 않는다. `report.html`은 모든 시도와 원문 판독을 보여 주므로 비공개로 보관한다.
+
+이 자료의 선택 번호 채점은 정답표와 코드로 비교하면 충분하다. Jev 추가 호출이 필요한 의미 채점·부분점수 또는 실제 개념 백지 사진의 속도와 정확도를 이 실험으로 주장하지 않는다.
