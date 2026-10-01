@@ -47,6 +47,16 @@ describe("englishOptionLayout", () => {
     expect(layout.lines).toEqual(MARKS.map((mark) => ({ mark, text: "" })));
   });
 
+  it("🔴 번호가 «( ① )» 꼴도 «①<u>» 꼴도 아니면 자리로 세지 않는다 — 글 속에서 번호를 말로 든 것과 가리지 못한다", () => {
+    const layout = englishOptionLayout({
+      prompt:
+        "다음 중 어법상 틀린 것은? Haru ① walks ② with her ③ counts the cars ④ guess ⑤ will see.",
+      options: [...MARKS],
+    });
+    expect(layout.omitted).toBe(false);
+    expect(layout.lines.map((line) => line.text)).toEqual(["", "", "", "", ""]);
+  });
+
   it("보기 글이 자기 번호로 시작하면 그 번호 하나만 걷는다 — 다른 번호 · 글 속 번호는 그대로", () => {
     const layout = englishOptionLayout({
       prompt: "다음 중 어법상 틀린 것은?",

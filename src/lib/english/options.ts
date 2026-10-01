@@ -4,7 +4,7 @@
  *
  * 보기 값이 번호 글자뿐인 문항(삽입의 ( ① ) 자리 · 어법의 ①<u>…</u> 밑줄)은 지면이 번호를 한 번 더 붙여 «① ①»로 찍었다.
  *   - 다섯 보기가 모두 자기 번호뿐이고 발문에 ①~⑤ **자리**가 다 있으면 보기 줄을 찍지 않는다(수능 꼴 — 글 속 번호에 표시).
- *     «①~⑤ 가운데»처럼 번호를 말로만 든 것은 자리로 세지 않는다.
+ *     자리는 «( ① )» 꼴 또는 «①<u>» 꼴만 센다 — «①~⑤ 가운데»처럼 번호를 말로만 든 것은 자리가 아니다.
  *   - 자리가 모자라면 번호만 다섯 줄(겹치지 않게).
  *   - 보기 글이 자기 번호로 시작하면(«① grow») 그 번호 하나만 걷는다. 다른 번호 · 글 속 번호는 그대로.
  * 저장되는 값은 바꾸지 않는다 — 그리는 쪽만.
@@ -36,10 +36,14 @@ function isOwnMark(option: string, index: number): boolean {
   );
 }
 
-/** 발문에 ①~⑤ 자리가 다 있는가 — «①~⑤» 같은 범위 표기는 지우고 센다 */
+/**
+ * 발문에 ①~⑤ 자리가 다 있는가 — «( ① )» 꼴(삽입) 또는 «①<u>» 꼴(어법)만 자리다. 글 속에서 번호를 말로 든 것
+ * («①~⑤ 가운데» · «① walks»)과 가리려고(3자 합의 3차). 벤치에 쌓인 번호뿐인 보기 문항 465개가 모두 이 두 꼴이었다.
+ */
 function hasAllPositions(prompt: string): boolean {
-  const body = prompt.replace(/[①-⑤]\s*[~～\-–]\s*[①-⑤]/g, " ");
-  return ENGLISH_CHOICE_MARKS.every((mark) => body.includes(mark));
+  return ENGLISH_CHOICE_MARKS.every((mark) =>
+    new RegExp(`\\(\\s*${mark}\\s*\\)|${mark}\\s*<u>`, "i").test(prompt),
+  );
 }
 
 export function englishOptionLayout(
