@@ -8,6 +8,23 @@
 >
 > 같은 날 관리자 아닌 계정(`test_t`)의 상태판이 «연결 확인 중»에서 멈췄다 — 계정 관문(`src/lib/accountRouteAccess.ts`)이 `/api/dev/**` 를 **관리자만** 열어 두어 403 이었다. 이 다리는 운영의 `/api/studio/ai` 와 같은 기능이라 **development 빌드에서 이 한 경로만** 같은 메뉴(`studio`)로 연다. `/dev/unified` 화면과 나머지 `/api/dev/**` 는 그대로 관리자만.
 
+## Jev 도형 수정 빠른 길 — TypeSafe 직접 API
+
+서버 환경에 `TYPESAFE_API_KEY`를 설정하면 도형 수정(`figure-edit`)의 빠른 길이 켜진다. `src/lib/jev/client.ts`가 native `fetch`로 `POST https://api.typesafe.ai/v1/systemone`에 Bearer 인증과 `{ model: "jev-latest", state, questions }`를 보낸다. `AI_GATEWAY_API_KEY`·`VERCEL_OIDC_TOKEN`은 이 경로를 켜거나 인증하지 않는다. 키는 `NEXT_PUBLIC_`로 노출하지 않는다. `STUDIO_AI_JEV=off`로 끌 수 있고, Vitest 안에서는 `STUDIO_AI_JEV=on`을 명시한 모의 호출 시험만 켠다. [TypeSafe HTTP 계약](https://docs.typesafe.ai/api).
+
+호출 위치 조사(2026-10-02): 운영 Jev 호출자는 아래 도형 수정 경로 하나이며, 개발 다리도 같은 실행기를 공유한다.
+
+| 진입점 | Jev로 이어지는 경로 |
+| --- | --- |
+| 운영 `POST /api/studio/ai`, `action=figure-edit` | `studio-ai/handler.ts` → `executeStudioTask` → `editDevAiFigure` → `tryJevFigureEdit` → `askJev` |
+| 개발 `POST /api/dev/unified/ai`, `action=figure-edit` | `executeStudioTask`의 CLI/API 분기 → 위와 같은 `editDevAiFigure` |
+
+Jev에는 요청 글과 도형 요소·좌표를 담은 상태만 보내며 이미지는 보내지 않는다. 기존의 명령 허용 목록, 단일 수정 범위, 명시적 요소 번호·대상 검증과 op/scope 신뢰도 문턱 0.9를 유지한다. 직접 응답은 각 `answers[id]`에 `confidence`와 전체 `probabilities`를 담는다. `confidence`는 분포의 집중도이므로 선택 확률과 같은 값으로 취급하지 않고, 기존처럼 **선택 확률과 답의 confidence 중 낮은 값**을 문턱에 사용한다. 누락·잘못된 선택지·불완전한 분포는 버린다. [Choice 계약](https://docs.typesafe.ai/primitives/choice), [confidence 의미](https://docs.typesafe.ai/confidence).
+
+연결과 본문 읽기를 합쳐 1.5초 안에 끝내며 재시도하지 않는다. 키 없음, 401·429 등 HTTP 오류, 연결 실패, 잘못된 JSON/답, 시한 초과는 `null`로 돌아와 기존 도형 모델 경로를 탄다. 취소도 즉시 `null`로 끝나며 이후 경로는 기존 취소 신호를 따른다. 남은 전체 요청 예산이 빠듯하면 Jev를 건너뛴다. HTTP 리다이렉트를 거절하고 Next.js 데이터 캐시를 사용하지 않는다.
+
+보존 정책은 Gateway의 `zeroDataRetention` 옵션과 별개다. 직접 API의 공개 계약에는 그 옵션이 없으므로 보내지 않으며, `cache: "no-store"`도 제공자 측 삭제를 보장하지 않는다. 2026-10-02 확인한 [TypeSafe 법률 안내](https://docs.typesafe.ai/legal)는 ZDR을 기업 고객용 별도 옵션으로 안내한다. [개인정보 처리방침](https://typesafe.ai/legal/privacy-policy)은 입력을 모델 학습·미세조정에 쓰지 않는다고 하면서 개인정보를 서비스 제공 또는 사업상 합리적으로 필요한 기간 보관할 수 있다고 설명한다. [DPA Schedule I §8](https://typesafe.ai/legal/data-processing)은 처리 목적과 적용 법률을 고려해 필요한 기간 보관한다고 규정한다. 공개 문서에 고정 보존 일수나 이 계정의 ZDR 적용 여부는 없으므로, 직접 연결만으로 영 보존을 보장한다고 해석하지 않는다.
+
 ## 서버 모델 API
 
 `.env.example`을 참고해 실제 키를 Git에서 제외되는 로컬 환경 파일 또는 배포 환경에 설정한다. `GEMINI_API_KEY`, `DEEPSEEK_API_KEY`, `ANTHROPIC_API_KEY`, `OPENAI_API_KEY`는 모두 서버 전용이다. 자동 배정의 전체 흐름에는 앞의 세 제공자 키가 필요하고 OpenAI는 선택 사항이다.

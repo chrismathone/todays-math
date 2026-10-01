@@ -684,7 +684,7 @@ describe("빠른 길 전체", () => {
       answers({ op: "addAngle", pointA: "B", pointB: "A", pointC: "C" }),
     );
     const result = await tryJevFigureEdit(request, {
-      env: envOf({ AI_GATEWAY_API_KEY: "key" }),
+      env: envOf({ TYPESAFE_API_KEY: "key" }),
     });
     expect(result).toEqual({
       content: "",
@@ -699,22 +699,22 @@ describe("빠른 길 전체", () => {
     ask.mockResolvedValue(null);
     expect(
       await tryJevFigureEdit(request, {
-        env: envOf({ AI_GATEWAY_API_KEY: "key" }),
+        env: envOf({ TYPESAFE_API_KEY: "key" }),
       }),
     ).toBeNull();
     ask.mockResolvedValue(answers({ op: "none" }));
     expect(
       await tryJevFigureEdit(request, {
-        env: envOf({ AI_GATEWAY_API_KEY: "key" }),
+        env: envOf({ TYPESAFE_API_KEY: "key" }),
       }),
     ).toBeNull();
   });
 
-  it("꺼져 있으면 게이트웨이를 아예 부르지 않는다", async () => {
+  it("꺼져 있으면 TypeSafe를 아예 부르지 않는다", async () => {
     expect(await tryJevFigureEdit(request, { env: envOf() })).toBeNull();
     expect(
       await tryJevFigureEdit(request, {
-        env: envOf({ AI_GATEWAY_API_KEY: "key", STUDIO_AI_JEV: "off" }),
+        env: envOf({ TYPESAFE_API_KEY: "key", STUDIO_AI_JEV: "off" }),
       }),
     ).toBeNull();
     expect(ask).not.toHaveBeenCalled();
@@ -723,7 +723,7 @@ describe("빠른 길 전체", () => {
   it("남은 시간이 시한보다 빠듯하면 건너뛴다 — 지금 경로의 몫을 뺏지 않는다", async () => {
     expect(
       await tryJevFigureEdit(request, {
-        env: envOf({ AI_GATEWAY_API_KEY: "key" }),
+        env: envOf({ TYPESAFE_API_KEY: "key" }),
         deadlineAt: Date.now() + 500,
       }),
     ).toBeNull();
@@ -734,13 +734,13 @@ describe("빠른 길 전체", () => {
     expect(
       await tryJevFigureEdit(
         { ...request, figure: undefined },
-        { env: envOf({ AI_GATEWAY_API_KEY: "key" }) },
+        { env: envOf({ TYPESAFE_API_KEY: "key" }) },
       ),
     ).toBeNull();
     expect(
       await tryJevFigureEdit(
         { ...request, content: "  " },
-        { env: envOf({ AI_GATEWAY_API_KEY: "key" }) },
+        { env: envOf({ TYPESAFE_API_KEY: "key" }) },
       ),
     ).toBeNull();
     expect(ask).not.toHaveBeenCalled();
@@ -749,7 +749,7 @@ describe("빠른 길 전체", () => {
   it("이미지를 보내지 않는다 — Jev 는 그림을 못 본다", async () => {
     ask.mockResolvedValue(answers({ op: "delete", target: "2" }));
     await tryJevFigureEdit(request, {
-      env: envOf({ AI_GATEWAY_API_KEY: "key" }),
+      env: envOf({ TYPESAFE_API_KEY: "key" }),
     });
     const state = ask.mock.calls[0]?.[0]?.state as string;
     expect(state).not.toContain("data:image");
@@ -762,7 +762,7 @@ describe("운영 로그", () => {
   // 빠른 길이 몇 번 먹었고 왜 떨어졌는지를 운영 로그에서 세기 위한 한 줄. 요청 글·요소 목록은 남기지 않는다.
   it("먹었나·떨어졌나와 그 까닭을 한 줄로 남긴다", async () => {
     const info = vi.spyOn(console, "info").mockImplementation(() => {});
-    const env = envOf({ AI_GATEWAY_API_KEY: "key" });
+    const env = envOf({ TYPESAFE_API_KEY: "key" });
     const deleting = { ...request, content: "요소 2를 지워 주세요." };
 
     ask.mockResolvedValue(answers({ op: "delete", target: "2" }));
@@ -820,7 +820,7 @@ describe("운영 로그", () => {
 
 describe("배선 — 지금 경로는 한 글자도 달라지지 않는다", () => {
   beforeEach(() => {
-    vi.stubEnv("AI_GATEWAY_API_KEY", "key");
+    vi.stubEnv("TYPESAFE_API_KEY", "key");
     // 시험 안에서는 기본이 «꺼짐»이다(`isJevEnabled` 머리말) — 배선을 재려면 손수 켠다.
     vi.stubEnv("STUDIO_AI_JEV", "on");
   });
