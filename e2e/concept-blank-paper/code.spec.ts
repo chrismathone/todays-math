@@ -91,3 +91,50 @@ test("코드 줄 정원 — 가장 넓은 글자로 지은 코드가 한 줄에 
     );
   }
 });
+
+/**
+ * 보고서의 «지면 자리» 캡처 — 장 아래 140px(발 · 채점 안내 · 코드 줄)를 2배로. `test-results/concept-blank-paper/code/`.
+ * 제품 코드(fixture) · 정원 끝(가장 넓은 글자 60) · 정원 넘음(61 → «코드 없음»).
+ */
+test("코드 줄 캡처 — 학생지 첫 장 · 이어지는 장 · 채점표 마지막 장의 아래", async ({
+  browser,
+}) => {
+  const page = await browser.newPage({ deviceScaleFactor: 2 });
+  mkdirSync(path.join(OUT, "code"), { recursive: true });
+  for (const [name, query] of [
+    ["fixture", "fixture"],
+    ["capacity", `fixture&code=${SHEET_CODE_LINE_CAPACITY}`],
+    ["over", `fixture&code=${SHEET_CODE_LINE_CAPACITY + 1}`],
+  ] as const) {
+    await openSet(page, query, "both", "[data-cb-code]");
+    const pages = page.locator("[data-print-page]");
+    const n = await pages.count();
+    const parts = await page
+      .locator("[data-cb-page]")
+      .evaluateAll((els) =>
+        els.map((el) => (el as HTMLElement).dataset.cbPart),
+      );
+    const picks = {
+      "student-p1": 0,
+      "student-p2": 1,
+      "key-last": n - 1,
+    } as const;
+    for (const [label, index] of Object.entries(picks)) {
+      // 화면(1000×1400)에 장 하나가 다 들어온다 — 그 장으로 굴린 뒤 화면 좌표로 자른다
+      await pages.nth(index).scrollIntoViewIfNeeded();
+      const box = (await pages.nth(index).boundingBox())!;
+      await page.screenshot({
+        path: path.join(OUT, "code", `${name}-${label}.png`),
+        clip: {
+          x: box.x,
+          y: box.y + box.height - 140,
+          width: box.width,
+          height: 140,
+        },
+      });
+    }
+    expect(parts[0]).toBe("student");
+    expect(parts[n - 1]).toBe("key");
+  }
+  await page.close();
+});
