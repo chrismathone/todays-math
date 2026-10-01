@@ -107,7 +107,11 @@ function fitCount(count: number, typeCount: number): CountOption {
   );
 }
 
-type SaveBundle = { draft: EnglishDraft; meta: EnglishSetMeta };
+/**
+ * `examId` — 이 초안을 검증한 시험. 저장이 끊긴 뒤 시험을 바꾸고 «다시 저장»을 누르면 초안이 **다른 시험**에
+ * 들어가던 것을 막는다(D-153 검토 #2): 묶음은 제 시험으로만 보내고, 다른 시험을 보는 동안 단추는 숨긴다.
+ */
+type SaveBundle = { draft: EnglishDraft; meta: EnglishSetMeta; examId: string };
 
 function sortKeys(value: unknown): unknown {
   if (Array.isArray(value)) return value.map(sortKeys);
@@ -363,6 +367,7 @@ export default function EnglishMakerView({
   function bundleFor(draft: EnglishDraft, meta: EnglishSetMeta): SaveBundle {
     if (
       pendingSave &&
+      pendingSave.examId === exam.id &&
       sameJson(pendingSave.draft, draft) &&
       sameJson(metaWithoutKey(pendingSave.meta), metaWithoutKey(meta))
     )
@@ -370,6 +375,7 @@ export default function EnglishMakerView({
     const bundle = {
       draft,
       meta: { ...meta, clientKey: crypto.randomUUID() },
+      examId: exam.id,
     };
     setPendingSave(bundle);
     return bundle;
@@ -377,7 +383,8 @@ export default function EnglishMakerView({
 
   async function postBundle(bundle: SaveBundle): Promise<string> {
     const body = await readJson(
-      await fetch(`/api/english/exams/${exam.id}/sets`, {
+      // 묶음을 지은 시험으로 — 지금 보고 있는 시험이 아니다
+      await fetch(`/api/english/exams/${bundle.examId}/sets`, {
         method: "POST",
         headers: JSON_HEADERS,
         body: JSON.stringify({
@@ -404,7 +411,7 @@ export default function EnglishMakerView({
   }
 
   async function retrySave() {
-    if (!pendingSave || busy) return;
+    if (!pendingSave || busy || pendingSave.examId !== exam.id) return;
     const bundle = pendingSave;
     setBusy("save");
     try {
@@ -1045,7 +1052,8 @@ export default function EnglishMakerView({
           </>
         ) : null}
       </section>
-      {pendingSave ? (
+      {/* 다른 시험을 보는 동안에는 숨긴다 — 그 시험으로 돌아오면 다시 보인다(묶음은 그대로) */}
+      {pendingSave && pendingSave.examId === exam.id ? (
         <div className={s.actions}>
           <button
             type="button"

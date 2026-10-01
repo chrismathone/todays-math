@@ -756,6 +756,56 @@ describe("API 직접 생성", () => {
     expect(onSaved).toHaveBeenCalledWith("set-4");
     expect(screen.queryByRole("button", { name: "다시 저장" })).toBeNull();
   });
+
+  it("저장이 끊긴 뒤 시험을 바꾸면 «다시 저장»이 숨고, 돌아오면 묶음을 지은 시험으로 보낸다 (D-153 검토 #2)", async () => {
+    fetchMock
+      .mockResolvedValueOnce(
+        jsonResponse({
+          data: { ...goodDraft, source: "deepseek" },
+          model: { name: "gpt-6-luna", promptVersion: "v5" },
+        }),
+      )
+      .mockResolvedValueOnce(
+        jsonResponse(
+          { error: { code: "INTERNAL", message: "저장 응답이 끊겼습니다." } },
+          503,
+        ),
+      )
+      .mockResolvedValueOnce(jsonResponse(savedSet("set-5", "deepseek"), 201));
+    const view = setup();
+    fireEvent.click(tab("API 직접 생성"));
+    fillTopic("등굣길의 놀이");
+    fireEvent.change(screen.getByLabelText("문항 수"), {
+      target: { value: "3" },
+    });
+    await act(async () => {
+      fireEvent.click(button("AI 지문·문제 생성"));
+    });
+    expect(fetchMock).toHaveBeenCalledTimes(2);
+    expect(button("다시 저장")).toBeInTheDocument();
+
+    // 다른 시험으로 — 그 시험에 이 초안이 들어가면 안 된다. 단추가 없으니 보낼 길도 없다
+    const other: EnglishExam = {
+      ...exam,
+      id: "20000000-0000-4000-8000-000000000002",
+      school: "다른중학교",
+    };
+    const props = { materials, onSaved, onNotice };
+    view.rerender(<EnglishMakerView exam={other} {...props} />);
+    expect(screen.queryByRole("button", { name: "다시 저장" })).toBeNull();
+    expect(fetchMock).toHaveBeenCalledTimes(2);
+
+    // 제 시험으로 돌아오면 묶음이 그대로 — 그 시험 주소로만 나간다
+    view.rerender(<EnglishMakerView exam={exam} {...props} />);
+    await act(async () => {
+      fireEvent.click(button("다시 저장"));
+    });
+    expect(fetchMock).toHaveBeenCalledTimes(3);
+    expect(fetchMock.mock.calls[2]?.[0]).toBe(
+      `/api/english/exams/${exam.id}/sets`,
+    );
+    expect(onSaved).toHaveBeenCalledWith("set-5");
+  });
 });
 
 describe("문항 수", () => {
