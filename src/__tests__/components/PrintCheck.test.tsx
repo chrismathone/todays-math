@@ -214,7 +214,9 @@ describe("실물 출력 검수 목록 — 데이터", () => {
     // 92: concept-blank-sheet-code 추가 (2026-10-01 트랙 cb-code — 개념 백지 모든 장 맨 아래 지면 코드 줄.
     //     영어 91 과 같은 날 따로 갈라져 병합에서 겹쳤다).
     // 93: english-vocab-underline 추가 (2026-10-01 — 어휘 밑줄은 어법과 같은 규칙. 실물 검수 대기).
-    expect(ITEMS.length).toBe(93);
+    // 94: concept-blank-ten-per-level 추가 (2026-10-01 D-150 은행 3차 — 하 · 중 · 상 10개씩. 그 커밋이 이 수를
+    //     안 올려 main 이 92 ≠ 93 으로 빨갰고, 영어 93 과 따로 갈라져 병합에서 겹쳤다 — 2026-10-02 리드가 맞춤).
+    expect(ITEMS.length).toBe(94);
   });
 
   /**

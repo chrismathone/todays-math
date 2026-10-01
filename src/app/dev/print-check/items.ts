@@ -2746,7 +2746,7 @@ export const ITEMS: PrintCheckItem[] = [
       "docs/planning/tracks/briefs/cb-ten.md",
       "src/lib/concept-blank/compose.ts (takeByLevel — 소단원 차례로 돌려 뽑기)",
       "src/components/concept-blank/ConceptBlankView.tsx (DEFAULT_COUNT)",
-      "src/lib/concept-blank/bank/*-plus.ts (은행 3차 보강)",
+      "src/lib/concept-blank/bank/plus.ts (은행 3차 보강 — 학년 파일 e3-plus.ts … m3-plus.ts 를 얹는 자리)",
       "src/__tests__/unit/conceptBlankCompose.test.ts",
     ],
     scale: "개념 백지 지면 전부 — 형식 하나가 30~60문항",
