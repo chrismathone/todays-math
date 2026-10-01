@@ -409,6 +409,145 @@ describe("ChatGPT 로 제작", () => {
   });
 });
 
+describe("ChatGPT 로 제작 — 수정 요청문 (3자 합의 25 §12.13 · F1)", () => {
+  const fourOptions = {
+    ...goodDraft,
+    questions: [
+      {
+        ...goodDraft.questions[0],
+        options: goodDraft.questions[0]!.options.slice(0, 4),
+      },
+      ...goodDraft.questions.slice(1),
+    ],
+  };
+  const rejectedPaste = "```json\n" + JSON.stringify(fourOptions) + "\n```";
+
+  async function reject(paste = rejectedPaste) {
+    setup();
+    fillTopic();
+    fireEvent.change(screen.getByLabelText("문항 수"), {
+      target: { value: "3" },
+    });
+    fireEvent.change(screen.getByLabelText("ChatGPT 결과 붙여넣기"), {
+      target: { value: paste },
+    });
+    await act(async () => {
+      fireEvent.click(button("가져오기"));
+    });
+    return screen.getByRole("alert");
+  }
+
+  it("검증에 걸리면 빨간 알림 안에 «수정 요청문 복사» — 같은 대화에 붙일 글을 복사하고 알린다", async () => {
+    const alert = await reject();
+    expect(alert).toHaveTextContent(
+      "가져오지 못했습니다. 아래 사유를 ChatGPT 에 알려 고친 결과를 다시 붙여 넣어 주세요.",
+    );
+    expect(alert).toHaveTextContent("1번 문항");
+    await act(async () => {
+      fireEvent.click(
+        within(alert).getByRole("button", { name: "수정 요청문 복사" }),
+      );
+    });
+    expect(writeText).toHaveBeenCalledTimes(1);
+    const text = writeText.mock.calls[0]![0] as string;
+    expect(text).toContain("[고칠 곳]");
+    expect(text).toMatch(/- q1: 보기는 5개여야 합니다/);
+    expect(text).toContain(JSON.stringify(fourOptions));
+    expect(onNotice).toHaveBeenCalledWith(
+      "수정 요청문을 복사했습니다. 같은 ChatGPT 대화에 붙여 넣어 주세요.",
+      "status",
+    );
+    // 복사해도 사유 목록과 붙여넣기 칸은 그대로
+    expect(screen.getByRole("alert")).toHaveTextContent("1번 문항");
+    expect(screen.getByLabelText("ChatGPT 결과 붙여넣기")).toHaveValue(
+      rejectedPaste,
+    );
+    expect(fetchMock).not.toHaveBeenCalled();
+  });
+
+  it("«수정 요청문 보기»는 복사 전에 글을 펼친다([고칠 곳]부터) · 다시 누르면 접는다", async () => {
+    const alert = await reject();
+    fireEvent.click(
+      within(alert).getByRole("button", { name: "수정 요청문 보기" }),
+    );
+    const box = screen.getByRole("textbox", { name: "수정 요청문" });
+    expect(box).toHaveAttribute("readonly");
+    expect((box as HTMLTextAreaElement).value).toMatch(
+      /^\[오늘의 영어 — 고쳐 쓰기 요청\][\s\S]*\[고칠 곳\]/,
+    );
+    fireEvent.click(
+      within(screen.getByRole("alert")).getByRole("button", {
+        name: "수정 요청문 접기",
+      }),
+    );
+    expect(
+      screen.queryByRole("textbox", { name: "수정 요청문" }),
+    ).not.toBeInTheDocument();
+  });
+
+  it("🔴 JSON 을 못 찾은 거절에는 단추가 없다 — 사유가 먼저 할 일을 말한다", async () => {
+    const alert = await reject("미안합니다. 다시 만들겠습니다.");
+    expect(alert).toHaveTextContent("JSON 을 찾지 못했습니다");
+    expect(
+      within(alert).queryByRole("button", { name: "수정 요청문 복사" }),
+    ).toBeNull();
+  });
+
+  it("저장 실패(서버 오류)에도 단추가 없다 — 검증 규칙에 걸렸을 때만", async () => {
+    fetchMock.mockResolvedValue(
+      jsonResponse(
+        {
+          error: {
+            code: "INTERNAL_ERROR",
+            message: "잠시 뒤 다시 시도해 주세요.",
+          },
+        },
+        500,
+      ),
+    );
+    const alert = await reject(
+      "```json\n" + JSON.stringify(goodDraft) + "\n```",
+    );
+    expect(alert).toHaveTextContent("잠시 뒤 다시 시도해 주세요.");
+    expect(
+      within(alert).queryByRole("button", { name: "수정 요청문 복사" }),
+    ).toBeNull();
+  });
+
+  it("거절 뒤 칸을 고치면 «앞서 가져오기를 눌렀을 때의 글 기준» 한 줄 — 단추는 켜 둔 채 그때의 글로 복사한다", async () => {
+    await reject();
+    fireEvent.change(screen.getByLabelText("ChatGPT 결과 붙여넣기"), {
+      target: { value: "새로 받은 답" },
+    });
+    const alert = screen.getByRole("alert");
+    expect(alert).toHaveTextContent(
+      "아래 사유와 수정 요청문은 앞서 가져오기를 눌렀을 때의 글 기준입니다.",
+    );
+    await act(async () => {
+      fireEvent.click(
+        within(alert).getByRole("button", { name: "수정 요청문 복사" }),
+      );
+    });
+    const text = writeText.mock.calls[0]![0] as string;
+    expect(text).toContain(JSON.stringify(fourOptions));
+    expect(text).not.toContain("새로 받은 답");
+  });
+
+  it("클립보드를 못 쓰면 글을 펼쳐 직접 복사하게 한다", async () => {
+    writeText.mockRejectedValue(new Error("denied"));
+    const alert = await reject();
+    await act(async () => {
+      fireEvent.click(
+        within(alert).getByRole("button", { name: "수정 요청문 복사" }),
+      );
+    });
+    expect(screen.getByRole("alert")).toHaveTextContent(
+      "복사되지 않았습니다. 아래 글을 직접 복사해 주세요.",
+    );
+    expect(screen.getByRole("textbox", { name: "수정 요청문" })).toBeVisible();
+  });
+});
+
 describe("원문 복원", () => {
   it("자료를 불러와 연습문제를 만들고 저장한다 — 최대 문항 수를 지킨다", async () => {
     fetchMock.mockResolvedValue(jsonResponse(savedSet("set-2", "cloze"), 201));

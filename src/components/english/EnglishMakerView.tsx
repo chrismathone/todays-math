@@ -28,6 +28,7 @@ import {
   type EnglishSetMeta,
 } from "@/contracts/english.contract";
 import {
+  buildChatgptFixRequest,
   buildChatgptRequest,
   parseChatgptResult,
   type EnglishMakerConditions,
@@ -214,6 +215,14 @@ export default function EnglishMakerView({
   const [fallbackText, setFallbackText] = useState<string | null>(null);
   const [pasteText, setPasteText] = useState("");
   const [pasteIssues, setPasteIssues] = useState<EnglishDraftIssue[]>([]);
+  // 검증에 걸린 그때의 글 · 조건과 수정 요청문(3자 합의 25 §12.13 F1) — JSON 을 못 찾았거나 서버 오류면 null(단추 없음)
+  const [rejection, setRejection] = useState<{
+    pasted: string;
+    conditions: string;
+    text: string;
+  } | null>(null);
+  const [fixOpen, setFixOpen] = useState(false);
+  const [fixCopyFailed, setFixCopyFailed] = useState(false);
 
   // ② 원문 복원
   const [clozeText, setClozeText] = useState("");
@@ -313,11 +322,24 @@ export default function EnglishMakerView({
       count: request.count,
       types: request.types,
     });
+    setFixOpen(false);
+    setFixCopyFailed(false);
     if (!verdict.ok) {
       setPasteIssues(verdict.issues);
+      const fix = buildChatgptFixRequest({ request, pasted: pasteText });
+      setRejection(
+        fix
+          ? {
+              pasted: pasteText,
+              conditions: JSON.stringify(conditions),
+              text: fix,
+            }
+          : null,
+      );
       return;
     }
     setPasteIssues([]);
+    setRejection(null);
     setBusy("import");
     try {
       await saveDraft(
@@ -336,6 +358,25 @@ export default function EnglishMakerView({
       onNotice(message, "alert");
     } finally {
       setBusy(null);
+    }
+  }
+
+  /** 수정 요청문 복사 — 거절된 그때의 글로 지은 것. 클립보드를 못 쓰면 글을 펼쳐 직접 복사하게 한다 */
+  async function copyFixRequest() {
+    if (!rejection) return;
+    const clipboard =
+      typeof navigator === "undefined" ? undefined : navigator.clipboard;
+    try {
+      if (!clipboard?.writeText) throw new Error("clipboard unavailable");
+      await clipboard.writeText(rejection.text);
+      setFixCopyFailed(false);
+      onNotice(
+        "수정 요청문을 복사했습니다. 같은 ChatGPT 대화에 붙여 넣어 주세요.",
+        "status",
+      );
+    } catch {
+      setFixCopyFailed(true);
+      setFixOpen(true);
     }
   }
 
@@ -674,10 +715,54 @@ export default function EnglishMakerView({
             </div>
             {pasteIssues.length ? (
               <div role="alert" className={s.alert}>
+                {rejection &&
+                (pasteText !== rejection.pasted ||
+                  JSON.stringify(conditions) !== rejection.conditions) ? (
+                  <p className={s.alertStale}>
+                    아래 사유와 수정 요청문은 앞서 가져오기를 눌렀을 때의 글
+                    기준입니다.
+                  </p>
+                ) : null}
                 <p>
-                  가져오지 못했습니다. 아래 사유를 고쳐 다시 붙여 넣어 주세요.
+                  {rejection
+                    ? "가져오지 못했습니다. 아래 사유를 ChatGPT 에 알려 고친 결과를 다시 붙여 넣어 주세요."
+                    : "가져오지 못했습니다. 아래 사유를 고쳐 다시 붙여 넣어 주세요."}
                 </p>
                 <IssueList issues={pasteIssues} />
+                {rejection ? (
+                  <>
+                    <div className={s.alertActions}>
+                      <button
+                        type="button"
+                        className={s.quietButton}
+                        onClick={() => void copyFixRequest()}
+                      >
+                        수정 요청문 복사
+                      </button>
+                      <button
+                        type="button"
+                        className={s.quietButton}
+                        aria-expanded={fixOpen}
+                        onClick={() => setFixOpen((open) => !open)}
+                      >
+                        {fixOpen ? "수정 요청문 접기" : "수정 요청문 보기"}
+                      </button>
+                    </div>
+                    {fixCopyFailed ? (
+                      <p>복사되지 않았습니다. 아래 글을 직접 복사해 주세요.</p>
+                    ) : null}
+                    {fixOpen ? (
+                      <textarea
+                        aria-label="수정 요청문"
+                        className={s.fixText}
+                        readOnly
+                        rows={10}
+                        value={rejection.text}
+                        onFocus={(event) => event.currentTarget.select()}
+                      />
+                    ) : null}
+                  </>
+                ) : null}
               </div>
             ) : null}
             <div className={s.actions}>

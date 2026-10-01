@@ -228,19 +228,20 @@ const FIX_PASTED_MAX = 40_000;
  * 3자 합의(25 §12.8 「3」): 저장을 막은 사유와 관측 사실(문항 번호 · 근거 자리 짚기)만 싣고 막지 않는 품질 검사는 안 싣는다 ·
  * 모양 문제는 그 칸만, 내용 문제는 그 문항의 정답 · 해설 · 근거까지 최소 범위로 · 나머지는 그대로 · 전체 JSON 만.
  * 서버 AI 길의 «한 번 고쳐 쓰기»(`generate.ts`)와 같은 뜻을 사람이 옮겨 붙이는 길로 낸 것이다.
+ * 🔴 붙여 넣은 글에서 JSON 객체를 못 찾았으면 null — 앱은 일부만 복사한 것인지 말뿐인 답인지 모르고, 그 글을
+ *    «앞서 낸 결과»로 다시 실어 보내도 고칠 대상이 없다(3자 합의 25 §12.13). 화면의 사유가 먼저 할 일을 말한다.
  */
 export function buildChatgptFixRequest({
   request,
   pasted,
 }: ChatgptFixInput): string | null {
-  let reasons: string[];
+  let value: unknown;
   try {
-    const value = coerceEnglishDraftShape(parseAiJsonObject(pasted), "chatgpt");
-    reasons = englishRejectionReasons(value, request);
+    value = coerceEnglishDraftShape(parseAiJsonObject(pasted), "chatgpt");
   } catch {
-    const verdict = parseChatgptResult(pasted, request);
-    reasons = verdict.ok ? [] : verdict.issues.map((issue) => issue.message);
+    return null;
   }
+  const reasons = englishRejectionReasons(value, request);
   if (!reasons.length) return null;
 
   const lines = [

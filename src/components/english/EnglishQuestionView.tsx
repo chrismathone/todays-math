@@ -3,6 +3,8 @@
  * 발문은 `EnglishPromptText`(어법의 `<u>` 를 밑줄로), 보기는 `englishOptionLayout`(번호뿐인 보기 · 겹친 번호), 정답은 번호 글자.
  * 지면과 다른 것은 글꼴뿐이다 — 화면은 앱 글꼴 하나(원장님 «웹앱 안에서는 모든 곳에서 일정한 폰트»), 지면은 지면 명조.
  */
+import type { ReactNode } from "react";
+
 import {
   ENGLISH_OPEN_TYPES,
   type EnglishQuestion,
@@ -15,12 +17,19 @@ import {
 import EnglishPromptText, { EnglishMarkedText } from "./EnglishPromptText";
 import s from "./EnglishStudio.module.css";
 
+/** «확인해 볼 곳» 줄 — 그 자리 아래에 선다(3자 합의 25 §12.13: 발문 · 보기 · 정답 · 해설) */
+export type EnglishQuestionNotes = Partial<
+  Record<"prompt" | "options" | "answer" | "explanation", ReactNode>
+>;
+
 export default function EnglishQuestionView({
   question,
   number,
+  notes = {},
 }: {
   question: EnglishQuestion;
   number: number;
+  notes?: EnglishQuestionNotes;
 }) {
   const open = ENGLISH_OPEN_TYPES.includes(question.type);
   const options = englishOptionLayout(question);
@@ -36,6 +45,7 @@ export default function EnglishQuestionView({
           markClassName={s.qCircled}
         />
       </p>
+      {notes.prompt}
       {options.lines.length > 0 && !options.omitted ? (
         <ol aria-label={`${number}번 보기`} className={s.qChoices}>
           {options.lines.map((line, index) => (
@@ -51,6 +61,7 @@ export default function EnglishQuestionView({
           ))}
         </ol>
       ) : null}
+      {notes.options}
       <dl className={s.qFacts}>
         <div>
           <dt>{open ? "정답 · 인정 답안" : "정답"}</dt>
@@ -61,7 +72,12 @@ export default function EnglishQuestionView({
         {question.explanation ? (
           <div>
             <dt>해설</dt>
-            <dd>{question.explanation}</dd>
+            <dd>
+              <EnglishMarkedText
+                text={question.explanation}
+                markClassName={s.qCircled}
+              />
+            </dd>
           </div>
         ) : null}
         {question.evidence ? (
@@ -71,6 +87,8 @@ export default function EnglishQuestionView({
           </div>
         ) : null}
       </dl>
+      {notes.answer}
+      {notes.explanation}
     </div>
   );
 }

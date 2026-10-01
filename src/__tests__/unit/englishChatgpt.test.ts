@@ -430,13 +430,16 @@ describe("buildChatgptFixRequest — 거절됐을 때만 «고쳐 달라 요청�
     expect(where).not.toContain("부분점수");
   });
 
-  it("JSON 을 못 읽은 붙여넣기 — 그 사유와 붙여 넣은 글을 싣는다", () => {
-    const text = buildChatgptFixRequest({
-      request: conditions,
-      pasted: "미안합니다. 다시 만들겠습니다.",
-    })!;
-    expect(text).toMatch(/JSON 을 찾지 못했습니다/);
-    expect(text).toContain("미안합니다. 다시 만들겠습니다.");
+  it("🔴 JSON 을 못 읽은 붙여넣기에는 요청문을 짓지 않는다 — 일부만 복사한 글이면 고칠 대상이 없다(3자 합의 25 §12.13)", () => {
+    expect(
+      buildChatgptFixRequest({
+        request: conditions,
+        pasted: "미안합니다. 다시 만들겠습니다.",
+      }),
+    ).toBeNull();
+    expect(
+      buildChatgptFixRequest({ request: conditions, pasted: "[1, 2, 3]" }),
+    ).toBeNull();
   });
 });
 

@@ -225,6 +225,30 @@
 .alert p {
   margin: 0;
 }
+/* 수정 요청문(3자 합의 25 §12.13 F1) — 빨간 알림 안, 사유 목록 아래. 단추는 지금 «조용한 단추» 그대로 */
+.alertActions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0 8px;
+}
+.alertStale {
+  font-weight: 700;
+}
+.fixText {
+  box-sizing: border-box;
+  display: block;
+  width: 100%;
+  margin-top: 8px;
+  padding: 9px 12px;
+  border: 1px solid var(--learn-control, #b8c4d6);
+  border-radius: 8px;
+  background: var(--learn-neutral, #edf0f6);
+  color: var(--learn-ink, #172b4d);
+  font: inherit;
+  font-size: var(--text-caption, 12px);
+  line-height: 1.6;
+  resize: vertical;
+}
 .issues {
   margin: 4px 0 0;
   padding-left: 18px;

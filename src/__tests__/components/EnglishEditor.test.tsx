@@ -17,6 +17,7 @@ import path from "node:path";
 
 import { http, HttpResponse } from "msw";
 import {
+  cleanup,
   fireEvent,
   render,
   screen,
@@ -468,5 +469,134 @@ describe("[EnglishEditor] 읽기 모양 · 칸 높이 · 글꼴 (원장님 2026-
       );
       expect(css).not.toMatch(/(?<!sans-)serif|Myeongjo|Batang|Georgia/i);
     }
+  });
+});
+
+/** «확인해 볼 곳» 줄의 글 — 원문자가 따로 span 에 들어가 글이 갈리므로 줄 글 span 의 textContent 로 찾는다 */
+const noteText =
+  (pattern: RegExp | string) => (_: string, element: Element | null) =>
+    element?.tagName === "SPAN" &&
+    element.parentElement?.tagName === "P" &&
+    (typeof pattern === "string"
+      ? element.textContent === pattern
+      : pattern.test(element.textContent ?? ""));
+
+describe("[EnglishEditor] 확인해 볼 곳 (3자 합의 25 §12.13 · Q1)", () => {
+  const base = ENGLISH_MOCK_SETS[0].questions[0]!;
+  const blank = {
+    type: "빈칸 추론" as const,
+    prompt: "다음 빈칸에 들어갈 말로 가장 적절한 것은? Trees ________.",
+    options: [
+      "grow without any care",
+      "are never planted by students",
+      "only protect towns in winter",
+      "protect the town and give shade",
+      "matter only to every teacher",
+    ],
+    answer: "4",
+    explanation: "마지막 문장이 근거다.",
+    evidence: base.evidence,
+  };
+  const noteSet = {
+    ...ENGLISH_MOCK_SETS[0],
+    questions: [
+      { ...base, answer: "1", explanation: "첫 문장이 근거다." },
+      { ...base, answer: "1", explanation: "첫 문장이 근거다." },
+      { ...base, answer: "1", explanation: "정답은 ②. 둘째 문장이 근거다." },
+      blank,
+    ],
+  };
+
+  async function openNotes(log = makeLog()) {
+    server.use(
+      http.get(`/api/english/sets/${ENGLISH_SET_DRAFT_ID}`, () =>
+        HttpResponse.json(englishSetResponseSchema.parse({ data: noteSet })),
+      ),
+    );
+    render(<Harness log={log} openSetId={ENGLISH_SET_DRAFT_ID} />);
+    await screen.findByText(
+      noteText(/정답 번호 — 객관식 4문항 가운데 3문항의 정답 칸이 ①입니다/),
+    );
+    return log;
+  }
+
+  it("머리 줄은 세트 카드에 — 절대어가 오답에만(문항에 딸려 [4번으로]) · 정답 번호 쏠림(세트 단위라 이동 단추 없음)", async () => {
+    await openNotes();
+    const absolute = screen
+      .getByText(noteText(/4번 빈칸 추론 — 오답 보기 ② · ③ · ⑤ 에만/))
+      .closest("p")!;
+    expect(
+      within(absolute).getByRole("button", { name: "4번으로" }),
+    ).toBeVisible();
+    const spread = screen
+      .getByText(noteText(/정답 번호 — 객관식 4문항/))
+      .closest("p")!;
+    expect(within(spread).queryByRole("button", { name: /번으로/ })).toBeNull();
+    expect(
+      within(spread).getByRole("button", { name: /^확인함 — / }),
+    ).toBeVisible();
+  });
+
+  it("문항 줄은 그 자리 아래 — 해설의 정답 표기가 정답 칸과 다르면 3번 카드에", async () => {
+    await openNotes();
+    const third = screen.getByRole("region", { name: "3번 문항" });
+    expect(
+      within(third).getByText(
+        noteText("정답 칸은 ①, 해설의 정답 표기는 ②입니다."),
+      ),
+    ).toBeVisible();
+    expect(
+      within(screen.getByRole("region", { name: "1번 문항" })).queryByText(
+        noteText(/해설의 정답 표기/),
+      ),
+    ).toBeNull();
+  });
+
+  it("[4번으로] 는 그 문항의 «수정» 단추에 초점을 옮긴다", async () => {
+    await openNotes();
+    fireEvent.click(screen.getByRole("button", { name: "4번으로" }));
+    expect(screen.getByRole("button", { name: "4번 문제 수정" })).toHaveFocus();
+  });
+
+  it("[확인함] — 줄이 숨고 알림 · 숨긴 수와 [다시 보기] · 다시 열어도 숨어 있다(이 브라우저) · 다시 보기로 돌아온다", async () => {
+    const log = await openNotes();
+    fireEvent.click(
+      screen.getByRole("button", {
+        name: /^확인함 — 정답 번호 — 객관식 4문항/,
+      }),
+    );
+    expect(screen.queryByText(noteText(/정답 번호 — 객관식 4문항/))).toBeNull();
+    expect(log.notices.at(-1)).toEqual({
+      message: "확인함으로 표시했습니다. 이 브라우저에서만 기억합니다.",
+      tone: "status",
+    });
+    expect(screen.getByText("확인함으로 숨긴 것 1")).toBeVisible();
+    cleanup();
+    render(<Harness log={makeLog()} openSetId={ENGLISH_SET_DRAFT_ID} />);
+    await screen.findByText(noteText(/4번 빈칸 추론 — 오답 보기/));
+    expect(screen.queryByText(noteText(/정답 번호 — 객관식 4문항/))).toBeNull();
+    fireEvent.click(screen.getByRole("button", { name: "다시 보기" }));
+    expect(
+      screen.getByText(noteText(/정답 번호 — 객관식 4문항/)),
+    ).toBeVisible();
+  });
+
+  it("치는 도중에는 다시 세지 않고, 칸을 벗어나면 센다 — 해설을 고쳐 어긋남이 풀리면 줄이 사라진다", async () => {
+    await openNotes();
+    fireEvent.click(screen.getByRole("button", { name: "3번 문제 수정" }));
+    const explanation = screen.getByRole("textbox", {
+      name: "3번 문제 해설·채점 기준",
+    });
+    fireEvent.change(explanation, {
+      target: { value: "정답은 ①. 첫 문장이 근거다." },
+    });
+    // 아직 그대로(치는 중)
+    expect(
+      screen.getByText(noteText("정답 칸은 ①, 해설의 정답 표기는 ②입니다.")),
+    ).toBeVisible();
+    fireEvent.blur(explanation);
+    expect(
+      screen.queryByText(noteText("정답 칸은 ①, 해설의 정답 표기는 ②입니다.")),
+    ).toBeNull();
   });
 });

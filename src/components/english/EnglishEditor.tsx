@@ -8,7 +8,7 @@
  * 내용을 고치면 상태는 «초안»으로 내려간다(ChatGPT 앱 규칙). 상태만 바꾸는 것은 내용 편집이 아니다.
  * 보내기 전에 공용 검증기(`validateEnglishDraft`)를 한 번 지난다 — 어느 문항·어느 규칙인지 한 줄씩.
  */
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useId, useMemo, useRef, useState } from "react";
 
 import ConfirmDialog from "@/components/unified/ConfirmDialog";
 import Icon from "@/components/unified/WorkspaceIcon";
@@ -25,6 +25,11 @@ import {
   type EnglishSetStatus,
 } from "@/contracts/english.contract";
 import { englishMetaLine } from "@/lib/english/meta";
+import {
+  englishQualityNotes,
+  type EnglishNotePlace,
+  type EnglishQualityNote,
+} from "@/lib/english/notes";
 import { ENGLISH_CHOICE_MARKS } from "@/lib/english/options";
 import {
   ENGLISH_CHOICE_COUNT,
@@ -33,6 +38,7 @@ import {
 
 import AutoGrowTextarea from "./AutoGrowTextarea";
 import EnglishDialog from "./EnglishDialog";
+import { EnglishMarkedText } from "./EnglishPromptText";
 import EnglishQuestionView from "./EnglishQuestionView";
 import {
   EnglishRequestError,
@@ -52,6 +58,29 @@ const CHOICES = Array.from({ length: ENGLISH_CHOICE_COUNT }, (_, i) =>
 const SET_TITLE_MAX = 160;
 const OPTION_MAX = 1_500;
 
+/** «확인함»한 열쇠 — 브라우저 저장소(못 쓰면 빈 것). 개인 창 · 막힌 저장소에서도 화면은 그대로 선다 */
+function readAcks(storageKey: string): ReadonlySet<string> {
+  try {
+    const raw = window.localStorage.getItem(storageKey);
+    const list: unknown = raw ? JSON.parse(raw) : [];
+    return new Set(
+      Array.isArray(list)
+        ? list.filter((item): item is string => typeof item === "string")
+        : [],
+    );
+  } catch {
+    return new Set();
+  }
+}
+
+function writeAcks(storageKey: string, keys: ReadonlySet<string>) {
+  try {
+    window.localStorage.setItem(storageKey, JSON.stringify([...keys]));
+  } catch {
+    /* 저장소를 못 쓰면 그 화면에서만 숨긴다 */
+  }
+}
+
 export default function EnglishEditor({
   setId,
   initialSet,
@@ -59,6 +88,7 @@ export default function EnglishEditor({
   onBack,
   onSaved,
   onDeleted,
+  onNotice,
 }: {
   setId: string;
   /** 딥링크가 이미 읽어 둔 세트 — 있으면 다시 읽지 않는다 */
@@ -67,6 +97,8 @@ export default function EnglishEditor({
   onBack: () => void;
   onSaved: (set: EnglishSet) => void;
   onDeleted: (id: string) => void;
+  /** 셸의 알림 줄 — «확인함» 같은 짧은 알림 */
+  onNotice?: (message: string) => void;
 }) {
   const seeded = Boolean(initialSet && initialSet.id === setId);
   const [draft, setDraft] = useState<EnglishSet | null>(
@@ -85,6 +117,84 @@ export default function EnglishEditor({
   const [editing, setEditing] = useState<ReadonlySet<number>>(() => new Set());
   const printRef = useRef<HTMLButtonElement>(null);
   const deleteRef = useRef<HTMLButtonElement>(null);
+  const uid = useId();
+  const cardId = (index: number) => `${uid}-q${index}`;
+
+  // «확인해 볼 곳»(3자 합의 25 §12.13) — 치는 도중이 아니라 칸을 벗어날 때 · 불러올 때 · 저장한 뒤 · «수정 끝»에 다시 센다.
+  // 치는 도중에 칸 아래 줄이 섰다 사라지면 아래 내용이 흔들리고 한글 조합도 끊긴다. 세트 전체를 센다(정답 번호 쏠림은 세트 단위).
+  const [settled, setSettled] = useState<EnglishQuestion[] | null>(
+    seeded ? (initialSet?.questions ?? null) : null,
+  );
+  // 칸을 벗어날 때 읽을 «지금 글» — 그린 뒤에 맞춘다(그리는 도중에 ref 를 바꾸지 않는다)
+  const latest = useRef(draft);
+  useEffect(() => {
+    latest.current = draft;
+  });
+  const settle = () => setSettled(latest.current?.questions ?? null);
+  const notes = useMemo(
+    () => (settled ? englishQualityNotes(settled) : []),
+    [settled],
+  );
+  // 기각(«확인함»)은 이 브라우저에만 — 관련 글이나 검사 판이 바뀌면 열쇠가 달라져 다시 선다
+  const ackStorage = `english-notes-ack:${setId}`;
+  const [acked, setAcked] = useState<ReadonlySet<string>>(() =>
+    readAcks(ackStorage),
+  );
+  const visibleNotes = notes.filter((note) => !acked.has(note.key));
+  const hiddenCount = notes.length - visibleNotes.length;
+  const dismiss = (note: EnglishQualityNote) => {
+    const next = new Set(acked).add(note.key);
+    setAcked(next);
+    writeAcks(ackStorage, next);
+    onNotice?.("확인함으로 표시했습니다. 이 브라우저에서만 기억합니다.");
+  };
+  const restoreAcked = () => {
+    const next = new Set(acked);
+    for (const note of notes) next.delete(note.key);
+    setAcked(next);
+    writeAcks(ackStorage, next);
+  };
+  const jumpTo = (index: number) => {
+    const card = document.getElementById(cardId(index));
+    card?.scrollIntoView?.({ block: "start", behavior: "smooth" });
+    card
+      ?.querySelector<HTMLButtonElement>("[data-edit-toggle]")
+      ?.focus({ preventScroll: true });
+  };
+  const noteLine = (note: EnglishQualityNote, jump: boolean) => (
+    <p className={s.noteLine} key={note.key}>
+      <span className={s.noteTag}>확인해 볼 곳</span>
+      <span className={s.noteText}>
+        <EnglishMarkedText text={note.text} markClassName={s.qCircled} />
+      </span>
+      {jump && note.question !== null ? (
+        <button
+          type="button"
+          className={s.noteButton}
+          onClick={() => jumpTo(note.question!)}
+        >
+          {note.question + 1}번으로
+        </button>
+      ) : null}
+      <button
+        type="button"
+        className={s.noteButton}
+        aria-label={`확인함 — ${note.text}`}
+        onClick={() => dismiss(note)}
+      >
+        확인함
+      </button>
+    </p>
+  );
+  const notesAt = (index: number, place: EnglishNotePlace) => {
+    const here = visibleNotes.filter(
+      (note) => note.question === index && note.place === place,
+    );
+    return here.length ? (
+      <div className={s.notes}>{here.map((note) => noteLine(note, false))}</div>
+    ) : null;
+  };
+  const headNotes = visibleNotes.filter((note) => note.place === "head");
 
   useEffect(() => {
     if (reload === 0 && seeded) return;
@@ -96,6 +206,7 @@ export default function EnglishEditor({
         );
         if (cancelled) return;
         setDraft(body.data);
+        setSettled(body.data.questions);
         setLoadError(null);
         setConflict(null);
         setError(null);
@@ -121,13 +232,15 @@ export default function EnglishEditor({
       ),
     }));
 
-  const toggleEditing = (index: number) =>
+  const toggleEditing = (index: number) => {
+    if (editing.has(index)) settle();
     setEditing((current) => {
       const next = new Set(current);
       if (next.has(index)) next.delete(index);
       else next.add(index);
       return next;
     });
+  };
   /** 검증에 걸린 문항은 고칠 칸을 연다 — 사유를 읽고 바로 고치게 */
   const openIssues = (issues: readonly { question: number | null }[]) =>
     setEditing(
@@ -175,6 +288,7 @@ export default function EnglishEditor({
         ),
       );
       setDraft(body.data);
+      setSettled(body.data.questions);
       onSaved(body.data);
     } catch (caught) {
       if (statusOf(caught) === 409) setConflict(messageOf(caught));
@@ -226,7 +340,7 @@ export default function EnglishEditor({
   const metaLine = englishMetaLine(draft.meta);
 
   return (
-    <div className={s.editor}>
+    <div className={s.editor} onBlur={settle}>
       <div className={s.toolbar}>
         <button type="button" className={w.outlineButton} onClick={onBack}>
           목록
@@ -315,6 +429,25 @@ export default function EnglishEditor({
           {exam.school}
         </p>
         {metaLine ? <p className={s.metaLine}>만든 조건 — {metaLine}</p> : null}
+        {headNotes.length || hiddenCount ? (
+          <div className={s.notes}>
+            {headNotes.map((note) => noteLine(note, true))}
+            {hiddenCount ? (
+              <p className={s.noteLine}>
+                <span className={s.noteText}>
+                  확인함으로 숨긴 것 {hiddenCount}
+                </span>
+                <button
+                  type="button"
+                  className={s.noteButton}
+                  onClick={restoreAcked}
+                >
+                  다시 보기
+                </button>
+              </p>
+            ) : null}
+          </div>
+        ) : null}
         <label className={s.passageBox}>
           지문
           <AutoGrowTextarea
@@ -338,6 +471,7 @@ export default function EnglishEditor({
         return (
           <section
             key={n}
+            id={cardId(index)}
             aria-label={`${n}번 문항`}
             className={`${s.card} ${s.question}`}
           >
@@ -352,13 +486,23 @@ export default function EnglishEditor({
                   isEditing ? `${n}번 문제 수정 끝` : `${n}번 문제 수정`
                 }
                 aria-pressed={isEditing}
+                data-edit-toggle=""
                 onClick={() => toggleEditing(index)}
               >
                 {isEditing ? "수정 끝" : "수정"}
               </button>
             </div>
             {!isEditing ? (
-              <EnglishQuestionView question={question} number={n} />
+              <EnglishQuestionView
+                question={question}
+                number={n}
+                notes={{
+                  prompt: notesAt(index, "prompt"),
+                  options: notesAt(index, "options"),
+                  answer: notesAt(index, "answer"),
+                  explanation: notesAt(index, "explanation"),
+                }}
+              />
             ) : (
               <>
                 <label className={s.field}>
@@ -371,6 +515,7 @@ export default function EnglishEditor({
                     }
                   />
                 </label>
+                {notesAt(index, "prompt")}
                 {open ? (
                   <label className={s.field}>
                     정답 · 인정 답안
@@ -423,6 +568,8 @@ export default function EnglishEditor({
                     </label>
                   </>
                 )}
+                {notesAt(index, "options")}
+                {notesAt(index, "answer")}
                 <label className={s.field}>
                   해설 · 채점 기준
                   <AutoGrowTextarea
@@ -433,6 +580,7 @@ export default function EnglishEditor({
                     }
                   />
                 </label>
+                {notesAt(index, "explanation")}
                 <label className={s.field}>
                   지문 속 근거 <small>지문에서 그대로 이어진 인용</small>
                   <AutoGrowTextarea

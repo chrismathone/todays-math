@@ -361,6 +361,7 @@ export default function EnglishStudio({
           initialSet={editor.set}
           exam={exam}
           onBack={() => setEditor(null)}
+          onNotice={(message) => onNotice(message)}
           onSaved={(saved) => {
             setSets((current) => {
               const list = current[saved.examId];

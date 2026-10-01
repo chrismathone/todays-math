@@ -21,12 +21,12 @@
 - **보기 줄 규칙**(`src/lib/english/options.ts`) — 번호뿐인 보기는 «① ①»로 안 찍고, 발문에 자리가 다 있으면 보기 줄 없음. 지면 · 화면이 같이 쓴다. 실물 검수 «대기» `english-bare-choice-marks`.
 - **만든 조건 칸** `english_question_set.meta` — 🔴 **공유 DB 에 적용됨**(원장님 승인 2026-10-01 · `scripts/qa/apply-english-set-meta-migration.ts` · 세트 2행 무변경). 새 컴퓨터는 `prisma generate` 먼저.
 
-### 0-ZC.2 진행 중 — 3자 협의 「수정 요청문 단추 · 검사 표시 · 삽입 보기」(25 §12.8 「3」「4」의 화면)
-- Wire 시안 `docs/design/mockups/wire-d151-english-fix-request-quality.html` · 브리프 · 1~2차 답 `docs/planning/tracks/reports/english-quality/consult-fixq-wire/`. **2차까지 했고 3차(최종 예/아니오)가 남았다.**
-- 셋이 같았던 것: 수정 요청문은 **F1(빨간 알림 안)** · 단추 «수정 요청문 복사» / «수정 요청문 보기» · 검사 표시는 **Q1(제자리 줄)** · 이름표 «확인해 볼 곳» · 기각은 그 브라우저에만 · 편집 화면에만 · 삽입 보기는 **보기 줄 없음**(구현함).
-- 2차 이의(codex · grok)로 3차에 넣을 것: 세트 단위 지적(정답 번호 쏠림)에는 이동 단추를 두지 않는다 · 숨긴 지적을 다시 보는 길(codex) · 입력을 고친 뒤 사유 목록에 «이전 가져오기 결과 기준»(codex) ·
-  ⓓ(정답 보기만 김)는 보류 · ⓔ(절대어가 오답에만)는 채점관 AI 와 연관(선 쪽 오답 매력도 2.72 · 안 선 쪽 3.25)만 보였을 뿐 정밀도는 모른다.
-- 🔴 **편집 화면이 읽기 모양으로 바뀌었다** — Q1 의 «그 칸 아래 줄»은 이제 읽기 모양의 그 자리(정답 줄 아래 · 보기 아래)다. 3차 브리프에 이 사실을 [정정]으로 넣는다.
+### 0-ZC.2 수정 요청문 단추 · 확인해 볼 곳 — 3자 합의로 닫고 구현(25 §12.13 · 05 §8.23.2)
+- Wire 시안 `docs/design/mockups/wire-d151-english-fix-request-quality.html` · 브리프 · 1~3차 답 `docs/planning/tracks/reports/english-quality/consult-fixq-wire/`. 3차에서 codex · grok 의 조건(문장 하나씩)을 그대로 넣어 닫았다.
+- **수정 요청문**: ChatGPT 길이 검증에 걸리면 빨간 알림 안에 «수정 요청문 복사» · «수정 요청문 보기». JSON 을 못 찾았거나 서버 오류면 단추 없음. 요청문은 거절된 그때의 글 · 조건으로 짓는다.
+- **확인해 볼 곳**: 편집 화면의 세트 카드에 머리 줄(절대어가 오답에만 · 정답 번호 쏠림), 문항 카드의 그 자리에 문항 줄(해설의 정답 표기 · «모두 옳다» · 글자 `\n`). ⓓ(정답 보기만 김)는 **보류**.
+  [확인함]은 그 브라우저에만(`english-notes-ack:{세트 id}`) — 기각률 · 수정률은 못 잰다(서버에 모으는 설계는 이번 범위 밖).
+- 🔴 사람 감사 뒤 다시 볼 것: ⓔ 를 계속 켤지 · ⓓ 를 켤지(채점관 AI 와의 연관만 보였다 — 25 §12.13).
 
 ### 0-ZC.3 준비만 해 둔 것 — 사람 감사(25 §12.8 「5」)
 - 감사지: `D:\worktree-archive\todays-math-english-bench-20260930\bench\audit\audit\` — `teacher.html`(변형형 30문항 · 15쪽) · `student.html`(지문 없이 20문항 · 5쪽) · **`key.html` · `key.json` 은 따로 보관**(풀기 전에 보지 않는다) · 적어 넣는 표 `teacher-record.csv` · `student-record.csv`.

@@ -292,8 +292,61 @@ function check(
   return { code, kind, ok, message };
 }
 
+/**
+ * 표면 단서 셋 — 결정적 검사(여기)와 편집 화면의 «확인해 볼 곳»(`notes.ts`)이 같은 판정을 쓴다(3자 합의 25 §12.13).
+ * 보기가 글인 유형만(어법 밑줄 · 삽입 자리 번호는 제외).
+ */
+export const ENGLISH_SURFACE_CUE_TYPES: readonly EnglishQuestionType[] = [
+  "주제",
+  "내용 일치",
+  "빈칸 추론",
+];
+
+/** «모두 옳다 / 정답 없음» 꼴 — 찾은 표현(없으면 null) */
+export function aotaMatch(option: string): string | null {
+  return AOTA.exec(option)?.[0] ?? null;
+}
+
+/** 절대어(always · only · every · 모든 …) — 찾은 낱말들(순서대로) */
+export function absoluteWords(text: string): string[] {
+  return [...text.matchAll(new RegExp(ABSOLUTE.source, "gi"))].map((m) => m[0]);
+}
+
+/**
+ * 절대어가 오답에만 — 오답 둘 이상에 있고 정답에는 없을 때 그 오답의 번호(0부터). 아니면 null.
+ */
+export function absoluteOnlyDistractors(
+  question: Pick<EnglishQuestion, "options" | "answer">,
+): number[] | null {
+  const answerIndex = Number(question.answer) - 1;
+  const hits = question.options.flatMap((option, i) =>
+    i !== answerIndex && ABSOLUTE.test(option) ? [i] : [],
+  );
+  return hits.length >= 2 && !ABSOLUTE.test(question.options[answerIndex] ?? "")
+    ? hits
+    : null;
+}
+
+/** 정답 번호 쏠림 — 객관식이 넷 이상이고 한 번호가 절반을 넘으면 그 번호와 수. 아니면 null */
+export function answerSpread(
+  questions: readonly Pick<EnglishQuestion, "type" | "answer">[],
+): { answer: string; count: number; total: number } | null {
+  const objective = questions.filter(
+    (question) => !ENGLISH_OPEN_TYPES.includes(question.type),
+  );
+  if (objective.length < 4) return null;
+  const counts = new Map<string, number>();
+  for (const question of objective)
+    counts.set(question.answer, (counts.get(question.answer) ?? 0) + 1);
+  let top: [string, number] | null = null;
+  for (const entry of counts) if (!top || entry[1] > top[1]) top = entry;
+  return top && top[1] > objective.length / 2
+    ? { answer: top[0], count: top[1], total: objective.length }
+    : null;
+}
+
 /** 해설이 «정답은 ③» 처럼 다른 번호를 정답이라 하면 어긋남 */
-function explanationNumber(explanation: string): string | null {
+export function explanationNumber(explanation: string): string | null {
   const match =
     /정답\s*(?:은|는|:|=)?\s*([①-⑤]|[1-5])(?!\d)/.exec(explanation) ??
     /([①-⑤])\s*번?\s*(?:이|가)?\s*정답/.exec(explanation);
@@ -589,11 +642,7 @@ function questionChecks(
     );
 
   // IWF 표면 단서 — 보기가 글인 유형만(어법 밑줄 · 삽입 자리 번호는 제외)
-  if (
-    question.type === "주제" ||
-    question.type === "내용 일치" ||
-    question.type === "빈칸 추론"
-  ) {
+  if (ENGLISH_SURFACE_CUE_TYPES.includes(question.type)) {
     const lengths = question.options.map((option) => option.trim().length);
     const correct = lengths[answerIndex] ?? 0;
     const others = lengths.filter((_, i) => i !== answerIndex);
@@ -608,21 +657,15 @@ function questionChecks(
       check(
         "iwf.aota",
         "iwf",
-        !question.options.some((option) => AOTA.test(option)),
+        !question.options.some((option) => aotaMatch(option) !== null),
         "«모두 옳다 / 정답 없음» 같은 보기를 쓰지 않습니다.",
       ),
     );
-    const absoluteDistractors = question.options.filter(
-      (option, i) => i !== answerIndex && ABSOLUTE.test(option),
-    ).length;
     out.push(
       check(
         "iwf.absolute-only-distractors",
         "iwf",
-        !(
-          absoluteDistractors >= 2 &&
-          !ABSOLUTE.test(question.options[answerIndex] ?? "")
-        ),
+        absoluteOnlyDistractors(question) === null,
         "절대어(always · never · 모든 …)가 오답에만 몰려 있습니다.",
       ),
     );
@@ -675,22 +718,18 @@ function setChecks(
   expect?: EnglishQualityExpectation,
 ): EnglishCheck[] {
   const out: EnglishCheck[] = [];
-  const objective = draft.questions.filter(
+  const objectiveCount = draft.questions.filter(
     (question) => !ENGLISH_OPEN_TYPES.includes(question.type),
-  );
-  if (objective.length >= 4) {
-    const counts = new Map<string, number>();
-    for (const question of objective)
-      counts.set(question.answer, (counts.get(question.answer) ?? 0) + 1);
+  ).length;
+  if (objectiveCount >= 4)
     out.push(
       check(
         "set.answer-spread",
         "set",
-        Math.max(...counts.values()) <= objective.length / 2,
+        answerSpread(draft.questions) === null,
         "정답 번호가 한 번호에 몰려 있습니다.",
       ),
     );
-  }
   if (!expect) return out;
   if (expect.mode === "original")
     out.push(
