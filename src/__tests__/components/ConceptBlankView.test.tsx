@@ -11,6 +11,7 @@ import ConceptBlankView from "@/components/concept-blank/ConceptBlankView";
 import type { ConceptBlankPaperProps } from "@/components/concept-blank/ConceptBlankPaper";
 import type { ConceptBlankSelection } from "@/contracts/conceptBlank.contract";
 import { FIXTURE_BANK } from "@/lib/concept-blank/fixture";
+import { BLANK_TREE } from "@/lib/concept-blank/sections";
 import {
   decodeSelection,
   encodeSelection,
@@ -32,11 +33,15 @@ vi.mock("@/components/concept-blank/ConceptBlankPaper", () => ({
 const loads = vi.hoisted(() => ({
   calls: [] as string[],
   pending: new Map<string, (bank: unknown) => void>(),
+  failing: new Map<string, (cause: unknown) => void>(),
 }));
 vi.mock("@/lib/concept-blank/bank/load", () => ({
   loadGradeBank: (grade: string) => {
     loads.calls.push(grade);
-    return new Promise((resolve) => loads.pending.set(grade, resolve));
+    return new Promise((resolve, reject) => {
+      loads.pending.set(grade, resolve);
+      loads.failing.set(grade, reject);
+    });
   },
 }));
 
@@ -956,6 +961,7 @@ describe("학년 은행 늦게 불러오기", () => {
   beforeEach(() => {
     loads.calls.length = 0;
     loads.pending.clear();
+    loads.failing.clear();
   });
   const gradeBank = (grade: string) => {
     const mine = <T extends { section: string }>(xs: T[]) =>
@@ -987,6 +993,45 @@ describe("학년 은행 늦게 불러오기", () => {
     fireEvent.click(tree().getByRole("button", { name: /^초5/ }));
     openGrade("초5");
     expect(loads.calls).toEqual(["초5"]);
+  });
+
+  // 리뷰(2026-10-01) — 은행이 없는 학년(초1 · 초2 · 고등)은 영영 «오는 중»이 아니다. 옛 주소에 섞여 있으면 전처럼 뺀다.
+  it("은행이 없는 학년의 소단원은 기다리지 않고 뺀다", async () => {
+    const grade1 = BLANK_TREE.find((g) => g.grade === "초1")!.chapters[0]!
+      .sections[0]!.key;
+    const code = encodeSelection({
+      sections: [grade1, S.line],
+      forms: [
+        {
+          form: "term",
+          counts: { 하: 1, 중: 0, 상: 0 },
+          extras: { 하: 0, 중: 0, 상: 0 },
+        },
+      ],
+    });
+    window.history.replaceState(null, "", `/?blank=${code}#conceptBlank`);
+    render(<ConceptBlankView active />);
+    expect(loads.calls).not.toContain("초1");
+    await arrive("초5");
+    expect(printedSelection()?.sections).toEqual([S.line]);
+  });
+
+  it("한 학년을 못 불러오면 알리고, 다시 부르다 오면 알림을 걷는다", async () => {
+    render(<ConceptBlankView active />);
+    openGrade("초5");
+    await act(async () => {
+      loads.failing.get("초5")!(new Error("chunk"));
+    });
+    expect(screen.getByRole("alert")).toHaveTextContent(
+      "문항을 불러오지 못했습니다",
+    );
+    // 다른 학년을 펼치면 못 온 학년도 다시 부른다(접힌 초5 는 고른 소단원이 없어 안 부른다 — 다시 펼친다)
+    fireEvent.click(tree().getByRole("button", { name: /^초5/ }));
+    openGrade("초5");
+    expect(loads.calls.filter((g) => g === "초5")).toHaveLength(2);
+    await arrive("초5");
+    expect(screen.queryByRole("alert")).not.toBeInTheDocument();
+    expect(box("2-3-1 도형의 합동 알아보기")).toBeEnabled();
   });
 
   it("주소의 고르기는 그 학년이 올 때까지 지우지도 줄이지도 않는다", async () => {

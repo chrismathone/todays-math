@@ -328,7 +328,8 @@ function useGradeBanks(grades: readonly string[] | null) {
   const [parts, setParts] = useState<ReadonlyMap<string, ConceptBlankBank>>(
     () => new Map(),
   );
-  const [failed, setFailed] = useState(false);
+  /** 못 온 학년 — 다시 불러 오면 뺀다(알림은 못 온 학년이 남아 있는 동안만). */
+  const [failed, setFailed] = useState<ReadonlySet<string>>(() => new Set());
   const asked = useRef(new Set<string>());
   const wanted = grades ? grades.filter(isReadyGrade).join("|") : "";
   useEffect(() => {
@@ -336,10 +337,18 @@ function useGradeBanks(grades: readonly string[] | null) {
       if (asked.current.has(grade)) continue;
       asked.current.add(grade);
       loadGradeBank(grade).then(
-        (bank) => setParts((current) => new Map(current).set(grade, bank)),
+        (bank) => {
+          setParts((current) => new Map(current).set(grade, bank));
+          setFailed((current) => {
+            if (!current.has(grade)) return current;
+            const next = new Set(current);
+            next.delete(grade);
+            return next;
+          });
+        },
         () => {
           asked.current.delete(grade);
-          setFailed(true);
+          setFailed((current) => new Set(current).add(grade));
         },
       );
     }
@@ -355,7 +364,7 @@ function useGradeBanks(grades: readonly string[] | null) {
       ),
     [parts],
   );
-  return { bank, loaded: parts, failed };
+  return { bank, loaded: parts, failed: failed.size > 0 };
 }
 
 export type ConceptBlankViewProps = {
@@ -449,7 +458,9 @@ export default function ConceptBlankView({
         draft.sections.filter(
           (key) =>
             (stockIndex.get(key)?.total ?? 0) > 0 ||
+            // 아직 안 온 학년만 기다린다 — 은행이 없는 학년(초1 · 초2 · 고등)은 오지 않으니 전처럼 뺀다
             (!!loadedGrades &&
+              isReadyGrade(getBlankSection(key)?.grade ?? "") &&
               !loadedGrades.has(getBlankSection(key)?.grade ?? "")),
         ),
       ),
