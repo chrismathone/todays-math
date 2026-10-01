@@ -1,0 +1,85 @@
+{
+  "createdAt": "2026-10-01T16:36:31.385Z",
+  "labelStatus": "assistant-reviewed pilot; teacher verification pending",
+  "stats": [
+    {
+      "model": "gemini-3.8-flash-low / low",
+      "completed": 10,
+      "total": 10,
+      "exactMatches": 10,
+      "choiceMatches": 10,
+      "statusMatches": 10,
+      "excludingUncertainLabels": {
+        "total": 9,
+        "exactMatches": 9
+      },
+      "riskyAutoAnswers": 0,
+      "reviewCount": 1,
+      "medianMs": 19167.5
+    },
+    {
+      "model": "gemini-3.8-flash-medium / medium",
+      "completed": 10,
+      "total": 10,
+      "exactMatches": 9,
+      "choiceMatches": 9,
+      "statusMatches": 9,
+      "excludingUncertainLabels": {
+        "total": 9,
+        "exactMatches": 8
+      },
+      "riskyAutoAnswers": 0,
+      "reviewCount": 2,
+      "medianMs": 28368.5
+    },
+    {
+      "model": "gpt-6-luna / medium",
+      "completed": 10,
+      "total": 10,
+      "exactMatches": 6,
+      "choiceMatches": 8,
+      "statusMatches": 7,
+      "excludingUncertainLabels": {
+        "total": 9,
+        "exactMatches": 6
+      },
+      "riskyAutoAnswers": 1,
+      "reviewCount": 4,
+      "medianMs": 6038
+    },
+    {
+      "model": "gpt-6.1-sol / medium",
+      "completed": 10,
+      "total": 10,
+      "exactMatches": 10,
+      "choiceMatches": 10,
+      "statusMatches": 10,
+      "excludingUncertainLabels": {
+        "total": 9,
+        "exactMatches": 9
+      },
+      "riskyAutoAnswers": 0,
+      "reviewCount": 1,
+      "medianMs": 12131.5
+    }
+  ],
+  "jev": {
+    "completed": 0,
+    "total": 1,
+    "accessError": "Free tier users do not have access to this model. Upgrade to paid credits at https://vercel.com/d?to=%2F%5Bteam%5D%2F%7E%2Fai%3Fmodal%3Dtop-up for unrestricted access.",
+    "diagnosis": "로컬 키의 요청은 무료 등급으로 거절됨. CLI는 옛 bigshol 계정이며 프로젝트 연결도 이전 전 상태. 현재 운영 chrismathone Pro 팀의 접근 여부는 미확인. 사용자가 지금은 로그인하기 어려워 재인증을 보류함."
+  },
+  "limitations": [
+    "Small convenience sample from three middle-school exam scans; only two contain handwriting. Original authorship and correction timing are unknown.",
+    "Assistant-reviewed labels, not teacher-validated ground truth. Agreement below is not a population accuracy estimate.",
+    "Choice selection, blank detection and conflict routing only; full handwritten transcription, concept semantics and partial credit are not scored.",
+    "CLI timing includes agent initialization and image-tool overhead; APIs may behave differently. One run per case, with model groups running concurrently.",
+    "No API charges measured. API token unit prices and hypothetical estimates are separate from subscription usage."
+  ],
+  "artifacts": {
+    "html": ".qa-artifacts/concept-photo-bench/results/report.html",
+    "rawResults": ".qa-artifacts/concept-photo-bench/results/raw",
+    "privateManifest": ".qa-artifacts/concept-photo-bench/samples/manifest.json"
+  },
+  "methodologyNote": "blank-q6 was excluded post hoc in the sensitivity analysis because its provisional label is uncertain. Original model responses and labels were preserved."
+}

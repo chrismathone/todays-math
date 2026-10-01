@@ -91,10 +91,7 @@
   },
   "isolation": {
     "initialWorkDir": "empty",
-    "stagedFiles": [
-      "image.png",
-      "prompt.txt"
-    ],
+    "stagedFiles": ["image.png", "prompt.txt"],
     "referenceAnswersStaged": false,
     "permissionMode": "request-review",
     "unexpectedToolsObserved": false,
@@ -104,11 +101,7 @@
   "artifacts": {
     "directory": "C:\\Users\\user\\orca\\workspaces\\testautocreator\\cb-photo-agy\\.qa-artifacts\\agy-smoke",
     "committed": false,
-    "prefixes": [
-      "probe",
-      "adapter",
-      "final"
-    ],
+    "prefixes": ["probe", "adapter", "final"],
     "note": "Raw stdout/stderr, CLI logs, responses, metadata, staged sample and exact invocation live only in ignored .qa-artifacts; preserve this directory before removing worker worktree"
   },
   "checks": {
@@ -146,13 +139,7 @@
     "call": "await callAgy({ model, prompt, imagePath, workDir, outputPrefix, timeoutMs })",
     "workDir": "Fresh empty directory per call; adapter copies image to generic image.<ext> and writes prompt.txt",
     "outputPrefix": "Absolute or cwd-relative prefix beneath this checkout .qa-artifacts, outside workDir; use a unique prefix per call",
-    "returnFields": [
-      "text",
-      "ms",
-      "usage?",
-      "model",
-      "transport"
-    ],
+    "returnFields": ["text", "ms", "usage?", "model", "transport"],
     "failureBehavior": "Throws on timeout, failed/empty result, missing successful image read, unexpected tool activity, non-request-review permissions, model label mismatch, or fallback warning; process artifacts retained",
     "remaining": "Parent merges adapter and builds/runs real crop corpus plus Luna/Sol comparison; no benchmark was run by this worker"
   }
